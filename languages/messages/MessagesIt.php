@@ -1287,7 +1287,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'rcshowhidebots'                    => '$1 i bot',
 'rcshowhideliu'                     => '$1 gli utenti registrati',
 'rcshowhideanons'                   => '$1 gli utenti anonimi',
-'rcshowhidepatr'                    => '$1 le modifiche controllate',
+'rcshowhidepatr'                    => '$1 le modifiche verificate',
 'rcshowhidemine'                    => '$1 le mie modifiche',
 'rclinks'                           => 'Mostra le $1 modifiche più recenti apportate negli ultimi $2 giorni<br />$3',
 'diff'                              => 'diff',
@@ -2950,6 +2950,9 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 #Le linee che iniziano con # sono di commento
 
 #Inserisci sopra questa riga tutti i frammenti di regex. Lascia questa riga esattamente com'è</pre>",
+
+# Special:Tags
+'tag-filter-submit' => 'Filtra',
 
 # Database error messages
 'dberr-header'      => 'Questa wiki ha un problema',

@@ -530,7 +530,8 @@ $1 is the minimum number of characters in the password.',
 * $4 is a URL. Example: http://wiki.example.com
 * $5 is a number of days in which the temporary password will expire',
 'noemail'                    => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights. ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup Register user link])',
-'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].',
+'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
+"in the last day" precesily means: during the lasts 86400 seconds (24 hours) ending just now.',
 'emailauthenticated'         => 'In user preferences. ([[Special:Preferences]])
 
 * $1: obsolete, date and time
@@ -1511,8 +1512,12 @@ Example: [[:Image:Addon-icn.png]]',
 'special-categories-sort-count' => 'This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'The message is shown as a link on [[Special:Contributions]] to the DeletedContributions special page.',
-'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.',
+'deletedcontributions'       => 'The message is shown as a link on [[Special:Contributions]] to the DeletedContributions special page.
+
+{{Identical|Deleted user contributions}}',
+'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]], a special page with a list of edits to pages which were deleted. Only viewable by sysops.
+
+{{Identical|Deleted user contributions}}',
 
 # Special:LinkSearch
 'linksearch-ns' => '{{Identical|Namespace}}',

@@ -623,8 +623,24 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'randomredirect' => 'Elekezo la bahati',
 
 # Statistics
-'statistics'              => 'Takwimu',
-'statistics-header-users' => 'Takwimu za watumiaji',
+'statistics'                   => 'Takwimu',
+'statistics-header-pages'      => 'Takwimu za kurasa',
+'statistics-header-edits'      => 'Takwimu za kuhariri',
+'statistics-header-views'      => 'Onyesha takwimu',
+'statistics-header-users'      => 'Takwimu za watumiaji',
+'statistics-articles'          => 'Kurasa zilizopo',
+'statistics-pages'             => 'Kurasa',
+'statistics-pages-desc'        => 'Kurasa zote za katika wiki, zikiwemo kurasa za majadiliano, elekezo, n.k.',
+'statistics-files'             => 'Faili zilizopakiwa',
+'statistics-edits'             => 'Kurasa zilizohaririwa tangu {{SITENAME}} ilivyoanzishwa',
+'statistics-edits-average'     => 'Wastani wa uhariri kwa kurasa',
+'statistics-views-total'       => 'Onyesha kwa jumla',
+'statistics-views-peredit'     => 'Onyesha kwa uhariri',
+'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] Urefu',
+'statistics-users'             => '[[Special:ListUsers|Watumiaji]] waliojisajiri',
+'statistics-users-active'      => 'Watumiaji wanaofanya kazi',
+'statistics-users-active-desc' => 'Watumiaji waliofanya kazi katika siku {{PLURAL:$1|siku|$1 zilizopita}}',
+'statistics-mostpopular'       => 'Kurasa zinazotazamwa sana',
 
 'disambiguations' => 'Kurasa za kuainisha maneno',
 

@@ -347,6 +347,10 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 'unusedimagestext' => 'Bitte beachten Sie, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.',
 'notargettext'     => 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 
+# Book sources
+'booksources-invalid-isbn' => 'Vermutlich ist die ISBN ungültig.
+Bitte prüfen Sie, ob korrekt von der Quelle übertragen wurde.',
+
 # E-mail user
 'mailnologintext' => 'Sie müssen [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in Ihren [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailpagetext'   => 'Sie könnent dem Benutzer mit dem unten stehenden Formular eine E-Mail senden.

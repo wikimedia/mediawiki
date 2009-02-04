@@ -420,6 +420,12 @@ $1',
 'readonlytext'         => 'Datebank ass elo fir all Ännerunge gespaart, wahrscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim alen.
 
 Den Administrateur huet dës Erklärung uginn: $1',
+'missing-article'      => "Den Text „$1“ $2 gouf net an der Datebank fonnt.
+
+Dës geschitt normalerweis duerch e Link op eng Säite déi geläscht oder geréckelt gouf.
+
+Wann dat net de Fall ass, hutt Dir eventuell e Feeler an der Software fonnt.
+Mellt dëst w.e.g. bäi engem [[Special:ListUsers/sysop|Administrateur]] a vergiesst net d'URL unzeginn.",
 'missingarticle-rev'   => '(Versiounsnummer: $1)',
 'missingarticle-diff'  => '(Ënnerscheed tësche Versiounen: $1, $2)',
 'readonly_lag'         => "D'Datebank gouf automatesch gespaart fir datt d'Zweetserveren (slaves) nees mat dem Haaptserver (master) synchron geschalt kënne ginn.",
@@ -1303,6 +1309,7 @@ Kuckt [[Special:NewFiles|d'Gallerie vun de neie Fichieren]] wann Dir méi e visu
 'illegalfilename'             => 'Am Fichiernumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
 'badfilename'                 => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
 'filetype-badmime'            => 'Fichieren vum MIME-Typ "$1" kënnen net eropgeluede ginn.',
+'filetype-bad-ie-mime'        => 'Dëse Fichier kann net eropgeluede ginn, well den Internet Explorer en als „$1“ erkennt, deen net erlaabt ass well et e potentiell geféierleche Fichierstyp ass.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' ass een onerwënschte Fichiersformat. 
 Erwënschte {{PLURAL:\$3|Format ass|Formater sinn}}: \$2.",
 'filetype-banned-type'        => "'''.$1''' ass ee Fichersformat deen net erlaabt ass. 
@@ -1565,6 +1572,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'protectedtitlesempty'    => 'Zur Zäit si mat de Parameteren déi Dir uginn huet keng Säite gespaart esou datt si net ugeluecht kënne ginn.',
 'listusers'               => 'Benotzerlëscht',
 'listusers-editsonly'     => 'Nëmme Benotzer mat Ännerunge weisen',
+'listusers-creationsort'  => 'No dem Datum vum Uleeë sortéieren',
 'usereditcount'           => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 'usercreated'             => 'De(n) $1 ëm $2 Auer ugeluecht',
 'newpages'                => 'Nei Säiten',
@@ -2872,6 +2880,7 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'dberr-again'       => 'Versicht e puer Minutten ze waarden an dann nei ze lueden.',
 'dberr-info'        => '(Den Databank-Server kann net erreecht ginn: $1)',
 'dberr-usegoogle'   => 'An der Tëschezäit kënnt Dir probéieren mam Google ze sichen.',
+'dberr-outofdate'   => 'Denkt drunn, datt de Sichindex vun eisen Inhalten méiglecherweis net aktuell ass.',
 'dberr-cachederror' => 'Dëst ass eng tëschegespäichert Kopie vun der gefroter Säit, a si kann eventuell net aktuell sinn.',
 
 );

@@ -1714,7 +1714,7 @@ Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang 
 'iteminvalidname'      => "May suliranin ang bagay na '$1', hindi tanggap na pangalan...",
 'wlnote'               => "Nasa ibaba ang {{PLURAL:$1|pinakahuling pagbabago|pinakahuling '''$1''' mga pagbabago}} sa loob ng huling {{PLURAL:$2|oras|'''$2''' mga oras}}.",
 'wlshowlast'           => 'Ipakita ang huling $1 mga oras $2 mga araw $3',
-'watchlist-options'    => 'Mga opsyon/pagpipiliian para sa talaan ng mga binabantayan',
+'watchlist-options'    => 'Mga pagpipiliian para sa talaan ng mga binabantayan',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Isinasama sa mga binabantayan...',
@@ -2003,7 +2003,7 @@ Punan ang espesipikong dahilan sa ibaba (halimbawa, magbanggit ng partikular na 
 'ipb-blocklist-contribs'          => 'Mga ambag ni $1',
 'unblockip'                       => 'Tanggalin ang pagharang/paghadlang sa tagagamit',
 'unblockiptext'                   => 'Gamitin ang pormularyo sa ibaba upang ibalik ang akses ng pagsulat sa isang dating nakaharang na IP address o bansag.',
-'ipusubmit'                       => 'Huwag hadlangan ang ganitong adres ng IP',
+'ipusubmit'                       => 'Tanggalin ang paghadlang na ito',
 'unblocked'                       => 'Natanggal sa pagkaharang ang tagagamit na [[User:$1|$1]]',
 'unblocked-id'                    => 'Tinanggal na ang pagharang/paghadlang na $1',
 'ipblocklist'                     => 'Tala ng mga hinarang na mga IP address at bansag',
@@ -2131,7 +2131,7 @@ Pumili muli ng ibang pangalan.',
 'movepage-max-pages'           => 'Ang pinakamataas na $1 {{PLURAL:$1|pahina|mga pahina}} ay nailipat at wala nang maililipat ng awtomatiko.',
 '1movedto2'                    => 'Ang [[$1]] ay inilipat sa [[$2]]',
 '1movedto2_redir'              => 'Ang [[$1]] ay inilipat sa [[$2]] sa ibabaw ng pangkarga',
-'move-redirect-suppressed'     => 'Sinupil (pinigil) ang pagpapanuto/pagturo',
+'move-redirect-suppressed'     => 'Sinupil ang pagturo papunta sa ibang pahina',
 'movelogpage'                  => 'Tala ng paglipat',
 'movelogpagetext'              => 'Sumusunod ang mga tala ng mga pahinang nailipat.',
 'movereason'                   => 'Dahilan:',
@@ -2152,7 +2152,7 @@ Mayroon na ang pupuntahang artikulo na "[[$1]]". Nais mo bang burahin ito para m
 'imagetypemismatch'            => 'Hindi tumutugma sa uri nito ang bagong pandugtong/karugtong ng talaksan',
 'imageinvalidfilename'         => 'Hindi tanggap ang patutunguhan/puntiryang pangalan ng talaksan.',
 'fix-double-redirects'         => 'Isapanahon ang kahit anong panuto/panutong tumuturo sa orihinal na pamagat',
-'move-leave-redirect'          => 'Iwanan ang isang panuto/panturo',
+'move-leave-redirect'          => 'Mag-iwan ng isang panturo',
 
 # Export
 'export'            => 'Iluwas/ipadala ang mga pahina',

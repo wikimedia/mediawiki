@@ -1078,6 +1078,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchprofile-images'             => '파일',
 'searchprofile-everything'         => '모든 문서 검색',
 'searchprofile-advanced'           => '고급 검색',
+'searchprofile-articles-tooltip'   => '$1에서 찾기',
+'searchprofile-project-tooltip'    => '$1에서 찾기',
 'searchprofile-images-tooltip'     => '파일 찾기',
 'searchprofile-everything-tooltip' => '토론 문서를 포함한 모든 문서 찾기',
 'search-result-size'               => '$1 ($2개 단어)',
@@ -1413,7 +1415,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'file-thumbnail-no'           => '파일 이름이 <strong><tt>$1</tt></strong>으로 시작합니다.
 이 파일은 원본 그림이 아닌, 다른 그림의 크기를 줄인 섬네일 파일인 것 같습니다.
 더 해상도가 좋은 파일이 있다면 그 파일을 올려주세요. 아니면 올리려는 파일 이름을 바꾸어 주세요.',
-'fileexists-forbidden'        => '같은 이름의 파일이 이미 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => '같은 이름의 파일이 이미 있고, 덮어쓸 수 없습니다.
+그래도 파일을 올리시려면, 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 위키미디어 공용에 있습니다.
 파일을 업로드하길 원하신다면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '현재 올리고 있는 파일이 아래 파일과 중복됩니다:',
@@ -2599,6 +2602,8 @@ Variants for Chinese language
 'exif-orientation-7' => '시계 방향으로 90° 회전하고 수직으로 뒤집음', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => '시계 반대 방향으로 90° 회전됨', # 0th row: left; 0th column: bottom
 
+'exif-componentsconfiguration-0' => '존재하지 않음',
+
 'exif-exposureprogram-0' => '정의되지 않음',
 'exif-exposureprogram-1' => '수동',
 'exif-exposureprogram-2' => '일반 프로그램',
@@ -2899,6 +2904,9 @@ $5
 'tags-edit'         => '편집',
 
 # Database error messages
-'dberr-header' => '이 위키에 문제가 있습니다.',
+'dberr-header'   => '이 위키에 문제가 있습니다.',
+'dberr-problems' => '죄송합니다. 이 사이트는 기술적인 문제가 있습니다.',
+'dberr-again'    => '잠시 후에 다시 시도해주세요.',
+'dberr-info'     => '(데이터베이스에 접속할 수 없습니다: $1)',
 
 );
