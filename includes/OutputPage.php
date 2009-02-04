@@ -309,20 +309,20 @@ class OutputPage {
 		}
 	}
 
-	public function setHTMLTitle( $name ) {$this->mHTMLtitle = $name; }
+	public function setHTMLTitle( $name ) { $this->mHTMLtitle = $name; }
 	public function setPageTitle( $name ) {
-		global $action, $wgContLang;
-		$name = $wgContLang->convert($name, true);
+		global $wgContLang;
+		$name = $wgContLang->convert( $name, true );
 		$this->mPagetitle = $name;
-		if(!empty($action)) {
-			$taction =  $this->getPageTitleActionText();
-			if( !empty( $taction ) ) {
-				$name .= ' - '.$taction;
-			}
+
+		$taction =  $this->getPageTitleActionText();
+		if( !empty( $taction ) ) {
+			$name .= ' - '.$taction;
 		}
 
 		$this->setHTMLTitle( wfMsg( 'pagetitle', $name ) );
 	}
+
 	public function getHTMLTitle() { return $this->mHTMLtitle; }
 	public function getPageTitle() { return $this->mPagetitle; }
 	public function setSubtitle( $str ) { $this->mSubtitle = /*$this->parse(*/$str/*)*/; } // @bug 2514
