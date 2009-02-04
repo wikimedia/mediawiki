@@ -57,11 +57,11 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$limit = $params['limit'];
 		$this->addTables('user', 'u1');
 
-		if( !is_null( $params['from'] ) )
-			$this->addWhere( 'u1.user_name >= ' . $db->addQuotes( $this->keyToTitle( $params['from'] ) ) );
+		if (!is_null($params['from']))
+			$this->addWhere('u1.user_name >= ' . $db->addQuotes($this->keyToTitle($params['from'])));
 
-		if( isset( $params['prefix'] ) )
-			$this->addWhere( 'u1.user_name LIKE "' . $db->escapeLike( $this->keyToTitle( $params['prefix'] ) ) . '%"' );
+		if (!is_null($params['prefix']))
+			$this->addWhere('u1.user_name LIKE "' . $db->escapeLike($this->keyToTitle( $params['prefix'])) . '%"');
 
 		if (!is_null($params['group'])) {
 			// Filter only users that belong to a given group
@@ -69,6 +69,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$this->addWhere('ug1.ug_user=u1.user_id');
 			$this->addWhereFld('ug1.ug_group', $params['group']);
 		}
+
+		if ($params['witheditsonly'])
+			$this->addWhere('user_editcount > 0');
 
 		if ($fld_groups) {
 			// Show the groups the given users belong to
@@ -192,7 +195,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase :: PARAM_MIN => 1,
 				ApiBase :: PARAM_MAX => ApiBase :: LIMIT_BIG1,
 				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
-			)
+			),
+			'witheditsonly' => false,
 		);
 	}
 
@@ -205,6 +209,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				'What pieces of information to include.',
 				'`groups` property uses more server resources and may return fewer results than the limit.'),
 			'limit' => 'How many total user names to return.',
+			'witheditsonly' => 'Only list users who have made edits',
 		);
 	}
 

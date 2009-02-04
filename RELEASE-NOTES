@@ -159,6 +159,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17317) Added watch parameter to action=protect
 * (bug 17007) Added export and exportnowrap parameters to action=query
 * (bug 17326) BREAKING CHANGE: Changed output format for iiprop=metadata
+* (bug 17355) Added auwitheditsonly parameter to list=allusers
 
 === Languages updated in 1.15 ===
 
