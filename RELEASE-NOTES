@@ -5,6 +5,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.14 ==
 
+February 5, 2009
+
 This is a release candidate for the 2009 Q1 branch of MediaWiki.
 
 MediaWiki is now using a "continuous integration" development model with
@@ -17,6 +19,10 @@ will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+NOTE: Installation of MediaWiki on SQLite has been temporarily disabled in this
+release due to the discovery of serious problems with the schema. We expect to
+fix this problem for the release of 1.15.0. 
 
 === Configuration changes in 1.14 ===
 
@@ -469,6 +475,9 @@ The following extensions are migrated into MediaWiki 1.14:
   that STDIN can be used for page list
 * (bug 16560) Special:Random returns a page from ContentNamespaces, and no
   longer from NS_MAIN
+* (bug 16123) Fixed Special:Import on SQLite.
+* (bug 16937) Show appropriate error message for attempted installs on 
+  PostgreSQL 7.3 or earlier.
 
 === API changes in 1.14 ===
 

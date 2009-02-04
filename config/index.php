@@ -67,11 +67,13 @@ $ourdb['postgres']['compile']    = 'pgsql';
 $ourdb['postgres']['bgcolor']    = '#aaccff';
 $ourdb['postgres']['rootuser']   = 'postgres';
 
-$ourdb['sqlite']['fullname']      = 'SQLite';
-$ourdb['sqlite']['havedriver']    = 0;
-$ourdb['sqlite']['compile']       = 'pdo_sqlite';
-$ourdb['sqlite']['bgcolor']       = '#b1ebb1';
-$ourdb['sqlite']['rootuser']      = '';
+/*** SQLITE DISABLED -- USE MEDIAWIKI 1.15 */
+#$ourdb['sqlite']['fullname']      = 'SQLite';
+#$ourdb['sqlite']['havedriver']    = 0;
+#$ourdb['sqlite']['compile']       = 'pdo_sqlite';
+#$ourdb['sqlite']['bgcolor']       = '#b1ebb1';
+#$ourdb['sqlite']['rootuser']      = '';
+/************************************/
 
 $ourdb['mssql']['fullname']      = 'MSSQL';
 $ourdb['mssql']['havedriver']    = 0;
@@ -1431,6 +1433,10 @@ if( count( $errs ) ) {
 	</div>
 	</fieldset>
 
+	<?php 
+		# SQLITE DISABLED -- USE MEDIAWIKI 1.15
+		if (false):
+	?>
 	<?php database_switcher('sqlite'); ?>
 	<div class="config-desc">
 		<b>NOTE:</b> SQLite only uses the <i>Database name</i> setting above, the user, password and root settings are ignored.
@@ -1446,6 +1452,11 @@ if( count( $errs ) ) {
 		<p>This directory must exist and be writable by the web server.</p>
 	</div>
 	</fieldset>
+
+	<?php 
+		# SQLITE DISABLED -- USE MEDIAWIKI 1.15
+		endif
+	?>
 
 	<?php database_switcher('mssql'); ?>
 	<div class="config-input"><?php
