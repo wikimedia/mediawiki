@@ -1320,6 +1320,15 @@ class User {
 	}
 	
 	/**
+	 * If user is blocked, return the ID for the block
+	 * @return \int Block ID
+	 */
+	function getBlockId() {
+		$this->getBlockedStatus();
+		return ($this->mBlock ? $this->mBlock->mId : false);
+	}
+	
+	/**
 	 * Check if user is blocked on all wikis.
 	 * Do not use for actual edit permission checks!
 	 * This is intented for quick UI checks.
