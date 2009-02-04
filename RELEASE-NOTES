@@ -170,6 +170,7 @@ changes to languages because of MediaZilla reports.
 * Võro (vro) (renamed from fiu-vro)
 * (bug 17151) Add magic word alias for #redirect for Vietnamese
 * (bug 17288) Messages improved for default language (English)
+* (bug 12937) Update native name for Afar
 
 == Compatibility ==
 
