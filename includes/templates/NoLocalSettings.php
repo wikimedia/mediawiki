@@ -4,10 +4,7 @@
  * @ingroup Templates
  */
 
-# Prevent XSS
-if ( isset( $wgVersion ) ) {
-	$wgVersion = htmlspecialchars( $wgVersion );
-} else {
+if ( !isset( $wgVersion ) ) {
 	$wgVersion = 'VERSION';
 }
 
@@ -40,7 +37,7 @@ foreach( $topdirs as $dir ){
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
 	<head>
-		<title>MediaWiki <?php echo $wgVersion ?></title>
+		<title>MediaWiki <?php echo htmlspecialchars( $wgVersion ) ?></title>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 		<style type='text/css' media='screen, projection'>
 			html, body {
@@ -56,15 +53,15 @@ foreach( $topdirs as $dir ){
 		</style>
 	</head>
 	<body>
-		<img src="<?php echo $path ?>skins/common/images/mediawiki.png" alt='The MediaWiki logo' />
+		<img src="<?php echo htmlspecialchars( $path ) ?>skins/common/images/mediawiki.png" alt='The MediaWiki logo' />
 
-		<h1>MediaWiki <?php echo $wgVersion ?></h1>
+		<h1>MediaWiki <?php echo htmlspecialchars( $wgVersion ) ?></h1>
 		<div class='error'>
 		<?php
 		if ( file_exists( 'config/LocalSettings.php' ) ) {
 			echo( 'To complete the installation, move <tt>config/LocalSettings.php</tt> to the parent directory.' );
 		} else {
-			echo( "Please <a href=\"${path}config/index.{$ext}\" title='setup'> set up the wiki</a> first." );
+			echo( "Please <a href=\"" . htmlspecialchars( $path ) . "config/index." . htmlspecialchars( $ext ) . "\" title='setup'> set up the wiki</a> first." );
 		}
 		?>
 

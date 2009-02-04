@@ -915,7 +915,7 @@ class User {
 		$this->mDataLoaded = true;
 
 		if ( isset( $row->user_id ) ) {
-			$this->mId = $row->user_id;
+			$this->mId = intval( $row->user_id );
 		}
 		$this->mName = $row->user_name;
 		$this->mRealName = $row->user_real_name;

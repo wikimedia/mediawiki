@@ -89,6 +89,19 @@ if ( !function_exists( 'array_diff_key' ) ) {
 	}
 }
 
+// Support for Wietse Venema's taint feature
+if ( !function_exists( 'istainted' ) ) {
+	function istainted( $var ) {
+		return 0;
+	}
+	function taint( $var, $level = 0 ) {}
+	function untaint( $var, $level = 0 ) {}
+	define( 'TC_HTML', 1 );
+	define( 'TC_SHELL', 1 );
+	define( 'TC_MYSQL', 1 );
+	define( 'TC_PCRE', 1 );
+	define( 'TC_SELF', 1 );
+}
 /// @endcond
 
 
