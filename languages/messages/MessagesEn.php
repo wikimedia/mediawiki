@@ -232,6 +232,7 @@ $magicWords = array(
 	'numberofarticles'       => array( 1,    'NUMBEROFARTICLES'       ),
 	'numberoffiles'          => array( 1,    'NUMBEROFFILES'          ),
 	'numberofusers'          => array( 1,    'NUMBEROFUSERS'          ),
+	'activeusers'		 => array( 1,    'ACTIVEUSERS'            ),
 	'numberofedits'          => array( 1,    'NUMBEROFEDITS'          ),
 	'numberofviews'          => array( 1,    'NUMBEROFVIEWS'          ),
 	'pagename'               => array( 1,    'PAGENAME'               ),
