@@ -566,6 +566,10 @@ class Database {
 			}
 		}
 
+		if ( istainted( $sql ) & TC_MYSQL ) {
+			throw new MWException( 'Tainted query found' );
+		}
+
 		# Do the query and handle errors
 		$ret = $this->doQuery( $commentedSql );
 

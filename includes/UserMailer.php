@@ -363,7 +363,7 @@ class EmailNotification {
 
 			if ( $wgEnotifWatchlist ) {
 				// Send updates to watchers other than the current editor
-				$userCondition = 'wl_user != ' . $editor->getID();
+				$userCondition = 'wl_user != ' . intval( $editor->getID() );
 				if ( $userTalkId !== false ) {
 					// Already sent an email to this person
 					$userCondition .= ' AND wl_user != ' . intval( $userTalkId );
@@ -415,7 +415,7 @@ class EmailNotification {
 					'wl_title' => $title->getDBkey(),
 					'wl_namespace' => $title->getNamespace(),
 					'wl_notificationtimestamp IS NULL', // store oldest unseen change time
-					'wl_user != ' . $editor->getID()
+					'wl_user != ' . intval( $editor->getID() )
 				), __METHOD__
 			);
 			$dbw->commit();
