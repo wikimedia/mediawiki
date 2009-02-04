@@ -304,7 +304,7 @@ class ApiQueryContributions extends ApiQueryBase {
 					'timestamp',
 					'comment',
 					'flags',
-					'patrolled',
+//					'patrolled',	# Temporarily disabled, see bug 17215
 				)
 			),
 			'show' => array (
@@ -312,8 +312,8 @@ class ApiQueryContributions extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => array (
 					'minor',
 					'!minor',
-					'patrolled',
-					'!patrolled',
+//					'patrolled',	# Temporarily disabled, see bug 17215
+//					'!patrolled',
 				)
 			),
 		);
