@@ -1001,11 +1001,11 @@ END;
 
 		$printurl = $wgRequest->escapeAppendQuery( 'printable=yes' );
 
-		$s = "<a href=\"$printurl\">" . wfMsg( 'printableversion' ) . '</a>';
+		$s = "<a href=\"$printurl\" rel=\"alternate\">" . wfMsg( 'printableversion' ) . '</a>';
 		if( $wgOut->isSyndicated() ) {
 			foreach( $wgFeedClasses as $format => $class ) {
 				$feedurl = $wgRequest->escapeAppendQuery( "feed=$format" );
-				$s .= " | <a href=\"$feedurl\" class=\"feedlink\">{$format}</a>";
+				$s .= " | <a href=\"$feedurl\" rel=\"alternate\" class=\"feedlink\">{$format}</a>";
 			}
 		}
 		return $s;
