@@ -1166,6 +1166,25 @@ class Title {
 
 		$errors = array();
 
+		if( !$user->isAllowed( $action ) ) {
+			$return = null;
+			$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
+				User::getGroupsWithPermission( $action ) );
+			if( $groups ) {
+				$return = array( 'badaccess-groups',
+					array( implode( ', ', $groups ), count( $groups ) ) );
+			} else {
+				$return = array( "badaccess-group0" );
+			}
+			$errors[] = $return;
+		}
+
+		# Short-circuit point
+		if( $short && count($errors) > 0 ) {
+			wfProfileOut( __METHOD__ );
+			return $errors;
+		}
+
 		// Use getUserPermissionsErrors instead
 		if( !wfRunHooks( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
 			wfProfileOut( __METHOD__ );
@@ -1339,17 +1358,6 @@ class Title {
 			} elseif( !$this->isMovable() ) {
 				$errors[] = array( 'immobile-target-page' );
 			}
-		} elseif( !$user->isAllowed( $action ) ) {
-			$return = null;
-			$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
-				User::getGroupsWithPermission( $action ) );
-			if( $groups ) {
-				$return = array( 'badaccess-groups',
-					array( implode( ', ', $groups ), count( $groups ) ) );
-			} else {
-				$return = array( "badaccess-group0" );
-			}
-			$errors[] = $return;
 		}
 
 		wfProfileOut( __METHOD__ );
