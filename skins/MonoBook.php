@@ -296,7 +296,7 @@ class MonoBookTemplate extends QuickTemplate {
 		if($this->data['feeds']) { ?>
 			<li id="feedlinks"><?php foreach($this->data['feeds'] as $key => $feed) {
 					?><a id="<?php echo Sanitizer::escapeId( "feed-$key" ) ?>" href="<?php
-					echo htmlspecialchars($feed['href']) ?>" rel="alternate" class="feedlink"<?php echo $this->skin->tooltipAndAccesskey('feed-'.$key) ?>><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;
+					echo htmlspecialchars($feed['href']) ?>" rel="alternate" type="application/<?php echo $key ?>+xml" class="feedlink"<?php echo $this->skin->tooltipAndAccesskey('feed-'.$key) ?>><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;
 					<?php } ?></li><?php
 		}
 

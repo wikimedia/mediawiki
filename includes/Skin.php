@@ -1005,7 +1005,7 @@ END;
 		if( $wgOut->isSyndicated() ) {
 			foreach( $wgFeedClasses as $format => $class ) {
 				$feedurl = $wgRequest->escapeAppendQuery( "feed=$format" );
-				$s .= " | <a href=\"$feedurl\" rel=\"alternate\" class=\"feedlink\">{$format}</a>";
+				$s .= " | <a href=\"$feedurl\" rel=\"alternate\" type=\"application/{$format}+xml\" class=\"feedlink\">{$format}</a>";
 			}
 		}
 		return $s;
