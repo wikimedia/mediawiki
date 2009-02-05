@@ -71,5 +71,5 @@ if ( isset( $options['fuzz'] ) ) {
 	$tester->fuzzTest( $files );
 } else {
 	$ok = $tester->runTestsFromFiles( $files );
-	exit ($ok ? 0 : -1);
+	exit ($ok ? 0 : 1);
 }
