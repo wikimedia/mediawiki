@@ -458,13 +458,13 @@ Probeer asseblief weer oor 'n paar minute.",
 Die rede gegee is ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => 'Slegte konfigurasie: onbekende virusskandeerder: <i>$1</i>',
+'virus-badscanner'     => "Slegte konfigurasie: onbekende virusskandeerder: ''$1''",
 'virus-scanfailed'     => 'skandering het misluk (kode $1)',
 'virus-unknownscanner' => 'onbekende antivirus:',
 
 # Login and logout pages
 'logouttitle'                => 'Teken uit',
-'logouttext'                 => "<strong>U is nou uitgeteken</strong>
+'logouttext'                 => "'''U is nou uitgeteken'''
 
 U kan aanhou om {{SITENAME}} anoniem te gebruik; of u kan [[Special:UserLogin|inteken]] as dieselfde of 'n ander gebruiker.",
 'welcomecreation'            => '<h2>Welkom, $1.</h2>
@@ -667,21 +667,21 @@ Indien u per ongeluk hier is, gebruik u blaaier se '''terug'''- knoppie.",
 'noarticletext'                    => 'Daar is tans geen inligting vir hierdie artikel nie. Jy kan [[Special:Search/{{PAGENAME}}|soek vir hierdie bladsytitel]] in ander bladsye of [{{fullurl:{{FULLPAGENAME}}|action=edit}} wysig hierdie bladsy].',
 'userpage-userdoesnotexist'        => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "$1"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
 'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
-'usercssjsyoucanpreview'           => '<strong>Wenk:</strong> Gebruik die "Wys voorskou"-knoppie om u nuwe CSS/JS te toets voor u stoor.',
+'usercssjsyoucanpreview'           => "'''Wenk:''' Gebruik die \"Wys voorskou\"-knoppie om u nuwe CSS/JS te toets voor u stoor.",
 'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u persoonlike CSS.'''
 '''Dit is nog nie gestoor nie!'''",
 'userjspreview'                    => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
 'updated'                          => '(Gewysig)',
-'note'                             => '<strong>Nota:</strong>',
-'previewnote'                      => "<strong>Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!</strong>",
+'note'                             => "'''Nota:'''",
+'previewnote'                      => "'''Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!'''",
 'previewconflict'                  => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien u die bladsy stoor.',
-'session_fail_preview'             => '<strong>Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
-Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te teken.</strong>',
-'session_fail_preview_html'        => "<strong>Jammer! U wysigings is nie verwerk nie omdat sessie-data verlore gegaan het.</strong>
+'session_fail_preview'             => "'''Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
+Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te teken.'''",
+'session_fail_preview_html'        => "'''Jammer! U wysigings is nie verwerk nie omdat sessie-data verlore gegaan het.'''
 
 ''Omrede rou HTML hier by {{SITENAME}} ingevoer kan word, kan die voorskou nie gesien word nie ter beskerming teen aanvalle met JavaScript.''
 
-<strong>As dit 'n regmatige wysiging is, probeer asseblief weer. As dit daarna nog nie werk nie, [[Special:UserLogout|teken dan af]] en weer aan.</strong>",
+'''As dit 'n regmatige wysiging is, probeer asseblief weer. As dit daarna nog nie werk nie, [[Special:UserLogout|teken dan af]] en weer aan.'''",
 'editing'                          => 'Besig om $1 te wysig',
 'editingsection'                   => 'Besig om $1 (onderafdeling) te wysig',
 'editingcomment'                   => 'Besig om $1 (kommentaar) te wysig',
@@ -693,27 +693,27 @@ U sal u wysigings moet saamsmelt met die huidige teks.
 <strong>Slegs</strong> die teks in die boonste invoerboks sal gestoor word wanneer u "Stoor bladsy" druk.<br />',
 'yourtext'                         => 'U teks',
 'storedversion'                    => 'Gestoorde weergawe',
-'editingold'                       => "<strong>WAARSKUWING: U is besig om 'n ouer weergawe van hierdie bladsy te wysig.
-As u dit stoor, sal enige wysigings sedert hierdie een weer uitgewis word.</strong>",
+'editingold'                       => "'''WAARSKUWING: U is besig om 'n ouer weergawe van hierdie bladsy te wysig.
+As u dit stoor, sal enige wysigings sedert hierdie een weer uitgewis word.'''",
 'yourdiff'                         => 'Wysigings',
-'copyrightwarning'                 => 'Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder die $2 (lees $1 vir meer inligting).
+'copyrightwarning'                 => "Alle bydraes aan {{SITENAME}} word beskou as beskikbaar gestel onder die $2 (lees $1 vir meer inligting).
 As u nie wil toelaat dat u teks deur ander persone gewysig of versprei word nie, moet dit asseblief nie hier invoer nie.<br />
 Hierdeur beloof u ons dat u die byvoegings self geskryf het, of gekopieer het van publieke domein of soortgelyke vrye bronne.
-<strong>MOENIE WERK WAT DEUR KOPIEREG BESKERM WORD HIER PLAAS SONDER TOESTEMMING NIE!</strong>',
-'copyrightwarning2'                => 'Enige bydraes op {{SITENAME}} mag genadeloos gewysig of selfs verwyder word; indien u dit nie met u bydrae wil toelaat nie, moenie dit hier bylas nie.<br />
-Deur enigiets hier te plaas, beloof u dat u dit self geskryf het, of dat dit gekopieer is vanuit "publieke domein" of soortgelyke vrye bronne (sien $1 vir details).
-<strong>MOENIE WERK WAT DEUR KOPIEREG BESKERM WORD HIER PLAAS SONDER TOESTEMMING NIE!</strong>',
+'''MOENIE WERK WAT DEUR KOPIEREG BESKERM WORD HIER PLAAS SONDER TOESTEMMING NIE!'''",
+'copyrightwarning2'                => "Enige bydraes op {{SITENAME}} mag genadeloos gewysig of selfs verwyder word; indien u dit nie met u bydrae wil toelaat nie, moenie dit hier bylas nie.<br />
+Deur enigiets hier te plaas, beloof u dat u dit self geskryf het, of dat dit gekopieer is vanuit \"publieke domein\" of soortgelyke vrye bronne (sien \$1 vir details).
+'''MOENIE WERK WAT DEUR KOPIEREG BESKERM WORD HIER PLAAS SONDER TOESTEMMING NIE!'''",
 'longpagewarning'                  => 'WAARSKUWING: Hierdie bladsy is $1 kG groot.
 Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat dit nie 32 kG oorskry nie.',
-'longpageerror'                    => '<strong>FOUT: die teks wat u bygevoeg het is $1 kilogrepe groot, wat groter is as die maximum van $2 kilogrepe.
-Die bladsy kan nie gestoor word nie.</strong>',
-'readonlywarning'                  => "<strong>WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later.</strong>
+'longpageerror'                    => "'''FOUT: die teks wat u bygevoeg het is $1 kilogrepe groot, wat groter is as die maximum van $2 kilogrepe.
+Die bladsy kan nie gestoor word nie.'''",
+'readonlywarning'                  => "'''WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later.'''
 
 Een administrateur het die databasis geblokkeer vir hierdie rede: $1",
-'protectedpagewarning'             => '<strong>WAARSKUWING: Hierdie blad is beskerm, en slegs administrateurs kan die inhoud verander.</strong>',
+'protectedpagewarning'             => "'''WAARSKUWING: Hierdie blad is beskerm, en slegs administrateurs kan die inhoud verander.'''",
 'semiprotectedpagewarning'         => "'''Let wel:''' Hierdie artikel is beskerm sodat slegs ingetekende gebruikers dit kan wysig.",
 'cascadeprotectedwarning'          => "'''Waarskuwing:''' Die bladsy was beveilig sodat dit slegs deur administrateurs gewysig kan word, omrede dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat kaskade-beskerming geniet:",
-'titleprotectedwarning'            => '<strong>WAARSKUWING:  Die bladsy is gesluit sodat net sekere gebruikers dit kan skep.</strong>',
+'titleprotectedwarning'            => "'''WAARSKUWING:  Die bladsy is gesluit sodat net sekere gebruikers dit kan skep.'''",
 'templatesused'                    => 'Sjablone in gebruik op hierdie blad:',
 'templatesusedpreview'             => 'Sjablone in hierdie voorskou gebruik:',
 'templatesusedsection'             => 'Sjablone gebruik in hierdie afdeling:',
@@ -907,49 +907,49 @@ Die rede verskaf deur $3 is ''$2''",
 'diff-strike'             => "'''doodgetrek'''",
 
 # Search results
-'searchresults'             => 'soekresultate',
-'searchresults-title'       => 'Soekresultate vir "$1"',
-'searchresulttext'          => 'Vir meer inligting oor {{SITENAME}} soekresultate, lees [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Vir navraag "[[:$1]]"',
-'searchsubtitleinvalid'     => 'Vir navraag "$1"',
-'noexactmatch'              => "'''Geen bladsy met die titel \"\$1\" bestaan nie.''' Probeer 'n volteksnavraag of [[:\$1|skep die bladsy]].",
-'noexactmatch-nocreate'     => "'''Daar bestaan geen bladsy met titel \"\$1\" nie.'''",
-'toomanymatches'            => "Te veel resultate. Probeer asseblief 'n ander soektog.",
-'titlematches'              => 'Artikeltitel resultate',
-'notitlematches'            => 'Geen artikeltitel resultate nie',
-'textmatches'               => 'Artikelteks resultate',
-'notextmatches'             => 'Geen artikelteks resultate nie',
-'prevn'                     => 'vorige $1',
-'nextn'                     => 'volgende $1',
-'viewprevnext'              => 'Kyk na ($1) ($2) ($3).',
-'searchhelp-url'            => 'Help:Hulp',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 woord|$2 woorde}})',
-'search-result-score'       => 'Relevansie: $1%',
-'search-redirect'           => '(aanstuur $1)',
-'search-section'            => '(afdeling $1)',
-'search-suggest'            => 'Het u bedoel: $1',
-'search-interwiki-caption'  => 'Suster projekte',
-'search-interwiki-default'  => '$1 resultate:',
-'search-interwiki-more'     => '(meer)',
-'search-mwsuggest-enabled'  => 'met voorstelle',
-'search-mwsuggest-disabled' => 'geen voorstelle',
-'search-relatedarticle'     => 'Verwante',
-'mwsuggest-disable'         => 'Deaktiveer AJAX voorstelle',
-'searchrelated'             => 'verwante',
-'searchall'                 => 'alle',
-'showingresults'            => "Hier volg {{PLURAL:$1|'''1''' resultaat|'''$1''' resultate}} wat met #'''$2''' begin.",
-'showingresultsnum'         => "Hier onder {{PLURAL:$3|is '''1''' resultaat|is '''$3''' resultate}} vanaf #'''$2'''.",
-'showingresultstotal'       => "Hier onder is {{PLURAL:$4|resultaat '''$1''' van '''$3'''|resultate '''$1 - $2''' van '''$3'''}}",
-'nonefound'                 => "<strong>Nota</strong>: onsuksesvolle navrae word gewoonlik veroorsaak deur 'n soektog met algemene
+'searchresults'                  => 'soekresultate',
+'searchresults-title'            => 'Soekresultate vir "$1"',
+'searchresulttext'               => 'Vir meer inligting oor {{SITENAME}} soekresultate, lees [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'                 => 'Vir navraag "[[:$1]]"',
+'searchsubtitleinvalid'          => 'Vir navraag "$1"',
+'noexactmatch'                   => "'''Geen bladsy met die titel \"\$1\" bestaan nie.''' Probeer 'n volteksnavraag of [[:\$1|skep die bladsy]].",
+'noexactmatch-nocreate'          => "'''Daar bestaan geen bladsy met titel \"\$1\" nie.'''",
+'toomanymatches'                 => "Te veel resultate. Probeer asseblief 'n ander soektog.",
+'titlematches'                   => 'Artikeltitel resultate',
+'notitlematches'                 => 'Geen artikeltitel resultate nie',
+'textmatches'                    => 'Artikelteks resultate',
+'notextmatches'                  => 'Geen artikelteks resultate nie',
+'prevn'                          => 'vorige $1',
+'nextn'                          => 'volgende $1',
+'viewprevnext'                   => 'Kyk na ($1) ($2) ($3).',
+'searchhelp-url'                 => 'Help:Hulp',
+'search-result-size'             => '$1 ({{PLURAL:$2|1 woord|$2 woorde}})',
+'search-result-score'            => 'Relevansie: $1%',
+'search-redirect'                => '(aanstuur $1)',
+'search-section'                 => '(afdeling $1)',
+'search-suggest'                 => 'Het u bedoel: $1',
+'search-interwiki-caption'       => 'Suster projekte',
+'search-interwiki-default'       => '$1 resultate:',
+'search-interwiki-more'          => '(meer)',
+'search-mwsuggest-enabled'       => 'met voorstelle',
+'search-mwsuggest-disabled'      => 'geen voorstelle',
+'search-relatedarticle'          => 'Verwante',
+'mwsuggest-disable'              => 'Deaktiveer AJAX voorstelle',
+'searchrelated'                  => 'verwante',
+'searchall'                      => 'alle',
+'showingresults'                 => "Hier volg {{PLURAL:$1|'''1''' resultaat|'''$1''' resultate}} wat met #'''$2''' begin.",
+'showingresultsnum'              => "Hier onder {{PLURAL:$3|is '''1''' resultaat|is '''$3''' resultate}} vanaf #'''$2'''.",
+'showingresultstotal'            => "Hier onder is {{PLURAL:$4|resultaat '''$1''' van '''$3'''|resultate '''$1 - $2''' van '''$3'''}}",
+'nonefound'                      => "<strong>Nota</strong>: onsuksesvolle navrae word gewoonlik veroorsaak deur 'n soektog met algemene
 woorde wat nie geindekseer word nie, of spesifisering van meer as een woord (slegs blaaie wat alle navraagwoorde
 bevat, word gewys).",
-'powersearch'               => 'Soek',
-'powersearch-legend'        => 'Gevorderde soektog',
-'powersearch-ns'            => 'Soek in naamruimtes:',
-'powersearch-redir'         => 'Wys aanstuurbladsye',
-'powersearch-field'         => 'Soek vir',
-'search-external'           => 'Eksterne soektog',
-'searchdisabled'            => '{{SITENAME}} se soekfunksie is tans afgeskakel ter wille van werkverrigting. Gebruik gerus intussen Google of Yahoo! Let daarop dat hulle indekse van die {{SITENAME}}-inhoud verouderd mag wees.',
+'powersearch'                    => 'Soek',
+'powersearch-legend'             => 'Gevorderde soektog',
+'powersearch-ns'                 => 'Soek in naamruimtes:',
+'powersearch-redir'              => 'Wys aanstuurbladsye',
+'powersearch-field'              => 'Soek vir',
+'search-external'                => 'Eksterne soektog',
+'searchdisabled'                 => '{{SITENAME}} se soekfunksie is tans afgeskakel ter wille van werkverrigting. Gebruik gerus intussen Google of Yahoo! Let daarop dat hulle indekse van die {{SITENAME}}-inhoud verouderd mag wees.',
 
 # Preferences page
 'preferences'              => 'Voorkeure',
@@ -1194,7 +1194,7 @@ Toelaatbare {{PLURAL:\$3|lêertipes|lêertipes}} is \$2.",
 die lêer is $2.',
 'largefileserver'            => 'Hierdie lêer is groter as wat die bediener se opstelling toelaat.',
 'emptyfile'                  => "Die lêer wat u probeer oplaai het blyk leeg te wees. Dit mag wees omdat u 'n tikfout in die lêernaam gemaak het. Gaan asseblief na en probeer weer.",
-'fileexists'                 => "'n Lêer met die naam bestaan reeds, kyk na <strong><tt>$1</tt></strong> as u nie seker is dat u dit wil wysig nie.",
+'fileexists'                 => "'n Lêer met die naam bestaan reeds, kyk na '''<tt>$1</tt>''' as u nie seker is dat u dit wil wysig nie.",
 'fileexists-thumb'           => "<center>'''Bestaande lêer'''</center>",
 'file-exists-duplicate'      => "Die lêer is 'n duplikaat van die volgende {{PLURAL:$1|lêer|lêers}}:",
 'successfulupload'           => 'Laai suksesvol',
@@ -1615,7 +1615,7 @@ Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te vo
 'rollbacklink'     => 'Rol terug',
 'rollbackfailed'   => 'Terugrol onsuksesvol',
 'cantrollback'     => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
-'editcomment'      => 'Die wysigopsomming was: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => "Die wysigopsomming was: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
 
@@ -1631,9 +1631,9 @@ Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te vo
 'protect_expiry_invalid'      => 'Vervaltyd is ongeldig.',
 'protect_expiry_old'          => 'Vervaltyd is in die verlede.',
 'protect-unchain'             => 'Gee regte om te skuif',
-'protect-text'                => 'U kan die veiligheidsvlak vir blad <strong><nowiki>$1</nowiki></strong> hier bekyk of verander.',
+'protect-text'                => "U kan die veiligheidsvlak vir blad '''<nowiki>$1</nowiki>''' hier bekyk of verander.",
 'protect-locked-access'       => "U rekening het nie regte om 'n bladsy se veiligheidsvlakke te verander nie.
-Hier is die huidige verstellings vir bladsy <strong>$1</strong>:",
+Hier is die huidige verstellings vir bladsy '''$1''':",
 'protect-cascadeon'           => 'Die bladsy word beskerm want dit is ingesluit by die volgende {{PLURAL:$1|blad|blaaie}} wat kaskade-beskerming geniet. U kan die veiligheidsvlak van die bladsy verander, maar dit sal nie die ander kaskade blaaie beïnvloed nie.',
 'protect-default'             => '(normaal)',
 'protect-fallback'            => 'Hiervoor is "$1" regte nodig',

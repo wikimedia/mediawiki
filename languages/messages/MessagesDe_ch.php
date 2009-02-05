@@ -12,9 +12,9 @@ $separatorTransformTable = array( ',' => "'", '.' => ',' );
 
 $messages = array(
 # Edit pages
-'longpagewarning' => '<strong>WARNUNG: Diese Seite ist $1 KB gross; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die grösser als 32 KB sind.
-Überlege bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.</strong>',
-'longpageerror'   => '<strong>FEHLER: Der Text, den du zu speichern versuchst, ist $1 KB gross. Das ist grösser als das erlaubte Maximum von $2 KB – Speicherung nicht möglich.</strong>',
+'longpagewarning' => "'''WARNUNG: Diese Seite ist $1 KB gross; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die grösser als 32 KB sind.
+Überlege bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.'''",
+'longpageerror'   => "'''FEHLER: Der Text, den du zu speichern versuchst, ist $1 KB gross. Das ist grösser als das erlaubte Maximum von $2 KB – Speicherung nicht möglich.'''",
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning'  => 'Warnung: Die Grösse eingebundener Vorlagen ist zu gross, einige Vorlagen können nicht eingebunden werden.',
@@ -34,12 +34,12 @@ $messages = array(
 
 # Upload
 'largefileserver'      => 'Die Datei ist grösser als die vom Server eingestellte Maximalgrösse.',
-'fileexists-extension' => 'Eine Datei mit ähnlichem Namen existiert bereits:<br />
-Name der hochzuladenden Datei: <strong><tt>$1</tt></strong><br />
-Name der vorhandenen Datei: <strong><tt>$2</tt></strong><br />
-Nur die Dateiendung unterscheidet sich in Gross-/Kleinschreibung. Bitte prüfe, ob die Dateien inhaltlich identisch sind.',
-'file-thumbnail-no'    => 'Der Dateiname beginnt mit <strong><tt>$1</tt></strong>. Dies deutet auf ein Bild verringerter Grösse <i>(thumbnail)</i> hin.
-Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses unter dem Originalnamen hoch.',
+'fileexists-extension' => "Eine Datei mit ähnlichem Namen existiert bereits:<br />
+Name der hochzuladenden Datei: '''<tt>$1</tt>'''<br />
+Name der vorhandenen Datei: '''<tt>$2</tt>'''<br />
+Nur die Dateiendung unterscheidet sich in Gross-/Kleinschreibung. Bitte prüfe, ob die Dateien inhaltlich identisch sind.",
+'file-thumbnail-no'    => "Der Dateiname beginnt mit '''<tt>$1</tt>'''. Dies deutet auf ein Bild verringerter Grösse ''(thumbnail)'' hin.
+Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses unter dem Originalnamen hoch.",
 
 # Special:ListFiles
 'listfiles-summary' => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmässig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',

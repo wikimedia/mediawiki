@@ -398,7 +398,7 @@ $2',
 'namespaceprotected'   => "子權未逮，莫能纂'''$1'''。",
 'customcssjsprotected' => '牽他人，子權未逮，莫能纂之。',
 'ns-specialprotected'  => '奇頁禁纂也。',
-'titleprotected'       => '緘焉自[[User:$1|$1]]防建也。因<i>$2</i>也。',
+'titleprotected'       => "緘焉自[[User:$1|$1]]防建也。因''$2''也。",
 
 # Virus scanner
 'virus-badscanner'     => "壞設：不明之病掃：''$1''",
@@ -407,8 +407,8 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => '去簿',
-'logouttext'                 => '<strong>子去簿矣</strong><br />
-子可匿名還覽{{SITENAME}}，或[[Special:UserLogin|復登]]同簿、異簿。未清謄本，覽器文舊，且慎之。',
+'logouttext'                 => "'''子去簿矣'''<br />
+子可匿名還覽{{SITENAME}}，或[[Special:UserLogin|復登]]同簿、異簿。未清謄本，覽器文舊，且慎之。",
 'welcomecreation'            => '== $1大駕光臨! ==
 子簿增矣，敬更[[Special:Preferences|簿註]]。',
 'loginpagetitle'             => '合符節',
@@ -582,21 +582,21 @@ $2',
 '''Konqueror:'''點''Reload''，或押''F5''。
 ：''Opera:'''須至''Tools→Preferences''清謄本。
 '''Internet Explorer:'''押''Ctrl''並點''重新整理''，或合鍵''Ctrl-F5''。",
-'usercssjsyoucanpreview'           => '<strong>訣：</strong>CSS/JS應先預覽而後存。',
+'usercssjsyoucanpreview'           => "'''訣：'''CSS/JS應先預覽而後存。",
 'usercsspreview'                   => "'''預覽CSS。'''
 '''尚未儲焉。'''",
 'userjspreview'                    => "'''預覽JavaScript。'''
 '''尚未儲焉。'''",
 'userinvalidcssjstitle'            => "'''警：'''\"\$1\"無此面版。自製者，全名務小寫，如{{ns:user}}:Foo/monobook.css 而非{{ns:user}}:Foo/Monobook.css",
 'updated'                          => '（新）',
-'note'                             => '<strong>註</strong>',
-'previewnote'                      => '<strong>此乃預覽，尚未儲焉。</strong>',
-'session_fail_preview'             => '<strong>歉哉有變，子纂未存焉，惠再之。如復不成，[[Special:UserLogout|重登]]再試也。</strong>',
-'session_fail_preview_html'        => "<strong>歉哉有變，子纂未存焉</strong>
+'note'                             => "'''註'''",
+'previewnote'                      => "'''此乃預覽，尚未儲焉。'''",
+'session_fail_preview'             => "'''歉哉有變，子纂未存焉，惠再之。如復不成，[[Special:UserLogout|重登]]再試也。'''",
+'session_fail_preview_html'        => "'''歉哉有變，子纂未存焉'''
 
 ''此維基亦合純HTML，除預覽以遠惡JavaScript侵。''
-<strong>纂文若合，惠再之。如復不成，簿[[Special:UserLogout|重登]]焉。</strong>",
-'token_suffix_mismatch'            => '<strong>君修見拒，蓋因代理之故，亂事見兮。</strong>',
+'''纂文若合，惠再之。如復不成，簿[[Special:UserLogout|重登]]焉。'''",
+'token_suffix_mismatch'            => "'''君修見拒，蓋因代理之故，亂事見兮。'''",
 'editing'                          => '纂$1',
 'editingsection'                   => '纂節$1',
 'editingcomment'                   => '贊$1',
@@ -605,19 +605,19 @@ $2',
 註，<b>惟</b>上文儲焉<br />',
 'yourtext'                         => '子也',
 'storedversion'                    => '時也',
-'nonunicodebrowser'                => '<strong>警示：覽器不識萬國碼，以十六進位數代之，以保纂可也。</strong>',
-'editingold'                       => "<strong>'''警示'''子纂舊然。強儲之，則新易失焉。</strong>",
+'nonunicodebrowser'                => "'''警示：覽器不識萬國碼，以十六進位數代之，以保纂可也。'''",
+'editingold'                       => "''''''警示'''子纂舊然。強儲之，則新易失焉。'''",
 'yourdiff'                         => '異',
-'copyrightwarning'                 => '{{SITENAME}}全文皆循$2，詳見$1。不喜他纂，但去可矣。文務親撰，或謄公本，
-<strong>萬勿盜版！</strong>',
-'copyrightwarning2'                => '{{SITENAME}}全文，允眾人撰、纂、刪、校。不喜他纂，但去可矣。<br />
-文務親撰，或謄公本，如$1。<strong>萬勿盜版！</strong>',
-'longpagewarning'                  => '<strong>警示：此頁長$1仟位元組，逾卅二，覽器恐不盡堪，望縮斷之。<strong>',
-'longpageerror'                    => '<strong>警示：文長$1仟位元組，越幅$2，未能儲焉。</strong>',
-'readonlywarning'                  => '<strong>警示：修庫藏，存儲謝焉。惠謄文備用之。</strong>
+'copyrightwarning'                 => "{{SITENAME}}全文皆循$2，詳見$1。不喜他纂，但去可矣。文務親撰，或謄公本，
+'''萬勿盜版！'''",
+'copyrightwarning2'                => "{{SITENAME}}全文，允眾人撰、纂、刪、校。不喜他纂，但去可矣。<br />
+文務親撰，或謄公本，如$1。'''萬勿盜版！'''",
+'longpagewarning'                  => "'''警示：此頁長$1仟位元組，逾卅二，覽器恐不盡堪，望縮斷之。'''",
+'longpageerror'                    => "'''警示：文長$1仟位元組，越幅$2，未能儲焉。'''",
+'readonlywarning'                  => "'''警示：修庫藏，存儲謝焉。惠謄文備用之。'''
 
-鎖者曰：「$1」',
-'protectedpagewarning'             => '<strong>警示：庫藏鎖矣，惟有秩纂之。</strong>',
+鎖者曰：「$1」",
+'protectedpagewarning'             => "'''警示：庫藏鎖矣，惟有秩纂之。'''",
 'semiprotectedpagewarning'         => "'''註記'''庫藏鎖矣，惟登簿纂之。",
 'templatesused'                    => '此文用模：',
 'template-protected'               => '(錮)',
@@ -1191,8 +1191,8 @@ $2',
 'filetype-missing'           => '檔名無後綴也（如「.jpg」）。',
 'large-file'                 => '檔長$2仟位元組，不逾$1為佳。',
 'emptyfile'                  => '無以獻，疑謬名也，惠核之。',
-'fileexists'                 => '<strong><tt>$1</tt></strong>存矣，欲蓋之則再也。',
-'filepageexists'             => '此檔之述於<strong><tt>$1</tt></strong>存矣，檔未存也。爾入述無存也。要現之，爾需纂之。',
+'fileexists'                 => "'''<tt>$1</tt>'''存矣，欲蓋之則再也。",
+'filepageexists'             => "此檔之述於'''<tt>$1</tt>'''存矣，檔未存也。爾入述無存也。要現之，爾需纂之。",
 'fileexists-thumb'           => "<center>'''現存之檔'''</center>",
 'file-exists-duplicate'      => '此檔乃重檔{{PLURAL:$1|一|數}}：',
 'file-deleted-duplicate'     => '此檔（[[$1]]）前刪。爾需查刪錄再貢之。',
@@ -1209,7 +1209,7 @@ $2',
 'watchthisupload'            => '派哨',
 'upload-wasdeleted'          => "'''警示：復獻棄檔，慎續之。'''
 誌刪如下：",
-'filename-bad-prefix'        => '獻檔以<strong>「$1」</strong>首，常由相機瞎造，惠更述之。',
+'filename-bad-prefix'        => "獻檔以'''「$1」'''首，常由相機瞎造，惠更述之。",
 
 'license-nopreview' => '（謝草覽）',
 
@@ -1614,7 +1614,7 @@ $NEWPAGE
 'rollbackfailed'   => '未能反正',
 'cantrollback'     => '獨一作者，無以反正。',
 'alreadyrolled'    => '[[User:$2|$2]]（[[User talk:$2|議]] | [[Special:Contributions/$2|{{int:contribslink}}]]）作[[:$1]]，退不成也。有易或已退焉。新纂者為[[User:$3|$3]]（[[User talk:$3|議]] | [[Special:Contributions/$3|{{int:contribslink}}]]）',
-'editcomment'      => '贊曰"<i>$1</i>"', # only shown if there is an edit comment
+'editcomment'      => "贊曰\"''\$1''\"", # only shown if there is an edit comment
 'revertpage'       => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]）為[[User:$1|$1]]之本耳', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '去$1之作，復為$2之本耳。',
 'sessionfailure'   => '登簿有變。為防盜簿，返前重取再為之。',
@@ -1634,10 +1634,10 @@ $NEWPAGE
 'protect_expiry_invalid'      => '屆期不明。',
 'protect_expiry_old'          => '屆期已過。',
 'protect-unchain'             => '准遷之',
-'protect-text'                => '緘捆<strong><nowiki>$1</nowiki></strong>。',
-'protect-locked-blocked'      => '簿禁，<strong>$1</strong>緘昔如下：',
-'protect-locked-dblock'       => '庫鎖，<strong>$1</strong>緘昔如下：',
-'protect-locked-access'       => '未准，<strong>$1</strong>緘昔如下：',
+'protect-text'                => "緘捆'''<nowiki>$1</nowiki>'''。",
+'protect-locked-blocked'      => "簿禁，'''$1'''緘昔如下：",
+'protect-locked-dblock'       => "庫鎖，'''$1'''緘昔如下：",
+'protect-locked-access'       => "未准，'''$1'''緘昔如下：",
 'protect-cascadeon'           => '取佐緘焉，迭牽此頁；{{PLURAL:$1|此|此}}頁啟篋，無反累焉。',
 'protect-default'             => '（慣）',
 'protect-fallback'            => "須''$1''准",

@@ -477,18 +477,18 @@ Anwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi uki
 'newarticle'             => '(Mpya)',
 'newarticletext'         => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [[{{MediaWiki:Helppage}}|Mwongozo]] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
 'noarticletext'          => 'Ukurasa huu haujaandikwa bado. [[Special:Search/{{PAGENAME}}|tafutia jina hili]] katika kurasa nyingine au [{{fullurl:{{FULLPAGENAME}}|action=edit}} hariri ukurasa huu].',
-'previewnote'            => '<strong>Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!</strong>',
+'previewnote'            => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",
 'editing'                => 'Kuhariri $1',
 'editingsection'         => 'Unahariri $1 (kipande)',
 'yourtext'               => 'Maandishi yako',
-'editingold'             => '<strong>ANGALIA: Unakuwa unahariri nakala ya zamani ya ukurasa huu.
-Ukiendelea kuihariri, mabadilisho yote yaliyofanywa tangu pale yatapotezwa.</strong>',
-'copyrightwarning'       => 'Tafadhali zingatia kwamba makala yote ya {{SITENAME}} unayoyaandika yanafuata $2 (tazama $1 kwa maelezo zaidi).
+'editingold'             => "'''ANGALIA: Unakuwa unahariri nakala ya zamani ya ukurasa huu.
+Ukiendelea kuihariri, mabadilisho yote yaliyofanywa tangu pale yatapotezwa.'''",
+'copyrightwarning'       => "Tafadhali zingatia kwamba makala yote ya {{SITENAME}} unayoyaandika yanafuata $2 (tazama $1 kwa maelezo zaidi).
 Usipotaka maandishi yako yaweze kuharirishwa bure na kutolewa wakati wowote, basi usiyaandike hapa.<br />
-Unakuwa unaahidi kwamba maandishi unayoyaingia ni yako tu, au uliyapata kutoka bure au ni mali ya watu wote. <strong>USITOLEE MAKALA YALIYOHIFADHIWA HAKI ZAO ZA KUTUMIWA BILA KUPATA RUHUSA HALALI!</strong>',
-'longpagewarning'        => '<strong>ILANI: Urefu wa ukurasa huu ni kilobaiti $1; vivinjari kadhaa vinaweza kuwa na matatizo ukihariri ukurasa wenye urefu zaidi ya kb 32 hivi.
-Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.</strong>',
-'protectedpagewarning'   => '<strong>ANGALIA: Ukurasa huu unakingwa kwa hiyo watumiaji wenye haki za wasimamizi tu wanaweza kuuhariri. Hakikisha kwamba unakuwa unafuata mwongozo wa kuhariri kurasa zinazokingwa.<strong>',
+Unakuwa unaahidi kwamba maandishi unayoyaingia ni yako tu, au uliyapata kutoka bure au ni mali ya watu wote. '''USITOLEE MAKALA YALIYOHIFADHIWA HAKI ZAO ZA KUTUMIWA BILA KUPATA RUHUSA HALALI!'''",
+'longpagewarning'        => "'''ILANI: Urefu wa ukurasa huu ni kilobaiti $1; vivinjari kadhaa vinaweza kuwa na matatizo ukihariri ukurasa wenye urefu zaidi ya kb 32 hivi.
+Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.'''",
+'protectedpagewarning'   => "'''ANGALIA: Ukurasa huu unakingwa kwa hiyo watumiaji wenye haki za wasimamizi tu wanaweza kuuhariri. Hakikisha kwamba unakuwa unafuata mwongozo wa kuhariri kurasa zinazokingwa.'''",
 'templatesused'          => 'Vigezo vinavyotumiwa kwenye ukurasa huu:',
 'templatesusedpreview'   => 'Vigezo vinavyotumiwa katika mandhari haya:',
 'template-protected'     => '(kulindwa)',
@@ -755,9 +755,9 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 'protect_expiry_invalid'      => 'Muda wa kwisha ni batilifu.',
 'protect_expiry_old'          => 'Muda wa kuishi umepita tayari.',
 'protect-unchain'             => 'Fungua ruhusa za kusogeza',
-'protect-text'                => 'Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-access'       => 'Akaunti yako hairuhusiwi kubadilisha viwango vya ulindaji.
-Hivi ni vipimo kwa ukurasa <strong>$1</strong>:',
+'protect-text'                => "Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Akaunti yako hairuhusiwi kubadilisha viwango vya ulindaji.
+Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-cascadeon'           => 'Ukurasa huu umelindwa kwa sababu umezingatiwa katika {{PLURAL:$1|ukurasa $1 unaolinda kurasa chini yake|kurasa $1 zinazolinda kurasa chini yake}}. Unaweza kubadilisha kiwango cha ulindaji wa ukurasa huu, lakini hutaathirika ulindaji kutoka kurasa juu yake.',
 'protect-default'             => '(chaguo-msingi)',
 'protect-fallback'            => 'Lazimisha ruhusa "$1"',

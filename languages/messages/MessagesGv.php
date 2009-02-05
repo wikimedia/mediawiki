@@ -361,19 +361,19 @@ She $3 dt'enmys IP roie, as she dt'enney ghlass na #$5. Cur ad lesh dagh ooilley
 Son dy chroo y duillag, gow toshiaght screeuyn ‘sy chishtey çheu heese jeh shoh (jeeagh er [[{{MediaWiki:Helppage}}|duillag y chooney]] son ny smoo fys).  
 My haink oo dys shoh trooid marranys, crig er cramman ‘erash’ yn jeeagheyder ayd.',
 'noarticletext'          => 'Cha nel teks ayns y ghuillag shoh, foddee-shiu [[Special:Search/{{PAGENAME}}|ronsaghey yn enmys duillag shoh]] ayns duillagyn elley ny [{{fullurl:{{FULLPAGENAME}}|action=edit}} reaghey yn duillag shoh].',
-'note'                   => '<strong>Note:</strong>',
-'previewnote'            => '<strong>Ta shoh roie-haishbynys;
-cha nel ny caghlaaghyn sauailt foast!</strong>',
+'note'                   => "'''Note:'''",
+'previewnote'            => "'''Ta shoh roie-haishbynys;
+cha nel ny caghlaaghyn sauailt foast!'''",
 'editing'                => 'Reaghey $1',
 'editingsection'         => 'Reaghey $1 (rheynn)',
 'editingcomment'         => 'Reaghey $1 (cohaggloo)',
 'yourtext'               => 'Dty heks',
 'storedversion'          => 'Lhieggan stoyrit',
 'yourdiff'               => 'Anchaslysyn',
-'copyrightwarning'       => 'Cur tastey my saillt: my t’ou cur red erbee da {{SITENAME}}, t’eh toiggit dy vel oo cur magh eh rere yn $2 (jeeagh er $1 son ny smoo fys).  Mannagh by vie lhiat dy beagh sleih elley reaghey dty obbyr gyn myghin as skeaylley eh dy seyr, ny chur roish eh ayns shoh.
+'copyrightwarning'       => "Cur tastey my saillt: my t’ou cur red erbee da {{SITENAME}}, t’eh toiggit dy vel oo cur magh eh rere yn $2 (jeeagh er $1 son ny smoo fys).  Mannagh by vie lhiat dy beagh sleih elley reaghey dty obbyr gyn myghin as skeaylley eh dy seyr, ny chur roish eh ayns shoh.
 <br />
 Chammah as shen, t’ou gialdyn dooin dy screeu oo hene eh, ny ren oo coip jeh ny ta fo çhiarnys y theay, ny ry-gheddyn dy seyr.
-<strong>NY CHUR ROISH GYN KIED OBBYR TA FO COIP-CHIART! </strong>',
+'''NY CHUR ROISH GYN KIED OBBYR TA FO COIP-CHIART! '''",
 'templatesused'          => 'Clowanyn ymmydit er y duillag shoh:',
 'templatesusedpreview'   => 'Clowanyn ymmydit ayns y roie-haishbynys shoh:',
 'template-protected'     => '(glast)',
@@ -799,7 +799,7 @@ Jeeagh er $2 son recortys ny scryssaghyn magh jeianagh.',
 # Rollback
 'rollback_short' => 'Aaymmyd',
 'rollbacklink'   => 'aaymmyd',
-'editcomment'    => 'Va "<i>$1</i>" ny chohaggloo yn reaghey.', # only shown if there is an edit comment
+'editcomment'    => "Va \"''\$1''\" ny chohaggloo yn reaghey.", # only shown if there is an edit comment
 
 # Protect
 'protectlogpage'              => 'Lioar coadee',
@@ -807,9 +807,9 @@ Jeeagh er $2 son recortys ny scryssaghyn magh jeianagh.',
 'prot_1movedto2'              => '[[$1]] aa-enmyssit myr [[$2]]',
 'protectcomment'              => 'Cohaggloo:',
 'protectexpiry'               => 'Jerrey:',
-'protect-text'                => 'Foddee oo jeeagh er as arraghey yn rea choadee ayns shoh son y duillag <strong><nowiki>$1</nowiki></strong>.',
+'protect-text'                => "Foddee oo jeeagh er as arraghey yn rea choadee ayns shoh son y duillag '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Cha nel kied ec dty choontys dys arraghey cormidyn coadee.<br />
-Shoh ny reaghaghyn roie da'n duillag <strong>$1</strong>:",
+Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'protect-default'             => '(cadjinit)',
 'protect-fallback'            => 'Ta feme er kied "$1" ayd',
 'protect-level-autoconfirmed' => 'Cur fo ghlass ymmydeyryn neurecortit',

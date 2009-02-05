@@ -236,8 +236,8 @@ Eke: $2",
 
 # Login and logout pages
 'logouttitle'                => 'ʻAlu mamaʻo ʻo e ʻetita',
-'logouttext'                 => '<strong>Kuo ʻalu mamaʻo koe he taimí ni.</strong><br />
-E lava te ke hoko atu ʻo ngāueʻaki he {{SITENAME}} tatau mo e ʻetita taʻehingoa, pe te ke kau-ki-ai mo e hingoa tatau pe hingoa kehe. Tokanga, mahalo pē ʻe ʻi ai ha ngaahi peesi ʻoku ʻasi    ko koe kei kau-ki-ai aʻu ki he taimi te ke fakaʻatā ʻa e fafaʻo fakapalausa.',
+'logouttext'                 => "'''Kuo ʻalu mamaʻo koe he taimí ni.'''<br />
+E lava te ke hoko atu ʻo ngāueʻaki he {{SITENAME}} tatau mo e ʻetita taʻehingoa, pe te ke kau-ki-ai mo e hingoa tatau pe hingoa kehe. Tokanga, mahalo pē ʻe ʻi ai ha ngaahi peesi ʻoku ʻasi    ko koe kei kau-ki-ai aʻu ki he taimi te ke fakaʻatā ʻa e fafaʻo fakapalausa.",
 'welcomecreation'            => '== Tali fiefia, $1! ==
 
 Kuo fakatupu hoʻo tohi kau-ki-ai. ʻOua ʻe ngalo ke liliu hoʻo faʻiteliha {{SITENAME}}.',
@@ -353,9 +353,9 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'noarticletext'           => 'Ko e pēsi ni, ʻoku ʻikai haʻane tohi ʻi ai he taimi ni. ʻE lava koe ʻo [[Special:Search/{{PAGENAME}}|kumi ki heʻene hingoa]] ʻi ha ngaahi peesi ʻe taha, pe [{{fullurl:{{FULLPAGENAME}}|action=edit}} ʻetita ʻi ai.]',
 'clearyourcache'          => "'''Tokanga''', ʻosi he haofaki e peesi, mahalo pē ʻoku pau te ke fakaʻatā ʻa e fafaʻo ʻo ho palausa, naʻa ʻikai te ke sio ʻa e paaki foʻou.",
 'updated'                 => '(Fakafoʻou)',
-'note'                    => '<strong>Tohi nounou:</strong>',
-'previewnote'             => '<strong>Ko e vakai pē ia, teʻeki haofakiʻi ʻa e ngaahi liliu!</strong>',
-'session_fail_preview'    => '<strong>Kātaki, naʻe ʻikai fai hoʻo fatu ko e ʻuhinga ia ai naʻe mole ʻa e meʻaʻilo. Kātaki toki feinga. Kapau e toe hala, mahalo pē te ke ʻalu mamaʻo pea te ke toki kau ki ai.</strong>',
+'note'                    => "'''Tohi nounou:'''",
+'previewnote'             => "'''Ko e vakai pē ia, teʻeki haofakiʻi ʻa e ngaahi liliu!'''",
+'session_fail_preview'    => "'''Kātaki, naʻe ʻikai fai hoʻo fatu ko e ʻuhinga ia ai naʻe mole ʻa e meʻaʻilo. Kātaki toki feinga. Kapau e toe hala, mahalo pē te ke ʻalu mamaʻo pea te ke toki kau ki ai.'''",
 'editing'                 => 'ʻOku fatuʻi $1',
 'editingsection'          => 'ʻOku fatuʻi $1 (vahe)',
 'editingcomment'          => 'ʻOku fatuʻi $1 (fakamatala)',
@@ -367,12 +367,12 @@ Ko e konga ʻi lalo, ko hoʻo ngaahi liliu ia.
 Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi ʻo e meʻalolomi \"haofaki e pēsí\".",
 'yourtext'                => 'tohi ʻaʻau',
 'storedversion'           => 'Ko e paaki kuo tuku',
-'editingold'              => '<strong>FAKATOKANGA: ʻOku ke fatu ʻi he paaki fakaonoʻaho ʻo e pēsi. Kapau te ke haofaki ia, ʻe mole ʻa e ngaahi liliu kotoa talu mei ai.</strong>',
+'editingold'              => "'''FAKATOKANGA: ʻOku ke fatu ʻi he paaki fakaonoʻaho ʻo e pēsi. Kapau te ke haofaki ia, ʻe mole ʻa e ngaahi liliu kotoa talu mei ai.'''",
 'yourdiff'                => 'Meʻa kehekehe',
 'copyrightwarning'        => "Fakamolemole, manatuʻi ko e ngaahi foaki kotoa pē ki he {{SITENAME}} ʻoku nau moʻulaloa ki he \"\$2\". Kapau ʻoku ʻikai te ke loto ki ai, ʻikai te ke fiemaʻu ʻa e ngaahi liliu taʻeʻofa, ʻikai holi ki ha pulusi ʻi he feituʻu kotoa pe, ʻe sai ange ʻe ʻikai ke ke ʻetita heni.
 
 ʻOku foki te ke palōmesi naʻa ke tohi ia ʻe koe, pe hiki ia mei he tohi tauʻatāina, '''ʻOku ʻikai ʻaupito te ke ʻoatu ha tohi ʻoku foʻi mafai ke pulusi maʻa e tokotaha.'''",
-'readonlywarning'         => '<strong>TOKANGA. ʻOku lokaʻi ʻa e tānekingaʻilo maʻa e monomono, ko ia ai ʻe ikai te ke lava haʻofaki hoʻo fatu he taimí ni. Mahalo pē te ke fie haʻofaki, hiki pea piki, hoʻo fatu ʻi he faile, ki he kahaʻu.<strong>',
+'readonlywarning'         => "'''TOKANGA. ʻOku lokaʻi ʻa e tānekingaʻilo maʻa e monomono, ko ia ai ʻe ikai te ke lava haʻofaki hoʻo fatu he taimí ni. Mahalo pē te ke fie haʻofaki, hiki pea piki, hoʻo fatu ʻi he faile, ki he kahaʻu.'''",
 'cascadeprotectedwarning' => "'''Tokanga:''' ʻOku lokaʻi ʻa e pēsí ni ki he fatu, (ʻoku lava pē ʻe he kau pule), koeʻuhi ʻoku kau ki he ngaahi peesi ʻasi ʻi lalo, ʻoku nau maluʻi mo e hohoko fakaivia.",
 'templatesused'           => 'Ngaahi sīpinga ʻoku ngāueʻaki he kupú ni:',
 'templatesusedpreview'    => 'Ngaahi sīpinga ʻoku ngāueʻaki he vakaí ni:',
@@ -528,7 +528,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'badfilename'                 => 'Naʻe liliu ko e hingoa ʻo e faile ki he "$1".',
 'largefileserver'             => 'ʻOku fuʻu lahi ange ʻa e failé ni ʻi he tauhia hono ʻinasi.',
 'emptyfile'                   => 'ʻOku ngalingali maha ʻa e faile naʻa ke hiki hake ai. Mahalo pē naʻa ke fakasipelahalaʻi ki he hingoa. Kātaki vakai ke ke pau te ke fiehiki ʻa e failé ni.',
-'fileexists'                  => 'ʻOku toka ʻi ai ha peesi mo e hingoa ē; fakamolemole fakamoʻoniʻi ki he <strong><tt>$1</tt></strong> kapau ʻoku ʻikai te ke pau ʻo te ke fieliliu ia.',
+'fileexists'                  => "ʻOku toka ʻi ai ha peesi mo e hingoa ē; fakamolemole fakamoʻoniʻi ki he '''<tt>$1</tt>''' kapau ʻoku ʻikai te ke pau ʻo te ke fieliliu ia.",
 'fileexists-forbidden'        => 'ʻOku toka ʻi ai ha peesi mo e hingoa ē; fakamolemole ʻe foki pea hiki hake ʻa e failé ni mo e ha hingoa foʻou. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'ʻOku toka ʻi ai ha peesi mo e hingoa ē ʻi he kalasi vahevahe; fakamolemole ʻe foki pea hiki hake ʻa e failé ni mo e ha hingoa foʻou. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Kuo ola ʻa e hiki hake',
@@ -786,7 +786,7 @@ Vakai ki he $2 maʻa e fakamatala ʻo e ngaahi toki tāmateʻi.',
 'alreadyrolled'  => 'ʻOku ʻikai lava teka hifo ʻa e fatu fakamuimui ʻo e [[:$1]] ʻe [[User:$2|$2]] ([[User talk:$2|Alea]]); ko e tokotaha ʻe taha naʻe fatu pe fatu teka hifo ʻa e peesi.
 
 Ko e fatu fakamuimui naʻe fatu ʻe [[User:$3|$3]] ([[User talk:$3|Alea]]).',
-'editcomment'    => 'Ko e fakamatala fatu naʻe "<i>$1</i>" ia.', # only shown if there is an edit comment
+'editcomment'    => "Ko e fakamatala fatu naʻe \"''\$1''\" ia.", # only shown if there is an edit comment
 
 # Protect
 'protectlogpage'      => 'Tohinoa ʻo e maluʻi',

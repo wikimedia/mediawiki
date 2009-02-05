@@ -325,8 +325,8 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Caitom cuípo',
-'logouttext'                 => '<strong>Me cuípo.</strong><br />
-Mecontinudad usadad {{SITENAME}} anon jïx me caápo dajcaitom ö jömcaitom. Páhinám pac continudad displayom dajme caápo, jánclearom mecachede browser.',
+'logouttext'                 => "'''Me cuípo.'''<br />
+Mecontinudad usadad {{SITENAME}} anon jïx me caápo dajcaitom ö jömcaitom. Páhinám pac continudad displayom dajme caápo, jánclearom mecachede browser.",
 'welcomecreation'            => "== Q'$1! ==
 
 Mecaitom coccebj creatöx. Quiix hequáatlaácde {{SITENAME}} pos-poop.",
@@ -498,37 +498,37 @@ Me coccebj römjasi poop, clickom meback-buttonde browser coccebj perfectua.',
 'anontalkpagetext'          => "----''Jan coccebj czaxö zode caitomde IDde adressade IP. Isój necoccebj caápo. Jan coccebj rae'de usadadde adressade IP numerical identificacion 'prenisój. Plusöxde caitom pos-coccebj jan adressade IP. Me pos-coccebj anonimo ö commentua irrevelantua coccebj directomde me poop, [[Special:UserLogin|caápo-jande]] exitom confucion diijömde IP-caitóm mii.''",
 'noarticletext'             => 'Jan páhina necoccebj textua zo, me pos-coccebj [[Special:Search/{{PAGENAME}}|yahöx jan páhina]] diijömde páhinám iti jöx [{{fullurl:{{FULLPAGENAME}}|action=edit}} ticpatlöx jan páhina].',
 'clearyourcache'            => "'''Notificacion:''' Xuniim 'depre, me pos-coccebj bypassöx mecachede browser caitomi quiíx. '''Mozilla / Firefox / Safari:''' quan ti caitomde ''Shift'' zoxepe clickom ''Reload'', jöx cuápook zo ti ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Apple Mac iti); '''IE:''' quan ti ''Ctrl'' zoxepe clickom ''Refresh'', jöx cuápook zo ti ''Ctrl-F5''; '''Konqueror:''': clickom buttonde ''Reload'' zo, jöx cuápook zo iti ''F5''; '''Opera''' caitóm pos-coccebj clairomde cache completementua ''Tools→Preferences'' iti.",
-'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Usadad 'Cohuatlöx cuáxiit' testom me hun CSS/JS xuniim 'depre.",
+'usercssjsyoucanpreview'    => "'''Tip:''' Usadad 'Cohuatlöx cuáxiit' testom me hun CSS/JS xuniim 'depre.",
 'usercsspreview'            => "'''He cuáxiit he CSSde caitom, zo necoccebj xuniim!'''",
 'userjspreview'             => "'''He cuáxiit/testom he JavaScriptde caitom, zo necoccebj xuniim!'''",
 'userinvalidcssjstitle'     => "'''Attencion:''' Skin \"\$1\" coccebj ne'dáár. Regardom .css ö .js páhinám usadad titlenam lowercase zo, yanuiíxzo mii yahöxde ti {{ns:user}}:Foo/monobook.css opposadadde {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(varupdatenám)',
-'note'                      => '<strong>Notificacion:</strong>',
-'previewnote'               => '<strong>Jan coccebj cuáxiit zo; quiíx necoccebj xuniim!</strong>',
+'note'                      => "'''Notificacion:'''",
+'previewnote'               => "'''Jan coccebj cuáxiit zo; quiíx necoccebj xuniim!'''",
 'previewconflict'           => 'Jan cuáxiit reflectom textua zode upper textua ticpatlöx hant jan coccebj cuáxiitde zuniim páhina.',
-'session_fail_preview'      => '<strong>Sorry! He necoccebj processom meticpatlöx xajvon datade seccion.
-Nexajvon. Jan necoccebj naxajvon poop, cuípo ö caápo.</strong>',
-'session_fail_preview_html' => "<strong>Sorry! He necoccebj processom meticpatlöx xajvon datade seccion.</strong>
+'session_fail_preview'      => "'''Sorry! He necoccebj processom meticpatlöx xajvon datade seccion.
+Nexajvon. Jan necoccebj naxajvon poop, cuípo ö caápo.'''",
+'session_fail_preview_html' => "'''Sorry! He necoccebj processom meticpatlöx xajvon datade seccion.'''
 
 ''Jan wiki coccebj HTML raw enablenom, cuáxiit zo coccebj camaátde precaucion JavaScripts caniim.''
 
-<strong>Jan coccebj ticpatlöx legimatöx poop, reprocessom. Jan necoccebj processom poop, cuípo ö caápo.</strong>",
-'token_suffix_mismatch'     => '<strong>Meticpatlöx coccebj rejectöx meclient cahöx characteromde punctacion zo ticpatlöx zo iti. TicpatlÖx zo coccebj rejectöxde preventua corrupcionde textuade páhina zo. 
-Jan lajxepe occuram me usadad proxy service anon web-based buggy.</strong>',
+'''Jan coccebj ticpatlöx legimatöx poop, reprocessom. Jan necoccebj processom poop, cuípo ö caápo.'''",
+'token_suffix_mismatch'     => "'''Meticpatlöx coccebj rejectöx meclient cahöx characteromde punctacion zo ticpatlöx zo iti. TicpatlÖx zo coccebj rejectöxde preventua corrupcionde textuade páhina zo. 
+Jan lajxepe occuram me usadad proxy service anon web-based buggy.'''",
 'editing'                   => 'Ticpatlöx $1',
 'editingsection'            => 'Ticpatlöx $1 (seccion)',
 'editingcomment'            => 'Ticpatlöx $1 (commentua)',
 'editconflict'              => 'Römjde ticpatlöxde conflictua: $1',
 'yourtext'                  => 'Hetext',
 'storedversion'             => 'Vercion ráimuniit',
-'nonunicodebrowser'         => "<strong>ATTENCION: Mebrowser necoccebj compliantede 'unicode' (characterám sans huáp ti). Workaround coccebj hant itide me permiccion ticpatlöx páhinám: non-ASCII characterám coccebj codes hexidecimales.</strong>",
-'editingold'                => '<strong>ATTENCION: Me coccebj ticpatlöx revicion outdatenam zode jan páhina. Me xuniim zo, jömde quiíx hunde jan revicion coccebj delar poop.</strong>',
+'nonunicodebrowser'         => "'''ATTENCION: Mebrowser necoccebj compliantede 'unicode' (characterám sans huáp ti). Workaround coccebj hant itide me permiccion ticpatlöx páhinám: non-ASCII characterám coccebj codes hexidecimales.'''",
+'editingold'                => "'''ATTENCION: Me coccebj ticpatlöx revicion outdatenam zode jan páhina. Me xuniim zo, jömde quiíx hunde jan revicion coccebj delar poop.'''",
 'yourdiff'                  => 'Quiíx',
-'longpagewarning'           => '<strong>ATTENCION: Jan páhina coccebj $1 kilobynám; browserám pac pos-coccebj problemámde ticpatlöx páhinám necade jöx plusöxde 32 kb.
-Cahöx ticpatlöx jan páhina minöx seccion iti.</strong>',
-'longpageerror'             => '<strong>RÖMJ: Textua zo mexuniim coccebj $1 kilobytenám, jan coccebj plusöxde maxde $2 kilobytenám. Zo necoccebj xuniim.</strong>',
-'readonlywarning'           => "<strong>ATTENCION: Database zo coccebj lockomde kyépöx, zo necoccebj posde xuniim meticpatlöx cmaa. Me coccebj considerom ''cut-n-paste'' textua zo ciúchande textua iti ö xuniimde diijömdexepe.</strong>",
-'protectedpagewarning'      => '<strong>ATTENCION: Jan páhina coccebj lockomde sysopám coccebj ticpatlöx zo permiccional.</strong>',
+'longpagewarning'           => "'''ATTENCION: Jan páhina coccebj $1 kilobynám; browserám pac pos-coccebj problemámde ticpatlöx páhinám necade jöx plusöxde 32 kb.
+Cahöx ticpatlöx jan páhina minöx seccion iti.'''",
+'longpageerror'             => "'''RÖMJ: Textua zo mexuniim coccebj $1 kilobytenám, jan coccebj plusöxde maxde $2 kilobytenám. Zo necoccebj xuniim.'''",
+'readonlywarning'           => "'''ATTENCION: Database zo coccebj lockomde kyépöx, zo necoccebj posde xuniim meticpatlöx cmaa. Me coccebj considerom ''cut-n-paste'' textua zo ciúchande textua iti ö xuniimde diijömdexepe.'''",
+'protectedpagewarning'      => "'''ATTENCION: Jan páhina coccebj lockomde sysopám coccebj ticpatlöx zo permiccional.'''",
 'semiprotectedpagewarning'  => "'''Notificacion:''' Jan páhina coccebj lockom caitom registrar coccebj ticpatlöx zo.",
 'cascadeprotectedwarning'   => "'''Attencion:''' Jan páhina coccebj lockom jan coccebj ticpatlöxde caitom sysopán permiccion mii, zo coccebj includöx jan {{PLURAL:$1|cascade-páhina|cascade-páhinám}} hun:",
 'templatesused'             => 'Automií usadad jan páhina iti:',

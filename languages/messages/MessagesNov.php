@@ -138,9 +138,9 @@ $messages = array(
 
 # Login and logout pages
 'logouttitle'                => 'Useren eksignato',
-'logouttext'                 => '<strong>Vu es nun eksignatat.</strong><br />
+'logouttext'                 => "'''Vu es nun eksignatat.'''<br />
 Vu pove kontinua usa {{SITENAME}} anonimim, o vu pove riensignata
-kom li sami o altri usere.',
+kom li sami o altri usere.",
 'loginpagetitle'             => 'Useren ensignato',
 'yourname'                   => 'Usere-nome:',
 'yourpassword'               => 'Pasa-vorde:',

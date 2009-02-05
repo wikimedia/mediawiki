@@ -359,11 +359,11 @@ afturkend av wiki',
 
 # Login and logout pages
 'logouttitle'                => 'Brúkaraútritan',
-'logouttext'                 => '<strong>Tú hevur nú ritað út.</strong><br />
+'logouttext'                 => "'''Tú hevur nú ritað út.'''<br />
 Tú kanst halda áfram at nýta {{SITENAME}} dulnevnt.
 Ella kanst tú rita inn aftur sum sami ella annar brúkari.
 Legg til merkis at summar síður kunnu framhaldandi síggja út
-sum tú hevur ritað inn til goymslan í sneytara tínum er ruddað.',
+sum tú hevur ritað inn til goymslan í sneytara tínum er ruddað.",
 'welcomecreation'            => '== Vælkomin, $1! ==
 
 Tín konto er nú stovnað. Gloym ikki at broyta tínar {{SITENAME}} innstillingar.',
@@ -467,8 +467,8 @@ Ert tú komin higar av einum mistaki, kanst tú trýsta á '''aftur'''-knøttin 
 Ein slík IP-adressa kann verða brúkt av fleiri brúkarum.
 Ert tú ein dulnevndur brúkari, og kennir, at óvikomandi viðmerkingar eru vendar til tín, so vinarliga [[Special:UserLogin|stovna eina kontu]] fyri at sleppa undan samanblanding við aðrar dulnevndar brúkarar í framtíðini.''",
 'clearyourcache'           => "'''Viðmerking:''' Eftir at hava goymt mást tú fara uttanum minnið á sneytara tínum fyri at síggja broytingarnar. '''Mozilla/Safari/Konqueror:''' halt knøttinum ''Shift'' niðri meðan tú trýstir á ''Reload'' (ella trýst ''Ctrl-Shift-R''), '''IE:''' trýst ''Ctrl-F5'', '''Opera:''' trýst F5.",
-'note'                     => '<strong>Viðmerking:</strong>',
-'previewnote'              => '<strong>Minst til at hetta bara er ein forskoðan, sum enn ikki er goymd!</strong>',
+'note'                     => "'''Viðmerking:'''",
+'previewnote'              => "'''Minst til at hetta bara er ein forskoðan, sum enn ikki er goymd!'''",
 'previewconflict'          => 'Henda forskoðanin vísir tekstin í erva soleiðis sum hann sær út, um tú velur at goyma.',
 'editing'                  => 'Tú rættar $1',
 'editingsection'           => 'Tú rættar $1 (partur)',
@@ -478,11 +478,11 @@ Ert tú ein dulnevndur brúkari, og kennir, at óvikomandi viðmerkingar eru ven
 'yourdiff'                 => 'Munir',
 'copyrightwarning'         => "Alt íkast til {{SITENAME}} er útgivið undir $2 (sí $1 fyri smálutir). Vilt tú ikki hava skriving tína broytta miskunnarleyst og endurspjadda frítt, so send hana ikki inn.<br />
 Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at tú hevur avritað tað frá tilfeingi ið er almenn ogn &mdash; hetta umfatar '''ikki''' flestu vevsíður.
-<strong>SEND IKKI UPPHAVSRÆTTARVART TILFAR UTTAN LOYVI!</strong>",
-'longpagewarning'          => '<strong>ÁVARING: Henda síðan er $1 kilobýt long.
+'''SEND IKKI UPPHAVSRÆTTARVART TILFAR UTTAN LOYVI!'''",
+'longpagewarning'          => "'''ÁVARING: Henda síðan er $1 kilobýt long.
 Summir sneytarar kunnu hava trupulleikar við at viðgerða síður upp ímóti ella longri enn 32 kb.
-Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
-'protectedpagewarning'     => '<strong>ÁVARING: Henda síðan er friðað, so at einans brúkarar við umboðsstjóraheimildum kunnu broyta hana.</strong>',
+Vinarliga umhugsa at býta síðuna sundur í styttri pettir.'''",
+'protectedpagewarning'     => "'''ÁVARING: Henda síðan er friðað, so at einans brúkarar við umboðsstjóraheimildum kunnu broyta hana.'''",
 'semiprotectedpagewarning' => "'''Viðmerking:''' Hendan grein er læst soleiðis at bert skrásetir brúkaris kunnu rætta hana.",
 'templatesused'            => 'Fyrimyndir brúktar á hesu síðu:',
 'templatesusedpreview'     => 'Fyrimyndir brúktar í hesari forskoðan:',

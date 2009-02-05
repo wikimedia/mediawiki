@@ -217,8 +217,8 @@ Se lo desideri, puoi contattare $1, o uno degli altri [[{{MediaWiki:Grouppage-sy
 'newarticletext'  => 'Scrivi qui il tuo testo.',
 'noarticletext'   => "(L'articolo è vuoto, potresti gentilmente iniziare l'articolo oppure richiedere la cancellazione di questa pagina)",
 'updated'         => '(Aggiornato)',
-'note'            => '<strong>Nota:</strong>',
-'previewnote'     => '<strong>Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione non è ancora stata salvata!</strong>',
+'note'            => "'''Nota:'''",
+'previewnote'     => "'''Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione non è ancora stata salvata!'''",
 'previewconflict' => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà n questa forma se sceglierai di salvare la pagina.",
 'editing'         => 'Modifica di $1',
 'editconflict'    => 'Conflitto di edizione: $1',
@@ -228,8 +228,8 @@ Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò
 <b>Soltanto</b> il testo nella casella di sopra sarà sakvato se premerai il bottone "Salva".<br />',
 'yourtext'        => 'Il tuo testo',
 'storedversion'   => 'Versione in archivio',
-'editingold'      => "<strong>ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.
-Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno persi per sempre.</strong>",
+'editingold'      => "'''ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.
+Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno persi per sempre.'''",
 'yourdiff'        => 'Differenze',
 
 # History pages

@@ -243,12 +243,12 @@ Query: $2',
 'preview'          => 'Ringanisa',
 'showpreview'      => 'Komba kuringanisa',
 'showdiff'         => 'Komba ku cinca',
-'previewnote'      => '<strong>Lowu i ndzinganiso ntsena;
-kucinca a ku sihlayisiwa!</strong>',
-'copyrightwarning' => 'Xiya leswaku minyikelo hinkwayo e ka {{SITENAME}} yi tekiwa yitshuxiwe e hansi ka $2 (Vona $1 ku kuma vuxokoxoko).
+'previewnote'      => "'''Lowu i ndzinganiso ntsena;
+kucinca a ku sihlayisiwa!'''",
+'copyrightwarning' => "Xiya leswaku minyikelo hinkwayo e ka {{SITENAME}} yi tekiwa yitshuxiwe e hansi ka $2 (Vona $1 ku kuma vuxokoxoko).
 loko unga tsakeli leswaku vutsari bya wena byi lulamisiwa no aviwa handle ko tweriwa vusiwana, unga tsari laha.<br />
 U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe leswi u swinyikelaka u swi tekile e xihloveni xa lerivaleni kumbe laha kunga na mpfumelelo wa mani na mani.
-<strong>UNGA RHUMERI MATSALWA LA MA SIRHELERIWEKE HANDLE KA MPFUMELELO!</strong>',
+'''UNGA RHUMERI MATSALWA LA MA SIRHELERIWEKE HANDLE KA MPFUMELELO!'''",
 
 # History pages
 'next'       => 'Leswilandzelaka',
