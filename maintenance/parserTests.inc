@@ -545,6 +545,7 @@ class ParserTest {
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgCapitalLinks' => true,
 			'wgNoFollowLinks' => true,
+			'wgNoFollowDomainExceptions' => array(),
 			'wgThumbnailScriptPath' => false,
 			'wgUseTeX' => false,
 			'wgLocaltimezone' => 'UTC',
