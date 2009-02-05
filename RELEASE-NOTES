@@ -139,6 +139,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17105) Numeric table sorting broken
 * (bug 17231) Transcluding special pages on wikis using language conversion no
   longer affects the page title
+* (bug 6702) Default system messages updated/improved
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
