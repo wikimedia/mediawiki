@@ -89,7 +89,7 @@ class ApiFeedWatchlist extends ApiBase {
 			$data = $module->getResultData();
 
 			$feedItems = array ();
-			foreach ($data['query']['watchlist'] as $info) {
+			foreach ((array)$data['query']['watchlist'] as $info) {
 				$feedItems[] = $this->createFeedItem($info);
 			}
 
