@@ -725,7 +725,9 @@ Bonvolu inkluzivi tiujn detalojn en iuj ajn demandoj kiun vi farus.',
 'loginreqlink'                     => 'ensaluti',
 'loginreqpagetext'                 => 'Vi devas $1 por rigardi aliajn paĝojn.',
 'accmailtitle'                     => 'Pasvorto sendita.',
-'accmailtext'                      => "La pasvorto por '$1' estis sendita al  $2.",
+'accmailtext'                      => "Hazarde generita pasvorto por [[User talk:$1|$1]] estis sendita al $2.
+
+La pasvorto por ĉi tiu nova konto povas esti ŝanĝita en la paĝo ''[[Special:ChangePassword|ŝanĝi pasvorton]]'' dum ensalutado.",
 'newarticle'                       => '(Nova)',
 'newarticletext'                   => 'Vi sekvis ligilon al paĝo jam ne ekzistanta. Se vi volas krei ĝin, ektajpu sube (vidu la [[{{MediaWiki:Helppage}}|helpopaĝo]] por klarigoj.) Se vi malintence alvenis ĉi tien, simple alklaku la retrobutonon de via retumilo.',
 'anontalkpagetext'                 => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. 
@@ -1141,7 +1143,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'stub-threshold'            => 'Ago-sojlo por formatigo de <a href="#" class="stub">ligil-ĝermo (anglalingve: "stub link")</a> (bitikoj):',
 'recentchangesdays'         => 'Tagoj montrendaj en lastaj ŝanĝoj:',
 'recentchangesdays-max'     => '(maksimume $1 {{PLURAL:$1|tago|tagoj}})',
-'recentchangescount'        => "Montru kiom da titoloj en 'Lastaj ŝanĝoj'",
+'recentchangescount'        => "Nombro de redaktoj por montri en 'Lastaj ŝanĝoj', paĝaj historioj, kaj en protokoloj, laŭ defaŭlto:",
 'savedprefs'                => 'Viaj preferoj estas konservitaj.',
 'timezonelegend'            => 'Horzono',
 'timezonetext'              => 'Indiku je kiom da horoj via
@@ -1512,7 +1514,7 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 # File deletion
 'filedelete'                  => 'Forigi $1',
 'filedelete-legend'           => 'Forigi dosieron.',
-'filedelete-intro'            => "Vi forigas '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Vi preskaŭ forigos dosieron '''[[Media:$1|$1]]''' kune kun ĉiom da ĝia historio.",
 'filedelete-intro-old'        => "Vi forigas version de '''[[Media:$1|$1]]''' ekde [$4 $3, $2].",
 'filedelete-comment'          => 'Kialo por forigo:',
 'filedelete-submit'           => 'Forigi',
@@ -1710,7 +1712,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'deletedcontributions-title' => 'Forigitaj kontribuoj de uzantoj',
 
 # Special:LinkSearch
-'linksearch'       => 'Serĉi retajn ligilojn',
+'linksearch'       => 'Eksteraj ligiloj',
 'linksearch-pat'   => 'Serĉesprimo:',
 'linksearch-ns'    => 'Nomspaco:',
 'linksearch-ok'    => 'Serĉi',
@@ -1877,7 +1879,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'alreadyrolled'    => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 pro tio, ke oni intertempe redaktis aŭ restarigis la paĝon. 
 La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "La komento estis: '<i>$1</i>'.", # only shown if there is an edit comment
+'editcomment'      => 'La resumo de la komento estis: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',
 'sessionfailure'   => 'Ŝajnas ke estas problemo kun via ensalutado;
@@ -1908,7 +1910,7 @@ Jen la nunaj ecoj de la paĝo <strong>$1</strong>:',
 Jen la aktualaj valoroj por la paĝo <strong>$1</strong>:',
 'protect-cascadeon'           => 'Ĉi paĝo estas nun protektita kontraŭ redaktado ĉar ĝi estas inkluzivita en {{PLURAL:$1|jena paĝo, kiu mem estas protektita|jenaj paĝoj, kiuj mem estas protektitaj}} per kaskada protekto. 
 Vi povas ŝanĝi ties protektnivelon, sed tio ne ŝanĝos la kaskadan protekton.',
-'protect-default'             => '(defaŭlte)',
+'protect-default'             => 'Permesigi ĉiujn uzantojn',
 'protect-fallback'            => 'Rajto "$1" nepras.',
 'protect-level-autoconfirmed' => 'Bloki neensalutintajn uzantojn',
 'protect-level-sysop'         => 'Nur administrantoj',
@@ -2079,7 +2081,7 @@ $1',
 'unblockip'                       => 'Malforbari IP-adreson/nomon',
 'unblockiptext'                   => 'Per la jena formulo vi povas repovigi al iu
 forbarita IP-adreso/nomo la povon enskribi en la vikio.',
-'ipusubmit'                       => 'Malforbari la adreson',
+'ipusubmit'                       => 'Forigi ĉi tiun forbaron',
 'unblocked'                       => '[[User:$1|$1]] estas restarigita.',
 'unblocked-id'                    => 'Forbaro $1 estas forigita.',
 'ipblocklist'                     => 'Forbaritaj IP-adresoj kaj salutnomoj',
@@ -2208,7 +2210,7 @@ ne movis la diskuto-paĝon ĉar jam ekzistas tia ĉe la nova titolo.
 Bonvolu permane kunigi ilin.',
 'movedto'                      => 'alinomita al',
 'movetalk'                     => 'Transigi ankaŭ la "diskuto"-paĝon, se ĝi ekzistas.',
-'move-subpages'                => 'Alinomigi ĉiujn subpaĝojn, se fareble.',
+'move-subpages'                => 'Alinomigi ĉiujn subpaĝojn (maksimume $1), se fareble.',
 'move-talk-subpages'           => 'Alinomigi ĉiujn subpaĝojn de diskuto-paĝoj, se fareble.',
 'movepage-page-exists'         => 'La paĝo $1 jam ekzistas kaj ne povas esti aŭtomate anstataŭigita.',
 'movepage-page-moved'          => 'La paĝo $1 estis alinomita al $2.',
@@ -2315,19 +2317,19 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versio|versioj}} de $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Mia uzantopaĝo',
+'tooltip-pt-userpage'             => 'Via uzantopaĝo',
 'tooltip-pt-anonuserpage'         => 'La uzantopaĝo por la IP adreso sub kiu vi estas redaktanta',
-'tooltip-pt-mytalk'               => 'Mia diskutpaĝo',
+'tooltip-pt-mytalk'               => 'Via diskutpaĝo',
 'tooltip-pt-anontalk'             => 'Diskuto pri redaktoj sub tiu ĉi IP adreso',
 'tooltip-pt-preferences'          => 'Miaj preferoj',
 'tooltip-pt-watchlist'            => 'Listo de paĝoj kies ŝanĝojn vi priatentas.',
-'tooltip-pt-mycontris'            => 'Listo de miaj kontribuoj',
+'tooltip-pt-mycontris'            => 'Listo de viaj kontribuoj',
 'tooltip-pt-login'                => 'Vi estas invitita ensaluti, tamen ne estas devige.',
 'tooltip-pt-anonlogin'            => 'Vi estas invitita ensaluti, tamen ne estas devige.',
 'tooltip-pt-logout'               => 'Elsaluti',
 'tooltip-ca-talk'                 => 'Diskuto pri la artikolo',
 'tooltip-ca-edit'                 => 'Vi povas redakti tiun ĉi paĝon. Bv uzi la antaŭvidbutonon antaŭ ol konservi.',
-'tooltip-ca-addsection'           => 'Aldoni komenton al ĉi tiu diskuto.',
+'tooltip-ca-addsection'           => 'Starti novan sekcion',
 'tooltip-ca-viewsource'           => 'Tiu paĝo estas protektita. Vi povas nur rigardi ties fonton.',
 'tooltip-ca-history'              => 'Antaŭaj versioj de tiu ĉi paĝo.',
 'tooltip-ca-protect'              => 'Protekti tiun ĉi paĝon',
@@ -2440,6 +2442,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'patrol-log-header'    => 'Jen protokolo de patrolitaj versioj.',
 'patrol-log-line'      => 'markis $1 el $2 patrolitajn $3',
 'patrol-log-auto'      => '(aŭtomata)',
+'patrol-log-diff'      => 'kontrolo $1',
 'log-show-hide-patrol' => '$1 protokolo pri patrolado',
 
 # Image deletion
@@ -2861,7 +2864,7 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 'table_pager_empty'        => 'Neniaj rezultoj',
 
 # Auto-summaries
-'autosumm-blank'   => 'Forviŝantaj ĉion el paĝo',
+'autosumm-blank'   => 'Forviŝis la paĝon',
 'autosumm-replace' => "Anstataŭigante paĝojn kun '$1'",
 'autoredircomment' => 'Redirektante al [[$1]]',
 'autosumm-new'     => 'Nova paĝo: $1',
@@ -2982,5 +2985,8 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'tags-tag'          => 'Interna etikeda nomo',
 'tags-edit'         => 'redakti',
 'tags-hitcount'     => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
+
+# Database error messages
+'dberr-header' => 'Ĉi tiu vikio havas problemon',
 
 );

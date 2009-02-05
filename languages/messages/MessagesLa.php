@@ -1831,6 +1831,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 # Patrol log
 'patrol-log-page'      => 'Acta emendationum circumitarum',
 'patrol-log-auto'      => '(automatica)',
+'patrol-log-diff'      => 'revisio $1',
 'log-show-hide-patrol' => '$1 acta emendationum circumitarum',
 
 # Image deletion
@@ -2108,19 +2109,20 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'watchlisttools-raw'  => 'Indicem paginarum custoditarum quasi textum recensere',
 
 # Special:Version
-'version'                       => 'Versio', # Not used as normal message but as header for the special page itself
-'version-specialpages'          => 'Paginae speciales',
-'version-parserhooks'           => 'Extensiones programmatis analysis lexicalis',
-'version-variables'             => 'Variabilia',
-'version-other'                 => 'Alia',
-'version-hooks'                 => 'Extensiones',
-'version-extension-functions'   => 'Functiones extensionum',
-'version-parser-function-hooks' => 'Extensiones functionum programmatis analysis lexicalis',
-'version-hook-name'             => 'Nomen extensionis',
-'version-version'               => 'Versio',
-'version-license'               => 'Permissio',
-'version-software-product'      => 'Productum',
-'version-software-version'      => 'Versio',
+'version'                          => 'Versio', # Not used as normal message but as header for the special page itself
+'version-specialpages'             => 'Paginae speciales',
+'version-parserhooks'              => 'Extensiones programmatis analysis lexicalis',
+'version-variables'                => 'Variabilia',
+'version-other'                    => 'Alia',
+'version-hooks'                    => 'Extensiones',
+'version-extension-functions'      => 'Functiones extensionum',
+'version-parser-function-hooks'    => 'Extensiones functionum programmatis analysis lexicalis',
+'version-skin-extension-functions' => 'Functiones extensionis intercontagis',
+'version-hook-name'                => 'Nomen extensionis',
+'version-version'                  => 'Versio',
+'version-license'                  => 'Permissio',
+'version-software-product'         => 'Productum',
+'version-software-version'         => 'Versio',
 
 # Special:FilePath
 'filepath'        => 'Fasciculorum inscriptio',

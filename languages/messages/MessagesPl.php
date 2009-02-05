@@ -2170,7 +2170,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 ** Wypisywanie bzdur na stronach',
 'ipbanononly'                     => 'Zablokuj tylko anonimowych użytkowników',
 'ipbcreateaccount'                => 'Zapobiegnij utworzeniu konta',
-'ipbemailban'                     => 'Zablokuj możliwość wysyłania e-maili',
+'ipbemailban'                     => 'Zablokuj możliwość wysyłania e-mailów',
 'ipbenableautoblock'              => 'Zablokuj ostatni adres IP tego użytkownika i automatycznie wszystkie kolejne, z których będzie próbował edytować',
 'ipbsubmit'                       => 'Zablokuj użytkownika',
 'ipbother'                        => 'Inny okres',

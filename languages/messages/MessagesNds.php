@@ -382,14 +382,14 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'talkpagelinktext'  => 'Diskuschoon',
 'specialpage'       => 'Spezialsiet',
 'personaltools'     => 'Persönliche Warktüüch',
-'postcomment'       => 'Kommentar hentofögen',
+'postcomment'       => 'Afsnidd tofögen',
 'articlepage'       => 'Artikel',
 'talk'              => 'Diskuschoon',
 'views'             => 'Ansichten',
 'toolbox'           => 'Warktüüch',
 'userpage'          => 'Brukersiet ankieken',
 'projectpage'       => 'Meta-Text',
-'imagepage'         => 'Bildsiet',
+'imagepage'         => 'Dateisied',
 'mediawikipage'     => 'Systemnaricht ankieken',
 'templatepage'      => 'Vörlaag ankieken',
 'viewhelppage'      => 'Helpsiet ankieken',
@@ -466,7 +466,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'nstab-main'      => 'Artikel',
 'nstab-user'      => 'Brukersied',
 'nstab-media'     => 'Media',
-'nstab-special'   => 'Spezial',
+'nstab-special'   => 'Spezialsied',
 'nstab-project'   => 'Över',
 'nstab-image'     => 'Bild',
 'nstab-mediawiki' => 'Naricht',
@@ -775,7 +775,7 @@ Wenn dat so spiekert warrt, kann dat angahn, dat noch mehr Teken in de Sied kapu
 Dat kann to’n Bispeel dor vun kamen, dat du en anonymen Proxy-Deenst bruukst, de wat verkehrt maakt.</strong>',
 'editing'                          => 'Ännern vun $1',
 'editingsection'                   => 'Ännern vun $1 (Afsatz)',
-'editingcomment'                   => 'Ännern vun $1 (Kommentar)',
+'editingcomment'                   => 'Ännern vun $1 (nee Afsnidd)',
 'editconflict'                     => 'Konflikt bi dat Bearbeiden: $1',
 'explainconflict'                  => 'En anner Bruker hett disse Siet ännert, no de Tied dat du anfungen hest, de Siet to bearbeiden.
 Dat Textfeld baven wiest de aktuelle Siet.
@@ -1156,7 +1156,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'stub-threshold'            => 'Grött ünner de Lenken op <a href="#" class="stub">Stubbens un lütte Sieden</a> farvlich kenntekent warrn schöölt (in Bytes):',
 'recentchangesdays'         => 'Daag, de de List vun de „Ne’esten Ännern“ wiesen schall:',
 'recentchangesdays-max'     => '(Maximal $1 {{PLURAL:$1|Dag|Daag}})',
-'recentchangescount'        => 'Antall „Letzte Ännern“',
+'recentchangescount'        => 'Antall Ännern, de bi Letzte Ännern, in Versionsgeschichten un in Logböker wiest warrt:',
 'savedprefs'                => 'Allens spiekert.',
 'timezonelegend'            => 'Tietrebeet',
 'timezonetext'              => 'Giff de Antall vun de Stünnen an, de twüschen dien Tiedrebeet un UTC liggen.',
@@ -1410,7 +1410,8 @@ Blot dat Ennen vun de Datei is bi dat Groot-/Lütt-Schrieven anners. Kiek na, wa
 Wenn dat dat Bild in vulle Grött is, denn bruukst du keen extra Vörschaubild hoochladen.',
 'file-thumbnail-no'           => 'De Dateinaam fangt an mit <strong><tt>$1</tt></strong>. Dat düüdt dor op hen, dat dat en lütter maakt Bild <i>(thumbnail, Duumnagel-Bild)</i> is.
 Kiek na, wat du dat Bild nich ok in vulle Grött hest un laad dat ünner’n Originalnaam hooch oder änner den Dateinaam.',
-'fileexists-forbidden'        => 'En Datei mit dissen Naam gifft dat al; gah trüch un laad de Datei ünner en annern Naam hooch. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'En Datei mit dissen Naam gifft dat al un kann nich överschreven warrn.
+Wenn du ehr liekers hoochladen wullt, gah trüch un laad de Datei ünner en annern Naam hooch. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dat gifft al en Datei mit dissen Naam. Gah trüch un laad de Datei ünner en annern Naam hooch. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'De Datei is desülve as disse {{PLURAL:$1|Datei|$1 Datein}}:',
 'file-deleted-duplicate'      => 'Jüst disse Datei ([[$1]]) is al mal löscht worrn. Kiek man eerst, wat in dat Löschlogbook steiht, ehrdat du ehr noch wedder hoochlaadst.',
@@ -1483,7 +1484,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'filehist-dimensions'            => 'Grött',
 'filehist-filesize'              => 'Dateigrött',
 'filehist-comment'               => 'Kommentar',
-'imagelinks'                     => 'Bildverwiesen',
+'imagelinks'                     => 'Dateiverwiesen',
 'linkstoimage'                   => 'Disse {{PLURAL:$1|Sied|Sieden}} bruukt dit Bild:',
 'linkstoimage-more'              => 'Mehr as {{PLURAL:$1|ene Sied|$1 Sieden}} wiest na disse Datei.
 Disse List wiest blot {{PLURAL:$1|den eersten Lenk|de eersten $1 Lenken}} op disse Datei.
@@ -1592,7 +1593,7 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'double-redirect-fixer'      => 'Redirect-Utbeterer',
 
 'brokenredirects'        => 'Kaputte Wiederleiden',
-'brokenredirectstext'    => 'Disse Wiederleiden wiest na en Siet, de dat nich gifft.',
+'brokenredirectstext'    => 'Disse Redirects wiest na Sieden, de dat nich gifft.',
 'brokenredirects-edit'   => '(ännern)',
 'brokenredirects-delete' => '(wegsmieten)',
 
@@ -1876,7 +1877,7 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 'alreadyrolled'    => 'Dat Trüchnehmen vun de Ännern an de Siet [[:$1]] vun [[User:$2|$2]] ([[User talk:$2|Diskuschoonssiet]] | [[Special:Contributions/$2|Bidrääg]]) is nich mööglich, vun wegen dat dor en annere Ännern oder Trüchnahm wesen is.
 
 De letzte Ännern is vun [[User:$3|$3]] ([[User talk:$3|Diskuschoon]] | [[Special:Contributions/$3|Bidrääg]]).',
-'editcomment'      => "De Ännerkommentar weer: ''$1''.", # only shown if there is an edit comment
+'editcomment'      => 'De Ännerkommentar weer: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'       => 'Ännern vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) rut un de Version vun [[User:$1]] wedderhaalt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Ännern vun $1 trüchsett op letzte Version vun $2.',
 'sessionfailure'   => 'Dor weer en Problem mit diene Brukersitzung.
@@ -1905,7 +1906,7 @@ Gah een Sied trüch un versöök dat noch wedder.',
 'protect-cascadeon'           => 'Disse Siet is aktuell dör ene Kaskadensparr schuult. Se is in de nakamen {{PLURAL:$1|Siet|Sieden}} inbunnen, de dör Kaskadensparr schuult {{PLURAL:$1|is|sünd}}. De Schuulstatus kann för disse Siet ännert warrn, dat hett aver keen Effekt op de Kaskadensparr:',
 'protect-default'             => 'all Brukers',
 'protect-fallback'            => '„$1“-Rechten nödig.',
-'protect-level-autoconfirmed' => 'nich registreerte Brukers blocken',
+'protect-level-autoconfirmed' => 'Ne’e un nich registreerte Brukers blocken',
 'protect-level-sysop'         => 'Blots Admins',
 'protect-summary-cascade'     => 'Kaskadensparr',
 'protect-expiring'            => 'bet $1 (UTC)',
@@ -1924,7 +1925,7 @@ Gah een Sied trüch un versöök dat noch wedder.',
 ** veel bruukt Vörlaag
 ** Sied mit temlich veel Besökers',
 'protect-edit-reasonlist'     => 'Grünn för de Sperr ännern',
-'protect-expiry-options'      => '1 Stünn:1 hour,2 Stünnen:2 hours,6 Stünnen:6 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Stünn:1 hour,1 Dag:1 day,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,6 Maand:6 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Schuulstatus',
 'restriction-level'           => 'Schuulhööchd',
 'minimum-size'                => 'Minimumgrött',
@@ -2058,7 +2059,7 @@ Ok den Grund för dat Blocken indregen.',
 'ipbenableautoblock'              => 'Sperr de aktuell vun dissen Bruker bruukte IP-Adress un automaatsch all de annern, vun de ut he Sieden ännern oder Brukers anleggen will',
 'ipbsubmit'                       => 'Adress blocken',
 'ipbother'                        => 'Annere Tiet:',
-'ipboptions'                      => '1 Stünn:1 hour,2 Stünnen:2 hours,6 Stünnen:6 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 Stünnen:2 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,6 Maand:6 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Annere Duer',
 'ipbotherreason'                  => 'Annern Grund:',
 'ipbhidename'                     => 'Brukernaam in dat Sperr-Logbook, de List vun de aktiven Sperren un de Brukerlist versteken.',
@@ -2078,7 +2079,7 @@ Ok den Grund för dat Blocken indregen.',
 'ipb-blocklist-contribs'          => 'Brukerbidrääg för „$1“',
 'unblockip'                       => 'IP-Adress freegeven',
 'unblockiptext'                   => 'Bruuk dat Formular, üm en blockte IP-Adress freetogeven.',
-'ipusubmit'                       => 'Disse Adress freegeven',
+'ipusubmit'                       => 'Disse Sperr opheven',
 'unblocked'                       => '[[User:$1|$1]] freegeven',
 'unblocked-id'                    => 'Sperr $1 freegeven',
 'ipblocklist'                     => 'List vun blockte IP-Adressen un Brukernaams',
@@ -2305,19 +2306,19 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|ene Version|$1 Versionen}} vun $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Mien Brukersiet',
+'tooltip-pt-userpage'             => 'Dien Brukersied',
 'tooltip-pt-anonuserpage'         => 'De Brukersiet för de IP-Adress ünner de du schriffst',
-'tooltip-pt-mytalk'               => 'Mien Diskuschoonssiet',
+'tooltip-pt-mytalk'               => 'Dien Diskuschoonssied',
 'tooltip-pt-anontalk'             => 'Diskuschoon över Ännern vun disse IP-Adress',
 'tooltip-pt-preferences'          => 'Mien Instellen',
 'tooltip-pt-watchlist'            => 'Mien Oppasslist',
-'tooltip-pt-mycontris'            => 'List vun mien Bidreeg',
+'tooltip-pt-mycontris'            => 'List vun dien Bidrääg',
 'tooltip-pt-login'                => 'Du kannst di geern anmellen, dat is aver nich neudig, üm Sieten to bearbeiden.',
 'tooltip-pt-anonlogin'            => 'Du kannst di geern anmellen, dat is aver nich neudig, üm Sieten to bearbeiden.',
 'tooltip-pt-logout'               => 'Afmellen',
 'tooltip-ca-talk'                 => 'Diskuschoon över disse Siet',
 'tooltip-ca-edit'                 => 'Du kannst disse Siet ännern. Bruuk dat vör dat Spiekern.',
-'tooltip-ca-addsection'           => 'En Kommentar to disse Diskuschoonssiet hentofögen.',
+'tooltip-ca-addsection'           => 'En Afsnidd tofögen',
 'tooltip-ca-viewsource'           => 'Disse Siet is schuult. Du kannst den Borntext ankieken.',
 'tooltip-ca-history'              => 'Historie vun disse Siet.',
 'tooltip-ca-protect'              => 'Disse Siet schulen',
@@ -2432,6 +2433,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'patrol-log-header'    => 'Dit is dat Patrolleer-Logbook.',
 'patrol-log-line'      => '$1 vun $2 as nakeken markt $3',
 'patrol-log-auto'      => '(automaatsch)',
+'patrol-log-diff'      => 'Version $1',
 'log-show-hide-patrol' => 'Nakiek-Logbook $1',
 
 # Image deletion
@@ -2844,10 +2846,10 @@ Wist du de Siet würklich nee anleggen?",
 'table_pager_empty'        => 'nix funnen',
 
 # Auto-summaries
-'autosumm-blank'   => 'Siet leddig maakt',
+'autosumm-blank'   => 'Sied leddig maakt',
 'autosumm-replace' => 'Siet leddig maakt un ‚$1‘ rinschreven',
 'autoredircomment' => 'Redirect sett na [[$1]]',
-'autosumm-new'     => 'Ne’e Siet: ‚$1‘',
+'autosumm-new'     => 'Ne’e Sied anleggt: ‚$1‘',
 
 # Live preview
 'livepreview-loading' => 'Läädt…',
@@ -2967,5 +2969,8 @@ Geev den Dateinaam ahn dat Präfix „{{ns:file}}:“ in.',
 'tags-title'        => 'Tags',
 'tags-edit'         => 'ännern',
 'tags-hitcount'     => '$1 {{PLURAL:$1|Ännern|Ännern}}',
+
+# Database error messages
+'dberr-header' => 'Dit Wiki hett en Problem',
 
 );

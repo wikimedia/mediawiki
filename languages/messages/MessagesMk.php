@@ -438,14 +438,14 @@ $messages = array(
 'talkpagelinktext'  => 'Разговор',
 'specialpage'       => 'Специјална страница',
 'personaltools'     => 'Лични алатки',
-'postcomment'       => 'Испрати коментар',
+'postcomment'       => 'Нова секција',
 'articlepage'       => 'Поглед на содржина',
 'talk'              => 'Разговор',
 'views'             => 'Погледи',
 'toolbox'           => 'Алатник',
 'userpage'          => 'Поглед на корисничка страница',
 'projectpage'       => 'Поглед на проект',
-'imagepage'         => 'Поглед на медија',
+'imagepage'         => 'Поглед на страница на податотека',
 'mediawikipage'     => 'Поглед на порака',
 'templatepage'      => 'Поглед на шаблон',
 'viewhelppage'      => 'Види ја страницата за помош',
@@ -521,13 +521,13 @@ $messages = array(
 'page-atom-feed'          => '„$1“ Atom фид',
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
-'red-link-title'          => '$1 (сеуште не е напишано)',
+'red-link-title'          => '$1 (страницата не постои)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Страница',
 'nstab-user'      => 'Страница на корисник',
 'nstab-media'     => 'Страница на медија',
-'nstab-special'   => 'Специјална',
+'nstab-special'   => 'Специјална страница',
 'nstab-project'   => 'Страница на проект',
 'nstab-image'     => 'Податотека',
 'nstab-mediawiki' => 'Порака',
@@ -657,8 +657,8 @@ $2',
 'yournick'                   => 'Потпис:',
 'badsig'                     => 'Грешка во потписот.
 Проверете ги HTML таговите.',
-'badsiglength'               => 'Потписот е предолг.
-Мора да биде под $1 {{PLURAL:$1|знак|знаци}}.',
+'badsiglength'               => 'Вашиот потпис е премногу долг.
+Мора да биде со помалку од $1 {{PLURAL:$1|знак|знаци}}.',
 'yourgender'                 => 'Пол:',
 'gender-unknown'             => 'Неспецифицирано',
 'gender-male'                => 'Машки',
@@ -681,6 +681,7 @@ $2',
 'loginsuccesstitle'          => 'Успешно најавување',
 'loginsuccess'               => 'Сега сте најавени на {{SITENAME}} како "$1".',
 'nosuchuser'                 => 'Нема корисник со името "$1". 
+Корисничките имиња разликуваат мали и големи букви.
 Проверете да не сте направиле грешка во пишувањето, или [[Special:UserLogin/signup|создајте нова корисничка сметка]].',
 'nosuchusershort'            => 'Нема корисник со името "<nowiki>$1</nowiki>".
 Проверете дали правилно сте напишале.',
@@ -1600,7 +1601,7 @@ PICT # misc.
 'filehist-dimensions'            => 'Димензии',
 'filehist-filesize'              => 'Големина',
 'filehist-comment'               => 'Коментар',
-'imagelinks'                     => 'Врски',
+'imagelinks'                     => 'Врски до податотека',
 'linkstoimage'                   => 'До оваа податотека има {{PLURAL:$1|врска од следнава страница|врски од следниве $1 страници}}:',
 'linkstoimage-more'              => 'Повеќе од {{PLURAL:$1|една страница е поврзана|$1 страници се поврзани}} со оваа податотека.
 Следнава листа {{PLURAL:$1|ја прикажува само првата поврзана страница|ги прикажува само првите $1 поврзани страници}} до оваа податотека.

@@ -404,7 +404,7 @@ $messages = array(
 'nstab-main'      => 'Puslapis',
 'nstab-user'      => 'Naudotojo puslapis',
 'nstab-media'     => 'Media puslapis',
-'nstab-special'   => 'Specialus',
+'nstab-special'   => 'Specialusis puslapis',
 'nstab-project'   => 'Projekto puslapis',
 'nstab-image'     => 'Failas',
 'nstab-mediawiki' => 'Pranešimas',
@@ -1676,7 +1676,7 @@ Taip pat žiūrėkite [[Special:WantedCategories|trokštamas kategorijas]].',
 'newuserlogpagetext'          => 'Tai yra naudotojų kūrimo registras.',
 'newuserlog-byemail'          => 'slaptažodis nusiųstas elektroniniu paštu',
 'newuserlog-create-entry'     => 'Naujas naudotojas',
-'newuserlog-create2-entry'    => 'sukurta paskyra $1',
+'newuserlog-create2-entry'    => 'sukurta nauja paskyra $1',
 'newuserlog-autocreate-entry' => 'Paskyra sukurta automatiškai',
 
 # Special:ListGroupRights

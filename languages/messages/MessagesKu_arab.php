@@ -187,7 +187,7 @@ $messages = array(
 'talkpagelinktext'  => 'وتووێژ',
 'specialpage'       => 'په‌ڕه‌ی تایبه‌ت',
 'personaltools'     => 'ئامرازی تایبه‌تی',
-'postcomment'       => 'لێدوان بنێره‌',
+'postcomment'       => 'بەشی نوێ',
 'articlepage'       => 'ناوه‌ڕۆكی بابه‌ت ببینه‌',
 'talk'              => 'قسەوباس',
 'views'             => 'بینین',
@@ -318,7 +318,7 @@ $messages = array(
 'prefs-memberingroups'    => 'ئەندامی {{PLURAL:$1|گرووپی|گرووپەکانی}}:',
 'yourrealname'            => 'ناوی ڕاستی:',
 'yourlanguage'            => 'زمان',
-'yourvariant'             => 'ڕه‌گه‌ز',
+'yourvariant'             => 'زاراوە:',
 'yournick'                => 'نازناو',
 'badsig'                  => 'ئیمزاكه‌ هه‌ڵه‌یه‌، ته‌ماشای كۆدی HTML بكه‌‌',
 'yourgender'              => 'جنس:',
@@ -400,6 +400,9 @@ $messages = array(
 ئەگەر جارێکی تر پاشکەوت کردن لێبدەی، بێ پوختە تۆمار دەکرێ.",
 'missingcommenttext'     => 'تکایە لە خوارەوە شرۆڤەیەک بنووسە.',
 'newarticletext'         => "بە دوای بەستەری پەڕەیەک کەوتووی کە ھێشتا دروست نەکراوە. <br /> بۆ دروست کردنی پەڕەکە، لە چوارچێوەکەی خوارەوە دەست کە بە تایپ کردن. (بۆ زانیاری زورتر[[یارمەتی|{{MediaWiki:Helppage}}]] ببینە). <br />  ئەگەر بە ھەڵەوە ھاتویتە ئەگرە، لە سەر دوگمەی '''back'''ی وێبگەڕەکەت کلیک کە.",
+'editing'                => 'گۆڕاندنی: "$1"',
+'editingsection'         => 'گۆڕاندنی: $1 (بەش)',
+'editingcomment'         => 'گۆڕاندنی $1 (بەشی  نوێ)',
 'copyrightwarning'       => "تکایە ئاگادار بن کە ھەموو بەشدارییەک بۆ  {{SITENAME}} وا فەرز ئەکرێت کە لە ژێر «$2» بڵاو دەبێتەوە (بۆ ئاگاداری زۆرتر $1 سەیر کە). ئەگەر ناتەوێ نوسراوەکەت بێ‌ڕەحمانە دەستکاری بکرێت و  بە دڵخواز دیسان بڵاو ببێتەوە، لەگرە پێشکەشی مەکە. ھەروەھا بەڵین ئەدەی کە خۆت ئەمەت نووسیوە، یان لە سەرچاوەیەکی بە دەسەڵاتی گشتی ''(public domain)'' یان سەرچاوەیەکی ھاوتا لەبەرت‌گرتوەتەو.
 <strong>«بەرھەمێک کە مافی لەبەرگرتنەوەی پارێزراوە، بێ ئیجازە  بڵاو مەکەرەوە.»</strong>",
 'templatesused'          => 'ئەو قاڵبانە کە لەم پەڕەیەدا بە کارھێنراون:',
@@ -438,8 +441,8 @@ $messages = array(
 'compareselectedversions' => 'ھەڵسەنگاندنی وەشانە ھەڵبژاردراوەکان',
 
 # Search results
-'noexactmatch'             => '\'\'\'پەڕەیەک بە ناوی  "$1"ەوە نیە.\'\'\'
-دەتوانی ئەم پەڕە [[:"$1"|دروست بکەیت]].',
+'noexactmatch'             => "'''پەڕەیەک بە ناوی  \"\$1\"ەوە نیە.'''
+دەتوانی ئەم پەڕە [[:\$1|دروست بکەیت]].",
 'search-interwiki-caption' => 'پرۆژە خوشکەکان',
 'powersearch'              => 'بە ھێز بگەڕە',
 
@@ -469,12 +472,29 @@ $messages = array(
 'rows'                     => 'ڕێز:',
 'columns'                  => 'ستوون:',
 'searchresultshead'        => 'گەڕان',
+'timezonelegend'           => 'کاتی ھەرێمی',
+'timezonetext'             => '¹ ژمارە ئەو کاتژمێرانە کە کاتی ھەرێمیت لەگەڵ کاتی server (UTC)، ئیختیلافی ھەیە.',
+'localtime'                => 'کاتی ناوچەیی:',
+'timezoneoffset'           => 'جیاوازی¹:',
+'servertime'               => 'کاتی server:',
+'guesstimezone'            => 'لە وێبگەڕەکە browser بیگرە',
 'allowemail'               => 'لە بەکارھێنەرانی دیکەوە e-mail قەبووڵ دەکەم',
 'prefs-searchoptions'      => 'ھەڵبژاردەکانی گەڕان',
 'prefs-namespaces'         => 'بۆشایییەکانی ناو',
+'defaultns'                => 'لە حاڵەتی بنەڕەت لەم بۆشایی ناوانەدا بگەڕە:',
+'default'                  => 'بنچینەیی',
 'files'                    => 'پەڕگەکان',
+'prefs-custom-css'         => 'CSSی دڵخواز',
+'prefs-custom-js'          => 'JSی دڵخواز',
+
+# Groups
+'group-sysop'      => 'بەڕێوبەران',
+'group-bureaucrat' => 'بورووکراتەکان',
 
 'group-user-member' => 'بەکارھێنەر',
+
+'grouppage-user'  => '{{ns:project}}:بەکارھێنەران',
+'grouppage-sysop' => '{{ns:project}}:بەڕێوبەران',
 
 # Recent changes
 'recentchanges'   => 'دوایین گۆڕانکارییەکان',
@@ -502,9 +522,11 @@ $messages = array(
 'recentchangeslinked-page'    => 'ناوی پەڕە:',
 
 # Upload
-'upload'    => 'وێنەیەک بار بکە',
-'uploadbtn' => 'پەڕگە بار بکە',
-'reupload'  => 'دیسان بار بکە',
+'upload'             => 'وێنەیەک بار بکە',
+'uploadbtn'          => 'پەڕگە بار بکە',
+'reupload'           => 'دیسان بار بکە',
+'sourcefilename'     => 'ناوی پەڕگەی سەرچاوە:',
+'upload-maxfilesize' => 'ئەو پەری قەبارەی فایل: $1',
 
 # Special:ListFiles
 'imgfile'        => 'پەڕگە',
@@ -517,18 +539,46 @@ $messages = array(
 'filehist'   => 'مێژووی پەڕگە',
 'imagelinks' => 'بەستەرەکانی پەڕگە',
 
+# Unused templates
+'unusedtemplates' => 'قاڵبە بە کار نەھێراوەکان',
+
 # Random page
 'randompage' => 'پەڕەیەک بە ھەرەمەکی',
 
 # Statistics
-'statistics' => 'ئامارەکان',
+'statistics'              => 'ئامارەکان',
+'statistics-header-pages' => 'ئامارەکانی پەڕەکان',
+'statistics-header-edits' => 'ئامارەکانی گۆڕانکارییەکان',
+'statistics-header-views' => 'ئامارەکانی سەردانەکان',
+'statistics-header-users' => 'ئامارەکانی بەکارھێنەران',
+'statistics-articles'     => 'پەڕە بە ناوەڕۆکەکان',
+'statistics-pages'        => 'پەڕەکان',
 
 'disambiguations' => 'پەڕەکانی جوداکردنەوە (لێڵی لابەر)',
 
+'withoutinterwiki' => 'پەڕەکان کە بەستەرەکانی زمانیان نییە',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|بایت|بایت}}',
+'ncategories'             => '$1 {{PLURAL:$1|ھاوپۆل|ھاوپۆل}}',
+'nlinks'                  => '$1 {{PLURAL:$1|بەستەر|بەستەر}}',
+'nmembers'                => '$1 {{PLURAL:$1|ئەندام|ئەندام}}',
+'nrevisions'              => '$1 {{PLURAL:$1|پیاچوونەوە|پیاچوونەوە}}',
+'nviews'                  => '$1 جار {{PLURAL:$1|بینراو|بینراو}}',
+'uncategorizedpages'      => 'پەڕە بێ ھاوپۆلەکان',
 'uncategorizedcategories' => 'ھاوپۆلە ھاوپۆلدارنەکراوەکان',
+'uncategorizedimages'     => 'پەڕگە بێ ھاوپۆلەکان',
+'uncategorizedtemplates'  => 'قاڵبە بێ ھاوپۆلەکان',
+'unusedcategories'        => 'ھاوپۆلە بەکارنەھێنراوەکان',
+'unusedimages'            => 'پەڕگە بەکارنەھێنراوەکان',
 'popularpages'            => 'پەڕە مەحبووبەکان',
+'wantedcategories'        => 'ھاوپۆلە داواکراوەکان',
+'wantedpages'             => 'پەڕە داواکراوەکان',
+'wantedfiles'             => 'پەڕگە داواکراوەکان',
+'wantedtemplates'         => 'قاڵبە داواکراوەکان',
+'mostcategories'          => 'پەڕەکان بە زۆرترین ھاوپۆلەوە',
+'shortpages'              => 'پەڕە کورتەکان',
+'longpages'               => 'پەڕە دڕێژەکان',
 'newpages'                => 'پەڕە نوێکان',
 'ancientpages'            => 'کۆنترین پەڕەکان',
 'move'                    => 'ناوی ئەم پەڕە بگۆڕە',
@@ -562,7 +612,8 @@ $messages = array(
 'newuserlog-create-entry' => 'بەکارھێنەری نوێ',
 
 # Special:ListGroupRights
-'listgrouprights' => 'مافەکانی گرووپە بەکارھێنەرییەکان',
+'listgrouprights'         => 'مافەکانی گرووپە بەکارھێنەرییەکان',
+'listgrouprights-members' => '(لیستی ئەندامەکان)',
 
 # E-mail user
 'emailuser'       => 'بۆ ئەم بەکارھێنەرە E-Mail بنێرە',
@@ -645,7 +696,7 @@ $messages = array(
 'whatlinkshere-links' => '← بەستەرەکان',
 
 # Block/unblock
-'ipboptions'     => '1 کاتژمێر:1 hour,2 کاتژمێر:2 hours,6 کاتژمێر:6 hours,1 ڕۆژ:1 day,3 ڕۆژ:3 days,1 ھەفتە:1 week,2 ھەفتە:2 weeks,1 مانگ:1 month,3 مانگ:3 months,1 ساڵ:1 year,بێ پەراوێز:infinite', # display1:time1,display2:time2,...
+'ipboptions'     => '2 کاتژمێر:2 hours,1 ڕۆژ:1 day,3 ڕۆژ:3 days,1 ھەفتە:1 week,2 ھەفتە:2 weeks,1 مانگ:1 month,3 مانگ:3 months,6 مانگ:6 months,1 ساڵ:1 year,بێ سنوور:infinite', # display1:time1,display2:time2,...
 'ipbotheroption' => 'دیکە',
 'blocklink'      => 'بەربەستن',
 'contribslink'   => 'بەشداری',
@@ -653,8 +704,8 @@ $messages = array(
 # Move page
 'movedto'            => 'بوو بە',
 'movetalk'           => 'پەڕەی گوفتوگۆکەشی بگۆزەرەوە',
-'move-subpages'      => 'ھەموو ژێرپەڕەکانیشی بگۆزەرەوە ئەگەر بیبێت',
-'move-talk-subpages' => 'ھەموو ژێرپەڕەکانی پەڕەری گوتوگۆکەشی بگۆزەرەوە ئەگەر بیبێت',
+'move-subpages'      => 'ھەموو ژێرپەڕەکانیشی (بە ئەندازەی $1) بگۆزەرەوە، ئەگەر بیبێت',
+'move-talk-subpages' => 'ھەموو ژێرپەڕەکانی (بە ئەندارەی $1) پەڕەی گوفتوگۆکەشی بگۆزەرەوە، ئەگەر بیبێت',
 'movereason'         => 'بە ھۆی:',
 
 # Thumbnails
@@ -693,13 +744,19 @@ $messages = array(
 'tooltip-compareselectedversions' => 'جیاوازییەکانی دوو وەشانە دیاریکراوەی ئەم پەڕە ببینە.',
 
 # Skin names
-'skinname-standard'    => 'كلاسیك',
-'skinname-nostalgia'   => 'قاوه‌یی',
-'skinname-cologneblue' => 'شین',
+'skinname-standard'    => 'کلاسیک',
+'skinname-nostalgia'   => 'خەریبی',
+'skinname-cologneblue' => 'شینی کۆلۆن',
 'skinname-monobook'    => 'مۆنۆ',
 'skinname-myskin'      => 'پێستی خۆم',
 'skinname-chick'       => 'جوجه‌',
 'skinname-simple'      => 'ساده‌',
+'skinname-modern'      => 'مۆدێڕن',
+
+# Math options
+'mw_math_png'    => 'ھەموو جارێک وەک PNG نیشان بدە',
+'mw_math_simple' => 'HTML ئەگەر ساکار بێت, ئەگەرنا PNG',
+'mw_math_html'   => 'ئەگەر بکرێ بە HTML ، ئەگەرنا بە PNG',
 
 # Media information
 'thumbsize'      => 'قەبارەی Thumbnail:',
@@ -707,6 +764,10 @@ $messages = array(
 
 # Special:NewFiles
 'newimages' => 'پێشانگای پەڕگە نوێکان',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'ئەلفوبێی عەرەبی',
+'variantname-ku-latn' => 'ئەلفوبێی لاتینی',
 
 # Metadata
 'metadata-help'   => 'ئەم پەڕگە زانیاری زێدەی ھەیە، کە لەوە دەچێت کامێرا یان ھێماگر (scanner) خستبێتیە سەری. ئەگەر پەڕگەکە لە حاڵەتی سەرەتاییەکەیەوە دەستکاری کرابێ، شایەد بڕێ لە بڕگەکان بە تەواوی زانیارەکانی وێنە گۆڕدراوەکە نیشان نەدەن.',
@@ -742,6 +803,14 @@ $messages = array(
 'watchlisttools-edit' => 'بینین و دەستکاری کردنی لیستی چاودێڕییەکان',
 'watchlisttools-raw'  => 'دەستکاری کردنی لیستی خامی چاودێڕییەکان',
 
+# Iranian month names
+'iranian-calendar-m1' => 'خاکەلێوە',
+'iranian-calendar-m2' => 'گوڵان',
+'iranian-calendar-m3' => 'جۆزەردان',
+'iranian-calendar-m4' => 'پووشپەڕ',
+'iranian-calendar-m5' => 'گەلاوێژ',
+'iranian-calendar-m6' => 'خەرمانان',
+
 # Special:Version
 'version' => 'وەشان', # Not used as normal message but as header for the special page itself
 
@@ -758,5 +827,8 @@ $messages = array(
 'specialpages-group-other'   => 'پەڕە تایبەتەکانی دیکە',
 'specialpages-group-login'   => 'چوونە ژوورەوە/ناونووسین',
 'specialpages-group-changes' => 'دوایین گۆڕانکارییەکان و ڕەشنووسەکان',
+'specialpages-group-media'   => 'گوزارشتەکان و بارکردنەکانی مێدیا',
+'specialpages-group-users'   => 'بەکارھێنەران و مافەمان',
+'specialpages-group-pages'   => 'لیستی پەڕەکان',
 
 );
