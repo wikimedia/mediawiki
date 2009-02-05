@@ -1544,7 +1544,7 @@ if( count( $errs ) ) {
 </div>
 </form>
 <script type="text/javascript">
-window.onload = toggleDBarea('<?php echo htmlspecialchars( Xml::encodeJsVar( $conf->DBtype ) ); ?>',
+window.onload = toggleDBarea( <?php echo Xml::encodeJsVar( $conf->DBtype ); ?>,
 <?php
 	## If they passed in a root user name, don't populate it on page load
 	echo strlen(importPost('RootUser', '')) ? 0 : 1;
