@@ -165,6 +165,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   performance concerns
 * Listing (semi-)deleted revisions and log entries as well in prop=revisions and
   list=logevents
+* (bug 11430) BREAKING CHANGE: Modules may return fewer results than the limit and still
+  set a query-continue in some cases
 
 === Languages updated in 1.15 ===
 
