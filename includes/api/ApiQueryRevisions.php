@@ -101,8 +101,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->dieUsage('titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, user, excludeuser, start and end parameters may only be used on a single page.', 'multpages');
 
 		$this->addTables('revision');
-		$this->addFields( Revision::selectFields() );
-		$this->addTables( 'page' );
+		$this->addFields(Revision::selectFields());
+		$this->addTables('page');
 		$this->addWhere('page_id = rev_page');
 
 		$prop = array_flip($params['prop']);
@@ -134,7 +134,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addTables('text');
 			$this->addWhere('rev_text_id=old_id');
 			$this->addFields('old_id');
-			$this->addFields( Revision::selectTextFields() );
+			$this->addFields(Revision::selectTextFields());
 
 			$this->fld_content = true;
 
@@ -190,9 +190,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 			if(!is_null($params['user'])) {
 				$this->addWhereFld('rev_user_text', $params['user']);
-			} elseif (!is_null( $params['excludeuser'])) {
+			} elseif (!is_null($params['excludeuser'])) {
 				$this->addWhere('rev_user_text != ' .
 					$this->getDB()->addQuotes($params['excludeuser']));
+			}
+			if(!is_null($params['user']) || !is_null($params['excludeuser'])) {
+				// Paranoia: avoid brute force searches (bug 17342)
+				$this->addWhere('rev_deleted & ' . Revision::DELETED_USER . ' = 0');
 			}
 		}
 		elseif ($revCount > 0) {
@@ -280,9 +284,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$vals['minor'] = '';
 
 		if ($this->fld_user) {
-			$vals['user'] = $revision->getUserText();
-			if (!$revision->getUser())
-				$vals['anon'] = '';
+			if ($revision->isDeleted(Revision::DELETED_USER)) {
+				$vals['userhidden'] = '';
+			} else {
+				$vals['user'] = $revision->getUserText();
+				if (!$revision->getUser())
+					$vals['anon'] = '';
+			}
 		}
 
 		if ($this->fld_timestamp) {
@@ -294,9 +302,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ($this->fld_comment) {
-			$comment = $revision->getComment();
-			if (strval($comment) !== '')
-				$vals['comment'] = $comment;
+			if ($revision->isDeleted(Revision::DELETED_COMMENT)) {
+				$vals['commenthidden'] = '';
+			} else {
+				$comment = $revision->getComment();
+				if (strval($comment) !== '')
+					$vals['comment'] = $comment;
+			}
 		}
 
 		if(!is_null($this->token) || ($this->fld_content && $this->expandTemplates))
@@ -314,8 +326,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 					$vals[$t . 'token'] = $val;
 			}
 		}
-
-		if ($this->fld_content) {
+		
+		if ($this->fld_content && !$revision->isDeleted(Revision::DELETED_TEXT)) {
 			global $wgParser;
 			$text = $revision->getText();
 			# Expand templates after getting section content because
@@ -341,6 +353,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$text = $wgParser->preprocess( $text, $title, new ParserOptions() );
 			}
 			ApiResult :: setContent($vals, $text);
+		} else if ($this->fld_content) {
+			$vals['texthidden'] = '';
 		}
 		return $vals;
 	}
