@@ -434,7 +434,12 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
+		$count = 0;
 		foreach ( $titles as $pageid => $title ) {
+			$count++;
+			if(!is_null($params['continue']))
+				if($count < $params['continue'])
+					continue;
 			$pageInfo = array (
 				'touched' => wfTimestamp(TS_ISO_8601, $pageTouched[$pageid]),
 				'lastrevid' => intval($pageLatest[$pageid]),
@@ -480,18 +485,27 @@ class ApiQueryInfo extends ApiQueryBase {
 				if($title->userCanRead())
 					$pageInfo['readable'] = '';
 
-			$result->addValue(array (
+			$fit = $result->addValue(array (
 				'query',
 				'pages'
 			), $pageid, $pageInfo);
+			if(!$fit)
+			{
+				$this->setContinueEnumParameter('continue', $count);
+				break;
+			}
 		}
 
 		// Get properties for missing titles if requested
 		if(!is_null($params['token']) || $fld_protection || $fld_talkid || $fld_subjectid ||
 		  					$fld_url || $fld_readable)
 		{
-			$res = &$result->getData();
 			foreach($missing as $pageid => $title) {
+				$count++;
+				if(!is_null($params['continue']))
+					if($count < $params['continue'])
+						continue;
+				$fit = true;
 				if(!is_null($params['token'])) 
 				{
 					$tokenFunctions = $this->getTokenFunctions();
@@ -502,30 +516,45 @@ class ApiQueryInfo extends ApiQueryBase {
 						if($val === false)
 							$this->setWarning("Action '$t' is not allowed for the current user");
 						else
-							$res['query']['pages'][$pageid][$t . 'token'] = $val;
+							$fit = $result->addValue(
+								array('query', 'pages', $pageid),
+								$t . 'token', $val);
 					}
 				}
-				if($fld_protection)
+				if($fld_protection && $fit)
 				{
 					// Apparently the XML formatting code doesn't like array(null)
 					// This is painful to fix, so we'll just work around it
 					if(isset($prottitles[$title->getNamespace()][$title->getDBkey()]))
-						$res['query']['pages'][$pageid]['protection'] = $prottitles[$title->getNamespace()][$title->getDBkey()];
+						$val = $prottitles[$title->getNamespace()][$title->getDBkey()];
 					else
-						$res['query']['pages'][$pageid]['protection'] = array();
-					$result->setIndexedTagName($res['query']['pages'][$pageid]['protection'], 'pr');
+						$val = array();
+					$result->setIndexedTagName($val, 'pr');
+					$fit = $result->addValue(
+							array('query', 'pages', $pageid),
+							'protection', $val);
 				}
-				if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDBKey()]))
-					$res['query']['pages'][$pageid]['talkid'] = $talkids[$title->getNamespace()][$title->getDBKey()];
-				if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDBKey()]))
-					$res['query']['pages'][$pageid]['subjectid'] = $subjectids[$title->getNamespace()][$title->getDBKey()];
-				if($fld_url) {
-					$res['query']['pages'][$pageid]['fullurl'] = $title->getFullURL();
-					$res['query']['pages'][$pageid]['editurl'] = $title->getFullURL('action=edit');
+				if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDbKey()]) && $fit)
+					$fit = $result->addValue(array('query', 'pages', $pageid), 'talkid',
+						$talkids[$title->getNamespace()][$title->getDbKey()]);
+				if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDbKey()]) && $fit)
+					$fit = $result->addValue(array('query', 'pages', $pageid), 'subjectid',
+						$subjectids[$title->getNamespace()][$title->getDbKey()]);
+				if($fld_url && $fit) {
+					$fit = $result->addValue(array('query', 'pages', $pageid), 'fullurl',
+						$title->getFullURL());
+					if($fit)
+						$fit = $result->addValue(array('query', 'pages', $pageid), 'editurl',
+							$title->getFullURL('action=edit'));
 				}
-				if($fld_readable)
+				if($fld_readable && $fit)
 					if($title->userCanRead())
-						$res['query']['pages'][$pageid]['readable'] = '';
+						$fit = $result->addValue(array('query', 'pages', $pageid), 'readable', '');
+				if(!$fit)
+				{
+					$this->setContinueEnumParameter('continue', $count);
+					break;
+				}
 			}
 		}
 	}
@@ -546,7 +575,8 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase :: PARAM_DFLT => NULL,
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => array_keys($this->getTokenFunctions())
-			)
+			),
+			'continue' => null,
 		);
 	}
 
@@ -559,6 +589,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				' subjectid     - The page ID of the parent page for each talk page'
 			),
 			'token' => 'Request a token to perform a data-modifying action on a page',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 

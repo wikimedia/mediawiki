@@ -173,9 +173,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addWhereRange('ar_timestamp', $params['dir'], $params['start'], $params['end']);
 		}
 		$res = $this->select(__METHOD__);
-		$pages = array();
+		$pageMap = array(); // Maps ns&title to (fake) pageid
 		$count = 0;
-		// First populate the $pages array
+		$newPageID = 0;
 		while($row = $db->fetchObject($res))
 		{
 			if(++$count > $limit)
@@ -205,31 +205,37 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if($fld_content)
 				ApiResult::setContent($rev, Revision::getRevisionText($row));
 
-			$t = Title::makeTitle($row->ar_namespace, $row->ar_title);
-			if(!isset($pages[$t->getPrefixedText()]))
+			if(!isset($pageMap[$row->ar_namespace][$row->ar_title]))
 			{
-				$pages[$t->getPrefixedText()] = array(
+				$pageID = $newPageID++;
+				$pageMap[$row->ar_namespace][$row->ar_title] = $pageID;
+				$t = Title::makeTitle($row->ar_namespace, $row->ar_title);
+				$a = array(
 					'title' => $t->getPrefixedText(),
 					'ns' => intval($row->ar_namespace),
 					'revisions' => array($rev)
 				);
+				$result->setIndexedTagName($a['revisions'], 'rev');
 				if($fld_token)
-					$pages[$t->getPrefixedText()]['token'] = $token;
+					$a['token'] = $token;
+				$fit = $result->addValue(array('query', $this->getModuleName()), $pageID, $a);
 			}
 			else
-				$pages[$t->getPrefixedText()]['revisions'][] = $rev;
+			{
+				$pageID = $pageMap[$row->ar_namespace][$row->ar_title];
+				$fit = $result->addValue(
+					array('query', $this->getModuleName(), $pageID, 'revisions'),
+					null, $rev);
+			}
+			if(!$fit)
+			{
+				$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->ar_timestamp));
+				break;
+			}
 		}
 		$db->freeResult($res);
-
-		// We don't want entire pagenames as keys, so let's make this array indexed
-		foreach($pages as $page)
-		{
-			$result->setIndexedTagName($page['revisions'], 'rev');
-			$data[] = $page;
-		}
-		$result->setIndexedTagName($data, 'page');
-		$result->addValue('query', $this->getModuleName(), $data);
-		}
+		$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'page');
+	}
 
 	public function getAllowedParams() {
 		return array (

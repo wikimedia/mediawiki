@@ -255,6 +255,10 @@ class ApiQuery extends ApiBase {
 		$pageSet = $this->getPageSet();
 		$result = $this->getResult();
 
+		# We don't check for a full result set here because we can't be adding
+		# more than 380K. The maximum revision size is in the megabyte range,
+		# and the maximum result size must be even higher than that.
+
 		// Title normalizations
 		$normValues = array ();
 		foreach ($pageSet->getNormalizedTitles() as $rawTitleStr => $titleStr) {
@@ -368,6 +372,10 @@ class ApiQuery extends ApiBase {
 				$exporter->closeStream();
 				$exportxml = ob_get_contents();
 				ob_end_clean();
+				// Don't check the size of exported stuff
+				// It's not continuable, so it would cause more
+				// problems than it'd solve
+				$result->disableSizeCheck();
 				if ($this->params['exportnowrap']) {
 					$result->reset();
 					// Raw formatter will handle this
@@ -378,6 +386,7 @@ class ApiQuery extends ApiBase {
 					ApiResult::setContent($r, $exportxml);
 					$result->addValue('query', 'export', $r);
 				}
+				$result->enableSizeCheck();
 			}
 		}
 	}

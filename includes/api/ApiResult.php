@@ -47,7 +47,7 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiResult extends ApiBase {
 
-	private $mData, $mIsRawMode;
+	private $mData, $mIsRawMode, $mSize, $mCheckingSize;
 
 	/**
 	* Constructor
@@ -55,6 +55,7 @@ class ApiResult extends ApiBase {
 	public function __construct($main) {
 		parent :: __construct($main, 'result');
 		$this->mIsRawMode = false;
+		$this->mCheckingSize = true;
 		$this->reset();
 	}
 
@@ -63,6 +64,7 @@ class ApiResult extends ApiBase {
 	 */
 	public function reset() {
 		$this->mData = array ();
+		$this->mSize = 0;
 	}
 
 	/**
@@ -81,10 +83,51 @@ class ApiResult extends ApiBase {
 	}
 
 	/**
-	 * Get result's internal data array
+	 * Get the result's internal data array (read-only)
 	 */
-	public function & getData() {
+	public function getData() {
 		return $this->mData;
+	}
+	
+	/**
+	 * Get the 'real' size of a result item. This means the strlen() of the item,
+	 * or the sum of the strlen()s of the elements if the item is an array.
+	 * @param mixed $value
+	 * @return int
+	 */
+	public static function size($value) {
+		$s = 0;
+		if(is_array($value))
+			foreach($value as $v)
+				$s += self::size($v);
+		else if(!is_object($value))
+			// Objects can't always be cast to string
+			$s = strlen($value);
+		return $s;
+	}
+
+	/**
+	 * Get the size of the result, i.e. the amount of bytes in it
+	 * @return int
+	 */
+	public function getSize() {
+		return $this->mSize;
+	}
+	
+	/**
+	 * Disable size checking in addValue(). Don't use this unless you
+	 * REALLY know what you're doing. Values added while size checking
+	 * was disabled will not be counted (ever)
+	 */
+	public function disableSizeCheck() {
+		$this->mCheckingSize = false;
+	}
+	
+	/**
+	 * Re-enable size checking in addValue()
+	 */
+	public function enableSizeCheck() {
+		$this->mCheckingSize = true;
 	}
 
 	/**
@@ -157,14 +200,37 @@ class ApiResult extends ApiBase {
 	}
 
 	/**
+	 * Calls setIndexedTagName() on an array already in the result.
+	 * Don't specify a path to a value that's not in the result, or
+	 * you'll get nasty errors.
+	 * @param array $path Path to the array, like addValue()'s path
+	 * @param string $tag
+	 */
+	public function setIndexedTagName_internal( $path, $tag ) {
+		$data = & $this->mData;
+		foreach((array)$path as $p)
+			$data = & $data[$p];
+		if(is_null($data))
+			return;
+		$this->setIndexedTagName($data, $tag);
+	}
+
+	/**
 	 * Add value to the output data at the given path.
 	 * Path is an indexed array, each element specifing the branch at which to add the new value
 	 * Setting $path to array('a','b','c') is equivalent to data['a']['b']['c'] = $value
 	 * If $name is empty, the $value is added as a next list element data[] = $value
+	 * @return bool True if $value fits in the result, false if not
 	 */
 	public function addValue($path, $name, $value) {
-
-		$data = & $this->getData();
+		global $wgAPIMaxResultSize;
+		$data = & $this->mData;
+		if( $this->mCheckingSize ) {
+			$newsize = $this->mSize + self::size($value);
+			if($newsize > $wgAPIMaxResultSize)
+				return false;
+			$this->mSize = $newsize;
+		}
 
 		if (!is_null($path)) {
 			if (is_array($path)) {
@@ -184,6 +250,24 @@ class ApiResult extends ApiBase {
 			$data[] = $value;	// Add list element
 		else
 			ApiResult :: setElement($data, $name, $value);	// Add named element
+		return true;
+	}
+
+	/**
+	 * Unset a value previously added to the result set.
+	 * Fails silently if the value isn't found.
+	 * For parameters, see addValue()
+	 */
+	public function unsetValue($path, $name) {
+		$data = & $this->mData;
+		if(!is_null($path))
+			foreach((array)$path as $p) {
+				if(!isset($data[$p]))
+					return;
+				$data = & $data[$p];
+			}
+		$this->mSize -= self::size($data[$name]);
+		unset($data[$name]);
 	}
 
 	/**

@@ -112,8 +112,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				break;
 			}
 
-			$lastSortKey = $row->cl_sortkey;	// detect duplicate sortkeys
-
 			if (is_null($resultPageSet)) {
 				$vals = array();
 				if ($fld_ids)
@@ -127,16 +125,26 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$vals['sortkey'] = $row->cl_sortkey;
 				if ($fld_timestamp)
 					$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->cl_timestamp);
-				$data[] = $vals;
+				$fit = $this->getResult()->addValue(array('query', $this->getModuleName()),
+						null, $vals);
+				if(!$fit)
+				{
+					if ($params['sort'] == 'timestamp')
+						$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->cl_timestamp));
+					else
+						$this->setContinueEnumParameter('continue', $this->getContinueStr($row, $lastSortKey));
+					break;
+				}
 			} else {
 				$resultPageSet->processDbRow($row);
 			}
+			$lastSortKey = $row->cl_sortkey;	// detect duplicate sortkeys
 		}
 		$db->freeResult($res);
 
 		if (is_null($resultPageSet)) {
-			$this->getResult()->setIndexedTagName($data, 'cm');
-			$this->getResult()->addValue('query', $this->getModuleName(), $data);
+			$this->getResult()->setIndexedTagName_internal(
+					 array('query', $this->getModuleName()), 'cm');
 		}
 	}
 

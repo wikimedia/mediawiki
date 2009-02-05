@@ -272,14 +272,36 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Add a sub-element under the page element with the given page ID
 	 * @param int $pageId Page ID
-	 * @param array $data Data array Ã  la ApiResult 
+	 * @param array $data Data array à la ApiResult 
+	 * @return bool Whether the element fit in the result
 	 */
 	protected function addPageSubItems($pageId, $data) {
 		$result = $this->getResult();
 		$result->setIndexedTagName($data, $this->getModulePrefix());
-		$result->addValue(array ('query', 'pages', intval($pageId)),
+		return $result->addValue(array('query', 'pages', intval($pageId)),
 			$this->getModuleName(),
 			$data);
+	}
+	
+	/**
+	 * Same as addPageSubItems(), but one element of $data
+	 * at a time
+	 * @param int $pageId Page ID
+	 * @param array $data Data array à la ApiResult
+	 * @param string $elemname XML element name. If null, getModuleName() is used
+	 * @return bool Whether the element fit in the result
+	 */
+	protected function addPageSubItem($pageId, $item, $elemname = null) {
+		if(is_null($elemname))
+			$elemname = $this->getModulePrefix();
+		$result = $this->getResult();
+		$fit = $result->addValue(array('query', 'pages', $pageId,
+					 $this->getModuleName()), null, $item);
+		if(!$fit)
+			return false;
+		$result->setIndexedTagName_internal(array('query', 'pages', $pageId,
+				$this->getModuleName()), $elemname);
+		return true;
 	}
 
 	/**
@@ -288,10 +310,11 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $paramValue Parameter value
 	 */
 	protected function setContinueEnumParameter($paramName, $paramValue) {
-
 		$paramName = $this->encodeParamName($paramName);
 		$msg = array( $paramName => $paramValue );
+		$this->getResult()->disableSizeCheck();
 		$this->getResult()->addValue('query-continue', $this->getModuleName(), $msg);
+		$this->getResult()->enableSizeCheck();
 	}
 
 	/**

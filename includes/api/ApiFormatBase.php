@@ -261,9 +261,13 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	public static function setResult($result, $feed, $feedItems) {
 		// Store output in the Result data.
 		// This way we can check during execution if any error has occured
-		$data = & $result->getData();
-		$data['_feed'] = $feed;
-		$data['_feeditems'] = $feedItems;
+		// Disable size checking for this because we can't continue
+		// cleanly; size checking would cause more problems than it'd
+		// solve
+		$result->disableSizeCheck();
+		$result->addValue(null, '_feed', $feed);
+		$result->addValue(null, '_feeditems', $feedItems);
+		$result->enableSizeCheck();
 	}
 
 	/**
@@ -282,8 +286,8 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 
 	/**
 	 * This class expects the result data to be in a custom format set by self::setResult()
-	 * $result['_feed']		 - an instance of one of the $wgFeedClasses classes
-	 * $result['_feeditems'] - an array of FeedItem instances
+	 * $result['_feed']		- an instance of one of the $wgFeedClasses classes
+	 * $result['_feeditems']	- an array of FeedItem instances
 	 */
 	public function execute() {
 		$data = $this->getResultData();

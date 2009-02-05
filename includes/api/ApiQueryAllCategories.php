@@ -110,14 +110,18 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 				}
 				if( isset( $prop['hidden'] ) && $row->cat_hidden )
 					$item['hidden'] = '';
-				$categories[] = $item;
+				$fit = $result->addValue(array('query', $this->getModuleName()), null, $item);
+				if(!$fit)
+				{
+					$this->setContinueEnumParameter('from', $this->keyToTitle($row->cat_title));
+					break;
+				}
 			}
 		}
 		$db->freeResult($res);
 
 		if (is_null($resultPageSet)) {
-			$result->setIndexedTagName($categories, 'c');
-			$result->addValue('query', $this->getModuleName(), $categories);
+			$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'c');
 		} else {
 			$resultPageSet->populateFromTitles($pages);
 		}

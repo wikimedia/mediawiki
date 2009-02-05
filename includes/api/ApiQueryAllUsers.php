@@ -127,7 +127,16 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			if (!$row || $lastUser !== $row->user_name) {
 				// Save the last pass's user data
 				if (is_array($lastUserData))
-					$data[] = $lastUserData;
+				{
+					$fit = $result->addValue(array('query', $this->getModuleName()),
+							null, $lastUserData);
+					if(!$fit)
+					{
+						$this->setContinueEnumParameter('from',
+								$this->keyToTitle($lastUserData['name']));
+						break;
+					}
+				}
 
 				// No more rows left
 				if (!$row)
@@ -169,8 +178,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		$db->freeResult($res);
 
-		$result->setIndexedTagName($data, 'u');
-		$result->addValue('query', $this->getModuleName(), $data);
+		$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'u');
 	}
 
 	public function getAllowedParams() {

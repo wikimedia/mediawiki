@@ -82,9 +82,6 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		$res = $this->select(__METHOD__);
 
 		if (is_null($resultPageSet)) {
-
-			$data = array();
-			$lastId = 0;	// database has no ID 0
 			$count = 0;
 			while ($row = $db->fetchObject($res)) {
 				if (++$count > $params['limit']) {
@@ -94,23 +91,16 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 							'|' . $this->keyToTitle($row->il_to));
 					break;
 				}
-				if ($lastId != $row->il_from) {
-					if($lastId != 0) {
-						$this->addPageSubItems($lastId, $data);
-						$data = array();
-					}
-					$lastId = $row->il_from;
-				}
-
 				$vals = array();
 				ApiQueryBase :: addTitleInfo($vals, Title :: makeTitle(NS_FILE, $row->il_to));
-				$data[] = $vals;
+				$fit = $this->addPageSubItem($row->il_from, $vals);
+				if(!$fit)
+				{
+					$this->setContinueEnumParameter('continue', $row->il_from .
+							'|' . $this->keyToTitle($row->il_to));
+					break;
+				}
 			}
-
-			if($lastId != 0) {
-				$this->addPageSubItems($lastId, $data);
-			}
-
 		} else {
 
 			$titles = array();

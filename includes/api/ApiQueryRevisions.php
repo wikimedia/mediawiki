@@ -231,6 +231,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			ApiBase :: dieDebug(__METHOD__, 'param validation?');
 
 		$this->addOption('LIMIT', $limit +1);
+		if(!is_null($continue))
+			$this->addOption('OFFSET', $continue);
 
 		$data = array ();
 		$count = 0;
@@ -246,29 +248,19 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$this->setContinueEnumParameter('startid', intval($row->rev_id));
 				break;
 			}
-
 			$revision = new Revision( $row );
-			$this->getResult()->addValue(
-				array (
-					'query',
-					'pages',
-					$revision->getPage(),
-					'revisions'),
-				null,
-				$this->extractRowInfo( $revision ));
-		}
-		$db->freeResult($res);
-
-		// Ensure that all revisions are shown as '<rev>' elements
-		$result = $this->getResult();
-		if ($result->getIsRawMode()) {
-			$data =& $result->getData();
-			foreach ($data['query']['pages'] as & $page) {
-				if (is_array($page) && array_key_exists('revisions', $page)) {
-					$result->setIndexedTagName($page['revisions'], 'rev');
-				}
+			//
+			$fit = $this->addPageSubItem($revision->getPage(), $this->extractRowInfo($revision), 'rev');
+			if(!$fit)
+			{
+				if($enumRevMode)
+					$this->setContinueEnumParameter('startid', intval($row->rev_id));
+				else
+					$this->setContinueEnumParameter('continue', $continue + $count - 1);
+				break;
 			}
 		}
+		$db->freeResult($res);
 	}
 
 	private function extractRowInfo( $revision ) {
@@ -412,6 +404,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => array_keys($this->getTokenFunctions()),
 				ApiBase :: PARAM_ISMULTI => true
 			),
+			'continue' => null,
 		);
 	}
 
@@ -430,6 +423,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'generatexml' => 'generate XML parse tree for revision content',
 			'section' => 'only retrieve the content of this section',
 			'token' => 'Which tokens to obtain for each revision',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 

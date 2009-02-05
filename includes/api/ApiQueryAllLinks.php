@@ -101,8 +101,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 		$res = $this->select(__METHOD__);
 
-		$data = array ();
+		$pageids = array ();
 		$count = 0;
+		$result = $this->getResult();
 		while ($row = $db->fetchObject($res)) {
 			if (++ $count > $limit) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
@@ -123,7 +124,13 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 					$vals['ns'] = intval($title->getNamespace());
 					$vals['title'] = $title->getPrefixedText();
 				}
-				$data[] = $vals;
+				$fit = $result->addValue(array('query', $this->getModuleName()), null, $vals);
+				if(!$fit)
+				{
+					$this->setContinueEnumParameter('continue',
+						$this->keyToTitle($row->pl_title) . "|" . $row->pl_from);
+					break;
+				}
 			} else {
 				$pageids[] = $row->pl_from;
 			}
@@ -131,9 +138,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 
 		if (is_null($resultPageSet)) {
-			$result = $this->getResult();
-			$result->setIndexedTagName($data, 'l');
-			$result->addValue('query', $this->getModuleName(), $data);
+			$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'l');
 		} else {
 			$resultPageSet->populateFromPageIDs($pageids);
 		}

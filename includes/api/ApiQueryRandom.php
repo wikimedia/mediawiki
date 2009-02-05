@@ -62,7 +62,7 @@ if (!defined('MEDIAWIKI')) {
 			$this->addFields($resultPageSet->getPageTableFields());
 	}
 
-	protected function runQuery(&$data, &$resultPageSet) {
+	protected function runQuery(&$resultPageSet) {
 		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
 		$count = 0;
@@ -73,7 +73,14 @@ if (!defined('MEDIAWIKI')) {
 				// Prevent duplicates
 				if(!in_array($row->page_id, $this->pageIDs))
 				{
-					$data[] = $this->extractRowInfo($row);
+					$fit = $this->getResult()->addValue(
+							array('query', $this->getModuleName()),
+							null, $this->extractRowInfo($row));
+					if(!$fit)
+						# We can't really query-continue a random list.
+						# Return an insanely high value so
+						# $count < $limit is false
+						return 1E9;
 					$this->pageIDs[] = $row->page_id;
 				}
 			}
@@ -87,11 +94,10 @@ if (!defined('MEDIAWIKI')) {
 	public function run($resultPageSet = null) {
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
-		$data = array();
 		$this->pageIDs = array();
 		
 		$this->prepareQuery(wfRandom(), $params['limit'], $params['namespace'], $resultPageSet, $params['redirect']);
-		$count = $this->runQuery($data, $resultPageSet);
+		$count = $this->runQuery($resultPageSet);
 		if($count < $params['limit'])
 		{
 			/* We got too few pages, we probably picked a high value
@@ -99,12 +105,11 @@ if (!defined('MEDIAWIKI')) {
 			 * also the comment in Title::getRandomTitle()
 			 */
 			 $this->prepareQuery(0, $params['limit'] - $count, $params['namespace'], $resultPageSet, $params['redirect']);
-			 $this->runQuery($data, $resultPageSet);
+			 $this->runQuery($resultPageSet);
 		}
 
 		if(is_null($resultPageSet)) {
-			$result->setIndexedTagName($data, 'page');
-			$result->addValue('query', $this->getModuleName(), $data);
+			$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'page');
 		}
 	}
 

@@ -29,7 +29,7 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
- * This query adds <categories> subelement to all pages with the list of images embedded into those pages.
+ * This query adds the <categories> subelement to all pages with the list of categories the page is in
  *
  * @ingroup API
  */
@@ -39,7 +39,8 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		parent :: __construct($query, $moduleName, 'ci');
 	}
 
-	public function execute() {			
+	public function execute() {
+		$params = $this->extractRequestParams();
 		$alltitles = $this->getPageSet()->getAllTitlesByNamespace();
 		if ( empty( $alltitles[NS_CATEGORY] ) ) {
 			return;
@@ -65,13 +66,20 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 				'pp_propname' => 'hiddencat')),
 		));
 		$this->addFields(array('cat_title', 'cat_pages', 'cat_subcats', 'cat_files', 'pp_propname AS cat_hidden'));
-		$this->addWhere(array('cat_title' => $cattitles));			
+		$this->addWhere(array('cat_title' => $cattitles));
+		if(!is_null($params['continue']))
+		{
+			// We need to set a LIMIT in order to be able to set
+			// an OFFSET
+			$this->addOption('LIMIT', count($titles));
+			$this->addOption('OFFSET', $params['continue']);
+		}
 
 		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
 
-		$data = array();
 		$catids = array_flip($cattitles);
+		$count = (int)@$params['continue'];
 		while($row = $db->fetchObject($res))
 		{
 			$vals = array();
@@ -81,9 +89,27 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 			$vals['subcats'] = $row->cat_subcats;
 			if($row->cat_hidden)
 				$vals['hidden'] = '';
-			$this->addPageSubItems($catids[$row->cat_title], $vals);
+			$fit = $this->addPageSubItems($catids[$row->cat_title], $vals);
+			if(!$fit)
+			{
+				$this->setContinueEnumParameter('continue', $count);
+				break;
+			}
+			$count++;
 		}
 		$db->freeResult($res);
+	}
+
+	public function getAllowedParams() {
+		return array (
+			'continue' => null,
+		);
+	}
+
+	public function getParamDescription() {
+		return array (
+			'continue' => 'When more results are available, use this to continue',
+		);
 	}
 
 	public function getDescription() {

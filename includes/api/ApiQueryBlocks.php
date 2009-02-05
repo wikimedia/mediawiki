@@ -169,10 +169,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 				if($row->ipb_allow_usertalk)
 					$block['allowusertalk'] = '';
 			}
-			$data[] = $block;
+			$fit = $result->addValue(array('query', $this->getModuleName()), null, $block);
+			if(!$fit)
+			{
+				$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->ipb_timestamp));
+				break;
+			}
 		}
-		$result->setIndexedTagName($data, 'block');
-		$result->addValue('query', $this->getModuleName(), $data);
+		$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'block');
 	}
 	
 	protected function prepareUsername($user)

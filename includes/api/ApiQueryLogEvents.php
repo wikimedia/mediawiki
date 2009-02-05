@@ -125,7 +125,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhere('log_deleted & ' . LogPage::DELETED_USER . ' = 0');
 		}
 
-		$data = array ();
 		$count = 0;
 		$res = $this->select(__METHOD__);
 		while ($row = $db->fetchObject($res)) {
@@ -136,13 +135,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 
 			$vals = $this->extractRowInfo($row);
-			if($vals)
-				$data[] = $vals;
+			if(!$vals)
+				continue;
+			$fit = $this->getResult()->addValue(array('query', $this->getModuleName()), null, $vals);
+			if(!$fit)
+			{
+				$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->log_timestamp));
+				break;
+			}
 		}
 		$db->freeResult($res);
 
-		$this->getResult()->setIndexedTagName($data, 'item');
-		$this->getResult()->addValue('query', $this->getModuleName(), $data);
+		$this->getResult()->setIndexedTagName_internal(array('query', $this->getModuleName()), 'item');
 	}
 	
 	public static function addLogParams($result, &$vals, $params, $type, $ts) {

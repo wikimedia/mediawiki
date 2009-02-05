@@ -38,7 +38,9 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
-	private $params, $rootTitle, $contRedirs, $contLevel, $contTitle, $contID, $redirID;
+	private $params, $rootTitle, $contRedirs, $contLevel, $contTitle, $contID, $redirID, $redirect;
+	private $bl_ns, $bl_from, $bl_table, $bl_code, $bl_title, $bl_sort, $bl_fields, $hasNS;
+	private $pageMap, $resultArr;
 
 	// output element name, database column field prefix, database table
 	private $backlinksSettings = array (
@@ -61,6 +63,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	public function __construct($query, $moduleName) {
 		extract($this->backlinksSettings[$moduleName]);
+		$this->resultArr = array();
 
 		parent :: __construct($query, $moduleName, $code);
 		$this->bl_ns = $prefix . '_namespace';
@@ -188,7 +191,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$res = $this->select(__METHOD__.'::firstQuery');
 
 		$count = 0;
-		$this->data = array ();
+		$this->pageMap = array(); // Maps ns and title to pageid
 		$this->continueStr = null;
 		$this->redirTitles = array();
 		while ($row = $db->fetchObject($res)) {
@@ -223,10 +226,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 					// We need to keep the parent page of this redir in
 					if($this->hasNS)
-						$contTitle = Title::makeTitle($row->{$this->bl_ns}, $row->{$this->bl_title});
+						$parentID = $this->pageMap[$row->{$this->bl_ns}][$row->{$this->bl_title}];
 					else
-						$contTitle = Title::makeTitle(NS_FILE, $row->{$this->bl_title});
-					$this->continueStr = $this->getContinueRedirStr($contTitle->getArticleID(), $row->page_id);
+						$parentID = $this->pageMap[NS_IMAGE][$row->{$this->bl_title}];
+						$this->continueStr = $this->getContinueRedirStr($parentID, $row->page_id);
 					break;
 				}
 
@@ -237,30 +240,67 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			}
 			$db->freeResult($res);
 		}
+		// Try to add the result data in one go and pray that it fits
+		$fit = $this->getResult()->addValue('query', $this->getModuleName(), $this->resultArr);
+		if(!$fit)
+		{
+			// It didn't fit. Add elements one by one until the
+			// result is full.
+			foreach($this->resultArr as $pageID => $arr)
+			{
+				// Add the basic entry without redirlinks first
+				$fit = $this->getResult()->addValue(
+					array('query', $this->getModuleName()),
+					$pageID, array_diff_key($arr, array('redirlinks' => '')));
+				if(!$fit)
+				{
+					$this->continueStr = $this->getContinueStr($pageID);
+					break;
+				}
+
+				$hasRedirs = false;
+				foreach((array)@$arr['redirlinks'] as $key => $redir)
+				{
+					$fit = $this->getResult()->addValue(
+						array('query', $this->getModuleName(), $pageID, 'redirlinks'),
+						$key, $redir);
+					if(!$fit)
+					{
+						$this->continueStr = $this->getContinueRedirStr($pageID, $redir['pageid']);
+						break;
+					}
+					$hasRedirs = true;
+				}
+				if($hasRedirs)
+					$this->getResult()->setIndexedTagName_internal(
+						array('query', $this->getModuleName(), $pageID, 'redirlinks'),
+						$this->bl_code);
+				if(!$fit)
+					break;
+			}
+		}		
 		if(!is_null($this->continueStr))
 			$this->setContinueEnumParameter('continue', $this->continueStr);
 
 		if (is_null($resultPageSet)) {
-			$resultData = array();
-			foreach($this->data as $ns => $a)
-				foreach($a as $title => $arr)
-					$resultData[] = $arr;
-			$result = $this->getResult();
-			$result->setIndexedTagName($resultData, $this->bl_code);
-			$result->addValue('query', $this->getModuleName(), $resultData);
+			$this->getResult()->setIndexedTagName_internal(
+					 array('query', $this->getModuleName()),
+					 $this->bl_code);
 		}
 	}
 
 	private function extractRowInfo($row) {
-		if(!isset($this->data[$row->page_namespace][$row->page_title])) {
-			$this->data[$row->page_namespace][$row->page_title]['pageid'] = $row->page_id;
-			ApiQueryBase::addTitleInfo($this->data[$row->page_namespace][$row->page_title], Title::makeTitle($row->page_namespace, $row->page_title));
-			if($row->page_is_redirect)
-			{
-				$this->data[$row->page_namespace][$row->page_title]['redirect'] = '';
-				$this->redirTitles[] = Title::makeTitle($row->page_namespace, $row->page_title);
-			}
+		$this->pageMap[$row->page_namespace][$row->page_title] = $row->page_id;
+		$t = Title::makeTitle($row->page_namespace, $row->page_title);
+		$a = array('pageid' => $row->page_id);
+		ApiQueryBase::addTitleInfo($a, $t);
+		if($row->page_is_redirect)
+		{
+			$a['redirect'] = '';
+			$this->redirTitles[] = $t;
 		}
+		// Put all the results in an array first
+		$this->resultArr[$a['pageid']] = $a;
 	}
 
 	private function extractRedirRowInfo($row)
@@ -270,8 +310,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if($row->page_is_redirect)
 			$a['redirect'] = '';
 		$ns = $this->hasNS ? $row->{$this->bl_ns} : NS_FILE;
-		$this->data[$ns][$row->{$this->bl_title}]['redirlinks'][] = $a;
-		$this->getResult()->setIndexedTagName($this->data[$ns][$row->{$this->bl_title}]['redirlinks'], $this->bl_code);
+		$parentID = $this->pageMap[$ns][$row->{$this->bl_title}];
+		// Put all the results in an array first
+		$this->resultArr[$parentID]['redirlinks'][] = $a;
+		$this->getResult()->setIndexedTagName($this->resultArr[$parentID]['redirlinks'], $this->bl_code);
 	}
 
 	protected function processContinue() {

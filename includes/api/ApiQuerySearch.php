@@ -87,7 +87,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$this->dieUsage("{$what} search is disabled",
 					"search-{$what}-disabled");
 
-		$data = array ();
+		$titles = array ();
 		$count = 0;
 		while( $result = $matches->next() ) {
 			if (++ $count > $limit) {
@@ -102,20 +102,24 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			
 			$title = $result->getTitle();
 			if (is_null($resultPageSet)) {
-				$data[] = array(
+				$vals = array(
 					'ns' => intval($title->getNamespace()),
 					'title' => $title->getPrefixedText());
+				$fit = $this->getResult()->addValue(array('query', $this->getModuleName()), null, $vals);
+				if(!$fit)
+				{
+					$this->setContinueEnumParameter('offset', $params['offset'] + $count - 1);
+					break;
+				}
 			} else {
-				$data[] = $title;
+				$titles[] = $title;
 			}
 		}
 
 		if (is_null($resultPageSet)) {
-			$result = $this->getResult();
-			$result->setIndexedTagName($data, 'p');
-			$result->addValue('query', $this->getModuleName(), $data);
+			$this->getResult()->setIndexedTagName_internal(array('query', $this->getModuleName()), 'p');
 		} else {
-			$resultPageSet->populateFromTitles($data);
+			$resultPageSet->populateFromTitles($titles);
 		}
 	}
 

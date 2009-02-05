@@ -89,7 +89,6 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		$res = $this->select(__METHOD__);
 		
 		$db = $this->getDB();
-		$data = array();
 		$titles = array();
 		$count = 0;
 		while($row = $db->fetchObject($res))
@@ -108,16 +107,19 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 				ApiQueryBase::addTitleInfo($vals, $t);
 				if(isset($prop['changed']) && !is_null($row->wl_notificationtimestamp))
 					$vals['changed'] = wfTimestamp(TS_ISO_8601, $row->wl_notificationtimestamp);
-				$data[] = $vals;
+				$fit = $this->getResult()->addValue($this->getModuleName(), null, $vals);
+				if(!$fit)
+				{
+					$this->setContinueEnumParameter('continue', $row->wl_namespace . '|' .
+									$this->keyToTitle($row->wl_title));
+					break;
+				}
 			}
 			else
 				$titles[] = $t;
 		}
 		if(is_null($resultPageSet))
-		{
-			$this->getResult()->setIndexedTagName($data, 'wr');
-			$this->getResult()->addValue(null, $this->getModuleName(), $data);
-		}
+			$this->getResult()->setIndexedTagName_internal($this->getModuleName(), 'wr');
 		else
 			$resultPageSet->populateFromTitles($titles);
 	}
