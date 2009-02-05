@@ -13,8 +13,6 @@
 $optionsWithArgs = array( 'maxjobs', 'type' );
 $wgUseNormalUser = true;
 require_once( 'commandLine.inc' );
-require_once( "$IP/includes/JobQueue.php" );
-require_once( "$IP/includes/FakeTitle.php" );
 
 if ( isset( $options['maxjobs'] ) ) {
 	$maxJobs = $options['maxjobs'];
