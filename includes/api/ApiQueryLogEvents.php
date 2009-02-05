@@ -65,12 +65,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				array(	'log_namespace=page_namespace',
 					'log_title=page_title'))));
 		$this->addWhere('user_id=log_user');
-		$this->addOption('USE INDEX', array('logging' => 'times')); // default, may change
+		$index = 'times'; // default, may change
 
 		$this->addFields(array (
 			'log_type',
 			'log_action',
 			'log_timestamp',
+			'log_deleted',
 		));
 
 		$this->addFieldsIf('log_id', $this->fld_ids);
@@ -81,12 +82,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf('log_title', $this->fld_title);
 		$this->addFieldsIf('log_comment', $this->fld_comment);
 		$this->addFieldsIf('log_params', $this->fld_details);
-
-		$this->addWhereFld('log_deleted', 0);
 		
 		if( !is_null($params['type']) ) {
 			$this->addWhereFld('log_type', $params['type']);
-			$this->addOption('USE INDEX', array('logging' => array('type_time')));
+			$index = 'type_time';
 		}
 		
 		$this->addWhereRange('log_timestamp', $params['dir'], $params['start'], $params['end']);
@@ -118,7 +117,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( $index ) {
 			$this->addOption( 'USE INDEX', array( 'logging' => $index ) );
 		}
-
+		// Paranoia: avoid brute force searches (bug 17342)
+		if (!is_null($title) || !is_null($params['type'])) {
+			$this->addWhere('log_deleted & ' . LogPage::DELETED_ACTION . ' = 0');
+		}
+		if (!is_null($user)) {
+			$this->addWhere('log_deleted & ' . LogPage::DELETED_USER . ' = 0');
+		}
 
 		$data = array ();
 		$count = 0;
@@ -196,26 +201,42 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		if ($this->fld_type) {
-			$vals['type'] = $row->log_type;
-			$vals['action'] = $row->log_action;
+			if (LogEventsList::isDeleted($row, LogPage::DELETED_ACTION)) {
+				$vals['actionhidden'] = '';
+			} else {
+				$vals['type'] = $row->log_type;
+				$vals['action'] = $row->log_action;
+			}
 		}
 
 		if ($this->fld_details && $row->log_params !== '') {
-			self::addLogParams($this->getResult(), $vals,
-				$row->log_params, $row->log_type,
-				$row->log_timestamp);
+			if (LogEventsList::isDeleted($row, LogPage::DELETED_ACTION)) {
+				$vals['actionhidden'] = '';
+			} else {
+				self::addLogParams($this->getResult(), $vals,
+					$row->log_params, $row->log_type,
+					$row->log_timestamp);
+			}
 		}
 
 		if ($this->fld_user) {
-			$vals['user'] = $row->user_name;
-			if(!$row->log_user)
-				$vals['anon'] = '';
+			if (LogEventsList::isDeleted($row, LogPage::DELETED_USER)) {
+				$vals['userhidden'] = '';
+			} else {
+				$vals['user'] = $row->user_name;
+				if(!$row->log_user)
+					$vals['anon'] = '';
+			}
 		}
 		if ($this->fld_timestamp) {
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->log_timestamp);
 		}
 		if ($this->fld_comment && isset($row->log_comment)) {
-			$vals['comment'] = $row->log_comment;
+			if (LogEventsList::isDeleted($row, LogPage::DELETED_COMMENT)) {
+				$vals['commenthidden'] = '';
+			} else {
+				$vals['comment'] = $row->log_comment;
+			}
 		}
 
 		return $vals;

@@ -163,6 +163,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17007) Added action=import
 * BREAKING CHANGE: Removed rctitles parameter from list=recentchanges because of
   performance concerns
+* Listing (semi-)deleted revisions and log entries as well in prop=revisions and
+  list=logevents
 
 === Languages updated in 1.15 ===
 
