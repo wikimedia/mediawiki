@@ -2981,6 +2981,7 @@ $wgSpecialPageGroups = array(
 	'Newimages'                 => 'changes',
 	'Newpages'                  => 'changes',
 	'Log'                       => 'changes',
+	'Tags'			    => 'changes',
 
 	'Upload'                    => 'media',
 	'Listfiles'                 => 'media',
