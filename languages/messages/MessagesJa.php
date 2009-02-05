@@ -402,7 +402,7 @@ $messages = array(
 'categorypage'      => 'カテゴリページを表示',
 'viewtalkpage'      => 'ノートを表示',
 'otherlanguages'    => '他の言語',
-'redirectedfrom'    => '（$1 から転送）',
+'redirectedfrom'    => '($1 から転送)',
 'redirectpagesub'   => 'リダイレクトページ',
 'lastmodifiedat'    => '最終更新 $1 $2', # $1 date, $2 time
 'viewcount'         => 'このページは $1 回アクセスされました。',
@@ -443,10 +443,10 @@ $messages = array(
 
 'ok'                      => 'OK',
 'retrievedfrom'           => '"$1" より作成',
-'youhavenewmessages'      => 'あなた宛の$1が届いています。（$2）',
+'youhavenewmessages'      => 'あなた宛に$1が届いています。($2)',
 'newmessageslink'         => '新しい伝言',
 'newmessagesdifflink'     => '差分',
-'youhavenewmessagesmulti' => '$1 に新しいメッセージが届いています',
+'youhavenewmessagesmulti' => '$1 にあなた宛の新しい伝言が届いています',
 'editsection'             => '編集',
 'editold'                 => '編集',
 'viewsourceold'           => 'ソースを表示',
@@ -757,7 +757,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'accmailtext'                      => '[[User talk:$1|$1]] のために無作為に生成したパスワードを $2 に送信しました。
 
 この新アカウントのパスワードはログインした際に[[Special:ChangePassword|パスワード変更]]ページで変更できます。',
-'newarticle'                       => '（新規）',
+'newarticle'                       => '(新規)',
 'newarticletext'                   => 'あなたがクリックしたリンク先のページはまだ存在していません。
 
 このページを新規に作成するには、下のボックスに内容を書き込んでください（詳しくは[[{{MediaWiki:Helppage}}|ヘルプページ]]を参照してください）。
@@ -796,7 +796,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'storedversion'                    => '保存された版',
 'nonunicodebrowser'                => '<strong>警告: あなたの使用しているブラウザはユニコードに準拠していません。ページを編集する前にブラウザを変更してください。</strong>',
 'editingold'                       => '<strong>警告: あなたはこのページの古い版を編集しています。もしこの文章を保存すると、この版以降に追加された全ての変更が無効になってしまいます。</strong>',
-'yourdiff'                         => 'あなたの更新内容',
+'yourdiff'                         => '更新内容',
 'copyrightwarning'                 => "'''■投稿する前に以下を確認してください■'''
 * {{SITENAME}}に投稿された文書は、すべて$2（詳細は$1を参照）によって公開されることに同意してください。
 * あなたの文章が他人によって自由に編集、配布されることを望まない場合は、投稿を控えてください。
@@ -816,8 +816,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'templatesused'                    => 'このページで使われているテンプレート:',
 'templatesusedpreview'             => 'このプレビューで使われているテンプレート:',
 'templatesusedsection'             => 'このセクションで使われているテンプレート:',
-'template-protected'               => '（保護）',
-'template-semiprotected'           => '（半保護）',
+'template-protected'               => '(保護)',
+'template-semiprotected'           => '(半保護)',
 'hiddencategories'                 => 'このページは$1個の隠しカテゴリに属しています:',
 'edittools'                        => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'                    => 'ページを作成できません',
@@ -894,9 +894,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'history-feed-empty'          => '要求したページは存在しません。既に削除されたか移動された可能性があります。 [[Special:Search|このウィキの検索]]で関連する新しいページを探してみてください。',
 
 # Revision deletion
-'rev-deleted-comment'            => '（要約は削除されています）',
-'rev-deleted-user'               => '（投稿者名は削除されています）',
-'rev-deleted-event'              => '（ログの記録は削除されています）',
+'rev-deleted-comment'            => '(要約は削除されています)',
+'rev-deleted-user'               => '(投稿者名は削除されています)',
+'rev-deleted-event'              => '(ログは削除されています)',
 'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
 この版は公のアーカイブから削除されています。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。</div>',
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
@@ -1158,7 +1158,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'recentchangescount'        => '{{int:Recentchanges}}、ページ履歴、およびログで表示する既定の件数:',
 'savedprefs'                => '個人設定を保存しました。',
 'timezonelegend'            => 'タイムゾーン',
-'timezonetext'              => '¹サーバーの時刻（UTC）とあなたの地域の標準時との時差。',
+'timezonetext'              => '¹サーバーの時刻 (UTC) とあなたの地域の標準時との時差。',
 'localtime'                 => '現地時間:',
 'timezoneselect'            => 'タイムゾーン:',
 'timezoneuseserverdefault'  => 'サーバーの既定を使用',
@@ -1464,8 +1464,8 @@ PICT # misc.
 'license'            => 'ライセンス:',
 'nolicense'          => 'ライセンス情報を選択してください:',
 'license-nopreview'  => '(プレビューはありません)',
-'upload_source_url'  => '（インターネット上のURL）',
-'upload_source_file' => '（あなたのコンピューター上のファイル）',
+'upload_source_url'  => ' (インターネット上の有効なURL)',
+'upload_source_file' => ' (あなたのコンピュータ上のファイル)',
 
 # Special:ListFiles
 'listfiles-summary'     => 'この特別ページではアップロードされたすべてのファイルを一覧表示します。既定では上から新しい順にファイルが並んでいます。各列のヘッダ部分をクリックして並び順を変更できます。',
@@ -1689,8 +1689,8 @@ PICT # misc.
 # Special:AllPages
 'allpages'          => 'ページ一覧',
 'alphaindexline'    => '$1―$2',
-'nextpage'          => '次のページ（$1）',
-'prevpage'          => '前のページ（$1）',
+'nextpage'          => '次のページ ($1)',
+'prevpage'          => '前のページ ($1)',
 'allpagesfrom'      => '最初に表示するページ:',
 'allpagesto'        => '最後に表示するページ:',
 'allarticles'       => '全ページ',
@@ -1937,7 +1937,7 @@ $NEWPAGE
 'restriction-level'           => '保護レベル:',
 'minimum-size'                => '最小サイズ',
 'maximum-size'                => '最大サイズ',
-'pagesize'                    => '（バイト）',
+'pagesize'                    => '(バイト)',
 
 # Restrictions (nouns)
 'restriction-edit'   => '編集',
@@ -1991,7 +1991,7 @@ $NEWPAGE
 'undelete-missing-filearchive' => 'ID $1 の記録がデータベースに存在しないため復帰できません。既に復帰されている可能性があります。',
 'undelete-error-short'         => 'ファイル復帰エラー: $1',
 'undelete-error-long'          => '$1 の復帰中にエラーが発生しました',
-'undelete-show-file-confirm'   => 'ファイル<nowiki>$1</nowiki>" の削除された版（$2$3）を本当に表示しますか？',
+'undelete-show-file-confirm'   => 'ファイル「<nowiki>$1</nowiki>」の削除された版 ($2 $3) を本当に表示しますか？',
 'undelete-show-file-submit'    => 'はい',
 
 # Namespace form on various pages
@@ -2005,7 +2005,7 @@ $NEWPAGE
 'mycontris'           => '自分の投稿記録',
 'contribsub2'         => '利用者名: $1 ($2)',
 'nocontribs'          => '利用者の投稿記録は見つかりませんでした。',
-'uctop'               => '（最新）',
+'uctop'               => '(最新)',
 'month'               => '月:',
 'year'                => '年:',
 
@@ -2286,7 +2286,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'import-parse-failure'       => 'XMLの構文解析に失敗しました',
 'import-noarticle'           => 'インポートするページがありません！',
 'import-nonewrevisions'      => '含まれていた履歴は全て既にインポート済みです。',
-'xml-error-string'           => '"$1" $2行 $3文字目（$4バイト目）: $5',
+'xml-error-string'           => '"$1" $2行、$3文字目 ($4バイト目): $5',
 'import-upload'              => 'XMLデータをアップロード',
 'import-token-mismatch'      => 'セッションデータを損失しました。もう一度試してください。',
 'import-invalid-interwiki'   => '指定されたウィキからインポートすることができませんでした。',
@@ -2330,7 +2330,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-n-currentevents'         => '最近の出来事',
 'tooltip-n-recentchanges'         => '最近更新が行われたページの一覧',
 'tooltip-n-randompage'            => 'ランダムに記事を選んで表示',
-'tooltip-n-help'                  => 'ヘルプ・使い方',
+'tooltip-n-help'                  => '使い方などの情報を得る場所です',
 'tooltip-t-whatlinkshere'         => 'このページにリンクしているページの一覧',
 'tooltip-t-recentchangeslinked'   => 'このページからリンクしているページの最近の更新',
 'tooltip-feed-rss'                => 'このページのRSSフィード',
@@ -2450,7 +2450,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'patrol-log-page'      => 'パトロール記録',
 'patrol-log-header'    => '以下はパトロールされた版の記録です。',
 'patrol-log-line'      => '$2 の $1 をパトロール済みにマーク$3',
-'patrol-log-auto'      => '（自動）',
+'patrol-log-auto'      => '(自動)',
 'patrol-log-diff'      => 'ID:$1 の版',
 'log-show-hide-patrol' => 'パトロール記録を$1',
 
@@ -2496,10 +2496,9 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'sp-newimages-showfrom' => '$1 $2 以後現在までの新着ファイルを表示',
 
 # Bad image list
-'bad_image_list' => '書式は以下の通りです：
+'bad_image_list' => '書式は以下の通りです:
 
-リストアイテム（ * で始まる行）のみであることが考慮されています。各行最初のリンクは、好ましくないファイルへのリンクとしてください。
-各行2番目以降のリンクはその限りではありません。要は、ファイルへのリンクを列挙することです。',
+箇条書き項目（* で始まる行）のみが考慮されます。各行最初のリンクは、好ましくないファイルへのリンクとしてください。各行2番目以降のリンクはその限りではありません。要は、ファイルへのリンクを列挙することです。',
 
 /*
 Short names for language variants used for language conversion links.
@@ -2509,10 +2508,10 @@ Variants for Chinese language
 */
 'variantname-zh-hans' => '簡体',
 'variantname-zh-hant' => '正字',
-'variantname-zh-cn'   => '簡体（中国）',
-'variantname-zh-tw'   => '正字（台湾）',
-'variantname-zh-hk'   => '正字（香港）',
-'variantname-zh-sg'   => '簡体（シンガポール）',
+'variantname-zh-cn'   => '簡体 (中国)',
+'variantname-zh-tw'   => '正字 (台湾)',
+'variantname-zh-hk'   => '正字 (香港)',
+'variantname-zh-sg'   => '簡体 (シンガポール)',
 'variantname-zh'      => '無変換',
 
 # Metadata

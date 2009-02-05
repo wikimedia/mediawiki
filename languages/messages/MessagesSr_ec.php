@@ -1009,10 +1009,16 @@ $2',
 'prevn'                          => 'претходних $1',
 'nextn'                          => 'следећих $1',
 'viewprevnext'                   => 'Погледај ($1) ($2) ($3).',
+'searchmenu-legend'              => 'Опције претраге',
 'searchhelp-url'                 => 'Help:Садржај',
+'searchprofile-images'           => 'Фајлове',
+'searchprofile-everything'       => 'Све',
+'searchprofile-advanced'         => 'Напредна',
 'searchprofile-articles-tooltip' => 'Тражи у $1',
 'searchprofile-project-tooltip'  => 'Тражи у $1',
 'searchprofile-images-tooltip'   => 'Претражуј фајлове',
+'prefs-search-nsdefault'         => 'претражуј користећи подразумевана подешавања:',
+'prefs-search-nscustom'          => 'Претражуј у прилагођеним именским просторима:',
 'search-result-size'             => '$1 ({{PLURAL:$2|1 реч|$2 речи}})',
 'search-result-score'            => 'Релевантност: $1%',
 'search-redirect'                => '(преусмерење $1)',
@@ -1211,6 +1217,10 @@ $2',
 'rightsnone'     => '(нема)',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-edit'          => 'уреди ову страницу',
+'action-move'          => 'премести ову страницу',
+'action-upload'        => 'пошаљи овај фајл',
+'action-reupload'      => 'поништи овај постојећи фајл',
 'action-browsearchive' => 'претрага обрисаних страница',
 'action-undelete'      => 'врати ову страну',
 
@@ -1853,6 +1863,7 @@ Protect pages included in this page (cascading protection)',
 'undelete-error-long'        => 'Десила се грешка при враћању фајла:
 
 $1',
+'undelete-show-file-submit'  => 'Да',
 
 # Namespace form on various pages
 'namespace'      => 'Именски простор:',
@@ -1860,13 +1871,14 @@ $1',
 'blanknamespace' => '(Главно)',
 
 # Contributions
-'contributions' => 'Прилози корисника',
-'mycontris'     => 'Моји прилози',
-'contribsub2'   => 'За $1 ($2)',
-'nocontribs'    => 'Нису нађене промене које задовољавају ове услове.',
-'uctop'         => ' (врх)',
-'month'         => 'За месец (и раније):',
-'year'          => 'Од године (и раније):',
+'contributions'       => 'Прилози корисника',
+'contributions-title' => 'Прилози корисника за $1',
+'mycontris'           => 'Моји прилози',
+'contribsub2'         => 'За $1 ($2)',
+'nocontribs'          => 'Нису нађене промене које задовољавају ове услове.',
+'uctop'               => ' (врх)',
+'month'               => 'За месец (и раније):',
+'year'                => 'Од године (и раније):',
 
 'sp-contributions-newbies'     => 'Прикажи само прилоге нових налога',
 'sp-contributions-newbies-sub' => 'За новајлије',
@@ -2775,5 +2787,8 @@ $1
 # Special:BlankPage
 'blankpage'              => 'празна страна',
 'intentionallyblankpage' => 'Ова страна је намерно остављена празном.',
+
+# Database error messages
+'dberr-problems' => 'Жао нам је! Овај сајт има техничких потешкоћа.',
 
 );

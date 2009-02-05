@@ -919,7 +919,7 @@ Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLo
 
 Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima.
 Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno brisanje:",
-'deleted-notice'                   => 'Ova stranice je bila izbrisana.
+'deleted-notice'                   => 'Ova stranica je bila izbrisana.
 Evidencija brisanja za ovu stranicu je pokazana niže.',
 'deletelog-fulllog'                => 'Vidi potpunu evidenciju',
 'edit-hook-aborted'                => 'Uređivanje prekinuto kukom.

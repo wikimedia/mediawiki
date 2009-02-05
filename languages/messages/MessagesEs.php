@@ -470,9 +470,9 @@ $1',
 'laggedslavemode'      => 'Aviso: puede que falten las actualizaciones más recientes en esta página.',
 'readonly'             => 'Base de datos bloqueada',
 'enterlockreason'      => 'Explique el motivo del bloqueo, incluyendo una estimación de cuándo se producirá el desbloqueo',
-'readonlytext'         => 'La base de datos de {{SITENAME}} no permite nuevas entradas u otras modificaciones de forma temporal, probablemente por mantenimiento rutinario, tras de lo cual volverá a la normalidad.
-La explicación dada por el administrador que la bloqueó fue:
-<p>$1',
+'readonlytext'         => 'La base de datos no permite nuevas entradas u otras modificaciones de forma temporal, probablemente por mantenimiento rutinario, tras de lo cual volverá a la normalidad.
+
+La explicación dada por el administrador que la bloqueó fue: $1',
 'missing-article'      => "La base de datos no encuentra el texto de una página que debería hallarse, llamada «$1» $2.
 
 La causa de esto suele deberse a un ''diff'' anacrónico o un enlace al historial de una página que ha sido borrada.
@@ -2008,7 +2008,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Contribuciones del usuario',
-'contributions-title' => 'Contribuciones del usuario $1',
+'contributions-title' => 'Contribuciones {{GENDER:$1|del usuario|de la usuaria}} $1',
 'mycontris'           => 'Mis contribuciones',
 'contribsub2'         => '$1 ($2)',
 'nocontribs'          => 'No se encontraron cambios que cumplieran estos criterios.',
@@ -2091,7 +2091,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'unblockip'                       => 'Desbloquear usuario',
 'unblockiptext'                   => 'Use el formulario a continuación para devolver los permisos de escritura a una dirección IP que ha sido bloqueada.',
 'ipusubmit'                       => 'Remover este bloqueo',
-'unblocked'                       => '[[User:$1|$1]] ha sido desbloqueado',
+'unblocked'                       => '[[User:$1|$1]] ha sido {{GENDER:$1|desbloqueado|desbloqueada}}',
 'unblocked-id'                    => 'Se ha eliminado el bloqueo $1',
 'ipblocklist'                     => 'Lista de direcciones IP y nombres de usuario bloqueadas',
 'ipblocklist-legend'              => 'Encontrar a un usuario bloqueado',
@@ -2396,7 +2396,7 @@ Permite añadir una razón al resumen de edición.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
-'siteuser'         => 'Usuario $1 de {{SITENAME}}',
+'siteuser'         => '{{GENDER:$1|Usuario|Usuaria}} $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página fue modificada por última vez en $2, $1 por $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basado en el trabajo de $1.',
 'others'           => 'otros',

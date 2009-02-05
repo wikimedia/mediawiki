@@ -1121,7 +1121,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'saveprefs'                 => 'Desa les preferències',
 'resetprefs'                => 'Esborra els canvis no guardats',
 'restoreprefs'              => 'Restaura les preferències per defecte',
-'textboxsize'               => 'Dimensions de la caixa de text',
+'textboxsize'               => "Caixa d'edició",
 'prefs-edit-boxsize'        => "Mida de la finestra d'edició.",
 'rows'                      => 'Files',
 'columns'                   => 'Columnes',

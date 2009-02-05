@@ -669,7 +669,7 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'hr_tip'          => 'Dòng kẻ ngang (không nên lạm dụng)',
 
 # Edit pages
-'summary'                          => 'Tóm tắt:',
+'summary'                          => 'Tóm lược:',
 'subject'                          => 'Đề mục:',
 'minoredit'                        => 'Sửa đổi nhỏ',
 'watchthis'                        => 'Theo dõi trang này',
@@ -1369,8 +1369,8 @@ việc tải lên và tải lên lại được ghi lại trong [[Special:Log/up
 'uploadlogpage'               => 'Nhật trình tải lên',
 'uploadlogpagetext'           => 'Dưới đây là danh sách các tập tin đã tải lên gần nhất.
 Xem [[Special:NewFiles|trang trưng bày các tập tin mới]] để xem trực quan hơn.',
-'filename'                    => 'Tên tập tin:',
-'filedesc'                    => 'Miêu tả:',
+'filename'                    => 'Tên tập tin',
+'filedesc'                    => 'Miêu tả',
 'fileuploadsummary'           => 'Tóm lược:',
 'filereuploadsummary'         => 'Các thay đổi của tập tin:',
 'filestatus'                  => 'Bản quyền:',
