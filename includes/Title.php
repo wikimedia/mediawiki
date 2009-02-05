@@ -1496,7 +1496,7 @@ class Title {
 		}
 
 		# Shortcut for public wikis, allows skipping quite a bit of code
-		if ($wgGroupPermissions['*']['read'])
+		if ( !empty( $wgGroupPermissions['*'] ) )
 			return true;
 
 		if( $wgUser->isAllowed( 'read' ) ) {
