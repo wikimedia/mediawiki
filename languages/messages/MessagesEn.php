@@ -779,7 +779,9 @@ See [[Special:Version|version page]].',
 
 # Main script and global functions
 'nosuchaction'      => 'No such action',
-'nosuchactiontext'  => 'The action specified by the URL is not recognized by the wiki',
+'nosuchactiontext'  => 'The action specified by the URL is invalid.
+You might have mistyped the URL, or followed an incorrect link.
+This might also indicate a bug in {{SITENAME}}.',
 'nosuchspecialpage' => 'No such special page',
 'nospecialpagetext' => "<big>'''You have requested an invalid special page.'''</big>
 
@@ -859,19 +861,19 @@ $2',
 'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
 'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
-The reason given is "<i>$2</i>".',
+The reason given is "\'\'$2\'\'".',
 
 # Virus scanner
-'virus-badscanner'     => 'Bad configuration: unknown virus scanner: <i>$1</i>',
+'virus-badscanner'     => "Bad configuration: unknown virus scanner: ''$1''",
 'virus-scanfailed'     => 'scan failed (code $1)',
 'virus-unknownscanner' => 'unknown antivirus:',
 
 # Login and logout pages
 'logouttitle'                => 'User logout',
-'logouttext'                 => '<strong>You are now logged out.</strong>
+'logouttext'                 => "'''You are now logged out.'''
 
 You can continue to use {{SITENAME}} anonymously, or you can [[Special:UserLogin|log in again]] as the same or as a different user.
-Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.',
+Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomecreation'            => '== Welcome, $1! ==
 Your account has been created.
 Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
@@ -1009,7 +1011,7 @@ You may have already successfully changed your password or requested a new tempo
 'resetpass_forbidden'       => 'Passwords cannot be changed',
 'resetpass-no-info'         => 'You must be logged in to access this page directly.',
 'resetpass-submit-loggedin' => 'Change password',
-'resetpass-wrong-oldpass'   => 'Invalid temporary or current password. 
+'resetpass-wrong-oldpass'   => 'Invalid temporary or current password.
 You may have already successfully changed your password or requested a new temporary password.',
 'resetpass-temp-password'   => 'Temporary password:',
 
@@ -1120,7 +1122,7 @@ Please check if you want to create/edit this page.',
 '''Konqueror: '''click ''Reload'' or press ''F5'';
 '''Opera:''' clear the cache in ''Tools → Preferences'';
 '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5''.",
-'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
+'usercssjsyoucanpreview'           => "'''Tip:''' Use the 'Show preview' button to test your new CSS/JS before saving.",
 'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.'''
 '''It has not yet been saved!'''",
 'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript.'''
@@ -1128,22 +1130,22 @@ Please check if you want to create/edit this page.',
 'userinvalidcssjstitle'            => "'''Warning:''' There is no skin \"\$1\".
 Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/monobook.css as opposed to {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Updated)',
-'note'                             => '<strong>Note:</strong>',
-'previewnote'                      => '<strong>Remember that this is only a preview.
-Your changes have not yet been saved!</strong>',
+'note'                             => "'''Note:'''",
+'previewnote'                      => "'''Remember that this is only a preview.
+Your changes have not yet been saved!'''",
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
-'session_fail_preview'             => '<strong>Sorry! We could not process your edit due to a loss of session data.
+'session_fail_preview'             => "'''Sorry! We could not process your edit due to a loss of session data.
 Please try again.
-If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.</strong>',
-'session_fail_preview_html'        => "<strong>Sorry! We could not process your edit due to a loss of session data.</strong>
+If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.'''",
+'session_fail_preview_html'        => "'''Sorry! We could not process your edit due to a loss of session data.'''
 
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
-<strong>If this is a legitimate edit attempt, please try again.
-If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.</strong>",
-'token_suffix_mismatch'            => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.
+'''If this is a legitimate edit attempt, please try again.
+If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.'''",
+'token_suffix_mismatch'            => "'''Your edit has been rejected because your client mangled the punctuation characters in the edit token.
 The edit has been rejected to prevent corruption of the page text.
-This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
+This sometimes happens when you are using a buggy web-based anonymous proxy service.'''",
 'editing'                          => 'Editing $1',
 'editingsection'                   => 'Editing $1 (section)',
 'editingcomment'                   => 'Editing $1 (new section)',
@@ -1155,32 +1157,32 @@ You will have to merge your changes into the existing text.
 '''Only''' the text in the upper text area will be saved when you press \"Save page\".",
 'yourtext'                         => 'Your text',
 'storedversion'                    => 'Stored version',
-'nonunicodebrowser'                => '<strong>WARNING: Your browser is not unicode compliant.
-A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.</strong>',
-'editingold'                       => '<strong>WARNING: You are editing an out-of-date revision of this page.
-If you save it, any changes made since this revision will be lost.</strong>',
+'nonunicodebrowser'                => "'''WARNING: Your browser is not unicode compliant.
+A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.'''",
+'editingold'                       => "'''WARNING: You are editing an out-of-date revision of this page.
+If you save it, any changes made since this revision will be lost.'''",
 'yourdiff'                         => 'Differences',
-'copyrightwarning'                 => 'Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details).
+'copyrightwarning'                 => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details).
 If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
-<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>',
-'copyrightwarning2'                => 'Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors.
+'''DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!'''",
+'copyrightwarning2'                => "Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors.
 If you do not want your writing to be edited mercilessly, then do not submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource (see $1 for details).
-<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>',
-'longpagewarning'                  => '<strong>WARNING: This page is $1 kilobytes long;
+'''DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!'''",
+'longpagewarning'                  => "'''WARNING: This page is $1 kilobytes long;
 some browsers may have problems editing pages approaching or longer than 32kb.
-Please consider breaking the page into smaller sections.</strong>',
-'longpageerror'                    => '<strong>ERROR: The text you have submitted is $1 kilobytes long, which is longer than the maximum of $2 kilobytes.
-It cannot be saved.</strong>',
-'readonlywarning'                  => '<strong>WARNING: The database has been locked for maintenance, so you will not be able to save your edits right now.
-You may wish to cut-n-paste the text into a text file and save it for later.</strong>
+Please consider breaking the page into smaller sections.'''",
+'longpageerror'                    => "'''ERROR: The text you have submitted is $1 kilobytes long, which is longer than the maximum of $2 kilobytes.
+It cannot be saved.'''",
+'readonlywarning'                  => "'''WARNING: The database has been locked for maintenance, so you will not be able to save your edits right now.
+You may wish to cut-n-paste the text into a text file and save it for later.'''
 
-The administrator who locked it offered this explanation: $1',
-'protectedpagewarning'             => '<strong>WARNING: This page has been locked so that only users with administrator privileges can edit it.</strong>',
+The administrator who locked it offered this explanation: $1",
+'protectedpagewarning'             => "'''WARNING: This page has been locked so that only users with administrator privileges can edit it.'''",
 'semiprotectedpagewarning'         => "'''Note:''' This page has been locked so that only registered users can edit it.",
 'cascadeprotectedwarning'          => "'''Warning:''' This page has been locked so that only users with administrator privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
-'titleprotectedwarning'            => '<strong>WARNING:  This page has been locked so that only some users can create it.</strong>',
+'titleprotectedwarning'            => "'''WARNING:  This page has been locked so that only some users can create it.'''",
 'templatesused'                    => 'Templates used on this page:',
 'templatesusedpreview'             => 'Templates used in this preview:',
 'templatesusedsection'             => 'Templates used in this section:',
@@ -1827,21 +1829,21 @@ this file is $2.',
 'emptyfile'                   => 'The file you uploaded seems to be empty.
 This might be due to a typo in the file name.
 Please check whether you really want to upload this file.',
-'fileexists'                  => 'A file with this name exists already, please check <strong><tt>$1</tt></strong> if you are not sure if you want to change it.',
-'filepageexists'              => 'The description page for this file has already been created at <strong><tt>$1</tt></strong>, but no file with this name currently exists.
+'fileexists'                  => "A file with this name exists already, please check '''<tt>$1</tt>''' if you are not sure if you want to change it.",
+'filepageexists'              => "The description page for this file has already been created at '''<tt>$1</tt>''', but no file with this name currently exists.
 The summary you enter will not appear on the description page.
-To make your summary appear there, you will need to manually edit it',
-'fileexists-extension'        => 'A file with a similar name exists:<br />
-Name of the uploading file: <strong><tt>$1</tt></strong><br />
-Name of the existing file: <strong><tt>$2</tt></strong><br />
-Please choose a different name.',
+To make your summary appear there, you will need to manually edit it",
+'fileexists-extension'        => "A file with a similar name exists:<br />
+Name of the uploading file: '''<tt>$1</tt>'''<br />
+Name of the existing file: '''<tt>$2</tt>'''<br />
+Please choose a different name.",
 'fileexists-thumb'            => "<center>'''Existing file'''</center>",
-'fileexists-thumbnail-yes'    => 'The file seems to be an image of reduced size <i>(thumbnail)</i>.
-Please check the file <strong><tt>$1</tt></strong>.<br />
-If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.',
-'file-thumbnail-no'           => 'The filename begins with <strong><tt>$1</tt></strong>.
-It seems to be an image of reduced size <i>(thumbnail)</i>.
-If you have this image in full resolution upload this one, otherwise change the file name please.',
+'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
+Please check the file '''<tt>$1</tt>'''.<br />
+If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.",
+'file-thumbnail-no'           => "The filename begins with '''<tt>$1</tt>'''.
+It seems to be an image of reduced size ''(thumbnail)''.
+If you have this image in full resolution upload this one, otherwise change the file name please.",
 'fileexists-forbidden'        => 'A file with this name already exists, and cannot be overwritten.
 If you still want to upload your file, please go back and use a new name. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository.
@@ -1870,8 +1872,8 @@ You should check the $1 before proceeding to upload it again.',
 
 You should consider whether it is appropriate to continue uploading this file.
 The deletion log for this file is provided here for convenience:",
-'filename-bad-prefix'         => 'The name of the file you are uploading begins with <strong>"$1"</strong>, which is a non-descriptive name typically assigned automatically by digital cameras.
-Please choose a more descriptive name for your file.',
+'filename-bad-prefix'         => "The name of the file you are uploading begins with '''\"\$1\"''', which is a non-descriptive name typically assigned automatically by digital cameras.
+Please choose a more descriptive name for your file.",
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntax is as follows:
 #   * Everything from a "#" character to the end of the line is a comment
@@ -2397,7 +2399,7 @@ last contributor is only author of this page.',
 someone else has edited or rolled back the page already.
 
 The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'The edit summary was: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => "The edit summary was: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last version by [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Reverted edits by $1;
 changed back to last version by $2.',
@@ -2422,13 +2424,13 @@ See the [[Special:ProtectedPages|protected pages list]] for the list of currentl
 'protect_expiry_invalid'      => 'Expiry time is invalid.',
 'protect_expiry_old'          => 'Expiry time is in the past.',
 'protect-unchain'             => 'Unlock move permissions',
-'protect-text'                => 'You may view and change the protection level here for the page <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'You cannot change protection levels while blocked.
-Here are the current settings for the page <strong>$1</strong>:',
-'protect-locked-dblock'       => 'Protection levels cannot be changed due to an active database lock.
-Here are the current settings for the page <strong>$1</strong>:',
-'protect-locked-access'       => 'Your account does not have permission to change page protection levels.
-Here are the current settings for the page <strong>$1</strong>:',
+'protect-text'                => "You may view and change the protection level here for the page '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "You cannot change protection levels while blocked.
+Here are the current settings for the page '''$1''':",
+'protect-locked-dblock'       => "Protection levels cannot be changed due to an active database lock.
+Here are the current settings for the page '''$1''':",
+'protect-locked-access'       => "Your account does not have permission to change page protection levels.
+Here are the current settings for the page '''$1''':",
 'protect-cascadeon'           => "This page is currently protected because it is included in the following {{PLURAL:$1|page, which has|pages, which have}} cascading protection turned on.
 You can change this page's protection level, but it will not affect the cascading protection.",
 'protect-default'             => 'Allow all users',
