@@ -523,16 +523,16 @@ $2',
 El motivo dado fue: ''$2''",
 
 # Virus scanner
-'virus-badscanner'     => 'Error de configuración: Antivirus desconocido: <i>$1</i>',
+'virus-badscanner'     => "Error de configuración: Antivirus desconocido: ''$1''",
 'virus-scanfailed'     => 'Escaneo fallido (código $1)',
 'virus-unknownscanner' => 'antivirus desconocido:',
 
 # Login and logout pages
 'logouttitle'                => 'Fin de sesión',
-'logouttext'                 => '<strong>Ha terminado su sesión.</strong>
+'logouttext'                 => "'''Ha terminado su sesión.'''
 
 Puedes continuar usando {{SITENAME}} de forma anónima, o puedes [[Special:UserLogin|iniciar sesión otra vez]] con el mismo u otro usuario.
-Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas pueden verse como si siguieras identificado hasta que las refresques.',
+Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas pueden verse como si siguieras identificado hasta que las refresques.",
 'welcomecreation'            => '== ¡Bienvenido(a), $1! ==
 
 Tu cuenta ha sido creada. 
@@ -740,24 +740,24 @@ Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor 
 *'''Konqueror: '''Haz click en el botón ''Reload'' o pulsa ''F5;''
 *'''Opera:''' Limpia la caché en ''Herramientas → Preferencias;''
 *'''Internet Explorer:''' pulsa ''Ctrl'' mientras haces click en ''Refresh,'' o pulsa ''Ctrl-F5.''",
-'usercssjsyoucanpreview'           => '<strong>Consejo:</strong> Use el botón «Mostrar previsualización» para probar su nuevo css/js antes de grabarlo.',
+'usercssjsyoucanpreview'           => "'''Consejo:''' Use el botón «Mostrar previsualización» para probar su nuevo css/js antes de grabarlo.",
 'usercsspreview'                   => "'''Recuerde que sólo está previsualizando su CSS de usuario.'''
 '''¡Aún no se ha grabado!'''",
 'userjspreview'                    => "'''¡Recuerde que sólo está previsualizando su javascript de usuario y aún no se ha grabado!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Actualizado)',
-'note'                             => '<strong>Nota:</strong>',
-'previewnote'                      => '<strong>¡Recuerde que esto es sólo una previsualización y aún no se ha grabado!</strong>',
+'note'                             => "'''Nota:'''",
+'previewnote'                      => "'''¡Recuerde que esto es sólo una previsualización y aún no se ha grabado!'''",
 'previewconflict'                  => 'La previsualización le muestra cómo aparecerá el texto una vez guardados los cambios.',
-'session_fail_preview'             => '<strong>Lo sentimos, no pudimos efectuar su edición debido a una pérdida de los datos de sesión. Por favor, inténtelo de nuevo y si no funciona, salga de su sesión y vuelva a identificarse.</strong>',
-'session_fail_preview_html'        => "<strong>Lo sentimos, no hemos podido procesar tu cambio debido a una pérdida de datos de sesión.</strong>
+'session_fail_preview'             => "'''Lo sentimos, no pudimos efectuar su edición debido a una pérdida de los datos de sesión. Por favor, inténtelo de nuevo y si no funciona, salga de su sesión y vuelva a identificarse.'''",
+'session_fail_preview_html'        => "'''Lo sentimos, no hemos podido procesar tu cambio debido a una pérdida de datos de sesión.'''
 
 ''Puesto que este wiki tiene el HTML puro habilitado, la visión preliminar está oculta para prevenirse contra ataques en JavaScript.''
 
-<strong>Si éste es un intento legítimo de modificación, por favor, inténtelo de nuevo. Si aún entonces no funcionase, pruebe a cerrar la sesión y a ingresar de nuevo.</strong>",
-'token_suffix_mismatch'            => '<strong>Tu edición ha sido rechazada porque tu cliente ha mezclado los signos de puntuación en el token de edición. 
+'''Si éste es un intento legítimo de modificación, por favor, inténtelo de nuevo. Si aún entonces no funcionase, pruebe a cerrar la sesión y a ingresar de nuevo.'''",
+'token_suffix_mismatch'            => "'''Tu edición ha sido rechazada porque tu cliente ha mezclado los signos de puntuación en el token de edición. 
 Se rechazó la edición para evitar que el texto de la página se corrompa
-Esto sucede en ocasiones cuando se usa un servicio de proxy anónimo defectuoso.</strong>',
+Esto sucede en ocasiones cuando se usa un servicio de proxy anónimo defectuoso.'''",
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (sección)',
 'editingcomment'                   => 'Editando $1 (nueva sección)',
@@ -769,23 +769,23 @@ Si quieres grabar tus cambios, has de trasladarlos al área superior.
 '''Sólo''' el texto en el área de texto superior será grabado cuando pulses «Grabar página».",
 'yourtext'                         => 'Su texto',
 'storedversion'                    => 'Versión almacenada',
-'nonunicodebrowser'                => '<strong>Atención: Su navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que le permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.</strong>',
-'editingold'                       => '<strong>ADVERTENCIA: Estás editando una versión antigua de esta página.
-Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>',
+'nonunicodebrowser'                => "'''Atención: Su navegador no cumple la norma Unicode. Se ha activado un sistema de edición alternativo que le permitirá editar artículos con seguridad: los caracteres no ASCII aparecerán en la caja de edición como códigos hexadecimales.'''",
+'editingold'                       => "'''ADVERTENCIA: Estás editando una versión antigua de esta página.
+Si la grabas, los cambios hechos desde esa revisión se perderán.'''",
 'yourdiff'                         => 'Diferencias',
-'copyrightwarning'                 => 'Por favor observa que todas las contribuciones a {{SITENAME}} se consideran hechas públicas bajo la $2 (ver detalles en $1).Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. También tú nos aseguras que escribiste esto texto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre.<strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong><br />',
-'copyrightwarning2'                => 'Por favor, ten en cuenta que todas las contribuciones a {{SITENAME}} pueden ser editadas, modificadas o eliminadas por otros colaboradores. Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. <br />También tú nos aseguras que escribiste esto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre. (véase $1 para detalles). <br /><strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong>',
-'longpagewarning'                  => '<strong>Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32 kB o más.
-Por favor considere la posibilidad de dividir esta página en secciones más pequeñas.</strong>',
-'longpageerror'                    => '<strong>ERROR: El texto que has enviado ocupa $1 kilobytes, que excede el máximo de $2 kilobytes. No se puede guardar.</strong>',
-'readonlywarning'                  => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
-Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>
+'copyrightwarning'                 => "Por favor observa que todas las contribuciones a {{SITENAME}} se consideran hechas públicas bajo la $2 (ver detalles en $1).Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. También tú nos aseguras que escribiste esto texto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre.'''¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!'''<br />",
+'copyrightwarning2'                => "Por favor, ten en cuenta que todas las contribuciones a {{SITENAME}} pueden ser editadas, modificadas o eliminadas por otros colaboradores. Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. <br />También tú nos aseguras que escribiste esto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre. (véase $1 para detalles). <br />'''¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!'''",
+'longpagewarning'                  => "'''Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32 kB o más.
+Por favor considere la posibilidad de dividir esta página en secciones más pequeñas.'''",
+'longpageerror'                    => "'''ERROR: El texto que has enviado ocupa $1 kilobytes, que excede el máximo de $2 kilobytes. No se puede guardar.'''",
+'readonlywarning'                  => "'''Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
+Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.'''
 
-El administrador que la bloqueó dio esta explicación: $1',
-'protectedpagewarning'             => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.</strong>',
+El administrador que la bloqueó dio esta explicación: $1",
+'protectedpagewarning'             => "'''ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
 'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
-'titleprotectedwarning'            => '<strong>ATENCIÓN:  Esta página está protegida de modo que sólo algunos usuarios pueden crearla.</strong>',
+'titleprotectedwarning'            => "'''ATENCIÓN:  Esta página está protegida de modo que sólo algunos usuarios pueden crearla.'''",
 'templatesused'                    => 'Plantillas usadas en esta página:',
 'templatesusedpreview'             => 'Plantillas usadas en esta previsualización:',
 'templatesusedsection'             => 'Plantillas usadas en esta sección:',
@@ -1392,19 +1392,19 @@ Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción v
 'large-file'                  => 'Se recomienda que los archivos no sean mayores de $1; este archivo ocupa $2.',
 'largefileserver'             => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',
 'emptyfile'                   => 'El archivo que has intentado subir parece estar vacío; por favor, verifica que realmente se trate del archivo que intentabas subir.',
-'fileexists'                  => 'Ya existe un archivo con este nombre. Por favor compruebe el existente <strong><tt>$1</tt></strong> si no está seguro de querer reemplazarlo.',
-'filepageexists'              => 'La página de descripción de este archivo ya ha sido creada en <strong><tt>$1</tt></strong>, pero no existe actualmente ningún fichero con este nombre.
-El resumen que ha ingresado no aparecerá en la página de descripción. Para que el sumario aparezca, deberá editarlo manualmente.',
-'fileexists-extension'        => 'Existe un archivo con un nombre similar:<br />
-Nombre del archivo que se está subiendo: <strong><tt>$1</tt></strong><br />
-Nombre del archivo ya existente: <strong><tt>$2</tt></strong><br />
-Por favor, elige un nombre diferente.',
+'fileexists'                  => "Ya existe un archivo con este nombre. Por favor compruebe el existente '''<tt>$1</tt>''' si no está seguro de querer reemplazarlo.",
+'filepageexists'              => "La página de descripción de este archivo ya ha sido creada en '''<tt>$1</tt>''', pero no existe actualmente ningún fichero con este nombre.
+El resumen que ha ingresado no aparecerá en la página de descripción. Para que el sumario aparezca, deberá editarlo manualmente.",
+'fileexists-extension'        => "Existe un archivo con un nombre similar:<br />
+Nombre del archivo que se está subiendo: '''<tt>$1</tt>'''<br />
+Nombre del archivo ya existente: '''<tt>$2</tt>'''<br />
+Por favor, elige un nombre diferente.",
 'fileexists-thumb'            => "<center>'''Imagen existente'''</center>",
-'fileexists-thumbnail-yes'    => 'El archivo parece ser una imagen de tamaño reducido <i>(thumbnail)</i>. Por favor comprueba el archivo <strong><tt>$1</tt></strong>.<br />
-Si el archivo comprobado es la misma imagen a tamaño original no es necesario subir un thumbnail más.',
-'file-thumbnail-no'           => 'El nombre del archivo comienza con <strong><tt>$1</tt></strong>.
-Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.
-Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nombre del archivo.',
+'fileexists-thumbnail-yes'    => "El archivo parece ser una imagen de tamaño reducido ''(thumbnail)''. Por favor comprueba el archivo '''<tt>$1</tt>'''.<br />
+Si el archivo comprobado es la misma imagen a tamaño original no es necesario subir un thumbnail más.",
+'file-thumbnail-no'           => "El nombre del archivo comienza con '''<tt>$1</tt>'''.
+Parece ser una imagen de tamaño reducido ''(thumbnail)''.
+Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nombre del archivo.",
 'fileexists-forbidden'        => 'Ya existe un archivo con este nombre. Por favor, cambie el nombre del archivo y vuelva a subirlo. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ya existe un archivo con este nombre en el repositorio compartido.
 Si todavía quiere subir su archivo, por favor, regrese a la página anterior y use otro nombre. [[File:$1|thumb|center|$1]]',
@@ -1430,9 +1430,9 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 
 Debería considerar si resulta apropiado continuar cargándolo.
 A continuación se muestra el registro de borrado de este archivo:",
-'filename-bad-prefix'         => 'El nombre del archivo que estás subiendo comienza por <strong>«$1»</strong>, un nombre nada descriptivo de su contenido. Es un típico nombre de los que asignan automáticamente las cámaras digitales.
+'filename-bad-prefix'         => "El nombre del archivo que estás subiendo comienza por '''«$1»''', un nombre nada descriptivo de su contenido. Es un típico nombre de los que asignan automáticamente las cámaras digitales.
 
-Por favor, elige un nombre más descriptivo.',
+Por favor, elige un nombre más descriptivo.",
 
 'upload-proto-error'      => 'Protocolo incorrecto',
 'upload-proto-error-text' => 'Para subir archivos desde otra página la URL debe comenzar por <code>http://</code> o <code>ftp://</code>.',
@@ -1886,7 +1886,7 @@ Véase $2 para un registro de los borrados recientes.',
 'alreadyrolled'    => 'No se puede revertir la última edición de [[:$1]] hecha por [[User:$2|$2]] ([[User talk:$2|discusión]] | [[Special:Contributions/$2|{{int:contribslink}}]]); alguien más ya ha editado o revertido esa página.
 
 La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'El resumen de la edición fue: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => "El resumen de la edición fue: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Revertidas las ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discusión]]) a la última edición de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
 'sessionfailure'   => 'Parece que hay un problema con tu sesión;
@@ -1908,12 +1908,12 @@ Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de 
 'protect_expiry_invalid'      => 'Tiempo de caducidad incorrecto.',
 'protect_expiry_old'          => 'El tiempo de expiración está en el pasado.',
 'protect-unchain'             => 'Configurar permisos para traslados',
-'protect-text'                => 'Puedes ver y modificar el nivel de protección de la página <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'No puede cambiar los niveles de protección estando bloqueado. A continuación se muestran las opciones actuales de la página <strong>$1</strong>:',
-'protect-locked-dblock'       => 'Los niveles de protección no se pueden cambiar debido a un bloqueo activo de la base de datos.
-A continuación se muestran las opciones actuales de la página <strong>$1</strong>:',
-'protect-locked-access'       => 'Su cuenta no tiene permiso para cambiar los niveles de protección de una página.
-A continuación se muestran las opciones actuales de la página <strong>$1</strong>:',
+'protect-text'                => "Puedes ver y modificar el nivel de protección de la página '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "No puede cambiar los niveles de protección estando bloqueado. A continuación se muestran las opciones actuales de la página '''$1''':",
+'protect-locked-dblock'       => "Los niveles de protección no se pueden cambiar debido a un bloqueo activo de la base de datos.
+A continuación se muestran las opciones actuales de la página '''$1''':",
+'protect-locked-access'       => "Su cuenta no tiene permiso para cambiar los niveles de protección de una página.
+A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-cascadeon'           => 'Actualmente esta página está protegida porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que tienen activada la opción de protección en cascada. Puedes cambiar el nivel de protección de esta página, pero no afectará a la protección en cascada.',
 'protect-default'             => 'Permitir todos los usuarios',
 'protect-fallback'            => 'Necesita el permiso «$1»',

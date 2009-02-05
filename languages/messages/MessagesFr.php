@@ -638,7 +638,7 @@ $2',
 Le motif avancé est « ''$2'' ».",
 
 # Virus scanner
-'virus-badscanner'     => 'Mauvaise configuration : scanneur de virus inconnu : <i>$1</i>',
+'virus-badscanner'     => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",
 'virus-scanfailed'     => 'Échec de la recherche (code $1)',
 'virus-unknownscanner' => 'antivirus inconnu :',
 
@@ -859,19 +859,19 @@ Si vous êtes arrivé{{GENDER:||e|(e)}} ici par erreur, cliquez sur le bouton ''
 'userjspreview'                    => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
 'userinvalidcssjstitle'            => "'''Attention :''' il n’existe pas de style « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/monobook.css et non {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Mis à jour)',
-'note'                             => '<strong>Note :</strong>',
-'previewnote'                      => '<strong>Attention, ce texte n’est qu’une prévisualisation et n’a pas encore été publié !</strong>',
+'note'                             => "'''Note :'''",
+'previewnote'                      => "'''Attention, ce texte n’est qu’une prévisualisation et n’a pas encore été publié !'''",
 'previewconflict'                  => 'Cette prévisualisation montre le texte de la boîte supérieure de modification tel qu’il apparaîtra si vous choisissez de le publier.',
-'session_fail_preview'             => '<strong>Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.
+'session_fail_preview'             => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.
 Veuillez réessayer.
-Si cela échoue à nouveau, essayez de vous déconnecter, puis connectez-vous à nouveau.</strong>',
-'session_fail_preview_html'        => "<strong>Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.</strong>
+Si cela échoue à nouveau, essayez de vous déconnecter, puis connectez-vous à nouveau.'''",
+'session_fail_preview_html'        => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.'''
 
 ''Parce que {{SITENAME}} a activé l’HTML brut, la prévisualisation a été masquée afin de prévenir une attaque par JavaScript.''
 
-<strong>Si la tentative de modification était légitime, veuillez réessayer.
-Si cela échoue à nouveau, déconnectez-vous, puis reconnectez-vous.</strong>",
-'token_suffix_mismatch'            => '<strong>Votre modification n’a pas été acceptée car votre navigateur Web a mélangé les caractères de ponctuation dans l’identifiant d’édition. La modification a été rejetée afin d’empêcher la corruption du texte de la page. Ce problème se produit lorsque vous utilisez un mandataire anonyme problématique.</strong>',
+'''Si la tentative de modification était légitime, veuillez réessayer.
+Si cela échoue à nouveau, déconnectez-vous, puis reconnectez-vous.'''",
+'token_suffix_mismatch'            => "'''Votre modification n’a pas été acceptée car votre navigateur Web a mélangé les caractères de ponctuation dans l’identifiant d’édition. La modification a été rejetée afin d’empêcher la corruption du texte de la page. Ce problème se produit lorsque vous utilisez un mandataire anonyme problématique.'''",
 'editing'                          => 'Modification de $1',
 'editingsection'                   => 'Modification de $1 (section)',
 'editingcomment'                   => 'Modification de $1 (nouvelle section)',
@@ -879,18 +879,18 @@ Si cela échoue à nouveau, déconnectez-vous, puis reconnectez-vous.</strong>",
 'explainconflict'                  => '<b>Cette page a été sauvegardée après que vous avez commencé à la modifier. La zone de modification supérieure contient le texte tel qu’il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone de modification inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.</b><br />',
 'yourtext'                         => 'Votre texte',
 'storedversion'                    => 'Version enregistrée',
-'nonunicodebrowser'                => '<strong>Attention : Votre navigateur ne supporte pas l’Unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en toute sûreté une page : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
-'editingold'                       => '<strong>Attention : vous êtes en train de modifier une ancienne version de cette page.
-Si vous la publiez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
+'nonunicodebrowser'                => "'''Attention : Votre navigateur ne supporte pas l’Unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en toute sûreté une page : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.'''",
+'editingold'                       => "'''Attention : vous êtes en train de modifier une ancienne version de cette page.
+Si vous la publiez, toutes les modifications effectuées depuis cette version seront perdues.'''",
 'yourdiff'                         => 'Différences',
-'copyrightwarning'                 => 'Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
-Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. <strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !</strong>',
-'copyrightwarning2'                => 'Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
+'copyrightwarning'                 => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
+Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. '''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
+'copyrightwarning2'                => "Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. (voir $1 pour plus de détails).
-<strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !</strong>',
+'''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
 'longpagewarning'                  => "'''AVERTISSEMENT : cette page a une longueur de $1 Kio ;
 certains navigateurs Web gèrent mal la modification des pages approchant ou dépassant 32 Kio. Peut-être devriez-vous diviser la page en sections plus petites.'''",
-'longpageerror'                    => '<strong>ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvegardé.</strong>',
+'longpageerror'                    => "'''ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvegardé.'''",
 'readonlywarning'                  => "'''AVERTISSEMENT : La base de données a été verrouillée pour maintenance, vous ne pourrez donc pas publier vos modifications maintenant.
 Vous pouvez copier le texte dans un fichier texte et le publier pour plus tard.'''
 
@@ -899,7 +899,7 @@ L’administrateur ayant verrouillé la base de données a donné l’explicatio
 Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.'''",
 'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier.",
 'cascadeprotectedwarning'          => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent l’éditer. Cette protection a été faite car cette page est incluse dans {{PLURAL:$1|une page protégée|des pages protégées}} avec la « protection en cascade » activée.",
-'titleprotectedwarning'            => '<strong>ATTENTION : Cette page a été protégée de telle manière que seuls certains utilisateurs puissent la créer.</strong>',
+'titleprotectedwarning'            => "'''ATTENTION : Cette page a été protégée de telle manière que seuls certains utilisateurs puissent la créer.'''",
 'templatesused'                    => 'Modèles utilisés sur cette page :',
 'templatesusedpreview'             => 'Modèles utilisés dans cette prévisualisation :',
 'templatesusedsection'             => 'Modèles utilisés dans cette section :',
@@ -1488,18 +1488,18 @@ Voyez la [[Special:NewFiles|gallerie des nouvelles images]] pour une présentati
 'large-file'                  => 'Les fichiers importés ne devraient pas être plus gros que $1 ; ce fichier fait $2.',
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
 'emptyfile'                   => 'Le fichier que vous voulez importer semble vide. Ceci peut être dû à une erreur dans le nom du fichier. Veuillez vérifier que vous désirez vraiment copier ce fichier.',
-'fileexists'                  => 'Un fichier avec ce nom existe déjà. Merci de vérifier <strong><tt>$1</tt></strong>. Êtes-vous certain de vouloir modifier ce fichier ?',
-'filepageexists'              => 'La page de description pour ce fichier a déjà été créée ici <strong><tt>$1</tt></strong>, mais aucun fichier de ce nom n’existe actuellement. Le résumé que vous allez écrire ne remplacera pas le texte précédent ; pour ce faire vous devrez éditer manuellement la page.',
-'fileexists-extension'        => 'Un fichier avec un nom similaire existe déjà :<br />
-Nom du fichier à importer : <strong><tt>$1</tt></strong><br />
-Nom du fichier existant : <strong><tt>$2</tt></strong><br />
-la seule différence est la casse (majuscules / minuscules) de l’extension. Veuillez vérifier que le fichier est différent et changer son nom.',
+'fileexists'                  => "Un fichier avec ce nom existe déjà. Merci de vérifier '''<tt>$1</tt>'''. Êtes-vous certain de vouloir modifier ce fichier ?",
+'filepageexists'              => "La page de description pour ce fichier a déjà été créée ici '''<tt>$1</tt>''', mais aucun fichier de ce nom n’existe actuellement. Le résumé que vous allez écrire ne remplacera pas le texte précédent ; pour ce faire vous devrez éditer manuellement la page.",
+'fileexists-extension'        => "Un fichier avec un nom similaire existe déjà :<br />
+Nom du fichier à importer : '''<tt>$1</tt>'''<br />
+Nom du fichier existant : '''<tt>$2</tt>'''<br />
+la seule différence est la casse (majuscules / minuscules) de l’extension. Veuillez vérifier que le fichier est différent et changer son nom.",
 'fileexists-thumb'            => "<center>'''Image existante'''</center>",
-'fileexists-thumbnail-yes'    => 'Le fichier semble être une image en taille réduite <i>(vignette)</i>. Veuillez vérifier le fichier <strong><tt>$1</tt></strong>.<br />
-Si le fichier vérifié est la même image (dans une meilleure résolution), il n’y a pas besoin d’importer une version réduite.',
-'file-thumbnail-no'           => 'Le nom du fichier commence par <strong><tt>$1</tt></strong>.
-Il est possible qu’il s’agisse d’une version réduite <i>(vignette)</i>.
-Si vous disposez du fichier en haute résolution, importez-le, sinon changez-lui son nom.',
+'fileexists-thumbnail-yes'    => "Le fichier semble être une image en taille réduite ''(vignette)''. Veuillez vérifier le fichier '''<tt>$1</tt>'''.<br />
+Si le fichier vérifié est la même image (dans une meilleure résolution), il n’y a pas besoin d’importer une version réduite.",
+'file-thumbnail-no'           => "Le nom du fichier commence par '''<tt>$1</tt>'''.
+Il est possible qu’il s’agisse d’une version réduite ''(vignette)''.
+Si vous disposez du fichier en haute résolution, importez-le, sinon changez-lui son nom.",
 'fileexists-forbidden'        => "Un fichier avec ce nom existe déjà et ne peut pas être écrasé.
 Si vous voulez toujours importer ce fichier, merci de retourner en arrière et d'utiliser un nouveau nom. [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => 'Un fichier portant le même nom existe déjà dans la base de données commune.
@@ -1526,8 +1526,8 @@ Veuillez vérifer le fichier.',
 'upload-wasdeleted'           => "'''Attention : Vous êtes en train d’importer un fichier qui a déjà été supprimé auparavant.'''
 
 Le journal des suppressions de ce fichier vous aidera à déterminer s’il est opportun de continuer son import :",
-'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>« $1 »</strong> qui est un nom généralement donné par les appareils photo numériques.
-Veuillez choisir un nom de fichier descriptif.',
+'filename-bad-prefix'         => "Le nom du fichier que vous importez commence par '''« $1 »''' qui est un nom généralement donné par les appareils photo numériques.
+Veuillez choisir un nom de fichier descriptif.",
 'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --><pre>
 # La syntaxe est la suivante :
 #  * Tout ce qui figure entre un caractère "#" jusqu’à la fin de la ligne est un commentaire ;
@@ -1986,7 +1986,7 @@ L’heure indiquée est celle du serveur.',
 'rollbackfailed'   => 'La révocation a échoué',
 'cantrollback'     => 'Impossible de révoquer : l’auteur est la seule personne à avoir effectué des modifications sur cette page.',
 'alreadyrolled'    => 'Impossible de révoquer la dernière modification de la page « [[$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quelqu’un d’autre a déjà modifié ou révoqué la page. La dernière modification a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
-'editcomment'      => 'Le résumé de la modification était : « <i>$1</i> ».', # only shown if there is an edit comment
+'editcomment'      => "Le résumé de la modification était : « ''$1'' ».", # only shown if there is an edit comment
 'revertpage'       => 'Révocation des modifications par [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) vers la dernière version de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Révocation des modifications de $1 ; retour à la version de $2.',
 'sessionfailure'   => 'Votre session de connexion semble avoir des problèmes ; cette action a été annulée en prévention d’un piratage de session. Cliquez sur « Précédent » et rechargez la page d’où vous venez, puis réessayez.',
@@ -2007,13 +2007,13 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protect_expiry_invalid'      => 'Le temps d’expiration est invalide.',
 'protect_expiry_old'          => 'Le temps d’expiration est déjà passé.',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
-'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué{{GENDER:||e|(e)}}.
-Voici les réglages actuels de la page <strong>$1</strong> :',
-'protect-locked-dblock'       => 'Le niveau de protection ne peut pas être modifié car la base de données est bloquée.
-Voici les réglages actuels de la page <strong>$1</strong> :',
-'protect-locked-access'       => 'Vous n’avez pas les droits nécessaires pour modifier la protection de la page.
-Voici les réglages actuels de la page <strong>$1</strong> :',
+'protect-text'                => "Vous pouvez consulter et modifier le niveau de protection de la page '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué{{GENDER:||e|(e)}}.
+Voici les réglages actuels de la page '''$1''' :",
+'protect-locked-dblock'       => "Le niveau de protection ne peut pas être modifié car la base de données est bloquée.
+Voici les réglages actuels de la page '''$1''' :",
+'protect-locked-access'       => "Vous n’avez pas les droits nécessaires pour modifier la protection de la page.
+Voici les réglages actuels de la page '''$1''' :",
 'protect-cascadeon'           => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, {{PLURAL:$1|laquelle a été protégée|lesquelles ont été protégées}} avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
 'protect-default'             => 'Autoriser tous les utilisateurs',
 'protect-fallback'            => 'Nécessite l’habilitation « $1 »',

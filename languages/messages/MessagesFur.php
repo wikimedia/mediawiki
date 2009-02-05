@@ -375,7 +375,7 @@ Al podarès vê dentri caratars che no podin jessi doprâts tai titui.',
 
 # Login and logout pages
 'logouttitle'               => 'Jessude dal utent',
-'logouttext'                => '<strong>Tu sâs cumò lât fûr.</strong><br />Tu puedis continuâ a doprâ {{SITENAME}} come anonim, o tu puedis jentrâ cul stes o cuntun altri non utent. Note che cualchi pagjine e pues mostrâti ancjemò come jentrât tal sît fin cuant che no tu netis la cache dal sgarfadôr.',
+'logouttext'                => "'''Tu sâs cumò lât fûr.'''<br />Tu puedis continuâ a doprâ {{SITENAME}} come anonim, o tu puedis jentrâ cul stes o cuntun altri non utent. Note che cualchi pagjine e pues mostrâti ancjemò come jentrât tal sît fin cuant che no tu netis la cache dal sgarfadôr.",
 'welcomecreation'           => '== Mandi e benvignût $1! ==
 
 La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis preferencis di {{SITENAME}}.',
@@ -518,7 +518,7 @@ Par plasê inclût la to direzion IP atuâl ($3) o il numar dal bloc (ID #$5) in
 'userpage-userdoesnotexist' => 'La identitât "$1" no je di un utent regjistrât. Controle che tu vuelis pardabon creâ o modificâ cheste pagjine.',
 'clearyourcache'            => "'''Ocjo: dopo vê salvât, tu podaressis scugnî netâ la cache dal to sgarfadôr par viodi i cambiaments.''' Par '''Mozilla / Firefox / Safari''': frache ''Torne a cjamâ'' tignint jù ancje il tast des maiusculis, o se no frache ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); par '''Konqueror''': frache ''Reload'' o il tast ''F5''; par '''Opera''' al pues jessi necessari disvuedâ dal dut la cache doprant il menù ''Tools → Preferencis''; par '''Internet Explorer:''' ten fracât il tast ''Ctrl'' cuant che tu cjalcjis su ''Aggiorna'' o frache ''Ctrl-F5''.",
 'updated'                   => '(Inzornât)',
-'previewnote'               => '<strong>Visiti che cheste e je dome une anteprime, e no je stade ancjemò salvade!</strong>',
+'previewnote'               => "'''Visiti che cheste e je dome une anteprime, e no je stade ancjemò salvade!'''",
 'editing'                   => 'Cambiament di $1',
 'editingsection'            => 'Cambiament di $1 (sezion)',
 'editingcomment'            => 'Cambiament di $1 (coment)',
@@ -527,13 +527,13 @@ Par plasê inclût la to direzion IP atuâl ($3) o il numar dal bloc (ID #$5) in
 La aree di test disore e conten il test de pagjine che esist cumò, i tiei cambiaments a son mostrâts inte aree disot.
 Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 <b>Dome</b> il test in alt al vignarà salvât cuant che tu frachis su "Salve pagjine".<br />',
-'editingold'                => '<strong>ATENZION: tu stâs cambiant une version vecje e no inzornade di cheste pagjine. Se tu la salvis, ducj i cambiaments fats di chê volte in ca a laran pierdûts.</strong>',
+'editingold'                => "'''ATENZION: tu stâs cambiant une version vecje e no inzornade di cheste pagjine. Se tu la salvis, ducj i cambiaments fats di chê volte in ca a laran pierdûts.'''",
 'yourdiff'                  => 'Difarencis',
-'copyrightwarning'          => 'Note: ducj i contribûts a {{SITENAME}} a si considerin come dâts fûr sot de licence $2 (cjale $1 pai detais). Se no tu vuelis che i tiei tescj a podedin jessi modificâts e tornâts a dâ fûr di ognidun cence limits, no stâ mandâju a {{SITENAME}}.<br />
+'copyrightwarning'          => "Note: ducj i contribûts a {{SITENAME}} a si considerin come dâts fûr sot de licence $2 (cjale $1 pai detais). Se no tu vuelis che i tiei tescj a podedin jessi modificâts e tornâts a dâ fûr di ognidun cence limits, no stâ mandâju a {{SITENAME}}.<br />
 Cun di plui, inviant il test tu declaris che tu âs scrit tu chest o tu lu âs copiât di une sorzint tal domini public o di une sorzint libare.
-<strong>NO STÂ MANDÂ MATERIÂL CUVIERT DAL DIRIT DI AUTÔR CENCE AUTORIZAZION!</strong>',
-'longpagewarning'           => '<strong>ATENZION: cheste pagjine e je grande $1 kilobytes; cualchi sgarfadôr al podarès vê problemis a modificâ pagjinis di 32 kb o plui grandis. Considere par plasê la pussibilitât di dividi la pagjine in sezions plui piçulis.</strong>',
-'readonlywarning'           => "<strong>ATENZION: La base di dâts e je blocade par vie de manutenzion, par cui no si podin salvâ lis modifichis par cumò. Par no pierdilis, tu puedis copiâ e tacâ il test inserît fin cumò e salvâlu intun file di test.</strong>
+'''NO STÂ MANDÂ MATERIÂL CUVIERT DAL DIRIT DI AUTÔR CENCE AUTORIZAZION!'''",
+'longpagewarning'           => "'''ATENZION: cheste pagjine e je grande $1 kilobytes; cualchi sgarfadôr al podarès vê problemis a modificâ pagjinis di 32 kb o plui grandis. Considere par plasê la pussibilitât di dividi la pagjine in sezions plui piçulis.'''",
+'readonlywarning'           => "'''ATENZION: La base di dâts e je blocade par vie de manutenzion, par cui no si podin salvâ lis modifichis par cumò. Par no pierdilis, tu puedis copiâ e tacâ il test inserît fin cumò e salvâlu intun file di test.'''
 
 L'aministradôr che al à blocât la base di dâts al à ufiert chest spiegazion: $1",
 'templatesused'             => 'Modei doprâts par cheste pagjine:',
@@ -1068,9 +1068,9 @@ Cjale $2 par une liste des ultimis eliminazions.',
 'protect_expiry_invalid'      => 'Scjadence no valide.',
 'protect_expiry_old'          => 'La scjadence e je za passade.',
 'protect-unchain'             => 'Sbloche i permès di spostament',
-'protect-text'                => 'Ca tu puedis viodi e cambiâ il nivel di protezion pe pagjine <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-access'       => 'No tu âs i permès che a coventis par cambiâ i nivei di protezion de pagjine.
-Lis impuestazions atuâls pe pagjine a son <strong>$1</strong>:',
+'protect-text'                => "Ca tu puedis viodi e cambiâ il nivel di protezion pe pagjine '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "No tu âs i permès che a coventis par cambiâ i nivei di protezion de pagjine.
+Lis impuestazions atuâls pe pagjine a son '''$1''':",
 'protect-cascadeon'           => 'Cheste pagjine e je blocade par cumò parcè che e je includude {{PLURAL:$1|inte pagjine|intes pagjinis}} culì sot, dulà che e je ative la protezion ricorsive.
 Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà efiets su la protezion ricorsive.',
 'protect-default'             => '(predeterminât)',

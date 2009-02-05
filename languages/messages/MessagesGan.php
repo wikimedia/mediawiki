@@ -340,9 +340,9 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => '用戶退出',
-'logouttext'                 => '<strong>倷退出正嘞。</strong>
+'logouttext'                 => "'''倷退出正嘞。'''
 
-倷可以接到匿名使用{{SITENAME}}，或重登入過，隻把子頁面可能會接到話倷係登入狀態，除非係倷刪吥瀏覽器緩存。',
+倷可以接到匿名使用{{SITENAME}}，或重登入過，隻把子頁面可能會接到話倷係登入狀態，除非係倷刪吥瀏覽器緩存。",
 'welcomecreation'            => '== 歡迎, $1! ==
 
 建正嘞倷嗰帳戶，莫忘吥設置{{SITENAME}}嗰個人參數。',
@@ -506,22 +506,22 @@ $2',
 'anontalkpagetext'          => "---- ''箇係匿名用戶嗰討論頁，話伓定佢哈冇開隻帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:UserLogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶扤混來。''",
 'noarticletext'             => '眼下箇頁哈冇內容，倷可以到別嗰頁面[[Special:Search/{{PAGENAME}}|尋吖箇頁嗰標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編寫箇頁]。',
 'clearyourcache'            => "'''注意:''' 保存之後, 倷要清吥瀏覽器嗰緩存才眵得正改嗰內容。 '''Mozilla / Firefox / Safari:''' 按到 ''Shift'' 接到按''刷新''(或按吖''Ctrl-Shift-R''，到蘋果Mac上按''Cmd-Shift-R'')；'''IE:''' 按到 ''Ctrl''接到按''刷新''，或按吖''Ctrl-F5''；'''Konqueror:''' 單只要按 ''刷新''；'''Opera:''' 用戶要到 ''工具-設置'' 完全嗰清除緩存。",
-'usercssjsyoucanpreview'    => "<strong>提示:</strong> 存到前請用'望吖起'來測吖倷嗰新CSS/JS 。",
+'usercssjsyoucanpreview'    => "'''提示:''' 存到前請用'望吖起'來測吖倷嗰新CSS/JS 。",
 'usercsspreview'            => "'''注意倷單係到預覽倷個人嗰 CSS，內容哈冇保存！'''",
 'userjspreview'             => "'''注意倷單係到測試／預覽倷個人嗰 JavaScript，內容哈冇保存！'''",
 'userinvalidcssjstitle'     => "'''警告:''' 冇\"\$1\"嗰皮膚。請記到自定義嗰 .css 同 .js 頁要用小寫。就話，{{ns:user}}:Foo/monobook.css 伓等同 {{ns:user}}:Foo/Monobook.css。",
 'updated'                   => '(更新正嘍)',
-'note'                      => '<strong>注意:</strong>',
-'previewnote'               => '<strong>請記到箇光係預覽，內容哈冇保存！</strong>',
+'note'                      => "'''注意:'''",
+'previewnote'               => "'''請記到箇光係預覽，內容哈冇保存！'''",
 'previewconflict'           => '箇隻預覽係上首文字編輯區嗰內容。倷選擇保存嗰話佢才會保存到。',
-'session_fail_preview'      => '<strong>對伓住！箇隻段落嗰資料跌吥嘞，偶個俚處理伓正倷嗰編輯。請試過吖。哈係扤伓正嗰話，試吖退出後登入過。</strong>',
-'session_fail_preview_html' => "<strong>對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。</strong> 
+'session_fail_preview'      => "'''對伓住！箇隻段落嗰資料跌吥嘞，偶個俚處理伓正倷嗰編輯。請試過吖。哈係扤伓正嗰話，試吖退出後登入過。'''",
+'session_fail_preview_html' => "'''對伓住！相關嗰程式資料跌吥嘞，偶個俚處理伓正倷嗰編輯。''' 
 
 ''箇隻wiki開放正嘞原HTML碼，預覽弆到嘞以防止JavaScript嗰攻擊。'' 
 
-<strong>要係佢係合法編輯嗰，請試過吖。哈係扤伓正嗰話，試吖退出後登入過。</strong>",
-'token_suffix_mismatch'     => '<strong>倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
-箇種情況通常係含到好多臭蟲、以網絡為主嗰匿名代理服務扤得。</strong>',
+'''要係佢係合法編輯嗰，請試過吖。哈係扤伓正嗰話，試吖退出後登入過。'''",
+'token_suffix_mismatch'     => "'''倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
+箇種情況通常係含到好多臭蟲、以網絡為主嗰匿名代理服務扤得。'''",
 'editing'                   => '眼下在編輯$1',
 'editingsection'            => '眼下在編輯$1 (段落)',
 'editingcomment'            => '眼下在編輯$1 (評論)',
@@ -533,24 +533,24 @@ $2',
 '''單只係'''上首方框嗰內容會等倷按\"存到著\"之後拕保存。",
 'yourtext'                  => '倷編嗰內容',
 'storedversion'             => '存到嗰版本',
-'nonunicodebrowser'         => '<strong>警告：倷嗰瀏覽器伓兼容Unicode。箇度有隻辦法方便倷安全嗰編寫得正文章：伓係ASCII嗰字符會到編輯框裡度用十六進位編碼顯到。</strong>',
-'editingold'                => '<strong>警告：倷於今正編寫箇頁嗰舊版本。
-要係倷存到佢嗰話，箇隻版本嗰全部改動會都跌吥去。</strong>',
+'nonunicodebrowser'         => "'''警告：倷嗰瀏覽器伓兼容Unicode。箇度有隻辦法方便倷安全嗰編寫得正文章：伓係ASCII嗰字符會到編輯框裡度用十六進位編碼顯到。'''",
+'editingold'                => "'''警告：倷於今正編寫箇頁嗰舊版本。
+要係倷存到佢嗰話，箇隻版本嗰全部改動會都跌吥去。'''",
 'yourdiff'                  => '差異',
-'copyrightwarning'          => '請記得到{{SITENAME}}嗰全部貢獻會拕認為係$2之下發出嗰（望吖$1有別嗰資料）。要係倷伓想自家嗰編輯好嚟嚟拕亂扤吥，唉就莫遞交。<br />
+'copyrightwarning'          => "請記得到{{SITENAME}}嗰全部貢獻會拕認為係$2之下發出嗰（望吖$1有別嗰資料）。要係倷伓想自家嗰編輯好嚟嚟拕亂扤吥，唉就莫遞交。<br />
 倷都要話正倷嗰文字係倷自家寫嗰，或者係公有領域或別嗰自由資源複製到嗰。<br />
-<strong>冇任何許可嗰情況下請莫遞交有版權嗰作品！</strong>',
-'copyrightwarning2'         => '請記得別嗰人編得正、改得正或者刪得正倷到{{SITENAME}}嗰全部貢獻。要係倷伓想自家嗰編輯好嚟嚟拕改吥，唉就莫遞交。<br />
+'''冇任何許可嗰情況下請莫遞交有版權嗰作品！'''",
+'copyrightwarning2'         => "請記得別嗰人編得正、改得正或者刪得正倷到{{SITENAME}}嗰全部貢獻。要係倷伓想自家嗰編輯好嚟嚟拕改吥，唉就莫遞交。<br />
 倷都要話正倷嗰文字係倷自家寫嗰，或者係公有領域或別嗰自由資源複製到嗰（望吖$1有別嗰資料）。
-<strong>冇任何許可嗰情況下請莫遞交有版權嗰作品！</strong>',
-'longpagewarning'           => '<strong>警告：箇頁有$1 kilobytes咁長；有嗰瀏覽器會編伓正超吥32 kb嗰頁面。
-請考慮吖拿佢分到細嚸嗰小段落。</strong>',
-'longpageerror'             => '<strong>錯誤：倷遞交嗰文字有$1 kilobytes咁長，佢長過最大嗰$2 kilobytes。存伓正倷遞交嗰文字。</strong>',
-'readonlywarning'           => '<strong>警告: 資料庫鎖到嘞進行定期修護，眼下倷存伓正倷嗰改動。倷可以拿佢存到文檔再著。</strong>',
-'protectedpagewarning'      => '<strong>警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正。</strong>',
+'''冇任何許可嗰情況下請莫遞交有版權嗰作品！'''",
+'longpagewarning'           => "'''警告：箇頁有$1 kilobytes咁長；有嗰瀏覽器會編伓正超吥32 kb嗰頁面。
+請考慮吖拿佢分到細嚸嗰小段落。'''",
+'longpageerror'             => "'''錯誤：倷遞交嗰文字有$1 kilobytes咁長，佢長過最大嗰$2 kilobytes。存伓正倷遞交嗰文字。'''",
+'readonlywarning'           => "'''警告: 資料庫鎖到嘞進行定期修護，眼下倷存伓正倷嗰改動。倷可以拿佢存到文檔再著。'''",
+'protectedpagewarning'      => "'''警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正。'''",
 'semiprotectedpagewarning'  => "'''注意：'''箇頁拕鎖到嘞，單只註冊用戶編得正。",
 'cascadeprotectedwarning'   => '警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正，因為箇頁同底下嗰連鎖保護嗰{{PLURAL:$1|一隻|多隻}}頁面包到嘞:',
-'titleprotectedwarning'     => '<strong>警告：箇隻頁鎖到嘍，只有一滴子人才建得正。</strong>',
+'titleprotectedwarning'     => "'''警告：箇隻頁鎖到嘍，只有一滴子人才建得正。'''",
 'templatesused'             => '箇隻頁面使用嗰模板有:',
 'templatesusedpreview'      => '箇隻預覽使用嗰模板有:',
 'templatesusedsection'      => '箇隻段落使用嗰模板有:',
@@ -853,11 +853,11 @@ $2',
 'large-file'                  => '建議檔案嗰大小伓要超吥$1；本檔案大小係$2。',
 'largefileserver'             => '箇隻檔案要大過服務器配置容允嗰大小。',
 'emptyfile'                   => '倷上傳嗰檔案伓存在。箇可能係因為檔案名按錯嘞。請檢查倷係否真嗰要上傳箇隻檔案。',
-'fileexists'                  => '箇隻檔案名已存在。如果倷確定伓正倷係否要改佢，請檢查<strong><tt>$1</tt></strong>。',
-'fileexists-extension'        => '有嘞隻飛像嗰檔名:<br /> 上載文檔嗰檔名: <strong><tt>$1</tt></strong><br /> 目前檔嗰檔名: <strong><tt>$2</tt></strong><br /> 請揀隻伓同嗰名字。',
+'fileexists'                  => "箇隻檔案名已存在。如果倷確定伓正倷係否要改佢，請檢查'''<tt>$1</tt>'''。",
+'fileexists-extension'        => "有嘞隻飛像嗰檔名:<br /> 上載文檔嗰檔名: '''<tt>$1</tt>'''<br /> 目前檔嗰檔名: '''<tt>$2</tt>'''<br /> 請揀隻伓同嗰名字。",
 'fileexists-thumb'            => "<center>'''早就有嘍嗰文件'''</center>",
-'fileexists-thumbnail-yes'    => '箇隻檔案好像係一隻圖像嗰縮小版<i>(縮圖)</i>。請檢查清楚箇隻檔案<strong><tt>$1</tt></strong>。<br /> 如果檢查後嗰檔同原先圖像嗰大小係一樣嗰話，就嫑再上傳多一隻縮圖。',
-'file-thumbnail-no'           => '箇隻檔案名係以<strong><tt>$1</tt></strong>開頭。佢好像一隻圖像嗰縮小版<i>(縮圖)</i>。如果倷有箇隻圖像嗰完整版，伓然請再改過隻檔名。',
+'fileexists-thumbnail-yes'    => "箇隻檔案好像係一隻圖像嗰縮小版''(縮圖)''。請檢查清楚箇隻檔案'''<tt>$1</tt>'''。<br /> 如果檢查後嗰檔同原先圖像嗰大小係一樣嗰話，就嫑再上傳多一隻縮圖。",
+'file-thumbnail-no'           => "箇隻檔案名係以'''<tt>$1</tt>'''開頭。佢好像一隻圖像嗰縮小版''(縮圖)''。如果倷有箇隻圖像嗰完整版，伓然請再改過隻檔名。",
 'fileexists-forbidden'        => '箇隻檔案名已存在；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '到共用檔案庫裡度有嘞同名嗰檔案；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[File:$1|thumb|center|$1]]',
 'successfulupload'            => '上傳正嘞',
@@ -878,7 +878,7 @@ $2',
 
 倷要想正係真嗰上傳箇隻檔案。
 為到方便起見，箇隻檔案嗰刪除記錄到下底提供嘞:",
-'filename-bad-prefix'         => '倷上傳嗰檔案名係以<strong>"$1"</strong>做開頭嗰，通常箇種冇意義嗰名字係數碼相機度嗰自動編排。請到倷嗰檔案揀過隻更加有意義嗰名字。',
+'filename-bad-prefix'         => "倷上傳嗰檔案名係以'''\"\$1\"'''做開頭嗰，通常箇種冇意義嗰名字係數碼相機度嗰自動編排。請到倷嗰檔案揀過隻更加有意義嗰名字。",
 
 'upload-proto-error'      => '協定錯誤',
 'upload-proto-error-text' => '遠程上傳要求 URL 用 <code>http://</code> 或 <code>ftp://</code> 開頭。',
@@ -1206,7 +1206,7 @@ $NEWPAGE
 別嗰人編輯過或係恢復嘞箇頁。
 
 最晏編輯人: [[User:$3|$3]] ([[User talk:$3|討論]])。',
-'editcomment'      => '編輯介紹: "<i>$1</i>"。', # only shown if there is an edit comment
+'editcomment'      => "編輯介紹: \"''\$1''\"。", # only shown if there is an edit comment
 'revertpage'       => '返回由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])嗰編輯；恢復到[[User:$1|$1]]嗰最末一隻版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '返回由$1嗰編輯；恢復到$2嗰最末一隻版本。',
 'sessionfailure'   => '倷嗰登入好像有嚸問題，為到防範未然，箇隻動作拕取消嘞。
@@ -1227,12 +1227,12 @@ $NEWPAGE
 'protect_expiry_invalid'      => '到期時間無效。',
 'protect_expiry_old'          => '到期時間已過。',
 'protect-unchain'             => '莫鎖到移動許可權',
-'protect-text'                => '倷到箇首能瀏覽或修改頁面<strong><nowiki>$1</nowiki></strong>嗰保護級別。',
-'protect-locked-blocked'      => '倷改伓正拕封鎖時嗰保護級別。下底係<strong>$1</strong>現今嗰保護級別:',
-'protect-locked-dblock'       => '資料庫鎖到嘞就改伓正保護級別。下底係<strong>$1</strong>現今嗰保護級別:',
-'protect-locked-access'       => '倷嗰許可權改伓正保護級別。
+'protect-text'                => "倷到箇首能瀏覽或修改頁面'''<nowiki>$1</nowiki>'''嗰保護級別。",
+'protect-locked-blocked'      => "倷改伓正拕封鎖時嗰保護級別。下底係'''$1'''現今嗰保護級別:",
+'protect-locked-dblock'       => "資料庫鎖到嘞就改伓正保護級別。下底係'''$1'''現今嗰保護級別:",
+'protect-locked-access'       => "倷嗰許可權改伓正保護級別。
 
-下底係<strong>$1</strong>現今嗰保護級別:',
+下底係'''$1'''現今嗰保護級別:",
 'protect-cascadeon'           => '下底嗰{{PLURAL:$1|一隻|多隻}}頁面含到箇頁，佢哈啟動嘞連鎖保護，故係箇頁也就拕保護到嘞，編伓正。倷能設過箇頁嗰保護級別，但係箇伓會影響到連鎖保護。',
 'protect-default'             => '(默認)',
 'protect-fallback'            => '非要“$1”嗰許可',

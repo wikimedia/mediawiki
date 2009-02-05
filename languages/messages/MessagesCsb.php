@@ -432,21 +432,21 @@ Jeżlë jes anonimòwim brëkòwnikã ë ùwôżôsz, że te wiadła nie są do 
 '''Opera:''' wëczëszczë pòdrãczną pamiãc w ''Tools→Preferences''; 
 '''Internet Explorer:'''przëtrzëmôj ''Ctrl'' òbczas klëkaniô na ''Zladëjë znowa'', abò wcësni ''Ctrl-F5''.",
 'updated'                => '(Zaktualnioné)',
-'previewnote'            => '<strong>To je blós pòdzérk - artikel jesz nie je zapisóny!</strong>',
+'previewnote'            => "'''To je blós pòdzérk - artikel jesz nie je zapisóny!'''",
 'editing'                => 'Edicëjô $1',
 'editingsection'         => 'Edicëjô $1 (dzél)',
 'explainconflict'        => 'Chtos sfórtowôł wprowadzëc swòją wersëjã artikla òbczôs Twòji edicëji. Górné pòle edicëji zamëkô w se tekst starnë aktualno zapisóny w pòdôwkòwi baze. Twòje zmianë są w dólnym pòlu edicëji. Bë wprowadzëc swòje zmianë mùszisz zmòdifikòwac tekst z górnégò pòla. <b>Blós</b> tekst z górnégò pòla mdze zapisóny w baze czej wcësniesz "Zapiszë".',
 'yourtext'               => 'Twój tekst',
 'yourdiff'               => 'Zjinaczi',
-'copyrightwarning'       => 'Bôczë, że wszëtczé edicëje w {{SITENAME}} są wprowadzané pòd zastrzégą $2 (òb. $1 dlô detalów). Jeżlë nie chcesz bë to co napiszesz bëło editowóné czë kòpijowóné, tedë nie zacwierdzôj nëch edicëjów.<br />Zacwierdzając zmianë dôwôsz parolã, że to co môsz napisóné je Twòjégò aùtorstwa, abò skòpijowóné z dostónków public domain abò jinëch wòlnëch licencëjów. <strong>NIE DODÔWÔJ CËZËCH TEKSTÓW BEZ ZEZWÒLENIÔ!</strong>',
-'copyrightwarning2'      => 'Bôczë, że wszëtczé edicëje w {{SITENAME}} mògą bëc editowóné, zmienióné abò rëmniãté bez jinëch brëkòwników. 
+'copyrightwarning'       => "Bôczë, że wszëtczé edicëje w {{SITENAME}} są wprowadzané pòd zastrzégą $2 (òb. $1 dlô detalów). Jeżlë nie chcesz bë to co napiszesz bëło editowóné czë kòpijowóné, tedë nie zacwierdzôj nëch edicëjów.<br />Zacwierdzając zmianë dôwôsz parolã, że to co môsz napisóné je Twòjégò aùtorstwa, abò skòpijowóné z dostónków public domain abò jinëch wòlnëch licencëjów. '''NIE DODÔWÔJ CËZËCH TEKSTÓW BEZ ZEZWÒLENIÔ!'''",
+'copyrightwarning2'      => "Bôczë, że wszëtczé edicëje w {{SITENAME}} mògą bëc editowóné, zmienióné abò rëmniãté bez jinëch brëkòwników. 
 Jeżlë nie chcesz bë Twòja robòta bëła editowónô, tedë nie dodôwôj ji tuwò.<br />
 Zacwierdzając zmianë dôwôsz zgòdã na to, że to co môsz napisóné je Twòjégò aùtorstwa, abò skòpijowóné z dostónków public domain abò jinëch wòlnëch licencëjów (zdrzë za detalama na $1). 
-<strong>NIE DODÔWÔJ ROBÒTË CHRONIONY ÙSÔDZKÒWIMA PRAWAMA BEZ ZEZWÒLENIÔ!</strong>',
-'readonlywarning'        => '<strong>BÔCZËNK: Pòdôwkòwô baza òsta sztërkòwô zablokòwónô dlô administracjowich célów. Ni mòże tej timczasã zapisac nowi wersëji artikla. 
-Bédëjemë przeniesc ji tekst do priwatnégò lopka (wëtnij/wstôw) ë ùchòwac na pózni.</strong>
+'''NIE DODÔWÔJ ROBÒTË CHRONIONY ÙSÔDZKÒWIMA PRAWAMA BEZ ZEZWÒLENIÔ!'''",
+'readonlywarning'        => "'''BÔCZËNK: Pòdôwkòwô baza òsta sztërkòwô zablokòwónô dlô administracjowich célów. Ni mòże tej timczasã zapisac nowi wersëji artikla. 
+Bédëjemë przeniesc ji tekst do priwatnégò lopka (wëtnij/wstôw) ë ùchòwac na pózni.'''
 
-Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1',
+Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'templatesused'          => 'Szablónë ùżëti w tim artiklu:',
 'template-protected'     => '(zazychrowónô)',
 'template-semiprotected' => '(dzélowò zazychrowóné)',

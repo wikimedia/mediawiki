@@ -273,8 +273,8 @@ nekorekta interlinguale od interwikale ligilo.',
 
 # Login and logout pages
 'logouttitle'                => 'Ekiro',
-'logouttext'                 => '<strong>Vu esas nun ek {{SITENAME}}.</strong><br />
-Vu povas durar uzante {{SITENAME}} anonimale, o vu povas enirar altrafoye kom la sama o diferenta uzanto.',
+'logouttext'                 => "'''Vu esas nun ek {{SITENAME}}.'''<br />
+Vu povas durar uzante {{SITENAME}} anonimale, o vu povas enirar altrafoye kom la sama o diferenta uzanto.",
 'welcomecreation'            => '<h2>Bonveno, $1!</h2><p>Vua konto kreesis.
 Voluntez, ne obliviez chanjor vua preferaji.',
 'loginpagetitle'             => 'Registragar / Enirar',
@@ -381,8 +381,8 @@ Se vu esas hike erore, kliktez sur la butono por retrovenar en vua ''browser''."
 'usercsspreview'       => "'''Memorez ke vu nur previdas vua uzanto-css. Ol ne registragesis ankore!'''",
 'userjspreview'        => "'''Memorez ke vu nur previdas vua javascript di uzanto. Ol ne registragesis ankore!'''",
 'updated'              => '(Aktualigita)',
-'note'                 => '<strong>Noto:</strong>',
-'previewnote'          => '<strong>Atencez ke ico esas nur prevido ed ol ne registragesis ankore!</strong>',
+'note'                 => "'''Noto:'''",
+'previewnote'          => "'''Atencez ke ico esas nur prevido ed ol ne registragesis ankore!'''",
 'editing'              => 'Editante $1',
 'editingsection'       => 'Editante $1 (seciono)',
 'editingcomment'       => 'Editante $1 (komento)',
@@ -390,14 +390,14 @@ Se vu esas hike erore, kliktez sur la butono por retrovenar en vua ''browser''."
 'explainconflict'      => 'Ulu chanjis ica pagino depos vu editeskis ol. La supra texto-areo kontenas la texto dil pagino quale ol existas aktuale. Vua chanji montresas en la infra texto-areo. Vu devas atachar vua chanji en la existanta texto. <b>Nur</b> la texto en la supra texto-areo registragesos kande vu presez sur "Registragar".',
 'yourtext'             => 'Vua texto',
 'storedversion'        => 'Gardita versiono',
-'editingold'           => '<strong>EGARDEZ: Vu redaktas anciena versiono di ca pagino.
-Se vu gardus ol, la chanji facita pos ita revizo perdesos.</strong>',
+'editingold'           => "'''EGARDEZ: Vu redaktas anciena versiono di ca pagino.
+Se vu gardus ol, la chanji facita pos ita revizo perdesos.'''",
 'yourdiff'             => 'Diferi',
 'copyrightwarning'     => "Voluntez memorar ke omna kontributi a {{SITENAME}} esas sub la $2 (Videz $1 por detali).
 Se vu ne deziras ke altri modifikez vua artikli od oli distributesez libere, lore voluntez ne skribar oli hike.<br />
 Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesis de libera fonto.
-<strong>NE SENDEZ ARTIKLI KUN ''COPYRIGHT'' SEN PERMISO!</strong>",
-'protectedpagewarning' => "<strong>AVERTO: Ica pagino esas blokusita, do nur ''sysop''-i povas redaktar olu.</strong>",
+'''NE SENDEZ ARTIKLI KUN ''COPYRIGHT'' SEN PERMISO!'''",
+'protectedpagewarning' => "'''AVERTO: Ica pagino esas blokusita, do nur ''sysop''-i povas redaktar olu.'''",
 'templatesused'        => 'Shabloni uzata en ica pagino:',
 'templatesusedpreview' => 'Shabloni uzata en ica prevido:',
 'templatesusedsection' => 'Shabloni uzata en ica seciono:',
@@ -571,7 +571,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'uploadedfiles'     => 'Adkargita arkivi',
 'ignorewarning'     => 'Ignorar la averto e gardar la arkivo irgakaze.',
 'badfilename'       => 'La imajo-nomo chanjesis a "$1".',
-'fileexists'        => 'Arkivo kun ica nomo ja existas. Volutez kontrolar <strong><tt>$1</tt></strong> se vu ne esas certa pri chanjar olu.',
+'fileexists'        => "Arkivo kun ica nomo ja existas. Volutez kontrolar '''<tt>$1</tt>''' se vu ne esas certa pri chanjar olu.",
 'successfulupload'  => 'Adcharjo sucesoza',
 'uploadwarning'     => 'Averto pri la adkargo di arkivo',
 'savefile'          => 'Registragar arkivo',
@@ -775,7 +775,7 @@ Videz $2 por obtenar registro di recenta efaci.',
 da [[User:$2|$2]] ([[User talk:$2|Talk]]); ulu pluse ja editis o desfacis ica pagino.
 
 Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'    => 'La rezumo di la edito esis: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'    => "La rezumo di la edito esis: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'     => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect

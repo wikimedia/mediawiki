@@ -395,13 +395,13 @@ $2',
 'titleprotected'       => "Esti títulu foi protexíu de la so creación por [[User:$1|$1]]. El motivu conseñáu ye ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => 'Configuración errónea: escáner de virus desconocíu: <i>$1</i>',
+'virus-badscanner'     => "Configuración errónea: escáner de virus desconocíu: ''$1''",
 'virus-scanfailed'     => "fallu d'escaniáu (códigu $1)",
 'virus-unknownscanner' => 'antivirus desconocíu:',
 
 # Login and logout pages
 'logouttitle'                => 'Desconexón',
-'logouttext'                 => "<strong>Yá tas desconectáu.</strong><br />
+'logouttext'                 => "'''Yá tas desconectáu.'''<br />
 
 Pues siguir usando {{SITENAME}} de forma anónima, o pues [[Special:UserLogin|volver a entrar]] como'l mesmu o como otru usuariu.
 Ten en cuenta que dalgunes páxines van continuar saliendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del navegador.",
@@ -609,25 +609,25 @@ Por favor, amiesta toos estos detalles nes consultes que faigas.',
 *'''IE:''' caltién ''Ctrl'' mentes calques ''Refresh'', o calca ''Ctrl-F5''
 *'''Konqueror:''' calca nel botón ''Reload'', o calca ''F5''
 *'''Opera:''' los usuarios d'Opera seique necesiten esborrar dafechu'l caché en ''Tools→Preferences''",
-'usercssjsyoucanpreview'           => "<strong>Conseyu:</strong> Usa'l bottón 'Amosar previsualización' pa probar el to nuevu CSS/JS enantes de guardalu.",
+'usercssjsyoucanpreview'           => "'''Conseyu:''' Usa'l bottón 'Amosar previsualización' pa probar el to nuevu CSS/JS enantes de guardalu.",
 'usercsspreview'                   => "'''Recuerda que namái tas previsualizando'l to CSS d'usuariu.'''
 '''¡Tovía nun ta guardáu!'''",
 'userjspreview'                    => "'''¡Recuerda que namái tas probando/previsualizando'l to JavaScript d'usuariu, entá nun se grabó!'''",
 'userinvalidcssjstitle'            => "'''Avisu:''' Nun hai piel \"\$1\". Recuerda que les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{ns:user}}:Foo/monobook.css en cuenta de {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Actualizao)',
-'note'                             => '<strong>Nota:</strong>',
-'previewnote'                      => "<strong>¡Alcuérdate de qu'esto ye sólo una previsualización y los cambeos entá nun se grabaron!</strong>",
+'note'                             => "'''Nota:'''",
+'previewnote'                      => "'''¡Alcuérdate de qu'esto ye sólo una previsualización y los cambeos entá nun se grabaron!'''",
 'previewconflict'                  => "Esta previsualización amuesa'l testu del área d'edición d'enriba talo y como apaecerá si guardes los cambeos.",
-'session_fail_preview'             => "<strong>¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
-Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate.</strong>",
-'session_fail_preview_html'        => "<strong>¡Sentímoslo! Nun se pudo procesar la to edición pola mor d'una perda de datos de sesión.</strong>
+'session_fail_preview'             => "'''¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
+Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate.'''",
+'session_fail_preview_html'        => "'''¡Sentímoslo! Nun se pudo procesar la to edición pola mor d'una perda de datos de sesión.'''
 
 ''Como {{SITENAME}} tien activáu'l HTML puru, la previsualización nun s'amosará como precaución escontra ataques en JavaScript.''
 
-<strong>Si esti ye un intentu llexítimu d'edición, por favor inténtalo otra vuelta. Si tovía asina nun furrula, intenta [[Special:UserLogout|desconeutate]] y volver a identificate.</strong>",
-'token_suffix_mismatch'            => "<strong>La to edición nun foi aceutada porque'l to navegador mutiló los carauteres de puntuación
+'''Si esti ye un intentu llexítimu d'edición, por favor inténtalo otra vuelta. Si tovía asina nun furrula, intenta [[Special:UserLogout|desconeutate]] y volver a identificate.'''",
+'token_suffix_mismatch'            => "'''La to edición nun foi aceutada porque'l to navegador mutiló los carauteres de puntuación
 nel editor. La edición nun foi aceutada pa prevenir corrupciones na páxina de testu. Esto hai vegaes
-que pasa cuando tas usando un proxy anónimu basáu en web que seya problemáticu.</strong>",
+que pasa cuando tas usando un proxy anónimu basáu en web que seya problemáticu.'''",
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (seición)',
 'editingcomment'                   => 'Editando $1 (comentariu)',
@@ -639,27 +639,27 @@ Vas tener que fusionar los tos cambeos dientro del testu esistente.
 '''Namái''' va guardase'l testu de l'área d'enriba cuando calques en \"Guardar páxina\".",
 'yourtext'                         => 'El to testu',
 'storedversion'                    => 'Versión almacenada',
-'nonunicodebrowser'                => "<strong>AVISU: El to navegador nun cumple la norma unicode. Hai un sistema alternativu que te permite editar páxines de forma segura: los carauteres non-ASCII apaecerán na caxa d'edición como códigos hexadecimales.</strong>",
-'editingold'                       => "<strong>AVISU: Tas editando una revisión vieya d'esta páxina. Si la grabes, los cambeos que se ficieron dende esa revisión van perdese.</strong>",
+'nonunicodebrowser'                => "'''AVISU: El to navegador nun cumple la norma unicode. Hai un sistema alternativu que te permite editar páxines de forma segura: los carauteres non-ASCII apaecerán na caxa d'edición como códigos hexadecimales.'''",
+'editingold'                       => "'''AVISU: Tas editando una revisión vieya d'esta páxina. Si la grabes, los cambeos que se ficieron dende esa revisión van perdese.'''",
 'yourdiff'                         => 'Diferencies',
 'copyrightwarning'                 => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} considérense feches públiques baxo la $2 (ver $1 pa más detalles). Si nun quies que'l to trabayu seya editáu ensin midida, nun lu pongas equí.<br />
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una fonte llibre de dominiu públicu o asemeyao.
-<strong>¡NUN PONGAS TRABAYOS CON DERECHOS D'AUTOR ENSIN PERMISU!</strong>",
+'''¡NUN PONGAS TRABAYOS CON DERECHOS D'AUTOR ENSIN PERMISU!'''",
 'copyrightwarning2'                => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} puen ser editaes, alteraes o eliminaes por otros usuarios. Si nun quies que'l to trabayu seya editáu ensin midida, nun lu pongas equí.<br />
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una fonte
 llibre de dominiu públicu o asemeyao (ver $1 pa más detalles).
-<strong>¡NUN PONGAS TRABAYOS CON DERECHOS D'AUTOR ENSIN PERMISU!</strong>",
-'longpagewarning'                  => '<strong>AVISU: Esta páxina tien más de $1 quilobytes; dellos navegadores puen tener problemes editando páxines de 32 ó más kb. Habríes dixebrar la páxina en seiciones más pequeñes.</strong>',
-'longpageerror'                    => "<strong>ERROR: El testu qu'unviasti tien $1 quilobytes, que ye
-más que'l máximu de $2 quilobytes. Nun pue ser grabáu.</strong>",
-'readonlywarning'                  => "<strong>AVISU: La base de datos ta candada por mantenimientu, polo que nun vas poder guardar les tos ediciones nestos momentos.
-Seique habríes copiar el testu nun archivu de testu y guardalu pa intentalo lluéu. </strong>
+'''¡NUN PONGAS TRABAYOS CON DERECHOS D'AUTOR ENSIN PERMISU!'''",
+'longpagewarning'                  => "'''AVISU: Esta páxina tien más de $1 quilobytes; dellos navegadores puen tener problemes editando páxines de 32 ó más kb. Habríes dixebrar la páxina en seiciones más pequeñes.'''",
+'longpageerror'                    => "'''ERROR: El testu qu'unviasti tien $1 quilobytes, que ye
+más que'l máximu de $2 quilobytes. Nun pue ser grabáu.'''",
+'readonlywarning'                  => "'''AVISU: La base de datos ta candada por mantenimientu, polo que nun vas poder guardar les tos ediciones nestos momentos.
+Seique habríes copiar el testu nun archivu de testu y guardalu pa intentalo lluéu. '''
 
 L'alministrador que la candó ufrió una esplicación: $1",
-'protectedpagewarning'             => '<strong>AVISU: Esta páxina ta candada pa que sólo los alministradores puean editala.</strong>',
+'protectedpagewarning'             => "'''AVISU: Esta páxina ta candada pa que sólo los alministradores puean editala.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta páxina foi candada pa que nun puean editala namái que los usuarios rexistraos.",
 'cascadeprotectedwarning'          => "'''Avisu:''' Esta páxina ta candada pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
-'titleprotectedwarning'            => '<strong>AVISU: Esta páxina foi candada pa que namái dalgunos usuarios puean creala.</strong>',
+'titleprotectedwarning'            => "'''AVISU: Esta páxina foi candada pa que namái dalgunos usuarios puean creala.'''",
 'templatesused'                    => 'Plantíes usaes nesta páxina:',
 'templatesusedpreview'             => 'Plantíes usaes nesta previsualización:',
 'templatesusedsection'             => 'Plantíes usaes nesta seición:',
@@ -1245,17 +1245,17 @@ Mira la [[Special:NewFiles|galería d'archivos nuevos]] pa una güeyada más vis
 'large-file'                  => 'Encamiéntase a que los archivos nun pasen de $1; esti archivu tien $2.',
 'largefileserver'             => 'Esti archivu ye mayor de lo que permite la configuración del sirvidor.',
 'emptyfile'                   => "L'archivu que xubisti paez tar vaciu. Esto podría ser pola mor d'un enquivocu nel nome l'archivu. Por favor, camienta si daveres quies xubir esti archivu.",
-'fileexists'                  => 'Yá esiste un archivu con esti nome, por favor comprueba <strong><tt>$1</tt></strong> si nun tas seguru de quere camudalu.',
-'filepageexists'              => "La páxina de descripción d'esti archivu yá foi creada en <strong><tt>$1</tt></strong>, pero nestos momentos nun esiste nengún archivu con esti nome. El resume que pongas nun va apaecer na páxina de descripción. Pa facer que'l to resume apaeza vas tener que lu editar manualmente.",
-'fileexists-extension'        => 'Yá esiste un archivu con un nome asemeyáu:<br />
-Nome del archivu que se quier xubir: <strong><tt>$1</tt></strong><br />
-Nome del archivu esistente: <strong><tt>$2</tt></strong><br />
-Por favor escueyi un nome diferente.',
+'fileexists'                  => "Yá esiste un archivu con esti nome, por favor comprueba '''<tt>$1</tt>''' si nun tas seguru de quere camudalu.",
+'filepageexists'              => "La páxina de descripción d'esti archivu yá foi creada en '''<tt>$1</tt>''', pero nestos momentos nun esiste nengún archivu con esti nome. El resume que pongas nun va apaecer na páxina de descripción. Pa facer que'l to resume apaeza vas tener que lu editar manualmente.",
+'fileexists-extension'        => "Yá esiste un archivu con un nome asemeyáu:<br />
+Nome del archivu que se quier xubir: '''<tt>$1</tt>'''<br />
+Nome del archivu esistente: '''<tt>$2</tt>'''<br />
+Por favor escueyi un nome diferente.",
 'fileexists-thumb'            => "<center>'''Archivu esistente'''</center>",
-'fileexists-thumbnail-yes'    => "L'archivu paez ser una imaxe de tamañu menguáu <i>(miniatura)</i>. Por favor comprueba l'archivu <strong><tt>$1</tt></strong>.<br />
+'fileexists-thumbnail-yes'    => "L'archivu paez ser una imaxe de tamañu menguáu ''(miniatura)''. Por favor comprueba l'archivu '''<tt>$1</tt>'''.<br />
 Si l'archivu comprobáu tien el mesmu tamañu que la imaxe orixinal, nun ye necesario xubir una miniatura extra.",
-'file-thumbnail-no'           => "L'archivu entama con <strong><tt>$1</tt></strong>.
-Paez ser una imaxe de tamañu menguáu <i>(miniatura)</i>.
+'file-thumbnail-no'           => "L'archivu entama con '''<tt>$1</tt>'''.
+Paez ser una imaxe de tamañu menguáu ''(miniatura)''.
 Si tienes esta imaxe a resolución completa xúbila; si non, por favor camuda'l nome del archivu.",
 'fileexists-forbidden'        => 'Yá esiste un archivu con esti nome; por favor vuelvi atrás y xubi esti archivu con otru nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Yá esiste un archivu con esti nome nel direutoriu d'archivos compartíos.
@@ -1280,7 +1280,7 @@ Si tovía asina quies xubir l'archivu, por favor vuelvi atrás y usa otru nome. 
 
 Habríes considerar si ye afechisco continuar xubiendo esti archivu.
 Amuésase equí'l rexistru d'esborraos pa esti archivu a los efeutos oportunos:",
-'filename-bad-prefix'         => 'El nome del archivu que tas xubiendo entama con <strong>"$1"</strong>, que ye un nome non descriptivu típicamente asignáu automáticamente poles cámares dixitales. Por favor escueyi un nome más descriptivu pal to archivu.',
+'filename-bad-prefix'         => "El nome del archivu que tas xubiendo entama con '''\"\$1\"''', que ye un nome non descriptivu típicamente asignáu automáticamente poles cámares dixitales. Por favor escueyi un nome más descriptivu pal to archivu.",
 
 'upload-proto-error'      => 'Protocolu incorreutu',
 'upload-proto-error-text' => "La xubida remota requier que l'URL entame por <code>http://</code> o <code>ftp://</code>.",
@@ -1728,7 +1728,7 @@ obra con precaución.",
 daquién más yá editó o revirtió la páxina.
 
 La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'El comentariu de la edición yera: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => "El comentariu de la edición yera: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
 'sessionfailure'   => 'Paez qu\'hai un problema cola to sesión; por precaución
@@ -1750,13 +1750,13 @@ navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'protect_expiry_invalid'      => 'Caducidá non válida.',
 'protect_expiry_old'          => 'La fecha de caducidá ta pasada.',
 'protect-unchain'             => 'Camudar los permisos pa tresllaos',
-'protect-text'                => 'Equí pues ver y camudar el nivel de proteición de la páxina <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'Nun pues camudar los niveles de proteición mentes teas bloquiáu. Esta
-ye la configuración actual de la páxina <strong>$1</strong>:',
+'protect-text'                => "Equí pues ver y camudar el nivel de proteición de la páxina '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Nun pues camudar los niveles de proteición mentes teas bloquiáu. Esta
+ye la configuración actual de la páxina '''$1''':",
 'protect-locked-dblock'       => "Los niveles de proteición nun puen ser camudaos pol mor d'un candáu activu de
-la base de datos. Esta ye la configuración actual de la páxina <strong>$1</strong>:",
-'protect-locked-access'       => 'La to cuenta nun tien permisu pa camudar los niveles de proteición de páxina.
-Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
+la base de datos. Esta ye la configuración actual de la páxina '''$1''':",
+'protect-locked-access'       => "La to cuenta nun tien permisu pa camudar los niveles de proteición de páxina.
+Esta ye la configuración actual pa la páxina '''$1''':",
 'protect-cascadeon'           => "Esta páxina ta protexida nestos momentos porque ta inxerida {{PLURAL:$1|na siguiente páxina, que tien|nes siguientes páxines, que tienen}} activada la proteición en cascada. Pues camudar el nivel de proteición d'esta páxina, pero nun va afeutar a la proteición en cascada.",
 'protect-default'             => '(por defeutu)',
 'protect-fallback'            => 'Requier el permisu "$1"',

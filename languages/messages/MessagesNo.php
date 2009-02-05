@@ -502,16 +502,16 @@ $2',
 Den angitte grunnen er ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => 'Dårlig konfigurasjon: ukjent virusskanner: <i>$1</i>',
+'virus-badscanner'     => "Dårlig konfigurasjon: ukjent virusskanner: ''$1''",
 'virus-scanfailed'     => 'skanning mislyktes (kode $1)',
 'virus-unknownscanner' => 'ukjent antivirusprogram:',
 
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
-'logouttext'                 => '<strong>Du er nå logget ut.</strong>
+'logouttext'                 => "'''Du er nå logget ut.'''
 
 Du kan fortsette å bruke {{SITENAME}} anonymt, eller [[Special:UserLogin|logge inn igjen]] som samme eller annen bruker.
-Merk at noen sider kan vise at du fortsatt er logget inn fram til du tømmer mellomlageret i nettleseren.',
+Merk at noen sider kan vise at du fortsatt er logget inn fram til du tømmer mellomlageret i nettleseren.",
 'welcomecreation'            => '==Velkommen, $1!==
 Brukerkontoen din har blitt opprettet.
 Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
@@ -716,21 +716,21 @@ Hvis du er en uregistrert bruker og synes at du har fått irrelevante kommentare
 'noarticletext'                    => 'Det er ikke noe tekst på denne siden. Du kan [[Special:Search/{{PAGENAME}}|søke etter siden]] i andre sider, eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} opprette den].',
 'userpage-userdoesnotexist'        => 'Brukerkontoen «$1» er ikke registrert. Sjekk om du ønsker å opprette/redigere denne siden.',
 'clearyourcache'                   => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter mellomlageret sitt for at endringene skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'' i engelskspråklig versjon, ''Cmd-Alt-E'' i norskspråklig versjon, '''Konqueror og Opera:''' ''F5''.",
-'usercssjsyoucanpreview'           => '<strong>Tips:</strong> Bruk «Forhåndsvisning»-knappen for å teste din nye CSS/JS før du lagrer.',
+'usercssjsyoucanpreview'           => "'''Tips:''' Bruk «Forhåndsvisning»-knappen for å teste din nye CSS/JS før du lagrer.",
 'usercsspreview'                   => "'''Husk at dette bare er en forhåndsvisning av din bruker-CSS og at den ikke er lagret!'''",
 'userjspreview'                    => "'''Husk at dette bare er en test eller forhåndsvisning av ditt bruker-JavaScript, og det ikke er lagret!'''",
 'userinvalidcssjstitle'            => "'''Advarsel:''' Det finnes ikke noe utseende ved navn «$1». Husk at .css- og .js-sider bruker titler i små bokstaver, for eksempel {{ns:user}}:Eksempel/monobook.css, ikke {{ns:user}}:Eksempel/Monobook.css",
 'updated'                          => '(Oppdatert)',
-'note'                             => '<strong>Merk:</strong>',
-'previewnote'                      => '<strong>Dette er bare en forhåndsvisning; endringer har ikke blitt lagret!</strong>',
+'note'                             => "'''Merk:'''",
+'previewnote'                      => "'''Dette er bare en forhåndsvisning; endringer har ikke blitt lagret!'''",
 'previewconflict'                  => 'Slik vil teksten i redigeringsvinduet se ut dersom du lagrer den.',
-'session_fail_preview'             => '<strong>Beklager! Klarte ikke å lagre redigeringen din. Prøv igjen. Om det fortsetter å gå galt, prøv å [[Special:UserLogout|logge ut]] og så inn igjen.</strong>',
-'session_fail_preview_html'        => "<strong>Beklager! Klarte ikke å lagre redigeringen din på grunn av tap av øktdata.</strong>
+'session_fail_preview'             => "'''Beklager! Klarte ikke å lagre redigeringen din. Prøv igjen. Om det fortsetter å gå galt, prøv å [[Special:UserLogout|logge ut]] og så inn igjen.'''",
+'session_fail_preview_html'        => "'''Beklager! Klarte ikke å lagre redigeringen din på grunn av tap av øktdata.'''
 
 ''Fordi {{SITENAME}} har rå HTML slått på, er forhåndsvisningen skjult for å forhindre JavaScript-angrep.''
 
-<strong>Om dette er et legitimt redigeringsforsøk, prøv igjen. Om det da ikke fungerer, prøv å [[Special:UserLogout|logge ut]] og logge inn igjen.</strong>",
-'token_suffix_mismatch'            => '<strong>Redigeringen din har blitt avvist fordi klienten din ikke hadde punktasjonstegn i redigeringsteksten. Redigeringen har blitt avvist for å hindre ødeleggelse av artikkelteksten. Dette forekommer av og til når man bruker vevbaserte anonyme proxytjenester.</strong>',
+'''Om dette er et legitimt redigeringsforsøk, prøv igjen. Om det da ikke fungerer, prøv å [[Special:UserLogout|logge ut]] og logge inn igjen.'''",
+'token_suffix_mismatch'            => "'''Redigeringen din har blitt avvist fordi klienten din ikke hadde punktasjonstegn i redigeringsteksten. Redigeringen har blitt avvist for å hindre ødeleggelse av artikkelteksten. Dette forekommer av og til når man bruker vevbaserte anonyme proxytjenester.'''",
 'editing'                          => 'Redigerer $1',
 'editingsection'                   => 'Redigerer $1 (seksjon)',
 'editingcomment'                   => 'Redigerer $1 (ny seksjon)',
@@ -742,26 +742,26 @@ Du er nødt til å flette dine endringer sammen med den nåværende teksten.
 '''Kun''' teksten i den øverste tekstboksen blir lagret når du trykker «Lagre siden».",
 'yourtext'                         => 'Din tekst',
 'storedversion'                    => 'Den lagrede versjonen',
-'nonunicodebrowser'                => '<strong>ADVARSEL: Nettleseren din har ikke støtte for Unicode. Skru det på før du begynner å redigere artikler.</strong>',
-'editingold'                       => '<strong>ADVARSEL:
+'nonunicodebrowser'                => "'''ADVARSEL: Nettleseren din har ikke støtte for Unicode. Skru det på før du begynner å redigere artikler.'''",
+'editingold'                       => "'''ADVARSEL:
 Du redigerer en gammel versjon av denne siden.
-Hvis du lagrer den, vil alle endringer foretatt siden denne versjonen bli overskrevet.</strong>',
+Hvis du lagrer den, vil alle endringer foretatt siden denne versjonen bli overskrevet.'''",
 'yourdiff'                         => 'Forskjeller',
-'copyrightwarning'                 => 'Vennligst merk at alle bidrag til {{SITENAME}} anses som utgitt under $2 (se $1 for detaljer). Om du ikke vil at dine bidrag skal kunne redigeres og distribuert fritt, ikke legg det til her.<br />
-Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som er i public domain eller lignende. <strong>IKKE LEGG TIL OPPHAVSBESKYTTET MATERIALE UTEN TILLATELSE!</strong>',
-'copyrightwarning2'                => 'Vennligst merk at alle bidrag til {{SITENAME}} kan bli redigert, endret eller fjernet av andre bidragsytere. Om du ikke vil at dine bidrag skal kunne redigeres fritt, ikke legg det til her.<br />
-Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som er i public domain eller lignende (se $1 for detaljer). <strong>IKKE LEGG TIL OPPHAVSBESKYTTET MATERIALE UTEN TILLATELSE!</strong>',
-'longpagewarning'                  => '<strong>ADVARSEL: Denne siden er $1&nbsp;kB lang; noen eldre nettlesere kan ha problemer med å redigere sider som nærmer seg eller er lengre enn 32&nbsp;kB. Overvei om ikke siden kan deles opp i mindre deler.</strong>',
-'longpageerror'                    => '<strong>FEIL: Teksten du prøvde å lagre er $1&nbsp;kB lang, dvs. lenger enn det maksimale $2&nbsp;kB. Den kan ikke lagres.</strong>',
-'readonlywarning'                  => '<strong>ADVARSEL: Databasen er låst på grunn av vedlikehold,
+'copyrightwarning'                 => "Vennligst merk at alle bidrag til {{SITENAME}} anses som utgitt under $2 (se $1 for detaljer). Om du ikke vil at dine bidrag skal kunne redigeres og distribuert fritt, ikke legg det til her.<br />
+Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som er i public domain eller lignende. '''IKKE LEGG TIL OPPHAVSBESKYTTET MATERIALE UTEN TILLATELSE!'''",
+'copyrightwarning2'                => "Vennligst merk at alle bidrag til {{SITENAME}} kan bli redigert, endret eller fjernet av andre bidragsytere. Om du ikke vil at dine bidrag skal kunne redigeres fritt, ikke legg det til her.<br />
+Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som er i public domain eller lignende (se $1 for detaljer). '''IKKE LEGG TIL OPPHAVSBESKYTTET MATERIALE UTEN TILLATELSE!'''",
+'longpagewarning'                  => "'''ADVARSEL: Denne siden er $1&nbsp;kB lang; noen eldre nettlesere kan ha problemer med å redigere sider som nærmer seg eller er lengre enn 32&nbsp;kB. Overvei om ikke siden kan deles opp i mindre deler.'''",
+'longpageerror'                    => "'''FEIL: Teksten du prøvde å lagre er $1&nbsp;kB lang, dvs. lenger enn det maksimale $2&nbsp;kB. Den kan ikke lagres.'''",
+'readonlywarning'                  => "'''ADVARSEL: Databasen er låst på grunn av vedlikehold,
 så du kan ikke lagre dine endringer akkurat nå. Det kan være en god idé å
-kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>
+kopiere teksten din til en tekstfil, så du kan lagre den til senere.'''
 
-Systemadministratoren som låste databasen oppga følgende årsak: $1',
-'protectedpagewarning'             => '<strong>ADVARSEL: Denne siden er låst, slik at kun brukere med administratorrettigheter kan redigere den.</strong>',
+Systemadministratoren som låste databasen oppga følgende årsak: $1",
+'protectedpagewarning'             => "'''ADVARSEL: Denne siden er låst, slik at kun brukere med administratorrettigheter kan redigere den.'''",
 'semiprotectedpagewarning'         => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den. Nyopprettede og uregistrerte brukere kan ikke redigere.",
 'cascadeprotectedwarning'          => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes på følgende dypbeskyttede sider:<!--{{PLURAL:$1}}-->",
-'titleprotectedwarning'            => '<strong>ADVARSEL: Denne siden har blitt låst slik at kun visse brukere kan opprette den.</strong>',
+'titleprotectedwarning'            => "'''ADVARSEL: Denne siden har blitt låst slik at kun visse brukere kan opprette den.'''",
 'templatesused'                    => 'Maler i bruk på denne siden:',
 'templatesusedpreview'             => 'Maler som brukes i denne forhåndsvisningen:',
 'templatesusedsection'             => 'Maler brukt i denne seksjonen:',
@@ -1353,18 +1353,18 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'large-file'                  => 'Det er anbefalt at filen ikke er større enn $1; denne filen er $2.',
 'largefileserver'             => 'Denne fila er større enn det tjeneren er satt opp til å tillate.',
 'emptyfile'                   => 'Fila du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne fila.',
-'fileexists'                  => 'Ei fil med dette navnet finnes allerede. Sjekk <strong><tt>$1</tt></strong> hvis du ikke er sikker på at du vil forandre den.',
-'filepageexists'              => 'Beskrivelsessiden for denne filen finnes allerede på <strong><tt>$1</tt></strong>, men ingen filer med dette navnet finnes. Sammendragen du skriver iknn vil ikke vises på beskrivelsessiden. For at det skal dukke opp der må du skrive det inn manuelt etter å ha lastet opp filen.',
-'fileexists-extension'        => 'En fil med et lignende navn finnes:<br />
-Navnet på din fil: <strong><tt>$1</tt></strong><br />
-Navn på eksisterende fil: <strong><tt>$2</tt></strong><br />
-Den eneste forskjellen ligger i store/små bokstaver i filendelsen. Vennligst sjekk filene for likheter.',
+'fileexists'                  => "Ei fil med dette navnet finnes allerede. Sjekk '''<tt>$1</tt>''' hvis du ikke er sikker på at du vil forandre den.",
+'filepageexists'              => "Beskrivelsessiden for denne filen finnes allerede på '''<tt>$1</tt>''', men ingen filer med dette navnet finnes. Sammendragen du skriver iknn vil ikke vises på beskrivelsessiden. For at det skal dukke opp der må du skrive det inn manuelt etter å ha lastet opp filen.",
+'fileexists-extension'        => "En fil med et lignende navn finnes:<br />
+Navnet på din fil: '''<tt>$1</tt>'''<br />
+Navn på eksisterende fil: '''<tt>$2</tt>'''<br />
+Den eneste forskjellen ligger i store/små bokstaver i filendelsen. Vennligst sjekk filene for likheter.",
 'fileexists-thumb'            => "<center>'''Eksisterende fil'''</center>",
-'fileexists-thumbnail-yes'    => 'Filen ser ut til å være et bilde av redusert størrelse. Vennligst sjekk filen <strong><tt>$1</tt></strong>.<br />
-Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ikke nødvendig å laste opp en ekstra fil.',
-'file-thumbnail-no'           => 'Filnavnet begynner med <strong><tt>$1</tt></strong>.
-Det virker som om det er et bilde av redusert størrelse <i>(miniatyrbilde)</i>.
-Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.',
+'fileexists-thumbnail-yes'    => "Filen ser ut til å være et bilde av redusert størrelse. Vennligst sjekk filen '''<tt>$1</tt>'''.<br />
+Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ikke nødvendig å laste opp en ekstra fil.",
+'file-thumbnail-no'           => "Filnavnet begynner med '''<tt>$1</tt>'''.
+Det virker som om det er et bilde av redusert størrelse ''(miniatyrbilde)''.
+Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.",
 'fileexists-forbidden'        => 'En fil med dette navnet finnes fra før, og kan ikke erstattes.
 Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret.
@@ -1390,7 +1390,7 @@ Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et n
 'upload-wasdeleted'           => "'''Advarsel: Du laster opp en fil som tidligere har blitt slettet.'''
 
 Vurder om det er riktig å fortsette å laste opp denne filen. Slettingsloggen for filen gis nedenunder:",
-'filename-bad-prefix'         => 'Navnet på filen du laster opp begynner med <strong>«$1»</strong>, hvilket er et ikke-beksrivende navn som vanligvis brukes automatisk av digitalkameraer. Vennligst bruk et mer beskrivende navn på filen.',
+'filename-bad-prefix'         => "Navnet på filen du laster opp begynner med '''«$1»''', hvilket er et ikke-beksrivende navn som vanligvis brukes automatisk av digitalkameraer. Vennligst bruk et mer beskrivende navn på filen.",
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntaksen er som følger:
 #   * Alt fra tegnet «#» til slutten av linja er en kommentar
@@ -1847,7 +1847,7 @@ Tilbakemeldinger og videre assistanse:
 'alreadyrolled'    => 'Kan ikke fjerne den siste redigeringen på [[$1]] av [[User:$2|$2]] ([[User talk:$2|diskusjon]] | [[Special:Contributions/$2|{{int:contribslink}}]]); en annen har allerede redigert siden eller fjernet redigeringen.
 
 Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'Redigeringskommentaren var: «<i>$1</i>»', # only shown if there is an edit comment
+'editcomment'      => "Redigeringskommentaren var: «''$1''»", # only shown if there is an edit comment
 'revertpage'       => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjon av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Tilbakestilte endringer av $1; endret til siste versjon av $2.',
 'sessionfailure'   => "Det ser ut til å være et problem med innloggingen din, og den ble avbrutt av sikkerhetshensyn. Trykk ''Tilbake'' i nettleseren din, oppdater siden og prøv igjen.",
@@ -1867,10 +1867,10 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'protect_expiry_invalid'      => 'Utgangstiden er ugyldig.',
 'protect_expiry_old'          => 'Utgangstiden har allerede vært.',
 'protect-unchain'             => 'Spesielle flyttingstillatelser',
-'protect-text'                => 'Du kan se og forandre beskyttelsesnivået for siden <strong><nowiki>$1</nowiki></strong> her.',
-'protect-locked-blocked'      => 'Du kan ikke endre beskyttelsesnivåer mens du er blokkert. Dette er de nåværende innstillingene for siden <strong>$1</strong>:',
-'protect-locked-dblock'       => 'Beskyttelsesnivåer kan ikke endres under en aktiv databasebeskyttelse. Dette er de nåværende innstillingene for siden <strong>$1</strong>:',
-'protect-locked-access'       => 'Kontoen din har ikke tillatelse til å endre beskyttelsesnivåer. Dette er de nåværende innstillingene for siden <strong>$1</strong>:',
+'protect-text'                => "Du kan se og forandre beskyttelsesnivået for siden '''<nowiki>$1</nowiki>''' her.",
+'protect-locked-blocked'      => "Du kan ikke endre beskyttelsesnivåer mens du er blokkert. Dette er de nåværende innstillingene for siden '''$1''':",
+'protect-locked-dblock'       => "Beskyttelsesnivåer kan ikke endres under en aktiv databasebeskyttelse. Dette er de nåværende innstillingene for siden '''$1''':",
+'protect-locked-access'       => "Kontoen din har ikke tillatelse til å endre beskyttelsesnivåer. Dette er de nåværende innstillingene for siden '''$1''':",
 'protect-cascadeon'           => 'Denne siden er låst fordi den er inkludert på følgende {{PLURAL:$1|side|sider}} som har dypbeskyttelse slått på. Du kan endre sidens låsingsnivå, men det vil ikke påvirke dypbeskyttelsen.',
 'protect-default'             => 'Tillat alle brukere',
 'protect-fallback'            => 'Må ha «$1»-tillatelse',

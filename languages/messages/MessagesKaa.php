@@ -502,7 +502,7 @@ Keltirilgen sebep: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => "Shıg'ıw",
-'logouttext'                 => "<strong>Siz endi sayttan shıqtın'ız.</strong><br />
+'logouttext'                 => "'''Siz endi sayttan shıqtın'ız.'''<br />
 Siz {{SITENAME}} saytınan anonim halda paydalanıwın'ız mu'mkin. Yamasa siz ja'ne ha'zirgi yaki basqa paydalanıwshı atı menen [[Special:UserLogin|qaytadan sistemag'a kiriwin'izge]] boladı. Sonı este saqlan', ayrım betler sizin' brauzerin'izdin' keshi tazalanbag'anlıg'ı sebebli sistemada kirgenin'izdey ko'riniste dawam ettire beriwi mu'mkin.",
 'welcomecreation'            => "== Xosh keldin'iz, $1! ==
 
@@ -695,10 +695,10 @@ Eger bul jerge aljasıp o'tken bolsan'ız, brauzerin'izdin' «Arqag'a» knopkas�
 'noarticletext'             => "Ha'zirgi waqıtta bul bette hesh qanday mag'lıwmat joq. Basqa betlerden usı bet atamasın [[Special:Search/{{PAGENAME}}|izlep ko'riwin'izge]] yamasa usı betti [{{fullurl:{{FULLPAGENAME}}|action=edit}} jaratıwin'ızga'] boladi.",
 'userpage-userdoesnotexist' => "\"\$1\" paydalanıwshı akkauntı registratsiya qılınbag'an. Bul betti jaratqın'ız yamasa o'zgertkin'iz kelse tekserip ko'rin'.",
 'updated'                   => "(Jan'alang'an)",
-'note'                      => '<strong>Eskertiw:</strong>',
-'previewnote'               => "<strong>Bul ele tek aldınnan ko'rip shıg'ıw; o'zgerisler ele saqlanbadı!</strong>",
-'session_fail_preview'      => "<strong>Keshirersiz! Sessiya mag'lıwmatlarının' jog'alıwı sebepli o'zgerislerin'izdi qabıl ete almaymız.
-Qaytadan ha'reket qılıp ko'rin'. Eger bul payda bermese, [[Special:UserLogout|shıg'ıp]] qaytadan kirip ko'rin'.</strong>",
+'note'                      => "'''Eskertiw:'''",
+'previewnote'               => "'''Bul ele tek aldınnan ko'rip shıg'ıw; o'zgerisler ele saqlanbadı!'''",
+'session_fail_preview'      => "'''Keshirersiz! Sessiya mag'lıwmatlarının' jog'alıwı sebepli o'zgerislerin'izdi qabıl ete almaymız.
+Qaytadan ha'reket qılıp ko'rin'. Eger bul payda bermese, [[Special:UserLogout|shıg'ıp]] qaytadan kirip ko'rin'.'''",
 'editing'                   => "$1 o'zgertilmekte",
 'editingsection'            => "$1 (bo'limi) o'zgertilmekte",
 'editingcomment'            => "$1 (kommentariyi) o'zgertilmekte",
@@ -708,9 +708,9 @@ Qaytadan ha'reket qılıp ko'rin'. Eger bul payda bermese, [[Special:UserLogout|
 'yourdiff'                  => 'Parqlar',
 'copyrightwarning'          => "Este tutın', {{SITENAME}} proyektinde jaylastırılg'an ha'm o'zgertilgen maqalalar tekstleri $2 sha'rt tiykarında qaraladı (tolıqraq mag'lıwmat ushın: $1). Eger siz tekstin'izdin' erkin tarqatılıwın ha'mde qa'legen paydalanıwshı o'zgertiwin qa'lemesen'iz, bul jerge jaylastırmag'anın'ız maqul.<br />
 Qosqan u'lesin'iz o'zin'izdin' jazg'anın'ız yamasa ashıq tu'rdegi derekten alıng'anlig'ına wa'de berin'.
-<strong>AVTORLIQ HUQUQI MENEN QORG'ALG'AN MAG'LIWMATLARDI RUXSATSIZ JAYLASTIRMAN'!</strong>",
-'copyrightwarning2'         => "Este tutın', {{SITENAME}} proyektindegi barlıq u'lesler basqa paydalanıwshılar arqalı o'zgertiliwi yamasa o'shiriliwi mu'mkin. Eger siz tekstin'izdin' erkin tarqatılıwın ha'mde qa'legen paydalanıwshı o'zgertiwin qa'lemesen'iz, bul jerge jaylastırmag'anın'ız maqul.<br /> Qosqan u'lesin'iz o'zin'izdin' jazg'anın'ız yamasa ashıq tu'rdegi derekten alıng'anlig'ına wa'de berin' (qosımsha mag'lıwmat ushın $1 hu'jjetin qaran'). <strong>AVTORLIQ HUQUQI MENEN QORG'ALG'AN MAG'LIWMATLARDI RUXSATSIZ JAYLASTIRMAN'!</strong>",
-'longpagewarning'           => "<strong>ESLETPE: Bul bettin' ha'jmi $1 kilobayt, geybir brauzerler 32 kBqa jaqın yamasa onnan u'lken bolg'an betlerdi o'zgertiwde qıyınshılıqlarg'a tuwra keliwi mu'mkin. Betti kishi bo'leklerge bo'liw haqqında oylap ko'rin'.</strong>",
+'''AVTORLIQ HUQUQI MENEN QORG'ALG'AN MAG'LIWMATLARDI RUXSATSIZ JAYLASTIRMAN'!'''",
+'copyrightwarning2'         => "Este tutın', {{SITENAME}} proyektindegi barlıq u'lesler basqa paydalanıwshılar arqalı o'zgertiliwi yamasa o'shiriliwi mu'mkin. Eger siz tekstin'izdin' erkin tarqatılıwın ha'mde qa'legen paydalanıwshı o'zgertiwin qa'lemesen'iz, bul jerge jaylastırmag'anın'ız maqul.<br /> Qosqan u'lesin'iz o'zin'izdin' jazg'anın'ız yamasa ashıq tu'rdegi derekten alıng'anlig'ına wa'de berin' (qosımsha mag'lıwmat ushın $1 hu'jjetin qaran'). '''AVTORLIQ HUQUQI MENEN QORG'ALG'AN MAG'LIWMATLARDI RUXSATSIZ JAYLASTIRMAN'!'''",
+'longpagewarning'           => "'''ESLETPE: Bul bettin' ha'jmi $1 kilobayt, geybir brauzerler 32 kBqa jaqın yamasa onnan u'lken bolg'an betlerdi o'zgertiwde qıyınshılıqlarg'a tuwra keliwi mu'mkin. Betti kishi bo'leklerge bo'liw haqqında oylap ko'rin'.'''",
 'semiprotectedpagewarning'  => "'''Eskertiw:''' Bet qulplang'an, tek registratsiyadan o'tken paydalanıwshılar g'ana o'zgerte aladı.",
 'templatesused'             => "Bul bette qollanılg'an shablonlar:",
 'templatesusedpreview'      => "Bul aldınnan ko'riw betinde qollanılg'an shablonlar:",
@@ -1547,7 +1547,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'rollback_short' => 'Biykar etiw',
 'rollbacklink'   => 'qaytarıw',
 'rollbackfailed' => "Biykar etiw sa'tsiz tamamlandı",
-'editcomment'    => 'O\'zgertiwdin\' bolg\'an kommentariyi: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'    => "O'zgertiwdin' bolg'an kommentariyi: \"''\$1''\".", # only shown if there is an edit comment
 
 # Protect
 'protectlogpage'              => "Qorg'aw jurnalı",
@@ -1560,9 +1560,9 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'protect_expiry_invalid'      => "Nadurıs ku'shin joytıw waqtı.",
 'protect_expiry_old'          => "Kushin joytıw waqtı o'tip ketken.",
 'protect-unchain'             => "Ko'shiriw ruxsatın beriw",
-'protect-text'                => "<strong><nowiki>$1</nowiki></strong> betinin' qorg'aw da'rejesin ko're yamasa o'zgerte alasız.",
+'protect-text'                => "'''<nowiki>$1</nowiki>''' betinin' qorg'aw da'rejesin ko're yamasa o'zgerte alasız.",
 'protect-locked-access'       => "Akkauntın'ızdın' bettın' qorg'aw da'rejesin o'zgertiwge ruxsatı joq.
-<strong>$1</strong> betinin' ha'zirgi sazlawları:",
+'''$1''' betinin' ha'zirgi sazlawları:",
 'protect-cascadeon'           => "Bul bet ha'zirgi waqıtta qorg'alg'an, sebebi usı bet kaskadlı qorg'awı bar {{PLURAL:$1|betke|betlerine}} qosılg'an. Bul bettin' qorg'aw da'rejesin o'zgerte alasız, biraq bul kaskadlı qorg'awg'a ta'sir etpeydi.",
 'protect-default'             => '(defolt)',
 'protect-fallback'            => '"$1" ruxsatı kerek',

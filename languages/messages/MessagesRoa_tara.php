@@ -370,13 +370,13 @@ $2',
 'U mutive jè ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => 'Configurazione ca fece schife: Virus scanner scanusciute: <i>$1</i>',
+'virus-badscanner'     => "Configurazione ca fece schife: Virus scanner scanusciute: ''$1''",
 'virus-scanfailed'     => 'condrolle fallite (codece $1)',
 'virus-unknownscanner' => 'antivirus scanusciute:',
 
 # Login and logout pages
 'logouttitle'                => 'Utende assute',
-'logouttext'                 => "<strong>Tu tè scolleghete.</strong>
+'logouttext'                 => "'''Tu tè scolleghete.'''
 
 Tu puè condinuà a ausà {{SITENAME}} in mode anonime, o tu puè [[Special:UserLogin|collegarte 'n'otra vote]] cumme 'u stesse utende o cumme 'n'otre utende.
 Note Bbuene ca certe pàggene ponne condinuà a essere viste cumme ce tu ste angore colleghete, fine a quanne a cache d'u browser no se sdeveche.",
@@ -607,15 +607,15 @@ Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 *'''Konqueror: '''cazze ''Aggiorna'' o cazze ''F5'';
 *'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);
 *'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.",
-'usercssjsyoucanpreview'           => "<strong>Conziglie:</strong> Ause 'u buttone 'Vide l'andeprime' pe condrollà 'u CSS/JS nuève apprime de reggistrà.",
+'usercssjsyoucanpreview'           => "'''Conziglie:''' Ause 'u buttone 'Vide l'andeprime' pe condrollà 'u CSS/JS nuève apprime de reggistrà.",
 'usercsspreview'                   => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u CSS tue.'''
 '''Non g'à state angore reggistrete ninde!'''",
 'userjspreview'                    => "'''Arrecuerdete ca tu ste vide/teste sulamende in andeprime 'u JavaScript tue.'''
 '''Non g'à state angore reggistrete ninde!'''",
 'updated'                          => '(Cangiete)',
-'note'                             => '<strong>Vide Bbuene:</strong>',
-'previewnote'                      => "<strong>Queste è sole 'n'andeprime;
-le cangiaminde non g'onne state angore reggistrete!</strong>",
+'note'                             => "'''Vide Bbuene:'''",
+'previewnote'                      => "'''Queste è sole 'n'andeprime;
+le cangiaminde non g'onne state angore reggistrete!'''",
 'previewconflict'                  => "Sta andeprime fece vedè 'u teste ca ste jndr'à 'u teste de l'area de sus cumme avène fore ce tu decide cu reggistre.",
 'editing'                          => 'Cangiaminde de $1',
 'editingsection'                   => 'Cangiaminde de $1 (sezione)',
@@ -627,13 +627,13 @@ le cangiaminde non g'onne state angore reggistrete!</strong>",
 'copyrightwarning'                 => "Pe piacere vide ca tutte le condrebbute de {{SITENAME}} sonde considerete de essere rilasciete sotte 'a $2 (vide $1 pe le dettaglie).
 Ce tu non ge vuè ca le condrebbute tue avènene ausete da otre o avènene cangete, non le scè mettènne proprie.<br />
 Tu na promettere pure ca le cose ca scrive tu, sonde 'mbormaziune libbere o copiete da 'nu pubbleche dominie.<br />
-<strong>NON METTE' NISCIUNA FATJE CA JE' PROTETTE DA DERITTE SENZA PERMESSE!</strong>",
-'longpagewarning'                  => "<strong>ATTENZIO': Sta pàgene jè longhe $1 kilobyte;
+'''NON METTE' NISCIUNA FATJE CA JE' PROTETTE DA DERITTE SENZA PERMESSE!'''",
+'longpagewarning'                  => "'''ATTENZIO': Sta pàgene jè longhe $1 kilobyte;
 certe brauser ponne avè probleme quanne vuè cu cange pàggene ca sonde granne cchiù o mene 32 KB.
-Pe piacere considere de cangià 'a pàgene a stuezze stuezze ausanne le sezione.</strong>",
-'protectedpagewarning'             => "<strong>ATTENZIO': Sta pàgene ha state blocchete e allore sulamende le utinde cu le privilegge de ''sysop'' ponne cangiarle.</strong>",
+Pe piacere considere de cangià 'a pàgene a stuezze stuezze ausanne le sezione.'''",
+'protectedpagewarning'             => "'''ATTENZIO': Sta pàgene ha state blocchete e allore sulamende le utinde cu le privilegge de ''sysop'' ponne cangiarle.'''",
 'semiprotectedpagewarning'         => "'''Fà attenzione:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrete ponne fà cangiaminde.",
-'titleprotectedwarning'            => '<strong>ATTENZIONE: Sta pàgene ha state blocchete accussì sulamende certe utinde a ponne ccrejà.</strong>',
+'titleprotectedwarning'            => "'''ATTENZIONE: Sta pàgene ha state blocchete accussì sulamende certe utinde a ponne ccrejà.'''",
 'templatesused'                    => "Template ausete sus 'a sta pàgene:",
 'templatesusedpreview'             => "Template ausete jndr'à sta andeprime:",
 'templatesusedsection'             => "Jndr'à sta sezione sonde ausete chiste template:",
@@ -1418,9 +1418,9 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'protect_expiry_invalid'      => 'Orarie de scadenze jè invalide.',
 'protect_expiry_old'          => "L'ore de scadenza jè jndr'à 'u passate.",
 'protect-unchain'             => 'Sblocche le permisse de spustaminde',
-'protect-text'                => "Tu puè vedè e cangià 'u levèlle de protezzione p'a pàgene <strong><nowiki>$1</nowiki></strong>.",
+'protect-text'                => "Tu puè vedè e cangià 'u levèlle de protezzione p'a pàgene '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Tu non ge tine le permesse pe putè cangià le levèlle de protezione de le pàggene.
-Chiste sonde le configuraziune corrende p'a pàgene <strong>$1</strong>:",
+Chiste sonde le configuraziune corrende p'a pàgene '''$1''':",
 'protect-cascadeon'           => "Sta pàgene mò jè  prutette purcè jè ingluse jndr'à {{PLURAL:$1|'a seguende pàgene, ca tène|le seguende pàggene, ca tènene}} a protezione a cascata appizzechete.
 Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non ge tène effette a cascata.",
 'protect-default'             => '(defolt)',

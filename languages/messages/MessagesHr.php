@@ -638,7 +638,7 @@ $2',
 'titleprotected'       => "Ovaj naslov je od kreiranja zaštitio suradnik [[User:$1|$1]], uz razlog: ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => 'Loša konfiguracija: nepoznati skener za viruse: <i>$1</i>',
+'virus-badscanner'     => "Loša konfiguracija: nepoznati skener za viruse: ''$1''",
 'virus-scanfailed'     => 'skeniranje neuspješno (kod $1)',
 'virus-unknownscanner' => 'nepoznati antivirus:',
 
@@ -855,25 +855,25 @@ Nakon prijave, lozinka za ovaj novi račun može biti promijenjena na stranici '
 'userpage-userdoesnotexist'        => 'Suradničko ime "$1" nije prijavljeno. Jeste li sigurni da želite stvoriti/uređivati ovu stranicu?',
 'clearyourcache'                   => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
 '''Mozilla / Firefox / Safari:''' držite ''Shift'' i pritisnite ''Reload'', ili pritisnite ''Ctrl-F5'' ili ''Ctrl-R'' (''Cmd-R'' na Apple Macu); '''Konqueror:''' samo pritisnite dugme ''Reload'' ili pritisnite ''F5''; '''Opera:''' očistiti cache u ''Tools → Preferences;'' '''Internet Explorer:''' držite ''Ctrl'' i pritisnite ''Refresh'', ili pritisnite ''Ctrl-F5.''",
-'usercssjsyoucanpreview'           => "<strong>Savjet:</strong> Koristite dugme 'Pokaži kako će izgledati' za testiranje svog CSS/JS prije snimanja.",
+'usercssjsyoucanpreview'           => "'''Savjet:''' Koristite dugme 'Pokaži kako će izgledati' za testiranje svog CSS/JS prije snimanja.",
 'usercsspreview'                   => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički CSS. Još nije snimljen!'''",
 'userjspreview'                    => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički JavaScript, i da još nije snimljen!'''",
 'userinvalidcssjstitle'            => "'''Upozorenje:''' Nema sučelja pod imenom \"\$1\". Ne zaboravite da imena stranica s .css and .js kodom počinju malim slovom, npr. {{ns:user}}:Mate/monobook.css, a ne {{ns:user}}:Mate/Monobook.css.",
 'updated'                          => '(Ažurirano)',
-'note'                             => '<strong>Napomena:</strong>',
-'previewnote'                      => '<strong>Ne zaboravite da je ovo samo pregled kako će stranica izgledati i da stranica još nije snimljena!</strong>',
+'note'                             => "'''Napomena:'''",
+'previewnote'                      => "'''Ne zaboravite da je ovo samo pregled kako će stranica izgledati i da stranica još nije snimljena!'''",
 'previewconflict'                  => 'Ovaj pregled odražava stanje u gornjem polju za unos koje će biti sačuvano
 ako pritisnete "Sačuvaj stranicu".',
-'session_fail_preview'             => '<strong>Ispričavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi.
-Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se odjaviti i ponovno prijaviti.</strong>',
-'session_fail_preview_html'        => "<strong>Oprostite! Pretpregled nije moguć jer je ''session'' istekao.</strong>
+'session_fail_preview'             => "'''Ispričavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi.
+Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se odjaviti i ponovno prijaviti.'''",
+'session_fail_preview_html'        => "'''Oprostite! Pretpregled nije moguć jer je ''session'' istekao.'''
 
 ''Budući da je na ovom wikiju ({{SITENAME}}) omogućen unos HTML oznaka (tagova), pretpregled je skriven kao mjera predstrožnosti protiv napada pomoću JavaScripta.''
 
-<strong>Ukoliko ste pokušali vidjeti kako stranica izgleda, molimo probajte opet. Ako ne uspije, [[Special:UserLogout|odjavite se]] i prijavite se ponovo.</strong>",
-'token_suffix_mismatch'            => '<strong>Vaše uređivanje je odbačeno jer je vaš web preglednik ubacio znak/znakove interpunkcije u token uređivanja.
+'''Ukoliko ste pokušali vidjeti kako stranica izgleda, molimo probajte opet. Ako ne uspije, [[Special:UserLogout|odjavite se]] i prijavite se ponovo.'''",
+'token_suffix_mismatch'            => "'''Vaše uređivanje je odbačeno jer je vaš web preglednik ubacio znak/znakove interpunkcije u token uređivanja.
 Stoga je uređivanje odbačeno da se spriječi uništavanje stranice.
-To se događa ponekad kad rabite neispravan web-baziran anonimni proxy.</strong>',
+To se događa ponekad kad rabite neispravan web-baziran anonimni proxy.'''",
 'editing'                          => 'Uređujete $1',
 'editingsection'                   => 'Uređujete $1 (odlomak)',
 'editingcomment'                   => 'Uređujete $1 (novi odlomak)',
@@ -883,25 +883,25 @@ U donjem polju prikazane su vaše promjene. Morat ćete unijeti vaše promjene u
 u u gornjem polju biti sačuvan kad pritisnete "Snimi stranicu".',
 'yourtext'                         => 'Vaš tekst',
 'storedversion'                    => 'Pohranjena inačica',
-'nonunicodebrowser'                => '<strong>UPOZORENJE: Vaš preglednik ne podržava Unicode zapis znakova, molimo promijenite ga prije sljedećeg uređivanja članaka.</strong>',
-'editingold'                       => '<strong>UPOZORENJE: Uređujete stariju inačicu
-ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice biti izgubljene.</strong>',
+'nonunicodebrowser'                => "'''UPOZORENJE: Vaš preglednik ne podržava Unicode zapis znakova, molimo promijenite ga prije sljedećeg uređivanja članaka.'''",
+'editingold'                       => "'''UPOZORENJE: Uređujete stariju inačicu
+ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice biti izgubljene.'''",
 'yourdiff'                         => 'Razlike',
-'copyrightwarning'                 => 'Molimo uočite da se svi doprinosi {{SITENAME}} smatraju objavljenima pod uvjetima $2 (vidi $1 za detalje). Ako ne želite da se vaše pisanje nemilosrdno uređuje i slobodno raspačava, nemojte ga ovamo slati. <br />
+'copyrightwarning'                 => "Molimo uočite da se svi doprinosi {{SITENAME}} smatraju objavljenima pod uvjetima $2 (vidi $1 za detalje). Ako ne želite da se vaše pisanje nemilosrdno uređuje i slobodno raspačava, nemojte ga ovamo slati. <br />
 Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom.<br />
-<strong>NE POSTAVLJAJTE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOPUŠTENJA!</strong>',
-'copyrightwarning2'                => 'Svi doprinosi {{SITENAME}} mogu biti mijenjani od strane svih suradnika. Ako ne želite da se vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br /> Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom (vidi $1 za detalje). <strong>NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOPUŠTENJA!</strong>',
+'''NE POSTAVLJAJTE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOPUŠTENJA!'''",
+'copyrightwarning2'                => "Svi doprinosi {{SITENAME}} mogu biti mijenjani od strane svih suradnika. Ako ne želite da se vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br /> Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom (vidi $1 za detalje). '''NE STAVLJAJTE ZAŠTIĆENE RADOVE BEZ DOPUŠTENJA!'''",
 'longpagewarning'                  => 'PAŽNJA: Ova stranica je dugačka $1 kilobajta; neki bi preglednici mogli imati problema pri uređivanju stranica koje se približavaju ili su duže od 32 kb.
 Molimo razmislite o rastavljanju stranice na manje odjeljke.',
-'longpageerror'                    => '<strong>POGRJEŠKA: Tekst koji ste unijeli dug je $1 kilobajta, što je više od maksimalnih $2 kilobajta. Nije ga moguće snimiti.</strong>',
-'readonlywarning'                  => '<strong>UPOZORENJE: Baza podataka je zaključana zbog održavanja, pa trenutačno ne možete sačuvati svoje
-promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je snimite za kasnije.</strong>
+'longpageerror'                    => "'''POGRJEŠKA: Tekst koji ste unijeli dug je $1 kilobajta, što je više od maksimalnih $2 kilobajta. Nije ga moguće snimiti.'''",
+'readonlywarning'                  => "'''UPOZORENJE: Baza podataka je zaključana zbog održavanja, pa trenutačno ne možete sačuvati svoje
+promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je snimite za kasnije.'''
 
-Administrator je zaključao bazu iz razloga: $1',
-'protectedpagewarning'             => '<strong>UPOZORENJE: ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima.</strong>',
+Administrator je zaključao bazu iz razloga: $1",
+'protectedpagewarning'             => "'''UPOZORENJE: ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima.'''",
 'semiprotectedpagewarning'         => "'''Napomena:''' Ovu stranicu mogu uređivati samo prijavljeni suradnici.",
 'cascadeprotectedwarning'          => "'''UPOZORENJE:''' Ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima, jer je uključena u {{PLURAL:\$1|slijedeću stranicu|slijedeće stranice}} koje su zaštićene \"prenosivom\" zaštitom:",
-'titleprotectedwarning'            => '<strong>UPOZORENJE:  Ova stranica je zaključana i samo je neki suradnici mogu stvoriti.</strong>',
+'titleprotectedwarning'            => "'''UPOZORENJE:  Ova stranica je zaključana i samo je neki suradnici mogu stvoriti.'''",
 'templatesused'                    => 'Predlošci korišteni na ovoj stranici:',
 'templatesusedpreview'             => 'Predlošci koji se koriste u ovom predpregledu:',
 'templatesusedsection'             => 'Predlošci koji se koriste u odjeljku:',
@@ -1492,19 +1492,19 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'large-file'                  => 'Preporučljivo je da datoteke ne prelaze $1; Ova datoteka je $2.',
 'largefileserver'             => 'Veličina ove datoteke veća je od one dopuštene postavkama poslužitelja.',
 'emptyfile'                   => 'Datoteka koju ste postavili je prazna. Možda se radi o krivo utipkanom imenu datoteke. Provjerite želite li zaista postaviti ovu datoteku.',
-'fileexists'                  => 'Datoteka s ovim imenom već postoji, pogledajte <strong><tt>$1</tt></strong> ako niste sigurni želite li je uistinu promijeniti.',
-'filepageexists'              => 'Stranica s opisom za ovu datoteku je već napravljena na <strong><tt>$1</tt></strong>, ali trenutačno ne postoji datoteka s ovim imenom. Sažetak koji unesete se neće pojaviti na stranici s opisom. Kako bi se sažetak pojavio, morate ručno urediti stranicu.',
-'fileexists-extension'        => 'Već postoji datoteka sa sličnim imenom:<br />
-Ime datoteke koju postavljate: <strong><tt>$1</tt></strong><br />
-Ime postojeće datoteke: <strong><tt>$2</tt></strong><br />
-Molimo da izaberete drugo ime.',
+'fileexists'                  => "Datoteka s ovim imenom već postoji, pogledajte '''<tt>$1</tt>''' ako niste sigurni želite li je uistinu promijeniti.",
+'filepageexists'              => "Stranica s opisom za ovu datoteku je već napravljena na '''<tt>$1</tt>''', ali trenutačno ne postoji datoteka s ovim imenom. Sažetak koji unesete se neće pojaviti na stranici s opisom. Kako bi se sažetak pojavio, morate ručno urediti stranicu.",
+'fileexists-extension'        => "Već postoji datoteka sa sličnim imenom:<br />
+Ime datoteke koju postavljate: '''<tt>$1</tt>'''<br />
+Ime postojeće datoteke: '''<tt>$2</tt>'''<br />
+Molimo da izaberete drugo ime.",
 'fileexists-thumb'            => "<center>'''Postojeća slika'''</center>",
-'fileexists-thumbnail-yes'    => 'Datoteka je najvjerojatnije slika u smanjenoj veličini <i>(thumbnail)</i>. Molimo provjerite datoteku <strong><tt>$1</tt></strong>.<br />
+'fileexists-thumbnail-yes'    => "Datoteka je najvjerojatnije slika u smanjenoj veličini ''(thumbnail)''. Molimo provjerite datoteku '''<tt>$1</tt>'''.<br />
 Ukoliko je ta datoteka ista kao i ova koju ste upravo pokušali snimiti, samo u višoj rezoluciji, nije nužno snimanje smanjenje slike<br />
-<i>(thumbnaila)</i>, prikazivanje smanjene slike iz izvornika radi se softverski.',
-'file-thumbnail-no'           => 'Ime datoteke počinje s <strong><tt>$1</tt></strong>.
-Čini se da je to slika smanjene veličine <i>(minijatura)</i>.
-Ukoliko imate ovu sliku u punoj razlučljivosti (rezoluciji) postavite tu sliku, u protivnom, molimo promijenite ime datoteke.',
+''(thumbnaila)'', prikazivanje smanjene slike iz izvornika radi se softverski.",
+'file-thumbnail-no'           => "Ime datoteke počinje s '''<tt>$1</tt>'''.
+Čini se da je to slika smanjene veličine ''(minijatura)''.
+Ukoliko imate ovu sliku u punoj razlučljivosti (rezoluciji) postavite tu sliku, u protivnom, molimo promijenite ime datoteke.",
 'fileexists-forbidden'        => 'Datoteka s ovim imenom već postoji; molim postavite ju pod drugim imenom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Datoteka s ovim imenom već postoji u središnjem poslužitelju datoteka. 
 Ako još uvijek želite postaviti svoju datoteku, idite nazad i postavite ju pod drugim imenom. [[File:$1|thumb|center|$1]]',
@@ -1529,7 +1529,7 @@ Ako još uvijek želite postaviti svoju datoteku, idite nazad i postavite ju pod
 
 Razmislite je li prigodno nastaviti s postavljanjem ove datoteke.
 Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
-'filename-bad-prefix'         => 'Ime datoteke koju snimate počinje s <strong>"$1"</strong>, što je ime koje slikama tipično dodjeljuju digitalni fotoaparati. Molimo izaberite bolje ime (neko koje bolje opisuje sliku nego $1).',
+'filename-bad-prefix'         => "Ime datoteke koju snimate počinje s '''\"\$1\"''', što je ime koje slikama tipično dodjeljuju digitalni fotoaparati. Molimo izaberite bolje ime (neko koje bolje opisuje sliku nego \$1).",
 
 'upload-proto-error'      => 'Protokol nije valjan',
 'upload-proto-error-text' => 'Udaljeno snimanje zahtijeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
@@ -1985,7 +1985,7 @@ Sva vremena su prema poslužiteljevom vremenu.',
 ([[User talk:$2|Razgovor]]); netko je već promijenio stranicu ili uklonio promjenu.
 
 Posljednju promjenu napravio je suradnik [[User:$3|$3]] ([[User talk:$3|Razgovor]]).',
-'editcomment'      => 'Komentar promjene je: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => "Komentar promjene je: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Uklonjeno uređivanje suradnika $1; vraćeno na zadnju inačicu suradnika $2.',
 'sessionfailure'   => 'Uočili smo problem s vašom prijavom. Zadnja naredba nije izvršena
@@ -2008,13 +2008,13 @@ Pogledajte [[Special:ProtectedPages|zaštićene stranice]] za popis trenutačno 
 'protect_expiry_invalid'      => 'Upisani vremenski rok nije valjan.',
 'protect_expiry_old'          => 'Vrijeme isteka je u prošlosti.',
 'protect-unchain'             => 'Otključaj ovlaštenja za premještanje',
-'protect-text'                => 'Ovdje možete pregledati i promijeniti razinu zaštite za stranicu <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'Ne možete mijenjati nivo zaštite dok ste blokirani.
-Slijede postavke stranice <strong>$1</strong>:',
-'protect-locked-dblock'       => 'Razina zaštite ne može biti promijenjena jer je baza zaključana.
-Slijede postavke stranice <strong>$1</strong>:',
-'protect-locked-access'       => 'Nemate ovlasti za mijenjanje razine zaštite.
-Slijede trenutačne postavke stranice <strong>$1</strong>:',
+'protect-text'                => "Ovdje možete pregledati i promijeniti razinu zaštite za stranicu '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Ne možete mijenjati nivo zaštite dok ste blokirani.
+Slijede postavke stranice '''$1''':",
+'protect-locked-dblock'       => "Razina zaštite ne može biti promijenjena jer je baza zaključana.
+Slijede postavke stranice '''$1''':",
+'protect-locked-access'       => "Nemate ovlasti za mijenjanje razine zaštite.
+Slijede trenutačne postavke stranice '''$1''':",
 'protect-cascadeon'           => 'Ova stranica je zaštićena jer je uključena u {{PLURAL:$1|stranicu, koja ima|stranice, koje imaju|stranice, koje imaju}} uključenu prenosivu zaštitu. Možete promijeniti stupanj zaštite ove stranice, no to neće utjecati na prenosivu zaštitu.',
 'protect-default'             => '(bez zaštite)',
 'protect-fallback'            => 'Potrebno je imati "$1" ovlasti',

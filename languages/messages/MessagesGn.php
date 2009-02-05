@@ -230,8 +230,8 @@ Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo 
 'editingsection'        => 'Ojehaihína $1 (vore)',
 'editingcomment'        => 'Ojehaihína $1 (comentario)',
 'yourtext'              => "Mba'ehaipyre",
-'longpagewarning'       => "<strong>Ejesarekóke: ko kuatiarogue, tuichakuépe, oguereko $1 kb; heta kundahára ikatu iñapañuãi jehaijeýpe kuatiarogue ohaságui 32 kb.
-Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.</strong>",
+'longpagewarning'       => "'''Ejesarekóke: ko kuatiarogue, tuichakuépe, oguereko $1 kb; heta kundahára ikatu iñapañuãi jehaijeýpe kuatiarogue ohaságui 32 kb.
+Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.'''",
 
 # History pages
 'cur'         => "ko'ag̃agua",
@@ -435,7 +435,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 
 # Protect
 'prot_1movedto2' => '[[$1]] oñembohasa [[$2]]-pe',
-'protect-text'   => 'Puedes ver y modificar el nivel de protección de la página <strong>$1</strong>.',
+'protect-text'   => "Puedes ver y modificar el nivel de protección de la página '''$1'''.",
 
 # Undelete
 'undeletedrevisions'       => '$1 ediciones restauradas',

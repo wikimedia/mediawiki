@@ -513,7 +513,7 @@ $2',
 'namespaceprotected'   => "您并没有权限编辑'''$1'''名字空间内的页面。",
 'customcssjsprotected' => '您并无权限去编辑这个页面，因为它包含了另一位用户的个人设定。',
 'ns-specialprotected'  => '特殊页面是不可以编辑的。',
-'titleprotected'       => '这个标题已经被[[User:$1|$1]]保护以防止创建。理由是<i>$2</i>。',
+'titleprotected'       => "这个标题已经被[[User:$1|$1]]保护以防止创建。理由是''$2''。",
 
 # Virus scanner
 'virus-badscanner'     => "损坏设置: 未知的病毒扫瞄器: ''$1''",
@@ -522,9 +522,9 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => '退出',
-'logouttext'                 => '<strong>您现在已经退出。</strong><br />
+'logouttext'                 => "'''您现在已经退出。'''<br />
 您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份[[Special:UserLogin|登录]]。
-请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。',
+请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",
 'welcomecreation'            => '== 欢迎, $1! ==
 
  您的账户已经建立，不要忘记设置[[Special:Preferences|{{SITENAME}}的个人参数]]。',
@@ -721,24 +721,24 @@ $2',
 '''Konqueror:''' 只需點擊 ''刷新''或按下''F5''；
 '''Opera:''' 在 ''工具→設定'' 中完整地清除它們的緩存；
 '''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''刷新''，或按下 ''Ctrl-F5''。",
-'usercssjsyoucanpreview'           => "<strong>提示:</strong> 在保存前请用'显示预  '按钮来测试您新的 CSS/JS 。",
+'usercssjsyoucanpreview'           => "'''提示:''' 在保存前请用'显示预  '按钮来测试您新的 CSS/JS 。",
 'usercsspreview'                   => "'''注意您只是在预览您的个人 CSS。'''
 '''还没有保存！'''",
 'userjspreview'                    => "'''注意您只是在测试／预览您的个人 JavaScript。'''
 '''还没有保存！'''",
 'userinvalidcssjstitle'            => "'''警告:''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/monobook.css 不同于 {{ns:user}}:Foo/Monobook.css。",
 'updated'                          => '(已更新)',
-'note'                             => '<strong>注意:</strong>',
-'previewnote'                      => '<strong>请记住这只是预览，内容还未保存！</strong>',
+'note'                             => "'''注意:'''",
+'previewnote'                      => "'''请记住这只是预览，内容还未保存！'''",
 'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'             => '<strong>抱歉！我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。</strong>',
-'session_fail_preview_html'        => "<strong>抱歉！我们不能处理你在进程数据丢失时的编辑。</strong>
+'session_fail_preview'             => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。'''",
+'session_fail_preview_html'        => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
-<strong>如果这是一次合法的编辑，请重新进行尝试。如果还不行，请[[Special:UserLogout|退出]]并重新登录。</strong>",
-'token_suffix_mismatch'            => '<strong>由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
-这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。</strong>',
+'''如果这是一次合法的编辑，请重新进行尝试。如果还不行，请[[Special:UserLogout|退出]]并重新登录。'''",
+'token_suffix_mismatch'            => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
+这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。'''",
 'editing'                          => '正在编辑$1',
 'editingsection'                   => '正在编辑$1 (段落)',
 'editingcomment'                   => '正在编辑$1 (评论)',
@@ -750,29 +750,29 @@ $2',
 <b>只有</b>在上面文字框中的内容会在你点击"保存页面"后被保存。<br />',
 'yourtext'                         => '您的文字',
 'storedversion'                    => '已保存版本',
-'nonunicodebrowser'                => '<strong>警告: 您的浏览器不兼容Unicode编码。这里有一个工作区将使您能安全地编辑页面: 非ASCII字符将以十六进制编码方式出现在编辑框中。</strong>',
-'editingold'                       => '<strong>警告：你正在编辑的是本页的旧版本。
-如果你保存它的话，在本版本之后的任何修改都会丢失。</strong>',
+'nonunicodebrowser'                => "'''警告: 您的浏览器不兼容Unicode编码。这里有一个工作区将使您能安全地编辑页面: 非ASCII字符将以十六进制编码方式出现在编辑框中。'''",
+'editingold'                       => "'''警告：你正在编辑的是本页的旧版本。
+如果你保存它的话，在本版本之后的任何修改都会丢失。'''",
 'yourdiff'                         => '差异',
-'copyrightwarning'                 => '请注意您对{{SITENAME}}的所有贡献都被认为是在$2下发布，请查看在$1的细节。
+'copyrightwarning'                 => "请注意您对{{SITENAME}}的所有贡献都被认为是在$2下发布，请查看在$1的细节。
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
 您同时也要向我们保证您所提交的内容是您自己所作，或得自一个不受版权保护或相似自由的来源。
-<strong>不要在未获授权的情况下发表！</strong><br />',
-'copyrightwarning2'                => '请注意您对{{SITENAME}}的所有贡献
+'''不要在未获授权的情况下发表！'''<br />",
+'copyrightwarning2'                => "请注意您对{{SITENAME}}的所有贡献
 都可能被其他贡献者编辑，修改或删除。
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
 您同时也要向我们保证您所提交的内容是您自己所作，或得自一个不受版权保护或相似自由的来源（参阅$1的细节）。
-<strong>不要在未获授权的情况下发表！</strong>',
-'longpagewarning'                  => '<strong>警告: 该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
-您应该考虑将此页面分成更小的章节。</strong>',
-'longpageerror'                    => '<strong>错误: 您所提交的文本长度有$1KB，这大于$2KB的最大值。该文本不能被保存。</strong>',
-'readonlywarning'                  => '<strong>警告: 数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本段文字复制并保存到文本文件，然后等一会儿再修改。</strong>
+'''不要在未获授权的情况下发表！'''",
+'longpagewarning'                  => "'''警告: 该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
+您应该考虑将此页面分成更小的章节。'''",
+'longpageerror'                    => "'''错误: 您所提交的文本长度有$1KB，这大于$2KB的最大值。该文本不能被保存。'''",
+'readonlywarning'                  => "'''警告: 数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本段文字复制并保存到文本文件，然后等一会儿再修改。'''
 
-管理员有如下解释: $1',
-'protectedpagewarning'             => '<strong>警告: 此页已经被保护，只有拥有管理员权限的用户才可修改。</strong>',
+管理员有如下解释: $1",
+'protectedpagewarning'             => "'''警告: 此页已经被保护，只有拥有管理员权限的用户才可修改。'''",
 'semiprotectedpagewarning'         => "'''注意：''' 本页面被锁定，仅限注册用户编辑。",
 'cascadeprotectedwarning'          => '警告: 本页已经被保护，只有拥有管理员权限的用户才可修改，因为本页已被以下连锁保护的{{PLURAL:$1|一个|多个}}页面所包含:',
-'titleprotectedwarning'            => '<strong>警告: 本页面已被锁上，只有一些用户方可创建。</strong>',
+'titleprotectedwarning'            => "'''警告: 本页面已被锁上，只有一些用户方可创建。'''",
 'templatesused'                    => '在这个页面上使用的模板有:',
 'templatesusedpreview'             => '此次预览中使用的模板有:',
 'templatesusedsection'             => '在这个段落上使用的模板有:',

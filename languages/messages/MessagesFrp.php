@@ -578,16 +578,16 @@ Volyéd los spècefiar dens tota requéta.",
 'userjspreview'             => "'''Rapelâd-vos que vos éte aprés visualisar ou èprovar voutron code JavaScript et qu’il at p’oncor étâ enregistrâ !'''",
 'userinvalidcssjstitle'     => "'''Atencion :''' ègziste pas d’entèrface « $1 ». Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres aprés lo nom d’utilisator et la bârra de fraccion /.<br />D’ense, {{ns:user}}:Foo/monobook.css est valido, pendent que {{ns:user}}:Foo/Monobook.css serat una fôlye de stilo envalida.",
 'updated'                   => '(Betâ a jorn)',
-'note'                      => '<strong>Nota :</strong>',
-'previewnote'               => '<strong>Atencion, ceti tèxte est ren qu’una prèvisualisacion et at p’oncor étâ sôvâ !</strong>',
+'note'                      => "'''Nota :'''",
+'previewnote'               => "'''Atencion, ceti tèxte est ren qu’una prèvisualisacion et at p’oncor étâ sôvâ !'''",
 'previewconflict'           => 'Ceta prèvisualisacion montre lo tèxte de la bouèta d’èdicion de d’amont tâl qu’aparètrat se vos chouèsésséd/cièrde de lo sôvar.',
-'session_fail_preview'      => '<strong>Dèsolâ ! Nos povens pas enregistrar voutra modificacion a côsa d’una pèrta d’enformacions regardent voutra sèssion. Volyéd tornar èprovar. Se cen tôrne pas reussir, volyéd vos dèconèctar, et pués vos tornar conèctar.</strong>',
-'session_fail_preview_html' => "<strong>Dèsolâ ! Nos povens pas enregistrar voutra modificacion a côsa d’una pèrta d’enformacions regardent voutra sèssion.</strong>
+'session_fail_preview'      => "'''Dèsolâ ! Nos povens pas enregistrar voutra modificacion a côsa d’una pèrta d’enformacions regardent voutra sèssion. Volyéd tornar èprovar. Se cen tôrne pas reussir, volyéd vos dèconèctar, et pués vos tornar conèctar.'''",
+'session_fail_preview_html' => "'''Dèsolâ ! Nos povens pas enregistrar voutra modificacion a côsa d’una pèrta d’enformacions regardent voutra sèssion.'''
 
 ''L’HTML bruto étent activâ dessus {{SITENAME}}, la prèvisualisacion at étâ mâscâ por prèvegnir una ataca per JavaScript.''
 
-<strong>Se la tentativa de modificacion ére lèg·itima, volyéd tornar èprovar. Se cen tôrne pas reussir, volyéd vos dèconèctar, et pués vos tornar conèctar.</strong>",
-'token_suffix_mismatch'     => '<strong>Voutra èdicion at pas étâ accèptâ perce que voutron navigator at mècllâ los caractèros de ponctuacion dens l’identifiant d’èdicion. L’èdicion at étâ refusâ por empachiér la corrupcion du tèxte de l’articllo. Ceti problèmo arreve quand vos utilisâd un proxy anonimo avouéc problèmo.</strong>',
+'''Se la tentativa de modificacion ére lèg·itima, volyéd tornar èprovar. Se cen tôrne pas reussir, volyéd vos dèconèctar, et pués vos tornar conèctar.'''",
+'token_suffix_mismatch'     => "'''Voutra èdicion at pas étâ accèptâ perce que voutron navigator at mècllâ los caractèros de ponctuacion dens l’identifiant d’èdicion. L’èdicion at étâ refusâ por empachiér la corrupcion du tèxte de l’articllo. Ceti problèmo arreve quand vos utilisâd un proxy anonimo avouéc problèmo.'''",
 'editing'                   => 'Modificacion de $1',
 'editingsection'            => 'Modificacion de $1 (sèccion)',
 'editingcomment'            => 'Modificacion de $1 (comentèro)',
@@ -599,26 +599,26 @@ Vos voléd devêr aduire voutres modificacions u tèxte ègzistent.
 '''Solèt''' lo tèxte de la zona de d’amont serat sôvâ.",
 'yourtext'                  => 'Voutron tèxte',
 'storedversion'             => 'Vèrsion enregistrâ',
-'nonunicodebrowser'         => '<strong>ATENCION : voutron navigator supôrte pas l’unicode. Una solucion temporèra at étâ trovâ por vos pèrmetre de modifiar en tota suretât un articllo : los caractèros nan-ASCII aparètront dens voutra bouèta d’èdicion a titro de codes hèxadècimâls. Vos devriâd utilisar un navigator ples novél.</strong>',
-'editingold'                => '<strong>ATENCION : vos éte aprés modifiar una vielye vèrsion de ceta pâge. Se vos sôvâd, totes les modificacions fêtes dês ceta vèrsion seront pèrdues.</strong>',
+'nonunicodebrowser'         => "'''ATENCION : voutron navigator supôrte pas l’unicode. Una solucion temporèra at étâ trovâ por vos pèrmetre de modifiar en tota suretât un articllo : los caractèros nan-ASCII aparètront dens voutra bouèta d’èdicion a titro de codes hèxadècimâls. Vos devriâd utilisar un navigator ples novél.'''",
+'editingold'                => "'''ATENCION : vos éte aprés modifiar una vielye vèrsion de ceta pâge. Se vos sôvâd, totes les modificacions fêtes dês ceta vèrsion seront pèrdues.'''",
 'yourdiff'                  => 'Difèrences',
-'copyrightwarning'          => 'Totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys). Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
+'copyrightwarning'          => "Totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys). Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou d’una ressôrsa abada.<br />
-<strong>UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !</strong>',
-'copyrightwarning2'         => 'Totes les contribucions a {{SITENAME}} pôvont étre modifiâs ou suprimâs per d’ôtros utilisators. Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
+'''UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !'''",
+'copyrightwarning2'         => "Totes les contribucions a {{SITENAME}} pôvont étre modifiâs ou suprimâs per d’ôtros utilisators. Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou d’una ressôrsa abada (vêde $1 por més de dètalys).<br />
-<strong>UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !</strong>',
-'longpagewarning'           => '<strong>ATENCION : ceta pâge at una longior de $1 ko ;
+'''UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !'''",
+'longpagewarning'           => "'''ATENCION : ceta pâge at una longior de $1 ko ;
 cèrtins navigators g·èront mâl la modificacion de les pâges aprochient ou dèpassent 32 ko.
-Pôt-étre devriâd-vos divisar la pâge en sèccions ples petiôtes.</strong>',
-'longpageerror'             => '<strong>ÈRROR : lo tèxte que vos éd somês fât $1 ko, cen que dèpâsse la limita fixâ a $2 ko. Lo tèxte pôt pas étre sôvâ.</strong>',
-'readonlywarning'           => '<strong>ATENCION : la bâsa de balyês at étâ vèrrolyê por mantegnence,
-vos porréd vêr pas sôvar voutres modificacions d’abôrd. Vos pouede copiyér lo contegnu de la pâge dens un fichiér tèxte et pués lo sôvar por ples târd.</strong>',
-'protectedpagewarning'      => '<strong>ATENCION : ceta pâge est protègiê.
-Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.</strong>',
+Pôt-étre devriâd-vos divisar la pâge en sèccions ples petiôtes.'''",
+'longpageerror'             => "'''ÈRROR : lo tèxte que vos éd somês fât $1 ko, cen que dèpâsse la limita fixâ a $2 ko. Lo tèxte pôt pas étre sôvâ.'''",
+'readonlywarning'           => "'''ATENCION : la bâsa de balyês at étâ vèrrolyê por mantegnence,
+vos porréd vêr pas sôvar voutres modificacions d’abôrd. Vos pouede copiyér lo contegnu de la pâge dens un fichiér tèxte et pués lo sôvar por ples târd.'''",
+'protectedpagewarning'      => "'''ATENCION : ceta pâge est protègiê.
+Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.'''",
 'semiprotectedpagewarning'  => "'''Nota :''' ceta pâge at étâ protègiê de façon que solèts los contributors enregistrâs pouessont la modifiar.",
 'cascadeprotectedwarning'   => "'''ATENCION :''' ceta pâge at étâ protègiê por cen que solèts los administrators pouessont l’èditar. Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$1|una pâge protègiê|des pâges protègiês}} avouéc la « protèccion en cascâda » activâ.",
-'titleprotectedwarning'     => '<strong>ATENCION : ceta pâge at étâ protègiê de façon que solèts cèrtins utilisators pouessont la crèar.</strong>',
+'titleprotectedwarning'     => "'''ATENCION : ceta pâge at étâ protègiê de façon que solèts cèrtins utilisators pouessont la crèar.'''",
 'templatesused'             => 'Modèlos utilisâs sur ceta pâge :',
 'templatesusedpreview'      => 'Modèlos utilisâs dens ceta prèvisualisacion :',
 'templatesusedsection'      => 'Modèlos utilisâs dens ceta sèccion :',
@@ -949,17 +949,17 @@ ou ben por liyér tot drêt vers lo fichiér :
 'large-file'                  => 'Los fichiérs importâs devriant pas étre ples grôs que $1 ; ceti fichiér fât $2.',
 'largefileserver'             => 'La talye de ceti fichiér est d’amont lo nivô lo ples hôt ôtorisâ.',
 'emptyfile'                   => 'Lo fichiér que vos voléd importar semble vouedo. Cen pôt étre diu a una èrror dens lo nom du fichiér. Volyéd controlar que vos dèsirâd franc copiyér ceti fichiér.',
-'fileexists'                  => 'Un fichiér avouéc ceti nom ègziste ja. Marci de controlar <strong><tt>$1</tt></strong>. Éte-vos de sûr de volêr lo modifiar ?',
-'filepageexists'              => 'La pâge de dèscripcion por ceti fichiér at ja étâ crèâ ique <strong><tt>$1</tt></strong>, mas nion fichiér de ceti nom ègziste ora. Lo rèsumâ que vos voléd ècrire remplacierat pas lo tèxte prècèdent ; por cen fâre vos devréd èditar manuèlament la pâge.',
-'fileexists-extension'        => 'Un fichiér avouéc un nom semblâblo ègziste ja :<br />
-Nom du fichiér a importar : <strong><tt>$1</tt></strong><br />
-Nom du fichiér ègzistent : <strong><tt>$2</tt></strong><br />
-la solèta difèrence est la câssa (grantes lètres / petiôtes lètres) de l’èxtension. Volyéd controlar que lo fichiér est difèrent et changiér son nom.',
+'fileexists'                  => "Un fichiér avouéc ceti nom ègziste ja. Marci de controlar '''<tt>$1</tt>'''. Éte-vos de sûr de volêr lo modifiar ?",
+'filepageexists'              => "La pâge de dèscripcion por ceti fichiér at ja étâ crèâ ique '''<tt>$1</tt>''', mas nion fichiér de ceti nom ègziste ora. Lo rèsumâ que vos voléd ècrire remplacierat pas lo tèxte prècèdent ; por cen fâre vos devréd èditar manuèlament la pâge.",
+'fileexists-extension'        => "Un fichiér avouéc un nom semblâblo ègziste ja :<br />
+Nom du fichiér a importar : '''<tt>$1</tt>'''<br />
+Nom du fichiér ègzistent : '''<tt>$2</tt>'''<br />
+la solèta difèrence est la câssa (grantes lètres / petiôtes lètres) de l’èxtension. Volyéd controlar que lo fichiér est difèrent et changiér son nom.",
 'fileexists-thumb'            => "<center>'''Émâge ègzistenta'''</center>",
-'fileexists-thumbnail-yes'    => 'Lo fichiér semble étre una émâge en talye rèduita <i>(figura)</i>. Volyéd controlar lo fichiér <strong><tt>$1</tt></strong>.<br />
-Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y at pas fôta d’importar una vèrsion rèduita.',
-'file-thumbnail-no'           => 'Lo nom du fichiér comence per <strong><tt>$1</tt></strong>. O est possiblo que s’ag·ésse d’una vèrsion rèduita <i>(figura)</i>.
-Se vos disposâd du fichiér en rèsolucion hôta, importâd-lo, ôtrament volyéd changiér lo nom du fichiér.',
+'fileexists-thumbnail-yes'    => "Lo fichiér semble étre una émâge en talye rèduita ''(figura)''. Volyéd controlar lo fichiér '''<tt>$1</tt>'''.<br />
+Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y at pas fôta d’importar una vèrsion rèduita.",
+'file-thumbnail-no'           => "Lo nom du fichiér comence per '''<tt>$1</tt>'''. O est possiblo que s’ag·ésse d’una vèrsion rèduita ''(figura)''.
+Se vos disposâd du fichiér en rèsolucion hôta, importâd-lo, ôtrament volyéd changiér lo nom du fichiér.",
 'fileexists-forbidden'        => 'Un fichiér avouéc ceti nom ègziste ja ; marci de tornar arriér et de copiyér lo fichiér desot un novél nom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichiér portent lo mémo nom ègziste ja dens la bâsa de balyês comena ; volyéd tornar arriér et pués l’emmandar desot un novél nom. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Copia reussia',
@@ -980,7 +980,7 @@ Volyéd controlar lo fichiér.',
 'upload-wasdeleted'           => "'''Atencion : vos éte aprés importar un fichiér qu’at ja étâ suprimâ dês devant.'''
 
 Vos devriâd considèrar s’o est convegnâblo de continuar l’impôrt de cél fichiér. Lo jornal de les suprèssions vos barat los èlèments d’enformacion.",
-'filename-bad-prefix'         => 'Lo nom du fichiér que vos importâd comence per <strong>« $1 »</strong> qu’est un nom g·ènèralament balyê per los aparèlys-fotô numericos et que dècrit pas lo fichiér. Volyéd chouèsir/cièrdre un nom de fichiér dècrisent voutron fichiér.',
+'filename-bad-prefix'         => "Lo nom du fichiér que vos importâd comence per '''« $1 »''' qu’est un nom g·ènèralament balyê per los aparèlys-fotô numericos et que dècrit pas lo fichiér. Volyéd chouèsir/cièrdre un nom de fichiér dècrisent voutron fichiér.",
 'filename-prefix-blacklist'   => '  #<!-- lèssiéd ceta legne justo d’ense --> <pre>
 # La sintaxa est la siuventa :
 #  * Tot caractèro siuvent « # » tant qu’a la fin de la legne serat entèrprètâ coment un comentèro.
@@ -1371,7 +1371,7 @@ L’hora endicâ est cela du sèrvior.',
 'alreadyrolled'    => 'Empossiblo de rèvocar la dèrriére modificacion de l’articllo « [[$1]] » fêta per [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quârqu’un d’ôtro at ja modifiâ ou rèvocâ l’articllo.
 
 La dèrriére modificacion at étâ fêta per [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
-'editcomment'      => 'Lo rèsumâ de la modificacion ére : <i>« $1 »</i>.', # only shown if there is an edit comment
+'editcomment'      => "Lo rèsumâ de la modificacion ére : ''« $1 »''.", # only shown if there is an edit comment
 'revertpage'       => 'Rèvocacion de les modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) (retôrn a la vèrsion prècèdenta de [[User:$1|$1]])', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Rèvocacion de les modificacions de $1 ; retôrn a la vèrsion de $2.',
 'sessionfailure'   => 'Voutra sèssion de conèccion semble avêr des problèmos ;
@@ -1392,13 +1392,13 @@ Clicâd dessus « Prècèdent » et rechargiéd la pâge de yô que vos vegnéd,
 'protect_expiry_invalid'      => 'Lo temps d’èxpiracion est envalido.',
 'protect_expiry_old'          => 'Lo temps d’èxpiracion est ja passâ.',
 'protect-unchain'             => 'Dèblocar les pèrmissions de renomâjo',
-'protect-text'                => 'Vos pouede consultar et modifiar lo nivô de protèccion de la pâge <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'Vos pouede pas modifiar lo nivô de protèccion tant que vos éte blocâ.
-Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
-'protect-locked-dblock'       => 'Lo nivô de protèccion pôt pas étre modifiâ perce que la bâsa de balyês est blocâ.
-Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
-'protect-locked-access'       => 'Vos avéd pas los drêts nècèssèros por modifiar la protèccion de la pâge.
-Vê-que los règllâjos d’ora de la pâge <strong>$1</strong> :',
+'protect-text'                => "Vos pouede consultar et modifiar lo nivô de protèccion de la pâge '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Vos pouede pas modifiar lo nivô de protèccion tant que vos éte blocâ.
+Vê-que los règllâjos d’ora de la pâge '''$1''' :",
+'protect-locked-dblock'       => "Lo nivô de protèccion pôt pas étre modifiâ perce que la bâsa de balyês est blocâ.
+Vê-que los règllâjos d’ora de la pâge '''$1''' :",
+'protect-locked-access'       => "Vos avéd pas los drêts nècèssèros por modifiar la protèccion de la pâge.
+Vê-que los règllâjos d’ora de la pâge '''$1''' :",
 'protect-cascadeon'           => 'Ora, ceta pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|la pâge siuventa|les pâges siuventes}}, èyent étâ protègiê avouéc lo chouèx « Protèccion en cascâda » activâ. Vos pouede changiér lo nivô de protèccion de ceta pâge sen que cen afècte la protèccion en cascâda.',
 'protect-default'             => 'Pas de protèccion',
 'protect-fallback'            => 'At fôta de la pèrmission « $1 »',

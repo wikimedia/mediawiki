@@ -274,19 +274,19 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne br�
 'newarticletext'         => "Þu hæfst bende tō tramete gefolgod þe nū gīet ne stendeþ.
 Tō scieppene þone tramet, onginn þyddan in þǣre boxe under (sēo þone [[{{MediaWiki:Helppage}}|helptramet]] for mā gefrǣge).
 Gif þu hider misfōn cōme, cnoca þā þīnne webbscēaweres '''on bæc''' cnæpp.",
-'usercssjsyoucanpreview' => "<strong>Rǣd:</strong> Brūc þone 'Forescēawian' cnæpp tō āfandienne þīne nīwe css/js beforan sparunge.",
+'usercssjsyoucanpreview' => "'''Rǣd:''' Brūc þone 'Forescēawian' cnæpp tō āfandienne þīne nīwe css/js beforan sparunge.",
 'updated'                => '(Ednīwod)',
 'editingcomment'         => 'Ādihtung $1 (ymbsprǣc)',
 'yourtext'               => 'Þīn traht',
-'editingold'             => '<strong>WARNUNG: Þu ādihtest ealde fadunge þisses trametes.
-Gif þu hine sparie, ǣniga onwendunga gemacod siþþan þisse fadunge bēoþ sōðes forloren.</strong>',
+'editingold'             => "'''WARNUNG: Þu ādihtest ealde fadunge þisses trametes.
+Gif þu hine sparie, ǣniga onwendunga gemacod siþþan þisse fadunge bēoþ sōðes forloren.'''",
 'yourdiff'               => 'Tōdǣlednessa',
-'copyrightwarning2'      => 'Bidde macie nōt þæt ealla forðunga tō {{SITENAME}}
+'copyrightwarning2'      => "Bidde macie nōt þæt ealla forðunga tō {{SITENAME}}
 mæg bēon ādihted, gewended, oþþe āfyrðed fram ōðrum forðerum.
 Gif þu nelt þīne wrītunge tō bēonne ādihtod unmildheortlīce, þonne ne þafie hīe hēr.<br />
 Þu behǣtst ēac þæt þu selfa write þis, oþþe efenlǣhtest of sumre
 gemǣnscipes āgnunge oþþe gelīcum frēom horde (sēo $1 for āscungum).
-<strong>NE ÞAFIE EFENLǢHTSCIELDED WEORC BŪTAN GELĪEFNESSE!</strong>',
+'''NE ÞAFIE EFENLǢHTSCIELDED WEORC BŪTAN GELĪEFNESSE!'''",
 'longpagewarning'        => 'WARNUNG: Þes tramet is $1 kilobyta lang; sume
 webbscēaweras hæbben earfoðu mid þȳ þe hīe ādihtaþ trametas nēa oþþe lengran þonne 32kb.
 Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
@@ -507,7 +507,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'rollback_short' => 'Edhwierfan',
 'rollbacklink'   => 'Edhwierfan',
 'rollbackfailed' => 'Edhwierft misfangen',
-'editcomment'    => 'Sēo ādihtungymbsprǣc wæs: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'    => "Sēo ādihtungymbsprǣc wæs: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'     => 'Ācierde ādihtunga fram [[Special:Contributions/$2|$2]] ([[User talk:$2|Gesprec]]); wendede on bæc tō ǣrran fadunge fram [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect

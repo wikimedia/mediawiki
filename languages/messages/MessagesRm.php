@@ -205,7 +205,7 @@ El po cuntegnair in u plirs segns che na pon betg vegnir utilisads en titels.',
 
 # Login and logout pages
 'logouttitle'                => "Log-out d'utilisaders",
-'logouttext'                 => "<strong>Log-out cun success.</strong><br />
+'logouttext'                 => "'''Log-out cun success.'''<br />
 
 Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos [[Special:UserLogin|t'annunziar]] sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti era annunzià enfin che ti has stidà il cache da tes browser.",
 'welcomecreation'            => '==Chau, $1! ==
@@ -341,20 +341,20 @@ Integrescha per plaschair tut las indicaziuns survart sche ti contacteschas insa
 '''Konqueror: '''clicca ''Reload'' u smatga ''F5'';
 '''Opera:''' stidar il cache sut ''Tools → Preferences'';
 '''Internet Explorer:''' tegna ''Ctrl'' durant cliccar ''Refresh,'' u smatga ''Ctrl-F5''.",
-'note'                   => '<strong>Remartga:</strong>',
-'previewnote'            => "<strong>Quai è be ina prevista; midadas n'èn anc betg vegnidas memorisadas!</strong>",
+'note'                   => "'''Remartga:'''",
+'previewnote'            => "'''Quai è be ina prevista; midadas n'èn anc betg vegnidas memorisadas!'''",
 'editing'                => 'Editar $1',
 'editingsection'         => 'Editar $1 (secziun)',
 'yourtext'               => 'Voss text',
 'yourdiff'               => 'Differenzas',
 'copyrightwarning'       => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
-<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
-'longpagewarning'        => '<strong>ADATG: Questa artitgel è $1 kilobytes gronda. Insaquants browsers 
+'''DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!'''",
+'longpagewarning'        => "'''ADATG: Questa artitgel è $1 kilobytes gronda. Insaquants browsers 
 han forsa problems cun editar artitgels da la grondezza 32 kb u pli grond. 
-Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </strong>',
-'longpageerror'          => "<strong>SBAGL: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir memorisà. </strong>",
-'protectedpagewarning'   => '<strong>ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. </strong>',
+Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. '''",
+'longpageerror'          => "'''SBAGL: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir memorisà. '''",
+'protectedpagewarning'   => "'''ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. '''",
 'templatesused'          => 'Templates utilisads sin questa pagina:',
 'templatesusedpreview'   => 'Templates utilisads en questa prevista:',
 'template-protected'     => '(protegì)',
@@ -701,9 +701,9 @@ Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 'protect_expiry_invalid'      => "Il temp endatà n'è betg valaivel.",
 'protect_expiry_old'          => 'Il temp da proteger giascha en il passà.',
 'protect-unchain'             => 'Midar la protecziun per spustar',
-'protect-text'                => "Qua pos ti contemplar ed midar il livel da protecziun per l'artitgel <strong><nowiki>$1</nowiki></strong>.",
+'protect-text'                => "Qua pos ti contemplar ed midar il livel da protecziun per l'artitgel '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Tes conto d'utilisader n'ha betg il dretg da midar ils livels da protecziun. 
-Qua èn las reglas actualas per l'artitgel <strong>$1</strong>:",
+Qua èn las reglas actualas per l'artitgel '''$1''':",
 'protect-cascadeon'           => 'Questa pagina è actualmain protegida, perquai ch\'ella è integrada en {{PLURAL:$1|suandant artitgel che ha activà|suandants artitgels che han activà}} la "protecziun ertada". 
 Ti pos midar il livel da protecziun da quest\'artitgel, quai na vegn dentant betg ad avair in effec sin la "protecziun ertada".',
 'protect-default'             => 'Lubir tut ils utilisaders',

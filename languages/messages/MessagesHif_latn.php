@@ -365,17 +365,17 @@ $2',
 Iske kaaran hai ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => 'Kharaab configuration: unknown virus scanner: <i>$1</i>',
+'virus-badscanner'     => "Kharaab configuration: unknown virus scanner: ''$1''",
 'virus-scanfailed'     => 'scan fail hoe gais (code $1)',
 'virus-unknownscanner' => 'jaana waala antivirus nai hai:',
 
 # Login and logout pages
 'logouttitle'                => 'Sadasya logout',
-'logouttext'                 => '<strong>Aap abhi logged out hai.</strong>
+'logouttext'                 => "'''Aap abhi logged out hai.'''
 
 Aap bina naam ke {{SITENAME}} ke kaam me lae sakta hai, nai to aap wahi sadasya ke naam se nai to duusra sadasya ke naam se [[Special:UserLogin|log in kare sakta hai]].
 
-Yaad rakhna ki kuch panna wahi rakam se dekhai jaise ki aap log in bhaya hai, jab tak ki browser ke cache safaa nai hoe jaae.',
+Yaad rakhna ki kuch panna wahi rakam se dekhai jaise ki aap log in bhaya hai, jab tak ki browser ke cache safaa nai hoe jaae.",
 'welcomecreation'            => '== Swagat, $1! ==
 Aap ke account banae dewa gais hai.
 Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
@@ -595,28 +595,28 @@ Agar aap ek anonymous user hai aur ii sochta hai ki bekar baat aap ke baare me k
 'userpage-userdoesnotexist'        => 'User account "$1" abi registered nai hai.
 Check karo ki Ii panna ke aap banae/badle mangta hai.',
 'clearyourcache'                   => "'''Note - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
-'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Save kare se pahile 'Show preview' button ke use kar ke aapan nawaa  CSS/JS ke test karo.",
+'usercssjsyoucanpreview'           => "'''Tip:''' Save kare se pahile 'Show preview' button ke use kar ke aapan nawaa  CSS/JS ke test karo.",
 'usercsspreview'                   => "'''Yaad rakhna ki aap khali aapan CSS ke jhalak dekhta hai. 
 Iske abhi save nai karaa gais hai!'''",
 'userjspreview'                    => "'''Yaad rakhna ki aap khali aapan JavaScript ke testing/previewing  karta hai, iske abhi save nai karaa gais hai!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' Koi skin \"\$1\" nai hai.
 Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {{ns:user}}:Foo/monobook.css aur{{ns:user}}:Foo/Monobook.css nai.",
 'updated'                          => '(Update kar dewa gais hai)',
-'note'                             => '<strong>Note:</strong>',
-'previewnote'                      => '<strong>Ii khali ek jhalak dekhae hai; badlao abhi save nai bhae hai!</strong>',
+'note'                             => "'''Note:'''",
+'previewnote'                      => "'''Ii khali ek jhalak dekhae hai; badlao abhi save nai bhae hai!'''",
 'previewconflict'                  => 'Ii preview uu text dekhae hai jon ki uppar ke text editing area me dekhai agar aap iske save karaa.',
-'session_fail_preview'             => '<strong> Maaf karna! Ham log aap ke badlao ke process nai kare paya hai due to a loss of session data.
+'session_fail_preview'             => "''' Maaf karna! Ham log aap ke badlao ke process nai kare paya hai due to a loss of session data.
 Fir se kosis karna.
-Agar ii fir bhi nai chale tab kosis karna [[Special:UserLogout|logging out]]aur fir logging back in.</strong>',
-'session_fail_preview_html'        => "<strong>Maaf karna! Ham log aap ke badlao ke process ke process nai kare sakaa kahe ki session data abhi nai dekhae hai.</strong>
+Agar ii fir bhi nai chale tab kosis karna [[Special:UserLogout|logging out]]aur fir logging back in.'''",
+'session_fail_preview_html'        => "'''Maaf karna! Ham log aap ke badlao ke process ke process nai kare sakaa kahe ki session data abhi nai dekhae hai.'''
 
 ''Iske kaaran hai ki {{SITENAME}} me raw HTML enabled hai, preview ke lukae dewa gais hai as a precaution against JavaScript attacks.''
 
-<strong> Agar ii kanuni badlao hai, tab fir se kosis karna.
-Agar ii fir bhi kaam nai kare, tab [[Special:UserLogout|logging out]] aur logging back in ke kosis karna.</strong>",
-'token_suffix_mismatch'            => '<strong> Aap ke badlao ke reject kar dewa gais hai kahe ki aap ke client punctuation charcters ke token edit me mangle kar diis hai.
+''' Agar ii kanuni badlao hai, tab fir se kosis karna.
+Agar ii fir bhi kaam nai kare, tab [[Special:UserLogout|logging out]] aur logging back in ke kosis karna.'''",
+'token_suffix_mismatch'            => "''' Aap ke badlao ke reject kar dewa gais hai kahe ki aap ke client punctuation charcters ke token edit me mangle kar diis hai.
 Ii badlao ke reject kar dewa gais hai to prevent corruption of the page text.
-Ii kabhi kabhi hoe hai jab aap ek buggy web-based anonymous proxy service ke use karta hai.</strong>',
+Ii kabhi kabhi hoe hai jab aap ek buggy web-based anonymous proxy service ke use karta hai.'''",
 'editing'                          => '$1 badlawa jae hai',
 'editingsection'                   => 'Sampadan $1 (bhaag)',
 'editingcomment'                   => '$1 ke badla jae hai (nawaa section)',
@@ -628,30 +628,30 @@ Aap ke aapan badlao ke existing text me merge kare ke parri.
 '''Khali''' text in the upper text area  ke save karaa jai jab aap \"Save page\" ke press karega.",
 'yourtext'                         => 'Aap ke text',
 'storedversion'                    => 'Bachawa gais version',
-'nonunicodebrowser'                => '<strong>WARNING: Aap ke browser unicode compliant nai hai.
-A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.</strong>',
-'editingold'                       => '<strong>WARNING: Aap ii panna ke purana version ke badalata hai
-Agar aap iske save kar lia tab last badlao se abi tak ke changes will be lost.</strong>',
+'nonunicodebrowser'                => "'''WARNING: Aap ke browser unicode compliant nai hai.
+A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.'''",
+'editingold'                       => "'''WARNING: Aap ii panna ke purana version ke badalata hai
+Agar aap iske save kar lia tab last badlao se abi tak ke changes will be lost.'''",
 'yourdiff'                         => 'Antar',
-'copyrightwarning'                 => 'Dhyann me rakho ki {{SITENAME}} ke sab yog daan $2 ($1 ke dekho aur kaankari khatir) ke niche dewa gae hai. Agar aap nai mangtaa ki aap ke likha gae koi chij ke duusra logan badle tab hain par nahii likho.<br />
+'copyrightwarning'                 => "Dhyann me rakho ki {{SITENAME}} ke sab yog daan $2 ($1 ke dekho aur kaankari khatir) ke niche dewa gae hai. Agar aap nai mangtaa ki aap ke likha gae koi chij ke duusra logan badle tab hain par nahii likho.<br />
 Aap ii bhi waada kartaa hai ki iske aap likha hai aur koi duusra jagah se copy nahi karaa hai.
-<strong>COPYRIGHT CHIJ KE BINA ANUMATI KE HIAN PAR NAHI SUBMIT KARNA!</strong>',
-'copyrightwarning2'                => 'Yaad rakhna ki {{SITENAME}} pe sab yogdaan ke duusra sadasya LOG badle, nai to delete, kare sake hai.
+'''COPYRIGHT CHIJ KE BINA ANUMATI KE HIAN PAR NAHI SUBMIT KARNA!'''",
+'copyrightwarning2'                => "Yaad rakhna ki {{SITENAME}} pe sab yogdaan ke duusra sadasya LOG badle, nai to delete, kare sake hai.
 Agar aap nai mangta ki koi aur aap ke yogdaan ke badle, tab aap hian par nai likho.<br />
 Aap ii bhi kasam khata hai ki aap iske apne se likha hai aur kahin se copy nai karaa hai (Aur jaankari khatir $1 ke dekho). 
-<strong> COPYRIGHT WORK KE BINA AUNUMATI KE SUBMIT NAI KARNA!</strong>',
-'longpagewarning'                  => '<strong>Sawadhan: Ii panna $1 kilobytes lamba hai; kuch browsers sait etna barra panna ke khole nai pai.
-Meherbani kar ke ii page ke chotachota tukrra me kar do.</strong>',
-'longpageerror'                    => '<strong>ERROR: Jon text aap submit karaa hai uu $1 kilobytes lamba hai, ii maximum $2 kilobytes se lamba hai.
-Iske save nai karaa jae sake hai.</strong>',
-'readonlywarning'                  => '<strong>WARNING: Database ke maintenance khatir band kar dewa gais hai, tab abhi aap aapan badlao ke save nai kare paega.
-Aap sait aapan badlao ke ek text file me cut-n-paste kar ke baad me use kare khatir save kae le sakta hai.</strong>
+''' COPYRIGHT WORK KE BINA AUNUMATI KE SUBMIT NAI KARNA!'''",
+'longpagewarning'                  => "'''Sawadhan: Ii panna $1 kilobytes lamba hai; kuch browsers sait etna barra panna ke khole nai pai.
+Meherbani kar ke ii page ke chotachota tukrra me kar do.'''",
+'longpageerror'                    => "'''ERROR: Jon text aap submit karaa hai uu $1 kilobytes lamba hai, ii maximum $2 kilobytes se lamba hai.
+Iske save nai karaa jae sake hai.'''",
+'readonlywarning'                  => "'''WARNING: Database ke maintenance khatir band kar dewa gais hai, tab abhi aap aapan badlao ke save nai kare paega.
+Aap sait aapan badlao ke ek text file me cut-n-paste kar ke baad me use kare khatir save kae le sakta hai.'''
 
-Administrator jon ki iske lock karis hai ii kaaran diis hai: $1',
-'protectedpagewarning'             => '<strong>WARNING: Ii panna ke band kar dewa gais hai jisse ke khali uu sadasya jiske sysop privileges hai iske badle sake hai.</strong>',
+Administrator jon ki iske lock karis hai ii kaaran diis hai: $1",
+'protectedpagewarning'             => "'''WARNING: Ii panna ke band kar dewa gais hai jisse ke khali uu sadasya jiske sysop privileges hai iske badle sake hai.'''",
 'semiprotectedpagewarning'         => "'''Suchna:''' Ii panna ke band kar dewa gais hai jisse ki khali registered sadasya iske badle sake hai.",
 'cascadeprotectedwarning'          => "'''Chetawani:''' Ii panna ke band kar dewa gais jiske kaaran khali uu sadasya jiske lage sysop privileges hai iske badle sake hai, kahe ki iske niche likha gais cascade-protected {{PLURAL:$1|panna|panna}} me rakkha gais hai:",
-'titleprotectedwarning'            => '<strong>CHETAUNI: Ii panna ke lock kar dewa gais hai jisse ki khali kuch sadasya iske badle sake hai.</strong>',
+'titleprotectedwarning'            => "'''CHETAUNI: Ii panna ke lock kar dewa gais hai jisse ki khali kuch sadasya iske badle sake hai.'''",
 'templatesused'                    => 'Ii panna me kaam me lawa gae templates:',
 'templatesusedpreview'             => 'Ii jhalak me jon template kaam me lawa gais hai',
 'templatesusedsection'             => 'Ii section me kaam me lawa gais templates:',
@@ -1263,21 +1263,21 @@ ii file hai $2',
 'emptyfile'                   => 'Jon file aap upload karaa rahaa uu khaali rahaa.
 Ii saait file ke naam likhe me typing mistake ke kaaran hoi.
 Meharbaani kar ke ii dekho ki aap such me ii file upload kare mangtaa hai ki nai.',
-'fileexists'                  => 'Ii naam ke file abhi hai, meharbani kar ke check karo <strong><tt>$1</tt></strong> agar jo aap sure nai hai ki aap iske badle mangta hai.',
-'filepageexists'              => 'Ii file ke description ke <strong><tt>$1</tt></strong> me banae dewa gais rakaa, lekin ii naam ke koi file abhi nai hai.
+'fileexists'                  => "Ii naam ke file abhi hai, meharbani kar ke check karo '''<tt>$1</tt>''' agar jo aap sure nai hai ki aap iske badle mangta hai.",
+'filepageexists'              => "Ii file ke description ke '''<tt>$1</tt>''' me banae dewa gais rakaa, lekin ii naam ke koi file abhi nai hai.
 Aap jon summary likhtaa hai uu panna ke description me nai dekhai.
-Description ke dekhae ke khatir, aap ke iske manually badle ke parri.',
-'fileexists-extension'        => 'Ii rakam ke naam ke ek aur file hai:<br />
-Uploading file ke naam: <strong><tt>$1</tt></strong><br />
-Abhi ke file ke naam: <strong><tt>$2</tt></strong><br />
-Meharbani kar ke duusra naam chuno.',
+Description ke dekhae ke khatir, aap ke iske manually badle ke parri.",
+'fileexists-extension'        => "Ii rakam ke naam ke ek aur file hai:<br />
+Uploading file ke naam: '''<tt>$1</tt>'''<br />
+Abhi ke file ke naam: '''<tt>$2</tt>'''<br />
+Meharbani kar ke duusra naam chuno.",
 'fileexists-thumb'            => "<center>'''Abhi ke file'''</center>",
-'fileexists-thumbnail-yes'    => 'Ii janawe hai ki ii file ek chhota chapa hai <i>(thumbnail)</i>.
-Meharbani kar ke file ke check karo <strong><tt>$1</tt></strong>.<br />
-Agar jo check karaa gais file wahi chhapa ke original size hai tab ek aur thumbnail ke upload kare ke jaruri nai hai.',
-'file-thumbnail-no'           => 'File ke naam <strong><tt>$1</tt></strong> se suruu hoe hai.
-Ii janawe hai ki ii chhota size ke chapa hai <i>(thumbnail)</i>.
-Agar jo aap ke lage ii chapa full resolution me hai tab uske upload karna, nai to file ke naam badlo.',
+'fileexists-thumbnail-yes'    => "Ii janawe hai ki ii file ek chhota chapa hai ''(thumbnail)''.
+Meharbani kar ke file ke check karo '''<tt>$1</tt>'''.<br />
+Agar jo check karaa gais file wahi chhapa ke original size hai tab ek aur thumbnail ke upload kare ke jaruri nai hai.",
+'file-thumbnail-no'           => "File ke naam '''<tt>$1</tt>''' se suruu hoe hai.
+Ii janawe hai ki ii chhota size ke chapa hai ''(thumbnail)''.
+Agar jo aap ke lage ii chapa full resolution me hai tab uske upload karna, nai to file ke naam badlo.",
 'fileexists-forbidden'        => 'Ii naam ke file abhi hai, aur iske badlawa nai jaae sake hai.
 Agar jo aap fir bhi aapan file ke upload kare mangta hai, tab pichhe jaae ke nawaa naam use karo. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ii naam ke file abhi shared file repository me hai.
@@ -1305,8 +1305,8 @@ Aap ke chaahi ki aap $1 check kar lo fir se upload kare se pahile.',
 'upload-wasdeleted'           => "'''Chetauni: Aap uu file ke upload karta hai jiske pahile delete karaa gais hai.'''
 Aap ke ii soche ke chaahi ki ii file ke upload karna appropriate hai ki nai.
 Aap ke subidha khatir deletion log hian pe hai:",
-'filename-bad-prefix'         => 'Jon file aap upload kartaa hai uske naam <strong>"$1"</strong> se suruu hoe hai, jon ki non-descriptive naam hai jiske jaada kar ke digital camera automatically assign kare hai.
-Meharbaani kar ke aur jaada descriptive filename chose karo.',
+'filename-bad-prefix'         => "Jon file aap upload kartaa hai uske naam '''\"\$1\"''' se suruu hoe hai, jon ki non-descriptive naam hai jiske jaada kar ke digital camera automatically assign kare hai.
+Meharbaani kar ke aur jaada descriptive filename chose karo.",
 
 'upload-proto-error'      => 'Protocol right nai hai',
 'upload-proto-error-text' => 'Duur ke upload maange hai URLs jon ki suruu hoe hai <code>http://</code> nai to <code>ftp://</code>.',
@@ -1629,10 +1629,10 @@ Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, au
 'protect_expiry_invalid'      => 'Khalas hoe waala time valid nai hai.',
 'protect_expiry_old'          => 'Khalas hoe waala time past me hai.',
 'protect-unchain'             => 'Naam badle waala ijaajat kholo',
-'protect-text'                => 'Aap ii panna ke protection level ke dekhe aur badle sakta hai
-<strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-access'       => 'Aap ke account ke panna ke ijaajat badle ijaajat nai dewe hai.
-Panna ke abhi ke settings hian hai <strong>$1</strong>:',
+'protect-text'                => "Aap ii panna ke protection level ke dekhe aur badle sakta hai
+'''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Aap ke account ke panna ke ijaajat badle ijaajat nai dewe hai.
+Panna ke abhi ke settings hian hai '''$1''':",
 'protect-cascadeon'           => 'Ii panna abhi surakchhit hai kahe ki isme hai {{PLURAL:$1|page, which has|pages, which have}} cascading protection turned on.
 
 Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai affect kari.',

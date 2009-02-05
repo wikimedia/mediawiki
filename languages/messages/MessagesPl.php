@@ -571,16 +571,16 @@ $2',
 Uzasadnienie blokady: ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => 'Zła konfiguracja – nieznany skaner antywirusowy <i>$1</i>',
+'virus-badscanner'     => "Zła konfiguracja – nieznany skaner antywirusowy ''$1''",
 'virus-scanfailed'     => 'skanowanie nieudane (błąd $1)',
 'virus-unknownscanner' => 'nieznany program antywirusowy',
 
 # Login and logout pages
 'logouttitle'                => 'Wylogowanie użytkownika',
-'logouttext'                 => '<strong>Zostałeś wylogowany.</strong>
+'logouttext'                 => "'''Zostałeś wylogowany.'''
 
 Możesz kontynuować pracę w {{GRAMMAR:MS.lp|{{SITENAME}}}} jako niezarejestrowany użytkownik albo [[Special:UserLogin|zalogować się ponownie]] jako ten sam lub inny użytkownik.
-Zauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektóre strony mogą wyglądać tak, jakbyś wciąż był zalogowany.',
+Zauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektóre strony mogą wyglądać tak, jakbyś wciąż był zalogowany.",
 'welcomecreation'            => '== Witaj, $1! ==
 Twoje konto zostało utworzone.
 Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{SITENAME}}}}]].',
@@ -808,27 +808,27 @@ Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komenta
 *'''Konqueror –''' kliknij przycisk ''Odśwież'' lub wciśnij ''F5''
 *'''Opera –''' wyczyść pamięć podręczną w menu ''Narzędzia → Preferencje''
 *'''Internet Explorer –''' przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-F5''",
-'usercssjsyoucanpreview'           => '<strong>Podpowiedź:</strong> Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.',
+'usercssjsyoucanpreview'           => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS lub kod JavaScript przed jego zapisaniem.",
 'usercsspreview'                   => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",
 'userjspreview'                    => "'''Pamiętaj, że to tylko podgląd Twojego kodu JavaScript – nic jeszcze nie zostało zapisane!'''",
 'userinvalidcssjstitle'            => "'''Uwaga:''' Brak skórki o nazwie „$1”.
 Strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą literą, np. {{ns:user}}:Foo/monobook.css, w przeciwieństwie do nieprawidłowego {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Zmodyfikowano)',
-'note'                             => '<strong>Uwaga:</strong>',
-'previewnote'                      => '<strong>To jest tylko podgląd – zmiany nie zostały jeszcze zapisane!</strong>',
+'note'                             => "'''Uwaga:'''",
+'previewnote'                      => "'''To jest tylko podgląd – zmiany nie zostały jeszcze zapisane!'''",
 'previewconflict'                  => 'Podgląd odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona, jeśli zdecydujesz się ją zapisać.',
-'session_fail_preview'             => '<strong>Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.
+'session_fail_preview'             => "'''Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.
 Spróbuj jeszcze raz.
-Jeśli to nie pomoże – [[Special:UserLogout|wyloguj się]] i zaloguj ponownie.</strong>',
-'session_fail_preview_html'        => "<strong>Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.</strong>
+Jeśli to nie pomoże – [[Special:UserLogout|wyloguj się]] i zaloguj ponownie.'''",
+'session_fail_preview_html'        => "'''Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.'''
 
 ''Ponieważ w {{GRAMMAR:MS.lp|{{SITENAME}}}} włączona została opcja „surowy HTML”, podgląd został ukryty w celu zabezpieczenia przed atakami z użyciem JavaScriptu.''
 
-<strong>Jeśli jest to uprawniona próba dokonania edycji, spróbuj jeszcze raz.
-Jeśli to nie pomoże – [[Special:UserLogout|wyloguj się]] i zaloguj ponownie.</strong>",
-'token_suffix_mismatch'            => '<strong>Twoja edycja została odrzucona, ponieważ twój klient pomieszał znaki interpunkcyjne w żetonie edycyjnym.
+'''Jeśli jest to uprawniona próba dokonania edycji, spróbuj jeszcze raz.
+Jeśli to nie pomoże – [[Special:UserLogout|wyloguj się]] i zaloguj ponownie.'''",
+'token_suffix_mismatch'            => "'''Twoja edycja została odrzucona, ponieważ twój klient pomieszał znaki interpunkcyjne w żetonie edycyjnym.
 Twoja edycja została odrzucona by zapobiec zniszczeniu tekstu strony.
-Takie problemy zdarzają się w wypadku korzystania z wadliwych anonimowych sieciowych usług proxy.</strong>',
+Takie problemy zdarzają się w wypadku korzystania z wadliwych anonimowych sieciowych usług proxy.'''",
 'editing'                          => 'Edytujesz „$1”',
 'editingsection'                   => 'Edytujesz „$1” (fragment)',
 'editingcomment'                   => 'Edytujesz „$1” (nowa sekcja)',
@@ -840,27 +840,27 @@ By wprowadzić swoje zmiany, musisz zmodyfikować tekst z górnego pola.
 '''Tylko''' tekst z górnego pola zostanie zapisany w bazie, gdy wciśniesz „Zapisz”.",
 'yourtext'                         => 'Twój tekst',
 'storedversion'                    => 'Zapisana wersja',
-'nonunicodebrowser'                => '<strong>Uwaga! Twoja przeglądarka nie rozpoznaje poprawnie kodowania UTF-8 (Unicode).
-Z tego powodu wszystkie znaki, których przeglądarka nie rozpoznaje, zostały zastąpione ich kodami szesnastkowymi.</strong>',
-'editingold'                       => '<strong>Uwaga! Edytujesz inną niż bieżąca wersję tej strony.
-Jeśli zapiszesz ją, wszystkie zmiany wykonane w międzyczasie zostaną wycofane.</strong>',
+'nonunicodebrowser'                => "'''Uwaga! Twoja przeglądarka nie rozpoznaje poprawnie kodowania UTF-8 (Unicode).
+Z tego powodu wszystkie znaki, których przeglądarka nie rozpoznaje, zostały zastąpione ich kodami szesnastkowymi.'''",
+'editingold'                       => "'''Uwaga! Edytujesz inną niż bieżąca wersję tej strony.
+Jeśli zapiszesz ją, wszystkie zmiany wykonane w międzyczasie zostaną wycofane.'''",
 'yourdiff'                         => 'Różnice',
 'copyrightwarning'                 => "Wkład do {{GRAMMAR:D.lp|{{SITENAME}}}} jest udostępniany na licencji $2 (szczegóły w $1). Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
 Zapisując swoją edycję, oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach ''public domain'' albo kompatybilnych.
-<strong>PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!</strong>",
+'''PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!'''",
 'copyrightwarning2'                => "Wszelki wkład w {{GRAMMAR:B.lp|{{SITENAME}}}} może być edytowany, zmieniany lub usunięty przez innych użytkowników.
 Jeśli nie chcesz, żeby Twój tekst był dowolnie zmieniany przez każdego i rozpowszechniany bez ograniczeń, nie umieszczaj go tutaj.<br />
 Zapisując swoją edycję, oświadczasz, że ten tekst jest Twoim dziełem lub pochodzi z materiałów dostępnych na zasadach ''public domain'' albo kompatybilnych (zobacz także $1).
-<strong>PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!</strong>",
-'longpagewarning'                  => '<strong>Ta strona ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
-'longpageerror'                    => '<strong>Błąd! Wprowadzony przez Ciebie tekst ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Długość tekstu nie może przekraczać {{PLURAL:$2|1 kilobajt|$2 kilobajty|$2 kilobajtów}}. Tekst nie może być zapisany.</strong>',
-'readonlywarning'                  => '<strong>Uwaga! Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Zapisz jej treść do pliku, używając wytnij i wklej, aby zachować na później.</strong>
+'''PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!'''",
+'longpagewarning'                  => "'''Ta strona ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.'''",
+'longpageerror'                    => "'''Błąd! Wprowadzony przez Ciebie tekst ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Długość tekstu nie może przekraczać {{PLURAL:$2|1 kilobajt|$2 kilobajty|$2 kilobajtów}}. Tekst nie może być zapisany.'''",
+'readonlywarning'                  => "'''Uwaga! Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Zapisz jej treść do pliku, używając wytnij i wklej, aby zachować na później.'''
 
-Administrator, który zablokował bazę, podał następujące wyjaśnienie: $1',
-'protectedpagewarning'             => '<strong>Uwaga! Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z uprawnieniami administratora.</strong>',
+Administrator, który zablokował bazę, podał następujące wyjaśnienie: $1",
+'protectedpagewarning'             => "'''Uwaga! Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z uprawnieniami administratora.'''",
 'semiprotectedpagewarning'         => "'''Uwaga!''' Ta strona została zabezpieczona i tylko zarejestrowani użytkownicy mogą ją edytować.",
 'cascadeprotectedwarning'          => "'''Uwaga!''' Ta strona została zabezpieczona i tylko użytkownicy z uprawnieniami administratora mogą ją edytować. Strona ta jest zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:",
-'titleprotectedwarning'            => '<strong>Uwaga! Utworzenie strony o tej nazwie zostało zablokowane. Tylko niektórzy użytkownicy mogą ją utworzyć.</strong>',
+'titleprotectedwarning'            => "'''Uwaga! Utworzenie strony o tej nazwie zostało zablokowane. Tylko niektórzy użytkownicy mogą ją utworzyć.'''",
 'templatesused'                    => 'Szablony użyte w tym artykule:',
 'templatesusedpreview'             => 'Szablony użyte w tym podglądzie:',
 'templatesusedsection'             => 'Szablony użyte w tej sekcji:',
@@ -1469,21 +1469,21 @@ Plik ma rozmiar {{PLURAL:$2|1 bajt|$2 bajty|$2 bajtów}}.',
 'largefileserver'             => 'Plik jest większy niż maksymalny dozwolony rozmiar.',
 'emptyfile'                   => 'Przesłany plik wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku.
 Sprawdź, czy nazwa jest prawidłowa.',
-'fileexists'                  => 'Plik o takiej nazwie już istnieje. Sprawdź <strong><tt>$1</tt></strong>, jeśli nie jesteś pewien czy chcesz go zastąpić.',
-'filepageexists'              => 'Istnieje już strona opisu tego pliku utworzona <strong><tt>$1</tt></strong>, ale brak obecnie pliku o tej nazwie.
+'fileexists'                  => "Plik o takiej nazwie już istnieje. Sprawdź '''<tt>$1</tt>''', jeśli nie jesteś pewien czy chcesz go zastąpić.",
+'filepageexists'              => "Istnieje już strona opisu tego pliku utworzona '''<tt>$1</tt>''', ale brak obecnie pliku o tej nazwie.
 Informacje o pliku, które wprowadziłeś, nie pojawią się na stronie opisu.
-Jeśli chcesz, by informacje te zostały pokazane, musisz je ręcznie przeredagować',
-'fileexists-extension'        => 'Plik o podobnej nazwie już istnieje:<br />
-Nazwa przesyłanego pliku: <strong><tt>$1</tt></strong><br />
-Nazwa istniejącego pliku: <strong><tt>$2</tt></strong><br />
-Wybierz inną nazwę.',
+Jeśli chcesz, by informacje te zostały pokazane, musisz je ręcznie przeredagować",
+'fileexists-extension'        => "Plik o podobnej nazwie już istnieje:<br />
+Nazwa przesyłanego pliku: '''<tt>$1</tt>'''<br />
+Nazwa istniejącego pliku: '''<tt>$2</tt>'''<br />
+Wybierz inną nazwę.",
 'fileexists-thumb'            => "<center>'''Istniejący plik'''</center>",
-'fileexists-thumbnail-yes'    => 'Plik wydaje się być pomniejszoną grafiką <i>(miniaturką)</i>.
-Sprawdź plik <strong><tt>$1</tt></strong>.<br />
-Jeśli wybrany plik jest tą samą grafiką co ta w oryginalnym rozmiarze, nie musisz przesyłać dodatkowej miniaturki.',
-'file-thumbnail-no'           => 'Nazwa pliku zaczyna się od <strong><tt>$1</tt></strong>.
-Wydaje się, że jest to pomniejszona grafika <i>(miniaturka)</i>.
-Jeśli posiadasz tę grafikę w pełnym rozmiarze – prześlij ją. Jeśli chcesz wysłać tę – zmień nazwę przesyłanego obecnie pliku.',
+'fileexists-thumbnail-yes'    => "Plik wydaje się być pomniejszoną grafiką ''(miniaturką)''.
+Sprawdź plik '''<tt>$1</tt>'''.<br />
+Jeśli wybrany plik jest tą samą grafiką co ta w oryginalnym rozmiarze, nie musisz przesyłać dodatkowej miniaturki.",
+'file-thumbnail-no'           => "Nazwa pliku zaczyna się od '''<tt>$1</tt>'''.
+Wydaje się, że jest to pomniejszona grafika ''(miniaturka)''.
+Jeśli posiadasz tę grafikę w pełnym rozmiarze – prześlij ją. Jeśli chcesz wysłać tę – zmień nazwę przesyłanego obecnie pliku.",
 'fileexists-forbidden'        => 'Plik o tej nazwie już istnieje i nie może zostać nadpisany.
 Jeśli chcesz przesłać plik cofnij się i prześlij go pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Plik o tej nazwie już istnieje we współdzielonym repozytorium plików.
@@ -1512,8 +1512,8 @@ Zanim załadujesz go ponownie, sprawdź $1.',
 
 Zastanów się, czy powinno się ładować ten plik.
 Rejestr usunięć tego pliku jest podany poniżej:",
-'filename-bad-prefix'         => 'Nazwa pliku, który przesyłasz, zaczyna się od <strong>„$1”</strong>. Jest to nazwa zazwyczaj przypisywana automatycznie przez cyfrowe aparaty fotograficzne, która nie informuje o zawartości pliku.
-Zmień nazwę pliku na bardziej opisową.',
+'filename-bad-prefix'         => "Nazwa pliku, który przesyłasz, zaczyna się od '''„$1”'''. Jest to nazwa zazwyczaj przypisywana automatycznie przez cyfrowe aparaty fotograficzne, która nie informuje o zawartości pliku.
+Zmień nazwę pliku na bardziej opisową.",
 'filename-prefix-blacklist'   => '  #<!-- nie modyfikuj tej linii --> <pre>
 # Składnia jest następująca:
 #  * Wszystko od znaku "#" do końca linii uznawane jest za komentarz
@@ -1983,7 +1983,7 @@ Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w prac
 Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony.
 
 Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'Edycję opisał „<i>$1</i>”.', # only shown if there is an edit comment
+'editcomment'      => "Edycję opisał „''$1''”.", # only shown if there is an edit comment
 'revertpage'       => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Wycofano edycje użytkownika $1.
 Przywrócono ostatnią wersję autorstwa $2.',
@@ -2007,11 +2007,11 @@ Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę 
 'protect_expiry_invalid'      => 'Podany czas automatycznego odbezpieczenia jest nieprawidłowy.',
 'protect_expiry_old'          => 'Podany czas automatycznego odblokowania znajduje się w przeszłości.',
 'protect-unchain'             => 'Odblokowanie możliwości przenoszenia strony',
-'protect-text'                => 'Możesz tu sprawdzić i zmienić poziom zabezpieczenia strony <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'Nie możesz zmienić poziomów zabezpieczenia, ponieważ jesteś zablokowany.
-Obecne ustawienia dla strony <strong>$1</strong> to:',
-'protect-locked-dblock'       => 'Nie można zmienić poziomu zabezpieczenia z powodu działającej blokady bazy danych. Obecne ustawienia dla strony <strong>$1</strong> to:',
-'protect-locked-access'       => 'Nie masz uprawnień do zmiany poziomu zabezpieczenia strony. Obecne ustawienia dla strony <strong>$1</strong> to:',
+'protect-text'                => "Możesz tu sprawdzić i zmienić poziom zabezpieczenia strony '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Nie możesz zmienić poziomów zabezpieczenia, ponieważ jesteś zablokowany.
+Obecne ustawienia dla strony '''$1''' to:",
+'protect-locked-dblock'       => "Nie można zmienić poziomu zabezpieczenia z powodu działającej blokady bazy danych. Obecne ustawienia dla strony '''$1''' to:",
+'protect-locked-access'       => "Nie masz uprawnień do zmiany poziomu zabezpieczenia strony. Obecne ustawienia dla strony '''$1''' to:",
 'protect-cascadeon'           => 'Ta strona jest zabezpieczona przed edycją, ponieważ jest używana przez {{PLURAL:$1|następującą stronę, która została zabezpieczona|następujące strony, które zostały zabezpieczone}} z włączoną opcją dziedziczenia. Możesz zmienić poziom zabezpieczenia strony, ale nie wpłynie to na dziedziczenie zabezpieczenia.',
 'protect-default'             => 'Dostęp mają wszyscy użytkownicy',
 'protect-fallback'            => 'Wymaga uprawnień „$1”',

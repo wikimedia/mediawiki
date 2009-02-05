@@ -387,16 +387,16 @@ Per crea la paje, comensa scrive en la caxa a su
 (vide la [[{{MediaWiki:Helppage}}|paje de aida]] per plu).
 Si tu es asi par era, clica a la boton '''retro''' de tu surfador.",
 'noarticletext'          => 'Es aora no testo a esta paje; tu pote [[Special:Search/{{PAGENAME}}|xerca per la nom de esta paje]] en otra pajes o [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita esta paje].',
-'previewnote'            => '<strong>Esta sola un previde; cambias no es fisada ja</strong>',
+'previewnote'            => "'''Esta sola un previde; cambias no es fisada ja'''",
 'editing'                => 'En la prosede de edita $1',
 'editingsection'         => 'Edita $1 (sesion)',
 'editingcomment'         => 'Edita $1 (comenta)',
 'yourdiff'               => 'Diferes',
-'copyrightwarning'       => 'Per favore nota ce tota labora a {{SITENAME}} es judida ce el es relasada su la $2 (vide $1 per detalias). Si tu no desira ce tu scrives ta es editada sin compati e redistribui sin tu permite, no sumita el asi!<br />
+'copyrightwarning'       => "Per favore nota ce tota labora a {{SITENAME}} es judida ce el es relasada su la $2 (vide $1 per detalias). Si tu no desira ce tu scrives ta es editada sin compati e redistribui sin tu permite, no sumita el asi!<br />
 Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un domina publica o otra orijin libre.
-<strong>NO SUMITA LABORA SU DIRETOS DE AUTOR SIN PERMITE!!</strong>',
-'longpagewarning'        => '<strong>AVISA: Esta paje usa $1 kilotetas; alga surfadores pote ave problemes con la edita de pajes plu grande ce 32 ko.
-Per favore, considera parti la paje en pesos plu poca.</strong>',
+'''NO SUMITA LABORA SU DIRETOS DE AUTOR SIN PERMITE!!'''",
+'longpagewarning'        => "'''AVISA: Esta paje usa $1 kilotetas; alga surfadores pote ave problemes con la edita de pajes plu grande ce 32 ko.
+Per favore, considera parti la paje en pesos plu poca.'''",
 'templatesused'          => 'Modeles usada a esta paje:',
 'templatesusedpreview'   => 'Modeles usada en esta previde:',
 'template-protected'     => '(protejeda)',
@@ -710,9 +710,9 @@ Vide $2 per un catalogo de sutraes resente.',
 'protect_expiry_invalid'      => 'Ora de fini no es legal.',
 'protect_expiry_old'          => 'Ora de fini es en la pasada.',
 'protect-unchain'             => 'Desecura la permetes de move',
-'protect-text'                => 'Tu pote vide e cambia la nivel de proteje asi per la paje <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-access'       => 'Tu conta no ave permite per cambia niveles de proteje.
-Asi es la ajustas presente per la paje <strong>$1</strong>:',
+'protect-text'                => "Tu pote vide e cambia la nivel de proteje asi per la paje '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Tu conta no ave permite per cambia niveles de proteje.
+Asi es la ajustas presente per la paje '''$1''':",
 'protect-cascadeon'           => 'Esta paje es aora protejeda per ce el es incluida en esta {{PLURAL:$1|paje|pajes}} ce ave proteje cascadente ativa. Tu pote cambia la nivel de proteje per esta paje, ma esta no va influense la proteje cascadente.',
 'protect-default'             => '(costumal)',
 'protect-fallback'            => 'Nesesa permite "$1"',

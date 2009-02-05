@@ -356,18 +356,18 @@ hō‘ike ‘ia i lalo:",
 'newarticle'             => '(Hou)',
 'anontalkpagetext'       => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:UserLogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
 'noarticletext'          => 'ʻAʻole ke kikokikona ma kēia ʻaoʻao, hiki iā ʻoe ke [[Special:Search/{{PAGENAME}}|huli no kēia poʻo ʻaoʻao]] i nā ʻaoʻao ʻē aʻe a i ʻole ke [{{fullurl:{{FULLPAGENAME}}|action=edit}} hoʻololi i kēia ʻaoʻao].',
-'previewnote'            => '<strong>‘O keia ka nāmua;
-‘a‘ole i mālama ‘ia ka ho‘ololi!</strong>',
+'previewnote'            => "'''‘O keia ka nāmua;
+‘a‘ole i mālama ‘ia ka ho‘ololi!'''",
 'editing'                => 'Ke ho‘ololi nei iā $1',
 'editingsection'         => 'Ke ho‘opololei nei iā $1 (mahele)',
 'editingcomment'         => 'Ke ho‘ololi nei iā $1 (mana‘o)',
 'yourtext'               => 'Ko‘u ‘ōlelo',
 'yourdiff'               => 'Nā mea ‘oko‘a',
-'copyrightwarning'       => 'Hoʻokuʻu nā mea lūlū iā {{SITENAME}} i ka $2 (no nā mea kikoʻī, ʻike ʻoe i $1).
+'copyrightwarning'       => "Hoʻokuʻu nā mea lūlū iā {{SITENAME}} i ka $2 (no nā mea kikoʻī, ʻike ʻoe i $1).
 Inā ʻaʻole ʻoe makemake i nā poʻe aʻe e loli i kou kākau ʻana a ʻaʻole ʻoe makemake hoʻomalele hou i kou mau loli, inā mai waiho kou mau loli ma ʻaneʻi.<br />
 Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe ponoʻī a i ʻole ua kope i kēia kikokikona mai ke kūmole kūʻokoʻa.
-<strong>MAI WAIHO NĀ HANA PONOKOPE ME ʻOLE KA ʻAE!</strong>',
-'protectedpagewarning'   => '<strong>A‘o ‘ana:  Ua laka ‘ia kēia ‘ao‘ao, pēlā, hiki i nā "kahu" ke ho‘opololei wale nō.</strong>',
+'''MAI WAIHO NĀ HANA PONOKOPE ME ʻOLE KA ʻAE!'''",
+'protectedpagewarning'   => "'''A‘o ‘ana:  Ua laka ‘ia kēia ‘ao‘ao, pēlā, hiki i nā \"kahu\" ke ho‘opololei wale nō.'''",
 'template-protected'     => '(ho‘omalu ‘ia)',
 'template-semiprotected' => '(hapa-ho‘omalu ‘ia)',
 'edittools'              => '<!-- Eia ka ‘ōlelo e hō‘ike ‘ia malalo o nā palapala ho‘ololi ame nā palapala ho‘ohui. -->',

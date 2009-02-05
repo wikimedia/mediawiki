@@ -541,16 +541,16 @@ $2',
 'titleprotected'       => "Dä Tittel för en Sigg eß verbodde, fum [[User:$1]], un dr Jrond wohr: ''„$2“''",
 
 # Virus scanner
-'virus-badscanner'     => 'Fääler en de Enstellunge: Dat Projramm <i>$1</i> fö noh Kompjuterwiere ze söke, dat kenne mer nit.',
+'virus-badscanner'     => "Fääler en de Enstellunge: Dat Projramm ''$1'' fö noh Kompjuterwiere ze söke, dat kenne mer nit.",
 'virus-scanfailed'     => 'Dat Söhke eß donevve jejange, dä Kood för dä Fähler es „$1“.',
 'virus-unknownscanner' => 'Dat Projamm fö noh Komjuterviere ze sööke kenne mer nit:',
 
 # Login and logout pages
 'logouttitle'                => 'Uslogge',
-'logouttext'                 => '<strong>Jetz bes de usjelogg</strong>
+'logouttext'                 => "'''Jetz bes de usjelogg'''
 
 Do künnts op de {{SITENAME}} wigger maache, als ene namelose Metmaacher. Do kanns De ävver och [[Special:UserLogin|widder enlogge]], als däselve oder och ene andere Metmaacher.
-Künnt sin, dat De de ein oder ander Sigg immer wigger aanjezeich kriss, wie wann de noch enjelogg wörs. Dun Dingem Brauser singe Cache fottschmieße oder leddich maache, öm us dä Nummer erus ze kumme!',
+Künnt sin, dat De de ein oder ander Sigg immer wigger aanjezeich kriss, wie wann de noch enjelogg wörs. Dun Dingem Brauser singe Cache fottschmieße oder leddich maache, öm us dä Nummer erus ze kumme!",
 'welcomecreation'            => '== Dach, $1! ==
 Dinge Zojang för hee es do.
 Do bes jetz aanjemeldt.
@@ -852,19 +852,19 @@ et ess en bunte Welt!",
 denk dran, dat ene Metmaacher eije Dateie för et Ussinn han kann, un dat die met kleine Buchstave 
 aanfange dun, alsu etwa: {{ns:user}}:Name/monobook.css, un {{ns:user}}:Name/monobook.js heiße.',
 'updated'                          => '(Aanjepack)',
-'note'                             => '<strong>Opjepass:</strong>',
-'previewnote'                      => '<strong>Hee kütt nor de Vör-Aansich - Ding Änderunge sin noch nit jesechert!</strong>',
+'note'                             => "'''Opjepass:'''",
+'previewnote'                      => "'''Hee kütt nor de Vör-Aansich - Ding Änderunge sin noch nit jesechert!'''",
 'previewconflict'                  => 'Hee die Vör-Aansich zeich dä Enhald vum bovvere Texfeld.
 Esu wööd dä Atikkel ussinn, wann De n jetz avspeichere däts.',
-'session_fail_preview'             => '<strong>Schad: Ding Änderunge kunnte mer su nix met aanfange.
+'session_fail_preview'             => "'''Schad: Ding Änderunge kunnte mer su nix met aanfange.
 Versök et jrad noch ens.
-Wann dat widder nit flupp, dann versök et ens met [[Special:UserLogout|Uslogge]] un widder Enlogge.</strong>',
-'session_fail_preview_html'        => "<strong>Schad: Ding Änderunge kunnte mer su nix met aanfange. De Daate vun Dinge Login-Säschen sin nit öntlich erüvver jekumme, oder einfach ze alt.</strong>
+Wann dat widder nit flupp, dann versök et ens met [[Special:UserLogout|Uslogge]] un widder Enlogge.'''",
+'session_fail_preview_html'        => "'''Schad: Ding Änderunge kunnte mer su nix met aanfange. De Daate vun Dinge Login-Säschen sin nit öntlich erüvver jekumme, oder einfach ze alt.'''
 
 ''Dat Wiki hee hät rüh HTML zojelooße, dröm weed de Vör-Aansich nit jezeich. Domet solls De jeschötz wääde - hoffe mer - un Aanjreffe met Java_Skripp jäje Dinge Kompjuter künne Der nix aandun.''
 
-<strong>Falls för Dich söns alles jod ussüht, versök et jrad noch ens. Wann dat widder nit flupp, dann versök et ens met [[Special:UserLogout|Uslogge]] un widder Enlogge.</strong>",
-'token_suffix_mismatch'            => '<strong>Ding Änderung ham_mer nit övvernomme. Dinge Brauser hät Sazzeijche em verstoche <i lang="en">Token</i> för et Ändere versout. Dat paßeet och ens, wann enne <i lang="en">Proxy</i> nit fungkßjeneet. Et Affspeichere wör do jefährlesch, do künt dä Sigge_Enhaldt kapott bei jon.</strong>',
+'''Falls för Dich söns alles jod ussüht, versök et jrad noch ens. Wann dat widder nit flupp, dann versök et ens met [[Special:UserLogout|Uslogge]] un widder Enlogge.'''",
+'token_suffix_mismatch'            => "'''Ding Änderung ham_mer nit övvernomme. Dinge Brauser hät Sazzeijche em verstoche <i lang=\"en\">Token</i> för et Ändere versout. Dat paßeet och ens, wann enne <i lang=\"en\">Proxy</i> nit fungkßjeneet. Et Affspeichere wör do jefährlesch, do künt dä Sigge_Enhaldt kapott bei jon.'''",
 'editing'                          => 'De Sigg „$1“ ändere',
 'editingsection'                   => 'Ne Avschnedd vun dä Sigg: „$1“ ändere',
 'editingcomment'                   => '„$1“ ändere (ene neue Avschnedd schrieve)',
@@ -883,10 +883,10 @@ jods jemaat häs.
 Alles Klor?<br /><br />',
 'yourtext'                         => 'Dinge Tex',
 'storedversion'                    => 'De jespeicherte Version',
-'nonunicodebrowser'                => '<strong>Opjepass:</strong>
+'nonunicodebrowser'                => "'''Opjepass:'''
 Dinge Brauser kann nit öntlich met däm Unicode un singe Buchstave ömjonn.
-Bes esu jod un nemm ene andere Brauser för hee die Sigg!',
-'editingold'                       => '<strong>Opjepass!<br />
+Bes esu jod un nemm ene andere Brauser för hee die Sigg!",
+'editingold'                       => "'''Opjepass!<br />
 Do bes en ahle, üvverhollte Version vun dä Sigg hee am Ändere.
 Wann De die avspeichere deis,
 wie se es,
@@ -894,28 +894,28 @@ dann jonn all die Änderunge fleute,
 die zickdäm aan dä Sigg jemaht woode sin.
 Alsu:
 Bes De secher, watte mähs?
-</strong>',
+'''",
 'yourdiff'                         => 'Ungerscheide',
 'copyrightwarning'                 => 'Ding Beidräch stonn unger de [[$2]], süch $1. Wann De nit han wells, dat Dinge Tex ömjemodelt weed, un söns wohin verdeilt, dun en hee nit speichere. Mem Avspeichere sähs De och zo, dat et vun Dir selvs es, un/oder Do dat Rääch häs, en hee zo verbreide. Wann et nit stemmp, oder Do kanns et nit nohwiese, kann Dich dat en dr Bau bränge!',
 'copyrightwarning2'                => 'De Beidräch en de {{SITENAME}} künne vun andere Metmaacher ömjemodelt 
 oder fottjeschmesse wääde. Wann Der dat nit rääch es, schriev nix. Et es och nüdich, dat et vun Dir selvs es, oder dat Do dat Rääch häs, et hee öffentlich wigger ze jevve. Süch $1. Wann et nit stemmp, oder Do kanns et nit nohwiese, künnt Dich dat en dr Bau bränge!',
-'longpagewarning'                  => '<strong>Oppjepass:</strong> Dä Tex, dä De hee jescheck häs, dä es <strong>$1</strong> 
-Kilobyte jroß. Manch Brauser kütt nit domet klor, wann et mieh wie <strong>32</strong> Kilobyte sin. Do künnts De drüvver nohdenke, dat Dinge en kleiner Stöckche ze zerkloppe.',
-'longpageerror'                    => '<big><strong>Janz schlemme Fähler:</strong></big>
-Dä Tex, dä De hee jescheck häs, dä es <strong>$1</strong> Kilobyte jroß. 
-Dat sin mieh wie <strong>$2</strong> Kilobyte. Dat künne mer nit speichere!
-<strong>Maach kleiner Stöcke drus.</strong><br />',
-'readonlywarning'                  => '<strong>Opjepass:</strong>
+'longpagewarning'                  => "'''Oppjepass:''' Dä Tex, dä De hee jescheck häs, dä es '''$1''' 
+Kilobyte jroß. Manch Brauser kütt nit domet klor, wann et mieh wie '''32''' Kilobyte sin. Do künnts De drüvver nohdenke, dat Dinge en kleiner Stöckche ze zerkloppe.",
+'longpageerror'                    => "<big>'''Janz schlemme Fähler:'''</big>
+Dä Tex, dä De hee jescheck häs, dä es '''$1''' Kilobyte jroß. 
+Dat sin mieh wie '''$2''' Kilobyte. Dat künne mer nit speichere!
+'''Maach kleiner Stöcke drus.'''<br />",
+'readonlywarning'                  => "'''Opjepass:'''
 De Daatebank es jesperrt woode, wo Do ald am Ändere wors. 
 Dä.
 Jetz kanns De Ding Änderunge nit mieh avspeichere.
 Dun se bei Dir om Rechner fasshalde un versök et späder noch ens.
 
-Nävvebei, dä Datenbank-Köbes hät för et Sperre och ene Jrund aanjejovve: $1',
-'protectedpagewarning'             => '<strong>Opjepass: Die Sigg hee es jäje Veränderunge jeschötz. Nor de Wiki-Köbesse künne se ändere.</strong>',
+Nävvebei, dä Datenbank-Köbes hät för et Sperre och ene Jrund aanjejovve: $1",
+'protectedpagewarning'             => "'''Opjepass: Die Sigg hee es jäje Veränderunge jeschötz. Nor de Wiki-Köbesse künne se ändere.'''",
 'semiprotectedpagewarning'         => "'''Opjepass:''' Die Sigg hee es halv jesperrt, wie mer sage, dat heiß, Do muss aanjemeldt un enjelogg sin, wann De dran ändere wells.",
 'cascadeprotectedwarning'          => "'''Opjepaß:''' Die Sigg es jeschöz, un nur de Wiki-Köbesse künne se ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:",
-'titleprotectedwarning'            => '<strong> <span style="text-transform:uppercase"> Opjepaß! </span> Di Sigg hee is jesperrt woode. Bloß bestemmpte Metmaacher dörve di Sigg neu aanläje.</strong>',
+'titleprotectedwarning'            => "''' <span style=\"text-transform:uppercase\"> Opjepaß! </span> Di Sigg hee is jesperrt woode. Bloß bestemmpte Metmaacher dörve di Sigg neu aanläje.'''",
 'templatesused'                    => 'De Schablone, die vun dä Sigg hee jebruch wääde, sinn:',
 'templatesusedpreview'             => 'Schablone en dä Vör-Aansich hee:',
 'templatesusedsection'             => 'Schablone en däm Avschnedd hee:',
@@ -1550,17 +1550,17 @@ hallde deiht, wat nit erlaub, un müjjelelscherwies ene jefährlesche Dattei-Typ
 'large-file'                  => 'Dateie sullte nit jröößer wääde, wi $1, ävver Ding Datei es $2 jroß.',
 'largefileserver'             => 'De Datei es ze jroß. Jrößer wie däm Sörver sing Enstellung erlaub.',
 'emptyfile'                   => 'Wat De hee jetz huhjelade häs, hät kein Daate dren jehatt. Künnt sin, dat De Dich verdon häs, un dä Name wo verkihrt jeschrevve. Luur ens ov De wirklich <strong>die</strong> Datei hee huhlade wells.',
-'fileexists'                  => 'Et jitt ald en Datei met däm Name. Wann De op „Datei avspeichere“ klicks, weed se ersetz. Bes esu jod  un luur Der <strong><tt>$1</tt></strong> aan, wann De nit 100% secher bes.',
-'filepageexists'              => 'En Sigg övver di Datei met däm Tittel <strong><tt>$1</tt></strong> es ald doh, ävver en Datei met däm Name ham_mer nit. Dinge Tex kütt nit automattesch op di Sigg övver di Dattei. Di Sigg moß De wann nüüdesch noch ens extra ändere.',
-'fileexists-extension'        => '<table cellspacing="0" cellpadding="0" border="0"><tr><td colspan="2">Mer han ald en Dattei, di bahl jenou esu heijß:</td></tr><tr><td>Huh am laade sim_mer:&nbsp;</td><td><strong><tt>$1</tt></strong></td></tr><tr><td>Ald om ßörve eß:</td><td><strong><tt>$2</tt></strong></td></tr><tr><td colspan="2">Bes esu joot un söök Der ene ander Name fö di Datei us.</td></tr></table>',
+'fileexists'                  => "Et jitt ald en Datei met däm Name. Wann De op „Datei avspeichere“ klicks, weed se ersetz. Bes esu jod  un luur Der '''<tt>$1</tt>''' aan, wann De nit 100% secher bes.",
+'filepageexists'              => "En Sigg övver di Datei met däm Tittel '''<tt>$1</tt>''' es ald doh, ävver en Datei met däm Name ham_mer nit. Dinge Tex kütt nit automattesch op di Sigg övver di Dattei. Di Sigg moß De wann nüüdesch noch ens extra ändere.",
+'fileexists-extension'        => '<table cellspacing="0" cellpadding="0" border="0"><tr><td colspan="2">Mer han ald en Dattei, di bahl jenou esu heijß:</td></tr><tr><td>Huh am laade sim_mer:&nbsp;</td><td>\'\'\'<tt>$1</tt>\'\'\'</td></tr><tr><td>Ald om ßörve eß:</td><td>\'\'\'<tt>$2</tt>\'\'\'</td></tr><tr><td colspan="2">Bes esu joot un söök Der ene ander Name fö di Datei us.</td></tr></table>',
 'fileexists-thumb'            => "<center>'''Datei'''</center>",
-'fileexists-thumbnail-yes'    => 'Dat süühd uß, wi wann dat hee en Minni-Beldsche em Breefmarrke-Fommaat (<i><span lang="en">thumbnail</span></i>) wöhr. Don ens di Dattei <strong><tt>$1</tt></strong> prööfe. Wann dat de Orjinaaljrüß es, do moß keij för dat Beld keij extra Vör-Aansich huhjelade wäde.',
-'file-thumbnail-no'           => 'Dä Name fö di Datei fängk met <strong><tt>$1</tt></strong> aan.
+'fileexists-thumbnail-yes'    => "Dat süühd uß, wi wann dat hee en Minni-Beldsche em Breefmarrke-Fommaat (''<span lang=\"en\">thumbnail</span>'') wöhr. Don ens di Dattei '''<tt>\$1</tt>''' prööfe. Wann dat de Orjinaaljrüß es, do moß keij för dat Beld keij extra Vör-Aansich huhjelade wäde.",
+'file-thumbnail-no'           => "Dä Name fö di Datei fängk met '''<tt>\$1</tt>''' aan.
 Dat süühd uß, wi wann dat en Minni-Beldsche em Breefmarrke-Fommaat
-(<i><span lang="en">thumbnail</span></i>) wöhr. Don ens di Dattei
-<strong><tt>$1</tt></strong> prööfe, of de nit e besser opjelööß Beld
+(''<span lang=\"en\">thumbnail</span>'') wöhr. Don ens di Dattei
+'''<tt>\$1</tt>''' prööfe, of de nit e besser opjelööß Beld
 dofun häß, un don dat met singe Orjinaaljrüß huhlade, wann müjjelesch.
-Söns donn besser ene andere Dateiname ußsöke.',
+Söns donn besser ene andere Dateiname ußsöke.",
 'fileexists-forbidden'        => 'Et jitt ald en Dattei met däm Name, un mer kann se nit övverschriive.
 Wann de Ding Dattei trozdämm huhlaade wells, da jangk zeröck un lad se
 unger enem andere Name huh. [[File:$1|thumb|center|$1]]',
@@ -1600,8 +1600,8 @@ De Einzelheite: $1',
 
 Bes esu joot un don Der övverlääje, of di Dattei mem sellve Name norr_ens huh ze lade en Odenung es.
 Hee es dat Logbooch met de fotjeschmesse Dateie, met däm Jrond, woröm di Dattei dohmohls fottjeschmesse woode es:",
-'filename-bad-prefix'         => 'Dä Datei ier Name fängk met <strong>„$1“</strong> aan. dat eß fä jewöhnlesch ene Name, dä en dijjitaale Kammerra iere Belder jitt. Esu en Name donn uns esu winnisch verzälle, dat mer se nit jän em Wiki han wulle.
-Bes esu joot un jiff dä enne Name, wo mer mieh met aanfange, öm ze wesse, wat en dä Datei dren es.',
+'filename-bad-prefix'         => "Dä Datei ier Name fängk met '''„$1“''' aan. dat eß fä jewöhnlesch ene Name, dä en dijjitaale Kammerra iere Belder jitt. Esu en Name donn uns esu winnisch verzälle, dat mer se nit jän em Wiki han wulle.
+Bes esu joot un jiff dä enne Name, wo mer mieh met aanfange, öm ze wesse, wat en dä Datei dren es.",
 'filename-prefix-blacklist'   => ' #<!-- Lohß di Reih jenou esu wie se es! --> <pre>
 #  Syntax:
 #   * Alles zwesche em #-Zeiche bes nohm Engk vun de Reih es ene Kommäntaa
@@ -2111,7 +2111,7 @@ Do kanns hee noh Hölp luure:
 'alreadyrolled'    => 'Mer künne de letzte Änderunge vun dä Sigg „[[:$1]]“ vum Metmaacher „[[User:$2|$2]]“ ([[User talk:$2|Klaaf]] | [[Special:Contributions/$2|{{int:contribslink}}]]) nimieh zeröcknemme, dat hät ene Andere enzwesche ald jedon, udder de Sigg ömjeändert.
 
 De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]“ ([[User talk:$3|Klaaf]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'Bei dä Änderung stundt: „<i>$1</i>“.', # only shown if there is an edit comment
+'editcomment'      => "Bei dä Änderung stundt: „''$1''“.", # only shown if there is an edit comment
 'revertpage'       => 'Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmesse, un doför de letzte Version vum „[[User:$1|$1]]“ widder zeröckjehollt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'De Änderungen vum $1 zeröckjenumme, un dobei de letzte Version vum $2 widder jehollt.',
 'sessionfailure'   => "Et jov wall e technisch Problem met Dingem Login. Dröm ha'mer dat us Vörsich jetz nit jemaht, domet mer nit villeich Ding Änderung däm verkihrte Metmaacher ungerjubele. Jangk zeröck un versök et noch ens.",
@@ -2131,12 +2131,12 @@ De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]�
 'protect_expiry_invalid'      => 'Die Duur för ze Schötz es Kappes, di künne mer nit verstonn.',
 'protect_expiry_old'          => 'Do häs De Desch verdonn. Die Zick för ze Schötze es doch ald eröm!',
 'protect-unchain'             => 'Et Schötze jäje Ömnenne extra enstelle looße',
-'protect-text'                => 'Hee kanns De dä Schotz jäje Veränderunge för de Sigg „<strong><nowiki>$1</nowiki></strong>“ aanluure un ändere.',
-'protect-locked-blocked'      => 'Do kanns nit der Siggeschotz ändere, esu lang wi Dinge Zojang zom Wiki jesperrt es. Hee es der aktuelle Stand fum Siggeschotz för di Sigg <strong>„$1“:</strong>',
-'protect-locked-dblock'       => 'De Datebank es jesperrt. Dröm künne mer der Siggeschotz nit ändere.
-Hee es der aktuelle Stand fum Siggeschotz för di Sigg <strong>„$1“:</strong>',
-'protect-locked-access'       => 'Do häs nit dat Rääsch, hee em Wiki Sigge ze schötze udder dä Schotz widder opzehevve.
-Di Sigg <strong>„$1“:</strong> es jetz jrad:',
+'protect-text'                => "Hee kanns De dä Schotz jäje Veränderunge för de Sigg „'''<nowiki>$1</nowiki>'''“ aanluure un ändere.",
+'protect-locked-blocked'      => "Do kanns nit der Siggeschotz ändere, esu lang wi Dinge Zojang zom Wiki jesperrt es. Hee es der aktuelle Stand fum Siggeschotz för di Sigg '''„$1“:'''",
+'protect-locked-dblock'       => "De Datebank es jesperrt. Dröm künne mer der Siggeschotz nit ändere.
+Hee es der aktuelle Stand fum Siggeschotz för di Sigg '''„$1“:'''",
+'protect-locked-access'       => "Do häs nit dat Rääsch, hee em Wiki Sigge ze schötze udder dä Schotz widder opzehevve.
+Di Sigg '''„$1“:''' es jetz jrad:",
 'protect-cascadeon'           => 'Die Sigg es en enne Schotz-Kaskad. Se es enjebonge en {{PLURAL:$1|die Sigg|$1 Sigge|kein Sigg}}, die per Kaskade-Schotz jeschötz {{PLURAL:$1|es|sin|es}}. Do kanns dä Schotz för die Sigg hee ändere, ävver di Kaskad blief bestonn. Dat hee sin die Sigge en dä Kaskad:',
 'protect-default'             => 'Jeede Metmaacher eraan lohße',
 'protect-fallback'            => 'Do weet dat Rääsch „$1“ jebruch.',

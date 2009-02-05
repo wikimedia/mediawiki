@@ -605,16 +605,16 @@ $2',
 [[User:$1|$1]] skyddade sidan med motiveringen ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => 'Dålig konfigurering: okänd virusskanner: <i>$1</i>',
+'virus-badscanner'     => "Dålig konfigurering: okänd virusskanner: ''$1''",
 'virus-scanfailed'     => 'skanning misslyckades (kod $1)',
 'virus-unknownscanner' => 'okänt antivirusprogram:',
 
 # Login and logout pages
 'logouttitle'                => 'Användarutloggning',
-'logouttext'                 => '<strong>Du är nu utloggad.</strong>
+'logouttext'                 => "'''Du är nu utloggad.'''
 
 Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du [[Special:UserLogin|logga in igen]] som samma eller som en annan användare.
-Observera att det, tills du tömmer din webbläsares cache, på vissa sidor kan se ut som att du fortfarande är inloggad.',
+Observera att det, tills du tömmer din webbläsares cache, på vissa sidor kan se ut som att du fortfarande är inloggad.",
 'welcomecreation'            => '== Välkommen, $1! ==
 Ditt konto har skapats.
 Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].',
@@ -824,30 +824,30 @@ Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna 
 'noarticletext'                    => 'Det finns just nu ingen text på denna sida. Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] i andra sidor eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida].',
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
-'usercssjsyoucanpreview'           => "<strong>Tips:</strong> Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
+'usercssjsyoucanpreview'           => "'''Tips:''' Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
 'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din användar-CSS.
 Den har inte sparats än!'''",
 'userjspreview'                    => "'''Kom ihåg att du bara testar/förhandsgranskar ditt JavaScript, det har inte sparats än!'''",
 'userinvalidcssjstitle'            => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Uppdaterad)',
-'note'                             => '<strong>Obs!</strong>',
-'previewnote'                      => '<strong>Detta är bara en förhandsvisning;
-ändringar har ännu inte sparats!</strong>',
+'note'                             => "'''Obs!'''",
+'previewnote'                      => "'''Detta är bara en förhandsvisning;
+ändringar har ännu inte sparats!'''",
 'previewconflict'                  => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
-'session_fail_preview'             => '<strong>Vi kunde inte behandla din redigering eftersom sessionsdata gått förlorad.
+'session_fail_preview'             => "'''Vi kunde inte behandla din redigering eftersom sessionsdata gått förlorad.
 Var god försök igen.
-Om det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och logga in igen.</strong>',
-'session_fail_preview_html'        => "<strong>Vi kunde inte behandla din redigering eftersom sessionsdata gått förlorad.</strong>
+Om det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och logga in igen.'''",
+'session_fail_preview_html'        => "'''Vi kunde inte behandla din redigering eftersom sessionsdata gått förlorad.'''
 
 ''Eftersom {{SITENAME}} har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtgärd mot JavaScript-attacker.''
 
-<strong>Om detta är ett försök att göra en rättmätig redigering, så försök igen.
-Om det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och logga in igen.</strong>",
-'token_suffix_mismatch'            => '<strong>Din redigering har stoppats eftersom din klient har ändrat tecknen
-i redigeringens "edit token". Redigeringen stoppades för att förhindra att sidtexten skadas.
-Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.</strong>',
+'''Om detta är ett försök att göra en rättmätig redigering, så försök igen.
+Om det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och logga in igen.'''",
+'token_suffix_mismatch'            => "'''Din redigering har stoppats eftersom din klient har ändrat tecknen
+i redigeringens \"edit token\". Redigeringen stoppades för att förhindra att sidtexten skadas.
+Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.'''",
 'editing'                          => 'Redigerar $1',
 'editingsection'                   => 'Redigerar $1 (avsnitt)',
 'editingcomment'                   => 'Redigerar $1 (nytt avsnitt)',
@@ -859,26 +859,26 @@ Om du vill spara dina ändringar så måste du infoga dem i den övre texten.
 '''Endast''' texten i den översta textrutan kommer att sparas när du trycker på \"Spara\".",
 'yourtext'                         => 'Din text',
 'storedversion'                    => 'Den sparade versionen',
-'nonunicodebrowser'                => '<strong>VARNING: Din webbläsare saknar stöd för unicode. För att du ska kunna redigera sidor utan problem, så visas icke-ASCII-tecken som hexadecimala koder i redigeringsrutan.</strong>',
-'editingold'                       => '<strong>VARNING: Du redigerar en gammal version av denna sida. Om du sparar den kommer alla ändringar som har gjorts sedan denna version att skrivas över.</strong>',
+'nonunicodebrowser'                => "'''VARNING: Din webbläsare saknar stöd för unicode. För att du ska kunna redigera sidor utan problem, så visas icke-ASCII-tecken som hexadecimala koder i redigeringsrutan.'''",
+'editingold'                       => "'''VARNING: Du redigerar en gammal version av denna sida. Om du sparar den kommer alla ändringar som har gjorts sedan denna version att skrivas över.'''",
 'yourdiff'                         => 'Skillnader',
-'copyrightwarning'                 => 'Observera att alla bidrag till {{SITENAME}} är att betrakta som utgivna under $2 (se $1 för detaljer). Om du inte vill att din text ska redigeras eller kopieras efter andras gottfinnande skall du inte skriva något här.<br />
-Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt allmängods som inte skyddas av upphovsrätt, eller liknande källor. <strong>LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!</strong>',
-'copyrightwarning2'                => 'Observera att alla bidrag till {{SITENAME}} kan komma att redigeras, ändras, eller tas bort av andra deltagare. Om du inte vill se din text förändrad efter andras gottfinnade skall du inte skriva in någon text här.<br />
+'copyrightwarning'                 => "Observera att alla bidrag till {{SITENAME}} är att betrakta som utgivna under $2 (se $1 för detaljer). Om du inte vill att din text ska redigeras eller kopieras efter andras gottfinnande skall du inte skriva något här.<br />
+Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt allmängods som inte skyddas av upphovsrätt, eller liknande källor. '''LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!'''",
+'copyrightwarning2'                => "Observera att alla bidrag till {{SITENAME}} kan komma att redigeras, ändras, eller tas bort av andra deltagare. Om du inte vill se din text förändrad efter andras gottfinnade skall du inte skriva in någon text här.<br />
 Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt allmängods som inte skyddas av upphovsrätt, eller liknande källor - se $1 för detaljer.
-<strong>LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!</strong>',
-'longpagewarning'                  => '<strong>VARNING: Den här sidan är $1 kilobyte lång;
+'''LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!'''",
+'longpagewarning'                  => "'''VARNING: Den här sidan är $1 kilobyte lång;
 vissa webbläsare kan ha problem att redigera sidor som närmar sig eller är större än 32 kB.
-Överväg att bryta upp sidan i mindre delar.</strong>',
-'longpageerror'                    => '<strong>FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.</strong>',
-'readonlywarning'                  => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara dina ändringar just nu. 
-Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.</strong>
+Överväg att bryta upp sidan i mindre delar.'''",
+'longpageerror'                    => "'''FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.'''",
+'readonlywarning'                  => "'''VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara dina ändringar just nu. 
+Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.'''
 
-Administratören som låste databasen gav följande förklaring: $1',
-'protectedpagewarning'             => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den.</strong>',
+Administratören som låste databasen gav följande förklaring: $1",
+'protectedpagewarning'             => "'''VARNING: Den här sidan är låst så att bara administratörer kan redigera den.'''",
 'semiprotectedpagewarning'         => "'''Observera:''' Denna sida har skrivskyddats så att endast registrerade användare kan redigera den.",
 'cascadeprotectedwarning'          => '<strong>VARNING:</strong> Den här sidan är låst så att bara administratörer kan redigera den. Det beror på att sidan inkluderas på följande {{PLURAL:$1|sida|sidor}} som skyddats med "kaskaderande skrivskydd":',
-'titleprotectedwarning'            => '<strong>VARNING: Den här sidan har skyddats så att endast vissa användare kan skapa den.</strong>',
+'titleprotectedwarning'            => "'''VARNING: Den här sidan har skyddats så att endast vissa användare kan skapa den.'''",
 'templatesused'                    => 'Mallar som används på den här sidan:',
 'templatesusedpreview'             => 'Mallar som används i förhandsgranskningen:',
 'templatesusedsection'             => 'Mallar som används i det här avsnittet:',
@@ -1479,18 +1479,18 @@ Se [[Special:NewFiles|galleriet över nya filer]] för en mer visuell översikt.
 'large-file'                  => 'Filer bör inte vara större än $1; denna fil är $2',
 'largefileserver'             => 'Denna fil är större än vad servern ställts in att tillåta.',
 'emptyfile'                   => 'Filen du laddade upp verkar vara tom; felet kan bero på ett stavfel i filnamnet. Kontrollera om du verkligen vill ladda upp denna fil.',
-'fileexists'                  => 'Det finns redan en fil med detta namn. Titta på <strong><tt>$1</tt></strong>, såvida du inte är säker på att du vill ändra den.',
-'filepageexists'              => 'Beskrivningssidan för denna fil har redan skapats på <strong><tt>$1</tt></strong>, men just nu finns ingen fil med detta namn. Den sammanfattning du skriver här kommer inte visas på beskrivningssidan. För att din sammanfattning ska visas där, så måste du redigera beskrivningssidan manuellt.',
-'fileexists-extension'        => 'En fil med ett liknande namn finns redan:<br />
-Namn på den fil du försöker ladda upp: <strong><tt>$1</tt></strong><br />
-Namn på filen som redan finns: <strong><tt>$2</tt></strong><br />
-Den enda skillnaden är versaliseringen av filnamnsändelsen. Var vänlig kontrollera om filerna är identiska.',
+'fileexists'                  => "Det finns redan en fil med detta namn. Titta på '''<tt>$1</tt>''', såvida du inte är säker på att du vill ändra den.",
+'filepageexists'              => "Beskrivningssidan för denna fil har redan skapats på '''<tt>$1</tt>''', men just nu finns ingen fil med detta namn. Den sammanfattning du skriver här kommer inte visas på beskrivningssidan. För att din sammanfattning ska visas där, så måste du redigera beskrivningssidan manuellt.",
+'fileexists-extension'        => "En fil med ett liknande namn finns redan:<br />
+Namn på den fil du försöker ladda upp: '''<tt>$1</tt>'''<br />
+Namn på filen som redan finns: '''<tt>$2</tt>'''<br />
+Den enda skillnaden är versaliseringen av filnamnsändelsen. Var vänlig kontrollera om filerna är identiska.",
 'fileexists-thumb'            => "<center>'''Den existerande filen'''</center>",
-'fileexists-thumbnail-yes'    => 'Filen verkar vara en bild med förminskad storlek <i>(miniatyrbild)</i>. Var vänlig kontrollera filen <strong><tt>$1</tt></strong>.<br />
-Om det är samma fil i originalstorlek så är det inte nödvändigt att ladda upp en extra miniatyrbild.',
-'file-thumbnail-no'           => 'Filnamnet börjar med <strong><tt>$1</tt></strong>.
-Det verkar vara en bild med förminskad storlek <i>(miniatyrbild)</i>.
-Om du har denna bild i full storlek, ladda då hellre upp den, annars var vänlig och ändra filens namn.',
+'fileexists-thumbnail-yes'    => "Filen verkar vara en bild med förminskad storlek ''(miniatyrbild)''. Var vänlig kontrollera filen '''<tt>$1</tt>'''.<br />
+Om det är samma fil i originalstorlek så är det inte nödvändigt att ladda upp en extra miniatyrbild.",
+'file-thumbnail-no'           => "Filnamnet börjar med '''<tt>$1</tt>'''.
+Det verkar vara en bild med förminskad storlek ''(miniatyrbild)''.
+Om du har denna bild i full storlek, ladda då hellre upp den, annars var vänlig och ändra filens namn.",
 'fileexists-forbidden'        => 'En fil med detta namn existerar redan, och kan inte överskrivas.
 Om du fortfarande vill ladda upp din fil, var god gå tillbaka och välj ett nytt namn. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'En fil med detta namn finns redan bland de delade filerna.
@@ -1518,7 +1518,7 @@ Om du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn
 Tänk över om det är lämpligt att fortsätta ladda upp denna fil.
 
 Här finns raderingsloggen för denna fil:",
-'filename-bad-prefix'         => 'Namnet på filen du vill ladda upp börjar med <strong>"$1"</strong>. Filnamnet kommer förmodligen direkt från en digitalkamera och beskriver inte filens innehåll. Välj ett annat filnamn som bättre beskriver filen.',
+'filename-bad-prefix'         => "Namnet på filen du vill ladda upp börjar med '''\"\$1\"'''. Filnamnet kommer förmodligen direkt från en digitalkamera och beskriver inte filens innehåll. Välj ett annat filnamn som bättre beskriver filen.",
 'filename-prefix-blacklist'   => ' #<!-- ändra inte den här raden --> <pre>
 # Syntaxen är följande:
 #   * All text från ett #-tecken till radens slut är en kommentar
@@ -1980,7 +1980,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 'alreadyrolled'    => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
 
 Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]).',
-'editcomment'      => 'Redigeringskommentaren var: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => "Redigeringskommentaren var: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Återställde ändringar av $1;
 ändrade tillbaka till senaste version av $2.',
@@ -2001,13 +2001,13 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]] | [[Specia
 'protect_expiry_invalid'      => 'Ogiltig varaktighetstid.',
 'protect_expiry_old'          => 'Den angivna varaktighetentiden har redan passerats.',
 'protect-unchain'             => 'Lås upp flyttillstånd',
-'protect-text'                => 'Här kan du se och ändra skyddsnivån av sidan <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'Du kan inte ändra sidors skydd medan du är blockerad.
-Här kan du se gällande skyddsinställninger för sidan <strong>$1</strong>:',
-'protect-locked-dblock'       => 'Skrivskydd kan inte ändras då databasen är låst.
-Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
-'protect-locked-access'       => 'Ditt konto har inte behörighet att ändra skrivskydd på sidor.
-Nuvarande skrivskyddsinställning för sidan <strong>$1</strong> är:',
+'protect-text'                => "Här kan du se och ändra skyddsnivån av sidan '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Du kan inte ändra sidors skydd medan du är blockerad.
+Här kan du se gällande skyddsinställninger för sidan '''$1''':",
+'protect-locked-dblock'       => "Skrivskydd kan inte ändras då databasen är låst.
+Nuvarande skrivskyddsinställning för sidan '''$1''' är:",
+'protect-locked-access'       => "Ditt konto har inte behörighet att ändra skrivskydd på sidor.
+Nuvarande skrivskyddsinställning för sidan '''$1''' är:",
 'protect-cascadeon'           => 'Den här sidan är skrivskyddad eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som har ett kaskaderande skydd.
 Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande skyddet.',
 'protect-default'             => 'Tillåt alla användare',

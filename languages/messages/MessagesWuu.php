@@ -241,7 +241,7 @@ $messages = array(
 
 # Login and logout pages
 'logouttitle'                => '用户登出',
-'logouttext'                 => '<strong>倷已经登出哉。</strong><br /> 倷可以继续匿名使用{{SITENAME}} ，倷也可以再次以相同或者两样个用户名登录。注意，有星页面作兴还是会搭倷登出前头一样显示，一脚到倷清脱倷个浏览器缓存。',
+'logouttext'                 => "'''倷已经登出哉。'''<br /> 倷可以继续匿名使用{{SITENAME}} ，倷也可以再次以相同或者两样个用户名登录。注意，有星页面作兴还是会搭倷登出前头一样显示，一脚到倷清脱倷个浏览器缓存。",
 'welcomecreation'            => '== 欢迎， $1！ ==
 
 倷个户头已经建立哉。覅忘记脱改动倷个{{SITENAME}}偏好噢。',
@@ -322,14 +322,14 @@ $messages = array(
 要创建该页面呢，就勒下底个框框里向开始写（[[{{MediaWiki:Helppage}}|帮助页面]]浪有更加多个信息）。
 要是倷是弗用心到该搭个说话，只要点击倷浏览器个'''返回'''揿钮。",
 'noarticletext'      => '个篇文章目前还呒拨内容，倷可以拉别个页面里向[[Special:Search/{{PAGENAME}}|寻寻该只标题看]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑当前页面].',
-'note'               => '<strong>注意：</strong>',
-'previewnote'        => '<strong>该个还只是预览；改动还朆保存！</strong>',
+'note'               => "'''注意：'''",
+'previewnote'        => "'''该个还只是预览；改动还朆保存！'''",
 'editing'            => '正在编辑$1',
 'editingsection'     => '正在编辑$1（段落）',
 'editingcomment'     => '正在编辑$1（评论）',
 'editconflict'       => '编辑冲突: $1',
 'yourtext'           => '侬个文字',
-'editingold'         => '<strong> 注意：倷勒里改动一只已经过期个页面修改。 如果倷保存俚个说话，勒拉该个修改之后个亨白浪当个修改侪会呒拨个。</strong>',
+'editingold'         => "''' 注意：倷勒里改动一只已经过期个页面修改。 如果倷保存俚个说话，勒拉该个修改之后个亨白浪当个修改侪会呒拨个。'''",
 'template-protected' => '(保护)',
 
 # Account creation failure

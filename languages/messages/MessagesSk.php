@@ -505,18 +505,18 @@ $2',
 Udaný dôvod: ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => 'Chybná konfigurácia: neznámy antivírus: <i>$1</i>',
+'virus-badscanner'     => "Chybná konfigurácia: neznámy antivírus: ''$1''",
 'virus-scanfailed'     => 'kontrola zlyhala (kód $1)',
 'virus-unknownscanner' => 'neznámy antivírus:',
 
 # Login and logout pages
 'logouttitle'                => 'Odhlásiť používateľa',
-'logouttext'                 => '<strong>Práve ste sa odhlásili.</strong>
+'logouttext'                 => "'''Práve ste sa odhlásili.'''
 
 Odteraz môžete používať {{GRAMMAR:akuzatív|{{SITENAME}}}} ako anonymný používateľ alebo sa môžete
 opäť [[Special:UserLogin|prihlásiť]] pod rovnakým alebo odlišným používateľským menom.
 Uvedomte si, že niektoré stránky sa môžu naďalej zobrazovať ako keby ste boli prihlásený, až kým nevymažete
-vyrovnávaciu pamäť vášho prehliadača.',
+vyrovnávaciu pamäť vášho prehliadača.",
 'welcomecreation'            => '== Vitaj, $1! ==
 
 Vaše konto je vytvorené.
@@ -730,24 +730,24 @@ Ak ste anonymný používateľ a máte pocit, že vám boli adresované irelevan
 'userpage-userdoesnotexist'        => 'Používateľský účet „$1“ nie je registrovaný. Prosím, zaškrtnite ak chcete vytvoriť/upravovať túto stránku.',
 'clearyourcache'                   => "'''Poznámka: Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.'''
 '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''Comand-R'' na Macintosh); '''Konqueror:''': kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; '''Opera''' vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''; '''Internet Explorer:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5'';",
-'usercssjsyoucanpreview'           => '<strong>Tip:</strong> Váš nový CSS/JS pred uložením otestujete stlačením tlačidla „Zobraziť náhľad“.',
+'usercssjsyoucanpreview'           => "'''Tip:''' Váš nový CSS/JS pred uložením otestujete stlačením tlačidla „Zobraziť náhľad“.",
 'usercsspreview'                   => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
 'userjspreview'                    => "'''Nezabudnite, že iba testujete/náhľad vášho používateľského JavaScriptu, ešte nebol uložený!'''",
 'userinvalidcssjstitle'            => "'''Upozornenie:''' Neexistuje vzhľad „$1“. Pamätajte, že vlastné .css a .js stránky používajú názov s malými písmenami, napr. {{ns:user}}:Foo/monobook.css a nie {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Aktualizovaný)',
-'note'                             => '<strong>Poznámka: </strong>',
-'previewnote'                      => '<strong>Nezabudnite, toto je iba náhľad stránky, ktorú upravujete.
-Zmeny ešte nie sú uložené!</strong>',
+'note'                             => "'''Poznámka: '''",
+'previewnote'                      => "'''Nezabudnite, toto je iba náhľad stránky, ktorú upravujete.
+Zmeny ešte nie sú uložené!'''",
 'previewconflict'                  => 'Tento náhľad upravenej stránky zobrazuje text z horného poľa s textom tak, ako sa zobrazí potom, keď ju uložíte.',
-'session_fail_preview'             => '<strong>Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie.
+'session_fail_preview'             => "'''Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie.
 Skúste to prosím ešte raz.
-Ak to nebude fungovať, skúste sa [[Special:UserLogout|odhlásiť]] a znovu prihlásiť.</strong>',
-'session_fail_preview_html'        => "<strong>Prepáčte! Nemohli sme spracovať vašu úpravu kvôli strate údajov relácie.</strong>
+Ak to nebude fungovať, skúste sa [[Special:UserLogout|odhlásiť]] a znovu prihlásiť.'''",
+'session_fail_preview_html'        => "'''Prepáčte! Nemohli sme spracovať vašu úpravu kvôli strate údajov relácie.'''
 
 ''Pretože {{SITENAME}} má použitie HTML umožnené, náhľad sa nezobrazí (prevencia pred JavaScript útokmi).''
 
-<strong>Ak je toto legitímny pokus o úpravu, skúste to prosím znova. Ak to stále nefunguje, skúste sa [[Special:UserLogout|odhlásiť]] a znovu prihlásiť.</strong>",
-'token_suffix_mismatch'            => '<strong>Vaša úprava bola zamietnutá, pretože váš klient pokazil znaky s diakritikou v editačnom symbole (token). Úprava bola zamietnutá, aby sa zabránilo poškodeniu textu stránky. Toto sa občas stáva, keď používate chybnú anonymnú proxy službu cez webové rozhranie.</strong>',
+'''Ak je toto legitímny pokus o úpravu, skúste to prosím znova. Ak to stále nefunguje, skúste sa [[Special:UserLogout|odhlásiť]] a znovu prihlásiť.'''",
+'token_suffix_mismatch'            => "'''Vaša úprava bola zamietnutá, pretože váš klient pokazil znaky s diakritikou v editačnom symbole (token). Úprava bola zamietnutá, aby sa zabránilo poškodeniu textu stránky. Toto sa občas stáva, keď používate chybnú anonymnú proxy službu cez webové rozhranie.'''",
 'editing'                          => 'Úprava stránky $1',
 'editingsection'                   => 'Úprava stránky $1 (sekcia)',
 'editingcomment'                   => 'Úprava stránky $1 (nová sekcia)',
@@ -759,33 +759,33 @@ Budete musieť zlúčiť vaše zmeny s existujúcim textom.
 '''Iba''' obsah horného okna sa uloží, keď stlačíte „{{MediaWiki:savearticle}}“.",
 'yourtext'                         => 'Váš text',
 'storedversion'                    => 'Uložená verzia',
-'nonunicodebrowser'                => '<strong>UPOZORNENIE: Váš prehliadač nepodporuje unicode. Dočasným riešením ako bezpečne upravovať stránky je, že ne-ASCII znaky sa v upravovacom textovom poli zobrazia ako zodpovedajúce hexadecimálne hodnoty.</strong>',
-'editingold'                       => '<strong>UPOZORNENIE: Upravujete starú
-verziu tejto stránky. Ak vašu úpravu uložíte, prepíšete tým všetky úpravy, ktoré nasledovali po tejto starej verzii.</strong>',
+'nonunicodebrowser'                => "'''UPOZORNENIE: Váš prehliadač nepodporuje unicode. Dočasným riešením ako bezpečne upravovať stránky je, že ne-ASCII znaky sa v upravovacom textovom poli zobrazia ako zodpovedajúce hexadecimálne hodnoty.'''",
+'editingold'                       => "'''UPOZORNENIE: Upravujete starú
+verziu tejto stránky. Ak vašu úpravu uložíte, prepíšete tým všetky úpravy, ktoré nasledovali po tejto starej verzii.'''",
 'yourdiff'                         => 'Rozdiely',
-'copyrightwarning'                 => 'Nezabudnite, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}} sa považujú za príspevky pod licenciou $2 (podrobnosti pozri pod $1). Ak nechcete, aby bolo to, čo ste napísali, neúprosne upravované a ďalej ľubovoľne rozširované, tak sem váš text neumiestňujte.<br />
+'copyrightwarning'                 => "Nezabudnite, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}} sa považujú za príspevky pod licenciou $2 (podrobnosti pozri pod $1). Ak nechcete, aby bolo to, čo ste napísali, neúprosne upravované a ďalej ľubovoľne rozširované, tak sem váš text neumiestňujte.<br />
 
 Týmto sa právne zaväzujete, že ste tento text buď napísali sám, alebo že je skopírovaný
 z voľného diela (public domain) alebo podobného zdroja neobmedzeného autorskými právami.
-<strong>NEUMIESTŇUJTE TU BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!</strong>',
-'copyrightwarning2'                => 'Prosím uvedomte si, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}} môžu byť upravované, skracované alebo odstránené inými prispievateľmi. Ak nechcete, aby Vaše texty boli menené, tak ich tu neuverejňujte.<br />
+'''NEUMIESTŇUJTE TU BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!'''",
+'copyrightwarning2'                => "Prosím uvedomte si, že všetky príspevky do {{GRAMMAR:genitív|{{SITENAME}}}} môžu byť upravované, skracované alebo odstránené inými prispievateľmi. Ak nechcete, aby Vaše texty boli menené, tak ich tu neuverejňujte.<br />
 
 Týmto sa právne zaväzujete, že ste tento text buď napísali sám, alebo že je skopírovaný
 z voľného diela (public domain) alebo podobného zdroja neobmedzeného autorskými právami (podrobnosti: $1).
-<strong>NEUMIESTŇUJTE SEM BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!</strong>',
-'longpagewarning'                  => '<strong>UPOZORNENIE: Táto stránka má $1 kilobajtov; niektoré
+'''NEUMIESTŇUJTE SEM BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!'''",
+'longpagewarning'                  => "'''UPOZORNENIE: Táto stránka má $1 kilobajtov; niektoré
 prehliadače by mohli mať problémy s úpravou stránok, ktorých veľkosť sa blíži k alebo presahuje 32 kb.
-Zvážte, či by nebolo možné rozdeliť stránku na menšie sekcie.</strong>',
-'longpageerror'                    => '<strong>CHYBA: Text, ktorý ste poslali má $1 kilobajtov, čo je viac ako maximum $2 kilobajtov. Nie je možné ho uložiť.</strong>',
-'readonlywarning'                  => '<strong>UPOZORNENIE: Databáza bola počas upravovania stránky zamknutá z dôvodu údržby,
+Zvážte, či by nebolo možné rozdeliť stránku na menšie sekcie.'''",
+'longpageerror'                    => "'''CHYBA: Text, ktorý ste poslali má $1 kilobajtov, čo je viac ako maximum $2 kilobajtov. Nie je možné ho uložiť.'''",
+'readonlywarning'                  => "'''UPOZORNENIE: Databáza bola počas upravovania stránky zamknutá z dôvodu údržby,
 takže stránku momentálne nemôžete uložiť. Môžete skopírovať a vložiť
-text do textového súboru a uložiť si ho na neskôr.</strong>
+text do textového súboru a uložiť si ho na neskôr.'''
 
-Správca, ktorý ju zamkol, uviedol nasledovné vysvetlenie: $1',
-'protectedpagewarning'             => '<strong>UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s oprávnením správcu.</strong>',
+Správca, ktorý ju zamkol, uviedol nasledovné vysvetlenie: $1",
+'protectedpagewarning'             => "'''UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s oprávnením správcu.'''",
 'semiprotectedpagewarning'         => "'''Poznámka:''' Táto stránka bola zamknutá tak, aby ju mohli upravovať iba registrovaní používatelia.",
 'cascadeprotectedwarning'          => "'''Upozornenie:''' Táto stránka bola zamknutá (takže ju môžu upravovať iba používatelia s privilégiami správcu), pretože je použitá na {{PLURAL:$1|nasledovnej stránke|nasledovných stránkach}} s kaskádovým zamknutím:",
-'titleprotectedwarning'            => '<strong>UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu vytvoriť iba niektorí používatelia.</strong>',
+'titleprotectedwarning'            => "'''UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu vytvoriť iba niektorí používatelia.'''",
 'templatesused'                    => 'Šablóny použité na tejto stránke:',
 'templatesusedpreview'             => 'Šablóny použité v tomto náhľade:',
 'templatesusedsection'             => 'Šablóny použité v tejto sekcii:',
@@ -1389,18 +1389,18 @@ Vizuálny prehľad nájdete v [[Special:NewFiles|galérii novo nahraných súbor
 'large-file'                  => 'Odporúča sa aby veľkosť súborov neprekračovala $1; tento súbor má $2.',
 'largefileserver'             => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
 'emptyfile'                   => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
-'fileexists'                  => 'Súbor s týmto názvom už existuje, prosím skontrolujte <strong><tt>$1</tt></strong> ak nie ste si istý, či ho chcete zmeniť.',
-'filepageexists'              => 'Popisná stránka tohto súboru už bola vytvorená na <strong><tt>$1</tt></strong>, ale žiadny súbor s týmto názvom momentálne neexistuje. Zhrnutie, ktoré zadáte sa neobjaví na popisnej stránke. Aby sa zhrnutie objavilo na popisnej stránke, budete ho musieť ručne upraviť.',
-'fileexists-extension'        => 'Súbor s podobným názvom už existuje:<br />
-Názov súboru, ktoý nahrávate: <strong><tt>$1</tt></strong><br />
-Názov existujúceho súboru: <strong><tt>$2</tt></strong><br />
-Jediný rozdiel je vo veľkosti písmen prípony. Prosím, skontrolujte totožnosť týchto súborov.',
+'fileexists'                  => "Súbor s týmto názvom už existuje, prosím skontrolujte '''<tt>$1</tt>''' ak nie ste si istý, či ho chcete zmeniť.",
+'filepageexists'              => "Popisná stránka tohto súboru už bola vytvorená na '''<tt>$1</tt>''', ale žiadny súbor s týmto názvom momentálne neexistuje. Zhrnutie, ktoré zadáte sa neobjaví na popisnej stránke. Aby sa zhrnutie objavilo na popisnej stránke, budete ho musieť ručne upraviť.",
+'fileexists-extension'        => "Súbor s podobným názvom už existuje:<br />
+Názov súboru, ktoý nahrávate: '''<tt>$1</tt>'''<br />
+Názov existujúceho súboru: '''<tt>$2</tt>'''<br />
+Jediný rozdiel je vo veľkosti písmen prípony. Prosím, skontrolujte totožnosť týchto súborov.",
 'fileexists-thumb'            => "<center>'''Existujúci obrázok'''</center>",
-'fileexists-thumbnail-yes'    => 'Zdá sa, že súbor je obrázkom redukovanej veľkosti <i>(náhľadom)</i>. Prosím, skontolujte súbor <strong><tt>$1</tt></strong>.<br />
-Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potrebné nahrávať ďalší náhľad.',
-'file-thumbnail-no'           => 'Názov súboru začína <strong><tt>$1</tt></strong>.
-Zdá sa, že je to obrázok redukovanej veľkosti <i>(náhľad)</i>.
-Ak máte tento obrázok v plnom rozlíšení, nahrajte ho, inak prosím zmeňte názov.',
+'fileexists-thumbnail-yes'    => "Zdá sa, že súbor je obrázkom redukovanej veľkosti ''(náhľadom)''. Prosím, skontolujte súbor '''<tt>$1</tt>'''.<br />
+Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potrebné nahrávať ďalší náhľad.",
+'file-thumbnail-no'           => "Názov súboru začína '''<tt>$1</tt>'''.
+Zdá sa, že je to obrázok redukovanej veľkosti ''(náhľad)''.
+Ak máte tento obrázok v plnom rozlíšení, nahrajte ho, inak prosím zmeňte názov.",
 'fileexists-forbidden'        => 'Súbor s týmto názvom už existuje a nie je možné ho prepísať.
 Ak si aj tak želáte nahrať svoj súbor, choďte prosím späť a nahrajte tento súbor pod iným názvom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Súbor s týmto názvom už existuje v zdieľanom úložisku súborov.
@@ -1427,7 +1427,7 @@ Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný ná
 
 Mali by ste zvážiť, či je vhodné pokračovať v nahrávaní tohto súboru.
 Tu je na záznam zmazaní tohto súboru:",
-'filename-bad-prefix'         => 'Názov súboru, ktorý nahrávate, začína <strong>„$1“</strong>, čo nie je popisné meno. Takýto názov typicky priraďujú digitálne fotoaparáty automaticky. Prosím, dajte vášmu súboru popisnejší názov.',
+'filename-bad-prefix'         => "Názov súboru, ktorý nahrávate, začína '''„$1“''', čo nie je popisné meno. Takýto názov typicky priraďujú digitálne fotoaparáty automaticky. Prosím, dajte vášmu súboru popisnejší názov.",
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntax je nasledovná:
 #   * Všetko od znaku „#“ po koniec riadka je komentár
@@ -1890,7 +1890,7 @@ Na $2 nájdete zoznam posledných zmazaní.',
 'alreadyrolled'    => 'Nemožno vrátiť späť poslednú úpravu [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]] | [[Special:Contributions/$2|{{int:contribslink}}]]); niekto iný buď upravoval stránku alebo už vrátil úpravy späť.
 
 Autorom poslednej úpravy je [[User:$3|$3]] ([[User talk:$3|Diskusia]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'Zhrnutie úpravy bolo: „<i>$1</i>“.', # only shown if there is an edit comment
+'editcomment'      => "Zhrnutie úpravy bolo: „''$1''“.", # only shown if there is an edit comment
 'revertpage'       => 'Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Úpravy $1 vrátené; obnovená posledná verzia od $2.',
 'sessionfailure'   => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
@@ -1913,13 +1913,13 @@ Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných za
 'protect_expiry_invalid'      => 'Neplatný čas vypršania.',
 'protect_expiry_old'          => 'Čas vypršania je v minulosti.',
 'protect-unchain'             => 'Odomknúť povolenia pre presun',
-'protect-text'                => 'Tu si môžete pozrieť a zmeniť úroveň ochrany stránky <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'Nemôžete meniť úroveň ochrany, kým ste zablokovaný.
-Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
-'protect-locked-dblock'       => 'Nie je možné zmeniť úroveň ochrany z dôvodu aktívneho zámku databázy.
-Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
-'protect-locked-access'       => 'Váš účet nemá oprávnenie meniť úroveň ochrany stránky.
-Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
+'protect-text'                => "Tu si môžete pozrieť a zmeniť úroveň ochrany stránky '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Nemôžete meniť úroveň ochrany, kým ste zablokovaný.
+Tu sú aktuálne nastavenia stránky '''$1''':",
+'protect-locked-dblock'       => "Nie je možné zmeniť úroveň ochrany z dôvodu aktívneho zámku databázy.
+Tu sú aktuálne nastavenia stránky '''$1''':",
+'protect-locked-access'       => "Váš účet nemá oprávnenie meniť úroveň ochrany stránky.
+Tu sú aktuálne nastavenia stránky '''$1''':",
 'protect-cascadeon'           => 'Táto stránka je momentálne zamknutá, lebo je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá má|nasledovných stránkach, ktoré majú}} zapnutú kaskádovú ochranu. Môžete zmeniť úroveň ochrany tejto stránky, ale neovplyvní to kaskádovú ochranu.',
 'protect-default'             => 'Povoliť všetkých používateľov',
 'protect-fallback'            => 'Vyžadovať povolenie „$1“',

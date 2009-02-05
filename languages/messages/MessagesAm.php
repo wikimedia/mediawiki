@@ -372,9 +372,9 @@ $2",
 
 # Login and logout pages
 'logouttitle'                => 'የአባል መውጫ',
-'logouttext'                 => '<strong>አሁን ወጥተዋል።</strong><br /> አሁንም በቁጥር መታወቂያዎ ማዘጋጀት ይቻላል። ወይም ደግሞ እንደገና በብዕር ስምዎ መግባት ይችላሉ።
+'logouttext'                 => "'''አሁን ወጥተዋል።'''<br /> አሁንም በቁጥር መታወቂያዎ ማዘጋጀት ይቻላል። ወይም ደግሞ እንደገና በብዕር ስምዎ መግባት ይችላሉ።
 ----
-በጥቂት ሴኮንድ ውስጥ ወደሚከተለው ገጽ በቀጥታ ይመለሳል፦',
+በጥቂት ሴኮንድ ውስጥ ወደሚከተለው ገጽ በቀጥታ ይመለሳል፦",
 'welcomecreation'            => '== ሰላምታ፣ $1! ==
 
 የብዕር ስምዎ ተፈጥሯል። ምርጫዎችዎን ለማስተካከል ይችላሉ።',
@@ -549,15 +549,15 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'anontalkpagetext'                 => "----''ይኸው ገጽ ገና ያልገባ ወይም ብዕር ስም የሌለው ተጠቃሚ ውይይት ገጽ ነው። መታወቂያው በ[[ቁጥር አድራሻ]] እንዲሆን ያስፈልጋል። አንዳንዴ ግን አንድ የቁጥር አድራሻ በሁለት ወይም በብዙ ተጠቃሚዎች የጋራ ሊሆን ይችላል። ስለዚህ ለርስዎ የማይገባ ውይይት እንዳይደርስልዎ፣ [[Special:UserLogin|«መግቢያ»]] በመጫን የብዕር ስም ለማውጣት ይችላሉ።''",
 'noarticletext'                    => 'በአሁኑ ወቅት በዚህ ገጽ ላይ ምንም ጽሑፍ የለም፤ በሌላ ገጾች [[Special:Search/{{PAGENAME}}|የዚህን ገጽ አርዕስት መፈለግ]] ወይም [{{fullurl:{{FULLPAGENAME}}|action=edit}} አዲስ ገፅ ማዘጋጀት ይችላሉ].',
 'userpage-userdoesnotexist'        => 'የብዕር ስም «$1» አልተመዘገበም። እባክዎ ይህን ገጽ ለመፍጠር/ ለማስተካከል የፈለጉ እንደ ሆነ ያረጋግጡ።',
-'usercssjsyoucanpreview'           => "<strong>ምክር፦</strong> ሳይቆጠብ አዲስ CSS/JSዎን ለመሞከር 'ቅድመ እይታ' የሚለውን ይጫኑ።",
+'usercssjsyoucanpreview'           => "'''ምክር፦''' ሳይቆጠብ አዲስ CSS/JSዎን ለመሞከር 'ቅድመ እይታ' የሚለውን ይጫኑ።",
 'usercsspreview'                   => "'''ማስታወሻ፦ CSS-ዎን ለሙከራ ብቻ እያዩ ነው፤ ገና አልተቆጠበም!'''",
 'userjspreview'                    => "'''ማስታወሻ፦ JavaScriptዎን ለሙከራ ብቻ እያዩ ነው፤ ገና አልተቆጠበም!'''",
 'userinvalidcssjstitle'            => "'''ማስጠንቀቂያ፦''' «$1» የሚባል መልክ የለም። ልዩ .css እና .js ገጾች በትንንሽ እንግሊዝኛ ፊደል መጀመር እንዳለባቸው ያስታውሱ። ለምሳሌ፦  {{ns:user}}:Foo/monobook.css ልክ ነው እንጂ {{ns:user}}:Foo/Monobook.css አይደለም።",
 'updated'                          => '(የታደሰ)',
-'note'                             => '<strong>ማሳሰቢያ፦</strong>',
-'previewnote'                      => 'ማስታወቂያ፦ <strong><big>ይህ ለሙከራው ብቻ ነው የሚታየው -- ምንም ለውጦች ገና አልተላኩም!</big></strong>',
+'note'                             => "'''ማሳሰቢያ፦'''",
+'previewnote'                      => "ማስታወቂያ፦ '''<big>ይህ ለሙከራው ብቻ ነው የሚታየው -- ምንም ለውጦች ገና አልተላኩም!</big>'''",
 'previewconflict'                  => 'ለማስቀምጥ የመረጡ እንደ ሆነ እንደሚታይ፣ ይህ ቅድመ-ዕይታ በላይኛ ጽሕፈት ማዘጋጀት ክፍል ያለውን ጽሕፈት ያንጸባርቃል።',
-'session_fail_preview'             => '<strong>ይቅርታ! ገጹን ለማቅረብ ስንሂድ፣ አንድ ትንሽ ችግር በመረቡ መረጃ ውስጥ ድንገት ገብቶበታል። እባክዎ፣ እንደገና ገጹን ለማቅረብ አንዴ ይሞክሩ። ከዚያ ገና ካልሠራ፣ ምናልባት ከአባል ስምዎ መውጣትና እንደገና መግባት ይሞክሩ።</strong>',
+'session_fail_preview'             => "'''ይቅርታ! ገጹን ለማቅረብ ስንሂድ፣ አንድ ትንሽ ችግር በመረቡ መረጃ ውስጥ ድንገት ገብቶበታል። እባክዎ፣ እንደገና ገጹን ለማቅረብ አንዴ ይሞክሩ። ከዚያ ገና ካልሠራ፣ ምናልባት ከአባል ስምዎ መውጣትና እንደገና መግባት ይሞክሩ።'''",
 'editing'                          => '«$1» ማዘጋጀት / ማስተካከል',
 'editingsection'                   => '«$1» (ክፍል) ማዘጋጀት / ማስተካከል',
 'editingcomment'                   => '$1 ማዘጋጀት (ውይይት መጨመር)',
@@ -565,22 +565,22 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'explainconflict'                  => "ይህን ገጽ ለማዘጋጀት ከጀመሩ በኋላ የሌላ ሰው ለውጥ ገብቷል። ላይኛው ጽሕፈት የአሁኑ እትም ያሳያል፤ የርስዎም እትም ከዚያ በታች ይገኛል። ለውጦችዎን በአሁኑ ጽሕፈት ውስጥ ማዋሐድ ይኖርብዎታል። ገጹንም ባቀረቡበት ግዜ በላይኛው ክፍል ያለው ጽሕፈት '''ብቻ''' ይቀርባል።",
 'yourtext'                         => 'የእርስዎ እትም',
 'storedversion'                    => 'የተቆጠበው እትም',
-'editingold'                       => '<strong>ማስጠንቀቂያ፦
+'editingold'                       => "'''ማስጠንቀቂያ፦
 ይህ እትም የአሁኑ አይደለም፣ ከዚህ ሁናቴ ታድሷል።
-ይህንን እንዳቀረቡ ከዚህ እትም በኋላ የተቀየረው ለውጥ ሁሉ ያልፋል።</strong>',
+ይህንን እንዳቀረቡ ከዚህ እትም በኋላ የተቀየረው ለውጥ ሁሉ ያልፋል።'''",
 'yourdiff'                         => 'ልዩነቶች',
 'copyrightwarning'                 => "*<big> '''መጣጥፎችን ለመፍጠርና ለማሻሻል አይፈሩ''!''''' — </big>ሥራዎ ትክክለኛ ካልሆነ፣ በሌሎቹ አዘጋጆች ሊታረም ይችላል።",
-'copyrightwarning2'                => 'ወደ {{SITENAME}} የሚላከው አስተዋጽኦ ሁሉ በሌሎች ተጠቃሚዎች ሊታረም፣ ሊለወጥ፣ ወይም ሊጠፋ እንደሚቻል ያስታውሱ። ጽሕፈትዎ እንዲታረም ካልወደዱ፣ ወደዚህ አይልኩት።<br />
+'copyrightwarning2'                => "ወደ {{SITENAME}} የሚላከው አስተዋጽኦ ሁሉ በሌሎች ተጠቃሚዎች ሊታረም፣ ሊለወጥ፣ ወይም ሊጠፋ እንደሚቻል ያስታውሱ። ጽሕፈትዎ እንዲታረም ካልወደዱ፣ ወደዚህ አይልኩት።<br />
 ደግሞ ይህ የራስዎ ጽሕፈት ወይም ከነጻ ምንጭ የተቀዳ ጽሕፈት መሁኑን ያረጋግጣሉ። (ለዝርዝር $1 ይዩ)።
-<strong>አለፈቃድ፡ መብቱ የተጠበቀውን ሥራ አይልኩት!</strong>',
-'longpagewarning'                  => '<strong>ማስጠንቀቂያ፦ የዚሁ ገጽ መጠን እስከ $1 kilobyte ድረስ ደርሷል፤ አንድ ጽሑፍ ከ32 kilobyte የበለጠ ሲሆን ይህ ግዙፍነት ለአንዳንድ ተጠቃሚ ዌብ-ብራውዘር ያስቸግራል። እባክዎን፣ ገጹን ወደ ተለያዩ ገጾች ማከፋፈልን ያስቡበት። </strong>',
-'longpageerror'                    => '<strong>ስህተት፦ ያቀረቡት ጽሕፈት $1 kb ነው፤ ይህም ከተፈቀደው ወሰን $2 kb በላይ ነው። ሊቆጠብ አይችልም።</strong>',
-'readonlywarning'                  => ':<strong>ማስታወቂያ፦</strong> {{SITENAME}} አሁን ለአጭር ግዜ ተቆልፎ ገጹን ለማቅረብ አይቻልም። ጥቂት ደቂቃ ቆይተው እባክዎ እንደገና ይሞክሩት!
-:(The database has been temporarily locked for maintenance, so you cannot save your edits at this time. You may wish to cut-&-paste the text into another file, and try again in a moment or two.)',
-'protectedpagewarning'             => '<strong>ማስጠንቀቂያ፦ ይህ ገጽ ከመጋቢ በስተቀር በማንም እንዳይለወጥ ተቆልፏል።</strong>',
+'''አለፈቃድ፡ መብቱ የተጠበቀውን ሥራ አይልኩት!'''",
+'longpagewarning'                  => "'''ማስጠንቀቂያ፦ የዚሁ ገጽ መጠን እስከ $1 kilobyte ድረስ ደርሷል፤ አንድ ጽሑፍ ከ32 kilobyte የበለጠ ሲሆን ይህ ግዙፍነት ለአንዳንድ ተጠቃሚ ዌብ-ብራውዘር ያስቸግራል። እባክዎን፣ ገጹን ወደ ተለያዩ ገጾች ማከፋፈልን ያስቡበት። '''",
+'longpageerror'                    => "'''ስህተት፦ ያቀረቡት ጽሕፈት $1 kb ነው፤ ይህም ከተፈቀደው ወሰን $2 kb በላይ ነው። ሊቆጠብ አይችልም።'''",
+'readonlywarning'                  => ":'''ማስታወቂያ፦''' {{SITENAME}} አሁን ለአጭር ግዜ ተቆልፎ ገጹን ለማቅረብ አይቻልም። ጥቂት ደቂቃ ቆይተው እባክዎ እንደገና ይሞክሩት!
+:(The database has been temporarily locked for maintenance, so you cannot save your edits at this time. You may wish to cut-&-paste the text into another file, and try again in a moment or two.)",
+'protectedpagewarning'             => "'''ማስጠንቀቂያ፦ ይህ ገጽ ከመጋቢ በስተቀር በማንም እንዳይለወጥ ተቆልፏል።'''",
 'semiprotectedpagewarning'         => "'''ማስታወቂያ፦''' ይኸው ገጽ ከቋሚ አዛጋጆች በተቀር በማንም እንዳይለወጥ ተቆልፏል።",
 'cascadeprotectedwarning'          => "'''ማስጠንቀቂያ፦''' ይህ ገጽ በመጋቢ ብቻ እንዲታረም ተቆልፏል። ምክንያቱም {{PLURAL:$1|በሚከተለው በውስጡ የሚያቆልፍ ገጽ|በሚከተሉ በውስጡ ይሚያቆልፉ ገጾች}} ውስጥ ይገኛል።",
-'titleprotectedwarning'            => '<strong>ማስጠንቀቂያ፦ ይህ ገጽ አንዳንድ ተጠቃሚ ብቻ ሊፈጠር እንዲችል ተቆልፏል።</strong>',
+'titleprotectedwarning'            => "'''ማስጠንቀቂያ፦ ይህ ገጽ አንዳንድ ተጠቃሚ ብቻ ሊፈጠር እንዲችል ተቆልፏል።'''",
 'templatesused'                    => 'በዚሁ ገጽ ላይ የሚገኙት መለጠፊያዎች እነዚህ ናቸው፦',
 'templatesusedpreview'             => 'በዚሁ ቅድመ-እይታ የሚገኙት መልጠፊያዎች እነዚህ ናቸው፦',
 'templatesusedsection'             => 'በዚሁ ክፍል የተጠቀሙት መልጠፊያዎች፦',
@@ -1025,15 +1025,15 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'large-file'                  => 'የፋይል መጠን ከ$1 በላይ እንዳይሆን ይመከራል፤ የዚህ ፋይል መጠን $2 ነው።',
 'largefileserver'             => 'ይህ ፋይል ሰርቨሩ ከሚችለው መጠን በላይ ነው።',
 'emptyfile'                   => 'የላኩት ፋይል ባዶ እንደ ሆነ ይመስላል። ይህ ምናልባት በፋይሉ ስም አንድ ግድፋት ስላለ ይሆናል። እባክዎ ይህን ፋይል በውኑ መላክ እንደ ፈለጉ ያረጋግጡ።',
-'fileexists'                  => 'ይህ ስም ያለው ፋይል አሁን ይኖራል፤ እባክዎ እሱም ለመቀየር እንደፈለጉ እርግጥኛ ካልሆኑ <strong><tt>$1</tt></strong> ይመለከቱ።',
-'filepageexists'              => 'የዚሁ ፋኡል መግለጫ ገጽ ከዚህ በፊት በ<strong><tt>$1</tt></strong> ተፈጥሯል፤ ነገር ግን ይህ ስም ያለበት ፋይል አሁን አይኖርም። ስለዚህ ያቀረቡት ማጠቃለያ በመግለጫው ገጽ አይታይም። መግለጫዎ በዚያ እንዲታይ በእጅ ማስገባት ይኖርብዎታል።',
-'fileexists-extension'        => 'ተመሳሳይ ስም ያለበት ፋይል ይኖራል፦<br />
-የሚላክ ፋይል ስም፦ <strong><tt>$1</tt></strong><br />
-የሚኖር (የቆየው) ፋይል ስም፦ <strong><tt>$2</tt></strong><br />
-እባክዎ ሌላ ስም ይምረጡ።',
+'fileexists'                  => "ይህ ስም ያለው ፋይል አሁን ይኖራል፤ እባክዎ እሱም ለመቀየር እንደፈለጉ እርግጥኛ ካልሆኑ '''<tt>$1</tt>''' ይመለከቱ።",
+'filepageexists'              => "የዚሁ ፋኡል መግለጫ ገጽ ከዚህ በፊት በ'''<tt>$1</tt>''' ተፈጥሯል፤ ነገር ግን ይህ ስም ያለበት ፋይል አሁን አይኖርም። ስለዚህ ያቀረቡት ማጠቃለያ በመግለጫው ገጽ አይታይም። መግለጫዎ በዚያ እንዲታይ በእጅ ማስገባት ይኖርብዎታል።",
+'fileexists-extension'        => "ተመሳሳይ ስም ያለበት ፋይል ይኖራል፦<br />
+የሚላክ ፋይል ስም፦ '''<tt>$1</tt>'''<br />
+የሚኖር (የቆየው) ፋይል ስም፦ '''<tt>$2</tt>'''<br />
+እባክዎ ሌላ ስም ይምረጡ።",
 'fileexists-thumb'            => "<center>'''የሚኖር ፋይል'''</center>",
-'fileexists-thumbnail-yes'    => 'ፋይሉ የተቀነሰ መጠን ያለበት ስዕል <i>(ናሙና)</i> እንደ ሆነ ይመስላል። እባክዎ ፋይሉን <strong><tt>$1</tt></strong> ይመለከቱ።<br /> ያው ፋይል ለዚሁ ፋይል አንድ አይነት በኦሪጂናሉ መጠን ቢሆን ኖሮ፣ ተጨማሪ ናሙና መላክ አያስፈልግም።',
-'file-thumbnail-no'           => 'የፋይሉ ስም በ<strong><tt>$1</tt></strong> ይጀመራል። የተቀነሰ መጠን ያለበት ስዕል <i>(ናሙና)</i> እንደ ሆነ ይመስላል። ይህን ስዕል በሙሉ ማጉላት ካለዎ፣ ይህን ይላኩ፤ አለዚያ እባክዎ የፋይሉን ስም ይቀይሩ።',
+'fileexists-thumbnail-yes'    => "ፋይሉ የተቀነሰ መጠን ያለበት ስዕል ''(ናሙና)'' እንደ ሆነ ይመስላል። እባክዎ ፋይሉን '''<tt>$1</tt>''' ይመለከቱ።<br /> ያው ፋይል ለዚሁ ፋይል አንድ አይነት በኦሪጂናሉ መጠን ቢሆን ኖሮ፣ ተጨማሪ ናሙና መላክ አያስፈልግም።",
+'file-thumbnail-no'           => "የፋይሉ ስም በ'''<tt>$1</tt>''' ይጀመራል። የተቀነሰ መጠን ያለበት ስዕል ''(ናሙና)'' እንደ ሆነ ይመስላል። ይህን ስዕል በሙሉ ማጉላት ካለዎ፣ ይህን ይላኩ፤ አለዚያ እባክዎ የፋይሉን ስም ይቀይሩ።",
 'fileexists-forbidden'        => 'በዚህ ስም የሚኖር ፋይል ገና አለ፤ እባክዎ ተመልሰው ይህን ፋይል በአዲስ ስም ስር ይልኩት። [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'ይህ ስም ያለበት ፋይል አሁን በጋራ ፋይል ምንጭ ይኖራል፤ እባክዎ ተመልሰው ፋይሉን በሌላ ስም ስር ይላኩት። [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'ይህ ፋይል {{PLURAL:$1|የሚከተለው ፋኡል|የሚከተሉት ፋይሎች}} ቅጂ ነው፦',
@@ -1054,7 +1054,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'upload-wasdeleted'           => "'''ማስጠንቀቂያ፦ ቀድሞ የተደለዘ ፋይል እየላኩ ነው።'''
 
 ይህን ፋይል መላክ የሚገባ መሆኑን ይቆጠሩ። የፋይሉ ማጥፋት መዝገብ ከዚህ ታች ይታያል፦",
-'filename-bad-prefix'         => 'የሚልኩት ፋይል ስም በ<strong>«$1»</strong> ይጀመራል፤ ይህ ብዙ ጊዜ በቁጥራዊ ካሜራ የተወሰነ ገላጭ ያልሆነ ስም ይሆናል። እባክዎ ለፋይልዎ ገላጭ የሆነ ስም ይምረጡ።',
+'filename-bad-prefix'         => "የሚልኩት ፋይል ስም በ'''«$1»''' ይጀመራል፤ ይህ ብዙ ጊዜ በቁጥራዊ ካሜራ የተወሰነ ገላጭ ያልሆነ ስም ይሆናል። እባክዎ ለፋይልዎ ገላጭ የሆነ ስም ይምረጡ።",
 
 'upload-proto-error'      => 'ትክክለኛ ያልሆነ ወግ (protocol)',
 'upload-proto-error-text' => 'የሩቅ መላክ እንዲቻል URL በ<code>http://</code> ወይም በ<code>ftp://</code> መጀመር አለበት።',
@@ -1453,7 +1453,7 @@ $NEWPAGE
 'alreadyrolled'    => 'የ[[:$1]] መጨረሻ ለውጥ በ[[User:$2|$2]] ([[User talk:$2|ውይይት]]) መገልበት አይቻልም፤ ሌላ ሰው አሁን ገጹን መልሶታል።
 
 መጨረሻው ለውጥ በ[[User:$3|$3]] ([[User talk:$3|ውይይት]]) ነበረ።',
-'editcomment'      => 'ማጠቃለያው፦ «<i>$1</i>» ነበረ።', # only shown if there is an edit comment
+'editcomment'      => "ማጠቃለያው፦ «''$1''» ነበረ።", # only shown if there is an edit comment
 'revertpage'       => 'የ$2ን ለውጦች ወደ $1 እትም መለሰ።', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'የ$1 ለውጦች ተገለበጡ፣ ወደ $2 ዕትም ተመልሷል።',
 
@@ -1472,10 +1472,10 @@ $NEWPAGE
 'protect_expiry_invalid'      => "የተሰጠው 'የሚያልቅበት ጊዜ' ልክ አይደለም።",
 'protect_expiry_old'          => "የተሰጠው 'የሚያልቅበት ጊዜ' ባለፈው ግዜ ነበር።",
 'protect-unchain'             => 'ገጹን የማዛወር ፈቃዶች ለመፍታት',
-'protect-text'                => 'እዚህ ለገጹ «<strong><nowiki>$1</nowiki></strong>» የመቆለፍ ደረጃ መመልከት ወይም መቀይር ይችላሉ።',
-'protect-locked-blocked'      => 'ማገጃ እያለብዎት የመቆለፍ ደረጃ ለመቀየር አይችሉም። ለገጹ <strong>$1</strong> የአሁኑኑ ደረጃ እንዲህ ነው፦',
-'protect-locked-dblock'       => 'መረጃ-ቤቱ እራሱ አሁን ስለሚቆለፍ፣ የገጽ መቆለፍ ደረጃ ሊቀየር አይችልም። ለገጹ <strong>$1</strong> የአሁኑኑ ደረጃ እንዲህ ነው፦',
-'protect-locked-access'       => 'እርስዎ ገጽ የመቆለፍ ወይም የመፍታት ፈቃድ የለዎም።<br />አሁኑ የዚሁ ገጽ መቆለፍ ደረጃ እንዲህ ነው፦ <strong>$1</strong>:',
+'protect-text'                => "እዚህ ለገጹ «'''<nowiki>$1</nowiki>'''» የመቆለፍ ደረጃ መመልከት ወይም መቀይር ይችላሉ።",
+'protect-locked-blocked'      => "ማገጃ እያለብዎት የመቆለፍ ደረጃ ለመቀየር አይችሉም። ለገጹ '''$1''' የአሁኑኑ ደረጃ እንዲህ ነው፦",
+'protect-locked-dblock'       => "መረጃ-ቤቱ እራሱ አሁን ስለሚቆለፍ፣ የገጽ መቆለፍ ደረጃ ሊቀየር አይችልም። ለገጹ '''$1''' የአሁኑኑ ደረጃ እንዲህ ነው፦",
+'protect-locked-access'       => "እርስዎ ገጽ የመቆለፍ ወይም የመፍታት ፈቃድ የለዎም።<br />አሁኑ የዚሁ ገጽ መቆለፍ ደረጃ እንዲህ ነው፦ '''$1''':",
 'protect-cascadeon'           => 'ይህ ገጽ ወደ ተከለከሉት አርእስቶች ተጨምሯል። የመቆለፍ ደረጃ እዚህ መቀየር ቢቻልዎም ገጹ ግን በሚከተለው ድርብ የተቆለፈ ገጽ ውስጥ ይጨመራል።',
 'protect-default'             => '(እንደ ወትሮ)',
 'protect-fallback'            => 'የ$1 ፈቃደ ለማስፈልግ',
