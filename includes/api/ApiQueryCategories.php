@@ -137,8 +137,6 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		if (is_null($resultPageSet)) {
 
-			$data = array();
-			$lastId = 0;	// database has no ID 0
 			$count = 0;
 			while ($row = $db->fetchObject($res)) {
 				if (++$count > $params['limit']) {
@@ -148,16 +146,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 							'|' . $this->keyToTitle($row->cl_to));
 					break;
 				}
-				if ($lastId != $row->cl_from) {
-					if($lastId != 0) {
-						$this->addPageSubItems($lastId, $data);
-						$data = array();
-					}
-					$lastId = $row->cl_from;
-				}
 
 				$title = Title :: makeTitle(NS_CATEGORY, $row->cl_to);
-
 				$vals = array();
 				ApiQueryBase :: addTitleInfo($vals, $title);
 				if ($fld_sortkey)
@@ -165,13 +155,14 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				if ($fld_timestamp)
 					$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->cl_timestamp);
 
-				$data[] = $vals;
+				$fit = $this->addPageSubItem($row->cl_from, $vals);
+				if(!$fit)
+				{
+					$this->setContinueEnumParameter('continue', $row->cl_from .
+							'|' . $this->keyToTitle($row->cl_to));
+					break;
+				}
 			}
-
-			if($lastId != 0) {
-				$this->addPageSubItems($lastId, $data);
-			}
-
 		} else {
 
 			$titles = array();

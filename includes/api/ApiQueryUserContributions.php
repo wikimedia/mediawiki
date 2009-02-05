@@ -83,7 +83,6 @@ class ApiQueryContributions extends ApiQueryBase {
 		$res = $this->select( __METHOD__ );
 
 		//Initialise some variables
-		$data = array ();
 		$count = 0;
 		$limit = $this->params['limit'];
 
@@ -99,16 +98,21 @@ class ApiQueryContributions extends ApiQueryBase {
 			}
 
 			$vals = $this->extractRowInfo($row);
-			if ($vals)
-				$data[] = $vals;
+			$fit = $this->getResult()->addValue(array('query', $this->getModuleName()), null, $vals);
+			if(!$fit)
+			{
+				if($this->multiUserMode)
+					$this->setContinueEnumParameter('continue', $this->continueStr($row));
+				else
+					$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->rev_timestamp));
+				break;
+			}
 		}
 
 		//Free the database record so the connection can get on with other stuff
 		$db->freeResult($res);
 
-		//And send the whole shebang out as output.
-		$this->getResult()->setIndexedTagName($data, 'item');
-		$this->getResult()->addValue('query', $this->getModuleName(), $data);
+		$this->getResult()->setIndexedTagName_internal(array('query', $this->getModuleName()), 'item');
 	}
 
 	/**

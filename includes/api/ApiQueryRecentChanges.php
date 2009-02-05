@@ -191,9 +191,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$this->token = $params['token'];
 		$this->addOption('LIMIT', $params['limit'] +1);
 
-		$data = array ();
 		$count = 0;
-
 		/* Perform the actual query. */
 		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
@@ -210,16 +208,20 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$vals = $this->extractRowInfo($row);
 
 			/* Add that row's data to our final output. */
-			if($vals)
-				$data[] = $vals;
+			if(!$vals)
+				continue;
+			$fit = $this->getResult()->addValue(array('query', $this->getModuleName()), null, $vals);
+			if(!$fit)
+			{
+				$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->rc_timestamp));
+				break;
+			}
 		}
 
 		$db->freeResult($res);
 
 		/* Format the result */
-		$result = $this->getResult();
-		$result->setIndexedTagName($data, 'rc');
-		$result->addValue('query', $this->getModuleName(), $data);
+		$this->getResult()->setIndexedTagName_internal(array('query', $this->getModuleName()), 'rc');
 	}
 
 	/**

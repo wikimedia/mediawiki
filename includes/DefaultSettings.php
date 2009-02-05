@@ -3519,6 +3519,12 @@ $wgAPIListModules = array();
 $wgAPIMaxDBRows = 5000;
 
 /**
+ * The maximum size (in bytes) of an API result.
+ * Don't set this lower than $wgMaxArticleSize*1024
+ */
+$wgAPIMaxResultSize = 8388608;
+
+/**
  * Parser test suite files to be run by parserTests.php when no specific
  * filename is passed to it.
  *

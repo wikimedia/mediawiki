@@ -51,71 +51,72 @@ if (!defined('MEDIAWIKI')) {
 			$this->prop = array();
 		}
 
-		if(is_array($params['users'])) {
-			$r = $this->getOtherUsersInfo($params['users']);
-			$result->setIndexedTagName($r, 'user');
-		}
-		$result->addValue("query", $this->getModuleName(), $r);
-	}
-
-	protected function getOtherUsersInfo($users) {
-		$goodNames = $retval = array();
+		$users = (array)$params['users'];
+		$goodNames = $done = array();
+		$result = $this->getResult();
 		// Canonicalize user names
 		foreach($users as $u) {
 			$n = User::getCanonicalName($u);
 			if($n === false || $n === '')
-				$retval[] = array('name' => $u, 'invalid' => '');
+			{
+				$vals = array('name' => $u, 'invalid' => '');
+				$fit = $result->addValue(array('query', $this->getModuleName()),
+						null, $vals);
+				if(!$fit)
+				{
+					$this->setContinueEnumParameter('users',
+							implode('|', array_diff($users, $done)));
+					$goodNames = array();
+					break;
+				}
+				$done[] = $u;
+			}
 			 else
 				$goodNames[] = $n;
 		}
-		if(!count($goodNames))
-			return $retval;
+		if(count($goodNames))
+		{
+			$db = $this->getDb();
+			$this->addTables('user', 'u1');
+			$this->addFields('u1.user_name');
+			$this->addWhereFld('u1.user_name', $goodNames);
+			$this->addFieldsIf('u1.user_editcount', isset($this->prop['editcount']));
+			$this->addFieldsIf('u1.user_registration', isset($this->prop['registration']));
 
-		$db = $this->getDB();
-		$this->addTables('user', 'u1');
-		$this->addFields('u1.*');
-		$this->addWhereFld('u1.user_name', $goodNames);
+			if(isset($this->prop['groups'])) {
+				$this->addTables('user_groups');
+				$this->addJoinConds(array('user_groups' => array('LEFT JOIN', 'ug_user=u1.user_id')));
+				$this->addFields('ug_group');
+			}
+			if(isset($this->prop['blockinfo'])) {
+				$this->addTables('ipblocks');
+				$this->addTables('user', 'u2');
+				$u2 = $this->getAliasedName('user', 'u2');
+				$this->addJoinConds(array(
+					'ipblocks' => array('LEFT JOIN', 'ipb_user=u1.user_id'),
+					$u2 => array('LEFT JOIN', 'ipb_by=u2.user_id')));
+				$this->addFields(array('ipb_reason', 'u2.user_name blocker_name'));
+			}
 
-		if(isset($this->prop['groups'])) {
-			$this->addTables('user_groups');
-			$this->addJoinConds(array('user_groups' => array('LEFT JOIN', 'ug_user=u1.user_id')));
-			$this->addFields('ug_group');
+			$data = array();
+			$res = $this->select(__METHOD__);
+			while(($r = $db->fetchObject($res))) {
+				$data[$r->user_name]['name'] = $r->user_name;
+				if(isset($this->prop['editcount']))
+					$data[$r->user_name]['editcount'] = $r->user_editcount;
+				if(isset($this->prop['registration']))
+					$data[$r->user_name]['registration'] = wfTimestampOrNull(TS_ISO_8601, $r->user_registration);
+				if(isset($this->prop['groups']))
+					// This row contains only one group, others will be added from other rows
+					if(!is_null($r->ug_group))
+						$data[$r->user_name]['groups'][] = $r->ug_group;
+				if(isset($this->prop['blockinfo']))
+					if(!is_null($r->blocker_name)) {
+						$data[$r->user_name]['blockedby'] = $r->blocker_name;
+						$data[$r->user_name]['blockreason'] = $r->ipb_reason;
+					}
+			}
 		}
-		if(isset($this->prop['blockinfo'])) {
-			$this->addTables('ipblocks');
-			$this->addTables('user', 'u2');
-			$u2 = $this->getAliasedName('user', 'u2');
-			$this->addJoinConds(array(
-				'ipblocks' => array('LEFT JOIN', 'ipb_user=u1.user_id'),
-				$u2 => array('LEFT JOIN', 'ipb_by=u2.user_id')));
-			$this->addFields(array('ipb_reason', 'u2.user_name blocker_name'));
-		}
-
-		$data = array();
-		$res = $this->select(__METHOD__);
-		while(($r = $db->fetchObject($res))) {
-			$user = User::newFromRow($r);
-			$name = $user->getName();
-			$data[$name]['name'] = $name;
-			if(isset($this->prop['editcount']))
-				// No proper member function in User class for this
-				$data[$name]['editcount'] = $r->user_editcount;
-			if(isset($this->prop['registration']))
-				// Nor for this one
-				$data[$name]['registration'] = wfTimestampOrNull(TS_ISO_8601, $r->user_registration);
-			if(isset($this->prop['groups']))
-				// This row contains only one group, others will be added from other rows
-				if(!is_null($r->ug_group))
-					$data[$name]['groups'][] = $r->ug_group;
-			if(isset($this->prop['blockinfo']))
-				if(!is_null($r->blocker_name)) {
-					$data[$name]['blockedby'] = $r->blocker_name;
-					$data[$name]['blockreason'] = $r->ipb_reason;
-				}
-			if(isset($this->prop['emailable']) && $user->canReceiveEmail())
-				$data[$name]['emailable'] = '';
-		}
-
 		// Second pass: add result data to $retval
 		foreach($goodNames as $u) {
 			if(!isset($data[$u]))
@@ -125,8 +126,9 @@ if (!defined('MEDIAWIKI')) {
 					$this->getResult()->setIndexedTagName($data[$u]['groups'], 'g');
 				$retval[] = $data[$u];
 			}
+			$done[] = $u;
 		}
-		return $retval;
+		return $this->getResult()->setIndexedTagName_internal(array('query', $this->getModuleName()), 'user');
 	}
 
 	public function getAllowedParams() {

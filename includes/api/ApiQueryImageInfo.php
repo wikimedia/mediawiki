@@ -56,49 +56,97 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
+		$cnt = 0;
 		if (!empty($pageIds[NS_FILE])) {
-			
 			$result = $this->getResult();
 			$images = RepoGroup::singleton()->findFiles( array_keys( $pageIds[NS_FILE] ) );
 			foreach ( $images as $img ) {
-				$data = array();
-				
+				$cnt++;
+				if(!is_null($params['continue']))
+					if($cnt < $params['continue'])
+						continue;
+				$pageId = $pageIds[NS_IMAGE][ $img->getOriginalTitle()->getDBkey() ];
+
+				$fit = $result->addValue(
+					array('query', 'pages', intval($pageId)),
+					'imagerepository', $img->getRepoName()
+				);
+				if(!$fit)
+				{
+					if(count($pageIds[NS_IMAGE]) == 1)
+						# The user is screwed. imageinfo can't be solely
+						# responsible for exceeding the limit in this case,
+						# so set a query-continue that just returns the same
+						# thing again. When the violating queries have been
+						# out-continued, the result will get through
+						$this->setContinueEnumParameter('start', 
+							wfTimestamp(TS_ISO_8601, $img->getTimestamp()));
+					else
+						$this->setContinueEnumParameter('continue', $cnt);
+					break;
+				}
+
 				// Get information about the current version first
 				// Check that the current version is within the start-end boundaries
+				$gotOne = false;
 				if((is_null($params['start']) || $img->getTimestamp() <= $params['start']) &&
 						(is_null($params['end']) || $img->getTimestamp() >= $params['end'])) {
-					$data[] = self::getInfo( $img, $prop, $result, $scale );
+					$gotOne = true;
+					$fit = $this->addPageSubItem($pageId,
+						self::getInfo( $img, $prop, $result, $scale));
+					if(!$fit)
+					{
+						if(count($pageIds[NS_IMAGE]) == 1)
+							# See the 'the user is screwed' comment above
+							$this->setContinueEnumParameter('start',
+								wfTimestamp(TS_ISO_8601, $img->getTimestamp()));
+						else
+							$this->setContinueEnumParameter('continue', $cnt);
+						break;
+					}
 				}
 
 				// Now get the old revisions
 				// Get one more to facilitate query-continue functionality
-				$count = count($data);
+				$count = ($gotOne ? 1 : 0);
 				$oldies = $img->getHistory($params['limit'] - $count + 1, $params['start'], $params['end']);
 				foreach($oldies as $oldie) {
 					if(++$count > $params['limit']) {
 						// We've reached the extra one which shows that there are additional pages to be had. Stop here...
 						// Only set a query-continue if there was only one title
 						if(count($pageIds[NS_FILE]) == 1)
-							$this->setContinueEnumParameter('start', $oldie->getTimestamp());
+							$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $oldie->getTimestamp()));
 						break;
 					}
-					$data[] = self::getInfo( $oldie, $prop, $result );
+					$fit = $this->addPageSubItem($pageId,
+						self::getInfo($oldie, $prop, $result));
+					if(!$fit)
+					{
+						if(count($pageIds[NS_IMAGE]) == 1)
+							$this->setContinueEnumParameter('start',
+								wfTimestamp(TS_ISO_8601, $oldie->getTimestamp()));
+						else
+							$this->setContinueEnumParameter('continue', $cnt);
+						break;
+					}
 				}
-
-				$pageId = $pageIds[NS_FILE][ $img->getOriginalTitle()->getDBkey() ];
-				$result->addValue(
-					array( 'query', 'pages', intval( $pageId ) ),
-					'imagerepository', $img->getRepoName()
-				);
-				$this->addPageSubItems($pageId, $data);
+				if(!$fit)
+					break;
 			}
 			
 			$missing = array_diff( array_keys( $pageIds[NS_FILE] ), array_keys( $images ) );
-			foreach ( $missing as $title )
-				$result->addValue(
-					array( 'query', 'pages', intval( $pageIds[NS_FILE][$title] ) ),
+			foreach ($missing as $title) {
+				$cnt++;
+				if(!is_null($params['continue']))
+					if($count < $params['continue'])
+						continue;
+				$fit = $result->addValue(
+					array('query', 'pages', intval($pageIds[NS_FILE][$title])),
 					'imagerepository', ''
 				);
+				if(!$fit)
+					$this->setContinueEnumParameter('continue', $cnt);
+			}
 		}
 	}
 
@@ -208,7 +256,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'urlheight' => array(
 				ApiBase :: PARAM_TYPE => 'integer',
 				ApiBase :: PARAM_DFLT => -1
-			)
+			),
+			'continue' => null,
 		);
 	}
 
@@ -221,6 +270,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'urlwidth' => array('If iiprop=url is set, a URL to an image scaled to this width will be returned.',
 					    'Only the current version of the image can be scaled.'),
 			'urlheight' => 'Similar to iiurlwidth. Cannot be used without iiurlwidth',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 

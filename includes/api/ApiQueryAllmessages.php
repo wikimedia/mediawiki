@@ -75,6 +75,9 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		//Get all requested messages
 		$messages = array();
 		foreach( $messages_target as $message ) {
+			if(!is_null($params['from']))
+				if($message < $params['from'])
+					continue;
 			$messages[$message] = wfMsg( $message );
 		}
 
@@ -89,10 +92,14 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			} else {
 				$result->setContent( $message, $value );
 			}
-			$messages_out[] = $message;
+			$fit = $result->addValue(array('query', $this->getModuleName()), null, $message);
+			if(!$fit)
+			{
+				$this->setContinueEnumParameter('from', $name);
+				break;
+			}
 		}
-		$result->setIndexedTagName( $messages_out, 'message' );
-		$result->addValue( 'query', $this->getModuleName(), $messages_out );
+		$result->setIndexedTagName_internal(array('query', $this->getModuleName()), 'message');
 	}
 
 	public function getAllowedParams() {
@@ -102,6 +109,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			),
 			'filter' => array(),
 			'lang' => null,
+			'from' => null,
 		);
 	}
 
@@ -110,6 +118,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			'messages' => 'Which messages to output. "*" means all messages',
 			'filter' => 'Return only messages that contain this string',
 			'lang' => 'Return messages in this language',
+			'from' => 'Return messages starting at this message',
 		);
 	}
 

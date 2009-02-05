@@ -41,50 +41,60 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$done = array();
 		foreach( $params['prop'] as $p )
 		{
 			switch ( $p )
 			{
 				case 'general':
-					$this->appendGeneralInfo( $p );
+					$fit = $this->appendGeneralInfo( $p );
 					break;
 				case 'namespaces':
-					$this->appendNamespaces( $p );
+					$fit = $this->appendNamespaces( $p );
 					break;
 				case 'namespacealiases':
-					$this->appendNamespaceAliases( $p );
+					$fit = $this->appendNamespaceAliases( $p );
 					break;
 				case 'specialpagealiases':
-					$this->appendSpecialPageAliases( $p );
+					$fit = $this->appendSpecialPageAliases( $p );
 					break;
 				case 'magicwords':
-					$this->appendMagicWords( $p );
+					$fit = $this->appendMagicWords( $p );
 					break;
 				case 'interwikimap':
 					$filteriw = isset( $params['filteriw'] ) ? $params['filteriw'] : false;
-					$this->appendInterwikiMap( $p, $filteriw );
+					$fit = $this->appendInterwikiMap( $p, $filteriw );
 					break;
 				case 'dbrepllag':
-					$this->appendDbReplLagInfo( $p, $params['showalldb'] );
+					$fit = $this->appendDbReplLagInfo( $p, $params['showalldb'] );
 					break;
 				case 'statistics':
-					$this->appendStatistics( $p );
+					$fit = $this->appendStatistics( $p );
 					break;
 				case 'usergroups':
-					$this->appendUserGroups( $p );
+					$fit = $this->appendUserGroups( $p );
 					break;
 				case 'extensions':
-					$this->appendExtensions( $p );
+					$fit = $this->appendExtensions( $p );
 					break;
 				case 'fileextensions':
-					$this->appendFileExtensions( $p );
+					$fit = $this->appendFileExtensions( $p );
 					break;
 				case 'rightsinfo':
-					$this->appendRightsInfo( $p );
+					$fit = $this->appendRightsInfo( $p );
 					break;
 				default :
 					ApiBase :: dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
+			if(!$fit)
+			{
+				# Abuse siprop as a query-continue parameter
+				# and set it to all unprocessed props
+				$this->setContinueEnumParameter('prop', implode('|',
+						array_diff($params['prop'], $done)));
+				break;
+			}
+			$done[] = $p;
 		}
 	}
 
@@ -129,7 +139,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['timezone'] = $tz;
 		$data['timeoffset'] = $offset;
 
-		$this->getResult()->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
 	protected function appendNamespaces( $property ) {
@@ -151,7 +161,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
 	protected function appendNamespaceAliases( $property ) {
@@ -168,7 +178,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
 	protected function appendSpecialPageAliases( $property ) {
@@ -181,7 +191,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $arr;
 		}
 		$this->getResult()->setIndexedTagName( $data, 'specialpage' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 	
 	protected function appendMagicWords( $property ) {
@@ -197,7 +207,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $arr;
 		}
 		$this->getResult()->setIndexedTagName($data, 'magicword');
-		$this->getResult()->addValue('query', $property, $data);
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
 	protected function appendInterwikiMap( $property, $filter ) {
@@ -235,7 +245,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$db->freeResult( $res );
 
 		$this->getResult()->setIndexedTagName( $data, 'iw' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
 	protected function appendDbReplLagInfo( $property, $includeAll ) {
@@ -263,7 +273,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$result = $this->getResult();
 		$result->setIndexedTagName( $data, 'db' );
-		$result->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
 	protected function appendStatistics( $property ) {
@@ -277,7 +287,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['activeusers'] = intval( SiteStats::activeUsers() );
 		$data['admins'] = intval( SiteStats::numberingroup('sysop') );
 		$data['jobs'] = intval( SiteStats::jobs() );
-		$this->getResult()->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
 	protected function appendUserGroups( $property ) {
@@ -290,7 +300,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'group' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 	
 	protected function appendFileExtensions( $property ) {
@@ -301,7 +311,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = array( 'ext' => $ext );
 		}
 		$this->getResult()->setIndexedTagName( $data, 'fe' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
 	protected function appendExtensions( $property ) {
@@ -334,7 +344,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ext' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
 
@@ -352,7 +362,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'text' => $text ?  $text : ''
 		);
 
-		$this->getResult()->addValue( 'query', $property, $data );
+		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
 

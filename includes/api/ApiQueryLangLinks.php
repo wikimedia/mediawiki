@@ -71,8 +71,6 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		$this->addOption('LIMIT', $params['limit'] + 1);
 		$res = $this->select(__METHOD__);
 
-		$data = array();
-		$lastId = 0;	// database has no ID 0
 		$count = 0;
 		$db = $this->getDB();
 		while ($row = $db->fetchObject($res)) {
@@ -82,23 +80,15 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				$this->setContinueEnumParameter('continue', "{$row->ll_from}|{$row->ll_lang}");
 				break;
 			}
-			if ($lastId != $row->ll_from) {
-				if($lastId != 0) {
-					$this->addPageSubItems($lastId, $data);
-					$data = array();
-				}
-				$lastId = $row->ll_from;
-			}
-
 			$entry = array('lang' => $row->ll_lang);
 			ApiResult :: setContent($entry, $row->ll_title);
-			$data[] = $entry;
+			$fit = $this->addPageSubItem($row->ll_from, $entry);
+			if(!$fit)
+			{
+				$this->setContinueEnumParameter('continue', "{$row->ll_from}|{$row->ll_lang}");
+				break;
+			}
 		}
-
-		if($lastId != 0) {
-			$this->addPageSubItems($lastId, $data);
-		}
-
 		$db->freeResult($res);
 	}
 

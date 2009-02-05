@@ -168,7 +168,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$this->addOption('LIMIT', $params['limit'] +1);
 
-		$data = array ();
+		$ids = array ();
 		$count = 0;
 		$res = $this->select(__METHOD__);
 
@@ -182,13 +182,18 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			if (is_null($resultPageSet)) {
 				$vals = $this->extractRowInfo($row);
-				if ($vals)
-					$data[] = $vals;
+				$fit = $this->getResult()->addValue(array('query', $this->getModuleName()), null, $vals);
+				if(!$fit)
+				{
+					$this->setContinueEnumParameter('start',
+							wfTimestamp(TS_ISO_8601, $row->rc_timestamp));
+					break;
+				}
 			} else {
 				if ($params['allrev']) {
-					$data[] = intval($row->rc_this_oldid);
+					$ids[] = intval($row->rc_this_oldid);
 				} else {
-					$data[] = intval($row->rc_cur_id);
+					$ids[] = intval($row->rc_cur_id);
 				}
 			}
 		}
@@ -196,13 +201,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$db->freeResult($res);
 
 		if (is_null($resultPageSet)) {
-			$this->getResult()->setIndexedTagName($data, 'item');
-			$this->getResult()->addValue('query', $this->getModuleName(), $data);
+			$this->getResult()->setIndexedTagName_internal(array('query', $this->getModuleName()), 'item');
 		}
 		elseif ($params['allrev']) {
-			$resultPageSet->populateFromRevisionIDs($data);
+			$resultPageSet->populateFromRevisionIDs($ids);
 		} else {
-			$resultPageSet->populateFromPageIDs($data);
+			$resultPageSet->populateFromPageIDs($ids);
 		}
 	}
 
