@@ -84,6 +84,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   class "mw-searchresult"
 * (bug 15283) Interwiki imports can now fetch included templates
 * Treat svn:// URLs as external links by default
+* New function to convert namespace text for display (only applies on wiki with
+  LanguageConverter class)
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

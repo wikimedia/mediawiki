@@ -9,37 +9,40 @@
  * @author Shinjiman
  * @author Skjackey tse
  * @author Wrightbus
+ * @author Philip
  */
 
 $fallback = 'zh-hans';
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Special',
+	NS_MEDIA            => '媒體',
+	NS_SPECIAL          => '特殊',
 	NS_MAIN             => '',
-	NS_TALK             => 'Talk',
-	NS_USER             => 'User',
-	NS_USER_TALK        => 'User_talk',
+	NS_TALK             => '討論',
+	NS_USER             => '用戶',
+	NS_USER_TALK        => '用戶討論',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => '$1_talk',
-	NS_FILE             => 'File',
-	NS_FILE_TALK        => 'File_talk',
+	NS_PROJECT_TALK     => '$1討論',
+	NS_FILE             => '檔案',
+	NS_FILE_TALK        => '檔案討論',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
-	NS_TEMPLATE         => 'Template',
-	NS_TEMPLATE_TALK    => 'Template_talk',
-	NS_HELP             => 'Help',
-	NS_HELP_TALK        => 'Help_talk',
-	NS_CATEGORY         => 'Category',
-	NS_CATEGORY_TALK    => 'Category_talk'
+	NS_MEDIAWIKI_TALK   => 'MediaWiki討論',
+	NS_TEMPLATE         => '模板',
+	NS_TEMPLATE_TALK    => '模板討論',
+	NS_HELP             => '幫助',
+	NS_HELP_TALK        => '幫助討論',
+	NS_CATEGORY         => '分類',
+	NS_CATEGORY_TALK    => '分類討論'
 );
 
 $namespaceAliases = array(
 	"媒體" => NS_MEDIA,
 	"特殊" => NS_SPECIAL,
 	"對話" => NS_TALK,
+	"討論" => NS_USER_TALK,
 	"用戶" => NS_USER,
 	"用戶對話" => NS_USER_TALK,
+	"用戶討論" => NS_USER_TALK,
 	# This has never worked so it's unlikely to annoy anyone if I disable it -- TS
 	#"{{SITENAME}}_對話" => NS_PROJECT_TALK
 	"圖像" => NS_FILE,
@@ -48,13 +51,22 @@ $namespaceAliases = array(
 	'Image' => NS_FILE,
 	'Image_talk' => NS_FILE_TALK,
 	"圖像對話" => NS_FILE_TALK,
+	"圖像討論" => NS_FILE_TALK,
 	"檔案對話" => NS_FILE_TALK,
+	"檔案討論" => NS_FILE_TALK,
 	"文件對話" => NS_FILE_TALK,
+	"文件討論" => NS_FILE_TALK,
 	"樣板" => NS_TEMPLATE,
+	"模板" => NS_TEMPLATE,
+	"樣板對話" => NS_TEMPLATE_TALK,
 	"樣板討論" => NS_TEMPLATE_TALK,
+	"模板對話" => NS_TEMPLATE_TALK,
+	"模板討論" => NS_TEMPLATE_TALK,
 	"幫助" => NS_HELP,
+	"幫助對話" => NS_HELP_TALK,
 	"幫助討論" => NS_HELP_TALK,
 	"分類" => NS_CATEGORY,
+	"分類對話" => NS_CATEGORY_TALK,
 	"分類討論" => NS_CATEGORY_TALK,
 );
 
