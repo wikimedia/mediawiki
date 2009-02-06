@@ -589,7 +589,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'אין פעולה כזו',
-'nosuchactiontext'  => 'מערכת מדיה־ויקי אינה מכירה את הפעולה המצויינת בכתובת ה־URL של הדף.',
+'nosuchactiontext'  => 'הפעולה שצוינה בכתובת ה־URL אינה תקינה.
+ייתכן שטעיתם בהקלדת ה־URL, או שהשתמשתם בקישור לא נכון.
+ייתכן גם שהבעיה נוצרה כתוצאה מבאג ב{{grammar:תחילית|{{SITENAME}}}}.',
 'nosuchspecialpage' => 'אין דף מיוחד בשם זה',
 'nospecialpagetext' => '<big>ביקשתם דף מיוחד שאינו קיים.</big>
 
@@ -2450,6 +2452,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 כל פעולות הייבוא הבין־אתרי נשמרות ביומן הייבוא.',
 'import-interwiki-source'    => 'אתר/דף המקור:',
 'import-interwiki-history'   => 'העתקת כל היסטוריית העריכות של דף זה',
+'import-interwiki-templates' => 'ייבוא גם של כל התבניות המוכללות בדף',
 'import-interwiki-submit'    => 'ייבוא',
 'import-interwiki-namespace' => 'העתקה למרחב השם:',
 'import-upload-filename'     => 'שם הקובץ:',
