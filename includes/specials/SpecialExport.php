@@ -62,6 +62,17 @@ function wfExportGetTemplates( $inputPages, $pageSet ) {
 		array( 'page_id=tl_from' ) );
 }
 
+/** Expand a list of pages to include pages linked to from that page. */
+function wfExportGetPageLinks( $inputPages, $pageSet, $depth ) {
+	for( $depth=$depth; $depth>0; --$depth ) {
+		$pageSet = wfExportGetLinks( $inputPages, $pageSet, 'pagelinks',
+			array( 'pl_namespace AS namespace', 'pl_title AS title' ),
+			array( 'page_id=pl_from' ) );
+	}
+	
+	return $pageSet;
+}
+
 /**
  * Expand a list of pages to include images used in those pages.
  * @param $inputPages array, list of titles to look up
@@ -211,6 +222,10 @@ function wfSpecialExport( $page = '' ) {
 		if( $wgRequest->getCheck( 'templates' ) ) {
 			$pageSet = wfExportGetTemplates( $inputPages, $pageSet );
 		}
+		
+		if( $linkDepth = $wgRequest->getIntOrNull( 'pagelink-depth' ) ) {
+			$pageSet = wfExportGetPageLinks( $inputPages, $pageSet, $linkDepth );
+		}
 
 		/*
 		// Enable this when we can do something useful exporting/importing image information. :)
@@ -292,6 +307,7 @@ function wfSpecialExport( $page = '' ) {
 		$wgOut->addHTML( wfMsgExt( 'exportnohistory', 'parse' ) );
 	}
 	$form .= Xml::checkLabel( wfMsg( 'export-templates' ), 'templates', 'wpExportTemplates', false ) . '<br />';
+	$form .= Xml::inputLabel( wfMsg( 'export-pagelinks' ), 'pagelink-depth', 'pagelink-depth', 20, 0 ) . '<br />';
 	// Enable this when we can do something useful exporting/importing image information. :)
 	//$form .= Xml::checkLabel( wfMsg( 'export-images' ), 'images', 'wpExportImages', false ) . '<br />';
 	$form .= Xml::checkLabel( wfMsg( 'export-download' ), 'wpDownload', 'wpDownload', true ) . '<br />';

@@ -2794,6 +2794,7 @@ In the latter case you can also use a link, e.g. [[{{ns:special}}:Export/{{Media
 'export-addcat'     => 'Add',
 'export-download'   => 'Save as file',
 'export-templates'  => 'Include templates',
+'export-pagelinks'  => 'Include linked pages to a depth of:',
 
 # Namespace 8 related
 'allmessages'               => 'System messages',

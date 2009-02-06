@@ -72,6 +72,7 @@ class SpecialImport extends SpecialPage {
 		$sourceName = $wgRequest->getVal( "source" );
 
 		$this->logcomment = $wgRequest->getText( 'log-comment' );
+		$this->pageLinkDepth = $wgRequest->getIntOrNull( 'pagelink-depth' );
 
 		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'editToken' ) ) ) {
 			$source = new WikiErrorMsg( 'import-token-mismatch' );
@@ -94,7 +95,8 @@ class SpecialImport extends SpecialPage {
 					$this->interwiki,
 					$this->frompage,
 					$this->history,
-					$this->includeTemplates );
+					$this->includeTemplates,
+					$this->pageLinkDepth );
 			}
 		} else {
 			$source = new WikiErrorMsg( "importunknownsource" );
@@ -221,6 +223,11 @@ class SpecialImport extends SpecialPage {
 					<td class='mw-input'>" .
 						Xml::checkLabel( wfMsg( 'import-interwiki-templates' ), 'interwikiTemplates', 'interwikiTemplates', $this->includeTemplates ) .
 					"</td>
+				</tr>
+				<tr>
+					<td>".wfMsgExt( 'export-pagelinks', 'parseinline' )."</td>
+					<td class=\"mw-input\">" . Xml::input( 'pagelink-depth', 20, 0 ) . "<br/>
+				</tr>
 				<tr>
 					<td>" .
 						Xml::label( wfMsg( 'import-interwiki-namespace' ), 'namespace' ) .
