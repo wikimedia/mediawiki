@@ -47,7 +47,8 @@ require_once( "includes/Namespace.php" );
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>MediaWiki <?php echo( $wgVersion ); ?> Installation</title>
+	<meta name="robots" content="noindex,nofollow"/>
+	<title>MediaWiki <?php echo htmlspecialchars( $wgVersion ); ?> Installation</title>
 	<style type="text/css">
 
 		@import "../skins/monobook/main.css";
@@ -134,7 +135,7 @@ require_once( "includes/Namespace.php" );
 <div id="content">
 <div id="bodyContent">
 
-<h1>MediaWiki <?php print $wgVersion ?> Installation</h1>
+<h1>MediaWiki <?php print htmlspecialchars( $wgVersion ) ?> Installation</h1>
 
 <?php
 
@@ -204,7 +205,7 @@ $conf = new ConfigData;
 
 install_version_checks();
 
-print "<li>PHP " . phpversion() . " installed</li>\n";
+print "<li>PHP " . htmlspecialchars( phpversion() ) . " installed</li>\n";
 
 if( ini_get( "register_globals" ) ) {
 	?>
@@ -260,7 +261,7 @@ if( ini_get( "safe_mode" ) ) {
 	$conf->safeMode = false;
 }
 
-$sapi = php_sapi_name();
+$sapi = htmlspecialchars( php_sapi_name() );
 $conf->prettyURLs = true;
 print "<li>PHP server API is $sapi; ";
 switch( $sapi ) {
@@ -395,6 +396,12 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 		: $_SERVER["SERVER_ADMIN"];
 	$conf->EmergencyContact = importPost( "EmergencyContact", $defaultEmail );
 	$conf->DBtype = importPost( "DBtype", "mysql" );
+	if ( !in_array( $conf->DBtype, array( 'mysql', 'oracle' ) ) ) {
+		$conf->DBtype = 'mysql';
+	}
+?>
+
+<?php
 	$conf->DBserver = importPost( "DBserver", "localhost" );
 	$conf->DBname = importPost( "DBname", "wikidb" );
 	$conf->DBuser = importPost( "DBuser", "wikiuser" );
@@ -490,7 +497,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$errs["DBtype"] = "Unknown database type.";
 			continue;
 		}
-		print "<li>Database type: {$conf->DBtype}</li>\n";
+		print "<li>Database type: " . htmlspecialchars( $conf->DBtype ) . "</li>\n";
 		$dbclass = 'Database'.ucfirst($conf->DBtype);
 		require_once("$dbclass.php");
 		$wgDBtype = $conf->DBtype;
@@ -531,7 +538,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			}
 			
 			# Attempt to connect
-			echo( "<li>Attempting to connect to database server as $db_user..." );
+			echo( "<li>Attempting to connect to database server as " . htmlspecialchars( $db_user ) . "..." );
 			$wgDatabase = Database::newFromParams( $wgDBserver, $db_user, $db_pass, '', 1 );
 			
 			# Check the connection and respond to errors
@@ -566,7 +573,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					case 2003:
 					default:
 						# General connection problem
-						echo( "failed with error [$errno] $errtx.</li>\n" );
+						echo( htmlspecialchars( "failed with error [$errno] $errtx." ) . "</li>\n" );
 						$errs["DBserver"] = "Connection failed";
 						break;
 				} # switch
@@ -578,7 +585,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			print "<li>Connecting to SQL server...";
 			$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1);
 			if (!$wgDatabase->isOpen()) {
-				print " error: " . $wgDatabase->lastError() . "</li>\n";
+				print " error: " . htmlspecialchars( $wgDatabase->lastError() ) . "</li>\n";
 			} else {
 				$wgDatabase->ignoreErrors(true);
 				$myver = get_db_version();
@@ -590,7 +597,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			continue;
 		}
 
-		print "<li>Connected to $myver";
+		print "<li>Connected to " . htmlspecialchars( $myver );
 		if( version_compare( $myver, "4.0.14" ) < 0 ) {
 			die( " -- mysql 4.0.14 or later required. Aborting." );
 		}
@@ -694,10 +701,10 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				if( $wgDatabase2->isOpen() ) {
 					# Nope, just close the test connection and continue
 					$wgDatabase2->close();
-					echo( "<li>User $wgDBuser exists. Skipping grants.</li>" );
+					echo( "<li>User " . htmlspecialchars( $wgDBuser ) . " exists. Skipping grants.</li>\n" );
 				} else {
 					# Yes, so run the grants
-					echo( "<li>Granting user permissions to $wgDBuser on $wgDBname..." );
+					echo( "<li>" . htmlspecialchars( "Granting user permissions to $wgDBuser on $wgDBname..." ) );
 					dbsource( "../maintenance/users.sql", $wgDatabase );
 					echo( "success.</li>" );
 				}
@@ -816,7 +823,9 @@ if( count( $errs ) ) {
 			$list = getLanguageList();
 			foreach( $list as $code => $name ) {
 				$sel = ($code == $conf->LanguageCode) ? 'selected="selected"' : '';
-				echo "\t\t<option value=\"$code\" $sel>$name</option>\n";
+				$encCode = htmlspecialchars( $code );
+				$encName = htmlspecialchars( $name );
+				echo "\n\t\t<option value=\"$encCode\" $sel>$encName</option>";
 			}
 		?>
 		</select>
@@ -1328,10 +1337,8 @@ function importRequest( $name, $default = "" ) {
 	return importVar( $_REQUEST, $name, $default );
 }
 
-$radioCount = 0;
-
 function aField( &$conf, $field, $text, $type = "text", $value = "" ) {
-	global $radioCount;
+	static $radioCount = 0;
 	if( $type != "" ) {
 		$xtype = "type=\"$type\"";
 	} else {
@@ -1367,7 +1374,9 @@ function aField( &$conf, $field, $text, $type = "text", $value = "" ) {
 	}
 
 	global $errs;
-	if(isset($errs[$field])) echo "<span class='error'>" . $errs[$field] . "</span>\n";
+	if(isset($errs[$field])) {
+		echo "<span class='error'>" . htmlspecialchars( $errs[$field] ) . "</span>\n";
+	}
 }
 
 function getLanguageList() {
@@ -1469,7 +1478,7 @@ function testMemcachedServer( $server ) {
 		fclose( $fp );
 	}
 	if ( !$errstr ) {
-		echo "<li>Connected to memcached on $host:$port successfully";
+		echo "<li>Connected to memcached on " . htmlspecialchars( "$host:$port" ) ." successfully</li>";
 	}
 	return $errstr;
 }

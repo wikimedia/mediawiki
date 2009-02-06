@@ -61,11 +61,11 @@ function rename_table( $from, $to, $patch ) {
 	global $wgDatabase;
 	if ( $wgDatabase->tableExists( $from ) ) {
 		if ( $wgDatabase->tableExists( $to ) ) {
-			echo "...can't move table $from to $to, $to already exists.\n";
+			wfOut( "...can't move table $from to $to, $to already exists.\n" );
 		} else {
-			echo "Moving table $from to $to...";
+			wfOut( "Moving table $from to $to..." );
 			dbsource( archive($patch), $wgDatabase );
-			echo "ok\n";
+			wfOut( "ok\n" );
 		}
 	} else {
 		// Source table does not exist
@@ -77,24 +77,24 @@ function rename_table( $from, $to, $patch ) {
 function add_table( $name, $patch ) {
 	global $wgDatabase;
 	if ( $wgDatabase->tableExists( $name ) ) {
-		echo "...$name table already exists.\n";
+		wfOut( "...$name table already exists.\n" );
 	} else {
-		echo "Creating $name table...";
+		wfOut( "Creating $name table..." );
 		dbsource( archive($patch), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	}
 }
 
 function add_field( $table, $field, $patch ) {
 	global $wgDatabase;
 	if ( !$wgDatabase->tableExists( $table ) ) {
-		echo "...$table table does not exist, skipping new field patch\n";
+		wfOut( "...$table table does not exist, skipping new field patch\n" );
 	} elseif ( $wgDatabase->fieldExists( $table, $field ) ) {
-		echo "...have $field field in $table table.\n";
+		wfOut( "...have $field field in $table table.\n" );
 	} else {
-		echo "Adding $field field to table $table...";
+		wfOut( "Adding $field field to table $table..." );
 		dbsource( archive($patch) , $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	}
 }
 
@@ -110,11 +110,11 @@ function update_passwords() {
 
 	global $wgDatabase;
 	$fname = "Update script: update_passwords()";
-	print "\nIt appears that you need to update the user passwords in your\n" .
+	wfOut( "\nIt appears that you need to update the user passwords in your\n" .
 	  "database. If you have already done this (if you've run this update\n" .
 	  "script once before, for example), doing so again will make all your\n" .
 	  "user accounts inaccessible, so be sure you only do this once.\n" .
-	  "Update user passwords? (yes/no)";
+	  "Update user passwords? (yes/no)" );
 
 	$resp = readconsole();
     if ( ! ( "Y" == $resp{0} || "y" == $resp{0} ) ) { return; }
@@ -137,15 +137,15 @@ function do_interwiki_update() {
 	# Check that interwiki table exists; if it doesn't source it
 	global $wgDatabase, $IP;
 	if( $wgDatabase->tableExists( "interwiki" ) ) {
-		echo "...already have interwiki table\n";
+		wfOut( "...already have interwiki table\n" );
 		return true;
 	}
-	echo "Creating interwiki table: ";
+	wfOut( "Creating interwiki table: " );
 	dbsource( archive("patch-interwiki.sql") );
-	echo "ok\n";
-	echo "Adding default interwiki definitions: ";
+	wfOut( "ok\n" );
+	wfOut( "Adding default interwiki definitions: " );
 	dbsource( "$IP/maintenance/interwiki.sql" );
-	echo "ok\n";
+	wfOut( "ok\n" );
 }
 
 function do_index_update() {
@@ -153,12 +153,12 @@ function do_index_update() {
 	global $wgDatabase;
 	$meta = $wgDatabase->fieldInfo( "recentchanges", "rc_timestamp" );
 	if( $meta->multiple_key == 0 ) {
-		echo "Updating indexes to 20031107: ";
+		wfOut( "Updating indexes to 20031107: " );
 		dbsource( archive("patch-indexes.sql") );
-		echo "ok\n";
+		wfOut( "ok\n" );
 		return true;
 	}
-	echo "...indexes seem up to 20031107 standards\n";
+	wfOut( "...indexes seem up to 20031107 standards\n" );
 	return false;
 }
 
@@ -167,34 +167,34 @@ function do_image_index_update() {
 
 	$meta = $wgDatabase->fieldInfo( "image", "img_major_mime" );
 	if( $meta->multiple_key == 0 ) {
-		echo "Updating indexes to 20050912: ";
+		wfOut( "Updating indexes to 20050912: " );
 		dbsource( archive("patch-mimesearch-indexes.sql") );
-		echo "ok\n";
+		wfOut( "ok\n" );
 		return true;
 	}
-	echo "...indexes seem up to 20050912 standards\n";
+	wfOut( "...indexes seem up to 20050912 standards\n" );
 	return false;
 }
 
 function do_image_name_unique_update() {
 	global $wgDatabase;
 	if( $wgDatabase->indexExists( 'image', 'PRIMARY' ) ) {
-		echo "...image primary key already set.\n";
+		wfOut( "...image primary key already set.\n" );
 	} else {
-		echo "Making img_name the primary key... ";
+		wfOut( "Making img_name the primary key... " );
 		dbsource( archive("patch-image_name_primary.sql"), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	}
 }
 
 function do_logging_timestamp_index() {
 	global $wgDatabase;
 	if( $wgDatabase->indexExists( 'logging', 'times' ) ) {
-		echo "...timestamp key on logging already exists.\n";
+		wfOut( "...timestamp key on logging already exists.\n" );
 	} else {
-		echo "Adding timestamp key on logging table... ";
+		wfOut( "Adding timestamp key on logging table... " );
 		dbsource( archive("patch-logging-times-index.sql"), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	}
 }
 
@@ -203,18 +203,18 @@ function do_watchlist_update() {
 	global $wgDatabase;
 	$fname = 'do_watchlist_update';
 	if( $wgDatabase->fieldExists( 'watchlist', 'wl_notificationtimestamp' ) ) {
-		echo "The watchlist table is already set up for email notification.\n";
+		wfOut( "The watchlist table is already set up for email notification.\n" );
 	} else {
-		echo "Adding wl_notificationtimestamp field for email notification management.";
+		wfOut( "Adding wl_notificationtimestamp field for email notification management." );
 		/* ALTER TABLE watchlist ADD (wl_notificationtimestamp varchar(14) binary NOT NULL default '0'); */
 		dbsource( archive( 'patch-email-notification.sql' ), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	}
 	# Check if we need to add talk page rows to the watchlist
 	$talk = $wgDatabase->selectField( 'watchlist', 'count(*)', 'wl_namespace & 1', $fname );
 	$nontalk = $wgDatabase->selectField( 'watchlist', 'count(*)', 'NOT (wl_namespace & 1)', $fname );
 	if ( $talk != $nontalk ) {
-		echo "Adding missing watchlist talk page rows... ";
+		wfOut( "Adding missing watchlist talk page rows... " );
 		flush();
 
 		$wgDatabase->insertSelect( 'watchlist', 'watchlist', 
@@ -224,9 +224,9 @@ function do_watchlist_update() {
 				'wl_title' => 'wl_title',
 				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
 			), array( 'NOT (wl_namespace & 1)' ), $fname, 'IGNORE' );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	} else {
-		echo "...watchlist talk page rows already present\n";
+		wfOut( "...watchlist talk page rows already present\n" );
 	}
 }
 
@@ -237,7 +237,7 @@ function do_copy_newtalk_to_watchlist() {
 	$res = $wgDatabase->safeQuery( 'SELECT user_id, user_ip FROM !',
 		$wgDatabase->tableName( 'user_newtalk' ) );
 	$num_newtalks=$wgDatabase->numRows($res);
-	echo "Now converting ".$num_newtalks." user_newtalk entries to watchlist table entries ... \n";
+	wfOut( "Now converting $num_newtalks user_newtalk entries to watchlist table entries ... \n" );
 
 	$user = new User();
 	for ( $i = 1; $i <= $num_newtalks; $i++ ) {
@@ -265,18 +265,18 @@ function do_copy_newtalk_to_watchlist() {
 				);
 		}
 	}
-	echo "Done.\n";
+	wfOut( "Done.\n" );
 }
 
 
 function do_user_update() {
 	global $wgDatabase;
 	if( $wgDatabase->fieldExists( 'user', 'user_emailauthenticationtimestamp' ) ) {
-		echo "User table contains old email authentication field. Dropping... ";
+		wfOut( "User table contains old email authentication field. Dropping... " );
 		dbsource( archive( 'patch-email-authentication.sql' ), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	} else {
-		echo "...user table does not contain old email authentication field.\n";
+		wfOut( "...user table does not contain old email authentication field.\n" );
 	}
 }
 
@@ -294,11 +294,11 @@ function do_logging_encoding() {
 	$wgDatabase->freeResult( $res );
 
 	if( in_array( 'binary', $flags ) ) {
-		echo "Logging table has correct title encoding.\n";
+		wfOut( "Logging table has correct title encoding.\n" );
 	} else {
-		echo "Fixing title encoding on logging table... ";
+		wfOut( "Fixing title encoding on logging table... " );
 		dbsource( archive( 'patch-logging-title.sql' ), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	}
 }
 
@@ -306,11 +306,11 @@ function do_schema_restructuring() {
 	global $wgDatabase;
 	$fname="do_schema_restructuring";
 	if ( $wgDatabase->tableExists( 'page' ) ) {
-		echo "...page table already exists.\n";
+		wfOut( "...page table already exists.\n" );
 	} else {
-		echo "...converting from cur/old to page/revision/text DB structure.\n"; flush();
-		echo wfTimestamp();
-		echo "......checking for duplicate entries.\n"; flush();
+		wfOut( "...converting from cur/old to page/revision/text DB structure.\n" );
+		wfOut( wfTimestamp() );
+		wfOut( "......checking for duplicate entries.\n" );
 
 		extract( $wgDatabase->tableNames( 'cur', 'old', 'page', 'revision', 'text' ) );
 
@@ -318,15 +318,15 @@ function do_schema_restructuring() {
 				FROM $cur GROUP BY cur_title, cur_namespace HAVING c>1", $fname );
 
 		if ( $wgDatabase->numRows( $rows ) > 0 ) {
-			echo wfTimestamp();
-			echo "......<b>Found duplicate entries</b>\n";
-			echo ( sprintf( "<b>      %-60s %3s %5s</b>\n", 'Title', 'NS', 'Count' ) );
+			wfOut( wfTimestamp() );
+			wfOut( "......<b>Found duplicate entries</b>\n" );
+			wfOut( sprintf( "<b>      %-60s %3s %5s</b>\n", 'Title', 'NS', 'Count' ) );
 			while ( $row = $wgDatabase->fetchObject( $rows ) ) {
 				if ( ! isset( $duplicate[$row->cur_namespace] ) ) {
 					$duplicate[$row->cur_namespace] = array();
 				}
 				$duplicate[$row->cur_namespace][] = $row->cur_title;
-				echo ( sprintf( "      %-60s %3s %5s\n", $row->cur_title, $row->cur_namespace, $row->c ) );
+				wfOut( sprintf( "      %-60s %3s %5s\n", $row->cur_title, $row->cur_namespace, $row->c ) );
 			}
 			$sql = "SELECT cur_title, cur_namespace, cur_id, cur_timestamp FROM $cur WHERE ";
 			$firstCond = true;
@@ -366,13 +366,13 @@ function do_schema_restructuring() {
 			}
 			$sql = "DELETE FROM $cur WHERE cur_id IN ( " . join( ',', $deleteId ) . ')';
 			$rows = $wgDatabase->query( $sql, $fname );
-			echo wfTimestamp();
-			echo "......<b>Deleted</b> ".$wgDatabase->affectedRows()." records.\n";
+			wfOut( wfTimestamp() );
+			wfOut( "......<b>Deleted</b> ".$wgDatabase->affectedRows()." records.\n" );
 		}
 
 
-		echo wfTimestamp();
-		echo "......Creating tables.\n";
+		wfOut( wfTimestamp() );
+		wfOut( "......Creating tables.\n" );
 		$wgDatabase->query("CREATE TABLE $page (
   			page_id int(8) unsigned NOT NULL auto_increment,
   			page_namespace int NOT NULL,
@@ -409,26 +409,26 @@ function do_schema_restructuring() {
   			INDEX usertext_timestamp (rev_user_text,rev_timestamp)
 			) TYPE=InnoDB", $fname );
 
-		echo wfTimestamp();
-		echo "......Locking tables.\n";
+		wfOut( wfTimestamp() );
+		wfOut( "......Locking tables.\n" );
 		$wgDatabase->query( "LOCK TABLES $page WRITE, $revision WRITE, $old WRITE, $cur WRITE", $fname );
 
 		$maxold = intval( $wgDatabase->selectField( 'old', 'max(old_id)', '', $fname ) );
-		echo wfTimestamp();
-		echo "......maxold is {$maxold}\n";
+		wfOut( wfTimestamp() );
+		wfOut( "......maxold is {$maxold}\n" );
 
-		echo wfTimestamp();
+		wfOut( wfTimestamp() );
 		global $wgLegacySchemaConversion;
 		if( $wgLegacySchemaConversion ) {
 			// Create HistoryBlobCurStub entries.
 			// Text will be pulled from the leftover 'cur' table at runtime.
-			echo "......Moving metadata from cur; using blob references to text in cur table.\n";
+			wfOut( "......Moving metadata from cur; using blob references to text in cur table.\n" );
 			$cur_text = "concat('O:18:\"historyblobcurstub\":1:{s:6:\"mCurId\";i:',cur_id,';}')";
 			$cur_flags = "'object'";
 		} else {
 			// Copy all cur text in immediately: this may take longer but avoids
 			// having to keep an extra table around.
-			echo "......Moving text from cur.\n";
+			wfOut( "......Moving text from cur.\n" );
 			$cur_text = 'cur_text';
 			$cur_flags = "''";
 		}
@@ -437,16 +437,16 @@ function do_schema_restructuring() {
   			SELECT cur_namespace, cur_title, $cur_text, cur_comment, cur_user, cur_user_text, cur_timestamp, cur_minor_edit, $cur_flags
   			FROM $cur", $fname );
 
-		echo wfTimestamp();
-		echo "......Setting up revision table.\n";
+		wfOut( wfTimestamp() );
+		wfOut( "......Setting up revision table.\n" );
 		$wgDatabase->query( "INSERT INTO $revision (rev_id, rev_page, rev_comment, rev_user, rev_user_text, rev_timestamp,
     				rev_minor_edit)
 			SELECT old_id, cur_id, old_comment, old_user, old_user_text,
     				old_timestamp, old_minor_edit
 			FROM $old,$cur WHERE old_namespace=cur_namespace AND old_title=cur_title", $fname );
 
-		echo wfTimestamp();
-		echo "......Setting up page table.\n";
+		wfOut( wfTimestamp() );
+		wfOut( "......Setting up page table.\n" );
 		$wgDatabase->query( "INSERT INTO $page (page_id, page_namespace, page_title, page_restrictions, page_counter,
     				page_is_redirect, page_is_new, page_random, page_touched, page_latest, page_len)
   			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter, cur_is_redirect, cur_is_new,
@@ -454,16 +454,16 @@ function do_schema_restructuring() {
   			FROM $cur,$revision
   			WHERE cur_id=rev_page AND rev_timestamp=cur_timestamp AND rev_id > {$maxold}", $fname );
 
-		echo wfTimestamp();
-		echo "......Unlocking tables.\n";
+		wfOut( wfTimestamp() );
+		wfOut( "......Unlocking tables.\n" );
 		$wgDatabase->query( "UNLOCK TABLES", $fname );
 
-		echo wfTimestamp();
-		echo "......Renaming old.\n";
+		wfOut( wfTimestamp() );
+		wfOut( "......Renaming old.\n" );
 		$wgDatabase->query( "ALTER TABLE $old RENAME TO $text", $fname );
 
-		echo wfTimestamp();
-		echo "...done.\n";
+		wfOut( wfTimestamp() );
+		wfOut( "...done.\n" );
 	}
 }
 
@@ -471,22 +471,22 @@ function do_inverse_timestamp() {
 	global $wgDatabase;
 	$fname="do_schema_restructuring";
 	if( $wgDatabase->fieldExists( 'revision', 'inverse_timestamp' ) ) {
-		echo "Removing revision.inverse_timestamp and fixing indexes... ";
+		wfOut( "Removing revision.inverse_timestamp and fixing indexes... " );
 		dbsource( archive( 'patch-inverse_timestamp.sql' ), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	} else {
-		echo "revision timestamp indexes already up to 2005-03-13\n";
+		wfOut( "revision timestamp indexes already up to 2005-03-13\n" );
 	}
 }
 
 function do_text_id() {
 	global $wgDatabase;
 	if( $wgDatabase->fieldExists( 'revision', 'rev_text_id' ) ) {
-		echo "...rev_text_id already in place.\n";
+		wfOut( "...rev_text_id already in place.\n" );
 	} else {
-		echo "Adding rev_text_id field... ";
+		wfOut( "Adding rev_text_id field... " );
 		dbsource( archive( 'patch-rev_text_id.sql' ), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	}
 }
 
@@ -517,25 +517,25 @@ function do_namespace_size_on( $table, $prefix ) {
 	$wgDatabase->freeResult( $result );
 
 	if( substr( $info->Type, 0, 3 ) == 'int' ) {
-		echo "...$field is already a full int ($info->Type).\n";
+		wfOut( "...$field is already a full int ($info->Type).\n" );
 	} else {
-		echo "Promoting $field from $info->Type to int... ";
+		wfOut( "Promoting $field from $info->Type to int... " );
 
 		$sql = "ALTER TABLE $tablename MODIFY $field int NOT NULL";
 		$wgDatabase->query( $sql );
 
-		echo "ok\n";
+		wfOut( "ok\n" );
 	}
 }
 
 function do_pagelinks_update() {
 	global $wgDatabase;
 	if( $wgDatabase->tableExists( 'pagelinks' ) ) {
-		echo "...already have pagelinks table.\n";
+		wfOut( "...already have pagelinks table.\n" );
 	} else {
-		echo "Converting links and brokenlinks tables to pagelinks... ";
+		wfOut( "Converting links and brokenlinks tables to pagelinks... " );
 		dbsource( archive( 'patch-pagelinks.sql' ), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 		flush();
 
 		global $wgCanonicalNamespaceNames;
@@ -551,7 +551,7 @@ function do_pagelinks_namespace( $namespace ) {
 	global $wgDatabase, $wgContLang;
 
 	$ns = intval( $namespace );
-	echo "Cleaning up broken links for namespace $ns... ";
+	wfOut( "Cleaning up broken links for namespace $ns... " );
 
 	$pagelinks = $wgDatabase->tableName( 'pagelinks' );
 	$name = $wgContLang->getNsText( $ns );
@@ -565,25 +565,25 @@ function do_pagelinks_namespace( $namespace ) {
 	           AND pl_title LIKE '$likeprefix:%'";
 
 	$wgDatabase->query( $sql, 'do_pagelinks_namespace' );
-	echo "ok\n";
+	wfOut( "ok\n" );
 }
 
 function do_drop_img_type() {
 	global $wgDatabase;
 
 	if( $wgDatabase->fieldExists( 'image', 'img_type' ) ) {
-		echo "Dropping unused img_type field in image table... ";
+		wfOut( "Dropping unused img_type field in image table... " );
 		dbsource( archive( 'patch-drop_img_type.sql' ), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	} else {
-		echo "No img_type field in image table; Good.\n";
+		wfOut( "No img_type field in image table; Good.\n" );
 	}
 }
 
 function do_old_links_update() {
 	global $wgDatabase;
 	if( $wgDatabase->tableExists( 'pagelinks' ) ) {
-		echo "Already have pagelinks; skipping old links table updates.\n";
+		wfOut( "Already have pagelinks; skipping old links table updates.\n" );
 	} else {
 		convertLinks(); flush();
 	}
@@ -593,14 +593,14 @@ function do_user_unique_update() {
 	global $wgDatabase;
 	$duper = new UserDupes( $wgDatabase );
 	if( $duper->hasUniqueIndex() ) {
-		echo "Already have unique user_name index.\n";
+		wfOut( "Already have unique user_name index.\n" );
 	} else {
 		if( !$duper->clearDupes() ) {
-			echo "WARNING: This next step will probably fail due to unfixed duplicates...\n";
+			wfOut( "WARNING: This next step will probably fail due to unfixed duplicates...\n" );
 		}
-		echo "Adding unique index on user_name... ";
+		wfOut( "Adding unique index on user_name... " );
 		dbsource( archive( 'patch-user_nameindex.sql' ), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	}
 }
 
@@ -609,28 +609,28 @@ function do_user_groups_update() {
 	global $wgDatabase;
 
 	if( $wgDatabase->tableExists( 'user_groups' ) ) {
-		echo "...user_groups table already exists.\n";
+		wfOut( "...user_groups table already exists.\n" );
 		return do_user_groups_reformat();
 	}
 
-	echo "Adding user_groups table... ";
+	wfOut( "Adding user_groups table... " );
 	dbsource( archive( 'patch-user_groups.sql' ), $wgDatabase );
-	echo "ok\n";
+	wfOut( "ok\n" );
 
 	if( !$wgDatabase->tableExists( 'user_rights' ) ) {
 		if( $wgDatabase->fieldExists( 'user', 'user_rights' ) ) {
-			echo "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion...";
+			wfOut( "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion..." );
 			dbsource( archive( 'patch-user_rights.sql' ), $wgDatabase );
-			echo "ok\n";
+			wfOut( "ok\n" );
 		} else {
-			echo "*** WARNING: couldn't locate user_rights table or field for upgrade.\n";
-			echo "*** You may need to manually configure some sysops by manipulating\n";
-			echo "*** the user_groups table.\n";
+			wfOut( "*** WARNING: couldn't locate user_rights table or field for upgrade.\n" );
+			wfOut( "*** You may need to manually configure some sysops by manipulating\n" );
+			wfOut( "*** the user_groups table.\n" );
 			return;
 		}
 	}
 
-	echo "Converting user_rights table to user_groups... ";
+	wfOut( "Converting user_rights table to user_groups... " );
 	$result = $wgDatabase->select( 'user_rights',
 		array( 'ur_user', 'ur_rights' ),
 		array( "ur_rights != ''" ),
@@ -650,7 +650,7 @@ function do_user_groups_update() {
 		}
 	}
 	$wgDatabase->freeResult( $result );
-	echo "ok\n";
+	wfOut( "ok\n" );
 }
 
 function do_user_groups_reformat() {
@@ -661,20 +661,20 @@ function do_user_groups_reformat() {
 	if( $info->type == 'int' ) {
 		$oldug = $wgDatabase->tableName( 'user_groups' );
 		$newug = $wgDatabase->tableName( 'user_groups_bogus' );
-		echo "user_groups is in bogus intermediate format. Renaming to $newug... ";
+		wfOut( "user_groups is in bogus intermediate format. Renaming to $newug... " );
 		$wgDatabase->query( "ALTER TABLE $oldug RENAME TO $newug" );
-		echo "ok\n";
+		wfOut( "ok\n" );
 
-		echo "Re-adding fresh user_groups table... ";
+		wfOut( "Re-adding fresh user_groups table... " );
 		dbsource( archive( 'patch-user_groups.sql' ), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 
-		echo "***\n";
-		echo "*** WARNING: You will need to manually fix up user permissions in the user_groups\n";
-		echo "*** table. Old 1.5 alpha versions did some pretty funky stuff...\n";
-		echo "***\n";
+		wfOut( "***\n" );
+		wfOut( "*** WARNING: You will need to manually fix up user permissions in the user_groups\n" );
+		wfOut( "*** table. Old 1.5 alpha versions did some pretty funky stuff...\n" );
+		wfOut( "***\n" );
 	} else {
-		echo "...user_groups is in current format.\n";
+		wfOut( "...user_groups is in current format.\n" );
 	}
 
 }
@@ -686,11 +686,11 @@ function do_watchlist_null() {
 	$info = $wgDatabase->fieldInfo( 'watchlist', 'wl_notificationtimestamp' );
 
 	if( $info->not_null ) {
-		echo "Making wl_notificationtimestamp nullable... ";
+		wfOut( "Making wl_notificationtimestamp nullable... " );
 		dbsource( archive( 'patch-watchlist-null.sql' ), $wgDatabase );
-		echo "ok\n";
+		wfOut( "ok\n" );
 	} else {
-		echo "...wl_notificationtimestamp is already nullable.\n";
+		wfOut( "...wl_notificationtimestamp is already nullable.\n" );
 	}
 
 }
@@ -701,13 +701,13 @@ function do_watchlist_null() {
 function do_page_random_update() {
 	global $wgDatabase;
 
-	echo "Setting page_random to a random value on rows where it equals 0...";
+	wfOut( "Setting page_random to a random value on rows where it equals 0..." );
 
 	$page = $wgDatabase->tableName( 'page' );
 	$wgDatabase->query( "UPDATE $page SET page_random = RAND() WHERE page_random = 0", 'do_page_random_update' );
 	$rows = $wgDatabase->affectedRows();
 
-	echo "changed $rows rows\n";
+	wfOut( "changed $rows rows\n" );
 }
 
 function do_templatelinks_update() {
@@ -715,12 +715,12 @@ function do_templatelinks_update() {
 	$fname = 'do_templatelinks_update';
 
 	if ( $wgDatabase->tableExists( 'templatelinks' ) ) {
-		echo "...templatelinks table already exists\n";
+		wfOut( "...templatelinks table already exists\n" );
 		return;
 	}
-	echo "Creating templatelinks table...\n";
+	wfOut( "Creating templatelinks table...\n" );
 	dbsource( archive('patch-templatelinks.sql'), $wgDatabase );
-	echo "Populating...\n";
+	wfOut( "Populating...\n" );
 	if ( isset( $wgLoadBalancer ) && $wgLoadBalancer->getServerCount() > 1 ) {
 		// Slow, replication-friendly update
 		$res = $wgDatabase->select( 'pagelinks', array( 'pl_from', 'pl_namespace', 'pl_title' ),
@@ -757,7 +757,7 @@ function do_templatelinks_update() {
 			), $fname
 		);
 	}
-	echo "Done. Please run maintenance/refreshLinks.php for a more thorough templatelinks update.\n";
+	wfOut( "Done. Please run maintenance/refreshLinks.php for a more thorough templatelinks update.\n" );
 }
 
 function do_all_updates( $doShared = false ) {
