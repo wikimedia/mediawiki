@@ -18,9 +18,9 @@ function populateCategory( $begin, $maxlag, $throttle, $force ) {
 			__FUNCTION__
 		);
 		if( $row ) {
-			echo "Category table already populated.  Use php ".
+			wfOut( "Category table already populated.  Use php ".
 			"maintenance/populateCategory.php\n--force from the command line ".
-			"to override.\n";
+			"to override.\n" );
 			return true;
 		}
 	}
@@ -56,14 +56,14 @@ function populateCategory( $begin, $maxlag, $throttle, $force ) {
 		# Use the row to update the category count
 		$cat = Category::newFromName( $name );
 		if( !is_object( $cat ) ) {
-			echo "The category named $name is not valid?!\n";
+			wfOut( "The category named $name is not valid?!\n" );
 		} else {
 			$cat->refreshCounts();
 		}
 
 		++$i;
 		if( !($i % REPORTING_INTERVAL) ) {
-			echo "$name\n";
+			wfOut( "$name\n" );
 			wfWaitForSlaves( $maxlag );
 		}
 		usleep( $throttle*1000 );
@@ -76,10 +76,10 @@ function populateCategory( $begin, $maxlag, $throttle, $force ) {
 			'IGNORE'
 		)
 	) {
-		echo "Category population complete.\n";
+		wfOut( "Category population complete.\n" );
 		return true;
 	} else {
-		echo "Could not insert category population row.\n";
+		wfOut( "Could not insert category population row.\n" );
 		return false;
 	}
 }
