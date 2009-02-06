@@ -23,6 +23,7 @@ class LanguageConverter {
 	var $mTables;
 	var $mManualAddTables;
 	var $mManualRemoveTables;
+	var $mNamespaceTables;
 	var $mTitleDisplay='';
 	var $mDoTitleConvert=true, $mDoContentConvert=true;
 	var $mManualLevel; // 'bidirectional' 'unidirectional' 'disable' for each variants
@@ -89,6 +90,7 @@ class LanguageConverter {
 								:'bidirectional';
 			$this->mManualAddTables[$v] = array();
 			$this->mManualRemoveTables[$v] = array();
+			$this->mNamespaceTables[$v] = array();
 		}
 	}
 
@@ -425,12 +427,28 @@ class LanguageConverter {
 			$parser->mOutput->setTitleText( $this->mTitleDisplay );
 		return $text;
 	}
-
+	
 	/**
-	 *  convert title
+	 * convert namespace
+	 * @param string $title the title included namespace
+	 * @return array of string
 	 * @private
 	 */
-	function convertTitle( $text ){
+	function convertNamespace( $title, $variant ) {
+		$splittitle = explode( ':', $title );
+		if (count($splittitle) < 2)
+			return $title;
+		if ( isset( $this->mNamespaceTables[$variant][$splittitle[0]] ) )
+			$splittitle[0] = $this->mNamespaceTables[$variant][$splittitle[0]];
+		$ret = implode(':', $splittitle );
+		return $ret;
+	}
+
+	/**
+	 * convert title
+	 * @private
+	 */
+	function convertTitle( $text, $variant ){
 		global $wgDisableTitleConversion, $wgUser;
 
 		// check for global param and __NOTC__ tag
@@ -452,7 +470,8 @@ class LanguageConverter {
 		if ( $isredir == 'no' || $action == 'edit' || $action == 'submit' || $linkconvert == 'no' ) {
 			return $text;
 		} else {
-			$this->mTitleDisplay = $this->convert($text);
+			$text = $this->convertNamespace( $text, $variant );
+			$this->mTitleDisplay = $this->convert( $text );
 			return $this->mTitleDisplay;
 		}
 	}
@@ -488,10 +507,11 @@ class LanguageConverter {
 		if( $mw->matchStart( $text ) )
 			return $text;
 
-		// for title convertion
-		if ( $isTitle ) return $this->convertTitle( $text );
-
 		$plang = $this->getPreferredVariant();
+
+		// for title convertion
+		if ( $isTitle ) return $this->convertTitle( $text, $plang );
+
 		$tarray = StringUtils::explode( $this->mMarkup['end'], $text );
 		$text = '';
 

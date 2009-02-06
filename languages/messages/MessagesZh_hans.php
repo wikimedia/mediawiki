@@ -10,27 +10,28 @@
  * @author O
  * @author Shinjiman
  * @author Wmr89502270
+ * @author Philip
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Special',
+	NS_MEDIA            => '媒体',
+	NS_SPECIAL          => '特殊',
 	NS_MAIN             => '',
-	NS_TALK             => 'Talk',
-	NS_USER             => 'User',
-	NS_USER_TALK        => 'User_talk',
+	NS_TALK             => '讨论',
+	NS_USER             => '用户',
+	NS_USER_TALK        => '用户讨论',
 	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => '$1_talk',
-	NS_FILE             => 'File',
-	NS_FILE_TALK        => 'File_talk',
+	NS_PROJECT_TALK     => '$1讨论',
+	NS_FILE             => '文件',
+	NS_FILE_TALK        => '文件讨论',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
-	NS_TEMPLATE         => 'Template',
-	NS_TEMPLATE_TALK    => 'Template_talk',
-	NS_HELP             => 'Help',
-	NS_HELP_TALK        => 'Help_talk',
-	NS_CATEGORY         => 'Category',
-	NS_CATEGORY_TALK    => 'Category_talk'
+	NS_MEDIAWIKI_TALK   => 'MediaWiki讨论',
+	NS_TEMPLATE         => '模板',
+	NS_TEMPLATE_TALK    => '模板讨论',
+	NS_HELP             => '帮助',
+	NS_HELP_TALK        => '帮助讨论',
+	NS_CATEGORY         => '分类',
+	NS_CATEGORY_TALK    => '分类讨论'
 );
 
 $namespaceAliases = array(
@@ -49,13 +50,19 @@ $namespaceAliases = array(
 	'Image' => NS_FILE,
 	'Image_talk' => NS_FILE_TALK,
 	'图像对话' => NS_FILE_TALK,
+	'图像讨论' => NS_FILE_TALK,
 	'档案对话' => NS_FILE_TALK,
+	'档案讨论' => NS_FILE_TALK,
 	'文件对话' => NS_FILE_TALK,
+	'文件讨论' => NS_FILE_TALK,
 	'模板'	=> NS_TEMPLATE,
+	'模板对话'=> NS_TEMPLATE_TALK,
 	'模板讨论'=> NS_TEMPLATE_TALK,
 	'帮助'	=> NS_HELP,
+	'帮助对话'=> NS_HELP_TALK,
 	'帮助讨论'=> NS_HELP_TALK,
 	'分类'	=> NS_CATEGORY,
+	'分类对话'=> NS_CATEGORY_TALK,
 	'分类讨论'=> NS_CATEGORY_TALK,
 );
 
