@@ -208,10 +208,10 @@ class DatabasePostgres extends Database {
 		$version = $this->getServerVersion();
 		$PGMINVER = '8.1';
 		if ($version < $PGMINVER) {
-			print "<b>FAILED</b>. Required version is $PGMINVER. You have $version</li>\n";
+			print "<b>FAILED</b>. Required version is $PGMINVER. You have " . htmlspecialchars( $version ) . "</li>\n";
 			dieout("</ul>");
 		}
-		print "version $this->numeric_version is OK.</li>\n";
+		print "version " . htmlspecialchars( $this->numeric_version ) . " is OK.</li>\n";
 
 		$safeuser = $this->quote_ident($wgDBuser);
 		// Are we connecting as a superuser for the first time?
@@ -225,7 +225,7 @@ class DatabasePostgres extends Database {
                     FROM pg_catalog.pg_user WHERE usename = " . $this->addQuotes($wgDBsuperuser);
 			$rows = $this->numRows($res = $this->doQuery($SQL));
 			if (!$rows) {
-				print "<li>ERROR: Could not read permissions for user \"$wgDBsuperuser\"</li>\n";
+				print "<li>ERROR: Could not read permissions for user \"" . htmlspecialchars( $wgDBsuperuser ) . "\"</li>\n";
 				dieout('</ul>');
 			}
 			$perms = pg_fetch_result($res, 0, 0);
@@ -233,15 +233,15 @@ class DatabasePostgres extends Database {
 			$SQL = "SELECT 1 FROM pg_catalog.pg_user WHERE usename = " . $this->addQuotes($wgDBuser);
 			$rows = $this->numRows($this->doQuery($SQL));
 			if ($rows) {
-				print "<li>User \"$wgDBuser\" already exists, skipping account creation.</li>";
+				print "<li>User \"" . htmlspecialchars( $wgDBuser ) . "\" already exists, skipping account creation.</li>";
 			}
 			else {
 				if ($perms != 1 and $perms != 3) {
-					print "<li>ERROR: the user \"$wgDBsuperuser\" cannot create other users. ";
+					print "<li>ERROR: the user \"" . htmlspecialchars( $wgDBsuperuser ) . "\" cannot create other users. ";
 					print 'Please use a different Postgres user.</li>';
 					dieout('</ul>');
 				}
-				print "<li>Creating user <b>$wgDBuser</b>...";
+				print "<li>Creating user <b>" . htmlspecialchars( $wgDBuser ) . "</b>...";
 				$safepass = $this->addQuotes($wgDBpassword);
 				$SQL = "CREATE USER $safeuser NOCREATEDB PASSWORD $safepass";
 				$this->doQuery($SQL);
@@ -252,15 +252,15 @@ class DatabasePostgres extends Database {
 				$SQL = "SELECT 1 FROM pg_catalog.pg_database WHERE datname = " . $this->addQuotes($wgDBname);
 				$rows = $this->numRows($this->doQuery($SQL));
 				if ($rows) {
-					print "<li>Database \"$wgDBname\" already exists, skipping database creation.</li>";
+					print "<li>Database \"" . htmlspecialchars( $wgDBname ) . "\" already exists, skipping database creation.</li>";
 				}
 				else {
 					if ($perms < 2) {
-						print "<li>ERROR: the user \"$wgDBsuperuser\" cannot create databases. ";
+						print "<li>ERROR: the user \"" . htmlspecialchars( $wgDBsuperuser ) . "\" cannot create databases. ";
 						print 'Please use a different Postgres user.</li>';
 						dieout('</ul>');
 					}
-					print "<li>Creating database <b>$wgDBname</b>...";
+					print "<li>Creating database <b>" . htmlspecialchars( $wgDBname ) . "</b>...";
 					$safename = $this->quote_ident($wgDBname);
 					$SQL = "CREATE DATABASE $safename OWNER $safeuser ";
 					$this->doQuery($SQL);
@@ -269,17 +269,21 @@ class DatabasePostgres extends Database {
 				}
 
 				// Reconnect to check out tsearch2 rights for this user
-				print "<li>Connecting to \"$wgDBname\" as superuser \"$wgDBsuperuser\" to check rights...";
+				print "<li>Connecting to \"" . htmlspecialchars( $wgDBname ) . "\" as superuser \"" .
+					htmlspecialchars( $wgDBsuperuser ) . "\" to check rights...";
 
-				$hstring="";
+				$connectVars = array();
 				if ($this->mServer!=false && $this->mServer!="") {
-					$hstring="host=$this->mServer ";
+					$connectVars['host'] = $this->mServer;
 				}
 				if ($this->mPort!=false && $this->mPort!="") {
-					$hstring .= "port=$this->mPort ";
+					$connectVars['port'] = $this->mPort;
 				}
+				$connectVars['dbname'] = $wgDBname;
+				$connectVars['user'] = $wgDBsuperuser;
+				$connectVars['password'] = $password;
 
-				@$this->mConn = pg_connect("$hstring dbname=$wgDBname user=$wgDBsuperuser password=$password");
+				@$this->mConn = pg_connect( $this->makeConnectionString( $connectVars ) );
 				if ( $this->mConn == false ) {
 					print "<b>FAILED TO CONNECT!</b></li>";
 					dieout("</ul>");
@@ -289,15 +293,18 @@ class DatabasePostgres extends Database {
 
 			if ($this->numeric_version < 8.3) {
 				// Tsearch2 checks
-				print "<li>Checking that tsearch2 is installed in the database \"$wgDBname\"...";
+				print "<li>Checking that tsearch2 is installed in the database \"" . 
+					htmlspecialchars( $wgDBname ) . "\"...";
 				if (! $this->tableExists("pg_ts_cfg", $wgDBts2schema)) {
-					print "<b>FAILED</b>. tsearch2 must be installed in the database \"$wgDBname\".";
+					print "<b>FAILED</b>. tsearch2 must be installed in the database \"" . 
+						htmlspecialchars( $wgDBname ) . "\".";
 					print "Please see <a href='http://www.devx.com/opensource/Article/21674/0/page/2'>this article</a>";
 					print " for instructions or ask on #postgresql on irc.freenode.net</li>\n";
 					dieout("</ul>");
 				}
 				print "OK</li>\n";
-				print "<li>Ensuring that user \"$wgDBuser\" has select rights on the tsearch2 tables...";
+				print "<li>Ensuring that user \"" . htmlspecialchars( $wgDBuser ) . 
+					"\" has select rights on the tsearch2 tables...";
 				foreach (array('cfg','cfgmap','dict','parser') as $table) {
 					$SQL = "GRANT SELECT ON pg_ts_$table TO $safeuser";
 					$this->doQuery($SQL);
@@ -309,7 +316,7 @@ class DatabasePostgres extends Database {
 			$result = $this->schemaExists($wgDBmwschema);
 			$safeschema = $this->quote_ident($wgDBmwschema);
 			if (!$result) {
-				print "<li>Creating schema <b>$wgDBmwschema</b> ...";
+				print "<li>Creating schema <b>" . htmlspecialchars( $wgDBmwschema ) . "</b> ...";
 				$result = $this->doQuery("CREATE SCHEMA $safeschema AUTHORIZATION $safeuser");
 				if (!$result) {
 					print "<b>FAILED</b>.</li>\n";
@@ -355,7 +362,7 @@ class DatabasePostgres extends Database {
 
 			if ($this->numeric_version < 8.3) {
 				// Do we have the basic tsearch2 table?
-				print "<li>Checking for tsearch2 in the schema \"$wgDBts2schema\"...";
+				print "<li>Checking for tsearch2 in the schema \"" . htmlspecialchars( $wgDBts2schema ) . "\"...";
 				if (! $this->tableExists("pg_ts_dict", $wgDBts2schema)) {
 					print "<b>FAILED</b>. Make sure tsearch2 is installed. See <a href=";
 					print "'http://www.devx.com/opensource/Article/21674/0/page/2'>this article</a>";
@@ -375,12 +382,13 @@ class DatabasePostgres extends Database {
 					$SQL = "SELECT count(*) FROM $safetsschema.pg_ts_$tname";
 					$res = $this->doQuery($SQL);
 					if (!$res) {
-						print "<b>FAILED</b> to access pg_ts_$tname. Make sure that the user ".
-							"\"$wgDBuser\" has SELECT access to all four tsearch2 tables</li>\n";
+						print "<b>FAILED</b> to access " . htmlspecialchars( "pg_ts_$tname" ) . 
+							". Make sure that the user \"". htmlspecialchars( $wgDBuser ) . 
+							"\" has SELECT access to all four tsearch2 tables</li>\n";
 						dieout("</ul>");
 					}
 				}
-				$SQL = "SELECT ts_name FROM $safetsschema.pg_ts_cfg WHERE locale = '$ctype'";
+				$SQL = "SELECT ts_name FROM $safetsschema.pg_ts_cfg WHERE locale = " . $this->addQuotes( $ctype ) ;
 				$SQL .= " ORDER BY CASE WHEN ts_name <> 'default' THEN 1 ELSE 0 END";
 				$res = $this->doQuery($SQL);
 				error_reporting( E_ALL );
@@ -391,28 +399,30 @@ class DatabasePostgres extends Database {
 				print "OK</li>";
 
 				// Will the current locale work? Can we force it to?
-				print "<li>Verifying tsearch2 locale with $ctype...";
+				print "<li>Verifying tsearch2 locale with " . htmlspecialchars( $ctype ) . "...";
 				$rows = $this->numRows($res);
 				$resetlocale = 0;
 				if (!$rows) {
 					print "<b>not found</b></li>\n";
-					print "<li>Attempting to set default tsearch2 locale to \"$ctype\"...";
+					print "<li>Attempting to set default tsearch2 locale to \"" . htmlspecialchars( $ctype ) . "\"...";
 					$resetlocale = 1;
 				}
 				else {
 					$tsname = pg_fetch_result($res, 0, 0);
 					if ($tsname != 'default') {
-						print "<b>not set to default ($tsname)</b>";
-						print "<li>Attempting to change tsearch2 default locale to \"$ctype\"...";
+						print "<b>not set to default (" . htmlspecialchars( $tsname ) . ")</b>";
+						print "<li>Attempting to change tsearch2 default locale to \"" . 
+							htmlspecialchars( $ctype ) . "\"...";
 						$resetlocale = 1;
 					}
 				}
 				if ($resetlocale) {
-					$SQL = "UPDATE $safetsschema.pg_ts_cfg SET locale = '$ctype' WHERE ts_name = 'default'";
+					$SQL = "UPDATE $safetsschema.pg_ts_cfg SET locale = " . $this->addQuotes( $ctype ) . " WHERE ts_name = 'default'";
 					$res = $this->doQuery($SQL);
 					if (!$res) {
 						print "<b>FAILED</b>. ";
-						print "Please make sure that the locale in pg_ts_cfg for \"default\" is set to \"$ctype\"</li>\n";
+						print "Please make sure that the locale in pg_ts_cfg for \"default\" is set to \"" . 
+							htmlspecialchars( $ctype ) . "\"</li>\n";
 						dieout("</ul>");
 					}
 					print "OK</li>";
@@ -422,7 +432,7 @@ class DatabasePostgres extends Database {
 				$SQL = "SELECT $safetsschema.to_tsvector('default','MediaWiki tsearch2 testing')";
 				$res = $this->doQuery($SQL);
 				if (!$res) {
-					print "<b>FAILED</b>. Specifically, \"$SQL\" did not work.</li>";
+					print "<b>FAILED</b>. Specifically, \"" . htmlspecialchars( $SQL ) . "\" did not work.</li>";
 					dieout("</ul>");
 				}
 				print "OK</li>";
@@ -434,28 +444,32 @@ class DatabasePostgres extends Database {
 			// Does the schema already exist? Who owns it?
 			$result = $this->schemaExists($wgDBmwschema);
 			if (!$result) {
-				print "<li>Creating schema <b>$wgDBmwschema</b> ...";
+				print "<li>Creating schema <b>" . htmlspecialchars( $wgDBmwschema ) . "</b> ...";
 				error_reporting( 0 );
 				$safeschema = $this->quote_ident($wgDBmwschema);
 				$result = $this->doQuery("CREATE SCHEMA $safeschema");
 				error_reporting( E_ALL );
 				if (!$result) {
-					print "<b>FAILED</b>. The user \"$wgDBuser\" must be able to access the schema. ".
+					print "<b>FAILED</b>. The user \"" . htmlspecialchars( $wgDBuser ) . 
+						"\" must be able to access the schema. ".
 						"You can try making them the owner of the database, or try creating the schema with a ".
-						"different user, and then grant access to the \"$wgDBuser\" user.</li>\n";
+						"different user, and then grant access to the \"" . 
+						htmlspecialchars( $wgDBuser ) . "\" user.</li>\n";
 					dieout("</ul>");
 				}
 				print "OK</li>\n";
 			}
 			else if ($result != $wgDBuser) {
-				print "<li>Schema \"$wgDBmwschema\" exists but is not owned by \"$wgDBuser\". Not ideal.</li>\n";
+				print "<li>Schema \"" . htmlspecialchars( $wgDBmwschema ) . "\" exists but is not owned by \"" . 
+					htmlspecialchars( $wgDBuser ) . "\". Not ideal.</li>\n";
 			}
 			else {
-				print "<li>Schema \"$wgDBmwschema\" exists and is owned by \"$wgDBuser\". Excellent.</li>\n";
+				print "<li>Schema \"" . htmlspecialchars( $wgDBmwschema ) . "\" exists and is owned by \"" . 
+					htmlspecialchars( $wgDBuser ) . "\". Excellent.</li>\n";
 			}
 
 			// Always return GMT time to accomodate the existing integer-based timestamp assumption
-			print "<li>Setting the timezone to GMT for user \"$wgDBuser\" ...";
+			print "<li>Setting the timezone to GMT for user \"" . htmlspecialchars( $wgDBuser ) . "\" ...";
 			$SQL = "ALTER USER $safeuser SET timezone = 'GMT'";
 			$result = pg_query($this->mConn, $SQL);
 			if (!$result) {
@@ -471,7 +485,7 @@ class DatabasePostgres extends Database {
 				dieout("</ul>");
 			}
 
-			print "<li>Setting the datestyle to ISO, YMD for user \"$wgDBuser\" ...";
+			print "<li>Setting the datestyle to ISO, YMD for user \"" . htmlspecialchars( $wgDBuser ) . "\" ...";
 			$SQL = "ALTER USER $safeuser SET datestyle = 'ISO, YMD'";
 			$result = pg_query($this->mConn, $SQL);
 			if (!$result) {
@@ -488,7 +502,7 @@ class DatabasePostgres extends Database {
 			}
 
 			// Fix up the search paths if needed
-			print "<li>Setting the search path for user \"$wgDBuser\" ...";
+			print "<li>Setting the search path for user \"" . htmlspecialchars( $wgDBuser ) . "\" ...";
 			$path = $this->quote_ident($wgDBmwschema);
 			if ($wgDBts2schema !== $wgDBmwschema)
 				$path .= ", ". $this->quote_ident($wgDBts2schema);
@@ -529,12 +543,14 @@ class DatabasePostgres extends Database {
 				$result = $this->doQuery("CREATE LANGUAGE plpgsql");
 				error_reporting($olde);
 				if (!$result) {
-					print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>$wgDBname</tt></li>";
+					print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>" . 
+						htmlspecialchars( $wgDBname ) . "</tt></li>";
 					dieout("</ul>");
 				}
 			}
 			else {
-				print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>$wgDBname</tt></li>";
+				print "<b>FAILED</b>. You need to install the language plpgsql in the database <tt>" . 
+					htmlspecialchars( $wgDBname ) . "</tt></li>";
 				dieout("</ul>");
 			}
 		}
@@ -1229,7 +1245,8 @@ END;
 		$res = $this->doQuery($SQL);
 		error_reporting( $olde );
 		if (!$res) {
-			print "<b>FAILED</b>. Make sure that the user \"$wgDBuser\" can write to the schema \"$wgDBmwschema\"</li>\n";
+			print "<b>FAILED</b>. Make sure that the user \"" . htmlspecialchars( $wgDBuser ) . 
+				"\" can write to the schema \"" . htmlspecialchars( $wgDBmwschema ) . "\"</li>\n";
 			dieout("</ul>");
 		}
 		$this->doQuery("DROP TABLE $safeschema.$ctest");
@@ -1244,11 +1261,11 @@ END;
 		$tss = $this->addQuotes($wgDBts2schema);
 		$pgp = $this->addQuotes($wgDBport);
 		$dbn = $this->addQuotes($this->mDBname);
-		$ctype = pg_fetch_result($this->doQuery("SHOW lc_ctype"),0,0);
+		$ctype = $this->addQuotes( pg_fetch_result($this->doQuery("SHOW lc_ctype"),0,0) );
 
 		$SQL = "UPDATE mediawiki_version SET mw_version=$mwv, pg_version=$pgv, pg_user=$pgu, ".
 				"mw_schema = $mws, ts2_schema = $tss, pg_port=$pgp, pg_dbname=$dbn, ".
-				"ctype = '$ctype' ".
+				"ctype = $ctype ".
 				"WHERE type = 'Creation'";
 		$this->query($SQL);
 

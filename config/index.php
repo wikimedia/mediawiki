@@ -2013,7 +2013,7 @@ function testMemcachedServer( $server ) {
 		fclose( $fp );
 	}
 	if ( !$errstr ) {
-		echo "<li>Connected to memcached on $host:$port successfully";
+		echo "<li>Connected to memcached on " . htmlspecialchars( "$host:$port" ) ." successfully</li>";
 	}
 	return $errstr;
 }
