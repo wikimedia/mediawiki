@@ -59,8 +59,8 @@ class ApiImport extends ApiBase {
 			$source = ImportStreamSource::newFromInterwiki(
 					$params['interwikisource'],
 					$params['interwikipage'],
-					$params['fullhistory']
-					$params['templates'] );
+					$params['fullhistory'],
+					$params['templates']);
 		}
 		else
 		{
