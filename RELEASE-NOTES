@@ -82,6 +82,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17236) Suppress 'watch user page link' for IP range blocks
 * Wrap message 'searchresulttext' (Special:Search) into a div with
   class "mw-searchresult"
+* (bug 15283) Interwiki imports can now fetch included templates
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

@@ -1116,7 +1116,7 @@ class ImportStreamSource {
 		}
 	}
 
-	public static function newFromInterwiki( $interwiki, $page, $history=false ) {
+	public static function newFromInterwiki( $interwiki, $page, $history = false, $templates = false ) {
 		if( $page == '' ) {
 			return new WikiErrorMsg( 'import-noarticle' );
 		}
@@ -1124,7 +1124,9 @@ class ImportStreamSource {
 		if( is_null( $link ) || $link->getInterwiki() == '' ) {
 			return new WikiErrorMsg( 'importbadinterwiki' );
 		} else {
-			$params = $history ? 'history=1' : '';
+			$params = array();
+			if ( $history ) $params['history'] = 1;
+			if ( $templates ) $params['templates'] = 1;
 			$url = $link->getFullUrl( $params );
 			# For interwikis, use POST to avoid redirects.
 			return ImportStreamSource::newFromURL( $url, "POST" );
