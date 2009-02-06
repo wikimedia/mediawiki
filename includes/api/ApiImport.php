@@ -59,7 +59,8 @@ class ApiImport extends ApiBase {
 			$source = ImportStreamSource::newFromInterwiki(
 					$params['interwikisource'],
 					$params['interwikipage'],
-					$params['fullhistory']);
+					$params['fullhistory']
+					$params['templates'] );
 		}
 		else
 		{
@@ -111,6 +112,7 @@ class ApiImport extends ApiBase {
 			),
 			'interwikipage' => null,
 			'fullhistory' => false,
+			'templates' => false,
 			'namespace' => array(
 				ApiBase :: PARAM_TYPE => 'namespace'
 			)
@@ -125,6 +127,7 @@ class ApiImport extends ApiBase {
 			'interwikisource' => 'For interwiki imports: wiki to import from',
 			'interwikipage' => 'For interwiki imports: page to import',
 			'fullhistory' => 'For interwiki imports: import the full history, not just the current version',
+			'templates' => 'For interwiki imports: import all included templates as well',
 			'namespace' => 'For interwiki imports: import to this namespace',
 		);
 	}
