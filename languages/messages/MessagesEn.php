@@ -781,7 +781,7 @@ See [[Special:Version|version page]].',
 'nosuchaction'      => 'No such action',
 'nosuchactiontext'  => 'The action specified by the URL is invalid.
 You might have mistyped the URL, or followed an incorrect link.
-This might also indicate a bug in {{SITENAME}}.',
+This might also indicate a bug in the software used by {{SITENAME}}.',
 'nosuchspecialpage' => 'No such special page',
 'nospecialpagetext' => "<big>'''You have requested an invalid special page.'''</big>
 
