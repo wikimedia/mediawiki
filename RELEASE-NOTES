@@ -87,6 +87,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New function to convert namespace text for display (only applies on wiki with
   LanguageConverter class)
 * (bug 17379) Contributions-title is now parsed for magic words.
+* Preprocessor output now cached in memcached.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

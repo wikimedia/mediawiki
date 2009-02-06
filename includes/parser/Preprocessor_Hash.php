@@ -45,6 +45,15 @@ class Preprocessor_Hash implements Preprocessor {
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
+		
+		global $wgMemc;
+		$cacheKey = wfMemckey( 'preprocessor-hash', md5( $text ), $flags );
+		
+		if ( $obj = $wgMemc->get( $cacheKey ) ) {
+			wfDebugLog( "Preprocessor", "Got preprocessor_hash output from cache" );
+			wfProfileOut( __METHOD__ );
+			return $obj;
+		}
 
 		$rules = array(
 			'{' => array(
@@ -618,6 +627,9 @@ class Preprocessor_Hash implements Preprocessor {
 		$rootNode->firstChild = $stack->rootAccum->firstNode;
 		$rootNode->lastChild = $stack->rootAccum->lastNode;
 		wfProfileOut( __METHOD__ );
+		
+		$wgMemc->set( $cacheKey, $rootNode, 86400 );
+		
 		return $rootNode;
 	}
 }

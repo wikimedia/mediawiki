@@ -63,8 +63,40 @@ class Preprocessor_DOM implements Preprocessor {
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__.'-makexml' );
-
+		
+		global $wgMemc;
+		$cacheKey = wfMemcKey( 'preprocess-xml', md5($text), $flags );
+		
+		if ( $xml = $wgMemc->get( $cacheKey ) ) {
+			// From the cache
+			wfDebugLog( "Preprocessor", "Loaded preprocessor XML from memcached (key $cacheKey)" );
+		} else {
+			$xml = $this->preprocessToXml( $text, $flags );
+			$wgMemc->set( $cacheKey, $xml, 86400 );
+			wfDebugLog( "Preprocessor", "Saved preprocessor XML to memcached (key $cacheKey)" );
+		}
+		
+		wfProfileIn( __METHOD__.'-loadXML' );
+		$dom = new DOMDocument;
+		wfSuppressWarnings();
+		$result = $dom->loadXML( $xml );
+		wfRestoreWarnings();
+		if ( !$result ) {
+			// Try running the XML through UtfNormal to get rid of invalid characters
+			$xml = UtfNormal::cleanUp( $xml );
+			$result = $dom->loadXML( $xml );
+			if ( !$result ) {
+				throw new MWException( __METHOD__.' generated invalid XML' );
+			}
+		}
+		$obj = new PPNode_DOM( $dom->documentElement );
+		wfProfileOut( __METHOD__.'-loadXML' );
+		wfProfileOut( __METHOD__ );
+		return $obj;
+	}
+	
+	function preprocessToXml( $text, $flags = 0 ) {
+		wfProfileIn( __METHOD__ );
 		$rules = array(
 			'{' => array(
 				'end' => '}',
@@ -571,24 +603,9 @@ class Preprocessor_DOM implements Preprocessor {
 		$stack->rootAccum .= '</root>';
 		$xml = $stack->rootAccum;
 
-		wfProfileOut( __METHOD__.'-makexml' );
-		wfProfileIn( __METHOD__.'-loadXML' );
-		$dom = new DOMDocument;
-		wfSuppressWarnings();
-		$result = $dom->loadXML( $xml );
-		wfRestoreWarnings();
-		if ( !$result ) {
-			// Try running the XML through UtfNormal to get rid of invalid characters
-			$xml = UtfNormal::cleanUp( $xml );
-			$result = $dom->loadXML( $xml );
-			if ( !$result ) {
-				throw new MWException( __METHOD__.' generated invalid XML' );
-			}
-		}
-		$obj = new PPNode_DOM( $dom->documentElement );
-		wfProfileOut( __METHOD__.'-loadXML' );
 		wfProfileOut( __METHOD__ );
-		return $obj;
+		
+		return $xml;
 	}
 }
 
