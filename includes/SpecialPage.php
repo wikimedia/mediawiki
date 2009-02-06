@@ -139,7 +139,7 @@ class SpecialPage
 		'Blockme'                   => array( 'UnlistedSpecialPage', 'Blockme' ),
 		'Booksources'               => 'SpecialBookSources',
 		'Categories'                => array( 'SpecialPage', 'Categories' ),
-		'Export'                    => array( 'SpecialPage', 'Export' ),
+		'Export'                    => 'SpecialExport',
 		'Version'                   => 'SpecialVersion',
 		'Blankpage'                 => array( 'UnlistedSpecialPage', 'Blankpage' ),
 		'Allmessages'               => array( 'SpecialPage', 'Allmessages' ),
