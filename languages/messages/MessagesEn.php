@@ -1113,8 +1113,8 @@ If you are here by mistake, click your browser's '''back''' button.",
 We therefore have to use the numerical IP address to identify him/her.
 Such an IP address can be shared by several users.
 If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:UserLogin/signup|create an account]] or [[Special:UserLogin|log in]] to avoid future confusion with other anonymous users.''",
-'noarticletext'                    => 'There is currently no text in this page, you can
-[[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
+'noarticletext'                    => 'There is currently no text in this page.
+You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs],
 or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
