@@ -2405,3 +2405,18 @@ function wfMaxlagError( $host, $lag, $maxLag ) {
 		echo "Waiting for a database server: $lag seconds lagged\n";
 	}
 }
+
+/**
+ * Output some plain text in command-line mode or in the installer (updaters.inc).
+ * Do not use it in any other context, its behaviour is subject to change.
+ */
+function wfOut( $s ) {
+	static $lineStarted = false;
+	global $wgCommandLineMode;
+	if ( $wgCommandLineMode && !defined( 'MEDIAWIKI_INSTALL' ) ) {
+		echo $s;
+	} else {
+		echo htmlspecialchars( $s );
+	}
+	flush();
+}

@@ -8,11 +8,11 @@
 function convertLinks() {
 	global $wgDBtype;
 	if( $wgDBtype == 'postgres' ) {
-		print "Links table already ok on Postgres.\n";
+		wfOut( "Links table already ok on Postgres.\n" );
 		return;
 	}
 
-	print "Converting links table to ID-ID...\n";
+	wfOut( "Converting links table to ID-ID...\n" );
 
 	global $wgLang, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
 	global $noKeys, $logPerformance, $fh;
@@ -47,7 +47,7 @@ function convertLinks() {
 
 	$res = $dbw->query( "SELECT l_from FROM $links LIMIT 1" );
 	if ( $dbw->fieldType( $res, 0 ) == "int" ) {
-		print "Schema already converted\n";
+		wfOut( "Schema already converted\n" );
 		return;
 	}
 
@@ -57,13 +57,13 @@ function convertLinks() {
 	$dbw->freeResult( $res );
 
 	if ( $numRows == 0 ) {
-		print "Updating schema (no rows to convert)...\n";
+		wfOut( "Updating schema (no rows to convert)...\n" );
 		createTempTable();
 	} else {
 		if ( $logPerformance ) { $fh = fopen ( $perfLogFilename, "w" ); }
 		$baseTime = $startTime = getMicroTime();
 		# Create a title -> cur_id map
-		print "Loading IDs from $cur table...\n";
+		wfOut( "Loading IDs from $cur table...\n" );
 		performanceLog ( "Reading $numRows rows from cur table...\n" );
 		performanceLog ( "rows read vs seconds elapsed:\n" );
 
@@ -81,13 +81,13 @@ function convertLinks() {
 			if ($reportCurReadProgress) {
 				if (($curRowsRead % $curReadReportInterval) == 0) {
 					performanceLog( $curRowsRead . " " . (getMicroTime() - $baseTime) . "\n" );
-					print "\t$curRowsRead rows of $cur table read.\n";
+					wfOut( "\t$curRowsRead rows of $cur table read.\n" );
 				}
 			}
 		}
 		$dbw->freeResult( $res );
 		$dbw->bufferResults( true );
-		print "Finished loading IDs.\n\n";
+		wfOut( "Finished loading IDs.\n\n" );
 		performanceLog( "Took " . (getMicroTime() - $baseTime) . " seconds to load IDs.\n\n" );
 	#--------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ function convertLinks() {
 		createTempTable();
 		performanceLog( "Resetting timer.\n\n" );
 		$baseTime = getMicroTime();
-		print "Processing $numRows rows from $links table...\n";
+		wfOut( "Processing $numRows rows from $links table...\n" );
 		performanceLog( "Processing $numRows rows from $links table...\n" );
 		performanceLog( "rows inserted vs seconds elapsed:\n" );
 
@@ -126,19 +126,19 @@ function convertLinks() {
 				}
 			}
 			$dbw->freeResult($res);
-			#print "rowOffset: $rowOffset\ttuplesAdded: $tuplesAdded\tnumBadLinks: $numBadLinks\n";
+			#wfOut( "rowOffset: $rowOffset\ttuplesAdded: $tuplesAdded\tnumBadLinks: $numBadLinks\n" );
 			if ( $tuplesAdded != 0  ) {
 				if ($reportLinksConvProgress) {
-					print "Inserting $tuplesAdded tuples into $links_temp...";
+					wfOut( "Inserting $tuplesAdded tuples into $links_temp..." );
 				}
 				$dbw->query( implode("",$sqlWrite) );
 				$totalTuplesInserted += $tuplesAdded;
 				if ($reportLinksConvProgress)
-					print " done. Total $totalTuplesInserted tuples inserted.\n";
+					wfOut( " done. Total $totalTuplesInserted tuples inserted.\n" );
 					performanceLog( $totalTuplesInserted . " " . (getMicroTime() - $baseTime) . "\n"  );
 			}
 		}
-		print "$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n\n";
+		wfOut( "$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n\n" );
 		performanceLog( "$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n" );
 		performanceLog( "Total execution time: " . (getMicroTime() - $startTime) . " seconds.\n" );
 		if ( $logPerformance ) { fclose ( $fh ); }
@@ -148,25 +148,25 @@ function convertLinks() {
 	if ( $overwriteLinksTable ) {
 		$dbConn = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 		if (!($dbConn->isOpen())) {
-			print "Opening connection to database failed.\n";
+			wfOut( "Opening connection to database failed.\n" );
 			return;
 		}
 		# Check for existing links_backup, and delete it if it exists.
-		print "Dropping backup links table if it exists...";
+		wfOut( "Dropping backup links table if it exists..." );
 		$dbConn->query( "DROP TABLE IF EXISTS $links_backup", DB_MASTER);
-		print " done.\n";
+		wfOut( " done.\n" );
 
 		# Swap in the new table, and move old links table to links_backup
-		print "Swapping tables '$links' to '$links_backup'; '$links_temp' to '$links'...";
+		wfOut( "Swapping tables '$links' to '$links_backup'; '$links_temp' to '$links'..." );
 		$dbConn->query( "RENAME TABLE links TO $links_backup, $links_temp TO $links", DB_MASTER );
-		print " done.\n\n";
+		wfOut( " done.\n\n" );
 
 		$dbConn->close();
-		print "Conversion complete. The old table remains at $links_backup;\n";
-		print "delete at your leisure.\n";
+		wfOut( "Conversion complete. The old table remains at $links_backup;\n" );
+		wfOut( "delete at your leisure.\n" );
 	} else {
-		print "Conversion complete.  The converted table is at $links_temp;\n";
-		print "the original links table is unchanged.\n";
+		wfOut( "Conversion complete.  The converted table is at $links_temp;\n" );
+		wfOut( "the original links table is unchanged.\n" );
 	}
 }
 
@@ -178,16 +178,16 @@ function createTempTable() {
 	$dbConn = Database::newFromParams( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
 
 	if (!($dbConn->isOpen())) {
-		print "Opening connection to database failed.\n";
+		wfOut( "Opening connection to database failed.\n" );
 		return;
 	}
 	$links_temp = $dbConn->tableName( 'links_temp' );
 
-	print "Dropping temporary links table if it exists...";
+	wfOut( "Dropping temporary links table if it exists..." );
 	$dbConn->query( "DROP TABLE IF EXISTS $links_temp");
-	print " done.\n";
+	wfOut( " done.\n" );
 
-	print "Creating temporary links table...";
+	wfOut( "Creating temporary links table..." );
 	if ( $noKeys ) {
 		$dbConn->query( "CREATE TABLE $links_temp ( " .
 		"l_from int(8) unsigned NOT NULL default '0', " .
@@ -199,7 +199,7 @@ function createTempTable() {
 		"UNIQUE KEY l_from(l_from,l_to), " .
 		"KEY (l_to))");
 	}
-	print " done.\n\n";
+	wfOut( " done.\n\n" );
 }
 
 function performanceLog( $text ) {
