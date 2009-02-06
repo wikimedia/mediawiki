@@ -1975,6 +1975,7 @@ $wgMessageStructure = array(
 		'import-interwiki-text',
 		'import-interwiki-source',
 		'import-interwiki-history',
+		'import-interwiki-templates',
 		'import-interwiki-submit',
 		'import-interwiki-namespace',
 		'import-upload-filename',

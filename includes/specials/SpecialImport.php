@@ -30,6 +30,7 @@ class SpecialImport extends SpecialPage {
 	private $frompage = '';
 	private $logcomment= false;
 	private $history = true;
+	private $includeTemplates = false;
 	
 	/**
 	 * Constructor
@@ -88,10 +89,12 @@ class SpecialImport extends SpecialPage {
 			} else {
 				$this->history = $wgRequest->getCheck( 'interwikiHistory' );
 				$this->frompage = $wgRequest->getText( "frompage" );
+				$this->includeTemplates = $wgRequest->getCheck( 'interwikiTemplates' );
 				$source = ImportStreamSource::newFromInterwiki(
 					$this->interwiki,
 					$this->frompage,
-					$this->history );
+					$this->history,
+					$this->includeTemplates );
 			}
 		} else {
 			$source = new WikiErrorMsg( "importunknownsource" );
@@ -212,6 +215,12 @@ class SpecialImport extends SpecialPage {
 						Xml::checkLabel( wfMsg( 'import-interwiki-history' ), 'interwikiHistory', 'interwikiHistory', $this->history ) .
 					"</td>
 				</tr>
+				<tr>
+					<td>
+					</td>
+					<td class='mw-input'>" .
+						Xml::checkLabel( wfMsg( 'import-interwiki-templates' ), 'interwikiTemplates', 'interwikiTemplates', $this->includeTemplates ) .
+					"</td>
 				<tr>
 					<td>" .
 						Xml::label( wfMsg( 'import-interwiki-namespace' ), 'namespace' ) .

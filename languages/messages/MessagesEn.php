@@ -2820,6 +2820,7 @@ Revision dates and editors' names will be preserved.
 All transwiki import actions are logged at the [[Special:Log/import|import log]].",
 'import-interwiki-source'    => 'Source wiki/page:',
 'import-interwiki-history'   => 'Copy all history versions for this page',
+'import-interwiki-templates' => 'Include all templates',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Destination namespace:',
 'import-upload-filename'     => 'Filename:',
