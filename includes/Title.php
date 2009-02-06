@@ -1204,12 +1204,14 @@ class Title {
 			return $errors;
 		}
 		
-		// TODO: document
+		# Only 'createaccount' and 'execute' can be performed on
+		# special pages, which don't actually exist in the DB.
 		$specialOKActions = array( 'createaccount', 'execute' );
 		if( NS_SPECIAL == $this->mNamespace && !in_array( $action, $specialOKActions) ) {
 			$errors[] = array('ns-specialprotected');
 		}
 
+		# Check $wgNamespaceProtection for restricted namespaces
 		if( $this->isNamespaceProtected() ) {
 			$ns = $this->getNamespace() == NS_MAIN ?
 				wfMsg( 'nstab-main' ) : $this->getNsText();
@@ -1217,7 +1219,7 @@ class Title {
 				array('protectedinterface') : array( 'namespaceprotected',  $ns );
 		}
 
-		# protect css/js subpages of user pages
+		# Protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
 		if( $this->isCssJsSubpage() && !$user->isAllowed('editusercssjs')
@@ -1226,6 +1228,32 @@ class Title {
 			$errors[] = array('customcssjsprotected');
 		}
 
+		# Check against page_restrictions table requirements on this
+		# page. The user must possess all required rights for this action.
+		foreach( $this->getRestrictions($action) as $right ) {
+			// Backwards compatibility, rewrite sysop -> protect
+			if( $right == 'sysop' ) {
+				$right = 'protect';
+			}
+			if( '' != $right && !$user->isAllowed( $right ) ) {
+				// Users with 'editprotected' permission can edit protected pages
+				if( $action=='edit' && $user->isAllowed( 'editprotected' ) ) {
+					// Users with 'editprotected' permission cannot edit protected pages
+					// with cascading option turned on.
+					if( $this->mCascadeRestriction ) {
+						$errors[] = array( 'protectedpagetext', $right );
+					}
+				} else {
+					$errors[] = array( 'protectedpagetext', $right );
+				}
+			}
+		}
+		# Short-circuit point
+		if( $short && count($errors) > 0 ) {
+			wfProfileOut( __METHOD__ );
+			return $errors;
+		}
+		
 		if( $doExpensiveQueries && !$this->isCssJsSubpage() ) {
 			# We /could/ use the protection level on the source page, but it's fairly ugly
 			#  as we have to establish a precedence hierarchy for pages included by multiple
@@ -1245,30 +1273,6 @@ class Title {
 							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
 						$errors[] = array( 'cascadeprotected', count( $cascadingSources ), $pages );
 					}
-				}
-			}
-		}
-		# Short-circuit point
-		if( $short && count($errors) > 0 ) {
-			wfProfileOut( __METHOD__ );
-			return $errors;
-		}
-
-		foreach( $this->getRestrictions($action) as $right ) {
-			// Backwards compatibility, rewrite sysop -> protect
-			if( $right == 'sysop' ) {
-				$right = 'protect';
-			}
-			if( '' != $right && !$user->isAllowed( $right ) ) {
-				// Users with 'editprotected' permission can edit protected pages
-				if( $action=='edit' && $user->isAllowed( 'editprotected' ) ) {
-					// Users with 'editprotected' permission cannot edit protected pages
-					// with cascading option turned on.
-					if( $this->mCascadeRestriction ) {
-						$errors[] = array( 'protectedpagetext', $right );
-					}
-				} else {
-					$errors[] = array( 'protectedpagetext', $right );
 				}
 			}
 		}
