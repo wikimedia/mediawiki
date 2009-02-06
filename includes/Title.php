@@ -1166,7 +1166,31 @@ class Title {
 
 		$errors = array();
 
-		if( !$user->isAllowed( $action ) ) {
+		// First stop is permissions checks, which fail most often, and which are easiest to test.
+		if ( $action == 'move' ) {
+			if( !$user->isAllowed( 'move-rootuserpages' )
+					&& $this->getNamespace() == NS_USER && !$this->isSubpage() )
+			{
+				// Show user page-specific message only if the user can move other pages
+				$errors[] = array( 'cant-move-user-page' );
+			}
+			
+			// Check if user is allowed to move files if it's a file
+			if( $this->getNamespace() == NS_FILE && !$user->isAllowed( 'movefile' ) ) {
+				$errors[] = array( 'movenotallowedfile' );
+			}
+			
+			if( !$user->isAllowed( 'move' ) ) {
+				// User can't move anything
+				$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
+			}
+		} elseif ( $action == 'create' ) {
+			if( ( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
+				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) )
+			{
+				$errors[] = $user->isAnon() ? array ('nocreatetext') : array ('nocreate-loggedin');
+			}
+		} elseif( !$user->isAllowed( $action ) ) {
 			$return = null;
 			$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
 				User::getGroupsWithPermission( $action ) );
@@ -1315,26 +1339,7 @@ class Title {
 					$errors[] = array( 'titleprotected', User::whoIs($pt_user), $pt_reason );
 				}
 			}
-
-			if( ( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
-				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) 
-			{
-				$errors[] = $user->isAnon() ? array ('nocreatetext') : array ('nocreate-loggedin');
-			}
 		} elseif( $action == 'move' ) {
-			if( !$user->isAllowed( 'move' ) ) {
-				// User can't move anything
-				$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
-			} elseif( !$user->isAllowed( 'move-rootuserpages' ) 
-					&& $this->getNamespace() == NS_USER && !$this->isSubpage() ) 
-			{
-				// Show user page-specific message only if the user can move other pages
-				$errors[] = array( 'cant-move-user-page' );
-			}
-			// Check if user is allowed to move files if it's a file
-			if( $this->getNamespace() == NS_FILE && !$user->isAllowed( 'movefile' ) ) {
-				$errors[] = array( 'movenotallowedfile' );
-			}
 			// Check for immobile pages
 			if( !MWNamespace::isMovable( $this->getNamespace() ) ) {
 				// Specific message for this case
