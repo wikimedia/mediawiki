@@ -821,14 +821,14 @@ CREATE TABLE /*$wgDBprefix*/logging (
 
 
 -- Hold group name and description
---CREATE TABLE /*$wgDBprefix*/groups (
+-- CREATE TABLE /*$wgDBprefix*/groups (
 --  gr_id int(5) unsigned NOT NULL auto_increment,
 --  gr_name varchar(50) NOT NULL default '',
 --  gr_description varchar(255) NOT NULL default '',
 --  gr_rights tinyblob,
 --  PRIMARY KEY  (gr_id)
 --
---) TYPE=InnoDB;
+-- ) TYPE=InnoDB;
 
 CREATE TABLE /*$wgDBprefix*/trackbacks (
 	tb_id		INTEGER AUTO_INCREMENT PRIMARY KEY,
