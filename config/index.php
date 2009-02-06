@@ -1359,7 +1359,7 @@ if( count( $errs ) ) {
 	<label class='column'>Database type:</label>
 <?php 
 	if (isset($errs['DBpicktype'])) {
-		print "\t<span class='error'>" . htmlspecialchars( $errs[DBpicktype] ) . "</span>\n";
+		print "\t<span class='error'>" . htmlspecialchars( $errs['DBpicktype'] ) . "</span>\n";
 	}
 ?>
 	<ul class='plain'><?php 
