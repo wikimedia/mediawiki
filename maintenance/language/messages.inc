@@ -1949,6 +1949,7 @@ $wgMessageStructure = array(
 		'export-addcat',
 		'export-download',
 		'export-templates',
+		'export-pagelinks',
 	),
 	'allmessages' => array(
 		'allmessages',
