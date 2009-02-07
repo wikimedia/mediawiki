@@ -2,11 +2,11 @@
 
 For upgrade instructions please see the UPGRADE file in this directory.
 
-== MediaWiki 1.12.3 ==
+== MediaWiki 1.12.4 ==
 
-December 17, 2008
+February 7, 2009
 
-This is a bugfix release of the quarterly branch of MediaWiki for Winter 2008.
+This is a security update to the quarterly branch of MediaWiki for Winter 2008.
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -18,6 +18,21 @@ will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+== Changes since 1.12.3 ==
+
+A number of cross-site scripting (XSS) security vulnerabilities were discovered 
+in the web-based installer (config/index.php). These vulnerabilities all 
+require a live installer -- once the installer has been used to install a wiki, 
+it is deactivated.
+
+Note that cross-site scripting vulnerabilities can be used to attack any website
+in the same cookie domain. So if you have an uninstalled copy of MediaWiki on
+the same site as an active web service, MediaWiki could be used to attack the
+active service.
+
+If you are hosting an old copy of MediaWiki that you have never installed, you 
+are advised to remove it from the web.
 
 == Changes since 1.12.2 ==
 
