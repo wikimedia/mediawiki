@@ -491,9 +491,11 @@ Nomen usoris alium selige.',
 'yourlanguage'               => 'Lingua tua:',
 'yourvariant'                => 'Differentia:',
 'yournick'                   => 'Subscriptio:',
-'badsig'                     => 'Subscriptio cruda non est valida; scrutina HTML textos.',
+'badsig'                     => 'Subscriptio cruda non est valida; scrutina affixa HTML.',
 'badsiglength'               => 'Subscriptio tua nimis longa est.
 {{PLURAL:$1|Una littera est|$1 litterae sunt}} longitudo maxima.',
+'yourgender'                 => 'Sexus:',
+'gender-unknown'             => 'Indefinitus',
 'email'                      => 'Litterae electronicae',
 'prefs-help-realname'        => 'Nomen verum non necesse est.
 Si vis id dare, opera tua tibi ascribentur.',
@@ -629,7 +631,10 @@ Novam paginam si vis creare, in capsam infra praebitam scribe.
 (Vide [[{{MediaWiki:Helppage}}|paginam auxilii]] si plura cognoscere vis.)
 Si hic es propter errorem, solum '''Retrorsum''' in navigatro tuo preme.",
 'anontalkpagetext'                 => "----''Haec est pagina disputationis usoris anonymi, solum a loco IP suo noti. Memento locos IP aliquando mutaturos, et a usoribus multis fortasse adhibitos. Si es usor ignotus, et tibi querulae sine causa datae sunt, conventum [[Special:UserLogin/signup|crea]] vel [[Special:UserLogin|aperi]] ad confusionem futuram evitendam.''",
-'noarticletext'                    => 'In hac pagina nondum litterae sunt. Potes etiam [[Special:Search/{{PAGENAME}}|hanc rem in aliis paginis quaerere]] aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare].',
+'noarticletext'                    => 'Hac in pagina non sunt litterae.
+Potes [[Special:Search/{{PAGENAME}}|hanc rem in aliis paginis quaerere]],
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} acta huius paginae videre]
+aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare]</span>.',
 'userpage-userdoesnotexist'        => 'Usor "$1" non est. Visne re vera hanc paginam creare vel recensere?',
 'updated'                          => '(Novata)',
 'note'                             => "'''Nota:'''",
@@ -646,7 +651,7 @@ Mutationes tuae in verba superiora adiungare debes.
 'yourtext'                         => 'Sententia tua',
 'storedversion'                    => 'Verba recentissima',
 'nonunicodebrowser'                => "'''CAVETO: Navigatorium retiale tuum systemati UNICODE morem non gerit. Modum habemus quo commentationes sine damno recenseas: litterae non-ASCII in capsa sub veste hexadecimali ostendentur.'''",
-'editingold'                       => "'''MONITIO: Formam obsoletam huius paginae mutas.
+'editingold'                       => "'''MONITIO: Emendationem obsoletam huius paginae mutas.
 Si eam servaveris, omnes mutationes recentiores obrogatae peribunt!'''",
 'yourdiff'                         => 'Dissimilitudo',
 'copyrightwarning'                 => "Nota bene omnia contributa divulgari sub ''\$2'' (vide singula apud \$1).
@@ -728,26 +733,27 @@ Titulus: '''(nov)''' = dissimilis ab emendatione novissima,
 'history-feed-item-nocomment' => '$1 ad $2', # user at time
 
 # Revision deletion
-'rev-deleted-comment'    => '(summarium celatum)',
-'rev-deleted-user'       => '(nomen usoris celatum est)',
-'rev-deleted-event'      => '(perscriptio celata)',
-'rev-delundel'           => 'monstrare/celare',
-'revisiondelete'         => 'Emendationem delere',
-'revdelete-selected'     => "'''{{PLURAL:$2|Emendatio selecta|Emendationes selectae}} paginae [[:$1]]:'''",
-'revdelete-hide-text'    => 'Celare textum emendationis',
-'revdelete-hide-comment' => 'Celare summarium emendationis',
-'revdelete-hide-image'   => 'Celare contentum fasciculi',
-'revdelete-log'          => 'Summarium pro actis:',
-'revdel-restore'         => 'Visibilitatem mutare',
-'pagehist'               => 'Historia paginae',
-'deletedhist'            => 'Historia deleta',
-'revdelete-content'      => 'contenta',
-'revdelete-summary'      => 'summarium recensionis',
-'revdelete-uname'        => 'nomen usoris',
-'revdelete-hid'          => 'celavit $1',
-'revdelete-unhid'        => 'monstravit $1',
-'revdelete-log-message'  => '$1 {{PLURAL:$2|unius emendationis|$2 emendationum}}',
-'logdelete-log-message'  => '$1 {{PLURAL:$2|unius eventi|$2 eventorum}}',
+'rev-deleted-comment'       => '(summarium celatum)',
+'rev-deleted-user'          => '(nomen usoris celatum est)',
+'rev-deleted-event'         => '(perscriptio celata)',
+'rev-delundel'              => 'monstrare/celare',
+'revisiondelete'            => 'Emendationem delere',
+'revdelete-nologtype-title' => 'Nullus typus actorum datus',
+'revdelete-selected'        => "'''{{PLURAL:$2|Emendatio selecta|Emendationes selectae}} paginae [[:$1]]:'''",
+'revdelete-hide-text'       => 'Celare textum emendationis',
+'revdelete-hide-comment'    => 'Celare summarium emendationis',
+'revdelete-hide-image'      => 'Celare contentum fasciculi',
+'revdelete-log'             => 'Summarium pro actis:',
+'revdel-restore'            => 'Visibilitatem mutare',
+'pagehist'                  => 'Historia paginae',
+'deletedhist'               => 'Historia deleta',
+'revdelete-content'         => 'contenta',
+'revdelete-summary'         => 'summarium recensionis',
+'revdelete-uname'           => 'nomen usoris',
+'revdelete-hid'             => 'celavit $1',
+'revdelete-unhid'           => 'monstravit $1',
+'revdelete-log-message'     => '$1 {{PLURAL:$2|unius emendationis|$2 emendationum}}',
+'logdelete-log-message'     => '$1 {{PLURAL:$2|unius eventi|$2 eventorum}}',
 
 # History merging
 'mergehistory-from'        => 'Pagina imponenda:',
@@ -877,6 +883,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'prefs-rc'                 => 'Nuper mutata',
 'prefs-watchlist'          => 'Paginae custoditae',
 'prefs-watchlist-days'     => 'Numerus dierum displicandus in paginis tuis custoditis:',
+'prefs-watchlist-days-max' => '(maximum 7 dies)',
 'prefs-watchlist-edits'    => 'Numerus recensionum displicandus in paginis tuis custoditis extensis:',
 'prefs-misc'               => 'Misc',
 'prefs-resetpass'          => 'Tesseram mutare',
@@ -906,6 +913,8 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'defaultns'                => 'Quaerere per haec spatia nominalia a defalta:',
 'default'                  => 'praedeterminatum',
 'files'                    => 'Fasciculi',
+'prefs-custom-css'         => 'CSS ordinatum',
+'prefs-custom-js'          => 'JS ordinatum',
 
 # User rights
 'userrights'               => 'Usorum potestates', # Not used as normal message but as header for the special page itself
@@ -917,24 +926,28 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'userrights-reason'        => 'Causa modificationis:',
 
 # Groups
-'group'            => 'Grex:',
-'group-user'       => 'Usores',
-'group-bot'        => 'Automata',
-'group-sysop'      => 'Magistratus',
-'group-bureaucrat' => 'Grapheocrates',
-'group-suppress'   => 'Censurae',
-'group-all'        => '(omnes)',
+'group'               => 'Grex:',
+'group-user'          => 'Usores',
+'group-autoconfirmed' => 'Usores adfirmati automaticale',
+'group-bot'           => 'Automata',
+'group-sysop'         => 'Magistratus',
+'group-bureaucrat'    => 'Grapheocrates',
+'group-suppress'      => 'Censurae',
+'group-all'           => '(omnes)',
 
-'group-user-member'       => 'Usor',
-'group-bot-member'        => 'Automaton',
-'group-sysop-member'      => 'Magistratus',
-'group-bureaucrat-member' => 'Grapheocrates',
-'group-suppress-member'   => 'Censura',
+'group-user-member'          => 'Usor',
+'group-autoconfirmed-member' => 'Usor adfirmatus automaticale',
+'group-bot-member'           => 'Automaton',
+'group-sysop-member'         => 'Magistratus',
+'group-bureaucrat-member'    => 'Grapheocrates',
+'group-suppress-member'      => 'Censura',
 
-'grouppage-user'       => '{{ns:project}}:Usores',
-'grouppage-bot'        => '{{ns:project}}:Automata',
-'grouppage-sysop'      => '{{ns:project}}:Magistratus',
-'grouppage-bureaucrat' => '{{ns:project}}:Grapheocrates',
+'grouppage-user'          => '{{ns:project}}:Usores',
+'grouppage-autoconfirmed' => '{{ns:project}}:Usores adfirmati automaticale',
+'grouppage-bot'           => '{{ns:project}}:Automata',
+'grouppage-sysop'         => '{{ns:project}}:Magistratus',
+'grouppage-bureaucrat'    => '{{ns:project}}:Grapheocrates',
+'grouppage-suppress'      => '{{ns:project}}:Observator',
 
 # Rights
 'right-read'                 => 'Paginas legere',
@@ -1831,7 +1844,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 # Patrol log
 'patrol-log-page'      => 'Acta emendationum circumitarum',
 'patrol-log-auto'      => '(automatica)',
-'patrol-log-diff'      => 'revisio $1',
+'patrol-log-diff'      => 'emendatio $1',
 'log-show-hide-patrol' => '$1 acta emendationum circumitarum',
 
 # Image deletion
@@ -1893,8 +1906,10 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'exif-exposuretime-format'       => '$1 sec ($2)',
 'exif-fnumber'                   => 'Numerus F',
 'exif-exposureprogram'           => 'Programma expositionis',
+'exif-oecf'                      => 'Factor conversionis optico-electronicae',
 'exif-shutterspeedvalue'         => 'Celeritas foriculae',
 'exif-aperturevalue'             => 'Apertura',
+'exif-brightnessvalue'           => 'Luminositas',
 'exif-meteringmode'              => 'Modus mensurae',
 'exif-lightsource'               => 'Fons lucis',
 'exif-flash'                     => 'Organum fulminescens',
@@ -2117,7 +2132,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'version-hooks'                    => 'Extensiones',
 'version-extension-functions'      => 'Functiones extensionum',
 'version-parser-function-hooks'    => 'Extensiones functionum programmatis analysis lexicalis',
-'version-skin-extension-functions' => 'Functiones extensionis intercontagis',
+'version-skin-extension-functions' => 'Functiones extensionis cutis',
 'version-hook-name'                => 'Nomen extensionis',
 'version-version'                  => 'Versio',
 'version-license'                  => 'Permissio',
@@ -2147,5 +2162,11 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 
 # Special:BlankPage
 'blankpage' => 'Pagina vacua',
+
+# Special:Tags
+'tag-filter-submit' => 'Filtrum',
+'tags-title'        => 'Affixa',
+'tags-edit'         => 'mutatum',
+'tags-hitcount'     => '$1 {{PLURAL:$1|mutatum|mutata}}',
 
 );

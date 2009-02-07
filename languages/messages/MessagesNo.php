@@ -436,7 +436,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Funksjonen finnes ikke',
-'nosuchactiontext'  => 'MediaWiki-programvaren kjenner ikke igjen funksjonen som er spesifisert i URL-en.',
+'nosuchactiontext'  => 'Handlingen spesifisert i URLen er ugyldig.
+Du kan ha skrevet URLen feil, eller fulgt en link som var feil.
+Det kan også være en bug i {{SITENAME}}.',
 'nosuchspecialpage' => 'En slik spesialside finnes ikke',
 'nospecialpagetext' => 'Du ba om en ugyldig spesialside; en liste over gyldige spesialsider finnes på [[Special:SpecialPages|{{int:specialpages}}]].',
 
@@ -2204,6 +2206,7 @@ Dersom du bare vil ha nåværende versjon, kan du også bruke en lenke, for ekse
 'export-addcat'     => 'Legg til',
 'export-download'   => 'Lagre som fil',
 'export-templates'  => 'Ta med maler',
+'export-pagelinks'  => 'Inkluder lenkede sider med en dybde på:',
 
 # Namespace 8 related
 'allmessages'               => 'Systemmeldinger',
@@ -2231,6 +2234,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'import-interwiki-text'      => 'Velg en wiki og en side å importere. Revisjonsdatoer og bidragsyteres navn blir bevart. Alle transwiki-importeringer listes i [[Special:Log/import|importloggen]].',
 'import-interwiki-source'    => 'Kildewiki/side:',
 'import-interwiki-history'   => 'Kopier all historikk for denne siden',
+'import-interwiki-templates' => 'Inkluder alle maler',
 'import-interwiki-submit'    => 'Importer',
 'import-interwiki-namespace' => 'Målnavnerom:',
 'import-upload-filename'     => 'Filnavn:',

@@ -584,7 +584,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Neznámý úkon',
-'nosuchactiontext'  => 'Tato wiki nezná činnost (action) uvedenou v URL.',
+'nosuchactiontext'  => 'Činnost („action“) uvedená v URL je neplatná.
+Zřejmě jste se překlepli při zadávání adresy nebo jste klikli na chybný odkaz.
+Může se ale jednat také o chybu {{grammar:2sg|{{SITENAME}}}}.',
 'nosuchspecialpage' => 'Neexistující speciální stránka',
 'nospecialpagetext' => "<big>'''Zadali jste neplatnou speciální stránku.'''</big>
 
@@ -2374,6 +2376,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'import-interwiki-text'      => 'Pro import zvolte zdrojovou wiki a název stránky. Data revizí a jména autorů budou zachována. Všechny importy se zaznamenávají do [[Special:Log/import|knihy importů]].',
 'import-interwiki-source'    => 'Zdrojová wiki/stránka:',
 'import-interwiki-history'   => 'Zkopírovat všechny historické verze této stránky',
+'import-interwiki-templates' => 'Zahrnout všechny šablony',
 'import-interwiki-submit'    => 'Importovat',
 'import-interwiki-namespace' => 'Cílový jmenný prostor:',
 'import-upload-filename'     => 'Jméno souboru:',

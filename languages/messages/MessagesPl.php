@@ -491,7 +491,8 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Brak takiej operacji',
-'nosuchactiontext'  => 'Oprogramowanie wiki nie rozpoznało polecenia zawartego w adresie URL',
+'nosuchactiontext'  => 'Działanie określone w adresie URL jest nieprawidłowe.
+Możliwe przyczyny to literówka w adresie, nieprawidłowy link lub błąd w oprogramowaniu {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 'nosuchspecialpage' => 'Brak takiej strony specjalnej',
 'nospecialpagetext' => "<big>'''Brak żądanej strony specjalnej.'''</big>
 
@@ -577,7 +578,7 @@ Uzasadnienie blokady: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Wylogowanie użytkownika',
-'logouttext'                 => "'''Zostałeś wylogowany.'''
+'logouttext'                 => "'''Nie jesteś już zalogowany.'''
 
 Możesz kontynuować pracę w {{GRAMMAR:MS.lp|{{SITENAME}}}} jako niezarejestrowany użytkownik albo [[Special:UserLogin|zalogować się ponownie]] jako ten sam lub inny użytkownik.
 Zauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektóre strony mogą wyglądać tak, jakbyś wciąż był zalogowany.",
@@ -687,7 +688,7 @@ Możesz zignorować tę wiadomość, jeśli konto zostało utworzone przez pomy�
 
 # Password reset dialog
 'resetpass'                 => 'Zmień hasło',
-'resetpass_announce'        => 'Zalogowałeś się, wykorzystując tymczasowe hasło otrzymane poprzez e-mail.
+'resetpass_announce'        => '{{GENDER:$1|Zalogowałeś|Zalogowałaś}} się, wykorzystując tymczasowe hasło otrzymane poprzez e-mail.
 Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'resetpass_text'            => '<!-- Dodaj tekst -->',
 'resetpass_header'          => 'Zmień hasło dla swojego konta',
@@ -801,7 +802,9 @@ Jeśli utworzenie nowej strony nie było Twoim zamiarem, wciśnij ''Wstecz'' w s
 By go identyfikować, używamy adresów IP.
 Jednak adres IP może być współdzielony przez wielu użytkowników.
 Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komentarze nie są skierowane do Ciebie, [[Special:UserLogin/signup|utwórz konto]] lub [[Special:UserLogin|zaloguj się]] – dzięki temu unikniesz w przyszłości podobnych nieporozumień.''",
-'noarticletext'                    => 'Brak strony o tym tytule. Możesz [[Special:Search/{{PAGENAME}}|poszukać {{PAGENAME}} na innych stronach]] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć stronę {{FULLPAGENAME}}].',
+'noarticletext'                    => 'Brak strony o tym tytule.
+Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych stronach]],
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} przeszukać log] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć tę stronę]</span>.',
 'userpage-userdoesnotexist'        => 'Użytkownik „$1” nie jest zarejestrowany. Upewnij się, czy na pewno zamierzałeś utworzyć/zmodyfikować właśnie tę stronę.',
 'clearyourcache'                   => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej.
 *'''Mozilla, Firefox lub Safari –''' przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl-F5'' lub ''Ctrl-R'' (''Cmd-Shift-R'' na Macintoshu)
@@ -2112,7 +2115,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Wkład użytkownika',
-'contributions-title' => 'Wkład użytkownika $1',
+'contributions-title' => 'Wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1',
 'mycontris'           => 'Moje edycje',
 'contribsub2'         => 'Dla użytkownika $1 ($2)',
 'nocontribs'          => 'Brak zmian odpowiadających tym kryteriom.',
@@ -2362,6 +2365,7 @@ Możesz również użyć linku, np. [[{{ns:special}}:Export/{{MediaWiki:Mainpage
 'export-addcat'     => 'Dodaj',
 'export-download'   => 'Zapisz do pliku',
 'export-templates'  => 'Dołącz szablony',
+'export-pagelinks'  => 'Dołącz linkowane strony na głębokości:',
 
 # Namespace 8 related
 'allmessages'               => 'Komunikaty systemowe',
@@ -2391,6 +2395,7 @@ Daty oraz nazwy autorów zostaną zachowane.
 Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rejestrze importu]].',
 'import-interwiki-source'    => 'Źródło wiki/strony:',
 'import-interwiki-history'   => 'Kopiuj całą historię edycji tej strony',
+'import-interwiki-templates' => 'Załącz wszystkie szablony',
 'import-interwiki-submit'    => 'Importuj',
 'import-interwiki-namespace' => 'Docelowa przestrzeń nazw',
 'import-upload-filename'     => 'Nazwa pliku',

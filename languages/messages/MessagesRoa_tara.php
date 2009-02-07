@@ -271,13 +271,13 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 'page-atom-feed'          => '"$1" Atom Feed',
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
-'red-link-title'          => '$1 (addà essere scritte)',
+'red-link-title'          => "$1 (non g'esiste - addà essere scritte)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pàgene',
 'nstab-user'      => "Pàgene de l'utende",
 'nstab-media'     => 'Pàgene de le media',
-'nstab-special'   => 'Speciale',
+'nstab-special'   => 'Pàgene Speciale',
 'nstab-project'   => 'Pàgene de le pruggette',
 'nstab-image'     => 'File',
 'nstab-mediawiki' => 'Messàgge',
@@ -599,7 +599,8 @@ Ce non ge stè 'a seziona $1, quiste non g'è 'u poste addò a reggistrà le can
 'newarticletext'                   => "Tu ste segue 'nu collegamende a pàgene ca angore non g'esiste.
 Pe ccrejà 'a pàgene, accuminze a scrivere jndr'à 'u scatole de sotte (vide 'a [[{{MediaWiki:Helppage}}|pàggene d'ajute]] pe avè cchiù 'mbormaziune).
 Ce tu te iacche aqquà e manghe tu 'u se purcè, allore cazze 'u buttone '''back''' d'u brauser.",
-'noarticletext'                    => "Non ge stè scritte ninde jndr'à sta pàgene, tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr'à otre pàggene oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} cange sta pàgene].",
+'noarticletext'                    => 'Non ge stè scritte ninde jndr\'à sta pàgene.
+Tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr\'à otre pàggene, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} cange sta pàgene]</span>.',
 'userpage-userdoesnotexist'        => '\'U cunde utende "$1" non g\'è reggistrete.
 Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 'clearyourcache'                   => "'''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
@@ -1136,7 +1137,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'filehist-dimensions'            => 'Dimenziune',
 'filehist-filesize'              => "Dimenzione d'u file",
 'filehist-comment'               => 'Commende',
-'imagelinks'                     => 'Collegaminde',
+'imagelinks'                     => 'Collegaminde de file',
 'linkstoimage'                   => '{{PLURAL:$1|sta pàgene apponde |$1 ste pàggene appondene}} a stu fail:',
 'nolinkstoimage'                 => 'Non ge stonne pàggene ca appodene a stu fail.',
 'sharedupload'                   => 'This file is a shared upload and may be used by other projects.',
@@ -1249,7 +1250,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'mostcategories'          => "Pàggene cu 'nu sacche de categorije",
 'mostimages'              => 'Fail cchiù appundete',
 'mostrevisions'           => 'Pàggene cchiù cangete',
-'prefixindex'             => "Indice p'u prefisse",
+'prefixindex'             => "Tutte le pàggene cu 'u prefisse",
 'shortpages'              => 'Pàggene corte',
 'longpages'               => 'Pàggene longhe',
 'deadendpages'            => 'Pàggene senza collegamende',
@@ -1303,7 +1304,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'deletedcontributions' => "Condrebbute de l'utende scangellete",
 
 # Special:LinkSearch
-'linksearch'      => 'Cirche le collegaminde web',
+'linksearch'      => 'Collegaminde fore a Uicchipèdie',
 'linksearch-ns'   => 'Neimspeise:',
 'linksearch-ok'   => 'Cirche',
 'linksearch-line' => '$1 jè pundete da $2',
@@ -1423,9 +1424,9 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 Chiste sonde le configuraziune corrende p'a pàgene '''$1''':",
 'protect-cascadeon'           => "Sta pàgene mò jè  prutette purcè jè ingluse jndr'à {{PLURAL:$1|'a seguende pàgene, ca tène|le seguende pàggene, ca tènene}} a protezione a cascata appizzechete.
 Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non ge tène effette a cascata.",
-'protect-default'             => '(defolt)',
+'protect-default'             => "Permitte a tutte l'utinde",
 'protect-fallback'            => 'Richieste \'u permesse "$1"',
-'protect-level-autoconfirmed' => "Blocche l'utinde non reggistrete",
+'protect-level-autoconfirmed' => "Blocche l'utinde nuève e chidde non reggistrete",
 'protect-level-sysop'         => 'Sulamende pe le Sysops',
 'protect-summary-cascade'     => 'a caschete',
 'protect-expiring'            => "more 'u $1 (UTC)",
@@ -1493,6 +1494,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 # What links here
 'whatlinkshere'          => 'Appondene aqquà',
 'whatlinkshere-title'    => 'Pàggene ca appondene a "$1"',
+'whatlinkshere-page'     => 'Pàgene:',
 'whatlinkshere-backlink' => '← $1',
 'linkshere'              => "Le pàggene ca avènene appondene a '''[[:$1]]''':",
 'nolinkshere'            => "Nisciuna pàgene apponde a '''[[:$1]]'''.",
@@ -1501,6 +1503,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'whatlinkshere-prev'     => '{{PLURAL:$1|apprime|apprime $1}}',
 'whatlinkshere-next'     => '{{PLURAL:$1|apprisse|apprisse $1}}',
 'whatlinkshere-links'    => '← collegaminde',
+'whatlinkshere-filters'  => 'Filtre',
 
 # Block/unblock
 'blockip'                      => "Blocche l'utende",
@@ -1526,6 +1529,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'ipblocklist-no-results'       => "L'indirizze IP ca è cerchete o 'u nome utende non ge sonde blocchete.",
 'blocklink'                    => 'blocche',
 'unblocklink'                  => 'sblocche',
+'change-blocklink'             => "cange 'u blocche",
 'contribslink'                 => 'condrebbute',
 'blocklogpage'                 => 'Archivije de le Bloccaminde',
 'blocklogentry'                => "blocchete [[$1]] pe 'nu timbe de $2 $3",
@@ -1631,7 +1635,7 @@ Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'import-logentry-interwiki' => 'transuicchied $1',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => "'A pàgene meje",
+'tooltip-pt-userpage'             => "'A pàgene utende meje",
 'tooltip-pt-mytalk'               => "'Ngazzaminde mie",
 'tooltip-pt-preferences'          => 'Me piece accussì',
 'tooltip-pt-watchlist'            => "'A liste de le pàggene ca ste condrolle pe le camgiaminde",
@@ -1641,7 +1645,7 @@ Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'tooltip-ca-talk'                 => "'Ngazzaminde sus 'a pàgene de le condenute",
 'tooltip-ca-edit'                 => "Tu puè cangià sta pàgene.
 Pe piacere ause 'u buttone de l'andeprime apprime de salvà.",
-'tooltip-ca-addsection'           => "Aggiunge 'nu commende a stu 'ngazzaminde",
+'tooltip-ca-addsection'           => "Fà accumenzà 'na seziona nove",
 'tooltip-ca-viewsource'           => "Sta pàgene jè prutette.
 Puè vedè sulamende 'u sorgende.",
 'tooltip-ca-protect'              => 'Prutegge sta pàgene',

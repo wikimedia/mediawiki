@@ -516,7 +516,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Такого действия нет',
-'nosuchactiontext'  => 'Действие, указанное в URL, не распознаётся программным обеспечением вики',
+'nosuchactiontext'  => 'Указанное в URL действие ошибочно.
+Возможно вы допустили опечатку при наборе URL или перешли по ошибочной ссылке.
+Это может также указывать на ошибку в проекте {{SITENAME}}.',
 'nosuchspecialpage' => 'Такой специальной страницы нет',
 'nospecialpagetext' => "<big>'''Запрошенной вами служебной страницы не существует.'''</big>
 
@@ -2371,6 +2373,7 @@ $1',
 Все операции межвики импорта регистрируются в [[Special:Log/import|соответствующем журнале]].',
 'import-interwiki-source'    => 'Вики-источник/страница:',
 'import-interwiki-history'   => 'Копировать всю историю изменений этой страницы',
+'import-interwiki-templates' => 'Включить все шаблоны',
 'import-interwiki-submit'    => 'Импортировать',
 'import-interwiki-namespace' => 'Целевое пространство имён:',
 'import-upload-filename'     => 'Имя файла:',

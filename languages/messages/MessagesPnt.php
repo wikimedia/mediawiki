@@ -322,8 +322,8 @@ $messages = array(
 'yourrealname'               => 'Πραματικόν όνεμαν:',
 'yourlanguage'               => "Τ' εσόν η γλώσσαν:",
 'yournick'                   => 'Υπογραφή:',
-'badsiglength'               => "Η υπογραφήν εν πολλά τρανόν.
-Επρέπ να έχ' λιγότερα ασά $1 {{PLURAL:$1|γράμμαν|γράμματα}}.",
+'badsiglength'               => "Το σημάδινεσουν εν πολλά τρανόν.
+Πρέπ' να εχ' λιγότερα ασά $1 {{PLURAL:$1|γράμμαν|γράμματα}}.",
 'yourgender'                 => 'Φύλον:',
 'gender-unknown'             => 'Aναγνώριμον',
 'gender-male'                => 'Αρσενικόν',
@@ -345,8 +345,8 @@ $messages = array(
 Ποίστεν άλλο προσπάθειαν.",
 'wrongpasswordempty'         => 'Το σημάδι έτον εύκαιρον.
 Ποίστεν άλλο προσπάθειαν.',
-'passwordtooshort'           => "Το σημάδι εν πολλά μικρόν.
-Πρέπ' να εχ' {{PLURAL:$1|1 γράμμαν|$1 γράμματα}} κιαν. Το σημάδινεσουν πρέπ' να εν αλλέτερον ασόν όνομαν τη χρήστε.",
+'passwordtooshort'           => "Το σημάδινεσουν εν πολλά μικρόν.
+Πρέπ' να εχ' {{PLURAL:$1|1 γράμμαν|$1 γράμματα}} κιαν και πρέπ' να εν αλλέτερον ασόν όνομαν τη χρήστε.",
 'mailmypassword'             => 'Αποστολή καινούρεου κωδικού',
 'passwordremindertitle'      => 'Καινούρεον σημάδιν για {{SITENAME}}',
 'passwordremindertext'       => 'Κάποιος (ίσως εσείς, ασήν διεύθυνσην IP $1)
@@ -360,7 +360,7 @@ $messages = array(
 Άμον ντο παίρετ\' ατό, εμπάτε ξαν.',
 'eauthentsent'               => "Έναν μένεμαν confirmation e-mail επήγεν σην διεύθυνσην ντ' εδώκατε.
 Πριχού να πηγαίνει άλλον μένεμαν σ' αβούτεν τη λογαρίαν, θα φτάτεν ατά ντο γραφ' σο μένεμαν απές. Αέτς πα θα δεκνίζετε το e-mail ατό εν το τεσέτερον.",
-'acct_creation_throttle_hit' => "Εποίκατε {{PLURAL:$1|1 λογαρίαν|$1 λογαρίας}}.
+'acct_creation_throttle_hit' => "Εποίκατε, ή ίσως αλλέτερος ασήν διεύθυνσήνεσουν IP, {{PLURAL:$1|1 λογαρίαν|$1 λογαρίας}}, το μέγιστον γι' ατώρα.
 'Κ επορείτε ν' εφτάτε άλλον.",
 'accountcreated'             => 'Έντον η λογαρίαν',
 'accountcreatedtext'         => "Έντον η λογαρίαν τη χρήστ' $1.",
@@ -448,7 +448,10 @@ $messages = array(
 'newarticletext'         => "Έρθατεν ασ' έναν σύνδεσμον σ' έναν εύκαιρον σελίδαν. 
 Για να εφτάτε τη σελίδαν, αρχινέστε γράψιμον σο χουτίν αφκά (δεαβάστεν τη [[{{MediaWiki:Helppage}}|σελίδαν βοήθειας]] και μαθέστεν κιάλλα).
 Εάν 'κ θέλετε ν' εφτάτε αβούτεν τη σελίδαν, πατήστε το κουμπίν το λεει '''οπίς''' και δεβάτεν οπίς απ' όθεν έρθατεν.",
-'noarticletext'          => "(Αβούτεν η σελίδαν 'κ εχ' κείμενον απές ακόμαν. [[Special:Search/{{PAGENAME}}|Εύρον αβούτον τον τίτλον]] σ' αλλέα τοι σελίδας ή [{{fullurl:{{FULLPAGENAME}}|action=edit}} άλλαξον αβούτεν την σελίδαν].",
+'noarticletext'          => "Αβούτεν η σελίδαν 'κ εχ' κείμενον απές ακόμαν. 
+[[Special:Search/{{PAGENAME}}|Εύρον αβούτον τον τίτλον]] σ' αλλέα τοι σελίδας,
+<span class=\"plainlinks\">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} εύρον την σελίδαν σα σχετικά αρχεία],
+ή [{{fullurl:{{FULLPAGENAME}}|action=edit}} άλλαξον αβούτεν την σελίδαν].",
 'previewnote'            => "'''Ατό πα πρώτον τέρεμαν εν και μόνον.
 Τ' αλλαγάς 'κ εκρατέθαν!'''",
 'editing'                => 'Αλλαγήν $1',
@@ -479,7 +482,7 @@ $messages = array(
 'cantcreateaccounttitle' => "Το ποίσιμον τη λογαρίας 'κ έντον",
 
 # History pages
-'viewpagelogs'           => "Τέρεν πρωτόκολλα γι' αβούτεν τη σελίδαν",
+'viewpagelogs'           => "Τέρεν αρχεία γι' αβούτεν τη σελίδαν",
 'currentrev'             => 'Ατωριζνόν μορφήν',
 'revisionasof'           => 'Μορφήν τη $1',
 'revision-info'          => 'Έκδοση σα $1 ασόν/ασήν $2', # Additionally available: $3: revision id
@@ -528,19 +531,22 @@ $messages = array(
 'diff-strike'             => "'''εγκάρσιον σβήσεμαν'''",
 
 # Search results
-'noexactmatch'             => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμαν \"\$1\".'''
+'noexactmatch'              => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμαν \"\$1\".'''
 Εμπορείτε να [[:\$1|εφτάτε ατέναν]].",
-'prevn'                    => '$1 προηγουμένων',
-'nextn'                    => '$1 επομένων',
-'viewprevnext'             => 'Τέρεν ($1) ($2) ($3)',
-'searchhelp-url'           => 'Help:Περιεχόμενα',
-'searchprofile-images'     => 'Αρχεία',
-'search-suggest'           => 'Γιαμ αραεύετε: $1',
-'search-interwiki-caption' => 'Αδερφικά έργα',
-'search-interwiki-more'    => '(πλέα)',
-'searchall'                => 'ούλαι',
-'powersearch'              => 'Αναλυτικόν αράεμαν',
-'search-external'          => 'Εύρον σα εξ μερέαν',
+'prevn'                     => '$1 προηγουμένων',
+'nextn'                     => '$1 επομένων',
+'viewprevnext'              => 'Τέρεν ($1) ($2) ($3)',
+'searchhelp-url'            => 'Help:Περιεχόμενα',
+'searchprofile-images'      => 'Αρχεία',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 λέξη|$2 λέξεις}})',
+'search-suggest'            => 'Γιαμ αραεύετε: $1',
+'search-interwiki-caption'  => 'Αδερφικά έργα',
+'search-interwiki-more'     => '(πλέα)',
+'search-mwsuggest-enabled'  => 'με οδηγίας',
+'search-mwsuggest-disabled' => 'θίχως οδηγίας',
+'searchall'                 => 'ούλαι',
+'powersearch'               => 'Αναλυτικόν αράεμαν',
+'search-external'           => 'Εύρον σα εξ μερέαν',
 
 # Preferences page
 'preferences'           => 'Αγαπεμένα',
@@ -566,22 +572,25 @@ $messages = array(
 'userrights-groupsmember' => 'Μέλος τη:',
 
 # Groups
-'group-user'       => 'Χρήστες',
-'group-bot'        => 'Bots',
-'group-sysop'      => 'Νοματέοι',
-'group-bureaucrat' => 'Γεροντάδες',
-'group-suppress'   => 'Παραβλέμματα',
-'group-all'        => '(ούλαι)',
+'group-user'          => 'Χρήστες',
+'group-autoconfirmed' => 'Αυτόματα βεβαιωμένοι χρηστς',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Νοματέοι',
+'group-bureaucrat'    => 'Γεροντάδες',
+'group-suppress'      => 'Παραβλέμματα',
+'group-all'           => '(ούλαι)',
 
-'group-user-member'       => 'Χρήστες',
-'group-bot-member'        => 'bot',
-'group-sysop-member'      => 'Νοματέας',
-'group-bureaucrat-member' => 'Γέροντας',
-'group-suppress-member'   => 'Επόπτες',
+'group-user-member'          => 'Χρήστες',
+'group-autoconfirmed-member' => 'Αυτόματα βεβαιωμένος χρήστες',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'Νοματέας',
+'group-bureaucrat-member'    => 'Γέροντας',
+'group-suppress-member'      => 'Επόπτες',
 
-'grouppage-sysop'      => '{{ns:project}}:Νοματέοι',
-'grouppage-bureaucrat' => '{{ns:project}}:Γεροντάδες',
-'grouppage-suppress'   => '{{ns:project}}:Παράβλεμμαν',
+'grouppage-autoconfirmed' => '{{ns:project}}:Αυτόματα βεβαιωμένοι χρηστς',
+'grouppage-sysop'         => '{{ns:project}}:Νοματέοι',
+'grouppage-bureaucrat'    => '{{ns:project}}:Γεροντάδες',
+'grouppage-suppress'      => '{{ns:project}}:Επόπτες',
 
 # Rights
 'right-read'          => 'Δεάβασον σελίδας',
@@ -754,7 +763,7 @@ $messages = array(
 'movethispage'            => "Άλλαξον τ' όνεμα τη σελίδας",
 'pager-newer-n'           => '{{PLURAL:$1|κιάλλο καινούρεο 1|κιάλλο καινούρεα $1}}',
 'pager-older-n'           => '{{PLURAL:$1|κιάλλο παλαιόν 1|κιάλλο παλαιά $1}}',
-'suppress'                => 'Παράβλεμμαν',
+'suppress'                => 'Επόπτες',
 
 # Book sources
 'booksources'               => 'Βιβλιογραφικά πηγάς',
@@ -823,7 +832,7 @@ $messages = array(
 'exblank'               => 'σελίδα έτον εύκαιρον',
 'historywarning'        => "Ωρία: Η σελίδαν που θα σβήετε έχ' ιστορικόν:",
 'confirmdeletetext'     => "Είστουν σουμά σο σβήσεμαν είνος σελίδας και ούλ' τ' ιστορίασατς εντάμαν.
-Παρακαλούμε σας να δίτε το τελικόν τη βεβαίωσην το θέλετε να εφτάτε το σβήσεμαν, τ' εγροικάτε τα συνέπειας τ' ατεινές τη πράξης και τ' εφτάτ' ατεν με βάσην [[{{MediaWiki:Policy-url}}|τη πολιτικήν]].",
+Παρακαλούμε σας να δείτε το τελικόν τη βεβαίωσην το θέλετε να εφτάτε το σβήσεμαν, τ' εγροικάτε τα συνέπειας τ' ατεινές τη πράξης και τ' εφτάτ' ατεν με βάσην [[{{MediaWiki:Policy-url}}|τη πολιτικήν]].",
 'actioncomplete'        => 'Η ενέργειαν ετελέθεν',
 'deletedtext'           => 'Το "<nowiki>$1</nowiki>" εσβήγανατο.
 Τερέστεν το $2 και δεαβάστεν για τα υστερνά τα σβησίματα.',
@@ -1055,6 +1064,9 @@ $messages = array(
 # Attribution
 'others' => "άλλ'",
 
+# Spam protection
+'spamprotectiontitle' => 'Φίλτρον προστασίας ασό σπαμ',
+
 # Patrol log
 'patrol-log-auto' => '(αυτόματον)',
 
@@ -1195,5 +1207,13 @@ $messages = array(
 
 # Special:BlankPage
 'blankpage' => 'Κενόν σελίδα',
+
+# Special:Tags
+'tag-filter'           => 'Φίλτρον [[Special:Tags|ετικέτας]]:',
+'tag-filter-submit'    => 'Φίλτρον',
+'tags-title'           => 'Ετικέτας',
+'tags-hitcount-header' => 'Αλλαγάς με ετικέτας',
+'tags-edit'            => 'άλλαγμαν',
+'tags-hitcount'        => '$1 {{PLURAL:$1|αλλαγή|αλλαγάς}}',
 
 );

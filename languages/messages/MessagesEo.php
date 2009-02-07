@@ -10,6 +10,7 @@
  * @author Melancholie
  * @author Michawiki
  * @author MinuteElectron
+ * @author Omnipaedista
  * @author Smeira
  * @author Tlustulimu
  * @author Urhixidur
@@ -176,7 +177,7 @@ $messages = array(
 'tog-editondblclick'          => 'Redakti per duobla alklako (JavaScript)',
 'tog-editsection'             => 'Montri [redakti]-ligilojn por sekcioj',
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
-'tog-showtoc'                 => 'Montri liston de enhavoj',
+'tog-showtoc'                 => 'Montri liston de enhavoj (por paĝojn kun pli ol 3 sekciojn)',
 'tog-rememberpassword'        => 'Rememori mian pasvorton',
 'tog-editwidth'               => 'Redaktilo estu plenlarĝa',
 'tog-watchcreations'          => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
@@ -1162,6 +1163,8 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'defaultns'                 => 'Traserĉi la jenajn nomspacojn:',
 'default'                   => 'defaŭlte',
 'files'                     => 'Dosieroj',
+'prefs-custom-css'          => 'Propra CSS',
+'prefs-custom-js'           => 'Propra JS',
 
 # User rights
 'userrights'                  => 'Prizorgi rajtojn de uzantoj', # Not used as normal message but as header for the special page itself
@@ -1730,7 +1733,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'newuserlogpagetext'          => 'Jen protokolo de lastaj kreadoj de uzantoj.',
 'newuserlog-byemail'          => 'pasvorto sendita retpoŝte',
 'newuserlog-create-entry'     => 'Nova uzanto',
-'newuserlog-create2-entry'    => 'kreis konton por $1',
+'newuserlog-create2-entry'    => 'kreis nova konton por $1',
 'newuserlog-autocreate-entry' => 'Konto kreita aŭtomate',
 
 # Special:ListGroupRights
@@ -2867,7 +2870,7 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 'autosumm-blank'   => 'Forviŝis la paĝon',
 'autosumm-replace' => "Anstataŭigante paĝojn kun '$1'",
 'autoredircomment' => 'Redirektante al [[$1]]',
-'autosumm-new'     => 'Nova paĝo: $1',
+'autosumm-new'     => "Nova paĝo kun '$1'",
 
 # Live preview
 'livepreview-loading' => 'Ŝarĝante...',

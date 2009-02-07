@@ -16,6 +16,8 @@ $messages = array(
 'tog-highlightbroken'         => 'P\'akita sipita utt\'ayaña <a href="" class="new">ukhama</a> (maykipa: ukhama<a href="" class="internal">?</a>).',
 'tog-justify'                 => "Tanta amuyanak purapt'ayaña",
 'tog-hideminor'               => 'Jichha kutikiptatanakana «Janiw taqpachäkiti» imantaña',
+'tog-hidepatrolled'           => "Jichhnaki jaqukipawina askiptawix unch'ukita imantaña",
+'tog-newpageshidepatrolled'   => "Machaqa uñstawix waruchatat uñstawix unch'ukita imantaña",
 'tog-extendwatchlist'         => "Sarayawi jaqukipaw uñachayasuñatakiw unch'ukit waruch aqatatayaña",
 'tog-usenewrc'                => "Jichhnaki jaqukipawi waliptäta (''JavaScript'')",
 'tog-numberheadings'          => 'Titulun chinu achuraña',
@@ -25,6 +27,7 @@ $messages = array(
 'tog-editsectiononrightclick' => "(''JavaScript'') titulxat tuqina kupi suxuqiñampi tuqitaki turkawi luräña",
 'tog-showtoc'                 => 'Waruchataw uñachayaña (kimsa tituljampi uñstawitaki)',
 'tog-rememberpassword'        => "Akax jasanchirin imt'awija amtaña",
+'tog-editwidth'               => 'Akiptawit llataxa taqi anchuniwa',
 
 'underline-always' => 'Wiñaya',
 'underline-never'  => 'Janipini',

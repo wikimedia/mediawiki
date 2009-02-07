@@ -459,8 +459,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Nema takve akcije',
-'nosuchactiontext'  => 'Akcija navedena u URL-u nije
-prepoznata od strane {{SITENAME}} softvera.',
+'nosuchactiontext'  => 'Akcija navedena u URL-u nije valjana.
+Možda ste pogriješili pri unosu URL-a ili ste slijedili pokvaren link.
+Moguće je i da je ovo greška u {{SITENAME}} softveru.',
 'nosuchspecialpage' => 'Nema takve posebne stranice',
 'nospecialpagetext' => 'Tražili ste posebnu stranicu, koju {{SITENAME}} softver nije prepoznao.',
 
@@ -2378,6 +2379,7 @@ Datumi revizija i imena autora će biti sačuvani.
 Sve akcije pri međuwiki uvozu će biti zapisane u [[Special:Log/import|zapisu uvoza]].',
 'import-interwiki-source'    => 'Izvorna wiki/stranica:',
 'import-interwiki-history'   => 'Kopiraj sve verzije historije za ovu stranicu',
+'import-interwiki-templates' => 'Uključi sve šablone',
 'import-interwiki-submit'    => 'Uvoz',
 'import-interwiki-namespace' => 'Odredišni imenski prostor:',
 'import-upload-filename'     => 'Naziv datoteke:',

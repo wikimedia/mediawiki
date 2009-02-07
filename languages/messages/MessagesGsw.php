@@ -382,7 +382,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Die Aktion git s nit',
-'nosuchactiontext'  => 'Die Aktion wird vun de MediaWiki-Software nit unterstitzt',
+'nosuchactiontext'  => 'Di Aktion, wu in dr URL aagee isch, isch nit giltig.
+Villicht hesch d URL falsch yygee oder bisch eme falsche Gleich noogange.
+Des chennt au ne Fähler aazeige in {{SITENAME}}.',
 'nosuchspecialpage' => 'Die Spezialsyte git s nit',
 'nospecialpagetext' => "<big>'''Die Spezialsyte git s nid.'''</big>
 
@@ -676,7 +678,8 @@ S Passwort fir des nej Benutzerkonto cha uf dr Spezialsyte „[[Special:ChangePa
 Zum die Syte aalege, chasch do in däm Chaschte unte aafange schrybe (lueg [[{{MediaWiki:Helppage}}|Hilfe]] fir meh Informationeo).
 Wänn do nid hesch welle aane goh, no druck in Dyynem Browser uf '''Zruck'''.",
 'anontalkpagetext'                 => "''Des isch e Diskussionssyte vo me anonyme Benutzer, wo kei Zuegang aaglait het oder wo ne nit bruucht. Sälleweg muen mir di numerischi IP-Adräss bruuche zum ihn oder si z identifiziere. Sone IP-Adräss cha au vo mehrere Benutzer deilt werde. Wenn Si en anonyme Benutzer sin un s Gfiehl hen, dass do irrelevanti Kommentar an Si grichtet wärde, derno [[Special:UserLogin|lege Si sich bitte en Zuegang aa odr mälde sich aa]] zum in Zuekunft Verwirrige mit andere anonyme Benutzer z vermide.''",
-'noarticletext'                    => "Uf dere Syte het's no kei Tekscht. Du chasch uf anderne Syte [[Special:Search/{{PAGENAME}}|dä Ytrag sueche]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Syte bearbeite].",
+'noarticletext'                    => 'Uf däre Syte het s no kei Täxt. Du chasch uf andere Syte [[Special:Search/{{PAGENAME}}|dä Yytrag sueche]], <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} dr Logbuechyytrag sueche, wo dezue ghert],
+oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Syte bearbeite]</span>.',
 'userpage-userdoesnotexist'        => 'S Benutzerkonto „$1“ git s nit. Bitte prief, eb Du die Syte wirkli wit aalege/bearbeite.',
 'clearyourcache'                   => "'''Hywys:''' Noch dynere Änderig muess no der Browser-Cache gläärt wäre!<br />'''Mozilla/Safari/Konqueror:''' ''Strg-Umschalttaschte-R'' (oder ''Umschalttasche'' druckt halte und uf s ''Nei-Lade''-Symbol klicke), '''IE:''' ''Strg-F5'', '''Opera/Firefox:''' ''F5''",
 'usercssjsyoucanpreview'           => "'''Tipp:''' Nimm dr Vorschau-Chnopf, zum Dyy nej CSS/JS vor em Spichere z teschte.",
@@ -1544,7 +1547,7 @@ In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Zii
 'uncategorizedcategories' => 'Nit kategorisierte Kategorie',
 'uncategorizedimages'     => 'Nid kategorisierti Dateie',
 'uncategorizedtemplates'  => 'Nid kategorisierti Vorlage',
-'unusedcategories'        => 'Nid ’bruuchti Kategorië',
+'unusedcategories'        => 'Nid bruuchti Kategorië',
 'unusedimages'            => 'Verwaiste Bilder',
 'popularpages'            => 'Beliebti Artikel',
 'wantedcategories'        => 'Bruuchti Kategorie, wo s no nid git',
@@ -2153,6 +2156,7 @@ Zum Exportiere trag dr Sytetitel in dr Täxtchaschte unter yy, ei Titel pro Zyyl
 'export-addcat'     => 'Dezuefüege',
 'export-download'   => 'Als XML-Datei spychere',
 'export-templates'  => 'Vorlage mit ybinde',
+'export-pagelinks'  => 'Vergleichti Syten automatisch mit exportiere bis zuen ere Rekursionstiefi vu:',
 
 # Namespace 8 related
 'allmessages'               => 'Systemnochrichte',
@@ -2182,6 +2186,7 @@ S Datum vo dr Bearbeitig un dr Benutzername blybe erhalte.
 Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] protokolliert.',
 'import-interwiki-source'    => 'Quell-Wiki/-Syte:',
 'import-interwiki-history'   => 'Alli früeneri Versione vo dere Syte importiere',
+'import-interwiki-templates' => 'Mit allene Vorlage',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Ziilnamensruum:',
 'import-upload-filename'     => 'Dateiname:',

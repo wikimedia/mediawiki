@@ -570,7 +570,7 @@ Pšosym pśizjaw se zasej, gaž jo dostanjoš.',
 Nježli až wótpósćelo se dalšna e-mail na to wužywarske konto, dejš slědowaś instrukcije w powěsći a tak wobkšuśiś, až konto jo wót wěrnosći twójo.',
 'throttled-mailpassword'     => 'W běgu {{PLURAL:$1|slědneje $1 góźiny|slědnjeju $1 góźinowu|slědnych $1 góźinow}} jo se južo raz wó nowe šćitne gronidło pšosyło. Aby se znjewužywanje wobinuło, wótpósćelo se jano jadno šćitne gronidło w běgu {{PLURAL:$1|$1 góźiny|$1 góźinowu|$1 góźinow}}.',
 'mailerror'                  => 'Zmólka pśi wótpósłanju e-maila: $1',
-'acct_creation_throttle_hit' => 'Woglědowarje toś togo wikija, kótarež wužywaju twóju IP-adresu su napórali {{PLURAL:$1|1 konto|$1 konśe|$1 konta|$1 kontow}} slědny źeń. to jo maksimalna dowólona licba za toś tu periodu.
+'acct_creation_throttle_hit' => 'Woglědowarje toś togo wikija, kótarež wužywaju twóju IP-adresu su napórali {{PLURAL:$1|1 konto|$1 konśe|$1 konta|$1 kontow}} slědny źeń. To jo maksimalna dowólona licba za toś tu periodu.
 Woglědowarje, kótarež wužywaju toś tu IP-adresu njamógu tuchylu dalšne konta napóraś.',
 'emailauthenticated'         => 'Twója e-mailowa adresa jo se $2 $3 goź. wobkšuśiła.',
 'emailnotauthenticated'      => 'Twója e-mailowa adresa njejo hyšći wobkšuśona. E-mailowe funkcije móžoš aklej pó wuspěšnem wobkšuśenju wužywaś.',
@@ -692,7 +692,7 @@ Gronidło za toś to nowe konto dajo se na boku ''[[Special:ChangePassword|Groni
 Aby bok wutwórił, ga napiš do kašćika spózy.
 (Dokradnjejše informacije pód: [[{{MediaWiki:Helppage}}|help page]]).',
 'anontalkpagetext'                 => "---- ''Toś jo diskusijny bok za anonymnego wužywarja, kótaryž njejo dotychměst žedno wužywarske konto załožył abo swójo konto njewužywa. Togodla dejmy numerisku IP-adresu wužywaś, aby jogo/ju identificěrowali. Taka IP-adresa dajo se wót wšakich wužywarjow wužywaś. Jolic sy anonymny wužywaŕ a se mysliš, až su se njerelewantne komentary na tebje měrili, [[Special:UserLogin/signup|załož konto]] abo [[Special:UserLogin|pśizjaw se]], aby se w pśichoźe zmuśenje z drugimi anonymnymi wužywarjami wobinuł.''",
-'noarticletext'                    => 'Dotychměst njewopśimjejo toś ten bok hyšći žeden tekst. Móžoš w drugich bokach [[Special:Search/{{PAGENAME}}|za napismom togo boka pytaś]] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} toś ten bok wobźěłaś].',
+'noarticletext'                    => 'Dotychměst toś ten bok hyšći njewopśimujo žeden tekst. Móžoš w drugich bokach [[Special:Search/{{PAGENAME}}|titel togo boka pytaś]], <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} wótpowědne protokole pytaś] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} toś ten bok wobźěłaś]</span>.',
 'userpage-userdoesnotexist'        => 'Wužywarske konto "$1" njejo zregistrěrowane. Pšosym pśeglědaj, lěc coš toś ten bok wopšawdu napóraś/wobźěłaś.',
 'clearyourcache'                   => "'''Pokazka: Jo móžno, až dejš wuprozniś cache wobglědowaka, aby změny wiźeł.'''
 '''Mozilla/Firefox/Safari:''' Źarź ''Umsch'' tłocony, mjaztym až kliknjoš ''Znowego'' abo tłoc pak ''Strg-F5'' pak ''Strg-R'' (''Command-R'' na Makintošu); '''Konqueror: '''Klikni ''' na ''Aktualisieren'' abo tłoc ''F5;'' '''Opera:''' wuprozni cache w ''Extras -> Eisntellungen;'' '''Internet Explorer:''' źarź ''Strg'' tłocony, mjaztym až kliknjoš na ''Aktualisieren'' abo tłoc ''Strg-F5.''",
@@ -2180,6 +2180,7 @@ W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{ns:special}}:Expo
 'export-addcat'     => 'Dodaś',
 'export-download'   => 'Ako XML-dataju składowaś',
 'export-templates'  => 'Pśedłogi zapśimjeś',
+'export-pagelinks'  => 'Wótkazane boki zapśěgnuś, až k dłymoju wót:',
 
 # Namespace 8 related
 'allmessages'               => 'Systemowe zdźělenja',
@@ -2209,6 +2210,7 @@ Datumy wersijow a wužywarske mjenja pśi tym se njezměniju.
 Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-lisćinje importow]].',
 'import-interwiki-source'    => 'Žrědłowy wiki/bok:',
 'import-interwiki-history'   => 'Importěruj wšykne wersije toś togo boka',
+'import-interwiki-templates' => 'Wše pśedłogi zapśěgnuś',
 'import-interwiki-submit'    => 'Importěrowaś',
 'import-interwiki-namespace' => 'Celowy mjenjowy rum:',
 'import-upload-filename'     => 'Datajowe mě:',

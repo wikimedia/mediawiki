@@ -653,7 +653,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'لا يوجد فعل كهذا',
-'nosuchactiontext'  => 'الفعل في المسار لم يتم التعرف عليه بواسطة الويكي',
+'nosuchactiontext'  => 'الفعل المحدد بواسطة المسار غير صحيح.
+ربما تكون قد كتبت المسار بطريقة غير صحيحة، أو اتبعت وصلة غير صحيحة.
+هذا ربما يشير أيضا إلى علة في {{SITENAME}}.',
 'nosuchspecialpage' => 'لا توجد صفحة خاصة بهذا الاسم',
 'nospecialpagetext' => "<big>'''لقد طلبت صفحة خاصة غير صحيحة.'''</big>
 
@@ -781,7 +783,7 @@ $2',
 'badsig'                     => 'توقيع خام غير صحيح؛ تحقق من وسوم HTML.',
 'badsiglength'               => 'توقيعك طويل جدا.
 يجب أن يكون أقل من $1 {{PLURAL:$1|حرف|حروف}}.',
-'yourgender'                 => 'النوع:',
+'yourgender'                 => 'الجنس:',
 'gender-unknown'             => 'غير محدد',
 'gender-male'                => 'ذكر',
 'gender-female'              => 'أنثى',

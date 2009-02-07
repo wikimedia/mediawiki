@@ -233,9 +233,9 @@ $messages = array(
 'loginsuccesstitle'          => 'Inmeldung gesǣlde',
 'loginsuccess'               => "'''Þu eart nū inmeldod tō {{SITENAME}} swā \"\$1\".'''",
 'nosuchuser'                 => 'Þǣr is nān brūcere be þǣm naman "$1".
-Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne brūcendhordcleofan.',
+Edscēawa þīne wrītunge, oþþe brūc þone form under tō [[Special:UserLogin/signup|settene nīwne brūcendhordcleofan]].',
 'nosuchusershort'            => 'Þǣr is nān brūcend mid þǣm naman "<nowiki>$1</nowiki>".  Edscēawa on þīne wrītunge.',
-'acct_creation_throttle_hit' => 'Hwæt, þu hæfst gēo geseted $1 hordcleofan. Þu ne canst settan ǣnige māran.',
+'acct_creation_throttle_hit' => 'Hwæt, þu hæfst gēo geseted {{PLURAL:$1|1 hordcleofan|$1 -}}. Þu ne canst settan ǣnige māran.',
 'accountcreated'             => 'Hordcleofan gescapen',
 'loginlanguagelabel'         => 'Sprǣc: $1',
 
@@ -263,6 +263,7 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne br�
 'summary'                => 'Scortnes:',
 'minoredit'              => 'Þēos is lȳtlu ādihtung',
 'savearticle'            => 'Sparian tramet',
+'preview'                => 'Forescēawian',
 'showpreview'            => 'Forescēawian',
 'whitelistedittitle'     => 'Inmeldunge behófod tó ádihtenne',
 'whitelistedittext'      => 'Þu scealt $1 tó ádihtenne trametas.',
@@ -357,7 +358,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 # Recent changes
 'nchanges'        => '$1 hwierfunga',
 'recentchanges'   => 'Nīwlica hweorfunga',
-'rcnote'          => 'Under sind þā æftemestan <strong>$1</strong> hweorfunga in þǣm æftemestum <strong>$2</strong> dagum.',
+'rcnote'          => "Under {{PLURAL:$1|... '''1''' ...|sind þā æftemestan '''$1''' hweorfunga}} in {{PLURAL:$2|...|þǣm æftemestum '''$2''' dagum}}, . . $5, $4.",
 'rcnotefrom'      => 'Under sind þā hweorfunga siþþan <b>$2</b> (oþ <b>$1</b> geīewed).',
 'rclistfrom'      => 'Īewan nīwa hweorfunga, onginnenda of $1',
 'rcshowhideminor' => '$1 lȳtla ādihtunga',

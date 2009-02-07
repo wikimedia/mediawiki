@@ -447,7 +447,8 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'No existe tal acción',
-'nosuchactiontext'  => 'La acción especificada en la dirección no es válida en {{SITENAME}}',
+'nosuchactiontext'  => 'La acción especificada en la dirección no es válida en {{SITENAME}}. 	
+Es posible que hayas escrito mal la URL o que hayas seguido un enlace incorrecto. Esto también podría indicar un error en el software utilizado en {{SITENAME}}.',
 'nosuchspecialpage' => 'No existe esa página especial',
 'nospecialpagetext' => "<big>'''Ha solicitado una página especial inexistente.'''</big>
 
@@ -728,11 +729,13 @@ Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor 
 'loginreqlink'                     => 'identificarse',
 'loginreqpagetext'                 => 'Debe $1 para ver otras páginas.',
 'accmailtitle'                     => 'La contraseña ha sido enviada.',
-'accmailtext'                      => "La contraseña para '$1' se ha enviado a $2.",
+'accmailtext'                      => "Una contraseña generada aleatoriamente para [[User talk:$1|$1]] se ha enviado a $2.
+
+La contraseña para esta nueva cuenta se puede cambiar en la página ''[[Special:ChangePassword|Cambiar la contraseña]]'' después de la autenticación.",
 'newarticle'                       => '(Nuevo)',
 'newarticletext'                   => 'Ha seguido un enlace a una página que aún no existe. Si lo que quiere es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]]. Si llegó aquí por error, vuelva a la página anterior.',
 'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[Special:UserLogin|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
-'noarticletext'                    => 'En este momento no hay texto en esta página, puedes [[Special:Search/{{PAGENAME}}|buscar por el título de esta página]] en otras páginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
+'noarticletext'                    => 'En este momento no hay texto en esta página. Puedes [[Special:Search/{{PAGENAME}}|buscar por el título de esta página]] en otras páginas, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} buscar en los registros] o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
 
@@ -1144,7 +1147,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'stub-threshold'            => 'Límite para formato de <a href="#" class="stub">enlace a esbozo</a> (bytes):',
 'recentchangesdays'         => 'Días a mostrar en cambios recientes:',
 'recentchangesdays-max'     => '(máximo {{PLURAL:$1|un día|$1 días}})',
-'recentchangescount'        => 'Número de títulos en cambios recientes',
+'recentchangescount'        => 'Número de ediciones a mostrar en cambios recientes, historiales y registros, por defecto:',
 'savedprefs'                => 'Sus preferencias han sido grabadas.',
 'timezonelegend'            => 'Huso horario',
 'timezonetext'              => '¹Indique el número de horas de diferencia entre su hora local y la hora del servidor (UTC).',
@@ -1405,7 +1408,7 @@ Si el archivo comprobado es la misma imagen a tamaño original no es necesario s
 'file-thumbnail-no'           => "El nombre del archivo comienza con '''<tt>$1</tt>'''.
 Parece ser una imagen de tamaño reducido ''(thumbnail)''.
 Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nombre del archivo.",
-'fileexists-forbidden'        => 'Ya existe un archivo con este nombre. Por favor, cambie el nombre del archivo y vuelva a subirlo. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Ya existe un archivo con este nombre, y no es posible grabarlo encima de otro. Si quiere subir su archivo de todos modos, por favor vuelva atrás y utilice otro nombre. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ya existe un archivo con este nombre en el repositorio compartido.
 Si todavía quiere subir su archivo, por favor, regrese a la página anterior y use otro nombre. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este archivo es un duplicado {{PLURAL:$1|del siguiente|de los siguientes}}:',
@@ -1519,7 +1522,7 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 # File deletion
 'filedelete'                  => 'Borrar $1',
 'filedelete-legend'           => 'Borrar archivo',
-'filedelete-intro'            => "Estás borrando '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Estás borrando el archivo '''[[Media:$1|$1]]''' así como todo su historial.",
 'filedelete-intro-old'        => "Estás borrando la versión de '''[[Media:$1|$1]]''' del [$4 $2 a las $3].",
 'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Borrar',
@@ -2250,6 +2253,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{ns:special}}:
 'export-addcat'     => 'Añadir',
 'export-download'   => 'Guardar como fichero',
 'export-templates'  => 'Incluir plantillas',
+'export-pagelinks'  => 'Incluir páginas enlazadas a una profundidad de:',
 
 # Namespace 8 related
 'allmessages'               => 'Todos los mensajes de MediaWiki',
@@ -2278,6 +2282,7 @@ Las fechas de revisiones y los nombres de editores se preservarán.
 Todas las importaciones transwiki se registran en el [[Special:Log/import|registro de importaciones]].',
 'import-interwiki-source'    => 'Wiki o página origen:',
 'import-interwiki-history'   => 'Copiar todas las versiones históricas para esta página',
+'import-interwiki-templates' => 'Incluir todas las plantillas',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Espacio de nombres de destino:',
 'import-upload-filename'     => 'Nombre de archivo:',
@@ -3010,6 +3015,7 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'dberr-problems'    => 'Disculpe!. Este sitio está experimentando dificultades técnicas.',
 'dberr-again'       => 'Intente esperando unos minutosa y recargando.',
 'dberr-info'        => '(No puede contactar la base de datos del servidor: $1)',
+'dberr-usegoogle'   => 'Puede intentar buscar a través de Google, mientras tanto.',
 'dberr-outofdate'   => 'Note que los índices de nuestro contenido pueden estar desactualizados.',
 'dberr-cachederror' => 'La siguiente es una página guardada de la página solicitada, y puede no estar actualizada.',
 

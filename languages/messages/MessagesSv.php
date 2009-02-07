@@ -533,8 +533,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Funktionen finns inte',
-'nosuchactiontext'  => 'Den funktion som angivits i URL:en kan inte
-hittas av programvaran',
+'nosuchactiontext'  => 'Den handling som specificerats av URL:en är ogiltig.
+Du kan ha stavat URL:en fel, eller följt en felaktig länk.
+Det kan också bero på en bug i {{SITENAME}}.',
 'nosuchspecialpage' => 'Någon sådan specialsida finns inte',
 'nospecialpagetext' => "<big>'''Du har begärt en specialsida som inte finns.'''</big>
 
@@ -821,7 +822,8 @@ Lösenordet för det här nya användarkontot kan ändras på sidan ''[[Special:
 Därför måste personens numeriska IP-adress användas för att identifiera honom eller henne.
 En sådan IP-adress kan ibland användas av flera olika personer.
 Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:UserLogin/signup|skapa ett konto]] eller [[Special:UserLogin|logga in]]. Då undviker du framtida förväxlingar.''",
-'noarticletext'                    => 'Det finns just nu ingen text på denna sida. Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] i andra sidor eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida].',
+'noarticletext'                    => 'Det finns just nu ingen text på denna sida.
+Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sidor, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} söka i loggarna], eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida]</span>.',
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "'''Tips:''' Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
@@ -2348,6 +2350,7 @@ I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Exp
 'export-addcat'     => 'Lägg till',
 'export-download'   => 'Ladda ner som fil',
 'export-templates'  => 'Inkludera mallar',
+'export-pagelinks'  => 'Inkludera länkade sidor till ett djup på:',
 
 # Namespace 8 related
 'allmessages'               => 'Systemmeddelanden',
@@ -2377,6 +2380,7 @@ Versionshistorik (datum och redaktörer) kommer att bevaras.
 All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|importloggen]].',
 'import-interwiki-source'    => 'Källwiki/sida:',
 'import-interwiki-history'   => 'Kopiera hela versionshistoriken för denna sida',
+'import-interwiki-templates' => 'Inkludera alla mallar',
 'import-interwiki-submit'    => 'Importera',
 'import-interwiki-namespace' => 'Målnamnrymd:',
 'import-upload-filename'     => 'Filnamn:',

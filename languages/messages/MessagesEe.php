@@ -109,12 +109,12 @@ $messages = array(
 'jumptosearch'     => 'dii',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => '{{SITENAME}} ŋutinya',
+'aboutsite'         => 'Nusi {{SITENAME}} nye',
 'aboutpage'         => 'Project:Ŋutinya',
 'copyright'         => 'Nusiwo le afii le $1 mɔɖeɖea te.',
 'copyrightpagename' => '{{SITENAME}} mɔɖeɖewo',
 'copyrightpage'     => '{{ns:project}}:Mɔɖeɖewo',
-'currentevents'     => 'Nusiwo le dzɔdzɔm',
+'currentevents'     => 'Amaneɛ',
 'currentevents-url' => 'Project:Nusiwo le dzɔdzɔm',
 'disclaimers'       => 'Nuxlɔ̃amenyawo',
 'edithelp'          => 'Kpekpeɖeŋu na etɔtrɔ',

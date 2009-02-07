@@ -428,8 +428,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Takáto činnosť neexistuje',
-'nosuchactiontext'  => 'Softvér MediaWiki nepozná akciu,
-ktorú vyžadujete pomocou URL.',
+'nosuchactiontext'  => 'Operácia, ktorú vyžadujete pomocou URL nie je platná.
+Je možné, že ste napísali URL chybne alebo ste klikli na chybný odkaz.
+Príčinou tiež môže byť chyba v softvéri, ktorý používa {{SITENAME}}.',
 'nosuchspecialpage' => 'Takáto špeciálna stránka neexistuje',
 'nospecialpagetext' => "<big>'''Vyžiadali ste si neplatnú špeciálnu stránku.'''</big>
 
@@ -2300,6 +2301,7 @@ Dátumy revízií a mená používateľov budú zachované.
 Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname importov]].',
 'import-interwiki-source'    => 'Zdrojová wiki/stránka:',
 'import-interwiki-history'   => 'Skopírovať všetky historické revízie tejto stránky',
+'import-interwiki-templates' => 'Vložiť všetky šablóny',
 'import-interwiki-submit'    => 'Importovať',
 'import-interwiki-namespace' => 'Cieľový menný priestor:',
 'import-upload-filename'     => 'Názov súboru:',

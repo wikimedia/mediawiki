@@ -18,6 +18,7 @@
  * @author Melos
  * @author Nemo bis
  * @author Nick1915
+ * @author Omnipaedista
  * @author Pietrodn
  * @author Ramac
  * @author Remember the dot
@@ -437,7 +438,7 @@ I seguenti collegamenti sono in lingua inglese:
 
 # Main script and global functions
 'nosuchaction'      => 'Operazione non riconosciuta',
-'nosuchactiontext'  => 'La URL immessa non corrisponde a un comando riconosciuto dal software MediaWiki',
+'nosuchactiontext'  => "L'azione specificata nell'URL non è valida. Potresti aver sbagliato a digitare l'URL o cliccato su un link non corretto. Questo potrebbe anche indicare un bug in {{SITENAME}}.",
 'nosuchspecialpage' => 'Pagina speciale non disponibile',
 'nospecialpagetext' => "La pagina speciale richiesta non è stata riconosciuta dal software MediaWiki; l'elenco delle pagine speciali valide si trova in [[Special:SpecialPages|Elenco delle pagine speciali]].",
 
@@ -718,7 +719,7 @@ Se si desidera creare la pagina ora, basta cominciare a scrivere il testo nella 
 (fare riferimento alle [[{{MediaWiki:Helppage}}|pagine di aiuto]] per maggiori informazioni).
 Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
 'anontalkpagetext'                 => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin|crea un nuovo accesso o entra]] con quello che già hai per evitare di essere confuso con altri utenti anonimi in futuro''",
-'noarticletext'                    => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora].',
+'noarticletext'                    => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora]</span>.',
 'userpage-userdoesnotexist'        => 'L\'account "$1" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
 'clearyourcache'                   => "'''Nota: dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti.''' Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''; per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "'''Suggerimento:''' si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
@@ -2203,6 +2204,7 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[{{ns
 'export-addcat'     => 'Aggiungi',
 'export-download'   => 'Richiedi il salvataggio come file',
 'export-templates'  => 'Includi i template',
+'export-pagelinks'  => 'Includi pagine correlate ad una profondità di:',
 
 # Namespace 8 related
 'allmessages'               => 'Messaggi di sistema',
@@ -2231,6 +2233,7 @@ Le date di pubblicazione e i nomi degli autori delle varie versioni saranno cons
 Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log/import|log di importazione]].',
 'import-interwiki-source'    => 'Sorgente wiki/pagina:',
 'import-interwiki-history'   => "Copia l'intera cronologia di questa pagina",
+'import-interwiki-templates' => 'Includi tutti i template',
 'import-interwiki-submit'    => 'Importa',
 'import-interwiki-namespace' => 'Namespace di destinazione:',
 'import-upload-filename'     => 'Nome file:',
@@ -2952,7 +2955,14 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 #Inserisci sopra questa riga tutti i frammenti di regex. Lascia questa riga esattamente com'è</pre>",
 
 # Special:Tags
-'tag-filter-submit' => 'Filtra',
+'tags'                 => 'Tag di modifiche valide',
+'tag-filter'           => 'Filtro del [[Special:Tags|tag]]:',
+'tag-filter-submit'    => 'Filtra',
+'tags-title'           => 'Tag',
+'tags-tag'             => 'Nome interno del tag',
+'tags-hitcount-header' => 'Modifiche che hanno tag',
+'tags-edit'            => 'modifica',
+'tags-hitcount'        => '$1 {{PLURAL:$1|modifica|modifiche}}',
 
 # Database error messages
 'dberr-header'      => 'Questa wiki ha un problema',
@@ -2960,6 +2970,7 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 'dberr-again'       => 'Prova ad attendere qualche minuto e ricaricare.',
 'dberr-info'        => '(Impossibile contattare il server del database: $1)',
 'dberr-usegoogle'   => 'Puoi provare a cercare su Google nel frattempo.',
+'dberr-outofdate'   => 'Nota che la loro indicizzazione dei nostri contenuti potrebbe non essere aggiornata.',
 'dberr-cachederror' => 'Quella che segue è una copia cache della pagina richiesta, e potrebbe non essere aggiornata.',
 
 );
