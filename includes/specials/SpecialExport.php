@@ -38,7 +38,7 @@ class SpecialExport extends SpecialPage {
 		$this->curonly = true;
 		$this->doExport = false;
 		$this->templates = $wgRequest->getCheck( 'templates' );
-		$this->images = $wgRequest->getCheckImages; // Doesn't do anything yet
+		$this->images = $wgRequest->getCheck( 'images' ); // Doesn't do anything yet
 		$this->pageLinkDepth = $wgRequest->getIntOrNull( 'pagelink-depth' );
 
 		if ( $wgRequest->getCheck( 'addcat' ) ) {
