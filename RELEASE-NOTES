@@ -147,6 +147,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   longer affects the page title
 * (bug 6702) Default system messages updated/improved
 * (bug 17190) User ID on preference page no longer has delimeters
+* (bug 17341) "Powered by MediaWiki" should be on the left on RTL wikis
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
