@@ -3,9 +3,9 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.14 ==
+== MediaWiki 1.14.0rc1 ==
 
-February 5, 2009
+February 7, 2009
 
 This is a release candidate for the 2009 Q1 branch of MediaWiki.
 
@@ -478,6 +478,10 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16123) Fixed Special:Import on SQLite.
 * (bug 16937) Show appropriate error message for attempted installs on 
   PostgreSQL 7.3 or earlier.
+* Disabled SQLite support in the installer.
+* Fixed XSS vulnerabilities in the web-based installer.
+* Added a meta robots tag to the installer to prevent indexing of potentially 
+  sensitive configuration data.
 
 === API changes in 1.14 ===
 
