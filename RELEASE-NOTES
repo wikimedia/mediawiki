@@ -2,6 +2,25 @@
 
 For upgrade instructions please see the UPGRADE file in this directory.
 
+== MediaWiki 1.6.12 ==
+
+February 7, 2009
+
+This is a security update to the Spring 2006 quarterly release.
+
+A number of cross-site scripting (XSS) security vulnerabilities were discovered 
+in the web-based installer (config/index.php). These vulnerabilities all 
+require a live installer -- once the installer has been used to install a wiki, 
+it is deactivated.
+
+Note that cross-site scripting vulnerabilities can be used to attack any website
+in the same cookie domain. So if you have an uninstalled copy of MediaWiki on
+the same site as an active web service, MediaWiki could be used to attack the
+active service.
+
+If you are hosting an old copy of MediaWiki that you have never installed, you 
+are advised to remove it from the web.
+
 == MediaWiki 1.6.11 ==
 
 December 15, 2008
