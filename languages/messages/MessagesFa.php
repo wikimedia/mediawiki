@@ -70,8 +70,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'بیشترین_پیوند' ),
 	'Mostlinkedcategories'      => array( 'رده_با_بیشترین_پیوند' ),
 	'Mostlinkedtemplates'       => array( 'الگو_با_بیشترین_پیوند' ),
-	'Mostcategories'            => array( 'بیشترین_رده' ),
 	'Mostimages'                => array( 'بیشترین_تصویر' ),
+	'Mostcategories'            => array( 'بیشترین_رده' ),
 	'Mostrevisions'             => array( 'بیشترین_نسخه' ),
 	'Fewestrevisions'           => array( 'کمترین_نسخه' ),
 	'Shortpages'                => array( 'صفحه‌های_کوتاه' ),
@@ -94,7 +94,7 @@ $specialPageAliases = array(
 	'Blockme'                   => array( 'بستن_من' ),
 	'Booksources'               => array( 'منابع_کتاب' ),
 	'Categories'                => array( 'رده‌ها' ),
-	'Export'                    => array( 'برون‌_بری_صفحه' ),
+	'Export'                    => array( 'برون_بری_صفحه' ),
 	'Version'                   => array( 'نسخه' ),
 	'Allmessages'               => array( 'تمام_پیغام‌ها' ),
 	'Log'                       => array( 'سیاهه‌ها' ),
@@ -126,7 +126,10 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'صفحه_خالی' ),
 	'LinkSearch'                => array( 'جستجوی_پیوند' ),
 	'DeletedContributions'      => array( 'مشارکت‌های_حذف_شده' ),
+	'Tags'                      => array( 'برچسب‌ها' ),
 );
+
+
 
 $digitTransformTable = array(
 	'0' => '۰', # &#x06f0;
@@ -261,6 +264,7 @@ $magicWords = array(
 	'numberofarticles'      => array( '1', 'تعدادمقاله‌ها', 'تعداد_مقاله‌ها', 'NUMBEROFARTICLES' ),
 	'numberoffiles'         => array( '1', 'تعدادپرونده‌ها', 'تعداد_پرونده‌ها', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'تعدادکاربران', 'تعداد_کاربران', 'NUMBEROFUSERS' ),
+	'activeusers'           => array( '1', 'کاربران‌فعال', 'کاربران_فعال', 'ACTIVEUSERS' ),
 	'numberofedits'         => array( '1', 'تعدادویرایش‌ها', 'تعداد_ویرایش‌ها', 'NUMBEROFEDITS' ),
 	'numberofviews'         => array( '1', 'تعدادبازدید', 'تعداد_بازدید', 'NUMBEROFVIEWS' ),
 	'pagename'              => array( '1', 'نام‌صفحه', 'نام_صفحه', 'PAGENAME' ),
@@ -315,6 +319,7 @@ $magicWords = array(
 	'servername'            => array( '0', 'نام‌کارگذار', 'نام_کارگذار', 'SERVERNAME' ),
 	'scriptpath'            => array( '0', 'مسیر', 'SCRIPTPATH' ),
 	'grammar'               => array( '0', 'دستورزبان:', 'GRAMMAR:' ),
+	'gender'                => array( '0', 'جنسیت', 'GENDER:' ),
 	'notitleconvert'        => array( '0', '__عنوان‌تبدیل‌نشده__', '__NOTITLECONVERT__', '__NOTC__' ),
 	'nocontentconvert'      => array( '0', '__محتواتبدیل‌نشده__', '__NOCONTENTCONVERT__', '__NOCC__' ),
 	'currentweek'           => array( '1', 'هفته', 'CURRENTWEEK' ),
@@ -364,7 +369,6 @@ $magicWords = array(
 	'staticredirect'        => array( '1', '__تغییرمسیرثابت__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'سطح‌حغاطت', 'سطح_حفاظت', 'PROTECTIONLEVEL' ),
 );
-
 
 # Harakat are intentionally not included in the linkTrail. Their addition should
 # take place after enough tests.
