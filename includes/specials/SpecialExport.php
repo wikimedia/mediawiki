@@ -30,7 +30,7 @@ class SpecialExport extends SpecialPage {
 		parent::__construct( 'Export' );
 	}
 	
-	public function execute( $par = '' ) {
+	public function execute( $par ) {
 		global $wgOut, $wgRequest, $wgSitename, $wgExportAllowListContributors;
 		global $wgExportAllowHistory, $wgExportMaxHistory;
 	
