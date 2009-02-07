@@ -313,8 +313,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Walang ganitong galaw',
-'nosuchactiontext'  => 'Hindi kinikilala ng wiki
-ang gawang itinakda ng URL',
+'nosuchactiontext'  => 'Hindi tanggap ang galaw na tinukoy ng URL.
+Maaaring nagkamali ka sa pagmamakinilya ng URL, o sumunod sa isang maling kawing.
+Maaari rin itong magpahiwatig ng isang depektong nasa loob ng {{SITENAME}}.',
 'nosuchspecialpage' => 'Walang ganyang natatanging pahina',
 'nospecialpagetext' => "<big>'''Humiling ka ng isang maling natatanging pahina.'''</big>
 
@@ -632,7 +633,10 @@ Kung napunta ka rito dahil sa pagkakamali, pakipindot ang pinduntang '''balik'''
 Kaya't kinailangan naming gamitin ang may bilang na adres ng IP para makilala siya.  
 Maaaring pagsaluhan ng ilang mga tagagamit ang ganyang adres ng IP.
 Kung isa kang hindi nagpapakilalang tagagamit at nakadaramang may mga walang saysay na puna/kumentong patungkol sa iyo, [[Special:UserLogin/signup|pakilikha ng isang kuwenta]] o [[Special:UserLogin|lumagda]] para maiwasan ang kalituhan o mapagkamalan ka bilang ibang hindi nakikilalang mga tagagamit sa hinaharap.",
-'noarticletext'                    => 'Walang teksto ang pahinang ito sa kasalukuyan, maaari kang [[Special:Search/{{PAGENAME}}|maghanap para sa pamagat ng pahinang ito]] sa ibang mga pahina o [{{fullurl:{{FULLPAGENAME}}|action=edit}} baguhin ang pahina na ito].',
+'noarticletext'                    => 'Kasalukuyang walang teksto sa loob ng pahinang ito.
+Maaari mong [[Special:Search/{{PAGENAME}}|hanapin ang pamagat ng pahinang ito]] sa loob iba pang mga pahina, 
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} maghanap sa kaugnay na mga talaan],
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} baguhin ang pahinang ito]</span>.',
 'userpage-userdoesnotexist'        => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".
 Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
 'clearyourcache'                   => "'''Tandaan:''' Pagkatapos magtala, dapat linisin mo ang ''cache'' ng iyong ''browser'' upang makita ang mga pagbabago: '''Mozilla:''' pindutin ang ''reload'' (o ''ctrl-r''), '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
@@ -1714,7 +1718,7 @@ Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang 
 'iteminvalidname'      => "May suliranin ang bagay na '$1', hindi tanggap na pangalan...",
 'wlnote'               => "Nasa ibaba ang {{PLURAL:$1|pinakahuling pagbabago|pinakahuling '''$1''' mga pagbabago}} sa loob ng huling {{PLURAL:$2|oras|'''$2''' mga oras}}.",
 'wlshowlast'           => 'Ipakita ang huling $1 mga oras $2 mga araw $3',
-'watchlist-options'    => 'Mga pagpipiliian para sa talaan ng mga binabantayan',
+'watchlist-options'    => 'Mga pagpipilian para sa talaan ng mga binabantayan',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Isinasama sa mga binabantayan...',
@@ -2169,6 +2173,7 @@ Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{ns:special}}:Export/{{Med
 'export-addcat'     => 'Magdagdag',
 'export-download'   => 'Itala bilang talaksan',
 'export-templates'  => 'Kabilang ang mga suleras',
+'export-pagelinks'  => 'Isama ang nakakawing na mga pahina magpahanggang sa isang lalim na:',
 
 # Namespace 8 related
 'allmessages'               => 'Mga mensaheng pansistema',
@@ -2198,6 +2203,7 @@ Mapapanatili ang mga petsa ng pagbabago at mga pangalan ng patnugot.
 Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwiking aksyon para sa pag-angkat.',
 'import-interwiki-source'    => 'Pinagmulang wiki/pahina:',
 'import-interwiki-history'   => 'Kopyahin ang lahat ng mga bersyon ng kasaysayan para sa pahinang ito',
+'import-interwiki-templates' => 'Isama ang lahat ng mga suleras',
 'import-interwiki-submit'    => 'Mag-angkat',
 'import-interwiki-namespace' => 'Kapupuntahang espasyo ng pangalan:',
 'import-upload-filename'     => 'Pangalan ng talaksan:',

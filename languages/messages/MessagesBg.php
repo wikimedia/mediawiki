@@ -2915,6 +2915,7 @@ $1
 'intentionallyblankpage' => 'Тази страница умишлено е оставена празна',
 
 # Special:Tags
+'tags-edit'     => 'редактиране',
 'tags-hitcount' => '$1 {{PLURAL:$1|промяна|промени}}',
 
 # Database error messages

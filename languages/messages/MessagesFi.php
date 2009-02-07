@@ -472,7 +472,9 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 
 # Main script and global functions
 'nosuchaction'      => 'Määrittelemätön pyyntö',
-'nosuchactiontext'  => 'Wikiohjelmisto ei tunnista URL:ssä määriteltyä pyyntöä',
+'nosuchactiontext'  => 'Ohjelmisto ei tunnista URL:ssä määriteltyä pyyntöä.
+Olet saattanut kirjoittaa väärin, tai seurannut virheellistä linkkiä.
+Tämä voi myös mahdollisesti olla ohjelmistovirhe.',
 'nosuchspecialpage' => 'Kyseistä toimintosivua ei ole',
 'nospecialpagetext' => 'Wikiohjelmisto ei tunnista pyytämääsi toimintosivua.',
 
@@ -725,13 +727,15 @@ Liitä kaikki ylläolevat tiedot mahdollisiin kyselyihisi.",
 'loginreqlink'                     => 'kirjautua sisään',
 'loginreqpagetext'                 => 'Sinun täytyy $1, jotta voisit nähdä muut sivut.',
 'accmailtitle'                     => 'Salasana lähetetty.',
-'accmailtext'                      => "käyttäjän '''$1''' salasana on lähetetty osoitteeseen '''$2'''.",
+'accmailtext'                      => 'Satunnaisesti generoitu salasana käyttäjälle [[User talk:$1|$1]] on lähetetty osoitteeseen $2.
+
+Salasanan tälle uudelle tunnukselle voi vaihtaa kirjautumisen jälkeen [[Special:ChangePassword|asetussivulla]].',
 'newarticle'                       => '(uusi)',
 'newarticletext'                   => 'Linkki toi sivulle, jota ei vielä ole. Voit luoda sivun kirjoittamalla alla olevaan tilaan. Jos et halua luoda sivua, käytä selaimen paluutoimintoa.',
 'anontalkpagetext'                 => "----''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:UserLogin|luo itsellesi käyttäjätunnus tai kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
-'noarticletext'                    => "{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.
+'noarticletext'                    => '{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.
 * Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta.
-* Voit kirjoittaa uuden sivun '''<span class=\"plainlinks\">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.'''",
+* Voit kirjoittaa uuden sivun <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.',
 'userpage-userdoesnotexist'        => 'Käyttäjätunnusta $1 ei ole rekisteröity. Varmista haluatko muokata tätä sivua.',
 'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan:
 *'''Mozilla, Konqueror ja Safari:''' napsauta ''Shift''-näppäin pohjassa päivitä tai paina ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Applella)
@@ -2203,6 +2207,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'import-interwiki-text'      => 'Valitse wiki ja sivun nimi. Versioiden päivämäärät ja muokkaajat säilytetään. Kaikki wikienväliset tuonnit kirjataan [[Special:Log/import|tuontilokiin]].',
 'import-interwiki-source'    => 'Lähdewiki/sivu:',
 'import-interwiki-history'   => 'Kopioi sivun koko historia',
+'import-interwiki-templates' => 'Liitä kaikki mallineet',
 'import-interwiki-submit'    => 'Tuo',
 'import-interwiki-namespace' => 'Kohdenimiavaruus:',
 'import-upload-filename'     => 'Tiedostonimi:',

@@ -399,7 +399,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Dës Aktioun gëtt et net',
-'nosuchactiontext'  => 'Déi Aktioun, déi an der URL ugi war, gëtt vun dëser Wiki net ënnerstetzt.',
+'nosuchactiontext'  => 'Déi Aktioun, déi an der URL ugi war ass net valabel.
+Méiglecherweis hutt dir Iech bei der URL vertippt oder Dir hutt op en net korrekte Link geklickt.
+Et kann awer och sinn datt et e Bug a(n) {{SITENAME}} gëtt.',
 'nosuchspecialpage' => 'Spezialsäit gëtt et net',
 'nospecialpagetext' => "<big>'''Dir hutt eng Spezialsäit ofgefrot déi et net gëtt.'''</big>
 
@@ -687,7 +689,9 @@ D'Passwuert fir dësen neie Benotzerkont kann op der ''[[Special:ChangePassword|
 Dowéinster musse mir d'IP Adress benotzen fir de Benotzer z'identifizéieren. 
 Sou eng IP Adress ka vun e puer Benotzer gedeelt ginn. 
 Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut, [[Special:UserLogin|maacht w.e.g. e Kont op]] oder [[Special:UserLogin|loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
-'noarticletext'                    => 'Dës Säit huet momentan nach keen Text, Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel sichen]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} esou eng Säit uleeën].',
+'noarticletext'                    => 'Dës Säit huet momentan keen Text.
+Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel sichen]],
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} an den entspriechende Logbicher nokucken] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} esou eng Säit uleeën]</span>.',
 'userpage-userdoesnotexist'        => 'De Benotzerkont "$1" gëtt et net. Iwwerpréift w.e.g. op Dir dës Säit erschafe/ännere wëllt.',
 'clearyourcache'                   => "'''Opgepasst - Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn.''' '''Mozilla / Firefox / Safari: ''' dréckt op ''Shift'' während Dir ''reload'' klickt oder dréckt ''Ctrl-F5'' oder ''Ctrl-R''(''Command-R'' op engem Macintosh);'''Konqueror: ''' klickt  ''Reload'' oder dréckt ''F5'' '''Opera:''' maacht de Cache eidel an ''Tools → Preferences;'' '''Internet Explorer:''' dréckt ''Ctrl'' während Dir op ''Refresh'' klickt oder dréckt ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "'''Tipp:''' Benotzt de ''Kucken ouni ze späichere''-Button, fir äre neien CSS/JS virum Späicheren ze testen.",
@@ -1156,6 +1160,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'right-upload'               => 'Fichieren eroplueden',
 'right-reupload'             => 'E Fichier iwwerschreiwen',
 'right-reupload-own'         => 'E Fichier iwwerschreiwen dee vum selweschte Benotzer eropgeluede gouf',
+'right-reupload-shared'      => 'Lokalt Iwwerschreiwen vun engem Fichier deen an engem gemeinsam genotzte Repertoire steet',
 'right-upload_by_url'        => 'E Fichier vun enger URL-Adress eroplueden',
 'right-purge'                => 'De Säitecache eidel maachen ouni nozefroen',
 'right-autoconfirmed'        => 'Hallef-gespaarte Säiten änneren',
@@ -1346,6 +1351,7 @@ Wann Dir dëse Fichier trotzdem eroplued wellt da gitt w.e.g. zréck a lued dës
 'overwroteimage'              => 'huet eng nei Versioun vun "[[$1]]" eropgelueden',
 'uploaddisabled'              => "Pardon, d'Eroplueden vu Fichieren ass ausgeschalt.",
 'uploaddisabledtext'          => "D'Eropluede vu Fichieren ass ausgeschalt.",
+'php-uploaddisabledtext'      => "D'Eropluede vu Fichieren ass am PHP desaktivéiert. Kuckt w.e.g. d'Astellung ''file_uploads'' no.",
 'uploadscripted'              => 'An dësem Fichier ass HTML- oder Scriptcode, de vun engem Webbrowser falsch interpretéiert kéint ginn.',
 'uploadcorrupt'               => 'De Fichier ass futti oder en huet eng falsch Fichiers-Erweiderung. Kuckt de Fichier weg no a lued de Fichier nach eng Kéier erop.',
 'uploadvirus'                 => 'An dësem Fichier ass ee Virus! Detailer: $1',
@@ -2169,6 +2175,7 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'export-addcat'     => 'Derbäisetzen',
 'export-download'   => 'Als XML-Datei späicheren',
 'export-templates'  => 'Inklusiv Schablounen',
+'export-pagelinks'  => 'Verlinkte Säiten mat exportéieren, bis zu enger Déift vun:',
 
 # Namespace 8 related
 'allmessages'               => 'All Systemmessagen',
@@ -2193,6 +2200,7 @@ Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatio
 'importinterwiki'            => 'Transwiki-Import',
 'import-interwiki-source'    => 'Quelle Wiki/Säit:',
 'import-interwiki-history'   => "Importéier all d'Versioune vun dëser Säit",
+'import-interwiki-templates' => 'Matt alle Schablounen',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Zil-Nummraum:',
 'import-upload-filename'     => 'Numm vum Fichier:',
@@ -2450,6 +2458,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-jpeginterchangeformatlength' => 'Gréisst vun de JPEG-Daten a Byten',
 'exif-transferfunction'            => 'Transferfunktioun',
 'exif-whitepoint'                  => 'Manuell mat Miessung',
+'exif-ycbcrcoefficients'           => 'YCbCr-Koeffizienten',
 'exif-referenceblackwhite'         => 'Schwoarz/Wäiss-Referenzpunkten',
 'exif-datetime'                    => 'Späicherzäitpunkt',
 'exif-imagedescription'            => 'Numm vum Bild',
@@ -2588,6 +2597,9 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 # Flash modes
 'exif-flash-fired-0'    => 'Ouni Blëtz',
 'exif-flash-fired-1'    => 'mat Blëtz',
+'exif-flash-return-0'   => "keng Fonctioun fir d'Reflexioun vum Blëtz festzestellen",
+'exif-flash-return-2'   => 'keng Reflexioun vum Blëtz festgestallt',
+'exif-flash-return-3'   => 'Reflexioun vum Blëtz festgestallt',
 'exif-flash-mode-1'     => 'erzwongene Blëtz',
 'exif-flash-mode-2'     => 'De Blëtz war ausgeschalt',
 'exif-flash-mode-3'     => 'Automatik',
@@ -2868,6 +2880,7 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Markéierungen',
 'tags-intro'              => 'Op dëser Säit stinn all déi Taggen, déi vun dëser Software fir Ännerungen unzeweise benotzt ginn, an hir Bedeitung.',
+'tags-tag'                => 'Internen Numm vum Tag',
 'tags-display-header'     => 'Opzielungen op den Ännerungslëschten',
 'tags-description-header' => 'Ganz Beschreiwung vun der Bedeitung',
 'tags-hitcount-header'    => 'Markéiert Ännerungen',

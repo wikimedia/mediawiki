@@ -1515,7 +1515,7 @@ Example: [[:Image:Addon-icn.png]]',
 'deletedcontributions'       => 'The message is shown as a link on [[Special:Contributions]] to the DeletedContributions special page.
 
 {{Identical|Deleted user contributions}}',
-'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]], a special page with a list of edits to pages which were deleted. Only viewable by sysops.
+'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.
 
 {{Identical|Deleted user contributions}}',
 
@@ -1963,6 +1963,7 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 'export-addcat'    => '{{Identical|Add}}',
 'export-download'  => 'A label of checkbox option in [[Special:Export]]',
 'export-templates' => 'A label of checkbox option in [[Special:Export]]',
+'export-pagelinks' => 'This is an input in [[Special:Export]]',
 
 # Namespace 8 related
 'allmessages'               => 'The title of the special page [[Special:AllMessages]].',
@@ -2199,6 +2200,14 @@ Spatial frequency response is a measure for the capability of camera lenses to d
 'exif-gpslongitude'             => '{{Identical|Longitude}}',
 
 'exif-orientation-1' => '{{Identical|Normal}}', # 0th row: top; 0th column: left
+
+'exif-exposureprogram-1' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
+'exif-exposureprogram-3' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Aperture_priority aperture priority].',
+'exif-exposureprogram-4' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Shutter_priority shutter priority].',
+'exif-exposureprogram-5' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
+'exif-exposureprogram-6' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
+'exif-exposureprogram-7' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
+'exif-exposureprogram-8' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
 
 'exif-subjectdistance-value' => '$1 is a distance measured in metres. The value can, and usually does, include decimal places.',
 

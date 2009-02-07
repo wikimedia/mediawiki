@@ -482,7 +482,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'そのような操作はありません',
-'nosuchactiontext'  => 'このURLで指定された操作は{{SITENAME}}で認識できません。',
+'nosuchactiontext'  => 'このURLで指定された操作は無効です。あなたがURLを間違って打ったか、無効なリンクを辿った可能性があります。また、{{SITENAME}} が利用するソフトウェアのバグである可能性もあります。',
 'nosuchspecialpage' => 'そのような特別ページはありません',
 'nospecialpagetext' => "<big>'''要求された特別ページは存在しません。'''</big>
 
@@ -765,7 +765,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 ページを作成するつもりがない場合には、ブラウザの「戻る」ボタンを使って前のページに戻ってください。',
 'anontalkpagetext'                 => "----
 ''これはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。匿名利用者の識別は利用者名のかわりにIPアドレスを用います。IPアドレスは何人かで共有されることがあります。もしあなたが匿名利用者で無関係なコメントが寄せられているとお考えの場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。''",
-'noarticletext'                    => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
+'noarticletext'                    => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、もしくは<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} 関連記録から検索する]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>することできます。',
 'userpage-userdoesnotexist'        => '"$1" という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
 'clearyourcache'                   => "'''お知らせ:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
 * '''Mozilla / Firefox / Safari:''' [Shift] を押しながら [再読み込み] をクリック、または [Ctrl]-[F5] か [Ctrl]-[R] （Macintoshでは [Cmd]-[Shift]-[R]）
@@ -2200,7 +2200,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'movepage-max-pages'           => '自動的に移動できるのは $1ページ までで、それ以上は移動されません。',
 '1movedto2'                    => 'ページ [[$1]] を [[$2]] へ移動',
 '1movedto2_redir'              => 'ページ [[$1]] をこのページあてのリダイレクト [[$2]] へ移動',
-'move-redirect-suppressed'     => 'リダイレクトを作らない',
+'move-redirect-suppressed'     => 'リダイレクト非作成',
 'movelogpage'                  => '移動記録',
 'movelogpagetext'              => '以下はページ移動の記録です。',
 'movereason'                   => '理由',
@@ -2224,26 +2224,27 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 # Export
 'export'            => 'ページデータの書き出し',
-'exporttext'        => 'ここでは単独のまたは複数のページのテキストと編集履歴をXMLの形で書き出すことができます。書き出されたXML文書は他の MediaWiki で動いているウィキに[[Special:Import|インポートページ]]を使って取り込めます。
+'exporttext'        => 'ここでは単独のまたは複数のページのテキストと編集履歴をXMLの形で書き出すことができます。書き出されたXML文書は他の MediaWiki で動いているウィキに[[Special:Import|取り込みページ]]を使って取り込めます。
 
 ページデータを書き出すには下のテキストボックスに書き出したいページの名前を一行に一つずつ記入してください。また編集履歴とともに全ての古い版を含んで書き出すのか、最新版のみを書き出すのか選択してください。
 
-後者の場合ではリンクの形で使うこともできます。例えば、「[[{{MediaWiki:Mainpage}}]]」の最新版を取得するには[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]とします。',
+後者の場合ではリンクの形で使うこともできます。例えば、「[[{{MediaWiki:Mainpage}}]]」の最新版を取得するには [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] とします。',
 'exportcuronly'     => 'すべての履歴を含ませずに、最新版のみを書き出す',
 'exportnohistory'   => "----
 '''注:''' パフォーマンス上の理由により、このフォームによるページの完全な履歴の書き出しは行えません。",
 'export-submit'     => '書き出し',
-'export-addcattext' => 'カテゴリ内のページを対象に加える。 Category:',
+'export-addcattext' => '次のカテゴリ内のページを対象に加える:',
 'export-addcat'     => '追加',
 'export-download'   => '書き出した結果をファイルに保存する',
 'export-templates'  => 'テンプレートも含める',
+'export-pagelinks'  => '以下の階層までのリンク先ページを含める:',
 
 # Namespace 8 related
 'allmessages'               => 'システムメッセージの一覧',
 'allmessagesname'           => 'メッセージ名',
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
-'allmessagestext'           => 'これはMediaWiki名前空間で利用可能なシステムメッセージの一覧です。もし MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja Betawiki] を訪れてみてください。',
+'allmessagestext'           => 'これは MediaWiki 名前空間で利用可能なシステムメッセージの一覧です。MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja Betawiki] を訪れてみてください。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効なので、このページを使うことはできません。",
 'allmessagesfilter'         => 'メッセージ名で絞り込み:',
 'allmessagesmodified'       => '変更されたもののみを表示',
@@ -2263,6 +2264,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'import-interwiki-text'      => 'インポートするウィキとページ名を選択してください。変更履歴の日付と編集者の名前は保持されます。トランスウィキ・インポートの操作は全て[[Special:Log/import|インポート記録]]に記録されます。',
 'import-interwiki-source'    => '取り込み元のウィキとページ:',
 'import-interwiki-history'   => 'このページの全ての版を複製する',
+'import-interwiki-templates' => 'すべてのテンプレートを含める',
 'import-interwiki-submit'    => '取り込み',
 'import-interwiki-namespace' => '目的の名前空間:',
 'import-upload-filename'     => 'ファイルの名前:',
@@ -2392,7 +2394,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'notacceptable'     => 'ウィキサーバーはあなたの使用しているクライアントが読める形式で情報を提供できません。',
 
 # Attribution
-'anonymous'        => '{{SITENAME}}の$1人の匿名利用者',
+'anonymous'        => '{{SITENAME}}の匿名利用者',
 'siteuser'         => '{{SITENAME}}の利用者$1',
 'lastmodifiedatby' => '最終更新は $3 による $2, $1 の編集です。', # $1 date, $2 time, $3 user
 'othercontribs'    => '$1の版に基づきます。',

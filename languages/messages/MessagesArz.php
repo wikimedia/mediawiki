@@ -556,7 +556,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'مافيش فعل زى كده',
-'nosuchactiontext'  => 'الويكى ما تعرفتش على الامر فى ال URL',
+'nosuchactiontext'  => 'العمليه المتحدده فى الـ URL مش صحيحه.
+ممكن تكون غلطت و انتا بتكتب الـ URL, او دوست على لينك مش مضبوطه.
+دا ممكن كمان يكون بيعنى انه فيه باج فى الـ {{SITENAME}}.',
 'nosuchspecialpage' => 'مافيش صفحة خاصة بالاسم ده',
 'nospecialpagetext' => "<big>'''انت طلبت صفحة مخصوصة مش صحيحة.'''</big>
 
@@ -2456,6 +2458,7 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 كل عمليات الاستيراد للترانسويكى بتتسجل فى [[Special:Log/import|سجل الاستيراد]].',
 'import-interwiki-source'    => 'مصدر ويكي/صفحه:',
 'import-interwiki-history'   => 'انسخ كل نسخ التاريخ للصفحة دي',
+'import-interwiki-templates' => 'اشمل كل القوالب',
 'import-interwiki-submit'    => 'استيراد',
 'import-interwiki-namespace' => 'النطاق الهدف:',
 'import-upload-filename'     => 'اسم الملف:',

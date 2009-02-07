@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Jose77
  * @author לערי ריינהארט
  */
 
@@ -16,6 +17,18 @@ $messages = array(
 'wednesday' => 'Qarshenbe',
 'thursday'  => 'Payshanbe',
 'saturday'  => 'Shanba',
+'january'   => 'Yanwar',
+'february'  => 'Féwral',
+'march'     => 'Mart',
+'april'     => 'Aprél',
+'june'      => 'Iyun',
+'july'      => 'Iyul',
+'august'    => 'Awghust',
+'september' => 'Séntebr',
+'october'   => 'Öktebir',
+'november'  => 'Noyabr',
+'december'  => 'Dékabr',
+'may'       => 'May',
 
 'qbedit'     => 'Uzgartish',
 'navigation' => 'كۆرۈش',

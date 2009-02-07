@@ -487,7 +487,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Accion desconeguda',
-'nosuchactiontext'  => "L'accion especificada dins l'Url es pas reconeguda pel logicial {{SITENAME}}.",
+'nosuchactiontext'  => "L'accion especificada dins l'Url es invalida.
+Benlèu avètz mal picat l’URL o seguit un ligam incorrècte.
+Aquò tanben pòt indicar un problèma dins lo logicial utilizat per {{SITENAME}}.",
 'nosuchspecialpage' => 'Pagina especiala inexistanta',
 'nospecialpagetext' => "<big>'''Avètz demandat una pagina especiala qu'es pas reconeguda pel logicial {{SITENAME}}.'''</big>
 
@@ -769,14 +771,15 @@ Precisatz aquestas indicacions dins totas las requèstas que faretz.',
 'loginreqlink'                     => 'connectar',
 'loginreqpagetext'                 => 'Vos cal vos $1 per veire las autras paginas.',
 'accmailtitle'                     => 'Senhal mandat.',
-'accmailtext'                      => 'Lo senhal de « $1 » es estat mandat a $2.',
+'accmailtext'                      => "Un senhal generit aleatòriament per [[User talk:$1|$1]] es estat mandat a $2.
+Lo senhal per aqueste compte novèl pòt èsser cambiat sus la pagina ''[[Special:ChangePassword|de cambiament de senhal]]'' aprèp s'èsser connectat.",
 'newarticle'                       => '(Novèl)',
 'newarticletext'                   => "Avètz seguit un ligam cap a una pagina qu’existís pas encara o qu'es estada [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} escafada].
 Per crear aquesta pagina, picatz vòstre tèxt dins la bóstia çaijós (podètz consultar [[{{MediaWiki:Helppage}}|la pagina d’ajuda]] per mai d’entresenhas).
 Se sètz arribat(ada) aicí per error, clicatz sul boton '''retorn''' de vòstre navigador.",
 'anontalkpagetext'                 => "---- ''Sètz sus la pagina de discussion d'un utilizaire anonim qu'a pas encara creat un compte o que n'utiliza pas.
 Per aquesta rason, devèm utilizar son adreça IP per l'identificar. Una adreça d'aqueste tipe pòt èsser partejada entre mantuns utilizaires. Se sètz un utilizaire anonim e se constatatz que de comentaris que vos concernisson pas vos son estats adreçats, podètz [[Special:UserLogin/signup|crear un compte]] o [[Special:UserLogin|vos connectar]] per evitar tota confusion venenta amb d’autres contributors anonims.''",
-'noarticletext'                    => "Pel moment, i a pas cap de tèxt sus aquesta pagina ; podètz [[Special:Search/{{PAGENAME}}|aviar una recèrca sul títol d'aquesta pagina]], verificar qu’es pas estada [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} suprimida] o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar aquesta pagina].",
+'noarticletext'                    => 'Pel moment, i a pas cap de tèxt sus aquesta pagina ; podètz [[Special:Search/{{PAGENAME}}|aviar una recèrca sul títol d\'aqueste títol de pagina]] dins las autras pagina, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} recercar dins las operacions ligadas] o [{{fullurl:{{urlencode:{{FULLPAGENAME}}}}|action=edit}} crear aquesta pagina]</span>.',
 'userpage-userdoesnotexist'        => "Lo compte d'utilizaire « $1 » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
 'clearyourcache'                   => "'''Nòta :''' Aprèp aver publicat la pagina, vos cal forçar son recargament complet tot ignorant lo contengut actual de l'amagatal de vòstre navigador per veire los cambiaments : '''Mozilla / Firefox / Konqueror / Safari :''' mantenètz la tòca ''Majuscula'' (''Shift'') en clicant lo boton ''Actualizar'' (''Reload,'') o quichatz ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sus Apple Mac) ; '''Internet Explorer / Opera :''' mantenètz la tòca ''Ctrl'' en clicant lo boton ''Actualizar'' o quichatz ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "'''Astúcia :''' Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh novèl css/js abans de l'enregistrar.",
@@ -1346,7 +1349,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'recentchangestext'                 => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
 'recentchanges-feed-description'    => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flus.",
 'rcnote'                            => 'Vaquí {{PLURAL:$1|lo darrièr cambiament|los $1 darrièrs cambiaments}} dempuèi {{PLURAL:$2|lo darrièr jorn|los <b>$2</b> darrièrs jorns}}, determinat{{PLURAL:$1||s}} lo $4, a $5.',
-'rcnotefrom'                        => "Vaquí los cambiaments efectuats dempuèi lo '''$2''' ('''$1''' al maximom).",
+'rcnotefrom'                        => "Vaquí los cambiaments efectuats dempuèi lo '''$2''' ('''$1''' al maximum).",
 'rclistfrom'                        => 'Afichar las modificacions novèlas dempuèi lo $1.',
 'rcshowhideminor'                   => '$1 cambiaments menors',
 'rcshowhidebots'                    => '$1 robòts',
@@ -1422,7 +1425,7 @@ Vejatz la [[Special:NewFiles|galariá dels imatges novèls]] per una presentacio
 {{PLURAL:\$3|Lo qu'es acceptat es|Los que son acceptats son}} \$2.",
 'filetype-missing'            => "Lo fichièr a pas cap d'extension (coma « .jpg » per exemple).",
 'large-file'                  => 'Los fichièrs importats deurián pas èsser mai gros que $1 ; aqueste fichièr fa $2.',
-'largefileserver'             => "La talha d'aqueste fichièr es superiora al maximom autorizat.",
+'largefileserver'             => "La talha d'aqueste fichièr es superiora al maximum autorizat.",
 'emptyfile'                   => 'Lo fichièr que volètz importar sembla void. Aquò pòt èsser degut a una error dins lo nom del fichièr. Verificatz que desiratz vertadièrament copiar aqueste fichièr.',
 'fileexists'                  => "Un fichièr amb aqueste nom existís ja. Mercé de verificar '''<tt>$1</tt>'''. Sètz segur de voler modificar aqueste fichièr ?",
 'filepageexists'              => "La pagina de descripcion per aqueste fichièr ja es estada creada aicí '''<tt>$1</tt>''', mas cap de fichièr d'aqueste nom existís pas actualament. Lo resumit qu'anatz escriure remplaçarà pas lo tèxt precedent ; per aquò far, deuretz editar manualament la pagina.",
@@ -2246,12 +2249,12 @@ la pagina de discussion a pas pogut èsser desplaçada perque ja n'existissiá u
 jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movedto'                      => 'renomenat en',
 'movetalk'                     => 'Tornar nomenar tanben la pagina de discussion associada',
-'move-subpages'                => 'Tornar nomenar, se fa mestièr, totas las sospaginas',
-'move-talk-subpages'           => 'Tornar nomenar, se fa mestièr, totas las sospaginas de las paginas de discussion',
+'move-subpages'                => 'Tornar nomenar, se fa mestièr, las sospaginas (fins a $1 paginas)',
+'move-talk-subpages'           => 'Tornar nomenar, se fa mestièr, las sospaginas de las paginas de discussion (fins a $1 paginas)',
 'movepage-page-exists'         => 'La pagina $1 existís ja e pòt pas èsser espotida automaticament.',
 'movepage-page-moved'          => 'La pagina $1 es estada renomenada en $2.',
 'movepage-page-unmoved'        => 'La pagina $1 pòt èsser renomenada en $2.',
-'movepage-max-pages'           => "Lo maximom de $1 {{PLURAL:$1|pagina es estat renomenat|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
+'movepage-max-pages'           => "Lo maximum de $1 {{PLURAL:$1|pagina es estada renomenada|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
 '1movedto2'                    => 'a renomenat [[$1]] en [[$2]]',
 '1movedto2_redir'              => 'a redirigit [[$1]] cap a [[$2]]',
 'move-redirect-suppressed'     => 'redireccion suprimida',
@@ -2292,6 +2295,7 @@ Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{ns:special
 'export-addcat'     => 'Apondre',
 'export-download'   => 'Salvar en tant que fichièr',
 'export-templates'  => 'Enclure los modèls',
+'export-pagelinks'  => 'Enclure las paginas ligadas a una prigondor de :',
 
 # Namespace 8 related
 'allmessages'               => 'Lista dels messatges del sistèma',
@@ -2321,6 +2325,7 @@ Las datas de las versions e los noms dels editors seràn preservats.
 Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Log/import|jornal d’impòrt]].",
 'import-interwiki-source'    => 'Wiki e pagina font :',
 'import-interwiki-history'   => "Copiar totas las versions de l'istoric d'aquesta pagina",
+'import-interwiki-templates' => 'Enclure totes los modèls',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Espaci de noms de destinacion :',
 'import-upload-filename'     => 'Nom del fichièr :',
@@ -3060,5 +3065,14 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'tags-hitcount-header'    => 'Modificacions balisadas',
 'tags-edit'               => 'modificar',
 'tags-hitcount'           => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
+
+# Database error messages
+'dberr-header'      => 'Aqueste wiki a un problèma',
+'dberr-problems'    => 'O planhèm ! Aqueste sit rencontra de dificultats tecnicas.',
+'dberr-again'       => "Ensajatz d'esperar qualques minutas e tornatz cargar.",
+'dberr-info'        => '(Se pòt pas connectar al servidor de la banca de donadas : $1)',
+'dberr-usegoogle'   => 'Podètz ensajar de cercar amb Google pendent aqueste temps.',
+'dberr-outofdate'   => 'Notatz que lors indèxes de nòstre contengut pòdon èsser despassats.',
+'dberr-cachederror' => 'Aquò es una còpia amagada de la pagina demandada e pòt èsser despassada.',
 
 );

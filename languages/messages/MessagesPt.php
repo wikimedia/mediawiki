@@ -432,7 +432,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Acção não existente',
-'nosuchactiontext'  => 'A acção especificada pelo URL não é reconhecida pelo MediaWiki',
+'nosuchactiontext'  => 'A ação especificada pela URL é inválida.
+Você poderá ter introduzido mal a URL, ou ter seguido uma ligação incorreta.
+Isto poderá também ser indicador de um defeito em {{SITENAME}}.',
 'nosuchspecialpage' => 'Não existe a página especial requisitada',
 'nospecialpagetext' => "<big>'''Você requisitou uma página especial inválida.'''</big>
 
@@ -725,7 +727,10 @@ Se você chegou até aqui por engano, clique no botão '''voltar''' (ou ''back''
 'anontalkpagetext'                 => "----''Esta é a página de discussão para um utilizador anónimo que ainda não criou uma conta ou que não a utiliza, de modo a que temos que utilizar o endereço de IP para identificá-lo(a).
 Um endereço de IP pode ser partilhado por vários utilizadores.
 Se é um utilizador anónimo e sente que comentários irrelevantes foram direccionados a você, por favor [[Special:UserLogin/signup|crie uma conta]] ou [[Special:UserLogin|autentique-se]] para evitar futuras confusões com outros utilizadores anónimos.''",
-'noarticletext'                    => 'Não existe actualmente texto nesta página; você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página noutras páginas]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
+'noarticletext'                    => 'Não existe atualmente texto nesta página.
+Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] noutras páginas,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} pesquisar os registos relacionados],
+ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
 'clearyourcache'                   => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.'''
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ou ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' num Macintosh); '''Konqueror:''': clique no botão ''Recarregar'' ou pressione ''F5''; '''Opera:''' limpe a sua cache em ''Ferramentas → Preferências'' (''Tools → Preferences''); '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
@@ -2013,7 +2018,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Contribuições do utilizador',
-'contributions-title' => 'Contribuições do utilizador $1',
+'contributions-title' => 'Contribuições {{GENDER:$1|do utilizador|da utilizadora}} $1',
 'mycontris'           => 'Minhas contribuições',
 'contribsub2'         => 'Para $1 ($2)',
 'nocontribs'          => 'Não foram encontradas mudanças com este critério.',
@@ -2252,6 +2257,7 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{ns:special}}:Export/{{
 'export-addcat'     => 'Adicionar',
 'export-download'   => 'Oferecer para salvar como um ficheiro',
 'export-templates'  => 'Incluir predefinições',
+'export-pagelinks'  => 'Includir páginas ligadas até uma profundidade de:',
 
 # Namespace 8 related
 'allmessages'               => 'Todas as mensagens de sistema',
@@ -2281,6 +2287,7 @@ As datas das edições e os seus editores serão mantidos.
 Todas as acções de importação transwiki são registadas no [[Special:Log/import|Registo de importações]].',
 'import-interwiki-source'    => 'Wiki/página fonte:',
 'import-interwiki-history'   => 'Copiar todas as edições desta página',
+'import-interwiki-templates' => 'Incluir todas as predefinições',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Domínio de destino:',
 'import-upload-filename'     => 'Nome do ficheiro:',

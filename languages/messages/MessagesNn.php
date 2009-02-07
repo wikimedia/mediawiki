@@ -517,7 +517,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Funksjonen finst ikkje',
-'nosuchactiontext'  => 'Wikiprogramvaren kjenner ikkje att funksjonen som er spesifisert i nettadressa',
+'nosuchactiontext'  => 'Handlinga oppgjeven i adressa er ugyldig.
+Du har kanskje stava adressa feil, eller følgt ei feil lenkja.
+Dette kan òg skuldast ein feil i programvara nytta av {{SITENAME}}.',
 'nosuchspecialpage' => 'Ei slik spesialside finst ikkje',
 'nospecialpagetext' => 'Du har bede om ei spesialside som ikkje finst, liste over spesialsider er [[Special:SpecialPages|her]].',
 
@@ -593,7 +595,7 @@ Grunnen som er gjeven er: ''$2''.",
 Du kan no halde fram og bruke {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge inn att]]  med same kontoen eller ein annan brukar kan logge inn. 
 Ver merksam på at nokre sider kan halde fram med å verte viste som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.",
 'welcomecreation'            => '== Hjarteleg velkommen til {{SITENAME}}, $1! ==
-Brukarkontoen din har vorte oppretta.
+Brukarkontoen din er vorten oppretta.
 Ikkje gløym å endre på [[Special:Preferences|innstillingane]] dine.',
 'loginpagetitle'             => 'Logg inn',
 'yourname'                   => 'Brukarnamn:',

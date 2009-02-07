@@ -707,7 +707,10 @@ O contrasinal para esta conta nova pode ser modificado na páxina especial \'\'[
 Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para máis información).
 Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navegador.",
 'anontalkpagetext'                 => "----''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódenno compartir varios usuarios distintos. Se pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor, [[Special:UserLogin/signup|cree unha conta]] ou [[Special:UserLogin|acceda ao sistema]] para evitar futuras confusións con outros usuarios anónimos.''",
-'noarticletext'                    => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
+'noarticletext'                    => 'Actualmente non hai ningún texto nesta páxina.
+Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} ollar os rexistros relacionados]
+ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina].',
 'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.''' '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh); '''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5''; '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''; '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "'''Nota:''' use o botón \"Mostrar a vista previa\" para verificar o novo CSS/JS antes de gardalo.",
@@ -2251,10 +2254,11 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{ns:special}}:Ex
 'exportnohistory'   => "----
 '''Aviso:''' foi desactivada a exportación do historial completo das páxinas con este formulario debido a razóns relacionadas co rendemento do servidor.",
 'export-submit'     => 'Exportar',
-'export-addcattext' => 'Engadir páxinas da categoría:',
+'export-addcattext' => 'Engadir as páxinas da categoría:',
 'export-addcat'     => 'Engadir',
 'export-download'   => 'Ofrecer gardar como un ficheiro',
 'export-templates'  => 'Incluír os modelos',
+'export-pagelinks'  => 'Engadir as páxinas ligadas a unha profundidade de:',
 
 # Namespace 8 related
 'allmessages'               => 'Todas as mensaxes do sistema',
@@ -2284,6 +2288,7 @@ As datas das revisións e os nomes dos editores mantéranse.
 Todas as accións relacionadas coa importación entre wikis poden verse no [[Special:Log/import|rexistro de importacións]].',
 'import-interwiki-source'    => 'Wiki/Páxina de orixe:',
 'import-interwiki-history'   => 'Copiar todas as versións que hai no historial desta páxina',
+'import-interwiki-templates' => 'Incluír todos os modelos',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Espazo de nomes de destino:',
 'import-upload-filename'     => 'Nome do ficheiro:',

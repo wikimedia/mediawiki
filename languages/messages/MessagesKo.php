@@ -520,7 +520,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => '해당하는 동작이 없습니다.',
-'nosuchactiontext'  => 'URL로 요청한 동작을 위키에서 판별할 수 없습니다.',
+'nosuchactiontext'  => 'URL로 요청한 동작이 잘못되었습니다.
+당신은 URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니다.
+이것은 {{SITENAME}}의 버그일 수도 있습니다.',
 'nosuchspecialpage' => '해당하는 특수기능이 없습니다.',
 'nospecialpagetext' => "<big>'''요청한 특수 문서가 존재하지 않습니다.'''</big>
 
@@ -785,7 +787,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 만약 잘못 찾아온 문서라면, 웹 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",
 'anontalkpagetext'                 => '----
 여기는 계정을 만들지 않았거나 사용하고 있지 않은 비등록 사용자를 위한 토론 문서입니다. 비등록 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다. IP 주소는 여러 사용자에 의해 공유될 수 있습니다. 자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 비등록 사용자에게는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인 하여]] 추후의 다른 비등록 사용자에게 올 수 있는 혼란을 줄이는 것을 추천합니다.',
-'noarticletext'                    => '현재 문서는 비어 있습니다. 이 제목으로 [[Special:Search/{{PAGENAME}}|검색]]하거나 문서를 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]할 수 있습니다.',
+'noarticletext'                    => '이 문서가 존재하지 않습니다.
+이 제목으로 [[Special:Search/{{PAGENAME}}|검색]]하거나, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} 문서에 관련된 기록을 열람]하거나 문서를 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</div>할 수 있습니다.',
 'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
 
@@ -1031,6 +1034,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-ol'                 => "'''순서 있는 목록'''",
 'diff-li'                 => "'''목록'''",
 'diff-table'              => "'''표'''",
+'diff-tbody'              => "'''표의 내용'''",
 'diff-tr'                 => "'''행'''",
 'diff-td'                 => "'''칸'''",
 'diff-th'                 => "'''제목'''",
@@ -1051,6 +1055,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-tt'                 => "'''고정폭 글꼴'''",
 'diff-sub'                => "'''아랫첨자'''",
 'diff-sup'                => "'''윗첨자'''",
+'diff-strike'             => "'''삭제선'''",
 
 # Search results
 'searchresults'                    => '검색 결과',
@@ -2537,6 +2542,7 @@ Variants for Chinese language
 'exif-exifversion'                 => 'Exif 버전',
 'exif-flashpixversion'             => '지원하는 플래시픽스 버전',
 'exif-colorspace'                  => '색 공간',
+'exif-compressedbitsperpixel'      => '이미지 압축 방식',
 'exif-pixelydimension'             => '유효한 그림 너비',
 'exif-pixelxdimension'             => '유효한 그림 높이',
 'exif-relatedsoundfile'            => '관련된 오디오 파일',
@@ -2583,6 +2589,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode'              => '측정 방식',
 'exif-gpsspeedref'                 => '속도 단위',
 'exif-gpsspeed'                    => 'GPS 수신기 속도',
+'exif-gpstrack'                    => '이동 방향',
 'exif-gpsimgdirection'             => '이미지 방향',
 'exif-gpsdestlatitude'             => '목적지의 위도',
 'exif-gpsdestlongitude'            => '목적지의 경도',
@@ -2590,6 +2597,9 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPS 구역 이름',
 'exif-gpsdatestamp'                => 'GPS 날짜',
 'exif-gpsdifferential'             => 'GPS 차이 보정',
+
+# EXIF attributes
+'exif-compression-1' => '압축되지 않음',
 
 'exif-unknowndate' => '날짜를 알 수 없음',
 
@@ -2839,6 +2849,7 @@ $5
 'version-extensions'               => '설치된 확장 기능',
 'version-specialpages'             => '특수 문서',
 'version-parserhooks'              => '파서 훅',
+'version-variables'                => '변수',
 'version-other'                    => '기타',
 'version-mediahandlers'            => '미디어 핸들러',
 'version-hooks'                    => '훅',
@@ -2904,9 +2915,10 @@ $5
 'tags-edit'         => '편집',
 
 # Database error messages
-'dberr-header'   => '이 위키에 문제가 있습니다.',
-'dberr-problems' => '죄송합니다. 이 사이트는 기술적인 문제가 있습니다.',
-'dberr-again'    => '잠시 후에 다시 시도해주세요.',
-'dberr-info'     => '(데이터베이스에 접속할 수 없습니다: $1)',
+'dberr-header'    => '이 위키에 문제가 있습니다.',
+'dberr-problems'  => '죄송합니다. 이 사이트는 기술적인 문제가 있습니다.',
+'dberr-again'     => '잠시 후에 다시 시도해주세요.',
+'dberr-info'      => '(데이터베이스에 접속할 수 없습니다: $1)',
+'dberr-usegoogle' => '그 동안 구글을 통해 검색할 수도 있습니다.',
 
 );
