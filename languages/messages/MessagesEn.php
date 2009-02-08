@@ -1262,8 +1262,8 @@ The reason given by $3 is ''$2''",
 'page_first'             => 'first',
 'page_last'              => 'last',
 'histlegend'             => "Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
-Legend: '''(cur)''' = difference with current version,
-'''(prev)''' = difference with preceding version, '''m''' = minor edit.",
+Legend: '''({{int:cur}})''' = difference with current version,
+'''({{int:prev}})''' = difference with preceding version, '''{{int:minoreditletter}}''' = minor edit.",
 'history-fieldset-title' => 'Browse history',
 'history_copyright'      => '-', # do not translate or duplicate this message to other languages
 'deletedrev'             => '[deleted]',
