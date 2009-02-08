@@ -175,6 +175,7 @@ class User {
 		'upload',
 		'upload_by_url',
 		'userrights',
+		'userrights-interwiki',
 		'writeapi',
 	);
 	/**
