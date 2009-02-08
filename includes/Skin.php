@@ -910,7 +910,7 @@ END;
 	 */
 	function afterContent() {
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
-		return $this->generateDebugHTML() . $printfooter . $this->doAfterContent();
+		return $printfooter . $this->generateDebugHTML() . $this->doAfterContent();
 	}
 
 	/**
