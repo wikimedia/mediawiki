@@ -966,7 +966,10 @@ $2',
 لذا فيجب علينا استعمال رقم الأيبي للتعرف عليه/عليها.
 مثل هذا العنوان يمكن أن يشترك فيه عدة مستخدمين.
 لو كنت مستخدما مجهولا وتشعر بأن تعليقات لا تخصك تم توجيهها إليك، من فضلك [[Special:UserLogin/signup|أنشئ حسابا]] أو [[Special:UserLogin|سجل الدخول]] لتجنب الارتباك المستقبلي مع مستخدمين مجهولين آخرين.''",
-'noarticletext'                    => 'لا يوجد حاليا أي نص في هذه الصفحة، يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى أو [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة].',
+'noarticletext'                    => 'لا يوجد حاليا أي نص في هذه الصفحة.
+يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى،
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} البحث في السجلات المتعلقة]،
+أو [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة]</span>.',
 'userpage-userdoesnotexist'        => 'حساب المستخدم "$1" غير مسجل.
 من فضلك تأكد أنك تريد إنشاء/تعديل هذه الصفحة.',
 'clearyourcache'                   => "'''ملاحظة - بعد الحفظ, ربما ينبغي عليك إفراغ كاش متصفحك لرؤية التغييرات.''' '''موزيللا / فايرفوكس / سافاري:''' اضغط ''Shift'' أثناء ضغط ''Reload,'' أو اضغط أيا من ''Ctrl-F5'' أو ''Ctrl-R'' (''Command-R'' على ماكنتوش); '''كونكرر: '''اضغط ''Reload'' أو اضغط ''F5;'' '''أوبرا:''' أفرغ الكاش في ''Tools → Preferences;'' '''إنترنت إكسبلورر:''' اضغط ''Ctrl'' أثناء ضغط ''Refresh,'' أو اضغط ''Ctrl-F5.''",
@@ -2549,6 +2552,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'export-addcat'     => 'إضافة',
 'export-download'   => 'احفظ كملف',
 'export-templates'  => 'ضمن القوالب',
+'export-pagelinks'  => 'ضمن الصفحات الموصولة إلى عمق:',
 
 # Namespace 8 related
 'allmessages'               => 'رسائل النظام',
@@ -2578,6 +2582,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 كل أفعال الاستيراد عبر الويكي يتم تسجيلها في [[Special:Log/import|سجل الاستيراد]].',
 'import-interwiki-source'    => 'الويكي/الصفحة المصدر:',
 'import-interwiki-history'   => 'انسخ كل نسخ التاريخ لهذه الصفحة',
+'import-interwiki-templates' => 'ضمن كل القوالب',
 'import-interwiki-submit'    => 'استيراد',
 'import-interwiki-namespace' => 'النطاق الهدف:',
 'import-upload-filename'     => 'اسم الملف:',

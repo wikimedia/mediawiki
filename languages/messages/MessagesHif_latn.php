@@ -284,7 +284,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Koi aisan kaam nai hai',
-'nosuchactiontext'  => 'Jon kaam ke URL kare ke batais hai uske ii wiki nai pahachane hai',
+'nosuchactiontext'  => 'Jon kaam ke URL kare ke batais hai uske ii wiki nai pahachane hai
+Saait aap URL ke thiik se type nai karaa hai, nai to galat jorr ke follow karaa hai.
+Ii saait ii kaaran se bhi hoe ki  jon software {{SITENAME}} use kare hai, me bug hai',
 'nosuchspecialpage' => 'Aisan koi khaas panna nai hai',
 'nospecialpagetext' => "<big>'''Aap ek galat ghaas panna ke maanga hai.'''</big>
 
@@ -591,7 +593,9 @@ Ii kaaran se ham log ke IP address kaam me lae ke ii sadasya ke jaana jae hai.
 Ii rakam ke IP address ke dher sadasya kaam me lae sake hai.
 Agar aap ek anonymous user hai aur ii sochta hai ki bekar baat aap ke baare me karaa gais hai, tab
 [[Special:UserLogin/signup|create an account]] or [[Special:UserLogin|log in]] aage ke garrbarri roke khatir aur duusra anonymous users se mistake nai kare ke khatir .''",
-'noarticletext'                    => 'Ii time pe ii panna me kuch likhaa nai hai, aap saktaa hai [[Special:Search/{{PAGENAME}}|ii panna ke title khoje]] duusra panna me nai to [{{fullurl:{{FULLPAGENAME}}|action=edit}} ii panna ke badlo].',
+'noarticletext'                    => 'Ii time pe ii panna me kuch likhaa nai hai.
+Aap saktaa hai [[Special:Search/{{PAGENAME}}|ii panna ke title khoje]] duusra panna me,
+<span> nai to [{{fullurl:{{FULLPAGENAME}}|action=edit}} ii panna ke badlo]</span>.',
 'userpage-userdoesnotexist'        => 'User account "$1" abi registered nai hai.
 Check karo ki Ii panna ke aap banae/badle mangta hai.',
 'clearyourcache'                   => "'''Note - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
@@ -1574,13 +1578,57 @@ You can narrow down the view by selecting a log type, the user name (case-sensit
 'allpagesnext'      => 'Aage',
 'allpagessubmit'    => 'Jao',
 'allpagesprefix'    => 'Uu panna dekhao jiske prefix hai:',
+'allpagesbadtitle'  => 'Dewa gias panna ke title kharaab rahaa nai to inter-language nai to inter-wiki ke prefix hai.
+Is me ek nai to jaada akchhar hai jiske title me nai kaam me lawa jaae sake hai.',
+'allpages-bad-ns'   => '{{SITENAME}} me namespace "$1" nai hai.',
 
 # Special:Categories
-'categories'                  => 'Vibhag',
-'special-categories-sort-abc' => 'alphabetically sort karo',
+'categories'                    => 'Vibhag',
+'categoriespagetext'            => 'Niche ke category me panna aur media hai.
+[[Special:UnusedCategories|Unused categories]] hian nai dekhawa jaae hai.
+[[Special:WantedCategories|wanted categories]] ke bhi dekho.',
+'categoriesfrom'                => 'Vibhag jon ki hian pe suruu hoe hai, ke dekhao:',
+'special-categories-sort-count' => 'ginti se sort karo',
+'special-categories-sort-abc'   => 'alphabetically sort karo',
+
+# Special:DeletedContributions
+'deletedcontributions'       => 'Sadasya ke yogdaan ke mitae dia hai',
+'deletedcontributions-title' => 'Sadasya ke yogdaan ke mitae dia hai',
 
 # Special:LinkSearch
-'linksearch-ok' => 'Khojo',
+'linksearch'       => 'Bahaari jorr',
+'linksearch-pat'   => 'Khoje ke pattern:',
+'linksearch-ns'    => 'Namespace:',
+'linksearch-ok'    => 'Khojo',
+'linksearch-text'  => 'Wildcards jaise ki "*.wikipedia.org" ke kaam me lawa jaae sake hai.<br />
+Supported protocols: <tt>$1</tt>',
+'linksearch-line'  => '$1, $2 se jurraa hai',
+'linksearch-error' => 'Wildcards khaali hostname ke suruu me hoe ke chaahi.',
+
+# Special:ListUsers
+'listusersfrom'      => 'Sadasya jon ki hian se suruu hoe hai ke dekhao:',
+'listusers-submit'   => 'Dekhao',
+'listusers-noresult' => 'Koi sadasya ke nai pawa gais hai.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Sadasya ke banae waala log',
+'newuserlogpagetext'          => 'Ii sadasya ke banae waala log hai.',
+'newuserlog-byemail'          => 'password ke e-mail se bheja gais hai',
+'newuserlog-create-entry'     => 'Nawaa sadasya ke account',
+'newuserlog-create2-entry'    => 'nawaa account banaya $1',
+'newuserlog-autocreate-entry' => 'Account ke automatically banawa gais hai',
+
+# Special:ListGroupRights
+'listgrouprights'              => 'Sadasya  ke group adhikar',
+'listgrouprights-summary'      => 'Niche likha hai ek suchi hai groups ke jon ki ii wiki me defined hai, aapan  associated access rights ke saathe
+[[{{MediaWiki:Listgrouprights-helppage}}|additional information]] individual rights ke baare me sait hoi.',
+'listgrouprights-group'        => 'Group',
+'listgrouprights-rights'       => 'Adhikar',
+'listgrouprights-helppage'     => 'Madat:Group adhikar',
+'listgrouprights-members'      => '(sadasya ke suchi)',
+'listgrouprights-addgroup'     => 'Sakta jorre {{PLURAL:$2|group|groups}}: $1',
+'listgrouprights-removegroup'  => 'SAkta hatae {{PLURAL:$2|group|groups}}: $1',
+'listgrouprights-addgroup-all' => 'Sakta hai sab group jorre',
 
 # E-mail user
 'emailuser' => 'Ii user ke E-mail karo',

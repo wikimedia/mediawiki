@@ -447,7 +447,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'No existe tal acción',
-'nosuchactiontext'  => 'La acción especificada en la dirección no es válida en {{SITENAME}}. 	
+'nosuchactiontext'  => 'La acción especificada en la dirección es inválida. 	
 Es posible que hayas escrito mal la URL o que hayas seguido un enlace incorrecto. Esto también podría indicar un error en el software utilizado en {{SITENAME}}.',
 'nosuchspecialpage' => 'No existe esa página especial',
 'nospecialpagetext' => "<big>'''Ha solicitado una página especial inexistente.'''</big>
@@ -729,9 +729,9 @@ Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor 
 'loginreqlink'                     => 'identificarse',
 'loginreqpagetext'                 => 'Debe $1 para ver otras páginas.',
 'accmailtitle'                     => 'La contraseña ha sido enviada.',
-'accmailtext'                      => "Una contraseña generada aleatoriamente para [[User talk:$1|$1]] se ha enviado a $2.
+'accmailtext'                      => "Una contraseña generada aleatoriamente para [[User talk:$1|$1]] ha sido enviado a $2.
 
-La contraseña para esta nueva cuenta se puede cambiar en la página ''[[Special:ChangePassword|Cambiar la contraseña]]'' después de la autenticación.",
+La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Special:ChangePassword|Cambiar la contraseña]]'' después de la autenticación.",
 'newarticle'                       => '(Nuevo)',
 'newarticletext'                   => 'Ha seguido un enlace a una página que aún no existe. Si lo que quiere es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]]. Si llegó aquí por error, vuelva a la página anterior.',
 'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[Special:UserLogin|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
@@ -1408,7 +1408,7 @@ Si el archivo comprobado es la misma imagen a tamaño original no es necesario s
 'file-thumbnail-no'           => "El nombre del archivo comienza con '''<tt>$1</tt>'''.
 Parece ser una imagen de tamaño reducido ''(thumbnail)''.
 Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nombre del archivo.",
-'fileexists-forbidden'        => 'Ya existe un archivo con este nombre, y no es posible grabarlo encima de otro. Si quiere subir su archivo de todos modos, por favor vuelva atrás y utilice otro nombre. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Ya existe un archivo con este nombre, y no puede ser grabado encima de otro. Si quiere subir su archivo de todos modos, por favor vuelva atrás y utilice otro nombre. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ya existe un archivo con este nombre en el repositorio compartido.
 Si todavía quiere subir su archivo, por favor, regrese a la página anterior y use otro nombre. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este archivo es un duplicado {{PLURAL:$1|del siguiente|de los siguientes}}:',

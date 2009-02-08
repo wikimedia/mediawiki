@@ -1,15 +1,15 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
  *
  * @author Alexsh
  * @author Bencmq
+ * @author Philip
  * @author Shinjiman
  * @author Skjackey tse
  * @author Wrightbus
- * @author Philip
  */
 
 $fallback = 'zh-hans';
@@ -356,7 +356,6 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => '這個命令不存在',
-'nosuchactiontext'  => '這個wiki無法識別URL請求的命令',
 'nosuchactiontext'  => '該URL所指定的動作無效。
 您可能打錯URL，或跟隨不正確的連結。
 這又可能是{{SITENAME}}所使用的軟件出現臭蟲。',

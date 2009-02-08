@@ -426,7 +426,7 @@ $messages = array(
 'talkpagelinktext'  => '토론',
 'specialpage'       => '특수 문서',
 'personaltools'     => '개인 도구',
-'postcomment'       => '의견 쓰기',
+'postcomment'       => '새 주제',
 'articlepage'       => '문서 보기',
 'talk'              => '토론',
 'views'             => '보기',
@@ -788,7 +788,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'anontalkpagetext'                 => '----
 여기는 계정을 만들지 않았거나 사용하고 있지 않은 비등록 사용자를 위한 토론 문서입니다. 비등록 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다. IP 주소는 여러 사용자에 의해 공유될 수 있습니다. 자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 비등록 사용자에게는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인 하여]] 추후의 다른 비등록 사용자에게 올 수 있는 혼란을 줄이는 것을 추천합니다.',
 'noarticletext'                    => '이 문서가 존재하지 않습니다.
-이 제목으로 [[Special:Search/{{PAGENAME}}|검색]]하거나, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} 문서에 관련된 기록을 열람]하거나 문서를 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</div>할 수 있습니다.',
+이 제목으로 [[Special:Search/{{PAGENAME}}|검색]]하거나, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} 문서에 관련된 기록을 열람]하거나 문서를 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
 'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
 
@@ -808,6 +808,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 {{SITENAME}}에서 HTML 입력을 허용하기 때문에, 자바스크립트 공격을 막기 위해 미리 보기는 숨겨져 있습니다.
 
 '''다시 시도해도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인을 해 보십시오.'''",
+'token_suffix_mismatch'            => "'''저장하려는 내용의 문장 부호가 망가져 있습니다. 문서 보호를 위해 해당 내용을 저장하지 않습니다. 버그가 있는 익명 프록시 서비스 등을 사용할 때 이런 문제가 발생할 수 있습니다.'''",
 'editing'                          => '$1 편집하기',
 'editingsection'                   => '$1 편집하기 (부분)',
 'editingcomment'                   => '$1 편집하기 (덧붙이기)',
@@ -877,6 +878,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 일부 틀은 포함되지 않을 수 있습니다.',
 'post-expand-template-inclusion-category' => '틀 포함 크기가 지나치게 큰 문서의 목록',
 'parser-template-loop-warning'            => '틀 회귀 발견: [[$1]]',
+'parser-template-recursion-depth-warning' => '틀 반복 횟수 제한을 초과함($1)',
 
 # "Undo" feature
 'undo-success' => '이 편집을 되돌리려면 아래의 변경되는 사항을 확인한 후 저장해주세요.',
@@ -1019,7 +1021,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-changedto'          => '$1(으)로 변경',
 'diff-styleremoved'       => '$1 스타일 제거됨',
 'diff-removed'            => '$1 제거됨',
+'diff-changedfrom'        => '$1에서 바꿈',
 'diff-src'                => '출처',
+'diff-with'               => '&#32;$1 $2와 함께',
 'diff-with-final'         => '&#32;그리고 $1 $2',
 'diff-width'              => '너비',
 'diff-height'             => '높이',
@@ -1030,6 +1034,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-h3'                 => "'''3단계 제목'''",
 'diff-h4'                 => "'''4단계 제목'''",
 'diff-h5'                 => '5단계 제목',
+'diff-pre'                => "'''미리 보기 블록'''",
+'diff-div'                => "'''구역'''",
 'diff-ul'                 => "'''순서 없는 목록'''",
 'diff-ol'                 => "'''순서 있는 목록'''",
 'diff-li'                 => "'''목록'''",
@@ -1041,6 +1047,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-br'                 => "'''줄바꿈'''",
 'diff-hr'                 => "'''가로줄'''",
 'diff-code'               => "'''컴퓨터 코드 블록'''",
+'diff-dl'                 => "'''정의 목록'''",
+'diff-dd'                 => "'''정의'''",
 'diff-input'              => "'''입력 상자'''",
 'diff-form'               => "'''양식'''",
 'diff-img'                => "'''그림'''",
@@ -1048,6 +1056,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-a'                  => "'''링크'''",
 'diff-i'                  => "'''기울임꼴'''",
 'diff-b'                  => "'''굵은 글씨'''",
+'diff-strong'             => "'''굵은 글씨'''",
 'diff-em'                 => "'''강조'''",
 'diff-font'               => "'''글꼴'''",
 'diff-big'                => "'''큰 글씨'''",
@@ -1087,6 +1096,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchprofile-project-tooltip'    => '$1에서 찾기',
 'searchprofile-images-tooltip'     => '파일 찾기',
 'searchprofile-everything-tooltip' => '토론 문서를 포함한 모든 문서 찾기',
+'prefs-search-nsdefault'           => '다음을 기본으로 검색:',
 'search-result-size'               => '$1 ($2개 단어)',
 'search-result-score'              => '유사도: $1%',
 'search-redirect'                  => '($1에서 넘어옴)',
@@ -1095,6 +1105,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'search-interwiki-caption'         => '자매 프로젝트',
 'search-interwiki-default'         => '$1 결과:',
 'search-interwiki-more'            => '(더 보기)',
+'search-mwsuggest-enabled'         => '검색어 제안 기능 있음',
+'search-mwsuggest-disabled'        => '검색어 제한 없음',
 'mwsuggest-disable'                => 'AJAX 추천 기능 끄기',
 'searchall'                        => '모두',
 'showingresults'                   => '<strong>$2</strong>번 부터 <strong>$1</strong>개의 결과입니다.',
@@ -2264,6 +2276,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'thumbnail-more'           => '실제 크기로',
 'filemissing'              => '파일 사라짐',
 'thumbnail_error'          => '섬네일을 만드는 중 오류 발생: $1',
+'djvu_page_error'          => 'DjVu 페이지 범위 벗어남',
 'djvu_no_xml'              => 'DjVu 파일의 XML 정보를 읽을 수 없음',
 'thumbnail_invalid_params' => '섬네일 매개변수가 잘못되었습니다.',
 
@@ -2275,6 +2288,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 모든 가져오기는 [[Special:Log/import|가져오기 기록]]에 기록될 것입니다.',
 'import-interwiki-source'    => '원본 위키/문서:',
 'import-interwiki-history'   => '이 문서의 모든 역사를 가져오기',
+'import-interwiki-templates' => '모든 틀을 포함하기',
 'import-interwiki-submit'    => '가져오기',
 'import-interwiki-namespace' => '새 이름공간:',
 'import-upload-filename'     => '파일 이름:',
@@ -2545,6 +2559,7 @@ Variants for Chinese language
 'exif-compressedbitsperpixel'      => '이미지 압축 방식',
 'exif-pixelydimension'             => '유효한 그림 너비',
 'exif-pixelxdimension'             => '유효한 그림 높이',
+'exif-makernote'                   => '제조사 주',
 'exif-relatedsoundfile'            => '관련된 오디오 파일',
 'exif-datetimeoriginal'            => '날짜와 시간',
 'exif-exposuretime'                => '노출 시간',
@@ -2569,6 +2584,7 @@ Variants for Chinese language
 'exif-exposureindex'               => '노출 지수',
 'exif-sensingmethod'               => '감지 방식',
 'exif-filesource'                  => '파일 출처',
+'exif-scenetype'                   => '촬영 모드',
 'exif-cfapattern'                  => 'CFA 패턴',
 'exif-exposuremode'                => '노출 방식',
 'exif-whitebalance'                => '화이트 밸런스',
@@ -2665,6 +2681,8 @@ Variants for Chinese language
 'exif-focalplaneresolutionunit-2' => '인치',
 
 'exif-sensingmethod-1' => '정의되지 않음',
+
+'exif-scenetype-1' => '직접 촬영된 이미지',
 
 'exif-exposuremode-0' => '자동 노출',
 'exif-exposuremode-1' => '수동 노출',
@@ -2792,6 +2810,8 @@ $5
 'imgmultigoto'     => '$1 문서로 가기',
 
 # Table pager
+'ascending_abbrev'         => '상승',
+'descending_abbrev'        => '하강',
 'table_pager_next'         => '다음 문서',
 'table_pager_prev'         => '이전 문서',
 'table_pager_first'        => '처음 문서',
@@ -2913,6 +2933,7 @@ $5
 'tags-title'        => '태그',
 'tags-tag'          => '내부 태그 이름',
 'tags-edit'         => '편집',
+'tags-hitcount'     => '$1개의 바뀜',
 
 # Database error messages
 'dberr-header'    => '이 위키에 문제가 있습니다.',
@@ -2920,5 +2941,6 @@ $5
 'dberr-again'     => '잠시 후에 다시 시도해주세요.',
 'dberr-info'      => '(데이터베이스에 접속할 수 없습니다: $1)',
 'dberr-usegoogle' => '그 동안 구글을 통해 검색할 수도 있습니다.',
+'dberr-outofdate' => '참고로, 구글의 내용 개요는 오래된 것일 수도 있습니다.',
 
 );

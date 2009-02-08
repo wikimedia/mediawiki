@@ -719,8 +719,8 @@ Ille hanc causam dedit: ''$2''",
 'page_first'             => 'prim',
 'page_last'              => 'ult',
 'histlegend'             => "Selige pro dissimilitudine: indica emendationes in botones radiales et \"intrare\" in claviatura vel \"comparatio\" imprime ut conferas.<br />
-Titulus: '''(nov)''' = dissimilis ab emendatione novissima,
-'''(prox)''' = dissimilis ab emendatione proxima, '''m''' = recensio minor.",
+Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
+'''({{int:last}})''' = dissimilis ab emendatione proxima, '''{{int:minoreditletter}}''' = recensio minor.",
 'history-fieldset-title' => 'Quaerere in paginae historia',
 'deletedrev'             => '[deleta]',
 'histfirst'              => 'Veterrimus',
@@ -913,8 +913,8 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'defaultns'                => 'Quaerere per haec spatia nominalia a defalta:',
 'default'                  => 'praedeterminatum',
 'files'                    => 'Fasciculi',
-'prefs-custom-css'         => 'CSS ordinatum',
-'prefs-custom-js'          => 'JS ordinatum',
+'prefs-custom-css'         => 'CSS proprium',
+'prefs-custom-js'          => 'JS proprium',
 
 # User rights
 'userrights'               => 'Usorum potestates', # Not used as normal message but as header for the special page itself

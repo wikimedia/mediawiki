@@ -554,6 +554,19 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'saveusergroups'           => 'Tehirizo ny vondrom-pikambana',
 'userrights-groupsmember'  => "Mpikambana amin'ny vondrona:",
 
+# Groups
+'group-autoconfirmed' => 'Mpikambana voasoratra',
+'group-bot'           => 'Mpikambana rôbô',
+'group-sysop'         => 'Mpandrindra',
+'group-bureaucrat'    => 'Borōkraty',
+'group-all'           => '(izy rehetra)',
+
+'group-user-member' => 'Mpikambana',
+
+'grouppage-user'       => '{{ns:project}}:Mpikambana',
+'grouppage-sysop'      => '{{ns:project}}:Mpandrindra',
+'grouppage-bureaucrat' => '{{ns:project}}:Borōkraty',
+
 # User rights log
 'rightslogtext' => "Tantaran'asa momba ny fahazoan-dàlan'ny mpikambana.",
 

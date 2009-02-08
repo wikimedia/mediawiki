@@ -2482,7 +2482,7 @@ In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{ns:sp
 'export-addcat'     => 'Toevoegen',
 'export-download'   => 'Als bestand opslaan',
 'export-templates'  => 'Sjablonen toevoegen',
-'export-pagelinks'  => "Verwezen pagina's toevoegen tot de hoeveelheid van:",
+'export-pagelinks'  => "Pagina's waarnaar verwezen wordt toevoegen tot een diepte van:",
 
 # Namespace 8 related
 'allmessages'               => 'Systeemteksten',
