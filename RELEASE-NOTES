@@ -74,9 +74,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Local redirects to foreign images are now displayed on the ImagePage when
   viewing on the local wiki.
 * (bug 8249) The magic words for namespaces and pagenames can now be used as
-  parser functions to return the desired namespace or normalized title/title part
-  for a given title.
-* Styled #mw-data-after-content in cologneblue.css to match the rest of the font (bug 17110)
+  parser functions to return the desired namespace or normalized title/title
+  part for a given title.
+* (bug 17110) Styled #mw-data-after-content in cologneblue.css to match the
+  rest of the font
 * (bug 7556) Time zone names in signatures lack i18n
 * (bug 3311) Automatic category redirects
 * (bug 17236) Suppress 'watch user page link' for IP range blocks
@@ -88,6 +89,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   LanguageConverter class)
 * (bug 17379) Contributions-title is now parsed for magic words.
 * Preprocessor output now cached in memcached.
+* (bug 14468) Lines in classic RecentChanges and Watchlist have classes
+  "mw-line-odd" and "mw-line-even" to make styling using css possible.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
@@ -120,21 +123,23 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15811) Re-upload form tweaks: license fields removed, destination locked,
   comment label uses better message
 * Whole HTML validation ($wgValidateAllHtml) now works with external tidy
-* Parser tests no longer fail when $wgExternalLinkTarget is set in LocalSettings
-* (bug 15391) catch DBQueryErrors on external storage insertion. This avoids error
-  messages on save were the edit in fact is saved.
+* Parser tests no longer fail when $wgExternalLinkTarget is set in
+  LocalSettings
+* (bug 15391) catch DBQueryErrors on external storage insertion. This avoids
+  error messages on save were the edit in fact is saved.
 * (bug 17184) Remove duplicate "z" accesskey in MonoBook
 * Parser tests no longer fail when $wgAlwaysUseTidy is set in LocalSettings.php
 * Removed redundant dupe warnings on reupload for the same title. Dupe warnings
   for identical files at different titles are still given.
 * Add 'change tagging' facility, where changes can be tagged internally with
-  certain designations, which are displayed on various summaries of changes, and
-  the entries can be styled with CSS.
+  certain designations, which are displayed on various summaries of changes,
+  and the entries can be styled with CSS.
 * (bug 17207) Fix regression breaking category page display on PHP 5.1
 * Categoryfinder utility class no longer fails on invalid input or gives wrong
   results for category names that include pseudo-namespaces
 * (bug 17252) Galician numbering format
-* (bug 17146) Fix for UTF-8 and short word search for some possible MySQL configs
+* (bug 17146) Fix for UTF-8 and short word search for some possible MySQL
+  configs
 * (bug 7480) Internationalize database error message
 * (bug 16555) Number of links to mediawiki.org scaled back on post-installation
 * (bug 14938) Removing a section no longer leaves excess whitespace
@@ -174,8 +179,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   performance concerns
 * Listing (semi-)deleted revisions and log entries as well in prop=revisions and
   list=logevents
-* (bug 11430) BREAKING CHANGE: Modules may return fewer results than the limit and still
-  set a query-continue in some cases
+* (bug 11430) BREAKING CHANGE: Modules may return fewer results than the limit
+  and still set a query-continue in some cases
 
 === Languages updated in 1.15 ===
 

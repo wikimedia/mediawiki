@@ -361,7 +361,7 @@ class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).
 	 */
-	public function recentChangesLine( &$rc, $watched = false ) {
+	public function recentChangesLine( &$rc, $watched = false, $linenumber = NULL ) {
 		global $wgContLang, $wgLang, $wgRCShowChangedSize, $wgUser;
 		wfProfileIn( __METHOD__ );
 		# Should patrol-related stuff be shown?
@@ -372,6 +372,16 @@ class OldChangesList extends ChangesList {
 
 		$s = '';
 		$classes = array();
+		// use mw-line-even/mw-line-odd class only if linenumber is given (feature from bug 14468)
+		if( $linenumber ) {
+			if( $linenumber & 1 ) {
+				$classes[] = 'mw-line-odd';
+			}
+			else {
+				$classes[] = 'mw-line-even';
+			}
+		}
+
 		// Moved pages
 		if( $rc->mAttribs['rc_type'] == RC_MOVE || $rc->mAttribs['rc_type'] == RC_MOVE_OVER_REDIRECT ) {
 			$this->insertMove( $s, $rc );
