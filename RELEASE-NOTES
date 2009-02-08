@@ -153,6 +153,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 6702) Default system messages updated/improved
 * (bug 17190) User ID on preference page no longer has delimeters
 * (bug 17341) "Powered by MediaWiki" should be on the left on RTL wikis
+* (bug 17404) "userrights-interwiki" right was missing in User::$mCoreRights
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
