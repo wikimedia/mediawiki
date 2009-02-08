@@ -357,7 +357,7 @@ function wfSpecialWatchlist( $par ) {
 			$rc->numberofWatchingusers = 0;
 		}
 
-		$s .= $list->recentChangesLine( $rc, $updated );
+		$s .= $list->recentChangesLine( $rc, $updated, $counter );
 	}
 	$s .= $list->endRecentChangesList();
 
