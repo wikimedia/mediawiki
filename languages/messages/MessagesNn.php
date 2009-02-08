@@ -787,7 +787,9 @@ Passordet for den nye kontoen kan verta endra på ''[[Special:ChangePassword|end
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
 'anontalkpagetext'                 => "----''Dette er ei diskusjonsside for ein anonym brukar som ikkje har oppretta konto eller ikkje har logga inn.
 Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere brukaren. Same IP-adresse kan vere knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:UserLogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
-'noarticletext'                    => "Det er ikkje noko tekst på denne sida. Du kan [[Special:Search/{{PAGENAME}}|søke etter henne]] i andre sider, eller '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} opprette sida]'''.",
+'noarticletext'                    => 'Det finst på noverande tidspunkt ikkje noko tekst på denne sida.
+Du kan [[Special:Search/{{PAGENAME}}|søkja etter denne sidetittelen]] i andre sider, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} søkja i dei relaterte loggane]
+eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} endra denne sida]</span>.',
 'userpage-userdoesnotexist'        => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
 'clearyourcache'                   => "'''Merk: Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft.''' '''Firefox og Safari:''' Hald ''Shift'' nede medan du trykkjer anten ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac). '''Konqueror:''' Trykk ''Oppdater'' eller på ''F5''. '''Opera:''' Tøm mellomlageret i ''Verktøy → Innstillingar''. '''Internet Explorer:''' Hald nede ''Ctrl'' medan du trykkjer ''Oppdater'', eler trykk ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "'''Tips:''' Bruk «Førehandsvis»-knappen for å teste den nye CSS- eller JS-koden din før du lagrar.",
@@ -2261,6 +2263,7 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'export-addcat'     => 'Legg til',
 'export-download'   => 'Lagre som fil',
 'export-templates'  => 'Inkluder malane',
+'export-pagelinks'  => 'Inkluder lenkja sider med ei djupn på:',
 
 # Namespace 8 related
 'allmessages'               => 'Systemmeldingar',
@@ -2287,6 +2290,7 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'import-interwiki-text'      => 'Vel ei wiki og ei side å importere. Endringssdatoer og brukarar som har medverka vert bevart. Alle transwiki-importeringar vert vist i [[Special:Log/import|importloggen]].',
 'import-interwiki-source'    => 'Kjeldewiki/sida:',
 'import-interwiki-history'   => 'Kopier all historikken for denne sida',
+'import-interwiki-templates' => 'Inkluder alle malar',
 'import-interwiki-submit'    => 'Importer',
 'import-interwiki-namespace' => 'Målnamnerom:',
 'import-upload-filename'     => 'Filnamn:',

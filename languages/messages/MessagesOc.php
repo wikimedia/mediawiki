@@ -1823,7 +1823,7 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 'mywatchlist'          => 'Lista de seguit',
 'watchlistfor'         => "(per l’utilizaire '''$1''')",
 'nowatchlist'          => "Vòstra lista de seguit conten pas cap d'article.",
-'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguit, vos devètz $1.',
+'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguit, vos cal vos $1.',
 'watchnologin'         => 'Vos sètz pas identificat(ada)',
 'watchnologintext'     => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
 per modificar vòstra lista de seguit.',

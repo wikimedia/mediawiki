@@ -594,7 +594,7 @@ Käyttäjätunnuksesi on luotu.
 'nocookieslogin'             => '{{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeitä. Ota ne käyttöön, ja yritä uudelleen.',
 'noname'                     => 'Et ole määritellyt kelvollista käyttäjänimeä.',
 'loginsuccesstitle'          => 'Sisäänkirjautuminen onnistui',
-'loginsuccess'               => 'Olet kirjautunut käyttäjänä $1.',
+'loginsuccess'               => "'''Olet kirjautunut käyttäjänä $1.'''",
 'nosuchuser'                 => 'Käyttäjää ”$1” ei ole olemassa. Nimet ovat kirjainkoosta riippuvaisia. Tarkista kirjoititko nimen oikein, tai [[Special:UserLogin/signup|luo uusi käyttäjätunnus]].',
 'nosuchusershort'            => 'Käyttäjää nimeltä ”<nowiki>$1</nowiki>” ei ole. Kirjoititko nimen oikein?',
 'nouserspecified'            => 'Käyttäjätunnusta ei ole määritelty.',
@@ -732,7 +732,7 @@ Liitä kaikki ylläolevat tiedot mahdollisiin kyselyihisi.",
 Salasanan tälle uudelle tunnukselle voi vaihtaa kirjautumisen jälkeen [[Special:ChangePassword|asetussivulla]].',
 'newarticle'                       => '(uusi)',
 'newarticletext'                   => 'Linkki toi sivulle, jota ei vielä ole. Voit luoda sivun kirjoittamalla alla olevaan tilaan. Jos et halua luoda sivua, käytä selaimen paluutoimintoa.',
-'anontalkpagetext'                 => "----''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:UserLogin|luo itsellesi käyttäjätunnus tai kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
+'anontalkpagetext'                 => "----''Tämä on nimettömän käyttäjän keskustelusivu. Hän ei ole joko luonut itselleen käyttäjätunnusta tai ei käytä sitä. Siksi hänet tunnistetaan nyt numeerisella IP-osoitteella. Kyseinen IP-osoite voi olla useamman henkilön käytössä. Jos olet nimetön käyttäjä, ja sinusta tuntuu, että aiheettomia kommentteja on ohjattu sinulle, [[Special:UserLogin/signup|luo itsellesi käyttäjätunnus]] tai [[Special:UserLogin|kirjaudu sisään]] välttääksesi jatkossa sekaannukset muiden nimettömien käyttäjien kanssa.''",
 'noarticletext'                    => '{{GRAMMAR:inessive|{{SITENAME}}}} ei ole tämän nimistä sivua.
 * Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta.
 * Voit kirjoittaa uuden sivun <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} {{PAGENAME}}]</span>.',

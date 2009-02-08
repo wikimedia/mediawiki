@@ -402,7 +402,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Non existe tal action',
-'nosuchactiontext'  => 'Le action specificate in le adresse URL non es recognoscite per le wiki',
+'nosuchactiontext'  => 'Le action specificate in le adresse URL non es valide.
+Es possibile que tu ha mal entrate le URL o sequite un ligamine incorrecte.
+Isto poterea equalmente indicar un defecto in le software usate per {{SITENAME}}.',
 'nosuchspecialpage' => 'Pagina special invalide',
 'nospecialpagetext' => "<big>'''Tu ha requestate un pagina special que es non es valide.'''</big>
 
@@ -718,7 +720,10 @@ Si tu ha arrivate hic per error, clicca le button '''Retornar''' de tu navigator
 'anontalkpagetext'                 => "---- ''Isto es le pagina de discussion pro un usator anonyme qui non ha ancora create un conto, o qui non lo usa. Consequentemente nos debe usar le adresse IP numeric pro identificar le/la.
 Un tal adresse IP pote esser usate in commun per varie personas.
 Si tu es un usator anonyme e pensa que commentos irrelevante ha essite dirigite a te, per favor [[Special:UserLogin/signup|crea un conto]] o [[Special:UserLogin|aperi un session]] pro evitar futur confusiones con altere usatores anonyme.''",
-'noarticletext'                    => 'Actualmente il non ha texto in iste pagina. Tu pote [[Special:Search/{{PAGENAME}}|cercar iste titulo]] in le texto de altere paginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
+'noarticletext'                    => 'Al momento il non ha texto in iste pagina.
+Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} cercar in le registros pertinente],
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
 'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
 'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove CSS/JS ante de publicar lo.",
@@ -2316,6 +2321,7 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{ns:special}}:Export
 'export-addcat'     => 'Adder',
 'export-download'   => 'Immagazinar como file',
 'export-templates'  => 'Includer patronos',
+'export-pagelinks'  => 'Includer paginas ligate a un profunditate de:',
 
 # Namespace 8 related
 'allmessages'               => 'Messages del systema',
@@ -2345,6 +2351,7 @@ Le datas del versiones e nomines del contributores essera preservate.
 Tote le actiones de importation transwiki se registra in le [[Special:Log/import|registro de importationes]].',
 'import-interwiki-source'    => 'Wiki/pagina de origine:',
 'import-interwiki-history'   => 'Copiar tote le versiones del historia de iste pagina',
+'import-interwiki-templates' => 'Includer tote le patronos',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Spatio de nomines de destination:',
 'import-upload-filename'     => 'Nomine del file:',
