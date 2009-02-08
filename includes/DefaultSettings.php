@@ -1039,6 +1039,13 @@ $wgDebugDumpSql         = false;
 $wgDebugLogGroups       = array();
 
 /**
+ * Display debug data at the bottom of the main content area.
+ *
+ * Useful for developers and technical users trying to working on a closed wiki.
+ */
+$wgShowDebug            = false;
+
+/**
  * Show the contents of $wgHooks in Special:Version
  */
 $wgSpecialVersionShowHooks =  false;

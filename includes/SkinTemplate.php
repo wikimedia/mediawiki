@@ -401,7 +401,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printSource() . "</div>\n";
-		$out->mBodytext .= $printfooter ;
+		$out->mBodytext .= $printfooter . $this->generateDebugHTML();
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 
 		# Language links

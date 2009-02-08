@@ -890,12 +890,27 @@ END;
 	}
 
 	/**
+	 * Generate debug data HTML for displaying at the bottom of the main content
+	 * area.
+	 * @return String HTML containing debug data, if enabled (otherwise empty).
+	 */
+	protected function generateDebugHTML() {
+		global $wgShowDebug, $wgOut;
+		if ( $wgShowDebug ) {
+			$listInternals = str_replace( "\n", "</li>\n<li>", htmlspecialchars( $wgOut->mDebugtext ) );
+			return "\n<hr>\n<strong>Debug data:</strong><ul style=\"font-family:monospace;\"><li>" .
+				$listInternals . "</li></ul>\n";
+		}
+		return '';
+	}
+
+	/**
 	 * This gets called shortly before the </body> tag.
 	 * @return String HTML to be put before </body>
 	 */
 	function afterContent() {
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
-		return $printfooter . $this->doAfterContent();
+		return $this->generateDebugHTML() . $printfooter . $this->doAfterContent();
 	}
 
 	/**
