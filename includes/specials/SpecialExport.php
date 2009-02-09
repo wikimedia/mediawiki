@@ -61,7 +61,7 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 		}
-		else if( $wgRequest->wasPosted() && $page == '' ) {
+		else if( $wgRequest->wasPosted() && $par == '' ) {
 			$page = $wgRequest->getText( 'pages' );
 			$this->curonly = $wgRequest->getCheck( 'curonly' );
 			$rawOffset = $wgRequest->getVal( 'offset' );
@@ -125,7 +125,7 @@ class SpecialExport extends SpecialPage {
 				$filename = urlencode( $wgSitename . '-' . wfTimestampNow() . '.xml' );
 				$wgRequest->response()->header( "Content-disposition: attachment;filename={$filename}" );
 			}
-			$this->doExport( $page, $history );
+			$this->doExport( $page, $history, $list_authors );
 			return;
 		}
 
@@ -159,7 +159,7 @@ class SpecialExport extends SpecialPage {
 	 * @param string $page User input on what page(s) to export
 	 * @param mixed  $history one of the WikiExporter history export constants
 	 */
-	private function doExport( $page, $history ) {
+	private function doExport( $page, $history, $list_authors ) {
 		global $wgExportMaxHistory;
 
 		/* Split up the input and look up linked pages */
@@ -199,8 +199,8 @@ class SpecialExport extends SpecialPage {
 			set_time_limit(0);
 			wfRestoreWarnings();
 		}
-				$exporter = new WikiExporter( $db, $history, $buffer );
-		$exporter->list_authors = $list_authors ;
+		$exporter = new WikiExporter( $db, $history, $buffer );
+		$exporter->list_authors = $list_authors;
 		$exporter->openStream();
 		foreach( $pages as $page ) {
 			/*
