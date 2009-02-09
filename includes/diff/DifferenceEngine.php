@@ -28,6 +28,8 @@ class DifferenceEngine {
 	var $mRevisionsLoaded = false; // Have the revisions been loaded
 	var $mTextLoaded = 0; // How many text blobs have been loaded, 0, 1 or 2?
 	var $htmldiff;
+
+	protected $unhide = false;
 	/**#@-*/
 
 	/**
@@ -38,8 +40,9 @@ class DifferenceEngine {
 	 * @param $rcid Integer: ??? FIXME (default 0)
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $htmldiff boolean If set, output using HTMLDiff instead of raw wikicode diff
+	 * @param $unhide boolean If set, allow viewing deleted revs
 	 */
-	function __construct( $titleObj = null, $old = 0, $new = 0, $rcid = 0, $refreshCache = false , $htmldiff = false) {
+	function __construct( $titleObj = null, $old = 0, $new = 0, $rcid = 0, $refreshCache = false , $htmldiff = false, $unhide = false ) {
 		$this->mTitle = $titleObj;
 		wfDebug("DifferenceEngine old '$old' new '$new' rcid '$rcid'\n");
 
@@ -67,6 +70,7 @@ class DifferenceEngine {
 		$this->mRcidMarkPatrolled = intval($rcid);  # force it to be an integer
 		$this->mRefreshCache = $refreshCache;
 		$this->htmldiff = $htmldiff;
+		$this->unhide = $unhide;
 	}
 
 	function getTitle() {
@@ -254,16 +258,18 @@ CONTROL;
 		}
 
 		$oldHeader = '<div id="mw-diff-otitle1"><strong>'.$this->mOldtitle.'</strong></div>' .
-			'<div id="mw-diff-otitle2">' . $sk->revUserTools( $this->mOldRev, true ) . "</div>" .
-			'<div id="mw-diff-otitle3">' . $oldminor . $sk->revComment( $this->mOldRev, !$diffOnly, true ) . $ldel . "</div>" .
+			'<div id="mw-diff-otitle2">' . $sk->revUserTools( $this->mOldRev, !$this->unhide ) . "</div>" .
+			'<div id="mw-diff-otitle3">' . $oldminor . $sk->revComment( $this->mOldRev, !$diffOnly, !$this->unhide ).$ldel."</div>" .
 			'<div id="mw-diff-otitle4">' . $prevlink .'</div>';
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>'.$this->mNewtitle.'</strong></div>' .
-			'<div id="mw-diff-ntitle2">' . $sk->revUserTools( $this->mNewRev, true ) . " $rollback</div>" .
-			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly, true ) . $rdel . "</div>" .
+			'<div id="mw-diff-ntitle2">' . $sk->revUserTools( $this->mNewRev, !$this->unhide ) . " $rollback</div>" .
+			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly, !$this->unhide ).$rdel."</div>" .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $patrol . '</div>';
 
-		# Output the diff
-		if( !$this->mOldRev->userCan(Revision::DELETED_TEXT) || !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+		# Output the diff if allowed
+		$allowed = $this->mOldRev->userCan(Revision::DELETED_TEXT) && $this->mNewRev->userCan(Revision::DELETED_TEXT);
+		$deleted = $this->mOldRev->isDeleted(Revision::DELETED_TEXT) || $this->mNewRev->isDeleted(Revision::DELETED_TEXT);
+		if( $deleted && (!$this->unhide || !$allowed) ) {
 			$this->showDiffStyle();
 			$multi = $this->getMultiNotice();
 			$wgOut->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );

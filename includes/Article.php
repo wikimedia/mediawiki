@@ -780,15 +780,17 @@ class Article {
 		}
 		$wgOut->setRobotPolicy( $policy );
 
+		# Allow admins to see deleted content if explicitly requested
+		$delId = $diff ? $diff : $oldid;
+		$unhide = $wgRequest->getInt('unhide') == 1 && $wgUser->matchEditToken( $wgRequest->getVal('token'), $delId );
 		# If we got diff and oldid in the query, we want to see a
 		# diff page instead of the article.
 
 		if( !is_null( $diff ) ) {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
-			$diff = $wgRequest->getVal( 'diff' );
 			$htmldiff = $wgRequest->getVal( 'htmldiff' , false);
-			$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid, $purge, $htmldiff);
+			$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid, $purge, $htmldiff, $unhide );
 			// DifferenceEngine directly fetched the revision:
 			$this->mRevIdFetched = $de->mNewid;
 			$de->showDiffPage( $diffOnly );
@@ -913,8 +915,9 @@ class Article {
 					// FIXME: This would be a nice place to load the 'no such page' text.
 				} else {
 					$this->setOldSubtitle( isset($this->mOldId) ? $this->mOldId : $oldid );
+					# Allow admins to see deleted content if explicitly requested
 					if( $this->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
-						if( !$this->mRevision->userCan( Revision::DELETED_TEXT ) ) {
+						if( !$unhide || !$this->mRevision->userCan(Revision::DELETED_TEXT) ) {
 							$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
 							$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 							wfProfileOut( __METHOD__ );
@@ -2971,7 +2974,7 @@ class Article {
 	 * @param $oldid String: revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid = 0 ) {
-		global $wgLang, $wgOut, $wgUser;
+		global $wgLang, $wgOut, $wgUser, $wgRequest;
 
 		if( !wfRunHooks( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
 			return;
@@ -3022,16 +3025,17 @@ class Article {
 			}
 			$cdel = "(<small>$cdel</small>) ";
 		}
-		# Show user links if allowed to see them. Normally they
-		# are hidden regardless, but since we can already see the text here...
-		$userlinks = $sk->revUserTools( $revision, false );
+		$unhide = $wgRequest->getInt('unhide') == 1 && $wgUser->matchEditToken( $wgRequest->getVal('token'), $oldid );
+		# Show user links if allowed to see them. If hidden, then show them only if requested...
+		$userlinks = $sk->revUserTools( $revision, !$unhide );
 
 		$m = wfMsg( 'revision-info-current' );
 		$infomsg = $current && !wfEmptyMsg( 'revision-info-current', $m ) && $m != '-'
 			? 'revision-info-current'
 			: 'revision-info';
 
-		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" . wfMsgExt( $infomsg, array( 'parseinline', 'replaceafter' ), $td, $userlinks, $revision->getID() ) . "</div>\n" .
+		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" . wfMsgExt( $infomsg, array( 'parseinline', 'replaceafter' ), 
+			$td, $userlinks, $revision->getID() ) . "</div>\n" .
 
 		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsgHtml( 'revision-nav', $prevdiff, 
 				$prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
