@@ -280,7 +280,7 @@ class LogEventsList {
 					array(),
 					array( 'action' => 'unblock', 'ip' => $row->log_title ),
 					'known' ) 
-				. ' ' . $this->message['pipe-separator'] . ' ' .
+				. $this->message['pipe-separator'] .
 				$this->skin->link( SpecialPage::getTitleFor( 'Blockip', $row->log_title ), 
 					$this->message['change-blocklink'],
 					array(), array(), 'known' ) .
@@ -293,7 +293,7 @@ class LogEventsList {
 					array(),
 					array( 'action' => 'history', 'offset' => $row->log_timestamp ) );
 			if( $wgUser->isAllowed( 'protect' ) ) {
-				$revert .= ' ' . $this->message['pipe-separator'] . ' ' .
+				$revert .= $this->message['pipe-separator'] .
 					$this->skin->link( $title,
 						$this->message['protect_change'],
 						array(),

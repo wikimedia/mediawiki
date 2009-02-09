@@ -2912,7 +2912,7 @@ Confirmatz que desiratz tornar crear aqueste article.",
 # Separators for various lists, etc.
 'colon-separator'    => '&nbsp;:&#32;',
 'autocomment-prefix' => '-',
-'pipe-separator'     => '•',
+'pipe-separator'     => '&#32;•&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedenta',

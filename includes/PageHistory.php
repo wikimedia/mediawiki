@@ -358,7 +358,7 @@ class PageHistory {
 		}
 
 		if( $tools ) {
-			$s .= ' (' . implode( ' | ', $tools ) . ')';
+			$s .= ' (' . $wgLang->pipeList( $tools ) . ')';
 		}
 
 		# Tags

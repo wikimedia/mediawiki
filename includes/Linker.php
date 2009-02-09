@@ -1053,7 +1053,7 @@ class Linker {
 	 * @return string
 	 */
 	public function userToolLinks( $userId, $userText, $redContribsWhenNoEdits = false, $flags = 0, $edits=null ) {
-		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans;
+		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans, $wgLang;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = ( $wgSysopUserBans || 0 == $userId ) && !$flags & self::TOOL_LINKS_NOBLOCK;
 
@@ -1079,7 +1079,7 @@ class Linker {
 		}
 
 		if( $items ) {
-			return ' <span class="mw-usertoollinks">(' . implode( ' | ', $items ) . ')</span>';
+			return ' <span class="mw-usertoollinks">(' . $wgLang->pipeList( $items ) . ')</span>';
 		} else {
 			return '';
 		}
