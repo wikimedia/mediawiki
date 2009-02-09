@@ -1613,10 +1613,36 @@ class Title {
 		}
 
 		$db = wfGetDB( DB_SLAVE );
-		return $this->mHasSubpages = (bool)$db->selectField( 'page', '1',
-			"page_namespace = {$this->mNamespace} AND page_title LIKE '"
-			. $db->escapeLike( $this->mDbkeyform ) . "/%'",
-			__METHOD__
+		$subpages = $this->getSubpages( 1 );
+		if( $subpages instanceof TitleArray )
+			return $this->mHasSubpages = (bool)$subpages->count();
+		return $this->mHasSubpages = false;
+	}
+	
+	/**
+	 * Get all subpages of this page.
+	 * @param $limit Maximum number of subpages to fetch; -1 for no limit
+	 * @return mixed TitleArray, or empty array if this page's namespace
+	 *  doesn't allow subpages
+	 */
+	public function getSubpages($limit = -1) {
+		if( !MWNamespace::hasSubpages( $this->getNamespace() ) )
+			return array();
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$conds['page_namespace'] = $this->getNamespace();
+		$conds[] = 'page_title LIKE ' . $dbr->addQuotes(
+				$dbr->escapeLike( $this->getDBkey() ) . '/%' );
+		$options = array();
+		if( $limit > -1 )
+			$options['LIMIT'] = $limit;
+		return $this->mSubpages = TitleArray::newFromResult(
+			$dbr->select( 'page',
+				array( 'page_id', 'page_namespace', 'page_title' ),
+				$conds,
+				__METHOD__,
+				$options
+			)
 		);
 	}
 
@@ -2937,6 +2963,67 @@ class Title {
 		# The new title, and links to the new title, are purged in Article::onArticleCreate()
 		$this->purgeSquid();
 		
+	}
+	
+	/**
+	 * Move this page's subpages to be subpages of $nt
+	 * @param $nt Title Move target
+	 * @param $auth bool Whether $wgUser's permissions should be checked
+	 * @param $reason string The reason for the move
+	 * @param $createRedirect bool Whether to create redirects from the old subpages to the new ones
+	 *  Ignored if the user doesn't have the 'suppressredirect' right
+	 * @return mixed array with old page titles as keys, and strings (new page titles) or
+	 *  arrays (errors) as values, or an error array with numeric indices if no pages were moved
+	 */
+	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true ) {
+		global $wgUser, $wgMaximumMovedPages;
+		// Check permissions
+		if( !$this->userCan( 'move-subpages' ) )
+			return array( 'cant-move-subpages' );
+		// Do the source and target namespaces support subpages?
+		if( !MWNamespace::hasSubpages( $this->getNamespace() ) )
+			return array( 'namespace-nosubpages',
+				MWNamespace::getCanonicalName( $this->getNamespace() ) );
+		if( !MWNamespace::hasSubpages( $nt->getNamespace() ) )
+			return array( 'namespace-nosubpages',
+				MWNamespace::getCanonicalName( $nt->getNamespace() ) );
+
+		$subpages = $this->getSubpages($wgMaximumMovedPages + 1);
+		$retval = array();
+		$count = 0;
+		foreach( $subpages as $oldSubpage ) {
+			$count++;
+			if( $count > $wgMaximumMovedPages ) {
+				$retval[$oldSubpage->getPrefixedTitle()] =
+						array( 'movepage-max-pages',
+							$wgMaximumMovedPages );
+				break;
+			}
+
+			if( $oldSubpage->getArticleId() == $this->getArticleId() )
+				// When moving a page to a subpage of itself,
+				// don't move it twice
+				continue;
+			$newPageName = preg_replace(
+					'#^'.preg_quote( $this->getDBKey(), '#' ).'#',
+					$nt->getDBKey(), $oldSubpage->getDBKey() );
+			if( $oldSubpage->isTalkPage() ) {
+				$newNs = $nt->getTalkPage()->getNamespace();
+			} else {
+				$newNs = $nt->getSubjectPage()->getNamespace();
+			}
+			# Bug 14385: we need makeTitleSafe because the new page names may
+			# be longer than 255 characters.
+			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
+
+			$success = $oldSubpage->moveTo( $newSubpage, $auth, $reason, $createRedirect );
+			if( $success === true ) {
+				$retval[$oldSubpage->getPrefixedText()] = $newSubpage->getPrefixedText();
+			} else {
+				$retval[$oldSubpage->getPrefixedText()] = $success;
+			}
+		}
+		return $retval;
 	}
 	
 	/**
