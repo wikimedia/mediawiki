@@ -10,6 +10,8 @@
  * @author Urhixidur
  */
 
+$fallback = 'ru';
+
 $namespaceNames = array(
 	NS_SPECIAL          => 'Аналлаах',
 	NS_TALK             => 'Ырытыы',
