@@ -107,7 +107,6 @@ class ApiMove extends ApiBase {
 			$r['subpages'] = $this->moveSubpages($fromTitle, $toTitle,
 					$params['reason'], $params['noredirect']);
 			$this->getResult()->setIndexedTagName($r['subpages'], 'subpage');
-			// TODO: Should we move talk subpages if moving the talk page failed?
 			if($params['movetalk'])
 			{
 				$r['subpages-talk'] = $this->moveSubpages($fromTalk, $toTalk,
