@@ -533,7 +533,7 @@ abstract class AlphabeticPager extends IndexPager {
 		$limits = $wgLang->pipeList( $limitLinks );
 
 		$this->mNavigationBar =
-			"({$pagingLinks['first']} | {$pagingLinks['last']}) " .
+			"(" . $wgLang->pipeList( array( $pagingLinks['first'], $pagingLinks['last'] ) ) . ") " .
 			wfMsgHtml( 'viewprevnext', $pagingLinks['prev'],
 			$pagingLinks['next'], $limits );
 
