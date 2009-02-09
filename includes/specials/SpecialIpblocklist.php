@@ -306,7 +306,7 @@ class IPUnblockForm {
 	}
 
 	function searchForm() {
-		global $wgTitle, $wgScript, $wgRequest;
+		global $wgTitle, $wgScript, $wgRequest, $wgLang;
 
 		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ) );
 		$nondefaults = array();
@@ -330,7 +330,7 @@ class IPUnblockForm {
 		$links[] = wfMsgHtml( 'ipblocklist-sh-userblocks', $ubLink );
 		$links[] = wfMsgHtml( 'ipblocklist-sh-tempblocks', $tbLink );
 		$links[] = wfMsgHtml( 'ipblocklist-sh-addressblocks', $sipbLink );
-		$hl = implode( ' ' . wfMsg( 'pipe-separator' ) . ' ', $links );
+		$hl = $wgLang->pipeList( $links );
 
 		return
 			Xml::tags( 'form', array( 'action' => $wgScript ),
@@ -418,7 +418,7 @@ class IPUnblockForm {
 			$properties[] = $msg['blocklist-nousertalk'];
 		}
 
-		$properties = implode( ', ', $properties );
+		$properties = $wgLang->commaList( $properties );
 
 		$line = wfMsgReplaceArgs( $msg['blocklistline'], array( $formattedTime, $blocker, $target, $properties ) );
 
@@ -434,7 +434,7 @@ class IPUnblockForm {
 
 			# Create changeblocklink for all blocks with exception of autoblocks
 			if( !$block->mAuto ) {
-				$changeblocklink = ' ' . wfMsg( 'pipe-separator' ) . ' ' .
+				$changeblocklink = wfMsg( 'pipe-separator' ) .
 					$sk->link( SpecialPage::getTitleFor( 'Blockip', $block->mAddress ), 
 						$msg['change-blocklink'],
 						array(), array(), 'known' );
