@@ -82,7 +82,7 @@ class SkinStandard extends Skin {
 	}
 
 	function doAfterContent() {
-		global $wgContLang;
+		global $wgContLang, $wgLang;
 		$fname =  'SkinStandard::doAfterContent';
 		wfProfileIn( $fname );
 		wfProfileIn( $fname.'-1' );
@@ -108,10 +108,11 @@ class SkinStandard extends Skin {
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
 		$s .= $this->bottomLinks();
-		$s .= "\n<br />" . $this->mainPageLink()
-		  . ' | ' . $this->aboutLink()
-		  . ' | ' . $this->specialLink( 'recentchanges' )
-		  . ' | ' . $this->searchForm()
+		$s .= "\n<br />" . $wgLang->pipeList( array(
+			$this->mainPageLink(),
+			$this->aboutLink(),
+			$this->specialLink( 'recentchanges' ),
+			$this->searchForm() ) )
 		  . '<br /><span id="pagestats">' . $this->pageStats() . '</span>';
 
 		$s .= "</td>";
