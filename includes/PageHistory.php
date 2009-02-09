@@ -23,6 +23,8 @@ class PageHistory {
 	var $lastdate;
 	var $linesonpage;
 	var $mLatestId = null;
+	
+	private $mOldIdChecked = 0;
 
 	/**
 	 * Construct a new PageHistory.
@@ -442,40 +444,29 @@ class PageHistory {
 	 * @return string HTML output for the radio buttons
 	 */
 	function diffButtons( $rev, $firstInList, $counter ) {
-		if( $this->linesonpage > 1) {
-			$radio = array(
-				'type'  => 'radio',
-				'value' => $rev->getId(),
-			);
-
-			if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
-				$radio['disabled'] = 'disabled';
-			}
-
+		if( $this->linesonpage > 1 ) {
+			$radio = array( 'type'  => 'radio', 'value' => $rev->getId() );
 			/** @todo: move title texts to javascript */
 			if( $firstInList ) {
-				$first = Xml::element( 'input', array_merge(
-				$radio,
-				array(
-						'style' => 'visibility:hidden',
-						'name'  => 'oldid' ) ) );
+				$first = Xml::element( 'input', 
+					array_merge( $radio, array( 'style' => 'visibility:hidden', 'name'  => 'oldid' ) )
+				);
 				$checkmark = array( 'checked' => 'checked' );
 			} else {
-				if( $counter == 2 ) {
+				# Check visibility of old revisions
+				if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
+					$radio['disabled'] = 'disabled';
+					$checkmark = array(); // We will check the next possible one
+				} else if( $counter == 2 || !$this->mOldIdChecked ) {
 					$checkmark = array( 'checked' => 'checked' );
+					$this->mOldIdChecked = $rev->getId();
 				} else {
 					$checkmark = array();
 				}
-				$first = Xml::element( 'input', array_merge(
-				$radio,
-				$checkmark,
-				array( 'name'  => 'oldid' ) ) );
+				$first = Xml::element( 'input', array_merge( $radio, $checkmark, array( 'name'  => 'oldid' ) ) );
 				$checkmark = array();
 			}
-			$second = Xml::element( 'input', array_merge(
-			$radio,
-			$checkmark,
-			array( 'name'  => 'diff' ) ) );
+			$second = Xml::element( 'input', array_merge( $radio, $checkmark, array( 'name'  => 'diff' ) ) );
 			return $first . $second;
 		} else {
 			return '';

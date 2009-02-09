@@ -1291,6 +1291,8 @@ There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 This page revision has been removed from the public archives.
 As an administrator on {{SITENAME}} you can view it;
 there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">You cannot view this diff because one of the revisions has been removed from the public archives.
+There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].</div>',
 'rev-delundel'                   => 'show/hide',
 'revisiondelete'                 => 'Delete/undelete revisions',
 'revdelete-nooldid-title'        => 'Invalid target revision',
