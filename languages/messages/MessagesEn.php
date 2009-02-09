@@ -916,6 +916,7 @@ It must be under $1 {{PLURAL:$1|character|characters}}.',
 'gender-unknown'             => 'Unspecified',
 'gender-male'                => 'Male',
 'gender-female'              => 'Female',
+'prefs-help-gender'          => 'Optional: used for gender-correct addressing by the software. This information will be public.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
