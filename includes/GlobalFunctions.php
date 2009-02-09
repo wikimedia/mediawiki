@@ -986,11 +986,11 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	} else {
 		$nlink = '<a href="' . $title->escapeLocalUrl( $q ) . "\" class=\"mw-nextlink\">{$next}</a>";
 	}
-	$nums = $wgLang->pipeList( wfNumLink( $offset, 20, $title, $query ),
+	$nums = $wgLang->pipeList( array( wfNumLink( $offset, 20, $title, $query ),
 	  wfNumLink( $offset, 50, $title, $query ),
 	  wfNumLink( $offset, 100, $title, $query ),
 	  wfNumLink( $offset, 250, $title, $query ),
-	  wfNumLink( $offset, 500, $title, $query ) );
+	  wfNumLink( $offset, 500, $title, $query ) ) );
 
 	return wfMsg( 'viewprevnext', $plink, $nlink, $nums );
 }
