@@ -93,7 +93,7 @@ class LogEventsList {
 	}
 	
 	private function getFilterLinks( $logType, $filter ) {
-		global $wgTitle;
+		global $wgTitle, $wgLang;
 		// show/hide links
 		$messages = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
 		// Option value -> message mapping
@@ -106,7 +106,7 @@ class LogEventsList {
 			$links[$type] = wfMsgHtml( "log-show-hide-{$type}", $link );
 		}
 		// Build links
-		return implode( ' | ', $links );
+		return $wgLang->pipeList( $links );
 	}
 	
 	private function getDefaultQuery() {
