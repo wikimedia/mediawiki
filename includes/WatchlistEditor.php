@@ -407,6 +407,8 @@ class WatchlistEditor {
 	 * @return string
 	 */
 	private function buildRemoveLine( $title, $redirect, $skin ) {
+		global $wgLang;
+
 		$link = $skin->makeLinkObj( $title );
 		if( $redirect )
 			$link = '<span class="watchlistredir">' . $link . '</span>';
@@ -419,7 +421,7 @@ class WatchlistEditor {
 		}
 		return "<li>"
 			. Xml::check( 'titles[]', false, array( 'value' => $title->getPrefixedText() ) )
-			. $link . " (" . implode( ' | ', $tools ) . ")" . "</li>\n";
+			. $link . " (" . $wgLang->pipeList( $tools ) . ")" . "</li>\n";
 		}
 
 	/**
@@ -480,11 +482,13 @@ class WatchlistEditor {
 	 * @return string
 	 */
 	public static function buildTools( $skin ) {
+		global $wgLang;
+
 		$tools = array();
 		$modes = array( 'view' => false, 'edit' => 'edit', 'raw' => 'raw' );
 		foreach( $modes as $mode => $subpage ) {
 			$tools[] = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Watchlist', $subpage ), wfMsgHtml( "watchlisttools-{$mode}" ) );
 		}
-		return implode( ' | ', $tools );
+		return $wgLang->pipeList( $tools );
 	}
 }

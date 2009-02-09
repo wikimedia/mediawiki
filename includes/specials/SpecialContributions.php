@@ -190,7 +190,7 @@ class SpecialContributions extends SpecialPage {
 	
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 	
-			$links = implode( ' | ', $tools );
+			$links = $wgLang->pipeList( $tools );
 		}
 	
 		// Old message 'contribsub' had one parameter, but that doesn't work for

@@ -286,7 +286,7 @@ function wfSpecialWatchlist( $par ) {
 	# Namespace filter and put the whole form together.
 	$form .= $wlInfo;
 	$form .= $cutofflinks;
-	$form .= implode( ' | ', $links );
+	$form .= $wgLang->pipeList( $links );
 	$form .= Xml::openElement( 'form', array( 'method' => 'post', 'action' => $thisTitle->getLocalUrl() ) );
 	$form .= '<hr /><p>';
 	$form .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;';
@@ -389,6 +389,8 @@ function wlDaysLink( $d, $page, $options = array() ) {
  * Returns html
  */
 function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
+	global $wgLang;
+
 	$hours = array( 1, 2, 6, 12 );
 	$days = array( 1, 3, 7 );
 	$i = 0;
@@ -401,8 +403,8 @@ function wlCutoffLinks( $days, $page = 'Watchlist', $options = array() ) {
 	}
 	return wfMsgExt('wlshowlast',
 		array('parseinline', 'replaceafter'),
-		implode(' | ', $hours),
-		implode(' | ', $days),
+		$wgLang->pipeList( $hours ),
+		$wgLang->pipeList( $days ),
 		wlDaysLink( 0, $page, $options ) );
 }
 

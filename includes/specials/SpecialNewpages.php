@@ -122,7 +122,7 @@ class SpecialNewpages extends SpecialPage {
 	}
 
 	protected function filterLinks() {
-		global $wgGroupPermissions, $wgUser;
+		global $wgGroupPermissions, $wgUser, $wgLang;
 
 		// show/hide links
 		$showhide = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
@@ -155,7 +155,7 @@ class SpecialNewpages extends SpecialPage {
 			$links[$key] = wfMsgHtml( $msg, $link );
 		}
 
-		return implode( ' | ', $links );
+		return $wgLang->pipeList( $links );
 	}
 
 	protected function form() {

@@ -622,14 +622,14 @@ class SpecialRecentChanges extends SpecialPage {
 			$cl[] = $this->makeOptionsLink( $wgLang->formatNum( $value ),
 				array( 'limit' => $value ), $nondefaults, $value == $options['limit'] ) ;
 		}
-		$cl = implode( ' | ', $cl );
+		$cl = $wgLang->pipeList( $cl );
 
 		// day links, reset 'from' to none
 		foreach( $wgRCLinkDays as $value ) {
 			$dl[] = $this->makeOptionsLink( $wgLang->formatNum( $value ),
 				array( 'days' => $value, 'from' => '' ), $nondefaults, $value == $options['days'] ) ;
 		}
-		$dl = implode( ' | ', $dl );
+		$dl = $wgLang->pipeList( $dl );
 
 
 		// show/hide links
@@ -654,7 +654,7 @@ class SpecialRecentChanges extends SpecialPage {
 		if( $wgUser->useRCPatrol() )
 			$links[] = wfMsgHtml( 'rcshowhidepatr', $patrLink );
 		$links[] = wfMsgHtml( 'rcshowhidemine', $myselfLink );
-		$hl = implode( ' | ', $links );
+		$hl = $wgLang->pipeList( $links );
 
 		// show from this onward link
 		$now = $wgLang->timeanddate( wfTimestampNow(), true );
