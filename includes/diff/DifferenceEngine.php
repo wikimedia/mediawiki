@@ -219,11 +219,10 @@ CONTROL;
 		$oldminor = '';
 		$newminor = '';
 
-		if ($this->mOldRev->mMinorEdit == 1) {
+		if( $this->mOldRev->isMinor() ) {
 			$oldminor = Xml::span( wfMsg( 'minoreditletter' ), 'minor' ) . ' ';
 		}
-
-		if ($this->mNewRev->mMinorEdit == 1) {
+		if( $this->mNewRev->isMinor() ) {
 			$newminor = Xml::span( wfMsg( 'minoreditletter' ), 'minor' ) . ' ';
 		}
 
@@ -263,16 +262,22 @@ CONTROL;
 			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly, true ) . $rdel . "</div>" .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $patrol . '</div>';
 
-		if( $wgEnableHtmlDiff && $this->htmldiff) {
+		# Output the diff
+		if( !$this->mOldRev->userCan(Revision::DELETED_TEXT) || !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+			$this->showDiffStyle();
+			$multi = $this->getMultiNotice();
+			$wgOut->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
+			$wgOut->addWikiMsg( 'rev-deleted-no-diff' );
+		} else if( $wgEnableHtmlDiff && $this->htmldiff ) {
 			$multi = $this->getMultiNotice();
 			$wgOut->addHTML('<div class="diff-switchtype">'.$sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'wikicodecomparison' ),
-			'diff='.$this->mNewid.'&oldid='.$this->mOldid.'&htmldiff=0', '', '', 'id="differences-switchtype"' ).'</div>');
+				'diff='.$this->mNewid.'&oldid='.$this->mOldid.'&htmldiff=0', '', '', 'id="differences-switchtype"' ).'</div>');
 			$wgOut->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
 			$this->renderHtmlDiff();
 		} else {
-			if($wgEnableHtmlDiff){
+			if( $wgEnableHtmlDiff ) {
 				$wgOut->addHTML('<div class="diff-switchtype">'.$sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'visualcomparison' ),
-				'diff='.$this->mNewid.'&oldid='.$this->mOldid.'&htmldiff=1', '', '', 'id="differences-switchtype"' ).'</div>');
+					'diff='.$this->mNewid.'&oldid='.$this->mOldid.'&htmldiff=1', '', '', 'id="differences-switchtype"' ).'</div>');
 			}
 			$this->showDiff( $oldHeader, $newHeader );
 			if( !$diffOnly ) {
@@ -290,7 +295,7 @@ CONTROL;
 		wfProfileIn( __METHOD__ );
 
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
-		#add deleted rev tag if needed
+		# Add deleted rev tag if needed
 		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
 			$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
 		} else if( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
@@ -306,9 +311,8 @@ CONTROL;
 			$wgOut->setRevisionId( $this->mNewRev->getId() );
 		}
 
-		if ($this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage()) {
+		if( $this->mTitle->isCssJsSubpage() || $this->mTitle->isCssOrJsPage() ) {
 			// Stolen from Article::view --AG 2007-10-11
-
 			// Give hooks a chance to customise the output
 			if( wfRunHooks( 'ShowRawCssJs', array( $this->mNewtext, $this->mTitle, $wgOut ) ) ) {
 				// Wrap the whole lot in a <pre> and don't parse
@@ -318,8 +322,9 @@ CONTROL;
 				$wgOut->addHTML( htmlspecialchars( $this->mNewtext ) );
 				$wgOut->addHTML( "\n</pre>\n" );
 			}
-		} else
-		$wgOut->addWikiTextTidy( $this->mNewtext );
+		} else {
+			$wgOut->addWikiTextTidy( $this->mNewtext );
+		}
 
 		if( !$this->mNewRev->isCurrent() ) {
 			$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
