@@ -95,8 +95,9 @@ class ApiMove extends ApiBase {
 			// We're not gonna dieUsage() on failure, since we already changed something
 			else
 			{
-				$r['talkmove-error-code'] = ApiBase::$messageMap[reset($retval)]['code'];
-				$r['talkmove-error-info'] = ApiBase::$messageMap[reset($retval)]['info'];
+				$parsed = $this->parseMsg(reset($retval));
+				$r['talkmove-error-code'] = $parsed['code'];
+				$r['talkmove-error-info'] = $parsed['info'];
 			}
 		}
 
