@@ -127,8 +127,10 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$fit = $result->addValue(array('query', $this->getModuleName()), null, $vals);
 				if(!$fit)
 				{
-					$this->setContinueEnumParameter('continue',
-						$this->keyToTitle($row->pl_title) . "|" . $row->pl_from);
+					if($params['unique'])
+						$this->setContinueEnumParameter('from', $this->keyToTitle($row->pl_title));
+					else
+						$this->setContinueEnumParameter('continue', $this->keyToTitle($row->pl_title) . "|" . $row->pl_from);
 					break;
 				}
 			} else {

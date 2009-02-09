@@ -229,7 +229,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 			if(!$fit)
 			{
-				$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->ar_timestamp));
+				if($mode == 'all')
+					$this->setContinueEnumParameter('continue', $this->keyToTitle($row->ar_title) . '|' .
+						$row->ar_timestamp);
+				else
+					$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->ar_timestamp));
 				break;
 			}
 		}

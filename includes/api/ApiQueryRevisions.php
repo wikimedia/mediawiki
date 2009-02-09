@@ -231,8 +231,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			ApiBase :: dieDebug(__METHOD__, 'param validation?');
 
 		$this->addOption('LIMIT', $limit +1);
-		if(!is_null($continue))
-			$this->addOption('OFFSET', $continue);
+		if(!is_null($params['continue']))
+			$this->addOption('OFFSET', $params['continue']);
 
 		$data = array ();
 		$count = 0;
@@ -256,7 +256,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if($enumRevMode)
 					$this->setContinueEnumParameter('startid', intval($row->rev_id));
 				else
-					$this->setContinueEnumParameter('continue', $continue + $count - 1);
+					$this->setContinueEnumParameter('continue', $params['continue'] + $count - 1);
 				break;
 			}
 		}
