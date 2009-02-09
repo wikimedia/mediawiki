@@ -73,6 +73,7 @@ class ApiMove extends ApiBase {
 			$this->dieUsageMsg(array('invalidtitle', $params['to']));
 		$toTalk = $toTitle->getTalkPage();
 
+		# Move the page
 		$hookErr = null;
 		$retval = $fromTitle->moveTo($toTitle, true, $params['reason'], !$params['noredirect']);
 		if($retval !== true)
@@ -82,10 +83,9 @@ class ApiMove extends ApiBase {
 		if(!$params['noredirect'] || !$wgUser->isAllowed('suppressredirect'))
 			$r['redirectcreated'] = '';
 
+		# Move the talk page
 		if($params['movetalk'] && $fromTalk->exists() && !$fromTitle->isTalkPage())
 		{
-			// We need to move the talk page as well
-			$toTalk = $toTitle->getTalkPage();
 			$retval = $fromTalk->moveTo($toTalk, true, $params['reason'], !$params['noredirect']);
 			if($retval === true)
 			{
@@ -95,8 +95,24 @@ class ApiMove extends ApiBase {
 			// We're not gonna dieUsage() on failure, since we already changed something
 			else
 			{
-				$r['talkmove-error-code'] = ApiBase::$messageMap[reset($retval)]['code'];
-				$r['talkmove-error-info'] = ApiBase::$messageMap[reset($retval)]['info'];
+				$parsed = $this->parseMsg(reset($retval));
+				$r['talkmove-error-code'] = $parsed['code'];
+				$r['talkmove-error-info'] = $parsed['info'];
+			}
+		}
+
+		# Move subpages
+		if($params['movesubpages'])
+		{
+			$r['subpages'] = $this->moveSubpages($fromTitle, $toTitle,
+					$params['reason'], $params['noredirect']);
+			$this->getResult()->setIndexedTagName($r['subpages'], 'subpage');
+			// TODO: Should we move talk subpages if moving the talk page failed?
+			if($params['movetalk'])
+			{
+				$r['subpages-talk'] = $this->moveSubpages($fromTalk, $toTalk,
+					$params['reason'], $params['noredirect']);
+				$this->getResult()->setIndexedTagName($r['subpages-talk'], 'subpage');
 			}
 		}
 
@@ -113,6 +129,30 @@ class ApiMove extends ApiBase {
 		}
 		$this->getResult()->addValue(null, $this->getModuleName(), $r);
 	}
+	
+	public function moveSubpages($fromTitle, $toTitle, $reason, $noredirect)
+	{
+		$retval = array();
+		$success = $fromTitle->moveSubpages($toTitle, true, $reason, !$noredirect);
+		if(isset($success[0]))
+			return array('error' => $this->parseMsg($success));
+		else
+		{
+			// At least some pages could be moved
+			// Report each of them separately
+			foreach($success as $oldTitle => $newTitle)
+			{
+				$r = array('from' => $oldTitle);
+				if(is_array($newTitle))
+					$r['error'] = $this->parseMsg(reset($newTitle));
+				else
+					// Success
+					$r['to'] = $newTitle;
+				$retval[] = $r;
+			}
+		}
+		return $retval;
+	}
 
 	public function mustBePosted() { return true; }
 
@@ -126,6 +166,7 @@ class ApiMove extends ApiBase {
 			'token' => null,
 			'reason' => null,
 			'movetalk' => false,
+			'movesubpages' => false,
 			'noredirect' => false,
 			'watch' => false,
 			'unwatch' => false
@@ -140,6 +181,7 @@ class ApiMove extends ApiBase {
 			'token' => 'A move token previously retrieved through prop=info',
 			'reason' => 'Reason for the move (optional).',
 			'movetalk' => 'Move the talk page, if it exists.',
+			'movesubpages' => 'Move subpages, if applicable',
 			'noredirect' => 'Don\'t create a redirect',
 			'watch' => 'Add the page and the redirect to your watchlist',
 			'unwatch' => 'Remove the page and the redirect from your watchlist'
