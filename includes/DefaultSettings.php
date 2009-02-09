@@ -3708,3 +3708,8 @@ $wgEnforceHtmlIds = true;
  * false = use Go button & Advanced search link
  */
 $wgUseTwoButtonsSearchForm = true;
+
+/**
+ * Preprocessor caching threshold
+ */
+$wgPreprocessorCacheThreshold = 1000;

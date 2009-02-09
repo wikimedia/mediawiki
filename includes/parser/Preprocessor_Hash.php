@@ -8,6 +8,8 @@
  */
 class Preprocessor_Hash implements Preprocessor {
 	var $parser;
+	
+	const CACHE_VERSION = 1;
 
 	function __construct( $parser ) {
 		$this->parser = $parser;
@@ -45,14 +47,30 @@ class Preprocessor_Hash implements Preprocessor {
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
+	
+	
+		// Check cache.
+		global $wgMemc, $wgPreprocessorCacheThreshold;
 		
-		global $wgMemc;
-		$cacheKey = wfMemckey( 'preprocessor-hash', md5( $text ), $flags );
-		
-		if ( $obj = $wgMemc->get( $cacheKey ) ) {
-			wfDebugLog( "Preprocessor", "Got preprocessor_hash output from cache" );
-			wfProfileOut( __METHOD__ );
-			return $obj;
+		$cacheable = strlen( $text ) > $wgPreprocessorCacheThreshold;
+		if ( $cacheable ) {
+			wfProfileIn( __METHOD__.'-cacheable' );
+
+			$cacheKey = wfMemcKey( 'preprocess-hash', md5($text), $flags );
+			$cacheValue = $wgMemc->get( $cacheKey );
+			if ( $cacheValue ) {
+				$version = substr( $cacheValue, 0, 8 );
+				if ( intval( $version ) == self::CACHE_VERSION ) {
+					$hash = unserialize( substr( $cacheValue, 8 ) );
+					// From the cache
+					wfDebugLog( "Preprocessor",
+						"Loaded preprocessor hash from memcached (key $cacheKey)" );
+					wfProfileOut( __METHOD__.'-cacheable' );
+					wfProfileOut( __METHOD__ );
+					return $hash;
+				}
+			}
+			wfProfileIn( __METHOD__.'-cache-miss' );
 		}
 
 		$rules = array(
@@ -626,10 +644,17 @@ class Preprocessor_Hash implements Preprocessor {
 		$rootNode = new PPNode_Hash_Tree( 'root' );
 		$rootNode->firstChild = $stack->rootAccum->firstNode;
 		$rootNode->lastChild = $stack->rootAccum->lastNode;
+		
+		// Cache
+		if ($cacheable) {
+			$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . serialize( $rootNode );;
+			$wgMemc->set( $cacheKey, $cacheValue, 86400 );
+			wfProfileOut( __METHOD__.'-cache-miss' );
+			wfProfileOut( __METHOD__.'-cacheable' );
+			wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
+		}
+		
 		wfProfileOut( __METHOD__ );
-		
-		$wgMemc->set( $cacheKey, $rootNode, 86400 );
-		
 		return $rootNode;
 	}
 }
