@@ -6,6 +6,8 @@
 class Preprocessor_DOM implements Preprocessor {
 	var $parser, $memoryLimit;
 
+	const CACHE_VERSION = 1;
+
 	function __construct( $parser ) {
 		$this->parser = $parser;
 		$mem = ini_get( 'memory_limit' );
@@ -63,19 +65,37 @@ class Preprocessor_DOM implements Preprocessor {
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
+		global $wgMemc, $wgPreprocessorCacheThreshold;
 		
-		global $wgMemc;
-		$cacheKey = wfMemcKey( 'preprocess-xml', md5($text), $flags );
-		
-		if ( $xml = $wgMemc->get( $cacheKey ) ) {
-			// From the cache
-			wfDebugLog( "Preprocessor", "Loaded preprocessor XML from memcached (key $cacheKey)" );
-		} else {
-			$xml = $this->preprocessToXml( $text, $flags );
-			$wgMemc->set( $cacheKey, $xml, 86400 );
-			wfDebugLog( "Preprocessor", "Saved preprocessor XML to memcached (key $cacheKey)" );
+		$xml = false;
+		$cacheable = strlen( $text ) > $wgPreprocessorCacheThreshold;
+		if ( $cacheable ) {
+			wfProfileIn( __METHOD__.'-cacheable' );
+
+			$cacheKey = wfMemcKey( 'preprocess-xml', md5($text), $flags );
+			$cacheValue = $wgMemc->get( $cacheKey );
+			if ( $cacheValue ) {
+				$version = substr( $cacheValue, 0, 8 );
+				if ( intval( $version ) == self::CACHE_VERSION ) {
+					$xml = substr( $cacheValue, 8 );
+					// From the cache
+					wfDebugLog( "Preprocessor", "Loaded preprocessor XML from memcached (key $cacheKey)" );
+				}
+			}
 		}
-		
+		if ( $xml === false ) {
+			if ( $cacheable ) {
+				wfProfileIn( __METHOD__.'-cache-miss' );
+				$xml = $this->preprocessToXml( $text, $flags );
+				$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . $xml;
+				$wgMemc->set( $cacheKey, $cacheValue, 86400 );
+				wfProfileOut( __METHOD__.'-cache-miss' );
+				wfDebugLog( "Preprocessor", "Saved preprocessor XML to memcached (key $cacheKey)" );
+			} else {
+				$xml = $this->preprocessToXml( $text, $flags );
+			}
+
+		}
 		wfProfileIn( __METHOD__.'-loadXML' );
 		$dom = new DOMDocument;
 		wfSuppressWarnings();
@@ -91,6 +111,9 @@ class Preprocessor_DOM implements Preprocessor {
 		}
 		$obj = new PPNode_DOM( $dom->documentElement );
 		wfProfileOut( __METHOD__.'-loadXML' );
+		if ( $cacheable ) {
+			wfProfileOut( __METHOD__.'-cacheable' );
+		}
 		wfProfileOut( __METHOD__ );
 		return $obj;
 	}
