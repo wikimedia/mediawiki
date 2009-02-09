@@ -62,6 +62,8 @@ class DeletedContribsPager extends IndexPager {
 	}
 
 	function getNavigationBar() {
+		global $wgLang;
+
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
@@ -74,9 +76,9 @@ class DeletedContribsPager extends IndexPager {
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
-		$limits = implode( ' | ', $limitLinks );
+		$limits = $wgLang->pipeList( $limitLinks );
 
-		$this->mNavigationBar = "({$pagingLinks['first']} | {$pagingLinks['last']}) " .
+		$this->mNavigationBar = "(" . $wgLang->pipeList( array( $pagingLinks['first'], $pagingLinks['last'] ) ) . ") " .
 			wfMsgExt( 'viewprevnext', array( 'parsemag' ), $pagingLinks['prev'], $pagingLinks['next'], $limits );
 		return $this->mNavigationBar;
 	}
@@ -308,7 +310,7 @@ class DeletedContributionsPage extends SpecialPage {
 				
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 
-			$links = implode( ' | ', $tools );
+			$links = $wgLang->pipeList( $tools );
 		}
 
 		// Old message 'contribsub' had one parameter, but that doesn't work for
