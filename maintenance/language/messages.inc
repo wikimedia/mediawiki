@@ -402,6 +402,7 @@ $wgMessageStructure = array(
 		'gender-unknown',
 		'gender-male',
 		'gender-female',
+		'prefs-help-gender',
 		'email',
 		'prefs-help-realname',
 		'loginerror',

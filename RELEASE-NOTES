@@ -91,6 +91,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Preprocessor output now cached in memcached.
 * (bug 14468) Lines in classic RecentChanges and Watchlist have classes
   "mw-line-odd" and "mw-line-even" to make styling using css possible.
+* (bug 17311) Add a note beside the gender selection menu to tell users that
+  this information will be public
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

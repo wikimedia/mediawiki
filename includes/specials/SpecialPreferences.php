@@ -755,7 +755,10 @@ class PreferencesForm {
 		$wgOut->addHTML(
 			$this->tableRow(
 				Xml::label( wfMsg( 'yourgender' ), 'wpGender' ),
-				$gender->getHTML()
+				$gender->getHTML(),
+				Xml::tags( 'div', array( 'class' => 'prefsectiontip' ),
+					wfMsgExt( 'prefs-help-gender', 'parseinline' )
+				)
 			)
 		);
 
