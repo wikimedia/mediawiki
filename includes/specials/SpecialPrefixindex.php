@@ -90,7 +90,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 	 * @param string $from list all pages from this name (default FALSE)
 	 */
 	function showPrefixChunk( $namespace = NS_MAIN, $prefix, $from = null ) {
-		global $wgOut, $wgUser, $wgContLang;
+		global $wgOut, $wgUser, $wgContLang, $wgLang;
 
 		$sk = $wgUser->getSkin();
 
@@ -175,11 +175,14 @@ class SpecialPrefixindex extends SpecialAllpages {
 						wfMsg ( 'allpages' ) );
 			if( isset( $res ) && $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 				$namespaceparam = $namespace ? "&namespace=$namespace" : "";
-				$out2 .= " | " . $sk->makeKnownLinkObj(
-					$self,
-					wfMsgHtml( 'nextpage', htmlspecialchars( $s->page_title ) ),
-					"from=" . wfUrlEncode( $s->page_title ) .
-					"&prefix=" . wfUrlEncode( $prefix ) . $namespaceparam );
+				$out2 = $wgLang->pipeList( array(
+					$out2,
+					$sk->makeKnownLinkObj(
+						$self,
+						wfMsgHtml( 'nextpage', htmlspecialchars( $s->page_title ) ),
+						"from=" . wfUrlEncode( $s->page_title ) .
+						"&prefix=" . wfUrlEncode( $prefix ) . $namespaceparam )
+				) );
 			}
 			$out2 .= "</td></tr></table>";
 		}

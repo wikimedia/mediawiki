@@ -340,7 +340,7 @@ class WhatLinksHerePage {
 			$limitLinks[] = $this->makeSelfLink( $prettyLimit, wfArrayToCGI( $overrides, $changed ) );
 		}
 
-		$nums = implode ( ' | ', $limitLinks );
+		$nums = $wgLang->pipeList( $limitLinks );
 
 		return wfMsgHtml( 'viewprevnext', $prev, $next, $nums );
 	}
