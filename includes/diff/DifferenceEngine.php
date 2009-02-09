@@ -883,7 +883,7 @@ CONTROL;
 		if ( !$this->loadRevisionData() ) {
 			return false;
 		}
-		$this->mNewtext = $this->mNewRev->getText();
+		$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER );
 		return true;
 	}
 
