@@ -76,7 +76,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		$messages = array();
 		foreach( $messages_target as $message ) {
 			if(!is_null($params['from']))
-				if($message < $params['from'])
+				if($message != $params['from'])
 					continue;
 			$messages[$message] = wfMsg( $message );
 		}
