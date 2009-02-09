@@ -69,17 +69,15 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		$this->addWhere(array('cat_title' => $cattitles));
 		if(!is_null($params['continue']))
 		{
-			// We need to set a LIMIT in order to be able to set
-			// an OFFSET
-			$this->addOption('LIMIT', count($titles));
-			$this->addOption('OFFSET', $params['continue']);
-		}
+			$title = $this->getDB()->addQuotes($params['continue']);
+			$this->addWhere("cat_title >= $title");
+		} 
+		$this->addOption('ORDER BY', 'cat_title');
 
 		$db = $this->getDB();
 		$res = $this->select(__METHOD__);
 
 		$catids = array_flip($cattitles);
-		$count = (int)@$params['continue'];
 		while($row = $db->fetchObject($res))
 		{
 			$vals = array();
@@ -92,10 +90,9 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 			$fit = $this->addPageSubItems($catids[$row->cat_title], $vals);
 			if(!$fit)
 			{
-				$this->setContinueEnumParameter('continue', $count);
+				$this->setContinueEnumParameter('continue', $row->cat_title);
 				break;
 			}
-			$count++;
 		}
 		$db->freeResult($res);
 	}
