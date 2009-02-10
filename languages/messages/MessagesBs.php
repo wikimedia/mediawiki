@@ -936,6 +936,8 @@ Detalje možete vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}
 Revizija ove stranice je uklonjena iz javne arhive.
 Kao administrator na {{SITENAME}} Vi je možete vidjeti;
 detalji o tome se mogu vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Ne možete vidjeti ove razlike jer je jedna od revizija uklonjena iz javne arhive.
+Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisima brisanja].</div>',
 'rev-delundel'                   => 'pokaži/sakrij',
 'revisiondelete'                 => 'Obriši/vrati revizije',
 'revdelete-nooldid-title'        => 'Nije unesena tačna revizija',

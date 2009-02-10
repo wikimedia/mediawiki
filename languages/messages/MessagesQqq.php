@@ -116,6 +116,7 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-ccmeonemails'            => 'In user preferences',
 'tog-diffonly'                => 'Toggle option used in [[Special:Preferences]].',
 'tog-showhiddencats'          => 'Toggle option used in [[Special:Preferences]].',
+'tog-noconvertlink'           => '{{optional}}',
 'tog-norollbackdiff'          => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that.
 {{Identical|Rollback}}",
 
@@ -206,6 +207,7 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'listingcontinuesabbrev'         => 'Shown in contiuation of each first letter group.
 See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for example.',
 
+'linkprefix'        => '{{optional}}',
 'mainpagetext'      => 'Along with {{msg|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
 'mainpagedocfooter' => 'Along with {{msg|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.',
 
@@ -393,6 +395,8 @@ HTML markup cannot be used.",
 'site-atom-feed'          => "Used in the HTML header of a wiki's Atom feed.
 $1 is <nowiki>{{SITENAME}}</nowiki>.
 HTML markup cannot be used.",
+'feed-atom'               => '{{optional}}',
+'feed-rss'                => '{{optional}}',
 'red-link-title'          => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -502,6 +506,7 @@ The title of the warning is the message [[MediaWiki:Nosuchspecialpage/{{SUBPAGEN
 'prefs-memberingroups'       => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon.',
 'yourrealname'               => '{{Identical|Real name}}',
 'yourlanguage'               => '{{Identical|Language}}',
+'yourvariant'                => '{{optional}}',
 'yournick'                   => 'Used in [[Special:Preferences]].',
 'badsig'                     => 'Error message displayed when entering invalid signature in user preferences',
 'badsiglength'               => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
@@ -1463,8 +1468,9 @@ Example: [[:Image:Addon-icn.png]]',
 'pager-older-n'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the first argument of [[MediaWiki:Viewprevnext]]. $1 is the number of items shown per page.",
 
 # Book sources
-'booksources'    => 'Name of special page displayed in [[Special:SpecialPages]]',
-'booksources-go' => 'Name of button in [[Special:BookSources]]
+'booksources'      => 'Name of special page displayed in [[Special:SpecialPages]]',
+'booksources-isbn' => '{{optional}}',
+'booksources-go'   => 'Name of button in [[Special:BookSources]]
 
 {{Identical|Go}}',
 
@@ -1894,6 +1900,7 @@ See also {{msg-mw|Blocklistline}}.',
 'ipb_expiry_temp'              => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
 'ipb_already_blocked'          => '{{Identical|$1 is already blocked}}',
 'blockme'                      => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
+'sorbs'                        => '{{optional}}',
 
 # Developer tools
 'lockdb'              => 'The title of the special page [[Special:LockDB]].
@@ -2083,6 +2090,16 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 
 # Spam protection
 'spam_reverting' => '{{Identical|Revert}}',
 
+# Skin names
+'skinname-standard'    => '{{optional}}',
+'skinname-nostalgia'   => '{{optional}}',
+'skinname-cologneblue' => '{{optional}}',
+'skinname-monobook'    => '{{optional}}',
+'skinname-myskin'      => '{{optional}}',
+'skinname-chick'       => '{{optional}}',
+'skinname-simple'      => '{{optional}}',
+'skinname-modern'      => '{{optional}}',
+
 # Math options
 'mw_math_png'    => 'In user preferences.',
 'mw_math_simple' => 'In user preferences.',
@@ -2139,7 +2156,9 @@ The message appears after the name of the patroller.',
 * $2 is a time (example: ''12:15'')",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 'Abbreviation for "hours"',
+'seconds-abbrev' => '{{optional}}',
+'minutes-abbrev' => '{{optional}}',
+'hours-abbrev'   => 'Abbreviation for "hours"',
 
 # Bad image list
 'bad_image_list' => 'This is only message appears to guide administrators to add links with right format. This will not appear anywhere else in Mediawiki.',
@@ -2155,7 +2174,9 @@ Variants for Chinese language
 'variantname-zh-cn'   => 'Varient Option for wikis with variants conversion enabled.',
 'variantname-zh-tw'   => 'Varient Option for wikis with variants conversion enabled.',
 'variantname-zh-hk'   => 'Varient Option for wikis with variants conversion enabled.',
+'variantname-zh-mo'   => '{{optional}}',
 'variantname-zh-sg'   => 'Varient Option for wikis with variants conversion enabled.',
+'variantname-zh-my'   => '{{optional}}',
 'variantname-zh'      => 'Varient Option for wikis with variants conversion enabled.',
 
 # Variants for Serbian language
@@ -2176,6 +2197,11 @@ Variants for Chinese language
 'variantname-ku-arab' => 'Varient Option for wikis with variants conversion enabled.',
 'variantname-ku-latn' => 'Varient Option for wikis with variants conversion enabled.',
 'variantname-ku'      => 'Varient Option for wikis with variants conversion enabled.',
+
+# Variants for Tajiki language
+'variantname-tg-cyrl' => '{{optional}}',
+'variantname-tg-latn' => '{{optional}}',
+'variantname-tg'      => '{{optional}}',
 
 # Metadata
 'metadata'          => 'The title of a section on an image description page, with information and data about the image.
@@ -2199,7 +2225,19 @@ Spatial frequency response is a measure for the capability of camera lenses to d
 'exif-gpslatitude'              => '{{Identical|Latitude}}',
 'exif-gpslongitude'             => '{{Identical|Longitude}}',
 
+# EXIF attributes
+'exif-compression-6' => '{{optional}}',
+
+'exif-photometricinterpretation-2' => '{{optional}}',
+
 'exif-orientation-1' => '{{Identical|Normal}}', # 0th row: top; 0th column: left
+
+'exif-componentsconfiguration-1' => '{{optional}}',
+'exif-componentsconfiguration-2' => '{{optional}}',
+'exif-componentsconfiguration-3' => '{{optional}}',
+'exif-componentsconfiguration-4' => '{{optional}}',
+'exif-componentsconfiguration-5' => '{{optional}}',
+'exif-componentsconfiguration-6' => '{{optional}}',
 
 'exif-exposureprogram-1' => "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[http://en.wikipedia.org/wiki/Mode_dial Mode dial]' for an explanation.",
 'exif-exposureprogram-3' => 'One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [http://en.wikipedia.org/wiki/Aperture_priority aperture priority].',
@@ -2214,8 +2252,11 @@ Spatial frequency response is a measure for the capability of camera lenses to d
 'exif-meteringmode-0'   => '{{Identical|Unknown}}',
 'exif-meteringmode-255' => '{{Identical|Other}}',
 
-'exif-lightsource-0' => '{{Identical|Unknown}}',
-'exif-lightsource-4' => '{{Identical|Flash}}',
+'exif-lightsource-0'  => '{{Identical|Unknown}}',
+'exif-lightsource-4'  => '{{Identical|Flash}}',
+'exif-lightsource-21' => '{{optional}}',
+'exif-lightsource-22' => '{{optional}}',
+'exif-lightsource-23' => '{{optional}}',
 
 # Flash modes
 'exif-flash-mode-1' => 'This is when you have chosen that your camera must use a flash for this picture.',
@@ -2223,6 +2264,8 @@ Spatial frequency response is a measure for the capability of camera lenses to d
 
 'exif-sensingmethod-5' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).",
 'exif-sensingmethod-8' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).",
+
+'exif-filesource-3' => '{{optional}}',
 
 'exif-scenecapturetype-0' => '{{Identical|Standard}}',
 
@@ -2290,6 +2333,8 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 *$5 is a URL to [[Special:InvalidateEmail]]',
 'confirmemail_invalidated' => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in [[Mediawiki:Invalidateemail]]) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
 'invalidateemail'          => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
+
+'unit-pixel' => '{{optional}}',
 
 # action=purge
 'confirm_purge_button' => '{{Identical|OK}}',
@@ -2399,6 +2444,9 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 'hebrew-calendar-m10-gen' => 'Name of month in Hebrew calender.',
 'hebrew-calendar-m11-gen' => 'Name of month in Hebrew calender.',
 'hebrew-calendar-m12-gen' => 'Name of month in Hebrew calender.',
+
+# Signatures
+'timezone-utc' => '{{optional}}',
 
 # Core parser functions
 'unknown_extension_tag' => '* Description: This is an error shown when you use an unknown extension tag name. This feature allows tags like <tt><nowiki><pre></nowiki></tt> to be called with a parser like <tt><nowiki>{{#tag:pre}}</nowiki></tt>.

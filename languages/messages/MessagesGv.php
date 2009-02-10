@@ -860,7 +860,7 @@ Cha nod oo caghlaa keim choadey y ghuillag shoh.  Cha nel kied ayd dy reaghey eh
 
 'sp-contributions-newbies'     => 'Gyn taishbyney agh cohortyssyn choontyssyn noa',
 'sp-contributions-newbies-sub' => 'Lesh coontysyn noa',
-'sp-contributions-blocklog'    => 'Cur lhiettrimys er lioar chooishyn',
+'sp-contributions-blocklog'    => 'Lioar chooishyn lhiettrimyssyn',
 'sp-contributions-search'      => 'Ronsaghey cohortyssyn',
 'sp-contributions-username'    => 'Enmys IP ny ennym yn ymmydeyr:',
 'sp-contributions-submit'      => 'Ronsaghey',

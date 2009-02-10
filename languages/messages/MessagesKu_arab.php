@@ -444,6 +444,8 @@ $messages = array(
 'noexactmatch'             => "'''پەڕەیەک بە ناوی  \"\$1\"ەوە نیە.'''
 دەتوانی ئەم پەڕە [[:\$1|دروست بکەیت]].",
 'search-interwiki-caption' => 'پرۆژە خوشکەکان',
+'showingresults'           => "لە خوارەوە {{PLURAL:$1|'''1''' ئەنجام|'''$1''' ئەنجام}} ئەبینن کە بە #'''$2'''ەوە دەست پێ‌ئەکات .",
+'showingresultsnum'        => "لە خوارەوە {{PLURAL:$1|'''1''' ئەنجام|'''$1''' ئەنجام}} ئەبینن کە بە #'''$2'''ەوە دەست پێ‌ئەکات .",
 'powersearch'              => 'بە ھێز بگەڕە',
 
 # Preferences page
@@ -522,11 +524,37 @@ $messages = array(
 'recentchangeslinked-page'    => 'ناوی پەڕە:',
 
 # Upload
-'upload'             => 'وێنەیەک بار بکە',
-'uploadbtn'          => 'پەڕگە بار بکە',
-'reupload'           => 'دیسان بار بکە',
-'sourcefilename'     => 'ناوی پەڕگەی سەرچاوە:',
-'upload-maxfilesize' => 'ئەو پەری قەبارەی فایل: $1',
+'upload'              => 'پەڕگەیەک بار بکە',
+'uploadbtn'           => 'پەڕگە بار بکە',
+'reupload'            => 'دیسان بار بکە',
+'uploadtext'          => "فۆرمی خوارەوە بەکاربێنن بۆ بارکردنی پەڕگە.
+بۆ بینینی ئەو پەڕگانە کە پێشتر بار کراون بڕۆ بۆ [[Special:FileList|لیستی پەڕگە بارکراوەکان]]، ھەروەھا
+[[Special:Log/upload|ڕەشنووسی بارکردنەکان]] و [[Special:Log/delete|رەشنووسی سڕینەوەکان]].
+
+بۆ بەکارھێنانی پەڕگەیەک لە پەڕەیەک دا، بەستەرێک بە یەکێک لەم شۆوازانەی خوارەوە بە کار بێنن:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' 
+to use the full version of the file
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>'''
+to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''
+for directly linking to the file without displaying the file",
+'upload-permitted'    => 'نەوعە پەڕگە قەبووڵ کراوەکان: $1.',
+'filename'            => 'ناوی پەڕگە',
+'filedesc'            => 'پوختە',
+'fileuploadsummary'   => 'پوختە:',
+'filereuploadsummary' => 'گۆرانکارییەکانی پەڕگە:',
+'filestatus'          => 'بارودۆخی مافی لەبەرگرتنەوە:',
+'filesource'          => 'سەرچاوە:',
+'ignorewarnings'      => 'گوێ مەدە بە ئاگادارییەکان',
+'uploadwarning'       => 'ئاگادارییەکانی بارکردن',
+'savefile'            => 'پەڕگە پاشەکەوت بکە',
+'uploadedimage'       => '"[[$1]]" بار کراو',
+'overwroteimage'      => 'وەشانێ نوێی "[[$1]]" بار کرا',
+'uploaddisabled'      => 'بارکردن قەدەخە کراوە',
+'sourcefilename'      => 'ناوی پەڕگەی سەرچاوە:',
+'destfilename'        => 'ناوی مەبەست:',
+'upload-maxfilesize'  => 'ئەو پەری قەبارەی فایل: $1',
+'watchthisupload'     => 'چاودێڕی ئەم پەڕە بکە',
 
 # Special:ListFiles
 'imgfile'        => 'پەڕگە',

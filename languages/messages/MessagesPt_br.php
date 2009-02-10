@@ -905,6 +905,8 @@ A revisão desta página foi removida dos arquivos públicos.
 Como um administrador desta wiki pode visualizá-la;
 mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de eliminação].
 </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Você não pode ver esta modificação porque uma das revisões foi removida dos arquivos públicos.
+Pode haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].</div>',
 'rev-delundel'                   => 'mostrar/esconder',
 'revisiondelete'                 => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'        => 'Nenhuma revisão selecionada',

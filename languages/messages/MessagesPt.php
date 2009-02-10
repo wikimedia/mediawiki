@@ -561,6 +561,7 @@ Terá de ter menos de $1 {{PLURAL:$1|carácter|caracteres}}.',
 'gender-unknown'             => 'Não especificado',
 'gender-male'                => 'Masculino',
 'gender-female'              => 'Feminino',
+'prefs-help-gender'          => 'Opcional: usado para correto endereçamento por software baseado no sexo. Esta informação será pública.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'                 => 'Erro de autenticação',
@@ -890,6 +891,8 @@ Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}
 Esta edição desta página foi removida dos arquivos públicos.
 Por ser um administrador desta wiki, poderá vê-la;
 mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Você não pode ver estas diferenças porque uma das revisões foi removida dos arquivos públicos.
+Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].</div>',
 'rev-delundel'                   => 'mostrar/esconder',
 'revisiondelete'                 => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'        => 'Edição de destino inválida',

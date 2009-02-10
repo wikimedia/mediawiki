@@ -840,6 +840,8 @@ Bu sayfa değişikliği kamu arşivlerinden silinmiştir.
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
 Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 {{SITENAME}} üzerinde bir yönetici iseniz görebilirsiniz; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] detaylar olabilir.</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Bu farkı göremezsiniz çünkü revizyonlardan biri umumi arşivlerden çıkarılmış.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.</div>',
 'rev-delundel'                   => 'göster/gizle',
 'revisiondelete'                 => 'Sürümleri sil/geri getir',
 'revdelete-nooldid-title'        => 'Hedef sürüm geçersiz',
@@ -1388,6 +1390,20 @@ Dosyanın yüklenmesinin uygun olup olmadığını dikkate almalısınız.
 Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'filename-bad-prefix'         => "Yüklemekte olçduğunuz dosyanın adı, genel olarak dijital kameralar tarafından otomatik olarak ekelenen ve açıklayıcı olmayan '''\"\$1\"''' ile başlamaktadır.
 Lütfen dosyanız için daha açıklayıcı bir isim seçin.",
+'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+# Syntax is as follows:
+#   * Everything from a "#" character to the end of the line is a comment
+#   * Every non-blank line is a prefix for typical file names assigned automatically by digital cameras
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # some mobile phones
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # misc.
+ #</pre> <!-- leave this line exactly as it is -->',
 
 'upload-proto-error'      => 'Hatalı protokol',
 'upload-proto-error-text' => "Uzaktan yükleme, <code>http://</code> veya <code>ftp://</code> ile başlayan URL'ler gerektirmektedir.",
@@ -1817,6 +1833,7 @@ Bu işlemden kaynaklı doğabilecek sonuçların farkında iseniz ve işlemin [[
 'deletedtext'            => '"<nowiki>$1</nowiki>" silindi.
 Yakın zamanda silinenleri görmek için: $2.',
 'deletedarticle'         => '"$1" silindi',
+'suppressedarticle'      => '"[[$1]]" bastırıldı',
 'dellogpage'             => 'Silme kayıtları',
 'dellogpagetext'         => 'Aşağıdaki liste son silme kayıtlarıdır.',
 'deletionlog'            => 'silme kayıtları',
@@ -1950,6 +1967,7 @@ Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz b
 Önceki silme ve geri getirme işlemleri için [[Special:Log/delete|silme kayıtları]]na bakınız.",
 'undelete-header'              => 'Daha önce silinmiş sayfaları görmek için bakınız: [[Special:Log/delete|silme kayıtları]].',
 'undelete-search-box'          => 'Silinmiş sayfaları ara',
+'undelete-search-prefix'       => 'Şununla başlayan sayfaları göster:',
 'undelete-search-submit'       => 'Ara',
 'undelete-no-results'          => 'Silme arşivinde birbiriyle eşleşen hiçbir sayfaya rastlanmadı.',
 'undelete-filename-mismatch'   => '$1 zaman bilgisine sahip dosya revizyonunun silinmesi geri alınamıyor: dosya adı uyuşmuyor',
@@ -2058,7 +2076,7 @@ $1',
 'ipblocklist-sh-tempblocks'       => 'Geçici engellemeleri $1',
 'ipblocklist-sh-addressblocks'    => 'Tek IP engellemelerini $1',
 'ipblocklist-submit'              => 'Ara',
-'blocklistline'                   => '$1, $2 blok etti: $3 ($4)',
+'blocklistline'                   => '$1, $2 engellendi: $3 ($4)',
 'infiniteblock'                   => 'Süresiz',
 'expiringblock'                   => '$1 tarihinde doluyor',
 'anononlyblock'                   => 'sadece anonim',
@@ -2364,6 +2382,8 @@ Geçici dosya kayıp.',
 'othercontribs'    => '$1 tarafından yapılan çalışma baz alınmıştır.',
 'others'           => 'diğerleri',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|kullanıcı|kullanıcılar}} $1',
+'creditspage'      => 'Sayfa künyesi',
+'nocredits'        => 'Bu sayfa için künye bilgisi mevcut değil.',
 
 # Spam protection
 'spamprotectiontitle' => 'Spam karşı koruma filtresi',
@@ -2371,6 +2391,7 @@ Geçici dosya kayıp.',
 'spamprotectionmatch' => 'Spam süzgecimizi harekete geçiren metin: $1',
 'spambot_username'    => 'Medyaviki spam temizleme',
 'spam_reverting'      => '$1 ile bağlantı içermeyen son sürüme geri dönülüyor',
+'spam_blanking'       => 'Tüm revizyonlar $1 sayfasına bağlantı içeriyor, boşaltılıyor',
 
 # Info page
 'infosubtitle'   => 'Sayfa için bilgi',
@@ -2436,6 +2457,7 @@ $1',
 'mediawarning'         => "'''Uyarı!''': Bu dosya kötü niyetli kodlar içerebilir ve işletim sisteminize zarar verebilir.<hr />",
 'imagemaxsize'         => 'Resim açıklamalar sayfalarındaki resmin en büyük boyutu:',
 'thumbsize'            => 'Küçük boyut:',
+'widthheight'          => '$1×$2',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',
 'file-info'            => '(dosya boyutu: $1, MIME tipi: $2)',
 'file-info-size'       => '($1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4)',
@@ -2516,7 +2538,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-componentsconfiguration'     => 'Her bileşenin anlamı',
 'exif-compressedbitsperpixel'      => 'Resim sıkıştırma biçimi',
 'exif-pixelydimension'             => 'Geçerli resim genişliği',
-'exif-pixelxdimension'             => 'Geçerli resim yükseğliği',
+'exif-pixelxdimension'             => 'Geçerli resim yüksekliği',
 'exif-makernote'                   => 'Yapımcı notları',
 'exif-usercomment'                 => 'Kullanıcı yorumu',
 'exif-relatedsoundfile'            => 'İlişkin ses dosyası',
