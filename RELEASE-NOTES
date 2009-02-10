@@ -186,6 +186,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11430) BREAKING CHANGE: Modules may return fewer results than the
   limit and still set a query-continue in some cases
 * (bug 17357) Added movesubpages parameter to action=move
+* (bug 17433) Added bot flag to list=watchlist&wlprop=flags output
 
 === Languages updated in 1.15 ===
 

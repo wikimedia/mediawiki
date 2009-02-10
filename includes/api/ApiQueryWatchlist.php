@@ -92,6 +92,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			$this->addFieldsIf('rc_new', $this->fld_flags);
 			$this->addFieldsIf('rc_minor', $this->fld_flags);
+			$this->addFieldsIf('rc_bot', $this->fld_flags);
 			$this->addFieldsIf('rc_user', $this->fld_user);
 			$this->addFieldsIf('rc_user_text', $this->fld_user);
 			$this->addFieldsIf('rc_comment', $this->fld_comment);
@@ -233,6 +234,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				$vals['new'] = '';
 			if ($row->rc_minor)
 				$vals['minor'] = '';
+			if ($row->rc_bot)
+				$vals['bot'] = '';
 		}
 
 		if ($this->fld_patrol && isset($row->rc_patrolled))
