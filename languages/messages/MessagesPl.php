@@ -8,6 +8,7 @@
  * @author Derbeth
  * @author Equadus
  * @author Herr Kriss
+ * @author Holek
  * @author Jwitos
  * @author Lajsikonik
  * @author Leinad
@@ -623,6 +624,7 @@ Dopuszczalna długość to $1 {{PLURAL:$1|znak|znaki|znaków}}.',
 'gender-unknown'             => 'nie określono',
 'gender-male'                => 'mężczyzna',
 'gender-female'              => 'kobieta',
+'prefs-help-gender'          => 'Podanie płci nie jest obowiązkowe. Jeśli zdecydujesz się ją podać, oprogramowanie będzie wstanie dostosować interfejs do podanej płci. Miej jednak na uwadze, że ta informacja będzie widoczna dla wszystkich.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
 Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
@@ -963,6 +965,8 @@ Szczegóły mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAG
 Ta wersja strony została usunięta i nie jest dostępna publicznie.
 Jednak jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz ją obejrzeć.
 Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została usunięta.
+Szczegóły można znaleźć w [{{fullurl:Specjalna:Rejestr/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].</div>',
 'rev-delundel'                   => 'pokaż/ukryj',
 'revisiondelete'                 => 'Usuń/przywróć wersje',
 'revdelete-nooldid-title'        => 'Nieprawidłowa wersja do przeprowadzenia operacji',

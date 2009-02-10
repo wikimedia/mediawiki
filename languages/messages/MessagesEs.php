@@ -890,6 +890,8 @@ Esta revisión de la página ha sido eliminada de los archivos públicos.
 Como administrador de este wiki puedes verla;
 puede haber detalles en el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de borrado].
 </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">No puede visualizarse este cambio debido a que las revisiones han sido retiradas de los archivos públicos.
+Consultar los detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].</div>',
 'rev-delundel'                   => 'mostrar/ocultar',
 'revisiondelete'                 => 'Borrar/deshacer borrado revisiones',
 'revdelete-nooldid-title'        => 'No hay revisión destino',

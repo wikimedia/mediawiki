@@ -550,8 +550,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Nincs ilyen művelet',
-'nosuchactiontext'  => 'Az URL-ben megadott műveletet
-a wiki nem ismeri fel',
+'nosuchactiontext'  => 'Az URL-ben megadott műveletet érvénytelen.
+Valószínűleg elgépelted, hibás hivatkozásra kattintottál, vagy a
+a(z) {{SITENAME}} által használt szoftver hibája is lehet.',
 'nosuchspecialpage' => 'Nem létezik ilyen speciális lap',
 'nospecialpagetext' => "<big>'''Érvénytelen speciális lapot akartál megtekinteni.'''</big>
 
@@ -677,6 +678,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'gender-unknown'             => 'Nincs megadva',
 'gender-male'                => 'Férfi',
 'gender-female'              => 'Nő',
+'prefs-help-gender'          => 'Nem kötelező: a szoftver használja a nemalapú üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
 'loginerror'                 => 'Hiba történt a bejelentkezés során',
@@ -848,7 +850,10 @@ Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back''' go
 Ezért az IP-címét használjuk az azonosítására.
 Ugyanazon az IP-címen egy sor szerkesztő osztozhat az idők folyamán.
 Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Special:UserLogin/signup|regisztrálj]] vagy ha már regisztráltál, [[Special:UserLogin|jelentkezz be]], hogy ne keverjenek össze másokkal.''",
-'noarticletext'                    => 'Ez a lap jelenleg nem tartalmaz szöveget. [[Special:Search/{{PAGENAME}}|Rákereshetsz erre a címszóra]], vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].',
+'noarticletext'                    => 'Ez a lap jelenleg nem tartalmaz szöveget.
+[[Special:Search/{{PAGENAME}}|Rákereshetsz erre a címszóra]],
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} megtekintheted a kapcsolódó naplókat],
+vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].',
 'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált szerkesztő. Nézd meg, hogy valóban ezt a lapot szeretnéd létrehozni vagy szerkeszteni.',
 'clearyourcache'                   => "'''Megjegyzés: mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.''' '''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Reload'' / ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R''); '''Konqueror:''' egyszerűen csak kattints a ''Reload'' / ''Frissítés'' gombra vagy nyomj ''F5''-öt; '''Opera:''' ürítsd ki a gyorsítótárat az ''Eszközök→Személyes adatok törlése'' / ''Tools→Preferences'' menüben; '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Reload / Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt.",
 'usercssjsyoucanpreview'           => "'''Tipp:''' Használd az „Előnézet megtekintése” gombot az új CSS/JS teszteléséhez mentés előtt.",
@@ -999,6 +1004,8 @@ További információkat a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
 Ezt a változatot eltávolították a nyilvános archívumokból.
 Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">A változatok közötti eltérés nem jeleníthető meg, mert a változatok egyike el lett távolítva a nyilvános archívumból.
+További részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
 'rev-delundel'                   => 'megjelenítés/elrejtés',
 'revisiondelete'                 => 'Változatok törlése/helyreállítása',
 'revdelete-nooldid-title'        => 'Érvénytelen célváltozat',
@@ -2381,6 +2388,7 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[{{ns:
 'export-addcat'     => 'Hozzáadás',
 'export-download'   => 'A fájlban történő mentés felkínálása',
 'export-templates'  => 'Sablonok hozzáadása',
+'export-pagelinks'  => 'Hivatkozott lapok hozzáadása, eddig a szintig:',
 
 # Namespace 8 related
 'allmessages'               => 'Rendszerüzenetek',
@@ -2410,6 +2418,7 @@ A változatok dátumai és a szerkesztők nevei megőrzésre kerülnek.
 Valamennyi transwiki importálási művelet az [[Special:Log/import|importálási naplóban]] kerül naplózásra.',
 'import-interwiki-source'    => 'Forrás wiki/lap:',
 'import-interwiki-history'   => 'A lap összes előzményváltozatainak másolása',
+'import-interwiki-templates' => 'Az összes sablon hozzáadása',
 'import-interwiki-submit'    => 'Importálás',
 'import-interwiki-namespace' => 'Célnévtér:',
 'import-upload-filename'     => 'Fájlnév:',

@@ -177,6 +177,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Formata els enllaços trencats  <a href="" class="new">d\'aquesta manera</a> (altrament, es faria d\'aquesta altra manera<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Alineació justificada dels paràgrafs',
 'tog-hideminor'               => 'Amaga les edicions menors en la pàgina de canvis recents',
+'tog-hidepatrolled'           => 'Amaga edicions patrullades als canvis recents',
+'tog-newpageshidepatrolled'   => 'Amaga pàgines patrullades de la llista de pàgines noves',
 'tog-extendwatchlist'         => 'Desplega la llista de seguiment per a mostrar tots els canvis afectats',
 'tog-usenewrc'                => 'Presentació millorada dels canvis recents (cal JavaScript)',
 'tog-numberheadings'          => 'Enumera automàticament els encapçalaments',
@@ -211,6 +213,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Amaga les edicions menors de la llista de seguiment',
 'tog-watchlisthideliu'        => "Amaga a la llista les edicions d'usuaris registrats",
 'tog-watchlisthideanons'      => "Amaga a la llista les edicions d'usuaris anònims",
+'tog-watchlisthidepatrolled'  => 'Amaga edicions patrullades de la llista de seguiment',
 'tog-nolangconversion'        => 'Desactiva la conversió de variants',
 'tog-ccmeonemails'            => "Envia'm còpies dels missatges que enviï als altres usuaris.",
 'tog-diffonly'                => 'Amaga el contingut de la pàgina davall de la taula de diferències',
@@ -445,7 +448,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'No es reconeix aquesta operació',
-'nosuchactiontext'  => "El programari wiki que fa servir {{SITENAME}} no reconeix l'operació especificada per l'adreça URL",
+'nosuchactiontext'  => "L'acció especificada per la URL no és vàlida.
+Potser heu escrit malament la URL o heu seguit un enllaç incorrecte.
+Això també pot ser causat per un error al programari utilitzat pel projecte {{SITENAME}}.",
 'nosuchspecialpage' => 'No es troba la pàgina especial que busqueu',
 'nospecialpagetext' => 'La pàgina especial que demaneu no és vàlida. Vegeu la llista de pàgines especials en [[Special:SpecialPages]].',
 
@@ -730,7 +735,10 @@ Per a crear-la, comenceu a escriure en l'espai de sota
 (vegeu l'[[{{MediaWiki:Helppage}}|ajuda]] per a més informació).
 Si sou ací per error, simplement cliqueu al botó «Enrere» del vostre navegador.",
 'anontalkpagetext'                 => "----''Aquesta és la pàgina de discussió d'un usuari anònim que encara no ha creat un compte o que no fa servir el seu nom registrat. Per tant, hem de fer servir la seua adreça IP numèrica per a identificar-lo. Una adreça IP pot ser compartida per molts usuaris. Si sou un usuari anònim, i trobeu que us han adreçat comentaris inoportuns, si us plau, [[Special:UserLogin/signup|creeu-vos un compte]], o [[Special:UserLogin|entreu en el vostre compte]] si ja en teniu un, per a evitar futures confusions amb altres usuaris anònims.''",
-'noarticletext'                    => 'En aquest moment no hi ha text en aquesta pàgina. Podeu [[Special:Search/{{PAGENAME}}|cercar-ne el títol]] en altres pàgines o [{{fullurl:{{FULLPAGENAME}}|action=edit}} començar a escriure-hi].',
+'noarticletext'                    => 'Actualment no hi ha text en aquesta pàgina.
+Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} cercar en els registres]
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar aquesta pàgina]</span>.',
 'userpage-userdoesnotexist'        => "Atenció: El compte d'usuari «$1» no està registrat. En principi no hauríeu de crear ni editar aquesta pàgina.",
 'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. '''Mozilla / Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''Cmd+R'' en un Mac Apple); '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''; '''Konqueror:''': simplement cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''; '''Opera''' haureu d'esborrar completament la vostra memòria cau (caché) a ''Tools→Preferences''.",
 'usercssjsyoucanpreview'           => "'''Consell:''' Utilitzeu el botó «Mostra previsualització» per probar el vostre nou CSS/JS abans de desar-lo.",
@@ -881,11 +889,15 @@ Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Vegeu mé
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
 Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a administrador d\'aquest wiki podeu veure-la; vegeu-ne més detalls al [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registre d\'esborrats].
 </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">No podeu veure aquesta comparativa perquè una de les versions ha estat esborrada dels arxius públics.
+Potser trobareu detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d\'esborrats].</div>',
 'rev-delundel'                   => 'mostra/amaga',
 'revisiondelete'                 => 'Esborrar/restaurar revisions',
 'revdelete-nooldid-title'        => 'La revisió objectiu no és vàlida',
 'revdelete-nooldid-text'         => "No heu especificat unes revisions objectius per a realitzar aquesta
 funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'actual revisió.",
+'revdelete-nologtype-title'      => "No s'ha donat el tipus de registre",
+'revdelete-nologtype-text'       => 'No heu especificat un tipus de registre on dur a terme aquesta acció.',
 'revdelete-toomanytargets-title' => 'Massa objectius',
 'revdelete-toomanytargets-text'  => 'Heu especificat massa tipus de llocs als quals aplicar aquesta acció.',
 'revdelete-nologid-title'        => 'Entrada de registre no vàlida',
@@ -1728,30 +1740,31 @@ Pot ser que hi hagi més informació sobre drets individuals [[{{MediaWiki:Listg
 'listgrouprights-removegroup-all' => 'Pot treure tots els grups',
 
 # E-mail user
-'mailnologin'     => "No enviïs l'adreça",
-'mailnologintext' => "Heu d'haver [[Special:UserLogin|entrat]]
+'mailnologin'      => "No enviïs l'adreça",
+'mailnologintext'  => "Heu d'haver [[Special:UserLogin|entrat]]
 i tenir una direcció electrònica vàlida en les vostres [[Special:Preferences|preferències]]
 per enviar un correu electrònic a altres usuaris.",
-'emailuser'       => 'Envia un missatge de correu electrònic a aquest usuari',
-'emailpage'       => 'Correu electrònic a usuari',
-'emailpagetext'   => "Podeu usar el següent formulari per a enviar un missatge de correu electrònic a aquest usuari.
+'emailuser'        => 'Envia un missatge de correu electrònic a aquest usuari',
+'emailpage'        => 'Correu electrònic a usuari',
+'emailpagetext'    => "Podeu usar el següent formulari per a enviar un missatge de correu electrònic a aquest usuari.
 L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres preferències d'usuari]] apareixerà com a remitent del correu electrònic, de manera que el destinatari us podrà respondre directament.",
-'usermailererror' => "L'objecte de correu ha retornat un error:",
-'defemailsubject' => 'Adreça correl de {{SITENAME}}',
-'noemailtitle'    => 'No hi ha cap adreça electrònica',
-'noemailtext'     => 'Aquest usuari no ha especificat una adreça electrònica vàlida.',
-'nowikiemailtext' => "Aquest usuari ha escollir no rebre missatges electrònics d'altres usuaris.",
-'email-legend'    => 'Enviar un correu electrònic a un altre usuari de {{SITENAME}}',
-'emailfrom'       => 'De:',
-'emailto'         => 'Per a:',
-'emailsubject'    => 'Assumpte:',
-'emailmessage'    => 'Missatge:',
-'emailsend'       => 'Envia',
-'emailccme'       => "Envia'm una còpia del meu missatge.",
-'emailccsubject'  => 'Còpia del vostre missatge a $1: $2',
-'emailsent'       => 'Correu electrònic enviat',
-'emailsenttext'   => 'El vostre correu electrònic ha estat enviat.',
-'emailuserfooter' => "Aquest missatge de correu electrònic l'ha enviat $1 a $2 amb la funció «e-mail» del projecte {{SITENAME}}.",
+'usermailererror'  => "L'objecte de correu ha retornat un error:",
+'defemailsubject'  => 'Adreça correl de {{SITENAME}}',
+'noemailtitle'     => 'No hi ha cap adreça electrònica',
+'noemailtext'      => 'Aquest usuari no ha especificat una adreça electrònica vàlida.',
+'nowikiemailtitle' => 'No es permet el correu electrònic',
+'nowikiemailtext'  => "Aquest usuari ha escollir no rebre missatges electrònics d'altres usuaris.",
+'email-legend'     => 'Enviar un correu electrònic a un altre usuari de {{SITENAME}}',
+'emailfrom'        => 'De:',
+'emailto'          => 'Per a:',
+'emailsubject'     => 'Assumpte:',
+'emailmessage'     => 'Missatge:',
+'emailsend'        => 'Envia',
+'emailccme'        => "Envia'm una còpia del meu missatge.",
+'emailccsubject'   => 'Còpia del vostre missatge a $1: $2',
+'emailsent'        => 'Correu electrònic enviat',
+'emailsenttext'    => 'El vostre correu electrònic ha estat enviat.',
+'emailuserfooter'  => "Aquest missatge de correu electrònic l'ha enviat $1 a $2 amb la funció «e-mail» del projecte {{SITENAME}}.",
 
 # Watchlist
 'watchlist'            => 'Llista de seguiment',
@@ -2102,7 +2115,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'ipblocklist-no-results'          => "La adreça IP soŀlicitada o nom d'usuari està bloquejada.",
 'blocklink'                       => 'bloca',
 'unblocklink'                     => 'desbloca',
-'change-blocklink'                => 'canvia bloc',
+'change-blocklink'                => 'canvia el blocatge',
 'contribslink'                    => 'contribucions',
 'autoblocker'                     => 'Heu estat blocat perquè compartiu adreça IP amb «$1». Motiu: «$2»',
 'blocklogpage'                    => 'Registre de bloquejos',
@@ -2194,6 +2207,7 @@ per reanomenar una pàgina.",
 'pagemovedsub'                 => 'Reanomenament amb èxit',
 'movepage-moved'               => "<big>'''«$1» s'ha mogut a «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => "S'ha creat una redirecció.",
+'movepage-moved-noredirect'    => "La creació d'una redirecció s'ha suprimit.",
 'articleexists'                => 'Ja existeix una pàgina amb aquest nom, o el nom que heu triat no és vàlid.
 Trieu-ne un altre, si us plau.',
 'cantmove-titleprotected'      => "No podeu moure una pàgina a aquesta ubicació, perquè s'ha protegit la creació del títol nou",
@@ -2203,7 +2217,7 @@ Incorporeu-les manualment, si us plau.",
 'movedto'                      => 'reanomenat a',
 'movetalk'                     => 'Mou la pàgina de discussió associada',
 'move-subpages'                => "Mou també les subpàgines (fins a $1) si s'escau",
-'move-talk-subpages'           => "Mou totes les subpàgines de la discussió (si s'escau)",
+'move-talk-subpages'           => "Mou totes les subpàgines de la pàgina de discussió (fins un màxim de $1) si s'escau",
 'movepage-page-exists'         => "La pàgina $1 ja existeix i no pot sobreescriure's automàticament.",
 'movepage-page-moved'          => 'La pàgina $1 ha estat traslladada a $2.',
 'movepage-page-unmoved'        => "La pàgina $1 no s'ha pogut moure a $2.",
@@ -2248,6 +2262,7 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{ns:special}}:Export/{{
 'export-addcat'     => 'Afegeix',
 'export-download'   => 'Ofereix desar com a fitxer',
 'export-templates'  => 'Inclou les plantilles',
+'export-pagelinks'  => 'Inclou pàgines enllaçades fins una profunditat de:',
 
 # Namespace 8 related
 'allmessages'               => 'Tots els missatges del sistema',
@@ -2276,6 +2291,7 @@ Es conservaran les dates de les versions i els noms dels editors.
 Totes les accions d'importació interwiki es conserven al [[Special:Log/import|registre d'importacions]].",
 'import-interwiki-source'    => "Pàgina/wiki d'origen:",
 'import-interwiki-history'   => "Copia totes les versions de l'historial d'aquesta pàgina",
+'import-interwiki-templates' => 'Inclou totes les plantilles',
 'import-interwiki-submit'    => 'Importa',
 'import-interwiki-namespace' => 'Espai de noms de destinació:',
 'import-upload-filename'     => 'Nom de fitxer:',
@@ -2314,7 +2330,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisió|revisions}} de $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => "La meua pàgina d'usuari",
+'tooltip-pt-userpage'             => "La vostra pàgina d'usuari",
 'tooltip-pt-anonuserpage'         => "La pàgina d'usuari per la ip que utilitzeu",
 'tooltip-pt-mytalk'               => 'La vostra pàgina de discussió.',
 'tooltip-pt-anontalk'             => 'Discussió sobre les edicions per aquesta adreça ip.',
@@ -2326,7 +2342,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'tooltip-pt-logout'               => "Finalitza la sessió d'usuari",
 'tooltip-ca-talk'                 => "Discussió sobre el contingut d'aquesta pàgina.",
 'tooltip-ca-edit'                 => 'Podeu editar aquesta pàgina. Si us plau, previsualitzeu abans de desar.',
-'tooltip-ca-addsection'           => 'Afegeix un comentari a aquesta discussió.',
+'tooltip-ca-addsection'           => 'Comença una nova secció',
 'tooltip-ca-viewsource'           => 'Aquesta pàgina està protegida. Podeu veure el seu codi font.',
 'tooltip-ca-history'              => "Versions antigues d'aquesta pàgina.",
 'tooltip-ca-protect'              => 'Protegeix aquesta pàgina.',
@@ -2443,8 +2459,9 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 # Patrol log
 'patrol-log-page'      => 'Registre de supervisió',
 'patrol-log-header'    => 'Això és un registre de les revisions patrullades.',
-'patrol-log-line'      => "s'ha marcat la versió $1 de $2 com a supervisat $3",
-'patrol-log-auto'      => '(automàtic)',
+'patrol-log-line'      => 'ha marcat $3 la $1 de «$2» com a supervisada',
+'patrol-log-auto'      => '(automàticament)',
+'patrol-log-diff'      => 'revisió $1',
 'log-show-hide-patrol' => '$1 el registre de patrulla',
 
 # Image deletion
@@ -2993,10 +3010,17 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 #Poseu tots els fragments regex al damunt d'aquesta línia. Deixeu aquesta línia exactament com està</pre>",
 
 # Special:Tags
-'tags-edit'     => 'edita',
-'tags-hitcount' => '$1 {{PLURAL:$1|canvi|canvis}}',
+'tag-filter-submit' => 'Filtra',
+'tags-edit'         => 'edita',
+'tags-hitcount'     => '$1 {{PLURAL:$1|canvi|canvis}}',
 
 # Database error messages
-'dberr-header' => 'Aquest wiki té un problema',
+'dberr-header'      => 'Aquest wiki té un problema',
+'dberr-problems'    => 'Ho sentim. Aquest lloc web està experimentant dificultats tècniques.',
+'dberr-again'       => 'Intenteu esperar uns minuts i tornar a carregar.',
+'dberr-info'        => '(No es pot contactar amb el servidor de dades: $1)',
+'dberr-usegoogle'   => 'Podeu intentar fer la cerca via Google mentrestant.',
+'dberr-outofdate'   => 'Tingueu en compte que la seva indexació del nostre contingut pot no estar actualitzada.',
+'dberr-cachederror' => 'A continuació hi ha una còpia emmagatzemada de la pàgina demanada, que pot no estar actualitzada.',
 
 );

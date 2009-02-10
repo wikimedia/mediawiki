@@ -787,6 +787,8 @@ $2',
 'gender-unknown'             => 'غير محدد',
 'gender-male'                => 'ذكر',
 'gender-female'              => 'أنثى',
+'prefs-help-gender'          => 'اختياري: يستخدم للمخاطبة المعتمدة على الجنس بواسطة الب
+رنامج. هذه المعلومة ستكون علنية.',
 'email'                      => 'البريد الإلكتروني',
 'prefs-help-realname'        => 'الاسم الحقيقي اختياري.
 لو اخترت أن توفره، فسيستخدم في الإشارة إلى عملك.',
@@ -1135,6 +1137,8 @@ $2',
 بإمكانك رؤية هذه المراجعة لكونك إداريا على هذا الموقع.
 من الممكن أن يكون هناك تفاصيل حول هذا في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
 </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">أنت لا يمكنك رؤية هذا الفرق لأن واحدة من المراجعات تمت إزالتها من الأرشيفات العلنية.
+ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].</div>',
 'rev-delundel'                   => 'عرض/إخفاء',
 'revisiondelete'                 => 'حذف/استرجاع المراجعات',
 'revdelete-nooldid-title'        => 'مراجعة هدف غير صحيحة',

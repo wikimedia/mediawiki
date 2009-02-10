@@ -656,6 +656,7 @@ Den måste vara under $1 {{PLURAL:$1|tecken|tecken}}.',
 'gender-unknown'             => 'Ospecificerat',
 'gender-male'                => 'Man',
 'gender-female'              => 'Kvinna',
+'prefs-help-gender'          => 'Valfri: används för att mjukvaran ska kunna adressera med rätt genus. Denna information kommer vara offentlig.',
 'email'                      => 'E-post',
 'prefs-help-realname'        => 'Riktigt namn behöver inte anges.
 Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
@@ -978,6 +979,8 @@ Denna version av sidan har avlägsnats från de öppna arkiven.
 Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
 </div>',
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks"> Denna version av sidan har avlägsnats från de öppna arkiven. Som administratör på denna wiki kan du se den. Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen]. </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Du kan inte se denna diff på grund av att en av versionerna har tagits bort från de öppna arkiven.
+Det kan finnas detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].</div>',
 'rev-delundel'                   => 'visa/göm',
 'revisiondelete'                 => 'Ta bort/återställ versioner',
 'revdelete-nooldid-title'        => 'Ogiltig målversion',

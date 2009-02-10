@@ -23,6 +23,7 @@
  * @author Louperivois
  * @author McDutchie
  * @author Meithal
+ * @author Moyg
  * @author Omnipaedista
  * @author Remember the dot
  * @author Seb35
@@ -991,6 +992,8 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 'rev-deleted-event'              => '(entrée supprimée)',
 'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks"> Cette version de la page a été retirée des archives publiques. Il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].</div>',
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks"> Cette version de la page a été retirée des archives publiques. En tant qu’administrateur de ce site, vous pouvez la visualiser ; il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Vous ne pouvez par voir ce diff parce qu\'une des versions a été supprimée des archives publiques.
+Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l\'historique des suppressions].</div>',
 'rev-delundel'                   => 'afficher/masquer',
 'revisiondelete'                 => 'Supprimer/Restaurer des versions',
 'revdelete-nooldid-title'        => 'Pas de cible pour la révision',
@@ -2340,7 +2343,7 @@ La page de destination « [[:$1]] » existe déjà. Voulez-vous la supprimer pou
 'imagetypemismatch'            => 'La nouvelle extension de ce fichier ne reconnaît pas ce format.',
 'imageinvalidfilename'         => 'Le nom du fichier cible est incorrect',
 'fix-double-redirects'         => 'Mettre à jour les redirections pointant vers l’ancien titre',
-'move-leave-redirect'          => 'laisser derrière un redirect',
+'move-leave-redirect'          => 'Laisser derrière un redirect',
 
 # Export
 'export'            => 'Exporter des pages',

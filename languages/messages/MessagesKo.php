@@ -636,6 +636,7 @@ $messages = array(
 'gender-unknown'             => '무응답',
 'gender-male'                => '남성',
 'gender-female'              => '여성',
+'prefs-help-gender'          => '선택 사항: 소프트웨어에서 성별에 따른 언어 문제를 해결하기 위해 사용됩니다. 이 정보는 공개될 것입니다.',
 'email'                      => '이메일',
 'prefs-help-realname'        => '실명 기입은 자유입니다. 실명을 입력할 경우 문서 기여에 자신의 이름이 들어가게 됩니다.',
 'loginerror'                 => '로그인 오류',
@@ -934,14 +935,18 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 이 문서의 편집은 문서 역사에서 제거되었습니다.
 당신은 {{SITENAME}}의 관리자로서, 삭제된 편집을 볼 수 있습니다;
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">당신은 특정 판이 문서 역사에서 제거되었기 때문에 이 차이를 확인할 수 없습니다.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..</div>',
 'rev-delundel'                   => '보이기/숨기기',
 'revisiondelete'                 => '버전 삭제/복구',
 'revdelete-nooldid-title'        => '대상 판이 잘못되었습니다.',
+'revdelete-nooldid-text'         => '당신은 이 기능을 수행할 특정 판을 제시하지 않았거나, 해당 판이 존재하지 않습니다. 또는 현재 판을 숨기려 하고 있을 수도 있습니다.',
 'revdelete-nologtype-title'      => '기록의 종류가 제시되지 않았습니다.',
 'revdelete-nologtype-text'       => '당신은 이 명령을 수행할 기록의 종류를 제시하지 않았습니다.',
 'revdelete-toomanytargets-title' => '대상이 너무 많습니다.',
 'revdelete-toomanytargets-text'  => '당신은 명령을 수행할 대상을 너무 많이 입력하였습니다.',
 'revdelete-nologid-title'        => '잘못된 기록',
+'revdelete-nologid-text'         => '당신은 이 기능을 수행할 특정 기록을 제시하지 않았거나 제시한 기록이 존재하지 않습니다.',
 'revdelete-selected'             => "'''[[:$1]]의 선택된 판:'''",
 'logdelete-selected'             => "'''선택한 로그:'''",
 'revdelete-text'                 => "'''삭제된 판과 기록은 문서 역사와 기록에 계속 나타나지만, 내용은 공개되지 않을 것입니다.'''
@@ -976,10 +981,14 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'logdelete-log-message'          => '$2개의 로그에 대해 $1',
 
 # Suppression log
-'suppressionlog' => '숨기기 기록',
+'suppressionlog'     => '숨기기 기록',
+'suppressionlogtext' => '다음은 관리자로부터 숨겨진 내용에 대한 삭제, 차단 기록입니다.
+현재 차단된 사용자 목록을 보시려면 [[Special:IPBlockList|차단된 사용자 목록]]을 참조하십시오.',
 
 # History merging
 'mergehistory'                     => '문서 역사 합치기',
+'mergehistory-header'              => '이 문서는 한 문서에서 다른 문서로 문서 역사를 합치게 할 것입니다.
+이전 문서를 역사적 기록으로 계속 남겨둘 것인지 확인해주세요.',
 'mergehistory-box'                 => '두 문서의 역사 합치기:',
 'mergehistory-from'                => '원본 문서 이름:',
 'mergehistory-into'                => '새 문서 이름:',
@@ -1019,6 +1028,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-styleadded'         => '$1 스타일 추가됨',
 'diff-added'              => '$1 추가됨',
 'diff-changedto'          => '$1(으)로 변경',
+'diff-movedoutof'         => '$1 밖으로 이동',
 'diff-styleremoved'       => '$1 스타일 제거됨',
 'diff-removed'            => '$1 제거됨',
 'diff-changedfrom'        => '$1에서 바꿈',
@@ -1048,6 +1058,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-hr'                 => "'''가로줄'''",
 'diff-code'               => "'''컴퓨터 코드 블록'''",
 'diff-dl'                 => "'''정의 목록'''",
+'diff-dt'                 => "'''정의할 용어'''",
 'diff-dd'                 => "'''정의'''",
 'diff-input'              => "'''입력 상자'''",
 'diff-form'               => "'''양식'''",
@@ -1074,6 +1085,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchsubtitleinvalid'            => "검색 단어 '''$1'''",
 'noexactmatch'                     => "'''$1 문서가 없습니다.''' 문서를 [[:$1|만들 수]] 있습니다.",
 'noexactmatch-nocreate'            => "'''\"\$1\" 문서가 존재하지 않습니다.'''",
+'toomanymatches'                   => '일치하는 결과가 너무 많습니다. 다른 검색어를 입력해주세요.',
 'titlematches'                     => '문서 제목 일치',
 'notitlematches'                   => '해당하는 제목 없음',
 'textmatches'                      => '문서 내용 일치',
@@ -1107,12 +1119,15 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'search-interwiki-more'            => '(더 보기)',
 'search-mwsuggest-enabled'         => '검색어 제안 기능 있음',
 'search-mwsuggest-disabled'        => '검색어 제한 없음',
+'search-relatedarticle'            => '관련',
 'mwsuggest-disable'                => 'AJAX 추천 기능 끄기',
+'searchrelated'                    => '관련',
 'searchall'                        => '모두',
 'showingresults'                   => '<strong>$2</strong>번 부터 <strong>$1</strong>개의 결과입니다.',
 'showingresultsnum'                => "'''$2'''번 부터 '''$3'''개의 결과입니다.",
 'showingresultstotal'              => "'''$3'''개의 결과 중 {{PLURAL:$4|'''$1'''|'''$1 - $2'''}}",
 'nonefound'                        => "'''참고''': 몇개의 이름공간만 기본 검색 범위입니다. 토론이나 틀 등의 모든 자료를 검색하기 위해서는 접두어로 '''all:''' 어떤 이름공간을 위해서는 접두어로 그 이름공간을 쓸 수 있습니다.",
+'search-nonefound'                 => '쿼리에 맞는 결과가 없습니다.',
 'powersearch'                      => '찾기',
 'powersearch-legend'               => '고급 검색',
 'powersearch-ns'                   => '다음의 이름공간에서 찾기:',
@@ -1381,6 +1396,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'reuploaddesc'                => '올리기를 취소하고 올리기 양식으로 돌아가기',
 'uploadnologin'               => '로그인하지 않음',
 'uploadnologintext'           => '파일을 올리려면 [[Special:UserLogin|로그인]]해야 합니다.',
+'upload_directory_missing'    => '파일 올리기용 디렉토리 ($1)가 존재하지 않고 웹 서버에 의해 생성되지 못했습니다.',
 'upload_directory_read_only'  => '파일 저장 디렉토리($1)에 쓰기 권한이 없습니다.',
 'uploaderror'                 => '올리기 오류',
 'uploadtext'                  => "파일을 올리기 위해서는 아래의 양식을 채워주세요.
@@ -1700,6 +1716,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'notargettitle'           => '해당하는 문서 없음',
 'notargettext'            => '기능을 수행할 대상 문서나 사용자를 지정하지 않았습니다.',
 'nopagetitle'             => '해당 문서 없음',
+'nopagetext'              => '당신이 찾는 문서는 존재하지 않습니다.',
 'pager-newer-n'           => '이전 $1개',
 'pager-older-n'           => '다음 $1개',
 'suppress'                => '오버사이트',
@@ -1739,12 +1756,13 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'allpages-bad-ns'   => '{{SITENAME}}에는 ‘$1’ 네임스페이스를 사용하지 않습니다.',
 
 # Special:Categories
-'categories'                  => '분류',
-'categoriespagetext'          => '문서나 자료를 담고 있는 분류 목록입니다.
+'categories'                    => '분류',
+'categoriespagetext'            => '문서나 자료를 담고 있는 분류 목록입니다.
 [[Special:UnusedCategories|사용되지 않는 분류]]는 여기에 보이지 않습니다.
 [[Special:WantedCategories|필요한 분류]]도 참고하세요.',
-'categoriesfrom'              => '다음으로 시작하는 분류들을 보여주기:',
-'special-categories-sort-abc' => '알파벳순으로 정렬',
+'categoriesfrom'                => '다음으로 시작하는 분류들을 보여주기:',
+'special-categories-sort-count' => '항목 갯수 순으로 정렬',
+'special-categories-sort-abc'   => '알파벳순으로 정렬',
 
 # Special:DeletedContributions
 'deletedcontributions'       => '삭제된 기여 목록',
@@ -1833,6 +1851,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchlist-details'    => '$1개(토론 제외)의 문서를 주시하고 있습니다.',
 'wlheader-enotif'      => '* 이메일 알림 기능이 활성화되었습니다.',
 'wlheader-showupdated' => "* 마지막으로 방문한 이후에 바뀐 문서들은 '''굵은 글씨'''로 표시됩니다.",
+'watchmethod-recent'   => '주시된 문서를 확인하고자 최근 편집을 확인',
+'watchmethod-list'     => '최근 편집을 확인하고자 주시된 문서 확인',
 'watchlistcontains'    => '$1개의 문서를 주시하고 있습니다.',
 'iteminvalidname'      => '"$1" 항목에 문제가 발생했습니다. 이름이 잘못되었습니다...',
 'wlnote'               => "다음은 최근 '''$2'''시간 동안에 바뀐 $1개의 문서입니다.",
@@ -1995,6 +2015,8 @@ $NEWPAGE
 'undeleterevdel'             => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다. 이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
 'undeletehistorynoadmin'     => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
 'undelete-revision'          => '삭제된 $1 문서의 $4 $5 버전 (기여자 $3):',
+'undeleterevision-missing'   => '해당 판이 잘못되었거나 존재하지 않습니다.
+잘못된 링크를 따라왔거나, 특정 판이 이미 복구되거나 데이터베이스에서 제거되었을 수도 있습니다.',
 'undelete-nodiff'            => '이전의 판이 없습니다.',
 'undeletebtn'                => '복구',
 'undeletelink'               => '되살리기',
@@ -2013,6 +2035,7 @@ $NEWPAGE
 'undelete-search-box'        => '삭제된 문서 찾기',
 'undelete-search-prefix'     => '다음으로 시작하는 문서 보이기:',
 'undelete-search-submit'     => '찾기',
+'undelete-cleanup-error'     => '사용되지 않는 보존된 파일 "$1"을 삭제하는 데 오류가 발생했습니다.',
 'undelete-error-short'       => '파일 복구 오류: $1',
 'undelete-error-long'        => '파일을 복구하는 중 오류 발생:
 
@@ -2152,6 +2175,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'ipb_blocked_as_range'            => '오류: IP 주소 $1은 직접 차단되지 않았기 때문에 차단 해제할 수 없습니다.
 하지만 $2로 광역 차단되었기 때문에, 광역 차단 해제로 차단을 해제할 수 있습니다.',
 'ip_range_invalid'                => 'IP 범위가 잘못되었습니다.',
+'blockme'                         => '자가 차단',
 'proxyblocker'                    => '프록시 차단',
 'proxyblocker-disabled'           => '이 기능은 비활성되어 있습니다.',
 'proxyblockreason'                => '당신의 IP 주소는 공개 프록시로 밝혀져 자동으로 차단됩니다. 만약 인터넷 사용에 문제가 있다면 인터넷 서비스 공급자에게 문의해주세요.',
@@ -2310,6 +2334,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 파일이 허용된 크기 제한보다 큽니다.',
 'importuploaderrorpartial'   => '가져오기 파일을 올리는 데 실패하였습니다.
 파일이 부분적으로만 업로드되었습니다.',
+'importuploaderrortemp'      => '가져오기 파일을 올리는 데 실패했습니다.
+임시 폴더가 존재하지 않습니다.',
 'import-parse-failure'       => 'XML 문서 분석 실패',
 'import-noarticle'           => '가져올 문서가 없습니다!',
 'import-nonewrevisions'      => '모든 판이 이전에 가져오기되었습니다.',
@@ -2541,11 +2567,18 @@ Variants for Chinese language
 # EXIF tags
 'exif-imagewidth'                  => '너비',
 'exif-imagelength'                 => '높이',
+'exif-compression'                 => '압축 방식',
+'exif-photometricinterpretation'   => '픽셀 배열',
 'exif-orientation'                 => '방향',
+'exif-planarconfiguration'         => '데이터 정렬 방식',
+'exif-ycbcrpositioning'            => 'Y와 C 위치',
 'exif-xresolution'                 => '수평 해상도',
 'exif-yresolution'                 => '수직 해상도',
 'exif-resolutionunit'              => 'X, Y방향 해상도 단위',
+'exif-stripoffsets'                => '이미지 데이터 위치',
+'exif-jpeginterchangeformat'       => 'JPEG SOI와의 차이',
 'exif-jpeginterchangeformatlength' => 'JPEG 데이터 바이트 수',
+'exif-transferfunction'            => '광학 전달 함수',
 'exif-datetime'                    => '파일이 변경된 날짜와 시간',
 'exif-imagedescription'            => '그림 제목',
 'exif-make'                        => '카메라 제조사',
@@ -2560,6 +2593,7 @@ Variants for Chinese language
 'exif-pixelydimension'             => '유효한 그림 너비',
 'exif-pixelxdimension'             => '유효한 그림 높이',
 'exif-makernote'                   => '제조사 주',
+'exif-usercomment'                 => '사용자 주',
 'exif-relatedsoundfile'            => '관련된 오디오 파일',
 'exif-datetimeoriginal'            => '날짜와 시간',
 'exif-exposuretime'                => '노출 시간',
@@ -2576,6 +2610,7 @@ Variants for Chinese language
 'exif-lightsource'                 => '광원',
 'exif-flash'                       => '플래시',
 'exif-focallength'                 => '렌즈 초점 거리',
+'exif-subjectarea'                 => '대상 위치',
 'exif-flashenergy'                 => '플래시 광량',
 'exif-focalplanexresolution'       => '초점면 X방향 해상도',
 'exif-focalplaneyresolution'       => '초점면 Y방향 해상도',
@@ -2589,6 +2624,7 @@ Variants for Chinese language
 'exif-exposuremode'                => '노출 방식',
 'exif-whitebalance'                => '화이트 밸런스',
 'exif-digitalzoomratio'            => '디지털 줌 비율',
+'exif-focallengthin35mmfilm'       => '35 mm 필름에서의 초점 거리',
 'exif-contrast'                    => '대비',
 'exif-saturation'                  => '채도',
 'exif-sharpness'                   => '선명도',
@@ -2601,8 +2637,10 @@ Variants for Chinese language
 'exif-gpsaltituderef'              => '고도 정보',
 'exif-gpsaltitude'                 => '고도',
 'exif-gpstimestamp'                => 'GPS 시간 (원자 시계)',
+'exif-gpssatellites'               => '측정에 사용된 위성',
 'exif-gpsstatus'                   => '수신기 상태',
 'exif-gpsmeasuremode'              => '측정 방식',
+'exif-gpsdop'                      => '측정 정확도',
 'exif-gpsspeedref'                 => '속도 단위',
 'exif-gpsspeed'                    => 'GPS 수신기 속도',
 'exif-gpstrack'                    => '이동 방향',
@@ -2628,6 +2666,8 @@ Variants for Chinese language
 'exif-orientation-7' => '시계 방향으로 90° 회전하고 수직으로 뒤집음', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => '시계 반대 방향으로 90° 회전됨', # 0th row: left; 0th column: bottom
 
+'exif-planarconfiguration-2' => '평면형',
+
 'exif-componentsconfiguration-0' => '존재하지 않음',
 
 'exif-exposureprogram-0' => '정의되지 않음',
@@ -2635,6 +2675,9 @@ Variants for Chinese language
 'exif-exposureprogram-2' => '일반 프로그램',
 'exif-exposureprogram-3' => '조리개 우선',
 'exif-exposureprogram-4' => '셔터 우선',
+'exif-exposureprogram-5' => '크리에이티브 프로그램 (깊이 부분 우선)',
+'exif-exposureprogram-6' => '액션 프로그램 (빠른 셔터 속도에 치중)',
+'exif-exposureprogram-7' => '인물 사진 모드 (배경을 초점 밖으로 하여 대상을 강조)',
 'exif-exposureprogram-8' => '풍경 모드 (초점이 배경인 풍경 사진용)',
 
 'exif-subjectdistance-value' => '$1 미터',
@@ -2681,6 +2724,9 @@ Variants for Chinese language
 'exif-focalplaneresolutionunit-2' => '인치',
 
 'exif-sensingmethod-1' => '정의되지 않음',
+'exif-sensingmethod-2' => '1칩 색 공간 센서',
+'exif-sensingmethod-3' => '2칩 색 공간 센서',
+'exif-sensingmethod-4' => '3칩 색 공간 센서',
 
 'exif-scenetype-1' => '직접 촬영된 이미지',
 
@@ -2704,6 +2750,7 @@ Variants for Chinese language
 
 'exif-contrast-0' => '보통',
 'exif-contrast-1' => '부드러움',
+'exif-contrast-2' => '강함',
 
 'exif-saturation-0' => '보통',
 'exif-saturation-1' => '저채도',
@@ -2711,6 +2758,7 @@ Variants for Chinese language
 
 'exif-sharpness-0' => '보통',
 'exif-sharpness-1' => '부드러움',
+'exif-sharpness-2' => '강함',
 
 'exif-subjectdistancerange-0' => '알 수 없음',
 'exif-subjectdistancerange-1' => '접사',
@@ -2878,6 +2926,7 @@ $5
 'version-parser-function-hooks'    => '파서 기능 훅',
 'version-skin-extension-functions' => '스킨 확장 기능',
 'version-hook-name'                => '훅 이름',
+'version-hook-subscribedby'        => '훅이 사용된 위치',
 'version-version'                  => '버전',
 'version-license'                  => '라이센스',
 'version-software'                 => '설치된 프로그램',
@@ -2927,20 +2976,32 @@ $5
 'blankpage'              => '빈 문서',
 'intentionallyblankpage' => '이 문서는 고의적으로 빈 채 방치되어 있습니다.',
 
+# External image whitelist
+'external_image_whitelist' => '  #이 줄은 그대로 두십시오<pre>
+#정규 표현식을 아래에 써 주십시오.
+#이 목록은 외부 이미지의 URL과 대조될 것입니다.
+#이 목록과 일치하는 것은 그림이 직접 보여지지만, 그렇지 않은 경우 그림을 가리키는 링크만 보이게 될 것입니다.
+# "#"으로 시작하는 줄은 주석으로 간주됩니다.
+
+#모든 정규 표현식은 이 줄 위에 넣어 주십시오. 그리고 이 줄은 그대로 두십시오.</pre>',
+
 # Special:Tags
-'tag-filter'        => '[[Special:Tags|태그]] 필터:',
-'tag-filter-submit' => '필터',
-'tags-title'        => '태그',
-'tags-tag'          => '내부 태그 이름',
-'tags-edit'         => '편집',
-'tags-hitcount'     => '$1개의 바뀜',
+'tag-filter'              => '[[Special:Tags|태그]] 필터:',
+'tag-filter-submit'       => '필터',
+'tags-title'              => '태그',
+'tags-tag'                => '내부 태그 이름',
+'tags-description-header' => '태그에 대한 설명',
+'tags-hitcount-header'    => '태그된 바뀜',
+'tags-edit'               => '편집',
+'tags-hitcount'           => '$1개의 바뀜',
 
 # Database error messages
-'dberr-header'    => '이 위키에 문제가 있습니다.',
-'dberr-problems'  => '죄송합니다. 이 사이트는 기술적인 문제가 있습니다.',
-'dberr-again'     => '잠시 후에 다시 시도해주세요.',
-'dberr-info'      => '(데이터베이스에 접속할 수 없습니다: $1)',
-'dberr-usegoogle' => '그 동안 구글을 통해 검색할 수도 있습니다.',
-'dberr-outofdate' => '참고로, 구글의 내용 개요는 오래된 것일 수도 있습니다.',
+'dberr-header'      => '이 위키에 문제가 있습니다.',
+'dberr-problems'    => '죄송합니다. 이 사이트는 기술적인 문제가 있습니다.',
+'dberr-again'       => '잠시 후에 다시 시도해주세요.',
+'dberr-info'        => '(데이터베이스에 접속할 수 없습니다: $1)',
+'dberr-usegoogle'   => '그 동안 구글을 통해 검색할 수도 있습니다.',
+'dberr-outofdate'   => '참고로, 구글의 내용 개요는 오래된 것일 수도 있습니다.',
+'dberr-cachederror' => '다음은 요청한 문서의 캐시된 복사본이며, 최신이 아닐 수도 있습니다.',
 
 );

@@ -867,7 +867,8 @@ Heslo tohoto nového účtu bude možné po přihlášení změnit na [[Special:
 Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlačítko ''Uložit změny''. Další rady najdete v [[{{MediaWiki:Helppage}}|nápovědě]].
 Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 'anontalkpagetext'                 => "----''Toto je diskusní stránka anonymního uživatele, který si dosud nevytvořil účet nebo ho nepoužívá. K&nbsp;jeho identifikaci proto musíme používat číselnou IP adresu. Takovou IP adresu může sdílet několik uživatelů. Pokud jste anonymní uživatel a&nbsp;máte za to, že jsou vám adresovány irelevantní komentáře, prosíme, [[Special:UserLogin/signup|vytvořte si účet]] nebo [[Special:UserLogin|se přihlaste]], vyhnete se tím budoucí záměně s&nbsp;jinými anonymními uživateli.''",
-'noarticletext'                    => 'Tato stránka zatím neobsahuje žádný text, můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit].',
+'noarticletext'                    => 'Tato stránka zatím neobsahuje žádný text.
+Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
 'userpage-userdoesnotexist'        => 'Uživatelský účet „$1“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
 'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
 'usercssjsyoucanpreview'           => "'''Tip:''' Použijte tlačítko „Ukázat náhled“ k testování vašeho nového CSS/JS před uložením.",
@@ -1015,6 +1016,8 @@ Tato revize byla odstraněna z veřejného archivu.
 Jako správce si ji však můžete prohlédnout;
 podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} knize smazaných stránek].
 </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Toto porovnání si nemůžete prohlédnout, protože jedna z&nbsp;verzí byla z&nbsp;veřejně dostupného archivu odstraněna.
+Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].</div>',
 'rev-delundel'                   => 'skrýt/zobrazit',
 'revisiondelete'                 => 'Smazat/obnovit revize',
 'revdelete-nooldid-title'        => 'Nezadána revize',
@@ -2350,6 +2353,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'export-addcat'     => 'Přidat',
 'export-download'   => 'Nabídnout uložení jako soubor',
 'export-templates'  => 'Zahrnout šablony',
+'export-pagelinks'  => 'Zahrnout odkazované stránky až do hloubky:',
 
 # Namespace 8 related
 'allmessages'               => 'Všechna systémová hlášení',

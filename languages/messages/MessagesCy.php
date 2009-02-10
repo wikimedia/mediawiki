@@ -1568,6 +1568,7 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'deletedcontributions-title' => 'Cyfraniadau defnyddiwr i dudalennau dilëedig',
 
 # Special:LinkSearch
+'linksearch'     => 'Cysylltiadau allanol',
 'linksearch-pat' => 'Patrwm chwilio:',
 'linksearch-ns'  => 'Parth:',
 'linksearch-ok'  => 'Chwilio',

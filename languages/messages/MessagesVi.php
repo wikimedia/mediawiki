@@ -230,6 +230,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Gửi bản sao cho tôi khi gửi thư điện tử cho người khác',
 'tog-diffonly'                => 'Không hiển thị nội dung trang dưới phần so sánh phiên bản',
 'tog-showhiddencats'          => 'Hiển thị thể loại ẩn',
+'tog-noconvertlink'           => 'Tắt liên kết chuyển đổi tựa đề',
 'tog-norollbackdiff'          => 'Không so sánh sau khi lùi sửa',
 
 'underline-always'  => 'Luôn luôn',
@@ -460,7 +461,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Không có tác vụ này',
-'nosuchactiontext'  => 'Wiki không hiểu được tác vụ được yêu cầu trong địa chỉ URL',
+'nosuchactiontext'  => 'Wiki không hiểu được tác vụ được yêu cầu trong địa chỉ URL.
+Có thể bạn đã gõ nhầm địa chỉ URL, hoặc nhấn vào một liên kết sai.
+Nó cũng có thể là dấu hiệu của một lỗi trong phần mềm mà {{SITENAME}} sử dụng.',
 'nosuchspecialpage' => 'Không có trang đặc biệt nào có tên này',
 'nospecialpagetext' => 'Không có trang đặc biệt này.',
 
@@ -736,7 +739,9 @@ Có thể đổi mật khẩu cho tài khoản mới này tại trang ''[[Specia
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
 Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:UserLogin/signup|tạo tài khoản]] hoặc [[Special:UserLogin|đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
-'noarticletext'                    => 'Trang này hiện chưa có gì, bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang]] tại các trang khác hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này].',
+'noarticletext'                    => 'Trang này hiện chưa có nội dung.
+Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] trong các trang khác, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} tìm trong các nhật trình liên quan],
+hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>.',
 'userpage-userdoesnotexist'        => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
 'clearyourcache'                   => "'''Ghi chú - Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'', hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (''Command-R'' trên Macintosh); '''Konqueror:''': nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "'''Mẹo:''' Sử dụng nút “Xem thử” để kiểm thử trang CSS/JS của bạn trước khi lưu trang.",
@@ -889,6 +894,8 @@ Phiên bản này đã bị xóa khỏi các bản lưu mà mọi người có t
 Vì bạn là người quản lý ở {{SITENAME}}, bạn có thể xem được nó;
 có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
 </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị xóa khỏi kho lưu trữ công cộng.
+Bạn có thể xem thêm chi tiết trong [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].</div>',
 'rev-delundel'                   => 'hiện/ẩn',
 'revisiondelete'                 => 'Xóa hay phục hồi phiên bản',
 'revdelete-nooldid-title'        => 'Chưa chọn phiên bản',
@@ -1160,8 +1167,8 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'defaultns'                 => 'Mặc định tìm kiếm trong không gian tên:',
 'default'                   => 'mặc định',
 'files'                     => 'Tập tin',
-'prefs-custom-css'          => 'CSS sửa đổi',
-'prefs-custom-js'           => 'JS sửa đổi',
+'prefs-custom-css'          => 'sửa CSS',
+'prefs-custom-js'           => 'sửa JS',
 
 # User rights
 'userrights'                  => 'Quản lý quyền thành viên', # Not used as normal message but as header for the special page itself
@@ -2267,6 +2274,7 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'export-addcat'     => 'Thêm',
 'export-download'   => 'Lưu xuống tập tin',
 'export-templates'  => 'Gồm cả tiêu bản',
+'export-pagelinks'  => 'Gồm cả các trang liên kết sâu đến:',
 
 # Namespace 8 related
 'allmessages'               => 'Thông báo hệ thống',
@@ -2296,6 +2304,7 @@ Ngày của phiên bản và tên người viết trang sẽ được giữ nguy
 Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[Special:Log/import|nhật trình nhập trang]].',
 'import-interwiki-source'    => 'Wiki/trang mã nguồn:',
 'import-interwiki-history'   => 'Sao chép tất cả các phiên bản cũ của trang này',
+'import-interwiki-templates' => 'Gồm tất cả các tiêu bản',
 'import-interwiki-submit'    => 'Nhập trang',
 'import-interwiki-namespace' => 'Không gian tên đích:',
 'import-upload-filename'     => 'Tên tập tin:',
@@ -2397,12 +2406,28 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-undo'                    => '"Lùi lại" sẽ lùi sửa đổi này và mở trang sửa đổi ở chế độ xem thử. Cho phép thêm lý do vào tóm lược.',
 
 # Stylesheets
-'common.css'   => '/* Mã CSS đặt ở đây sẽ áp dụng cho mọi hình dạng */',
-'monobook.css' => '/* Mã CSS đặt ở đây sẽ ảnh hưởng đến thành viên sử dụng hình dạng Monobook */',
+'common.css'      => '/* Mã CSS đặt ở đây sẽ áp dụng cho mọi hình dạng */',
+'standard.css'    => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng sử dụng hình dạng Cổ điển */',
+'nostalgia.css'   => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng sử dụng hình dạng Vọng cổ */',
+'cologneblue.css' => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng sử dụng hình dạng Xanh Cologne */',
+'monobook.css'    => '/* Mã CSS đặt ở đây sẽ ảnh hưởng đến thành viên sử dụng hình dạng Monobook */',
+'myskin.css'      => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng sử dụng hình dạng Cá nhân */',
+'chick.css'       => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng sử dụng hình dạng Chick */',
+'simple.css'      => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng sử dụng hình dạng Đơn giản */',
+'modern.css'      => '/* Mã CSS tại đây sẽ ảnh hưởng đến những người dùng sử dụng hình dạng Hiện đại */',
+'print.css'       => '/* Mã CSS tại đây sẽ ảnh hưởng đến bản để in */',
+'handheld.css'    => '/* Mã CSS tại đây sẽ ảnh hưởng đến các thiết bị cầm tay dựa trên hình dạng cấu hình trong $wgHandheldStyle */',
 
 # Scripts
-'common.js'   => '/* Bất kỳ mã JavaScript ở đây sẽ được tải cho tất cả các thành viên khi tải một trang nào đó lên. */',
-'monobook.js' => '/* Những người dùng hình dạng MonoBook tải mã JavaScript ở đây */',
+'common.js'      => '/* Bất kỳ mã JavaScript ở đây sẽ được tải cho tất cả các thành viên khi tải một trang nào đó lên. */',
+'standard.js'    => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Cổ điển */',
+'nostalgia.js'   => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Vọng cổ */',
+'cologneblue.js' => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Xanh Cologne */',
+'monobook.js'    => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng MonoBook */',
+'myskin.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Cá nhân */',
+'chick.js'       => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Chick */',
+'simple.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Đơn giản */',
+'modern.js'      => '/* Mã JavaScript tại đây sẽ được tải khi người dùng sử dụng hình dạng Hiện đại */',
 
 # Metadata
 'nodublincore'      => 'Máy chủ không hỗ trợ siêu dữ liệu Dublin Core RDF.',
@@ -2437,9 +2462,12 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'numtalkauthors' => 'Số người sửa đổi khác nhau (trang thảo luận): $1',
 
 # Skin names
-'skinname-standard'  => 'Cổ điển',
-'skinname-nostalgia' => 'Vọng cổ',
-'skinname-myskin'    => 'Cá nhân',
+'skinname-standard'    => 'Cổ điển',
+'skinname-nostalgia'   => 'Vọng cổ',
+'skinname-cologneblue' => 'Xanh Cologne',
+'skinname-myskin'      => 'Cá nhân',
+'skinname-simple'      => 'Đơn giản',
+'skinname-modern'      => 'Hiện đại',
 
 # Math options
 'mw_math_png'    => 'Luôn cho ra dạng hình PNG',
@@ -2510,6 +2538,11 @@ $1',
 'bydate'                => 'theo ngày',
 'sp-newimages-showfrom' => 'Trưng bày những tập tin mới, bắt đầu từ lúc $2, ngày $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds-abbrev' => 's',
+'minutes-abbrev' => 'm',
+'hours-abbrev'   => 'h',
+
 # Bad image list
 'bad_image_list' => 'Định dạng như sau:
 
@@ -2579,6 +2612,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-exposuretime'                => 'Thời gian mở ống kính',
 'exif-exposuretime-format'         => '$1 giây ($2)',
 'exif-fnumber'                     => 'Số F',
+'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Chương trình phơi sáng',
 'exif-spectralsensitivity'         => 'Độ nhạy quang phổ',
 'exif-isospeedratings'             => 'Điểm tốc độ ISO',
@@ -2593,6 +2627,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-lightsource'                 => 'Nguồn sáng',
 'exif-flash'                       => 'Đèn chớp',
 'exif-focallength'                 => 'Độ dài tiêu cự thấu kính',
+'exif-focallength-format'          => '$1 mm',
 'exif-subjectarea'                 => 'Diện tích vật thể',
 'exif-flashenergy'                 => 'Nguồn đèn chớp',
 'exif-spatialfrequencyresponse'    => 'Phản ứng tần số không gian',
@@ -2652,6 +2687,9 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 
 # EXIF attributes
 'exif-compression-1' => 'Không nén',
+'exif-compression-6' => 'JPEG',
+
+'exif-photometricinterpretation-2' => 'RGB',
 
 'exif-unknowndate' => 'Không biết ngày',
 

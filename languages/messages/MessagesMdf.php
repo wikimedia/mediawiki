@@ -226,7 +226,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Эльбятькс',
 'returnto'          => 'Мърдамс $1-с.',
-'tagline'           => '{{SITENAME}}-ста',
+'tagline'           => '{{SITENAME}}ста',
 'help'              => 'Лезкс',
 'search'            => 'Вешендемс',
 'searchbutton'      => 'Вешентьк',
@@ -310,7 +310,7 @@ $messages = array(
 'versionrequiredtext' => 'Тя лопать панжеманцты эрявксты МедиаВикить верзие $1. Ванк [[Special:Version|верзиень лопась]].',
 
 'ok'                      => 'OK',
-'retrievedfrom'           => '"$1"-ста сявф',
+'retrievedfrom'           => '"$1"ста сявф',
 'youhavenewmessages'      => 'Тонь ули $1 ($2).',
 'newmessageslink'         => 'Од сёрмат',
 'newmessagesdifflink'     => 'мекольце полафтома',
@@ -334,7 +334,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom линия',
 'page-rss-feed'           => '"$1" RSS линия',
 'page-atom-feed'          => '"$1" Atom линия',
-'red-link-title'          => '$1 (нинге аф сёрматф)',
+'red-link-title'          => '$1 (стама лопась аш)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Лопа',
@@ -620,7 +620,10 @@ $2',
 'anontalkpagetext'                 => "----''Тя корхтама лопать тизе лемфтома тиись кона нинге аф сёрматфтф эли кона эсь сёрматфтомас аф кунци. Тяса минь нолдамс сонь лувомтяшкснень IP адресонц тиить содафтоманкса. 
 Тя IP адресть вельде ули кода сашендомс иля тиихненди. 
 Уляндяряйхть иля тиинь мяльполатксонза конатнень аф видекста лувозь тоннекс, тондейть пароль сай пингста [[Special:UserLogin/signup|сёрматфтомс/сувамс]] иля лемфтома тиихнень марс аф шовореманкса.''",
-'noarticletext'                    => 'Тяни аш текст тя лопаса, тондейть ули кода [[Special:Search/{{PAGENAME}}|вешендемс тя лопать коняксонц]] иля лопава эли [{{fullurl:{{FULLPAGENAME}}|action=edit}} кармамс тя лопать тиема].',
+'noarticletext'                    => 'Тяни аш текст тя лопаса. 
+Тондейть ули кода [[Special:Search/{{PAGENAME}}|вешендемс тя лопать коняксонц]] иля лопава,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} вешендемс малады лувомава],
+эли [{{fullurl:{{FULLPAGENAME}}|action=edit}} петнемс тя лопать]</span>.',
 'userpage-userdoesnotexist'        => 'Сёрматфтомась «$1» лемса аш. Арьсек лацкаста, афкукс тонь улендяряй мяльце тиемс эли полафтомс тя лопать.',
 'clearyourcache'                   => "'''Шарфтк мяльце:''' Ванфтомада меле од полафнематнень ваноманкса тондейть эряви нардамс эслек ванфневи файлхнень тонь интернет полатксонь вальмастонза. '''Mozilla / Firefox / Safari:''' ''Shift'' кирдезь, люпштак ''Reload'', эли люпштак ''Ctrl-Shift-F5'' эли ''Ctrl-R'' (''Command-Shift-R'' Macintosh машинаса); '''Konqueror: '''люпштак ''Reload'' эли люпштак ''F5;'' '''Opera:''' програмса тондейть эрявксты нардамс сембе эслек ванфневи файлхт  ''Tools→Preferences'' вельде; '' '''Internet Explorer:''' ''Ctrl'' кирдезь люпштакшнек ''Refresh'' эли люпштак ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "'''Мялень максома:''' Ванфтомада инголе нолдак тевс 'Васень няфтема' пунять тонь од CSS эли JS файлть варжаманкса.",
@@ -1348,7 +1351,7 @@ $3 макссь туфталсь - ''$2''",
 'filehist-dimensions'            => 'Кувалма',
 'filehist-filesize'              => 'Файлонь кувалмоц',
 'filehist-comment'               => 'Мяльполаткс',
-'imagelinks'                     => 'Сюлмафкст',
+'imagelinks'                     => 'Файл сюлмафкст',
 'linkstoimage'                   => 'Сай {{PLURAL:$1|лопась сюлмаф|$1 лопатне сюлмафт}} вага тя файлть мархта:',
 'linkstoimage-more'              => '$1-да лама {{PLURAL:$1|лопа сюлмаф|лопат сюлмафт}} тя файлть мархта.
 Тя лувомаса няфневихть {{PLURAL:$1|васенце лопань сюлмафксоц|васенце $1 лопань сюлмафкссна}} аньцек тя файлть мархта.
@@ -2175,13 +2178,13 @@ $1 сёлкф ни. Мяльце полафтомс латцематнень?',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|илякстоптома|илякстоптомат}} $2-ста',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Монь тиинь лопазе',
+'tooltip-pt-userpage'             => 'Тонь тиинь лопаце',
 'tooltip-pt-anonuserpage'         => 'Тиить лопанц IP потмоса, конань эса тон петнесак кода',
-'tooltip-pt-mytalk'               => 'Монь корхтама лопазе',
+'tooltip-pt-mytalk'               => 'Тонь корхтама лопаце',
 'tooltip-pt-anontalk'             => 'Корхнемась тя IP адресста тиф петнематнень колга',
 'tooltip-pt-preferences'          => 'Монь латцемане',
 'tooltip-pt-watchlist'            => 'Лопатне конатнень мельге тон ванат полафнематнень коряс',
-'tooltip-pt-mycontris'            => 'Монь путкснень лувомась',
+'tooltip-pt-mycontris'            => 'Тонь путкстнень лувомасна',
 'tooltip-pt-login'                => 'Тяса ули кода сёрматфтомс аньцек тя аф эрявикс.',
 'tooltip-pt-anonlogin'            => 'Тонь анайхть сувамс лопас, интай тя аф кошардомась.',
 'tooltip-pt-logout'               => 'Лисемс',

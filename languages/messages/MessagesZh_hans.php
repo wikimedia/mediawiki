@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -8,9 +8,10 @@
  * @author Gaoxuewei
  * @author Gzdavidwong
  * @author O
+ * @author Philip
  * @author Shinjiman
  * @author Wmr89502270
- * @author Philip
+ * @author Wong128hk
  */
 
 $namespaceNames = array(
@@ -1170,7 +1171,7 @@ $2',
 'userrights-groups-help'      => '您可以改动这位用户所属的组群:
 * 已剔选的核取方块代表该用户属于该组群。
 * 未剔选的核取方块代表该用户不是属于该组群。
-* 一个 * 表示当您加入群组之后更不能移除它，反之亦然。',
+* 有 * 项目表示一旦您加入该群组之后便不能移除它，反之亦然。',
 'userrights-reason'           => '更改原因:',
 'userrights-no-interwiki'     => '您并没有权限去编辑在其它wiki上的用户权限。',
 'userrights-nodatabase'       => '数据库$1不存在或并非为本地的。',

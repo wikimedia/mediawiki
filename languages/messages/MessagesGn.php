@@ -163,15 +163,22 @@ $messages = array(
 'showtoc'                 => 'hechauka',
 'hidetoc'                 => 'toñemi',
 'restorelink'             => '$1 ediciones borradas',
+'red-link-title'          => '$1 (ndaipóri ko togue)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Kuatiahai',
 'nstab-user'      => 'Puruhára',
+'nstab-media'     => 'Media rogue',
 'nstab-special'   => "Mba'echĩchĩ",
-'nstab-image'     => "Ta'ãnga",
+'nstab-project'   => "Mba'e apopyrã rogue",
+'nstab-image'     => 'Ñongatupy',
 'nstab-mediawiki' => 'Marandu',
 'nstab-template'  => 'Tembiecharã',
+'nstab-help'      => 'Pytyvõ',
 'nstab-category'  => 'Ñemohenda',
+
+# Main script and global functions
+'nosuchaction' => 'Upe tembiapo ndaipóri',
 
 # General errors
 'ns-specialprotected' => 'Las páginas en el espacio de nombres Especial no se pueden editar.',

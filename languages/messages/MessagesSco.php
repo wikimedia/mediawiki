@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Derek Ross
  * @author Malafaya
  * @author OchAyeTheNoo
  * @author Urhixidur
@@ -18,6 +19,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Format brucken airtins <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justifee paragraphs',
 'tog-hideminor'               => 'Hide smaa edits in recent chynges',
+'tog-hidepatrolled'           => 'Hide patrolled edits in recent chynges',
+'tog-newpageshidepatrolled'   => 'Hide patrolled pages frae the new page list',
 'tog-extendwatchlist'         => 'Mak watchleet bigger tae shaw aw chynges',
 'tog-usenewrc'                => 'Enhanced recent chynges (no for aa brousers)',
 'tog-numberheadings'          => 'Auto-nummer heidins',
@@ -50,6 +53,9 @@ $messages = array(
 'tog-watchlisthideown'        => 'Hide yer ain edits frae yer watchleet',
 'tog-watchlisthidebots'       => 'Hide bot edits frae yer watchleet',
 'tog-watchlisthideminor'      => 'Dinna shaw sma edits on ma watchleet',
+'tog-watchlisthideliu'        => 'Hide edits by loggit in uisers frae the watchleet',
+'tog-watchlisthideanons'      => 'Hide edits by nameless uisers frae the watchleet',
+'tog-watchlisthidepatrolled'  => 'Hide patrolled edits frae the watchlist',
 'tog-ccmeonemails'            => 'Gie me copies o emails A write tae ither uisers',
 'tog-diffonly'                => 'Dinna shaw page contents ablo diffs',
 'tog-showhiddencats'          => 'Shaw hidden categories',
@@ -84,7 +90,7 @@ $messages = array(
 'september'     => 'September',
 'october'       => 'October',
 'november'      => 'November',
-'december'      => 'Dizember',
+'december'      => 'December',
 'january-gen'   => 'Januar',
 'february-gen'  => 'February',
 'march-gen'     => 'March',
@@ -111,12 +117,16 @@ $messages = array(
 'dec'           => 'Diz',
 
 # Categories related messages
-'pagecategories'        => '{{PLURAL:$1|Category|Categories}}',
-'category_header'       => 'Pages in category "$1"',
-'subcategories'         => 'Subcategories',
-'category-media-header' => 'Eetems in category "$1"',
-'category-empty'        => "''This category haes no pages or eetems at the meenit.''",
-'hidden-categories'     => '{{PLURAL:$1|Hidden categorie|Hidden categories}}',
+'pagecategories'                 => '{{PLURAL:$1|Category|Categories}}',
+'category_header'                => 'Pages in category "$1"',
+'subcategories'                  => 'Subcategories',
+'category-media-header'          => 'Eetems in category "$1"',
+'category-empty'                 => "''This category haes no pages or eetems at the meenit.''",
+'hidden-categories'              => '{{PLURAL:$1|Hidden categorie|Hidden categories}}',
+'category-article-count'         => '{{PLURAL:$2|This category contains the ae follaein page.|The follaein {{PLURAL:$1|page|$1 pages}} is in this category, oot o $2 total.}}',
+'category-article-count-limited' => 'The follaein {{PLURAL:$1|page|$1 pages}} is in this category.',
+'category-file-count'            => '{{PLURAL:$2|This category hauds juist the ae follaein file.|The follaein {{PLURAL:$1|file|$1 files}}s is in this category, oot o $2 total.}}',
+'category-file-count-limited'    => 'The follaein {{PLURAL:$1|file is|$1 files is}} in this category.',
 
 'mainpagetext'      => "<big>'''MediaWiki haes been installit wi speed.'''</big>",
 'mainpagedocfooter' => "Aks the [http://meta.wikimedia.org/wiki/Help:Contents Uiser's Manual] for speirins aboot using the wiki saftware.
@@ -164,7 +174,9 @@ $messages = array(
 'permalink'         => 'Permanent airtin',
 'print'             => 'Prent',
 'edit'              => 'Edit',
+'create'            => 'Mak',
 'editthispage'      => 'Edit this page',
+'create-this-page'  => 'Mak this page',
 'delete'            => 'Delete',
 'deletethispage'    => 'Delete this page',
 'undelete_short'    => 'Undelete {{PLURAL:$1|ane edit|$1 edits}}',
@@ -240,6 +252,7 @@ $messages = array(
 'editsection'             => 'edit',
 'editold'                 => 'edit',
 'viewsourceold'           => 'ken soorce',
+'viewsourcelink'          => 'Scance ower the source',
 'editsectionhint'         => 'Edit section: $1',
 'toc'                     => 'Table o contents',
 'showtoc'                 => 'shaw',
@@ -253,6 +266,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
+'red-link-title'          => '$1 (page disna exist)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',
@@ -571,6 +585,10 @@ Ye can go back an eik tae an existing page, or [[Special:UserLogin|log in or mak
 Ye shuld check that it is guid tae keep editin this page.
 The deletion log for this page is providit here:",
 
+# Parser/template warnings
+'post-expand-template-argument-warning' => 'Tak tent: This page hauds at least the ae template argument that haes an ower muckle expansion size.
+Thae arguments hae been left oot.',
+
 # "Undo" feature
 'undo-success' => 'The edit can be undone. Please check the chynges albo tae check that this is whit ye wint tae dae, an then hain the chynges albo tae be duin undooin the edit.',
 'undo-failure' => 'The edit culdnae be undone acause o conflictin edits inatween.',
@@ -612,21 +630,22 @@ It micht hae been deletit frae the wiki, or the name micht hae been chynged.
 Try [[Special:Search|rakin on the wiki]] for new pages ye micht be interestit in.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(jottin removit)',
-'rev-deleted-user'            => '(uisername removit)',
-'rev-deleted-event'           => '(entry removit)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+'rev-deleted-comment'            => '(jottin removit)',
+'rev-deleted-user'               => '(uisername removit)',
+'rev-deleted-event'              => '(entry removit)',
+'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
 This page revision haes been removit frae the public archives.
 There micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
 </div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
 This page revision haes been removit frae the public archives.
 Acause yer an admeenistrator on this site, ye can leuk at it;
 there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
 </div>',
-'rev-delundel'                => 'shaw/scug',
-'revisiondelete'              => 'Delete/undelete revisions',
-'revdelete-nooldid-title'     => 'Nae target revision',
+'rev-delundel'                   => 'shaw/scug',
+'revisiondelete'                 => 'Delete/undelete revisions',
+'revdelete-nooldid-title'        => 'Nae target revision',
+'revdelete-toomanytargets-title' => 'Ower mony targets',
 
 # Diffs
 'difference'              => '(Difference atween revisions)',
@@ -1038,7 +1057,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:special}}:
 'tooltip-pt-preferences'          => 'Ma preferences',
 'tooltip-pt-login'                => "It's a guid idea tae log i, but ye dinna hae tae.",
 'tooltip-search'                  => 'Rake {{SITENAME}}',
-'tooltip-n-mainpage'              => 'Gae tae the Main Page',
+'tooltip-n-mainpage'              => 'Gang tae the Main Page',
 'tooltip-t-contributions'         => "View this uiser's contreibutions",
 'tooltip-minoredit'               => 'Mairk this as a smaa edit',
 'tooltip-save'                    => 'Hain yer chynges',

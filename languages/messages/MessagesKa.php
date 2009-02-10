@@ -920,6 +920,7 @@ $1 საათში.',
 'rc_categories'                     => 'მხოლოდ კატეგორიებიდან (განაცალკევეთ "|"-ის მიხედვით)',
 'rc_categories_any'                 => 'ნებისმიერი',
 'newsectionsummary'                 => '/* $1 */ ახალი სექცია',
+'rc-enhanced-hide'                  => 'დეტალების დამალვა',
 
 # Recent changes linked
 'recentchangeslinked'          => 'დაკავშირებული ცვლილებები',
@@ -1204,6 +1205,7 @@ $1 საათში.',
 'special-categories-sort-abc' => 'ანბანზე დალაგება',
 
 # Special:LinkSearch
+'linksearch'    => 'გარე ბმულები',
 'linksearch-ns' => 'სახელთა სივრცე:',
 'linksearch-ok' => 'ძიება',
 

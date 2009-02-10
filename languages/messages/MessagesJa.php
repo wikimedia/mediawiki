@@ -902,6 +902,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
 この版は公のアーカイブから削除されています。あなたは{{SITENAME}}の{{int:group-sysop}}であるため内容を見ることができます。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。
 </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">表示させようとした差分のいずれかの版が公開アーカイブから削除されているため、差分表示できません。関連情報が[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]にあるかもしれません。</div>',
 'rev-delundel'                   => '表示/秘匿',
 'revisiondelete'                 => '版の削除と復帰',
 'revdelete-nooldid-title'        => '対象版がありません',

@@ -1017,6 +1017,8 @@ Ene Wiki Köbes künnt se ävver zeröck holle.
 Mieh drüvver, wat met däm Fottschmieße vun dä Sigg jewäse es, künnt Ehr em [{{FULLURL:Spezial:Log/delete|page={{PAGENAMEE}}}} Logboch] nohlese.</div>',
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">Die Version es fottjeschmesse woode.
 Jetz ka\'mer se nit mieh beluure. Als ene Wiki-Köbes kriss De se ävver doch ze sinn, un künnts se och zeröck holle. Mieh drüvver, wat met däm Fottschmieße vun dä Sigg jewäse es, künnt Ehr em [{{FULLURL:Spezial:Log/delete|page={{PAGENAMEE}}}} Logboch] nohlese.</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">De kanns de Ongerscheide nit beloore, denn ein vun de Versione wood för de Öffentleschkeit vershtoche.
+Mieh Einzelheite hät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].</div>',
 'rev-delundel'                   => 'zeije/usblende',
 'revisiondelete'                 => 'Versione fottschmieße un widder zeröck holle',
 'revdelete-nooldid-title'        => 'Kein Version aanjejovve, oddeer en Stuß-Nommer',

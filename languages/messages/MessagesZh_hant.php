@@ -9,6 +9,7 @@
  * @author Philip
  * @author Shinjiman
  * @author Skjackey tse
+ * @author Wong128hk
  * @author Wrightbus
  */
 
@@ -1072,7 +1073,7 @@ $2',
 'userrights-groups-help'      => '您可以改動這位用戶所屬的群組:
 * 已剔選的核取方塊代表該用戶屬於該群組。
 * 未剔選的核取方塊代表該用戶不是屬於該群組。
-* 一個 * 表示當您加入群組之後更不能移除它，反之亦然。',
+* 有 * 項目表示一旦您加入該群組之後便不能移除它，反之亦然。',
 'userrights-reason'           => '更改原因:',
 'userrights-no-interwiki'     => '您並沒有權限去編輯在其它wiki上的用戶權限。',
 'userrights-nodatabase'       => '資料庫$1不存在或並非為本地的。',
