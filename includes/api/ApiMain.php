@@ -442,7 +442,7 @@ class ApiMain extends ApiBase {
 	 * Print results using the current printer
 	 */
 	protected function printResult($isError) {
-		$this->getResult()->cleanupUTF8();
+		$this->getResult()->cleanUpUTF8();
 		$printer = $this->mPrinter;
 		$printer->profileIn();
 
