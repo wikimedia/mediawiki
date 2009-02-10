@@ -1027,26 +1027,54 @@ class PreferencesForm {
 			'onchange' => 'javascript:updateTimezoneSelection(false)' ) );
 		$opt .= Xml::option( wfMsg( 'timezoneuseserverdefault' ), "System|$wgLocalTZoffset", $this->mTimeZone === "System|$wgLocalTZoffset" );
 		$opt .= Xml::option( wfMsg( 'timezoneuseoffset' ), 'Offset', $this->mTimeZone === 'Offset' );
+
 		if ( function_exists( 'timezone_identifiers_list' ) ) {
-			$optgroup = '';
+			# Read timezone list
 			$tzs = timezone_identifiers_list();
 			sort( $tzs );
-			$selZone = explode( '|', $this->mTimeZone, 3);
+
+			# Precache localized region names
+			$tzRegions = array();
+			$tzRegions['Africa'] = wfMsg( 'timezoneregion-africa' );
+			$tzRegions['America'] = wfMsg( 'timezoneregion-america' );
+			$tzRegions['Antarctica'] = wfMsg( 'timezoneregion-antarctica' );
+			$tzRegions['Arctic'] = wfMsg( 'timezoneregion-arctic' );
+			$tzRegions['Asia'] = wfMsg( 'timezoneregion-asia' );
+			$tzRegions['Atlantic'] = wfMsg( 'timezoneregion-atlantic' );
+			$tzRegions['Australia'] = wfMsg( 'timezoneregion-australia' );
+			$tzRegions['Europe'] = wfMsg( 'timezoneregion-europe' );
+			$tzRegions['Indian'] = wfMsg( 'timezoneregion-indian' );
+			$tzRegions['Pacific'] = wfMsg( 'timezoneregion-pacific' );
+			asort( $tzRegions );
+
+			$selZone = explode( '|', $this->mTimeZone, 3 );
 			$selZone = ( $selZone[0] == 'ZoneInfo' ) ? $selZone[2] : null;
 			$now = date_create( 'now' );
+			$optgroup = '';
+
 			foreach ( $tzs as $tz ) {
 				$z = explode( '/', $tz, 2 );
+
 				# timezone_identifiers_list() returns a number of
 				# backwards-compatibility entries. This filters them out of the 
 				# list presented to the user.
-				if ( count( $z ) != 2 || !in_array( $z[0], array( 'Africa', 'America', 'Antarctica', 'Arctic', 'Asia', 'Atlantic', 'Australia', 'Europe', 'Indian', 'Pacific' ) ) ) continue;
+				if ( count( $z ) != 2 || !array_key_exists( $z[0], $tzRegions ) )
+					continue;
+
+				# Localize region
+				$z[0] = $tzRegions[$z[0]];
+
+				# Create region groups
 				if ( $optgroup != $z[0] ) {
-					if ( $optgroup !== '' ) $opt .= Xml::closeElement( 'optgroup' );
+					if ( $optgroup !== '' ) {
+						$opt .= Xml::closeElement( 'optgroup' );
+					}
 					$optgroup = $z[0];
-					$opt .= Xml::openElement( 'optgroup', array( 'label' => $z[0] ) );
+					$opt .= Xml::openElement( 'optgroup', array( 'label' => $z[0] ) ) . "\n";
 				}
+
 				$minDiff = floor( timezone_offset_get( timezone_open( $tz ), $now ) / 60 );
-				$opt .= Xml::option( str_replace( '_', ' ', $tz ), "ZoneInfo|$minDiff|$tz", $selZone === $tz, array( 'label' => $z[1] ) );
+				$opt .= Xml::option( str_replace( '_', ' ', $z[0] . '/' . $z[1] ), "ZoneInfo|$minDiff|$tz", $selZone === $tz, array( 'label' => $z[1] ) ) . "\n";
 			}
 			if ( $optgroup !== '' ) $opt .= Xml::closeElement( 'optgroup' );
 		}
