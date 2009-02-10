@@ -56,15 +56,31 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
-		$cnt = 0;
-		if (!empty($pageIds[NS_FILE])) {
+		$titles = array_keys($pageIds[NS_FILE]);
+		asort($titles); // Ensure the order is always the same
+		if (!empty($titles)) {
+			$skip = false;
+			if(!is_null($params['continue']))
+			{
+				$skip = true;
+				$cont = explode('|', $params['continue']);
+				if(count($cont) != 2)
+					$this->dieUsage("Invalid continue param. You should pass the original " .
+							"value returned by the previous query", "_badcontinue");
+				$fromTitle = strval($cont[0]);
+				$fromTimestamp = $cont[1];
+				// Filter out any titles before $fromTitle
+				foreach($titles as $key => $title)
+					if($title < $fromTitle)
+						unset($titles[$key]);
+					else
+						break;
+			}
+
 			$result = $this->getResult();
-			$images = RepoGroup::singleton()->findFiles( array_keys( $pageIds[NS_FILE] ) );
+			$images = RepoGroup::singleton()->findFiles( $titles );
 			foreach ( $images as $img ) {
-				$cnt++;
-				if(!is_null($params['continue']))
-					if($cnt < $params['continue'])
-						continue;
+				$start = $skip ? $fromTimestamp : $params['start'];
 				$pageId = $pageIds[NS_IMAGE][ $img->getOriginalTitle()->getDBkey() ];
 
 				$fit = $result->addValue(
@@ -79,17 +95,18 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						# so set a query-continue that just returns the same
 						# thing again. When the violating queries have been
 						# out-continued, the result will get through
-						$this->setContinueEnumParameter('start', 
+						$this->setContinueEnumParameter('start',
 							wfTimestamp(TS_ISO_8601, $img->getTimestamp()));
 					else
-						$this->setContinueEnumParameter('continue', $cnt);
+						$this->setContinueEnumParameter('continue',
+							$this->getContinueStr($img));
 					break;
 				}
 
 				// Get information about the current version first
 				// Check that the current version is within the start-end boundaries
 				$gotOne = false;
-				if((is_null($params['start']) || $img->getTimestamp() <= $params['start']) &&
+				if((is_null($start) || $img->getTimestamp() <= $start) &&
 						(is_null($params['end']) || $img->getTimestamp() >= $params['end'])) {
 					$gotOne = true;
 					$fit = $this->addPageSubItem($pageId,
@@ -101,7 +118,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 							$this->setContinueEnumParameter('start',
 								wfTimestamp(TS_ISO_8601, $img->getTimestamp()));
 						else
-							$this->setContinueEnumParameter('continue', $cnt);
+							$this->setContinueEnumParameter('continue',
+								$this->getContinueStr($img));
 						break;
 					}
 				}
@@ -109,13 +127,16 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				// Now get the old revisions
 				// Get one more to facilitate query-continue functionality
 				$count = ($gotOne ? 1 : 0);
-				$oldies = $img->getHistory($params['limit'] - $count + 1, $params['start'], $params['end']);
+				$oldies = $img->getHistory($params['limit'] - $count + 1, $start, $params['end']);
 				foreach($oldies as $oldie) {
 					if(++$count > $params['limit']) {
 						// We've reached the extra one which shows that there are additional pages to be had. Stop here...
 						// Only set a query-continue if there was only one title
 						if(count($pageIds[NS_FILE]) == 1)
-							$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $oldie->getTimestamp()));
+						{
+							$this->setContinueEnumParameter('start',
+								wfTimestamp(TS_ISO_8601, $oldie->getTimestamp()));
+						}
 						break;
 					}
 					$fit = $this->addPageSubItem($pageId,
@@ -126,26 +147,23 @@ class ApiQueryImageInfo extends ApiQueryBase {
 							$this->setContinueEnumParameter('start',
 								wfTimestamp(TS_ISO_8601, $oldie->getTimestamp()));
 						else
-							$this->setContinueEnumParameter('continue', $cnt);
+							$this->setContinueEnumParameter('continue',
+								$this->getContinueStr($oldie));
 						break;
 					}
 				}
 				if(!$fit)
 					break;
+				$skip = false;
 			}
 			
 			$missing = array_diff( array_keys( $pageIds[NS_FILE] ), array_keys( $images ) );
 			foreach ($missing as $title) {
-				$cnt++;
-				if(!is_null($params['continue']))
-					if($count < $params['continue'])
-						continue;
-				$fit = $result->addValue(
+				$result->addValue(
 					array('query', 'pages', intval($pageIds[NS_FILE][$title])),
 					'imagerepository', ''
 				);
-				if(!$fit)
-					$this->setContinueEnumParameter('continue', $cnt);
+				// The above can't fail because it doesn't increase the result size
 			}
 		}
 	}
@@ -216,6 +234,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 		$result->setIndexedTagName($retval, 'metadata');
 		return $retval;
+	}
+
+	private function getContinueStr($img)
+	{
+		return $img->getOriginalTitle()->getText() .
+			'|' .  $img->getTimestamp();
 	}
 
 	public function getAllowedParams() {
