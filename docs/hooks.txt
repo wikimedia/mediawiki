@@ -894,7 +894,7 @@ $time: timestamp of the log entry (added in 1.12)
 'MagicWordMagicWords': When defining new magic word. DEPRECATED: Use LanguageGetMagic hook instead
 $magicWords: array of strings
 
-'MagicWordwgVariableIDs': When definig new magic words IDs. DEPRECATED: Use LanguageGetMagic hook instead
+'MagicWordwgVariableIDs': When definig new magic words IDs.
 $variableIDs: array of strings
 
 'MakeGlobalVariablesScript': called right before Skin::makeVariablesScript is executed   
