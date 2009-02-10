@@ -283,11 +283,12 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'powersearch'      => 'Truova',
 
 # Preferences page
-'mypreferences'   => "Preferenze d''e mie",
-'changepassword'  => 'Cagna password',
-'prefs-rc'        => 'Urdeme nove',
-'prefs-watchlist' => 'Asservate speciale',
-'columns'         => 'Culonne:',
+'mypreferences'         => "Preferenze d''e mie",
+'changepassword'        => 'Cagna password',
+'prefs-rc'              => 'Urdeme nove',
+'prefs-watchlist'       => 'Asservate speciale',
+'columns'               => 'Culonne:',
+'timezoneregion-africa' => 'Afreca',
 
 # User rights log
 'rightsnone' => '(nisciuno)',

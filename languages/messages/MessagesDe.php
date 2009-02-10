@@ -9,6 +9,7 @@
  * @author Church of emacs
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Li-sung
+ * @author MF-Warburg
  * @author Melancholie
  * @author Meno25
  * @author Metalhead64
@@ -707,6 +708,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'gender-unknown'             => 'Nicht angegeben',
 'gender-male'                => 'Männlich',
 'gender-female'              => 'Weiblich',
+'prefs-help-gender'          => 'Optional: Wird für die geschlechtskorrekte Anrede seitens der Software benutzt. Diese Information ist öffentlich.',
 'email'                      => 'E-Mail',
 'prefs-help-realname'        => 'Optional. Dein echter Name wird deinen Beiträgen zugeordnet.',
 'loginerror'                 => 'Fehler bei der Anmeldung',
@@ -1293,6 +1295,16 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'timezoneoffset'            => 'Unterschied¹:',
 'servertime'                => 'Aktuelle Zeit auf dem Server:',
 'guesstimezone'             => 'Vom Browser übernehmen',
+'timezoneregion-africa'     => 'Afrika',
+'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antarktis',
+'timezoneregion-arctic'     => 'Arktis',
+'timezoneregion-asia'       => 'Asien',
+'timezoneregion-atlantic'   => 'Atlantischer Ozean',
+'timezoneregion-australia'  => 'Australien',
+'timezoneregion-europe'     => 'Europa',
+'timezoneregion-indian'     => 'Indischer Ozean',
+'timezoneregion-pacific'    => 'Pazifischer Ozean',
 'allowemail'                => 'E-Mail-Empfang von anderen Benutzern ermöglichen',
 'prefs-searchoptions'       => 'Suchoptionen',
 'prefs-namespaces'          => 'Namensräume',

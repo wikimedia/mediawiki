@@ -1161,6 +1161,7 @@ per favor vide math/README pro configurar lo.",
 'timezoneoffset'            => 'Differentia¹:',
 'servertime'                => 'Hora del servitor:',
 'guesstimezone'             => 'Obtener del navigator',
+'timezoneregion-africa'     => 'Africa',
 'allowemail'                => 'Activar reception de e-mail de altere usatores',
 'prefs-searchoptions'       => 'Optiones de recerca',
 'prefs-namespaces'          => 'Spatios de nomines',
@@ -1693,8 +1694,8 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 executar iste function.',
 'nopagetitle'             => 'Le pagina de destination non existe',
 'nopagetext'              => 'Le pagina de destination que tu ha specificate non existe.',
-'pager-newer-n'           => '{{PLURAL:$1|1 plus recente|$1 plus recentes}}',
-'pager-older-n'           => '{{PLURAL:$1|1 minus recente|$1 minus recentes}}',
+'pager-newer-n'           => '{{PLURAL:$1|1 plus recente|$1 plus recente}}',
+'pager-older-n'           => '{{PLURAL:$1|1 minus recente|$1 minus recente}}',
 'suppress'                => 'Supervisor',
 
 # Book sources

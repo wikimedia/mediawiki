@@ -122,6 +122,7 @@ $messages = array(
 'category-empty'                => "''Ацы категори афтид ма у.''",
 'hidden-categories'             => 'Æмбæхст {{PLURAL:$1|категори|категоритæ}}',
 'hidden-category-category'      => 'Æмбæхст категоритæ', # Name of the category where hidden categories will be listed
+'category-subcat-count'         => '{{PLURAL:$2|Ацы категорийы мидæг æрмæст иу дæлкатегори и.|{{PLURAL:$1|$1 дæлкатегори æвдыст у|$1 дæлкатегорийы æвдыст сты}}, æдæппæт $2.}}',
 'category-subcat-count-limited' => 'Ацы категорийы мидæг ис {{PLURAL:$1|$1 дæлкатегори|$1 дæлкатегорийы}}.',
 'category-file-count-limited'   => 'Ацы категорийы {{PLURAL:$1|$1 файл|$1 файлы}} ис.',
 'listingcontinuesabbrev'        => '(дарддæрдзу)',
@@ -195,6 +196,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}} тыххæй',
 'aboutpage'            => 'Project:Афыст',
+'copyrightpage'        => '{{ns:project}}:Авторы бартæ',
 'currentevents'        => 'Ног хабæрттæ',
 'currentevents-url'    => 'Project:Xabar',
 'mainpage'             => 'Сæйраг фарс',
@@ -361,14 +363,16 @@ $messages = array(
 'lineno' => 'Рæнхъ $1:',
 
 # Search results
-'searchresults'      => 'Цы ссардæуы',
-'titlematches'       => 'Статьяты сæргæндты æмцаутæ',
-'textmatches'        => 'Статьяты æмцаутæ',
-'prevn'              => '$1 фæстæмæ',
-'nextn'              => '$1 размæ',
-'searchall'          => 'æппæт',
-'powersearch'        => 'Сæрмагонд агуырд',
-'powersearch-legend' => 'Сæрмагонд агуырд',
+'searchresults'            => 'Цы ссардæуы',
+'titlematches'             => 'Статьяты сæргæндты æмцаутæ',
+'textmatches'              => 'Статьяты æмцаутæ',
+'prevn'                    => '$1 фæстæмæ',
+'nextn'                    => '$1 размæ',
+'viewprevnext'             => 'Фен ($1) ($2) ($3)',
+'search-interwiki-caption' => 'Æфсымæрон проекттæ',
+'searchall'                => 'æппæт',
+'powersearch'              => 'Сæрмагонд агуырд',
+'powersearch-legend'       => 'Сæрмагонд агуырд',
 
 # Preferences page
 'mypreferences'           => 'Æрмадз',
@@ -460,14 +464,15 @@ $3',
 'listfiles' => 'Нывты номхыгъд',
 
 # File description page
-'filehist'          => 'Файлы истори',
-'filehist-current'  => 'нырыккон',
-'filehist-datetime' => 'Датæ/рæстæг',
-'filehist-user'     => 'Архайæг',
-'filehist-filesize' => 'Файлы бæрцуат',
-'filehist-comment'  => 'Фиппаинаг',
-'imagelinks'        => 'Æрвитæнтæ',
-'linkstoimage'      => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
+'filehist'                  => 'Файлы истори',
+'filehist-current'          => 'нырыккон',
+'filehist-datetime'         => 'Датæ/рæстæг',
+'filehist-user'             => 'Архайæг',
+'filehist-filesize'         => 'Файлы бæрцуат',
+'filehist-comment'          => 'Фиппаинаг',
+'imagelinks'                => 'Æрвитæнтæ файлмæ',
+'linkstoimage'              => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
+'shareduploadwiki-linktext' => 'файлы сфысты фарсы',
 
 # File deletion
 'filedelete-submit'           => 'Аппар',
@@ -631,9 +636,9 @@ $3',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'      => 'Мæхи фарс (дæу тыххæй ам ныффысс)',
-'tooltip-pt-mytalk'        => 'Мæ дискусси',
+'tooltip-pt-mytalk'        => 'Æндæр ахрхайджытæ мын цы дзурынц',
 'tooltip-pt-preferences'   => 'Википеди куыд кусы, уый срæвдз кæн дæ хъæуындзинæдтæм гæсгæ',
-'tooltip-pt-mycontris'     => 'Мæ бавæрд',
+'tooltip-pt-mycontris'     => 'Цы у мæ бавæрд',
 'tooltip-pt-login'         => 'Системæмæ дæхи бацамонай, кæд æцæг дæ хæс нæу, уæддæр',
 'tooltip-pt-logout'        => 'Регистрацигонд сеансæй рацу',
 'tooltip-ca-edit'          => 'Ацы фарс дæ бон у ивын. Дæ хорзæхæй, «Фен уал æй» джыбыйæ пайда кæн',
@@ -643,10 +648,12 @@ $3',
 'tooltip-n-mainpage'       => 'Сæйраг фарсмæ рацу',
 'tooltip-n-portal'         => 'Проекты тыххæй æмæ, дæу цы бон у, уый тыххæй дæр',
 'tooltip-n-recentchanges'  => 'Чи æмæ цавæр статьяты баивта',
+'tooltip-n-randompage'     => 'Æнæбары æвзæрст фарс фен',
 'tooltip-n-help'           => 'Кæд цыдæртæ нæ бамбæрстай',
 'tooltip-t-whatlinkshere'  => 'Ацы фарсмæ чи ’рвитынц, ахæм фæрсты номхыгъд',
 'tooltip-t-upload'         => 'Нывтæ кæнæ мультимедиа-файлтæ бавæр',
 'tooltip-t-specialpages'   => 'Сæрмагонд фæрсты номхыгъд',
+'tooltip-ca-nstab-user'    => 'Архайæджы фарс фен',
 'tooltip-ca-nstab-project' => 'Проекты фарс',
 'tooltip-ca-nstab-image'   => 'Нывы фарс',
 
@@ -665,7 +672,8 @@ $3',
 'skinname-chick'       => 'Карк',
 
 # Browsing diffs
-'nextdiff' => 'Фæстæдæр ивддзинад →',
+'previousdiff' => '← Раздæры ивддзинад',
+'nextdiff'     => 'Фæстæдæр ивддзинад →',
 
 # Media information
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|фарс|фарсы}}',
@@ -674,6 +682,10 @@ $3',
 'newimages' => 'Ног нывты галерей',
 'ilsubmit'  => 'Агур',
 'bydate'    => 'рæстæгмæ гæсгæ',
+
+# Metadata
+'metadata'        => 'Метабæрæггæнæнтæ',
+'metadata-expand' => 'Фылдæр детальтæ равдис',
 
 # EXIF tags
 'exif-artist' => 'Чи йæ систа',

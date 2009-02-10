@@ -531,6 +531,7 @@ $1 | $2',
 'timezoneoffset'           => 'Áigeearru',
 'servertime'               => 'Servera áigi',
 'guesstimezone'            => 'Jeara neahttabláđejeaddjis',
+'timezoneregion-africa'    => 'Afrihkká',
 'allowemail'               => 'Suova e-postta sádden čujuhussii',
 'files'                    => 'Fiillat',
 

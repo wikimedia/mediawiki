@@ -1124,6 +1124,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'timezoneoffset'            => 'Differenza¹:',
 'servertime'                => 'Ora del server:',
 'guesstimezone'             => "Usa l'ora del tuo browser",
+'timezoneregion-africa'     => 'Africa',
 'allowemail'                => 'Abilita la ricezione di email da altri utenti¹',
 'prefs-searchoptions'       => 'Opzioni di ricerca',
 'prefs-namespaces'          => 'Namespace',

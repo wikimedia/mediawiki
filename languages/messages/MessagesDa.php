@@ -1004,6 +1004,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'timezoneoffset'           => 'Forskel¹:',
 'servertime'               => 'Serverens tid er nu',
 'guesstimezone'            => 'Hent tidszone fra browseren',
+'timezoneregion-africa'    => 'Afrika',
 'allowemail'               => 'Tillade E-mails fra andre brugere.',
 'prefs-searchoptions'      => 'Søgeindstillinger',
 'prefs-namespaces'         => 'Navnerum',

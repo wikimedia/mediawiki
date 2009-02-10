@@ -210,12 +210,13 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'powersearch'           => 'Sercha',
 
 # Preferences page
-'preferences'       => 'Preferos',
-'mypreferences'     => 'Men preferos',
-'prefsnologin'      => 'Non ensignatat',
-'prefsnologintext'  => 'Vu mus es [[Special:UserLogin|ensignatat]] por determina useren preferos.',
-'prefs-rc'          => 'Resenti chanjos',
-'searchresultshead' => 'Sercha',
+'preferences'           => 'Preferos',
+'mypreferences'         => 'Men preferos',
+'prefsnologin'          => 'Non ensignatat',
+'prefsnologintext'      => 'Vu mus es [[Special:UserLogin|ensignatat]] por determina useren preferos.',
+'prefs-rc'              => 'Resenti chanjos',
+'searchresultshead'     => 'Sercha',
+'timezoneregion-africa' => 'Afrika',
 
 # Recent changes
 'recentchanges'   => 'Resenti chanjos',

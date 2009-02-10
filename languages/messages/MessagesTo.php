@@ -460,6 +460,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'localtime'             => 'Taimi fakafeituʻu',
 'timezoneoffset'        => 'Ngaahi houa ʻo e faikehekehe',
 'servertime'            => 'Taimi ʻo e tauhia',
+'timezoneregion-africa' => 'ʻAfelika',
 'allowemail'            => 'Fakamafeiaʻi ʻa e tohila mei he kau ʻetita ʻe taha',
 'defaultns'             => 'Kumi ʻi he vā hingoa fakatuʻunga:',
 'default'               => 'tuʻunga',

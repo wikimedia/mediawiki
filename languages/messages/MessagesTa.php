@@ -866,6 +866,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'timezoneoffset'           => 'நேர இடைவெளி¹:',
 'servertime'               => 'வழங்கன் நேரம்:',
 'guesstimezone'            => 'உலாவியிலிருந்து நிரப்பு',
+'timezoneregion-africa'    => 'ஆப்ரிக்கா',
 'allowemail'               => 'ஏனைய பயனர்களிடம் இருந்தான மின்னஞ்சல்களை அனுமதி',
 'prefs-searchoptions'      => 'தேடல் விருப்பத் தேர்வுகள்',
 'defaultns'                => 'இயல்பிருப்பாக இந்தப் பெயர்வெளிகளில் தேடவும்:',
