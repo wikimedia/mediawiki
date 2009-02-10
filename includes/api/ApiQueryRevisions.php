@@ -208,6 +208,10 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// Get all revision IDs
 			$this->addWhereFld('rev_id', array_keys($revs));
 
+			if(!is_null($params['continue']))
+				$this->addWhere("rev_id >= '" . intval($params['continue']) . "'");
+			$this->addOption('ORDER BY', 'rev_id');
+
 			// assumption testing -- we should never get more then $revCount rows.
 			$limit = $revCount;
 		}
@@ -225,14 +229,26 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// Get all page IDs
 			$this->addWhereFld('page_id', array_keys($titles));
 
+			if(!is_null($params['continue']))
+			{
+				$cont = explode('|', $params['continue']);
+				if(count($cont) != 2)
+					$this->dieUsage("Invalid continue param. You should pass the original " .
+							"value returned by the previous query", "_badcontinue");
+				$pageid = intval($cont[0]);
+				$revid = intval($cont[1]);
+				$this->addWhere("rev_page > '$pageid' OR " .
+						"(rev_page = '$pageid' AND " .
+						"rev_id >= '$revid')");
+			}
+			$this->addOption('ORDER BY', 'rev_page, rev_id');
+
 			// assumption testing -- we should never get more then $pageCount rows.
 			$limit = $pageCount;
 		} else
 			ApiBase :: dieDebug(__METHOD__, 'param validation?');
 
 		$this->addOption('LIMIT', $limit +1);
-		if(!is_null($params['continue']))
-			$this->addOption('OFFSET', $params['continue']);
 
 		$data = array ();
 		$count = 0;
@@ -255,8 +271,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 			{
 				if($enumRevMode)
 					$this->setContinueEnumParameter('startid', intval($row->rev_id));
+				else if($revCount > 0)
+					$this->setContinueEnumParameter('continue', intval($row->rev_id));
 				else
-					$this->setContinueEnumParameter('continue', $params['continue'] + $count - 1);
+					$this->setContinueEnumParameter('continue', intval($row->rev_page) .
+						'|' . intval($row->rev_id));
 				break;
 			}
 		}
