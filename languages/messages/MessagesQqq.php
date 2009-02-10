@@ -1758,6 +1758,7 @@ $3 = time.
 * <code>$1</code> is the name of the file being undeleted.
 * <code>$2</code> is the date of the displayed revision.
 * <code>$3</code> is the time of the displayed revision.',
+'undelete-show-file-submit'  => '{{Identical|Yes}}',
 
 # Namespace form on various pages
 'namespace'      => '{{Identical|Namespace}}',

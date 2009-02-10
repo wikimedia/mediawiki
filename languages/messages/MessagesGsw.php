@@ -2057,7 +2057,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'ipb_expiry_temp'                 => 'Versteckti Benutzername-Sperrine solle permanent syy.',
 'ipb_already_blocked'             => '„$1“ isch scho gsperrt wore.',
 'ipb-needreblock'                 => '== Sperri vorhande ==
-„$1“ isch scho gsperrt. Mechtsch d Sperrparameter ändere?',
+De „$1“ isch scho gsperrt. Mechtsch d Sperrparameter ändere?',
 'ipb_cant_unblock'                => 'Fähler: Sperr-ID $1 nit gfunde. S cha syy, ass d Sperri scho ufghoben isch .',
 'ipb_blocked_as_range'            => 'Fähler: D IP-Adräss $1 isch as Teil vu dr Beryychssperri $2 indirekt gsperrt. S isch nit megli, nume $1 z entsperre.',
 'ip_range_invalid'                => 'Uugiltige IP-Adrässberyych.',

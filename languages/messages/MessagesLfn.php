@@ -197,7 +197,7 @@ $messages = array(
 'toolbox'           => 'Utiles',
 'userpage'          => 'Vide paje de usor',
 'projectpage'       => 'Vide la paje de projeta',
-'imagepage'         => 'Vide paje de medio',
+'imagepage'         => 'Vide paje de fix',
 'mediawikipage'     => 'Vide la paje de mesaje',
 'templatepage'      => 'Vide la paje de model',
 'viewhelppage'      => 'vide la paje de aida',
@@ -256,6 +256,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Paje',
 'nstab-user'      => 'Paje de usor',
+'nstab-media'     => 'Paje de medio',
 'nstab-special'   => 'Paje spesial',
 'nstab-project'   => 'Paje de projeta',
 'nstab-image'     => 'Fix',
@@ -301,6 +302,8 @@ $messages = array(
 'yourlanguage'            => 'Lingua:',
 'yournick'                => 'Suscrive:',
 'yourgender'              => 'Seso:',
+'gender-male'             => 'Mas',
+'gender-female'           => 'Fema',
 'email'                   => 'Eposta',
 'prefs-help-realname'     => 'Tu nom vera no es obligada, ma si tu vole dona tu nom vera, el va es usada per onora tu per tu labora.',
 'loginsuccesstitle'       => 'Entra susedente',
@@ -330,9 +333,11 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'loginlanguagelabel'      => 'Lingua: $1',
 
 # Password reset dialog
-'oldpassword' => 'Sinia secreta vea:',
-'newpassword' => 'Sinia secreta nova:',
-'retypenew'   => 'Re-entra tu sinia secreta nova:',
+'oldpassword'               => 'Sinia secreta vea:',
+'newpassword'               => 'Sinia secreta nova:',
+'retypenew'                 => 'Re-entra tu sinia secreta nova:',
+'resetpass-submit-loggedin' => 'Cambia la sinia secreta',
+'resetpass-temp-password'   => 'Sinia secreta tempora:',
 
 # Edit page toolbar
 'bold_sample'     => 'Testo en leteras forte',
@@ -386,11 +391,14 @@ Per favore inclui tota esta detales en tu demandas.",
 Per crea la paje, comensa scrive en la caxa a su
 (vide la [[{{MediaWiki:Helppage}}|paje de aida]] per plu).
 Si tu es asi par era, clica a la boton '''retro''' de tu surfador.",
-'noarticletext'          => 'Es aora no testo a esta paje; tu pote [[Special:Search/{{PAGENAME}}|xerca per la nom de esta paje]] en otra pajes o [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita esta paje].',
+'noarticletext'          => 'Es aora no testo a esta paje.
+Tu pote [[Special:Search/{{PAGENAME}}|xerca per la titulo de esta paje]] en otra pajes,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} xerca la arcivos relatada],
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita esta paje].',
 'previewnote'            => "'''Esta sola un previde; cambias no es fisada ja'''",
 'editing'                => 'En la prosede de edita $1',
 'editingsection'         => 'Edita $1 (sesion)',
-'editingcomment'         => 'Edita $1 (comenta)',
+'editingcomment'         => 'Edita $1 (sesion nova)',
 'yourdiff'               => 'Diferes',
 'copyrightwarning'       => "Per favore nota ce tota labora a {{SITENAME}} es judida ce el es relasada su la $2 (vide $1 per detalias). Si tu no desira ce tu scrives ta es editada sin compati e redistribui sin tu permite, no sumita el asi!<br />
 Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un domina publica o otra orijin libre.
@@ -456,20 +464,31 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'search-result-size'       => '$1 ({{PLURAL:$2|1 parola|$2 parolas}})',
 'search-section'           => '(sesion $1)',
 'search-interwiki-default' => 'Resultas de $1:',
+'search-interwiki-more'    => '(plu)',
 'searchall'                => 'tota',
 'powersearch'              => 'Xerca avansada',
 
 # Preferences page
-'preferences'       => 'Preferis',
-'mypreferences'     => 'Me preferis',
-'skin-preview'      => 'Previde',
-'math'              => 'Matematica',
-'saveprefs'         => 'Fisa',
-'rows'              => 'Linias:',
-'columns'           => 'Colonas:',
-'searchresultshead' => 'Xerca',
-'savedprefs'        => 'Tu preferis es fisada',
-'files'             => 'Fixes',
+'preferences'               => 'Preferis',
+'mypreferences'             => 'Me preferis',
+'skin-preview'              => 'Previde',
+'math'                      => 'Matematica',
+'saveprefs'                 => 'Fisa',
+'rows'                      => 'Linias:',
+'columns'                   => 'Colonas:',
+'searchresultshead'         => 'Xerca',
+'savedprefs'                => 'Tu preferis es fisada',
+'timezoneregion-africa'     => 'Africa',
+'timezoneregion-america'    => 'America',
+'timezoneregion-antarctica' => 'Antartica',
+'timezoneregion-arctic'     => 'Artica',
+'timezoneregion-asia'       => 'Asia',
+'timezoneregion-atlantic'   => 'Mar Atlantica',
+'timezoneregion-australia'  => 'Australia',
+'timezoneregion-europe'     => 'Europa',
+'timezoneregion-indian'     => 'Mar Indian',
+'timezoneregion-pacific'    => 'Mar Pasifica',
+'files'                     => 'Fixes',
 
 # User rights
 'userrights'     => 'Dirije de la diretos de usores', # Not used as normal message but as header for the special page itself
@@ -648,7 +667,8 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'linksearch-ok' => 'Xerca',
 
 # Special:ListGroupRights
-'listgrouprights-group' => 'Grupo',
+'listgrouprights-group'   => 'Grupo',
+'listgrouprights-members' => '(lista de membros)',
 
 # E-mail user
 'emailuser' => 'Envia un eposta a esta usor',

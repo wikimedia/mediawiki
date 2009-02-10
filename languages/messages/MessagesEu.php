@@ -1033,6 +1033,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'timezoneoffset'            => 'Ezberdintasuna¹:',
 'servertime'                => 'Zerbitzariko ordua:',
 'guesstimezone'             => 'Nabigatzailetik jaso',
+'timezoneregion-africa'     => 'Afrika',
 'allowemail'                => 'Beste erabiltzaileengandik e-posta mezuak jasotzea gaitu',
 'prefs-searchoptions'       => 'Bilaketa aukerak',
 'prefs-namespaces'          => 'Izen-tarteak',

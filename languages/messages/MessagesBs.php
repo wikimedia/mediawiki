@@ -592,6 +592,7 @@ Mora biti manji od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'gender-unknown'             => 'neodređen',
 'gender-male'                => 'muški',
 'gender-female'              => 'žensko',
+'prefs-help-gender'          => 'Optionalno: koristi se za ispravke gramatičkog roda u porukama softvera. Ova informacija će biti javna.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Pravo ime nije obavezno.
 Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',

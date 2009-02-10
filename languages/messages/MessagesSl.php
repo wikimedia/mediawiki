@@ -763,6 +763,7 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 'timezoneoffset'           => 'Izravnava¹:',
 'servertime'               => 'Strežniški čas:',
 'guesstimezone'            => 'Izpolni iz brskalnika',
+'timezoneregion-africa'    => 'Afrika',
 'allowemail'               => 'Drugim uporabnikom omogoči pošiljanje e-pošte',
 'defaultns'                => 'Navadno išči v naslednjih imenskih prostorih:',
 'default'                  => 'privzeto',

@@ -840,6 +840,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'timezoneoffset'            => 'ኦፍ ሰት¹',
 'servertime'                => 'የሰርቨሩ ሰዓት',
 'guesstimezone'             => 'ከኮምፒውተርዎ መዝገብ ልዩነቱ ይገኝ',
+'timezoneregion-africa'     => 'አፍሪካ',
+'timezoneregion-europe'     => 'አውሮፓ',
 'allowemail'                => 'ኢሜል ከሌሎች ተጠቃሚዎች ለመፍቀድ',
 'prefs-searchoptions'       => 'የፍለጋ ምርጫዎች',
 'prefs-namespaces'          => 'ክፍለ-ዊኪዎች',

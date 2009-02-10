@@ -1235,6 +1235,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'timezoneoffset'            => 'Perbedaan¹:',
 'servertime'                => 'Waktu server:',
 'guesstimezone'             => 'Isikan dari penjelajah web',
+'timezoneregion-africa'     => 'Afrika',
 'allowemail'                => 'Ijinkan pengguna lain mengirim surat-e',
 'prefs-searchoptions'       => 'Opsi pencarian',
 'prefs-namespaces'          => 'Ruang nama',

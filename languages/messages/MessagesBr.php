@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Als-Holder
  * @author Fulup
  * @author לערי ריינהארט
  */
@@ -903,7 +904,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'searchall'                 => 'An holl',
 'showingresults'            => "Diskouez betek {{PLURAL:$1|'''1''' disoc'h|'''$1''' disoc'h}} o kregiñ gant #'''$2'''.",
 'showingresultsnum'         => "Diskouez {{PLURAL:$3|'''1''' disoc'h|'''$3''' disoc'h}} o kregiñ gant #'''$2'''.",
-'showingresultstotal'       => "O tiskouez a-is {{PLURAL:$3|disoc'h '''$1''' diwar '''$3'''|disoc'hoù '''$1 - $2''' diwar ''$3'''}}",
+'showingresultstotal'       => "O tiskouez a-is {{PLURAL:$4|disoc'h '''$1''' diwar '''$3'''|disoc'hoù '''$1 - $2''' diwar ''$3'''}}",
 'nonefound'                 => "'''Notenn''' : dre ziouer ne glasker nemet en esaouennoù anv zo. Klaskit spisaat '''holl :''' evit klask e pep lec'h (e-barzh ar pajennoù-kaozeal, ar patromoù, hag all), pe dibabit an esaouenn anv a zere.",
 'powersearch'               => 'Klask',
 'powersearch-legend'        => 'Klask araokaet',
@@ -967,6 +968,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'timezoneoffset'           => 'Linkadur eur',
 'servertime'               => 'Eur ar servijer',
 'guesstimezone'            => 'Ober gant talvoudenn ar merdeer',
+'timezoneregion-africa'    => 'Afrika',
 'allowemail'               => 'Aotren ar posteloù a-berzh implijerien all',
 'prefs-searchoptions'      => 'Dibarzhioù klask',
 'prefs-namespaces'         => 'Esaouennoù',

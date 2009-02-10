@@ -440,8 +440,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Ne ekzistas tia ago',
-'nosuchactiontext'  => "La agon ('action') nomitan de la URL
-ne agnoskas la programaro de {{SITENAME}}",
+'nosuchactiontext'  => "La ago ('action') nomita de la URL estas nevalida.
+Eble vi mistajpis la URL-on, aŭ sekvis nevalidan ligilon.
+Eble ankaŭ ĉi tiel indikus problemon de la programaro de {{SITENAME}}.",
 'nosuchspecialpage' => 'Ne ekzistas tia speciala paĝo',
 'nospecialpagetext' => 'Vi petis [[Special:SpecialPages|specialan paĝon]] kiun ne agnoskas la programaro de {{SITENAME}}.',
 
