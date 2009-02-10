@@ -41,7 +41,7 @@ class LogEventsList {
 			$messages = array( 'revertmerge', 'protect_change', 'unblocklink', 'change-blocklink',
 				'revertmove', 'undeletelink', 'revdel-restore', 'rev-delundel', 'hist', 'pipe-separator' );
 			foreach( $messages as $msg ) {
-				$this->message[$msg] = wfMsgExt( $msg, array( 'escape' ) );
+				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
 			}
 		}
 	}
@@ -93,7 +93,7 @@ class LogEventsList {
 	}
 	
 	private function getFilterLinks( $logType, $filter ) {
-		global $wgTitle, $wgLang;
+		global $wgTitle;
 		// show/hide links
 		$messages = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
 		// Option value -> message mapping
@@ -106,7 +106,7 @@ class LogEventsList {
 			$links[$type] = wfMsgHtml( "log-show-hide-{$type}", $link );
 		}
 		// Build links
-		return $wgLang->pipeList( $links );
+		return implode( ' | ', $links );
 	}
 	
 	private function getDefaultQuery() {
