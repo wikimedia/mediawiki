@@ -278,11 +278,11 @@ class ApiResult extends ApiBase {
 		array_walk_recursive($this->mData, array('ApiResult', 'cleanUp_helper'));
 	}
 	
-	private static function cleanUp_helper($s)
+	private static function cleanUp_helper(&$s)
 	{
 		if(!is_string($s))
-			return $s;
-		return UtfNormal::cleanUp($s);
+			return;
+		$s = UtfNormal::cleanUp($s);
 	}
 
 	public function execute() {
