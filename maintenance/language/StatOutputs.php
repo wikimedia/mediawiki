@@ -48,7 +48,7 @@ class wikiStatsOutput extends statsOutput {
 		echo '';
 	}
 	function element( $in, $heading = false ) {
-		echo ($heading ? '!' : '|') . " $in\n";
+		echo ($heading ? '!' : '|') . "$in\n";
 	}
 	function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
 		$v = @round(255 * $subset / $total);
@@ -68,7 +68,7 @@ class wikiStatsOutput extends statsOutput {
 		$color = $red . $green . $blue;
 
 		$percent = statsOutput::formatPercent( $subset, $total, $revert, $accuracy );
-		return 'bgcolor="#'. $color .'" | '. $percent;
+		return 'bgcolor="#'. $color .'"|'. $percent;
 	}
 }
 
