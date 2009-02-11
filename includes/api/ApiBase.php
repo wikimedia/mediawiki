@@ -24,15 +24,17 @@
  */
 
 /**
- * This abstract class implements many basic API functions, and is the base of all API classes.
+ * This abstract class implements many basic API functions, and is the base of
+ * all API classes.
  * The class functions are divided into several areas of functionality:
  *
- * Module parameters: Derived classes can define getAllowedParams() to specify which parameters to expect,
- * 	how to parse and validate them.
+ * Module parameters: Derived classes can define getAllowedParams() to specify
+ * 	which parameters to expect,h ow to parse and validate them.
  *
- * Profiling: various methods to allow keeping tabs on various tasks and their time costs
+ * Profiling: various methods to allow keeping tabs on various tasks and their
+ * 	time costs
  *
- * Self-documentation: code to allow api to document its own state.
+ * Self-documentation: code to allow the API to document its own state
  *
  * @ingroup API
  */
@@ -56,8 +58,11 @@ abstract class ApiBase {
 	private $mMainModule, $mModuleName, $mModulePrefix;
 
 	/**
-	* Constructor
-	*/
+	 * Constructor
+	 * @param $mainModule ApiMain object
+	 * @param $moduleName string Name of this module
+	 * @param $modulePrefix string Prefix to use for parameter names
+	 */
 	public function __construct($mainModule, $moduleName, $modulePrefix = '') {
 		$this->mMainModule = $mainModule;
 		$this->mModuleName = $moduleName;
@@ -69,32 +74,34 @@ abstract class ApiBase {
 	 *****************************************************************************/
 
 	/**
-	 * Evaluates the parameters, performs the requested query, and sets up the
-	 * result. Concrete implementations of ApiBase must override this method to
-	 * provide whatever functionality their module offers. Implementations must
-	 * not produce any output on their own and are not expected to handle any
-	 * errors.
+	 * Evaluates the parameters, performs the requested query, and sets up
+	 * the result. Concrete implementations of ApiBase must override this
+	 * method to provide whatever functionality their module offers.
+	 * Implementations must not produce any output on their own and are not
+	 * expected to handle any errors.
 	 *
-	 * The execute method will be invoked directly by ApiMain immediately before
-	 * the result of the module is output. Aside from the constructor, implementations
-	 * should assume that no other methods will be called externally on the module
-	 * before the result is processed.
+	 * The execute() method will be invoked directly by ApiMain immediately
+	 * before the result of the module is output. Aside from the
+	 * constructor, implementations should assume that no other methods
+	 * will be called externally on the module before the result is
+	 * processed.
 	 *
-	 * The result data should be stored in the result object referred to by
-	 * "getResult()". Refer to ApiResult.php for details on populating a result
-	 * object.
+	 * The result data should be stored in the ApiResult object available
+	 * through getResult().
 	 */
 	public abstract function execute();
 
 	/**
-	 * Returns a String that identifies the version of the extending class. Typically
-	 * includes the class name, the svn revision, timestamp, and last author. May
-	 * be severely incorrect in many implementations!
+	 * Returns a string that identifies the version of the extending class.
+	 * Typically includes the class name, the svn revision, timestamp, and
+	 * last author. Usually done with SVN's Id keyword
+	 * @return string
 	 */
 	public abstract function getVersion();
 
 	/**
 	 * Get the name of the module being executed by this instance
+	 * @return string
 	 */
 	public function getModuleName() {
 		return $this->mModuleName;
@@ -102,6 +109,7 @@ abstract class ApiBase {
 
 	/**
 	 * Get parameter prefix (usually two letters or an empty string).
+	 * @return string
 	 */
 	public function getModulePrefix() {
 		return $this->mModulePrefix;
@@ -109,6 +117,7 @@ abstract class ApiBase {
 
 	/**
 	 * Get the name of the module as shown in the profiler log
+	 * @return string
 	 */
 	public function getModuleProfileName($db = false) {
 		if ($db)
@@ -118,7 +127,8 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Get main module
+	 * Get the main module
+	 * @return ApiMain object
 	 */
 	public function getMain() {
 		return $this->mMainModule;
@@ -127,14 +137,15 @@ abstract class ApiBase {
 	/**
 	 * Returns true if this module is the main module ($this === $this->mMainModule),
 	 * false otherwise.
+	 * @return bool
 	 */
 	public function isMain() {
 		return $this === $this->mMainModule;
 	}
 
 	/**
-	 * Get the result object. Please refer to the documentation in ApiResult.php
-	 * for details on populating and accessing data in a result object.
+	 * Get the result object
+	 * @return ApiResult
 	 */
 	public function getResult() {
 		// Main module has getResult() method overriden
@@ -145,15 +156,19 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Get the result data array
+	 * Get the result data array (read-only)
+	 * @return array
 	 */
 	public function getResultData() {
 		return $this->getResult()->getData();
 	}
 
 	/**
-	 * Set warning section for this module. Users should monitor this section to
-	 * notice any changes in API.
+	 * Set warning section for this module. Users should monitor this
+	 * section to notice any changes in API. Multiple calls to this
+	 * function will result in the warning messages being separated by
+	 * newlines
+	 * @param $warning string Warning message
 	 */
 	public function setWarning($warning) {
 		$data = $this->getResult()->getData();
@@ -179,6 +194,7 @@ abstract class ApiBase {
 	 * If the module may only be used with a certain format module,
 	 * it should override this method to return an instance of that formatter.
 	 * A value of null means the default format will be used.
+	 * @return mixed instance of a derived class of ApiFormatBase, or null
 	 */
 	public function getCustomPrinter() {
 		return null;
@@ -186,6 +202,7 @@ abstract class ApiBase {
 
 	/**
 	 * Generates help message for this module, or false if there is no description
+	 * @return mixed string or false
 	 */
 	public function makeHelpMsg() {
 
@@ -244,6 +261,7 @@ abstract class ApiBase {
 	/**
 	 * Generates the parameter descriptions for this module, to be displayed in the
 	 * module's help.
+	 * @return string
 	 */
 	public function makeHelpMsgParameters() {
 		$params = $this->getFinalParams();
@@ -314,6 +332,7 @@ abstract class ApiBase {
 
 	/**
 	 * Returns the description string for this module
+	 * @return mixed string or array of strings
 	 */
 	protected function getDescription() {
 		return false;
@@ -321,15 +340,18 @@ abstract class ApiBase {
 
 	/**
 	 * Returns usage examples for this module. Return null if no examples are available.
+	 * @return mixed string or array of strings
 	 */
 	protected function getExamples() {
 		return false;
 	}
 
 	/**
-	 * Returns an array of allowed parameters (keys) => default value for that parameter.
-	 * Don't call this function directly: use getFinalParams() to allow hooks
-	 * to modify parameters as needed.
+	 * Returns an array of allowed parameters (parameter name) => (default
+	 * value) or (parameter name) => (array with PARAM_* constants as keys)
+	 * Don't call this function directly: use getFinalParams() to allow
+	 * hooks to modify parameters as needed.
+	 * @return array
 	 */
 	protected function getAllowedParams() {
 		return false;
@@ -337,24 +359,30 @@ abstract class ApiBase {
 
 	/**
 	 * Returns an array of parameter descriptions.
-	 * Don't call this functon directly: use getFinalParamDescription() to allow
-	 * hooks to modify descriptions as needed.
+	 * Don't call this functon directly: use getFinalParamDescription() to
+	 * allow hooks to modify descriptions as needed.
+	 * @return array
 	 */
 	protected function getParamDescription() {
 		return false;
 	}
 	
 	/**
-	 * Get final list of parameters, after hooks have had
-	 * a chance to tweak it as needed.
+	 * Get final list of parameters, after hooks have had a chance to
+	 * tweak it as needed.
+	 * @return array
 	 */
 	public function getFinalParams() {
 		$params = $this->getAllowedParams();
 		wfRunHooks('APIGetAllowedParams', array(&$this, &$params));
 		return $params;
 	}
-	
-	
+
+	/**
+	 * Get final description, after hooks have had a chance to tweak it as
+	 * needed.
+	 * @return array
+	 */
 	public function getFinalParamDescription() {
 		$desc = $this->getParamDescription();
 		wfRunHooks('APIGetParamDescription', array(&$this, &$desc));
@@ -364,16 +392,21 @@ abstract class ApiBase {
 	/**
 	 * This method mangles parameter name based on the prefix supplied to the constructor.
 	 * Override this method to change parameter name during runtime
+	 * @param $paramName string Parameter name
+	 * @return string Prefixed parameter name
 	 */
 	public function encodeParamName($paramName) {
 		return $this->mModulePrefix . $paramName;
 	}
 
 	/**
-	* Using getAllowedParams(), makes an array of the values provided by the user,
-	* with key being the name of the variable, and value - validated value from user or default.
-	* limit=max will not be parsed if $parseMaxLimit is set to false; use this
-	* when the max limit is not definite, e.g. when getting revisions.
+	* Using getAllowedParams(), this function makes an array of the values
+	* provided by the user, with key being the name of the variable, and
+	* value - validated value from user or default. limit=max will not be
+	* parsed if $parseMaxLimit is set to false; use this when the max
+	* limit is not definitive yet, e.g. when getting revisions.
+	* @param $parseMaxLimit bool
+	* @return array
 	*/
 	public function extractRequestParams($parseMaxLimit = true) {
 		$params = $this->getFinalParams();
@@ -387,6 +420,9 @@ abstract class ApiBase {
 
 	/**
 	 * Get a value for the given parameter
+	 * @param $paramName string Parameter name
+	 * @param $parseMaxLimit bool see extractRequestParams()
+	 * @return mixed Parameter value
 	 */
 	protected function getParameter($paramName, $parseMaxLimit = true) {
 		$params = $this->getFinalParams();
@@ -396,6 +432,7 @@ abstract class ApiBase {
 	
 	/**
 	 * Die if none or more than one of a certain set of parameters is set
+	 * @param $params array of parameter names
 	 */
 	public function requireOnlyOneParameter($params) {
 		$required = func_get_args();
@@ -414,6 +451,7 @@ abstract class ApiBase {
 	/**
 	 * Returns an array of the namespaces (by integer id) that exist on the
 	 * wiki. Used primarily in help documentation.
+	 * @return array
 	 */
 	public static function getValidNamespaces() {
 		static $mValidNamespaces = null;
@@ -433,8 +471,10 @@ abstract class ApiBase {
 	 * Using the settings determine the value for the given parameter
 	 *
 	 * @param $paramName String: parameter name
-	 * @param $paramSettings Mixed: default value or an array of settings using PARAM_* constants.
+	 * @param $paramSettings Mixed: default value or an array of settings
+	 *  using PARAM_* constants.
 	 * @param $parseMaxLimit Boolean: parse limit when max is given?
+	 * @return mixed Parameter value
 	 */
 	protected function getParameterFromSettings($paramName, $paramSettings, $parseMaxLimit) {
 
@@ -553,11 +593,14 @@ abstract class ApiBase {
 	* Return an array of values that were given in a 'a|b|c' notation,
 	* after it optionally validates them against the list allowed values.
 	*
-	* @param valueName - The name of the parameter (for error reporting)
-	* @param value - The value being parsed
-	* @param allowMultiple - Can $value contain more than one value separated by '|'?
-	* @param allowedValues - An array of values to check against. If null, all values are accepted.
-	* @return (allowMultiple ? an_array_of_values : a_single_value)
+	* @param $valueName string The name of the parameter (for error
+	*  reporting)
+	* @param $value mixed The value being parsed
+	* @param $allowMultiple bool Can $value contain more than one value
+	*  separated by '|'?
+	* @param $allowedValues mixed An array of values to check against. If
+	*  null, all values are accepted.
+	* @return mixed (allowMultiple ? an_array_of_values : a_single_value)
 	*/
 	protected function parseMultiValue($valueName, $value, $allowMultiple, $allowedValues) {
 		if( trim($value) === "" )
@@ -593,8 +636,14 @@ abstract class ApiBase {
 	}
 
 	/**
-	* Validate the value against the minimum and user/bot maximum limits. Prints usage info on failure.
-	*/
+	 * Validate the value against the minimum and user/bot maximum limits.
+	 * Prints usage info on failure.
+	 * @param $paramName string Parameter name
+	 * @param $value int Parameter value
+	 * @param $min int Minimum value
+	 * @param $max int Maximum value for users
+	 * @param $botMax int Maximum value for sysops/bots
+	 */
 	function validateLimit($paramName, $value, $min, $max, $botMax = null) {
 		if (!is_null($min) && $value < $min) {
 			$this->dieUsage($this->encodeParamName($paramName) . " may not be less than $min (set to $value)", $paramName);
@@ -635,7 +684,10 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Call main module's error handler
+	 * Call the main module's error handler
+	 * @param $description string Error text
+	 * @param $errorCode string Error code
+	 * @param $httpRespCode int HTTP response code
 	 */
 	public function dieUsage($description, $errorCode, $httpRespCode = 0) {
 		wfProfileClose();
@@ -761,7 +813,7 @@ abstract class ApiBase {
 
 	/**
 	 * Output the error message related to a certain array
-	 * @param array $error Element of a getUserPermissionsErrors()-style array
+	 * @param $error array Element of a getUserPermissionsErrors()-style array
 	 */
 	public function dieUsageMsg($error) {
 		$parsed = $this->parseMsg($error);
@@ -770,7 +822,7 @@ abstract class ApiBase {
 	
 	/**
 	 * Return the error message related to a certain array
-	 * @param array $error Element of a getUserPermissionsErrors()-style array
+	 * @param $error array Element of a getUserPermissionsErrors()-style array
 	 * @return array('code' => code, 'info' => info)
 	 */
 	public function parseMsg($error) {
@@ -787,13 +839,16 @@ abstract class ApiBase {
 
 	/**
 	 * Internal code errors should be reported with this method
+	 * @param $method string Method or function name
+	 * @param $message string Error message
 	 */
 	protected static function dieDebug($method, $message) {
 		wfDebugDieBacktrace("Internal error in $method: $message");
 	}
 
 	/**
-	 * Indicates if API needs to check maxlag
+	 * Indicates if this module needs maxlag to be checked
+	 * @return bool
 	 */
 	public function shouldCheckMaxlag() {
 		return true;
@@ -801,6 +856,7 @@ abstract class ApiBase {
 
 	/**
 	 * Indicates if this module requires edit mode
+	 * @return bool
 	 */
 	public function isEditMode() {
 		return false;
@@ -808,6 +864,7 @@ abstract class ApiBase {
 
 	/**
 	 * Indicates whether this module must be called with a POST request
+	 * @return bool
 	 */
 	public function mustBePosted() {
 		return false;
@@ -857,6 +914,7 @@ abstract class ApiBase {
 
 	/**
 	 * Total time the module was executed
+	 * @return float
 	 */
 	public function getProfileTime() {
 		if ($this->mTimeIn !== 0)
@@ -900,6 +958,7 @@ abstract class ApiBase {
 
 	/**
 	 * Total time the module used the database
+	 * @return float
 	 */
 	public function getProfileDBTime() {
 		if ($this->mDBTimeIn !== 0)
@@ -907,8 +966,14 @@ abstract class ApiBase {
 		return $this->mDBTime;
 	}
 
+	/**
+	 * Debugging function that prints a value and an optional backtrace
+	 * @param $value mixed Value to print
+	 * @param $name string Description of the printed value
+	 * @param $backtrace bool If true, print a backtrace
+	 */
 	public static function debugPrint($value, $name = 'unknown', $backtrace = false) {
-		print "\n\n<pre><b>Debuging value '$name':</b>\n\n";
+		print "\n\n<pre><b>Debugging value '$name':</b>\n\n";
 		var_export($value);
 		if ($backtrace)
 			print "\n" . wfBacktrace();
@@ -917,7 +982,8 @@ abstract class ApiBase {
 
 
 	/**
-	 * Returns a String that identifies the version of this class.
+	 * Returns a string that identifies the version of this class.
+	 * @return string
 	 */
 	public static function getBaseVersion() {
 		return __CLASS__ . ': $Id$';

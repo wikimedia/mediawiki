@@ -50,8 +50,9 @@ class ApiResult extends ApiBase {
 	private $mData, $mIsRawMode, $mSize, $mCheckingSize;
 
 	/**
-	* Constructor
-	*/
+	 * Constructor
+	 * @param $main ApiMain object
+	 */
 	public function __construct($main) {
 		parent :: __construct($main, 'result');
 		$this->mIsRawMode = false;
@@ -76,7 +77,8 @@ class ApiResult extends ApiBase {
 	}
 
 	/**
-	 * Returns true if the result is being created for the formatter that requested raw data.
+	 * Returns true whether the formatter requested raw data.
+	 * @return bool
 	 */
 	public function getIsRawMode() {
 		return $this->mIsRawMode;
@@ -84,6 +86,7 @@ class ApiResult extends ApiBase {
 
 	/**
 	 * Get the result's internal data array (read-only)
+	 * @return array
 	 */
 	public function getData() {
 		return $this->mData;
@@ -92,7 +95,7 @@ class ApiResult extends ApiBase {
 	/**
 	 * Get the 'real' size of a result item. This means the strlen() of the item,
 	 * or the sum of the strlen()s of the elements if the item is an array.
-	 * @param mixed $value
+	 * @param $value mixed
 	 * @return int
 	 */
 	public static function size($value) {
@@ -133,6 +136,9 @@ class ApiResult extends ApiBase {
 	/**
 	 * Add an output value to the array by name.
 	 * Verifies that value with the same name has not been added before.
+	 * @param $arr array to add $value to
+	 * @param $name string Index of $arr to add $value at
+	 * @param $value mixed
 	 */
 	public static function setElement(& $arr, $name, $value) {
 		if ($arr === null || $name === null || $value === null || !is_array($arr) || is_array($name))
@@ -152,10 +158,12 @@ class ApiResult extends ApiBase {
 	}
 
 	/**
-	 * Adds the content element to the array.
+	 * Adds a content element to an array.
 	 * Use this function instead of hardcoding the '*' element.
-	 * @param string $subElemName when present, content element is created as a sub item of the arr.
-	 *  Use this parameter to create elements in format <elem>text</elem> without attributes
+	 * @param $arr array to add the content element to
+	 * @param $subElemName string when present, content element is created
+	 *  as a sub item of $arr. Use this parameter to create elements in
+	 *  format <elem>text</elem> without attributes
 	 */
 	public static function setContent(& $arr, $value, $subElemName = null) {
 		if (is_array($value))
@@ -171,7 +179,10 @@ class ApiResult extends ApiBase {
 
 	/**
 	 * In case the array contains indexed values (in addition to named),
-	 * all indexed values will have the given tag name.
+	 * give all indexed values the given tag name. This function MUST be
+	 * called on every arrray that has numerical indexes.
+	 * @param $arr array
+	 * @param $tag string Tag name
 	 */
 	public function setIndexedTagName(& $arr, $tag) {
 		// In raw mode, add the '_element', otherwise just ignore
@@ -184,7 +195,9 @@ class ApiResult extends ApiBase {
 	}
 
 	/**
-	 * Calls setIndexedTagName() on $arr and each sub-array
+	 * Calls setIndexedTagName() on each sub-array of $arr
+	 * @param $arr array
+	 * @param $tag string Tag name
 	 */
 	public function setIndexedTagName_recursive(&$arr, $tag)
 	{
@@ -203,8 +216,8 @@ class ApiResult extends ApiBase {
 	 * Calls setIndexedTagName() on an array already in the result.
 	 * Don't specify a path to a value that's not in the result, or
 	 * you'll get nasty errors.
-	 * @param array $path Path to the array, like addValue()'s path
-	 * @param string $tag
+	 * @param $path array Path to the array, like addValue()'s $path
+	 * @param $tag string
 	 */
 	public function setIndexedTagName_internal( $path, $tag ) {
 		$data = & $this->mData;
@@ -257,6 +270,8 @@ class ApiResult extends ApiBase {
 	 * Unset a value previously added to the result set.
 	 * Fails silently if the value isn't found.
 	 * For parameters, see addValue()
+	 * @param $path array
+	 * @param $name string
 	 */
 	public function unsetValue($path, $name) {
 		$data = & $this->mData;
@@ -277,7 +292,10 @@ class ApiResult extends ApiBase {
 	{
 		array_walk_recursive($this->mData, array('ApiResult', 'cleanUp_helper'));
 	}
-	
+
+	/**
+	 * Callback function for cleanUpUTF8()
+	 */
 	private static function cleanUp_helper(&$s)
 	{
 		if(!is_string($s))
