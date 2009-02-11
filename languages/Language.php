@@ -2396,6 +2396,12 @@ class Language {
 			$cache = compact( self::$mLocalisationKeys );
 			wfDebug( "Language::loadLocalisation(): got localisation for $code from source\n" );
 		}
+		
+		# Load magic word source file
+		global $IP;
+		$filename = "$IP/includes/MagicWord.php";
+		$newDeps = array( $filename => filemtime( $filename ) );
+		$deps = array_merge( $deps, $newDeps );
 
 		if ( !empty( $fallback ) ) {
 			# Load the fallback localisation, with a circular reference guard
@@ -2471,6 +2477,10 @@ class Language {
 		if ( !is_array( $cache ) ) {
 			self::loadLocalisation( $cache );
 			$cache = self::$mLocalisationCache[$cache];
+		}
+		// At least one language file and the MagicWord file needed
+		if( count($cache['deps']) < 2 ) {
+			return true;
 		}
 		$expired = false;
 		foreach ( $cache['deps'] as $file => $mtime ) {
