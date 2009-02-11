@@ -593,7 +593,12 @@ class LoginForm {
 	 */
 	function mailPassword() {
 		global $wgUser, $wgOut, $wgAuth;
-
+		
+		if ( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return false;
+		}
+		
 		if( !$wgAuth->allowPasswordChange() ) {
 			$this->mainLoginForm( wfMsg( 'resetpass_forbidden' ) );
 			return;
