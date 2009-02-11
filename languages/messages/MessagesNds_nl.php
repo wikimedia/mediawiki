@@ -1253,7 +1253,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'userrights-lookup-user'      => 'Beheer gebrukersgroepen',
 'userrights-user-editname'    => 'Vul een gebrukersnaam in:',
 'editusergroup'               => 'Bewark gebrukersgroepen',
-'editinguser'                 => "Doonde mit 't wiezigen van de gebrukersrechen van '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Doonde mit 't wiezigen van de gebrukersrechen van '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Bewark gebrukersgroep',
 'saveusergroups'              => 'Gebrukergroepen opslaon',
 'userrights-groupsmember'     => 'Lid van:',

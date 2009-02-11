@@ -1188,7 +1188,7 @@ $2',
 'userrights-lookup-user'      => 'Управляване на потребителските групи',
 'userrights-user-editname'    => 'Потребителско име:',
 'editusergroup'               => 'Редактиране на потребителските групи',
-'editinguser'                 => "Промяна на потребителските права на потребител '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Промяна на потребителските права на потребител '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Редактиране на потребителските групи',
 'saveusergroups'              => 'Съхраняване на потребителските групи',
 'userrights-groupsmember'     => 'Член на:',
@@ -1871,9 +1871,9 @@ $NEWPAGE
 'rollbacklink'     => 'отмяна',
 'rollbackfailed'   => 'Отмяната не сполучи',
 'cantrollback'     => 'Не може да се извърши отмяна на редакциите. Последният редактор е и единствен автор на страницата.',
-'alreadyrolled'    => 'Редакцията на [[:$1]], направена от [[User:$2|$2]] ([[User talk:$2|Беседа]] | [[Special:Contributions/$2|{{int:contribslink}}]]), не може да бъде отменена. Някой друг вече е редактирал страницата или е отменил промените.
+'alreadyrolled'    => 'Редакцията на [[:$1]], направена от [[User:$2|$2]] ([[User talk:$2|Беседа]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), не може да бъде отменена. Някой друг вече е редактирал страницата или е отменил промените.
 
-Последната редакция е на [[User:$3|$3]] ([[User talk:$3|Беседа]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Последната редакция е на [[User:$3|$3]] ([[User talk:$3|Беседа]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Резюмето на редакцията беше: „''$1''“.", # only shown if there is an edit comment
 'revertpage'       => 'Премахване на [[Special:Contributions/$2|редакции на $2]] ([[User talk:$2|беседа]]); възвръщане към последната версия на [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Отменени редакции на $1; възвръщане към последната версия на $2.',

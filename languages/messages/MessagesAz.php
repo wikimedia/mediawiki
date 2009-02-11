@@ -466,7 +466,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'userrights-lookup-user'   => 'İstifadəçi qruplarını idarə et',
 'userrights-user-editname' => 'İstifadəçi adınızı yazın:',
 'editusergroup'            => 'Redaktə İstifadəçi Qrupları',
-'editinguser'              => "Redaktə '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'              => "Redaktə '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup' => 'İstifadəçi qruplarını redaktə et',
 'saveusergroups'           => 'İstifadəçi qrupunu qeyd et',
 

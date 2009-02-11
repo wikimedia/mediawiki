@@ -25,6 +25,7 @@
  * @author IAlex
  * @author INkubusse
  * @author Jon Harald Søby
+ * @author Karduelis
  * @author Kizito
  * @author Klenje
  * @author Klutzy
@@ -1648,11 +1649,7 @@ $1 = the name of the page',
 'rollbackfailed'   => '{{Identical|Rollback}}',
 'cantrollback'     => '{{Identical|Revert}}
 {{Identical|Rollback}}',
-'alreadyrolled'    => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
-someone else has edited or rolled back the page already.
-
-The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]] | [[Special:Contributions/$3|{{int:contribslink}}]]).
-{{Identical|Rollback}}',
+'alreadyrolled'    => '{{Identical|Rollback}}',
 'revertpage'       => '{{Identical|Revert}}', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.
 {{Identical|Revert}}

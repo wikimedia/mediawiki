@@ -1191,7 +1191,7 @@ $2',
 'searchresults'                    => 'תוצאות החיפוש',
 'searchresults-title'              => 'תוצאות החיפוש "$1"',
 'searchresulttext'                 => 'למידע נוסף על חיפוש ב{{grammar:תחילית|{{SITENAME}}}}, עיינו ב[[Project:עזרה|דפי העזרה]].',
-'searchsubtitle'                   => 'לחיפוש המונח \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|לכל הדפים המתחילים ב"$1"]] | [[Special:WhatLinksHere/$1|לכל הדפים המקשרים ל"$1"]])',
+'searchsubtitle'                   => 'לחיפוש המונח \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|לכל הדפים המתחילים ב"$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|לכל הדפים המקשרים ל"$1"]])',
 'searchsubtitleinvalid'            => "לחיפוש המונח '''$1'''",
 'noexactmatch'                     => 'אין דף שכותרתו "$1". באפשרותכם [[:$1|ליצור את הדף]].',
 'noexactmatch-nocreate'            => 'אין דף שכותרתו "$1".',
@@ -1336,7 +1336,7 @@ $2',
 'userrights-lookup-user'      => 'ניהול קבוצות משתמש',
 'userrights-user-editname'    => 'שם משתמש:',
 'editusergroup'               => 'עריכת קבוצות משתמשים',
-'editinguser'                 => "שינוי הרשאות המשתמש של '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "שינוי הרשאות המשתמש של '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'עריכת קבוצות משתמש',
 'saveusergroups'              => 'שמירת קבוצות משתמש',
 'userrights-groupsmember'     => 'חבר בקבוצות:',
@@ -2063,9 +2063,9 @@ $NEWPAGE
 'rollbacklink'     => 'שחזור',
 'rollbackfailed'   => 'השחזור נכשל',
 'cantrollback'     => 'לא ניתן לשחזר את העריכה – התורם האחרון הוא היחיד שכתב דף זה; עם זאת, ניתן למחוק את הדף.',
-'alreadyrolled'    => 'לא ניתן לשחזר את עריכת הדף [[:$1]] על ידי [[User:$2|$2]] ([[User talk:$2|שיחה]] | [[Special:Contributions/$2|{{int:contribslink}}]]); מישהו אחר כבר ערך או שחזר דף זה.
+'alreadyrolled'    => 'לא ניתן לשחזר את עריכת הדף [[:$1]] על ידי [[User:$2|$2]] ([[User talk:$2|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); מישהו אחר כבר ערך או שחזר דף זה.
 
-העריכה האחרונה הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+העריכה האחרונה הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "תקציר העריכה היה: \"'''\$1'''\".", # only shown if there is an edit comment
 'revertpage'       => 'שוחזר מעריכה של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'שוחזר מעריכה של $1 לעריכה האחרונה של $2',

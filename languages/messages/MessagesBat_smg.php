@@ -653,7 +653,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'userrights-lookup-user'   => 'Tvarkītė nauduotuojė gropės',
 'userrights-user-editname' => 'Iveskėt nauduotuojė varda:',
 'editusergroup'            => 'Redagoutė nauduotuojė gropes',
-'editinguser'              => "Taisuoms nauduotuos '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'              => "Taisuoms nauduotuos '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup' => 'Keistė nauduotuoju gropes',
 'userrights-groupsmember'  => 'Narīs:',
 'userrights-reason'        => 'Keitėma prižastis:',

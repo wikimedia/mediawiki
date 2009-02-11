@@ -905,7 +905,7 @@ $2',
 'searchresults'                    => 'Вынікі пошуку',
 'searchresults-title'              => 'Вынікі пошуку «$1»',
 'searchresulttext'                 => 'Больш падрабязна пра пошук на {{SITENAME}}: [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'Вы шукалі \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|усе назвы, што пачынаюцца з "$1"]] | [[Special:WhatLinksHere/$1|усе назвы, што спасылаюцца на "$1"]])',
+'searchsubtitle'                   => 'Вы шукалі \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|усе назвы, што пачынаюцца з "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|усе назвы, што спасылаюцца на "$1"]])',
 'searchsubtitleinvalid'            => "Вы шукалі '''$1'''",
 'noexactmatch'                     => "'''Няма старонкі з назвай \"\$1\".''' Вы можаце яе [[:\$1|стварыць]].",
 'noexactmatch-nocreate'            => "'''Няма старонкі з назвай \"\$1\".'''",
@@ -1049,7 +1049,7 @@ $2',
 'userrights-lookup-user'      => 'Распараджацца групамі ўдзельнікаў',
 'userrights-user-editname'    => 'Увядзіце імя ўдзельніка:',
 'editusergroup'               => 'Правіць групы ўдзельнікаў',
-'editinguser'                 => "Папраўляюцца дазволы для ўдзельніка '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Мяняюцца дазволы для ўдзельніка '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Распараджацца групамі ўдзельніка',
 'saveusergroups'              => 'Захаваць групы ўдзельнікаў',
 'userrights-groupsmember'     => 'У групе:',
@@ -1748,10 +1748,10 @@ $NEWPAGE
 'rollbacklink'     => 'адкат',
 'rollbackfailed'   => 'Не ўдалося адкаціць',
 'cantrollback'     => 'Немагчыма адкаціць праўку; апошні аўтар гэта адзіны аўтар на гэтай старонцы.',
-'alreadyrolled'    => 'Немагчыма адкаціць апошнюю праўку ў [[$1]]
-аўтарства [[User:$2|$2]] ([[User talk:$2|Размова]]); за гэты час нехта іншы ўжо правіў або адкатваў старонку.
+'alreadyrolled'    => 'Немагчыма адкаціць апошнюю праўку ў [[:$1]], аўтарства [[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+з таго часу нехта іншы правіў або адкатваў гэтую старонку.
 
-Аўтарства апошняй праўкі: [[User:$3|$3]] ([[User talk:$3|Размова]]).',
+Апошняя праўка старонкі была аўтарства [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Тлумачэнне праўкі было: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Праўкі аўтарства [[Special:Contributions/$2|$2]] ([[User talk:$2|размова]]) адкочаныя; вернута апошняя версія аўтарства [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Адкочаны праўкі $1; вернута апошняя версія $2.',

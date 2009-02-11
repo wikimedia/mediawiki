@@ -528,7 +528,7 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'files'                 => 'Lopczi',
 
 # User rights
-'editinguser' => "Zmiana praw brëkòwnika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser' => "Zmiana praw brëkòwnika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 
 'grouppage-sysop' => '{{ns:project}}:Administratorzë',
 
@@ -735,10 +735,10 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'rollback'       => 'Copnij edicëjã',
 'rollbacklink'   => 'copnij',
 'rollbackfailed' => 'Nie szło copnąc zmianë',
-'alreadyrolled'  => 'Ni mòże copnąc slédny edicëji starnë [[:$1]], chtërny ùsôdzcą je [[User:$2|$2]] ([[User talk:$2|Diskùsëjô]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'  => 'Ni mòże copnąc slédny edicëji starnë [[:$1]], chtërny ùsôdzcą je [[User:$2|$2]] ([[User talk:$2|Diskùsëjô]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 chtos jiny ju zeditowôł starnã abò copnął zmianë.
 
-Slédnym ùsódzcą starnë bëł [[User:$3|$3]] ([[User talk:$3|Diskùsëjô]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Slédnym ùsódzcą starnë bëł [[User:$3|$3]] ([[User talk:$3|Diskùsëjô]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 
 # Protect
 'protectedarticle'            => 'zazychrowónô [[$1]]',

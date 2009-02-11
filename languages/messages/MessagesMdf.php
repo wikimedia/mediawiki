@@ -917,7 +917,7 @@ $3 макссь туфталсь - ''$2''",
 'searchresults'                    => 'Мезе мувсь',
 'searchresults-title'              => 'Мезе мувсь "$1" лемс',
 'searchresulttext'                 => '{{SITENAME}}-са вешендемань колга лама содаманкса ватт [[{{MediaWiki:Helppage}}|кизефтемань пялькссь]].',
-'searchsubtitle'                   => 'Тон вешить \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|сембе лопат "$1"ста ушедомс]] | [[Special:WhatLinksHere/$1|сембе лопат сюлмафт "$1" мархта]])',
+'searchsubtitle'                   => 'Тон вешить \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|сембе лопат "$1"ста ушедомс]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|сембе лопат сюлмафт "$1" мархта]])',
 'searchsubtitleinvalid'            => "Тон вешить '''$1'''",
 'noexactmatch'                     => "'''\"\$1\" конякс мархта лопа аш.''' Тондейть ули кода [[:\$1|тиемс лопать]].",
 'noexactmatch-nocreate'            => "'''\"\$1\" конякс мархта лопа аш.'''",
@@ -1049,7 +1049,7 @@ $3 макссь туфталсь - ''$2''",
 'userrights-lookup-user'      => 'Тиихнень полгаснон вятемасна',
 'userrights-user-editname'    => 'Путт тиить лемонц:',
 'editusergroup'               => 'Полафтомс тиить полганзон',
-'editinguser'                 => "'''[[User:$1|$1]]'''-нь тиить видексонзон полафнема ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "'''[[User:$1|$1]]'''-нь тиить видексонзон полафнема ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Полафтомс тиить полганзон',
 'saveusergroups'              => 'Ванфтомс тиить полганзон',
 'userrights-groupsmember'     => 'Сувси полгас:',
@@ -1743,10 +1743,10 @@ $NEWPAGE
 'rollbacklink'     => 'потафтомс',
 'rollbackfailed'   => 'Потафтомась изь лисе',
 'cantrollback'     => 'Аш кода петнемать потафтомс; мекольце путысь ульсь тя лопать анцек фкя тиикс.',
-'alreadyrolled'    => 'Аш кода меки кевордамс [[:$1]]нь мекольце петнемать, конань тись [[User:$2|$2]] ([[User talk:$2|Корхнема]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'    => 'Аш кода меки кевордамс [[:$1]]нь мекольце петнемать, конань тись [[User:$2|$2]] ([[User talk:$2|Корхнема]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 иля тиись сонь петезе эли кевордазе ни.
 
-Мекольце петнема  тизе [[User:$3|$3]] ([[User talk:$3|Корхнема]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Мекольце петнема  тизе [[User:$3|$3]] ([[User talk:$3|Корхнема]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Петнема мяльполаткс ульсь: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Петнематнень мърдафтозь [[Special:Contributions/$2|$2]] ([[User talk:$2|Корхнема]]) сядынгольдень верзиес мърдафтозе [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Петнематнень мърдафтозе $1; сядынгольдень верзиес мърдафтозе $2.',

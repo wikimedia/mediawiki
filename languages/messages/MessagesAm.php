@@ -854,7 +854,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'userrights-lookup-user'      => 'የ1 አባል ማዕረግ ለማስተዳደር',
 'userrights-user-editname'    => 'ለዚሁ ብዕር ስም፦',
 'editusergroup'               => 'የአባሉ ማዕረግ ለማስተካከል',
-'editinguser'                 => "ይህ ማመልከቻ ለብዕር ስም '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) መብቶቹን ለመቀየር ነው።",
+'editinguser'                 => "ይህ ማመልከቻ ለብዕር ስም '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) መብቶቹን ለመቀየር ነው።",
 'userrights-editusergroup'    => 'የአባሉ ማዕረግ ለማስተካከል',
 'saveusergroups'              => 'ለውጦቹ ይቆጠቡ',
 'userrights-groupsmember'     => 'አሁን ያሉባቸው ማዕረጎች፦',

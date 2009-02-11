@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * @ingroup Language
  * @file
@@ -997,7 +997,7 @@ $1',
 'searchresults'                    => '搵嘢結果',
 'searchresults-title'              => '對"$1"嘅搵嘢結果',
 'searchresulttext'                 => '有關搵{{SITENAME}}嘅更多資料請參考[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
-'searchsubtitle'                   => '你利用\'\'\'[[:$1]]\'\'\'搵  ([[Special:Prefixindex/$1|全部由 "$1" 開始嘅頁]] | [[Special:WhatLinksHere/$1|全部連去 "$1" 嘅頁]])',
+'searchsubtitle'                   => '你利用\'\'\'[[:$1]]\'\'\'搵  ([[Special:Prefixindex/$1|全部由 "$1" 開始嘅頁]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|全部連去 "$1" 嘅頁]])',
 'searchsubtitleinvalid'            => "你利用'''$1'''搵",
 'noexactmatch'                     => "'''搵唔到到標題為\"\$1\"嘅頁面。''' 你可以而家[[:\$1|開呢個新頁]]。",
 'noexactmatch-nocreate'            => "'''搵唔到到標題為\"\$1\"嘅頁面。'''",
@@ -1131,7 +1131,7 @@ $1',
 'userrights-lookup-user'      => '管理用戶組',
 'userrights-user-editname'    => '輸入一個用戶名：',
 'editusergroup'               => '編輯用戶組',
-'editinguser'                 => "改緊用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限",
+'editinguser'                 => "改緊用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限",
 'userrights-editusergroup'    => '編輯用戶組',
 'saveusergroups'              => '儲存用戶組',
 'userrights-groupsmember'     => '屬於：',
@@ -1835,9 +1835,9 @@ wiki: $PAGEEDITOR_WIKI
 'rollbacklink'     => '反轉',
 'rollbackfailed'   => '反轉唔到',
 'cantrollback'     => '反轉唔到；上一位貢獻者係唯一修改過呢版嘅人。',
-'alreadyrolled'    => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]] | [[Special:Contributions/$2|{{int:contribslink}}]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
+'alreadyrolled'    => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
 
-上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]] | [[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。',
+上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。',
 'editcomment'      => "編輯摘要係：\"''\$1''\"。", # only shown if there is an edit comment
 'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後版本。', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',

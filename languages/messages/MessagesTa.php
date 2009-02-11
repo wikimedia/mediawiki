@@ -775,7 +775,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 # Search results
 'searchresults'             => 'தேடல் முடிவுகள்',
 'searchresulttext'          => '{{SITENAME}} தளத்தில் தேடுவது தொடர்பான மேலதிகத் தகவல்களுக்கு [[{{MediaWiki:Helppage}}|{{int:help}}]] பக்கத்தைப் பார்க்க.',
-'searchsubtitle'            => 'நீர் தேடியப் பக்கம் \'\'\'[[:$1]]\'\'\'  ([[Special:Prefixindex/$1|"$1" இல் ஆரம்பிக்கும் அனைத்து பக்கங்கள்]] | [[Special:WhatLinksHere/$1|"$1" இற்கு இணைப்பு உள்ள அனைத்து பக்கங்கள்]])',
+'searchsubtitle'            => 'நீர் தேடியப் பக்கம் \'\'\'[[:$1]]\'\'\'  ([[Special:Prefixindex/$1|"$1" இல் ஆரம்பிக்கும் அனைத்து பக்கங்கள்]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" இற்கு இணைப்பு உள்ள அனைத்து பக்கங்கள்]])',
 'searchsubtitleinvalid'     => 'நீர் தேடியப் பக்கம் "$1"',
 'noexactmatch'              => "'''\"\$1\" என்றத் தலைப்பில் பக்கமெதுவுமில்லை.''' நீங்கள் [[:\$1|இப்பக்கத்தை உருவாக்கலாம்]].",
 'noexactmatch-nocreate'     => "'''\"\$1\" என்றத் தலைப்புடைய பக்கமொன்று இல்லை.'''",
@@ -878,7 +878,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'userrights-lookup-user'      => 'பயனர்க் குழுக்களை நிர்வாகி',
 'userrights-user-editname'    => 'பயனர் பெயரொன்றை இடுக:',
 'editusergroup'               => 'பயனர் குழுக்களை தொகு',
-'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) பயனருக்கான அனுமதிகளை மாற்றல்",
+'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) பயனருக்கான அனுமதிகளை மாற்றல்",
 'userrights-editusergroup'    => 'பயனர் குழுக்களை தொகு',
 'saveusergroups'              => 'பயனர் குழுக்களை சேமி',
 'userrights-groupsmember'     => 'அங்கத்துவம்:',
@@ -1434,9 +1434,9 @@ $NEWPAGE
 'rollbacklink'     => 'முன்நிலையாக்கு',
 'rollbackfailed'   => 'முன்நிலையாக்கம் தோல்வி',
 'cantrollback'     => 'தொகுப்பை முன்நிலையாக்க முடியாது; கடைசிப் பங்களிப்பாளரே இக்கட்டுரையின் ஒரே ஆசிரியராகும்.',
-'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Talk]] | [[Special:Contributions/$2|{{int:contribslink}}]]) பயனரால் செய்யப்பட்ட [[:$1]] இன் கடைசித் தொகுப்பை முன்நிலையாக்க முடியாது; வேறு யாரோ இப்பக்கத்தை ஏற்கெனவே தொகுத்தோ அல்லது முன்நிலையாக்கியோ உள்ளார்.
+'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) பயனரால் செய்யப்பட்ட [[:$1]] இன் கடைசித் தொகுப்பை முன்நிலையாக்க முடியாது; வேறு யாரோ இப்பக்கத்தை ஏற்கெனவே தொகுத்தோ அல்லது முன்நிலையாக்கியோ உள்ளார்.
 
-இப்பக்கத்தை கடைசியாகத் தொகுத்தவர் [[User:$3|$3]] ([[User talk:$3|Talk]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+இப்பக்கத்தை கடைசியாகத் தொகுத்தவர் [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "தொகுப்புக்குரிய கருத்துரை: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|பேச்சு]]) செய்தத் தொகுப்புகள் நீக்கப்பட்டு [[User:$1|$1]] இன் பதிப்புக்கு முன்நிலையாக்கப்பட்டது', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 செய்தத் தொகுப்புகள் நீக்கப்பட்டு $2 இன் பதிப்புக்கு முன்நிலையாக்கப்பட்டது.',

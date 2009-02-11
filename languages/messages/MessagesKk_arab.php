@@ -1290,7 +1290,7 @@ latex, dvips, gs جانە convert باعدارلامالارىنىڭ دۇرىس 
 'userrights-lookup-user'      => 'قاتىسۋشى توپتارىن رەتتەۋ',
 'userrights-user-editname'    => 'قاتىسۋشى اتىن ەنگىزىڭىز:',
 'editusergroup'               => 'قاتىسۋشى توپتارىن وڭدەۋ',
-'editinguser'                 => "قاتىسۋشى قۇقىقتارىن وزگەرتۋ: '''[[User:$1|$1]]''' ([[User_talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "قاتىسۋشى قۇقىقتارىن وزگەرتۋ: '''[[User:$1|$1]]''' ([[User_talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'قاتىسۋشى توپتارىن وڭدەۋ',
 'saveusergroups'              => 'قاتىسۋشى توپتارىن ساقتاۋ',
 'userrights-groupsmember'     => 'مۇشەلىگى:',

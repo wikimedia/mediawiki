@@ -1061,7 +1061,7 @@ $1 เป็นผู้ดำเนินการบล็อกในคร�
 'userrights-lookup-user'      => 'บริหารสิทธิผู้ใช้',
 'userrights-user-editname'    => 'ใส่ชื่อผู้ใช้:',
 'editusergroup'               => 'แก้ไขผู้ใช้',
-'editinguser'                 => "กำลังแก้ไขสิทธิของผู้ใช้ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "กำลังแก้ไขสิทธิของผู้ใช้ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'แก้ไขผู้ใช้',
 'saveusergroups'              => 'ตกลง',
 'userrights-groupsmember'     => 'สมาชิกในกลุ่ม:',

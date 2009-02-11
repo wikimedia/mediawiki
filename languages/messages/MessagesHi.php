@@ -922,7 +922,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'userrights-lookup-user'      => 'सदस्य ग्रुपोंका व्यवस्थापन करें',
 'userrights-user-editname'    => 'सदस्यनाम दें:',
 'editusergroup'               => 'सदस्य ग्रुपका संपादन करें',
-'editinguser'                 => "सदस्य '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])के सदस्य अधिकारोंमें बदलाव कियें जा रहें हैं।",
+'editinguser'                 => "सदस्य '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])के सदस्य अधिकारोंमें बदलाव कियें जा रहें हैं।",
 'userrights-editusergroup'    => 'सदस्य ग्रुपोंका संपादन करें',
 'saveusergroups'              => 'सदस्य ग्रुप संजोयें',
 'userrights-groupsmember'     => 'का सदस्य:',

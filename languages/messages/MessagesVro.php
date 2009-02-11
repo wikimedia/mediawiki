@@ -826,7 +826,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'userrights-lookup-user'   => 'Pruukjaõiguisi muutminõ',
 'userrights-user-editname' => 'Kirodaq pruukjanimi:',
 'editusergroup'            => 'Muudaq pruukjidõ rühmi',
-'editinguser'              => "Pruukja '''[[User:$1|$1]]''' õigusõq ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'              => "Pruukja '''[[User:$1|$1]]''' õigusõq ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup' => 'Pruukjidõrühmä valik',
 'saveusergroups'           => 'Pästäq pruukjidõrühmä muutmisõq',
 'userrights-groupsmember'  => 'Kuulus rühmä:',
