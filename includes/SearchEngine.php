@@ -403,7 +403,7 @@ class SearchEngine {
 		if($wgMWSuggestTemplate)		
 			return $wgMWSuggestTemplate;
 		else 
-			return $wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}&namespace={namespaces}';
+			return $wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}&namespace={namespaces}&suggest=1';
 	}
 }
 
