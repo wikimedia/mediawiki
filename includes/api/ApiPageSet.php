@@ -509,7 +509,6 @@ class ApiPageSet extends ApiQueryBase {
 		$tables = array('revision', 'page');
 		$fields = array('rev_id', 'rev_page');
 		$where = array('rev_id' => $revids, 'rev_page = page_id');
-		$options = array();
 
 		// Get pageIDs data from the `page` table
 		$this->profileDBIn();
