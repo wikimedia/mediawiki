@@ -809,7 +809,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'userrights-lookup-user'   => 'Magmaného kan mga grupo nin parágamit',
 'userrights-user-editname' => 'Ilaog an pangaran kan parágamit:',
 'editusergroup'            => 'Hirahón an mga Grupo kan Parágamit',
-'editinguser'              => "Pighihira an parágamit na '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'              => "Pighihira an parágamit na '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup' => 'Hirahón an mga grupo kan parágamit',
 'saveusergroups'           => 'Itagama an mga Grupo nin Páragamit',
 'userrights-groupsmember'  => 'Myembro kan:',

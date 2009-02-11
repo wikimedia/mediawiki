@@ -838,7 +838,7 @@ Soo jëfandikoo lëkkalekaayu joow yi day neenal boyot yi nga jotoon a fal.',
 'searchresults'             => 'Ngértey ceet gi',
 'searchresults-title'       => 'Ngértey ceet gu "$1"',
 'searchresulttext'          => 'Ngir yeneeni xibaar ci ceet gi ci {{SITENAME}}, xoolal [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Yaa ngi seet « \'\'\'[[:$1]]\'\'\' » ([[Special:Prefixindex/$1|wépp wu tambalee "$1"]] | 
+'searchsubtitle'            => 'Yaa ngi seet « \'\'\'[[:$1]]\'\'\' » ([[Special:Prefixindex/$1|wépp wu tambalee "$1"]]{{int:pipe-separator}}
 [[Special:WhatLinksHere/$1|wépp xët wu ñu lëkkale ak wii "$1"]])',
 'searchsubtitleinvalid'     => 'Yaa ngi seet « $1 »',
 'noexactmatch'              => "'''Amul wenn xët wu tudd « $1 » wu am.''' man ngaa [[:$1|sakk xët wi]].",

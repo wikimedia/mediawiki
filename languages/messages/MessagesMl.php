@@ -903,7 +903,7 @@ $3 അതിനു കാണിച്ചിരിക്കുന്ന കാര
 # Search results
 'searchresults'            => 'തിരച്ചിലിന്റെ ഫലം',
 'searchresulttext'         => '{{SITENAME}} സംരംഭത്തില്‍ വിവരങ്ങള്‍ എങ്ങിനെ അന്വേഷിച്ചു കണ്ടെത്താമെന്നറിയാന്‍, [[{{MediaWiki:Helppage}}|{{int:help}}]] എന്ന താള്‍ കാണുക.',
-'searchsubtitle'           => 'താങ്കള്‍ അന്വേഷിച്ച വാക്ക് \'\'\'[[:$1]]\'\'\' ആണ്‌. ([[Special:Prefixindex/$1|"$1" എന്ന വാക്കില്‍ തുടങ്ങുന്ന എല്ലാ താളുകളും]] | [[Special:WhatLinksHere/$1|"$1"എന്ന വാക്കിലേക്ക് കണ്ണി ചേര്‍ത്തിരിക്കുന്ന എല്ലാ താളുകളും]])',
+'searchsubtitle'           => 'താങ്കള്‍ അന്വേഷിച്ച വാക്ക് \'\'\'[[:$1]]\'\'\' ആണ്‌. ([[Special:Prefixindex/$1|"$1" എന്ന വാക്കില്‍ തുടങ്ങുന്ന എല്ലാ താളുകളും]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1"എന്ന വാക്കിലേക്ക് കണ്ണി ചേര്‍ത്തിരിക്കുന്ന എല്ലാ താളുകളും]])',
 'searchsubtitleinvalid'    => "താങ്കള്‍ തിരഞ്ഞത് '''$1'''",
 'noexactmatch'             => "'''\"[[\$1]]\" എന്ന താള്‍ ഈ വിക്കിയില്‍ നിലവിലില്ല.''' താങ്കള്‍ക്ക് [[:\$1|പ്രസ്തുത ശീര്‍ഷകത്തോടു കൂടിയ ഒരു താള്‍]] തുടങ്ങാവുന്നതാണ്.",
 'noexactmatch-nocreate'    => "'''\"\$1\" എന്ന താള്‍ നിലവിലില്ല.'''",
@@ -994,7 +994,7 @@ $3 അതിനു കാണിച്ചിരിക്കുന്ന കാര
 'userrights-lookup-user'   => 'ഉപയോക്തൃഗ്രൂപ്പുകളെ പരിപാലിക്കുക',
 'userrights-user-editname' => 'ഒരു ഉപയോക്തൃനാമം ടൈപ്പു ചെയ്യുക:',
 'editusergroup'            => 'ഉപയോക്തൃഗ്രൂപ്പുകള്‍ തിരുത്തുക',
-'editinguser'              => "'''[[User:$1|$1]]''' ന്റെ ഉപയോക്തൃ അവകാശങ്ങള്‍ തിരുത്തുന്നു ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'              => "'''[[User:$1|$1]]''' ന്റെ ഉപയോക്തൃ അവകാശങ്ങള്‍ തിരുത്തുന്നു ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup' => 'ഉപയോക്തൃസമൂഹത്തിലെ അംഗത്വം തിരുത്തുക',
 'saveusergroups'           => 'ഉപയോക്തൃഗ്രൂപ്പുകള്‍ സേവ് ചെയ്യുക',
 'userrights-groupsmember'  => 'അംഗത്വമുള്ളത്:',

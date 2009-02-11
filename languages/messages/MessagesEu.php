@@ -1048,7 +1048,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'userrights-lookup-user'      => 'Erabiltzaile taldeak kudeatu',
 'userrights-user-editname'    => 'Erabiltzaile izena idatzi:',
 'editusergroup'               => 'Erabiltzaile taldeak editatu',
-'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) lankidearen erabiltzaile-eskubideak aldatzen",
+'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) lankidearen erabiltzaile-eskubideak aldatzen",
 'userrights-editusergroup'    => 'Erabiltzaile taldeak editatu',
 'saveusergroups'              => 'Erabiltzaile taldeak gorde',
 'userrights-groupsmember'     => 'Partaide da hemen:',

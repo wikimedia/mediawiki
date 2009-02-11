@@ -1250,7 +1250,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'userrights-lookup-user'      => 'Mengatur kelompok pengguna',
 'userrights-user-editname'    => 'Masukkan nama pengguna:',
 'editusergroup'               => 'Sunting kelompok pengguna',
-'editinguser'                 => "Mengganti hak akses pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Mengganti hak akses pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Sunting kelompok pengguna',
 'saveusergroups'              => 'Simpan kelompok pengguna',
 'userrights-groupsmember'     => 'Anggota dari:',
@@ -1951,10 +1951,10 @@ Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{S
 'rollbacklink'     => 'kembalikan',
 'rollbackfailed'   => 'Pengembalian gagal dilakukan',
 'cantrollback'     => 'Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.',
-'alreadyrolled'    => 'Tidak dapat melakukan pengembalian ke revisi terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'    => 'Tidak dapat melakukan pengembalian ke revisi terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 pengguna lain telah menyunting atau melakukan pengembalian terhadap revisi tersebut.
 
-Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Komentar penyuntingan adalah: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',

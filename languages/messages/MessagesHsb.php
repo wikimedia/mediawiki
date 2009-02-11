@@ -956,7 +956,7 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'searchresults'                    => 'Pytanske wuslědki',
 'searchresults-title'              => 'Pytanske wuslědki za "$1"',
 'searchresulttext'                 => 'Za dalše informacije wo pytanju {{GRAMMAR:genitiw|{{SITENAME}}}}, hlej [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'Sy za \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|wšěmi stronami, kotrež započinaja so z "$1"]] | [[Special:WhatLinksHere/$1|wšěmi stronami, kotrež na "$1" wotkazuja]]) pytal.',
+'searchsubtitle'                   => 'Sy za \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|wšěmi stronami, kotrež započinaja so z "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|wšěmi stronami, kotrež na "$1" wotkazuja]]) pytal.',
 'searchsubtitleinvalid'            => 'Sy naprašowanje za „$1“ stajił.',
 'noexactmatch'                     => "'''Strona z titulom \"\$1\" njeeksistuje.'''
 Móžeš [[:\$1|tutu stronu wutworić]].",
@@ -1102,7 +1102,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'userrights-lookup-user'      => 'Wužiwarske skupiny zrjadować',
 'userrights-user-editname'    => 'Wužiwarske mjeno:',
 'editusergroup'               => 'Wužiwarske skupiny wobdźěłać',
-'editinguser'                 => "Měnja so wužiwarske prawa wot wužiwarja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Měnja so wužiwarske prawa wot wužiwarja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Wužiwarske skupiny wobdźěłać',
 'saveusergroups'              => 'Wužiwarske skupiny składować',
 'userrights-groupsmember'     => 'Čłon skupiny:',
@@ -1816,9 +1816,9 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 'rollbacklink'     => 'Cofnyć',
 'rollbackfailed'   => 'Cofnjenje njeporadźiło',
 'cantrollback'     => 'Njemóžno změnu cofnyć; strona nima druhich awtorow.',
-'alreadyrolled'    => 'Njemóžno poslednu změnu [[:$1]] přez wužiwarja [[User:$2|$2]] ([[User talk:$2|Diskusija]] | [[Special:Contributions/$2|{{int:contribslink}}]]) cofnyć; něchtó druhi je stronu wobdźěłał abo změnu hižo cofnył.
+'alreadyrolled'    => 'Njemóžno poslednu změnu [[:$1]] přez wužiwarja [[User:$2|$2]] ([[User talk:$2|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) cofnyć; něchtó druhi je stronu wobdźěłał abo změnu hižo cofnył.
 
-Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Zjeće wobdźěłanja bě: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.',

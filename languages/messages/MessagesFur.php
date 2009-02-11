@@ -705,7 +705,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'files'                     => 'Files',
 
 # User rights
-'editinguser'             => "Cambiament dai dirits par l'utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'             => "Cambiament dai dirits par l'utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-groupsmember' => 'Al fâs part di:',
 
 # Groups

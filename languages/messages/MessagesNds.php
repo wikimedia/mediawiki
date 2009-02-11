@@ -1182,7 +1182,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'userrights-lookup-user'      => 'Brukergruppen verwalten',
 'userrights-user-editname'    => 'Brukernaam ingeven:',
 'editusergroup'               => 'Brukergruppen bearbeiden',
-'editinguser'                 => "Ännern vun Brukerrechten vun '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Ännern vun Brukerrechten vun '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Brukergruppen ännern',
 'saveusergroups'              => 'Brukergruppen spiekern',
 'userrights-groupsmember'     => 'Liddmaat vun:',
@@ -1875,9 +1875,9 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 'rollbacklink'     => 'Trüchnehmen',
 'rollbackfailed'   => 'Trüchnahm hett kenen Spood',
 'cantrollback'     => 'De Ännern kann nich trüchnahmen warrn; de letzte Autor is de eenzige.',
-'alreadyrolled'    => 'Dat Trüchnehmen vun de Ännern an de Siet [[:$1]] vun [[User:$2|$2]] ([[User talk:$2|Diskuschoonssiet]] | [[Special:Contributions/$2|Bidrääg]]) is nich mööglich, vun wegen dat dor en annere Ännern oder Trüchnahm wesen is.
+'alreadyrolled'    => 'Dat Trüchnehmen vun de Ännern an de Siet [[:$1]] vun [[User:$2|$2]] ([[User talk:$2|Diskuschoonssiet]]{{int:pipe-separator}}[[Special:Contributions/$2|Bidrääg]]) is nich mööglich, vun wegen dat dor en annere Ännern oder Trüchnahm wesen is.
 
-De letzte Ännern is vun [[User:$3|$3]] ([[User talk:$3|Diskuschoon]] | [[Special:Contributions/$3|Bidrääg]]).',
+De letzte Ännern is vun [[User:$3|$3]] ([[User talk:$3|Diskuschoon]]{{int:pipe-separator}}[[Special:Contributions/$3|Bidrääg]]).',
 'editcomment'      => "De Ännerkommentar weer: „''$1''“.", # only shown if there is an edit comment
 'revertpage'       => 'Ännern vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) rut un de Version vun [[User:$1]] wedderhaalt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Ännern vun $1 trüchsett op letzte Version vun $2.',

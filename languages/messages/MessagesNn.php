@@ -1070,7 +1070,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'searchresults'                    => 'Søkjeresultat',
 'searchresults-title'              => 'Søkjeresultat for "$1"',
 'searchresulttext'                 => 'For meir info om søkjefunksjonen i {{SITENAME}}, sjå [[{{MediaWiki:Helppage}}|Hjelp]].',
-'searchsubtitle'                   => 'Du søkte etter «[[:$1]]» ([[Special:Prefixindex/$1|alle sider som byrjar med «$1»]] | [[Special:WhatLinksHere/$1|alle sider som lenkjer til «$1»]])',
+'searchsubtitle'                   => 'Du søkte etter «[[:$1]]» ([[Special:Prefixindex/$1|alle sider som byrjar med «$1»]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle sider som lenkjer til «$1»]])',
 'searchsubtitleinvalid'            => 'Du søkte etter «$1»',
 'noexactmatch'                     => "* '''{{SITENAME}} har ikkje noka side med [[:$1|dette namnet]].'''
 * <big>'''Du kan [[:$1|opprette ho no]]'''</big>.<br />
@@ -1219,7 +1219,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'userrights-lookup-user'      => 'Administrer brukargrupper',
 'userrights-user-editname'    => 'Skriv inn brukarnamn:',
 'editusergroup'               => 'Endre brukargrupper',
-'editinguser'                 => "Endrar brukartilgangen til '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Endrar brukartilgangen til '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Endre brukargrupper',
 'saveusergroups'              => 'Lagre brukargrupper',
 'userrights-groupsmember'     => 'Medlem av:',
@@ -1926,9 +1926,9 @@ For hjelp og meir informasjon:
 'rollbacklink'     => 'rull attende',
 'rollbackfailed'   => 'Kunne ikkje rulle attende',
 'cantrollback'     => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
-'alreadyrolled'    => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[User:$2|$2]] ([[User talk:$2|diskusjon]] | [[Special:Contributions/$2|{{int:contribslink}}]]) fordi nokon andre alt har endra sida att eller fjerna endringa.
+'alreadyrolled'    => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) fordi nokon andre alt har endra sida att eller fjerna endringa.
 
-Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Samandraget for endringa var: «''$1''».", # only shown if there is an edit comment
 'revertpage'       => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',

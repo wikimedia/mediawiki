@@ -970,7 +970,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'searchresults'                    => 'Resultat vun der Sich',
 'searchresults-title'              => 'Resultater vun der Sich no "$1"',
 'searchresulttext'                 => "Fir méi Informatiounen iwwert d'Sichfunktiounen op {{SITENAME}}, kuckt w.e.g op [[{{MediaWiki:Helppage}}|{{int:help}}]].",
-'searchsubtitle'                   => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]] | [[Special:WhatLinksHere/$1|all Säiten déi op "$1" linken]])',
+'searchsubtitle'                   => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all Säiten déi op "$1" linken]])',
 'searchsubtitleinvalid'            => 'Dir hutt no "$1" gesicht.',
 'noexactmatch'                     => "'''Et gëtt keng Säite mam Titel \"\$1\".'''
 
@@ -1092,6 +1092,16 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'timezoneoffset'            => 'Zäit-Differenz¹:',
 'servertime'                => 'Serverzäit:',
 'guesstimezone'             => 'Vum Browser iwwerhuelen',
+'timezoneregion-africa'     => 'Afrika',
+'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antarktis',
+'timezoneregion-arctic'     => 'Arktis',
+'timezoneregion-asia'       => 'Asien',
+'timezoneregion-atlantic'   => 'Atlanteschen Ozean',
+'timezoneregion-australia'  => 'Australien',
+'timezoneregion-europe'     => 'Europa',
+'timezoneregion-indian'     => 'Indeschen Ozean',
+'timezoneregion-pacific'    => 'Pazifeschen Ozean',
 'allowemail'                => 'E-Maile vun anere Benotzer kréien.',
 'prefs-searchoptions'       => 'Sichoptiounen',
 'prefs-namespaces'          => 'Nummraim',
@@ -1106,7 +1116,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'userrights-lookup-user'      => 'Benotzergrupp verwalten',
 'userrights-user-editname'    => 'Benotzernumm uginn:',
 'editusergroup'               => 'Benotzergruppen änneren',
-'editinguser'                 => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Ännere vun de Rechter vum Benotzer '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Benotzergruppen änneren',
 'saveusergroups'              => 'Benotzergruppe späicheren',
 'userrights-groupsmember'     => 'Member vun:',
@@ -1812,10 +1822,10 @@ dës Aktioun soll mat Vierssiicht gemaach ginn.",
 'rollbacklink'     => 'Zrécksetzen',
 'rollbackfailed'   => 'Zrécksetzen huet net geklappt',
 'cantrollback'     => 'Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
-'alreadyrolled'    => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{int:contribslink}}]]); kann net zréckgesat ginn; 
+'alreadyrolled'    => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); kann net zréckgesat ginn; 
 een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen.
 
-Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "De Resumé vun der Ännerung war: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",

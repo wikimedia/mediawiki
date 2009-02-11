@@ -1074,7 +1074,7 @@ logolös eli math/README ad givulön parametemi.',
 'userrights-lookup-user'      => 'Guvön gebanagrupis',
 'userrights-user-editname'    => 'Penolös gebananemi:',
 'editusergroup'               => 'Redakön Gebanagrupis',
-'editinguser'                 => "Votükam gitätas gebana: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Votükam gitätas gebana: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Redakön gebanagrupis',
 'saveusergroups'              => 'Dakipolöd gebanagrupis',
 'userrights-groupsmember'     => 'Liman grupa(s):',
@@ -1776,9 +1776,9 @@ Prudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.',
 'rollbacklink'     => 'sädunön vali',
 'rollbackfailed'   => 'Sädunam no eplöpon',
 'cantrollback'     => 'Redakam no kanon pasädunön; keblünan lätik binon lautan teik pada at.',
-'alreadyrolled'    => 'No eplöpos ad sädunön redakami lätik pada: [[:$1]] fa geban: [[User:$2|$2]] ([[User talk:$2|Bespikapad]] | [[Special:Contributions/$2|{{int:contribslink}}]]); ek ya eredakon oni ud esädunon redakami ona.
+'alreadyrolled'    => 'No eplöpos ad sädunön redakami lätik pada: [[:$1]] fa geban: [[User:$2|$2]] ([[User talk:$2|Bespikapad]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); ek ya eredakon oni ud esädunon redakami ona.
 
-Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Redakamaküpet äbinon: „''$1''“.", # only shown if there is an edit comment
 'revertpage'       => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons ad fomam ma redakam lätik gebana: [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.',

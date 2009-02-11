@@ -905,7 +905,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'searchresults'                    => 'Булулунна',
 'searchresults-title'              => 'Көрдөөһүн түмүгэ "$1"',
 'searchresulttext'                 => 'Көрдөөһүн туһунан сиһилии ааҕыаххын баҕардаххына [[{{MediaWiki:Helppage}}|маны]] көр.',
-'searchsubtitle'                   => 'Эн [[:$1]] көмөтүнэн ([[Special:Prefixindex/$1|"$1" саҕаланар сирэйдэри ]] | [[Special:WhatLinksHere/$1|"$1" сигэнэр сирэйдэри]]) көрдөөбүтүҥ',
+'searchsubtitle'                   => 'Эн [[:$1]] көмөтүнэн ([[Special:Prefixindex/$1|"$1" саҕаланар сирэйдэри ]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" сигэнэр сирэйдэри]]) көрдөөбүтүҥ',
 'searchsubtitleinvalid'            => 'По запросу «$1»',
 'noexactmatch'                     => "'''«\$1» ааттаах сирэй суох.''' <span style=\"display: block; margin: 1.5em 2em\"> [[:\$1|Саҥа сирэйи оҥорорго]]</span>",
 'noexactmatch-nocreate'            => "'''Маннык ааттаах: \"\$1\" сирэй суох.'''",
@@ -1039,7 +1039,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'userrights-lookup-user'      => 'Кыттаачылар бөлөхтөрүн салайыы',
 'userrights-user-editname'    => 'Кыттааччы аата:',
 'editusergroup'               => 'Кыттааччылар бөлөхтөрүн уларытарга',
-'editinguser'                 => "'''[[User:$1|$1]]''' кыттааччы быраабын уларытыы ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "'''[[User:$1|$1]]''' кыттааччы быраабын уларытыы ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Кыттааччы бөлөхтөрүн уларытарга',
 'saveusergroups'              => 'Кыттааччы бөлөхтөрүн бигэргэт',
 'userrights-groupsmember'     => 'Бу бөлөхтөргө киирэр:',
@@ -1760,10 +1760,10 @@ $NEWPAGE
 'rollbacklink'     => 'төннөр',
 'rollbackfailed'   => 'Төннөрөргө моһуок үөскээтэ',
 'cantrollback'     => 'Төннөрөр кыах суох; бүтэһик көннөрүүнү оҥорбут киһи бу сирэй соҕотох ааптара буолар.',
-'alreadyrolled'    => 'Бүтэһик [[User:$2|$2]] ([[User talk:$2|Ырытыы]] | [[Special:Contributions/$2|{{int:contribslink}}]]) оҥорбут [[:$1]] уларытыыларын төннөрөр кыах суох;
+'alreadyrolled'    => 'Бүтэһик [[User:$2|$2]] ([[User talk:$2|Ырытыы]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) оҥорбут [[:$1]] уларытыыларын төннөрөр кыах суох;
 ким эрэ атын номнуо бу сирэйи уларыппыт эбэтэр уруккутун төннөрбүт.
 
-Кэнники уларытыыны [[User:$3|$3]] ([[User talk:$3|Ырытыы]] | [[Special:Contributions/$3|{{int:contribslink}}]]) оҥорбут.',
+Кэнники уларытыыны [[User:$3|$3]] ([[User talk:$3|Ырытыы]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) оҥорбут.',
 'editcomment'      => "Уларытыыны маннык быһаарбыттар: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => '([[User talk:$2|Ырытыы]]) көннөрүүлэрэ: [[Special:Contributions/$2|$2]] бу торумҥа: [[User:$1|$1]] төннөрүлүннүлэр', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 көннөрүүлэр бу торумҥа төннөрүлүннүлэр: $2.',

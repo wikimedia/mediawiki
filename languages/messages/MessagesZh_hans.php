@@ -1030,7 +1030,7 @@ $2',
 'searchresults'                    => '搜索结果',
 'searchresults-title'              => '对"$1"的搜索结果',
 'searchresulttext'                 => '有关搜索{{SITENAME}}的更多详情,参见[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
-'searchsubtitle'                   => '搜索\'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|所有以 "$1" 开头的页面]] | [[Special:WhatLinksHere/$1|所有链接到 "$1" 的页面]])',
+'searchsubtitle'                   => '搜索\'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|所有以 "$1" 开头的页面]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|所有链接到 "$1" 的页面]])',
 'searchsubtitleinvalid'            => "搜索'''$1'''",
 'noexactmatch'                     => "'''没找到标题为\"\$1\"的页面。''' 您可以[[:\$1|创建此页面]]。",
 'noexactmatch-nocreate'            => "'''没找到标题为\"\$1\"的页面。'''",
@@ -1164,7 +1164,7 @@ $2',
 'userrights-lookup-user'      => '管理用户群组',
 'userrights-user-editname'    => '输入用户名:',
 'editusergroup'               => '编辑用户群组',
-'editinguser'                 => "正在更改用户'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用户权限",
+'editinguser'                 => "正在更改用户'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) 的用户权限",
 'userrights-editusergroup'    => '编辑用户群组',
 'saveusergroups'              => '存储用户群组',
 'userrights-groupsmember'     => '隶属于:',
@@ -1878,10 +1878,10 @@ $NEWPAGE
 'rollbacklink'     => '恢复',
 'rollbackfailed'   => '恢复失败',
 'cantrollback'     => '无法恢复编辑；最后的贡献者是本文的唯一作者。',
-'alreadyrolled'    => '无法恢复由[[User:$2|$2]] ([[User talk:$2|讨论]]  | [[Special:Contributions/$2|{{int:contribslink}}]])进行的[[$1]]的最后编辑；
+'alreadyrolled'    => '无法恢复由[[User:$2|$2]] ([[User talk:$2|讨论]] {{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])进行的[[$1]]的最后编辑；
 其他人已经编辑或是恢复了该页。
 
-最后对页面编辑的编辑者: [[User:$3|$3]] ([[User talk:$3|讨论]] | [[Special:Contributions/$3|{{int:contribslink}}]])。',
+最后对页面编辑的编辑者: [[User:$3|$3]] ([[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])。',
 'editcomment'      => '编辑摘要: "<i>$1</i>"。', # only shown if there is an edit comment
 'revertpage'       => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '恢复由$1的编辑；更改回$2的最后一个版本。',

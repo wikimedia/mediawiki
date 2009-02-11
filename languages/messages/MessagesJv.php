@@ -844,7 +844,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'searchresults'                    => 'Kasil panggolèkan',
 'searchresults-title'              => 'Kasil panggolèkan saka "$1"',
 'searchresulttext'                 => 'Kanggo informasi sabanjuré ngenani panggolèkan ing {{SITENAME}}, mangga mirsani [[{{MediaWiki:Helppage}}|kaca pitulung]].',
-'searchsubtitle'                   => 'Panjenengan nggolèki \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|kabèh kaca sing diwiwiti kanthi "$1"]] | [[Special:WhatLinksHere/$1|kabèh kaca sing kagandhèng karo/menyang "$1"]])',
+'searchsubtitle'                   => 'Panjenengan nggolèki \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|kabèh kaca sing diwiwiti kanthi "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kabèh kaca sing kagandhèng karo/menyang "$1"]])',
 'searchsubtitleinvalid'            => "Panjenengan nggolèki '''$1'''",
 'noexactmatch'                     => "'''Ora ana kaca mawa irah-irahan utawa judhul \"\$1\".''' Panjenengan bisa [[:\$1|nggawé kaca iki]].",
 'noexactmatch-nocreate'            => "'''Ora ana kaca mawa irah-irahan utawa judhul \"\$1\".'''",
@@ -972,7 +972,7 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'userrights-lookup-user'      => 'Ngatur kelompok panganggo',
 'userrights-user-editname'    => 'Lebokna jeneng panganggo:',
 'editusergroup'               => 'Sunting kelompok panganggo',
-'editinguser'                 => "Ngowahi hak-hak aksès panganggo saka panganggo '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Ngowahi hak-hak aksès panganggo saka panganggo '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Sunting kelompok panganggo',
 'saveusergroups'              => 'Simpen kelompok panganggo',
 'userrights-groupsmember'     => 'Anggota saka:',
@@ -1668,9 +1668,9 @@ kudu ngati-ati.',
 'rollbacklink'     => 'balèaké',
 'rollbackfailed'   => 'Pambalèkan gagal dilakoni',
 'cantrollback'     => 'Ora bisa mbalèkaké suntingan; panganggo pungkasan iku siji-sijiné penulis artikel iki.',
-'alreadyrolled'    => 'Ora bisa mbalèkaké suntingan pungkasan [[:$1]] déning [[User:$2|$2]] ([[User talk:$2|Wicara]] | [[Special:Contributions/$2|{{int:contribslink}}]]); wong liya wis nyunting utawa mbalèkaké kaca artikel iku. 
+'alreadyrolled'    => 'Ora bisa mbalèkaké suntingan pungkasan [[:$1]] déning [[User:$2|$2]] ([[User talk:$2|Wicara]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); wong liya wis nyunting utawa mbalèkaké kaca artikel iku. 
 
-Suntingan pungkasan dilakoni déning [[User:$3|$3]] ([[User talk:$3|Wicara]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Suntingan pungkasan dilakoni déning [[User:$3|$3]] ([[User talk:$3|Wicara]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Komentar panyuntingané yaiku: "<em>$1</em>".', # only shown if there is an edit comment
 'revertpage'       => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Suntingan dibalèkaké déning $1;

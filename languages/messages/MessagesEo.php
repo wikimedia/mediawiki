@@ -1172,7 +1172,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'userrights-lookup-user'      => 'Administri grupojn de uzantoj',
 'userrights-user-editname'    => 'Entajpi uzantonomon:',
 'editusergroup'               => 'Redakti grupojn de uzantoj',
-'editinguser'                 => "Redaktante uzanto-rajtojn de uzanto '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Redaktante uzanto-rajtojn de uzanto '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Redakti grupojn de uzantoj',
 'saveusergroups'              => 'Konservi grupojn de uzantoj',
 'userrights-groupsmember'     => 'Membro de:',
@@ -1880,9 +1880,9 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'rollbacklink'     => 'malfari',
 'rollbackfailed'   => 'Malfaro malsukcesis',
 'cantrollback'     => 'Neeblas restarigi antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.',
-'alreadyrolled'    => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'    => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 pro tio, ke oni intertempe redaktis aŭ restarigis la paĝon. 
-La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "La resumo de la komento estis: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',

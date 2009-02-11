@@ -997,7 +997,7 @@ $2',
 'searchresults'                  => 'Резултати претраге',
 'searchresults-title'            => 'Резултати претраге за „$1”',
 'searchresulttext'               => 'За више информација о претраживању {{SITENAME}}, погледајте [[{{MediaWiki:Helppage}}|Претраживање {{SITENAME}}]].',
-'searchsubtitle'                 => 'Тражили сте \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|све странице које почињу са "$1"]] | [[Special:WhatLinksHere/$1|све странице које повезују на "$1"]])',
+'searchsubtitle'                 => 'Тражили сте \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|све странице које почињу са "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|све странице које повезују на "$1"]])',
 'searchsubtitleinvalid'          => "Тражили сте '''$1'''",
 'noexactmatch'                   => "'''Не постоји страница са насловом \"\$1\".''' Можете [[:\$1|написати ту страницу]].",
 'noexactmatch-nocreate'          => "'''Не постоји страница са насловом \"\$1\".'''",
@@ -1118,7 +1118,7 @@ $2',
 'userrights-lookup-user'      => 'Управљај корисничким групама',
 'userrights-user-editname'    => 'Унесите корисничко име:',
 'editusergroup'               => 'Мењај групе корисника',
-'editinguser'                 => "Мењате корисничка права корисника '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Мењате корисничка права корисника '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Промени корисничке групе',
 'saveusergroups'              => 'Сачувај корисничке групе',
 'userrights-groupsmember'     => 'Члан:',
@@ -1755,9 +1755,9 @@ $NEWPAGE
 'rollbacklink'     => 'врати',
 'rollbackfailed'   => 'Враћање није успело',
 'cantrollback'     => 'Не могу да вратим измену; последњи аутор је уједно и једини.',
-'alreadyrolled'    => 'Не могу да вратим последњу измену [[:$1]] од корисника [[User:$2|$2]] ([[User talk:$2|разговор]] | [[Special:Contributions/$2|{{int:contribslink}}]]); неко други је већ изменио или вратио чланак.
+'alreadyrolled'    => 'Не могу да вратим последњу измену [[:$1]] од корисника [[User:$2|$2]] ([[User talk:$2|разговор]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); неко други је већ изменио или вратио чланак.
 
-Последња измена од корисника [[User:$3|$3]] ([[User talk:$3|разговор]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Последња измена од корисника [[User:$3|$3]] ([[User talk:$3|разговор]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Коментар измене је: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Враћене измене корисника [[Special:Contributions/$2|$2]] ([[User talk:$2|Разговор]]) на последњу измену корисника [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Враћене измене од стране $1; на последњу измену од стране $2.',

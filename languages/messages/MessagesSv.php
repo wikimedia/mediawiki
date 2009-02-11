@@ -1126,7 +1126,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'searchresults'                    => 'Sökresultat',
 'searchresults-title'              => 'Sökresultat för "$1"',
 'searchresulttext'                 => 'Se [[{{MediaWiki:Helppage}}|hjälpsidan]] för mer information om sökning på {{SITENAME}}.',
-'searchsubtitle'                   => 'Du sökte efter \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|alla sidor som startar med "$1"]] | [[Special:WhatLinksHere/$1|alla sidor som länkar till "$1"]])',
+'searchsubtitle'                   => 'Du sökte efter \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|alla sidor som startar med "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alla sidor som länkar till "$1"]])',
 'searchsubtitleinvalid'            => 'För sökbegreppet $1',
 'noexactmatch'                     => "'''Det finns ingen sida med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
 'noexactmatch-nocreate'            => "'''Det finns ingen sida med titeln \"\$1\".'''",
@@ -1272,7 +1272,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'userrights-lookup-user'      => 'Hantera användargrupper',
 'userrights-user-editname'    => 'Skriv in ett användarnamn:',
 'editusergroup'               => 'Ändra användargrupper',
-'editinguser'                 => "Ändrar rättigheter för användaren '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Ändrar rättigheter för användaren '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Ändra användargrupper',
 'saveusergroups'              => 'Spara användargrupper',
 'userrights-groupsmember'     => 'Medlem i:',
@@ -1992,9 +1992,9 @@ Se $2 för noteringar om de senaste raderingarna.',
 'rollbacklink'     => 'rulla tillbaka',
 'rollbackfailed'   => 'Tillbakarullning misslyckades',
 'cantrollback'     => 'Det gick inte att rulla tillbaka, då sidan endast redigerats av en användare.',
-'alreadyrolled'    => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
+'alreadyrolled'    => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
 
-Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]).',
+Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
 'editcomment'      => "Redigeringskommentaren var: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Återställde ändringar av $1;

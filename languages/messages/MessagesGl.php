@@ -1020,7 +1020,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'searchresults'                    => 'Resultados da procura',
 'searchresults-title'              => 'Resultados da procura de "$1"',
 'searchresulttext'                 => 'Para máis información sobre como realizar procuras en {{SITENAME}}, vexa [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'A súa busca de "\'\'\'[[:$1]]\'\'\'" ([[Special:Prefixindex/$1|todas as páxinas que comezan por "$1"]] | [[Special:WhatLinksHere/$1|todas as páxinas que ligan con "$1"]])',
+'searchsubtitle'                   => 'A súa busca de "\'\'\'[[:$1]]\'\'\'" ([[Special:Prefixindex/$1|todas as páxinas que comezan por "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|todas as páxinas que ligan con "$1"]])',
 'searchsubtitleinvalid'            => "A súa busca de \"'''\$1'''\"",
 'noexactmatch'                     => "'''Non hai ningunha páxina titulada \"\$1\".'''
 Se quere, pode [[:\$1|creala]].",
@@ -1168,7 +1168,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'userrights-lookup-user'      => 'Administrar os grupos do usuario',
 'userrights-user-editname'    => 'Escriba o nome do usuario:',
 'editusergroup'               => 'Editar os grupos do usuario',
-'editinguser'                 => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Editar os grupos do usuario',
 'saveusergroups'              => 'Gardar os grupos do usuario',
 'userrights-groupsmember'     => 'Membro de:',
@@ -1897,9 +1897,9 @@ proceda con coidado.',
 'rollbacklink'     => 'reverter',
 'rollbackfailed'   => 'Houbo un fallo ao reverter as edicións',
 'cantrollback'     => 'Non se pode desfacer a edición; o último contribuínte é o único autor desta páxina.',
-'alreadyrolled'    => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]] | [[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
+'alreadyrolled'    => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
 
-A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]] | [[Special:Contributions/$2|{{int:contribslink}}]]).',
+A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
 'editcomment'      => "O resumo de edición era: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Desfixéronse as edicións de $1;

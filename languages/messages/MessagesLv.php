@@ -670,7 +670,7 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 # Search results
 'searchresults'         => 'Meklēšanas rezultāti',
 'searchresulttext'      => 'Lai iegūtu vairāk informācijas par meklēšanu {{grammar:akuzatīvs|{{SITENAME}}}}, skat. [[{{MediaWiki:Helppage}}|{{grammar:ģenitīvs|{{SITENAME}}}} meklēšana]].',
-'searchsubtitle'        => 'Pieprasījums: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|visas lapas, kas sākas ar "$1"]] | [[Special:WhatLinksHere/$1|visas lapas, kurās ir saite uz "$1"]])',
+'searchsubtitle'        => 'Pieprasījums: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|visas lapas, kas sākas ar "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|visas lapas, kurās ir saite uz "$1"]])',
 'searchsubtitleinvalid' => 'Pieprasījums: $1',
 'noexactmatch'          => "'''Lapas ar nosaukumu \"\$1\" šeit nav.''' Tu vari to [[:\$1|izveidot]].",
 'noexactmatch-nocreate' => "'''Šeit nav lapas ar nosaukumu \"\$1\".'''",
@@ -746,7 +746,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'userrights-lookup-user'      => 'Pārvaldīt lietotāja grupas',
 'userrights-user-editname'    => 'Ievadi lietotājvārdu:',
 'editusergroup'               => 'Izmainīt lietotāja grupas',
-'editinguser'                 => "Izmainīt lietotāja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) statusu",
+'editinguser'                 => "Izmainīt lietotāja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) statusu",
 'userrights-editusergroup'    => 'Izmainīt lietotāja grupas',
 'saveusergroups'              => 'Saglabāt lietotāja grupas',
 'userrights-groupsmember'     => 'Šobrīd ietilpst grupās:',
@@ -1252,9 +1252,9 @@ Papildus informācija:
 'rollbacklink'     => 'novērst',
 'rollbackfailed'   => 'Novēršana neizdevās',
 'cantrollback'     => 'Nav iespējams novērst labojumu; iepriekšējais labotājs ir vienīgais lapas autors.',
-'alreadyrolled'    => 'Nav iespējams novērst pēdējās izmaiņas, ko lapā [[:$1]] saglabāja [[User:$2|$2]] ([[User talk:$2|Diskusija]] | [[Special:Contributions/$2|{{int:contribslink}}]]). Kāds cits jau ir rediģējis šo lapu vai novērsis izmaiņas.
+'alreadyrolled'    => 'Nav iespējams novērst pēdējās izmaiņas, ko lapā [[:$1]] saglabāja [[User:$2|$2]] ([[User talk:$2|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]). Kāds cits jau ir rediģējis šo lapu vai novērsis izmaiņas.
 
-Pēdējās izmaiņas saglabāja [[User:$3|$3]] ([[User talk:$3|diskusija]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Pēdējās izmaiņas saglabāja [[User:$3|$3]] ([[User talk:$3|diskusija]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Attiecīgās izmaiņas kopsavilkums bija: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Novērsu izmaiņas, ko izdarīja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]), atjaunoju versiju, ko saglabāja [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Tika novērstas $1 izdarītās izmaiņas;

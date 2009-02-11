@@ -1143,7 +1143,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'userrights-lookup-user'      => 'Immaniġġja l-gruppi tal-utenti',
 'userrights-user-editname'    => 'Daħħal isem l-utent:',
 'editusergroup'               => "Modifika l-gruppijiet ta' l-utenti",
-'editinguser'                 => "Modifika tad-drittijiet tal-utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Modifika tad-drittijiet tal-utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => "Modifika tal-gruppijiet ta' l-utenti",
 'saveusergroups'              => 'Modifika Gruppijiet tal-Utenti',
 'userrights-groupsmember'     => "Membru ta':",

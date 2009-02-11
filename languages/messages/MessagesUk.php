@@ -958,6 +958,8 @@ $3 зазначив таку причину: ''$2''",
 Ви можете переглянути її, так як є адміністратором сайту.
 Можливо є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} протоколі вилучень].
 </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Ви не можете переглянути цю різницю версій, оскільки одна з версій була вилучена із загальнодоступного архіву.
+Можливо, деталі можна знайти в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].</div>',
 'rev-delundel'                   => 'показати/сховати',
 'revisiondelete'                 => 'Вилучити / відновити версії сторінки',
 'revdelete-nooldid-title'        => 'Не вказана цільова версія',
@@ -1104,7 +1106,7 @@ $3 зазначив таку причину: ''$2''",
 'searchresults'                    => 'Результати пошуку',
 'searchresults-title'              => 'Результати пошуку для «$1»',
 'searchresulttext'                 => 'Для отримання детальнішої інформації про пошук у проекті, див. [[{{ns:project}}:Пошук]].',
-'searchsubtitle'                   => 'Ви шукали «[[:$1]]» ([[Special:Prefixindex/$1|усі сторінки, що починаються на «$1»]] | [[Special:WhatLinksHere/$1|усі сторінки, що мають посилання на «$1»]])',
+'searchsubtitle'                   => 'Ви шукали «[[:$1]]» ([[Special:Prefixindex/$1|усі сторінки, що починаються на «$1»]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|усі сторінки, що мають посилання на «$1»]])',
 'searchsubtitleinvalid'            => 'На запит «$1»',
 'noexactmatch'                     => "'''Сторінка з назвою «$1» не існує.'''
 Ви можете [[:$1|створити сторінку]].",
@@ -1202,7 +1204,7 @@ $3 зазначив таку причину: ''$2''",
 'prefs-resetpass'           => 'Змінити пароль',
 'saveprefs'                 => 'Зберегти',
 'resetprefs'                => 'Скасувати незбережені зміни',
-'restoreprefs'              => 'Відновити усі звичаєві налаштування',
+'restoreprefs'              => 'Відновити всі стандартні налаштування',
 'textboxsize'               => 'Розміри поля вводу',
 'prefs-edit-boxsize'        => 'Розмір вікна редагування.',
 'rows'                      => 'Рядків:',
@@ -1226,6 +1228,15 @@ $3 зазначив таку причину: ''$2''",
 'servertime'                => 'Час сервера:',
 'guesstimezone'             => 'Заповнити з браузера',
 'timezoneregion-africa'     => 'Африка',
+'timezoneregion-america'    => 'Америка',
+'timezoneregion-antarctica' => 'Антарктика',
+'timezoneregion-arctic'     => 'Арктика',
+'timezoneregion-asia'       => 'Азія',
+'timezoneregion-atlantic'   => 'Атлантичний океан',
+'timezoneregion-australia'  => 'Австралія',
+'timezoneregion-europe'     => 'Європа',
+'timezoneregion-indian'     => 'Індійський океан',
+'timezoneregion-pacific'    => 'Тихий океан',
 'allowemail'                => 'Дозволити електронну пошту від інших користувачів',
 'prefs-searchoptions'       => 'Параметри пошуку',
 'prefs-namespaces'          => 'Простори назв',
@@ -1240,7 +1251,7 @@ $3 зазначив таку причину: ''$2''",
 'userrights-lookup-user'      => 'Управління групами користувача',
 'userrights-user-editname'    => "Введіть ім'я користувача:",
 'editusergroup'               => 'Редагувати групи користувача',
-'editinguser'                 => "Зміна прав користувача '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Зміна прав користувача '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Змінити групи користувача',
 'saveusergroups'              => 'Зберегти групи користувача',
 'userrights-groupsmember'     => 'Член груп:',
@@ -1969,9 +1980,9 @@ $NEWPAGE
 'rollbacklink'     => 'відкинути',
 'rollbackfailed'   => 'Відкинути зміни не вдалося',
 'cantrollback'     => 'Неможливо відкинути редагування, останній, хто редагував, є єдиним автором цієї сторінки.',
-'alreadyrolled'    => 'Неможливо відкинути останні редагування [[:$1]], зроблені [[User:$2|$2]] ([[User talk:$2|обговорення]] | [[Special:Contributions/$2|{{int:contribslink}}]]); хтось інший уже змінив чи відкинув редагування цієї статті.
+'alreadyrolled'    => 'Неможливо відкинути останні редагування [[:$1]], зроблені [[User:$2|$2]] ([[User talk:$2|обговорення]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); хтось інший уже змінив чи відкинув редагування цієї статті.
 
-Останні редагування зробив [[User:$3|$3]] ([[User talk:$3|обговорення]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Останні редагування зробив [[User:$3|$3]] ([[User talk:$3|обговорення]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Пояснення редагування було: «''$1''».", # only shown if there is an edit comment
 'revertpage'       => 'Редагування користувача [[Special:Contributions/$2|$2]] ([[User talk:$2|обговорення]]) відкинуті до версії користувача [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Відкинуті редагування користувача $1; повернення до версії користувача $2.',
@@ -2553,9 +2564,9 @@ The wiki server can't provide data in a format your client can read.",
 # Patrol log
 'patrol-log-page'      => 'Журнал патрулювання',
 'patrol-log-header'    => 'Це журнал перевірених змін.',
-'patrol-log-line'      => 'перевірена $1 з $2 $3',
+'patrol-log-line'      => 'перевірив $1 сторінки $2 $3',
 'patrol-log-auto'      => '(автоматично)',
-'patrol-log-diff'      => 'версія $1',
+'patrol-log-diff'      => 'версію $1',
 'log-show-hide-patrol' => '$1 журнал патрулювання',
 
 # Image deletion
@@ -3115,5 +3126,9 @@ $1
 'tags-hitcount-header'    => 'Помічені редагування',
 'tags-edit'               => 'редагувати',
 'tags-hitcount'           => '$1 {{PLURAL:$1|зміна|зміни|змін}}',
+
+# Database error messages
+'dberr-header'   => 'Ця вікі має проблеми',
+'dberr-problems' => 'Вибачте! На цьому сайті виникли технічні труднощі.',
 
 );

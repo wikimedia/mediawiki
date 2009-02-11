@@ -1152,7 +1152,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'searchresults'                    => 'A keresés eredménye',
 'searchresults-title'              => 'Keresési eredmények: „$1”',
 'searchresulttext'                 => 'A keresésről a [[{{MediaWiki:Helppage}}|{{int:help}}]] lapon találhatsz további információkat.',
-'searchsubtitle'                   => 'A keresett kifejezés: „[[:$1]]” ([[Special:Prefixindex/$1|minden, „$1” előtaggal kezdődő lap]] | [[Special:WhatLinksHere/$1|a(z) „$1” lapra hivatkozó lapok]])',
+'searchsubtitle'                   => 'A keresett kifejezés: „[[:$1]]” ([[Special:Prefixindex/$1|minden, „$1” előtaggal kezdődő lap]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|a(z) „$1” lapra hivatkozó lapok]])',
 'searchsubtitleinvalid'            => "A keresett kulcsszó: „'''$1'''”",
 'noexactmatch'                     => "Nincs '''$1''' nevű lap. Készíthetsz egy [[:$1|új oldalt]] ezen a néven.",
 'noexactmatch-nocreate'            => "'''Nem található „$1” nevű lap.'''",
@@ -1287,7 +1287,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'userrights-lookup-user'      => 'Szerkesztőcsoportok beállítása',
 'userrights-user-editname'    => 'Add meg a szerkesztő nevét:',
 'editusergroup'               => 'Szerkesztőcsoportok módosítása',
-'editinguser'                 => "'''[[User:$1|$1]]''' jogainak megváltoztatása ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "'''[[User:$1|$1]]''' jogainak megváltoztatása ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Szerkesztőcsoportok módosítása',
 'saveusergroups'              => 'Szerkesztőcsoportok mentése',
 'userrights-groupsmember'     => 'Csoporttag:',
@@ -2008,10 +2008,10 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'rollbacklink'     => 'visszaállítás',
 'rollbackfailed'   => 'A visszaállítás nem sikerült',
 'cantrollback'     => 'Nem lehet visszaállítani: az utolsó szerkesztést végző felhasználó az egyetlen, aki a lapot szerkesztette.',
-'alreadyrolled'    => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|vita]] | [[Special:Contributions/$2|{{int:contribslink}}]]) általi szerkesztését nem lehet visszavonni:
+'alreadyrolled'    => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|vita]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) általi szerkesztését nem lehet visszavonni:
 időközben valaki már visszavonta, vagy szerkesztette a lapot.
 
-Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]] | [[Special:Contributions/$3|{{int:contribslink}}]]) végezte.',
+Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) végezte.',
 'editcomment'      => "A szerkesztési összefoglaló „''$1''” volt.", # only shown if there is an edit comment
 'revertpage'       => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]]  ([[User talk:$2|vita]]) szerkesztéséről [[User:$1|$1]] szerkesztésére', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',

@@ -1148,7 +1148,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'userrights-lookup-user'      => 'Käyttöoikeuksien hallinta',
 'userrights-user-editname'    => 'Käyttäjätunnus',
 'editusergroup'               => 'Muokkaa käyttäjän ryhmiä',
-'editinguser'                 => "Käyttäjän '''[[User:$1|$1]]''' oikeudet ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Käyttäjän '''[[User:$1|$1]]''' oikeudet ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Käyttäjän ryhmät',
 'saveusergroups'              => 'Tallenna',
 'userrights-groupsmember'     => 'Käyttäjä on jäsenenä ryhmissä',
@@ -1836,9 +1836,9 @@ Sivulla $2 on lista viimeaikaisista poistoista.',
 'rollbacklink'     => 'palauta',
 'rollbackfailed'   => 'Palautus epäonnistui',
 'cantrollback'     => 'Aiempaan versioon ei voi palauttaa, koska viimeisin kirjoittaja on sivun ainoa tekijä.',
-'alreadyrolled'    => 'Käyttäjän [[User:$2|$2]] ([[User talk:$2|keskustelu]] | [[Special:Contributions/$2|{{int:contribslink}}]]) tekemiä muutoksia sivuun [[:$1]] ei voi kumota, koska joku muu on muuttanut sivua.
+'alreadyrolled'    => 'Käyttäjän [[User:$2|$2]] ([[User talk:$2|keskustelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tekemiä muutoksia sivuun [[:$1]] ei voi kumota, koska joku muu on muuttanut sivua.
 
-Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|keskustelu]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|keskustelu]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Muokkauksen yhteenveto oli: ''$1''.", # only shown if there is an edit comment
 'revertpage'       => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja artikkeli palautettiin käyttäjän $2 versioon.',

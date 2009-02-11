@@ -990,7 +990,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'searchresults'                    => 'Rezultatele căutării',
 'searchresults-title'              => 'Caută rezultate pentru "$1"',
 'searchresulttext'                 => 'Pentru mai multe detalii despre căutarea în {{SITENAME}}, vezi [[Project:Căutare]].',
-'searchsubtitle'                   => 'Ai căutat \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toate paginile care încep cu "$1"]] | [[Special:WhatLinksHere/$1|toate paginile care se leagă de "$1"]])',
+'searchsubtitle'                   => 'Ai căutat \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toate paginile care încep cu "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toate paginile care se leagă de "$1"]])',
 'searchsubtitleinvalid'            => 'Pentru căutarea "$1"',
 'noexactmatch'                     => "'''Pagina cu titlul \"\$1\" nu există.''' Poţi [[:\$1|crea această pagină]].",
 'noexactmatch-nocreate'            => "'''Nu există nici o pagină cu titlul \"\$1\".'''",
@@ -1123,7 +1123,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'userrights-lookup-user'      => 'Administrare grupuri de utilizatori',
 'userrights-user-editname'    => 'Introdu un nume de utilizator:',
 'editusergroup'               => 'Modificare grup de utilizatori',
-'editinguser'                 => "modificare permisiuni de utilizator ale utilizatorului '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "modificare permisiuni de utilizator ale utilizatorului '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Modifică grupul de utilizatori',
 'saveusergroups'              => 'Salvează grupul de utilizatori',
 'userrights-groupsmember'     => 'Membru al:',
@@ -1831,9 +1831,9 @@ continuă cu atenţie.',
 'rollbacklink'     => 'revenire',
 'rollbackfailed'   => 'Revenirea nu s-a putut face',
 'cantrollback'     => 'Nu se poate reveni; ultimul contribuitor este autorul acestui articol.',
-'alreadyrolled'    => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuţie]] | [[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.
+'alreadyrolled'    => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuţie]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.
 
-Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţie]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţie]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Comentariul de modificare a fost: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]) şi revenire la ultima versiune de către [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Anularea modificărilor făcute de $1;

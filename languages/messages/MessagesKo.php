@@ -1081,7 +1081,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchresults'                    => '검색 결과',
 'searchresults-title'              => '"$1"에 대한 검색 결과',
 'searchresulttext'                 => '{{SITENAME}}의 찾기 기능에 대한 자세한 정보는 [[{{MediaWiki:Helppage}}|{{int:help}}]] 문서를 참고해주세요.',
-'searchsubtitle'                   => "'''[[:$1]]''' 문서를 검색하고 있습니다. ([[Special:Prefixindex/$1|이름이 ‘$1’(으)로 시작하는 문서 목록]] | [[Special:WhatLinksHere/$1|‘$1’ 문서를 가리키는 문서 목록]])",
+'searchsubtitle'                   => "'''[[:$1]]''' 문서를 검색하고 있습니다. ([[Special:Prefixindex/$1|이름이 ‘$1’(으)로 시작하는 문서 목록]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|‘$1’ 문서를 가리키는 문서 목록]])",
 'searchsubtitleinvalid'            => "검색 단어 '''$1'''",
 'noexactmatch'                     => "'''$1 문서가 없습니다.''' 문서를 [[:$1|만들 수]] 있습니다.",
 'noexactmatch-nocreate'            => "'''\"\$1\" 문서가 존재하지 않습니다.'''",
@@ -1199,6 +1199,16 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'timezoneoffset'            => '시차¹:',
 'servertime'                => '서버 시각:',
 'guesstimezone'             => '웹 브라우저 설정에서 가져오기',
+'timezoneregion-africa'     => '아프리카',
+'timezoneregion-america'    => '아메리카',
+'timezoneregion-antarctica' => '남극',
+'timezoneregion-arctic'     => '북극',
+'timezoneregion-asia'       => '아시아',
+'timezoneregion-atlantic'   => '대서양',
+'timezoneregion-australia'  => '오스트레일리아',
+'timezoneregion-europe'     => '유럽',
+'timezoneregion-indian'     => '인도양',
+'timezoneregion-pacific'    => '태평양',
 'allowemail'                => '다른 사용자로부터의 이메일 허용',
 'prefs-searchoptions'       => '검색 설정',
 'prefs-namespaces'          => '이름공간',
@@ -1213,7 +1223,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'userrights-lookup-user'      => '사용자 권한 관리',
 'userrights-user-editname'    => '계정 이름:',
 'editusergroup'               => '사용자 그룹 편집',
-'editinguser'                 => "'''[[User:$1|$1]]'''([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 사용자의 권한 변경",
+'editinguser'                 => "'''[[User:$1|$1]]'''([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) 사용자의 권한 변경",
 'userrights-editusergroup'    => '사용자 그룹 편집',
 'saveusergroups'              => '사용자 권한 저장',
 'userrights-groupsmember'     => '현재 권한:',
@@ -1688,7 +1698,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'mostcategories'          => '가장 많이 분류된 문서 목록',
 'mostimages'              => '가장 많이 사용된 파일 목록',
 'mostrevisions'           => '가장 많이 편집된 문서 목록',
-'prefixindex'             => '접두어 목록',
+'prefixindex'             => '접두어에 따른 문서 목록',
 'shortpages'              => '짧은 문서 목록',
 'longpages'               => '긴 문서 목록',
 'deadendpages'            => '막다른 문서 목록',
@@ -1932,9 +1942,9 @@ $NEWPAGE
 'rollbacklink'     => '되돌리기',
 'rollbackfailed'   => '되돌리기 실패',
 'cantrollback'     => '편집을 되돌릴 수 없습니다. 문서를 편집한 사용자가 한명뿐입니다.',
-'alreadyrolled'    => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]] | [[Special:Contributions/$2|{{int:contribslink}}]]) 의 편집을 되돌릴 수 없습니다; 누군가가 문서를 고치거나 되돌렸습니다.
+'alreadyrolled'    => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) 의 편집을 되돌릴 수 없습니다; 누군가가 문서를 고치거나 되돌렸습니다.
 
-마지막으로 문서를 편집한 사람은 [[User:$3|$3]] ([[User talk:$3|토론]] | [[Special:Contributions/$3|{{int:contribslink}}]]) 입니다.',
+마지막으로 문서를 편집한 사람은 [[User:$3|$3]] ([[User talk:$3|토론]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) 입니다.',
 'editcomment'      => "편집 요약: ''$1''", # only shown if there is an edit comment
 'revertpage'       => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
@@ -2285,6 +2295,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'export-addcat'     => '추가',
 'export-download'   => '파일로 저장',
 'export-templates'  => '틀 포함하기',
+'export-pagelinks'  => '다음 단계로 링크된 문서를 포함:',
 
 # Namespace 8 related
 'allmessages'               => '시스템 메시지 목록',
@@ -2303,6 +2314,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'djvu_page_error'          => 'DjVu 페이지 범위 벗어남',
 'djvu_no_xml'              => 'DjVu 파일의 XML 정보를 읽을 수 없음',
 'thumbnail_invalid_params' => '섬네일 매개변수가 잘못되었습니다.',
+'thumbnail_dest_directory' => '새 목적 디렉토리를 생성할 수 없습니다.',
 
 # Special:Import
 'import'                     => '문서 가져오기',

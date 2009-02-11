@@ -1139,7 +1139,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'userrights-lookup-user'      => 'Gestione dei gruppi utente',
 'userrights-user-editname'    => 'Inserire il nome utente:',
 'editusergroup'               => 'Modifica gruppi utente',
-'editinguser'                 => "Modifica dei diritti assegnati all'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Modifica dei diritti assegnati all'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Modifica gruppi utente',
 'saveusergroups'              => 'Salva gruppi utente',
 'userrights-groupsmember'     => 'Appartiene ai gruppi:',

@@ -960,7 +960,7 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 'userrights-lookup-user'      => 'Zařůndzej prowami užytkownika',
 'userrights-user-editname'    => 'Wklepej sam nazwa užytkowńika:',
 'editusergroup'               => 'Sprowjej grupy užytkowńika',
-'editinguser'                 => "Zmjana uprawńyń užytkowńika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Zmjana uprawńyń užytkowńika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Sprowjej grupy užytkowńika',
 'saveusergroups'              => 'Zapisz',
 'userrights-groupsmember'     => 'Noležy do:',
@@ -1648,10 +1648,10 @@ Dej pozůr, bo jei wyćepańe może spowodować zakłůcyńo w pracy {{GRAMMAR:D
 'rollbacklink'     => 'cofej',
 'rollbackfailed'   => 'Ńy idźe wycofać sprowjyńo',
 'cantrollback'     => 'Ńy idże cofnůńć pomjyńeńo, sam je ino jedna wersyja tyi zajty.',
-'alreadyrolled'    => 'Ńy idźe lů zajty [[:$1|$1]] cofnůńć uostatńygo pomjyńeńa, kere wykonoł [[User:$2|$2]] ([[User talk:$2|godka]]) | [[Special:Contributions/$2|{{int:contribslink}}]]).
+'alreadyrolled'    => 'Ńy idźe lů zajty [[:$1|$1]] cofnůńć uostatńygo pomjyńeńa, kere wykonoł [[User:$2|$2]] ([[User talk:$2|godka]]){{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).
 Kto inkszy zdůnżůł już to zrobić abo wprowadźił własne poprowki do treśći zajty.
 
-Autorym ostatńygo pomjyńyńo je terozki [[User:$3|$3]] ([[User talk:$3|godka]]) | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Autorym ostatńygo pomjyńyńo je terozki [[User:$3|$3]] ([[User talk:$3|godka]]){{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Sprowjyńe uopisano: „''$1''”.", # only shown if there is an edit comment
 'revertpage'       => 'Wycofano sprowjyńe użytkowńika [[Special:Contributions/$2|$2]] ([[User talk:$2|godka]]).
 Autor prziwrůcůnej wersyji to [[User:$1|$1]].', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from

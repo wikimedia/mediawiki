@@ -303,7 +303,7 @@ $messages = array(
 'newpage'           => 'Yeni sayfa',
 'talkpage'          => 'Sayfayı tartış',
 'talkpagelinktext'  => 'Mesaj',
-'specialpage'       => 'Özel Sayfa',
+'specialpage'       => 'Özel sayfa',
 'personaltools'     => 'Kişisel aletler',
 'postcomment'       => 'Yeni bölüm',
 'articlepage'       => 'Maddeye git',
@@ -793,7 +793,7 @@ Bu değişkenler atlandı.',
 'undo-summary' => '$1 değişikliği [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tarafından geri alındı.',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Hesap oluşturulamıyor',
+'cantcreateaccounttitle' => 'Hesap açılamıyor',
 'cantcreateaccount-text' => "Bu IP adresinden ('''$1''') kullaınıcı hesabı oluşturulması [[User:$3|$3]] tarafından engellenmiştir.
 
 $3 tarafından verilen sebep ''$2''",
@@ -989,7 +989,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'searchresults'                    => 'Arama sonuçları',
 'searchresults-title'              => '"$1" için arama sonuçları',
 'searchresulttext'                 => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[{{MediaWiki:Helppage}}|{{int:help}}]] sayfasına bakabilirsiniz.',
-'searchsubtitle'                   => '\'\'\'[[:$1]]\'\'\' için aradınız. ([[Special:Prefixindex/$1|"$1" ile başlayan tüm sayfalar]] | [[Special:WhatLinksHere/$1|"$1"\' sayfasına bağlantısı olan tüm sayfalar]])',
+'searchsubtitle'                   => '\'\'\'[[:$1]]\'\'\' için aradınız. ([[Special:Prefixindex/$1|"$1" ile başlayan tüm sayfalar]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1"\' sayfasına bağlantısı olan tüm sayfalar]])',
 'searchsubtitleinvalid'            => 'Aranan: "$1"',
 'noexactmatch'                     => "''Başlığı \"\$1\" olan bir madde bulunamadı.''' Bu sayfayı siz [[:\$1|oluşturabilirsiniz]].",
 'noexactmatch-nocreate'            => "'''\"\$1\" başlıklı sayfa bulunmamaktadır.'''",
@@ -1060,7 +1060,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'qbsettings-fixedright'     => 'Sağa sabitlendi',
 'qbsettings-floatingleft'   => 'Sola yaslanıyor',
 'qbsettings-floatingright'  => 'Sağa yaslanıyor',
-'changepassword'            => 'Şifre değiştir',
+'changepassword'            => 'Parola değiştir',
 'skin'                      => 'Motif',
 'skin-preview'              => 'Ön izleme',
 'math'                      => 'Matematiksel semboller',
@@ -1135,7 +1135,7 @@ ayarlamak için math/README'ye bakın.",
 'userrights-lookup-user'      => 'Kullanıcı gruplarını düzenle',
 'userrights-user-editname'    => 'Kullanıcı adı giriniz:',
 'editusergroup'               => 'Kullanıcı grupları düzenle',
-'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) kullanıcısının yetkilerini değiştirmektesiniz",
+'editinguser'                 => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) kullanıcısının yetkilerini değiştirmektesiniz",
 'userrights-editusergroup'    => 'Kullanıcı grupları düzenle',
 'saveusergroups'              => 'Kullanıcı grupları kaydet',
 'userrights-groupsmember'     => 'İçinde olduğu gruplar:',
@@ -1869,10 +1869,10 @@ dikkatle devam edin.',
 'rollbacklink'     => 'eski haline getir',
 'rollbackfailed'   => 'geri alma işlemi başarısız',
 'cantrollback'     => 'Sayfaya son katkıda bulunan kullanıcı, sayfaya katkıda bulunmuş tek kişi olduğu için, değişiklikler geri alınamıyor.',
-'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Talk]] | [[Special:Contributions/$2|{{int:contribslink}}]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor;
+'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor;
 başka biri sayfada değişiklik yaptı ya da sayfayı geriye aldı.
 
-Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Değişiklik özeti: \"''\$1''\" idi.", # only shown if there is an edit comment
 'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 tarafından yapılan değişiklikler geri alınarak;
@@ -2488,6 +2488,12 @@ $1',
 'ilsubmit'              => 'Ara',
 'bydate'                => 'kronolojik sırayla',
 'sp-newimages-showfrom' => '$1, $2 tarihi itibarı ile yeni resimleri göster',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1, $2×$3',
+'seconds-abbrev' => 'sn',
+'minutes-abbrev' => 'dk.',
+'hours-abbrev'   => 's',
 
 # Bad image list
 'bad_image_list' => 'Format şöyle:

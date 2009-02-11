@@ -1174,7 +1174,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'searchresults'                    => 'Suchergebnisse',
 'searchresults-title'              => 'Suchergebnisse für „$1“',
 'searchresulttext'                 => 'Für mehr Informationen zur Suche siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]].',
-'searchsubtitle'                   => 'Deine Suchanfrage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]] | [[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
+'searchsubtitle'                   => 'Deine Suchanfrage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
 'searchsubtitleinvalid'            => 'Deine Suchanfrage: „$1“.',
 'noexactmatch'                     => "'''Es existiert keine Seite mit dem Titel „$1“.'''
 Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen]].",
@@ -1319,7 +1319,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'userrights-lookup-user'      => 'Verwalte Gruppenzugehörigkeit',
 'userrights-user-editname'    => 'Benutzername:',
 'editusergroup'               => 'Benutzerrechte bearbeiten',
-'editinguser'                 => "Ändere Benutzerrechte von '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Ändere Benutzerrechte von '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
 'saveusergroups'              => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember'     => 'Mitglied von:',
@@ -2045,9 +2045,9 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'rollbacklink'     => 'Zurücksetzen',
 'rollbackfailed'   => 'Zurücksetzen gescheitert',
 'cantrollback'     => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
-'alreadyrolled'    => 'Das Zurücksetzen der Änderungen von [[User:$2|$2]] ([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]]) an [[:$1]] ist gescheitert, da in der Zwischenzeit ein anderer Benutzer die Seite geändert hat.
+'alreadyrolled'    => 'Das Zurücksetzen der Änderungen von [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) an [[:$1]] ist gescheitert, da in der Zwischenzeit ein anderer Benutzer die Seite geändert hat.
 
-Die letzte Änderung stammt von [[User:$3|$3]] ([[User talk:$3|Diskussion]], [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Die letzte Änderung stammt von [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Die Änderungszusammenfassung lautet: ''„$1“''.", # only shown if there is an edit comment
 'revertpage'       => 'Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',

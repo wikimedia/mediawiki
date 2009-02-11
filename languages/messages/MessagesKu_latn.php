@@ -747,7 +747,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'userrights-lookup-user'      => 'Îdarekirina grûpan',
 'userrights-user-editname'    => 'Navî bikarhênerê têke:',
 'editusergroup'               => 'Grûpên bikarhêneran biguherîne',
-'editinguser'                 => "Mafên bikarhêner '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) tên xeyrandin",
+'editinguser'                 => "Mafên bikarhêner '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) tên xeyrandin",
 'userrights-editusergroup'    => 'Grûpên bikarhêneran biguherîne',
 'saveusergroups'              => 'Grûpên bikarhêneran tomarbike',
 'userrights-groupsmember'     => 'Endamê:',
