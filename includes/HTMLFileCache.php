@@ -132,11 +132,11 @@ class HTMLFileCache {
 		$filename = $this->fileCacheName();
 		// Raw pages should handle cache control on their own,
 		// even when using file cache. This reduces hits from clients.
-		if( $this->mType !== 'raw' )
+		if( $this->mType !== 'raw' ) {
 			$wgOut->sendCacheControl();
-
-		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
-		header( "Content-language: $wgContLanguageCode" );
+			header( "Content-Type: $wgMimeType; charset={$wgOutputEncoding}" );
+			header( "Content-Language: $wgContLanguageCode" );
+		}
 
 		if( $this->useGzip() ) {
 			if( wfClientAcceptsGzip() ) {
