@@ -154,7 +154,7 @@ class StubUserLang extends StubObject {
 		}
 
 		# Validate $code
-		if( empty( $code ) || !preg_match( '/^[a-z-]+$/', $code ) ) {
+		if( empty( $code ) || !preg_match( '/^[a-z-]+$/', $code ) || ( $code === 'qqq' ) ) {
 			wfDebug( "Invalid user language code\n" );
 			$code = $wgContLanguageCode;
 		}
