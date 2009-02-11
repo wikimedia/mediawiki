@@ -435,6 +435,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$count = 0;
+		ksort($titles); // Ensure they're always in the same order
 		foreach ( $titles as $pageid => $title ) {
 			$count++;
 			if(!is_null($params['continue']))
@@ -505,7 +506,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				if(!is_null($params['continue']))
 					if($count < $params['continue'])
 						continue;
-				$fit = true;
+				$r = array();
 				if(!is_null($params['token'])) 
 				{
 					$tokenFunctions = $this->getTokenFunctions();
@@ -516,12 +517,10 @@ class ApiQueryInfo extends ApiQueryBase {
 						if($val === false)
 							$this->setWarning("Action '$t' is not allowed for the current user");
 						else
-							$fit = $result->addValue(
-								array('query', 'pages', $pageid),
-								$t . 'token', $val);
+							$r[$t . 'token'] = $val;
 					}
 				}
-				if($fld_protection && $fit)
+				if($fld_protection)
 				{
 					// Apparently the XML formatting code doesn't like array(null)
 					// This is painful to fix, so we'll just work around it
@@ -530,26 +529,21 @@ class ApiQueryInfo extends ApiQueryBase {
 					else
 						$val = array();
 					$result->setIndexedTagName($val, 'pr');
-					$fit = $result->addValue(
-							array('query', 'pages', $pageid),
-							'protection', $val);
+					$r['protection'] = $val;
 				}
-				if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDbKey()]) && $fit)
-					$fit = $result->addValue(array('query', 'pages', $pageid), 'talkid',
-						$talkids[$title->getNamespace()][$title->getDbKey()]);
-				if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDbKey()]) && $fit)
-					$fit = $result->addValue(array('query', 'pages', $pageid), 'subjectid',
-						$subjectids[$title->getNamespace()][$title->getDbKey()]);
-				if($fld_url && $fit) {
-					$fit = $result->addValue(array('query', 'pages', $pageid), 'fullurl',
-						$title->getFullURL());
-					if($fit)
-						$fit = $result->addValue(array('query', 'pages', $pageid), 'editurl',
-							$title->getFullURL('action=edit'));
+				if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDbKey()]))
+					$r['talkid'] = $talkids[$title->getNamespace()][$title->getDbKey()];
+				if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDbKey()]))
+					$r['subjectid'] = $subjectids[$title->getNamespace()][$title->getDbKey()];
+				if($fld_url)
+				{
+					$r['fullurl'] = $title->getFullURL();
+					$r['editurl'] = $title->getFullURL('action=edit');
 				}
-				if($fld_readable && $fit)
+				if($fld_readable)
 					if($title->userCanRead())
-						$fit = $result->addValue(array('query', 'pages', $pageid), 'readable', '');
+						$r['readable'] = '';
+				$fit = $result->addValue(array('query', 'pages'), $pageid, $r);
 				if(!$fit)
 				{
 					$this->setContinueEnumParameter('continue', $count);
