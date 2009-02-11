@@ -189,6 +189,13 @@ class DatabasePostgres extends Database {
 		return $this->mConn;
 	}
 
+	function makeConnectionString( $vars ) {
+		$s = '';
+		foreach ( $vars as $name => $value ) {
+			$s .= "$name='" . str_replace( "'", "\\'", $value ) . "' ";
+		}
+		return $s;
+	}
 
 	function initial_setup($password, $dbName) {
 		// If this is the initial connection, setup the schema stuff and possibly create the user
