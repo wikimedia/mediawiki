@@ -1253,7 +1253,7 @@ The reason given by $3 is ''$2''",
 'revisionasof'           => 'Revision as of $1',
 'revision-info'          => 'Revision as of $1 by $2', # Additionally available: $3: revision id
 'revision-info-current'  => '-', # Available parameters: $1: timestamp; $2: userlinks; $3: revision id; do not translate or duplicate this message to other languages
-'revision-nav'           => '($1) $2 | $3 ($4) | $5 ($6)', # do not translate or duplicate this message to other languages
+'revision-nav'           => '($1) $2{{int:pipe-separator}}$3 ($4){{int:pipe-separator}}$5 ($6)', # do not translate or duplicate this message to other languages
 'previousrevision'       => '← Older revision',
 'nextrevision'           => 'Newer revision →',
 'currentrevisionlink'    => 'Current revision',
@@ -1441,7 +1441,7 @@ Note that using the navigation links will reset this column.',
 'searchresults'                    => 'Search results',
 'searchresults-title'              => 'Search results for "$1"',
 'searchresulttext'                 => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'You searched for \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]] | [[Special:WhatLinksHere/$1|all pages that link to "$1"]])',
+'searchsubtitle'                   => 'You searched for \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|all pages that link to "$1"]])',
 'searchsubtitleinvalid'            => "You searched for '''$1'''",
 'noexactmatch'                     => "'''There is no page titled \"\$1\".'''
 You can [[:\$1|create this page]].",
@@ -1611,7 +1611,7 @@ please see math/README to configure.',
 'userrights-lookup-user'         => 'Manage user groups',
 'userrights-user-editname'       => 'Enter a username:',
 'editusergroup'                  => 'Edit user groups',
-'editinguser'                    => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                    => "Changing user rights of user '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'       => 'Edit user groups',
 'saveusergroups'                 => 'Save user groups',
 'userrights-groupsmember'        => 'Member of:',
@@ -2411,10 +2411,10 @@ proceed with caution.',
 'rollbackfailed'   => 'Rollback failed',
 'cantrollback'     => 'Cannot revert edit;
 last contributor is only author of this page.',
-'alreadyrolled'    => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'    => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 someone else has edited or rolled back the page already.
 
-The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "The edit summary was: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last version by [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Reverted edits by $1;
