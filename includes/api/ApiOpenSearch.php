@@ -42,10 +42,14 @@ class ApiOpenSearch extends ApiBase {
 	}
 
 	public function execute() {
+		global $wgEnableMWSuggest;
 		$params = $this->extractRequestParams();
 		$search = $params['search'];
 		$limit = $params['limit'];
 		$namespaces = $params['namespace'];
+		$suggest = $params['suggest'];
+		# $wgEnableMWSuggest hit incoming when $wgEnableMWSuggest is disabled
+		if( $suggest && !$wgEnableMWSuggest ) return;
 		
 		// Open search results may be stored for a very long time
 		$this->getMain()->setCacheMaxAge(1200);
@@ -61,7 +65,7 @@ class ApiOpenSearch extends ApiBase {
 	public function getAllowedParams() {
 		return array (
 			'search' => null,
-			'limit' => array (
+			'limit' => array(
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
 				ApiBase :: PARAM_MIN => 1,
@@ -72,6 +76,9 @@ class ApiOpenSearch extends ApiBase {
 				ApiBase :: PARAM_DFLT => NS_MAIN,
 				ApiBase :: PARAM_TYPE => 'namespace',
 				ApiBase :: PARAM_ISMULTI => true
+			),
+			'suggest' => array(
+				ApiBase :: PARAM_TYPE => 'integer'
 			),
 		);
 	}
