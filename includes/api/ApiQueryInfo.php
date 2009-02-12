@@ -435,6 +435,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$count = 0;
+		$fit = true;
 		ksort($titles); // Ensure they're always in the same order
 		foreach ( $titles as $pageid => $title ) {
 			$count++;
@@ -498,8 +499,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// Get properties for missing titles if requested
-		if(!is_null($params['token']) || $fld_protection || $fld_talkid || $fld_subjectid ||
-		  					$fld_url || $fld_readable)
+		if($fit && (!is_null($params['token']) || $fld_protection ||
+				$fld_talkid || $fld_subjectid || $fld_url ||
+				$fld_readable))
 		{
 			foreach($missing as $pageid => $title) {
 				$count++;
