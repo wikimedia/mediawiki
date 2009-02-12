@@ -162,7 +162,11 @@ def DictToSortedList2( src_table ):
 def Converter( string, conv_table ):
     i = 0
     while i < len(string):
-        for j in range(len(string) - 1, 0, -1):
+        if i == 0:
+            x = 1
+        else:
+            x = i
+        for j in range(len(string) - x, 0, -1):
             f = string[i:][:j]
             t = conv_table.get( f )
             if t:
