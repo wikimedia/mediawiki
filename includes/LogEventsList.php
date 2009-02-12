@@ -85,7 +85,7 @@ class LogEventsList {
 			$this->getUserInput( $user ) . "\n" .
 			$this->getTitleInput( $page ) . "\n" .
 			( !$wgMiserMode ? ($this->getTitlePattern( $pattern )."\n") : "" ) .
-			"<p>" . $this->getDateMenu( $year, $month ) . "\n" .
+			"<p>" . Xml::dateMenu( $year, $month ) . "\n" .
 			( $tagSelector ? Xml::tags( 'p', null, implode( '&nbsp;', $tagSelector ) ) :'' ). "\n" .
 			( $filter ? "</p><p>".$this->getFilterLinks( $type, $filter )."\n" : "" ) . "\n" .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "</p>\n" .
@@ -178,15 +178,6 @@ class LogEventsList {
 	 */
 	private function getTitleInput( $title ) {
 		return Xml::inputLabel( wfMsg( 'speciallogtitlelabel' ), 'page', 'page', 20, $title );
-	}
-
-	/**
-	 * @param $year Integer
-	 * @param $month Integer
-	 * @return string Formatted HTML
-	 */
-	private function getDateMenu( $year, $month ) {
-		return Xml::dateMenu( $year, $month );
 	}
 
 	/**
@@ -504,7 +495,7 @@ class LogPager extends ReverseChronologicalPager {
 
 		$this->mLogEventsList = $list;
 
-		$this->limitType( $type ); // excludes hidden types too
+		$this->limitType( $type ); // also excludes hidden types
 		$this->limitUser( $user );
 		$this->limitTitle( $title, $pattern );
 		$this->getDateCond( $year, $month );
