@@ -96,6 +96,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Localize time zone regions in Special:Preferences
 * Add NUMBEROFACTIVEUSERS magic word, which is like NUMBEROFUSERS, but uses
   the active users data from site_stats.
+* (bug 13040) Gender-aware user namespace aliases
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
