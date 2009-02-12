@@ -77,9 +77,7 @@ class ApiOpenSearch extends ApiBase {
 				ApiBase :: PARAM_TYPE => 'namespace',
 				ApiBase :: PARAM_ISMULTI => true
 			),
-			'suggest' => array(
-				ApiBase :: PARAM_TYPE => 'integer'
-			),
+			'suggest' => false,
 		);
 	}
 
@@ -88,6 +86,7 @@ class ApiOpenSearch extends ApiBase {
 			'search' => 'Search string',
 			'limit' => 'Maximum amount of results to return',
 			'namespace' => 'Namespaces to search',
+			'suggest' => 'Do nothing if $wgEnableMWSuggest is false',
 		);
 	}
 
