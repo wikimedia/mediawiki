@@ -17,6 +17,7 @@
  * @author Remember the dot
  * @author Sir48
  * @author Slomox
+ * @author Søren Løvborg
  * @author Svip
  * @author Urhixidur
  */
@@ -107,7 +108,7 @@ $specialPageAliases = array(
 	'Ipblocklist'               => array( 'Blokerede adresser' ),
 	'Specialpages'              => array( 'Specialsider' ),
 	'Contributions'             => array( 'Bidrag' ),
-	'Emailuser'                 => array( 'E-Mail' ),
+	'Emailuser'                 => array( 'E-mail' ),
 	'Confirmemail'              => array( 'Bekræft e-mail' ),
 	'Whatlinkshere'             => array( 'Hvad linker hertil' ),
 	'Recentchangeslinked'       => array( 'Relaterede ændringer' ),
@@ -172,7 +173,7 @@ $messages = array(
 'tog-showtoolbar'             => 'Vis værktøjslinje til redigering (JavaScript)',
 'tog-editondblclick'          => 'Redigér sider med dobbeltklik (JavaScript)',
 'tog-editsection'             => 'Redigér afsnit ved hjælp af [redigér]-henvisninger',
-'tog-editsectiononrightclick' => 'Redigér afsnit ved at klikke på deres titler (JavaScript)',
+'tog-editsectiononrightclick' => 'Redigér afsnit ved at højreklikke på deres titler (JavaScript)',
 'tog-showtoc'                 => 'Vis indholdsfortegnelse (i artikler med mere end tre afsnit)',
 'tog-rememberpassword'        => 'Husk adgangskode til næste besøg fra denne computer',
 'tog-editwidth'               => 'Redigeringsboksen har fuld bredde',
@@ -530,11 +531,11 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'createaccountmail'          => 'via e-mail',
 'badretype'                  => 'De indtastede adgangskoder er ikke ens.',
 'userexists'                 => 'Det brugernavn du har valgt er allerede i brug. Vælg venligst et andet brugernavn.',
-'youremail'                  => 'Din e-mail-adresse *',
+'youremail'                  => 'Din e-mail-adresse:',
 'username'                   => 'Brugernavn:',
-'uid'                        => 'Bruger-ID:',
+'uid'                        => 'Bruger-id:',
 'prefs-memberingroups'       => 'Medlem af {{PLURAL:$1|gruppen|grupperne}}:',
-'yourrealname'               => 'Dit rigtige navn*',
+'yourrealname'               => 'Dit rigtige navn:',
 'yourlanguage'               => 'Ønsket sprog',
 'yourvariant'                => 'Sprogvariant',
 'yournick'                   => 'Dit kaldenavn (til signaturer)',
@@ -570,18 +571,18 @@ kan du bare ignorere denne mail og fortsætte med at bruge dit gamle password.',
 'noemail'                    => 'Der er ikke oplyst en e-mail-adresse for bruger "$1".',
 'passwordsent'               => 'En ny adgangskode er sendt til e-mail-adressen,
 som er registreret for "$1".
-Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mail\'en.',
+Du bør logge på og ændre din adgangskode straks efter du har modtaget e-mailen.',
 'blocked-mailpassword'       => 'Din IP-adresse er spærret for ændring af sider. For at forhindre misbrug, er det heller ikke muligt, at bestille et nyt password.',
-'eauthentsent'               => 'En bekrftelsesmail er sendt til den angivne E-mail-adresse.
+'eauthentsent'               => 'En bekræftelsesmail er sendt til den angivne e-mail-adresse.
 
-Før en E-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, skal adressen og dens tilhørsforhold til denne bruger bekræftes. Følg venligst anvisningerne i denne mail.',
+Før en e-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, skal adressen og dens tilhørsforhold til denne bruger bekræftes. Følg venligst anvisningerne i denne mail.',
 'throttled-mailpassword'     => 'Indenfor {{PLURAL:$1|den sidste time|de sidste $1 timer}} er der allerede sendt et nyt password. For at forhindre misbrug af funktionen, kan der kun bestilles et nyt password en gang for hver {{PLURAL:$1|time|$1 timer}}.',
 'mailerror'                  => 'Fejl ved afsendelse af e-mail: $1',
 'acct_creation_throttle_hit' => 'Du har allerede oprettet $1 kontoer. Du kan ikke oprette flere.',
 'emailauthenticated'         => 'Din e-mail-adresse blev bekræftet på $1.',
 'emailnotauthenticated'      => 'Din e-mail-adresse er endnu ikke bekræftet og de avancerede e-mail-funktioner er slået fra indtil bekræftelse har fundet sted (d.u.a.). Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at bekræfte, eller bestil et nyt på loginsiden.',
-'noemailprefs'               => 'Angiv en E-mail-adresse, så følgende funktioner er til rådighed.',
-'emailconfirmlink'           => 'Bekræft E-mail-adressen (autentificering).',
+'noemailprefs'               => 'Angiv en e-mail-adresse, så følgende funktioner er til rådighed.',
+'emailconfirmlink'           => 'Bekræft e-mail-adressen (autentificering).',
 'invalidemailaddress'        => 'E-mail-adressen kan ikke accepteres da den tilsyneladende har et ugyldigt format. Skriv venligst en e-mail-adresse med et korrekt format eller tøm feltet.',
 'accountcreated'             => 'Brugerkonto oprettet',
 'accountcreatedtext'         => 'Brugerkontoen $1 er oprettet.',
@@ -680,8 +681,8 @@ Din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
 'blockededitsource'                => "Kildekoden fra '''Dine ændringer''' til '''$1''':",
 'whitelistedittitle'               => 'Log på for at redigere',
 'whitelistedittext'                => 'Du skal $1 for at kunne ændre artikler.',
-'confirmedittitle'                 => 'For at kunne bearbejde er bekræftelsen af E-mail-adressen nødvendig.',
-'confirmedittext'                  => 'Du skal først bekræfte E-mail-adressen, før du kan lave ændringer. Udfyld og bekræft din E-mail-adresse i dine [[Special:Preferences|Indstillinger]].',
+'confirmedittitle'                 => 'For at kunne bearbejde er bekræftelsen af e-mail-adressen nødvendig.',
+'confirmedittext'                  => 'Du skal først bekræfte e-mail-adressen, før du kan lave ændringer. Udfyld og bekræft din e-mail-adresse i dine [[Special:Preferences|Indstillinger]].',
 'nosuchsectiontitle'               => 'Afsnit findes ikke',
 'nosuchsectiontext'                => 'Du forsøgte at ændre det ikke eksisterende afsnit $1. Det er dog kun muligt at ændre eksisterende afsnit.',
 'loginreqtitle'                    => 'Log på nødvendigt',
@@ -802,7 +803,7 @@ Der bør være færre end $2, lige nu er der $1.',
 'cur'                    => 'nuværende',
 'next'                   => 'næste',
 'last'                   => 'forrige',
-'page_first'             => 'Startem',
+'page_first'             => 'Starten',
 'page_last'              => 'Enden',
 'histlegend'             => 'Forklaring: (nuværende) = forskel til den nuværende
 version, (forrige) = forskel til den forrige version, M = mindre ændring',
@@ -969,7 +970,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'math'                     => 'Matematiske formler',
 'dateformat'               => 'Datoformat',
 'datedefault'              => 'Standard',
-'datetime'                 => 'Dato og klokkeslet',
+'datetime'                 => 'Dato og klokkeslæt',
 'math_failure'             => 'Fejl i matematikken',
 'math_unknown_error'       => 'ukendt fejl',
 'math_unknown_function'    => 'ukendt funktion',
@@ -1005,7 +1006,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'servertime'               => 'Serverens tid er nu',
 'guesstimezone'            => 'Hent tidszone fra browseren',
 'timezoneregion-africa'    => 'Afrika',
-'allowemail'               => 'Tillade E-mails fra andre brugere.',
+'allowemail'               => 'Tillade e-mails fra andre brugere.',
 'prefs-searchoptions'      => 'Søgeindstillinger',
 'prefs-namespaces'         => 'Navnerum',
 'defaultns'                => 'Søg som standard i disse navnerum:',
@@ -1451,7 +1452,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Næste side ($1)',
 'prevpage'          => 'Forrige side ($1)',
-'allpagesfrom'      => 'Vis sider startende fra:',
+'allpagesfrom'      => 'Vis sider startende med:',
 'allarticles'       => 'Alle artikler',
 'allinnamespace'    => 'Alle sider (i $1 navnerummet)',
 'allnotinnamespace' => 'Alle sider (ikke i $1 navnerummet)',
@@ -1490,7 +1491,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 # Special:Log/newusers
 'newuserlogpage'           => 'Brugeroprettelseslog',
 'newuserlogpagetext'       => 'Dette er en log over de senest oprettede brugere.',
-'newuserlog-byemail'       => 'kodeord tilsend pr. e-mail',
+'newuserlog-byemail'       => 'kodeord tilsendt pr. e-mail',
 'newuserlog-create-entry'  => 'Ny bruger',
 'newuserlog-create2-entry' => 'oprettede brugerkonto for $1',
 
@@ -1523,7 +1524,7 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'emailsubject'    => 'Emne:',
 'emailmessage'    => 'Besked:',
 'emailsend'       => 'Send',
-'emailccme'       => 'Send en kopi af denne E-mail til mig',
+'emailccme'       => 'Send en kopi af denne e-mail til mig',
 'emailccsubject'  => 'Kopi sendes til $1: $2',
 'emailsent'       => 'E-mail sendt',
 'emailsenttext'   => 'Din e-mail er blevet sendt.',
@@ -2457,30 +2458,30 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 # E-mail address confirmation
 'confirmemail'             => 'Bekræft e-mail-adressen',
-'confirmemail_noemail'     => 'Du har ikke angivet en gyldig E-mail-adresse i din [[Special:Preferences|brugerprofil]].',
-'confirmemail_text'        => '{{SITENAME}} kræver, at du bekræfter en E-mail-adresse (autentificering), før du kan bruge de udvidede E-mail-funktioner. Med et klik på kontrolfeltet forneden sendes en E-mail til dig. Denne E-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at E-mail-adressen er gyldig.',
+'confirmemail_noemail'     => 'Du har ikke angivet en gyldig e-mail-adresse i din [[Special:Preferences|brugerprofil]].',
+'confirmemail_text'        => '{{SITENAME}} kræver, at du bekræfter en e-mail-adresse (autentificering), før du kan bruge de udvidede e-mail-funktioner. Med et klik på kontrolfeltet forneden sendes en e-mail til dig. Denne e-mail indeholder et link med en bekræftelseskode. Med et klik på dette link bekræftes, at e-mail-adressen er gyldig.',
 'confirmemail_pending'     => 'En bekræftelsesmail er allerede sendt til dig. Hvis du først for nylig har oprettet brugerkontoen, vent da et par minutter på denne e-mail, før du bestiller en ny kode.',
 'confirmemail_send'        => 'Send bekræftelseskode',
 'confirmemail_sent'        => 'Bekræftelses-e-amil afsendt.',
-'confirmemail_oncreate'    => 'En bekræftelseskode er sendt til din E-mail-adresse. Denne kode skal ikke bruges til anmeldelsen, den kræves dog til aktiveringen af E-mail-funktionerne indenfor Wikien.',
-'confirmemail_sendfailed'  => 'Bekræftelsesmailen kunne ikke afsendes. Kontroller at E-mail-adressen er korrekt.
+'confirmemail_oncreate'    => 'En bekræftelseskode er sendt til din e-mail-adresse. Denne kode skal ikke bruges til anmeldelsen, den kræves dog til aktiveringen af e-mail-funktionerne indenfor Wikien.',
+'confirmemail_sendfailed'  => 'Bekræftelsesmailen kunne ikke afsendes. Kontroller at e-mail-adressen er korrekt.
 
 Rückmeldung des Mailservers: $1',
 'confirmemail_invalid'     => 'Ugyldig bekræftelseskode. Kodens gyldighed er muligvis udløbet.',
-'confirmemail_needlogin'   => 'Du skal $1 for at bekræfte E-mail-adressen.',
+'confirmemail_needlogin'   => 'Du skal $1 for at bekræfte e-mail-adressen.',
 'confirmemail_success'     => 'E-mail-adressen er nu bekræftet. Du kan nu logge på.',
 'confirmemail_loggedin'    => 'E-mail-adressen er nu bekræftet.',
-'confirmemail_error'       => 'Der skete en fejl ved bekræftelsen af E-mail-adressen.',
-'confirmemail_subject'     => '[{{SITENAME}}] - bekræftelse af E-mail-adressen',
+'confirmemail_error'       => 'Der skete en fejl ved bekræftelsen af e-mail-adressen.',
+'confirmemail_subject'     => '[{{SITENAME}}] - bekræftelse af e-mail-adressen',
 'confirmemail_body'        => 'Hej,
 
-Nogen med IP-adresse $1, sandsynligvis dig, har bestilt en bekræftelse af denne E-mail-adresse til brugerkontoen "$2" på {{SITENAME}}.
+Nogen med IP-adresse $1, sandsynligvis dig, har bestilt en bekræftelse af denne e-mail-adresse til brugerkontoen "$2" på {{SITENAME}}.
 
-For at aktivere E-mail-funktionen for {{SITENAME}} (igen) og for at bekræfte, at denne brugerkonto virkelig hører til din E-mail-adresse og dermed til dig, bedes du åbne det følgende link i din browser: $3
+For at aktivere e-mail-funktionen for {{SITENAME}} (igen) og for at bekræfte, at denne brugerkonto virkelig hører til din e-mail-adresse og dermed til dig, bedes du åbne det følgende link i din browser: $3
 
 Bekræftelseskoden er gyldig indtil følgende tidspunkt: $4
 
-Hvis denne E-mail-adresse *ikke* hører til den anførte brugerkonto, skal du i stedet åbne dette link i din browser: $5
+Hvis denne e-mail-adresse *ikke* hører til den anførte brugerkonto, skal du i stedet åbne dette link i din browser: $5
 
 -- 
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
