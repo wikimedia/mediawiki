@@ -1341,7 +1341,22 @@ class EditPage {
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$summaryhiddens .= Xml::hidden( 'wpAutoSummary', $autosumm );
 		if ( $this->section == 'new' ) {
-			$commentsubject = $wgRequest->getBool( 'nosummary' ) ? '' : "<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}</label></span>\n<input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />{$summaryhiddens}<br />";
+			$commentsubject = '';
+			if ( !$wgRequest->getBool( 'nosummary' ) ) {
+				$commentsubject =
+					Xml::label( $subject, 'wpSummary' );
+				$commentsubject =
+					Xml::tags( 'span', array( 'id' => 'wpSummaryLabel' ), $commentsubject );
+				$commentsubject .= '&nbsp;';
+				$commentsubject .= Xml::input( 'wpSummary',
+									60,
+									$summarytext,
+									array(
+										'id' => 'wpSummary',
+										'maxlength' => '200',
+										'tabindex' => '1'
+									) );
+			}
 			$editsummary = "<div class='editOptions'>\n";
 			global $wgParser;
 			$formattedSummary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $this->summary ) );
@@ -1349,8 +1364,33 @@ class EditPage {
 			$summarypreview = '';
 		} else {
 			$commentsubject = '';
-			$editsummary="<div class='editOptions'>\n<span id='wpSummaryLabel'><label for='wpSummary'>{$summary}</label></span>\n<input tabindex='2' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />{$summaryhiddens}<br />";
-			$summarypreview = $summarytext && $this->preview ? "<div class=\"mw-summary-preview\">". wfMsg('summary-preview') .$sk->commentBlock( $this->summary, $this->mTitle )."</div>\n" : '';
+
+			$editsummary = Xml::label( $summary, 'wpSummary' );
+			$editsummary =
+				Xml::tags( 'span', array( 'id' => 'wpSummaryLabel' ), $editsummary );
+				
+			$editsummary .= Xml::input( 'wpSummary',
+				60,
+				$summarytext,
+				array(
+					'id' => 'wpSummary',
+					'maxlength' => '200',
+					'tabindex' => '1'
+				) );
+			
+			// No idea where this is closed.
+			$editsummary = Xml::openElement( 'div', array( 'class' => 'editOptions' ) )
+							. $editsummary . '<br/>';
+				
+			$summarypreview = '';
+			if ( $summarytext && $this->preview ) {
+				$summarypreview =
+					Xml::tags( 'div',
+						array( 'class' => 'mw-summary-preview' ),
+						wfMsg( 'summary-preview' ) .
+							$sk->commentBlock( $this->summary, $this->mTitle )
+					);
+			}
 			$subjectpreview = '';
 		}
 
@@ -1382,7 +1422,9 @@ class EditPage {
 		$recreate = '';
 		if ( $this->wasDeletedSinceLastEdit() ) {
 			if ( 'save' != $this->formtype ) {
-				$wgOut->wrapWikiMsg( '<div class="error mw-deleted-while-editing">$1</div>', 'deletedwhileediting' );
+				$wgOut->wrapWikiMsg(
+					'<div class="error mw-deleted-while-editing">$1</div>',
+					'deletedwhileediting' );
 			} else {
 				// Hide the toolbar and edit area, user can click preview to get it back
 				// Add an confirmation checkbox and explanation.
