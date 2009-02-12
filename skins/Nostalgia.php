@@ -45,8 +45,7 @@ class SkinNostalgia extends Skin {
 		$cat = $this->getCategoryLinks();
 		if($cat) $s .= "<br />" . $cat;
 
-		$s .= "<br clear='all' /></div><hr />\n</div
->\n";
+		$s .= "<br clear='all' /></div><hr />\n</div>\n";
 		$s .= "\n<div id='article'>";
 
 		return $s;
@@ -60,8 +59,7 @@ class SkinNostalgia extends Skin {
 		  . $this->specialLink( 'recentchanges' );
 
 		if ( $wgOut->isArticle() ) {
-			$s .=  $sep . $this->editThisPage()
-			  . $sep . $this->historyLink();
+			$s .= $sep . '<strong>' . $this->editThisPage() . '</strong>' . $sep . $this->historyLink();
 		}
 
 		/* show links to different language variants */
