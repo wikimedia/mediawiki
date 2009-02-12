@@ -63,7 +63,7 @@ class Language {
 		'defaultUserOptionOverrides', 'linkTrail', 'namespaceAliases',
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
 		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
-		'imageFiles'
+		'imageFiles', 'genderAliases'
 	);
 
 	static public $mMergeableMapKeys = array( 'messages', 'namespaceNames', 'mathNames',
@@ -263,6 +263,18 @@ class Language {
 	function getNsText( $index ) {
 		$ns = $this->getNamespaces();
 		return isset( $ns[$index] ) ? $ns[$index] : false;
+	}
+
+	/**
+	 * Like getNsText, but looks first if there is custom alias for given gender
+	 */
+	function getGenderNsText( $index, $gender ) {
+		$this->load();
+		if ( isset( $this->genderAliases[$index][$gender] ) ) {
+			return $this->genderAliases[$index][$gender];
+		} else {
+			return $this->getNsText( $index );
+		}
 	}
 
 	/**
@@ -2324,7 +2336,7 @@ class Language {
 	 *
 	 * @return array Dependencies, map of filenames to mtimes
 	 */
-	static function loadLocalisation( $code, $disableCache = false ) {
+	static function loadLocalisation( $code, $disableCache = true ) {
 		static $recursionGuard = array();
 		global $wgMemc, $wgEnableSerializedMessages, $wgCheckSerialized;
 
@@ -2591,6 +2603,12 @@ class Language {
 		$this->mNamespaceIds = array();
 		foreach ( $this->namespaceNames as $index => $name ) {
 			$this->mNamespaceIds[$this->lc($name)] = $index;
+		}
+		# Add gender aliases to the normal aliases table automatically
+		foreach ( $this->genderAliases as $index => $aliases ) {
+			foreach ( $aliases as $alias ) {
+				$this->namespaceAliases[$alias] = $index;
+			}
 		}
 		if ( $this->namespaceAliases ) {
 			foreach ( $this->namespaceAliases as $name => $index ) {
