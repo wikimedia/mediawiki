@@ -65,10 +65,11 @@ class LogEventsList {
 	 * @param $pattern String
 	 * @param $year Integer: year
 	 * @param $month Integer: month
-	 * @param $filter Boolean
+	 * @param $filter: array
+	 * @param $tagFilter: array?
 	 */
 	public function showOptions( $type = '', $user = '', $page = '', $pattern = '', $year = '', 
-			$month = '', $filter = null, $tagFilter='' ) 
+		$month = '', $filter = null, $tagFilter='' ) 
 	{
 		global $wgScript, $wgMiserMode;
 		$action = htmlspecialchars( $wgScript );
@@ -98,15 +99,17 @@ class LogEventsList {
 		$messages = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
 		// Option value -> message mapping
 		$links = array();
+		$hiddens = ''; // keep track for "go" button
 		foreach( $filter as $type => $val ) {
 			$hideVal = 1 - intval($val);
 			$link = $this->skin->makeKnownLinkObj( $wgTitle, $messages[$hideVal],
 				wfArrayToCGI( array( "hide_{$type}_log" => $hideVal ), $this->getDefaultQuery() )
 			);
 			$links[$type] = wfMsgHtml( "log-show-hide-{$type}", $link );
+			$hiddens .= Xml::hidden( "hide_{$type}_log", $val ) . "\n";
 		}
 		// Build links
-		return $wgLang->pipeList( $links );
+		return '<small>'.$wgLang->pipeList( $links ) . '</small>' . $hiddens;
 	}
 	
 	private function getDefaultQuery() {
@@ -183,29 +186,7 @@ class LogEventsList {
 	 * @return string Formatted HTML
 	 */
 	private function getDateMenu( $year, $month ) {
-		# Offset overrides year/month selection
-		if( $month && $month !== -1 ) {
-			$encMonth = intval( $month );
-		} else {
-			$encMonth = '';
-		}
-		if ( $year ) {
-			$encYear = intval( $year );
-		} else if( $encMonth ) {
-			$thisMonth = intval( gmdate( 'n' ) );
-			$thisYear = intval( gmdate( 'Y' ) );
-			if( intval($encMonth) > $thisMonth ) {
-				$thisYear--;
-			}
-			$encYear = $thisYear;
-		} else {
-			$encYear = '';
-		}
-		return Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
-			Xml::input( 'year', 4, $encYear, array('id' => 'year', 'maxlength' => 4) ) .
-			' '.
-			Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
-			Xml::monthSelector( $encMonth, -1 );
+		return Xml::dateMenu( $year, $month );
 	}
 
 	/**
@@ -523,7 +504,7 @@ class LogPager extends ReverseChronologicalPager {
 
 		$this->mLogEventsList = $list;
 
-		$this->limitType( $type );
+		$this->limitType( $type ); // excludes hidden types too
 		$this->limitUser( $user );
 		$this->limitTitle( $title, $pattern );
 		$this->getDateCond( $year, $month );
@@ -532,10 +513,6 @@ class LogPager extends ReverseChronologicalPager {
 
 	public function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
-		$query['type'] = $this->type;
-		$query['user'] = $this->user;
-		$query['month'] = $this->mMonth;
-		$query['year'] = $this->mYear;
 		return $query;
 	}
 

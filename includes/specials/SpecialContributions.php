@@ -74,27 +74,12 @@ class SpecialContributions extends SpecialPage {
 
 		$skip = $wgRequest->getText( 'offset' ) || $wgRequest->getText( 'dir' ) == 'prev';
 		# Offset overrides year/month selection
-		if( ( $month = $wgRequest->getIntOrNull( 'month' ) ) !== null && $month !== -1 ) {
-			$this->opts['month'] = intval( $month );
-		} else {
-			$this->opts['month'] = '';
-		}
-		if( ( $year = $wgRequest->getIntOrNull( 'year' ) ) !== null ) {
-			$this->opts['year'] = intval( $year );
-		} else if( $this->opts['month'] ) {
-			$thisMonth = intval( gmdate( 'n' ) );
-			$thisYear = intval( gmdate( 'Y' ) );
-			if( intval( $this->opts['month'] ) > $thisMonth ) {
-				$thisYear--;
-			}
-			$this->opts['year'] = $thisYear;
-		} else {
-			$this->opts['year'] = '';
-		}
-
 		if( $skip ) {
 			$this->opts['year'] = '';
 			$this->opts['month'] = '';
+		} else {
+			$this->opts['year'] = $wgRequest->getIntOrNull( 'year' );
+			$this->opts['month'] = $wgRequest->getIntOrNull( 'month' );
 		}
 		
 		// Add RSS/atom links
@@ -243,7 +228,7 @@ class SpecialContributions extends SpecialPage {
 		}
 	
 		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
-	
+		# Add hidden params for tracking
 		foreach ( $this->opts as $name => $value ) {
 			if( in_array( $name, array( 'namespace', 'target', 'contribs', 'year', 'month' ) ) ) {
 				continue;
@@ -267,14 +252,8 @@ class SpecialContributions extends SpecialPage {
 			( $tagFilter ? Xml::tags( 'p', null, implode( '&nbsp;', $tagFilter ) ) : '' ) .
 			Xml::openElement( 'p' ) .
 			'<span style="white-space: nowrap">' .
-			Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
-			Xml::input( 'year', 4, $this->opts['year'], array('id' => 'year', 'maxlength' => 4) ) .
-			'</span>' .
-			' '.
-			'<span style="white-space: nowrap">' .
-			Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
-			Xml::monthSelector( $this->opts['month'], -1 ) . ' '.
-			'</span>' .
+			Xml::dateMenu( $this->opts['year'], $this->opts['month'] ) .
+			'</span>' . ' ' .
 			Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
 			Xml::closeElement( 'p' );
 	
