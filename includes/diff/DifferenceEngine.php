@@ -191,6 +191,7 @@ CONTROL;
 				);
 				if( $change instanceof RecentChange ) {
 					$rcid = $change->mAttribs['rc_id'];
+					$this->mRcidMarkPatrolled = $rcid;
 				} else {
 					// None found
 					$rcid = 0;
@@ -198,11 +199,8 @@ CONTROL;
 			}
 			// Build the link
 			if( $rcid ) {
-				$patrol = ' <span class="patrollink">[' . $sk->makeKnownLinkObj(
-					$this->mTitle,
-					wfMsgHtml( 'markaspatrolleddiff' ),
-						"action=markpatrolled&rcid={$rcid}"
-					) . ']</span>';
+				$patrol = ' <span class="patrollink">[' . $sk->makeKnownLinkObj( $this->mTitle, 
+					wfMsgHtml( 'markaspatrolleddiff' ), "action=markpatrolled&rcid={$rcid}" ) . ']</span>';
 			} else {
 				$patrol = '';
 			}
@@ -297,7 +295,7 @@ CONTROL;
 	 * Show the new revision of the page.
 	 */
 	function renderNewRevision() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 		wfProfileIn( __METHOD__ );
 
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
@@ -332,8 +330,17 @@ CONTROL;
 			$wgOut->addWikiTextTidy( $this->mNewtext );
 		}
 
-		if( !$this->mNewRev->isCurrent() ) {
+		if( is_object( $this->mNewRev ) && !$this->mNewRev->isCurrent() ) {
 			$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
+		}
+		# Add redundant patrol link on bottom...
+		if( $this->mRcidMarkPatrolled && $this->mTitle->quickUserCan('patrol') ) {
+			$sk = $wgUser->getSkin();
+			$wgOut->addHTML(
+				"<div class='patrollink'>[" . $sk->makeKnownLinkObj( $this->mTitle, 
+					wfMsgHtml( 'markaspatrolleddiff' ), "action=markpatrolled&rcid={$this->mRcidMarkPatrolled}" ) .
+				']</div>'
+			 );
 		}
 
 		wfProfileOut( __METHOD__ );
