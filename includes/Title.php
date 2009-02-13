@@ -571,8 +571,8 @@ class Title {
 		return $this->getNsTextInternal( $this->mNamespace );
 	}
 
-	function getNsTextInternal( $namespace) {
-		global $wgContLang, $wgSlowGenderAliases, $wgTitle, $title;
+	function getNsTextInternal( $namespace ) {
+		global $wgContLang, $wgRequest, $wgTitle, $wgSlowGenderAliases;
 		if( $namespace === NS_USER || $namespace === NS_USER_TALK ) {
 			static $gender = null;
 
@@ -581,13 +581,13 @@ class Title {
 				$gender[$name] = User::getDefaultOption( 'gender' );
 
 				// wgTitle may not be defined
-				$mytitle = isset($wgTitle) ? $wgTitle: Title::newFromText($title);
+				$mytitle = isset( $wgTitle ) ? $wgTitle : Title::newFromText( $wgRequest->getVal( 'title' ) );
 
 				// Check stuff
 				if ( $wgSlowGenderAliases ||
 				     // Needs to be checked always to produce desired
 				     // effect when viewing user pages
-				     ($mytitle && $name === $mytitle->getBaseText()) ) {
+				     ( $mytitle && $name === $mytitle->getBaseText() ) ) {
 
 					$user = User::newFromName( $name );
 					if ( $user ) $gender[$name] = $user->getOption( 'gender' );
