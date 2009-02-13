@@ -162,11 +162,7 @@ def DictToSortedList2( src_table ):
 def Converter( string, conv_table ):
     i = 0
     while i < len(string):
-        if i == 0:
-            x = 1
-        else:
-            x = i
-        for j in range(len(string) - x, 0, -1):
+        for j in range(len(string) - i, 0, -1):
             f = string[i:][:j]
             t = conv_table.get( f )
             if t:
@@ -385,11 +381,11 @@ def main():
     s2t_supp.update( s2t_word2word_manual )
     t2s_supp = t2s_1to1_supp.copy()
     t2s_supp.update( t2s_word2word_manual )
-    t2s_word2word = GetDefaultWordsTable( s_wordlist, s_tomany, s2t_supp, t2s_supp )
+    t2s_word2word = GetDefaultWordsTable( s_wordlist, s_tomany, s2t_1to1_supp, t2s_supp )
     ## toSimp.manual
     t2s_word2word.update( t2s_word2word_manual )
     # s2t_word2word
-    s2t_word2word = GetDefaultWordsTable( t_wordlist, t_tomany, t2s_supp, s2t_supp )
+    s2t_word2word = GetDefaultWordsTable( t_wordlist, t_tomany, t2s_1to1_supp, s2t_supp )
     ## toTrad.manual
     s2t_word2word.update( s2t_word2word_manual )
     
