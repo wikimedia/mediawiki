@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -539,6 +539,7 @@ $1',
 'gender-unknown'             => '未指定',
 'gender-male'                => '男',
 'gender-female'              => '女',
+'prefs-help-gender'          => '可選: 用嚟整軟件性別指定。呢項資料將會被公開。',
 'email'                      => '電郵',
 'prefs-help-realname'        => '真名係可以選填嘅。
 如果你選擇提供佢，佢會用來喺有需要嘅時候標示你嘅作品。',
@@ -826,7 +827,7 @@ $1',
 'page_first'             => '最頭',
 'page_last'              => '最尾',
 'histlegend'             => "選擇唔同版本：響兩個唔同版本嘅圓框分別撳一下，再撳最底的「比較被選版本」掣以作比較。<br />
-說明：'''（現時）'''= 同現時修訂版本嘅差別，'''（之前）'''= 與前一個修訂版本嘅差別，'''m''' = 小修改。",
+說明：'''（{{int:cur}}）'''= 同現時修訂版本嘅差別，'''（{{int:last}}）'''= 與前一個修訂版本嘅差別，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '瀏覽歷史',
 'deletedrev'             => '[刪除咗]',
 'histfirst'              => '最早',
@@ -853,6 +854,8 @@ $1',
 呢頁嘅修訂喺公共檔案庫中已經洗咗。
 作為一個喺{{SITENAME}}嘅管理員，你可以去睇吓佢；
 喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">因為其中一次修訂響公眾歸檔度拎走咗，你唔可以睇呢個差異。
+響[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]度可能有更多嘅資料。</div>',
 'rev-delundel'                   => '顯示／隱藏',
 'revisiondelete'                 => '刪除／反刪除修訂',
 'revdelete-nooldid-title'        => '無效嘅目標修訂',
@@ -1117,6 +1120,16 @@ $1',
 'timezoneoffset'            => '偏移¹:',
 'servertime'                => '伺機器時間:',
 'guesstimezone'             => '由瀏覽器填上',
+'timezoneregion-africa'     => '非洲',
+'timezoneregion-america'    => '美洲',
+'timezoneregion-antarctica' => '南極洲',
+'timezoneregion-arctic'     => '北極',
+'timezoneregion-asia'       => '亞洲',
+'timezoneregion-atlantic'   => '大西洋',
+'timezoneregion-australia'  => '澳洲',
+'timezoneregion-europe'     => '歐洲',
+'timezoneregion-indian'     => '印度洋',
+'timezoneregion-pacific'    => '太平洋',
 'allowemail'                => '由其它用戶啟用電子郵件',
 'prefs-searchoptions'       => '搵嘢選項',
 'prefs-namespaces'          => '空間名',
