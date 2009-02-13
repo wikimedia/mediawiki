@@ -97,6 +97,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add NUMBEROFACTIVEUSERS magic word, which is like NUMBEROFUSERS, but uses
   the active users data from site_stats.
 * (bug 13040) Gender-aware user namespace aliases
+* Add a <link rel="canonical"> tag on redirected page views
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

@@ -836,6 +836,11 @@ class Article {
 					$fragment = Xml::escapeJsString( $this->mTitle->getFragmentForURL() );
 					$wgOut->addInlineScript( "redirectToFragment(\"$fragment\");" );
 				}
+
+				// Add a <link rel="canonical"> tag
+				$wgOut->addLink( array( 'rel' => 'canonical',
+					'href' => $this->mTitle->getFullURL() )
+				);
 				$wasRedirected = true;
 			}
 		} elseif( !empty( $rdfrom ) ) {
