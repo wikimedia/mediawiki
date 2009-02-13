@@ -204,7 +204,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageSet = $this->getPageSet();
 		$this->titles = $pageSet->getGoodTitles();
 		$this->missing = $pageSet->getMissingTitles();
-		$this->everything = array_merge($this->titles, $this->missing);
+		$this->everything = $this->titles + $this->missing;
 		$result = $this->getResult();
 
 		$this->pageRestrictions = $pageSet->getCustomField('page_restrictions');
@@ -283,7 +283,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			if (isset($this->protections[$title->getNamespace()][$title->getDBkey()])) 
 				$pageInfo['protection'] =
 					$this->protections[$title->getNamespace()][$title->getDBkey()];
-			$result->setIndexedTagName($pageInfo['protection'], 'pr');
+			$this->getResult()->setIndexedTagName($pageInfo['protection'], 'pr');
 		}
 		if($this->fld_talkid && isset($this->talkids[$title->getNamespace()][$title->getDBKey()]))
 			$pageInfo['talkid'] = $this->talkids[$title->getNamespace()][$title->getDBKey()];
@@ -308,7 +308,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$db = $this->getDB();
 
 		// Get normal protections for existing titles
-		$this->addTables('page_restrictions', 'page');
+		$this->addTables(array('page_restrictions', 'page'));
 		$this->addWhere('page_id=pr_page');
 		$this->addFields(array('pr_page', 'pr_type', 'pr_level',
 				'pr_expiry', 'pr_cascade', 'page_namespace',
@@ -401,7 +401,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$res = $this->select(__METHOD__);
 			while($row = $db->fetchObject($res)) {
 				$source = Title::makeTitle($row->page_namespace, $row->page_title);
-				$this->protections[$row->pt_namespace][$row->pt_title][] = array(
+				$this->protections[$row->tl_namespace][$row->tl_title][] = array(
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => Block::decodeExpiry($row->pr_expiry, TS_ISO_8601),
