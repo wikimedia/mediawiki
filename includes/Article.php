@@ -2175,7 +2175,7 @@ class Article {
 		// Calculate the maximum amount of chars to get
 		// Max content length = max comment length - length of the comment (excl. $1) - '...'
 		$maxLength = 255 - (strlen( $reason ) - 2) - 3;
-		$contents = $wgContLang->truncate( $contents, $maxLength, '...' );
+		$contents = $wgContLang->truncate( $contents, $maxLength );
 		// Remove possible unfinished links
 		$contents = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $contents );
 		// Now replace the '$1' placeholder
@@ -3482,8 +3482,7 @@ class Article {
 			global $wgContLang;
 			$truncatedtext = $wgContLang->truncate(
 				str_replace("\n", ' ', $newtext),
-				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-new' ) ) ),
-				'...' );
+				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-new' ) ) ) );
 			return wfMsgForContent( 'autosumm-new', $truncatedtext );
 		}
 
@@ -3495,9 +3494,7 @@ class Article {
 			global $wgContLang;
 			$truncatedtext = $wgContLang->truncate(
 				$newtext,
-				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-replace' ) ) ),
-				'...'
-			);
+				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-replace' ) ) ) );
 			return wfMsgForContent( 'autosumm-replace', $truncatedtext );
 		}
 

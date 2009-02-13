@@ -237,8 +237,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 		$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
 		// Don't let the length runaway
-		$inpointf = $wgContLang->truncate( $inpointf, $this->maxPageLength, '...' );
-		$outpointf = $wgContLang->truncate( $outpointf, $this->maxPageLength, '...' );
+		$inpointf = $wgContLang->truncate( $inpointf, $this->maxPageLength );
+		$outpointf = $wgContLang->truncate( $outpointf, $this->maxPageLength );
 
 		$queryparams = $namespace ? "namespace=$namespace&" : '';
 		$special = $this->getTitle();
