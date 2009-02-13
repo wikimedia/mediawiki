@@ -207,6 +207,26 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->everything = $this->titles + $this->missing;
 		$result = $this->getResult();
 
+		uasort($this->everything, array('Title', 'compare'));
+		if(!is_null($this->params['continue']))
+		{
+			// Throw away any titles we're gonna skip so they don't
+			// clutter queries
+			$cont = explode('|', $this->params['continue']);
+			if(count($cont) != 2)
+				$this->dieUsage("Invalid continue param. You should pass the original " .
+						"value returned by the previous query", "_badcontinue");
+			$conttitle = Title::makeTitleSafe($cont[0], $cont[1]);
+			foreach($this->everything as $pageid => $title)
+			{
+				if(Title::compare($title, $conttitle) >= 0)
+					break;
+				unset($this->titles[$pageid]);
+				unset($this->missing[$pageid]);
+				unset($this->everything[$pageid]);
+			}
+		}
+
 		$this->pageRestrictions = $pageSet->getCustomField('page_restrictions');
 		$this->pageIsRedir = $pageSet->getCustomField('page_is_redirect');
 		$this->pageIsNew = $pageSet->getCustomField('page_is_new');
@@ -224,13 +244,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		if($this->fld_talkid || $this->fld_subjectid)
 			$this->getTSIDs();
 
-		$count = 0;
-		ksort($this->everything); // Ensure they're always in the same order
 		foreach($this->everything as $pageid => $title) {
-			$count++;
-			if(!is_null($params['continue']))
-				if($count < $params['continue'])
-					continue;
 			$pageInfo = $this->extractPageInfo($pageid, $title);
 			$fit = $result->addValue(array (
 				'query',
@@ -238,7 +252,9 @@ class ApiQueryInfo extends ApiQueryBase {
 			), $pageid, $pageInfo);
 			if(!$fit)
 			{
-				$this->setContinueEnumParameter('continue', $count);
+				$this->setContinueEnumParameter('continue',
+						$title->getNamespace() . '|' .
+						$title->getText());
 				break;
 			}
 		}
@@ -308,74 +324,81 @@ class ApiQueryInfo extends ApiQueryBase {
 		$db = $this->getDB();
 
 		// Get normal protections for existing titles
-		$this->addTables(array('page_restrictions', 'page'));
-		$this->addWhere('page_id=pr_page');
-		$this->addFields(array('pr_page', 'pr_type', 'pr_level',
-				'pr_expiry', 'pr_cascade', 'page_namespace',
-				'page_title'));
-		$this->addWhereFld('pr_page', array_keys($this->titles));
+		if(count($this->titles))
+		{
+			$this->addTables(array('page_restrictions', 'page'));
+			$this->addWhere('page_id=pr_page');
+			$this->addFields(array('pr_page', 'pr_type', 'pr_level',
+					'pr_expiry', 'pr_cascade', 'page_namespace',
+					'page_title'));
+			$this->addWhereFld('pr_page', array_keys($this->titles));
 
-		$res = $this->select(__METHOD__);
-		while($row = $db->fetchObject($res)) {
-			$a = array(
-				'type' => $row->pr_type,
-				'level' => $row->pr_level,
-				'expiry' => Block::decodeExpiry($row->pr_expiry, TS_ISO_8601)
-			);
-			if($row->pr_cascade)
-				$a['cascade'] = '';
-			$this->protections[$row->page_namespace][$row->page_title][] = $a;
+			$res = $this->select(__METHOD__);
+			while($row = $db->fetchObject($res)) {
+				$a = array(
+					'type' => $row->pr_type,
+					'level' => $row->pr_level,
+					'expiry' => Block::decodeExpiry($row->pr_expiry, TS_ISO_8601)
+				);
+				if($row->pr_cascade)
+					$a['cascade'] = '';
+				$this->protections[$row->page_namespace][$row->page_title][] = $a;
 
-			# Also check old restrictions
-			if($pageRestrictions[$row->pr_page]) {
-				foreach(explode(':', trim($this->pageRestrictions[$row->pr_page])) as $restrict) {
-					$temp = explode('=', trim($restrict));
-					if(count($temp) == 1) {
-						// old old format should be treated as edit/move restriction
-						$restriction = trim( $temp[0] );
-						
-						if($restriction == '')
-							continue;
-						$this->protections[$row->page_namespace][$row->page_title][] = array(
-							'type' => 'edit',
-							'level' => $restriction,
-							'expiry' => 'infinity',
-						);
-						$this->protections[$row->page_namespace][$row->page_title][] = array(
-							'type' => 'move',
-							'level' => $restriction,
-							'expiry' => 'infinity',
-						);
-					} else {
-						$restriction = trim($temp[1]);
-						if($restriction == '')
-							continue;
-						$this->protections[$row->page_namespace][$row->page_title][] = array(
-							'type' => $temp[0],
-							'level' => $restriction,
-							'expiry' => 'infinity',
-						);
+				# Also check old restrictions
+				if($pageRestrictions[$row->pr_page]) {
+					$restrictions = explode(':', trim($this->pageRestrictions[$row->pr_page]));
+					foreach($restrictions as $restrict) {
+						$temp = explode('=', trim($restrict));
+						if(count($temp) == 1) {
+							// old old format should be treated as edit/move restriction
+							$restriction = trim($temp[0]);
+
+							if($restriction == '')
+								continue;
+							$this->protections[$row->page_namespace][$row->page_title][] = array(
+								'type' => 'edit',
+								'level' => $restriction,
+								'expiry' => 'infinity',
+							);
+							$this->protections[$row->page_namespace][$row->page_title][] = array(
+								'type' => 'move',
+								'level' => $restriction,
+								'expiry' => 'infinity',
+							);
+						} else {
+							$restriction = trim($temp[1]);
+							if($restriction == '')
+								continue;
+							$this->protections[$row->page_namespace][$row->page_title][] = array(
+								'type' => $temp[0],
+								'level' => $restriction,
+								'expiry' => 'infinity',
+							);
+						}
 					}
 				}
 			}
+			$db->freeResult($res);
 		}
-		$db->freeResult($res);
 
 		// Get protections for missing titles
-		$this->resetQueryParams();
-		$lb = new LinkBatch($this->missing);
-		$this->addTables('protected_titles');
-		$this->addFields(array('pt_title', 'pt_namespace', 'pt_create_perm', 'pt_expiry'));
-		$this->addWhere($lb->constructSet('pt', $db));
-		$res = $this->select(__METHOD__);
-		while($row = $db->fetchObject($res)) {
-			$this->protections[$row->pt_namespace][$row->pt_title][] = array(
-				'type' => 'create',
-				'level' => $row->pt_create_perm,
-				'expiry' => Block::decodeExpiry($row->pt_expiry, TS_ISO_8601)
-			);
+		if(count($this->missing))
+		{
+			$this->resetQueryParams();
+			$lb = new LinkBatch($this->missing);
+			$this->addTables('protected_titles');
+			$this->addFields(array('pt_title', 'pt_namespace', 'pt_create_perm', 'pt_expiry'));
+			$this->addWhere($lb->constructSet('pt', $db));
+			$res = $this->select(__METHOD__);
+			while($row = $db->fetchObject($res)) {
+				$this->protections[$row->pt_namespace][$row->pt_title][] = array(
+					'type' => 'create',
+					'level' => $row->pt_create_perm,
+					'expiry' => Block::decodeExpiry($row->pt_expiry, TS_ISO_8601)
+				);
+			}
+			$db->freeResult($res);
 		}
-		$db->freeResult($res);
 
 		// Cascading protections
 		$images = $others = array();
