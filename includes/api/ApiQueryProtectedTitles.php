@@ -137,10 +137,10 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
 			),
 			'dir' => array (
-				ApiBase :: PARAM_DFLT => 'ascending',
+				ApiBase :: PARAM_DFLT => 'older',
 				ApiBase :: PARAM_TYPE => array (
-					'ascending',
-					'descending'
+					'older',
+					'newer'
 				)
 			),
 			'start' => array(
