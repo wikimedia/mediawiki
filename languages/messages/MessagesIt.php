@@ -2023,7 +2023,7 @@ Indica il motivo specifico per il quale procedi al blocco dell'indirizzo IP o de
 ** Rimozione di contenuti dalle pagine
 ** Collegamenti promozionali a siti esterni
 ** Inserimento di contenuti privi di senso
-** Commportamenti intimidatori o molestie
+** Comportamenti intimidatori o molestie
 ** Uso indebito di più account
 ** Nome utente non consono',
 'ipbanononly'                     => 'Blocca solo utenti anonimi (gli utenti registrati che condividono lo stesso IP non vengono bloccati)',
