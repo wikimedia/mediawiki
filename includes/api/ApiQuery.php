@@ -29,13 +29,13 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
- * This is the main query class. It behaves similar to ApiMain: based on the parameters given,
- * it will create a list of titles to work on (an instance of the ApiPageSet object)
- * instantiate and execute various property/list/meta modules,
- * and assemble all resulting data into a single ApiResult object.
+ * This is the main query class. It behaves similar to ApiMain: based on the
+ * parameters given, it will create a list of titles to work on (an ApiPageSet
+ * object), instantiate and execute various property/list/meta modules, and
+ * assemble all resulting data into a single ApiResult object.
  *
- * In the generator mode, a generator will be first executed to populate a second ApiPageSet object,
- * and that object will be used for all subsequent modules.
+ * In generator mode, a generator will be executed first to populate a second
+ * ApiPageSet object, and that object will be used for all subsequent modules.
  *
  * @ingroup API
  */
@@ -111,6 +111,8 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Helper function to append any add-in modules to the list
+	 * @param $modules array Module array
+	 * @param $newModules array Module array to add to $modules
 	 */
 	private static function appendUserModules(&$modules, $newModules) {
 		if (is_array( $newModules )) {
@@ -122,6 +124,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Gets a default slave database connection object
+	 * @return Database
 	 */
 	public function getDB() {
 		if (!isset ($this->mSlaveDB)) {
@@ -136,7 +139,11 @@ class ApiQuery extends ApiBase {
 	 * Get the query database connection with the given name.
 	 * If no such connection has been requested before, it will be created.
 	 * Subsequent calls with the same $name will return the same connection
-	 * as the first, regardless of $db or $groups new values.
+	 * as the first, regardless of the values of $db and $groups
+	 * @param $name string Name to assign to the database connection
+	 * @param $db int One of the DB_* constants
+	 * @param $groups array Query groups
+	 * @return Database
 	 */
 	public function getNamedDB($name, $db, $groups) {
 		if (!array_key_exists($name, $this->mNamedDB)) {
@@ -149,6 +156,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Gets the set of pages the user has requested (or generated)
+	 * @return ApiPageSet
 	 */
 	public function getPageSet() {
 		return $this->mPageSet;
@@ -156,6 +164,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Get the array mapping module names to class names
+	 * @return array(modulename => classname)
 	 */
 	function getModules() {
 		return array_merge($this->mQueryPropModules, $this->mQueryListModules, $this->mQueryMetaModules);
@@ -172,7 +181,7 @@ class ApiQuery extends ApiBase {
 	/**
 	 * Query execution happens in the following steps:
 	 * #1 Create a PageSet object with any pages requested by the user
-	 * #2 If using generator, execute it to get a new PageSet object
+	 * #2 If using a generator, execute it to get a new ApiPageSet object
 	 * #3 Instantiate all requested modules.
 	 *    This way the PageSet object will know what shared data is required,
 	 *    and minimize DB calls.
@@ -228,6 +237,8 @@ class ApiQuery extends ApiBase {
 	 * Query modules may optimize data requests through the $this->getPageSet() object
 	 * by adding extra fields from the page table.
 	 * This function will gather all the extra request fields from the modules.
+	 * @param $modules array of module objects
+	 * @param $pageSet ApiPageSet
 	 */
 	private function addCustomFldsToPageSet($modules, $pageSet) {
 		// Query all requested modules.
@@ -238,6 +249,9 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Create instances of all modules requested by the client
+	 * @param $modules array to append instatiated modules to
+	 * @param $param string Parameter name to read modules from
+	 * @param $moduleList array(modulename => classname)
 	 */
 	private function InstantiateModules(&$modules, $param, $moduleList) {
 		$list = @$this->params[$param];
@@ -247,8 +261,9 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * Appends an element for each page in the current pageSet with the most general
-	 * information (id, title), plus any title normalizations and missing or invalid title/pageids/revids.
+	 * Appends an element for each page in the current pageSet with the
+	 * most general information (id, title), plus any title normalizations
+	 * and missing or invalid title/pageids/revids.
 	 */
 	private function outputGeneralPageInfo() {
 
@@ -392,7 +407,10 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * For generator mode, execute generator, and use its output as new pageSet
+	 * For generator mode, execute generator, and use its output as new
+	 * ApiPageSet
+	 * @param $generatorName string Module name
+	 * @param $modules array of module objects
 	 */
 	protected function executeGeneratorModule($generatorName, $modules) {
 
@@ -433,10 +451,6 @@ class ApiQuery extends ApiBase {
 		$this->mPageSet = $resultPageSet;
 	}
 
-	/**
-	 * Returns the list of allowed parameters for this module.
-	 * Qurey module also lists all ApiPageSet parameters as its own.
-	 */
 	public function getAllowedParams() {
 		return array (
 			'prop' => array (
@@ -463,6 +477,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Override the parent to generate help messages for all available query modules.
+	 * @return string
 	 */
 	public function makeHelpMsg() {
 
@@ -493,10 +508,13 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * For all modules in $moduleList, generate help messages and join them together
+	 * @param $moduleList array(modulename => classname)
+	 * @param $paramName string Parameter name
+	 * @return string
 	 */
 	private function makeHelpMsgHelper($moduleList, $paramName) {
 
-		$moduleDscriptions = array ();
+		$moduleDescriptions = array ();
 
 		foreach ($moduleList as $moduleName => $moduleClass) {
 			$module = new $moduleClass ($this, $moduleName, null);
@@ -509,14 +527,15 @@ class ApiQuery extends ApiBase {
 				$this->mAllowedGenerators[] = $moduleName;
 				$msg .= "Generator:\n  This module may be used as a generator\n";
 			}
-			$moduleDscriptions[] = $msg;
+			$moduleDescriptions[] = $msg;
 		}
 
-		return implode("\n", $moduleDscriptions);
+		return implode("\n", $moduleDescriptions);
 	}
 
 	/**
 	 * Override to add extra parameters from PageSet
+	 * @return string
 	 */
 	public function makeHelpMsgParameters() {
 		$psModule = new ApiPageSet($this);

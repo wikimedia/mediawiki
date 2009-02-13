@@ -38,9 +38,11 @@ abstract class ApiFormatBase extends ApiBase {
 	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp, $mCleared;
 
 	/**
-	* Create a new instance of the formatter.
-	* If the format name ends with 'fm', wrap its output in the proper HTML.
-	*/
+	 * Constructor
+	 * If $format ends with 'fm', pretty-print the output in HTML.
+	 * @param $main ApiMain
+	 * @param $format string Format name
+	 */
 	public function __construct($main, $format) {
 		parent :: __construct($main, $format);
 
@@ -61,9 +63,8 @@ abstract class ApiFormatBase extends ApiBase {
 	public abstract function getMimeType();
 
 	/**
-	 * If formatter outputs data results as is, the results must first be sanitized.
-	 * An XML formatter on the other hand uses special tags, such as "_element" for special handling,
-	 * and thus needs to override this function to return true.
+	 * Whether this formatter needs raw data such as _element tags
+	 * @return bool
 	 */
 	public function getNeedsRawData() {
 		return false;
@@ -71,36 +72,40 @@ abstract class ApiFormatBase extends ApiBase {
 
 	/**
 	 * Get the internal format name
+	 * @return string
 	 */
 	public function getFormat() {
 		return $this->mFormat;
 	}
 
 	/**
-	 * Specify whether or not ampersands should be escaped to '&amp;' when rendering. This
-	 * should only be set to true for the help message when rendered in the default (xmlfm)
-	 * format. This is a temporary special-case fix that should be removed once the help
-	 * has been reworked to use a fully html interface.
+	 * Specify whether or not sequences like &amp;quot; should be unescaped
+	 * to &quot; . This should only be set to true for the help message
+	 * when rendered in the default (xmlfm) format. This is a temporary
+	 * special-case fix that should be removed once the help has been
+	 * reworked to use a fully HTML interface.
 	 *
-	 * @param boolean Whether or not ampersands should be escaped.
+	 * @param $b bool Whether or not ampersands should be escaped.
 	 */
 	public function setUnescapeAmps ( $b ) {
 		$this->mUnescapeAmps = $b;
 	}
 
 	/**
-	 * Returns true when an HTML filtering printer should be used.
+	 * Returns true when the HTML pretty-printer should be used.
 	 * The default implementation assumes that formats ending with 'fm'
 	 * should be formatted in HTML.
+	 * @return bool
 	 */
 	public function getIsHtml() {
 		return $this->mIsHtml;
 	}
 
 	/**
-	 * Initialize the printer function and prepares the output headers, etc.
+	 * Initialize the printer function and prepare the output headers, etc.
 	 * This method must be the first outputing method during execution.
 	 * A help screen's header is printed for the HTML-based output
+	 * @param $isError bool Whether an error message is printed
 	 */
 	function initPrinter($isError) {
 		$isHtml = $this->getIsHtml();
@@ -167,8 +172,10 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	}
 
 	/**
-	 * The main format printing function. Call it to output the result string to the user.
-	 * This function will automatically output HTML when format name ends in 'fm'.
+	 * The main format printing function. Call it to output the result
+	 * string to the user. This function will automatically output HTML
+	 * when format name ends in 'fm'.
+	 * @param $text string
 	 */
 	public function printText($text) {
 		if ($this->getIsHtml())
@@ -188,15 +195,18 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	}
 
 	/**
-	* Says pretty-printer that it should use *bold* and $italics$ formatting
-	*/
+	 * Sets whether the pretty-printer should format *bold* and $italics$
+	 * @param $help bool
+	 */
 	public function setHelp( $help = true ) {
 		$this->mHelp = true;
 	}
 
 	/**
-	* Prety-print various elements in HTML format, such as xml tags and URLs.
-	* This method also replaces any '<' with &lt;
+	* Prety-print various elements in HTML format, such as xml tags and
+	* URLs. This method also escapes characters like <
+	* @param $text string
+	* @return string
 	*/
 	protected function formatHTML($text) {
 		global $wgUrlProtocols;
@@ -229,9 +239,6 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		return $text;
 	}
 
-	/**
-	 * Returns usage examples for this format.
-	 */
 	protected function getExamples() {
 		return 'api.php?action=query&meta=siteinfo&siprop=namespaces&format=' . $this->getModuleName();
 	}
@@ -256,7 +263,10 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	}
 
 	/**
-	 * Call this method to initialize output data. See self::execute()
+	 * Call this method to initialize output data. See execute()
+	 * @param $result ApiResult
+	 * @param $feed object an instance of one of the $wgFeedClasses classes
+	 * @param $feedItems array of FeedItem objects
 	 */
 	public static function setResult($result, $feed, $feedItems) {
 		// Store output in the Result data.
