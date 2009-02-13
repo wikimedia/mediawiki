@@ -164,6 +164,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17420) Send the correct content type from action=raw when the HTML file 
   cache is enabled.
 * (bug 12746) Do not allow new password e-mails when wiki is in read-only mode
+* (bug 17478) Fixed a PHP Strict standards error in
+  maintenance/cleanupWatchlist.php
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
