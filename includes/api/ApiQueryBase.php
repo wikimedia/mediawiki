@@ -30,7 +30,8 @@ if (!defined('MEDIAWIKI')) {
 
 /**
  * This is a base class for all Query modules.
- * It provides some common functionality such as constructing various SQL queries.
+ * It provides some common functionality such as constructing various SQL
+ * queries.
  *
  * @ingroup API
  */
@@ -58,8 +59,9 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a set of tables to the internal array
-	 * @param mixed $tables Table name or array of table names
-	 * @param mixed $alias Table alias, or null for no alias. Cannot be used with multiple tables
+	 * @param $tables mixed Table name or array of table names
+	 * @param $alias mixed Table alias, or null for no alias. Cannot be
+	 *  used with multiple tables
 	 */
 	protected function addTables($tables, $alias = null) {
 		if (is_array($tables)) {
@@ -75,8 +77,8 @@ abstract class ApiQueryBase extends ApiBase {
 	
 	/**
 	 * Get the SQL for a table name with alias
-	 * @param string $table Table name
-	 * @param string $alias Alias
+	 * @param $table string Table name
+	 * @param $alias string Alias
 	 * @return string SQL
 	 */
 	protected function getAliasedName($table, $alias) {
@@ -86,9 +88,11 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Add a set of JOIN conditions to the internal array
 	 *
-	 * JOIN conditions are formatted as array( tablename => array(jointype, conditions)
-	 * e.g. array('page' => array('LEFT JOIN', 'page_id=rev_page'))
-	 * @param array $join_conds JOIN conditions
+	 * JOIN conditions are formatted as array( tablename => array(jointype,
+	 * conditions) e.g. array('page' => array('LEFT JOIN',
+	 * 'page_id=rev_page')) . conditions may be a string or an
+	 * addWhere()-style array
+	 * @param $join_conds array JOIN conditions
 	 */
 	protected function addJoinConds($join_conds) {
 		if(!is_array($join_conds))
@@ -98,7 +102,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a set of fields to select to the internal array
-	 * @param mixed $value Field name or array of field names
+	 * @param $value mixed Field name or array of field names
 	 */
 	protected function addFields($value) {
 		if (is_array($value))
@@ -109,8 +113,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Same as addFields(), but add the fields only if a condition is met
-	 * @param mixed $value See addFields()
-	 * @param bool $condition If false, do nothing
+	 * @param $value mixed See addFields()
+	 * @param $condition bool If false, do nothing
 	 * @return bool $condition
 	 */
 	protected function addFieldsIf($value, $condition) {
@@ -130,7 +134,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 *
 	 * For example, array('foo=bar', 'baz' => 3, 'bla' => 'foo') translates
 	 * to "foo=bar AND baz='3' AND bla='foo'"
-	 * @param mixed $value String or array
+	 * @param $value mixed String or array
 	 */
 	protected function addWhere($value) {
 		if (is_array($value)) {
@@ -145,8 +149,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Same as addWhere(), but add the WHERE clauses only if a condition is met
-	 * @param mixed $value See addWhere()
-	 * @param bool $condition If false, do nothing
+	 * @param $value mixed See addWhere()
+	 * @param $condition boolIf false, do nothing
 	 * @return bool $condition
 	 */
 	protected function addWhereIf($value, $condition) {
@@ -159,8 +163,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Equivalent to addWhere(array($field => $value))
-	 * @param string $field Field name
-	 * @param string $value Value; ignored if null or empty array;
+	 * @param $field string Field name
+	 * @param $value string Value; ignored if null or empty array;
 	 */
 	protected function addWhereFld($field, $value) {
 		// Use count() to its full documented capabilities to simultaneously 
@@ -172,10 +176,13 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Add a WHERE clause corresponding to a range, and an ORDER BY
 	 * clause to sort in the right direction
-	 * @param string $field Field name
-	 * @param string $dir If 'newer', sort in ascending order, otherwise sort in descending order
-	 * @param string $start Value to start the list at. If $dir == 'newer' this is the lower boundary, otherwise it's the upper boundary
-	 * @param string $end Value to end the list at. If $dir == 'newer' this is the upper boundary, otherwise it's the lower boundary
+	 * @param $field string Field name
+	 * @param $dir string If 'newer', sort in ascending order, otherwise
+	 *  sort in descending order
+	 * @param $start string Value to start the list at. If $dir == 'newer'
+	 *  this is the lower boundary, otherwise it's the upper boundary
+	 * @param $end string Value to end the list at. If $dir == 'newer' this
+	 *  is the upper boundary, otherwise it's the lower boundary
 	 */
 	protected function addWhereRange($field, $dir, $start, $end) {
 		$isDirNewer = ($dir === 'newer');
@@ -197,9 +204,10 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Add an option such as LIMIT or USE INDEX
-	 * @param string $name Option name
-	 * @param string $value Option value
+	 * Add an option such as LIMIT or USE INDEX. If an option was set
+	 * before, the old value will be overwritten
+	 * @param $name string Option name
+	 * @param $value string Option value
 	 */
 	protected function addOption($name, $value = null) {
 		if (is_null($value))
@@ -210,7 +218,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Execute a SELECT query based on the values in the internal arrays
-	 * @param string $method Function the query should be attributed to. You should usually use __METHOD__ here
+	 * @param $method string Function the query should be attributed to.
+	 *  You should usually use __METHOD__ here
 	 * @return ResultWrapper
 	 */
 	protected function select($method) {
@@ -243,10 +252,11 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Add information (title and namespace) about a Title object to a result array
-	 * @param array $arr Result array à la ApiResult
-	 * @param Title $title Title object
-	 * @param string $prefix Module prefix
+	 * Add information (title and namespace) about a Title object to a
+	 * result array
+	 * @param $arr array Result array à la ApiResult
+	 * @param $title Title
+	 * @param $prefix string Module prefix
 	 */
 	public static function addTitleInfo(&$arr, $title, $prefix='') {
 		$arr[$prefix . 'ns'] = intval($title->getNamespace());
@@ -256,7 +266,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Override this method to request extra fields from the pageSet
 	 * using $pageSet->requestField('fieldName')
-	 * @param ApiPageSet $pageSet
+	 * @param $pageSet ApiPageSet
 	 */
 	public function requestExtraData($pageSet) {
 	}
@@ -271,8 +281,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a sub-element under the page element with the given page ID
-	 * @param int $pageId Page ID
-	 * @param array $data Data array � la ApiResult 
+	 * @param $pageId int Page ID
+	 * @param $data array Data array à la ApiResult 
 	 * @return bool Whether the element fit in the result
 	 */
 	protected function addPageSubItems($pageId, $data) {
@@ -284,11 +294,11 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 	
 	/**
-	 * Same as addPageSubItems(), but one element of $data
-	 * at a time
-	 * @param int $pageId Page ID
-	 * @param array $data Data array � la ApiResult
-	 * @param string $elemname XML element name. If null, getModuleName() is used
+	 * Same as addPageSubItems(), but one element of $data at a time
+	 * @param $pageId int Page ID
+	 * @param $data array Data array à la ApiResult
+	 * @param $elemname string XML element name. If null, getModuleName()
+	 *  is used
 	 * @return bool Whether the element fit in the result
 	 */
 	protected function addPageSubItem($pageId, $item, $elemname = null) {
@@ -306,8 +316,8 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Set a query-continue value
-	 * @param $paramName Parameter name
-	 * @param $paramValue Parameter value
+	 * @param $paramName string Parameter name
+	 * @param $paramValue string Parameter value
 	 */
 	protected function setContinueEnumParameter($paramName, $paramValue) {
 		$paramName = $this->encodeParamName($paramName);
@@ -318,7 +328,7 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Get the Query database connection (readonly)
+	 * Get the Query database connection (read-only)
 	 * @return Database
 	 */
 	protected function getDB() {
@@ -329,12 +339,10 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Selects the query database connection with the given name.
-	 * If no such connection has been requested before, it will be created.
-	 * Subsequent calls with the same $name will return the same connection
-	 * as the first, regardless of $db or $groups new values.
-	 * @param string $name Name to assign to the database connection
-	 * @param int $db One of the DB_* constants
-	 * @param array $groups Query groups
+	 * See ApiQuery::getNamedDB() for more information
+	 * @param $name string Name to assign to the database connection
+	 * @param $db int One of the DB_* constants
+	 * @param $groups array Query groups
 	 * @return Database 
 	 */
 	public function selectNamedDB($name, $db, $groups) {
@@ -351,7 +359,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Convert a title to a DB key
-	 * @param string $title Page title with spaces
+	 * @param $title string Page title with spaces
 	 * @return string Page title with underscores
 	 */
 	public function titleToKey($title) {
@@ -366,7 +374,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * The inverse of titleToKey()
-	 * @param string $key Page title with underscores
+	 * @param $key string Page title with underscores
 	 * @return string Page title with spaces
 	 */
 	public function keyToTitle($key) {
@@ -382,7 +390,7 @@ abstract class ApiQueryBase extends ApiBase {
 	
 	/**
 	 * An alternative to titleToKey() that doesn't trim trailing spaces
-	 * @param string $titlePart Title part with spaces
+	 * @param $titlePart string Title part with spaces
 	 * @return string Title part with underscores
 	 */
 	public function titlePartToKey($titlePart) {
@@ -391,7 +399,7 @@ abstract class ApiQueryBase extends ApiBase {
 	
 	/**
 	 * An alternative to keyToTitle() that doesn't trim trailing spaces
-	 * @param string $keyPart Key part with spaces
+	 * @param $keyPart string Key part with spaces
 	 * @return string Key part with underscores
 	 */
 	public function keyPartToTitle($keyPart) {
@@ -429,6 +437,8 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
 	/**
 	 * Overrides base class to prepend 'g' to every generator parameter
+	 * @param $paramNames string Parameter name
+	 * @return string Prefixed parameter name
 	 */
 	public function encodeParamName($paramName) {
 		if ($this->mIsGenerator)
@@ -439,7 +449,8 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
 	/**
 	 * Execute this module as a generator
-	 * @param $resultPageSet PageSet: All output should be appended to this object
+	 * @param $resultPageSet ApiPageSet: All output should be appended to
+	 *  this object
 	 */
 	public abstract function executeGenerator($resultPageSet);
 }
