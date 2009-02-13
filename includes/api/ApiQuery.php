@@ -80,6 +80,7 @@ class ApiQuery extends ApiBase {
 		'exturlusage' => 'ApiQueryExtLinksUsage',
 		'users' => 'ApiQueryUsers',
 		'random' => 'ApiQueryRandom',
+		'protectedtitles' => 'ApiQueryProtectedTitles',
 	);
 
 	private $mQueryMetaModules = array (
