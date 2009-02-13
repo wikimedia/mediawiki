@@ -171,6 +171,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			'dir' => 'The direction in which to list',
 			'limit' => 'How many total pages to return.',
 			'prop' => 'Which properties to get',
+			'level' => 'Only list titles with these protection levels',
 		);
 	}
 
