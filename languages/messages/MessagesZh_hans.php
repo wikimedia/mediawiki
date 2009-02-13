@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -575,6 +575,7 @@ $2',
 'gender-unknown'             => '未指定',
 'gender-male'                => '男',
 'gender-female'              => '女',
+'prefs-help-gender'          => '可选: 用以软件中的性别指定。此项资料将会被公开。',
 'email'                      => '电子邮箱',
 'prefs-help-realname'        => '真实姓名是可选的。
 如果您选择提供它，那它便用以对您的贡献署名。',
@@ -861,7 +862,7 @@ $2',
 'page_first'             => '最前',
 'page_last'              => '最后',
 'histlegend'             => "差异选择: 标记要比较版本的单选按钮并点击底部的按钮进行比较。<br />
-说明: '''(当前)''' 指与当前版本比较，'''(先前)''' 指与前一个修订版本比较，'''小''' = 小修改。",
+说明: '''({{int:cur}})''' 指与当前版本比较，'''({{int:last}})''' 指与前一个修订版本比较，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '浏览历史',
 'deletedrev'             => '[已删除]',
 'histfirst'              => '最早版本',
@@ -886,6 +887,8 @@ $2',
 该页面修订已经被从公共文档中移除。作为{{SITENAME}}的管理员，您可以查看它；
 在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。
 </div>",
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">因为其中一次修订从公众存档中移除，您不可以查看这个差异。
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的资料。</div>',
 'rev-delundel'                   => '显示/隐藏',
 'revisiondelete'                 => '删除/恢复删除修订',
 'revdelete-nooldid-title'        => '无效的目标修订',
@@ -1150,6 +1153,16 @@ $2',
 'timezoneoffset'            => '时差¹:',
 'servertime'                => '服务器时间:',
 'guesstimezone'             => '从浏览器填写',
+'timezoneregion-africa'     => '非洲',
+'timezoneregion-america'    => '美洲',
+'timezoneregion-antarctica' => '南极洲',
+'timezoneregion-arctic'     => '北极',
+'timezoneregion-asia'       => '亚洲',
+'timezoneregion-atlantic'   => '大西洋',
+'timezoneregion-australia'  => '澳大利亚',
+'timezoneregion-europe'     => '欧洲',
+'timezoneregion-indian'     => '印度洋',
+'timezoneregion-pacific'    => '太平洋',
 'allowemail'                => '接受来自其他用户的邮件',
 'prefs-searchoptions'       => '搜索选项',
 'prefs-namespaces'          => '名字空间',
