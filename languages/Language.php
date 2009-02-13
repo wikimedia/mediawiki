@@ -2028,7 +2028,12 @@ class Language {
 	 * @param $ellipsis String to append to the truncated text
 	 * @return string
 	 */
-	function truncate( $string, $length, $ellipsis = "" ) {
+	function truncate( $string, $length, $ellipsis = '...' ) {
+		# Use the localized ellipsis character
+		if( $ellipsis == '...' ) {
+			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
+		}
+
 		if( $length == 0 ) {
 			return $ellipsis;
 		}
@@ -2045,7 +2050,7 @@ class Language {
 			} elseif( $char >= 0x80 &&
 			          preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
 			                      '[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m ) ) {
-			    # We chopped in the middle of a character; remove it
+				# We chopped in the middle of a character; remove it
 				$string = $m[1];
 			}
 			return $string . $ellipsis;

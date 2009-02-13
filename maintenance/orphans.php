@@ -63,12 +63,12 @@ function checkOrphans( $fix ) {
 		while( $row = $dbw->fetchObject( $result ) ) {
 			$comment = ( $row->rev_comment == '' )
 				? ''
-				: '(' . $wgContLang->truncate( $row->rev_comment, 40, '...' ) . ')';
+				: '(' . $wgContLang->truncate( $row->rev_comment, 40 ) . ')';
 			printf( "%10d %10d %14s %20s %s\n",
 				$row->rev_id,
 				$row->rev_page,
 				$row->rev_timestamp,
-				$wgContLang->truncate( $row->rev_user_text, 17, '...' ),
+				$wgContLang->truncate( $row->rev_user_text, 17 ),
 				$comment );
 			if( $fix ) {
 				$dbw->delete( 'revision', array( 'rev_id' => $row->rev_id ) );

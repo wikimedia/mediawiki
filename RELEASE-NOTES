@@ -98,6 +98,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the active users data from site_stats.
 * (bug 13040) Gender-aware user namespace aliases
 * Add a <link rel="canonical"> tag on redirected page views
+* Replace hardcoded '...' as indication of a truncation with the
+  'ellipsis' message
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
