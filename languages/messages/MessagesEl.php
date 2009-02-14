@@ -370,6 +370,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Στείλε μου αντίγραφα των μηνυμάτων ηλεκτρονικού ταχυδρομείου που στέλνω σε άλλους χρήστες',
 'tog-diffonly'                => 'Μην εμφανίζεις το περιεχόμενο της σελίδας κάτω από τις διαφορές των εκδόσεων',
 'tog-showhiddencats'          => 'Εμφάνιση κρυμμένων κατηγοριών',
+'tog-noconvertlink'           => 'Απενεργοποίησε την μετατροπή τίτλου συνδέσμου',
 'tog-norollbackdiff'          => 'Παράλειψη διαφοράς μετά την εκτέλεση επαναφοράς',
 
 'underline-always'  => 'Πάντα',
@@ -1165,7 +1166,7 @@ $2',
 'searchresults'                    => 'Αποτελέσματα αναζήτησης',
 'searchresults-title'              => 'Αποτελέσματα αναζήτησης για "$1"',
 'searchresulttext'                 => 'Για περισσότερες πληροφορίες σχετικά με την αναζήτηση στο {{SITENAME}}, βλ. [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'Κριτήρια αναζήτησης: "[[:$1]]"',
+'searchsubtitle'                   => 'Αναζητήσατε για τον όρο \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|όλες οι σελίδες των οποίων ο τίτλος αρχίζει με τον όρο "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|όλες οι σελίδες που περιέχουν συνδέσμους προς τον όρο "$1"]])',
 'searchsubtitleinvalid'            => 'Κριτήρια αναζήτησης: "$1"',
 'noexactmatch'                     => "'''Δεν υπάρχει καμία σελίδα με τίτλο «$1».''' Μπορείτε να [[:$1|δημιουργήσετε αυτή τη σελίδα]].",
 'noexactmatch-nocreate'            => "'''Δεν υπάρχει καμία σελίδα με τον τίτλο \"\$1\".'''",
@@ -1566,6 +1567,21 @@ $2',
 Θα πρέπει να σκεφτείτε αν είναι σωστό να συνεχίσετε την επιφόρτωση του αρχείου.
 Η καταγραφή διαγραφής αυτού του αρχείου δίνεται εδώ για διευκόλυνση:",
 'filename-bad-prefix'         => "Το όνομα του αρχείου που ανεβάζετε ξεκινά με '''\"\$1\"''', που είναι ένα μη περιγραφικό όνομα που συνήθως εκχωρείται αυτόματα από ψηφιακές φωτογραφικές μηχανές. Παρακαλώ διαλέξτε ένα πιο περιγραφικό όνομα για το αρχείο σας.",
+'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+# Η σύνταξη είναι ως ακολούθως:
+#   * Οτιδήποτε από ένα χαρακτήρα «#» μέχρι το τέλος της γραμμής είναι ένα σχόλιο
+#   * Οποιαδήποτε μη κενή γραμμή είναι ένα πρόθεμα για τυπικά ονόματα αρχείων ορισμένα
+#     αυτόματα από ψηφιακές φωτογραφικές μηχανές
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # μερικά κινητά τηλέφωνα
+IMG # γενικά
+JD # Jenoptik
+MGP # Pentax
+PICT # διάφορα
+ #</pre> <!-- leave this line exactly as it is -->',
 
 'upload-proto-error'      => 'Λανθασμένο πρωτόκολλο',
 'upload-proto-error-text' => 'Η απομακρυσμένη επιφόρτωση απαιτεί URL με πρόθεμα <code>http://</code> ή <code>ftp://</code>.',
@@ -2513,12 +2529,28 @@ $1 είναι ήδη αποκλεισμένη. Θέλετε να αλλάξετ�
 Επιτρέπει την προσθήκη αιτιολόγησης στην περίληψη',
 
 # Stylesheets
-'common.css'   => '/** CSS τα οποία τοποθετούνται εδώ θα εφαρμοστούν σε όλα τα skins */',
-'monobook.css' => '/* edit this file to customize the monobook skin for the entire site */',
+'common.css'      => '/* Το τοποθετημένο εδώ CSS θα εφαρμοστεί σε όλα τα skins */',
+'standard.css'    => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Standard skin */',
+'nostalgia.css'   => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Nostalgia skin */',
+'cologneblue.css' => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Cologne Blue skin */',
+'monobook.css'    => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Monobook skin */',
+'myskin.css'      => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Myskin skin */',
+'chick.css'       => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Chick skin */',
+'simple.css'      => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Simple skin */',
+'modern.css'      => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει χρήστες του Modern skin */',
+'print.css'       => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει το αποτέλεσμα της εκτύπωσης */',
+'handheld.css'    => '/* Το τοποθετημένο εδώ CSS θα επηρεάσει συσκευές χειρός βάση του skin ρυθμισμένου στο $wgHandheldStyle */',
 
 # Scripts
-'common.js'   => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για όλους τους χρήστες σε κάθε φόρτωση σελίδας. */',
-'monobook.js' => '/* Παρωχημένο, χρησιμοποιήστε το MonoBook skin */',
+'common.js'      => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για όλους τους χρήστες σε κάθε φόρτωση σελίδας. */',
+'standard.js'    => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Standard skin */',
+'nostalgia.js'   => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Nostalgia skin */',
+'cologneblue.js' => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Cologne Blue skin */',
+'monobook.js'    => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το MonoBook skin */',
+'myskin.js'      => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Myskin skin */',
+'chick.js'       => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Chick skin */',
+'simple.js'      => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Simple skin */',
+'modern.js'      => '/* Οποιοσδήποτε κώδικας JavaScript εδώ θα φορτωθεί για χρήστες που χρησιμοποιούν το Modern skin */',
 
 # Metadata
 'nodublincore'      => 'Τα μεταδεδομένα RDF που αφορούν στο Dublin Core έχουν απενεργοποιηθεί σε αυτό τον server.',
@@ -2550,6 +2582,13 @@ $1 είναι ήδη αποκλεισμένη. Θέλετε να αλλάξετ�
 'numwatchers'    => 'Αριθμός παρακολουθήσεων: $1',
 'numauthors'     => 'Αριθμός διακριτών συγγραφέων (στο άρθρο): $1',
 'numtalkauthors' => 'Αριθμός διακριτών συγγραφέων (στη σελίδα συζήτησης): $1',
+
+# Skin names
+'skinname-standard'  => 'Κλασσικό',
+'skinname-nostalgia' => 'Νοσταλγία',
+'skinname-myskin'    => 'ΤοSkinΜου',
+'skinname-simple'    => 'Απλό',
+'skinname-modern'    => 'Μοντέρνο',
 
 # Math options
 'mw_math_png'    => 'Απόδοση πάντα σε PNG',
@@ -2590,8 +2629,8 @@ $1',
 'filedelete-archive-read-only'    => 'Το αρχείο καταλόγου "$1" είναι μη εγγράψιμο από τον διακομιστή.',
 
 # Browsing diffs
-'previousdiff' => '&larr; Προηγούμενη επεξεργασία',
-'nextdiff'     => 'Επόμενη επεξεργασία &rarr;',
+'previousdiff' => '← Προηγούμενη επεξεργασία',
+'nextdiff'     => 'Επόμενη επεξεργασία →',
 
 # Visual comparison
 'visual-comparison' => 'Οπτική σύγκριση',
@@ -3044,14 +3083,14 @@ $1
 'version'                          => 'Έκδοση', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Εγκαταστημένες επεκτάσεις',
 'version-specialpages'             => 'Ειδικές σελίδες',
-'version-parserhooks'              => 'Αγγύλες του parser (αναλυτή υπορουτίνων)',
+'version-parserhooks'              => 'Άγκιστρα του συντακτικού αναλυτή',
 'version-variables'                => 'Παράμετροι',
 'version-other'                    => 'Άλλα',
 'version-mediahandlers'            => 'Χειριστές των μέσων',
 'version-hooks'                    => 'Άγκιστρα',
-'version-extension-functions'      => 'Συναρτήσεις από επεκτάσεις',
-'version-parser-extensiontags'     => 'Συμπληρωματικές ετικέτες του λεξιαναλυτή',
-'version-parser-function-hooks'    => 'Ἀγγιστρα των συναρτήσεων του λεξιαναλυτή',
+'version-extension-functions'      => 'Συναρτήσεις επεκτάσεων',
+'version-parser-extensiontags'     => 'Ετικέτες επεκτάσεων του συντακτικού αναλυτή',
+'version-parser-function-hooks'    => 'Άγκιστρα συναρτήσεων του συντακτικού αναλυτή',
 'version-skin-extension-functions' => 'Λειτουργίες επέκτασης της διεπαφής',
 'version-hook-name'                => 'Όνομα άγκιστρου',
 'version-hook-subscribedby'        => 'Υπογεγραμμένο από',

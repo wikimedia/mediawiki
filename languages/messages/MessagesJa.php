@@ -609,7 +609,7 @@ $2',
 'gender-unknown'             => '未指定',
 'gender-male'                => '男',
 'gender-female'              => '女',
-'prefs-help-gender'          => '任意: 文法性を考慮したユーザインタフェースを実現するために使われます。この情報は公開されます。',
+'prefs-help-gender'          => '任意: 対象の性別によって表現が変わる言語での使用を念頭に、文法性を考慮したユーザインタフェースを実現するために使われます。この情報は公開されます。',
 'email'                      => 'メールアドレス',
 'prefs-help-realname'        => '本名登録は任意です。本名を登録した場合、あなたの著作物の帰属表示に用いられます。',
 'loginerror'                 => 'ログイン失敗',
@@ -1611,7 +1611,7 @@ PICT # misc.
 'double-redirect-fixer'      => 'リダイレクト修正係',
 
 'brokenredirects'        => '迷子のリダイレクト',
-'brokenredirectstext'    => '以下は存在しないページにリンクしているリダイレクトです:',
+'brokenredirectstext'    => '以下は存在しないページにリンクしているリダイレクトです。',
 'brokenredirects-edit'   => '(編集)',
 'brokenredirects-delete' => '(削除)',
 

@@ -17,8 +17,8 @@
  * @author Remember the dot
  * @author Sir48
  * @author Slomox
- * @author Søren Løvborg
  * @author Svip
+ * @author Søren Løvborg
  * @author Urhixidur
  */
 

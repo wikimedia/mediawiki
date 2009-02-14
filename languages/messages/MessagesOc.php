@@ -714,7 +714,7 @@ Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl
 'hr_tip'          => "Linha orizontala (n'abusetz pas)",
 
 # Edit pages
-'summary'                          => 'Resumit :&nbsp;',
+'summary'                          => 'Resumit :',
 'subject'                          => 'Subjècte/títol :',
 'minoredit'                        => 'Aquò es un cambiament menor',
 'watchthis'                        => 'Seguir aquesta pagina',
@@ -926,6 +926,8 @@ Aquesta version de la pagina es estada levada dels archius publics.
 I Pòt aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].
 </div>',
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks"> Aquesta version de la pagina es estada levada dels archius publics. En tant qu’administrator d\'aqueste sit, la podètz visualizar ; i pòt aver de detahls dins lo [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} jornal de las supressions]. </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Podètz pas veire aqueste diff per que una de las versions es estada suprimida dels archius publics.
+I pòt aver mai de detalhs dins [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l\'istoric de las supressions].</div>',
 'rev-delundel'                   => 'afichar/amagar',
 'revisiondelete'                 => 'Suprimir/Restablir de versions',
 'revdelete-nooldid-title'        => 'Cibla per la revision invalida',
@@ -1940,9 +1942,7 @@ D'efectuar amb prudéncia.",
 'rollbacklink'     => 'anullar',
 'rollbackfailed'   => "L'anullacion a pas capitat",
 'cantrollback'     => "Impossible d'anullar : l'autor es la sola persona a aver efectuat de modificacions sus aqueste article",
-'alreadyrolled'    => "Impossible d'anullar la darrièra modificacion de l'article « [[$1]] » efectuada per [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; qualqu'un d'autre ja a modificat o revocat l'article.
-
-La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3|Discussion]]).",
+'alreadyrolled'    => "Impossible d'anullar la darrièra modificacion de l'article « [[$1]] » efectuada per [[User:$2|$2]] ([[User talk:$2|Discutir]]){{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ; qualqu’un mai ja a modificat o revocat la pagina. La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3|Discutir]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment'      => "Lo resumit de la modificacion èra : « ''$1'' ».", # only shown if there is an edit comment
 'revertpage'       => 'Anullacion de las modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) cap a la darrièra version de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',

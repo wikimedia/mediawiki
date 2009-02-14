@@ -666,6 +666,8 @@ Kies een aandere naam.',
 'gender-unknown'             => 'Neet an-egeven',
 'gender-male'                => 'Keel',
 'gender-female'              => 'Deerne',
+'prefs-help-gender'          => 'Optioneel: dit wonnen gebruuk um gebrukers op een juuste meniere an te spreken in de pregrammetuur.
+Disse infermasie is zichbaor veur aandere gebrukers.',
 'email'                      => 'Privéberichen',
 'prefs-help-realname'        => '* Echte naam (optioneel): a-j disse optie invullen zal joew echte naam gebruuk wonnen veur toekenningen veur joew warkzaamheen.',
 'loginerror'                 => 'Anmeldingsfout',
@@ -978,6 +980,8 @@ De geschiedenisse van disse pagina is uut de peblieke archieven ewis.
 As beheerder van disse wiki ku-j 't wel zien;
 der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek vort-edaone pagina's].
 </div>",
+'rev-deleted-no-diff'            => "<div class=\"mw-warning plainlinks\">Je kunnen de verschillen neet bekieken umdat één van de versies uut 't peblieke archief vort-edaon is.
+De achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone pagina's].</div>",
 'rev-delundel'                   => 'teun/verbarg',
 'revisiondelete'                 => 'Wiezigingen vortdoon/herstellen',
 'revdelete-nooldid-title'        => 'Gien doelversie',
@@ -1119,7 +1123,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'searchresults'                    => 'Zeukrisseltaoten',
 'searchresults-title'              => 'Zeukrisseltaoten veur "$1"',
 'searchresulttext'                 => "'''Opmarking:''' een pagina dee kortens an-emaak is ku-j meschien neet vienen via de zeukfunctie. 't Zeuken geet via een speciale zeukdatabanke dee ongeveer um de 30 tot 48 uur bie-ewörk wonnen.",
-'searchsubtitle'                   => "Je zochen naor '''[[:$1]]'''",
+'searchsubtitle'                   => 'Je zochen naor \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|alle pagina\'s dee beginnen mit "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle pagina\'s dee verwiezen naor "$1"]])',
 'searchsubtitleinvalid'            => 'Veur zeukopdrachte "$1"',
 'noexactmatch'                     => "'''Der besteet gien artikel mit de naam $1.''' Je kunnen disse pagina [[:$1|anmaken]].",
 'noexactmatch-nocreate'            => "'''Der besteet gien pagina mit de naam \"\$1\".'''",
@@ -1239,6 +1243,16 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'timezoneoffset'            => 'Tiedverschil¹:',
 'servertime'                => 'Tied op de server:',
 'guesstimezone'             => 'Vanuut webblaojeraar toevoegen',
+'timezoneregion-africa'     => 'Afrika',
+'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antarctica',
+'timezoneregion-arctic'     => 'Arctis',
+'timezoneregion-asia'       => 'Azië',
+'timezoneregion-atlantic'   => 'Atlantische Oceaan',
+'timezoneregion-australia'  => 'Australië',
+'timezoneregion-europe'     => 'Europa',
+'timezoneregion-indian'     => 'Indische Oceaan',
+'timezoneregion-pacific'    => 'Stille Oceaan',
 'allowemail'                => 'Berichen van aandere gebrukers toelaoten',
 'prefs-searchoptions'       => 'Zeukinstellingen',
 'prefs-namespaces'          => 'Naamruumtes',
@@ -1965,12 +1979,10 @@ Wees veurzichtig",
 'rollbacklink'     => 'Weerummedreien',
 'rollbackfailed'   => 'Wieziging herstellen is mislok',
 'cantrollback'     => 'De wiezigingen konnen neet hersteld wonnen; der is mar 1 auteur.',
-'alreadyrolled'    => "'t Is neet meugelijk um de wieziging van de pagina [[$1]]
-deur [[User:$2|$2]] ([[User talk:$2|Overleeg]]) te herstellen.
+'alreadyrolled'    => 'Kan de leste wieziging van de pagina [[$1]] deur [[User:$2|$2]] ([[User talk:$2|Overleeg]]){{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); neet ongedaonmaken.
+Een aander hef disse pagina al bewark of hersteld naor een eerdere versie.
 
-Een aander hef disse wieziging al hersteld tot een veurige versie van disse pagina of hef een aandere bewarking edaon.
-
-De leste bewarking is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleeg]]).",
+De leste bewarking op disse pagina is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleeg]]){{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "De bewarkingssamenvatting was: ''$1''.", # only shown if there is an edit comment
 'revertpage'       => 'Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Wiezigingen van $1; weerummedreid naor de leste versie van $2.',

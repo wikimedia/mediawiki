@@ -168,6 +168,8 @@ $messages = array(
 'gotaccountlink'          => 'Konün',
 'yourrealname'            => 'Tami mupiñ üy *',
 'yourlanguage'            => 'Dungun:',
+'gender-male'             => 'Wentru',
+'gender-female'           => 'Domo',
 'loginlanguagelabel'      => 'Dungun: $1',
 
 # Edit pages
@@ -207,19 +209,25 @@ $messages = array(
 'diff-del'     => "'''Ñamümün'''",
 
 # Search results
-'viewprevnext'          => 'Pen ($1) ($2) ($3).',
-'searchhelp-url'        => 'Help:Kellu',
-'search-interwiki-more' => '(Doy)',
-'searchall'             => 'Fill',
-'powersearch'           => 'Kintun',
-'powersearch-field'     => 'Kintun',
+'viewprevnext'                   => 'Pen ($1) ($2) ($3).',
+'searchhelp-url'                 => 'Help:Kellu',
+'searchprofile-articles-tooltip' => 'kintu $1 mew',
+'searchprofile-project-tooltip'  => 'Kintun $1 mew',
+'search-interwiki-more'          => '(Doy)',
+'searchall'                      => 'Fill',
+'powersearch'                    => 'Kintun',
+'powersearch-field'              => 'Kintun',
 
 # Preferences page
-'prefs-edits'       => 'Rakin Wirin:',
-'prefsnologin'      => 'Mülelay Konün',
-'skin-preview'      => 'Pen chum müley',
-'textboxsize'       => 'Wirin',
-'searchresultshead' => 'Kintun',
+'prefs-edits'            => 'Rakin Wirin:',
+'prefsnologin'           => 'Mülelay Konün',
+'skin-preview'           => 'Pen chum müley',
+'textboxsize'            => 'Wirin',
+'searchresultshead'      => 'Kintun',
+'timezoneregion-africa'  => 'Afrika',
+'timezoneregion-america' => 'Amerika',
+'timezoneregion-arctic'  => 'Artiku',
+'timezoneregion-europe'  => 'Ewropa',
 
 # Groups
 'group'       => 'Kisuwen:',
@@ -242,6 +250,9 @@ $messages = array(
 
 # User rights log
 'rightsnone' => 'chemnorume',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-move' => 'Nengümün tüfachi pakina',
 
 # Recent changes
 'rcshowhideminor'                   => '$1 wirin pichi',
@@ -272,13 +283,17 @@ $messages = array(
 'filehist-user'      => 'Kellufe',
 
 # File deletion
-'filedelete'         => '$1 ñamümün',
-'filedelete-intro'   => "Ñamümmekeymi '''[[Media:$1|$1]]'''.",
-'filedelete-submit'  => 'Ñamümün',
-'filedelete-success' => "'''$1''' ñamümngey.",
+'filedelete'                 => '$1 ñamümün',
+'filedelete-intro'           => "Ñamümmekeymi '''[[Media:$1|$1]]'''.",
+'filedelete-submit'          => 'Ñamümün',
+'filedelete-success'         => "'''$1''' ñamümngey.",
+'filedelete-edit-reasonlist' => 'Wirin dungu ñamümgün mew',
 
 # Unused templates
 'unusedtemplateswlh' => "Kake ''enlase''",
+
+# Statistics
+'statistics-pages' => 'Pakina',
 
 'brokenredirects-edit'   => '(wirin)',
 'brokenredirects-delete' => '(ñamümün)',
@@ -289,6 +304,7 @@ $messages = array(
 'nbytes'            => '$1 {{PLURAL:$1|byte|bytes}}',
 'nviews'            => '$1 {{PLURAL:$1|pen|pen}}',
 'shortpages'        => 'Pichi pakina',
+'usercreated'       => 'Llintun $1 mew $2 mew',
 'newpages'          => 'We pakina',
 'newpages-username' => 'Kellufe ñi üy',
 'move'              => 'Wiñamün',
@@ -306,6 +322,9 @@ $messages = array(
 'allarticles'    => 'Fill pakina',
 'allpagesnext'   => 'Inan',
 'allpagessubmit' => 'Pengelün',
+
+# Special:LinkSearch
+'linksearch-ok' => 'Kintun',
 
 # Special:ListUsers
 'listusers-submit' => 'Pengelün',
@@ -361,8 +380,9 @@ $messages = array(
 'blanknamespace' => '(Wüne pakina)',
 
 # Contributions
-'month' => 'Küyeṉ:',
-'year'  => 'Tripantu:',
+'contribsub2' => '$1 ($2)',
+'month'       => 'Küyeṉ:',
+'year'        => 'Tripantu:',
 
 'sp-contributions-submit' => 'Kintun',
 
@@ -390,6 +410,9 @@ $messages = array(
 '1movedto2'               => '[[$1]] wiñamngey [[$2]] püle',
 'delete_and_move'         => 'Ñamümün ka nengümün',
 'delete_and_move_confirm' => 'May, ñamümün pakina',
+
+# Export
+'export' => 'Wiñamün pakina',
 
 # Namespace 8 related
 'allmessagesname' => 'Üy',
@@ -429,6 +452,7 @@ $messages = array(
 'hours-abbrev' => 'o',
 
 # EXIF tags
+'exif-artist'              => 'Che llitun mew',
 'exif-exposuretime-format' => '$1 sek ($2)',
 
 'exif-exposureprogram-1' => 'Chillka kellu',
@@ -483,5 +507,8 @@ $messages = array(
 
 # Special:BlankPage
 'blankpage' => 'welli pakina',
+
+# Special:Tags
+'tags-edit' => 'Wirin',
 
 );

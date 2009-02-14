@@ -305,7 +305,7 @@ $messages = array(
 'create-this-page'  => 'שאף דעם בלאט',
 'delete'            => 'אויסמעקן',
 'deletethispage'    => 'מעק אויס דעם בלאט',
-'undelete_short'    => 'צוריקשטעל {{PLURAL:$1|איין עדיט|$1 עדיטס}}',
+'undelete_short'    => 'צוריקשטעלן {{PLURAL:$1|איין רעדאַקטירונג|$1 רעדאַקטירונגען}}',
 'protect'           => 'באשיצן',
 'protect_change'    => 'טוישן',
 'protectthispage'   => 'באשיץ דעם בלאט',
@@ -320,7 +320,7 @@ $messages = array(
 'articlepage'       => 'זעט אינהאלט בלאט',
 'talk'              => 'שמועס',
 'views'             => 'קוקן',
-'toolbox'           => 'טול קאסטן',
+'toolbox'           => 'געצייג קאסטן',
 'userpage'          => 'זעהט באנוצער בלאט',
 'projectpage'       => 'זעהט פראיעקט בלאט',
 'imagepage'         => 'זען טעקע בלאט',
@@ -1742,6 +1742,7 @@ $NEWPAGE
 'immobile-target-namespace' => 'מען קען נישט באַוועגן בלעטער צום נאמענטייל "$1"',
 'immobile-source-page'      => 'דער דאזיגער בלאט קען נישט ווערן באוועגט.',
 'imageinvalidfilename'      => 'דער ציל טעקע נאמען איז נישט גילטיק.',
+'move-leave-redirect'       => 'איבערלאזן א ווײַטערפֿירונג',
 
 # Export
 'export'            => 'עקספארטירן בלעטער',

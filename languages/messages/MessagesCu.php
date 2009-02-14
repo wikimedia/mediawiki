@@ -196,7 +196,9 @@ $messages = array(
 'newmessagesdifflink' => 'послѣ́дьнꙗ мѣ́на',
 'editsection'         => 'испра́ви',
 'editold'             => 'испра́ви',
+'viewsourceold'       => 'страни́цѧ исто́чьнъ о́браꙁъ',
 'editlink'            => 'испра́ви',
+'viewsourcelink'      => 'страни́цѧ исто́чьнъ о́браꙁъ',
 'showtoc'             => 'ви́ждь',
 'hidetoc'             => 'съкрꙑи',
 'viewdeleted'         => '$1 ви́дєти хо́щєши ;',
@@ -266,6 +268,7 @@ $messages = array(
 'last'         => 'пс҃лд',
 'page_first'   => 'прь́ва страни́ца',
 'page_last'    => 'послѣ́дьнꙗ страни́ца',
+'histlast'     => 'послѣ́дьнꙗ',
 'historyempty' => '(поу́сто)',
 
 # Revision feed

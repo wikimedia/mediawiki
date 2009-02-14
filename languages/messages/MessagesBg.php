@@ -783,7 +783,7 @@ $2',
 'anontalkpagetext'                 => "----''Това е дискусионната страница на анонимен потребител, който все още няма регистрирана сметка или не я използва, затова се налага да използваме IP-адрес, за да го идентифицираме. Такъв адрес може да се споделя от няколко потребители.''
 
 ''Ако сте анонимен потребител и мислите, че тези неуместни коментари са отправени към вас, [[Special:UserLogin/signup|регистрирайте се]] или [[Special:UserLogin|влезте в системата]], за да избегнете евентуално бъдещо объркване с други анонимни потребители.''",
-'noarticletext'                    => 'Тази страница все още не съществува. Можете да [[Special:Search/{{PAGENAME}}|потърсите за заглавието на страницата]] в други страници или [{{fullurl:{{FULLPAGENAME}}|action=edit}} да я създадете].',
+'noarticletext'                    => 'Тази страница все още не съществува. Можете да [[Special:Search/{{PAGENAME}}|потърсите за заглавието на страницата]] в други страници, да <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} потърсите в дневниците] или [{{fullurl:{{FULLPAGENAME}}|action=edit}} да я създадете]</span>.',
 'userpage-userdoesnotexist'        => 'Няма регистрирана потребителска сметка за „$1“. Изисква се потвърждение, че желаете да създадете/редактирате тази страница?',
 'clearyourcache'                   => "'''Бележка:''' След съхранението е необходимо да изтриете кеша на браузъра, за да видите промените:
 '''Mozilla / Firefox / Safari:''' натиснете бутона ''Shift'' и щракнете върху ''Презареждане'' (''Reload''), или изберете клавишната комбинация ''Ctrl-Shift-R'' (''Cmd-Shift-R'' за Apple Mac);
@@ -1057,7 +1057,7 @@ $2',
 'searchresults'                    => 'Резултати от търсенето',
 'searchresults-title'              => 'Резултати от търсенето за „$1“',
 'searchresulttext'                 => 'За повече информация относно търсенето в {{SITENAME}}, вижте [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'За заявка „[[:$1]]“',
+'searchsubtitle'                   => 'За заявка „[[:$1]]“ ([[Special:Prefixindex/$1|всички страници, които започват с „$1“]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|всички страници, които сочат към „$1“]])',
 'searchsubtitleinvalid'            => 'За заявка „$1“',
 'noexactmatch'                     => "В {{SITENAME}} не съществува страница с това заглавие. Можете да я '''[[:$1|създадете]]'''.",
 'noexactmatch-nocreate'            => "'''Не съществува страница „$1“.'''",
@@ -1176,6 +1176,14 @@ $2',
 'servertime'                => 'Време на сървъра:',
 'guesstimezone'             => 'Попълване чрез браузъра',
 'timezoneregion-africa'     => 'Африка',
+'timezoneregion-america'    => 'Америка',
+'timezoneregion-antarctica' => 'Антарктида',
+'timezoneregion-asia'       => 'Азия',
+'timezoneregion-atlantic'   => 'Атлантически океан',
+'timezoneregion-australia'  => 'Австралия',
+'timezoneregion-europe'     => 'Европа',
+'timezoneregion-indian'     => 'Индийски океан',
+'timezoneregion-pacific'    => 'Тихи океан',
 'allowemail'                => 'Възможност за получаване на писма от други потребители',
 'prefs-searchoptions'       => 'Настройки за търсене',
 'prefs-namespaces'          => 'Именни пространства',
@@ -2916,8 +2924,9 @@ $1
 'intentionallyblankpage' => 'Тази страница умишлено е оставена празна',
 
 # Special:Tags
-'tags-edit'     => 'редактиране',
-'tags-hitcount' => '$1 {{PLURAL:$1|промяна|промени}}',
+'tag-filter-submit' => 'Филтриране',
+'tags-edit'         => 'редактиране',
+'tags-hitcount'     => '$1 {{PLURAL:$1|промяна|промени}}',
 
 # Database error messages
 'dberr-info'      => '(Няма достъп до сървъра с базата данни: $1)',

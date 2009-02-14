@@ -224,14 +224,14 @@ $messages = array(
 'talkpagelinktext'  => 'Alderique',
 'specialpage'       => 'Páxina especial',
 'personaltools'     => 'Ferramientes personales',
-'postcomment'       => 'Escribir un comentariu',
+'postcomment'       => 'Seición nueva',
 'articlepage'       => 'Ver conteníu de la páxina',
 'talk'              => 'Alderique',
 'views'             => 'Vistes',
 'toolbox'           => 'Ferramientes',
 'userpage'          => "Ver páxina d'usuariu",
 'projectpage'       => 'Ver la páxina de proyeutu',
-'imagepage'         => "Ver la páxina d'archivos multimedia",
+'imagepage'         => 'Ver la páxina de ficheros',
 'mediawikipage'     => 'Ver la páxina de mensaxe',
 'templatepage'      => 'Ver la páxina de plantía',
 'viewhelppage'      => "Ver la páxina d'aida",
@@ -302,13 +302,13 @@ $messages = array(
 'site-atom-feed'          => 'Canal Atom $1',
 'page-rss-feed'           => 'Canal RSS "$1"',
 'page-atom-feed'          => 'Canal Atom "$1"',
-'red-link-title'          => '$1 (tovía non escritu)',
+'red-link-title'          => '$1 (la páxina nun esiste)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Páxina',
 'nstab-user'      => "Páxina d'usuariu",
 'nstab-media'     => "Páxina d'archivu multimedia",
-'nstab-special'   => 'Especial',
+'nstab-special'   => 'Páxina especial',
 'nstab-project'   => 'Páxina de proyeutu',
 'nstab-image'     => 'Archivu',
 'nstab-mediawiki' => 'Mensaxe',
@@ -318,8 +318,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Nun esiste esa aición',
-'nosuchactiontext'  => "L'aición especificada pola URL nun ye
-reconocida pola wiki",
+'nosuchactiontext'  => "L'aición especificada pola URL nun ye válida.
+Seique escribieras mal la URL o siguieras un enllaz incorreutu.
+Tamién podría ser un bug nel software usáu por {{SITENAME}}.",
 'nosuchspecialpage' => 'Nun esiste esa páxina especial',
 'nospecialpagetext' => "<big>'''Pidisti una páxina especial non válida.'''</big>
 
@@ -439,7 +440,7 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'yourvariant'                => 'Variante llingüística:',
 'yournick'                   => 'Firma:',
 'badsig'                     => 'Firma cruda non válida; comprueba les etiquetes HTML.',
-'badsiglength'               => 'El nomatu ye demasiao llargu.
+'badsiglength'               => 'La to robla ye demasiao llarga.
 Ha tener menos de $1 {{PLURAL:$1|caráuter|carauteres}}.',
 'yourgender'                 => 'Xéneru:',
 'gender-unknown'             => 'Non especificáu',
@@ -457,7 +458,8 @@ Tamién pues escoyer permitir a los demás contautar contigo al traviés de la t
 'loginsuccesstitle'          => 'Identificación correuta',
 'loginsuccess'               => "'''Quedasti identificáu en {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'Nun hai usuariu dalu col nome "$1".
-Comprueba la ortografía, o [[Special:UserLogin/signup|crea una cuenta d\'usuariu nueva]].',
+Los nomes d\'usuariu distinguen mayúscules y minúscules.
+Comprueba la ortografía o [[Special:UserLogin/signup|crea una cuenta d\'usuariu nueva]].',
 'nosuchusershort'            => 'Nun hai nengún usuariu col nome "<nowiki>$1</nowiki>". Mira que tea bien escritu.',
 'nouserspecified'            => "Has especificar un nome d'usuariu.",
 'wrongpassword'              => 'Clave errónea.  Inténtalo otra vuelta.',
@@ -485,8 +487,8 @@ Enantes de que s'unvie nengún otru corréu a la cuenta, has siguir les instrucc
 'throttled-mailpassword'     => "Yá s'unvió un recordatoriu de la clave {{PLURAL:$1|na cabera hora|nes caberes $1 hores}}.
 Pa evitar l'abusu, namái sedrá unviáu un recordatoriu cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror'                  => "Error unviando'l corréu: $1",
-'acct_creation_throttle_hit' => 'Sentímoslo, yá creasti {{PLURAL:$1|1 cuenta|$1 cuentes}}.
-Nun pues abrir más.',
+'acct_creation_throttle_hit' => "Los visitantes d'esta wiki qu'usen la to direición IP yá crearon güei {{PLURAL:$1|1 cuenta|$1 cuentes}}, que ye'l máximu almitíu nesti periodu de tiempu.
+Poro, los visitantes qu'usen esta direición IP nun pues crear más cuentes de momentu.",
 'emailauthenticated'         => "La to direición de corréu confirmóse'l $2 a les $3.",
 'emailnotauthenticated'      => 'La to direición de corréu nun ta comprobada. Hasta que se faiga, les siguientes funciones nun tarán disponibles.',
 'noemailprefs'               => "Especifica una direición de corréu pa qu'estes funcionalidaes furrulen.",
@@ -598,11 +600,16 @@ Por favor, amiesta toos estos detalles nes consultes que faigas.',
 'loginreqlink'                     => 'identificase',
 'loginreqpagetext'                 => 'Has $1 pa ver otres páxines.',
 'accmailtitle'                     => 'Clave unviada.',
-'accmailtext'                      => 'La clave de "$1" foi unviada a $2.',
+'accmailtext'                      => "Unvióse a $2 una clave xenerada al debalu pa [[User talk:$1|$1]].
+
+La clave pa esta cuenta nueva pue camudase na páxina ''[[Special:ChangePassword|camudar clave]]'' depués d'identificate.",
 'newarticle'                       => '(Nuevu)',
 'newarticletext'                   => 'Siguisti un enllaz a un artículu qu\'inda nun esiste. Pa crealu, empecipia a escribir na caxa d\'equí embaxo. Si llegasti equí por enquivocu, namás tienes que calcar nel botón "atrás" del to navegador.',
 'anontalkpagetext'                 => "----''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa. Pola mor d'ello ha usase la direición numérica IP pa identificalu/la. Tala IP pue ser compartida por varios usuarios. Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:UserLogin/signup|crea una cuenta]] o [[Special:UserLogin/signup|rexístrate]] pa evitar futures confusiones con otros usuarios anónimos.''",
-'noarticletext'                    => "Nestos momentos nun hai testu nesta páxina. Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu]] n'otres páxines, o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar ésta equí].",
+'noarticletext'                    => 'Anguaño nun hai testu nesta páxina.
+Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páxines,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} buscar los rexistros rellacionaos],
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar ésta equí]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta d\'usuariu "$1" nun ta rexistrada. Por favor asegúrate de que quies crear/editar esta páxina.',
 'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
 *'''Mozilla / Firefox / Safari:''' caltién ''Shift'' mentes calques en ''Reload'', o calca ''Ctrl-Shift-R'' (''Cmd-Shift-R'' en Apple Mac)
@@ -630,7 +637,7 @@ nel editor. La edición nun foi aceutada pa prevenir corrupciones na páxina de 
 que pasa cuando tas usando un proxy anónimu basáu en web que seya problemáticu.'''",
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (seición)',
-'editingcomment'                   => 'Editando $1 (comentariu)',
+'editingcomment'                   => 'Editando $1 (seición nueva)',
 'editconflict'                     => "Conflictu d'edición: $1",
 'explainconflict'                  => "Daquién más camudó esta páxina dende qu'empecipiasti a editala.
 Na área de testu d'enriba ta'l testu de la páxina como ta nestos momentos.
@@ -899,7 +906,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'searchresults'                    => 'Resultaos de la busca',
 'searchresults-title'              => 'Resultaos de la busca pa "$1"',
 'searchresulttext'                 => 'Pa más información tocante a busques en {{SITENAME}}, vete a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => "Buscasti '''[[:$1]]'''",
+'searchsubtitle'                   => 'Buscasti \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toles páxines qu\'emprimen con "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toles páxines qu\'enllacien a "$1"]])',
 'searchsubtitleinvalid'            => "Buscasti '''$1'''",
 'noexactmatch'                     => "'''Nun esiste la páxina \"\$1\".''' Pues [[:\$1|crear esta páxina]].",
 'noexactmatch-nocreate'            => "'''Nun hai nenguna páxina col títulu \"\$1\".'''",
@@ -1005,15 +1012,26 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'stub-threshold'            => 'Llímite superior pa considerar como <a href="#" class="stub">enllaz a entamu</a> (bytes):',
 'recentchangesdays'         => "Díes qu'amosar nos cambeos recientes:",
 'recentchangesdays-max'     => '(máximo $1 {{PLURAL:$1|día|díes}})',
-'recentchangescount'        => "Númberu d'ediciones amosaes nes páxines de cambeos recientes, historial y rexistru:",
+'recentchangescount'        => "Númberu d'ediciones amosaes nes páxines de cambeos recientes, historiales de páxines y rexistros, por defeutu:",
 'savedprefs'                => 'Les tos preferencies quedaron grabaes.',
 'timezonelegend'            => 'Zona horaria',
 'timezonetext'              => '¹Diferencia horaria ente la UTC y la to hora llocal.',
 'localtime'                 => 'Hora llocal:',
 'timezoneselect'            => 'Zona horaria:',
+'timezoneuseoffset'         => 'Otru (especificar diferencia)',
 'timezoneoffset'            => 'Diferencia¹:',
 'servertime'                => 'Hora del sirvidor:',
 'guesstimezone'             => 'Obtener del navegador',
+'timezoneregion-africa'     => 'África',
+'timezoneregion-america'    => 'América',
+'timezoneregion-antarctica' => 'Antártida',
+'timezoneregion-arctic'     => 'Árticu',
+'timezoneregion-asia'       => 'Asia',
+'timezoneregion-atlantic'   => 'Océanu Atlánticu',
+'timezoneregion-australia'  => 'Australia',
+'timezoneregion-europe'     => 'Europa',
+'timezoneregion-indian'     => 'Océanu Índicu',
+'timezoneregion-pacific'    => 'Océanu Pacíficu',
 'allowemail'                => 'Dexar a los otros usuarios mandate correos',
 'prefs-searchoptions'       => 'Opciones de busca',
 'prefs-namespaces'          => 'Espacios de nome',
@@ -1316,6 +1334,7 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'listfiles_user'        => 'Usuariu',
 'listfiles_size'        => 'Tamañu',
 'listfiles_description' => 'Descripción',
+'listfiles_count'       => 'Versiones',
 
 # File description page
 'filehist'                       => 'Historial del archivu',
@@ -1758,7 +1777,7 @@ la base de datos. Esta ye la configuración actual de la páxina '''$1''':",
 'protect-locked-access'       => "La to cuenta nun tien permisu pa camudar los niveles de proteición de páxina.
 Esta ye la configuración actual pa la páxina '''$1''':",
 'protect-cascadeon'           => "Esta páxina ta protexida nestos momentos porque ta inxerida {{PLURAL:$1|na siguiente páxina, que tien|nes siguientes páxines, que tienen}} activada la proteición en cascada. Pues camudar el nivel de proteición d'esta páxina, pero nun va afeutar a la proteición en cascada.",
-'protect-default'             => '(por defeutu)',
+'protect-default'             => 'Permitir tolos usuarios',
 'protect-fallback'            => 'Requier el permisu "$1"',
 'protect-level-autoconfirmed' => 'Bloquiar usuarios non rexistraos',
 'protect-level-sysop'         => 'Namái alministradores',
