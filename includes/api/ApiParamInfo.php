@@ -41,6 +41,7 @@ class ApiParamInfo extends ApiBase {
 		// Get parameters
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
+		$queryObj = new ApiQuery($this->getMain(), 'query');
 		$r = array();
 		if(is_array($params['modules']))
 		{
@@ -61,7 +62,6 @@ class ApiParamInfo extends ApiBase {
 		}
 		if(is_array($params['querymodules']))
 		{
-			$queryObj = new ApiQuery($this->getMain(), 'query');
 			$qmodArr = $queryObj->getModules();
 			foreach($params['querymodules'] as $qm)
 			{
@@ -76,6 +76,13 @@ class ApiParamInfo extends ApiBase {
 				$r['querymodules'][] = $a;
 			}
 			$result->setIndexedTagName($r['querymodules'], 'module');
+		}
+		if($params['mainmodule'])
+			$r['mainmodule'] = $this->getClassInfo($this->getMain());
+		if($params['pagesetmodule'])
+		{
+			$pageSet = new ApiPageSet($queryObj);
+			$r['pagesetmodule'] = $this->getClassInfo($pageSet);
 		}
 		$result->addValue(null, $this->getModuleName(), $r);
 	}
@@ -147,7 +154,9 @@ class ApiParamInfo extends ApiBase {
 			),
 			'querymodules' => array(
 				ApiBase :: PARAM_ISMULTI => true
-			)
+			),
+			'mainmodule' => false,
+			'pagesetmodule' => false,
 		);
 	}
 
@@ -155,6 +164,8 @@ class ApiParamInfo extends ApiBase {
 		return array (
 			'modules' => 'List of module names (value of the action= parameter)',
 			'querymodules' => 'List of query module names (value of prop=, meta= or list= parameter)',
+			'mainmodule' => 'Get information about the main (top-level) module as well',
+			'pagesetmodule' => 'Get information about the pageset module (providing titles= and friends) as well',
 		);
 	}
 
