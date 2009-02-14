@@ -138,7 +138,7 @@ class SkinTemplate extends Skin {
 		global $wgScript, $wgStylePath, $wgContLanguageCode;
 		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgRequest;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
-		global $wgDisableCounters, $wgLogo, $action, $wgHideInterlanguageLinks;
+		global $wgDisableCounters, $wgLogo, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 		global $wgUseTrackbacks, $wgUseSiteJs;
@@ -148,6 +148,7 @@ class SkinTemplate extends Skin {
 
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
+		$action = $wgRequest->getVal( 'action', 'view' );
 
 		wfProfileIn( __METHOD__."-init" );
 		$this->initPage( $out );
@@ -647,12 +648,12 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function buildContentActionUrls() {
-		global $wgContLang, $wgLang, $wgOut;
+		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest;
+
 		wfProfileIn( __METHOD__ );
 
-		global $wgUser, $wgRequest;
-		$action = $wgRequest->getText( 'action' );
-		$section = $wgRequest->getText( 'section' );
+		$action = $wgRequest->getVal( 'action', 'view' );
+		$section = $wgRequest->getVal( 'section' );
 		$content_actions = array();
 
 		$prevent_active_tabs = false ;
@@ -849,7 +850,7 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ );
 
-		$action = $wgRequest->getText( 'action' );
+		$action = $wgRequest->getVal( 'action', 'view' );
 
 		$nav_urls = array();
 		$nav_urls['mainpage'] = array( 'href' => self::makeMainPageUrl() );
@@ -872,7 +873,7 @@ class SkinTemplate extends Skin {
 
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
-		if( $this->iscontent && ($action == '' || $action == 'view' || $action == 'purge' ) ) {
+		if( $this->iscontent && ( $action == 'view' || $action == 'purge' ) ) {
 			$nav_urls['print'] = array(
 				'text' => wfMsg( 'printableversion' ),
 				'href' => $wgRequest->appendQuery( 'printable=yes' )
@@ -966,10 +967,11 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function setupUserJs( $allowUserJs ) {
+		global $wgRequest, $wgJsMimeType;
+
 		wfProfileIn( __METHOD__ );
 
-		global $wgRequest, $wgJsMimeType;
-		$action = $wgRequest->getText('action');
+		$action = $wgRequest->getVal( 'action', 'view' );
 
 		if( $allowUserJs && $this->loggedin ) {
 			if( $this->mTitle->isJsSubpage() and $this->userCanPreview( $action ) ) {
