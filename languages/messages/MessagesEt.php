@@ -7,6 +7,7 @@
  * @author Avjoska
  * @author Hendrix
  * @author Jaan513
+ * @author Ker
  * @author Võrok
  * @author WikedKentaur
  * @author לערי ריינהארט
@@ -445,6 +446,10 @@ Palun valige uus nimi.',
 'yournick'                   => 'Teie hüüdnimi (allakirjutamiseks)',
 'badsig'                     => 'Sobimatu allkiri.
 Palun kontrolli HTML koodi.',
+'yourgender'                 => 'Sugu:',
+'gender-unknown'             => 'Määratlemata',
+'gender-male'                => 'Mees',
+'gender-female'              => 'Naine',
 'email'                      => 'E-post',
 'prefs-help-realname'        => '* <strong>Tegelik nimi</strong> (pole kohustuslik): kui otsustate selle avaldada, kasutatakse seda Teie kaastöö seostamiseks Teiega.<br />',
 'loginerror'                 => 'Viga sisselogimisel',

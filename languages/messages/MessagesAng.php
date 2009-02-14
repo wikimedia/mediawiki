@@ -685,14 +685,18 @@ Bidde cēos ōðerne naman.',
 
 # E-mail address confirmation
 'confirmemail_body' => 'Hwilchwega, gewēne þu of IP stōwe $1, hæfþ in namanbēc gestt ǣnne hordcleofan
- "$2" mid þissum e-ǣrendes naman on {{SITENAME}}n.
+"$2" mid þissum e-ǣrendes naman on {{SITENAME}}n.
 
 Tō āsēðenne þæt þes hordcleofa tō þē gebyraþ and tō openienne
 e-ǣrenda hwilcnessa on {{SITENAME}}n, opena þisne bend in þīnum webbscēawere:
 
 $3
 
-Gif þis is *nā* þū, ne folga þisne bend. Þēos āsēðungrūn forealdaþ æt $4.',
+Gif þis is *nā* þū, ne folga þisne bend.
+
+$5
+
+Þēos āsēðungrūn forealdaþ æt $4.',
 
 # Scary transclusion
 'scarytranscludefailed'  => '[Bisenfeccung getrucod for $1; sarig]',

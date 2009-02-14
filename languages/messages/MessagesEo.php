@@ -585,6 +585,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'loginsuccesstitle'          => 'Ensalutado sukcesis',
 'loginsuccess'               => 'Vi ensalutis ĉe {{SITENAME}} kiel uzanto "$1".',
 'nosuchuser'                 => 'Neniu uzanto havas nomon "$1".
+Nomoj por uzantoj estas usklecodistinga.
 Kontrolu vian literumadon, aŭ [[Special:UserLogin/signup|kreu novan konton]].',
 'nosuchusershort'            => 'Ne ekzistas uzanto kun la nomo "<nowiki>$1</nowiki>". Bonvolu kontroli vian ortografion.',
 'nouserspecified'            => 'Vi devas entajpi uzantonomon.',
@@ -736,7 +737,10 @@ La pasvorto por ĉi tiu nova konto povas esti ŝanĝita en la paĝo ''[[Special:
 Ni tial devas uzi la cifran IP-adreso por identigi lin. 
 La sama IP-adreso povas estis samtempte uzata de pluraj uzantoj.
 Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:UserLogin|krei konton]] aŭ [[Special:UserLogin|ensaluti]] por eviti estontan konfuzon kun alia anonimaj uzantoj.''",
-'noarticletext'                    => 'La paĝo nune estas malplena. Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝtitolon]] en aliaj paĝoj aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon].',
+'noarticletext'                    => 'Mankas teksto en ĉi tiu paĝo.
+Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝtitolon]] en aliaj paĝoj,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} serĉi la rilatajn protokolojn],
+aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon]</span>.',
 'userpage-userdoesnotexist'        => 'Uzula konto "$1" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti ĉi tiu paĝo.',
 'clearyourcache'                   => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
 'usercssjsyoucanpreview'           => "'''Konsileto:''' Uzu la \"Antaŭrigardan\" butonon por provi vian novan css/js antaŭ konservi.",
@@ -1034,7 +1038,7 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'searchresults'                    => 'Serĉrezultoj',
 'searchresults-title'              => 'Serĉrezultoj por "$1"',
 'searchresulttext'                 => 'Por pliaj informoj kiel priserĉi la {{SITENAME}}n, vidu [[{{MediaWiki:Helppage}}|serĉi en {{SITENAME}}]].',
-'searchsubtitle'                   => 'Vi serĉis "\'\'\'[[$1]]\'\'\'" ([[Special:Prefixindex/$1|ĉiuj paĝoj komence kun "$1"]] | [[Special:WhatLinksHere/$1|ĉiuj paĝoj ligantaj al "$1"]])',
+'searchsubtitle'                   => 'Vi serĉis "\'\'\'[[$1]]\'\'\'" ([[Special:Prefixindex/$1|ĉiuj paĝoj komence de "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ĉiuj paĝoj ligantaj al "$1"]])',
 'searchsubtitleinvalid'            => 'Serĉmendo "$1"',
 'noexactmatch'                     => '<b>Ne estas paĝo titolita "$1".</b> Vi povas [[:$1|krei la paĝon]].',
 'noexactmatch-nocreate'            => "'''Estas neniu paĝo titolita \"\$1\".'''",
@@ -1407,7 +1411,8 @@ Se la kontrolita dosiero estas la sama bildo kiel la originala grandeco, ĝi ne 
 'file-thumbnail-no'           => "La dosiernomo komencas kun '''<tt>$1</tt>'''. 
 Ĝi ŝajnas kiel bildo de malgrandigita grandeco ''(thumbnail)''.
 Se vi havas ĉi tiun bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝanĝi la dosieran nomon.",
-'fileexists-forbidden'        => 'Dosiero kun tia ĉi nomo jam ekzistas; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Dosiero kun tiu ĉi nomo jam ekzistas, kaj ne eblas anstataŭigi ĝin.
+Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu reprovi kun nova nomo. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dosiero kun ĉi tia nomo jam ekzistas en la komuna dosierujo.
 Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon.[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ĉi tiu dosiero estas duplikato de la {{PLURAL:$1|jena dosiero|jenaj dosieroj}}:',
@@ -1592,7 +1597,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'double-redirect-fixer'      => 'Alidirektila riparilo',
 
 'brokenredirects'        => 'Rompitaj alidirektadoj',
-'brokenredirectstext'    => 'La jenaj alidirektadoj ligas al neekzistantaj artikoloj.',
+'brokenredirectstext'    => 'La jenaj alidirektadoj ligas al neekzistantaj paĝoj:',
 'brokenredirects-edit'   => '(redakti)',
 'brokenredirects-delete' => '(forigi)',
 
@@ -2215,7 +2220,7 @@ Bonvolu permane kunigi ilin.',
 'movedto'                      => 'alinomita al',
 'movetalk'                     => 'Transigi ankaŭ la "diskuto"-paĝon, se ĝi ekzistas.',
 'move-subpages'                => 'Alinomigi ĉiujn subpaĝojn (maksimume $1), se fareble.',
-'move-talk-subpages'           => 'Alinomigi ĉiujn subpaĝojn de diskuto-paĝoj, se fareble.',
+'move-talk-subpages'           => 'Alinomigi subpaĝojn de diskuto-paĝo (ĝis $1), se fareble.',
 'movepage-page-exists'         => 'La paĝo $1 jam ekzistas kaj ne povas esti aŭtomate anstataŭigita.',
 'movepage-page-moved'          => 'La paĝo $1 estis alinomita al $2.',
 'movepage-page-unmoved'        => 'La paĝo $1 ne povas esti alinomigita al $2.',

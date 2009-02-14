@@ -1255,7 +1255,8 @@ $2',
 'searchresults'                    => 'نتایج جستجو',
 'searchresults-title'              => 'نتایج جستجو برای «$1»',
 'searchresulttext'                 => 'برای اطلاعات بیشتر دربارهٔ جستجوی {{SITENAME}}، به [[{{ns:project}}:جستجو کردن|جستجوی {{SITENAME}}]] مراجعه کنید.',
-'searchsubtitle'                   => '«[[:$1]]» را جُستید',
+'searchsubtitle'                   => "شما '''[[:$1]]''' را جستید ([[Special:Prefixindex/$1|صفحه‌هایی که با «$1» شروع می‌شوند]]{{int:pipe-separator}}
+[[Special:WhatLinksHere/$1|صفحه‌هایی که به «$1» پیوند دارند]])",
 'searchsubtitleinvalid'            => 'برای پرس‌وجوی «$1»',
 'noexactmatch'                     => "'''صفحه‌ای با عنوان دقیق \"\$1\" وجود ندارد.''' شما می‌توانید این صفحه را [[:\$1|ایجاد کنید]].",
 'noexactmatch-nocreate'            => "'''صفحه‌ای با عنوان «$1» وجود ندارد.'''",
@@ -1376,6 +1377,16 @@ $2',
 'timezoneoffset'            => 'اختلاف¹:',
 'servertime'                => 'زمان کارگزار:',
 'guesstimezone'             => 'از مرورگر گرفته شود',
+'timezoneregion-africa'     => 'آفریقا',
+'timezoneregion-america'    => 'آمریکا',
+'timezoneregion-antarctica' => 'قطب جنوبی',
+'timezoneregion-arctic'     => 'قطب شمالی',
+'timezoneregion-asia'       => 'آسیا',
+'timezoneregion-atlantic'   => 'اقیانوس اطلس',
+'timezoneregion-australia'  => 'استرالیا',
+'timezoneregion-europe'     => 'اروپا',
+'timezoneregion-indian'     => 'اقیانوس هند',
+'timezoneregion-pacific'    => 'اقیانوس آرام',
 'allowemail'                => 'امکان دریافت پست الکترونیکی از دیگر کاربران',
 'prefs-searchoptions'       => 'گزینه‌های جستجو',
 'prefs-namespaces'          => 'فضاهای نام',
@@ -2006,7 +2017,7 @@ $2',
 'watchlistanontext'    => 'برای مشاهده و ویرایش فهرست پی‌گیری‌های خود از $1 استفاده کنید.',
 'watchnologin'         => 'به سیستم وارد نشده‌اید',
 'watchnologintext'     => 'برای تغییر فهرست پی‌گیری‌هایتان باید [[Special:UserLogin|به سیستم وارد شوید]].',
-'addedwatch'           => 'به فهرست پی‌گیری‌ها اضافه شد',
+'addedwatch'           => 'به فهرست پی‌گیری اضافه شد',
 'addedwatchtext'       => "صفحهٔ «<nowiki>$1</nowiki>» به [[Special:Watchlist|فهرست پی‌گیری‌های]] شما اضافه شد.
 تغییرات این صفحه و صفحهٔ بحث متناظرش در آینده در اینجا فهرست خواهد شد. به‌علاوه، این صفحه، برای واضح‌تر دیده شدن در [[Special:RecentChanges|فهرست تغییرات اخیر]] به شکل <b>سیاه</b> خواهد آمد.
 
@@ -2113,9 +2124,10 @@ $NEWPAGE
 'rollbacklink'     => 'واگردانی',
 'rollbackfailed'   => 'واگردانی نشد',
 'cantrollback'     => 'نمی‌توان ویرایش را واگرداند. آخرین مشارکت‌کننده تنها مؤلف این مقاله است.',
-'alreadyrolled'    => 'واگردانی آخرین ویرایش [[$1]] بوسیلهٔ [[User:$2|$2]] ([[User talk:$2|بحث]]) ممکن نیست؛ پیش از این شخص دیگری مقاله را ویرایش یا واگردانی کرده است.
+'alreadyrolled'    => 'واگردانی آخرین ویرایش [[:$1]] به وسیلهٔ [[User:$2|$2]]{{int:pipe-separator}}([[User talk:$2|بحث]]) ممکن نیست؛
+پیش از این شخص دیگری مقاله را ویرایش یا واگردانی کرده‌است.
 
-آخرین ویرایش توسط [[User:$3|$3]] ([[User talk:$3|بحث]]).',
+آخرین ویرایش توسط [[User:$3|$3]] ([[User talk:$3|بحث]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) انجام شده‌است.',
 'editcomment'      => "خلاصهٔ ویرایش این بود: «''$1''».", # only shown if there is an edit comment
 'revertpage'       => 'ویرایش $2 واگردانده شد به آخرین تغییری که  $1 انجام داده بود', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'ویرایش‌های $1 واگردانی شد؛ صفحه به ویرایش $2 برگردانده شد.',
@@ -2733,8 +2745,7 @@ $1',
 'metadata-help'     => 'این پرونده حاوی اطلاعات اضافه‌ای است که احتمالاً توسط دوربین دیجیتالی‌ یا پویشگری که در ایجاد یا دیجیتالی‌کردن آن به کار رفته‌است، افزوده شده‌است. اگر پرونده از وضعیت ابتدایی‌اش تغییر داده شده باشد آنگاه ممکن است شرح و تفصیلات موجود اطلاعات عکس را تماماً بازتاب ندهد.',
 'metadata-expand'   => 'نمایش جزئیات تفصیلی',
 'metadata-collapse' => 'نهفتن جزئیات تفصیلی',
-'metadata-fields'   => 'فراداده EXIF نشان داده شده در این پیغام وقتی جدول فراداده‌های تصویر جمع شده باشد هم نمایش داده می‌شوند.
-بقیهٔ موارد تنها زمانی نشان داده می‌شوند که جدول یادشده باز شود.
+'metadata-fields'   => 'فرادادهٔ EXIF نشان داده شده در این پیغام وقتی جدول فراداده‌های تصویر جمع شده باشد هم نمایش داده می‌شوند. بقیهٔ موارد تنها زمانی نشان داده می‌شوند که جدول یاد شده باز شود.
 * make
 * model
 * datetimeoriginal
@@ -2930,8 +2941,8 @@ $1',
 'exif-flash-return-0'   => 'فاقد عملکرد کشف نور انعکاسی',
 'exif-flash-return-2'   => 'نور انعکاسی کشف نشد',
 'exif-flash-return-3'   => 'نور انعکاسی کشف شد',
-'exif-flash-mode-1'     => 'فلاش‌زدن اجباری',
-'exif-flash-mode-2'     => 'جلوگیری اجباری از فلاش‌زدن',
+'exif-flash-mode-1'     => 'فلاش زدن اجباری',
+'exif-flash-mode-2'     => 'جلوگیری اجباری از فلاش زدن',
 'exif-flash-mode-3'     => 'حالت خودکار',
 'exif-flash-function-1' => 'فاقد عملکرد فلاش',
 'exif-flash-redeye-1'   => 'حالت اصلاح سرخی چشم‌ها',

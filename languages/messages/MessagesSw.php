@@ -124,14 +124,14 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Wezesha sehemu ya kuandikia kwa kubonyeza kitufe cha kulia cha puku yako juu ya sehemu ya majina husika (JavaScript)',
 'tog-showtoc'                 => 'Onyesha mistari ya yaliyomo (kwa kila kurasa iliyo na zaidi ya vichwa vya habari 3)',
 'tog-rememberpassword'        => 'Kumbuka kuingia kwangu katika kompyuta hii',
-'tog-editwidth'               => 'Hariri sanduku lenye upana mzima',
+'tog-editwidth'               => 'Sanduku la kuhariri liwe na upana mzima',
 'tog-watchcreations'          => 'Weka kurasa nilizoumba katika maangalizi yangu',
 'tog-watchdefault'            => 'Weka kurasa zote nilizohariri katika maangalizi yangu',
 'tog-watchmoves'              => 'Weka kurasa zote nilizohamisha katika maangalizi yangu',
 'tog-watchdeletion'           => 'Weka kurasa zote nilizofuta katika maangalizi yangu',
 'tog-minordefault'            => 'Weka alama zote za mabadiliko madogo kama matumizi mbadala',
 'tog-previewontop'            => 'Onyesha mandhari kabla ya sanduku la kuhariria',
-'tog-previewonfirst'          => 'Onyesha mandhari mwanzoni mwa sanduku la kuhariria',
+'tog-previewonfirst'          => 'Onyesha mandhari unapoanza kuhariri',
 'tog-nocache'                 => 'Lemaza mabaki ya kurasa',
 'tog-enotifwatchlistpages'    => 'Nitumie barua pepe pale kurasa zilizopo katika maangalizi yangu zikibadilishwa',
 'tog-enotifusertalkpages'     => 'Nitumie barua pepe pale ukurasa wangu wa majadiliano ukiwa na mabadiliko',
@@ -461,15 +461,16 @@ Unaweza kupuuza ujumbe huu, endapo akaunti hii ilianzishwa kimakosa.',
 'summary-preview'        => 'Hakikisho la muhtasari:',
 'blockedtext'            => "<big>'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''</big>
 
-Umezuiwa na $1. Sababu alitambua ni ''$2''
+Umezuiwa na $1. 
+Sababu aliyetambua ni ''$2''
 
 * Mwanzo wa uzuio: $8
 * Mwisho wa uzuio: $6
 * Aliyezuiwa: $7
 
 Unaweza kuwasiliana na $1 au [[{{MediaWiki:Grouppage-sysop}}|mkabidhi]] kuzungumza uzuio.
-Huwezi kutumia kipengele 'kumtuma mtumiaji barua pepe' ila anwani halisi ya barua pepe inapatikana katika
-[[Special:Preferences|mapendekezo ya akaunti]] yako na hujazuiwa kuitumia.
+Huwezi kutumia kipengele 'kumtuma mtumiaji barua pepe' isipopatikana anwani halisi ya barua pepe katika
+[[Special:Preferences|mapendekezo ya akaunti]] yako, na usipozuiwa kuitumia.
 Anwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi ukitaka kuwasiliana kuhusu uzuio huu.",
 'loginreqtitle'          => 'Unatakiwa kuingia au kujisajili',
 'accmailtitle'           => 'Neno la siri limeshakutumia.',
@@ -538,10 +539,23 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'powersearch'    => 'Tafuta',
 
 # Preferences page
-'preferences'    => 'Mapendekezo',
-'mypreferences'  => 'Mapendekezo yangu',
-'changepassword' => 'Badilisha neno la siri',
-'skin'           => 'Sura',
+'preferences'              => 'Mapendekezo',
+'mypreferences'            => 'Mapendekezo yangu',
+'changepassword'           => 'Badilisha neno la siri',
+'skin'                     => 'Sura',
+'prefs-watchlist'          => 'Maangalizi',
+'saveprefs'                => 'Hifadhi',
+'rows'                     => 'Mistari:',
+'columns'                  => 'Safu:',
+'timezonelegend'           => 'Ukanda saa',
+'timezoneselect'           => 'Ukanda saa:',
+'timezoneregion-africa'    => 'Afrika',
+'timezoneregion-america'   => 'Marekani',
+'timezoneregion-arctic'    => 'Artiki',
+'timezoneregion-atlantic'  => 'Bahari ya Atlantiki',
+'timezoneregion-australia' => 'Australia',
+'timezoneregion-europe'    => 'Ulaya',
+'files'                    => 'Mafaili',
 
 'grouppage-sysop' => '{{ns:project}}:Wakabidhi',
 
@@ -914,8 +928,8 @@ Chagua jina lengine.',
 'siteuser' => '{{SITENAME}} mtumiaji $1',
 
 # Browsing diffs
-'previousdiff' => '←Tofauti kabla',
-'nextdiff'     => 'Tofauti ijayo→',
+'previousdiff' => '← Badilisho lililopita',
+'nextdiff'     => 'Badilisho lijalo →',
 
 # Media information
 'file-info-size'       => '(piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4)',

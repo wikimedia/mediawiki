@@ -1594,7 +1594,7 @@ $2',
 'shareduploadwiki-desc'          => 'Апісаньне, пазначанае на $1 з агульнага сховішча, паказанае ніжэй.',
 'shareduploadwiki-linktext'      => 'старонцы апісаньня файла',
 'shareduploadduplicate'          => 'Гэты файл дублюе $1 з агульнага сховішча.',
-'shareduploadduplicate-linktext' => 'іншага файла',
+'shareduploadduplicate-linktext' => 'іншы файл',
 'shareduploadconflict'           => 'Гэты файл мае такую ж назву як і $1 з агульнага сховішча.',
 'shareduploadconflict-linktext'  => 'іншы файл',
 'noimage'                        => 'Няма файла з такой назвай, але Вы можаце $1.',
@@ -1980,9 +1980,9 @@ $NEWPAGE
 'rollbacklink'     => 'адкат',
 'rollbackfailed'   => 'Памылка адкату',
 'cantrollback'     => 'Немагчыма скасаваць зьмену; апошні рэдактар — адзіны аўтар гэтай старонкі.',
-'alreadyrolled'    => 'Немагчыма скасаваць апошнюю зьмену [[:$1]], якую зрабіў [[User:$2|$2]] ([[User talk:$2|гутаркі]]); нехта іншы ўжо зьмяніў артыкул ці скасаваў зьмены.
+'alreadyrolled'    => 'Немагчыма скасаваць апошнюю зьмену [[:$1]], якую зрабіў [[User:$2|$2]] ([[User talk:$2|гутаркі]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); нехта іншы ўжо зьмяніў артыкул ці скасаваў зьмены.
 
-Апошнія зьмены зробленыя [[User:$3|$3]] ([[User talk:$3|гутаркі]]).',
+Апошнія зьмены зробленыя [[User:$3|$3]] ([[User talk:$3|гутаркі]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Кароткае апісаньне зьменаў было: «''$1''».", # only shown if there is an edit comment
 'revertpage'       => 'Адмененыя рэдагаваньні [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) да папярэдняй вэрсіі [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Адмененыя рэдагаваньні $1;

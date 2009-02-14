@@ -731,6 +731,8 @@ U kan slegs bestaande bladsye wysig, of u kan [[Special:UserLogin|aanteken of re
 
 U moet besluit of dit wys is om voort te gaan en aan die bladsy te werk. 
 Die verwyderingslogboek vir die blad word hier onder vertoon vir u gerief:",
+'deleted-notice'                   => 'Hierdie bladsy is verwyder.
+Die skraplogboek word hieronder ter inligting weergegee.',
 'deletelog-fulllog'                => 'Wys volledige logboek',
 'edit-gone-missing'                => 'Die bladsy is nie gewysig nie.
 Dit lyk of dit verwyder is.',
@@ -1131,6 +1133,8 @@ bevat, word gewys).",
 'rc_categories'                  => 'Beperk tot kategorië (skei met "|")',
 'rc_categories_any'              => 'Enige',
 'newsectionsummary'              => '/* $1 */ nuwe afdeling',
+'rc-enhanced-expand'             => 'Wys details (benodig JavaScript)',
+'rc-enhanced-hide'               => 'Steek details weg',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Verwante veranderings',
@@ -1445,6 +1449,7 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 'nextpage'          => 'Volgende blad ($1)',
 'prevpage'          => 'Vorige bladsye ($1)',
 'allpagesfrom'      => 'Wys bladsye vanaf:',
+'allpagesto'        => 'Wys bladsye tot:',
 'allarticles'       => 'Alle artikels',
 'allinnamespace'    => 'Alle bladsye (naamruimte $1)',
 'allnotinnamespace' => 'Alle bladsye (nie in naamruimte $1 nie)',
@@ -1629,6 +1634,7 @@ Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te vo
 # Protect
 'protectlogpage'              => 'Beskermlogboek',
 'protectedarticle'            => 'het [[$1]] beskerm',
+'modifiedarticleprotection'   => 'Die beskermingsvlak vir "[[$1]]" is gewysig',
 'unprotectedarticle'          => 'het beskerming van [[$1]] verwyder',
 'protect-title'               => 'Beskerm "$1"',
 'prot_1movedto2'              => '[[$1]] geskuif na [[$2]]',
@@ -1801,6 +1807,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 Sien die [[Special:IPBlockList|IP-bloklys]] vir geblokkeerde adresse.",
 'unblocklogentry'          => 'blokkade van $1 is opgehef:',
 'block-log-flags-anononly' => 'anonieme gebruikers alleenlik',
+'block-log-flags-nocreate' => 'Registrasie van gebruikers buite werking',
 'block-log-flags-noemail'  => 'e-pos versper',
 'ipb_expiry_invalid'       => 'Ongeldige duur.',
 'ipb_already_blocked'      => '"$1" is reeds geblok',

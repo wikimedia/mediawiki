@@ -459,6 +459,7 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'gender-unknown'             => 'Zehaztugabea',
 'gender-male'                => 'Gizona',
 'gender-female'              => 'Emakumea',
+'prefs-help-gender'          => 'Hautazkoa: softwareak generoa zehazteko erabilia. Informazio hau publikoa da.',
 'email'                      => 'E-posta',
 'prefs-help-realname'        => '* Benetako izena (aukerakoa): zehaztea erabakiz gero, zure lanarentzako atribuzio bezala balioko du.',
 'loginerror'                 => 'Errorea saioa hastean',
@@ -766,6 +767,8 @@ Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Xehetasunak [{{full
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
 Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Guneko administratzaile bezala ikusteko aukera daukazu ordea; xehetasunak [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} ezabaketa erregistroan] ikus ditzakezu.
 </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Ezin duzu ezberdintasun hau ikusi, berrikuspenetako bat ezabatua izan delako artxibo publikotik.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Ezabapen erregistroan] zehaztasun gehiago aurki ditzazkezu.</div>',
 'rev-delundel'                   => 'erakutsi/ezkutatu',
 'revisiondelete'                 => 'Berrikuspenak ezabatu/leheneratu',
 'revdelete-nooldid-title'        => 'Helburu berrikuspenik ez',
@@ -912,7 +915,7 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'searchresults'                    => 'Bilaketaren emaitzak',
 'searchresults-title'              => '"$1(e)rako" emaitzak bilatu',
 'searchresulttext'                 => '{{SITENAME}}(e)n bilaketak egiteko informazio gehiagorako, ikus [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => "'''[[:$1]]''' bilatu duzu",
+'searchsubtitle'                   => '\'\'\'[[:$1]]\'\'\' bilatu duzu ([[Special:Prefixindex/$1|hasten diren "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1"-ra lotzen diren orriak]])',
 'searchsubtitleinvalid'            => "'''$1''' bilatu duzu",
 'noexactmatch'                     => "'''Ez dago \"\$1\" izenburua duen orrialderik.''' [[:\$1|Orrialde hau]] sortu dezakezu.",
 'noexactmatch-nocreate'            => "'''Ez dago \"\$1\" izenburua duen orrialderik.'''",
@@ -1034,6 +1037,15 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'servertime'                => 'Zerbitzariko ordua:',
 'guesstimezone'             => 'Nabigatzailetik jaso',
 'timezoneregion-africa'     => 'Afrika',
+'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antarktika',
+'timezoneregion-arctic'     => 'Artikoa',
+'timezoneregion-asia'       => 'Asia',
+'timezoneregion-atlantic'   => 'Atlantiar Ozeanoa',
+'timezoneregion-australia'  => 'Australia',
+'timezoneregion-europe'     => 'Europa',
+'timezoneregion-indian'     => 'Indiar Ozeanoa',
+'timezoneregion-pacific'    => 'Ozeano Barea',
 'allowemail'                => 'Beste erabiltzaileengandik e-posta mezuak jasotzea gaitu',
 'prefs-searchoptions'       => 'Bilaketa aukerak',
 'prefs-namespaces'          => 'Izen-tarteak',
@@ -1749,7 +1761,10 @@ kontu izan.',
 'rollbacklink'     => 'desegin',
 'rollbackfailed'   => 'Desegiteak huts egin dud',
 'cantrollback'     => 'Ezin da aldaketa desegin; erabiltzaile bakarrak hartu du parte.',
-'alreadyrolled'    => 'Ezin da [[User:$2|$2]](e)k ([[User talk:$2|Eztabaida]]) [[$1]](e)n egindako azken aldaketa desegin; beste norbaitek editatu du edo jada desegin du. Azken aldaketa [[User:$3|$3]](e)k ([[User talk:$3|Eztabaida]]) egin du.',
+'alreadyrolled'    => 'Ezin da [[User:$2|$2]](e)k ([[User talk:$2|Eztabaida]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) [[$1]](e)n egindako azken aldaketa desegin;
+beste norbaitek editatu du edo jada desegin du.
+
+ Azken aldaketa [[User:$3|$3]](e)k ([[User talk:$3|Eztabaida]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) egin du.',
 'editcomment'      => "Aldaketaren laburpena: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => '$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1(r)en aldaketak desegin dira, $2(r)en azken bertsiora itzuliz.',

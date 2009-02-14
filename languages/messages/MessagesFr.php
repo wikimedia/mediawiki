@@ -20,6 +20,7 @@
  * @author JeanVoisin
  * @author Korg
  * @author Korrigan
+ * @author Kropotkine 113
  * @author Louperivois
  * @author McDutchie
  * @author Meithal
@@ -2357,7 +2358,7 @@ La page de destination « [[:$1]] » existe déjà. Voulez-vous la supprimer pou
 
 # Export
 'export'            => 'Exporter des pages',
-'exporttext'        => 'Vous pouvez exporter en XML le texte et l’historique d’une page ou d’un ensemble de pages; le résultat peut alors être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki.
+'exporttext'        => 'Vous pouvez exporter en XML le texte et l’historique d’une page ou d’un ensemble de pages ; le résultat peut alors être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki.
 
 Pour exporter des pages, entrez leurs titres dans la boîte de texte ci-dessous, à raison d’un titre par ligne. Sélectionnez, si vous désirez ou non, la version actuelle avec toutes les anciennes versions, avec la page d’historique, ou simplement la page actuelle avec des informations sur la dernière modification.
 
@@ -2370,7 +2371,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:
 'export-addcat'     => 'Ajouter',
 'export-download'   => 'Sauvegarder en tant que fichier',
 'export-templates'  => 'Inclure les modèles',
-'export-pagelinks'  => 'Inclure les pages liées à une profondeur de:',
+'export-pagelinks'  => 'Inclure les pages liées à une profondeur de :',
 
 # Namespace 8 related
 'allmessages'               => 'Liste des messages système',

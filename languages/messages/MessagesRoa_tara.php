@@ -605,6 +605,10 @@ Ce non ge stè 'a seziona $1, quiste non g'è 'u poste addò a reggistrà le can
 'newarticletext'                   => "Tu ste segue 'nu collegamende a pàgene ca angore non g'esiste.
 Pe ccrejà 'a pàgene, accuminze a scrivere jndr'à 'u scatole de sotte (vide 'a [[{{MediaWiki:Helppage}}|pàggene d'ajute]] pe avè cchiù 'mbormaziune).
 Ce tu te iacche aqquà e manghe tu 'u se purcè, allore cazze 'u buttone '''back''' d'u brauser.",
+'anontalkpagetext'                 => "----''Queste jè 'na pàgene de 'ngazzaminde pe 'n'utende anonime, ca non ge vò ccu ccreje angore 'nu cunde utende, o de ce non g'u use.
+Nuje auseme 'n'indirizze IP (ca jè numereche) pe identificarle.
+E' normale ca essende 'n'indirizze IP pò essere ausete pure da otre utinde ca 'u pigghiene.
+Ce tu non ge si 'n'utende anonime e pinze ca le commende ca so revolte a te sonde studecarije, pe piacere [[Special:UserLogin/signup|ccreje 'nu cunde utende]] o [[Special:UserLogin|tràse]] pe no fà confusione jndr'à 'u future cu otre utinde anoneme.''",
 'noarticletext'                    => 'Non ge stè scritte ninde jndr\'à sta pàgene.
 Tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr\'à otre pàggene, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} cange sta pàgene]</span>.',
 'userpage-userdoesnotexist'        => '\'U cunde utende "$1" non g\'è reggistrete.
@@ -626,6 +630,9 @@ Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le tit
 'previewnote'                      => "'''Queste è sole 'n'andeprime;
 le cangiaminde non g'onne state angore reggistrete!'''",
 'previewconflict'                  => "Sta andeprime fece vedè 'u teste ca ste jndr'à 'u teste de l'area de sus cumme avène fore ce tu decide cu reggistre.",
+'session_fail_preview'             => "'''Ne dispiace! Non ge putime processà 'u cangiamende tue purcè s'a perse 'a sessione de le date.
+Pe piacere pruève 'n'otra vote.
+Ce angore non ge funzione ninde, [[Special:UserLogout|isse]] e tràse 'n'otre vote.'''",
 'editing'                          => 'Cangiaminde de $1',
 'editingsection'                   => 'Cangiaminde de $1 (sezione)',
 'editingcomment'                   => 'Cangiaminde de $1 (seziona nove)',
@@ -677,6 +684,8 @@ Pare proprie ca l'onne scangellete.",
 'parser-template-recursion-depth-warning' => "Ha state supranete 'u limite di ricorsione de le template ($1)",
 
 # "Undo" feature
+'undo-failure' => "'U cangiamende non ge pò essere annullete purcè stè 'nu conflitte de cangiaminde indermedije.",
+'undo-norev'   => "'U cangiamende non ge pò essere annullete purcè non g'esiste o a state scangellete.",
 'undo-summary' => "Repristine 'a revisione $1 da [[Special:Contributions/$2|$2]] ([[User talk:$2|'Ngazzaminde]])",
 
 # Account creation failure
@@ -1064,8 +1073,10 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 'action-undelete'       => 'repristine sta pàgene',
 'action-suppressionlog' => "vide st'archivije privete",
 'action-block'          => "blocche st'utende pe le cangiaminde",
+'action-protect'        => "cange 'u levèlle de protezzione pe sta pàgene",
 'action-import'         => "'mborte sta pàgene da n'otra Uicchi",
 'action-importupload'   => "'mborte sta pàgene da 'nu carecamende de 'nu file",
+'action-unwatchedpages' => "vide 'a liste de le pàggene ca non ge sonde condrollete",
 'action-trackback'      => "conferme 'nu trackback",
 'action-userrights'     => "cange tutte le deritte de l'utende",
 'action-siteadmin'      => "blocche o sblocche 'u database",
@@ -1145,7 +1156,10 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'uploadedimage'       => 'carechete "[[$1]]"',
 'overwroteimage'      => 'ha state carechete \'na versiona nove de "[[$1]]"',
 'uploaddisabled'      => 'Carecaminde disabbilitete',
+'uploaddisabledtext'  => 'Le carecaminde de le file sonde disabbilitete.',
 'uploadscripted'      => "Stu file condene HTML o codece de script ca ponne essere inderpretete jndr'à 'nu mode sbagliete da le browser.",
+'uploadcorrupt'       => "'U file face schife o tène 'n'estenziona incorrette.
+Pe piacere condrolle 'u file e carechele 'n'otra vote.",
 'sourcefilename'      => "Nome d'u fail d'origgine:",
 'destfilename'        => "Nome d'u file de destinazione:",
 'upload-maxfilesize'  => "Dimenzione massima d'u file: $1",
@@ -1155,7 +1169,8 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'upload-misc-error' => 'Errore de carecamende scanusciute',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => "Non ge riesche a raggiungere l'URL",
+'upload-curl-error6'  => "Non ge riesche a raggiungere l'URL",
+'upload-curl-error28' => 'Carecamende in timeout',
 
 'license'            => 'Licenziete da:',
 'nolicense'          => 'Ninde selezionete',
@@ -1316,6 +1331,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'listusers'               => "Liste de l'utende",
 'listusers-creationsort'  => 'Arrenghete pe date de ccreazione',
 'usereditcount'           => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
+'usercreated'             => "Ccrejete 'u $1 a le ore $2",
 'newpages'                => 'Pàggene nuève',
 'newpages-username'       => "Nome de l'utende:",
 'ancientpages'            => 'Pàggene vìcchje',
@@ -1406,6 +1422,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'emailmessage'    => 'Messagge:',
 'emailsend'       => 'Manne',
 'emailccme'       => "Manneme 'n'email cu 'na copie d'u messàgge.",
+'emailccsubject'  => 'Copie de le messàgge tue a $1: $2',
 'emailsent'       => 'E-mail mannete',
 'emailsenttext'   => "'U messagge email tue ha state mannete.",
 
@@ -1604,6 +1621,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'unblocked'                    => '[[User:$1|$1]] ha state sblocchete',
 'unblocked-id'                 => 'Blocche $1 ha state luvete',
 'ipblocklist'                  => "'Ndirizze IP e nome utinde blocchete",
+'ipblocklist-legend'           => "Iacchije 'n'utende blocchete",
 'ipblocklist-username'         => 'Nome utende o indirizze IP:',
 'ipblocklist-sh-userblocks'    => '$1 le cunde utinde blocchete',
 'ipblocklist-sh-tempblocks'    => '$1 le blocche temboranee',
@@ -1625,6 +1643,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'unblocklogentry'              => 'sblocchete $1',
 'block-log-flags-anononly'     => "sulamende l'utinde anonime",
 'block-log-flags-nocreate'     => 'ccreazione de le cunde utinde disabbilitete',
+'block-log-flags-noautoblock'  => 'auto blocche disabbilitete',
 'block-log-flags-noemail'      => 'e-mail blocchete',
 'ipb_expiry_invalid'           => "L'orarije de scadenze non g'è valide.",
 'ipb_already_blocked'          => '"$1" jè ggià blocchete',
@@ -1672,6 +1691,11 @@ pe piacere a essere secure-secure de le conseguenze prime de procedere.",
 Jndr'à ste case, 'a pàgene non g'avène spustete e pò t'a cupià a màne 'u codenute sue.",
 'movearticle'               => 'Spuèste:',
 'movenologin'               => 'Non ge sinde colleghete',
+'movenologintext'           => "Tu a essere 'n'utende reggistrete e [[Special:UserLogin|colleghete]] pe spustà 'na pàgene.",
+'movenotallowed'            => "Tu non ge tìne 'u permesse pe spustà le pàggene.",
+'movenotallowedfile'        => "Tu non ge tìne 'u permesse pe spustà le file.",
+'cant-move-user-page'       => "Tu non ge tìne 'u permesse pe spustà le pàggene de l'utinde (staccannele cumme sottopàggene).",
+'cant-move-to-user-page'    => "Tu non ge tìne 'u permesse pe spustà 'na pàgene a 'na pàgene utende (sulamende pe le sottopàggene de l'utinde).",
 'newtitle'                  => "A 'u titele nuève:",
 'move-watch'                => 'condrolle sta pàgene',
 'movepagebtn'               => "Spueste 'a pàgene",
@@ -1895,12 +1919,14 @@ Otre avènene scunnute pe defolt.
 'exif-exposuretime-format'         => '$1 sec ($2)',
 'exif-fnumber'                     => 'Numere de F',
 'exif-flash'                       => 'Flash',
+'exif-filesource'                  => "Sorgende d'u file",
 'exif-contrast'                    => 'Condraste',
 'exif-saturation'                  => 'Saturazione',
 'exif-gpslatitude'                 => 'Latitudene',
 'exif-gpslongitude'                => 'Longitudene',
 'exif-gpsaltitude'                 => 'Altitudene',
 'exif-gpsimgdirection'             => "Direzione de l'immaggine",
+'exif-gpsareainformation'          => "Nome de l'area d'u GPS",
 'exif-gpsdatestamp'                => "Date d'u GPS",
 
 'exif-unknowndate' => 'Data scanusciute',
@@ -1908,6 +1934,8 @@ Otre avènene scunnute pe defolt.
 'exif-orientation-1' => 'Normale', # 0th row: top; 0th column: left
 
 'exif-componentsconfiguration-0' => "non g'esiste",
+
+'exif-exposureprogram-0' => 'Non definite',
 
 'exif-subjectdistance-value' => '$1 metre',
 
@@ -1918,6 +1946,7 @@ Otre avènene scunnute pe defolt.
 'exif-meteringmode-255' => 'Otre',
 
 'exif-lightsource-0'  => 'Scanusciute',
+'exif-lightsource-1'  => "Luce d'u giurne",
 'exif-lightsource-4'  => 'Flash',
 'exif-lightsource-24' => 'ISO studio tungstene',
 
@@ -2045,7 +2074,9 @@ Prueve l\'andeprima normele.',
 'version-specialpages'        => 'Pàggene speciele',
 'version-variables'           => 'Variabbele',
 'version-other'               => 'Otre',
+'version-hooks'               => 'Hook',
 'version-extension-functions' => 'Funziune estese',
+'version-hook-name'           => "Nome de l'hook",
 'version-hook-subscribedby'   => 'Sottoscritte da',
 'version-version'             => 'Versione',
 'version-license'             => 'Licenze',

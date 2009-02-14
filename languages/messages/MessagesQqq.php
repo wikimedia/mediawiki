@@ -22,6 +22,7 @@
  * @author Garas
  * @author GerardM
  * @author Helix84
+ * @author Huji
  * @author IAlex
  * @author INkubusse
  * @author Jon Harald Søby
@@ -2207,7 +2208,7 @@ Variants for Chinese language
 {{Identical|Metadata}}',
 'metadata-expand'   => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on this link, you can see more data and information. For the link to hide back the less important data, see "[[MediaWiki:Metadata-collapse/{{SUBPAGENAME}}|{{int:metadata-collapse}}]]".',
 'metadata-collapse' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on the link "[[MediaWiki:Metadata-expand/{{SUBPAGENAME}}|{{int:metadata-expand}}]]", you can see more data and information. This message is for the link to hide back the less important data.',
-'metadata-fields'   => "'''Warning:''' Do not translate list items, only translate the text! So leave \"<tt>* make</tt>\" and the other items exactly as it is.", # Do not translate list items
+'metadata-fields'   => "'''Warning:''' Do not translate list items, only translate the text! So leave \"<tt>* make</tt>\" and the other items exactly as they are.", # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'               => '{{Identical|Width}}',

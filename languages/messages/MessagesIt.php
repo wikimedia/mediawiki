@@ -562,6 +562,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'gender-unknown'             => 'Non specificato',
 'gender-male'                => 'Maschile',
 'gender-female'              => 'Femminile',
+'prefs-help-gender'          => "Opzionale: usato per l'indicazione del genere dal software. Questa informazione sarà pubblica.",
 'email'                      => 'Indirizzo e-mail',
 'prefs-help-realname'        => "L'indicazione del proprio nome vero è opzionale; se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
 'loginerror'                 => "Errore nell'accesso",
@@ -862,6 +863,8 @@ Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico
 Il testo può essere visualizzato soltanto dagli amministratori del sito.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
 </div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Non puoi visualizzare questo diff perché una delle revisioni è stata rimossa dagli archivi pubblici.
+Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.</div>',
 'rev-delundel'                   => 'mostra/nascondi',
 'revisiondelete'                 => 'Cancella o ripristina versioni',
 'revdelete-nooldid-title'        => 'Versione non specificata',
@@ -1004,7 +1007,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'searchresults'                    => 'Risultati della ricerca',
 'searchresults-title'              => 'Risultati della ricerca di "$1"',
 'searchresulttext'                 => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => "Ricerca di '''[[:$1]]'''",
+'searchsubtitle'                   => 'Ricerca di \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tutte le pagine che iniziano per "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tutte le pagine che puntano a "$1"]])',
 'searchsubtitleinvalid'            => "Ricerca di '''$1'''",
 'noexactmatch'                     => "'''La pagina \"\$1\" non esiste.''' È possibile [[:\$1|crearla ora]].",
 'noexactmatch-nocreate'            => "'''La pagina con titolo \"\$1\" non esiste.'''",
@@ -1125,6 +1128,15 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'servertime'                => 'Ora del server:',
 'guesstimezone'             => "Usa l'ora del tuo browser",
 'timezoneregion-africa'     => 'Africa',
+'timezoneregion-america'    => 'America',
+'timezoneregion-antarctica' => 'Antartide',
+'timezoneregion-arctic'     => 'Artide',
+'timezoneregion-asia'       => 'Asia',
+'timezoneregion-atlantic'   => 'Oceano Atlantico',
+'timezoneregion-australia'  => 'Australia',
+'timezoneregion-europe'     => 'Europa',
+'timezoneregion-indian'     => 'Oceano Indiano',
+'timezoneregion-pacific'    => 'Oceano Pacifico',
 'allowemail'                => 'Abilita la ricezione di email da altri utenti¹',
 'prefs-searchoptions'       => 'Opzioni di ricerca',
 'prefs-namespaces'          => 'Namespace',
@@ -1848,9 +1860,9 @@ Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 'rollbacklink'     => 'rollback',
 'rollbackfailed'   => 'Rollback fallito',
 'cantrollback'     => "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
-'alreadyrolled'    => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback.
+'alreadyrolled'    => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback.
 
-La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[User talk:$3|discussione]]).',
+La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[User talk:$3|discussione]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "L'oggetto modifica era: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Annullate le modifiche di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), riportata alla versione precedente di [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "Annullate le modifiche di $1; pagina riportata all'ultima versione di $2.",
@@ -2956,14 +2968,17 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 #Inserisci sopra questa riga tutti i frammenti di regex. Lascia questa riga esattamente com'è</pre>",
 
 # Special:Tags
-'tags'                 => 'Tag di modifiche valide',
-'tag-filter'           => 'Filtro del [[Special:Tags|tag]]:',
-'tag-filter-submit'    => 'Filtra',
-'tags-title'           => 'Tag',
-'tags-tag'             => 'Nome interno del tag',
-'tags-hitcount-header' => 'Modifiche che hanno tag',
-'tags-edit'            => 'modifica',
-'tags-hitcount'        => '$1 {{PLURAL:$1|modifica|modifiche}}',
+'tags'                    => 'Tag di modifiche valide',
+'tag-filter'              => 'Filtro del [[Special:Tags|tag]]:',
+'tag-filter-submit'       => 'Filtra',
+'tags-title'              => 'Tag',
+'tags-intro'              => 'Questa pagina elenca i tag che il software potrebbe marcare come una modifica e il loro significato.',
+'tags-tag'                => 'Nome interno del tag',
+'tags-display-header'     => 'Aspetto nella lista delle modifiche',
+'tags-description-header' => 'Descrizione completa del significato',
+'tags-hitcount-header'    => 'Modifiche che hanno tag',
+'tags-edit'               => 'modifica',
+'tags-hitcount'           => '$1 {{PLURAL:$1|modifica|modifiche}}',
 
 # Database error messages
 'dberr-header'      => 'Questa wiki ha un problema',

@@ -1092,7 +1092,7 @@ pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 'userrights-lookup-user'      => 'Pamahalaan ang mga pangkat ng tagagamit',
 'userrights-user-editname'    => 'Magpasok ng isang pangalan ng tagagamit:',
 'editusergroup'               => 'Baguhin ang mga pangkat ng tagagamit',
-'editinguser'                 => 'Binabago ang <b>$1</b> na akawnt ng isang tagagamit',
+'editinguser'                 => "Binabago ang mga karapatang pangtagagamit ng tagagamit na si '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Baguhin ang mga pangkat ng tagagamit',
 'saveusergroups'              => 'Sagipin ang mga pangkat ng tagagamit',
 'userrights-groupsmember'     => 'Kasapi ng:',
@@ -1811,9 +1811,10 @@ magpatuloy na may pagiingat.',
 'rollbacklink'     => 'pagulunging pabalik sa (mas) dati',
 'rollbackfailed'   => 'Nabigo ang pagpapagulong na pabalik sa (mas) dati',
 'cantrollback'     => 'Hindi maibalik ang pagbabago; tanging ang may-akda lamang ng pahinang ito ang huling tagapagambag/tagapaglathala.',
-'alreadyrolled'    => 'Hindi mapagulong pabalik sa dati ang huling pagbabago sa/ng [[$1]] ni [[User:$2|$2]] ([[User talk:$2|Usapan]]) dahil may ibang nagbago na o nagpagulong na pabalik sa (mas) dati ng pahina.
+'alreadyrolled'    => 'Hindi mapagulong na pabalik sa dati ang huling pagbabago ng [[$1]] ni ([[User talk:$2|Usapan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+mayroon nang ibang taong nagbago o nagpagulong pabalik sa dati ng pahina.
 
-Si [[User:$3|$3]] ([[User talk:$3|Usapan]]) ang pinakahuling gumawa ng pagbabago.',
+Ang huling pagbabago sa pahina ay ginawa ni [[User:$3|$3]] ([[User talk:$3|Usapan]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Ang buod ng pagbabago ay: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Ibinalik ang mga pagbabagong ginawa ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Usapan]]) patungo sa huling bersyon ni [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Ibinalik ang mga pagbabago sa $1; ibinalik sa huling bersyon ni $2.',

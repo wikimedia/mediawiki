@@ -973,7 +973,7 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'searchresults'                    => 'Suech-Ergäbnis',
 'searchresults-title'              => 'Suechergebniss fir „$1“',
 'searchresulttext'                 => 'Für wiiteri Informatione zuem Sueche uff {{SITENAME}} chönne Si mol uff [[{{MediaWiki:Helppage}}|{{int:help}}]] luege.',
-'searchsubtitle'                   => 'Für d Suechaafrag «[[:$1]]»',
+'searchsubtitle'                   => 'Dyyni Suechaafrog: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|alli Syte, wu mit „$1“ aafange]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alli Syte, wu uf „$1“ vergleiche]])',
 'searchsubtitleinvalid'            => 'Für d Suechaafrag «$1»',
 'noexactmatch'                     => "'''Es git kei Syte mit em Tiel „$1“.'''
 Du chasch die [[:$1|Syte nöu schrybe]].",
@@ -1818,9 +1818,9 @@ Im $2 het s e Lischt vu dr letschte Leschige.',
 'rollbacklink'     => 'Zrüggsetze',
 'rollbackfailed'   => 'S Zrucksetze het nit funktioniert',
 'cantrollback'     => 'D Änderig cha nit zruckgsetzt wäre, wel s keini friejere Autore git.',
-'alreadyrolled'    => 'Cha d Änderig uf [[:$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
+'alreadyrolled'    => 'Cha d Änderig uf [[:$1]] wu vu [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) gmacht wore sin, zruckneh, wel e andere Benutzer in dr Zwischenzyt s scho zruckgsetzt het oder suscht ebis an däre Syte gänderet het.
 
-Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
+Di letscht Änderig het [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) gmacht.',
 'editcomment'      => "D Änderigszämmefassig isch: „''$1''“.", # only shown if there is an edit comment
 'revertpage'       => 'Ruckgängig gmacht zue dr letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte Version vo [[User:$1|$1]] widerhergstellt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'D Änderige vu $1 sin ruckgängig gmacht wore un di letscht Version vu $2 isch widerhärgstellt wore.',

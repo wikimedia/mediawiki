@@ -1011,7 +1011,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'searchresults'                    => 'Keputusan carian',
 'searchresults-title'              => 'Keputusan carian "$1"',
 'searchresulttext'                 => 'Untuk maklumat lanjut tentang carian dalam {{SITENAME}}, sila lihat [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'Anda mencari "[[$1]]"',
+'searchsubtitle'                   => 'Anda mencari \'\'\'[[$1]]\'\'\' ([[Special:Prefixindex/$1|semua laman dengan awalan "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|semua laman yang mengandungi pautan ke "$1"]])',
 'searchsubtitleinvalid'            => 'Untuk pertanyaan "$1"',
 'noexactmatch'                     => "'''Tiada laman bertajuk \"\$1\".''' Anda boleh [[:\$1|menciptanya]].",
 'noexactmatch-nocreate'            => "'''Tiada laman bertajuk \"\$1\".'''",
@@ -1132,6 +1132,16 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'timezoneoffset'            => 'Imbangan¹:',
 'servertime'                => 'Waktu pelayan:',
 'guesstimezone'             => 'Gunakan tetapan pelayar saya',
+'timezoneregion-africa'     => 'Afrika',
+'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antartika',
+'timezoneregion-arctic'     => 'Artik',
+'timezoneregion-asia'       => 'Asia',
+'timezoneregion-atlantic'   => 'Lautan Atlantik',
+'timezoneregion-australia'  => 'Australia',
+'timezoneregion-europe'     => 'Eropah',
+'timezoneregion-indian'     => 'Lautan Hindi',
+'timezoneregion-pacific'    => 'Lautan Pasifik',
 'allowemail'                => 'Benarkan e-mel daripada pengguna lain',
 'prefs-searchoptions'       => 'Pilihan gelintar',
 'prefs-namespaces'          => 'Ruang nama',
@@ -1851,10 +1861,9 @@ Sila lihat $2 untuk rekod penghapusan terkini.',
 'rollbacklink'     => 'undur',
 'rollbackfailed'   => 'Pengunduran gagal',
 'cantrollback'     => 'Suntingan tersebut tidak dapat dibalikkan: penyumbang terakhir adalah satu-satunya pengarang bagi rencana ini.',
-'alreadyrolled'    => 'Tidak dapat membalikkan suntingan terakhir bagi [[:$1]]
-oleh [[User:$2|$2]] ([[User talk:$2|Perbincangan]]); terdapat pengguna yang telah berbuat demikian.
+'alreadyrolled'    => 'Suntingan terakhir bagi [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|Perbualan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tidak dapat dibalikkan; terdapat pengguna lain yang telah menyunting atau membalikkan laman itu.
 
-Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbincangan]]).',
+Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbualan]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Ringkasan sutingan: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Membalikkan suntingan oleh $1 kepada versi terakhir oleh $2.',
@@ -2974,12 +2983,16 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 #Jangan letak ungkapan nalar di bawah baris ini dan jangan ubah baris ini</pre>',
 
 # Special:Tags
+'tags'                    => 'Label perubahan yang sah',
 'tag-filter'              => 'Tapis [[Special:Tags|label]]:',
 'tag-filter-submit'       => 'Tapis',
 'tags-title'              => 'Label',
 'tags-intro'              => 'Yang berikut ialah senarai label yang digunakan untuk menanda suntingan, berserta maknanya.',
 'tags-tag'                => 'Nama label dalaman',
+'tags-display-header'     => 'Rupa dalam senarai perubahan',
 'tags-description-header' => 'Keterangan makna',
+'tags-hitcount-header'    => 'Perubahan',
+'tags-edit'               => 'sunting',
 'tags-hitcount'           => '$1 perubahan',
 
 # Database error messages
