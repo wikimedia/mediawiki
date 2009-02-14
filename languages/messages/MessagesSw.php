@@ -21,20 +21,20 @@ $messages = array(
 'tog-extendwatchlist'         => 'Tanua orodha ya maangalizi ili kuonyesha mabadiliko yote yaliyofanyika',
 'tog-usenewrc'                => 'Mabadiliko yaliyoongezeka hivi karibuni (JavaScript)',
 'tog-numberheadings'          => 'Vichwa vya habari vijipange namba-vyenyewe',
-'tog-showtoolbar'             => 'Onyesha ufito wa vifaa vya kuhariria (JavaScript)',
+'tog-showtoolbar'             => 'Onyesha mwambaa wa zana za kuhariria (JavaScript)',
 'tog-editondblclick'          => 'Hariri ukurasa kwa kubonyeza mara mbili',
 'tog-editsection'             => 'Wezesha sehemu ya kuandikia kwa kutumia viungo vya [hariri]',
 'tog-editsectiononrightclick' => 'Wezesha sehemu ya kuandikia kwa kubonyeza kitufe cha kulia cha puku yako juu ya sehemu ya majina husika (JavaScript)',
 'tog-showtoc'                 => 'Onyesha mistari ya yaliyomo (kwa kila kurasa iliyo na zaidi ya vichwa vya habari 3)',
 'tog-rememberpassword'        => 'Kumbuka kuingia kwangu katika kompyuta hii',
-'tog-editwidth'               => 'Hariri sanduku lenye upana mzima',
+'tog-editwidth'               => 'Sanduku la kuhariri liwe na upana mzima',
 'tog-watchcreations'          => 'Weka kurasa nilizoumba katika maangalizi yangu',
 'tog-watchdefault'            => 'Weka kurasa zote nilizohariri katika maangalizi yangu',
 'tog-watchmoves'              => 'Weka kurasa zote nilizohamisha katika maangalizi yangu',
 'tog-watchdeletion'           => 'Weka kurasa zote nilizofuta katika maangalizi yangu',
 'tog-minordefault'            => 'Weka alama zote za mabadiliko madogo kama matumizi mbadala',
 'tog-previewontop'            => 'Onyesha mandhari kabla ya sanduku la kuhariria',
-'tog-previewonfirst'          => 'Onyesha mandhari mwanzoni mwa sanduku la kuhariria',
+'tog-previewonfirst'          => 'Onyesha mandhari unapoanza kuhariri',
 'tog-nocache'                 => 'Lemaza mabaki ya kurasa',
 'tog-enotifwatchlistpages'    => 'Nitumie barua pepe pale kurasa zilizopo katika maangalizi yangu zikibadilishwa',
 'tog-enotifusertalkpages'     => 'Nitumie barua pepe pale ukurasa wangu wa majadiliano ukiwa na mabadiliko',
@@ -44,7 +44,19 @@ $messages = array(
 'tog-fancysig'                => 'Sahihi changa (bila kujiweka kiungo yenyewe)',
 'tog-externaleditor'          => 'Tumia kiharirio cha nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye kompyuta yako',
 'tog-externaldiff'            => 'Tumia diff za nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye kompyuta yako)',
+'tog-showjumplinks'           => 'Wezesha "ruka hadi" viungo vya mafikio',
+'tog-uselivepreview'          => 'Tumia kihakikio cha papohapo (JavaScript) (Experimental)',
+'tog-forceeditsummary'        => 'Nishtue pale ninapoingiza muhtasari mtupu wa kuhariri',
+'tog-watchlisthideown'        => 'Ficha kuhariri kwangu kwenye orodha ya maangalizi',
+'tog-watchlisthidebots'       => 'Ficha uhariri wa vikaragosi kwenye orodha ya maangalizi',
+'tog-watchlisthideminor'      => 'Ficha mabadliko madogo kwenye maangalizi',
+'tog-nolangconversion'        => 'Lemaza mabadiliko kadhaa',
 'tog-ccmeonemails'            => 'Nitumie nakala ya barua pepe nitakazo tuma kwa watumiaji wengine',
+'tog-diffonly'                => 'Usionyeshe yaliyomo kwenye ukurasa chini ya faili za diff',
+
+'underline-always'  => 'Muda wote',
+'underline-never'   => 'Kamwe',
+'underline-default' => 'Kivinjari mbadala',
 
 # Dates
 'sunday'        => 'Jumapili',
@@ -100,6 +112,7 @@ $messages = array(
 
 # Bits of text used by many pages
 'categories'            => 'Jamii',
+'pagecategories'        => '{{PLURAL:$1|Jamii|Jamii}}',
 'category_header'       => 'Makala katika jamii "$1"',
 'subcategories'         => 'Vijamii',
 'category-media-header' => 'Picha, video, na sauti katika jamii  "$1"',
@@ -236,7 +249,7 @@ Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
 'logout'                    => 'Toka',
 'userlogout'                => 'Toka',
 'notloggedin'               => 'Hujajiandikisha',
-'nologin'                   => 'Huna akaunti ya kuingilia? $1',
+'nologin'                   => 'Huna akaunti ya kuingilia? $1.',
 'nologinlink'               => 'Sajili akaunti',
 'createaccount'             => 'Sajili akaunti',
 'gotaccount'                => 'Unayo akaunti tayari? $1',
@@ -273,7 +286,7 @@ Tafadhali, ondoa kizuizi hicho, baadaye jaribu tena.',
 'wrongpassword'             => 'Umeingiza nywila ya makosa. Jaribu tena.',
 'wrongpasswordempty'        => 'Nywila ilikuwa tupu. Jaribu tena.',
 'passwordtooshort'          => 'Nywila yako haifai.  Ni lazima iwe na herufi $1 au zaidi, na inabidi nywila na jina la mtumiaji ziwe tofauti.',
-'mailmypassword'            => 'Nitume nywila kwa barua pepe',
+'mailmypassword'            => 'Nitume nywila mpya kwa barua pepe',
 'passwordremindertitle'     => 'Nywila mpya ya muda kwa {{SITENAME}}',
 'passwordremindertext'      => 'Mtu mmoja (yamkini wewe, kutoka anwani ya IP $1)
 ambaye ameulizia nywila mpya kwa {{SITENAME}} ($4).
@@ -290,6 +303,11 @@ Tafadhali, ingia baada ya kulipokea.',
 'eauthentsent'              => 'Tumekutuma barua pepe ili kuhakikisha anwani yako.
 Kabla ya kutuma barua pepe nyingine kwenye akaunti hiyo, itabidi ufuate maelezo katika barua utakayopokea,
 kuthibitisha kwamba wewe ndiyo ni mwenye akaunti.',
+'createaccount-text'        => 'Kuna mtu amesajili akaunti kwa kutumia anwani ya barua pepe yako kwenye  {{SITENAME}} ($4) anaitwa "$2", yenye nywila "$3".
+Inabidi uingie na kisha ubadilishe nywila yako sasa.
+
+Unaweza kupuuza ujumbe huu, endapo akaunti hii ilianzishwa kimakosa.',
+'loginlanguagelabel'        => 'Lugha: $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Matini ya koze',
@@ -324,15 +342,16 @@ kuthibitisha kwamba wewe ndiyo ni mwenye akaunti.',
 'summary-preview'        => 'Hakikisho la muhtasari',
 'blockedtext'            => "<big>'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''</big>
 
-Umezuiwa na $1. Sababu alitambua ni ''$2''
+Umezuiwa na $1. 
+Sababu aliyetambua ni ''$2''
 
 * Mwanzo wa uzuio: $8
 * Mwisho wa uzuio: $6
 * Aliyezuiwa: $7
 
 Unaweza kuwasiliana na $1 au [[{{MediaWiki:Grouppage-sysop}}|mkabidhi]] kuzungumza uzuio.
-Huwezi kutumia kipengele 'kumtuma mtumiaji barua pepe' ila anwani halisi ya barua pepe inapatikana katika
-[[Special:Preferences|mapendekezo ya akaunti]] yako na hujazuiwa kuitumia.
+Huwezi kutumia kipengele 'kumtuma mtumiaji barua pepe' isipopatikana anwani halisi ya barua pepe katika
+[[Special:Preferences|mapendekezo ya akaunti]] yako, na usipozuiwa kuitumia.
 Anwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi ukitaka kuwasiliana kuhusu uzuio huu.",
 'loginreqtitle'          => 'Unatakiwa kuingia au kujisajili',
 'accmailtitle'           => 'Neno la siri limeshakutumia.',
@@ -340,18 +359,18 @@ Anwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi uki
 'newarticle'             => '(Mpya)',
 'newarticletext'         => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [[{{MediaWiki:Helppage}}|Mwongozo]] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
 'noarticletext'          => 'Ukurasa huu haujaandikwa bado. [[Special:Search/{{PAGENAME}}|tafutia jina hili]] katika kurasa nyingine au [{{fullurl:{{FULLPAGENAME}}|action=edit}} hariri ukurasa huu].',
-'previewnote'            => '<strong>Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!</strong>',
+'previewnote'            => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",
 'editing'                => 'Kuhariri $1',
 'editingsection'         => 'Unahariri $1 (kipande)',
 'yourtext'               => 'Maandishi yako',
-'editingold'             => '<strong>ANGALIA: Unakuwa unahariri nakala ya zamani ya ukurasa huu.
-Ukiendelea kuihariri, mabadilisho yote yaliyofanywa tangu pale yatapotezwa.</strong>',
-'copyrightwarning'       => 'Tafadhali zingatia kwamba makala yote ya {{SITENAME}} unayoyaandika yanafuata $2 (tazama $1 kwa maelezo zaidi).
+'editingold'             => "'''ANGALIA: Unakuwa unahariri nakala ya zamani ya ukurasa huu.
+Ukiendelea kuihariri, mabadilisho yote yaliyofanywa tangu pale yatapotezwa.'''",
+'copyrightwarning'       => "Tafadhali zingatia kwamba makala yote ya {{SITENAME}} unayoyaandika yanafuata $2 (tazama $1 kwa maelezo zaidi).
 Usipotaka maandishi yako yaweze kuharirishwa bure na kutolewa wakati wowote, basi usiyaandike hapa.<br />
-Unakuwa unaahidi kwamba maandishi unayoyaingia ni yako tu, au uliyapata kutoka bure au ni mali ya watu wote. <strong>USITOLEE MAKALA YALIYOHIFADHIWA HAKI ZAO ZA KUTUMIWA BILA KUPATA RUHUSA HALALI!</strong>',
-'longpagewarning'        => '<strong>ILANI: Urefu wa ukurasa huu ni kilobaiti $1; vivinjari kadhaa vinaweza kuwa na matatizo ukihariri ukurasa wenye urefu zaidi ya kb 32 hivi.
-Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.</strong>',
-'protectedpagewarning'   => '<strong>ANGALIA: Ukurasa huu unakingwa kwa hiyo watumiaji wenye haki za wasimamizi tu wanaweza kuuhariri. Hakikisha kwamba unakuwa unafuata mwongozo wa kuhariri kurasa zinazokingwa.<strong>',
+Unakuwa unaahidi kwamba maandishi unayoyaingia ni yako tu, au uliyapata kutoka bure au ni mali ya watu wote. '''USITOLEE MAKALA YALIYOHIFADHIWA HAKI ZAO ZA KUTUMIWA BILA KUPATA RUHUSA HALALI!'''",
+'longpagewarning'        => "'''ILANI: Urefu wa ukurasa huu ni kilobaiti $1; vivinjari kadhaa vinaweza kuwa na matatizo ukihariri ukurasa wenye urefu zaidi ya kb 32 hivi.
+Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.'''",
+'protectedpagewarning'   => "'''ANGALIA: Ukurasa huu unakingwa kwa hiyo watumiaji wenye haki za wasimamizi tu wanaweza kuuhariri. Hakikisha kwamba unakuwa unafuata mwongozo wa kuhariri kurasa zinazokingwa.'''",
 'templatesused'          => 'Vigezo vinavyotumiwa kwenye ukurasa huu:',
 'templatesusedpreview'   => 'Vigezo vinavyotumiwa katika mandhari haya:',
 'template-protected'     => '(kulindwa)',
@@ -399,13 +418,19 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'powersearch'  => 'Tafuta',
 
 # Preferences page
-'preferences'    => 'Mapendekezo',
-'mypreferences'  => 'Mapendekezo yangu',
-'changepassword' => 'Badilisha neno la siri',
-'skin'           => 'Sura',
-'oldpassword'    => 'Neno la siri la zamani',
-'newpassword'    => 'Neno mpya la siri',
-'retypenew'      => 'Andika nywila tena:',
+'preferences'     => 'Mapendekezo',
+'mypreferences'   => 'Mapendekezo yangu',
+'changepassword'  => 'Badilisha neno la siri',
+'skin'            => 'Sura',
+'prefs-watchlist' => 'Maangalizi',
+'saveprefs'       => 'Hifadhi',
+'oldpassword'     => 'Neno la siri la zamani',
+'newpassword'     => 'Neno mpya la siri',
+'retypenew'       => 'Andika nywila tena:',
+'rows'            => 'Mistari:',
+'columns'         => 'Safu:',
+'timezonelegend'  => 'Ukanda saa',
+'files'           => 'Mafaili',
 
 'grouppage-sysop' => '{{ns:project}}:Wakabidhi',
 
@@ -433,6 +458,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'minoreditletter'                => 'd',
 'newpageletter'                  => 'P',
 'boteditletter'                  => 'r',
+'newsectionsummary'              => '/* $1 */ mjadala mpya',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mabadiliko husika',
@@ -465,7 +491,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
 'sharedupload'              => 'Faili hii inaweza kushirikiwa na miradi mingine.',
 'noimage'                   => 'Hakuna faili yenye jina hili, $1 kama unayo.',
-'noimage-linktext'          => 'pakia picha',
+'noimage-linktext'          => 'pakia faili',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
 
 # MIME search
@@ -484,9 +510,10 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'randomredirect' => 'Elekezo la bahati',
 
 # Statistics
-'statistics' => 'Takwimu',
-'sitestats'  => 'Takwimu za {{SITENAME}}',
-'userstats'  => 'Takwimu za watumiaji',
+'statistics'             => 'Takwimu',
+'sitestats'              => 'Takwimu za {{SITENAME}}',
+'userstats'              => 'Takwimu za watumiaji',
+'statistics-mostpopular' => 'Kurasa zinazotazamwa sana',
 
 'disambiguations' => 'Kurasa za kuainisha maneno',
 
@@ -505,7 +532,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'lonelypages'             => 'Kurasa ambazo haziungwi kutoka ukurasa mwingine wowote',
 'uncategorizedpages'      => 'Kurasa ambazo hazijawekwa katika jamii',
 'uncategorizedcategories' => 'Jamii ambazo hazijawekwa katika jamii',
-'uncategorizedimages'     => 'Picha ambazo hazijawekwa katika jamii',
+'uncategorizedimages'     => 'Mafaili ambazo hazijawekwa katika jamii',
 'uncategorizedtemplates'  => 'Vigezo ambavyo havijawekwa katika jamii',
 'unusedcategories'        => 'Jamii ambazo hazitumiwi',
 'unusedimages'            => 'Mafaili ambayo hayatumiwi',
@@ -600,9 +627,9 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 'protect_expiry_invalid'      => 'Muda wa kwisha ni batilifu.',
 'protect_expiry_old'          => 'Muda wa kuishi umepita tayari.',
 'protect-unchain'             => 'Fungua ruhusa za kusogeza',
-'protect-text'                => 'Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-access'       => 'Akaunti yako hairuhusiwi kubadilisha viwango vya ulindaji.
-Hivi ni vipimo kwa ukurasa <strong>$1</strong>:',
+'protect-text'                => "Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Akaunti yako hairuhusiwi kubadilisha viwango vya ulindaji.
+Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-cascadeon'           => 'Ukurasa huu umelindwa kwa sababu umezingatiwa katika {{PLURAL:$1|ukurasa $1 unaolinda kurasa chini yake|kurasa $1 zinazolinda kurasa chini yake}}. Unaweza kubadilisha kiwango cha ulindaji wa ukurasa huu, lakini hutaathirika ulindaji kutoka kurasa juu yake.',
 'protect-default'             => '(chaguo-msingi)',
 'protect-fallback'            => 'Lazimisha ruhusa "$1"',
@@ -748,7 +775,7 @@ Chagua jina lengine.',
 'tooltip-t-specialpages'          => 'Orodha ya kurasa maalum zote',
 'tooltip-ca-nstab-user'           => 'Tazama ukurasa wa mtumiaji',
 'tooltip-ca-nstab-project'        => 'Tazama ukurasa wa mradi',
-'tooltip-ca-nstab-image'          => 'Angalia ukurasa wa picha',
+'tooltip-ca-nstab-image'          => 'Angalia ukurasa wa faili',
 'tooltip-ca-nstab-template'       => 'Tazama kigezo',
 'tooltip-ca-nstab-help'           => 'Tazama ukurasa wa msaada',
 'tooltip-ca-nstab-category'       => 'Tazama ukurasa wa jamii',
@@ -769,8 +796,8 @@ Chagua jina lengine.',
 'listingcontinuesabbrev' => 'endelea',
 
 # Browsing diffs
-'previousdiff' => '←Tofauti kabla',
-'nextdiff'     => 'Tofauti ijayo→',
+'previousdiff' => '← Badilisho lililopita',
+'nextdiff'     => 'Badilisho lijalo →',
 
 # Media information
 'file-info-size'       => '(piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4)',
@@ -805,12 +832,20 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 
 # External editor support
 'edit-externally'      => 'Tumia programu ya nje kuhariri faili hii',
-'edit-externally-help' => 'Ona [http://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.',
+'edit-externally-help' => '(Ona [http://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'zote',
 'namespacesall' => 'zote',
 'monthsall'     => 'zote',
+
+# E-mail address confirmation
+'confirmemail_needlogin' => 'Unahitajika $1 kuthibitisha anwani ya barua pepe yako.',
+'confirmemail_success'   => 'Barua pepe yako imethibitishwa.
+Sasa unaweza [[Special:UserLogin|kuingia]] na kuifurahia {{SITENAME}}.',
+'confirmemail_loggedin'  => 'Anwani ya barua pepe yako imethibishwa sasa.',
+'confirmemail_error'     => 'Kuna mambo yameenda kombo hifadhi ukamilisho wako.',
+'confirmemail_subject'   => 'Barua pepe ya uthibitisho ya {{SITENAME}}',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Tazama mabadiliko yanayohusiana',

@@ -61,34 +61,50 @@ $messages = array(
 'nov'           => 'noý',
 'dec'           => 'dek',
 
-'newwindow' => '(täze bir penjirede açylyr)',
-'mytalk'    => 'Tabşyryk sahypam',
+# Bits of text used by many pages
+'pagecategories' => '{{PLURAL:$1|Kategoriýa|Kategoriýalar}}',
+
+'article'        => 'Makala',
+'newwindow'      => '(täze bir penjirede açylyr)',
+'qbedit'         => 'Redakte',
+'qbspecialpages' => 'Ýörite sahypalar',
+'mytalk'         => 'Tabşyryk sahypam',
 
 'help'             => 'Ýardam',
 'search'           => 'Gözle',
 'searchbutton'     => 'Gözle',
 'searcharticle'    => 'Git',
+'history'          => 'Sahypanyň geçmişi',
 'permalink'        => 'Hemişelik aragatnaşyk',
 'edit'             => 'Redakte',
+'protect_change'   => 'redakte',
 'talkpagelinktext' => 'Çekisme',
+'specialpage'      => 'Ýörite Sahypa',
 'personaltools'    => 'Şahsy gurallar',
-'talk'             => 'Çekisme',
+'talk'             => 'çekisme',
 'toolbox'          => 'Gurallar',
+'otherlanguages'   => 'Başga diller',
 'redirectedfrom'   => '($1 sahypasyndan gönükdirildi)',
 'jumptosearch'     => 'gözle',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => '{{SITENAME}} hakynda',
-'helppage'  => 'Help:Içindäkiler',
-'mainpage'  => 'Baş Sahypa',
-'privacy'   => 'Hususylyk ýörelgesi',
+'aboutsite'   => '{{SITENAME}} hakynda',
+'helppage'    => 'Help:Içindäkiler',
+'mainpage'    => 'Baş Sahypa',
+'privacy'     => 'Hususylyk ýörelgesi',
+'sitesupport' => 'Haýyr-sawahatlar',
 
 'editsection'     => 'redakte',
+'editold'         => 'redakte',
 'editsectionhint' => '$1. bölümü redaktirle',
 'showtoc'         => 'görkez',
 'hidetoc'         => 'ýaşyr',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-user'     => 'Ulaňyjy sahypasy',
+'nstab-special'  => 'Ýörite',
+'nstab-project'  => 'Taslama sahypasy',
+'nstab-image'    => 'Dosýe',
 'nstab-category' => 'Kategoriya',
 
 # General errors
@@ -116,6 +132,9 @@ $messages = array(
 'cur'  => 'parh',
 'last' => 'soň',
 
+# Revision deletion
+'rev-delundel' => 'görkez/ýaşyr',
+
 # Search results
 'powersearch' => 'Giňişleýin Gözleg',
 
@@ -135,8 +154,11 @@ $messages = array(
 # Image list
 'filehist-current'  => 'häzirki',
 'filehist-datetime' => 'Gün/Zaman',
-'filehist-user'     => 'Ulanyjy',
+'filehist-user'     => 'Ulaňyjy',
 'imagelinks'        => 'Aragatnaşyklar',
+
+# Random page
+'randompage' => 'Oýlamazdan sahypa',
 
 # Miscellaneous special pages
 'specialpages' => 'Ýörite sahypalar',
@@ -148,12 +170,13 @@ $messages = array(
 
 # Watchlist
 'mywatchlist' => 'Synlama tablisam',
+'watch'       => 'Synla',
 
 # Namespace form on various pages
 'blanknamespace' => '(Baş)',
 
 # Contributions
-'mycontris' => 'Goşantlarım',
+'mycontris' => 'Goşantlarym',
 
 # What links here
 'whatlinkshere'       => 'Sahypaýa aragatnaşyklar',
@@ -161,7 +184,8 @@ $messages = array(
 'whatlinkshere-links' => '← aragatnaşyklar',
 
 # Block/unblock
-'blocklink' => 'bökdençle',
+'blocklink'    => 'bökdençle',
+'contribslink' => 'Goşantlar',
 
 # Move page
 '1movedto2' => '[[$1]] sahypasy [[$2]] sahypasyna göçürildi',
@@ -170,11 +194,12 @@ $messages = array(
 'thumbnail-more' => 'Ulal',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => 'Menim ulanyjy sahypam',
+'tooltip-pt-userpage'       => 'Menim ulaňyjy sahypam',
 'tooltip-pt-mytalk'         => 'Menim tabşyryk sahypam',
 'tooltip-pt-mycontris'      => 'Ýasadyýym goşantlarımıň tablisasy',
 'tooltip-pt-logout'         => 'Sessiýaýy kapas',
 'tooltip-ca-move'           => 'Bu sahypanyň atyňy özgert',
 'tooltip-ca-nstab-category' => 'Kategoriya sahypsayny gör',
+'tooltip-watch'             => 'Bu sahypaýy synlama tablisaňa goşun',
 
 );

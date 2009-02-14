@@ -103,7 +103,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'     => 'ܓܕ̈ܫܐ ܗܫ̈ܝܐ',
 'currentevents-url' => 'Project:ܓܕ̈ܫܐ ܗܫܝܐ',
-'mainpage'          => 'ܕܦܐ ܪܫܝܐ',
+'mainpage'          => 'ܕܦܐ ܪܝܫܝܐ',
 'portal'            => 'ܬܪܥܐ ܕܟܢܫܐ',
 'portal-url'        => 'Project:ܬܪܥܐ ܕܟܢܫܐ',
 'sitesupport'       => 'ܕܚܘܝܬܐ',
@@ -168,7 +168,7 @@ $messages = array(
 # Miscellaneous special pages
 'allpages'     => 'ܟܠ ܦܐܬܐ',
 'specialpages' => 'ܦܐܬܘܬ̈ܐ ܪܫܝܐ',
-'move'         => 'ܡܓ̰ܘܓ̰',
+'move'         => 'ܫܢܝ',
 
 # Book sources
 'booksources'    => 'ܙܠ',

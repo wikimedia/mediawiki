@@ -4,8 +4,10 @@
  * @ingroup Language
  * @file
  *
+ * @author Derek Ross
  * @author Malafaya
  * @author OchAyeTheNoo
+ * @author Omnipaedista
  * @author Urhixidur
  * @author sco.wikipedia.org editors
  * @author לערי ריינהארט
@@ -84,7 +86,7 @@ $messages = array(
 'september'     => 'September',
 'october'       => 'October',
 'november'      => 'November',
-'december'      => 'Dizember',
+'december'      => 'December',
 'january-gen'   => 'Januar',
 'february-gen'  => 'February',
 'march-gen'     => 'March',
@@ -169,7 +171,7 @@ $messages = array(
 'deletethispage'    => 'Delete this page',
 'undelete_short'    => 'Undelete {{PLURAL:$1|ane edit|$1 edits}}',
 'protect'           => 'Fend',
-'protect_change'    => 'chynge fend',
+'protect_change'    => 'chynge',
 'protectthispage'   => 'Fend this page',
 'unprotect'         => 'Loose fend',
 'unprotectthispage' => 'Loose the fend for this page',
@@ -178,14 +180,14 @@ $messages = array(
 'talkpagelinktext'  => 'Collogue',
 'specialpage'       => 'Byordinar Page',
 'personaltools'     => 'Personal tuils',
-'postcomment'       => 'Eik a jottin',
+'postcomment'       => 'Eik a message',
 'articlepage'       => 'Leuk at content page',
 'talk'              => 'Collogue',
 'views'             => 'Views',
 'toolbox'           => 'Tuilkist',
 'userpage'          => 'View uiser page',
 'projectpage'       => 'View project page',
-'imagepage'         => 'Leuk at eimage page',
+'imagepage'         => 'look ower image page',
 'mediawikipage'     => 'View message page',
 'templatepage'      => 'View template page',
 'viewhelppage'      => 'View help page',
@@ -253,16 +255,18 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|one delete edit|$1 delete edits}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => "This feeds subscrieve's teep isnae habile.",
+'feed-unavailable'        => 'Syndication feeds isna available',
 'site-rss-feed'           => '$1 RSS Feed',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
+'red-link-title'          => '$1 (page disna exist)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',
 'nstab-user'      => 'Uiser page',
 'nstab-media'     => 'Eetem page',
-'nstab-special'   => 'Byordinar',
+'nstab-special'   => 'Byordinar page',
 'nstab-project'   => 'Project page',
 'nstab-image'     => 'Eimage',
 'nstab-mediawiki' => 'Message',
@@ -272,7 +276,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Nae sic action',
-'nosuchactiontext'  => "The action specifiee'd bi the URL isna recognised bi the wiki",
+'nosuchactiontext'  => "The action specifiee'd bi the URL isna recognised
+Ye micht hae mistyped the URL, or follaed a wrang link
+This micht forby be caused by a bug in the saftware uised by {{SITENAME}}.",
 'nosuchspecialpage' => 'Nae sic byordinar page',
 'nospecialpagetext' => "<big>'''Ye hae requestit an invalid byordinar page.'''</big>
 
@@ -329,7 +335,7 @@ Aks: $2',
 $2',
 'namespaceprotected'   => "Ye dinna hae permeession tae edit pages in the '''$1''' namespace.",
 'customcssjsprotected' => "Ye dinna hae permeession tae edit this page, sin it hauds anither uiser's personal settins.",
-'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace cannae be editit.',
+'ns-specialprotected'  => 'Pages in the {{ns:special}} namespace canna be editit.',
 'titleprotected'       => "This teetle haes been protectit frae bein makkit by [[User:$1|$1]].
 The grunds for this are: ''$2''.",
 
@@ -338,7 +344,8 @@ The grunds for this are: ''$2''.",
 'logouttext'                 => "Ye'r nou loggit oot. Ye can continue to uise {{SITENAME}} namelessly, or ye can log in again as the same or as a different uiser. Mynd that some pages micht continue tae be displayed as if ye war aye loggit in, till ye clear yer brouser cache.",
 'welcomecreation'            => '== Guid tae see ye, $1! ==
 
-Yer accoont haes been creatit. Mynd an chynge yer {{SITENAME}} preferences.',
+Yer accoont haes been creatit. 
+Mynd an chynge yer [[Special:Preferences|{{SITENAME}} preferences]].',
 'loginpagetitle'             => 'Uiser login',
 'yourname'                   => 'Yer uiser name',
 'yourpassword'               => 'Yer password',
@@ -360,7 +367,7 @@ Yer accoont haes been creatit. Mynd an chynge yer {{SITENAME}} preferences.',
 'gotaccountlink'             => 'Log in',
 'createaccountmail'          => 'bi email',
 'badretype'                  => 'The passwords ye entered disna match.',
-'userexists'                 => 'The uiser name ye entered is aareadies in uiss. Please chuise a different name.',
+'userexists'                 => 'The uiser name ye entered is in uiss. Please chuise a different name.',
 'youremail'                  => 'Yer email:',
 'username'                   => 'Uisername:',
 'uid'                        => 'Uiser ID:',
@@ -418,21 +425,20 @@ Please enter a weel-formattit address or mak that field tuim.',
 'accountcreated'             => 'Accoont creatit',
 'accountcreatedtext'         => 'The uiser accoont for $1 haes bin creatit.',
 'createaccount-title'        => 'Accoont makin for {{SITENAME}}',
-'createaccount-text'         => 'A body ($1) makit an accoont for $2 on {{SITENAME}}
-($4). The passwaird for "$2" is "$3". Ye should log in an chynge yer passwaird
-nou.
+'createaccount-text'         => 'A body ($1) makit an accoont for yer email address on {{SITENAME}} ($4) cried "$2", wi a password o "$3".
+Ye shuid log in an chynge yer password nou.
 
-Ye can sling a deifie on this message, if this accoont wis creatit by mistak.',
+Ye dinna hae tae heed this message, if this accoont wis creatit by mistak.',
 'loginlanguagelabel'         => 'Leid: $1',
 
 # Password reset dialog
 'resetpass'               => 'Set yer accoont passwaird again',
 'resetpass_announce'      => 'Ye loggit in wi a short term e-mailed code. To be duin logging in, ye hae tae mak a new passwaird here:',
-'resetpass_header'        => 'Reset passwaird',
+'resetpass_header'        => 'Chynge accoont password',
 'resetpass_submit'        => 'Mak passwaird an log in',
 'resetpass_success'       => 'Yer passwaird chynge wis braw! Nou loggin ye in...',
 'resetpass_bad_temporary' => 'Yer short term passwaird wisnae habile. Ye micht hae already chynged yer passwaird or requestit a new short term passwaird.',
-'resetpass_forbidden'     => 'Passwairds cannae be chynged on this wiki',
+'resetpass_forbidden'     => 'Passwords canna be chynged',
 'resetpass_missing'       => 'Nae form data!',
 
 # Edit page toolbar
@@ -524,24 +530,24 @@ Yer block ID is $5. Please include this ID in ony argies ye mak.',
 'noarticletext'             => "The'r nae text on this page the nou. Ye can [[Special:Search/{{PAGENAME}}|rake for this page teitle]] in ither pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].",
 'userpage-userdoesnotexist' => 'Uiser accoont "$1" hasnae been registerit. Please check gin ye wint tae mak or edit this page.',
 'clearyourcache'            => "'''Tak tent:''' Efter hainin, ye micht hae tae bypass yer brouser's cache for tae see the chynges. '''Mozilla / Firefox / Safari:''' haud doun ''Shift'' while dabbin on ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' haud doun ''Ctrl'' while dabbin on ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''' juist dab on the ''Reload'' button, or press ''F5''; '''Opera''' users micht hae tae haillie dicht thair cache in ''Tools&rarr;Preferences''.",
-'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Uise the 'Show preview' button tae proof yer new CSS/JS afore savin.",
+'usercssjsyoucanpreview'    => "'''Tip:''' Uise the 'Show preview' button tae proof yer new CSS/JS afore savin.",
 'usercsspreview'            => "'''Mynd that ye'r juist previewin yer uiser CSS, it haesna yet been hained!'''",
 'userjspreview'             => "'''Mynd that ye're juist testin/previewing yer uiser JavaScript; it haesna been hained yet!'''",
 'userinvalidcssjstitle'     => "'''Warnin:''' There isnae a skin \"\$1\". Mynd that yer ain .css an .js pages uise a lowercase teetle, e.g. {{ns:user}}:Foo/monobook.css instead o {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Updatit)',
-'note'                      => '<strong>Mynd:</strong>',
-'previewnote'               => '<strong>Mynd that this is juist a scance-ower, an haesna been hained yet!</strong>',
+'note'                      => "'''Mynd:'''",
+'previewnote'               => "'''Mynd that this is juist a scance-ower, an haesna been hained yet!'''",
 'previewconflict'           => 'This scance reflects the text in the upper text editin area like it will kythe gin ye chuise tae save.',
-'session_fail_preview'      => '<strong>Sairy! We culdnae process yer edit acause o a loss o term data.
-Please try again. Gin it disnae wairk still, try loggin oot an loggin in again.</strong>',
-'session_fail_preview_html' => "<strong>Sairy! We culdnae process yer edit acause o a loss o term data.</strong>
+'session_fail_preview'      => "'''Sairy! We culdnae process yer edit acause o a loss o term data.
+Please try again. Gin it disnae wairk still, try loggin oot an loggin in again.'''",
+'session_fail_preview_html' => "'''Sairy! We culdnae process yer edit acause o a loss o term data.'''
 
 ''Acause this wiki haes raw HTML habile, the leuk ower is hidden tae hinder JavaScript attacks.''
 
-<strong>Gin this is a proper edit try, please try again. Gin it disnae wairk still, try loggin oot an loggin back in.</strong>",
-'token_suffix_mismatch'     => '<strong>Yer edit haes been rejectit acause yer client made a richt mess o the punctuation characters
+'''Gin this is a proper edit try, please try again. Gin it disnae wairk still, try loggin oot an loggin back in.'''",
+'token_suffix_mismatch'     => "'''Yer edit haes been rejectit acause yer client made a richt mess o the punctuation characters
 in the edit token. The edit haes been rejectit tae hinder corruption o the page text.
-This whiles happens when ye are uisin a bruken web-based anonymous proxy service.</strong>',
+This whiles happens when ye are uisin a bruken web-based anonymous proxy service.'''",
 'editing'                   => 'Editin $1',
 'editinguser'               => "Editin uiser '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Editin $1 (section)',
@@ -550,20 +556,20 @@ This whiles happens when ye are uisin a bruken web-based anonymous proxy service
 'explainconflict'           => 'Some ither body haes chynged this page syne ye stertit editin it. The upper text area hauds the page text as it currently exists. Yer chynges is shawn in the lower text area. Ye\'ll hae tae merge yer chynges intae the existin text. <b>Juist</b> the text in the upper text area will be hained whan ye press "Hain page". <p>',
 'yourtext'                  => 'Yer text',
 'storedversion'             => 'Storit version',
-'nonunicodebrowser'         => "<strong>WARNIN: Yer brouser isna unicode compliant.  The'r a wirkaroond tae allou ye tae sauflie edit airticles: non-ASCII characters will kythe in the edit box as hexadecimal codes.</strong>",
-'editingold'                => "<strong>WARNIN: Ye'r editin an oot-o-date reveision o this page. Gin ye hain it, onie chynges made syne this reveision will be lost.</strong>",
+'nonunicodebrowser'         => "'''WARNIN: Yer brouser isna unicode compliant.  The'r a wirkaroond tae allou ye tae sauflie edit airticles: non-ASCII characters will kythe in the edit box as hexadecimal codes.'''",
+'editingold'                => "'''WARNIN: Ye'r editin an oot-o-date reveision o this page. Gin ye hain it, onie chynges made syne this reveision will be lost.'''",
 'yourdiff'                  => 'Differs',
-'copyrightwarning'          => "Please mynd that aa contreibutions tae {{SITENAME}} is conseidert tae be released unner the $2 (see $1 for details). Gin ye dinna want yer writin tae be editit athoot mercy an redistribute at will, than dinna submit it here.<br /> Forbye thon, ye'r promisin us that ye wrat this yersel, or copied it frae a public domain or siclike free resoorce. <strong>DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!</strong>",
+'copyrightwarning'          => "Please mynd that aa contreibutions tae {{SITENAME}} is conseidert tae be released unner the $2 (see $1 for details). Gin ye dinna want yer writin tae be editit athoot mercy an redistribute at will, than dinna submit it here.<br /> Forbye thon, ye'r promisin us that ye wrat this yersel, or copied it frae a public domain or siclike free resoorce. '''DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!'''",
 'copyrightwarning2'         => "Please mynd that aa contreibutions tae {{SITENAME}} micht be editit, chynged, or remuved bi ither contreibutors.
 Gin ye dinna want yer writin tae be editit athoot mercy and redistribute at will, than dinna submit it here.<br />
 YYe'r promisin us forbye that ye wrat this yersel, or copied it frae a
 public domain or siclike free resoorce (see $1 for details).
-<strong>DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!</strong>",
+'''DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!'''",
 'longpagewarning'           => "WARNIN: This page is $1 kilobytes lang; some brousers micht hae trouble editin pages approachin or langer nor 32 kb. Please conseider brakkin the page intae smaa'er sections.",
-'longpageerror'             => "<strong>ERROR: The text ye hae submitted is $1 kilobytes 
-lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</strong>",
+'longpageerror'             => "'''ERROR: The text ye hae submitted is $1 kilobytes 
+lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.'''",
 'readonlywarning'           => "WARNIN: The database haes been lockit for maintenance, sae ye'll no can hain yer edits richt nou. Ye micht wish tae cut-n-paste the text intil a text file an hain it for later.",
-'protectedpagewarning'      => '<strong>WARNIN: This page haes been lockit sae that juist uisers wi administrator privileges can edit it.</strong>',
+'protectedpagewarning'      => "'''WARNIN: This page haes been lockit sae that juist uisers wi administrator privileges can edit it.'''",
 'semiprotectedpagewarning'  => "'''Warnin:''' This page haes been lockit sae that only registerit uisers can edit it.",
 'cascadeprotectedwarning'   => "'''Warnin:''' This page haes been lockit sae that only uisers wi sysop richts can edit it, acause it is includit in the followin cascade-protectit {{PLURAL:$1|page|pages}}:",
 'templatesused'             => 'Templates uised on this page:',
@@ -743,7 +749,7 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'illegalfilename'             => 'The filename "$1" haes characters that isna alloud in page teitles. Please rename the file an gie uplaidin it anither shot.',
 'badfilename'                 => 'Eimage name haes been chynged tae "$1".',
 'largefileserver'             => 'This file is bigger nor the server is confeigurt tae allou.',
-'fileexists'                  => "A file wi this name exists aareadies, please check <strong><tt>$1</tt></strong> gin ye'r no siccar that ye want tae chynge it.",
+'fileexists'                  => "A file wi this name exists aareadies, please check '''<tt>$1</tt>''' gin ye'r no siccar that ye want tae chynge it.",
 'fileexists-forbidden'        => 'A file wi this name aareadies exists; please gang back an uplaid this file unner a new name. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'A file wi this name aareadies exists in the shared file depose; please gang back an uplaid this file unner a new name. [[Image:$1|thumb|center|$1]]',
 'uploadwarning'               => 'Uplaid warnin',
@@ -915,7 +921,7 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'rollbackfailed'      => 'Rowback failed',
 'cantrollback'        => 'Canna revert edit; last contreibutor is the ae author o this page.',
 'alreadyrolled'       => 'Canna rowback last edit o [[$1]] bi [[User:$2|$2]] ([[User talk:$2|Talk]]); some ither bodie haes editit or rowed back the page aareadies. Last edit wis bi [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'         => 'The edit comment wis: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'         => "The edit comment wis: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'          => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogtext'      => 'Ablo is a leet o page locks/unlocks. See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
 'protectedarticle'    => 'protectit "[[$1]]"',
@@ -923,7 +929,7 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'protectsub'          => '(Protectin "$1")',
 'protectcomment'      => 'Raeson for protectin',
 'unprotectsub'        => '(Unprotectin "$1")',
-'protect-text'        => 'Ye can see an chynge the protection level here for the page <strong><nowiki>$1</nowiki></strong>.',
+'protect-text'        => "Ye can see an chynge the protection level here for the page '''<nowiki>$1</nowiki>'''.",
 'protect-level-sysop' => 'Juist administrators',
 
 # Undelete
@@ -1074,7 +1080,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:special}}:
 'tooltip-pt-preferences'          => 'Ma preferences',
 'tooltip-pt-login'                => "It's a guid idea tae log i, but ye dinna hae tae.",
 'tooltip-search'                  => 'Rake {{SITENAME}}',
-'tooltip-n-mainpage'              => 'Gae tae the Main Page',
+'tooltip-n-mainpage'              => 'Gang tae the Main Page',
 'tooltip-t-contributions'         => "View this uiser's contreibutions",
 'tooltip-minoredit'               => 'Mairk this as a smaa edit',
 'tooltip-save'                    => 'Hain yer chynges',

@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Jose77
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
@@ -21,7 +22,60 @@ $digitTransformTable = array(
 );
 
 $messages = array(
+'mytalk'     => 'ମୋ କଥା',
+'navigation' => 'ଦିଗ୍ଦର୍ଶକ',
+
+'help'             => 'ସାହାଜ୍ଯ',
+'search'           => 'ସନ୍ଧାନ',
+'searchbutton'     => 'ସନ୍ଧାନ',
+'history_short'    => 'ଇତିହାସ',
+'protect'          => 'ସୁରଖ୍ଯା',
+'talk'             => 'ଆଲୋଚନା',
+'toolbox'          => 'ଜନ୍ତ୍ର ବାକ୍ସ',
+'jumptonavigation' => 'ଦିଗ୍ଦର୍ଶକ',
+'jumptosearch'     => 'ସନ୍ଧାନ',
+
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage' => 'ପ୍ରଧାନ ପୃଷ୍ଠା',
+'mainpage'    => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
+'sitesupport' => 'ଦାନ',
+
+# General errors
+'viewsource' => 'େଦଖ ଉର୍ସ',
+
+# Edit pages
+'showdiff' => 'େଦଖାଅ ପରିବର୍ତନଗୁଡିକ',
+
+# Preferences page
+'searchresultshead' => 'ସନ୍ଧାନ',
+
+# Recent changes linked
+'recentchangeslinked' => 'ସମ୍ବଧ୍ହିତ ପରିବର୍ତନ',
+
+# Upload
+'filedesc'          => 'ସାରକଥା',
+'fileuploadsummary' => 'ସାରକଥା:',
+
+# Image list
+'ilsubmit' => 'ସନ୍ଧାନ',
+
+# Miscellaneous special pages
+'specialpages' => 'ସ୍ବତନ୍ତ୍ର',
+
+# Watchlist
+'watch' => 'େଦଖ',
+
+# Undelete
+'undelete-search-submit' => 'ସନ୍ଧାନ',
+
+# Contributions
+'contributions' => 'ବ୍ଯବହରକାରୀନ୍କ ଅନୁଦାନ',
+
+'sp-contributions-submit' => 'ସନ୍ଧାନ',
+
+# Block/unblock
+'ipblocklist-submit' => 'ସନ୍ଧାନ',
+
+# Tooltip help for the actions
+'tooltip-p-logo' => 'ପ୍ରଧାନ ପ୍ରୁଷ୍ଟ୍ଆ',
 
 );
