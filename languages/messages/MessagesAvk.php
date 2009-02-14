@@ -509,8 +509,8 @@ Rinaf tise IP mane tir $3 ise ID elekara tir #$5. Va bate ik bane mane ko kota e
 'usercsspreview'            => "'''Rappelez-vous que vous êtes en train de prévisualiser votre propre feuille css et qu'elle n'a pas encore été enregistrée !'''",
 'userjspreview'             => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code javascript et qu'il n'a pas encore été enregistré !'''",
 'updated'                   => '(Nuskeyen)',
-'note'                      => '<strong>Straga :</strong>',
-'previewnote'               => '<strong>Obral, bat krent anton tir abdinediks ise men tir giwayan !</strong>',
+'note'                      => "'''Straga :'''",
+'previewnote'               => "'''Obral, bat krent anton tir abdinediks ise men tir giwayan !'''",
 'previewconflict'           => 'Abdinedira nedir va krent ke batu bu inde in giwayanon titir.',
 'editing'                   => 'betara va $1',
 'editingsection'            => 'betara va $1 (gabot)',
@@ -520,22 +520,22 @@ Rinaf tise IP mane tir $3 ise ID elekara tir #$5. Va bate ik bane mane ko kota e
 La zone d'édition supérieure contient le texte tel qu'il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone d'édition inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.<br />",
 'yourtext'                  => 'Rinaf krent',
 'storedversion'             => 'Koverteyen siatos',
-'editingold'                => '<strong>Obral : rin va savsaf siatos ke batu bu betal. Ede giwal, kot betaks skuyun mali bat siatos di zo deokar.</strong>',
+'editingold'                => "'''Obral : rin va savsaf siatos ke batu bu betal. Ede giwal, kot betaks skuyun mali bat siatos di zo deokar.'''",
 'yourdiff'                  => 'Amidaceem',
-'copyrightwarning'          => 'Wetce webeks sanegan kan kredeem ke $2 nuyafa valdigarasorta, kot webeks va {{SITENAME}} zo krupter (ta lo pimtara va $1 wil). Ede me djumel da rinaf suteks yo zo robetad ise zo rotanamzilid, vaon me staksel !<br />
+'copyrightwarning'          => "Wetce webeks sanegan kan kredeem ke $2 nuyafa valdigarasorta, kot webeks va {{SITENAME}} zo krupter (ta lo pimtara va $1 wil). Ede me djumel da rinaf suteks yo zo robetad ise zo rotanamzilid, vaon me staksel !<br />
 Dere, kan rinaf suteks ik suteks male sangiskafa nuyafa klita, anton webel !
-<strong>VA COPYRIGHT SUTEKS ARIEKON MERICTANON VOL WEBEL ! (do not submit copyrighted work without permission!)</strong>',
-'copyrightwarning2'         => 'Vay stragal da kot webeks va {{SITENAME}} gan ar webesik zo robetar ike zo roataler ike zo rosular. Ede me djumel da rinaf suteks yo zo robetad, vaon batliz me staksel !<br />
+'''VA COPYRIGHT SUTEKS ARIEKON MERICTANON VOL WEBEL ! (do not submit copyrighted work without permission!)'''",
+'copyrightwarning2'         => "Vay stragal da kot webeks va {{SITENAME}} gan ar webesik zo robetar ike zo roataler ike zo rosular. Ede me djumel da rinaf suteks yo zo robetad, vaon batliz me staksel !<br />
 Rin dere abdiplekul da va webeks miv suteyel ike mal sangiskafa ok gundafa nuyafa klita ksudal (va $1 loon wil).
-<strong>VA COPYRIGHT SUTEKS ARIEKON MERICTANON VOL WEBEL !</strong>',
+'''VA COPYRIGHT SUTEKS ARIEKON MERICTANON VOL WEBEL !'''",
 'longpagewarning'           => "'''WALZERA : batu bu tir kaikasu va $1 ko; konaki exulesiki va bu pokefu ok kaikefu gu 32 ko bak sutelara pofejed. Ton lopinaf gabot yo va bu rotir gosolparsal.'''",
-'longpageerror'             => '<strong>ROKLA : Atoen krent tir $1 kilobytes. Batcoba tir lodabrotcafa dam $2 kilobytes cuge. In tir merogiwan.</strong>',
+'longpageerror'             => "'''ROKLA : Atoen krent tir $1 kilobytes. Batcoba tir lodabrotcafa dam $2 kilobytes cuge. In tir merogiwan.'''",
 'readonlywarning'           => "'''AVERTISSEMENT : cette page est protégée pour maintenance,
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.'''",
 'protectedpagewarning'      => "'''WALZERA : batu bu zo nendar. Antaf ristus favesik vaon robetar.'''",
 'semiprotectedpagewarning'  => "'''Straga :''' Batu bu tir ixatcayanu nume antaf vertokayan favesik robetar.",
 'cascadeprotectedwarning'   => "'''Obral !''' Batu bu tir elekayanu enide anton ristus favesik robetar, kire in stoyakoron rupter. {{PLURAL:$1|stoyafu bu|stoyafu bu se}}",
-'titleprotectedwarning'     => '<strong>WALZERA : Batu bu zo ixatcar nume anton abic favesik vaon roredud.</strong>',
+'titleprotectedwarning'     => "'''WALZERA : Batu bu zo ixatcar nume anton abic favesik vaon roredud.'''",
 'templatesused'             => 'Teza yo favena koe batu bu',
 'templatesusedpreview'      => 'Faven tezeem koe bata abdinedira :',
 'templatesusedsection'      => 'Faven tezeem koe bat gabot :',
@@ -947,15 +947,15 @@ Ta kobura va iyeltak, koe tazukasiki va gluyasiki favel
 'large-file'                  => 'Lokiewafa da lum ke man iyeltak tir lepinaf dam $1; bat iyeltak tir $2.',
 'largefileserver'             => 'Bat iyeltak tir pwertarsaf gu gotune ke zanisiko.',
 'emptyfile'                   => 'Kalvajan iyeltak nuvelar vlardaf. Lanon golde sutejen iyeltakyolt. Vay ageltal ede va bat iyeltak en djukalvajal !',
-'fileexists'                  => 'Iyeltak dem man bat yolt ixam krulder. Vay, ageltal va <strong><tt>$1</tt></strong>. Til lanaf da va bat iyeltak djubetal ?',
-'filepageexists'              => 'Pimtarabu ke bat iyeltak ixam al zo redur ko <strong><tt>$1</tt></strong>, vexe mek iyeltak dem man yolt ixam tir. Vildeks rinon suten moe pimtarabu me awitir. Ede djumel da in batlize co-awir, nubedon co-gobetal.',
-'fileexists-extension'        => 'Iyeltak dem nuxaf yolt tir :<br />
-Yolt ke kalvajayan iyeltak : <strong><tt>$1</tt></strong><br />
-Yolt ke tis iyeltak : <strong><tt>$2</tt></strong><br />
-Va amidaf yolt vay kiblal !',
+'fileexists'                  => "Iyeltak dem man bat yolt ixam krulder. Vay, ageltal va '''<tt>$1</tt>'''. Til lanaf da va bat iyeltak djubetal ?",
+'filepageexists'              => "Pimtarabu ke bat iyeltak ixam al zo redur ko '''<tt>$1</tt>''', vexe mek iyeltak dem man yolt ixam tir. Vildeks rinon suten moe pimtarabu me awitir. Ede djumel da in batlize co-awir, nubedon co-gobetal.",
+'fileexists-extension'        => "Iyeltak dem nuxaf yolt tir :<br />
+Yolt ke kalvajayan iyeltak : '''<tt>$1</tt>'''<br />
+Yolt ke tis iyeltak : '''<tt>$2</tt>'''<br />
+Va amidaf yolt vay kiblal !",
 'fileexists-thumb'            => "<center>'''Kruldes iyeltak'''</center>",
-'fileexists-thumbnail-yes'    => 'Iyeltak nuvelar da tir lumamafa ewava <i>(aluk)</i>. Vay va <strong><tt>$1</tt></strong> iyeltak stujel.<br />
-Ede stujen iyeltak tir mila lumanhafa ewava, va aptaf aluk me kalvajal !',
+'fileexists-thumbnail-yes'    => "Iyeltak nuvelar da tir lumamafa ewava ''(aluk)''. Vay va '''<tt>$1</tt>''' iyeltak stujel.<br />
+Ede stujen iyeltak tir mila lumanhafa ewava, va aptaf aluk me kalvajal !",
 'fileexists-forbidden'        => 'Milyoltaf iyeltak ixam krulder; vay dimpil aze va memilyoltaf bat iyeltak kalvajal. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Koe pakana bonja milyoltaf iyeltak ixam tir; vay dimpil aze kan ar yolt va bat iyeltak kalvajal. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bat iyeltak tir jontolaca ke {{PLURAL:$1|iyeltak|iyeltak}}:',
@@ -1361,7 +1361,7 @@ Bazen bartiv tir tel ke zanisiko.',
 'alreadyrolled'               => 'Dimplekura va ironokafa betara va "$1" teliz gan [[User:$2|$2]] ([[User talk:$2|Prilara]]) me zo roskur; artan va teliz ixam al betar oke al dimplekur.
 
 Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
-'editcomment'                 => 'Vildeks va betara tiyir : <i>« $1 »</i>.', # only shown if there is an edit comment
+'editcomment'                 => "Vildeks va betara tiyir : ''« $1 »''.", # only shown if there is an edit comment
 'revertpage'                  => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Dimplekun betaks yo gan $1; dimpira ko ironokaf siatos ke $2.',
 'protectlogpage'              => 'Izvot va nendareem',
@@ -1376,9 +1376,9 @@ Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'protect_expiry_invalid'      => 'Edjatena me tir enafa.',
 'protect_expiry_old'          => 'Edjatena tir abdiugalafa.',
 'protect-unchain'             => 'Volelekara va arrundararictara',
-'protect-text'                => 'Rin va nendareka ke <strong><nowiki>$1</nowiki></strong> bu batlize rowil nume robetal.',
-'protect-locked-access'       => 'Rinafa pata va betara va nendareka me rictar.
-Noeltaf plekukseem ke <strong>$1</strong> bu batlize tid :',
+'protect-text'                => "Rin va nendareka ke '''<nowiki>$1</nowiki>''' bu batlize rowil nume robetal.",
+'protect-locked-access'       => "Rinafa pata va betara va nendareka me rictar.
+Noeltaf plekukseem ke '''$1''' bu batlize tid :",
 'protect-cascadeon'           => 'Batu bu zo nendar kire va {{PLURAL:$1|bu disu|bu yo disu}} va tegisa stoyakorafa nendara pasur. Rin va nendareka va batu bu robetal vexe batcoba va stoyakorafa nendara me vanolatar.',
 'protect-default'             => '(kabeaca)',
 'protect-fallback'            => 'Kucilara va "$1" rictara',

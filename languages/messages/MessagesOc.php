@@ -397,14 +397,14 @@ $messages = array(
 'talkpagelinktext'  => 'Discussion',
 'specialpage'       => 'Pagina especiala',
 'personaltools'     => 'Espleches personals',
-'postcomment'       => 'Apondre un comentari',
+'postcomment'       => 'Seccion novèla',
 'articlepage'       => "Vejatz l'article",
 'talk'              => 'Discussion',
 'views'             => 'Afichatges',
 'toolbox'           => "Bóstia d'espleches",
 'userpage'          => "Pagina d'utilizaire",
 'projectpage'       => 'Pagina meta',
-'imagepage'         => 'Pagina del mèdia',
+'imagepage'         => 'Veire la pagina del fichièr',
 'mediawikipage'     => 'Vejatz la pagina dels messatges',
 'templatepage'      => 'Vejatz la pagina del modèl',
 'viewhelppage'      => "Vejatz la pagina d'ajuda",
@@ -477,13 +477,13 @@ $messages = array(
 'site-atom-feed'          => 'Flus Atom de $1',
 'page-rss-feed'           => 'Flus RSS de "$1"',
 'page-atom-feed'          => 'Flus Atom de "$1"',
-'red-link-title'          => '$1 (pagina pas encara redigida)',
+'red-link-title'          => '$1 (la pagina existís pas)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Article',
 'nstab-user'      => "Pagina d'utilizaire",
 'nstab-media'     => 'Pagina del mèdia',
-'nstab-special'   => 'Especial',
+'nstab-special'   => 'Pagina especiala',
 'nstab-project'   => 'A prepaus',
 'nstab-image'     => 'Fichièr',
 'nstab-mediawiki' => 'Messatge',
@@ -493,7 +493,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Accion desconeguda',
-'nosuchactiontext'  => "L'accion especificada dins l'Url es pas reconeguda pel logicial {{SITENAME}}.",
+'nosuchactiontext'  => "L'accion especificada dins l'Url es invalida.
+Benlèu avètz mal picat l’URL o seguit un ligam incorrècte.
+Aquò tanben pòt indicar un problèma dins lo logicial utilizat per {{SITENAME}}.",
 'nosuchspecialpage' => 'Pagina especiala inexistanta',
 'nospecialpagetext' => "<big>'''Avètz demandat una pagina especiala qu'es pas reconeguda pel logicial {{SITENAME}}.'''</big>
 
@@ -571,13 +573,13 @@ $2",
 Lo motiu avançat es « ''$2'' ».",
 
 # Virus scanner
-'virus-badscanner'     => 'Marrida configuracion : escaner de virús desconegut : <i>$1</i>',
+'virus-badscanner'     => "Marrida configuracion : escaner de virús desconegut : ''$1''",
 'virus-scanfailed'     => 'Fracàs de la recèrca (còde $1)',
 'virus-unknownscanner' => 'antivirús desconegut :',
 
 # Login and logout pages
 'logouttitle'                => 'Desconnexion',
-'logouttext'                 => "<strong>Ara, sètz desconnectat(ada).</strong>
+'logouttext'                 => "'''Ara, sètz desconnectat(ada).'''
 
 Podètz contunhar d'utilizar {{SITENAME}} anonimament, o vos podètz [[Special:UserLogin|tornar connectar]] jol meteis nom o amb un autre nom.",
 'welcomecreation'            => "== Benvenguda, $1 ! ==
@@ -617,7 +619,7 @@ Causissètz-ne un autre.",
 'yournick'                   => 'Signatura per las discussions :',
 'badsig'                     => 'Signatura bruta incorrècta, verificatz vòstras balisas HTML.',
 'badsiglength'               => 'Vòstra signatura es tròp longa.
-Sa talha maximala deu èsser de $1 {{PLURAL:$1|caractèr|caractèrs}}.',
+Deu aver, al maximum $1 caractèr{{PLURAL:$1||s}}.',
 'email'                      => 'Corrièr electronic',
 'prefs-help-realname'        => "(facultatiu) : se l'especificatz, serà utilizat per vos atribuir vòstras contribucions.",
 'loginerror'                 => "Error d'identificacion",
@@ -630,6 +632,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'loginsuccesstitle'          => 'Identificacion capitada.',
 'loginsuccess'               => 'Sètz actualament connectat(ada) sus {{SITENAME}} en tant que « $1 ».',
 'nosuchuser'                 => "L'utilizaire « $1 » existís pas.
+Lo nom d'utilizaire es sensible a la cassa.
 Verificatz qu'avètz plan ortografiat lo nom, o [[Special:UserLogin/signup|creatz-vos un compte novèl]].",
 'nosuchusershort'            => 'I a pas de contributor amb lo nom « <nowiki>$1</nowiki> ». Verificatz l’ortografia.',
 'nouserspecified'            => "Vos cal especificar vòstre nom d'utilizaire.",
@@ -657,7 +660,7 @@ Abans qu’un autre corrièr sià mandat a aqueste compte, deuretz seguir las in
 'acct_creation_throttle_hit' => "O planhèm, ja avètz {{PLURAL:$1|$1 compte creat|$1 comptes creats}}. Ne podètz pas crear d'autres.",
 'emailauthenticated'         => 'Vòstra adreça de corrièr electronic es estada autentificada lo $1.',
 'emailnotauthenticated'      => 'Vòstra adreça de corrièr electronic es <strong>pas encara autentificada</strong>. Cap corrièr serà pas mandat per caduna de las foncions seguentas.',
-'noemailprefs'               => "<strong>Cap d'adreça electronica es pas estada indicada,</strong> las foncions seguentas seràn pas disponiblas.",
+'noemailprefs'               => "Cap d'adreça electronica es pas estada indicada, las foncions seguentas seràn pas disponiblas.",
 'emailconfirmlink'           => 'Confirmatz vòstra adreça de corrièr electronic',
 'invalidemailaddress'        => "Aquesta adreça de corrièr electronic pòt pas èsser acceptada perque sembla qu'a un format incorrècte.
 Picatz una adreça plan formatada o daissatz aqueste camp void.",
@@ -768,31 +771,31 @@ Per crear aquesta pagina, picatz vòstre tèxt dins la bóstia çaijós (podètz
 Se sètz arribat(ada) aicí per error, clicatz sul boton '''retorn''' de vòstre navigador.",
 'anontalkpagetext'                 => "---- ''Sètz sus la pagina de discussion d'un utilizaire anonim qu'a pas encara creat un compte o que n'utiliza pas.
 Per aquesta rason, devèm utilizar son adreça IP per l'identificar. Una adreça d'aqueste tipe pòt èsser partejada entre mantuns utilizaires. Se sètz un utilizaire anonim e se constatatz que de comentaris que vos concernisson pas vos son estats adreçats, podètz [[Special:UserLogin/signup|crear un compte]] o [[Special:UserLogin|vos connectar]] per evitar tota confusion venenta amb d’autres contributors anonims.''",
-'noarticletext'                    => "Pel moment, i a pas cap de tèxt sus aquesta pagina ; podètz [[Special:Search/{{PAGENAME}}|aviar una recèrca sul títol d'aquesta pagina]], verificar qu’es pas estada [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} suprimida] o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar aquesta pagina].",
+'noarticletext'                    => 'Pel moment, i a pas cap de tèxt sus aquesta pagina ; podètz [[Special:Search/{{PAGENAME}}|aviar una recèrca sul títol d\'aqueste títol de pagina]] dins las autras pagina, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} recercar dins las operacions ligadas] o [{{fullurl:{{urlencode:{{FULLPAGENAME}}}}|action=edit}} crear aquesta pagina]</span>.',
 'userpage-userdoesnotexist'        => "Lo compte d'utilizaire « $1 » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
 'clearyourcache'                   => "'''Nòta :''' Aprèp aver publicat la pagina, vos cal forçar son recargament complet tot ignorant lo contengut actual de l'amagatal de vòstre navigador per veire los cambiaments : '''Mozilla / Firefox / Konqueror / Safari :''' mantenètz la tòca ''Majuscula'' (''Shift'') en clicant lo boton ''Actualizar'' (''Reload,'') o quichatz ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sus Apple Mac) ; '''Internet Explorer / Opera :''' mantenètz la tòca ''Ctrl'' en clicant lo boton ''Actualizar'' o quichatz ''Ctrl-F5''.",
-'usercssjsyoucanpreview'           => "<strong>Astúcia :</strong> Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh novèl css/js abans de l'enregistrar.",
+'usercssjsyoucanpreview'           => "'''Astúcia :''' Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh novèl css/js abans de l'enregistrar.",
 'usercsspreview'                   => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS !'''
 '''Es pas estada encara enregistrada !'''",
 'userjspreview'                    => "'''Remembratz-vos que sètz a visualizar o testar vòstre còde JavaScript e qu’es pas encara estat enregistrat !'''",
 'userinvalidcssjstitle'            => "'''Atencion :''' existís pas d'estil « $1 ». Remembratz-vos que las paginas personalas amb extensions .css e .js utilizan de títols en minusculas, per exemple, {{ns:user}}:Foo/monobook.css e non pas {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Mes a jorn)',
-'note'                             => '<strong>Nòta :</strong>',
-'previewnote'                      => "<strong>Atencion, aqueste tèxt es pas qu'una previsualizacion e es pas encara estat salvat !</strong>",
+'note'                             => "'''Nòta :'''",
+'previewnote'                      => "'''Atencion, aqueste tèxt es pas qu'una previsualizacion e es pas encara estat salvat !'''",
 'previewconflict'                  => 'Aquesta previsualizacion mòstra lo tèxt de la bóstia de modificacion superiora coma apareisserà se causissètz de lo salvar.',
-'session_fail_preview'             => "<strong>Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra sesilha. 
+'session_fail_preview'             => "'''Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra sesilha. 
 Ensajatz tornarmai.
-S'aquò fracassa encara, desconnectatz-vos, puèi [[Special:UserLogout|connectatz-vos]] tornamai.</strong>",
-'session_fail_preview_html'        => "<strong>Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions que concernís vòstra sesilha.</strong>
+S'aquò fracassa encara, desconnectatz-vos, puèi [[Special:UserLogout|connectatz-vos]] tornamai.'''",
+'session_fail_preview_html'        => "'''Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions que concernís vòstra sesilha.'''
 
 ''Perque {{SITENAME}} a activat l’HTML brut, la previsualizacion es estada amagada per prevenir un atac per JavaScript.''
 
-<strong>Se la temptativa de modificacion èra legitima, ensajatz encara.
-S'aquò capita pas un còp de mai, [[Special:UserLogout|desconnectatz-vos]], puèi connectatz-vos tornamai.</strong>",
-'token_suffix_mismatch'            => '<strong>Vòstra modificacion es pas estada acceptada perque vòstre navigador a mesclat los caractèrs de ponctuacion dins l’identificant d’edicion. La modificacion es estada regetada per empachar la corrupcion del tèxt de l’article. Aqueste problèma se produtz quand utilizatz un mandatari (proxy) anonim problematic.</strong>',
+'''Se la temptativa de modificacion èra legitima, ensajatz encara.
+S'aquò capita pas un còp de mai, [[Special:UserLogout|desconnectatz-vos]], puèi connectatz-vos tornamai.'''",
+'token_suffix_mismatch'            => "'''Vòstra modificacion es pas estada acceptada perque vòstre navigador a mesclat los caractèrs de ponctuacion dins l’identificant d’edicion. La modificacion es estada regetada per empachar la corrupcion del tèxt de l’article. Aqueste problèma se produtz quand utilizatz un mandatari (proxy) anonim problematic.'''",
 'editing'                          => 'Modificacion de $1',
 'editingsection'                   => 'Modificacion de $1 (seccion)',
-'editingcomment'                   => 'Modificacion de $1 (comentari)',
+'editingcomment'                   => 'Modificacion de $1 (seccion novèla)',
 'editconflict'                     => 'Conflicte de modificacion : $1',
 'explainconflict'                  => "Aqueste pagina es estada salvada aprèp qu'avètz començat de la modificar.
 La zòna d'edicion superiora conten lo tèxt tal coma es enregistrat actualament dins la banca de donadas.
@@ -801,22 +804,22 @@ Anatz dever aportar vòstras modificacions al tèxt existent.
 '''Sol''' lo tèxt de la zòna superiora serà salvat.",
 'yourtext'                         => 'Vòstre tèxt',
 'storedversion'                    => 'Version enregistrada',
-'nonunicodebrowser'                => '<strong>Atencion : Vòstre navigador supòrta pas l’unicode. Una solucion temporària es estada trobada per vos permetre de modificar un article en tota seguretat : los caractèrs non-ASCII apareisseràn dins vòstra bóstia de modificacion en tant que còdes exadecimals. Deuriatz utilizar un navigador mai recent.</strong>',
-'editingold'                       => "<strong>Atencion : sètz a modificar una version obsolèta d'aquesta pagina. Se salvatz, totas las modificacions efectuadas dempuèi aquesta version seràn perdudas.</strong>",
+'nonunicodebrowser'                => "'''Atencion : Vòstre navigador supòrta pas l’unicode. Una solucion temporària es estada trobada per vos permetre de modificar un article en tota seguretat : los caractèrs non-ASCII apareisseràn dins vòstra bóstia de modificacion en tant que còdes exadecimals. Deuriatz utilizar un navigador mai recent.'''",
+'editingold'                       => "'''Atencion : sètz a modificar una version obsolèta d'aquesta pagina. Se salvatz, totas las modificacions efectuadas dempuèi aquesta version seràn perdudas.'''",
 'yourdiff'                         => 'Diferéncias',
-'copyrightwarning'                 => "Totas las contribucions a {{SITENAME}} son consideradas coma publicadas jols tèrmes de la $2 (vejatz $1 per mai de detalhs). Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Nos prometètz tanben qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura.<strong>UTILIZETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !</strong>",
-'copyrightwarning2'                => "Totas las contribucions a {{SITENAME}} pòdon èsser modificadas o suprimidas per d’autres utilizaires. Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Tanben nos prometètz qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura. (vejatz $1 per mai de detalhs). <strong>UTILIZETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !</strong>",
-'longpagewarning'                  => "<strong>AVERTIMENT : aquesta pagina a una longor de $1 ko.
-De delà de 32 ko, es preferible per d'unes navigadors de devesir aquesta pagina en seccions mai pichonas. Benlèu deuriatz devesir la pagina en seccions mai pichonas.</strong>",
-'longpageerror'                    => "<strong>ERROR: Lo tèxt qu'avètz mandat es de $1 Ko, e despassa doncas lo limit autorizat dels $2 Ko. Lo tèxt pòt pas èsser salvat.</strong>",
+'copyrightwarning'                 => "Totas las contribucions a {{SITENAME}} son consideradas coma publicadas jols tèrmes de la $2 (vejatz $1 per mai de detalhs). Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Nos prometètz tanben qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura.'''UTILIZETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !'''",
+'copyrightwarning2'                => "Totas las contribucions a {{SITENAME}} pòdon èsser modificadas o suprimidas per d’autres utilizaires. Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Tanben nos prometètz qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura. (vejatz $1 per mai de detalhs). '''UTILIZETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !'''",
+'longpagewarning'                  => "'''AVERTIMENT : aquesta pagina a una longor de $1 ko.
+De delà de 32 ko, es preferible per d'unes navigadors de devesir aquesta pagina en seccions mai pichonas. Benlèu deuriatz devesir la pagina en seccions mai pichonas.'''",
+'longpageerror'                    => "'''ERROR: Lo tèxt qu'avètz mandat es de $1 Ko, e despassa doncas lo limit autorizat dels $2 Ko. Lo tèxt pòt pas èsser salvat.'''",
 'readonlywarning'                  => '<strong>AVERTIMENT : La banca de donadas es estada varrolhada per mantenença,
 doncas poiretz pas salvar vòstras modificacions ara. Podètz copiar lo tèxt dins un fichièr tèxt e lo salvar per mai tard.</strong>',
-'protectedpagewarning'             => "<strong>AVERTIMENT : Aquesta pagina es protegida.
-Sols los utilizaires amb l'estatut d'administrator la pòdon modificar. Asseguratz-vos que seguissètz las directivas concernent las paginas protegidas.</strong>",
+'protectedpagewarning'             => "'''AVERTIMENT : Aquesta pagina es protegida.
+Sols los utilizaires amb l'estatut d'administrator la pòdon modificar. Asseguratz-vos que seguissètz las directivas concernent las paginas protegidas.'''",
 'semiprotectedpagewarning'         => "'''Nòta:''' Aquesta pagina es estada blocada, pòt pas èsser editada que pels utilizaires enregistats.",
 'cascadeprotectedwarning'          => "'''ATENCION :''' Aquesta pagina es estada protegida de biais que sols los administrators pòscan l’editar.
 Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins {{PLURAL:$1|una pagina protegida|de paginas protegidas}} amb la « proteccion en cascada » activada.",
-'titleprotectedwarning'            => '<strong>ATENCION : Aquesta pagina es estada protegida de tal biais que sols cèrts utilizaires pòscan la crear.</strong>',
+'titleprotectedwarning'            => "'''ATENCION : Aquesta pagina es estada protegida de tal biais que sols cèrts utilizaires pòscan la crear.'''",
 'templatesused'                    => 'Modèls utilizats sus aquesta pagina :',
 'templatesusedpreview'             => 'Modèls utilizats dins aquesta previsualizacion :',
 'templatesusedsection'             => 'Modèls utilizats dins aquesta seccion :',
@@ -1008,9 +1011,8 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'showingresults'            => "Afichatge {{PLURAL:$1|d''''1''' resultat|de '''$1''' resultats}} a partir del #'''$2'''.",
 'showingresultsnum'         => "Afichatge {{PLURAL:$3|d''''1''' resultat|de '''$3''' resultats}} a partir del #'''$2'''.",
 'showingresultstotal'       => "Visionament çaijós {{PLURAL:$3|del resultat '''$1''' de '''$3'''|dels resultats de '''$1 - $2''' de '''$3'''}}",
-'nonefound'                 => '<strong>Nòta</strong>: l\'abséncia de resultat es sovent deguda a l\'emplec de tèrmes de recèrca tròp corrents, coma "a" o "de",
-que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las paginas que
-contenon totes los tèrmes apareisson dins los resultats).',
+'nonefound'                 => "<strong>Nòta</strong>: Sonque qualques espacis de noms son recercats per defaut
+Ensajatz en utilizant lo prefix ''all:'' per recercar tot lo contengut (tot incluent las paginas de discussion, los modèls, etc), o utilizatz l'espaci de nom coma prefix.",
 'powersearch'               => 'Recèrca avançada',
 'powersearch-legend'        => 'Recèrca avançada',
 'powersearch-ns'            => 'Recercar dins los espacis de nom :',
@@ -1069,7 +1071,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'contextchars'             => 'Nombre de caractèrs de contèxt per linha :',
 'stub-threshold'           => 'Limita superiora pels <a href="#" class="stub">ligams cap als esbòsses</a> (octets) :',
 'recentchangesdays'        => "Nombre de jorns d'afichar dins los darrièrs cambiaments :",
-'recentchangescount'       => "Nombre de modificacions d'afichar dins los darrièrs cambiaments :",
+'recentchangescount'       => "Nombre de modificacions d'afichar dins los darrièrs cambiaments, paginas d'istorics e d'operacions, per defaut :",
 'savedprefs'               => 'Las preferéncias son estadas salvadas.',
 'timezonelegend'           => 'Zòna orària',
 'timezonetext'             => '¹Nombre d’oras de decalatge entre vòstra ora locala e l’ora del servidor (UTC).',
@@ -1194,7 +1196,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'recentchangestext'                 => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
 'recentchanges-feed-description'    => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flus.",
 'rcnote'                            => 'Vaquí {{PLURAL:$1|lo darrièr cambiament|los $1 darrièrs cambiaments}} dempuèi {{PLURAL:$2|lo darrièr jorn|los <b>$2</b> darrièrs jorns}}, determinat{{PLURAL:$1||s}} lo $4, a $5.',
-'rcnotefrom'                        => "Vaquí los cambiaments efectuats dempuèi lo '''$2''' ('''$1''' al maximom).",
+'rcnotefrom'                        => "Vaquí los cambiaments efectuats dempuèi lo '''$2''' ('''$1''' al maximum).",
 'rclistfrom'                        => 'Afichar las modificacions novèlas dempuèi lo $1.',
 'rcshowhideminor'                   => '$1 cambiaments menors',
 'rcshowhidebots'                    => '$1 robòts',
@@ -1267,19 +1269,19 @@ Vejatz la [[Special:NewImages|galariá dels imatges novèls]] per una presentaci
 {{PLURAL:\$3|Lo qu'es acceptat es|Los que son acceptats son}} \$2.",
 'filetype-missing'            => "Lo fichièr a pas cap d'extension (coma « .jpg » per exemple).",
 'large-file'                  => 'Los fichièrs importats deurián pas èsser mai gros que $1 ; aqueste fichièr fa $2.',
-'largefileserver'             => "La talha d'aqueste fichièr es superiora al maximom autorizat.",
+'largefileserver'             => "La talha d'aqueste fichièr es superiora al maximum autorizat.",
 'emptyfile'                   => 'Lo fichièr que volètz importar sembla void. Aquò pòt èsser degut a una error dins lo nom del fichièr. Verificatz que desiratz vertadièrament copiar aqueste fichièr.',
-'fileexists'                  => 'Un fichièr amb aqueste nom existís ja. Mercé de verificar <strong><tt>$1</tt></strong>. Sètz segur de voler modificar aqueste fichièr ?',
-'filepageexists'              => "La pagina de descripcion per aqueste fichièr ja es estada creada aicí <strong><tt>$1</tt></strong>, mas cap de fichièr d'aqueste nom existís pas actualament. Lo resumit qu'anatz escriure remplaçarà pas lo tèxt precedent ; per aquò far, deuretz editar manualament la pagina.",
+'fileexists'                  => "Un fichièr amb aqueste nom existís ja. Mercé de verificar '''<tt>$1</tt>'''. Sètz segur de voler modificar aqueste fichièr ?",
+'filepageexists'              => "La pagina de descripcion per aqueste fichièr ja es estada creada aicí '''<tt>$1</tt>''', mas cap de fichièr d'aqueste nom existís pas actualament. Lo resumit qu'anatz escriure remplaçarà pas lo tèxt precedent ; per aquò far, deuretz editar manualament la pagina.",
 'fileexists-extension'        => "Un fichièr amb un nom similar existís ja :<br />
-Nom del fichièr d'importar : <strong><tt>$1</tt></strong><br />
-Nom del fichièr existent : <strong><tt>$2</tt></strong><br />
+Nom del fichièr d'importar : '''<tt>$1</tt>'''<br />
+Nom del fichièr existent : '''<tt>$2</tt>'''<br />
 la sola diferéncia es la cassa (majusculas / minusculas) de l’extension. Verificatz que lo fichièr es diferent e cambiatz son nom.",
 'fileexists-thumb'            => "<center>'''Imatge existent'''</center>",
-'fileexists-thumbnail-yes'    => 'Lo fichièr sembla èsser un imatge en talha reducha <i>(thumbnail)</i>. Verificatz lo fichièr <strong><tt>$1</tt></strong>.<br /> Se lo fichièr verificat es lo meteis imatge (dins una resolucion melhora), es pas de besonh d’importar una version reducha.',
-'file-thumbnail-no'           => 'Lo nom del fichièr comença per <strong><tt>$1</tt></strong>.
-Es possible que s’agisca d’una version reducha <i>(miniatura)</i>.
-Se dispausatz del fichièr en resolucion nauta, importatz-lo, si que non cambiatz lo nom del fichièr.',
+'fileexists-thumbnail-yes'    => "Lo fichièr sembla èsser un imatge en talha reducha ''(thumbnail)''. Verificatz lo fichièr '''<tt>$1</tt>'''.<br /> Se lo fichièr verificat es lo meteis imatge (dins una resolucion melhora), es pas de besonh d’importar una version reducha.",
+'file-thumbnail-no'           => "Lo nom del fichièr comença per '''<tt>$1</tt>'''.
+Es possible que s’agisca d’una version reducha ''(miniatura)''.
+Se dispausatz del fichièr en resolucion nauta, importatz-lo, si que non cambiatz lo nom del fichièr.",
 'fileexists-forbidden'        => 'Un fichièr amb aqueste nom existís ja ; mercé de tornar en arrièr e de copiar lo fichièr jos un nom novèl. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Un fichièr amb lo meteis nom existís ja dins la banca de donadas comuna.
 S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom. [[Image:$1|thumb|center|$1]]",
@@ -1302,7 +1304,7 @@ S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom
 'upload-wasdeleted'           => "'''Atencion : Sètz a importar un fichièr que ja es estat suprimit deperabans.'''
 
 Deuriatz considerar se es oportun de contunhar l'impòrt d'aqueste fichièr. Lo jornal de las supressions vos donarà los elements d'informacion.",
-'filename-bad-prefix'         => 'Lo nom del fichièr qu\'importatz comença per <strong>"$1"</strong> qu\'es un nom generalament donat pels aparelhs de fòto numerica e que decritz pas lo fichièr. Causissetz un nom de fichièr descrivent vòstre fichièr.',
+'filename-bad-prefix'         => "Lo nom del fichièr qu'importatz comença per '''\"\$1\"''' qu'es un nom generalament donat pels aparelhs de fòto numerica e que decritz pas lo fichièr. Causissetz un nom de fichièr descrivent vòstre fichièr.",
 'filename-prefix-blacklist'   => ' #<!-- daissatz aquesta linha coma es --> <pre>
 # La sintaxi es la seguenta :
 #   * Tot çò que seguís lo caractèr "#" fins a la fin de la linha es un comentari
@@ -1364,7 +1366,7 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 'filehist-dimensions'            => 'Dimensions',
 'filehist-filesize'              => 'Talha del fichièr',
 'filehist-comment'               => 'Comentari',
-'imagelinks'                     => "Paginas que contenon l'imatge",
+'imagelinks'                     => 'Paginas que contenon lo fichièr',
 'linkstoimage'                   => '{{PLURAL:$1|La pagina çaijós compòrta|Las paginas çaijós compòrtan}} aqueste imatge :',
 'nolinkstoimage'                 => 'Cap de pagina compòrta pas de ligam cap a aqueste imatge.',
 'morelinkstoimage'               => 'Vejatz [[Special:WhatLinksHere/$1|mai de ligams]] cap a aqueste imatge.',
@@ -1396,7 +1398,7 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 # File deletion
 'filedelete'                  => 'Suprimir $1',
 'filedelete-legend'           => 'Suprimir lo fichièr',
-'filedelete-intro'            => "Sètz a suprimir '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Sètz a suprimir '''[[Media:$1|$1]]''' amb tot son istoric.",
 'filedelete-intro-old'        => "Sètz a escafar la version de '''[[Media:$1|$1]]''' del [$4 $2 a $3].",
 'filedelete-comment'          => "Motiu de l'escafament :",
 'filedelete-submit'           => 'Suprimir',
@@ -1469,7 +1471,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'double-redirect-fixer'      => 'Corrector de redireccion',
 
 'brokenredirects'        => 'Redireccions copadas',
-'brokenredirectstext'    => "Aquestas redireccions mènan a una pagina qu'existís pas.",
+'brokenredirectstext'    => "Aquestas redireccions mènan cap a de paginas qu'existisson pas :",
 'brokenredirects-edit'   => '(modificar)',
 'brokenredirects-delete' => '(suprimir)',
 
@@ -1506,7 +1508,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'mostcategories'          => 'Articles utilizant mai de categorias',
 'mostimages'              => 'Fichièrs mai utilizats',
 'mostrevisions'           => 'Articles mai modificats',
-'prefixindex'             => 'Totas las paginas per primièras letras',
+'prefixindex'             => 'Totas las paginas que començan per…',
 'shortpages'              => 'Paginas brèvas',
 'longpages'               => 'Paginas longas',
 'deadendpages'            => "Paginas sul camin d'enlòc",
@@ -1604,7 +1606,7 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 'usermailererror' => 'Error dins lo subjècte del corrièr electronic :',
 'defemailsubject' => 'Corrièr electronic mandat dempuèi {{SITENAME}}',
 'noemailtitle'    => "Pas d'adreça electronica",
-'noemailtext'     => "Aquesta utilizaire a pas especificat d'adreça electronica valida o a causit de recebre pas de corrièr electronic dels autres utilizaires.",
+'noemailtext'     => "Aqueste utilizaire a pas especificat d'adreça electronica valida.",
 'emailfrom'       => 'Expeditor :',
 'emailto'         => 'Destinatari :',
 'emailsubject'    => 'Subjècte :',
@@ -1621,7 +1623,7 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 'mywatchlist'          => 'Lista de seguit',
 'watchlistfor'         => "(per l’utilizaire '''$1''')",
 'nowatchlist'          => "Vòstra lista de seguit conten pas cap d'article.",
-'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguit, vos devètz $1.',
+'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguit, vos cal vos $1.',
 'watchnologin'         => 'Vos sètz pas identificat(ada)',
 'watchnologintext'     => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
 per modificar vòstra lista de seguit.',
@@ -1733,7 +1735,7 @@ D'efectuar amb prudéncia.",
 'alreadyrolled'               => "Impossible d'anullar la darrièra modificacion de l'article « [[$1]] » efectuada per [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; qualqu'un d'autre ja a modificat o revocat l'article.
 
 La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3|Discussion]]).",
-'editcomment'                 => 'Lo resumit de la modificacion èra: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'                 => "Lo resumit de la modificacion èra : « ''$1'' ».", # only shown if there is an edit comment
 'revertpage'                  => 'Anullacion de las modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) cap a la darrièra version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',
 'sessionfailure'              => 'Vòstra sesilha de connexion sembla aver de problèmas ;
@@ -1751,14 +1753,14 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'protect_expiry_invalid'      => 'Lo temps d’expiracion es invalid',
 'protect_expiry_old'          => 'Lo temps d’expiracion ja es passat.',
 'protect-unchain'             => 'Desblocar las permissions de cambiament de nom',
-'protect-text'                => 'Podètz consultar e modificar lo nivèl de proteccion de la pagina <strong><nowiki>$1</nowiki></strong>. Asseguratz-vos que seguissètz las règlas intèrnas.',
-'protect-locked-blocked'      => 'Podètz pas modificar lo nivèl de proteccion tant que sètz blocat. Vaquí los reglatges actuals de la pagina <strong>$1</strong> :',
-'protect-locked-dblock'       => 'Lo nivèl de proteccion pòt pas èsser modificat perque la banca de donadas es blocada. Vaquí los reglatges actuals de la pagina <strong>$1</strong> :',
-'protect-locked-access'       => 'Avètz pas los dreches necessaris per modificar la proteccion de la pagina. Vaquí los reglatges actuals de la pagina <strong>$1</strong> :',
+'protect-text'                => "Podètz consultar e modificar lo nivèl de proteccion de la pagina '''<nowiki>$1</nowiki>'''. Asseguratz-vos que seguissètz las règlas intèrnas.",
+'protect-locked-blocked'      => "Podètz pas modificar lo nivèl de proteccion tant que sètz blocat. Vaquí los reglatges actuals de la pagina '''$1''' :",
+'protect-locked-dblock'       => "Lo nivèl de proteccion pòt pas èsser modificat perque la banca de donadas es blocada. Vaquí los reglatges actuals de la pagina '''$1''' :",
+'protect-locked-access'       => "Avètz pas los dreches necessaris per modificar la proteccion de la pagina. Vaquí los reglatges actuals de la pagina '''$1''' :",
 'protect-cascadeon'           => "Aquesta pagina es actualament protegida perque es inclusa dins {{PLURAL:$1|la pagina seguenta|las paginas seguentas}}, {{PLURAL:$1|qu'es estada protegida|que son estadas protegidas}} amb l’opcion « proteccion en cascada » activada. Podètz cambiar lo nivèl de proteccion d'aquesta pagina sens qu'aquò afècte la proteccion en cascada.",
-'protect-default'             => 'Pas de proteccion',
+'protect-default'             => 'Autorizar totes los utilizaires',
 'protect-fallback'            => 'Necessita l’abilitacion «$1»',
-'protect-level-autoconfirmed' => 'Semiproteccion',
+'protect-level-autoconfirmed' => 'Blocar los utilizaires novèls e los utilizaires anonims',
 'protect-level-sysop'         => 'Administrators unicament',
 'protect-summary-cascade'     => 'proteccion en cascada',
 'protect-expiring'            => 'expira lo $1',
@@ -1914,7 +1916,7 @@ Podètz consultar la [[Special:IPBlockList|lista dels comptes e de las adreças 
 'unblockip'                       => 'Desblocar un utilizaire o una adreça IP',
 'unblockiptext'                   => "Utilizatz lo formulari çaijós per restablir l'accès en escritura
 a partir d'una adreça IP precedentament blocada.",
-'ipusubmit'                       => 'Desblocar aquesta adreça',
+'ipusubmit'                       => 'Suprimir aqueste blocatge',
 'unblocked'                       => '[[User:$1|$1]] es estat desblocat',
 'unblocked-id'                    => 'Lo blocatge $1 es estat levat',
 'ipblocklist'                     => 'Adreças IP e dels utilizaires blocats',
@@ -2015,7 +2017,7 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movepage-page-exists'    => 'La pagina $1 existís ja e pòt pas èsser espotida automaticament.',
 'movepage-page-moved'     => 'La pagina $1 es estada renomenada en $2.',
 'movepage-page-unmoved'   => 'La pagina $1 pòt èsser renomenada en $2.',
-'movepage-max-pages'      => "Lo maximom de $1 {{PLURAL:$1|pagina es estat renomenat|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
+'movepage-max-pages'      => "Lo maximum de $1 {{PLURAL:$1|pagina es estada renomenada|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
 '1movedto2'               => 'a renomenat [[$1]] en [[$2]]',
 '1movedto2_redir'         => 'a redirigit [[$1]] cap a [[$2]]',
 'movelogpage'             => 'Istoric dels cambiaments de nom',
@@ -2113,19 +2115,19 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} dempuèi $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => "Ma pagina d'utilizaire",
+'tooltip-pt-userpage'             => "Vòstra pagina d'utilizaire",
 'tooltip-pt-anonuserpage'         => "La pagina d'utilizare de l’IP amb la quala contribuissètz",
-'tooltip-pt-mytalk'               => 'Ma pagina de discussion',
+'tooltip-pt-mytalk'               => 'Vòstra pagina de discussion',
 'tooltip-pt-anontalk'             => 'La pagina de discussion per aquesta adreça IP',
 'tooltip-pt-preferences'          => 'Mas preferéncias',
 'tooltip-pt-watchlist'            => 'La lista de las paginas que seguissètz',
-'tooltip-pt-mycontris'            => 'Lista de mas contribucions',
+'tooltip-pt-mycontris'            => 'Lista de vòstras contribucions',
 'tooltip-pt-login'                => 'Sètz convidat(ada) a vos identificar, mas es pas obligatòri.',
 'tooltip-pt-anonlogin'            => 'Sètz convidat(ada) a vos identificar, mas es pas obligatòri.',
 'tooltip-pt-logout'               => 'Se desconnectar',
 'tooltip-ca-talk'                 => "Discussion a prepaus d'aquesta pagina",
 'tooltip-ca-edit'                 => 'Podètz modificar aquesta pagina. Mercé de previsualizar abans d’enregistrar.',
-'tooltip-ca-addsection'           => 'Apondre un comentari a aquesta discussion.',
+'tooltip-ca-addsection'           => 'Començar una seccion novèla',
 'tooltip-ca-viewsource'           => 'Aquesta pagina es protegida. Çaquelà, ne podètz veire lo contengut.',
 'tooltip-ca-history'              => "Los autors e versions precedentas d'aquesta pagina.",
 'tooltip-ca-protect'              => 'Protegir aquesta pagina',
@@ -2698,10 +2700,10 @@ $1",
 'table_pager_empty'        => 'Cap de resultat',
 
 # Auto-summaries
-'autosumm-blank'   => 'Resumit automatic : blanquiment',
+'autosumm-blank'   => 'Blanquiment de la pagina',
 'autosumm-replace' => 'Resumit automatic : contengut remplaçat per « $1 ».',
 'autoredircomment' => 'Redireccion cap a [[$1]]',
-'autosumm-new'     => 'Pagina novèla : $1',
+'autosumm-new'     => 'Creacion de la pagina amb « $1 »',
 
 # Size units
 'size-bytes'     => '$1 o',

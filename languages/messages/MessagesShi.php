@@ -162,10 +162,10 @@ lcont nk ati styaqyad. ador tot atbadlt {{SITENAME}} lmЗlomat nk.',
 # Edit pages
 'noarticletext'    => 'ɣila orilla walo l-ktba ɣ tawriqt ad, tzdart [[Special:Search/{{PAGENAME}}|atsiglt smiyt n tawriqt ad]] 
 ɣ tiwriqin yadni, nɣd [{{fullurl:{{FULLPAGENAME}}|action=edit}} atbdlt tawrikt ad]',
-'copyrightwarning' => 'ikhssak atst izd kolchi tikkin noun ɣ {{SITENAME}} llan ɣdo $2 (zr $1 iɣ trit ztsnt uggar).
+'copyrightwarning' => "ikhssak atst izd kolchi tikkin noun ɣ {{SITENAME}} llan ɣdo $2 (zr $1 iɣ trit ztsnt uggar).
 iɣ ortrit ayg ɣayli torit ḥor artisbadal wnna ka-iran, attid ortgt ɣid.<br />
 ikhssak ola kiyi ador tnqilt ɣtamani yadni.
-<strong>ador tgat ɣid ɣayli origan ḥor iɣzark orilli lidn nbab-ns!</strong>',
+'''ador tgat ɣid ɣayli origan ḥor iɣzark orilli lidn nbab-ns!'''",
 
 # Search results
 'powersearch' => 'amsigl itqdmn',

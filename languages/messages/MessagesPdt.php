@@ -265,11 +265,20 @@ Bitte nemm eenen aundren.',
 'media_tip' => 'Datei-Link',
 
 # Edit pages
-'minoredit'          => 'Dit es en kjleene Endaniss',
-'watchthis'          => 'Paus op dise Sied op',
-'showdiff'           => 'Endanisse wiese',
-'newarticle'         => '(Nie)',
-'template-protected' => "(be'schutst)",
+'minoredit'            => 'Dit es eene tjliene Endanis.',
+'watchthis'            => 'Paus op dise Sied op',
+'savearticle'          => 'Sied bewoare',
+'preview'              => 'Preview',
+'showpreview'          => 'Wies Preview',
+'showlivepreview'      => 'Live-Preview',
+'showdiff'             => 'Endanisse wiese',
+'anoneditwarning'      => "'''Paus opp:''' Du best nich aunjemaldt. Diene IP-Adras woat enne Versioonsjeschicht oppbewoat en es emma to seene.",
+'missingsummary'       => "'''Dentj draun:''' Du hast tjeene Toopfotinj jemoakt. Wan du wada opp Bewoare klickst, woat diene Endanis ohne Toopfotinj ewanohme.",
+'missingcommenttext'   => 'Bitte schriew eene korte Toopfotinj.',
+'missingcommentheader' => "'''Dentj draun:''' Du hast tjeen Teema em Plautz \"Teema\" jeschrewe. Wan du wada opp Sied Bewoare klickst, woat diene Oabeit ohne Teema bewoat.",
+'blockedtitle'         => 'Dis Brucka es jeblockt.',
+'newarticle'           => '(Nie)',
+'template-protected'   => "(be'schutst)",
 
 # History pages
 'cur'        => 'dise',
@@ -416,8 +425,14 @@ Bitte nemm eenen aundren.',
 'whatlinkshere-links' => '← Links',
 
 # Block/unblock
-'ipboptions'   => '2 Stunde:2 hours,1 Dach:1 day,3 Doag:3 days,1 Wäakj:1 week,2 Wäakje:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joa:1 year,one Enj:infinite', # display1:time1,display2:time2,...
-'contribslink' => 'Biedrachs',
+'ipboptions'    => '2 Stunde:2 hours,1 Dach:1 day,3 Doag:3 days,1 Wäakj:1 week,2 Wäakje:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joa:1 year,one Enj:infinite', # display1:time1,display2:time2,...
+'blocklink'     => 'blocke',
+'unblocklink'   => 'frie jewe',
+'contribslink'  => 'Biedrachs',
+'autoblocker'   => 'Automatisch jeblockt, wiels diene IP-Adras soo es aus bie "[[User:$1|$1]]".
+Dee Grunt es: "$2"',
+'blocklogpage'  => 'Block-Logbok',
+'blocklogentry' => 'haft [[$1]] jeblockt fe dee Tiet $2 $3',
 
 # Move page
 'newtitle'   => 'No nie Tietel:',
@@ -432,11 +447,11 @@ Bitte nemm eenen aundren.',
 'thumbnail-more' => "Fe'jreetre",
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Miene Bruckersied',
-'tooltip-pt-mytalk'               => 'Miene Beredsied',
+'tooltip-pt-userpage'             => 'Diene Bruckersied',
+'tooltip-pt-mytalk'               => 'Diene Beredsied',
 'tooltip-pt-preferences'          => 'Miene Ennstalinje',
 'tooltip-pt-watchlist'            => 'List fonn Siede, op de du oppausst, waut sikj endat',
-'tooltip-pt-mycontris'            => 'List fonn miene Biedroage',
+'tooltip-pt-mycontris'            => 'List fonn diene Biedroage',
 'tooltip-pt-login'                => 'Aunmalde wudd scheen senne, es oba nich onbedinjt needich.',
 'tooltip-pt-anonlogin'            => 'Aunmalde wudd scheen senne, es oba nich onbedinjt needich.',
 'tooltip-pt-logout'               => 'Rut hia',

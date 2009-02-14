@@ -307,13 +307,13 @@ Aron mahimo ang maong panid, pagtayp sa kahon sa ubos (tan-awa ang [[{{MediaWiki
 Kon miabot ka dinhi pinaagi sa usa ka sayop, palihog tuploka ang back nga tuplokanan sa imong brawser.',
 'noarticletext'             => 'Sa kasamtangan walay sulod nga teksto ang kining panid, pwede nimong  [[Special:Search/{{PAGENAME}}|pangitaon kining titulo sa panid]] sa ubang mga panid o [{{fullurl:{{FULLPAGENAME}}|action=edit}} usba kining panid].',
 'userpage-userdoesnotexist' => 'Ang akawnt sa tiggamit nga "$1" wala marehistro. Palihug tan-awa kon buot nimong himoon/usbon ang kining panid.',
-'previewnote'               => '<strong>Hinumdomi nga kini usa lang ka paunang tan-aw; wala pa matipigi ang imong giusab!</strong>',
+'previewnote'               => "'''Hinumdomi nga kini usa lang ka paunang tan-aw; wala pa matipigi ang imong giusab!'''",
 'editing'                   => 'Nagausab sa $1',
 'yourtext'                  => 'Imong gisulat',
 'yourdiff'                  => 'Mga kalainan',
-'copyrightwarning'          => 'Palihog hinumdomi nga ang tanang kontribusyon sa {{SITENAME}} giisip nga ubos sa $2 (basaha ang $1 alang sa dugang detalye). Kon dili nimo buot nga ang imong mga sinulat mausab ni bisan kinsa ug maapud-apod bisan dili ka pangayoan og pagtugot, ayaw sila ibutang dinhi.<br />
+'copyrightwarning'          => "Palihog hinumdomi nga ang tanang kontribusyon sa {{SITENAME}} giisip nga ubos sa $2 (basaha ang $1 alang sa dugang detalye). Kon dili nimo buot nga ang imong mga sinulat mausab ni bisan kinsa ug maapud-apod bisan dili ka pangayoan og pagtugot, ayaw sila ibutang dinhi.<br />
 Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gikopya nimo kini gikan sa usa ka publikong rekursos o susamang libreng rekursos.
-<strong>AYAW PAGBUTANG DINHI OG MGA BINUHAT NGA MAY NANAG-IYA SA KATUNGOD SA PAGPATIK NGA WA KAY PERMISO!</strong>',
+'''AYAW PAGBUTANG DINHI OG MGA BINUHAT NGA MAY NANAG-IYA SA KATUNGOD SA PAGPATIK NGA WA KAY PERMISO!'''",
 'templatesused'             => 'Ang mga plantilyang gigamit niini nga panid:',
 'template-protected'        => '(giprotektahan)',
 

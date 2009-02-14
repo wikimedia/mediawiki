@@ -109,12 +109,12 @@ $messages = array(
 'jumptosearch'     => 'dii',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'         => '{{SITENAME}} ŋutinya',
+'aboutsite'         => 'Nusi {{SITENAME}} nye',
 'aboutpage'         => 'Project:Ŋutinya',
 'copyright'         => 'Nusiwo le afii le $1 mɔɖeɖea te.',
 'copyrightpagename' => '{{SITENAME}} mɔɖeɖewo',
 'copyrightpage'     => '{{ns:project}}:Mɔɖeɖewo',
-'currentevents'     => 'Nusiwo le dzɔdzɔm',
+'currentevents'     => 'Amaneɛ',
 'currentevents-url' => 'Project:Nusiwo le dzɔdzɔm',
 'disclaimers'       => 'Nuxlɔ̃amenyawo',
 'edithelp'          => 'Kpekpeɖeŋu na etɔtrɔ',
@@ -173,9 +173,9 @@ $messages = array(
 'showdiff'         => 'Fia tɔtrɔwo',
 'newarticle'       => '(Yeye)',
 'newarticletext'   => "Eva ɖo axa si gɔme womedze haɖeke o. Ne wòadi be yeadze egɔme la, dze nuŋlɔm ɖe go sia me le afi sia ɖome (kpɔ [[{{MediaWiki:Helppage}}|kpekpeɖeŋu nyawo]] na kpekpeɖeŋu bubuwo). Ne wòme ɖoe be yeava afii hafi o la, ekema tia '''megbe''' eye wòa gbugbɔ ayi afisi wòtso va.",
-'previewnote'      => '<strong>Wole afii fiam do ŋgɔ, wome dzrae ɖo haɖeke o!</strong>',
+'previewnote'      => "'''Wole afii fiam do ŋgɔ, wome dzrae ɖo haɖeke o!'''",
 'editing'          => '$1 na etɔtrɔ',
-'copyrightwarning' => 'Taflatse, mítsɔe be nusiwo katã netsɔ kpe ɖe {{SITENAME}} ŋu lii fãa le $2 la nu (kpɔ $1 me nyawo). Ne madze ŋuwò be amebubuwo natrɔ asi le nusiwo newɔ ŋuti o, eye woagbugbɔ dɔsiwo newɔ ama na amebubuwo fãa o la, mega dae ɖe afisia o.<br /> Wòle ŋugbe dom na mí bena wò ŋutɔe ŋlɔ nusiawo, alo etsɔe tso afisi mɔɖeɖe li fãa be amesiame na tsɔ nuwo tso afima fãa. <strong>MEGA DA NUSIWO ŊU MƆƉEƉE MELI NA O ƉE AFISIA O!</strong>',
+'copyrightwarning' => "Taflatse, mítsɔe be nusiwo katã netsɔ kpe ɖe {{SITENAME}} ŋu lii fãa le $2 la nu (kpɔ $1 me nyawo). Ne madze ŋuwò be amebubuwo natrɔ asi le nusiwo newɔ ŋuti o, eye woagbugbɔ dɔsiwo newɔ ama na amebubuwo fãa o la, mega dae ɖe afisia o.<br /> Wòle ŋugbe dom na mí bena wò ŋutɔe ŋlɔ nusiawo, alo etsɔe tso afisi mɔɖeɖe li fãa be amesiame na tsɔ nuwo tso afima fãa. '''MEGA DA NUSIWO ŊU MƆƉEƉE MELI NA O ƉE AFISIA O!'''",
 
 # History pages
 'revisionasof'        => 'Tataa le $1',

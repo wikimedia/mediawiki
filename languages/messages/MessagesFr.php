@@ -22,6 +22,7 @@
  * @author Louperivois
  * @author McDutchie
  * @author Meithal
+ * @author Moyg
  * @author Omnipaedista
  * @author Remember the dot
  * @author Seb35
@@ -384,7 +385,7 @@ $messages = array(
 'search'            => 'Rechercher',
 'searchbutton'      => 'Rechercher',
 'go'                => 'Consulter',
-'searcharticle'     => 'Consulter',
+'searcharticle'     => 'Lire',
 'history'           => 'Historique de la page',
 'history_short'     => 'Historique',
 'updatedmarker'     => 'modifié depuis ma dernière visite',
@@ -409,14 +410,14 @@ $messages = array(
 'talkpagelinktext'  => 'Discuter',
 'specialpage'       => 'Page spéciale',
 'personaltools'     => 'Outils personnels',
-'postcomment'       => 'Ajouter un commentaire',
+'postcomment'       => 'Nouvelle section',
 'articlepage'       => 'Voir la page de contenu',
 'talk'              => 'Discussion',
 'views'             => 'Affichages',
 'toolbox'           => 'Boîte à outils',
 'userpage'          => 'Page utilisateur',
 'projectpage'       => 'Page méta',
-'imagepage'         => 'Page image',
+'imagepage'         => 'Voir la page du fichier',
 'mediawikipage'     => 'Voir la page des messages',
 'templatepage'      => 'Voir la page du modèle',
 'viewhelppage'      => 'Voir la page d’aide',
@@ -489,13 +490,13 @@ $messages = array(
 'site-atom-feed'          => 'Flux Atom de $1',
 'page-rss-feed'           => 'Flux RSS de « $1 »',
 'page-atom-feed'          => 'Flux Atom de « $1 »',
-'red-link-title'          => '$1 (page inexistante)',
+'red-link-title'          => '$1 (la page n’existe pas)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',
 'nstab-user'      => 'Page utilisateur',
 'nstab-media'     => 'Média',
-'nstab-special'   => 'Spécial',
+'nstab-special'   => 'Page spéciale',
 'nstab-project'   => 'À propos',
 'nstab-image'     => 'Fichier',
 'nstab-mediawiki' => 'Message',
@@ -505,7 +506,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Action inconnue',
-'nosuchactiontext'  => 'L’action spécifiée dans l’URL n’est pas reconnue par le wiki.',
+'nosuchactiontext'  => 'L’action spécifiée dans l’URL est invalide.
+Vous avez peut-être mal entré l’URL ou suivi un lien incorrect.
+Ceci peut également indiquer dans le logiciel utilisé par {{SITENAME}}.',
 'nosuchspecialpage' => 'Page spéciale inexistante',
 'nospecialpagetext' => "<big>'''Vous avez demandé une page spéciale non reconnue par ce wiki.'''</big>
 
@@ -580,7 +583,7 @@ $2',
 Le motif avancé est « ''$2'' ».",
 
 # Virus scanner
-'virus-badscanner'     => 'Mauvaise configuration : scanneur de virus inconnu : <i>$1</i>',
+'virus-badscanner'     => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",
 'virus-scanfailed'     => 'Échec de la recherche (code $1)',
 'virus-unknownscanner' => 'antivirus inconnu :',
 
@@ -626,7 +629,8 @@ Veuillez en choisir un autre.',
 'yournick'                   => 'Signature pour les discussions :',
 'badsig'                     => 'Signature brute incorrecte.
 Vérifiez vos balises HTML.',
-'badsiglength'               => 'Votre signature est trop longue : la taille maximale est de $1 caractère{{PLURAL:$1||s}}.',
+'badsiglength'               => 'Votre signature est trop longue.
+Elle doit avoir moins de $1 caractère{{PLURAL:$1||s}}.',
 'email'                      => 'Courriel',
 'prefs-help-realname'        => '(facultatif) : si vous le spécifiez, il sera utilisé pour vous attribuer vos contributions.',
 'loginerror'                 => 'Erreur d’identification',
@@ -637,8 +641,9 @@ Vérifiez vos balises HTML.',
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle'          => 'Identification réussie',
 'loginsuccess'               => 'Vous êtes maintenant connecté(e) à {{SITENAME}} en tant que « $1 ».',
-'nosuchuser'                 => 'L’utilisateur « $1 » n’existe pas.
-Vérifiez que vous avez bien orthographié le nom, ou [[Special:UserLogin/signup|créez-vous un nouveau compte]].',
+'nosuchuser'                 => "L’utilisateur « $1 » n’existe pas.
+Le nom d'utilisateur est sensible à la casse.
+Vérifiez que vous avez bien orthographié le nom, ou [[Special:UserLogin/signup|créez-vous un nouveau compte]].",
 'nosuchusershort'            => 'Il n’y a pas de contributeur avec le nom « <nowiki>$1</nowiki> ». Veuillez vérifier l’orthographe.',
 'nouserspecified'            => 'Vous devez saisir un nom d’utilisateur.',
 'wrongpassword'              => 'Le mot de passe est incorrect. Veuillez essayer à nouveau.',
@@ -664,7 +669,7 @@ Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre le
 'acct_creation_throttle_hit' => 'Désolé, vous avez déjà créé {{PLURAL:$1|$1 compte|$1 comptes}}. Vous ne pouvez pas en créer de nouveaux.',
 'emailauthenticated'         => 'Votre adresse de courriel a été authentifiée le $1.',
 'emailnotauthenticated'      => 'Votre adresse de courriel n’est <strong>pas encore authentifiée</strong>. Aucun courriel ne sera envoyé pour chacune des fonctions suivantes.',
-'noemailprefs'               => '<strong>Aucune adresse électronique n’a été indiquée,</strong> les fonctions suivantes ne seront pas disponibles.',
+'noemailprefs'               => 'Indiquez une adresse de courriel dans vos préférences pour utiliser ces fonctions.',
 'emailconfirmlink'           => 'Confirmez votre adresse de courriel',
 'invalidemailaddress'        => 'Cette adresse courriel ne peut pas être acceptée car elle semble avoir un format incorrect.
 Entrez une adresse bien formatée ou laisser ce champ vide.',
@@ -776,7 +781,7 @@ Puisqu’il n’y a pas de section $1, il n’y a pas d’endroit où publier vo
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
 Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'                 => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin/signup|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
-'noarticletext'                    => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur ce titre de page]], vérifier qu’elle n’a pas été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} supprimée] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page].',
+'noarticletext'                    => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche de ce titre de page]] dans les autres pages, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} rechercher dans les opérations liées] ou [{{fullurl:{{urlencode:{{FULLPAGENAME}}}}|action=edit}} créer cette page]</span>.',
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer son rechargement complet en ignorant le contenu actuel du cache de votre explorateur pour voir les changements : '''Mozilla / Firefox / Konqueror / Safari :''' maintenez la touche ''Majuscule'' (''Shift'') en cliquant le bouton ''Actualiser'' (''Reload,'') ou pressez ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sur Apple Mac) ; '''Internet Explorer / Opera :''' maintenez la touche ''Ctrl'' en cliquant le bouton ''Actualiser'' ou pressez ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS/JS avant de l’enregistrer.",
@@ -785,45 +790,45 @@ Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votr
 'userjspreview'                    => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
 'userinvalidcssjstitle'            => "'''Attention :''' il n’existe pas de style « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/monobook.css et non {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Mis à jour)',
-'note'                             => '<strong>Note :</strong>',
-'previewnote'                      => '<strong>Attention, ce texte n’est qu’une prévisualisation et n’a pas encore été publié !</strong>',
+'note'                             => "'''Note :'''",
+'previewnote'                      => "'''Attention, ce texte n’est qu’une prévisualisation et n’a pas encore été publié !'''",
 'previewconflict'                  => 'Cette prévisualisation montre le texte de la boîte supérieure de modification tel qu’il apparaîtra si vous choisissez de le publier.',
-'session_fail_preview'             => '<strong>Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.
+'session_fail_preview'             => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.
 Veuillez réessayer.
-Si cela échoue à nouveau, essayez de vous déconnecter, puis connectez-vous à nouveau.</strong>',
-'session_fail_preview_html'        => "<strong>Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.</strong>
+Si cela échoue à nouveau, essayez de vous déconnecter, puis connectez-vous à nouveau.'''",
+'session_fail_preview_html'        => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.'''
 
 ''Parce que {{SITENAME}} a activé l’HTML brut, la prévisualisation a été masquée afin de prévenir une attaque par JavaScript.''
 
-<strong>Si la tentative de modification était légitime, veuillez réessayer.
-Si cela échoue à nouveau, déconnectez-vous, puis reconnectez-vous.</strong>",
-'token_suffix_mismatch'            => '<strong>Votre modification n’a pas été acceptée car votre navigateur Web a mélangé les caractères de ponctuation dans l’identifiant d’édition. La modification a été rejetée afin d’empêcher la corruption du texte de la page. Ce problème se produit lorsque vous utilisez un mandataire anonyme problématique.</strong>',
+'''Si la tentative de modification était légitime, veuillez réessayer.
+Si cela échoue à nouveau, déconnectez-vous, puis reconnectez-vous.'''",
+'token_suffix_mismatch'            => "'''Votre modification n’a pas été acceptée car votre navigateur Web a mélangé les caractères de ponctuation dans l’identifiant d’édition. La modification a été rejetée afin d’empêcher la corruption du texte de la page. Ce problème se produit lorsque vous utilisez un mandataire anonyme problématique.'''",
 'editing'                          => 'Modification de $1',
 'editingsection'                   => 'Modification de $1 (section)',
-'editingcomment'                   => 'Modification de $1 (commentaire)',
+'editingcomment'                   => 'Modification de $1 (nouvelle section)',
 'editconflict'                     => 'Conflit de modification : $1',
 'explainconflict'                  => '<b>Cette page a été sauvegardée après que vous avez commencé à la modifier. La zone de modification supérieure contient le texte tel qu’il est enregistré actuellement dans la base de données. Vos modifications apparaissent dans la zone de modification inférieure. Vous allez devoir apporter vos modifications au texte existant. Seul le texte de la zone supérieure sera sauvegardé.</b><br />',
 'yourtext'                         => 'Votre texte',
 'storedversion'                    => 'Version enregistrée',
-'nonunicodebrowser'                => '<strong>Attention : Votre navigateur ne supporte pas l’Unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en toute sûreté une page : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
-'editingold'                       => '<strong>Attention : vous êtes en train de modifier une ancienne version de cette page.
-Si vous la publiez, toutes les modifications effectuées depuis cette version seront perdues.</strong>',
+'nonunicodebrowser'                => "'''Attention : Votre navigateur ne supporte pas l’Unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en toute sûreté une page : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.'''",
+'editingold'                       => "'''Attention : vous êtes en train de modifier une ancienne version de cette page.
+Si vous la publiez, toutes les modifications effectuées depuis cette version seront perdues.'''",
 'yourdiff'                         => 'Différences',
-'copyrightwarning'                 => 'Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
-Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. <strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !</strong>',
-'copyrightwarning2'                => 'Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
+'copyrightwarning'                 => "Toutes les contributions à {{SITENAME}} sont considérées comme publiées sous les termes de la $2 (voir $1 pour plus de détails). Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
+Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. '''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
+'copyrightwarning2'                => "Toutes les contributions à {{SITENAME}} peuvent être modifiées ou supprimées par d’autres utilisateurs. Si vous ne désirez pas que vos écrits soient modifiés et distribués à volonté, merci de ne pas les soumettre ici.<br />
 Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’avez copié d’une source provenant du domaine public, ou d’une ressource libre. (voir $1 pour plus de détails).
-<strong>N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !</strong>',
+'''N’UTILISEZ PAS DE TRAVAUX SOUS DROIT D’AUTEUR SANS AUTORISATION EXPRESSE !'''",
 'longpagewarning'                  => "'''AVERTISSEMENT : cette page a une longueur de $1 Kio ;
 certains navigateurs Web gèrent mal la modification des pages approchant ou dépassant 32 Kio. Peut-être devriez-vous diviser la page en sections plus petites.'''",
-'longpageerror'                    => '<strong>ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvegardé.</strong>',
+'longpageerror'                    => "'''ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvegardé.'''",
 'readonlywarning'                  => "'''AVERTISSEMENT : La base de données a été verrouillée pour maintenance,
 vous ne pourrez donc pas publier vos modifications maintenant. Vous pouvez copier le texte dans un fichier texte et le publier pour plus tard.'''",
 'protectedpagewarning'             => "'''AVERTISSEMENT : cette page est protégée.
 Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.'''",
 'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier.",
 'cascadeprotectedwarning'          => "'''ATTENTION :''' Cette page a été protégée de manière à ce que seuls les administrateurs puissent l’éditer. Cette protection a été faite car cette page est incluse dans {{PLURAL:$1|une page protégée|des pages protégées}} avec la « protection en cascade » activée.",
-'titleprotectedwarning'            => '<strong>ATTENTION : Cette page a été protégée de telle manière que seuls certains utilisateurs puissent la créer.</strong>',
+'titleprotectedwarning'            => "'''ATTENTION : Cette page a été protégée de telle manière que seuls certains utilisateurs puissent la créer.'''",
 'templatesused'                    => 'Modèles utilisés sur cette page :',
 'templatesusedpreview'             => 'Modèles utilisés dans cette prévisualisation :',
 'templatesusedsection'             => 'Modèles utilisés dans cette section :',
@@ -1008,7 +1013,8 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'showingresults'            => 'Affichage de <b>$1</b> {{PLURAL:$1|résultat|résultats}} à partir du #<b>$2</b>.',
 'showingresultsnum'         => 'Affichage de <b>$3</b> {{PLURAL:$3|résultat|résultats}} à partir du #<b>$2</b>.',
 'showingresultstotal'       => "Ci-dessous l’affichage {{PLURAL:$3|du résultat '''$1'''|des résultats '''$1 – $2'''}} sur '''$3'''",
-'nonefound'                 => '<strong>Note</strong> : l’absence de résultat est souvent due à l’emploi de termes de recherche trop courants, comme « à » ou « de », qui ne sont pas indexés, ou à l’emploi de plusieurs termes de recherche (seules les pages contenant tous les termes apparaissent dans les résultats).',
+'nonefound'                 => "<strong>Note</strong> : Seulement quelques espaces de noms sont recherchés par défaut
+Essayer en utilisant le préfixe ''all:'' pour rechercher tout le contenu (en y incluant les pages de discussion, les modèles, etc), ou utiliser l'espace de nom comme préfixe.",
 'powersearch'               => 'Rechercher',
 'powersearch-legend'        => 'Recherche avancée',
 'powersearch-ns'            => 'Rechercher dans les espaces de nom :',
@@ -1065,7 +1071,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'contextchars'             => 'Nombre de caractères de contexte par ligne :',
 'stub-threshold'           => 'Limite supérieure pour les <a href="#" class="stub">liens vers les ébauches</a> (octets) :',
 'recentchangesdays'        => 'Nombre de jours à afficher dans les modifications récentes :',
-'recentchangescount'       => 'Nombre de modifications à afficher dans les modifications récentes :',
+'recentchangescount'       => "Nombre de modifications à afficher dans les modifications récentes, pages d'historiques et d'opérations, par défaut :",
 'savedprefs'               => 'Les préférences ont été sauvegardées.',
 'timezonelegend'           => 'Fuseau horaire',
 'timezonetext'             => 'Nombre d’heures de décalage entre votre heure locale et l’heure du serveur (UTC).',
@@ -1265,18 +1271,18 @@ Voyez la [[Special:NewImages|gallerie des nouvelles images]] pour une présentat
 'large-file'                  => 'Les fichiers importés ne devraient pas être plus gros que $1 ; ce fichier fait $2.',
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
 'emptyfile'                   => 'Le fichier que vous voulez importer semble vide. Ceci peut être dû à une erreur dans le nom du fichier. Veuillez vérifier que vous désirez vraiment copier ce fichier.',
-'fileexists'                  => 'Un fichier avec ce nom existe déjà. Merci de vérifier <strong><tt>$1</tt></strong>. Êtes-vous certain de vouloir modifier ce fichier ?',
-'filepageexists'              => 'La page de description pour ce fichier a déjà été créée ici <strong><tt>$1</tt></strong>, mais aucun fichier de ce nom n’existe actuellement. Le résumé que vous allez écrire ne remplacera pas le texte précédent ; pour ce faire vous devrez éditer manuellement la page.',
-'fileexists-extension'        => 'Un fichier avec un nom similaire existe déjà :<br />
-Nom du fichier à importer : <strong><tt>$1</tt></strong><br />
-Nom du fichier existant : <strong><tt>$2</tt></strong><br />
-la seule différence est la casse (majuscules / minuscules) de l’extension. Veuillez vérifier que le fichier est différent et changer son nom.',
+'fileexists'                  => "Un fichier avec ce nom existe déjà. Merci de vérifier '''<tt>$1</tt>'''. Êtes-vous certain de vouloir modifier ce fichier ?",
+'filepageexists'              => "La page de description pour ce fichier a déjà été créée ici '''<tt>$1</tt>''', mais aucun fichier de ce nom n’existe actuellement. Le résumé que vous allez écrire ne remplacera pas le texte précédent ; pour ce faire vous devrez éditer manuellement la page.",
+'fileexists-extension'        => "Un fichier avec un nom similaire existe déjà :<br />
+Nom du fichier à importer : '''<tt>$1</tt>'''<br />
+Nom du fichier existant : '''<tt>$2</tt>'''<br />
+la seule différence est la casse (majuscules / minuscules) de l’extension. Veuillez vérifier que le fichier est différent et changer son nom.",
 'fileexists-thumb'            => "<center>'''Image existante'''</center>",
-'fileexists-thumbnail-yes'    => 'Le fichier semble être une image en taille réduite <i>(vignette)</i>. Veuillez vérifier le fichier <strong><tt>$1</tt></strong>.<br />
-Si le fichier vérifié est la même image (dans une meilleure résolution), il n’y a pas besoin d’importer une version réduite.',
-'file-thumbnail-no'           => 'Le nom du fichier commence par <strong><tt>$1</tt></strong>.
-Il est possible qu’il s’agisse d’une version réduite <i>(vignette)</i>.
-Si vous disposez du fichier en haute résolution, importez-le, sinon changez-lui son nom.',
+'fileexists-thumbnail-yes'    => "Le fichier semble être une image en taille réduite ''(vignette)''. Veuillez vérifier le fichier '''<tt>$1</tt>'''.<br />
+Si le fichier vérifié est la même image (dans une meilleure résolution), il n’y a pas besoin d’importer une version réduite.",
+'file-thumbnail-no'           => "Le nom du fichier commence par '''<tt>$1</tt>'''.
+Il est possible qu’il s’agisse d’une version réduite ''(vignette)''.
+Si vous disposez du fichier en haute résolution, importez-le, sinon changez-lui son nom.",
 'fileexists-forbidden'        => 'Un fichier avec ce nom existe déjà ; merci de retourner en arrière et de copier le fichier sous un nouveau nom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichier portant le même nom existe déjà dans la base de données commune.
 Si vous voulez encore l’importer, veuillez revenir en arrière et l’importer sous un autre nom. [[Image:$1|thumb|center|$1]]',
@@ -1300,8 +1306,8 @@ Veuillez vérifer le fichier.',
 'upload-wasdeleted'           => "'''Attention : Vous êtes en train d’importer un fichier qui a déjà été supprimé auparavant.'''
 
 Le journal des suppressions de ce fichier vous aidera à déterminer s’il est opportun de continuer son import :",
-'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>« $1 »</strong> qui est un nom généralement donné par les appareils photo numériques.
-Veuillez choisir un nom de fichier descriptif.',
+'filename-bad-prefix'         => "Le nom du fichier que vous importez commence par '''« $1 »''' qui est un nom généralement donné par les appareils photo numériques.
+Veuillez choisir un nom de fichier descriptif.",
 'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --><pre>
 # La syntaxe est la suivante :
 #  * Tout ce qui figure entre un caractère "#" jusqu’à la fin de la ligne est un commentaire ;
@@ -1363,7 +1369,7 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'filehist-dimensions'            => 'Dimensions',
 'filehist-filesize'              => 'Taille du fichier',
 'filehist-comment'               => 'Commentaire',
-'imagelinks'                     => 'Pages contenant l’image',
+'imagelinks'                     => 'Pages contenant le fichier',
 'linkstoimage'                   => '{{PLURAL:$1|La page ci-dessous contient|Les pages ci-dessous contiennent}} cette image :',
 'nolinkstoimage'                 => 'Aucune page ne contient cette image.',
 'morelinkstoimage'               => 'Voir [[Special:WhatLinksHere/$1|plus de liens]] vers cette image.',
@@ -1395,7 +1401,7 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 # File deletion
 'filedelete'                  => 'Supprimer $1',
 'filedelete-legend'           => 'Supprimer le fichier',
-'filedelete-intro'            => "Vous êtes en train de supprimer '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Vous êtes en train de supprimer '''[[Media:$1|$1]]''' avec tout son historique.",
 'filedelete-intro-old'        => "Vous êtes en train d’effacer la version de '''[[Media:$1|$1]]''' du [$4 $2 à $3].",
 'filedelete-comment'          => 'Commentaire :',
 'filedelete-submit'           => 'Supprimer',
@@ -1599,9 +1605,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'usermailererror' => 'Erreur dans le sujet du courriel :',
 'defemailsubject' => 'Courriel envoyé depuis {{SITENAME}}',
 'noemailtitle'    => 'Pas d’adresse électronique',
-'noemailtext'     => 'Vous ne pouvez joindre cet utilisateur par courrier électronique :
-* soit parce qu’il n’a pas spécifié d’adresse électronique valide (et authentifiée),
-* soit parce qu’il a choisi, dans ses préférences utilisateur, de ne pas recevoir de courrier électronique des autres utilisateurs.',
+'noemailtext'     => "Cet utilisateur n'a pas spécifié d'adresse de courriel valide.",
 'emailfrom'       => 'Expéditeur :',
 'emailto'         => 'Destinataire :',
 'emailsubject'    => 'Objet :',
@@ -1723,7 +1727,7 @@ L’heure indiquée est celle du serveur.',
 'rollbackfailed'              => 'La révocation a échoué',
 'cantrollback'                => 'Impossible de révoquer : l’auteur est la seule personne à avoir effectué des modifications sur cette page.',
 'alreadyrolled'               => 'Impossible de révoquer la dernière modification de la page « [[$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quelqu’un d’autre a déjà modifié ou révoqué la page. La dernière modification a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
-'editcomment'                 => 'Le résumé de la modification était: <i>« $1 »</i>.', # only shown if there is an edit comment
+'editcomment'                 => "Le résumé de la modification était : « ''$1'' ».", # only shown if there is an edit comment
 'revertpage'                  => 'Révocation des modifications par [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) vers la dernière version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Révocation des modifications de $1 ; retour à la version de $2.',
 'sessionfailure'              => 'Votre session de connexion semble avoir des problèmes ; cette action a été annulée en prévention d’un piratage de session. Cliquez sur « Précédent » et rechargez la page d’où vous venez, puis réessayez.',
@@ -1740,17 +1744,17 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protect_expiry_invalid'      => 'Le temps d’expiration est invalide.',
 'protect_expiry_old'          => 'Le temps d’expiration est déjà passé.',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
-'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué.
-Voici les réglages actuels de la page <strong>$1</strong> :',
-'protect-locked-dblock'       => 'Le niveau de protection ne peut pas être modifié car la base de données est bloquée.
-Voici les réglages actuels de la page <strong>$1</strong> :',
-'protect-locked-access'       => 'Vous n’avez pas les droits nécessaires pour modifier la protection de la page.
-Voici les réglages actuels de la page <strong>$1</strong> :',
+'protect-text'                => "Vous pouvez consulter et modifier le niveau de protection de la page '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué.
+Voici les réglages actuels de la page '''$1''' :",
+'protect-locked-dblock'       => "Le niveau de protection ne peut pas être modifié car la base de données est bloquée.
+Voici les réglages actuels de la page '''$1''' :",
+'protect-locked-access'       => "Vous n’avez pas les droits nécessaires pour modifier la protection de la page.
+Voici les réglages actuels de la page '''$1''' :",
 'protect-cascadeon'           => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, {{PLURAL:$1|laquelle a été protégée|lesquelles ont été protégées}} avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
-'protect-default'             => 'Pas de protection',
+'protect-default'             => 'Autoriser tous les utilisateurs',
 'protect-fallback'            => 'Nécessite l’habilitation « $1 »',
-'protect-level-autoconfirmed' => 'Semi-protection',
+'protect-level-autoconfirmed' => 'Bloquer les nouveaux utilisateurs et les utilisateurs anonymes',
 'protect-level-sysop'         => 'Administrateurs uniquement',
 'protect-summary-cascade'     => 'protection en cascade',
 'protect-expiring'            => 'expire le $1',
@@ -1906,7 +1910,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'ipb-blocklist'                   => 'Voir les blocages existants',
 'unblockip'                       => 'Débloquer un utilisateur ou une adresse IP',
 'unblockiptext'                   => 'Utilisez le formulaire ci-dessous pour rétablir l’accès en écriture d’une adresse IP précédemment bloquée.',
-'ipusubmit'                       => 'Débloquer cette adresse',
+'ipusubmit'                       => 'Supprimer ce blocage',
 'unblocked'                       => '[[User:$1|$1]] a été débloqué',
 'unblocked-id'                    => 'Le blocage $1 a été enlevé',
 'ipblocklist'                     => 'Adresses IP et utilisateurs bloqués',
@@ -2033,7 +2037,7 @@ La page de destination « [[:$1]] » existe déjà. Voulez-vous la supprimer pou
 
 # Export
 'export'            => 'Exporter des pages',
-'exporttext'        => 'Vous pouvez exporter en XML le texte et l’historique d’une page ou d’un ensemble de pages; le résultat peut alors être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki.
+'exporttext'        => 'Vous pouvez exporter en XML le texte et l’historique d’une page ou d’un ensemble de pages ; le résultat peut alors être importé dans un autre wiki fonctionnant avec le logiciel MediaWiki.
 
 Pour exporter des pages, entrez leurs titres dans la boîte de texte ci-dessous, à raison d’un titre par ligne. Sélectionnez, si vous désirez ou non, la version actuelle avec toutes les anciennes versions, avec la page d’historique, ou simplement la page actuelle avec des informations sur la dernière modification.
 
@@ -2109,19 +2113,19 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} depuis $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Ma page utilisateur',
+'tooltip-pt-userpage'             => 'Votre page utilisateur',
 'tooltip-pt-anonuserpage'         => 'La page utilisateur de l’IP avec laquelle vous contribuez',
-'tooltip-pt-mytalk'               => 'Ma page de discussion',
+'tooltip-pt-mytalk'               => 'Votre page de discussion',
 'tooltip-pt-anontalk'             => 'La page de discussion pour cette adresse IP',
 'tooltip-pt-preferences'          => 'Mes préférences',
 'tooltip-pt-watchlist'            => 'La liste des pages que vous suivez',
-'tooltip-pt-mycontris'            => 'Liste de mes contributions',
+'tooltip-pt-mycontris'            => 'Liste de vos contributions',
 'tooltip-pt-login'                => 'Vous êtes invité à vous identifier, mais ce n’est pas obligatoire.',
 'tooltip-pt-anonlogin'            => 'Vous êtes invité à vous identifier, mais ce n’est pas obligatoire.',
 'tooltip-pt-logout'               => 'Se déconnecter',
 'tooltip-ca-talk'                 => 'Discussion à propos de cette page',
 'tooltip-ca-edit'                 => 'Vous pouvez modifier cette page. Merci de prévisualiser avant d’enregistrer.',
-'tooltip-ca-addsection'           => 'Ajouter un commentaire à cette discussion.',
+'tooltip-ca-addsection'           => 'Commencer une nouvelle section',
 'tooltip-ca-viewsource'           => 'Cette page est protégée. Vous pouvez toutefois en voir le contenu.',
 'tooltip-ca-history'              => 'Les auteurs et versions précédentes de cette page.',
 'tooltip-ca-protect'              => 'Protéger cette page',
@@ -2662,10 +2666,10 @@ Veuillez confirmer que vous désirez recréer cette page.",
 'table_pager_empty'        => 'Aucun résultat',
 
 # Auto-summaries
-'autosumm-blank'   => 'Résumé automatique : blanchiment',
+'autosumm-blank'   => 'Blanchiment de la page',
 'autosumm-replace' => 'Résumé automatique : contenu remplacé par « $1 ».',
 'autoredircomment' => 'Redirection vers [[$1]]',
-'autosumm-new'     => 'Nouvelle page : $1',
+'autosumm-new'     => 'Création de la page avec « $1 »',
 
 # Size units
 'size-bytes'     => '$1 o',

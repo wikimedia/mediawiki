@@ -267,7 +267,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'articlepage'       => 'Artiklilehekülg',
 'talk'              => 'Arutelu',
 'views'             => 'vaatamisi',
-'toolbox'           => 'Tööriistakast',
+'toolbox'           => 'Tööriistad',
 'userpage'          => 'Kasutajalehekülg',
 'projectpage'       => 'Metalehekülg',
 'imagepage'         => 'Pildilehekülg',
@@ -413,7 +413,7 @@ Päring: $2',
 'ns-specialprotected'  => 'Erilehekülgi ei saa redigeerida.',
 
 # Virus scanner
-'virus-badscanner'     => 'Viga konfiguratsioonis: tundmatu viirusetõrje: <i>$1</i>',
+'virus-badscanner'     => "Viga konfiguratsioonis: tundmatu viirusetõrje: ''$1''",
 'virus-unknownscanner' => 'tundmatu viirusetõrje:',
 
 # Login and logout pages
@@ -583,12 +583,12 @@ Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule või li
 'anontalkpagetext'         => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema IP-aadressi. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[Special:UserLogin|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.''",
 'noarticletext'            => 'Antud leheküljel praegu tekst puudub. Te võite [[Special:Search/{{PAGENAME}}|otsida väljendit "{{PAGENAME}}" teistest artiklitest]] või [{{fullurl:{{FULLPAGENAME}}|action=edit}} luua sellise lehekülje].',
 'clearyourcache'           => "'''Märkus:''' Pärast salvestamist pead sa muudatuste nägemiseks oma brauseri puhvri tühjendama: '''Mozilla:''' ''ctrl-shift-r'', '''IE:''' ''ctrl-f5'', '''Safari:''' ''cmd-shift-r'', '''Konqueror''' ''f5''.",
-'usercssjsyoucanpreview'   => "<strong>Vihje:</strong> Kasuta nuppu 'Näita eelvaadet' oma uue css/js testimiseks enne salvestamist.",
+'usercssjsyoucanpreview'   => "'''Vihje:''' Kasuta nuppu 'Näita eelvaadet' oma uue css/js testimiseks enne salvestamist.",
 'usercsspreview'           => "'''Ärge unustage, et seda versiooni teie isiklikust stiililehest pole veel salvestatud!'''",
 'userjspreview'            => "'''Ärge unustage, et see versioon teie isiklikust javascriptist on alles salvestamata!'''",
 'updated'                  => '(Värskendatud)',
-'note'                     => '<strong>Meeldetuletus:</strong>',
-'previewnote'              => '<strong>Ärge unustage, et see versioon ei ole veel salvestatud!</strong>',
+'note'                     => "'''Meeldetuletus:'''",
+'previewnote'              => "'''Ärge unustage, et see versioon ei ole veel salvestatud!'''",
 'previewconflict'          => 'See eelvaade näitab, kuidas ülemises toimetuskastis olev tekst hakkab välja nägema, kui otsustate salvestada.',
 'editing'                  => 'Redigeerimisel on $1',
 'editingsection'           => 'Redigeerimisel on osa leheküljest $1',
@@ -602,18 +602,18 @@ Kui Te klõpsate nupule
  "Salvesta", siis salvestub <b>ainult</b> ülemises toimetuskastis olev tekst.<br />',
 'yourtext'                 => 'Teie tekst',
 'storedversion'            => 'Salvestatud redaktsioon',
-'editingold'               => '<strong>ETTEVAATUST! Te redigeerite praegu selle lehekülje vana redaktsiooni.
-Kui Te selle salvestate, siis lähevad kõik vahepealsed muudatused kaduma.</strong>',
+'editingold'               => "'''ETTEVAATUST! Te redigeerite praegu selle lehekülje vana redaktsiooni.
+Kui Te selle salvestate, siis lähevad kõik vahepealsed muudatused kaduma.'''",
 'yourdiff'                 => 'Erinevused',
 'copyrightwarning'         => "Pidage silmas, et kõik {{SITENAME}}'le tehtud kaastööd loetakse avaldatuks vastavalt $2 (vaata ka $1). Kui Te ei soovi, et Teie poolt kirjutatut halastamatult redigeeritakse ja omal äranägemisel kasutatakse, siis ärge seda siia salvestage.<br />
 Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast.<br />
-<strong>ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!</strong>",
+'''ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!'''",
 'copyrightwarning2'        => "Pidage silmas, et kõiki {{SITENAME}}'le tehtud kaastöid võidakse muuta või kustutada teiste kaastööliste poolt. Kui Te ei soovi, et Teie poolt kirjutatut halastamatult redigeeritakse, siis ärge seda siia salvestage.<br />
 Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast (vaata ka $1).<br />
-<strong>ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!</strong>",
-'longpagewarning'          => '<strong>HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi juba 32-le kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.</strong>',
+'''ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!'''",
+'longpagewarning'          => "'''HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi juba 32-le kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.'''",
 'readonlywarning'          => '<strong>HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti alal hoida tekstifailina ning salvestada hiljem.</strong>',
-'protectedpagewarning'     => '<strong>HOIATUS: See lehekülg on lukustatud, nii et seda saavad redigeerida ainult administraatori õigustega kasutajad.</strong>',
+'protectedpagewarning'     => "'''HOIATUS: See lehekülg on lukustatud, nii et seda saavad redigeerida ainult administraatori õigustega kasutajad.'''",
 'semiprotectedpagewarning' => "'''Märkus:''' See lehekülg on lukustatud nii, et üksnes registreeritud kasutajad saavad seda muuta.",
 'templatesused'            => 'Sellel lehel on kasutusel järgnevad mallid:',
 'templatesusedpreview'     => 'Selles eelvaates kasutatakse järgmisi malle:',
@@ -923,7 +923,7 @@ võidakse sinu ligipääs sulgeda.',
 'emptyfile'            => 'Fail, mille Te üles laadisite, paistab olevat tühi.
 See võib olla tingitud vigasest failinimest.
 Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
-'fileexists'           => 'Sellise nimega fail on juba olemas. Palun kontrollige <strong><tt>$1</tt></strong>, kui te ei ole kindel, kas tahate seda muuta.',
+'fileexists'           => "Sellise nimega fail on juba olemas. Palun kontrollige '''<tt>$1</tt>''', kui te ei ole kindel, kas tahate seda muuta.",
 'fileexists-forbidden' => 'Sellise nimega fail on juba olemas, palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[Image:$1|thumb|center|$1]]',
 'successfulupload'     => 'Üleslaadimine õnnestus',
 'uploadwarning'        => 'Üleslaadimise hoiatus',
@@ -1213,7 +1213,7 @@ Kõik toodud kellaajad järgivad serveriaega.',
 'rollbacklink'                => 'tühista',
 'rollbackfailed'              => 'Muudatuste tühistamine ebaõnnestus',
 'cantrollback'                => 'Ei saa muudatusi tagasi pöörata; viimane kaastööline on artikli ainus autor.',
-'editcomment'                 => 'Artikli sisu oli: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'                 => "Artikli sisu oli: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'                  => 'Tühistati [[Eri:Contributions/$2|$2]] ([[Kasutaja arutelu:$2|arutelu]]) muudatus ning pöörduti tagasi viimasele muudatusele, mille tegi [[Kasutaja:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Kaitsmise logi',
 'protectlogtext'              => 'Allpool on loetletud lehekülgede kaitsmised ja kaitsete eemaldamised. Praegu kaitstud lehekülgi vaata [[Special:ProtectedPages|kaitstud lehtede loetelust]].',
@@ -1226,9 +1226,9 @@ Kõik toodud kellaajad järgivad serveriaega.',
 'protect_expiry_invalid'      => 'Sobimatu aegumise tähtaeg.',
 'protect_expiry_old'          => 'Aegumise tähtaeg on minevikus.',
 'protect-unchain'             => 'Võimalda lehekülje teisaldamist.',
-'protect-text'                => 'Siin võite vaadata ja muuta lehekülje <strong><nowiki>$1</nowiki></strong> kaitsesätteid.',
-'protect-locked-access'       => 'Teie konto ei oma õiguseid muuta lehekülje kaitstuse taset.
-Allpool on toodud lehekülje <strong>$1</strong> hetkel kehtivad seaded:',
+'protect-text'                => "Siin võite vaadata ja muuta lehekülje '''<nowiki>$1</nowiki>''' kaitsesätteid.",
+'protect-locked-access'       => "Teie konto ei oma õiguseid muuta lehekülje kaitstuse taset.
+Allpool on toodud lehekülje '''$1''' hetkel kehtivad seaded:",
 'protect-default'             => '(tavaline)',
 'protect-fallback'            => 'Require "$1" permission
 Nõuab "$1" õiguseid',

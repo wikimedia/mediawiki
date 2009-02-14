@@ -182,7 +182,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artitgel',
 'nstab-user'      => 'Pagina dal utilisader',
-'nstab-special'   => 'Spezial',
+'nstab-special'   => 'Pagina speziala',
 'nstab-project'   => 'pagina dal project',
 'nstab-image'     => 'Datoteca',
 'nstab-mediawiki' => 'messagi',
@@ -195,6 +195,7 @@ $messages = array(
 'dberrortext'      => 'Tar la damonda per la datoteca <blockquote><tt>$1</tt></blockquote> ord la funcziun "<tt>$2</tt>" ha MySQL rapporta il sbagl "<tt>$3: $4</tt>".',
 'dberrortextcl'    => 'Tier la damonda "$1" peer la datoteca ord la funcziun "<tt>$2</tt>" ha MySQL rapporta dal sbagl: "<tt>$3: $4</tt>".',
 'laggedslavemode'  => 'Attenziun: La pagina mussada na cuntign eventualmain betg anc las ultimas midadas.',
+'internalerror'    => 'Errur intern',
 'badtitle'         => "Il num da titel endatà n'è betg valaivel",
 'badtitletext'     => 'Il titel da pagina era betg valaivels, vids u in titel inter-lingua u inter-wiki betg correct. 
 El po cuntegnair in u plirs segns che na pon betg vegnir utilisads en titels.',
@@ -206,11 +207,9 @@ El po cuntegnair in u plirs segns che na pon betg vegnir utilisads en titels.',
 
 # Login and logout pages
 'logouttitle'                => "Log-out d'utilisaders",
-'logouttext'                 => '<strong>Log-out cun success.</strong><br />
-You can continue to use {{SITENAME}} anonymously, or you can log in 
-again as the same or as a different user. Note that some pages may 
-continue to be displayed as if you were still logged in, until you clear 
-your browser cache.',
+'logouttext'                 => "'''Log-out cun success.'''<br />
+
+Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos [[Special:UserLogin|t'annunziar]] sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti era annunzià enfin che ti has stidà il cache da tes browser.",
 'welcomecreation'            => '==Chau, $1! ==
 
 Tes conto è vegni creà. Betg emblida da midar tias preferenzas da {{SITENAME}}.',
@@ -242,10 +241,12 @@ Tes conto è vegni creà. Betg emblida da midar tias preferenzas da {{SITENAME}}
 'yournick'                   => 'Signatura:',
 'prefs-help-realname'        => "Opziun: Qua pos inditgar in surnum che vegn inditga empè da tes num d'utilisader en tias suttascripziuns cun '''<nowiki>--~~~~</nowiki>'''.",
 'loginerror'                 => 'Sbagl da log-in',
-'prefs-help-email'           => 'Opziun: Pussibilitescha ad auters utilisaders da contactar tai per email senza che ti stos publitgar tia identitad. Pussibilitescha er da trametter in nov pled-clav en cass da sperdita.',
+'prefs-help-email'           => "L'adressa d'email è opziunala, pussibilitescha dentant da trametter in nov pled-clav en cass da sperdita. Plinavant pussibilitescha ella ad auters utilisaders da contactar tai per email senza che ti stos publitgar tia identitad.",
+'prefs-help-email-required'  => "Inditgar in'adressa d'email è obligatoric.",
 'loginsuccesstitle'          => "S'annunzià cun success",
 'loginsuccess'               => "''' Vus essas uss annunziads tar {{SITENAME}} sco \"\$1\".'''",
-'nosuchuser'                 => 'I dat nagin utilisader cun il num "$1". 
+'nosuchuser'                 => 'I exista nagin utilisader cun il num "$1". 
+Fa stim dad utilisar correctamain maiusclas e minusclas. 
 Curregia il num u [[Special:UserLogin/signup|creescha in nov conto]].',
 'nosuchusershort'            => 'I dat nagin utilisader cun il num "<nowiki>$1</nowiki>".
 Curregia ti\'endataziun.',
@@ -335,19 +336,20 @@ Integrescha per plaschair tut las indicaziuns survart sche ti contacteschas insa
 '''Konqueror: '''clicca ''Reload'' u smatga ''F5'';
 '''Opera:''' stidar il cache sut ''Tools → Preferences'';
 '''Internet Explorer:''' tegna ''Ctrl'' durant cliccar ''Refresh,'' u smatga ''Ctrl-F5''.",
-'previewnote'            => "<strong>Quai è be ina prevista; midadas n'èn anc betg vegnidas memorisadas!</strong>",
+'note'                   => "'''Remartga:'''",
+'previewnote'            => "'''Quai è be ina prevista; midadas n'èn anc betg vegnidas memorisadas!'''",
 'editing'                => 'Editar $1',
 'editingsection'         => 'Editar $1 (secziun)',
 'yourtext'               => 'Voss text',
 'yourdiff'               => 'Differenzas',
 'copyrightwarning'       => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
-<strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
-'longpagewarning'        => '<strong>ADATG: Questa artitgel è $1 kilobytes gronda. Insaquants browsers 
+'''DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!'''",
+'longpagewarning'        => "'''ADATG: Questa artitgel è $1 kilobytes gronda. Insaquants browsers 
 han forsa problems cun editar artitgels da la grondezza 32 kb u pli grond. 
-Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </strong>',
-'longpageerror'          => "<strong>SBAGL: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir memorisà. </strong>",
-'protectedpagewarning'   => '<strong>ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. </strong>',
+Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. '''",
+'longpageerror'          => "'''SBAGL: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir memorisà. '''",
+'protectedpagewarning'   => "'''ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. '''",
 'templatesused'          => 'Templates utilisads sin questa pagina:',
 'templatesusedpreview'   => 'Templates utilisads en questa prevista:',
 'template-protected'     => '(protegì)',
@@ -383,6 +385,7 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'deletedrev'          => '[stidà]',
 'histfirst'           => 'pli veglia',
 'histlast'            => 'pli nova',
+'historyempty'        => '(vid)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 las $2', # user at time
@@ -516,7 +519,7 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'filehist-dimensions'       => 'dimensiuns',
 'filehist-filesize'         => 'grondezza da datoteca',
 'filehist-comment'          => 'commentari',
-'imagelinks'                => 'Colliaziuns',
+'imagelinks'                => 'Paginas che cuntegnan la datoteca',
 'linkstoimage'              => '{{PLURAL:$1|La suandanta pagina è colliada|Las suandantas $1 paginas èn colliadas}} cun questa datoteca:',
 'nolinkstoimage'            => 'Naginas paginas mussan sin questa datoteca.',
 'sharedupload'              => 'Quai è ina datoteca partida e vegn eventualmain utilisada dad auters projects.',
@@ -592,7 +595,7 @@ La lunghezza da la [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]: '
 'mostcategories'          => "Artitgels ch'èn en las pli biaras chategorias",
 'mostimages'              => 'Datotecas utilisadas il pli savens',
 'mostrevisions'           => 'Artitgels cun las pli biaras revisiuns',
-'prefixindex'             => 'tut las paginas (cun prefix)',
+'prefixindex'             => 'Tut las paginas cun prefix',
 'shortpages'              => 'Paginas curtas',
 'longpages'               => 'Artitgels lungs',
 'deadendpages'            => 'artitgels senza links interns che mainan anavant',
@@ -701,14 +704,14 @@ Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 'protect_expiry_invalid'      => "Il temp endatà n'è betg valaivel.",
 'protect_expiry_old'          => 'Il temp da proteger giascha en il passà.',
 'protect-unchain'             => 'Midar la protecziun per spustar',
-'protect-text'                => "Qua pos ti contemplar ed midar il livel da protecziun per l'artitgel <strong><nowiki>$1</nowiki></strong>.",
+'protect-text'                => "Qua pos ti contemplar ed midar il livel da protecziun per l'artitgel '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Tes conto d'utilisader n'ha betg il dretg da midar ils livels da protecziun. 
-Qua èn las reglas actualas per l'artitgel <strong>$1</strong>:",
+Qua èn las reglas actualas per l'artitgel '''$1''':",
 'protect-cascadeon'           => 'Questa pagina è actualmain protegida, perquai ch\'ella è integrada en {{PLURAL:$1|suandant artitgel che ha activà|suandants artitgels che han activà}} la "protecziun ertada". 
 Ti pos midar il livel da protecziun da quest\'artitgel, quai na vegn dentant betg ad avair in effec sin la "protecziun ertada".',
-'protect-default'             => '(standard)',
+'protect-default'             => 'Lubir tut ils utilisaders',
 'protect-fallback'            => 'Il dretg "$1" è necessari',
-'protect-level-autoconfirmed' => 'Bloccar utilisaders na-registrads',
+'protect-level-autoconfirmed' => 'Bloccar utilisaders novs e na-registrads',
 'protect-level-sysop'         => 'be administraturs',
 'protect-summary-cascade'     => '"protecziun ertaivla"',
 'protect-expiring'            => 'Scroda $1 (UTC)',
@@ -834,17 +837,17 @@ Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localis
 'importlogpage' => 'Log dals imports',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => "mia pagina d'utilisader",
-'tooltip-pt-mytalk'               => 'mia pagina da discussiun',
+'tooltip-pt-userpage'             => "Guardar tia pagina d'utilisader",
+'tooltip-pt-mytalk'               => 'Guardar tia pagina da discussiun',
 'tooltip-pt-preferences'          => 'mias preferenzas',
 'tooltip-pt-watchlist'            => 'La glista da las paginas da las qualas jau observ las midadas',
-'tooltip-pt-mycontris'            => 'Glista da tut mias contribuziuns',
+'tooltip-pt-mycontris'            => 'Guardar la glista da tut tias contribuziuns',
 'tooltip-pt-login'                => "I fiss bun sche ti s'annunziassas, ti na stos dentant betg.",
 'tooltip-pt-logout'               => 'Log-out',
 'tooltip-ca-talk'                 => "Discussiuns davart il cuntegn da l'artitgel",
 'tooltip-ca-edit'                 => "Ti pos editar questa pagina. 
 Utilisescha per plaschair il buttun 'mussar prevista' avant che memorisar.",
-'tooltip-ca-addsection'           => 'Agiuntar in commentari a questa discussiun.',
+'tooltip-ca-addsection'           => 'Cumenzar nov paragraf',
 'tooltip-ca-viewsource'           => 'Questa pagina è protegida.
 Ti pos vesair il code-fundamental.',
 'tooltip-ca-protect'              => 'Proteger questa pagina',

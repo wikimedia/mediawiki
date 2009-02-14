@@ -437,17 +437,17 @@ Occeppa xicalaqui niman ticmatīz.',
 'userjspreview'                    => "'''Ca inīn moachtochīhualiz ītechcopa moJavaScript.'''
 '''¡Ahmo ōmochīuh nozan!'''",
 'updated'                          => '(Ōmoyancuīli)',
-'note'                             => '<strong>Tlahtōlcaquiliztilōni:</strong>',
-'previewnote'                      => '<strong>¡Ca inīn moachtochīhualiz, auh mopatlaliz ahmō cateh ōmochīhuah nozan!</strong>',
+'note'                             => "'''Tlahtōlcaquiliztilōni:'''",
+'previewnote'                      => "'''¡Ca inīn moachtochīhualiz, auh mopatlaliz ahmō cateh ōmochīhuah nozan!'''",
 'editing'                          => 'Ticpatlacah $1',
 'editingsection'                   => 'Ticpatlacah $1 (tlahtōltzintli)',
 'editingcomment'                   => 'Ticpatlacah $1 (tlahtōltzintli)',
 'editconflict'                     => 'Tlapatlaliztli yāōyōtōn: $1',
 'yourtext'                         => 'Motlahcuilōl',
 'yourdiff'                         => 'Ahneneuhquiliztli',
-'copyrightwarning'                 => '<small>Timitztlātlauhtiah xiquitta mochi mopatlaliz cana {{SITENAME}} tlatzayāna īpan $2 (huēhca ōmpa xiquitta $1). Āqueh tlācah quipatlazqueh in motlahcuilōl auh tlatzayāna occeppa; intlā ahmō ticnequi, zātēpan ahmō titlahcuilōz nicān. Nō mitzihtoah in ōtitlahcuiloh ahmō quipiya in copyright nozo in yōllōxoxouhqui tlahcuilōlli. <strong>¡AHMŌ XITĒQUITILTIA AHYŌLLŌXOXOUHQUI TLAHCUILŌLLI!</strong></small>',
-'copyrightwarning2'                => '<small>Āqueh tlācah quipatlazqueh in motlahcuilōl auh tlatzayāna occeppa; intlā ahmō ticnequi, zātēpan ahmō titlahcuilōz nicān {{SITENAME}}. Nō mitzihtoah in ōtitlahcuiloh ahmō quipiya in copyright nozo in yōllōxoxouhqui tlahcuilōlli (huēhca ōmpa xiquitta $1). <strong>¡AHMŌ TIQUINTEQUITILTIA AHYŌLLŌXOXOUHQUI TLAHCUILŌLLI!</strong></small>',
-'longpageerror'                    => '<strong>AHCUALLŌTL: Motlahcuilōl cah huēiyac $1 KB, huehca ōmpa $2 KB. Ahmo mopiyāz.</strong>',
+'copyrightwarning'                 => "<small>Timitztlātlauhtiah xiquitta mochi mopatlaliz cana {{SITENAME}} tlatzayāna īpan $2 (huēhca ōmpa xiquitta $1). Āqueh tlācah quipatlazqueh in motlahcuilōl auh tlatzayāna occeppa; intlā ahmō ticnequi, zātēpan ahmō titlahcuilōz nicān. Nō mitzihtoah in ōtitlahcuiloh ahmō quipiya in copyright nozo in yōllōxoxouhqui tlahcuilōlli. '''¡AHMŌ XITĒQUITILTIA AHYŌLLŌXOXOUHQUI TLAHCUILŌLLI!'''</small>",
+'copyrightwarning2'                => "<small>Āqueh tlācah quipatlazqueh in motlahcuilōl auh tlatzayāna occeppa; intlā ahmō ticnequi, zātēpan ahmō titlahcuilōz nicān {{SITENAME}}. Nō mitzihtoah in ōtitlahcuiloh ahmō quipiya in copyright nozo in yōllōxoxouhqui tlahcuilōlli (huēhca ōmpa xiquitta $1). '''¡AHMŌ TIQUINTEQUITILTIA AHYŌLLŌXOXOUHQUI TLAHCUILŌLLI!'''</small>",
+'longpageerror'                    => "'''AHCUALLŌTL: Motlahcuilōl cah huēiyac $1 KB, huehca ōmpa $2 KB. Ahmo mopiyāz.'''",
 'templatesused'                    => 'Nemachiyōtīlli inīn zāzanilpan:',
 'templatesusedpreview'             => 'Nemachiyōtīlli motequitiltia inīn achtochīhualizpan:',
 'templatesusedsection'             => 'Nemachiyōtīlli motequitiltia nicān:',
@@ -689,10 +689,10 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.",
 'filetype-missing'       => 'Tlahcuilōlli ahmo quipiya huēiyaquiliztli (quemeh ".jpg").',
 'large-file'             => 'Mā tlahcuilōlli ahmo achi huēiyac $1; inīn cah $2.',
-'fileexists-extension'   => 'Tlahcuilōlli zan iuh tōcātica ia:<br />
-Tlahcuilōlli moquetzacah: <strong><tt>$1</tt></strong><br />
-Tlahcuilōlli tlein ia ītōca: <strong><tt>$2</tt></strong><br />
-Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.',
+'fileexists-extension'   => "Tlahcuilōlli zan iuh tōcātica ia:<br />
+Tlahcuilōlli moquetzacah: '''<tt>$1</tt>'''<br />
+Tlahcuilōlli tlein ia ītōca: '''<tt>$2</tt>'''<br />
+Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'fileexists-thumb'       => "<center>'''Tlahcuilōlli ia'''</center>",
 'successfulupload'       => 'Cualli quetzaliztli',
 'savefile'               => 'Quipiyāz tlahcuilōlli',

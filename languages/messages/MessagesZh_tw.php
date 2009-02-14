@@ -224,7 +224,7 @@ $messages = array(
 'views'             => '檢視',
 'toolbox'           => '工具箱',
 'userpage'          => '查看使用者頁面',
-'projectpage'       => '查看計劃頁面',
+'projectpage'       => '查看計畫頁面',
 'imagepage'         => '查看圖片頁面',
 'mediawikipage'     => '檢視使用者介面訊息',
 'templatepage'      => '檢視模板頁面',
@@ -234,7 +234,7 @@ $messages = array(
 'otherlanguages'    => '其它語言',
 'redirectedfrom'    => '(重定向自$1)',
 'redirectpagesub'   => '重定向頁面',
-'lastmodifiedat'    => '本頁最後更動時間：$1 $2。', # $1 date, $2 time
+'lastmodifiedat'    => '本頁最後更動時間在 $1 $2。', # $1 date, $2 time
 'viewcount'         => '本頁面已經被瀏覽$1次。',
 'protectedpage'     => '被保護頁',
 'jumpto'            => '跳轉到:',
@@ -301,7 +301,7 @@ $messages = array(
 'nstab-user'      => '使用者頁面',
 'nstab-media'     => '媒體頁面',
 'nstab-special'   => '特殊頁面',
-'nstab-project'   => '計劃頁面',
+'nstab-project'   => '計畫頁面',
 'nstab-image'     => '檔案',
 'nstab-mediawiki' => '介面',
 'nstab-template'  => '模板',
@@ -417,7 +417,7 @@ $2',
 'loginerror'                 => '登入錯誤',
 'prefs-help-email'           => '電子郵件是選填的，但當啟用它後可以在您沒有公開自己的使用者身分時透過您的使用者頁或使用者討論頁與您聯繫。',
 'prefs-help-email-required'  => '需要電子郵件地址。',
-'nocookiesnew'               => '已成功建立新賬戶！偵測到您已關閉 Cookies，請開啟它並登入。',
+'nocookiesnew'               => '已成功建立新帳戶！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin'             => '本站利用 Cookies 進行使用者登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
 'noname'                     => '你沒有輸入一個有效的使用者帳號。',
 'loginsuccesstitle'          => '登入成功',
@@ -442,13 +442,13 @@ $2',
 'acct_creation_throttle_hit' => '對不起，您已經註冊了$1帳號。你不能再註冊了。',
 'emailauthenticated'         => '您的電子郵件地址已經於$1確認有效。',
 'emailnotauthenticated'      => '您的電子郵件地址<strong>還沒被認証</strong>。以下功能將不會發送任何郵件。',
-'noemailprefs'               => '<strong>指定一個電子郵件地址以使用此功能</strong>',
+'noemailprefs'               => '指定一個電子郵件地址以使用此功能',
 'emailconfirmlink'           => '確認您的電子郵件地址',
 'invalidemailaddress'        => '電子郵件地址格式不正確，請輸入正確的電子郵件地址或清空該輸入框。',
 'accountcreated'             => '已建立帳號',
 'accountcreatedtext'         => '$1的帳號已經被建立。',
 'createaccount-title'        => '在{{SITENAME}}中建立新帳號',
-'createaccount-text'         => '有人 在{{SITENAME}}中為 $2 建立了一個新帳號($4)。 "$2" 的密碼是 "$3" 。您應該立即登入並更改密碼。
+'createaccount-text'         => '有人在{{SITENAME}}中為 $2 建立了一個新帳號($4)。 "$2" 的密碼是 "$3" 。您應該立即登入並更改密碼。
 
 如果該帳號建立錯誤的話，您可以忽略此信息。',
 'loginlanguagelabel'         => '語言: $1',
@@ -547,18 +547,18 @@ $2',
 'noarticletext'             => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜尋此頁標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編輯此頁]。',
 'userpage-userdoesnotexist' => '使用者帳號「$1」未曾建立。請在建立／編輯這個頁面前先檢查一下。',
 'clearyourcache'            => "'''注意:''' 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。 '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''(或按下''Ctrl-Shift-R''，在蘋果Mac上按下''Cmd-Shift-R'')；'''IE:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''；'''Konqueror:''' 只需點擊 ''重新整理''；'''Opera:''' 使用者需要在 ''工具-設定'' 中完整地清除它們的快取。",
-'usercssjsyoucanpreview'    => "<strong>提示:</strong> 在保存前請用'顯示預覧'按鈕來測試您新的 CSS/JS 。",
+'usercssjsyoucanpreview'    => "'''提示:''' 在保存前請用'顯示預覧'按鈕來測試您新的 CSS/JS 。",
 'usercsspreview'            => "'''注意您只是在預覽您的個人 CSS, 還沒有儲存﹗'''",
 'userjspreview'             => "'''注意您只是在測試／預覽您的個人 JavaScript，還沒有儲存﹗'''",
 'userinvalidcssjstitle'     => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/monobook.css 不同於 {{ns:user}}:Foo/Monobook.css。",
 'updated'                   => '(已更新)',
-'note'                      => '<strong>注意:</strong>',
-'previewnote'               => '<strong>請記住這只是預覽，內容還未保存！</strong>',
+'note'                      => "'''注意:'''",
+'previewnote'               => "'''請記住這只是預覽，內容還未保存！'''",
 'previewconflict'           => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
-'session_fail_preview'      => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。</strong>',
-'session_fail_preview_html' => '<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong><strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。</strong>',
-'token_suffix_mismatch'     => '<strong>由於您使用者端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
-這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
+'session_fail_preview'      => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請登出後重新登入。'''",
+'session_fail_preview_html' => "'''很抱歉！部份資料已遺失，我們無法處理您的編輯。''''''如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請登出後再重新登入一次。'''",
+'token_suffix_mismatch'     => "'''由於您使用者端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
+這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。'''",
 'editing'                   => '正在編輯$1',
 'editingsection'            => '正在編輯$1 (段落)',
 'editingcomment'            => '正在編輯$1 (評論)',
@@ -570,23 +570,23 @@ $2',
 <b>只有</b>在上面文字框中的內容會在你點擊"保存頁面"後被保存。<br />',
 'yourtext'                  => '您的文字',
 'storedversion'             => '已保存版本',
-'nonunicodebrowser'         => '<strong>警告: 您的瀏覽器不相容Unicode編碼。這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。</strong>',
-'editingold'                => '<strong>警告：你正在編輯的是本頁的舊版本。
-如果你保存它的話，在本版本之後的任何修改都會丟失。</strong>',
+'nonunicodebrowser'         => "'''警告: 您的瀏覽器不相容Unicode編碼。這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。'''",
+'editingold'                => "'''警告：你正在編輯的是本頁的舊版本。
+如果你保存它的話，在本版本之後的任何修改都會丟失。'''",
 'yourdiff'                  => '差異',
-'copyrightwarning'          => '請注意您對{{SITENAME}}的所有貢獻都被認為是在$2下發佈，請查看在$1的細節。
+'copyrightwarning'          => "請注意您對{{SITENAME}}的所有貢獻都被認為是在$2下發佈，請查看在$1的細節。
 如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
 您同時也要向我們保證您所提交的內容是您自己所作，或得自一個不受版權保護或相似自由的來源。
-<strong>不要在未獲授權的情況下發表！</strong><br />',
-'copyrightwarning2'         => '請注意您對{{SITENAME}}的所有貢獻
+'''不要在未獲授權的情況下發表！'''<br />",
+'copyrightwarning2'         => "請注意您對{{SITENAME}}的所有貢獻
 都可能被其他貢獻者編輯，修改或刪除。
 如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
 您同時也要向我們保證您所提交的內容是您自己所作，或得自一個不受版權保護或相似自由的來源（參閱$1的細節）。
-<strong>不要在未獲授權的情況下發表！</strong>',
-'longpagewarning'           => '<strong>警告: 本頁長度達$1 kB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。</strong>',
-'longpageerror'             => '<strong>錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。該文本不能被儲存。</strong>',
+'''不要在未獲授權的情況下發表！'''",
+'longpagewarning'           => "'''警告: 本頁長度達$1 kB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。'''",
+'longpageerror'             => "'''錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。該文本不能被儲存。'''",
 'readonlywarning'           => '<strong>警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。</strong>',
-'protectedpagewarning'      => '<strong>警告: 本頁已經被保護，只有擁有管理員許可權的使用者才可修改。</strong>',
+'protectedpagewarning'      => "'''警告: 本頁已經被保護，只有擁有管理員許可權的使用者才可修改。'''",
 'semiprotectedpagewarning'  => "'''注意:''' 本頁面被鎖定，僅限註冊使用者編輯。",
 'cascadeprotectedwarning'   => '警告: 本頁已經被保護，只有擁有管理員權限的使用者才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
 'templatesused'             => '在這個頁面上使用的模板有:',
@@ -900,16 +900,16 @@ $2',
 'large-file'                  => '建議檔案大小不能超過 $1；本檔案大小為 $2。',
 'largefileserver'             => '這個檔案的大小比伺服器配置允許的大小還要大。',
 'emptyfile'                   => '您所上傳的檔案不存在。這可能是由於檔案名鍵入錯誤。請檢查您是否真的要上傳此檔案。',
-'fileexists'                  => '已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查<strong><tt>$1</tt></strong>。',
-'fileexists-extension'        => '一個相似檔名的檔案已經存在:<br />
-上載檔案的檔名: <strong><tt>$1</tt></strong><br />
-現有檔案的檔名: <strong><tt>$2</tt></strong><br />
-請選擇一個不同的名字。',
+'fileexists'                  => "已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查'''<tt>$1</tt>'''。",
+'fileexists-extension'        => "一個相似檔名的檔案已經存在:<br />
+上載檔案的檔名: '''<tt>$1</tt>'''<br />
+現有檔案的檔名: '''<tt>$2</tt>'''<br />
+請選擇一個不同的名字。",
 'fileexists-thumb'            => "<center>'''已經存在的圖片'''</center>",
-'fileexists-thumbnail-yes'    => '這個檔案好像是一幅圖片的縮圖版本<i>(縮圖)</i>。請檢查清楚該檔案<strong><tt>$1</tt></strong>。<br />
-如果檢查後的檔案是同原本圖片的大小是一樣的話，就不用再上載多一幅縮圖。',
-'file-thumbnail-no'           => '該檔名是以<strong><tt>$1</tt></strong>開始。它好像一幅圖片的縮圖版本<i>(縮圖)</i>。
-如果你有該圖片的完整大小，如不是請再修改檔名。',
+'fileexists-thumbnail-yes'    => "這個檔案好像是一幅圖片的縮圖版本''(縮圖)''。請檢查清楚該檔案'''<tt>$1</tt>'''。<br />
+如果檢查後的檔案是同原本圖片的大小是一樣的話，就不用再上載多一幅縮圖。",
+'file-thumbnail-no'           => "該檔名是以'''<tt>$1</tt>'''開始。它好像一幅圖片的縮圖版本''(縮圖)''。
+如果你有該圖片的完整大小，如不是請再修改檔名。",
 'fileexists-forbidden'        => '已存在相同名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '在共享檔案庫中已存在此名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[Image:$1|thumb|center|$1]]',
 'successfulupload'            => '上傳成功',
@@ -930,7 +930,7 @@ $2',
 
 您應該要考慮一下繼續上傳一個檔案頁面是否合適。
 為方便起見，這一個檔案的刪除記錄已經在下面提供:",
-'filename-bad-prefix'         => '您上傳的檔案名稱是以<strong>「$1」</strong>作為開頭，通常這種沒有含意的檔案名稱是由數碼相機中自動編排。請在您的檔案中重新選擇一個更加有意義的檔案名稱。',
+'filename-bad-prefix'         => "您上傳的檔案名稱是以'''「$1」'''作為開頭，通常這種沒有含意的檔案名稱是由數碼相機中自動編排。請在您的檔案中重新選擇一個更加有意義的檔案名稱。",
 
 'upload-proto-error'      => '協訂錯誤',
 'upload-proto-error-text' => '遠程上傳要求 URL 以 <code>http://</code> 或 <code>ftp://</code> 開頭。',
@@ -1198,9 +1198,7 @@ Template:消除歧義',
 'addedwatchtext'       => "頁面\"[[:\$1]]\"已經被加入到您的[[Special:Watchlist|監視清單]]中。
 將來有關此頁面及其討論頁的任何修改將會在那裡列出，
 而且還會在[[Special:RecentChanges|近期變動]]中
-以'''粗體'''形式列出以使起更容易識別。
-
-如果您之後想將該頁面從監視清單中刪除，可點擊導航條中的\"停止監視\"連結。",
+以'''粗體'''形式列出以使起更容易識別。",
 'removedwatch'         => '已停止監視',
 'removedwatchtext'     => '頁面「<nowiki>$1</nowiki>」已經從您的監視頁面中移除。',
 'watch'                => '監視',
@@ -1300,7 +1298,7 @@ $NEWPAGE
 其他人已經編輯或是復原了該頁。
 
 最後編輯者: [[User:$3|$3]] ([[User talk:$3|討論]])。',
-'editcomment'                 => '編輯說明: "<i>$1</i>"。', # only shown if there is an edit comment
+'editcomment'                 => "編輯說明: \"''\$1''\"。", # only shown if there is an edit comment
 'revertpage'                  => '復原由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '復原由$1的編輯；更改回$2的最後一個版本。',
 'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
@@ -1315,13 +1313,13 @@ $NEWPAGE
 'protect_expiry_invalid'      => '輸入的終止時間無效。',
 'protect_expiry_old'          => '終止時間已過去。',
 'protect-unchain'             => '移動權限解鎖',
-'protect-text'                => '你可以在這裡瀏覽和修改對頁面<strong><nowiki>$1</nowiki></strong>的保護級別。',
-'protect-locked-blocked'      => '您不能在被封鎖時更改保護級別。
-以下是<strong>$1</strong>現時的保護級別:',
-'protect-locked-dblock'       => '在資料庫鎖定時無法更改保護級別。
-以下是<strong>$1</strong>現時的保護級別:',
-'protect-locked-access'       => '您的帳號權限不能修改保護級別。
-以下是<strong>$1</strong>現時的保護級別:',
+'protect-text'                => "你可以在這裡瀏覽和修改對頁面'''<nowiki>$1</nowiki>'''的保護級別。",
+'protect-locked-blocked'      => "您不能在被封鎖時更改保護級別。
+以下是'''$1'''現時的保護級別:",
+'protect-locked-dblock'       => "在資料庫鎖定時無法更改保護級別。
+以下是'''$1'''現時的保護級別:",
+'protect-locked-access'       => "您的帳號權限不能修改保護級別。
+以下是'''$1'''現時的保護級別:",
 'protect-cascadeon'           => '以下的{{PLURAL:$1|一個|多個}}頁面包含着本頁面的同時，啟動了連鎖保護，因此本頁面目前也被保護，未能編輯。您可以設定本頁面的保護級別，但這並不會對連鎖保護有所影響。',
 'protect-default'             => '(預設)',
 'protect-fallback'            => '需要"$1"的許可',
@@ -1354,7 +1352,7 @@ $NEWPAGE
 'undeleteextrahelp'            => "復原整個頁面時，請清除所有複選框後按 '''''復原''''' 。 復原特定版本時，請選擇相應版本前的複選框後按'''''復原''''' 。按 '''''重設''''' 將清除評論內容及所有複選框。",
 'undeleterevisions'            => '$1版本存檔',
 'undeletehistory'              => '如果您復原了該頁面，所有版本都會被復原到修訂沿革中。
-如果本頁刪除後有一個同名的新頁面建立，被復原的版本將會稱為較新的歷史。同時請留意在檔案修訂中的限制會在復原時遺失。',
+如果本頁刪除後有一個同名的新頁面建立，被復原的版本將會稱為較新的歷史。',
 'undeleterevdel'               => '如果把最新修訂部份刪除，反刪除便無法進行。如果遇到這種情況，您必須反選或反隱藏最新已刪除的修訂。對於您沒有權限去檢視的修訂是無法復原的。',
 'undeletehistorynoadmin'       => '這個頁面已經被刪除，刪除原因顯示在下方編輯摘要中。被刪除前的所有修訂版本，連同刪除前貢獻使用者等等細節只有管理員可以看見。',
 'undelete-revision'            => '刪除$1時由$3（在$2）所編寫的修訂版本:',
@@ -1419,7 +1417,7 @@ $1',
 'whatlinkshere-links' => '← 鏈入',
 
 # Block/unblock
-'blockip'                     => '封鎖IP地址',
+'blockip'                     => '封鎖使用者',
 'blockiptext'                 => '用下面的表單來禁止來自某一特定IP地址的修改許可權。
 只有在為防止破壞，及符合[[{{MediaWiki:Policy-url}}|守則]]的情況下才可採取此行動。
 請在下面輸入一個具體的理由（例如引述一個被破壞的頁面）。',

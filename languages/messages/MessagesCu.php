@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Omnipaedista
  * @author Svetko
  * @author Wolliger Mensch
  * @author ОйЛ
@@ -195,6 +196,7 @@ $messages = array(
 'newmessagesdifflink' => 'послѣ́дьнꙗ мѣ́на',
 'editsection'         => 'испра́ви',
 'editold'             => 'испра́ви',
+'viewsourceold'       => 'страни́цѧ исто́чьнъ о́браꙁъ',
 'showtoc'             => 'ви́ждь',
 'hidetoc'             => 'съкрꙑи',
 'viewdeleted'         => '$1 ви́дєти хо́щєши ;',
@@ -213,7 +215,8 @@ $messages = array(
 'nstab-category'  => 'катигорі́ꙗ',
 
 # General errors
-'viewsource' => 'страни́цѧ исто́чьнъ о́браꙁъ',
+'viewsource'    => 'страни́цѧ исто́чьнъ о́браꙁъ',
+'viewsourcefor' => 'бо $1',
 
 # Login and logout pages
 'logouttitle'             => 'ис̾хо́дъ',
@@ -232,6 +235,7 @@ $messages = array(
 'userexists'              => 'сѫщє по́льꙃєватєлꙗ и́мѧ пьса ⁙ ино иꙁобрѧщи',
 'username'                => 'по́льꙃєватєлꙗ и́мѧ :',
 'uid'                     => 'по́льꙃєватєлꙗ число́ :',
+'yourrealname'            => 'и́стиньно и́мѧ :',
 'yourlanguage'            => 'ѩꙁꙑ́къ :',
 'yournick'                => 'аѵто́графъ :',
 'loginerror'              => 'Въхода блазна',
@@ -250,7 +254,7 @@ $messages = array(
 'loginreqlink'       => 'Въниди',
 'newarticle'         => '(но́въ)',
 'clearyourcache'     => '<big>НАРОЧИ́ТО:</big> По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
-'note'               => '<strong>НАРОЧИ́ТО:</strong>',
+'note'               => "'''НАРОЧИ́ТО:'''",
 'editing'            => 'исправлѥ́ниѥ: $1',
 'editingsection'     => 'исправлѥ́ниѥ ⁖ $1 ⁖ (чѧ́сть)',
 'templatesused'      => 'сѥѩ страни́цѧ с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ :',
@@ -262,10 +266,12 @@ $messages = array(
 'last'         => 'пс҃лд',
 'page_first'   => 'прь́ва страни́ца',
 'page_last'    => 'послѣ́дьнꙗ страни́ца',
+'histlast'     => 'послѣ́дьнꙗ',
 'historyempty' => '(поу́сто)',
 
 # Revision feed
-'history-feed-title' => 'мѣ́нъ їсторі́ꙗ',
+'history-feed-title'          => 'мѣ́нъ їсторі́ꙗ',
+'history-feed-item-nocomment' => '$1 при $2', # user at time
 
 # Revision deletion
 'revdelete-uname' => 'по́льꙃєватєлꙗ и́мѧ',
@@ -325,13 +331,16 @@ $messages = array(
 'recentchangeslinked-page' => 'страни́цѧ и́мѧ :',
 
 # Upload
-'upload'           => 'положє́ниѥ дѣ́ла',
-'uploadbtn'        => 'положє́ниѥ дѣ́ла',
-'uploadlog'        => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
-'uploadlogpage'    => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
-'successfulupload' => 'дѣ́ло положєно ѥ́стъ',
-'uploadedimage'    => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
-'watchthisupload'  => 'си страни́цѧ блюдє́ниѥ',
+'upload'            => 'положє́ниѥ дѣ́ла',
+'uploadbtn'         => 'положє́ниѥ дѣ́ла',
+'uploadlog'         => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
+'uploadlogpage'     => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
+'filename'          => 'дѣ́ла и́мѧ',
+'filedesc'          => 'опьса́ниѥ',
+'fileuploadsummary' => 'опьса́ниѥ:',
+'successfulupload'  => 'дѣ́ло положєно ѥ́стъ',
+'uploadedimage'     => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
+'watchthisupload'   => 'си страни́цѧ блюдє́ниѥ',
 
 # Special:ImageList
 'imgfile'        => 'дѣ́ло',
@@ -411,7 +420,7 @@ $messages = array(
 'listusers-submit' => 'ви́ждь',
 
 # E-mail user
-'emailuser' => 'Посъли епїстолѫ',
+'emailuser' => 'посъли єпїстолѫ',
 
 # Watchlist
 'watchlist'      => 'моꙗ́ блюдє́ниꙗ',

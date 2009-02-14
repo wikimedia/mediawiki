@@ -378,7 +378,7 @@ Se o se vêu creâ a paggina òua, o se pêu comensâ a scrive o testo into spas
 
 Se o s'ha intròu inte 'sto collegamento pe sbàllio, o basta sciaccâ '''Inderrê''' (Indietro) into navigatô.",
 'noarticletext'          => "Inte 'sto momento a paggina çercâa a l'è vêua. O l'è poscibbile [[Special:Search/{{PAGENAME}}|çercâ 'sto tittolo]] inte âtre paggine do scîto oppûre [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificâ a paggina òua].",
-'previewnote'            => "<strong>Questa chì a l'è solo 'n'anteprimma; i cangiamenti no son ancon stæti sarvæ!</strong>",
+'previewnote'            => "'''Questa chì a l'è solo 'n'anteprimma; i cangiamenti no son ancon stæti sarvæ!'''",
 'editing'                => 'Modiffica de $1',
 'editingsection'         => 'Modiffica de $1 (session)',
 'yourtext'               => 'O teu testo',
@@ -386,9 +386,9 @@ Se o s'ha intròu inte 'sto collegamento pe sbàllio, o basta sciaccâ '''Inderr
 'copyrightwarning'       => "Nota: Tùtte e contribuçioìn a {{SITENAME}} van conscideræ comme rilasciæ drento a-i termini da licensa d'ûso $2 (veddi $1 pe savéine de ciù).
 Se no ti veu che i testi teu pêuan esse modificæ da quarchedùn sensa limitaçioìn, no mandâli a {{SITENAME}}.<br />
 Inviando o testo ti diciâri, sott'a teu responsabilitæ, ch'o l'é stæto scrîto da ti personalmente oppure ch'o l'é stæto piggiòu da 'na fonte de pùbrico domìnio òu anàlogamente lìbea.<br />
-<strong>NO INVIÂ MATERIÂLE COVERTO DA DRÎTI D'AUTÔ SENSA OUTORIZAÇION!</strong>",
-'longpagewarning'        => "<strong>ATTENSION: 'Sta paggina chì a g'ha $1 kilobyte; çerti browser porieivan avei di problemmi inta modiffica de-e paggine che s'avvixinn-an o che ecceddan i 32 kB.
-Pe piaxei conscidera l'opportûnitæ de soddividde a paggina in sessioîn ciû piccinn-e.</strong>",
+'''NO INVIÂ MATERIÂLE COVERTO DA DRÎTI D'AUTÔ SENSA OUTORIZAÇION!'''",
+'longpagewarning'        => "'''ATTENSION: 'Sta paggina chì a g'ha $1 kilobyte; çerti browser porieivan avei di problemmi inta modiffica de-e paggine che s'avvixinn-an o che ecceddan i 32 kB.
+Pe piaxei conscidera l'opportûnitæ de soddividde a paggina in sessioîn ciû piccinn-e.'''",
 'templatesused'          => "Template dêuviæ inte 'sta paggina:",
 'templatesusedpreview'   => "Template dêuviæ inte 'st'anteprimma:",
 'template-protected'     => '(protezûo)',
@@ -509,7 +509,7 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 'filesource'           => 'Reixe:',
 'uploadedfiles'        => 'Papê caregæ',
 'badfilename'          => 'O nomme do papê o l\'è stæto cangioö in "$1".',
-'fileexists'           => "Un papê co sto nomme o existe de zà, pe piaxei da unn'euggiâ a <strong><tt>$1</tt></strong> se non ti tei seguo de voleilo cangiâ.",
+'fileexists'           => "Un papê co sto nomme o existe de zà, pe piaxei da unn'euggiâ a '''<tt>$1</tt>''' se non ti tei seguo de voleilo cangiâ.",
 'fileexists-forbidden' => 'Un papê co sto nomme o existe de zà, pe piaxei vanni in derrê e carega sto papê co un ätro nomme. [[Image:$1|thumb|center|$1]]',
 'savefile'             => 'Sarva o papê',
 'uploadedimage'        => 'O s\'ha caregòu "[[$1]]"',
@@ -728,9 +728,9 @@ L'ûrtimo cangiamento o ghe l'à fæto [[User:$3|$3]] ([[User talk:$3|Ciæti]]).
 'protect_expiry_invalid'      => 'Scadensa invalida.',
 'protect_expiry_old'          => 'Data de scadensa into passòu.',
 'protect-unchain'             => 'Scollegâ i permissi de stramûo',
-'protect-text'                => "Chì o l'è poscibbile vedde e modificâ o livello de protession pe-a paggina <strong><nowiki>$1</nowiki></strong>.",
+'protect-text'                => "Chì o l'è poscibbile vedde e modificâ o livello de protession pe-a paggina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "No ti g'hæ permisso pe modificâ i livelli de protession da paggina.
-Queste son e impostassioîn correnti pe 'sta paggina (<strong>$1</strong>):",
+Queste son e impostassioîn correnti pe 'sta paggina ('''$1'''):",
 'protect-cascadeon'           => "Pe-o momento 'sta paggina chì a l'è bloccâa perché a l'è inclûsa {{PLURAL:$1|inta paggina indicâa apprêuvo, pe-a quæ|inte paggine indicæ apprêuvo, pe-e quæ}} a l'è attiva a protession recorsciva. O se pêu modificâ o livello de protession individuâle da paggina, ma l'impostassioîn derivanti da-a protession recorsciva no sajàn modificæ.",
 'protect-default'             => '(predefinîo)',
 'protect-fallback'            => 'Besêugna avei permisso "$1"',

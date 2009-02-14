@@ -60,7 +60,7 @@ $messages = array(
 'nstab-template' => 'Modèl',
 
 # Login and logout pages
-'logouttext'           => "<strong>Adèsa s'et discunnês.</strong><br />
+'logouttext'           => "'''Adèsa s'et discunnês.'''<br />
 Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp cun al stèss nàmm o cun un èter. Nutêv ca alcuni pàgini i putrèbber cuntinuèr a cràdder ca vueter a-sîv discunnès, finchè non purghê la cache dal vòster browser.",
 'userlogin'            => 'Entrèr / Argistrères',
 'logout'               => 'va fôra',

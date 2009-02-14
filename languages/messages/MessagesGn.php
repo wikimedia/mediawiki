@@ -163,15 +163,22 @@ $messages = array(
 'showtoc'                 => 'hechauka',
 'hidetoc'                 => 'toñemi',
 'restorelink'             => '$1 ediciones borradas',
+'red-link-title'          => '$1 (ndaipóri ko togue)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Kuatiahai',
 'nstab-user'      => 'Puruhára',
+'nstab-media'     => 'Media rogue',
 'nstab-special'   => "Mba'echĩchĩ",
-'nstab-image'     => "Ta'ãnga",
+'nstab-project'   => "Mba'e apopyrã rogue",
+'nstab-image'     => 'Ñongatupy',
 'nstab-mediawiki' => 'Marandu',
 'nstab-template'  => 'Tembiecharã',
+'nstab-help'      => 'Pytyvõ',
 'nstab-category'  => 'Ñemohenda',
+
+# Main script and global functions
+'nosuchaction' => 'Upe tembiapo ndaipóri',
 
 # General errors
 'ns-specialprotected' => 'Las páginas en el espacio de nombres Especial no se pueden editar.',
@@ -230,8 +237,8 @@ Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo 
 'editingsection'        => 'Ojehaihína $1 (vore)',
 'editingcomment'        => 'Ojehaihína $1 (comentario)',
 'yourtext'              => "Mba'ehaipyre",
-'longpagewarning'       => "<strong>Ejesarekóke: ko kuatiarogue, tuichakuépe, oguereko $1 kb; heta kundahára ikatu iñapañuãi jehaijeýpe kuatiarogue ohaságui 32 kb.
-Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.</strong>",
+'longpagewarning'       => "'''Ejesarekóke: ko kuatiarogue, tuichakuépe, oguereko $1 kb; heta kundahára ikatu iñapañuãi jehaijeýpe kuatiarogue ohaságui 32 kb.
+Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.'''",
 
 # History pages
 'cur'         => "ko'ag̃agua",
@@ -396,7 +403,14 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 
 # Special:AllPages
 'allpages'          => 'Opaite kuatiarogue',
+'alphaindexline'    => '$1 $2 peve',
+'nextpage'          => 'Kuatia rogue upeigua($1)',
+'prevpage'          => 'Kuatia rogue mboyvegua ($1)',
+'allpagesfrom'      => 'Ehechauka kuatia rogue oñepyrũva:   -pe',
+'allarticles'       => 'Opa kuatia rogue',
+'allinnamespace'    => "Opa kuatia rogue (pa'ũ $1)",
 'allnotinnamespace' => 'Opaite kuatiarogue (fuera del espacio $1)',
+'allpagesprev'      => 'Mboyvegua',
 'allpagesnext'      => 'Upeigua',
 'allpagessubmit'    => 'Hechauka',
 
@@ -422,7 +436,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'deletionlog'    => 'ñemboguepyre ñonagatupy',
 'rollback_short' => 'Embojevy',
 'rollbacklink'   => 'Embojevy',
-'protect-text'   => 'Puedes ver y modificar el nivel de protección de la página <strong>$1</strong>.',
+'protect-text'   => "Puedes ver y modificar el nivel de protección de la página '''$1'''.",
 
 # Undelete
 'undeletedrevisions'       => '$1 ediciones restauradas',
@@ -488,6 +502,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'tooltip-pt-mycontris'   => "Tysỹi che mba'emoĩmbyre",
 'tooltip-ca-move'        => 'Guerova kuatiarogue',
 'tooltip-p-logo'         => 'Ape',
+'tooltip-n-mainpage'     => 'Eho ijapépe',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro de protección contra spam',

@@ -532,16 +532,16 @@ Su fekkee jëfandikukat bu kenn-xamul nga, te nga gis ne dañu laa féetale ay k
 'userjspreview'                    => "'''Bul fatte ne lii ab wonendib sa yoonu javaScript rekk la; dencagoo say coppite!'''",
 'userinvalidcssjstitle'            => "'''Moytul :''' amul wenn melin wu tuddu « $1 ». Bul fatte ne xët yiy jeexee .css ak .js seeni koj ay araf yu tuut ñoo ciy tegu/.<br />ci misaal, {{ns:user}}:Foo/'''m'''onobook.css moo baax, waaye bii du baax {{ns:user}}:Foo/'''M'''onobook.css .",
 'updated'                          => '(bees na)',
-'note'                             => '<strong>Karmat :</strong>',
-'previewnote'                      => '<strong>Lii ab wonendi rekk la; coppite yi ci xët wi dencagoo leen!</strong>',
+'note'                             => "'''Karmat :'''",
+'previewnote'                      => "'''Lii ab wonendi rekk la; coppite yi ci xët wi dencagoo leen!'''",
 'previewconflict'                  => "Wonendi bi mengóo na ak mbind yi ne ci boyotu coppite bi te nii lay mel soo cuqe ci 'Denc xët wi'.",
-'session_fail_preview'             => '<strong>Jéegalu! manu noo denc say coppite ngir ñakkub ay njoxe ñeel sag duggu. Di la ñaan nga jéemaat. Su tolof-tolof bi wéyee, Jéemal a génn te duggaat. </strong>',
-'session_fail_preview_html'        => "<strong>Jéegalu ! manu noo denc say coppite ngir ab ñakkub ay njoxe ñeel sag duggu.</strong>
+'session_fail_preview'             => "'''Jéegalu! manu noo denc say coppite ngir ñakkub ay njoxe ñeel sag duggu. Di la ñaan nga jéemaat. Su tolof-tolof bi wéyee, Jéemal a génn te duggaat. '''",
+'session_fail_preview_html'        => "'''Jéegalu ! manu noo denc say coppite ngir ab ñakkub ay njoxe ñeel sag duggu.'''
 
 ''Segam ci bii dal dañ fee doxal HTML bu ñumm, ngir ay ngirtey kaaraange, wonendi gi du gisuwu.''
 
-<strong>Su tolof-tolof bi wéyee, man nga jéem a génn te duggaat .</strong>",
-'token_suffix_mismatch'            => '<strong>Votre édition n’a été acceptée car votre navigateur a mélangé les caractères de ponctuation dans l’identifiant d’édition. L’édition a été rejetée afin d’empêcher la corruption du texte de l’article. Ce problème se produit lorsque vous utilisez un proxy anonyme à problème.</strong>',
+'''Su tolof-tolof bi wéyee, man nga jéem a génn te duggaat .'''",
+'token_suffix_mismatch'            => "'''Votre édition n’a été acceptée car votre navigateur a mélangé les caractères de ponctuation dans l’identifiant d’édition. L’édition a été rejetée afin d’empêcher la corruption du texte de l’article. Ce problème se produit lorsque vous utilisez un proxy anonyme à problème.'''",
 'editing'                          => 'Coppiteg $1',
 'editingsection'                   => 'Coppiteg $1 (xaaj)',
 'editingcomment'                   => 'Coppiteg $1 (sanni-kàddu)',
@@ -553,27 +553,27 @@ Soo nammee denc say coppite, faaw nga duggal leen ci boyot bi ci kaw.
 Soo cuqe ci 'Denc xët wi', mbind yi ne ci boyot bi ci kaw rekk ñooy dencu .",
 'yourtext'                         => 'Sa mbind',
 'storedversion'                    => 'Sumb bi dencu',
-'nonunicodebrowser'                => '<strong>Attention : Votre navigateur ne supporte pas l’unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en tout sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.</strong>',
-'editingold'                       => '<strong>Moytul: yaa ngi soppi am sumb mu yàgg mu xët wii. Soo leen dence, bépp coppite buñ defoon laataa mii sumb, di nañ leen ñakk.</strong>',
+'nonunicodebrowser'                => "'''Attention : Votre navigateur ne supporte pas l’unicode. Une solution temporaire a été trouvée pour vous permettre de modifier en tout sûreté un article : les caractères non-ASCII apparaîtront dans votre boîte de modification en tant que codes hexadécimaux. Vous devriez utiliser un navigateur plus récent.'''",
+'editingold'                       => "'''Moytul: yaa ngi soppi am sumb mu yàgg mu xët wii. Soo leen dence, bépp coppite buñ defoon laataa mii sumb, di nañ leen ñakk.'''",
 'yourdiff'                         => 'Wuute',
-'copyrightwarning'                 => 'Bépp cëru ci {{SITENAME}} dañ leen di jàppe niki ay siiwal yoo def te teg leen ci $2 (xoolal $1 ngir yeneeni xamle).
+'copyrightwarning'                 => "Bépp cëru ci {{SITENAME}} dañ leen di jàppe niki ay siiwal yoo def te teg leen ci $2 (xoolal $1 ngir yeneeni xamle).
 Soo bëggul keneen jël say mbind soppi leen, tas leen teg ci, bu leen fi duggal.<br />
 Te it na wóor ne li nga fiy duggal yaa leen moom, yaa leen bind, walla fa nga leen jële gongikuwaay bu ubbeeku la, lu kenn moomul.
-<strong>BUL FI DUGGAL LIGGÉEYI KENEEN YU AQI KI-SOS AAR TE AMOO CI BENN NDIGËL!</strong>',
-'copyrightwarning2'                => 'Karmat: Bépp cëru ci {{SITENAME}} yeneen jëfandikukat yi man nañ leen a soppi walla far leen.
+'''BUL FI DUGGAL LIGGÉEYI KENEEN YU AQI KI-SOS AAR TE AMOO CI BENN NDIGËL!'''",
+'copyrightwarning2'                => "Karmat: Bépp cëru ci {{SITENAME}} yeneen jëfandikukat yi man nañ leen a soppi walla far leen.
 Soo bëggul keneen jël say mbind soppi leen, tas leen teg ci, bu leen fi duggal.<br />
 Te it na wóor ne li nga fiy duggal yaa leen moom, yaa leen bind, walla fa nga leen jële gongikuwaay bu ubbeeku la, lu kenn moomul (xoolal $1 ngir yeneeni xamle).
-<strong>BUL FI DUGGAL LIGGÉEYI KENEEN YU AQI KI-SOS AAR TE AMOO CI BENN NDIGËL!</strong>',
+'''BUL FI DUGGAL LIGGÉEYI KENEEN YU AQI KI-SOS AAR TE AMOO CI BENN NDIGËL!'''",
 'longpagewarning'                  => "'''Muytul: guddaayu xët wi da fa romb $1 Kio ;
 yenn joowukaay yi, man nañoo wone ay tolof-tolof ci bu ñuy soppi xët yi romb dayoob 32 Kio. Li doon gën mooy nga séddatle ko ci ay xaaj yu bari.'''",
-'longpageerror'                    => '<strong>NJUUMTE : mbind mi nga yónne guddee na $1 kio, kon romb na dig bi di $2 kio. Mbind mi maneesu kaa denc.</strong>',
+'longpageerror'                    => "'''NJUUMTE : mbind mi nga yónne guddee na $1 kio, kon romb na dig bi di $2 kio. Mbind mi maneesu kaa denc.'''",
 'readonlywarning'                  => "'''Moytul: dattub njoxe bi dañ kaa caabi ngir ay liggéey,
 kon doo man a denc say coppite fi mu nekk nii. Man ngaa duppi mbind mi taf ko cib tëriin bu ñuy binde te taaxirlu ñu ubbi dattub njoxe bi.'''",
 'protectedpagewarning'             => "'''Moytul : wii xët dañ kaa aar.
 Jëfandikukat yi nekk yorkat rekk a ko man a soppi.'''",
 'semiprotectedpagewarning'         => "'''Karmat :''' wii xët dañ kaa aar ba nga xam ne ñi bindu rekk a ko man a soppi.",
 'cascadeprotectedwarning'          => "'''MOYTUL :''' Xët wii dañ kaa aar ba nga xam ne yorkat yi rek ñoo koy man a soppi. Kaaraange googu dañ kaa def ndaxte xët wii dañ kaa dugal ci biir {{PLURAL:$1|aw xët wu ñu aar|ay xët yu ñu aar}}.",
-'titleprotectedwarning'            => '<strong>MOYTUL: wii xët dañ kaa aar ci anam boo xam ne yenn jëfandikukat yi rekk a ko man a sos.</strong>',
+'titleprotectedwarning'            => "'''MOYTUL: wii xët dañ kaa aar ci anam boo xam ne yenn jëfandikukat yi rekk a ko man a sos.'''",
 'templatesused'                    => 'Royuwaay yi nekk ci wii xët :',
 'templatesusedpreview'             => 'Royuwaay yi nekk ci gii wonendi :',
 'templatesusedsection'             => 'Royuwaay yi ne ci bii xaaj:',
@@ -885,12 +885,12 @@ Soo jëfandikoo lëkkalekaayu joow yi day neenal boyot yi nga jotoon a fal.',
 'large-file'                  => 'li gën mooy dayoo dencukaay bi baña romb $1; bii dencukaay $2 la.',
 'largefileserver'             => 'Dayoo dencukaay bi romb na kem bu joxekaay bi attan.',
 'emptyfile'                   => 'Dencukaay bi nga bëgga yeb dafa mel ni amul dara. Xéj-na ag njuumte ci turu dencukaay bi moo ko waral. Seetal bu baax ndax dëgg-dëgg bëgg nga yeb bii dencukaay.',
-'fileexists'                  => 'Am na dencukaay bu tudd nii ba noppi. Saytul <strong><tt>$1</tt></strong> su dee wóoru la ne bëgg nga koo soppi.',
-'filepageexists'              => 'Xëtu faramfacce wu dencukaay bi sos nañ ko ba noppi ci bii màkkaan <strong><tt>$1</tt></strong>, waaye amagul dencukaay bu ni tudd nii-nii. Faramfacceg xët wi nga duggal ci diirub yeb gi du feeñ ci xëtu waxtaanuwaay wi. Ngir faramfacce gi feeñ ci xëtu waxtaanuwaay wi faaw nga soppi ko ak sa loxo.',
-'fileexists-extension'        => 'Am na dencukaay bu ni tudd ba noppi: <br />
-Turu dencukaay bi ngay yeb : <strong><tt>$1</tt></strong><br />
-Turu dencukaay bi fi am : <strong><tt>$2</tt></strong><br />
-Ngir-yàlla tànnal beneen tur.',
+'fileexists'                  => "Am na dencukaay bu tudd nii ba noppi. Saytul '''<tt>$1</tt>''' su dee wóoru la ne bëgg nga koo soppi.",
+'filepageexists'              => "Xëtu faramfacce wu dencukaay bi sos nañ ko ba noppi ci bii màkkaan '''<tt>$1</tt>''', waaye amagul dencukaay bu ni tudd nii-nii. Faramfacceg xët wi nga duggal ci diirub yeb gi du feeñ ci xëtu waxtaanuwaay wi. Ngir faramfacce gi feeñ ci xëtu waxtaanuwaay wi faaw nga soppi ko ak sa loxo.",
+'fileexists-extension'        => "Am na dencukaay bu ni tudd ba noppi: <br />
+Turu dencukaay bi ngay yeb : '''<tt>$1</tt>'''<br />
+Turu dencukaay bi fi am : '''<tt>$2</tt>'''<br />
+Ngir-yàlla tànnal beneen tur.",
 'fileexists-thumb'            => "<center>'''Dencukaay bi am na'''</center>",
 'fileexists-forbidden'        => 'Am na dencukaay bu ni tudd ba noppi; Dellul ginnaaw ngir yeb dencukaay bi ak beneen tur 
 [[Image:$1|thumb|center|$1]]',

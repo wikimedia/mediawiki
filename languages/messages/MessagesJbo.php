@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Homo logos
  * @author Malafaya
  * @author OldakQuill
  */
@@ -46,7 +47,9 @@ $messages = array(
 'may'           => 'la mumast.',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|klesi|klesi}}',
+'pagecategories'  => '{{PLURAL:$1|klesi|klesi}}',
+'category_header' => 'fe le kibypapri cu klesi "$1"',
+'subcategories'   => "le'a ti",
 
 'qbedit'        => 'stika',
 'qbpageoptions' => 'ti ckupau',
@@ -82,6 +85,21 @@ $messages = array(
 'portal-url'           => 'Project:bende ckupau',
 'privacy'              => "javni be sera'a lo sivni",
 
+'editsection'          => 'stika ti',
+'editsection-brackets' => '[$1]',
+'editold'              => 'edit',
+'viewsourceold'        => 'catlu le mifra',
+'editsectionhint'      => 'stika ti: $1',
+'toc'                  => 'ckupau pakbu',
+'showtoc'              => 'jarco',
+'hidetoc'              => 'toljarco',
+'thisisdeleted'        => 'View or restore $1?',
+'viewdeleted'          => 'View $1?',
+'restorelink'          => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
+'feedlinks'            => 'Feed:',
+'feed-invalid'         => 'Invalid subscription feed type.',
+'feed-unavailable'     => 'Syndication feeds are not available',
+
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-mediawiki' => 'notci',
 'nstab-category'  => 'klesi',
@@ -102,6 +120,11 @@ $messages = array(
 'editing'        => "ca galfi la'e lu $1 li'u",
 'editingsection' => 'ca galfi le selcmene be zoi $1 (section)',
 'editingcomment' => 'ca galfi le selcmene be zoi $1 (comment)',
+
+# History pages
+'last'       => "prula'i",
+'page_first' => 'pamoi',
+'page_last'  => 'fanmo',
 
 # Search results
 'searchresults' => "tu'a le se sisku",
@@ -157,14 +180,20 @@ $messages = array(
 'whatlinkshere' => 'ma jorne ti',
 
 # Block/unblock
-'blocklink' => 'zunti',
+'blocklink'    => 'zunti',
+'contribslink' => 'selstika',
 
 # Move page
 'movedto'   => 'te muvdu',
 '1movedto2' => "le pu se cmene lu [[$1]] li'u cu ca se cmene lu [[$2]] li'u",
 
 # Tooltip help for the actions
-'tooltip-pt-logout' => "co'u se jaspu",
+'tooltip-pt-logout'             => "co'u se jaspu",
+'tooltip-n-mainpage'            => 'vitke le ralju ckupau',
+'tooltip-n-randompage'          => 'jarco lo cunso ckupau',
+'tooltip-n-help'                => 'sidju kibypapri',
+'tooltip-t-whatlinkshere'       => "nu liste lo zifyga'ikibjudri poi ke'a kibjorne le vi ckupau",
+'tooltip-t-recentchangeslinked' => "lo puzi nunga'i pe lo kibypapri poi kibjorne le vi ckupau",
 
 # Special:FilePath
 'filepath-page' => 'se datnyvei zoi',

@@ -97,9 +97,9 @@ $messages = array(
 'showpreview'      => 'mi wile lukin taso e ante',
 'editing'          => 'mi ante e: $1',
 'editingcomment'   => 'mi ante e lipu $1 (wan sin)',
-'copyrightwarning' => 'o sona e ni: ken $2 (o lukin e $1) li lawa tawa ante ali lon {{SITENAME}} li. jan li ken ante e toki sina li ken pana e ona tawa jan ante. sina wile ala e ni la, o sitelen ala lon lipu ni.<br />
+'copyrightwarning' => "o sona e ni: ken $2 (o lukin e $1) li lawa tawa ante ali lon {{SITENAME}} li. jan li ken ante e toki sina li ken pana e ona tawa jan ante. sina wile ala e ni la, o sitelen ala lon lipu ni.<br />
 kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
-<strong>SINA KEN ALA LA, O PANA ALA E TOKI PI KEN LILI TAWA LIPU NI!</strong>',
+'''SINA KEN ALA LA, O PANA ALA E TOKI PI KEN LILI TAWA LIPU NI!'''",
 'templatesused'    => 'lipu ni li kepeken e lipu mama ni:',
 
 # History pages

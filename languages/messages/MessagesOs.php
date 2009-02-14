@@ -130,6 +130,7 @@ $messages = array(
 'category-empty'                => "''Ацы категори афтид ма у.''",
 'hidden-categories'             => 'Æмбæхст {{PLURAL:$1|категори|категоритæ}}',
 'hidden-category-category'      => 'Æмбæхст категоритæ', # Name of the category where hidden categories will be listed
+'category-subcat-count'         => '{{PLURAL:$2|Ацы категорийы мидæг æрмæст иу дæлкатегори и.|{{PLURAL:$1|$1 дæлкатегори æвдыст у|$1 дæлкатегорийы æвдыст сты}}, æдæппæт $2.}}',
 'category-subcat-count-limited' => 'Ацы категорийы мидæг ис {{PLURAL:$1|$1 дæлкатегори|$1 дæлкатегорийы}}.',
 'category-file-count-limited'   => 'Ацы категорийы {{PLURAL:$1|$1 файл|$1 файлы}} ис.',
 'listingcontinuesabbrev'        => '(дарддæрдзу)',
@@ -141,6 +142,7 @@ $messages = array(
 'qbbrowse'       => 'Фен',
 'qbedit'         => 'Баив æй',
 'qbpageoptions'  => 'Ацы фарс',
+'qbpageinfo'     => 'Фарсы контекст',
 'qbmyoptions'    => 'Мæ фæрстæ',
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
 'moredotdotdot'  => 'Фылдæр…',
@@ -151,6 +153,7 @@ $messages = array(
 'and'            => 'æмæ',
 
 'errorpagetitle'    => 'Рæдыд',
+'returnto'          => '$1 фарсмæ раздæх.',
 'tagline'           => 'Сæрибар энциклопеди Википедийы æрмæг.',
 'help'              => 'Æххуыс',
 'search'            => 'агур',
@@ -159,6 +162,7 @@ $messages = array(
 'searcharticle'     => 'Статьямæ',
 'history'           => 'Фарсы истори',
 'history_short'     => 'Истори',
+'info_short'        => 'Информаци',
 'printableversion'  => 'Мыхурмæ верси',
 'permalink'         => 'Ацы версимæ æрвитæн',
 'print'             => 'Мыхуыр',
@@ -195,11 +199,13 @@ $messages = array(
 'redirectpagesub'   => 'Рарвитыны фарс',
 'lastmodifiedat'    => 'Ацы фарс фæстаг хатт ивд æрцыд: $1, $2.', # $1 date, $2 time
 'protectedpage'     => 'Æхгæд фарс',
+'jumptonavigation'  => 'навигаци',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}} тыххæй',
 'aboutpage'            => 'Project:Афыст',
 'bugreports'           => 'Рæдыдыл хъуысынгæнинаг',
+'copyrightpage'        => '{{ns:project}}:Авторы бартæ',
 'currentevents'        => 'Ног хабæрттæ',
 'currentevents-url'    => 'Project:Xabar',
 'mainpage'             => 'Сæйраг фарс',
@@ -224,8 +230,10 @@ $messages = array(
 'showtoc'             => 'равдис',
 'hidetoc'             => 'бамбæхс',
 'viewdeleted'         => '$1 фенын дæ фæнды?',
-'site-rss-feed'       => '$1 — RSS-уаццаг',
-'site-atom-feed'      => '$1 — Atom-уаццаг',
+'site-rss-feed'       => '$1 — RSS-уадздзаг',
+'site-atom-feed'      => '$1 — Atom-уадздзаг',
+'page-rss-feed'       => '«$1» — RSS-уадздзаг',
+'page-atom-feed'      => '«$1» — Atom-уадздзаг',
 'red-link-title'      => '$1 (фыст нæма у)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -291,6 +299,7 @@ $messages = array(
 'badsiglength'            => 'Æгæр даргъ къухæрфыст, хъуамæ $1 дамгъæйæ къаддæр уа.',
 'email'                   => 'Эл. посты адрис',
 'loginsuccess'            => 'Ныр та Википедийы архайыс $1, зæгъгæ, ахæм номæй.',
+'nouserspecified'         => 'Дæхи бацамонын хъæуы: дæ архайæджы ном цы у.',
 'wrongpasswordempty'      => 'Пароль афтид уыд. Афтæ нæ баззы, ныффыс-ма исты пароль.',
 'mailmypassword'          => 'Рарвит мæм ног пароль',
 'noemail'                 => 'Архайæг $1 йæ электрон посты адрис нæ ныууагъта.',
@@ -322,12 +331,13 @@ $messages = array(
 'showdiff'           => 'Цы баивтай ацы тексты, уый фен',
 'blockednoreason'    => 'аххос амынд не ’рцыд',
 'newarticle'         => '(Ног)',
-'note'               => '<strong>Бафиппай:</strong>',
+'note'               => "'''Бафиппай:'''",
 'editing'            => 'Ивыс: $1',
+'editingsection'     => 'Ивыс $1 (фарсы хай)',
 'editconflict'       => 'Ивыны конфликт: $1',
-'longpagewarning'    => '<strong>РАГФÆДЗАХСТ: Ацы фарсы бæрцуат у $1 килобайты.
+'longpagewarning'    => "'''РАГФÆДЗАХСТ: Ацы фарсы бæрцуат у $1 килобайты.
 Сæ бæрцуат 32 килобайтæй фылдæр кæмæн у, ахæм фæрстæ иуæй-иу браузерты раст нæ зынынц.
-Кæд ахæм вариант и, уæд ацы фарсæй цалдæр фарсы скæн.</strong>',
+Кæд ахæм вариант и, уæд ацы фарсæй цалдæр фарсы скæн.'''",
 'templatesused'      => 'Ацы фарсы шаблонтæ:',
 'template-protected' => '(æхгæд)',
 
@@ -339,6 +349,8 @@ $messages = array(
 'page_first'          => 'фыццаг',
 'page_last'           => 'фæстаг',
 'histlegend'          => 'Куыд æй æмбарын: (нырыккон) = нырыккон версийæ хъауджыдæрдзинад, (раздæры) = раздæры версийæ хъауджыдæрдзинад, Ч = чысыл ивддзинад.',
+'histfirst'           => 'раздæр',
+'histlast'            => 'фæстæдæр',
 'historyempty'        => '(афтид)',
 
 # Revision feed
@@ -355,18 +367,21 @@ $messages = array(
 'lineno' => 'Рæнхъ $1:',
 
 # Search results
-'searchresults'      => 'Цы ссардæуы',
-'titlematches'       => 'Статьяты сæргæндты æмцаутæ',
-'textmatches'        => 'Статьяты æмцаутæ',
-'prevn'              => '$1 фæстæмæ',
-'nextn'              => '$1 размæ',
-'searchall'          => 'æппæт',
-'powersearch'        => 'Сæрмагонд агуырд',
-'powersearch-legend' => 'Сæрмагонд агуырд',
+'searchresults'            => 'Цы ссардæуы',
+'titlematches'             => 'Статьяты сæргæндты æмцаутæ',
+'textmatches'              => 'Статьяты æмцаутæ',
+'prevn'                    => '$1 фæстæмæ',
+'nextn'                    => '$1 размæ',
+'viewprevnext'             => 'Фен ($1) ($2) ($3)',
+'search-interwiki-caption' => 'Æфсымæрон проекттæ',
+'searchall'                => 'æппæт',
+'powersearch'              => 'Сæрмагонд агуырд',
+'powersearch-legend'       => 'Сæрмагонд агуырд',
 
 # Preferences page
 'mypreferences'           => 'Æрмадз',
 'prefsnologin'            => 'Системæйæн дæхи нæ бацамыдтай',
+'qbsettings'              => 'Навигацион таг',
 'qbsettings-none'         => 'Ма равдис',
 'qbsettings-fixedleft'    => 'Галиуырдыгæй',
 'qbsettings-fixedright'   => 'Рахизырдыгæй',
@@ -378,7 +393,32 @@ $messages = array(
 'timezoneoffset'          => 'Хъауджыдæрдзинад',
 
 # Groups
-'group-all' => '(æппæт)',
+'group'            => 'Къорд:',
+'group-user'       => 'Архайджытæ',
+'group-bot'        => 'Роботтæ',
+'group-sysop'      => 'Админтæ',
+'group-bureaucrat' => 'Бюрократтæ',
+'group-all'        => '(æппæт)',
+
+'group-user-member'       => 'архайæг',
+'group-bot-member'        => 'робот',
+'group-sysop-member'      => 'админ',
+'group-bureaucrat-member' => 'бюрократ',
+
+'grouppage-user'       => '{{ns:project}}:Архайджытæ',
+'grouppage-bot'        => '{{ns:project}}:Роботтæ',
+'grouppage-sysop'      => '{{ns:project}}:Админтæ',
+'grouppage-bureaucrat' => '{{ns:project}}:Бюрократтæ',
+
+# Rights
+'right-read'          => 'фæрстæ кæсын',
+'right-edit'          => 'фæрстæ ивын',
+'right-move'          => 'фæрсты нæмттæ ивын',
+'right-move-subpages' => 'фæрсты æмæ сæ дæлфæрсты нæмттæ ивын',
+'right-upload'        => 'файлтæ сæвæрын',
+'right-upload_by_url' => 'интернет-адрисæй файлтæ сæвæрын',
+'right-delete'        => 'фæрстæ аппарын',
+'right-bigdelete'     => 'фæрстæ æмæ сæ ивды истори аппарын',
 
 # User rights log
 'rightsnone' => '(нæй)',
@@ -402,26 +442,34 @@ $3',
 'recentchangeslinked' => 'Баст ивддзинæдтæ',
 
 # Upload
-'upload'          => 'Ног файл сæвæр',
-'uploadbtn'       => 'Ног файл сæвæр',
-'uploadnologin'   => 'Системæйæн дæхи нæ бацамыдтай',
-'filename'        => 'Файлы ном',
-'savefile'        => 'Бавæр æй',
-'uploadvirus'     => 'Файлы разынд вирус! Кæс $1',
-'watchthisupload' => 'Ацы файлмæ дæ цæст æрдар',
+'upload'           => 'Ног файл сæвæр',
+'uploadbtn'        => 'Ног файл сæвæр',
+'uploadnologin'    => 'Системæйæн дæхи нæ бацамыдтай',
+'uploaderror'      => 'Файл сæвæрыны рæдыд',
+'filename'         => 'Файлы ном',
+'minlength1'       => 'Файлы номы хъуамæ æппынкъаддæр иу дамгъæ уа.',
+'fileexists-thumb' => "<center>'''Ис ахæм файл'''</center>",
+'successfulupload' => 'Файлы сæвæрд фæрæстмæ',
+'savefile'         => 'Бавæр æй',
+'uploadvirus'      => 'Файлы разынд вирус! Кæс $1',
+'watchthisupload'  => 'Ацы файлмæ дæ цæст æрдар',
+
+'upload-file-error' => 'Мидæг рæдыд',
 
 # Special:ImageList
-'imagelist' => 'Нывты номхыгъд',
+'imagelist'      => 'Нывты номхыгъд',
+'imagelist_user' => 'Архайæг',
 
 # Image description page
-'filehist'          => 'Файлы истори',
-'filehist-current'  => 'нырыккон',
-'filehist-datetime' => 'Датæ/рæстæг',
-'filehist-user'     => 'Архайæг',
-'filehist-filesize' => 'Файлы бæрцуат',
-'filehist-comment'  => 'Фиппаинаг',
-'imagelinks'        => 'Æрвитæнтæ',
-'linkstoimage'      => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
+'filehist'                  => 'Файлы истори',
+'filehist-current'          => 'нырыккон',
+'filehist-datetime'         => 'Датæ/рæстæг',
+'filehist-user'             => 'Архайæг',
+'filehist-filesize'         => 'Файлы бæрцуат',
+'filehist-comment'          => 'Фиппаинаг',
+'imagelinks'                => 'Æрвитæнтæ файлмæ',
+'linkstoimage'              => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
+'shareduploadwiki-linktext' => 'файлы сфысты фарсы',
 
 # File deletion
 'filedelete-submit'           => 'Аппар',
@@ -430,6 +478,9 @@ $3',
 
 # MIME search
 'download' => 'æрбавгæн',
+
+# Unused templates
+'unusedtemplates' => 'Пайда кæмæй нæ чындæуы, ахæм шаблонтæ',
 
 # Random page
 'randompage' => 'Æнæбары æвзæрст фарс',
@@ -443,23 +494,34 @@ $3',
 
 'withoutinterwiki-submit' => 'Равдис',
 
+'fewestrevisions' => 'Къаддæр кæй ивынц, ахæм фæрстæ',
+
 # Miscellaneous special pages
-'nbytes'            => '$1 {{PLURAL:$1|байт|байты}}',
-'nlinks'            => '$1 {{PLURAL:$1|æрвитæн|æрвитæны}}',
-'nviews'            => '$1 {{PLURAL:$1|æркаст|æркасты}}',
-'lonelypages'       => 'Сидзæр фæрстæ',
-'wantedcategories'  => 'Хъæугæ категоритæ',
-'wantedpages'       => 'Хъæугæ фæрстæ',
-'shortpages'        => 'Цыбыр фæрстæ',
-'longpages'         => 'Даргъ фæрстæ',
-'protectedpages'    => 'Æхгæд фæрстæ',
-'listusers'         => 'Архайджыты номхыгъд',
-'newpages'          => 'Ног фæрстæ',
-'newpages-username' => 'Архайæг:',
-'ancientpages'      => 'Зæронддæр фæрстæ',
-'move'              => 'Ном баив',
+'nbytes'                 => '$1 {{PLURAL:$1|байт|байты}}',
+'nlinks'                 => '$1 {{PLURAL:$1|æрвитæн|æрвитæны}}',
+'nviews'                 => '$1 {{PLURAL:$1|æркаст|æркасты}}',
+'lonelypages'            => 'Сидзæр фæрстæ',
+'uncategorizedpages'     => 'Æнæкатегори фæрстæ',
+'uncategorizedimages'    => 'Æнæкатегори файлтæ',
+'uncategorizedtemplates' => 'Æнæкатегори шаблонтæ',
+'wantedcategories'       => 'Хъæугæ категоритæ',
+'wantedpages'            => 'Хъæугæ фæрстæ',
+'mostlinked'             => 'Фылдæр æрвитæнтæ кæмæ и, ахæм фæрстæ',
+'mostlinkedcategories'   => 'Фылдæр æрвитæнтæ кæмæ и, уыцы категоритæ',
+'mostrevisions'          => 'Фылдæр кæй ивынц, ахæм фæрстæ',
+'shortpages'             => 'Цыбыр фæрстæ',
+'longpages'              => 'Даргъ фæрстæ',
+'protectedpages'         => 'Æхгæд фæрстæ',
+'listusers'              => 'Архайджыты номхыгъд',
+'newpages'               => 'Ног фæрстæ',
+'newpages-username'      => 'Архайæг:',
+'ancientpages'           => 'Зæронддæр фæрстæ',
+'move'                   => 'Ном баив',
+'pager-newer-n'          => '{{PLURAL:$1|фæстæдæр иу|фæстæдæр $1}}',
+'pager-older-n'          => '{{PLURAL:$1|раздæр иу|раздæр $1}}',
 
 # Special:Log
+'specialloguserlabel'  => 'Архайæг:',
 'speciallogtitlelabel' => 'Сæргонд:',
 
 # Special:AllPages
@@ -478,6 +540,9 @@ $3',
 # Special:ListUsers
 'listusers-submit' => 'Равдис',
 
+# Special:ListGroupRights
+'listgrouprights-group' => 'Къорд',
+
 # E-mail user
 'mailnologintext' => 'Фыстæгтæ æрвитынмæ хъуамæ [[Special:UserLogin|системæйæн дæхи бавдисай]] æмæ дæ бæлвырд электронон посты адрис [[Special:Preferences|ныффыссай]].',
 'emailpage'       => 'Электронон фыстæг йæм барвит',
@@ -489,6 +554,8 @@ $3',
 'watchnologin'         => 'Системæйæн дæхи нæ бацамыдтай',
 'watchnologintext'     => 'Ацы номхыгъд ивынмæ [[Special:UserLogin|хъуамæ дæхи бацамонай системæйæн]].',
 'addedwatch'           => 'Дæ цæст кæмæ дарыс, уыцы статьятæм бафтыд.',
+'removedwatch'         => 'Нал дарыс дæ цæст',
+'removedwatchtext'     => 'Фарсмæ «[[:$1]]» нал дарыс дæ цæст.',
 'watch'                => 'Дæ цæст æрдар',
 'watchthispage'        => 'Ацы фарсмæ дæ цæст æрдар',
 'unwatch'              => 'Мауал дæ цæст дар',
@@ -511,6 +578,8 @@ $3',
 'exblank'               => 'фарс афтид уыдис',
 'deleteotherreason'     => 'Æндæр кæнæ уæлæмхасæн аххос:',
 'deletereasonotherlist' => 'Æндæр аххос',
+'protectcomment'        => 'Сæхкæнынæн аххос:',
+'protectexpiry'         => 'Кæдмæ æхгæд у:',
 'restriction-type'      => 'Бартæ:',
 
 # Restrictions (nouns)
@@ -530,11 +599,14 @@ $3',
 'whatlinkshere'           => 'Цавæр æрвитæнтæ цæуынц ардæм',
 'whatlinkshere-page'      => 'Фарс:',
 'linklistsub'             => '(Æрвитæнты номхыгъд)',
+'whatlinkshere-next'      => '{{PLURAL:$1|фæдылдзог|фæдылдзог $1}}',
 'whatlinkshere-links'     => '← æрвитæнтæ',
 'whatlinkshere-hidelinks' => '$1 æрвитæнтæ',
 'whatlinkshere-filters'   => 'Фильтртæ',
 
 # Block/unblock
+'blockip'            => 'Бахъоды кæн',
+'blockip-legend'     => 'Бахъоды æй кæн',
 'ipbreason'          => 'Аххос',
 'ipbreasonotherlist' => 'Æндæр аххос',
 'ipbotherreason'     => 'Æндæр кæнæ уæлæмхасæн аххос:',
@@ -557,24 +629,27 @@ $3',
 'importnotext' => 'Афтид у кæнæ текст дзы нæй',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'Мæхи фарс (дæу тыххæй ам ныффысс)',
-'tooltip-pt-mytalk'       => 'Мæ дискусси',
-'tooltip-pt-preferences'  => 'Википеди куыд кусы, уый срæвдз кæн дæ хъæуындзинæдтæм гæсгæ',
-'tooltip-pt-mycontris'    => 'Мæ бавæрд',
-'tooltip-pt-login'        => 'Системæмæ дæхи бацамонай, кæд æцæг дæ хæс нæу, уæддæр',
-'tooltip-pt-logout'       => 'Регистрацигонд сеансæй рацу',
-'tooltip-ca-edit'         => 'Ацы фарс дæ бон у ивын. Дæ хорзæхæй, «Фен уал æй» джыбыйæ пайда кæн',
-'tooltip-ca-protect'      => 'Ацы фарс ивддзинæдтæй сæхгæн',
-'tooltip-ca-delete'       => 'Аппар ацы фарс',
-'tooltip-ca-watch'        => 'Дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъдмæ бафтау',
-'tooltip-n-mainpage'      => 'Сæйраг фарсмæ рацу',
-'tooltip-n-portal'        => 'Проекты тыххæй æмæ, дæу цы бон у, уый тыххæй дæр',
-'tooltip-n-recentchanges' => 'Чи æмæ цавæр статьяты баивта',
-'tooltip-n-help'          => 'Кæд цыдæртæ нæ бамбæрстай',
-'tooltip-t-whatlinkshere' => 'Ацы фарсмæ чи ’рвитынц, ахæм фæрсты номхыгъд',
-'tooltip-t-upload'        => 'Нывтæ кæнæ мультимедиа-файлтæ бавæр',
-'tooltip-t-specialpages'  => 'Сæрмагонд фæрсты номхыгъд',
-'tooltip-ca-nstab-image'  => 'Нывы фарс',
+'tooltip-pt-userpage'      => 'Мæхи фарс (дæу тыххæй ам ныффысс)',
+'tooltip-pt-mytalk'        => 'Æндæр ахрхайджытæ мын цы дзурынц',
+'tooltip-pt-preferences'   => 'Википеди куыд кусы, уый срæвдз кæн дæ хъæуындзинæдтæм гæсгæ',
+'tooltip-pt-mycontris'     => 'Цы у мæ бавæрд',
+'tooltip-pt-login'         => 'Системæмæ дæхи бацамонай, кæд æцæг дæ хæс нæу, уæддæр',
+'tooltip-pt-logout'        => 'Регистрацигонд сеансæй рацу',
+'tooltip-ca-edit'          => 'Ацы фарс дæ бон у ивын. Дæ хорзæхæй, «Фен уал æй» джыбыйæ пайда кæн',
+'tooltip-ca-protect'       => 'Ацы фарс ивддзинæдтæй сæхгæн',
+'tooltip-ca-delete'        => 'Аппар ацы фарс',
+'tooltip-ca-watch'         => 'Дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъдмæ бафтау',
+'tooltip-n-mainpage'       => 'Сæйраг фарсмæ рацу',
+'tooltip-n-portal'         => 'Проекты тыххæй æмæ, дæу цы бон у, уый тыххæй дæр',
+'tooltip-n-recentchanges'  => 'Чи æмæ цавæр статьяты баивта',
+'tooltip-n-randompage'     => 'Æнæбары æвзæрст фарс фен',
+'tooltip-n-help'           => 'Кæд цыдæртæ нæ бамбæрстай',
+'tooltip-t-whatlinkshere'  => 'Ацы фарсмæ чи ’рвитынц, ахæм фæрсты номхыгъд',
+'tooltip-t-upload'         => 'Нывтæ кæнæ мультимедиа-файлтæ бавæр',
+'tooltip-t-specialpages'   => 'Сæрмагонд фæрсты номхыгъд',
+'tooltip-ca-nstab-user'    => 'Архайæджы фарс фен',
+'tooltip-ca-nstab-project' => 'Проекты фарс',
+'tooltip-ca-nstab-image'   => 'Нывы фарс',
 
 # Attribution
 'others' => 'æндæртæ',
@@ -582,13 +657,21 @@ $3',
 # Spam protection
 'spamprotectiontitle' => 'Спамы ныхмæ фильтр',
 
+# Browsing diffs
+'previousdiff' => '← Раздæры ивддзинад',
+'nextdiff'     => 'Фæстæдæр ивддзинад →',
+
 # Media information
-'widthheightpage' => '$1 × $2, $3 фарсы',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|фарс|фарсы}}',
 
 # Special:NewImages
 'newimages' => 'Ног нывты галерей',
 'ilsubmit'  => 'Агур',
 'bydate'    => 'рæстæгмæ гæсгæ',
+
+# Metadata
+'metadata'        => 'Метабæрæггæнæнтæ',
+'metadata-expand' => 'Фылдæр детальтæ равдис',
 
 # EXIF tags
 'exif-artist' => 'Чи йæ систа',

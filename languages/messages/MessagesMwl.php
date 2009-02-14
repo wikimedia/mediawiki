@@ -252,16 +252,16 @@ La tue morada de IP atual ye $3 i l ID de l bloqueio ye $5. Por fabor, anclui un
 Para criar la páigina, ampeça a screbir an la caixa ambaixo(bei la [[{{MediaWiki:Helppage}}|páigina de ajuda]] pa mais detailhes).
 Se stás eiqui por anganho, carrega ne l boton '''retornar'''de l tou nabegador de la Anternete.",
 'noarticletext'          => 'Nun eisiste atualmente testo nesta páigina; tu puodes [[Special:Search/{{PAGENAME}}|percurar pul títalo desta páigina noutras páiginas]] ó [{{fullurl:{{FULLPAGENAME}}|action=edit}} eiditar esta páigina].',
-'previewnote'            => '<strong>Esto ye solo ua amostra; las alteraçones inda nun fúrun grabadas!</strong>',
+'previewnote'            => "'''Esto ye solo ua amostra; las alteraçones inda nun fúrun grabadas!'''",
 'editing'                => 'A eiditar $1',
 'editingsection'         => 'A eiditar $1 (cacho)',
 'copyrightwarning'       => "Por fabor, bei que todas las tues cuntribuiçones an {{SITENAME}} son cunsideradas cumo feitas ne ls termos de la lhicença $2 (bei $1 pa detailhes). Se nun quieres que l tou testo seia eiditado sin piedade i reçtribuído cunsante la gana, nun l ambies.<br 
 />
 Tu stás, al mesmo tiempo, a garantir-mos qu'esto ye algo screbido por ti, ó algo copiado d'ua fuonte de testos an domínio público ó parecido de teor lhibre.
-<strong>NUN AMBIES TRABALHO PORTEGIDO POR DREITOS DE OUTOR SIEN LA DEBIDA PERMISSON!</strong>",
-'longpagewarning'        => '<strong>Abiso: Esta páigina ten$1 kilobytes; alguns
+'''NUN AMBIES TRABALHO PORTEGIDO POR DREITOS DE OUTOR SIEN LA DEBIDA PERMISSON!'''",
+'longpagewarning'        => "'''Abiso: Esta páigina ten$1 kilobytes; alguns
 nabegadores de la anternete ténen porblemas al eiditar páiginas cun mais de 32 kb.
-Por fabor, pensa an scachar la páigina an cachos mais pequeinhos.</strong>',
+Por fabor, pensa an scachar la páigina an cachos mais pequeinhos.'''",
 'templatesused'          => 'Predefiniçons utilizadas nesta página:',
 'templatesusedpreview'   => 'Modelos outelizados neste amostra:',
 'template-protected'     => '(portegida)',
@@ -502,9 +502,9 @@ Consulte $2 para um registo de eliminações recentes.',
 'protect_expiry_invalid'      => 'La data de balidade ye ambálido.',
 'protect_expiry_old'          => 'La data de balidade stá ne l passado.',
 'protect-unchain'             => 'Zbloguiar permissones pa arrastrar',
-'protect-text'                => 'Tu eiqui puodes ber i demudar ls níbles de proteçon pa esta páigina <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-access'       => 'La tue cuonta nun ten permissones pa demudar ls níbles de proteçon de ua páigina.
-Esta ye la configuraçon atual pa la páigina <strong>$1</strong>:',
+'protect-text'                => "Tu eiqui puodes ber i demudar ls níbles de proteçon pa esta páigina '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "La tue cuonta nun ten permissones pa demudar ls níbles de proteçon de ua páigina.
+Esta ye la configuraçon atual pa la páigina '''$1''':",
 'protect-cascadeon'           => 'Esta páigina ancontra-se portegida, ua beç que se ancontra ancluída {{PLURAL:$1|na páigina listada que se segue, portegida|nas páiginas listadas que se seguen, portegidas}} cun la "porteçon porgressiba" atibada. Tu puodes demudar l níble de porteçon desta páigina, mas esso nun terá eifeito na "porteçon porgressiba".',
 'protect-default'             => '(oumisson)',
 'protect-fallback'            => 'Ye perciso la outorizaçon "$1"',
