@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Asoxor
  * @author Bangin
  * @author Erdal Ronahi
  */
@@ -370,8 +371,8 @@ $2
 
 # Login and logout pages
 'logouttitle'                => 'Derketina bikarhêner',
-'logouttext'                 => '<strong>Tu niha derketî (logged out).</strong><br />
-Tu dikarî {{SITENAME}} niha weke bikarhênerekî nediyarkirî bikarbînî, yan jî tu dikarî dîsa bi vî navê xwe yan navekî din wek bikarhêner [[Special:UserLogin|dîsa têkevî]]. Bila di bîra te de be ku gengaz e hin rûpel mîna ku tu hîn bi navê xwe qeyd kiriyî werin nîşandan, heta ku tu nîşanên çavlêgerandina (browser) xwe jênebî.',
+'logouttext'                 => "'''Tu niha derketî (logged out).'''<br />
+Tu dikarî {{SITENAME}} niha weke bikarhênerekî nediyarkirî bikarbînî, yan jî tu dikarî dîsa bi vî navê xwe yan navekî din wek bikarhêner [[Special:UserLogin|dîsa têkevî]]. Bila di bîra te de be ku gengaz e hin rûpel mîna ku tu hîn bi navê xwe qeyd kiriyî werin nîşandan, heta ku tu nîşanên çavlêgerandina (browser) xwe jênebî.",
 'welcomecreation'            => '== Bi xêr hatî, $1! ==
 
 Hesaba te hat afirandin. Tu dikarî niha [[Special:Preferences|tercîhên xwe di {{SITENAME}}]] da eyar bikî.',
@@ -552,13 +553,13 @@ Eger tu bi şaştî hatî, bizivire rûpela berê.",
 'noarticletext'                    => 'Ev rûpel niha vala ye, tu dikarî [[Special:Search/{{PAGENAME}}|Di nav gotarên din de li "{{PAGENAME}}" bigere]] an [{{fullurl:{{FULLPAGENAME}}|action=edit}} vê rûpelê biguherînî].',
 'userpage-userdoesnotexist'        => 'Account\'î bikarhêneran "$1" nehatîye qeydkirin. Xêra xwe seke ku tu dixazê vê rûpelê çêkê/biguherînê.',
 'clearyourcache'                   => "'''Zanibe:''' Piştî tomarkirinê, tu gireke cache'a browser'î xwe dîsa wînê ji bo dîtina guherandinan. '''Mozilla / Firefor /Safari:''' Kepsa ''Shift'' bigre û li ''Reload'' xe, ya ''Ctrl-Shift-R'' bikepsîne (''Cmd-Shift-R'' li cem Apple Mac); '''IE:''' Kepsa ''Ctrl'' bigre û li ''Reload'' xe, ya li ''Ctrl-F5''; '''Konqueror:''' bes li ''Reload'' xe ya li kepsa ''F5'' xe; bikarhênerên '''Opera''' girekin belkî cache'a xwe tevda di bin ''Tools → Preferences'' da valabikin.",
-'usercssjsyoucanpreview'           => "<strong>Tîp:</strong> 'Pêşdîtin' bikarwîne ji bo tu bibînê çawa CSS/JS'ê te yê nuh e berî tomarkirinê.",
+'usercssjsyoucanpreview'           => "'''Tîp:''' 'Pêşdîtin' bikarwîne ji bo tu bibînê çawa CSS/JS'ê te yê nuh e berî tomarkirinê.",
 'usercsspreview'                   => "'''Zanibe ku tu bes CSS'ê xwe pêşdibînê.'''
 '''Ew hên nehatîye tomarkirin!'''",
 'userjspreview'                    => "'''Zanibe ku tu bes JavaScript'a xwe dicerbînê, ew hên nehatîye tomarkirin!'''",
 'updated'                          => '(Hat taze kirin)',
-'note'                             => '<strong>Not:</strong>',
-'previewnote'                      => '<strong>Ji bîr neke ku ev bi tenê çavdêriyek e, ev rûpel hîn nehat qeyd kirin!</strong>',
+'note'                             => "'''Not:'''",
+'previewnote'                      => "'''Ji bîr neke ku ev bi tenê çavdêriyek e, ev rûpel hîn nehat qeyd kirin!'''",
 'editing'                          => 'Biguherîne: "$1"',
 'editingsection'                   => 'Tê guherandin: $1 (beş)',
 'editingcomment'                   => '$1 (şîrove) tê guherandin.',
@@ -570,16 +571,16 @@ Divê tû wan bikî yek.
 Heke niha tomar bikî, '''bi tene''' nivîsara qutiya jor wê bê tomarkirin.",
 'yourtext'                         => 'Nivîsara te',
 'storedversion'                    => 'Versiyona qeydkirî',
-'editingold'                       => '<strong>HÎŞYAR: Tu ser revîsyoneke kevn a vê rûpelê dixebitî.
+'editingold'                       => "'''HÎŞYAR: Tu ser revîsyoneke kevn a vê rûpelê dixebitî.
 Eger tu qeyd bikî, hemû guhertinên ji vê revîzyonê piştre winda dibin.
-</strong>',
+'''",
 'yourdiff'                         => 'Ciyawazî',
 'copyrightwarning'                 => "Dîqat bike: Hemû tevkariyên {{SITENAME}} di bin $2 de tên belav kirin (ji bo hûragahiyan li $1 binêre). Eger tu nexwazî ku nivîsên te bê dilrehmî bên guherandin û li gora keyfa herkesî bên belavkirin, li vir neweşîne.<br />
 Tu soz didî ku te ev bi xwe nivîsand an jî ji çavkaniyekê azad an geliyane ''(public domain)'' girt.
-<strong>BERHEMÊN MAFÊN WAN PARASTÎ (©) BÊ DESTÛR NEWEŞÎNE!</strong>",
+'''BERHEMÊN MAFÊN WAN PARASTÎ (©) BÊ DESTÛR NEWEŞÎNE!'''",
 'longpagewarning'                  => "HIŞYAR: Drêjahiya vê rûpelê $1 kB (kilobyte) e, ev pir e. Dibe ku çend ''browser''
 baş nikarin rûpelên ku ji 32 kB drêjtir in biguherînin. Eger tu vê rûpelê beş beş bikî gelo ne çêtir e?",
-'protectedpagewarning'             => '<strong>ŞIYARÎ:  Ev rûpel tê parastin. Bi tenê bikarhênerên ku xwediyên mafên "sysop" ne, dikarin vê rûpelê biguherînin.</strong>',
+'protectedpagewarning'             => "'''ŞIYARÎ:  Ev rûpel tê parastin. Bi tenê bikarhênerên ku xwediyên mafên \"sysop\" ne, dikarin vê rûpelê biguherînin.'''",
 'templatesused'                    => 'Şablon di van rûpelan da tê bikaranîn',
 'templatesusedpreview'             => 'Şablon yê di vê pêşdîtinê da tên bikaranîn:',
 'templatesusedsection'             => 'Şablon yê di vê perçê da tên bikaranîn:',
@@ -746,7 +747,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'userrights-lookup-user'      => 'Îdarekirina grûpan',
 'userrights-user-editname'    => 'Navî bikarhênerê têke:',
 'editusergroup'               => 'Grûpên bikarhêneran biguherîne',
-'editinguser'                 => "Mafên bikarhêner '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) tên xeyrandin",
+'editinguser'                 => "Mafên bikarhêner '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) tên xeyrandin",
 'userrights-editusergroup'    => 'Grûpên bikarhêneran biguherîne',
 'saveusergroups'              => 'Grûpên bikarhêneran tomarbike',
 'userrights-groupsmember'     => 'Endamê:',
@@ -763,8 +764,8 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'userrights-unchangeable-col' => 'Grûpan yên tu nikarê biguherînê',
 
 # Groups
-'group'            => 'Kom:',
-'group-user'       => 'Bikarhêneran',
+'group'            => 'گرووپ:',
+'group-user'       => 'بەکارھێنەران',
 'group-bot'        => 'Bot',
 'group-sysop'      => 'Koordînatoran',
 'group-bureaucrat' => 'Bûrokrat',
@@ -867,13 +868,13 @@ Format {{PLURAL:$3|yê tê|yên tên}} xastin {{PLURAL:$3|ev e|ev in}}: $2.',
 'filetype-missing'       => 'Piştnavî datayê tune (wek ".jpg").',
 'large-file'             => "Mezinbûna data'yan bila ne ji $1 mezintir bin; ev data'ya $2 mezin e.",
 'emptyfile'              => "Data'ya barkirî vala ye. Sedemê valabûnê belkî şaşnivîsek di navê data'yê da ye. Xêra xwe seke, ku tu rast dixazê vê data'yê barbikê.",
-'fileexists'             => 'Datayek bi vê navê berê heye. Eger tu niha li „Tomarbike“ xê, ew wêneyê kevin ê here û wêneyê te ê were barkirin di bin wê navê. Di bin <strong><tt>$1</tt></strong> du dikarî sekê, ku di dixwazê wê wêneyê biguherînê. Eger tu naxazê, xêra xwe li „Betal“ xe.',
-'fileexists-extension'   => 'Datayek wek vê navê berê heye:<br />
-Navî datayê yê tê barkirin: <strong><tt>$1</tt></strong><br />
-Navî datayê yê berê heyê: <strong><tt>$2</tt></strong><br />
-Xêra xwe navekî din bibîne.',
+'fileexists'             => "Datayek bi vê navê berê heye. Eger tu niha li „Tomarbike“ xê, ew wêneyê kevin ê here û wêneyê te ê were barkirin di bin wê navê. Di bin '''<tt>$1</tt>''' du dikarî sekê, ku di dixwazê wê wêneyê biguherînê. Eger tu naxazê, xêra xwe li „Betal“ xe.",
+'fileexists-extension'   => "Datayek wek vê navê berê heye:<br />
+Navî datayê yê tê barkirin: '''<tt>$1</tt>'''<br />
+Navî datayê yê berê heyê: '''<tt>$2</tt>'''<br />
+Xêra xwe navekî din bibîne.",
 'fileexists-thumb'       => "<center>'''Wêne yê berê heye'''</center>",
-'file-thumbnail-no'      => 'Navî vê datayê bi <strong><tt>$1</tt></strong> destpêdike. Ev dibêje ku ev wêneyekî çûçik e <i>(thumbnail)</i>. Xêra xwe seke, ku belkî versyonekî mezin yê vê wêneyê li cem te heye û wê wêneyê mezintir di bin navî orîjînal da barbike.',
+'file-thumbnail-no'      => "Navî vê datayê bi '''<tt>$1</tt>''' destpêdike. Ev dibêje ku ev wêneyekî çûçik e ''(thumbnail)''. Xêra xwe seke, ku belkî versyonekî mezin yê vê wêneyê li cem te heye û wê wêneyê mezintir di bin navî orîjînal da barbike.",
 'fileexists-forbidden'   => 'Medyayek bi vê navî heye; xêra xwe şonda here û vê medyayê bi navekî din barbike.
 [[File:$1|thumb|center|$1]]',
 'successfulupload'       => 'Barkirin serkeftî',
@@ -894,7 +895,7 @@ Xêra xwe navekî din bibîne.',
 Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 Înformasyonan li ser jêbirinê kevin ra:",
-'filename-bad-prefix'    => 'Nava wê data\'yê, yê tu niha bardikê, bi <strong>"$1"</strong> destpêdike. Kamêrayên dîjîtal wan navan didin wêneyên xwe. Ji kerema xwe navekî baştir binivisîne ji bo mirov zûtir zanibin ku şayeşê vê wêneyê çî ye.',
+'filename-bad-prefix'    => "Nava wê data'yê, yê tu niha bardikê, bi '''\"\$1\"''' destpêdike. Kamêrayên dîjîtal wan navan didin wêneyên xwe. Ji kerema xwe navekî baştir binivisîne ji bo mirov zûtir zanibin ku şayeşê vê wêneyê çî ye.",
 
 'license' => 'Lîsens:',
 
@@ -1190,7 +1191,7 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 bi [[User:$2|$2]] ([[User talk:$2|guftûgo]]) venizivre; keseke din wê rûpelê zivrandiye an guherandiye.
 
 Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
-'editcomment'      => 'Kurtenivîsê guherandinê ev bû: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => "Kurtenivîsê guherandinê ev bû: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Guherandina $1 şondakir; dîsa guharte verzyona $2.',
 

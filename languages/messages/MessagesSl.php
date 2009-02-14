@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Smihael
  * @author XJamRastafire
  * @author romanm
  * @author sl.wikipedia.org administrators
@@ -337,7 +338,12 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 # General errors
 'error'                => 'Napaka',
 'databaseerror'        => 'Napaka zbirke podatkov',
-'dberrortext'          => 'Iskanje ali drugo želeno dejanje je verjetno zahtevalo preveč časa. Mogoči razlogi so: <ul> <li>Iskanje z vsemi besedami v narekovajih. Poskusite najprej iskati brez njih. Kadar to ni zadosti, vpišite še nekaj iskalnih pojmov ali dodajte besedo ali dve zunaj narekovajev, s čimer boste označili splošno predmetno področje. <li>Zelo obsežen spisek nadzorov (verjetno čez 10.000 strani) ob obremenjenih strežnikih. <li>Morda ste poskušali dejanje izvesti ob začasni izredni obremenitvi strežnikov. Ob izrednih obremenitvah lahko pride do nenadnega končanja številnih pomembnih opravil, da se dosežejo običajni odzivni časi. Če se zahtevano dejanje sicer izvede brez težav, poskusite znova v nekaj minutah. </ul> <p>Splošno sporočilo o napaki je:</p> <p> Prišlo je do napake zbirke podatkov. Vzrok bi lahko bil nesprejemljiv iskalni niz (glejte $5) ali programski hrošč. Zadnje poskušano iskanje:</p> <blockquote><tt>$1</tt></blockquote> znotraj funkcije »<tt>$2</tt>«. MySQL je vrnil napako »<tt>$3: $4</tt>«. <p>Če je zgornja napaka 2013, je vaš postopek končal upravljavec podatkovnega bremena. Prosimo, poskusite z ustreznejšim iskanjem ali iskanje ponovite ob manj obremenjenih strežnikih. Opravičujemo se za nevšečnosti.</p>',
+'dberrortext'          => 'Prišlo je do napake zbirke podatkov.
+Vzrok bi lahko bil nesprejemljiv iskalni niz ali programski hrošč.
+Zadnje poskušano iskanje:
+<blockquote><tt>$1</tt></blockquote>
+znotraj funkcije »<tt>$2</tt>«.
+MySQL je vrnil napako »<tt>$3: $4</tt>«.',
 'dberrortextcl'        => 'Pri iskanju v zbirki podatkov je prišlo do skladenjske napake. Zadnje iskanje v zbirki podatkov: »$1« iz funkcije »$2«. MySQL je vrnil napako »$3: $4«.',
 'noconnect'            => 'S PB na $1 se ne morem povezati.',
 'nodb'                 => "Zbirke podatkov '$1' ne morem izbrati",
@@ -449,21 +455,21 @@ Z njim se lahko prijavite in ga spremenite.
 'blocked-mailpassword'       => 'Urejanje z vašega IP naslova je blokirano. Da bi preprečili zlorabe, vam ni dovoljeno tudi uporabljati funkcije za povrnitev pozabljenega gesla.',
 'eauthentsent'               => 'E-sporočilo je poslano na navedeni e-naslov. Če želite tja poslati še katero, po v omenjenem sporočilu navedenih navodilih potrdite lastništvo naslova.',
 'mailerror'                  => 'Napaka pri pošiljanju pošte: $1',
-'acct_creation_throttle_hit' => 'Obiskovalci {{GRAMMAR:rodilnik|{{SITENAME}}}} so s tem [[IP-naslov]]om v zadnjih 24 urah ustvarili že $1 {{PLURAL:$1|uporabniški račun|uporabniška računa|uporabniške račune|uporabniških računov|uporabniških računov}} in s tem dosegli največje dopustno število v omenjenem časovnem obdobju. Novih računov zato s tem IP-naslovom trenutno žal ne morete več ustvariti.
+'acct_creation_throttle_hit' => 'Obiskovalci {{GRAMMAR:rodilnik|{{SITENAME}}}} so s tem IP-naslovom v zadnjih 24 urah ustvarili že $1 {{PLURAL:$1|uporabniški račun|uporabniška računa|uporabniške račune|uporabniških računov|uporabniških računov}} in s tem dosegli največje dopustno število v omenjenem časovnem obdobju. Novih računov zato s tem IP-naslovom trenutno žal ne morete več ustvariti.
 
 == Urejate prek posredniškega strežnika? ==
 
 Če urejate prek AOL ali iz Bližnjega vzhoda, Afrike, Avstralije, Nove Zelandije ali iz šole, knjižnice ali podjetja, si IP-naslov morda delite z drugimi uporabniki. Če je tako, ste to sporočilo morda prejeli, čeprav niste ustvarili še nobenega računa. Znova se lahko poskusite registrirati po nekaj urah.',
-'emailauthenticated'         => 'Čas potrditve vašega e-poštnega naslova: $1',
+'emailauthenticated'         => 'Vaš e-poštni naslov je bil potrjen $2 $3.',
 'emailnotauthenticated'      => 'Vaš e-poštni naslov še ni potrjen. Za navedene
 možnosti se e-pošte ne bo pošiljalo.',
-'noemailprefs'               => '<strong>E-poštnega naslova niste vnesli</strong>, zato naslednje možnosti ne bodo delovale.',
+'noemailprefs'               => 'E-poštnega naslova niste vnesli, zato naslednje možnosti ne bodo delovale.',
 'emailconfirmlink'           => 'Potrdite svoj e-poštni naslov',
 'invalidemailaddress'        => 'E-poštni naslov zaradi neveljavne oblike ni sprejemljiv. Prosimo, vpišite pravilno oblikovanega ali polje izpraznite.',
 'accountcreated'             => 'Račun je ustvarjen',
 'accountcreatedtext'         => 'Uporabniški račun za »$1« je ustvarjen.',
 'createaccount-title'        => 'Ustvarjanje računa za {{GRAMMAR:tožilnik|{{SITENAME}}}}',
-'createaccount-text'         => 'Nekdo ($1) je ustvaril račun $2 na {{GRAMMAR:dajalnik|{{SITENAME}}}} ($4). Geslo za »$2« je »$3«. Priporočljivo je, da se prijavite in spremenite svoje geslo sedaj.
+'createaccount-text'         => 'Nekdo je ustvaril račun $2 na {{GRAMMAR:dajalnik|{{SITENAME}}}} ($4). Geslo za »$2« je »$3«. Priporočljivo je, da se prijavite in spremenite svoje geslo sedaj.
 
 To sporočilo lahko prezrete, če je bil račun ustvarjen pomotoma.',
 'loginlanguagelabel'         => 'Jezik: $1',
@@ -543,20 +549,20 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 'anontalkpagetext'          => "---- ''To je pogovorna stran za nepodpisanega uporabnika, ki še ni ustvaril računa ali, ki ga ne uporablja. Zaradi tega moramo uporabiti števčen IP address za njegovo/njeno ugotavljanje istovetnosti. Takšen IP naslov si lahko deli več uporabnikov. Če ste nepodpisan uporabnik in če menite, da so nepomembne pripombe namenjene vam, prosimo [[Special:UserLogin|ustvarite račun ali pa se vpišite]], da preprečite naslednje zmede z drugimi nepodpisanimi uporabniki.''",
 'noarticletext'             => 'Na tej strani ni trenutno nobenega besedila. Naslov strani lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati]] na drugih straneh ali pa [{{fullurl:{{FULLPAGENAME}}|action=edit}} stran uredite].',
 'clearyourcache'            => "'''Opomba:''' Da bodo spremembe prišle do veljave, po shranitvi izpraznite predpomnilnik svojega brskalnika: '''Mozilla/Safari:''' držite ''Shift'' in kliknite ''Reload'' (ali pritisnite ''Ctrl-Shift-R''), '''Internet Explorer:''' ''Ctrl-F5'', '''Opera/Konqueror:''' ''F5''.",
-'usercssjsyoucanpreview'    => "<strong>Nasvet:</strong> Za preizkušanje svojega novega CSS/JS pred shranjevanjem uporabite gumb ''Prikaži predogled''.",
+'usercssjsyoucanpreview'    => "'''Nasvet:''' Za preizkušanje svojega novega CSS/JS pred shranjevanjem uporabite gumb ''Prikaži predogled''.",
 'usercsspreview'            => "'''OPOZORILO: svoj uporabniški CSS le predogledujete in ga še niste shranili!'''",
 'userjspreview'             => "'''Svoj uporabniški Javascript le predogledujete in še ni shranjen!'''",
 'userinvalidcssjstitle'     => "'''Opozorilo:''' koža »$1« ne obstaja. Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr. {{ns:user}}:Blabla/monobook.css namesto {{ns:user}}:Blabla/Monobook.css.",
 'updated'                   => '(Posodobljeno)',
-'note'                      => '<strong>Opomba:</strong>',
-'previewnote'               => '<strong>Stran le predogledujete in še ni shranjena!</strong>',
+'note'                      => "'''Opomba:'''",
+'previewnote'               => "'''Stran le predogledujete in še ni shranjena!'''",
 'previewconflict'           => 'V prikazanem predogledu je v zgornjem predelu urejanja navedeno besedilo, kakor se bo prikazalo, če ga boste shranili.',
-'session_fail_preview'      => '<strong>Zaradi izgube podatkov o seji nam vašega urejanja žal ni uspelo obdelati. Prosimo, poskusite znova. Če bo spet prišlo do napake, se odjavite in ponovno prijavite. Za nevšečnosti se opravičujemo.</strong>',
-'session_fail_preview_html' => "<strong>Zaradi izgube podatkov o seji nam vašega urejanja žal ni uspelo obdelati.</strong>
+'session_fail_preview'      => "'''Zaradi izgube podatkov o seji nam vašega urejanja žal ni uspelo obdelati. Prosimo, poskusite znova. Če bo spet prišlo do napake, se odjavite in ponovno prijavite. Za nevšečnosti se opravičujemo.'''",
+'session_fail_preview_html' => "'''Zaradi izgube podatkov o seji nam vašega urejanja žal ni uspelo obdelati.'''
 
 ''Ker ima ta wiki vklopljen surovi HTML, je predogled zaradi preprečevanja napadov z JavaScriptom skrit.''
 
-<strong>Če gre za dobronameren poskus urejanja, vas prosimo, da poskusite znova. Če bo spet prišlo do napake, se odjavite in ponovno prijavite. Za nevšečnosti se opravičujemo.</strong>",
+'''Če gre za dobronameren poskus urejanja, vas prosimo, da poskusite znova. Če bo spet prišlo do napake, se odjavite in ponovno prijavite. Za nevšečnosti se opravičujemo.'''",
 'editing'                   => 'Urejanje $1',
 'editingsection'            => 'Urejanje $1 (razdelek)',
 'editingcomment'            => 'Urejanje $1 (pripomba)',
@@ -564,22 +570,22 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 'explainconflict'           => 'Med vašim urejanjem je stran spremenil nekdo drug. Zgornje besedilno območje vsebuje njeno trenutno vsebino in bo edino, ki se bo ob izbiri ukaza »Shrani stran« shranilo. V spodnjem območju so prikazane vaše spremembe, ki jih boste morali vključiti v zgornje.<br />',
 'yourtext'                  => 'Vaše besedilo',
 'storedversion'             => 'Shranjena različica',
-'nonunicodebrowser'         => '<strong>OPOMBA</strong>: Vaš brskalnik ne podpira Unicode, zato boste pri urejanju strani z nelatiničnimi znaki morda imeli težave. Za obhod te težave se bodo <strong>ne-ASCII-znaki v urejevalnem polju spodaj pojavili kot šestnajstiške kode</strong>.',
-'editingold'                => '<strong>Urejate staro redakcijo strani.
-Če jo boste shranili, bodo vse poznejše spremembe razveljavljene.</strong>',
+'nonunicodebrowser'         => "'''OPOMBA''': Vaš brskalnik ne podpira Unicode, zato boste pri urejanju strani z nelatiničnimi znaki morda imeli težave. Za obhod te težave se bodo '''ne-ASCII-znaki v urejevalnem polju spodaj pojavili kot šestnajstiške kode'''.",
+'editingold'                => "'''Urejate staro redakcijo strani.
+Če jo boste shranili, bodo vse poznejše spremembe razveljavljene.'''",
 'yourdiff'                  => 'Primerjava',
-'copyrightwarning'          => 'Vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} se obravnavajo kot objave pod pogoji $2 (za podrobnosti glej $1). Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.
+'copyrightwarning'          => "Vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} se obravnavajo kot objave pod pogoji $2 (za podrobnosti glej $1). Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.
 
 Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa prepisali iz javno dostopnega ali podobnega prostega vira oziroma da pri tem ne kršite avtorskih pravic.
-<strong>NE DODAJAJTE AVTORSKO ZAŠČITENEGA DELA BREZ DOVOLJENJA !</strong>',
-'copyrightwarning2'         => 'Vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} se lahko urejajo, spreminjajo ali odstranijo s strani drugih uporabnikov. Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.
+'''NE DODAJAJTE AVTORSKO ZAŠČITENEGA DELA BREZ DOVOLJENJA !'''",
+'copyrightwarning2'         => "Vsi prispevki k {{GRAMMAR:dajalnik|{{SITENAME}}}} se lahko urejajo, spreminjajo ali odstranijo s strani drugih uporabnikov. Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.
 
 Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa prepisali iz javno dostopnega ali podobnega prostega vira oziroma da pri tem ne kršite avtorskih pravic ($1).
-<strong>NE DODAJAJTE AVTORSKO ZAŠČITENEGA DELA BREZ DOVOLJENJA !</strong>',
+'''NE DODAJAJTE AVTORSKO ZAŠČITENEGA DELA BREZ DOVOLJENJA !'''",
 'longpagewarning'           => 'Stran je dolga $1 {{PLURAL:$1|kilobajt|kilobajta|kilobajte|kilobajtov|kilobajtov}}. To je morda več, kot bi želeli, zato premislite o razdelitvi na podstrani oziroma arhiviranju.',
-'longpageerror'             => '<strong>NAPAKA: Predloženo besedilo je dolgo $1 {{PLURAL:$1|kilobajt|kilobajta|kilobajte|kilobajtov|kilobajtov}}, s čimer presega največjo dovoljeno dolžino $2 {{PLURAL:$2|kilobajta|kilobajtov|kilobajtov|kilobajtov|kilobajtov}}. Zato ga žal ni mogoče shraniti.</strong>',
-'readonlywarning'           => '<strong>OPOZORILO: Zbirka podatkov je zaradi vzdrževanja začasno  zaklenjena, kar pomeni, da sprememb ne morete shraniti. Prosimo, prenesite besedilo v urejevalnik in ga dodajte pozneje.</strong>',
-'protectedpagewarning'      => '<strong>OPOMBA:</strong> Stran je zaklenjena in jo lahko urejajo le sodelavci z vzdrževalnimi pravicami. Pri urejanju sledite [[Project:Smernice_zaščitenih_strani|smernicam zaščitenih strani]].',
+'longpageerror'             => "'''NAPAKA: Predloženo besedilo je dolgo $1 {{PLURAL:$1|kilobajt|kilobajta|kilobajte|kilobajtov|kilobajtov}}, s čimer presega največjo dovoljeno dolžino $2 {{PLURAL:$2|kilobajta|kilobajtov|kilobajtov|kilobajtov|kilobajtov}}. Zato ga žal ni mogoče shraniti.'''",
+'readonlywarning'           => "'''OPOZORILO: Zbirka podatkov je zaradi vzdrževanja začasno  zaklenjena, kar pomeni, da sprememb ne morete shraniti. Prosimo, prenesite besedilo v urejevalnik in ga dodajte pozneje.'''",
+'protectedpagewarning'      => "'''OPOMBA:''' Stran je zaklenjena in jo lahko urejajo le sodelavci z vzdrževalnimi pravicami. Pri urejanju sledite [[Project:Smernice_zaščitenih_strani|smernicam zaščitenih strani]].",
 'semiprotectedpagewarning'  => "'''Opomba:''' Stran je [[Project:Delna zaščita|zaščitena]] in jo lahko urejajo le uveljavljeni uporabniki.",
 'cascadeprotectedwarning'   => "'''Opozorilo:''' Ta stran je zaklenjena, tako da jo lahko urejajo le administratorji, saj je bila vključena med sledeče {{PLURAL:$1|stran|strani}}:",
 'templatesused'             => 'Na strani uporabljene predloge:',
@@ -861,16 +867,16 @@ ali za neposredno povezavo z datoteko
 'large-file'                  => 'Priporočeno je, da datoteke niso večje od $1; ta datoteka je $2.',
 'largefileserver'             => 'Velikost datoteke presega strežnikove nastavitve.',
 'emptyfile'                   => 'Naložena datoteka je morda prazna. Do tega bi lahko prišlo zaradi slovnične napake v imenu. Ali datoteko resnično želite naložiti?',
-'fileexists'                  => 'Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran <strong><tt>$1</tt></strong>. Da preprečite navzkrižja z že obstoječimi datotekami, uporabljajte za datoteke opisna imena (npr. »Eifflov stolp, Pariz, ponoči.jpg«).',
-'fileexists-extension'        => 'Datoteka s podobnim imenom že obstaja:<br />
-Ime naložene datoteke: <strong><tt>$1</tt></strong><br />
-Ime obstoječe datoteke: <strong><tt>$2</tt></strong><br />
-Prosimo, izberite drugo ime.',
+'fileexists'                  => "Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran '''<tt>$1</tt>'''. Da preprečite navzkrižja z že obstoječimi datotekami, uporabljajte za datoteke opisna imena (npr. »Eifflov stolp, Pariz, ponoči.jpg«).",
+'fileexists-extension'        => "Datoteka s podobnim imenom že obstaja:<br />
+Ime naložene datoteke: '''<tt>$1</tt>'''<br />
+Ime obstoječe datoteke: '''<tt>$2</tt>'''<br />
+Prosimo, izberite drugo ime.",
 'fileexists-thumb'            => "'''<center>Obstoječa datoteka</center>'''",
-'fileexists-thumbnail-yes'    => 'Kot izgleda, je ta slika pomanjšana <i>(thumbnail)</i>. Prosimo, preverite datoteko <strong><tt>$1</tt></strong>.<br />
-Če je preverjena datoteka enaka kot ta, ki jo nalage, ni potrebno nalagati še dodatne sličice.',
-'file-thumbnail-no'           => 'Ime datoteke se začne z <strong><tt>$1</tt></strong>. Izgleda, da je to pomanjšana slika <i>(thumbnail)</i>.
-Če imate sliko polne resolucije, jo naložite, drugače spremenite ime datoteke.',
+'fileexists-thumbnail-yes'    => "Kot izgleda, je ta slika pomanjšana ''(thumbnail)''. Prosimo, preverite datoteko '''<tt>$1</tt>'''.<br />
+Če je preverjena datoteka enaka kot ta, ki jo nalage, ni potrebno nalagati še dodatne sličice.",
+'file-thumbnail-no'           => "Ime datoteke se začne z '''<tt>$1</tt>'''. Izgleda, da je to pomanjšana slika ''(thumbnail)''.
+Če imate sliko polne resolucije, jo naložite, drugače spremenite ime datoteke.",
 'fileexists-forbidden'        => 'Datoteka s tem imenom že obstaja in je ni mogoče prepisati. Poskusite svojo datoteko naložiti pod drugim imenom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Datoteka s tem imenom že obstaja v skupnem repozitoriju datotek. Prosimo, vrnite se in naložite svojo datoteko pod drugim imenom. 
 [[File:$1|thumb|center|$1]]',
@@ -889,7 +895,7 @@ Prosimo, izberite drugo ime.',
 'upload-maxfilesize'          => 'Največja velikost datoteke: $1',
 'watchthisupload'             => 'Spremljajte to stran',
 'filewasdeleted'              => 'Datoteka s tem imenom je bila nekoč že naložena in potem izbrisana. Preden jo znova naložite, preverite $1.',
-'filename-bad-prefix'         => 'Ime datoteke, ki jo nalagate, se začne z <strong>»$1«</strong>, ki je neopisno ime, ponavadi dodeljeno samodejno s strani digitalnih fotoaparatov. Prosimo, določite bolj opisno ime vaše datoteke.',
+'filename-bad-prefix'         => "Ime datoteke, ki jo nalagate, se začne z '''»$1«''', ki je neopisno ime, ponavadi dodeljeno samodejno s strani digitalnih fotoaparatov. Prosimo, določite bolj opisno ime vaše datoteke.",
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Sintaksa:
 #   * Vse od znaka »#« in do konca vrstice je komentar

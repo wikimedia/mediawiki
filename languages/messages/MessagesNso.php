@@ -417,8 +417,8 @@ Go tlhola letlakala, thoma go ngwalo lepokising le letelago
 (lebelela [[{{MediaWiki:Helppage}}|letlakala la thušo]] go hwetša šedi).
 Ga eba o le fa ka phošo, o ka boela morago ka go šumiša konopo ya '''back''' go ''browser'' ya gago.",
 'noarticletext'          => 'Ga gona ditlhaka letlakaleng le, oka [[Special:Search/{{PAGENAME}}|fetleka liena la letlakala]] matlakaleng a mangwe goba [{{fullurl:{{FULLPAGENAME}}|action=edit}} wa fetola letlakala le].',
-'note'                   => '<strong>Ela hloko:</strong>',
-'previewnote'            => '<strong>Ye ke Taetšo ya sebopego sa letlakala fela; diphetogo ga di ya bolokwa!</strong>',
+'note'                   => "'''Ela hloko:'''",
+'previewnote'            => "'''Ye ke Taetšo ya sebopego sa letlakala fela; diphetogo ga di ya bolokwa!'''",
 'editing'                => 'O fetola $1',
 'editingsection'         => 'Phetolo ya $1 (sekgoba)',
 'editingcomment'         => 'Fetola $1 (tshwayotshwayo)',
@@ -426,13 +426,13 @@ Ga eba o le fa ka phošo, o ka boela morago ka go šumiša konopo ya '''back''' 
 'yourtext'               => 'Mongwalo wa gago',
 'storedversion'          => 'Version yeo e bolokilwego',
 'yourdiff'               => 'Diphapang',
-'copyrightwarning'       => 'Diabe kamoka go {{SITENAME}} di akanywa go ngwadiwa tlase ga $2 (lebelela $1 go hwetša taba ka bophara). Ge o sa nyake gore mengwalo ya gago e fetolwe ntle le kgaugelo goba e phatlalatšwe ntle le tumello ya gago, o seke wa fana ka mengwalo mo.<br />
+'copyrightwarning'       => "Diabe kamoka go {{SITENAME}} di akanywa go ngwadiwa tlase ga $2 (lebelela $1 go hwetša taba ka bophara). Ge o sa nyake gore mengwalo ya gago e fetolwe ntle le kgaugelo goba e phatlalatšwe ntle le tumello ya gago, o seke wa fana ka mengwalo mo.<br />
 Gape o re holofetša  gore mengwalo ye e ngwadile ke wena, goba o e kopiša mothapong wa pepeneneng goba  ke mahala.
-<strong>O SE TSENYE MEŠOMO YA BATHO BA BANGWE NTLE LE TUMELLO YA BONA!</strong>',
-'longpagewarning'        => "<strong>TEMOŠO: Letlakala le le $1 kilobytes ka botelele;
+'''O SE TSENYE MEŠOMO YA BATHO BA BANGWE NTLE LE TUMELLO YA BONA!'''",
+'longpagewarning'        => "'''TEMOŠO: Letlakala le le $1 kilobytes ka botelele;
 di-''browser'' tše dingwe dika ba le bothata go fetola matlakala a golena goba gofeta 32 kb.
 
-Ka kgopela akanya ka go roba letlakala le goba le dikgaoe tše nnyenyane.</strong>",
+Ka kgopela akanya ka go roba letlakala le goba le dikgaoe tše nnyenyane.'''",
 'templatesused'          => "''Templates'' tšeo di šomišitšwego letlakaleng le:",
 'templatesusedpreview'   => "''Templates'' tšeo di šomišitšwego go taetšo ya sebopego sa letlakala:",
 'template-protected'     => '(e lotilwe)',
@@ -793,7 +793,7 @@ Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 
 # Rollback
 'rollbacklink' => 'bošetša morago',
-'editcomment'  => 'Ahlaahlo ya phetogo ke : "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'  => "Ahlaahlo ya phetogo ke : \"''\$1''\".", # only shown if there is an edit comment
 
 # Protect
 'protectlogpage'              => "''Log'' yago lota",
@@ -805,9 +805,9 @@ Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 'protect_expiry_invalid'      => 'Fetatšatši, nako ye ga ya dumelwa.',
 'protect_expiry_old'          => 'Fetatšatši ke ya nako yeo e fetilego.',
 'protect-unchain'             => 'Dumella (tloša senotlolo) tumello ya go huduga',
-'protect-text'                => 'O ka lebelela lego fetola seemo sa go lota sa letlakala <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-access'       => 'Tšhupaleloko ya gago ga ena tumello ya go fetola seemo sago lota ga letlakala. 
-Seemo sa go lota ga letlakala <strong>$1</strong>:',
+'protect-text'                => "O ka lebelela lego fetola seemo sa go lota sa letlakala '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Tšhupaleloko ya gago ga ena tumello ya go fetola seemo sago lota ga letlakala. 
+Seemo sa go lota ga letlakala '''$1''':",
 'protect-cascadeon'           => 'Letlakala le lotegile ka ge le akeretšwa ke {{PLURAL:$1|letlakala, leo lenalego|matlakala, analego}} golotega ga kakaretšo. O ka fetola go lotega ga letlakala le.',
 'protect-default'             => '(default)',
 'protect-fallback'            => 'Go nyakega tumello ya "$1"',

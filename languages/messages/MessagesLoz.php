@@ -401,19 +401,19 @@ Di hloli, seltisize kwa sisebelisoni (kamukile [[{{MediaWiki:Helppage}}|likitisi
 A sa nca di bufosi, tampi '''back'''.",
 'noarticletext'          => 'Sa no selt kwa petulo, a sa [[Special:Search/{{PAGENAME}}|fatukile di petulonom]] kwa xete petulo/[{{fullurl:{{FULLPAGENAME}}|action=edit}} petulo kenki].',
 'updated'                => '(sa updeti)',
-'note'                   => '<strong>Lyangutukezi:</strong>',
-'previewnote'            => '<strong>A sa in kamukile PendiBe; petuho ni sa bulukezi!</strong>',
+'note'                   => "'''Lyangutukezi:'''",
+'previewnote'            => "'''A sa in kamukile PendiBe; petuho ni sa bulukezi!'''",
 'editing'                => "Hloli ye ng'i $1",
 'editingsection'         => "Hloli ye ng'i $1 (lyangutukezi)",
 'editingcomment'         => "Hloli ye ng'i $1 (lyangutukezi)",
 'yourtext'               => 'Zwa selt',
 'storedversion'          => 'Selt bulukezi',
 'yourdiff'               => 'Petuhoni',
-'copyrightwarning'       => 'Xete kenki di {{SITENAME}} sa rilisi kwa $2 (fatukile $1 di pagu). A ni tokwezi zwa selt sa kenki a ridistributi kwa tokwi, ni bulukezi.<br />
+'copyrightwarning'       => "Xete kenki di {{SITENAME}} sa rilisi kwa $2 (fatukile $1 di pagu). A ni tokwezi zwa selt sa kenki a ridistributi kwa tokwi, ni bulukezi.<br />
 A sumekezi zwa selt sa dya, a kopisize di publiki domeni, a ike risorsi.
-<strong>NI BULUKEZI SELT KOPINITUMELELO E NI TUMELELO!</strong>',
-'longpagewarning'        => "<strong>AGTU: Bye petulo sa $1 kilobytes; browser sa di bufosikaku hloli ye ng'i petulo plusu di 32 kilobytes.
-Konsidisize takubikinalisize.</strong>",
+'''NI BULUKEZI SELT KOPINITUMELELO E NI TUMELELO!'''",
+'longpagewarning'        => "'''AGTU: Bye petulo sa $1 kilobytes; browser sa di bufosikaku hloli ye ng'i petulo plusu di 32 kilobytes.
+Konsidisize takubikinalisize.'''",
 'templatesused'          => 'Yegani sebelize di bye petulo:',
 'templatesusedpreview'   => 'Yegani sebelize kwa bye PendiBe:',
 'template-protected'     => '(sa bukelezi)',
@@ -791,9 +791,9 @@ A sa afi kulobala di zwa mukoloko di kentezi, tampi \"ngambu kentezi\".",
 'protect_expiry_invalid'      => 'Bufosi di simpekile.',
 'protect_expiry_old'          => 'Simpekile sa kwa bundau.',
 'protect-unchain'             => 'Petuho nyanganyisize tumelelo',
-'protect-text'                => 'A sa kamukile e hloli bukelezi di petulo <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-access'       => 'Zwa sebelu ni sa hloli bukelezi.
-Petohoni di petulo <strong>$1</strong> sa:',
+'protect-text'                => "A sa kamukile e hloli bukelezi di petulo '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Zwa sebelu ni sa hloli bukelezi.
+Petohoni di petulo '''$1''' sa:",
 'protect-cascadeon'           => 'Bye petulo sa bukelezi a sa kwa bye {{PLURAL:$1|petulo|petulo}}, asa kaskedi. A sa hloli bukelezi, a ni sa afakize kaskedi.',
 'protect-default'             => '(auto)',
 'protect-fallback'            => 'No "$1" tumelelo',

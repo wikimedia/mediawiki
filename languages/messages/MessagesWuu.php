@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Hercule
  * @author O
  */
 
@@ -97,7 +98,7 @@ $messages = array(
 'subcategories'                 => '亚类',
 'category-media-header'         => '"$1"分类中个媒体',
 'category-empty'                => "''该个分类中尚未包含任何文章或媒体。''",
-'hidden-categories'             => '个囥脱分类',
+'hidden-categories'             => '$1隐藏分类',
 'hidden-category-category'      => '囥脱分类', # Name of the category where hidden categories will be listed
 'category-subcat-count-limited' => '该个分类中有个亚类。',
 
@@ -230,6 +231,7 @@ $messages = array(
 
 # General errors
 'error'           => '错误',
+'laggedslavemode' => '警告: 页面可能弗包含最近个更新。',
 'filedeleteerror' => '呒能删除文物“$1”。',
 'filenotfound'    => '寻弗着文件 "$1"。',
 'badtitle'        => '该只标题弗来三',
@@ -239,7 +241,7 @@ $messages = array(
 
 # Login and logout pages
 'logouttitle'                => '用户登出',
-'logouttext'                 => '<strong>倷已经登出哉。</strong><br /> 倷可以继续匿名使用{{SITENAME}} ，倷也可以再次以相同或者两样个用户名登录。注意，有星页面作兴还是会搭倷登出前头一样显示，一脚到倷清脱倷个浏览器缓存。',
+'logouttext'                 => "'''倷已经登出哉。'''<br /> 倷可以继续匿名使用{{SITENAME}} ，倷也可以再次以相同或者两样个用户名登录。注意，有星页面作兴还是会搭倷登出前头一样显示，一脚到倷清脱倷个浏览器缓存。",
 'welcomecreation'            => '== 欢迎， $1！ ==
 
 倷个户头已经建立哉。覅忘记脱改动倷个{{SITENAME}}偏好噢。',
@@ -254,7 +256,7 @@ $messages = array(
 'logout'                     => '登出',
 'userlogout'                 => '登出',
 'notloggedin'                => '朆登录',
-'nologin'                    => '还呒拨户头？$1。',
+'nologin'                    => '您还没有账户吗？$1。',
 'nologinlink'                => '新开户头',
 'createaccount'              => '新开户头',
 'gotaccount'                 => '已经有仔帐号哉？ $1。',
@@ -275,7 +277,7 @@ $messages = array(
 'loginsuccess'               => "'''倷现在以 \"\$1\" 个身份登录到{{SITENAME}}。 '''",
 'nouserspecified'            => '侬必须选个用户名。',
 'wrongpassword'              => '密码弗对嗄。请倷再试试看。',
-'mailmypassword'             => '电子邮件发送密码',
+'mailmypassword'             => '将新密码寄给我',
 'acct_creation_throttle_hit' => '对覅起，侬经建了$1个账号。侬呒能再建了。',
 'emailauthenticated'         => '倷个电子邮箱地址勒拉 $1 验证过哉。',
 'accountcreated'             => '户头开好哉',
@@ -320,14 +322,14 @@ $messages = array(
 要创建该页面呢，就勒下底个框框里向开始写（[[{{MediaWiki:Helppage}}|帮助页面]]浪有更加多个信息）。
 要是倷是弗用心到该搭个说话，只要点击倷浏览器个'''返回'''揿钮。",
 'noarticletext'      => '个篇文章目前还呒拨内容，倷可以拉别个页面里向[[Special:Search/{{PAGENAME}}|寻寻该只标题看]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑当前页面].',
-'note'               => '<strong>注意：</strong>',
-'previewnote'        => '<strong>该个还只是预览；改动还朆保存！</strong>',
+'note'               => "'''注意：'''",
+'previewnote'        => "'''该个还只是预览；改动还朆保存！'''",
 'editing'            => '正在编辑$1',
 'editingsection'     => '正在编辑$1（段落）',
 'editingcomment'     => '正在编辑$1（评论）',
 'editconflict'       => '编辑冲突: $1',
 'yourtext'           => '侬个文字',
-'editingold'         => '<strong> 注意：倷勒里改动一只已经过期个页面修改。 如果倷保存俚个说话，勒拉该个修改之后个亨白浪当个修改侪会呒拨个。</strong>',
+'editingold'         => "''' 注意：倷勒里改动一只已经过期个页面修改。 如果倷保存俚个说话，勒拉该个修改之后个亨白浪当个修改侪会呒拨个。'''",
 'template-protected' => '(保护)',
 
 # Account creation failure
@@ -354,6 +356,7 @@ $messages = array(
 # Diffs
 'compareselectedversions' => '比较选中个版本',
 'editundo'                => '撤销',
+'diff-multi'              => '($1个中途个修订版本无没显示。)',
 
 # Search results
 'searchresults'         => '搜索结果',
@@ -365,7 +368,7 @@ $messages = array(
 'nextn'                 => '下个 $1',
 'viewprevnext'          => '查看 ($1) ($2) ($3)',
 'searchhelp-url'        => 'Help:目录',
-'powersearch'           => '搜寻',
+'powersearch'           => '高级搜索',
 
 # Preferences page
 'preferences'           => '偏好',
@@ -737,7 +740,7 @@ $messages = array(
 'tooltip-n-help'             => '寻求帮助',
 'tooltip-t-whatlinkshere'    => '列出所有与此页相链个页面',
 'tooltip-t-emailuser'        => '发封信拨该个用户',
-'tooltip-t-upload'           => '上载图像或媒体文物',
+'tooltip-t-upload'           => '上传文件',
 'tooltip-t-specialpages'     => '亨白浪当个特殊页面列表',
 'tooltip-ca-nstab-main'      => '查看内容页',
 'tooltip-ca-nstab-user'      => '查看用户页',

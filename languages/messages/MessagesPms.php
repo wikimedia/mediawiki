@@ -440,7 +440,7 @@ Anans che qualsëssìa àutr messagi ëd pòsta a ven-a mandà a 's cont-sì, a 
 'emailauthenticated'         => "Soa adrëssa ëd pòsta eletrònica a l'é staita autenticà ël $1.",
 'emailnotauthenticated'      => "Soa adrëssa ëd pòsta eletrònica a l'é ancó pa staita autenticà.
 Da qualsëssìa ëd coste funsion a sarà mandà gnun messagi fin che chiel (chila) a s'auténtica nen.",
-'noemailprefs'               => "<strong>Che a specìfica n'adrëssa ëd pòsta eletrònica se a veul dovré coste funsion-sì.</strong>",
+'noemailprefs'               => "Che a specìfica n'adrëssa ëd pòsta eletrònica se a veul dovré coste funsion-sì.",
 'emailconfirmlink'           => 'Che an conferma sa adrëssa ëd pòsta eletrònica',
 'invalidemailaddress'        => "Costa adrëssa ëd pòsta eletrònica-sì as peul nen pijesse përchè a l'ha na forma nen bon-a.
 Për piasì che a buta n'adrëssa scrita giusta ò che a lassa ël camp veujd.",
@@ -548,24 +548,24 @@ Sò nùmer ëd blòch a l'é \$5. Për piasì, ës nùmer-sì ch'a lo buta sempe
 *'''IE:''' che a ten-a sgnacà ''Ctrl'' antramentr che a sgnaca col rat ansima a ''Refresh'', ò pura che a sgnaca tut ansema ''Ctrl-F5'';
 *'''Konqueror:''': a basta mach sgnaché ël boton ''Reload'', ò pura sgnaché ''F5'';
 *'''Opera''' j'utent a peulo avej da manca dë veujdé 'd continùo soa memorisassion (cache) andrinta a ''Tools&rarr;Preferences''.",
-'usercssjsyoucanpreview'    => "<strong>Drita:</strong> che a dòvra ël boton 'Mostra na preuva' për controlé l'efet ëd sò còdes CSS/JS anans che salvelo.",
+'usercssjsyoucanpreview'    => "'''Drita:''' che a dòvra ël boton 'Mostra na preuva' për controlé l'efet ëd sò còdes CSS/JS anans che salvelo.",
 'usercsspreview'            => "'''Che a varda che a lòn che a s-ciàira a l'é nomach na preuva ëd sò CSS, che salvà a resta ancó nen!'''",
 'userjspreview'             => "'''Che as visa che a l'é mach antramentr che as fa na preuva ëd sò Javascript, che a l'é ancó pa stait salvà!'''",
 'userinvalidcssjstitle'     => "'''Avis:''' A-i é pa gnun-a facia \"\$1\". Che as visa che le pàgine .css e .js che un as fa daspërchiel a dòvro tute minùscole për tìtol, pr'esempi {{ns:user}}:Scaramacaj/monobook.css nopà che {{ns:user}}:Scaramacaj/Monobook.css.",
 'updated'                   => '(Agiornà)',
-'note'                      => '<strong>NÒTA:</strong>',
-'previewnote'               => "<strong>Che a ten-a mach present che costa-sì a l'é nomach na PREUVA, e che soa version a l'é ancó pa staita salvà!</strong>",
+'note'                      => "'''NÒTA:'''",
+'previewnote'               => "'''Che a ten-a mach present che costa-sì a l'é nomach na PREUVA, e che soa version a l'é ancó pa staita salvà!'''",
 'previewconflict'           => "Costa preuva a-j mostra ël test dl'articol ambelessì dzora. Se a sërn dë salvelo, a l'é parej che a lo s-ciaireran ëdcò tuti j'àutri Utent.",
-'session_fail_preview'      => "<strong>Darmagi! I l'oma pa podù processé soa modìfica per via che a son përdusse për la stra ij dat ëd session.
-Për piasì che a preuva n'àutra vira. Se a dovèissa mai torna riveje sossì, che a preuva a seurte dal sistema e peuj torna a rintré.</strong>",
-'session_fail_preview_html' => "<strong>Darmagi! I l'oma nen podù processé soa modìfica ën essend che a son përdusse për la stra ij dat ëd session.</strong>
+'session_fail_preview'      => "'''Darmagi! I l'oma pa podù processé soa modìfica per via che a son përdusse për la stra ij dat ëd session.
+Për piasì che a preuva n'àutra vira. Se a dovèissa mai torna riveje sossì, che a preuva a seurte dal sistema e peuj torna a rintré.'''",
+'session_fail_preview_html' => "'''Darmagi! I l'oma nen podù processé soa modìfica ën essend che a son përdusse për la stra ij dat ëd session.'''
 
 ''Për via che {{SITENAME}} a lassa mostré còdes HTML nen filtrà, la preuva a ven ëstarmà coma precaussion contra a dij possibij atach fait an Javascript.''
 
-<strong>Se sòn a l'èra na modìfica normal, për piasì che a preuva a fela n'àutra vira. Se a dovèissa mai torna deje dle gran-e, che a preuva a seurte da 'nt ël sistema e peuj torna a rintré.</strong>",
-'token_suffix_mismatch'     => "<strong>Soa modìfica a l'é nen staita acetà përché sò navigator a l'hai fait ciadel con ij pont e le vìrgole
+'''Se sòn a l'èra na modìfica normal, për piasì che a preuva a fela n'àutra vira. Se a dovèissa mai torna deje dle gran-e, che a preuva a seurte da 'nt ël sistema e peuj torna a rintré.'''",
+'token_suffix_mismatch'     => "'''Soa modìfica a l'é nen staita acetà përché sò navigator a l'hai fait ciadel con ij pont e le vìrgole
 ant ël quàder ëd modìfica. La rason che a l'é nen stait acetà a l'r për evité ch'a-i fasa darmagi al
-test ch'a-i é già. Sossì dle vire a riva quand un a dòvra un programa proxy ëd coj un pòch dla Bajòna.</strong>",
+test ch'a-i é già. Sossì dle vire a riva quand un a dòvra un programa proxy ëd coj un pòch dla Bajòna.'''",
 'editing'                   => 'Modìfica ëd $1',
 'editingsection'            => 'I soma dapress a modifiché $1 (session)',
 'editingcomment'            => 'I soma dapress a modifiché $1 (coment)',
@@ -576,31 +576,31 @@ test ch'a-i é già. Sossì dle vire a riva quand un a dòvra un programa proxy 
 <b>Mach</b> ël test ant ël quàder dë dzora a sarà salvà, ën sgnacand ël boton \"Salva\".<br />",
 'yourtext'                  => 'Sò test',
 'storedversion'             => 'Version memorisà',
-'nonunicodebrowser'         => "<strong>A L'EUJ! Sò programa ëd navigassion (browser) a travaja pa giust con lë stàndard unicode. I soma obligà a dovré dij truschin përchè a peula salvesse sò artìcoj sensa problema: ij caràter che a son nen ASCII a jë s-ciairerà ant ël quàder ëd modìfica test coma còdes esadecimaj.</strong>",
-'editingold'                => "<strong>CHE A FASA MACH ATENSION: che a sta fasend-je dle modìfiche a na version nen agiornà dl'artìcol.<br />
-Se a la salva parej, lòn che a l'era stait fait dapress a sta revision-sì as përderà d'autut.</strong>",
+'nonunicodebrowser'         => "'''A L'EUJ! Sò programa ëd navigassion (browser) a travaja pa giust con lë stàndard unicode. I soma obligà a dovré dij truschin përchè a peula salvesse sò artìcoj sensa problema: ij caràter che a son nen ASCII a jë s-ciairerà ant ël quàder ëd modìfica test coma còdes esadecimaj.'''",
+'editingold'                => "'''CHE A FASA MACH ATENSION: che a sta fasend-je dle modìfiche a na version nen agiornà dl'artìcol.<br />
+Se a la salva parej, lòn che a l'era stait fait dapress a sta revision-sì as përderà d'autut.'''",
 'yourdiff'                  => 'Diferense',
 'copyrightwarning'          => "Che a ten-a për piasì present che tute le contribussion a {{SITENAME}} as considero daite sota a na licensa ëd la sòrt $2 (che a varda $1 për avej pì 'd detaj).
 Se a veul nen che sò test a peula esse modificà e distribuì da qualsëssìa person-a sensa gnun-a limitassion ëd gnun-a sòrt, che a lo buta pa ansima a {{SITENAME}}, ma pitòst che as lo pùblica ansima a un sò sit personal.<br />
 Ën mandand ës test-sì chiel (chila) as fa garant sota soa responsabilità che ël test a l'ha scrivusslo despërchiel (daspërchila) coma original, ò pura che a l'ha tracopialo da na sorgiss ëd pùblich domini, ò da n'àutra sorgiss dla midema sòrt, ò pura che chiel (chila) a l'ha arseivù autorisassion scrita a dovré sto test e che sòn a peul dimostrelo.<br />
-<strong>DOVRÉ PA MAI DËL MATERIAL COERTÀ DA DRIT D'AUTOR (c) SENSA AVEJ N'AUTORISASSION SCRITA PËR FELO!!!</strong>",
+'''DOVRÉ PA MAI DËL MATERIAL COERTÀ DA DRIT D'AUTOR (c) SENSA AVEJ N'AUTORISASSION SCRITA PËR FELO!!!'''",
 'copyrightwarning2'         => "Për piasì, che a ten-a present che tute le contribussion a {{SITENAME}} a peulo esse modificà ò scancelà da dj'àutri contributor. Se a veul nen che lòn che a scriv a ven-a modificà sensa limitassion ëd gnun-a sòrt, che a lo manda nen ambelessì.<br />
 Ant l'istess temp, ën mandand dël material un as pija la responsabilità dë dì che a l'ha scrivusslo daspërchiel (ò daspërchila), ò pura che a l'ha copialo da na sorgiss ëd domini pùblich, ò pura da 'nt n'àutra sorgiss dla midema sòrt (che a varda $1 për avej pì d'anformassion).
-<strong>CHE A MANDA PA DËL MATERIAL COERTÀ DA DRIT D'AUTOR SENSA AVEJ AVÙ ËL PËRMESS SCRIT DË FELO!</strong>",
-'longpagewarning'           => "<strong>CHE A TEN-A PRESENT!: Sta pàgina-sì a l'é longa $1 kb; chèich
+'''CHE A MANDA PA DËL MATERIAL COERTÀ DA DRIT D'AUTOR SENSA AVEJ AVÙ ËL PËRMESS SCRIT DË FELO!'''",
+'longpagewarning'           => "'''CHE A TEN-A PRESENT!: Sta pàgina-sì a l'é longa $1 kb; chèich
 programa ëd navigassion a podrìa avej dle gran-e a modifiché dle pàgine che a-j rivo a brus
 ò pura a passo ij 32 kb.
-Për piasì che a varda se a-i fussa mai la possibilità dë divide sto paginon an vàire tòch pì cit.</strong>",
-'longpageerror'             => "<strong>EROR: Ël test che a l'ha mandà a l'é longh $1 kb, che a resta pì che ël
+Për piasì che a varda se a-i fussa mai la possibilità dë divide sto paginon an vàire tòch pì cit.'''",
+'longpageerror'             => "'''EROR: Ël test che a l'ha mandà a l'é longh $1 kb, che a resta pì che ël
 lìmit màssim ëd $2 kb. Parej as peul nen salvesse. A venta che a në fasa vàire
-pàgine diferente për rintré ant ij lìmit tècnich.</strong>",
-'readonlywarning'           => "<strong>AVIS: La base dat a l'é staita blocà për manutension,
+pàgine diferente për rintré ant ij lìmit tècnich.'''",
+'readonlywarning'           => "'''AVIS: La base dat a l'é staita blocà për manutension,
 e donca a peudrà pa salvesse soe modìfiche tut sùbit. A peul esse che
-a-j ven-a còmod copiesse via sò test e butesslo da na part për salvelo peuj.</strong>",
-'protectedpagewarning'      => "<strong>AVIS: costa pàgina-sì a l'é staita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo feje dle modìfiche.</strong>",
+a-j ven-a còmod copiesse via sò test e butesslo da na part për salvelo peuj.'''",
+'protectedpagewarning'      => "'''AVIS: costa pàgina-sì a l'é staita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo feje dle modìfiche.'''",
 'semiprotectedpagewarning'  => "'''Nòta:'''costa pàgina-sì a l'é staita protegiùa an manera che mach j'utent registrà a peulo modifichela.",
 'cascadeprotectedwarning'   => "'''Tension:''' sta pàgina-sì a l'è staita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo modifichela, për via che {{PLURAL:\$1|a l'é proteta|a-i intra ant le pàgine protete}} col sistema \"a cascada\":",
-'titleprotectedwarning'     => "<strong>DOSMAN: sta pàgina-sì a l'é protegiùa an manera che mach chèich utent a peul creéla.</strong>",
+'titleprotectedwarning'     => "'''DOSMAN: sta pàgina-sì a l'é protegiùa an manera che mach chèich utent a peul creéla.'''",
 'templatesused'             => 'Stamp dovrà dzora a sta pàgina-sì:',
 'templatesusedpreview'      => 'Stamp dovrà ant sta preuva-sì:',
 'templatesusedsection'      => 'Stamp dovrà ant sta session-sì:',
@@ -960,16 +960,16 @@ Che a ten-a present che tan-me për tuti ij contnù ëd la {{SITENAME}}, qualsë
 'emptyfile'                   => "L'archivi che a l'ha pen-a carià a smija veujd.
 Sòn a podrìa esse rivà përchè che chiel a l'ha scrivù mal ël nòm dl'archivi midem.
 Për piasì che a contròla se a l'é pro cost l'archivi che a veul carié.",
-'fileexists'                  => "N'archivi con ës nòm-sì a-i é già, për piasì che as contròla <strong><tt>$1</tt></strong> se a l'é pa sigur dë volej cangelo.",
-'filepageexists'              => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an <strong><tt>$1</tt></strong>, mach ch'a-i é pa gnun archivi ch'as ciama parej. Lòn ch'a buta për somari as ës-ciairerà nen ant la pàgina ëd descrission. Për podej buté sò somari a l'ha da modifichesse la pàgina a man",
+'fileexists'                  => "N'archivi con ës nòm-sì a-i é già, për piasì che as contròla '''<tt>$1</tt>''' se a l'é pa sigur dë volej cangelo.",
+'filepageexists'              => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an '''<tt>$1</tt>''', mach ch'a-i é pa gnun archivi ch'as ciama parej. Lòn ch'a buta për somari as ës-ciairerà nen ant la pàgina ëd descrission. Për podej buté sò somari a l'ha da modifichesse la pàgina a man",
 'fileexists-extension'        => "N'archivi con ës nòm-s a-i é già:<br />
-Nòm dl'archivi ch'as carìa: <strong><tt>$1</tt></strong><br />
-Nòm dl'archivi ch'a-i é già: <strong><tt>$2</tt></strong><br />
+Nòm dl'archivi ch'as carìa: '''<tt>$1</tt>'''<br />
+Nòm dl'archivi ch'a-i é già: '''<tt>$2</tt>'''<br />
 Për piasì, ch'a serna un nòm diferent.",
 'fileexists-thumb'            => "<center>'''Figura ch'a-i é'''</center>",
-'fileexists-thumbnail-yes'    => "L'archivi a-j ëmsija a na <i>figurin-a</i>. Për piasì, ch'a contròla l'archivi <strong><tt>$1</tt></strong>.<br />
+'fileexists-thumbnail-yes'    => "L'archivi a-j ëmsija a na ''figurin-a''. Për piasì, ch'a contròla l'archivi '''<tt>$1</tt>'''.<br />
 S'a l'é la midema figura a amzura pijn-a, a veul dì ch'a fa nen dë manca dë carié na figurin-a.",
-'file-thumbnail-no'           => "Ël nòm dl'archivi as anandia con <strong><tt>$1</tt></strong>. A-j ësmija a na <i>figurin-a</i>.
+'file-thumbnail-no'           => "Ël nòm dl'archivi as anandia con '''<tt>$1</tt>'''. A-j ësmija a na ''figurin-a''.
 Se a l'ha na figura a amzura pijn-a a l'é mej ch'a carìa cola-lì, dësnò ch'a-j cangia nòm a l'archivi, për piasì.",
 'fileexists-forbidden'        => "Belavans n'archivi con ës nòm-sì a-i é già, donca ël nòm as peul pa pì dovresse; për piasì che a torna andré e che as caria sò archivi con un nòm diferent. [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Belavans n'archivi con ës nòm-sì ant la diretriss dj'archivi condivis a-i é già, donca ël nòm as peul pa pì dovresse; për piasì che a torna andré e che as caria sò archivi con un nòm diferent.
@@ -992,7 +992,7 @@ Se a l'ha na figura a amzura pijn-a a l'é mej ch'a carìa cola-lì, dësnò ch'
 
 Për piasì, ch'a contròla s'a val la pen-a dë felo.
 Për soa comodità, ambelessì a-i son ij dat dla scancelament:",
-'filename-bad-prefix'         => "Ël nòm dl'archivi ch'a l'é dapress a carié as anandia për <strong>\"\$1\"</strong>, ch'a l'é un nòm sensa sust, për sòlit butà-lì n'aotomàtich da le màchine fotogràfiche digitaj, basta ch'a-i në sia un. Për piasì, ch'a-j daga a sò archivi un nòm ch'a disa lòn ch'a l'é.",
+'filename-bad-prefix'         => "Ël nòm dl'archivi ch'a l'é dapress a carié as anandia për '''\"\$1\"''', ch'a l'é un nòm sensa sust, për sòlit butà-lì n'aotomàtich da le màchine fotogràfiche digitaj, basta ch'a-i në sia un. Për piasì, ch'a-j daga a sò archivi un nòm ch'a disa lòn ch'a l'é.",
 'filename-prefix-blacklist'   => " #<!-- ch'a lassa sta riga-sì tanme ch'a l'é --> <pre>
 # La sintassi a l'é:
 #   * Tut lòn ch'a-i ven dapress al segn \"#\" fin a la fin dla riga a resta mach un coment
@@ -1387,7 +1387,7 @@ Ij temp a son conforma a l'ora dël server.",
 faite da [[User:$2|$2]] ([[User talk:$2|Talk]]); Cheidun d'àutr a l'ha già modificà ò pura anulà le modìfiche a sta pàgina-sì.
 
 L'ùltima modìfica a l'é staita faita da [[User:$3|$3]] ([[User talk:$3|Talk]]).",
-'editcomment'      => 'Ël coment dla modìfica a l\'era: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => "Ël coment dla modìfica a l'era: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => "Gavà via le modìfiche dl'utent [[Special:Contributions/$2|$2]] ([[User_talk:$2|Talk]]); ël contnù a l'é stait tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "Modìfiche anulà da $1; tirà andré a l'ùltima version da $2.",
 'sessionfailure'   => "A-i son ëstaje dle gran-e con la session che a identìfica sò acess; ël sistema a l'ha nen eseguì l'ordin che a l'ha daje për precaussion. Che a torna andaré a la pàgina prima con ël boton \"andaré\" ëd sò programa ëd navigassion (browser), peuj che as carìa n'àutra vira costa pàgina-sì e che a preuva torna a fé lòn che vorìa fé.",
@@ -1407,12 +1407,12 @@ Ch'a varda la [[Special:ProtectedPages|Lista dle pàgine protegiùe]] për ës-c
 'protect_expiry_invalid'      => 'Scadensa pa bon-a.',
 'protect_expiry_old'          => 'Scadensa già passà.',
 'protect-unchain'             => 'Dësbloché ij permess ëd tramudé dla ròba',
-'protect-text'                => 'Ambelessì a peul vardé e cangé ël livel ëd protession dla pàgina <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => "Un a peul pa modifiché ij livel ëd protession antramentr ch'a l'é blocà chiel. Ambelessì a-i son le regolassion corente për la pàgina <strong>$1</strong>:",
+'protect-text'                => "Ambelessì a peul vardé e cangé ël livel ëd protession dla pàgina '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Un a peul pa modifiché ij livel ëd protession antramentr ch'a l'é blocà chiel. Ambelessì a-i son le regolassion corente për la pàgina '''$1''':",
 'protect-locked-dblock'       => "Ij livej ëd protession as peulo nen cambiesse antramentr che la base dat a l'é blocà.
-Ambelessì a-i son le regolassion corente për la pàgina <strong>$1</strong>:",
+Ambelessì a-i son le regolassion corente për la pàgina '''$1''':",
 'protect-locked-access'       => "Sò cont a l'ha pa la qualìfica për podej cambié ij livej ëd protession.
-Ambelessì a-i son le regolassion corente për la pàgina <strong>$1</strong>:",
+Ambelessì a-i son le regolassion corente për la pàgina '''$1''':",
 'protect-cascadeon'           => "Sta pàgina për adess a l'é blocà përchè a-i intra an {{PLURAL:$1|la pàgina sì sota, ch'a l'ha|le pàgine sì sota, ch'a l'han}} na protession a sàut avisca. A peul cambie-je sò livel ëd protession a sta pàgina-sì ma lòn a tochërà pa la protession a sàut.",
 'protect-default'             => '(stàndard)',
 'protect-fallback'            => 'A-i va ël përmess "$1"',

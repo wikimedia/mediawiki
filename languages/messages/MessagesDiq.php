@@ -163,9 +163,9 @@ href="" class="internal"}?{/a}) bımocne.',
 'create-this-page'  => 'Na pele bınuse',
 'delete'            => 'bıestere',
 'deletethispage'    => 'Ena pele bıestere',
-'undelete_short'    => 'Vurnayışê $1 peyser bia',
+'undelete_short'    => '{{PLURAL:$1|yew vurnayışi|$1 vurnayışan}} meestere',
 'protect'           => 'kılit ke',
-'protect_change'    => 'kılit-kerdene bıvurne',
+'protect_change'    => 'bıvurne',
 'protectthispage'   => 'Ena perre kılit ke',
 'unprotect'         => 'ake',
 'unprotectthispage' => 'Ena perre ake',
@@ -240,13 +240,13 @@ href="" class="internal"}?{/a}) bımocne.',
 'feed-invalid'            => 'Tipê weyikerdışê beğşê nêvêrdey.',
 'site-rss-feed'           => 'Weyi-kerdışê $1 RSSi',
 'site-atom-feed'          => 'Weyi-kerdışê $1 Atomi',
-'red-link-title'          => '$1 (heta nıka nênusiyao)',
+'red-link-title'          => '$1 (pele çina)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'nuşte',
 'nstab-user'      => 'Pela Karberi',
 'nstab-media'     => 'Pela Medya',
-'nstab-special'   => 'xas',
+'nstab-special'   => 'Pela xase',
 'nstab-project'   => 'Pela Procey',
 'nstab-image'     => 'Dosya',
 'nstab-mediawiki' => 'Mesaj',
@@ -301,6 +301,7 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'passwordtooshort'          => 'Parola to nêvêrena ya ki zaf kılma.
 It must have at least $1 characters and be different from your username.',
 'mailmypassword'            => 'E-mail sera parola newiye bırışe',
+'accountcreated'            => 'Hesab vıraciya',
 'loginlanguagelabel'        => 'Zıwan: $1',
 
 # Password reset dialog
@@ -332,6 +333,7 @@ It must have at least $1 characters and be different from your username.',
 
 # Search results
 'searchhelp-url'     => 'Help:Tedeestey',
+'search-result-size' => '$1 ({{PLURAL:$2|1 çekuye|$2 çekuy}})',
 'powersearch'        => 'Cıgeyrayışo hera',
 'powersearch-legend' => 'Cıgeyrayışo hera',
 'powersearch-ns'     => 'Cayanê nameyan de cıgeyrayış:',
@@ -384,7 +386,7 @@ It must have at least $1 characters and be different from your username.',
 'filehist'          => 'Tarixê dosya',
 'filehist-datetime' => 'Tarix/Zeman',
 'filehist-user'     => 'Karber',
-'imagelinks'        => 'Pelê ke tede xebıtiyenê',
+'imagelinks'        => 'Gıreyê dosya',
 'noimage-linktext'  => 'Bar ke',
 
 # File deletion
@@ -457,6 +459,9 @@ It must have at least $1 characters and be different from your username.',
 # Contributions
 'mycontris' => 'iştırakê mı',
 
+'sp-contributions-newbies'  => 'Tenya iştıraqanê karberanê neweyan bımocne',
+'sp-contributions-username' => 'Adresa IPy ya ki namey karberi:',
+
 # What links here
 'whatlinkshere'       => 'Gırey be pele',
 'whatlinkshere-links' => '← gırey',
@@ -469,12 +474,15 @@ It must have at least $1 characters and be different from your username.',
 Sebebê kılit-biyayışê $1\'i: "$2"o',
 'blocklogpage' => 'Protokolê kıliti',
 
+# Move page
+'1movedto2' => '[[$1]] berd be [[$2]]',
+
 # Thumbnails
 'thumbnail-more' => 'Gırd ke',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'Pela mına karberi',
-'tooltip-pt-mytalk'       => 'Pela mına werênayışi',
+'tooltip-pt-userpage'     => 'Pela şımawa karberi',
+'tooltip-pt-mytalk'       => 'Pela şımawa werênayışi',
 'tooltip-pt-login'        => 'Seba cıkotışi şıma rê dewato, labelê no zeruri niyo.',
 'tooltip-pt-logout'       => 'Veciye',
 'tooltip-ca-talk'         => 'Pela tedeesteyan sero werênayış',

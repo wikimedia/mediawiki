@@ -230,7 +230,7 @@ $messages = array(
 'showdiff'         => 'Amostrar trocamientos',
 'accmailtitle'     => 'La kontrasenya ha sido embiada.',
 'accmailtext'      => 'La kontrasenya para "$1" se ha embiado a $2.',
-'copyrightwarning' => 'Si puede ser, que observe que todas las contribuciones a {{SITENAME}} se consideran hechas públicas abaxo la $2 (ver detayes en $1). Si no quere que la gente endereche tus texhtos escritos sin piedad y los distribuya libbremente, alora no los meta aquí. También él/ella nos está asegurando ansí que escribió este texhto su mismo y es dueño de los derechos de autor, o lo copió desde el dominio público u otra fuente libbero.<strong>¡QUE N0 USE TEXHTOS ESCRITOS CON COPYRIGHT SIN PERMIŚIÓN!</strong><br />',
+'copyrightwarning' => "Si puede ser, que observe que todas las contribuciones a {{SITENAME}} se consideran hechas públicas abaxo la $2 (ver detayes en $1). Si no quere que la gente endereche tus texhtos escritos sin piedad y los distribuya libbremente, alora no los meta aquí. También él/ella nos está asegurando ansí que escribió este texhto su mismo y es dueño de los derechos de autor, o lo copió desde el dominio público u otra fuente libbero.'''¡QUE N0 USE TEXHTOS ESCRITOS CON COPYRIGHT SIN PERMIŚIÓN!'''<br />",
 
 # History pages
 'revisionasof'     => 'Rêvizión de $1',

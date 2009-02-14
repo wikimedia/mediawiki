@@ -232,6 +232,7 @@ $messages = array(
 'recentchanges'   => 'Mbóngwana ya nsúka',
 'rcnote'          => "Áwa o nsé {{PLURAL:$1|ezalí mbóngwana '''1'''|izalí mbóngwana '''$1'''}} o {{PLURAL:$2|mokɔlɔ|mikɔlɔ '''$2'''}} ya nsúka, {{PLURAL:$1|etángámí|itángámí}} o $3.",
 'rcshowhideminor' => '$1 mbóngwana ya mokɛ́',
+'rcshowhidebots'  => '$1 barobot',
 'rcshowhidemine'  => '$1 mbóngwana ya ngáí',
 'rclinks'         => 'Komɔ́nisa mbóngwana $1 ya nsúka o mikɔ́lɔ $2<br />$3',
 'diff'            => 'mbó.',

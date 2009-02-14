@@ -1,5 +1,5 @@
 <?php
-/** Achinese (Achèh)
+/** Achinese (Acèh)
  *
  * @ingroup Language
  * @file
@@ -233,11 +233,11 @@ Alamat IP Droëneuh nakeuh $3, ngön ID neutheun nakeuh $5. Tulông peuseureuta 
 'newarticle'             => '(Barô)',
 'newarticletext'         => "Droëneuh   ka neuseutot u ôn nyang goh na. Keu peugöt ôn nyan, neukeutik asoë ôn di  kutak di yup nyoë (ngiëng [[{{MediaWiki:Helppage}}|ôn bantu]] keu beurita leubèh lanjut). Meunyo Droëneuh  hana neusaja ka trôk keunoë, teugon '''back''' nyang na bak layeuë.",
 'noarticletext'          => 'Hana naseukah jinoë lam ôn nyoë. I Droëneuh   jeuët [[Special:Search/{{PAGENAME}}|mita keu nan ôn nyoë]] bak ôn-ôn la’én atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} andam ôn nyoë].',
-'previewnote'            => '<strong>Beuneuingat meunyo nyoë goh lom neukeubah!</strong>',
+'previewnote'            => "'''Beuneuingat meunyo nyoë goh lom neukeubah!'''",
 'editing'                => 'Andam $1',
 'editingsection'         => 'Andam $1 (bideuëng)',
-'copyrightwarning'       => 'Beuneuingat bahwa ban mandum nyang Droëneuh   tuléh keu {{SITENAME}} geukira geupeuteubiët di yup $2 (ngiëng $1 keu leubèh jeulah). Meunyoë Droëneuh h‘an neutém teunuléh Droëneuh  ji’andam ngön jiba ho ho la’én, bèk neupasoë teunuléh Droëneuh  keunoë.<br />Droëneuh  neumeujanji chit meunyoë teunuléh nyoë nakeuh atra neutuléh keudroë, atawa neucok nibak nè nè atra umôm atawa nè bibeuëh la’én.
-<strong>BÈK NEUPASOË TEUNULÉH NYANG GEUPEULINDÔNG HAK KARANG NYANG HANA IDIN</strong>',
+'copyrightwarning'       => "Beuneuingat bahwa ban mandum nyang Droëneuh   tuléh keu {{SITENAME}} geukira geupeuteubiët di yup $2 (ngiëng $1 keu leubèh jeulah). Meunyoë Droëneuh h‘an neutém teunuléh Droëneuh  ji’andam ngön jiba ho ho la’én, bèk neupasoë teunuléh Droëneuh  keunoë.<br />Droëneuh  neumeujanji chit meunyoë teunuléh nyoë nakeuh atra neutuléh keudroë, atawa neucok nibak nè nè atra umôm atawa nè bibeuëh la’én.
+'''BÈK NEUPASOË TEUNULÉH NYANG GEUPEULINDÔNG HAK KARANG NYANG HANA IDIN'''",
 'longpagewarning'        => "'''INGAT: Ôn nyoë panyangjih nakeuh $1 kilobit; ladôm alat rawoh web kadang na masalah bak ji’andam ôn nyang panyangjih 32 kb atawa leubèh. Beu neupeutimang keu neuplah jeuët padum boh beunagi nyang leubèh cut. '''",
 'templatesused'          => 'Templat nyang geunguy bak ôn nyoë:',
 'templatesusedpreview'   => 'Templat nyang geunguy bak eu dilèë nyoë',
@@ -474,8 +474,8 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'protect_expiry_invalid'      => 'Watèë maté tanggay hana sah.',
 'protect_expiry_old'          => 'Watèë maté tanggay nakeuh bak masa u likôt.',
 'protect-unchain'             => 'Peuhah neulindông peupinah',
-'protect-text'                => 'Droëneuh jeuët neu’eu atawa neugantoë tingkat lindông keu ôn <strong><nowiki>$1</nowiki></strong> nyoë pat.',
-'protect-locked-access'       => 'Nan dapeuta Droëneuh hana hak keu jak gantoë tingkat lindông ôn. Nyoë pat nakeuh konfigurasi atra jinoë keu ôn <strong>$1</strong>:',
+'protect-text'                => "Droëneuh jeuët neu’eu atawa neugantoë tingkat lindông keu ôn '''<nowiki>$1</nowiki>''' nyoë pat.",
+'protect-locked-access'       => "Nan dapeuta Droëneuh hana hak keu jak gantoë tingkat lindông ôn. Nyoë pat nakeuh konfigurasi atra jinoë keu ôn '''$1''':",
 'protect-cascadeon'           => 'Ôn nyoë teungöh geulindông kareuna geupeuseureuta lam {{PLURAL:$1|ôn|ôn-ôn}} nyoë nyang ka geulindông ngön peuniléh lindông meuturôt geupeuudép.
 Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peungarôh keu lindông meuturôt.',
 'protect-default'             => '(baku)',

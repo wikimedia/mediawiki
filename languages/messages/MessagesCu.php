@@ -196,7 +196,9 @@ $messages = array(
 'newmessagesdifflink' => 'послѣ́дьнꙗ мѣ́на',
 'editsection'         => 'испра́ви',
 'editold'             => 'испра́ви',
+'viewsourceold'       => 'страни́цѧ исто́чьнъ о́браꙁъ',
 'editlink'            => 'испра́ви',
+'viewsourcelink'      => 'страни́цѧ исто́чьнъ о́браꙁъ',
 'showtoc'             => 'ви́ждь',
 'hidetoc'             => 'съкрꙑи',
 'viewdeleted'         => '$1 ви́дєти хо́щєши ;',
@@ -254,7 +256,7 @@ $messages = array(
 'loginreqlink'       => 'Въниди',
 'newarticle'         => '(но́въ)',
 'clearyourcache'     => '<big>НАРОЧИ́ТО:</big> По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
-'note'               => '<strong>НАРОЧИ́ТО:</strong>',
+'note'               => "'''НАРОЧИ́ТО:'''",
 'editing'            => 'исправлѥ́ниѥ: $1',
 'editingsection'     => 'исправлѥ́ниѥ ⁖ $1 ⁖ (чѧ́сть)',
 'templatesused'      => 'сѥѩ страни́цѧ с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ :',
@@ -266,6 +268,7 @@ $messages = array(
 'last'         => 'пс҃лд',
 'page_first'   => 'прь́ва страни́ца',
 'page_last'    => 'послѣ́дьнꙗ страни́ца',
+'histlast'     => 'послѣ́дьнꙗ',
 'historyempty' => '(поу́сто)',
 
 # Revision feed
@@ -339,7 +342,7 @@ $messages = array(
 'uploadbtn'         => 'положє́ниѥ дѣ́ла',
 'uploadlog'         => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
 'uploadlogpage'     => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
-'filename'          => 'дѣ́лъ и́мѧ',
+'filename'          => 'дѣ́ла и́мѧ',
 'filedesc'          => 'опьса́ниѥ',
 'fileuploadsummary' => 'опьса́ниѥ:',
 'successfulupload'  => 'дѣ́ло положєно ѥ́стъ',
@@ -429,7 +432,7 @@ $messages = array(
 'newuserlog-autocreate-entry' => 'по́льꙃєватєлꙗ мѣ́сто аѵтомати́чьно сътворєно́ ѥ́стъ',
 
 # E-mail user
-'emailuser' => 'Посъли епїстолѫ єлєктроникѫ',
+'emailuser' => 'посъли єпїстолѫ',
 
 # Watchlist
 'watchlist'      => 'моꙗ́ блюдє́ниꙗ',

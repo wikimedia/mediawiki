@@ -170,8 +170,8 @@ $messages = array(
 'newarticle'             => '(Nova)',
 'editing'                => 'o $1 editaere',
 'editingsection'         => 'Editaere $1 (sekcion)',
-'copyrightwarning'       => '<!-- Gol deocamdată. Vertismentul se flă en MediaWiki:Summary -->
-Te rog notari la din kontribuţi al {{SITENAME}} sunt konsideraere relesavat supra $2 (suah $1 din detăs). Açteu nesav te se teksti sunt editaere denomerci det redistributaere din vent, hatae ici.<br /> Tu este nostre promisaere bonti us tu skrirste ce se, nega kopiaere din publik domen nega similari resorsua. <strong>NE SUBMITE KOPILEGRU SKRIE SAS PERMIŢION!</strong>',
+'copyrightwarning'       => "<!-- Gol deocamdată. Vertismentul se flă en MediaWiki:Summary -->
+Te rog notari la din kontribuţi al {{SITENAME}} sunt konsideraere relesavat supra $2 (suah $1 din detăs). Açteu nesav te se teksti sunt editaere denomerci det redistributaere din vent, hatae ici.<br /> Tu este nostre promisaere bonti us tu skrirste ce se, nega kopiaere din publik domen nega similari resorsua. '''NE SUBMITE KOPILEGRU SKRIE SAS PERMIŢION!'''",
 'template-protected'     => '(ažatmat)',
 'template-semiprotected' => '(semi-ažatmat)',
 

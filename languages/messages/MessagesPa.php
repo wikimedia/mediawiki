@@ -9,11 +9,6 @@
  * @author Sukh
  * @author Ævar Arnfjörð Bjarmason
  * @author לערי ריינהארט
- *
- * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
- * @see http://bugzilla.wikimedia.org/show_bug.cgi?id=1478
- * @see http://bugzilla.wikimedia.org/show_bug.cgi?id=11145
  */
 
 $namespaceNames = array(
@@ -274,11 +269,11 @@ A list of valid special pages can be found at [[Special:SpecialPages]].",
 
 # Login and logout pages
 'logouttitle'                => 'ਯੂਜ਼ਰ ਲਾਗਆਉਟ',
-'logouttext'                 => '<strong>ਹੁਣ ਤੁਸੀਂ ਲਾਗਆਉਟ ਹੋ ਗਏ ਹੋ।</strong><br />
+'logouttext'                 => "'''ਹੁਣ ਤੁਸੀਂ ਲਾਗਆਉਟ ਹੋ ਗਏ ਹੋ।'''<br />
 You can continue to use {{SITENAME}} anonymously, or you can log in
 again as the same or as a different user. Note that some pages may
 continue to be displayed as if you were still logged in, until you clear
-your browser cache.',
+your browser cache.",
 'welcomecreation'            => "== ਜੀ ਆਇਆਂ ਨੂੰ, $1! ==
 
 Your account has been created. Don't forget to change your {{SITENAME}} preferences.",
@@ -403,8 +398,8 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'accmailtext'            => '"$1" ਲਈ ਪਾਸਵਰਡ $2 ਨੂੰ ਭੇਜਿਆ ਗਿਆ।',
 'newarticle'             => '(ਨਵਾਂ)',
 'updated'                => '(ਅੱਪਡੇਟ)',
-'note'                   => '<strong>ਨੋਟ:</strong>',
-'previewnote'            => '<strong>ਇਹ ਸਿਰਫ਼ ਇੱਕ ਝਲਕ ਹੈ; ਬਦਲਾਅ ਹਾਲੇ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ ਹਨ!</strong>',
+'note'                   => "'''ਨੋਟ:'''",
+'previewnote'            => "'''ਇਹ ਸਿਰਫ਼ ਇੱਕ ਝਲਕ ਹੈ; ਬਦਲਾਅ ਹਾਲੇ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ ਹਨ!'''",
 'editing'                => '$1 ਸੋਧਿਆ ਜਾ ਰਿਹਾ ਹੈ',
 'editingsection'         => '$1 (ਸ਼ੈਕਸ਼ਨ) ਸੋਧ',
 'editingcomment'         => '$1 (ਟਿੱਪਣੀ) ਸੋਧ',
@@ -464,6 +459,8 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'lineno'                  => 'ਲਾਈਨ $1:',
 'compareselectedversions' => 'ਚੁਣੇ ਵਰਜਨਾਂ ਦੀ ਤੁਲਨਾ',
 'editundo'                => 'ਵਾਪਸ(undo)',
+'diff-width'              => 'ਚੌੜਾਈ',
+'diff-height'             => 'ਉਚਾਈ',
 
 # Search results
 'searchresults'         => 'ਖੋਜ ਨਤੀਜੇ',
@@ -577,11 +574,11 @@ to upload files.',
 'minlength1'           => 'ਫਾਇਲ ਨਾਂ ਵਿੱਚ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਅੱਖਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।',
 'badfilename'          => 'ਫਾਇਲ ਨਾਂ "$1" ਬਦਲਿਆ ਗਿਆ ਹੈ।',
 'filetype-missing'     => 'ਫਾਇਲ ਦੀ ਕੋਈ ਐਕਸ਼ਟੇਸ਼ਨ ਨਹੀਂ ਹੈ (ਜਿਵੇਂ ".jpg").',
-'fileexists'           => 'ਇਹ ਫਾਇਲ ਨਾਂ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ। ਜੇ ਤੁਸੀਂ ਇਹ ਬਦਲਣ ਬਾਰੇ ਜਾਣਦੇ ਨਹੀਂ ਹੋ ਤਾਂ  <strong><tt>$1</tt></strong> ਵੇਖੋ ਜੀ।',
-'fileexists-extension' => 'ਇਸ ਨਾਂ ਨਾਲ ਰਲਦੀ ਫਾਇਲ ਮੌਜੂਦ ਹੈ:<br />
-ਅੱਪਲੋਡ ਕੀਤੀ ਫਾਇਲ ਦਾ ਨਾਂ: <strong><tt>$1</tt></strong><br />
-ਮੌਜੂਦ ਫਾਇਲ ਦਾ ਨਾਂ: <strong><tt>$2</tt></strong><br />
-ਇੱਕ ਵੱਖਰਾ ਨਾਂ ਚੁਣੋ ਜੀ',
+'fileexists'           => "ਇਹ ਫਾਇਲ ਨਾਂ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ। ਜੇ ਤੁਸੀਂ ਇਹ ਬਦਲਣ ਬਾਰੇ ਜਾਣਦੇ ਨਹੀਂ ਹੋ ਤਾਂ  '''<tt>$1</tt>''' ਵੇਖੋ ਜੀ।",
+'fileexists-extension' => "ਇਸ ਨਾਂ ਨਾਲ ਰਲਦੀ ਫਾਇਲ ਮੌਜੂਦ ਹੈ:<br />
+ਅੱਪਲੋਡ ਕੀਤੀ ਫਾਇਲ ਦਾ ਨਾਂ: '''<tt>$1</tt>'''<br />
+ਮੌਜੂਦ ਫਾਇਲ ਦਾ ਨਾਂ: '''<tt>$2</tt>'''<br />
+ਇੱਕ ਵੱਖਰਾ ਨਾਂ ਚੁਣੋ ਜੀ",
 'fileexists-thumb'     => "<center>'''ਮੌਜੂਦ ਚਿੱਤਰ'''</center>",
 'successfulupload'     => 'ਠੀਕ ਤਰ੍ਹਾਂ ਅੱਪਲੋਡ',
 'uploadwarning'        => 'ਅੱਪਲੋਡ ਚੇਤਾਵਨੀ',
@@ -762,9 +759,10 @@ to upload files.',
 'restriction-level-all'           => 'ਕੋਈ ਲੈਵਲ',
 
 # Undelete
-'undeletebtn'     => 'ਰੀਸਟੋਰ',
-'undeletereset'   => 'ਰੀ-ਸੈੱਟ',
-'undeletecomment' => 'ਟਿੱਪਣੀ:',
+'undeletebtn'               => 'ਰੀਸਟੋਰ',
+'undeletereset'             => 'ਰੀ-ਸੈੱਟ',
+'undeletecomment'           => 'ਟਿੱਪਣੀ:',
+'undelete-show-file-submit' => 'ਹਾਂ',
 
 # Namespace form on various pages
 'invert'         => 'ਉਲਟ ਚੋਣ',
@@ -980,7 +978,7 @@ to upload files.',
 'confirmemail_subject'  => '{{SITENAME}} ਈਮੇਲ ਐਡਰੈੱਸ ਪੁਸ਼ਟੀ',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[URL ਬਹੁਤ ਲੰਮਾ ਹੈ; ਅਫਸੋਸ ਹੈ]',
+'scarytranscludetoolong' => '[ਅਫਸੋਸ ਹੈ ਕਿ URL ਬਹੁਤ ਲੰਮਾ ਹੈ]',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 ਹਟਾਓ])',
@@ -1025,5 +1023,8 @@ to upload files.',
 # Special:SpecialPages
 'specialpages'             => 'ਖਾਸ ਪੇਜ',
 'specialpages-group-login' => 'ਲਾਗ ਇਨ / ਅਕਾਊਂਟ ਬਣਾਓ',
+
+# Special:BlankPage
+'blankpage' => 'ਖ਼ਾਲੀ ਪੇਜ',
 
 );

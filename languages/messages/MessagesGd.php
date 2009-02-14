@@ -5,6 +5,7 @@
  * @file
  *
  * @author Alison
+ * @author Caoimhin
  * @author Sionnach
  * @author לערי ריינהארט
  */
@@ -42,6 +43,7 @@ $messages = array(
 'info_short'        => 'Fiosrachadh',
 'printableversion'  => 'Lethbhreac so-chlòbhualadh',
 'edit'              => 'Deasaich',
+'create'            => 'Cruthaich',
 'editthispage'      => 'Deasaich an duilleag seo',
 'deletethispage'    => 'Dubh às an duilleag seo',
 'protect'           => 'Dìon',
@@ -56,7 +58,7 @@ $messages = array(
 'talk'              => 'Deasbaireachd',
 'userpage'          => 'Seall duilleag cleachdair',
 'imagepage'         => 'Seall duilleag ìomhaigh',
-'otherlanguages'    => 'Cainntean eile',
+'otherlanguages'    => 'Cànanan eile',
 'redirectedfrom'    => '(Ath-stiùirte o $1)',
 'protectedpage'     => 'Duilleag dìonta',
 
@@ -147,13 +149,13 @@ $1",
 'newarticle'      => '(Ùr)',
 'noarticletext'   => '(Chan eil teacsa anns an duilleig seo a-nis)',
 'updated'         => '(Nua-dheasaichte)',
-'previewnote'     => '<strong>Cuimhnichibh nach e ach roi-shealladh a tha seo, agus chan eil e air a shàbhaladh fhathast!</strong>',
+'previewnote'     => "'''Cuimhnichibh nach e ach roi-shealladh a tha seo, agus chan eil e air a shàbhaladh fhathast!'''",
 'editing'         => "A'deasaicheadh $1",
 'editconflict'    => 'Mì-chòrdadh deasachaidh: $1',
 'explainconflict' => "Tha cuideigin eile air an duilleig seo a mhùthadh o'n thòisich sibh fhèin a dheasaicheadh. Tha am bocsa teacsa shuas a'nochdadh na duilleig mar a tha e an dràsda. Tha na mùthaidhean agaibhse anns a'bhocsa shios. Feumaidh sibh na mùthaidhean agaibh a choimeasgachadh leis an teacsa làithreach. Cha tèid <b>ach an teacsa shuas</b> a shàbhaladh an uair a bhriogas sibh \"Sàbhail duilleag\".<p>",
 'yourtext'        => 'An teacsa agaibh',
 'storedversion'   => 'Lethbhreac taisgte',
-'editingold'      => "<strong>RABHADH: Tha sibh a'deasaicheadh lethbhreac sean-aimsireil na duilleig seo. Ma shàbhalas sibh e, bithidh uile na mùthaidhean dèanta as dèidh an lethbhreac seo air chall.</strong>",
+'editingold'      => "'''RABHADH: Tha sibh a'deasaicheadh lethbhreac sean-aimsireil na duilleig seo. Ma shàbhalas sibh e, bithidh uile na mùthaidhean dèanta as dèidh an lethbhreac seo air chall.'''",
 'yourdiff'        => 'Caochlaidhean',
 
 # History pages
@@ -168,16 +170,17 @@ $1",
 'compareselectedversions' => 'Coimeas lethbhreacan taghta',
 
 # Search results
-'searchresults'     => 'Toraidhean rannsachaidh',
-'notitlematches'    => "Chan eil tiotal duilleig a'samhlachadh",
-'notextmatches'     => "Chan eil teacsa duilleig a'samhlachadh",
-'prevn'             => '$1 mu dheireadh',
-'nextn'             => 'an ath $1',
-'viewprevnext'      => 'Seall ($1) ($2) ($3).',
-'searchhelp-url'    => 'Help:Cuideachadh',
-'showingresults'    => "A'nochdadh {{PLURAL:$1|'''1''' toradh|'''$1''' toraidhean}} gu h-ìosal a'tòiseachadh le #'''$2'''.",
-'showingresultsnum' => "A'nochdadh {{PLURAL:$3|'''1''' toradh|'''$3''' toraidhean}} gu h-ìosal a'tòiseachadh le #'''$2'''.",
-'powersearch'       => 'Rannsaich',
+'searchresults'         => 'Toraidhean rannsachaidh',
+'noexactmatch-nocreate' => "'''Chan eil duilleag ann leis an ainm “$1”.'''",
+'notitlematches'        => "Chan eil tiotal duilleig a'samhlachadh",
+'notextmatches'         => "Chan eil teacsa duilleig a'samhlachadh",
+'prevn'                 => '$1 mu dheireadh',
+'nextn'                 => 'an ath $1',
+'viewprevnext'          => 'Seall ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Cuideachadh',
+'showingresults'        => "A'nochdadh {{PLURAL:$1|'''1''' toradh|'''$1''' toraidhean}} gu h-ìosal a'tòiseachadh le #'''$2'''.",
+'showingresultsnum'     => "A'nochdadh {{PLURAL:$3|'''1''' toradh|'''$3''' toraidhean}} gu h-ìosal a'tòiseachadh le #'''$2'''.",
+'powersearch'           => 'Rannsaich',
 
 # Preferences page
 'preferences'        => 'Taghaidhean',
@@ -218,7 +221,7 @@ $1",
 'filestatus'    => 'Cor dlighe-sgrìobhaidh:',
 'ignorewarning' => 'Leig an rabhadh seachad agus sàbhail am faidhle codhiù.',
 'badfilename'   => 'Ainm ìomhaigh air atharrachadh ri "$1".',
-'fileexists'    => 'Tha faidhle leis an ainm seo ann cheana; nach faigh sibh cinnt air <strong><tt>$1</tt></strong> gu bheil sibh ag iarraidh atharrachadh.',
+'fileexists'    => "Tha faidhle leis an ainm seo ann cheana; nach faigh sibh cinnt air '''<tt>$1</tt>''' gu bheil sibh ag iarraidh atharrachadh.",
 'savefile'      => 'Sàbhail faidhle',
 
 # Special:ListFiles
@@ -282,7 +285,7 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'reverted'       => 'Tillte ri lethbhreac as ùire',
 
 # Rollback
-'editcomment' => 'Bha mìneachadh an deasaicheidh: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment' => "Bha mìneachadh an deasaicheidh: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'  => 'Tillte deasachadh aig [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]]) ais ri lethbhreac mu dheireadh le [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect

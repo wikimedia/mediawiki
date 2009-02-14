@@ -467,15 +467,15 @@ $2',
 Rezon li bay yo se « ''$2'' ».",
 
 # Virus scanner
-'virus-badscanner'     => 'Move konfigirasyon : eskanè viris sa, nou pa konenn l : <i>$1</i>',
+'virus-badscanner'     => "Move konfigirasyon : eskanè viris sa, nou pa konenn l : ''$1''",
 'virus-scanfailed'     => 'Rechèch an pa ritounen pyès rezilta (kòd $1)',
 'virus-unknownscanner' => 'antiviris nou pa konnen :',
 
 # Login and logout pages
 'logouttitle'                => 'Dekoneksyon-Sòti',
-'logouttext'                 => '<strong>Monchè oubyen machè, ou dekonekte kounye a.</strong>
+'logouttext'                 => "'''Monchè oubyen machè, ou dekonekte kounye a.'''
 
-Ou mèt kontinye itilize {{SITENAME}} san ou pa bezwen konekte w, oubyen si ou [[Special:UserLogin|rekonekte]] w ankò ak menm non an oubyen yon lòt.',
+Ou mèt kontinye itilize {{SITENAME}} san ou pa bezwen konekte w, oubyen si ou [[Special:UserLogin|rekonekte]] w ankò ak menm non an oubyen yon lòt.",
 'welcomecreation'            => '== Byenvini, $1 ! ==
 
 Kont ou an kreye. Pa bliye pèsonalize l nan  [[Special:Preferences|preferans ou an sou paj sa {{SITENAME}}]].',
@@ -545,7 +545,7 @@ Anvan yon lòt imèl voye, swiv komand ki nan mesaj imèl an epi konfime ke kont
 'acct_creation_throttle_hit' => 'Eskize nou, ou te deja kreye {{PLURAL:$1|1 kont|$1 kont}}. Ou pa kapab kreye dòt ankò.',
 'emailauthenticated'         => 'Adrès imèl ou an idantifye nan sistèm nou an depi $2 nan $3.',
 'emailnotauthenticated'      => '<strong>Nou pa kapab idantifye</strong> adrès imèl ou an. Pyès mesaj imèl ke voyen pou chak fonksyon sa yo.',
-'noemailprefs'               => '<strong>Ou pa bay pyès adrès imèl nan mesaj preferans ou an,</strong> fonksyon sa yo pe ke disponib.',
+'noemailprefs'               => 'Ou pa bay pyès adrès imèl nan mesaj preferans ou an, fonksyon sa yo pe ke disponib.',
 'emailconfirmlink'           => 'Konfime adrès imèl ou an',
 'invalidemailaddress'        => 'Nou pa kapab aksepte adrès imèl sa paske li sanble fòma l pa bon ditou. Tanpri, mete yon adrès ki nan yon bon fòma oubyen pa ranpli seksyon sa.',
 'accountcreated'             => 'Kont ou an kreye',
@@ -667,16 +667,16 @@ Si se paske ou komèt yon erè ke ou ap twouve ou nan paj sa a, klike anlè bout
 'userjspreview'                    => "'''Sonje ke ou ap voye kout zye sou fèy JavaScript ou ekri an, li poko anrejistre !'''",
 'userinvalidcssjstitle'            => "'''Pòte atnasyon :''' estil \"\$1\" sa pa egziste. Raple ou ke paj pèsonèl ou yo ak ekstansyon .css epi .js ap itilize tit/sijè nan lèt miniskil, pa egzanp  {{ns:user}}:Foo/monobook.css se pa {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Li gen dènye vèsyon sou li)',
-'note'                             => '<strong>Nòt :</strong>',
-'previewnote'                      => '<strong>Atansyon, tèks sa a se yon previzyalizasyon, li poko anrejistre !</strong>',
+'note'                             => "'''Nòt :'''",
+'previewnote'                      => "'''Atansyon, tèks sa a se yon previzyalizasyon, li poko anrejistre !'''",
 'previewconflict'                  => 'Kout zye sa ap montre tèks ki nan bwat anwo pou ou wè modifikasyon ou an jan l ap parèt lè li ke pibliye.',
-'session_fail_preview'             => '<strong>Ekskize nou ! Nou pa kapab anrejistre modifikasyon ou an paske nou sanble pèdi kèk enfòmasyon koneksyon sou kont ou an, sou sesyon ou an. Eseye yon fwa ankò. Si li pa mache, dekonekte ou, apre ou ap konekte ou ankò.</strong>',
-'session_fail_preview_html'        => "<strong>Eskize nou ! Nou pa kapab anrejistre modifikasyon ou an paske nou pèdi yon pati nan enfomasyon sou sesyon ou an.</strong>
+'session_fail_preview'             => "'''Ekskize nou ! Nou pa kapab anrejistre modifikasyon ou an paske nou sanble pèdi kèk enfòmasyon koneksyon sou kont ou an, sou sesyon ou an. Eseye yon fwa ankò. Si li pa mache, dekonekte ou, apre ou ap konekte ou ankò.'''",
+'session_fail_preview_html'        => "'''Eskize nou ! Nou pa kapab anrejistre modifikasyon ou an paske nou pèdi yon pati nan enfomasyon sou sesyon ou an.'''
 
 ''HTML san foma, jan l ye a aktive nan wiki sa {{SITENAME}} , bouton pou gade sa lap bay an kache pou anpeche atak pa JavaScript.''
 
-<strong>Si ou panse ke modifikasyon ou an bon toutbon, ou mèt eseye anko. Si sistèm an pa aksepte l fwa la s, dekonekte w, rekonekte w anko.</strong>",
-'token_suffix_mismatch'            => '<strong>Modifikasyon ou fè an sanble pa aksepte paske navigatè, bwozè ou a melanje karaktè ponktyasyon yo nan idantifyan pou tèks sa. Modofikasyon pa aksepte pou li pa jenere kèk pwoblèm nan tèks ki te nan paj an. Pwoblèm sa kapab rive lè ou ap pase pa yon sèvè pwoksi (proxy).</strong>',
+'''Si ou panse ke modifikasyon ou an bon toutbon, ou mèt eseye anko. Si sistèm an pa aksepte l fwa la s, dekonekte w, rekonekte w anko.'''",
+'token_suffix_mismatch'            => "'''Modifikasyon ou fè an sanble pa aksepte paske navigatè, bwozè ou a melanje karaktè ponktyasyon yo nan idantifyan pou tèks sa. Modofikasyon pa aksepte pou li pa jenere kèk pwoblèm nan tèks ki te nan paj an. Pwoblèm sa kapab rive lè ou ap pase pa yon sèvè pwoksi (proxy).'''",
 'editing'                          => 'Modifikasyon pou $1',
 'editingsection'                   => 'Modifikasyon pou $1 (seksyon)',
 'editingcomment'                   => 'Modifikasyon pou $1 (komantè)',
@@ -685,11 +685,11 @@ Si se paske ou komèt yon erè ke ou ap twouve ou nan paj sa a, klike anlè bout
 'yourtext'                         => 'Tèks ou an',
 'storedversion'                    => 'Vèsyon ki anrejistre',
 'yourdiff'                         => 'Diferans',
-'copyrightwarning'                 => 'Souple, raple ou ke tout piblikasyon ki fèt nan {{SITENAME}} piblye anba kontra $2 an (wè $1 pou konnen plis). Si ou pa ta vle ke sa ou ekri pataje oubyen  modifye, ou pa dwèt soumèt yo isit.<br />
-Ou ap pwomèt tou ke sa ou ap ekri a se ou menm menm ki ekri li oubyen ke ou kopye li de yon sous ki nan domèn piblik, ou byen you sous ki lib. <strong>PA ITILIZE TRAVAY MOUN KI PA BAY OTORIZASYON PA LI TOUTBON !</strong>',
+'copyrightwarning'                 => "Souple, raple ou ke tout piblikasyon ki fèt nan {{SITENAME}} piblye anba kontra $2 an (wè $1 pou konnen plis). Si ou pa ta vle ke sa ou ekri pataje oubyen  modifye, ou pa dwèt soumèt yo isit.<br />
+Ou ap pwomèt tou ke sa ou ap ekri a se ou menm menm ki ekri li oubyen ke ou kopye li de yon sous ki nan domèn piblik, ou byen you sous ki lib. '''PA ITILIZE TRAVAY MOUN KI PA BAY OTORIZASYON PA LI TOUTBON !'''",
 'longpagewarning'                  => "'''AVÈTISMAN : paj sa a genyen yon gwosè ki pase $1 Kio ;
 Kèk bwozè (firefox,ie,opera,safari...) pa kapab afiche byen byen modifikasyon ki parèt nan paj ki genyen plis oubyen près 32 Kio. Oumèt dekoupe paj an nan 2 mòso oubyen ak seksyon pli piti.'''",
-'longpageerror'                    => '<strong>ERÈ : Tèks ou anrejistre a ap fè $1 Ko, tay sa a depase kapasite limit nou kapab aksepte kounye a: $2 Ko. Nou pa kapab anrejistre tèks sa. Eseye ritounen nan paj ou te ye anvan pou kopye modifikasyon ou yo.</strong>',
+'longpageerror'                    => "'''ERÈ : Tèks ou anrejistre a ap fè $1 Ko, tay sa a depase kapasite limit nou kapab aksepte kounye a: $2 Ko. Nou pa kapab anrejistre tèks sa. Eseye ritounen nan paj ou te ye anvan pou kopye modifikasyon ou yo.'''",
 'protectedpagewarning'             => "'''Pote atansyon : paj sa a pwoteje.
 Sèl itilizatè yo ki genyen estati administratè kapab modifye l.'''",
 'templatesused'                    => 'Modèl ki itilize nan paj sa a :',
@@ -992,9 +992,9 @@ Gade $2 pou wè yon lis efasman resan.',
 'protect_expiry_invalid'      => 'Dat ou mete a pou li ekspire pa bon',
 'protect_expiry_old'          => 'dat ekspirasyon an ja pase;',
 'protect-unchain'             => 'Debloàke pèmisyon yo pou renonmen, deplase',
-'protect-text'                => 'Ou mèt konsilte epi modifye nivo pwoteksyon paj sa a <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-access'       => 'Ou pa genyen dwa ki ap pèmèt ou modifye pwoteksyon paj sa a.
-Men reglaj pou paj <strong>$1</strong> an kounye a:',
+'protect-text'                => "Ou mèt konsilte epi modifye nivo pwoteksyon paj sa a '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Ou pa genyen dwa ki ap pèmèt ou modifye pwoteksyon paj sa a.
+Men reglaj pou paj '''$1''' an kounye a:",
 'protect-cascadeon'           => 'paj sa a pwoteje kounye a paske li nan {{PLURAL:$1|paj swivan|paj swivan yo}}, {{PLURAL:$1|ki li menm menm te pwoteje|ki yo menm menm te pwoteje}} epi opsyon pwoteksyon "enbrike" aktif. Ou mèt chanje nivo pwoteksyon paj sa a san ke li modifye pwoteksyon enbrike an.',
 'protect-default'             => '(pa genyen pwoteksyon)',
 'protect-fallback'            => 'Li bezwen pèmisyon "$1"',
