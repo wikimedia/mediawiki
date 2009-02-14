@@ -2965,8 +2965,8 @@ class Article {
 
 		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" . wfMsgExt( $infomsg, array( 'parseinline', 'replaceafter' ), $td, $userlinks, $revision->getID() ) . "</div>\n" .
 
-		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsgHtml( 'revision-nav', $prevdiff, 
-				$prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
+		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsgExt( 'revision-nav', array( 'escapenoentities', 'parsemag', 'replaceafter' ),
+		     	$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
 		$wgOut->setSubtitle( $r );
 	}
 
