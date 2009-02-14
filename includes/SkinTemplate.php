@@ -138,7 +138,7 @@ class SkinTemplate extends Skin {
 		global $wgScript, $wgStylePath, $wgContLanguageCode;
 		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgRequest;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
-		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgHideInterlanguageLinks;
+		global $wgDisableCounters, $wgLogo, $action, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 		global $wgUseTrackbacks, $wgUseSiteJs;

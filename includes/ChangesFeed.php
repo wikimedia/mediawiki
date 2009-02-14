@@ -20,7 +20,7 @@ class ChangesFeed {
 
 	public function execute( $feed, $rows, $limit=0, $hideminor=false, $lastmod=false, $target='' ) {
 		global $messageMemc, $wgFeedCacheTimeout;
-		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
+		global $wgSitename, $wgContLanguageCode;
 
 		if ( !FeedUtils::checkFeedOutput( $this->format ) ) {
 			return;
