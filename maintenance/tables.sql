@@ -1199,9 +1199,9 @@ CREATE TABLE /*_*/page_restrictions (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/pr_pagetype ON /*_*/page_restrictions (pr_page,pr_type);
-CREATE UNIQUE INDEX /*i*/pr_typelevel ON /*_*/page_restrictions (pr_type,pr_level);
-CREATE UNIQUE INDEX /*i*/pr_level ON /*_*/page_restrictions (pr_level);
-CREATE UNIQUE INDEX /*i*/pr_cascade ON /*_*/page_restrictions (pr_cascade);
+CREATE INDEX /*i*/pr_typelevel ON /*_*/page_restrictions (pr_type,pr_level);
+CREATE INDEX /*i*/pr_level ON /*_*/page_restrictions (pr_level);
+CREATE INDEX /*i*/pr_cascade ON /*_*/page_restrictions (pr_cascade);
 
 
 -- Protected titles - nonexistent pages that have been protected
