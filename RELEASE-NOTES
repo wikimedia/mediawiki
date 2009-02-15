@@ -102,6 +102,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   'ellipsis' message
 * Wrap warning message 'editinginterface' into a div with class
   'mw-editinginterface'
+* (bug 17497) Oasis opendocument added to mime.types
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
