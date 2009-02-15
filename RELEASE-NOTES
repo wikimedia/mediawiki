@@ -170,6 +170,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17478) Fixed a PHP Strict standards error in
   maintenance/cleanupWatchlist.php
 * (bug 17488) RSS/Atom links in left toolbar are now localized
+* (bug 17472) use print <<<EOF in maintenance/importTextFile.php
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
