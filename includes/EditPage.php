@@ -1215,7 +1215,7 @@ class EditPage {
 		$classes = array(); // Textarea CSS
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			# Show a warning if editing an interface message
-			$wgOut->addWikiMsg( 'editinginterface' );
+			$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1</div>", 'editinginterface' );
 		} elseif ( $this->mTitle->isProtected( 'edit' ) ) {
 			# Is the title semi-protected?
 			if ( $this->mTitle->isSemiProtected() ) {
