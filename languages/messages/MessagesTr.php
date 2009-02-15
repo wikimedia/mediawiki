@@ -334,8 +334,8 @@ $messages = array(
 'copyright'            => 'İçerik $1 altındadır.',
 'copyrightpagename'    => '{{SITENAME}} telif hakları',
 'copyrightpage'        => '{{ns:project}}:Telif hakları',
-'currentevents'        => 'Güncel olaylar',
-'currentevents-url'    => 'Project:Güncel olaylar',
+'currentevents'        => 'Köy çeşmesi',
+'currentevents-url'    => 'Project:Köy çeşmesi',
 'disclaimers'          => 'Sorumluluk reddi',
 'disclaimerpage'       => 'Project:Genel_sorumluluk_reddi',
 'edithelp'             => 'Nasıl değiştirilir?',
@@ -601,7 +601,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass-submit-loggedin' => 'Parolayı değiştir',
 'resetpass-wrong-oldpass'   => 'Geçersiz geçici veya güncel şifre.
 Şifrenizi zaten başarıyla değiştirdiniz ya da yeni bir geçici şifre istediniz.',
-'resetpass-temp-password'   => 'Geçici şifre:',
+'resetpass-temp-password'   => 'Geçici parola:',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',

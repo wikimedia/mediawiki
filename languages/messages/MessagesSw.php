@@ -264,7 +264,7 @@ $messages = array(
 'talkpagelinktext'  => 'Majadiliano',
 'specialpage'       => 'Ukarasa maalumu',
 'personaltools'     => 'Vifaa binafsi',
-'postcomment'       => 'Weka maelezo',
+'postcomment'       => 'Fungu jipya',
 'talk'              => 'Majadiliano',
 'views'             => 'Mitazamo',
 'toolbox'           => 'Vifaa',
@@ -443,7 +443,7 @@ Unaweza kupuuza ujumbe huu, endapo akaunti hii ilianzishwa kimakosa.',
 'math_tip'        => 'Formula ya kihesabu (LaTeX)',
 'nowiki_sample'   => 'Weka matini bila fomati hapa',
 'nowiki_tip'      => 'Puuza fomati ya Wiki',
-'image_tip'       => 'Picha iliyotiwa',
+'image_tip'       => 'Faili lililotiwa',
 'media_tip'       => 'Kiungo cha faili ya picha, video, au sauti',
 'sig_tip'         => 'Sahihi yako na saa ya kusahihisha',
 'hr_tip'          => 'Mstari wa mlalo (usitumie ovyo)',
@@ -613,7 +613,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'filehist-dimensions'       => 'Vipimo',
 'filehist-filesize'         => 'Ukubwa wa faili',
 'filehist-comment'          => 'Maoni',
-'imagelinks'                => 'Viungo',
+'imagelinks'                => 'Viungo vya mafaili',
 'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu|Kurasa hizi $1}} zimeunganishwa na faili hili:',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
 'sharedupload'              => 'Faili hii inaweza kushirikiwa na miradi mingine.',
@@ -810,14 +810,14 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 
 # What links here
 'whatlinkshere'       => 'Viungo viungacho ukurasa huu',
-'whatlinkshere-title' => 'Kurasa zilizounganishwa na $1',
+'whatlinkshere-title' => 'Kurasa zilizounganishwa na "$1"',
 'linkshere'           => "Kurasa zifuatazo zimeunganishwa na '''[[:$1]]''':",
 'nolinkshere'         => "Hakuna kurasa zilizounganishwa na '''[[:$1]]'''.",
 'isredirect'          => 'elekeza ukurasa',
 'istemplate'          => 'jumuisho',
 'whatlinkshere-prev'  => '{{PLURAL:$1|uliotangulia|$1 zilizotangulia}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|ujao|$1 zijazo}}',
-'whatlinkshere-links' => '? viungo',
+'whatlinkshere-links' => '← viungo',
 
 # Block/unblock
 'blockip'       => 'Zuia mtumiaji',
@@ -883,16 +883,16 @@ Chagua jina lengine.',
 'importlogpage' => 'Kumbukumbu ya kuingizwa',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Ukurasa wangu',
-'tooltip-pt-mytalk'               => 'Majadiliano yangu',
+'tooltip-pt-userpage'             => 'Ukurasa wako',
+'tooltip-pt-mytalk'               => 'Majadiliano yako',
 'tooltip-pt-preferences'          => 'Mapendekezo yangu',
 'tooltip-pt-watchlist'            => 'Orodha ya kurasa unazofuatilia kwa mabadiliko',
-'tooltip-pt-mycontris'            => 'Orodha ya michango yangu',
+'tooltip-pt-mycontris'            => 'Orodha ya michango yako',
 'tooltip-pt-login'                => 'Tunakushajisha kuingia, lakini siyo lazima.',
 'tooltip-pt-logout'               => 'Toka',
 'tooltip-ca-talk'                 => 'Mazungumzo kuhusu makala',
 'tooltip-ca-edit'                 => 'Unaweza kuhariri ukurasa huu.  Tafadhali tumia kitufe cha kuhakikisha kabla ya kuhifadhi.',
-'tooltip-ca-addsection'           => 'Weka maoni yako kwenye majadiliano haya.',
+'tooltip-ca-addsection'           => 'Anzisha fungu jipya.',
 'tooltip-ca-viewsource'           => 'Ukurasa huu umelindwa.  Unaweza kutazama chanzo chake.',
 'tooltip-ca-protect'              => 'Linda ukurasa huu',
 'tooltip-ca-delete'               => 'Futa ukurasa huu',
@@ -944,12 +944,14 @@ Chagua jina lengine.',
 # Bad image list
 'bad_image_list' => 'Fomati ni hii:
 
-Tunazingatia madondoo katika orodha (mistari inayoanza na *) tu.  Inabidi kiungo cha kwanza katika mstari kiunge na picha mbaya.
-Viungo vinavyofuata katika mstari ule ule vitaelewa kuwa mambo ya pekee, yaani kurasa zinazoruhusiwa kuonyesha picha hiyo.',
+Tunazingatia madondoo katika orodha (mistari inayoanza na *) tu.  
+Inabidi kiungo cha kwanza katika mstari kiunge na faili baya.
+Viungo vinavyofuata katika mstari ule ule vitaelewa kuwa mambo ya pekee, yaani kurasa zinazoruhusiwa kuonyesha faili hilo.',
 
 # Metadata
 'metadata'          => 'Data juu',
-'metadata-help'     => 'Faili hiil lina maarifa mengine, yamkini kutoka kemra au skana iliyotumiwa kulitengeneza au kuliandaa kwa tarakilishi.  Kama faili imebadilishwa kutoka hali yake ya awali, inawezekana kwamba vipengele kadhaa vitakuwa tofauti kuliko hali ya picha sasa.',
+'metadata-help'     => 'Faili hili lina maarifa mengine, yamkini kutoka kemra au skana iliyotumiwa kulitengeneza au kuliandaa kwa tarakilishi.  
+Kama faili imebadilishwa kutoka hali yake ya awali, inawezekana kwamba vipengele kadhaa vitakuwa tofauti kuliko hali ya picha sasa.',
 'metadata-expand'   => 'Onyesha maarifa vinaganaga',
 'metadata-collapse' => 'Ficha maarifa vinaganaga',
 'metadata-fields'   => 'Nyuga za data juu za EXIF zinazoorodheshwa katika ujumbe huu

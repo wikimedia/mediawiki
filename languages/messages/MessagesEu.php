@@ -2293,6 +2293,8 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'skinname-standard'    => 'Lehenetsia',
 'skinname-nostalgia'   => 'Nostalgia',
 'skinname-cologneblue' => 'Cologne Blue',
+'skinname-simple'      => 'Arrunta',
+'skinname-modern'      => 'Modernoa',
 
 # Math options
 'mw_math_png'    => 'Beti PNG irudiak sortu',

@@ -256,6 +256,7 @@ $messages = array(
 'viewdeleted'             => 'Haree $1?',
 'site-rss-feed'           => 'Feed RSS $1',
 'site-atom-feed'          => 'Feed Atom $1',
+'red-link-title'          => "$1 (pájina ne'e la iha)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pájina',

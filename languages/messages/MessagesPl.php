@@ -468,7 +468,7 @@ $messages = array(
 'toc'                     => 'Spis treści',
 'showtoc'                 => 'pokaż',
 'hidetoc'                 => 'ukryj',
-'thisisdeleted'           => 'Pokazać czy odtworzyć?',
+'thisisdeleted'           => 'Pokazać czy odtworzyć $1?',
 'viewdeleted'             => 'Zobacz $1',
 'restorelink'             => '{{PLURAL:$1|jedną usuniętą wersję|$1 usunięte wersje|$1 usuniętych wersji}}',
 'feedlinks'               => 'Kanały:',
@@ -733,7 +733,7 @@ Być może właśnie zmieniłeś swoje hasło lub poprosiłeś o nowe tymczasowe
 'hr_tip'          => 'Linia pozioma (nie nadużywaj)',
 
 # Edit pages
-'summary'                          => 'Opis zmian',
+'summary'                          => 'Opis zmian ',
 'subject'                          => 'Temat/nagłówek:',
 'minoredit'                        => 'To jest drobna zmiana',
 'watchthis'                        => 'Obserwuj',

@@ -83,6 +83,7 @@ $messages = array(
 'deletethispage'   => 'Ekarta disi pagine',
 'protect'          => 'Protekte',
 'protectthispage'  => 'Protekte disi pagine',
+'newpage'          => 'Novi pagine',
 'talkpage'         => 'Diskuse disi pagine',
 'talkpagelinktext' => 'Diskusione',
 'specialpage'      => 'Spesial Pagine',
@@ -124,7 +125,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikle',
 'nstab-user'      => 'Useren pagine',
-'nstab-special'   => 'Spesial',
+'nstab-special'   => 'Spesial pagine',
 'nstab-project'   => 'Projetal pagine',
 'nstab-mediawiki' => 'Mesaje',
 'nstab-template'  => 'Shablone',
@@ -194,6 +195,7 @@ Forsan lu ha bli ekarta fro li wiki, o rinomat.
 Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 
 # Diffs
+'lineno'                  => 'Linie $1:',
 'compareselectedversions' => 'Kompara selektet versiones',
 
 # Search results
@@ -205,6 +207,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'nextn'                 => 'sekuenti $1',
 'viewprevnext'          => 'Vida ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Kontenaje',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 vorde|$2 vordes}})',
 'showingresults'        => "Montrant subu {{PLURAL:$1|'''1''' resulte|'''$1''' resultes}} amaxim komensant fro #'''$2'''.",
 'showingresultsnum'     => "Montrant subu {{PLURAL:$3|'''1''' result|'''$3''' results}} komensant fro #'''$2'''.",
 'powersearch'           => 'Sercha',
@@ -219,6 +222,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'timezoneregion-africa' => 'Afrika',
 
 # Recent changes
+'nchanges'        => '$1 {{PLURAL:$1|chanjo|chanjos}}',
 'recentchanges'   => 'Resenti chanjos',
 'rcnote'          => "Subu es {{PLURAL:$1| '''1''' chanje|li lasti '''$1''' chanjes}} in li lasti {{PLURAL:$2|die|'''$2''' dies}}, fro $3.",
 'rcshowhideminor' => '$1 minori modifikos',
@@ -228,6 +232,8 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'hist'            => 'hist',
 'hide'            => 'Kasha',
 'show'            => 'Montra',
+'minoreditletter' => 'm',
+'newpageletter'   => 'N',
 
 # Recent changes linked
 'recentchangeslinked' => 'Afini chanjos',
@@ -352,10 +358,12 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'sp-contributions-submit'  => 'Sercha',
 
 # What links here
-'whatlinkshere'      => 'Tum kel kupla hir',
-'whatlinkshere-page' => 'Pagine:',
+'whatlinkshere'       => 'Tum kel kupla hir',
+'whatlinkshere-page'  => 'Pagine:',
+'whatlinkshere-links' => '← linkes',
 
 # Block/unblock
+'ipbreason'    => 'Resone:',
 'badipaddress' => 'Non-valid IP adrese',
 'contribslink' => 'Kontributiones',
 
@@ -366,6 +374,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'movedto'                 => 'movat a',
 '1movedto2'               => '[[$1]] movat a [[$2]]',
 '1movedto2_redir'         => '[[$1]] movat a [[$2]] via ri-adreso',
+'movereason'              => 'Resone:',
 'delete_and_move'         => 'Ekarta e mova',
 'delete_and_move_confirm' => 'Yes, ekarta li pagine',
 'delete_and_move_reason'  => 'Ekartat por fa spatie por movo',
@@ -379,7 +388,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'allmessagesmodified' => 'Montra nur modifikates',
 
 # Tooltip help for the actions
-'tooltip-pt-mytalk'      => 'Men parla-pagine',
+'tooltip-pt-mytalk'      => 'Vun parla-pagine',
 'tooltip-pt-preferences' => 'Men preferos',
 'tooltip-pt-logout'      => 'Eksignata',
 'tooltip-p-logo'         => 'Chefi pagine',
