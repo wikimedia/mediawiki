@@ -239,3 +239,8 @@ html > body div#bodyContent ul {
 html > body div#bodyContent ul#filetoc {
 	display: block;
 }
+/* Special:Prefixindex styling */
+td#mw-prefixindex-nav-form  {
+	text-align: left;
+}
+

@@ -174,3 +174,8 @@ table.filehistory th {
 html > body div#bodyContent ul {
 	display: table;
 }
+/* Special:Prefixindex styling */
+td#mw-prefixindex-nav-form  {
+	text-align: left;
+}
+

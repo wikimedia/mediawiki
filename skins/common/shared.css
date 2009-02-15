@@ -297,6 +297,19 @@ td#mw-emailuser-sender, td#mw-emailuser-recipient {
 	font-weight: bold;
 }
 
+/* Special:Prefixindex styling */
+table#mw-prefixindex-list-table,
+table#mw-prefixindex-nav-table {
+	width: 98%;
+	background-color: transparent;
+}
+td#mw-prefixindex-nav-form  {
+	font-size: smaller;
+	margin-bottom: 1em;
+	text-align: right;
+	vertical-align: top;
+}
+
 /*
  * Recreating deleted page warning
  * Reupload file warning
