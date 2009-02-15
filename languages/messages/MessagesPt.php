@@ -453,7 +453,7 @@ A última tentativa de busca na base de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função "<tt>$2</tt>".
 O MySQL retornou o erro "<tt>$3: $4</tt>".',
-'noconnect'            => 'A wiki está a experimentar algumas dificuldades técnicas e não pode contactar o servidor da base de dados. <br />
+'noconnect'            => 'Desculpe! O wiki está a experimentar algumas dificuldades técnicas e não pode contactar o servidor da base de dados.<br />
 $1',
 'nodb'                 => 'Não foi possível seleccionar a base de dados $1',
 'cachederror'          => 'A página apresentada é uma cópia em cache da página requisitada e pode não estar actualizada.',

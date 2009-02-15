@@ -294,6 +294,13 @@ Mihidy ho azy aloha ny banky angona mandra-pahatratran'ny serveur andevo ny tomp
 'viewsourcefor'    => "ho an'ny $1",
 'editinginterface' => "'''Tandremo :''' manova pejy ampiasan'ny lôjisialy wiki ianao. Mety hita ny mpikambana sàsany izy io. Rehefa tia mandika teny ianao, jereo ny volavola MediaWiki ho an'ny internationalisation ny hafatra [http://translatewiki.net/wiki/Main_Page?setlang=fr Betawiki].",
 'sqlhidden'        => '(nafenina ny requête SQL)',
+'titleprotected'   => "Voaaro mba tsy ho amboarina ilay lohateny, i [[User:$1|$1]] no nanao an'io.
+Io ny antony : « ''$2'' ».",
+
+# Virus scanner
+'virus-badscanner'     => "Diso : Tsy fantatray ny mpitady virus ''$1''",
+'virus-scanfailed'     => 'Tsy mety alefa ny fitadiavana (kaody $1)',
+'virus-unknownscanner' => 'Tsy fantatra io Antivirus io :',
 
 # Login and logout pages
 'logouttitle'                => 'Fivoahana',
@@ -336,6 +343,8 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'yourlanguage'               => 'Tenim-pirenena:',
 'yournick'                   => 'Anaram-bositra:',
 'badsig'                     => 'Tsy mety io sonia io; hamarino ny kialo HTML.',
+'badsiglength'               => "Lava laotra ny sonianao.
+Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'email'                      => 'Imailaka',
 'prefs-help-realname'        => "Anarana marina (afaka tsy fenoina): raha fenoinao ity dia hampiasaina hanomezana anao tambin'ny asa izay efainao eto.",
 'loginerror'                 => "Tsy fetezana teo amin'ny fidirana",

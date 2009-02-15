@@ -5,6 +5,7 @@
  * @file
  *
  * @author Alison
+ * @author Caoimhin
  * @author Sionnach
  * @author לערי ריינהארט
  */
@@ -42,6 +43,7 @@ $messages = array(
 'info_short'        => 'Fiosrachadh',
 'printableversion'  => 'Lethbhreac so-chlòbhualadh',
 'edit'              => 'Deasaich',
+'create'            => 'Cruthaich',
 'editthispage'      => 'Deasaich an duilleag seo',
 'deletethispage'    => 'Dubh às an duilleag seo',
 'protect'           => 'Dìon',
@@ -56,7 +58,7 @@ $messages = array(
 'talk'              => 'Deasbaireachd',
 'userpage'          => 'Seall duilleag cleachdair',
 'imagepage'         => 'Seall duilleag ìomhaigh',
-'otherlanguages'    => 'Cainntean eile',
+'otherlanguages'    => 'Cànanan eile',
 'redirectedfrom'    => '(Ath-stiùirte o $1)',
 'protectedpage'     => 'Duilleag dìonta',
 
@@ -168,16 +170,17 @@ $1",
 'compareselectedversions' => 'Coimeas lethbhreacan taghta',
 
 # Search results
-'searchresults'     => 'Toraidhean rannsachaidh',
-'notitlematches'    => "Chan eil tiotal duilleig a'samhlachadh",
-'notextmatches'     => "Chan eil teacsa duilleig a'samhlachadh",
-'prevn'             => '$1 mu dheireadh',
-'nextn'             => 'an ath $1',
-'viewprevnext'      => 'Seall ($1) ($2) ($3).',
-'searchhelp-url'    => 'Help:Cuideachadh',
-'showingresults'    => "A'nochdadh {{PLURAL:$1|'''1''' toradh|'''$1''' toraidhean}} gu h-ìosal a'tòiseachadh le #'''$2'''.",
-'showingresultsnum' => "A'nochdadh {{PLURAL:$3|'''1''' toradh|'''$3''' toraidhean}} gu h-ìosal a'tòiseachadh le #'''$2'''.",
-'powersearch'       => 'Rannsaich',
+'searchresults'         => 'Toraidhean rannsachaidh',
+'noexactmatch-nocreate' => "'''Chan eil duilleag ann leis an ainm “$1”.'''",
+'notitlematches'        => "Chan eil tiotal duilleig a'samhlachadh",
+'notextmatches'         => "Chan eil teacsa duilleig a'samhlachadh",
+'prevn'                 => '$1 mu dheireadh',
+'nextn'                 => 'an ath $1',
+'viewprevnext'          => 'Seall ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Cuideachadh',
+'showingresults'        => "A'nochdadh {{PLURAL:$1|'''1''' toradh|'''$1''' toraidhean}} gu h-ìosal a'tòiseachadh le #'''$2'''.",
+'showingresultsnum'     => "A'nochdadh {{PLURAL:$3|'''1''' toradh|'''$3''' toraidhean}} gu h-ìosal a'tòiseachadh le #'''$2'''.",
+'powersearch'           => 'Rannsaich',
 
 # Preferences page
 'preferences'        => 'Taghaidhean',

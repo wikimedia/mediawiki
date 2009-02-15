@@ -137,8 +137,8 @@ $messages = array(
 'edithelp'             => 'संपादनार्थं सहायता',
 'faq'                  => 'अतिप्रश्नपृष्ट',
 'helppage'             => 'Help:सहाय्य',
-'mainpage'             => 'मुखपृष्ठं',
-'mainpage-description' => 'मुखपृष्ठं',
+'mainpage'             => 'मुख्यपृष्ठम्',
+'mainpage-description' => 'मुख्यपृष्ठम्',
 'privacy'              => 'गोपनीयविषये नीति',
 'privacypage'          => 'Project:गोपनीयता नीति',
 
@@ -298,8 +298,8 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-logout'       => 'बहिर्गच्छति',
 'tooltip-search'          => '{{SITENAME}} अन्वेषणं करोति',
-'tooltip-p-logo'          => 'मुखपृष्ठं',
-'tooltip-n-mainpage'      => 'मुखपृष्ठ अभ्यागम',
+'tooltip-p-logo'          => 'मुख्यपृष्ठम्  अभ्यागम्',
+'tooltip-n-mainpage'      => 'मुख्यपृष्ठम्  अभ्यागम्',
 'tooltip-n-portal'        => 'प्रकल्प विषये,भवदिय त्वां किम्‌ करोति, शोधिका',
 'tooltip-n-recentchanges' => 'नविनतम परिवर्तन सूची',
 'tooltip-n-randompage'    => 'अविशीष्ट लेख',

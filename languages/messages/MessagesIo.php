@@ -174,6 +174,7 @@ $messages = array(
 'userpage'          => 'Vidar pagino di uzanto',
 'projectpage'       => 'Vidar projeto-pagino',
 'imagepage'         => 'Vidar pagino di arkivo',
+'viewhelppage'      => 'Vidar helpo-pagino',
 'viewtalkpage'      => 'Vidar debatado',
 'otherlanguages'    => 'En altra lingui',
 'redirectedfrom'    => '(Ridirektita de $1)',
@@ -249,7 +250,7 @@ A list of valid special pages can be found at [[Special:SpecialPages|{{int:speci
 # General errors
 'error'               => 'Eroro',
 'databaseerror'       => 'Datumarala eroro',
-'noconnect'           => 'Pardonez! La wiki havas ula teknikala desfacilaji ed ne povas konektar kun la datumaro. <br />
+'noconnect'           => 'Pardonez! La wiki havas ula teknikala desfacilaji ed ne povas konektar kun la datumaro.<br />
 $1',
 'nodb'                => 'Onu ne povas selektar datumaro $1',
 'cachederror'         => "Co esas kopiuro registragita ye la ''cache'' di la solicitita pagino, ed ol povus ne esar aktuala.",
@@ -327,13 +328,14 @@ Kontrolez posibla erori od uzez la formularo infre por krear nova uzerokonto.',
 'wrongpasswordempty'         => 'Vu ne skribis pasovorto. Probez nove.',
 'passwordtooshort'           => 'Vua pasovorto es ne-valida o tro kurta.
 Ol mustas kontenar adminime {{PLURAL:$1|1 signo|$1 signi}} ed mustas esar diferanta kam vua uzantonomo.',
-'mailmypassword'             => 'Sendez a me nova pasovorto per e-posto.',
+'mailmypassword'             => 'Sendez nova pasovorto per e-posto',
 'passwordremindertitle'      => 'Pasovorto-memorilo por {{SITENAME}}',
 'noemail'                    => 'Ne esas e-adreso konservita por la uzanto "$1".',
 'passwordsent'               => 'Nova pasovorto sendesis a la e-adreso registragita por "$1".
 Voluntez enirar altrafoye pos recevar ol.',
 'mailerror'                  => 'Eroro sendante posto: $1',
 'acct_creation_throttle_hit' => 'Vu ja kreis $1 konti. Vu ne plus povas facar.',
+'accountcreated'             => 'Konto kreesis',
 'createaccount-title'        => 'Kreo di konto en {{SITENAME}}',
 'loginlanguagelabel'         => 'Linguo: $1',
 
@@ -516,14 +518,15 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'savedprefs'               => 'Vua preferaji registragesis.',
 'timezonetext'             => 'Vua lokala tempo diferas de tempo dil servanto (UTC).',
 'localtime'                => 'Lokala tempo:',
-'timezoneoffset'           => 'Difero',
-'servertime'               => 'La kloko en la servanto esas',
+'timezoneoffset'           => 'Difero¹:',
+'servertime'               => 'Kloko en la servanto:',
 'guesstimezone'            => 'Obtenar la kloko dil "browser"',
 'timezoneregion-africa'    => 'Afrika',
 'timezoneregion-america'   => 'Amerika',
 'timezoneregion-asia'      => 'Azia',
 'timezoneregion-australia' => 'Australia',
 'timezoneregion-europe'    => 'Europa',
+'prefs-namespaces'         => 'Nomari',
 'defaultns'                => 'Serchar en la spaco-nomi omise:',
 'files'                    => 'Arkivi',
 
@@ -542,6 +545,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'group-sysop-member'      => 'Administranto',
 'group-bureaucrat-member' => 'Burokrato',
 
+'grouppage-user'       => '{{ns:project}}:Uzanti',
 'grouppage-sysop'      => '{{ns:project}}:Administranti',
 'grouppage-bureaucrat' => '{{ns:project}}:Burokrati',
 
@@ -610,11 +614,12 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'watchthisupload'   => 'Surveyar ica pagino',
 
 # Special:ListFiles
-'imgfile'        => 'arkivo',
-'listfiles'      => 'Listo di imaji',
-'listfiles_date' => 'Dato',
-'listfiles_name' => 'Nomo',
-'listfiles_user' => 'Uzanto',
+'imgfile'         => 'arkivo',
+'listfiles'       => 'Listo di imaji',
+'listfiles_date'  => 'Dato',
+'listfiles_name'  => 'Nomo',
+'listfiles_user'  => 'Uzanto',
+'listfiles_count' => 'Versioni',
 
 # File description page
 'filehist'                       => 'Historio dil arkivo',
@@ -631,6 +636,9 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'shareduploadduplicate-linktext' => 'altra arkivo',
 'shareduploadconflict-linktext'  => 'altra arkivo',
 'uploadnewversion-linktext'      => 'Adkargez nova versiono dil arkivo',
+
+# File reversion
+'filerevert-comment' => 'Komento:',
 
 # File deletion
 'filedelete'                  => 'Efacar $1',
@@ -664,7 +672,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'doubleredirects' => 'Duopla ridirektili',
 
 'brokenredirects'        => 'Ridirektili nekorekta',
-'brokenredirectstext'    => 'La sequanta ridirektili ligas a ne-existanta artiklo:',
+'brokenredirectstext'    => 'La sequanta ridirektili ligas a ne-existanta pagini:',
 'brokenredirects-edit'   => '(redaktar)',
 'brokenredirects-delete' => '(efacar)',
 
@@ -691,6 +699,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'longpages'               => 'Longa pagini',
 'deadendpages'            => 'Pagini sen ekiraji',
 'listusers'               => 'Uzanto-listo',
+'usereditcount'           => '$1 {{PLURAL:$1|edito|editi}}',
 'newpages'                => 'Nova pagini',
 'newpages-username'       => 'Uzantonomo:',
 'ancientpages'            => 'Maxim anciena artikli',
@@ -728,6 +737,9 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 # Special:LinkSearch
 'linksearch'    => 'Extera ligili',
 'linksearch-ns' => 'Nomaro:',
+
+# Special:ListUsers
+'listusers-submit' => 'Montrez',
 
 # Special:Log/newusers
 'newuserlog-create-entry' => 'Nova uzanto',
@@ -775,8 +787,9 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'wlnote'             => "Infre esas la lasta {{PLURAL:$1|chanjo|'''$1''' chanji}} dum la lasta {{PLURAL:$2|horo|'''$2''' hori}}.",
 'wlshowlast'         => 'Montrar la lasta $1 hori $2 dii $3',
 
-'enotif_newpagetext' => 'Ico esas nula pagino.',
-'enotif_anon_editor' => 'anonima uzanto $1',
+'enotif_newpagetext'           => 'Ico esas nula pagino.',
+'enotif_impersonal_salutation' => 'Uzanto di {{SITENAME}}',
+'enotif_anon_editor'           => 'anonima uzanto $1',
 
 # Delete
 'deletepage'            => 'Efacar pagino',
@@ -933,6 +946,7 @@ voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
 'movenologin'             => 'Sesiono ne iniciata',
 'movenologintext'         => 'Vu mustas esar registragita uzanto ed [[Special:UserLogin|enirir]] por rinomizar pagino.',
 'newtitle'                => 'a nova titulo',
+'move-watch'              => 'Surveyar ca pagino',
 'movepagebtn'             => 'Movar pagino',
 'pagemovedsub'            => 'Rinomizita sucese',
 'articleexists'           => 'Pagino kun sama nomo ja existas od la nomo
@@ -962,6 +976,7 @@ Voluntez selektar altra nomo.',
 
 # Special:Import
 'import'                => 'Importacar pagini',
+'import-comment'        => 'Komento:',
 'importtext'            => 'Voluntez exportacar l\' arkivo de la fonto-wiki uzante la utensilo "Special:Export", registragar ol a vua disko ed adkargar ol hike.',
 'importfailed'          => 'La importaco faliis: $1',
 'importnotext'          => 'Vakua o sentexta',
@@ -1043,11 +1058,12 @@ Voluntez selektar altra nomo.',
 'show-big-image-thumb' => '<small>Dimensioni di ca previdajo: $1 × $2 pixel-i</small>',
 
 # Special:NewFiles
-'newimages'     => 'Galerio di nova arkivi',
-'imagelisttext' => "Infre esas listo di '''$1''' {{PLURAL:$1|arkivo|arkivi}} rangizita $2.",
-'showhidebots'  => '($1 bot-i)',
-'ilsubmit'      => 'Serchar',
-'bydate'        => 'per dato',
+'newimages'        => 'Galerio di nova arkivi',
+'imagelisttext'    => "Infre esas listo di '''$1''' {{PLURAL:$1|arkivo|arkivi}} rangizita $2.",
+'newimages-legend' => 'Filtrilo',
+'showhidebots'     => '($1 bot-i)',
+'ilsubmit'         => 'Serchar',
+'bydate'           => 'per dato',
 
 # Metadata
 'metadata' => 'Metadonaji',
@@ -1060,6 +1076,8 @@ Voluntez selektar altra nomo.',
 'exif-gpslatitude'         => 'Latitudo',
 'exif-gpslongitude'        => 'Longitudo',
 'exif-gpsaltitude'         => 'Altitudo',
+
+'exif-unknowndate' => 'Nesavata dato',
 
 'exif-orientation-1' => 'Normala', # 0th row: top; 0th column: left
 
@@ -1093,6 +1111,9 @@ Voluntez selektar altra nomo.',
 
 # E-mail address confirmation
 'confirmemail_needlogin' => 'Vu mustas $1 pro konfirmar vua adreso di e-posto.',
+
+# action=purge
+'confirm_purge_button' => 'O.K.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← antea pagino',
@@ -1129,6 +1150,7 @@ Voluntez selektar altra nomo.',
 'version-other'            => 'Altra',
 'version-version'          => 'Versiono',
 'version-license'          => 'Licenco',
+'version-software-product' => 'Produkturo',
 'version-software-version' => 'Versiono',
 
 # Special:FilePath
@@ -1138,7 +1160,9 @@ Voluntez selektar altra nomo.',
 'fileduplicatesearch-submit' => 'Serchar',
 
 # Special:SpecialPages
-'specialpages' => 'Specala pagini',
+'specialpages'             => 'Specala pagini',
+'specialpages-group-login' => 'Enirar / krear konto',
+'specialpages-group-users' => 'Uzanti e yuri',
 
 # Special:BlankPage
 'blankpage' => 'Pagino sen-skribura',

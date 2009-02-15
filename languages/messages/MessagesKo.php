@@ -2045,6 +2045,8 @@ $NEWPAGE
 'undelete-search-box'        => '삭제된 문서 찾기',
 'undelete-search-prefix'     => '다음으로 시작하는 문서 보이기:',
 'undelete-search-submit'     => '찾기',
+'undelete-filename-mismatch' => '타임스탬프가 $1인 파일의 버전을 복구할 수 없습니다: 파일 이름이 일치하지 않습니다.',
+'undelete-bad-store-key'     => '타임스탬프가 $1인 파일의 버전을 복구할 수 없습니다: 파일이 삭제되기 전에 사라졌습니다.',
 'undelete-cleanup-error'     => '사용되지 않는 보존된 파일 "$1"을 삭제하는 데 오류가 발생했습니다.',
 'undelete-error-short'       => '파일 복구 오류: $1',
 'undelete-error-long'        => '파일을 복구하는 중 오류 발생:
@@ -2660,6 +2662,7 @@ Variants for Chinese language
 'exif-gpsdestlatitude'             => '목적지의 위도',
 'exif-gpsdestlongitude'            => '목적지의 경도',
 'exif-gpsdestdistance'             => '목적지와의 거리',
+'exif-gpsprocessingmethod'         => 'GPS 처리 방식의 이름',
 'exif-gpsareainformation'          => 'GPS 구역 이름',
 'exif-gpsdatestamp'                => 'GPS 날짜',
 'exif-gpsdifferential'             => 'GPS 차이 보정',

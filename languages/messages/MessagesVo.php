@@ -494,6 +494,9 @@ Kal olik pejafon. No glömolöd ad votükön buükamis olik in {{SITENAME}}.',
 'badsig'                     => 'Dispenäd no lonöföl: dönulogolös eli HTML.',
 'badsiglength'               => 'Länem binon tu lunik.
 Muton labön {{PLURAL:$1|malati|malatis}} läs $1.',
+'yourgender'                 => 'Gen:',
+'gender-male'                => 'Manik',
+'gender-female'              => 'Vomik',
 'email'                      => 'Ladet leäktronik',
 'prefs-help-realname'        => 'Nem jenöfik no binon zesüdik. If vilol givön oni, pogebon ad dasevön vobi olik.',
 'loginerror'                 => 'Nunädamapöl',
@@ -636,13 +639,14 @@ Ladet-IP olik binon $3, e nüm blokama at binon #$5. Mäniotolös nünis löpik 
 'loginreqlink'                     => 'ninädolös obi',
 'loginreqpagetext'                 => 'Mutol $1 ad logön padis votik.',
 'accmailtitle'                     => 'Letavöd pesedon.',
-'accmailtext'                      => 'Letavöd pro "$1" pasedon lü $2.',
+'accmailtext'                      => 'Letavöd pro [[User talk:$1|$1]] pasedon lü $2.',
 'newarticle'                       => '(Nulik)',
 'newarticletext'                   => "Esökol yümi lü pad, kel no nog dabinon.
 Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd [[{{MediaWiki:Helppage}}|yufapadi]] tefü nüns tefik votik).
 If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
 'anontalkpagetext'                 => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Special:UserLogin|jafolös, begö! kali]], u [[Special:UserLogin|nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
-'noarticletext'                    => 'Atimo no dabinon vödem su pad at. Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
+'noarticletext'                    => 'Atimo no dabinon vödem su pad at.
+Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
 'userpage-userdoesnotexist'        => 'Gebanakal: "$1" no peregistaron. Fümükolös, va vilol jäfön/redakön padi at.',
 'clearyourcache'                   => "'''Prudö!''' Pos dakip buükamas, mögos, das ozesüdos ad nedemön memi nelaidüpik bevüresodatävöma ad logön votükamis. 
 '''Mozilla / Firefox / Safari:''' kipolöd klavi: ''Shift'' dono e välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klävis: ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' if labol eli Macintosh);
@@ -670,7 +674,7 @@ Redakam perefudon ad vitön dädükami padavödema.
 Atos jenon ömna ven geboy düni pladulöma nennemik bevüresodik säkädik.'''",
 'editing'                          => 'Redakam pada: $1',
 'editingsection'                   => 'Redakam pada: $1 (diläd)',
-'editingcomment'                   => 'Redakam pada: $1 (küpet)',
+'editingcomment'                   => 'Redakam pada: $1 (diläd nulik)',
 'editconflict'                     => 'Redakamakonflit: $1',
 'explainconflict'                  => 'Ek evotükon padi at sisä äprimol ad redakön oni. Vödem balid jonon padi soäsä dabinon anu. Votükams olik pajonons in vödem telid. Sludolös, vio fomams tel at mutons pabalön. Kanol kopiedön se vödem telid ini balid.
 <b>Te vödem balid podakipon!</b><br />',
@@ -1277,6 +1281,7 @@ Ad pladön ragivi ini pad semik, gebolös yümi fomätü:
 'filename'                    => 'Ragivanem',
 'filedesc'                    => 'Plän brefik',
 'fileuploadsummary'           => 'Plän brefik:',
+'filereuploadsummary'         => 'Votükams ragiva:',
 'filestatus'                  => 'Stad tefü kopiedagität:',
 'filesource'                  => 'Fon:',
 'uploadedfiles'               => 'Ragivs pelöpüköl',
@@ -1625,7 +1630,7 @@ Protoks pestütöl: <tt>$1</tt>',
 'newuserlogpagetext'          => 'Is palisedons jafams gebanas nulik.',
 'newuserlog-byemail'          => 'letavöd pesedon me pot leäktronik',
 'newuserlog-create-entry'     => 'Geban nulik',
-'newuserlog-create2-entry'    => 'ejafon kali gebane: $1',
+'newuserlog-create2-entry'    => 'ejafon kali nulik: $1',
 'newuserlog-autocreate-entry' => 'Kal itjäfidiko pejaföl',
 
 # Special:ListGroupRights
@@ -1779,7 +1784,7 @@ Prudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.',
 'alreadyrolled'    => 'No eplöpos ad sädunön redakami lätik pada: [[:$1]] fa geban: [[User:$2|$2]] ([[User talk:$2|Bespikapad]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); ek ya eredakon oni ud esädunon redakami ona.
 
 Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Redakamaküpet äbinon: „''$1''“.", # only shown if there is an edit comment
+'editcomment'      => "Redakamaplän äbinon: „''$1''“.", # only shown if there is an edit comment
 'revertpage'       => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons ad fomam ma redakam lätik gebana: [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.',
 'sessionfailure'   => 'Jiniko ädabinon säkäd seimik pö nunädam olik. 
@@ -2705,10 +2710,10 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'table_pager_empty'        => 'Seks nonik',
 
 # Auto-summaries
-'autosumm-blank'   => 'Ninäd valik pemoükon se pad',
+'autosumm-blank'   => 'Emoükon ninädi valik se pad',
 'autosumm-replace' => "Pad pepläadon me '$1'",
 'autoredircomment' => 'Lüodükon lü [[$1]]',
-'autosumm-new'     => 'Pad nulik: $1',
+'autosumm-new'     => "Ejafon padi ko: '$1'",
 
 # Live preview
 'livepreview-loading' => 'Pabelodon…',
@@ -2800,5 +2805,9 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 # Special:BlankPage
 'blankpage'              => 'Pad vagik',
 'intentionallyblankpage' => 'Pad at pevagükon desino',
+
+# Special:Tags
+'tags-edit'     => 'redakön',
+'tags-hitcount' => '$1 {{PLURAL:$1|votükam|votükams}}',
 
 );
