@@ -61,21 +61,19 @@ abstract class TableCleanup extends FiveUpgrade {
 	}
 
 	function runTable( $table, $where, $callback ) {
-		$fname = 'CapsCleanup::buildTable';
-
-		$count = $this->dbw->selectField( $table, 'count(*)', '', $fname );
+		$count = $this->dbw->selectField( $table, 'count(*)', '', __METHOD__ );
 		$this->init( $count, $table );
 		$this->log( "Processing $table..." );
 
 		$tableName = $this->dbr->tableName( $table );
 		$sql = "SELECT * FROM $tableName $where";
-		$result = $this->dbr->query( $sql, $fname );
+		$result = $this->dbr->query( $sql, __METHOD__ );
 
-		while( $row = $this->dbr->fetchObject( $result ) ) {
+		foreach( $result as $row ) {
 			call_user_func( $callback, $row );
 		}
 		$this->log( "Finished $table... $this->updated of $this->processed rows updated" );
-		$this->dbr->freeResult( $result );
+		$result->free();
 	}
 
 	function hexChar( $matches ) {
