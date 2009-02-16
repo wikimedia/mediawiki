@@ -3552,27 +3552,26 @@ class Article {
 				__METHOD__ );
 
 			global $wgContLang;
-
-			if( $res !== false ) {
-				foreach( $res as $row ) {
-					$tlTemplates[] = $wgContLang->getNsText( $row->tl_namespace ) . ':' . $row->tl_title ;
-				}
+			foreach( $res as $row ) {
+				$tlTemplates["{$row->tl_namespace}:{$row->tl_title}"] = true;
 			}
 
 			# Get templates from parser output.
-			$poTemplates_allns = $parserOutput->getTemplates();
-
-			$poTemplates = array ();
-			foreach ( $poTemplates_allns as $ns_templates ) {
-				$poTemplates = array_merge( $poTemplates, $ns_templates );
+			$poTemplates = array();
+			foreach ( $parserOutput->getTemplates() as $ns => $templates ) {
+				foreach ( $templates as $dbk => $id ) {
+					$key = $row->tl_namespace . ':'. $row->tl_title;
+					$poTemplates["$ns:$dbk"] = true;
+				}
 			}
 
 			# Get the diff
-			$templates_diff = array_diff( $poTemplates, $tlTemplates );
+			# Note that we simulate array_diff_key in PHP <5.0.x
+			$templates_diff = array_diff_key( $poTemplates, $tlTemplates );
 
 			if( count( $templates_diff ) > 0 ) {
 				# Whee, link updates time.
-				$u = new LinksUpdate( $this->mTitle, $parserOutput );
+				$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
 				$u->doUpdate();
 			}
 		}
