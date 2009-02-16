@@ -1397,7 +1397,6 @@ PICT # misc.
 'noimage'                        => 'Маннык ааттаах билэ суох эбит, маны гыныаххын сөп $1.',
 'noimage-linktext'               => 'итини суруттар',
 'uploadnewversion-linktext'      => 'Бу билэ саҥа барылын суруттар',
-'imagepage-searchdupe'           => 'Хатыланар билэлэри көрдөөһүн',
 
 # File reversion
 'filerevert'                => 'Төннөр $1',

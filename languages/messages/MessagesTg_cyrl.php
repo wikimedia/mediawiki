@@ -1171,7 +1171,6 @@ $1',
 'noimage'                        => 'Ҳеҷ парвандае бо ин ном мавҷуд нест, шумо метавонед $1.',
 'noimage-linktext'               => 'онро бор кунед',
 'uploadnewversion-linktext'      => 'Бор кардани нусхаи ҷадидӣ ин парванда',
-'imagepage-searchdupe'           => 'Ҷустуҷӯ барои парвандаҳои такрорӣ',
 
 # File reversion
 'filerevert'                => 'Вогардонии $1',

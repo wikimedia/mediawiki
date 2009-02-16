@@ -1478,7 +1478,6 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'noimage'                        => 'Fail ini tidak wujud. Anda boleh $1.',
 'noimage-linktext'               => 'memuat naik fail baru',
 'uploadnewversion-linktext'      => 'Muat naik versi baru bagi fail ini',
-'imagepage-searchdupe'           => 'Cari fail serupa',
 
 # File reversion
 'filerevert'                => 'Balikkan $1',

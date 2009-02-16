@@ -1490,7 +1490,6 @@ En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 'noimage'                        => 'Ingen fil ved dette navnet finnes, men du kan $1.',
 'noimage-linktext'               => 'laste opp ett',
 'uploadnewversion-linktext'      => 'Last opp en ny versjon av denne fila',
-'imagepage-searchdupe'           => 'Søk etter duplikatfiler',
 
 # File reversion
 'filerevert'                => 'Tilbakestill $1',

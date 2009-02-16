@@ -1538,7 +1538,6 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] está disponível.',
 'noimage'                        => 'Não existe nenhum arquivo com este nome, mas você pode $1.',
 'noimage-linktext'               => 'carregar um',
 'uploadnewversion-linktext'      => 'Carregar uma nova versão deste arquivo',
-'imagepage-searchdupe'           => 'Procurar por arquivos duplicados',
 
 # File reversion
 'filerevert'                => 'Reverter $1',

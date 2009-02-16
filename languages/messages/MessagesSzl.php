@@ -1281,7 +1281,6 @@ Dostympno je tyž [[Special:WhatLinksHere/$2|pouno lista]].',
 'noimage'                        => 'Ńjy ma sam plika uo takym mjańy, nale možeš go sam $1.',
 'noimage-linktext'               => 'wćepńij plik',
 'uploadnewversion-linktext'      => 'Wćepńij nowšo wersyjo tygo plika',
-'imagepage-searchdupe'           => 'šnupej za plikůma kere śe powtařajům',
 
 # File reversion
 'filerevert'                => 'Přiwracańy $1',

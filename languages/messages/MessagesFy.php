@@ -1476,7 +1476,6 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'noimage'                        => 'Der bestiet gjin triem mei dizze namme. Jo kinne it $1.',
 'noimage-linktext'               => 'bied triem oan',
 'uploadnewversion-linktext'      => 'Bied in nije ferzje fan dizze triem oan',
-'imagepage-searchdupe'           => 'Duplikaattriemmen sykje',
 
 # File reversion
 'filerevert'                => '$1 weromsette',

@@ -1105,7 +1105,6 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'noimage'                        => 'Mek iyeltak dem bat yolt, rin rotil va $1.',
 'noimage-linktext'               => 'kalvajara',
 'uploadnewversion-linktext'      => 'Kalvajara va warzaf siatos ke bat iyeltak',
-'imagepage-searchdupe'           => 'Aneyara va jontolaf iyeltak',
 
 # File reversion
 'filerevert'                => 'Dimplekura va $1',

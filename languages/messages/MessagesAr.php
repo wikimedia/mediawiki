@@ -1784,7 +1784,8 @@ PICT # متنوع
 'nolinkstoimage'                 => 'لا توجد صفحات تصل لهذا الملف.',
 'morelinkstoimage'               => 'عرض [[Special:WhatLinksHere/$1|المزيد من الوصلات]] إلى هذا الملف.',
 'redirectstofile'                => '{{PLURAL:$1|الملف|ال$1 ملف}} التالي يحول إلى هذا الملف:',
-'duplicatesoffile'               => '{{PLURAL:$1|الملف التالي مكرر|ال$1 ملف التالي مكررات}} لهذا الملف:',
+'duplicatesoffile'               => '{{PLURAL:$1|الملف التالي مكرر|ال$1 ملف التالي مكررات}} لهذا الملف
+([[Special:FileDuplicateSearch/$2|المزيد من التفاصيل]]):',
 'sharedupload'                   => 'هذا الملف تم رفعه للتشارك بين المشاريع ويمكن استخدامه في المشاريع الأخرى.',
 'shareduploadwiki'               => 'من فضلك انظر $1 لمزيد من المعلومات.',
 'shareduploadwiki-desc'          => 'الوصف على $1 في المستودع المشترك معروض بالأسفل.',
@@ -1796,7 +1797,6 @@ PICT # متنوع
 'noimage'                        => 'لا يوجد ملف بهذا الاسم، لكن بإمكانك أن تقوم بـ$1.',
 'noimage-linktext'               => 'رفع واحد',
 'uploadnewversion-linktext'      => 'ارفع نسخة جديدة من هذا الملف',
-'imagepage-searchdupe'           => 'بحث عن ملفات مكررة',
 
 # File reversion
 'filerevert'                => 'استرجع $1',

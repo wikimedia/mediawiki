@@ -1186,7 +1186,6 @@ $2',
 'noimage'                        => "ס'איז נישטא א טעקע מיט דעם נאמען, איר קענט אבער $1.",
 'noimage-linktext'               => 'ארויפלאדן א טעקע',
 'uploadnewversion-linktext'      => 'ארויפֿלאדן א נײַע ווערסיע פֿוו דער טעקע',
-'imagepage-searchdupe'           => 'זוכן דופליקירטע טעקעס',
 
 # File reversion
 'filerevert'         => 'צוריקדרייען $1',

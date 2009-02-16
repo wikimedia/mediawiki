@@ -1453,7 +1453,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'nolinkstoimage'                 => 'Žedne boki njewótkazuju na toś tu dataju.',
 'morelinkstoimage'               => '[[Special:WhatLinksHere/$1|Dalšne wótkazy]] k toś tej dataji wobglědaś.',
 'redirectstofile'                => '{{PLURAL:$1|Slědujuca dataja dalej pósrědnja|Slědujucej $1 dataji dalej pósrědnjatej|slědujuce $1 dataje dalej póšrědnjaju|Slědujucych $1 datajow dalej pósrědnja}} k toś tej dataji:',
-'duplicatesoffile'               => '{{PLURAL:$1|Slědujuca dataja jo duplikat|Slědujucej $1 dataji stej duplikata|Slědujuce dataje $1 su duplikaty|Slědujucych $1 datajow jo duplikaty}} toś teje dataje:',
+'duplicatesoffile'               => '{{PLURAL:$1|Slědujuca dataja jo duplikat|Slědujucej $1 dataji stej duplikata|Slědujuce dataje $1 su duplikaty|Slědujucych $1 datajow jo duplikaty}} toś teje dataje ([[Special:FileDuplicateSearch/$2|dalšne drobnostki]])::',
 'sharedupload'                   => 'Toś ta dataja se gromaźe wužywa - snaź teke w drugich projektach.',
 'shareduploadwiki'               => 'Za dalšne informacije glědaj $1.',
 'shareduploadwiki-desc'          => 'Wopisanje na $1 w zgromadnem skłaźišću Wikimedia commons se dołojce pókazujo.',
@@ -1465,7 +1465,6 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'noimage'                        => 'Dataja z takim mjenim njeeksistěrujo, ale móžoš ju $1.',
 'noimage-linktext'               => 'nagraś',
 'uploadnewversion-linktext'      => 'Uploaduj nowu wersiju toś teje dataje.',
-'imagepage-searchdupe'           => 'Za duplikatnymi datajami pytaś',
 
 # File reversion
 'filerevert'                => 'Slědk wześ $1',

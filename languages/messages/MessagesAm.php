@@ -1121,7 +1121,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'noimage'                        => 'በዚህ ስም የሚታወቅ ፋይል የለም፤ እርስዎ ግን $1 ይችላሉ።',
 'noimage-linktext'               => 'ሊልኩት',
 'uploadnewversion-linktext'      => 'ለዚሁ ፋይል አዲስ ዕትም ለመላክ',
-'imagepage-searchdupe'           => 'ለቅጂ ፋይሎች ለመፈለግ',
 
 # File reversion
 'filerevert'                => '$1 ማገልበጥ',

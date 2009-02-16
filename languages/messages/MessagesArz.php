@@ -1170,7 +1170,7 @@ $2',
 'searchresults'                    => 'نتايج التدوير',
 'searchresults-title'              => 'نتايج التدوير على "$1"',
 'searchresulttext'                 => 'لو عايز تعرف اكتر عن التدوير فى {{SITENAME}}، شوف [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => "انت كنت بتدور على '''[[:$1]]'''",
+'searchsubtitle'                   => 'انتا دورت على \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|كل الصفحات اللى بتبتدى بـ "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|كل الصفحات اللى بتوصل لـ "$1"]])',
 'searchsubtitleinvalid'            => "انت دورت على '''$1'''",
 'noexactmatch'                     => "'''مافيش  صفحه بالاسم \"\$1\"'''.
 ممكن [[:\$1| تبتدى الصفحه دى]].",
@@ -1295,6 +1295,7 @@ $2',
 'timezoneoffset'            => 'فرق¹',
 'servertime'                => 'وقت السيرفر',
 'guesstimezone'             => 'دخل التوقيت من البراوزر',
+'timezoneregion-africa'     => 'افريقيا',
 'timezoneregion-america'    => 'امريكا',
 'timezoneregion-antarctica' => 'انتاركتيكا',
 'timezoneregion-arctic'     => 'القطب الشمالى',
@@ -1679,7 +1680,6 @@ PICT # misc.
 'noimage'                        => 'مافيش  ملف بالاسم ده، لكن ممكن انك  تـ$1.',
 'noimage-linktext'               => 'حمل واحد',
 'uploadnewversion-linktext'      => 'حمل نسخه جديده من الملف ده',
-'imagepage-searchdupe'           => 'دور على ملفات متكررة',
 
 # File reversion
 'filerevert'                => 'استرجع $1',
@@ -2059,9 +2059,10 @@ $NEWPAGE
 'rollbacklink'     => 'استعاده',
 'rollbackfailed'   => 'الترجيع ما نفعش',
 'cantrollback'     => 'ماقدرناش نرجع فى التعديل؛ آخر مساهم هوه الوحيد اللى ساهم فى الصفحة دي.',
-'alreadyrolled'    => 'ماقدرناش نرجع آخر تعديل للصفحة [[$1]] [[User:$2|$2]] ([[User talk:$2|نقاش]]) لأن فى واحد عمل تعديل او ترجيع للصفحة دى قبل كده.
+'alreadyrolled'    => 'ماقدرناش نرجع التعديل الاخير لـ [[:$1]] بتاع [[User:$2|$2]] ([[User talk:$2|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+فى واحد تانى عدل الصفحه او عمل استرجاع قبل كده.
 
-آخر واحد  عدل الصفحة دى هوه [[User:$3|$3]] ([[User talk:$3|نقاش]]).',
+اخر تعديل للصفحه دى عمله [[User:$3|$3]] ([[User talk:$3|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "ملخص التعديل كان: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بواسطة [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'استرجع تعديلات $1؛

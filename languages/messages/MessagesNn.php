@@ -9,6 +9,7 @@
  * @author Eirik
  * @author Finnrind
  * @author Frokor
+ * @author Gunnernett
  * @author Guttorm Flatabø
  * @author H92
  * @author Harald Khan
@@ -1548,7 +1549,7 @@ Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'nolinkstoimage'                 => 'Det finst ikkje noka side med lenkje til denne fila.',
 'morelinkstoimage'               => 'Vis [[Special:WhatLinksHere/$1|fleire lenkjer]] til denne fila.',
 'redirectstofile'                => 'Følgjande {{PLURAL:$1|fil er ei omdirigering|filer er omdirigeringar}} til denne fila:',
-'duplicatesoffile'               => 'Følgjande {{PLURAL:$1|fil er ein dublett|filer er dublettar}} av denne fila:',
+'duplicatesoffile'               => 'Følgjande {{PLURAL:$1|fil er ein dublett|filer er dublettar}} av denne fila ([[Special:FileDuplicateSearch/$2|fleire detaljar]]):',
 'sharedupload'                   => 'Denne fila er ei delt opplasting og kan brukast av andre prosjekt.',
 'shareduploadwiki'               => 'Sjå $1 for meir informasjon.',
 'shareduploadwiki-desc'          => 'Skildringa til $1 i det delte lageret er vist nedanfor.',
@@ -1560,7 +1561,6 @@ Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'noimage'                        => 'Det finst inga fil med dette namnet, men du kan $1.',
 'noimage-linktext'               => 'laste opp eitt',
 'uploadnewversion-linktext'      => 'Last opp ny versjon av denne fila',
-'imagepage-searchdupe'           => 'Søk etter filer som ligg dobbelt',
 
 # File reversion
 'filerevert'                => 'Rull attende $1',

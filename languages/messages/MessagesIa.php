@@ -711,7 +711,7 @@ Viste que il non ha alcun section $1, il non ha alcun location pro publicar tu m
 'loginreqlink'                     => 'aperir un session',
 'loginreqpagetext'                 => 'Tu debe $1 pro poter vider altere paginas.',
 'accmailtitle'                     => 'Contrasigno inviate.',
-'accmailtext'                      => "Un contrasigno generate aleatorimente pro [[User talk:$1|$1]] ha essite inviate a 2.
+'accmailtext'                      => "Un contrasigno generate aleatorimente pro [[User talk:$1|$1]] ha essite inviate a $2.
 
 Le contrasigno de iste nove conto pote esser cambiate in le pagina ''[[Special:ChangePassword|Cambiar contrasigno]]'' post que tu ha aperite un session.",
 'newarticle'                       => '(Nove)',
@@ -1548,7 +1548,6 @@ Un [[Special:WhatLinksHere/$2|lista complete]] es disponibile.',
 'noimage'                        => 'Non existe un file con iste nomine, sed tu pote $1.',
 'noimage-linktext'               => 'cargar un',
 'uploadnewversion-linktext'      => 'Cargar un nove version de iste file',
-'imagepage-searchdupe'           => 'Cercar files duplicate',
 
 # File reversion
 'filerevert'                => 'Reverter $1',

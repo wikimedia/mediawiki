@@ -1070,7 +1070,6 @@ $1 საათში.',
 'noimage'                        => 'ამ სახელის მქონე ფაილი არ არსებობს, თქვენ შეგიძლიათ $1.',
 'noimage-linktext'               => 'ფაილის ატვირთვა',
 'uploadnewversion-linktext'      => 'ატვირთეთ ამ ფაილის ახალი ვერსია',
-'imagepage-searchdupe'           => 'ფაილების დუბლიკატების ძიება',
 
 # File reversion
 'filerevert'         => 'დააბრუნე $1',

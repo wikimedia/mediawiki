@@ -1139,7 +1139,6 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'noimage'                   => 'Ийм нэртэй файл байхгүй байна, гэхдээ та $1 боломжтой.',
 'noimage-linktext'          => 'гадагш хуулах',
 'uploadnewversion-linktext' => 'Энэ файлын шинэ хувилбарыг оруулах',
-'imagepage-searchdupe'      => 'Хуулбар файлуудыг хайх',
 
 # File reversion
 'filerevert'                => '$1-г буцаах',

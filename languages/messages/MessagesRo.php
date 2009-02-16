@@ -1453,7 +1453,6 @@ O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'noimage'                        => 'Nu există nici un fişier cu acest nume, puteţi să îl $1.',
 'noimage-linktext'               => 'trimiteţi',
 'uploadnewversion-linktext'      => 'Încarcă o versiune nouă a acestui fişier',
-'imagepage-searchdupe'           => 'Caută fişiere duplicate',
 
 # File reversion
 'filerevert'                => 'Revenire $1',

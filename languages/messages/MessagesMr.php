@@ -1287,7 +1287,6 @@ $3ने ''$2'' कारण दिले आहे.",
 'noimage'                        => 'या नावाचे चित्र अस्तित्त्वात नाही. $1 करून पहा.',
 'noimage-linktext'               => 'चढवा',
 'uploadnewversion-linktext'      => 'या संचिकेची नवीन आवृत्ती चढवा',
-'imagepage-searchdupe'           => 'जुळ्या संचिका शोधा',
 
 # File reversion
 'filerevert'                => '$1 पूर्वपद',

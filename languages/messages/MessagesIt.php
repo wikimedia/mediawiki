@@ -1488,7 +1488,6 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'noimage'                        => 'Un file con questo nome non esiste ma è possibile $1.',
 'noimage-linktext'               => 'caricarlo ora',
 'uploadnewversion-linktext'      => 'Carica una nuova versione di questo file',
-'imagepage-searchdupe'           => 'Ricerca dei file duplicati',
 
 # File reversion
 'filerevert'                => 'Ripristina $1',

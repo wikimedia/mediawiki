@@ -1430,7 +1430,6 @@ Mayroong makukuhang [[Special:WhatLinksHere/$2|buong talaan]].',
 'noimage'                        => 'Walang talaksan na may ganitong pangalan, subalit maaari kang $1.',
 'noimage-linktext'               => 'magkarga ng isa',
 'uploadnewversion-linktext'      => 'Magkarga ng isang bagong bersyon ng talaksang ito',
-'imagepage-searchdupe'           => 'Maghanap ng magkakaparehong mga talaksan',
 
 # File reversion
 'filerevert'                => 'Ibalik sa dati ang $1',

@@ -1496,7 +1496,7 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 'nolinkstoimage'                 => 'Neniu paĝo ligas al ĉi tiu dosiero.',
 'morelinkstoimage'               => 'Rigardi [[Special:WhatLinksHere/$1|pliajn ligilojn]] al ĉi tiu dosiero.',
 'redirectstofile'                => 'Jen {{PLURAL:$1|dosiero liganta|dosieroj ligantaj}} al ĉi tiu dosiero:',
-'duplicatesoffile'               => 'La {{PLURAL:$1|jena dosiero estas duplikato|jenaj dosieroj estas duplikatoj}} de ĉi tiu dosiero:',
+'duplicatesoffile'               => 'La {{PLURAL:$1|jena dosiero estas duplikato|jenaj dosieroj estas duplikatoj}} de ĉi tiu dosiero ([[Special:FileDuplicateSearch/$2|pluaj detaloj]]):',
 'sharedupload'                   => 'Ĉi tiu dosiero estas komunuma alŝuto kaj estas uzebla de aliaj projektoj.',
 'shareduploadwiki'               => 'Bonvolu vidi la $1 por plua informo.',
 'shareduploadwiki-desc'          => 'Jen la priskribo de ties $1 en la kolektiva dosierujo sube.',
@@ -1508,7 +1508,6 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 'noimage'                        => 'Neniu dosiero de ĉi tiu nomo ekzistas, sed vi povas $1.',
 'noimage-linktext'               => 'alŝuti unu',
 'uploadnewversion-linktext'      => 'Alŝuti novan version de ĉi tiu dosiero',
-'imagepage-searchdupe'           => 'Serĉi duplikatajn dosierojn',
 
 # File reversion
 'filerevert'                => 'Restarigi $1',

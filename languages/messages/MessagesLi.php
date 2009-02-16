@@ -1390,7 +1390,6 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'noimage'                        => "D'r besjteit gein besjtandj mit deze naam, mer doe kèns 't $1.",
 'noimage-linktext'               => 'uploade',
 'uploadnewversion-linktext'      => "Upload 'n nuuje versie van dit bestand",
-'imagepage-searchdupe'           => 'Zeuk veur döbbelbestaondje bestenj',
 
 # File reversion
 'filerevert'                => '$1 trökdrèjje',

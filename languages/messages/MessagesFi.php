@@ -1467,7 +1467,6 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'noimage'                        => 'Tämän nimistä tiedostoa ei ole olemassa, mutta voit $1.',
 'noimage-linktext'               => 'tallentaa sen',
 'uploadnewversion-linktext'      => 'Tallenna uusi versio tästä tiedostosta',
-'imagepage-searchdupe'           => 'Etsi tiedoston kaksoiskappaleita',
 
 # File reversion
 'filerevert'                => 'Tiedoston $1 palautus',

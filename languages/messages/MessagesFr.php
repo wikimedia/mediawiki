@@ -1629,7 +1629,6 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'noimage'                        => 'Aucun fichier possèdant ce nom n’existe, vous pouvez $1.',
 'noimage-linktext'               => 'en importer un',
 'uploadnewversion-linktext'      => 'Importer une nouvelle version de ce fichier',
-'imagepage-searchdupe'           => 'Recherche des fichiers en double',
 
 # File reversion
 'filerevert'                => 'Révoquer $1',

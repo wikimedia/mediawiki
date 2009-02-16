@@ -1389,7 +1389,6 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'noimage'                        => 'Ez dago fitxategirik izen honekin, $1 dezakezu.',
 'noimage-linktext'               => 'bat igo',
 'uploadnewversion-linktext'      => 'Fitxategi honen bertsio berri bat igo',
-'imagepage-searchdupe'           => 'Duplikatutako fitxategiak bilatu',
 
 # File reversion
 'filerevert'                => '$1 leheneratu',

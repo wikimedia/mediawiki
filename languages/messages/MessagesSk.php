@@ -1530,7 +1530,6 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'noimage'                        => 'Súbor s takým názvom neexistuje, ale môžete ho $1',
 'noimage-linktext'               => 'nahrať',
 'uploadnewversion-linktext'      => 'Nahrať novú verziu tohto súboru',
-'imagepage-searchdupe'           => 'Hľadať duplicitné súbory',
 
 # File reversion
 'filerevert'                => 'Obnoviť $1',

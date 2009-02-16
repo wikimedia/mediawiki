@@ -1342,7 +1342,6 @@ Ne [[Special:WhatLinksHere/$2|fulständige Lieste]] is ferföigboar.',
 'noimage'                        => 'Ne Doatäi mäd dissen Noome existiert nit, du koast ju oawers $1.',
 'noimage-linktext'               => 'aan hoochleede',
 'uploadnewversion-linktext'      => 'Ne näie Version fon disse Doatäi hoochleede',
-'imagepage-searchdupe'           => 'Säike ätter Doatäi-Duplikoate',
 
 # File reversion
 'filerevert'                => 'Touräächsätte fon "$1"',

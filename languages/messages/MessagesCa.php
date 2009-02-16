@@ -1498,7 +1498,6 @@ Podeu consultar la [[Special:WhatLinksHere/$2|llista completa]].",
 'noimage'                        => 'No existeix cap fitxer amb aquest nom, però podeu $1.',
 'noimage-linktext'               => "Carrega'n una",
 'uploadnewversion-linktext'      => "Carrega una nova versió d'aquest fitxer",
-'imagepage-searchdupe'           => 'Cerca fitxers duplicats',
 
 # File reversion
 'filerevert'                => 'Reverteix $1',

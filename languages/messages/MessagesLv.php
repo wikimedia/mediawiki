@@ -966,7 +966,6 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'noimage'                   => 'Ar šādu nosaukumu nav neviena faila, bet tu vari [$1].',
 'noimage-linktext'          => 'augšuplādēt to',
 'uploadnewversion-linktext' => 'Augšupielādēt jaunu šī faila versiju',
-'imagepage-searchdupe'      => 'Meklēt šī faila kopijas',
 
 # File reversion
 'filerevert'                => 'Atjaunot $1',

@@ -1374,7 +1374,6 @@ $2',
 'noimage'                        => 'Няма файла з такой назвай, але можна $1.',
 'noimage-linktext'               => 'укласці такі',
 'uploadnewversion-linktext'      => 'Укласці новую версію гэтага файла',
-'imagepage-searchdupe'           => 'Знайсці дублікатныя файлы',
 
 # File reversion
 'filerevert'                => 'Адкаціць $1',

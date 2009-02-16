@@ -1434,7 +1434,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'nolinkstoimage'                 => 'Njejsu strony, kotrež na tutu dataju wotkazuja.',
 'morelinkstoimage'               => '[[Special:WhatLinksHere/$1|Dalše wotkazy]] k tutej dataji wobhladać.',
 'redirectstofile'                => '{{PLURAL:$1|Slědowaca dataja pósrednja|Slědowacej $1 pósrědnjatej|Slědowace $1 posrědnjaju|Slěddowacych $1 pósrědnja}} k toś tej dataji dalej:',
-'duplicatesoffile'               => '{{PLURAL:$1|Slědowaca dataja je duplikat|Slědowacej $1 dataji stej duplikata|Slědowace $1 dataje su duplikaty|Slědowacych $1 duplikatow je duplikaty}} tuteje dataje:',
+'duplicatesoffile'               => '{{PLURAL:$1|Slědowaca dataja je duplikat|Slědowacej $1 dataji stej duplikata|Slědowace $1 dataje su duplikaty|Slědowacych $1 duplikatow je duplikaty}} tuteje dataje ([[Special:FileDuplicateSearch/$2|dalše podrobnosće]])::',
 'sharedupload'                   => 'Tuta dataja je zhromadne nahraće a móže so přez druhe projekty wužiwać.',
 'shareduploadwiki'               => 'Za dalše informacije hlej $1.',
 'shareduploadwiki-desc'          => 'Wopisanje na $1 so deleka w zhromadnym składźišću pokazuje.',
@@ -1446,7 +1446,6 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'noimage'                        => 'Dataja z tutym mjenom njeeksistuje, ale móžeš $1.',
 'noimage-linktext'               => 'nahrać',
 'uploadnewversion-linktext'      => 'nowu wersiju tuteje dataje nahrać',
-'imagepage-searchdupe'           => 'Dwójne dataje pytać',
 
 # File reversion
 'filerevert'                => 'Wersiju $1 cofnyć',

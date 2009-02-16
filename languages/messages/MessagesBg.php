@@ -1518,7 +1518,6 @@ $2',
 'noimage'                        => 'Не съществува файл с това име, можете $1.',
 'noimage-linktext'               => 'да го качите',
 'uploadnewversion-linktext'      => 'Качване на нова версия на файла',
-'imagepage-searchdupe'           => 'Търсене на повтарящи се файлове',
 
 # File reversion
 'filerevert'                => 'Възвръщане на $1',

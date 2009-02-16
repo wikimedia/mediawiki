@@ -1397,7 +1397,6 @@ Di sècutu sunnu alincati sulu {{PLURAL:$1|la prima pàggina ca punta|li primi $
 'noimage'                        => 'Un file cu stu nomu nun esisti, ma è pussìbbili, voi $1 tu?',
 'noimage-linktext'               => 'carricàrilu ora',
 'uploadnewversion-linktext'      => 'Càrrica na virsioni nova di stu file',
-'imagepage-searchdupe'           => 'Ricerca di file duplicati',
 
 # File reversion
 'filerevert'                => 'Riprìstina $1',

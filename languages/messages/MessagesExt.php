@@ -1048,7 +1048,6 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'noimage'                   => 'Nu desisti dengún archivu llamau asina, pueis $1.',
 'noimage-linktext'          => 'empuntalu',
 'uploadnewversion-linktext' => 'Empuntal una nueva velsión d´esti archivu',
-'imagepage-searchdupe'      => 'Landeal archivus dupricaus',
 
 # File reversion
 'filerevert'                => 'Revertil $1',

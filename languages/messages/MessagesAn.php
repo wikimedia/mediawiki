@@ -1428,7 +1428,6 @@ Tamién puez consultar a [[Special:WhatLinksHere/$2|lista completa]].',
 'noimage'                        => 'No bi ha garra archibo con ixe nombre. Manimenos, puede $1.',
 'noimage-linktext'               => 'cargar uno',
 'uploadnewversion-linktext'      => "Cargar una nueba bersión d'iste archibo",
-'imagepage-searchdupe'           => 'Mirar archibos duplicatos',
 
 # File reversion
 'filerevert'                => 'Rebertir $1',

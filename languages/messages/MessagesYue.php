@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * @ingroup Language
  * @file
@@ -1476,7 +1476,6 @@ $1',
 'noimage'                        => '冇同名嘅檔案存在，你可以$1。',
 'noimage-linktext'               => '上載佢',
 'uploadnewversion-linktext'      => '上載呢個檔案嘅一個新版本',
-'imagepage-searchdupe'           => '搵重覆檔案',
 
 # File reversion
 'filerevert'                => '回復$1',

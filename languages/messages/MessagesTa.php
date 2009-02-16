@@ -1124,7 +1124,6 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'noimage'                        => 'இப்பெயருடைய கோப்பு எதுவும் இல்லை, ஆனால் நீங்கள் அதை $1.',
 'noimage-linktext'               => 'ஒன்றை பதிவேற்றம் செய்',
 'uploadnewversion-linktext'      => 'இப்படிமத்தின் புதிய பதிப்பை பதிவேற்று',
-'imagepage-searchdupe'           => 'நகல் கோப்புகளைத் தேடுக',
 
 # File reversion
 'filerevert'                => '$1 ஐ முன்நிலையாக்கு',

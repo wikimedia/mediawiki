@@ -1062,7 +1062,6 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órd
 'noimage'                   => 'A-i é pa gnun archivi che as ciama parej, a peul $1.',
 'noimage-linktext'          => 'carijlo',
 'uploadnewversion-linktext' => "Carié na version neuva dë st'archivi-sì",
-'imagepage-searchdupe'      => "Arsërca dj'archivi dobi",
 
 # File reversion
 'filerevert'                => "Buta torna $1 tanme ch'a l'era",

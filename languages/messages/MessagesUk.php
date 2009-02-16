@@ -1607,7 +1607,6 @@ PICT # різні
 'noimage'                        => 'Немає файлу з такою назвою, але ви можете $1.',
 'noimage-linktext'               => 'завантажити його',
 'uploadnewversion-linktext'      => 'Завантажити нову версію цього файлу',
-'imagepage-searchdupe'           => 'Пошук файлів-дублікатів',
 
 # File reversion
 'filerevert'                => 'Повернення до старої версії $1',

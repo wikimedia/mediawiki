@@ -844,7 +844,6 @@ Paspaude ont štolpelė ontraštės pakeisėt ėšruokavėma.',
 'noimage'                   => 'Nier faila so šėtokio pavadėnėmo. Tamsta galėt $1.',
 'noimage-linktext'          => 'ikeltė ana',
 'uploadnewversion-linktext' => 'Ikeltė nauja faila versėje',
-'imagepage-searchdupe'      => 'Ėiškuotė doblikoutu failu',
 
 # File deletion
 'filedelete'         => 'Trintė $1',

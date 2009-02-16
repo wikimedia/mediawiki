@@ -1513,7 +1513,6 @@ PICT # misc.
 'noimage'                        => 'چوشین فایل گون ای نام نیست، بله شما تونیت $1',
 'noimage-linktext'               => 'یکیء آپلود کن',
 'uploadnewversion-linktext'      => 'یک نوکین نسخه ای چه ای فایل آپلود کن',
-'imagepage-searchdupe'           => 'گردگ په کپی  فایلان',
 
 # File reversion
 'filerevert'                => 'ترین $1',

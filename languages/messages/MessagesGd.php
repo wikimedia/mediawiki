@@ -21,7 +21,7 @@ $messages = array(
 'subcategories'   => 'Fo-ghnethan',
 
 'about'          => 'Mu',
-'newwindow'      => "(a'fosgladh ann an uinneag ùr)",
+'newwindow'      => '(a’ fosgladh ann an uinneig ùir)',
 'qbfind'         => 'Lorg',
 'qbedit'         => 'Deasaich',
 'qbpageoptions'  => 'An duilleag seo',

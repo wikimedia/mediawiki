@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -1445,7 +1445,7 @@ $2',
 'upload-file-error'       => '内部错误',
 'upload-file-error-text'  => '当试图在服务器上创建临时文件时发生内部错误。请与[[Special:ListUsers/sysop|管理员]]联系。',
 'upload-misc-error'       => '未知的上传错误',
-'upload-misc-error-text'  => '在上传时发生未知的错误。请验证使用了正确并可访问的 URL，然后进行重试。如果问题仍然存在，请与[[Special:ListUsers/sysop|管理员]]联系。',
+'upload-misc-error-text'  => '在上传时发生未知的错误。请确认您使用了正确并可访问的URL，然后进行重试。如果问题仍然存在，请与[[Special:ListUsers/sysop|管理员]]联系。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '无法访问 URL',
@@ -1496,7 +1496,7 @@ $2',
 'nolinkstoimage'                 => '没有页面链接到本文件。',
 'morelinkstoimage'               => '查看连接到这个文件的[[Special:WhatLinksHere/$1|更多连结]]。',
 'redirectstofile'                => '以下的$1个文件重新定向到这个文件:',
-'duplicatesoffile'               => '以下的$1个文件是跟这个文件重覆:',
+'duplicatesoffile'               => '以下的$1个文件跟这个文件重覆（[[Special:FileDuplicateSearch/$2|更多细节]]）：',
 'sharedupload'                   => '该文件是一个共享上传，它可能在其它项目中被应用。',
 'shareduploadwiki'               => '请参阅在共享文件库上的$1以了解其相关信息。',
 'shareduploadwiki-desc'          => '它在$1上的描述于下面显示。',
@@ -1508,7 +1508,6 @@ $2',
 'noimage'                        => '不存在此名称的文件，但您可以$1。',
 'noimage-linktext'               => '上传一个',
 'uploadnewversion-linktext'      => '上传该文件的新版本',
-'imagepage-searchdupe'           => '搜索重覆的文件',
 
 # File reversion
 'filerevert'                => '恢复$1',
