@@ -167,10 +167,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendNamespaceAliases( $property ) {
 		global $wgNamespaceAliases, $wgContLang;
 		$wgContLang->load();
-		$aliases = array_merge($wgNamespaceAliases, $wgContLang->namespaceAliases);
-		$aliases = array_diff_key($aliases, array_flip($wgContLang->getNamespaces()));
+		$aliases = array_merge( $wgNamespaceAliases, $wgContLang->namespaceAliases );
+		$namespaces = $wgContLang->getNamespaces();
 		$data = array();
 		foreach( $aliases as $title => $ns ) {
+			if( $namespaces[$ns] == $title ) {
+				// Don't list duplicates
+				continue;
+			}
 			$item = array(
 				'id' => $ns
 			);
