@@ -226,6 +226,7 @@ changes to languages because of MediaZilla reports.
 * Austrian German (de-at) (new)
 * Swiss Standard German (de-ch) (new)
 * Literary Chinese (lzh) (new)
+* Uyghur (Latin script) (ug-latn) (renamed from 'ug')
 * Võro (vro) (renamed from fiu-vro)
 * (bug 17151) Add magic word alias for #redirect for Vietnamese
 * (bug 17288) Messages improved for default language (English)
