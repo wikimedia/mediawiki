@@ -120,11 +120,18 @@ if (!defined('MEDIAWIKI')) {
 		// Second pass: add result data to $retval
 		foreach($goodNames as $u) {
 			if(!isset($data[$u]))
-				$retval[] = array('name' => $u, 'missing' => '');
+				$data[$u] = array('name' => $u, 'missing' => '');
 			else {
 				if(isset($this->prop['groups']) && isset($data[$u]['groups']))
 					$this->getResult()->setIndexedTagName($data[$u]['groups'], 'g');
-				$retval[] = $data[$u];
+			}
+			$fit = $result->addValue(array('query', $this->getModuleName()),
+					null, $data[$u]);
+			if(!$fit)
+			{
+					$this->setContinueEnumParameter('users',
+							implode('|', array_diff($users, $done)));
+					break;
 			}
 			$done[] = $u;
 		}
