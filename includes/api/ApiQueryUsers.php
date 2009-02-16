@@ -95,7 +95,7 @@ if (!defined('MEDIAWIKI')) {
 				$this->addJoinConds(array(
 					'ipblocks' => array('LEFT JOIN', 'ipb_user=u1.user_id'),
 					$u2 => array('LEFT JOIN', 'ipb_by=u2.user_id')));
-				$this->addFields(array('ipb_reason', 'u2.user_name blocker_name'));
+				$this->addFields(array('ipb_reason', 'u2.user_name AS blocker_name'));
 			}
 
 			$data = array();
@@ -129,9 +129,9 @@ if (!defined('MEDIAWIKI')) {
 					null, $data[$u]);
 			if(!$fit)
 			{
-					$this->setContinueEnumParameter('users',
-							implode('|', array_diff($users, $done)));
-					break;
+				$this->setContinueEnumParameter('users',
+						implode('|', array_diff($users, $done)));
+				break;
 			}
 			$done[] = $u;
 		}
