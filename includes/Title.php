@@ -69,6 +69,7 @@ class Title {
 	var $mLength = -1;                ///< The page length, 0 for special pages
 	var $mRedirect = null;            ///< Is the article at this title a redirect?
 	var $mNotificationTimestamp = array(); ///< Associative array of user ID -> timestamp/false
+	var $mBacklinkCache = null; ///< Cache of links to this title
 	//@}
 
 
@@ -3663,5 +3664,15 @@ class Title {
 		}
 		
 		return true;
+	}
+
+	/**
+	 * Get a backlink cache object
+	 */
+	function getBacklinkCache() {
+		if ( is_null( $this->mBacklinkCache ) ) {
+			$this->mBacklinkCache = new BacklinkCache( $this );
+		}
+		return $this->mBacklinkCache;
 	}
 }
