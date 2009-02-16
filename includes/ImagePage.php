@@ -577,10 +577,6 @@ EOT
 			$wgOut->addHTML( "<li><div class='plainlinks'>{$ulink}</div></li>" );
 		}
 
-		# Link to Special:FileDuplicateSearch
-		$dupeLink = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'FileDuplicateSearch', $this->mTitle->getDBkey() ), wfMsgHtml( 'imagepage-searchdupe' ) );
-		$wgOut->addHTML( "<li>{$dupeLink}</li>" );
-
 		# External editing link
 		$elink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'edit-externally' ), 'action=edit&externaledit=true&mode=file' );
 		$wgOut->addHTML( '<li>' . $elink . ' <small>' . wfMsgExt( 'edit-externally-help', array( 'parseinline' ) ) . '</small></li>' );
@@ -694,7 +690,7 @@ EOT
 
 		$wgOut->addHTML( "<div id='mw-imagepage-section-duplicates'>\n" );
 		$wgOut->addWikiMsg( 'duplicatesoffile',
-			$wgLang->formatNum( count( $dupes ) )
+			$wgLang->formatNum( count( $dupes ) ), $this->mTitle->getDBkey()
 		);
 		$wgOut->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
