@@ -105,7 +105,7 @@
 	'glk' => 'گیلکی',	# Gilaki
 	'gn' => 'Avañe\'ẽ',	# Guaraní, Paraguayan
 	'got' => '𐌲𐌿𐍄𐌹𐍃𐌺',	# Gothic
-	'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greece
+	'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
 	'gsw' => 'Alemannisch',	# Alemannic
 	'gu' => 'ગુજરાતી',	# Gujarati
 	'gv' => 'Gaelg',		# Manx
