@@ -1250,7 +1250,6 @@ $wgMessageStructure = array(
 		'noimage',
 		'noimage-linktext',
 		'uploadnewversion-linktext',
-		'imagepage-searchdupe',
 	),
 	'filerevert' => array(
 		'filerevert',

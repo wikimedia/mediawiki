@@ -103,6 +103,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Wrap warning message 'editinginterface' into a div with class
   'mw-editinginterface'
 * (bug 17497) Oasis opendocument added to mime.types
+* Remove the link to Special:FileDuplicateSearch from the "file history" section
+  of image description pages as the list of duplicated files is shown in the 
+  next section anyway.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
