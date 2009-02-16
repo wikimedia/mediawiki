@@ -1673,7 +1673,7 @@ PICT # שונות
 'nolinkstoimage'                 => 'אין דפים המשתמשים בקובץ זה.',
 'morelinkstoimage'               => 'ראו [[Special:WhatLinksHere/$1|דפים נוספים]] המשתמשים בקובץ זה.',
 'redirectstofile'                => '{{PLURAL:$1|הדף הבא הוא דף הפניה|הדפים הבאים הם דפי הפניה}} לקובץ זה:',
-'duplicatesoffile'               => '{{PLURAL:$1|הקובץ הבא זהה|הקבצים הבאים זהים}} לקובץ זה:',
+'duplicatesoffile'               => '{{PLURAL:$1|הקובץ הבא זהה|הקבצים הבאים זהים}} לקובץ זה ([[Special:FileDuplicateSearch/$2|לפרטים נוספים]]):',
 'sharedupload'                   => 'קובץ זה הוא קובץ משותף וניתן להשתמש בו גם באתרים אחרים.',
 'shareduploadwiki'               => 'למידע נוסף, ראו את $1.',
 'shareduploadwiki-desc'          => 'תיאורו ב$1 המקורי מוצג למטה.',
@@ -1685,7 +1685,6 @@ PICT # שונות
 'noimage'                        => 'לא נמצא קובץ בשם זה, אך יש באפשרותכם $1.',
 'noimage-linktext'               => 'להעלות אחד',
 'uploadnewversion-linktext'      => 'העלו גרסה חדשה של קובץ זה',
-'imagepage-searchdupe'           => 'חיפוש קבצים כפולים',
 
 # File reversion
 'filerevert'                => 'שחזור $1',
