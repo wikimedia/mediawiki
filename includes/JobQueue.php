@@ -126,6 +126,7 @@ abstract class Job {
 		if ( !$affected ) {
 			// Failed, someone else beat us to it
 			// Try getting a random row
+			// FIXME: FIFO???
 			$row = $dbw->selectRow( 'job', array( 'MIN(job_id) as minjob',
 				'MAX(job_id) as maxjob' ), '1=1', __METHOD__ );
 			if ( $row === false || is_null( $row->minjob ) || is_null( $row->maxjob ) ) {
