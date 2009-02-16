@@ -168,6 +168,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		global $wgNamespaceAliases, $wgContLang;
 		$wgContLang->load();
 		$aliases = array_merge($wgNamespaceAliases, $wgContLang->namespaceAliases);
+		$aliases = array_diff_key($aliases, array_flip($wgContLang->getNamespaces()));
 		$data = array();
 		foreach( $aliases as $title => $ns ) {
 			$item = array(
