@@ -6,6 +6,7 @@
  *
  * @author Chrisportelli
  * @author Giangian15
+ * @author Malafaya
  * @author Roderick Mallia
  * @author Urhixidur
  */
@@ -490,6 +491,8 @@ $messages = array(
 'editsection'             => 'modifika',
 'editold'                 => 'modifika',
 'viewsourceold'           => 'ara l-fonti',
+'editlink'                => 'editja',
+'viewsourcelink'          => 'ara l-fonti',
 'editsectionhint'         => 'Modifika s-sezzjoni: $1',
 'toc'                     => 'Kontenut',
 'showtoc'                 => 'uri',
@@ -1443,7 +1446,6 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'noimage'                        => "Ebda fajl ma jeżisti b'dan l-isem, imma jekk trid tista' $1.",
 'noimage-linktext'               => "tella' wieħed",
 'uploadnewversion-linktext'      => "Tella' verżjoni ġdida ta' dan il-fajl",
-'imagepage-searchdupe'           => 'Fittex fajls duplikati',
 
 # File reversion
 'filerevert'                => 'Ġib lura $1',

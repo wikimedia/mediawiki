@@ -8,6 +8,7 @@
  * @author Meno25
  * @author Wisesabre
  * @author לערי ריינהארט
+ * @author محبوب عالم
  */
 
 $fallback8bitEncoding = 'windows-1256';
@@ -123,7 +124,9 @@ $messages = array(
 'unprotectthispage' => 'اس صفحےکو غیر محفوظ کریں',
 'newpage'           => 'نیا صفحہ',
 'talkpage'          => 'اس صفحہ پر تبادلۂ خیال کریں',
+'talkpagelinktext'  => 'گفتگو',
 'specialpage'       => 'خصوصی صفحہ',
+'personaltools'     => 'ذاتی اوزار',
 'articlepage'       => 'مندرجاتی صفحہ دیکھیۓ',
 'talk'              => 'تبادلہٴ خیال',
 'views'             => 'خیالات',

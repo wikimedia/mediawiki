@@ -1285,7 +1285,6 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'noimage'                        => "Daar bestaan nie 'n lêer met so 'n naam nie, maar u kan $1.",
 'noimage-linktext'               => 'een oplaai',
 'uploadnewversion-linktext'      => 'Laai een nuwe weergawe van hierdie lêer',
-'imagepage-searchdupe'           => 'Soek vir duplikaatlêers',
 
 # File reversion
 'filerevert'         => 'Maak $1 ongedaan',

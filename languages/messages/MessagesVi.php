@@ -1523,7 +1523,6 @@ Có [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].',
 'noimage'                        => 'Không có tập tin có tên này, nhưng bạn có thể $1.',
 'noimage-linktext'               => 'tải tập tin lên',
 'uploadnewversion-linktext'      => 'Tải lên phiên bản mới',
-'imagepage-searchdupe'           => 'Tìm kiếm các tập tin trùng lắp',
 
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',

@@ -1580,7 +1580,6 @@ Juga tersedia [[Special:WhatLinksHere/$2|daftar selengkapnya]].',
 'noimage'                        => 'Tidak ada berkas dengan nama tersebut, tetapi Anda dapat $1.',
 'noimage-linktext'               => 'memuat berkas',
 'uploadnewversion-linktext'      => 'Muatkan versi yang lebih baru dari berkas ini',
-'imagepage-searchdupe'           => 'Cari berkas duplikat',
 
 # File reversion
 'filerevert'                => 'Kembalikan $1',

@@ -1544,7 +1544,6 @@ Bağannıñ bas jolın nuqığanda surıptawdıñ rettewi özgertiledi.',
 'noimage'                        => 'Bılaý atalğan faýl joq, $1 mümkindigiñiz bar.',
 'noimage-linktext'               => 'bunı qotarıp ber',
 'uploadnewversion-linktext'      => 'Bul faýldıñ jaña nusqasın qotarıp berw',
-'imagepage-searchdupe'           => 'Faýl telnusqaların izdew',
 
 # File reversion
 'filerevert'                => '$1 degendi qaýtarw',

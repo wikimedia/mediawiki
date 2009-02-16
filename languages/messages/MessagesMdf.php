@@ -1391,7 +1391,6 @@ $3 макссь туфталсь - ''$2''",
 'noimage'                        => 'Тя лем мархта файл аш, интай тондейть ули кода $1.',
 'noimage-linktext'               => 'тонгодемс тянь',
 'uploadnewversion-linktext'      => 'Тонгодемс тя файлонь од верзиенц',
-'imagepage-searchdupe'           => 'Вешендемс кафонзаф файлхне',
 
 # File reversion
 'filerevert'                => 'Мърдафтомс $1',

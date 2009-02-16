@@ -1047,7 +1047,6 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'noimage'                   => 'Sellise nimega faili pole, võite selle $1.',
 'noimage-linktext'          => 'üles laadida',
 'uploadnewversion-linktext' => 'Lae üles selle faili uus versioon',
-'imagepage-searchdupe'      => 'Otsi faili duplikaate',
 
 # File deletion
 'filedelete'                  => 'Kustuta $1',

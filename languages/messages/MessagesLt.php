@@ -1478,7 +1478,6 @@ Pilnas sąrašas pasiekiamas [[Special:WhatLinksHere/$2|čia]].',
 'noimage'                        => 'Failas tokiu pavadinimu neegzistuoja. Jūs galite $1',
 'noimage-linktext'               => 'įkelti jį',
 'uploadnewversion-linktext'      => 'Įkelti naują failo versiją',
-'imagepage-searchdupe'           => 'Ieškoti dublikuotų failų',
 
 # File reversion
 'filerevert'                => 'Sugrąžinti $1',

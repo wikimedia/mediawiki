@@ -1094,7 +1094,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'difference'              => '(Usporedba među inačicama)',
 'lineno'                  => 'Redak $1:',
 'compareselectedversions' => 'Usporedi odabrane inačice',
-'visualcomparison'        => 'Vidna usporedba',
+'visualcomparison'        => 'Prikazivanje razlike',
 'wikicodecomparison'      => 'Wikitekst usporedba',
 'editundo'                => 'ukloni ovu izmjenu',
 'diff-multi'              => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}})',
@@ -1617,7 +1617,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 'nolinkstoimage'                 => 'Nijedna stranica ne povezuje na ovu sliku.',
 'morelinkstoimage'               => 'Pogledaj [[Special:WhatLinksHere/$1|više poveznica]] za ovu datoteku.',
 'redirectstofile'                => '{{PLURAL:$1|Sljedeća datoteka preusmjerava|$1 Sljedeće datoteke preusmjeravaju}} na ovu datoteku:',
-'duplicatesoffile'               => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 Sljedeće datoteke su kopije}} ove datoteke:',
+'duplicatesoffile'               => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 sljedeće datoteke su kopije|$1 sljedećih datoteka su kopije}} ove datoteke ([[Special:FileDuplicateSearch/$2|više detalja]]):',
 'sharedupload'                   => 'Ova je datoteka postavljena na zajedničkom poslužitelju i mogu je koristiti ostali wikiji',
 'shareduploadwiki'               => 'Za podrobnije informacije vidi $1.',
 'shareduploadwiki-desc'          => 'Opis datoteke $1 na zajedničkom poslužitelju je prikazan ispod',
@@ -1629,7 +1629,6 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 'noimage'                        => 'Ne postoji datoteka s ovim imenom. Možete ju $1.',
 'noimage-linktext'               => 'postaviti',
 'uploadnewversion-linktext'      => 'Postavi novu inačicu datoteke',
-'imagepage-searchdupe'           => 'Traži kopiju datoteke',
 
 # File reversion
 'filerevert'                => 'Ukloni ← $1',
@@ -2601,7 +2600,7 @@ $1',
 'nextdiff'     => 'Novija izmjena →',
 
 # Visual comparison
-'visual-comparison' => 'Vidna usporedba',
+'visual-comparison' => 'Prikazivanje razlike (usporedi)',
 
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ova datoteka možda sadrži zlonamjerni program čije bi izvršavanje moglo ugroziti vaš računalni sustav.

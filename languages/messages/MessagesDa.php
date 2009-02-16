@@ -1301,7 +1301,6 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'noimage'                        => 'Der eksisterer ingen fil med dette navn, du kan $1',
 'noimage-linktext'               => 'lægge den op',
 'uploadnewversion-linktext'      => 'Læg en ny version af denne fil op',
-'imagepage-searchdupe'           => 'Søg efter dubletfiler',
 
 # File reversion
 'filerevert'                => 'Gendan $1',

@@ -896,7 +896,6 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'noimage'                        => 'Awan ti file iti kasta a nagan, mabalinmo ti $1.',
 'noimage-linktext'               => 'ipanen',
 'uploadnewversion-linktext'      => 'Mangipan iti kabarbaro a version daytoy a file',
-'imagepage-searchdupe'           => 'Agsapul kadagiti duplikado a files',
 
 # File reversion
 'filerevert'                => 'Isubli ti $1',

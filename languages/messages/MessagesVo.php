@@ -1408,7 +1408,6 @@ Lised dono jonon {{PLURAL:$1|padayümi balid|padayümis balid $1}} te lü ragiv 
 'noimage'                        => 'Ragiv labü nem at no dabinon, ab kanol $1.',
 'noimage-linktext'               => 'löpükön bali',
 'uploadnewversion-linktext'      => 'Löpükön fomami nulik ragiva at',
-'imagepage-searchdupe'           => 'Sukön ragivis pedönuöl',
 
 # File reversion
 'filerevert'                => 'Geükön padi: $1',

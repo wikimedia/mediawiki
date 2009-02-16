@@ -1284,7 +1284,6 @@ Klikañ war penn ar bann a cheñch an urzh kinnig.',
 'noimage'                        => "N'eus pajenn ebet anvet evel-se c'hoazh, gallout a rit $1.",
 'noimage-linktext'               => 'enporzhiañ unan',
 'uploadnewversion-linktext'      => 'Kargañ ur stumm nevez eus ar restr-mañ',
-'imagepage-searchdupe'           => 'Klask ar restroù e doubl',
 
 # File reversion
 'filerevert'                => 'Disteuler $1',

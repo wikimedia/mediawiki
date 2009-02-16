@@ -1327,7 +1327,6 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'noimage'                        => 'Një skedë me këtë emër nuk ekziston akoma, ju mundeni ta $1 atë.',
 'noimage-linktext'               => 'ngarkoni',
 'uploadnewversion-linktext'      => 'Ngarkoni një version të ri për këtë skedë',
-'imagepage-searchdupe'           => 'Kërko për kopje skedash',
 
 # File reversion
 'filerevert'                => 'Rikthe $1',

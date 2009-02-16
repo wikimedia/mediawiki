@@ -1436,7 +1436,6 @@ Munaspaykiqa, [[Special:WhatLinksHere/$2|hunt'a sutisuyuta]] qhaway.",
 'noimage'                        => 'Manam kanchu kay sutiyuq willañiqi, ichataq $1ta atinki.',
 'noimage-linktext'               => 'hukta churkuy',
 'uploadnewversion-linktext'      => 'Kay willañiqi ñaqha musuqchasqata churkuy',
-'imagepage-searchdupe'           => 'Iskaychasqa willañiqikunata maskay',
 
 # File reversion
 'filerevert'                => '$1-ta kutichiy',

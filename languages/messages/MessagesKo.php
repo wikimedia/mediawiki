@@ -1571,7 +1571,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'noimage'                        => '파일이 없습니다. $1 할 수 있습니다.',
 'noimage-linktext'               => '업로드',
 'uploadnewversion-linktext'      => '이 파일의 새로운 버전을 올리기',
-'imagepage-searchdupe'           => '중복 파일 찾기',
 
 # File reversion
 'filerevert'                => '$1 되돌리기',
@@ -2610,6 +2609,7 @@ Variants for Chinese language
 'exif-usercomment'                 => '사용자 주',
 'exif-relatedsoundfile'            => '관련된 오디오 파일',
 'exif-datetimeoriginal'            => '날짜와 시간',
+'exif-subsectime'                  => '파일이 변경된 날짜와 시간 (초 단위 미만)',
 'exif-exposuretime'                => '노출 시간',
 'exif-exposuretime-format'         => '$1초 ($2)',
 'exif-fnumber'                     => 'F 번호',
@@ -2642,6 +2642,7 @@ Variants for Chinese language
 'exif-contrast'                    => '대비',
 'exif-saturation'                  => '채도',
 'exif-sharpness'                   => '선명도',
+'exif-devicesettingdescription'    => '장치 설정에 대한 설명',
 'exif-imageuniqueid'               => '이미지 고유 ID',
 'exif-gpsversionid'                => 'GPS 태그 버전',
 'exif-gpslatituderef'              => '북위 또는 남위',

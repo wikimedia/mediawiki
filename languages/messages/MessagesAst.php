@@ -1374,7 +1374,6 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'noimage'                        => 'Nun esiste archivu dalu con esi nome, pero pues $1.',
 'noimage-linktext'               => 'xubir ún',
 'uploadnewversion-linktext'      => "Xubir una nueva versión d'esta imaxe",
-'imagepage-searchdupe'           => 'Buscar archivos duplicaos',
 
 # File reversion
 'filerevert'                => 'Revertir $1',

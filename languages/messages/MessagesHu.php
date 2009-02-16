@@ -7,6 +7,7 @@
  * @author Balasyum
  * @author Bdamokos
  * @author Bennó
+ * @author CERminator
  * @author Cerasus
  * @author Dani
  * @author Dorgan
@@ -651,7 +652,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'externaldberror'            => 'Hiba történt a külső adatbázis hitelesítése közben, vagy nem vagy jogosult a külső fiókod frissítésére.',
 'login'                      => 'Bejelentkezés',
 'nav-login-createaccount'    => 'Bejelentkezés / fiók létrehozása',
-'loginprompt'                => "Engedélyezned kell a sütiket (''cookie''), hogy bejelentkezhess a(z) {{SITENAME}}} wikibe.",
+'loginprompt'                => "Engedélyezned kell a sütiket (''cookie''), hogy bejelentkezhess a(z) {{SITENAME}} wikibe.",
 'userlogin'                  => 'Bejelentkezés / fiók létrehozása',
 'logout'                     => 'Kijelentkezés',
 'userlogout'                 => 'Kijelentkezés',
@@ -983,7 +984,7 @@ Néhány sablon nem fog megjelenni.',
 'page_first'             => 'első',
 'page_last'              => 'utolsó',
 'histlegend'             => 'Eltérések kijelölése: jelöld ki az összehasonlítandó változatokat, majd nyomd meg az Enter billentyűt, vagy az alul lévő gombot.<br />
-Jelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltérés az előző változattól, A = Apró változtatás',
+Jelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltérés az előző változattól, a = apró szerkesztés',
 'history-fieldset-title' => 'Keresés a laptörténetben',
 'deletedrev'             => '[törölve]',
 'histfirst'              => 'legelső',
@@ -1001,7 +1002,7 @@ Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].
 
 # Revision deletion
 'rev-deleted-comment'            => '(megjegyzés eltávolítva)',
-'rev-deleted-user'               => '(felhasználónév eltávolítva)',
+'rev-deleted-user'               => '(szerkesztőnév eltávolítva)',
 'rev-deleted-event'              => '(bejegyzés eltávolítva)',
 'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
 Ezt a változatot eltávolítottuk a nyilvános archívumokból.
@@ -1012,7 +1013,7 @@ Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részle
 'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">A változatok közötti eltérés nem jeleníthető meg, mert a változatok egyike el lett távolítva a nyilvános archívumból.
 További részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
 'rev-delundel'                   => 'megjelenítés/elrejtés',
-'revisiondelete'                 => 'Változatok törlése/helyreállítása',
+'revisiondelete'                 => 'Változatok törlése vagy helyreállítása',
 'revdelete-nooldid-title'        => 'Érvénytelen célváltozat',
 'revdelete-nooldid-text'         => 'Nem adtad meg a célváltozato(ka)t, a megadott változat nem létezik,
 vagy a legutolsó változatot próbáltad meg elrejteni.',
@@ -1645,7 +1646,6 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'noimage'                        => 'Nem létezik ilyen nevű fájl, de $1 egyet.',
 'noimage-linktext'               => 'feltölthetsz',
 'uploadnewversion-linktext'      => 'Új változat feltöltése',
-'imagepage-searchdupe'           => 'Duplikátumok keresése',
 
 # File reversion
 'filerevert'                => '$1 visszaállítása',

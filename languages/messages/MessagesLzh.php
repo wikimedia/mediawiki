@@ -442,8 +442,7 @@ $2',
 'yournick'                   => '署名︰',
 'badsig'                     => '無效之自畫。
 查HTML籤之。',
-'badsiglength'               => '自畫長哉。
-莫逾$1字。',
+'badsiglength'               => '署名宜簡。',
 'yourgender'                 => '性別︰',
 'gender-unknown'             => '未',
 'gender-male'                => '男',
@@ -575,7 +574,7 @@ $2',
 'newarticletext'                   => '此頁尚缺。欲補，撰於下，有惑見[[{{MediaWiki:Helppage}}|助]]。
 誤入者，返前即可。',
 'anontalkpagetext'                 => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:UserLogin/signup|增]][[Special:UserLogin|登簿]]遠之。",
-'noarticletext'                    => '此頁無文。子可 [[Special:Search/{{PAGENAME}}|尋同題]]，或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 撰新文]。',
+'noarticletext'                    => '查無此文。',
 'userpage-userdoesnotexist'        => '"$1"之簿未增也。請建纂本頁前查之。',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。
 '''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-F5''或''Ctrl-R''（Macintosh為''Command-R''）。
@@ -1274,7 +1273,6 @@ $2',
 'noimage'                        => '查無此檔，爾可$1。',
 'noimage-linktext'               => '貢焉',
 'uploadnewversion-linktext'      => '更新此檔',
-'imagepage-searchdupe'           => '尋重檔',
 
 # File reversion
 'filerevert'                => '還$1',

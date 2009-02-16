@@ -1147,7 +1147,6 @@ Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).'
 'noimage'                        => 'Alang simpan a anti kaniyan lagyu; malyari kang $1.',
 'noimage-linktext'               => 'ilulan ya',
 'uploadnewversion-linktext'      => 'Maglulan bayung bersion na niting simpan',
-'imagepage-searchdupe'           => 'Maintun simpan a mipapareu (duplicate files)',
 
 # File reversion
 'filerevert'                => 'Isubli ya ing $1',

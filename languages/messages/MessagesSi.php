@@ -1531,7 +1531,6 @@ PICT # විවිධ.
 'noimage'                        => 'මෙම නම සහිත ගොනුවක් නොපවතින නමුදු, ඔබ හට $1 සිදු කල හැක.',
 'noimage-linktext'               => 'එකක් උඩුගත කරන්න',
 'uploadnewversion-linktext'      => 'මෙම ගොනුවෙහි නව අනුවාදයක් උඩුගත කරන්න',
-'imagepage-searchdupe'           => 'අනුපිටපත් ගොනු සඳහා ගවේෂණය කරන්න',
 
 # File reversion
 'filerevert'                => '$1 ප්‍රතිවර්තනය කරන්න',

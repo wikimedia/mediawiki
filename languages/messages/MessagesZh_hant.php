@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -11,6 +11,7 @@
  * @author Skjackey tse
  * @author Wong128hk
  * @author Wrightbus
+ * @author Yuyu
  */
 
 $fallback = 'zh-hans';
@@ -1411,7 +1412,6 @@ $2',
 'noimage'                        => '不存在此名稱的檔案，但您可以$1。',
 'noimage-linktext'               => '上傳它',
 'uploadnewversion-linktext'      => '上傳該檔案的新版本',
-'imagepage-searchdupe'           => '搜尋重覆的檔案',
 
 # File reversion
 'filerevert'                => '恢復$1',

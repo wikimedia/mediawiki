@@ -1524,7 +1524,6 @@ En [[Special:WhatLinksHere/$2|kumplette List]] gifft dat ok.',
 'noimage'                        => 'Ene Datei mit dissen Naam gifft dat nich, du kannst ehr $1.',
 'noimage-linktext'               => 'hoochladen',
 'uploadnewversion-linktext'      => 'Ne’e Version vun disse Datei hoochladen',
-'imagepage-searchdupe'           => 'Söök na dubbelte Datein',
 
 # File reversion
 'filerevert'                => '„$1“ Trüchsetten',

@@ -1189,7 +1189,6 @@ $1',
 'noimage'                        => 'Οὐδέν ἐστι ἀρχεῖον οὕτως ὀνομαστόν, ἀλλὰ ἔξεστί σοι $1.',
 'noimage-linktext'               => 'Ἐντιθέναι τι',
 'uploadnewversion-linktext'      => 'Ἐπιφορτίζειν νέαν ἐκδοσίν τινα τοῦδε τοῦ ἀρχείου',
-'imagepage-searchdupe'           => 'Ζητεῖν διπλότυπα ἀρχεῖα',
 
 # File reversion
 'filerevert'                => 'Ἐπαναφέρειν  $1',

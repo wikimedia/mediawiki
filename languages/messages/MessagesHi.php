@@ -1224,7 +1224,6 @@ PICT # misc.
 'noimage'                        => 'इस नामसे कोई भी फ़ाईल नहीं है, आप $1 कर सकते हैं ।',
 'noimage-linktext'               => 'चढाईयें',
 'uploadnewversion-linktext'      => 'इस फ़ाईलका नया अवतरण अपलोड करें',
-'imagepage-searchdupe'           => 'डुप्लिकेट फ़ाईलें खोजें',
 
 # File reversion
 'filerevert'                => '$1 पूर्ववत करें',

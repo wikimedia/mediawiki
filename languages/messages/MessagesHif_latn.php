@@ -1386,7 +1386,6 @@ Ek [[Special:WhatLinksHere/$2|Puura suchi]] available hai.',
 'noimage'                        => 'Ii naam ke koi file nai hai, lekin aap sakta hai $1.',
 'noimage-linktext'               => 'ek ke upload karo',
 'uploadnewversion-linktext'      => 'Ii file ke nawaa version ke upload karo',
-'imagepage-searchdupe'           => 'Dugna files ke khojo',
 
 # File reversion
 'filerevert'                => '$1 ke pahile jaise karo',

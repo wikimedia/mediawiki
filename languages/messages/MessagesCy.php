@@ -1378,7 +1378,6 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 'noimage'                        => "Does dim ffeil a'r enw hwn i gael, ond gallwch $1.",
 'noimage-linktext'               => 'uwchlwytho un',
 'uploadnewversion-linktext'      => "Uwchlwytho fersiwn newydd o'r ffeil hon",
-'imagepage-searchdupe'           => 'Chwilio am ffeiliau wedi eu dyblygu',
 
 # File reversion
 'filerevert'                => 'Gwrthdroi $1',

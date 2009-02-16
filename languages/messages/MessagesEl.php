@@ -1654,7 +1654,6 @@ PICT # διάφορα
 'noimage'                        => 'Δεν υπάρχει αρχείο με αυτό το όνομα, αλλά μπορείτε να $1.',
 'noimage-linktext'               => 'επιφορτώστε ένα',
 'uploadnewversion-linktext'      => 'Φορτώστε μια νέα έκδοση αυτού του αρχείου',
-'imagepage-searchdupe'           => 'Αναζήτηση για διπλά αρχεία',
 
 # File reversion
 'filerevert'                => 'Επαναφορά $1',

@@ -1602,7 +1602,6 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'noimage'                        => "Der besteet gien bestand mit disse naam, je kunnen 't $1.",
 'noimage-linktext'               => 'toevoegen',
 'uploadnewversion-linktext'      => 'Een niejere versie van dit bestand toevoegen.',
-'imagepage-searchdupe'           => 'Kopiebestanden zeuken',
 
 # File reversion
 'filerevert'                => '$1 weerummedreien',

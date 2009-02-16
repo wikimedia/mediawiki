@@ -1490,7 +1490,6 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'noimage'                        => 'Bu isimde dosya yok. Siz $1.',
 'noimage-linktext'               => 'yükleyebilirsiniz',
 'uploadnewversion-linktext'      => 'Dosyanın yenisini yükleyin',
-'imagepage-searchdupe'           => 'Eş dosyaları ara',
 
 # File reversion
 'filerevert'                => '$1 dosyasını eski haline döndür',

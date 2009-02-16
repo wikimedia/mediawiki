@@ -1314,7 +1314,6 @@ $3 చెప్పిన కారణం: ''$2''",
 'noimage'                        => 'ఆ పేరుతో ఫైలేమీ లేదు, కానీ మీరు $1',
 'noimage-linktext'               => 'ఎగుమతి చెయ్యవచ్చు',
 'uploadnewversion-linktext'      => 'ఈ ఫైలు కొత్త కూర్పును అప్‌లోడు చెయ్యండి',
-'imagepage-searchdupe'           => 'ఫైళ్ల మారుప్రతుల కొరకు వెతుకు',
 
 # File reversion
 'filerevert'                => '$1 ను వెనక్కు తీసుకుపో',

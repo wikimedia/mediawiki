@@ -1512,7 +1512,7 @@ PICT # misc.
 'nolinkstoimage'                 => 'このファイルを使用しているページはありません。',
 'morelinkstoimage'               => 'このファイルの[[Special:WhatLinksHere/$1|リンク元]]を表示する。',
 'redirectstofile'                => 'このファイルは以下の{{PLURAL:$1|ファイル|$1ファイル}}からリダイレクトされています:',
-'duplicatesoffile'               => '以下にこのファイルと同一のファイル $1 件を表示しています:',
+'duplicatesoffile'               => '以下の $1件のファイルは、このファイルと内容が同一です ([[Special:FileDuplicateSearch/$2|詳細]]):',
 'sharedupload'                   => 'このファイルは共有されており、他のプロジェクトで使用されている可能性があります。',
 'shareduploadwiki'               => '詳しい情報は$1を参照してください。',
 'shareduploadwiki-desc'          => '共有リポジトリ内の$1にあるこのファイルの説明は以下の通りです。',
@@ -1524,7 +1524,6 @@ PICT # misc.
 'noimage'                        => '同名のファイルは存在しません。「$1」リンクをクリックしてください。',
 'noimage-linktext'               => 'このファイル名でアップロードする',
 'uploadnewversion-linktext'      => 'このファイルの新しいバージョンをアップロードする',
-'imagepage-searchdupe'           => '重複ファイルを検索する',
 
 # File reversion
 'filerevert'                => '$1 を差し戻す',

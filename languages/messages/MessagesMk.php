@@ -1642,7 +1642,6 @@ PICT # misc.
 'noimage'                        => 'Не постои податотека со тоа име, проверете $1',
 'noimage-linktext'               => 'подигни една',
 'uploadnewversion-linktext'      => 'Подигни нова верзија на оваа датотека',
-'imagepage-searchdupe'           => 'Барај дупликат податотеки',
 
 # File reversion
 'filerevert'                => 'Врати $1',

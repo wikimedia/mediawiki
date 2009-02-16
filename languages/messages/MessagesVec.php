@@ -1460,7 +1460,6 @@ Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 'noimage'                        => "Un file con sto nome no l'esiste mìa, ma te pol $1.",
 'noimage-linktext'               => 'cargarne uno desso',
 'uploadnewversion-linktext'      => 'Carica na version nova de sto file',
-'imagepage-searchdupe'           => 'Riçerca dei file duplicà',
 
 # File reversion
 'filerevert'                => 'Ripristina $1',

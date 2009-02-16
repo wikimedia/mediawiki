@@ -445,7 +445,8 @@ It must have at least $1 characters and be different from your username.',
 'unwatching' => 'Seyr meke...',
 
 # Delete
-'deletepage' => 'Pele bıestere',
+'deletepage'            => 'Pele bıestere',
+'deletereasonotherlist' => 'Sebebo bin',
 
 # Rollback
 'rollbacklink' => 'peyser bia',
@@ -464,6 +465,7 @@ It must have at least $1 characters and be different from your username.',
 
 # What links here
 'whatlinkshere'       => 'Gırey be pele',
+'whatlinkshere-page'  => 'Pele:',
 'whatlinkshere-links' => '← gırey',
 
 # Block/unblock
@@ -475,29 +477,34 @@ Sebebê kılit-biyayışê $1\'i: "$2"o',
 'blocklogpage' => 'Protokolê kıliti',
 
 # Move page
-'1movedto2' => '[[$1]] berd be [[$2]]',
+'1movedto2'  => '[[$1]] berd be [[$2]]',
+'movereason' => 'Sebeb:',
 
 # Thumbnails
 'thumbnail-more' => 'Gırd ke',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'Pela şımawa karberi',
-'tooltip-pt-mytalk'       => 'Pela şımawa werênayışi',
-'tooltip-pt-login'        => 'Seba cıkotışi şıma rê dewato, labelê no zeruri niyo.',
-'tooltip-pt-logout'       => 'Veciye',
-'tooltip-ca-talk'         => 'Pela tedeesteyan sero werênayış',
-'tooltip-ca-edit'         => 'Tı eşkenay na pele bıvurnê.
+'tooltip-pt-userpage'      => 'Pela şımawa karberi',
+'tooltip-pt-mytalk'        => 'Pela şımawa werênayışi',
+'tooltip-pt-login'         => 'Seba cıkotışi şıma rê dewato, labelê no zeruri niyo.',
+'tooltip-pt-logout'        => 'Veciye',
+'tooltip-ca-talk'          => 'Pela tedeesteyan sero werênayış',
+'tooltip-ca-edit'          => 'Tı eşkenay na pele bıvurnê.
 Kerem ke, qeyd-kerdış ra ver gozega verqayti bıxebıtne.',
-'tooltip-search'          => 'Zerrey {{SITENAME}} de cıgeyre',
-'tooltip-n-mainpage'      => 'Pela Seri bıvêne',
-'tooltip-n-portal'        => 'Heqa projey de, tı çı eşkenay bıkerê, koti çiy vêniyenê',
-'tooltip-n-currentevents' => 'Vurnayışanê peyênan de melumatê pey bıvêne',
-'tooltip-n-recentchanges' => 'Wiki de lista vurnayışanê peyênan.',
-'tooltip-n-randompage'    => 'Kamci pele ke raşt amey bar ke',
-'tooltip-n-help'          => 'Cayê doş-kerdışi.',
-'tooltip-t-whatlinkshere' => 'Lista pelanê wikiya pêroina ke tiya gırê bena',
-'tooltip-t-upload'        => 'Dosya bar ke',
-'tooltip-t-specialpages'  => 'Lista pelanê xasanê pêroinan bımocne',
+'tooltip-search'           => 'Zerrey {{SITENAME}} de cıgeyre',
+'tooltip-search-go'        => 'Ebe nê namey şo yew pele, eke esta',
+'tooltip-search-fulltext'  => 'Seba nê meqaley pelan saye ke',
+'tooltip-n-mainpage'       => 'Pela Seri bıvêne',
+'tooltip-n-portal'         => 'Heqa projey de, tı çı eşkenay bıkerê, koti çiy vêniyenê',
+'tooltip-n-currentevents'  => 'Vurnayışanê peyênan de melumatê pey bıvêne',
+'tooltip-n-recentchanges'  => 'Wiki de lista vurnayışanê peyênan.',
+'tooltip-n-randompage'     => 'Kamci pele ke raşt amey bar ke',
+'tooltip-n-help'           => 'Cayê doş-kerdışi.',
+'tooltip-t-whatlinkshere'  => 'Lista pelanê wikiya pêroina ke tiya gırê bena',
+'tooltip-t-upload'         => 'Dosya bar ke',
+'tooltip-t-specialpages'   => 'Lista pelanê xasanê pêroinan bımocne',
+'tooltip-ca-nstab-main'    => 'Pela tedeesteyan bıvêne',
+'tooltip-ca-nstab-special' => 'Na yew pelê da xususiya, şıma nêşenê nae bıvurnê',
 
 # Attribution
 'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye', # $1 date, $2 time, $3 user

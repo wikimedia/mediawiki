@@ -5,6 +5,7 @@
  * @file
  *
  * @author Kale
+ * @author Meno25
  * @author Millosh
  * @author Red Baron
  * @author Sasa Stefanovic
@@ -1405,7 +1406,6 @@ $2',
 'noimage'                        => 'Не постоји фајл са овим именом, можете $1',
 'noimage-linktext'               => 'послати један',
 'uploadnewversion-linktext'      => 'Пошаљите новију верзију ове датотеке',
-'imagepage-searchdupe'           => 'Претражи дупликате фајлова',
 
 # File reversion
 'filerevert'                => 'Врати $1',

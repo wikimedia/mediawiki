@@ -1216,7 +1216,6 @@ Pe piacere condrolle 'u file e carechele 'n'otra vote.",
 'noimage'                        => "Non g'esiste nisciune fail cu stu nome, ma tu puè $1.",
 'noimage-linktext'               => 'carechene une',
 'uploadnewversion-linktext'      => "Careche 'na versiona nove de stu fail",
-'imagepage-searchdupe'           => 'Cirche pe le file duplichete',
 
 # File reversion
 'filerevert'          => "'Nvirte $1",
