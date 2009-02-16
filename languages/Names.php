@@ -322,7 +322,9 @@
 	'tyv' => 'Тыва дыл',	# Tyvan
 	'tzm' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ',	# (Central Morocco) Tamazight
 	'udm' => 'Удмурт',	# Udmurt
-	'ug' => 'Uyghurche‎ / ئۇيغۇرچە',	# Uyghur
+	'ug' => 'Uyghurche‎ / ئۇيغۇرچە',	# Uyghur (multiple scripts - defaults to Latin)
+	#'ug-arab' => 'ئۇيغۇرچە', # Uyghur (Arabic script). Disabled until sufficient localisation can be committed
+	'ug-latn' => 'Uyghurche‎', # Uyghur (Latin script - default)
 	'uk' => 'Українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
 	'uz' => 'O\'zbek',	# Uzbek
