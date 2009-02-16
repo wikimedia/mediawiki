@@ -213,6 +213,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17433) Added bot flag to list=watchlist&wlprop=flags output
 * (bug 16740) Added list=protectedtitles
 * Added mainmodule and pagesetmodule parameters to action=paraminfo
+* (bug 17502) meta=siteinfo&siprop=namespacealiases no longer lists namespace
+  aliases already listed in siprop=namespaces
 
 === Languages updated in 1.15 ===
 
