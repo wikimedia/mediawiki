@@ -20,8 +20,7 @@ class LinksUpdate {
 		$mProperties,    //!< Map of arbitrary name to value
 		$mDb,            //!< Database connection reference
 		$mOptions,       //!< SELECT options to be used (array)
-		$mRecursive,     //!< Whether to queue jobs for recursive updates
-		$mTouchTmplLinks; //!< Whether to queue HTMLCacheUpdate jobs IF recursive
+		$mRecursive;     //!< Whether to queue jobs for recursive updates
 	/**@}}*/
 
 	/**
@@ -72,15 +71,6 @@ class LinksUpdate {
 
 		wfRunHooks( 'LinksUpdateConstructed', array( &$this ) );
 	}
-	
-	/**
-	 * Invalidate HTML cache of pages that include this page?
-	 */
-	public function setRecursiveTouch( $val ) {
-		$this->mTouchTmplLinks = (bool)$val;
-		if( $val ) // Cannot invalidate without queueRecursiveJobs()
-			$this->mRecursive = true;
-	}
 
 	/**
 	 * Update link tables with outgoing links from an updated article
@@ -95,7 +85,6 @@ class LinksUpdate {
 			$this->doIncrementalUpdate();
 		}
 		wfRunHooks( 'LinksUpdateComplete', array( &$this ) );
-
 	}
 
 	protected function doIncrementalUpdate() {
@@ -207,49 +196,17 @@ class LinksUpdate {
 		global $wgUpdateRowsPerJob;
 		wfProfileIn( __METHOD__ );
 
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'templatelinks',
-			array( 'tl_from' ),
-			array( 
-				'tl_namespace' => $this->mTitle->getNamespace(),
-				'tl_title' => $this->mTitle->getDBkey()
-			), __METHOD__
-		);
-
-		$numRows = $res->numRows();
-		if( !$numRows ) {
-			wfProfileOut( __METHOD__ );
-			return; // nothing to do
-		}
-		$numBatches = ceil( $numRows / $wgUpdateRowsPerJob );
-		$realBatchSize = $numRows / $numBatches;
-		$start = false;
+		$cache = $this->mTitle->getBacklinkCache();
+		$batches = $cache->partition( 'templatelinks', $wgUpdateRowsPerJob );
 		$jobs = array();
-		do {
-			for( $i = 0; $i <= $realBatchSize - 1; $i++ ) {
-				$row = $res->fetchRow();
-				if( $row ) {
-					$id = $row[0];
-				} else {
-					$id = false;
-					break;
-				}
-			}
+		foreach ( $batches as $batch ) {
+			list( $start, $end ) = $batch;
 			$params = array(
 				'start' => $start,
-				'end' => ( $id !== false ? $id - 1 : false ),
+				'end' => $end,
 			);
 			$jobs[] = new RefreshLinksJob2( $this->mTitle, $params );
-			# Hit page caches while we're at it if set to do so...
-			if( $this->mTouchTmplLinks ) {
-				$params['table'] = 'templatelinks';
-				$jobs[] = new HTMLCacheUpdateJob( $this->mTitle, $params );
-			}
-			$start = $id;
-		} while ( $start );
-
-		$dbr->freeResult( $res );
-
+		}
 		Job::batchInsert( $jobs );
 
 		wfProfileOut( __METHOD__ );

@@ -82,35 +82,21 @@ class RefreshLinksJob2 extends Job {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
-		$start = intval($this->params['start']);
-		$end = intval($this->params['end']);
-		
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( array( 'templatelinks', 'page' ),
-			array( 'page_namespace', 'page_title' ),
-			array(
-				'page_id=tl_from',
-				"tl_from >= '$start'",
-				"tl_from <= '$end'", 
-				'tl_namespace' => $this->title->getNamespace(),
-				'tl_title' => $this->title->getDBkey()
-			), __METHOD__
-		);
+		$titles = $this->title->getBacklinkCache()->getLinks( 
+			'templatelinks', $this->params['start'], $this->params['end']);
 		
 		# Not suitable for page load triggered job running!
 		# Gracefully switch to refreshLinks jobs if this happens.
 		if( php_sapi_name() != 'cli' ) {
 			$jobs = array();
-			while( $row = $dbr->fetchObject( $res ) ) {
-				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+			foreach ( $titles as $title ) {
 				$jobs[] = new RefreshLinksJob( $title, '' );
 			}
 			Job::batchInsert( $jobs );
 			return true;
 		}
 		# Re-parse each page that transcludes this page and update their tracking links...
-		while( $row = $dbr->fetchObject( $res ) ) {
-			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+		foreach ( $titles as $title ) {
 			$revision = Revision::newFromTitle( $title );
 			if ( !$revision ) {
 				$this->error = 'refreshLinks: Article not found "' . $title->getPrefixedDBkey() . '"';

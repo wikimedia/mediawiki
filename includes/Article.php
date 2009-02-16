@@ -1677,8 +1677,8 @@ class Article {
 			}
 
 			# Invalidate cache of this article and all pages using this article
-			# as a template. Partly deferred. Leave templatelinks for editUpdates().
-			Article::onArticleEdit( $this->mTitle, 'skiptransclusions' );
+			# as a template. Partly deferred.
+			Article::onArticleEdit( $this->mTitle );
 			# Update links tables, site stats, etc.
 			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
 		} else {
@@ -2893,8 +2893,7 @@ class Article {
 		}
 
 		# Update the links tables
-		$u = new LinksUpdate( $this->mTitle, $editInfo->output, false );
-		$u->setRecursiveTouch( $changed ); // refresh/invalidate including pages too
+		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
 		$u->doUpdate();
 		
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $changed ) );
@@ -3288,12 +3287,11 @@ class Article {
 	/**
 	 * Purge caches on page update etc
 	 */
-	public static function onArticleEdit( $title, $transclusions = 'transclusions' ) {
+	public static function onArticleEdit( $title, $flags = '' ) {
 		global $wgDeferredUpdateList;
 
 		// Invalidate caches of articles which include this page
-		if( $transclusions !== 'skiptransclusions' )
-			$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'templatelinks' );
+		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'templatelinks' );
 
 		// Invalidate the caches of all pages which redirect here
 		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'redirect' );

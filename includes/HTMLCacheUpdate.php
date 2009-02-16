@@ -35,146 +35,76 @@ class HTMLCacheUpdate
 		$this->mTable = $table;
 		$this->mRowsPerJob = $wgUpdateRowsPerJob;
 		$this->mRowsPerQuery = $wgUpdateRowsPerQuery;
+		$this->mCache = $this->mTitle->getBacklinkCache();
 	}
 
 	public function doUpdate() {
 		# Fetch the IDs
-		$cond = $this->getToCondition();
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( $this->mTable, $this->getFromField(), $cond, __METHOD__ );
+		$numRows = $this->mCache->getNumLinks( $this->mTable );
 
-		if ( $dbr->numRows( $res ) != 0 ) {
-			if ( $dbr->numRows( $res ) > $this->mRowsPerJob ) {
-				$this->insertJobs( $res );
+		if ( $numRows != 0 ) {
+			if ( $numRows > $this->mRowsPerJob ) {
+				$this->insertJobs();
 			} else {
-				$this->invalidateIDs( $res );
+				$this->invalidate();
 			}
 		}
 		wfRunHooks( 'HTMLCacheUpdate::doUpdate', array($this->mTitle) );
 	}
 
-	protected function insertJobs( ResultWrapper $res ) {
-		$numRows = $res->numRows();
-		$numBatches = ceil( $numRows / $this->mRowsPerJob );
-		$realBatchSize = $numRows / $numBatches;
-		$start = false;
-		$jobs = array();
-		do {
-			for ( $i = 0; $i <= $realBatchSize - 1; $i++ ) {
-				$row = $res->fetchRow();
-				if ( $row ) {
-					$id = $row[0];
-				} else {
-					$id = false;
-					break;
-				}
-			}
-
+	protected function insertJobs() {
+		$batches = $this->mCache->partition( $this->mTable, $this->mRowsPerJob );
+		if ( !$batches ) {
+			return;
+		}
+		foreach ( $batches as $batch ) {
 			$params = array(
 				'table' => $this->mTable,
-				'start' => $start,
-				'end' => ( $id !== false ? $id - 1 : false ),
+				'start' => $batch[0],
+				'end' => $batch[1],
 			);
 			$jobs[] = new HTMLCacheUpdateJob( $this->mTitle, $params );
-
-			$start = $id;
-		} while ( $start );
-
+		}
 		Job::batchInsert( $jobs );
 	}
 
-	protected function getPrefix() {
-		static $prefixes = array(
-			'pagelinks' => 'pl',
-			'imagelinks' => 'il',
-			'categorylinks' => 'cl',
-			'templatelinks' => 'tl',
-			'redirect' => 'rd',
-		);
-
-		if ( is_null( $this->mPrefix ) ) {
-			$this->mPrefix = $prefixes[$this->mTable];
-			if ( is_null( $this->mPrefix ) ) {
-				throw new MWException( "Invalid table type \"{$this->mTable}\" in " . __CLASS__ );
-			}
-		}
-		return $this->mPrefix;
-	}
-
-	public function getFromField() {
-		return $this->getPrefix() . '_from';
-	}
-
-	public function getToCondition() {
-		$prefix = $this->getPrefix();
-		switch ( $this->mTable ) {
-			case 'pagelinks':
-			case 'templatelinks':
-			case 'redirect':
-				return array(
-					"{$prefix}_namespace" => $this->mTitle->getNamespace(),
-					"{$prefix}_title" => $this->mTitle->getDBkey()
-				);
-			case 'imagelinks':
-				return array( 'il_to' => $this->mTitle->getDBkey() );
-			case 'categorylinks':
-				return array( 'cl_to' => $this->mTitle->getDBkey() );
-		}
-		throw new MWException( 'Invalid table type in ' . __CLASS__ );
-	}
 
 	/**
-	 * Invalidate a set of IDs, right now
+	 * Invalidate a set of pages, right now
 	 */
-	public function invalidateIDs( ResultWrapper $res ) {
+	public function invalidate( $startId = false, $endId = false ) {
 		global $wgUseFileCache, $wgUseSquid;
 
-		if ( $res->numRows() == 0 ) {
+		$titleArray = $this->mCache->getLinks( $this->mTable, $startId, $endId );
+		if ( $titleArray->count() == 0 ) {
 			return;
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
 		$timestamp = $dbw->timestamp();
-		$done = false;
 
-		while ( !$done ) {
-			# Get all IDs in this query into an array
-			$ids = array();
-			for ( $i = 0; $i < $this->mRowsPerQuery; $i++ ) {
-				$row = $res->fetchRow();
-				if ( $row ) {
-					$ids[] = $row[0];
-				} else {
-					$done = true;
-					break;
-				}
-			}
+		# Get all IDs in this query into an array
+		$ids = array();
+		foreach ( $titleArray as $title ) {
+			$ids[] = $title->getArticleID();
+		}
+		# Update page_touched
+		$dbw->update( 'page',
+			array( 'page_touched' => $timestamp ),
+			array( 'page_id IN (' . $dbw->makeList( $ids ) . ')' ),
+			__METHOD__
+		);
 
-			if ( !count( $ids ) ) {
-				break;
-			}
+		# Update squid
+		if ( $wgUseSquid ) {
+			$u = SquidUpdate::newFromTitles( $titleArray );
+			$u->doUpdate();
+		}
 
-			# Update page_touched
-			$dbw->update( 'page',
-				array( 'page_touched' => $timestamp ),
-				array( 'page_id IN (' . $dbw->makeList( $ids ) . ')' ),
-				__METHOD__
-			);
-
-			# Update squid
-			if ( $wgUseSquid || $wgUseFileCache ) {
-				$titles = Title::newFromIDs( $ids );
-				if ( $wgUseSquid ) {
-					$u = SquidUpdate::newFromTitles( $titles );
-					$u->doUpdate();
-				}
-
-				# Update file cache
-				if  ( $wgUseFileCache ) {
-					foreach ( $titles as $title ) {
-						HTMLFileCache::clearFileCache( $title );
-					}
-				}
+		# Update file cache
+		if  ( $wgUseFileCache ) {
+			foreach ( $titleArray as $title ) {
+				HTMLFileCache::clearFileCache( $title );
 			}
 		}
 	}
@@ -204,20 +134,7 @@ class HTMLCacheUpdateJob extends Job {
 
 	public function run() {
 		$update = new HTMLCacheUpdate( $this->title, $this->table );
-
-		$fromField = $update->getFromField();
-		$conds = $update->getToCondition();
-		if ( $this->start ) {
-			$conds[] = "$fromField >= {$this->start}";
-		}
-		if ( $this->end ) {
-			$conds[] = "$fromField <= {$this->end}";
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( $this->table, $fromField, $conds, __METHOD__ );
-		$update->invalidateIDs( $res );
-
+		$update->invalidate( $this->start, $this->end );
 		return true;
 	}
 }
