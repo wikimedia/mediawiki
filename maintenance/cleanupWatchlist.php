@@ -29,82 +29,18 @@
  * @ingroup Maintenance
  */
 
-$options = array( 'fix' );
-
 require_once( 'commandLine.inc' );
-require_once( 'FiveUpgrade.inc' );
+require_once( 'CleanupTable.inc' );
 
 /**
  * @ingroup Maintenance
  */
-class WatchlistCleanup extends FiveUpgrade {
-	function WatchlistCleanup( $dryrun = false ) {
-		parent::FiveUpgrade();
-
-		$this->maxLag = 10; # if slaves are lagged more than 10 secs, wait
-		$this->dryrun = $dryrun;
+class WatchlistCleanup extends TableCleanup {
+	function __construct( $dryrun = false ) {
+		parent::__construct( 'watchlist', $dryrun );
 	}
 
-	function cleanup() {
-		$this->runTable( 'watchlist',
-			'',
-			array( &$this, 'processEntry' ) );
-	}
-
-	function init( $count, $table ) {
-		$this->processed = 0;
-		$this->updated = 0;
-		$this->count = $count;
-		$this->startTime = wfTime();
-		$this->table = $table;
-	}
-
-	function progress( $updated ) {
-		$this->updated += $updated;
-		$this->processed++;
-		if( $this->processed % 100 != 0 ) {
-			return;
-		}
-		$portion = $this->processed / $this->count;
-		$updateRate = $this->updated / $this->processed;
-
-		$now = wfTime();
-		$delta = $now - $this->startTime;
-		$estimatedTotalTime = $delta / $portion;
-		$eta = $this->startTime + $estimatedTotalTime;
-
-		printf( "%s %s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",
-			wfWikiID(),
-			wfTimestamp( TS_DB, intval( $now ) ),
-			$portion * 100.0,
-			$this->table,
-			wfTimestamp( TS_DB, intval( $eta ) ),
-			$this->processed,
-			$this->count,
-			$this->processed / $delta,
-			$updateRate * 100.0 );
-		flush();
-	}
-
-	function runTable( $table, $where, $callback ) {
-		$fname = 'WatchlistCleanup::runTable';
-
-		$count = $this->dbw->selectField( $table, 'count(*)', '', $fname );
-		$this->init( $count, 'watchlist' );
-		$this->log( "Processing $table..." );
-
-		$tableName = $this->dbr->tableName( $table );
-		$sql = "SELECT * FROM $tableName $where";
-		$result = $this->dbr->query( $sql, $fname );
-
-		while( $row = $this->dbr->fetchObject( $result ) ) {
-			call_user_func( $callback, $row );
-		}
-		$this->log( "Finished $table... $this->updated of $this->processed rows updated" );
-		$this->dbr->freeResult( $result );
-	}
-
-	function processEntry( $row ) {
+	function processPage( $row ) {
 		$current = Title::makeTitle( $row->wl_namespace, $row->wl_title );
 		$display = $current->getPrefixedText();
 
@@ -122,13 +58,13 @@ class WatchlistCleanup extends FiveUpgrade {
 	}
 	
 	function removeWatch( $row ) {
-		if( !$this->dryrun) {
+		if( !$this->dryrun ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'watchlist', array(
 				'wl_user'      => $row->wl_user,
 				'wl_namespace' => $row->wl_namespace,
 				'wl_title'     => $row->wl_title ),
-			'WatchlistCleanup::removeWatch' );
+			__METHOD__ );
 			$this->log( '- removed' );
 		}
 	}
