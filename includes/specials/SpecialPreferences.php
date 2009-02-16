@@ -1246,25 +1246,34 @@ class PreferencesForm {
 
 		# Misc
 		#
-		$wgOut->addHTML('<fieldset><legend>' . wfMsg('prefs-misc') . '</legend>');
-		$wgOut->addHTML( '<label for="wpStubs">' . wfMsg( 'stub-threshold' ) . '</label>&nbsp;' );
-		$wgOut->addHTML( Xml::input( 'wpStubs', 6, $this->mStubs, array( 'id' => 'wpStubs' ) ) );
-		$msgUnderline = htmlspecialchars( wfMsg ( 'tog-underline' ) );
-		$msgUnderlinenever = htmlspecialchars( wfMsg ( 'underline-never' ) );
-		$msgUnderlinealways = htmlspecialchars( wfMsg ( 'underline-always' ) );
-		$msgUnderlinedefault = htmlspecialchars( wfMsg ( 'underline-default' ) );
-		$uopt = $wgUser->getOption("underline");
-		$s0 = $uopt == 0 ? ' selected="selected"' : '';
-		$s1 = $uopt == 1 ? ' selected="selected"' : '';
-		$s2 = $uopt == 2 ? ' selected="selected"' : '';
-		$wgOut->addHTML("
-<div class='toggle'><p><label for='wpOpunderline'>$msgUnderline</label>
-<select name='wpOpunderline' id='wpOpunderline'>
-<option value=\"0\"$s0>$msgUnderlinenever</option>
-<option value=\"1\"$s1>$msgUnderlinealways</option>
-<option value=\"2\"$s2>$msgUnderlinedefault</option>
-</select></p></div>");
+		$uopt = $wgUser->getOption( 'underline' );
+		$wgOut->addHTML(
+			Xml::fieldset( wfMsg( 'prefs-misc' ) ) .
+ 			Xml::openElement( 'table' ) .
+				'<tr>
+					<td class="mw-label">' .
+						// Xml::label() cannot be used because 'stub-threshold' contains plain HTML
+						Xml::tags( 'label', array( 'for' => 'wpStubs' ), wfMsg( 'stub-threshold' ) ) .
+					'</td>
+					<td class="mw-input">' .
+						Xml::input( 'wpStubs', 6, $this->mStubs, array( 'id' => 'wpStubs' ) ) .
+					'</td>
+				</tr><tr>
+					<td class="mw-label">' .
+						Xml::label( wfMsg( 'tog-underline' ), 'wpOpunderline' ) .
+					'</td>
+					<td class="mw-input">' .
+						Xml::openElement( 'select', array( 'id' => 'wpOpunderline', 'name' => 'wpOpunderline' ) ) .
+						Xml::option( wfMsg ( 'underline-never' ), '0', $uopt == 0 ) .
+						Xml::option( wfMsg ( 'underline-always' ), '1', $uopt == 1 ) .
+						Xml::option( wfMsg ( 'underline-default' ), '2', $uopt == 2 ) .
+						Xml::closeElement( 'select' ) .
+					'</td>
+				</tr>' .
+ 			Xml::closeElement( 'table' )
+		);
 
+		# And now the rest = Misc.
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
 				if( $tname == 'norollbackdiff' && $wgUser->isAllowed( 'rollback' ) )
