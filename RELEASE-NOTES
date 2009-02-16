@@ -177,6 +177,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:PrefixIndex: Move table styling to shared.css, add CSS IDs to tables
   use correct message 'allpagesprefix' for input form label, replace _ with ' '
   in next page link
+* (bug 17506) Exceptions within exceptions now respect $wgShowExceptionDetails
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
