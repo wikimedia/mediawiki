@@ -43,14 +43,25 @@ while ( $dbw->selectField( 'job', 'job_id', $conds, 'runJobs.php' ) ) {
 			break;
 
 		wfWaitForSlaves( 5 );
-		print wfTimestamp( TS_DB ) . "  " . $job->id . "  " . $job->toString() . "\n";
+		$t = microtime( true );
 		$offset=$job->id;
+		$status = $job->run();
+		$t = microtime( true ) - $t;
+		$timeMs = intval( $t * 1000 );
 		if ( !$job->run() ) {
-			print wfTimestamp( TS_DB ) . "  Error: {$job->error}\n";
+			runJobsLog( $job->toString() . " t=$timeMs error={$job->error}" );
+		} else {
+			runJobsLog( $job->toString() . " t=$timeMs good" );
 		}
 		if ( $maxJobs && ++$n > $maxJobs ) {
 			break 2;
 		}
 	}
+}
+
+
+function runJobsLog( $msg ) {
+	print wfTimestamp( TS_DB ) . " $msg\n";
+	wfDebugLog( 'runJobs', $msg );
 }
 
