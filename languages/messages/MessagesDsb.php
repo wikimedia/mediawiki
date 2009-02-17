@@ -85,8 +85,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'Boki na kótarež wjeźo nejwěcej wótkazow' ),
 	'Mostlinkedcategories'      => array( 'Nejwěcej wužywane kategorije' ),
 	'Mostlinkedtemplates'       => array( 'Nejwěcej wužywane pśedłogi' ),
-	'Mostcategories'            => array( 'Boki z nejwěcej kategorijami' ),
 	'Mostimages'                => array( 'Nejwěcej wužywane dataje' ),
+	'Mostcategories'            => array( 'Boki z nejwěcej kategorijami' ),
 	'Mostrevisions'             => array( 'Nejwěcej wobźěłane boki' ),
 	'Fewestrevisions'           => array( 'Nejmjenjej wobźěłane boki' ),
 	'Shortpages'                => array( 'Nejkrotše boki' ),
@@ -139,6 +139,9 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Datajowa sćažka' ),
 	'Invalidateemail'           => array( 'E-mail njewobkšuśis' ),
 	'Blankpage'                 => array( 'Prozny bok' ),
+	'LinkSearch'                => array( 'Pytanje wótkazow' ),
+	'DeletedContributions'      => array( 'Wulašowane pśinoski' ),
+	'Tags'                      => array( 'Toflicki' ),
 );
 
 $messages = array(

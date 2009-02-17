@@ -64,11 +64,13 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'ImaginiMiaDoparà' ),
 	'Wantedpages'               => array( 'PàxeneRichieste' ),
 	'Wantedcategories'          => array( 'CategorieRichieste' ),
+	'Wantedfiles'               => array( 'FileRichiesti' ),
+	'Wantedtemplates'           => array( 'TemplateRichiesti' ),
 	'Mostlinked'                => array( 'PàxenePiassèRiciamà' ),
 	'Mostlinkedcategories'      => array( 'CategoriePiassèRiciamà' ),
 	'Mostlinkedtemplates'       => array( 'TemplatePiassèDoparà' ),
-	'Mostcategories'            => array( 'PàxeneConPiassèCategorie' ),
 	'Mostimages'                => array( 'ImaginiPiassèRiciamà' ),
+	'Mostcategories'            => array( 'PàxeneConPiassèCategorie' ),
 	'Mostrevisions'             => array( 'PàxeneConPiassèRevision' ),
 	'Fewestrevisions'           => array( 'PàxeneConMancoRevision' ),
 	'Shortpages'                => array( 'PàxenePiCurte' ),
@@ -120,6 +122,9 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'PercorsoFile' ),
 	'Invalidateemail'           => array( 'InvalidaEMail' ),
 	'Blankpage'                 => array( 'PàxenaVoda' ),
+	'LinkSearch'                => array( 'SercaLigamenti' ),
+	'DeletedContributions'      => array( 'ContributiScancelà' ),
+	'Tags'                      => array( 'Tag' ),
 );
 
 $messages = array(

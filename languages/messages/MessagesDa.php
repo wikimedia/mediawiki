@@ -43,27 +43,15 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Kategoridiskussion'
 );
 
-
 $bookstoreList = array(
 	"Bibliotek.dk" => "http://bibliotek.dk/vis.php?base=dfa&origin=kommando&field1=ccl&term1=is=$1&element=L&start=1&step=10",
 	"Bogguide.dk" => "http://www.bogguide.dk/find_boeger_bog.asp?ISBN=$1",
 	'inherit' => true,
 );
 
-
-
-
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 $linkTrail = '/^([a-zæøå]+)(.*)$/sDu';
 
-/**
- * Alternate names of special pages. All names are case-insensitive. The first
- * listed alias will be used as the default. Aliases from the fallback 
- * localisation (usually English) will be included by default. 
- * 
- * This array may be altered at runtime using the LanguageGetSpecialPageAliases 
- * hook.
- */
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Dobbelte omdirigeringer' ),
 	'BrokenRedirects'           => array( 'Defekte omdirigeringer' ),
