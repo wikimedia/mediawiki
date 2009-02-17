@@ -3260,6 +3260,12 @@ $wgRateLimitLog = null;
 $wgRateLimitsExcludedGroups = array();
 
 /**
+ * Array of IPs which should be excluded from rate limits.
+ * This may be useful for whitelisting NAT gateways for conferences, etc.
+ */
+$wgRateLimitsExcludedIPs = array();
+
+/**
  * On Special:Unusedimages, consider images "used", if they are put
  * into a category. Default (false) is not to count those as used.
  */
