@@ -702,7 +702,10 @@ class MessageCache {
 	 * @param string $lang The messages language, English by default
 	 */
 	function addMessage( $key, $value, $lang = 'en' ) {
-		$this->mExtensionMessages[$lang][$key] = $value;
+		global $wgContLang;
+		# Normalise title-case input
+		$lckey = str_replace( ' ', '_', $wgContLang->lcfirst( $key ) );
+		$this->mExtensionMessages[$lang][$lckey] = $value;
 	}
 
 	/**
