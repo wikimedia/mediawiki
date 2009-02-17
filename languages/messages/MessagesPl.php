@@ -164,7 +164,7 @@ $specialPageAliases = array(
 	'Tags'                      => array( 'Znaczniki' ),
 );
 
-$m$magicWords = array(
+$magicWords = array(
 	'redirect'              => array( '0', '#TAM', '#PRZEKIERUJ', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__BEZSPISU__', '__NOTOC__' ),
 	'nogallery'             => array( '0', '__BEZGALERII__', '__NOGALLERY__' ),
