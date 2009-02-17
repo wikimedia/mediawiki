@@ -2645,12 +2645,6 @@ $wgExtraNamespaces = NULL;
 $wgNamespaceAliases = array();
 
 /**
- * Whether to check correct gender for all titles. If false, correct gender
- * alias is only fetched for wgTitle.
- */
-$wgSlowGenderAliases = true;
-
-/**
  * Limit images on image description pages to a user-selectable limit. In order
  * to reduce disk usage, limits can only be selected from a list.
  * The user preference is saved as an array offset in the database, by default

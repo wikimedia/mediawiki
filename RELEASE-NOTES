@@ -96,7 +96,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Localize time zone regions in Special:Preferences
 * Add NUMBEROFACTIVEUSERS magic word, which is like NUMBEROFUSERS, but uses
   the active users data from site_stats.
-* (bug 13040) Gender-aware user namespace aliases
 * Add a <link rel="canonical"> tag on redirected page views
 * Replace hardcoded '...' as indication of a truncation with the
   'ellipsis' message
