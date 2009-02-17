@@ -880,7 +880,7 @@ class RevisionDeleter {
 		$Id_set = array();
 		// Run through and pull all our data in one query
 		foreach( $items as $timestamp ) {
-			$where[] = $this->dbw->addQuotes( $timestamp );
+			$where[] = $timestamp;
 		}
 		$result = $this->dbw->select( 'archive', '*',
 			array(
@@ -890,17 +890,17 @@ class RevisionDeleter {
 			__METHOD__ );
 		while( $row = $this->dbw->fetchObject( $result ) ) {
 			$revObjs[$row->ar_timestamp] = new Revision( array(
-			'page'       => $title->getArticleId(),
-			'id'         => $row->ar_rev_id,
-			'text'       => $row->ar_text_id,
-			'comment'    => $row->ar_comment,
-			'user'       => $row->ar_user,
-			'user_text'  => $row->ar_user_text,
-			'timestamp'  => $row->ar_timestamp,
-			'minor_edit' => $row->ar_minor_edit,
-			'text_id'    => $row->ar_text_id,
-			'deleted'    => $row->ar_deleted,
-			'len'        => $row->ar_len) );
+				'page'       => $title->getArticleId(),
+				'id'         => $row->ar_rev_id,
+				'text'       => $row->ar_text_id,
+				'comment'    => $row->ar_comment,
+				'user'       => $row->ar_user,
+				'user_text'  => $row->ar_user_text,
+				'timestamp'  => $row->ar_timestamp,
+				'minor_edit' => $row->ar_minor_edit,
+				'text_id'    => $row->ar_text_id,
+				'deleted'    => $row->ar_deleted,
+				'len'        => $row->ar_len) );
 		}
 		// To work!
 		foreach( $items as $timestamp ) {
