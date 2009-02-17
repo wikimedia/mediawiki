@@ -488,6 +488,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Fixed XSS vulnerabilities in the web-based installer.
 * Added a meta robots tag to the installer to prevent indexing of potentially 
   sensitive configuration data.
+* (bug 16483) Prevented a filesort in ApiQueryBacklinks caused by missing parentheses.
+  Building query properly now using makeList()
 
 === API changes in 1.14 ===
 
