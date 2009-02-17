@@ -800,6 +800,7 @@ class MessageCache {
 	 */
 	function loadMessagesFile( $filename, $langcode = false ) {
 		global $wgLang, $wgContLang;
+		wfProfileIn( __METHOD__ );
 		$messages = $magicWords = false;
 		require( $filename );
 
@@ -822,6 +823,7 @@ class MessageCache {
 			global $wgContLang;
 			$wgContLang->addMagicWordsByLang( $magicWords );
 		}
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
@@ -831,6 +833,7 @@ class MessageCache {
 	 * @param string $langcode Language code to process.
 	 */
 	function processMessagesArray( $messages, $langcode ) {
+		wfProfileIn( __METHOD__ );
 		$fallbackCode = $langcode;
 		$mergedMessages = array();
 		do {
@@ -842,6 +845,7 @@ class MessageCache {
 		
 		if ( !empty($mergedMessages) )
 			$this->addMessages( $mergedMessages, $langcode );
+		wfProfileOut( __METHOD__ );
 	}
 
 	public function figureMessage( $key ) {
