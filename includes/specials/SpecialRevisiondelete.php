@@ -218,7 +218,7 @@ class RevisionDeleteForm {
 		} else {
 			// Run through and pull all our data in one query
 			foreach( $this->archrevs as $timestamp ) {
-				$where[] = $dbr->addQuotes( $timestamp );
+				$where[] = $timestamp;
 			}
 			$result = $dbr->select( 'archive', '*',
 				array(
