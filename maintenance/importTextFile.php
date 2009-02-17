@@ -90,5 +90,6 @@ Options:
 	Don't update recent changes
 --help
 	Show this information
+
 EOF;
 }
