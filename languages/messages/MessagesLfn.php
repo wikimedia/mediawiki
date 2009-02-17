@@ -25,6 +25,11 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Categoria_Discute',
 );
 
+$specialPageAliases = array(
+	'Newimages'                 => array( 'FixesNova' ),
+	'Newpages'                  => array( 'PajesNova' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sulinia lias:',

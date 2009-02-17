@@ -66,8 +66,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'PalingDitumbu' ),
 	'Mostlinkedcategories'      => array( 'KategoriPalingDitumbu', 'KategoriPalingKapake' ),
 	'Mostlinkedtemplates'       => array( 'CitakanPalingDitumbu', 'CitakanPalingKapake' ),
-	'Mostcategories'            => array( 'KategoriPalingLoba' ),
 	'Mostimages'                => array( 'GambarPalingKapake' ),
+	'Mostcategories'            => array( 'KategoriPalingLoba' ),
 	'Mostrevisions'             => array( 'PalingRevisi' ),
 	'Fewestrevisions'           => array( 'PangjarangnaRevisi' ),
 	'Shortpages'                => array( 'KacaPondok' ),
@@ -118,6 +118,8 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'GabungJujutan' ),
 	'Filepath'                  => array( 'JalurKoropak' ),
 	'Invalidateemail'           => array( 'SurelekTeuKaci' ),
+	'Blankpage'                 => array( 'KacaKosong' ),
+	'Tags'                      => array( 'Tag' ),
 );
 
 $messages = array(
