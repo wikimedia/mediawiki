@@ -548,8 +548,8 @@ abstract class FileRepo {
 		if ( $this->name == 'local' ) {
 			return null;
 		}
-		$repoName = wfMsg( 'shared-repo-' . $this->name );
-		if ( !wfEmptyMsg( 'shared-repo-' . $this->name, $repoName ) ) {
+		$repoName = wfMsg( 'shared-repo-name-' . $this->name );
+		if ( !wfEmptyMsg( 'shared-repo-name-' . $this->name, $repoName ) ) {
 			return $repoName;
 		}
 		return wfMsg( 'shared-repo' ); 
