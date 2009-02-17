@@ -2418,13 +2418,13 @@ class Title {
 	 * WARNING: do not use this function on arbitrary user-supplied titles!
 	 * On heavily-used templates it will max out the memory.
 	 *
-	 * @param $options \type{\string} may be FOR UPDATE
+	 * @param array $options may be FOR UPDATE
 	 * @return \type{\arrayof{Title}} the Title objects linking here
 	 */
-	public function getLinksTo( $options = '', $table = 'pagelinks', $prefix = 'pl' ) {
+	public function getLinksTo( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
 		$linkCache = LinkCache::singleton();
 
-		if ( $options ) {
+		if ( count( $options ) > 0 ) {
 			$db = wfGetDB( DB_MASTER );
 		} else {
 			$db = wfGetDB( DB_SLAVE );
@@ -2459,10 +2459,10 @@ class Title {
 	 * WARNING: do not use this function on arbitrary user-supplied titles!
 	 * On heavily-used templates it will max out the memory.
 	 *
-	 * @param $options \type{\string} may be FOR UPDATE
+	 * @param array $options may be FOR UPDATE
 	 * @return \type{\arrayof{Title}} the Title objects linking here
 	 */
-	public function getTemplateLinksTo( $options = '' ) {
+	public function getTemplateLinksTo( $options = array() ) {
 		return $this->getLinksTo( $options, 'templatelinks', 'tl' );
 	}
 
@@ -2470,16 +2470,16 @@ class Title {
 	 * Get an array of Title objects referring to non-existent articles linked from this page
 	 *
 	 * @todo check if needed (used only in SpecialBrokenRedirects.php, and should use redirect table in this case)
-	 * @param $options \type{\string} may be FOR UPDATE
+	 * @param array $options may be FOR UPDATE
 	 * @return \type{\arrayof{Title}} the Title objects
 	 */
-	public function getBrokenLinksFrom( $options = '' ) {
+	public function getBrokenLinksFrom( $options = array() ) {
 		if ( $this->getArticleId() == 0 ) {
 			# All links from article ID 0 are false positives
 			return array();
 		}
 
-		if ( $options ) {
+		if ( count( $options ) > 0 ) {
 			$db = wfGetDB( DB_MASTER );
 		} else {
 			$db = wfGetDB( DB_SLAVE );
@@ -3067,7 +3067,7 @@ class Title {
 			array( 'page_is_redirect', 'page_latest', 'page_id' ),
 			$this->pageCond(),
 			__METHOD__,
-			'FOR UPDATE'
+			array( 'FOR UPDATE' )
 		);
 		# Cache some fields we may want
 		$this->mArticleID = $row ? intval($row->page_id) : 0;
@@ -3085,7 +3085,7 @@ class Title {
 				'page_latest != rev_id'
 			), 
 			__METHOD__,
-			'FOR UPDATE'
+			array( 'FOR UPDATE' )
 		);
 		# Return true if there was no history
 		return ($row === false);
