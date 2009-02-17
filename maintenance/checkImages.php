@@ -11,7 +11,8 @@ $numImages = 0;
 $numGood = 0;
 
 do {
-	$res = $dbr->select( 'image', '*', array( 'img_name > ' . $dbr->addQuotes( $start ) ) );
+	$res = $dbr->select( 'image', '*', array( 'img_name > ' . $dbr->addQuotes( $start ) ), 
+		'checkImages.php', array( 'LIMIT' => $batchSize ) );
 	foreach ( $res as $row ) {
 		$numImages++;
 		$start = $row->img_name;
@@ -24,6 +25,11 @@ do {
 		$stat = @stat( $file->getPath() );
 		if ( !$stat ) {
 			echo "{$row->img_name}: missing\n";
+			continue;
+		}
+
+		if ( $stat['mode'] & 040000 ) {
+			echo "{$row->img_name}: is a directory\n";
 			continue;
 		}
 
