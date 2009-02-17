@@ -106,6 +106,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Remove the link to Special:FileDuplicateSearch from the "file history" section
   of image description pages as the list of duplicated files is shown in the 
   next section anyway.
+* Added $wgRateLimitsExcludedIPs, to allow specific IPs to be whitelisted from
+  rate limits.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
