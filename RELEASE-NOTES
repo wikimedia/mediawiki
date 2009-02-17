@@ -107,6 +107,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   next section anyway.
 * Added $wgRateLimitsExcludedIPs, to allow specific IPs to be whitelisted from
   rate limits.
+* (bug 14981) Shared repositories can now have display names, located at
+  Mediawiki:Shared-repo-name-REPONAME, where REPONAME is the name in 
+  $wgForeignFileRepos
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
@@ -184,6 +187,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17506) Exceptions within exceptions now respect $wgShowExceptionDetails
 * Fixed excessive job queue utilisation
 * File dupe messages for remote repos are now shown only once.
+* (bug 14980) Messages 'shareduploadwiki' and 'shareduploadwiki-desc' are now
+  used as a parameter in 'sharedupload' for easier styling and customization.
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

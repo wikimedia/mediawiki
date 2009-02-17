@@ -481,17 +481,18 @@ EOT
 
 		$descUrl = $this->img->getDescriptionUrl();
 		$descText = $this->img->getDescriptionText();
-		$s = "<div class='sharedUploadNotice'>" . wfMsgWikiHtml( 'sharedupload' );
+		$msg = '';
 		if( $descUrl ) {
 			$sk = $wgUser->getSkin();
 			$link = $sk->makeExternalLink( $descUrl, wfMsg( 'shareduploadwiki-linktext' ) );
 			$msg = ( $descText ) ? 'shareduploadwiki-desc' : 'shareduploadwiki';
 			$msg = wfMsgExt( $msg, array( 'parseinline', 'replaceafter' ), $link );
-			if( $msg != '-' ) {
-				# Show message only if not voided by local sysops
-				$s .= $msg;
+			if( $msg == '-' ) {
+				$msg = '';
 			}
 		}
+		$s  = "<div class='sharedUploadNotice'>";
+		$s .= wfMsgWikiHtml( 'sharedupload', $this->img->getRepo()->getDisplayName(), $msg );
 		$s .= "</div>";
 		$wgOut->addHTML( $s );
 
