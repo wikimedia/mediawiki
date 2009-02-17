@@ -1038,6 +1038,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-removed'            => '$1 제거됨',
 'diff-changedfrom'        => '$1에서 바꿈',
 'diff-src'                => '출처',
+'diff-withdestination'    => '$1 대상',
 'diff-with'               => '&#32;$1 $2와 함께',
 'diff-with-final'         => '&#32;그리고 $1 $2',
 'diff-width'              => '너비',
@@ -1113,7 +1114,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchprofile-project-tooltip'    => '$1에서 찾기',
 'searchprofile-images-tooltip'     => '파일 찾기',
 'searchprofile-everything-tooltip' => '토론 문서를 포함한 모든 문서 찾기',
+'searchprofile-advanced-tooltip'   => '다음 설정된 이름공간에서 찾기',
 'prefs-search-nsdefault'           => '다음을 기본으로 검색:',
+'prefs-search-nscustom'            => '다음 이름공간에서 찾기:',
 'search-result-size'               => '$1 ($2개 단어)',
 'search-result-score'              => '유사도: $1%',
 'search-redirect'                  => '($1에서 넘어옴)',
@@ -1564,7 +1567,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'nolinkstoimage'                 => '이 파일을 사용하는 문서가 없습니다.',
 'morelinkstoimage'               => '이 파일이 쓰이고 있는 문서 목록 [[Special:WhatLinksHere/$1|더 보기]].',
 'redirectstofile'                => '다음 {{PLURAL:$1|파일|$1개의 파일}}이 이 파일로 넘겨주고 있습니다:',
-'duplicatesoffile'               => '다음 $1개의 파일이 중복됩니다:',
+'duplicatesoffile'               => '다음 {{PLURAL:$1|파일이|$1개의 파일이}} 이 파일과 중복됩니다 ([[Special:FileDuplicateSearch/$2|자세한 정보]]):',
 'sharedupload'                   => '이 자료는 위키미디어 공용에 있습니다. 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.',
 'shareduploadwiki'               => '$1에서 더 자세한 정보를 얻을 수 있습니다.',
 'shareduploadwiki-desc'          => '이 $1를 아래에 표시합니다.',
@@ -1885,6 +1888,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'created'                      => '만들',
 'enotif_subject'               => '{{SITENAME}}에서 $PAGEEDITOR 사용자가 $PAGETITLE 문서를 $CHANGEDORCREATED었습니다.',
 'enotif_lastvisited'           => '당신의 마지막 방문 이후의 모든 변경사항을 보려면 $1을(를) 보십시오.',
+'enotif_lastdiff'              => '이 바뀜을 보려면 $1을 참조하십시오.',
 'enotif_anon_editor'           => '익명 사용자 $1',
 'enotif_body'                  => '$WATCHINGUSERNAME님,
 
@@ -2014,50 +2018,53 @@ $NEWPAGE
 'restriction-level-all'           => '모두',
 
 # Undelete
-'undelete'                   => '삭제된 문서 보기',
-'undeletepage'               => '삭제된 문서를 보거나 되살리기',
-'undeletepagetitle'          => "'''아래는 [[:$1|$1]]의 삭제된 판입니다.'''.",
-'viewdeletedpage'            => '삭제된 문서 보기',
-'undeletepagetext'           => '다음 {{PLURAL:$1|문서는|$1개의 문서는}} 삭제되었지만 보관되어 있고, 되살릴 수 있습니다.
+'undelete'                     => '삭제된 문서 보기',
+'undeletepage'                 => '삭제된 문서를 보거나 되살리기',
+'undeletepagetitle'            => "'''아래는 [[:$1|$1]]의 삭제된 판입니다.'''.",
+'viewdeletedpage'              => '삭제된 문서 보기',
+'undeletepagetext'             => '다음 {{PLURAL:$1|문서는|$1개의 문서는}} 삭제되었지만 보관되어 있고, 되살릴 수 있습니다.
 보관된 문서들은 주기적으로 삭제될 것입니다.',
-'undelete-fieldset-title'    => '문서 복구',
-'undeleteextrahelp'          => "문서 역사 전체를 복구하려면 모든 체크박스를 선택 해제한 뒤 '''복구'''를 누르세요.
+'undelete-fieldset-title'      => '문서 복구',
+'undeleteextrahelp'            => "문서 역사 전체를 복구하려면 모든 체크박스를 선택 해제한 뒤 '''복구'''를 누르세요.
 특정한 버전만을 복구하려면 복구하려는 버전들을 선택한 뒤 '''복구'''를 누르세요. '''초기화'''를 누르면 모든 선택이 취소됩니다.",
-'undeleterevisions'          => '$1개의 버전 보관중',
-'undeletehistory'            => '문서를 되살리면 모든 역사가 같이 복구됩니다.
+'undeleterevisions'            => '$1개의 버전 보관중',
+'undeletehistory'              => '문서를 되살리면 모든 역사가 같이 복구됩니다.
 문서가 삭제된 후에 같은 이름의 문서가 만들어졌다면, 복구되는 버전들은 역사의 과거 부분에 나타날 것입니다.',
-'undeleterevdel'             => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다. 이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
-'undeletehistorynoadmin'     => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
-'undelete-revision'          => '삭제된 $1 문서의 $4 $5 버전 (기여자 $3):',
-'undeleterevision-missing'   => '해당 판이 잘못되었거나 존재하지 않습니다.
+'undeleterevdel'               => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다. 이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
+'undeletehistorynoadmin'       => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
+'undelete-revision'            => '삭제된 $1 문서의 $4 $5 버전 (기여자 $3):',
+'undeleterevision-missing'     => '해당 판이 잘못되었거나 존재하지 않습니다.
 잘못된 링크를 따라왔거나, 특정 판이 이미 복구되거나 데이터베이스에서 제거되었을 수도 있습니다.',
-'undelete-nodiff'            => '이전의 판이 없습니다.',
-'undeletebtn'                => '복구',
-'undeletelink'               => '되살리기',
-'undeletereset'              => '초기화',
-'undeleteinvert'             => '선택 반전',
-'undeletecomment'            => '설명:',
-'undeletedarticle'           => '"[[$1]]" 복구됨',
-'undeletedrevisions'         => '$1개의 버전이 복구되었습니다.',
-'undeletedrevisions-files'   => '$1개의 버전과 $2개의 파일이 복구되었습니다.',
-'undeletedfiles'             => '$1개의 파일이 복구되었습니다.',
-'cannotundelete'             => '복구에 실패했습니다. 다른 누군가가 이미 복구했을 수도 있습니다.',
-'undeletedpage'              => "<big>'''$1이(가) 복구되었습니다.'''</big>
+'undelete-nodiff'              => '이전의 판이 없습니다.',
+'undeletebtn'                  => '복구',
+'undeletelink'                 => '되살리기',
+'undeletereset'                => '초기화',
+'undeleteinvert'               => '선택 반전',
+'undeletecomment'              => '설명:',
+'undeletedarticle'             => '"[[$1]]" 복구됨',
+'undeletedrevisions'           => '$1개의 버전이 복구되었습니다.',
+'undeletedrevisions-files'     => '$1개의 버전과 $2개의 파일이 복구되었습니다.',
+'undeletedfiles'               => '$1개의 파일이 복구되었습니다.',
+'cannotundelete'               => '복구에 실패했습니다. 다른 누군가가 이미 복구했을 수도 있습니다.',
+'undeletedpage'                => "<big>'''$1이(가) 복구되었습니다.'''</big>
 
 [[Special:Log/delete|삭제 기록]]에서 최근의 삭제/복구 기록을 볼 수 있습니다.",
-'undelete-header'            => '최근에 삭제된 문서 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
-'undelete-search-box'        => '삭제된 문서 찾기',
-'undelete-search-prefix'     => '다음으로 시작하는 문서 보이기:',
-'undelete-search-submit'     => '찾기',
-'undelete-filename-mismatch' => '타임스탬프가 $1인 파일의 버전을 복구할 수 없습니다: 파일 이름이 일치하지 않습니다.',
-'undelete-bad-store-key'     => '타임스탬프가 $1인 파일의 버전을 복구할 수 없습니다: 파일이 삭제되기 전에 사라졌습니다.',
-'undelete-cleanup-error'     => '사용되지 않는 보존된 파일 "$1"을 삭제하는 데 오류가 발생했습니다.',
-'undelete-error-short'       => '파일 복구 오류: $1',
-'undelete-error-long'        => '파일을 복구하는 중 오류 발생:
+'undelete-header'              => '최근에 삭제된 문서 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
+'undelete-search-box'          => '삭제된 문서 찾기',
+'undelete-search-prefix'       => '다음으로 시작하는 문서 보이기:',
+'undelete-search-submit'       => '찾기',
+'undelete-no-results'          => '삭제된 문서 보존 자료에서 입력한 값에 맞는 문서가 없습니다.',
+'undelete-filename-mismatch'   => '타임스탬프가 $1인 파일의 버전을 복구할 수 없습니다: 파일 이름이 일치하지 않습니다.',
+'undelete-bad-store-key'       => '타임스탬프가 $1인 파일의 버전을 복구할 수 없습니다: 파일이 삭제되기 전에 사라졌습니다.',
+'undelete-cleanup-error'       => '사용되지 않는 보존된 파일 "$1"을 삭제하는 데 오류가 발생했습니다.',
+'undelete-missing-filearchive' => '데이터베이스에 존재하지 않기 때문에 파일 보존 ID가 $1인 파일을 복구할 수 없습니다.
+이미 복구되었을 수 있습니다.',
+'undelete-error-short'         => '파일 복구 오류: $1',
+'undelete-error-long'          => '파일을 복구하는 중 오류 발생:
 
 $1',
-'undelete-show-file-confirm' => '정말 "<nowiki>$1</nowiki>" 파일의 삭제된 $2 $3 버전을 보시겠습니까?',
-'undelete-show-file-submit'  => '예',
+'undelete-show-file-confirm'   => '정말 "<nowiki>$1</nowiki>" 파일의 삭제된 $2 $3 버전을 보시겠습니까?',
+'undelete-show-file-submit'    => '예',
 
 # Namespace form on various pages
 'namespace'      => '이름공간:',
@@ -2614,11 +2621,13 @@ Variants for Chinese language
 'exif-usercomment'                 => '사용자 주',
 'exif-relatedsoundfile'            => '관련된 오디오 파일',
 'exif-datetimeoriginal'            => '날짜와 시간',
+'exif-datetimedigitized'           => '디지털화된 날짜와 시간',
 'exif-subsectime'                  => '파일이 변경된 날짜와 시간 (초 단위 미만)',
 'exif-exposuretime'                => '노출 시간',
 'exif-exposuretime-format'         => '$1초 ($2)',
 'exif-fnumber'                     => 'F 번호',
 'exif-exposureprogram'             => '노출 프로그램',
+'exif-spectralsensitivity'         => '스펙트럼 감도',
 'exif-isospeedratings'             => 'ISO 속도',
 'exif-shutterspeedvalue'           => '셔터 속도',
 'exif-aperturevalue'               => '조리개',
@@ -2665,7 +2674,9 @@ Variants for Chinese language
 'exif-gpsspeed'                    => 'GPS 수신기 속도',
 'exif-gpstrack'                    => '이동 방향',
 'exif-gpsimgdirection'             => '이미지 방향',
+'exif-gpsdestlatituderef'          => '목적지의 위도 정보',
 'exif-gpsdestlatitude'             => '목적지의 위도',
+'exif-gpsdestlongituderef'         => '목적지의 경도 정보',
 'exif-gpsdestlongitude'            => '목적지의 경도',
 'exif-gpsdestdistance'             => '목적지와의 거리',
 'exif-gpsprocessingmethod'         => 'GPS 처리 방식의 이름',
@@ -2687,6 +2698,7 @@ Variants for Chinese language
 'exif-orientation-7' => '시계 방향으로 90° 회전하고 수직으로 뒤집음', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => '시계 반대 방향으로 90° 회전됨', # 0th row: left; 0th column: bottom
 
+'exif-planarconfiguration-1' => '덩어리 형식',
 'exif-planarconfiguration-2' => '평면형',
 
 'exif-componentsconfiguration-0' => '존재하지 않음',
@@ -2793,6 +2805,9 @@ Variants for Chinese language
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => '동경',
 'exif-gpslongitude-w' => '서경',
+
+'exif-gpsstatus-a' => '측정 중',
+'exif-gpsstatus-v' => '인터랙티브 측정',
 
 'exif-gpsmeasuremode-2' => '2차원 측정',
 'exif-gpsmeasuremode-3' => '3차원 측정',

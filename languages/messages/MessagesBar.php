@@ -63,6 +63,8 @@ $messages = array(
 'and'            => '&#32;und',
 
 'tagline'           => 'Aus {{SITENAME}}',
+'history'           => 'Versionen',
+'updatedmarker'     => '(gändat)',
 'printableversion'  => 'Version zum Ausdruckn',
 'edit'              => 'werkln',
 'create'            => 'Erstöin',
@@ -135,6 +137,7 @@ $messages = array(
 'minoreditletter' => 'K',
 
 # Upload
+'upload'          => 'Aufelådn',
 'watchthisupload' => 'De Seitn beobachtn',
 
 # File description page
@@ -176,7 +179,8 @@ $messages = array(
 'prot_1movedto2' => 'håt [[$1]] nåch [[$2]] verschom',
 
 # Namespace form on various pages
-'namespace' => 'Nãmensraum:',
+'namespace'      => 'Nãmensraum:',
+'blanknamespace' => '(Seitn)',
 
 # Contributions
 'contributions' => 'Benutzerbeiträg',

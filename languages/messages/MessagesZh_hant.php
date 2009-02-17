@@ -9,6 +9,7 @@
  * @author Philip
  * @author Shinjiman
  * @author Skjackey tse
+ * @author Wmr89502270
  * @author Wong128hk
  * @author Wrightbus
  * @author Yuyu
@@ -1400,7 +1401,7 @@ $2',
 'nolinkstoimage'                 => '沒有頁面連接到本檔案。',
 'morelinkstoimage'               => '查看連接到這個檔案的[[Special:WhatLinksHere/$1|更多連結]]。',
 'redirectstofile'                => '以下的$1個檔案重新定向到這個檔案:',
-'duplicatesoffile'               => '以下的$1個檔案是跟這個檔案重覆:',
+'duplicatesoffile'               => '以下的$1個文件跟這個文件重覆（[[Special:FileDuplicateSearch/$2|更多細節]]）：',
 'sharedupload'                   => '該檔案是一個共享上傳，它可能在其它項目中被應用。',
 'shareduploadwiki'               => '請參閱在共享檔案庫上的$1以了解其相關資訊。',
 'shareduploadwiki-desc'          => '它在$1上的描述於下面顯示。',

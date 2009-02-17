@@ -1284,7 +1284,6 @@ Example: [[:Image:Addon-icn.png]]',
 {{Identical|Another file}}',
 'noimage'                        => 'In image description page when there is no file by that name.  The variable $1 comes from {{msg|noimage-linktext}}, which is only substituted in this message.',
 'noimage-linktext'               => 'This message is used as a variable in {{msg|noimage}}, and will not be used anywhere else.',
-'imagepage-searchdupe'           => 'This message is used as text on a link from image pages to [[Special:FileDuplicateSearch]].',
 
 # File reversion
 'filerevert'                => '{{Identical|Revert}}',

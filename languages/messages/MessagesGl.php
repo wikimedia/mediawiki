@@ -1788,8 +1788,8 @@ Véxanse tamén as [[Special:WantedCategories|categorías requiridas]].',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Contribucións eliminadas do usuario',
-'deletedcontributions-title' => 'Contribucións eliminadas do usuario',
+'deletedcontributions'       => 'Contribucións borradas do usuario',
+'deletedcontributions-title' => 'Contribucións borradas do usuario',
 
 # Special:LinkSearch
 'linksearch'       => 'Ligazóns externas',
