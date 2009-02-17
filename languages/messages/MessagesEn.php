@@ -99,18 +99,6 @@ $namespaceNames = array(
 );
 
 /**
- * Array of gender-based namespace aliases per namespace. Only NS_USER and
- * NS_USER_TALK works.
- *
- * Example:
-	NS_USER => array(
-		'male'   => 'Male_user',
-		'female' => 'Female_user',
-	),
- */
-$genderAliases = array();
-
-/**
  * Array of namespace aliases, mapping from name to NS_xxx index
  */
 $namespaceAliases = array();

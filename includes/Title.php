@@ -555,7 +555,7 @@ class Title {
 	 * @return \type{\string} Namespace text
 	 */
 	public function getNsText() {
-		global $wgCanonicalNamespaceNames;
+		global $wgContLang, $wgCanonicalNamespaceNames;
 
 		if ( '' != $this->mInterwiki ) {
 			// This probably shouldn't even happen. ohh man, oh yuck.
@@ -567,35 +567,6 @@ class Title {
 			if( isset( $wgCanonicalNamespaceNames[$this->mNamespace] ) ) {
 				return $wgCanonicalNamespaceNames[$this->mNamespace];
 			}
-		}
-
-		return $this->getNsTextInternal( $this->mNamespace );
-	}
-
-	function getNsTextInternal( $namespace ) {
-		global $wgContLang, $wgRequest, $wgTitle, $wgSlowGenderAliases;
-		if( $namespace === NS_USER || $namespace === NS_USER_TALK ) {
-			static $gender = null;
-
-			$name = $this->getBaseText();
-			if( !isset($gender[$name] ) ) {
-				$gender[$name] = User::getDefaultOption( 'gender' );
-
-				// wgTitle may not be defined
-				$mytitle = isset( $wgTitle ) ? $wgTitle : Title::newFromText( $wgRequest->getVal( 'title' ) );
-
-				// Check stuff
-				if ( $wgSlowGenderAliases ||
-				     // Needs to be checked always to produce desired
-				     // effect when viewing user pages
-				     ( $mytitle && $name === $mytitle->getBaseText() ) ) {
-
-					$user = User::newFromName( $name );
-					if ( $user ) $gender[$name] = $user->getOption( 'gender' );
-				}
-			}
-
-			return $wgContLang->getGenderNsText( $this->mNamespace, $gender[$name] );
 		}
 		return $wgContLang->getNsText( $this->mNamespace );
 	}
@@ -611,14 +582,16 @@ class Title {
 	 * @return \type{\string} Namespace text
 	 */
 	public function getSubjectNsText() {
-		return $this->getNsTextInternal( MWNamespace::getSubject( $this->mNamespace ) );
+		global $wgContLang;
+		return $wgContLang->getNsText( MWNamespace::getSubject( $this->mNamespace ) );
 	}
 	/**
 	 * Get the namespace text of the talk page
 	 * @return \type{\string} Namespace text
 	 */
 	public function getTalkNsText() {
-		return $this->getNsTextInternal( MWNamespace::getTalk( $this->mNamespace ) );
+		global $wgContLang;
+		return( $wgContLang->getNsText( MWNamespace::getTalk( $this->mNamespace ) ) );
 	}
 	/**
 	 * Could this title have a corresponding talk page?
