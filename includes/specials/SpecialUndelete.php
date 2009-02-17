@@ -1142,7 +1142,7 @@ class UndeleteForm {
 				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml('rev-delundel').')' );
 			} else {
 				$query = array( 'target' => $this->mTargetObj->getPrefixedUrl(),
-					'artimestamp' => $ts
+					'artimestamp[]' => $ts
 				);
 				$revdlink = $sk->revDeleteLink( $query, $rev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
