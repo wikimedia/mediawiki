@@ -43,7 +43,7 @@ $bookstoreList = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', #ail-cyfeirio', '#ailgyfeirio', '#REDIRECT' ),
+	'redirect'              => array( '0', '#ail-cyfeirio', '#ailgyfeirio', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__DIMTAFLENCYNNWYS__', '__DIMRHESTRGYNNWYS__', '__DIMRHG__', '__NOTOC__' ),
 	'noeditsection'         => array( '0', '__DIMADRANGOLYGU__', '__DIMGOLYGUADRAN__', '__NOEDITSECTION__' ),
 	'currentmonth'          => array( '1', 'MISCYFOES', 'MISCYFREDOL', 'CURRENTMONTH' ),
