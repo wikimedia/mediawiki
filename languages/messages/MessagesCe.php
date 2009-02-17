@@ -12,22 +12,29 @@
 $fallback = 'ru';
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Медйа',
-	NS_SPECIAL        => 'Башхо',
-	NS_TALK           => 'Дийца',
-	NS_USER           => 'Юзер',
-	NS_USER_TALK      => 'Юзери_дийца',
-	NS_PROJECT_TALK   => '$1_Дийца',
-	NS_FILE           => 'Сурт',
-	NS_FILE_TALK      => 'Сурти_дийца',
-	NS_MEDIAWIKI      => 'МедйаВики',
-	NS_MEDIAWIKI_TALK => 'МедйаВики_дийца',
-	NS_TEMPLATE       => 'Дакъа',
-	NS_TEMPLATE_TALK  => 'Дакъан_дийца',
-	NS_HELP           => 'ГІо',
-	NS_HELP_TALK      => 'ГІодан_дийца',
-	NS_CATEGORY       => 'Тоба',
-	NS_CATEGORY_TALK  => 'Тобан_дийца',
+	NS_MEDIA            => 'Медйа',
+	NS_SPECIAL          => 'Башхо',
+	NS_TALK             => 'Дийца',
+	NS_USER             => 'Юзер',
+	NS_USER_TALK        => 'Юзери_дийца',
+	NS_PROJECT_TALK     => '$1_Дийца',
+	NS_FILE             => 'Сурт',
+	NS_FILE_TALK        => 'Сурти_дийца',
+	NS_MEDIAWIKI        => 'МедйаВики',
+	NS_MEDIAWIKI_TALK   => 'МедйаВики_дийца',
+	NS_TEMPLATE         => 'Дакъа',
+	NS_TEMPLATE_TALK    => 'Дакъан_дийца',
+	NS_HELP             => 'ГІо',
+	NS_HELP_TALK        => 'ГІодан_дийца',
+	NS_CATEGORY         => 'Тоба',
+	NS_CATEGORY_TALK    => 'Тобан_дийца',
+);
+
+$magicWords = array(
+	'notoc'                 => array( '0', '__СДЖдац__', '__БЕЗ_ОГЛ__', '__NOTOC__' ),
+	'nogallery'             => array( '0', '__ГалерйЯц__', '__БЕЗ_ГАЛЕРЕИ__', '__NOGALLERY__' ),
+	'language'              => array( '0', '#МОТТ', '#ЯЗЫК:', '#LANGUAGE:' ),
+	'special'               => array( '0', 'башхо', 'служебная', 'special' ),
 );
 
 $messages = array(

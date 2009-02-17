@@ -72,7 +72,6 @@ $specialPageAliases = array(
 	'Wantedfiles'               => array( 'FajlsRikjesti' ),
 	'Wantedtemplates'           => array( 'MudelliRikjesti' ),
 	'Mostlinked'                => array( 'L-AktarMarbuta' ),
-	'Mostlinkedcategories'      => array( 'Kategoriji' ),
 	'Mostlinkedtemplates'       => array( 'L-AktarMudelliMarbuta' ),
 	'Mostimages'                => array( 'L-AktarStampi' ),
 	'Mostcategories'            => array( 'L-AktarKategoriji' ),

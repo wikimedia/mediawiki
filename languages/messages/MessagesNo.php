@@ -102,8 +102,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'Mest lenkede sider', 'Mest lenka sider' ),
 	'Mostlinkedcategories'      => array( 'Største kategorier' ),
 	'Mostlinkedtemplates'       => array( 'Mest brukte maler' ),
-	'Mostcategories'            => array( 'Flest kategorier' ),
 	'Mostimages'                => array( 'Mest brukte bilder', 'Mest brukte filer' ),
+	'Mostcategories'            => array( 'Flest kategorier' ),
 	'Mostrevisions'             => array( 'Flest revisjoner' ),
 	'Fewestrevisions'           => array( 'Færrest revisjoner' ),
 	'Shortpages'                => array( 'Korte sider' ),
@@ -158,6 +158,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Blank side' ),
 	'LinkSearch'                => array( 'Lenkesøk' ),
 	'DeletedContributions'      => array( 'Slettede bidrag' ),
+	'Tags'                      => array( 'Tagger' ),
 );
 
 $messages = array(

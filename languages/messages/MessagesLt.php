@@ -20,11 +20,9 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Medija',
 	NS_SPECIAL          => 'Specialus',
-	NS_MAIN             => '',
 	NS_TALK             => 'Aptarimas',
 	NS_USER             => 'Naudotojas',
 	NS_USER_TALK        => 'Naudotojo_aptarimas',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_aptarimas',
 	NS_FILE             => 'Vaizdas',
 	NS_FILE_TALK        => 'Vaizdo_aptarimas',
@@ -37,7 +35,6 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'Kategorija',
 	NS_CATEGORY_TALK    => 'Kategorijos_aptarimas',
 );
-
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Dvigubi peradesavimai' ),
@@ -66,9 +63,9 @@ $specialPageAliases = array(
 	'Wantedcategories'          => array( 'Trokštamiausios kategorijos' ),
 	'Mostlinked'                => array( 'Turintys daugiausiai nuorodų' ),
 	'Mostlinkedcategories'      => array( 'Kategorijos turinčios daugiausiai nuorodų' ),
-	'Mostlinkedtemplates'       => array( 'Šablonai', 'turintys daugiausiai nuorodų' ),
-	'Mostcategories'            => array( 'Daugiausiai naudojamos kategorijos' ),
+	'Mostlinkedtemplates'       => array( 'Šablonai', ),
 	'Mostimages'                => array( 'Daugiausiai naudojami paveikslėliai' ),
+	'Mostcategories'            => array( 'Daugiausiai naudojamos kategorijos' ),
 	'Mostrevisions'             => array( 'Daugiausiai keičiami' ),
 	'Fewestrevisions'           => array( 'Mažiausiai keičiami' ),
 	'Shortpages'                => array( 'Trumpiausi puslapiai' ),
@@ -117,6 +114,31 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'Slaptažodžio atstatymas' ),
 	'Withoutinterwiki'          => array( 'Be interwiki' ),
 	'MergeHistory'              => array( 'Sujungti istoriją' ),
+);
+
+$magicWords = array(
+	'redirect'              => array( '0', '#PERADRESAVIMAS', '#REDIRECT' ),
+	'notoc'                 => array( '0', '__BETURIN__', '__NOTOC__' ),
+	'nogallery'             => array( '0', '__BEGALERIJOS__', '__NOGALLERY__' ),
+	'toc'                   => array( '0', '__TURINYS__', '__TOC__' ),
+	'noeditsection'         => array( '0', '__BEREDAGSEKC__', '__NOEDITSECTION__' ),
+	'currentmonth'          => array( '1', 'DABARTINISMĖNESIS', 'CURRENTMONTH' ),
+	'currentmonthname'      => array( '1', 'DABARTINIOMĖNESIOPAVADINIMAS', 'CURRENTMONTHNAME' ),
+	'currentday'            => array( '1', 'DABARTINĖDIENA', 'CURRENTDAY' ),
+	'currentday2'           => array( '1', 'DABARTINĖDIENA2', 'CURRENTDAY2' ),
+	'currentdayname'        => array( '1', 'DABARTINĖSDIENOSPAVADINIMAS', 'CURRENTDAYNAME' ),
+	'currentyear'           => array( '1', 'DABARTINIAIMETAI', 'CURRENTYEAR' ),
+	'currenttime'           => array( '1', 'DABARTINISLAIKAS', 'CURRENTTIME' ),
+	'currenthour'           => array( '1', 'DABARTINĖVALANDA', 'CURRENTHOUR' ),
+	'numberofpages'         => array( '1', 'PUSLAPIŲSKAIČIUS', 'NUMBEROFPAGES' ),
+	'numberofarticles'      => array( '1', 'STRAIPSNIŲSKAIČIUS', 'NUMBEROFARTICLES' ),
+	'numberoffiles'         => array( '1', 'FAILŲSKAIČIUS', 'NUMBEROFFILES' ),
+	'numberofusers'         => array( '1', 'NAUDOTOJŲSKAIČIUS', 'NUMBEROFUSERS' ),
+	'numberofedits'         => array( '1', 'KEITIMŲSKAIČIUS', 'NUMBEROFEDITS' ),
+	'img_thumbnail'         => array( '1', 'miniatiūra', 'mini', 'thumbnail', 'thumb' ),
+	'img_manualthumb'       => array( '1', 'miniatiūra=$1', 'mini=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'img_right'             => array( '1', 'dešinėje', 'right' ),
+	'img_left'              => array( '1', 'kairėje', 'left' ),
 );
 
 $fallback8bitEncoding = 'windows-1257';

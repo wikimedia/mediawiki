@@ -33,6 +33,15 @@ $namespaceAliases = array(
 	'Kūkākūkā_o_kiʻi' => NS_FILE_TALK,
 );
 
+$specialPageAliases = array(
+	'Userlogout'                => array( 'Haʻalele' ),
+	'Preferences'               => array( 'Makemake' ),
+	'Watchlist'                 => array( 'PapaNānāPono' ),
+	'Recentchanges'             => array( 'NāLoliHou' ),
+	'Upload'                    => array( 'Hoʻohui' ),
+	'Randompage'                => array( 'Kaulele' ),
+);
+
 $magicWords = array(
 	'currentmonth'          => array( '1', 'KĒIAMAHINA', 'CURRENTMONTH' ),
 	'currentmonthname'      => array( '1', 'KĒIAINOAMAHINA', 'CURRENTMONTHNAME' ),

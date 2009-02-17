@@ -27,6 +27,17 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Poledišano_ya_Setensele',
 );
 
+$magicWords = array(
+	'currentmonth'          => array( '1', 'KGWEDI_BJALE', 'CURRENTMONTH' ),
+	'currentmonthname'      => array( '1', 'LEINA_KGWEDI_BJALE', 'CURRENTMONTHNAME' ),
+	'currentday'            => array( '1', 'LEHONO_LETSATSI', 'CURRENTDAY' ),
+	'currentday2'           => array( '1', 'LEHONO_LETSATSI2', 'CURRENTDAY2' ),
+	'currentdayname'        => array( '1', 'LEHONO_LETSATSILEINA', 'CURRENTDAYNAME' ),
+	'currentyear'           => array( '1', 'NGWAGA_BJALE', 'CURRENTYEAR' ),
+	'currenttime'           => array( '1', 'NAKO_BJALE', 'CURRENTTIME' ),
+	'currenthour'           => array( '1', 'IRI_BJALE', 'CURRENTHOUR' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Tsenya mothalafase go dihlomaganyo:',

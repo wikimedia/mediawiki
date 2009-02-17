@@ -16,11 +16,9 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Meedia',
 	NS_SPECIAL          => 'Eri',
-	NS_MAIN             => '',
 	NS_TALK             => 'Arutelu',
 	NS_USER             => 'Kasutaja',
 	NS_USER_TALK        => 'Kasutaja_arutelu',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_arutelu',
 	NS_FILE             => 'Pilt',
 	NS_FILE_TALK        => 'Pildi_arutelu',
@@ -31,9 +29,8 @@ $namespaceNames = array(
 	NS_HELP             => 'Juhend',
 	NS_HELP_TALK        => 'Juhendi_arutelu',
 	NS_CATEGORY         => 'Kategooria',
-	NS_CATEGORY_TALK    => 'Kategooria_arutelu'
+	NS_CATEGORY_TALK    => 'Kategooria_arutelu',
 );
-
 
 #Lisasin eestimaised poed, aga võõramaiseid ei julenud kustutada.
 
@@ -47,10 +44,8 @@ $bookstoreList = array(
 	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
 );
 
-
 $magicWords = array(
-	#   ID                                 CASE  SYNONYMS
-	'redirect'               => array( 0,    '#redirect', "#suuna"    ),
+	'redirect'              => array( '0', '#suuna', '#REDIRECT' ),
 );
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );

@@ -19,26 +19,23 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Speciala',
-	NS_MAIN           => '',
-	NS_TALK           => 'Diskuto',
-	NS_USER           => 'Vikipediisto', # FIXME: Generalize v-isto kaj v-io
-	NS_USER_TALK      => 'Vikipediista_diskuto',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_diskuto',
-	NS_FILE           => 'Dosiero', #FIXME: Check the magic for Image: and Media:
-	NS_FILE_TALK      => 'Dosiera_diskuto',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_diskuto',
-	NS_TEMPLATE       => 'Ŝablono',
-	NS_TEMPLATE_TALK  => 'Ŝablona_diskuto',
-	NS_HELP           => 'Helpo',
-	NS_HELP_TALK      => 'Helpa_diskuto',
-	NS_CATEGORY       => 'Kategorio',
-	NS_CATEGORY_TALK  => 'Kategoria_diskuto',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Speciala',
+	NS_TALK             => 'Diskuto',
+	NS_USER             => 'Vikipediisto',
+	NS_USER_TALK        => 'Vikipediista_diskuto',
+	NS_PROJECT_TALK     => '$1_diskuto',
+	NS_FILE             => 'Dosiero',
+	NS_FILE_TALK        => 'Dosiera_diskuto',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskuto',
+	NS_TEMPLATE         => 'Ŝablono',
+	NS_TEMPLATE_TALK    => 'Ŝablona_diskuto',
+	NS_HELP             => 'Helpo',
+	NS_HELP_TALK        => 'Helpa_diskuto',
+	NS_CATEGORY         => 'Kategorio',
+	NS_CATEGORY_TALK    => 'Kategoria_diskuto',
 );
-
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Duoblaj alidirektiloj' ),
@@ -71,8 +68,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'Plej ligitaj paĝoj' ),
 	'Mostlinkedcategories'      => array( 'Plej ligitaj kategorioj', 'Plej uzataj kategorioj' ),
 	'Mostlinkedtemplates'       => array( 'Plej ligitaj ŝablonoj', 'Plej uzataj ŝablonoj' ),
-	'Mostcategories'            => array( 'Plej multaj kategorioj' ),
 	'Mostimages'                => array( 'Plej multaj bildoj' ),
+	'Mostcategories'            => array( 'Plej multaj kategorioj' ),
 	'Mostrevisions'             => array( 'Plej multaj revizioj' ),
 	'Fewestrevisions'           => array( 'Plej malmultaj revizioj' ),
 	'Shortpages'                => array( 'Mallongaj paĝoj' ),

@@ -59,7 +59,7 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( 'Egyértelműsítő lapok' ),
 	'Userlogin'                 => array( 'Belépés' ),
 	'Userlogout'                => array( 'Kilépés' ),
-	'CreateAccount'             => array( 'Felhasználói fiók létrehozása' ),
+	'CreateAccount'             => array( 'Szerkesztői fiók létrehozása', 'Felhasználói fiók létrehozása' ),
 	'Preferences'               => array( 'Beállításaim' ),
 	'Watchlist'                 => array( 'Figyelőlistám' ),
 	'Recentchanges'             => array( 'Friss változtatások' ),
@@ -140,6 +140,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Üres lap' ),
 	'LinkSearch'                => array( 'Hivatkozás keresés' ),
 	'DeletedContributions'      => array( 'Törölt szerkesztések' ),
+	'Tags'                      => array( 'Címkék' ),
 );
 
 $datePreferences = array(
