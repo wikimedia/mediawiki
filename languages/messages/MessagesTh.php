@@ -55,7 +55,7 @@ $specialPageAliases = array(
 	'Listgrouprights'           => array( 'รายชื่อสิทธิกลุ่มผู้ใช้งาน' ),
 	'Statistics'                => array( 'สถิติ' ),
 	'Randompage'                => array( 'สุ่ม', 'สุ่มหน้า' ),
-	'Lonelypages'               => array( 'หน้าสุดทาง', 'หน้าที่โยงไปไม่ถึง' ),
+	'Lonelypages'               => array( 'หน้าที่โยงไปไม่ถึง' ),
 	'Uncategorizedpages'        => array( 'หน้าที่ไม่ได้จัดหมวดหมู่' ),
 	'Uncategorizedcategories'   => array( 'หมวดหมู่ที่ไม่ได้จัดหมวดหมู่' ),
 	'Uncategorizedimages'       => array( 'ภาพที่ไม่ได้จัดหมวดหมู่' ),
@@ -96,6 +96,15 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'รายชื่อบอต' ),
 	'Search'                    => array( 'ค้นหา' ),
 	'Resetpass'                 => array( 'ตั้งรหัสผ่านใหม่' ),
+);
+
+$magicWords = array(
+	'redirect'              => array( '0', '#เปลี่ยนทาง', '#REDIRECT' ),
+	'notoc'                 => array( '0', '__ไม่มีสารบัญ__', '__NOTOC__' ),
+	'nogallery'             => array( '0', '__ไม่มีแกลเลอรี่__', '__NOGALLERY__' ),
+	'noeditsection'         => array( '0', '__ไม่มีแก้เฉพาะส่วน__', '__NOEDITSECTION__' ),
+	'currentmonth'          => array( '1', 'เดือนปัจจุบัน', 'CURRENTMONTH' ),
+	'currentmonthname'      => array( '1', 'ชื่อเดือนปัจจุบัน', 'CURRENTMONTHNAME' ),
 );
 
 $datePreferences = array(

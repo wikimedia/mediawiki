@@ -37,6 +37,22 @@ $namespaceAliases = array(
 	'Beeldbespreking' => NS_FILE_TALK,
 );
 
+$magicWords = array(
+	'redirect'              => array( '0', '#AANSTUUR', '#REDIRECT' ),
+	'notoc'                 => array( '0', '__GEENIO__', '__NOTOC__' ),
+	'nogallery'             => array( '0', '__GEENGALERY__', '__NOGALLERY__' ),
+	'forcetoc'              => array( '0', '__DWINGIO__', '__FORCETOC__' ),
+	'toc'                   => array( '0', '__IO__', '__TOC__' ),
+	'noeditsection'         => array( '0', '__GEENNUWEAFDELING__', '__NOEDITSECTION__' ),
+	'currentmonth'          => array( '1', 'HUIDIGEMAAND', 'CURRENTMONTH' ),
+	'currentmonthname'      => array( '1', 'HUIDIGEMAANDNAAM', 'CURRENTMONTHNAME' ),
+	'currentmonthabbrev'    => array( '1', 'HUIDIGEMAANDAFK', 'CURRENTMONTHABBREV' ),
+	'currentday'            => array( '1', 'HUIDIGEDAG', 'CURRENTDAY' ),
+	'currentday2'           => array( '1', 'HUIDIGEDAG2', 'CURRENTDAY2' ),
+	'currentdayname'        => array( '1', 'HUIDIGEDAGNAAM', 'CURRENTDAYNAME' ),
+	'language'              => array( '0', '#TAAL:', '#LANGUAGE:' ),
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Dubbele aansture', 'Dubbeleaansture' ),
 	'BrokenRedirects'           => array( 'Stukkende aansture', 'Stukkendeaansture' ),
@@ -66,8 +82,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'MeeteGeskakel' ),
 	'Mostlinkedcategories'      => array( 'MeesGeskakeldeKategorieë' ),
 	'Mostlinkedtemplates'       => array( 'MeesGeskakeldeSjablone' ),
-	'Mostcategories'            => array( 'MeesteKategorieë' ),
 	'Mostimages'                => array( 'MeesteBeelde' ),
+	'Mostcategories'            => array( 'MeesteKategorieë' ),
 	'Mostrevisions'             => array( 'MeesteWysigings' ),
 	'Fewestrevisions'           => array( 'MinsteWysigings' ),
 	'Shortpages'                => array( 'KortBladsye' ),

@@ -10,26 +10,23 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Dibar',
-	NS_MAIN           => '',
-	NS_TALK           => 'Kaozeal',
-	NS_USER           => 'Implijer',
-	NS_USER_TALK      => 'Kaozeadenn_Implijer',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Kaozeadenn_$1',
-	NS_FILE           => 'Skeudenn',
-	NS_FILE_TALK      => 'Kaozeadenn_Skeudenn',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Kaozeadenn_MediaWiki',
-	NS_TEMPLATE       => 'Patrom',
-	NS_TEMPLATE_TALK  => 'Kaozeadenn_Patrom',
-	NS_HELP           => 'Skoazell',
-	NS_HELP_TALK      => 'Kaozeadenn_Skoazell',
-	NS_CATEGORY       => 'Rummad',
-	NS_CATEGORY_TALK  => 'Kaozeadenn_Rummad'
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Dibar',
+	NS_TALK             => 'Kaozeal',
+	NS_USER             => 'Implijer',
+	NS_USER_TALK        => 'Kaozeadenn_Implijer',
+	NS_PROJECT_TALK     => 'Kaozeadenn_$1',
+	NS_FILE             => 'Skeudenn',
+	NS_FILE_TALK        => 'Kaozeadenn_Skeudenn',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Kaozeadenn_MediaWiki',
+	NS_TEMPLATE         => 'Patrom',
+	NS_TEMPLATE_TALK    => 'Kaozeadenn_Patrom',
+	NS_HELP             => 'Skoazell',
+	NS_HELP_TALK        => 'Kaozeadenn_Skoazell',
+	NS_CATEGORY         => 'Rummad',
+	NS_CATEGORY_TALK    => 'Kaozeadenn_Rummad',
 );
-
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'AdksaoùDoubl' ),

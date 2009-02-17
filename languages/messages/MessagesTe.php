@@ -56,8 +56,18 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'అన్నిపేజీలు' ),
 	'Specialpages'              => array( 'ప్రత్యేకపేజీలు' ),
 	'Categories'                => array( 'వర్గాలు' ),
+	'Log'                       => array( 'చిట్టా', 'చిట్టాలు' ),
 	'Mypage'                    => array( 'నాపేజీ' ),
+	'Mytalk'                    => array( 'నాచర్చ' ),
 	'Search'                    => array( 'అన్వేషణ' ),
+);
+
+$magicWords = array(
+	'redirect'              => array( '0', '#దారిమార్పు', '#REDIRECT' ),
+	'pagename'              => array( '1', 'పేజీపేరు', 'PAGENAME' ),
+	'img_right'             => array( '1', 'కుడి', 'right' ),
+	'img_left'              => array( '1', 'ఎడమ', 'left' ),
+	'special'               => array( '0', 'ప్రత్యేక', 'special' ),
 );
 
 $linkTrail = "/^([\xE0\xB0\x81-\xE0\xB1\xAF]+)(.*)$/sDu";

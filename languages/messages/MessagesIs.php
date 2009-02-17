@@ -123,27 +123,6 @@ $magicWords = array(
 	'special'             => array( 0, "kerfissíða", "special" ),
 );
 
-$namespaceNames = array(
-	NS_MEDIA          => 'Miðill',
-	NS_SPECIAL        => 'Kerfissíða',
-	NS_MAIN	          => '',
-	NS_TALK	          => 'Spjall',
-	NS_USER           => 'Notandi',
-	NS_USER_TALK      => 'Notandaspjall',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1spjall',
-	NS_FILE           => 'Mynd',
-	NS_FILE_TALK      => 'Myndaspjall',
-	NS_MEDIAWIKI      => 'Melding',
-	NS_MEDIAWIKI_TALK => 'Meldingarspjall',
-	NS_TEMPLATE       => 'Snið',
-	NS_TEMPLATE_TALK  => 'Sniðaspjall',
-	NS_HELP           => 'Hjálp',
-	NS_HELP_TALK      => 'Hjálparspjall',
-	NS_CATEGORY       => 'Flokkur',
-	NS_CATEGORY_TALK  => 'Flokkaspjall',
-);
-
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Tvöfaldar tilvísanir' ),
 	'BrokenRedirects'           => array( 'Brotnar tilvísanir' ),
@@ -173,8 +152,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'Mest ítengt' ),
 	'Mostlinkedcategories'      => array( 'Mest ítengdu flokkar' ),
 	'Mostlinkedtemplates'       => array( 'Mest ítengdu snið' ),
-	'Mostcategories'            => array( 'Flestir flokkar' ),
 	'Mostimages'                => array( 'Flestar myndir' ),
+	'Mostcategories'            => array( 'Flestir flokkar' ),
 	'Mostrevisions'             => array( 'Flestar útgáfur' ),
 	'Fewestrevisions'           => array( 'Fæstar útgáfur' ),
 	'Shortpages'                => array( 'Stuttar síður' ),

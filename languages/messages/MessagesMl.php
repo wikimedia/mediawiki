@@ -22,24 +22,22 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA => 'മീഡിയ',
-	NS_SPECIAL => 'പ്രത്യേകം',
-	NS_MAIN => '',
-	NS_TALK => 'സംവാദം',
-	NS_USER => 'ഉപയോക്താവ്',
-	NS_USER_TALK => 'ഉപയോക്താവിന്റെ_സംവാദം',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK => '$1_സംവാദം',
-	NS_FILE => 'ചിത്രം',
-	NS_FILE_TALK => 'ചിത്രത്തിന്റെ_സംവാദം',
-	NS_MEDIAWIKI => 'മീഡിയവിക്കി',
-	NS_MEDIAWIKI_TALK => 'മീഡിയവിക്കി_സംവാദം',
-	NS_TEMPLATE => 'ഫലകം',
-	NS_TEMPLATE_TALK => 'ഫലകത്തിന്റെ_സംവാദം',
-	NS_CATEGORY => 'വിഭാഗം',
-	NS_CATEGORY_TALK => 'വിഭാഗത്തിന്റെ_സംവാദം',
-	NS_HELP => 'സഹായം',
-	NS_HELP_TALK => 'സഹായത്തിന്റെ_സംവാദം',
+	NS_MEDIA            => 'മീഡിയ',
+	NS_SPECIAL          => 'പ്രത്യേകം',
+	NS_TALK             => 'സംവാദം',
+	NS_USER             => 'ഉപയോക്താവ്',
+	NS_USER_TALK        => 'ഉപയോക്താവിന്റെ_സംവാദം',
+	NS_PROJECT_TALK     => '$1_സംവാദം',
+	NS_FILE             => 'ചിത്രം',
+	NS_FILE_TALK        => 'ചിത്രത്തിന്റെ_സംവാദം',
+	NS_MEDIAWIKI        => 'മീഡിയവിക്കി',
+	NS_MEDIAWIKI_TALK   => 'മീഡിയവിക്കി_സംവാദം',
+	NS_TEMPLATE         => 'ഫലകം',
+	NS_TEMPLATE_TALK    => 'ഫലകത്തിന്റെ_സംവാദം',
+	NS_HELP             => 'സഹായം',
+	NS_HELP_TALK        => 'സഹായത്തിന്റെ_സംവാദം',
+	NS_CATEGORY         => 'വര്‍ഗ്ഗം',
+	NS_CATEGORY_TALK    => 'വര്‍ഗ്ഗത്തിന്റെ_സംവാദം',
 );
 
 $namespaceAliases = array(
@@ -53,21 +51,12 @@ $namespaceAliases = array(
 	'ഫസം' => NS_TEMPLATE_TALK,
 	'വി' => NS_CATEGORY,
 	'വിസം' => NS_CATEGORY_TALK,
+	'വിഭാഗം' => NS_CATEGORY,
+	'വിഭാഗത്തിന്റെ_സംവാദം' => NS_CATEGORY_TALK,
 	'സ' => NS_HELP,
 	'സസം' => NS_HELP_TALK,
 );
 
-
-/**
- * Magic words
- * Customisable syntax for wikitext and elsewhere
- *
- * Note to translators:
- *   Please include the English words as synonyms.  This allows people
- *   from other wikis to contribute more easily.
- *
- * This array can be modified at runtime with the LanguageGetMagic hook
- */
 $magicWords = array(
 #   ID                                 CASE  SYNONYMS
 	'redirect'               => array( 0, '#REDIRECT' , '#തിരിച്ചുവിടുക' , 'തിരിച്ചുവിടല്‍' ),

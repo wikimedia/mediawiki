@@ -168,10 +168,11 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'ПразнаСтраница' ),
 	'LinkSearch'                => array( 'ПребарајВрска' ),
 	'DeletedContributions'      => array( 'ИзбришаниПридонеси' ),
+	'Tags'                      => array( 'Приврзоци' ),
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#redirect', '#пренасочување', '#види' ),
+	'redirect'              => array( '0', '#пренасочување', '#види', '#Пренасочување', '#ПРЕНАСОЧУВАЊЕ', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__БЕЗСОДРЖИНА__', '__NOTOC__' ),
 	'nogallery'             => array( '0', '__БЕЗГАЛЕРИЈА__', '__NOGALLERY__' ),
 	'forcetoc'              => array( '0', '__СОСОДРЖИНА__', '__FORCETOC__' ),

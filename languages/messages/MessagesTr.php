@@ -29,8 +29,8 @@ $namespaceNames = array(
 	NS_USER             => 'Kullanıcı',
 	NS_USER_TALK        => 'Kullanıcı_mesaj',
 	NS_PROJECT_TALK     => '$1_tartışma',
-	NS_FILE             => 'Resim',
-	NS_FILE_TALK        => 'Resim_tartışma',
+	NS_FILE             => 'Dosya',
+	NS_FILE_TALK        => 'Dosya_tartışma',
 	NS_MEDIAWIKI        => 'MedyaViki',
 	NS_MEDIAWIKI_TALK   => 'MedyaViki_tartışma',
 	NS_TEMPLATE         => 'Şablon',
@@ -39,6 +39,11 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Yardım_tartışma',
 	NS_CATEGORY         => 'Kategori',
 	NS_CATEGORY_TALK    => 'Kategori_tartışma',
+);
+
+$namespaceAliases = array(
+	'Resim' => NS_FILE,
+	'Resim_tartışma' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(
@@ -52,8 +57,8 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'İzlemeListesi' ),
 	'Recentchanges'             => array( 'SonDeğişiklikler' ),
 	'Upload'                    => array( 'Yükle' ),
-	'Listfiles'                 => array( 'ResimListesi' ),
-	'Newimages'                 => array( 'YeniResimler' ),
+	'Listfiles'                 => array( 'DosyaListesi' ),
+	'Newimages'                 => array( 'YeniDosyalar' ),
 	'Listusers'                 => array( 'KullanıcıListesi' ),
 	'Listgrouprights'           => array( 'GrupHaklarıListesi' ),
 	'Statistics'                => array( 'İstatistikler' ),
@@ -67,8 +72,10 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'KullanılmayanResimler' ),
 	'Wantedpages'               => array( 'İstenenSayfalar', 'KırıkLinler' ),
 	'Wantedcategories'          => array( 'İstenenKategoriler' ),
-	'Mostcategories'            => array( 'EnKategorili' ),
+	'Wantedfiles'               => array( 'İstenenDosyalar' ),
+	'Wantedtemplates'           => array( 'İstenenŞablonlar' ),
 	'Mostimages'                => array( 'EnResimli' ),
+	'Mostcategories'            => array( 'EnKategorili' ),
 	'Shortpages'                => array( 'KısaSayfalar' ),
 	'Longpages'                 => array( 'UzunSayfalar' ),
 	'Newpages'                  => array( 'YeniSayfalar' ),
@@ -118,6 +125,16 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'RevizyonBirleştir' ),
 	'Filepath'                  => array( 'DosyaKonumu' ),
 	'Invalidateemail'           => array( 'EmailDoğrulamaİptal' ),
+);
+
+$magicWords = array(
+	'redirect'              => array( '0', '#YÖNLENDİRME', '#REDIRECT' ),
+	'img_right'             => array( '1', 'sağ', 'right' ),
+	'img_left'              => array( '1', 'sol', 'left' ),
+	'sitename'              => array( '1', 'SİTEADI', 'SITENAME' ),
+	'gender'                => array( '0', 'CİNSİYET:', 'GENDER:' ),
+	'language'              => array( '0', '#DİL:', '#LANGUAGE:' ),
+	'special'               => array( '0', 'özel', 'special' ),
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );

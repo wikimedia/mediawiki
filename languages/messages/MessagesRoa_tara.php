@@ -7,6 +7,16 @@
  * @author Joetaras
  */
 
+$specialPageAliases = array(
+	'Preferences'               => array( 'Preferenze' ),
+	'Watchlist'                 => array( 'PàggeneCondrollete' ),
+	'Recentchanges'             => array( 'UrtemeCangiaminde' ),
+	'Upload'                    => array( 'Carecaminde' ),
+	'Statistics'                => array( 'Statisteche' ),
+	'Version'                   => array( 'Versione' ),
+	'Allmessages'               => array( 'TutteLeMessagge' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Cullegaminde sottolinèete:',

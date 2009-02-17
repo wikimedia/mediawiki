@@ -17,7 +17,6 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'مدیا',
 	NS_SPECIAL          => 'ویژه',
-	NS_MAIN	            => '',
 	NS_TALK             => 'بحث',
 	NS_USER             => 'کاربر',
 	NS_USER_TALK        => 'بحث_کاربر',
@@ -264,7 +263,7 @@ $magicWords = array(
 	'numberofarticles'      => array( '1', 'تعدادمقاله‌ها', 'تعداد_مقاله‌ها', 'NUMBEROFARTICLES' ),
 	'numberoffiles'         => array( '1', 'تعدادپرونده‌ها', 'تعداد_پرونده‌ها', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'تعدادکاربران', 'تعداد_کاربران', 'NUMBEROFUSERS' ),
-	'activeusers'           => array( '1', 'کاربران‌فعال', 'کاربران_فعال', 'ACTIVEUSERS' ),
+	'activeusers'           => array( '1', 'کاربران‌فعال', 'کاربران_فعال', 'ACTIVEUSERS', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'         => array( '1', 'تعدادویرایش‌ها', 'تعداد_ویرایش‌ها', 'NUMBEROFEDITS' ),
 	'numberofviews'         => array( '1', 'تعدادبازدید', 'تعداد_بازدید', 'NUMBEROFVIEWS' ),
 	'pagename'              => array( '1', 'نام‌صفحه', 'نام_صفحه', 'PAGENAME' ),

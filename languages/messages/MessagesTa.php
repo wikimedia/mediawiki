@@ -13,24 +13,22 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'ஊடகம்',
-	NS_SPECIAL        => 'சிறப்பு',
-	NS_MAIN           => '',
-	NS_TALK           => 'பேச்சு',
-	NS_USER           => 'பயனர்',
-	NS_USER_TALK      => 'பயனர்_பேச்சு',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_பேச்சு',
-	NS_FILE           => 'படிமம்',
-	NS_FILE_TALK      => 'படிமப்_பேச்சு',
-	NS_MEDIAWIKI      => 'மீடியாவிக்கி',
-	NS_MEDIAWIKI_TALK => 'மீடியாவிக்கி_பேச்சு',
-	NS_TEMPLATE       => 'வார்ப்புரு',
-	NS_TEMPLATE_TALK  => 'வார்ப்புரு_பேச்சு',
-	NS_HELP           => 'உதவி',
-	NS_HELP_TALK      => 'உதவி_பேச்சு',
-	NS_CATEGORY       => 'பகுப்பு',
-	NS_CATEGORY_TALK  => 'பகுப்பு_பேச்சு',
+	NS_MEDIA            => 'ஊடகம்',
+	NS_SPECIAL          => 'சிறப்பு',
+	NS_TALK             => 'பேச்சு',
+	NS_USER             => 'பயனர்',
+	NS_USER_TALK        => 'பயனர்_பேச்சு',
+	NS_PROJECT_TALK     => '$1_பேச்சு',
+	NS_FILE             => 'படிமம்',
+	NS_FILE_TALK        => 'படிமப்_பேச்சு',
+	NS_MEDIAWIKI        => 'மீடியாவிக்கி',
+	NS_MEDIAWIKI_TALK   => 'மீடியாவிக்கி_பேச்சு',
+	NS_TEMPLATE         => 'வார்ப்புரு',
+	NS_TEMPLATE_TALK    => 'வார்ப்புரு_பேச்சு',
+	NS_HELP             => 'உதவி',
+	NS_HELP_TALK        => 'உதவி_பேச்சு',
+	NS_CATEGORY         => 'பகுப்பு',
+	NS_CATEGORY_TALK    => 'பகுப்பு_பேச்சு',
 );
 
 $namespaceAliases = array(
@@ -38,6 +36,11 @@ $namespaceAliases = array(
 	'விக்கிபீடியா_பேச்சு' => NS_PROJECT_TALK,
 	'உருவப்_பேச்சு' => NS_FILE_TALK
 );
+
+$magicWords = array(
+	'redirect'              => array( '0', '#வழிமாற்று', '#REDIRECT' ),
+);
+
 $linkTrail = "/^([\xE0\xAE\x80-\xE0\xAF\xBF]+)(.*)$/sDu";
 
 $messages = array(

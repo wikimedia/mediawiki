@@ -149,9 +149,10 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'Versionsgeschichten_vereinen' ),
 	'Filepath'                  => array( 'Dateipfad' ),
 	'Invalidateemail'           => array( 'E-Mail_nicht_bestaetigen' ),
-	'Blankpage'                 => array( 'Leerseite' ),
+	'Blankpage'                 => array( 'Leerseite', 'Leere_Seite' ),
 	'LinkSearch'                => array( 'Weblink-Suche' ),
 	'DeletedContributions'      => array( 'Gelöschte Beiträge' ),
+	'Tags'                      => array( 'Markierungen' ),
 );
 
 $datePreferences = array(
@@ -188,11 +189,13 @@ $dateFormats = array(
 );
 
 $magicWords = array(
+	'redirect'              => array( '0', '#WEITERLEITUNG', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__KEIN_INHALTSVERZEICHNIS__', '__NOTOC__' ),
 	'nogallery'             => array( '0', '__KEINE_GALERIE__', '__NOGALLERY__' ),
 	'forcetoc'              => array( '0', '__INHALTSVERZEICHNIS_ERZWINGEN__', '__FORCETOC__' ),
 	'toc'                   => array( '0', '__INHALTSVERZEICHNIS__', '__TOC__' ),
 	'noeditsection'         => array( '0', '__ABSCHNITTE_NICHT_BEARBEITEN__', '__NOEDITSECTION__' ),
+	'noheader'              => array( '0', '__KEINKOPF__', '__NOHEADER__' ),
 	'currentmonth'          => array( '1', 'JETZIGER_MONAT', 'CURRENTMONTH' ),
 	'currentmonthname'      => array( '1', 'JETZIGER_MONATSNAME', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'   => array( '1', 'JETZIGER_MONATSNAME_GENITIV', 'CURRENTMONTHNAMEGEN' ),
@@ -217,6 +220,7 @@ $magicWords = array(
 	'numberofarticles'      => array( '1', 'ARTIKELANZAHL', 'NUMBEROFARTICLES' ),
 	'numberoffiles'         => array( '1', 'DATEIANZAHL', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'BENUTZERANZAHL', 'NUMBEROFUSERS' ),
+	'activeusers'           => array( '1', 'AKTIVE_BENUTZER', 'ACTIVEUSERS', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'         => array( '1', 'BEARBEITUNGSANZAHL', 'NUMBEROFEDITS' ),
 	'numberofviews'         => array( '1', 'BETRACHTUNGEN', 'NUMBEROFVIEWS' ),
 	'pagename'              => array( '1', 'SEITENNAME', 'PAGENAME' ),
@@ -249,6 +253,8 @@ $magicWords = array(
 	'img_page'              => array( '1', 'seite=$1', 'seite $1', 'page=$1', 'page $1' ),
 	'img_upright'           => array( '1', 'hochkant', 'hochkant=$1', 'hochkant $1', 'upright', 'upright=$1', 'upright $1' ),
 	'img_border'            => array( '1', 'rand', 'border' ),
+	'img_sub'               => array( '1', 'tiefgestellt', 'sub' ),
+	'img_super'             => array( '1', 'hochgestellt', 'super', 'sup' ),
 	'img_link'              => array( '1', 'verweis=$1', 'link=$1' ),
 	'img_alt'               => array( '1', 'alternativtext=$1', 'alt=$1' ),
 	'int'                   => array( '0', 'NACHRICHT:', 'INT:' ),
@@ -257,6 +263,7 @@ $magicWords = array(
 	'localurl'              => array( '0', 'LOKALE_URL:', 'LOCALURL:' ),
 	'scriptpath'            => array( '0', 'SKRIPTPFAD', 'SCRIPTPATH' ),
 	'grammar'               => array( '0', 'GRAMMATIK', 'GRAMMAR:' ),
+	'gender'                => array( '0', 'GESCHLECHT', 'GENDER:' ),
 	'currentweek'           => array( '1', 'JETZIGE_KALENDERWOCHE', 'CURRENTWEEK' ),
 	'currentdow'            => array( '1', 'JETZIGER_WOCHENTAG_ZAHL', 'CURRENTDOW' ),
 	'localweek'             => array( '1', 'LOKALE_KALENDERWOCHE', 'LOCALWEEK' ),

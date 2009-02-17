@@ -103,7 +103,7 @@ $specialPageAliases = array(
 	'Blockip'                   => array( '차단' ),
 	'Undelete'                  => array( '삭제취소', '삭제된문서' ),
 	'Import'                    => array( '가져오기' ),
-	'Lockdb'                    => array( 'DB잠금' ),
+	'Lockdb'                    => array( 'DB잠금', 'DB잠그기' ),
 	'Unlockdb'                  => array( 'DB잠금취소', 'DB잠금해제' ),
 	'Userrights'                => array( '권한조정' ),
 	'MIMEsearch'                => array( 'MIME찾기', 'MIME검색' ),
@@ -120,13 +120,15 @@ $specialPageAliases = array(
 	'Listbots'                  => array( '봇', '봇목록' ),
 	'Popularpages'              => array( '인기있는문서' ),
 	'Search'                    => array( '찾기', '검색' ),
-	'Resetpass'                 => array( '비밀번호초기화', '암호초기화', '비밀번호변경' ),
+	'Resetpass'                 => array( '비밀번호변경', '암호변경', '비밀번호바꾸기' ),
 	'Withoutinterwiki'          => array( '인터위키없는문서' ),
 	'MergeHistory'              => array( '역사합치기' ),
 	'Filepath'                  => array( '파일경로', '그림경로' ),
+	'Invalidateemail'           => array( '이메일인증취소', '이메일인증해제' ),
 	'Blankpage'                 => array( '빈문서' ),
 	'LinkSearch'                => array( '외부링크찾기', '외부링크검색' ),
 	'DeletedContributions'      => array( '삭제된기여' ),
+	'Tags'                      => array( '태그' ),
 );
 
 $magicWords = array(
@@ -189,8 +191,9 @@ $magicWords = array(
 	'img_center'            => array( '1', '가운데', 'center', 'centre' ),
 	'img_framed'            => array( '1', '프레임', 'framed', 'enframed', 'frame' ),
 	'img_border'            => array( '1', '테두리', 'border' ),
+	'img_link'              => array( '1', '링크=$1', 'link=$1' ),
 	'sitename'              => array( '1', '사이트이름', 'SITENAME' ),
-	'ns'                    => array( '0', '이름:', 'NS:' ),
+	'ns'                    => array( '0', '이름:', '이름공간:', 'NS:' ),
 	'localurl'              => array( '0', '지역주소:', 'LOCALURL:' ),
 	'localurle'             => array( '0', '지역주소E:', 'LOCALURLE:' ),
 	'server'                => array( '0', '서버', 'SERVER' ),
@@ -226,10 +229,12 @@ $magicWords = array(
 	'special'               => array( '0', '특수기능', 'special' ),
 	'defaultsort'           => array( '1', '기본정렬:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'              => array( '0', '파일경로:', '그림경로:', 'FILEPATH:' ),
+	'tag'                   => array( '0', '태그', 'tag' ),
 	'hiddencat'             => array( '1', '__숨은분류__', '__HIDDENCAT__' ),
 	'pagesincategory'       => array( '1', '분류문서수', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'              => array( '1', '문서크기', 'PAGESIZE' ),
 	'staticredirect'        => array( '1', '__넘겨주기고정__', '__STATICREDIRECT__' ),
+	'protectionlevel'       => array( '1', '보호수준', 'PROTECTIONLEVEL' ),
 );
 
 $bookstoreList = array(

@@ -99,6 +99,7 @@ $magicWords = array(
 	'numberofarticles'      => array( '1', 'AANTALARTIKELEN', 'NUMBEROFARTICLES' ),
 	'numberoffiles'         => array( '1', 'AANTALBESTANDEN', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'AANTALGEBRUIKERS', 'NUMBEROFUSERS' ),
+	'activeusers'           => array( '1', 'AANTALACTIEVEGEBRUIKERS', 'ACTIEVEGEBRUIKERS', 'ACTIVEUSERS', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'         => array( '1', 'AANTALBEWERKINGEN', 'NUMBEROFEDITS' ),
 	'numberofviews'         => array( '1', 'AANTALKERENBEKEKEN', 'NUMBEROFVIEWS' ),
 	'pagename'              => array( '1', 'PAGINANAAM', 'PAGENAME' ),

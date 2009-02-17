@@ -27,12 +27,11 @@ $namespaceNames = array(
 	NS_HELP             => 'Oppus',
 	NS_HELP_TALK        => 'Oppusõ_arotus',
 	NS_CATEGORY         => 'Katõgooria',
-	NS_CATEGORY_TALK    => 'Katõgooria_arotus'
+	NS_CATEGORY_TALK    => 'Katõgooria_arotus',
 );
 
-
 $magicWords = array(
-	'redirect'            => array( "0", "#redirect", "#saadaq" ),
+	'redirect'              => array( '0', '#saadaq', '#suuna', '#REDIRECT' ),
 );
 
 $messages = array(

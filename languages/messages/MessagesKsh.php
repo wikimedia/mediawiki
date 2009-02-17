@@ -89,7 +89,6 @@ $namespaceAliases = array(
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
-
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Ömleitunge op Ömleitunge' ),
 	'BrokenRedirects'           => array( 'Ömleitunge en et Leere' ),
@@ -121,8 +120,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'Sigge met de mieste Links drop' ),
 	'Mostlinkedcategories'      => array( 'Et miehts jebruchte Saachjruppe', 'Et miehts jebruchte Saachjroppe' ),
 	'Mostlinkedtemplates'       => array( 'Et miehts jebruchte Schablone' ),
-	'Mostcategories'            => array( 'Sigge met de mieste Saachjroppe', 'Sigge met de mieste Saachjruppe' ),
 	'Mostimages'                => array( 'Dateie met de mieste Links drop' ),
+	'Mostcategories'            => array( 'Sigge met de mieste Saachjroppe', 'Sigge met de mieste Saachjruppe' ),
 	'Mostrevisions'             => array( 'Öff beärbeit', 'Öff beärbeidt', 'Off bearbeit' ),
 	'Fewestrevisions'           => array( 'Winnig beärbeit', 'Winnish beärbeidt', 'Winnich bearbeit' ),
 	'Shortpages'                => array( 'Koote Atikelle' ),
@@ -139,6 +138,7 @@ $specialPageAliases = array(
 	'Emailuser'                 => array( 'Email', 'E-mail' ),
 	'Confirmemail'              => array( 'Email Bestätije', 'E-mail Bestätije', 'EmailBestätije', 'E-mailBestätije' ),
 	'Whatlinkshere'             => array( 'Wat noh hee link' ),
+	'Recentchangeslinked'       => array( 'Änderungen_an_verlinkte_Sigge' ),
 	'Movepage'                  => array( 'Ömnenne', 'Ömdäufe' ),
 	'Blockme'                   => array( 'Proxy-Sperre' ),
 	'Booksources'               => array( 'ISBN', 'Böcher', 'Böösher' ),
@@ -174,6 +174,13 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Leddijje Sigge' ),
 	'LinkSearch'                => array( 'Websigge Söke' ),
 	'DeletedContributions'      => array( 'Fotjeschmeße' ),
+	'Tags'                      => array( 'Makeerunge' ),
+);
+
+$magicWords = array(
+	'redirect'              => array( '0', '#ÖMLEIDUNG', '#REDIRECT' ),
+	'language'              => array( '0', '#SHPROOCH', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ),
+	'hiddencat'             => array( '1', '__VERSHTOCHE_SAACHJRUPP__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
 );
 
 $imageFiles = array(
