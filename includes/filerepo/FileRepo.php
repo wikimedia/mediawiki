@@ -538,4 +538,20 @@ abstract class FileRepo {
 	function findBySha1( $hash ) {
 		return array();
 	}
+	
+	/**
+	 * Get the human-readable name of the repo. 
+	 * @return string
+	 */
+	public function getDisplayName() {
+		// We don't name our own repo, return nothing
+		if ( $this->name == 'local' ) {
+			return null;
+		}
+		$repoName = wfMsg( 'shared-repo-' . $this->name );
+		if ( !wfEmptyMsg( 'shared-repo-' . $this->name, $repoName ) ) {
+			return $repoName;
+		}
+		return wfMsg( 'shared-repo' ); 
+	}
 }

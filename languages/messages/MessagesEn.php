@@ -1989,6 +1989,8 @@ A [[Special:WhatLinksHere/$2|full list]] is available.',
 'noimage'                        => 'No file by this name exists, but you can $1.',
 'noimage-linktext'               => 'upload one',
 'uploadnewversion-linktext'      => 'Upload a new version of this file',
+'shared-repo-from'				 => 'from $1', // $1 is the repository name
+'shared-repo'					 => 'shared repository', // used when shared-repo-NAME doesn't exist
 
 # File reversion
 'filerevert'                => 'Revert $1',

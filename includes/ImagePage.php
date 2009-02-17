@@ -646,13 +646,15 @@ EOT
 
 		$sk = $wgUser->getSkin();
 		foreach ( $dupes as $file ) {
+			$fromSrc = '';
 			if( $file->isLocal() )
 				$link = $sk->makeKnownLinkObj( $file->getTitle(), "" );
 			else {
 				$link = $sk->makeExternalLink( $file->getDescriptionUrl(),
 					$file->getTitle()->getPrefixedText() );
+				$fromSrc = wfMsg( 'shared-repo-from', $file->getRepo()->getDisplayName() );
 			}
-			$wgOut->addHTML( "<li>{$link}</li>\n" );
+			$wgOut->addHTML( "<li>{$link} {$fromSrc}</li>\n" );
 		}
 		$wgOut->addHTML( "</ul></div>\n" );
 	}
