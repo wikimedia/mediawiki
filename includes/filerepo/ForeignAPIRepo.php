@@ -30,6 +30,17 @@ class ForeignAPIRepo extends FileRepo {
 			$this->scriptDirUrl = dirname( $this->mApiBase );
 		}
 	}
+	
+	/**
+	 * Per docs in FileRepo, this needs to return false if we don't support versioned
+	 * files. Well, we don't.
+	 */
+	function newFile( $title, $time = false ) {
+		if ( $time ) {
+			return false;
+		}
+		return parent::newFile( $title, $time );
+	}
 
 /**
  * No-ops
