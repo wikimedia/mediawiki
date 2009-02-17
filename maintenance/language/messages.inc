@@ -1246,6 +1246,8 @@ $wgMessageStructure = array(
 		'noimage',
 		'noimage-linktext',
 		'uploadnewversion-linktext',
+		'shared-repo-from',
+		'shared-repo',
 	),
 	'filerevert' => array(
 		'filerevert',
