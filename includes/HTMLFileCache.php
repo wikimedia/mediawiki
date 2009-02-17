@@ -165,7 +165,10 @@ class HTMLFileCache {
 			return $origtext; // return to output
 		}
 		$text = $origtext;
+		// Empty?
 		if( strcmp($text,'') == 0 ) return '';
+		// Probably broken? (OOM and PHP errors)
+		if( mb_strlen($text) < 512 ) return $origtext;
 
 		wfDebug(" saveToFileCache()\n", false);
 
