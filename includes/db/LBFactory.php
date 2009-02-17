@@ -236,15 +236,25 @@ class ChronologyProtector {
 	 * @param LoadBalancer $lb
 	 */
 	function shutdownLB( $lb ) {
-		if ( session_id() != '' && $lb->getServerCount() > 1 ) {
-			$masterName = $lb->getServerName( 0 );
-			if ( !isset( $this->shutdownPos[$masterName] ) ) {
-				$pos = $lb->getMasterPos();
-				$info = $lb->parentInfo();
-				wfDebug( __METHOD__.": LB " . $info['id'] . " has master pos $pos\n" );
-				$this->shutdownPos[$masterName] = $pos;
-			}
+		// Don't start a session, don't bother with non-replicated setups
+		if ( strval( session_id() ) == '' || $lb->getServerCount() <= 1 ) {
+			return;
 		}
+		$masterName = $lb->getServerName( 0 );
+		if ( isset( $this->shutdownPos[$masterName] ) ) {
+			// Already done
+			return;
+		}
+		// Only save the position if writes have been done on the connection
+		$db = $lb->getAnyOpenConnection( 0 );
+		$info = $lb->parentInfo();
+		if ( !$db || !$db->doneWrites() ) {
+			wfDebug( __METHOD__.": LB {$info['id']}, no writes done\n" );
+			return;
+		}
+		$pos = $db->getMasterPos();
+		wfDebug( __METHOD__.": LB {$info['id']} has master pos $pos\n" );
+		$this->shutdownPos[$masterName] = $pos;
 	}
 
 	/**

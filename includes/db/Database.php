@@ -26,6 +26,7 @@ class Database {
 #------------------------------------------------------------------------------
 
 	protected $mLastQuery = '';
+	protected $mDoneWrites = false;
 	protected $mPHPError = false;
 
 	protected $mServer, $mUser, $mPassword, $mConn = null, $mDBname;
@@ -210,7 +211,14 @@ class Database {
 	 * @return String
 	 */
 	function lastQuery() { return $this->mLastQuery; }
-	
+
+
+	/**
+	 * Returns true if the connection may have been used for write queries.
+	 * Should return true if unsure.
+	 */
+	function doneWrites() { return $this->mDoneWrites; }
+
 	/**
 	 * Is a connection to the database open?
 	 * @return Boolean
@@ -493,6 +501,14 @@ class Database {
 	}
 
 	/**
+	 * Determine whether a query writes to the DB.
+	 * Should return true if unsure.
+	 */
+	function isWriteQuery( $sql ) {
+		return !preg_match( '/^(?:SELECT|BEGIN|COMMIT|SET|SHOW)\b/i', $sql );
+	}
+
+	/**
 	 * Usually aborts on failure.  If errors are explicitly ignored, returns success.
 	 *
 	 * @param  $sql        String: SQL query
@@ -527,6 +543,11 @@ class Database {
 		}
 
 		$this->mLastQuery = $sql;
+		if ( !$this->mDoneWrites && $this->isWriteQuery( $sql ) ) {
+			// Set a flag indicating that writes have been done
+			wfDebug( __METHOD__.": Writes done: $sql\n" );
+			$this->mDoneWrites = true;
+		}
 
 		# Add a comment for easy SHOW PROCESSLIST interpretation
 		#if ( $fname ) {
