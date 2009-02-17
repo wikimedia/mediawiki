@@ -118,7 +118,7 @@ video/x-msvideo avi
 video/x-ogg ogm ogg
 video/x-sgi-movie movie
 x-conference/x-cooltalk ice
-application/vnd.oasis.opendocument.text odt 
+application/vnd.oasis.opendocument.text odt
 application/vnd.oasis.opendocument.text-template ott
 application/vnd.oasis.opendocument.graphics odg
 application/vnd.oasis.opendocument.graphics-template otg
