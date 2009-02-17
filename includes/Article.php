@@ -839,7 +839,7 @@ class Article {
 
 				// Add a <link rel="canonical"> tag
 				$wgOut->addLink( array( 'rel' => 'canonical',
-					'href' => $this->mTitle->getFullURL() )
+					'href' => $this->mTitle->getLocalURL() )
 				);
 				$wasRedirected = true;
 			}
