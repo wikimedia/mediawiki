@@ -273,37 +273,37 @@ function wfInstallExceptionHandler() {
 function wfReportException( Exception $e ) {
 	$cmdLine = MWException::isCommandLine();
 	if ( $e instanceof MWException ) {
-	 try {
-		 $e->report();
-	 } catch ( Exception $e2 ) {
-		// Exception occurred from within exception handler
-		// Show a simpler error message for the original exception,
-		// don't try to invoke report()
-		$message = "MediaWiki internal error.\n\n";
-		if ( $GLOBALS['wgShowExceptionDetails'] )
-			$message .= "Original exception: " . $e->__toString();
-		$message .= "\n\nException caught inside exception handler";
-		if ( $GLOBALS['wgShowExceptionDetails'] )
-			$message .= ": " . $e2->__toString();
-		$message .= "\n";
+		try {
+			$e->report();
+		} catch ( Exception $e2 ) {
+			// Exception occurred from within exception handler
+			// Show a simpler error message for the original exception,
+			// don't try to invoke report()
+			$message = "MediaWiki internal error.\n\n";
+			if ( $GLOBALS['wgShowExceptionDetails'] )
+				$message .= "Original exception: " . $e->__toString();
+			$message .= "\n\nException caught inside exception handler";
+			if ( $GLOBALS['wgShowExceptionDetails'] )
+				$message .= ": " . $e2->__toString();
+			$message .= "\n";
+			if ( $cmdLine ) {
+				wfPrintError( $message );
+			} else {
+				echo nl2br( htmlspecialchars( $message ) ). "\n";
+				}
+		}
+	} else {
+		$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"\n" .
+			$e->__toString() . "\n";
+		if ( $GLOBALS['wgShowExceptionDetails'] ) {
+			$message .= "\n" . $e->getTraceAsString() ."\n";
+		}
 		if ( $cmdLine ) {
 			wfPrintError( $message );
 		} else {
 			echo nl2br( htmlspecialchars( $message ) ). "\n";
-			}
 		}
-	} else {
-	 $message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"\n" .
-		 $e->__toString() . "\n";
-	 if ( $GLOBALS['wgShowExceptionDetails'] ) {
-		 $message .= "\n" . $e->getTraceAsString() ."\n";
-	 }
-	 if ( $cmdLine ) {
-			 wfPrintError( $message );
-		 } else {
-			 echo nl2br( htmlspecialchars( $message ) ). "\n";
-		 }
-	 }
+	}
 }
 
 /**
