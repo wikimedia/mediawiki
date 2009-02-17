@@ -31,7 +31,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'plural',           array( __CLASS__, 'plural'           ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofpages',    array( __CLASS__, 'numberofpages'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofusers',    array( __CLASS__, 'numberofusers'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'activeusers',      array( __CLASS__, 'activeusers'      ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'numberofactiveusers', array( __CLASS__, 'numberofactiveusers' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofarticles', array( __CLASS__, 'numberofarticles' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberoffiles',    array( __CLASS__, 'numberoffiles'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofadmins',   array( __CLASS__, 'numberofadmins'   ), SFH_NO_HASH );
@@ -245,7 +245,7 @@ class CoreParserFunctions {
 	static function numberofusers( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::users(), $raw );
 	}
-	static function activeusers( $parser, $raw = null ) {
+	static function numberofactiveusers( $parser, $raw = null ) {
 		return self::formatRaw( SiteStats::activeUsers(), $raw );
 	}
 	static function numberofarticles( $parser, $raw = null ) {

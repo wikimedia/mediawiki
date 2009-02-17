@@ -2492,7 +2492,7 @@ class Parser
 				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::images() );
 			case 'numberofusers':
 				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::users() );
-			case 'activeusers':
+			case 'numberofactiveusers':
 				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::activeUsers() );
 			case 'numberofpages':
 				return $this->mVarCache[$index] = $wgContLang->formatNum( SiteStats::pages() );
