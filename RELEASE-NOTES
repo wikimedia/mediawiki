@@ -177,7 +177,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12746) Do not allow new password e-mails when wiki is in read-only mode
 * (bug 17478) Fixed a PHP Strict standards error in
   maintenance/cleanupWatchlist.php
-* (bug 17488) RSS/Atom links in left toolbar are now localized
+* (bug 17488) RSS/Atom links in left toolbar are now localized in classic skin
 * (bug 17472) use print <<<EOF in maintenance/importTextFile.php
 * Special:PrefixIndex: Move table styling to shared.css, add CSS IDs to tables
   use correct message 'allpagesprefix' for input form label, replace _ with ' '
