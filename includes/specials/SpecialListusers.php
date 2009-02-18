@@ -171,10 +171,9 @@ class UsersPager extends AlphabeticPager {
 		$self = $this->getTitle();
 
 		# Form tag
-		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
-			'<fieldset>' .
-			Xml::element( 'legend', array(), wfMsg( 'listusers' ) );
-		$out .= Xml::hidden( 'title', $self->getPrefixedDbKey() );
+		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listusers-form' ) ) .
+			Xml::fieldset( wfMsg( 'listusers' ) ) .
+			Xml::hidden( 'title', $self->getPrefixedDbKey() );
 
 		# Username field
 		$out .= Xml::label( wfMsg( 'listusersfrom' ), 'offset' ) . ' ' .
@@ -198,17 +197,22 @@ class UsersPager extends AlphabeticPager {
 		$out .= Xml::hidden( 'limit', $this->mLimit );
 		$out .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
 		wfRunHooks( 'SpecialListusersHeader', array( $this, &$out ) );
-		$out .= '</fieldset>' .
+		$out .= Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
 
 		return $out;
 	}
 
+	/**
+	 * Get a list of all explicit groups
+	 * @return array
+	 */
 	function getAllGroups() {
 		$result = array();
 		foreach( User::getAllGroups() as $group ) {
 			$result[$group] = User::getGroupName( $group );
 		}
+		asort( $result );
 		return $result;
 	}
 

@@ -110,6 +110,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14981) Shared repositories can now have display names, located at
   Mediawiki:Shared-repo-name-REPONAME, where REPONAME is the name in 
   $wgForeignFileRepos
+* Special:ListUsers: Sort list of usergroups by alphabet
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
