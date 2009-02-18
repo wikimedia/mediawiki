@@ -1199,7 +1199,7 @@ END;
 		#$s[] = $this->specialPagesList();
 
 		if( $this->variantLinks() ) {
-			$s = $this->variantLinks();
+			$s[] = $this->variantLinks();
 		}
 
 		if( $this->extensionTabLinks() ) {
