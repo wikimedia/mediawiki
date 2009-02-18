@@ -194,6 +194,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17482) Formatting error in Special:Preferences#Misc (Opera)
 * (bug 17556) <link> parameters in Special:Contributions feeds (RSS and Atom)
   now point to the actual contributors' feed.
+* ForeignApiRepos now fetch MIME types, rather than trying to figure it locally
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
