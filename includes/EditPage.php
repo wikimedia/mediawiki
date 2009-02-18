@@ -1367,7 +1367,7 @@ class EditPage {
 
 			$editsummary = Xml::tags( 'label', array( 'for' => 'wpSummary' ), $summary );
 			$editsummary =
-				Xml::tags( 'span', array( 'id' => 'wpSummaryLabel' ), $editsummary );
+				Xml::tags( 'span', array( 'id' => 'wpSummaryLabel' ), $editsummary ) . ' ';
 				
 			$editsummary .= Xml::input( 'wpSummary',
 				60,
