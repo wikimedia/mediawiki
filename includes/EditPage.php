@@ -1344,7 +1344,7 @@ class EditPage {
 			$commentsubject = '';
 			if ( !$wgRequest->getBool( 'nosummary' ) ) {
 				$commentsubject =
-					Xml::element( 'label', array( 'for' => 'wpSummary' ), $subject );
+					Xml::tags( 'label', array( 'for' => 'wpSummary' ), $subject );
 				$commentsubject =
 					Xml::tags( 'span', array( 'id' => 'wpSummaryLabel' ), $commentsubject );
 				$commentsubject .= '&nbsp;';
@@ -1365,7 +1365,7 @@ class EditPage {
 		} else {
 			$commentsubject = '';
 
-			$editsummary = Xml::element( 'label', array( 'for' => 'wpSummary' ), $summary );
+			$editsummary = Xml::tags( 'label', array( 'for' => 'wpSummary' ), $summary );
 			$editsummary =
 				Xml::tags( 'span', array( 'id' => 'wpSummaryLabel' ), $editsummary );
 				
