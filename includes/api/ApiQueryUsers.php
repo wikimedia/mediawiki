@@ -101,20 +101,24 @@ if (!defined('MEDIAWIKI')) {
 			$data = array();
 			$res = $this->select(__METHOD__);
 			while(($r = $db->fetchObject($res))) {
-				$data[$r->user_name]['name'] = $r->user_name;
+				$user = User::newFromRow($r);
+				$name = $user->getName();
+				$data[$name]['name'] = $name;
 				if(isset($this->prop['editcount']))
-					$data[$r->user_name]['editcount'] = $r->user_editcount;
+					// No proper member function in the User class for this
+					$data[$name]['editcount'] = $r->user_editcount;
 				if(isset($this->prop['registration']))
-					$data[$r->user_name]['registration'] = wfTimestampOrNull(TS_ISO_8601, $r->user_registration);
-				if(isset($this->prop['groups']))
+					// Nor for this one
+					$data[$name]['registration'] = wfTimestampOrNull(TS_ISO_8601, $r->user_registration);
+				if(isset($this->prop['groups']) && !is_null($r->ug_group))
 					// This row contains only one group, others will be added from other rows
-					if(!is_null($r->ug_group))
-						$data[$r->user_name]['groups'][] = $r->ug_group;
-				if(isset($this->prop['blockinfo']))
-					if(!is_null($r->blocker_name)) {
-						$data[$r->user_name]['blockedby'] = $r->blocker_name;
-						$data[$r->user_name]['blockreason'] = $r->ipb_reason;
-					}
+					$data[$name]['groups'][] = $r->ug_group;
+				if(isset($this->prop['blockinfo']) && !is_null($r->blocker_name)) {
+					$data[$name]['blockedby'] = $r->blocker_name;
+					$data[$name]['blockreason'] = $r->ipb_reason;
+				}
+				if(isset($this->prop['emailable']) && $user->canReceiveEmail())
+					$data[$name]['emailable'] = '';
 			}
 		}
 		// Second pass: add result data to $retval
