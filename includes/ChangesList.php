@@ -467,6 +467,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
 	public function recentChangesLine( &$baseRC, $watched = false ) {
+
 		global $wgLang, $wgContLang, $wgUser;
 
 		# Create a specialised object
@@ -604,6 +605,7 @@ class EnhancedChangesList extends ChangesList {
 			if( !isset( $this->rc_cache[$secureName] ) ) {
 				$this->rc_cache[$secureName] = array();
 			}
+
 			array_push( $this->rc_cache[$secureName], $rc );
 		}
 		return $ret;
@@ -769,6 +771,8 @@ class EnhancedChangesList extends ChangesList {
 			# Extract fields from DB into the function scope (rc_xxxx variables)
 			// FIXME: Would be good to replace this extract() call with something
 			// that explicitly initializes variables.
+			# Classes to apply -- TODO implement
+			$classes = array();
 			extract( $rcObj->mAttribs );
 
 			#$r .= '<tr><td valign="top">'.$this->spacerArrow();
@@ -819,6 +823,9 @@ class EnhancedChangesList extends ChangesList {
 			$this->insertComment( $r, $rcObj );
 			# Rollback
 			$this->insertRollback( $r, $rcObj );
+			# Tags
+			$this->insertTags( $r, $rcObj, $classes );
+			
 			# Mark revision as deleted
 			if( !$rc_log_type && $this->isDeleted($rcObj,Revision::DELETED_TEXT) ) {
 				$r .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
@@ -892,6 +899,7 @@ class EnhancedChangesList extends ChangesList {
 		# Extract fields from DB into the function scope (rc_xxxx variables)
 		// FIXME: Would be good to replace this extract() call with something
 		// that explicitly initializes variables.
+		$classes = array(); // TODO implement
 		extract( $rcObj->mAttribs );
 		$curIdEq = "curid={$rc_cur_id}";
 
@@ -936,6 +944,8 @@ class EnhancedChangesList extends ChangesList {
 		}
 		$this->insertComment( $r, $rcObj );
 		$this->insertRollback( $r, $rcObj );
+		# Tags
+		$this->insertTags( $r, $rcObj, $classes );
 		# Show how many people are watching this if enabled
 		$r .= $this->numberofWatchingusers($rcObj->numberofWatchingusers);
 
