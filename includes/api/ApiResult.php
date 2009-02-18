@@ -221,8 +221,12 @@ class ApiResult extends ApiBase {
 	 */
 	public function setIndexedTagName_internal( $path, $tag ) {
 		$data = & $this->mData;
-		foreach((array)$path as $p)
+		foreach((array)$path as $p) {
+			if ( !isset( $data[$p] ) ) {
+				$data[$p] = array();
+			}
 			$data = & $data[$p];
+		}
 		if(is_null($data))
 			return;
 		$this->setIndexedTagName($data, $tag);
