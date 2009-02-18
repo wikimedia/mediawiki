@@ -56,9 +56,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		$pageIds = $this->getPageSet()->getAllTitlesByNamespace();
-		$titles = array_keys($pageIds[NS_FILE]);
-		asort($titles); // Ensure the order is always the same
-		if (!empty($titles)) {
+		if ( !empty( $pageIds[NS_FILE] ) ) {
+			$titles = array_keys($pageIds[NS_FILE]);
+			asort($titles); // Ensure the order is always the same
+
 			$skip = false;
 			if(!is_null($params['continue']))
 			{
