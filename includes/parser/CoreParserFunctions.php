@@ -473,11 +473,6 @@ class CoreParserFunctions {
 	static function pad( $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
 		$lengthOfPadding = mb_strlen( $padding );		
 		if ( $lengthOfPadding == 0 ) return $string;
-
-		// Thwart attempts to use this function to truncate strings.
-		//  We don't want people implementing ParserFunctions in template,
-		//  for performance and usability reasons.
-		if ($lengthOfPadding > $length && $string == '') return $string;
 		
 		# The remaining length to add counts down to 0 as padding is added
 		$length = min( $length, 500 ) - mb_strlen( $string );
