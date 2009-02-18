@@ -2269,6 +2269,15 @@ $wgExportMaxHistory = 0;
 
 $wgExportAllowListContributors = false ;
 
+/**
+ * If non-zero, Special:Export accepts a "pagelink-depth" parameter
+ * up to this specified level, which will cause it to include all
+ * pages linked to from the pages you specify. Since this number
+ * can become *insanely large* and could easily break your wiki,
+ * it's disabled by default for now.
+ */
+$wgExportMaxLinkDepth = 0;
+
 
 /**
  * Edits matching these regular expressions in body text or edit summary

@@ -32,7 +32,7 @@ class SpecialExport extends SpecialPage {
 	
 	public function execute( $par ) {
 		global $wgOut, $wgRequest, $wgSitename, $wgExportAllowListContributors;
-		global $wgExportAllowHistory, $wgExportMaxHistory;
+		global $wgExportAllowHistory, $wgExportMaxHistory, $wgExportMaxLinkDepth;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -42,7 +42,8 @@ class SpecialExport extends SpecialPage {
 		$this->doExport = false;
 		$this->templates = $wgRequest->getCheck( 'templates' );
 		$this->images = $wgRequest->getCheck( 'images' ); // Doesn't do anything yet
-		$this->pageLinkDepth = $wgRequest->getIntOrNull( 'pagelink-depth' );
+		$this->pageLinkDepth = $this->validateLinkDepth(
+			$wgRequest->getIntOrNull( 'pagelink-depth' ) );
 
 		if ( $wgRequest->getCheck( 'addcat' ) ) {
 			$page = $wgRequest->getText( 'pages' );
@@ -144,7 +145,9 @@ class SpecialExport extends SpecialPage {
 			$wgOut->addHTML( wfMsgExt( 'exportnohistory', 'parse' ) );
 		}
 		$form .= Xml::checkLabel( wfMsg( 'export-templates' ), 'templates', 'wpExportTemplates', false ) . '<br />';
-		$form .= Xml::inputLabel( wfMsg( 'export-pagelinks' ), 'pagelink-depth', 'pagelink-depth', 20, 0 ) . '<br />';
+		if( $wgExportMaxLinkDepth ) {
+			$form .= Xml::inputLabel( wfMsg( 'export-pagelinks' ), 'pagelink-depth', 'pagelink-depth', 20, 0 ) . '<br />';
+		}
 		// Enable this when we can do something useful exporting/importing image information. :)
 		//$form .= Xml::checkLabel( wfMsg( 'export-images' ), 'images', 'wpExportImages', false ) . '<br />';
 		$form .= Xml::checkLabel( wfMsg( 'export-download' ), 'wpDownload', 'wpDownload', true ) . '<br />';
@@ -268,6 +271,20 @@ class SpecialExport extends SpecialPage {
 					'templatelinks',
 					array( 'tl_namespace AS namespace', 'tl_title AS title' ),
 					array( 'page_id=tl_from' ) );
+	}
+
+	/**
+	 * Validate link depth setting, if available.
+	 */
+	private function validateLinkDepth( $depth ) {
+		global $wgExportMaxLinkDepth;
+		if( $depth < 0 ) {
+			return 0;
+		}
+		if( $depth > $wgExportMaxLinkDepth ) {
+			return $wgExportMaxLinkDepth;
+		}
+		return intval( $depth );
 	}
 
 	/** Expand a list of pages to include pages linked to from that page. */
