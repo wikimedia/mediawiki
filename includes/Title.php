@@ -2443,42 +2443,35 @@ class Title {
 	 * Get an array of Title objects referring to non-existent articles linked from this page
 	 *
 	 * @todo check if needed (used only in SpecialBrokenRedirects.php, and should use redirect table in this case)
-	 * @param array $options may be FOR UPDATE
 	 * @return \type{\arrayof{Title}} the Title objects
 	 */
-	public function getBrokenLinksFrom( $options = array() ) {
+	public function getBrokenLinksFrom() {
 		if ( $this->getArticleId() == 0 ) {
 			# All links from article ID 0 are false positives
 			return array();
 		}
 
-		if ( count( $options ) > 0 ) {
-			$db = wfGetDB( DB_MASTER );
-		} else {
-			$db = wfGetDB( DB_SLAVE );
-		}
-
-		$res = $db->safeQuery(
-			  "SELECT pl_namespace, pl_title
-			     FROM !
-			LEFT JOIN !
-			       ON pl_namespace=page_namespace
-			      AND pl_title=page_title
-			    WHERE pl_from=?
-			      AND page_namespace IS NULL
-				  !",
-			$db->tableName( 'pagelinks' ),
-			$db->tableName( 'page' ),
-			$this->getArticleId(),
-			$options );
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			array( 'page', 'pagelinks' ),
+			array( 'pl_namespace', 'pl_title' ),
+			array(
+				'pl_from' => $this->getArticleId(),
+				'page_namespace IS NULL'
+			),
+			__METHOD__, array(),
+			array(
+				'page' => array( 
+					'LEFT JOIN', 
+					array( 'pl_namespace=page_namespace', 'pl_title=page_title' )
+				)
+			)
+		);
 
 		$retVal = array();
-		if ( $db->numRows( $res ) ) {
-			foreach( $res as $row ) {
-				$retVal[] = Title::makeTitle( $row->pl_namespace, $row->pl_title );
-			}
+		foreach( $res as $row ) {
+			$retVal[] = Title::makeTitle( $row->pl_namespace, $row->pl_title );
 		}
-		$db->freeResult( $res );
 		return $retVal;
 	}
 
