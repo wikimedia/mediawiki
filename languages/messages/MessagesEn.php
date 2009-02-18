@@ -911,7 +911,7 @@ Please choose a different name.',
 'badsig'                     => 'Invalid raw signature.
 Check HTML tags.',
 'badsiglength'               => 'Your signature is too long.
-It must be under $1 {{PLURAL:$1|character|characters}}.',
+It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'yourgender'                 => 'Gender:',
 'gender-unknown'             => 'Unspecified',
 'gender-male'                => 'Male',
