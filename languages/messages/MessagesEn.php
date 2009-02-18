@@ -1946,39 +1946,39 @@ A click on a column header changes the sorting.',
 'listfiles_count'       => 'Versions',
 
 # File description page
-'filehist'                       => 'File history',
-'filehist-help'                  => 'Click on a date/time to view the file as it appeared at that time.',
-'filehist-deleteall'             => 'delete all',
-'filehist-deleteone'             => 'delete',
-'filehist-revert'                => 'revert',
-'filehist-current'               => 'current',
-'filehist-datetime'              => 'Date/Time',
-'filehist-thumb'                 => 'Thumbnail',
-'filehist-thumbtext'             => 'Thumbnail for version as of $1',
-'filehist-nothumb'               => 'No thumbnail',
-'filehist-user'                  => 'User',
-'filehist-dimensions'            => 'Dimensions',
-'filehist-filesize'              => 'File size',
-'filehist-comment'               => 'Comment',
-'imagelinks'                     => 'File links',
-'linkstoimage'                   => 'The following {{PLURAL:$1|page links|$1 pages link}} to this file:',
-'linkstoimage-more'              => 'More than $1 {{PLURAL:$1|page links|pages link}} to this file.
+'filehist'                  => 'File history',
+'filehist-help'             => 'Click on a date/time to view the file as it appeared at that time.',
+'filehist-deleteall'        => 'delete all',
+'filehist-deleteone'        => 'delete',
+'filehist-revert'           => 'revert',
+'filehist-current'          => 'current',
+'filehist-datetime'         => 'Date/Time',
+'filehist-thumb'            => 'Thumbnail',
+'filehist-thumbtext'        => 'Thumbnail for version as of $1',
+'filehist-nothumb'          => 'No thumbnail',
+'filehist-user'             => 'User',
+'filehist-dimensions'       => 'Dimensions',
+'filehist-filesize'         => 'File size',
+'filehist-comment'          => 'Comment',
+'imagelinks'                => 'File links',
+'linkstoimage'              => 'The following {{PLURAL:$1|page links|$1 pages link}} to this file:',
+'linkstoimage-more'         => 'More than $1 {{PLURAL:$1|page links|pages link}} to this file.
 The following list shows the {{PLURAL:$1|first page link|first $1 page links}} to this file only.
 A [[Special:WhatLinksHere/$2|full list]] is available.',
-'nolinkstoimage'                 => 'There are no pages that link to this file.',
-'morelinkstoimage'               => 'View [[Special:WhatLinksHere/$1|more links]] to this file.',
-'redirectstofile'                => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:',
-'duplicatesoffile'               => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file ([[Special:FileDuplicateSearch/$2|more details]]):',
-'sharedupload'                   => 'This file is from $1 and may be used by other projects. $2', // $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'               => 'Please see the $1 for further information.',
-'shareduploadwiki-desc'          => 'The description on its $1 there is shown below.',
-'shareduploadwiki-linktext'      => 'file description page',
-'shareddescriptionfollows'       => '-', # do not translate or duplicate this message to other languages
-'noimage'                        => 'No file by this name exists, but you can $1.',
-'noimage-linktext'               => 'upload one',
-'uploadnewversion-linktext'      => 'Upload a new version of this file',
-'shared-repo-from'				 => 'from $1', // $1 is the repository name
-'shared-repo'					 => 'a shared repository', // used when shared-repo-NAME doesn't exist
+'nolinkstoimage'            => 'There are no pages that link to this file.',
+'morelinkstoimage'          => 'View [[Special:WhatLinksHere/$1|more links]] to this file.',
+'redirectstofile'           => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:',
+'duplicatesoffile'          => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file ([[Special:FileDuplicateSearch/$2|more details]]):',
+'sharedupload'              => 'This file is from $1 and may be used by other projects. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'shareduploadwiki'          => 'Please see the $1 for further information.',
+'shareduploadwiki-desc'     => 'The description on its $1 there is shown below.',
+'shareduploadwiki-linktext' => 'file description page',
+'shareddescriptionfollows'  => '-', # do not translate or duplicate this message to other languages
+'noimage'                   => 'No file by this name exists, but you can $1.',
+'noimage-linktext'          => 'upload one',
+'uploadnewversion-linktext' => 'Upload a new version of this file',
+'shared-repo-from'          => 'from $1', # $1 is the repository name
+'shared-repo'               => 'a shared repository', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Revert $1',
