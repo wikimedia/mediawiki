@@ -84,12 +84,12 @@ class Article {
 			return $this->mRedirectTarget;
 		# Query the redirect table
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'redirect',
+		$row = $dbr->selectRow( 'redirect',
 			array('rd_namespace', 'rd_title'),
-			array('rd_from' => $this->getID()),
+			array('rd_from' => $this->getID() ),
 			__METHOD__
 		);
-		if( $row = $dbr->fetchObject($res) ) {
+		if( $row ) {
 			return $this->mRedirectTarget = Title::makeTitle($row->rd_namespace, $row->rd_title);
 		}
 		# This page doesn't have an entry in the redirect table
