@@ -504,6 +504,10 @@ class LogPager extends ReverseChronologicalPager {
 
 	public function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
+		$query['type'] = $this->type;
+		$query['user'] = $this->user;
+		$query['month'] = $this->mMonth;
+		$query['year'] = $this->mYear;
 		return $query;
 	}
 
