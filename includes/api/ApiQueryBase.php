@@ -183,8 +183,9 @@ abstract class ApiQueryBase extends ApiBase {
 	 *  this is the lower boundary, otherwise it's the upper boundary
 	 * @param $end string Value to end the list at. If $dir == 'newer' this
 	 *  is the upper boundary, otherwise it's the lower boundary
+	 * @param $sort bool If false, don't add an ORDER BY clause
 	 */
-	protected function addWhereRange($field, $dir, $start, $end) {
+	protected function addWhereRange($field, $dir, $start, $end, $sort = true) {
 		$isDirNewer = ($dir === 'newer');
 		$after = ($isDirNewer ? '>=' : '<=');
 		$before = ($isDirNewer ? '<=' : '>=');
@@ -196,11 +197,13 @@ abstract class ApiQueryBase extends ApiBase {
 		if (!is_null($end))
 			$this->addWhere($field . $before . $db->addQuotes($end));
 
-		$order = $field . ($isDirNewer ? '' : ' DESC');
-		if (!isset($this->options['ORDER BY']))
-			$this->addOption('ORDER BY', $order);
-		else
-			$this->addOption('ORDER BY', $this->options['ORDER BY'] . ', ' . $order);
+		if ($sort) {
+			$order = $field . ($isDirNewer ? '' : ' DESC');
+			if (!isset($this->options['ORDER BY']))
+				$this->addOption('ORDER BY', $order);
+			else
+				$this->addOption('ORDER BY', $this->options['ORDER BY'] . ', ' . $order);
+		}
 	}
 
 	/**
