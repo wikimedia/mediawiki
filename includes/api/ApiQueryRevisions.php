@@ -176,9 +176,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 			if (is_null($params['startid']) && is_null($params['endid']))
 				$this->addWhereRange('rev_timestamp', $params['dir'],
 					$params['start'], $params['end']);
-			else
+			else {
 				$this->addWhereRange('rev_id', $params['dir'],
 					$params['startid'], $params['endid']);
+				// One of start and end can be set
+				// If neither is set, this does nothing
+				$this->addWhereRange('rev_timestamp', $params['dir'],
+					$params['start'], $params['end'], false);
+			}
 
 			// must manually initialize unset limit
 			if (is_null($limit))

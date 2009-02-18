@@ -189,6 +189,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * File dupe messages for remote repos are now shown only once.
 * (bug 14980) Messages 'shareduploadwiki' and 'shareduploadwiki-desc' are now
   used as a parameter in 'sharedupload' for easier styling and customization.
+* (bug 17482) Formatting error in Special:Preferences#Misc (Opera)
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
@@ -223,7 +224,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added mainmodule and pagesetmodule parameters to action=paraminfo
 * (bug 17502) meta=siteinfo&siprop=namespacealiases no longer lists namespace
   aliases already listed in siprop=namespaces
-* (bug 17482) Formatting error in Special:Preferences#Misc (Opera)
+* (bug 17529) rvend ignored when rvstartid is specified
 
 === Languages updated in 1.15 ===
 
