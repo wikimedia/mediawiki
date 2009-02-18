@@ -671,7 +671,6 @@ class Xml {
 	
 		foreach( $fields as $labelmsg => $input ) {
 			$id = "mw-$labelmsg";
-			
 			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
 			$form .= Xml::tags( 'td', array('class' => 'mw-label'), wfMsgExt( $labelmsg, array('parseinline') ) );
 			$form .= Xml::openElement( 'td', array( 'class' => 'mw-input' ) ) . $input . Xml::closeElement( 'td' );
@@ -679,7 +678,7 @@ class Xml {
 		}
 
 		if( $submitLabel ) {
-			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
+			$form .= Xml::openElement( 'tr' );
 			$form .= Xml::tags( 'td', array(), '' );
 			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) ) . Xml::submitButton( wfMsg( $submitLabel ) ) . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
