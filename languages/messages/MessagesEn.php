@@ -1971,7 +1971,7 @@ A [[Special:WhatLinksHere/$2|full list]] is available.',
 'duplicatesoffile'               => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file ([[Special:FileDuplicateSearch/$2|more details]]):',
 'sharedupload'                   => 'This file is from $1 and may be used by other projects. $2', // $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'               => 'Please see the $1 for further information.',
-'shareduploadwiki-desc'          => 'The description on its $1 on is shown below.',
+'shareduploadwiki-desc'          => 'The description on its $1 there is shown below.',
 'shareduploadwiki-linktext'      => 'file description page',
 'shareddescriptionfollows'       => '-', # do not translate or duplicate this message to other languages
 'noimage'                        => 'No file by this name exists, but you can $1.',
