@@ -1393,6 +1393,7 @@ class EditPage {
 			}
 			$subjectpreview = '';
 		}
+		$commentsubject .= $summaryhiddens;
 
 		# Set focus to the edit box on load, except on preview or diff, where it would interfere with the display
 		if ( !$this->preview && !$this->diff ) {
