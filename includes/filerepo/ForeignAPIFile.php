@@ -87,11 +87,11 @@ class ForeignAPIFile extends File {
 	}
 	
 	function getMimeType() {
-		if( empty( $info['mime'] ) ) {
+		if( !isset( $this->mInfo['mime'] ) ) {
 			$magic = MimeMagic::singleton();
-			$info['mime'] = $magic->guessTypesForExtension( $this->getExtension() );
+			$this->mInfo['mime'] = $magic->guessTypesForExtension( $this->getExtension() );
 		}
-		return $info['mime'];
+		return $this->mInfo['mime'];
 	}
 	
 	/// @fixme May guess wrong on file types that can be eg audio or video
