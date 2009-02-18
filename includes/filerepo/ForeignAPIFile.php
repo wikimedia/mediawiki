@@ -59,7 +59,14 @@ class ForeignAPIFile extends File {
 	}
 	
 	public function getMetadata() {
-		return serialize( (array)@$this->mInfo['metadata'] );
+		if ( isset( $this->mInfo['metadata'] ) ) {
+			$ret = array();
+			foreach( $this->mInfo['metadata'] as $meta ) {
+				$ret[ $meta['name'] ] = $meta['value'];
+			}
+			return serialize( $ret );
+		}
+		return null;
 	}
 	
 	public function getSize() {
