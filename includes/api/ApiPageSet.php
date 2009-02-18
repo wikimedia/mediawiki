@@ -501,7 +501,7 @@ class ApiPageSet extends ApiQueryBase {
 		if(!count($revids))
 			return;
 
-		$revIDs = array_map('intval', $revIDs); // paranoia
+		$revids = array_map('intval', $revids); // paranoia
 		$db = $this->getDB();
 		$pageids = array();
 		$remaining = array_flip($revids);
