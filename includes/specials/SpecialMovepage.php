@@ -284,6 +284,7 @@ class MovePageForm {
 		);
 
 		$this->showLogFragment( $this->oldTitle, $wgOut );
+		$this->showSubpages( $this->oldTitle, $wgOut );
 
 	}
 
@@ -497,4 +498,32 @@ class MovePageForm {
 		LogEventsList::showLogExtract( $out, 'move', $title->getPrefixedText() );
 	}
 
+	function showSubpages( $title, $out ) {
+		global $wgUser;
+
+		if( !MWNamespace::hasSubpages( $title->getNamespace() ) )
+			return;
+
+		$out->wrapWikiMsg( '== $1 ==', 'movesubpage' );
+		$subpages = $title->getSubpages();
+
+		# No subpages.
+		if ( !( $subpages instanceof TitleArray ) || $subpages->count() == 0 ) {
+			$out->addWikiMsg( 'movenosubpage' );
+			return;
+		}
+
+		$skin = $wgUser->getSkin();
+		$out->addHTML( "<ul>\n" );
+
+		foreach( $subpages as $subpage ) {
+			$link = $skin->link( $subpage );
+			if ( $subpage->isRedirect() )
+				$link = '<div class="allpagesredirect">' . $link . '</div>' ;
+
+			$out->addHTML( "<li>$link</li>\n" );
+		}
+		$out->addHTML( "</ul>\n" );
+	}
 }
+
