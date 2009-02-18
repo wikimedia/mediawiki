@@ -266,7 +266,7 @@ class SpecialContributions extends SpecialPage {
 		return $f;
 	}
 	
-		/**
+	/**
 	 * Output a subscription feed listing recent edits to this page.
 	 * @param string $type
 	 */
@@ -288,7 +288,7 @@ class SpecialContributions extends SpecialPage {
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
 			wfMsgExt( 'tagline', 'parsemag' ),
-			$this->getTitle()->getFullUrl() );
+			$this->getTitle()->getFullUrl() . "/" . htmlspecialchars( $this->opts['target'] ) );
 			
 		// Already valid title
 		$nt = Title::makeTitleSafe( NS_USER, $this->opts['target'] );
