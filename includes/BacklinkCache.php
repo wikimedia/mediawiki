@@ -206,28 +206,24 @@ class BacklinkCache {
 		$batches = array();
 		$numRows = $res->numRows();
 		$numBatches = ceil( $numRows / $batchSize );
-		if ( !$numRows ) {
-			$batches = array( array( false, false ) );
-		} else {
-			for ( $i = 0; $i < $numBatches; $i++ ) {
-				if ( $i == 0  ) {
-					$start = false;
-				} else {
-					$rowNum = intval( $numRows * $i / $numBatches );
-					$res->seek( $rowNum );
-					$row = $res->fetchObject();
-					$start = $row->page_id;
-				}
-				if ( $i == $numBatches - 1 ) {
-					$end = false;
-				} else {
-					$rowNum = intval( $numRows * ( $i + 1 ) / $numBatches );
-					$res->seek( $rowNum );
-					$row = $res->fetchObject();
-					$end = $row->page_id - 1;
-				}
-				$batches[] = array( $start, $end );
+		for ( $i = 0; $i < $numBatches; $i++ ) {
+			if ( $i == 0  ) {
+				$start = false;
+			} else {
+				$rowNum = intval( $numRows * $i / $numBatches );
+				$res->seek( $rowNum );
+				$row = $res->fetchObject();
+				$start = $row->page_id;
 			}
+			if ( $i == $numBatches - 1 ) {
+				$end = false;
+			} else {
+				$rowNum = intval( $numRows * ( $i + 1 ) / $numBatches );
+				$res->seek( $rowNum );
+				$row = $res->fetchObject();
+				$end = $row->page_id - 1;
+			}
+			$batches[] = array( $start, $end );
 		}
 		return array( 'numRows' => $numRows, 'batches' => $batches );
 	}
