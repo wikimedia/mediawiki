@@ -498,7 +498,7 @@ $1',
 'laggedslavemode'      => 'Aviso: a páxina pode non conter actualizacións recentes.',
 'readonly'             => 'Base de datos fechada',
 'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
-'readonlytext'         => 'Nestes momentos a base de datos está pechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento da base de datos, tras as que voltará á normalidade.
+'readonlytext'         => 'Nestes intres a base de datos está pechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento, tras as que voltará á normalidade.
 
 O administrador que a pechou deu esta explicación: $1',
 'missing-article'      => 'A base de datos non atopa o texto da páxina chamada "$1" $2, que debera ter atopado.
@@ -620,10 +620,10 @@ Verifique o nome que inseriu ou [[Special:UserLogin/signup|cree unha nova conta]
 'nosuchusershort'            => 'Non hai ningún usuario chamado "<nowiki>$1</nowiki>".
 Verifique o nome que inseriu.',
 'nouserspecified'            => 'Debe especificar un nome de usuario.',
-'wrongpassword'              => 'o contrasinal escrito é incorrecto.
+'wrongpassword'              => 'O contrasinal escrito é incorrecto.
 Por favor, insira outro.',
-'wrongpasswordempty'         => 'o campo do contrasinal estaba en branco.
-Por favor, ténteo de novo.',
+'wrongpasswordempty'         => 'O campo do contrasinal estaba en branco.
+Por favor, inténteo de novo.',
 'passwordtooshort'           => 'O seu contrasinal é inválido ou demasiado curto.
 Debe conter como mínimo {{PLURAL:$1|1 carácter|$1 caracteres}} e ten que ser diferente do seu nome de usuario.',
 'mailmypassword'             => 'Enviádeme un contrasinal novo por correo',
@@ -836,7 +836,7 @@ O administrador que a fechou deu esta explicación: $1",
 'protectedpagewarning'             => "'''ATENCIÓN: esta páxina foi fechada de xeito que só os usuarios con privilexios de administrador do sistema poden editala.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' esta páxina foi bloqueada e só os usuarios rexistrados poden editala.",
 'cascadeprotectedwarning'          => "'''Aviso:''' esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina protexida|nas seguintes páxinas protexidas}} coa opción \"protección en serie\" activada:",
-'titleprotectedwarning'            => "'''AVISO: bloqueouse esta páxina para que só algúns usuarios a poidan crear.'''",
+'titleprotectedwarning'            => "'''AVISO: bloqueouse esta páxina para que [[Special:ListGroupRights|só algúns usuarios]] a poidan crear.'''",
 'templatesused'                    => 'Modelos usados nesta páxina:',
 'templatesusedpreview'             => 'Modelos usados nesta vista previa:',
 'templatesusedsection'             => 'Modelos usados nesta sección:',
@@ -902,7 +902,7 @@ A razón dada por $3 foi ''$2''",
 'revision-info'          => 'Revisión feita por $2 ás $1', # Additionally available: $3: revision id
 'previousrevision'       => '← Revisión máis antiga',
 'nextrevision'           => 'Revisión máis nova →',
-'currentrevisionlink'    => 'Ver revisión actual',
+'currentrevisionlink'    => 'Revisión actual',
 'cur'                    => 'actual',
 'next'                   => 'seguinte',
 'last'                   => 'última',
@@ -1551,40 +1551,38 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 'listfiles_count'       => 'Versións',
 
 # File description page
-'filehist'                       => 'Historial do ficheiro',
-'filehist-help'                  => 'Faga clic nunha data/hora para ver o ficheiro tal e como estaba nese momento.',
-'filehist-deleteall'             => 'borrar todo',
-'filehist-deleteone'             => 'borrar',
-'filehist-revert'                => 'reverter',
-'filehist-current'               => 'actual',
-'filehist-datetime'              => 'Data/Hora',
-'filehist-thumb'                 => 'Miniatura',
-'filehist-thumbtext'             => 'Miniatura da versión ás $1',
-'filehist-nothumb'               => 'Sen miniatura',
-'filehist-user'                  => 'Usuario',
-'filehist-dimensions'            => 'Dimensións',
-'filehist-filesize'              => 'Tamaño do ficheiro',
-'filehist-comment'               => 'Comentario',
-'imagelinks'                     => 'Ligazóns do ficheiro',
-'linkstoimage'                   => '{{PLURAL:$1|A seguinte páxina liga|As seguintes $1 páxinas ligan}} con esta imaxe:',
-'linkstoimage-more'              => 'Máis {{PLURAL:$1|dunha páxina liga|de $1 páxinas ligan}} con este ficheiro.
+'filehist'                  => 'Historial do ficheiro',
+'filehist-help'             => 'Faga clic nunha data/hora para ver o ficheiro tal e como estaba nese momento.',
+'filehist-deleteall'        => 'borrar todo',
+'filehist-deleteone'        => 'borrar',
+'filehist-revert'           => 'reverter',
+'filehist-current'          => 'actual',
+'filehist-datetime'         => 'Data/Hora',
+'filehist-thumb'            => 'Miniatura',
+'filehist-thumbtext'        => 'Miniatura da versión ás $1',
+'filehist-nothumb'          => 'Sen miniatura',
+'filehist-user'             => 'Usuario',
+'filehist-dimensions'       => 'Dimensións',
+'filehist-filesize'         => 'Tamaño do ficheiro',
+'filehist-comment'          => 'Comentario',
+'imagelinks'                => 'Ligazóns do ficheiro',
+'linkstoimage'              => '{{PLURAL:$1|A seguinte páxina liga|As seguintes $1 páxinas ligan}} con esta imaxe:',
+'linkstoimage-more'         => 'Máis {{PLURAL:$1|dunha páxina liga|de $1 páxinas ligan}} con este ficheiro.
 A seguinte lista só amosa {{PLURAL:$1|a primeira páxina que liga|as primeiras $1 páxina que ligan}} con el.
 Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
-'nolinkstoimage'                 => 'Ningunha páxina liga con este ficheiro.',
-'morelinkstoimage'               => 'Ver [[Special:WhatLinksHere/$1|máis ligazóns]] cara a este ficheiro.',
-'redirectstofile'                => '{{PLURAL:$1|O seguinte ficheiro redirixe|Os seguintes $1 ficheiros redirixen}} cara a este:',
-'duplicatesoffile'               => '{{PLURAL:$1|O seguinte ficheiro é un duplicado|Os seguintes $1 ficheiros son duplicados}} destoutro ([[Special:FileDuplicateSearch/$2|máis detalles]]):',
-'sharedupload'                   => 'Este ficheiro é un envío compartido e pode ser usado por outros proxectos.',
-'shareduploadwiki'               => 'Por favor, vexa a $1 para máis información.',
-'shareduploadwiki-desc'          => 'Embaixo móstrase a descrición da $1 no repositorio de imaxes.',
-'shareduploadwiki-linktext'      => 'páxina de descrición do ficheiro',
-'shareduploadduplicate'          => 'Este ficheiro é un duplicado $1 que está no repositorio.',
-'shareduploadduplicate-linktext' => 'doutro ficheiro',
-'shareduploadconflict'           => 'Este ficheiro comparte o nome $1 que está no repositorio.',
-'shareduploadconflict-linktext'  => 'doutro ficheiro',
-'noimage'                        => 'Non existe ningún ficheiro con ese nome, pero pode $1.',
-'noimage-linktext'               => 'cargar un',
-'uploadnewversion-linktext'      => 'Cargar unha nova versión deste ficheiro',
+'nolinkstoimage'            => 'Ningunha páxina liga con este ficheiro.',
+'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|máis ligazóns]] cara a este ficheiro.',
+'redirectstofile'           => '{{PLURAL:$1|O seguinte ficheiro redirixe|Os seguintes $1 ficheiros redirixen}} cara a este:',
+'duplicatesoffile'          => '{{PLURAL:$1|O seguinte ficheiro é un duplicado|Os seguintes $1 ficheiros son duplicados}} destoutro ([[Special:FileDuplicateSearch/$2|máis detalles]]):',
+'sharedupload'              => 'Este ficheiro é da $1 e pode ser usado por outros proxectos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'shareduploadwiki'          => 'Por favor, vexa a $1 para máis información.',
+'shareduploadwiki-desc'     => 'A continuación móstrase a descrición que alí hai na $1.',
+'shareduploadwiki-linktext' => 'páxina de descrición do ficheiro',
+'noimage'                   => 'Non existe ningún ficheiro con ese nome, pero pode $1.',
+'noimage-linktext'          => 'cargar un',
+'uploadnewversion-linktext' => 'Cargar unha nova versión deste ficheiro',
+'shared-repo-from'          => 'da $1', # $1 is the repository name
+'shared-repo'               => 'un repositorio compartido', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Desfacer $1',

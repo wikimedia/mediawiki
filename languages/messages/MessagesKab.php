@@ -6,6 +6,7 @@
  *
  * @author Agurzil
  * @author Agzennay
+ * @author Azwaw
  * @author Teak
  * @author Urhixidur
  */
@@ -60,7 +61,7 @@ $messages = array(
 'tog-previewontop'            => 'Ssken pre-timeẓriwt uqbel tankult ubeddel',
 'tog-previewonfirst'          => 'Ssken pre-timeẓriwt akk d ubeddel amezwaru',
 'tog-nocache'                 => 'Kkes lkac n usebter',
-'tog-enotifwatchlistpages'    => 'Azen-iyi-d e-mail asmi yettubeddel asebter i ttɛassaɣ',
+'tog-enotifwatchlistpages'    => "Azen-iyi-d e-mail m'ara yettubeddel asebter i ttɛassaɣ",
 'tog-enotifusertalkpages'     => 'Azen-iyi-d e-mail asmi sɛiɣ izen amaynut',
 'tog-enotifminoredits'        => 'Azen-iyi-d e-mail ma llan ibeddlen ifessasen',
 'tog-enotifrevealaddr'        => 'Ssken e-mail inu asmi yettwazen email n talɣut',
@@ -849,7 +850,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'imagelinks'                => 'Izdayen',
 'linkstoimage'              => 'isebtar-agi sɛan azday ar afaylu-agi',
 'nolinkstoimage'            => 'Ulaḥedd seg isebtar sɛan azday ar afaylu-agi.',
-'sharedupload'              => 'Afaylu-yagi yettuseqdac sɣur wiki tiyaḍ.',
+'sharedupload'              => 'Afaylu-yagi yettuseqdac sɣur wiki tiyaḍ.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Ẓer $1 iwakken ad tessneḍ kter.',
 'shareduploadwiki-linktext' => 'Asebter n weglam n ufaylu',
 'noimage'                   => 'Afaylu s yisem-agi ulac-it, tzemreḍ ad $1.',

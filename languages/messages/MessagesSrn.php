@@ -836,7 +836,7 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'imagelinks'                => 'File nen miti',
 'linkstoimage'              => '{{PLURAL:$1|A papira|$1 Den papira}} disi e kebroike a file disi:',
 'nolinkstoimage'            => 'Nowan papira e miti kon na a file disi.',
-'sharedupload'              => 'A file disi lai poti fu prati én tra project kan kebroiki en.',
+'sharedupload'              => 'A file disi lai poti fu prati én tra project kan kebroiki en.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Si $1 fu pasa infrumasi.',
 'shareduploadwiki-linktext' => 'gefreinfrumasi',
 'noimage'                   => 'No wan file de nanga a nen disi. Yu kan $1.',

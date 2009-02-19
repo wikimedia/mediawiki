@@ -947,7 +947,7 @@ PICT # mešano
 'linkstoimage'              => 'Datoteka je del naslednjih strani slovenske {{GRAMMAR:rodilnik|{{SITENAME}}}} (strani drugih projektov niso navedene):',
 'nolinkstoimage'            => 'Z datoteko se ne povezuje nobena stran.',
 'redirectstofile'           => 'Na to datoteko {{PLURAL:$1|preusmerja naslednja datoteka|preusmerjata naslednji datoteki|preusmerjajo naslednje $1 datoteke|preusmerja naslednjih $1 datotek|preusmerja naslednjih $1 datotek}}:',
-'sharedupload'              => 'Datoteka se s tega mesta lahko uporabi tudi v drugih projektih.',
+'sharedupload'              => 'Datoteka se s tega mesta lahko uporabi tudi v drugih projektih.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Nadaljnje informacije najdete na strani $1.',
 'shareduploadwiki-desc'     => '<span id="shuwd" class="shuwd">Spodaj je prikazan opis iz $1.</span>',
 'shareduploadwiki-linktext' => 'Opisna stran datoteke',

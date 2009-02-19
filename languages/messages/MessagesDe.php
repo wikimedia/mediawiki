@@ -7,6 +7,7 @@
  * @author Als-Holder
  * @author ChrisiPK
  * @author Church of emacs
+ * @author Duesentrieb
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Li-sung
  * @author MF-Warburg
@@ -604,7 +605,8 @@ Alle verfügbaren Spezialseiten sind in der [[Special:SpecialPages|Liste der Spe
 # General errors
 'error'                => 'Fehler',
 'databaseerror'        => 'Fehler in der Datenbank',
-'dberrortext'          => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
+'dberrortext'          => 'Es ist ein Datenbankfehler aufgetreten.
+Der Grund kann ein Timeout sein, der Ausfall eines Servers oder auch ein Programmierfehler.
 Die letzte Datenbankabfrage lautete: <blockquote><tt>$1</tt></blockquote> aus der Funktion „<tt>$2</tt>“.
 MySQL meldete den Fehler „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
@@ -945,7 +947,7 @@ Grund für die Sperre: $1",
 'protectedpagewarning'             => "'''ACHTUNG: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.'''",
 'semiprotectedpagewarning'         => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können.",
 'cascadeprotectedwarning'          => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:'''",
-'titleprotectedwarning'            => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur bestimmte Benutzergruppen können die Seite erstellen.'''",
+'titleprotectedwarning'            => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur Benutzer mit [[Special:ListGroupRights|speziellen Rechten]] können die Seite erstellen.'''",
 'templatesused'                    => 'Folgende Vorlagen werden von dieser Seite verwendet:',
 'templatesusedpreview'             => 'Folgende Vorlagen werden von dieser Seitenvorschau verwendet:',
 'templatesusedsection'             => 'Folgende Vorlagen werden von diesem Abschnitt verwendet:',
@@ -1644,40 +1646,38 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'listfiles_count'       => 'Versionen',
 
 # File description page
-'filehist'                       => 'Dateiversionen',
-'filehist-help'                  => 'Klicke auf einen Zeitpunkt, um diese Version zu laden.',
-'filehist-deleteall'             => 'Alle Versionen löschen',
-'filehist-deleteone'             => 'Diese Version löschen',
-'filehist-revert'                => 'zurücksetzen',
-'filehist-current'               => 'aktuell',
-'filehist-datetime'              => 'Version vom',
-'filehist-thumb'                 => 'Vorschaubild',
-'filehist-thumbtext'             => 'Vorschaubild für Version vom $1',
-'filehist-nothumb'               => 'Kein Vorschaubild vorhanden',
-'filehist-user'                  => 'Benutzer',
-'filehist-dimensions'            => 'Maße',
-'filehist-filesize'              => 'Dateigröße',
-'filehist-comment'               => 'Kommentar',
-'imagelinks'                     => 'Dateiverwendungen',
-'linkstoimage'                   => 'Die {{PLURAL:$1|folgende Seite verwendet|folgenden $1 Seiten verwenden}} diese Datei:',
-'linkstoimage-more'              => 'Mehr als {{PLURAL:$1|eine Seite verlinkt|$1 Seiten verlinken}} auf diese Datei.
+'filehist'                  => 'Dateiversionen',
+'filehist-help'             => 'Klicke auf einen Zeitpunkt, um diese Version zu laden.',
+'filehist-deleteall'        => 'Alle Versionen löschen',
+'filehist-deleteone'        => 'Diese Version löschen',
+'filehist-revert'           => 'zurücksetzen',
+'filehist-current'          => 'aktuell',
+'filehist-datetime'         => 'Version vom',
+'filehist-thumb'            => 'Vorschaubild',
+'filehist-thumbtext'        => 'Vorschaubild für Version vom $1',
+'filehist-nothumb'          => 'Kein Vorschaubild vorhanden',
+'filehist-user'             => 'Benutzer',
+'filehist-dimensions'       => 'Maße',
+'filehist-filesize'         => 'Dateigröße',
+'filehist-comment'          => 'Kommentar',
+'imagelinks'                => 'Dateiverwendungen',
+'linkstoimage'              => 'Die {{PLURAL:$1|folgende Seite verwendet|folgenden $1 Seiten verwenden}} diese Datei:',
+'linkstoimage-more'         => 'Mehr als {{PLURAL:$1|eine Seite verlinkt|$1 Seiten verlinken}} auf diese Datei.
 Die folgende Liste zeigt nur {{PLURAL:$1|den ersten Link|die ersten $1 Links}} auf diese Datei.
 Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
-'nolinkstoimage'                 => 'Keine Seite benutzt diese Datei.',
-'morelinkstoimage'               => '[[Special:WhatLinksHere/$1|Weitere Links]] für diese Datei.',
-'redirectstofile'                => 'Die {{PLURAL:$1|folgende Datei leitet|folgenden $1 Dateien leiten}} auf diese Datei weiter:',
-'duplicatesoffile'               => 'Die {{PLURAL:$1|folgende Datei ist ein Duplikat|folgenden $1 Dateien sind Duplikate}} dieser Datei ([[Special:FileDuplicateSearch/$2|weitere Details]]):',
-'sharedupload'                   => 'Diese Datei ist ein gemeinsam genutzter Upload und kann von anderen Projekten verwendet werden.',
-'shareduploadwiki'               => 'Für weitere Informationen siehe die $1.',
-'shareduploadwiki-desc'          => 'Es folgt der Inhalt der $1 aus dem gemeinsam benutzten Repositorium.',
-'shareduploadwiki-linktext'      => 'Datei-Beschreibungsseite',
-'shareduploadduplicate'          => 'Diese Datei ist ein Duplikat $1 aus dem gemeinsam genutzten Repositorium.',
-'shareduploadduplicate-linktext' => 'dieser anderen Datei',
-'shareduploadconflict'           => 'Diese Datei hat denselben Namen wie $1 aus dem gemeinsam genutzten Repositorium.',
-'shareduploadconflict-linktext'  => 'diese andere Datei',
-'noimage'                        => 'Eine Datei mit diesem Namen existiert nicht, du kannst sie jedoch $1.',
-'noimage-linktext'               => 'hochladen',
-'uploadnewversion-linktext'      => 'Eine neue Version dieser Datei hochladen',
+'nolinkstoimage'            => 'Keine Seite benutzt diese Datei.',
+'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Weitere Links]] für diese Datei.',
+'redirectstofile'           => 'Die {{PLURAL:$1|folgende Datei leitet|folgenden $1 Dateien leiten}} auf diese Datei weiter:',
+'duplicatesoffile'          => 'Die {{PLURAL:$1|folgende Datei ist ein Duplikat|folgenden $1 Dateien sind Duplikate}} dieser Datei ([[Special:FileDuplicateSearch/$2|weitere Details]]):',
+'sharedupload'              => 'Diese Datei stammt aus $1 und darf von anderen Projekten verwendet werden. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'shareduploadwiki'          => 'Für weitere Informationen siehe die $1.',
+'shareduploadwiki-desc'     => 'Es folgt der Inhalt der $1.',
+'shareduploadwiki-linktext' => 'Datei-Beschreibungsseite',
+'noimage'                   => 'Eine Datei mit diesem Namen existiert nicht, du kannst sie jedoch $1.',
+'noimage-linktext'          => 'hochladen',
+'uploadnewversion-linktext' => 'Eine neue Version dieser Datei hochladen',
+'shared-repo-from'          => 'aus $1', # $1 is the repository name
+'shared-repo'               => 'einem gemeinsam genutzten Medienarchiv', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Zurücksetzen von „$1“',

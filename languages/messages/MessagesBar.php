@@ -127,8 +127,14 @@ $messages = array(
 'editundo' => 'rückgängig',
 
 # Search results
-'search-result-size' => '$1 ({{PLURAL:$2|1 Woat|$2 Wöata}})',
-'powersearch-redir'  => 'Weidaleitungen ãnzoang',
+'searchresults-title'   => 'Eagebnisse vu da Suach nåch „$1“',
+'searchresulttext'      => "Fia weidare Infos üwa's Suacha schau auf'd [[{{MediaWiki:Helppage}}|Hüifeseitn]].",
+'searchsubtitle'        => 'Dei Suachãnfråg: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|ålle Seitn, de mid „$1“ ãnfãngan]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ålle Seitn, de wås nåch „$1“ valinkn]])',
+'searchsubtitleinvalid' => 'Dei Suachãnfråg: „$1“.',
+'noexactmatch'          => "'''Es gibt ka Seitn mi'm Titl „$1“.'''
+Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
+'search-result-size'    => '$1 ({{PLURAL:$2|1 Woat|$2 Wöata}})',
+'powersearch-redir'     => 'Weidaleitungen ãnzoang',
 
 # Preferences page
 'mypreferences' => 'Eistellunga',

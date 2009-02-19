@@ -1055,7 +1055,7 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órd
 'imagelinks'                => 'Anliure a le figure',
 'linkstoimage'              => "Le pàgine sì sota a l'han andrinta dj'anliure a sta figura-sì:",
 'nolinkstoimage'            => "Pa gnun-a pàgina che a l'abia n'anliura a sta figura-sì.",
-'sharedupload'              => "St'archivi-sì a l'é stait carià an comun; donca a peul esse dovrà antra vàire proget wiki diferent.",
+'sharedupload'              => "St'archivi-sì a l'é stait carià an comun; donca a peul esse dovrà antra vàire proget wiki diferent.", # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Che as varda $1 për savejne dë pì.',
 'shareduploadwiki-desc'     => "La descrission ch'a-i resta ansima a $1 as ës-ciàira ambelessì sota.",
 'shareduploadwiki-linktext' => "pàgina dë spiegon dl'archivi",

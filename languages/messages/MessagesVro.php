@@ -995,7 +995,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'imagelinks'                => 'Pildilingiq',
 'linkstoimage'              => 'Taa pildi pääle {{PLURAL:$1|näütäs lehekülg|näütäseq leheküleq}}:',
 'nolinkstoimage'            => 'Taa pildi pääle näütä-i ütski lehekülg.',
-'sharedupload'              => 'Taa om ütine teedüstü, taad võivaq pruukiq ka tõõsõq vikiq.',
+'sharedupload'              => 'Taa om ütine teedüstü, taad võivaq pruukiq ka tõõsõq vikiq.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Taa kotsilõ saa lähkümbält kaiaq $1.',
 'shareduploadwiki-linktext' => 'seletüsleheküle päält',
 'noimage'                   => 'Olõ-i säänest teedüstüt, võit taa esiq $1.',

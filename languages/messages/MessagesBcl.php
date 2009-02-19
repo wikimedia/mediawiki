@@ -1039,7 +1039,7 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'imagelinks'                => 'Mga takod',
 'linkstoimage'              => 'An mga minasunod na pahina nakatakod sa dokumentong ini:',
 'nolinkstoimage'            => 'Mayong mga pahinang nakatakod sa dokumentong ini.',
-'sharedupload'              => "Ining ''file'' sarong bakas na pagkarga asin pwede ser na gamiton kan ibang mga proyekto.",
+'sharedupload'              => "Ining ''file'' sarong bakas na pagkarga asin pwede ser na gamiton kan ibang mga proyekto.", # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Hilingon tabi an $1 para sa iba pang talastas.',
 'shareduploadwiki-linktext' => "páhina nin descripsyón kan ''file''",
 'noimage'                   => 'Mayong file na may arog kaining pangaran, pwede kang $1.',

@@ -850,7 +850,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 'imagelinks'                => 'Lièn-kiet',
 'linkstoimage'              => 'Yî-ha vùn-chông lièn-chiap to pún tóng-on:',
 'nolinkstoimage'            => 'Mò-yû vùn-chông lièn-chiap to pún tóng-on.',
-'sharedupload'              => 'Ke tóng-on he yit-ke khiung-hióng song-chhòn, khó-nèn chhai khì-thâ hong-muk chûng pûn-ngìn yin-yung.',
+'sharedupload'              => 'Ke tóng-on he yit-ke khiung-hióng song-chhòn, khó-nèn chhai khì-thâ hong-muk chûng pûn-ngìn yin-yung.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Chhiáng chhâm-cheu $1 yî kié-khôi siong-kôan chṳ̂-liau.',
 'shareduploadwiki-linktext' => 'Tóng-on mèu-sut hong-mien',
 'noimage'                   => 'Put chhùn-chhai chhṳ́ miàng-chhṳ̂n ke tóng-on, ngì khó-yî $1.',

@@ -1056,7 +1056,7 @@ Ab [[Special:WhatLinksHere/$2|lim bu mat]] jàppandi na.',
 'morelinkstoimage'    => 'Xool [[Special:WhatLinksHere/$1|yeneeni lëkkalekaay]] yuy jëme ci bii nataal.',
 'redirectstofile'     => '{{PLURAL:$1|Dencukaay bii di toftal ab|$1 dencukaay yii di toftal ay}} jubluwaat {{PLURAL:$1|la buy|lañu yuy}} jëme ci bii dencukaay:',
 'duplicatesoffile'    => '{{PLURAL:$1|dencukaay bii|$1 dencukaay yii}} di toftal {{PLURAL:$1|ab duppitu|ay duppitu}} bii {{PLURAL:$1|la|lañu}}:',
-'sharedupload'        => 'Dencukaay bii bu ñuy bokk la, kon man nañu koo jëfandikoo ak yeneen sémbi wiki.',
+'sharedupload'        => 'Dencukaay bii bu ñuy bokk la, kon man nañu koo jëfandikoo ak yeneen sémbi wiki.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 
 # List redirects
 'listredirects' => 'Limu jubluwaat yi',
@@ -1185,13 +1185,35 @@ Ab [[Special:WhatLinksHere/$2|lim bu mat]] jàppandi na.',
 'enotif_anon_editor'           => 'Jëfandikukat bu binduwul $1',
 
 # Delete
-'deletepage'      => 'Far xët wi',
-'confirm'         => 'Dëggal',
-'excontent'       => 'ëmbitam doonoon « $1 »',
-'excontentauthor' => 'ëmbitam doonoon: « $1 » te kenn ki ci cëru doonoon « [[Special:Contributions/$2|$2]] »',
-'exbeforeblank'   => 'ëmbitam laataa far gi : $1',
-'exblank'         => 'xët wi amul dara',
-'deletionlog'     => 'Yéenekaay',
+'deletepage'             => 'Far xët wi',
+'confirm'                => 'Dëggal',
+'excontent'              => 'ëmbitam doonoon « $1 »',
+'excontentauthor'        => 'ëmbitam doonoon: « $1 » te kenn ki ci cëru doonoon « [[Special:Contributions/$2|$2]] »',
+'exbeforeblank'          => 'ëmbitam laataa far gi : $1',
+'exblank'                => 'xët wi amul dara',
+'delete-confirm'         => 'Far « $1 »',
+'delete-backlink'        => '← $1',
+'delete-legend'          => 'Far',
+'historywarning'         => 'Moytul! xët wi ngay waaja far am na jaar-jaar :',
+'confirmdeletetext'      => 'Yaa ngi waaja far ba faaw, ci dáttub njoxe bi, aw xët walla ab nataal ak jaar-jaaram. Dila ñaan nga dëggal ne loolu nga namma def dëgg-dëgg, te xam nga limuy jur, te itam dëppoo na ak átte yi ñu tëral ci [[{{MediaWiki:Policy-url}}]].',
+'actioncomplete'         => 'Jëf ji defees nañu ko',
+'deletedtext'            => '« <nowiki>$1</nowiki> » far nañu ko.
+Xolal $2 ngir gis limu farte bi mujj.',
+'deletedarticle'         => 'moo far « [[$1]] »',
+'dellogpage'             => 'Jaar-jaaru farte bi',
+'dellogpagetext'         => 'Li toftal ab limu farte yi mujj la.',
+'deletionlog'            => 'jaar-jaaru  farte bi',
+'reverted'               => 'Loppanti ci sumb mi weesu',
+'deletecomment'          => 'Ngirtey farte gi:',
+'deleteotherreason'      => 'Yeneeni ngirte :',
+'deletereasonotherlist'  => 'Yeneeni ngirte',
+'deletereason-dropdown'  => '*Ngirtey farte yi gëna bari
+** Aji-sos jee ko deflu
+** Jalgati aqi aji-sos
+** Caay-caay',
+'delete-edit-reasonlist' => 'Soppi ngirtey farte gi',
+'delete-toobig'          => 'Xët wii dafa am jaar-jaar bu bari, bu weesu $1 {{PLURAL:$1|sumb|sumb}}. Farteg yooyule xët dañu koo digal ngir bañ ay jafe-jafe yu mana am ci doxinu {{SITENAME}}.',
+'delete-warning-toobig'  => 'Xët wii dafa am jaar-jaar bu bari, bu weesu $1 {{PLURAL:$1|sumb|sumb}}. Seenug farte man naa jur ag jaxasoo ci dáttub njoxeeb {{SITENAME}} ; def ko ak teey.',
 
 # Protect
 'prot_1movedto2' => 'tuddewaat ko [[$1]] en [[$2]]',

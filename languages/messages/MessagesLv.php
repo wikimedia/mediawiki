@@ -962,7 +962,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'imagelinks'                => 'Failu saites',
 'linkstoimage'              => '{{PLURAL:$1|Šajā lapā ir saite|Šajās $1 lapās ir saites}} uz šo failu:',
 'nolinkstoimage'            => 'Nevienā lapā nav norāžu uz šo attēlu.',
-'sharedupload'              => 'Šis fails ir augšupielādēts koplietojams citos projektos.',
+'sharedupload'              => 'Šis fails ir augšupielādēts koplietojams citos projektos.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'Ar šādu nosaukumu nav neviena faila, bet tu vari [$1].',
 'noimage-linktext'          => 'augšuplādēt to',
 'uploadnewversion-linktext' => 'Augšupielādēt jaunu šī faila versiju',
