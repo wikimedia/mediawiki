@@ -339,7 +339,7 @@ class Title {
 		// recursive check to follow double redirects
 		$recurse = $wgMaxRedirects;
 		$titles = array( $title );
-		while( --$recurse >= 0 ) {
+		while( --$recurse > 0 ) {
 			if( $title->isRedirect() ) {
 				$article = new Article( $title, 0 );
 				$newtitle = $article->getRedirectTarget();
