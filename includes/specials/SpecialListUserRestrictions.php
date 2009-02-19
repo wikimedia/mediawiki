@@ -24,9 +24,10 @@ function wfSpecialListUserRestrictions() {
 class SpecialListUserRestrictionsForm {
 	public function getHTML() {
 		global $wgRequest, $wgScript, $wgTitle;
+		$action = htmlspecialchars( $wgScript );
 		$s = '';
 		$s .= Xml::fieldset( wfMsg( 'listuserrestrictions-legend' ) );
-		$s .= "<form action=\"{$wgScript}\">";
+		$s .= "<form action=\"{$action}\">";
 		$s .= Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() );
 		$s .= Xml::label( wfMsgHtml( 'listuserrestrictions-type' ), 'type' ) . '&nbsp;' .
 			self::typeSelector( 'type', $wgRequest->getVal( 'type' ), 'type' );

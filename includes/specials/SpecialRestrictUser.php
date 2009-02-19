@@ -37,7 +37,8 @@ function wfSpecialRestrictUser( $par = null ) {
 class RestrictUserForm {
 	public static function selectUserForm( $val = null, $error = null ) {
 		global $wgScript, $wgTitle;
-		$s  = Xml::fieldset( wfMsg( 'restrictuser-userselect' ) ) . "<form action=\"{$wgScript}\">";
+		$action = htmlspecialchars( $wgScript );
+		$s  = Xml::fieldset( wfMsg( 'restrictuser-userselect' ) ) . "<form action=\"{$action}\">";
 		if( $error )
 			$s .= '<p>' . $error . '</p>';
 		$s .= Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() );
