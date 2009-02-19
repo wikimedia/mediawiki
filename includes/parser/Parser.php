@@ -3388,6 +3388,12 @@ class Parser
 			$this->mOutput->setNewSection( true );
 		}
 
+		# Allow user to remove the "new section"
+		# link via __NONEWSECTIONLINK__
+		if ( isset( $this->mDoubleUnderscores['nonewsectionlink'] ) ) {
+			$this->mOutput->hideNewSection( true );
+		}
+
 		# if the string __FORCETOC__ (not case-sensitive) occurs in the HTML,
 		# override above conditions and always show TOC above first header
 		if ( isset( $this->mDoubleUnderscores['forcetoc'] ) ) {

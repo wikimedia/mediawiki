@@ -690,11 +690,13 @@ class SkinTemplate extends Skin {
 				);
 
 				if ( $istalk || $wgOut->showNewSectionLink() ) {
-					$content_actions['addsection'] = array(
-						'class' => $section == 'new'?'selected':false,
-						'text' => wfMsg('addsection'),
-						'href' => $this->mTitle->getLocalUrl( 'action=edit&section=new' )
-					);
+					if ( !$wgOut->forceHideNewSectionLink() ) {
+						$content_actions['addsection'] = array(
+							'class' => $section == 'new' ? 'selected' : false,
+							'text' => wfMsg('addsection'),
+							'href' => $this->mTitle->getLocalUrl( 'action=edit&section=new' )
+						);
+					}
 				}
 			} elseif ( $this->mTitle->isKnown() ) {
 				$content_actions['viewsource'] = array(
