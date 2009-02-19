@@ -311,6 +311,7 @@ $magicWords = array(
 	'displaytitle'           => array( 1,    'DISPLAYTITLE'           ),
 	'rawsuffix'              => array( 1,    'R'                      ),
 	'newsectionlink'         => array( 1,    '__NEWSECTIONLINK__'     ),
+	'nonewsectionlink'       => array( 1,    '__NONEWSECTIONLINK__'   ),
 	'currentversion'         => array( 1,    'CURRENTVERSION'         ),
 	'urlencode'              => array( 0,    'URLENCODE:'             ),
 	'anchorencode'           => array( 0,    'ANCHORENCODE'           ),

@@ -18,6 +18,7 @@ class ParserOutput
 		$mImages = array(),           # DB keys of the images used, in the array key only
 		$mExternalLinks = array(),    # External link URLs, in the key only
 		$mNewSection = false,         # Show a new section link?
+		$mHideNewSection = false,     # Hide the new section link?
 		$mNoGallery = false,          # No gallery on category page? (__NOGALLERY__)
 		$mHeadItems = array(),        # Items to put in the <head> section
 		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
@@ -79,6 +80,12 @@ class ParserOutput
 
 	function setNewSection( $value ) {
 		$this->mNewSection = (bool)$value;
+	}
+	function hideNewSection ( $value ) {
+		$this->mHideNewSection = (bool)$value;
+	}
+	function getHideNewSection () {
+		return (bool)$this->mHideNewSection;
 	}
 	function getNewSection() {
 		return (bool)$this->mNewSection;

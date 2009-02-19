@@ -29,6 +29,7 @@ class OutputPage {
 	var $mArticleBodyOnly = false;
 
 	var $mNewSectionLink = false;
+	var $mHideNewSectionLink = false;
 	var $mNoGallery = false;
 	var $mPageTitleActionText = '';
 	var $mParseWarnings = array();
@@ -516,6 +517,7 @@ class OutputPage {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
+		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
 
 		if( is_null( $wgExemptFromUserRobotsControl ) ) {
 			$bannedNamespaces = $wgContentNamespaces;
@@ -1775,6 +1777,15 @@ class OutputPage {
 	 */
 	public function showNewSectionLink() {
 		return $this->mNewSectionLink;
+	}
+
+	/**
+	* Forcibly hide the new section link?
+	*
+	* @return bool
+	*/
+	public function forceHideNewSectionLink() {
+		return $this->mHideNewSectionLink;
 	}
 
 	/**
