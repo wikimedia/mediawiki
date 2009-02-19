@@ -240,53 +240,53 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			}
 			$db->freeResult($res);
 		}
-		// Try to add the result data in one go and pray that it fits
-		$fit = $this->getResult()->addValue('query', $this->getModuleName(), $this->resultArr);
-		if(!$fit)
-		{
-			// It didn't fit. Add elements one by one until the
-			// result is full.
-			foreach($this->resultArr as $pageID => $arr)
+		if (is_null($resultPageSet)) {
+			// Try to add the result data in one go and pray that it fits
+			$fit = $this->getResult()->addValue('query', $this->getModuleName(), array_values($this->resultArr));
+			if(!$fit)
 			{
-				// Add the basic entry without redirlinks first
-				$fit = $this->getResult()->addValue(
-					array('query', $this->getModuleName()),
-					$pageID, array_diff_key($arr, array('redirlinks' => '')));
-				if(!$fit)
+				// It didn't fit. Add elements one by one until the
+				// result is full.
+				foreach($this->resultArr as $pageID => $arr)
 				{
-					$this->continueStr = $this->getContinueStr($pageID);
-					break;
-				}
-
-				$hasRedirs = false;
-				foreach((array)@$arr['redirlinks'] as $key => $redir)
-				{
+					// Add the basic entry without redirlinks first
 					$fit = $this->getResult()->addValue(
-						array('query', $this->getModuleName(), $pageID, 'redirlinks'),
-						$key, $redir);
+						array('query', $this->getModuleName()),
+						null, array_diff_key($arr, array('redirlinks' => '')));
 					if(!$fit)
 					{
-						$this->continueStr = $this->getContinueRedirStr($pageID, $redir['pageid']);
+						$this->continueStr = $this->getContinueStr($pageID);
 						break;
 					}
-					$hasRedirs = true;
-				}
-				if($hasRedirs)
-					$this->getResult()->setIndexedTagName_internal(
-						array('query', $this->getModuleName(), $pageID, 'redirlinks'),
-						$this->bl_code);
-				if(!$fit)
-					break;
-			}
-		}		
-		if(!is_null($this->continueStr))
-			$this->setContinueEnumParameter('continue', $this->continueStr);
 
-		if (is_null($resultPageSet)) {
+					$hasRedirs = false;
+					foreach((array)@$arr['redirlinks'] as $key => $redir)
+					{
+						$fit = $this->getResult()->addValue(
+							array('query', $this->getModuleName(), $pageID, 'redirlinks'),
+							$key, $redir);
+						if(!$fit)
+						{
+							$this->continueStr = $this->getContinueRedirStr($pageID, $redir['pageid']);
+							break;
+						}
+						$hasRedirs = true;
+					}
+					if($hasRedirs)
+						$this->getResult()->setIndexedTagName_internal(
+							array('query', $this->getModuleName(), $pageID, 'redirlinks'),
+							$this->bl_code);
+					if(!$fit)
+						break;
+				}
+			}		
+
 			$this->getResult()->setIndexedTagName_internal(
 					 array('query', $this->getModuleName()),
 					 $this->bl_code);
 		}
+		if(!is_null($this->continueStr))
+			$this->setContinueEnumParameter('continue', $this->continueStr);
 	}
 
 	private function extractRowInfo($row) {
