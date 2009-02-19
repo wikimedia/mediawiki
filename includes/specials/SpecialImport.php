@@ -66,13 +66,13 @@ class SpecialImport extends SpecialPage {
 	 * Do the actual import
 	 */
 	private function doImport() {
-		global $wgOut, $wgRequest, $wgUser, $wgImportSources;
+		global $wgOut, $wgRequest, $wgUser, $wgImportSources, $wgExportMaxLinkDepth;
 		$isUpload = false;
 		$this->namespace = $wgRequest->getIntOrNull( 'namespace' );
 		$sourceName = $wgRequest->getVal( "source" );
 
 		$this->logcomment = $wgRequest->getText( 'log-comment' );
-		$this->pageLinkDepth = $wgRequest->getIntOrNull( 'pagelink-depth' );
+		$this->pageLinkDepth = $wgExportMaxLinkDepth == 0 ? 0 : $wgRequest->getIntOrNull( 'pagelink-depth' );
 
 		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'editToken' ) ) ) {
 			$source = new WikiErrorMsg( 'import-token-mismatch' );
@@ -132,9 +132,7 @@ class SpecialImport extends SpecialPage {
 	}
 
 	private function showForm() {
-		global $wgUser, $wgOut, $wgRequest, $wgTitle, $wgImportSources;
-		# FIXME: Quick hack to disable import for non privileged users /Raymond 
-		# Regression from 43963 
+		global $wgUser, $wgOut, $wgRequest, $wgTitle, $wgImportSources, $wgExportMaxLinkDepth;
 		if( !$wgUser->isAllowed( 'import' ) && !$wgUser->isAllowed( 'importupload' ) )
 			return $wgOut->permissionRequired( 'import' );
 
@@ -143,9 +141,9 @@ class SpecialImport extends SpecialPage {
 		if( $wgUser->isAllowed( 'importupload' ) ) {
 			$wgOut->addWikiMsg( "importtext" );
 			$wgOut->addHTML(
-				Xml::openElement( 'fieldset' ).
-				Xml::element( 'legend', null, wfMsg( 'import-upload' ) ) .
-				Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post', 'action' => $action ) ) .
+				Xml::fieldset( wfMsg( 'import-upload' ) ).
+				Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post',
+					'action' => $action, 'id' => 'mw-import-upload-form' ) ) .
 				Xml::hidden( 'action', 'submit' ) .
 				Xml::hidden( 'source', 'upload' ) .
 				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
@@ -169,7 +167,7 @@ class SpecialImport extends SpecialPage {
 				</tr>
 				<tr>
 					<td></td>
-					<td class='mw-input'>" .
+					<td class='mw-submit'>" .
 						Xml::submitButton( wfMsg( 'uploadbtn' ) ) .
 					"</td>
 				</tr>" .
@@ -185,10 +183,22 @@ class SpecialImport extends SpecialPage {
 		}
 
 		if( $wgUser->isAllowed( 'import' ) && !empty( $wgImportSources ) ) {
+			# Show input field for import depth only if $wgExportMaxLinkDepth > 0
+			$importDepth = '';
+			if( $wgExportMaxLinkDepth > 0 ) {
+				$importDepth = "<tr>
+							<td class='mw-label'>" .
+								wfMsgExt( 'export-pagelinks', 'parseinline' ) .
+							"</td>
+							<td class='mw-input'>" .
+								Xml::input( 'pagelink-depth', 3, 0 ) .
+							"</td>
+						</tr>";
+			}
+
 			$wgOut->addHTML(
-				Xml::openElement( 'fieldset' ) .
-				Xml::element( 'legend', null, wfMsg( 'importinterwiki' ) ) .
-				Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action ) ) .
+				Xml::fieldset(  wfMsg( 'importinterwiki' ) ) .
+				Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'mw-import-interwiki-form' ) ) .
 				wfMsgExt( 'import-interwiki-text', array( 'parse' ) ) .
 				Xml::hidden( 'action', 'submit' ) .
 				Xml::hidden( 'source', 'interwiki' ) .
@@ -205,6 +215,7 @@ class SpecialImport extends SpecialPage {
 				$selected = ( $this->interwiki === $prefix ) ? ' selected="selected"' : '';
 				$wgOut->addHTML( Xml::option( $prefix, $prefix, $selected ) );
 			}
+
 			$wgOut->addHTML(
 						Xml::closeElement( 'select' ) .
 						Xml::input( 'frompage', 50, $this->frompage ) .
@@ -224,12 +235,9 @@ class SpecialImport extends SpecialPage {
 						Xml::checkLabel( wfMsg( 'import-interwiki-templates' ), 'interwikiTemplates', 'interwikiTemplates', $this->includeTemplates ) .
 					"</td>
 				</tr>
+				$importDepth
 				<tr>
-					<td>".wfMsgExt( 'export-pagelinks', 'parseinline' )."</td>
-					<td class=\"mw-input\">" . Xml::input( 'pagelink-depth', 20, 0 ) . "<br/>
-				</tr>
-				<tr>
-					<td>" .
+					<td class='mw-label'>" .
 						Xml::label( wfMsg( 'import-interwiki-namespace' ), 'namespace' ) .
 					"</td>
 					<td class='mw-input'>" .
@@ -248,7 +256,7 @@ class SpecialImport extends SpecialPage {
 				<tr>
 					<td>
 					</td>
-					<td class='mw-input'>" .
+					<td class='mw-submit'>" .
 						Xml::submitButton( wfMsg( 'import-interwiki-submit' ), array( 'accesskey' => 's' ) ) .
 					"</td>
 				</tr>" .

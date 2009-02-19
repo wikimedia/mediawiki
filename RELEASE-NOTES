@@ -230,6 +230,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17502) meta=siteinfo&siprop=namespacealiases no longer lists namespace
   aliases already listed in siprop=namespaces
 * (bug 17529) rvend ignored when rvstartid is specified
+* Special:Import: Do not show input field for import depth if
+  $wgExportMaxLinkDepth == 0
 
 === Languages updated in 1.15 ===
 
