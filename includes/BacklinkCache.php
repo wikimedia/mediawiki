@@ -67,10 +67,11 @@ class BacklinkCache {
 				$conds[] = "$fromField <= " . intval( $endId );
 			}
 			$res = $this->getDB()->select( 
-				array( 'page', $table ),
-				array( 'page_namespace', 'page_title', 'page_id' ),
+				array( $table, 'page' ),
+				array( 'page_namespace', 'page_title', 'page_id'),
 				$conds,
-				__METHOD__ );
+				__METHOD__,
+				array('STRAIGHT_JOIN') );
 			$ta = TitleArray::newFromResult( $res );
 			wfProfileOut( __METHOD__ );
 			return $ta;
@@ -79,10 +80,11 @@ class BacklinkCache {
 		if ( !isset( $this->fullResultCache[$table] ) ) {
 			wfDebug( __METHOD__.": from DB\n" );
 			$res = $this->getDB()->select( 
-				array( 'page', $table ),
+				array( $table, 'page' ),
 				array( 'page_namespace', 'page_title', 'page_id' ),
 				$this->getConditions( $table ),
-				__METHOD__ );
+				__METHOD__,
+				array('STRAIGHT_JOIN') );
 			$this->fullResultCache[$table] = $res;
 		}
 		$ta = TitleArray::newFromResult( $this->fullResultCache[$table] );
