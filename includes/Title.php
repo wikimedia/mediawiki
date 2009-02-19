@@ -1613,7 +1613,6 @@ class Title {
 			return $this->mHasSubpages;
 		}
 
-		$db = wfGetDB( DB_SLAVE );
 		$subpages = $this->getSubpages( 1 );
 		if( $subpages instanceof TitleArray )
 			return $this->mHasSubpages = (bool)$subpages->count();
@@ -1626,7 +1625,7 @@ class Title {
 	 * @return mixed TitleArray, or empty array if this page's namespace
 	 *  doesn't allow subpages
 	 */
-	public function getSubpages($limit = -1) {
+	public function getSubpages( $limit = -1 ) {
 		if( !MWNamespace::hasSubpages( $this->getNamespace() ) )
 			return array();
 
