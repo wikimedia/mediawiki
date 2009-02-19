@@ -191,7 +191,7 @@ $messages = array(
 'logout'             => 'Mistuña',
 'userlogout'         => 'Mistuña',
 'yourlanguage'       => 'Aru:',
-'email'              => "Aru jalayiri (''E-mail'')",
+'email'              => 'Chaski jalayiri',
 'loginlanguagelabel' => 'Aru: $1',
 
 # Edit pages

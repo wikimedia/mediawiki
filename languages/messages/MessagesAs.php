@@ -796,7 +796,7 @@ $1',
 'imagelinks'                => 'সূত্ৰসমূহ',
 'linkstoimage'              => 'তলত দিয়া পৃষ্ঠাবোৰ এই চিত্র খনৰ লগত জৰিত :{{PLURAL:$1|page links|$1 pages link}}',
 'nolinkstoimage'            => 'এই চিত্রখনলৈ কোনো পৃষ্ঠা সংযোজিত নহয়',
-'sharedupload'              => 'এই ফাইলতো অন্যান্য বিষয়তো ব্যৱহাৰ হব পাৰে|',
+'sharedupload'              => 'এই ফাইলতো অন্যান্য বিষয়তো ব্যৱহাৰ হব পাৰে|', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'এই নামৰ কোনো ফাইল নাই, আপুনি $1 কৰিব পাৰে ।',
 'noimage-linktext'          => 'বোজাই কৰক',
 'uploadnewversion-linktext' => 'এই ফাইলতোৰ নতুন সংশোধন এটা বোজাই কৰক',

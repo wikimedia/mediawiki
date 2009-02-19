@@ -809,7 +809,7 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'imagelinks'                => 'Inachetton',
 'linkstoimage'              => 'Umachetton i sigiente {{PLURAL:$1|na påhina|$1 na påhina siha}} yan este na atkibu:',
 'nolinkstoimage'            => "Tåya' na påhina siha umachetton yan este na atkibu.",
-'sharedupload'              => "Ma'apatte este na atkibu ya buente ha' ma'usa gi otru proyektu siha.",
+'sharedupload'              => "Ma'apatte este na atkibu ya buente ha' ma'usa gi otru proyektu siha.", # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => "Tåya' atkibu mafa'na'an enao, siña un $1.",
 'noimage-linktext'          => "na'kåtga hulu'",
 'uploadnewversion-linktext' => "Na'kåtga hulu' un tinilaikan atkibu mas nuebu",

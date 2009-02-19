@@ -1046,7 +1046,7 @@ Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
 'imagelinks'                => 'Fayl bağlantıları',
 'linkstoimage'              => 'Bu faylğa bağlantı olğan $1 saife:',
 'nolinkstoimage'            => 'Bu faylğa bağlanğan saife yoq.',
-'sharedupload'              => 'Bu fayl ortaq fezağa yüklengen ve diger proyektlerde de qullanılğan bir fayl ola bilir.',
+'sharedupload'              => 'Bu fayl ortaq fezağa yüklengen ve diger proyektlerde de qullanılğan bir fayl ola bilir.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Tafsilâtnı $1 saifesinde tapmaq mümkün.',
 'shareduploadwiki-linktext' => 'fayl malümat saifesi',
 'noimage'                   => 'Bu isimde fayl yoq, amma siz $1.',

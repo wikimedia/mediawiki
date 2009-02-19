@@ -19,6 +19,7 @@
  * @author Crazymadlover
  * @author Cvmontuy
  * @author David0811
+ * @author Dferg
  * @author Dmcdevit
  * @author Drini
  * @author Dvortygirl
@@ -827,7 +828,7 @@ El administrador que la bloqueó dio esta explicación: $1",
 'protectedpagewarning'             => "'''ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
 'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
-'titleprotectedwarning'            => "'''ATENCIÓN:  Esta página está protegida de modo que sólo algunos usuarios pueden crearla.'''",
+'titleprotectedwarning'            => "'''ATENCIÓN:  Esta página está protegida de modo que [[Special:ListGroupRights|derechos especificos]] son necesarios para crearlo.'''",
 'templatesused'                    => 'Plantillas usadas en esta página:',
 'templatesusedpreview'             => 'Plantillas usadas en esta previsualización:',
 'templatesusedsection'             => 'Plantillas usadas en esta sección:',
@@ -1522,42 +1523,40 @@ Un click sobre el encabezamiento de la columna cambia el orden.',
 'listfiles_count'       => 'Versiones',
 
 # File description page
-'filehist'                       => 'Historial del archivo',
-'filehist-help'                  => 'Haga clic sobre una fecha/hora para ver el
+'filehist'                  => 'Historial del archivo',
+'filehist-help'             => 'Haga clic sobre una fecha/hora para ver el
 archivo a esa fecha.',
-'filehist-deleteall'             => 'borrar todo',
-'filehist-deleteone'             => 'borrar esto',
-'filehist-revert'                => 'revertir',
-'filehist-current'               => 'act',
-'filehist-datetime'              => 'Fecha/Hora',
-'filehist-thumb'                 => 'Miniatura',
-'filehist-thumbtext'             => 'Miniatura de la versión de $1',
-'filehist-nothumb'               => 'Sin miniatura',
-'filehist-user'                  => 'Usuario',
-'filehist-dimensions'            => 'Dimensiones',
-'filehist-filesize'              => 'Tamaño',
-'filehist-comment'               => 'Comentario',
-'imagelinks'                     => 'Enlaces al archivo',
-'linkstoimage'                   => '{{PLURAL:$1|La siguiente página enlaza|Las siguientes páginas enlazan}} a este archivo:',
-'linkstoimage-more'              => 'Hay más de {{PLURAL:$1|una página que enlaza|$1 páginas que enlazan}} con este fichero.
+'filehist-deleteall'        => 'borrar todo',
+'filehist-deleteone'        => 'borrar esto',
+'filehist-revert'           => 'revertir',
+'filehist-current'          => 'act',
+'filehist-datetime'         => 'Fecha/Hora',
+'filehist-thumb'            => 'Miniatura',
+'filehist-thumbtext'        => 'Miniatura de la versión de $1',
+'filehist-nothumb'          => 'Sin miniatura',
+'filehist-user'             => 'Usuario',
+'filehist-dimensions'       => 'Dimensiones',
+'filehist-filesize'         => 'Tamaño',
+'filehist-comment'          => 'Comentario',
+'imagelinks'                => 'Enlaces al archivo',
+'linkstoimage'              => '{{PLURAL:$1|La siguiente página enlaza|Las siguientes páginas enlazan}} a este archivo:',
+'linkstoimage-more'         => 'Hay más de {{PLURAL:$1|una página que enlaza|$1 páginas que enlazan}} con este fichero.
  
 La lista siguiente sólo muestra {{PLURAL:$1|la primera página que enlaza|las primeras $1 páginas que enlazan}} con este fichero.
 También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
-'nolinkstoimage'                 => 'No hay páginas que enlacen a esta imagen.',
-'morelinkstoimage'               => 'Vea [[Special:WhatLinksHere/$1|más enlaces]] a este archivo.',
-'redirectstofile'                => '{{PLURAL:$1|El siguiente fichero redirige|Los siguientes $1 ficheros redirigen}} a este:',
-'duplicatesoffile'               => 'Los siguientes {{PLURAL:$1|es un archivo duplicado|$1 archivos son duplicados}} de éste archivo ([[Special:FileDuplicateSearch/$2|mas detalles]]]):',
-'sharedupload'                   => 'Este archivo está compartido y puede usarse desde otros proyectos.',
-'shareduploadwiki'               => 'Puede consultar $1 para más información.',
-'shareduploadwiki-desc'          => 'A continuación se muestra la descripción sobre su $1 del depósito compartido.',
-'shareduploadwiki-linktext'      => 'página de descripción del archivo',
-'shareduploadduplicate'          => 'Este archivo es un duplicado de $1 del depósito compartido.',
-'shareduploadduplicate-linktext' => 'otro fichero',
-'shareduploadconflict'           => 'Este archivo tiene el mismo nombre que $1 del depósito compartido.',
-'shareduploadconflict-linktext'  => 'otro fichero',
-'noimage'                        => 'No existe un archivo con este nombre, pero puede $1.',
-'noimage-linktext'               => 'subir uno',
-'uploadnewversion-linktext'      => 'Subir una nueva versión de este archivo',
+'nolinkstoimage'            => 'No hay páginas que enlacen a esta imagen.',
+'morelinkstoimage'          => 'Vea [[Special:WhatLinksHere/$1|más enlaces]] a este archivo.',
+'redirectstofile'           => '{{PLURAL:$1|El siguiente fichero redirige|Los siguientes $1 ficheros redirigen}} a este:',
+'duplicatesoffile'          => 'Los siguientes {{PLURAL:$1|es un archivo duplicado|$1 archivos son duplicados}} de éste archivo ([[Special:FileDuplicateSearch/$2|mas detalles]]):',
+'sharedupload'              => 'Este archivo es de $1 y puede usarse desde otros proyectos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'shareduploadwiki'          => 'Puede consultar $1 para más información.',
+'shareduploadwiki-desc'     => 'La descripcion en su $1 hay mostrada debajo.',
+'shareduploadwiki-linktext' => 'página de descripción del archivo',
+'noimage'                   => 'No existe un archivo con este nombre, pero puede $1.',
+'noimage-linktext'          => 'subir uno',
+'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
+'shared-repo-from'          => 'de $1', # $1 is the repository name
+'shared-repo'               => 'un repositorio compartido', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Revertir $1',

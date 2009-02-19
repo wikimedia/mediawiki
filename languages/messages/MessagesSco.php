@@ -363,7 +363,7 @@ Yer accoont haes been creatit.
 Mynd an chynge yer [[Special:Preferences|{{SITENAME}} preferences]].',
 'loginpagetitle'             => 'Uiser login',
 'yourname'                   => 'Yer uiser name',
-'yourpassword'               => 'Yer password',
+'yourpassword'               => 'Passwaird:',
 'yourpasswordagain'          => 'Retype passwaird:',
 'remembermypassword'         => 'Mynd ma password across sessions.',
 'yourdomainname'             => 'Yer domain:',
@@ -451,7 +451,7 @@ Ye dinna hae tae heed this message, if this accoont wis creatit by mistak.',
 'loginlanguagelabel'         => 'Leid: $1',
 
 # Password reset dialog
-'resetpass'               => 'Set yer accoont passwaird again',
+'resetpass'               => 'Chynge passwaird',
 'resetpass_announce'      => 'Ye loggit in wi a short term e-mailed code. To be duin logging in, ye hae tae mak a new passwaird here:',
 'resetpass_header'        => 'Chynge accoont password',
 'oldpassword'             => 'Auld password',

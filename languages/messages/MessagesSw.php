@@ -234,7 +234,9 @@ $messages = array(
 'cancel'         => 'Batilisha',
 'qbfind'         => 'Gundua',
 'qbedit'         => 'Hariri',
+'qbpageoptions'  => 'Ukarasa huu',
 'qbspecialpages' => 'Kurasa za pekee',
+'mypage'         => 'Ukurasa wangu',
 'mytalk'         => 'Majadiliano yangu',
 'navigation'     => 'Safari',
 
@@ -248,7 +250,7 @@ $messages = array(
 'searcharticle'     => 'Nenda',
 'history'           => 'Historia ya ukurasa',
 'history_short'     => 'Historia',
-'printableversion'  => 'Ukarasa kwa kuchapa',
+'printableversion'  => 'Ukurasa wa kuchapika',
 'permalink'         => 'Kiungo cha daima',
 'edit'              => 'Hariri',
 'create'            => 'Anzisha kurasa',
@@ -258,7 +260,7 @@ $messages = array(
 'protect'           => 'Linda',
 'protectthispage'   => 'Linda ukurasa huu',
 'unprotect'         => 'Usilinde',
-'unprotectthispage' => 'Usilinde ukurasa huu',
+'unprotectthispage' => 'Ondoa tunzo la ukarasa',
 'newpage'           => 'Ukurasa mpya',
 'talkpage'          => 'Jadilia ukarasa huu',
 'talkpagelinktext'  => 'Majadiliano',
@@ -308,6 +310,7 @@ $messages = array(
 'newmessagesdifflink' => 'badiliko la mwisho',
 'editsection'         => 'hariri',
 'editold'             => 'hariri',
+'viewsourceold'       => 'view source',
 'editsectionhint'     => 'Hariri kipande: $1',
 'toc'                 => 'Yaliyomo',
 'showtoc'             => 'fichua',
@@ -320,6 +323,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Makala',
 'nstab-user'     => 'Ukurasa wa mtumiaji',
+'nstab-special'  => 'Ukurasa maalum',
 'nstab-project'  => 'Ukurasa wa mradi',
 'nstab-image'    => 'Faili',
 'nstab-template' => 'Kigezo',
@@ -378,7 +382,7 @@ Tafadhali chagua jina lingine.',
 'badsig'                    => 'Umeweka sahihi batili.
 Angalia mabano ya HTML.',
 'badsiglength'              => 'Sahihi uliyoweka ni ndefu mno.
-Inatakiwa iwe chini ya $1 {{PLURAL:$1|character|tarakimu}}.',
+Haiwezi kuzidi {{PLURAL:$1|tarakimu|tarakimu}} $1.',
 'email'                     => 'Barua pepe',
 'prefs-help-realname'       => 'Jina la kweli si lazima. Ukichagua kutaja jina lako hapa, litatumiwa kuonyesha kwamba ndiyo ulifanya kazi unayochangia.',
 'loginerror'                => 'Kosa la kuingia',
@@ -523,6 +527,9 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 # Revision feed
 'history-feed-item-nocomment' => '$1 kwenye $2', # user at time
 
+# Revision deletion
+'rev-delundel' => 'onyesha/ficha',
+
 # Diffs
 'history-title'           => 'Historia ya masahihisho ya "$1"',
 'difference'              => '(Tofauti baina ya masahihisho)',
@@ -532,12 +539,13 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'diff-multi'              => '(Hatuonyeshi {{PLURAL:$1|sahihisho moja la katikati|masahihisho $1 ya katikati}}.)',
 
 # Search results
-'noexactmatch'   => "'''Hakuna ukurasa wenye jina \"\$1\".''' Unaweza [[:\$1|kuanza ukurasa huu]].",
-'prevn'          => '$1 iliyotangulia',
-'nextn'          => '$1 ijayo',
-'viewprevnext'   => 'Tazama ($1) ($2) ($3)',
-'searchhelp-url' => 'Help:Yaliyomo',
-'powersearch'    => 'Tafuta',
+'noexactmatch'       => "'''Hakuna ukurasa wenye jina \"\$1\".''' Unaweza [[:\$1|kuanza ukurasa huu]].",
+'prevn'              => '$1 iliyotangulia',
+'nextn'              => '$1 ijayo',
+'viewprevnext'       => 'Tazama ($1) ($2) ($3)',
+'searchhelp-url'     => 'Help:Yaliyomo',
+'search-result-size' => '$1 ({{PLURAL:$2|neno 1|maneno $2}})',
+'powersearch'        => 'Tafuta',
 
 # Preferences page
 'preferences'               => 'Mapendekezo',
@@ -621,10 +629,15 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'imagelinks'                => 'Viungo vya mafaili',
 'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu|Kurasa hizi $1}} zimeunganishwa na faili hili:',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
-'sharedupload'              => 'Faili hii inaweza kushirikiwa na miradi mingine.',
+'sharedupload'              => 'Faili hii inaweza kushirikiwa na miradi mingine.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'Hakuna faili yenye jina hili, $1 kama unayo.',
 'noimage-linktext'          => 'pakia faili',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
+
+# File deletion
+'filedelete-intro-old'   => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
+'filedelete-success-old' => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
+'filedelete-nofile-old'  => "There is no archived version of '''$1''' with the specified attributes.",
 
 # MIME search
 'mimesearch' => 'Utafutaji wa MIME',
@@ -814,7 +827,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'sp-contributions-submit'      => 'Tafuta',
 
 # What links here
-'whatlinkshere'       => 'Viungo viungacho ukurasa huu',
+'whatlinkshere'       => 'Viungo viungavyo ukurasa huu',
 'whatlinkshere-title' => 'Kurasa zilizounganishwa na "$1"',
 'linkshere'           => "Kurasa zifuatazo zimeunganishwa na '''[[:$1]]''':",
 'nolinkshere'         => "Hakuna kurasa zilizounganishwa na '''[[:$1]]'''.",
@@ -931,6 +944,9 @@ Chagua jina lengine.',
 
 # Attribution
 'siteuser' => '{{SITENAME}} mtumiaji $1',
+
+# Image deletion
+'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
 
 # Browsing diffs
 'previousdiff' => '← Badilisho lililopita',

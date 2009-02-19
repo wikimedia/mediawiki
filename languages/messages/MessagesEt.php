@@ -373,6 +373,14 @@ MySQL tagastas veateate "$3: $4".',
 'readonlytext'         => 'Andmebaas on praegu kirjutuskaitse all, tõenäoliselt andmebaasi rutiinseks hoolduseks, mille lõppedes normaalne olukord taastub.
 Administraator, kes selle kaitse alla võttis, andis järgmise selgituse:
 <p>$1',
+'missing-article'      => 'Andmebaas ei leidnud küsitud lehekülje "$1" $2 teksti.
+
+Põhjuseks võib olla võrdlus- või ajaloolink kustutatud leheküljele.
+
+Kui tegemist ei ole nimetatud olukorraga on põhjust kahtlustada süsteemi viga.
+Sellisel juhul tuleks informeerida [[Special:ListUsers/sysop|mõnda administratooritest]], edastades talle ka käesoleva lehe URLi.',
+'missingarticle-rev'   => '(redaktsioon: $1)',
+'missingarticle-diff'  => '(redaktsioonid: $1, $2)',
 'internalerror'        => 'Sisemine viga',
 'internalerror_info'   => 'Sisemine viga: $1',
 'filecopyerror'        => 'Ei saanud faili "$1" kopeerida nimega "$2".',
@@ -455,7 +463,9 @@ Palun kontrolli HTML koodi.',
 'noname'                     => 'Sa ei sisestanud kasutajanime lubataval kujul.',
 'loginsuccesstitle'          => 'Sisselogimine õnnestus',
 'loginsuccess'               => 'Te olete sisse loginud. Teie kasutajanimi on "$1".',
-'nosuchuser'                 => 'Kasutajat "$1" ei ole olemas. Kontrollige kirjapilti või kasutage alljärgnevat vormi uue kasutajakonto loomiseks.',
+'nosuchuser'                 => 'Kasutajat "$1" ei ole olemas.
+Kasutajanimed on tõstutundlikud.
+Kontrollige kirjapilti või [[Special:UserLogin/signup|looge uus kasutajakonto]].',
 'nosuchusershort'            => 'Kasutajat nimega "<nowiki>$1</nowiki>" ei ole olemas. Kontrollige kirjapilti.',
 'nouserspecified'            => 'Kasutajanimi puudub.',
 'wrongpassword'              => 'Vale parool. Proovige uuesti.',
@@ -739,6 +749,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 
 # Search results
 'searchresults'                   => 'Otsingu tulemused',
+'searchresults-title'             => 'Otsingu "$1" tulemused',
 'searchresulttext'                => 'Lisainfot otsimise kohta vaata [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                  => 'Otsisid fraasi "[[:$1]]" ([[Special:Prefixindex/$1|kõik sõnega "$1" algavad lehed]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kõik lehed, mis sisaldavad linke artiklile "$1"]])',
 'searchsubtitleinvalid'           => 'Päring "$1"',
@@ -750,6 +761,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'prevn'                           => 'eelmised $1',
 'nextn'                           => 'järgmised $1',
 'viewprevnext'                    => 'Näita ($1) ($2) ($3).',
+'searchmenu-legend'               => 'Otsingu sätted',
 'searchhelp-url'                  => 'Help:Juhend',
 'searchprofile-articles'          => 'Sisuleheküljed',
 'searchprofile-articles-and-proj' => 'Sisu- & projektileheküljed',
@@ -757,6 +769,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'searchprofile-images'            => 'Failid',
 'searchprofile-everything'        => 'Kõik',
 'searchprofile-images-tooltip'    => 'Failiotsing',
+'search-result-size'              => '$1 ({{PLURAL:$2|1 sõna|$2 sõna}})',
 'search-suggest'                  => 'Kas Sa mõtlesid: $1',
 'search-interwiki-caption'        => 'Sõsarprojektid',
 'search-interwiki-default'        => '$1 tulemused:',
@@ -766,12 +779,15 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'searchrelated'                   => 'seotud',
 'searchall'                       => 'kõik',
 'showingresults'                  => "Allpool näitame {{PLURAL:$1|'''ühte''' tulemit|'''$1''' tulemit}} alates tulemist #'''$2'''.",
+'showingresultstotal'             => "Allpool näidatakse {{PLURAL:$4|'''$1'''. tulemust (otsingutulemuste koguarv '''$3''')|'''$1. - $2.''' tulemust (otsingutulemuste koguarv '''$3''')}}",
 'nonefound'                       => "'''Märkus''': Otsing hõlmab vaikimisi vaid osasid nimeruume.
 Kui soovid otsida ühekorraga kõigist nimeruumidest (kaasa arvatud arutelulehed, mallid, jne) kasuta
 päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta prefiksina sele nimeruumi nime.",
 'powersearch'                     => 'Otsi',
+'powersearch-legend'              => 'Detailne otsing',
 'powersearch-ns'                  => 'Otsing nimeruumidest:',
 'powersearch-redir'               => 'Loetle ümbersuunamised',
+'powersearch-field'               => 'Otsi fraasi',
 'searchdisabled'                  => "<p>Vabandage! Otsing vikist on ajutiselt peatatud, et säilitada muude teenuste normaalne töökiirus. Otsimiseks võite kasutada allpool olevat Google'i otsinguvormi, kuid sellelt saadavad tulemused võivad olla vananenud.</p>",
 
 # Preferences page
@@ -1041,7 +1057,7 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'imagelinks'                => 'Viited failidele',
 'linkstoimage'              => 'Sellele pildile {{PLURAL:$1|viitab järgmine lehekülg|viitavad järgmised leheküljed}}:',
 'nolinkstoimage'            => 'Sellele pildile ei viita ükski lehekülg.',
-'sharedupload'              => 'See fail on ühiskasutuses ja seda võib kasutada teistes projektides.',
+'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla jagatud kasutuses teistes projektides. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-linktext' => 'faili kirjelduse lehekülg',
 'noimage'                   => 'Sellise nimega faili pole, võite selle $1.',
 'noimage-linktext'          => 'üles laadida',
@@ -1377,13 +1393,14 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 'blanknamespace' => '(Artiklid)',
 
 # Contributions
-'contributions' => 'Kasutaja kaastööd',
-'mycontris'     => 'Kaastöö',
-'contribsub2'   => 'Kasutaja "$1 ($2)" jaoks',
-'nocontribs'    => 'Antud kriteeriumile vastavaid muudatusi ei leidnud.',
-'uctop'         => ' (üles)',
-'month'         => 'Alates kuust (ja varasemad):',
-'year'          => 'Alates aastast (ja varasemad):',
+'contributions'       => 'Kasutaja kaastööd',
+'contributions-title' => 'Kasutaja $1 kaastööd',
+'mycontris'           => 'Kaastöö',
+'contribsub2'         => 'Kasutaja "$1 ($2)" jaoks',
+'nocontribs'          => 'Antud kriteeriumile vastavaid muudatusi ei leidnud.',
+'uctop'               => ' (üles)',
+'month'               => 'Alates kuust (ja varasemad):',
+'year'                => 'Alates aastast (ja varasemad):',
 
 'sp-contributions-newbies'     => 'Näita ainult uute kasutajate kaastööd.',
 'sp-contributions-newbies-sub' => 'Uued kasutajad',
@@ -1553,6 +1570,8 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 'tooltip-ca-watch'                => 'Lisa see lehekülg oma jälgimisloendile',
 'tooltip-ca-unwatch'              => 'Eemalda see lehekülg oma jälgimisloendist',
 'tooltip-search'                  => 'Otsi vikist',
+'tooltip-search-go'               => 'Siirdutakse täpselt sellist pealkirja kandvale lehele (kui selline on olemas)',
+'tooltip-search-fulltext'         => 'Otsitakse teksti sisaldavaid artikleid',
 'tooltip-p-logo'                  => 'Esileht',
 'tooltip-n-mainpage'              => 'Mine esilehele',
 'tooltip-n-portal'                => 'Projekti kohta, mida te saate teha, kuidas leida informatsiooni jne',
