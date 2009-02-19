@@ -1370,6 +1370,9 @@ $wgAutoConfirmCount = 0;
  *
  * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
  * user who has provided an e-mail address.
+ *
+ * FIXME: The above documentation is incomplete.  Several new possible
+ * conditions have been added to the software and need to be documented here.
  */
 $wgAutopromote = array(
 	'autoconfirmed' => array( '&',
