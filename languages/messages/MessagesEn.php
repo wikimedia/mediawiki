@@ -3564,9 +3564,9 @@ This confirmation code will expire at $4.',
 # Trackbacks
 'trackbackbox'      => 'Trackbacks for this page:<br />
 $1',
-'trackback'         => '; $4$5 : [$2 $1]', # do not translate or duplicate this message to other languages
-'trackbackexcerpt'  => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>', # do not translate or duplicate this message to other languages
-'trackbackremove'   => ' ([$1 Delete])',
+'trackback'         => '; $4 $5: [$2 $1]', # only translate this message to other languages if you have to change it
+'trackbackexcerpt'  => '; $4 $5: [$2 $1]: <nowiki>$3</nowiki>', # only translate this message to other languages if you have to change it
+'trackbackremove'   => '([$1 Delete])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'The trackback was successfully deleted.',
 
