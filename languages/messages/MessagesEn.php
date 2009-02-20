@@ -3562,9 +3562,8 @@ This confirmation code will expire at $4.',
 'scarytranscludetoolong'  => '[URL is too long]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks for this page:<br />
-$1
-</div>',
+'trackbackbox'      => 'Trackbacks for this page:<br />
+$1',
 'trackback'         => '; $4$5 : [$2 $1]', # do not translate or duplicate this message to other languages
 'trackbackexcerpt'  => '; $4$5 : [$2 $1]: <nowiki>$3</nowiki>', # do not translate or duplicate this message to other languages
 'trackbackremove'   => ' ([$1 Delete])',

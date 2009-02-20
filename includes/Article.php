@@ -1128,7 +1128,7 @@ class Article {
 					$o->tb_name,
 					$rmvtxt);
 		}
-		$wgOut->addWikiMsg( 'trackbackbox', $tbtext );
+		$wgOut->wrapWikiMsg( "<div id='mw_trackbacks'>$1</div>\n", array( 'trackbackbox', $tbtext ) );
 		$this->mTitle->invalidateCache();
 	}
 
