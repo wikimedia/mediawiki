@@ -19,8 +19,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Changes since 1.13.4 ==
 
-* (bug 17527) Fixed missing MySQL-specific options in installer (bug introduced
-  in 1.13.3)
+* (bug 17449) Fixed PostgreSQL installation
+* (bug 17527) Fixed missing MySQL-specific options in installer
 
 == Changes since 1.13.3 ==
 
