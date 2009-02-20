@@ -499,20 +499,23 @@ class MovePageForm {
 	}
 
 	function showSubpages( $title, $out ) {
-		global $wgUser;
+		global $wgUser, $wgLang;
 
 		if( !MWNamespace::hasSubpages( $title->getNamespace() ) )
 			return;
 
-		$out->wrapWikiMsg( '== $1 ==', 'movesubpage' );
 		$subpages = $title->getSubpages();
+		$count = $subpages instanceof TitleArray ? $subpages->count() : 0;
+
+		$out->wrapWikiMsg( '== $1 ==', array( 'movesubpage', $count ) );
 
 		# No subpages.
-		if ( !( $subpages instanceof TitleArray ) || $subpages->count() == 0 ) {
+		if ( $count == 0 ) {
 			$out->addWikiMsg( 'movenosubpage' );
 			return;
 		}
 
+		$out->addWikiMsg( 'movesubpagetext', $wgLang->formatnum( $count ) );
 		$skin = $wgUser->getSkin();
 		$out->addHTML( "<ul>\n" );
 
