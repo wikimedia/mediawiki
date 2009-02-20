@@ -48,19 +48,21 @@ function wfSpecialSpecialpages() {
 		$groups['other'] = $other;
 	}
 
+	$includesRestrictedPages = false;
 	/** Now output the HTML */
 	foreach ( $groups as $group => $sortedPages ) {
 		$middle = ceil( count($sortedPages)/2 );
 		$total = count($sortedPages);
 		$count = 0;
 
-		$wgOut->addHTML( "<h4 class='mw-specialpagesgroup'>".wfMsgHtml("specialpages-group-$group")."</h4>\n" );
+		$wgOut->wrapWikiMsg( "<h4 class='mw-specialpagesgroup'>$1</h4>\n", "specialpages-group-$group" );
 		$wgOut->addHTML( "<table style='width: 100%;' class='mw-specialpages-table'><tr>" );
 		$wgOut->addHTML( "<td width='30%' valign='top'><ul>\n" );
 		foreach( $sortedPages as $desc => $specialpage ) {
 			list( $title, $restricted ) = $specialpage;
 			$link = $sk->makeKnownLinkObj( $title , htmlspecialchars( $desc ) );
 			if( $restricted ) {
+				$includesRestrictedPages = true;
 				$wgOut->addHTML( "<li class='mw-specialpages-page mw-specialpagerestricted'>{$link}</li>\n" );
 			} else {
 				$wgOut->addHTML( "<li>{$link}</li>\n" );
@@ -74,9 +76,8 @@ function wfSpecialSpecialpages() {
 		}
 		$wgOut->addHTML( "</ul></td><td width='30%' valign='top'></td></tr></table>\n" );
 	}
-	$wgOut->addHTML(
-		Xml::openElement('div', array( 'class' => 'mw-specialpages-notes' )).
-		wfMsgWikiHtml('specialpages-note').
-		Xml::closeElement('div')
-	);
+
+	if ( $includesRestrictedPages ) {
+		$wgOut->wrapWikiMsg( "<div class=\"mw-specialpages-notes\">\n$1\n</div>", 'specialpages-note' );
+	}
 }
