@@ -112,6 +112,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgForeignFileRepos
 * Special:ListUsers: Sort list of usergroups by alphabet
 * (bug 16762) Special:Movepage now shows a list of subpages when possible
+* (bug 17585) Hide legend on Special:Specialpages from non-privileged users
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
