@@ -867,6 +867,7 @@ class Title {
 	 * @return \type{\string} the URL
 	 */
 	public function getLinkUrl( $query = array(), $variant = false ) {
+		wfProfileIn( __METHOD__ );
 		if( !is_array( $query ) ) {
 			throw new MWException( 'Title::getLinkUrl passed a non-array for '.
 			'$query' );
@@ -880,6 +881,7 @@ class Title {
 			return $this->getLocalURL( $query, $variant )
 				. $this->getFragmentForURL();
 		}
+		wfProfileOut( __METHOD__ );
 	}
 
 	/**
