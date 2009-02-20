@@ -2,5 +2,5 @@
 
 function wfSpecialBlankpage() {
 	global $wgOut;
-	$wgOut->addHTML(wfMsg('intentionallyblankpage'));
+	$wgOut->addWikiMsg('intentionallyblankpage');
 }
