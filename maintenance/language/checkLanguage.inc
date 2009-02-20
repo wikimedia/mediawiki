@@ -110,7 +110,7 @@ class CheckLanguageCLI {
 			'untranslated' => 'getUntranslatedMessages',
 			'duplicate'    => 'getDuplicateMessages',
 			'obsolete'     => 'getObsoleteMessages',
-			'variables'    => 'getMessagesWithMismatchVariables',
+			'variables'    => 'getMessagesWithoutVariables',
 			'plural'       => 'getMessagesWithoutPlural',
 			'empty'        => 'getEmptyMessages',
 			'whitespace'   => 'getMessagesWithWhitespace',
@@ -157,7 +157,7 @@ class CheckLanguageCLI {
 			'untranslated' => '$1 message(s) of $2 are not translated to $3, but exist in en:',
 			'duplicate'    => '$1 message(s) of $2 are translated the same in en and $3:',
 			'obsolete'     => '$1 message(s) of $2 do not exist in en or are in the ignore list, but exist in $3:',
-			'variables'    => '$1 message(s) of $2 in $3 don\'t match the variables used in en:',
+			'variables'    => '$1 message(s) of $2 in $3 don\'t use some variables that en uses:',
 			'plural'       => '$1 message(s) of $2 in $3 don\'t use {{plural}} while en uses:',
 			'empty'        => '$1 message(s) of $2 in $3 are empty or -:',
 			'whitespace'   => '$1 message(s) of $2 in $3 have trailing whitespace:',
@@ -199,7 +199,7 @@ Check codes (ideally, all of them should result 0; all the checks are executed b
 	* untranslated: Messages which are required to translate, but are not translated.
 	* duplicate: Messages which translation equal to fallback
 	* obsolete: Messages which are untranslatable or do not exist, but are translated.
-	* variables: Messages without variables which should be used, or with variables which shouldn't be used.
+	* variables: Messages without variables which should be used.
 	* empty: Empty messages and messages that contain only -.
 	* whitespace: Messages which have trailing whitespace.
 	* xhtml: Messages which are not well-formed XHTML (checks only few common errors).
@@ -587,7 +587,7 @@ Check codes (ideally, all of them should result 0; all the checks are executed b
 	* untranslated: Messages which are required to translate, but are not translated.
 	* duplicate: Messages which translation equal to fallback
 	* obsolete: Messages which are untranslatable, but translated.
-	* variables: Messages without variables which should be used, or with variables which shouldn't be used.
+	* variables: Messages without variables which should be used.
 	* empty: Empty messages.
 	* whitespace: Messages which have trailing whitespace.
 	* xhtml: Messages which are not well-formed XHTML (checks only few common errors).
