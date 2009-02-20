@@ -125,7 +125,7 @@ class SpecialResetpass extends SpecialPage {
 			wfMsgExt( 'resetpass_text', array( 'parse' ) ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) .
 			$this->pretty( array(
-				array( 'wpName', 'username', 'text', $this->mUserName, !$this->mSelfChange ),
+				array( 'wpName', 'username', 'text', $this->mUserName, $wgUser->isAllowed( 'reset-passwords' ) ),
 				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass, $this->mSelfChange ),
 				array( 'wpNewPassword', 'newpassword', 'password', '', true ),
 				array( 'wpRetype', 'retypenew', 'password', '', true ),
