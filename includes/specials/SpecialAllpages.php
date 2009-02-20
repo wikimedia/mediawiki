@@ -27,7 +27,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	protected $nsfromMsg = 'allpagesfrom';
 
 	function __construct( $name = 'Allpages' ){
-		parent::__construct( $name );	
+		parent::__construct( $name );
 	}
 
 	/**

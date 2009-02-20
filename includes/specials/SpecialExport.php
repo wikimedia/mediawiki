@@ -130,7 +130,7 @@ class SpecialExport extends SpecialPage {
 			return;
 		}
 
-		$wgOut->addHTML( wfMsgExt( 'exporttext', 'parse' ) );
+		$wgOut->addWikiMsg( 'exporttext' );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalUrl( 'action=submit' ) ) );

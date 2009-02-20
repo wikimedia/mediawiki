@@ -241,7 +241,7 @@ class EmailUserForm {
 			$user = $this->target;
 
 		$wgOut->setPagetitle( wfMsg( "emailsent" ) );
-		$wgOut->addHTML( wfMsg( "emailsenttext" ) );
+		$wgOut->addWikiMsg( 'emailsenttext' );
 
 		$wgOut->returnToMain( false, $user->getUserPage() );
 	}
