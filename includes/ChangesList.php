@@ -334,9 +334,10 @@ class ChangesList {
 					'user'      => $rc->mAttribs['rc_user'],
 					'user_text' => $rc->mAttribs['rc_user_text']
 				) );
+				$rev->setTitle( $page );
 				$s .= ' '.$this->skin->generateRollback( $rev );
 			}
-		}	
+		}
 	}
 
 	protected function insertTags( &$s, &$rc, &$classes ) {
@@ -467,8 +468,9 @@ class EnhancedChangesList extends ChangesList {
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
 	public function recentChangesLine( &$baseRC, $watched = false ) {
-
 		global $wgLang, $wgContLang, $wgUser;
+		
+		wfProfileIn( __METHOD__ );
 
 		# Create a specialised object
 		$rc = RCCacheEntry::newFromParent( $baseRC );
@@ -608,6 +610,9 @@ class EnhancedChangesList extends ChangesList {
 
 			array_push( $this->rc_cache[$secureName], $rc );
 		}
+
+		wfProfileOut( __METHOD__ );
+
 		return $ret;
 	}
 
@@ -616,6 +621,9 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	protected function recentChangesBlockGroup( $block ) {
 		global $wgLang, $wgContLang, $wgRCShowChangedSize;
+
+		wfProfileIn( __METHOD__ );
+
 		$r = '<table cellpadding="0" cellspacing="0" border="0" style="background: none"><tr>';
 
 		# Collate list of users
@@ -836,6 +844,9 @@ class EnhancedChangesList extends ChangesList {
 		$r .= "</table></div>\n";
 
 		$this->rcCacheIndex++;
+
+		wfProfileOut( __METHOD__ );
+
 		return $r;
 	}
 
@@ -896,6 +907,9 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
 		global $wgContLang, $wgRCShowChangedSize;
+
+		wfProfileIn( __METHOD__ );
+
 		# Extract fields from DB into the function scope (rc_xxxx variables)
 		// FIXME: Would be good to replace this extract() call with something
 		// that explicitly initializes variables.
@@ -950,6 +964,9 @@ class EnhancedChangesList extends ChangesList {
 		$r .= $this->numberofWatchingusers($rcObj->numberofWatchingusers);
 
 		$r .= "</td></tr></table>\n";
+
+		wfProfileOut( __METHOD__ );
+
 		return $r;
 	}
 
@@ -961,6 +978,9 @@ class EnhancedChangesList extends ChangesList {
 		if( count ( $this->rc_cache ) == 0 ) {
 			return '';
 		}
+
+		wfProfileIn( __METHOD__ );
+
 		$blockOut = '';
 		foreach( $this->rc_cache as $block ) {
 			if( count( $block ) < 2 ) {
@@ -969,6 +989,9 @@ class EnhancedChangesList extends ChangesList {
 				$blockOut .= $this->recentChangesBlockGroup( $block );
 			}
 		}
+
+		wfProfileOut( __METHOD__ );
+
 		return '<div>'.$blockOut.'</div>';
 	}
 
