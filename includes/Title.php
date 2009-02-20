@@ -869,19 +869,21 @@ class Title {
 	public function getLinkUrl( $query = array(), $variant = false ) {
 		wfProfileIn( __METHOD__ );
 		if( !is_array( $query ) ) {
+			wfProfileOut( __METHOD__ );
 			throw new MWException( 'Title::getLinkUrl passed a non-array for '.
 			'$query' );
 		}
 		if( $this->isExternal() ) {
-			return $this->getFullURL( $query );
+			$ret = $this->getFullURL( $query );
 		} elseif( $this->getPrefixedText() === ''
 		and $this->getFragment() !== '' ) {
-			return $this->getFragmentForURL();
+			$ret = $this->getFragmentForURL();
 		} else {
-			return $this->getLocalURL( $query, $variant )
+			$ret = $this->getLocalURL( $query, $variant )
 				. $this->getFragmentForURL();
 		}
 		wfProfileOut( __METHOD__ );
+		return $ret;
 	}
 
 	/**
