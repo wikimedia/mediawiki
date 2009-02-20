@@ -938,13 +938,13 @@ class OutputPage {
 					'rel' => 'alternate',
 					'type' => 'application/x-wiki',
 					'title' => wfMsg( 'edit' ),
-					'href' => $wgTitle->getFullURL( 'action=edit' )
+					'href' => $wgTitle->getLocalURL( 'action=edit' )
 				) );
 				// Alternate edit link
 				$this->addLink( array(
 					'rel' => 'edit',
 					'title' => wfMsg( 'edit' ),
-					'href' => $wgTitle->getFullURL( 'action=edit' )
+					'href' => $wgTitle->getLocalURL( 'action=edit' )
 				) );
 			}
 		}
@@ -1597,7 +1597,7 @@ class OutputPage {
 				foreach( $wgFeedClasses as $format => $class ) {
 					$tags[] = $this->feedLink(
 						$format,
-						$rctitle->getFullURL( "feed={$format}" ),
+						$rctitle->getLocalURL( "feed={$format}" ),
 						wfMsg( "site-{$format}-feed", $wgSitename ) ); # For grep: 'site-rss-feed', 'site-atom-feed'.
 				}
 			}
