@@ -498,7 +498,7 @@ $messages = array(
 
 'badaccess'        => '権限がありません',
 'badaccess-group0' => 'あなたはこの操作を行う権限を持っていません。',
-'badaccess-groups' => 'この操作は $1 のグループに属する利用者のみが実行できます。',
+'badaccess-groups' => 'この操作は、$1 {{PLURAL:$2|の|のいずれかの}}グループに属する利用者のみが実行できます。',
 
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
 'versionrequiredtext' => 'このページの利用には MediaWiki バージョン $1 が必要です。[[Special:Version|バージョン情報]]を確認してください。',
@@ -611,7 +611,7 @@ $1',
 'protectedpagetext'    => 'このページは編集できないように保護されています。',
 'viewsourcetext'       => 'このページのソースを閲覧し、コピーすることができます:',
 'protectedinterface'   => 'このページはソフトウェアのインターフェースに使用されるテキストが保存されており、いたずらなどの防止のために保護されています。',
-'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者のユーザインタフェースに影響します。翻訳をする場合、MediaWiki の多言語対応プロジェクトである [http://translatewiki.net/wiki/Main_Page?setlang=ja Betawiki] の利用を検討してください。",
+'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者のユーザインタフェースに影響します。翻訳をする場合、MediaWiki の多言語対応プロジェクトである [http://translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net] の利用を検討してください。",
 'sqlhidden'            => '(SQLクエリ非表示)',
 'cascadeprotected'     => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。
 $2',
@@ -2274,6 +2274,9 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'move-redirect-suppressed'     => 'リダイレクト非作成',
 'movelogpage'                  => '移動記録',
 'movelogpagetext'              => '以下はページ移動の記録です。',
+'movesubpage'                  => 'サブページ',
+'movesubpagetext'              => 'このページには、以下に示す $1個のサブページがあります。',
+'movenosubpage'                => 'このページにはサブページがありません。',
 'movereason'                   => '理由',
 'revertmove'                   => '差し戻し',
 'delete_and_move'              => '削除して移動する',
@@ -2299,7 +2302,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 ページデータを書き出すには下のテキストボックスに書き出したいページの名前を一行に一つずつ記入してください。また編集履歴とともに全ての古い版を含んで書き出すのか、最新版のみを書き出すのか選択してください。
 
-後者の場合ではリンクの形で使うこともできます。例えば、「[[{{MediaWiki:Mainpage}}]]」の最新版を取得するには [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] とします。',
+後者の場合ではリンクの形で使うこともできます。例えば、「[[{{MediaWiki:Mainpage}}]]」の最新版を取得するには [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] とします。',
 'exportcuronly'     => 'すべての履歴を含ませずに、最新版のみを書き出す',
 'exportnohistory'   => "----
 '''注:''' パフォーマンス上の理由により、このフォームによるページの完全な履歴の書き出しは行えません。",
@@ -2923,10 +2926,9 @@ $5
 'scarytranscludetoolong'  => '[URLが長すぎます]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">このページへのトラックバック:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 削除])',
+'trackbackbox'      => 'このページへのトラックバック:<br />
+$1',
+'trackbackremove'   => '([$1 削除])',
 'trackbacklink'     => 'トラックバック',
 'trackbackdeleteok' => 'トラックバックを削除しました。',
 

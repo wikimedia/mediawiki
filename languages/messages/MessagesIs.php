@@ -552,7 +552,7 @@ Spurn: $2',
 'protectedinterface'   => 'Þessi síða útvegar textann sem birtist í viðmóti hugbúnaðarins, og er læst til að koma í veg fyrir misnotkun.',
 'editinginterface'     => "'''Aðvörun:''' Þú ert að breyta síðu sem hefur að geyma texta fyrir notendaumhverfi hugbúnaðarins.
 Breytingar á þessari síðu munu hafa áhrif á notendaumhverfi annarra notenda.
-Fyrir þýðingar, gjörðu svo vel að nota [http://translatewiki.net/wiki/Main_Page?setlang=is Betawiki], staðfæringverkefni MediaWiki.",
+Fyrir þýðingar, gjörðu svo vel að nota [http://translatewiki.net/wiki/Main_Page?setlang=is translatewiki.net], staðfæringverkefni MediaWiki.",
 'sqlhidden'            => '(SQL-fyrirspurn falin)',
 'cascadeprotected'     => 'Þessi síða hefur verið vernduð fyrir breytingum, vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er vernduð|síðum, sem eru verndaðar}} með „keðjuverndun“:
 $2',
@@ -608,6 +608,11 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}}-stillingunum]] þínum
 'badsig'                     => 'Ógild hrá undirskrift. Athugaðu HTML-kóða.',
 'badsiglength'               => 'Undirskriftin er of löng.
 Hún þarf að vera færri en $1 {{PLURAL:$1|rittákn|rittákn}}.',
+'yourgender'                 => 'Kyn:',
+'gender-unknown'             => 'Óskilgreint',
+'gender-male'                => 'Karl',
+'gender-female'              => 'Kona',
+'prefs-help-gender'          => 'Valfrjálst: notað til að aðgreina kynin í meldingum hugbúnaðarins. Þessar upplýsingar verða aðgengilegar öllum.',
 'email'                      => 'Tölvupóstur',
 'prefs-help-realname'        => 'Alvöru nafn er valfrjálst.
 Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiður af verkum þínum.',
@@ -2268,11 +2273,9 @@ $5
 'scarytranscludetoolong' => '[vefslóðin er of löng]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Varanlegir tenglar fyrir þessa grein:<br />
-$1
-</div>',
-'trackbackremove'   => '([$1 {{PLURAL:$1|eydd|eyddar}}])',
+'trackbackbox'      => 'Varanlegir tenglar fyrir þessa grein:<br />
+$1',
+'trackbackremove'   => '([$1 eydd])',
 'trackbacklink'     => 'Varanlegur tengill',
 'trackbackdeleteok' => 'Varanlega tenglinum var eytt.',
 
@@ -2379,5 +2382,11 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 
 # Special:BlankPage
 'blankpage' => 'Tóm síða',
+
+# Special:Tags
+'tags-edit' => 'breyta',
+
+# Database error messages
+'dberr-usegoogle' => 'Þú getur notað Google til að leita á meðan.',
 
 );

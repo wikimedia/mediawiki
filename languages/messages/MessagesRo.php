@@ -515,7 +515,7 @@ Te rog încearcă din nou în câteva minute.',
 'protectedpagetext'    => 'Această pagină este protejată împotriva modificărilor.',
 'viewsourcetext'       => 'Se poate vizualiza şi copia conţinutul acestei pagini:',
 'protectedinterface'   => 'Această pagină asigură textul interfeţei pentru software şi este protejată pentru a preveni abuzurile.',
-'editinginterface'     => "'''Avertizare''': Editezi o pagină care este folosită pentru a furniza textul interfeţei pentru software. Modificările aduse acestei pagini vor afecta aspectul interfeţei utilizatorului pentru alţi utilizatori. Pentru traduceri, consideraţi utilizarea [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], proiectul MediaWiki de localizare.",
+'editinginterface'     => "'''Avertizare''': Editezi o pagină care este folosită pentru a furniza textul interfeţei pentru software. Modificările aduse acestei pagini vor afecta aspectul interfeţei utilizatorului pentru alţi utilizatori. Pentru traduceri, consideraţi utilizarea [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proiectul MediaWiki de localizare.",
 'sqlhidden'            => '(interogare SQL ascunsă)',
 'cascadeprotected'     => 'Această pagină a fost protejată la scriere deoarece este inclusă în {{PLURAL:$1|următoarea pagină|următoarele pagini}}, care {{PLURAL:$1|este protejată|sunt protejate}} în cascadă:
 $2',
@@ -2769,11 +2769,9 @@ Codul de confirmare va expira la $4.',
 'scarytranscludetoolong'  => '[URL-ul este prea lung]',
 
 # Trackbacks
-'trackbackbox'      => "<div id='mw_trackbacks'>
-Urmăritori la acest articol:<br />
-$1
-</div>",
-'trackbackremove'   => ' ([$1 Şterge])',
+'trackbackbox'      => 'Urmăritori la acest articol:<br />
+$1',
+'trackbackremove'   => '([$1 Şterge])',
 'trackbacklink'     => 'Urmăritor',
 'trackbackdeleteok' => 'Urmăritorul a fost şters cu succes.',
 

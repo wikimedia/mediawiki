@@ -304,6 +304,7 @@ $1',
 
 ಒಂಜಿ ವೇಳೆ ಅಂಚ ಆದಿಜ್ಜಿಂಡ, ಉಂದು ಒಂಜಿ ಸಾಫ್ಟ್-ವೇರ್ ದೋಷ ಆದುಪ್ಪು.
 ಇಂದೆನ್  [[Special:ListUsers/sysop|ವಿಕಿ-ಅಧಿಕಾರಿಗ್]] ತೆರಿಪಾಲೆ.',
+'missingarticle-rev'   => '(ಮರು-ಆವೃತ್ತಿ#: $1)',
 'internalerror'        => 'ಆ೦ತರಿಕ ದೋಷ',
 'internalerror_info'   => 'ಆಂತರಿಕ ದೋಷ: $1',
 'filecopyerror'        => 'ಫೈಲ್ "$1" ನ್ "$2" ಗ್ ನಕಲ್ ಮಲ್ಪೆರೆ ಆಯಿಜಿ',
@@ -318,10 +319,15 @@ $1',
 'viewsourcefor'        => '$1 ಪುಟೊಗು',
 
 # Login and logout pages
+'yourname'                => 'ಸದಸ್ಯೆರ್ನ ಪುದರ್:',
+'yourpassword'            => 'ಪಾಸ್-ವರ್ಡ್:',
+'remembermypassword'      => 'ಈ ಕಂಪ್ಯೂಟರ್’ಡ್ ಎನ್ನ ಪ್ರವೇಶ ಪದೊನು ನೆನಪು ದೀಲ',
+'login'                   => 'ಲಾಗ್ ಇನ್',
 'nav-login-createaccount' => 'ಲಾಗ್-ಇನ್ / ಅಕೌಂಟ್ ಸೃಷ್ಟಿ ಮಲ್ಪುಲೆ',
 'userlogin'               => 'ಲಾಗ್-ಇನ್ / ಅಕೌಂಟ್ ಸೃಷ್ಟಿ ಮಲ್ಪುಲೆ',
 'logout'                  => 'ಲಾಗ್ ಔಟ್',
 'userlogout'              => 'ಲಾಗ್ ಔಟ್',
+'mailmypassword'          => 'ಪೊಸ ಪಾಸ್-ವರ್ಡ್’ನ್ ಇ-ಮೇಲ್ ಮಲ್ಪುಲೆ',
 
 # Edit page toolbar
 'bold_sample'     => 'ದಪ್ಪ ಅಕ್ಷರ',
@@ -344,37 +350,44 @@ $1',
 'hr_tip'          => 'ಅಡ್ಡ ಗೆರೆ(ಆಯಿನಾತ್ ಕಮ್ಮಿ ಉಪಯೋಗಿಸಾಲೆ)',
 
 # Edit pages
-'summary'                => 'ಸಾರಾಂಶ:',
-'subject'                => 'ವಿಷಯ/ಮುಖ್ಯಾ೦ಶ:',
-'minoredit'              => 'ಉಂದು ಎಲ್ಯ ಬದಲಾವಣೆ',
-'watchthis'              => 'ಈ ಪುಟೊನು ತೂಲೆ',
-'savearticle'            => 'ಪುಟೊನು ಒರಿಪಾಲೆ',
-'preview'                => 'ಮುನ್ನೋಟ',
-'showpreview'            => 'ಮುನ್ನೋಟ ತೊಜ್ಪಾವ್',
-'showlivepreview'        => 'ಪ್ರತ್ಯಕ್ಷ ಮುನ್ನೋಟ',
-'showdiff'               => 'ಬದಲಾವಣೆಲೆನ್ ತೊಜ್ಪಾವ್',
-'anoneditwarning'        => "'''ಜಾಗ್ರತೆ:''' ಈರ್ ಇತ್ತೆ ಲಾಗ್ ಇನ್ ಆತಿಜರ್.
+'summary'                          => 'ಸಾರಾಂಶ:',
+'subject'                          => 'ವಿಷಯ/ಮುಖ್ಯಾ೦ಶ:',
+'minoredit'                        => 'ಉಂದು ಎಲ್ಯ ಬದಲಾವಣೆ',
+'watchthis'                        => 'ಈ ಪುಟೊನು ತೂಲೆ',
+'savearticle'                      => 'ಪುಟೊನು ಒರಿಪಾಲೆ',
+'preview'                          => 'ಮುನ್ನೋಟ',
+'showpreview'                      => 'ಮುನ್ನೋಟ ತೊಜ್ಪಾವ್',
+'showlivepreview'                  => 'ಪ್ರತ್ಯಕ್ಷ ಮುನ್ನೋಟ',
+'showdiff'                         => 'ಬದಲಾವಣೆಲೆನ್ ತೊಜ್ಪಾವ್',
+'anoneditwarning'                  => "'''ಜಾಗ್ರತೆ:''' ಈರ್ ಇತ್ತೆ ಲಾಗ್ ಇನ್ ಆತಿಜರ್.
 ಈರ್ನ ಐ.ಪಿ ಎಡ್ರೆಸ್ ಈ ಪುಟೊತ ಬದಲಾವಣೆ ಇತಿಹಾಸೊಡು ದಾಖಲಾಪು೦ಡು.",
-'missingsummary'         => "'''ಗಮನಿಸಾಲೆ:''' ಈರ್ ಬದಲಾವಣೆದ ಸಾರಾ೦ಶನ್ ಕೊರ್ತಿಜರ್.
+'missingsummary'                   => "'''ಗಮನಿಸಾಲೆ:''' ಈರ್ ಬದಲಾವಣೆದ ಸಾರಾ೦ಶನ್ ಕೊರ್ತಿಜರ್.
 ಈರ್ ಪಿರ 'ಒರಿಪಾಲೆ' ಬಟನ್ ನ್ ಒತ್ತ್೦ಡ ಸಾರಾ೦ಶ ಇಜ್ಜ೦ದೆನೇ ಈರ್ನ ಬದಲಾವಣೆ ದಾಖಲಾಪು೦ಡು.",
-'missingcommenttext'     => 'ದಯ ಮಲ್ತ್ ದ ಈರ್ನ ಅಭಿಪ್ರಾಯನ್ ತಿರ್ತ್ ಕೊರ್ಲೆ',
-'missingcommentheader'   => "'''ಗಮನಿಸಾಲೆ:''' ಈರ್ ಈ ಅಭಿಪ್ರಾಯಗ್ \"ವಿಷಯ/ಮುಖ್ಯಾ೦ಶ\" ದಾಲ ಕೊರ್ತಿಜರ್. ಈರ್ ಪಿರ ’ಒರಿಪಾಲೆ’ ಬಟನ್ ನ್ ಒತ್ತ್೦ಡ ಈರ್ನ ಬದಲಾವಣೆ ವಿಷಯ/ಮುಖ್ಯಾ೦ಶ ಇಜ್ಜ೦ದನೇ ಒರಿಪ್ಪಾವು೦ಡು.",
-'summary-preview'        => 'ಸಾರಾ೦ಶ ಮುನ್ನೋಟ:',
-'subject-preview'        => 'ವಿಷಯ/ಮುಖ್ಯಾ೦ಶದ ಮುನ್ನೋಟ:',
-'blockedtitle'           => 'ಈ ಸದಸ್ಯೆರೆನ್ ತಡೆ ಮಲ್ತ್ ದ್೦ಡ್.',
-'newarticletext'         => "ನನಲ ಅಸ್ಥಿತ್ವಡ್ ಉಪ್ಪಂದಿನ ಪುಟೊಗು ಈರ್ ಬೈದರ್.
+'missingcommenttext'               => 'ದಯ ಮಲ್ತ್ ದ ಈರ್ನ ಅಭಿಪ್ರಾಯನ್ ತಿರ್ತ್ ಕೊರ್ಲೆ',
+'missingcommentheader'             => "'''ಗಮನಿಸಾಲೆ:''' ಈರ್ ಈ ಅಭಿಪ್ರಾಯಗ್ \"ವಿಷಯ/ಮುಖ್ಯಾ೦ಶ\" ದಾಲ ಕೊರ್ತಿಜರ್. ಈರ್ ಪಿರ ’ಒರಿಪಾಲೆ’ ಬಟನ್ ನ್ ಒತ್ತ್೦ಡ ಈರ್ನ ಬದಲಾವಣೆ ವಿಷಯ/ಮುಖ್ಯಾ೦ಶ ಇಜ್ಜ೦ದನೇ ಒರಿಪ್ಪಾವು೦ಡು.",
+'summary-preview'                  => 'ಸಾರಾ೦ಶ ಮುನ್ನೋಟ:',
+'subject-preview'                  => 'ವಿಷಯ/ಮುಖ್ಯಾ೦ಶದ ಮುನ್ನೋಟ:',
+'blockedtitle'                     => 'ಈ ಸದಸ್ಯೆರೆನ್ ತಡೆ ಮಲ್ತ್ ದ್೦ಡ್.',
+'newarticle'                       => '(ಪೊಸತ್)',
+'newarticletext'                   => "ನನಲ ಅಸ್ಥಿತ್ವಡ್ ಉಪ್ಪಂದಿನ ಪುಟೊಗು ಈರ್ ಬೈದರ್.
 ಈ ಪುಟೊನು ಸೃಷ್ಟಿ ಮಲ್ಪೆರೆ ತಿರ್ತ್’ದ ಚೌಕೊಡು ಬರೆಯೆರೆ ಸುರು ಮಲ್ಪುಲೆ.
 (ಜಾಸ್ತಿ ಮಾಹಿತಿಗ್ [[{{MediaWiki:Helppage}}|ಸಹಾಯ ಪುಟೊನು]] ತೂಲೆ).
 ಈ ಪುಟೊಕು ಈರ್ ತಪ್ಪಾದ್ ಬತ್ತಿತ್ತ್’ನ್ಡ ಇರೆನ ಬ್ರೌಸರ್’ದ '''back''' ಬಟನ್’ನ್ ಒತ್ತ್’ಲೆ.",
-'noarticletext'          => 'ಈ ಪುಟೊಟು ಸದ್ಯಗ್ ಓ ಬರಹಲಾ ಇಜ್ಜಿ, ಈರ್ ಬೇತೆ ಪೂಟೊಲೆಡ್ [[Special:Search/{{PAGENAME}}|ಈ ಲೇಖನೊನು ನಾಡೊಲಿ]] ಅತ್ತ್’ನ್ಡ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ಈ ಪುಟೊನು ಸಂಪಾದನೆ ಮಲ್ಪೊಲಿ].',
-'editing'                => '$1 ಲೇಖನೊನು ಈರ್ ಸಂಪಾದನೆ ಮಲ್ತೊಂದುಲ್ಲರ್',
-'editingsection'         => '$1 (ವಿಭಾಗೊನು) ಸಂಪಾದನೆ ಮಲ್ತೊಂದುಲ್ಲರ್',
-'copyrightwarning'       => "ದಯಮಲ್ತ್’ದ್ ಗಮನಿಸ್’ಲೆ: {{SITENAME}} ಸೈಟ್’ಡ್ ಇರೆನ ಪೂರಾ ಕಾಣಿಕೆಲುಲಾ $2 ಅಡಿಟ್ ಬಿಡುಗಡೆ ಆಪುಂಡು (ಮಾಹಿತಿಗ್ $1 ನ್ ತೂಲೆ). ಇರೆನ ಸಂಪಾದನೆಲೆನ್ ಬೇತೆಕುಲು ನಿರ್ಧಾಕ್ಷಿಣ್ಯವಾದ್ ಬದಲ್ ಮಲ್ತ್’ದ್ ಬೇತೆ ಕಡೆಲೆಡ್ ಪಟ್ಟೆರ್. ಇಂದೆಕ್ ಇರೆನ ಒಪ್ಪಿಗೆ ಇತ್ತ್’ನ್ಡ ಮಾತ್ರ ಮುಲ್ಪ ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ.<br />
+'noarticletext'                    => 'ಈ ಪುಟೊಟು ಸದ್ಯಗ್ ಓ ಬರಹಲಾ ಇಜ್ಜಿ, ಈರ್ ಬೇತೆ ಪೂಟೊಲೆಡ್ [[Special:Search/{{PAGENAME}}|ಈ ಲೇಖನೊನು ನಾಡೊಲಿ]] ಅತ್ತ್’ನ್ಡ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ಈ ಪುಟೊನು ಸಂಪಾದನೆ ಮಲ್ಪೊಲಿ].',
+'previewnote'                      => "'''ಉಂದು ಕೇವಲ ಮುನ್ನೋಟ; ಪುಟೊನು ನನಲ ಒರಿಪಾದಿಜಿ ಪನ್ಪುನೇನ್ ಮರಪೊರ್ಚಿ!'''",
+'editing'                          => '$1 ಲೇಖನೊನು ಈರ್ ಸಂಪಾದನೆ ಮಲ್ತೊಂದುಲ್ಲರ್',
+'editingsection'                   => '$1 (ವಿಭಾಗೊನು) ಸಂಪಾದನೆ ಮಲ್ತೊಂದುಲ್ಲರ್',
+'copyrightwarning'                 => "ದಯಮಲ್ತ್’ದ್ ಗಮನಿಸ್’ಲೆ: {{SITENAME}} ಸೈಟ್’ಡ್ ಇರೆನ ಪೂರಾ ಕಾಣಿಕೆಲುಲಾ $2 ಅಡಿಟ್ ಬಿಡುಗಡೆ ಆಪುಂಡು (ಮಾಹಿತಿಗ್ $1 ನ್ ತೂಲೆ). ಇರೆನ ಸಂಪಾದನೆಲೆನ್ ಬೇತೆಕುಲು ನಿರ್ಧಾಕ್ಷಿಣ್ಯವಾದ್ ಬದಲ್ ಮಲ್ತ್’ದ್ ಬೇತೆ ಕಡೆಲೆಡ್ ಪಟ್ಟೆರ್. ಇಂದೆಕ್ ಇರೆನ ಒಪ್ಪಿಗೆ ಇತ್ತ್’ನ್ಡ ಮಾತ್ರ ಮುಲ್ಪ ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ.<br />
 ಅತ್ತಂದೆ ಇರೆನ ಸಂಪಾದನೆಲೆನ್ ಈರ್ ಸ್ವತಃ ಬರೆತರ್, ಅತ್ತ್’ನ್ಡ ಕೃತಿಸ್ವಾಮ್ಯತೆ ಇಜ್ಜಂದಿನ ಕಡೆರ್ದ್ ದೆತೊನ್ದರ್ ಪಂಡ್’ದ್ ಪ್ರಮಾಣಿಸೊಂದುಲ್ಲರ್.
 '''ಕೃತಿಸ್ವಾಮ್ಯತೆದ ಅಡಿಟುಪ್ಪುನಂಚಿನ ಕೃತಿಲೆನ್ ಒಪ್ಪಿಗೆ ಇಜ್ಜಂದೆ ಮುಲ್ಪ ಪಾಡೊಚಿ!'''",
-'templatesused'          => 'ಈ ಪುಟೊಟು ಉಪಯೋಗ ಮಲ್ತಿನ ಫಲಕೊಲು:',
-'template-protected'     => '(ಸಂರಕ್ಷಿತ)',
-'template-semiprotected' => '(ಅರೆ-ಸಂರಕ್ಷಿತ)',
+'templatesused'                    => 'ಈ ಪುಟೊಟು ಉಪಯೋಗ ಮಲ್ತಿನ ಫಲಕೊಲು:',
+'templatesusedpreview'             => 'ಈ ಮುನ್ನೋಟೊಡು ಉಪಯೋಗ ಮಲ್ತಿನ ಟೆಂಪ್ಲೇಟ್’ಲು:',
+'template-protected'               => '(ಸಂರಕ್ಷಿತ)',
+'template-semiprotected'           => '(ಅರೆ-ಸಂರಕ್ಷಿತ)',
+'hiddencategories'                 => 'ಈ ಪುಟ {{PLURAL:$1|೧ ಗುಪ್ತ ವರ್ಗಗ್|$1 ಗುಪ್ತ ವರ್ಗೊಲೆಗ್}} ಸೇರ್ದ್’ನ್ಡ್:',
+'permissionserrorstext-withaction' => '$2 ಗ್ ಇರೆಗ್ ಅನುಮತಿ ಇಜ್ಜಿ, ಐಕ್ {{PLURAL:$1|ಕಾರಣ|ಕಾರಣೊಲು}}:',
+'deleted-notice'                   => 'ಈ ಪೇಜ್ ಅಸ್ತಿತ್ವಡ್ ಇಜ್ಜಿ.
+ಪೂಟೊತ ಡಿಲೀಶನ್ ಲಾಗ್’ನ್ ತಿರ್ತ್ ಕೊರ್ತುಂಡು.',
 
 # History pages
 'viewpagelogs'           => 'ಈ ಪುಟೊತ ದಾಖಲೆಲೆನ್ ತೂಲೆ',
@@ -382,6 +395,7 @@ $1',
 'currentrev-asof'        => '$1 ದ ಮುಟ್ಟ ಇತ್ತೆದ ಆವೃತ್ತಿ',
 'revisionasof'           => '$1 ದಿನೊತ ಆವೃತ್ತಿ',
 'previousrevision'       => '←ದುಂಬುದ ಆವೃತ್ತಿ',
+'nextrevision'           => 'ಪೊಸ ಮರು-ಆವೃತ್ತಿ',
 'cur'                    => 'ಸದ್ಯದ',
 'last'                   => 'ಕಡೆತ',
 'history-fieldset-title' => 'ಇತಿಹಾಸಡ್ ನಾಡ್ಲೆ',
@@ -433,6 +447,7 @@ $1',
 'powersearch-field'         => 'ನಾಡ್ಲೆ:',
 
 # Preferences page
+'preferences'   => 'ಪ್ರಾಶಸ್ತ್ಯೊಲು',
 'mypreferences' => 'ಎನ್ನ ಪ್ರಾಶಸ್ತ್ಯಲು',
 
 # Groups
@@ -440,7 +455,14 @@ $1',
 
 'grouppage-sysop' => '{{ns:project}}:ನಿರ್ವಾಹಕೆರ್',
 
+# User rights log
+'rightslog' => 'ಸದಸ್ಯೆರ್ನ ಹಕ್ಕು ದಾಖಲೆ',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'ಈ ಪುಟೊನು ಎಡಿಟ್ ಮಲ್ಪುಲೆ',
+
 # Recent changes
+'nchanges'                       => '$1 {{PLURAL:$1|ಬದಲಾವಣೆ|ಬದಲಾವಣೆಲು}}',
 'recentchanges'                  => 'ಇಂಚಿಪದ ಬದಲಾವಣೆಲು',
 'recentchanges-legend'           => 'ಇಂಚಿಪದ ಬದಲಾವಣೆಲು ಆಯ್ಕೆಲು',
 'recentchanges-feed-description' => 'ಈ ಫೀಡ್’ಡ್ ವಿಕಿಕ್ ಇಂಚಿಪ್ಪ ಆತಿನಂಚಿನ ಬದಲಾವಣೆಲೆನ್ ಟ್ರ್ಯಾಕ್ ಮಲ್ಪುಲೆ.',
@@ -472,7 +494,9 @@ $1',
 'recentchangeslinked-to'       => 'ಇಂದೆತ ಬದಲಿಗ್ ಕೊರ್ತಿನ ಪುಟೊಗು ಲಿಂಕ್ ಉಪ್ಪುನಂಚಿನ ಪುಟೊಲೆದ ಬದಲಾವಣೆಲೆನ್ ತೊಜ್ಪಾವು',
 
 # Upload
-'upload' => 'ಫೈಲ್ ಅಪ್ಲೋಡ್',
+'upload'        => 'ಫೈಲ್ ಅಪ್ಲೋಡ್',
+'uploadlogpage' => 'ಅಪ್ಲೋಡ್ ದಾಖಲೆ',
+'uploadedimage' => '"[[$1]]" ಅಪ್ಲೋಡ್ ಆಂಡ್',
 
 # File description page
 'filehist'                  => 'ಫೈಲ್’ದ ಇತಿಹಾಸ',
@@ -494,15 +518,23 @@ $1',
 # Random page
 'randompage' => 'ಯಾದೃಚ್ಛಿಕ ಪುಟ',
 
+# Statistics
+'statistics' => 'ಅಂಕಿ ಅಂಶೊಲು',
+
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|ಬೈಟ್|ಬೈಟ್‍ಲು}}',
 'nmembers'      => '$1 {{PLURAL:$1|ಸದಸ್ಯೆ|ಸದಸ್ಯೆರ್}}',
+'prefixindex'   => 'ಪೂರ್ವನಾಮೊಲ್ದ ಸೂಚಿಕೆ',
+'newpages'      => 'ಪೊಸ ಪುಟೊಲು',
 'move'          => 'ಮೂವ್(ಸ್ಥಳಾಂತರ) ಮಲ್ಪುಲೆ',
+'movethispage'  => 'ಈ ಪುಟೊನು ಮೂವ್ ಮಲ್ಪುಲೆ',
 'pager-newer-n' => '{{PLURAL:$1|ಪೊಸ ೧|ಪೊಸ $1}}',
 'pager-older-n' => '{{PLURAL:$1|ಪರತ್ತ್ ೧|ಪರತ್ತ್ $1}}',
 
 # Book sources
-'booksources' => 'ಪುಸ್ತಕೊಲ್ದ ಮೂಲ',
+'booksources'               => 'ಪುಸ್ತಕೊಲ್ದ ಮೂಲ',
+'booksources-search-legend' => 'ಪುಸ್ತಕೊದ ಮೂಲೊನು ನಾಡ್ಲ',
+'booksources-go'            => 'ಪೋ',
 
 # Special:Log
 'log' => 'ದಾಖಲೆಲು',
@@ -510,16 +542,27 @@ $1',
 # Special:AllPages
 'allpages'       => 'ಪೂರಾ ಪೂಟೊಲು',
 'alphaindexline' => '$1 ರ್ದ್ $2 ಗ್',
+'allpagesfrom'   => 'ಇಂದೆರ್ದ್ ಶುರುವಾಪುನ ಪುಟೊಲೆನ್ ತೊಜ್ಪಾವು:',
+'allpagesto'     => 'ಇಂದೆರ್ದ್ ಅಂತ್ಯ ಆಪುನ ಪುಟೊಲೆನ್ ತೊಜ್ಪಾವು:',
+'allarticles'    => 'ಪೂರಾ ಲೇಖನೊಲು',
 'allpagessubmit' => 'ಪೋ',
 
 # Special:Log/newusers
+'newuserlogpage'          => 'ಸದಸ್ಯ ರಚನೆ ಲಾಗ್',
 'newuserlog-create-entry' => 'ಪೊಸ ಸದಸ್ಯೆರ್ನ ಎಕೌಂಟ್',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(ಸದಸ್ಯೆರ್ನ ಪಟ್ಟಿ)',
+
+# E-mail user
+'emailuser' => 'ಈ ಸದಸ್ಯೆರೆಗ್ ಇ-ಮೈಲ್ ಕಡಪುಡ್ಲೆ',
 
 # Watchlist
 'watchlist'         => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿ',
 'mywatchlist'       => 'ಎನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿ',
 'watchlistfor'      => "('''$1''' ಇಂದೆತ)",
 'watch'             => 'ತೂಲೆ',
+'watchthispage'     => 'ಈ ಪುಟೊನು ತೂಲೆ',
 'unwatch'           => 'ವೀಕ್ಷಣಾಪಟ್ಟಿರ್ದ್ ದೆಪ್ಪು',
 'watchlist-options' => 'ವೀಕ್ಷಣಾಪಟ್ಟಿ ಆಯ್ಕೆಲು',
 
@@ -536,11 +579,13 @@ $1',
 'rollbacklink' => 'ಪಿರ ಪೋಲೆ',
 
 # Protect
-'protectlogpage'   => 'ಸಂರಕ್ಷಣೆ ದಿನಚರಿ',
-'protectedarticle' => '"[[$1]]" ಸಂರಕ್ಷಿತವಾದುಂಡು.',
+'protectlogpage'            => 'ಸಂರಕ್ಷಣೆ ದಿನಚರಿ',
+'protectedarticle'          => '"[[$1]]" ಸಂರಕ್ಷಿತವಾದುಂಡು.',
+'modifiedarticleprotection' => '"[[$1]]" ಪುಟೊತ ಸಂರಕ್ಷಣೆ ಮಟ್ಟ ಬದಲಾಂಡ್',
 
 # Undelete
-'undeletelink' => 'ದುಂಬುದ ಆವೃತ್ತಿಗ್ ಪೋಲೆ',
+'undeletelink'     => 'ದುಂಬುದ ಆವೃತ್ತಿಗ್ ಪೋಲೆ',
+'undeletedarticle' => '"[[$1]]" ನ್ ಪಿರಕನತ್’ನ್ಡ್',
 
 # Namespace form on various pages
 'namespace'      => 'ನೇಮ್-ಸ್ಪೇಸ್:',
@@ -548,10 +593,19 @@ $1',
 'blanknamespace' => '(ಮುಖ್ಯ)',
 
 # Contributions
-'contributions' => 'ಸದಸ್ಯೆರ್ನ ಕಾಣಿಕೆಲು',
-'mycontris'     => 'ಎನ್ನ ಕಾಣಿಕೆಲು',
-'month'         => 'ಈ ತಿಂಗೊಲುರ್ದ್ (ಬೊಕ್ಕ ದುಂಬುದ):',
-'year'          => 'ಈ ವರ್ಷೊರ್ದು (ಬೊಕ್ಕ ದುಂಬುದ):',
+'contributions'       => 'ಸದಸ್ಯೆರ್ನ ಕಾಣಿಕೆಲು',
+'contributions-title' => '$1 ಗ್ ಸದಸ್ಯೆರ್ನ ಕಾಣಿಕೆ',
+'mycontris'           => 'ಎನ್ನ ಕಾಣಿಕೆಲು',
+'contribsub2'         => '$1 ($2) ಗ್',
+'uctop'               => ' (ಮಿತ್ತ್)',
+'month'               => 'ಈ ತಿಂಗೊಲುರ್ದ್ (ಬೊಕ್ಕ ದುಂಬುದ):',
+'year'                => 'ಈ ವರ್ಷೊರ್ದು (ಬೊಕ್ಕ ದುಂಬುದ):',
+
+'sp-contributions-newbies'  => 'ಪೊಸ ಖಾತೆಲೆದ ಕಾಣಿಕೆಲೆನ್ ಮಾತ್ರ ತೊಜ್ಪಾವು',
+'sp-contributions-blocklog' => 'ತಡೆಪತ್ತುನ ದಾಖಲೆ',
+'sp-contributions-search'   => 'ಕಾಣಿಕೆಲೆನ್ ನಾಡ್ಲೆ',
+'sp-contributions-username' => 'ಐ.ಪಿ ವಿಳಾಸ ಅತ್ತ್’ನ್ಡ ಬಳಕೆದ ಪುದರ್:',
+'sp-contributions-submit'   => 'ನಾಡ್',
 
 # What links here
 'whatlinkshere'            => 'ಇಡೆ ವಾ ಪುಟೊಲು ಲಿಂಕ್ ಕೊರ್ಪುಂಡು',
@@ -571,12 +625,17 @@ $1',
 'whatlinkshere-filters'    => 'ಅರಿಪೆಲು',
 
 # Block/unblock
-'ipboptions'       => '2 ಗಂಟೆಲು:2 hours,1 ದಿನ:1 day,3 ದಿನೊಲು:3 days,1 ವಾರ:1 week,2 ವಾರೊಲು:2 weeks,1 ತಿಂಗೊಲು:1 month,3 ತಿಂಗೊಲು:3 months,6 ತಿಂಗೊಲು:6 months,1 ವರ್ಷ:1 year,ಅನಿರ್ಧಿಷ್ಟ:infinite', # display1:time1,display2:time2,...
-'blocklink'        => 'ಅಡ್ಡ ಪತ್ತ್’ಲೆ',
-'unblocklink'      => 'ಅಡ್ಡನ್ ದೆಪ್ಪುಲೆ',
-'change-blocklink' => 'ಬ್ಲಾಕ್’ನ್ ಬದಲಾಲೆ',
-'contribslink'     => 'ಕಾಣಿಕೆಲು',
-'blocklogpage'     => 'ತಡೆಪತ್ತ್’ದ್’ನ ಸದಸ್ಯೆರ್ನ ದಿನಚರಿ',
+'blockip'                  => 'ಈ ಸದಸ್ಯೆರೆನ್ ಬ್ಲಾಕ್ ಮಲ್ಪುಲೆ',
+'ipboptions'               => '2 ಗಂಟೆಲು:2 hours,1 ದಿನ:1 day,3 ದಿನೊಲು:3 days,1 ವಾರ:1 week,2 ವಾರೊಲು:2 weeks,1 ತಿಂಗೊಲು:1 month,3 ತಿಂಗೊಲು:3 months,6 ತಿಂಗೊಲು:6 months,1 ವರ್ಷ:1 year,ಅನಿರ್ಧಿಷ್ಟ:infinite', # display1:time1,display2:time2,...
+'ipblocklist'              => 'ತಡೆಪತ್ತ್’ದಿನ ಐ.ಪಿ ವಿಳಾಸೊಲು ಅಂಚೆನೆ ಬಳಕೆದ ಪುದರ್’ಲು',
+'blocklink'                => 'ಅಡ್ಡ ಪತ್ತ್’ಲೆ',
+'unblocklink'              => 'ಅಡ್ಡನ್ ದೆಪ್ಪುಲೆ',
+'change-blocklink'         => 'ಬ್ಲಾಕ್’ನ್ ಬದಲಾಲೆ',
+'contribslink'             => 'ಕಾಣಿಕೆಲು',
+'blocklogpage'             => 'ತಡೆಪತ್ತ್’ದ್’ನ ಸದಸ್ಯೆರ್ನ ದಿನಚರಿ',
+'blocklogentry'            => '[[$1]] ಖಾತೆನ್ $2 $3 ಮುಟ್ಟ ತಡೆಪತ್ತ್’ದ್’ನ್ಡ್',
+'unblocklogentry'          => '$1 ಖಾತೆನ್ ಅನ್-ಬ್ಲಾಕ್ ಮಲ್ತ್’ನ್ಡ್',
+'block-log-flags-nocreate' => 'ಖಾತೆ ಸೃಷ್ಟಿನ್ ತಡೆಪತ್ತ್’ದ್’ನ್ಡ್',
 
 # Move page
 'movelogpage' => 'ಸ್ಥಳಾಂತರಿಕೆ ದಾಖಲೆ',
@@ -622,6 +681,7 @@ $1',
 'tooltip-feed-rss'                => 'ಈ ಪುಟೊಗು ಆರ್.ಎಸ್.ಎಸ್ ಫೀಡ್',
 'tooltip-feed-atom'               => 'ಈ ಪುಟೊಗು Atom ಫೀಡ್',
 'tooltip-t-contributions'         => 'ಈ ಸದಸ್ಯೆರ್ನ ಕಾಣಿಕೆಲ್ದ ಪಟ್ಟಿನ್ ತೊಜ್ಪಾವು',
+'tooltip-t-emailuser'             => 'ಈ ಸದಸ್ಯೆರೆಗ್ ಇ-ಮೇಲ್ ಕಡಪುಡ್ಲೆ',
 'tooltip-t-upload'                => 'ಫೈಲ್’ನ್ ಅಪ್ಲೋಡ್ ಮಲ್ಪುಲೆ',
 'tooltip-t-specialpages'          => 'ಪೂರ ವಿಷೇಶ ಪುಟೊಲ್ದ ಪಟ್ಟಿ',
 'tooltip-t-print'                 => 'ಈ ಪುಟೊತ ಪ್ರಿಂಟ್ ಆವೃತ್ತಿ',
@@ -631,6 +691,7 @@ $1',
 'tooltip-ca-nstab-special'        => 'ಉಂದೊಂಜಿ ವಿಶೇಷ ಪುಟ, ಇಂದೆನ್ ಈರ್ ಎಡಿಟ್ ಮಲ್ಪೆರೆ ಆಪುಜಿ',
 'tooltip-ca-nstab-project'        => 'ಪ್ರೊಜೆಕ್ಟ್ ಪುಟೊನು ತೂಲೆ',
 'tooltip-ca-nstab-image'          => 'ಫೈಲ್’ದ ಪುಟೊನು ತೂಲೆ',
+'tooltip-ca-nstab-template'       => 'ಟೆಂಪ್ಲೇಟ್’ನ್ ತೂಲೆ',
 'tooltip-ca-nstab-category'       => 'ವರ್ಗೊದ ಪುಟೊನು ತೂಲೆ',
 'tooltip-minoredit'               => 'ಇಂದೆನ್ ಎಲ್ಯ ಬದಲಾವಣೆ ಪಂಡ್ದ್ ಗುರ್ತ ಮಲ್ಪುಲೆ',
 'tooltip-save'                    => 'ಈರ್ ಮಲ್ತ್’ದಿನ ಬದಲಾವಣೆಲೆನ್ ಒರಿಪುಲೆ',
@@ -645,10 +706,12 @@ $1',
 
 # Browsing diffs
 'previousdiff' => '← ದುಂಬುದ ಸಂಪಾದನೆ',
+'nextdiff'     => 'ಪೊಸ ಎಡಿಟ್ →',
 
 # Media information
 'file-info-size'       => '($1 × $2 ಪಿಕ್ಸೆಲ್, ಫೈಲ್’ದ ಗಾತ್ರ: $3, MIME ಪ್ರಕಾರ: $4)',
 'file-nohires'         => '<small>ಇಂದೆರ್ದ್ ಜಾಸ್ತಿ ವಿವರವಾಯಿನ ನೋಟ ಇಜ್ಜಿ.</small>',
+'svg-long-desc'        => '(ಎಸ್.ವಿ.ಜಿ ಫೈಲ್, ಸುಮಾರಾದ್ $1 × $2 ಪಿಕ್ಸೆಲ್, ಫೈಲ್’ದ ಗಾತ್ರ: $3)',
 'show-big-image'       => 'ಪೂರ್ತಿ ರೆಸೊಲ್ಯೂಶನ್',
 'show-big-image-thumb' => '<small>ಈ ಮುನ್ನೋಟದ ಗಾತ್ರ: $1 × $2 ಪಿಕ್ಸೆಲ್</small>',
 

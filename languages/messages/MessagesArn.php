@@ -478,7 +478,7 @@ $messages = array(
 'monthsall'        => '(kom)',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 Ñamümün])',
+'trackbackremove' => '([$1 Ñamümün])',
 
 # action=purge
 'confirm_purge_button' => 'Feley may',

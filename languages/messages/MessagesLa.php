@@ -8,6 +8,7 @@
  * @author LeighvsOptimvsMaximvs
  * @author Omnipaedista
  * @author OrbiliusMagister
+ * @author Ornil
  * @author Rafaelgarcia
  * @author SPQRobin
  * @author UV
@@ -443,7 +444,7 @@ Inquisitio: $2',
 'protectedpagetext'    => 'Haec pagina protecta est, ut emendationes prohibeantur.',
 'viewsourcetext'       => 'Fontem videas et exscribeas:',
 'protectedinterface'   => 'Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.',
-'editinginterface'     => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Main_Page?setlang=la Betawiki].",
+'editinginterface'     => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Main_Page?setlang=la translatewiki.net].",
 'sqlhidden'            => '(inquisitio SQL celata)',
 'namespaceprotected'   => "Tibi non licet paginas spatii nominalis '''$1''' recensere.",
 'ns-specialprotected'  => 'Paginae speciales recenseri non possunt.',
@@ -1408,6 +1409,7 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'enotif_impersonal_salutation' => 'Usor {{grammar:genitive|{{SITENAME}}}}',
 'changed'                      => 'mutata',
 'created'                      => 'creata',
+'enotif_subject'               => '{{SITENAME}}: Pagina $PAGETITLE $CHANGEDORCREATED est ab $PAGEEDITOR',
 'enotif_lastdiff'              => 'Vide $1 ad hanc recensionem inspiciendum.',
 'enotif_anon_editor'           => 'usor ignotus $1',
 
@@ -2062,7 +2064,7 @@ Hic codex adfirmationis exibit $4.',
 'invalidateemail'          => 'Adfimationem inscriptionis electronicae abrogare',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 Delere])',
+'trackbackremove' => '([$1 Delere])',
 'trackbacklink'   => 'Retronexus',
 
 # Delete conflict

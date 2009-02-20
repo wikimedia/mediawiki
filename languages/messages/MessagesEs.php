@@ -552,7 +552,7 @@ Consulta: $2',
 'protectedpagetext'    => 'Esta página ha sido bloqueada para evitar su edición.',
 'viewsourcetext'       => 'Puedes ver y copiar el código fuente de esta página:',
 'protectedinterface'   => 'Esta página provee texto del interfaz del software, y está protegida para evitar vandalismos.',
-'editinginterface'     => "'''Aviso:''' Estás editando una página usada para proporcionar texto a la interfaz de {{SITENAME}}. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios.",
+'editinginterface'     => "'''Aviso:''' Estás editando una página usada para proporcionar texto de interface para el software. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios. Para traducciones, por favor considere usar [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], el proyecto de localización MediaWiki.",
 'sqlhidden'            => '(Consulta SQL oculta)',
 'cascadeprotected'     => 'Esta página ha sido protegida para su edición, porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que están protegidas con las opción de "cascada":
 $2',
@@ -688,6 +688,7 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'resetpass-wrong-oldpass'   => 'La contraseña antigua no es correcta.
 Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'resetpass-temp-password'   => 'Contraseña temporal:',
+'resetpass-no-others'       => 'No puede reajustar la contraseña de otros usuarios.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto en negrita',
@@ -1318,6 +1319,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'right-userrights'           => 'Modificar todos los derechos de usuario',
 'right-userrights-interwiki' => 'Modificar los derechos de usuarios en otros wikis',
 'right-siteadmin'            => 'Bloquear y desbloquear la base de datos',
+'right-reset-passwords'      => 'Reajustar la contraseña de otros usuarios',
 
 # User rights log
 'rightslog'      => 'Cambios de perfil de usuario',
@@ -2267,6 +2269,9 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'move-redirect-suppressed'     => 'redireccionamiento suprimido',
 'movelogpage'                  => 'Registro de traslados',
 'movelogpagetext'              => 'Abajo se encuentra una lista de páginas trasladadas.',
+'movesubpage'                  => 'Subpáginas',
+'movesubpagetext'              => 'Esta página tiene {{PLURAL:$1|la siguiente subpágina|las siguientes $1 subpáginas}}:',
+'movenosubpage'                => 'Esta página no tiene subpáginas.',
 'movereason'                   => 'Motivo:',
 'revertmove'                   => 'revertir',
 'delete_and_move'              => 'Borrar y trasladar',
@@ -2293,7 +2298,7 @@ La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al 
 
 Para exportar páginas, escribe los títulos en la caja de texto de abajo, un título por línea, y selecciona si quieres la versión actual junto a las versiones anteriores, con las líneas del historial, o sólo la versión actual con la información sobre la última edición.
 
-En el último caso también puedes usar un enlace, por ejemplo [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para la página "[[{{MediaWiki:Mainpage}}]]".',
+En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para la página "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Incluye sólo la revisión actual, no el historial de revisiones al completo.',
 'exportnohistory'   => "----
 '''Nota:''' Exportar el historial completo de páginas a través de este formulario ha sido deshabilitado debido a problemas de rendimiento del servidor.",
@@ -2889,11 +2894,9 @@ El código de confirmación expirará en $4.',
 'scarytranscludetoolong'  => '[El URL es demasiado largo]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Trackbacks para este artículo:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Borrar])',
+'trackbackbox'      => "''Trackbacks'' para este artículo:<br />
+$1",
+'trackbackremove'   => '([$1 Borrar])',
 'trackbacklink'     => "''Trackback''",
 'trackbackdeleteok' => 'El trackback se borró correctamente.',
 

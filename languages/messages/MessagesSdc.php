@@ -420,7 +420,7 @@ Interrogazioni: $2",
 'protectedpagetext'    => 'Chistha pàgina è isthadda prutiggidda pa impidinni la mudìfigga.',
 'viewsourcetext'       => 'È pussìbiri visuarizzà e cupià lu còdizi di chistha pàgina:',
 'protectedinterface'   => "Chistha pàgina cunteni un'erementu chi fazzi parthi di l'interfàccia utenti di lu software; è dunca prutiggidda pa evità pussìbiri abusi.",
-'editinginterface'     => "'''Attinzioni:''' Lu testhu di chistha pàgina fazzi parthi di l'interfàccia utenti di lu situ. Tutti li mudìfigghi arriggaddi a chistha pàgina si rifrèttini i' l'imbasciaddi visuarizzaddi pa tutti l'utenti. Pa li traduzioni, pa piazeri utirizà [http://translatewiki.net/wiki/Main_Page?setlang=sdc Betawiki], lu prugettu di lucarizazioni MediaWiki.",
+'editinginterface'     => "'''Attinzioni:''' Lu testhu di chistha pàgina fazzi parthi di l'interfàccia utenti di lu situ. Tutti li mudìfigghi arriggaddi a chistha pàgina si rifrèttini i' l'imbasciaddi visuarizzaddi pa tutti l'utenti. Pa li traduzioni, pa piazeri utirizà [http://translatewiki.net/wiki/Main_Page?setlang=sdc translatewiki.net], lu prugettu di lucarizazioni MediaWiki.",
 'sqlhidden'            => "(l'interrogazioni SQL è isthadda cuadda)",
 'cascadeprotected'     => 'In chistha pàgina nò è pussìbiri effettuà mudìfigghi parchí è isthadda incrusa {{PLURAL:$1|i la sighenti pàgina indicadda, ch\'è isthadda prutiggidda|i li sighenti pàgini indicaddi, chi so isthaddi prutiggiddi}} chirriendi la prutizioni "ricussiba":
 $2',
@@ -1612,7 +1612,7 @@ La pàgina di disthinazioni "[[:$1]]" isisthi già. Vói canzillalla pa rindì p
 
 Pa ippurthà li pàgina indicà i tìturi i' la casella di testhu in giossu, unu pa riga, e ippizzificà si s'à gana d'uttinì la versioni currenti e tutti li versioni prizzidenti, cu' li dati di la cronologia di la pàgina, oppure soru l'ulthima versioni e i dati curripundenti a l'ulthima mudìfigga.
 
-In chisth'ulthimu casu si pó utilizzà puru un cullegamentu, pa esempiu [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pa ippurthà \"[[{{MediaWiki:Mainpage}}]]\".",
+In chisth'ulthimu casu si pó utilizzà puru un cullegamentu, pa esempiu [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pa ippurthà \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => "Incrudi soru la ribisioni attuari, nò l'intrea cronologia.",
 'exportnohistory'   => "----
 '''Nota:''' l'ippurthazioni di l'intrea cronologia di li pàgini attrabessu chistha interfàccia è isthadda disattibadda pa mutibi liaddi a li presthazioni di lu sisthema.",
@@ -1955,11 +1955,9 @@ Chistu còdizi di cunfèimma ischadrà automatiggamenti a li \$4.",
 'scarytranscludetoolong'  => '[Errori: URL troppu longu]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Infuimmazioni di tracciamentu pa chistha pàgina:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Elimina])',
+'trackbackbox'      => 'Infuimmazioni di tracciamentu pa chistha pàgina:<br />
+$1',
+'trackbackremove'   => '([$1 Elimina])',
 'trackbacklink'     => 'Tracciamentu',
 'trackbackdeleteok' => 'Infuimmazioni di tracciamentu eliminaddi.',
 

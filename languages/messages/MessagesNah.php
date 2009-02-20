@@ -1381,7 +1381,7 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 'scarytranscludetoolong' => '[Cah URL achi huēiyac; xitēchpohpolhuia]',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 Ticpolōz])',
+'trackbackremove' => '([$1 Ticpolōz])',
 
 # Delete conflict
 'recreate' => 'Ticchīhuāz occeppa',

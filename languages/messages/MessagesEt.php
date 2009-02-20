@@ -388,6 +388,7 @@ Sellisel juhul tuleks informeerida [[Special:ListUsers/sysop|mõnda administrato
 'filedeleteerror'      => 'Faili nimega "$1" ei ole võimalik kustutada.',
 'directorycreateerror' => 'Ei suuda luua kausta "$1".',
 'filenotfound'         => 'Faili nimega "$1" ei leitud.',
+'fileexistserror'      => 'Kirjutamine faili "$1" ebaõnnestus: fail on juba olemas',
 'unexpected'           => 'Ootamatu väärtus: "$1"="$2".',
 'formerror'            => 'Viga: vormi ei saanud salvestada',
 'badarticleerror'      => 'Seda toimingut ei saa sellel leheküljel sooritada.',
@@ -404,7 +405,7 @@ Päring: $2',
 'viewsourcefor'        => '$1',
 'viewsourcetext'       => 'Võite vaadata ja kopeerida lehekülje algteksti:',
 'protectedinterface'   => 'Sellel leheküljel on tarkvara kasutajaliidese tekst. Kuritahtliku muutmise vältimiseks on lehekülg lukustatud.',
-'editinginterface'     => "'''Hoiatus:''' Te redigeerite tarkvara kasutajaliidese tekstiga lehekülge. Muudatused siin mõjutavad kõikide kasutajate kasutajaliidest. Tõlkijad, palun kaaluge MediaWiki tõlkimisprojekti – [http://translatewiki.net/wiki/Main_Page?setlang=et Betawiki] kasutamist.",
+'editinginterface'     => "'''Hoiatus:''' Te redigeerite tarkvara kasutajaliidese tekstiga lehekülge. Muudatused siin mõjutavad kõikide kasutajate kasutajaliidest. Tõlkijad, palun kaaluge MediaWiki tõlkimisprojekti – [http://translatewiki.net/wiki/Main_Page?setlang=et translatewiki.net] kasutamist.",
 'sqlhidden'            => '(SQL päring peidetud)',
 'namespaceprotected'   => "Teil ei ole õigusi redigeerida lehekülgi '''$1''' nimeruumis.",
 'ns-specialprotected'  => 'Erilehekülgi ei saa redigeerida.',
@@ -528,7 +529,7 @@ Sa võid olla juba edukalt muutnud oma parooli või küsinud uue ajutise parooli
 'nowiki_tip'      => 'Ignoreeri viki vormindust',
 'image_sample'    => 'Näidis.jpg',
 'image_tip'       => 'Pilt',
-'media_sample'    => 'Näidis.mp3',
+'media_sample'    => 'Näidis.ogg',
 'media_tip'       => 'Link failile',
 'sig_tip'         => 'Sinu signatuur kuupäeva ja kellaajaga',
 'hr_tip'          => 'Horisontaalkriips (kasuta säästlikult)',
@@ -1131,7 +1132,7 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'nlinks'                  => '$1 {{PLURAL:$1|link|linki}}',
 'nmembers'                => '$1 {{PLURAL:$1|liige|liiget}}',
 'nrevisions'              => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}}',
-'nviews'                  => 'Külastuste arv: $1',
+'nviews'                  => '$1 {{PLURAL:$1|külastus|külastust}}',
 'lonelypages'             => 'Viitamata artiklid',
 'lonelypagestext'         => 'Järgmistele lehekülgedele ei ole linki ühelgi Viki leheküljel.',
 'uncategorizedpages'      => 'Kategoriseerimata leheküljed',
@@ -1411,14 +1412,18 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 # What links here
 'whatlinkshere'            => 'Lingid siia',
 'whatlinkshere-title'      => 'Leheküljed, mis viitavad lehele "$1"',
+'whatlinkshere-page'       => 'Lehekülg:',
 'linkshere'                => "Lehele '''[[:$1]]''' viitavad järgmised leheküljed:",
 'nolinkshere'              => "Lehele '''[[:$1]]''' ei viita ükski lehekülg.",
 'isredirect'               => 'ümbersuunamislehekülg',
 'istemplate'               => 'kasutamine',
+'isimage'                  => 'link pildile',
 'whatlinkshere-prev'       => '{{PLURAL:$1|eelmised|eelmised $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|järgmised|järgmised $1}}',
 'whatlinkshere-links'      => '← lingid',
 'whatlinkshere-hideredirs' => '$1 ümbersuunamised',
+'whatlinkshere-hidetrans'  => '$1 mallina kasutamised',
+'whatlinkshere-hidelinks'  => '$1 lingid',
 
 # Block/unblock
 'blockip'                    => 'Blokeeri IP-aadress',
@@ -1608,7 +1613,7 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 'tooltip-recreate'                => 'Taasta kustutatud lehekülg',
 
 # Attribution
-'anonymous' => '{{SITENAME}} anonüümsed kasutajad',
+'anonymous' => '{{SITENAME}} {{PLURAL:$1|anonüümne kasutaja|anonüümsed kasutajad}}',
 'siteuser'  => 'Viki kasutaja $1',
 'others'    => 'teised',
 'siteusers' => 'Viki kasutaja(d) $1',
@@ -1721,7 +1726,7 @@ Kui see *ei* ole sinu loodud konto, siis ava järgnev link $5 kinnituse tühista
 Kinnituskood aegub $4.',
 
 # Delete conflict
-'deletedwhileediting' => 'Hoiatus: Sel ajal, kui Te artiklit redigeerisite, on keegi selle kustutanud!',
+'deletedwhileediting' => 'Hoiatus: Sel ajal, kui sina artiklit redigeerisid, kustutas keegi selle ära!',
 
 # Multipage image navigation
 'imgmultipageprev' => '← eelmine lehekülg',

@@ -3085,11 +3085,9 @@ $5
 'scarytranscludetoolong'  => '[نشانی اینترنتی مورد نظر (URL) بیش از اندازه بلند بود]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-بازتاب این صفحه در وب‌نوشت‌ها:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 حذف])',
+'trackbackbox'      => 'بازتاب این صفحه در وب‌نوشت‌ها:<br />
+$1',
+'trackbackremove'   => '([$1 حذف])',
 'trackbacklink'     => 'بازتاب',
 'trackbackdeleteok' => 'بازتاب صفحه با موفقیت حذف شد.',
 

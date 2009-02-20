@@ -1155,7 +1155,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'scarytranscludetoolong' => '[Питĕ шел, URL ытла вăрăм]',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 кăларса пăрах])',
+'trackbackremove' => '([$1 кăларса пăрах])',
 
 # Delete conflict
 'deletedwhileediting' => 'Асăрхăр: эсир тӳрлетнĕ вăхăтра ку страницăна кăларса парахнă!',

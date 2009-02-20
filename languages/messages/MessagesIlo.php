@@ -318,7 +318,7 @@ Query: $2',
 'viewsourcetext'       => 'Mabalinmo a kitaen ken kopiaen ti taudan daytoy a panid:',
 'editinginterface'     => "'''Ballaag:''' Ed-editem ti maysa a panid a maar-aramat a mangted iti texto ti interface para iti software.
 Dagiti panangbalbaliw iti daytoy a panid ket apektaranna ti langa ti user interface ti sabsabali nga agar-aramat.
-Para kadagiti patarus, pangngaasim ta padasem nga aramaten ti [http://translatewiki.net/wiki/Main_Page?setlang=ilo Betawiki], ti MediaWiki localisation project.",
+Para kadagiti patarus, pangngaasim ta padasem nga aramaten ti [http://translatewiki.net/wiki/Main_Page?setlang=ilo translatewiki.net], ti MediaWiki localisation project.",
 'sqlhidden'            => '(nakalemmeng ti SQL query)',
 'namespaceprotected'   => "Awananka iti pammalubos a mangbaliw kadagiti panid iti '''$1''' a namespace.",
 'customcssjsprotected' => 'Awananka iti pammalubos a mangedit iti daytoy a panid, agsipud ta adda linaonna a personal a settings ti sabali nga agar-aramat.',
@@ -1793,10 +1793,9 @@ Mabalinmon ti sumrek ket naragsak a panag-wiki.',
 'scarytranscludetoolong'  => '[atiddog la unay ti URL; pasensiakan]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Dagiti trackbacks iti daytoy a panid:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Ikkaten])',
+'trackbackbox'      => 'Dagiti trackbacks iti daytoy a panid:<br />
+$1',
+'trackbackremove'   => '([$1 Ikkaten])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Sibaballigi a naikkat ti trackback.',
 

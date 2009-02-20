@@ -499,7 +499,7 @@ Query: $2',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Você pode ver e copiar o código desta página:',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
-'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt Betawiki], um projecto destinado à tradução do MediaWiki.",
+'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projecto destinado à tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
@@ -633,6 +633,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'resetpass-wrong-oldpass'   => 'Palavra-chave temporária ou actual inválida. 
 Você pode já ter alterado com sucesso a sua palavra-chave, ou solicitado uma nova palavra-chave temporária.',
 'resetpass-temp-password'   => 'Palavra-chave temporária:',
+'resetpass-no-others'       => 'Você não pode repor a palavra-chave para outros utilizadores.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto a negrito',
@@ -1276,6 +1277,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'right-userrights'           => 'Editar todos os privilégios de utilizador',
 'right-userrights-interwiki' => 'Editar privilégios de utilizador de utilizadores noutros sítios wiki',
 'right-siteadmin'            => 'Bloquear e desbloquear a base de dados',
+'right-reset-passwords'      => 'Repor a palavra-chave de outros utilizadores',
 
 # User rights log
 'rightslog'      => 'Registo de privilégios de utilizador',
@@ -1910,7 +1912,7 @@ A última edição foi de [[User:$3|$3]] ([[User talk:$3|discussão]]{{int:pipe-
 'rollback-success' => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 'sessionfailure'   => 'Foram detectados problemas com a sua sessão;
 Esta acção foi cancelada como medida de protecção contra a intercepção de sessões.
-Experimente usar o botão "Voltar" e refrescar a página de onde veio e tente novamente.',
+Experimente usar o botão "Voltar" e recarregar a página de onde veio e tente novamente.',
 
 # Protect
 'protectlogpage'              => 'Registo de protecção',
@@ -2233,6 +2235,9 @@ Por favor, escolha outro nome.',
 'move-redirect-suppressed'     => 'redirecionamento suprimido',
 'movelogpage'                  => 'Registo de movimento',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
+'movesubpage'                  => '{{PLURAL:$1|Sub-página|Sub-páginas}}',
+'movesubpagetext'              => 'Esta página tem $1 {{PLURAL:$1|sub-página|sub-páginas}}, mostradas abaixo.',
+'movenosubpage'                => 'Esta página não tem sub-páginas.',
 'movereason'                   => 'Motivo:',
 'revertmove'                   => 'reverter',
 'delete_and_move'              => 'Eliminar e mover',
@@ -2258,7 +2263,7 @@ A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder 
 
 Para exportar páginas, introduza os títulos na caixa de texto abaixo (um título por linha) e seleccione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição atual e informações apenas sobre a mais recente das edições.
 
-Se desejar, pode utilizar uma ligação (por exemplo, [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
+Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
 'exportcuronly'     => 'Incluir apenas a edição actual, não o histórico inteiro',
 'exportnohistory'   => "----
 '''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desactivada devido a motivos de performance.",
@@ -2855,11 +2860,9 @@ Este código de confirmação irá expirar a $4.',
 'scarytranscludetoolong'  => '[URL longa demais]',
 
 # Trackbacks
-'trackbackbox'      => "<div id='mw_trackbacks'>
-Trackbacks para esta página:<br />
-$1
-</div>",
-'trackbackremove'   => ' ([$1 Eliminar])',
+'trackbackbox'      => 'Trackbacks para esta página:<br />
+$1',
+'trackbackremove'   => '([$1 Eliminar])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'O trackback foi eliminado com sucesso.',
 
@@ -3027,10 +3030,10 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 # Database error messages
 'dberr-header'      => 'Este wiki tem um problema',
 'dberr-problems'    => 'Desculpe! Este sítio está a experimentar dificuldades técnicas.',
-'dberr-again'       => 'Experimente esperar uns minutos e refrescar.',
+'dberr-again'       => 'Experimente esperar uns minutos e atualizar.',
 'dberr-info'        => '(Não foi possível contactar o servidor de base de dados: $1)',
 'dberr-usegoogle'   => 'Pode tentar pesquisar no Google entretanto.',
 'dberr-outofdate'   => 'Note que os seus índices relativos ao nosso conteúdo podem estar desatualizados.',
-'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não ser atual.',
+'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não estar atualizada.',
 
 );

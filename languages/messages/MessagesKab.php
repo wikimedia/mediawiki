@@ -1460,11 +1460,9 @@ ad yemmut ass $4.',
 'scarytranscludetoolong'  => '[URL d aɣezfan bezzaf; suref-aɣ]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Izdayen n zdeffir n umagrad-agi:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Mḥu])',
+'trackbackbox'      => 'Izdayen n zdeffir n umagrad-agi:<br />
+$1',
+'trackbackremove'   => '([$1 Mḥu])',
 'trackbacklink'     => 'Azday n zdeffir',
 'trackbackdeleteok' => 'Azday n zdeffir yettumḥa.',
 

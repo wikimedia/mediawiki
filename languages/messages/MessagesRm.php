@@ -274,7 +274,7 @@ El po cuntegnair in u plirs segns che na pon betg vegnir utilisads en titels.',
 'viewsource'       => 'guardar fontaunas',
 'viewsourcefor'    => 'per $1',
 'viewsourcetext'   => 'Ti pos guardar e copiar il code-fundamental da questa pagina:',
-'editinginterface' => "'''Attenziun:''' Questa pagina cuntegn text che vegn duvra da software da mediawiki. Midadas influenzeschan directamain l'interface da l'utilisader. Sche ti vuls far translaziuns u correcturas: Studegia da far quai sin [http://translatewiki.net/wiki/Main_Page?setlang=rm Betawiki], per che las midadas pon vegnidas surprendidas da tut ils projects.",
+'editinginterface' => "'''Attenziun:''' Questa pagina cuntegn text che vegn duvra da software da mediawiki. Midadas influenzeschan directamain l'interface da l'utilisader. Sche ti vuls far translaziuns u correcturas: Studegia da far quai sin [http://translatewiki.net/wiki/Main_Page?setlang=rm translatewiki.net], per che las midadas pon vegnidas surprendidas da tut ils projects.",
 
 # Login and logout pages
 'logouttitle'                => "Log-out d'utilisaders",

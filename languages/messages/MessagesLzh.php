@@ -391,7 +391,7 @@ $1',
 'viewsourcefor'        => '$1',
 'actionthrottled'      => '無為',
 'protectedinterface'   => '此頁司版，緘之以遠濫。',
-'editinginterface'     => "'''警示：'''此頁司版，一髮牽身，惠慎之。如譯之，可慮[http://translatewiki.net/wiki/Main_Page?setlang=zh-hant Betawiki]也，為MediaWiki軟件本地化之計劃也。",
+'editinginterface'     => "'''警示：'''此頁司版，一髮牽身，惠慎之。如譯之，可慮[http://translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]也，為MediaWiki軟件本地化之計劃也。",
 'sqlhidden'            => '(SQL隱然)',
 'cascadeprotected'     => '此頁"迭緘"矣。$1頁牽連如下：
 $2',
@@ -1939,7 +1939,7 @@ $1已被禁矣。爾是否改此置？',
 
 # Export
 'export'            => '出匯',
-'exporttext'        => '文、誌纂、擇頁可編成XML，借MediaWiki[[Special:Import|入匯]他山]。欲出匯，函下題之，每列一題，任牽舊審、誌文；或獨帶末纂之述，以鏈表之，如以[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]匯"[[{{MediaWiki:Mainpage}}]]"。',
+'exporttext'        => '文、誌纂、擇頁可編成XML，借MediaWiki[[Special:Import|入匯]他山]。欲出匯，函下題之，每列一題，任牽舊審、誌文；或獨帶末纂之述，以鏈表之，如以[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]匯"[[{{MediaWiki:Mainpage}}]]"。',
 'exportcuronly'     => '獨匯今審',
 'exportnohistory'   => "----
 '''囑記，'''封匯全誌，因累甚也。",
@@ -2290,10 +2290,9 @@ $1已被禁矣。爾是否改此置？',
 'scarytranscludetoolong'  => '[網址過長]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">此文之引:
-$1
-</div>',
-'trackbackremove'   => ' （[$1刪]）',
+'trackbackbox'      => '此文之引:<br />
+$1',
+'trackbackremove'   => '（[$1刪]）',
 'trackbacklink'     => '迴響',
 'trackbackdeleteok' => 'Trackback 刪矣。',
 

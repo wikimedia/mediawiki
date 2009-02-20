@@ -2106,7 +2106,7 @@ Pa esportar páxines, pon los títulos na caxa de testu d'embaxo, un títulu per
 y seleiciona si quies la versión actual xunto con toles versiones antigües, xunto col
 so historial, o namái la versión actual cola información de la postrer edición.
 
-Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pa la páxina \"[[{{MediaWiki:Mainpage}}]]\".",
+Por último, tamién pues usar un enllaz: p.e. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pa la páxina \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => 'Amestar namái la revisión actual, non tol historial',
 'exportnohistory'   => "----
 '''Nota:''' Desactivóse la esportación del historial completu de páxines al traviés d'esti formulariu por motivos de rendimientu.",
@@ -2683,11 +2683,9 @@ Esti códigu de confirmación caduca\'l $4.',
 'scarytranscludetoolong'  => '[La URL ye demasiao llarga]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Retroenllaces pa esta páxina:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Esborrar])',
+'trackbackbox'      => 'Retroenllaces pa esta páxina:<br />
+$1',
+'trackbackremove'   => '([$1 Esborrar])',
 'trackbacklink'     => 'Retroenllaz',
 'trackbackdeleteok' => 'El retroenllaz esborróse correutamente.',
 

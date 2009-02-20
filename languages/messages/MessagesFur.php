@@ -472,7 +472,7 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'nowiki_tip'      => 'Ignore la formatazion wiki',
 'image_sample'    => 'Esempli.jpg',
 'image_tip'       => 'Figure includude',
-'media_sample'    => 'Esempli.mp3',
+'media_sample'    => 'Esempli.ogg',
 'media_tip'       => 'Leam a un file multimediâl',
 'sig_tip'         => 'La tô firme cun ore e date',
 'hr_tip'          => 'Rie orizontâl (no stâ doprâle masse spes)',

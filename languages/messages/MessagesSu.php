@@ -582,7 +582,7 @@ Mun ieu rekening balukar ayana éror, teu kudu diwaro.',
 'nowiki_tip'      => 'Format wiki tong diwaro',
 'image_sample'    => 'Conto.jpg',
 'image_tip'       => 'Ngasupkeun gambar',
-'media_sample'    => 'Conto.mp3',
+'media_sample'    => 'Conto.ogg',
 'media_tip'       => 'Tumbu koropak média',
 'sig_tip'         => 'Tawis leungeun anjeun tur cap wanci',
 'hr_tip'          => 'Garis horizontal (use sparingly)',
@@ -2268,11 +2268,9 @@ Sandi konfirmasi ieu bakal kadaluwarsa dina $4.',
 'scarytranscludetoolong'  => '[URL panjang teuing; punten]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Ngalacak balik keur artikel ieu:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Hapus])',
+'trackbackbox'      => 'Ngalacak balik keur artikel ieu:<br />
+$1',
+'trackbackremove'   => '([$1 Hapus])',
 'trackbacklink'     => 'Ngalacak balik',
 'trackbackdeleteok' => 'Ngalacak balik, hasil dihapus!.',
 

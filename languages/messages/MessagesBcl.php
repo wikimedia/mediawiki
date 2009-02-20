@@ -468,6 +468,8 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'yournick'                   => 'Gahâ:',
 'badsig'                     => 'Dai pwede an bâgong pirmang ini; isúsog an mga HTML na takód.',
 'badsiglength'               => 'Halabâon an gahâ; kaipuhan dai mababà sa $1 na mga karakter.',
+'gender-male'                => 'Lalaki',
+'gender-female'              => 'Babai',
 'email'                      => 'E-koreo',
 'prefs-help-realname'        => 'Opsyonal an totoong pangaran asin kun itatao mo ini, gagamiton ini yangarig an mga sinurat mo maatribuir saimo.',
 'loginerror'                 => 'Salâ an paglaog',
@@ -1620,7 +1622,7 @@ Igwa nang páhina na "[[:$1]]". Gusto mong parâon ini tangarig maibalyó?',
 
 Para makapadara nin mga páhina, ilaag an mga titulo sa kahon para sa teksto sa babâ, sarong titulo kada linya, dangan pilîon kun boot mo presenteng bersyón asin dating bersyón, na may mga linya kan historya, o an presenteng bersyón sana na may impormasyon manonongod sa huring hirá.
 
-Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para sa páhinang "[[{{MediaWiki:Mainpage}}]]".',
+Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para sa páhinang "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Mga presenteng pagpakarhay sana an ibali, bakong an enterong historya',
 'exportnohistory'   => "----
 '''Paisi:''' Dai pigpatogotan an pagpadara kan enterong historya kan mga páhina sa paagi kaining forma huli sa mga rasón dapit sa pagsagibo kaini.",
@@ -1945,11 +1947,9 @@ Kun *bakô* ka ini, dai sunodón an takod. Mapaso sa $4 inning koda nin kompirma
 'scarytranscludetoolong'  => '[halabaon an URL; despensa]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Mga trackback sa pahinang ini:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Parâon])',
+'trackbackbox'      => 'Mga trackback sa pahinang ini:<br />
+$1',
+'trackbackremove'   => '([$1 Parâon])',
 'trackbacklink'     => 'Solsogan',
 'trackbackdeleteok' => 'Pigparâ na an solsogan.',
 

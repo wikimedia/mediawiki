@@ -566,7 +566,7 @@ Zapytanie: $2',
 'protectedinterface'   => 'Ta strona zawiera tekst interfejsu oprogramowania, dlatego możliwość jej edycji została zablokowana.',
 'editinginterface'     => "'''Ostrzeżenie:''' Edytujesz stronę, która zawiera tekst interfejsu oprogramowania.
 Zmiany na tej stronie zmienią wygląd interfejsu dla innych użytkowników.
-Rozważ wykonanie tłumaczenia na [http://translatewiki.net/wiki/Main_Page?setlang=pl Betawiki], specjalizowanym projekcie lokalizacji oprogramowania MediaWiki.",
+Rozważ wykonanie tłumaczenia na [http://translatewiki.net/wiki/Main_Page?setlang=pl translatewiki.net], specjalizowanym projekcie lokalizacji oprogramowania MediaWiki.",
 'sqlhidden'            => '(ukryto zapytanie SQL)',
 'cascadeprotected'     => 'Ta strona została zabezpieczona przed edycją, ponieważ jest ona zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:
 $2',
@@ -711,6 +711,7 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło. 
 Być może właśnie zmieniłeś swoje hasło lub poprosiłeś o nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
+'resetpass-no-others'       => 'Nie masz uprawnień do resetowania haseł innym użytkownikom.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tekst tłustą czcionką',
@@ -1360,6 +1361,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'right-userrights'           => 'Edycja uprawnień wszystkich użytkowników',
 'right-userrights-interwiki' => 'Edycja uprawnień użytkowników innych witryn wiki',
 'right-siteadmin'            => 'Blokowanie i odblokowywanie bazy danych',
+'right-reset-passwords'      => 'Resetowanie haseł innych użytkowników',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -2342,6 +2344,7 @@ Wybierz inną nazwę.',
 'move-redirect-suppressed'     => 'nie utworzono przekierowania pod starym tytułem',
 'movelogpage'                  => 'Przeniesione',
 'movelogpagetext'              => 'Lista stron, które ostatnio zostały przeniesione.',
+'movesubpage'                  => '{{PLURAL:$1|Podstrona|Podstrony}}',
 'movereason'                   => 'Powód',
 'revertmove'                   => 'cofnij',
 'delete_and_move'              => 'Usuń i przenieś',
@@ -2370,7 +2373,7 @@ Wyeksportowane informacje można później zaimportować do innej wiki, działaj
 
 Wyeksportowanie wielu stron wymaga wpisania poniżej tytułów stron po jednym tytule w wierszu oraz określenia, czy ma zostać wyeksportowana bieżąca czy wszystkie wersje strony z opisami edycji lub też tylko bieżąca wersja z opisem ostatniej edycji.
 
-Możesz również użyć linku, np. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] dla strony „[[{{MediaWiki:Mainpage}}]]”.',
+Możesz również użyć linku, np. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] dla strony „[[{{MediaWiki:Mainpage}}]]”.',
 'exportcuronly'     => 'Tylko bieżąca wersja, bez historii',
 'exportnohistory'   => "----
 '''Uwaga:''' Wyłączono możliwość eksportowania pełnej historii stron z użyciem tego narzędzia z powodu kłopotów z wydajnością.",
@@ -2993,8 +2996,9 @@ Kod zawarty w linku straci ważność $4.',
 'scarytranscludetoolong'  => '[zbyt długi adres URL]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Komunikaty TrackBack dla tej strony:<br />$1</div>',
-'trackbackremove'   => ' ([$1 Usuń])',
+'trackbackbox'      => 'Komunikaty TrackBack dla tej strony:<br />
+$1',
+'trackbackremove'   => '([$1 Usuń])',
 'trackbacklink'     => 'TrackBack',
 'trackbackdeleteok' => 'TrackBack został usunięty.',
 

@@ -1726,7 +1726,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'confirmemail_error'    => 'Кемекстамот ванстомсто мезе-бути лиссь.',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 Нардамс])',
+'trackbackremove' => '([$1 Нардамс])',
 'trackbacklink'   => 'Мекев потамо эскельксэнь-эскельксэнь',
 
 # Delete conflict

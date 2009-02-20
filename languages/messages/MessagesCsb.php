@@ -297,7 +297,7 @@ Mòże to zgłoszëc [[Special:ListUsers/sysop|sprôwnikòwi]], pòdając adres�
 'viewsource'       => 'Zdrojowi tekst',
 'viewsourcefor'    => 'dlô $1',
 'editinginterface' => "'''ÒSTRZÉGA:''' Editëjesz starnã, jakô zamëkô w se tekst interfejsu softwôrë. Wszëtczé zmianë tu zrobioné bãdze widzec na interfejse jinszëch brëkòwników.
-Przemëszlë dolmaczënié na [http://translatewiki.net/wiki/Main_Page?setlang=csb Betawiki], ekstra ùdbie lokalizacëji softwôrë MediaWiki.",
+Przemëszlë dolmaczënié na [http://translatewiki.net/wiki/Main_Page?setlang=csb translatewiki.net], ekstra ùdbie lokalizacëji softwôrë MediaWiki.",
 
 # Login and logout pages
 'logouttitle'                => 'Wëlogòwanié brëkòwnika',

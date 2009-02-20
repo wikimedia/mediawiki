@@ -1818,7 +1818,7 @@ $5
 'scarytranscludetoolong' => '[URL ತುಂಬ ಉದ್ದವಾಗಿದೆ; ಕ್ಷಮಿಸಿ]',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 ಅಳಿಸು])',
+'trackbackremove' => '([$1 ಅಳಿಸು])',
 
 # Delete conflict
 'deletedwhileediting' => 'ಸೂಚನೆ: ನೀವು ಸಂಪಾದನೆ ಪ್ರಾರಂಭಿಸಿದ ನಂತರ ಈ ಪುಟವನ್ನು ಅಳಿಸಲಾಗಿದೆ!',

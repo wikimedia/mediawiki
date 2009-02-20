@@ -472,7 +472,7 @@ Wotprašenje: $2',
 'protectedpagetext'    => 'Strona je přećiwo wobdźěłowanju škitana.',
 'viewsourcetext'       => 'Móžeš pak jeje žórło wobhladać a jo kopěrować:',
 'protectedinterface'   => 'Tuta strona skići tekst za rěčny zwjerch a je škitana zo by so znjewužiwanju zadźěwało.',
-'editinginterface'     => '<b>Kedźbu:</b> Wobdźěłuješ stronu, kotraž wobsahuje tekst za rěčny zwjerch. Změny wuskutkuja so bjezposrědnje za wšěch druhich wužiwarjow tutoho rěčneho zwjercha.',
+'editinginterface'     => "'''Warnowanje:''' Wobdźěłuješ stronu, kotraž so wužiwa, zo by tekst za softwaru k dispoziciji stajiła. Změny wuskutkuja so na napohlad wužiwarskeho powjercha za druhich wužiwarjow. Hlej za přełožki [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], projekt lokalizacije MediaWiki.",
 'sqlhidden'            => '(SQL wotprašenje schowane)',
 'cascadeprotected'     => 'Strona je za wobdźěłowanje zawrjena, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacymaj stronomaj|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrejž stej|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitanej|škitane}}:
 $2',
@@ -595,6 +595,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'resetpass-wrong-oldpass'   => 'Njepłaćiwe nachwilne abo aktualne hesło.
 Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
 'resetpass-temp-password'   => 'Nachwilne hesło:',
+'resetpass-no-others'       => 'Njemóžeš hesło za druhich wužiwarjow wróćo stajić.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučny tekst',
@@ -1203,6 +1204,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'right-userrights'           => 'Wužiwarske prawa wobdźěłać',
 'right-userrights-interwiki' => 'Wužiwarske prawa wužiwarjow druhich wikijow wobdźěłać',
 'right-siteadmin'            => 'Datowu banku zawrěć a wotewrěć',
+'right-reset-passwords'      => 'Hesła druhich wužiwarjow wróćo stajić',
 
 # User rights log
 'rightslog'      => 'Protokol zrjadowanja wužiwarskich prawow',
@@ -2136,6 +2138,9 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'move-redirect-suppressed'     => 'daleposrědkowanje podtłóčene',
 'movelogpage'                  => 'Protokol přesunjenjow',
 'movelogpagetext'              => 'Deleka je lisćina wšěch přesunjenych stronow.',
+'movesubpage'                  => 'Podstrony',
+'movesubpagetext'              => 'Strona ma {{PLURAL:$1|slědowacu podstronu|slědowacej $1 podstronje|slědowace $1 podstrony|slědowacych $1 podstronow}}.',
+'movenosubpage'                => 'Tuta strona podstrony nima.',
 'movereason'                   => 'Přičina',
 'revertmove'                   => 'wróćo přesunyć',
 'delete_and_move'              => 'wušmórnyć a přesunyć',
@@ -2162,7 +2167,7 @@ Cilowa strona „[[:$1]]” hižo eksistuje. Chceš ju wušmórnyć, zo by so p�
 
 Zo by strony eksportował, zapodaj title deleka do tekstoweho pola, jedyn titul na linku, a wubjer, hač chceš aktualnu wersiju kaž tež stare wersije z linkami stawiznow strony abo jenož aktualnu wersiju z informacijemi wo poslednjej změnje eksportować.
 
-W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]” za stronu „[[{{MediaWiki:Mainpage}}]]”.',
+W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]” za stronu „[[{{MediaWiki:Mainpage}}]]”.',
 'exportcuronly'     => 'Jenož aktualnu wersiju zapřijeć, nic dospołne stawizny',
 'exportnohistory'   => '----
 <b>Kedźbu:</b> Eksport cyłych stawiznow přez tutón formular bu z přičin wukonitosće serwera znjemóžnjeny.',
@@ -2747,8 +2752,8 @@ Tute wobkrućenski kod spadnje $4.',
 'scarytranscludetoolong'  => '[URL je předołhi]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks za tutón nastawk:<br />
-$1</div>',
+'trackbackbox'      => 'Trackbacks za tutón nastawk:<br />
+$1',
 'trackbackremove'   => '([$1 wušmórnyć])',
 'trackbacklink'     => 'Wróćosćěhowanje',
 'trackbackdeleteok' => 'Trackback bu wuspěšnje wušmórnjeny.',

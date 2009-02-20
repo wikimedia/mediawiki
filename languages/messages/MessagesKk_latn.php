@@ -704,7 +704,7 @@ Birneşe mïnöttan qaýta baýqap köriñiz.',
 'protectedinterface'   => 'Bul bet bağdarlamalıq jasaqtamanıñ tildesw mätinin jetistiredi, sondıqtan qïyanattı qaqpaýlaw üşin özgertwi qulıptalğan.',
 'editinginterface'     => "'''Qulaqtandırw:''' Bağdarlamalıq jasaqtamanıñ tildesw mätinin jetistiretin betin öñdep jatırsız.
 Bul bettiñ özgertwi basqa qatıswşılarğa paýdalanwşılıq tildeswi qalaý körinetine äser etedi.
-Awdarmalar üşin, MediaWiki bağdarlamasın jersindirw [http://translatewiki.net/wiki/Main_Page?setlang=kk Betawiki jobası] arqılı qarap şeşiñiz.",
+Awdarmalar üşin, MediaWiki bağdarlamasın jersindirw [http://translatewiki.net/wiki/Main_Page?setlang=kk translatewiki.net jobası] arqılı qarap şeşiñiz.",
 'sqlhidden'            => '(SQL suranımı jasırılğan)',
 'cascadeprotected'     => 'Bul bet öñdewden qorğalğan, sebebi bul kelesi «bawlı qorğawı» qosılğan {{PLURAL:$1|bettiñ|betterdiñ}} kirikbeti:
 $2',
@@ -2803,10 +2803,8 @@ Quptaw kodı merzimi bitetin kezi: $4.',
 'scarytranscludetoolong'  => '[URL tım uzın; ğafw etiñiz]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Bul bettiñ añıstawları:
-
-$1
-</div>',
+'trackbackbox'      => 'Bul bettiñ añıstawları:<br />
+$1',
 'trackbackremove'   => '([$1 Joyw])',
 'trackbacklink'     => 'Añıstaw',
 'trackbackdeleteok' => 'Añıstaw sätti joýıldı.',

@@ -481,7 +481,7 @@ Query: $2',
 'protectedinterface'   => 'ای صفحه فراهم آریت مداخله ی متنی په برنامه و کبل بیتت په جلوگیری چه سو استفاده.',
 'editinginterface'     => "'''هوژاری:''' شما یک صفحه ای اصلاح کنیت که به عنوان مداخله گر متنی برنامه استفاده بیت.
 تغییرات ای صفحه کاربرد مداخله گر په دگه کابران تاثیر هلیت.
-  [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki],  په ترجمه یان لطفا توجه کنیت په استفاده پروژه ملکی کتن مدیا وی کی",
+  [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net],  په ترجمه یان لطفا توجه کنیت په استفاده پروژه ملکی کتن مدیا وی کی",
 'sqlhidden'            => '(SQL درخواست پناهین)',
 'cascadeprotected'     => 'ای صفحه محافظت بیت چه اصلاح چرا که آیی شامل جهلیگین {{PLURAL:$1|صفحه, که|صفحات, که}} محافظتی گون the "cascading" option turned on:
 $2',
@@ -1141,6 +1141,16 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'timezoneoffset'            => 'اختلاف¹:',
 'servertime'                => 'وهد سرور:',
 'guesstimezone'             => 'پرکن چه بروزر',
+'timezoneregion-africa'     => 'افریکا',
+'timezoneregion-america'    => 'امریکا',
+'timezoneregion-antarctica' => 'جنوبی قطب',
+'timezoneregion-arctic'     => 'شمالی قطب',
+'timezoneregion-asia'       => 'اسیا',
+'timezoneregion-atlantic'   => 'اقیانوس اطلس',
+'timezoneregion-australia'  => 'استرالیا',
+'timezoneregion-europe'     => 'اروپا',
+'timezoneregion-indian'     => 'اقیانوس هند',
+'timezoneregion-pacific'    => 'اقیانوس آرام',
 'allowemail'                => 'فعال کن ایمیل چه دگه کابران',
 'prefs-searchoptions'       => 'گردگ انتخابان',
 'prefs-namespaces'          => 'نام فصا',
@@ -1509,6 +1519,8 @@ PICT # misc.
 'noimage'                   => 'چوشین فایل گون ای نام نیست، بله شما تونیت $1',
 'noimage-linktext'          => 'یکیء آپلود کن',
 'uploadnewversion-linktext' => 'یک نوکین نسخه ای چه ای فایل آپلود کن',
+'shared-repo-from'          => 'چه $1', # $1 is the repository name
+'shared-repo'               => 'هورین مخزن', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'ترین $1',
@@ -2103,7 +2115,7 @@ $1',
 'ipb-blocklist-contribs'          => 'مشارکت په $1',
 'unblockip'                       => 'کاربر رفع محدودیت کن',
 'unblockiptext'                   => 'چه ای جهلی فرم استفاده کن په ترینگ دسترسی نوشتن په یک پیشگین آدرس آی پی محدود یا نام کاربری.',
-'ipusubmit'                       => 'ای آدرسء رفع محدودیت کن',
+'ipusubmit'                       => 'ای محدودیتءَ بزور',
 'unblocked'                       => '[[User:$1|$1]] رفع محدودیت بیت.',
 'unblocked-id'                    => 'محدودیت $1  زورگ بیتت',
 'ipblocklist'                     => 'لیست محدود بیتگین آی پی و نام کاربران',
@@ -2225,8 +2237,8 @@ $1',
 لطفا آیآ دستی چند و بند کنیت.''''",
 'movedto'                      => 'جاه په جاه بیت په',
 'movetalk'                     => 'جاه په جاه کتن صفحه کپ همراه',
-'move-subpages'                => 'جاه په جاه کن کل زیرصفحاتء، اگر بیت',
-'move-talk-subpages'           => 'جاه په جاه کن کل زیرصفحات صفحه گپء، اگه بیت',
+'move-subpages'                => 'چیر تاکان ءَ ( تا  $1) جاه په جاه کن اگر ببیت',
+'move-talk-subpages'           => 'چیرتاکان چه صفحه گپ (تا $1 ) جا په جاه کن اگر بیتن',
 'movepage-page-exists'         => 'صفحه  $1 هنو هستن و نه تونیت اتوماتیکی سر بنویسیت.',
 'movepage-page-moved'          => 'صفحه  $1 جاه په جاه بیت په  $2',
 'movepage-page-unmoved'        => 'صفحه $1نه تونیت جاه په جاه بیت په $2',
@@ -2236,6 +2248,9 @@ $1',
 'move-redirect-suppressed'     => 'تغییر مسیر بند بوت',
 'movelogpage'                  => 'جاه په جاهی ورود',
 'movelogpagetext'              => 'جهلء یک لیستی چه صفحات جاه په جاه بوتگین هست',
+'movesubpage'                  => 'چیرتاک',
+'movesubpagetext'              => 'ای صفحه $1 {{PLURAL:$1|چیرتاک|چیرتاک}} هستن که جهلءَ پیش دارگنت.',
+'movenosubpage'                => 'ای صفحه ءَ هچ چیر تاکی نیست',
 'movereason'                   => 'دلیل:',
 'revertmove'                   => 'برگردینگ',
 'delete_and_move'              => 'حذف وجاه په جاه کن',
@@ -2264,7 +2279,7 @@ $1',
 
 په خروج صفحات، عناوین آیء ته جهلگی باکس وارد کن, هر عنوان ته یک حطی، و انتخاب کن که آیا شمل لوٹیت هنوکین نسخه و کل کدیمی نسخ،گون خطوط تاریح صفحه, یا فقط هنوکین نسخه گون اطلاعاتی درباره آهری اصلاح.
 
-په اهری مورد شما تونیت هنچوش چه یک لینکی استفاده کنیت،مثلا [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] په صفحه ی "[[{{MediaWiki:Mainpage}}]]".',
+په اهری مورد شما تونیت هنچوش چه یک لینکی استفاده کنیت،مثلا [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] په صفحه ی "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'فقط شامل هنوکین بازبینی، نه تاریح کامل',
 'exportnohistory'   => "----
 '''توجه:''' گردگ تاریح کامل صفحات چه طریق ای فرم په خاطر دلایل اجرایی غیر فعال بوتت.",
@@ -2273,6 +2288,7 @@ $1',
 'export-addcat'     => 'اضافه کن',
 'export-download'   => 'ذخیره په داب فایلی',
 'export-templates'  => 'شامل تمپلتان',
+'export-pagelinks'  => 'صفحاتی که لینک بیتگن تا این عمق هور بنت:',
 
 # Namespace 8 related
 'allmessages'               => 'پیامان سیستم',
@@ -2302,6 +2318,7 @@ $1',
 کل کاران ورود بین ویکی وارد بیت نه [[Special:Log/import|ورود آمار]].',
 'import-interwiki-source'    => 'ویکی بن در/صفحه:',
 'import-interwiki-history'   => 'کپی کن کل بازبینی آن تاریح په ای صفحه',
+'import-interwiki-templates' => 'کل تمپلت هور بنت',
 'import-interwiki-submit'    => 'ورود',
 'import-interwiki-namespace' => 'مقصدء نام فضا',
 'import-upload-filename'     => 'فایلءَ نام:',
@@ -2339,19 +2356,19 @@ $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|بازبینی|بازبینی ان}} چه $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'صفحه کاربری من',
+'tooltip-pt-userpage'             => 'شمی صفحات',
 'tooltip-pt-anonuserpage'         => 'صفحه کاربر په آی پی که شما هنو اصلاح کنیت په داب',
-'tooltip-pt-mytalk'               => 'صفحه گپ من',
+'tooltip-pt-mytalk'               => 'شمی صفحه گپ',
 'tooltip-pt-anontalk'             => 'بحث باره ی اصلاحات چه ای آدرس آی پی',
 'tooltip-pt-preferences'          => 'منی ترجیحات',
 'tooltip-pt-watchlist'            => 'لیست صفحیانی که شما تغییرات آیانا رند گرگیت',
-'tooltip-pt-mycontris'            => 'لیست منی مشارکتان',
+'tooltip-pt-mycontris'            => 'لیست شمی مشارکتان',
 'tooltip-pt-login'                => 'شر ترنت که وارد بیت، بله شی اجبار نهنت',
 'tooltip-pt-anonlogin'            => 'چه شما دست بندی بیت وارد بیت، بله شی هنگت ضرورت نهنت.',
 'tooltip-pt-logout'               => 'در بیگ',
 'tooltip-ca-talk'                 => 'بحث دباره محتوای صفحه',
 'tooltip-ca-edit'                 => 'شما تونیت ای صفحه یا اصلاح کنیت. لطفا چه بازبین دکمه پیش چه ذخیره کتن استفاده کنیت.',
-'tooltip-ca-addsection'           => 'په ای بحث یک نظر هور کن',
+'tooltip-ca-addsection'           => 'یک نوکین بخشی شر کن',
 'tooltip-ca-viewsource'           => 'ای صفحه محافظت بوتت. شما تونیت آیی منبع آ بچاریت',
 'tooltip-ca-history'              => 'پیشگین نسخ چه ای صفحه',
 'tooltip-ca-protect'              => 'ای صفحه یا حفاظت کن',
@@ -2930,10 +2947,9 @@ $5
 'scarytranscludetoolong'  => '[URL باز مزننت]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">گرند گروگان ای صفحه:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 حذف])',
+'trackbackbox'      => 'گرند گروگان ای صفحه:<br />
+$1',
+'trackbackremove'   => '([$1 حذف])',
 'trackbacklink'     => 'رند گر',
 'trackbackdeleteok' => 'رند گر گون موفقیت حذف بوت.',
 
@@ -2974,10 +2990,10 @@ $1
 'table_pager_empty'        => 'بی نتیجه',
 
 # Auto-summaries
-'autosumm-blank'   => 'محتوا چه کل صفحه دور کنگنت',
+'autosumm-blank'   => 'هالیکین صفحه',
 'autosumm-replace' => "جاه په جاه کتن صفحه گون '$1'",
 'autoredircomment' => 'غیر مستقیم روگنت په [[$1]]',
-'autosumm-new'     => 'نوکین صفحه: $1',
+'autosumm-new'     => "شر بیتگیت صفحه گون: '$1'",
 
 # Size units
 'size-bytes'     => '$1 ب',
@@ -3144,6 +3160,7 @@ $1
 #کل بخشان رجکسء بالادء ای خظ بل. ای خط هنچوش که هست بلی</pre>',
 
 # Special:Tags
+'tags'                    => 'مجازین تغییر برچسپ',
 'tag-filter'              => '[[Special:Tags|برچسپ]] فیلتر:',
 'tag-filter-submit'       => 'فیلتر',
 'tags-title'              => 'برچسپان',
@@ -3154,5 +3171,14 @@ $1
 'tags-hitcount-header'    => 'اصلاحات برچسپی',
 'tags-edit'               => 'اصلاح',
 'tags-hitcount'           => '$1 {{PLURAL:$1|تغییر|تغییرات}}',
+
+# Database error messages
+'dberr-header'      => 'ای ویکی ءَ مشکل هستن',
+'dberr-problems'    => 'شرمنده! این سایت ءَ تکنیکی مشکل هستن.',
+'dberr-again'       => 'چنت دقیقه صبر کنیت و دگه صفحه بیاریت',
+'dberr-info'        => '(نه توینت گون دیتابیس سرور تماس گیرت: $1)',
+'dberr-usegoogle'   => 'شما تونید دان آ وهد گردگ ته گوگل ءَ آزمایش کنیت.',
+'dberr-outofdate'   => 'توجه ببینت که می ایندکس محتواءَ بلکین قدیمی ببنت.',
+'dberr-cachederror' => 'آ چیزی که رندا کیت یک کپی ذخیره ای چه لوتگین صفحه انت و بلکین قدیمی ببیت',
 
 );

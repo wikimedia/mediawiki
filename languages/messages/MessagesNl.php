@@ -642,7 +642,7 @@ Bewerken is niet mogelijk.',
 'protectedinterface'   => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
 'editinginterface'     => "'''Waarschuwing:''' U bewerkt een pagina die gebruikt wordt door de software.
 Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen.
-Overweeg voor vertalingen om [http://translatewiki.net/wiki/Main_Page?setlang=nl Betawiki] te gebruiken, het vertalingsproject voor MediaWiki.",
+Overweeg voor vertalingen om [http://translatewiki.net/wiki/Main_Page?setlang=nl translatewiki.net] te gebruiken, het vertalingsproject voor MediaWiki.",
 'sqlhidden'            => '(SQL-zoekopdracht verborgen)',
 'cascadeprotected'     => "Deze pagina kan niet bewerkt worden, omdat die is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:
 $2",
@@ -796,6 +796,7 @@ U hebt uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.
 'resetpass-wrong-oldpass'   => 'Het huidige of tijdelijke wachtwoord is ongeldig.
 Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.',
 'resetpass-temp-password'   => 'Tijdelijk wachtwoord:',
+'resetpass-no-others'       => 'U kunt geen wachtwoorden voor andere gebruikers opnieuw instellen.',
 
 # Edit page toolbar
 'bold_sample'     => 'Vetgedrukte tekst',
@@ -1452,6 +1453,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'right-userrights'           => 'Alle gebruikersrechten bewerken',
 'right-userrights-interwiki' => "Gebruikersrechten van gebruikers in andere wiki's wijzigen",
 'right-siteadmin'            => 'De database blokkeren en weer vrijgeven',
+'right-reset-passwords'      => 'Wachtwoorden van andere gebruikers opnieuw instellen',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -2458,6 +2460,9 @@ De overige pagina's worden niet automatisch hernoemd.",
 'move-redirect-suppressed'     => 'doorverwijzing onderdrukken',
 'movelogpage'                  => 'Hernoemingslogboek',
 'movelogpagetext'              => "Hieronder staan hernoemde pagina's.",
+'movesubpage'                  => "Subpagina's",
+'movesubpagetext'              => "De {{PLURAL:$1|subpagina|$1 subpagina's}} van deze pagina {{PLURAL:$1|wordt|worden}} hieronder weergegeven.",
+'movenosubpage'                => "Deze pagina heeft geen subpagina's.",
 'movereason'                   => 'Reden:',
 'revertmove'                   => 'terugdraaien',
 'delete_and_move'              => 'Verwijderen en hernoemen',
@@ -2485,7 +2490,7 @@ Dit exportbestand is daarna te importeren in een andere MediaWiki via de [[Speci
 
 Geef in het onderstaande veld de namen van de te exporteren pagina\'s op, één pagina per regel, en geef aan of u alle versies met de bewerkingssamenvatting of alleen de huidige versies met de bewerkingssamenvatting wilt exporteren.
 
-In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] voor de pagina "{{MediaWiki:Mainpage}}".',
+In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] voor de pagina "{{MediaWiki:Mainpage}}".',
 'exportcuronly'     => 'Alleen de laatste versie, niet de volledige geschiedenis',
 'exportnohistory'   => "----
 '''Let op:''' het exporteren van de gehele geschiedenis is uitgeschakeld wegens prestatieredenen.",
@@ -3113,10 +3118,9 @@ De bevestigingscode verloopt op $4.',
 'scarytranscludetoolong'  => '[De URL is te lang]',
 
 # Trackbacks
-'trackbackbox'      => "<div id='mw_trackbacks'>
-Trackbacks voor deze pagina:<br />
-$1</div>",
-'trackbackremove'   => ' ([$1 Verwijderen])',
+'trackbackbox'      => 'Trackbacks voor deze pagina:<br />
+$1',
+'trackbackremove'   => '([$1 Verwijderen])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'De trackback is verwijderd.',
 

@@ -459,11 +459,11 @@ $messages = array(
 'viewhelppage'      => 'Visa hjälpsida',
 'categorypage'      => 'Visa kategorisida',
 'viewtalkpage'      => 'Visa diskussionssida',
-'otherlanguages'    => 'Andra språk',
+'otherlanguages'    => 'På andra språk',
 'redirectedfrom'    => '(Omdirigerad från $1)',
 'redirectpagesub'   => 'Omdirigeringssida',
 'lastmodifiedat'    => 'Sidan ändrades senast den $1 kl. $2.', # $1 date, $2 time
-'viewcount'         => 'Sidan har visats {{PLURAL:$1|en gång|$1 gånger}}.',
+'viewcount'         => 'Denna sidan har visats {{PLURAL:$1|en gång|$1 gånger}}.',
 'protectedpage'     => 'Skrivskyddad sida',
 'jumpto'            => 'Hoppa till:',
 'jumptonavigation'  => 'navigering',
@@ -480,7 +480,7 @@ $messages = array(
 'disclaimers'          => 'Förbehåll',
 'disclaimerpage'       => 'Project:Allmänt förbehåll',
 'edithelp'             => 'Redigeringshjälp',
-'edithelppage'         => 'Help:Hur man redigerar en sida',
+'edithelppage'         => 'Help:Redigering',
 'faq'                  => 'FAQ',
 'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Innehåll',
@@ -565,9 +565,9 @@ $1',
 'readonly'             => 'Databasen är skrivskyddad',
 'enterlockreason'      => 'Ange varför sidan skrivskyddats, och ge en uppskattning av hur länge skrivskyddet bör behållas.',
 'readonlytext'         => 'Databasen är tillfälligt låst för ändringar, förmodligen på grund av rutinmässigt underhåll. Efter avslutat arbete kommer den att återgå till normalläge. Den utvecklare som skrivskyddade den har angivit följande anledning: <p>$1',
-'missing-article'      => 'Databasen borde ha funnit texten till en sida med namnet "$1" $2, men det gjorde den inte.
+'missing-article'      => 'Databasen hittade inte texten för en sida som den borde ha funnit, med namnet "$1" $2.
 
-Detta fel beror oftast på en länk till en jämförelse mellan versioner (diff) eller till en gammal version av en sida som raderats.
+Detta orsakas oftast av att man följer en inaktuell länk till en jämförelse mellan versioner (diff) eller en historiklänk för en sida som raderats.
 
 Om inte så är fallet, kan du ha hittat en bugg i mjukvaran.
 Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör]], ange då URL:en (webbadressen).',
@@ -599,10 +599,10 @@ Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
 'actionthrottled'      => 'Åtgärden stoppades',
 'actionthrottledtext'  => 'Som skydd mot spam, finns det en begränsning av hur många gånger du kan utföra den här åtgärden under en viss tid. Du har överskridit den gränsen. Försök igen om några minuter.',
 'protectedpagetext'    => 'Den här sidan har skrivskyddats för att förhindra redigering.',
-'viewsourcetext'       => 'Du kan se och kopiera sidans wikikod:',
+'viewsourcetext'       => 'Du kan se och kopiera denna sidas källtext:',
 'protectedinterface'   => 'Denna sida innehåller text för mjukvarans gränssnitt, och är skrivskyddad för att förebygga missbruk.',
 'editinginterface'     => "'''Varning:''' Du redigerar en sida som används till texten i gränssnittet. Ändringar på denna sida kommer att påverka gränssnittets utseende för alla användare.
-För översättningar, använd gärna [http://translatewiki.net/wiki/Main_Page?setlang=sv Betawiki], översättningsprojektet för MediaWiki.",
+För översättningar, använd gärna [http://translatewiki.net/wiki/Main_Page?setlang=sv translatewiki.net], översättningsprojektet för MediaWiki.",
 'sqlhidden'            => '(gömd SQL-förfrågan)',
 'cascadeprotected'     => 'Den här sidan har skyddats från redigering eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som skrivskyddats med "kaskaderande skydd":
 $2',
@@ -703,8 +703,8 @@ Innan någon annan e-post kan skickas härifrån till kontot, måste du följa i
 'throttled-mailpassword'     => 'Ett nytt lösenord har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
 För att förhindra missbruk skickas bara ett nytt lösenord per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
 'mailerror'                  => 'Fel vid skickande av e-post: $1',
-'acct_creation_throttle_hit' => 'Besökare till den här wikin som har använt din IP-adress har skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}} under den senaste dagen, vilket är det maximalt tillåtna inom den här tidsperioden.
-Som ett resultat kan inte besökare som använder den här IP-adressen skapa några mer användarkonton just nu.',
+'acct_creation_throttle_hit' => 'Besökare till den här wikin som har använt din IP-adress har skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}} under den senaste dagen, vilket är det maximalt tillåtna inom denna tidsperioden.
+Som ett resultat kan inte besökare som använder den här IP-adressen skapa några fler användarkonton just nu.',
 'emailauthenticated'         => 'Din e-postadress bekräftades den $2 kl. $3.',
 'emailnotauthenticated'      => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande:',
 'noemailprefs'               => 'Uppge en e-postadress i dina inställningar för att få dessa funktioner att fungera.',
@@ -738,6 +738,7 @@ Vänta innan du försöker igen.',
 'resetpass-wrong-oldpass'   => 'Ogiltigt tillfälligt eller nuvarande lösenord.
 Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfälligt lösenord.',
 'resetpass-temp-password'   => 'Tillfälligt lösenord:',
+'resetpass-no-others'       => 'Du kan inte återställa lösenordet för andra användare.',
 
 # Edit page toolbar
 'bold_sample'     => 'Fet text',
@@ -756,7 +757,7 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'nowiki_tip'      => 'Ignorera wikiformatering',
 'image_sample'    => 'Exempel.jpg',
 'image_tip'       => 'Inbäddad fil',
-'media_sample'    => 'Exempel.mp3',
+'media_sample'    => 'Exempel.ogg',
 'media_tip'       => 'Länk till fil',
 'sig_tip'         => 'Din signatur med tidsstämpel',
 'hr_tip'          => 'Horisontell linje (använd sparsamt)',
@@ -1373,6 +1374,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-userrights'           => 'Ändra alla användarrättigheter',
 'right-userrights-interwiki' => 'Ändra rättigheter för användare på andra wikier',
 'right-siteadmin'            => 'Låsa och låsa upp databasen',
+'right-reset-passwords'      => 'Återställa andra användares lösenord',
 
 # User rights log
 'rightslog'      => 'Användarrättighetslogg',
@@ -2331,6 +2333,9 @@ Försök att sammanfoga dem manuellt.'''",
 'move-redirect-suppressed'     => 'utan omdirigering',
 'movelogpage'                  => 'Sidflyttslogg',
 'movelogpagetext'              => 'Listan nedan visar sidor som flyttats.',
+'movesubpage'                  => 'Undersidor',
+'movesubpagetext'              => 'Denna sida har $1 {{PLURAL:$1|undersida|undersidor}} som visas nedan.',
+'movenosubpage'                => 'Denna sida har inga undersidor.',
 'movereason'                   => 'Anledning:',
 'revertmove'                   => 'flytta tillbaka',
 'delete_and_move'              => 'Radera och flytta',
@@ -2358,7 +2363,7 @@ Filen kan sedan importeras till en annan MediaWiki-wiki med hjälp av sidan [[Sp
 Exportera sidor genom att skriva in sidtitlarna i rutan här nedan.
 Skriv en titel per rad och välj om du du vill exportera alla versioner av texten med sidhistorik, eller om du enbart vill exportera den nuvarande versionen med information om den senaste redigeringen.
 
-I det senare fallet kan du även använda en länk, exempel [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] för sidan "[[{{MediaWiki:Mainpage}}]]".',
+I det senare fallet kan du även använda en länk, exempel [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] för sidan "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Inkludera endast den nuvarande versionen, inte hela historiken',
 'exportnohistory'   => "----
 '''OBS:''' export av fullständig sidhistorik med hjälp av detta formulär har stängts av på grund av prestandaskäl.",
@@ -2969,7 +2974,8 @@ Denna bekräftelsekod kommer inte att fungera efter $4.',
 'scarytranscludetoolong'  => '[För lång URL]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks"> Till denna sida finns följande trackback:<br /> $1 </div>',
+'trackbackbox'      => 'Till denna sida finns följande trackback:<br />
+$1',
 'trackbackremove'   => '([$1 Ta bort])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback har tagits bort.',

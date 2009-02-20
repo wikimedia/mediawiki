@@ -2324,6 +2324,9 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-redirect-suppressed'     => 'přesměrování potlačeno',
 'movelogpage'                  => 'Kniha přesunů',
 'movelogpagetext'              => 'Toto je záznam všech přesunů stránek.',
+'movesubpage'                  => 'Podstránky',
+'movesubpagetext'              => 'Tato stránka má $1 {{plural:$1|podstránku uvedenou|podstránky vypsané|podstránek vypsaných}} níže.',
+'movenosubpage'                => 'Tato stránka nemá žádné podstránky.',
 'movereason'                   => 'Důvod:',
 'revertmove'                   => 'vrátit',
 'delete_and_move'              => 'Smazat a přesunout',
@@ -2350,7 +2353,7 @@ Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolně
 
 Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.
 
-V druhém případě můžete také používat přímý odkaz, např. pomocí [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] se vyexportuje „[[{{MediaWiki:Mainpage}}]]“.',
+V druhém případě můžete také používat přímý odkaz, např. pomocí [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] se vyexportuje „[[{{MediaWiki:Mainpage}}]]“.',
 'exportcuronly'     => 'Zahrnout jen současnou verzi, ne plnou historii',
 'exportnohistory'   => "----
 '''Poznámka:''' export plných historií prostřednictvím tohoto formuláře byl z výkonnostních důvodů zakázán.",
@@ -2952,11 +2955,9 @@ Platnost tohoto potvrzovacího kódu vyprší $4.',
 'scarytranscludetoolong'  => '[Příliš dlouhé URL]',
 
 # Trackbacks
-'trackbackbox'      => "<div id='mw_trackbacks'>
-Zpětné odkazy k této stránce:<br />
-$1
-</div>",
-'trackbackremove'   => ' ([$1 Smazat])',
+'trackbackbox'      => 'Zpětné odkazy k této stránce:<br />
+$1',
+'trackbackremove'   => '([$1 Smazat])',
 'trackbacklink'     => 'Zpětný odkaz',
 'trackbackdeleteok' => 'Zpětný odkaz byl úspěšně smazán.',
 
