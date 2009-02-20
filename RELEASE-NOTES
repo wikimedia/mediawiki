@@ -29,6 +29,7 @@ fix this problem for the release of 1.15.0.
 * Fixed performance of the backlinks API module
 * (bug 17420) Send the correct content type from action=raw when the HTML file 
   cache is enabled.
+* (bug 17437) Fixed incorrect link to web-based installer
 
 === Configuration changes in 1.14 ===
 
