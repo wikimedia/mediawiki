@@ -108,8 +108,6 @@ $wgIgnoredMessages = array(
 	'statistics-summary',
 	'statistics-footer',
 	'talkpagetext',
-	'trackback',
-	'trackbackexcerpt',
 	'uploadfooter',
 	'listgrouprights-link',
 	'search-interwiki-custom',
@@ -333,6 +331,8 @@ $wgOptionalMessages = array(
 	'recentchangeslinked-backlink',
 	'diff-with-additional',
 	'pagetitle-view-mainpage',
+	'trackback',
+	'trackbackexcerpt',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
