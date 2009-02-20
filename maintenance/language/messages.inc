@@ -1028,6 +1028,7 @@ $wgMessageStructure = array(
 		'right-userrights',
 		'right-userrights-interwiki',
 		'right-siteadmin',
+		'right-reset-passwords',
 	),
 	'rightslog' => array(
 		'rightslog',
