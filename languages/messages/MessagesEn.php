@@ -1708,7 +1708,7 @@ please see math/README to configure.',
 'right-userrights'           => 'Edit all user rights',
 'right-userrights-interwiki' => 'Edit user rights of users on other wikis',
 'right-siteadmin'            => 'Lock and unlock the database',
-'right-reset-passwords'      => 'Reset other users' passwords',
+'right-reset-passwords'      => 'Reset other users\' passwords',
 
 # User rights log
 'rightslog'      => 'User rights log',
