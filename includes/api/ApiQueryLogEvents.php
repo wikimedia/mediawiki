@@ -59,12 +59,14 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhere($hideLogs);
 
 		// Order is significant here
-		$this->addTables(array('user', 'page', 'logging'));
+		$this->addTables(array('logging', 'user', 'page'));
+		$this->addOption('STRAIGHT_JOIN');
 		$this->addJoinConds(array(
+			'user' => array('JOIN',
+				'user_id=log_user'),
 			'page' => array('LEFT JOIN',
 				array(	'log_namespace=page_namespace',
 					'log_title=page_title'))));
-		$this->addWhere('user_id=log_user');
 		$index = 'times'; // default, may change
 
 		$this->addFields(array (
