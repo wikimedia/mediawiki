@@ -815,6 +815,7 @@ $2',
 'resetpass-wrong-oldpass'   => 'הסיסמה הזמנית או הנוכחית אינה תקינה.
 ייתכן שכבר שיניתם את סיסמתכם או שכבר ביקשתם סיסמה זמנית חדשה.',
 'resetpass-temp-password'   => 'סיסמה זמנית:',
+'resetpass-no-others'       => 'אינכם מורשים לאפס סיסמה למשתמשים אחרים.',
 
 # Edit page toolbar
 'bold_sample'     => 'טקסט מודגש',
@@ -1431,6 +1432,7 @@ $2',
 'right-userrights'           => 'עריכת כל הרשאות המשתמש',
 'right-userrights-interwiki' => 'עריכת הרשאות המשתמש של משתמשים באתרי ויקי אחרים',
 'right-siteadmin'            => 'נעילת וביטול נעילת בסיס הנתונים',
+'right-reset-passwords'      => 'איפוס סיסמאות של משתמשים אחרים',
 
 # User rights log
 'rightslog'      => 'יומן תפקידים',
