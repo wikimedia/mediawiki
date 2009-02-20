@@ -1016,6 +1016,7 @@ You may have already successfully changed your password or requested a new tempo
 'resetpass-wrong-oldpass'   => 'Invalid temporary or current password.
 You may have already successfully changed your password or requested a new temporary password.',
 'resetpass-temp-password'   => 'Temporary password:',
+'resetpass-no-others'       => 'You cannot reset the password for other users.',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold text',

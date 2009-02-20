@@ -162,6 +162,7 @@ class User {
 		'proxyunbannable',
 		'purge',
 		'read',
+		'reset-passwords',
 		'reupload',
 		'reupload-shared',
 		'rollback',
