@@ -1366,13 +1366,14 @@ $wgAutoConfirmCount = 0;
  *   array( APCOND_EMAILCONFIRMED ), *OR*
  *   array( APCOND_EDITCOUNT, number of edits ), *OR*
  *   array( APCOND_AGE, seconds since registration ), *OR*
+ *   array( APCOND_INGROUPS, group1, group2, ... ), *OR*
+ *   array( APCOND_ISIP, ip ), *OR*
+ *   array( APCOND_IPINRANGE, range ), *OR*
+ *   array( APCOND_AGE_FROM_EDIT, seconds since first edit ), *OR*
  *   similar constructs defined by extensions.
  *
  * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
  * user who has provided an e-mail address.
- *
- * FIXME: The above documentation is incomplete.  Several new possible
- * conditions have been added to the software and need to be documented here.
  */
 $wgAutopromote = array(
 	'autoconfirmed' => array( '&',
