@@ -1255,6 +1255,8 @@ $wgGroupPermissions['sysop']['movefile']         = true;
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights']  = true;
 $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
+// Permission to change users' passwords
+# $wgGroupPermissions['bureaucrat']['reset-passwords'] = true;
 // Permission to change users' groups assignments across wikis
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 
