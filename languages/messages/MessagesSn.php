@@ -177,7 +177,7 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 'tooltip-p-logo'         => 'Peji Rekutanga',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 Delete])',
+'trackbackremove' => '([$1 Delete])',
 
 # Table pager
 'table_pager_limit_submit' => 'Enda',

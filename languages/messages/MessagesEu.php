@@ -2143,6 +2143,9 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'move-redirect-suppressed'     => 'birzuzenketa ezabatua',
 'movelogpage'                  => 'Mugimendu erregistroa',
 'movelogpagetext'              => 'Mugitutako orrialdeen zerrenda bat azaltzen da jarraian.',
+'movesubpage'                  => 'Azpiorrialeak',
+'movesubpagetext'              => 'Orrialde honen {{PLURAL:$1|orrialde $1 erakusten da|$1 orrialdea erakusten dira}} azpian.',
+'movenosubpage'                => 'Orrialde honek ez du azpiorrialderik.',
 'movereason'                   => 'Arrazoia',
 'revertmove'                   => 'desegin',
 'delete_and_move'              => 'Ezabatu eta mugitu',
@@ -2169,7 +2172,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 
 Orrialdeak esportatzeko zehaztu hauen izenburuak beheko koadroan, izenburu bat lerroko, eta aukeratu zein bertsio esportatu nahi dituzun.
 
-Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] "[[{{MediaWiki:Mainpage}}]]" orrialdearentzako.',
+Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] "[[{{MediaWiki:Mainpage}}]]" orrialdearentzako.',
 'exportcuronly'     => 'Oraingo berrikuspena bakarrik hartu, ez historia guztia',
 'exportnohistory'   => "----
 '''Oharra:''' Formulario honen bitartez orrialdeen historia osoak esportatzeko aukera ezgaitu egin da, errendimendua dela-eta.",
@@ -2783,8 +2786,9 @@ Egiaztapen kode hau $4 iraungiko da.',
 'scarytranscludetoolong'  => '[URLa luzeegia da]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks"> Artikulu honen aipuak:<br /> $1 </div>',
-'trackbackremove'   => ' ([$1 Ezabatu])',
+'trackbackbox'      => 'Artikulu honen aipuak:<br />
+$1',
+'trackbackremove'   => '([$1 Ezabatu])',
 'trackbacklink'     => 'Aipua',
 'trackbackdeleteok' => 'Aipua ezabatu egin da.',
 

@@ -294,7 +294,7 @@ Anı alğaç monda tağın kerep qara.',
 'nowiki_tip'      => 'Wiki-qalıp eşkärtmäskä',
 'image_sample'    => 'Mísal.jpg',
 'image_tip'       => 'Quşılğan räsem',
-'media_sample'    => 'Mísal.mp3',
+'media_sample'    => 'Mísal.ogg',
 'sig_tip'         => 'Ímzañ belän zaman/waqıt tamğası',
 'hr_tip'          => 'Yatma sızıq (siräk qullan)',
 

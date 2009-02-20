@@ -622,7 +622,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'nowiki_tip'      => 'Ignorer wikiformatering',
 'image_sample'    => 'Eksempel.jpg',
 'image_tip'       => 'Indlejret billede',
-'media_sample'    => 'Eksempel.mp3',
+'media_sample'    => 'Eksempel.ogg',
 'media_tip'       => 'Henvisning til multimediefil',
 'sig_tip'         => 'Din signatur med tidsstempel',
 'hr_tip'          => 'Horisontal linje (brug den sparsomt)',
@@ -2481,10 +2481,8 @@ Hvis denne e-mail-adresse *ikke* hører til den anførte brugerkonto, skal du i 
 'scarytranscludetoolong'  => '[URL er for lang; beklager]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Trackbacks for denne side:<br />
-$1
-</div>',
+'trackbackbox'      => 'Trackbacks for denne side:<br />
+$1',
 'trackbackremove'   => '([$1 slet])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback blev slettet.',

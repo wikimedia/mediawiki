@@ -478,7 +478,7 @@ Pakisubok na lang ulit pagkaraan ng kaunting mga minuto.",
 'protectedinterface'   => "Nagbibigay ang pahinang ito ng tekstong panghangganan (''interface'') para sa sopwer, at ikinandado para maiwasan ang pangaabuso.",
 'editinginterface'     => "'''Babala:''' Binabago mo ang isang pahinang ginagamit sa pagbibigay ng tekstong panghangganan para sa sopwer.  
 Makakaapekto ang mga pagbago sa pahinang ito sa anyo ng hangganang (''interface'') pangtagagamit na para sa ibang mga tagagamit.
-Para sa mga salinwika, paki isang-alang-alang o konsiderahin ang paggamit ng [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], ang proyektong panglokalisasyon ng MediaWiki.",
+Para sa mga salinwika, paki isang-alang-alang o konsiderahin ang paggamit ng [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyektong panglokalisasyon ng MediaWiki.",
 'sqlhidden'            => '(nakatago ang tanong ng SQL)',
 'cascadeprotected'     => 'Nakasanggalang ang pahinang ito mula sa mga pagbabago, dahil kabilang ito sa sumusunod na {{PLURAL:$1|pahinang|mga pahinang}} nakasanggalang sa pamamagitan ng binuhay na opsyong "nahuhulog" (kumakaskada):
 $2',
@@ -2238,6 +2238,9 @@ Pumili muli ng ibang pangalan.',
 'move-redirect-suppressed'     => 'Sinupil ang pagturo papunta sa ibang pahina',
 'movelogpage'                  => 'Tala ng paglipat',
 'movelogpagetext'              => 'Sumusunod ang mga tala ng mga pahinang nailipat.',
+'movesubpage'                  => 'Kabahaging mga pahina',
+'movesubpagetext'              => 'Ang pahinang ito ay mayroong $1 {{PLURAL:$1|kabahaging pahina|kabahaging mga pahina}}ng ipinapakita sa ibaba.',
+'movenosubpage'                => 'Ang pahinang ito ay walang kabahaging mga pahina.',
 'movereason'                   => 'Dahilan:',
 'revertmove'                   => 'ibalik',
 'delete_and_move'              => 'Burahin at ilipat',
@@ -2264,7 +2267,7 @@ Mayroon na ang pupuntahang artikulo na "[[$1]]". Nais mo bang burahin ito para m
 
 Para ilabas ang mga pahina, ipasok ang mga pamagat sa tekstong kahon sa ibaba, isang pamagat bawat guhit, at piliin kung gusto mo rin ang kasalukuyang bersyon o mga lumang bersyon, kasama ang mga pahina ng kasaysayan, o iyon lamang kasalukuyang bersyon kasama ang mga kaalaman tungkol sa huling binago.
 
-Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para sa pahinang "[[{{MediaWiki:Mainpage}}]]".',
+Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para sa pahinang "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Isama lamang ang kasalukuyang rebisyon, hindi ang buong kasaysayan',
 'exportnohistory'   => "----
 '''Tandaan:''' Nakapatay ang paglalabas ng buong kasaysayan ng pahina ng mga pahina sa pamamagitan ng ''form'' na ito dahil maaaring bumagal ang sayt.",
@@ -2883,11 +2886,9 @@ Magwawakas ang pagiging mabisa ng kodigo ng pagpapatotoong ito sa $4.',
 'scarytranscludetoolong'  => '[Masyadong mahaba ang URL; paumanhin]',
 
 # Trackbacks
-'trackbackbox'      => "<div id=\"mw_trackbacks\">
-Mga ''trackback'' para sa pahinang ito:<br />
-\$1
-</div>",
-'trackbackremove'   => ' ([$1 Nabura])',
+'trackbackbox'      => "Mga ''trackback'' para sa pahinang ito:<br />
+$1",
+'trackbackremove'   => '([$1 Nabura])',
 'trackbacklink'     => 'Balikan ang bakas<!--trackback-->',
 'trackbackdeleteok' => "Tagumpay na nabura ang ''trackback''.",
 

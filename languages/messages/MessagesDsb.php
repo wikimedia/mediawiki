@@ -484,7 +484,7 @@ Wótpšašanje: $2',
 'protectedpagetext'    => 'Wobźěłanje toś togo boka jo se znjemóžniło.',
 'viewsourcetext'       => 'Žrědłowy tekst togo boka móžoš se woglědaś a kopěrowaś:',
 'protectedinterface'   => 'Toś ten bok wopśimujo tekst za rěcny zwjerch softwary. Jogo wobźěłowanje jo se znjemóžniło, aby se znjewužywanjeju zadorało.',
-'editinginterface'     => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow wobwliwowaś. Wužywaj pšosym za pśełožki [http://translatewiki.net/wiki/Main_Page?setlang=dsb Betawiki], projekt MediaWiki za lokalizacije.",
+'editinginterface'     => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow wobwliwowaś. Wužywaj pšosym za pśełožki [http://translatewiki.net/wiki/Main_Page?setlang=dsb translatewiki.net], projekt MediaWiki za lokalizacije.",
 'sqlhidden'            => '(Wótpšašanje SQL schowane)',
 'cascadeprotected'     => 'Za toś ten bok jo se wobźěłowanje znjemóžniło, dokulaž jo zawězany do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, {{PLURAL:$1|kótaryž jo|kótarejž stej|kótarež su}} pśez kaskadowu opciju {{PLURAL:$1|šćitany|šćitanej|šćitane}}: $2',
 'namespaceprotected'   => "Njejsy wopšawnjony, boki w rumje: '''$1''' wobźěłaś.",
@@ -607,6 +607,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'resetpass-wrong-oldpass'   => 'Njepłaśiwe nachylne abo aktualne gronidło.
 Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło pominał.',
 'resetpass-temp-password'   => 'Nachylne gronidło:',
+'resetpass-no-others'       => 'Njamóžoš gronidło za drugich wužywarjow slědk stajiś.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tucny tekst',
@@ -1221,6 +1222,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'right-userrights'           => 'Wšykne wužywarske pšawa wobźěłaś',
 'right-userrights-interwiki' => 'Wužywarske pšawa w drugich wikijach wobźěłaś',
 'right-siteadmin'            => 'Datowu banku zastajiś a zastajenje wótpóraś',
+'right-reset-passwords'      => 'Gronidła drugich wužywarjow slědk stajiś',
 
 # User rights log
 'rightslog'      => 'Log-lisćina wužywarskich pšawow',
@@ -2158,6 +2160,9 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'move-redirect-suppressed'     => 'dakejpósrědnjenje pódtłocone',
 'movelogpage'                  => 'Protokol pśesunjenjow',
 'movelogpagetext'              => 'How jo lisćina wšyknych pśesunjonych bokow.',
+'movesubpage'                  => 'Pódboki',
+'movesubpagetext'              => 'Bok ma {{PLURAL:$1|slědujucy pódbok|slědujucej $1 pódboka|slědujuce $1 pódboki|slědujucych $1 pódbokow}}.',
+'movenosubpage'                => 'Toś ten bok njama pódboki.',
 'movereason'                   => 'Pśicyna',
 'revertmove'                   => 'nawrośiś',
 'delete_and_move'              => 'Wulašowaś a pśesunuś',
@@ -2184,7 +2189,7 @@ Bok „[[:$1]]“ južo eksistěrujo. Coš jen wulašowaś, aby mógał toś ten
 
 Za eksportěrowanje bokow zapódaj nadpisma do dołojcnego tekstowogo póla, jadno nadpismo na smužku, a wuzwól nowe a stare wersije z wótkazami stawiznow boka abo jano aktualnu wersiju z informacijami wó slědnjej změnje.
 
-W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za bok "[[{{MediaWiki:Mainpage}}]]".',
+W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za bok "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Jano aktualne wersije, bźez stawiznow',
 'exportnohistory'   => "----
 '''Pokazka:''' Eksportěrowanje cełych stawiznow bokow pśez toś ten formular njejo dla performancowych pśicyn tuchylu móžne.",
@@ -2775,10 +2780,8 @@ Toś ten wobkšuśeński kod płaśi do $4.',
 'scarytranscludetoolong'  => '[URL jo pśedłujki]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Trackbacki za toś ten bok:<br />
-$1
-</div>',
+'trackbackbox'      => 'Trackbacki za toś ten bok:<br />
+$1',
 'trackbackremove'   => '([$1 wulašowaś])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback jo wuspěšnje wulašowany.',

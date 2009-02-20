@@ -1570,7 +1570,7 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 'confirmemail_loggedin' => 'Tamstas el. pašta adresos ožtvėrtints īr.',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 Trintė])',
+'trackbackremove' => '([$1 Trintė])',
 
 # Delete conflict
 'deletedwhileediting' => 'Diemesė: Šėts poslapis ėštrints po šėta, kumet pradiejot redagoutė!',

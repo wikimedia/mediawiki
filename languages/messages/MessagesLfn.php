@@ -424,6 +424,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 # History pages
 'viewpagelogs'           => 'Vide la arcivo de esta paje',
 'currentrev'             => 'Cambia presente',
+'currentrev-asof'        => 'Cambia presente a departi di $1',
 'revisionasof'           => 'Revisa de $1',
 'revision-info'          => 'Revisa de $1 par $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Altera presedente',
@@ -579,7 +580,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'imagelinks'                => 'Lias de fix',
 'linkstoimage'              => 'Esta {{PLURAL:$1|paje|pajes}} lia a esta fix:',
 'nolinkstoimage'            => 'Es no pajes ce lia a esta fix.',
-'sharedupload'              => 'Esta fix es parti es pote es usada par otra projetas.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Esta fix es parte de $1 e pote es usada par otra projetas. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'Es no fix con esta nom, ma tu pote $1.',
 'noimage-linktext'          => 'envia un',
 'uploadnewversion-linktext' => 'Envia un varia nova de esta fix',

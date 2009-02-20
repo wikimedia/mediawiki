@@ -1057,7 +1057,7 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 'monthsall'        => 'xeti',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 afi kulobala])',
+'trackbackremove' => '([$1 afi kulobala])',
 
 # action=purge
 'confirm_purge_button' => 'Afi',

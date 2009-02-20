@@ -641,7 +641,7 @@ Mora da ste već uspešno promenili vašu lozinku ili zatražili novu temporalnu
 'nowiki_tip'      => 'Ignoriši viki formatiranje',
 'image_sample'    => 'ime_slike.jpg',
 'image_tip'       => 'Uklopljena slika',
-'media_sample'    => 'ime_medija_fajla.mp3',
+'media_sample'    => 'ime_medija_fajla.ogg',
 'media_tip'       => 'Putanja ka multimedijalnom fajlu',
 'sig_tip'         => 'Vaš potpis sa trenutnim vremenom',
 'hr_tip'          => 'Horizontalna linija',
@@ -1979,10 +1979,8 @@ Ako ovo *niste* vi, ne pratite vezu. Ovaj kod za potvrdu će isteći u $4.',
 'scarytranscludetoolong'  => '[URL je predugačak; žao nam je]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Vraćanja za ovaj članak:<br />
-$1
-</div>',
+'trackbackbox'      => 'Vraćanja za ovaj članak:<br />
+$1',
 'trackbackremove'   => '([$1 Brisanje])',
 'trackbacklink'     => 'Vraćanje',
 'trackbackdeleteok' => 'Vraćanje je uspešno obrisano.',

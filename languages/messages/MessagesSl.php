@@ -382,7 +382,7 @@ Iskanje: $2',
 'protectedinterface'   => 'Prikazana stran vsebuje besedilo ali drug element uporabniškega vmesnika programja. Zaradi preprečevanja zlorabe je zaščitena.',
 'editinginterface'     => "'''Opozorilo:''' Urejate stran, ki vsebuje besedilo ali drug element uporabniškega vmesnika programja.
 Spremembe te strani bodo vplivale na podobo uporabniškega vmesnika.
-For translations, please consider using [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], the MediaWiki localisation project.",
+For translations, please consider using [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL-poizvedovanje je skrito)',
 'cascadeprotected'     => 'Ta stran je bila zaščitena pred urejanji, ker je vključena na {{PLURAL:$1|page|sledeče strani}}, ki so bile zaščitene z vključeno kaskadno možnostjo:
 $2',
@@ -1519,7 +1519,7 @@ Ciljna stran »[[:$1]]« že obstaja. Ali jo želite, da bi pripravili prostor z
 
 Če želite izvoziti članke, v spodnje polje vpišite njihove naslove (enega v vsako vrstico) in označite, ali želite le trenutno različico s podatki o trenutnem urejanju ali tudi vse prejšnje z vrsticami o zgodovini strani.
 
-Če gre za slednje, lahko uporabite tudi povezavo, npr. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za 
+Če gre za slednje, lahko uporabite tudi povezavo, npr. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za 
 članek \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => 'Vključi le trenutno redakcijo, ne pa celotne zgodovine.',
 'exportnohistory'   => "----
@@ -2022,11 +2022,9 @@ $3
 'scarytranscludetoolong'  => '[Spletni naslov je žal predolg; se opravičujemo]',
 
 # Trackbacks
-'trackbackbox'      => "<div id='mw_trackbacks'>
-Sledilniki članka:<br />
-$1
-</div>",
-'trackbackremove'   => ' ([Izbris $1])',
+'trackbackbox'      => 'Sledilniki članka:<br />
+$1',
+'trackbackremove'   => '([$1 Izbris])',
 'trackbacklink'     => 'Sledilnik',
 'trackbackdeleteok' => 'Sledilnik je uspešno izbrisan.',
 

@@ -2132,7 +2132,7 @@ Yeged nulik "[[:$1]]" ya dabinon. Vilol-li moükön oni ad jafön spadi pro top�
 
 Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e välolös, va vilol fomami anuik kobü fomams büik valik, ko kedets padajenotema, u te fomami anuik kobü nüns dö redakam lätikün.
 
-Ön jenet lätik, kanol i gebön yümi, a.s.: [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pro pad "[[{{MediaWiki:Mainpage}}]]".',
+Ön jenet lätik, kanol i gebön yümi, a.s.: [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pro pad "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Ninükolöd te revidi anuik, no jenotemi valik',
 'exportnohistory'   => "----
 '''Noet:''' Seveig padajenotema lölik medü fomet at penemögükon ad gudükumön duinafägi.",
@@ -2672,10 +2672,9 @@ Fümedakot at operon lonöfi okik ün $4.',
 'scarytranscludetoolong' => '[el URL binon tu lunik]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Gevegs padi at teföls:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Moükön])',
+'trackbackbox'      => 'Gevegs padi at teföls:<br />
+$1',
+'trackbackremove'   => '([$1 Moükön])',
 'trackbacklink'     => 'Geveg',
 'trackbackdeleteok' => 'Geveg pemoükon benosekiko.',
 

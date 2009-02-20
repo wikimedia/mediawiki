@@ -983,9 +983,9 @@ Muut ylläpitäjät voivat lukea piilotetun sisällön ja palauttaa sen.",
 'revdel-restore'                 => 'Muuta näkyvyyttä',
 'pagehist'                       => 'Muutoshistoria',
 'deletedhist'                    => 'Poistettu muutoshistoria',
-'revdelete-content'              => 'sisältö',
-'revdelete-summary'              => 'yhteenveto',
-'revdelete-uname'                => 'käyttäjänimi',
+'revdelete-content'              => 'sisällön',
+'revdelete-summary'              => 'yhteenvedon',
+'revdelete-uname'                => 'käyttäjänimen',
 'revdelete-restricted'           => 'asetti rajoitukset ylläpitäjille',
 'revdelete-unrestricted'         => 'poisti rajoitukset ylläpitäjiltä',
 'revdelete-hid'                  => 'piilotti $1',
@@ -2231,8 +2231,8 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'movepage-page-unmoved'        => 'Sivua $1 ei voitu siirtää nimelle $2.',
 'movepage-max-pages'           => 'Enimmäismäärä sivuja on siirretty, eikä enempää siirretä enää automaattisesti.
 $1 {{PLURAL:$1|sivu|sivua}} siirettiin.',
-'1movedto2'                    => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
-'1movedto2_redir'              => 'siirsi sivun ”$1” ohjauksen ”$2” päälle',
+'1movedto2'                    => 'siirsi sivun [[$1]] uudelle nimelle [[$2]]',
+'1movedto2_redir'              => 'siirsi sivun [[$1]] ohjauksen [[$2]] päälle',
 'move-redirect-suppressed'     => 'ei ohjausta',
 'movelogpage'                  => 'Siirtoloki',
 'movelogpagetext'              => 'Tämä on loki siirretyistä sivuista.',
@@ -2262,7 +2262,7 @@ Tämä tieto voidaan tuoda toiseen MediaWikiin käyttämällä [[Special:Import|
 Syötä sivujen otsikoita jokainen omalle rivilleen alla olevaan laatikkoon.
 Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.
 
-Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun [[{{MediaWiki:Mainpage}}]] saa vietyä linkistä [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]].',
+Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun [[{{MediaWiki:Mainpage}}]] saa vietyä linkistä [[{{#special:Export}}/{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Liitä mukaan ainoastaan uusin versio – ei koko historiaa.',
 'exportnohistory'   => '----
 Sivujen koko historian vienti on estetty suorituskykysyistä.',
@@ -2848,8 +2848,9 @@ Varmennuskoodi vanhenee $4.',
 'scarytranscludetoolong'  => '[Verkko-osoite on liian pitkä]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Artikkelin trackbackit:<br />$1</div>',
-'trackbackremove'   => ' ([$1 poista])',
+'trackbackbox'      => 'Sivun trackbackit:<br />
+$1',
+'trackbackremove'   => '([$1 poista])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback poistettiin.',
 

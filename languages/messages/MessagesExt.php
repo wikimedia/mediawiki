@@ -2167,11 +2167,9 @@ El coigu de confirmación caucará a las $4.',
 'scarytranscludetoolong'  => '[La URL es mu larga]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Trackbacks pa esti artículu:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Esborral])',
+'trackbackbox'      => 'Trackbacks pa esti artículu:<br />
+$1',
+'trackbackremove'   => '([$1 Esborral])',
 'trackbackdeleteok' => "El trackback s'á esborrau corretamenti.",
 
 # Delete conflict

@@ -1,5 +1,5 @@
 <?php
-/** Uighur (Uyghurche‎)
+/** Uighur (Latin) (Uyghurche‎ / ئۇيغۇرچە (Latin))
  *
  * @ingroup Language
  * @file
@@ -148,7 +148,7 @@ $messages = array(
 'ilsubmit' => 'Izdash',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 Yukhutush])',
+'trackbackremove' => '([$1 Yukhutush])',
 
 # Multipage image navigation
 'imgmultigo' => 'Kuchush!',

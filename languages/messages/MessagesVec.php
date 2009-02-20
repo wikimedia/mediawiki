@@ -471,7 +471,7 @@ Query: $2',
 'protectedinterface'   => "Sta pàxena la contien un elemento che fa parte de l'interfacia utente del software; e quindi la xè proteta par evitar possibiłi abusi.",
 'editinginterface'     => "'''Ocio:''' Te stè modificando na pagina che la fa parte de l'interfacia utente del sito. 
 Tute le modifiche che te fè a sta pagina le se riflete su l'aspeto de l'interfacia grafica visualizà da tuti i altri utenti.
-Se te ghè bisogno de tradur in veneto un messagio de l'interfacia utente, te pol doparar [http://translatewiki.net/wiki/Main_Page?setlang=vec Betawiki], el progeto de localizazion de MediaWiki.",
+Se te ghè bisogno de tradur in veneto un messagio de l'interfacia utente, te pol doparar [http://translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el progeto de localizazion de MediaWiki.",
 'sqlhidden'            => '(la query SQL la xe stà sconta)',
 'cascadeprotected'     => 'Su sta pàxena no se pol far modifighe parché ła xe stà inclusa {{PLURAL:$1|ne ła pàxena indicà de seguito, che ła xe stà proteta|ne łe pàxene indicae de seguito, che łe xe stà protete}} selezionando ła protesion "ricorsiva":
 $2',
@@ -2767,11 +2767,9 @@ El codice de conferma el scadrà in automatico a le $4.',
 'scarytranscludetoolong'  => '[La URL la xe massa longa]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Informazion de trackback par sta voçe:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Scancela])',
+'trackbackbox'      => 'Informazion de trackback par sta voçe:<br />
+$1',
+'trackbackremove'   => '([$1 Scancela])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Informasion de trackback eliminà coretamente.',
 

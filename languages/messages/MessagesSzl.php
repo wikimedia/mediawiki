@@ -2012,7 +2012,7 @@ Wyeksportowane informacyje možna půźńij zaimportować do inkšej wiki, dźou
 
 Wyeksportowańy wjelu zajtůw wymogo wpisańo půńižej titli zajtůw, po jednym titlu we wjeršu a uokreślyńo čy mo zostać wyeksportowano bježůnco čy wšyjstke wersyje zajty s uopisůma sprawjyń abo tyž ino bježůnca wersyjo s uopisym uostatńygo sprawjyńo.
 
-Možeš tyž užyć linku, np.[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] do zajty „[[{{MediaWiki:Mainpage}}]]”.',
+Možeš tyž užyć linku, np.[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] do zajty „[[{{MediaWiki:Mainpage}}]]”.',
 'exportcuronly'     => 'Ino bježůnco wersyjo, bes historji',
 'exportnohistory'   => "----
 '''Pozůr:''' Wůuůnčůno možliwość eksportowańo peunej historii zajtůw s užyćym tygo nařyńdźa s kuli kuopotůw s wydajnośćůn",
@@ -2591,8 +2591,9 @@ Kod zawarty w linku straći wažność $4.',
 'scarytranscludetoolong'  => '[za dugi adres URL]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Kůmůńikaty TrackBack do tygo artikla:<br />$1</div>',
-'trackbackremove'   => ' ([$1 Wyćep])',
+'trackbackbox'      => 'Kůmůńikaty TrackBack do tygo artikla:<br />
+$1',
+'trackbackremove'   => '([$1 Wyćep])',
 'trackbacklink'     => 'TrackBack',
 'trackbackdeleteok' => 'TrackBack zostou wyćepany.',
 

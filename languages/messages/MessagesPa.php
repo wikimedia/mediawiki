@@ -981,7 +981,7 @@ to upload files.',
 'scarytranscludetoolong' => '[ਅਫਸੋਸ ਹੈ ਕਿ URL ਬਹੁਤ ਲੰਮਾ ਹੈ]',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 ਹਟਾਓ])',
+'trackbackremove' => '([$1 ਹਟਾਓ])',
 'trackbacklink'   => 'ਟਰੈਕਬੈਕ',
 
 # Delete conflict

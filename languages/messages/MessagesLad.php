@@ -406,7 +406,7 @@ El resto de los linkes del mismo satir se juzgan como eccepciones (por enxemplo,
 'confirmemail_success' => 'Su direksion de pósta a sido konfirmada. Agóra puedes registrarse e kolaborar en el wiki.',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 Efasár])',
+'trackbackremove' => '([$1 Efasár])',
 
 # Delete conflict
 'recreate' => 'Krear de muevo',

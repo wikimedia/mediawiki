@@ -581,7 +581,7 @@ $messages = array(
 'protectedpagetext'    => '이 문서는 문서 편집이 불가능하도록 보호되어 있습니다.',
 'viewsourcetext'       => '문서의 원본을 보거나 복사할 수 있습니다:',
 'protectedinterface'   => '이 문서는 소프트웨어 인터페이스에 쓰이는 문서로, 잠겨 있습니다.',
-'editinginterface'     => "'''경고''': 소프트웨어에서 사용하는 메시지 문서를 고치고 있습니다. 이것은 모든 사용자에게 영향을 끼칩니다. 번역되지 않은 메시지를 번역하려는 경우에는, [http://translatewiki.net/wiki/Main_Page?setlang=ko 베타위키(Betawiki)]에 참여하면 메시지 번역을 미디어위키에 직접 반영할 수 있습니다.",
+'editinginterface'     => "'''경고''': 소프트웨어에서 사용하는 메시지 문서를 고치고 있습니다. 이것은 모든 사용자에게 영향을 끼칩니다. 번역되지 않은 메시지를 번역하려는 경우에는, [http://translatewiki.net/wiki/Main_Page?setlang=ko 베타위키(translatewiki.net)]에 참여하면 메시지 번역을 미디어위키에 직접 반영할 수 있습니다.",
 'sqlhidden'            => '(SQL 쿼리 숨겨짐)',
 'cascadeprotected'     => '이 문서는 연쇄 보호가 걸린 문서에 포함되어 있어, 함께 보호됩니다. 연쇄 보호된 문서:',
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
@@ -2274,6 +2274,9 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-redirect-suppressed'     => '넘겨주기가 생성되지 않음',
 'movelogpage'                  => '이동 기록',
 'movelogpagetext'              => '아래는 옮겨진 문서의 목록입니다.',
+'movesubpage'                  => '하위 문서',
+'movesubpagetext'              => '이 문서에는 다음 $1개의 하위 문서가 있습니다.',
+'movenosubpage'                => '이 문서에는 하위 문서가 존재하지 않습니다.',
 'movereason'                   => '이유',
 'revertmove'                   => '되돌리기',
 'delete_and_move'              => '삭제하고 이동',
@@ -2300,7 +2303,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 
 문서를 내보내려면, 내보내려는 문서 제목을 한 줄에 하나씩 입력해주세요. 그리고 문서의 전체 역사가 필요한지, 혹은 현재 버전만이 필요한지를 선택해 주세요.
 
-특정 문서를 내보내려면, 예를 들어 ‘[[{{MediaWiki:Mainpage}}]]’ 문서를 내보내려면 [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] 링크를 사용할 수도 있습니다.',
+특정 문서를 내보내려면, 예를 들어 ‘[[{{MediaWiki:Mainpage}}]]’ 문서를 내보내려면 [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] 링크를 사용할 수도 있습니다.',
 'exportcuronly'     => '현재 버전만 포함하고, 전체 역사는 포함하지 않음',
 'exportnohistory'   => "----
 '''주의:''' 전체 문서 역사를 내보내는 기능은 성능 문제로 인해 비활성되어 있습니다.",
@@ -2902,8 +2905,9 @@ $5
 'scarytranscludetoolong'  => '[URL이 너무 깁니다]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">이 문서에 달린 트랙백:<br />$1</div>',
-'trackbackremove'   => ' ([$1 삭제])',
+'trackbackbox'      => '이 문서에 달린 트랙백:<br />
+$1',
+'trackbackremove'   => '([$1 삭제])',
 'trackbacklink'     => '트랙백',
 'trackbackdeleteok' => '트랙백이 삭제되었습니다.',
 

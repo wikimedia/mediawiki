@@ -1242,7 +1242,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'scarytranscludetoolong' => '[Čujuhus lea menddo guhkki]',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 sihko])',
+'trackbackremove' => '([$1 sihko])',
 
 # Delete conflict
 'recreate' => 'Álggat ođđasit',

@@ -2016,7 +2016,7 @@ Apa panjenengan kersa mbusak iku supaya kacané bisa dialihaké?',
 
 Kanggo ngèkspor kaca-kaca artikel, lebokna irah-irahan utawa judhul sajroning kothak tèks ing ngisor iki, irah-irahan utawa judhul siji per baris, lan pilihen apa panjenengan péngin ngèkspor jangkep karo vèrsi sadurungé, utawa namung vèrsi saiki mawa cathetan panyuntingan pungkasan.
 
-Yèn panjenengan namun péngin ngimpor vèrsi pungkasan, panjenengan uga bisa nganggo pranala kusus, contoné [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] kanggo ngèkspor artikel "[[{{MediaWiki:Mainpage}}]]".',
+Yèn panjenengan namun péngin ngimpor vèrsi pungkasan, panjenengan uga bisa nganggo pranala kusus, contoné [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] kanggo ngèkspor artikel "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Namung èkspor révisi saiki, dudu kabèh vèrsi lawas',
 'exportnohistory'   => "----
 '''Cathetan:''' Ngèkspor kabèh sajarah suntingan kaca ngliwati formulir iki wis dinon-aktifaké déning alesan kinerja.",
@@ -2582,10 +2582,8 @@ Konfirmasi iki bakal kadaluwarsa ing $4.',
 'scarytranscludetoolong'  => '[URL-é kedawan]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Ngrunut bali kanggo artikel iki:<br />
-$1
-</div>',
+'trackbackbox'      => 'Ngrunut bali kanggo artikel iki:<br />
+$1',
 'trackbackremove'   => '([$1 Busak])',
 'trackbacklink'     => 'Lacak balik',
 'trackbackdeleteok' => 'Pelacakan balik bisa dibusak.',

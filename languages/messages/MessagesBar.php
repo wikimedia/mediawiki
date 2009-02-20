@@ -54,6 +54,7 @@ $messages = array(
 'mainpagetext' => 'MediaWiki is eafoigreich installiad woan.',
 
 'about'          => 'Üba',
+'newwindow'      => '(wiad in am neichn Fensta aufgmåcht)',
 'cancel'         => 'Åbbrecha',
 'qbmyoptions'    => 'Meine Seitn',
 'qbspecialpages' => 'Spezialseitn',
@@ -68,9 +69,17 @@ $messages = array(
 'printableversion'  => 'Version zum Ausdruckn',
 'edit'              => 'werkln',
 'create'            => 'Erstöin',
+'editthispage'      => 'Seitn beårbeitn',
+'create-this-page'  => 'Seitn eastöin',
 'delete'            => 'löschn',
+'deletethispage'    => 'De Seitn löschn',
+'undelete_short'    => '{{PLURAL:$1|1 Version|$1 Versionen}} wiedaheastöin',
+'protect'           => 'Schützn',
+'protect_change'    => 'ändan',
+'protectthispage'   => 'Seitn schützn',
 'unprotect'         => 'freigem',
 'unprotectthispage' => 'Schutz aufhem',
+'newpage'           => 'Neiche Seitn',
 'talkpagelinktext'  => 'bschprecha',
 'talk'              => 'bschprecha',
 
@@ -123,8 +132,13 @@ $messages = array(
 # Revision deletion
 'rev-delundel' => 'zoang/vastecka',
 
+# Merge log
+'revertmerge'      => 'Vareinigung zrucknehma',
+'mergelogpagetext' => "Des is s'Logbuach vu de vareinigtn Versionsgschichtn.",
+
 # Diffs
-'editundo' => 'rückgängig',
+'history-title' => 'Versionsgschicht vu „$1“',
+'editundo'      => 'rückgängig',
 
 # Search results
 'searchresults-title'   => 'Eagebnisse vu da Suach nåch „$1“',

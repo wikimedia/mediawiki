@@ -174,10 +174,13 @@ $messages = array(
 'talk'              => 'Diskuto',
 'views'             => 'Apari',
 'toolbox'           => 'Utensili',
-'userpage'          => 'Vidar pagino di uzanto',
+'userpage'          => 'Vidar uzanto-pagino',
 'projectpage'       => 'Vidar projeto-pagino',
-'imagepage'         => 'Vidar pagino di arkivo',
+'imagepage'         => 'Vidar arkivo-pagino',
+'mediawikipage'     => 'Vidar mesajo-pagino',
+'templatepage'      => 'Vidar shablono-pagino',
 'viewhelppage'      => 'Vidar helpo-pagino',
+'categorypage'      => 'Vidar kategorio-pagino',
 'viewtalkpage'      => 'Vidar debatado',
 'otherlanguages'    => 'En altra lingui',
 'redirectedfrom'    => '(Ridirektita de $1)',
@@ -400,7 +403,10 @@ Voluntez enirar altrafoye pos recevar ol.',
 Por krear ica pagino, voluntez startar skribar en la infra buxo.
 (regardez la [[{{MediaWiki:Helppage}}|helpo]] por plusa informo).
 Se vu esas hike erore, kliktez sur la butono por retrovenar en vua ''browser''.",
-'noarticletext'         => 'Nuntempe ne esas texto en ica pagino. Vu povas [[Special:Search/{{PAGENAME}}|serchar ica titulo]] en altra pagini o [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktar ica pagino].',
+'noarticletext'         => 'Prezente, ne esas texto en ica pagino.
+Vu povas [[Special:Search/{{PAGENAME}}|serchar ica titulo]] en altra pagini,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} serchar en la relata "log"-i],
+o [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktar ica pagino]</span>.',
 'usercsspreview'        => "'''Memorez ke vu nur previdas vua uzanto-CSS.'''
 '''Ol ne registragesis ankore!'''",
 'userjspreview'         => "'''Memorez ke vu nur previdas vua javascript di uzanto. Ol ne registragesis ankore!'''",

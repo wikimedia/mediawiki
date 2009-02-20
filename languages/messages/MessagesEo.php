@@ -508,7 +508,7 @@ Peto: $2',
 'protectedpagetext'    => 'Tiu ĉi paĝo estas ŝlosita por malebligi redaktadon.',
 'viewsourcetext'       => 'Vi povas rigardi kaj kopii la fonton de la paĝo:',
 'protectedinterface'   => 'Ĉi tiu paĝo provizas interfacan tekston por la softvaro, kaj estas ŝlosita por malabeligi misuzon.',
-'editinginterface'     => "'''Atentu:''' Vi redaktas paĝon, kiu estas uzata kiel interfaca teksto por la softvaro. Ŝanĝoj de tiu ĉi teksto povas ŝanĝi aspekton de la interfaco por aliaj uzantoj. Por tradukojn, bonvolu uzi [http://translatewiki.net/wiki/Main_Page?setlang=eo Betawiki], la projekto por fari lokajn versiojn de MediaWiki.",
+'editinginterface'     => "'''Atentu:''' Vi redaktas paĝon, kiu estas uzata kiel interfaca teksto por la softvaro. Ŝanĝoj de tiu ĉi teksto povas ŝanĝi aspekton de la interfaco por aliaj uzantoj. Por tradukojn, bonvolu uzi [http://translatewiki.net/wiki/Main_Page?setlang=eo translatewiki.net], la projekto por fari lokajn versiojn de MediaWiki.",
 'sqlhidden'            => '(SQL serĉomendo kaŝita)',
 'cascadeprotected'     => 'Ĉi tiu paĝo estas protektita kontraŭ redaktado, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan paĝon, kiu|sekvajn paĝojn, kiuj}} estas {{PLURAL:$1|protektata|protektataj}} kun la "kaskada" opcio turnita sur:
 $2',
@@ -661,7 +661,7 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'nowiki_tip'      => 'Ignoru vikiformatadon',
 'image_sample'    => 'Ekzemplo.jpg',
 'image_tip'       => 'Enŝutita bildo',
-'media_sample'    => 'Ekzemplo.mp3',
+'media_sample'    => 'Ekzemplo.ogg',
 'media_tip'       => 'Ligo al dosiero sona ...',
 'sig_tip'         => 'Via subskribo kun tempstampo',
 'hr_tip'          => 'Horizontala linio (uzu ŝpareme)',
@@ -900,6 +900,7 @@ povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} prot
 'revdelete-nooldid-title'        => 'Nevalida cela versio',
 'revdelete-nooldid-text'         => 'Vi ne specifis celan version aŭ versiojn fari ĉi tiun 
 funkcion, la specifigita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan version.',
+'revdelete-nologtype-title'      => 'Neniu protokol-tipo estis donita',
 'revdelete-toomanytargets-title' => 'Tro multaj celoj',
 'revdelete-nologid-title'        => 'Nevalida protokol-linio',
 'revdelete-selected'             => "'''{{PLURAL:$2|Selektata versio|Selektataj versioj}} de [[:$1]]:'''",
@@ -1159,6 +1160,16 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'timezoneoffset'            => 'Diferenco¹:',
 'servertime'                => 'Servila tempo:',
 'guesstimezone'             => 'Plenigita el la foliumilo',
+'timezoneregion-africa'     => 'Afriko',
+'timezoneregion-america'    => 'Ameriko',
+'timezoneregion-antarctica' => 'Antarkto',
+'timezoneregion-arctic'     => 'Arkto',
+'timezoneregion-asia'       => 'Azio',
+'timezoneregion-atlantic'   => 'Atlantiko',
+'timezoneregion-australia'  => 'Aŭstralio',
+'timezoneregion-europe'     => 'Eŭropo',
+'timezoneregion-indian'     => 'Hinda Oceano',
+'timezoneregion-pacific'    => 'Pacifiko',
 'allowemail'                => 'Rajtigi retmesaĝojn de aliaj uzantoj',
 'prefs-searchoptions'       => 'Serĉi opciojn',
 'prefs-namespaces'          => 'Nomspacoj',
@@ -1501,6 +1512,8 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 'noimage'                   => 'Neniu dosiero de ĉi tiu nomo ekzistas, sed vi povas $1.',
 'noimage-linktext'          => 'alŝuti unu',
 'uploadnewversion-linktext' => 'Alŝuti novan version de ĉi tiu dosiero',
+'shared-repo-from'          => 'de $1', # $1 is the repository name
+'shared-repo'               => 'komuna dosierujo', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Restarigi $1',
@@ -2222,6 +2235,9 @@ Bonvolu permane kunigi ilin.',
 'move-redirect-suppressed'     => 'alidirektilo subpremita',
 'movelogpage'                  => 'Protokolo pri paĝmovoj',
 'movelogpagetext'              => 'Jen listo de movitaj paĝoj',
+'movesubpage'                  => 'Subpaĝoj',
+'movesubpagetext'              => 'Ĉi tiu paĝo havas $1 {{PLURAL:$1|subpaĝon montritan|subpaĝojn montritajn}} sube.',
+'movenosubpage'                => 'Ĉi tiu paĝo havas neniujn subpaĝojn.',
 'movereason'                   => 'Kialo:',
 'revertmove'                   => 'restarigi',
 'delete_and_move'              => 'Forigi kaj alinomigi',
@@ -2281,6 +2297,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 Ĉiuj transvikaj importoj estas raportitaj ĉe la [[Special:Log/import|loglibro de importoj]].',
 'import-interwiki-source'    => 'Fonta vikio/paĝo:',
 'import-interwiki-history'   => 'Kopiu ĉiujn historiajn versiojn por ĉi tiu pago.',
+'import-interwiki-templates' => 'Inkluzivi ĉiujn ŝablonojn',
 'import-interwiki-submit'    => 'Importi',
 'import-interwiki-namespace' => 'Cela nomspaco:',
 'import-upload-filename'     => 'Dosiernomo:',
@@ -2827,11 +2844,9 @@ $5
 'scarytranscludetoolong'  => '[URL-o estas tro longa]',
 
 # Trackbacks
-'trackbackbox'      => "<div id='mw_trackbacks'>
-Postspuroj por ĉi artikolo:<br />p
-$1
-</div>",
-'trackbackremove'   => ' ([$1 Forigi])',
+'trackbackbox'      => 'Respuradoj por ĉi tiu paĝo:<br />
+$1',
+'trackbackremove'   => '([$1 Forigi])',
 'trackbacklink'     => 'Postspurado',
 'trackbackdeleteok' => 'La postspurado estis sukcese forigita.',
 
@@ -2980,14 +2995,24 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 #Enmetu ĉiujn koderojn pri regulaj esprimoj super ĉi tiu linio. Lasu la linion senŝanĝe.</pre>',
 
 # Special:Tags
-'tag-filter'        => '[[Special:Tags|Etikeda]] filtrilo:',
-'tag-filter-submit' => 'Filtrilo',
-'tags-title'        => 'Etikedoj',
-'tags-tag'          => 'Interna etikeda nomo',
-'tags-edit'         => 'redakti',
-'tags-hitcount'     => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
+'tags'                    => 'Validaj ŝanĝaj etikedoj',
+'tag-filter'              => '[[Special:Tags|Etikeda]] filtrilo:',
+'tag-filter-submit'       => 'Filtrilo',
+'tags-title'              => 'Etikedoj',
+'tags-intro'              => 'Ĉi tiu paĝo montras la etikedojn kun kiuj la programaro markus redakton, kaj iliaj signifoj.',
+'tags-tag'                => 'Interna etikeda nomo',
+'tags-description-header' => 'Plena priskribo pri signifo',
+'tags-hitcount-header'    => 'Markitaj ŝanĝoj',
+'tags-edit'               => 'redakti',
+'tags-hitcount'           => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
 
 # Database error messages
-'dberr-header' => 'Ĉi tiu vikio havas problemon',
+'dberr-header'      => 'Ĉi tiu vikio havas problemon',
+'dberr-problems'    => 'Bedaŭrinde, ĉi tiu retejo suferas pro teknikaj problemoj.',
+'dberr-again'       => 'Bonvolu atendi kelkajn minutojn kaj reŝarĝi.',
+'dberr-info'        => '(Ne eblas kontakti la datenbazan servilon: $1)',
+'dberr-usegoogle'   => 'Vi povas serĉi Guglon dume.',
+'dberr-outofdate'   => 'Notu ke iliaj indeksoj de nia enhavo eble ne estas ĝisdatigaj.',
+'dberr-cachederror' => 'Jen kaŝmemorigita kopio de la petita paĝo, kaj eble ne estas ĝisdatigita.',
 
 );

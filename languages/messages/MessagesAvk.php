@@ -410,7 +410,7 @@ Erura : $2',
 'protectedpagetext'    => 'Batu bu betaradjison zo nendar.',
 'viewsourcetext'       => 'Va buklita rowil nume roksudal :',
 'protectedinterface'   => 'Batu bu va walasikikrent ke talpeyot dafur nume ta djira va favejera zo ixatcar.',
-'editinginterface'     => "'''Obral !''' Rin va bu favenu koe talpeyotwalasiki betal. Betara va batu bu va laviuca ke favesikafi walasiki dolge ar favesik vanolatar. Kalavason, va [http://translatewiki.net/wiki/Main_Page?setlang=avk Betawiki], va MediaWiki abdumimaks va tulizukara, vay favel.",
+'editinginterface'     => "'''Obral !''' Rin va bu favenu koe talpeyotwalasiki betal. Betara va batu bu va laviuca ke favesikafi walasiki dolge ar favesik vanolatar. Kalavason, va [http://translatewiki.net/wiki/Main_Page?setlang=avk translatewiki.net], va MediaWiki abdumimaks va tulizukara, vay favel.",
 'sqlhidden'            => '(SQL kucilara palsena)',
 'cascadeprotected'     => 'Batu bu icde betara zo nendar, kire va vlevefu {{PLURAL:$1|bu|bu}} pasur, danu kan tegisa "stoyakorafa" rotisaca zo nendad : $2',
 'namespaceprotected'   => "Va bu koe '''$1''' yoltxo me robetal !",
@@ -2161,7 +2161,7 @@ This confirmation code will expire at $4.',
 'scarytranscludetoolong' => '[URL tir abrotcarsaf; rotaxe]',
 
 # Trackbacks
-'trackbackremove'   => ' ([$1 Sulara])',
+'trackbackremove'   => '([$1 Sulara])',
 'trackbacklink'     => 'Sledasiki',
 'trackbackdeleteok' => 'Sledasiki tir sulanhayani.',
 

@@ -2020,10 +2020,9 @@ Otre avènene scunnute pe defolt.
 'scarytranscludetoolong' => '[URL jè troppe longhe]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Trackback pe sta pàgene:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 Scangille])',
+'trackbackbox'      => 'Trackback pe sta pàgene:<br />
+$1',
+'trackbackremove'   => '([$1 Scangille])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => "'U trackback ha state scangellete cu successe.",
 

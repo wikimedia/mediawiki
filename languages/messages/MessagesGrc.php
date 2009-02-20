@@ -2329,10 +2329,9 @@ $5
 'scarytranscludetoolong'  => '[Ὁ URL ὑπὲρ τὸ δέον μακρύς ἐστιν]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Ὀνασύνδεσμοι διὰ τήνδε ἐγγραφήν:<br />
-$1
-</div>',
-'trackbackremove'   => '  ([$1 Διαγράφειν])',
+'trackbackbox'      => 'Ὀνασύνδεσμοι διὰ τήνδε ἐγγραφήν:<br />
+$1',
+'trackbackremove'   => '([$1 Διαγράφειν])',
 'trackbacklink'     => 'Ὀνασύνδεσμος',
 'trackbackdeleteok' => 'Ὀνασύνδεσμος ἐπιτυχῶς διαγραφείς.',
 
