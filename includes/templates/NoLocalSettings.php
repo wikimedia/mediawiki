@@ -9,7 +9,7 @@ if ( !isset( $wgVersion ) ) {
 }
 
 $scriptName = $_SERVER['SCRIPT_NAME'];
-$ext = substr( $scriptName, strpos( $scriptName, "." ) + 1 );
+$ext = substr( $scriptName, strrpos( $scriptName, "." ) + 1 );
 $path = '';
 # Add any directories in the main folder that could contain an entrypoint (even possibly).
 # We cannot just do a dir listing here, as we do not know where it is yet

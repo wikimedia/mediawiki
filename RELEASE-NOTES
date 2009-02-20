@@ -202,6 +202,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16335) __NONEWSECTIONLINK__ magic word to suppress new section link.
 * (bug 17581) Wrong index name in PostgreSQL's updater: was rc_timestamp_nobot,
   changed to rc_timestamp_bot
+* (bug 17437) Fixed incorrect link to web-based installer
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
