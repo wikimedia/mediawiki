@@ -169,6 +169,7 @@ $magicWords = array(
 	'displaytitle'          => array( 1,    'כותרת תצוגה',                         'DISPLAYTITLE'           ),
 	'rawsuffix'             => array( 1,    'ללא פסיק',                            'R'                      ),
 	'newsectionlink'        => array( 1,    '__יצירת_הערה__',                      '__NEWSECTIONLINK__'     ),
+	'nonewsectionlink'      => array( 1,    '__ללא_יצירת_הערה__',                  '__NONEWSECTIONLINK__'   ),
 	'currentversion'        => array( 1,    'גרסה נוכחית',                         'CURRENTVERSION'         ),
 	'urlencode'             => array( 0,    'נתיב מקודד:',                         'URLENCODE:'             ),
 	'anchorencode'          => array( 0,    'עוגן מקודד:',                         'ANCHORENCODE'           ),
@@ -2400,6 +2401,9 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'move-redirect-suppressed'     => 'לא נוצרה הפניה',
 'movelogpage'                  => 'יומן העברות',
 'movelogpagetext'              => 'להלן רשימה של כל הדפים שהועברו.',
+'movesubpage'                  => 'דפי משנה',
+'movesubpagetext'              => 'לדף זה יש {{PLURAL:$1|דף משנה אחד המוצג להלן|$1 דפי משנה המוצגים להלן}}.',
+'movenosubpage'                => 'לדף זה אין דפי משנה.',
 'movereason'                   => 'סיבה:',
 'revertmove'                   => 'החזרה',
 'delete_and_move'              => 'מחיקה והעברה',
@@ -2426,7 +2430,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 
 כדי לייצא דפים, הקישו את שמותיהם בתיבת הטקסט שלהלן, כל שם בשורה נפרדת, ובחרו האם לייצא גם את הגרסה הנוכחית וגם את היסטוריית השינויים של הדפים, או רק את הגרסה הנוכחית עם מידע על העריכה האחרונה.
 
-בנוסף, ניתן להשתמש בקישור, כגון [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] לדף [[{{MediaWiki:Mainpage}}]] ללא היסטוריית השינויים שלו.',
+בנוסף, ניתן להשתמש בקישור, כגון [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] לדף [[{{MediaWiki:Mainpage}}]] ללא היסטוריית השינויים שלו.',
 'exportcuronly'     => 'כלול רק את הגרסה הנוכחית, ללא כל ההיסטוריה',
 'exportnohistory'   => "----
 '''הערה:''' ייצוא ההיסטוריה המלאה של דפים דרך טופס זה הופסקה עקב בעיות ביצוע.",
@@ -3035,11 +3039,9 @@ $5
 'scarytranscludetoolong'  => '[כתובת ה־URL ארוכה מדי]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-טרקבקים לדף זה:<br />
-$1
-</div>',
-'trackbackremove'   => ' ([$1 מחיקה])',
+'trackbackbox'      => 'טרקבקים לדף זה:<br />
+$1',
+'trackbackremove'   => '([$1 מחיקה])',
 'trackbacklink'     => 'טרקבק',
 'trackbackdeleteok' => 'הטרקבק נמחק בהצלחה.',
 
