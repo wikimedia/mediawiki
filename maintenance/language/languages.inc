@@ -300,17 +300,17 @@ class languages {
 	}
 
 	/**
-	 * Get the messages whose variables do not match the original ones.
+	 * Get the messages which do not use some variables.
 	 *
 	 * @param $code The language code.
 	 *
-	 * @return The messages whose variables do not match the original ones.
+	 * @return The messages which do not use some variables in this language.
 	 */
-	public function getMessagesWithMismatchVariables( $code ) {
+	public function getMessagesWithoutVariables( $code ) {
 		$this->loadGeneralMessages();
 		$this->loadMessages( $code );
 		$variables = array( '\$1', '\$2', '\$3', '\$4', '\$5', '\$6', '\$7', '\$8', '\$9' );
-		$mismatchMessages = array();
+		$messagesWithoutVariables = array();
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			$missing = false;
 			foreach ( $variables as $var ) {
@@ -318,16 +318,12 @@ class languages {
 					!preg_match( "/$var/sU", $value ) ) {
 					$missing = true;
 				}
-				if ( !preg_match( "/$var/sU", $this->mGeneralMessages['translatable'][$key] ) &&
-					preg_match( "/$var/sU", $value ) ) {
-					$missing = true;
-				}
 			}
 			if ( $missing ) {
-				$mismatchMessages[$key] = $value;
+				$messagesWithoutVariables[$key] = $value;
 			}
 		}
-		return $mismatchMessages;
+		return $messagesWithoutVariables;
 	}
 
 	/**
