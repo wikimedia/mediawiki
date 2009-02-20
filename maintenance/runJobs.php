@@ -27,7 +27,7 @@ if ( isset( $options['procs'] ) ) {
 	$wgCaches = array();
 	unset( $wgMemc );
 
-	// Spawn the children
+	// Create the child processes
 	$children = array();
 	for ( $childId = 0; $childId < $procs; $childId++ ) {
 		$pid = pcntl_fork();
@@ -39,7 +39,7 @@ if ( isset( $options['procs'] ) ) {
 			break;
 		}
 
-		$children[] = $pid;
+		$children[$pid] = true;
 	}
 	if ( $pid ) {
 		// Parent process
@@ -56,18 +56,17 @@ if ( isset( $options['procs'] ) ) {
 			} else {
 				declare (ticks=1) { $status = $status; } 
 			}
-		} while ( $deadPid == -1 && !$termReceived );
-		// Kill the remaining children
-		// If they're already dead, say due to SIGTERM, then they'll be zombies until 
-		// pcntl_waitpid() below, so the PID won't be reused.
-		foreach ( $children as $childPid ) {
-			if ( $childPid != $deadPid ) {
-				posix_kill( $childPid, SIGTERM );
+			if ( $deadPid > 0 ) {
+				unset( $children[$deadPid] );
 			}
-		}
-		foreach ( $children as $childPid ) {
-			pcntl_waitpid( $childPid, $status );
-		}
+			// Respond to TERM signal
+			if ( $termReceived ) {
+				foreach ( $children as $childPid => $unused ) {
+					posix_kill( $childPid, SIGTERM );
+				}
+				$termReceived = false;
+			}
+		} while ( count( $children ) );
 		// All done
 		exit( 0 );
 	}
