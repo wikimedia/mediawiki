@@ -462,6 +462,10 @@ $wgMessageStructure = array(
 		'resetpass-wrong-oldpass',
 		'resetpass-temp-password',
 		'resetpass-no-others',
+		'resetpass-log',
+		'resetpass-logtext',
+		'resetpass-logentry',
+		'resetpass-comment',
 	),
 	'toolbar' => array(
 		'bold_sample',

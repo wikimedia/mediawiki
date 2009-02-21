@@ -26,6 +26,7 @@ class SpecialResetpass extends SpecialPage {
 		$this->mOldpass = $wgRequest->getVal( 'wpPassword' );
 		$this->mNewpass = $wgRequest->getVal( 'wpNewPassword' );
 		$this->mRetype = $wgRequest->getVal( 'wpRetype' );
+		$this->mComment = $wgRequest->getVal( 'wpComment' );
 		
 		$this->setHeaders();
 		$this->outputHeader();
@@ -94,6 +95,10 @@ class SpecialResetpass extends SpecialPage {
 		global $wgOut, $wgUser, $wgRequest;
 
 		$wgOut->disallowUserJs();
+		
+		if ( $wgUser->isAllowed( 'reset-passwords') ) {
+			$wgOut->addScriptFile( 'changepassword.js' );
+		}
 
 		$self = SpecialPage::getTitleFor( 'Resetpass' );
 
@@ -113,8 +118,7 @@ class SpecialResetpass extends SpecialPage {
 			$oldpassMsg = 'oldpassword';
 			$submitMsg = 'resetpass-submit-loggedin';
 		}
-		$wgOut->addHTML(
-			Xml::fieldset( wfMsg( 'resetpass_header' ) ) .
+		$s = Xml::fieldset( wfMsg( 'resetpass_header' ) ) .
 			Xml::openElement( 'form',
 				array(
 					'method' => 'post',
@@ -123,13 +127,15 @@ class SpecialResetpass extends SpecialPage {
 			Xml::hidden( 'token', $wgUser->editToken() ) .
 			Xml::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) .
 			wfMsgExt( 'resetpass_text', array( 'parse' ) ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) .
-			$this->pretty( array(
+			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) );
+		$formElements = array(
 				array( 'wpName', 'username', 'text', $this->mUserName, $wgUser->isAllowed( 'reset-passwords' ) ),
 				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass, $this->mSelfChange ),
 				array( 'wpNewPassword', 'newpassword', 'password', '', true ),
-				array( 'wpRetype', 'retypenew', 'password', '', true ),
-			) ) .
+				array( 'wpRetype', 'retypenew', 'password', '', true ) );
+		if ( $wgUser->isAllowed( 'reset-passwords' ) && $this->mSelfChange )
+			$formElements[] = array( 'wpComment', 'resetpass-comment', 'text', $this->mComment, true );
+		$s .= $this->pretty( $formElements ) .
 			$rememberMe .
 			'<tr>' .
 				'<td></td>' .
@@ -139,8 +145,8 @@ class SpecialResetpass extends SpecialPage {
 			'</tr>' .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'form' ) .
-			Xml::closeElement( 'fieldset' )
-		);
+			Xml::closeElement( 'fieldset' );
+		$wgOut->addHtml( $s );
 	}
 
 	function pretty( $fields ) {
@@ -183,7 +189,7 @@ class SpecialResetpass extends SpecialPage {
 				throw new PasswordError( wfMsg( 'resetpass-wrong-oldpass' ) );
 			}
 		}
-		
+
 		try {
 			$user->setPassword( $this->mNewpass );
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
@@ -192,6 +198,11 @@ class SpecialResetpass extends SpecialPage {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
 			throw new PasswordError( $e->getMessage() );
 			return;
+		}
+		
+		if ( !$this->mSelfChange ) {
+			$log = new LogPage( 'password' );
+			$log->addEntry( 'reset', $user->getUserPage(), $this->mComment );
 		}
 		
 		$user->setCookies();

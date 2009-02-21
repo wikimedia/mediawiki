@@ -1469,7 +1469,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '206';
+$wgStyleVersion = '207';
 
 
 # Server-side caching:
@@ -2843,6 +2843,7 @@ $wgLogTypes = array( '',
 	'patrol',
 	'merge',
 	'suppress',
+	'password',
 );
 
 /**
@@ -2897,6 +2898,7 @@ $wgLogNames = array(
 	'patrol'  => 'patrol-log-page',
 	'merge'   => 'mergelog',
 	'suppress' => 'suppressionlog',
+	'password' => 'resetpass-log'
 );
 
 /**
@@ -2917,6 +2919,7 @@ $wgLogHeaders = array(
 	'patrol'  => 'patrol-log-header',
 	'merge'   => 'mergelogpagetext',
 	'suppress' => 'suppressionlogtext',
+	'password' => 'resetpass-logtext',
 );
 
 /**
@@ -2952,6 +2955,7 @@ $wgLogActions = array(
 	'suppress/delete'   => 'suppressedarticle',
 	'suppress/block'	=> 'blocklogentry',
 	'suppress/reblock'  => 'reblock-logentry',
+	'password/reset'    => 'resetpass-logentry'
 );
 
 /**
