@@ -315,7 +315,7 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'סימון קישורים בקו תחתי:',
-'tog-highlightbroken'         => 'סימון קישורים לדפים שלא נכתבו <a href="" class="new">כך</a> (או: כך<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'סימון קישורים לדפים שלא נכתבו <a href="" class="new">כך</a> (או: כך<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'יישור פסקאות',
 'tog-hideminor'               => 'הסתרת שינויים משניים ברשימת השינויים האחרונים',
 'tog-hidepatrolled'           => 'הסתרת שינויים בדוקים ברשימת השינויים האחרונים',
