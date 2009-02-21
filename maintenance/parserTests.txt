@@ -5242,7 +5242,7 @@ Special page transclusion
 !! result
 <p><br />
 </p>
-<table style="background: inherit;" border="0" width="100%"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
+<table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
 
 !! end
 
@@ -5255,10 +5255,10 @@ Special page transclusion twice (bug 5021)
 !! result
 <p><br />
 </p>
-<table style="background: inherit;" border="0" width="100%"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
+<table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
 <p><br />
 </p>
-<table style="background: inherit;" border="0" width="100%"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
+<table border="0" id="mw-prefixindex-list-table"><tr><td><a href="/wiki/Xyzzyx" title="Xyzzyx">Xyzzyx</a></td></tr></table>
 
 !! end
 
