@@ -2410,7 +2410,8 @@ $1 είναι ήδη αποκλεισμένη. Θέλετε να αλλάξετ�
 'allmessagesname'           => 'Όνομα',
 'allmessagesdefault'        => 'Προκαθορισμένο κείμενο',
 'allmessagescurrent'        => 'Παρόν κείμενο',
-'allmessagestext'           => 'Η λίστα με όλα τα μηνύματα συστήματος που βρίσκονται στην περιοχή MediaWiki:',
+'allmessagestext'           => 'Αυτή είναι μια λίστα με όλα τα μηνύματα συστήματος που βρίσκονται στην περιοχή MediaWiki.
+Παρακαλούμε επισκεφθείτε τα [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] και [http://translatewiki.net translatewiki.net] αν επιθυμείτε να συνεισφέρετε σε μια γενική μετάφραση του MediaWiki.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Το AllMessages δεν υποστηρίζεται επειδή το wgUseDatabaseMessages είναι απενεργοποιημένο.',
 'allmessagesfilter'         => 'Φίλτρο ονόματος μηνύματος:',
 'allmessagesmodified'       => 'Δείξε μόνο τα τροποποιημένα',

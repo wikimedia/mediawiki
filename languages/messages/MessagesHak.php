@@ -1343,7 +1343,7 @@ Nang-ngoi ngì hí-khó li-yung lièn-kiet thô-chhut tóng-on, yì-yi ngì hí-
 'allmessagesdefault'        => 'Yi-sat ke vùn-sṳ',
 'allmessagescurrent'        => 'Tông-chhièn ke vùn-sṳ',
 'allmessagestext'           => 'Liá-piên lie̍t-chhut só-yû hí-khó thin-chṳ ke ne-thúng kie-mien.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => 'Ne-thúng kie-mien kûng-yung chhu-yî kôan-pit chong-thai (wgUseDatabaseMessages)。',
 'allmessagesfilter'         => 'Chang-chet péu-tha̍t sṳt ko-li thiàu-khien:',
 'allmessagesmodified'       => 'Chṳ́ hién-sṳ kiên-kói ko ke.',

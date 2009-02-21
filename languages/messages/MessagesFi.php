@@ -614,7 +614,9 @@ Ilmoita tämän sivun osoite wikin [[Special:ListUsers/sysop|ylläpitäjälle]].
 'protectedpagetext'    => 'Tämä sivu on suojattu muutoksilta.',
 'viewsourcetext'       => 'Voit tarkastella ja kopioida tämän sivun lähdekoodia:',
 'protectedinterface'   => 'Tämä sivu sisältää ohjelmiston käyttöliittymätekstiä ja on suojattu häiriköinnin estämiseksi.',
-'editinginterface'     => '<center>Muokkaat sivua, joka sisältää ohjelmiston käyttöliittymätekstiä.</center>',
+'editinginterface'     => "'''Varoitus.''' Muokkaat sivua, joka sisältää ohjelmiston käyttöliittymätekstiä.
+Muutokset tähän sivuun vaikuttavat muiden käyttäjien käyttöliittymän ulkoasuun.
+Viestien kääntäminen tulisi tehdä [http://translatewiki.net/wiki/Main_Page?setlang=fi translatewiki.netissä] – MediaWikin kotoistusprojektissa.",
 'sqlhidden'            => '(SQL-kysely piilotettu)',
 'cascadeprotected'     => 'Tämä sivu on suojattu muokkauksilta, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}:
 $2',
@@ -734,6 +736,7 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'resetpass-wrong-oldpass'   => 'Virheellinen väliaikainen tai nykyinen salasana.
 Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikaista salasanaa.',
 'resetpass-temp-password'   => 'Väliaikainen salasana:',
+'resetpass-no-others'       => 'Et voi alustaa salasanaa muille käyttäjille.',
 
 # Edit page toolbar
 'bold_sample'     => 'Lihavoitu teksti',
@@ -954,12 +957,18 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'rev-deleted-event'              => '(lokitapahtuma poistettu)',
 'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta. [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.</div>',
 'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">Tämä versio on poistettu julkisesta arkistosta.</div>',
+'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Et voi katsoa tätä muokkausta, koska yksi versioista on poistettu julkisista arkistoista.
+Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].</div>',
 'rev-delundel'                   => 'näytä tai piilota',
 'revisiondelete'                 => 'Poista tai palauta versioita',
 'revdelete-nooldid-title'        => 'Ei kohdeversiota',
 'revdelete-nooldid-text'         => 'Et ole valinnut kohdeversiota tai -versioita.',
 'revdelete-nologtype-title'      => 'Lokityyppiä ei annettu',
+'revdelete-nologtype-text'       => 'Et ole määritellyt lokin tyyppiä tälle toiminnolle.',
 'revdelete-toomanytargets-title' => 'Liian monta kohdetta',
+'revdelete-toomanytargets-text'  => 'Olet määrittänyt liian monta kohteen tyyppiä tämän toiminnon suorittamiseksi.',
+'revdelete-nologid-title'        => 'Epäkelpo lokitapahtuma',
+'revdelete-nologid-text'         => 'Joko et ole määritellyt kohdetta lokitapahtumalle tämän toiminnon suorittamiseksi tai määriteltyä tapahtumaa ei ole.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta '''$1:''''''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
 'revdelete-text'                 => "'''Poistetut versiot näkyvät sivun historiassa, mutta niiden sisältö ei ole julkisesti saatavilla.'''
@@ -1218,9 +1227,14 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'guesstimezone'             => 'Utele selaimelta',
 'timezoneregion-africa'     => 'Afrikka',
 'timezoneregion-america'    => 'Amerikka',
+'timezoneregion-antarctica' => 'Etelämanner',
+'timezoneregion-arctic'     => 'Arktinen alue',
 'timezoneregion-asia'       => 'Aasia',
+'timezoneregion-atlantic'   => 'Atlantin valtameri',
 'timezoneregion-australia'  => 'Australia',
 'timezoneregion-europe'     => 'Eurooppa',
+'timezoneregion-indian'     => 'Intian valtameri',
+'timezoneregion-pacific'    => 'Tyynimeri',
 'allowemail'                => 'Salli sähköpostin lähetys osoitteeseen',
 'prefs-searchoptions'       => 'Hakuasetukset',
 'prefs-namespaces'          => 'Nimiavaruudet',
@@ -1329,6 +1343,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'right-userrights'           => 'Muuttaa kaikkia käyttäjäoikeuksia',
 'right-userrights-interwiki' => 'Muokata käyttäjien oikeuksia muissa wikeissä',
 'right-siteadmin'            => 'Lukita tietokanta',
+'right-reset-passwords'      => 'Alustaa muiden käyttäjien salasanoja',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
@@ -2236,6 +2251,9 @@ $1 {{PLURAL:$1|sivu|sivua}} siirettiin.',
 'move-redirect-suppressed'     => 'ei ohjausta',
 'movelogpage'                  => 'Siirtoloki',
 'movelogpagetext'              => 'Tämä on loki siirretyistä sivuista.',
+'movesubpage'                  => 'Alasivut',
+'movesubpagetext'              => 'Tällä sivulla on $1 {{PLURAL:$1|alasivu|alasivua}}, jotka näkyvät alla.',
+'movenosubpage'                => 'Tällä sivulla ei ole alasivuja.',
 'movereason'                   => 'Syy',
 'revertmove'                   => 'kumoa',
 'delete_and_move'              => 'Poista kohdesivu ja siirrä',
@@ -2257,7 +2275,7 @@ $1 {{PLURAL:$1|sivu|sivua}} siirettiin.',
 # Export
 'export'            => 'Sivujen vienti',
 'exporttext'        => 'Voit viedä sivun tai sivujen tekstiä ja muokkaushistoriaa XML-muodossa.
-Tämä tieto voidaan tuoda toiseen MediaWikiin käyttämällä [[Special:Import|tuontisivua]].
+Tämä tieto voidaan tuoda toiseen käyttämällä MediaWikiä [[Special:Import|tuontisivun]] kautta.
 
 Syötä sivujen otsikoita jokainen omalle rivilleen alla olevaan laatikkoon.
 Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.
@@ -2271,13 +2289,15 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'export-addcat'     => 'Lisää',
 'export-download'   => 'Tallenna tiedostona',
 'export-templates'  => 'Liitä mallineet',
+'export-pagelinks'  => 'Sisällytä linkkien kohteina olevat sivut syvyydelle',
 
 # Namespace 8 related
 'allmessages'               => 'Järjestelmäviestit',
 'allmessagesname'           => 'Nimi',
 'allmessagesdefault'        => 'Oletusarvo',
 'allmessagescurrent'        => 'Nykyinen arvo',
-'allmessagestext'           => 'Tämä on luettelo kaikista MediaWiki-nimiavaruudessa olevista viesteistä.',
+'allmessagestext'           => 'Tämä on luettelo järjestelmäviesteistä, jotka ovat saatavilla MediaWiki-nimiavaruudessa.
+Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.org/wiki/Localisation MediaWikin kotoistussivuilla] ja sivustolla [http://translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB' => 'Tämä sivu ei ole käytössä, koska <tt>$wgUseDatabaseMessages</tt>-asetus on pois päältä.',
 'allmessagesfilter'         => 'Viestiavainsuodatin:',
 'allmessagesmodified'       => 'Näytä vain muutetut',
@@ -3005,8 +3025,17 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 #Laita kaikki säännöllisten lausekkeiden palaset tämän rivit yläpuolelle. Älä muuta tätä riviä lainkaan</pre>',
 
 # Special:Tags
-'tags-edit'     => 'muokkaa',
-'tags-hitcount' => '$1 {{PLURAL:$1|muutos|muutosta}}',
+'tags'                    => 'Voimassa olevat muutostägit',
+'tag-filter'              => '[[Special:Tags|Tägisuodatin]]',
+'tag-filter-submit'       => 'Suodata',
+'tags-title'              => 'Tägit',
+'tags-intro'              => 'Tämä sivu luetteloi tägit, joilla ohjelmisto voi merkitä muokkauksia, ja niiden tarkoitukset.',
+'tags-tag'                => 'Sisäinen täginimi',
+'tags-display-header'     => 'Näkyvyys muutosluetteloissa',
+'tags-description-header' => 'Täysi kuvaus tarkoituksesta',
+'tags-hitcount-header'    => 'Tägätyt muutokset',
+'tags-edit'               => 'muokkaa',
+'tags-hitcount'           => '$1 {{PLURAL:$1|muutos|muutosta}}',
 
 # Database error messages
 'dberr-header'      => 'Wikissä on tietokantaongelma',

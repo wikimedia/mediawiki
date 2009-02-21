@@ -619,6 +619,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass-wrong-oldpass'   => 'Geçersiz geçici veya güncel şifre.
 Şifrenizi zaten başarıyla değiştirdiniz ya da yeni bir geçici şifre istediniz.',
 'resetpass-temp-password'   => 'Geçici parola:',
+'resetpass-no-others'       => 'Diğer kullanıcılar için parolayı sıfırlayamazsınız.',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',
@@ -1246,6 +1247,7 @@ ayarlamak için math/README'ye bakın.",
 'right-userrights'           => 'Tüm kullanıcı haklarını değiştirmek',
 'right-userrights-interwiki' => 'Diğer vikilerdeki kullanıcıların kullanıcı haklarını değiştir',
 'right-siteadmin'            => 'Veritabanını kilitle ve kilidi aç',
+'right-reset-passwords'      => 'Diğer kullanıcıların parolalarını sıfırla',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',
@@ -2218,6 +2220,9 @@ Lütfen başka bir isim deneyiniz.',
 'move-redirect-suppressed'     => 'yönlendirme bastırılmış',
 'movelogpage'                  => 'İsim değişikliği kayıtları',
 'movelogpagetext'              => 'Aşağıda bulunan liste adı değiştirilmiş sayfaları gösterir.',
+'movesubpage'                  => 'Altsayfalar',
+'movesubpagetext'              => 'Bu sayfanın aşağıda gösterilen $1 {{PLURAL:$1|altsayfası|altsayfası}} vardır.',
+'movenosubpage'                => 'Bu sayfanın altsayfası yoktur.',
 'movereason'                   => 'Neden:',
 'revertmove'                   => 'geriye al',
 'delete_and_move'              => 'Sil ve taşı',

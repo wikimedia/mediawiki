@@ -447,7 +447,7 @@ Abfrog: $2',
 'protectedpagetext'    => 'Die Syte isch fir s Bearbeite gsperrt.',
 'viewsourcetext'       => 'Quelltext vo dere Syte:',
 'protectedinterface'   => 'In däre Syte het s Text fir s Sproch-Interface vu dr Software un isch gsperrt, zum Missbruch z verhindre.',
-'editinginterface'     => "'''Obacht:''' Du bisch e Syten am Verändere, wo zum user interface ghört. We du die Syte veränderisch, de änderet sech ds user interface o für di andere Benutzer.",
+'editinginterface'     => "'''Obacht:''' Du bisch e Syten am Verändere, wu zum User.Interface ghert. Wänn Du die Syte veränderesch, no änderet sich s User-Interface au fir di andere Benutzer. Fir Ibersetzige lueg bitte, eb Du doodefir s [http://translatewiki.net/wiki/Main_Page?setlang=gsw Translatewiki] witt bruuche, s MediaWiki-Lokalisierigsprojäkt.",
 'sqlhidden'            => '(SQL-Abfrog verschteckt)',
 'cascadeprotected'     => 'Die Syte isch fir s Bearbeite gsperrt. Si isch yybunde in {{PLURAL:$1|die Syte, wu do chunnt|die Syte, wu do chemme}} , wu mit ere Kaskadesperroption gschitzt {{PLURAL:$1|isch|sin}}:
 $2',
@@ -586,6 +586,7 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'resetpass-wrong-oldpass'   => 'S temporär oder aktuäll Passwort isch nimi giltig.
 Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagforderet.',
 'resetpass-temp-password'   => 'Temporär Passwort:',
+'resetpass-no-others'       => 'Du chasch s Passwort vu andere Benutzer nit zrucksetze.',
 
 # Edit page toolbar
 'bold_sample'     => 'fetti Schrift',
@@ -1212,6 +1213,7 @@ prief di korrekt Installation vu latex, dvips, gs un convert',
 'right-userrights'           => 'Benutzerrächt bearbeite',
 'right-userrights-interwiki' => 'Benutzerrächt in andere Wiki bearbeite',
 'right-siteadmin'            => 'Datebank sperre un entsperre',
+'right-reset-passwords'      => 'S Passwort vun eme andere Benutzer zrucksetze',
 
 # User rights log
 'rightslog'      => 'Benutzerrächt-Logbuech',
@@ -2177,7 +2179,7 @@ Zum Exportiere trag dr Sytetitel in dr Täxtchaschte unter yy, ei Titel pro Zyyl
 'allmessagesdefault'        => 'Standard-Tekscht',
 'allmessagescurrent'        => 'jetzige Tekscht',
 'allmessagestext'           => 'Des isch e Lischt vu allene meglige Syschtemnochrichte us em MediaWiki Namensruum.
-Lueg au uf [http://www.mediawiki.org/wiki/Localisation MediaWiki Lokalisierig] un [http://translatewiki.net Betawiki], wänn Du zue dr MediaWiki-Lokalisierig wit byytrage.',
+Lueg au uf [http://www.mediawiki.org/wiki/Localisation MediaWiki Lokalisierig] un [http://translatewiki.net translatewiki.net], wänn Du zue dr MediaWiki-Lokalisierig wit byytrage.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' cha nit bruucht wärde will '''\$wgUseDatabaseMessages''' abgschalte isch.",
 'allmessagesfilter'         => 'Nochrichte nochem Name filtere:',
 'allmessagesmodified'       => 'numme gänderti aazeige',

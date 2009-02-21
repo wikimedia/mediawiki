@@ -1627,7 +1627,7 @@ In chisth'ulthimu casu si pó utilizzà puru un cullegamentu, pa esempiu [[{{#Sp
 'allmessagesdefault'        => 'Testhu pridifiniddu',
 'allmessagescurrent'        => 'Testhu attuari',
 'allmessagestext'           => "Chistha è la listha di tutti l'imbasciaddi di sisthema dipunìbiri i' lu tipu di pàgina MediaWiki.
-Pa piazeri utirizà [http://www.mediawiki.org/wiki/Localisation MediaWiki Lucarizazioni] e [http://translatewiki.net Betawiki] pa l'althri traduzioni.",
+Pa piazeri utirizà [http://www.mediawiki.org/wiki/Localisation MediaWiki Lucarizazioni] e [http://translatewiki.net translatewiki.net] pa l'althri traduzioni.",
 'allmessagesnotsupportedDB' => "Chistha pàgina nò è supporthadda parchí l'indicadori '''\$wgUseDatabaseMessages''' nò è attibuu.",
 'allmessagesfilter'         => "Filthru i' l'imbasciaddi:",
 'allmessagesmodified'       => 'Musthra soru chiddi mudìfiggaddi.',

@@ -506,7 +506,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom Սնուցում',
 'page-rss-feed'           => '«$1» RSS Սնուցում',
 'page-atom-feed'          => '«$1» Atom Սնուցում',
-'red-link-title'          => '$1 (դեռ գրված չէ)',
+'red-link-title'          => '$1 (էջը գոյություն չունի)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Հոդված',
@@ -904,8 +904,9 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 
 # Search results
 'searchresults'             => 'Որոնման արդյունքներ',
+'searchresults-title'       => '«$1»-ի որոնման արդյունքներ',
 'searchresulttext'          => '{{SITENAME}} կայքում որոնման մասին տեղեկությունների համար այցելեք [[{{MediaWiki:Helppage}}|{{int:help}}]] էջը։',
-'searchsubtitle'            => 'Դուք որոնել եք «[[:$1]]»',
+'searchsubtitle'            => "Դուք որոնել եք «'''[[:$1]]'''» ([[Special:Prefixindex/$1|այս անվանմամբ սկսվող էջերը]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|այս անվանվանը հղվող էջերը]])",
 'searchsubtitleinvalid'     => 'Դուք որոնել եք «$1»',
 'noexactmatch'              => '«$1» անվանմամբ էջ գոյություն չունի։
 
@@ -919,6 +920,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'nextn'                     => 'հաջորդ $1',
 'viewprevnext'              => 'Դիտել ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:Գլխացանկ',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 բառ|$2 բառ}})',
 'search-mwsuggest-enabled'  => 'առաջարկներով',
 'search-mwsuggest-disabled' => 'առանձ առաջարկների',
 'searchall'                 => 'բոլոր',
@@ -1748,7 +1750,7 @@ $1',
 'allmessagesdefault'        => 'Լռությամբ տեքստ',
 'allmessagescurrent'        => 'Ընթացիկ տեքստ',
 'allmessagestext'           => 'Ստորև բերված է «MediaWiki» անվանատարածքի բոլոր համակարգային ուղերձների ցանկը։
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Այս էջը չի գործում, քանի որ '''\$wgUseDatabaseMessages''' հատկանիշը անջատված է։",
 'allmessagesfilter'         => 'Ուղղերձների անվան ֆիլտր.',
 'allmessagesmodified'       => 'Ցույց տալ միայն փոփոխվածները',
@@ -1973,7 +1975,9 @@ $1',
 # Bad image list
 'bad_image_list' => 'Գրաձևը հետևյալն է.
 
-Հաշվի են առնվելու միայն ցանկի տարրերը (* սիմվոլով սկսվող տողերը)։ Տողի առաջին հղումը պետք է լինի դեպի արգելված պատկերը։ Տողի հետագա հղումները ընկալվելու են որպես բացառություններ, այսինքն էջեր, որտեղ նշված պատկերի փակցնումը չի արգելվում։',
+Հաշվի են առնվելու միայն ցանկի տարրերը (* սիմվոլով սկսվող տողերը)։
+Տողի առաջին հղումը պետք է լինի դեպի արգելված պատկերը։
+Տողի հետագա հղումները ընկալվելու են որպես բացառություններ, այսինքն էջեր, որտեղ նշված պատկերի փակցնումը չի արգելվում։',
 
 # Metadata
 'metadata'          => 'Մետատվյալներ',

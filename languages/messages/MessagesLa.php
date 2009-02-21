@@ -149,7 +149,7 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Nexus linea subscribere:',
-'tog-highlightbroken'         => 'Formare nexus fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Formare nexus fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Iustificare paragrapha',
 'tog-hideminor'               => 'Celare recensiones minores in indice nuper mutatorum',
 'tog-extendwatchlist'         => 'Extendere indicem paginarum custoditarum ut omnes emendationes monstrentur',
@@ -549,6 +549,7 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'resetpass_forbidden'       => 'Tesserae mutari non possunt',
 'resetpass-no-info'         => 'Necesse est conventum aperire ad hanc paginam adhibendum.',
 'resetpass-submit-loggedin' => 'Tesseram mutare',
+'resetpass-no-others'       => 'Tibi non licet tesseram usorum aliorum mutare.',
 
 # Edit page toolbar
 'bold_sample'     => 'Litterae pingues',
@@ -1406,12 +1407,36 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'watching'   => 'Custodiens...',
 'unwatching' => 'Decustodiens...',
 
+'enotif_newpagetext'           => 'Haec pagina nova est.',
 'enotif_impersonal_salutation' => 'Usor {{grammar:genitive|{{SITENAME}}}}',
 'changed'                      => 'mutata',
 'created'                      => 'creata',
-'enotif_subject'               => '{{SITENAME}}: Pagina $PAGETITLE $CHANGEDORCREATED est ab $PAGEEDITOR',
+'enotif_subject'               => 'Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR $CHANGEDORCREATED est',
 'enotif_lastdiff'              => 'Vide $1 ad hanc recensionem inspiciendum.',
 'enotif_anon_editor'           => 'usor ignotus $1',
+'enotif_body'                  => 'Salve $WATCHINGUSERNAME,
+
+Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR die $PAGEEDITDATE $CHANGEDORCREATED est, vide emendationem currentem apud $PAGETITLE_URL
+
+$NEWPAGE
+
+Auctor hunc summarium dedit: $PAGESUMMARY $PAGEMINOREDIT
+
+Contact the editor:
+litterae electronicae: $PAGEEDITOR_EMAIL
+vici: $PAGEEDITOR_WIKI
+
+There will be no other notifications in case of further changes unless you visit this page.
+You could also reset the notification flags for all your watched pages on your watchlist.
+
+             Your friendly {{SITENAME}} notification system
+
+--
+To change your watchlist settings, visit
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Feedback and further assistance:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Delere paginam',
@@ -1703,6 +1728,9 @@ Quaesumus, titulum alterum elige.',
 '1movedto2_redir'           => 'movit [[$1]] ad [[$2]] praeter redirectionem',
 'move-redirect-suppressed'  => 'sine redirectione',
 'movelogpage'               => 'Acta motionum',
+'movesubpage'               => 'Subpaginae',
+'movesubpagetext'           => 'Huic paginae {{PLURAL:$1|est una subpagina subter monstrata|sunt $1 subpaginae subter monstratae}}.',
+'movenosubpage'             => 'Huic paginae non sunt subpaginae.',
 'movereason'                => 'Causa:',
 'revertmove'                => 'reverti',
 'delete_and_move'           => 'Delere et movere',

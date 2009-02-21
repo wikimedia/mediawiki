@@ -907,7 +907,7 @@ L\'artitgel da destinaziun "[[:$1]]" exista gia. Vul ti stidar el per far plaz p
 'allmessagesdefault'        => 'text original',
 'allmessagescurrent'        => 'text actual',
 'allmessagestext'           => 'Quai è ina glista da tut las communicaziuns dals differents tips da paginas da MediaWiki che vegnan utilisadas da la software da MediaWiki.
-Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net Betawiki] sche ti vuls gidar da translatar la software da MediaWiki.',
+Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] sche ti vuls gidar da translatar la software da MediaWiki.',
 'allmessagesnotsupportedDB' => "Questa pagina na po betg vegnir mussada, perquai che '''\$wgUseDatabaseMessages''' è vegnì deactivà.",
 'allmessagesfilter'         => 'filter dals nums da las novitads:',
 'allmessagesmodified'       => 'Be mussar modifitgads',

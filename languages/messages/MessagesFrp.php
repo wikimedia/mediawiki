@@ -1682,7 +1682,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{#Speci
 'allmessagesdefault'        => 'Mèssâjo per dèfôt',
 'allmessagescurrent'        => 'Mèssâjo d’ora',
 'allmessagestext'           => 'Cen est la lista de tôs los mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' est pas disponiblo perce que '''\$wgUseDatabaseMessages''' est dèsactivâ.",
 'allmessagesfilter'         => 'Filtro d’èxprèssion racionèla :',
 'allmessagesmodified'       => 'Afichiér ren que les modificacions',

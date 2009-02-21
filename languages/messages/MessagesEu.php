@@ -460,7 +460,9 @@ Saia zaitez berriro minutu batzuen buruan, mesedez.',
 'protectedpagetext'    => 'Orrialde hau aldaketak saihesteko blokeatu egin da.',
 'viewsourcetext'       => 'Orrialde honen testua ikusi eta kopiatu dezakezu:',
 'protectedinterface'   => 'Orrialde honek softwarearentzako interfaze testua gordetzen du eta blokeatuta dago bandalismoak saihesteko.',
-'editinginterface'     => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara. Orrialde honetako aldaketek erabiltzaile guztiei eragingo die.",
+'editinginterface'     => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara.
+Orrialde honetako aldaketek erabiltzaile guztiei eragingo die.
+Itzulpenetarako, [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] erabili ezazu, MediaWiki proiektuan.",
 'sqlhidden'            => '(ezkutuko SQL kontsulta)',
 'cascadeprotected'     => "Orrialde hau aldaketen aurka babestua dago, ''kaskada'' aukerarekin babestu {{PLURAL:$1|duten orrialde honetan|dituzten orrialde hauetan}} txertaturik dagoelako:
 $2",
@@ -597,6 +599,7 @@ Berriro saiatu aurretik itxoin ezazu, mesedez.',
 'resetpass-wrong-oldpass'   => 'Behin-behineko edo oraintxuko pasahitza ez da baliagarria. 
 Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat eskatu duzu.',
 'resetpass-temp-password'   => 'Behin-behineko pasahitza:',
+'resetpass-no-others'       => 'Ezind duzu beste erabiltzaile batzuen pasahitza berritu.',
 
 # Edit page toolbar
 'bold_sample'     => 'Testu beltza',
@@ -1215,6 +1218,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'right-userrights'           => 'Erabiltzaile guztien eskumenak aldatu',
 'right-userrights-interwiki' => 'Beste wiki batzuetan erabiltzaileen eskumenak aldatu',
 'right-siteadmin'            => 'Databasea blokeatu eta desblokeatu',
+'right-reset-passwords'      => 'Bese erabiltzaile batzuen pasahitzak berritu',
 
 # User rights log
 'rightslog'      => 'Erabiltzaile eskubideen erregistroa',
@@ -2188,7 +2192,8 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/
 'allmessagesname'           => 'Izena',
 'allmessagesdefault'        => 'Testu lehenetsia',
 'allmessagescurrent'        => 'Oraingo testua',
-'allmessagestext'           => 'MediaWikin erabiltzen diren mezu guztien zerrenda:',
+'allmessagestext'           => 'MediaWikin erabiltzen diren mezu guztien zerrenda.
+Mesedez bisitatu [http://www.mediawiki.org/wiki/Localisation MediaWiki] eta [[http://translatewiki.net translatewiki.net] orrialdeak MediaWikira ekarpenak egin badituzu.',
 'allmessagesnotsupportedDB' => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
 'allmessagesfilter'         => 'Mezu izenaren iragazkia:',
 'allmessagesmodified'       => 'Aldatutakoak bakarrik erakutsi',

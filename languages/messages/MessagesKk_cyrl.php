@@ -2224,7 +2224,7 @@ MediaWiki жүйесінің [[{{#special:Import}}|сырттан алу бет�
 'allmessagesdefault'        => 'Әдепкі мәтіні',
 'allmessagescurrent'        => 'Ағымдық мәтіні',
 'allmessagestext'           => 'Мында {{ns:mediawiki}} есім аясында жетімді жүйе хабар тізімі беріледі.
-Егер әмбебап MediaWiki жерсіндіруге үлес қосқыңыз келсе [http://www.mediawiki.org/wiki/Localisation MediaWiki жерсіндіру бетіне] және [http://translatewiki.net Betawiki жобасына] барып шығыңыз.',
+Егер әмбебап MediaWiki жерсіндіруге үлес қосқыңыз келсе [http://www.mediawiki.org/wiki/Localisation MediaWiki жерсіндіру бетіне] және [http://translatewiki.net translatewiki.net жобасына] барып шығыңыз.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' өшірілген себебінен '''{{#special:AllMessages}}''' беті қолданылмайды.",
 'allmessagesfilter'         => 'Хабарды атауымен сүзгілеу:',
 'allmessagesmodified'       => 'Тек өзгертілгенді көрсет',

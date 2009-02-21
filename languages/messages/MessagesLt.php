@@ -2263,7 +2263,7 @@ Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{#Special:Expo
 'allmessagesdefault'        => 'Pradinis tekstas',
 'allmessagescurrent'        => 'Dabartinis tekstas',
 'allmessagestext'           => 'Čia pateikiamas sisteminių pranešimų sąrašas, esančių MediaWiki vardų srityje.
-Aplankykite [http://www.mediawiki.org/wiki/Localisation „MediaWiki“ lokaliziciją] ir [http://translatewiki.net „Betawiki“], jei norite prisidėti prie bendrojo „MediaWiki“ lokalizavimo.',
+Aplankykite [http://www.mediawiki.org/wiki/Localisation „MediaWiki“ lokaliziciją] ir [http://translatewiki.net „translatewiki.net“], jei norite prisidėti prie bendrojo „MediaWiki“ lokalizavimo.',
 'allmessagesnotsupportedDB' => "Šis puslapis nepalaikomas, nes nuostata '''\$wgUseDatabaseMessages''' yra išjungtas.",
 'allmessagesfilter'         => 'Tekstų pavadinimo filtras:',
 'allmessagesmodified'       => 'Rodyti tik pakeistus',

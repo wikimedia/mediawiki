@@ -2356,7 +2356,7 @@ IP-адреси, що блокуються автоматично тут не в
 'allmessagesdefault'        => 'Стандартний текст',
 'allmessagescurrent'        => 'Поточний текст',
 'allmessagestext'           => 'Це список усіх системних повідомлень, які доступні в просторі назв «MediaWiki». 
-Будь ласка, відвідайте [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] і [http://translatewiki.net Betawiki], якщо ви хочете зробити внесок до спільної локалізації MediaWiki.',
+Будь ласка, відвідайте [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] і [http://translatewiki.net translatewiki.net], якщо ви хочете зробити внесок до спільної локалізації MediaWiki.',
 'allmessagesnotsupportedDB' => "Ця сторінка не може використовуватися, оскільки вимкнена опція '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Фільтр назв повідомлень:',
 'allmessagesmodified'       => 'Показати тільки змінені',

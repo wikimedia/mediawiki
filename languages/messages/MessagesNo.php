@@ -2183,6 +2183,7 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'move-redirect-suppressed'     => 'ingen omdirigering',
 'movelogpage'                  => 'Flyttelogg',
 'movelogpagetext'              => 'Her er ei liste over sider som har blitt flyttet.',
+'movesubpage'                  => 'Undersider',
 'movereason'                   => 'Årsak:',
 'revertmove'                   => 'tilbakestill',
 'delete_and_move'              => 'Slett og flytt',
@@ -2226,7 +2227,7 @@ Dersom du bare vil ha nåværende versjon, kan du også bruke en lenke, for ekse
 'allmessagesdefault'        => 'Standardtekst',
 'allmessagescurrent'        => 'Nåværende tekst',
 'allmessagestext'           => 'Dette er en liste over tilgjengelige systemmeldinger i MediaWiki-navnerommet.
-Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettelse av MediaWiki.',
+Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med oversettelse av MediaWiki.',
 'allmessagesnotsupportedDB' => "''{{ns:special}}:Allmessages'' kan ikke brukes fordi '''\$wgUseDatabaseMessages''' er slått av.",
 'allmessagesfilter'         => 'Filter:',
 'allmessagesmodified'       => 'Vis kun endrede',

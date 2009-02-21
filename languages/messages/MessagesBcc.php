@@ -411,7 +411,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'نی چشین عمل',
-'nosuchactiontext'  => 'کاری که گون URL مشخص بیته گون وی کی پچاه آرگ نبیت',
+'nosuchactiontext'  => 'ای کاری که گون اای یو ار ال مشخص بیتت نامشخص انت.
+شما بلکین یو‌ارال شر ننوشتت یا رند چه هرابیت لینکی اتکگیت
+شی بلکین یک خطایی ته برنامه سایت {{SITENAME}} پیش داریت.',
 'nosuchspecialpage' => 'نی چشین حاصین صفحه',
 'nospecialpagetext' => "<big>'''شما یک نامعتبرین صفحه حاصین درخواست کت.'''</big>
 
@@ -537,12 +539,13 @@ $2',
 'yourvariant'                => 'مغایر:',
 'yournick'                   => 'امضا:',
 'badsig'                     => 'نامعتبرین حامین امضا تگان HTML چک کن',
-'badsiglength'               => 'امضا باز مزنتت.
-آی بایدن چوشین  $1 {{PLURAL:$1|character|کاراکتران}}.',
+'badsiglength'               => 'شمل امضا باز مزنتت.
+آی بایدن   $1 {{PLURAL:$1|کارکاتر|کاراکتران}} مزن تر مبیت',
 'yourgender'                 => 'جنس:',
 'gender-unknown'             => 'نامعلوم',
 'gender-male'                => 'مردین',
 'gender-female'              => 'جنین',
+'prefs-help-gender'          => 'اختیاری: په خاطر توار کتن درست جنس گون برنامه استفاده بیت. ای اطلاعات بلکین عمومی ببنت.',
 'email'                      => 'ایمیل',
 'prefs-help-realname'        => 'راستین  نام اهتیاریتن. اگه شما یکی انتخاب کنیت شی په شمی کارء نشان هلگ په روت.',
 'loginerror'                 => 'حطا ورود',
@@ -559,8 +562,9 @@ $2',
 'noname'                     => 'شما یک معتبرین نام کاربر مشخص نه کتت.',
 'loginsuccesstitle'          => 'ورود موفقیت آمیز',
 'loginsuccess'               => "''''شما الان وارد {{SITENAME}} په عنوان \"\$1\".'''",
-'nosuchuser'                 => 'هچ کاربری گون نام "$1".
-وتی املايا چک کنیت یا [[Special:UserLogin/signup|نوکین حسابی شرکنیت]]',
+'nosuchuser'                 => 'هچ کاربری گون نام "$1" نیستن.
+کاربری نام حرفش په هور و مزنی حساس انت.
+وتی املايا چک کنیت یا [[Special:UserLogin/signup|نوکین حسابی شرکنیت]].',
 'nosuchusershort'            => 'هچ کاربری گون نام  "<nowiki>$1</nowiki>"نیستن.
 وتی املايا کنترل کنیت',
 'nouserspecified'            => 'شما باید یک نام کاربری مشخص کنیت.',
@@ -586,8 +590,8 @@ $2',
 'throttled-mailpassword'     => 'یک کلمه رمز یاد آوری پیش تر دیم دهگ بوتت ته  {{PLURAL:$1|ساعت|$1 ساعت}}  ساعت پیش.
 په جلوگرگ چه سو استفاده فقط یک کلمه رمز یاد آوری هر$1  ساعت دیم دهگ بیت.',
 'mailerror'                  => 'حطا دیم دهگ ایمیل:$1',
-'acct_creation_throttle_hit' => 'شرمنده، شما پیشتر {{PLURAL:$1|1 حساب|$1 حساب}}   شر کتت.
-شما نه تونیت گیشتر شرکنیت.',
+'acct_creation_throttle_hit' => 'شرمنده، لهتی پیسرگین چارون گون شمی آی زیگ لهتی {{PLURAL:$1|1 حساب|$1 حساب}}   شر کتت , که گیشترین حد مجاز ته ای زمان انت.
+هنچوش چاروکان گون ای آی پی ن توننت گیشتر الان حساب شرکننت.',
 'emailauthenticated'         => ' $3 شمی آدرس ایمیل ته $2  تصدیق بوت.',
 'emailnotauthenticated'      => 'په آدرس ایمیل هنگت تصدیق نه بوتت.
 هچ ایمیلی په جهلیگین ویژگی دیم دهگ نه بیت.',
@@ -624,6 +628,7 @@ $2',
 'resetpass-wrong-oldpass'   => 'کلمه رمز موقت یا هنوکین رمز شر نهنت.
 بلیکن شما الان وتی کلمه رمز عوض کتت یا یک نوکین موقتین رمزی لوٹت.',
 'resetpass-temp-password'   => 'موقتین کلمه رمز:',
+'resetpass-no-others'       => 'شما نه تونیت په دگه کاربران کلمه رمز ءَ عوض کنیت.',
 
 # Edit page toolbar
 'bold_sample'     => 'پررنگین متن',
@@ -706,7 +711,8 @@ $2',
 'loginreqlink'                     => 'ورود',
 'loginreqpagetext'                 => 'شما باید $1 په گندگ دگه صفحات.',
 'accmailtitle'                     => 'کلمه رمز دیم دات',
-'accmailtext'                      => 'کلمه رمز په "$1"  دیم دهگ بوت په $2.',
+'accmailtext'                      => "کلمه رمز په [[User talk:$1|$1]]  دیم دهگ بوت په $2.
+کلمه رمز په نوکین حساب ته صفحه ''[[Special:ChangePassword|عوض کتن رمز]]'' وهدی که وارد بیتت تونیت بدل بیتن",
 'newarticle'                       => '(نوکین)',
 'newarticletext'                   => "شما رند چه یک لینکی په یک صفحه ی که هنو نیستند اتکگیت.
 په شر کتن صفحه، شروع کن نوشتن ته جعبه جهلی(بچار  [[{{MediaWiki:Helppage}}|صفحه کمک]]  په گیشترین اطلاعات).
@@ -739,7 +745,7 @@ $2',
 شی لهتی وهد پیش کت که شما چه یک هرابین سرویس پروکسی وبی استفاده کنیت.'''",
 'editing'                          => 'اصلاح $1',
 'editingsection'                   => 'اصلاح $1(بخش)',
-'editingcomment'                   => 'اصلاح $1 (نظر)',
+'editingcomment'                   => 'اصلاح $1 (نوکین بخش)',
 'editconflict'                     => 'جنگ ورگ اصلاح: $1',
 'explainconflict'                  => "کسی دگه ای صفحه یا عوض کتت چه وهدی که شما اصلاح آیء شروع کتء.
 بالادی ناحیه متن شامل متن صفحه همی داب که هنگت هست.
@@ -771,7 +777,7 @@ $2',
 'protectedpagewarning'             => "'''هوژاری: ای صفحه په کبلنت چی که فقط کابران گون اجازت مدیر سیستم توننت آیء اصلاح کننت.'''",
 'semiprotectedpagewarning'         => "''''توجه:'''' ای صفحه کبلنت چوش که فقط ثبت نامی کابران توننت آیء اصلاح کننت.",
 'cascadeprotectedwarning'          => "''هوژاری''ای صفحه کبلنت چوش که فقط کابران گون دسترسی مدیر سیستم توننت آییء اصلاح کننت،په چی که آیی ته چهلین حمایت آبشاری {{PLURAL:$1|صفحات|صفحه}}:",
-'titleprotectedwarning'            => "'''هوژاری: ای صفحه کبلنت چوش که فقز لهتی کاربر تواننت آیء شر کننت.'''",
+'titleprotectedwarning'            => "'''هوژاری: ای صفحه کبلنت چوش که فقط لهتی کاربر گون [[Special:ListGroupRights|خاصین حق]] تواننت آیء شر کننت.'''",
 'templatesused'                    => 'تمپلتانی که ته ای صفحه استفاده بیت:',
 'templatesusedpreview'             => 'تلمپلت آنی که ته ای بازبینی استفاده بیت',
 'templatesusedsection'             => 'تمپلتانی که ته ای بخش به کار رونت',
@@ -1130,7 +1136,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'stub-threshold'            => 'سرحد په  <a href="#" class="stub">چنڈ لینک</a> فرمت (بایت):',
 'recentchangesdays'         => 'روچ ان به پیش دارگ ته نوکیت تغییرات:',
 'recentchangesdays-max'     => '(حداکثر $1 {{PLURAL:$1|روچ|روچ}})',
-'recentchangescount'        => 'تعداد اصلاحات به پیش دارگ ته نوکین تغییرات',
+'recentchangescount'        => 'تعداد اصلاحات به پیش دارگ ته نوکین تغییرات , تاریح صفحات و ته سیاهگ به طور پیش فرض :',
 'savedprefs'                => 'شمی ترجیحات ذخیره بوتن',
 'timezonelegend'            => 'وهد ملک',
 'timezonetext'              => '¹تعداد ساعاتی که شمی ملکی وهد چه زمان سرور فرق کنت (UTC).',
@@ -1259,6 +1265,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'right-userrights'           => 'اصلاح کل حقوق کاربری',
 'right-userrights-interwiki' => 'اصلاح حقوق کابرانی کابران دگه ویکی انء',
 'right-siteadmin'            => 'کبل و پچ دیتابیس',
+'right-reset-passwords'      => 'کلمه رمز چه دگه کاربران ءَ عوض کن',
 
 # User rights log
 'rightslog'      => 'ورودان حقوق کاربر',
@@ -1404,8 +1411,8 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'file-thumbnail-no'           => "نام فایل شروع بیت گون '''<tt>$1</tt>'''.
 جاه کیت که یک هور بوتگین اندازه عکس ایت.''(پینچ انگشت)''.
 اگر شما را ای عکس ته وضوح کامل هست ایء آپلود کنیت یا که نام فایل عوض کنیت لطفا",
-'fileexists-forbidden'        => 'فایل گو ای نام الان هستنت؛
-لطفا برگردیت و ای فایل گون یک نوکین نامی آپلود کنیت.[[File:$1|انگشتی|مرکز|$1]]',
+'fileexists-forbidden'        => 'فایل گو ای نام الان هستنت؛و نه توینت سری نویسگ بیتن.
+اگر که لوتیت ویت فایل ءَ آپلود کنیت ,لطفا برگردیت و ای فایل گون یک نوکین نامی آپلود کنیت.[[File:$1|انگشتی|مرکز|$1]]',
 'fileexists-shared-forbidden' => 'یک فایلی گون ای نام الان ته منبع مشترک فایل هستن.
 لطفا برگردیت و ای فایل گون نوکین نامی آپلود کنیت.[[File:$1|انگشتی|مرکز|$1]]',
 'file-exists-duplicate'       => 'ای فایل کپیء چه جهلیگین  {{PLURAL:$1|فایل|فایلان}}:',
@@ -1503,7 +1510,7 @@ PICT # misc.
 'filehist-dimensions'       => 'جنبه یان',
 'filehist-filesize'         => 'اندازه فایل',
 'filehist-comment'          => 'نظر',
-'imagelinks'                => 'لینکان',
+'imagelinks'                => 'لینک فایل',
 'linkstoimage'              => 'جهلیگین {{PLURAL:$1|صفحه |$1 صفحات لینک}} پی ای فایل',
 'linkstoimage-more'         => 'گیشتر چه  $1 {{PLURAL:$1|صفحه لینکان|صفحات لینک}} پی ای فایل.
 جهلگین لیست {{PLURAL:$1|اولین لینک صفحه|اولین $1 لینکان صفحه ی}} پی ای فایل فقط پیش داریت.
@@ -1535,7 +1542,7 @@ PICT # misc.
 # File deletion
 'filedelete'                  => 'حذف $1',
 'filedelete-legend'           => 'حذف فایل',
-'filedelete-intro'            => "شما حذف کنگت ''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "شما حذف کنگت ''[[Media:$1|$1]]''' گون تمام آی تاریح ءَ",
 'filedelete-intro-old'        => " شما په حذف کتن نسخه ای چه '''[[Media:$1|$1]]''' په داب چه [$4 $3, $2].",
 'filedelete-comment'          => 'دلیل په حذف:',
 'filedelete-submit'           => 'حذف',
@@ -1647,7 +1654,7 @@ PICT # misc.
 'mostcategories'          => 'صفحات گون گیشترین دسته جات',
 'mostimages'              => 'فایلان گیشنر لینک بوتیگن',
 'mostrevisions'           => 'صفحاتی گون گیشترین بازبینی',
-'prefixindex'             => 'اندیکس پیش وند',
+'prefixindex'             => 'کل صفحات گون پیش وند',
 'shortpages'              => 'هوردین صفحه',
 'longpages'               => 'صفحات مزنین',
 'deadendpages'            => 'مرتگین صفحات',
@@ -1730,7 +1737,7 @@ PICT # misc.
 'deletedcontributions-title' => 'مشارکتان کابر حذف بوتء',
 
 # Special:LinkSearch
-'linksearch'       => 'گردگ لینکان وب',
+'linksearch'       => 'دراین لینک ان',
 'linksearch-pat'   => 'گردگ الگو:',
 'linksearch-ns'    => 'نام فضا:',
 'linksearch-ok'    => 'گردگ',
@@ -1749,7 +1756,7 @@ PICT # misc.
 'newuserlogpagetext'          => '.شی یک ورودی چه شرکتن کاربر',
 'newuserlog-byemail'          => 'کلمه رمز گون ایمیل دیم دهگ بوت',
 'newuserlog-create-entry'     => 'نوکین کاربر',
-'newuserlog-create2-entry'    => 'حساب شربوت په $1',
+'newuserlog-create2-entry'    => 'نوکین حساب شربوت  $1',
 'newuserlog-autocreate-entry' => 'حساب اتوماتیکی شربوت',
 
 # Special:ListGroupRights
@@ -2296,7 +2303,7 @@ $1',
 'allmessagesdefault'        => 'پیش فرضین متن',
 'allmessagescurrent'        => 'هنوکین متن',
 'allmessagestext'           => 'شی یک لیستی چه کوله یان موجود ته نام فضای مدیا وی کی انت.
-لطفا بچاریت  [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] و [http://translatewiki.net Betawiki] اگر شما لوٹیت ته ملکی کتن مدیا وی کی کمک کنیت.',
+لطفا بچاریت  [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] و [http://translatewiki.net translatewiki.net] اگر شما لوٹیت ته ملکی کتن مدیا وی کی کمک کنیت.',
 'allmessagesnotsupportedDB' => "ای صفحه نه تونیت استفاده بیت په چی که'''\$wgUseDatabaseMessages''' غیر فعالنت.",
 'allmessagesfilter'         => 'فیلتر نام کوله:',
 'allmessagesmodified'       => 'فقط پیش دار تغییر دهگ بیتیگن',

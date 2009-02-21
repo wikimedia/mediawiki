@@ -1535,7 +1535,7 @@ Ciljna stran »[[:$1]]« že obstaja. Ali jo želite, da bi pripravili prostor z
 'allmessagesdefault'        => 'Prednastavljeno besedilo',
 'allmessagescurrent'        => 'Trenutno besedilo',
 'allmessagestext'           => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Ker je '''\$wgUseDatabaseMessages''' izključeno, '''{{ns:special}}:Allmessages''' ni podprto.",
 'allmessagesfilter'         => 'Filter pogostih izrazov:',
 'allmessagesmodified'       => 'Prikaži le spremenjeno',

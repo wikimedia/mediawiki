@@ -740,6 +740,7 @@ $2',
 'resetpass-wrong-oldpass'   => '仮パスワードまたは現在のパスワードが無効です。
 すでにパスワード変更を行っているか、新しい仮パスワードの発行を依頼していませんか。',
 'resetpass-temp-password'   => '仮パスワード:',
+'resetpass-no-others'       => '他の利用者のパスワードを再設定することはできません。',
 
 # Edit page toolbar
 'bold_sample'     => '強い強調（太字）',
@@ -1348,6 +1349,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'right-userrights'           => '全利用者権限の編集',
 'right-userrights-interwiki' => '他のウィキの利用者の利用者権限の編集',
 'right-siteadmin'            => 'データベースのロックおよびロック解除',
+'right-reset-passwords'      => '他の利用者のパスワードを再設定する',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',
@@ -2318,7 +2320,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'allmessagesname'           => 'メッセージ名',
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
-'allmessagestext'           => 'これは MediaWiki 名前空間で利用可能なシステムメッセージの一覧です。MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja Betawiki] を訪れてみてください。',
+'allmessagestext'           => 'これは MediaWiki 名前空間で利用可能なシステムメッセージの一覧です。MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja translatewiki.net] を訪れてみてください。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効なので、このページを使うことはできません。",
 'allmessagesfilter'         => 'メッセージ名で絞り込み:',
 'allmessagesmodified'       => '変更されたもののみを表示',

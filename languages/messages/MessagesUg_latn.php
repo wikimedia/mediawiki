@@ -31,7 +31,8 @@ $messages = array(
 'may'       => 'May',
 
 'qbedit'     => 'Uzgartish',
-'navigation' => 'كۆرۈش',
+'mypage'     => 'Mening beti',
+'navigation' => 'Körüsh',
 
 'search'           => 'Izdash',
 'searchbutton'     => 'Izdash',
@@ -56,43 +57,66 @@ $messages = array(
 'mainpage-description' => 'Bash Bet',
 'portal'               => 'Tor Jamiyeti',
 
-'editsection' => 'uzgartish',
-'editold'     => 'uzgartish',
+'ok'             => 'MAQUL',
+'editsection'    => 'uzgartish',
+'editold'        => 'uzgartish',
+'red-link-title' => '$1 (bet yoq)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user' => 'Ishletkuqi tor beti',
+'nstab-main'    => 'Bet',
+'nstab-user'    => 'Ishletkuqi tor beti',
+'nstab-special' => 'Alahide betleri',
+'nstab-help'    => 'Yardem beti',
 
 # Login and logout pages
-'yourname'          => 'Ishletkuqi ismi:',
-'yourpassword'      => 'Achkuch:',
-'yourpasswordagain' => 'Achkuchni khayta besing:',
-'logout'            => 'Chiqish',
-'username'          => 'Ishletkuqi ismi:',
+'yourname'           => 'Ishletkuqi ismi:',
+'yourpassword'       => 'Achkuch:',
+'yourpasswordagain'  => 'Achkuchni khayta besing:',
+'login'              => 'Kirish',
+'logout'             => 'Chiqish',
+'userlogout'         => 'Chikish',
+'gotaccountlink'     => 'Kirish',
+'youremail'          => 'Élxet:',
+'username'           => 'Ishletkuqi ismi:',
+'yourlanguage'       => 'Til:',
+'email'              => 'Élxet:',
+'loginlanguagelabel' => 'Til: $1',
 
 # Edit pages
-'summary'     => 'Hulasa:',
-'minoredit'   => 'Bu Kichik Uzgartish',
-'watchthis'   => 'Bu Batka Kharang',
-'showpreview' => 'Aldinala kurux',
-'showdiff'    => 'Uzgurushlerni kursutung',
+'summary'      => 'Hulasa:',
+'minoredit'    => 'Bu Kichik Uzgartish',
+'watchthis'    => 'Bu Batka Kharang',
+'savearticle'  => 'Betni saqlang',
+'showpreview'  => 'Aldinala kurux',
+'showdiff'     => 'Uzgurushlerni kursutung',
+'loginreqlink' => 'kirish',
+'newarticle'   => '(Yéngi)',
 
 # Search results
+'prevn'       => 'aldinqi $1',
+'nextn'       => 'kéyinki $1',
 'powersearch' => 'Izdash',
 
 # Preferences page
-'searchresultshead' => 'Izdash',
+'searchresultshead'     => 'Izdash',
+'timezoneregion-asia'   => 'Asiya',
+'timezoneregion-europe' => 'Yawropa',
 
 # Recent changes
 'recentchanges' => 'Yengi Uzgurush',
 
 # Recent changes linked
-'recentchangeslinked' => 'Yekhinkhi Uzgurushler',
+'recentchangeslinked'      => 'Yekhinkhi Uzgurushler',
+'recentchangeslinked-page' => 'Betning ismi:',
 
 # Upload
 'upload'          => 'Yengi Hujjat Kirguzush',
 'uploadbtn'       => 'Yengi Hujjat Kirguzush',
 'filedesc'        => 'Hulasa',
 'watchthisupload' => 'Bu Batka Kharang',
+
+# File description page
+'filehist-user' => 'Ishletkuchi',
 
 # File deletion
 'filedelete-submit' => 'Yukhutush',
@@ -104,6 +128,7 @@ $messages = array(
 'brokenredirects-delete' => '(yukhutush)',
 
 # Miscellaneous special pages
+'newpages'          => 'Yéngi betler',
 'newpages-username' => 'Ishletkuqi ismi:',
 'move'              => 'Yotkash',
 
@@ -111,6 +136,8 @@ $messages = array(
 'booksources-go' => 'Kuchush',
 
 # Special:AllPages
+'nextpage'       => 'Kéyinki bet ($1)',
+'prevpage'       => 'Aldinqi bet ($1)',
 'allpagessubmit' => 'Kuchush',
 
 # Watchlist
@@ -128,7 +155,8 @@ $messages = array(
 'sp-contributions-submit' => 'Izdash',
 
 # What links here
-'whatlinkshere' => 'Bashkha Tor Batleri',
+'whatlinkshere'      => 'Bashkha Tor Batleri',
+'whatlinkshere-page' => 'Bet:',
 
 # Block/unblock
 'ipblocklist-submit' => 'Izdash',
@@ -140,9 +168,10 @@ $messages = array(
 'allmessages' => 'System havarleri',
 
 # Tooltip help for the actions
-'tooltip-ca-move' => 'Bu batni yotkang',
-'tooltip-search'  => 'Izdash {{SITENAME}}',
-'tooltip-p-logo'  => 'Bash Bet',
+'tooltip-pt-logout' => 'Chikish',
+'tooltip-ca-move'   => 'Bu batni yotkang',
+'tooltip-search'    => 'Izdash {{SITENAME}}',
+'tooltip-p-logo'    => 'Bash Bet',
 
 # Special:NewFiles
 'ilsubmit' => 'Izdash',
@@ -150,10 +179,19 @@ $messages = array(
 # Trackbacks
 'trackbackremove' => '([$1 Yukhutush])',
 
+# action=purge
+'confirm_purge_button' => 'Maqul',
+
 # Multipage image navigation
-'imgmultigo' => 'Kuchush!',
+'imgmultipageprev' => '← aldinqi bet',
+'imgmultipagenext' => 'kéyinki bet →',
+'imgmultigo'       => 'Kuchush!',
 
 # Table pager
+'table_pager_next'         => 'Kéyinki bet',
+'table_pager_prev'         => 'Aldinqi bet',
+'table_pager_first'        => 'Birinchi bet',
+'table_pager_last'         => 'Eng axirqi bet',
 'table_pager_limit_submit' => 'Kuchush',
 
 # Special:SpecialPages

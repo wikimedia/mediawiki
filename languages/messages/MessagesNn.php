@@ -723,6 +723,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'resetpass-wrong-oldpass'   => 'Feil mellombels eller noverande passord.
 Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels passord.',
 'resetpass-temp-password'   => 'Mellombels passord:',
+'resetpass-no-others'       => 'Du kan ikkje nullstilla passordet for andre brukarar.',
 
 # Edit page toolbar
 'bold_sample'     => 'Halvfeit skrift',
@@ -1335,6 +1336,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'right-userrights'           => 'Endre alle brukarrettar',
 'right-userrights-interwiki' => 'Endre rettar for brukarar på andre wikiar',
 'right-siteadmin'            => 'Låse og låse opp databasen',
+'right-reset-passwords'      => 'Nullstilla passorda til andre brukarar',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -2305,7 +2307,8 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'allmessagesname'           => 'Namn',
 'allmessagesdefault'        => 'Standardtekst',
 'allmessagescurrent'        => 'Noverande tekst',
-'allmessagestext'           => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.',
+'allmessagestext'           => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.
+Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [http://translatewiki.net translatewiki.net] om du ynskjer å bidra til den generelle omsetjinga av MediaWiki.',
 'allmessagesnotsupportedDB' => "Denne sida er ikkje brukande fordi \"'''\$wgUseDatabaseMessages'''\" er slått av.",
 'allmessagesfilter'         => 'Meldingsfilter:',
 'allmessagesmodified'       => 'Vis berre endra',

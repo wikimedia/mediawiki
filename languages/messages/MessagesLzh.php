@@ -1955,7 +1955,7 @@ $1已被禁矣。爾是否改此置？',
 'allmessagesdefault'        => '慣文',
 'allmessagescurrent'        => '今文',
 'allmessagestext'           => '此列MediaWiki官話。
-如貢正宗MediaWiki本地化，[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]與[http://translatewiki.net Betawiki]閱之。',
+如貢正宗MediaWiki本地化，[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]與[http://translatewiki.net translatewiki.net]閱之。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''閉庫，'''無纂也。",
 'allmessagesfilter'         => '含辭：',
 'allmessagesmodified'       => '見易',

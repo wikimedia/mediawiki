@@ -765,6 +765,7 @@ Ignorez ce message si ce compte a été créé par erreur.",
 'resetpass-wrong-oldpass'   => 'Mot de passe actuel ou temporaire invalide.
 Vous avez peut-être déjà modifié votre mot de passe ou demandé un nouveau mot de passe temporaire.',
 'resetpass-temp-password'   => 'Mot de passe temporaire :',
+'resetpass-no-others'       => "Vous ne pouvez pas changer le mot de passe d'autres utilisateurs.",
 
 # Edit page toolbar
 'bold_sample'     => 'Texte gras',
@@ -1378,6 +1379,7 @@ Essayer en utilisant le préfixe ''all:'' pour rechercher tout le contenu (en y 
 'right-userrights'           => "Modifier tous les droits d'un utilisateur",
 'right-userrights-interwiki' => "Modifier les droits d'utilisateurs qui sont sur un autre wiki",
 'right-siteadmin'            => 'Vérouiller et déverouiller la base de données',
+'right-reset-passwords'      => "Changer le mot de passe d'autres utilisateurs",
 
 # User rights log
 'rightslog'      => 'Historique des modifications de statut',
@@ -2407,7 +2409,7 @@ Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Exp
 'allmessagesdefault'        => 'Texte par défaut',
 'allmessagescurrent'        => 'Texte actuel',
 'allmessagestext'           => 'Ceci est la liste des messages disponibles dans l’espace MediaWiki.
-Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [http://translatewiki.net/ Betawiki] si vous désirez contribuer à la localisation générique de MediaWiki.',
+Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [http://translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.',
 'allmessagesnotsupportedDB' => "Cette page '''{{ns:special}}:Allmessages''' n’est pas utilisable car '''\$wgUseDatabaseMessages''' a été désactivé.",
 'allmessagesfilter'         => 'Filtre de noms de message (expression rationnelle) :',
 'allmessagesmodified'       => 'N’afficher que les modifications',

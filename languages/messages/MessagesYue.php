@@ -2211,7 +2211,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'allmessagesdefault'        => '預設文字',
 'allmessagescurrent'        => '現時文字',
 'allmessagestext'           => '以下係 MediaWiki 空間名入邊現有系統信息嘅清單。
-如果想貢獻正宗嘅MediaWiki本地化嘅話，請參閱[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]同埋[http://translatewiki.net Betawiki]。',
+如果想貢獻正宗嘅MediaWiki本地化嘅話，請參閱[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]同埋[http://translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB' => "呢一版唔可以用，因為'''\$wgUseDatabaseMessages'''已經閂咗。",
 'allmessagesfilter'         => '信息名過濾（器）：',
 'allmessagesmodified'       => '只顯示修改過嘅',

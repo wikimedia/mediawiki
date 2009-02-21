@@ -596,6 +596,7 @@ Dir hutt ärt Passwuert scho geännert oder een  neit temporairt Passwuert ugefr
 'resetpass-wrong-oldpass'   => 'Net valabelt temporärt oder aktuellt Passwuert.
 Vläicht hutt Dir Ärt Passwuert scho geännert oder en neit temporärt Passwuert ugefrot.',
 'resetpass-temp-password'   => 'Temporärt Passwuert:',
+'resetpass-no-others'       => "dir kënnt d'Passwuert net fir aner Benotzer zrécksetzen.",
 
 # Edit page toolbar
 'bold_sample'     => 'Fettgedréckten Text',
@@ -1209,6 +1210,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'right-userrights'           => 'All Benotzerrechter änneren',
 'right-userrights-interwiki' => 'Benotzerrechter vu Benotzer op anere Wiki-Siten änneren',
 'right-siteadmin'            => "Datebank spären an d'Spär ophiewen",
+'right-reset-passwords'      => 'Anere Benotzer hir Passwierder zrécksetzen',
 
 # User rights log
 'rightslog'      => 'Logbuch vun de Benotzerrechter',
@@ -1444,6 +1446,7 @@ Eng [[Special:WhatLinksHere/$2|komplett Lëscht]] ass disponibel.',
 'noimage'                   => 'Ee Fichier mat dësem Numm gëtt et net, Dir kënnt awer $1.',
 'noimage-linktext'          => 'eent eroplueden',
 'uploadnewversion-linktext' => 'Eng nei Versioun vun dësem Fichier eroplueden',
+'shared-repo-from'          => 'vu(n) $1', # $1 is the repository name
 
 # File reversion
 'filerevert'                => '"$1" zrécksetzen',
@@ -2150,6 +2153,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-redirect-suppressed'     => 'Viruleedung ewechgehol',
 'movelogpage'                  => 'Réckellëscht',
 'movelogpagetext'              => 'Dëst ass eng Lëscht vun alle geréckelte Säiten.',
+'movesubpage'                  => 'Ënnersäiten',
+'movenosubpage'                => 'Dës Säit huet keng Ënnersäiten.',
 'movereason'                   => 'Grond:',
 'revertmove'                   => 'zréck réckelen',
 'delete_and_move'              => 'Läschen a réckelen',
@@ -2192,7 +2197,7 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Aktuellen Text',
 'allmessagestext'           => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.
-Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] a [http://translatewiki.net Betawiki] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
+Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] a [http://translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
 'allmessagesnotsupportedDB' => "Dës Säit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
 'allmessagesfilter'         => 'Noriichtennummfilter:',
 'allmessagesmodified'       => 'Nëmme geännerter weisen',

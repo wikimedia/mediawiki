@@ -589,7 +589,8 @@ Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus
 'protectedpagetext'    => 'Halaman ini telah dikunci untuk menghindari penyuntingan.',
 'viewsourcetext'       => 'Anda dapat melihat atau menyalin sumber halaman ini:',
 'protectedinterface'   => 'Halaman ini berisi teks antarmuka untuk digunakan oleh perangkat lunak dan telah dikunci untuk menghindari kesalahan.',
-'editinginterface'     => "'''Peringatan:''' Anda menyunting halaman yang digunakan untuk menyediakan teks antarmuka dengan perangkat lunak. Perubahan teks ini akan mempengaruhi tampilan pada pengguna lain.",
+'editinginterface'     => "'''Peringatan:''' Anda menyunting suatu halaman yang digunakan untuk menyediakan teks antarmuka untuk perangkat lunak. Perubahan teks ini akan mempengaruhi tampilan pada antarmuka pengguna untuk pengguna lain.
+Untuk terjemahan, harap pertimbangkan untuk menggunakan [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyek pelokalan MediaWiki.",
 'sqlhidden'            => '(Permintaan SQL disembunyikan)',
 'cascadeprotected'     => 'Halaman ini telah dilindungi dari penyuntingan karena disertakan di {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi "runtun":
 $2',
@@ -647,6 +648,7 @@ Silakan pilih nama yang lain.',
 'gender-unknown'             => 'Tak dinyatakan',
 'gender-male'                => 'Laki-laki',
 'gender-female'              => 'Perempuan',
+'prefs-help-gender'          => 'Opsional: digunakan untuk perbaikan penyebutan gender oleh perangkat lunak. Informasi ini akan terbuka untuk umum.',
 'email'                      => 'Surat elektronik',
 'prefs-help-realname'        => '* Nama asli bersifat opsional dan jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan atas hasil kerja Anda.',
 'loginerror'                 => 'Kesalahan masuk log',
@@ -714,6 +716,7 @@ Anda dapat mengabaikan pesan nini jika akun ini dibuat karena suatu kesalahan.',
 'resetpass-wrong-oldpass'   => 'Kata sandi tidak sah.
 Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sandi sementara yang baru.',
 'resetpass-temp-password'   => 'Kata sandi sementara:',
+'resetpass-no-others'       => 'Anda tak dapat mereset kata sandi untuk pengguna lain.',
 
 # Edit page toolbar
 'bold_sample'     => 'Teks ini akan dicetak tebal',
@@ -853,7 +856,7 @@ Pengurus yang mengunci basis data memberikan penjelasan berikut: $1",
 'protectedpagewarning'             => "'''PERINGATAN: Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya.'''",
 'semiprotectedpagewarning'         => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.",
 'cascadeprotectedwarning'          => "'''PERINGATAN:''' Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya karena disertakan dalam {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi 'perlindungan runtun':",
-'titleprotectedwarning'            => "'''PERINGATAN: Halaman ini telah dikunci sehingga hanya beberapa pengguna yang dapat membuatnya.'''",
+'titleprotectedwarning'            => "'''PERINGATAN: Halaman ini telah dikunci hingga diperlukan [[Special:ListGroupRights|hak khusus]] untuk membuatnya.'''",
 'templatesused'                    => 'Templat yang digunakan di halaman ini:',
 'templatesusedpreview'             => 'Templat yang digunakan di pratayang ini:',
 'templatesusedsection'             => 'Templat yang digunakan di bagian ini:',
@@ -1090,7 +1093,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'searchresults'                    => 'Hasil pencarian',
 'searchresults-title'              => 'Hasil pencarian untuk "$1"',
 'searchresulttext'                 => 'Untuk informasi lebih lanjut tentang pencarian di {{SITENAME}}, lihat [[{{MediaWiki:Helppage}}|halaman bantuan]].',
-'searchsubtitle'                   => "Anda mencari '''[[:$1]]'''",
+'searchsubtitle'                   => 'Anda mencari \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|semua halaman yang dimulai dengan "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|semua halaman yang terpaut ke "$1"]])',
 'searchsubtitleinvalid'            => "Anda mencari '''$1'''",
 'noexactmatch'                     => "'''Tidak ada halaman yang berjudul \"\$1\".''' Anda dapat [[:\$1|membuat halaman ini]].",
 'noexactmatch-nocreate'            => "'''Tidak ada halaman berjudul \"\$1\".'''",
@@ -1213,6 +1216,15 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'servertime'                => 'Waktu server:',
 'guesstimezone'             => 'Isikan dari penjelajah web',
 'timezoneregion-africa'     => 'Afrika',
+'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antarktika',
+'timezoneregion-arctic'     => 'Arktik',
+'timezoneregion-asia'       => 'Asia',
+'timezoneregion-atlantic'   => 'Samudera Atlantik',
+'timezoneregion-australia'  => 'Australia',
+'timezoneregion-europe'     => 'Eropa',
+'timezoneregion-indian'     => 'Samudera Hindia',
+'timezoneregion-pacific'    => 'Samudera Pasifik',
 'allowemail'                => 'Ijinkan pengguna lain mengirim surat-e',
 'prefs-searchoptions'       => 'Opsi pencarian',
 'prefs-namespaces'          => 'Ruang nama',
@@ -1321,6 +1333,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'right-userrights'           => 'Menyunting seluruh hak pengguna',
 'right-userrights-interwiki' => 'Menyunting hak para pengguna di wiki lain',
 'right-siteadmin'            => 'Mengunci dan membuka kunci basis data',
+'right-reset-passwords'      => 'Mereset kata sandi pengguna lain',
 
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',
@@ -1545,14 +1558,16 @@ Juga tersedia [[Special:WhatLinksHere/$2|daftar selengkapnya]].',
 'nolinkstoimage'            => 'Tidak ada halaman yang memiliki pranala ke berkas ini.',
 'morelinkstoimage'          => 'Lihat [[Special:WhatLinksHere/$1|pranala lainnya]] ke berkas ini.',
 'redirectstofile'           => 'Berkas berikut {{PLURAL:$1|dialihkan|$1 dialihkan}} ke berkas ini:',
-'duplicatesoffile'          => 'Berkas berikut {{PLURAL:$1|merupakan duplikat|$1 merupakan duplikat}} dari berkas ini:',
-'sharedupload'              => 'Berkas ini adalah pemuatan bersama yang mungkin juga dipakai oleh proyek lain.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'duplicatesoffile'          => 'Sejumlah {{PLURAL:$1|satu berkas|$1 berkas}} berikut merupakan duplikat dari berkas ini ([[Special:FileDuplicateSearch/$2|detil lebih lanjut]]):',
+'sharedupload'              => 'Berkas ini berasal dari $1 dan mungkin digunakan oleh proyek-proyek lain. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Lihat $1 untuk informasi lebih lanjut.',
-'shareduploadwiki-desc'     => 'Deskripsi pada $1 ditampilkan di bawah.',
+'shareduploadwiki-desc'     => 'Deskripsi pada $1 ditampilkan di bawah ini.',
 'shareduploadwiki-linktext' => 'halaman deskripsi berkas',
 'noimage'                   => 'Tidak ada berkas dengan nama tersebut, tetapi Anda dapat $1.',
 'noimage-linktext'          => 'memuat berkas',
 'uploadnewversion-linktext' => 'Muatkan versi yang lebih baru dari berkas ini',
+'shared-repo-from'          => 'dari $1', # $1 is the repository name
+'shared-repo'               => 'suatu repositori bersama', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Kembalikan $1',
@@ -2244,6 +2259,9 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'move-redirect-suppressed'     => 'pengalihan ditahan',
 'movelogpage'                  => 'Log pemindahan',
 'movelogpagetext'              => 'Di bawah ini adalah log pemindahan halaman.',
+'movesubpage'                  => 'Subhalaman',
+'movesubpagetext'              => 'Halaman ini memiliki $1 {{PLURAL:$1|subhalaman|subhalaman}} seperti ditampilkan berikut.',
+'movenosubpage'                => 'Halaman ini tak memiliki subhalaman.',
 'movereason'                   => 'Alasan:',
 'revertmove'                   => 'kembalikan',
 'delete_and_move'              => 'Hapus dan pindahkan',
@@ -2287,7 +2305,8 @@ Jika Anda hanya ingin mengimpor versi terbaru, Anda melakukannya lebih cepat den
 'allmessagesname'           => 'Nama',
 'allmessagesdefault'        => 'Teks baku',
 'allmessagescurrent'        => 'Teks sekarang',
-'allmessagestext'           => 'Ini adalah daftar semua pesan sistem yang tersedia dalam ruang nama MediaWiki:',
+'allmessagestext'           => 'Ini adalah daftar semua pesan sistem yang tersedia dalam ruang nama MediaWiki.
+Silakan kunjungi [http://www.mediawiki.org/wiki/Localisation Pelokalan MediaWiki] dan [http://translatewiki.net translatewiki.net] jika Anda ingin berkontribusi untuk pelokalan generik MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' tidak didukung karena '''\$wgUseDatabaseMessages''' dimatikan.",
 'allmessagesfilter'         => 'Filter nama pesan:',
 'allmessagesmodified'       => 'Hanya tampilkan yang diubah',
@@ -2853,7 +2872,7 @@ Kode konfirmasi ini akan kadaluwarsa pada $4.',
 'scarytranscludetoolong'  => '[URL terlalu panjang]',
 
 # Trackbacks
-'trackbackbox'      => 'Pelacakan balik untuk artikel ini:<br />
+'trackbackbox'      => 'Lacak balik untuk halaman ini:<br />
 $1',
 'trackbackremove'   => '([$1 Hapus])',
 'trackbacklink'     => 'Lacak balik',
