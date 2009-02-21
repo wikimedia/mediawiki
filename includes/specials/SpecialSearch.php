@@ -634,6 +634,7 @@ class SpecialSearch {
 			"&nbsp;" .
 			$searchField .
 			"&nbsp;" .
+			Xml::hidden( 'fulltext', 'Advanced search' ) . "\n" .
 			$searchButton .
 			"</div>".
 			"</form>";
@@ -765,6 +766,7 @@ class SpecialSearch {
 		$out .= Xml::hidden( "redirs", (int)$this->searchRedirects );
 		// Term box
 		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . "\n";
+		$out .= Xml::hidden( 'fulltext', 'Search' );
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
 		$out .= ' (' . wfMsgExt('searchmenu-help',array('parseinline') ) . ')';
 		$out .= Xml::closeElement( 'form' );
@@ -1430,10 +1432,11 @@ class SpecialSearchOld {
 		$searchField = Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'powerSearchText' ) );
 		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'fulltext' ) ) . "\n";
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
+		$searchHiddens = Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
+		$searchHiddens .= Xml::hidden( 'fulltext', 'Advanced search' ) . "\n";
 		
 		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
-			Xml::fieldset( wfMsg( 'powersearch-legend' ),
-				Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n" .
+			Xml::fieldset( wfMsg( 'powersearch-legend' ),				
 				"<p>" .
 				wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) .
 				"</p>\n" .
@@ -1446,6 +1449,7 @@ class SpecialSearchOld {
 				"&nbsp;" .
 				$searchField .
 				"&nbsp;" .
+				$searchHiddens . 
 				$searchButton ) .
 			"</form>";
 
@@ -1470,13 +1474,14 @@ class SpecialSearchOld {
 			'action' => $wgScript
 		));
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
-		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() );
 		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . ' ';
 		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
 			if( in_array( $ns, $this->namespaces ) ) {
 				$out .= Xml::hidden( "ns{$ns}", '1' );
 			}
 		}
+		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() );
+		$out .= Xml::hidden( 'fulltext', 'Search' );
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
 		$out .= Xml::closeElement( 'form' );
 
