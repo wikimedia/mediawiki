@@ -124,7 +124,9 @@ $messages = array(
 'cancel'         => 'Batilisha',
 'qbfind'         => 'Gundua',
 'qbedit'         => 'Hariri',
+'qbpageoptions'  => 'Ukarasa huu',
 'qbspecialpages' => 'Kurasa za pekee',
+'mypage'         => 'Ukurasa wangu',
 'mytalk'         => 'Majadiliano yangu',
 'navigation'     => 'Safari',
 
@@ -138,26 +140,32 @@ $messages = array(
 'searcharticle'     => 'Nenda',
 'history'           => 'Historia ya ukurasa',
 'history_short'     => 'Historia',
-'printableversion'  => 'Ukarasa kwa kuchapa',
+'printableversion'  => 'Ukurasa wa kuchapika',
 'permalink'         => 'Kiungo cha daima',
 'edit'              => 'Hariri',
 'editthispage'      => 'Hariri ukurasa huu',
 'delete'            => 'Futa',
 'deletethispage'    => 'Futa ukurasa huo',
 'protect'           => 'Linda',
+'protect_change'    => 'badilisha',
 'protectthispage'   => 'Linda ukurasa huu',
 'unprotect'         => 'Usilinde',
-'unprotectthispage' => 'Usilinde ukurasa huu',
+'unprotectthispage' => 'Ondoa tunzo la ukarasa',
 'newpage'           => 'Ukurasa mpya',
 'talkpage'          => 'Jadilia ukarasa huu',
 'talkpagelinktext'  => 'Majadiliano',
 'specialpage'       => 'Ukarasa maalumu',
 'personaltools'     => 'Vifaa binafsi',
-'postcomment'       => 'Weka maelezo',
+'postcomment'       => 'Fungu jipya',
 'talk'              => 'Majadiliano',
 'views'             => 'Mitazamo',
 'toolbox'           => 'Vifaa',
 'userpage'          => 'Ukurasa wa mtumiaji',
+'imagepage'         => 'Tazama ukurasa wa faili',
+'mediawikipage'     => 'Tazama ukurasa wa ujumbe',
+'viewhelppage'      => 'Tazama ukurasa wa msaada',
+'categorypage'      => 'Tazama ukurasa wa jamii',
+'viewtalkpage'      => 'Tazama majadiliano',
 'otherlanguages'    => 'Lugha nyingine',
 'redirectedfrom'    => '(Elekezwa kutoka $1)',
 'redirectpagesub'   => 'Elekeza ukurasa',
@@ -193,6 +201,7 @@ $messages = array(
 'badaccess'        => 'Kuna hitilafu ya ruhusa',
 'badaccess-groups' => 'Ombi uliloomba limefikia ukingoni mwa watumiaji wa {{PLURAL:$2|the group|one of the groups}}: $1.',
 
+'ok'                  => 'Sawa',
 'retrievedfrom'       => 'Rudishwa kutoka "$1"',
 'youhavenewmessages'  => 'Una $1 ($2).',
 'newmessageslink'     => 'ujumbe mpya',
@@ -211,6 +220,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Makala',
 'nstab-user'     => 'Ukurasa wa mtumiaji',
+'nstab-special'  => 'Ukurasa maalum',
 'nstab-project'  => 'Ukurasa wa mradi',
 'nstab-image'    => 'Faili',
 'nstab-template' => 'Kigezo',
@@ -228,7 +238,7 @@ $messages = array(
 'protectedinterface' => 'Ukurasa huu unatoa maelezo ya msingi ya bidhaa pepe, na pia umefungwa ili kuzuiya uharibifu.',
 'editinginterface'   => "'''Ilani:''' Una hariri ukurasa unaotumika kutoa maelezo ya msingi ya bidhaa pepe.
 Mabadiliko katika ukurasa huu yataathiri mwonekano mzima wa viungo vya watumiaji wengine.
-Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], kwa kuweka miradi ya MediaWiki kwa kienyeji.",
+Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], kwa kuweka miradi ya MediaWiki kwa kienyeji.",
 'sqlhidden'          => '(maulizo ya SQL yamefichwa)',
 
 # Login and logout pages
@@ -324,8 +334,8 @@ Unaweza kupuuza ujumbe huu, endapo akaunti hii ilianzishwa kimakosa.',
 'math_tip'        => 'Formula ya kihesabu (LaTeX)',
 'nowiki_sample'   => 'Weka matini bila fomati hapa',
 'nowiki_tip'      => 'Puuza fomati ya Wiki',
-'image_tip'       => 'Picha iliyotiwa',
-'media_tip'       => 'Kiungo cha faili ya picha, video, au sauti',
+'image_tip'       => 'Faili lililotiwa',
+'media_tip'       => 'Kiungo cha faili la picha, video, au sauti',
 'sig_tip'         => 'Sahihi yako na saa ya kusahihisha',
 'hr_tip'          => 'Mstari wa mlalo (usitumie ovyo)',
 
@@ -401,6 +411,9 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 kwenye $2', # user at time
+
+# Revision deletion
+'rev-delundel' => 'onyesha/ficha',
 
 # Diffs
 'history-title'           => 'Historia ya masahihisho ya "$1"',
@@ -486,13 +499,18 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'filehist-dimensions'       => 'Vipimo',
 'filehist-filesize'         => 'Ukubwa wa faili',
 'filehist-comment'          => 'Maoni',
-'imagelinks'                => 'Viungo',
+'imagelinks'                => 'Viungo vya mafaili',
 'linkstoimage'              => 'Kurasa hizi zimeunganishwa na faili hili:',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
 'sharedupload'              => 'Faili hii inaweza kushirikiwa na miradi mingine.',
 'noimage'                   => 'Hakuna faili yenye jina hili, $1 kama unayo.',
 'noimage-linktext'          => 'pakia faili',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
+
+# File deletion
+'filedelete-intro-old'   => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
+'filedelete-success-old' => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
+'filedelete-nofile-old'  => "There is no archived version of '''$1''' with the specified attributes.",
 
 # MIME search
 'mimesearch' => 'Utafutaji wa MIME',
@@ -666,8 +684,8 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'sp-contributions-submit'      => 'Tafuta',
 
 # What links here
-'whatlinkshere'       => 'Viungo viungacho ukurasa huu',
-'whatlinkshere-title' => 'Kurasa zilizounganishwa na $1',
+'whatlinkshere'       => 'Viungo viungavyo ukurasa huu',
+'whatlinkshere-title' => 'Kurasa zilizounganishwa na "$1"',
 'linklistsub'         => '(Orodha ya viungo)',
 'linkshere'           => "Kurasa zifuatazo zimeunganishwa na '''[[:$1]]''':",
 'nolinkshere'         => "Hakuna kurasa zilizounganishwa na '''[[:$1]]'''.",
@@ -675,7 +693,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'istemplate'          => 'jumuisho',
 'whatlinkshere-prev'  => '{{PLURAL:$1|uliotangulia|$1 zilizotangulia}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|ujao|$1 zijazo}}',
-'whatlinkshere-links' => '? viungo',
+'whatlinkshere-links' => '← viungo',
 
 # Block/unblock
 'blockip'       => 'Zuia mtumiaji',
@@ -744,16 +762,16 @@ Chagua jina lengine.',
 'importlogpage' => 'Kumbukumbu ya kuingizwa',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Ukurasa wangu',
-'tooltip-pt-mytalk'               => 'Majadiliano yangu',
+'tooltip-pt-userpage'             => 'Ukurasa wako',
+'tooltip-pt-mytalk'               => 'Majadiliano yako',
 'tooltip-pt-preferences'          => 'Mapendekezo yangu',
 'tooltip-pt-watchlist'            => 'Orodha ya kurasa unazofuatilia kwa mabadiliko',
-'tooltip-pt-mycontris'            => 'Orodha ya michango yangu',
+'tooltip-pt-mycontris'            => 'Orodha ya michango yako',
 'tooltip-pt-login'                => 'Tunakushajisha kuingia, lakini siyo lazima.',
 'tooltip-pt-logout'               => 'Toka',
 'tooltip-ca-talk'                 => 'Mazungumzo kuhusu makala',
 'tooltip-ca-edit'                 => 'Unaweza kuhariri ukurasa huu.  Tafadhali tumia kitufe cha kuhakikisha kabla ya kuhifadhi.',
-'tooltip-ca-addsection'           => 'Weka maoni yako kwenye majadiliano haya.',
+'tooltip-ca-addsection'           => 'Anzisha fungu jipya.',
 'tooltip-ca-viewsource'           => 'Ukurasa huu umelindwa.  Unaweza kutazama chanzo chake.',
 'tooltip-ca-protect'              => 'Linda ukurasa huu',
 'tooltip-ca-delete'               => 'Futa ukurasa huu',
@@ -795,6 +813,9 @@ Chagua jina lengine.',
 'category-media-count'   => 'Kuna {{PLURAL:$1|faili moja|faili $1}} katika jamii hii.',
 'listingcontinuesabbrev' => 'endelea',
 
+# Image deletion
+'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
+
 # Browsing diffs
 'previousdiff' => '← Badilisho lililopita',
 'nextdiff'     => 'Badilisho lijalo →',
@@ -812,12 +833,14 @@ Chagua jina lengine.',
 # Bad image list
 'bad_image_list' => 'Fomati ni hii:
 
-Tunazingatia madondoo katika orodha (mistari inayoanza na *) tu.  Inabidi kiungo cha kwanza katika mstari kiunge na picha mbaya.
-Viungo vinavyofuata katika mstari ule ule vitaelewa kuwa mambo ya pekee, yaani kurasa zinazoruhusiwa kuonyesha picha hiyo.',
+Tunazingatia madondoo katika orodha (mistari inayoanza na *) tu.  
+Inabidi kiungo cha kwanza katika mstari kiunge na faili baya.
+Viungo vinavyofuata katika mstari ule ule vitaelewa kuwa mambo ya pekee, yaani kurasa zinazoruhusiwa kuonyesha faili hilo.',
 
 # Metadata
 'metadata'          => 'Data juu',
-'metadata-help'     => 'Faili hiil lina maarifa mengine, yamkini kutoka kemra au skana iliyotumiwa kulitengeneza au kuliandaa kwa tarakilishi.  Kama faili imebadilishwa kutoka hali yake ya awali, inawezekana kwamba vipengele kadhaa vitakuwa tofauti kuliko hali ya picha sasa.',
+'metadata-help'     => 'Faili hili lina maarifa mengine, yamkini kutoka kemra au skana iliyotumiwa kulitengeneza au kuliandaa kwa tarakilishi.  
+Kama faili limebadilishwa kutoka hali yake ya awali, inawezekana kwamba vipengele kadhaa vitakuwa tofauti kuliko hali ya picha ilivyo sasa.',
 'metadata-expand'   => 'Onyesha maarifa vinaganaga',
 'metadata-collapse' => 'Ficha maarifa vinaganaga',
 'metadata-fields'   => 'Nyuga za data juu za EXIF zinazoorodheshwa katika ujumbe huu

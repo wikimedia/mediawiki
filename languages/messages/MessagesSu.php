@@ -197,14 +197,14 @@ $messages = array(
 'talkpagelinktext'  => 'Obrolan',
 'specialpage'       => 'Kaca Husus',
 'personaltools'     => 'Parabot pribadi',
-'postcomment'       => 'Kirim koméntar',
+'postcomment'       => 'Bagéan anyar',
 'articlepage'       => 'Témbongkeun kaca eusi',
 'talk'              => 'Sawala',
 'views'             => 'Témbongan',
 'toolbox'           => 'Kotak parabot',
 'userpage'          => 'Témbongkeun kaca pamaké',
 'projectpage'       => 'Témbongkeun kaca proyék',
-'imagepage'         => 'Témbongkeun kaca gambar',
+'imagepage'         => 'Tempo kaca gambar',
 'mediawikipage'     => 'Témbongkeun kaca talatah',
 'templatepage'      => 'Témbongkeun kaca citakan',
 'viewhelppage'      => 'Témbongkeun kaca pitulung',
@@ -277,7 +277,7 @@ $messages = array(
 'site-atom-feed'          => 'Eupan Atom $1',
 'page-rss-feed'           => 'Eupan RSS "$1"',
 'page-atom-feed'          => 'Eupan Atom "$1"',
-'red-link-title'          => '$1 (can aya)',
+'red-link-title'          => '$1 (kaca can aya)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
@@ -409,7 +409,9 @@ Mangga pilih ngaran nu séjén.',
 'noname'                     => 'Anjeun teu nuliskeun ngaran pamaké nu sah.',
 'loginsuccesstitle'          => 'Asup log geus hasil',
 'loginsuccess'               => 'Anjeun ayeuna geus asup log ka {{SITENAME}} salaku "$1".',
-'nosuchuser'                 => 'Euweuh pamaké nu ngaranna "$1". Pariksa éjahanana, atawa paké formulir di handap pikeun [[Special:UserLogin/signup|nyieun rekening anyar]].',
+'nosuchuser'                 => 'Euweuh pamaké nu ngaranna "$1".
+Ngaran pamaké ngabedakeun hurup kapital.
+Pariksa éjahanana, atawa paké formulir di handap pikeun [[Special:UserLogin/signup|nyieun rekening anyar]].',
 'nosuchusershort'            => 'Taya pamaké nu ngaranna "<nowiki>$1</nowiki>", pariksa éjahanana!',
 'nouserspecified'            => 'Anjeun kudu ngeusian ngaran landihan.',
 'wrongpassword'              => 'Sandi nu diasupkeun teu cocog. Mangga cobian deui.',
@@ -470,7 +472,7 @@ Mun ieu rekening balukar ayana éror, teu kudu diwaro.',
 'nowiki_tip'      => 'Format wiki tong diwaro',
 'image_sample'    => 'Conto.jpg',
 'image_tip'       => 'Ngasupkeun gambar',
-'media_sample'    => 'Conto.mp3',
+'media_sample'    => 'Conto.ogg',
 'media_tip'       => 'Tumbu koropak média',
 'sig_tip'         => 'Tawis leungeun anjeun tur cap wanci',
 'hr_tip'          => 'Garis horizontal (use sparingly)',
@@ -545,7 +547,10 @@ Pikeun nyieun kaca, mimitian ku ngetik jeroeun kotak di handap
 (tempo [[{{MediaWiki:Helppage}}|kaca pitulung]] pikeun leuwih écés).
 Mun anjeun ka dieu teu ngahaja, klik baé tombol '''back''' na panyungsi anjeun.",
 'anontalkpagetext'          => "----''Ieu mangrupa kaca sawala pikeun pamaké anonim nu can (henteu) nyieun rekening, kusabab kitu alamat IP dipaké dina hal ieu pikeun nyirikeun anjeunna. Alamat IP ieu bisa dipaké ku sababaraha urang. Mun anjeun salasahiji pamaké anonim sarta ngarasa aya koméntar nu teu pakait geus ditujukeun ka anjeun, leuwih hadé [[Special:UserLogin|nyieun rekening atawa asup log]] sangkan teu pahili jeung pamaké anonim séjén.''",
-'noarticletext'             => 'Kiwari can aya téks na kaca ieu. Mun anjeun geus kungsi nyieun kaca ieu, coba fungsi [[Special:Search/{{PAGENAME}}|sungsi keur judul]] di kaca sejen atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} édit kaca ieu].',
+'noarticletext'             => 'Kiwari can aya téks dina ieu kaca.
+Anjeun bisa [[Special:Search/{{PAGENAME}}|nyusud judul ieu kaca]] dina kaca séjén,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} nyusud log nu tumali],
+atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} ngédit ieu kaca]</span>.',
 'userpage-userdoesnotexist' => 'Rekening pamaké "$1" tacan kadaptar. Mangga tilikan lamun anjeun hoyong ngadamel/ngédit kaca ieu.',
 'clearyourcache'            => "'''Catetan:''' Sanggeus nyimpen, anjeun perlu ngosongkeun sindangan panyungsi anjeun pikeun nempo parobahanana:
 '''Mozilla/Safari/Konqueror:''' pencét & tahan ''Shift'' bari ngaklik ''Reload'' (atawa pencét ''Ctrl-Shift-R''), '''IE:''' pencét ''Ctrl-F5'', '''Opera:''' pencét ''F5''.",
@@ -742,7 +747,8 @@ Kuncén séjén bakalan bisa ngakses eusi nunyumput sarta bisa ngabolaykeun hapu
 'viewprevnext'          => 'Témbongkeun ($1) ($2) ($3).',
 'showingresults'        => "Di handap ieu némbongkeun {{PLURAL:$1|'''1''' hasil|'''$1''' hasil}}, dimimitianku  #'''$2'''.",
 'showingresultsnum'     => "Di handap ieu némbongkeun {{PLURAL:$3|'''1''' hasil|'''$3''' hasil}}, dimimitian #'''$2'''.",
-'nonefound'             => '<strong>Catetan</strong>: panéangan nu teu hasil mindeng disababkeun ku néang kecap umum kawas "ti" nu teu diasupkeun kana indéks, atawa alatan nangtukeun leuwih ti hiji istilah panéang (ngan kaca-kaca nu ngandung sakabéh istilah panéang nu bakal némbongan).',
+'nonefound'             => "'''Catetan''': Ti buhunna (default), panyusud téh ukur ngawengku sababaraha ngaran rohang.
+Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup kaca obrolan, citakan, jsb.) atawa pilih rohang ngaran dina awalanana luyu jeung nu dimaksud.",
 'powersearch'           => 'Sungsi',
 'powersearchtext'       => 'Sungsi na ngaranspasi:<br />
 $1<br />
@@ -988,7 +994,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'filehist-dimensions'       => 'Ukuran',
 'filehist-filesize'         => 'Ukuran koropak',
 'filehist-comment'          => 'Kamandang',
-'imagelinks'                => 'Tumbu gambar',
+'imagelinks'                => 'Tumbu koropak',
 'linkstoimage'              => 'Kaca nu numbu ka gambar ieu:',
 'nolinkstoimage'            => 'Teu aya kaca nu numbu ka gambar ieu.',
 'sharedupload'              => 'Ieu koropak téh muatan réréongan nu bisa jadi dipaké ku proyék-proyék lianna.',
@@ -1653,13 +1659,13 @@ Sadaya aktivitas impor transwiki baris kacatet dina [[Special:Log/import|log imp
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|vérsi heubel}} ti $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Kaca pamaké kuring',
+'tooltip-pt-userpage'             => 'Kaca pamaké Anjeun',
 'tooltip-pt-anonuserpage'         => 'Kaca pamaké pikeun IP nu ku anjeun keur diédit',
-'tooltip-pt-mytalk'               => 'Kaca obrolan kuring',
+'tooltip-pt-mytalk'               => 'Kaca obrolan Anjeun',
 'tooltip-pt-anontalk'             => 'Sawala ngeunaan éditan ti alamat IP ieu',
 'tooltip-pt-preferences'          => 'Préferénsi kuring',
 'tooltip-pt-watchlist'            => 'Daptar kaca nu diawaskeun ku anjeun parobahanana.',
-'tooltip-pt-mycontris'            => 'Daptar tulisan kuring',
+'tooltip-pt-mycontris'            => 'Daptar tulisan Anjeun',
 'tooltip-pt-login'                => 'Anjeun leuwih hadé asup log, sanajan teu wajib.',
 'tooltip-pt-anonlogin'            => 'Anjeun leuwih hadé asup log, sanajan teu wajib.',
 'tooltip-pt-logout'               => 'Kaluar log',

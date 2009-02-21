@@ -39,8 +39,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => '通知郵件可話到人聽偶嗰email地址',
 'tog-shownumberswatching'     => '顯示有幾多人監視',
 'tog-fancysig'                => '原始簽名（冇有自動連接）',
-'tog-externaleditor'          => '默認用外部編輯器（專家用嗰功能，要在您嗰電腦上特別設置一下）',
-'tog-externaldiff'            => '默認用外部差異比較器（專家用嗰功能，要在您嗰電腦上特別設置一下）',
+'tog-externaleditor'          => '默認用外部編輯器（專家用嗰功能，要到倷嗰電腦上頭特別嗰設置一下）',
+'tog-externaldiff'            => '默認用外部差異比較器（專家用嗰功能，要到倷嗰電腦上頭特別嗰設置一下）',
 'tog-showjumplinks'           => '啟用“跳到”訪問連結',
 'tog-uselivepreview'          => '使用即時預覽(JavaScript)（實驗中）',
 'tog-forceeditsummary'        => '冇改動注解時要同偶話',
@@ -49,7 +49,7 @@ $messages = array(
 'tog-watchlisthideminor'      => '監視列表弆到細修改',
 'tog-nolangconversion'        => '嫑字轉換',
 'tog-ccmeonemails'            => '偶發email到人家時也發封副本到偶',
-'tog-diffonly'                => '比較兩隻版本差異時伓顯示文章內容',
+'tog-diffonly'                => '比較兩隻版本差異嗰時間伓顯示文章嗰內容',
 
 'underline-always'  => '總歸要用',
 'underline-never'   => '絕伓使用',
@@ -112,9 +112,9 @@ $messages = array(
 # Bits of text used by many pages
 'categories'            => '頁面分類',
 'pagecategories'        => '$1隻分類',
-'category_header'       => '“$1”分類中嗰文章',
+'category_header'       => '“$1”分類裡頭嗰文章',
 'subcategories'         => '亞分類',
-'category-media-header' => '“$1”分類中嗰媒體',
+'category-media-header' => '“$1”分類裡頭嗰媒體',
 'category-empty'        => '“箇隻分類有包到任何文章或媒體”',
 
 'mainpagetext'      => "<big>'''安裝正MediaWiki嘍!'''</big>",
@@ -359,7 +359,7 @@ $2',
 'logout'                     => '退出',
 'userlogout'                 => '退出',
 'notloggedin'                => '冇登入',
-'nologin'                    => '倷還冇得帳戶么？ $1。',
+'nologin'                    => '倷冇得帳戶啊？ $1。',
 'nologinlink'                => '開隻新帳戶',
 'createaccount'              => '開隻新帳戶',
 'gotaccount'                 => '有嘍帳戶？ $1.',
@@ -406,13 +406,13 @@ $2',
 'emailnotauthenticated'      => '倷嗰email<strong>哈冇拕認證</strong>。底下嗰功能都伓會發任何郵件。',
 'noemailprefs'               => '話正隻email來用箇隻功能',
 'emailconfirmlink'           => '確認倷嗰email',
-'invalidemailaddress'        => '電子郵件地址嗰格式伓對，請輸隻對嗰電子郵件地址或著清吥箇隻輸入框。',
+'invalidemailaddress'        => '電子郵件地址嗰格式伓對，請輸隻對嗰電子郵件地址或者清吥箇隻輸入框。',
 'accountcreated'             => '帳戶扤正嘍',
 'accountcreatedtext'         => '扤正嘍$1嗰帳戶。',
 'createaccount-title'        => '到{{SITENAME}}創建嗰帳戶',
-'createaccount-text'         => '有人在{{SITENAME}}中用倷嗰電子郵件地址開設了一隻名字係 "$2" 嗰新帳戶($4)，密碼是 "$3" 。您應該馬上登錄並修改密碼。
+'createaccount-text'         => '有人到{{SITENAME}}用倷嗰電子郵件地址開設嘍隻名字係 "$2" 嗰新帳戶($4)，密碼係 "$3" 。請倷仰上登錄同到修改密碼。
 
-要是帳戶創建不對嗰話，倷可以不搭私箇隻消息。',
+要係帳戶創建不對嗰話，倷就莫搭箇隻消息。',
 'loginlanguagelabel'         => '語言: $1',
 
 # Password reset dialog
@@ -523,10 +523,10 @@ $2',
 '''要係佢係合法編輯嗰，請試過吖。哈係扤伓正嗰話，試吖退出後登入過。'''",
 'token_suffix_mismatch'     => "'''倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
 箇種情況通常係含到好多臭蟲、以網絡為主嗰匿名代理服務扤得。'''",
-'editing'                   => '眼下在編輯$1',
+'editing'                   => '倷編輯嘚嗰係$1',
 'editinguser'               => "眼下在編輯用戶嗰權限 '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'editingsection'            => '眼下在編輯$1 (段落)',
-'editingcomment'            => '眼下在編輯$1 (評論)',
+'editingsection'            => '倷編輯嘚嗰係$1 (段落)',
+'editingcomment'            => '倷編輯嘚嗰係$1 (新段落)',
 'editconflict'              => '編輯仗: $1',
 'explainconflict'           => "倷起手編輯之後有人動過箇頁。
 上首嗰方框顯示嗰係眼下本頁嗰內容。
@@ -957,7 +957,7 @@ $2',
 # File reversion
 'filerevert'                => '恢復$1',
 'filerevert-legend'         => '恢復檔案',
-'filerevert-intro'          => "眼下倷在恢復'''[[Media:$1|$1]]'''到[$4 於$2 $3嗰版本]。",
+'filerevert-intro'          => "眼下倷恢復嘚'''[[Media:$1|$1]]'''到[$4 於$2 $3嗰版本]。",
 'filerevert-comment'        => '說明:',
 'filerevert-defaultcomment' => '恢復到嘞$1, $2嗰版本',
 'filerevert-submit'         => '恢復',
@@ -1116,7 +1116,7 @@ $2',
 'log-search-legend'    => '尋日誌',
 'log-search-submit'    => '去',
 'alllogstext'          => '攏共顯到全部嗰日誌。倷能選隻日誌類型、用戶名或關聯頁面縮小顯示嗰範圍。',
-'logempty'             => '日誌中冇符合嗰項目。',
+'logempty'             => '日誌裡頭冇符合嗰項目。',
 'log-title-wildcard'   => '尋吖箇隻字開頭嗰標題',
 
 # Special:Allpages
@@ -1181,7 +1181,7 @@ $2',
 'wlheader-enotif'      => '* 啟動嘞email通知功能。',
 'wlheader-showupdated' => "* 上回倷眵嗰頁面改動嗰部分用'''粗體'''顯到",
 'watchmethod-recent'   => '眵吖拕眏到嗰頁面嗰最近編輯',
-'watchmethod-list'     => '望吖監視頁中嗰最晏改動',
+'watchmethod-list'     => '望吖監視頁裡頭最晏嗰改動',
 'watchlistcontains'    => '倷嗰監視列表包含$1隻頁面。',
 'iteminvalidname'      => "頁面'$1'出錯，無效命名...",
 'wlnote'               => "下底係最近'''$2'''鐘頭內嗰最晏'''$1'''道修改:",
@@ -1501,7 +1501,7 @@ $NEWPAGE
 'move-watch'              => '眏到箇頁',
 'movepagebtn'             => '換卟箇頁',
 'pagemovedsub'            => '移正嘞',
-'movepage-moved'          => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''「$1」拕移到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '已經有頁面叫箇隻名字，要伓倷揀嗰名字冇用。請揀過隻名字。',
 'cantmove-titleprotected' => '倷移伓正一隻頁面到箇隻位置，箇隻新題目已經拕保護起來嘞，新建伓正。',
 'talkexists'              => '頁面本身移動正嘞，但係新標題下底有嘞對話頁，所以對話頁移伓正。請手工合併兩頁。',
@@ -1528,7 +1528,7 @@ $NEWPAGE
 'export'            => '導出頁面',
 'exporttext'        => '通過XML格式倷能搦特定嗰頁面或一組頁面嗰文本同到佢編輯嗰歷史一齊導出；噉通過"[[Special:Import|導入頁面]]"就導入得到別嗰MediaWiki網站。要導出頁面嗰話，請到下底嗰文字框寫正標題，一行一隻標題，再話正倷係否要導出含歷史嗰舊版本，或單就選導出最晏一回編輯嗰相關內容。
 
-再就係通過連結倷哈導出得正檔案，比如倷用得正[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]導出"[[{{MediaWiki:Mainpage}}]]"頁面',
+再就係通過連結倷哈導出得正檔案，比如倷用得正[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]導出"[[{{MediaWiki:Mainpage}}]]"頁面',
 'exportcuronly'     => '獨今吖嗰改動，伓係全部嗰歷史。',
 'exportnohistory'   => "----
 '''注意:''' 由於性能嗰原因，箇隻表格導出嗰頁面嗰全部歷史都拕禁用。",
@@ -1544,7 +1544,7 @@ $NEWPAGE
 'allmessagesdefault'        => '默認文字',
 'allmessagescurrent'        => '眼前嗰文字',
 'allmessagestext'           => '箇首列到全部制定得正嗰系統界面。
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:系統界面功能'''關卟嘞('''\$wgUseDatabaseMessages''')。",
 'allmessagesfilter'         => '按消息名篩:',
 'allmessagesmodified'       => '單顯到改正嗰',
@@ -1584,7 +1584,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'import-parse-failure'       => 'XML 導進分析失敗',
 'import-noarticle'           => '冇頁面導入！',
 'import-nonewrevisions'      => '早先嗰改動全部扤進去嘍。',
-'xml-error-string'           => '$1 在 $2 行，$3 列 （$4字節）：$5',
+'xml-error-string'           => '$1 位到 $2 行，$3 列 （$4字節）：$5',
 
 # Import log
 'importlogpage'                    => '導入日誌',
@@ -2117,13 +2117,13 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => '移卟頁面嗰全部內容',
-'autosumm-replace' => "正拿頁面換成 '$1'",
-'autoredircomment' => '正重定向到[[$1]]',
+'autosumm-replace' => "搦頁面換到 '$1'",
+'autoredircomment' => '重定向到[[$1]]',
 'autosumm-new'     => '新頁: $1',
 
 # Live preview
-'livepreview-loading' => '正在載入…',
-'livepreview-ready'   => '正在載入… 完成哩!',
+'livepreview-loading' => '載入中…',
+'livepreview-ready'   => '載入中… 舞正哩!',
 'livepreview-failed'  => '即時預覽失敗! 試吖標準預覽。',
 'livepreview-error'   => '連接失敗: $1 "$2" 試吖標準預覽。',
 

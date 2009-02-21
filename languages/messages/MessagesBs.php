@@ -428,7 +428,7 @@ Pretraga: $2',
 'protectedinterface'   => 'Ova stranica je zaštićena jer sadrži tekst MediaWiki programa.',
 'editinginterface'     => "'''Upozorenje:''' Mijenjate stranicu koja sadrži aktivan tekst programa.
 Promjene na ovoj stranici dovode i do promjena za druge korisnike.
-Za prijevode, molimo Vas koristite [http://translatewiki.net/wiki/Main_Page?setlang=bs Betawiki], projekt prijevoda za MediaWiki.",
+Za prijevode, molimo Vas koristite [http://translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt prijevoda za MediaWiki.",
 'sqlhidden'            => '(SQL pretraga sakrivena)',
 'cascadeprotected'     => 'Uređivanje ove stranice je zabranjeno jer sadrži {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja iz razloga:
 $2',
@@ -1183,8 +1183,8 @@ Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
 'nolinkstoimage'            => 'Nema stranica koje koriste ovu sliku.',
 'sharedupload'              => 'Ova datoteka se nalazi na [[Commons:Početna strana|Wikimedia Commons]] i može se koristiti i na drugim projektima.',
 'shareduploadwiki'          => 'Molimo pogledajte $1 za više informacija.',
-'shareduploadwiki-desc'     => 'Opis njene $1 na zajedničkom repozitoriju je prikazan ispod.',
-'shareduploadwiki-linktext' => 'stranice opisa datoteke',
+'shareduploadwiki-desc'     => 'Opis na njenoj $1 je prikazan ispod.',
+'shareduploadwiki-linktext' => 'stranici opisa datoteke',
 'noimage'                   => 'Slika sa ovim imenom ne postoji, ali je možete $1.',
 'noimage-linktext'          => 'postaviti',
 'uploadnewversion-linktext' => 'Postavite noviju verziju ove datoteke',
@@ -1841,7 +1841,7 @@ Da li je želite obrisati kako bi ste mogli izvršiti premještanje?',
 
 Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutačnu verziju zajedno sa svim prijašnjima, ili samo trenutnu verziju sa informacijom o zadnjoj promjeni.
 
-U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za članak [[{{MediaWiki:Mainpage}}]].',
+U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za članak [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Uključite samo trenutnu reviziju, ne cijelu istoriju',
 'exportnohistory'   => "----
 '''Pažnja:''' Izvoz cjelokupne historije stranica preko ovog obrasca je onemogućeno iz tehničkih razloga.",

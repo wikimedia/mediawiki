@@ -1314,7 +1314,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'sharedupload'              => 'De Datei es esu parat jelaht, dat se en diverse, ungerscheidlije Projekte jebruch wääde kann.',
 'shareduploadwiki'          => 'Mieh Informatione fings De op dä $1.',
 'shareduploadwiki-desc'     => 'Hee noh kütt dä Enhalt fun dä $1 uß dämm jemeinsame Beshtand.',
-'shareduploadwiki-linktext' => 'Sigg övver de Datei',
+'shareduploadwiki-linktext' => 'Sigg övver die Datei',
 'noimage'                   => 'Mer han kein Datei met däm Name, kanns De ävver $1.',
 'noimage-linktext'          => 'huhlade!',
 'uploadnewversion-linktext' => 'Dun en neu Version vun dä Datei huhlade',
@@ -1357,7 +1357,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 ** Dubbelt',
 
 # MIME search
-'mimesearch'         => 'Belder, Tön, uew. üvver ehr MIME-Typ söke',
+'mimesearch'         => 'Dateie üvver dänne ehre <span lang="en">MIME</span>-Typ söke',
 'mimesearch-summary' => 'Op hee dä Sondersigg könne de Dateie noh em MIME-Tüpp ußjesöök wäde.
 Mer moß immer der Medietüp un der Ongertüp aanjevve.
 Zem Beispell: <tt>image/jpeg</tt>
@@ -1435,7 +1435,7 @@ vun dä Sigg dovör.',
 'withoutinterwiki-summary' => 'He sin Sigge jeliß, di nit op annder Shprooche jelingk sin.',
 'withoutinterwiki-submit'  => 'Zeije',
 
-'fewestrevisions'         => 'Arikele met de winnischste Versione',
+'fewestrevisions'         => 'Atikele met de winnischste Versione',
 'fewestrevisions-summary' => 'Hee sin Atikele opjelis, die et winnigs beärbeit wode sin.',
 
 # Miscellaneous special pages
@@ -1453,12 +1453,12 @@ vun dä Sigg dovör.',
 'uncategorizedpages-summary'      => 'Hee sin Sigge jeliss, di en kein Saachjrup dren sin.',
 'uncategorizedcategories'         => 'Saachjruppe, die selvs en kein Saachjruppe sin',
 'uncategorizedcategories-summary' => 'Hee sin Saachjruppe jezeig, di sellver in kein Saachjrup dren sin.',
-'uncategorizedimages'             => 'Belder, Tön, uew., die en kein Saachjruppe dren sin',
+'uncategorizedimages'             => 'Dateie, die en kein Saachjruppe dren sin',
 'uncategorizedimages-summary'     => 'Die Sondersigg hee zeich Dateie, die in kein Saachjruppe enzoteet sin.',
 'uncategorizedtemplates'          => 'Schablone, die en kein Saachjruppe sen',
 'uncategorizedtemplates-summary'  => 'Hee sin Schablone jezeig, die en kein Saachrup dren sin.',
 'unusedcategories'                => 'Saachjruppe met nix dren',
-'unusedimages'                    => 'Belder, Tön, uew., die nit en Sigge dren stäche',
+'unusedimages'                    => 'Dateie, die nit en Sigge dren stäche',
 'popularpages'                    => 'Sigge, die off avjerofe wääde',
 'popularpages-summary'            => 'Hee sin di Sigge opjeliss, di et miehts avjeroofe wäde.',
 'wantedcategories'                => 'Saachjruppe, die mer noch nit han, die noch jebruch wääde',
@@ -1473,7 +1473,7 @@ vun dä Sigg dovör.',
 'mostlinkedtemplates-summary'     => 'Hee kumme de am miißte jebruchte Schabloone.',
 'mostcategories'                  => 'Atikkele met de miehste Saachjruppe',
 'mostcategories-summary'          => 'He kumme Sigge, di en besönders ville Saachjruppe dren sin.',
-'mostimages'                      => 'Belder, Tön, uew. met de miehste Links drop',
+'mostimages'                      => 'Dateie met de miehste Links drop',
 'mostimages-summary'              => 'Die Sondersigg hee zeich Dateie, un zwa de am miehtß jebruchte et eets.',
 'mostrevisions'                   => 'Atikkele met de miehste Änderunge',
 'mostrevisions-summary'           => 'Hee kumme de am miihtßte beärrbëijte un jeännderte Sigge.',
@@ -2040,7 +2040,7 @@ Dat ka'mer en en ander Wiki — wann et och met dä MediaWiki-Soffwär läuf —
 Schriev de Titele vun dä Sigge en dat Feld för Tex enzejevve, unge, eine Titel en jede Reih.
 Dann dun onoch ussöke, ov De all de vörherije Versione vun dä Sigge han wells, oder nor de aktuelle met dä Informatione vun de letzte Änderung.
 
-En däm Fall künns De, för en einzelne Sigg, och ene tirekte Link bruche, zom Beispill „[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]“ för de Sigg „[[{{MediaWiki:Mainpage}}]]“ ze exporteere.",
+En däm Fall künns De, för en einzelne Sigg, och ene tirekte Link bruche, zom Beispill „[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]“ för de Sigg „[[{{MediaWiki:Mainpage}}]]“ ze exporteere.",
 'exportcuronly'     => 'Bloß de aktuelle Version usjevve (un <strong>nit</strong> de janze ahle Versione onoch met dobei dun)',
 'exportnohistory'   => '----
 <strong>Opjepass:</strong> de janze Versione Exporteere es hee em Wiki avjeschalt. Schad, ävver et wör en 
@@ -2057,7 +2057,7 @@ zo jroße Lass för dä Sörver.',
 'allmessagesdefault'        => 'Dä standaadmäßije Tex',
 'allmessagescurrent'        => 'Esu es dä Tex jetz',
 'allmessagestext'           => 'Hee kütt en Liss met Texte, Texstöck, un Nachrichte em Appachtemeng „MediaWiki“ — Do draan Ändere löht et Wiki anders ußsin, dat darf dröm nit jede maache.
-Wenn De jenerell aan [http://www.mediawiki.org/wiki/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [http://translatewiki.net Betawiki].',
+Wenn De jenerell aan [http://www.mediawiki.org/wiki/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [http://translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB' => '<strong>Dat wor nix!</strong> Mer künne „{{ns:special}}:Allmessages“ nit zeije, <code>$wgUseDatabaseMessages</code> es usjeschalt!',
 'allmessagesfilter'         => 'Fingk dat Stöck hee em Name:',
 'allmessagesmodified'       => 'Dun nor de Veränderte aanzeije',
@@ -2272,7 +2272,7 @@ $1',
 'show-big-image-thumb' => '<small>Di Vör-Aansich es $1 × $2 Pixelle jroß</small>',
 
 # Special:Newimages
-'newimages'    => 'Belder, Tön, uew. als Jalerie',
+'newimages'    => 'Neu Dateie als Jaleri',
 'showhidebots' => '(Bots $1)',
 'noimages'     => 'Kein Dateie jefunge.',
 
@@ -2682,7 +2682,7 @@ $1',
 'autosumm-blank'   => 'Dä janze Enhald vun dä Sigg fottjemaht',
 'autosumm-replace' => "Dä jannze Enhallt fon dä Sigk ußjetuusch: '$1'",
 'autoredircomment' => 'Leit öm op „[[$1]]“',
-'autosumm-new'     => 'De Sigg wood neu aanlelaat met dä Aanfang: $1',
+'autosumm-new'     => 'De Sigg wood neu aanlelaat met däm Aanfang: $1',
 
 # Size units
 'size-bytes'     => '$1 Bytes',

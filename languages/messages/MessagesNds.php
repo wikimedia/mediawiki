@@ -432,7 +432,9 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 
 # Main script and global functions
 'nosuchaction'      => 'Disse Aktschoon gifft dat nich',
-'nosuchactiontext'  => 'Disse Aktschoon warrt vun de MediaWiki-Software nich ünnerstütt',
+'nosuchactiontext'  => 'De in de URL angeven Akschoon warrt nich ünnerstütt.
+Villicht hest du in de URL en Tippfehler oder büst en verkehrten Lenk nagahn.
+Dat kann aver ok op en Bug in de Software henwiesen, de op {{SITENAME}} bruukt warrt.',
 'nosuchspecialpage' => 'Disse Spezialsiet gifft dat nich',
 'nospecialpagetext' => 'Disse Spezialsiet warrt vun de MediaWiki-Software nich ünnerstütt',
 
@@ -491,7 +493,7 @@ Query: $2',
 'protectedinterface'   => 'Op disse Siet staht Narichtentexte för dat System un de Siet is dorüm sparrt.',
 'editinginterface'     => "'''Wohrschau:''' Disse Siet bargt Text, de vun de MediaWiki-Software för ehr Böverflach bruukt warrt.
 Wat du hier ännerst, warkt sik op dat kumplette Wiki ut.
-Wenn du Text översetten wist, de betherto noch gornich översett is, denn maak dat opbest op [http://translatewiki.net/wiki/Main_Page?setlang=nds Betawiki], dat Översett-Projekt vun MediaWiki.",
+Wenn du Text översetten wist, de betherto noch gornich översett is, denn maak dat opbest op [http://translatewiki.net/wiki/Main_Page?setlang=nds translatewiki.net], dat Översett-Projekt vun MediaWiki.",
 'sqlhidden'            => '(SQL-Affraag versteken)',
 'cascadeprotected'     => 'Disse Siet is sperrt un kann nich ännert warrn. Dat kummt dorvun dat se in disse {{PLURAL:$1|Siet|Sieden}} inbunnen is, de över Kaskadensperr schuult {{PLURAL:$1|is|sünd}}:
 $2',
@@ -614,7 +616,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'nowiki_tip'      => 'Unformateerten Text',
 'image_sample'    => 'Bispeel.jpg',
 'image_tip'       => 'Bild-Verwies',
-'media_sample'    => 'Bispeel.mp3',
+'media_sample'    => 'Bispeel.ogg',
 'media_tip'       => 'Mediendatei-Verwies',
 'sig_tip'         => 'Diene Signatur mit Tietstempel',
 'hr_tip'          => 'Waagrechte Lien (sporsam bruken)',
@@ -1171,7 +1173,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'nolinkstoimage'            => 'Kene Siet bruukt dat Bild.',
 'sharedupload'              => 'Disse Datei is as gemeensam bruukte Datei hoochlaadt un warrt mööglicherwies ok vun annere Wikis bruukt.',
 'shareduploadwiki'          => 'Kiek bi $1 för mehr Informatschoon.',
-'shareduploadwiki-desc'     => 'Wat nu kummt is de Text vun de $1 op den gemeensamen Datei-Spiekerplatz.',
+'shareduploadwiki-desc'     => 'Wat nu kummt is de Text vun de $1 dor.',
 'shareduploadwiki-linktext' => 'Siet mit de Datei-Beschrievung',
 'noimage'                   => 'Ene Datei mit dissen Naam gifft dat nich, du kannst ehr $1.',
 'noimage-linktext'          => 'hoochladen',
@@ -1808,7 +1810,7 @@ De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet scha
 'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Text nu',
-'allmessagestext'           => 'Dit is de List vun all de Systemnarichten, de dat in den MediaWiki-Naamruum gifft.',
+'allmessagestext'           => 'Dit is de List vun de Systemnarichten, de dat in den MediaWiki-Naamruum gifft.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages is nich ünnerstütt, vun wegen dat wgUseDatabaseMessages utstellt is.',
 'allmessagesfilter'         => 'Narichtennaamfilter:',
 'allmessagesmodified'       => 'Blot ännerte wiesen',

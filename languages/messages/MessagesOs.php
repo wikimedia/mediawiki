@@ -551,6 +551,7 @@ $3',
 'restriction-edit' => 'Ивын',
 
 # Namespace form on various pages
+'namespace'      => 'Нæмтты тыгъдад:',
 'blanknamespace' => '(Сæйраг)',
 
 # Contributions
@@ -575,6 +576,7 @@ $3',
 'ipb-blocklist'      => 'Актуалон хъоды равдис',
 'ipblocklist-legend' => 'Хъодыгонд архайæджы ацагур',
 'ipblocklist-empty'  => 'Хъодыгæндты номхыгъд афтид у.',
+'blocklink'          => 'бахъоды кæн',
 'contribslink'       => 'бавæрд',
 'blocklogpage'       => 'Хъодыты лог',
 
@@ -610,6 +612,7 @@ $3',
 'tooltip-t-whatlinkshere'  => 'Ацы фарсмæ чи ’рвитынц, ахæм фæрсты номхыгъд',
 'tooltip-t-upload'         => 'Нывтæ кæнæ мультимедиа-файлтæ бавæр',
 'tooltip-t-specialpages'   => 'Сæрмагонд фæрсты номхыгъд',
+'tooltip-t-permalink'      => 'Фарсы ацы версимæ æрвитæн (фæрстæ ивынц, ацы верси — никуы)',
 'tooltip-ca-nstab-user'    => 'Архайæджы фарс фен',
 'tooltip-ca-nstab-project' => 'Проекты фарс',
 'tooltip-ca-nstab-image'   => 'Нывы фарс',

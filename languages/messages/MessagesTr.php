@@ -14,6 +14,7 @@
  * @author Mach
  * @author Mskyrider
  * @author Myildirim2007
+ * @author Nyasar
  * @author Runningfridgesrule
  * @author Srhat
  * @author Suelnur
@@ -244,8 +245,8 @@ $messages = array(
 'copyright'         => 'İçerik $1 altındadır.',
 'copyrightpagename' => '{{SITENAME}} telif hakları',
 'copyrightpage'     => '{{ns:project}}:Telif hakları',
-'currentevents'     => 'Güncel olaylar',
-'currentevents-url' => 'Project:Güncel olaylar',
+'currentevents'     => 'Köy çeşmesi',
+'currentevents-url' => 'Project:Köy çeşmesi',
 'disclaimers'       => 'Sorumluluk reddi',
 'disclaimerpage'    => 'Project:Genel_sorumluluk_reddi',
 'edithelp'          => 'Nasıl değiştirilir?',
@@ -313,7 +314,7 @@ $messages = array(
 URL'yi yanlış yazmış olabilir, ya da doğru olmayan bir bağlantıyı takip etmiş olabilirsiniz.
 Bu, {{SITENAME}} sitesindeki bir hatayı da belirtebilir.",
 'nosuchspecialpage' => 'Bu isimde bir özel sayfa yok',
-'nospecialpagetext' => 'Bulunmayan bir özel sayfaya girdiniz. Varolan tüm özel sayfaları [[Special:SpecialPages]] sayfasında görebilirsiniz.',
+'nospecialpagetext' => 'Bulunmayan bir özel sayfaya girdiniz. Varolan tüm özel sayfaları [[Special:SpecialPages|özel sayfalar]] sayfasında görebilirsiniz.',
 
 # General errors
 'error'                => 'Hata',
@@ -375,7 +376,7 @@ Lütfen birkaç dakika sonra yeniden deneyin.',
 'protectedpagetext'    => 'Bu sayfa değişiklik yapılmaması için koruma altına alınmıştır.',
 'viewsourcetext'       => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
 'protectedinterface'   => 'Bu sayfa yazılım için arayüz metni sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
-'editinginterface'     => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [http://translatewiki.net/wiki/Main_Page?setlang=tr Betawiki]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
+'editinginterface'     => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [http://translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
 'sqlhidden'            => '(SQL gizli sorgu)',
 'cascadeprotected'     => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü  "kademeli" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:$1|sayfada|sayfada}} kullanılmaktadır:
 $2',
@@ -517,7 +518,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'minoredit'                 => 'Küçük değişiklik',
 'watchthis'                 => 'Sayfayı izle',
 'savearticle'               => 'Sayfayı kaydet',
-'preview'                   => 'Önizleme',
+'preview'                   => 'Ön izleme',
 'showpreview'               => 'Önizlemeyi göster',
 'showlivepreview'           => 'Canlı önizleme',
 'showdiff'                  => 'Değişiklikleri göster',
@@ -1076,7 +1077,7 @@ Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 'nolinkstoimage'            => 'Bu görüntü dosyasına bağlanan sayfa yok.',
 'sharedupload'              => 'Bu dosya ortak alana yüklenmiştir ve diğer projelerde de kullanılıyor olabilir.',
 'shareduploadwiki'          => 'Lütfen daha fazla bilgi için $1 sayfasına bakın.',
-'shareduploadwiki-desc'     => 'Paylaşılan havuzdaki açıklaması $1 aşağıda gösterilmektedir.',
+'shareduploadwiki-desc'     => '$1ndaki açıklaması aşağıda gösterilmektedir.',
 'shareduploadwiki-linktext' => 'dosya açıklama sayfası',
 'noimage'                   => 'Bu isimde dosya yok. Siz $1.',
 'noimage-linktext'          => 'yükleyebilirsiniz',
@@ -1118,7 +1119,7 @@ Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 # MIME search
 'mimesearch'         => 'MIME araması',
 'mimesearch-summary' => 'Bu sayfa dosyaların MIME-tiplerine göre süzülmesine olanak sağlar.
-Girdi: contenttype/subtype, ör: <tt>image/jpeg</tt>.',
+Girdi: contenttype/subtype, ör: <tt>resim/jpeg</tt>.',
 'mimetype'           => 'MIME tipi:',
 'download'           => 'yükle',
 
@@ -1155,7 +1156,7 @@ Site kurulduğundan bu güne kadar toplam '''\$4''' sayfa değişikliği ve sayf
 Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görüntüleme sayısı '''\$6''' olmuştur.
 
 Şu andaki [http://www.mediawiki.org/wiki/Manual:Job_queue iş kuyruğu] sayısı '''\$7'''.",
-'userstatstext'          => "'''$1''' kayıtlı [[Special:ListUsers|kullanıcı]] var. Bunlardan '''$2''' tanesi (ya da '''$4%''') $5 haklarına sahiptir.",
+'userstatstext'          => "'''$1''' kayıtlı [[Special:Listusers|kullanıcı]] var. Bunlardan '''$2''' tanesi ('''%$4''' kadarı) $5 haklarına sahiptir.",
 'statistics-mostpopular' => 'En popüler maddeler',
 
 'disambiguations'      => 'Anlam ayrım sayfaları',
@@ -1297,7 +1298,7 @@ Günlük tipini, kullanıcı adını (büyük-küçük harf duyarlı), ya da etk
 'emailmessage'    => 'E-posta:',
 'emailsend'       => 'Gönder',
 'emailccme'       => 'Mesajın bir kopyasını da bana gönder.',
-'emailccsubject'  => "Mesajınızın bir kopyasını $1'e gönderin: $2",
+'emailccsubject'  => "$1'e gönderdiğiniz mesajın kopyası: $2",
 'emailsent'       => 'E-posta gönderildi',
 'emailsenttext'   => 'E-postanız gönderildi.',
 
@@ -1704,7 +1705,7 @@ Bu, MedyaViki kullanan başka bir vikide [[Special:Import|içe aktarım sayfası
 
 Sayfaları dışa aktarmak için, başlıkları aşağıdaki metin kutusuna girin, her satıra bir tane, ve eski sürümlerle beraber şimdiki sürümü, sayfa geçmişi satırlarını, ya da son değişiklik bilgisiyle beraber güncel sürümü isteyip istemediğinizi belirtin.
 
-Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]" sayfası için [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]].',
+Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]" sayfası için [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Geçmiş sürümleri almadan sadece son sürümü al',
 'exportnohistory'   => "----
 '''Not:''' Sayfaların tüm geçmişini bu formla dışa aktarmak, performans nedenlerinden ötürü devre dışı bırakılmıştır.",
