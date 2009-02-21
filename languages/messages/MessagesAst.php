@@ -389,7 +389,7 @@ Consulta: $2',
 'protectedpagetext'    => 'Esta páxina foi candada pa evitar la so edición.',
 'viewsourcetext'       => "Pues ver y copiar el códigu fonte d'esta páxina:",
 'protectedinterface'   => "Esta páxina proporciona testu d'interfaz a l'aplicación y ta candada pa evitar el so abusu.",
-'editinginterface'     => "'''Avisu:''' Tas editando una páxina usada pa proporcionar testu d'interfaz a l'aplicación. Los cambeos nesta páxina va afeuta-yos l'apariencia de la interfaz a otros usuarios.",
+'editinginterface'     => "'''Avisu:''' Tas editando una páxina usada pa proporcionar testu d'interfaz a l'aplicación. Los cambeos nesta páxina va afeuta-yos l'apariencia de la interfaz a otros usuarios. Si quies facer traducciones, por favor participa en [http://translatewiki.net/wiki/Main_Page?setlang=ast translatewiki.net], el proyeutu de traducción de MediaWiki.",
 'sqlhidden'            => '(consulta SQL escondida)',
 'cascadeprotected'     => 'Esta páxina ta protexida d\'ediciones porque ta enxerta {{PLURAL:$1|na siguiente páxina|nes siguientes páxines}}, que {{PLURAL:$1|ta protexida|tán protexíes}} cola opción "en cascada":
 $2',
@@ -656,7 +656,7 @@ el testu nun archivu de testu y grabalu pa intentalo lluéu. </strong>',
 'protectedpagewarning'             => "'''AVISU: Esta páxina ta candada pa que sólo los alministradores puean editala.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta páxina foi candada pa que nun puean editala namái que los usuarios rexistraos.",
 'cascadeprotectedwarning'          => "'''Avisu:''' Esta páxina ta candada pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
-'titleprotectedwarning'            => "'''AVISU: Esta páxina foi candada pa que namái dalgunos usuarios puean creala.'''",
+'titleprotectedwarning'            => "'''AVISU: Esta páxina torgose pa que namái [[Special:ListGroupRights|dalgunos usuarios especiales]] puean creala.'''",
 'templatesused'                    => 'Plantíes usaes nesta páxina:',
 'templatesusedpreview'             => 'Plantíes usaes nesta previsualización:',
 'templatesusedsection'             => 'Plantíes usaes nesta seición:',
@@ -1103,6 +1103,7 @@ Mira la [[Special:NewImages|galería d'archivos nuevos]] pa una güeyada más vi
 'illegalfilename'             => 'El nome d\'archivu "$1" contién carauteres non permitíos en títulos de páxina. Por favor renoma l\'archivu y xúbilu otra vuelta.',
 'badfilename'                 => 'Nome de la imaxe camudáu a "$1".',
 'filetype-badmime'            => 'Los archivos de la triba MIME "$1" nun tienen permitida la xubida.',
+'filetype-bad-ie-mime'        => 'Nun puede xubise esti ficheru porque Internet Explorer deteutalu como "$1", nun ta permitíu y paez que pueda ser un ficheru peligrosu.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' ye una mena d'archivu non recomendáu.
 {{PLURAL:\$3|La mena d'archivu preferida ye|Les menes d'archivu preferíes son}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' nun ye una mena d'archivu permitida.
@@ -1660,6 +1661,7 @@ Consulta'l [[Special:Log/delete|rexistru d'esborraos]] pa ver los esborraos y re
 'undelete-error-long'          => "Atopáronse errores al restaurar l'archivu:
 
 $1",
+'undelete-show-file-confirm'   => '¿Tas seguru de que quies ver una versión desaniciada del ficheru "<nowiki>$1</nowiki>" del $2 a les $3?',
 'undelete-show-file-submit'    => 'Sí',
 
 # Namespace form on various pages
@@ -1881,7 +1883,7 @@ Pa esportar páxines, pon los títulos na caxa de testu d'embaxo, un títulu per
 y seleiciona si quies la versión actual xunto con toles versiones antigües, xunto col
 so historial, o namái la versión actual cola información de la postrer edición.
 
-Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pa la páxina \"[[{{MediaWiki:Mainpage}}]]\".",
+Por último, tamién pues usar un enllaz: p.e. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pa la páxina \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => 'Amestar namái la revisión actual, non tol historial',
 'exportnohistory'   => "----
 '''Nota:''' Desactivóse la esportación del historial completu de páxines al traviés d'esti formulariu por motivos de rendimientu.",
@@ -1897,7 +1899,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'allmessagesdefault'        => 'Testu por defeutu',
 'allmessagescurrent'        => 'Testu actual',
 'allmessagestext'           => 'Esta ye una llista de los mensaxes de sistema disponibles nel espaciu de nomes de MediaWiki.
-Por favor visita [http://www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [http://translatewiki.net Betawiki] si quies contribuyer a la llocalización xenérica de MediaWiki.',
+Por favor visita [http://www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [http://translatewiki.net translatewiki.net] si quies contribuyer a la llocalización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB' => "Nun pue usase '''{{ns:special}}:Allmessages''' porque '''\$wgUseDatabaseMessages''' ta deshabilitáu.",
 'allmessagesfilter'         => 'Filtru pal nome del mensax:',
 'allmessagesmodified'       => 'Amosar solo modificaos',
@@ -1942,6 +1944,8 @@ Guárdalu nel to ordenador y xúbilu equí.",
 'import-nonewrevisions'      => 'Toles revisiones fueran importaes previamente.',
 'xml-error-string'           => '$1 na llinia $2, col $3 (byte $4): $5',
 'import-upload'              => 'Xubir datos XML',
+'import-token-mismatch'      => 'Perdiéronse los datos de la sesión. Intentalo otra vuelta.',
+'import-invalid-interwiki'   => "Nun se puede importar d'esi wiki.",
 
 # Import log
 'importlogpage'                    => "Rexistru d'importaciones",
@@ -2068,6 +2072,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'patrol-log-header' => 'Esti ye un rexistru de les revisiones supervisaes.',
 'patrol-log-line'   => 'marcó la versión $1 de $2 como supervisada $3',
 'patrol-log-auto'   => '(automática)',
+'patrol-log-diff'   => 'revisión $1',
 
 # Image deletion
 'deletedrevision'                 => 'Esborrada la reversión vieya $1',

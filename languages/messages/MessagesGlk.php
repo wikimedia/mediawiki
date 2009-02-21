@@ -11,8 +11,14 @@
 $fallback = 'fa';
 
 $messages = array(
-'qbedit' => 'دچین واچین',
+'qbfind'        => 'یاتن',
+'qbedit'        => 'دچین واچین',
+'moredotdotdot' => 'ویشتر...',
+'mypage'        => 'می هنه‌شر',
+'mytalk'        => 'می گب',
+'anontalk'      => 'اَ آی.پیˇ گب',
 
+'returnto'         => 'واگرد به $1.',
 'search'           => 'واموج',
 'searchbutton'     => 'واموج',
 'go'               => 'بوشو',
@@ -21,8 +27,14 @@ $messages = array(
 'printableversion' => 'پرینتی نوسخه',
 'permalink'        => 'مؤنسنی پیوند',
 'edit'             => 'دچین واچین',
+'editthispage'     => 'اَ هنه‌شره (صفحه‌یه) دچین‌واچین بکون.',
+'create-this-page' => 'اَ هنه‌شره (صفحه‌یه) چاکون.',
+'deletethispage'   => 'اَ هنه‌شره پاکأ کون.',
+'newpage'          => 'تازه هنه‌شر (تازه صفحه)',
 'talkpagelinktext' => 'گب',
+'talk'             => 'گب',
 'toolbox'          => 'ابزار جیگا',
+'jumpto'           => 'واز بکون به:',
 'jumptonavigation' => 'گردسن',
 'jumptosearch'     => 'واموج',
 
@@ -33,7 +45,28 @@ $messages = array(
 'portal'               => 'امه جیگا',
 'privacy'              => 'رازبداری',
 
+'editsection' => 'دچین‌واچین',
+'editold'     => 'دچین‌واچین',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'     => 'وانیویس (مقاله)',
+'nstab-user'     => 'کاربری هنه‌شر',
+'nstab-category' => 'رج',
+
+# Search results
+'searchresults' => 'واموج‌دموجˇ نتایج',
+
+# Special:AllPages
+'allpagessubmit' => 'بشو',
+
 # Special:Categories
 'categories' => 'رجؤن',
+
+# Block/unblock
+'blocklink' => 'دَوَسته ببه',
+
+# Tooltip help for the actions
+'tooltip-ca-edit'    => 'شمه تانید اَ هنه‌شره (صفحه) دچین‌واچین بکونید. بی‌زحمت قبل از ان‌کی ذخیره بکونید، پیش‌نمایشˇ دوکمه جا استفاده بکونید.',
+'tooltip-ca-history' => 'اَ هنه‌شر (صفحه)ˇ قدیمی نسخه‌یان',
 
 );

@@ -361,7 +361,7 @@ Pakisubok na lang ulit pagkaraan ng kaunting mga minuto.",
 'protectedinterface'   => "Nagbibigay ang pahinang ito ng tekstong panghangganan (''interface'') para sa sopwer, at ikinandado para maiwasan ang pangaabuso.",
 'editinginterface'     => "'''Babala:''' Binabago mo ang isang pahinang ginagamit sa pagbibigay ng tekstong panghangganan para sa sopwer.  
 Makakaapekto ang mga pagbago sa pahinang ito sa anyo ng hangganang (''interface'') pangtagagamit na para sa ibang mga tagagamit.
-Para sa mga salinwika, paki isang-alang-alang o konsiderahin ang paggamit ng [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], ang proyektong panglokalisasyon ng MediaWiki.",
+Para sa mga salinwika, paki isang-alang-alang o konsiderahin ang paggamit ng [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyektong panglokalisasyon ng MediaWiki.",
 'sqlhidden'            => '(nakatago ang tanong ng SQL)',
 'cascadeprotected'     => 'Nakasanggalang ang pahinang ito mula sa mga pagbabago, dahil kabilang ito sa sumusunod na {{PLURAL:$1|pahinang|mga pahinang}} nakasanggalang sa pamamagitan ng binuhay na opsyong "nahuhulog" (kumakaskada):
 $2',
@@ -652,7 +652,7 @@ Maaaring ibigin mong gupitin at idikit ang teksto sa isang talaksang pangteksto 
 'protectedpagewarning'             => "'''BABALA: Ikinandado ang pahinang ito upang mga tagagamit na may mga karapatang pang-''sysop'' lamang ang makapagbago nito.'''",
 'semiprotectedpagewarning'         => "'''Paunawa:''' Ikinandado ang pahinang ito upang tanging nakatalang mga tagagamit lamang ang makapagbago nito.",
 'cascadeprotectedwarning'          => "'''Babala:''' Ikinandado ang pahinang ito upang tanging mga tagagamit na may mga karapatang pang-''sysop'' lamang ang makapagbago nito, dahil kabilang ito sa sumusunod na mga {{PLURAL:$1|pahinang|mga pahinang}} may baita-baitang na panananggalang:",
-'titleprotectedwarning'            => "'''BABALA:  Ikinandado ang pahinang ito upang tanging ilang mga tagagamit lamang ang makalikha nito.'''",
+'titleprotectedwarning'            => "'''BABALA:  Ikinandado ang pahinang ito upang [[Special:ListGroupRights|partikular na mga karapatan]] ang kailanganin upang malikha ito.'''",
 'templatesused'                    => 'Mga suleras na ginagamit sa pahinang ito:',
 'templatesusedpreview'             => 'Mga suleras na ginagamit para sa paunang-tinging ito:',
 'templatesusedsection'             => 'Mga suleras na ginagamit para sa bahaging ito:',
@@ -1213,7 +1213,7 @@ Mababago ang pagkakapangkat-pangkat sa pamamagitan ng pagpindot sa isang paulo n
 'duplicatesoffile'               => 'Ang sumusunod na {{PLURAL:$1|talaksan|$1 mga talaksan}} ay kapareho talaksan na ito:',
 'sharedupload'                   => 'Isang pinagsasaluhang pagkarga ang talaksang ito at maaaring gamitin ng ibang mga proyekto.',
 'shareduploadwiki'               => 'Pakitingnan ang $1 para sa mas marami pang kabatiran.',
-'shareduploadwiki-desc'          => 'Ang paglalarawang para sa $1 nito na nasa pinagsasaluhang repositoryo ay ipinapakita sa ibaba.',
+'shareduploadwiki-desc'          => 'Ang paglalarawang nasa ibabaw ng $1 nito roon ay ipinapakita sa ibaba.',
 'shareduploadwiki-linktext'      => 'pahina ng paglalarawan sa talaksan',
 'shareduploadduplicate'          => 'Ang talaksang ito ay isang kopya/kakambal ng $1 mula sa pinagsasaluhang repositoryo.',
 'shareduploadduplicate-linktext' => 'isa pang talaksan',
@@ -1888,7 +1888,7 @@ Mayroon na ang pupuntahang artikulo na "[[$1]]". Nais mo bang burahin ito para m
 
 Para ilabas ang mga pahina, ipasok ang mga pamagat sa tekstong kahon sa ibaba, isang pamagat bawat guhit, at piliin kung gusto mo rin ang kasalukuyang bersyon o mga lumang bersyon, kasama ang mga pahina ng kasaysayan, o iyon lamang kasalukuyang bersyon kasama ang mga kaalaman tungkol sa huling binago.
 
-Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para sa pahinang "[[{{MediaWiki:Mainpage}}]]".',
+Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para sa pahinang "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Isama lamang ang kasalukuyang rebisyon, hindi ang buong kasaysayan',
 'exportnohistory'   => "----
 '''Tandaan:''' Nakapatay ang paglalabas ng buong kasaysayan ng pahina ng mga pahina sa pamamagitan ng ''form'' na ito dahil maaaring bumagal ang sayt.",
@@ -1904,7 +1904,7 @@ Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{ns:special}}:Export/{{Med
 'allmessagesdefault'        => 'Tinakdang teksto',
 'allmessagescurrent'        => 'Kasalukuyang teksto',
 'allmessagestext'           => 'Isa itong talaan ng mga mensahe ng sistema na makukuha mula sa espasyo ng pangalang MediaWiki.
-Pakidalaw ang [http://www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at [http://translatewiki.net Betawiki] kung ibig mong magambag sa heneriko o pangkalahatang lokalisasyon ng MediaWiki.',
+Pakidalaw ang [http://www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at [http://translatewiki.net translatewiki.net] kung ibig mong magambag sa heneriko o pangkalahatang lokalisasyon ng MediaWiki.',
 'allmessagesnotsupportedDB' => "Hindi magagamit ang '''{{ns:special}}:AllMessages''' dahil hindi gumagana ang '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Pansala ng pangalan ng mensahe:',
 'allmessagesmodified'       => 'Ipakita lamang ang mga binago',

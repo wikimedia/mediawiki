@@ -632,7 +632,7 @@ Bewerken is niet mogelijk.',
 'protectedinterface'   => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
 'editinginterface'     => "'''Waarschuwing:''' U bewerkt een pagina die gebruikt wordt door de software.
 Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen.
-Overweeg voor vertalingen om [http://translatewiki.net/wiki/Main_Page?setlang=nl Betawiki] te gebruiken, het vertalingsproject voor MediaWiki.",
+Overweeg voor vertalingen om [http://translatewiki.net/wiki/Main_Page?setlang=nl translatewiki.net] te gebruiken, het vertalingsproject voor MediaWiki.",
 'sqlhidden'            => '(SQL-zoekopdracht verborgen)',
 'cascadeprotected'     => "Deze pagina kan niet bewerkt worden, omdat die is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:
 $2",
@@ -932,7 +932,7 @@ Het is misschien verstandig om uw tekst tijdelijk in een tekstbestand op te slaa
 'protectedpagewarning'             => "'''WAARSCHUWING! Deze beveiligde pagina kan alleen door gebruikers met beheerdersrechten bewerkt worden.'''",
 'semiprotectedpagewarning'         => "'''Let op:''' deze pagina is beveiligd en kan alleen door geregistreerde gebruikers bewerkt worden.",
 'cascadeprotectedwarning'          => "'''Waarschuwing:''' Deze pagina is beveiligd en kan alleen door beheerders bewerkt worden, omdat deze is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:",
-'titleprotectedwarning'            => "'''WAARSCHUWING: Deze pagina is beveiligd zodat alleen enkele gebruikers het kunnen aanmaken.'''",
+'titleprotectedwarning'            => "'''WAARSCHUWING: Deze pagina is beveiligd. Er zijn [[Special:ListGroupRights|speciale rechten]] nodig om de pagina aan te kunnen maken.'''",
 'templatesused'                    => 'Op deze pagina gebruikte sjablonen:',
 'templatesusedpreview'             => 'Sjablonen gebruikt in deze voorvertoning:',
 'templatesusedsection'             => 'Sjablonen die gebruikt worden in deze subkop:',
@@ -1523,7 +1523,7 @@ Klikken op een kolomkop verandert de sortering.',
 'duplicatesoffile'               => '{{PLURAL:$1|Het volgende bestand is|De volgende $1 bestanden zijn}} identiek aan dit bestand:',
 'sharedupload'                   => 'Dit bestand is een gedeelde upload en kan ook door andere projecten gebruikt worden.',
 'shareduploadwiki'               => 'Zie de $1 voor verdere informatie.',
-'shareduploadwiki-desc'          => 'De $1 in de gedeelde bestandsbank wordt hieronder weergegeven.',
+'shareduploadwiki-desc'          => 'De beschijving in de $1 wordt hieronder weergegeven.',
 'shareduploadwiki-linktext'      => 'bestandsbeschrijving',
 'shareduploadduplicate'          => 'Dit bestand is identiek aan $1 in de gedeelde mediabank.',
 'shareduploadduplicate-linktext' => 'een ander bestand',
@@ -1775,7 +1775,7 @@ De ontvanger kan dus direct naar u reageren.',
 'mywatchlist'          => 'Volglijst',
 'watchlistfor'         => "(voor '''$1''')",
 'nowatchlist'          => 'Uw volglijst is leeg.',
-'watchlistanontext'    => '$1 is verplicht om uw volglijst in te zien of te wijzigen.',
+'watchlistanontext'    => '$1 is noodzakelijk om uw volglijst in te zien of te wijzigen.',
 'watchnologin'         => 'U bent niet aangemeld',
 'watchnologintext'     => 'U dient [[Special:UserLogin|aangemeld]] te zijn om uw volglijst te bewerken.',
 'addedwatch'           => 'Toegevoegd aan volglijst',
@@ -2212,7 +2212,7 @@ Dit exportbestand is daarna te importeren in een andere MediaWiki via de [[Speci
 
 Geef in het onderstaande veld de namen van de te exporteren pagina\'s op, één pagina per regel, en geef aan of u alle versies met de bewerkingssamenvatting of alleen de huidige versies met de bewerkingssamenvatting wilt exporteren.
 
-In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] voor de pagina "{{MediaWiki:Mainpage}}".',
+In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] voor de pagina "{{MediaWiki:Mainpage}}".',
 'exportcuronly'     => 'Alleen de laatste versie, niet de volledige geschiedenis',
 'exportnohistory'   => "----
 '''Let op:''' het exporteren van de gehele geschiedenis is uitgeschakeld wegens prestatieredenen.",
@@ -2228,7 +2228,7 @@ In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{ns:sp
 'allmessagesdefault'        => 'Standaardinhoud',
 'allmessagescurrent'        => 'Huidige inhoud',
 'allmessagestext'           => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte.
-Ga naar [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [http://translatewiki.net Betawiki] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
+Ga naar [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [http://translatewiki.net translatewiki.net] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
 'allmessagesnotsupportedDB' => "Deze pagina kan niet gebruikt worden omdat '''\$wgUseDatabaseMessages''' is uitgeschakeld.",
 'allmessagesfilter'         => 'Bericht naamfilter:',
 'allmessagesmodified'       => 'Alleen gewijzigde systeemteksten bekijken',

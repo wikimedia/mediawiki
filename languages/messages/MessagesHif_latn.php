@@ -355,7 +355,7 @@ Kuch deri be baad fir se kosis karna.',
 'protectedpagetext'    => 'Ii panna ke badlao ke roke ke khatir band kar dewa gais hai.',
 'viewsourcetext'       => 'Aap ii panna ke source ke dekhe aur nakal utare kare sakta hai:',
 'protectedinterface'   => 'Ii panna software ke interface text dewe hai, aur iske barbaadi se roke ke khatir band kar dewa gais hai.',
-'editinginterface'     => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hai. Ii panna me badlao ke asar duusra sadasya ke interface ke bhi hoi. Translation khatir [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], the MediaWiki localisation project, ke kaam me lao.",
+'editinginterface'     => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hai. Ii panna me badlao ke asar duusra sadasya ke interface ke bhi hoi. Translation khatir [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
 'sqlhidden'            => '(SQL query lukawal hai)',
 'cascadeprotected'     => 'Ii panna ke badlao se bachaya gais hai, kahe ki iske {{PLURAL:$1|panna, jon ki|panna, jon ki}} surakchhit with the "cascading" option turned on:
 $2',
@@ -1395,7 +1395,14 @@ Is me ek nai to jaada akchhar hai jiske title me nai kaam me lawa jaae sake hai.
 'listgrouprights-members'  => '(sadasya ke suchi)',
 
 # E-mail user
-'emailuser' => 'Ii user ke E-mail karo',
+'mailnologin'     => 'Koi bheje waala address nai hai',
+'mailnologintext' => 'Duusra logan ke lage e-mail bheje ke khatir aap ke [[Special:UserLogin|logged in]] aur [[Special:Preferences|preferences]]  me thik e-mail hoew ke chaahi.',
+'emailuser'       => 'Ii user ke E-mail karo',
+'emailpage'       => 'User ke e-mail karo',
+'emailpagetext'   => 'Aap niche ke form ke use kar ke ii sadasya ke e-mail bheje sakta hai.
+Jon e-mail address aap [[Special:Preferences|your user preferences]] me enter karaa rahaa, "From" ke e-mail rahii, jisse ki e-mail receive kare waala aap ke sidha reply kare sake hai.',
+'usermailererror' => 'Mail object error return karis hai:',
+'defemailsubject' => '{{SITENAME}} e-mail',
 
 # Watchlist
 'watchlist'            => 'Hamaar dhyan suchi',

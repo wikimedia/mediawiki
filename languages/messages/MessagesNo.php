@@ -496,7 +496,7 @@ Spørring: $2',
 'protectedpagetext'    => 'Denne siden har blitt låst for redigeringer.',
 'viewsourcetext'       => 'Du kan se og kopiere kilden til denne siden:',
 'protectedinterface'   => 'Denne siden viser brukergrensesnittet for programvaren, og er låst for å hindre misbruk.',
-'editinginterface'     => "'''Advarsel:''' Du redigerer en side som brukes i grensesnittet for programvaren. Endringer på denne siden vil påvirke hvordan grensesnittet vil se ut. For oversettelser er det best om du bruker [http://translatewiki.net/wiki/Main_Page?setlang=no Betawiki], prosjektet for oversettelse av MediaWiki.",
+'editinginterface'     => "'''Advarsel:''' Du redigerer en side som brukes i grensesnittet for programvaren. Endringer på denne siden vil påvirke hvordan grensesnittet vil se ut. For oversettelser er det best om du bruker [http://translatewiki.net/wiki/Main_Page?setlang=no translatewiki.net], prosjektet for oversettelse av MediaWiki.",
 'sqlhidden'            => '(SQL-spørring skjult)',
 'cascadeprotected'     => 'Denne siden er låst for redigering fordi den inkluderes på følgende sider som har dypbeskyttelse slått på:<!--{{PLURAL:$1}}-->
 $2',
@@ -751,7 +751,7 @@ kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>',
 'protectedpagewarning'             => "'''ADVARSEL: Denne siden er låst, slik at kun brukere med administratorrettigheter kan redigere den.'''",
 'semiprotectedpagewarning'         => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den. Nyopprettede og uregistrerte brukere kan ikke redigere.",
 'cascadeprotectedwarning'          => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes på følgende dypbeskyttede sider:<!--{{PLURAL:$1}}-->",
-'titleprotectedwarning'            => "'''ADVARSEL: Denne siden har blitt låst slik at kun visse brukere kan opprette den.'''",
+'titleprotectedwarning'            => "'''ADVARSEL: Denne siden har blitt låst slik at kun [[Special:ListGroupRights|visse brukere]] kan opprette den.'''",
 'templatesused'                    => 'Maler i bruk på denne siden:',
 'templatesusedpreview'             => 'Maler som brukes i denne forhåndsvisningen:',
 'templatesusedsection'             => 'Maler brukt i denne seksjonen:',
@@ -1951,7 +1951,7 @@ Dette kan senere importeres til en annen wiki som bruker MediaWiki ved hjelp av 
 
 For å eksportere sider, skriv inn titler i tekstboksen under, én tittel per linje, og velg om du vil ha kun nåværende versjon, eller alle versjoner i historikken.
 
-Dersom du bare vil ha nåværende versjon, kan du også bruke en lenke, for eksempel [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] for siden «[[{{MediaWiki:Mainpage}}]]».',
+Dersom du bare vil ha nåværende versjon, kan du også bruke en lenke, for eksempel [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] for siden «[[{{MediaWiki:Mainpage}}]]».',
 'exportcuronly'     => 'Ta bare med den nåværende versjonen, ikke hele historikken.',
 'exportnohistory'   => "----
 '''Merk:''' Eksportering av hele historikken gjennom dette skjemaet har blitt slått av av ytelsesgrunner.",
@@ -1967,7 +1967,7 @@ Dersom du bare vil ha nåværende versjon, kan du også bruke en lenke, for ekse
 'allmessagesdefault'        => 'Standardtekst',
 'allmessagescurrent'        => 'Nåværende tekst',
 'allmessagestext'           => 'Dette er en liste over tilgjengelige systemmeldinger i MediaWiki-navnerommet.
-Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettelse av MediaWiki.',
+Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med oversettelse av MediaWiki.',
 'allmessagesnotsupportedDB' => "''{{ns:special}}:Allmessages'' kan ikke brukes fordi '''\$wgUseDatabaseMessages''' er slått av.",
 'allmessagesfilter'         => 'Filter:',
 'allmessagesmodified'       => 'Vis kun endrede',

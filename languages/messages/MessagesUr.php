@@ -8,6 +8,7 @@
  * @author Meno25
  * @author Wisesabre
  * @author לערי ריינהארט
+ * @author محبوب عالم
  */
 
 $rtl = true;
@@ -122,75 +123,188 @@ $messages = array(
 'unprotectthispage' => 'اس صفحےکو غیر محفوظ کریں',
 'newpage'           => 'نیا صفحہ',
 'talkpage'          => 'اس صفحہ پر تبادلۂ خیال کریں',
+'talkpagelinktext'  => 'گفتگو',
 'specialpage'       => 'خصوصی صفحہ',
+'personaltools'     => 'ذاتی اوزار',
+'postcomment'       => 'اگلا حصّہ',
 'articlepage'       => 'مندرجاتی صفحہ دیکھیۓ',
 'talk'              => 'تبادلہٴ خیال',
 'views'             => 'خیالات',
-'toolbox'           => 'آلات',
-'userpage'          => 'دیکھیں صارف کا صفحہ',
+'toolbox'           => 'اوزاردان',
+'userpage'          => 'صفحۂ صارف دیکھئے',
+'projectpage'       => 'صفحۂ منصوبہ دیکھئے',
+'imagepage'         => 'صفحۂ مسل دیکھئے',
+'mediawikipage'     => 'صفحۂ پیغام دیکھئے',
+'templatepage'      => 'صفحۂ سانچہ دیکھئے',
 'viewhelppage'      => 'صفحۂ معاونت دیکھیے',
-'otherlanguages'    => 'دیگر زبانیں',
+'categorypage'      => 'زمرہ‌جاتی صفحہ دیکھئے',
+'viewtalkpage'      => 'تبادلۂ خیال دیکھئے',
+'otherlanguages'    => 'دیگر زبانوں میں',
 'redirectedfrom'    => '($1 سے پلٹایا گیا)',
 'redirectpagesub'   => 'لوٹایا گیا صفحہ',
 'lastmodifiedat'    => 'آخری بار تدوین $2, $1 کو کی گئی۔', # $1 date, $2 time
+'viewcount'         => 'اِس صفحہ تک {{PLURAL:$1|ایک‌بار|$1 مرتبہ}} رسائی کی گئی',
 'protectedpage'     => 'محفوظ شدہ صفحہ',
+'jumpto'            => ':چھلانگ بطرف',
+'jumptonavigation'  => 'رہنمائی',
+'jumptosearch'      => 'تلاش',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{SITENAME}} کا تعارف',
+'aboutsite'            => 'کا تعارف {{SITENAME}}',
 'aboutpage'            => 'Project:تعارف',
 'copyright'            => 'تمام مواد $1 کے تحت میسر ہے۔',
 'copyrightpagename'    => '{{SITENAME}} حق تصنیف',
 'copyrightpage'        => '{{ns:project}}:حقوق تصانیف',
-'currentevents'        => 'تعارف وکیپیڈیا',
-'currentevents-url'    => 'Project:تعارف وکیپیڈیا',
+'currentevents'        => 'حالیہ واقعات',
+'currentevents-url'    => 'Project:حالیہ واقعات',
 'disclaimers'          => 'اعلانات',
+'disclaimerpage'       => 'Project:عام اعلان',
 'edithelp'             => 'معاونت براۓ ترمیم',
+'edithelppage'         => 'Help:ترمیم',
 'faq'                  => 'معلوماتِ عامہ',
 'faqpage'              => 'Project:معلوماتِ عامہ',
 'helppage'             => 'Help:فہرست',
-'mainpage'             => 'صفحہ اول',
-'mainpage-description' => 'صفحہ اول',
+'mainpage'             => 'سرورق',
+'mainpage-description' => 'سرورق',
+'policy-url'           => 'Project:حکمتِ عملی',
 'portal'               => 'دیوان عام',
 'portal-url'           => 'Project:دیوان عام',
 'privacy'              => 'اصول براۓ اخفائے راز',
+'privacypage'          => 'Project:اصولِ اخفائے راز',
 
+'badaccess'        => 'خطائے اجازت',
 'badaccess-group0' => 'آپ متمنی عمل کا اجراء کرنے کے مُجاز نہیں۔',
 
-'ok'                  => 'ٹھیک ہے',
-'pagetitle'           => '$1 - وکیپیڈیا',
-'youhavenewmessages'  => 'آپکے لیۓ ایک $1 ہے۔ ($2)',
-'newmessageslink'     => 'نیا پیغام',
-'newmessagesdifflink' => 'تـجـدیـد مـاقـبل آخـر سے فـرق',
-'editsection'         => 'ترمیم',
-'editold'             => 'ترمیم',
-'toc'                 => 'فہرست',
-'showtoc'             => 'دکھائیں',
-'hidetoc'             => 'غائب کریں',
-'thisisdeleted'       => 'دیکھیں یا بحال کریں $1؟',
-'restorelink'         => '$1 ترامیم ضائع کردی',
-'feed-atom'           => 'ایٹم',
-'feed-rss'            => 'آر ایس ایس',
+'versionrequired'     => 'میڈیا ویکی کا $1 نسخہ لازمی چاہئیے.',
+'versionrequiredtext' => 'اِس صفحہ کو استعمال کرنے کیلئے میڈیاویکی کا $1 نسخہ چاہئیے.
+
+
+دیکھئے [[خاص:نسخہ|صفحۂ نسخہ]]',
+
+'ok'                      => 'ٹھیک ہے',
+'pagetitle'               => '$1 - وکیپیڈیا',
+'retrievedfrom'           => '‘‘$1’’ مستعادہ منجانب',
+'youhavenewmessages'      => 'آپکے لیۓ ایک $1 ہے۔ ($2)',
+'newmessageslink'         => 'نئے پیغامات',
+'newmessagesdifflink'     => 'تـجـدیـد مـاقـبل آخـر سے فـرق',
+'youhavenewmessagesmulti' => 'ء$1 پر آپ کیلئے نئے پیغامات ہیں',
+'editsection'             => 'ترمیم',
+'editsection-brackets'    => '[$1]',
+'editold'                 => 'ترمیم',
+'viewsourceold'           => 'مآخذ دیکھئے',
+'editsectionhint'         => 'تدوینِ حصّہ: $1',
+'toc'                     => 'فہرست',
+'showtoc'                 => 'دکھائیں',
+'hidetoc'                 => 'چھپائیں',
+'thisisdeleted'           => 'دیکھیں یا بحال کریں $1؟',
+'viewdeleted'             => 'دیکھیں $1؟',
+'restorelink'             => '$1 ترامیم ضائع کردی',
+'feedlinks'               => 'Feed:',
+'feed-invalid'            => 'Invalid subscription feed type.',
+'feed-unavailable'        => 'Syndication feeds are not available',
+'site-rss-feed'           => '$1 RSS Feed',
+'site-atom-feed'          => '$1 Atom Feed',
+'page-rss-feed'           => '"$1" RSS Feed',
+'page-atom-feed'          => '"$1" Atom Feed',
+'feed-atom'               => 'ایٹم',
+'feed-rss'                => 'آر ایس ایس',
+'red-link-title'          => '$1 (صفحہ موجود نہیں)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'مضمون',
+'nstab-main'      => 'صفحہ',
 'nstab-user'      => 'صفحۂ صارف',
-'nstab-special'   => 'خاص',
+'nstab-media'     => 'صفحۂ وسیط',
+'nstab-special'   => 'خاص صفحہ',
 'nstab-project'   => 'صفحۂ منصوبہ',
-'nstab-image'     => 'فائل',
+'nstab-image'     => 'مسل',
 'nstab-mediawiki' => 'پیغام',
 'nstab-template'  => 'سانچہ',
 'nstab-help'      => 'معاونت',
 'nstab-category'  => 'زمرہ',
 
+# Main script and global functions
+'nosuchaction'      => 'کوئی سا عمل نہیں',
+'nosuchactiontext'  => 'URL کی جانب سے مختص کیا گیا عمل درست نہیں.
+آپ نے شاید URL غلط لکھا، یا کسی غیر صحیح ربط کی پیروی کی ہے.
+{{اِس سے SITENAME کے زیرِ استعمال مصنع لطیف میں کھٹمل کی نشاندہی کا بھی اندیشہ ہے}}.',
+'nosuchspecialpage' => 'کوئی ایسا خاص صفحہ نہیں',
+'nospecialpagetext' => "<big>'''آپ نے ایک ناقص خاص صفحہ کی درخواست کی ہے.'''</big>
+
+{{درست خاص صفحات کی ایک فہرست [[خاص:خاص‌صفحات|خاص صفحات]] پر دیکھی جاسکتی ہے}}.",
+
 # General errors
-'noconnect'         => 'بہ تاسف! ویکی کو چند طرزیاتی (ٹکنیکی) مشکلات کا سامنا ہے، اساسی موادی کمک کنندہ ( ڈیٹا بیس سرور ) سے تک پہنچنے میں ناکامی ہوئی۔ <br />$1',
-'badarticleerror'   => 'اس صفحہ پر یہ عمل انجام نہیں دیا جاسکتا۔',
-'cannotdelete'      => 'صفحہ یا مِلَف کو حذف نہیں کیا جا سکا۔ (ہوسکتا ہے کہ اسے پہلے ہی کسی نے حذف کردیاہو۔)',
-'viewsource'        => 'مسودہ',
-'viewsourcefor'     => 'براۓ $1',
-'protectedpagetext' => 'اس صفحہ کو تدوین سے محفوظ رکھنے کیلیے مقفل کر دیا گیا ہے۔',
-'viewsourcetext'    => 'آپ صرف مسودہ دیکھ سکتے ہیں اور اسکی نقل اتار سکتے ہیں:',
-'editinginterface'  => "'''انتباہ:''' آپ ایک ایسا صفحہ مرتب کر رہے ہیں کہ جو مصنع لطیف (سوفٹ ویئر) کے لیۓ وجیھت (انٹرفیس) مہیا کرنے کے لیۓ استعمال کیا جاتا ہے۔ اس صفحہ میں کی جانے والی ترمیم ، دیگر صارفوں کے لیۓ وجیھت کو تبدیل کردے گی۔",
+'error'                => 'خطاء',
+'databaseerror'        => 'خطائے ڈیٹابیس',
+'dberrortext'          => 'ڈیٹابیس کے استفسارہ میں ایک خطائے نحوی واقع ہوئی ہے. 
+اِس سے مصنع‌لطیف میں کھٹمل کی نشاندہی کا اندیشہ ہے. 
+پچھلا سعی‌شدہ ڈیٹابیسی استفسارہ یہ تھا:
+<blockquote><tt>$1</tt></blockquote>
+فعلیت میں سے "<tt>$2</tt>".
+MySQL نے خطائی جواب دیا "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'ڈیٹابیس کے استفسارہ میں ایک خطائے نحوی واقع ہوئی ہے. 
+پچھلا سعی‌شدہ ڈیٹابیسی استفسارہ یہ تھا:
+"$1"
+"$2" فعلیت میں سے.
+MySQL نے جوابِ خطاء دیا "$3: $4"',
+'noconnect'            => 'بہ تاسف! ویکی کو چند تکنیکی مشکلات کا سامنا ہے جس کی وجہ سے ڈیٹابیسی معیل کے ساتھ رابطہ نہیں کرسکتا۔ <br />$1',
+'nodb'                 => '$1 ڈیٹابیس منتخب نہ ہوسکا.',
+'cachederror'          => 'نیچے التماس شدہ صفحے کا ایک ابطن‌شدہ نسخہ ہے، اور اِس کے بتاریخی (اپ ٹو ڈیٹ) ہونے میں شک ہے.',
+'laggedslavemode'      => 'انتباہ: ممکن ہے کہ صفحہ میں حالیہ بتاریخہ جات شامل نہ ہوں.
+
+Warning: Page may not contain recent updates.',
+'readonly'             => 'ڈیٹابیس مقفل ہے',
+'enterlockreason'      => 'قفل کیلئے کوئی وجہ درج کیجئے، بشمولِ تخمینہ کہ قفل کب کھولا جائے گا.',
+'readonlytext'         => 'ڈیٹابیس نئے اندراجات اور دوسری ترمیمات کیلئے مقفل ہے، شاید معمول کے ڈیٹابیسی اصلاح کیلئے، جس کے بعد یہ عام حالت پر آجائے گا. 
+منتظم، جس نے قفل لگایا، یہ تفصیل فراہم کی ہے:',
+'missing-article'      => 'ڈیٹابیس نے کسی صفحے کا متن بنام "$1" $2  نہیں پایا جو اِسے پانا چاہئے تھا.
+
+یہ عموماً کسی صفحے کے تاریخی یا پرانے حذف شدہ ربط کی وجہ سے ہوسکتا ہے. 
+
+اگر یہ وجہ نہیں، تو آپ نے مصنع‌لطیف میں کھٹمل پایا ہے.
+برائے مہربانی، URL کی نشاندہی کرتے ہوئے کسی [[Special:ListUsers/sysop|منتظم]] کو اِس کا سندیس کیجئے.',
+'missingarticle-rev'   => '(نظرثانی#: $1)',
+'readonly_lag'         => 'ڈیٹابیس خودکار طور پر مقفل ہوچکا ہے تاکہ ماتحت ڈیٹابیسی معیلات کا درجہ آقا کا ہوجائے.',
+'internalerror'        => 'خطائے اندرونی',
+'internalerror_info'   => 'خطائے اندرونی: $1',
+'filecopyerror'        => '"$1" مسل کو "$2" کی طرف نقل نہیں کیا جاسکا.',
+'filerenameerror'      => 'مسل "$1" کو "$2" میں بازنام نہیں کیا جاسکا.',
+'filedeleteerror'      => 'مسل "$1" کو حذف نہیں کیا جاسکا.',
+'directorycreateerror' => 'رہنامچہ "$1" تخلیق نہیں کیا جاسکا.',
+'filenotfound'         => 'مسل "$1" ڈھونڈا نہ جاسکا.',
+'fileexistserror'      => 'مسل "$1" کو لکھنے سے قاصر، مسل پہلے سے موجود',
+'unexpected'           => 'غیرمتوقع قدر: "$1"="$2"',
+'formerror'            => 'خطا: ورقہ بھیجا نہ جاسکا.',
+'badarticleerror'      => 'اس صفحہ پر یہ عمل انجام نہیں دیا جاسکتا۔',
+'cannotdelete'         => 'صفحہ یا مِلَف کو حذف نہیں کیا جا سکا۔ (ہوسکتا ہے کہ اسے پہلے ہی کسی نے حذف کردیاہو۔)',
+'badtitle'             => 'خراب عنوان',
+'badtitletext'         => 'درخواست شدہ صفحہ کا عنوان ناقص، خالی، یا کوئی غلط ربط شدہ بین لسانی یا بین ویکی عنوان ہے.
+شاید اِس میں ایک یا زیادہ ایسے حروف موجود ہوں جو عنوانات میں استعمال نہیں ہوسکتے.',
+'perfcached'           => 'ذیلی ڈیٹا ابطن شدہ ہے اور اِس کے پُرانے ہونے کا امکان ہے.',
+'perfcachedts'         => 'ذیلی ڈیٹا ابطن شدہ ہے اور آخری بار اِس کی بتاریخیت $1 کو ہوئی.',
+'querypage-no-updates' => 'اِس صفحہ کیلئے بتاریخات فی الحال ناقابل بنائی گئی ہیں. 
+یہاں کا ڈیٹا ابھی تازہ نہیں کیا جائے گا.',
+'viewsource'           => 'مسودہ',
+'viewsourcefor'        => 'براۓ $1',
+'actionthrottledtext'  => 'بطورِ ایک ضدسپم تدبیر، آپ کو مختصر وقت میں کئی بار یہ عمل بجا لانے سے محدود کیا گیا، اور آپ یہ حد پار کرچکے ہیں.
+براہِ کرم، کچھ منٹ بعد کوشش کیجئے.',
+'protectedpagetext'    => 'اس صفحہ کو تدوین سے محفوظ رکھنے کیلیے مقفل کر دیا گیا ہے۔',
+'viewsourcetext'       => 'آپ صرف مسودہ دیکھ سکتے ہیں اور اسکی نقل اتار سکتے ہیں:',
+'protectedinterface'   => 'یہ صفحہ مصنع‌لطیف کیلئے سطح‌البینی متن فراہم کرتا ہے، اور ناجائزاستعمال کے سدِباب کیلئے اِسے مقفل کیا گیا ہے.',
+'editinginterface'     => "'''انتباہ:''' آپ ایک ایسا صفحہ تدوین کر رہے ہیں جو مصنع‌لطیف کیلئے سطح‌البینی متن فراہم کرتا ہے۔ اس صفحہ میں کی جانے والی ترمیم، دیگر صارفین کیلئے سطح‌البین کو تبدیل کردے گی۔
+براہِ کرم، ترجمہ کیلئے [http://translatewiki.net/wiki/Main_Page?setlang=en '''بیٹاویکی'''] (میڈیاویکی مقامیانی منصوبہ) استعمال کیجئے.",
+'sqlhidden'            => '(SQL استفسارہ پوشیدہ)',
+'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
+$2',
+'namespaceprotected'   => "آپ کو '''$1''' فضائے نام میں صفحات تدوین کرنے کی اِجازت نہیں ہے.",
+'customcssjsprotected' => 'آب کو اِس صفحہ کی تدوین کی اِجازت نہیں ہے، کیونکہ اِس میں دوسرے صارف کی ذاتی ترتیبات موجود ہیں.',
+'ns-specialprotected'  => 'خاص صفحات کی تدوین نہیں کی جاسکتی.',
+'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
+The reason given is "\'\'$2\'\'".',
+
+# Virus scanner
+'virus-badscanner'     => "خراب وضعیت: انجان وائرسی مفراس: ''$1''",
+'virus-scanfailed'     => 'تفریس ناکام (رمز $1)',
+'virus-unknownscanner' => 'انجان ضدوائرس:',
 
 # Login and logout pages
 'logouttitle'                => 'اخراج صارف',
@@ -204,37 +318,65 @@ $messages = array(
 'yourpasswordagain'          => 'کلمۂ شناخت دوبارہ لکھیں',
 'remembermypassword'         => 'مجھے یاد رکھیں',
 'yourdomainname'             => 'آپکا ڈومین',
+'externaldberror'            => 'یا تو توثیقی ڈیٹابیس میں خطا واقع ہوئی اور یا آپ کو بیرونی کھاتہ بتاریخ کرنے کی اِجازت نہیں ہے.',
 'loginproblem'               => '<b>داخلے میں کوئی مسلہ درپیش ہے</b><br />دوبارہ اندراج کیجیۓ!',
 'login'                      => 'داخل ہوں',
-'nav-login-createaccount'    => 'کھاتہ بنائیں یا اندراج کریں',
+'nav-login-createaccount'    => 'کھاتہ کھولیں یا اندراج کریں',
 'loginprompt'                => '{{SITENAME}} میں داخلے کیلۓ آپکے پاس قند (کوکیز) مجازہوناچاہیں۔',
-'userlogin'                  => 'کھاتہ بنائیں یا اندراج کریں',
+'userlogin'                  => 'کھاتہ کھولیں یا اندراج کریں',
 'logout'                     => 'اخراج',
 'userlogout'                 => 'خارج ہوجائیں',
+'notloggedin'                => 'داخلہ نہیں ہوا',
 'nologin'                    => 'کیا آپ نے کھاتہ نہیں بنایا ہوا؟ $1۔',
 'nologinlink'                => 'کھاتا بنائیں',
-'createaccount'              => 'نیا کھاتہ بنائیں',
-'gotaccountlink'             => 'داخل',
+'createaccount'              => 'کھاتہ کھولیں',
+'gotaccount'                 => 'پہلے سے کھاتہ بنا ہوا ہے? $1.',
+'gotaccountlink'             => 'داخل ہوجائیے',
 'createaccountmail'          => 'بذریعۂ برقی ڈاک',
 'badretype'                  => 'درج شدہ کلمۂ شناخت اصل سے مطابقت نہیں رکھتا۔',
 'userexists'                 => 'آپ نےجونام درج کیا ہے پہلے سے زیراستعمال ہے۔ مختلف نام استعمال کریں۔',
 'youremail'                  => '٭ برقی خط',
 'username'                   => 'اسم صارف',
 'uid'                        => 'صارف نمبر:',
+'prefs-memberingroups'       => '{{PLURAL:$1|گروہ|گروہوں}} کا رُکن:',
 'yourrealname'               => '* اصلی نام',
 'yourlanguage'               => 'زبان:',
-'yournick'                   => 'لقب',
+'yourvariant'                => 'متغیّر:',
+'yournick'                   => 'دستخط',
+'badsig'                     => 'ناقص خام دستخط.
+HTML tags جانچئے.',
+'badsiglength'               => 'آپ کا دستخط کافی طویل ہے.
+یہ $1 {{PLURAL:$1|حرف|حروف}} سے زیادہ نہیں ہونا چاہئے.',
 'email'                      => 'برقی خط',
+'prefs-help-realname'        => 'حقیقی نام اختیاری ہے. 
+اگر آپ اِسے مہیّا کرتے ہیں، تو اِسے آپ کے کام کیلئے آپ کو انتساب دینے کیلئے استعمال کیا جائے گا.',
 'loginerror'                 => 'داخلے میں غلطی',
+'prefs-help-email'           => 'برقی ڈاک کا پتہ اختیاری ہے، لیکن یہ اُس وقت مفید ثابت ہوسکتا ہے جب آپ اپنا کلمۂ شناخت بھول جائیں. 
+آپ یہ بھی منتخب کرسکتے ہیں کہ دوسرے صارفین، آپ کی شناخت کو افشا کئے بغیر، آپ کے تبادلۂ خیال صفحہ پر آپ سے رابطہ کریں.',
+'prefs-help-email-required'  => 'برقی ڈاک پتہ چاہئے.',
+'nocookiesnew'               => 'کھاتۂ صارف بنادیا گیا ہے، لیکن آپ کا داخلہ نہیں ہوا. 
+صارفین کے داخلہ کیلئے {{SITENAME}} کوکیز استعمال کرتا ہے.
+آپ کے ہاں کوکیز غیر فعال ہیں.
+براہِ کرم، انہیں فعال کیجئے، اور پھر اپنے نئے اسمِ صارف اور کلمۂ شناخت کے ساتھ داخل ہوجائیے.',
+'nocookieslogin'             => 'صارفین کے داخل ہونے کیلئے {{SITENAME}} کوکیز استعمال کرتا ہے.
+آپ کے ہاں کوکیز غیر فعال ہیں.
+انہیں فعال کرنے کے بعد پھر کوشش کیجئے.',
+'noname'                     => 'آپ نے صحیح اسم صارف نہیں چنا.',
 'loginsuccesstitle'          => 'داخلہ کامیاب',
 'loginsuccess'               => "'''اب آپ {{SITENAME}} میں بنام \"\$1\" داخل ہوچکے ہیں۔'''",
 'nosuchuser'                 => '"$1" کے نام سے کوئی صارف موجود نہیں۔  براۓکرم ہجوں کے درست اندراج کی تصدیق کرلیجیۓ ، یا آپ چاہیں تو نیا کھاتا بھی بنا سکتے ہیں۔',
+'nosuchusershort'            => '"<nowiki>$1</nowiki>" کے نام سے کوئی صارف موجود نہیں.
+اپنا ہجہ جانچئے.',
+'nouserspecified'            => 'آپ کو ایک اسمِ صارف مخصوص کرنا ہے.',
 'wrongpassword'              => 'آپ نے غلط کلمۂ شناخت درج کیا ہے۔ دوبارہ کو شش کریں۔',
 'wrongpasswordempty'         => 'کلمۂ شناخت ندارد۔ دوبارہ کوشش کریں۔',
 'passwordtooshort'           => 'آپکا منتخب کردہ کلمۂ شناخت بہت مختصر ہے۔ اسے کم از کم $1 حروف پر مشتمل ہونا چاہیۓ۔',
 'mailmypassword'             => 'کلمۂ شناخت بذریعہ برقی خط',
+'passwordremindertitle'      => 'نیا عارضی کلمۂ شناخت برائے {{SITENAME}}',
+'noemail'                    => 'صارف "$1" کیلئے کوئی برقی پتہ درج نہیں کیا گیا.',
 'passwordsent'               => 'ایک نیا کلمۂ شناخت "$1" کے نام سے بننے والی برقی ڈاک کے پتے کیلیے بھیج دیا گیا ہے۔ 
 جب وہ موصول ہو جاۓ تو براہ کرم اسکے ذریعے دوبارہ داخل ہوں۔',
+'blocked-mailpassword'       => 'آپ کا آئی.پی پتہ تدوین سے روک لیا گیا ہے، سو، ناجائز استعمال کو روکنے کیلئے، آپ کے آئی.پی پتہ کو کلمۂ شناخت کی بحالی کا فعل استعمال کرنے کی اِجازت نہیں ہے.',
 'mailerror'                  => 'مسلہ دوران ترسیل خط:$1',
 'acct_creation_throttle_hit' => 'عرض معذرت، چونکہ آپ پہلے ہی $1 کھاتے بنا چکے ہیں اس لیے مزید نہیں بنا سکتے۔',
 'emailauthenticated'         => 'آپ کے برقی خط کے پتے کی تصدیق $1 کو کی گئی۔',

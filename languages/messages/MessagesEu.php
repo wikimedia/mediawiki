@@ -385,7 +385,9 @@ Saia zaitez berriro minutu batzuen buruan, mesedez.',
 'protectedpagetext'    => 'Orrialde hau aldaketak saihesteko blokeatu egin da.',
 'viewsourcetext'       => 'Orrialde honen testua ikusi eta kopiatu dezakezu:',
 'protectedinterface'   => 'Orrialde honek softwarearentzako interfaze testua gordetzen du eta blokeatuta dago bandalismoak saihesteko.',
-'editinginterface'     => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara. Orrialde honetako aldaketek erabiltzaile guztiei eragingo die.",
+'editinginterface'     => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara.
+Orrialde honetako aldaketek erabiltzaile guztiei eragingo die.
+Itzulpenetarako, [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] erabili ezazu, MediaWiki proiektuan.",
 'sqlhidden'            => '(ezkutuko SQL kontsulta)',
 'cascadeprotected'     => "Orrialde hau aldaketen aurka babestua dago, ''kaskada'' aukerarekin babestu {{PLURAL:$1|duten orrialde honetan|dituzten orrialde hauetan}} txertaturik dagoelako:
 $2",
@@ -638,7 +640,7 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 'protectedpagewarning'             => "'''OHARRA:  Orri hau blokeaturik dago, administratzaileek soilik eraldatu dezakete.'''",
 'semiprotectedpagewarning'         => '<big><strong>Oharra: Orrialde hau erregistratutako erabiltzaileek bakarrik aldatzeko babestuta dago.</strong></big>',
 'cascadeprotectedwarning'          => "'''Oharra:''' Orrialde hau blokeatua izan da eta administratzaileek baino ez dute berau aldatzeko ahalmena, honako {{PLURAL:$1|orrialdeko|orrialdeetako}} kaskada-babesean txertatuta dagoelako:",
-'titleprotectedwarning'            => "'''OHARRA:  Orrialde hau blokeatuta dago eta bakarrik erabiltzaile batzuek sortu dezakete.'''",
+'titleprotectedwarning'            => "'''OHARRA:  Orrialde hau blokeatuta dago eta bakarrik [[Special:ListGroupRights|erabiltzaile batzuek]] sortu dezakete.'''",
 'templatesused'                    => 'Orrialde honetan erabiltzen diren txantiloiak:',
 'templatesusedpreview'             => 'Aurreikuspen honetan erabiltzen diren txantiloiak:',
 'templatesusedsection'             => 'Atal honetan erabiltzen diren txantiloiak:',
@@ -833,6 +835,7 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'searchall'                 => 'guztia',
 'showingresults'            => "Jarraian {{PLURAL:$1|emaitza '''1''' ikus daiteke|'''$1''' emaitza ikus daitezke}}, #'''$2'''.etik hasita.",
 'showingresultsnum'         => "Hasieran #'''$2''' duten {{PLURAL:$3|emaitza '''1'''|'''$3''' emaitza}} erakusten dira jarraian.",
+'showingresultstotal'       => "Azpian {{PLURAL:$3|'''$3'''(e)tik '''$1''' emaitza|'''$3'''(e)tik '''$1 - $2''' emaitzak}} erakusten dira",
 'nonefound'                 => "'''Oharra''': Bakarrik izen-tarte batzuetan egiten da berez bilaketa.
 Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatzeko (eztabaida orrialdea, txantiloiak, etab. sartuz) edo bestela erabil ezazu nahi duzun izen-tartea aurrizki gisa.",
 'powersearch'               => 'Bilatu',
@@ -1146,6 +1149,9 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'upload_source_file' => ' (zure ordenagailuko fitxategi bat)',
 
 # Special:ImageList
+'imagelist-summary'     => 'Orrialde berezi honek igotako fitxategi guztiak erakusten ditu.
+Berez igotako azken fitxategiak zerrendaren goialdean agertzen dira.
+Zutabe bakoitzaren goialdean klik eginez ordena aldatzen da.',
 'imagelist_search_for'  => 'Irudiaren izenagatik bilatu:',
 'imgfile'               => 'fitxategia',
 'imagelist'             => 'Fitxategien zerrenda',
@@ -1175,7 +1181,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'duplicatesoffile'               => 'Hondoren fitxategi {{PLURAL:$1|hau beste honen berdina da|$1 hauek beste honen berdinak dira}}:',
 'sharedupload'                   => 'Fitxategi hau elkarbanatutako igoera bat da eta beste proiektuek ere erabil dezakete.',
 'shareduploadwiki'               => 'Informazio gehiagorako $1 ikusi mesedez.',
-'shareduploadwiki-desc'          => 'Biltegi komun batean $1(e)n deskribapena erakusten da.',
+'shareduploadwiki-desc'          => 'Deskribapena $1-(e)an erakusten da azpian.',
 'shareduploadwiki-linktext'      => 'fitxategiaren deskribapen orrialdea',
 'shareduploadduplicate'          => 'Fitxategi hau biltegi komuneko $1 fitxategiaren duplikatua da.',
 'shareduploadduplicate-linktext' => 'beste fitxategi bat',
@@ -1207,6 +1213,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''en $3, $2 bertsioa ezabatu da.",
 'filedelete-nofile'           => "Ez dago '''$1''' izeneko fitxategirik.",
 'filedelete-nofile-old'       => "Ez dago '''$1'''en bertsio artxibaturik zuk jarritako izaera horrekin.",
+'filedelete-iscurrent'        => 'Fitxategi honen bertsiorik berriena ezabatzen saiatzen ari zara. Bertsio zaharrago batera itzularazi lehenago, mesedez.',
 'filedelete-otherreason'      => 'Beste arrazoiak/gehigarriak:',
 'filedelete-reason-otherlist' => 'Bestelako arrazoiak',
 'filedelete-reason-dropdown'  => '*Ezabatzeko arrazoi ohikoa
@@ -1592,6 +1599,7 @@ Kasu horietan ezabatutako azken aldaketen aukeraketa kendu edo agertarazi behark
 Undeletion will not be performed if it will result in the top page or file revision being partially deleted.
 In such cases, you must uncheck or unhide the newest deleted revision.',
 'undeletehistorynoadmin'       => 'Artikulua ezabatu egin da. Ezabatzeko azalpena beheko laburpenean erakusten da, ezabatu aurretik parte hartu zuten erabiltzaileen xehetasunekin batera. Ezabatutako berrikuspenen oraingo testua administratzaileek bakarrik ikus dezakete.',
+'undelete-revision'            => '$3(e)k $1(e)n aldaketa desegin du ($2(e)ra):',
 'undeleterevision-missing'     => 'Baliogabeko berrikuspena. Baliteke lotura ezegokia izatea, edo berriskupena leheneratu edo kendu izana.',
 'undelete-nodiff'              => 'Ez da aurkitu aurreko berrikuspenik.',
 'undeletebtn'                  => 'Leheneratu',
@@ -1821,7 +1829,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 
 Orrialdeak esportatzeko zehaztu hauen izenburuak beheko koadroan, izenburu bat lerroko, eta aukeratu zein bertsio esportatu nahi dituzun.
 
-Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] "[[{{MediaWiki:Mainpage}}]]" orrialdearentzako.',
+Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] "[[{{MediaWiki:Mainpage}}]]" orrialdearentzako.',
 'exportcuronly'     => 'Oraingo berrikuspena bakarrik hartu, ez historia guztia',
 'exportnohistory'   => "----
 '''Oharra:''' Formulario honen bitartez orrialdeen historia osoak esportatzeko aukera ezgaitu egin da, errendimendua dela-eta.",
@@ -1836,7 +1844,8 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'allmessagesname'           => 'Izena',
 'allmessagesdefault'        => 'Testu lehenetsia',
 'allmessagescurrent'        => 'Oraingo testua',
-'allmessagestext'           => 'MediaWikin erabiltzen diren mezu guztien zerrenda:',
+'allmessagestext'           => 'MediaWikin erabiltzen diren mezu guztien zerrenda.
+Mesedez bisitatu [http://www.mediawiki.org/wiki/Localisation MediaWiki] eta [[http://translatewiki.net translatewiki.net] orrialdeak MediaWikira ekarpenak egin badituzu.',
 'allmessagesnotsupportedDB' => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
 'allmessagesfilter'         => 'Mezu izenaren iragazkia:',
 'allmessagesmodified'       => 'Aldatutakoak bakarrik erakutsi',
@@ -2513,12 +2522,19 @@ Halaber [[Special:Watchlist/edit|aldatzaile estandarra]] erabil dezakezu.',
 'version-software-version'         => 'Bertsioa',
 
 # Special:FilePath
-'filepath'        => 'Fitxategi bidea',
-'filepath-page'   => 'Fitxategia:',
-'filepath-submit' => 'Ibilbidea',
+'filepath'         => 'Fitxategi bidea',
+'filepath-page'    => 'Fitxategia:',
+'filepath-submit'  => 'Ibilbidea',
+'filepath-summary' => 'Orrialde berezi honen fitxategi baten kokapen osoa itzultzen du.
+Irudiak erresoluzio osoan erakusten dira eta beste fitxategi mota batzuk eurak erabiltzeko programarekin zuzenean hasten dira.
+
+Sartu fitxategiaren izena "{{ns:image}}:" aurrizkirik gabe.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Artxibo bikoiztuen bilaketa',
+'fileduplicatesearch-summary'  => 'Hash balioaren arabera fitxategi bikoiztuen bilaketa.
+
+Sartu fitxategiaren izena "{{ns:image}}:" aurrizkirik gabe.',
 'fileduplicatesearch-legend'   => 'Duplikatu bat bilatu',
 'fileduplicatesearch-filename' => 'Fitxategi izena:',
 'fileduplicatesearch-submit'   => 'Bilaketa',

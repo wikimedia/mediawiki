@@ -367,7 +367,7 @@ $1',
 'protectedpagetext'    => 'সম্পাদনা এড়াতে এ পাতাটির ব্যবহার নিয়ন্ত্রণ করা হয়েছে।',
 'viewsourcetext'       => 'এ পাতাটি আপনি দেখতে এবং উৎসের অনুলিপি নিতে পারবেন:',
 'protectedinterface'   => 'এই পাতার বিষয়বস্তু উইকি সফটওয়্যারের একটি ইন্টারফেস বার্তা প্রদান করে, তাই এটিকে সুরক্ষিত করে রাখা হয়েছে।',
-'editinginterface'     => "'''সতর্কীকরণ:''' আপনি এমন একটি পাতা সম্পাদনা করছেন যা সফটওয়্যারের জন্য ইন্টারফেস টেক্সট প্রদান করে। এই পাতাতে সংঘটিত পরিবর্তন ব্যবহারকারী ইন্টারফেসে প্রভাব ফেলবে, যা অন্য ব্যবহারকারীরা দেখতে পাবেন। অনুবাদের জন্য অনুগ্রহ করে [http://translatewiki.net/wiki/Main_Page?setlang=bn Betawiki] ব্যবহার করার ব্যাপারটি বিবেচনা করুন। এটি মিডিয়াউইকি স্থানীয়করণ প্রকল্প।",
+'editinginterface'     => "'''সতর্কীকরণ:''' আপনি এমন একটি পাতা সম্পাদনা করছেন যা সফটওয়্যারের জন্য ইন্টারফেস টেক্সট প্রদান করে। এই পাতাতে সংঘটিত পরিবর্তন ব্যবহারকারী ইন্টারফেসে প্রভাব ফেলবে, যা অন্য ব্যবহারকারীরা দেখতে পাবেন। অনুবাদের জন্য অনুগ্রহ করে [http://translatewiki.net/wiki/Main_Page?setlang=bn translatewiki.net] ব্যবহার করার ব্যাপারটি বিবেচনা করুন। এটি মিডিয়াউইকি স্থানীয়করণ প্রকল্প।",
 'sqlhidden'            => '(এস কিউ এল কোয়েরি লুকানো আছে)',
 'cascadeprotected'     => 'এই পাতাটি সম্পাদনা থেকে সুরক্ষিত, কারণ পাতাটি নিচের {{PLURAL:$1|টি পাতার|টি পাতার}} অন্তর্গত, যে পাতা(গুলি) "প্রপাতাকার" (cascading) বৈশিষ্ট্য সহযোগে সুরক্ষিত করা হয়েছে:
 $2',
@@ -1636,7 +1636,7 @@ $1',
 
 পাতা রপ্তানি করতে চাইলে নিচের টেক্সট বাক্সে শিরোনামগুলি প্রবেশ করান, প্রতি লাইনে একটি শিরোনাম দিয়ে, এবং নির্বাচন করুন আপনি বর্তমান সংস্করণসহ সবগুলি পুরনো সংস্করণ পাতার ইতিহাসের লাইনসহ রপ্তানি করতে চান, নাকি কেবল সর্বশেষ সম্পাদনাটির তথ্যসহ বর্তমান সংস্করণটি রপ্তানি করতে চান।
 
-দ্বিতীয় ক্ষেত্রটিতে আপনি একটি সংযোগও ব্যবহার করতে পারেন, যেমন "[[{{MediaWiki:Mainpage}}]]" পাতাটির জন্য [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]।',
+দ্বিতীয় ক্ষেত্রটিতে আপনি একটি সংযোগও ব্যবহার করতে পারেন, যেমন "[[{{MediaWiki:Mainpage}}]]" পাতাটির জন্য [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]।',
 'exportcuronly'     => 'সম্পূর্ণ ইতিহাস নয়, কেবল বর্তমান সংশোধনটি অন্তর্ভুক্ত করা হোক',
 'exportnohistory'   => "----
 '''লক্ষ্য করুন:''' কর্মদক্ষতা-সম্পর্কিত কারণের জন্য এই ফর্মের মাধ্যমে কোন পাতার সমগ্র ইতিহাস রপ্তানি করা নিষ্ক্রিয় করা হয়েছে।",
@@ -1651,7 +1651,7 @@ $1',
 'allmessagesdefault'        => 'আদি টেক্সট',
 'allmessagescurrent'        => 'বর্তমান টেক্সট',
 'allmessagestext'           => 'নিচে মিডিয়াউইকি: নামস্থানে অন্তর্ভুক্ত সিস্টেম বার্তাগুলোর তালিকা দেওয়া হল।
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ব্যবহার করা যাবে না কারণ '''\$wgUseDatabaseMessages''' বন্ধ করে রাখা আছে।",
 'allmessagesfilter'         => 'বার্তা নামের ফিল্টার:',
 'allmessagesmodified'       => 'শুধু পরিবর্তিত অংশগুলো দেখাও',

@@ -400,7 +400,7 @@ Ju lutem provojeni përsëri pas disa minutash.',
 'protectedpagetext'    => 'Kjo faqe është mbyllur për të ndaluar redaktimin.',
 'viewsourcetext'       => 'Ju mund të shikoni dhe kopjoni tekstin burimor të kësaj faqe:',
 'protectedinterface'   => 'Kjo faqe përmban tekst për pamjen gjuhësorë të softuerit dhe është e mbrojtur për të penguar keqpërdorimet.',
-'editinginterface'     => "'''Kujdes:''' Po redaktoni një faqe që përdoret për tekstin ose pamjen e softuerit. Ndryshimet e kësaj faqeje do të prekin tekstin ose pamjen për të gjithë përdoruesit e tjerë. Për përkthime, ju lutem konsideroni përdorimin e [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], projektit të përkthimit të MediaWiki-it.",
+'editinginterface'     => "'''Kujdes:''' Po redaktoni një faqe që përdoret për tekstin ose pamjen e softuerit. Ndryshimet e kësaj faqeje do të prekin tekstin ose pamjen për të gjithë përdoruesit e tjerë. Për përkthime, ju lutem konsideroni përdorimin e [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], projektit të përkthimit të MediaWiki-it.",
 'sqlhidden'            => '(Pyetje SQL e fshehur)',
 'cascadeprotected'     => 'Kjo faqe është mbrojtur nga redaktimi pasi është përfshirë në {{PLURAL:$1|faqen|faqet}} e mëposhtme që {{PLURAL:$1|është|janë}} mbrojtur sipas metodës "ujëvarë":
 $2',
@@ -1805,7 +1805,7 @@ Faqja "[[:$1]]" ekziston, dëshironi ta grisni për të mundësuar zhvendosjen?'
 'export'            => 'Eksportoni faqe',
 'exporttext'        => 'Mund të eksportoni tekstin dhe historinë e redaktimit e një faqeje ose disa faqesh të mbështjesha në XML; kjo mund të importohet në një wiki tjetër që përdor softuerin MediaWiki (tani për tani, ky opsion nuk është përfshirë tek {{SITENAME}}).
 
-Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijoni lidhje të tipit [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] si [[{{MediaWiki:Mainpage}}]].',
+Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijoni lidhje të tipit [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] si [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Përfshi vetëm versionin e fundit, jo të gjithë historinë',
 'exportnohistory'   => "'''Shënim:''' Eksportimi i historisë së faqes për shkaqe të rendimentit nuk është e mundshme.",
 'export-submit'     => 'Eksporto',

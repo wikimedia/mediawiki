@@ -1328,7 +1328,7 @@ liá-yong khó-yî chiông yû-kôan vùn-chông theu-ko "[[Special:Import|Thô-
 
 Yeu thô-chhut vùn-chông, chhiáng chhai ha-mien ke vùn-sṳ-khiông chûng sû-ngi̍p vùn-chông phêu-thì, mî-hàng yit-ke phêu-thì, pin sién-chet ngì he-feu sî-yeu thô-chhut tai-yû vùn-chông li̍t-sṳ́ yî-chhièn ke pán-pún, fe̍t-he chak sién-chet thô-chhut tai-yû chui-heu yit-chhṳ phiên-cho sêu-sit ke tông-chhièn pán-pún.
 
-Nang-ngoi ngì hí-khó li-yung lièn-kiet thô-chhut tóng-on, yì-yi ngì hí-khó sṳ́-yung [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] thô-chhut [[{{MediaWiki:Mainpage}}]] vùn-chông.',
+Nang-ngoi ngì hí-khó li-yung lièn-kiet thô-chhut tóng-on, yì-yi ngì hí-khó sṳ́-yung [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] thô-chhut [[{{MediaWiki:Mainpage}}]] vùn-chông.',
 'exportcuronly'     => 'Chak thô-chhut tông-chhièn pán-pún, put pâu-hàm vàn-cháng ke li̍t-sṳ́ pán-pún.',
 'exportnohistory'   => "----
 '''Chu-yi:''' Chhut-yì sin-nèn ngièn-yîn, chhiùng-chhṳ péu-tân thô-chhut vùn-chông ke chhiòn-phu li̍t-sṳ́ yí-kîn pûn thìn yung.",
@@ -1342,7 +1342,7 @@ Nang-ngoi ngì hí-khó li-yung lièn-kiet thô-chhut tóng-on, yì-yi ngì hí-
 'allmessagesdefault'        => 'Yi-sat ke vùn-sṳ',
 'allmessagescurrent'        => 'Tông-chhièn ke vùn-sṳ',
 'allmessagestext'           => 'Liá-piên lie̍t-chhut só-yû hí-khó thin-chṳ ke ne-thúng kie-mien.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => 'Ne-thúng kie-mien kûng-yung chhu-yî kôan-pit chong-thai (wgUseDatabaseMessages)。',
 'allmessagesfilter'         => 'Chang-chet péu-tha̍t sṳt ko-li thiàu-khien:',
 'allmessagesmodified'       => 'Chṳ́ hién-sṳ kiên-kói ko ke.',

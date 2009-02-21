@@ -634,7 +634,8 @@ Ladet-IP olik binon $3, e nüm blokama at binon #$5. Mäniotolös nünis löpik 
 Ad jafön padi at, primolös ad klavön vödemi olik in penaspad dono (logolöd [[{{MediaWiki:Helppage}}|yufapadi]] tefü nüns tefik votik).
 If binol is pölo, välolös knopi: '''geikön''' bevüresodatävöma olik.",
 'anontalkpagetext'                 => "----''Bespikapad at duton lü geban nennemik, kel no nog ejafon kali, u no vilon labön u gebön oni. Sekü atos pemütobs ad gebön ladeti-IP ad dientifükön gebani at. Ladets-IP kanons pagebön fa gebans difik. If binol geban nennemik e cedol, das küpets netefik pelüodükons ole, [[Special:UserLogin|jafolös, begö! kali]], u [[Special:UserLogin|nunädolös oli]] ad vitön kofudi ko gebans nennemik votik.''",
-'noarticletext'                    => 'Atimo no dabinon vödem su pad at. Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
+'noarticletext'                    => 'Atimo no dabinon vödem su pad at.
+Kanol [[Special:Search/{{PAGENAME}}|sukön padatiädi at]] su pads votik u [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakön padi at].',
 'userpage-userdoesnotexist'        => 'Gebanakal: "$1" no peregistaron. Fümükolös, va vilol jäfön/redakön padi at.',
 'clearyourcache'                   => "'''Prudö!''' Pos dakip buükamas, mögos, das ozesüdos ad nedemön memi nelaidüpik bevüresodatävöma ad logön votükamis. 
 '''Mozilla / Firefox / Safari:''' kipolöd klavi: ''Shift'' dono e välolöd eli ''Reload'' (= dönulodön) me mugaparat, u dränolöd klävis: ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' if labol eli Macintosh);
@@ -662,7 +663,7 @@ Redakam perefudon ad vitön dädükami padavödema.
 Atos jenon ömna ven geboy düni pladulöma nennemik bevüresodik säkädik.'''",
 'editing'                          => 'Redakam pada: $1',
 'editingsection'                   => 'Redakam pada: $1 (diläd)',
-'editingcomment'                   => 'Redakam pada: $1 (küpet)',
+'editingcomment'                   => 'Redakam pada: $1 (diläd nulik)',
 'editconflict'                     => 'Redakamakonflit: $1',
 'explainconflict'                  => 'Ek evotükon padi at sisä äprimol ad redakön oni. Vödem balid jonon padi soäsä dabinon anu. Votükams olik pajonons in vödem telid. Sludolös, vio fomams tel at mutons pabalön. Kanol kopiedön se vödem telid ini balid.
 <b>Te vödem balid podakipon!</b><br />',
@@ -1231,7 +1232,7 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'duplicatesoffile'               => '{{Plural:$1|Ragiv fovik leigon|Ragivs fovik $1 leigons}} ko ragiv at:',
 'sharedupload'                   => 'Ragiv at binon komunik e kanon pagebön fa proyegs votik.',
 'shareduploadwiki'               => 'Logolös eli $1 ad getön nünis pluik.',
-'shareduploadwiki-desc'          => 'Bepenam su $1 ona in kipidöp kobädik pajonon dono.',
+'shareduploadwiki-desc'          => 'Bepenam su $1 ona us pajonon dono.',
 'shareduploadwiki-linktext'      => 'bepenamapad ragiva',
 'shareduploadduplicate'          => 'Ragiv at leigon ko ragiv: $1 se kipedöp kobädik.',
 'shareduploadduplicate-linktext' => 'ragiv votik',
@@ -1583,7 +1584,7 @@ Prudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.',
 'alreadyrolled'               => 'No eplöpos ad sädunön redakami lätik pada: [[:$1]] fa geban: [[User:$2|$2]] ([[User talk:$2|Bespikapad]]); ek ya eredakon ud esädunon padi at.
 
 Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]).',
-'editcomment'                 => "Redakamaküpet äbinon: „''$1''“.", # only shown if there is an edit comment
+'editcomment'                 => "Redakamaplän äbinon: „''$1''“.", # only shown if there is an edit comment
 'revertpage'                  => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons ad fomam ma redakam lätik gebana: [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.',
 'sessionfailure'              => 'Jiniko ädabinon säkäd seimik pö nunädam olik. 
@@ -1884,7 +1885,7 @@ Yeged nulik "[[:$1]]" ya dabinon. Vilol-li moükön oni ad jafön spadi pro top�
 
 Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e välolös, va vilol fomami anuik kobü fomams büik valik, ko kedets padajenotema, u te fomami anuik kobü nüns dö redakam lätikün.
 
-Ön jenet lätik, kanol i gebön yümi, a.s.: [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pro pad "[[{{MediaWiki:Mainpage}}]]".',
+Ön jenet lätik, kanol i gebön yümi, a.s.: [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pro pad "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Ninükolöd te revidi anuik, no jenotemi valik',
 'exportnohistory'   => "----
 '''Noet:''' Seveig padajenotema lölik medü fomet at penemögükon ad gudükumön duinafägi.",
@@ -2451,10 +2452,10 @@ $1',
 'table_pager_empty'        => 'Seks nonik',
 
 # Auto-summaries
-'autosumm-blank'   => 'Ninäd valik pemoükon se pad',
+'autosumm-blank'   => 'Emoükon ninädi valik se pad',
 'autosumm-replace' => "Pad pepläadon me '$1'",
 'autoredircomment' => 'Lüodükon lü [[$1]]',
-'autosumm-new'     => 'Pad nulik: $1',
+'autosumm-new'     => "Ejafon padi ko: '$1'",
 
 # Live preview
 'livepreview-loading' => 'Pabelodon…',

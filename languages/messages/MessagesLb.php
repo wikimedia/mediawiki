@@ -462,7 +462,7 @@ Ufro: $2',
 'protectedpagetext'    => 'Dës Säit ass fir Ännerunge gespaart.',
 'viewsourcetext'       => 'Dir kënnt de Quelltext vun dëser Säit kucken a kopéieren:',
 'protectedinterface'   => 'Op dëser Säit fannt Dir Text fir de Sprooch-Interface vun der Software an dofir ass si gespaart fir Mëssbrauch ze verhenneren.',
-'editinginterface'     => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. Ännerungen op dëser Säit änneren den Interface-Text, je no Kontext, op allen oder verschiddene Säiten, déi vun alle Benotzer gesi ginn. Fir d'Iwwersetzungen z'änneren invitéiere mir iech de [http://translatewiki.net/wiki/Main_Page?setlang=lb Projet Betawiki] vun den internationale Messagen ze benotzen.",
+'editinginterface'     => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. Ännerungen op dëser Säit änneren den Interface-Text, je no Kontext, op allen oder verschiddene Säiten, déi vun alle Benotzer gesi ginn. Fir d'Iwwersetzungen z'änneren invitéiere mir iech de [http://translatewiki.net/wiki/Main_Page?setlang=lb Projet translatewiki.net] vun den internationale Messagen ze benotzen.",
 'sqlhidden'            => '(SQL-Offro verstoppt)',
 'cascadeprotected'     => 'Dës Säit gouf fir Ännerunge gespaart, well se duerch Cascadeprotectioun vun {{PLURAL:$1|dëser Säit|dëse Säite}} gespaart ass mat der Cascadenoptioun:
 $2',
@@ -731,7 +731,7 @@ Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méigl
 'protectedpagewarning'             => "'''OPGEPASST: Dës Säit gouf gespaart a kann nëmme vun engem Administrateur geännert ginn.'''",
 'semiprotectedpagewarning'         => "'''Bemierkung:''' Dës Säit gouf esou gespaart, datt nëmme ugemellte Benotzer s'ännere kënnen.",
 'cascadeprotectedwarning'          => "'''Passt op:''' Dës Säit gouf gespaart a kann nëmme vu Benotzer mat Administreursrechter geännert ginn. Si ass an dës {{PLURAL:$1|Säit|Säiten}} agebonnen, déi duerch Kaskadespäroptioun gespaart{{PLURAL:$1|ass|sinn}}:'''",
-'titleprotectedwarning'            => "'''OPGEPASST: Dës Säit gouf gespaart sou datt nëmme verschidde Benotzer se uleeë kënnen.'''",
+'titleprotectedwarning'            => "'''OPGEPASST: Dës Säit gouf gespaart sou datt [[Special:ListGroupRights|spezifesch Rechter]] gebraucht gi fir se uleeën ze kënnen.'''",
 'templatesused'                    => 'Schablounen déi op dëser Säit am Gebrauch sinn:',
 'templatesusedpreview'             => 'Schablounen déi an dëser nach net gespäicherter Versioun benotzt ginn:',
 'templatesusedsection'             => 'Schablounen déi an dësem Abschnitt am Gebrauch sinn:',
@@ -1271,7 +1271,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'duplicatesoffile'               => '{{PLURAL:$1|De Fichier ass een Doublon|Dës Fichiere sinn Doublonen}} vum Fichier:',
 'sharedupload'                   => 'Dës Fichier ass ee gemeinsam genotzten Upload a ka vun anere Projeten benotzt ginn.',
 'shareduploadwiki'               => 'Kuckt w.e.g. $1 fir méi Informatiounen.',
-'shareduploadwiki-desc'          => "D'Beschreiwung op sénger $1 op dem gedeelte Repertoire steet ënnendrënner.",
+'shareduploadwiki-desc'          => "D'Beschreiwung op sénger $1, steet ënnendrënner.",
 'shareduploadwiki-linktext'      => 'Datei-Beschreiwungssäit',
 'shareduploadduplicate'          => 'Dëse Fichier ass een Doublon vun $1 aus dem gemeinsam genotzte Repertoire.',
 'shareduploadduplicate-linktext' => 'engem anere Fichier',
@@ -1936,7 +1936,7 @@ Dat dann an eng aner Wiki mat MediaWiki Software impotéiert gi mat Hellef vun d
 
 Fir eng Säit z'exportéieren, gitt den Titel an d'Textkëscht heidrënner an, een Titel pro Linn, a wielt aus op Dir nëmmen déi aktuell Versioun oder all Versioune mam ganzen Historique exportéiere wëllt.
 
-Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link benotze wéi z.B [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] fir d'\"[[{{MediaWiki:Mainpage}}]]\".",
+Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link benotze wéi z.B [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] fir d'\"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => 'Nëmmen déi aktuell Versioun exportéieren an net de ganzen Historique',
 'exportnohistory'   => "----
 '''Hiwäis:''' Den Export vu komplette Versiounshistoriquen ass aus Performancegrënn bis op weideres net méiglech.",
@@ -1952,7 +1952,7 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Aktuellen Text',
 'allmessagestext'           => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.
-Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] a [http://translatewiki.net Betawiki] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
+Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] a [http://translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
 'allmessagesnotsupportedDB' => "Dës Säit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
 'allmessagesfilter'         => 'Noriichtennummfilter:',
 'allmessagesmodified'       => 'Nëmme geännerter weisen',

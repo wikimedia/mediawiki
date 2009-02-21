@@ -920,7 +920,7 @@ Teri yaki, a nyanganyisize.",
 'allmessagesdefault' => 'Selt orge',
 'allmessagescurrent' => 'Selt nca',
 'allmessagestext'    => 'Bye mukoloko sa mukoloko di mulumiwani di MediaWiki poo.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 
 # Thumbnails
 'thumbnail-more'  => 'Pusize',

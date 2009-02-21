@@ -465,7 +465,7 @@ $messages = array(
 'toc'                     => 'Spis treści',
 'showtoc'                 => 'pokaż',
 'hidetoc'                 => 'ukryj',
-'thisisdeleted'           => 'Pokazać czy odtworzyć?',
+'thisisdeleted'           => 'Pokazać czy odtworzyć $1?',
 'viewdeleted'             => 'Zobacz $1',
 'restorelink'             => '{{PLURAL:$1|jedną usuniętą wersję|$1 usunięte wersje|$1 usuniętych wersji}}',
 'feedlinks'               => 'Kanały:',
@@ -562,7 +562,7 @@ Zapytanie: $2',
 'protectedinterface'   => 'Ta strona zawiera tekst interfejsu oprogramowania, dlatego możliwość jej edycji została zablokowana.',
 'editinginterface'     => "'''Ostrzeżenie:''' Edytujesz stronę, która zawiera tekst interfejsu oprogramowania.
 Zmiany na tej stronie zmienią wygląd interfejsu dla innych użytkowników.
-Rozważ wykonanie tłumaczenia na [http://translatewiki.net/wiki/Main_Page?setlang=pl Betawiki], specjalizowanym projekcie lokalizacji oprogramowania MediaWiki.",
+Rozważ wykonanie tłumaczenia na [http://translatewiki.net/wiki/Main_Page?setlang=pl translatewiki.net], specjalizowanym projekcie lokalizacji oprogramowania MediaWiki.",
 'sqlhidden'            => '(ukryto zapytanie SQL)',
 'cascadeprotected'     => 'Ta strona została zabezpieczona przed edycją, ponieważ jest ona zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:
 $2',
@@ -848,7 +848,7 @@ Zapisując swoją edycję, oświadczasz, że ten tekst jest Twoim dziełem lub p
 'protectedpagewarning'             => "'''Uwaga! Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z uprawnieniami administratora.'''",
 'semiprotectedpagewarning'         => "'''Uwaga!''' Ta strona została zabezpieczona i tylko zarejestrowani użytkownicy mogą ją edytować.",
 'cascadeprotectedwarning'          => "'''Uwaga!''' Ta strona została zabezpieczona i tylko użytkownicy z uprawnieniami administratora mogą ją edytować. Strona ta jest zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:",
-'titleprotectedwarning'            => "'''Uwaga! Utworzenie strony o tej nazwie zostało zablokowane. Tylko niektórzy użytkownicy mogą ją utworzyć.'''",
+'titleprotectedwarning'            => "'''Uwaga! Utworzenie strony o tej nazwie zostało zablokowane. Do jej utworzenia wymagane są [[Special:ListGroupRights|specyficzne uprawnienia]].'''",
 'templatesused'                    => 'Szablony użyte w tym artykule:',
 'templatesusedpreview'             => 'Szablony użyte w tym podglądzie:',
 'templatesusedsection'             => 'Szablony użyte w tej sekcji:',
@@ -1191,7 +1191,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'right-bot'                  => 'Oznaczanie edycji jako wykonanych automatycznie',
 'right-nominornewtalk'       => 'Drobne zmiany na stronach dyskusji użytkowników nie włączają powiadomienia o nowej wiadomości',
 'right-apihighlimits'        => 'Zwiększony limit w zapytaniach, wykonywanych poprzez interfejs API',
-'right-writeapi'             => 'Zapisu poprzez interfejs API',
+'right-writeapi'             => 'Zapis poprzez interfejs API',
 'right-delete'               => 'Usuwanie stron',
 'right-bigdelete'            => 'Usuwanie stron z długą historią edycji',
 'right-deleterevision'       => 'Usuwanie i odtwarzanie określonej wersji strony',
@@ -1214,7 +1214,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'right-noratelimit'          => 'Brak ograniczeń przepustowości',
 'right-import'               => 'Import stron z innych wiki',
 'right-importupload'         => 'Import stron poprzez przesłanie pliku',
-'right-patrol'               => 'Oznaczanie edycji jako „sprawdzone”',
+'right-patrol'               => 'Oznaczanie edycji jako „sprawdzonych”',
 'right-autopatrol'           => 'Własne edycje automatycznie oznaczane jako „sprawdzone”',
 'right-patrolmarks'          => 'Podgląd znaczników patrolowania ostatnich zmian – oznaczania jako „sprawdzone”',
 'right-unwatchedpages'       => 'Podgląd listy stron nieobserwowanych',
@@ -2110,7 +2110,7 @@ Wyeksportowane informacje można później zaimportować do innej wiki, działaj
 
 Wyeksportowanie wielu stron wymaga wpisania poniżej tytułów stron po jednym tytule w wierszu oraz określenia, czy ma zostać wyeksportowana bieżąca czy wszystkie wersje strony z opisami edycji lub też tylko bieżąca wersja z opisem ostatniej edycji.
 
-Możesz również użyć linku, np. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] dla strony „[[{{MediaWiki:Mainpage}}]]”.',
+Możesz również użyć linku, np. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] dla strony „[[{{MediaWiki:Mainpage}}]]”.',
 'exportcuronly'     => 'Tylko bieżąca wersja, bez historii',
 'exportnohistory'   => "----
 '''Uwaga:''' Wyłączono możliwość eksportowania pełnej historii stron z użyciem tego narzędzia z powodu kłopotów z wydajnością.",
@@ -2126,7 +2126,7 @@ Możesz również użyć linku, np. [[{{ns:special}}:Export/{{MediaWiki:Mainpage
 'allmessagesdefault'        => 'Tekst domyślny',
 'allmessagescurrent'        => 'Tekst obecny',
 'allmessagestext'           => 'Lista wszystkich komunikatów systemowych dostępnych w przestrzeni nazw MediaWiki.
-Odwiedź [http://www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [http://translatewiki.net Betawiki], jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.',
+Odwiedź [http://www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [http://translatewiki.net translatewiki.net], jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.',
 'allmessagesnotsupportedDB' => "Ta strona nie może być użyta, ponieważ zmienna '''\$wgUseDatabaseMessages''' jest wyłączona.",
 'allmessagesfilter'         => 'Filtr nazw komunikatów',
 'allmessagesmodified'       => 'Pokaż tylko zmodyfikowane',

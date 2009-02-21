@@ -421,7 +421,7 @@ Consulta: $2',
 'protectedpagetext'    => 'Esta página ha sido bloqueada para evitar su edición.',
 'viewsourcetext'       => 'Puedes ver y copiar el código fuente de esta página:',
 'protectedinterface'   => 'Esta página provee texto del interfaz del software, y está protegida para evitar vandalismos.',
-'editinginterface'     => "'''Aviso:''' Estás editando una página usada para proporcionar texto a la interfaz de {{SITENAME}}. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios.",
+'editinginterface'     => "'''Aviso:''' Estás editando una página usada para proporcionar texto de interface para el software. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios. Para traducciones, por favor considere usar [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], el proyecto de localización MediaWiki.",
 'sqlhidden'            => '(Consulta SQL oculta)',
 'cascadeprotected'     => 'Esta página ha sido protegida para su edición, porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que están protegidas con las opción de "cascada":
 $2',
@@ -680,7 +680,7 @@ Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más 
 'protectedpagewarning'             => "'''ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
 'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
-'titleprotectedwarning'            => "'''ATENCIÓN:  Esta página está protegida de modo que sólo algunos usuarios pueden crearla.'''",
+'titleprotectedwarning'            => "'''ATENCIÓN:  Esta página está protegida de modo que [[Special:ListGroupRights|derechos especificos]] son necesarios para crearlo.'''",
 'templatesused'                    => 'Plantillas usadas en esta página:',
 'templatesusedpreview'             => 'Plantillas usadas en esta previsualización:',
 'templatesusedsection'             => 'Plantillas usadas en esta sección:',
@@ -1235,7 +1235,7 @@ archivo a esa fecha.',
 'duplicatesoffile'               => '{{PLURAL:$1|El siguiente archivo es un duplicado|Los siguientes $1 archivos son duplicados}} de este:',
 'sharedupload'                   => 'Este archivo está compartido y puede usarse desde otros proyectos.',
 'shareduploadwiki'               => 'Puede consultar $1 para más información.',
-'shareduploadwiki-desc'          => 'A continuación se muestra la descripción sobre su $1 del depósito compartido.',
+'shareduploadwiki-desc'          => 'La descripcion en su $1 hay mostrada debajo.',
 'shareduploadwiki-linktext'      => 'página de descripción del archivo',
 'shareduploadduplicate'          => 'Este archivo es un duplicado de $1 del depósito compartido.',
 'shareduploadduplicate-linktext' => 'otro fichero',
@@ -1901,7 +1901,7 @@ La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al 
 
 Para exportar páginas, escribe los títulos en la caja de texto de abajo, un título por línea, y selecciona si quieres la versión actual junto a las versiones anteriores, con las líneas del historial, o sólo la versión actual con la información sobre la última edición.
 
-En el último caso también puedes usar un enlace, por ejemplo [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para la página "[[{{MediaWiki:Mainpage}}]]".',
+En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para la página "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Incluye sólo la revisión actual, no el historial de revisiones al completo.',
 'exportnohistory'   => "----
 '''Nota:''' Exportar el historial completo de páginas a través de este formulario ha sido deshabilitado debido a problemas de rendimiento del servidor.",

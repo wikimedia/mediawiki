@@ -7,21 +7,57 @@
  * @author Alison
  * @author Caoimhin
  * @author Sionnach
+ * @author Steafan31
  * @author לערי ריינהארט
  */
 
 $messages = array(
 # Dates
-'thursday' => 'Diardaoin',
-'friday'   => 'Di-Haoine',
-'august'   => 'An Lùnastal',
+'sunday'        => 'Didòmhnaich',
+'monday'        => 'Diluain',
+'tuesday'       => 'Dimàirt',
+'wednesday'     => 'Diciadain',
+'thursday'      => 'Diardaoin',
+'friday'        => 'Dihaoine',
+'saturday'      => 'Disathairne',
+'sun'           => 'DiD',
+'mon'           => 'DiL',
+'tue'           => 'DiM',
+'wed'           => 'DiC',
+'thu'           => 'DiA',
+'fri'           => 'DiH',
+'sat'           => 'DiS',
+'january'       => 'Faoilleach',
+'february'      => 'Gearran',
+'march'         => 'Màirt',
+'april'         => 'Giblean',
+'may_long'      => 'Cèitean',
+'june'          => 'Òg-mhios',
+'july'          => 'Iuchar',
+'august'        => 'An Lùnastal',
+'september'     => 'Sultain',
+'october'       => 'Dàmhair',
+'november'      => 'Samhain',
+'december'      => 'Dùbhlachd',
+'january-gen'   => 'an Fhaoillich',
+'february-gen'  => "a' Ghearrain",
+'march-gen'     => "a' Mhàirt",
+'april-gen'     => "a' Ghiblein",
+'may-gen'       => "a' Chèitein",
+'june-gen'      => 'an Òg-mhiosa',
+'july-gen'      => 'an Iuchair',
+'august-gen'    => 'an Lùnastail',
+'september-gen' => 'na Sultaine',
+'october-gen'   => 'na Dàmhair',
+'november-gen'  => 'na Samhna',
+'december-gen'  => 'na Dùbhlachd',
 
 # Categories related messages
 'category_header' => 'Altan sa ghnè "$1"',
 'subcategories'   => 'Fo-ghnethan',
 
 'about'          => 'Mu',
-'newwindow'      => "(a'fosgladh ann an uinneag ùr)",
+'newwindow'      => '(a’ fosgladh ann an uinneig ùir)',
 'qbfind'         => 'Lorg',
 'qbedit'         => 'Deasaich',
 'qbpageoptions'  => 'An duilleag seo',
@@ -113,6 +149,7 @@ $1",
 'yourpassword'               => 'Am facal-faire agaibh',
 'yourpasswordagain'          => 'Ath-sgrìobh facal-faire',
 'login'                      => 'Cuir a-steach',
+'nav-login-createaccount'    => 'Log a-steach/Cruthaich cunntas',
 'userlogin'                  => 'Cuir a-steach',
 'logout'                     => 'Cuir a-mach',
 'userlogout'                 => 'Clàraich a-mach',
@@ -360,9 +397,11 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'importnotext' => 'Falamh no gun teacsa',
 
 # Tooltip help for the actions
-'tooltip-minoredit' => 'Comharraich seo mar meanbh-dheasachadh',
-'tooltip-save'      => 'Sàbhail na mùthaidhean agaibh',
-'tooltip-preview'   => 'Roi-sheallaibh na mùthaidhean agaibh; cleachdaibh seo mas sàbhail sibh iad!',
+'tooltip-n-mainpage' => "Tadhail air a' phrìomh dhuilleag",
+'tooltip-n-portal'   => "Mun phròiseact, na 's urrainn dhuit dhèanamh, far an lorgar nithean",
+'tooltip-minoredit'  => 'Comharraich seo mar meanbh-dheasachadh',
+'tooltip-save'       => 'Sàbhail na mùthaidhean agaibh',
+'tooltip-preview'    => 'Roi-sheallaibh na mùthaidhean agaibh; cleachdaibh seo mas sàbhail sibh iad!',
 
 # Attribution
 'othercontribs' => 'Stèidhichte air obair le $1.',

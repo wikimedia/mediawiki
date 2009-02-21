@@ -739,7 +739,7 @@ Birneşe mïnöttan qaýta baýqap köriñiz.',
 'protectedinterface'   => 'Bul bet bağdarlamalıq jasaqtamanıñ tildesw mätinin jetistiredi, sondıqtan qïyanattı qaqpaýlaw üşin özgertwi qulıptalğan.',
 'editinginterface'     => "'''Qulaqtandırw:''' Bağdarlamalıq jasaqtamanıñ tildesw mätinin jetistiretin betin öñdep jatırsız.
 Bul bettiñ özgertwi basqa qatıswşılarğa paýdalanwşılıq tildeswi qalaý körinetine äser etedi.
-Awdarmalar üşin, MediaWiki bağdarlamasın jersindirw [http://translatewiki.net/wiki/Main_Page?setlang=kk Betawiki jobası] arqılı qarap şeşiñiz.",
+Awdarmalar üşin, MediaWiki bağdarlamasın jersindirw [http://translatewiki.net/wiki/Main_Page?setlang=kk translatewiki.net jobası] arqılı qarap şeşiñiz.",
 'sqlhidden'            => '(SQL suranımı jasırılğan)',
 'cascadeprotected'     => 'Bul bet öñdewden qorğalğan, sebebi bul kelesi «bawlı qorğawı» qosılğan {{PLURAL:$1|bettiñ|betterdiñ}} kirikbeti:
 $2',
@@ -2265,7 +2265,7 @@ Soñğı jağdaýda siltemeni de, mısalı «{{{{ns:mediawiki}}:Mainpage}}» bet
 'allmessagesdefault'        => 'Ädepki mätini',
 'allmessagescurrent'        => 'Ağımdıq mätini',
 'allmessagestext'           => 'Mında {{ns:mediawiki}} esim ayasında jetimdi jüýe xabar tizimi beriledi.
-Eger ämbebap MediaWiki jersindirwge üles qosqıñız kelse [http://www.mediawiki.org/wiki/Localisation MediaWiki jersindirw betine] jäne [http://translatewiki.net Betawiki jobasına] barıp şığıñız.',
+Eger ämbebap MediaWiki jersindirwge üles qosqıñız kelse [http://www.mediawiki.org/wiki/Localisation MediaWiki jersindirw betine] jäne [http://translatewiki.net translatewiki.net jobasına] barıp şığıñız.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' öşirilgen sebebinen '''{{ns:special}}:AllMessages''' beti qoldanılmaýdı.",
 'allmessagesfilter'         => 'Xabardı atawımen süzgilew:',
 'allmessagesmodified'       => 'Tek özgertilgendi körset',

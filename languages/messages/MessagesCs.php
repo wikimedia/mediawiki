@@ -657,7 +657,7 @@ Dotaz: $2',
 'protectedpagetext'    => 'Tato stránka byla zamčena, takže ji nelze editovat.',
 'viewsourcetext'       => 'Můžete si prohlédnout a zkopírovat zdrojový kód této stránky:',
 'protectedinterface'   => 'Tato stránka obsahuje text softwarového rozhraní a smějí ji editovat jen správci.',
-'editinginterface'     => "'''Upozornění:''' Editujete stránku, která definuje texty rozhraní. Změny této stránky ovlivní vzhled uživatelského rozhraní všem uživatelům.",
+'editinginterface'     => "'''Upozornění:''' Editujete stránku, která definuje texty rozhraní. Změny této stránky ovlivní vzhled uživatelského rozhraní všem uživatelům. Při úpravách českého překladu zvažte použití [http://translatewiki.net/wiki/Main_Page?setlang=cs Betawiki], projektu pro lokalizaci MediaWiki.",
 'sqlhidden'            => '(SQL dotaz skryt)',
 'cascadeprotected'     => 'Tato stránka je zamčena, neboť je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem:
 $2',
@@ -908,7 +908,7 @@ Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírová
 'protectedpagewarning'             => "'''Varování:''' Tato stránka byla zamčena, takže ji mohou editovat pouze správci.",
 'semiprotectedpagewarning'         => '<strong>Poznámka:</strong> Tato stránka byla zamčena, takže ji mohou editovat pouze registrovaní uživatelé.',
 'cascadeprotectedwarning'          => "'''Varování:''' Tato stránka byla zamčena, takže ji mohou editovat pouze správci. Je vložena na následující, kaskádním zámkem  {{PLURAL:$1|zamčenou, stránku|zamčené, stránky|zamčené, stránky}}:",
-'titleprotectedwarning'            => "'''POZOR:  Tento název byl uzamčen, pouze někteří uživatelé zde mohou založit stránku.'''",
+'titleprotectedwarning'            => "'''VAROVÁNÍ: Tato stránka byla uzamčena, takže k jejímu založení jsou potřeba [[Special:ListGroupRights|zvláštní oprávnění]].'''",
 'templatesused'                    => 'Šablony používané na této stránce:',
 'templatesusedpreview'             => 'Šablony používané v tomto náhledu:',
 'templatesusedsection'             => 'Šablony používané v této části stránky:',
@@ -1461,7 +1461,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'duplicatesoffile'               => '{{plural:$1|Následující soubor je duplikát|Následující $1 soubory jsou duplikáty|Následujících $1 souborů jsou duplikáty}} tohoto souboru:',
 'sharedupload'                   => 'Tento soubor je sdílený a může být používán ostatními projekty.',
 'shareduploadwiki'               => 'Více informací obsahuje $1.',
-'shareduploadwiki-desc'          => 'Níže je zobrazen popis, který obsahuje jeho $1 na sdíleném úložišti.',
+'shareduploadwiki-desc'          => 'Níže jsou zobrazeny informace, které obsahuje jeho tamější $1.',
 'shareduploadwiki-linktext'      => 'stránka s popisem souboru',
 'shareduploadduplicate'          => 'Tento soubor je duplikát souboru $1 ze sdíleného úložiště.',
 'shareduploadduplicate-linktext' => 'další soubor',
@@ -2094,7 +2094,7 @@ Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolně
 
 Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.
 
-V druhém případě můžete také používat přímý odkaz, např. pomocí [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] se vyexportuje „[[{{MediaWiki:Mainpage}}]]“.',
+V druhém případě můžete také používat přímý odkaz, např. pomocí [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] se vyexportuje „[[{{MediaWiki:Mainpage}}]]“.',
 'exportcuronly'     => 'Zahrnout jen současnou verzi, ne plnou historii',
 'exportnohistory'   => "----
 '''Poznámka:''' export plných historií prostřednictvím tohoto formuláře byl z výkonnostních důvodů zakázán.",

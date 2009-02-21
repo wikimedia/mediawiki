@@ -241,7 +241,7 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō [[Special:UserLogi
 'headline_sample' => 'Hēafodlīnan traht',
 'image_sample'    => 'Bisen.jpg',
 'image_tip'       => 'Impod biliþ',
-'media_sample'    => 'Bisen.mp3',
+'media_sample'    => 'Bisen.ogg',
 'sig_tip'         => 'Þín namansegn mid tídstempunge',
 
 # Edit pages

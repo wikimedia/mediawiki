@@ -310,7 +310,7 @@ I seguenti cołegamenti i xe en lengua inglese:
 
 # Main script and global functions
 'nosuchaction'      => 'Operazion mìa riconossùa',
-'nosuchactiontext'  => "L'operazion richiesta con la URL inserìa no la xe stà riconossiùa dal software MediaWiki",
+'nosuchactiontext'  => "L'azion indicà in tel'URL no la xe valida. Te podaressi ver sbalià a digitar l'URL o ver strucà un colegamento mia justo. Opure podarìa anca tratarse de un bug in {{SITENAME}}.",
 'nosuchspecialpage' => 'No xè disponibiłe nissuna pàxena speciałe co sto nome',
 'nospecialpagetext' => "<big>'''Te ghè richiesto na pagina speciale mìa esistente.'''</big>
 
@@ -378,7 +378,7 @@ Query: $2',
 'protectedinterface'   => "Sta pàxena la contien un elemento che fa parte de l'interfacia utente del software; e quindi la xè proteta par evitar possibiłi abusi.",
 'editinginterface'     => "'''Ocio:''' Te stè modificando na pagina che la fa parte de l'interfacia utente del sito. 
 Tute le modifiche che te fè a sta pagina le se riflete su l'aspeto de l'interfacia grafica visualizà da tuti i altri utenti.
-Se te ghè bisogno de tradur in veneto un messagio de l'interfacia utente, te pol doparar [http://translatewiki.net/wiki/Main_Page?setlang=vec Betawiki], el progeto de localizazion de MediaWiki.",
+Se te ghè bisogno de tradur in veneto un messagio de l'interfacia utente, te pol doparar [http://translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el progeto de localizazion de MediaWiki.",
 'sqlhidden'            => '(la query SQL la xe stà sconta)',
 'cascadeprotected'     => 'Su sta pàxena no se pol far modifighe parché ła xe stà inclusa {{PLURAL:$1|ne ła pàxena indicà de seguito, che ła xe stà proteta|ne łe pàxene indicae de seguito, che łe xe stà protete}} selezionando ła protesion "ricorsiva":
 $2',
@@ -637,7 +637,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''",
 'protectedpagewarning'             => "'''OCIO: Sta pagina la xe sta proteta e solo i aministradori i pode modificarla.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Sta pàxena la xè stà blocà in modo che solo i utenti registrài i poda modefegarla.",
 'cascadeprotectedwarning'          => "'''Ocio:''' Sta pagina la xe stà blocà in modo che solo i utenti con privilegi de aministrador i possa modificarla. Questo sucede parché la pagina la xe inclusa {{PLURAL:\$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indicà de seguito, che le xe stà protete}} selezionando la protezion \"ricorsiva\":",
-'titleprotectedwarning'            => "'''OCIO:  Sta pagina la xe stà blocà in modo che solo çerte categorie de utenti le possa crearla.'''",
+'titleprotectedwarning'            => "'''OCIO:  Sta pàxena la xe stà blocà in modo che solo i utenti con [[Special:ListGroupRights|çerti privilègi]] i le possa crear.'''",
 'templatesused'                    => 'Template doparà in sta pagina:',
 'templatesusedpreview'             => 'Template doparà in sta anteprima:',
 'templatesusedsection'             => 'Template doparà in sta sezion:',
@@ -1179,7 +1179,7 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'duplicatesoffile'               => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} xe dei dopioni de sto file:',
 'sharedupload'                   => 'Sto file qua el xe un caricamento condiviso; quindi el pol èssar doparà da più progeti wiki.',
 'shareduploadwiki'               => 'Varda $1 par ulteriori informazion.',
-'shareduploadwiki-desc'          => 'La descrizion che se cata su la so $1 nel deposito condiviso la vien mostrà de seguito.',
+'shareduploadwiki-desc'          => 'La descrizion che se cata su la so $1 la vien mostrà qua soto.',
 'shareduploadwiki-linktext'      => 'pagina de descrizion del file',
 'shareduploadduplicate'          => 'Sto file el xe un duplicato del file $1 che se cata in tel deposito condiviso.',
 'shareduploadduplicate-linktext' => "n'altro file",
@@ -1824,7 +1824,12 @@ La voçe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarl
 
 # Export
 'export'            => 'Esporta pàxene',
-'exporttext'        => 'Te podi esportar el testo e modificar ła cronołogia de na speçifica pàxena o de un gruppo de pàxene ragrupae in XML; questo el pode in seguito essere importà in un altro wiki che dòpara el software MediaWiki, trasformà, o tegnù semplicemente par el to personałe divertimento.',
+'exporttext'        => 'Te podi esportar el testo e modificar ła cronołogia de na speçifica pàxena o de un gruppo de pàxene ragrupae in XML.
+Questo el pode in seguito vegner inportà in te n\'altro wiki che dòpara el software MediaWiki tramite la [[Special:Import|pàxena de inportassion]].
+
+Par esportar le pàxene, scrivi i tìtoli in te la casèla qua soto, un tìtolo par riga, e selessiona se te voli la version ùltima con tute le version preçedenti e el storico de le modìfeghe, opure la version ùltima con solo le informassion de l\'ùltima modìfega.
+
+Nel secondo caso te poli anca doparar un colegamento, par esenpio [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] par la pàxena "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => "Includi soło ła version attuałe, no l'intera cronołogia",
 'exportnohistory'   => "----
 '''Ocio!''' Par motivi ligà a le prestazion del sistema xè stà disabiłità l'esportazion de tuta ła storia de łe pàxene fata co sto modulo.",
@@ -1840,7 +1845,7 @@ La voçe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarl
 'allmessagesdefault'        => 'Testo predefinìo',
 'allmessagescurrent'        => 'Testo come che el xe desso',
 'allmessagestext'           => "Sta quà l'è na lista de tuti i messagi disponibili nel namespace MediaWiki.
-Par piaser visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net Betawiki] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
+Par piaser visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' no'l xè supportà parché '''\$wgUseDatabaseMessages''' no'l xè ativo.",
 'allmessagesfilter'         => 'Filtro sui messagi:',
 'allmessagesmodified'       => 'Mostra soło quełi modefegà',

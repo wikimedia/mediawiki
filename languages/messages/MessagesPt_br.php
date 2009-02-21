@@ -496,7 +496,7 @@ Query: $2',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Você pode ver e copiar o código desta página:',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
-'editinginterface'     => "'''Aviso:''' Você se encontra prestes a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afetar a aparência da interface de usuário para outros usuários. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt-br Betawiki], um projeto destinado para a tradução do MediaWiki.",
+'editinginterface'     => "'''Aviso:''' Você se encontra prestes a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afetar a aparência da interface de usuário para outros usuários. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt-br translatewiki.net], um projeto destinado para a tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
@@ -761,7 +761,7 @@ No momento não é possível salvar suas edições. Você pode copiar e colar o 
 'protectedpagewarning'             => "'''CUIDADO: Apenas os usuários com privilégios de sysop (Administradores) podem editar esta página pois ela foi bloqueada.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida, sendo que apenas usuários registrados poderão editá-la.",
 'cascadeprotectedwarning'          => "'''Atenção:''' Esta página se encontra protegida; apenas {{int:group-sysop}} podem editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
-'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida, apenas alguns usuários poderão criá-la.'''",
+'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida, [[Special:ListGroupRights|privilégios específicos]] são necessários para criá-la",
 'templatesused'                    => 'Predefinições utilizadas nesta página:',
 'templatesusedpreview'             => 'Predefinições utilizadas nesta previsão:',
 'templatesusedsection'             => 'Predefinições utilizadas nesta seção:',
@@ -1319,7 +1319,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'duplicatesoffile'               => '{{PLURAL:$1|O seguinte arquivo é duplicado|Os seguintes arquivos são duplicados}} deste arquivo:',
 'sharedupload'                   => 'Este arquivo encontra-se partilhado e pode ser utilizado por outros projetos.',
 'shareduploadwiki'               => 'Por favor, consulte a $1 para mais informações.',
-'shareduploadwiki-desc'          => 'A descrição na sua $1 do repositório partilhado é mostrada abaixo.',
+'shareduploadwiki-desc'          => 'A descrição na sua $1 é mostrada abaixo.',
 'shareduploadwiki-linktext'      => 'página de descrição de arquivo',
 'shareduploadduplicate'          => 'Este arquivo é um duplicado de $1 do repositório partilhado.',
 'shareduploadduplicate-linktext' => 'outro arquivo',
@@ -1975,7 +1975,7 @@ A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder 
 
 Para exportar páginas, introduza os títulos na caixa de texto abaixo (um título por linha) e selecione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição atual e informações apenas sobre a mais recente das edições.
 
-Se desejar, pode utilizar uma ligação (por exemplo, [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
+Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
 'exportcuronly'     => 'Incluir apenas a revisão atual, não o histórico inteiro',
 'exportnohistory'   => "----
 '''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desactivada devido a motivos de performance.",
@@ -1991,7 +1991,7 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{ns:special}}:Export/{{
 'allmessagesdefault'        => 'Texto padrão',
 'allmessagescurrent'        => 'Texto atual',
 'allmessagestext'           => 'Esta é uma lista de todas mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
-Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net Betawiki] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
+Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
 'allmessagesnotsupportedDB' => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
 'allmessagesfilter'         => 'Filtro de nome de mensagem:',
 'allmessagesmodified'       => 'Mostrar apenas modificados',

@@ -374,7 +374,7 @@ Probeer 't over een antal menuten wee.",
 'protectedpagetext'    => 'Deêze pagina is beveiligd. Bewerken is nie meuhlijk.',
 'viewsourcetext'       => 'Je kan de brontekst van deêze pagina bekieken en kopiëren:',
 'protectedinterface'   => "Deêze pagina bevat tekst voe berichen van de software en is beveiligd om misbruuk te voorkomm'n.",
-'editinginterface'     => "'''Waerschuwienge:''' Je bewerk een pagina die a gebruukt wor deur de software. Bewerkiengen op deêze pagina beïnvloeden de gebrukersinterface van iedereên. Overweeg voe vertaeliengen om [http://translatewiki.net/wiki/Main_Page?setlang=zea Betawiki] te gebruken, 't vertaeliengsproject voe MediaWiki.",
+'editinginterface'     => "'''Waerschuwienge:''' Je bewerk een pagina die a gebruukt wor deur de software. Bewerkiengen op deêze pagina beïnvloeden de gebrukersinterface van iedereên. Overweeg voe vertaeliengen om [http://translatewiki.net/wiki/Main_Page?setlang=zea translatewiki.net] te gebruken, 't vertaeliengsproject voe MediaWiki.",
 'sqlhidden'            => '(SQL-zoekopdracht verborhen)',
 'cascadeprotected'     => "Deêze pagina kan nie bewerkt worn, omda 't een is openomen in de volhende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zien}} mie de cascaode-optie:
 $2",

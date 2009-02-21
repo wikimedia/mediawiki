@@ -91,12 +91,12 @@ $messages = array(
 'tog-justify'                 => '段落对齐',
 'tog-hideminor'               => '最近更改中隐藏小修改',
 'tog-extendwatchlist'         => '增强监视列表以显示所有可用更改',
-'tog-usenewrc'                => '增强最近更改 (需要JavaScript)',
+'tog-usenewrc'                => '增强最近更改 (JavaScript)',
 'tog-numberheadings'          => '标题自动编号',
-'tog-showtoolbar'             => '显示编辑工具条 (需要JavaScript)',
-'tog-editondblclick'          => '双击时编辑页面 (需要JavaScript)',
+'tog-showtoolbar'             => '显示编辑工具条 (JavaScript)',
+'tog-editondblclick'          => '双击时编辑页面 (JavaScript)',
 'tog-editsection'             => '允许通过点击[编辑]链接编辑段落',
-'tog-editsectiononrightclick' => '允许右击标题编辑段落 (需要JavaScript)',
+'tog-editsectiononrightclick' => '允许右击标题编辑段落 (JavaScript)',
 'tog-showtoc'                 => '显示目录 (针对一页超过3个标题的页面)',
 'tog-rememberpassword'        => '在这部电脑上记住我的密码',
 'tog-editwidth'               => '编辑框具有最大宽度',
@@ -117,7 +117,7 @@ $messages = array(
 'tog-externaleditor'          => '默认使用外部编辑器  (高级者专用，需要在您的电脑上作出一些特别设置)',
 'tog-externaldiff'            => '默认使用外部差异分析  (高级者专用，需要在您的电脑上作出一些特别设置)',
 'tog-showjumplinks'           => '启用"转到"访问链接',
-'tog-uselivepreview'          => '使用实时预览 (需要JavaScript) (试验中)',
+'tog-uselivepreview'          => '使用实时预览 (Javascript) (试验中)',
 'tog-forceeditsummary'        => '当没有输入摘要时提醒我',
 'tog-watchlisthideown'        => '在监视列表中隐藏我的编辑',
 'tog-watchlisthidebots'       => '在监视列表中隐藏机器人的编辑',
@@ -263,14 +263,14 @@ $messages = array(
 'talkpagelinktext'  => '对话',
 'specialpage'       => '特殊页面',
 'personaltools'     => '个人工具',
-'postcomment'       => '新小节',
+'postcomment'       => '发表评论',
 'articlepage'       => '查看页面',
 'talk'              => '讨论',
 'views'             => '查看',
 'toolbox'           => '工具箱',
 'userpage'          => '查看用户页面',
 'projectpage'       => '查看计划页面',
-'imagepage'         => '查看文件页面',
+'imagepage'         => '查看媒体页面',
 'mediawikipage'     => '查看信息页面',
 'templatepage'      => '查看模板页面',
 'viewhelppage'      => '查看帮助页面',
@@ -343,7 +343,7 @@ $messages = array(
 'site-atom-feed'          => '$1的Atom订阅',
 'page-rss-feed'           => '“$1”的RSS订阅',
 'page-atom-feed'          => '“$1”的Atom订阅',
-'red-link-title'          => '$1 (页面未存在)',
+'red-link-title'          => '$1 (尚未撰写)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '页面',
@@ -359,9 +359,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => '这个命令不存在',
-'nosuchactiontext'  => '该URL所指定的动作无效。
-您可能打错URL，或跟随不正确的连结。
-这又可能是{{SITENAME}}所使用的软件出现臭虫。',
+'nosuchactiontext'  => '这个wiki无法识别URL请求的命令',
 'nosuchspecialpage' => '此特殊页面不存在',
 'nospecialpagetext' => "<big>'''您请求的特殊页面无效。'''</big>
 
@@ -429,7 +427,7 @@ $1',
 'protectedpagetext'    => '该页面已被锁定以防止编辑。',
 'viewsourcetext'       => '您可以查看并复制此页面的源码:',
 'protectedinterface'   => '该页提供了软件的界面文本，它已被锁定以防止随意的修改。',
-'editinginterface'     => "'''警告:''' 您正在编辑的页面是用于提供软件的界面文本。改变此页将影响其他用户的界面外观。如要翻译，请考虑使用[http://translatewiki.net/wiki/Main_Page?setlang=zh-hans Betawiki]，一个用来为MediaWiki软件本地化的计划。",
+'editinginterface'     => "'''警告:''' 您正在编辑的页面是用于提供软件的界面文本。改变此页将影响其他用户的界面外观。如要翻译，请考虑使用[http://translatewiki.net/wiki/Main_Page?setlang=zh-hans translatewiki.net]，一个用来为MediaWiki软件本地化的计划。",
 'sqlhidden'            => '(SQL查询已隐藏)',
 'cascadeprotected'     => '这个页面已经被保护，因为这个页面被以下已标注"联锁保护"的{{PLURAL:$1|一个|多个}}被保护页面包含:
 $2',
@@ -483,7 +481,7 @@ $2',
 'yourvariant'                => '字体变换:',
 'yournick'                   => '签名:',
 'badsig'                     => '错误的原始签名。检查一下HTML标签。',
-'badsiglength'               => '您的签名过长。
+'badsiglength'               => '签名过长。
 它的长度必须在$1个字符以下。',
 'email'                      => '电子邮箱',
 'prefs-help-realname'        => '真实姓名是可选的。
@@ -496,9 +494,7 @@ $2',
 'noname'                     => '你没有输入有效的用户名。',
 'loginsuccesstitle'          => '登录成功',
 'loginsuccess'               => '你现在以"$1"的身份登录{{SITENAME}}。',
-'nosuchuser'                 => '找不到用户"$1"。
-用户名称是有大小写区分的。
-检查您的拼写，或者[[Special:UserLogin/signup|建立一个新账户]]。',
+'nosuchuser'                 => '找不到用户"$1"。检查您的拼写，或者[[Special:UserLogin/signup|建立一个新账户]]。',
 'nosuchusershort'            => '没有一个名为“<nowiki>$1</nowiki>”的用户。请检查您输入的文字是否有错误。',
 'nouserspecified'            => '你需要指定一个用户名。',
 'wrongpassword'              => '您输入的密码错误，请再试一次。',
@@ -627,9 +623,7 @@ $2',
 要创建该页面，请在下面的编辑框中输入内容(详情参见[[Help:帮助|帮助]])。
 如果您是不小心来到此页面，直接点击您浏览器中的"返回"按钮返回。',
 'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
-'noarticletext'                    => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} 搜索有关日志]，
-或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑此页]</span>。',
+'noarticletext'                    => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
 'userpage-userdoesnotexist'        => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
 'clearyourcache'                   => "'''注意 - 在保存以後, 您必須清除瀏覽器的緩存才能看到所作出的改變。'''
 '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''刷新''，或按下''Ctrl-F5''或''Ctrl-R''，(在Macintosh上按下''Command-R'')；
@@ -656,7 +650,7 @@ $2',
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。'''",
 'editing'                          => '正在编辑$1',
 'editingsection'                   => '正在编辑$1 (段落)',
-'editingcomment'                   => '正在编辑$1 (新段落)',
+'editingcomment'                   => '正在编辑$1 (评论)',
 'editconflict'                     => '编辑冲突: $1',
 'explainconflict'                  => '有人在你开始编辑后更改了页面。
 上面的文字框内显示的是目前本页的内容。
@@ -746,7 +740,7 @@ $2',
 'page_first'          => '最前',
 'page_last'           => '最后',
 'histlegend'          => "差异选择: 标记要比较版本的单选按钮并点击底部的按钮进行比较。<br />
-说明: '''({{int:cur}})''' 指与当前版本比较，'''({{int:last}})''' 指与前一个修订版本比较，'''{{int:minoreditletter}}''' = 小修改。",
+说明: '''(当前)''' 指与当前版本比较，'''(先前)''' 指与前一个修订版本比较，'''小''' = 小修改。",
 'deletedrev'          => '[已删除]',
 'histfirst'           => '最早版本',
 'histlast'            => '最新版本',
@@ -1180,7 +1174,7 @@ $2',
 'upload-file-error'       => '内部错误',
 'upload-file-error-text'  => '当试图在服务器上创建临时文件时发生内部错误。请与[[Special:ListUsers/sysop|管理员]]联系。',
 'upload-misc-error'       => '未知的上传错误',
-'upload-misc-error-text'  => '在上传时发生未知的错误。请验证使用了正确并可访问的 URL，然后进行重试。如果问题仍然存在，请与[[Special:ListUsers/sysop|管理员]]联系。',
+'upload-misc-error-text'  => '在上传时发生未知的错误。请确认您使用了正确并可访问的URL，然后进行重试。如果问题仍然存在，请与[[Special:ListUsers/sysop|管理员]]联系。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '无法访问 URL',
@@ -1900,7 +1894,7 @@ $1',
 并选择你是否需要导出带有页面历史的以前的版本，
 或是只选择导出带有最后一次编辑信息的当前版本。
 
-此外你还可以利用链接导出文件，例如你可以使用[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]导出"[[{{MediaWiki:Mainpage}}]]"页面。',
+此外你还可以利用链接导出文件，例如你可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]导出"[[{{MediaWiki:Mainpage}}]]"页面。',
 'exportcuronly'     => '仅包含当前的修订，而不是全部的历史。',
 'exportnohistory'   => "----
 '''注意:''' 由于性能原因，从此表单导出页面的全部历史已被禁用。",
@@ -1916,7 +1910,7 @@ $1',
 'allmessagesdefault'        => '默认的文字',
 'allmessagescurrent'        => '当前的文字',
 'allmessagestext'           => '这里列出所有可定制的系统界面。
-如果想贡献正宗的MediaWiki本地化的话，请参阅[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net Betawiki]。',
+如果想贡献正宗的MediaWiki本地化的话，请参阅[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB' => "这个页面无法使用，因为'''\$wgUseDatabaseMessages'''已被设置关闭。",
 'allmessagesfilter'         => '按消息名称筛选:',
 'allmessagesmodified'       => '仅显示已修改的',

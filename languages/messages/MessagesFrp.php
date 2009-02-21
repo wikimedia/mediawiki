@@ -400,7 +400,7 @@ Requéta : $2',
 'protectedpagetext'    => 'Ceta pâge at étâ protègiê por empachiér sa modificacion.',
 'viewsourcetext'       => 'Vos pouede vêre et copiyér lo contegnu de la pâge por povêr travalyér dessus :',
 'protectedinterface'   => 'Ceta pâge fornét du tèxte d’entèrface por la programeria et est protègiê por èvitar los abus.',
-'editinginterface'     => "'''Atencion :''' vos éte aprés èditar una pâge utilisâ por crèar lo tèxte de l’entèrface de la programeria. Los changements sè cognetront, d’aprés lo contèxte, sur totes ou cèrtênes pâges visibles per los ôtros utilisators. Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.net/wiki/Main_Page?setlang=frp Betawiki], lo projèt d’entèrnacionalisacion des mèssâjos de MediaWiki.",
+'editinginterface'     => "'''Atencion :''' vos éte aprés èditar una pâge utilisâ por crèar lo tèxte de l’entèrface de la programeria. Los changements sè cognetront, d’aprés lo contèxte, sur totes ou cèrtênes pâges visibles per los ôtros utilisators. Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.net/wiki/Main_Page?setlang=frp translatewiki.net], lo projèt d’entèrnacionalisacion des mèssâjos de MediaWiki.",
 'sqlhidden'            => '(Requéta SQL cachiê)',
 'cascadeprotected'     => 'Ora, ceta pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|la pâge siuventa|les pâges siuventes}}, èyent étâ protègiê{{PLURAL:$1||s}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
@@ -1682,7 +1682,7 @@ L’articllo de dèstinacion « [[:$1]] » ègziste ja. Voléd-vos lo suprimar p
 
 Por èxportar des pâges, entrâd lors titros dens la bouèta de tèxte ce-desot, yon titro per legne, et pués sèlèccionâd, se vos dèsirâd ou pas, la vèrsion d’ora avouéc totes les vielyes vèrsions, avouéc la pâge d’historico, ou simplament la pâge d’ora avouéc des enformacions sur la dèrriére modificacion.
 
-Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] por la pâge "[[{{MediaWiki:Mainpage}}]]".',
+Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] por la pâge "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Èxportar ren que la vèrsion corenta sen l’historico complèt',
 'exportnohistory'   => "----
 '''Nota :''' l’èxportacion complèta de l’historico de les pâges avouéc ceti formulèro at étâ dèsactivâ por des rêsons de pèrformences.",
@@ -1698,7 +1698,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{ns:spe
 'allmessagesdefault'        => 'Mèssâjo per dèfôt',
 'allmessagescurrent'        => 'Mèssâjo d’ora',
 'allmessagestext'           => 'Cen est la lista de tôs los mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' est pas disponiblo perce que '''\$wgUseDatabaseMessages''' est dèsactivâ.",
 'allmessagesfilter'         => 'Filtro d’èxprèssion racionèla :',
 'allmessagesmodified'       => 'Afichiér ren que les modificacions',

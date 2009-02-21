@@ -373,7 +373,7 @@ Tapuna: $2',
 'viewsourcetext'       => "Kay p'anqatam qhawayta iskaychaytapas atinki:",
 'protectedinterface'   => "Kay p'anqapiqa wakichintinpa uyapuranpaq qillqam.
 Wandalismu nisqamanta amachasqam kachkan.",
-'editinginterface'     => "'''Paqtataq:''' Uyapura p'anqatam llamk'apuchkanki. Hukchaptiykiqa, chay uyapurap rikch'ayninqa hukyanqa huk ruraqkunapaqpas. Uyapurata t'ikrayta munaspaykiqa, [http://translatewiki.net/wiki/Main_Page?setlang=qu Betawiki] nisqa MediaWiki t'ikrana ruraykamay llika tiyaypi ruranaykimanta hamut'ariy.",
+'editinginterface'     => "'''Paqtataq:''' Uyapura p'anqatam llamk'apuchkanki. Hukchaptiykiqa, chay uyapurap rikch'ayninqa hukyanqa huk ruraqkunapaqpas. Uyapurata t'ikrayta munaspaykiqa, [http://translatewiki.net/wiki/Main_Page?setlang=qu translatewiki.net] nisqa MediaWiki t'ikrana ruraykamay llika tiyaypi ruranaykimanta hamut'ariy.",
 'sqlhidden'            => '(SQL tapunaqa pakasqam)',
 'cascadeprotected'     => "Kay p'anqaqa amachasqam kachkan, ''phaqcha'' nisqa kamachiwan amachasqa kay {{PLURAL:$1|p'anqapi|p'anqakunapi}} ch'aqtasqa kaspanmi:
 $2",
@@ -1806,7 +1806,7 @@ Tukuna p\'anqaqa ("[[:$1]]") kachkañam. Astanapaq qulluyta munankichu?',
 
 P'anqakunata hawaman qunaykipaqqa, sutinkunata kay qatiqppi qillqana k'itichaman qillqay, sapa siq'ipi huk suti, akllaspa kunan p'anqata wiñay kawsaynintapas munankichu ichataq kunan p'anqatallachu qhipaq hukchasqallamanta willayllawan.
 
-Qhipaqta munaspaykiqa, t'inkitapas llamk'achiyta atinki, ahinataq [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]], \"[[{{MediaWiki:Mainpage}}]]\" p'anqapaq.",
+Qhipaqta munaspaykiqa, t'inkitapas llamk'achiyta atinki, ahinataq [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]], \"[[{{MediaWiki:Mainpage}}]]\" p'anqapaq.",
 'exportcuronly'     => "Kunan llamk'apusqatam ch'aqtay, manataqmi wiñay kawsaynintinchu.",
 'exportnohistory'   => "----
 '''Musyay:''' Wiñay kawsaynintinta kay hunt'ana p'anqawan hawan quymanqa ama nisqam, sirwiq mana atiptinmi.",

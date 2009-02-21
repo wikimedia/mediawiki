@@ -479,7 +479,7 @@ Wótpšašanje: $2',
 'protectedpagetext'    => 'Wobźěłanje toś togo boka jo se znjemóžniło.',
 'viewsourcetext'       => 'Žrědłowy tekst togo boka móžoš se woglědaś a kopěrowaś:',
 'protectedinterface'   => 'Toś ten bok wopśimujo tekst za rěcny zwjerch softwary. Jogo wobźěłowanje jo se znjemóžniło, aby se znjewužywanjeju zadorało.',
-'editinginterface'     => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow wobwliwowaś. Wužywaj pšosym za pśełožki [http://translatewiki.net/wiki/Main_Page?setlang=dsb Betawiki], projekt MediaWiki za lokalizacije.",
+'editinginterface'     => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow wobwliwowaś. Wužywaj pšosym za pśełožki [http://translatewiki.net/wiki/Main_Page?setlang=dsb translatewiki.net], projekt MediaWiki za lokalizacije.",
 'sqlhidden'            => '(Wótpšašanje SQL schowane)',
 'cascadeprotected'     => 'Za toś ten bok jo se wobźěłowanje znjemóžniło, dokulaž jo zawězany do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, {{PLURAL:$1|kótaryž jo|kótarejž stej|kótarež su}} pśez kaskadowu opciju {{PLURAL:$1|šćitany|šćitanej|šćitane}}: $2',
 'namespaceprotected'   => "Njejsy wopšawnjony, boki w rumje: '''$1''' wobźěłaś.",
@@ -722,7 +722,7 @@ Pšosym pśemysli, jolic njamóžo se bok na mjeńše wótrězki rozdźěliś.''
 'protectedpagewarning'             => "'''Glědaj: Toś ten bok jo se zakazał, tak až jano sysopowe wužywarje mógu jen wobźěłaś.'''",
 'semiprotectedpagewarning'         => "'''Markuj:''' Toś ten bok jo se zakazał, tak až jano registrěrowane wužywarje mógu jen wobźěłaś.",
 'cascadeprotectedwarning'          => "'''Glědaj: Toś ten bok jo se zakazał, tak až jano wužywarje ze sysopowymi priwiliegijami mógu jen wobźěłaś, dokulaž jo zawězana do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, {{PLURAL:$1|kótaryž jo šćitany|kótarejž stej šćitanej|kótarež su šćitane}} z pomocu kaskadoweje zakazanskeje opcije.'''",
-'titleprotectedwarning'            => "'''WARNOWANJE: Toś ten bok bu zakazany, tak až jano wěste wužywarje mógu jen napóraś.'''",
+'titleprotectedwarning'            => "'''WARNOWANJE: Toś ten bok bu zakazany, tak až [[Special:ListGroupRights|wósebne pšawa]] su trěbne, aby jen napórał.'''",
 'templatesused'                    => 'Za toś ten bok su se slědujuce pśedłogi wužywali:',
 'templatesusedpreview'             => 'Za toś ten pśeglěd su slědujuce pśedłogi se wužywali:',
 'templatesusedsection'             => 'W toś tom wótrězku su slědujuce pśedłogi se wužywali:',
@@ -1271,7 +1271,7 @@ PICT # misc.
 'duplicatesoffile'               => '{{PLURAL:$1|Slědujuca dataja jo duplikat|Slědujucej $1 dataji stej duplikata|Slědujuce dataje $1 su duplikaty|Slědujucych $1 datajow jo duplikaty}} toś teje dataje:',
 'sharedupload'                   => 'Toś ta dataja se gromaźe wužywa - snaź teke w drugich projektach.',
 'shareduploadwiki'               => 'Za dalšne informacije glědaj $1.',
-'shareduploadwiki-desc'          => 'Wopisanje na $1 w zgromadnem skłaźišću Wikimedia commons se dołojce pókazujo.',
+'shareduploadwiki-desc'          => 'Wopisanje na $1 se dołojce pókazujo.',
 'shareduploadwiki-linktext'      => 'boku wopisanja dataje',
 'shareduploadduplicate'          => 'Toś ta dataja jo duplikat $1 z gromaźe wužywaneje chowarnje.',
 'shareduploadduplicate-linktext' => 'druga dataja',
@@ -1920,7 +1920,7 @@ Bok „[[:$1]]“ južo eksistěrujo. Coš jen wulašowaś, aby mógał toś ten
 
 Za eksportěrowanje bokow zapódaj nadpisma do dołojcnego tekstowogo póla, jadno nadpismo na smužku, a wuzwól nowe a stare wersije z wótkazami stawiznow boka abo jano aktualnu wersiju z informacijami wó slědnjej změnje.
 
-W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za bok "[[{{MediaWiki:Mainpage}}]]".',
+W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za bok "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Jano aktualne wersije, bźez stawiznow',
 'exportnohistory'   => "----
 '''Pokazka:''' Eksportěrowanje cełych stawiznow bokow pśez toś ten formular njejo dla performancowych pśicyn tuchylu móžne.",
@@ -1936,7 +1936,7 @@ W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{ns:special}}:Expo
 'allmessagesdefault'        => 'Standardny tekst',
 'allmessagescurrent'        => 'Aktualny tekst',
 'allmessagestext'           => 'How jo lisćina systemowych powěsćow w mjenowem rumje MediaWiki.
-Pšosym wobglědaj [http://www.mediawiki.org/wiki/Localisation lokalizaciju MediaWiki] a [http://translatewiki.net Betawiki], jolic coš k lokalizaciji MediaWiki pśinosowaś.',
+Pšosym wobglědaj [http://www.mediawiki.org/wiki/Localisation lokalizaciju MediaWiki] a [http://translatewiki.net translatewiki.net], jolic coš k lokalizaciji MediaWiki pśinosowaś.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' njejo tuchylu móžno, dokulaž jo datowa banka offline.",
 'allmessagesfilter'         => 'Filter za mjenja powěsćow:',
 'allmessagesmodified'       => 'Jano změnjone pokazaś',

@@ -261,8 +261,15 @@ Mihidy ho azy aloha ny banky angona mandra-pahatratran'ny serveur andevo ny tomp
 'perfcached'       => 'Ireto angona ireto dia nalaina tao anaty cache koa mety ho efa lany daty.:',
 'viewsource'       => 'Hijery fango',
 'viewsourcefor'    => "ho an'ny $1",
-'editinginterface' => "'''Tandremo :''' manova pejy ampiasan'ny lôjisialy wiki ianao. Mety hita ny mpikambana sàsany izy io. Rehefa tia mandika teny ianao, jereo ny volavola MediaWiki ho an'ny internationalisation ny hafatra [http://translatewiki.net/wiki/Main_Page?setlang=fr Betawiki].",
+'editinginterface' => "'''Tandremo :''' manova pejy ampiasan'ny lôjisialy wiki ianao. Mety hita ny mpikambana sàsany izy io. Rehefa tia mandika teny ianao, jereo ny volavola MediaWiki ho an'ny internationalisation ny hafatra [http://translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
 'sqlhidden'        => '(nafenina ny requête SQL)',
+'titleprotected'   => "Voaaro mba tsy ho amboarina ilay lohateny, i [[User:$1|$1]] no nanao an'io.
+Io ny antony : « ''$2'' ».",
+
+# Virus scanner
+'virus-badscanner'     => "Diso : Tsy fantatray ny mpitady virus ''$1''",
+'virus-scanfailed'     => 'Tsy mety alefa ny fitadiavana (kaody $1)',
+'virus-unknownscanner' => 'Tsy fantatra io Antivirus io :',
 
 # Login and logout pages
 'logouttitle'                => 'Fivoahana',
@@ -306,6 +313,8 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'yourlanguage'               => 'Tenim-pirenena:',
 'yournick'                   => 'Anaram-bositra:',
 'badsig'                     => 'Tsy mety io sonia io; hamarino ny kialo HTML.',
+'badsiglength'               => "Lava laotra ny sonianao.
+Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'email'                      => 'Imailaka',
 'prefs-help-realname'        => "Anarana marina (afaka tsy fenoina): raha fenoinao ity dia hampiasaina hanomezana anao tambin'ny asa izay efainao eto.",
 'loginerror'                 => "Tsy fetezana teo amin'ny fidirana",
@@ -973,7 +982,7 @@ Ny fomba fanondranana pejy dia, manomeza lohateny izay na maromaro eto amin'ny b
 ary safidio na ny votoatiny ankehitriny ihany no ilainao na miaraka amin'ny endriky ny pejy rehetra taloha, sy hoe ny votoatiny ankehitriny
 miampy fampahalalana momba ny fanovana farany fotsiny ve sa miaraka amin'ny tantaran'ny fanovana rehetra.
 
-Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] ho an'ny [[{{MediaWiki:Mainpage}}]].",
+Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] ho an'ny [[{{MediaWiki:Mainpage}}]].",
 'exportcuronly'   => "Ny votoatiny ankehitriny ihany no haondrana fa tsy miaraka amin'ny tantarany iray manontolo",
 'exportnohistory' => "
 ----

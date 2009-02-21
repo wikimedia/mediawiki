@@ -5,6 +5,7 @@
  * @file
  *
  * @author Kale
+ * @author Meno25
  * @author Millosh
  * @author Red Baron
  * @author Sasa Stefanovic
@@ -390,14 +391,14 @@ $messages = array(
 'talkpagelinktext'  => 'Разговор',
 'specialpage'       => 'Посебна страница',
 'personaltools'     => 'Лични алати',
-'postcomment'       => 'Пошаљи коментар',
+'postcomment'       => 'Нова секција',
 'articlepage'       => 'Погледај чланак',
 'talk'              => 'Разговор',
 'views'             => 'Прегледи',
 'toolbox'           => 'алати',
 'userpage'          => 'Погледај корисничку страну',
 'projectpage'       => 'Погледај страну пројекта',
-'imagepage'         => 'Погледај страну слике',
+'imagepage'         => 'Погледај страну датотеке',
 'mediawikipage'     => 'Види страницу поруке',
 'templatepage'      => 'Види страницу шаблона',
 'viewhelppage'      => 'Види страницу помоћи',
@@ -471,13 +472,13 @@ $messages = array(
 'page-rss-feed'           => '"$1" RSS фид',
 'page-atom-feed'          => '"$1" Atom фид',
 'feed-atom'               => 'Атом',
-'red-link-title'          => '$1 (није још написан)',
+'red-link-title'          => '$1 (страница не постоји)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Чланак',
 'nstab-user'      => 'Корисничка страна',
 'nstab-media'     => 'Медија',
-'nstab-special'   => 'Посебна',
+'nstab-special'   => 'Посебна страница',
 'nstab-project'   => 'Страна пројекта',
 'nstab-image'     => 'Слика',
 'nstab-mediawiki' => 'Порука',
@@ -487,8 +488,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Нема такве акције',
-'nosuchactiontext'  => 'Акцију наведену у УРЛ-у вики софтвер
-није препознао.',
+'nosuchactiontext'  => 'Акцију наведену у УРЛ-у вики софтвер није препознао.',
 'nosuchspecialpage' => 'Нема такве посебне странице',
 'nospecialpagetext' => "<big>'''Тражили сте непостојећу посебну страницу.'''</big>
 
@@ -561,7 +561,7 @@ $1',
 'protectedinterface'   => 'Ова страна пружа текст интерфејса за софтвер и закључана је како би се спречила злоупотреба.',
 'editinginterface'     => "'''Упозорење:''' Уређујете страну која се користи да пружи текст за интерфејс овог софтвера. 
 Измене на овој страни ће утицати на изглед корисничког интерфејса за остале кориснике.
-За преводе, посетите [http://translatewiki.net/wiki/Main_Page?setlang=sr_ec Betawiki], пројекат локализације МедијаВики софтвера.",
+За преводе, посетите [http://translatewiki.net/wiki/Main_Page?setlang=sr_ec translatewiki.net], пројекат локализације МедијаВики софтвера.",
 'sqlhidden'            => '(SQL претрага сакривена)',
 'cascadeprotected'     => 'Ова страница је закључана и њено уређивање је онемогућено јер је укључена у садржај {{PLURAL:$1|следеће стране|следећих страна}}, који је заштићен са опцијом "преносиве" заштите:
 $2',
@@ -698,7 +698,7 @@ $2',
 'nowiki_tip'      => 'Игнориши вики форматирање',
 'image_sample'    => 'Пример.jpg',
 'image_tip'       => 'Уклопљена слика',
-'media_sample'    => 'име_медија_фајла.mp3',
+'media_sample'    => 'име_медија_фајла.ogg',
 'media_tip'       => 'Путања ка мултимедијалном фајлу',
 'sig_tip'         => 'Ваш потпис са тренутним временом',
 'hr_tip'          => 'Хоризонтална линија',
@@ -773,7 +773,9 @@ $2',
 Због тога морамо да користимо бројчану ИП адресу како бисмо идентификовали њега или њу. 
 Такву адресу може делити више корисника. 
 Ако сте анонимни корисник и мислите да су вам упућене небитне примедбе, молимо вас да [[Special:UserLogin/signup|направите налог]] или [[Special:UserLogin|се пријавите]] да бисте избегли будућу забуну са осталим анонимним корисницима.',
-'noarticletext'                    => 'Тренутно не постоји чланак под тим именом, можете [[Special:Search/{{PAGENAME}}|тражити ову страницу]] у другим чланцима или је [{{fullurl:{{FULLPAGENAME}}|action=edit}} уредити].',
+'noarticletext'                    => 'Тренутно не постоји чланак под тим именом.
+Можете [[Special:Search/{{PAGENAME}}|тражити ову страницу]] у другим чланцима,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} претражити сродне историје записа], или је [{{fullurl:{{FULLPAGENAME}}|action=edit}} уредити].',
 'userpage-userdoesnotexist'        => 'Налог "$1" није регистрован. Проверите да ли желите да правите/уређујете ову страницу.',
 'clearyourcache'                   => "'''Запамтите:''' Након снимања, можда морате очистити кеш вашег браузера да бисте видели промене. '''Mozilla / Firefox / Safari:''' држите ''Shift'' док кликћете ''Reload'' или притисните  ''Shift+Ctrl+R'' (''Cmd-Shift-R'' на ''Apple Mac'' машини); '''IE:''' држите ''Ctrl'' док кликћете ''Refresh'' или притисните ''Ctrl-F5''; '''Konqueror:''': само кликните ''Reload'' дугме или притисните ''F5''; корисници '''Оpera''' браузера можда морају да у потпуности очисте свој кеш преко ''Tools→Preferences''.",
 'usercssjsyoucanpreview'           => "'''Савет:''' Кориситите 'Прикажи претпреглед' дугме да тестирате свој нови CSS/JS пре снимања.",
@@ -1353,7 +1355,7 @@ $2',
 'filehist-dimensions'            => 'Димензије',
 'filehist-filesize'              => 'Величина фајла',
 'filehist-comment'               => 'Коментар',
-'imagelinks'                     => 'Употреба слике',
+'imagelinks'                     => 'Везе ка фајлу',
 'linkstoimage'                   => '{{PLURAL:$1|Следећа страница користи|$1 Следеће странице користе}} овај фајл:',
 'nolinkstoimage'                 => 'Нема страница које користе овај фајл.',
 'morelinkstoimage'               => 'Види [[Special:WhatLinksHere/$1|више веза]] према овом фајлу.',
@@ -1361,7 +1363,7 @@ $2',
 'duplicatesoffile'               => 'Следећи {{PLURAL:$1|фајл је дупликат|$1 фајла су дупликати|$1 фајлова су дупликати}} овог фајла:',
 'sharedupload'                   => 'Ова слика је са заједничке оставе и можда је користе остали пројекти.',
 'shareduploadwiki'               => 'Молимо погледајте $1 за даље информације.',
-'shareduploadwiki-desc'          => 'Опис за $1 на дељеном складишту налази се испод.',
+'shareduploadwiki-desc'          => 'Опис на $1 се налази испод.',
 'shareduploadwiki-linktext'      => 'страна за опис фајла',
 'shareduploadduplicate'          => 'Овај фајл је дупликат фајла $1 на дељеном складишту.',
 'shareduploadduplicate-linktext' => 'други фајл',
@@ -1493,7 +1495,7 @@ $2',
 'mostcategories'          => 'Чланци са највише категорија',
 'mostimages'              => 'Највише повезани фајлови',
 'mostrevisions'           => 'Чланци са највише ревизија',
-'prefixindex'             => 'Списак префикса',
+'prefixindex'             => 'Све странице са префиксима',
 'shortpages'              => 'Кратке странице',
 'longpages'               => 'Дугачке странице',
 'deadendpages'            => 'Странице без интерних веза',
@@ -2034,7 +2036,7 @@ $1',
 
 Да бисте извозили странице, унесите називе у текстуалном пољу испод, са једним насловом по реду, и одаберите да ли желите тренутну верзију са свим старим верзијама или само тренутну верзију са информацијама о последњој измени.
 
-У другом случају, можете такође користити везу, нпр. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] за страницу [[{{MediaWiki:Mainpage}}]].',
+У другом случају, можете такође користити везу, нпр. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] за страницу [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Укључи само тренутну ревизију, не целу историју',
 'exportnohistory'   => "----
 '''Напомена:''' извожење пуне историје страна преко овог формулара је онемогућено због серверских разлога.",
@@ -2050,7 +2052,7 @@ $1',
 'allmessagesdefault'        => 'Стандардни текст',
 'allmessagescurrent'        => 'Тренутни текст',
 'allmessagestext'           => 'Ово је списак системских порука које су у МедијаВики именском простору.
-Посетите [http://translatewiki.net Betawiki] уколико желите да помогнете у локализацији.',
+Посетите [http://translatewiki.net translatewiki.net] уколико желите да помогнете у локализацији.',
 'allmessagesnotsupportedDB' => "Ова страница не може бити употребљена зато што је '''\$wgUseDatabaseMessages''' искључен.",
 'allmessagesfilter'         => 'Филтер за регуларне изразе:',
 'allmessagesmodified'       => 'Прикажи само измењене',
@@ -2103,19 +2105,19 @@ $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|ревизија|ревизије|ревизија}} од $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Моја корисничка страница',
+'tooltip-pt-userpage'             => 'Ваша корисничка страница',
 'tooltip-pt-anonuserpage'         => 'Корисничка страница ИП адресе са које уређујете',
-'tooltip-pt-mytalk'               => 'Моја страница за разговор',
+'tooltip-pt-mytalk'               => 'Ваша страница за разговор',
 'tooltip-pt-anontalk'             => 'Разговор о прилозима са ове ИП адресе',
 'tooltip-pt-preferences'          => 'Моја корисничка подешавања',
 'tooltip-pt-watchlist'            => 'Списак чланака које надгледате',
-'tooltip-pt-mycontris'            => 'Списак мојих прилога',
+'tooltip-pt-mycontris'            => 'Списак ваших прилога',
 'tooltip-pt-login'                => 'Препоручује се да се пријавите, али није обавезно',
 'tooltip-pt-anonlogin'            => 'Препоручује се да се пријавите, али није обавезно',
 'tooltip-pt-logout'               => 'Одјави се',
 'tooltip-ca-talk'                 => 'Разговор о чланку',
 'tooltip-ca-edit'                 => 'Можете уредити ову страницу. Молимо користите претпреглед пре сачувавања.',
-'tooltip-ca-addsection'           => 'Додајте коментар на ову дискусију',
+'tooltip-ca-addsection'           => 'Почните нову секцију',
 'tooltip-ca-viewsource'           => 'Ова страница је закључана. Можете видети њен извор',
 'tooltip-ca-history'              => 'Претходне верзије ове странице',
 'tooltip-ca-protect'              => 'Заштити ову страницу',
@@ -2124,7 +2126,7 @@ $1',
 'tooltip-ca-move'                 => 'Премести ову страницу',
 'tooltip-ca-watch'                => 'Додајте ову страницу на Ваш списак надгледања',
 'tooltip-ca-unwatch'              => 'Уклоните ову страницу са Вашег списка надгледања',
-'tooltip-search'                  => 'Претражите вики',
+'tooltip-search'                  => 'Претражите {{SITENAME}}',
 'tooltip-search-go'               => 'Иди на страну с тачним именом ако постоји.',
 'tooltip-search-fulltext'         => 'Претражите стране са овим текстом',
 'tooltip-p-logo'                  => 'Главна страна',
@@ -2607,7 +2609,7 @@ $1
 'recreate'            => 'Поново направи',
 
 # HTML dump
-'redirectingto' => 'Преусмеравам на [[:$1]]...',
+'redirectingto' => 'Преусмеравам на [[$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Да ли желите очистити кеш ове странице?

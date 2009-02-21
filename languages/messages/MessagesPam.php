@@ -343,7 +343,7 @@ Pakisubukan mung pasibayu kaibat ning mapilang minutu.',
 'protectedpagetext'    => 'Ining bulung a iti misusi ya para eya ma-edit',
 'viewsourcetext'       => 'Malyari meng lon at kopian ing pikuanan (source) ning bulung a ini:',
 'protectedinterface'   => 'Maki interface text ya para king software ing bulung a iti. Makasara ya ba yang e mayabusu.',
-'editinginterface'     => "'''Babala:''' Babie yang interface text para king software ing bulung a i-edit mu. Makayapektu la king itsura ning user interface para kareng aliwang gagamit deng pamagbayu keti. Malyari lang munta king [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki] deng bisang sumaup king pamaglikas.",
+'editinginterface'     => "'''Babala:''' Babie yang interface text para king software ing bulung a i-edit mu. Makayapektu la king itsura ning user interface para kareng aliwang gagamit deng pamagbayu keti. Malyari lang munta king [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] deng bisang sumaup king pamaglikas.",
 'sqlhidden'            => '(makasalikut ya ing SQL query)',
 'cascadeprotected'     => 'Makaprotekta ya king pamag-edit ing bulung a ini uling kayabe ya king makatuking {{PLURAL:$1|bulung, a|bulung, a}} a maki proteksiun uling makasalangi ya ing  "tuki-tuki" o "cascading" option:
 $2',
@@ -1806,7 +1806,7 @@ e maliaring manalis bulung manibat o papunta king pirinan lagyung (namespace) it
 
 Bang maglual (export) kareng bulung, isulat mo reng bansag ketang text box king lalam, metung a bansag king balang gulis, at pilinan mu nung buri me ing salukuyan a a balung pati na detang sadiang bersion, kayabe la reng gulis tungkul king amlat bulung (page history), o ita mung salukuyan a bersion, kayabe ing impormasiun ketang tauling me-edit.
 
-Ketang tauling kasu, makagamit ka muring suglung (link), alimbawa, ing [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para king bulung a "[[{{MediaWiki:Mainpage}}]]".',
+Ketang tauling kasu, makagamit ka muring suglung (link), alimbawa, ing [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para king bulung a "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Ita mung salukuyan a bersion ing iyabe, aliwa ing mabilug a amlat',
 'exportnohistory'   => "----
 '''Kapabaluan:''' Makapatda ing pamaglual (export) ning kumpletung amlat da reng bulung kapamilatan ning form a ini uling miyapektuan ing pamangimut o pamang-gana ning sistema.",

@@ -608,7 +608,8 @@ Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus
 'protectedpagetext'    => 'Halaman ini telah dikunci untuk menghindari penyuntingan.',
 'viewsourcetext'       => 'Anda dapat melihat atau menyalin sumber halaman ini:',
 'protectedinterface'   => 'Halaman ini berisi teks antarmuka untuk digunakan oleh perangkat lunak dan telah dikunci untuk menghindari kesalahan.',
-'editinginterface'     => "'''Peringatan:''' Anda menyunting halaman yang digunakan untuk menyediakan teks antarmuka dengan perangkat lunak. Perubahan teks ini akan mempengaruhi tampilan pada pengguna lain.",
+'editinginterface'     => "'''Peringatan:''' Anda menyunting suatu halaman yang digunakan untuk menyediakan teks antarmuka untuk perangkat lunak. Perubahan teks ini akan mempengaruhi tampilan pada antarmuka pengguna untuk pengguna lain.
+Untuk terjemahan, harap pertimbangkan untuk menggunakan [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyek pelokalan MediaWiki.",
 'sqlhidden'            => '(Permintaan SQL disembunyikan)',
 'cascadeprotected'     => 'Halaman ini telah dilindungi dari penyuntingan karena disertakan di {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi "runtun":
 $2',
@@ -855,7 +856,7 @@ Harap pertimbangkan untuk memecah halaman menjadi beberapa bagian yang lebih kec
 'protectedpagewarning'             => "'''PERINGATAN: Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya.'''",
 'semiprotectedpagewarning'         => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.",
 'cascadeprotectedwarning'          => "'''PERINGATAN:''' Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya karena disertakan dalam {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi 'perlindungan runtun':",
-'titleprotectedwarning'            => "'''PERINGATAN: Halaman ini telah dikunci sehingga hanya beberapa pengguna yang dapat membuatnya.'''",
+'titleprotectedwarning'            => "'''PERINGATAN: Halaman ini telah dikunci hingga diperlukan [[Special:ListGroupRights|hak khusus]] untuk membuatnya.'''",
 'templatesused'                    => 'Templat yang digunakan di halaman ini:',
 'templatesusedpreview'             => 'Templat yang digunakan di pratayang ini:',
 'templatesusedsection'             => 'Templat yang digunakan di bagian ini:',
@@ -1393,7 +1394,7 @@ Klik pada kepala kolom untuk mengubah urutan.',
 'duplicatesoffile'               => 'Berkas berikut {{PLURAL:$1|merupakan duplikat|$1 merupakan duplikat}} dari berkas ini:',
 'sharedupload'                   => 'Berkas ini adalah pemuatan bersama yang mungkin juga dipakai oleh proyek lain.',
 'shareduploadwiki'               => 'Lihat $1 untuk informasi lebih lanjut.',
-'shareduploadwiki-desc'          => 'Deskripsi pada $1 ditampilkan di bawah.',
+'shareduploadwiki-desc'          => 'Deskripsi pada $1 ditampilkan di bawah ini.',
 'shareduploadwiki-linktext'      => 'halaman deskripsi berkas',
 'shareduploadduplicate'          => 'Berkas ini berduplikasi dengan $1 dari tempat penyimpanan bersama.',
 'shareduploadduplicate-linktext' => 'berkas lain',
@@ -2037,7 +2038,7 @@ Hasil ekspor ini selanjutnya dapat diimpor ke wiki lainnya yang menggunakan pera
 
 Untuk mengekspor halaman-halaman artikel, masukkan judul-judul dalam kotak teks di bawah ini, satu judul per baris, dan pilih apakah Anda ingin mengekspor lengkap dengan versi terdahulunya, atau hanya versi terbaru dengan catatan penyuntingan terakhir.
 
-Jika Anda hanya ingin mengimpor versi terbaru, Anda melakukannya lebih cepat dengan cara menggunakan pranala khusus, sebagai contoh: [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] untuk mengekspor artikel "[[{{MediaWiki:Mainpage}}]]".',
+Jika Anda hanya ingin mengimpor versi terbaru, Anda melakukannya lebih cepat dengan cara menggunakan pranala khusus, sebagai contoh: [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] untuk mengekspor artikel "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Hanya ekspor revisi sekarang, bukan seluruh versi terdahulu',
 'exportnohistory'   => "----
 '''Catatan:''' Mengekspor keseluruhan riwayat suntingan halaman melalui isian ini telah dinon-aktifkan karena alasan kinerja.",
@@ -2052,7 +2053,8 @@ Jika Anda hanya ingin mengimpor versi terbaru, Anda melakukannya lebih cepat den
 'allmessagesname'           => 'Nama',
 'allmessagesdefault'        => 'Teks baku',
 'allmessagescurrent'        => 'Teks sekarang',
-'allmessagestext'           => 'Ini adalah daftar semua pesan sistem yang tersedia dalam ruang nama MediaWiki:',
+'allmessagestext'           => 'Ini adalah daftar semua pesan sistem yang tersedia dalam ruang nama MediaWiki.
+Silakan kunjungi [http://www.mediawiki.org/wiki/Localisation Pelokalan MediaWiki] dan [http://translatewiki.net translatewiki.net] jika Anda ingin berkontribusi untuk pelokalan generik MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' tidak didukung karena '''\$wgUseDatabaseMessages''' dimatikan.",
 'allmessagesfilter'         => 'Filter nama pesan:',
 'allmessagesmodified'       => 'Hanya tampilkan yang diubah',

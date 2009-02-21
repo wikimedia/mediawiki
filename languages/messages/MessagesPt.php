@@ -451,7 +451,7 @@ A última tentativa de busca na base de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função "<tt>$2</tt>".
 O MySQL retornou o erro "<tt>$3: $4</tt>".',
-'noconnect'            => 'A wiki está a experimentar algumas dificuldades técnicas e não pode contactar o servidor da base de dados. <br />
+'noconnect'            => 'Desculpe! O wiki está a experimentar algumas dificuldades técnicas e não pode contactar o servidor da base de dados.<br />
 $1',
 'nodb'                 => 'Não foi possível seleccionar a base de dados $1',
 'cachederror'          => 'A página apresentada é uma cópia em cache da página requisitada e pode não estar actualizada.',
@@ -498,7 +498,7 @@ Query: $2',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Você pode ver e copiar o código desta página:',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
-'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt Betawiki], um projecto destinado à tradução do MediaWiki.",
+'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projecto destinado à tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
@@ -556,7 +556,7 @@ Escolha um nome diferente.',
 'yournick'                   => 'Assinatura:',
 'badsig'                     => 'Assinatura inválida; verifique o código HTML utilizado.',
 'badsiglength'               => 'A sua assinatura é muito longa.
-Terá de ter menos de $1 {{PLURAL:$1|carácter|caracteres}}.',
+Não deverá ter mais de $1 {{PLURAL:$1|caráter|carateres}}.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'                 => 'Erro de autenticação',
@@ -771,7 +771,7 @@ Por favor, considere seccionar a página em secções de menor dimensão.'''",
 'protectedpagewarning'             => "'''AVISO: Esta página foi protegida e poderá ser editada apenas por utilizadores com privilégios sysop (administradores).'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
 'cascadeprotectedwarning'          => "'''Atenção:''' Esta página se encontra protegida de forma que apenas {{int:group-sysop}} possam editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
-'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida, apenas alguns utilizadores poderão criá-la.'''",
+'titleprotectedwarning'            => "'''ATENÇÃO: Esta página foi protegida por forma a que [[Special:ListGroupRights|privilégios específicos]] sejam necessários para criá-la.'''",
 'templatesused'                    => 'Predefinições utilizadas nesta página:',
 'templatesusedpreview'             => 'Predefinições utilizadas nesta previsão:',
 'templatesusedsection'             => 'Predefinições utilizadas nesta secção:',
@@ -1333,7 +1333,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'duplicatesoffile'               => '{{PLURAL:$1|O seguinte ficheiro é duplicado|Os seguintes ficheiros são duplicados}} deste ficheiro:',
 'sharedupload'                   => 'Este ficheiro encontra-se partilhado e pode ser utilizado por outros projectos.',
 'shareduploadwiki'               => 'Por favor, consulte a $1 para mais informações.',
-'shareduploadwiki-desc'          => 'A descrição na sua $1 do repositório partilhado é mostrada abaixo.',
+'shareduploadwiki-desc'          => 'A descrição lá na sua $1 é mostrada abaixo.',
 'shareduploadwiki-linktext'      => 'página de descrição de ficheiro',
 'shareduploadduplicate'          => 'Este ficheiro é um duplicado de $1 do repositório partilhado.',
 'shareduploadduplicate-linktext' => 'outro ficheiro',
@@ -1692,7 +1692,7 @@ A última edição foi de [[User:$3|$3]] ([[User talk:$3|discussão]] | [[Specia
 'rollback-success'            => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 'sessionfailure'              => 'Foram detectados problemas com a sua sessão;
 Esta acção foi cancelada como medida de protecção contra a intercepção de sessões.
-Experimente usar o botão "Voltar" e refrescar a página de onde veio e tente novamente.',
+Experimente usar o botão "Voltar" e recarregar a página de onde veio e tente novamente.',
 'protectlogpage'              => 'Registo de protecção',
 'protectlogtext'              => 'Abaixo encontra-se o registo de protecção e desprotecção de páginas.
 Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem das páginas que se encontram protegidas no momento.',
@@ -1994,7 +1994,7 @@ A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder 
 
 Para exportar páginas, introduza os títulos na caixa de texto abaixo (um título por linha) e seleccione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição atual e informações apenas sobre a mais recente das edições.
 
-Se desejar, pode utilizar uma ligação (por exemplo, [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
+Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
 'exportcuronly'     => 'Incluir apenas a edição actual, não o histórico inteiro',
 'exportnohistory'   => "----
 '''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desactivada devido a motivos de performance.",
@@ -2010,7 +2010,7 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{ns:special}}:Export/{{
 'allmessagesdefault'        => 'Texto padrão',
 'allmessagescurrent'        => 'Texto actual',
 'allmessagestext'           => 'Esta é uma lista de todas mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
-Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net Betawiki] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
+Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
 'allmessagesnotsupportedDB' => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
 'allmessagesfilter'         => 'Filtro de nome de mensagem:',
 'allmessagesmodified'       => 'Mostrar apenas modificados',

@@ -441,7 +441,7 @@ Pretraga: $2',
 'protectedinterface'   => 'Ova stranica je zaštićena jer sadrži tekst MediaWiki programa.',
 'editinginterface'     => "'''Upozorenje:''' Mijenjate stranicu koja sadrži aktivan tekst programa.
 Promjene na ovoj stranici dovode i do promjena za druge korisnike.
-Za prijevode, molimo Vas koristite [http://translatewiki.net/wiki/Main_Page?setlang=bs Betawiki], projekt prijevoda za MediaWiki.",
+Za prijevode, molimo Vas koristite [http://translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt prijevoda za MediaWiki.",
 'sqlhidden'            => '(SQL pretraga sakrivena)',
 'cascadeprotected'     => 'Uređivanje ove stranice je zabranjeno jer sadrži {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja iz razloga:
 $2',
@@ -735,7 +735,7 @@ i nalijepite tekst u tekst editor i sačuvate ga za kasnije.</strong>',
 'protectedpagewarning'             => "'''PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa administratorskim privilegijama mogu da je mijenjaju.'''",
 'semiprotectedpagewarning'         => "'''Pažnja:''' Ova stranica je zaključana tako da je samo registrovani korisnici mogu uređivati.",
 'cascadeprotectedwarning'          => "'''Upozorenje:''' Ova stranica je zaključana tako da je samo administratori mogu mijenjati, jer je ona uključena u {{PLURAL:$1|ovu, lančanu povezanu, zaštićenu stranicu|sljedeće, lančano povezane, zaštićene stranice}}:",
-'titleprotectedwarning'            => "'''UPOZORENJE: Ova stranica je zaključana i samo određeni korisnici je mogu napraviti.'''",
+'titleprotectedwarning'            => "'''UPOZORENJE: Ova stranica je zaključana tako da su potrebna [[Special:ListGroupRights|posebna prava]] da se ona napravi.'''",
 'templatesused'                    => 'Šabloni koji su upotrebljeni na ovoj stranici:',
 'templatesusedpreview'             => 'Šabloni prikazani u ovom pregledu:',
 'templatesusedsection'             => 'Šabloni korišteni u ovoj sekciji:',
@@ -1312,8 +1312,8 @@ Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
 'duplicatesoffile'               => '{{PLURAL:$1|Slijedeća datoteka je dvojnik|Slijedeće $1 datoteke su dvojnici}} ove datoteke:',
 'sharedupload'                   => 'Ova datoteka se nalazi na [[Commons:Početna strana|Wikimedia Commons]] i može se koristiti i na drugim projektima.',
 'shareduploadwiki'               => 'Molimo pogledajte $1 za više informacija.',
-'shareduploadwiki-desc'          => 'Opis njene $1 na zajedničkom repozitoriju je prikazan ispod.',
-'shareduploadwiki-linktext'      => 'stranice opisa datoteke',
+'shareduploadwiki-desc'          => 'Opis na njenoj $1 je prikazan ispod.',
+'shareduploadwiki-linktext'      => 'stranici opisa datoteke',
 'shareduploadduplicate'          => 'Ova datoteka je dvojnik $1 iz zajedničkog repozitorija.',
 'shareduploadduplicate-linktext' => 'drugoj datoteci',
 'shareduploadconflict'           => 'Ova datoteka ima isti naziv kao i $1 iz zajedničkog repozitorija.',
@@ -2005,7 +2005,7 @@ Da li je želite obrisati kako bi ste mogli izvršiti premještanje?',
 
 Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutačnu verziju zajedno sa svim prijašnjima, ili samo trenutnu verziju sa informacijom o zadnjoj promjeni.
 
-U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za članak [[{{MediaWiki:Mainpage}}]].',
+U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za članak [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Uključite samo trenutnu reviziju, ne cijelu istoriju',
 'exportnohistory'   => "----
 '''Pažnja:''' Izvoz cjelokupne historije stranica preko ovog obrasca je onemogućeno iz tehničkih razloga.",

@@ -10,6 +10,7 @@
  * @author Skjackey tse
  * @author Wong128hk
  * @author Wrightbus
+ * @author Yuyu
  */
 
 $fallback = 'zh-hans';
@@ -409,7 +410,7 @@ $1',
 'protectedpagetext'    => '該頁面已被鎖定以防止編輯。',
 'viewsourcetext'       => '你可以檢視並複製本頁面的原始碼。',
 'protectedinterface'   => '該頁提供了軟體的介面文字，它已被鎖定以防止隨意的修改。',
-'editinginterface'     => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。改變此頁將影響其他用戶的介面外觀。如要翻譯，請考慮使用[http://translatewiki.net/wiki/Main_Page?setlang=zh-hant Betawiki]，一個用來為MediaWiki軟件本地化的計劃。",
+'editinginterface'     => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。改變此頁將影響其他用戶的介面外觀。如要翻譯，請考慮使用[http://translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]，一個用來為MediaWiki軟件本地化的計劃。",
 'sqlhidden'            => '(隱藏SQL查詢)',
 'cascadeprotected'     => '這個頁面已經被保護，因為這個頁面被以下已標註"聯鎖保護"的{{PLURAL:$1|一個|多個}}被保護頁面包含:
 $2',
@@ -1892,7 +1893,7 @@ $1',
 'allmessagesdefault'        => '預設的文字',
 'allmessagescurrent'        => '當前的文字',
 'allmessagestext'           => '這裡列出所有可定製的系統界面。
-如果想貢獻正宗的MediaWiki本地化的話，請參閱[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net Betawiki]。',
+如果想貢獻正宗的MediaWiki本地化的話，請參閱[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB' => "這個頁面無法使用，因為'''\$wgUseDatabaseMessages'''已被設定關閉。",
 'allmessagesfilter'         => '正則表達式過濾條件：',
 'allmessagesmodified'       => '僅顯示修改過的',
