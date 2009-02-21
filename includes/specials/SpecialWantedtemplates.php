@@ -42,7 +42,7 @@ class WantedTemplatesPage extends QueryPage {
 			    FROM $templatelinks LEFT JOIN
 			         $page ON tl_title = page_title AND tl_namespace = page_namespace
 			   WHERE page_title IS NULL AND tl_namespace = ". NS_TEMPLATE ."
-			GROUP BY tl_title
+			GROUP BY tl_namespace, tl_title
 			";
 	}
 
