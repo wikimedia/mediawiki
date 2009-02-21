@@ -78,10 +78,8 @@ if (!defined('MEDIAWIKI')) {
 		{
 			$db = $this->getDb();
 			$this->addTables('user', 'u1');
-			$this->addFields('u1.user_name');
+			$this->addFields('u1.*');
 			$this->addWhereFld('u1.user_name', $goodNames);
-			$this->addFieldsIf('u1.user_editcount', isset($this->prop['editcount']));
-			$this->addFieldsIf('u1.user_registration', isset($this->prop['registration']));
 
 			if(isset($this->prop['groups'])) {
 				$this->addTables('user_groups');
