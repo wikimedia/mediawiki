@@ -61,6 +61,17 @@
 	padding-right: 13px;
 }
 
+.rtl #bodyContent a.external {
+  background-image: url(external-rtl.png);
+  padding-right: 13px;
+}
+
+.rtl a.feedlink {
+  background-position: right;
+  padding-right: 0;
+  padding-left: 16px;
+}
+
 /* show the hand */
 #p-logo a,
 #p-logo a:hover {

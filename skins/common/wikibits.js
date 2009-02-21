@@ -14,6 +14,7 @@ var is_khtml = navigator.vendor == 'KDE' ||
 	( document.childNodes && !document.all && !navigator.taintEnabled );
 // For accesskeys; note that FF3+ is included here!
 var is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
+var is_ff2_ = /firefox\/2/.test( clientPC );
 // These aren't used here, but some custom scripts rely on them
 var is_ff2_win = is_ff2 && clientPC.indexOf('windows') != -1;
 var is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') != -1;
@@ -91,8 +92,12 @@ if (typeof stylepath != 'undefined' && typeof skin != 'undefined') {
 		importStylesheetURI(stylepath+'/'+skin+'/Opera6Fixes.css');
 	} else if (is_opera_seven && !is_opera_95) {
 		importStylesheetURI(stylepath+'/'+skin+'/Opera7Fixes.css');
+	} else if (is_opera_95) {
+	  importStylesheetURI(stylepath+'/'+skin+'/Opera9Fixes.css');
 	} else if (is_khtml) {
 		importStylesheetURI(stylepath+'/'+skin+'/KHTMLFixes.css');
+	} else if (is_ff2_) {
+	  importStylesheetURI(stylepath+'/'+skin+'/FF2Fixes.css');
 	}
 }
 
