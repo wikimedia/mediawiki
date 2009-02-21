@@ -105,6 +105,7 @@ class Block {
 			&& $this->mHideName == $block->mHideName
 			&& $this->mBlockEmail == $block->mBlockEmail
 			&& $this->mAllowUsertalk == $block->mAllowUsertalk
+			&& $this->mReason == $block->mReason
 		);
 	}
 
