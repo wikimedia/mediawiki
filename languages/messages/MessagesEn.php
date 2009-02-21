@@ -1020,7 +1020,7 @@ You may have already successfully changed your password or requested a new tempo
 'resetpass-log'             => 'Password resets log',
 'resetpass-logtext'         => 'Below is a log of users who have had their password reset by an administrator.',
 'resetpass-logentry'        => 'changed the password for $1',
-'resetpass-comment'         => 'Reason for password reset',
+'resetpass-comment'         => 'Reason for password reset:',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold text',
