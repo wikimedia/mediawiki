@@ -1806,7 +1806,7 @@ class Article {
 		}
 
 		#It would be nice to see where the user had actually come from, but for now just guess
-		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'newpages' : 'recentchanges';
+		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
 		$return = SpecialPage::getTitleFor( $returnto );
 
 		$dbw = wfGetDB( DB_MASTER );
