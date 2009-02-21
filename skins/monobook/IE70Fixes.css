@@ -18,6 +18,16 @@
 	margin-top: 160px;
 }
 
+.rtl #bodyContent a.external {
+  background-image: url(external-rtl.png);
+  padding: 0 13px 0 0;
+}
+
+.rtl a.feedlink {
+  background-position: right;
+  padding-right: 0;
+  padding-left: 16px;
+}
 /* the tabs */
 
 #p-cactions {
