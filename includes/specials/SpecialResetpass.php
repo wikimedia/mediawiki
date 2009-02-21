@@ -203,9 +203,11 @@ class SpecialResetpass extends SpecialPage {
 		if ( !$this->mSelfChange ) {
 			$log = new LogPage( 'password' );
 			$log->addEntry( 'reset', $user->getUserPage(), $this->mComment );
+		} else {
+			// Only set cookies if it was a self-change
+			$user->setCookies();
 		}
 		
-		$user->setCookies();
 		$user->saveSettings();
 	}
 }
