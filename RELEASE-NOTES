@@ -209,7 +209,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17538) Use shorter URLs in <link> elements
 * (bug 13778) Hidden input added to the search form so that using the Enter key
   on IE will do a fulltext search like clicking the button does
-* (bug 1061) CSS-added icons next to links display through the text and makes it unreadable in RTL
+* (bug 1061) CSS-added icons next to links display through the text and makes
+  it unreadable in RTL
+* Special:Wantedtemplates now works on PostgreSQL
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
