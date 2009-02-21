@@ -96,12 +96,12 @@ foreach ( $wgLanguages->getLanguages() as $code ) {
 	$requiredMessagesPercent = $wgOut->formatPercent( $requiredMessagesNumber, $wgRequiredMessagesNumber );
 	$obsoleteMessagesNumber = count( $messages['obsolete'] );
 	$obsoleteMessagesPercent = $wgOut->formatPercent( $obsoleteMessagesNumber, $messagesNumber, true );
-	$messagesWithoutVariables = $wgLanguages->getMessagesWithoutVariables( $code );
+	$messagesWithMismatchVariables = $wgLanguages->getMessagesWithMismatchVariables( $code );
 	$emptyMessages = $wgLanguages->getEmptyMessages( $code );
 	$messagesWithWhitespace = $wgLanguages->getMessagesWithWhitespace( $code );
 	$nonXHTMLMessages = $wgLanguages->getNonXHTMLMessages( $code );
 	$messagesWithWrongChars = $wgLanguages->getMessagesWithWrongChars( $code );
-	$problematicMessagesNumber = count( array_unique( array_merge( $messagesWithoutVariables, $emptyMessages, $messagesWithWhitespace, $nonXHTMLMessages, $messagesWithWrongChars ) ) );
+	$problematicMessagesNumber = count( array_unique( array_merge( $messagesWithMismatchVariables, $emptyMessages, $messagesWithWhitespace, $nonXHTMLMessages, $messagesWithWrongChars ) ) );
 	$problematicMessagesPercent = $wgOut->formatPercent( $problematicMessagesNumber, $messagesNumber, true );
 
 	# Output them
