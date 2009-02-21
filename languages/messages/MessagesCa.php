@@ -511,7 +511,7 @@ Consulta: $2',
 'protectedpagetext'    => 'Aquesta pàgina està protegida i no pot ser editada.',
 'viewsourcetext'       => "Podeu visualitzar i copiar la font d'aquesta pàgina:",
 'protectedinterface'   => "Aquesta pàgina conté cadenes de text per a la interfície del programari, i és protegida per a previndre'n abusos.",
-'editinginterface'     => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Pel que fa a les traduccions, plantegeu-vos utilitzar la [http://translatewiki.net/wiki/Main_Page?setlang=ca Betawiki], el projecte de traducció de MediaWiki.",
+'editinginterface'     => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Pel que fa a les traduccions, plantegeu-vos utilitzar la [http://translatewiki.net/wiki/Main_Page?setlang=ca translatewiki.net], el projecte de traducció de MediaWiki.",
 'sqlhidden'            => '(consulta SQL oculta)',
 'cascadeprotected'     => "Aquesta pàgina està protegida i no es pot editar perquè està inclosa en {{PLURAL:$1|la següent pàgina, que té|les següents pàgines, que tenen}} activada l'opció de «protecció en cascada»:
 $2",
@@ -781,7 +781,7 @@ L'administrador que l'ha tancada n'ha donat aquesta justificació: $1",
 'protectedpagewarning'             => "'''ATENCIÓ: Aquesta pàgina està bloquejada i només pot ser editada per usuaris administradors.'''",
 'semiprotectedpagewarning'         => "'''Atenció:''' Aquesta pàgina està bloquejada i només pot ser editada per usuaris registrats.",
 'cascadeprotectedwarning'          => "'''Atenció:''' Aquesta pàgina està protegida de forma que només la poden editar els administradors, ja que està inclosa a {{PLURAL:$1|la següent pàgina|les següents pàgines}} amb l'opció de «protecció en cascada» activada:",
-'titleprotectedwarning'            => "'''ATENCIÓ: Aquesta pàgina està protegida de tal manera que només certs usuaris poden crear-la.'''",
+'titleprotectedwarning'            => "'''ATENCIÓ: Aquesta pàgina està protegida de tal manera que es necessiten uns [[Special:ListGroupRights|drets específics]] per a poder crear-la.'''",
 'templatesused'                    => 'Aquesta pàgina fa servir les següents plantilles:',
 'templatesusedpreview'             => 'Plantilles usades en aquesta previsualització:',
 'templatesusedsection'             => 'Plantilles usades en aquesta secció:',
@@ -1464,10 +1464,10 @@ Podeu consultar la [[Special:WhatLinksHere/$2|llista completa]].",
 'nolinkstoimage'                 => 'No hi ha pàgines que enllacin aquesta imatge.',
 'morelinkstoimage'               => 'Visualitza [[Special:WhatLinksHere/$1|més enllaços]] que porten al fitxer.',
 'redirectstofile'                => '{{PLURAL:$1|El fitxer següent redirigeix cap aquest fitxer|Els següents $1 fitxers redirigeixen cap aquest fitxer:}}',
-'duplicatesoffile'               => "{{PLURAL:$1|Aquest fitxer és un duplicat de|A continuació s'indiquen els $1 duplicats d'aquest fitxer:}}",
+'duplicatesoffile'               => "{{PLURAL:$1|Aquest fitxer és un duplicat del que apareix a continuació|A continuació s'indiquen els $1 duplicats d'aquest fitxer}} ([[Special:FileDuplicateSearch/$2|vegeu-ne més detalls]]):",
 'sharedupload'                   => 'Aquest fitxer està compartit i poden utilitzar-lo altres projectes.',
-'shareduploadwiki'               => 'Consulteu $1 per a més informació.',
-'shareduploadwiki-desc'          => 'La descripció a la $1 del repositori compartit es mostra a continuació.',
+'shareduploadwiki'               => 'Consulteu la $1 per a més informació.',
+'shareduploadwiki-desc'          => 'La $1 en el repositori compartit es mostra a continuació.',
 'shareduploadwiki-linktext'      => 'pàgina de descripció del fitxer',
 'shareduploadduplicate'          => "El fitxer és un duplicat de $1 d'un repositori compartit.",
 'shareduploadduplicate-linktext' => 'un altre fitxer',
@@ -1855,10 +1855,10 @@ Vegeu $2 per a un registre dels esborrats més recents.',
 'rollbacklink'     => 'Reverteix',
 'rollbackfailed'   => "No s'ha pogut revocar",
 'cantrollback'     => "No s'ha pogut revertir les edicions; el darrer coŀlaborador és l'únic autor de la pàgina.",
-'alreadyrolled'    => "No es pot revertir a la darrera edició de [[:$1]]
-per l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]); algú altre ha editat o revertit la pàgina.
+'alreadyrolled'    => "No es pot revertir la darrera edició de [[:$1]]
+de l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]). Algú altre ja ha editat o revertit la pàgina.
 
-La darrera edició ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]] | [[Special:Contributions/$3|{{int:contribslink}}]]).",
+La darrera edició ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment'      => "El resum d'edició ha estat: «$1».", # only shown if there is an edit comment
 'revertpage'       => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]). S'ha recuperat la darrera versió de l'usuari [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
@@ -2228,7 +2228,7 @@ La pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer
 
 Per a exportar pàgines, escriviu els títols que desitgeu al quadre de text de sota, un títol per línia, i seleccioneu si desitgeu o no la versió actual juntament amb totes les versions antigues, amb la pàgina d'historial, o només la pàgina actual amb la informació de la darrera modificació.
 
-En el darrer cas, podeu fer servir un enllaç com ara [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] per a la pàgina «[[{{MediaWiki:Mainpage}}]]».",
+En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] per a la pàgina «[[{{MediaWiki:Mainpage}}]]».",
 'exportcuronly'     => "Exporta únicament la versió actual en voltes de l'historial sencer",
 'exportnohistory'   => "----
 '''Nota:''' s'ha inhabilitat l'exportació sencera d'historial de pàgines mitjançant aquest formulari a causa de problemes de rendiment del servidor.",
@@ -2243,7 +2243,7 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{ns:special}}:Export/{{
 'allmessagesname'           => 'Etiqueta',
 'allmessagesdefault'        => 'Text per defecte',
 'allmessagescurrent'        => 'Text actual',
-'allmessagestext'           => "Tot seguit hi ha una llista dels missatges del sistema que es troben a l'espai de noms ''MediaWiki''. La traducció genèrica d'aquests missatges no s'hauria de fer localment sinó a la traducció del programari MediaWiki. Si voleu ajudar-hi visiteu [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [http://translatewiki.net Betawiki].",
+'allmessagestext'           => "Tot seguit hi ha una llista dels missatges del sistema que es troben a l'espai de noms ''MediaWiki''. La traducció genèrica d'aquests missatges no s'hauria de fer localment sinó a la traducció del programari MediaWiki. Si voleu ajudar-hi visiteu [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [http://translatewiki.net translatewiki.net].",
 'allmessagesnotsupportedDB' => "No es pot processar '''{{ns:special}}:Allmessages''' perquè la variable '''\$wgUseDatabaseMessages''' està desactivada.",
 'allmessagesfilter'         => 'Cerca etiqueta de missatge:',
 'allmessagesmodified'       => 'Mostra només missatges modificats',

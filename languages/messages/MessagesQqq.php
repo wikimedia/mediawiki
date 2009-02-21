@@ -10,6 +10,7 @@
  * @author Ans
  * @author Aotake
  * @author Bangin
+ * @author Boivie
  * @author Brest
  * @author BrokenArrow
  * @author Codex Sinaiticus
@@ -56,11 +57,13 @@
  * @author Shushruth
  * @author Siebrand
  * @author Singularity
+ * @author Sionnach
  * @author Slomox
  * @author Sp5uhe
  * @author Srhat
  * @author UV
  * @author Urhixidur
+ * @author Verdy p
  * @author Vinhtantran
  * @author Yyy
  * @author פוילישער
@@ -222,7 +225,7 @@ See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for
 'moredotdotdot' => '{{Identical|More...}}',
 'mytalk' => 'In the personal urls page section - right upper corner.',
 'navigation' => '{{Identical|Navigation}}',
-'and' => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it.
+'and' => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it at the beginning without a gap between it and the "&". <nowiki>&#32;</nowiki> is a blank space, one character long. Please leave it as it is.
 
 {{Identical|And}}',
 
@@ -465,7 +468,7 @@ The title of the warning is the message [[MediaWiki:Nosuchspecialpage/{{SUBPAGEN
 * $1: the protection type, e.g. "protect" for fully protected pages',
 'viewsourcetext' => 'The text shown when displaying the source of a page that the user has no permission to edit',
 'protectedinterface' => 'Message shown if a user without the "editinterface" right tries to edit a page in the MediaWiki namespace.',
-'editinginterface' => "A message shown when editing pages in the namespace MediaWiki:. In the URL, '''change \"setlang=en\" to your own language code.'''",
+'editinginterface' => "A message shown when editing pages in the namespace MediaWiki:. In the [http://translatewiki.net/wiki/Main_Page?setlang=en URL], '''change \"setlang=en\" to your own language code.'''",
 'ns-specialprotected' => 'Error message displayed when trying to edit a page in the Special namespace',
 
 # Login and logout pages
@@ -533,7 +536,7 @@ $1 is the minimum number of characters in the password.',
 * $4 is a URL. Example: http://wiki.example.com',
 'noemail' => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights. ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup Register user link])',
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].
-"in the last day" precesily means: during the lasts 86400 seconds (24 hours) ending just now.',
+"in the last day" precisely means: during the lasts 86400 seconds (24 hours) ending right now.',
 'emailauthenticated' => 'In user preferences. ([[Special:Preferences]])
 
 * $1: obsolete, date and time
@@ -1015,6 +1018,7 @@ If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] 
 If you are in that group, you have (by default) the '''right \"autoconfirmed\"'''. With this right, you can for example <!-- I think this right includes more things --> edit semi-protected pages.",
 'right-nominornewtalk' => '{{doc-right}}
 If someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg|right-minoredit|pl=yes}}), the user will not get a notification "You have new messages".',
+'right-writeapi' => '{{doc-right}}',
 'right-deleterevision' => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
 
@@ -1052,6 +1056,7 @@ A user with this right can mark a roll-back edit as a bot edit by adding <tt>&bo
 The rate limits have no effect on the groups that have this right. Rate limits is a restriction that you can only do X actions (edits, moves, etc.) in Y number of seconds (set by [[mw:Manual:$wgRateLimits|$wgRateLimits]]).',
 'right-import' => '{{doc-right}}',
 'right-importupload' => '{{doc-right}}',
+'right-patrol' => '{{doc-right}}',
 
 # User rights log
 'rightslog' => 'In [[Special:Log]]',
@@ -1209,11 +1214,18 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 
 # Special:ListFiles
 'listfiles-summary' => 'This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.',
+'listfiles_search_for' => 'Input label for the form displayed on [[Special:ImageList]].',
 'imgfile' => '{{Identical|File}}',
-'listfiles' => '{{Identical|File list}}',
-'listfiles_date' => '{{Identical|Date}}',
-'listfiles_name' => '{{Identical|Name}}',
-'listfiles_user' => '{{Identical|User}}',
+'listfiles' => 'Page title and grouping label for the form displayed on [[Special:ImageList]].
+{{Identical|File list}}',
+'listfiles_date' => 'Column header for the result table displayed on [[Special:ImageList]].
+{{Identical|Date}}',
+'listfiles_name' => 'Column header for the result table displayed on [[Special:ImageList]].
+{{Identical|Name}}',
+'listfiles_user' => 'Column header for the result table displayed on [[Special:ImageList]].
+{{Identical|User}}',
+'listfiles_size' => 'Column header for the result table displayed on [[Special:ImageList]].
+{{Identical|Size}}',
 'listfiles_description' => '{{Identical|Description}}',
 'listfiles_count' => 'One of the table column headers in [[Special:Listfiles]] denoting the amount of saved versions of that file.',
 
@@ -1249,7 +1261,7 @@ Example: [[:Image:Addon-icn.png]]',
 'filehist-comment' => 'In file description page
 
 {{Identical|Comment}}',
-'imagelinks' => 'In image description page
+'imagelinks' => 'In top header of the image description page, see for example [[:Image:Yes.png]].
 
 {{Identical|Links}}',
 'linkstoimage' => 'Used on image description, see for example [[:Image:Yes.png#filelinks]].
@@ -1260,11 +1272,15 @@ Example: [[:Image:Addon-icn.png]]',
 * $2: filename',
 'nolinkstoimage' => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
 'redirectstofile' => 'Used on file description pages after the list of pages which used this file',
+'duplicatesoffile' => 'Shown on file description pages when a file is duplicated
+
+* $1: Number of identical files
+* $2: Name of the shown file to link to the special page "FileDuplicateSearch"',
 'sharedupload' => 'Shown on an image description page when it is used in a central repository (i.e. [http://commons.wikimedia.org/ Commons] for Wikimedia wikis).
 {{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
 'shareduploadwiki' => 'The variable $1 is {{msg|shareduploadwiki-linktext}}',
-'shareduploadwiki-desc' => "This message appears after [[MediaWiki:Sharedupload]]. \$1 is a link to the file description page on the shared repository with [[MediaWiki:Shareduploadwiki-linktext]] as display text. Example: \"''The description on its file description page there is shown below.''\"",
-'shareduploadwiki-linktext' => 'This message is used as variable $1 in [[MediaWiki:Shareduploadwiki]] and in [[MediaWiki:Shareduploadwiki-desc]]',
+'shareduploadwiki-desc' => "This message appears after {{msg-mw|Sharedupload}}. \$1 is a link to the file description page on the shared repository with {{msg-mw|Shareduploadwiki-linktext}} as displayed anchor text. Example: \"''The description on its <u>file description</u> page there is shown below.''\"",
+'shareduploadwiki-linktext' => 'This message is used as variable $1 in {{msg-mw|Shareduploadwiki}} and in {{msg-mw|Shareduploadwiki-desc}}.',
 'shareduploadduplicate' => '$1 is contents of message shareduploadduplicate-linktext (i.e. "another file")',
 'shareduploadduplicate-linktext' => 'This message is the text of $1 in the message [[MediaWiki:Shareduploadduplicate]].
 
@@ -1359,7 +1375,7 @@ Example: [[:Image:Addon-icn.png]]',
 
 {{Identical|Content page}}',
 'statistics-pages' => 'Used in [[Special:Statistics]]',
-'statistics-pages-desc' => "Tooltip shown over ''Pages*'' in [[Special:Statistics]]",
+'statistics-pages-desc' => "Tooltip shown over ''Pages'' (or as a note below it) in [[Special:Statistics]]",
 'statistics-files' => 'Used in [[Special:Statistics]]',
 'statistics-edits' => 'Used in [[Special:Statistics]]',
 'statistics-edits-average' => 'Used in [[Special:Statistics]]',
@@ -1516,7 +1532,9 @@ Example: [[:Image:Addon-icn.png]]',
 'linksearch-ok' => '{{Identical|Search}}',
 
 # Special:ListUsers
-'listusers-submit' => '{{Identical|Show}}',
+'listusers-submit' => 'Text displayed in the submission button of the [[Special:ListUsers]] form.
+{{Identical|Go}}
+{{Identical|Show}}',
 
 # Special:Log/newusers
 'newuserlogpage' => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
@@ -1534,8 +1552,14 @@ Example: [[:Image:Addon-icn.png]]',
 'listgrouprights-rights' => "The title of the column in the table, about user rights (like you can ''edit'' this page).",
 'listgrouprights-helppage' => "The link used on [[Special:ListGroupRights]]. Just translate \"Group rights\", and '''leave the \"Help:\" namespace exactly as it is'''.",
 'listgrouprights-members' => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
-'listgrouprights-addgroup' => 'Used on [[Special:ListGroupRights]]. See also {{msg|listgrouprights-removegroup}}.',
-'listgrouprights-removegroup' => 'Used on [[Special:ListGroupRights]]. See also {{msg|listgrouprights-addgroup}}.',
+'listgrouprights-addgroup' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
+* $1 is an enumeration of group names.
+* $2 is the number of group names in $1.
+See also {{msg|listgrouprights-removegroup}}.',
+'listgrouprights-removegroup' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
+* $1 is an enumeration of group names.
+* $2 is the number of group names in $1.
+See also {{msg|listgrouprights-addgroup}}.',
 'listgrouprights-addgroup-all' => '{{doc-right}}',
 'listgrouprights-removegroup-all' => '{{doc-right}}',
 
@@ -1584,7 +1608,7 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 'notanarticle' => '{{Identical|Content page}}',
 'watchlist-details' => 'Message on Special page: My watchlist. This is paired with the message [[Mediawiki:Nowatchlist]] which appears instead of Watchlist-details when $1 is 0.',
 'wlheader-showupdated' => 'This message shows up near top of users watchlist page.',
-'wlshowlast' => "Appears on [[Special:Watchlist]]. Variable $1 gives a choice of different numbers of hours, $2 gives a choice of different numbers of days and $3 is 'all' ([[Mediawiki:watchlistall2]]). Clicking on your choice changes the list of changes you see (without changing the default in my preferences).",
+'wlshowlast' => "Appears on [[Special:Watchlist]]. Variable $1 gives a choice of different numbers of hours, $2 gives a choice of different numbers of days and $3 is '{{int:watchlistall2}}' ([[Mediawiki:watchlistall2/{{SUBPAGENAME}}]]). Clicking on your choice changes the list of changes you see (without changing the default in my preferences).",
 'watchlist-options' => 'Legend of the fieldset of [[Special:Watchlist]]',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1622,7 +1646,10 @@ $1 = the name of the page',
 'deletecomment' => '{{Identical|Reason for deletion}}',
 'deleteotherreason' => '{{Identical|Other/additional reason}}',
 'deletereasonotherlist' => '{{Identical|Other reason}}',
-'deletereason-dropdown' => 'Default reasons for deletion.',
+'deletereason-dropdown' => 'Default reasons for deletion. Displayed as a drop-down list. Format:
+<pre>* Group
+** Common delete reason
+** ...</pre>',
 'delete-edit-reasonlist' => 'Shown beneath the page deletion form on the right side. It is a link to [[MediaWiki:Deletereason-dropdown]]. See also {{msg|Ipb-edit-dropdown}} and {{msg|Protect-edit-reasonlist}}.
 
 {{Identical|Edit delete reasons}}',
@@ -1634,7 +1661,12 @@ $1 = the name of the page',
 'rollbackfailed' => '{{Identical|Rollback}}',
 'cantrollback' => '{{Identical|Revert}}
 {{Identical|Rollback}}',
-'alreadyrolled' => '{{Identical|Rollback}}',
+'alreadyrolled' => "Appear when there's rollback and/or edit collision.
+* $1: the page to be rollbacked
+* $2: the editor to be rollbacked of that page
+* $3: the editor that cause collision
+
+{{Identical|Rollback}}",
 'revertpage' => '{{Identical|Revert}}',
 'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.
 {{Identical|Revert}}
@@ -1798,7 +1830,8 @@ Example line:
 'whatlinkshere-hideredirs' => 'Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
 'whatlinkshere-hidetrans' => 'Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
 'whatlinkshere-hidelinks' => 'Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
-'whatlinkshere-hideimages' => 'This is the text of the option on [[Special:WhatLinksHere]] for image pages, allowing to hide/show pages which display the file inline ($1 is either [[MediaWiki:Show|{{MediaWiki:Show}}]], or [[MediaWiki:Hide|{{MediaWiki:Hide}}]])',
+'whatlinkshere-hideimages' => 'This is the text of the option on [[Special:WhatLinksHere]] for image pages, allowing to hide/show pages which display the file inline.
+Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
 'whatlinkshere-filters' => '{{Identical|Filter}}',
 
 # Block/unblock
@@ -1945,7 +1978,7 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 
 # Export
 'export' => 'Page title of [[Special:Export]], a page where a user can export pages from a wiki to a file.',
-'exporttext' => 'Main text on [[Special:Export]]. Leave the line <tt><nowiki>[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]</nowiki></tt> exactly as it is!',
+'exporttext' => 'Main text on [[Special:Export]]. Leave the line <tt><nowiki>[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]</nowiki></tt> exactly as it is!',
 'exportcuronly' => 'A label of checkbox option in [[Special:Export]]',
 'export-submit' => 'Button name in [[Special:Export]].
 
@@ -2121,7 +2154,7 @@ The message appears after the name of the patroller.',
 
 # Special:NewFiles
 'newimages' => 'Page title of [[Special:NewImages]].',
-'imagelisttext' => 'This is text on [[Special:NewImages]]. $1 is the number of files. $2 is the message [[Mediawiki:Bydate]].',
+'imagelisttext' => 'This is text on [[Special:NewImages]]. $1 is the number of files. $2 is the message {{msg-mw|Mediawiki:Bydate}}.',
 'newimages-summary' => 'This message is displayed at the top of [[Special:NewImages]] to explain what is shown on that special page.',
 'newimages-legend' => 'Caption of the fieldset for the filter on [[Special:NewImages]]
 
@@ -2323,6 +2356,9 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 
 # Separators for various lists, etc.
 'colon-separator' => "Optional message. Change it only if your language uses another character for ':' or it needs an extra space before the colon.",
+'word-separator' => 'This is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.
+
+Most languages use a space, but some Asian languages, such as Thai and Chinese, do not.',
 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',
@@ -2330,6 +2366,7 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 'imgmultigo' => '{{Identical|Go}}',
 
 # Table pager
+'ascending_abbrev' => 'Abbreviation of Ascending power',
 'table_pager_next' => '{{Identical|Next page}}',
 'table_pager_prev' => '{{Identical|Previous page}}',
 'table_pager_limit' => "Do not use PLURAL in this message, because ''$1'' is not the actual number. ''$1'' is a limit selector drop-down list.",

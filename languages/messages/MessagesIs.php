@@ -490,7 +490,7 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 'site-atom-feed'          => '$1 Atom-streymi',
 'page-rss-feed'           => '„$1“ RSS-streymi',
 'page-atom-feed'          => '„$1“ Atom-streymi',
-'red-link-title'          => '$1 (ekki enn skrifuð)',
+'red-link-title'          => '$1 (síða er ekki enn til)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Síða',
@@ -573,7 +573,7 @@ Spurn: $2',
 'protectedinterface'   => 'Þessi síða útvegar textann sem birtist í viðmóti hugbúnaðarins, og er læst til að koma í veg fyrir misnotkun.',
 'editinginterface'     => "'''Aðvörun:''' Þú ert að breyta síðu sem hefur að geyma texta fyrir notendaumhverfi hugbúnaðarins.
 Breytingar á þessari síðu munu hafa áhrif á notendaumhverfi annarra notenda.
-Fyrir þýðingar, gjörðu svo vel að nota [http://translatewiki.net/wiki/Main_Page?setlang=is Betawiki], staðfæringverkefni MediaWiki.",
+Fyrir þýðingar, gjörðu svo vel að nota [http://translatewiki.net/wiki/Main_Page?setlang=is translatewiki.net], staðfæringverkefni MediaWiki.",
 'sqlhidden'            => '(SQL-fyrirspurn falin)',
 'cascadeprotected'     => 'Þessi síða hefur verið vernduð fyrir breytingum, vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er vernduð|síðum, sem eru verndaðar}} með „keðjuverndun“:
 $2',
@@ -1361,7 +1361,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'filehist-dimensions'            => 'Víddir',
 'filehist-filesize'              => 'Stærð skráar',
 'filehist-comment'               => 'Athugasemd',
-'imagelinks'                     => 'Tenglar',
+'imagelinks'                     => 'Skráatenglar',
 'linkstoimage'                   => 'Eftirfarandi {{PLURAL:$1|síða tengist|$1 síður tengjast}} í þessa skrá:',
 'nolinkstoimage'                 => 'Engar síður tengja í þessa skrá.',
 'sharedupload'                   => 'Þessari skrá er deilt meðal annarra verkefna og nýtist því þar.',
@@ -1702,7 +1702,7 @@ Núverandi staða síðunnar er '''$1''':",
 Þú getur breytt verndunarstigi þessarar síðu, en það mun ekki hafa áhrif á keðjuverndunina.',
 'protect-default'             => '(sjálfgefið)',
 'protect-fallback'            => '„$1“ réttindi nauðsynleg',
-'protect-level-autoconfirmed' => 'Banna óinnskráða notendur',
+'protect-level-autoconfirmed' => 'Banna nýja og óinnskráða notendur',
 'protect-level-sysop'         => 'Leyfa aðeins stjórnendur',
 'protect-summary-cascade'     => 'keðjuvörn',
 'protect-expiring'            => 'rennur út $1 (UTC)',
@@ -1976,7 +1976,7 @@ Síðan „[[:$1]]“ er þegar til. Viltu eyða henni til þess að rýma til f
 'allmessagesdefault'        => 'Sjálfgefinn texti',
 'allmessagescurrent'        => 'Núverandi texti',
 'allmessagestext'           => 'Þetta er listi yfir kerfismeldingar í Melding-nafnrýminu.
-Gjörðu svo vel og heimsæktu [http://www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [http://translatewiki.net Betawiki] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
+Gjörðu svo vel og heimsæktu [http://www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [http://translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
 'allmessagesnotsupportedDB' => "Það er ekki hægt að nota '''{{ns:special}}:Allmessages''' því '''\$wgUseDatabaseMessages''' hefur verið gerð óvirk.",
 'allmessagesmodified'       => 'Sýna aðeins breyttar',
 
@@ -2015,9 +2015,9 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|breyting|breytingar}} frá $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Notandasíðan mín',
+'tooltip-pt-userpage'             => 'Notandasíðan þín',
 'tooltip-pt-anonuserpage'         => 'Notandasíðan fyrir vistfangið þitt',
-'tooltip-pt-mytalk'               => 'Spallsíðan mín',
+'tooltip-pt-mytalk'               => 'Spjallsíðan þín',
 'tooltip-pt-anontalk'             => 'Spjallsíðan fyrir þetta vistfang',
 'tooltip-pt-preferences'          => 'Almennar stillingar',
 'tooltip-pt-watchlist'            => 'Listi yfir síður sem þú fylgist með breytingum á',

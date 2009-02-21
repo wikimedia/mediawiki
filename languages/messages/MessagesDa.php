@@ -629,7 +629,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'nowiki_tip'      => 'Ignorer wikiformatering',
 'image_sample'    => 'Eksempel.jpg',
 'image_tip'       => 'Indlejret billede',
-'media_sample'    => 'Eksempel.mp3',
+'media_sample'    => 'Eksempel.ogg',
 'media_tip'       => 'Henvisning til multimediefil',
 'sig_tip'         => 'Din signatur med tidsstempel',
 'hr_tip'          => 'Horisontal linje (brug den sparsomt)',
@@ -795,7 +795,7 @@ Der bør være færre end $2, lige nu er der $1.',
 'nohistory'              => 'Der er ingen versionshistorik for denne side.',
 'currentrev'             => 'Nuværende version',
 'revisionasof'           => 'Versionen fra $1',
-'revision-info'          => 'Version fra $1 til $2', # Additionally available: $3: revision id
+'revision-info'          => 'Version fra $1 af $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Ældre version',
 'nextrevision'           => 'Nyere version→',
 'currentrevisionlink'    => 'se nuværende version',

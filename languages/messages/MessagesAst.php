@@ -89,6 +89,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Mandame copies de los correos que mando a otros usuarios',
 'tog-diffonly'                => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
 'tog-showhiddencats'          => 'Amosar categoríes ocultes',
+'tog-norollbackdiff'          => 'Desanicier les diferencies depués de restaurar',
 
 'underline-always'  => 'Siempre',
 'underline-never'   => 'Nunca',
@@ -386,7 +387,7 @@ Consulta: $2',
 'protectedpagetext'    => 'Esta páxina foi candada pa evitar la so edición.',
 'viewsourcetext'       => "Pues ver y copiar el códigu fonte d'esta páxina:",
 'protectedinterface'   => "Esta páxina proporciona testu d'interfaz a l'aplicación y ta candada pa evitar el so abusu.",
-'editinginterface'     => "'''Avisu:''' Tas editando una páxina usada pa proporcionar testu d'interfaz a l'aplicación. Los cambeos nesta páxina va afeuta-yos l'apariencia de la interfaz a otros usuarios.",
+'editinginterface'     => "'''Avisu:''' Tas editando una páxina usada pa proporcionar testu d'interfaz a l'aplicación. Los cambeos nesta páxina va afeuta-yos l'apariencia de la interfaz a otros usuarios. Si quies facer traducciones, por favor participa en [http://translatewiki.net/wiki/Main_Page?setlang=ast translatewiki.net], el proyeutu de traducción de MediaWiki.",
 'sqlhidden'            => '(consulta SQL escondida)',
 'cascadeprotected'     => 'Esta páxina ta protexida d\'ediciones porque ta enxerta {{PLURAL:$1|na siguiente páxina|nes siguientes páxines}}, que {{PLURAL:$1|ta protexida|tán protexíes}} cola opción "en cascada":
 $2',
@@ -513,6 +514,8 @@ Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'resetpass_forbidden'       => 'Les claves nun se puen camudar',
 'resetpass-no-info'         => "Has tar identificáu p'acceder direutamente a esta páxina.",
 'resetpass-submit-loggedin' => 'Camudar clave',
+'resetpass-wrong-oldpass'   => "La clave d'anguaño o temporal nun casa.
+Puede ser que yá la cambiaras o que solicitaste otra.",
 'resetpass-temp-password'   => 'Clave temporal:',
 
 # Edit page toolbar
@@ -660,7 +663,7 @@ L'alministrador que la candó ufrió una esplicación: $1",
 'protectedpagewarning'             => "'''AVISU: Esta páxina ta candada pa que sólo los alministradores puean editala.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta páxina foi candada pa que nun puean editala namái que los usuarios rexistraos.",
 'cascadeprotectedwarning'          => "'''Avisu:''' Esta páxina ta candada pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
-'titleprotectedwarning'            => "'''AVISU: Esta páxina foi candada pa que namái dalgunos usuarios puean creala.'''",
+'titleprotectedwarning'            => "'''AVISU: Esta páxina torgose pa que namái [[Special:ListGroupRights|dalgunos usuarios especiales]] puean creala.'''",
 'templatesused'                    => 'Plantíes usaes nesta páxina:',
 'templatesusedpreview'             => 'Plantíes usaes nesta previsualización:',
 'templatesusedsection'             => 'Plantíes usaes nesta seición:',
@@ -701,6 +704,8 @@ Dalgunes plantíes nun van ser incluyíes.',
 'post-expand-template-argument-warning'   => "Avisu: Esta páxina contién a lo menos un parámetru de plantía que tien un tamañu d'espansión demasiao llargu.
 Estos parámetros van ser omitíos.",
 'post-expand-template-argument-category'  => 'Páxines con parámetros de plantía omitíos',
+'parser-template-loop-warning'            => 'Hai una rueda de plantíes: [[$1]]',
+'parser-template-recursion-depth-warning' => "Superóse'l llímite de profundidá de les plantíes ($1)",
 
 # "Undo" feature
 'undo-success' => "La edición pue esfacese. Por favor comprueba la comparanza d'embaxo pa verificar que ye eso lo que quies facer, y depués guarda los cambeos p'acabar d'esfacer la edición.",
@@ -926,7 +931,9 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'searchprofile-project-tooltip'    => 'Buscar en $1',
 'searchprofile-images-tooltip'     => 'Buscar archivos',
 'searchprofile-everything-tooltip' => "Buscar tol conteníu (incluyendo páxines d'alderique)",
+'searchprofile-advanced-tooltip'   => 'Buscar en namespaces personalizaos',
 'prefs-search-nsdefault'           => 'Buscar usando los valores por defutu:',
+'prefs-search-nscustom'            => 'Buscar namespaces personalizaos:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 pallabra|$2 pallabres}})',
 'search-result-score'              => 'Relevancia: $1%',
 'search-redirect'                  => '(redireición a $1)',
@@ -1011,6 +1018,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'timezonetext'              => '¹Diferencia horaria ente la UTC y la to hora llocal.',
 'localtime'                 => 'Hora llocal:',
 'timezoneselect'            => 'Zona horaria:',
+'timezoneuseserverdefault'  => 'Usar el sirvidor preferíu',
 'timezoneuseoffset'         => 'Otru (especificar diferencia)',
 'timezoneoffset'            => 'Diferencia¹:',
 'servertime'                => 'Hora del sirvidor:',
@@ -1238,6 +1246,7 @@ Mira la [[Special:NewFiles|galería d'archivos nuevos]] pa una güeyada más vis
 'illegalfilename'             => 'El nome d\'archivu "$1" contién carauteres non permitíos en títulos de páxina. Por favor renoma l\'archivu y xúbilu otra vuelta.',
 'badfilename'                 => 'Nome de la imaxe camudáu a "$1".',
 'filetype-badmime'            => 'Los archivos de la triba MIME "$1" nun tienen permitida la xubida.',
+'filetype-bad-ie-mime'        => 'Nun puede xubise esti ficheru porque Internet Explorer deteutalu como "$1", nun ta permitíu y paez que pueda ser un ficheru peligrosu.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' ye una mena d'archivu non recomendáu.
 {{PLURAL:\$3|La mena d'archivu preferida ye|Les menes d'archivu preferíes son}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' nun ye una mena d'archivu permitida.
@@ -1263,6 +1272,7 @@ Si tovía asina quies xubir el ficheru, por favor vuelvi atrás y usa otru nome.
 'fileexists-shared-forbidden' => "Yá esiste un archivu con esti nome nel direutoriu d'archivos compartíos.
 Si tovía asina quies xubir l'archivu, por favor vuelvi atrás y usa otru nome. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Esti archivu ye un duplicáu {{PLURAL:$1|del siguiente archivu|de los siguientes archivos}}:',
+'file-deleted-duplicate'      => 'Yá se desanició enantes un ficheru idénticu a esti ([[$1]]). Deberíes revisar el historial del ficheru enantes de xubilu otra vuelta.',
 'successfulupload'            => 'Xubida correuta',
 'uploadwarning'               => "Avisu de xubíes d'archivos",
 'savefile'                    => 'Grabar archivu',
@@ -1343,7 +1353,7 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'nolinkstoimage'                 => "Nun hai páxines qu'enllacien a esti archivu.",
 'morelinkstoimage'               => 'Ver [[Special:WhatLinksHere/$1|más enllaces]] a esti archivu.',
 'redirectstofile'                => '{{PLURAL:$1|El siguiente archivu redirixe|Los siguientes $1 archivos redirixen}} a esti archivu:',
-'duplicatesoffile'               => "{{PLURAL:$1|El siguiente archivu ye un duplicáu|Los siguientes $1 archivos son duplicaos}} d'esti archivu:",
+'duplicatesoffile'               => "{{PLURAL:$1|El siguiente archivu ye un duplicáu|Los siguientes $1 archivos son duplicaos}} d'esti archivu ([[Special:FileDuplicateSearch/$2|más detalles]]):",
 'sharedupload'                   => "L'archivu ye una xubida compartida y pue tar siendo usáu por otros proyeutos.",
 'shareduploadwiki'               => 'Por favor mira la $1 pa más información.',
 'shareduploadwiki-desc'          => "La descripción de la so $1 nel direutoriu compartíu ye l'amosada embaxo.",
@@ -1515,6 +1525,7 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'booksources-search-legend' => 'Busca de fontes de llibros',
 'booksources-go'            => 'Dir',
 'booksources-text'          => "Esta ye una llista d'enllaces a otros sitios que vienden llibros nuevos y usaos, y que puen tener más información sobre llibros que pueas tar guetando:",
+'booksources-invalid-isbn'  => 'El códigu ISBN que puxisti nun paez que valga; mira que te vien copiáu de la fonte orixinal.',
 
 # Special:Log
 'specialloguserlabel'  => 'Usuariu:',
@@ -1591,29 +1602,31 @@ Pue haber [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] toca
 'listgrouprights-removegroup-all' => 'Pue quitar tolos grupos',
 
 # E-mail user
-'mailnologin'     => "Ensin direición d'unviu",
-'mailnologintext' => 'Has tar [[Special:UserLogin|identificáu]]
+'mailnologin'      => "Ensin direición d'unviu",
+'mailnologintext'  => 'Has tar [[Special:UserLogin|identificáu]]
 y tener una direición de corréu válida nes tos [[Special:Preferences|preferencies]]
 pa poder unviar correos a otros usuarios.',
-'emailuser'       => 'Manda-y un email a esti usuariu',
-'emailpage'       => "Corréu d'usuariu",
-'emailpagetext'   => "Pues usar el formulariu d'embaxo pa unviar un corréu electrónicu a esti usuariu.
+'emailuser'        => 'Manda-y un email a esti usuariu',
+'emailpage'        => "Corréu d'usuariu",
+'emailpagetext'    => "Pues usar el formulariu d'embaxo pa unviar un corréu electrónicu a esti usuariu.
 La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences|tos preferencies d'usuariu]] va apaecer como la direición \"Dende\" del corréu, pa que'l que lo recibe seya quien a respondete direutamente a ti.",
-'usermailererror' => "L'operador de corréu devolvió un error:",
-'defemailsubject' => 'Corréu electrónicu de {{SITENAME}}',
-'noemailtitle'    => 'Ensin direición de corréu',
-'noemailtext'     => 'Esti usuariu nun especificó una direición de corréu válida.',
-'email-legend'    => 'Unviar un corréu electrónicu a otru usuariu de {{SITENAME}}',
-'emailfrom'       => 'De:',
-'emailto'         => 'A:',
-'emailsubject'    => 'Asuntu:',
-'emailmessage'    => 'Mensaxe:',
-'emailsend'       => 'Unviar',
-'emailccme'       => 'Unviame per corréu una copia del mio mensaxe.',
-'emailccsubject'  => 'Copia del to mensaxe a $1: $2',
-'emailsent'       => 'Corréu unviáu',
-'emailsenttext'   => 'El to corréu foi unviáu.',
-'emailuserfooter' => 'Esti corréu electrónicu foi unviáu por $1 a $2 per acidu de la funxión "Manda-y un corréu a un usuariu" de {{SITENAME}}.',
+'usermailererror'  => "L'operador de corréu devolvió un error:",
+'defemailsubject'  => 'Corréu electrónicu de {{SITENAME}}',
+'noemailtitle'     => 'Ensin direición de corréu',
+'noemailtext'      => 'Esti usuariu nun especificó una direición de corréu válida.',
+'nowikiemailtitle' => "Nun se permite'l corréu electrónicu",
+'nowikiemailtext'  => "Esti usuariu nun quier recibir correos d'otros usuarios.",
+'email-legend'     => 'Unviar un corréu electrónicu a otru usuariu de {{SITENAME}}',
+'emailfrom'        => 'De:',
+'emailto'          => 'A:',
+'emailsubject'     => 'Asuntu:',
+'emailmessage'     => 'Mensaxe:',
+'emailsend'        => 'Unviar',
+'emailccme'        => 'Unviame per corréu una copia del mio mensaxe.',
+'emailccsubject'   => 'Copia del to mensaxe a $1: $2',
+'emailsent'        => 'Corréu unviáu',
+'emailsenttext'    => 'El to corréu foi unviáu.',
+'emailuserfooter'  => 'Esti corréu electrónicu foi unviáu por $1 a $2 per acidu de la funxión "Manda-y un corréu a un usuariu" de {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'La mio páxina de vixilancia',
@@ -1846,6 +1859,7 @@ Consulta'l [[Special:Log/delete|rexistru d'esborraos]] pa ver los esborraos y re
 'undelete-error-long'          => "Atopáronse errores al restaurar l'archivu:
 
 $1",
+'undelete-show-file-confirm'   => '¿Tas seguru de que quies ver una versión desaniciada del ficheru "<nowiki>$1</nowiki>" del $2 a les $3?',
 'undelete-show-file-submit'    => 'Sí',
 
 # Namespace form on various pages
@@ -2016,9 +2030,9 @@ na base de datos. Por favor confirma que ye lo quies facer.',
 'databasenotlocked'   => 'La base de datos nun ta candada.',
 
 # Move page
-'move-page'                 => 'Treslladar $1',
-'move-page-legend'          => 'Treslladar páxina',
-'movepagetext'              => "Usando'l siguiente formulariu vas renomar una páxina, treslladando'l so historial al nuevu nome.
+'move-page'                    => 'Treslladar $1',
+'move-page-legend'             => 'Treslladar páxina',
+'movepagetext'                 => "Usando'l siguiente formulariu vas renomar una páxina, treslladando'l so historial al nuevu nome.
 El nome vieyu va convertise nuna redireición al nuevu.
 Pues actualizar redireiciones qu'enllacien al títulu orixinal automáticamente.
 Si prefieres nun lo facer, asegúrate de que nun dexes [[Special:DoubleRedirects|redireiciones dobles]] o [[Special:BrokenRedirects|rotes]].
@@ -2030,56 +2044,60 @@ Esto significa que pues volver a renomar una páxina col nome orixinal si t'enqu
 ¡AVISU!'''
 Esti pue ser un cambéu importante y inesperáu pa una páxina popular;
 por favor, asegúrate d'entender les consecuencies de lo que vas facer enantes de siguir.",
-'movepagetalktext'          => "La páxina d'alderique asociada va ser treslladada automáticamente '''a nun ser que:'''
+'movepagetalktext'             => "La páxina d'alderique asociada va ser treslladada automáticamente '''a nun ser que:'''
 *Yá esista una páxina d'alderique non vacia col nuevu nome, o
 *Desactives la caxella d'equí baxo.
 
 Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
-'movearticle'               => 'Treslladar la páxina:',
-'movenologin'               => 'Non identificáu',
-'movenologintext'           => 'Tienes que ser un usuariu rexistráu y tar [[Special:UserLogin|identificáu]] pa treslladar una páxina.',
-'movenotallowed'            => 'Nun tienes permisu pa mover páxines.',
-'cant-move-user-page'       => "Nun tienes permisu pa treslladar páxines d'usuariu (independientemente de les subpáxines).",
-'cant-move-to-user-page'    => "Nun tienes permisu pa treslladar una páxina a una páxina d'usuariu (sacante a una subpáxina d'usuariu).",
-'newtitle'                  => 'Al títulu nuevu:',
-'move-watch'                => 'Vixilar esta páxina',
-'movepagebtn'               => 'Treslladar la páxina',
-'pagemovedsub'              => 'Treslláu correctu',
-'movepage-moved'            => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-redirect'   => 'Creóse una redireición.',
-'articleexists'             => "Yá hai una páxina con esi nome, o'l nome qu'escoyisti nun ye válidu. Por favor, escueyi otru nome.",
-'cantmove-titleprotected'   => "Nun pues mover una páxina a esti llugar porque'l nuevu títulu foi protexíu de la so creación",
-'talkexists'                => "'''La páxina treslladóse correutamente, pero non la so páxina d'alderique porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",
-'movedto'                   => 'treslladáu a',
-'movetalk'                  => "Mover la páxina d'alderique asociada",
-'move-subpages'             => 'Treslladar toles subpáxines si ye posible',
-'move-talk-subpages'        => "Treslladar toles subpáxines de la páxina d'alderique si ye posible",
-'movepage-page-exists'      => 'La páxina $1 yá esiste y nun se pue sobreescribir automáticamente.',
-'movepage-page-moved'       => 'Treslladóse la páxina $1 a $2.',
-'movepage-page-unmoved'     => 'Nun se pudo treslladar la páxina $1 a $2.',
-'movepage-max-pages'        => "Treslladóse'l máximu de $1 {{PLURAL:$1|páxina|páxinees}} y nun van treslladase más automáticamente.",
-'1movedto2'                 => '[[$1]] treslladáu a [[$2]]',
-'1movedto2_redir'           => '[[$1]] treslladáu a [[$2]] sobre una redireición',
-'movelogpage'               => 'Rexistru de tresllaos',
-'movelogpagetext'           => 'Esta ye la llista de páxines treslladaes.',
-'movereason'                => 'Motivu:',
-'revertmove'                => 'revertir',
-'delete_and_move'           => 'Esborrar y treslladar',
-'delete_and_move_text'      => '==Necesítase esborrar==
+'movearticle'                  => 'Treslladar la páxina:',
+'movenologin'                  => 'Non identificáu',
+'movenologintext'              => 'Tienes que ser un usuariu rexistráu y tar [[Special:UserLogin|identificáu]] pa treslladar una páxina.',
+'movenotallowed'               => 'Nun tienes permisu pa mover páxines.',
+'movenotallowedfile'           => 'Nun tienes permisu pa mover ficheros.',
+'cant-move-user-page'          => "Nun tienes permisu pa treslladar páxines d'usuariu (independientemente de les subpáxines).",
+'cant-move-to-user-page'       => "Nun tienes permisu pa treslladar una páxina a una páxina d'usuariu (sacante a una subpáxina d'usuariu).",
+'newtitle'                     => 'Al títulu nuevu:',
+'move-watch'                   => 'Vixilar esta páxina',
+'movepagebtn'                  => 'Treslladar la páxina',
+'pagemovedsub'                 => 'Treslláu correctu',
+'movepage-moved'               => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Creóse una redireición.',
+'movepage-moved-noredirect'    => "Desaniciose la creación d'una redireición.",
+'articleexists'                => "Yá hai una páxina con esi nome, o'l nome qu'escoyisti nun ye válidu. Por favor, escueyi otru nome.",
+'cantmove-titleprotected'      => "Nun pues mover una páxina a esti llugar porque'l nuevu títulu foi protexíu de la so creación",
+'talkexists'                   => "'''La páxina treslladóse correutamente, pero non la so páxina d'alderique porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",
+'movedto'                      => 'treslladáu a',
+'movetalk'                     => "Mover la páxina d'alderique asociada",
+'move-subpages'                => 'Treslladar toles subpáxines si ye posible',
+'move-talk-subpages'           => "Treslladar toles subpáxines de la páxina d'alderique si ye posible",
+'movepage-page-exists'         => 'La páxina $1 yá esiste y nun se pue sobreescribir automáticamente.',
+'movepage-page-moved'          => 'Treslladóse la páxina $1 a $2.',
+'movepage-page-unmoved'        => 'Nun se pudo treslladar la páxina $1 a $2.',
+'movepage-max-pages'           => "Treslladóse'l máximu de $1 {{PLURAL:$1|páxina|páxinees}} y nun van treslladase más automáticamente.",
+'1movedto2'                    => '[[$1]] treslladáu a [[$2]]',
+'1movedto2_redir'              => '[[$1]] treslladáu a [[$2]] sobre una redireición',
+'move-redirect-suppressed'     => 'redireición desaniciada',
+'movelogpage'                  => 'Rexistru de tresllaos',
+'movelogpagetext'              => 'Esta ye la llista de páxines treslladaes.',
+'movereason'                   => 'Motivu:',
+'revertmove'                   => 'revertir',
+'delete_and_move'              => 'Esborrar y treslladar',
+'delete_and_move_text'         => '==Necesítase esborrar==
 
 La páxina de destín "[[:$1]]" yá esiste. ¿Quies esborrala pa dexar sitiu pal treslláu?',
-'delete_and_move_confirm'   => 'Sí, esborrar la páxina',
-'delete_and_move_reason'    => 'Esborrada pa facer sitiu pal treslláu',
-'selfmove'                  => "Los nomes d'orixe y destín son los mesmos, nun se pue treslladar una páxina sobre ella mesma.",
-'immobile-source-namespace' => 'Nun se puen treslladar páxines nel espaciu de nomes "$1"',
-'immobile-target-namespace' => 'Nun se puen treslladar páxines al espaciu de nomes "$1"',
-'immobile-source-page'      => 'Esta páxina nun ye treslladable.',
-'immobile-target-page'      => 'Nun se pue treslladar a esi títulu de destín.',
-'imagenocrossnamespace'     => "Nun se pue treslladar una imaxe a nun espaciu de nomes que nun ye d'imáxenes",
-'imagetypemismatch'         => 'La estensión nueva del archivu nun concueya cola so mena',
-'imageinvalidfilename'      => 'El nome del archivu oxetivu nun ye válidu',
-'fix-double-redirects'      => 'Actualizar cualesquier redireición que señale al títulu orixinal',
-'move-leave-redirect'       => 'Dexar una redireición detrás',
+'delete_and_move_confirm'      => 'Sí, esborrar la páxina',
+'delete_and_move_reason'       => 'Esborrada pa facer sitiu pal treslláu',
+'selfmove'                     => "Los nomes d'orixe y destín son los mesmos, nun se pue treslladar una páxina sobre ella mesma.",
+'immobile-source-namespace'    => 'Nun se puen treslladar páxines nel espaciu de nomes "$1"',
+'immobile-target-namespace'    => 'Nun se puen treslladar páxines al espaciu de nomes "$1"',
+'immobile-target-namespace-iw' => "Nun puedes mover una páxina a un enllaz d'Interwiki.",
+'immobile-source-page'         => 'Esta páxina nun ye treslladable.',
+'immobile-target-page'         => 'Nun se pue treslladar a esi títulu de destín.',
+'imagenocrossnamespace'        => "Nun se pue treslladar una imaxe a nun espaciu de nomes que nun ye d'imáxenes",
+'imagetypemismatch'            => 'La estensión nueva del archivu nun concueya cola so mena',
+'imageinvalidfilename'         => 'El nome del archivu oxetivu nun ye válidu',
+'fix-double-redirects'         => 'Actualizar cualesquier redireición que señale al títulu orixinal',
+'move-leave-redirect'          => 'Dexar una redireición detrás',
 
 # Export
 'export'            => 'Esportar páxines',
@@ -2091,7 +2109,7 @@ Pa esportar páxines, pon los títulos na caxa de testu d'embaxo, un títulu per
 y seleiciona si quies la versión actual xunto con toles versiones antigües, xunto col
 so historial, o namái la versión actual cola información de la postrer edición.
 
-Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pa la páxina \"[[{{MediaWiki:Mainpage}}]]\".",
+Por último, tamién pues usar un enllaz: p.e. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pa la páxina \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => 'Amestar namái la revisión actual, non tol historial',
 'exportnohistory'   => "----
 '''Nota:''' Desactivóse la esportación del historial completu de páxines al traviés d'esti formulariu por motivos de rendimientu.",
@@ -2107,7 +2125,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{ns:special}}:Export/{{MediaWi
 'allmessagesdefault'        => 'Testu por defeutu',
 'allmessagescurrent'        => 'Testu actual',
 'allmessagestext'           => 'Esta ye una llista de los mensaxes de sistema disponibles nel espaciu de nomes de MediaWiki.
-Por favor visita [http://www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [http://translatewiki.net Betawiki] si quies contribuyer a la llocalización xenérica de MediaWiki.',
+Por favor visita [http://www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [http://translatewiki.net translatewiki.net] si quies contribuyer a la llocalización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB' => "Nun pue usase '''{{ns:special}}:Allmessages''' porque '''\$wgUseDatabaseMessages''' ta deshabilitáu.",
 'allmessagesfilter'         => 'Filtru pal nome del mensax:',
 'allmessagesmodified'       => 'Amosar solo modificaos',
@@ -2127,6 +2145,7 @@ Por favor visita [http://www.mediawiki.org/wiki/Localisation Llocalización de M
 'import-interwiki-text'      => "Seleiciona una wiki y un títulu de páxina pa importar.
 Les feches de revisión y los nomes de los editores caltendránse.
 Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/import|rexistru d'importaciones]].",
+'import-interwiki-source'    => 'Códigu wiki/páxina:',
 'import-interwiki-history'   => "Copiar toles versiones d'historial d'esta páxina",
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Espaciu de nomes de destín:',
@@ -2154,6 +2173,8 @@ Guárdalu nel to ordenador y xúbilu equí.",
 'import-nonewrevisions'      => 'Toles revisiones fueran importaes previamente.',
 'xml-error-string'           => '$1 na llinia $2, col $3 (byte $4): $5',
 'import-upload'              => 'Xubir datos XML',
+'import-token-mismatch'      => 'Perdiéronse los datos de la sesión. Intentalo otra vuelta.',
+'import-invalid-interwiki'   => "Nun se puede importar d'esi wiki.",
 
 # Import log
 'importlogpage'                    => "Rexistru d'importaciones",
@@ -2282,6 +2303,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'patrol-log-header'    => 'Esti ye un rexistru de les revisiones supervisaes.',
 'patrol-log-line'      => 'marcó la versión $1 de $2 como supervisada $3',
 'patrol-log-auto'      => '(automática)',
+'patrol-log-diff'      => 'revisión $1',
 'log-show-hide-patrol' => '$1 rexistru de supervisión',
 
 # Image deletion
@@ -2748,6 +2770,7 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta d\'estensión "$1" desconocida',
+'duplicate-defaultsort' => 'Avisu: L\'atayu "$2" va trocar l\'atayu "$1".',
 
 # Special:Version
 'version'                          => 'Versión', # Not used as normal message but as header for the special page itself

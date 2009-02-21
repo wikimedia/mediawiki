@@ -436,7 +436,7 @@ MySQL «$3: $4» хатасыны бильдирди.',
 'protectedpagetext'    => 'Бу саифени кимсе денъиштирмесин деп о блок этильди.',
 'viewsourcetext'       => 'Саифенинъ кодуны козьден кечирип копиялай билесинъиз:',
 'protectedinterface'   => 'Бу саифеде система интерфейсининъ метини булунгъаны ичюн мында хата чыкъмасын деп денъишиклик япмакъ ясакъ.',
-'editinginterface'     => "'''Тенби''': MediaWiki система беянатылы бир саифени денъиштирмектесинъиз. Бу саифедеки денъишикликлер къулланыджы интерфейс корюнишини дигер къулланыджылар ичюн де денъиштиреджек. Лютфен, терджимелер ичюн [http://translatewiki.net/wiki/Main_Page?setlang=crh Betawiki] сайтыны (MediaWiki ресмий локализация проекти) къулланынъыз.",
+'editinginterface'     => "'''Тенби''': MediaWiki система беянатылы бир саифени денъиштирмектесинъиз. Бу саифедеки денъишикликлер къулланыджы интерфейс корюнишини дигер къулланыджылар ичюн де денъиштиреджек. Лютфен, терджимелер ичюн [http://translatewiki.net/wiki/Main_Page?setlang=crh translatewiki.net] сайтыны (MediaWiki ресмий локализация проекти) къулланынъыз.",
 'sqlhidden'            => '(SQL истинтагъы сакълы)',
 'cascadeprotected'     => 'Бу саифени денъиштирип оламазсынъыз, чюнки каскад къорчалав алтында булунгъан {{PLURAL:$1|саифеге|саифелерге}} менсюптир:
 $2',
@@ -1496,7 +1496,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'allmessagesdefault'  => 'Оригиналь метин',
 'allmessagescurrent'  => 'Шимди къулланылгъан метин',
 'allmessagestext'     => 'Ишбу джедвель MediaWiki-де мевджут олгъан бутюн система беянатларынынъ джедвелидир.
-MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [http://translatewiki.net Betawiki] саифелерине зиярет этинъиз.',
+MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [http://translatewiki.net translatewiki.net] саифелерине зиярет этинъиз.',
 'allmessagesfilter'   => 'Метин айрыштырыджы фильтры:',
 'allmessagesmodified' => 'Тек денъиштирильгенлерни косьтер',
 
@@ -1831,7 +1831,7 @@ $1
 'autosumm-blank'   => 'Саифе бошатылды',
 'autosumm-replace' => "Саифедеки малюмат '$1' иле денъиштирильди",
 'autoredircomment' => '[[$1]] саифесине ёлланды',
-'autosumm-new'     => "'$1' буюклигинде янъы саифе яратылды",
+'autosumm-new'     => "Янъы саифе яратылды. Мундериджеси: '$1'",
 
 # Live preview
 'livepreview-loading' => 'Юкленмекте…',

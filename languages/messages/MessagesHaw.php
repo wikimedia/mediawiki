@@ -281,6 +281,7 @@ $2',
 'welcomecreation'           => '== E komo mai, $1! ==
 Hoʻokumu ʻia i kou waihona.
 Mai poina e loli kāu makemake ma {{SITENAME}}.',
+'loginpagetitle'            => 'ʻEʻe mea hoʻohana',
 'yourname'                  => "Inoa mea ho'ohana",
 'yourpassword'              => 'ʻŌlelo hūnā:',
 'yourpasswordagain'         => "Hua'ōlelo huna hou",

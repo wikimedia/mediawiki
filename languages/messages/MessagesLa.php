@@ -8,6 +8,7 @@
  * @author LeighvsOptimvsMaximvs
  * @author Omnipaedista
  * @author OrbiliusMagister
+ * @author Ornil
  * @author Rafaelgarcia
  * @author SPQRobin
  * @author UV
@@ -148,7 +149,7 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Nexus linea subscribere:',
-'tog-highlightbroken'         => 'Formare nexus fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Formare nexus fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Iustificare paragrapha',
 'tog-hideminor'               => 'Celare recensiones minores in indice nuper mutatorum',
 'tog-extendwatchlist'         => 'Extendere indicem paginarum custoditarum ut omnes emendationes monstrentur',
@@ -443,7 +444,7 @@ Inquisitio: $2',
 'protectedpagetext'    => 'Haec pagina protecta est, ut emendationes prohibeantur.',
 'viewsourcetext'       => 'Fontem videas et exscribeas:',
 'protectedinterface'   => 'Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.',
-'editinginterface'     => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Main_Page?setlang=la Betawiki].",
+'editinginterface'     => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Main_Page?setlang=la translatewiki.net].",
 'sqlhidden'            => '(inquisitio SQL celata)',
 'namespaceprotected'   => "Tibi non licet paginas spatii nominalis '''$1''' recensere.",
 'ns-specialprotected'  => 'Paginae speciales recenseri non possunt.',
@@ -1395,11 +1396,37 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'watching'   => 'Custodiens...',
 'unwatching' => 'Decustodiens...',
 
+'enotif_newpagetext'           => 'Haec pagina nova est.',
 'enotif_impersonal_salutation' => 'Usor {{grammar:genitive|{{SITENAME}}}}',
 'changed'                      => 'mutata',
 'created'                      => 'creata',
+'enotif_subject'               => 'Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR $CHANGEDORCREATED est',
 'enotif_lastdiff'              => 'Vide $1 ad hanc recensionem inspiciendum.',
 'enotif_anon_editor'           => 'usor ignotus $1',
+'enotif_body'                  => '
+Salve $WATCHINGUSERNAME,
+
+Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR die $PAGEEDITDATE $CHANGEDORCREATED est, vide emendationem currentem apud $PAGETITLE_URL
+
+$NEWPAGE
+
+Auctor hunc summarium dedit: $PAGESUMMARY $PAGEMINOREDIT
+
+Contact the editor:
+litterae electronicae: $PAGEEDITOR_EMAIL
+vici: $PAGEEDITOR_WIKI
+
+There will be no other notifications in case of further changes unless you visit this page.
+You could also reset the notification flags for all your watched pages on your watchlist.
+
+             Your friendly {{SITENAME}} notification system
+
+--
+To change your watchlist settings, visit
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Feedback and further assistance:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Delere paginam',
@@ -1735,7 +1762,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'import-comment'             => 'Sententia:',
 'importstart'                => 'Adportare paginas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|emendatio|emendationes}}',
-'importbadinterwiki'         => 'Nexus intervicus malus',
+'importbadinterwiki'         => 'Nexus intervicius malus',
 'importsuccess'              => 'Adportatio finita!',
 'xml-error-string'           => '$1 in linea $2 et columna $3 (octetus $4): $5',
 'import-upload'              => 'XML imponere et importare',

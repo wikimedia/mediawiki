@@ -5,6 +5,7 @@
  * @file
  *
  * @author Church of emacs
+ * @author Duesentrieb
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Li-sung
  * @author Melancholie
@@ -305,7 +306,7 @@ $imageFiles = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links unterstreichen:',
-'tog-highlightbroken'         => 'Links auf leere Seiten hervorheben <a href="" class="new">Beispiel</a> (Alternative: wie dieser<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Links auf nicht vorhandene Seiten hervorheben <a href="" class="new">Beispiel</a> (Alternative: wie dieser<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Text als Blocksatz',
 'tog-hideminor'               => 'Kleine Änderungen ausblenden',
 'tog-extendwatchlist'         => 'Erweiterte Beobachtungsliste',
@@ -589,7 +590,8 @@ Alle verfügbaren Spezialseiten sind in der [[Special:SpecialPages|Liste der Spe
 # General errors
 'error'                => 'Fehler',
 'databaseerror'        => 'Fehler in der Datenbank',
-'dberrortext'          => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
+'dberrortext'          => 'Es ist ein Datenbankfehler aufgetreten.
+Der Grund kann ein Timeout sein, der Ausfall eines Servers oder auch ein Programmierfehler.
 Die letzte Datenbankabfrage lautete: <blockquote><tt>$1</tt></blockquote> aus der Funktion „<tt>$2</tt>“.
 MySQL meldete den Fehler „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
@@ -640,7 +642,9 @@ Abfrage: $2',
 'protectedpagetext'    => 'Diese Seite ist für das Bearbeiten gesperrt.',
 'viewsourcetext'       => 'Quelltext dieser Seite:',
 'protectedinterface'   => 'Diese Seite enthält Text für das Sprach-Interface der Software und ist gesperrt, um Missbrauch zu verhindern.',
-'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text. Änderungen wirken sich auf die Benutzeroberfläche aus.",
+'editinginterface'     => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software benutzten Text.
+Änderungen wirken sich auf die Benutzeroberfläche aus.
+Für Übersetzungen ziehe bitte in Betracht, diese im [http://translatewiki.net/wiki/Main_Page?setlang=de Translatewiki], dem MediaWiki-Lokalisierungsprojekt, durchzuführen.",
 'sqlhidden'            => '(SQL-Abfrage versteckt)',
 'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
 $2',
@@ -922,7 +926,7 @@ Grund für die Sperre: $1",
 'protectedpagewarning'             => "'''ACHTUNG: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.'''",
 'semiprotectedpagewarning'         => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können.",
 'cascadeprotectedwarning'          => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:'''",
-'titleprotectedwarning'            => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur bestimmte Benutzergruppen können die Seite erstellen.'''",
+'titleprotectedwarning'            => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur Benutzer mit [[Special:ListGroupRights|speziellen Rechten]] können die Seite erstellen.'''",
 'templatesused'                    => 'Folgende Vorlagen werden von dieser Seite verwendet:',
 'templatesusedpreview'             => 'Folgende Vorlagen werden von dieser Seitenvorschau verwendet:',
 'templatesusedsection'             => 'Folgende Vorlagen werden von diesem Abschnitt verwendet:',
@@ -1620,10 +1624,10 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'nolinkstoimage'                 => 'Keine Seite benutzt diese Datei.',
 'morelinkstoimage'               => '[[Special:WhatLinksHere/$1|Weitere Links]] für diese Datei.',
 'redirectstofile'                => 'Die {{PLURAL:$1|folgende Datei leitet|folgenden $1 Dateien leiten}} auf diese Datei weiter:',
-'duplicatesoffile'               => 'Die {{PLURAL:$1|folgende Datei ist ein Duplikat|folgenden $1 Dateien sind Duplikate}} dieser Datei:',
+'duplicatesoffile'               => 'Die {{PLURAL:$1|folgende Datei ist ein Duplikat|folgenden $1 Dateien sind Duplikate}} dieser Datei ([[Special:FileDuplicateSearch/$2|weitere Details]]):',
 'sharedupload'                   => 'Diese Datei ist ein gemeinsam genutzter Upload und kann von anderen Projekten verwendet werden.',
 'shareduploadwiki'               => 'Für weitere Informationen siehe die $1.',
-'shareduploadwiki-desc'          => 'Es folgt der Inhalt der $1 aus dem gemeinsam benutzten Repositorium.',
+'shareduploadwiki-desc'          => 'Es folgt der Inhalt der $1.',
 'shareduploadwiki-linktext'      => 'Datei-Beschreibungsseite',
 'shareduploadduplicate'          => 'Diese Datei ist ein Duplikat $1 aus dem gemeinsam genutzten Repositorium.',
 'shareduploadduplicate-linktext' => 'dieser anderen Datei',
@@ -2363,7 +2367,7 @@ Die Datei kann in ein anderes MediaWiki-Wiki über die [[Special:Import|Importfu
 
 Trage den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur für eine Seite).
 
-Alternativ ist der Export auch mit der Syntax [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] möglich, beispielsweise für die [[{{MediaWiki:Mainpage}}]].',
+Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] möglich, beispielsweise für die [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Nur die aktuelle Version der Seite exportieren',
 'exportnohistory'   => "----
 '''Hinweis:''' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf weiteres nicht möglich.",
@@ -2378,7 +2382,8 @@ Alternativ ist der Export auch mit der Syntax [[{{ns:special}}:Export/{{MediaWik
 'allmessagesname'           => 'Name',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Aktueller Text',
-'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.',
+'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.
+Besuche die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], wenn du dich an der Lokalisierung von MediaWiki beteiligen möchtest.',
 'allmessagesnotsupportedDB' => 'Diese Spezialseite steht nicht zur Verfügung, da sie über den Parameter <tt>$wgUseDatabaseMessages</tt> deaktiviert wurde.',
 'allmessagesfilter'         => 'Nachrichtennamensfilter:',
 'allmessagesmodified'       => 'Nur geänderte anzeigen',

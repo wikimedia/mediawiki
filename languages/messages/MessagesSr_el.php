@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Meno25
  * @author Red Baron
  * @author Slaven Kosanovic
  * @author לערי ריינהארט
@@ -637,7 +638,7 @@ Mora da ste već uspešno promenili vašu lozinku ili zatražili novu temporalnu
 'nowiki_tip'      => 'Ignoriši viki formatiranje',
 'image_sample'    => 'ime_slike.jpg',
 'image_tip'       => 'Uklopljena slika',
-'media_sample'    => 'ime_medija_fajla.mp3',
+'media_sample'    => 'ime_medija_fajla.ogg',
 'media_tip'       => 'Putanja ka multimedijalnom fajlu',
 'sig_tip'         => 'Vaš potpis sa trenutnim vremenom',
 'hr_tip'          => 'Horizontalna linija',

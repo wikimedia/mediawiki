@@ -1563,7 +1563,7 @@ Igwa nang páhina na "[[:$1]]". Gusto mong parâon ini tangarig maibalyó?',
 
 Para makapadara nin mga páhina, ilaag an mga titulo sa kahon para sa teksto sa babâ, sarong titulo kada linya, dangan pilîon kun boot mo presenteng bersyón asin dating bersyón, na may mga linya kan historya, o an presenteng bersyón sana na may impormasyon manonongod sa huring hirá.
 
-Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para sa páhinang "[[{{MediaWiki:Mainpage}}]]".',
+Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para sa páhinang "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Mga presenteng pagpakarhay sana an ibali, bakong an enterong historya',
 'exportnohistory'   => "----
 '''Paisi:''' Dai pigpatogotan an pagpadara kan enterong historya kan mga páhina sa paagi kaining forma huli sa mga rasón dapit sa pagsagibo kaini.",
@@ -1578,7 +1578,7 @@ Sa kaso kan huri, pwede ka man na maggamit nin takod, arog kan [[{{ns:special}}:
 'allmessagesdefault'        => 'Tekstong normal',
 'allmessagescurrent'        => 'Presenteng teksto',
 'allmessagestext'           => 'Ini an lista kan mga mensahe sa sistema sa ngaran-espacio na MediaWiki.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Dai pwedeng gamiton an '''{{ns:special}}:Allmessages''' ta sarado an '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Pansara nin pangaran kan mensahe:',
 'allmessagesmodified'       => 'An mga pigmodikar sana an ipahiling',

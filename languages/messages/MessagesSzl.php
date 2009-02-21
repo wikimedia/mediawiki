@@ -2016,7 +2016,7 @@ Wyeksportowane informacyje možna půźńij zaimportować do inkšej wiki, dźou
 
 Wyeksportowańy wjelu zajtůw wymogo wpisańo půńižej titli zajtůw, po jednym titlu we wjeršu a uokreślyńo čy mo zostać wyeksportowano bježůnco čy wšyjstke wersyje zajty s uopisůma sprawjyń abo tyž ino bježůnca wersyjo s uopisym uostatńygo sprawjyńo.
 
-Možeš tyž užyć linku, np.[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] do zajty „[[{{MediaWiki:Mainpage}}]]”.',
+Možeš tyž užyć linku, np.[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] do zajty „[[{{MediaWiki:Mainpage}}]]”.',
 'exportcuronly'     => 'Ino bježůnco wersyjo, bes historji',
 'exportnohistory'   => "----
 '''Pozůr:''' Wůuůnčůno možliwość eksportowańo peunej historii zajtůw s užyćym tygo nařyńdźa s kuli kuopotůw s wydajnośćůn",
@@ -2032,7 +2032,7 @@ Možeš tyž užyć linku, np.[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] d
 'allmessagesdefault'        => 'Tekst důmyślny',
 'allmessagescurrent'        => 'Tekst uobecny',
 'allmessagestext'           => 'Uoto lista wšyjstkych kůmůńikatůw systymowych dostympnych w přestřyńi mjan MedjaWiki.
-Uodwjydź [http://www.mediawiki.org/wiki/Localisation Tuůmačyńy MediaWiki] a tyž [http://translatewiki.net Betawiki] kejbyś chćou učestńičyć w tuůmačyńu uoprůgramowańo MediaWiki.',
+Uodwjydź [http://www.mediawiki.org/wiki/Localisation Tuůmačyńy MediaWiki] a tyž [http://translatewiki.net translatewiki.net] kejbyś chćou učestńičyć w tuůmačyńu uoprůgramowańo MediaWiki.',
 'allmessagesnotsupportedDB' => "Ta zajta ńy može być užyta, bez tůž co zmjynna '''\$wgUseDatabaseMessages''' je wůuůnčůno.",
 'allmessagesfilter'         => 'Filter mjan kůmuńikatůw:',
 'allmessagesmodified'       => 'Pokož ino zmodyfikowane',

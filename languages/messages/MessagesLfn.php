@@ -416,6 +416,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 # History pages
 'viewpagelogs'           => 'Vide la arcivo de esta paje',
 'currentrev'             => 'Cambia presente',
+'currentrev-asof'        => 'Cambia presente a departi di $1',
 'revisionasof'           => 'Revisa de $1',
 'revision-info'          => 'Revisa de $1 par $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Altera presedente',

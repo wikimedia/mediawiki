@@ -396,7 +396,7 @@ I seguenti cołegamenti i xe en lengua inglese:
 
 # Main script and global functions
 'nosuchaction'      => 'Operazion mìa riconossùa',
-'nosuchactiontext'  => "L'operazion richiesta con la URL inserìa no la xe stà riconossiùa dal software MediaWiki",
+'nosuchactiontext'  => "L'azion indicà in tel'URL no la xe valida. Te podaressi ver sbalià a digitar l'URL o ver strucà un colegamento mia justo. Opure podarìa anca tratarse de un bug in {{SITENAME}}.",
 'nosuchspecialpage' => 'No xè disponibiłe nissuna pàxena speciałe co sto nome',
 'nospecialpagetext' => "<big>'''Te ghè richiesto na pagina speciale mìa esistente.'''</big>
 
@@ -463,7 +463,7 @@ Query: $2',
 'protectedinterface'   => "Sta pàxena la contien un elemento che fa parte de l'interfacia utente del software; e quindi la xè proteta par evitar possibiłi abusi.",
 'editinginterface'     => "'''Ocio:''' Te stè modificando na pagina che la fa parte de l'interfacia utente del sito. 
 Tute le modifiche che te fè a sta pagina le se riflete su l'aspeto de l'interfacia grafica visualizà da tuti i altri utenti.
-Se te ghè bisogno de tradur in veneto un messagio de l'interfacia utente, te pol doparar [http://translatewiki.net/wiki/Main_Page?setlang=vec Betawiki], el progeto de localizazion de MediaWiki.",
+Se te ghè bisogno de tradur in veneto un messagio de l'interfacia utente, te pol doparar [http://translatewiki.net/wiki/Main_Page?setlang=vec translatewiki.net], el progeto de localizazion de MediaWiki.",
 'sqlhidden'            => '(la query SQL la xe stà sconta)',
 'cascadeprotected'     => 'Su sta pàxena no se pol far modifighe parché ła xe stà inclusa {{PLURAL:$1|ne ła pàxena indicà de seguito, che ła xe stà proteta|ne łe pàxene indicae de seguito, che łe xe stà protete}} selezionando ła protesion "ricorsiva":
 $2',
@@ -554,8 +554,7 @@ Par piaser, fà subito un login \'pena che la te riva.',
 'eauthentsent'               => "Na email de conferma la xè stà invià a l'indirizzo che te ghè indicà. Prima che qualunque altra mail te vegna invià, te ghè da seguir le istrussioni contegnùe ne la mail ricevuta, par confermar che quel'indirizzo el xè dal bon el tuo.",
 'throttled-mailpassword'     => 'Na password nova la xe zà stà mandà da manco de {{PLURAL:$1|$1 ora|$1 ore}}. Par prevegner abusi, la funzion "Invia nova password" la pol èssar doparà solo na volta ogni {{PLURAL:$1|$1 ora|$1 ore}}.',
 'mailerror'                  => "Ghe xè stà un eror nel mandare l'email: $1",
-'acct_creation_throttle_hit' => 'Te ghe xà creà {{PLURAL:$1|1 account|$1 account}}.
-No te pol crearghine ancora.',
+'acct_creation_throttle_hit' => "Dei utenti de sta wiki col to stesso indirisso IP i gà creà {{PLURAL:$1|1 utensa|$1 utense}} ne l'ultimo zorno, che xe el massimo consentìo in sto periodo de tenpo. Perciò, i utenti che dòpara sto indirisso IP no i pode crear altre utense par el momento.",
 'emailauthenticated'         => "El to indirisso de e-mail l'è stado autenticado su $2 el $3.",
 'emailnotauthenticated'      => "El to indirizo email <strong>no'l xè gnancora stà autenticà</strong>. Nissuna email la vegnarà invià tramite le funsioni che segue.",
 'noemailprefs'               => 'Indica un indirizo e-mail par ativar ste funzioni.',
@@ -733,7 +732,7 @@ L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $
 'protectedpagewarning'             => "'''OCIO: Sta pagina la xe sta proteta e solo i aministradori i pode modificarla.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Sta pàxena la xè stà blocà in modo che solo i utenti registrài i poda modefegarla.",
 'cascadeprotectedwarning'          => "'''Ocio:''' Sta pagina la xe stà blocà in modo che solo i utenti con privilegi de aministrador i possa modificarla. Questo sucede parché la pagina la xe inclusa {{PLURAL:\$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indicà de seguito, che le xe stà protete}} selezionando la protezion \"ricorsiva\":",
-'titleprotectedwarning'            => "'''OCIO:  Sta pagina la xe stà blocà in modo che solo çerte categorie de utenti le possa crearla.'''",
+'titleprotectedwarning'            => "'''OCIO:  Sta pàxena la xe stà blocà in modo che solo i utenti con [[Special:ListGroupRights|çerti privilègi]] i le possa crear.'''",
 'templatesused'                    => 'Template doparà in sta pagina:',
 'templatesusedpreview'             => 'Template doparà in sta anteprima:',
 'templatesusedsection'             => 'Template doparà in sta sezion:',
@@ -1329,7 +1328,8 @@ Se se trata de la stessa imagine, ne le dimension originali, no xe necessario ca
 'file-thumbnail-no'           => "El nome del file el scuminsia con '''<tt>$1</tt>'''.
 Pararìà quindi che el fusse el risultato de n'anteprima ''(thumbnail)''.
 Se se dispone de l'imagine ne la risoluzion originale, se prega di cargarla. In caso contrario, se prega de canbiar el nome del file.",
-'fileexists-forbidden'        => 'Un file con sto nome el esiste xà; per favore torna indrio e cambia el nome che te voi dare al file. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Un file con sto nome el esiste xà, e no se pode scrìvarghe insima.
+Se te vol cargar istesso el to file, par piaser torna indrio e cànbia el nome da darghe al file. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Un file con sto nome l'esiste de xà ne l'archivio de risorse multimediałi condivixe.
 Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che te vol darghe al file. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Sto file el xe un duplicato {{PLURAL:$1|del seguente file|dei seguenti file}}:',
@@ -1414,10 +1414,10 @@ Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 'nolinkstoimage'                 => 'Nissuna pàxena la punta a sta imagine.',
 'morelinkstoimage'               => 'Varda i [[Special:WhatLinksHere/$1|altri colegamenti]] verso sto file.',
 'redirectstofile'                => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} redirige verso sto file:',
-'duplicatesoffile'               => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} xe dei dopioni de sto file:',
+'duplicatesoffile'               => '{{PLURAL:$1|El file seguente el xe un dopion|I $1 file seguenti i xe dei dopioni}} de sto file ([[Special:FileDuplicateSearch/$2|ulteriori detagli]]):',
 'sharedupload'                   => 'Sto file qua el xe un caricamento condiviso; quindi el pol èssar doparà da più progeti wiki.',
 'shareduploadwiki'               => 'Varda $1 par ulteriori informazion.',
-'shareduploadwiki-desc'          => 'La descrizion che se cata su la so $1 nel deposito condiviso la vien mostrà de seguito.',
+'shareduploadwiki-desc'          => 'La descrizion che se cata su la so $1 la vien mostrà qua soto.',
 'shareduploadwiki-linktext'      => 'pagina de descrizion del file',
 'shareduploadduplicate'          => 'Sto file el xe un duplicato del file $1 che se cata in tel deposito condiviso.',
 'shareduploadduplicate-linktext' => "n'altro file",
@@ -2144,7 +2144,12 @@ La voçe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarl
 
 # Export
 'export'            => 'Esporta pàxene',
-'exporttext'        => 'Te podi esportar el testo e modificar ła cronołogia de na speçifica pàxena o de un gruppo de pàxene ragrupae in XML; questo el pode in seguito essere importà in un altro wiki che dòpara el software MediaWiki, trasformà, o tegnù semplicemente par el to personałe divertimento.',
+'exporttext'        => 'Te podi esportar el testo e modificar ła cronołogia de na speçifica pàxena o de un gruppo de pàxene ragrupae in XML.
+Questo el pode in seguito vegner inportà in te n\'altro wiki che dòpara el software MediaWiki tramite la [[Special:Import|pàxena de inportassion]].
+
+Par esportar le pàxene, scrivi i tìtoli in te la casèla qua soto, un tìtolo par riga, e selessiona se te voli la version ùltima con tute le version preçedenti e el storico de le modìfeghe, opure la version ùltima con solo le informassion de l\'ùltima modìfega.
+
+Nel secondo caso te poli anca doparar un colegamento, par esenpio [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] par la pàxena "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => "Includi soło ła version attuałe, no l'intera cronołogia",
 'exportnohistory'   => "----
 '''Ocio!''' Par motivi ligà a le prestazion del sistema xè stà disabiłità l'esportazion de tuta ła storia de łe pàxene fata co sto modulo.",
@@ -2160,7 +2165,7 @@ La voçe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarl
 'allmessagesdefault'        => 'Testo predefinìo',
 'allmessagescurrent'        => 'Testo come che el xe desso',
 'allmessagestext'           => "Sta quà l'è na lista de tuti i messagi disponibili nel namespace MediaWiki.
-Par piaser visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net Betawiki] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
+Par piaser visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' no'l xè supportà parché '''\$wgUseDatabaseMessages''' no'l xè ativo.",
 'allmessagesfilter'         => 'Filtro sui messagi:',
 'allmessagesmodified'       => 'Mostra soło quełi modefegà',

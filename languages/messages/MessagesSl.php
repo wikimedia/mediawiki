@@ -382,7 +382,7 @@ Iskanje: $2',
 'protectedinterface'   => 'Prikazana stran vsebuje besedilo ali drug element uporabniškega vmesnika programja. Zaradi preprečevanja zlorabe je zaščitena.',
 'editinginterface'     => "'''Opozorilo:''' Urejate stran, ki vsebuje besedilo ali drug element uporabniškega vmesnika programja.
 Spremembe te strani bodo vplivale na podobo uporabniškega vmesnika.
-For translations, please consider using [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], the MediaWiki localisation project.",
+For translations, please consider using [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL-poizvedovanje je skrito)',
 'cascadeprotected'     => 'Ta stran je bila zaščitena pred urejanji, ker je vključena na {{PLURAL:$1|page|sledeče strani}}, ki so bile zaščitene z vključeno kaskadno možnostjo:
 $2',
@@ -1515,7 +1515,7 @@ Ciljna stran »[[:$1]]« že obstaja. Ali jo želite, da bi pripravili prostor z
 
 Če želite izvoziti članke, v spodnje polje vpišite njihove naslove (enega v vsako vrstico) in označite, ali želite le trenutno različico s podatki o trenutnem urejanju ali tudi vse prejšnje z vrsticami o zgodovini strani.
 
-Če gre za slednje, lahko uporabite tudi povezavo, npr. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za 
+Če gre za slednje, lahko uporabite tudi povezavo, npr. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za 
 članek \"[[{{MediaWiki:Mainpage}}]]\".",
 'exportcuronly'     => 'Vključi le trenutno redakcijo, ne pa celotne zgodovine.',
 'exportnohistory'   => "----
@@ -1531,7 +1531,7 @@ Ciljna stran »[[:$1]]« že obstaja. Ali jo želite, da bi pripravili prostor z
 'allmessagesdefault'        => 'Prednastavljeno besedilo',
 'allmessagescurrent'        => 'Trenutno besedilo',
 'allmessagestext'           => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Ker je '''\$wgUseDatabaseMessages''' izključeno, '''{{ns:special}}:Allmessages''' ni podprto.",
 'allmessagesfilter'         => 'Filter pogostih izrazov:',
 'allmessagesmodified'       => 'Prikaži le spremenjeno',

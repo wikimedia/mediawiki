@@ -486,7 +486,7 @@ XHTML id names.
 
 # User preference toggles
 'tog-underline'               => 'Underline links:',
-'tog-highlightbroken'         => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justify paragraphs',
 'tog-hideminor'               => 'Hide minor edits in recent changes',
 'tog-extendwatchlist'         => 'Expand watchlist to show all applicable changes',
@@ -723,7 +723,7 @@ See [[Special:Version|version page]].',
 'ok'                           => 'OK',
 'sitetitle'                    => '{{SITENAME}}', # do not translate or duplicate this message to other languages
 'pagetitle'                    => '$1 - {{SITENAME}}', # only translate this message to other languages if you have to change it
-'pagetitle-view-mainpage'      => '{{SITENAME}}', # do not translate or duplicate this message to other languages
+'pagetitle-view-mainpage'      => '{{SITENAME}}', # only translate this message to other languages if you have to change it
 'sitesubtitle'                 => '', # do not translate or duplicate this message to other languages
 'retrievedfrom'                => 'Retrieved from "$1"',
 'youhavenewmessages'           => 'You have $1 ($2).',
@@ -846,7 +846,7 @@ Please try again in a few minutes.',
 'protectedinterface'   => 'This page provides interface text for the software, and is locked to prevent abuse.',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
-For translations, please consider using [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], the MediaWiki localisation project.",
+For translations, please consider using [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL query hidden)',
 'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
 $2',
@@ -904,7 +904,7 @@ Please choose a different name.',
 'badsig'                     => 'Invalid raw signature.
 Check HTML tags.',
 'badsiglength'               => 'Your signature is too long.
-It must be under $1 {{PLURAL:$1|character|characters}}.',
+It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
@@ -1172,7 +1172,7 @@ The administrator who locked it offered this explanation: $1",
 'protectedpagewarning'             => "'''WARNING: This page has been locked so that only users with administrator privileges can edit it.'''",
 'semiprotectedpagewarning'         => "'''Note:''' This page has been locked so that only registered users can edit it.",
 'cascadeprotectedwarning'          => "'''Warning:''' This page has been locked so that only users with administrator privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
-'titleprotectedwarning'            => "'''WARNING:  This page has been locked so that only some users can create it.'''",
+'titleprotectedwarning'            => "'''WARNING:  This page has been locked so that [[Special:ListGroupRights|specific rights]] are needed to create it.'''",
 'templatesused'                    => 'Templates used on this page:',
 'templatesusedpreview'             => 'Templates used in this preview:',
 'templatesusedsection'             => 'Templates used in this section:',
@@ -2758,7 +2758,7 @@ This can be imported into another wiki using MediaWiki via the [[Special:Import|
 
 To export pages, enter the titles in the text box below, one title per line, and select whether you want the current version as well as all old versions, with the page history lines, or the current version with the info about the last edit.
 
-In the latter case you can also use a link, e.g. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] for the page "[[{{MediaWiki:Mainpage}}]]".',
+In the latter case you can also use a link, for example [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] for the page "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Include only the current revision, not the full history',
 'exportnohistory'   => "----
 '''Note:''' Exporting the full history of pages through this form has been disabled due to performance reasons.",
@@ -2774,7 +2774,7 @@ In the latter case you can also use a link, e.g. [[{{ns:special}}:Export/{{Media
 'allmessagesdefault'        => 'Default text',
 'allmessagescurrent'        => 'Current text',
 'allmessagestext'           => 'This is a list of system messages available in the MediaWiki namespace.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "This page cannot be used because '''\$wgUseDatabaseMessages''' has been disabled.",
 'allmessagesfilter'         => 'Message name filter:',
 'allmessagesmodified'       => 'Show only modified',

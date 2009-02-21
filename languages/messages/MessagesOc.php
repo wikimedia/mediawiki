@@ -552,7 +552,7 @@ Requèsta : $2',
 'protectedpagetext'    => 'Aquesta pagina es estada protegida per empachar sa modificacion.',
 'viewsourcetext'       => 'Podètz veire e copiar lo contengut de l’article per poder trabalhar dessús :',
 'protectedinterface'   => 'Aquesta pagina fornís de tèxt d’interfàcia pel logicial e es protegida per evitar los abuses.',
-'editinginterface'     => "'''Atencion :''' sètz a editar una pagina utilizada per crear lo tèxt de l’interfàcia del logicial. Los cambiaments se repercutaràn, segon lo contèxt, sus totas o cèrtas paginas visiblas pels autres utilizaires. Per las traduccions, vos convidam a utilizar lo projècte MediaWiki d'internacionalizacion dels messatges [http://translatewiki.net/wiki/Main_Page?setlang=oc Betawiki].",
+'editinginterface'     => "'''Atencion :''' sètz a editar una pagina utilizada per crear lo tèxt de l’interfàcia del logicial. Los cambiaments se repercutaràn, segon lo contèxt, sus totas o cèrtas paginas visiblas pels autres utilizaires. Per las traduccions, vos convidam a utilizar lo projècte MediaWiki d'internacionalizacion dels messatges [http://translatewiki.net/wiki/Main_Page?setlang=oc translatewiki.net].",
 'sqlhidden'            => '(Requèsta SQL amagada)',
 'cascadeprotected'     => "Aquesta pagina es actualament protegida perque es inclusa dins {{PLURAL:$1|la pagina seguenta|las paginas seguentas}}, {{PLURAL:$1|qu'es estada protegida|que son estadas protegidas}} amb l’opcion « proteccion en cascada » activada :
 $2",
@@ -1516,7 +1516,7 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'nolinkstoimage'                 => 'Cap de pagina compòrta pas de ligam cap a aqueste imatge.',
 'morelinkstoimage'               => 'Vejatz [[Special:WhatLinksHere/$1|mai de ligams]] cap a aqueste imatge.',
 'redirectstofile'                => '{{PLURAL:$1|Lo fichièr seguent redirigís|Los fichièrs seguents redirigisson}} cap a aqueste fichièr :',
-'duplicatesoffile'               => "{{PLURAL:$1|Lo fichièr seguent es un duplicata|Los fichièrs seguents son de duplicatas}} d'aqueste :",
+'duplicatesoffile'               => "{{PLURAL:$1|Lo fichièr seguent es un duplicata|Los fichièrs seguents son de duplicatas}} d'aqueste fichièr ([[Special:FileDuplicateSearch/$2|mai de detalhs]]):",
 'sharedupload'                   => 'Aqueste fichièr es partejat e pòt èsser utilizat per d’autres projèctes.',
 'shareduploadwiki'               => 'Reportatz-vos a la $1 per mai d’informacion.',
 'shareduploadwiki-desc'          => 'La descripcion de sa $1 dins lo repertòri partejat es afichada çaijós.',
@@ -2260,7 +2260,7 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 
 Per exportar de paginas, entratz lors títols dins la bóstia de tèxt çaijós, un títol per linha, e seleccionatz s'o desiratz o pas la version actuala amb totas las versions ancianas, amb la pagina d’istoric, o simplament la pagina actuala amb d'informacions sus la darrièra modificacion.
 
-Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] per la pagina [[{{MediaWiki:Mainpage}}]].",
+Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] per la pagina [[{{MediaWiki:Mainpage}}]].",
 'exportcuronly'     => 'Exportar unicament la version correnta sens l’istoric complet',
 'exportnohistory'   => "----
 '''Nòta :''' l’exportacion complèta de l’istoric de las paginas amb l’ajuda d'aqueste formulari es estada desactivada per de rasons de performàncias.",
@@ -2276,7 +2276,7 @@ Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{ns:special
 'allmessagesdefault'        => 'Messatge per defaut',
 'allmessagescurrent'        => 'Messatge actual',
 'allmessagestext'           => 'Aquò es la lista de totes los messatges disponibles dins l’espaci MediaWiki.
-Visitatz la [http://www.mediawiki.org/wiki/Localisation Localizacion MèdiaWiki] e [http://translatewiki.net Betawiki] se desiratz contribuir a la localizacion MèdiaWiki generica.',
+Visitatz la [http://www.mediawiki.org/wiki/Localisation Localizacion MèdiaWiki] e [http://translatewiki.net translatewiki.net] se desiratz contribuir a la localizacion MèdiaWiki generica.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' es pas disponible perque '''\$wgUseDatabaseMessages''' es desactivat.",
 'allmessagesfilter'         => 'Filtre d’expression racionala :',
 'allmessagesmodified'       => 'Afichar pas que las modificacions',

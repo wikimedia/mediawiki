@@ -312,6 +312,8 @@ $messages = array(
 'privacy'              => 'Politiche pe privacy',
 'privacypage'          => 'Project:Politiche_pe_privacy',
 
+'badaccess' => 'Permès no suficients',
+
 'versionrequired' => 'E covente la version $1 di MediaWiki',
 
 'ok'                      => 'Va ben',
@@ -337,13 +339,13 @@ $messages = array(
 'site-atom-feed'          => 'Canâl Atom di $1',
 'page-rss-feed'           => 'Canâl RSS par "$1"',
 'page-atom-feed'          => 'Canâl Atom par "$1"',
-'red-link-title'          => '$1 (ancjemò di scrivi)',
+'red-link-title'          => '$1 (la pagjine no esist)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Vôs',
 'nstab-user'      => 'Pagjine dal utent',
 'nstab-media'     => 'Media',
-'nstab-special'   => 'Speciâl',
+'nstab-special'   => 'Pagjine speciâl',
 'nstab-project'   => 'Informazions',
 'nstab-image'     => 'Figure',
 'nstab-mediawiki' => 'Messaç',
@@ -357,21 +359,22 @@ $messages = array(
 Une liste des pagjinis speciâls validis a si pues cjatâ su [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'error'           => 'Erôr',
-'databaseerror'   => 'Erôr de base di dâts',
-'noconnect'       => 'Nus displâs, ma il sît al à al moment cualchi dificoltât tecniche e nol pues conetisi al servidôr de base di dâts. <br />$1',
-'nodb'            => 'No si pues selezionâ la base di dâts $1',
-'laggedslavemode' => 'Atenzion: La pagjine podarès no segnalâ inzornaments recents.',
-'readonlytext'    => "La base di dâts pal moment e je blocade e no si puedin zontâ vôs e fâ modifichis, probabilmentri pe normâl manutenzion de base di dâts, daspò de cuâl dut al tornarà normâl.
+'error'              => 'Erôr',
+'databaseerror'      => 'Erôr de base di dâts',
+'noconnect'          => 'Nus displâs, ma il sît al à al moment cualchi dificoltât tecniche e nol pues conetisi al servidôr de base di dâts. <br />$1',
+'nodb'               => 'No si pues selezionâ la base di dâts $1',
+'laggedslavemode'    => 'Atenzion: La pagjine podarès no segnalâ inzornaments recents.',
+'readonlytext'       => "La base di dâts pal moment e je blocade e no si puedin zontâ vôs e fâ modifichis, probabilmentri pe normâl manutenzion de base di dâts, daspò de cuâl dut al tornarà normâl.
 
 L'aministradôr ch'al à metût il bloc al à scrit cheste motivazion: $1",
-'filenotfound'    => 'No si pues cjatâ il file "$1".',
-'badtitle'        => 'Titul sbaliât',
-'badtitletext'    => 'Il titul de pagjine che tu âs inserît nol è valit, al è vuelit, o al veve un erôr tal colegament tra wiki diviersis o tra versions in altris lenghis.
+'missingarticle-rev' => '(numar de revision: $1)',
+'filenotfound'       => 'No si pues cjatâ il file "$1".',
+'badtitle'           => 'Titul sbaliât',
+'badtitletext'       => 'Il titul de pagjine che tu âs inserît nol è valit, al è vuelit, o al veve un erôr tal colegament tra wiki diviersis o tra versions in altris lenghis.
 Al podarès vê dentri caratars che no podin jessi doprâts tai titui.',
-'viewsource'      => 'Cjale risultive',
-'viewsourcefor'   => 'di $1',
-'viewsourcetext'  => 'Tu puedis viodi e copiâ la risultive di cheste pagjine:',
+'viewsource'         => 'Cjale risultive',
+'viewsourcefor'      => 'di $1',
+'viewsourcetext'     => 'Tu puedis viodi e copiâ la risultive di cheste pagjine:',
 
 # Login and logout pages
 'logouttitle'               => 'Jessude dal utent',
@@ -470,27 +473,27 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'nowiki_tip'      => 'Ignore la formatazion wiki',
 'image_sample'    => 'Esempli.jpg',
 'image_tip'       => 'Figure includude',
-'media_sample'    => 'Esempli.mp3',
+'media_sample'    => 'Esempli.ogg',
 'media_tip'       => 'Leam a un file multimediâl',
 'sig_tip'         => 'La tô firme cun ore e date',
 'hr_tip'          => 'Rie orizontâl (no stâ doprâle masse spes)',
 
 # Edit pages
-'summary'                   => 'Somari:',
-'subject'                   => 'Argoment (intestazion):',
-'minoredit'                 => 'Cheste al è un piçul cambiament',
-'watchthis'                 => 'Ten di voli cheste pagjine',
-'savearticle'               => 'Salve la pagjine',
-'preview'                   => 'Anteprime',
-'showpreview'               => 'Mostre anteprime',
-'showlivepreview'           => "Anteprime ''live''",
-'showdiff'                  => 'Mostre cambiaments',
-'anoneditwarning'           => 'No tu sês jentrât cuntun non utent. La to direzion IP e vignarà regjistrade tal storic di cheste pagjine.',
-'missingcommenttext'        => 'Inserìs un coment ca sot.',
-'summary-preview'           => 'Anteprime dal somari:',
-'subject-preview'           => 'Anteprime ogjet/intestazion:',
-'blockedtitle'              => 'Utent blocât',
-'blockedtext'               => "<big>'''Chest non utent o direzion IP a son stâts blocâts.'''</big>
+'summary'                          => 'Somari:',
+'subject'                          => 'Argoment (intestazion):',
+'minoredit'                        => 'Cheste al è un piçul cambiament',
+'watchthis'                        => 'Ten di voli cheste pagjine',
+'savearticle'                      => 'Salve la pagjine',
+'preview'                          => 'Anteprime',
+'showpreview'                      => 'Mostre anteprime',
+'showlivepreview'                  => "Anteprime ''live''",
+'showdiff'                         => 'Mostre cambiaments',
+'anoneditwarning'                  => 'No tu sês jentrât cuntun non utent. La to direzion IP e vignarà regjistrade tal storic di cheste pagjine.',
+'missingcommenttext'               => 'Inserìs un coment ca sot.',
+'summary-preview'                  => 'Anteprime dal somari:',
+'subject-preview'                  => 'Anteprime ogjet/intestazion:',
+'blockedtitle'                     => 'Utent blocât',
+'blockedtext'                      => "<big>'''Chest non utent o direzion IP a son stâts blocâts.'''</big>
 
 Il bloc al è stât metût di $1. La reson furnide e je: ''$2''
 
@@ -503,59 +506,66 @@ Se tu vuelis tu puedis contatâ $1 o un altri [[{{MediaWiki:Grouppage-sysop}}|am
 Visiti che no tu puedis doprâ la funzion 'Messaç di pueste a chest utent' se no tu âs specificât une direzion di pueste eletroniche valide tes [[Special:Preferences|preferencis]] e se no tu sês stât blocât al ûs di cheste funzion.
 
 Par plasê inclût la to direzion IP atuâl ($3) o il numar dal bloc (ID #$5) in ogni richieste di sclariments.",
-'blockedoriginalsource'     => "Ca sot tu puedis viodi la risultive de pagjine '''$1''':",
-'whitelistedittext'         => 'Tu scugnis $1 par cambiâ lis pagjinis.',
-'confirmedittitle'          => 'E covente la conferme de direzion di pueste eletroniche pe modifiche de pagjine',
-'confirmedittext'           => 'Prime di cambiâ lis pagjinis tu scugnis confermâ la to direzion di pueste eletroniche. Par impuestâ e confermâ la direzion, dopre lis [[Special:Preferences|preferencis]].',
-'loginreqtitle'             => 'Si scugne jentrâ',
-'loginreqlink'              => 'jentrâ',
-'loginreqpagetext'          => 'Tu scugnis $1 par viodi lis altris pagjinis.',
-'accmailtitle'              => 'Password mandade.',
-'accmailtext'               => 'La password par "$1" e je stade mandade a $2.',
-'newarticle'                => '(Gnûf)',
-'newarticletext'            => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[{{MediaWiki:Helppage}}|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
-'anontalkpagetext'          => "----''Cheste e je la pagjine di discussion di un utent anonim, che nol à ancjemò creât une identitât, o che no la vûl doprâ. Par identificâlu/e a doprin alore la so direzion IP. Lis direzions IP a podin però jessi condividudis di plui utents. Se tu sês un utent anonim e tu crodis che ti vedin fat coments che no si riferissin a ti, par plasê [[Special:UserLogin|cree une gnove identitâ o jentre]] cun chê che tu âs za cussì tu evitarâs in futûr di jessi confondût un altris utents anonims.''",
-'noarticletext'             => 'Par cumò nol è nuie in cheste pagjine, tu puedis [[Special:Search/{{PAGENAME}}|cirî chest titul]] in altris pagjinis o [{{fullurl:{{FULLPAGENAME}}|action=edit}} cambiâ cheste pagjine].',
-'userpage-userdoesnotexist' => 'La identitât "$1" no je di un utent regjistrât. Controle che tu vuelis pardabon creâ o modificâ cheste pagjine.',
-'clearyourcache'            => "'''Ocjo: dopo vê salvât, tu podaressis scugnî netâ la cache dal to sgarfadôr par viodi i cambiaments.''' Par '''Mozilla / Firefox / Safari''': frache ''Torne a cjamâ'' tignint jù ancje il tast des maiusculis, o se no frache ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); par '''Konqueror''': frache ''Reload'' o il tast ''F5''; par '''Opera''' al pues jessi necessari disvuedâ dal dut la cache doprant il menù ''Tools → Preferencis''; par '''Internet Explorer:''' ten fracât il tast ''Ctrl'' cuant che tu cjalcjis su ''Aggiorna'' o frache ''Ctrl-F5''.",
-'updated'                   => '(Inzornât)',
-'previewnote'               => "'''Visiti che cheste e je dome une anteprime, e no je stade ancjemò salvade!'''",
-'editing'                   => 'Cambiament di $1',
-'editingsection'            => 'Cambiament di $1 (sezion)',
-'editingcomment'            => 'Cambiament di $1 (coment)',
-'editconflict'              => 'Conflit inte modifiche: $1',
-'explainconflict'           => 'Cualchidun altri al à cambiât cheste pagjine di cuant che tu âs començât a modificâle.
+'blockedoriginalsource'            => "Ca sot tu puedis viodi la risultive de pagjine '''$1''':",
+'whitelistedittext'                => 'Tu scugnis $1 par cambiâ lis pagjinis.',
+'confirmedittitle'                 => 'E covente la conferme de direzion di pueste eletroniche pe modifiche de pagjine',
+'confirmedittext'                  => 'Prime di cambiâ lis pagjinis tu scugnis confermâ la to direzion di pueste eletroniche. Par impuestâ e confermâ la direzion, dopre lis [[Special:Preferences|preferencis]].',
+'loginreqtitle'                    => 'Si scugne jentrâ',
+'loginreqlink'                     => 'jentrâ',
+'loginreqpagetext'                 => 'Tu scugnis $1 par viodi lis altris pagjinis.',
+'accmailtitle'                     => 'Password mandade.',
+'accmailtext'                      => 'La password par "$1" e je stade mandade a $2.',
+'newarticle'                       => '(Gnûf)',
+'newarticletext'                   => "Tu âs seguît un leam a une pagjine che no esist ancjemò. Par creâ une pagjine, scomence a scrivi tal spazi ca sot (cjale il [[{{MediaWiki:Helppage}}|jutori]] par altris informazions). Se tu sês ca par erôr, frache semplicementri il boton '''Indaûr''' dal to sgarfadôr.",
+'anontalkpagetext'                 => "----''Cheste e je la pagjine di discussion di un utent anonim, che nol à ancjemò creât une identitât, o che no la vûl doprâ. Par identificâlu/e a doprin alore la so direzion IP. Lis direzions IP a podin però jessi condividudis di plui utents. Se tu sês un utent anonim e tu crodis che ti vedin fat coments che no si riferissin a ti, par plasê [[Special:UserLogin|cree une gnove identitâ o jentre]] cun chê che tu âs za cussì tu evitarâs in futûr di jessi confondût un altris utents anonims.''",
+'noarticletext'                    => 'Par cumò nol è nuie in cheste pagjine.
+Tu puedis [[Special:Search/{{PAGENAME}}|cirî chest titul]] in altris pagjinis o <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} cirî i regjistris leâts],
+o ben [{{fullurl:{{FULLPAGENAME}}|action=edit}} cambiâ cheste pagjine]</span>.',
+'userpage-userdoesnotexist'        => 'La identitât "$1" no je di un utent regjistrât. Controle che tu vuelis pardabon creâ o modificâ cheste pagjine.',
+'clearyourcache'                   => "'''Ocjo: dopo vê salvât, tu podaressis scugnî netâ la cache dal to sgarfadôr par viodi i cambiaments.''' Par '''Mozilla / Firefox / Safari''': frache ''Torne a cjamâ'' tignint jù ancje il tast des maiusculis, o se no frache ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); par '''Konqueror''': frache ''Reload'' o il tast ''F5''; par '''Opera''' al pues jessi necessari disvuedâ dal dut la cache doprant il menù ''Tools → Preferencis''; par '''Internet Explorer:''' ten fracât il tast ''Ctrl'' cuant che tu cjalcjis su ''Aggiorna'' o frache ''Ctrl-F5''.",
+'updated'                          => '(Inzornât)',
+'previewnote'                      => "'''Visiti che cheste e je dome une anteprime, e no je stade ancjemò salvade!'''",
+'editing'                          => 'Cambiament di $1',
+'editingsection'                   => 'Cambiament di $1 (sezion)',
+'editingcomment'                   => 'Cambiament di $1 (coment)',
+'editconflict'                     => 'Conflit inte modifiche: $1',
+'explainconflict'                  => 'Cualchidun altri al à cambiât cheste pagjine di cuant che tu âs començât a modificâle.
 La aree di test disore e conten il test de pagjine che esist cumò, i tiei cambiaments a son mostrâts inte aree disot.
 Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 <b>Dome</b> il test in alt al vignarà salvât cuant che tu frachis su "Salve pagjine".<br />',
-'editingold'                => "'''ATENZION: tu stâs cambiant une version vecje e no inzornade di cheste pagjine. Se tu la salvis, ducj i cambiaments fats di chê volte in ca a laran pierdûts.'''",
-'yourdiff'                  => 'Difarencis',
-'copyrightwarning'          => "Note: ducj i contribûts a {{SITENAME}} a si considerin come dâts fûr sot de licence $2 (cjale $1 pai detais). Se no tu vuelis che i tiei tescj a podedin jessi modificâts e tornâts a dâ fûr di ognidun cence limits, no stâ mandâju a {{SITENAME}}.<br />
+'editingold'                       => "'''ATENZION: tu stâs cambiant une version vecje e no inzornade di cheste pagjine. Se tu la salvis, ducj i cambiaments fats di chê volte in ca a laran pierdûts.'''",
+'yourdiff'                         => 'Difarencis',
+'copyrightwarning'                 => "Note: ducj i contribûts a {{SITENAME}} a si considerin come dâts fûr sot de licence $2 (cjale $1 pai detais). Se no tu vuelis che i tiei tescj a podedin jessi modificâts e tornâts a dâ fûr di ognidun cence limits, no stâ mandâju a {{SITENAME}}.<br />
 Cun di plui, inviant il test tu declaris che tu âs scrit tu chest o tu lu âs copiât di une sorzint tal domini public o di une sorzint libare.
 '''NO STÂ MANDÂ MATERIÂL CUVIERT DAL DIRIT DI AUTÔR CENCE AUTORIZAZION!'''",
-'longpagewarning'           => "'''ATENZION: cheste pagjine e je grande $1 kilobytes; cualchi sgarfadôr al podarès vê problemis a modificâ pagjinis di 32 kb o plui grandis. Considere par plasê la pussibilitât di dividi la pagjine in sezions plui piçulis.'''",
-'readonlywarning'           => "'''ATENZION: La base di dâts e je blocade par vie de manutenzion, par cui no si podin salvâ lis modifichis par cumò. Par no pierdilis, tu puedis copiâ e tacâ il test inserît fin cumò e salvâlu intun file di test.'''
+'longpagewarning'                  => "'''ATENZION: cheste pagjine e je grande $1 kilobytes; cualchi sgarfadôr al podarès vê problemis a modificâ pagjinis di 32 kb o plui grandis. Considere par plasê la pussibilitât di dividi la pagjine in sezions plui piçulis.'''",
+'readonlywarning'                  => "'''ATENZION: La base di dâts e je blocade par vie de manutenzion, par cui no si podin salvâ lis modifichis par cumò. Par no pierdilis, tu puedis copiâ e tacâ il test inserît fin cumò e salvâlu intun file di test.'''
 
 L'aministradôr che al à blocât la base di dâts al à ufiert chest spiegazion: $1",
-'templatesused'             => 'Modei doprâts par cheste pagjine:',
-'templatesusedpreview'      => 'Modei doprâts in cheste anteprime:',
-'templatesusedsection'      => 'Modei doprâts in cheste sezion:',
-'template-protected'        => '(protezût)',
-'template-semiprotected'    => '(semi-protezût)',
-'nocreatetitle'             => 'Creazion des pagjinis limitade',
-'nocreatetext'              => '{{SITENAME}} al à limitât la pussibilitât di creâ gnovis pagjinis ai utents regjistrâts. Tu puedis tornâ indaûr e cambiâ une pagjine che e esist o se no [[Special:UserLogin|jentrâ o creâ une gnove identitât]].',
-'nocreate-loggedin'         => 'No tu âs i permès che a coventin par creâ gnovis pagjinis.',
-'permissionserrors'         => 'Erôr tai permès',
-'recreate-deleted-warn'     => "'''Atenzion: tu stâs par tornâ a creâ une pagjine che e je stade eliminade timp fa.'''
+'templatesused'                    => 'Modei doprâts par cheste pagjine:',
+'templatesusedpreview'             => 'Modei doprâts in cheste anteprime:',
+'templatesusedsection'             => 'Modei doprâts in cheste sezion:',
+'template-protected'               => '(protezût)',
+'template-semiprotected'           => '(semi-protezût)',
+'hiddencategories'                 => 'Cheste pagjine e je {{PLURAL:$1|intune categorie platade|in $1 categoriis platadis}}:',
+'nocreatetitle'                    => 'Creazion des pagjinis limitade',
+'nocreatetext'                     => '{{SITENAME}} al à limitât la pussibilitât di creâ gnovis pagjinis ai utents regjistrâts. Tu puedis tornâ indaûr e cambiâ une pagjine che e esist o se no [[Special:UserLogin|jentrâ o creâ une gnove identitât]].',
+'nocreate-loggedin'                => 'No tu âs i permès che a coventin par creâ gnovis pagjinis.',
+'permissionserrors'                => 'Erôr tai permès',
+'permissionserrorstext-withaction' => 'No tu âs i permès che a coventin par $2, {{PLURAL:$1|par il motîf|pai motîfs}} ca sot:',
+'recreate-deleted-warn'            => "'''Atenzion: tu stâs par tornâ a creâ une pagjine che e je stade eliminade timp fa.'''
 
 Siguriti che sedi pardabon oportun lâ indevant cun la modifiche di cheste pagjine.
 Ve ca par comoditât l'elenc des eliminazions precedentis par cheste pagjine:",
-'edit-no-change'            => 'Il cambiament al è stât ignorât parcè che no tu âs cambiât nuie tal test.',
+'deleted-notice'                   => 'Cheste pagjine e je stade eliminade.
+Il regjistri di eliminazion pe pagjine al ven mostrât ca sot par informazion.',
+'edit-no-change'                   => 'Il cambiament al è stât ignorât parcè che no tu âs cambiât nuie tal test.',
 
 # History pages
 'viewpagelogs'           => 'Cjale i regjistris relatîfs a cheste pagjine.',
 'nohistory'              => 'Nol è presint un storic dai cambiaments par cheste pagjine.',
 'currentrev'             => 'Version atuâl',
+'currentrev-asof'        => 'Revision atuâl dai $1',
 'revisionasof'           => 'Version dai $1',
 'revision-info'          => 'Version dal $1, autôr: $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Version plui vecje',
@@ -598,7 +608,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'searchresults'                   => 'Risultâts de ricercje',
 'searchresults-title'             => 'Risultâts de ricercje di "$1"',
 'searchresulttext'                => 'Par plui informazions su lis ricercjis in {{SITENAME}}, cjale [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                  => 'Pal test "[[:$1]]"',
+'searchsubtitle'                  => 'Ricercje di \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|dutis lis pagjinis che a scomencin par "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|dutis lis pagjinis che a pontin a "$1"]])',
 'searchsubtitleinvalid'           => 'Pal test "$1"',
 'noexactmatch'                    => "'''No esist une pagjine cul titul \"\$1\".''' Tu podaressis [[:\$1|creâle tu]].",
 'noexactmatch-nocreate'           => "'''La pagjine cun titul \"\$1\" no esist.'''",
@@ -628,6 +638,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'search-redirect'                 => '(re-indreçament $1)',
 'search-section'                  => '(sezion $1)',
 'search-suggest'                  => 'Forsit tu cirivis: $1',
+'search-interwiki-caption'        => 'Progjets fradis',
 'search-interwiki-default'        => 'Risultâts di $1:',
 'search-interwiki-more'           => '(altri)',
 'search-mwsuggest-enabled'        => 'cui sugjeriments',
@@ -637,6 +648,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'showingresults'                  => "Ca sot {{PLURAL:$1|al è fin a '''1''' risultât|a son fin a '''$1''' risultâts}} scomençant dal numar '''$2'''.",
 'showingresultsnum'               => "Ca sot {{PLURAL:$3|al è '''1''' risultât|a son '''$3''' risultâts}} scomençant dal numar '''$2'''.",
 'showingresultstotal'             => "Ca sot {{PLURAL:$4|al ven mostrât il risultât '''$1''' su '''$3'''|a vegnin mostrâts i risultâts '''$1 - $2''' su '''$3'''}}",
+'nonefound'                       => "'''Note''': la ricercje e ven fate normalmentri dome in cualchi spazi dai nons. Prove a scrivi ''all:'' prime dal test di cjatâ par cirî in ducj i nons dai spazis (includint lis pagjinis di discussion, i modei e v.i.) o se no dopre il non dal spazi desiderât come prefìs.",
 'search-nonefound'                => 'Nissun risultât par cheste ricercje.',
 'powersearch'                     => 'Cîr',
 'powersearch-legend'              => 'Ricercje avanzade',
@@ -712,6 +724,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'group'               => 'Grup:',
 'group-user'          => 'Utents regjistrâts',
 'group-autoconfirmed' => 'Utents auto confermâts',
+'group-sysop'         => 'Aministradôrs',
 'group-all'           => 'Utents',
 
 'group-user-member' => 'Utent',
@@ -720,6 +733,9 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 
 # User rights log
 'rightslog' => 'Regjistri dai dirits dai utents',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'cambiâ cheste pagjine',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
@@ -748,6 +764,8 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'rc_categories'                     => 'Limite aes categoriis (dividilis cun "|")',
 'rc_categories_any'                 => 'Cualsisei',
 'newsectionsummary'                 => '/* $1 */ gnove sezion',
+'rc-enhanced-expand'                => 'Mostre detais (al covente JavaScript)',
+'rc-enhanced-hide'                  => 'Plate detais',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambiaments leâts',
@@ -808,6 +826,8 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'filehist-help'             => 'Frache suntune date/ore par viodi il file cemût che al jere in chel moment.',
 'filehist-current'          => 'corint',
 'filehist-datetime'         => 'Date/Ore',
+'filehist-thumb'            => 'Miniature',
+'filehist-thumbtext'        => 'Miniature de version dai $1',
 'filehist-user'             => 'Utent',
 'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => 'Dimension dal file',
@@ -939,6 +959,7 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent e/o l
 'nextpage'          => 'Prossime pagjine ($1)',
 'prevpage'          => 'Pagjinis precedentis ($1)',
 'allpagesfrom'      => 'Mostre pagjinis scomençant di:',
+'allpagesto'        => 'Mostre lis pagjinis fin a:',
 'allarticles'       => 'Dutis lis vôs',
 'allinnamespace'    => 'Dutis lis pagjinis (non dal spazi $1)',
 'allnotinnamespace' => 'Dutis lis pagjinis (no tal non dal spazi $1)',
@@ -958,6 +979,7 @@ Cjale ancje lis [[Special:WantedCategories|categoriis desideradis]].',
 'deletedcontributions' => 'Contribûts dal utent eliminâts',
 
 # Special:LinkSearch
+'linksearch'    => 'Leams esternis',
 'linksearch-ns' => 'Spazi dai nons:',
 'linksearch-ok' => 'Cîr',
 
@@ -974,8 +996,9 @@ Cjale ancje lis [[Special:WantedCategories|categoriis desideradis]].',
 'newuserlog-autocreate-entry' => 'Identitât creade in automatic',
 
 # Special:ListGroupRights
-'listgrouprights-group'  => 'Grup',
-'listgrouprights-rights' => 'Dirits',
+'listgrouprights-group'   => 'Grup',
+'listgrouprights-rights'  => 'Dirits',
+'listgrouprights-members' => '(liste dai membris)',
 
 # E-mail user
 'emailuser'       => 'Messaç di pueste a chest utent',
@@ -1020,6 +1043,7 @@ e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins
 'watchlistcontains'    => 'Tu stâs tignint di voli $1 {{PLURAL:$1|pagjine|pagjinis}}.',
 'wlnote'               => "Ca sot {{PLURAL:$1|al è il cambiament plui recent|a son i '''$1''' cambiaments plui recents}} {{PLURAL:$2|inte ultime ore|intes '''$2''' oris passadis}}.",
 'wlshowlast'           => 'Mostre ultimis $1 oris $2 zornadis $3',
+'watchlist-options'    => 'Opzions pe liste dai tignûts di voli',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Daûr a zontâ aes pagjinis tignudis di voli...',
@@ -1072,9 +1096,9 @@ Cjale $2 par une liste des ultimis eliminazions.',
 Lis impuestazions atuâls pe pagjine a son '''$1''':",
 'protect-cascadeon'           => 'Cheste pagjine e je blocade par cumò parcè che e je includude {{PLURAL:$1|inte pagjine|intes pagjinis}} culì sot, dulà che e je ative la protezion ricorsive.
 Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà efiets su la protezion ricorsive.',
-'protect-default'             => '(predeterminât)',
+'protect-default'             => '(Autorize ducj i utents)',
 'protect-fallback'            => 'Al covente il permès "$1"',
-'protect-level-autoconfirmed' => 'Dome utents regjistrâts',
+'protect-level-autoconfirmed' => 'Bloche i utents gnûfs e no regjistrâts',
 'protect-level-sysop'         => 'Dome aministradôrs',
 'protect-summary-cascade'     => 'a discjadude',
 'protect-expiring'            => 'e scjât: $1 (UTC)',
@@ -1120,35 +1144,39 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'sp-contributions-submit'      => 'Cîr',
 
 # What links here
-'whatlinkshere'           => 'Leams a cheste vôs',
-'whatlinkshere-title'     => 'Pagjinis che a son leadis a "$1"',
-'whatlinkshere-page'      => 'Pagjine:',
-'linkshere'               => "Lis pagjinis ca sot a son leadis a '''[[:$1]]''':",
-'nolinkshere'             => "Nissune pagjine e à leams a '''[[:$1]]'''.",
-'nolinkshere-ns'          => "No son pagjine leadis a '''[[:$1]]''' intal spazi dai nons sielt.",
-'isredirect'              => 'pagjine di reindirizament',
-'istemplate'              => 'includude',
-'whatlinkshere-prev'      => '{{PLURAL:$1|precedent|precedents $1}}',
-'whatlinkshere-next'      => '{{PLURAL:$1|sucessîf|sucessîfs $1}}',
-'whatlinkshere-links'     => '← leams',
-'whatlinkshere-hidelinks' => '$1 leams',
-'whatlinkshere-filters'   => 'Filtris',
+'whatlinkshere'            => 'Leams a cheste vôs',
+'whatlinkshere-title'      => 'Pagjinis che a son leadis a "$1"',
+'whatlinkshere-page'       => 'Pagjine:',
+'linkshere'                => "Lis pagjinis ca sot a son leadis a '''[[:$1]]''':",
+'nolinkshere'              => "Nissune pagjine e à leams a '''[[:$1]]'''.",
+'nolinkshere-ns'           => "No son pagjine leadis a '''[[:$1]]''' intal spazi dai nons sielt.",
+'isredirect'               => 'pagjine di reindirizament',
+'istemplate'               => 'includude',
+'isimage'                  => 'leam figure',
+'whatlinkshere-prev'       => '{{PLURAL:$1|precedent|precedents $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|sucessîf|sucessîfs $1}}',
+'whatlinkshere-links'      => '← leams',
+'whatlinkshere-hideredirs' => '$1 re-indreçaments',
+'whatlinkshere-hidelinks'  => '$1 leams',
+'whatlinkshere-filters'    => 'Filtris',
 
 # Block/unblock
-'blockip'            => 'Bloche utent',
-'blockip-legend'     => "Bloche l'utent",
-'ipaddress'          => 'Direzion IP:',
-'ipadressorusername' => 'Direzion IP o non utent:',
-'ipbexpiry'          => 'Scjadence dal bloc:',
-'ipbreason'          => 'Reson dal bloc:',
-'ipbsubmit'          => 'Bloche chest utent',
-'ipboptions'         => '2 oris:2 hours,1 zornade:1 day,3 zornadis:3 days,1 setemane:1 week,2 setemanis:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,infinît:infinite', # display1:time1,display2:time2,...
-'ipblocklist'        => 'Utents e direzions IP blocadis',
-'blocklink'          => 'bloche',
-'unblocklink'        => 'sbloche',
-'contribslink'       => 'contribûts',
-'blocklogpage'       => 'Regjistri dai blocs',
-'blocklogentry'      => 'al à blocât "[[$1]]"; scjadence $2 $3',
+'blockip'                  => 'Bloche utent',
+'blockip-legend'           => "Bloche l'utent",
+'ipaddress'                => 'Direzion IP:',
+'ipadressorusername'       => 'Direzion IP o non utent:',
+'ipbexpiry'                => 'Scjadence dal bloc:',
+'ipbreason'                => 'Reson dal bloc:',
+'ipbsubmit'                => 'Bloche chest utent',
+'ipboptions'               => '2 oris:2 hours,1 zornade:1 day,3 zornadis:3 days,1 setemane:1 week,2 setemanis:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,infinît:infinite', # display1:time1,display2:time2,...
+'ipblocklist'              => 'Utents e direzions IP blocadis',
+'blocklink'                => 'bloche',
+'unblocklink'              => 'sbloche',
+'change-blocklink'         => 'cambie bloc',
+'contribslink'             => 'contribûts',
+'blocklogpage'             => 'Regjistri dai blocs',
+'blocklogentry'            => 'al à blocât "[[$1]]"; scjadence $2 $3',
+'block-log-flags-nocreate' => 'creazion identitât blocade',
 
 # Developer tools
 'lockdb'  => 'Bloche base di dâts',
@@ -1189,6 +1217,7 @@ Sielç par plasê un altri non.',
 'movedto'          => 'Movude in',
 'movetalk'         => 'Môf ancje la pagjine di discussion, se pussibil.',
 '1movedto2'        => '$1 movût in $2',
+'1movedto2_redir'  => 'al à movût [[$1]] a [[$2]] par mieç di un re-indreçament',
 'movelogpage'      => 'Regjistri des pagjinis movudis',
 'movelogpagetext'  => 'Ca sot e je une liste des pagjinis movudis.',
 'movereason'       => 'Reson',
@@ -1224,17 +1253,17 @@ Sielç par plasê un altri non.',
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'La tô pagjine utent',
 'tooltip-pt-anonuserpage'         => 'La pagjine utent di cheste direzion IP',
-'tooltip-pt-mytalk'               => 'La mê pagjine di discussion',
+'tooltip-pt-mytalk'               => 'La tô pagjine di discussion',
 'tooltip-pt-anontalk'             => 'Discussions dai cambiaments fats di cheste direzion IP',
 'tooltip-pt-preferences'          => 'Lis mês preferencis',
 'tooltip-pt-watchlist'            => 'La liste des pagjinis che tu stâs tignint di voli',
-'tooltip-pt-mycontris'            => 'Liste dai miei contribûts',
+'tooltip-pt-mycontris'            => 'Liste dai tiei contribûts',
 'tooltip-pt-login'                => 'La regjistrazion e je conseade, ancje se no obligatorie.',
 'tooltip-pt-anonlogin'            => 'La regjistrazion e je conseade, ma no si scugne fâle',
 'tooltip-pt-logout'               => 'Jes (logout)',
 'tooltip-ca-talk'                 => 'Discussions su cheste pagjine',
 'tooltip-ca-edit'                 => 'Tu puedis cambiâ cheste pagjine. Par plasê dopre il boton de anteprime prime di salvâ.',
-'tooltip-ca-addsection'           => 'Zonte un coment a cheste discussion',
+'tooltip-ca-addsection'           => 'Scomence une gnove sezion',
 'tooltip-ca-viewsource'           => 'Cheste pagjine e je protezude, ma tu puedis viodi la sô risultive.',
 'tooltip-ca-history'              => 'Versions precedentis di cheste pagjine.',
 'tooltip-ca-protect'              => 'Protêç cheste pagjine',

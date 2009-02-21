@@ -488,7 +488,7 @@ Te rog încearcă din nou în câteva minute.',
 'protectedpagetext'    => 'Această pagină este protejată împotriva modificărilor.',
 'viewsourcetext'       => 'Se poate vizualiza şi copia conţinutul acestei pagini:',
 'protectedinterface'   => 'Această pagină asigură textul interfeţei pentru software şi este protejată pentru a preveni abuzurile.',
-'editinginterface'     => "'''Avertizare''': Editezi o pagină care este folosită pentru a furniza textul interfeţei pentru software. Modificările aduse acestei pagini vor afecta aspectul interfeţei utilizatorului pentru alţi utilizatori. Pentru traduceri, consideraţi utilizarea [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], proiectul MediaWiki de localizare.",
+'editinginterface'     => "'''Avertizare''': Editezi o pagină care este folosită pentru a furniza textul interfeţei pentru software. Modificările aduse acestei pagini vor afecta aspectul interfeţei utilizatorului pentru alţi utilizatori. Pentru traduceri, consideraţi utilizarea [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proiectul MediaWiki de localizare.",
 'sqlhidden'            => '(interogare SQL ascunsă)',
 'cascadeprotected'     => 'Această pagină a fost protejată la scriere deoarece este inclusă în {{PLURAL:$1|următoarea pagină|următoarele pagini}}, care {{PLURAL:$1|este protejată|sunt protejate}} în cascadă:
 $2',
@@ -2185,7 +2185,7 @@ Articolul de destinaţie "[[:$1]]" există deja. Doriţi să îl ştergeţi pent
 'allmessagesdefault'        => 'Textul standard',
 'allmessagescurrent'        => 'Textul curent',
 'allmessagestext'           => 'Aceasta este lista completă a mesajelor disponibile în domeniul MediaWiki.
-Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] şi [http://translatewiki.net Betawiki] dacă vreţi să contribuiţi la localizarea programului MediaWiki generic.',
+Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] şi [http://translatewiki.net translatewiki.net] dacă vreţi să contribuiţi la localizarea programului MediaWiki generic.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nu poate fi folosit deoarece '''\$wgUseDatabaseMessages''' este închisă.",
 'allmessagesfilter'         => 'Filtrare în funcţie de titlul mesajului:',
 'allmessagesmodified'       => 'Arată doar mesajele modificate.',

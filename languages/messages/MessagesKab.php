@@ -6,6 +6,7 @@
  *
  * @author Agurzil
  * @author Agzennay
+ * @author Azwaw
  * @author Teak
  * @author Urhixidur
  */
@@ -60,7 +61,7 @@ $messages = array(
 'tog-previewontop'            => 'Ssken pre-timeẓriwt uqbel tankult ubeddel',
 'tog-previewonfirst'          => 'Ssken pre-timeẓriwt akk d ubeddel amezwaru',
 'tog-nocache'                 => 'Kkes lkac n usebter',
-'tog-enotifwatchlistpages'    => 'Azen-iyi-d e-mail asmi yettubeddel asebter i ttɛassaɣ',
+'tog-enotifwatchlistpages'    => "Azen-iyi-d e-mail m'ara yettubeddel asebter i ttɛassaɣ",
 'tog-enotifusertalkpages'     => 'Azen-iyi-d e-mail asmi sɛiɣ izen amaynut',
 'tog-enotifminoredits'        => 'Azen-iyi-d e-mail ma llan ibeddlen ifessasen',
 'tog-enotifrevealaddr'        => 'Ssken e-mail inu asmi yettwazen email n talɣut',
@@ -1234,7 +1235,7 @@ Anda tebɣiḍ tesmimeḍ "[[:$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken 
 'allmessagesdefault'        => 'Aḍris ameslugen',
 'allmessagescurrent'        => 'Aḍris n tura',
 'allmessagestext'           => 'Wagi d umuɣ n izen n system i yellan deg yisem n taɣult.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ut yezmir ara ad yettuseqdac axaṭer '''\$wgUseDatabaseMessages''' yettwakkes.",
 'allmessagesfilter'         => 'Tastayt n yisem n izen:',
 'allmessagesmodified'       => 'Ssken win yettubeddlen kan',

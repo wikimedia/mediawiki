@@ -432,7 +432,7 @@ $messages = array(
 
 'badaccess'        => '権限がありません',
 'badaccess-group0' => 'あなたはこの操作を行う権限を持っていません。',
-'badaccess-groups' => 'この操作は $1 のグループに属する利用者のみが実行できます。',
+'badaccess-groups' => 'この操作は、$1 {{PLURAL:$2|の|のいずれかの}}グループに属する利用者のみが実行できます。',
 
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
 'versionrequiredtext' => 'このページの利用には MediaWiki バージョン $1 が必要です。[[Special:Version|バージョン情報]]を確認してください。',
@@ -545,7 +545,7 @@ $1',
 'protectedpagetext'    => 'このページは編集できないように保護されています。',
 'viewsourcetext'       => 'このページのソースを閲覧し、コピーすることができます:',
 'protectedinterface'   => 'このページはソフトウェアのインターフェースに使用されるテキストが保存されており、いたずらなどの防止のために保護されています。',
-'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者のユーザインタフェースに影響します。翻訳をする場合、MediaWiki の多言語対応プロジェクトである [http://translatewiki.net/wiki/Main_Page?setlang=ja Betawiki] の利用を検討してください。",
+'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者のユーザインタフェースに影響します。翻訳をする場合、MediaWiki の多言語対応プロジェクトである [http://translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net] の利用を検討してください。",
 'sqlhidden'            => '(SQLクエリ非表示)',
 'cascadeprotected'     => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。
 $2',
@@ -802,7 +802,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'protectedpagewarning'             => "'''警告:''' このページは保護されています。{{int:group-sysop}}しか編集できません。",
 'semiprotectedpagewarning'         => "'''お知らせ:''' このページは登録利用者のみが編集できるよう保護されています。",
 'cascadeprotectedwarning'          => "'''警告:''' このページはカスケード保護されている以下のページから呼び出されているため、{{int:group-sysop}}しか編集できません。",
-'titleprotectedwarning'            => "'''警告:  このページはロックされているため、特定の利用者以外は作成することができません。'''",
+'titleprotectedwarning'            => "'''警告: このページはロックされているため、作成には[[Special:ListGroupRights|特別な権限]]が必要です。'''",
 'templatesused'                    => 'このページで使われているテンプレート:',
 'templatesusedpreview'             => 'このプレビューで使われているテンプレート:',
 'templatesusedsection'             => 'このセクションで使われているテンプレート:',
@@ -1077,7 +1077,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'showingresults'                   => '<b>$2</b> 件目から <b>$1</b> 件を表示しています。',
 'showingresultsnum'                => '<b>$2</b> 件目から <b>$3</b> 件を表示しています。',
 'showingresultstotal'              => "'''$3''' 件中 {{PLURAL:$4|'''$1'''|'''$1 - $2'''}}件目の検索結果を表示しています",
-'nonefound'                        => "'''注意''':通常の設定では一部の名前空間しか検索されません。全ページを検索するためには、''all:'' を冒頭につけて検索するか、検索を行いたい名前空間を指定してください。",
+'nonefound'                        => "'''注意''': 通常の設定では一部の名前空間しか検索されません。全ページを検索するためには、''all:'' を冒頭につけて検索するか、検索を行いたい名前空間を指定してください。",
 'search-nonefound'                 => '問い合わせに合致する結果はありませんでした。',
 'powersearch'                      => '検索',
 'powersearch-legend'               => '高度な検索',
@@ -1479,10 +1479,10 @@ PICT # misc.
 'nolinkstoimage'                 => 'このファイルを使用しているページはありません。',
 'morelinkstoimage'               => 'このファイルの[[Special:WhatLinksHere/$1|リンク元]]を表示する。',
 'redirectstofile'                => 'このファイルは以下の{{PLURAL:$1|ファイル|$1ファイル}}からリダイレクトされています:',
-'duplicatesoffile'               => '以下にこのファイルと同一のファイル $1 件を表示しています:',
+'duplicatesoffile'               => '以下の $1件のファイルは、このファイルと内容が同一です ([[Special:FileDuplicateSearch/$2|詳細]]):',
 'sharedupload'                   => 'このファイルは共有されており、他のプロジェクトで使用されている可能性があります。',
 'shareduploadwiki'               => '詳しい情報は$1を参照してください。',
-'shareduploadwiki-desc'          => '共有リポジトリ内の$1にあるこのファイルの説明は以下の通りです。',
+'shareduploadwiki-desc'          => 'この$1にある、ファイルの説明は以下の通りです。',
 'shareduploadwiki-linktext'      => 'ファイルの詳細ページ',
 'shareduploadduplicate'          => 'このファイルは共有リポジトリの$1と重複しています。',
 'shareduploadduplicate-linktext' => '別のファイル',
@@ -2204,7 +2204,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 ページデータを書き出すには下のテキストボックスに書き出したいページの名前を一行に一つずつ記入してください。また編集履歴とともに全ての古い版を含んで書き出すのか、最新版のみを書き出すのか選択してください。
 
-後者の場合ではリンクの形で使うこともできます。例えば、「[[{{MediaWiki:Mainpage}}]]」の最新版を取得するには [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] とします。',
+後者の場合ではリンクの形で使うこともできます。例えば、「[[{{MediaWiki:Mainpage}}]]」の最新版を取得するには [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] とします。',
 'exportcuronly'     => 'すべての履歴を含ませずに、最新版のみを書き出す',
 'exportnohistory'   => "----
 '''注:''' パフォーマンス上の理由により、このフォームによるページの完全な履歴の書き出しは行えません。",
@@ -2219,7 +2219,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'allmessagesname'           => 'メッセージ名',
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
-'allmessagestext'           => 'これは MediaWiki 名前空間で利用可能なシステムメッセージの一覧です。MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja Betawiki] を訪れてみてください。',
+'allmessagestext'           => 'これは MediaWiki 名前空間で利用可能なシステムメッセージの一覧です。MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja translatewiki.net] を訪れてみてください。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効なので、このページを使うことはできません。",
 'allmessagesfilter'         => 'メッセージ名で絞り込み:',
 'allmessagesmodified'       => '変更されたもののみを表示',

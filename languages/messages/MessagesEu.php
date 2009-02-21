@@ -396,7 +396,9 @@ Saia zaitez berriro minutu batzuen buruan, mesedez.',
 'protectedpagetext'    => 'Orrialde hau aldaketak saihesteko blokeatu egin da.',
 'viewsourcetext'       => 'Orrialde honen testua ikusi eta kopiatu dezakezu:',
 'protectedinterface'   => 'Orrialde honek softwarearentzako interfaze testua gordetzen du eta blokeatuta dago bandalismoak saihesteko.',
-'editinginterface'     => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara. Orrialde honetako aldaketek erabiltzaile guztiei eragingo die.",
+'editinginterface'     => "'''Oharra:''' Softwarearentzako interfaze testua duen orrialde bat aldatzen ari zara.
+Orrialde honetako aldaketek erabiltzaile guztiei eragingo die.
+Itzulpenetarako, [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] erabili ezazu, MediaWiki proiektuan.",
 'sqlhidden'            => '(ezkutuko SQL kontsulta)',
 'cascadeprotected'     => "Orrialde hau aldaketen aurka babestua dago, ''kaskada'' aukerarekin babestu {{PLURAL:$1|duten orrialde honetan|dituzten orrialde hauetan}} txertaturik dagoelako:
 $2",
@@ -660,7 +662,7 @@ Blokeatu zuen administratzaileak honako azalpena eman zuen: $1'''",
 'protectedpagewarning'             => "'''OHARRA:  Orri hau blokeaturik dago, administratzaileek soilik eraldatu dezakete.'''",
 'semiprotectedpagewarning'         => '<big><strong>Oharra: Orrialde hau erregistratutako erabiltzaileek bakarrik aldatzeko babestuta dago.</strong></big>',
 'cascadeprotectedwarning'          => "'''Oharra:''' Orrialde hau blokeatua izan da eta administratzaileek baino ez dute berau aldatzeko ahalmena, honako {{PLURAL:$1|orrialdeko|orrialdeetako}} kaskada-babesean txertatuta dagoelako:",
-'titleprotectedwarning'            => "'''OHARRA:  Orrialde hau blokeatuta dago eta bakarrik erabiltzaile batzuek sortu dezakete.'''",
+'titleprotectedwarning'            => "'''OHARRA:  Orrialde hau blokeatuta dago eta bakarrik [[Special:ListGroupRights|erabiltzaile batzuek]] sortu dezakete.'''",
 'templatesused'                    => 'Orrialde honetan erabiltzen diren txantiloiak:',
 'templatesusedpreview'             => 'Aurreikuspen honetan erabiltzen diren txantiloiak:',
 'templatesusedsection'             => 'Atal honetan erabiltzen diren txantiloiak:',
@@ -1344,10 +1346,10 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'nolinkstoimage'                 => 'Ez dago fitxategi honetara lotura egiten duen orrialderik.',
 'morelinkstoimage'               => 'Ikusi fitxategi honen [[Special:WhatLinksHere/$1|lotura gehiago]].',
 'redirectstofile'                => 'Honako {{PLURAL:$1|artxiboak fitxategi honetara birzuzentzen du:|$1 artxiboek fitxategi honetara birzuzentzen dute:}}',
-'duplicatesoffile'               => 'Hondoren fitxategi {{PLURAL:$1|hau beste honen berdina da|$1 hauek beste honen berdinak dira}}:',
+'duplicatesoffile'               => 'Ondorengo fitxategi {{PLURAL:$1|hau beste honen berdina da|$1 hauek beste honen berdinak dira}} ([[Special:FileDuplicateSearch/$2|zehaztasun gehiago]]):',
 'sharedupload'                   => 'Fitxategi hau elkarbanatutako igoera bat da eta beste proiektuek ere erabil dezakete.',
 'shareduploadwiki'               => 'Informazio gehiagorako $1 ikusi mesedez.',
-'shareduploadwiki-desc'          => 'Biltegi komun batean $1(e)n deskribapena erakusten da.',
+'shareduploadwiki-desc'          => 'Deskribapena $1-(e)an erakusten da azpian.',
 'shareduploadwiki-linktext'      => 'fitxategiaren deskribapen orrialdea',
 'shareduploadduplicate'          => 'Fitxategi hau biltegi komuneko $1 fitxategiaren duplikatua da.',
 'shareduploadduplicate-linktext' => 'beste fitxategi bat',
@@ -2075,7 +2077,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 
 Orrialdeak esportatzeko zehaztu hauen izenburuak beheko koadroan, izenburu bat lerroko, eta aukeratu zein bertsio esportatu nahi dituzun.
 
-Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] "[[{{MediaWiki:Mainpage}}]]" orrialdearentzako.',
+Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] "[[{{MediaWiki:Mainpage}}]]" orrialdearentzako.',
 'exportcuronly'     => 'Oraingo berrikuspena bakarrik hartu, ez historia guztia',
 'exportnohistory'   => "----
 '''Oharra:''' Formulario honen bitartez orrialdeen historia osoak esportatzeko aukera ezgaitu egin da, errendimendua dela-eta.",
@@ -2090,7 +2092,8 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'allmessagesname'           => 'Izena',
 'allmessagesdefault'        => 'Testu lehenetsia',
 'allmessagescurrent'        => 'Oraingo testua',
-'allmessagestext'           => 'MediaWikin erabiltzen diren mezu guztien zerrenda:',
+'allmessagestext'           => 'MediaWikin erabiltzen diren mezu guztien zerrenda.
+Mesedez bisitatu [http://www.mediawiki.org/wiki/Localisation MediaWiki] eta [[http://translatewiki.net translatewiki.net] orrialdeak MediaWikira ekarpenak egin badituzu.',
 'allmessagesnotsupportedDB' => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
 'allmessagesfilter'         => 'Mezu izenaren iragazkia:',
 'allmessagesmodified'       => 'Aldatutakoak bakarrik erakutsi',
@@ -2255,6 +2258,8 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'skinname-standard'    => 'Lehenetsia',
 'skinname-nostalgia'   => 'Nostalgia',
 'skinname-cologneblue' => 'Cologne Blue',
+'skinname-simple'      => 'Arrunta',
+'skinname-modern'      => 'Modernoa',
 
 # Math options
 'mw_math_png'    => 'Beti PNG irudiak sortu',

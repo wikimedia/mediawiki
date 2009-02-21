@@ -555,7 +555,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'allmessagesdefault'        => "Qoraalka la'isku ogyahay",
 'allmessagescurrent'        => 'Qoraalka hada qoran',
 'allmessagestext'           => 'Liiskan waxaa ku qoran dhamaan fariimaha lagahelikaro xarun magaceedka MediaWiki.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' la'ma isticmaalikaro, '''\$wgUseDatabaseMessages''' oo dansan daraadeed.",
 'allmessagesfilter'         => 'Kalasoocaha fariimaha:',
 'allmessagesmodified'       => 'Itus kuwa wax laga bedelay',

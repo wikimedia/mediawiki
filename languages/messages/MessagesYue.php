@@ -478,7 +478,7 @@ $1',
 'protectedpagetext'    => '呢一頁已經鎖咗唔畀改。',
 'viewsourcetext'       => '你可以睇吓或者複製呢一頁嘅原始碼：',
 'protectedinterface'   => '呢一頁提供軟件嘅介面文字，呢一頁已經鎖上以預防濫用。',
-'editinginterface'     => "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。要翻譯，請考慮利用[http://translatewiki.net/wiki/Main_Page?setlang=yue Betawiki]，一個用來為MediaWiki軟件本地化嘅計劃。",
+'editinginterface'     => "'''警告：'''你而家編輯緊嘅呢一個用嚟提供介面文字嘅頁面。響呢一頁嘅更改會影響到其他用戶使用中嘅介面外觀。要翻譯，請考慮利用[http://translatewiki.net/wiki/Main_Page?setlang=yue translatewiki.net]，一個用來為MediaWiki軟件本地化嘅計劃。",
 'sqlhidden'            => '(SQL 查詢隱藏)',
 'cascadeprotected'     => '呢一版已經保護咗唔能夠編輯，因為佢係響以下嘅{{PLURAL:$1|一|幾}}頁度包含咗，當中啟用咗"連串"保護選項來保護嗰一版: $2',
 'namespaceprotected'   => "你無權編輯響'''$1'''空間名裏面嘅呢一版。",
@@ -2162,7 +2162,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 
 要倒出頁面嘅話，就喺下面嘅文字框度打標題名，一行一個標題，然後揀你係要現時版本加上所有嘅舊版本同歷史，定係淨係要現時版本同最後編輯嘅相關資訊。
 
-喺後面嗰種情況下，你亦都可以用一個連結，例如[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]對頁面"[[{{MediaWiki:Mainpage}}]]"。',
+喺後面嗰種情況下，你亦都可以用一個連結，例如[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]對頁面"[[{{MediaWiki:Mainpage}}]]"。',
 'exportcuronly'     => '淨係包括而家嘅修訂版本，唔包括完整歷史',
 'exportnohistory'   => "----
 '''注意：'''因為性能嘅原因，已經停用禁止咗使用呢個表格倒出頁面嘅完整歷史",
@@ -2178,7 +2178,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'allmessagesdefault'        => '預設文字',
 'allmessagescurrent'        => '現時文字',
 'allmessagestext'           => '以下係 MediaWiki 空間名入邊現有系統信息嘅清單。
-如果想貢獻正宗嘅MediaWiki本地化嘅話，請參閱[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]同埋[http://translatewiki.net Betawiki]。',
+如果想貢獻正宗嘅MediaWiki本地化嘅話，請參閱[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]同埋[http://translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB' => "呢一版唔可以用，因為'''\$wgUseDatabaseMessages'''已經閂咗。",
 'allmessagesfilter'         => '信息名過濾（器）：',
 'allmessagesmodified'       => '只顯示修改過嘅',

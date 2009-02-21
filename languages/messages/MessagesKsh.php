@@ -904,7 +904,7 @@ Nävvebei, dä Datenbank-Köbes hät för et Sperre och ene Jrund aanjejovve: $1
 'protectedpagewarning'             => "'''Opjepass: Die Sigg hee es jäje Veränderunge jeschötz. Nor de Wiki-Köbesse künne se ändere.'''",
 'semiprotectedpagewarning'         => "'''Opjepass:''' Die Sigg hee es halv jesperrt, wie mer sage, dat heiß, Do muss aanjemeldt un enjelogg sin, wann De dran ändere wells.",
 'cascadeprotectedwarning'          => "'''Opjepaß:''' Die Sigg es jeschöz, un nur de Wiki-Köbesse künne se ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:",
-'titleprotectedwarning'            => "''' <span style=\"text-transform:uppercase\"> Opjepaß! </span> Di Sigg hee is jesperrt woode. Bloß bestemmpte Metmaacher dörve di Sigg neu aanläje.'''",
+'titleprotectedwarning'            => "<span style=\"text-transform:uppercase\"> Opjepaß! </span> Di Sigg hee is jesperrt woode. Bloß [[Special:ListGroupRights|bestemmpte]] Metmaacher dörve di Sigg neu aanläje.'''",
 'templatesused'                    => 'De Schablone, die vun dä Sigg hee jebruch wääde, sinn:',
 'templatesusedpreview'             => 'Schablone en dä Vör-Aansich hee:',
 'templatesusedsection'             => 'Schablone en däm Avschnedd hee:',
@@ -1625,7 +1625,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'listfiles-summary'     => "Hee sin de huhjeladene Dateie opjelis. Et eetz wäde de zoletz huhjeladene Dateie aanjezeich. Wa'mer op de Övverschreff von ene Spalt klick, weed die Spalt sotteet, wa'mer norrens klick, weed de Reiejfolg ömjedrieht.",
 'listfiles_search_for'  => 'Sök noh däm Name vun däm Beld:',
 'imgfile'               => 'Datei',
-'listfiles'             => 'Belder, Tön, uew. (all)',
+'listfiles'             => 'Dateie opleste',
 'listfiles_date'        => 'Datum',
 'listfiles_name'        => 'Name',
 'listfiles_user'        => 'Metmaacher',
@@ -1656,11 +1656,11 @@ Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 'nolinkstoimage'                 => 'Nix link op hee die Datei.',
 'morelinkstoimage'               => 'Belohr Der [[Special:WhatLinksHere/$1|de Links]] op di Datei.',
 'redirectstofile'                => 'Di {{PLURAL:$1|Datei heenoh leid|$1 Dateie leide}} op he di Datei öm:',
-'duplicatesoffile'               => 'De Datei{{PLURAL:$1||e|e}} hee noh {{PLURAL:$1|is en|sen}} dubbelte fon he dä Datei, un {{PLURAL:$1|hät|han|}} dersellve Enhalldt:',
+'duplicatesoffile'               => 'Mer hann_er {{PLURAL:$1|en dubbelte Datei|$1 dubbelte Dateie|kei dubbelte Dateije}} fon he dä Datei, di {{PLURAL:$1|hät|han all|han}} dersellve Enhalldt ([[Special:FileDuplicateSearch/$2|mieh Einzelheite]]):',
 'sharedupload'                   => 'De Datei es esu parat jelaht, dat se en diverse, ungerscheidlije Projekte jebruch wääde kann.',
 'shareduploadwiki'               => 'Mieh Informatione fings De op dä $1.',
 'shareduploadwiki-desc'          => 'Hee noh kütt dä Enhalt fun dä $1 uß dämm jemeinsame Beshtand.',
-'shareduploadwiki-linktext'      => 'Sigg övver de Datei',
+'shareduploadwiki-linktext'      => 'Sigg övver die Datei',
 'shareduploadduplicate'          => 'Di Datei es dubbelt met „$1“ ussem jemeinsame Beshtand.',
 'shareduploadduplicate-linktext' => 'hee dä Datei',
 'shareduploadconflict'           => 'Di Datei hät dersellve Namen wi „$1“ uss_em jemeinsame Beshtand.',
@@ -1702,7 +1702,7 @@ Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 'filedelete-edit-reasonlist'  => 'De Jrönde för et Fottschmieße beärbeide',
 
 # MIME search
-'mimesearch'         => 'Belder, Tön, uew. üvver ehr MIME-Typ söke',
+'mimesearch'         => 'Dateie üvver dänne ehre <span lang="en">MIME</span>-Typ söke',
 'mimesearch-summary' => 'Op hee dä Sondersigg könne de Dateie noh em MIME-Tüpp ußjesöök wäde.
 Mer moß immer der Medietüp un der Ongertüp aanjevve.
 Zem Beispell: <tt>image/jpeg</tt>
@@ -1780,7 +1780,7 @@ vun dä Sigg dovör.',
 'withoutinterwiki-legend'  => 'Aanfang fum Sigge-Tittel',
 'withoutinterwiki-submit'  => 'Zeije',
 
-'fewestrevisions' => 'Arikele met de winnischste Versione',
+'fewestrevisions' => 'Atikele met de winnischste Versione',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 Byte{{PLURAL:$1||s|}}',
@@ -1794,10 +1794,10 @@ vun dä Sigg dovör.',
 'lonelypagestext'         => 'De Sigge hee noh sin nörjenzwoh ennjebonge un et jonn och kein Linkß drop.',
 'uncategorizedpages'      => 'Atikele, die en kein Saachjrupp sin',
 'uncategorizedcategories' => 'Saachjruppe, die selvs en kein Saachjruppe sin',
-'uncategorizedimages'     => 'Belder, Tön, uew., die en kein Saachjruppe dren sin',
+'uncategorizedimages'     => 'Dateie, die en kein Saachjruppe dren sin',
 'uncategorizedtemplates'  => 'Schablone, die en kein Saachjruppe sen',
 'unusedcategories'        => 'Saachjruppe met nix dren',
-'unusedimages'            => 'Belder, Tön, uew., die nit en Sigge dren stäche',
+'unusedimages'            => 'Dateie, die nit en Sigge dren stäche',
 'popularpages'            => 'Sigge, die off avjerofe wääde',
 'wantedcategories'        => 'Saachjruppe, die mer noch nit han, die noch jebruch wääde',
 'wantedpages'             => 'Sigge, die mer noch nit han, die noch jebruch wääde',
@@ -1807,7 +1807,7 @@ vun dä Sigg dovör.',
 'mostlinkedcategories'    => 'Saachjruppe met de miehste Links drop',
 'mostlinkedtemplates'     => 'Schablone met de miehßte Lenks drop',
 'mostcategories'          => 'Atikkele met de miehste Saachjruppe',
-'mostimages'              => 'Belder, Tön, uew. met de miehste Links drop',
+'mostimages'              => 'Dateie met de miehste Links drop',
 'mostrevisions'           => 'Atikkele met de miehste Änderunge',
 'prefixindex'             => 'All Sigge, dänne ehr Name met enem bestemmte Wood oder Tex aanfängk',
 'shortpages'              => 'Atikele zoteet vun koot noh lang',
@@ -2449,7 +2449,7 @@ Dat ka'mer en en ander Wiki — wann et och met dä MediaWiki-Soffwär läuf —
 Schriev de Titele vun dä Sigge en dat Feld för Tex enzejevve, unge, eine Titel en jede Reih.
 Dann dun onoch ussöke, ov De all de vörherije Versione vun dä Sigge han wells, oder nor de aktuelle met dä Informatione vun de letzte Änderung.
 
-En däm Fall künns De, för en einzelne Sigg, och ene tirekte Link bruche, zom Beispill „[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]“ för de Sigg „[[{{MediaWiki:Mainpage}}]]“ ze exporteere.",
+En däm Fall künns De, för en einzelne Sigg, och ene tirekte Link bruche, zom Beispill „[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]“ för de Sigg „[[{{MediaWiki:Mainpage}}]]“ ze exporteere.",
 'exportcuronly'     => 'Bloß de aktuelle Version usjevve (un <strong>nit</strong> de janze ahle Versione onoch met dobei dun)',
 'exportnohistory'   => '----
 <strong>Opjepass:</strong> de janze Versione Exporteere es hee em Wiki avjeschalt. Schad, ävver et wör en 
@@ -2466,7 +2466,7 @@ zo jroße Lass för dä Sörver.',
 'allmessagesdefault'        => 'Dä standaadmäßije Tex',
 'allmessagescurrent'        => 'Esu es dä Tex jetz',
 'allmessagestext'           => 'Hee kütt en Liss met Texte, Texstöck, un Nachrichte em Appachtemeng „MediaWiki“ — Do draan Ändere löht et Wiki anders ußsin, dat darf dröm nit jede maache.
-Wenn De jenerell aan [http://www.mediawiki.org/wiki/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [http://translatewiki.net Betawiki].',
+Wenn De jenerell aan [http://www.mediawiki.org/wiki/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [http://translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB' => '<strong>Dat wor nix!</strong> Mer künne „{{ns:special}}:Allmessages“ nit zeije, <code>$wgUseDatabaseMessages</code> es usjeschalt!',
 'allmessagesfilter'         => 'Fingk dat Stöck hee em Name:',
 'allmessagesmodified'       => 'Dun nor de Veränderte aanzeije',
@@ -2714,7 +2714,7 @@ $1',
 'show-big-image-thumb' => '<small>Di Vör-Aansich es $1 × $2 Pixelle jroß</small>',
 
 # Special:NewFiles
-'newimages'             => 'Belder, Tön, uew. als Jalerie',
+'newimages'             => 'Neu Dateie als Jaleri',
 'imagelisttext'         => 'Hee küt en Liss vun <strong>$1</strong> Datei{{PLURAL:$1||e}}, zoteet $2.',
 'newimages-summary'     => 'Hee die Sigg zeig die zoletz huhjeladene Belder un Dateie aan.',
 'newimages-legend'      => 'Ußwähle',
@@ -3119,6 +3119,7 @@ Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
 'autocomment-prefix'  => '-',
+'word-separator'      => '&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← de Sigg dovör',
@@ -3141,7 +3142,7 @@ Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
 'autosumm-blank'   => 'Dä janze Enhald vun dä Sigg fottjemaht',
 'autosumm-replace' => "Dä jannze Enhallt fon dä Sigk ußjetuusch: '$1'",
 'autoredircomment' => 'Leit öm op „[[$1]]“',
-'autosumm-new'     => 'De Sigg wood neu aanlelaat met dä Aanfang: $1',
+'autosumm-new'     => 'De Sigg wood neu aanlelaat met däm Aanfang: $1',
 
 # Size units
 'size-bytes'     => '$1 Bytes',

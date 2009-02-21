@@ -245,7 +245,7 @@ $messages = array(
 'nstab-main'      => 'Àyọkà',
 'nstab-user'      => 'Ojúewé oníṣe',
 'nstab-media'     => 'Ojúewé amóhùnmáwòrán',
-'nstab-special'   => 'Pàtàkì',
+'nstab-special'   => 'Ojúewé pàtàkì',
 'nstab-project'   => 'Ojúewé iṣẹ́ọwọ́',
 'nstab-image'     => 'Faili',
 'nstab-mediawiki' => 'Ìfọ̀rọ̀ránsẹ',
@@ -317,7 +317,7 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'yourlanguage'              => 'Èdè:',
 'yournick'                  => 'Ìtọwọ́bọ̀:',
 'badsiglength'              => 'Ìtọwọ́bọ̀ yín ti gùnjù.
-Kò gbodọ̀ ju {{PLURAL:$1|àmìlẹ́tà|àwọn àmìlẹ́tà}} $1 lọ.',
+Kò gbodọ̀ ju $1 {{PLURAL:$1|àmìlẹ́tà|àwọn àmìlẹ́tà}} lọ.',
 'email'                     => 'E-mail',
 'prefs-help-realname'       => 'Orúkọ gangan kò pọndandan.
 Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',

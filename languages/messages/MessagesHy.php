@@ -1731,7 +1731,7 @@ $1',
 
 Էջեր արտածելու համար մուտքագրեք դրանց անվանումները խմբագրման դաշտում՝ մեկ անվանում ամեն տողում, և ընտրեք՝ ցանկանում եք արտածել ամբողջ պատմությունները, թե միայն ընթացիկ տարբերակները, վերջին խմբագրումների մասին տեղեկությունների հետ միասին։
 
-Վերջին տարբերակը արտածելու համար դուք կարող եք նաև օգտագործել հատուկ հղումներ, օր.՝ [[{{MediaWiki:Mainpage}}]] էջի համար հղման հասցեն է [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]։',
+Վերջին տարբերակը արտածելու համար դուք կարող եք նաև օգտագործել հատուկ հղումներ, օր.՝ [[{{MediaWiki:Mainpage}}]] էջի համար հղման հասցեն է [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]։',
 'exportcuronly'     => 'Ընդգրկել միայն ընթացիկ տարբերակը, առանց լրիվ պատմության',
 'exportnohistory'   => "----
 '''Ծանուցում.''' էջերի փոփոխումների լրիվ պատմության արտածումը այս ձևի միջոցով անջատված է արտադրողականության նկատառումներով։",
@@ -1746,7 +1746,7 @@ $1',
 'allmessagesdefault'        => 'Լռությամբ տեքստ',
 'allmessagescurrent'        => 'Ընթացիկ տեքստ',
 'allmessagestext'           => 'Ստորև բերված է «MediaWiki» անվանատարածքի բոլոր համակարգային ուղերձների ցանկը։
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Այս էջը չի գործում, քանի որ '''\$wgUseDatabaseMessages''' հատկանիշը անջատված է։",
 'allmessagesfilter'         => 'Ուղղերձների անվան ֆիլտր.',
 'allmessagesmodified'       => 'Ցույց տալ միայն փոփոխվածները',

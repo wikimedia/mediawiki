@@ -626,7 +626,7 @@ Upit: $2',
 'protectedpagetext'    => 'Ova stranica je zaključana da bi se onemogućile izmjene.',
 'viewsourcetext'       => 'Možete pogledati i kopirati izvorni sadržaj ove stranice:',
 'protectedinterface'   => 'Ova stranica je zaštićena od izmjena jer sadrži tekst MediaWiki softvera.',
-'editinginterface'     => "'''Upozorenje:''' Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici će se odraziti na izgled korisničkog sučelja kod drugih suradnika. Za prijevod, razmotrite korištenje [http://translatewiki.net/wiki/Main_Page?setlang=hr Betawiki], projekta lokalizacije MedijeWiki.",
+'editinginterface'     => "'''Upozorenje:''' Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici će se odraziti na izgled korisničkog sučelja kod drugih suradnika. Za prijevod, razmotrite korištenje [http://translatewiki.net/wiki/Main_Page?setlang=hr translatewiki.net], projekta lokalizacije MedijeWiki.",
 'sqlhidden'            => '(SQL upit sakriven)',
 'cascadeprotected'     => 'Ova je stranica zaključana za uređivanja jer je uključena u {{PLURAL:$1|slijedeću stranicu|slijedeće stranice}}, koje su zaštićene "prenosivom zaštitom":
 $2',
@@ -896,7 +896,7 @@ Administrator je zaključao bazu iz razloga: $1",
 'protectedpagewarning'             => "'''UPOZORENJE: ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima.'''",
 'semiprotectedpagewarning'         => "'''Napomena:''' Ovu stranicu mogu uređivati samo prijavljeni suradnici.",
 'cascadeprotectedwarning'          => "'''UPOZORENJE:''' Ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima, jer je uključena u {{PLURAL:\$1|slijedeću stranicu|slijedeće stranice}} koje su zaštićene \"prenosivom\" zaštitom:",
-'titleprotectedwarning'            => "'''UPOZORENJE:  Ova stranica je zaključana i samo je neki suradnici mogu stvoriti.'''",
+'titleprotectedwarning'            => "'''UPOZORENJE:  Ova stranica je zaključana i samo je suradnici sa [[Special:ListGroupRights|slijedećim pravima]] mogu stvoriti.'''",
 'templatesused'                    => 'Predlošci korišteni na ovoj stranici:',
 'templatesusedpreview'             => 'Predlošci koji se koriste u ovom predpregledu:',
 'templatesusedsection'             => 'Predlošci koji se koriste u odjeljku:',
@@ -1076,7 +1076,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'difference'              => '(Usporedba među inačicama)',
 'lineno'                  => 'Redak $1:',
 'compareselectedversions' => 'Usporedi odabrane inačice',
-'visualcomparison'        => 'Vidna usporedba',
+'visualcomparison'        => 'Prikazivanje razlike',
 'wikicodecomparison'      => 'Wikitekst usporedba',
 'editundo'                => 'ukloni ovu izmjenu',
 'diff-multi'              => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}})',
@@ -1459,7 +1459,7 @@ Za pregledavanje i pretraživanje već postavljenih slika vidi [[Special:FileLis
 
 Da biste na stranicu stavili sliku, koristite poveznice tipa
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' za punu verziju datoteke
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.png|200px|thumb|left|tekst]]</nowiki></tt>''' za datoteku širine 200 px u okviru s popratnim tekstom
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.png|200px|mini|left|tekst]]</nowiki></tt>''' za datoteku širine 200 px u okviru s popratnim tekstom
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></tt>''' za direktno povezivanje na datoteku bez njenog pokazivanja",
 'upload-permitted'            => 'Dopušteni tipovi datoteka: $1.',
 'upload-preferred'            => 'Poželjni tipovi datoteka: $1.',
@@ -1584,7 +1584,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 'nolinkstoimage'                 => 'Nijedna stranica ne povezuje na ovu sliku.',
 'morelinkstoimage'               => 'Pogledaj [[Special:WhatLinksHere/$1|više poveznica]] za ovu datoteku.',
 'redirectstofile'                => '{{PLURAL:$1|Sljedeća datoteka preusmjerava|$1 Sljedeće datoteke preusmjeravaju}} na ovu datoteku:',
-'duplicatesoffile'               => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 Sljedeće datoteke su kopije}} ove datoteke:',
+'duplicatesoffile'               => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 sljedeće datoteke su kopije|$1 sljedećih datoteka su kopije}} ove datoteke ([[Special:FileDuplicateSearch/$2|više detalja]]):',
 'sharedupload'                   => 'Ova je datoteka postavljena na zajedničkom poslužitelju i mogu je koristiti ostali wikiji',
 'shareduploadwiki'               => 'Za podrobnije informacije vidi $1.',
 'shareduploadwiki-desc'          => 'Opis datoteke $1 na zajedničkom poslužitelju je prikazan ispod',
@@ -2336,7 +2336,7 @@ Odredišni članak "[[:$1]]" već postoji. Želite li ga obrisati da biste napra
 
 Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutačnu inačicu zajedno sa svim prijašnjima, ili samo trenutačnu inačicu s informacijom o zadnjoj promjeni.
 
-U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za članak [[{{MediaWiki:Mainpage}}]].',
+U potonjem slučaju možete koristiti i poveznicu, npr. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za članak [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Uključi samo trenutačnu inačicu, ne i sve prijašnje',
 'exportnohistory'   => "----
 '''Napomena:''' izvoz cjelokupne stranice sa svim prethodnim izmjenama onemogućen je zbog opterećenja poslužitelja.",
@@ -2351,7 +2351,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{ns:special}}:Export/
 'allmessagesname'           => 'Ime',
 'allmessagesdefault'        => 'Prvotni tekst',
 'allmessagescurrent'        => 'Trenutačni tekst',
-'allmessagestext'           => 'Ovo je popis svih sistemskih poruka u prostoru MediaWiki: .',
+'allmessagestext'           => 'Ovo je popis svih sistemskih poruka u imenskom prostoru MediaWiki. Molimo posjetite [http://www.mediawiki.org/wiki/Localisation lokalizaciju MediaWikija] i [http://translatewiki.net translatewiki.net] ukoliko želite doprinjeti lokalizaciji MediaWiki softvera.',
 'allmessagesnotsupportedDB' => "Ova stranica ne može biti korištena jer je isključen parametar '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Filter imena poruka:',
 'allmessagesmodified'       => 'Prikaži samo promijenjene',
@@ -2563,7 +2563,7 @@ $1',
 'nextdiff'     => 'Novija izmjena →',
 
 # Visual comparison
-'visual-comparison' => 'Vidna usporedba',
+'visual-comparison' => 'Prikazivanje razlike (usporedi)',
 
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ova datoteka možda sadrži zlonamjerni program čije bi izvršavanje moglo ugroziti vaš računalni sustav.
