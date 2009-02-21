@@ -207,6 +207,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   changed to rc_timestamp_bot
 * (bug 17437) Fixed incorrect link to web-based installer
 * (bug 17538) Use shorter URLs in <link> elements
+* (bug 13778) Hidden input added to the search form so that using the Enter key
+  on IE will do a fulltext search like clicking the button does
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
