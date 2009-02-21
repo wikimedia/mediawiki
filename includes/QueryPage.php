@@ -204,7 +204,7 @@ class QueryPage {
 	 * Clear the cache and save new results
 	 */
 	function recache( $limit, $ignoreErrors = true ) {
-		$fname = get_class($this) . '::recache';
+		$fname = get_class( $this ) . '::recache';
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage::recache', 'vslow' ) );
 		if ( !$dbw || !$dbr ) {
@@ -222,9 +222,9 @@ class QueryPage {
 		$dbw->delete( 'querycache', array( 'qc_type' => $this->getName() ), $fname );
 		# Do query
 		$sql = $this->getSQL() . $this->getOrder();
-		if ($limit !== false)
-			$sql = $dbr->limitResult($sql, $limit, 0);
-		$res = $dbr->query($sql, $fname);
+		if ( $limit !== false )
+			$sql = $dbr->limitResult( $sql, $limit, 0 );
+		$res = $dbr->query( $sql, $fname );
 		$num = false;
 		if ( $res ) {
 			$num = $dbr->numRows( $res );
@@ -238,7 +238,7 @@ class QueryPage {
 					$insertSql .= ',';
 				}
 				if ( isset( $row->value ) ) {
-					$value = $row->value;
+					$value = intval( $row->value ); // @bug 14414
 				} else {
 					$value = 0;
 				}
