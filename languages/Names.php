@@ -6,9 +6,9 @@
   * @ingroup Language
   */
 /* private */ $wgLanguageNames = array(
-	'aa' => 'Afar',			# Afar
+	'aa' => 'Qafár af',	# Afar
 	'ab' => 'Аҧсуа',	# Abkhaz, should possibly add ' бысжѡа'
-	'ace' => 'Achèh',	# Aceh
+	'ace' => 'Acèh',	# Aceh
 	'af' => 'Afrikaans',	# Afrikaans
 	'ak' => 'Akan',		# Akan
 	'aln' => 'Gegë',	# Gheg Albanian
@@ -103,7 +103,7 @@
 	'glk' => 'گیلکی',	# Gilaki
 	'gn' => 'Avañe\'ẽ',	# Guaraní, Paraguayan
 	'got' => '𐌲𐌿𐍄𐌹𐍃𐌺',	# Gothic
-	'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greece
+	'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
 	'gsw' => 'Alemannisch',	# Alemannic
 	'gu' => 'ગુજરાતી',	# Gujarati
 	'gv' => 'Gaelg',		# Manx
