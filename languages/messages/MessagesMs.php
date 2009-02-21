@@ -614,6 +614,7 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 'resetpass-wrong-oldpass'   => 'Kata laluan sementara atau semasa tidak sah.
 Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan sementara yang baru.',
 'resetpass-temp-password'   => 'Kata laluan sementara:',
+'resetpass-no-others'       => 'Anda tidak boleh mengeset semula kata laluan orang lain.',
 
 # Edit page toolbar
 'bold_sample'     => 'Teks tebal',
@@ -764,7 +765,7 @@ Yang berikut ialah penjelasan yang diberikan: $1",
 'protectedpagewarning'             => "'''AMARAN: Laman ini telah dikunci supaya hanya penyelia boleh menyuntingnya.'''",
 'semiprotectedpagewarning'         => "'''Catatan:''' Laman ini telah dikunci supaya hanya pengguna berdaftar sahaja yang boleh menyuntingnya.",
 'cascadeprotectedwarning'          => "'''Amaran:''' Laman ini telah dikunci, oleh itu hanya penyelia boleh menyuntingnya. Ini kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut yang dilindungi secara melata:",
-'titleprotectedwarning'            => "'''AMARAN: Laman ini telah dikunci supaya sesetengah pengguna sahaja boleh menciptanya.'''",
+'titleprotectedwarning'            => "'''AMARAN: Laman ini telah dikunci supaya hanya pengguna dengan [[Special:ListGroupRights|hak-hak tertentu]] sahaja boleh menciptanya.'''",
 'templatesused'                    => 'Templat yang digunakan dalam laman ini:',
 'templatesusedpreview'             => 'Templat yang digunakan dalam pratonton ini:',
 'templatesusedsection'             => 'Templat yang digunakan dalam bahagian ini:',
@@ -1250,6 +1251,7 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'right-userrights'           => 'Menyerahkan dan menarik balik sebarang hak pengguna',
 'right-userrights-interwiki' => 'Menyerahkan dan menarik balik hak pengguna di wiki lain',
 'right-siteadmin'            => 'Mengunci dan membuka kunci pangkalan data',
+'right-reset-passwords'      => 'Mengeset semula kata laluan pengguna lain',
 
 # User rights log
 'rightslog'      => 'Log hak pengguna',
@@ -1466,14 +1468,16 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'nolinkstoimage'            => 'Tiada laman yang mengandungi pautan ke fail ini.',
 'morelinkstoimage'          => 'Lihat [[Special:WhatLinksHere/$1|semua pautan]] ke fail ini.',
 'redirectstofile'           => '{{PLURAL:$1|Fail|$1 buah fail}} berikut melencong ke fail ini:',
-'duplicatesoffile'          => '{{PLURAL:$1|Fail|$1 buah fail}} berikut adalah salinan bagi fail ini:',
-'sharedupload'              => 'Fail ini adalah fail muat naik kongsi dan boleh digunakan oleh projek lain.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'duplicatesoffile'          => '{{PLURAL:$1|Fail|$1 buah fail}} berikut adalah salinan bagi fail ini ([[Special:FileDuplicateSearch/$2|butiran lanjut]]):',
+'sharedupload'              => 'Fail ini adalah dari $1 dan boleh digunakan oleh projek lain. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Sila lihat $1 untuk maklumat lanjut.',
-'shareduploadwiki-desc'     => 'Yang berikut ialah keterangan yang diambil daripada $1nya di gedung kongsi.',
+'shareduploadwiki-desc'     => 'Yang berikut ialah keterangan yang diambil daripada $1nya.',
 'shareduploadwiki-linktext' => 'laman keterangan fail',
 'noimage'                   => 'Fail ini tidak wujud. Anda boleh $1.',
 'noimage-linktext'          => 'memuat naik fail baru',
 'uploadnewversion-linktext' => 'Muat naik versi baru bagi fail ini',
+'shared-repo-from'          => 'dari $1', # $1 is the repository name
+'shared-repo'               => 'sebuah gedung kongsi', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Balikkan $1',
@@ -2195,6 +2199,9 @@ Sila pilih nama lain.',
 'move-redirect-suppressed'     => 'halang pelencongan',
 'movelogpage'                  => 'Log pemindahan',
 'movelogpagetext'              => 'Yang berikut ialah senarai pemindahan laman.',
+'movesubpage'                  => 'Sublaman',
+'movesubpagetext'              => 'Laman ini mempunyai $1 sublaman berikut.',
+'movenosubpage'                => 'Laman ini tidak mempunyai sublaman.',
 'movereason'                   => 'Sebab:',
 'revertmove'                   => 'balik',
 'delete_and_move'              => 'Hapus dan pindah',
@@ -2239,7 +2246,7 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{#Spe
 'allmessagesdefault'        => 'Teks lalai',
 'allmessagescurrent'        => 'Teks semasa',
 'allmessagestext'           => 'Ini ialah senarai pesanan sistem yang terdapat dalam ruang nama MediaWiki.
-Sila lawat [http://www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [http://translatewiki.net Betawiki] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.',
+Sila lawat [http://www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [http://translatewiki.net translatewiki.net] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' tidak boleh digunakan kerana '''\$wgUseDatabaseMessages''' dipadamkan.",
 'allmessagesfilter'         => 'Tapis nama mesej:',
 'allmessagesmodified'       => 'Hanya tunjukkan yang telah diubah',

@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Yuyu
  */
 
 $fallback = 'zh-hant';
@@ -11,6 +12,47 @@ $fallback = 'zh-hant';
 $messages = array(
 # User preference toggles
 'tog-watchlisthidebots' => '監視列表中隱藏機械人的編輯',
+
+# Dates
+'sunday'        => '星期日',
+'monday'        => '星期一',
+'tuesday'       => '星期二',
+'wednesday'     => '星期三',
+'thursday'      => '星期四',
+'friday'        => '星期五',
+'saturday'      => '星期六',
+'sun'           => '日',
+'mon'           => '一',
+'tue'           => '二',
+'wed'           => '三',
+'thu'           => '四',
+'fri'           => '五',
+'sat'           => '六',
+'january'       => '1月',
+'february'      => '2月',
+'march'         => '3月',
+'april'         => '4月',
+'may_long'      => '5月',
+'june'          => '6月',
+'july'          => '7月',
+'august'        => '8月',
+'september'     => '9月',
+'october'       => '10月',
+'november'      => '11月',
+'december'      => '12月',
+'january-gen'   => '一月',
+'february-gen'  => '二月',
+'march-gen'     => '三月',
+'april-gen'     => '四月',
+'may-gen'       => '五月',
+'june-gen'      => '六月',
+'july-gen'      => '七月',
+'august-gen'    => '八月',
+'september-gen' => '九月',
+'october-gen'   => '十月',
+'november-gen'  => '十一月',
+'december-gen'  => '十二月',
+'jan'           => '1月',
 
 'printableversion' => '可打印版',
 'print'            => '打印',

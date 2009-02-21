@@ -1046,7 +1046,7 @@ Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
 'imagelinks'                => 'Fayl bağlantıları',
 'linkstoimage'              => 'Bu faylğa bağlantı olğan $1 saife:',
 'nolinkstoimage'            => 'Bu faylğa bağlanğan saife yoq.',
-'sharedupload'              => 'Bu fayl ortaq fezağa yüklengen ve diger proyektlerde de qullanılğan bir fayl ola bilir.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Bu fayl $1 saytına yüklengen ve diger proyektlerde de qullanılıp оla. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Tafsilâtnı $1 saifesinde tapmaq mümkün.',
 'shareduploadwiki-linktext' => 'fayl malümat saifesi',
 'noimage'                   => 'Bu isimde fayl yoq, amma siz $1.',
@@ -1495,7 +1495,7 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'allmessagesdefault'  => 'Original metin',
 'allmessagescurrent'  => 'Şimdi qullanılğan metin',
 'allmessagestext'     => 'İşbu cedvel MediaWikide mevcut olğan bütün sistema beyanatlarınıñ cedvelidir.
-MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege isteseñiz [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ve [http://translatewiki.net Betawiki] saifelerine ziyaret etiñiz.',
+MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege isteseñiz [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ve [http://translatewiki.net translatewiki.net] saifelerine ziyaret etiñiz.',
 'allmessagesfilter'   => 'Metin ayrıştırıcı filtrı:',
 'allmessagesmodified' => 'Tek deñiştirilgenlerni köster',
 
@@ -1827,7 +1827,7 @@ Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
 'autosumm-blank'   => 'Saife boşatıldı',
 'autosumm-replace' => "Saifedeki malümat '$1' ile deñiştirildi",
 'autoredircomment' => '[[$1]] saifesine yollandı',
-'autosumm-new'     => "'$1' büyükliginde yañı saife yaratıldı",
+'autosumm-new'     => "Yañı saife yaratıldı. Mündericesi: '$1'",
 
 # Live preview
 'livepreview-loading' => 'Yüklenmekte…',

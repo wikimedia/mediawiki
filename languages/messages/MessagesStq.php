@@ -2106,7 +2106,7 @@ Moatest du him foar ju Ferschuuwenge läskje?',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Dissen Text',
 'allmessagestext'           => 'Dit is ne Lieste fon aal System-Ättergjuchte do in dän MediaWiki-Noomenruum tou Ferföigenge stounde.
-Besäik jädden [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [http://translatewiki.net Betawiki], wan du mee-oarbaidje wolt an ju MediaWiki-Sortierenge.',
+Besäik jädden [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [http://translatewiki.net translatewiki.net], wan du mee-oarbaidje wolt an ju MediaWiki-Sortierenge.',
 'allmessagesnotsupportedDB' => 'Disse Spezioalsiede stoant nit tou Ferföigenge, deer ju uur dän Parameter <tt>$wgUseDatabaseMessages</tt> deaktivierd wuude.',
 'allmessagesfilter'         => 'Ättergjuchtennoomensfilter:',
 'allmessagesmodified'       => 'Bloot annerde wiese',

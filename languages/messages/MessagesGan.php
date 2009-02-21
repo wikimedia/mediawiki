@@ -1490,7 +1490,7 @@ $NEWPAGE
 'allmessagesdefault'        => '默認文字',
 'allmessagescurrent'        => '眼前嗰文字',
 'allmessagestext'           => '箇首列到全部制定得正嗰系統界面。
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:系統界面功能'''關卟嘞('''\$wgUseDatabaseMessages''')。",
 'allmessagesfilter'         => '按消息名篩:',
 'allmessagesmodified'       => '單顯到改正嗰',

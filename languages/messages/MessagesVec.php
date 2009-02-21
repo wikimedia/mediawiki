@@ -601,6 +601,7 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'resetpass-wrong-oldpass'   => 'Password corente o tenporanea mia valida.
 Forse te ghè zà canbià la to password o te ghè domandà na password tenporanea nova.',
 'resetpass-temp-password'   => 'Password tenporanea:',
+'resetpass-no-others'       => 'No te poli reinpostar la password de altri utenti.',
 
 # Edit page toolbar
 'bold_sample'     => 'Grasseto',
@@ -748,7 +749,7 @@ L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $
 'protectedpagewarning'             => "'''OCIO: Sta pagina la xe sta proteta e solo i aministradori i pode modificarla.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Sta pàxena la xè stà blocà in modo che solo i utenti registrài i poda modefegarla.",
 'cascadeprotectedwarning'          => "'''Ocio:''' Sta pagina la xe stà blocà in modo che solo i utenti con privilegi de aministrador i possa modificarla. Questo sucede parché la pagina la xe inclusa {{PLURAL:\$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indicà de seguito, che le xe stà protete}} selezionando la protezion \"ricorsiva\":",
-'titleprotectedwarning'            => "'''OCIO:  Sta pagina la xe stà blocà in modo che solo çerte categorie de utenti le possa crearla.'''",
+'titleprotectedwarning'            => "'''OCIO:  Sta pàxena la xe stà blocà in modo che solo i utenti con [[Special:ListGroupRights|çerti privilègi]] i le possa crear.'''",
 'templatesused'                    => 'Template doparà in sta pagina:',
 'templatesusedpreview'             => 'Template doparà in sta anteprima:',
 'templatesusedsection'             => 'Template doparà in sta sezion:',
@@ -1227,6 +1228,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'right-userrights'           => "Modifica tuti quanti i diriti de l'utente",
 'right-userrights-interwiki' => 'Modifica i diriti de utenti de altri siti wiki',
 'right-siteadmin'            => 'Bloca e desbloca el database',
+'right-reset-passwords'      => 'Reinposta la password de altri utenti',
 
 # User rights log
 'rightslog'      => 'Diriti dei utenti',
@@ -1453,14 +1455,16 @@ Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 'nolinkstoimage'            => 'Nissuna pàxena la punta a sta imagine.',
 'morelinkstoimage'          => 'Varda i [[Special:WhatLinksHere/$1|altri colegamenti]] verso sto file.',
 'redirectstofile'           => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} redirige verso sto file:',
-'duplicatesoffile'          => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} xe dei dopioni de sto file:',
-'sharedupload'              => 'Sto file qua el xe un caricamento condiviso; quindi el pol èssar doparà da più progeti wiki.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'duplicatesoffile'          => '{{PLURAL:$1|El file seguente el xe un dopion|I $1 file seguenti i xe dei dopioni}} de sto file ([[Special:FileDuplicateSearch/$2|ulteriori detagli]]):',
+'sharedupload'              => 'Sto file qua el vien da $1 e se pol dopararlo anca su altri projeti. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Varda $1 par ulteriori informazion.',
-'shareduploadwiki-desc'     => 'La descrizion che se cata su la so $1 nel deposito condiviso la vien mostrà de seguito.',
+'shareduploadwiki-desc'     => 'La descrizion che se cata su la so $1 la vien mostrà qua soto.',
 'shareduploadwiki-linktext' => 'pagina de descrizion del file',
 'noimage'                   => "Un file con sto nome no l'esiste mìa, ma te pol $1.",
 'noimage-linktext'          => 'cargarne uno desso',
 'uploadnewversion-linktext' => 'Carica na version nova de sto file',
+'shared-repo-from'          => 'da $1', # $1 is the repository name
+'shared-repo'               => 'un archivio condiviso', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Ripristina $1',
@@ -2159,6 +2163,9 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'move-redirect-suppressed'     => 'reindirissamento sopresso',
 'movelogpage'                  => 'Registro dei spostamenti',
 'movelogpagetext'              => 'Lista de pàxene spostàe.',
+'movesubpage'                  => '{{PLURAL:$1|Sotopàxena|Sotopàxene}}',
+'movesubpagetext'              => 'Sta pàxena la ga $1 {{PLURAL:$1|sotopàxena|sotopàxene}} mostrà qua soto.',
+'movenosubpage'                => 'Sta pàxena no la ga sotopàxene.',
 'movereason'                   => 'Reason',
 'revertmove'                   => 'ripristina',
 'delete_and_move'              => 'Scanceła e sposta',
@@ -2181,7 +2188,12 @@ La voçe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarl
 
 # Export
 'export'            => 'Esporta pàxene',
-'exporttext'        => 'Te podi esportar el testo e modificar ła cronołogia de na speçifica pàxena o de un gruppo de pàxene ragrupae in XML; questo el pode in seguito essere importà in un altro wiki che dòpara el software MediaWiki, trasformà, o tegnù semplicemente par el to personałe divertimento.',
+'exporttext'        => 'Te podi esportar el testo e modificar ła cronołogia de na speçifica pàxena o de un gruppo de pàxene ragrupae in XML.
+Questo el pode in seguito vegner inportà in te n\'altro wiki che dòpara el software MediaWiki tramite la [[Special:Import|pàxena de inportassion]].
+
+Par esportar le pàxene, scrivi i tìtoli in te la casèla qua soto, un tìtolo par riga, e selessiona se te voli la version ùltima con tute le version preçedenti e el storico de le modìfeghe, opure la version ùltima con solo le informassion de l\'ùltima modìfega.
+
+Nel secondo caso te poli anca doparar un colegamento, par esenpio [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] par la pàxena "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => "Includi soło ła version attuałe, no l'intera cronołogia",
 'exportnohistory'   => "----
 '''Ocio!''' Par motivi ligà a le prestazion del sistema xè stà disabiłità l'esportazion de tuta ła storia de łe pàxene fata co sto modulo.",
@@ -2198,7 +2210,7 @@ La voçe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarl
 'allmessagesdefault'        => 'Testo predefinìo',
 'allmessagescurrent'        => 'Testo come che el xe desso',
 'allmessagestext'           => "Sta quà l'è na lista de tuti i messagi disponibili nel namespace MediaWiki.
-Par piaser visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net Betawiki] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
+Par piaser visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' no'l xè supportà parché '''\$wgUseDatabaseMessages''' no'l xè ativo.",
 'allmessagesfilter'         => 'Filtro sui messagi:',
 'allmessagesmodified'       => 'Mostra soło quełi modefegà',

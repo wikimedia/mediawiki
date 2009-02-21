@@ -709,6 +709,7 @@ $messages = array(
 'resetpass-wrong-oldpass'   => '비밀번호가 잘못되었거나 현재의 비밀번호와 같습니다.
 당신은 이미 비밀번호를 성공적으로 변경하였거나 새 임시 비밀번호를 발급받았을 수 있습니다.',
 'resetpass-temp-password'   => '임시 비밀번호:',
+'resetpass-no-others'       => '당신은 다른 사용자의 비밀번호를 변경할 수 없습니다.',
 
 # Edit page toolbar
 'bold_sample'     => '굵은 글씨',
@@ -1328,6 +1329,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'right-userrights'           => '모든 사용자의 권한 조정',
 'right-userrights-interwiki' => '다른 위키의 사용자 권한을 조정',
 'right-siteadmin'            => '데이터베이스를 잠그거나 잠금 해제',
+'right-reset-passwords'      => '다른 사용자의 비밀번호를 변경',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',

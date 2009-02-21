@@ -669,6 +669,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'resetpass-wrong-oldpass'   => 'Dat Passwoord (temporär oder aktuell) gellt nich.
 Villicht hest du dien Passwoord al ännert oder noch wedder en nee temporär Passwoord anfeddert.',
 'resetpass-temp-password'   => 'Temporär Passwoord:',
+'resetpass-no-others'       => 'Du kannst nich anner Lüüd ehr Passwoord trüchsetten.',
 
 # Edit page toolbar
 'bold_sample'     => 'Fetten Text',
@@ -919,6 +920,7 @@ Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revdelete-nooldid-title'        => 'kene Versionen dor, de passt',
 'revdelete-nooldid-text'         => 'Du hest keen Version för disse Akschoon angeven, de utwählte Version gifft dat nich oder du versöchst, de ne’este Version wegtodoon.',
 'revdelete-nologtype-title'      => 'Keen Logbooktyp angeven',
+'revdelete-nologtype-text'       => 'Du hest keen Logtyp för disse Akschoon angeven.',
 'revdelete-toomanytargets-title' => 'To veel Telen',
 'revdelete-nologid-title'        => 'Ungüllig Logindrag',
 'revdelete-selected'             => "'''{{PLURAL:$2|Wählte Version|Wählte Versionen}} vun [[:$1]]:'''",
@@ -1293,6 +1295,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'right-userrights'           => 'Brukerrechten ännern',
 'right-userrights-interwiki' => 'Brukerrechten op annere Wikis ännern',
 'right-siteadmin'            => 'Datenbank sperren un wedder apen maken',
+'right-reset-passwords'      => 'Anner Lüüd ehr Passwoord trüchsetten',
 
 # User rights log
 'rightslog'      => 'Brukerrechten-Logbook',
@@ -1520,6 +1523,8 @@ En [[Special:WhatLinksHere/$2|kumplette List]] gifft dat ok.',
 'noimage'                   => 'Ene Datei mit dissen Naam gifft dat nich, du kannst ehr $1.',
 'noimage-linktext'          => 'hoochladen',
 'uploadnewversion-linktext' => 'Ne’e Version vun disse Datei hoochladen',
+'shared-repo-from'          => 'ut $1', # $1 is the repository name
+'shared-repo'               => 'en tohoop bruukt Medienarchiv', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => '„$1“ Trüchsetten',
@@ -2225,6 +2230,9 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'move-redirect-suppressed'     => 'Redirect ünnerdrückt',
 'movelogpage'                  => 'Schuuv-Logbook',
 'movelogpagetext'              => 'Dit is ene List vun all schavene Sieden.',
+'movesubpage'                  => 'Ünnersieden',
+'movesubpagetext'              => 'Disse Sied hett $1 {{PLURAL:$1|Ünnersied|Ünnersieden}}, de ünnen wiest warrt.',
+'movenosubpage'                => 'Disse Sied hett keen Ünnersieden.',
 'movereason'                   => 'Grund',
 'revertmove'                   => 'trüchschuven',
 'delete_and_move'              => 'Wegsmieten un Schuven',
@@ -2256,13 +2264,14 @@ De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet scha
 'export-addcat'     => 'Tofögen',
 'export-download'   => 'As XML-Datei spiekern',
 'export-templates'  => 'mit Vörlagen',
+'export-pagelinks'  => 'Sieden op de Lenken wiest, automaatsch mit exporteren, bet to en Deepd vun:',
 
 # Namespace 8 related
 'allmessages'               => 'Alle Systemnarichten',
 'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Text nu',
-'allmessagestext'           => 'Dit is de List vun all de Systemnarichten, de dat in den MediaWiki-Naamruum gifft.',
+'allmessagestext'           => 'Dit is de List vun de Systemnarichten, de dat in den MediaWiki-Naamruum gifft.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages is nich ünnerstütt, vun wegen dat wgUseDatabaseMessages utstellt is.',
 'allmessagesfilter'         => 'Narichtennaamfilter:',
 'allmessagesmodified'       => 'Blot ännerte wiesen',
@@ -2824,7 +2833,7 @@ Wenn du dat nich sülvst wesen büst, denn folg den Lenk nich. De Bestätigungsk
 'scarytranscludetoolong'  => '[URL is to lang]',
 
 # Trackbacks
-'trackbackbox'      => 'Trackbacks för dissen Artikel:<br />
+'trackbackbox'      => 'Trackbacks för disse Sied:<br />
 $1',
 'trackbackremove'   => '([$1 wegsmieten])',
 'trackbacklink'     => 'Trackback',
@@ -2977,18 +2986,23 @@ Geev den Dateinaam ahn dat Präfix „{{ns:file}}:“ in.',
 #Delen vun reguläre Utdrück na disse Reeg indragen. Disse Reeg nich ännern</pre>',
 
 # Special:Tags
-'tag-filter'        => '
+'tag-filter'              => '
 [[Special:Tags|Tag]]-Filter:',
-'tag-filter-submit' => 'Filter',
-'tags-title'        => 'Tags',
-'tags-tag'          => 'Intern Tagnaam',
-'tags-edit'         => 'ännern',
-'tags-hitcount'     => '$1 {{PLURAL:$1|Ännern|Ännern}}',
+'tag-filter-submit'       => 'Filter',
+'tags-title'              => 'Tags',
+'tags-tag'                => 'Intern Tagnaam',
+'tags-display-header'     => 'Weddergaav op de Ännernlisten',
+'tags-description-header' => 'Beschrievung, wat dat bedüüdt',
+'tags-edit'               => 'ännern',
+'tags-hitcount'           => '$1 {{PLURAL:$1|Ännern|Ännern}}',
 
 # Database error messages
-'dberr-header'   => 'Dit Wiki hett en Problem',
-'dberr-problems' => 'Deit uns leed. Disse Websteed hett opstunns en beten technische Problemen.',
-'dberr-again'    => 'Tööv en poor Minuten un versöök dat denn noch wedder.',
-'dberr-info'     => '(Kunn nich mit’n Datenbank-Server verbinnen: $1)',
+'dberr-header'      => 'Dit Wiki hett en Problem',
+'dberr-problems'    => 'Deit uns leed. Disse Websteed hett opstunns en beten technische Problemen.',
+'dberr-again'       => 'Tööv en poor Minuten un versöök dat denn noch wedder.',
+'dberr-info'        => '(Kunn nich mit’n Datenbank-Server verbinnen: $1)',
+'dberr-usegoogle'   => 'Du kannst dat solang mit Google versöken.',
+'dberr-outofdate'   => 'Wees gewohr, dat de Söökindex, de se vun uns Inhold hebbt, oold wesen kann.',
+'dberr-cachederror' => 'Dit is en Kopie ut’n Cache vun de opropen Sied un is villicht nich de ne’este Version.',
 
 );

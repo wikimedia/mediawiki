@@ -1047,7 +1047,7 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 'imagelinks'                => 'Файл багълантылары',
 'linkstoimage'              => 'Бу файлгъа багъланты олгъан $1 саифе:',
 'nolinkstoimage'            => 'Бу файлгъа багълангъан саифе ёкъ.',
-'sharedupload'              => 'Бу файл ортакъ фезагъа юкленген ве дигер проектлерде де къулланылгъан бир файл ола билир.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Бу файл $1 сайтына юкленген ве дигер проектлерде де къулланылып ола. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Тафсилятны $1 саифесинде тапмакъ мумкюн.',
 'shareduploadwiki-linktext' => 'файл малюмат саифеси',
 'noimage'                   => 'Бу исимде файл ёкъ, амма сиз $1.',
@@ -1498,7 +1498,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'allmessagesdefault'  => 'Оригиналь метин',
 'allmessagescurrent'  => 'Шимди къулланылгъан метин',
 'allmessagestext'     => 'Ишбу джедвель MediaWiki-де мевджут олгъан бутюн система беянатларынынъ джедвелидир.
-MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [http://translatewiki.net Betawiki] саифелерине зиярет этинъиз.',
+MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [http://translatewiki.net translatewiki.net] саифелерине зиярет этинъиз.',
 'allmessagesfilter'   => 'Метин айрыштырыджы фильтры:',
 'allmessagesmodified' => 'Тек денъиштирильгенлерни косьтер',
 
@@ -1829,7 +1829,7 @@ $1',
 'autosumm-blank'   => 'Саифе бошатылды',
 'autosumm-replace' => "Саифедеки малюмат '$1' иле денъиштирильди",
 'autoredircomment' => '[[$1]] саифесине ёлланды',
-'autosumm-new'     => "'$1' буюклигинде янъы саифе яратылды",
+'autosumm-new'     => "Янъы саифе яратылды. Мундериджеси: '$1'",
 
 # Live preview
 'livepreview-loading' => 'Юкленмекте…',

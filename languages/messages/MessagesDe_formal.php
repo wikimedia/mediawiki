@@ -112,6 +112,7 @@ Bitte warten Sie, bevor Sie es erneut probieren.',
 'resetpass-no-info'       => 'Sie müssen sich anmelden, um auf diese Seite direkt zuzugreifen.',
 'resetpass-wrong-oldpass' => 'Ungültiges temporäres oder aktuelles Passwort.
 Möglicherweise haben Sie Ihr Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.',
+'resetpass-no-others'     => 'Sie können das Passwort anderer Benutzer nicht zurücksetzen.',
 
 # Edit page toolbar
 'sig_tip' => 'Ihre Signatur mit Zeitstempel',
@@ -479,6 +480,10 @@ Die Datei kann in ein anderes MediaWiki-Wiki über die [[Special:Import|Importfu
 Tragen Sie den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur für eine Seite).
 
 Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] möglich, beispielsweise für die [[{{MediaWiki:Mainpage}}]].',
+
+# Namespace 8 related
+'allmessagestext' => 'Dies ist eine Liste der MediaWiki-Systemtexte.
+Besuchen Sie die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], wenn Sie sich an der Lokalisierung von MediaWiki beteiligen möchten.',
 
 # Special:Import
 'import-interwiki-text' => 'Wählen Sie ein Wiki und eine Seite zum Importieren aus.

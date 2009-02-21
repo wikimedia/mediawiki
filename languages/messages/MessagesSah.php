@@ -2154,7 +2154,7 @@ $1 бэлиэр хааччахтаммыт. Хааччахтааһын туру�
 'allmessagesdefault'        => 'Туспа этиллибэтэҕинэ суруллар тиэкис',
 'allmessagescurrent'        => 'Билиҥҥи тиэкис',
 'allmessagestext'           => 'Манна MediaWiki биллэриилэрин испииһэгэ көстөр.
-Эн MediaWiki движогун тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] уонна манна [http://translatewiki.net Betawiki] киир.',
+Эн MediaWiki движогун тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] уонна манна [http://translatewiki.net translatewiki.net] киир.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' туттуллар кыаҕа суох, тоҕо диэтэххэ '''\$wgUseDatabaseMessages''' араарыллыбыт.",
 'allmessagesfilter'         => 'Сурук аатын фильтра:',
 'allmessagesmodified'       => 'Уларыйбыттары эрэ көрдөр',

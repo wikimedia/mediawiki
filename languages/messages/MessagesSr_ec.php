@@ -2129,7 +2129,7 @@ $1 је већ блокиран. Да ли желите да промените 
 'allmessagesdefault'        => 'Стандардни текст',
 'allmessagescurrent'        => 'Тренутни текст',
 'allmessagestext'           => 'Ово је списак системских порука које су у МедијаВики именском простору.
-Посетите [http://translatewiki.net Betawiki] уколико желите да помогнете у локализацији.',
+Посетите [http://translatewiki.net translatewiki.net] уколико желите да помогнете у локализацији.',
 'allmessagesnotsupportedDB' => "Ова страница не може бити употребљена зато што је '''\$wgUseDatabaseMessages''' искључен.",
 'allmessagesfilter'         => 'Филтер за регуларне изразе:',
 'allmessagesmodified'       => 'Прикажи само измењене',

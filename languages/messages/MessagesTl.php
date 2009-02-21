@@ -628,6 +628,7 @@ Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bag
 'resetpass-wrong-oldpass'   => 'Hindi tanggap na pansamantala o pangkasalukuyang hudyat.
 Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
 'resetpass-temp-password'   => 'Pansamantalang hudyat:',
+'resetpass-no-others'       => 'Hindi mo maaaring muling itakda ang hudyat para sa iba pang mga tagagamit.',
 
 # Edit page toolbar
 'bold_sample'     => 'Makapal na panitik',
@@ -1276,6 +1277,7 @@ pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 'right-userrights'           => 'Baguhin ang lahat ng karapatan ng tagagamit',
 'right-userrights-interwiki' => 'Baguhin ang karapatan ng mga tagagamit na nasa ibang mga wiki',
 'right-siteadmin'            => 'Ikandado at alisin ang pagkakakandado ng kalipunan ng dato',
+'right-reset-passwords'      => 'Mulng itakda ang mga hudyat ng iba pang mga tagagamit',
 
 # User rights log
 'rightslog'      => 'Tala ng mga karapatan ng tagagamit',
@@ -2284,7 +2286,7 @@ Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{#Special:Export}}/{{Media
 'allmessagesdefault'        => 'Tinakdang teksto',
 'allmessagescurrent'        => 'Kasalukuyang teksto',
 'allmessagestext'           => 'Isa itong talaan ng mga mensahe ng sistema na makukuha mula sa espasyo ng pangalang MediaWiki.
-Pakidalaw ang [http://www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at [http://translatewiki.net Betawiki] kung ibig mong magambag sa heneriko o pangkalahatang lokalisasyon ng MediaWiki.',
+Pakidalaw ang [http://www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at [http://translatewiki.net translatewiki.net] kung ibig mong magambag sa heneriko o pangkalahatang lokalisasyon ng MediaWiki.',
 'allmessagesnotsupportedDB' => "Hindi magagamit ang '''{{ns:special}}:AllMessages''' dahil hindi gumagana ang '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Pansala ng pangalan ng mensahe:',
 'allmessagesmodified'       => 'Ipakita lamang ang mga binago',

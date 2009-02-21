@@ -649,7 +649,7 @@ Dotaz: $2',
 'protectedpagetext'    => 'Tato stránka byla zamčena, takže ji nelze editovat.',
 'viewsourcetext'       => 'Můžete si prohlédnout a zkopírovat zdrojový kód této stránky:',
 'protectedinterface'   => 'Tato stránka obsahuje text softwarového rozhraní a smějí ji editovat jen správci.',
-'editinginterface'     => "'''Upozornění:''' Editujete stránku, která definuje texty rozhraní. Změny této stránky ovlivní vzhled uživatelského rozhraní všem uživatelům.",
+'editinginterface'     => "'''Upozornění:''' Editujete stránku, která definuje texty rozhraní. Změny této stránky ovlivní vzhled uživatelského rozhraní všem uživatelům. Při úpravách českého překladu zvažte použití [http://translatewiki.net/wiki/Main_Page?setlang=cs Betawiki], projektu pro lokalizaci MediaWiki.",
 'sqlhidden'            => '(SQL dotaz skryt)',
 'cascadeprotected'     => 'Tato stránka je zamčena, neboť je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem:
 $2',
@@ -778,6 +778,7 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'resetpass-wrong-oldpass'   => 'Nesprávné dočasné nebo aktuální heslo.
 Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové dočasné heslo.',
 'resetpass-temp-password'   => 'Dočasné heslo:',
+'resetpass-no-others'       => 'Nemáte oprávnění měnit heslo jiným uživatelům.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučný text',
@@ -1399,6 +1400,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'right-userrights'           => 'Nastavování práv ostatním uživatelům',
 'right-userrights-interwiki' => 'Nastavování práv ostatním uživatelům na jiných wiki',
 'right-siteadmin'            => 'Zamykání a odemykání databáze',
+'right-reset-passwords'      => 'Nastavování hesel jiným uživatelům',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',

@@ -884,7 +884,7 @@ Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbacz�
 'allmessagesdefault'        => 'Domëslny tekst',
 'allmessagescurrent'        => 'Terny tekst',
 'allmessagestext'           => 'To je zestôwk systemòwëch ògłosów przistãpnëch w rumie mion MediaWiki.
-Proszã zazdrzë na [http://www.mediawiki.org/wiki/Localisation Lokalizacëjô MediaWiki] ë [http://translatewiki.net Betawiki] jeżlë chcesz dolmaczëc softwôrã MediaWiki.',
+Proszã zazdrzë na [http://www.mediawiki.org/wiki/Localisation Lokalizacëjô MediaWiki] ë [http://translatewiki.net translatewiki.net] jeżlë chcesz dolmaczëc softwôrã MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nie mòże bëc brëkòwónô, temù że '''\$wgUseDatabaseMessages''' je wëłączony.",
 'allmessagesfilter'         => 'Filter mion ògłosów:',
 'allmessagesmodified'       => 'Pòkażë blós zjinaczone',

@@ -625,6 +625,7 @@ Es possibile que tu ha ja cambiate tu contrasigno o ha requestate un nove contra
 'resetpass-wrong-oldpass'   => 'Le contrasigno temporari o actual es invalide. 
 Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasigno temporari.',
 'resetpass-temp-password'   => 'Contrasigno temporari:',
+'resetpass-no-others'       => 'Tu non pote redefinir le contrasigno de altere usatores.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto grasse',
@@ -1283,6 +1284,7 @@ per favor vide math/README pro configurar lo.",
 'right-userrights'           => 'Modificar tote le derectos de usator',
 'right-userrights-interwiki' => 'Modificar le derectos de usatores in altere wikis',
 'right-siteadmin'            => 'Blocar e disblocar le base de datos',
+'right-reset-passwords'      => 'Redefinir le contrasigno de altere usatores',
 
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',
@@ -1838,7 +1840,7 @@ facilitar su identification.",
 'watch'                => 'Observar',
 'watchthispage'        => 'Observar iste pagina',
 'unwatch'              => 'Disobservar',
-'unwatchthispage'      => 'Cancellar observation',
+'unwatchthispage'      => 'Disobservar',
 'notanarticle'         => 'Non es un articulo',
 'notvisiblerev'        => 'Le version ha essite delite',
 'watchnochange'        => 'Nulle articulo que tu observa esseva modificate durante le periodo de tempore indicate.',
@@ -2295,6 +2297,9 @@ Per favor fusiona los manualmente.'''",
 'move-redirect-suppressed'     => 'redirection supprimite',
 'movelogpage'                  => 'Registro de renominationes',
 'movelogpagetext'              => 'Infra es un lista de paginas renominate.',
+'movesubpage'                  => 'Subpaginas',
+'movesubpagetext'              => 'Iste pagina ha $1 {{PLURAL:$1|subpagina, le qual|subpaginas, le quales}} se monstra infra.',
+'movenosubpage'                => 'Iste pagina non ha subpaginas.',
 'movereason'                   => 'Motivo:',
 'revertmove'                   => 'reverter',
 'delete_and_move'              => 'Deler e renominar',
@@ -2340,7 +2345,7 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 'allmessagesdefault'        => 'Texto predefinite',
 'allmessagescurrent'        => 'Texto actual',
 'allmessagestext'           => 'Isto es un lista de messages de systema disponibile in le spatio de nomines MediaWiki.
-Per favor visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net Betawiki] si tu desira contribuer al localisation general de MediaWiki.',
+Per favor visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
 'allmessagesnotsupportedDB' => "Iste pagina non pote esser usate proque '''\$wgUseDatabaseMessages''' ha essite disactivate.",
 'allmessagesfilter'         => 'Filtro de nomine de message:',
 'allmessagesmodified'       => 'Monstrar solmente modificates',

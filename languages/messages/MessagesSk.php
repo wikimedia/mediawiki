@@ -662,6 +662,7 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 'resetpass-wrong-oldpass'   => 'Neplatné dočasné alebo aktuálne heslo. 
 Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si vyžiadali nové dočasné heslo.',
 'resetpass-temp-password'   => 'Dočasné heslo:',
+'resetpass-no-others'       => 'Nemôžete zmeniť heslo iných používateľov.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučný text',
@@ -1304,6 +1305,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'right-userrights'           => 'Upravovať oprávnenia ostatných používateľov',
 'right-userrights-interwiki' => 'Upravovať oprávnenia používateľov na iných wiki stránkach',
 'right-siteadmin'            => 'Zamykať a odomykať databázu',
+'right-reset-passwords'      => 'Zmeniť heslo iných používateľov',
 
 # User rights log
 'rightslog'      => 'Záznam používateľských práv',
@@ -2276,6 +2278,9 @@ Prosím, zlúčte ich ručne.'''",
 'move-redirect-suppressed'     => 'presmerovanie bolo potlačené',
 'movelogpage'                  => 'Záznam presunov',
 'movelogpagetext'              => 'Tu je zoznam posledných presunutí.',
+'movesubpage'                  => 'Podstránky',
+'movesubpagetext'              => 'Táto stránka má $1 {{PLURAL:$1|podstránku, ktorá je zobrazená nižšie|podstránky, ktoré sú zobrazené nižšie|podstránok, ktoré sú zobrazené nižšie}}.',
+'movenosubpage'                => 'Táto stránka nemá podstránky.',
 'movereason'                   => 'Dôvod:',
 'revertmove'                   => 'obnova',
 'delete_and_move'              => 'Vymazať a presunúť',
@@ -2320,7 +2325,8 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[{{#Special:Export}}/{{M
 'allmessagesname'           => 'Názov',
 'allmessagesdefault'        => 'štandardný text',
 'allmessagescurrent'        => 'aktuálny text',
-'allmessagestext'           => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.',
+'allmessagestext'           => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.
+Prosím, navštívte [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net translatewiki.net] ak chcete prispieť k všeobecnej lokalizácii MediaWiki.',
 'allmessagesnotsupportedDB' => "Túto stránku nemožno použiť, pretože '''\$wgUseDatabaseMessages''' je vypnuté.",
 'allmessagesfilter'         => 'Filter názvov správ:',
 'allmessagesmodified'       => 'Zobraziť iba zmenené',

@@ -318,7 +318,7 @@ $imageFiles = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links unterstreichen:',
-'tog-highlightbroken'         => 'Links auf leere Seiten hervorheben <a href="" class="new">Beispiel</a> (Alternative: wie dieser<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Links auf nicht vorhandene Seiten hervorheben <a href="" class="new">Beispiel</a> (Alternative: wie dieser<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Text als Blocksatz',
 'tog-hideminor'               => 'Kleine Änderungen ausblenden',
 'tog-hidepatrolled'           => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
@@ -791,6 +791,7 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ig
 'resetpass-wrong-oldpass'   => 'Ungültiges temporäres oder aktuelles Passwort.
 Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.',
 'resetpass-temp-password'   => 'Temporäres Passwort:',
+'resetpass-no-others'       => 'Du kannst das Passwort anderer Benutzer nicht zurücksetzen.',
 
 # Edit page toolbar
 'bold_sample'     => 'Fetter Text',
@@ -1423,6 +1424,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'right-userrights'           => 'Benutzerrechte bearbeiten',
 'right-userrights-interwiki' => 'Benutzerrechte in anderen Wikis bearbeiten',
 'right-siteadmin'            => 'Datenbank sperren und entsperren',
+'right-reset-passwords'      => 'Das Passwort eines anderen Benutzers zurücksetzen',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',
@@ -2432,7 +2434,8 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 'allmessagesname'           => 'Name',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Aktueller Text',
-'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.',
+'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.
+Besuche die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], wenn du dich an der Lokalisierung von MediaWiki beteiligen möchtest.',
 'allmessagesnotsupportedDB' => 'Diese Spezialseite steht nicht zur Verfügung, da sie über den Parameter <tt>$wgUseDatabaseMessages</tt> deaktiviert wurde.',
 'allmessagesfilter'         => 'Nachrichtennamensfilter:',
 'allmessagesmodified'       => 'Nur geänderte anzeigen',

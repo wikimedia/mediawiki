@@ -1781,7 +1781,7 @@ Basqa atama saylan'",
 'allmessagesdefault'  => 'Defolt tekst',
 'allmessagescurrent'  => "Ha'zirgi tekst",
 'allmessagestext'     => "Bul {{ns:mediawiki}} isimler ko'pligindegi bar bolg'an sistema xabarları dizimi.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.",
+Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
 'allmessagesfilter'   => 'Xabar atamasın filtrlew:',
 'allmessagesmodified' => "Tek o'zgertilgenlerdi ko'rset",
 
