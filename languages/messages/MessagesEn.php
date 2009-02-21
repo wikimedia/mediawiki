@@ -1017,8 +1017,8 @@ You may have already successfully changed your password or requested a new tempo
 You may have already successfully changed your password or requested a new temporary password.',
 'resetpass-temp-password'   => 'Temporary password:',
 'resetpass-no-others'       => 'You cannot reset the password for other users.',
-'resetpass-log'             => 'Password resets',
-'resetpass-logtext'         => 'Below is a log of users who have had their password reset by a bureaucrat',
+'resetpass-log'             => 'Password resets log',
+'resetpass-logtext'         => 'Below is a log of users who have had their password reset by an administrator.',
 'resetpass-logentry'        => 'changed the password for $1',
 'resetpass-comment'         => 'Reason for password reset',
 
