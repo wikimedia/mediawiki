@@ -523,7 +523,7 @@ class EditPage {
 		} elseif ( $this->section == 'new' ) {
 			// Nothing *to* preview for new sections
 			return false;
-		} elseif ( ( $wgRequest->getVal( 'preload' ) !== '' || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
+		} elseif ( ( $wgRequest->getVal( 'preload' ) !== null || $this->mTitle->exists() ) && $wgUser->getOption( 'previewonfirst' ) ) {
 			// Standard preference behaviour
 			return true;
 		} elseif ( !$this->mTitle->exists() && $this->mTitle->getNamespace() == NS_CATEGORY ) {
@@ -678,8 +678,16 @@ class EditPage {
 		if ( $this->suppressIntro ) {
 			return;
 		}
+
+		$namespace = $this->mTitle->getNamespace();
+
+		if ( $namespace == NS_MEDIAWIKI ) {
+			# Show a warning if editing an interface message
+			$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1</div>", 'editinginterface' );
+		}
+
 		# Show a warning message when someone creates/edits a user (talk) page but the user does not exists
-		if ( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
+		if ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
 			$parts = explode( '/', $this->mTitle->getText(), 2 );
 			$username = $parts[0];
 			$id = User::idFromName( $username );
@@ -1161,7 +1169,7 @@ class EditPage {
 			}
 
 			if ( $this->missingComment ) {
-				$wgOut->wrapWikiMsg( '<div id="mw-missingcommenttext">$1</div>',  'missingcommenttext' );
+				$wgOut->wrapWikiMsg( '<div id="mw-missingcommenttext">$1</div>', 'missingcommenttext' );
 			}
 
 			if ( $this->missingSummary && $this->section != 'new' ) {
@@ -1214,8 +1222,6 @@ class EditPage {
 
 		$classes = array(); // Textarea CSS
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			# Show a warning if editing an interface message
-			$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1</div>", 'editinginterface' );
 		} elseif ( $this->mTitle->isProtected( 'edit' ) ) {
 			# Is the title semi-protected?
 			if ( $this->mTitle->isSemiProtected() ) {
