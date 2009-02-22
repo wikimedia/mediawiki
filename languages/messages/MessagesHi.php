@@ -726,13 +726,11 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'rev-deleted-comment'         => '(टिप्पणी हटाई)',
 'rev-deleted-user'            => '(सदस्यनाम हटाया)',
 'rev-deleted-event'           => '(कार्यकी नोंद हटाई)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-इस लेख का अवतरण सामान्य डाटाबेससे हटाया गया हैं।
-इसकी अधिक जानकारी [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} हटाने की सूची] में पाईं जा सकती हैं।</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-इस लेख का अवतरण सामान्य डाटाबेससे हटाया गया हैं।
+'rev-deleted-text-permission' => 'इस लेख का अवतरण सामान्य डाटाबेससे हटाया गया हैं।
+इसकी अधिक जानकारी [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} हटाने की सूची] में पाईं जा सकती हैं।',
+'rev-deleted-text-view'       => 'इस लेख का अवतरण सामान्य डाटाबेससे हटाया गया हैं।
 {{SITENAME}} पर प्रबंधक होनेके नाते आप इसे देख सकतें हैं।
-इसकी अधिक जानकारी [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} हटाने की सूची] में पाईं जा सकती हैं।</div>',
+इसकी अधिक जानकारी [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} हटाने की सूची] में पाईं जा सकती हैं।',
 'rev-delundel'                => 'दिखायें/छुपायें',
 'revisiondelete'              => 'अवतरण हटायें/पुनर्स्थापित करें',
 'revdelete-nooldid-title'     => 'लक्ष्य अवतरण गलत',

@@ -799,11 +799,9 @@ Kanol [[Special:Search|sukön]] padis nulik tefik.',
 'rev-deleted-comment'         => '(küpet pemoükon)',
 'rev-deleted-user'            => '(gebananem pemoükon)',
 'rev-deleted-event'           => '(lisedadun pemoükon)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Padafomam at pemoükon se ragivs notidik.
-Pats tefik ba patuvons in [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jenotalised moükamas].</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Padafomam at pemoükon se registar notidik. As guvan in {{SITENAME}}, kanol logön oni. Pats tefik ba binons in  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jenotalised moükamas].</div>',
+'rev-deleted-text-permission' => 'Padafomam at pemoükon se ragivs notidik.
+Pats tefik ba patuvons in [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jenotalised moükamas].',
+'rev-deleted-text-view'       => 'Padafomam at pemoükon se registar notidik. As guvan in {{SITENAME}}, kanol logön oni. Pats tefik ba binons in  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jenotalised moükamas].',
 'rev-delundel'                => 'jonön/klänedön',
 'revisiondelete'              => 'Moükön/sädunön moükami fomamas',
 'revdelete-nooldid-title'     => 'Zeilafomam no lonöfon',

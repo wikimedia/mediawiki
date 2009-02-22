@@ -129,7 +129,7 @@ $messages = array(
 'tog-diffonly'                => '在比較兩個修訂版本差異時不顯示頁面內容',
 'tog-showhiddencats'          => '顯示隱藏分類',
 'tog-noconvertlink'           => '不轉換連結標題',
-'tog-norollbackdiff'          => '進行反轉後略過差異',
+'tog-norollbackdiff'          => '進行回退後略過差異比較',
 
 'underline-always'  => '總是使用',
 'underline-never'   => '從不使用',
@@ -785,14 +785,12 @@ $2',
 'rev-deleted-comment'            => '(註釋已移除)',
 'rev-deleted-user'               => '(用戶名已移除)',
 'rev-deleted-event'              => '(日誌動作已移除)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">該頁面修訂已經被從公共文檔中移除。
-在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。</div>',
-'rev-deleted-text-view'          => "<div class='mw-warning plainlinks'>
-該頁面修訂已經被從公共文檔中移除。作為{{SITENAME}}的管理員，您可以檢視它；
-在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。
-</div>",
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">因為其中一次修訂從公眾存檔中移除，您不可以查看這個差異。
-在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可能有更多的資料。</div>',
+'rev-deleted-text-permission'    => '該頁面修訂已經被從公共文檔中移除。
+在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。',
+'rev-deleted-text-view'          => '該頁面修訂已經被從公共文檔中移除。作為{{SITENAME}}的管理員，您可以檢視它；
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。',
+'rev-deleted-no-diff'            => '因為其中一次修訂從公眾存檔中移除，您不可以查看這個差異。
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可能有更多的資料。',
 'rev-delundel'                   => '顯示/隱藏',
 'revisiondelete'                 => '刪除/恢復刪除修訂',
 'revdelete-nooldid-title'        => '無效的目標修訂',
@@ -2121,7 +2119,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'movepage-max-pages'           => '最多有$1個頁面已經移動同時不可以自動地再移動更多。',
 '1movedto2'                    => '[[$1]]移動到[[$2]]',
 '1movedto2_redir'              => '[[$1]]透過重定向移動到[[$2]]',
-'move-redirect-suppressed'     => '重新定向已壓制',
+'move-redirect-suppressed'     => '已禁止重新定向',
 'movelogpage'                  => '移動日誌',
 'movelogpagetext'              => '以下是所有移動的頁面清單:',
 'movereason'                   => '原因',

@@ -726,15 +726,11 @@ Ippiegazioni: (curr) = diffarènzi cu la versioni currenti, (priz) = diffarènzi
 'rev-deleted-comment'         => '(cummentu buggaddu)',
 'rev-deleted-user'            => '(innòmu utenti buggaddu)',
 'rev-deleted-event'           => '(azioni di lu rigisthru buggadda)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Chistha versioni di la pàgina è isthadda buggadda da l\'archìbi visìbiri a lu pùbbriggu.
-Cunsulthà lu [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rigisthru di canzilladdura] pa althri dettàgli.
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Chistha versioni di la pàgina è isthadda buggadda da l\'archìbi visìbiri a lu pùbbriggu.
-Lu testhu pò assé visuarizzaddu soru da l\'amministhradori di lu situ.
-Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di canzilladdura] pa althri dettàgli.
-</div>',
+'rev-deleted-text-permission' => "Chistha versioni di la pàgina è isthadda buggadda da l'archìbi visìbiri a lu pùbbriggu.
+Cunsulthà lu [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rigisthru di canzilladdura] pa althri dettàgli.",
+'rev-deleted-text-view'       => "Chistha versioni di la pàgina è isthadda buggadda da l'archìbi visìbiri a lu pùbbriggu.
+Lu testhu pò assé visuarizzaddu soru da l'amministhradori di lu situ.
+Cunsulthà lu [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rigisthru di canzilladdura] pa althri dettàgli.",
 'rev-delundel'                => 'musthra/cua',
 'revisiondelete'              => 'Canzella o ricùpara versioni',
 'revdelete-nooldid-title'     => 'Versioni nò ippizzificadda',

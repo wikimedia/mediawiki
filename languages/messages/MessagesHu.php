@@ -1005,14 +1005,12 @@ Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].
 'rev-deleted-comment'            => '(megjegyzés eltávolítva)',
 'rev-deleted-user'               => '(szerkesztőnév eltávolítva)',
 'rev-deleted-event'              => '(bejegyzés eltávolítva)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Ezt a változatot eltávolítottuk a nyilvános archívumokból.
-További információkat a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Ezt a változatot eltávolították a nyilvános archívumokból.
-Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">A változatok közötti eltérés nem jeleníthető meg, mert a változatok egyike el lett távolítva a nyilvános archívumból.
-További részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.</div>',
+'rev-deleted-text-permission'    => 'Ezt a változatot eltávolítottuk a nyilvános archívumokból.
+További információkat a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.',
+'rev-deleted-text-view'          => 'Ezt a változatot eltávolították a nyilvános archívumokból.
+Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.',
+'rev-deleted-no-diff'            => 'A változatok közötti eltérés nem jeleníthető meg, mert a változatok egyike el lett távolítva a nyilvános archívumból.
+További részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.',
 'rev-delundel'                   => 'megjelenítés/elrejtés',
 'revisiondelete'                 => 'Változatok törlése vagy helyreállítása',
 'revdelete-nooldid-title'        => 'Érvénytelen célváltozat',

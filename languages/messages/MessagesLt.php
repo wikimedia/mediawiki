@@ -887,13 +887,11 @@ Pamėginkite [[Special:Search|ieškoti projekte]] susijusių naujų puslapių.',
 'rev-deleted-comment'         => '(komentaras pašalintas)',
 'rev-deleted-user'            => '(naudotojo vardas pašalintas)',
 'rev-deleted-event'           => '(įrašas pašalintas)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Ši puslapio versija buvo pašalinta iš viešųjų archyvų.
-[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} Trynimo istorijoje] gali būti detalių.</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Ši puslapio versija buvo pašalinta iš viešųjų archyvų.
+'rev-deleted-text-permission' => 'Ši puslapio versija buvo pašalinta iš viešųjų archyvų.
+[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} Trynimo istorijoje] gali būti detalių.',
+'rev-deleted-text-view'       => 'Ši puslapio versija buvo pašalinta iš viešųjų archyvų.
 Kaip šios svetainės administratorius, jūs galite jį pamatyti;
-[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} trynimo istorijoje] gali būti detalių.
-</div>',
+[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} trynimo istorijoje] gali būti detalių.',
 'rev-delundel'                => 'rodyti/slėpti',
 'revisiondelete'              => 'Trinti/atkurti versijas',
 'revdelete-nooldid-title'     => 'Neleistina paskirties versija',

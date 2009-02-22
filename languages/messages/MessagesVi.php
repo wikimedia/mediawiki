@@ -928,17 +928,13 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 'rev-deleted-comment'            => '(bàn luận đã xóa)',
 'rev-deleted-user'               => '(tên người dùng đã xóa)',
 'rev-deleted-event'              => '(tác vụ nhật trình đã xóa)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Phiên bản này đã bị xóa khỏi các bản lưu mà mọi người có thể thấy.
-Có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Phiên bản này đã bị xóa khỏi các bản lưu mà mọi người có thể thấy.
+'rev-deleted-text-permission'    => 'Phiên bản này đã bị xóa khỏi các bản lưu mà mọi người có thể thấy.
+Có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].',
+'rev-deleted-text-view'          => 'Phiên bản này đã bị xóa khỏi các bản lưu mà mọi người có thể thấy.
 Vì bạn là người quản lý ở {{SITENAME}}, bạn có thể xem được nó;
-có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị xóa khỏi kho lưu trữ công cộng.
-Bạn có thể xem thêm chi tiết trong [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].</div>',
+có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].',
+'rev-deleted-no-diff'            => 'Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị xóa khỏi kho lưu trữ công cộng.
+Bạn có thể xem thêm chi tiết trong [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].',
 'rev-delundel'                   => 'hiện/ẩn',
 'revisiondelete'                 => 'Xóa hay phục hồi phiên bản',
 'revdelete-nooldid-title'        => 'Chưa chọn phiên bản',

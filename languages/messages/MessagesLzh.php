@@ -700,14 +700,10 @@ $2',
 'rev-deleted-comment'            => '（此註刪矣）',
 'rev-deleted-user'               => '（此簿刪矣）',
 'rev-deleted-event'              => '（此誌刪矣）',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-此審刪矣，詳見[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}}誌刪]。
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-此審刪矣，惟{{SITENAME}}有秩可見之，詳見[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 誌刪]。
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">此審從眾中刪矣，無視之審也。
-詳見[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}}誌刪]。</div>',
+'rev-deleted-text-permission'    => '此審刪矣，詳見[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}}誌刪]。',
+'rev-deleted-text-view'          => '此審刪矣，惟{{SITENAME}}有秩可見之，詳見[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 誌刪]。',
+'rev-deleted-no-diff'            => '此審從眾中刪矣，無視之審也。
+詳見[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}}誌刪]。',
 'rev-delundel'                   => '見/藏',
 'revisiondelete'                 => '刪、還審',
 'revdelete-nooldid-title'        => '無此審。',

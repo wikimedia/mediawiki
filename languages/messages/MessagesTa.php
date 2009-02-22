@@ -692,12 +692,10 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'rev-deleted-comment'         => '(கருத்து நீக்கப்பட்டது)',
 'rev-deleted-user'            => '(பயனர் பெயர் நீக்கப்பட்டது)',
 'rev-deleted-event'           => '(பதிவு செயற்பாடு நீக்கப்பட்டது)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-இந்த பக்கத்திருத்தம் பொது பரணிலிருந்து நீக்கப்பட்டுள்ளது.
-இது தொடர்பான பதிவு [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} நீக்கல் பதிகையில்] காணப்படலாம்.</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-இந்த பக்கத்திருத்தம் பொது பரணிலிருந்து நீக்கப்பட்டுள்ளது.
-{{SITENAME}} தளத்தின் நிர்வாகி என்ற வகையில் நீங்கள் அதைப் பார்க்கலாம் மேலும் இது தொடர்பான பதிவு [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} நீக்கல் பதிகையில்] காணப்படலாம்.</div>',
+'rev-deleted-text-permission' => 'இந்த பக்கத்திருத்தம் பொது பரணிலிருந்து நீக்கப்பட்டுள்ளது.
+இது தொடர்பான பதிவு [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} நீக்கல் பதிகையில்] காணப்படலாம்.',
+'rev-deleted-text-view'       => 'இந்த பக்கத்திருத்தம் பொது பரணிலிருந்து நீக்கப்பட்டுள்ளது.
+{{SITENAME}} தளத்தின் நிர்வாகி என்ற வகையில் நீங்கள் அதைப் பார்க்கலாம் மேலும் இது தொடர்பான பதிவு [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} நீக்கல் பதிகையில்] காணப்படலாம்.',
 'rev-delundel'                => 'காட்டு/மறை',
 'revisiondelete'              => 'திருத்தங்களை நீக்கு/மீட்டெடு',
 'revdelete-nooldid-title'     => 'செல்லுபடியற்ற இலக்குத் திருத்தம்',

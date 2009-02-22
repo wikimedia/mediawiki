@@ -825,13 +825,11 @@ Faaks is dy fuorthelle of omneamd.
 'rev-deleted-comment'            => '(opmerking wiske)',
 'rev-deleted-user'               => '(meidoggernamme wiske)',
 'rev-deleted-event'              => '(logboekrigel fuorthelle)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Dy bewurking fan de side is fuorthelle út de publike argiven.
-Der kinne details oanwêzich wêze yn it [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} fuorthel-logboek].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">Dizze bewurking fan de side is fuorthelle út de publike argiven.
+'rev-deleted-text-permission'    => 'Dy bewurking fan de side is fuorthelle út de publike argiven.
+Der kinne details oanwêzich wêze yn it [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} fuorthel-logboek].',
+'rev-deleted-text-view'          => 'Dizze bewurking fan de side is fuorthelle út de publike argiven.
 As behearder fan {{SITENAME}} kinne jo him besjen;
-der kinne details wêze yn it [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} fuorthel-logboek].</div>',
+der kinne details wêze yn it [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} fuorthel-logboek].',
 'rev-delundel'                   => 'sjen litte/ferbergje',
 'revisiondelete'                 => 'Wiskje/weromsette ferzjes',
 'revdelete-nooldid-title'        => 'Gjin doelferzje',

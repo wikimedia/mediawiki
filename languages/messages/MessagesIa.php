@@ -626,6 +626,10 @@ Es possibile que tu ha ja cambiate tu contrasigno o ha requestate un nove contra
 Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasigno temporari.',
 'resetpass-temp-password'   => 'Contrasigno temporari:',
 'resetpass-no-others'       => 'Tu non pote redefinir le contrasigno de altere usatores.',
+'resetpass-log'             => 'Registro de redefinitiones de contrasigno',
+'resetpass-logtext'         => 'Infra es un registro de usatores cuje contrasigno ha essite redefinite per un administrator.',
+'resetpass-logentry'        => 'cambiava le contrasigno de $1',
+'resetpass-comment'         => 'Motivo pro le redefinition del contrasigno:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto grasse',
@@ -886,15 +890,13 @@ Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 'rev-deleted-comment'            => '(commento eliminate)',
 'rev-deleted-user'               => '(nomine de usator eliminate)',
 'rev-deleted-event'              => '(entrata eliminate)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Iste version del pagina ha essite eliminate del archivos public.
-Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Iste version del pagina ha essite eliminate del archivos public.
+'rev-deleted-text-permission'    => 'Iste version del pagina ha essite eliminate del archivos public.
+Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
+'rev-deleted-text-view'          => 'Iste version del pagina ha essite eliminate del archivos public.
 Como administrator in {{SITENAME}} tu pote vider lo;
-es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Tu non pote vider iste diff proque un del versiones ha essite removite del archivos public.
-Il pote haber detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].</div>',
+es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
+'rev-deleted-no-diff'            => 'Tu non pote vider iste diff proque un del versiones ha essite removite del archivos public.
+Il pote haber detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
 'rev-delundel'                   => 'revelar/celar',
 'revisiondelete'                 => 'Deler/restaurar versiones',
 'revdelete-nooldid-title'        => 'Le version de destination es invalide',

@@ -949,17 +949,13 @@ $3 зазначив таку причину: ''$2''",
 'rev-deleted-comment'            => '(коментар вилучено)',
 'rev-deleted-user'               => "(ім'я автора стерто)",
 'rev-deleted-event'              => '(запис журналу вилучений)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Цю версію сторінки вилучено з загального архіву.
-Можливо є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} протоколі вилучень].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Цю версію сторінки вилучено з загального архіву.
+'rev-deleted-text-permission'    => 'Цю версію сторінки вилучено з загального архіву.
+Можливо є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} протоколі вилучень].',
+'rev-deleted-text-view'          => 'Цю версію сторінки вилучено з загального архіву.
 Ви можете переглянути її, так як є адміністратором сайту.
-Можливо є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} протоколі вилучень].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Ви не можете переглянути цю різницю версій, оскільки одна з версій була вилучена із загальнодоступного архіву.
-Можливо, деталі можна знайти в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].</div>',
+Можливо є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} протоколі вилучень].',
+'rev-deleted-no-diff'            => 'Ви не можете переглянути цю різницю версій, оскільки одна з версій була вилучена із загальнодоступного архіву.
+Можливо, деталі можна знайти в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].',
 'rev-delundel'                   => 'показати/сховати',
 'revisiondelete'                 => 'Вилучити / відновити версії сторінки',
 'revdelete-nooldid-title'        => 'Не вказана цільова версія',

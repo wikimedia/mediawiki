@@ -587,6 +587,10 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagforderet.',
 'resetpass-temp-password'   => 'Temporär Passwort:',
 'resetpass-no-others'       => 'Du chasch s Passwort vu andere Benutzer nit zrucksetze.',
+'resetpass-log'             => 'Logbuech vu dr zruckgsetzte Passwerter',
+'resetpass-logtext'         => 'Unte findsch e Logbuech vu dr Benutzer, wu s Passwort vun ene zruckgsetzt woren isch dur e Ammann.',
+'resetpass-logentry'        => 'het s Passwort fir $1 gänderet',
+'resetpass-comment'         => 'Grund fir s Zrucksetze vum Passwort:',
 
 # Edit page toolbar
 'bold_sample'     => 'fetti Schrift',
@@ -826,12 +830,12 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'rev-deleted-comment'            => '(Bearbeitigskommentar uusegnuh)',
 'rev-deleted-user'               => '(Benutzername uusegnuh)',
 'rev-deleted-event'              => '(Logbuechaktion uusegnuh)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks"> Die Version isch glescht wore un chaa nimi aagluegt wäre.
-Information zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">Die Version isch glescht wore un cha nimi aagluegt wäre. As Amman chasch si aber alno aaluege uf {{SITENAME}}.
-Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Du chasch die Änderig nit aaluege, wel eini vu dr Versione us dr Effentlige Archiv usegnuu woren isch.
-Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].</div>',
+'rev-deleted-text-permission'    => 'Die Version isch glescht wore un chaa nimi aagluegt wäre.
+Information zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].',
+'rev-deleted-text-view'          => 'Die Version isch glescht wore un cha nimi aagluegt wäre. As Amman chasch si aber alno aaluege uf {{SITENAME}}.
+Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].',
+'rev-deleted-no-diff'            => 'Du chasch die Änderig nit aaluege, wel eini vu dr Versione us dr Effentlige Archiv usegnuu woren isch.
+Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].',
 'rev-delundel'                   => 'zeig/versteck',
 'revisiondelete'                 => 'Versione lesche/widerherstelle',
 'revdelete-nooldid-title'        => 'Kei Version aagee',

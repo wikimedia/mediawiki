@@ -649,7 +649,7 @@ Dotaz: $2',
 'protectedpagetext'    => 'Tato stránka byla zamčena, takže ji nelze editovat.',
 'viewsourcetext'       => 'Můžete si prohlédnout a zkopírovat zdrojový kód této stránky:',
 'protectedinterface'   => 'Tato stránka obsahuje text softwarového rozhraní a smějí ji editovat jen správci.',
-'editinginterface'     => "'''Upozornění:''' Editujete stránku, která definuje texty rozhraní. Změny této stránky ovlivní vzhled uživatelského rozhraní všem uživatelům. Při úpravách českého překladu zvažte použití [http://translatewiki.net/wiki/Main_Page?setlang=cs Betawiki], projektu pro lokalizaci MediaWiki.",
+'editinginterface'     => "'''Upozornění:''' Editujete stránku, která definuje texty rozhraní. Změny této stránky ovlivní vzhled uživatelského rozhraní všem uživatelům. Při úpravách českého překladu zvažte použití [http://translatewiki.net/wiki/Main_Page?setlang=cs translatewiki.net], projektu pro lokalizaci MediaWiki.",
 'sqlhidden'            => '(SQL dotaz skryt)',
 'cascadeprotected'     => 'Tato stránka je zamčena, neboť je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem:
 $2',
@@ -1007,17 +1007,13 @@ Zkuste [[Special:Search|hledání]].',
 'rev-deleted-comment'            => '(komentář odstraněn)',
 'rev-deleted-user'               => '(uživatelské jméno odstraněno)',
 'rev-deleted-event'              => '(záznam odstraněn)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Tato revize byla odstraněna z veřejného archivu.
-Podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} knize smazaných stránek].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Tato revize byla odstraněna z veřejného archivu.
+'rev-deleted-text-permission'    => 'Tato revize byla odstraněna z veřejného archivu.
+Podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} knize smazaných stránek].',
+'rev-deleted-text-view'          => 'Tato revize byla odstraněna z veřejného archivu.
 Jako správce si ji však můžete prohlédnout;
-podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} knize smazaných stránek].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Toto porovnání si nemůžete prohlédnout, protože jedna z&nbsp;verzí byla z&nbsp;veřejně dostupného archivu odstraněna.
-Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].</div>',
+podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].',
+'rev-deleted-no-diff'            => 'Toto porovnání si nemůžete prohlédnout, protože jedna z&nbsp;verzí byla z&nbsp;veřejně dostupného archivu odstraněna.
+Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].',
 'rev-delundel'                   => 'skrýt/zobrazit',
 'revisiondelete'                 => 'Smazat/obnovit revize',
 'revdelete-nooldid-title'        => 'Nezadána revize',
@@ -1172,6 +1168,9 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'notextmatches'                    => 'Žádné stránky textem neodpovídají.',
 'prevn'                            => '$1 předchozích',
 'nextn'                            => '$1 následujících',
+'prevn-title'                      => '{{PLURAL:$1|Předchozí výsledek|Předchozí $1 výsledky|Předchozích $1 výsledků}}',
+'nextn-title'                      => '{{PLURAL:$1|Následující výsledek|Následující $1 výsledky|Následujících $1 výsledků}}',
+'shown-title'                      => 'Zobrazit $1 {{PLURAL:$1|výsledek|výsledky|výsledků}} na stránku',
 'viewprevnext'                     => 'Ukázat ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Možnosti hledání',
 'searchmenu-exists'                => "*Stránka '''[[$1]]'''",
@@ -2326,7 +2325,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-redirect-suppressed'     => 'přesměrování potlačeno',
 'movelogpage'                  => 'Kniha přesunů',
 'movelogpagetext'              => 'Toto je záznam všech přesunů stránek.',
-'movesubpage'                  => 'Podstránky',
+'movesubpage'                  => '{{PLURAL:$1|Podstránka|Podstránky}}',
 'movesubpagetext'              => 'Tato stránka má $1 {{plural:$1|podstránku uvedenou|podstránky vypsané|podstránek vypsaných}} níže.',
 'movenosubpage'                => 'Tato stránka nemá žádné podstránky.',
 'movereason'                   => 'Důvod:',
@@ -2371,7 +2370,8 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'allmessagesname'           => 'Označení hlášení',
 'allmessagesdefault'        => 'Původní text',
 'allmessagescurrent'        => 'Aktuální text',
-'allmessagestext'           => 'Toto je seznam všech hlášení dostupných ve jmenném prostoru MediaWiki.',
+'allmessagestext'           => 'Toto je seznam všech hlášení dostupných ve jmenném prostoru MediaWiki.
+Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http://www.mediawiki.org/wiki/Localisation lokalizační stránku na mediawiki.org] a [http://translatewiki.net server translatewiki.net].',
 'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages není podporováno, neboť wgUseDatabaseMessages je vypnuto.',
 'allmessagesfilter'         => 'Filtr názvů hlášení:',
 'allmessagesmodified'       => 'Zobrazit pouze upravená hlášení',

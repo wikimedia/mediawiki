@@ -833,15 +833,11 @@ $3ने ''$2'' कारण दिले आहे.",
 'rev-deleted-comment'         => '(प्रतिक्रीया वगळली)',
 'rev-deleted-user'            => '(सदस्य नाव वगळले)',
 'rev-deleted-event'           => '(कार्य नोंद वगळली)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-या पानाची आवृत्ती सार्वजनिक विदागारातून वगळण्यात आली आहे.
+'rev-deleted-text-permission' => 'या पानाची आवृत्ती सार्वजनिक विदागारातून वगळण्यात आली आहे.
 
-[{{fullurl:Special:Log/delete|पान={{FULLPAGENAMEE}}}} वगळल्याच्या नोंदीत निर्देश असण्याची शक्यता आहे].
-
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-पानाचे हे आवर्तन सार्वजनिक विदागारातून वगळण्यात आले आहे.
-{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .</div>',
+[{{fullurl:Special:Log/delete|पान={{FULLPAGENAMEE}}}} वगळल्याच्या नोंदीत निर्देश असण्याची शक्यता आहे].',
+'rev-deleted-text-view'       => 'पानाचे हे आवर्तन सार्वजनिक विदागारातून वगळण्यात आले आहे.
+{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .',
 'rev-delundel'                => 'दाखवा/लपवा',
 'revisiondelete'              => 'आवर्तने वगळा/पुनर्स्थापित करा',
 'revdelete-nooldid-title'     => 'अपेक्षीत आवृत्ती दिलेली नाही',

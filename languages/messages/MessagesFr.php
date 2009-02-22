@@ -766,6 +766,10 @@ Ignorez ce message si ce compte a été créé par erreur.",
 Vous avez peut-être déjà modifié votre mot de passe ou demandé un nouveau mot de passe temporaire.',
 'resetpass-temp-password'   => 'Mot de passe temporaire :',
 'resetpass-no-others'       => "Vous ne pouvez pas changer le mot de passe d'autres utilisateurs.",
+'resetpass-log'             => 'Historique des réinitialisations des mots de passe',
+'resetpass-logtext'         => 'Ci-dessous se trouve la liste des utilisateurs qui ont eu leur mot de passe réinitialisé par un administrateur.',
+'resetpass-logentry'        => 'changé le mot de passe de $1',
+'resetpass-comment'         => 'Raison pour la réinitialisation du mot de passe :',
 
 # Edit page toolbar
 'bold_sample'     => 'Texte gras',
@@ -994,10 +998,10 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 'rev-deleted-comment'            => '(commentaire supprimé)',
 'rev-deleted-user'               => '(nom d’utilisateur supprimé)',
 'rev-deleted-event'              => '(entrée supprimée)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks"> Cette version de la page a été retirée des archives publiques. Il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks"> Cette version de la page a été retirée des archives publiques. En tant qu’administrateur de ce site, vous pouvez la visualiser ; il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Vous ne pouvez par voir ce diff parce qu\'une des versions a été supprimée des archives publiques.
-Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l\'historique des suppressions].</div>',
+'rev-deleted-text-permission'    => 'Cette version de la page a été retirée des archives publiques. Il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].',
+'rev-deleted-text-view'          => 'Cette version de la page a été retirée des archives publiques. En tant qu’administrateur de ce site, vous pouvez la visualiser ; il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} historique des suppressions].',
+'rev-deleted-no-diff'            => "Vous ne pouvez par voir ce diff parce qu'une des versions a été supprimée des archives publiques.
+Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l'historique des suppressions].",
 'rev-delundel'                   => 'afficher/masquer',
 'revisiondelete'                 => 'Supprimer/Restaurer des versions',
 'revdelete-nooldid-title'        => 'Pas de cible pour la révision',
@@ -1484,7 +1488,7 @@ Pour inclure une image dans une page, utilisez un lien de la forme :
 'uploadlog'                   => 'Historique des imports',
 'uploadlogpage'               => 'Historique des imports de fichiers multimédia',
 'uploadlogpagetext'           => 'Voici la liste des derniers fichiers importés sur le serveur.
-Voyez la [[Special:NewFiles|gallerie des nouvelles images]] pour une présentation plus visuelle.',
+Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentation plus visuelle.',
 'filename'                    => 'Nom du fichier',
 'filedesc'                    => 'Description',
 'fileuploadsummary'           => 'Description :',

@@ -886,15 +886,11 @@ Provu [[Special:Search|serĉi en la vikio]] por rilataj novaj paĝoj.',
 'rev-deleted-comment'            => '(komento forigita)',
 'rev-deleted-user'               => '(uzanto-nomo forigita)',
 'rev-deleted-event'              => '(protokola ago forigita)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Ĉi tiu versio de la paĝo estis forigita de publikaj arĥivoj.
-Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} protokolo de forigoj].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Ĉi versio de la paĝo estis forigita de publikaj arĥivoj.
+'rev-deleted-text-permission'    => 'Ĉi tiu versio de la paĝo estis forigita de publikaj arĥivoj.
+Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} protokolo de forigoj].',
+'rev-deleted-text-view'          => 'Ĉi versio de la paĝo estis forigita de publikaj arĥivoj.
 Kiel administranto de {{SITENAME}} vi povas rigardi ĝin;
-povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} protokolo de forigoj].
-</div>',
+povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].',
 'rev-delundel'                   => 'montri/kaŝi',
 'revisiondelete'                 => 'Forigi/malforigi versiojn',
 'revdelete-nooldid-title'        => 'Nevalida cela versio',

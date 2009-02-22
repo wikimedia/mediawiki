@@ -1016,17 +1016,13 @@ $2',
 'rev-deleted-comment'            => '(التعليق اتشال)',
 'rev-deleted-user'               => '(اسم اليوزر اتشال)',
 'rev-deleted-event'              => '(السجل إتشال)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-مراجعة الصفحة دى إتشالت من الأرشيفات العامة.
-ممكن تكون فى تفاصيل فى [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-التعديل دا اتمسح من الأرشيف العام.
+'rev-deleted-text-permission'    => 'مراجعة الصفحة دى إتشالت من الأرشيفات العامة.
+ممكن تكون فى تفاصيل فى [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
+'rev-deleted-text-view'          => 'التعديل دا اتمسح من الأرشيف العام.
 ممكن تشوف التعديل دا علشان إنت إدارى فى {{SITENAME}} .
-ممكن يكون فى تفاصيل بخصوص دا فى [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">انت ماينفش تشوف الفرق دا عشان فى واحده م المراجعات اتشالت م الارشيفات العلنيه.
-ممكن تكون فى تفاصيل فى[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].</div>',
+ممكن يكون فى تفاصيل بخصوص دا فى [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
+'rev-deleted-no-diff'            => 'انت ماينفش تشوف الفرق دا عشان فى واحده م المراجعات اتشالت م الارشيفات العلنيه.
+ممكن تكون فى تفاصيل فى[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
 'rev-delundel'                   => 'عرض/إخفاء',
 'revisiondelete'                 => 'امسح/الغى المسح بتاع المراجعات',
 'revdelete-nooldid-title'        => 'مراجعة هدف مش صح',

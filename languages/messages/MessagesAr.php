@@ -582,13 +582,13 @@ $messages = array(
 'viewcount'         => 'تم عرض هذه الصفحة {{PLURAL:$1|مرة واحدة|مرتان|$1 مرات|$1 مرة}}.',
 'protectedpage'     => 'صفحة محمية',
 'jumpto'            => 'اذهب إلى:',
-'jumptonavigation'  => 'اذهب إلى',
+'jumptonavigation'  => 'إبحار',
 'jumptosearch'      => 'بحث',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'حول {{SITENAME}}',
 'aboutpage'            => 'Project:حول',
-'copyright'            => 'المحتوى متوفر حسب $1.',
+'copyright'            => 'المحتوى متوفر تحت $1.',
 'copyrightpagename'    => 'حقوق النسخ في {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:حقوق النسخ',
 'currentevents'        => 'الأحداث الجارية',
@@ -616,7 +616,7 @@ $messages = array(
 'versionrequiredtext' => 'تلزم النسخة $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة النسخة]]',
 
 'ok'                      => 'موافق',
-'retrievedfrom'           => 'منقول من "$1"',
+'retrievedfrom'           => 'تم الاسترجاع من "$1"',
 'youhavenewmessages'      => 'توجد لديك $1 ($2).',
 'newmessageslink'         => 'رسائل جديدة',
 'newmessagesdifflink'     => 'آخر تغيير',
@@ -692,7 +692,7 @@ $1',
 الإداري الذي أغلق قاعدة البيانات أعطى التفسير التالي: $1',
 'missing-article'      => 'لم تجد قاعدة البيانات النص الخاص بصفحة كان يجب أن تجدها، واسمها "$1" $2.
 
-عادة ما يحدث هذا عند اتباع فرق قديم أو وصلة تاريخ تؤدي إلى صفحه حذفت.
+عادة ما يحدث هذا عند اتباع فرق قديم أو وصلة تاريخ تؤدي إلى صفحة حذفت.
 
 إذا لم تكن هذه هي الحالة، فالمحتمل أنك وجدت خللا في البرنامج.
 من فضلك أبلغ أحد [[Special:ListUsers/sysop|الإداريين]]، وأعطه وصلة إلى مسار هذه الصفحة.',
@@ -881,6 +881,10 @@ $2',
 ربما تكون غيرت كلمة السر الخاصة بك بنجاح أو طلبت كلمة سر مؤقتة جديدة.',
 'resetpass-temp-password'   => 'كلمة سر مؤقتة:',
 'resetpass-no-others'       => 'أنت لا يمكنك إعادة ضبط كلمة السر للمستخدمين الآخرين.',
+'resetpass-log'             => 'سجل إعادة ضبط كلمات السر',
+'resetpass-logtext'         => 'بالأسفل سجل بالمستخدمين الذين تمت إعادة ضبط كلمات السر الخاصة بهم بواسطة إداري.',
+'resetpass-logentry'        => 'غير كلمة السر ل$1',
+'resetpass-comment'         => 'السبب لإعادة ضبط كلمة السر:',
 
 # Edit page toolbar
 'bold_sample'     => 'نص عريض',
@@ -1136,17 +1140,13 @@ $2',
 'rev-deleted-comment'            => '(التعليق تمت إزالته)',
 'rev-deleted-user'               => '(اسم المستخدم تمت إزالته)',
 'rev-deleted-event'              => '(فعل السجل تمت إزالته)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-مراجعة الصفحة هذه أزيلت من الأرشيفات العامة.
-ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-تمت إزالة هذه المراجعة من الأرشيف العام.
+'rev-deleted-text-permission'    => 'مراجعة الصفحة هذه أزيلت من الأرشيفات العامة.
+ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].',
+'rev-deleted-text-view'          => 'تمت إزالة هذه المراجعة من الأرشيف العام.
 بإمكانك رؤية هذه المراجعة لكونك إداريا على هذا الموقع.
-من الممكن أن يكون هناك تفاصيل حول هذا في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">أنت لا يمكنك رؤية هذا الفرق لأن واحدة من المراجعات تمت إزالتها من الأرشيفات العلنية.
-ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].</div>',
+من الممكن أن يكون هناك تفاصيل حول هذا في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].',
+'rev-deleted-no-diff'            => 'أنت لا يمكنك رؤية هذا الفرق لأن واحدة من المراجعات تمت إزالتها من الأرشيفات العلنية.
+ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].',
 'rev-delundel'                   => 'عرض/إخفاء',
 'revisiondelete'                 => 'حذف/استرجاع المراجعات',
 'revdelete-nooldid-title'        => 'مراجعة هدف غير صحيحة',
@@ -2679,7 +2679,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'tooltip-n-currentevents'         => 'مطالعة سريعة لأهم الأحداث الجارية',
 'tooltip-n-recentchanges'         => 'قائمة أحدث التغييرات في الويكي.',
 'tooltip-n-randompage'            => 'حمل صفحة عشوائية',
-'tooltip-n-help'                  => 'تحتاج مساعدة؟ انظر هذه الصفحة!',
+'tooltip-n-help'                  => 'المكان للمساعدة',
 'tooltip-t-whatlinkshere'         => 'قائمة بكل صفحات الويكي التي تصل هنا',
 'tooltip-t-recentchangeslinked'   => 'أحدث التغييرات في الصفحات الموصولة من هذه الصفحة',
 'tooltip-feed-rss'                => 'تلقيم أر إس إس لهذه الصفحة',

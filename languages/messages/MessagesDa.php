@@ -816,11 +816,11 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 'rev-deleted-comment'         => '(Fjerne bearbejdsningskommentar)',
 'rev-deleted-user'            => '(Fjerne brugernavn)',
 'rev-deleted-event'           => '(Fjerne aktion)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> Denne version er slettet og er ikke mere offentligt tilgængelig.
-Nærmere oplysninger om sletningen samt en begrundelse for den findes i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} slette-loggen].</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Denne version er slettet og er ikke længere offentligt tilgængelig.
+'rev-deleted-text-permission' => 'Denne version er slettet og er ikke mere offentligt tilgængelig.
+Nærmere oplysninger om sletningen samt en begrundelse for den findes i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} slette-loggen].',
+'rev-deleted-text-view'       => 'Denne version er slettet og er ikke længere offentligt tilgængelig.
 Som administrator kan du stadig se den.
-Nærmere oplysninger om sletningen samt en begrundelse for den findes i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} slette-loggen].</div>',
+Nærmere oplysninger om sletningen samt en begrundelse for den findes i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} slette-loggen].',
 'rev-delundel'                => 'vise/skjule',
 'revisiondelete'              => 'Slette/gendanne versioner',
 'revdelete-nooldid-title'     => 'Ingen version angivet',

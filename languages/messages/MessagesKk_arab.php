@@ -1090,13 +1090,11 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'rev-deleted-comment'         => '(ماندەمە الاستالدى)',
 'rev-deleted-user'            => '(قاتىسۋشى اتى الاستالدى)',
 'rev-deleted-event'           => '(جۋرنال جازباسى الاستالدى)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-بۇل بەتتىڭ تۇزەتۋى بارشا مۇراعاتتارىنان الاستالعان.
-مىندا [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} جويۋ جۋرنالىندا] ەگجەي-تەگجەي مالىمەتتەرى بولۋى مۇمكىن.</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-وسى بەتتىڭ تۇزەتۋى بارشا مۇراعاتتارىنان الاستالعان.
+'rev-deleted-text-permission' => 'بۇل بەتتىڭ تۇزەتۋى بارشا مۇراعاتتارىنان الاستالعان.
+مىندا [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} جويۋ جۋرنالىندا] ەگجەي-تەگجەي مالىمەتتەرى بولۋى مۇمكىن.',
+'rev-deleted-text-view'       => 'وسى بەتتىڭ تۇزەتۋى بارشا مۇراعاتتارىنان الاستالعان.
 {{SITENAME}} اكىمشىسى بوپ سونى كورە الاسىز;
-[{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} جويۋ جۋرنالىندا] ەگجەي-تەگجەي مالمەتتەرى بولۋى مۇمكىن.</div>',
+[{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} جويۋ جۋرنالىندا] ەگجەي-تەگجەي مالمەتتەرى بولۋى مۇمكىن.',
 'rev-delundel'                => 'كورسەت/جاسىر',
 'revisiondelete'              => 'تۇزەتۋلەردى جويۋ/جويۋدى بولدىرماۋ',
 'revdelete-nooldid-title'     => 'نىسانا تۇزەتۋ جارامسىز',

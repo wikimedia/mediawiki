@@ -751,17 +751,13 @@ $2',
 'rev-deleted-comment'            => '(каментар сцёрты)',
 'rev-deleted-user'               => '(удзельнік выдалены)',
 'rev-deleted-event'              => '(сцёртае дзеянне з журналам)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Гэтая версія старонкі была сцёртая з публічных архіваў.
-Магчыма, падрабязнасці пра гэта ёсць у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале сціранняў].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Гэтая версія старонкі была сцёртая з публічных архіваў.
+'rev-deleted-text-permission'    => 'Гэтая версія старонкі была сцёртая з публічных архіваў.
+Магчыма, падрабязнасці пра гэта ёсць у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале сціранняў].',
+'rev-deleted-text-view'          => 'Гэтая версія старонкі была сцёртая з публічных архіваў.
 Як адміністратар на гэтай пляцоўцы, вы яе можаце бачыць;
-магчыма, падрабязнасці пра гэта ёсць у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале сціранняў].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Немагчыма паказаць гэтую розніцу, таму што адна з версій была сцёртая з публічных архіваў.
-Магчыма, у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале сціранняў] ёсць падрабязнасці.</div>',
+магчыма, падрабязнасці пра гэта ёсць у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале сціранняў].',
+'rev-deleted-no-diff'            => 'Немагчыма паказаць гэтую розніцу, таму што адна з версій была сцёртая з публічных архіваў.
+Магчыма, у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале сціранняў] ёсць падрабязнасці.',
 'rev-delundel'                   => 'паказаць/схаваць',
 'revisiondelete'                 => 'Сцерці/аднавіць версіі',
 'revdelete-nooldid-title'        => 'Недапушчальная мэтавая версія',

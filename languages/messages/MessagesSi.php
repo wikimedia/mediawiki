@@ -922,13 +922,11 @@ $3 විසින් සපයා ඇති හේතුව ''$2'' වේ",
 'rev-deleted-comment'         => '(පරිකථනය ඉවත් කරන ලදි)',
 'rev-deleted-user'            => '(පරිශීලක-නාමය ඉවත් කරන ලදි)',
 'rev-deleted-event'           => '(ලඝු-සටහන් තැබීමේ  ක්‍රියාව අත්හිටුවන ලදි)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-මෙම පිටු සංශෝධනය පොදු සංරක්ෂිතයෙන් ඉවත් කර ඇත.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} මකාදැමීම් ලඝු-සටහනෙහි] විස්තර අඩංගුව තිබිය හැක.</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-මෙම පිටු සංශෝධනය පොදු සංරක්ෂිතයෙන් ඉවත් කර ඇත.
+'rev-deleted-text-permission' => 'මෙම පිටු සංශෝධනය පොදු සංරක්ෂිතයෙන් ඉවත් කර ඇත.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} මකාදැමීම් ලඝු-සටහනෙහි] විස්තර අඩංගුව තිබිය හැක.',
+'rev-deleted-text-view'       => 'මෙම පිටු සංශෝධනය පොදු සංරක්ෂිතයෙන් ඉවත් කර ඇත.
 {{SITENAME}} හි පරිපාලකවරයෙකු වශයෙන් ඔබ හට එය නැරඹිය හැක;
- [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} මකාදැමීම් ලඝු-සටහනෙහි] විස්තර අඩංගුව තිබිය හැක.</div>',
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} මකාදැමීම් ලඝු-සටහනෙහි] විස්තර අඩංගුව තිබිය හැක.',
 'rev-delundel'                => 'පෙන්වන්න/සඟවන්න',
 'revisiondelete'              => 'සංශෝධන මකා දමන්න/මකා දැමීම ප්‍රතිලෝම කරන්න',
 'revdelete-nooldid-title'     => 'ඉලක්කගත සංශෝධනය අනීතිකයි',

@@ -735,13 +735,13 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'rev-deleted-comment'            => '(Beoarbaidengskommentoar wächhoald)',
 'rev-deleted-user'               => '(Benutsernoome wächhoald)',
 'rev-deleted-event'              => '(Logbouk-Aktion wächhoald)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks"> Disse Version wuude läsked un is nit moor eepentelk ientousjoon.
-Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">Disse Version wuude läsked un is nit moor eepentelk ientousjoon.
+'rev-deleted-text-permission'    => 'Disse Version wuude läsked un is nit moor eepentelk ientousjoon.
+Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].',
+'rev-deleted-text-view'          => 'Disse Version wuude läsked un is nit moor eepentelk ientousjoon.
 As Administrator koast du ju wieders ienkiekje.
-Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Du koast dissen Unnerscheed nit betrachtje, deer een fon do Versione uut do eepentelke Archive wáchhoald wuud.
-Details stounde in dän [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].</div>',
+Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].',
+'rev-deleted-no-diff'            => 'Du koast dissen Unnerscheed nit betrachtje, deer een fon do Versione uut do eepentelke Archive wáchhoald wuud.
+Details stounde in dän [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].',
 'rev-delundel'                   => 'wiese/ferbierge',
 'revisiondelete'                 => 'Versione läskje/wier häärstaale',
 'revdelete-nooldid-title'        => 'Uunjäildige Siel-Beoarbaidenge',

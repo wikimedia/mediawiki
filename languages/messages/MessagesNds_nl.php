@@ -984,17 +984,13 @@ De deur $3 op-egeven rejen is ''$2''",
 'rev-deleted-comment'            => '(commentaar vort-ehaold)',
 'rev-deleted-user'               => '(gebrukersnaam vort-edaon)',
 'rev-deleted-event'              => '(antekening vort-edaon)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-De geschiedenisse van disse pagina is uut de peblieke archieven ewis.
-Der kan veerdere infermasie staon in \'t [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek vort-edaone pagina\'s].
-</div>',
-'rev-deleted-text-view'          => "<div class=\"mw-warning plainlinks\">
-De geschiedenisse van disse pagina is uut de peblieke archieven ewis.
+'rev-deleted-text-permission'    => "De geschiedenisse van disse pagina is uut de peblieke archieven ewis.
+Der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek vort-edaone pagina's].",
+'rev-deleted-text-view'          => "De geschiedenisse van disse pagina is uut de peblieke archieven ewis.
 As beheerder van disse wiki ku-j 't wel zien;
-der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek vort-edaone pagina's].
-</div>",
-'rev-deleted-no-diff'            => "<div class=\"mw-warning plainlinks\">Je kunnen de verschillen neet bekieken umdat één van de versies uut 't peblieke archief vort-edaon is.
-De achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone pagina's].</div>",
+der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek vort-edaone pagina's].",
+'rev-deleted-no-diff'            => "Je kunnen de verschillen neet bekieken umdat één van de versies uut 't peblieke archief vort-edaon is.
+De achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone pagina's].",
 'rev-delundel'                   => 'teun/verbarg',
 'revisiondelete'                 => 'Wiezigingen vortdoon/herstellen',
 'revdelete-nooldid-title'        => 'Gien doelversie',

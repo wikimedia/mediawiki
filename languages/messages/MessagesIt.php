@@ -863,17 +863,13 @@ Legenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:la
 'rev-deleted-comment'            => '(commento rimosso)',
 'rev-deleted-user'               => '(nome utente rimosso)',
 'rev-deleted-event'              => '(azione del log rimossa)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
-Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
+'rev-deleted-text-permission'    => 'Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
+Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.',
+'rev-deleted-text-view'          => 'Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
 Il testo può essere visualizzato soltanto dagli amministratori del sito.
-Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Non puoi visualizzare questo diff perché una delle revisioni è stata rimossa dagli archivi pubblici.
-Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.</div>',
+Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.',
+'rev-deleted-no-diff'            => 'Non puoi visualizzare questo diff perché una delle revisioni è stata rimossa dagli archivi pubblici.
+Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.',
 'rev-delundel'                   => 'mostra/nascondi',
 'revisiondelete'                 => 'Cancella o ripristina versioni',
 'revdelete-nooldid-title'        => 'Versione non specificata',

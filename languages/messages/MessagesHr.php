@@ -998,17 +998,13 @@ Pokušajte [[Special:Search|pretražiti]] važnije nove stranice na wikiju.',
 'rev-deleted-comment'            => '(komentar uklonjen)',
 'rev-deleted-user'               => '(suradničko ime uklonjeno)',
 'rev-deleted-event'              => '(zapis uklonjen)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Ova je izmjena uklonjena iz javnoga arhiva.
-Detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} evidenciji brisanja].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Ova je izmjena uklonjena iz javnoga arhiva.
+'rev-deleted-text-permission'    => 'Ova je izmjena uklonjena iz javnoga arhiva.
+Detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} evidenciji brisanja].',
+'rev-deleted-text-view'          => 'Ova je izmjena uklonjena iz javnoga arhiva.
 Kao administrator na ovom projektu možete ju vidjeti;
-detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} evidenciji brisanja].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Ne možete vidjeti ovu inačicu zbog toga što je jedna od promjena uklonjen iz javnih arhiva.
-Možda postoji više informacija u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].</div>',
+detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].',
+'rev-deleted-no-diff'            => 'Ne možete vidjeti ovu inačicu zbog toga što je jedna od promjena uklonjen iz javnih arhiva.
+Možda postoji više informacija u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].',
 'rev-delundel'                   => 'pokaži/skrij',
 'revisiondelete'                 => 'Izbriši/vrati izmjene',
 'revdelete-nooldid-title'        => 'Nema tražene izmjene',

@@ -897,17 +897,13 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'            => '(comentário removido)',
 'rev-deleted-user'               => '(nome de usuário removido)',
 'rev-deleted-event'              => '(entrada removida)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Esta revisão desta página foi removida dos arquivos públicos.
-Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de eliminação].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-A revisão desta página foi removida dos arquivos públicos.
+'rev-deleted-text-permission'    => 'Esta revisão desta página foi removida dos arquivos públicos.
+Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de eliminação].',
+'rev-deleted-text-view'          => 'A revisão desta página foi removida dos arquivos públicos.
 Como um administrador desta wiki pode visualizá-la;
-mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de eliminação].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Você não pode ver esta modificação porque uma das revisões foi removida dos arquivos públicos.
-Pode haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].</div>',
+mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].',
+'rev-deleted-no-diff'            => 'Você não pode ver esta modificação porque uma das revisões foi removida dos arquivos públicos.
+Pode haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].',
 'rev-delundel'                   => 'mostrar/esconder',
 'revisiondelete'                 => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'        => 'Nenhuma revisão selecionada',
@@ -1062,6 +1058,9 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'notextmatches'                    => 'Nenhum texto nas páginas coincide',
 'prevn'                            => 'anteriores $1',
 'nextn'                            => 'próximos $1',
+'prevn-title'                      => '$1 {{PLURAL:$1|resultado anterior|resultados anteriores}}',
+'nextn-title'                      => '{{PLURAL:$1|próximo|próximos}} $1 {{PLURAL:$1|resultado|resultados}}',
+'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
 'viewprevnext'                     => 'Ver ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opções de pesquisa',
 'searchmenu-exists'                => "*'''Há uma página chamada \"[[\$1]]\" nesta wiki'''",
@@ -2239,6 +2238,9 @@ Por favor, escolha outro nome.',
 'move-redirect-suppressed'     => 'redirecionamento suprimido',
 'movelogpage'                  => 'Registro de movimento',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
+'movesubpage'                  => '{{PLURAL:$1|Sub-página|Sub-páginas}}',
+'movesubpagetext'              => 'Esta página tem $1 {{PLURAL:$1|sub-página mostrada|sub-páginas mostradas}} abaixo.',
+'movenosubpage'                => 'Esta página não tem sub-páginas.',
 'movereason'                   => 'Motivo:',
 'revertmove'                   => 'reverter',
 'delete_and_move'              => 'Eliminar e mover',

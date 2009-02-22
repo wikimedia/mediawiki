@@ -597,6 +597,10 @@ Dir hutt ärt Passwuert scho geännert oder een  neit temporairt Passwuert ugefr
 Vläicht hutt Dir Ärt Passwuert scho geännert oder en neit temporärt Passwuert ugefrot.',
 'resetpass-temp-password'   => 'Temporärt Passwuert:',
 'resetpass-no-others'       => "dir kënnt d'Passwuert net fir aner Benotzer zrécksetzen.",
+'resetpass-log'             => 'Logbuch vun den zréckgesate Passwierder',
+'resetpass-logtext'         => "Hei ass d'Logbuch vun de Benotzer denen hiirt Passwuert vun engem Admin zréckgesat gouf.",
+'resetpass-logentry'        => "huet d'Passwuert vum Benotzer:$1 geännert",
+'resetpass-comment'         => "Grond fir d'Passwuert zréckzesetzen:",
 
 # Edit page toolbar
 'bold_sample'     => 'Fettgedréckten Text',
@@ -830,11 +834,13 @@ Vläicht gouf se geläscht oder geréckelt.
 'rev-deleted-comment'            => '(Bemierkung geläscht)',
 'rev-deleted-user'               => '(Benotzernumm ewechgeholl)',
 'rev-deleted-event'              => '(Aktioun aus dem Logbuch erausgeholl)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks"> Dës Versioun gouf aus den ëffentlechen Archiven erausgeholl.
-Dir fannt eventuell méi Informatiounen an der [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läschlëscht].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">Dës Versioun gouf geläscht a kann net méi ëffentlech gewise ginn.
+'rev-deleted-text-permission'    => 'Dës Versioun gouf aus den ëffentlechen Archiven erausgeholl.
+Dir fannt eventuell méi Informatiounen an der [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läschlëscht].',
+'rev-deleted-text-view'          => "Dës Versioun gouf geläscht a kann net méi ëffentlech gewise ginn.
 Als Administrateur op {{SITENAME}} kënnt Dir se weiderhi gesinn.
-Prezisiounen iwwert d\'Läschen esou wéi de Grond fannt Dir am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].</div>',
+Prezisiounen iwwert d'Läschen esou wéi de Grond fannt Dir am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
+'rev-deleted-no-diff'            => 'Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen aus den ëffentlechen Archiven erausgeholl gouf.
+Details stinn am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].',
 'rev-delundel'                   => 'weisen/verstoppen',
 'revisiondelete'                 => 'Versioune läschen/restauréieren',
 'revdelete-nooldid-title'        => 'Ongülteg Zilversioun',
@@ -2583,6 +2589,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-exposureprogram-2' => 'Standardprogramm',
 'exif-exposureprogram-3' => 'Zäitautomatik',
 'exif-exposureprogram-4' => 'Blendenautomatik',
+'exif-exposureprogram-7' => 'Portrait-Programm (fir Fotoen vun no mat engem net-scharfen Hannergrond)',
 'exif-exposureprogram-8' => 'Landschaftsopnamen',
 
 'exif-subjectdistance-value' => '$1 Meter',

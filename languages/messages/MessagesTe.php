@@ -476,6 +476,7 @@ $2',
 'gender-unknown'             => 'వెల్లడించకండి',
 'gender-male'                => 'పురుషుడు',
 'gender-female'              => 'స్త్రీ',
+'prefs-help-gender'          => 'ఐచ్ఛికం: లింగ-సమంజసమైన సంబోధనలకు ఈ మృదుఉపకరణం వాడుకుంటుంది. ఈ సమాచారం బహిర్గతమౌతుంది.',
 'email'                      => 'ఈ-మెయిలు',
 'prefs-help-realname'        => 'అసలు పేరు (తప్పనిసరి కాదు), మీ అసలు పేరు ఇస్తేగనక, మీ రచనలన్నీ మీ అసలు పేరుతోనే గుర్తిస్తూ ఉంటారు.',
 'loginerror'                 => 'ప్రవేశంలో పొరపాటు',
@@ -769,13 +770,11 @@ $3 చెప్పిన కారణం: ''$2''",
 'rev-deleted-comment'         => '(వ్యాఖ్యను తొలగించాం)',
 'rev-deleted-user'            => '(సభ్యనామాన్ని తొలగించాం)',
 'rev-deleted-event'           => '(దినచర్యని తొలగించాం)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-సార్వజనిక భండారాల నుండి ఈ పేజీ కూర్పును తొలగించాం.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} తొలగింపు చిట్టా]లో వివరాలు ఉండవచ్చు.</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-సార్వజనిక భండారాల నుండి ఈ పేజీ కూర్పును తొలగించాం.
+'rev-deleted-text-permission' => 'సార్వజనిక భండారాల నుండి ఈ పేజీ కూర్పును తొలగించాం.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} తొలగింపు చిట్టా]లో వివరాలు ఉండవచ్చు.',
+'rev-deleted-text-view'       => 'సార్వజనిక భండారాల నుండి ఈ పేజీ కూర్పును తొలగించాం.
 {{SITENAME}} లో నిర్వాహకుడిగా మీరు దాన్ని చూడవచ్చు;
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} తొలగింపు చిట్టా]లో వివరాలు ఉండవచ్చు.</div>',
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} తొలగింపు చిట్టా]లో వివరాలు ఉండవచ్చు.',
 'rev-delundel'                => 'చూపించు/దాచు',
 'revisiondelete'              => 'కూర్పులను తొలగించు/తొలగింపును రద్దుచెయ్యి',
 'revdelete-nooldid-title'     => 'తప్పుడు లక్ష్యపు కూర్పు',

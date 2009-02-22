@@ -687,14 +687,10 @@ $3-এর দেয়া কারণ হল ''$2''",
 'rev-deleted-comment'         => '(মন্তব্য সরিয়ে নেওয়া হয়েছে)',
 'rev-deleted-user'            => '(ব্যবহারকারীর নাম সরিয়ে নেওয়া হয়েছে)',
 'rev-deleted-event'           => '(লগ অ্যাকশন সরানো হয়েছে)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-এই সংশোধনটি উন্মুক্ত আর্কাইভ থেকে সরিয়ে ফেলা হয়েছে।
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি লগে] এ ব্যাপারে বিস্তারিত বিবরণ থাকতে পারে।
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-এই সংশোধনটি উন্মুক্ত আর্কাইভ থেকে সরিয়ে ফেলা হয়েছে।
-{{SITENAME}}-এর একজন প্রশাসক হিসেবে আপনি এটি দেখতে পারেন; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি লগে] এ ব্যাপারে বিস্তারিত বিবরণ থাকতে পারে।
-</div>',
+'rev-deleted-text-permission' => 'এই সংশোধনটি উন্মুক্ত আর্কাইভ থেকে সরিয়ে ফেলা হয়েছে।
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি লগে] এ ব্যাপারে বিস্তারিত বিবরণ থাকতে পারে।',
+'rev-deleted-text-view'       => 'এই সংশোধনটি উন্মুক্ত আর্কাইভ থেকে সরিয়ে ফেলা হয়েছে।
+{{SITENAME}}-এর একজন প্রশাসক হিসেবে আপনি এটি দেখতে পারেন; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} অবলুপ্তি লগে] এ ব্যাপারে বিস্তারিত বিবরণ থাকতে পারে।',
 'rev-delundel'                => 'দেখাও/আড়াল করো',
 'revisiondelete'              => 'অবলুপ্ত/পুনঃস্থাপন সংশোধনসমূহ',
 'revdelete-nooldid-title'     => 'বেঠিক লক্ষ্য সংশোধন',

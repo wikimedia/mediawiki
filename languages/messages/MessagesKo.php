@@ -710,6 +710,10 @@ $messages = array(
 당신은 이미 비밀번호를 성공적으로 변경하였거나 새 임시 비밀번호를 발급받았을 수 있습니다.',
 'resetpass-temp-password'   => '임시 비밀번호:',
 'resetpass-no-others'       => '당신은 다른 사용자의 비밀번호를 변경할 수 없습니다.',
+'resetpass-log'             => '비밀번호 변경 기록',
+'resetpass-logtext'         => '다음은 관리자에 의해 비밀번호가 변경된 사용자에 대한 기록입니다.',
+'resetpass-logentry'        => '$1 사용자의 비밀번호를 변경',
+'resetpass-comment'         => '비밀번호를 바꾸는 이유:',
 
 # Edit page toolbar
 'bold_sample'     => '굵은 글씨',
@@ -937,15 +941,13 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rev-deleted-comment'            => '(편집 요약 삭제됨)',
 'rev-deleted-user'               => '(계정 이름 삭제됨)',
 'rev-deleted-event'              => '(로그 삭제됨)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-이 문서의 편집은 문서 역사에서 제거되었습니다.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-이 문서의 편집은 문서 역사에서 제거되었습니다.
+'rev-deleted-text-permission'    => '이 문서의 편집은 문서 역사에서 제거되었습니다.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..',
+'rev-deleted-text-view'          => '이 문서의 편집은 문서 역사에서 제거되었습니다.
 당신은 {{SITENAME}}의 관리자로서, 삭제된 편집을 볼 수 있습니다;
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">당신은 특정 판이 문서 역사에서 제거되었기 때문에 이 차이를 확인할 수 없습니다.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..</div>',
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.',
+'rev-deleted-no-diff'            => '당신은 특정 판이 문서 역사에서 제거되었기 때문에 이 차이를 확인할 수 없습니다.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..',
 'rev-delundel'                   => '보이기/숨기기',
 'revisiondelete'                 => '버전 삭제/복구',
 'revdelete-nooldid-title'        => '대상 판이 잘못되었습니다.',

@@ -825,14 +825,10 @@ Legenda: (orain) = oraingo bertsioarekiko ezberdintasuna,
 'rev-deleted-comment'            => '(iruzkina ezabatu da)',
 'rev-deleted-user'               => '(erabiltzailea ezabatu da)',
 'rev-deleted-event'              => '(log ekintza ezabatu da)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Xehetasunak [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} ezabaketa erregistroan] ikus daitezke.
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Guneko administratzaile bezala ikusteko aukera daukazu ordea; xehetasunak [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} ezabaketa erregistroan] ikus ditzakezu.
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Ezin duzu ezberdintasun hau ikusi, berrikuspenetako bat ezabatua izan delako artxibo publikotik.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Ezabapen erregistroan] zehaztasun gehiago aurki ditzazkezu.</div>',
+'rev-deleted-text-permission'    => 'Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Xehetasunak [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} ezabaketa erregistroan] ikus daitezke.',
+'rev-deleted-text-view'          => 'Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Guneko administratzaile bezala ikusteko aukera daukazu ordea; xehetasunak [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} ezabaketa erregistroan] ikus ditzakezu.',
+'rev-deleted-no-diff'            => 'Ezin duzu ezberdintasun hau ikusi, berrikuspenetako bat ezabatua izan delako artxibo publikotik.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Ezabapen erregistroan] zehaztasun gehiago aurki ditzazkezu.',
 'rev-delundel'                   => 'erakutsi/ezkutatu',
 'revisiondelete'                 => 'Berrikuspenak ezabatu/leheneratu',
 'revdelete-nooldid-title'        => 'Helburu berrikuspenik ez',

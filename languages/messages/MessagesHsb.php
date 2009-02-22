@@ -596,6 +596,10 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
 'resetpass-temp-password'   => 'Nachwilne hesło:',
 'resetpass-no-others'       => 'Njemóžeš hesło za druhich wužiwarjow wróćo stajić.',
+'resetpass-log'             => 'Protokol wo změnjenju hesłow',
+'resetpass-logtext'         => 'Deleka je protokol wužiwarjow, kotrychž hesło administrator je anulował.',
+'resetpass-logentry'        => 'změni hesło za $1',
+'resetpass-comment'         => 'Přičina za anulowanje hesła:',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučny tekst',
@@ -818,10 +822,10 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'rev-deleted-comment'            => '(komentar wotstronjeny)',
 'rev-deleted-user'               => '(wužiwarske mjeno wotstronjene)',
 'rev-deleted-event'              => '(Protokolowa akcija bu wotstronjena)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">Tuta wersija bu wušmórnjena a njeda so wjace čitać. Přićinu móžeš w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow] zhonić.</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">Tuta wersija bu wušmórnjena a njeda so wjace čitać. Jako administrator móžeš ju pak dale čitać. Přićinu móžeš w [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} protokolu wušmórnjenjow] zhonić.</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow je so ze zjawnych archiwow wotstroniła.
-Hlej ewentuelne podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnenjow].</div>',
+'rev-deleted-text-permission'    => 'Tuta wersija bu wušmórnjena a njeda so wjace čitać. Přićinu móžeš w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow] zhonić.',
+'rev-deleted-text-view'          => 'Tuta wersija bu wušmórnjena a njeda so wjace čitać. Jako administrator móžeš ju pak dale čitać. Přićinu móžeš w [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow] zhonić.',
+'rev-deleted-no-diff'            => 'Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow je so ze zjawnych archiwow wotstroniła.
+Hlej ewentuelne podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnenjow].',
 'rev-delundel'                   => 'pokazać/schować',
 'revisiondelete'                 => 'Wersije wušmórnyć/wobnowić',
 'revdelete-nooldid-title'        => 'Njepłaćiwa cilowa wersija',

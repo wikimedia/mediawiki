@@ -271,7 +271,7 @@ $messages = array(
 'mypage'         => 'Pahina ko',
 'mytalk'         => 'Usapan ko',
 'anontalk'       => 'Usapan para sa IP na ito',
-'navigation'     => 'Panlibot (nabigasyon)',
+'navigation'     => 'Paglilibot (nabigasyon)',
 'and'            => ',&#32;at',
 
 # Metadata in edit box
@@ -281,7 +281,7 @@ $messages = array(
 'returnto'          => 'Bumalik sa $1.',
 'tagline'           => 'Mula sa {{SITENAME}}',
 'help'              => 'Tulong',
-'search'            => 'Maghanap',
+'search'            => 'Paghahanap',
 'searchbutton'      => 'Maghanap',
 'go'                => 'Gawin',
 'searcharticle'     => 'Gawin',
@@ -289,7 +289,7 @@ $messages = array(
 'history_short'     => 'Kasaysayan',
 'updatedmarker'     => 'isinapanahon mula noong huli kong pagdalaw',
 'info_short'        => 'Kabatiran',
-'printableversion'  => 'Bersyong nalilimbag',
+'printableversion'  => 'Bersyong maililimbag',
 'permalink'         => 'Palagiang kawing',
 'print'             => 'Ilimbag',
 'edit'              => 'Baguhin',
@@ -329,13 +329,13 @@ $messages = array(
 'viewcount'         => 'Namataan na pahinang ito nang {{PLURAL:$1|isang|$1}} ulit.',
 'protectedpage'     => 'Pahinang nakasanggalang',
 'jumpto'            => 'Tumalon sa:',
-'jumptonavigation'  => 'Panlibot (nabigasyon)',
+'jumptonavigation'  => 'paglilibot (nabigasyon)',
 'jumptosearch'      => 'Paghahanap',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tungkol sa {{SITENAME}}',
 'aboutpage'            => 'Project:Patungkol',
-'copyright'            => 'Maaring gamitin ang nilalaman sa ilalim ng $1.',
+'copyright'            => 'Maaaring gamitin ang nilalaman sa ilalim ng $1.',
 'copyrightpagename'    => 'Karapatang-ari sa {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Mga karapatang-ari',
 'currentevents'        => 'Mga kasalukuyang kaganapan',
@@ -880,16 +880,12 @@ Subukang [[Special:Search|hanapin sa wiki]] para sa mga kaugnay na mga bagong pa
 'rev-deleted-comment'            => '(tinanggal ang kumento/puna)',
 'rev-deleted-user'               => '(tinanggal ang pangalan ng tagagamit)',
 'rev-deleted-event'              => '(tinanggal ang galaw sa talaan)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Tinanggal ang mga pagbabago ng pahina mula sa mga publikong arkibo.
-May mga detalye sa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} tala ng pagbura].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Tinanggal ang mga pagbabago ng pahina ito mula sa mga publikong arkibo.
+'rev-deleted-text-permission'    => 'Tinanggal ang mga pagbabago ng pahina mula sa mga publikong arkibo.
+May mga detalye sa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} tala ng pagbura].',
+'rev-deleted-text-view'          => 'Tinanggal ang mga pagbabago ng pahina ito mula sa mga publikong arkibo.
 Bilang isang tagapangasiwa sa sayt na ito, maaaring makita mo ito;
-maaaring may detalye sa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} tala ng pagbura].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Hindi mo maaaring tingnan ang pagkakaibang ito dahil tinanggal na ang isa sa mga pagbabago mula sa sinupang pangmadla.  Maaaring may mga detalye mula sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].</div>',
+maaaring may detalye sa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} tala ng pagbura].',
+'rev-deleted-no-diff'            => 'Hindi mo maaaring tingnan ang pagkakaibang ito dahil tinanggal na ang isa sa mga pagbabago mula sa sinupang pangmadla.  Maaaring may mga detalye mula sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].',
 'rev-delundel'                   => 'ipakita/itago',
 'revisiondelete'                 => 'Burahin/ibalik ang mga pagbabago',
 'revdelete-nooldid-title'        => 'Hindi tanggap na puntiryang pagbabago',
@@ -1193,7 +1189,7 @@ pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 * Ipinapahiwatig ng * na maaaring tanggalng ang pangkat kapag dinagdag ito, o ang kabaglitaran nito.',
 'userrights-reason'           => 'Dahilan ng pagbabago:',
 'userrights-no-interwiki'     => 'Wala kang pahintulot na baguhin ang mga karapatan ng tagagamit sa ibang mga wiki.',
-'userrights-nodatabase'       => 'Hindi umiiral ang kalipunan ng mga datong $1 o kaya hindi ito katutubo/lokal.',
+'userrights-nodatabase'       => 'Hindi umiiral o hindi lokal ang kalipunan ng datos na $1',
 'userrights-nologin'          => 'Kailangang [[Special:UserLogin|nakalagda ka]] bilang tagapangasiwa upang maitalaga ang mga karapatan ng tagagamit.',
 'userrights-notallowed'       => 'Walang pahintulot ang iyong akawnt na magtalaga ng mga karapatan ng tagagamit.',
 'userrights-changeable-col'   => 'Mga pangkat na maaari mong baguhin',
@@ -2185,7 +2181,7 @@ Huwag kalimutang [[Special:UnlockDB|tanggalin ang kandado]] pagkaraan mong maisa
 'unlockdbsuccesstext' => 'Tinanggal na ang kandado at nabuksan na ang kalipunan ng dato.',
 'lockfilenotwritable' => "Hindi masusulatan ang talaksang pangkandado ng kalipunan ng dato.
 Para ikandado o tanggalin ang kandado ng kalipunan ng dato, kailangan nitong maging nasusulatan/masusulatan ng serbidor ng ''web''.",
-'databasenotlocked'   => 'Hindi nakakandado ang kalipunan ng dato.',
+'databasenotlocked'   => 'Hindi nakakandado ang kalipunan ng datos.',
 
 # Move page
 'move-page'                    => 'Ilipat ang $1',
@@ -2386,7 +2382,7 @@ Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwikin
 'tooltip-t-upload'                => 'Magkarga ng mga talaksan',
 'tooltip-t-specialpages'          => 'Tala ng lahat ng mga natatanging pahina',
 'tooltip-t-print'                 => 'Nalilimbag na bersyon ng pahinang ito',
-'tooltip-t-permalink'             => 'Permanenteng kawing sa bersyong ito ng pahina',
+'tooltip-t-permalink'             => 'Palagiang kawing sa bersyong ito ng pahina',
 'tooltip-ca-nstab-main'           => 'Tingnan ang pahina ng nilalaman',
 'tooltip-ca-nstab-user'           => 'Tingnan ang pahina ng tagagamit',
 'tooltip-ca-nstab-media'          => 'Tingnan ang pahina ng midya',

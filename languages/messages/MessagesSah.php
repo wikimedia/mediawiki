@@ -753,13 +753,12 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'rev-deleted-comment'            => '(ырытыы сотулунна)',
 'rev-deleted-user'               => '(кыттааччы аата сотулунна)',
 'rev-deleted-event'              => '(бэлиэтээһин дьайыыта сотулунна)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks"> Ыстатыйа бу торума архыыптан сотуллубут. Быһаарыыта  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп. </div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Ыстатыйа бу торума архыыптан сотуллубут.
+'rev-deleted-text-permission'    => 'Ыстатыйа бу торума архыыптан сотуллубут. Быһаарыыта  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.',
+'rev-deleted-text-view'          => 'Ыстатыйа бу торума архыыптан сотуллубут.
 Ол эрэн эн администратор буоларыҥ быһыытынан көрүөххүн сөп.
-Сотуллубутун быһаарыыта [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} манна] баар буолуон сөп.</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Барыллар бу сирэйдэрин көрөр кыаҕыҥ суох, тоҕо диэтэххэ сирэй биир барыла аһаҕас архыыптан сотуллубут.
-Сиһилии [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] суруллубут буолуон сөп.</div>',
+Сотуллубутун быһаарыыта [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.',
+'rev-deleted-no-diff'            => 'Барыллар бу сирэйдэрин көрөр кыаҕыҥ суох, тоҕо диэтэххэ сирэй биир барыла аһаҕас архыыптан сотуллубут.
+Сиһилии [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] суруллубут буолуон сөп.',
 'rev-delundel'                   => 'көрдөр/кистээ',
 'revisiondelete'                 => 'Соторго/торуму төнүннэрэргэ',
 'revdelete-nooldid-title'        => 'Торум чопчу ыйыллыбата',

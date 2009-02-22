@@ -961,17 +961,13 @@ $3 указал следующую причину: ''$2''",
 'rev-deleted-comment'            => '(комментарий удалён)',
 'rev-deleted-user'               => '(имя автора стёрто)',
 'rev-deleted-event'              => '(запись удалена)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Эта версия страницы была удалена из общедоступного архива.
-Возможно, объяснения даны в [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} журнале удалений].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Эта версия страницы была удалена из общедоступного архива.
+'rev-deleted-text-permission'    => 'Эта версия страницы была удалена из общедоступного архива.
+Возможно, объяснения даны в [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} журнале удалений].',
+'rev-deleted-text-view'          => 'Эта версия страницы была удалена из общедоступного архива.
 Вы можете просмотреть её, так как являетесь администратором сайта.
-Возможно, объяснения удаления даны в [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} журнале удалений].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Вы не можете просмотреть эту разницу версий, так как одна из версий страницы была изъята из общедоступного архива.
-Возможно, подробности можно найти в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале удалений].</div>',
+Возможно, объяснения удаления даны в [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} журнале удалений].',
+'rev-deleted-no-diff'            => 'Вы не можете просмотреть эту разницу версий, так как одна из версий страницы была изъята из общедоступного архива.
+Возможно, подробности можно найти в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале удалений].',
 'rev-delundel'                   => 'показать/скрыть',
 'revisiondelete'                 => 'Удалить / восстановить версии страницы',
 'revdelete-nooldid-title'        => 'Не задана целевая версия',

@@ -509,7 +509,7 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'yournick'                   => 'Eich llysenw (fel llofnod):',
 'badsig'                     => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
 'badsiglength'               => "Mae'ch llysenw'n rhy hir. 
-Rhaid iddo fod yn llai na(g) $1 {{PLURAL:$1|llythyren|lythyren|lythyren|llythyren|llythyren|llythyren}} o hyd.",
+Gall fod hyd at $1 {{PLURAL:$1|llythyren|lythyren|lythyren|llythyren|llythyren|llythyren}} o hyd.",
 'yourgender'                 => 'Rhyw:',
 'gender-unknown'             => 'Heb ei nodi',
 'gender-male'                => 'Gwrywaidd',
@@ -582,6 +582,11 @@ Efallai eich bod eisoes wedi llwyddo newid eich cyfrinair neu eich bod wedi gwne
 'resetpass-wrong-oldpass'   => "Mae'r cyfrinair dros dro neu gyfredol yn annilys.
 Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gofyn am gyfrinair dros dro newydd.",
 'resetpass-temp-password'   => 'Cyfrinair dros dro:',
+'resetpass-no-others'       => 'Ni allwch ailosod cyfrinair dros ddefnyddwyr eraill.',
+'resetpass-log'             => 'Lòg ailosod cyfrineiriau',
+'resetpass-logtext'         => 'Dyma lòg y defnyddwyr hynny y mae eu cyfrinair wedi ei ailosod ar eu rhan gan weinyddwr.',
+'resetpass-logentry'        => 'wedi newid y cyfrinair ar gyfer $1',
+'resetpass-comment'         => 'Y rheswm dros ailosod y cyfrinair:',
 
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',
@@ -809,13 +814,11 @@ Gallwch [[Special:Search|chwilio'r]] wici am dudalennau eraill perthnasol.",
 'rev-deleted-comment'         => '(sylwad wedi ei ddiddymu)',
 'rev-deleted-user'            => '(enw defnyddiwr wedi ei ddiddymu)',
 'rev-deleted-event'           => '(tynnwyd gweithred y lòg)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Tynnwyd y dudalen hon o\'r archif cyhoeddus.
-Hwyrach bod manylion pellach ar y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lòg dileu].</div>',
-'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
-Mae'r diwygiad hwn o'r dudalen wedi cael ei ddiddymu o'r archifau cyhoeddus.
+'rev-deleted-text-permission' => "Tynnwyd y dudalen hon o'r archif cyhoeddus.
+Hwyrach bod manylion pellach ar y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lòg dileu].",
+'rev-deleted-text-view'       => "Mae'r diwygiad hwn o'r dudalen wedi cael ei ddiddymu o'r archifau cyhoeddus.
 Fel gweinyddwr ar {{SITENAME}} gallwch ei weld;
-gall fod manylion yn y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lòg dileu].</div>",
+gall fod manylion yn y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lòg dileu].",
 'rev-delundel'                => 'dangos/cuddio',
 'revisiondelete'              => 'Dileu/dad-ddileu diwygiadau',
 'revdelete-selected'          => "'''Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:'''",
@@ -1273,6 +1276,9 @@ Gweler y [[Special:NewFiles|galeri o ffeiliau newydd]] i fwrw golwg drostynt.",
 'largefileserver'             => "Mae'r ffeil yn fwy na'r hyn mae'r gweinydd yn ei ganiatau.",
 'emptyfile'                   => "Ymddengys fod y ffeil a uwchlwythwyd yn wag. Efallai bod gwall teipio yn enw'r ffeil. Sicrhewch eich bod wir am uwchlwytho'r ffeil.",
 'fileexists'                  => "Mae ffeil gyda'r enw hwn eisoes yn bodoli; gwiriwch '''<tt>$1</tt>''' os nad ydych yn sicr bod angen ei newid.",
+'filepageexists'              => "Mae tudalen ddisgrifiad ar gyfer y ffeil hon eisoes ar gael ar '''<tt>$1</tt>''', ond nid oes ffeil o'r enw hwn ar gael ar hyn o bryd.
+Ni fydd crynodeb a osodir wrth uwchlwytho yn ymddangos ar y dudalen ddisgrifiad.
+Er mwyn gwneud i'r crynodeb ymddangos yno, bydd raid i chi olygu'r dudalen ddisgrifiad yn unswydd.",
 'fileexists-extension'        => "Mae ffeil ag enw tebyg eisoes yn bod:<br />
 Enw'r ffeil ar fin ei uwchlwytho: '''<tt>$1</tt>'''<br />
 Enw'r ffeil sydd eisoes yn bod: '''<tt>$2</tt>'''<br />
@@ -1380,6 +1386,8 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 'noimage'                   => "Does dim ffeil a'r enw hwn i gael, ond gallwch $1.",
 'noimage-linktext'          => 'uwchlwytho un',
 'uploadnewversion-linktext' => "Uwchlwytho fersiwn newydd o'r ffeil hon",
+'shared-repo-from'          => 'oddi ar $1', # $1 is the repository name
+'shared-repo'               => 'storfa cyfrannol', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Gwrthdroi $1',
@@ -2077,6 +2085,9 @@ Dewiswch enw arall os gwelwch yn dda.",
 'move-redirect-suppressed'  => 'ataliwyd ailgyfeirio',
 'movelogpage'               => 'Lòg symud tudalennau',
 'movelogpagetext'           => "Isod mae rhestr y tudalennau sydd wedi'u symud",
+'movesubpage'               => '{{PLURAL:$1|Isdudalen|Isdudalen|Isdudalennau|Isdudalennau|Isdudalennau|Isdudalennau}}',
+'movesubpagetext'           => 'Mae gan y dudalen hon $1 {{PLURAL:$1|isdudalen|isdudalen|isdudalen|isdudalen|o isdudalennau}} a ddangosir isod.',
+'movenosubpage'             => "Nid oes isdudalennau i gael i'r dudalen hon.",
 'movereason'                => 'Rheswm:',
 'revertmove'                => 'symud nôl',
 'delete_and_move'           => 'Dileu a symud',

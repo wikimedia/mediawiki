@@ -205,6 +205,7 @@ $messages = array(
 'aboutpage'            => 'Project:Mombamomba',
 'copyright'            => '$1 no mifehy ny fampiasana ny votoatin-kevitra eto.',
 'currentevents'        => 'Ny vaovao',
+'disclaimers'          => 'Fampitandremana',
 'disclaimerpage'       => 'Project:General disclaimer',
 'edithelp'             => 'Fanoroana',
 'edithelppage'         => 'Help:Endritsoratra',
@@ -231,12 +232,14 @@ Mitaky version $1-n'i MediaWiki",
 'hidetoc'            => 'afeno',
 'thisisdeleted'      => 'Hojerena sa haverina i $1?',
 'viewdeleted'        => "Hijery an'i $1?",
+'red-link-title'     => '$1 (mbola tsy misy)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Lahatsoratra',
-'nstab-user'      => "Pejin'ny mpikambana",
+'nstab-user'      => 'Pejy ny mpikambana',
 'nstab-media'     => 'Pejy sary sy/na feo',
-'nstab-special'   => 'Manokana',
+'nstab-special'   => 'Pejy Manokana',
+'nstab-project'   => 'Tetikasa',
 'nstab-image'     => 'Rakitra',
 'nstab-mediawiki' => 'Hafatra',
 'nstab-template'  => 'Endrika',
@@ -267,6 +270,7 @@ Toy izao no navalin\'ny MySQL "$3: $4"',
 'noconnect'        => "
 	Miala tsiny! Misedra olana kely ny wiki ankehitriny, ary tsy afaka mifandray amin'ny serveur banky angona <br />
 $1",
+'nodb'             => "Tsy afaka misafidy/mijery ny ''base de données'' $1",
 'cachederror'      => "Ity manaraka ity no dika caché an'io pejy ilainao io, nefa mety ho efa mialin'andro.",
 'laggedslavemode'  => 'Fampitandremana: Mety ho tsy nisy fanovana vao haingana angamba io pejy io',
 'readonly'         => 'Mihidy ny banky angona',
@@ -345,6 +349,8 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'badsig'                     => 'Tsy mety io sonia io; hamarino ny kialo HTML.',
 'badsiglength'               => "Lava laotra ny sonianao.
 Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
+'gender-male'                => 'Lehilahy',
+'gender-female'              => 'Vehivavy',
 'email'                      => 'Imailaka',
 'prefs-help-realname'        => "Anarana marina (afaka tsy fenoina): raha fenoinao ity dia hampiasaina hanomezana anao tambin'ny asa izay efainao eto.",
 'loginerror'                 => "Tsy fetezana teo amin'ny fidirana",
@@ -422,6 +428,19 @@ Azafady manomeza adiresy voasoratra tsara na avelao ho banga io toerana io.',
 'showpreview'            => 'Asehoy aloha',
 'showdiff'               => 'Asehoy ny fiovana',
 'blockedtitle'           => 'Mpikambana voasakana',
+'blockedtext'            => "<big>'''Voasakana ny solonanaranao na ny adiresy IP anao.'''</big>
+
+Nataon'i $1 ny fisakanana.
+Ny antony : ''$2''.
+
+* Fanombohan'ilay fisakanana : $8
+* Farany : $6
+* Kaonty voasakana : $7.
+
+Afaka antsoinao i $1 na [[{{MediaWiki:Grouppage-sysop}}|ny mpandrindra]] mba hiresaka mombamomba n'izany.
+Afaka andefasanao imailaka ra nampiditra ny adiresy imailakanao ianao ao anatin'ny [[Special:Preferences|mombamombanao]].
+'''$3''' ny adiresy IP-nao ary ny ''identifiant de blocage''-nao dia #$5.
+Asio ao anaty ny fangatahanao io adiresy io.",
 'whitelistedittitle'     => 'Midira/Misorata anarana',
 'whitelistedittext'      => "Mila $1 aloha ianao vao afaka manova/mamorona pejy eto amin'ity wiki ity.",
 'loginreqtitle'          => 'Mila fidirana',

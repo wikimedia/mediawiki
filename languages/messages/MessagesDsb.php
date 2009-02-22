@@ -608,6 +608,10 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło pominał.',
 'resetpass-temp-password'   => 'Nachylne gronidło:',
 'resetpass-no-others'       => 'Njamóžoš gronidło za drugich wužywarjow slědk stajiś.',
+'resetpass-log'             => 'Protokol wó anulěrowanju gronidłow',
+'resetpass-logtext'         => 'Dołojce jo protokol wužywarjow, kótarychž gronidło administrator jo anulěrował.',
+'resetpass-logentry'        => 'jo změnił gronidło za $1',
+'resetpass-comment'         => 'Pśicyna za anulěrowanje gronidła:',
 
 # Edit page toolbar
 'bold_sample'     => 'Tucny tekst',
@@ -837,10 +841,10 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 'rev-deleted-comment'            => '(Komentar wulašowany)',
 'rev-deleted-user'               => '(Wužywarske mě wulašowane)',
 'rev-deleted-event'              => '(protokolowa akcija wulašowana)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">Toś ta wersija jo ze zjawnych archiwow se wulašowała. Dalšne informacije wó wulašowanju a pśicynu wulašowanja namakaju se we [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wulašowańskej log-lisćinje].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">Toś ta wersija jo ze zjawnych archiwow se wulašowała. Ako administrator móžoš je dalej wiźeś. Dalšne informacije wó wulašowanju a pśicyna wulašowanja namakaju se w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wulašowańskej lisćinje].</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Njamóžoš se toś ten rozdźěl woglědaś, dokulaž jadna z wersijow jo se wótpórała ze zjawnych archiwow.
-Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].</div>',
+'rev-deleted-text-permission'    => 'Toś ta wersija jo ze zjawnych archiwow se wulašowała. Dalšne informacije wó wulašowanju a pśicynu wulašowanja namakaju se we [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wulašowańskej log-lisćinje].',
+'rev-deleted-text-view'          => 'Toś ta wersija jo ze zjawnych archiwow se wulašowała. Ako administrator móžoš je dalej wiźeś. Dalšne informacije wó wulašowanju a pśicyna wulašowanja namakaju se w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wulašowańskej lisćinje].',
+'rev-deleted-no-diff'            => 'Njamóžoš se toś ten rozdźěl woglědaś, dokulaž jadna z wersijow jo se wótpórała ze zjawnych archiwow.
+Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].',
 'rev-delundel'                   => 'pokazaś/schowaś',
 'revisiondelete'                 => 'Wersije wulašowaś/wótnowiś',
 'revdelete-nooldid-title'        => 'Njepłaśiwa celowa wersija',

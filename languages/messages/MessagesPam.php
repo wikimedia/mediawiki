@@ -674,13 +674,11 @@ Subukan me ing [[Special:Search|searching on the wiki]] para kareng bayung bulun
 'rev-deleted-comment'         => '(milako ya ing komentu)',
 'rev-deleted-user'            => '(talagamit lagyu milako ya)',
 'rev-deleted-event'           => '(ing gawang pamaglog milako ya)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Milako ya king simpanan a pangmalda (public archives) ining pamanalili king bulung.
-Mapaliaring ating detalle king [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} tala ding mebura (deletion log)].</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Milako ya king simpanan malda (public archives) ining pamanaliling bulung.
+'rev-deleted-text-permission' => 'Milako ya king simpanan a pangmalda (public archives) ining pamanalili king bulung.
+Mapaliaring ating detalle king [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} tala ding mebura (deletion log)].',
+'rev-deleted-text-view'       => 'Milako ya king simpanan malda (public archives) ining pamanaliling bulung.
 Anting talapanibala ning {{SITENAME}}, maliari meng akit;
-mapaliaring maki detalle king [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} tala ding mebura (deletion log)].</div>',
+mapaliaring maki detalle king [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} tala ding mebura (deletion log)].',
 'rev-delundel'                => 'pakit/salikot',
 'revisiondelete'              => 'Ilako/e-ilako ing pamanalili',
 'revdelete-nooldid-title'     => 'E ustung pamanaliling target',

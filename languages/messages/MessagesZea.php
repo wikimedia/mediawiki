@@ -696,13 +696,11 @@ Misschien is een verwiederd of hernoemd.
 'rev-deleted-comment'         => '(opmerkieng verwiederd)',
 'rev-deleted-user'            => '(gebruker verwiederd)',
 'rev-deleted-event'           => '(logboekrehel verwiederd)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Deêze bewerkieng van de pagina is verwiederd uut de publieke archieven.
-Der kunn\'n details anwezig zien in \'t [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}verwiederiengslogboek].
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Deêze bewerkieng van de pagina is verwiederd uut de publieke archieven.
+'rev-deleted-text-permission' => "Deêze bewerkieng van de pagina is verwiederd uut de publieke archieven.
+Der kunn'n details anwezig zien in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}verwiederiengslogboek].",
+'rev-deleted-text-view'       => "Deêze bewerkieng van de pagina is verwiederd uut de publieke archieven.
 As opzichter van {{SITENAME}} kan je dezen ziene;
-der kunn\'n details anwezig zien in \'t [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} verwiederiengslogboek].</div>',
+der kunn'n details anwezig zien in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwiederiengslogboek].",
 'rev-delundel'                => 'weerheven/verberhen',
 'revisiondelete'              => 'Versies verwiederen/trugplekken',
 'revdelete-nooldid-title'     => 'Hin doelversie',

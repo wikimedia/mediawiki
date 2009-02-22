@@ -885,14 +885,11 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 'rev-deleted-comment'            => "(s'ha suprimit el comentari)",
 'rev-deleted-user'               => "(s'ha suprimit el nom d'usuari)",
 'rev-deleted-event'              => "(s'ha suprimit el registre d'accions)",
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Vegeu més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d\'esborrats].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a administrador d\'aquest wiki podeu veure-la; vegeu-ne més detalls al [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registre d\'esborrats].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">No podeu veure aquesta comparativa perquè una de les versions ha estat esborrada dels arxius públics.
-Potser trobareu detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d\'esborrats].</div>',
+'rev-deleted-text-permission'    => "Aquesta versió de la pàgina ha estat eliminada dels arxius públics.
+Vegeu més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+'rev-deleted-text-view'          => "Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a administrador d'aquest wiki podeu veure-la; vegeu-ne més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+'rev-deleted-no-diff'            => "No podeu veure aquesta comparativa perquè una de les versions ha estat esborrada dels arxius públics.
+Potser trobareu detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-delundel'                   => 'mostra/amaga',
 'revisiondelete'                 => 'Esborrar/restaurar revisions',
 'revdelete-nooldid-title'        => 'La revisió objectiu no és vàlida',
@@ -2237,6 +2234,9 @@ Incorporeu-les manualment, si us plau.",
 'move-redirect-suppressed'     => 'redirecció suprimida',
 'movelogpage'                  => 'Registre de reanomenaments',
 'movelogpagetext'              => 'Vegeu la llista de les darreres pàgines reanomenades.',
+'movesubpage'                  => 'Subpàgines',
+'movesubpagetext'              => 'Aquesta pàgina té {{PLURAL:$1|una subpàgina|$1 subpàgines}} que es mostren a continuació.',
+'movenosubpage'                => 'Aquesta pàgina no té subpàgines.',
 'movereason'                   => 'Motiu',
 'revertmove'                   => 'reverteix',
 'delete_and_move'              => 'Elimina i trasllada',

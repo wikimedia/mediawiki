@@ -847,15 +847,13 @@ $1',
 'rev-deleted-comment'            => '(評論已經移除咗)',
 'rev-deleted-user'               => '(用戶名已經移除咗)',
 'rev-deleted-event'              => '(日誌動作已經移除咗)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-呢頁嘅修訂喺公共檔案庫中已經被洗咗。
-喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-呢頁嘅修訂喺公共檔案庫中已經洗咗。
+'rev-deleted-text-permission'    => '呢頁嘅修訂喺公共檔案庫中已經被洗咗。
+喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。',
+'rev-deleted-text-view'          => '呢頁嘅修訂喺公共檔案庫中已經洗咗。
 作為一個喺{{SITENAME}}嘅管理員，你可以去睇吓佢；
-喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">因為其中一次修訂響公眾歸檔度拎走咗，你唔可以睇呢個差異。
-響[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]度可能有更多嘅資料。</div>',
+喺[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。',
+'rev-deleted-no-diff'            => '因為其中一次修訂響公眾歸檔度拎走咗，你唔可以睇呢個差異。
+響[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]度可能有更多嘅資料。',
 'rev-delundel'                   => '顯示／隱藏',
 'revisiondelete'                 => '刪除／反刪除修訂',
 'revdelete-nooldid-title'        => '無效嘅目標修訂',

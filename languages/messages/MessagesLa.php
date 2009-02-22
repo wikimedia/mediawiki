@@ -1142,9 +1142,15 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'nolinkstoimage'            => 'Nullae paginae ad hunc fasciculum nectunt.',
 'morelinkstoimage'          => 'Videre [[Special:WhatLinksHere/$1|plures nexus]] ad hunc fasciculum.',
 'redirectstofile'           => '{{PLURAL:$1|Fasciculus sequens ad hunc fasciculum redirigit:|Hae $1 fasciculi sequentes ad hunc fasciculum redirigunt:}}',
+'sharedupload'              => 'Hic fasciculus provenit ex {{grammar:ablative|$1}}. Fortasse et ab aliis inceptis adhibetur. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'shareduploadwiki'          => 'Vide contenta $1.',
+'shareduploadwiki-desc'     => 'Contenta $1 subter monstrantur.',
+'shareduploadwiki-linktext' => 'paginae descriptionis fasciculi',
 'noimage'                   => 'Fasciculus huius nominis non est, sed $1 potes.',
 'noimage-linktext'          => 'fasciculum imponere',
 'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi imponere',
+'shared-repo-from'          => 'ex {{grammar:ablative|$1}}', # $1 is the repository name
+'shared-repo'               => 'repositorio communi', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Revertere $1',
@@ -1414,7 +1420,8 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'enotif_subject'               => 'Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR $CHANGEDORCREATED est',
 'enotif_lastdiff'              => 'Vide $1 ad hanc recensionem inspiciendum.',
 'enotif_anon_editor'           => 'usor ignotus $1',
-'enotif_body'                  => 'Salve $WATCHINGUSERNAME,
+'enotif_body'                  => '
+Salve $WATCHINGUSERNAME,
 
 Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR die $PAGEEDITDATE $CHANGEDORCREATED est, vide emendationem currentem apud $PAGETITLE_URL
 
@@ -1728,7 +1735,7 @@ Quaesumus, titulum alterum elige.',
 '1movedto2_redir'           => 'movit [[$1]] ad [[$2]] praeter redirectionem',
 'move-redirect-suppressed'  => 'sine redirectione',
 'movelogpage'               => 'Acta motionum',
-'movesubpage'               => 'Subpaginae',
+'movesubpage'               => '{{PLURAL:$1|Subpagina|Subpaginae}}',
 'movesubpagetext'           => 'Huic paginae {{PLURAL:$1|est una subpagina subter monstrata|sunt $1 subpaginae subter monstratae}}.',
 'movenosubpage'             => 'Huic paginae non sunt subpaginae.',
 'movereason'                => 'Causa:',

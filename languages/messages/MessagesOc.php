@@ -733,6 +733,11 @@ Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'resetpass-wrong-oldpass'   => 'Senhal actual o temporari invalid.
 Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl.',
 'resetpass-temp-password'   => 'Senhal temporari :',
+'resetpass-no-others'       => "Podètz pas cambia lo senhal d'autres utilizaires.",
+'resetpass-log'             => 'Istoric de las reïnicializacions dels senhals',
+'resetpass-logtext'         => "Çaijós se tròba la lista dels utilizaires qu'an agut lor senhal reïnicializat per un administrator.",
+'resetpass-logentry'        => 'cambiat lo senhal de $1',
+'resetpass-comment'         => 'Rason per la reïnicializacion del senhal :',
 
 # Edit page toolbar
 'bold_sample'     => 'Tèxt en gras',
@@ -873,7 +878,7 @@ Sols los utilizaires amb l'estatut d'administrator la pòdon modificar. Assegura
 'semiprotectedpagewarning'         => "'''Nòta:''' Aquesta pagina es estada blocada, pòt pas èsser editada que pels utilizaires enregistats.",
 'cascadeprotectedwarning'          => "'''ATENCION :''' Aquesta pagina es estada protegida de biais que sols los administrators pòscan l’editar.
 Aquesta proteccion es estada facha perque aquesta pagina es inclusa dins {{PLURAL:$1|una pagina protegida|de paginas protegidas}} amb la « proteccion en cascada » activada.",
-'titleprotectedwarning'            => "'''ATENCION : Aquesta pagina es estada protegida de tal biais que sols cèrts utilizaires pòscan la crear.'''",
+'titleprotectedwarning'            => "'''ATENCION : Aquesta pagina es estada protegida de tal biais que de [[Special:ListGroupRights|dreches especifics]] son requerits per la poder crear.'''",
 'templatesused'                    => 'Modèls utilizats sus aquesta pagina :',
 'templatesusedpreview'             => 'Modèls utilizats dins aquesta previsualizacion :',
 'templatesusedsection'             => 'Modèls utilizats dins aquesta seccion :',
@@ -964,13 +969,11 @@ Ensajatz de [[Special:Search|recercar sul wiki]] per trobar de paginas en rapòr
 'rev-deleted-comment'            => '(comentari suprimit)',
 'rev-deleted-user'               => '(nom d’utilizaire suprimit)',
 'rev-deleted-event'              => '(entrada suprimida)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Aquesta version de la pagina es estada levada dels archius publics.
-I Pòt aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks"> Aquesta version de la pagina es estada levada dels archius publics. En tant qu’administrator d\'aqueste sit, la podètz visualizar ; i pòt aver de detahls dins lo [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} jornal de las supressions]. </div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Podètz pas veire aqueste diff per que una de las versions es estada suprimida dels archius publics.
-I pòt aver mai de detalhs dins [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l\'istoric de las supressions].</div>',
+'rev-deleted-text-permission'    => 'Aquesta version de la pagina es estada levada dels archius publics.
+I Pòt aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].',
+'rev-deleted-text-view'          => "Aquesta version de la pagina es estada levada dels archius publics. En tant qu’administrator d'aqueste sit, la podètz visualizar ; i pòt aver de detahls dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
+'rev-deleted-no-diff'            => "Podètz pas veire aqueste diff per que una de las versions es estada suprimida dels archius publics.
+I pòt aver mai de detalhs dins [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l'istoric de las supressions].",
 'rev-delundel'                   => 'afichar/amagar',
 'revisiondelete'                 => 'Suprimir/Restablir de versions',
 'revdelete-nooldid-title'        => 'Cibla per la revision invalida',
@@ -1355,6 +1358,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'right-userrights'           => "Modificar totes los dreches d'un utilizaire",
 'right-userrights-interwiki' => "Modificar los dreches d'utilizaires que son sus un autre wiki",
 'right-siteadmin'            => 'Varrolhar e desvarrolhar la banca de donadas',
+'right-reset-passwords'      => "Cambiar lo senhal d'autres utilizaires",
 
 # User rights log
 'rightslog'      => "Istoric de las modificacions d'estatut",
@@ -1594,13 +1598,15 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'morelinkstoimage'          => 'Vejatz [[Special:WhatLinksHere/$1|mai de ligams]] cap a aqueste imatge.',
 'redirectstofile'           => '{{PLURAL:$1|Lo fichièr seguent redirigís|Los fichièrs seguents redirigisson}} cap a aqueste fichièr :',
 'duplicatesoffile'          => "{{PLURAL:$1|Lo fichièr seguent es un duplicata|Los fichièrs seguents son de duplicatas}} d'aqueste fichièr ([[Special:FileDuplicateSearch/$2|mai de detalhs]]):",
-'sharedupload'              => 'Aqueste fichièr es partejat e pòt èsser utilizat per d’autres projèctes.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Aqueste fichièr proven de $1 e pòt èsser utilizat per d’autres projèctes. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Reportatz-vos a la $1 per mai d’informacion.',
-'shareduploadwiki-desc'     => 'La descripcion de sa $1 dins lo repertòri partejat es afichada çaijós.',
+'shareduploadwiki-desc'     => 'La descripcion afichada çaijós es eissida de sa $1 dins lo depaus partejat.',
 'shareduploadwiki-linktext' => 'pagina de descripcion del fichièr',
 'noimage'                   => 'Cap de fichièr amb aqueste nom existís pas, mas podètz $1.',
 'noimage-linktext'          => "n'importar un",
 'uploadnewversion-linktext' => "Importar una version novèla d'aqueste fichièr",
+'shared-repo-from'          => 'de $1', # $1 is the repository name
+'shared-repo'               => 'un depaus partejat', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Revocar $1',
@@ -2309,6 +2315,9 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'move-redirect-suppressed'     => 'redireccion suprimida',
 'movelogpage'                  => 'Istoric dels cambiaments de nom',
 'movelogpagetext'              => 'Vaquí la lista de las darrièras paginas renomenadas.',
+'movesubpage'                  => '{{PLURAL:$1|Sospagina|Sospaginas}}',
+'movesubpagetext'              => 'Aquesta pagina a $1 {{PLURAL:$1|sospagina afichada|sospaginas afichadas}} çaijós.',
+'movenosubpage'                => 'Aquesta pagina a pas cap de sospagina.',
 'movereason'                   => 'Motiu :',
 'revertmove'                   => 'anullar',
 'delete_and_move'              => 'Suprimir e tornar nomenar',

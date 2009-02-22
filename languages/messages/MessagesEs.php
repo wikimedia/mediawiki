@@ -689,6 +689,8 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'resetpass-temp-password'   => 'Contraseña temporal:',
 'resetpass-no-others'       => 'No puede reajustar la contraseña de otros usuarios.',
+'resetpass-logentry'        => 'cambiada la contraseña por $1',
+'resetpass-comment'         => 'Razón para el reajuste de contraseña:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto en negrita',
@@ -922,17 +924,13 @@ Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
 'rev-deleted-comment'            => '(comentario eliminado)',
 'rev-deleted-user'               => '(nombre de usuario eliminado)',
 'rev-deleted-event'              => '(entrada borrada)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Esta revisión de la página ha sido eliminada de los archivos públicos.
-Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Esta revisión de la página ha sido eliminada de los archivos públicos.
+'rev-deleted-text-permission'    => 'Esta revisión de la página ha sido eliminada de los archivos públicos.
+Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].',
+'rev-deleted-text-view'          => 'Esta revisión de la página ha sido eliminada de los archivos públicos.
 Como administrador de este wiki puedes verla;
-puede haber detalles en el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de borrado].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">No puede visualizarse este cambio debido a que las revisiones han sido retiradas de los archivos públicos.
-Consultar los detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].</div>',
+puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].',
+'rev-deleted-no-diff'            => 'No puede visualizarse este cambio debido a que las revisiones han sido retiradas de los archivos públicos.
+Consultar los detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].',
 'rev-delundel'                   => 'mostrar/ocultar',
 'revisiondelete'                 => 'Borrar/deshacer borrado revisiones',
 'revdelete-nooldid-title'        => 'No hay revisión destino',
@@ -2314,7 +2312,8 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Expo
 'allmessagesname'           => 'Nombre',
 'allmessagesdefault'        => 'Texto predeterminado',
 'allmessagescurrent'        => 'Texto actual',
-'allmessagestext'           => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:',
+'allmessagestext'           => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:
+Por favor visite [http://www.mediawiki.org/wiki/Localisation Localización MediaWiki] y [http://translatewiki.net translatewiki.net] Si desea contribuir a la localización genérica MediaWiki.',
 'allmessagesnotsupportedDB' => "Esta página no está disponible porque '''\$wgUseDatabaseMessages''' está deshabilitado.",
 'allmessagesfilter'         => 'Filtrar por nombre del mensaje:',
 'allmessagesmodified'       => 'Mostrar sólo los modificados',
