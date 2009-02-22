@@ -1783,9 +1783,7 @@ class Linker {
 		# FIXME: Per standard MW behavior, a value of '-' means to suppress the
 		# attribute, but this is broken for accesskey: that might be a useful
 		# value.
-		if( $accesskey != ''
-		&& $accesskey != '-'
-		&& !wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
+		if( $accesskey != '' && $accesskey != '-' && !wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
 			wfProfileOut( __METHOD__ );
 			return $accesskey;
 		}
@@ -1806,9 +1804,7 @@ class Linker {
 	public function revDeleteLink( $query = array(), $restricted = false ) {
 		$sp = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$text = wfMsgHtml( 'rev-delundel' );
-		$tag = 'span';
-		if( $restricted )
-			$tag = 'strong';
+		$tag = $restricted ? 'strong' : 'span';
 		$link = $this->link( $sp, $text, array(), $query, array( 'known', 'noclasses' ) );
 		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), "($link)" );
 	}
