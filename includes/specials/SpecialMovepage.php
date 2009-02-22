@@ -515,7 +515,7 @@ class MovePageForm {
 			return;
 		}
 
-		$out->addWikiMsg( 'movesubpagetext', $wgLang->formatnum( $count ) );
+		$out->addWikiMsg( 'movesubpagetext', $wgLang->formatNum( $count ) );
 		$skin = $wgUser->getSkin();
 		$out->addHTML( "<ul>\n" );
 
