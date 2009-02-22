@@ -315,7 +315,7 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'סימון קישורים בקו תחתי:',
-'tog-highlightbroken'         => 'סימון קישורים לדפים שלא נכתבו <a href="" class="new">כך</a> (או: כך<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'סימון קישורים לדפים שלא נכתבו <a href="" class="new">כך</a> (או: כך<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'יישור פסקאות',
 'tog-hideminor'               => 'הסתרת שינויים משניים ברשימת השינויים האחרונים',
 'tog-hidepatrolled'           => 'הסתרת שינויים בדוקים ברשימת השינויים האחרונים',
@@ -1046,13 +1046,13 @@ $2',
 'rev-deleted-comment'            => '(תקציר העריכה הוסתר)',
 'rev-deleted-user'               => '(שם המשתמש הוסתר)',
 'rev-deleted-event'              => '(פעולת היומן הוסתרה)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">גרסת הדף הזו הוסרה מהארכיונים הציבוריים.
-ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">גרסת הדף הזו הוסרה מהארכיונים הציבוריים.
+'rev-deleted-text-permission'    => 'גרסת הדף הזו הוסרה מהארכיונים הציבוריים.
+ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].',
+'rev-deleted-text-view'          => 'גרסת הדף הזו הוסרה מהארכיונים הציבוריים.
 כמפעיל מערכת, באפשרותך לצפות בגרסה;
-ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">אינכם יכולים לצפות בהבדלים בין הגרסאות שציינתם משום שאחת מהן הוסרה מהארכיונים הציבוריים.
-ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].</div>',
+ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].',
+'rev-deleted-no-diff'            => 'אינכם יכולים לצפות בהבדלים בין הגרסאות שציינתם משום שאחת מהן הוסרה מהארכיונים הציבוריים.
+ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].',
 'rev-delundel'                   => 'הצגה/הסתרה',
 'revisiondelete'                 => 'מחיקת ושחזור גרסאות',
 'revdelete-nooldid-title'        => 'גרסת מטרה בלתי תקינה',
