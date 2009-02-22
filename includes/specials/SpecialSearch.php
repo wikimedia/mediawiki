@@ -610,7 +610,8 @@ class SpecialSearch {
 
 		$redirect = Xml::check( 'redirs', $this->searchRedirects, array( 'value' => '1', 'id' => 'redirs' ) );
 		$redirectLabel = Xml::label( wfMsg( 'powersearch-redir' ), 'redirs' );
-		$searchField = Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'powerSearchText' ) );
+		$searchField = Xml::inputLabel( wfMsg('powersearch-field'), 'search', 'powerSearchText', 50, $term,
+			array( 'type' => 'text') );
 		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'fulltext' )) . "\n";
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
 		
@@ -630,8 +631,6 @@ class SpecialSearch {
 			"<hr style=\"clear: both;\" />\n".			
 			$redirectText ."\n".
 			"<div style=\"padding-top:2px;padding-bottom:2px;\">".
-			wfMsgExt( 'powersearch-field', array( 'parseinline' ) ) .
-			"&nbsp;" .
 			$searchField .
 			"&nbsp;" .
 			Xml::hidden( 'fulltext', 'Advanced search' ) . "\n" .
