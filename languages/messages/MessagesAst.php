@@ -764,14 +764,10 @@ Prueba a [[Special:Search|buscar na wiki]] otres páxines nueves.',
 'rev-deleted-comment'            => '(comentariu elimináu)',
 'rev-deleted-user'               => "(nome d'usuariu elimináu)",
 'rev-deleted-event'              => '(aición de rexistru eliminada)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Esta revisión de la páxina foi eliminada de los archivos públicos.
-Pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru d\'esborraos].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Esta revisión de la páxina foi eliminada de los archivos públicos.
-Como alministrador d\'esti sitiu pues vela; pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru d\'esborraos].
-</div>',
+'rev-deleted-text-permission'    => "Esta revisión de la páxina foi eliminada de los archivos públicos.
+Pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru d'esborraos].",
+'rev-deleted-text-view'          => "Esta revisión de la páxina foi eliminada de los archivos públicos.
+Como alministrador d'esti sitiu pues vela; pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru d'esborraos].",
 'rev-delundel'                   => 'amosar/esconder',
 'revisiondelete'                 => 'Esborrar/restaurar revisiones',
 'revdelete-nooldid-title'        => 'Revisión de destín non válida',

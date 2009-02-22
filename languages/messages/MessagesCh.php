@@ -575,13 +575,11 @@ Chagi fan [[Special:Search|manaligao gi wiki]] para i mannuebu na påhina siha n
 'rev-deleted-comment'         => "(mana'suha kommentu)",
 'rev-deleted-user'            => "(mana'suha nå'an muna'sesetbi)",
 'rev-deleted-event'           => "(mana'suha aksion log)",
-'rev-deleted-text-permission' => "<div class=\"mw-warning plainlinks\">
-Mana'suha este na tinilaika ginen i manpubliku na atkibu siha.
-Fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log muna'susuha].</div>",
-'rev-deleted-text-view'       => "<div class=\"mw-warning plainlinks\">
-Mana'suha este na tinilaika ginen i mampubliku na atkibu siha.
+'rev-deleted-text-permission' => "Mana'suha este na tinilaika ginen i manpubliku na atkibu siha.
+Fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log muna'susuha].",
+'rev-deleted-text-view'       => "Mana'suha este na tinilaika ginen i mampubliku na atkibu siha.
 Komu administradot {{SITENAME}} siña un atan ha';
-fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log muna'susuha].</div>",
+fana'an guåha attikulo gi [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log muna'susuha].",
 'rev-delundel'                => "na'annok/nå'na'",
 'revisiondelete'              => "Na'suha/para håfa muna'suha i tinilaika",
 'revdelete-selected'          => "'''{{PLURAL:$2|Tinilaika ma'ayek|Tinilaika manma'ayek}} gi [[:$1]]:'''",

@@ -540,8 +540,15 @@ De Aanfroch es: „<code>$2</code>“<br />',
 'viewsourcetext'       => 'Hee es dä Sigg ier Wikitex zum Belooere un Koppeere:',
 'protectedinterface'   => 'Op dä Sigg hee steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed.',
 'editinginterface'     => '<strong>Opjepass:</strong> 
-Op dä Sigg hee steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed. Nor de Wiki-Köbesse künne 
-se ändere. Denk dran, hee ändere deit et Ussinn un de Wööt ändere met dänne et Wiki op de Metmaacher un de Besöker drop aankütt!',
+Op dä Sigg hee steiht Tex uß em Ingerfäiß vun de Wiki-Soffwär. Dröm es
+die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed.
+Nor de Wiki-Köbesse künne se ändere. Denk dran, hee Ändere deit et
+Ussinn un de Wööt ändere met dänne et Wiki op de Metmaacher un de
+Besöker drop aankütt!
+
+Wann De die en Ding Shprooch övveräze wellß, do jangk op
+[http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net],
+woh et MediaWiki Ingerfäiß en alle Shprooche översaz weedt.',
 'sqlhidden'            => "(Dä SQL_Befähl du'mer nit zeije)",
 'cascadeprotected'     => 'Die Sigg es jeschöz, un mer kann se nit ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:
 $2',
@@ -713,6 +720,11 @@ Waat e Wielsche, ih dat De et widder versöhks.',
 Müjjelesch, Do häs Ding Passwood ald jetuusch, künnt och sin,
 Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'resetpass-temp-password'   => 'Zweschepasswood:',
+'resetpass-no-others'       => 'Du kanns andere Metmaacher nit dat Paßwoot zeröck setze.',
+'resetpass-log'             => 'Logboch för de zeröck jesatz Paßwööter',
+'resetpass-logtext'         => 'Hee es et Logbooch met de Metmaacher dänne ene Wiki-Köbes ens et Paßwoot zerök jesaz hät.',
+'resetpass-logentry'        => 'hät {{GENDER:$1|däm|däm|däm Metmaacher|däm|dä}} $1 {{GENDER:$1|sing|sing|et|sing|ier}} Paßwoot zerök jesaz',
+'resetpass-comment'         => 'Der Jrond för et Paßwoot zeröck setze:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fätte Schreff',
@@ -1020,14 +1032,14 @@ Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 'rev-deleted-comment'            => '(„Koot Zosammejefass, Quell“ usjeblendt)',
 'rev-deleted-user'               => '(Metmaacher Name usjeblendt)',
 'rev-deleted-event'              => '(Logboch-Enndraach fottjenomme)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">Die Version es fottjeschmesse woode.
-Jetz ka\'mer se nit mieh beluure.
+'rev-deleted-text-permission'    => "Die Version es fottjeschmesse woode.
+Jetz ka'mer se nit mieh beluure.
 Ene Wiki Köbes künnt se ävver zeröck holle.
-Mieh drüvver, wat met däm Fottschmieße vun dä Sigg jewäse es, künnt Ehr em [{{FULLURL:Spezial:Log/delete|page={{PAGENAMEE}}}} Logboch] nohlese.</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">Die Version es fottjeschmesse woode.
-Jetz ka\'mer se nit mieh beluure. Als ene Wiki-Köbes kriss De se ävver doch ze sinn, un künnts se och zeröck holle. Mieh drüvver, wat met däm Fottschmieße vun dä Sigg jewäse es, künnt Ehr em [{{FULLURL:Spezial:Log/delete|page={{PAGENAMEE}}}} Logboch] nohlese.</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">De kanns de Ongerscheide nit beloore, denn ein vun de Versione wood för de Öffentleschkeit vershtoche.
-Mieh Einzelheite hät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].</div>',
+Mieh drüvver, wat met däm Fottschmieße vun dä Sigg jewäse es, künnt Ehr em [{{FULLURL:Spezial:Log/delete|page={{PAGENAMEE}}}} Logboch] nohlese.",
+'rev-deleted-text-view'          => "Die Version es fottjeschmesse woode.
+Jetz ka'mer se nit mieh beluure. Als ene Wiki-Köbes kriss De se ävver doch ze sinn, un künnts se och zeröck holle. Mieh drüvver, wat met däm Fottschmieße vun dä Sigg jewäse es, künnt Ehr em [{{FULLURL:Spezial:Log/delete|page={{FULLPAGENAMEE}}}} Logboch] nohlese.",
+'rev-deleted-no-diff'            => 'De kanns de Ongerscheide nit beloore, denn ein vun de Versione wood för de Öffentleschkeit vershtoche.
+Mieh Einzelheite hät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].',
 'rev-delundel'                   => 'zeije/usblende',
 'revisiondelete'                 => 'Versione fottschmieße un widder zeröck holle',
 'revdelete-nooldid-title'        => 'Kein Version aanjejovve, oddeer en Stuß-Nommer',
@@ -1425,6 +1437,7 @@ de Versione uß de Fojangeheit, un de Logbööcher — als Standad:',
 'right-userrights'           => 'Metmaacher ier Rääschte ändere',
 'right-userrights-interwiki' => 'Metmaacher ier Rääschte in ander Wikis ändere',
 'right-siteadmin'            => 'De Datebank deeschmaache un opmaache för Änderunge',
+'right-reset-passwords'      => 'Enem andere Metmaacher et Paßwoot zeröck setze',
 
 # User rights log
 'rightslog'      => 'Logboch för Änderunge aan Metmaacher-Räächde',
@@ -2283,7 +2296,7 @@ $1',
 'whatlinkshere-prev'       => 'de vörijje {{PLURAL:$1||$1|noll}} zeije',
 'whatlinkshere-next'       => 'de nächste {{PLURAL:$1||$1|noll}} zeije',
 'whatlinkshere-links'      => '← Links',
-'whatlinkshere-hideredirs' => 'Ömleidunge $1',
+'whatlinkshere-hideredirs' => '$1 de Ömleidunge',
 'whatlinkshere-hidetrans'  => '$1 de Oproofe',
 'whatlinkshere-hidelinks'  => '$1 de nommale Links',
 'whatlinkshere-hideimages' => '$1 de Links op Dateie',
@@ -2469,6 +2482,9 @@ Beß op {{PLURAL:$1|ein Sigg|$1 Sigge|kei einzel Stöck}}.',
 'move-redirect-suppressed'     => 'Ömleidung ongerdrök',
 'movelogpage'                  => 'Logboch vum Sigge Ömnenne',
 'movelogpagetext'              => 'Hee sin de Neuste ömjenannte Sigge opjeliss, un wä et jedon hät.',
+'movesubpage'                  => '{{PLURAL:$1|Ungersigg|Ungersigge|Ungersigge}}',
+'movesubpagetext'              => 'Die Sigge hät {{PLURAL:$1|ein Ungersigg|$1 Ungersigge|kei Ungersigge}}.',
+'movenosubpage'                => 'Die Sigg hät kei Ungersigge.',
 'movereason'                   => 'Aanlass:',
 'revertmove'                   => 'Et Ömnänne zerök_nämme',
 'delete_and_move'              => 'Fottschmieße un Ömnenne',

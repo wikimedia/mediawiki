@@ -996,15 +996,11 @@ $2',
 'rev-deleted-comment'            => '(избришан коментар)',
 'rev-deleted-user'               => '(избришано корисничко име)',
 'rev-deleted-event'              => '(избришан запис на акција)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Ревизијата на оваа страница е избришана од јавните архиви.
-Можеби има детали во [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} дневникот на бришења].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Ревизијата на оваа страница беше избришана од јавните архиви.
+'rev-deleted-text-permission'    => 'Ревизијата на оваа страница е избришана од јавните архиви.
+Можеби има детали во [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} дневникот на бришења].',
+'rev-deleted-text-view'          => 'Ревизијата на оваа страница беше избришана од јавните архиви.
 Како администратор на {{SITENAME}} вие можете да ја погледнете;
-можеби има повеќе детали во [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} дневникот на бришења].
-</div>',
+можеби има повеќе детали во [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} дневникот на бришења].',
 'rev-delundel'                   => 'прикажи/сокриј',
 'revisiondelete'                 => 'Избриши/врати ревизии',
 'revdelete-nooldid-title'        => 'Бараната измена не постои',

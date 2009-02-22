@@ -779,12 +779,8 @@ Cobaan [[Special:Search|sungsi di wiki]] pikeun kaca-kaca nu sarimbag.',
 'rev-deleted-comment'         => '(koméntar dihapus)',
 'rev-deleted-user'            => '(ngaran pamaké geus dihapus)',
 'rev-deleted-event'           => '(lampah log dihapus)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Révisi kaca ieu geus dihapus tina arsip publik. Dadaranana meureun aya dina [{{fullurl:Husus:Log/delete|page={{PAGENAMEE}}}} log hapusan].
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina loka ieu, anjeun bisa nempo; dadaranana meureun aya dina [{{fullurl:Husus:Log/delete|page={{PAGENAMEE}}}} log hapusan].
-</div>',
+'rev-deleted-text-permission' => 'Révisi kaca ieu geus dihapus tina arsip publik. Dadaranana meureun aya dina [{{fullurl:Husus:Log/delete|page={{PAGENAMEE}}}} log hapusan].',
+'rev-deleted-text-view'       => 'Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina loka ieu, anjeun bisa nempo; dadaranana meureun aya dina [{{fullurl:Husus:Log/delete|page={{FULLPAGENAMEE}}}} log hapusan].',
 'rev-delundel'                => 'témbongkeun/sumputkeun',
 'revisiondelete'              => 'Hapus/bolay ngahapus révisi',
 'revdelete-nooldid-title'     => 'Udagan révisi salah',
@@ -2268,7 +2264,7 @@ Sandi konfirmasi ieu bakal kadaluwarsa dina $4.',
 'scarytranscludetoolong'  => '[URL panjang teuing; punten]',
 
 # Trackbacks
-'trackbackbox'      => 'Ngalacak balik keur artikel ieu:<br />
+'trackbackbox'      => 'Lacak balik keur artikel ieu:<br />
 $1',
 'trackbackremove'   => '([$1 Hapus])',
 'trackbacklink'     => 'Ngalacak balik',

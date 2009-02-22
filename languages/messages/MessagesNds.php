@@ -908,13 +908,11 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'rev-deleted-comment'            => '(Kommentar rutnahmen)',
 'rev-deleted-user'               => '(Brukernaam rutnahmen)',
 'rev-deleted-event'              => '(Logbook-Indrag rutnahmen)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Disse Version is nu wegdaan un is nich mehr apen in’t Archiv to sehn.
-Details dorto staht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Disse Version is wegsmeten worrn un is nich mehr apen to sehn.
+'rev-deleted-text-permission'    => 'Disse Version is nu wegdaan un is nich mehr apen in’t Archiv to sehn.
+Details dorto staht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook].',
+'rev-deleted-text-view'          => 'Disse Version is wegsmeten worrn un is nich mehr apen to sehn.
 As Administrater op {{SITENAME}} kannst du ehr aver noch jümmer sehn.
-Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook] to finnen.</div>',
+Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook] to finnen.',
 'rev-delundel'                   => 'wiesen/versteken',
 'revisiondelete'                 => 'Versionen wegsmieten/wedderhalen',
 'revdelete-nooldid-title'        => 'kene Versionen dor, de passt',

@@ -912,16 +912,12 @@ Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
 'rev-deleted-comment'            => '(komentár odstránený)',
 'rev-deleted-user'               => '(používateľské meno odstránené)',
 'rev-deleted-event'              => '(činnosť odstránená zo záznamu)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Táto revízia stránky bola odstránená z verejných archívov.
-Podrobnosti nájdete v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Táto revízia stránky bola odstránená z verejných archívov.
+'rev-deleted-text-permission'    => 'Táto revízia stránky bola odstránená z verejných archívov.
+Podrobnosti nájdete v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].',
+'rev-deleted-text-view'          => 'Táto revízia stránky bola odstránená z verejných archívov.
 Ako správca tohto projektu si ju môžete prezrieť;
-podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} zázname mazaní].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Tento rozdiel nemôžete zobraziť, pretože bol odstránený z verejných archívov. Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].</div>',
+podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].',
+'rev-deleted-no-diff'            => 'Tento rozdiel nemôžete zobraziť, pretože bol odstránený z verejných archívov. Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].',
 'rev-delundel'                   => 'zobraziť/skryť',
 'revisiondelete'                 => 'Zmazať/obnoviť revízie',
 'revdelete-nooldid-title'        => 'Neplatná cieľová revízia',

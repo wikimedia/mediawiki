@@ -706,12 +706,10 @@ $1',
 'rev-deleted-comment'         => '(тавзиҳот пок шуд)',
 'rev-deleted-user'            => '(номи корбар ҳазф шудааст)',
 'rev-deleted-event'           => '(амалӣ гузориш пок шуд)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Ин вироиш аз ин саҳифа аз таърихи умумии ин саҳифа ҳазф шудааст.
-Иттилооти марбутаро эҳтимолан метавонед дар [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} гузориши ҳазф] бубинед.</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Ин вироиш аз ин саҳифа аз таърихи умумии ин саҳифа ҳазф шудааст.
-Шумо ҳамчун мудири {{SITENAME}} метавонед онро бубинед; иттилооти марбутаро эҳтимолан метавонед дар [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} гузориши ҳазф] бубинед.</div>',
+'rev-deleted-text-permission' => 'Ин вироиш аз ин саҳифа аз таърихи умумии ин саҳифа ҳазф шудааст.
+Иттилооти марбутаро эҳтимолан метавонед дар [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} гузориши ҳазф] бубинед.',
+'rev-deleted-text-view'       => 'Ин вироиш аз ин саҳифа аз таърихи умумии ин саҳифа ҳазф шудааст.
+Шумо ҳамчун мудири {{SITENAME}} метавонед онро бубинед; иттилооти марбутаро эҳтимолан метавонед дар [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} гузориши ҳазф] бубинед.',
 'rev-delundel'                => 'намоиш/пинҳон',
 'revisiondelete'              => 'Нусхаҳои ҳазф/эҳёӣ',
 'revdelete-nooldid-title'     => 'Нусхаи мақсади номӯътабар',

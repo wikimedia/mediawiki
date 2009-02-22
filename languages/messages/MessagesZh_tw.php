@@ -8,6 +8,7 @@
  * @author BobChao
  * @author Roc michael
  * @author Urhixidur
+ * @author Wong128hk
  * @author לערי ריינהארט
  */
 
@@ -49,6 +50,7 @@ $messages = array(
 'tog-uselivepreview'       => '使用即時預覽 (JavaScript) (試驗中)',
 'tog-watchlisthideminor'   => '監視列表中隱藏細微修改',
 'tog-ccmeonemails'         => '當我寄電子郵件給其他使用者時，也寄一份複本到我的信箱。',
+'tog-norollbackdiff'       => '進行回退後略過差異比較',
 
 # Categories related messages
 'category_header'               => '類別「$1」中的頁面',
@@ -523,12 +525,10 @@ $2',
 'rev-deleted-comment'         => '(註釋已移除)',
 'rev-deleted-user'            => '(使用者名已移除)',
 'rev-deleted-event'           => '(項目已移除)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">該頁面修訂已經被從公共文件中移除。
-在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。</div>',
-'rev-deleted-text-view'       => "<div class='mw-warning plainlinks'>
-該頁面修訂已經被從公共文件中移除。作為此網站的管理員，您可以檢視它；
-在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。
-</div>",
+'rev-deleted-text-permission' => '該頁面修訂已經被從公共文件中移除。
+在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。',
+'rev-deleted-text-view'       => '該頁面修訂已經被從公共文件中移除。作為此網站的管理員，您可以檢視它；
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。',
 'rev-delundel'                => '顯示/隱藏',
 'revisiondelete'              => '刪除/復原刪除修訂',
 'revdelete-nooldid-title'     => '沒有目標修訂',
@@ -1368,8 +1368,8 @@ $1',
 'databasenotlocked'   => '資料庫沒有鎖定。',
 
 # Move page
-'move-page-legend'        => '移動頁面',
-'movepagetext'            => "用下面的表單來重新命名一個頁面，並將其修訂沿革同時移動到新頁面。
+'move-page-legend'         => '移動頁面',
+'movepagetext'             => "用下面的表單來重新命名一個頁面，並將其修訂沿革同時移動到新頁面。
 老的頁面將成為新頁面的重定向頁。
 連結到老頁面的連結並不會自動更改；
 請檢查雙重或損壞重定向連結。
@@ -1383,40 +1383,41 @@ $1',
 <b>警告！</b>
 對一個經常被訪問的頁面而言這可能是一個重大與唐突的更改；
 請在行動前先了結其所可能帶來的後果。",
-'movepagetalktext'        => "有關的對話頁（如果有的話）將被自動與該頁面一起移動，'''除非'''：
+'movepagetalktext'         => "有關的對話頁（如果有的話）將被自動與該頁面一起移動，'''除非'''：
 *您將頁面移動到不同的名字空間；
 *新頁面已經有一個包含內容的對話頁，或者
 *您不勾選下面的覆選框。
 
 在這些情況下，您在必要時必須手工移動或合併頁面。",
-'movearticle'             => '移動頁面:',
-'movenologin'             => '未登入',
-'movenologintext'         => '您必須是一名登記使用者並且[[Special:UserLogin|登入]]
+'movearticle'              => '移動頁面:',
+'movenologin'              => '未登入',
+'movenologintext'          => '您必須是一名登記使用者並且[[Special:UserLogin|登入]]
 後才可移動一個頁面。',
-'movenotallowed'          => '您在這個wiki中度並沒有許可權去移動頁面。',
-'newtitle'                => '新標題:',
-'move-watch'              => '監視此頁',
-'movepagebtn'             => '移動頁面',
-'pagemovedsub'            => '移動成功',
-'movepage-moved'          => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',
-'talkexists'              => '頁面本身移動成功，
+'movenotallowed'           => '您在這個wiki中度並沒有許可權去移動頁面。',
+'newtitle'                 => '新標題:',
+'move-watch'               => '監視此頁',
+'movepagebtn'              => '移動頁面',
+'pagemovedsub'             => '移動成功',
+'movepage-moved'           => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'            => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',
+'talkexists'               => '頁面本身移動成功，
 但是由於新標題下已經有對話頁存在，所以對話頁無法移動。請手工合併兩個頁面。',
-'movedto'                 => '移動到',
-'movetalk'                => '如果可能的話，請同時移動對話頁。',
-'1movedto2'               => '[[$1]]移動到[[$2]]',
-'1movedto2_redir'         => '[[$1]]透過重定向移動到[[$2]]',
-'movelogpage'             => '移動日誌',
-'movelogpagetext'         => '以下是已經移動的頁面清單:',
-'movereason'              => '原因',
-'revertmove'              => '復原該移動',
-'delete_and_move'         => '刪除並移動',
-'delete_and_move_text'    => '==需要刪除==
+'movedto'                  => '移動到',
+'movetalk'                 => '如果可能的話，請同時移動對話頁。',
+'1movedto2'                => '[[$1]]移動到[[$2]]',
+'1movedto2_redir'          => '[[$1]]透過重定向移動到[[$2]]',
+'move-redirect-suppressed' => '已禁止重新定向',
+'movelogpage'              => '移動日誌',
+'movelogpagetext'          => '以下是已經移動的頁面清單:',
+'movereason'               => '原因',
+'revertmove'               => '復原該移動',
+'delete_and_move'          => '刪除並移動',
+'delete_and_move_text'     => '==需要刪除==
 
 目標頁面"[[:$1]]"已經存在。你確認需要刪除原頁面並以進行移動嗎？',
-'delete_and_move_confirm' => '是的，刪除此頁面',
-'delete_and_move_reason'  => '刪除以便移動',
-'selfmove'                => '原始標題與目標標題相同，您不能移動一頁覆蓋本身。',
+'delete_and_move_confirm'  => '是的，刪除此頁面',
+'delete_and_move_reason'   => '刪除以便移動',
+'selfmove'                 => '原始標題與目標標題相同，您不能移動一頁覆蓋本身。',
 
 # Export
 'export'            => '匯出頁面',

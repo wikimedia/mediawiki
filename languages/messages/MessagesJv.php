@@ -703,10 +703,10 @@ Alesané miturut $3 yaiku ''$2''",
 'rev-deleted-comment'         => '(komentar dibusak)',
 'rev-deleted-user'            => '(jeneng panganggo dibusak)',
 'rev-deleted-event'           => '(isi dibusak)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">Riwayat revisi kaca iki wis dibusak saka arsip umum.
-Detil mbokmenawa kasedyakaké ing  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log pambusakan].</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Riwayat revisi kaca iki wis dibusak saka arsip umum.
-Minangka sawijning pangurus situs, panjenengan bisa mirsani; detil mbokmenawa kasedyakaké ing [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log pambusakan].</div>',
+'rev-deleted-text-permission' => 'Riwayat revisi kaca iki wis dibusak saka arsip umum.
+Detil mbokmenawa kasedyakaké ing  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log pambusakan].',
+'rev-deleted-text-view'       => 'Riwayat revisi kaca iki wis dibusak saka arsip umum.
+Minangka sawijning pangurus situs, panjenengan bisa mirsani; detil mbokmenawa kasedyakaké ing [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log pambusakan].',
 'rev-delundel'                => 'tuduhna/delikna',
 'revisiondelete'              => 'Busak/batal busak revisi',
 'revdelete-nooldid-title'     => 'Target revisi ora ditemokaké',

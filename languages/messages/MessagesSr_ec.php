@@ -910,14 +910,11 @@ $2',
 'rev-deleted-comment'         => '(коментар уклоњен)',
 'rev-deleted-user'            => '(корисничко име уклоњено)',
 'rev-deleted-event'           => '(историја уклоњена)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Ревизија ове странице је уклоњена за јавне архиве.
-Могуће да има више детаља у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} историји брисања].
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Ревизија ове странице је уклоњена за јавне архиве.
+'rev-deleted-text-permission' => 'Ревизија ове странице је уклоњена за јавне архиве.
+Могуће да има више детаља у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} историји брисања].',
+'rev-deleted-text-view'       => 'Ревизија ове странице је уклоњена за јавне архиве.
 Као администратор, можете да је поглеате;
-Могуће да има више детаља у [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} историји брисања].</div>',
+Могуће да има више детаља у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} историји брисања].',
 'rev-delundel'                => 'покажи/сакриј',
 'revisiondelete'              => 'Обриши/врати ревизије',
 'revdelete-nooldid-title'     => 'Нема одабране ревизије',

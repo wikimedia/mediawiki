@@ -856,13 +856,9 @@ $2',
 'rev-deleted-comment'            => '(אנמערקונג אראפגענומען)',
 'rev-deleted-user'               => '(באנוצער נאמען אראפגענומען)',
 'rev-deleted-event'              => '(לאגירן אקציע אראפגענומען)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-די בלאט רעוויזיע איז געווארן אראפגענומען פון די פובליקע ארכיוון. עס איז מעגלעך דא נאך פרטים אין דעם
-[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-די בלאט רעוויזיע איז געווארן אראפגענומען פון די פובליק ארכיוון. אלס סיסאפ פון די סייט קענסטו עס ליינען; עס איז מעגליך דא נאך דעטאלן אין [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג בוך].
-</div>',
+'rev-deleted-text-permission'    => 'די בלאט רעוויזיע איז געווארן אראפגענומען פון די פובליקע ארכיוון. עס איז מעגלעך דא נאך פרטים אין דעם
+[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג].',
+'rev-deleted-text-view'          => 'די בלאט רעוויזיע איז געווארן אראפגענומען פון די פובליק ארכיוון. אלס סיסאפ פון די סייט קענסטו עס ליינען; עס איז מעגליך דא נאך דעטאלן אין [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג בוך].',
 'rev-delundel'                   => 'ווייז/באהאלט',
 'revisiondelete'                 => 'אויסמעקן\\צוריקשטעלן רעוויזיעס',
 'revdelete-nooldid-title'        => 'ציל ווערסיע נישט גילטיג',

@@ -681,15 +681,11 @@ Vos pouede tâchiér de [[Special:Search|rechèrchiér dens lo vouiqui]] des nov
 'rev-deleted-comment'         => '(comentèro suprimâ)',
 'rev-deleted-user'            => '(nom d’utilisator suprimâ)',
 'rev-deleted-event'           => '(entrâ suprimâ)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Ceta vèrsion de la pâge at étâ enlevâ des arch·ives publiques.
-Pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Ceta vèrsion de la pâge at étâ enlevâ des arch·ives publiques.
+'rev-deleted-text-permission' => 'Ceta vèrsion de la pâge at étâ enlevâ des arch·ives publiques.
+Pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].',
+'rev-deleted-text-view'       => 'Ceta vèrsion de la pâge at étâ enlevâ des arch·ives publiques.
 A titro d’administrator de ceti seto, vos pouede la visualisar ;
-pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} jornal de les suprèssions].
-</div>',
+pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].',
 'rev-delundel'                => 'afichiér/mâscar',
 'revisiondelete'              => 'Suprimar/rèstorar des vèrsions',
 'revdelete-nooldid-title'     => 'Pas de ciba por la vèrsion',

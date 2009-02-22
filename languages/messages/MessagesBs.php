@@ -994,15 +994,13 @@ Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 'rev-deleted-comment'            => '(komentar uklonjen)',
 'rev-deleted-user'               => '(korisničko ime uklonjeno)',
 'rev-deleted-event'              => '(stavka zapisa obrisana)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Revizija ove stranice je uklonjena iz javne arhive.
-Detalje možete vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Revizija ove stranice je uklonjena iz javne arhive.
+'rev-deleted-text-permission'    => 'Revizija ove stranice je uklonjena iz javne arhive.
+Detalje možete vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].',
+'rev-deleted-text-view'          => 'Revizija ove stranice je uklonjena iz javne arhive.
 Kao administrator na {{SITENAME}} Vi je možete vidjeti;
-detalji o tome se mogu vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Ne možete vidjeti ove razlike jer je jedna od revizija uklonjena iz javne arhive.
-Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisima brisanja].</div>',
+detalji o tome se mogu vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].',
+'rev-deleted-no-diff'            => 'Ne možete vidjeti ove razlike jer je jedna od revizija uklonjena iz javne arhive.
+Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisima brisanja].',
 'rev-delundel'                   => 'pokaži/sakrij',
 'revisiondelete'                 => 'Obriši/vrati revizije',
 'revdelete-nooldid-title'        => 'Nije unesena tačna revizija',

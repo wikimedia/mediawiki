@@ -751,15 +751,13 @@ Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 'rev-deleted-comment'            => '(comment ke hatae dewa gais hai)',
 'rev-deleted-user'               => '(username ke hatae dewa gais hai)',
 'rev-deleted-event'              => '(log action ke hatae dewa gais hai)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Panna ke ii badlao ke public archives me se hatae dewa gais hai.
-Iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Panna ke ii badlao ke public archives me se hatae dewa gais hai.
+'rev-deleted-text-permission'    => 'Panna ke ii badlao ke public archives me se hatae dewa gais hai.
+Iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
+'rev-deleted-text-view'          => 'Panna ke ii badlao ke public archives me se hatae dewa gais hai.
 Aap {{SITENAME}} me ek administrator hoe ke kaaran iske dekhe sakta hai;
-iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao ke public archives se hatae dewa gais hai.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me sait kuch aur jaankari hoi.</div>',
+iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
+'rev-deleted-no-diff'            => 'Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao ke public archives se hatae dewa gais hai.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me sait kuch aur jaankari hoi.',
 'rev-delundel'                   => 'dekhao/lukao',
 'revisiondelete'                 => 'Badlao ke mitao/nai mitao',
 'revdelete-nooldid-title'        => 'Target revision jon ki valid nai hai',

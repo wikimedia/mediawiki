@@ -602,6 +602,10 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 Forse te ghè zà canbià la to password o te ghè domandà na password tenporanea nova.',
 'resetpass-temp-password'   => 'Password tenporanea:',
 'resetpass-no-others'       => 'No te poli reinpostar la password de altri utenti.',
+'resetpass-log'             => 'Registro dei reset de le password',
+'resetpass-logtext'         => "Qua soto ghe xe un registro dei utenti la cui password la xe stà reinpostà da n'aministrador.",
+'resetpass-logentry'        => 'gà canbià la password de $1',
+'resetpass-comment'         => 'Motivassion del reset de la password:',
 
 # Edit page toolbar
 'bold_sample'     => 'Grasseto',
@@ -837,17 +841,13 @@ La motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 'rev-deleted-comment'            => '(comento cavà)',
 'rev-deleted-user'               => '(nome utente cavà)',
 'rev-deleted-event'              => '(elemento cavà)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Sta version de la pagina la xe stà cavà dai archivi visibili al publico.
-Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Sta version de la pagina la xe stà cavà dai archivi visibili al publico.
+'rev-deleted-text-permission'    => 'Sta version de la pagina la xe stà cavà dai archivi visibili al publico.
+Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.',
+'rev-deleted-text-view'          => 'Sta version de la pagina la xe stà cavà dai archivi visibili al publico.
 El testo el pode èssar visualizà soltanto dai aministradori del sito.
-Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">No te pode vardar sta difarensa parché una de le revision la xe stà cavà dai archivi pùblici.
-Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par savérghene piessè.</div>',
+Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.',
+'rev-deleted-no-diff'            => 'No te pode vardar sta difarensa parché una de le revision la xe stà cavà dai archivi pùblici.
+Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par savérghene piessè.',
 'rev-delundel'                   => 'mostra/scondi',
 'revisiondelete'                 => 'Scanceła o ripristina version',
 'revdelete-nooldid-title'        => 'Version mìa specificà',

@@ -1052,13 +1052,11 @@ $3 келтірілген себебі: ''$2''",
 'rev-deleted-comment'         => '(мәндеме аласталды)',
 'rev-deleted-user'            => '(қатысушы аты аласталды)',
 'rev-deleted-event'           => '(журнал жазбасы аласталды)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Бұл беттің түзетуі барша мұрағаттарынан аласталған.
-Мында [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} жою журналында] егжей-тегжей мәліметтері болуы мүмкін.</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Осы беттің түзетуі барша мұрағаттарынан аласталған.
+'rev-deleted-text-permission' => 'Бұл беттің түзетуі барша мұрағаттарынан аласталған.
+Мында [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} жою журналында] егжей-тегжей мәліметтері болуы мүмкін.',
+'rev-deleted-text-view'       => 'Осы беттің түзетуі барша мұрағаттарынан аласталған.
 {{SITENAME}} әкімшісі боп соны көре аласыз;
-[{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} жою журналында] егжей-тегжей мәлметтері болуы мүмкін.</div>',
+[{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} жою журналында] егжей-тегжей мәлметтері болуы мүмкін.',
 'rev-delundel'                => 'көрсет/жасыр',
 'revisiondelete'              => 'Түзетулерді жою/жоюды болдырмау',
 'revdelete-nooldid-title'     => 'Нысана түзету жарамсыз',

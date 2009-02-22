@@ -683,14 +683,10 @@ Možeš tyž [[Special:Search|šnupać]] za tům zajtům.',
 'rev-deleted-comment'         => '(kůmyntoř wyćepany)',
 'rev-deleted-user'            => '(užytkowńik wyćepany)',
 'rev-deleted-event'           => '(škryflańy wyćepane)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Wersyjo tyj zajty uostoua wyćepano a ńy je dostympna publičńy. Ščygůuy idźe znejść we [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rejeře wyćepań].
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Ta wersyjo zajty uostoua wyćepano a ńy je dostympna publičńy.
+'rev-deleted-text-permission' => 'Wersyjo tyj zajty uostoua wyćepano a ńy je dostympna publičńy. Ščygůuy idźe znejść we [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rejeře wyćepań].',
+'rev-deleted-text-view'       => 'Ta wersyjo zajty uostoua wyćepano a ńy je dostympna publičńy.
 Atoli kej admińistrator {{GRAMMAR:MS.lp|{{SITENAME}}}} možeš jům uobejřeć.
-Powody wyćepańo idźe znejść we [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejeře wyćepań]
-</div>',
+Powody wyćepańo idźe znejść we [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejeře wyćepań]',
 'rev-delundel'                => 'pokož/schrůń',
 'revisiondelete'              => 'Wyćep/wćep nazod wersyje',
 'revdelete-nooldid-title'     => 'Ńy wybrano wersyji',

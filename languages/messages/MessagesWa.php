@@ -569,14 +569,10 @@ Ledjinde: (ast.) = diferince avou l' modêye d' asteure,
 # Revision deletion
 'rev-deleted-comment'         => '(comintaire oisté)',
 'rev-deleted-user'            => "(no d' elodjaedje oisté)",
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Cisse modêye ci del pådje a stî oistêye foû des årtchives publikes.
-I gn a motoit des racsegnes sol [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} djournå des disfaçaedjes].
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Cisse modêye ci del pådje a stî oistêye foû des årtchives publikes.
-Come manaedjeu so ç\' wiki ci, vos avoz l\' droet del vey; i gn a motoit des detays sol [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} djournå des disfaçaedjes].
-</div>',
+'rev-deleted-text-permission' => 'Cisse modêye ci del pådje a stî oistêye foû des årtchives publikes.
+I gn a motoit des racsegnes sol [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} djournå des disfaçaedjes].',
+'rev-deleted-text-view'       => "Cisse modêye ci del pådje a stî oistêye foû des årtchives publikes.
+Come manaedjeu so ç' wiki ci, vos avoz l' droet del vey; i gn a motoit des detays sol [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} djournå des disfaçaedjes].",
 'rev-delundel'                => 'mostrer/catchî',
 'revisiondelete'              => 'Disfacer/rapexhî des modêyes',
 'revdelete-selected'          => "'''Tchoezeye modêye di [[:$1]]:'''",

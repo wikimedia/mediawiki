@@ -797,6 +797,10 @@ U hebt uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.
 Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.',
 'resetpass-temp-password'   => 'Tijdelijk wachtwoord:',
 'resetpass-no-others'       => 'U kunt geen wachtwoorden voor andere gebruikers opnieuw instellen.',
+'resetpass-log'             => 'Wachtwoordherinstellingenlogboek',
+'resetpass-logtext'         => 'Deze pagina bevat een logboek met gebruikers waarvan het wachtwoord opnieuw is ingesteld door een beheerder.',
+'resetpass-logentry'        => 'heeft het wachtwoord voor $1 gewijzigd',
+'resetpass-comment'         => 'Reden voor opnieuw instellen van het wachtwoord',
 
 # Edit page toolbar
 'bold_sample'     => 'Vetgedrukte tekst',
@@ -1055,15 +1059,13 @@ Wellicht is die verwijderd of hernoemd.
 'rev-deleted-comment'            => '(opmerking verwijderd)',
 'rev-deleted-user'               => '(gebruiker verwijderd)',
 'rev-deleted-event'              => '(logboekregel verwijderd)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Deze bewerking van de pagina is verwijderd uit de publieke archieven.
-Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">Deze bewerking van de pagina is verwijderd uit de publieke archieven.
+'rev-deleted-text-permission'    => 'Deze bewerking van de pagina is verwijderd uit de publieke archieven.
+Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].',
+'rev-deleted-text-view'          => 'Deze bewerking van de pagina is verwijderd uit de publieke archieven.
 Als beheerder van {{SITENAME}} kunt u deze zien;
-er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} verwijderingslogboek].</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">U kunt de verschillen niet bekijken omdat een van de versies uit het publieke archief is verwijderd.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].</div>',
+er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].',
+'rev-deleted-no-diff'            => 'U kunt de verschillen niet bekijken omdat een van de versies uit het publieke archief is verwijderd.
+Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].',
 'rev-delundel'                   => 'weergeven/verbergen',
 'revisiondelete'                 => 'Versies verwijderen/terugplaatsen',
 'revdelete-nooldid-title'        => 'Geen doelversie',
@@ -1378,7 +1380,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 # Groups
 'group'               => 'Groep:',
 'group-user'          => 'gebruikers',
-'group-autoconfirmed' => 'bevestigde gebruikers',
+'group-autoconfirmed' => 'autobevestigde gebruikers',
 'group-bot'           => 'bots',
 'group-sysop'         => 'beheerders',
 'group-bureaucrat'    => 'bureaucraten',
@@ -1386,7 +1388,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'group-all'           => '(iedereen)',
 
 'group-user-member'          => 'gebruiker',
-'group-autoconfirmed-member' => 'geregistreerde gebruiker',
+'group-autoconfirmed-member' => 'autobevestigde gebruiker',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'beheerder',
 'group-bureaucrat-member'    => 'bureaucraat',
@@ -2460,7 +2462,7 @@ De overige pagina's worden niet automatisch hernoemd.",
 'move-redirect-suppressed'     => 'doorverwijzing onderdrukken',
 'movelogpage'                  => 'Hernoemingslogboek',
 'movelogpagetext'              => "Hieronder staan hernoemde pagina's.",
-'movesubpage'                  => "Subpagina's",
+'movesubpage'                  => "{{PLURAL:$1|Subpagina|Subpagina's}}",
 'movesubpagetext'              => "De {{PLURAL:$1|subpagina|$1 subpagina's}} van deze pagina {{PLURAL:$1|wordt|worden}} hieronder weergegeven.",
 'movenosubpage'                => "Deze pagina heeft geen subpagina's.",
 'movereason'                   => 'Reden:',
@@ -2749,7 +2751,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Waarschuwing''': dit bestand bevat mogelijk programmacode die uw systeem schade kan berokkenen.<hr />",
-'imagemaxsize'         => 'Maximale grootte van afbeeldingen op beschrijvingspagina:',
+'imagemaxsize'         => 'Maximale grootte van afbeeldingen op de beschrijvingspagina:',
 'thumbsize'            => 'Grootte miniatuurafbeelding:',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
@@ -2855,7 +2857,7 @@ Andere velden worden verborgen.
 'exif-brightnessvalue'             => 'Helderheid',
 'exif-exposurebiasvalue'           => 'Belichtingscompensatie',
 'exif-maxaperturevalue'            => 'Maximale diafragma-opening',
-'exif-subjectdistance'             => 'Objectafstand',
+'exif-subjectdistance'             => 'Afstand tot onderwerp',
 'exif-meteringmode'                => 'Methode lichtmeting',
 'exif-lightsource'                 => 'Lichtbron',
 'exif-flash'                       => 'Flitser',
@@ -3092,7 +3094,7 @@ Controleer uw e-mailadres op ongeldige tekens.
 Het e-mailprogramma meldde: $1',
 'confirmemail_invalid'     => 'Ongeldige bevestigingscode.
 Mogelijk is de code verlopen.',
-'confirmemail_needlogin'   => 'U dient $1 om uw e-mailadres te bevestigen.',
+'confirmemail_needlogin'   => 'U moet $1 om uw e-mailadres te bevestigen.',
 'confirmemail_success'     => 'Uw e-mailadres is bevestigd.
 U kunt zich nu aanmelden en {{SITENAME}} gebruiken.',
 'confirmemail_loggedin'    => 'Uw e-mailadres is nu bevestigd.',

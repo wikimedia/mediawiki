@@ -809,17 +809,13 @@ Musuq chaniyuq p'anqakunata [[Special:Search|wikipi maskaykachay]].",
 'rev-deleted-comment'            => '(qullusqa rimapuy)',
 'rev-deleted-user'               => '(qullusqa ruraqpa sutin)',
 'rev-deleted-event'              => "(qullusqa hallch'a)",
-'rev-deleted-text-permission'    => "<div class=\"mw-warning plainlinks\">
-P'anqamanta kay llamk'apusqaqa uyana hallch'akunamanta qullusqam.
-Astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].
-</div>",
-'rev-deleted-text-view'          => "<div class=\"mw-warning plainlinks\">
-P'anqamanta kay llamk'apusqaqa uyana hallch'akunamanta qullusqam.
+'rev-deleted-text-permission'    => "P'anqamanta kay llamk'apusqaqa uyana hallch'akunamanta qullusqam.
+Astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
+'rev-deleted-text-view'          => "P'anqamanta kay llamk'apusqaqa uyana hallch'akunamanta qullusqam.
 Kay wikipi kamachiq kaspaykim rikuyta atinkim;
-astawan rikunki [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} qulluy hallch'apichá].
-</div>",
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Kay hukchasqataqa manam rikuyta atinkichu, huk musuqchasqa sapsi hallch\'akunamanta qichusqa kaptinmi.
-Imaymanacha yuyaykunataqa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch\'apim] rikunkiman.</div>',
+astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
+'rev-deleted-no-diff'            => "Kay hukchasqataqa manam rikuyta atinkichu, huk musuqchasqa sapsi hallch'akunamanta qichusqa kaptinmi.
+Imaymanacha yuyaykunataqa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.",
 'rev-delundel'                   => 'rikuchiy/pakay',
 'revisiondelete'                 => "Mawk'a llamk'apusqakunata qulluy/paqarichiy",
 'revdelete-nooldid-title'        => "Taripana llamk'apusqaqa manam allinchu",

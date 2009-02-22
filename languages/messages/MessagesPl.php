@@ -712,6 +712,10 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 Być może właśnie zmieniłeś swoje hasło lub poprosiłeś o nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
 'resetpass-no-others'       => 'Nie masz uprawnień do zerowania haseł innych użytkowników.',
+'resetpass-log'             => 'Rejestr zerowania haseł',
+'resetpass-logtext'         => 'Rejestr użytkowników których hasła zerowali administratorzy.',
+'resetpass-logentry'        => 'zmienił hasło $1',
+'resetpass-comment'         => 'Powód wyzerowania hasła',
 
 # Edit page toolbar
 'bold_sample'     => 'Tekst tłustą czcionką',
@@ -963,15 +967,13 @@ Spróbuj [[Special:Search|poszukać]] tej strony.',
 'rev-deleted-comment'            => '(komentarz usunięty)',
 'rev-deleted-user'               => '(użytkownik usunięty)',
 'rev-deleted-event'              => '(wpis usunięty)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Wersja tej strony została usunięta i nie jest dostępna publicznie.
-Szczegóły mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Ta wersja strony została usunięta i nie jest dostępna publicznie.
+'rev-deleted-text-permission'    => 'Wersja tej strony została usunięta i nie jest dostępna publicznie.
+Szczegóły mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].',
+'rev-deleted-text-view'          => 'Ta wersja strony została usunięta i nie jest dostępna publicznie.
 Jednak jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz ją obejrzeć.
-Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została usunięta.
-Szczegóły można znaleźć w [{{fullurl:Specjalna:Rejestr/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].</div>',
+Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].',
+'rev-deleted-no-diff'            => 'Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została usunięta.
+Szczegóły można znaleźć w [{{fullurl:Specjalna:Rejestr/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].',
 'rev-delundel'                   => 'pokaż/ukryj',
 'revisiondelete'                 => 'Usuń/przywróć wersje',
 'revdelete-nooldid-title'        => 'Nieprawidłowa wersja do przeprowadzenia operacji',
@@ -1130,6 +1132,9 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'notextmatches'                    => 'Nie znaleziono w treści stron',
 'prevn'                            => '{{PLURAL:$1|poprzedni|poprzednie $1}}',
 'nextn'                            => '{{PLURAL:$1|następny|następne $1}}',
+'prevn-title'                      => '{{PLURAL:$1|Poprzedni|Poprzednie}} $1 {{PLURAL:$1|wynik|wyniki|wyników}}',
+'nextn-title'                      => '{{PLURAL:$1|Następny|Następne}} $1 {{PLURAL:$1|wynik|wyniki|wyników}}',
+'shown-title'                      => 'Pokaż po $1 {{PLURAL:$1|wyniku|wyniki|wyników}} na stronę',
 'viewprevnext'                     => 'Zobacz ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opcje wyszukiwania',
 'searchmenu-exists'                => "* Strona '''[[$1]]'''",

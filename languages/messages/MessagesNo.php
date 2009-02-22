@@ -850,14 +850,10 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'rev-deleted-comment'            => '(kommentar fjernet)',
 'rev-deleted-user'               => '(brukernavn fjernet)',
 'rev-deleted-event'              => '(fjernet loggoppføring)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Denne revisjonen har blitt fjernet fra de offentlige arkivene. Det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slettingsloggen].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Denne revisjonen har blitt fjernet fra det offentlige arkivet. Som administrator har du mulighet til å se den; det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slettingsloggen].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Du kan ikke vise denne diffen fordi en av revisjonene har blitt fjernet fra de offentlige arkivene.
-Det kan være mer detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}sletteloggen].</div>',
+'rev-deleted-text-permission'    => 'Denne revisjonen har blitt fjernet fra de offentlige arkivene. Det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slettingsloggen].',
+'rev-deleted-text-view'          => 'Denne revisjonen har blitt fjernet fra det offentlige arkivet. Som administrator har du mulighet til å se den; det kan være detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].',
+'rev-deleted-no-diff'            => 'Du kan ikke vise denne diffen fordi en av revisjonene har blitt fjernet fra de offentlige arkivene.
+Det kan være mer detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}sletteloggen].',
 'rev-delundel'                   => 'vis/skjul',
 'revisiondelete'                 => 'Slett/gjenopprett revisjoner',
 'revdelete-nooldid-title'        => 'Ugyldig målversjon',

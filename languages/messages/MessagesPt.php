@@ -634,6 +634,10 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 Você pode já ter alterado com sucesso a sua palavra-chave, ou solicitado uma nova palavra-chave temporária.',
 'resetpass-temp-password'   => 'Palavra-chave temporária:',
 'resetpass-no-others'       => 'Você não pode repor a palavra-chave para outros utilizadores.',
+'resetpass-log'             => 'Registo de reposições de palavra-chave',
+'resetpass-logtext'         => 'Abaixo encontra-se um registo dos utilizadores que tiveram a sua palavra-chave reposta por um administrador.',
+'resetpass-logentry'        => 'alterou a palavra-chave de $1',
+'resetpass-comment'         => 'Motivo da reposição de palavra-chave:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto a negrito',
@@ -885,15 +889,13 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'            => '(comentário removido)',
 'rev-deleted-user'               => '(nome de utilizador removido)',
 'rev-deleted-event'              => '(entrada removida)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Esta edição desta página foi removida dos arquivos públicos.
-Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Esta edição desta página foi removida dos arquivos públicos.
+'rev-deleted-text-permission'    => 'Esta edição desta página foi removida dos arquivos públicos.
+Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
+'rev-deleted-text-view'          => 'Esta edição desta página foi removida dos arquivos públicos.
 Por ser um administrador desta wiki, poderá vê-la;
-mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Você não pode ver estas diferenças porque uma das revisões foi removida dos arquivos públicos.
-Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].</div>',
+mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
+'rev-deleted-no-diff'            => 'Você não pode ver estas diferenças porque uma das revisões foi removida dos arquivos públicos.
+Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].',
 'rev-delundel'                   => 'mostrar/esconder',
 'revisiondelete'                 => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'        => 'Edição de destino inválida',
@@ -1048,6 +1050,9 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'notextmatches'                    => 'Não foi possível localizar o termo pesquisado no conteúdo das páginas',
 'prevn'                            => 'anteriores $1',
 'nextn'                            => 'próximos $1',
+'prevn-title'                      => '$1 {{PLURAL:$1|resultado anterior|resultados anteriores}}',
+'nextn-title'                      => '{{PLURAL:$1|próximo|próximos}} $1 {{PLURAL:$1|resultado|resultados}}',
+'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
 'viewprevnext'                     => 'Ver ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opções de pesquisa',
 'searchmenu-exists'                => "*Página '''[[$1]]'''",
@@ -2236,7 +2241,7 @@ Por favor, escolha outro nome.',
 'movelogpage'                  => 'Registo de movimento',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
 'movesubpage'                  => '{{PLURAL:$1|Sub-página|Sub-páginas}}',
-'movesubpagetext'              => 'Esta página tem $1 {{PLURAL:$1|sub-página|sub-páginas}}, mostradas abaixo.',
+'movesubpagetext'              => 'Esta página tem $1 {{PLURAL:$1|sub-página mostrada|sub-páginas mostradas}} abaixo.',
 'movenosubpage'                => 'Esta página não tem sub-páginas.',
 'movereason'                   => 'Motivo:',
 'revertmove'                   => 'reverter',

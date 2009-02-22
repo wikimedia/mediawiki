@@ -805,13 +805,11 @@ Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relebants.",
 'rev-deleted-comment'            => "(s'ha sacato iste comentario)",
 'rev-deleted-user'               => "(s'ha sacato iste nombre d'usuario)",
 'rev-deleted-event'              => "(Aizión borrata d'o rechistro)",
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Ista bersión d\'a pachina ye estata sacata d\'os archibos publicos.
-Puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borrau].</div>',
-'rev-deleted-text-view'          => "<div class=\"mw-warning plainlinks\">
-Ista bersión d'a pachina ye sacata d'os archibos publicos.
+'rev-deleted-text-permission'    => "Ista bersión d'a pachina ye estata sacata d'os archibos publicos.
+Puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borrau].",
+'rev-deleted-text-view'          => "Ista bersión d'a pachina ye sacata d'os archibos publicos.
 Puede beyer-la porque ye almenistrador/a d'iste wiki;
-puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rechistro de borrau].</div>",
+puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borrau].",
 'rev-delundel'                   => 'amostrar/amagar',
 'revisiondelete'                 => 'Borrar/esfer borrau de bersions',
 'revdelete-nooldid-title'        => 'A bersión de destino no ye conforme',

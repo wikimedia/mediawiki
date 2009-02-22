@@ -855,16 +855,12 @@ Cuba [[Special:Search|cari]] laman lain yang mungkin berkaitan.',
 'rev-deleted-comment'            => '(komen dibuang)',
 'rev-deleted-user'               => '(nama pengguna dibuang)',
 'rev-deleted-event'              => '(entri dibuang)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Semakan ini telah dibuang daripada arkib awam.
-Butiran lanjut boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Semakan ini telah dibuang daripada arkib awam.
+'rev-deleted-text-permission'    => 'Semakan ini telah dibuang daripada arkib awam.
+Butiran lanjut boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].',
+'rev-deleted-text-view'          => 'Semakan ini telah dibuang daripada arkib awam.
 Sebagai seorang pentadbir di {{SITENAME}}, anda boleh melihatnya.
-Butiran lanjut boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Anda tidak boleh melihat perbezaan ini kerana satu daripada semakan yang dibandingkan telah dikeluarkan daripada arkib awam. Butiran lanjut boleh dirujuk dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].</div>',
+Butiran lanjut boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].',
+'rev-deleted-no-diff'            => 'Anda tidak boleh melihat perbezaan ini kerana satu daripada semakan yang dibandingkan telah dikeluarkan daripada arkib awam. Butiran lanjut boleh dirujuk dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].',
 'rev-delundel'                   => 'tunjuk/sembunyi',
 'revisiondelete'                 => 'Hapus/nyahhapus semakan',
 'revdelete-nooldid-title'        => 'Tiada semakan sasaran',

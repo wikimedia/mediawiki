@@ -855,14 +855,10 @@ Arsyeja e dhënë nga $3 është ''$2''.",
 'rev-deleted-comment'            => '(kometi u largua)',
 'rev-deleted-user'               => '(përdoruesi u largua)',
 'rev-deleted-event'              => '(veprimi në regjistër është hequr)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Ky version i faqes është shlyer nga arkivi publik i faqes.
-Shiko tek [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjendet atje më shumë informacion rreth kësaj faqeje.
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Ky version i faqes është shlyer nga arkivi publik i faqes. Ju si Administrator mund ta shikoni akoma këtë. 
-Shiko tek [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjenden atje më shumë informacione rreth kësaj.
-</div>',
+'rev-deleted-text-permission'    => 'Ky version i faqes është shlyer nga arkivi publik i faqes.
+Shiko tek [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjendet atje më shumë informacion rreth kësaj faqeje.',
+'rev-deleted-text-view'          => 'Ky version i faqes është shlyer nga arkivi publik i faqes. Ju si Administrator mund ta shikoni akoma këtë. 
+Shiko tek [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} regjistri i grisjeve], ndoshta gjenden atje më shumë informacione rreth kësaj.',
 'rev-delundel'                   => 'trego/fshih',
 'revisiondelete'                 => 'Shlyj/Reparo versionet',
 'revdelete-nooldid-title'        => 'Version i dëshiruar i pavfleshëm',

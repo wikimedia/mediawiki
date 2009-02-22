@@ -1054,13 +1054,11 @@ Osığan qatıstı jaña betterdi [[{{#special:Search}}|bul wïkïden izdewdi]] 
 'rev-deleted-comment'         => '(mändeme alastaldı)',
 'rev-deleted-user'            => '(qatıswşı atı alastaldı)',
 'rev-deleted-event'           => '(jwrnal jazbası alastaldı)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Bul bettiñ tüzetwi barşa murağattarınan alastalğan.
-Mında [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} joyw jwrnalında] egjeý-tegjeý mälimetteri bolwı mümkin.</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Osı bettiñ tüzetwi barşa murağattarınan alastalğan.
+'rev-deleted-text-permission' => 'Bul bettiñ tüzetwi barşa murağattarınan alastalğan.
+Mında [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} joyw jwrnalında] egjeý-tegjeý mälimetteri bolwı mümkin.',
+'rev-deleted-text-view'       => 'Osı bettiñ tüzetwi barşa murağattarınan alastalğan.
 {{SITENAME}} äkimşisi bop sonı köre alasız;
-[{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} joyw jwrnalında] egjeý-tegjeý mälmetteri bolwı mümkin.</div>',
+[{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} joyw jwrnalında] egjeý-tegjeý mälmetteri bolwı mümkin.',
 'rev-delundel'                => 'körset/jasır',
 'revisiondelete'              => 'Tüzetwlerdi joyw/joywdı boldırmaw',
 'revdelete-nooldid-title'     => 'Nısana tüzetw jaramsız',

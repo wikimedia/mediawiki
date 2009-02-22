@@ -620,6 +620,10 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 Şifrenizi zaten başarıyla değiştirdiniz ya da yeni bir geçici şifre istediniz.',
 'resetpass-temp-password'   => 'Geçici parola:',
 'resetpass-no-others'       => 'Diğer kullanıcılar için parolayı sıfırlayamazsınız.',
+'resetpass-log'             => 'Parola sıfırlamaları günlüğü',
+'resetpass-logtext'         => 'Aşağıdaki, bir yönetici tafından şifreleri değiştirilen kullanıcıların günlüğüdür.',
+'resetpass-logentry'        => '$1 için parolayı değiştirdi',
+'resetpass-comment'         => 'Parola sıfırlama nedeni:',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',
@@ -853,14 +857,12 @@ Konu ile alakalı diğer sayfaları bulmak için [[Special:Search|vikide arama y
 'rev-deleted-comment'            => '(yorum silindi)',
 'rev-deleted-user'               => '(kullanıcı adı silindi)',
 'rev-deleted-event'              => '(kayıt işlemi silindi)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Bu sayfa değişikliği kamu arşivlerinden silinmiştir.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulabilirsiniz.</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
-{{SITENAME}} üzerinde bir yönetici iseniz görebilirsiniz; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] detaylar olabilir.</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Bu farkı göremezsiniz çünkü revizyonlardan biri umumi arşivlerden çıkarılmış.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.</div>',
+'rev-deleted-text-permission'    => 'Bu sayfa değişikliği kamu arşivlerinden silinmiştir.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulabilirsiniz.',
+'rev-deleted-text-view'          => 'Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
+{{SITENAME}} üzerinde bir yönetici iseniz görebilirsiniz; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] detaylar olabilir.',
+'rev-deleted-no-diff'            => 'Bu farkı göremezsiniz çünkü revizyonlardan biri umumi arşivlerden çıkarılmış.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.',
 'rev-delundel'                   => 'göster/gizle',
 'revisiondelete'                 => 'Sürümleri sil/geri getir',
 'revdelete-nooldid-title'        => 'Hedef sürüm geçersiz',
@@ -2266,7 +2268,8 @@ Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]
 'allmessagesname'           => 'İsim',
 'allmessagesdefault'        => 'Orjinal metin',
 'allmessagescurrent'        => 'Kullanımdaki metin',
-'allmessagestext'           => "Bu liste  MediaWiki'de mevcut olan tüm terimlerin listesidir",
+'allmessagestext'           => 'Bu liste  MediaWiki ad alanında mevcut olan sistem mesajlarının listesidir.
+Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [http://www.mediawiki.org/wiki/Localisation MediaWiki Yerelleştirmesi] ve [http://translatewiki.net translatewiki.net] sayfalarını ziyaret edin.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' kapalı olduğu için '''{{ns:special}}:Allmessages''' kullanıma açık değil.",
 'allmessagesfilter'         => 'Metin ayrıştırıcı filtresi:',
 'allmessagesmodified'       => 'Sadece değiştirilmişleri göster',

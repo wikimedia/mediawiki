@@ -931,17 +931,13 @@ $2',
 'rev-deleted-comment'         => '(коментарът е изтрит)',
 'rev-deleted-user'            => '(името на автора е изтрито)',
 'rev-deleted-event'           => '(записът е изтрит)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Тази версия на страницата беше премахната от общодостъпния архив.
-Възможно да има повече подробности в [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} дневника на изтриванията].
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Тази версия на страницата е изтрита от общодостъпния архив.
+'rev-deleted-text-permission' => 'Тази версия на страницата беше премахната от общодостъпния архив.
+Възможно да има повече подробности в [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} дневника на изтриванията].',
+'rev-deleted-text-view'       => 'Тази версия на страницата е изтрита от общодостъпния архив.
 Като администратор на този сайт, вие можете да я видите;
-Възможно е обяснения да има в [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} дневника на изтриванията].
-</div>',
-'rev-deleted-no-diff'         => '<div class="mw-warning plainlinks">Няма достъп до тази разликова връзка, защото някоя от версиите е била изтрита от публичните архиви.
-Повече подробности вероятно се съдържат в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].</div>',
+Възможно е обяснения да има в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} дневника на изтриванията].',
+'rev-deleted-no-diff'         => 'Няма достъп до тази разликова връзка, защото някоя от версиите е била изтрита от публичните архиви.
+Повече подробности вероятно се съдържат в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].',
 'rev-delundel'                => 'показване/скриване',
 'revisiondelete'              => 'Изтриване/възстановяване на версии',
 'revdelete-nooldid-title'     => 'Не е зададена версия',

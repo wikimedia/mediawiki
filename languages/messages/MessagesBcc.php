@@ -869,13 +869,11 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'rev-deleted-comment'            => '(نظر زورگ بیتت)',
 'rev-deleted-user'               => '(نام کاربری زورگ بیتت)',
 'rev-deleted-event'              => '(کار آمار زورگ بیتت)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-ای بازبینی صفحه چه آرشیو عمومی زورگ بیتت.
-شاید جزییاتی ته [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} حذف آمار]. بیت</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-ای بازبینی صفحه چه آرشیو عمومی زورگ بیتت.
+'rev-deleted-text-permission'    => 'ای بازبینی صفحه چه آرشیو عمومی زورگ بیتت.
+شاید جزییاتی ته [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} حذف آمار]. بیت',
+'rev-deleted-text-view'          => 'ای بازبینی صفحه چه آرشیو عمومی زورگ بیتت.
 په عنوان مدیر ته {{SITENAME}}  شما تونیت آیء بگنیت;
-شاید جزییاتی ته ببیت [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} آمار حذف].</div>',
+شاید جزییاتی ته ببیت [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} آمار حذف].',
 'rev-delundel'                   => 'پیش دار/پناه کن',
 'revisiondelete'                 => 'حذف/حذف مکن بازبینیء',
 'revdelete-nooldid-title'        => 'نامعتبر بازبینی هدف',

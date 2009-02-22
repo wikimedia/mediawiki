@@ -1018,17 +1018,13 @@ $2',
 'rev-deleted-comment'            => '(σχόλιο αφαιρέθηκε)',
 'rev-deleted-user'               => '(όνομα χρήστη αφαιρέθηκε)',
 'rev-deleted-event'              => '(η καταγραφή στο αρχείο αφαιρέθηκε)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Αυτή η σελίδα αναθεώρησης έχει αφαιρεθεί από τα δημόσια αρχεία.
-Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} αρχείο καταγραφής διαγραφών].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Αυτή η αναθεώρηση σελίδας έχει αφαιρεθεί από τα δημόσια αρχεία.
+'rev-deleted-text-permission'    => 'Αυτή η σελίδα αναθεώρησης έχει αφαιρεθεί από τα δημόσια αρχεία.
+Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} αρχείο καταγραφής διαγραφών].',
+'rev-deleted-text-view'          => 'Αυτή η αναθεώρηση σελίδας έχει αφαιρεθεί από τα δημόσια αρχεία.
 Ως διαχειριστής σε αυτόν τον ιστότοπο μπορείτε να τη δείτε.
-Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} αρχείο καταγραφής διαγραφών].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Δεν μπορείτε να δείτε αυτή τη διαφορά επειδή μια από τις εκδόσεις αφαιρέθηκε από τα δημόσια αρχεία.
-Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} αρχείο διαγραφών].</div>',
+Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} αρχείο καταγραφής διαγραφών].',
+'rev-deleted-no-diff'            => 'Δεν μπορείτε να δείτε αυτή τη διαφορά επειδή μια από τις εκδόσεις αφαιρέθηκε από τα δημόσια αρχεία.
+Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} αρχείο διαγραφών].',
 'rev-delundel'                   => 'εμφάνιση/απόκρυψη',
 'revisiondelete'                 => 'Διαγραφή/επαναφορά αναθεωρήσεων',
 'revdelete-nooldid-title'        => 'Άκυρη έκδοση-στόχος',

@@ -741,6 +741,10 @@ $2',
 すでにパスワード変更を行っているか、新しい仮パスワードの発行を依頼していませんか。',
 'resetpass-temp-password'   => '仮パスワード:',
 'resetpass-no-others'       => '他の利用者のパスワードを再設定することはできません。',
+'resetpass-log'             => 'パスワード再設定記録',
+'resetpass-logtext'         => '以下は管理者が利用者のパスワードを再設定した記録です。',
+'resetpass-logentry'        => '$1のパスワードを変更しました',
+'resetpass-comment'         => 'パスワードを再設定する理由:',
 
 # Edit page toolbar
 'bold_sample'     => '強い強調（太字）',
@@ -961,12 +965,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'rev-deleted-comment'            => '(要約は削除されています)',
 'rev-deleted-user'               => '(投稿者名は削除されています)',
 'rev-deleted-event'              => '(ログは削除されています)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-この版は公のアーカイブから削除されています。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-この版は公のアーカイブから削除されています。あなたは{{SITENAME}}の{{int:group-sysop}}であるため内容を見ることができます。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">表示させようとした差分のいずれかの版が公開アーカイブから削除されているため、差分表示できません。関連情報が[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]にあるかもしれません。</div>',
+'rev-deleted-text-permission'    => 'この版は公のアーカイブから削除されています。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。',
+'rev-deleted-text-view'          => 'この版は公のアーカイブから削除されています。あなたは{{SITENAME}}の{{int:group-sysop}}であるため内容を見ることができます。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。',
+'rev-deleted-no-diff'            => '表示させようとした差分のいずれかの版が公開アーカイブから削除されているため、差分表示できません。関連情報が[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]にあるかもしれません。',
 'rev-delundel'                   => '表示/秘匿',
 'revisiondelete'                 => '版の削除と復帰',
 'revdelete-nooldid-title'        => '対象版がありません',

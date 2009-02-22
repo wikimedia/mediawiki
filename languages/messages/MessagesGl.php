@@ -682,6 +682,10 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal temporal.',
 'resetpass-temp-password'   => 'Contrasinal temporal:',
 'resetpass-no-others'       => 'Non pode restablecer o contrasinal doutros usuarios.',
+'resetpass-log'             => 'Rexistro de restablecementos de contrasinais',
+'resetpass-logtext'         => 'A continuación hai un rexistro cos usuarios aos que un administrador lles restableceu o seu contrasinal.',
+'resetpass-logentry'        => 'cambiou o contrasinal de $1',
+'resetpass-comment'         => 'Motivo para o restablecemento do contrasinal:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto en negra',
@@ -932,17 +936,13 @@ Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.'
 'rev-deleted-comment'            => '(comentario eliminado)',
 'rev-deleted-user'               => '(nome de usuario eliminado)',
 'rev-deleted-event'              => '(rexistro de evento eliminado)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
-Esta revisión da páxina foi eliminada dos arquivos públicos.
-Pode ampliar detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
-</div>',
-'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
-Esta revisión da páxina foi eliminada dos arquivos públicos.
-Como administrador deste wiki pode vela;
-se quere ampliar detalles, visite o [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rexistro de borrados].
-</div>',
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">Non pode ver esta diferenza porque unha das revisións foi eliminada dos arquivos públicos.
-Pode que haxa detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].</div>',
+'rev-deleted-text-permission'    => 'Esta revisión da páxina foi eliminada dos arquivos públicos.
+Pode ampliar detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].',
+'rev-deleted-text-view'          => 'Esta revisión da páxina foi eliminada dos arquivos públicos.
+Como administrador de {{SITENAME}} pode vela;
+se quere ampliar detalles, visite o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].',
+'rev-deleted-no-diff'            => 'Non pode ver esta diferenza porque unha das revisións foi eliminada dos arquivos públicos.
+Pode que haxa detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].',
 'rev-delundel'                   => 'mostrar/agochar',
 'revisiondelete'                 => 'Borrar/restaurar revisións',
 'revdelete-nooldid-title'        => 'Revisión inválida',

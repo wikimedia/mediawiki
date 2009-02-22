@@ -705,12 +705,10 @@ $3-н тодорхойлсон шалтгаан нь ''$2''",
 'rev-deleted-comment'         => '(товч агуулгын тухай мэдээлэл арилгагдсан байна)',
 'rev-deleted-user'            => '(хэрэглэгчийн нэр арилгагдсан байна)',
 'rev-deleted-event'           => '(логийн үйлдэл арилгагдсан байна)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Энэ хуудасны засвар нийтийн архиваас арилгагдсан байна.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Устгалын логт] дэлгэрэнгүй мэдээлэл байж магадгүй.</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Энэ хуудасны засвар нийтийн архиваас арилгагдсан байна. Та {{SITENAME}}-д администратор учраас харах боломжтой;
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} устгалын логт] дэлгэрэнгүй мэдээлэл байж магадгүй.</div>',
+'rev-deleted-text-permission' => 'Энэ хуудасны засвар нийтийн архиваас арилгагдсан байна.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Устгалын логт] дэлгэрэнгүй мэдээлэл байж магадгүй.',
+'rev-deleted-text-view'       => 'Энэ хуудасны засвар нийтийн архиваас арилгагдсан байна. Та {{SITENAME}}-д администратор учраас харах боломжтой;
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} устгалын логт] дэлгэрэнгүй мэдээлэл байж магадгүй.',
 'rev-delundel'                => 'үзүүлэх/нуух',
 'revisiondelete'              => 'Засваруудыг устгах/сэргээх',
 'revdelete-nooldid-title'     => 'Зорьсон засвар байхгүй байна',

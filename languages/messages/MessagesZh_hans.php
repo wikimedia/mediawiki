@@ -217,7 +217,7 @@ $messages = array(
 'tog-diffonly'                => '在比较两个修订版本差异时不显示页面内容',
 'tog-showhiddencats'          => '显示隐藏分类',
 'tog-noconvertlink'           => '不转换链接标题',
-'tog-norollbackdiff'          => '进行反转后略过差异',
+'tog-norollbackdiff'          => '进行回退后略过差异比较',
 
 'underline-always'  => '总是使用',
 'underline-never'   => '从不使用',
@@ -872,14 +872,12 @@ $2',
 'rev-deleted-comment'            => '(注释已移除)',
 'rev-deleted-user'               => '(用户名已移除)',
 'rev-deleted-event'              => '(日志动作已移除)',
-'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">该页面修订已经被从公共文档中移除。
-在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。</div>',
-'rev-deleted-text-view'          => "<div class='mw-warning plainlinks'>
-该页面修订已经被从公共文档中移除。作为{{SITENAME}}的管理员，您可以查看它；
-在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。
-</div>",
-'rev-deleted-no-diff'            => '<div class="mw-warning plainlinks">因为其中一次修订从公众存档中移除，您不可以查看这个差异。
-在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的资料。</div>',
+'rev-deleted-text-permission'    => '该页面修订已经被从公共文档中移除。
+在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。',
+'rev-deleted-text-view'          => '该页面修订已经被从公共文档中移除。作为{{SITENAME}}的管理员，您可以查看它；
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。',
+'rev-deleted-no-diff'            => '因为其中一次修订从公众存档中移除，您不可以查看这个差异。
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的资料。',
 'rev-delundel'                   => '显示/隐藏',
 'revisiondelete'                 => '删除/恢复删除修订',
 'revdelete-nooldid-title'        => '无效的目标修订',
@@ -2207,7 +2205,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'movepage-max-pages'           => '最多有$1个页面已经移动同时不可以自动地再移动更多。',
 '1movedto2'                    => '[[$1]]移动到[[$2]]',
 '1movedto2_redir'              => '[[$1]]通过重定向移动到[[$2]]',
-'move-redirect-suppressed'     => '重新定向已压制',
+'move-redirect-suppressed'     => '已禁止重新定向',
 'movelogpage'                  => '移动日志',
 'movelogpagetext'              => '以下是所有移动的页面列表:',
 'movereason'                   => '原因',

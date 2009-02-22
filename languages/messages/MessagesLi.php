@@ -810,15 +810,11 @@ Wellich is d'r gewis of vernäömp.
 'rev-deleted-comment'         => '(opmerking weggehaold)',
 'rev-deleted-user'            => '(gebroeker weggehaold)',
 'rev-deleted-event'           => '(actie weggehaold)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-De historie van dees pazjena is gewusj oet de publieke archieve.
-Dao kónne details aanwezig zeen in \'t [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wusjlogbook].
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-De historie van dees pazjena is gewösj oet de publieke archieve.
+'rev-deleted-text-permission' => "De historie van dees pazjena is gewusj oet de publieke archieve.
+Dao kónne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wusjlogbook].",
+'rev-deleted-text-view'       => "De historie van dees pazjena is gewösj oet de publieke archieve.
 Es beheerder van deze site kèns te deze zeen;
-dao kónne details aanwezig zeen in \'t [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} wusjlogbook].
-</div>',
+dao kónne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wusjlogbook].",
 'rev-delundel'                => 'tuun/verberg',
 'revisiondelete'              => 'Verwijder/herstel bewerkinge',
 'revdelete-nooldid-title'     => 'Geine doelverzie',

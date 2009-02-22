@@ -839,16 +839,12 @@ $3 макссь туфталсь - ''$2''",
 'rev-deleted-comment'         => '(мяльполаткс нардаф)',
 'rev-deleted-user'            => '(тиить лемоц нардаф)',
 'rev-deleted-event'           => '(сёрматфсь нардаф)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Тя лопать верзиенц нардазь марстонь аркивста.
+'rev-deleted-text-permission' => 'Тя лопать верзиенц нардазь марстонь аркивста.
 Шарьхкотьфнемат, шятьта, улихть
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} нардамань лувомаса].
-</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Тя лопать верзиенц нардазь марстонь пърдафксста.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} нардамань лувомаса].',
+'rev-deleted-text-view'       => 'Тя лопать верзиенц нардазь марстонь пърдафксста.
 Тондейть кода {{SITENAME}}-ть оцюнянцты ули кода ваномонза;
-ванк [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} нардамань лувомаса].
-</div>',
+ванк [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} нардамань лувомаса].',
 'rev-delundel'                => 'няфтемс/кяшемс',
 'revisiondelete'              => 'Нардамс/мърдафтомс илякстоптоматнень',
 'revdelete-nooldid-title'     => 'Аф лац верзиень кочкама',
