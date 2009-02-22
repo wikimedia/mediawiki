@@ -737,10 +737,10 @@ class UndeleteForm {
 
 		if( $rev->isDeleted(Revision::DELETED_TEXT) ) {
 			if( !$rev->userCan(Revision::DELETED_TEXT) ) {
-				$wgOut->addWikiText( wfMsg( 'rev-deleted-text-permission' ) );
+				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-permission' );
 				return;
 			} else {
-				$wgOut->addWikiText( wfMsg( 'rev-deleted-text-view' ) );
+				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-view' );
 				$wgOut->addHTML( '<br/>' );
 				// and we are allowed to see...
 			}

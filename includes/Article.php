@@ -923,12 +923,12 @@ class Article {
 					# Allow admins to see deleted content if explicitly requested
 					if( $this->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
 						if( !$unhide || !$this->mRevision->userCan(Revision::DELETED_TEXT) ) {
-							$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
+							$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-permission' );
 							$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 							wfProfileOut( __METHOD__ );
 							return;
 						} else {
-							$wgOut->addWikiMsg( 'rev-deleted-text-view' );
+							$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-view' );
 							// and we are allowed to see...
 						}
 					}
