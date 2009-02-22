@@ -5,6 +5,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.14.0 ==
 
+February 22, 2009
+
 This is the first stable release of the 2009 Q1 branch of MediaWiki.
 
 MediaWiki is now using a "continuous integration" development model with
@@ -24,7 +26,7 @@ fix this problem for the release of 1.15.0.
 
 == Changes since 1.14.0rc1 ==
 
-* Fixed performance of the backlinks API module
+* Fixed the performance of the backlinks API module
 * (bug 17420) Send the correct content type from action=raw when the HTML file 
   cache is enabled.
 * (bug 17437) Fixed incorrect link to web-based installer
