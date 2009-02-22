@@ -217,6 +217,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Wantedtemplates now works on PostgreSQL
 * (bug 14414) maintenance/updateSpecialPages.php no longer throws error with
   PostgreSQL
+* (bug 17546) Correct Tongan language native name is "lea faka-Tonga"
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
