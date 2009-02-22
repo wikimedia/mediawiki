@@ -271,7 +271,8 @@ CONTROL;
 			$this->showDiffStyle();
 			$multi = $this->getMultiNotice();
 			$wgOut->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
-			$wgOut->addWikiMsg( 'rev-deleted-no-diff' );
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
+				array( 'rev-deleted-no-diff' ) );
 		} else if( $wgEnableHtmlDiff && $this->htmldiff ) {
 			$multi = $this->getMultiNotice();
 			$wgOut->addHTML('<div class="diff-switchtype">'.$sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'wikicodecomparison' ),
@@ -301,9 +302,9 @@ CONTROL;
 		$wgOut->addHTML( "<hr /><h2>{$this->mPagetitle}</h2>\n" );
 		# Add deleted rev tag if needed
 		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-			$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-permission' );
 		} else if( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
-			$wgOut->addWikiMsg( 'rev-deleted-text-view' );
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-view' );
 		}
 
 		if( !$this->mNewRev->isCurrent() ) {
@@ -356,9 +357,9 @@ CONTROL;
 		$wgOut->addHTML( '<h2>'.wfMsgHtml( 'visual-comparison' )."</h2>\n" );
 		#add deleted rev tag if needed
 		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
-			$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-permission' );
 		} else if( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
-			$wgOut->addWikiMsg( 'rev-deleted-text-view' );
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-view' );
 		}
 
 		if( !$this->mNewRev->isCurrent() ) {

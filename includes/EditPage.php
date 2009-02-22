@@ -1183,9 +1183,9 @@ class EditPage {
 			// Let sysop know that this will make private content public if saved
 
 				if ( !$this->mArticle->mRevision->userCan( Revision::DELETED_TEXT ) ) {
-					$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
+					$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-permission' );
 				} else if ( $this->mArticle->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
-					$wgOut->addWikiMsg( 'rev-deleted-text-view' );
+					$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-view' );
 				}
 
 				if ( !$this->mArticle->mRevision->isCurrent() ) {
