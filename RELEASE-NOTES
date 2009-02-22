@@ -4,6 +4,8 @@ For upgrade instructions please see the UPGRADE file in this directory.
 
 == MediaWiki 1.13.5 ==
 
+February 22, 2009
+
 This is a maintenance update to the Summer 2008 snapshot release of MediaWiki.
 
 MediaWiki is now using a "continuous integration" development model with
