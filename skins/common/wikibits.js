@@ -93,11 +93,11 @@ if (typeof stylepath != 'undefined' && typeof skin != 'undefined') {
 	} else if (is_opera_seven && !is_opera_95) {
 		importStylesheetURI(stylepath+'/'+skin+'/Opera7Fixes.css');
 	} else if (is_opera_95) {
-	  importStylesheetURI(stylepath+'/'+skin+'/Opera9Fixes.css');
+		importStylesheetURI(stylepath+'/'+skin+'/Opera9Fixes.css');
 	} else if (is_khtml) {
 		importStylesheetURI(stylepath+'/'+skin+'/KHTMLFixes.css');
 	} else if (is_ff2_) {
-	  importStylesheetURI(stylepath+'/'+skin+'/FF2Fixes.css');
+		importStylesheetURI(stylepath+'/'+skin+'/FF2Fixes.css');
 	}
 }
 

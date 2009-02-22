@@ -589,9 +589,9 @@ table.rimage {
 	padding-right: 0;
 }
 .rtl a.feedlink {
-  background-position: right;
-  padding-right: 16px;
-  padding-left: 0;
+	background-position: right;
+	padding-right: 16px;
+	padding-left: 0;
 }
 
 /* correction for ltr wikis */
