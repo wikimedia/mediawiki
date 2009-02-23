@@ -92,6 +92,12 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if (isset($this->prop['ratelimits'])) {
 			$vals['ratelimits'] = $this->getRateLimits();
 		}
+		if (isset($this->prop['email'])) {
+			$vals['email'] = $wgUser->getEmail();
+			$auth = $wgUser->getEmailAuthenticationTimestamp();
+			if(!is_null($auth))
+				$vals['emailauthenticated'] = wfTimestamp(TS_ISO_8601, $auth);
+		}
 		return $vals;
 	}
 
@@ -141,7 +147,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'options',
 					'preferencestoken',
 					'editcount',
-					'ratelimits'
+					'ratelimits',
+					'email',
 				)
 			)
 		);
