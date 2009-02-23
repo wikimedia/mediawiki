@@ -218,7 +218,7 @@ class RevisionDeleteForm {
 		} else {
 			// Run through and pull all our data in one query
 			foreach( $this->archrevs as $timestamp ) {
-				$where[] = $timestamp;
+				$where[] = $dbr->timestamp( $timestamp );
 			}
 			$result = $dbr->select( 'archive', '*',
 				array(
@@ -227,14 +227,15 @@ class RevisionDeleteForm {
 					'ar_timestamp' => $where ),
 				__METHOD__ );
 			while( $row = $dbr->fetchObject( $result ) ) {
-				$revObjs[$row->ar_timestamp] = new Revision( array(
+				$timestamp = wfTimestamp( TS_MW, $timestamp );
+				$revObjs[$timestamp] = new Revision( array(
 				'page'       => $this->page->getArticleId(),
 				'id'         => $row->ar_rev_id,
 				'text'       => $row->ar_text_id,
 				'comment'    => $row->ar_comment,
 				'user'       => $row->ar_user,
 				'user_text'  => $row->ar_user_text,
-				'timestamp'  => $row->ar_timestamp,
+				'timestamp'  => $timestamp,
 				'minor_edit' => $row->ar_minor_edit,
 				'text_id'    => $row->ar_text_id,
 				'deleted'    => $row->ar_deleted,
@@ -333,7 +334,7 @@ class RevisionDeleteForm {
 		if( $this->deleteKey=='oldimage' ) {
 			// Run through and pull all our data in one query
 			foreach( $this->ofiles as $timestamp ) {
-				$where[] = $dbr->addQuotes( $timestamp.'!'.$this->page->getDBKey() );
+				$where[] = $timestamp.'!'.$this->page->getDBKey();
 			}
 			$result = $dbr->select( 'oldimage', '*',
 				array(
@@ -880,7 +881,7 @@ class RevisionDeleter {
 		$Id_set = array();
 		// Run through and pull all our data in one query
 		foreach( $items as $timestamp ) {
-			$where[] = $timestamp;
+			$where[] = $this->dbw->timestamp( $timestamp );
 		}
 		$result = $this->dbw->select( 'archive', '*',
 			array(
@@ -889,14 +890,15 @@ class RevisionDeleter {
 				'ar_timestamp' => $where ),
 			__METHOD__ );
 		while( $row = $this->dbw->fetchObject( $result ) ) {
-			$revObjs[$row->ar_timestamp] = new Revision( array(
+			$timestamp = wfTimestamp( TS_MW, $row->ar_timestamp );
+			$revObjs[$timestamp] = new Revision( array(
 				'page'       => $title->getArticleId(),
 				'id'         => $row->ar_rev_id,
 				'text'       => $row->ar_text_id,
 				'comment'    => $row->ar_comment,
 				'user'       => $row->ar_user,
 				'user_text'  => $row->ar_user_text,
-				'timestamp'  => $row->ar_timestamp,
+				'timestamp'  => $timestamp,
 				'minor_edit' => $row->ar_minor_edit,
 				'text_id'    => $row->ar_text_id,
 				'deleted'    => $row->ar_deleted,
@@ -950,7 +952,7 @@ class RevisionDeleter {
 		$set = array();
 		// Run through and pull all our data in one query
 		foreach( $items as $timestamp ) {
-			$where[] = $this->dbw->addQuotes( $timestamp.'!'.$title->getDBKey() );
+			$where[] = $timestamp.'!'.$title->getDBKey();
 		}
 		$result = $this->dbw->select( 'oldimage', '*',
 			array(
