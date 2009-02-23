@@ -72,9 +72,26 @@ class WantedFilesPage extends QueryPage {
 			$skin->makeLinkObj( $nt, htmlspecialchars( $text ) ) :
 			$skin->makeBrokenLinkObj( $nt, htmlspecialchars( $text ) );
 
-		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
-			$wgLang->formatNum( $result->value ) );
-		return wfSpecialList($plink, $nlinks);
+		return wfSpecialList(
+			$plink,
+			$this->makeWlhLink( $nt, $skin, $result )
+		);
+	}
+
+	/**
+	 * Make a "what links here" link for a given title
+	 *
+	 * @param Title $title Title to make the link for
+	 * @param Skin $skin Skin to use
+	 * @param object $result Result row
+	 * @return string
+	 */
+	private function makeWlhLink( $title, $skin, $result ) {
+		global $wgLang;
+		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere' );
+		$label = wfMsgExt( 'nlinks', array( 'parsemag', 'escape' ),
+		$wgLang->formatNum( $result->value ) );
+		return $skin->link( $wlh, $label, array(), array( 'target' => $title->getPrefixedText() ) );
 	}
 }
 

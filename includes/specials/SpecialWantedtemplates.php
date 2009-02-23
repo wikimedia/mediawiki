@@ -73,8 +73,6 @@ class WantedTemplatesPage extends QueryPage {
 			$skin->makeLinkObj( $nt, htmlspecialchars( $text ) ) :
 			$skin->makeBrokenLinkObj( $nt, htmlspecialchars( $text ) );
 
-		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
-			$wgLang->formatNum( $result->value ) );
 		return wfSpecialList(
 			$plink,
 			$this->makeWlhLink( $nt, $skin, $result )
