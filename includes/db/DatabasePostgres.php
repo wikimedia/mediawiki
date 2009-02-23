@@ -174,8 +174,10 @@ class DatabasePostgres extends Database {
 		global $wgCommandLineMode;
 		## If called from the command-line (e.g. importDump), only show errors
 		if ($wgCommandLineMode) {
-			$this->doQuery("SET client_min_messages = 'ERROR'");
+			$this->doQuery( "SET client_min_messages = 'ERROR'" );
 		}
+
+		$this->doQuery( "SET client_encoding='UTF8'" );
 
 		global $wgDBmwschema, $wgDBts2schema;
 		if (isset( $wgDBmwschema ) && isset( $wgDBts2schema )
@@ -185,7 +187,7 @@ class DatabasePostgres extends Database {
 		) {
 			$safeschema = $this->quote_ident($wgDBmwschema);
 			$safeschema2 = $this->quote_ident($wgDBts2schema);
-			$this->doQuery("SET search_path = $safeschema, $wgDBts2schema, public");
+			$this->doQuery( "SET search_path = $safeschema, $wgDBts2schema, public" );
 		}
 
 		return $this->mConn;
