@@ -7,6 +7,7 @@
  * @author Avjoska
  * @author Hendrix
  * @author Jaan513
+ * @author KalmerE.
  * @author Ker
  * @author Võrok
  * @author WikedKentaur
@@ -1178,7 +1179,8 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'pager-older-n'           => '{{PLURAL:$1|vanem 1|vanemad $1}}',
 
 # Book sources
-'booksources' => 'Otsi raamatut',
+'booksources'    => 'Otsi raamatut',
+'booksources-go' => 'Mine',
 
 # Special:Log
 'specialloguserlabel'  => 'Kasutaja:',
@@ -1416,6 +1418,7 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 'sp-contributions-blocklog'    => 'Blokeerimise logi',
 'sp-contributions-search'      => 'Otsi kaastöid',
 'sp-contributions-username'    => 'IP aadress või kasutajanimi:',
+'sp-contributions-submit'      => 'Otsi',
 
 # What links here
 'whatlinkshere'            => 'Lingid siia',

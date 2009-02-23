@@ -734,6 +734,11 @@ Možda ste već promjenili šifru ili ste zatražili novu privremenu šifru.',
 'resetpass-wrong-oldpass'   => 'Privremena ili trenutna šifra nije validna. 
 Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privremenu šifru.',
 'resetpass-temp-password'   => 'Privremena šifra:',
+'resetpass-no-others'       => 'Ne možete resetovati šifre drugih korisnika.',
+'resetpass-log'             => 'Zapisnik resetovanja šifre',
+'resetpass-logtext'         => 'Ispod je zapisnik korisnika koji su zatražili od administratora resetovanje svoje šifre.',
+'resetpass-logentry'        => 'promijenjena šifra za {{GENDER:$1|korisnika|korisnicu}} $1',
+'resetpass-comment'         => 'Razlog za resetovanje šifre:',
 
 # Edit page toolbar
 'bold_sample'     => 'Podebljan tekst',
@@ -1160,6 +1165,9 @@ Možete [[:\$1|da napravite članak sa tim naslovom]].
 'notextmatches'                    => 'Tekst članka ne odgovara',
 'prevn'                            => 'prethodnih $1',
 'nextn'                            => 'slijedećih $1',
+'prevn-title'                      => '{{PLURAL:$1|Prethodni $1 rezultat|Prethodna $1 rezultata|Prethodnih $1 rezultata}}',
+'nextn-title'                      => '{{PLURAL:$1|Slijedeći $1 rezultat|Slijedeća $1 rezultata|Slijedećih $1 rezultata}}',
+'shown-title'                      => 'Pokaži $1 {{PLURAL:$1|rezultat|rezultata}} po stranici',
 'viewprevnext'                     => 'Pogledaj ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opcije pretrage',
 'searchmenu-exists'                => "'''Postoji stranica pod nazivom \"[[\$1]]\" na ovoj wiki'''",
@@ -1388,6 +1396,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'right-userrights'           => 'Uređivanje svih korisničkih prava',
 'right-userrights-interwiki' => 'Uređivanje korisničkih prava korisnika na drugim wikijima',
 'right-siteadmin'            => 'Zaključavanje i otključavanje baze podataka',
+'right-reset-passwords'      => 'Resetuje šifre drugih korisnika',
 
 # User rights log
 'rightslog'      => 'Zapisnik korisničkih prava',
@@ -2430,7 +2439,8 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWi
 'allmessagesname'           => 'Naziv',
 'allmessagesdefault'        => 'Pretpostavljeni tekst',
 'allmessagescurrent'        => 'Trenutni tekst',
-'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u {{ns:mediawiki}} imenskom prostoru.',
+'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u dostupnih u MedijaViki imenskom prostoru.
+Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MedijaViki lokalizaciju] i [http://translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MedijaVikija.',
 'allmessagesnotsupportedDB' => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
 'allmessagesfilter'         => 'Filter naziva poruka:',
 'allmessagesmodified'       => 'Prikaži samo izmijenjeno',

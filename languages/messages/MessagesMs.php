@@ -615,6 +615,7 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan sementara yang baru.',
 'resetpass-temp-password'   => 'Kata laluan sementara:',
 'resetpass-no-others'       => 'Anda tidak boleh mengeset semula kata laluan orang lain.',
+'resetpass-logentry'        => 'menukar kata laluan $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Teks tebal',
@@ -1019,6 +1020,9 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'notextmatches'                    => 'Tiada teks laman yang sepadan',
 'prevn'                            => '$1 sebelumnya',
 'nextn'                            => '$1 berikutnya',
+'prevn-title'                      => '$1 hasil sebelumnya',
+'nextn-title'                      => '$1 hasil berikutnya',
+'shown-title'                      => 'Papar $1 hasil setiap laman',
 'viewprevnext'                     => 'Lihat ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Pilihan gelintar',
 'searchmenu-exists'                => "* Laman '''[[$1]]'''",

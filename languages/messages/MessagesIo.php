@@ -107,13 +107,19 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Kategorio|Kategorii}}',
-'category_header'          => 'Artikli en kategorio "$1"',
-'subcategories'            => 'Subkategorii',
-'category-empty'           => "''Nuntempe existas nula pagini en ita kategorio.''",
-'hidden-categories'        => '{{PLURAL:$1|Celita kategorio|Celita kategorii}}',
-'hidden-category-category' => 'Celita kategorii', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => 'seq.',
+'pagecategories'                 => '{{PLURAL:$1|Kategorio|Kategorii}}',
+'category_header'                => 'Artikli en kategorio "$1"',
+'subcategories'                  => 'Subkategorii',
+'category-empty'                 => "''Nuntempe existas nula pagini en ita kategorio.''",
+'hidden-categories'              => '{{PLURAL:$1|Celita kategorio|Celita kategorii}}',
+'hidden-category-category'       => 'Celita kategorii', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => 'Ica kategorio havas {{PLURAL:$2|nur la sequanta subkategorio.|la sequanta {{PLURAL:$1|subkategorio|$1 subkategorii}}, ek $2.}}',
+'category-subcat-count-limited'  => 'Ica kategorio havas la sequanta {{PLURAL:$1|subkategorio|$1 subkategorii}}.',
+'category-article-count'         => '{{PLURAL:$2|Ica kategorio havas nur la sequanta pagino.|La sequanta {{PLURAL:$1|pagino|$1 pagini}} es en ica kategorio, ek $2.}}',
+'category-article-count-limited' => 'La sequanta {{PLURAL:$1|pagino|$1 pagini}} es en la aktuala kategorio.',
+'category-file-count'            => '{{PLURAL:$2|Ica kategorio havas nur la sequanta arkivo.|La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} es en ica kategorio, ek $2.}}',
+'category-file-count-limited'    => 'La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} es en la aktuala kategorio.',
+'listingcontinuesabbrev'         => 'seq.',
 
 'mainpagetext' => "<big>'''MediaWiki instalesis sucese.'''</big>",
 
@@ -138,7 +144,7 @@ $messages = array(
 'metadata_help' => 'Metadonaji:',
 
 'errorpagetitle'    => 'Eroro',
-'returnto'          => 'Retrovenar a la pagino di $1.',
+'returnto'          => 'Retrovenar a $1.',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Helpo',
 'search'            => 'Serchuro',
@@ -251,7 +257,7 @@ $messages = array(
 'nosuchspecialpage' => 'Ne existas tala specala pagino',
 'nospecialpagetext' => "<big>'''Vu demandis specala pagino qua ne existas.'''</big>
 
-A list of valid special pages can be found at [[Special:SpecialPages|{{int:specialpages}}]].",
+On povas trovar listo di valida specala pagini en [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'               => 'Eroro',
@@ -316,9 +322,11 @@ Voluntez, elektez ula diferanta uzantonomo.',
 'username'                   => 'Uzantonomo:',
 'uid'                        => 'ID dil uzanto:',
 'prefs-memberingroups'       => 'Membro di la {{PLURAL:$1|grupo|grupi}}:',
-'yourrealname'               => 'Vua reala nomo:',
+'yourrealname'               => 'Reala nomo:',
 'yourlanguage'               => 'Linguo:',
 'yournick'                   => 'Signaturo:',
+'badsiglength'               => 'Vua signaturo es tro longa.
+Ol mustas ne havar plu kam $1 {{PLURAL:$1|litero|literi}}.',
 'yourgender'                 => 'Genro:',
 'gender-unknown'             => 'Nespecigita',
 'gender-male'                => 'Maskula',
@@ -686,6 +694,7 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'linkstoimage'              => 'La {{PLURAL:$1|pagino|$1 pagini}} infre ligas a ca arkivo:',
 'nolinkstoimage'            => 'Nula pagino ligas a ca pagino.',
 'uploadnewversion-linktext' => 'Adkargez nova versiono dil arkivo',
+'shared-repo-from'          => 'ek $1', # $1 is the repository name
 
 # File reversion
 'filerevert-comment' => 'Komento:',
@@ -963,7 +972,7 @@ Videz [[Special:IPBlockList|IP-blokuslisto]] por revizor blokusadi.',
 'contribslink'       => 'kontrib',
 'autoblocker'        => 'Autoblokusita nam vu havas la sama IP-adreso kam "[[User:$1|$1]]". Motivo: "$2"',
 'blocklogentry'      => 'blokusis [[$1]] dum periodo de $2 $3',
-'unblocklogentry'    => 'desblokusita "$1"',
+'unblocklogentry'    => 'desblokusis "$1"',
 'ipb_expiry_invalid' => 'Nevalida expiro-tempo.',
 'ip_range_invalid'   => 'Nevalida IP-rango.',
 'proxyblocksuccess'  => 'Facita.',
@@ -1023,7 +1032,7 @@ Voluntez selektar altra nomo.',
 # Namespace 8 related
 'allmessages'     => 'Omna sistemo-mesaji',
 'allmessagesname' => 'Nomo',
-'allmessagestext' => 'Ico esas listo de omna sistemo-mesaji disponebla en la MediaWiki: namespace.',
+'allmessagestext' => 'Ico esas listo de omna sistemo-mesaji disponebla en la MediaWiki-nomaro.',
 
 # Thumbnails
 'thumbnail-more'  => 'Grandigar',

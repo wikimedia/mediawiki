@@ -369,7 +369,7 @@ Pe piacere prueve cchiù tarde.",
 'protectedpagetext'    => 'Sta pàgene ha state prutette pe no fa fà cangiaminde a uecchje.',
 'viewsourcetext'       => "Tu puè vedè e cupià 'a sorgente de sta pàgene:",
 'protectedinterface'   => "Sta pàgene te dè l'inderfacce de teste pìu software e jè blocchete pe prevenì l'abbuse.",
-'editinginterface'     => "'''Fà attenziò:'''  Tu ste cange 'na pàgene ca jè ausete pe dà ìnìinderfacce p'u software.
+'editinginterface'     => "'''Fà attenziò:'''  Tu ste cange 'na pàgene ca jè ausete pe dà 'n'inderfacce de teste p'u software.
 Le cangiaminde de sta pàgene vonne a mettene mane sus a l'inderfacce utende pe l'otre utinde.
 Pe traduziune, pe piacere vide ce ause [http://translatewiki.net/wiki/Main_Page?setlang=roa-tara BetaUicchi], 'u pruggette de localizzazione de MediaUicchi.",
 'sqlhidden'            => '(query SQL ascunnute)',
@@ -521,6 +521,11 @@ Pò essere ca tu è già chieste 'na password temboranea nove oppure è già can
 'resetpass-wrong-oldpass'   => "'A password temboranea o quedda corrende jè invalide.
 Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea nove.",
 'resetpass-temp-password'   => 'Password temboranea:',
+'resetpass-no-others'       => "Tu non ge puè azzerà 'a password de otre utinde.",
+'resetpass-log'             => 'Archivije de le azzeraminde de le password',
+'resetpass-logtext'         => "Sotte stè 'n'archivije de utinde ca onne avute 'a password lore azzerate da 'n'amministratore.",
+'resetpass-logentry'        => "cangete 'a password pe $1",
+'resetpass-comment'         => "Mutive pe l'azzeramende d'a password:",
 
 # Edit page toolbar
 'bold_sample'     => 'Teste grascette',
@@ -659,7 +664,7 @@ certe brauser ponne avè probleme quanne vuè cu cange pàggene ca sonde granne 
 Pe piacere considere de cangià 'a pàgene a stuezze stuezze ausanne le sezione.'''",
 'protectedpagewarning'             => "'''ATTENZIO': Sta pàgene ha state blocchete e allore sulamende le utinde cu le privilegge de ''sysop'' ponne cangiarle.'''",
 'semiprotectedpagewarning'         => "'''Fà attenzione:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrete ponne fà cangiaminde.",
-'titleprotectedwarning'            => "'''ATTENZIONE: Sta pàgene ha state blocchete accussì sulamende certe utinde a ponne ccrejà.'''",
+'titleprotectedwarning'            => "'''ATTENZIONE: Sta pàgene ha state blocchete accussì sulamende [[Special:ListGroupRights|specifice diritte]] a ponne ccrejà.'''",
 'templatesused'                    => "Template ausete sus 'a sta pàgene:",
 'templatesusedpreview'             => "Template ausete jndr'à sta andeprime:",
 'templatesusedsection'             => "Jndr'à sta sezione sonde ausete chiste template:",
@@ -860,12 +865,16 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'noexactmatch'                     => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
 Tu puè [[:\$1|ccrejà sta pàgene]].",
 'noexactmatch-nocreate'            => "'''Non ge stè 'na vosce ca se nnomene \"\$1\".'''",
+'toomanymatches'                   => "Troppe combronde sciute bbuene onne state returnete, pe piacere prueve cu 'n'otra inderrogazione",
 'titlematches'                     => "'U titele d'a pàgene se iacchje",
 'notitlematches'                   => "Nisciune titele de pàgene s'accocchie cu 'a recerche",
 'textmatches'                      => "'U teste d'a pàgene combacie",
 'notextmatches'                    => "Nisciune teste de pàgene s'accocchie cu 'a recerche",
 'prevn'                            => 'rrede $1',
 'nextn'                            => 'nnande $1',
+'prevn-title'                      => 'Precedende $1 {{PLURAL:$1|resultete|resultete}}',
+'nextn-title'                      => 'Successive $1 {{PLURAL:$1|resultete|resultete}}',
+'shown-title'                      => 'Fà vedè le $1 {{PLURAL:$1|resultete|resultete}} pe pàgene',
 'viewprevnext'                     => 'Vide ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opzione de ricerche',
 'searchmenu-exists'                => "'''Stè 'na pàgene nnumenete \"[[\$1]]\" sus 'a sta Uicchipèdie'''",
@@ -1060,8 +1069,9 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 'right-siteadmin'        => "Blocche e sblocche 'u database",
 
 # User rights log
-'rightslog'  => "Archivie de le diritte de l'utende",
-'rightsnone' => '(ninde)',
+'rightslog'     => "Archivie de le diritte de l'utende",
+'rightslogtext' => "Quiste jè 'n'archivije pe le cangiaminde de le deritte de l'utinde.",
+'rightsnone'    => '(ninde)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'           => 'ligge sta pàgene',
@@ -1217,9 +1227,9 @@ Pe piacere condrolle 'u file e carechele 'n'otra vote.",
 'imagelinks'                => 'Collegaminde de file',
 'linkstoimage'              => '{{PLURAL:$1|sta pàgene apponde |$1 ste pàggene appondene}} a stu fail:',
 'nolinkstoimage'            => 'Non ge stonne pàggene ca appodene a stu fail.',
-'sharedupload'              => 'This file is a shared upload and may be used by other projects.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Stu file avène da $1 e pò essere ausete da otre pruggette. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => "Pe piacere vide $1 pe avè cchiù 'mbormaziune.",
-'shareduploadwiki-desc'     => "'A descrizione de le sue $1 sus a 'u scatelone condivise jè visualizzete aqquà sotte.",
+'shareduploadwiki-desc'     => "'A descrizione de le sue $1 jè visualizzete aqquà sotte.",
 'shareduploadwiki-linktext' => "pàgene d'a descrizione d'u file",
 'noimage'                   => "Non g'esiste nisciune fail cu stu nome, ma tu puè $1.",
 'noimage-linktext'          => 'carechene une',
@@ -1236,6 +1246,7 @@ Pe piacere condrolle 'u file e carechele 'n'otra vote.",
 'filedelete'                  => 'Scangille $1',
 'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => "Scangille 'u file",
+'filedelete-intro-old'        => "Tu stè scangille 'a versiona de '''[[Media:$1|$1]]''' cumme de [$4 $3, $2].",
 'filedelete-comment'          => "Mutive d'u scangellamende:",
 'filedelete-submit'           => 'Scangille',
 'filedelete-success'          => "'''$1''' ha state scangellete.",
@@ -1625,6 +1636,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'ipbotherreason'               => 'Otre mutive:',
 'badipaddress'                 => 'Indirizze IP invalide',
 'blockipsuccesssub'            => 'Blocche effettuate',
+'ipb-edit-dropdown'            => "Cange le mutive d'u blocche",
 'ipb-unblock-addr'             => 'Sblocche $1',
 'ipb-unblock'                  => 'Sblocche nome utende o indirizze IP',
 'ipb-blocklist-contribs'       => 'Condrebbute pe $1',
@@ -1643,6 +1655,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'infiniteblock'                => 'quanne pisce a iaddine',
 'expiringblock'                => "more 'u $1",
 'anononlyblock'                => "sulamende l'anonime",
+'noautoblockblock'             => 'autoblocche disabbilitete',
 'createaccountblock'           => "sulamende l'utinde anonime",
 'emailblock'                   => 'e-mail blocchete',
 'ipblocklist-empty'            => "'A liste de le blocche jè vacande.",
@@ -1678,6 +1691,8 @@ $1 ha state già blocchete. Vuè cu cange le 'mbostaziune?",
 'unlockbtn'           => 'Sblocche databeise',
 'lockdbsuccesssub'    => "'U blocche d'u database ha state fatte cu successe",
 'unlockdbsuccesssub'  => "'U blocche d'u database ha state luete",
+'lockdbsuccesstext'   => "'U database ha state blocchete.<br />
+Arrecuerdete de [[Special:UnlockDB|luvà 'u blocche]] apprrisse ca 'a manutenziona ha state combletate.",
 'unlockdbsuccesstext' => "'U database ha state sblocchete.",
 'databasenotlocked'   => "'U database non g'è blocchete.",
 
@@ -1883,6 +1898,7 @@ $1",
 'nextdiff'     => 'Cangiaminde cchiù nuève →',
 
 # Media information
+'thumbsize'            => "Dimenziona d'a miniature:",
 'file-info'            => "(dimenzione d'u fail: $1, tipe de MIME: $2)",
 'file-info-size'       => "($1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4)",
 'file-nohires'         => "<small>Manghe 'a risoluzione ierta.</small>",
@@ -1892,6 +1908,7 @@ $1",
 
 # Special:NewFiles
 'newimages'             => 'Gallerie de le fail nuève',
+'imagelisttext'         => "Sotte stè 'na liste de '''$1''' {{PLURAL:$1|file|file}} arrénghete $2.",
 'newimages-legend'      => 'Filtre',
 'newimages-label'       => "Nome d'u fail (o 'nu stuezze de jidde):",
 'showhidebots'          => '($1 bot)',
@@ -1926,6 +1943,8 @@ Otre avènene scunnute pe defolt.
 'exif-orientation'                 => 'Oriendamende',
 'exif-jpeginterchangeformatlength' => "Byte d'u date d'u JPEG",
 'exif-imagedescription'            => "Titele de l'immaggine",
+'exif-make'                        => "Costruttore d'a machene",
+'exif-model'                       => "Modelle d'a machene",
 'exif-software'                    => 'Softuer ausete',
 'exif-artist'                      => 'Autore',
 'exif-copyright'                   => "Titolere d'u Copyright",
@@ -1935,6 +1954,7 @@ Otre avènene scunnute pe defolt.
 'exif-fnumber'                     => 'Numere de F',
 'exif-flash'                       => 'Flash',
 'exif-filesource'                  => "Sorgende d'u file",
+'exif-gaincontrol'                 => "Condrolle d'a scene",
 'exif-contrast'                    => 'Condraste',
 'exif-saturation'                  => 'Saturazione',
 'exif-gpslatitude'                 => 'Latitudene',
@@ -1996,6 +2016,9 @@ Otre avènene scunnute pe defolt.
 'exif-gpsspeed-k' => "Chilometre a l'ore",
 'exif-gpsspeed-m' => 'Miglie pe ore',
 'exif-gpsspeed-n' => 'Knots',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-m' => 'Direziona magnetiche',
 
 # External editor support
 'edit-externally'      => "Cange stu fail usanne n'applicazione esterne",
@@ -2117,6 +2140,9 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 
 # Special:SpecialPages
 'specialpages'                   => 'Pàggene speciele',
+'specialpages-note'              => '----
+* Pàggene speciale normale.
+* <span class="mw-specialpagerestricted">Pàggene speciale cu le restriziune.</span>',
 'specialpages-group-maintenance' => "Report d'a manutenzione",
 'specialpages-group-other'       => 'Otre pàggene speciele',
 'specialpages-group-login'       => 'Tràse / Reggistrete',

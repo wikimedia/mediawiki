@@ -1104,6 +1104,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'notextmatches'                    => '해당하는 문서 없음',
 'prevn'                            => '이전 $1개',
 'nextn'                            => '다음 $1개',
+'prevn-title'                      => '이전 $1개의 결과',
+'nextn-title'                      => '다음 $1개의 결과',
 'viewprevnext'                     => '보기: ($1) ($2) ($3).',
 'searchmenu-legend'                => '검색 설정',
 'searchmenu-exists'                => "'''이 위키에 \"[[\$1]]\"의 이름을 가진 문서가 있습니다.'''",

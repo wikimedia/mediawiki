@@ -5,6 +5,7 @@
  * @file
  *
  * @author Kaszeba
+ * @author Leinad
  * @author MinuteElectron
  * @author Warszk
  * @author לערי ריינהארט
@@ -332,6 +333,8 @@ Przemëszlë dolmaczënié na [http://translatewiki.net/wiki/Main_Page?setlang=c
 'badsig'                     => 'Òchëbny pòdpisënk, sprôwdzë tadżi HTML.',
 'badsiglength'               => 'Pòdpisënk je za dłudżi. 
 Mô bëc mni jakno $1 {{PLURAL:$1|znak|znaczi/znaków}}.',
+'gender-male'                => 'Chłop',
+'gender-female'              => 'Białka',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Prôwdzewi miono je òptacjowé a czej je dôsz, òstanié ùżëté do pòdpisaniô Twòjégò wkłôdu',
 'loginerror'                 => 'Fela logòwaniô',

@@ -165,7 +165,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#TAM', '#PRZEKIERUJ', '#REDIRECT' ),
+	'redirect'              => array( '0', '#PATRZ', '#PRZEKIERUJ', '#TAM', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__BEZSPISU__', '__NOTOC__' ),
 	'nogallery'             => array( '0', '__BEZGALERII__', '__NOGALLERY__' ),
 	'forcetoc'              => array( '0', '__ZESPISEM__', '__FORCETOC__' ),
