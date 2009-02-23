@@ -288,7 +288,8 @@ class SpecialContributions extends SpecialPage {
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
 			wfMsgExt( 'tagline', 'parsemag' ),
-			$this->getTitle()->getFullUrl() . "/" . htmlspecialchars( $this->opts['target'] ) );
+			$this->getTitle()->getFullUrl() . "/" . urlencode($this->opts['target'])
+		);
 			
 		// Already valid title
 		$nt = Title::makeTitleSafe( NS_USER, $this->opts['target'] );
