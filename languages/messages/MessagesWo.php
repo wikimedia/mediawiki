@@ -1200,6 +1200,7 @@ Ab [[Special:WhatLinksHere/$2|lim bu mat]] jàppandi na.',
 'deletedtext'            => '« <nowiki>$1</nowiki> » far nañu ko.
 Xolal $2 ngir gis limu farte bi mujj.',
 'deletedarticle'         => 'moo far « [[$1]] »',
+'suppressedarticle'      => 'moo far « [[$1]] »',
 'dellogpage'             => 'Jaar-jaaru farte bi',
 'dellogpagetext'         => 'Li toftal ab limu farte yi mujj la.',
 'deletionlog'            => 'jaar-jaaru  farte bi',
@@ -1215,8 +1216,45 @@ Xolal $2 ngir gis limu farte bi mujj.',
 'delete-toobig'          => 'Xët wii dafa am jaar-jaar bu bari, bu weesu $1 {{PLURAL:$1|sumb|sumb}}. Farteg yooyule xët dañu koo digal ngir bañ ay jafe-jafe yu mana am ci doxinu {{SITENAME}}.',
 'delete-warning-toobig'  => 'Xët wii dafa am jaar-jaar bu bari, bu weesu $1 {{PLURAL:$1|sumb|sumb}}. Seenug farte man naa jur ag jaxasoo ci dáttub njoxeeb {{SITENAME}} ; def ko ak teey.',
 
+# Rollback
+'rollback'         => 'Loppanti coppite yi',
+'rollback_short'   => 'Loppanti',
+'rollbacklink'     => 'loppanti',
+'rollbackfailed'   => 'Loppanti gi antuwul',
+'cantrollback'     => 'Neenal coppite gi manula nekk; 
+Ki def coppite gi mooy Kenn ki masa cëru ci xët wii.',
+'alreadyrolled'    => 'Loppantig coppite gu mujj gu xët wii di « [[:$1]] » manula nekk, ki ko def di [[User:$2|$2]] ([[User talk:$2|Waxtaan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); 
+am na keneen ku jota soppi walla loppanti xët wi.
+
+Ki mujje soppi xët wi mooy [[User:$3|$3]] ([[User talk:$3|Waxtaan]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+'editcomment'      => "Tënkug coppite gi mooy: « ''$1'' ».", # only shown if there is an edit comment
+'revertpage'       => 'Loppantig coppite gu [[Special:Contributions/$2|$2]] ([[User talk:$2|Waxtaan]]) dello ko ci sumb mu [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Ki loppanti mooy $1 ;
+Ki ko dello ci sumb mu mujj mi mooy $2.',
+'sessionfailure'   => 'Dafa mel ne sa dugg gi am na ay tolof-tolof ;
+Noste gi téye na sag dugg ngir wattu kaaraange. 
+Di la ñaan nga dellu ginnaaw te yesalaat xët wa jóge, te jéemaat',
+
 # Protect
-'prot_1movedto2' => 'tuddewaat ko [[$1]] en [[$2]]',
+'protectlogpage'            => 'Jaar-jaaru aar yi',
+'protectlogtext'            => 'Lii di toftal ab limu xët yi ñu aar ak yi ñu aaradi la.
+nemmeekul [[Special:ProtectedPages|limu xët yi ñu aar]] ngir gis ab lim ci xët yi ñu aar nii-nii.',
+'protectedarticle'          => 'moo aar « [[$1]] »',
+'modifiedarticleprotection' => 'moo soppi tolluwaayu kaaraange gu « [[$1]] »',
+'unprotectedarticle'        => 'moo aaradi « [[$1]] »',
+'movedarticleprotection'    => 'moo jële kaaraange gi ci « [[$2]] » jëmale ko « [[$1]] »',
+'protect-title'             => 'Soppi tolluwaayu kaaraange gu « [[$1]] »',
+'prot_1movedto2'            => '[[$1]] leegi mooy [[$2]]',
+'protect-backlink'          => '← $1',
+'protect-legend'            => 'Dëggalal aar gi',
+'protectcomment'            => 'Ngirtey aar gi :',
+'protectexpiry'             => 'Jeexintal :',
+'protect_expiry_invalid'    => 'Waxtub jeexintal bi baaxul.',
+'protect_expiry_old'        => 'Waxtub jeexintal bi weesu na.',
+'protect-unchain'           => 'Caabeedi sañal tuddewaat yi',
+'protect-text'              => "Fii man nga fee gise ak soppi tolluwaayu kaaraange gu wii xët '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'    => "Manoo soppi tolluwaayu kaaraange gi su ñu la téyee.  
+Nii la xët wi tëdde '''$1''' :",
 
 # Undelete
 'viewdeletedpage'            => 'Jaar-jaaru xët wi ñu dindi',

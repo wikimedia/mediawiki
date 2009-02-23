@@ -730,8 +730,9 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 
 # Search results
 'searchresults'             => 'Otsmisõ tulõmusõq',
+'searchresults-title'       => 'Otsmisõ "$1" tulõmiq',
 'searchresulttext'          => 'Lisateedüst otsmisõ kotsilõ kaeq [[{{MediaWiki:Helppage}}|{{SITENAME}} otsmisoppusõst]].',
-'searchsubtitle'            => "Otsminõ '''[[:$1]]''' perrä",
+'searchsubtitle'            => 'Sa otsõt fraasi "[[:$1]]" ([[Special:Prefixindex/$1|kõik kiräkotussõga "$1" päälenakkajaq leheq]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kõik leheq, kon om linke artiklilõ "$1"]])',
 'searchsubtitleinvalid'     => 'Otsminõ "$1"',
 'noexactmatch'              => "'''Olõ-i lehte päälkiräga \"\$1\".''' Võit tuu [[:\$1|esiq luvvaq]].",
 'titlematches'              => "Artiklipäälkir'ost löüt",
@@ -742,6 +743,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'nextn'                     => 'järgmädseq $1',
 'viewprevnext'              => 'Näütäq ($1) ($2) ($3).',
 'searchhelp-url'            => 'Help:Oppus',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 sõna|$2 sõnna}})',
 'search-interwiki-more'     => '(viil)',
 'search-mwsuggest-enabled'  => 'näütäq soovituisi',
 'search-mwsuggest-disabled' => 'ilma soovituisilda',

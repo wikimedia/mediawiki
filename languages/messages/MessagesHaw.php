@@ -247,6 +247,7 @@ $messages = array(
 'editsection'             => 'e ho‘opololei',
 'editold'                 => 'e ho‘opololei',
 'viewsourceold'           => 'nānā i ke kumu kanawai',
+'editlink'                => 'hoʻololi',
 'editsectionhint'         => 'E ho‘opololei i ka paukū: $1',
 'toc'                     => 'Papa kuhikuhi',
 'showtoc'                 => 'hō‘ike',
@@ -264,7 +265,7 @@ $messages = array(
 'nstab-main'      => 'akikala',
 'nstab-user'      => 'Inoa mea ho‘ohana',
 'nstab-media'     => 'Pāpaho',
-'nstab-special'   => 'Kūikawā',
+'nstab-special'   => 'Papa nui',
 'nstab-project'   => 'Papahana',
 'nstab-image'     => 'Waihona',
 'nstab-mediawiki' => 'Memo',
@@ -412,14 +413,17 @@ Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe 
 'editundo' => 'wehe',
 
 # Search results
-'noexactmatch'       => "'''‘A‘ohe mo‘olelo me ka inoa \"\$1\".''' Hiki iā‘oe ke [[:\$1|hana i keia ‘ao‘ao]].",
-'prevn'              => 'mua $1',
-'nextn'              => 'hope $1',
-'viewprevnext'       => 'Nānā i nā ($1) ($2) ($3)',
-'searchhelp-url'     => 'Help:Papa kuhikuhi',
-'search-result-size' => '$1 ({{PLURAL:$2|1 huaʻōlelo|$2 mau huaʻōlelo}})',
-'searchall'          => 'apau',
-'powersearch'        => 'Huli',
+'searchresults'             => 'Hopena hulina',
+'noexactmatch'              => "'''‘A‘ohe mo‘olelo me ka inoa \"\$1\".''' Hiki iā‘oe ke [[:\$1|hana i keia ‘ao‘ao]].",
+'prevn'                     => 'mua $1',
+'nextn'                     => 'hope $1',
+'viewprevnext'              => 'Nānā i nā ($1) ($2) ($3)',
+'searchhelp-url'            => 'Help:Papa kuhikuhi',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 huaʻōlelo|$2 mau huaʻōlelo}})',
+'search-mwsuggest-enabled'  => 'me nā ʻōlelo hoʻohali',
+'search-mwsuggest-disabled' => 'ʻaʻohe ʻōlelo hoʻohali',
+'searchall'                 => 'apau',
+'powersearch'               => 'Huli',
 
 # Preferences page
 'preferences'       => "Ka'u makemake",
@@ -461,7 +465,8 @@ Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe 
 'boteditletter'   => 'lopako',
 
 # Recent changes linked
-'recentchangeslinked' => "Nā loli hou 'ālike",
+'recentchangeslinked'      => "Nā loli hou 'ālike",
+'recentchangeslinked-page' => 'Inoa ʻaoʻao:',
 
 # Upload
 'upload'            => "Ho'ohui i ka waihona",

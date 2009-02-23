@@ -129,8 +129,8 @@ $magicWords = array(
 	'subjectpagename'       => array( '1', 'AIHESIVUNIMI', 'ARTIKKELISIVUNIMI', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
 	'subjectpagenamee'      => array( '1', 'AIHESIVUNIMIE', 'ARTIKKELISIVUNIMIE', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
 	'subst'                 => array( '0', 'VASTINE:', 'SUBST:' ),
-	'img_thumbnail'         => array( '1', 'pikkukuva', 'thumbnail', 'thumb' ),
-	'img_manualthumb'       => array( '1', 'pikkukuva=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'img_thumbnail'         => array( '1', 'pienoiskuva', 'thumbnail', 'thumb' ),
+	'img_manualthumb'       => array( '1', 'pienoiskuva=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'             => array( '1', 'oikea', 'right' ),
 	'img_left'              => array( '1', 'vasen', 'left' ),
 	'img_none'              => array( '1', 'tyhjä', 'none' ),
@@ -1117,6 +1117,9 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'notextmatches'                    => 'Hakusanaa ei löytynyt sivujen teksteistä',
 'prevn'                            => '← $1 edellistä',
 'nextn'                            => '$1 seuraavaa →',
+'prevn-title'                      => '{{PLURAL:$1|Edellinen $1 osuma|Seuraavat $1 osumaa}}',
+'nextn-title'                      => '{{PLURAL:$1|Seuraava $1 osuma|Seuraavat $1 osumaa}}',
+'shown-title'                      => 'Näytä $1 {{PLURAL:$1|osuma|osumaa}} sivulla',
 'viewprevnext'                     => 'Näytä [$3] kerralla.
 
 $1 | $2',

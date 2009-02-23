@@ -62,6 +62,7 @@
  * @author Slomox
  * @author Sp5uhe
  * @author Srhat
+ * @author Tgr
  * @author UV
  * @author Urhixidur
  * @author Verdy p
@@ -214,7 +215,8 @@ See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for
 
 'linkprefix'        => '{{optional}}',
 'mainpagetext'      => 'Along with {{msg|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
-'mainpagedocfooter' => 'Along with {{msg|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.',
+'mainpagedocfooter' => 'Along with {{msg|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.
+This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for example.',
 
 'about'          => '{{Identical|About}}',
 'article'        => '{{Identical|Content page}}',
@@ -565,7 +567,9 @@ $1 is the minimum number of characters in the password.',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.',
 'resetpass-wrong-oldpass'   => 'Error message shown on [[Special:Resetpass]] when the old password is not valid.',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
-'resetpass-no-others'       => 'Error message shown to who has not reset-passwords right when tries to reset password for another user. For example: http://translatewiki.net/wiki/Special:ChangePassword/Foo',
+'resetpass-no-others'       => 'Error message shown to a user not having the reset-passwords right, when he tries to reset the password for another user. For example: http://translatewiki.net/wiki/Special:ChangePassword/Foo',
+'resetpass-logentry'        => 'Log entry.
+* $1 is a link to a user page.',
 
 # Edit page toolbar
 'bold_sample'     => 'This is the sample text that you get when you press the first button on the left on the edit toolbar.
@@ -858,6 +862,10 @@ Description: The URL of the search help page.
 
 {{Identical|Content page}}',
 'searchprofile-articles-and-proj' => '{{Identical|Content page}}',
+'searchprofile-project'           => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
+'searchprofile-images'            => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
+'searchprofile-everything'        => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
+'searchprofile-advanced'          => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
 'searchprofile-articles-tooltip'  => '{{Identical|Search in $1}}',
 'searchprofile-project-tooltip'   => '{{Identical|Search in $1}}',
 'search-result-size'              => 'Shown per line of a [[Special:Search|search result]]
@@ -1151,7 +1159,7 @@ Parameter $2 is a date and time.',
 \$3 is a block of text that consists of other messages: \"''Hide minor edits | Show bots | Hide anonymous users | Hide logged-in users | Hide patrolled edits | Hide my edits''\"",
 'diff'                 => 'Short form of "differences". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...',
 'hist'                 => 'Short form of "history". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...',
-'hide'                 => 'Option text in [[Special:RecentChanges]]
+'hide'                 => 'Option text in [[Special:RecentChanges]], and in [[Special:WhatLinksHere]]
 
 {{Identical|Hide}}',
 'show'                 => '{{Identical|Show}}',
@@ -1596,6 +1604,8 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 'emailsend'       => 'Button name in [[Special:EmailUser]].
 
 {{Identical|Send}}',
+'emailccme'       => 'Used at [[Special:Preferences]] > E-mail',
+'emailccsubject'  => 'Subject of the carbon-copied  email for the sender sent through MediaWiki.',
 'emailuserfooter' => 'This message is appended to every email sent through the "Email user" function.
 
 * $1: username of the sender
@@ -1883,6 +1893,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 * Go to [[Special:BlockList]]
 * Click "unblock" for any block (but you can only see "unblock" if you have administrator rights)
 * It is now the button below the form',
+'ipblocklist'                  => 'Title of [[Special:Ipblocklist]].',
 'ipblocklist-sh-userblocks'    => 'Top selection button at [[Special:IPBlockList]], which means Show/Hide indefinite blocks
 
 * $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
@@ -1919,7 +1930,7 @@ See also {{msg-mw|Blocklistline}}.',
 * $1 is the user being reblocked
 * $2 is the expiry time of the block
 * $3 is the reason for the block',
-'blocklogtext'                 => 'See {{msg-mw|ipblocklist}} for the special page name.',
+'blocklogtext'                 => 'Appears on top of [[Special:Log/block]].',
 'unblocklogentry'              => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
 * $1 is the user being unblocked',
 'block-log-flags-noautoblock'  => '{{Identical|Autoblock disabled}}',
@@ -1982,7 +1993,10 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 '1movedto2_redir'         => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
 'movelogpage'             => 'Title of special page',
 'movelogpagetext'         => "Text on the special page 'Move log'.",
-'movesubpage'             => '{{Note|Plural is supported if you need it, the number of subpages is available in <code>$1</code>.}}',
+'movesubpage'             => "This is a page header.
+Parameters:
+*'''$1''' = number of subpages
+<!--{{Note|Plural is supported if you need it, the number of subpages is available in <code>$1</code>.}}-->",
 'movereason'              => 'Used in [[Special:MovePage]]. The text for the inputbox to give a reason for the page move.
 
 {{Identical|Reason}}',
@@ -2395,6 +2409,7 @@ Do ''not'' change the leading ;  and the first : as it is wiki markup.
 
 # Separators for various lists, etc.
 'colon-separator' => "Optional message. Change it only if your language uses another character for ':' or it needs an extra space before the colon.",
+'pipe-separator'  => '{{optional}}',
 'word-separator'  => 'This is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.
 
 Most languages use a space, but some Asian languages, such as Thai and Chinese, do not.',

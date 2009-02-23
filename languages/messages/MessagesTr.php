@@ -1384,7 +1384,7 @@ Gireceğiniz özet açıklama sayfasında görünmeyecektir.
 Yüklenilen dosyanın adı: '''<tt>$1</tt>'''<br />
 Varolan dosyanın adı: '''<tt>$2</tt>'''<br />
 Lütfen başka bir isim seçin",
-'fileexists-thumb'            => "<center>'''Bu isimde zaten bir resim var'''</center>",
+'fileexists-thumb'            => "<center>'''Bu isimde zaten bir dosya var'''</center>",
 'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
 Please check the file '''<tt>$1</tt>'''.<br />
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.
@@ -1540,8 +1540,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 
 # MIME search
 'mimesearch'         => 'MIME araması',
-'mimesearch-summary' => 'Bu sayfa dosyaların MIME-tiplerine göre süzülmesine olanak sağlar.
-Girdi: contenttype/subtype, ör: <tt>resim/jpeg</tt>.',
+'mimesearch-summary' => 'Bu sayfa, MIME tipi dosyaların süzülmesini sağlar. Girdi: içeriktipi/alttipi, e.g. <tt>resim/jpeg</tt>.',
 'mimetype'           => 'MIME tipi:',
 'download'           => 'yükle',
 

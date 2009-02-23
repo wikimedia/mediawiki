@@ -235,7 +235,9 @@ $messages = array(
 'qbfind'         => 'Gundua',
 'qbedit'         => 'Hariri',
 'qbpageoptions'  => 'Ukarasa huu',
+'qbmyoptions'    => 'Kurasa zangu',
 'qbspecialpages' => 'Kurasa za pekee',
+'moredotdotdot'  => 'Zaidi...',
 'mypage'         => 'Ukurasa wangu',
 'mytalk'         => 'Majadiliano yangu',
 'navigation'     => 'Safari',
@@ -251,6 +253,7 @@ $messages = array(
 'searcharticle'     => 'Nenda',
 'history'           => 'Historia ya ukurasa',
 'history_short'     => 'Historia',
+'info_short'        => 'Maarifa',
 'printableversion'  => 'Ukurasa wa kuchapika',
 'permalink'         => 'Kiungo cha daima',
 'print'             => 'Chapisha',
@@ -331,14 +334,15 @@ $messages = array(
 'red-link-title'      => '$1 (bado haujaandikwa)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Makala',
-'nstab-user'     => 'Ukurasa wa mtumiaji',
-'nstab-special'  => 'Ukurasa maalum',
-'nstab-project'  => 'Ukurasa wa mradi',
-'nstab-image'    => 'Faili',
-'nstab-template' => 'Kigezo',
-'nstab-help'     => 'Msaada',
-'nstab-category' => 'Jamii',
+'nstab-main'      => 'Makala',
+'nstab-user'      => 'Ukurasa wa mtumiaji',
+'nstab-special'   => 'Ukurasa maalum',
+'nstab-project'   => 'Ukurasa wa mradi',
+'nstab-image'     => 'Faili',
+'nstab-mediawiki' => 'Jumbe',
+'nstab-template'  => 'Kigezo',
+'nstab-help'      => 'Msaada',
+'nstab-category'  => 'Jamii',
 
 # General errors
 'error'              => 'Kosa',
@@ -599,9 +603,16 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 # User rights log
 'rightslog' => 'Kumbukumbu ya vyeo vya watumiaji',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'       => 'kusoma ukurasa huu',
+'action-edit'       => 'kuhariri ukurasa huu',
+'action-createpage' => 'kuanzisha kurasa',
+'action-move'       => 'kusogeza ukurasa huu',
+
 # Recent changes
 'nchanges'                       => '{{PLURAL:$1|badiliko|mabadiliko}} $1',
 'recentchanges'                  => 'Mabadiliko ya karibuni',
+'recentchanges-legend'           => "Machaguo ya 'mabadaliko ya karibuni'",
 'recentchanges-feed-description' => 'Tumia tawanyiko hili kufuatilia mabadiliko yote ya hivi karibuni katika Wiki.',
 'rcnote'                         => "Yanayofuata ni {{PLURAL:$1|badiliko '''1'''|mabadiliko '''$1''' ya mwisho}} kutoka katika {{PLURAL:$2|siku iliyopita|siku '''$2''' zilizopita}}, hadi $5, $4.",
 'rcnotefrom'                     => "Hapo chini yaonekana mabadiliko tangu '''$2''' (tunaonyesha hadi '''$1''').",
@@ -630,12 +641,13 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'recentchangeslinked-page'     => 'Jina la ukurasa:',
 
 # Upload
-'upload'        => 'Pakia faili',
-'uploadbtn'     => 'Pakia faili',
-'uploadlogpage' => 'Kumbukumbu ya upakiaji',
-'filedesc'      => 'Muhtasari',
-'ignorewarning' => 'Hifadhi bila kujali maonyo yoyote.',
-'uploadedimage' => ' "[[$1]]" imepakiwa',
+'upload'            => 'Pakia faili',
+'uploadbtn'         => 'Pakia faili',
+'uploadlogpage'     => 'Kumbukumbu ya upakiaji',
+'filedesc'          => 'Muhtasari',
+'fileuploadsummary' => 'Muhtasari:',
+'ignorewarning'     => 'Hifadhi bila kujali maonyo yoyote.',
+'uploadedimage'     => ' "[[$1]]" imepakiwa',
 
 'license' => 'Hatimiliki:',
 
@@ -654,7 +666,8 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'imagelinks'                => 'Viungo vya mafaili',
 'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu|Kurasa hizi $1}} zimeunganishwa na faili hili:',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
-'sharedupload'              => 'Faili hii inaweza kushirikiwa na miradi mingine.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Faili hii inatoka $1 na inaweza kushirikiwa na miradi mingine. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'shareduploadwiki-linktext' => 'ukurasa wa maelezo ya faili',
 'noimage'                   => 'Hakuna faili yenye jina hili, $1 kama unayo.',
 'noimage-linktext'          => 'pakia faili',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
@@ -767,7 +780,10 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'listgrouprights-members' => '(orodha ya wanachama)',
 
 # E-mail user
-'emailuser' => 'Mtumie mtumiaji huyu barua pepe',
+'emailuser'    => 'Mtumie mtumiaji huyu barua pepe',
+'emailto'      => 'Kwa:',
+'emailmessage' => 'Ujumbe:',
+'emailsend'    => 'Tuma',
 
 # Watchlist
 'watchlist'         => 'Maangalizi yangu',
@@ -1029,9 +1045,10 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'edit-externally-help' => '(Ona [http://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'zote',
-'namespacesall' => 'zote',
-'monthsall'     => 'zote',
+'recentchangesall' => 'yote',
+'watchlistall2'    => 'zote',
+'namespacesall'    => 'zote',
+'monthsall'        => 'zote',
 
 # E-mail address confirmation
 'confirmemail_needlogin'   => 'Unahitajika $1 kuthibitisha anwani ya barua pepe yako.',

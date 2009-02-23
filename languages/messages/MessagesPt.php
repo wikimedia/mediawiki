@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Leonardo.stabile
  * @author Lijealso
  * @author Lugusto
  * @author MCruz
@@ -2537,7 +2538,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 'metadata'          => 'Metadados',
 'metadata-help'     => 'Este ficheiro contém informação adicional, provavelmente adicionada a partir da câmara digital ou scanner utilizada para criar ou digitalizá-lo.
 Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
-'metadata-expand'   => 'Mostrar restantes detalhes',
+'metadata-expand'   => 'Mostrar detalhes adicionais',
 'metadata-collapse' => 'Esconder detalhes restantes',
 'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por defeito.
 * make
