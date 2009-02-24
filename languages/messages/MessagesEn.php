@@ -2556,7 +2556,7 @@ $1',
 'contributions-title' => 'User contributions for $1',
 'mycontris'           => 'My contributions',
 'contribsub2'         => 'For $1 ($2)',
-'nocontribs'          => 'No changes were found matching these criteria.',
+'nocontribs'          => 'No changes were found matching these criteria.', # optional parameter: $1 is the user name
 'uctop'               => '(top)',
 'month'               => 'From month (and earlier):',
 'year'                => 'From year (and earlier):',

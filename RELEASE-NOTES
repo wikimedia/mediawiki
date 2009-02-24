@@ -119,6 +119,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   line
 * Add logging to password resets if not resetting your own
 * Added $wgUseTagFilter to control enabling of filter-by-change-tag
+* (bug 17291) MediaWiki:Nocontribs now has an optional $1 parameter for the
+  username
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

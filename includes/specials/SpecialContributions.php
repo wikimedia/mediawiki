@@ -95,7 +95,7 @@ class SpecialContributions extends SpecialPage {
 
 		$pager = new ContribsPager( $target, $this->opts['namespace'], $this->opts['year'], $this->opts['month'] );
 		if( !$pager->getNumRows() ) {
-			$wgOut->addWikiMsg( 'nocontribs' );
+			$wgOut->addWikiMsg( 'nocontribs', $target );
 			return;
 		}
 
