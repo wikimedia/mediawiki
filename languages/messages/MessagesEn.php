@@ -2516,7 +2516,7 @@ The actual text of these deleted revisions is only available to administrators.'
 You may have a bad link, or the revision may have been restored or removed from the archive.',
 'undelete-nodiff'              => 'No previous revision found.',
 'undeletebtn'                  => 'Restore',
-'undeletelink'                 => 'restore',
+'undeletelink'                 => 'view/restore',
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Invert selection',
 'undeletecomment'              => 'Comment:',
