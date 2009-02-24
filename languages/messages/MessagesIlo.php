@@ -888,7 +888,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'morelinkstoimage'          => 'Kitaen ti [[Special:WhatLinksHere/$1|ad-adu pay a panilpo]] kadaytoy a file.',
 'redirectstofile'           => 'Dagiti sumaganad a files ket ag-redirect iti daytoy a file:',
 'duplicatesoffile'          => 'Dagiti sumaganad a files ket duplikado daytoy a file:',
-'sharedupload'              => 'Daytoy a file ket pagraranudan nga upload ket mabalin nga aramaten ti sabsabali pay a projectos.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Daytoy a file ket pagraranudan nga upload ket mabalin nga aramaten ti sabsabali pay a projectos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Pangngaasim ta kitaem ti $1 para iti ad-adu pay nga informasion.',
 'shareduploadwiki-linktext' => 'panid ti file description',
 'noimage'                   => 'Awan ti file iti kasta a nagan, mabalinmo ti $1.',

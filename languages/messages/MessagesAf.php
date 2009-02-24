@@ -1290,7 +1290,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'morelinkstoimage'          => 'Wys [[Special:WhatLinksHere/$1|meer skakels]] na die lêer.',
 'redirectstofile'           => "Die volgende {{PLURAL:$1|lêer is 'n aanstuur|$1 lêers is aansture}} na die lêer:",
 'duplicatesoffile'          => "Die volgende {{PLURAL:$1|lêer is 'n duplikaat|$1 lêers is duplikate}} van die lêer:",
-'sharedupload'              => 'Die lêer word gedeel en mag moontlik op ander projekte gebruik word.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Die lêer word gedeel en mag moontlik op ander projekte gebruik word. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Sien $1 vir verdere inligting.',
 'shareduploadwiki-desc'     => 'Die $1 uit die gedeelde lêerbank word hier onder weergegee.',
 'shareduploadwiki-linktext' => 'lêerbeskrywingsbladsy',

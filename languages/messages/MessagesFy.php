@@ -1461,7 +1461,7 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Mear ferwizings]] nei dizze triem besjen.',
 'redirectstofile'           => '{{PLURAL:$1|De folgjende triem ferwiist|De folgjende $1 triemmen ferwize}} troch nei dizze triem:',
 'duplicatesoffile'          => '{{PLURAL:$1|De folgjende triem is|De folgjende $1 triemmen binne}} idintyk oan dizze triem:',
-'sharedupload'              => 'Dizze triem is in dielde oanbieding en kin ek troch oare projekten brûkt wurde.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Dizze triem is in dielde oanbieding en kin ek troch oare projekten brûkt wurde. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Sjoch de $1 foar fierdere ynformaasje.',
 'shareduploadwiki-desc'     => "De $1 yn 'e dielde triemmebank wurdt hjirûnder werjûn.",
 'shareduploadwiki-linktext' => 'triembeskriuwing',

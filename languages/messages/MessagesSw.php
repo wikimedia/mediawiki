@@ -1071,11 +1071,21 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'confirmemail_invalidated' => 'Uthibitisho wa barua pepe umebatilishwa.',
 'invalidateemail'          => 'Batilisha barua pepe ya uthibitisho.',
 
+# action=purge
+'confirm_purge_button' => 'Sawa',
+
 # Multipage image navigation
-'imgmultigo' => 'Nenda!',
+'imgmultipageprev' => '← ukurasa uliotangulia',
+'imgmultipagenext' => 'ukurasa ujao →',
+'imgmultigo'       => 'Nenda!',
 
 # Table pager
+'table_pager_next'         => 'Ukurasa ujao',
+'table_pager_prev'         => 'Ukurasa uliotangulia',
+'table_pager_first'        => 'Ukurasa wa kwanza',
+'table_pager_last'         => 'Ukurasa wa mwisho',
 'table_pager_limit_submit' => 'Nenda',
+'table_pager_empty'        => 'Hakuna matokeo',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Tazama mabadiliko yanayohusiana',
@@ -1086,7 +1096,9 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'version' => 'Toleo', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
-'specialpages' => 'Kurasa maalum',
+'specialpages'               => 'Kurasa maalum',
+'specialpages-group-changes' => 'Mabadiliko ya karibuni na kumbukumbu',
+'specialpages-group-pages'   => 'Orodha ya kurasa',
 
 # Special:Tags
 'tags-edit' => 'hariri',

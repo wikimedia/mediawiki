@@ -837,7 +837,7 @@ Paspaude ont štolpelė ontraštės pakeisėt ėšruokavėma.',
 'imagelinks'                => 'Faila nūruodas',
 'linkstoimage'              => '{{PLURAL:$1|Šėts poslapis|Šėtė poslapē}} nuruod i šėta faila:',
 'nolinkstoimage'            => 'I faila neruod anėjuoks poslapis.',
-'sharedupload'              => 'Tas fails īr ikelts bendram nauduojėmō ė gal būtė nauduojams kėtūs pruojektūs.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Tas fails īr ikelts bendram nauduojėmō ė gal būtė nauduojams kėtūs pruojektūs. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Veizėkiet $1 tolėmesnē infuormacėjē.',
 'shareduploadwiki-desc'     => 'Aprašīms ėš anuo $1 bendruojuo saugīkluo ruoduoms žemiau īr.',
 'shareduploadwiki-linktext' => 'faila aprašīma poslapi',

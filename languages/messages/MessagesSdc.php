@@ -1065,7 +1065,7 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'imagelinks'                => "Cullegamenti a l'immàgina",
 'linkstoimage'              => "{{PLURAL:$1|La sighenti pàgina pùnta|Li sighenti $1 pàgini pùntani}} a l'immàgina:",
 'nolinkstoimage'            => "Nisciuna pàgina cunteni cullegamenti a l'immàgina.",
-'sharedupload'              => 'Chisthu file è unu carriggamentu cundibisu; pó assé dunca utirizaddu da più prugetti wiki.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Chisthu file è unu carriggamentu cundibisu; pó assé dunca utirizaddu da più prugetti wiki. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Védi $1 pa althri infuimmazioni.',
 'shareduploadwiki-linktext' => 'la reratiba pàgina di deschrizioni',
 'noimage'                   => "Un file cun chisth'innòmmu nò isisthi, vói $1 tu?",

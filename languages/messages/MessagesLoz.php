@@ -593,7 +593,7 @@ di uplodezi media.',
 'imagelinks'                => "Ling'kina",
 'linkstoimage'              => "Bye petulo sa ling'ki di bye media:",
 'nolinkstoimage'            => "No petulo ling'ki a imegi.",
-'sharedupload'              => 'Imegi sa uplodezi kwa wiki dy apukolobili sa e sa kubi xetewi proyeti.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Imegi sa uplodezi kwa wiki dy apukolobili sa e sa kubi xetewi proyeti. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'Ni media bye sebu sa, a sa $1.',
 'noimage-linktext'          => 'a uplodezi',
 'uploadnewversion-linktext' => 'Uplodezi nca selt di bye media',

@@ -1560,7 +1560,7 @@ Có [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].',
 'morelinkstoimage'          => 'Xem [[Special:WhatLinksHere/$1|thêm liên kết]] đến tập tin này.',
 'redirectstofile'           => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau chuyển hướng đến tập tin này:',
 'duplicatesoffile'          => '{{PLURAL:$1|Tập tin sau|$1 tập tin sau}} là bản sao của tập tin này ([[Special:FileDuplicateSearch/$2|chi tiết]]):',
-'sharedupload'              => 'Tập tin này được tải lên để dùng chung và có thể dùng ở các dự án khác.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Tập tin này được tải lên để dùng chung và có thể dùng ở các dự án khác. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Xin xem $1 để biết thêm thông tin.',
 'shareduploadwiki-desc'     => 'Dưới đây là nội dung từ trang $1 tại kho lưu trữ chung.',
 'shareduploadwiki-linktext' => 'trang miêu tả tập tin',

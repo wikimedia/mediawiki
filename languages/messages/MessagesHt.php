@@ -847,7 +847,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'imagelinks'                => 'Paj yo ki genyen imaj an',
 'linkstoimage'              => '{{PLURAL:$1|Paj ki ap swiv an|Paj yo ki ap swiv}} genyen imaj sa a :',
 'nolinkstoimage'            => 'Pyès paj pa genyen imaj sa a.',
-'sharedupload'              => 'Fichye sa a pataje e li kapab itilize pa lòt pwojè yo.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Fichye sa a pataje e li kapab itilize pa lòt pwojè yo. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'Pa genyen pyès fichye ki genyen non sa a, men ou mèt $1.',
 'noimage-linktext'          => 'chaje yonn',
 'uploadnewversion-linktext' => 'Kopye yon nouvo vèsyon pou fichye sa a',

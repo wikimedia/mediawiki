@@ -229,7 +229,7 @@ $messages = array(
 'tog-externaldiff'            => 'Usar diferenzas externas (dif) por omisión (só para expertos, precisa duns parámetros especiais no seu computador)',
 'tog-showjumplinks'           => 'Permitir as ligazóns de accesibilidade "ir a"',
 'tog-uselivepreview'          => 'Usar <i>live preview</i> (JavaScript) (Experimental)',
-'tog-forceeditsummary'        => 'Avisarme cando o campo resumo estea baleiro',
+'tog-forceeditsummary'        => 'Avisádeme cando o campo resumo estea baleiro',
 'tog-watchlisthideown'        => 'Agochar as edicións propias na lista de vixilancia',
 'tog-watchlisthidebots'       => 'Agochar as edicións dos bots na lista de vixilancia',
 'tog-watchlisthideminor'      => 'Agochar as edicións pequenas na lista de vixilancia',
@@ -657,7 +657,7 @@ Como resultado, os visitantes que usen este enderezo IP non poden crear máis co
 Introduza un enderezo cun formato válido ou limpe ese campo.',
 'accountcreated'             => 'Conta creada',
 'accountcreatedtext'         => 'A conta de usuario para $1 foi creada.',
-'createaccount-title'        => 'Creación da conta para {{SITENAME}}',
+'createaccount-title'        => 'Creación dunha conta para {{SITENAME}}',
 'createaccount-text'         => 'Alguén creou unha conta chamada "$2" para o seu enderezo de correo electrónico en {{SITENAME}} ($4), e con contrasinal "$3".
 Debe acceder ao sistema e mudar o contrasinal agora.
 
@@ -1779,7 +1779,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Seguinte',
 'allpagessubmit'    => 'Amosar',
-'allpagesprefix'    => 'Mostrar páxinas no espazo de nomes:',
+'allpagesprefix'    => 'Mostrar as páxinas que comezan co prefixo:',
 'allpagesbadtitle'  => 'O título dado á páxina non era válido ou contiña un prefixo inter-linguas ou inter-wikis. Pode que conteña un ou máis caracteres que non se poden empregar nos títulos.',
 'allpages-bad-ns'   => '{{SITENAME}} carece do espazo de nomes "$1".',
 
@@ -1895,23 +1895,23 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'enotif_reset'                 => 'Marcar todas as páxinas como visitadas',
 'enotif_newpagetext'           => 'Esta é unha páxina nova.',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
-'changed'                      => 'modificado',
-'created'                      => 'creado',
-'enotif_subject'               => 'A páxina da {{SITENAME}} co título $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
+'changed'                      => 'modificada',
+'created'                      => 'creada',
+'enotif_subject'               => 'A páxina de {{SITENAME}} chamada "$PAGETITLE" foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vexa $1 para comprobar todos os cambios desde a súa última visita.',
 'enotif_lastdiff'              => 'Vexa $1 para visualizar esta modificación.',
 'enotif_anon_editor'           => 'usuario anónimo $1',
 'enotif_body'                  => 'Estimado $WATCHINGUSERNAME,
 
-a páxina da {{SITENAME}} "$PAGETITLE" cambiou $CHANGEDORCREATED o $PAGEEDITDATE por unha edición de $PAGEEDITOR, vexa $PAGETITLE_URL para comprobar a versión actual.
+a páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATE por $PAGEEDITOR, vexa $PAGETITLE_URL para comprobar a versión actual.
 
 $NEWPAGE
 
 Resumo de edición: $PAGESUMMARY $PAGEMINOREDIT
 
-Contactar co editor:
-correo electrónico: $PAGEEDITOR_EMAIL
-wiki: $PAGEEDITOR_WIKI
+Pode contactar co editor:
+por correo electrónico: $PAGEEDITOR_EMAIL
+no wiki: $PAGEEDITOR_WIKI
 
 Non se producirán novas notificacións cando haxa novos cambios ata que vostede visite a páxina. Pode borrar os indicadores de aviso de notificación para o conxunto das páxinas marcadas na súa lista de vixilancia.
 
@@ -1942,7 +1942,7 @@ No $2 pode ver unha lista dos borrados máis recentes.',
 'deletedarticle'         => 'borrou "[[$1]]"',
 'suppressedarticle'      => 'suprimiu "[[$1]]"',
 'dellogpage'             => 'Rexistro de borrados',
-'dellogpagetext'         => 'Abaixo está a lista dos borrados máis recentes.',
+'dellogpagetext'         => 'A continuación atópase a lista cos borrados máis recentes.',
 'deletionlog'            => 'rexistro de borrados',
 'reverted'               => 'Devolto a unha versión anterior',
 'deletecomment'          => 'Razón para o borrado:',
@@ -2884,7 +2884,10 @@ Outros agocharanse por omisión.
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar o enderezo de correo electrónico',
 'confirmemail_noemail'     => 'Non ten rexistrado ningún enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias de usuario]].',
-'confirmemail_text'        => '{{SITENAME}} require que lle dea validez ao seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el. Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo. O correo incluirá unha ligazón cun código: faga clic nesta ligazón para abrila no seu navegador web e así confirmar que o seu enderezo é válido.',
+'confirmemail_text'        => '{{SITENAME}} require que lle dea validez ao seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el.
+Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo.
+O correo incluirá unha ligazón cun código:
+faga clic nesta ligazón para abrila no seu navegador web e así confirmar que o seu enderezo é válido.',
 'confirmemail_pending'     => 'Envióuselle un código de confirmación ao enderezo de correo electrónico;
 se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código.',
 'confirmemail_send'        => 'Enviar por correo elecrónico un código de confirmación',

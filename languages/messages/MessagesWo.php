@@ -1056,7 +1056,7 @@ Ab [[Special:WhatLinksHere/$2|lim bu mat]] jàppandi na.',
 'morelinkstoimage'    => 'Xool [[Special:WhatLinksHere/$1|yeneeni lëkkalekaay]] yuy jëme ci bii nataal.',
 'redirectstofile'     => '{{PLURAL:$1|Dencukaay bii di toftal ab|$1 dencukaay yii di toftal ay}} jubluwaat {{PLURAL:$1|la buy|lañu yuy}} jëme ci bii dencukaay:',
 'duplicatesoffile'    => '{{PLURAL:$1|dencukaay bii|$1 dencukaay yii}} di toftal {{PLURAL:$1|ab duppitu|ay duppitu}} bii {{PLURAL:$1|la|lañu}}:',
-'sharedupload'        => 'Dencukaay bii bu ñuy bokk la, kon man nañu koo jëfandikoo ak yeneen sémbi wiki.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'        => 'Dencukaay bii bu ñuy bokk la, kon man nañu koo jëfandikoo ak yeneen sémbi wiki. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 
 # List redirects
 'listredirects' => 'Limu jubluwaat yi',

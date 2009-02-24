@@ -1486,7 +1486,7 @@ $2',
 'morelinkstoimage'          => '查看连接到这个文件的[[Special:WhatLinksHere/$1|更多连结]]。',
 'redirectstofile'           => '以下的$1个文件重新定向到这个文件:',
 'duplicatesoffile'          => '以下的$1个文件跟这个文件重覆（[[Special:FileDuplicateSearch/$2|更多细节]]）：',
-'sharedupload'              => '该文件是一个共享上传，它可能在其它项目中被应用。', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => '该文件来自于$1，它可能在其它项目中被应用。$2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => '请参阅在共享文件库上的$1以了解其相关信息。',
 'shareduploadwiki-desc'     => '它在$1上的描述于下面显示。',
 'shareduploadwiki-linktext' => '文件描述页面',

@@ -2216,7 +2216,7 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'lockdbsuccesstext'   => 'La base de datos de {{SITENAME}} ha sido bloqueada.
 <br />Recuerde retirar el bloqueo después de completar las tareas de mantenimiento.',
 'unlockdbsuccesstext' => 'La base de datos de {{SITENAME}} ha sido desbloqueada.',
-'lockfilenotwritable' => 'El archivo-cerrojo de la base de datos no tiene permiso de escritura. Para bloquear o desbloquear la base de datos, este archivo tiene que ser escribible por el sesrvidor web.',
+'lockfilenotwritable' => 'El archivo-cerrojo de la base de datos no tiene permiso de escritura. Para bloquear o desbloquear la base de datos, este archivo tiene que ser escribible por el servidor web.',
 'databasenotlocked'   => 'La base de datos no está bloqueada.',
 
 # Move page

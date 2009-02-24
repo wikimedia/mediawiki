@@ -1723,7 +1723,7 @@ Er is ook een [[Special:WhatLinksHere/$2|volledige lijst]].',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Meer verwijzingen]] naar dit bestand bekijken.',
 'redirectstofile'           => '{{PLURAL:$1|Het volgende bestand verwijst|De volgende $1 bestanden verwijzen}} door naar dit bestand:',
 'duplicatesoffile'          => '{{PLURAL:$1|Het volgende bestand is|De volgende $1 bestanden zijn}} identiek aan dit bestand ([[Special:FileDuplicateSearch/$2|meer details]]):',
-'sharedupload'              => 'Dit bestand komt van $1 en kan ook door andere projecten gebruikt worden.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Dit bestand komt van $1 en kan ook door andere projecten gebruikt worden. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Zie de $1 voor verdere informatie.',
 'shareduploadwiki-desc'     => 'De beschijving in de $1 wordt hieronder weergegeven.',
 'shareduploadwiki-linktext' => 'bestandsbeschrijving',

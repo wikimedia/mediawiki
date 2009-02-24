@@ -1211,7 +1211,7 @@ PICT # misc.
 'morelinkstoimage'          => 'इस फ़ाईलकी [[Special:WhatLinksHere/$1|और कडी़याँ]] देखें।',
 'redirectstofile'           => 'नीचे दी हुई फ़ाइलें इस फ़ाईलको अनुप्रेषितें हैं:',
 'duplicatesoffile'          => 'निम्नलिखित फ़ाइलें इस फ़ाइलकी कापीयाँ हैं:',
-'sharedupload'              => 'यह फ़ाईल दुसरेभी प्रोजेक्ट्समें इस्तेमाल की हुई होनेकी आशंका है ।', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'यह फ़ाईल दुसरेभी प्रोजेक्ट्समें इस्तेमाल की हुई होनेकी आशंका है । $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'अधिक ज़ानकारी के लिये $1 देखें।',
 'shareduploadwiki-desc'     => 'ज़ानकारी जो $1 पर शेअर्ड रिपोजिटरीमें हैं नीचे दी हुई हैं।',
 'shareduploadwiki-linktext' => 'फ़ाईल ज़ानकारी पन्ना',

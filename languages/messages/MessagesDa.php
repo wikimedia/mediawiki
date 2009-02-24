@@ -376,7 +376,7 @@ $messages = array(
 
 'badaccess'        => 'Manglende rettigheder',
 'badaccess-group0' => 'Du har ikke de nødvendige rettigheder til denne handling.',
-'badaccess-groups' => 'Denne handling kan kun udføres af brugere, som tilhører en af grupperne „$1“.',
+'badaccess-groups' => 'Denne handling kan kun udføres af brugere som tilhører {{PLURAL:$2|gruppen|en af grupperne:}} $1.',
 
 'versionrequired'     => 'Kræver version $1 af MediaWiki',
 'versionrequiredtext' => 'Version $1 af MediaWiki er påkrævet, for at bruge denne side. Se [[Special:Version|Versionssiden]]',
@@ -429,13 +429,16 @@ $messages = array(
 # General errors
 'error'                => 'Fejl',
 'databaseerror'        => 'Databasefejl',
-'dberrortext'          => 'Der er opstået en syntaksfejl i en databaseforespørgsel. Dette kan være på grund af en ugyldig forespørgsel (se $5), eller det kan betyde en fejl i softwaren. 
-Den seneste forsøgte databaseforespørgsel var: <blockquote><tt>$1</tt></blockquote> fra funktionen "<tt>$2</tt>". 
+'dberrortext'          => 'Der er opstået en syntaksfejl i en databaseforespørgsel.
+Det kan tyde på en fejl i softwaren. 
+Den sidst forsøgte databaseforespørgsel var:
+<blockquote><tt>$1</tt></blockquote>
+fra funktionen "<tt>$2</tt>". 
 MySQL returnerede fejlen "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Der er opstået en syntaksfejl i en databaseforespørgsel. 
 Den seneste forsøgte databaseforespørgsel var: "$1" fra funktionen "$2". 
 MySQL returnerede fejlen "$3: $4".',
-'noconnect'            => 'Der er problemer med {{SITENAME}}s database, vi kan desværre ikke komme i kontakt med den for øjeblikket. Prøv igen senere. <br />$1',
+'noconnect'            => 'Beklager! Wikien har tekniske problemer og kan ikke få kontakt til databaseserveren.<br />$1',
 'nodb'                 => 'Kunne ikke vælge databasen $1',
 'cachederror'          => 'Det følgende er en gemt kopi af den ønskede side, og er måske ikke helt opdateret.',
 'laggedslavemode'      => 'Bemærk: Den viste side indeholder muligvis ikke de nyeste ændringer.',
@@ -533,7 +536,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'yourvariant'                => 'Sprogvariant',
 'yournick'                   => 'Dit kaldenavn (til signaturer)',
 'badsig'                     => 'Syntaksen i underskriften er ugyldig; kontroller venligst den brugte HTML.',
-'badsiglength'               => 'Underskriften er for lang. Den må højst indeholde {{PLURAL:$1|}}$1 tegn.',
+'badsiglength'               => 'Din sigantur er for lang. Den må højst indeholde {{PLURAL:$1|}}$1 tegn.',
 'yourgender'                 => 'Køn:',
 'gender-unknown'             => 'Uspecificeret',
 'gender-male'                => 'Mand',
@@ -558,13 +561,14 @@ Det kan også bruges til at fremsende en ny adgangskode til dig, hvis du glemmer
 'passwordtooshort'           => 'Dit kodeord er for kort. Det skal være mindst {{PLURAL:$1|}}$1 tegn langt.',
 'mailmypassword'             => 'Send nyt password',
 'passwordremindertitle'      => 'Nyt password til {{SITENAME}}',
-'passwordremindertext'       => 'Nogen (sandsynligvis dig, fra IP-addressen $1)
+'passwordremindertext'       => 'Nogen (sandsynligvis dig, fra IP-adressen $1)
 har bedt om at vi sender dig en ny adgangskode til at logge på {{SITENAME}} ($4).
-Adgangskoden for bruger "$2" er nu "$3".
-Du bør logge på nu og ændre din adgangskode.,
+En midlertidig adgangskode for bruger "$2" er blevet lavet, den er "$3". 
+Hvis dette var din mening, skal du logge ind og vælge en ny adgangskode nu.
+Din midlertidige adgangskode vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
 
-Hvis en anden har bestilt den nye adgangskode eller hvis du er kommet i tanke om dit gamle password og ikke mere vil ændre det, 
-kan du bare ignorere denne mail og fortsætte med at bruge dit gamle password.',
+Hvis en anden har bestilt den nye adgangskode, eller hvis du er kommet i tanke om din gamle adgangskode og ikke længere vil ændre den, 
+kan du bare ignorere denne e-mail og fortsætte med at bruge din gamle adgangskode.',
 'noemail'                    => 'Der er ikke oplyst en e-mail-adresse for bruger "$1".',
 'passwordsent'               => 'En ny adgangskode er sendt til e-mail-adressen,
 som er registreret for "$1".
@@ -575,7 +579,8 @@ Du bør logge på og ændre din adgangskode straks efter du har modtaget e-maile
 Før en e-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, skal adressen og dens tilhørsforhold til denne bruger bekræftes. Følg venligst anvisningerne i denne mail.',
 'throttled-mailpassword'     => 'Indenfor {{PLURAL:$1|den sidste time|de sidste $1 timer}} er der allerede sendt et nyt password. For at forhindre misbrug af funktionen, kan der kun bestilles et nyt password en gang for hver {{PLURAL:$1|time|$1 timer}}.',
 'mailerror'                  => 'Fejl ved afsendelse af e-mail: $1',
-'acct_creation_throttle_hit' => 'Du har allerede oprettet $1 kontoer. Du kan ikke oprette flere.',
+'acct_creation_throttle_hit' => 'Besøgende med samme IP-adresse som dig har oprettet {{PLURAL:$1|en konto|$1 kontoer}} det sidste døgn, og det er ikke tilladt at oprette flere.
+Derfor kan besøgende ikke oprette flere kontoer fra denne IP-adresse i øjeblikket.',
 'emailauthenticated'         => 'Din e-mail-adresse blev bekræftet på $1.',
 'emailnotauthenticated'      => 'Din e-mail-adresse er endnu ikke bekræftet og de avancerede e-mail-funktioner er slået fra indtil bekræftelse har fundet sted (d.u.a.). Log ind med den midlertidige adgangskode, der er blevet sendt til dig, for at bekræfte, eller bestil et nyt på loginsiden.',
 'noemailprefs'               => 'Angiv en e-mail-adresse, så følgende funktioner er til rådighed.',
@@ -773,7 +778,7 @@ Den ser du til at være slettet.',
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Advarsel: Der er for mange beregningstunge oversætter-funktionskald på denne side.
 
-Der bør være færre end $2, lige nu er der $1.',
+Der bør være færre end {{PLURAL:$2|$2 kald}}, lige nu er der {{PLURAL:$1|$1 kald}}.',
 'expensive-parserfunction-category'       => 'Sider med for mange beregningstunge oversætter-funktioner',
 'post-expand-template-inclusion-warning'  => 'Advarsel: Der er tilføjet for mange skabeloner til denne side, så nogle af dem bliver ikke vist..',
 'post-expand-template-inclusion-category' => 'Sider der indeholder for mange skabeloner',
@@ -902,7 +907,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 
 # Diffs
 'history-title'           => 'Revisionshistorik for "$1"',
-'difference'              => '(Forskelle mellem versioner)',
+'difference'              => '(Forskel mellem versioner)',
 'lineno'                  => 'Linje $1:',
 'compareselectedversions' => 'Sammenlign valgte versioner',
 'visualcomparison'        => 'Visuel sammenligning',
@@ -1363,7 +1368,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'morelinkstoimage'          => 'Se [[Special:WhatLinksHere/$1|flere henvisninger]] til denne fil.',
 'redirectstofile'           => '{{PLURAL:$1|Nedenstående fil|De nedenstående $1 filer}} er en omdirigering til denne fil:',
 'duplicatesoffile'          => '{{PLURAL:$1|Nedenstående fil|De nedenstående $1 filer}} er dubletter af denne fil:',
-'sharedupload'              => 'Denne fil er en fælles upload og kan bruges af andre projekter.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Denne fil er en fælles upload og kan bruges af andre projekter. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Se venligst $1 for yderligere information.',
 'shareduploadwiki-desc'     => 'Dens beskrivelse på $1 vises nedenfor.',
 'shareduploadwiki-linktext' => 'siden med billedbeskrivelsen',
@@ -1576,8 +1581,8 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'listgrouprights-rights'          => 'Rettigheder',
 'listgrouprights-helppage'        => 'Help:Grupperettigheder',
 'listgrouprights-members'         => '(vis medlemmer)',
-'listgrouprights-addgroup'        => 'Kan tildele grupper: $1',
-'listgrouprights-removegroup'     => 'Kan fjerne grupper: $1',
+'listgrouprights-addgroup'        => 'Kan tilføje {{PLURAL:$2|gruppen|grupperne}}: $1',
+'listgrouprights-removegroup'     => 'Kan fjerne {{PLURAL:$2|gruppen|grupperne}}: $1',
 'listgrouprights-addgroup-all'    => 'Kan tilføje alle grupper',
 'listgrouprights-removegroup-all' => 'Kan fjerne alle grupper',
 
@@ -1762,7 +1767,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'undeletepage'                 => 'Se og gendan slettede sider',
 'undeletepagetitle'            => "'''Slettede versioner af [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Vise slettede sider',
-'undeletepagetext'             => 'De følgende sider er slettede, men de findes stadig i arkivet og kan gendannes. Arkivet blivet periodevis slettet.',
+'undeletepagetext'             => '{{PLURAL:$1|Den følgende side er slettet, men den|De følgende sider er slettede, men de}} findes fortsat i arkivet og kan gendannes. Arkivet bliver periodevis slettet.',
 'undelete-fieldset-title'      => 'Gendan versioner',
 'undeleteextrahelp'            => '* For at gendanne siden komplet med alle versioner, angives en begrundelse før der trykkes på „Gendan“.
 * Hvis der kun skal gendannes bestemte versioner, vælges disse enkeltvis, angiv en begrundelse og klik på „Gendan“.
@@ -2147,7 +2152,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'notacceptable'     => 'Wiki-serveren kan ikke levere data i et format, som din klient understøtter.',
 
 # Attribution
-'anonymous'        => 'Anonym(e) bruger(e) af {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Anonym bruger|Anonyme brugere}} på {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} bruger $1',
 'lastmodifiedatby' => 'Denne side blev senest ændret $2, $1 af $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Baseret på arbejde af $1.',
@@ -2220,7 +2225,7 @@ $1',
 'filedelete-archive-read-only'    => 'Webserveren har ikke skriveadgang til arkiv-kataloget "$1".',
 
 # Browsing diffs
-'previousdiff' => '← Gå til foregående forskel',
+'previousdiff' => '← Gå til forrige forskel',
 'nextdiff'     => 'Gå til næste forskel →',
 
 # Media information

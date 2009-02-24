@@ -598,7 +598,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'imagelinks'                => 'Kianglaghyn',
 'linkstoimage'              => 'Ta {{PLURAL:$1|ny $1 duillag|yn $1 duillag|ny $1 ghuillag|ny $1 duillagyn}} eiyrtyssagh kianglt lesh y coadan shoh:',
 'nolinkstoimage'            => 'Cha nel duillag erbee kianglt lesh y coadan shoh.',
-'sharedupload'              => "Ta'n coadan shoh ny laadey neese rheynnit, as foddee er dy ve ymmydit ayns shalleeghyn elley.", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => "Ta'n coadan shoh ny laadey neese rheynnit, as foddee er dy ve ymmydit ayns shalleeghyn elley. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-linktext' => 'duillag huarastyl y choadan',
 'noimage'                   => 'Cha nel coadan erbee ayn as yn ennym shoh er, agh foddee oo $1',
 'noimage-linktext'          => 'laad neese eh',
