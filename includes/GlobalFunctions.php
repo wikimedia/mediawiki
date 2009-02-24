@@ -350,12 +350,14 @@ function wfErrorLog( $text, $file ) {
  */
 function wfLogProfilingData() {
 	global $wgRequestTime, $wgDebugLogFile, $wgDebugRawPage, $wgRequest;
-	global $wgProfiler, $wgUser;
-	if ( !isset( $wgProfiler ) )
-		return;
-
+	global $wgProfiler, $wgProfileLimit, $wgUser;
+	# Profiling must actually be enabled...
+	if( !isset( $wgProfiler ) ) return;
+	# Get total page request time
 	$now = wfTime();
 	$elapsed = $now - $wgRequestTime;
+	# Only show pages that longer than $wgProfileLimit time (default is 0)
+	if( $elapsed <= $wgProfileLimit ) return;
 	$prof = wfGetProfilingOutput( $wgRequestTime, $elapsed );
 	$forward = '';
 	if( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
