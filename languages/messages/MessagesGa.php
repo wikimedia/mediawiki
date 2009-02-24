@@ -1002,7 +1002,7 @@ uaslódáil é arís, le do thoil.',
 'imagelinks'                => 'Naisc íomhá',
 'linkstoimage'              => 'Tá nasc chuig an gcomhad seo ar {{PLURAL:$1|na leathanaigh|$1 an leathanach}} seo a leanas:',
 'nolinkstoimage'            => 'Níl nasc ó aon leathanach eile don íomhá seo.',
-'sharedupload'              => 'Is uaslodáil roinnte atá ann sa comhad seo, agus is féidir le tionscadail eile é a úsáid.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Is uaslodáil roinnte atá ann sa comhad seo, agus is féidir le tionscadail eile é a úsáid. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Féach ar an [leathanach cur síos don comhad $1] le tuilleadh eolais.',
 'shareduploadwiki-linktext' => 'leathanach tuairisc comhad',
 'noimage'                   => 'Níl aon chomhad ann leis an ainm seo, ba féidir leat $1',

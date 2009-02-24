@@ -1552,7 +1552,7 @@ PICT # විවිධ.
 'morelinkstoimage'          => 'මෙම ගොනුව සඳහා [[Special:WhatLinksHere/$1|තවත් සබැඳි]] තිබේදැයි නරඹන්න.',
 'redirectstofile'           => 'පහත {{PLURAL:$1|ගොනුව මෙම ගොනුව කරා යළි-යොමුවේ|ගොනු $1 මෙම ගොනුව කරා යළි-යොමුවෙති}} :',
 'duplicatesoffile'          => 'පහත {{PLURAL:$1|ගොනුව මෙම ගොනුවේ අනුපිටපතකි|ගොනු $1 මෙම ගොනුවේ අනුපිටපත්ය}} :',
-'sharedupload'              => 'මෙම ගොනුව හවුල් උඩුගත කිරීමක් වන අතර අනෙකුත් ව්‍යාපෘති සඳහාද භාවිතා කල හැකි වෙයි.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'මෙම ගොනුව හවුල් උඩුගත කිරීමක් වන අතර අනෙකුත් ව්‍යාපෘති සඳහාද භාවිතා කල හැකි වෙයි. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'වැඩිමනත් විස්තර සඳහා  $1 බැලීමට කාරුණික වන්න.',
 'shareduploadwiki-desc'     => 'හවුල් සුරක්‍ෂිතාගාරයෙහි තැන්පත් තර ඇති එහි $1 හි විස්තර-සටහන මෙහි පහත දැක්වේ.',
 'shareduploadwiki-linktext' => 'ගොනු විස්තර පිටුව',

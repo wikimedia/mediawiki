@@ -1187,7 +1187,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'imagelinks'                => 'Tumbu koropak',
 'linkstoimage'              => 'Kaca ieu  {{PLURAL:$1|numbu|$1 numbu}} ka gambar ieu :',
 'nolinkstoimage'            => 'Teu aya kaca nu numbu ka gambar ieu.',
-'sharedupload'              => 'Ieu koropak téh muatan réréongan nu bisa jadi dipaké ku proyék-proyék lianna.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Ieu koropak téh muatan réréongan nu bisa jadi dipaké ku proyék-proyék lianna. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Mangga aos $1 pikeun émbaran leuwih jéntré.',
 'shareduploadwiki-desc'     => 'Pedaran dina $1 alatan dipidangkeun di handap ieu.',
 'shareduploadwiki-linktext' => 'kaca pedaran koropak',

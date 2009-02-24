@@ -1348,7 +1348,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'imagelinks'                => 'Skráatenglar',
 'linkstoimage'              => 'Eftirfarandi {{PLURAL:$1|síða tengist|$1 síður tengjast}} í þessa skrá:',
 'nolinkstoimage'            => 'Engar síður tengja í þessa skrá.',
-'sharedupload'              => 'Þessari skrá er deilt meðal annarra verkefna og nýtist því þar.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Þessari skrá er deilt meðal annarra verkefna og nýtist því þar. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-linktext' => 'skráarlýsingarsíða',
 'noimage'                   => 'Engin skrá með þessu nafni er til, en þú getur $1.',
 'noimage-linktext'          => 'hlaða einni inn',

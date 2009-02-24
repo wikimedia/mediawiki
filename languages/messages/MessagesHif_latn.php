@@ -498,6 +498,11 @@ Aap sait pahile password ke badal diya hoi nai to nawaa temporary password ke ma
 'resetpass-wrong-oldpass'   => 'Temporary nai to abhi ke password valid nai hai. 
 Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password ke maang karaa hoga.',
 'resetpass-temp-password'   => 'Kachcha password:',
+'resetpass-no-others'       => 'Aap ke duusra sadasya ke password ke badle ke ijajat nai hai.',
+'resetpass-log'             => 'Password resets ke log',
+'resetpass-logtext'         => 'Niche uu sadasya ke log hai jiske password ke koi administrator reset kar diis hai.',
+'resetpass-logentry'        => '$1 ke password ke badal dia hai',
+'resetpass-comment'         => 'Password ke badle ke kaaran:',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold text',
@@ -656,7 +661,7 @@ Administrator jon ki iske lock karis hai ii kaaran diis hai: $1",
 'protectedpagewarning'             => "'''WARNING: Ii panna ke band kar dewa gais hai jisse ke khali uu sadasya jiske sysop privileges hai iske badle sake hai.'''",
 'semiprotectedpagewarning'         => "'''Suchna:''' Ii panna ke band kar dewa gais hai jisse ki khali registered sadasya iske badle sake hai.",
 'cascadeprotectedwarning'          => "'''Chetawani:''' Ii panna ke band kar dewa gais jiske kaaran khali uu sadasya jiske lage sysop privileges hai iske badle sake hai, kahe ki iske niche likha gais cascade-protected {{PLURAL:$1|panna|panna}} me rakkha gais hai:",
-'titleprotectedwarning'            => "'''CHETAUNI: Ii panna ke lock kar dewa gais hai jisse ki khali kuch sadasya iske badle sake hai.'''",
+'titleprotectedwarning'            => "'''CHETAUNI: Ii panna ke lock kar dewa gais hai jisse ki [[Special:ListGroupRights|specific rights]] ke jarie iske badla jaae sake hai.'''",
 'templatesused'                    => 'Ii panna me kaam me lawa gae templates:',
 'templatesusedpreview'             => 'Ii jhalak me jon template kaam me lawa gais hai',
 'templatesusedsection'             => 'Ii section me kaam me lawa gais templates:',
@@ -914,6 +919,9 @@ Note that using the navigation links will reset this column.',
 'notextmatches'                    => 'Koi panna ke text nai mile hai',
 'prevn'                            => 'pahile waala $1',
 'nextn'                            => 'aage waala $1',
+'prevn-title'                      => 'Pahile waala $1 {{PLURAL:$1|natija|natija}}',
+'nextn-title'                      => 'Aage waala $1 {{PLURAL:$1|result|results}}',
+'shown-title'                      => 'Ek panna me $1 {{PLURAL:$1|result|results}} dekhao',
 'viewprevnext'                     => 'Dekho ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Khoje ke option',
 'searchmenu-exists'                => "'''Ii wiki me \"[[\$1]]\" naam ke panna hai'''",
@@ -1146,6 +1154,7 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'right-userrights'           => 'Sadasya ke adhikar ke badlo',
 'right-userrights-interwiki' => 'Duusra wiki me sadasya ke adhikar ke badlo',
 'right-siteadmin'            => 'Database ke band karo aur kholo',
+'right-reset-passwords'      => 'Duusra sadasya ke password ke badlo',
 
 # User rights log
 'rightslog'      => 'Sadasya adhikar suchi',
@@ -1386,13 +1395,15 @@ Ek [[Special:WhatLinksHere/$2|Puura suchi]] available hai.',
 'morelinkstoimage'          => 'Dekho [[Special:WhatLinksHere/$1|more links]] ii file se.',
 'redirectstofile'           => 'Niche waala file ii file {{PLURAL:$1|file redirects|$1 files redirect}} se redirect hoe hai:',
 'duplicatesoffile'          => 'Niche ke suchi waala {{PLURAL:$1|file ke dui copy hai|$1 files ke dui copy hai}} ii file ke ([[Special:FileDuplicateSearch/$2|more details]]):',
-'sharedupload'              => 'Ii file baatal hai aur duusra project me bhi kaam lawa jaae sake hai.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Ii file $1 se aais hai aur duusra project me bhi kaam lawa jaae sake hai. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Aur jaankari khatir $1 ke dekho.',
-'shareduploadwiki-desc'     => 'Iske $1 pe description, shared repository me, niche dekhawa gais hai.',
+'shareduploadwiki-desc'     => 'Iske $1 pe description niche dekhawa gais hai.',
 'shareduploadwiki-linktext' => 'file description waala panna',
 'noimage'                   => 'Ii naam ke koi file nai hai, lekin aap sakta hai $1.',
 'noimage-linktext'          => 'ek ke upload karo',
 'uploadnewversion-linktext' => 'Ii file ke nawaa version ke upload karo',
+'shared-repo-from'          => '$1 se', # $1 is the repository name
+'shared-repo'               => 'ek shared repository', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => '$1 ke pahile jaise karo',
@@ -1638,19 +1649,38 @@ Supported protocols: <tt>$1</tt>',
 'listgrouprights-removegroup-all' => 'Sab group ke hatae sakta hai',
 
 # E-mail user
-'mailnologin'     => 'Koi bheje waala address nai hai',
-'mailnologintext' => 'Duusra logan ke lage e-mail bheje ke khatir aap ke [[Special:UserLogin|logged in]] aur [[Special:Preferences|preferences]]  me thik e-mail hoew ke chaahi.',
-'emailuser'       => 'Ii user ke E-mail karo',
-'emailpage'       => 'User ke e-mail karo',
-'emailpagetext'   => 'Aap niche ke form ke use kar ke ii sadasya ke e-mail bheje sakta hai.
+'mailnologin'      => 'Koi bheje waala address nai hai',
+'mailnologintext'  => 'Duusra logan ke lage e-mail bheje ke khatir aap ke [[Special:UserLogin|logged in]] aur [[Special:Preferences|preferences]]  me thik e-mail hoew ke chaahi.',
+'emailuser'        => 'Ii user ke E-mail karo',
+'emailpage'        => 'User ke e-mail karo',
+'emailpagetext'    => 'Aap niche ke form ke use kar ke ii sadasya ke e-mail bheje sakta hai.
 Jon e-mail address aap [[Special:Preferences|your user preferences]] me enter karaa rahaa, "From" ke e-mail rahii, jisse ki e-mail receive kare waala aap ke sidha reply kare sake hai.',
-'usermailererror' => 'Mail object error return karis hai:',
-'defemailsubject' => '{{SITENAME}} e-mail',
+'usermailererror'  => 'Mail object error return karis hai:',
+'defemailsubject'  => '{{SITENAME}} e-mail',
+'noemailtitle'     => 'E-mail address nai hai',
+'noemailtext'      => 'Ii sadasya thiik e-mail address nai diis hai.',
+'nowikiemailtitle' => 'Koi e-mail ke ijajat nai hai',
+'nowikiemailtext'  => 'Ii sadasya e-mail nai le ke decide karis hai.',
+'email-legend'     => 'Duusra {{SITENAME}} ke sadasya ke lage ek e-mail bhejo',
+'emailfrom'        => 'Iske lage se:',
+'emailto'          => 'Iske lage:',
+'emailsubject'     => 'Vishay:',
+'emailmessage'     => 'Sandes:',
+'emailsend'        => 'Bhejo',
+'emailccme'        => 'Hamaar khabar ke ek copy ke hamaar lage e-mail karo.',
+'emailccsubject'   => 'Aapke $1 ke khatir khabar ke copy: $2',
+'emailsent'        => 'E-mail ke bhej dewa gais hai',
+'emailsenttext'    => 'Aap ke e-mail sandes ke bhej dewa gais hai.',
+'emailuserfooter'  => 'Ii e-mail ke $1, $2 ke lage "E-mail user" function ke {{SITENAME}}se kaam me laae ke bhejis hai.',
 
 # Watchlist
 'watchlist'         => 'Hamaar dhyan suchi',
 'mywatchlist'       => 'Hamaar dhyaan suchi',
 'watchlistfor'      => "('''$1''' ke khatir)",
+'nowatchlist'       => 'Aap ke dhyan suchi me koi chij nai hai.',
+'watchlistanontext' => 'Aapan dhyan suchi me ke dekhe nai to badle ke khatir meharbani kar ke $1 karo.',
+'watchnologin'      => 'Logged in nai hai',
+'watchnologintext'  => 'Aapan dhyan suchi ke badle ke khatir aap ke [[Special:UserLogin|logged in]] rahe ke chaahi.',
 'addedwatch'        => 'Dhyan suchi me jorro',
 'addedwatchtext'    => "Panna \"[[:\$1]]\" ke aap ke [[Special:Watchlist|watchlist]] me jorr dewa gais hai.
 Ii panna ke aage ke badlao
@@ -1660,6 +1690,9 @@ Future changes to this page and its associated talk page will be listed there, a
 'watch'             => 'Dekho',
 'watchthispage'     => 'Ii panna par dhyan rakho',
 'unwatch'           => 'Nai dhyaan rakho',
+'unwatchthispage'   => 'Ab dhyan nai rakkho',
+'notanarticle'      => 'Ii content panna nai hai',
+'notvisiblerev'     => 'Badlao ke mitae dewa gais hai',
 'watchlist-details' => '{{PLURAL:$1|$1 panna|$1 panna}} pe dhyan dewa jae hai, baat waala panna ke chhorr ke.',
 'wlshowlast'        => 'Pichhla $1 ghanta $2 din $3 ke dekhao',
 

@@ -1258,7 +1258,7 @@ $2',
 'morelinkstoimage'          => '閱檔[[Special:WhatLinksHere/$1|接]]。',
 'redirectstofile'           => '下檔轉到此檔有$1：',
 'duplicatesoffile'          => '下檔重此檔有$1：',
-'sharedupload'              => '此檔為共傳，可另項用也。', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => '此檔為共傳，可另項用也。 $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => '詳閱$1。',
 'shareduploadwiki-desc'     => '於共庫上$1之示。',
 'shareduploadwiki-linktext' => '檔述',

@@ -1414,7 +1414,7 @@ Tamién puez consultar a [[Special:WhatLinksHere/$2|lista completa]].',
 'morelinkstoimage'          => 'Amostrar [[Special:WhatLinksHere/$1|más binclos]] ta iste archibo.',
 'redirectstofile'           => '{{PLURAL:$1|O siguient archibo reendreza|Os siguients $1 archibos reendrezan}} enta iste archibo:',
 'duplicatesoffile'          => "{{PLURAL:$1|O siguient archibo ye un duplicato|Os siguients $1 archibos son duplicatos}} d'iste archibo ([[Special:FileDuplicateSearch/$2|más detalles]]):",
-'sharedupload'              => 'Iste archibo ye compartito y puede estar que siga emplegato en atros procheutos.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Iste archibo ye compartito y puede estar que siga emplegato en atros procheutos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Ta más informazión, consulte $1.',
 'shareduploadwiki-desc'     => "A descripzión d'a $1 en o reposte compartito s'amuestra en o cobaxo.",
 'shareduploadwiki-linktext' => "pachina de descripzión de l'archibo",

@@ -597,7 +597,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'imagelinks'                => 'ڳنڍڻا',
 'linkstoimage'              => 'هن فائيل سان {{PLURAL:$1|هيٺيون صفحو ڳنڍيل آهي |$1 هيٺيان صفحا ڳنڍيل آهن}}:',
 'nolinkstoimage'            => 'هن فائيل سان ڪو به صفحو ڳنڍيل ناهي.',
-'sharedupload'              => 'هيءَ هڪ شراڪتي چاڙهه آهي، تنهنڪري ان کي ٻيون رٿائون به استعمال ڪري سگھن ٿيون.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'هيءَ هڪ شراڪتي چاڙهه آهي، تنهنڪري ان کي ٻيون رٿائون به استعمال ڪري سگھن ٿيون. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'ان نالي سان ڪو به فائيل وجود نٿو رکي، جي چاهيو ته $1.',
 'noimage-linktext'          => 'اهو چاڙهيو',
 'uploadnewversion-linktext' => 'هن فائيل جو نئون پرت چاڙهيو',

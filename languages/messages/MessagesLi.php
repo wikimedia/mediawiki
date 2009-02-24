@@ -1383,7 +1383,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Mier verwijzinge]] naor dit bestaand bekèèke.',
 'redirectstofile'           => 'De volgende bestaande verwèèze door naor dit bestaand:',
 'duplicatesoffile'          => 'De nègsvóggendje bestenj zeen identiek aan dit bestandj:',
-'sharedupload'              => "Dit besjtandj is 'ne gedeilde upload en kin ouch door anger projekte waere gebroek", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => "Dit besjtandj is 'ne gedeilde upload en kin ouch door anger projekte waere gebroek $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Zee $1 veur meer informatie.',
 'shareduploadwiki-desc'     => 'De omschrèèving op zie $1 op de gedèèlde map is hij onder wiergegeve.',
 'shareduploadwiki-linktext' => 'bestandsbesjrieving',

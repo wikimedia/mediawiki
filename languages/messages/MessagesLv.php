@@ -303,7 +303,7 @@ $messages = array(
 'nosuchaction'      => 'Šādas darbības nav.',
 'nosuchactiontext'  => 'Iekš URL norādītā darbība ir nederīga.
 Tas var būt no drukas kļūdas URL, vai arī no kļūdainas saites.
-Tas arī var būt saistīts ar ((grammar:ģenitīvs{{SITENAME}}}} programmatūras kļūdu.',
+Tas arī var būt saistīts ar {{GRAMMAR:ģenitīvs|{{SITENAME}}}} programmatūras kļūdu.',
 'nosuchspecialpage' => 'Nav tādas īpašās lapas',
 'nospecialpagetext' => 'Tu esi pieprasījis īpašo lapu, ko wiki neatpazīst.',
 
@@ -962,7 +962,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'imagelinks'                => 'Failu saites',
 'linkstoimage'              => '{{PLURAL:$1|Šajā lapā ir saite|Šajās $1 lapās ir saites}} uz šo failu:',
 'nolinkstoimage'            => 'Nevienā lapā nav norāžu uz šo attēlu.',
-'sharedupload'              => 'Šis fails ir augšupielādēts koplietojams citos projektos.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Šis fails ir augšupielādēts koplietojams citos projektos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'Ar šādu nosaukumu nav neviena faila, bet tu vari [$1].',
 'noimage-linktext'          => 'augšuplādēt to',
 'uploadnewversion-linktext' => 'Augšupielādēt jaunu šī faila versiju',

@@ -303,7 +303,7 @@ $messages = array(
 'nosuchaction'      => 'Disse Aktion rakt et nit',
 'nosuchactiontext'  => 'Ju in de URL anroate Aktion wäd fon MediaWiki nit unnerstöänd.
 Der kon n Schrieuwfailer in de URL foarlääse of der wuud n wrakken Link anklikt.
-Dät kon sik uk uum n Bug ap ((SITENAME}} honnelje.',
+Dät kon sik uk uum n Bug ap {{SITENAME}} honnelje.',
 'nosuchspecialpage' => 'Disse Spezialsiede rakt et nit',
 'nospecialpagetext' => 'Disse Spezialsiede wäd fon dän MediaWiki-Software nit unnerstöänd.',
 
@@ -1359,7 +1359,7 @@ Ne [[Special:WhatLinksHere/$2|fulständige Lieste]] is ferföigboar.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Wiedere Ferbiendengen]] foar disse Doatäi.',
 'redirectstofile'           => '{{PLURAL:$1|Ju foulgjende Doatäi laitet|Do foulgjende $1 Doatäie laitje}} ap disse Doatäi fääre:',
 'duplicatesoffile'          => '{{PLURAL:$1|Ju foulgjende Doatäi is n Duplikoat|Do foulgjende $1 Doatäie sunt Duplikoate}} fon disse Doatäi ([[Special:FileDuplicateSearch/$2|wiedere Details]]):',
-'sharedupload'              => 'Disse Doatäi is ne deelde Hoochleedenge un duur fon uur Projekte anwoand wäide.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Disse Doatäi is ne deelde Hoochleedenge un duur fon uur Projekte anwoand wäide. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Jädden sjuch dän $1 foar wiedere Information.',
 'shareduploadwiki-desc'     => 'Hier foulget die Inhoold fon $1 uut dät gemeensoam benutsede Repositorium.',
 'shareduploadwiki-linktext' => 'Doatäi-Beschrieuwengssiede',

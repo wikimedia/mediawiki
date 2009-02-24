@@ -1447,7 +1447,7 @@ $2',
 'morelinkstoimage'          => 'មើល [[Special:WhatLinksHere/$1|តំណភ្ជាប់បន្ថែមទៀត]] ដែលតភ្ជាប់មកកាន់ឯកសារនេះ។',
 'redirectstofile'           => '{{PLURAL:$1|file redirects|$1 ឯកសារ​បញ្ជូនបន្ត}}ដូចតទៅនេះ ត្រូវ​បញ្ជូនបន្ដទៅ​ឯកសារ​នេះ​៖',
 'duplicatesoffile'          => '{{PLURAL:$1|file is a duplicate|$1 ឯកសារ​ជាច្បាប់ចម្លង}}ដូចតទៅ​នៃ​ឯកសារ​នេះ​ ([[Special:FileDuplicateSearch/$2|ព័ត៌មាន​លំអិត]])​៖',
-'sharedupload'              => 'ឯកសារនេះ​ត្រូវបានផ្ទុកឡើង​ដើម្បីចែករំលែក និង អាចត្រូវបានប្រើប្រាស់​នៅគម្រោង​ដទៃ ។', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'ឯកសារនេះ​ត្រូវបានផ្ទុកឡើង​ដើម្បីចែករំលែក និង អាចត្រូវបានប្រើប្រាស់​នៅគម្រោង​ដទៃ ។ $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'សូម​មើល $1 សម្រាប់ព័ត៌មានបន្ថែម​។',
 'shareduploadwiki-desc'     => 'សេចក្តីអធិប្បាយរបស់ឯកសារដែលមាននៅក្នុង$1 គឺត្រូវបានបង្ហាញដូចខាងក្រោម។',
 'shareduploadwiki-linktext' => 'ទំព័រពិពណ៌នាអំពីឯកសារ',

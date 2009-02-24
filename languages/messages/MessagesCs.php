@@ -584,7 +584,7 @@ $messages = array(
 'nosuchaction'      => 'Neznámý úkon',
 'nosuchactiontext'  => 'Činnost („action“) uvedená v URL je neplatná.
 Zřejmě jste se překlepli při zadávání adresy nebo jste klikli na chybný odkaz.
-Může se ale jednat také o chybu {{grammar:2sg|{{SITENAME}}}}.',
+Může se ale jednat také o chybu {{GRAMMAR:2sg|{{SITENAME}}}}.',
 'nosuchspecialpage' => 'Neexistující speciální stránka',
 'nospecialpagetext' => "<big>'''Zadali jste neplatnou speciální stránku.'''</big>
 

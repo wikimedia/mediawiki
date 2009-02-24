@@ -2016,9 +2016,10 @@ $NEWPAGE
 'rollbacklink'     => 'Врати',
 'rollbackfailed'   => 'Неуспешно враќање',
 'cantrollback'     => 'Не може да се врати последната промена, последниот автор е истовремено и единствен.',
-'alreadyrolled'    => 'Не може да се врати последното уредување од [[:$1]] на [[User:$2|$2]] ([[User talk:$2|Разговор]])]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); некој друг веќе ја уредил или ги вратил промените на страницата.
+'alreadyrolled'    => 'Не може да се врати последното уредување од [[:$1]] на [[User:$2|$2]] ([[User talk:$2|Разговор]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+некој друг веќе ја уредил или ги вратил промените на страницата.
 
-Последното уредување беше на [[User:$3|$3]] ([[User talk:$3|Разговор]])]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+Последното уредување беше на [[User:$3|$3]] ([[User talk:$3|Разговор]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Коментарот на уредувањето беше: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Отстрането уредувањето на [[Special:Contributions/$2|$2]] ([[User talk:$2|разговор]]), вратено на последната верзија на [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Откажани уредувањата на $1; вратено на последната верзија на $2.',

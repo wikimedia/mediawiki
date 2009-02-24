@@ -924,7 +924,7 @@ $2',
 'imagelinks'                => '連結',
 'linkstoimage'              => '底下嗰頁面連結到箇隻檔案:',
 'nolinkstoimage'            => '冇頁面連結到箇隻檔案。',
-'sharedupload'              => '箇隻檔案係隻共用嗰上傳，佢可以應用到別嗰項目。', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => '箇隻檔案係隻共用嗰上傳，佢可以應用到別嗰項目。 $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => '更多信息請參看$1。',
 'shareduploadwiki-linktext' => '檔案描述頁',
 'noimage'                   => '同名嗰檔案伓存在，倷可以$1。',

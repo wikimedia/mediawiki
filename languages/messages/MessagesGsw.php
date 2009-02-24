@@ -1914,7 +1914,7 @@ In däm Fall darf di neijscht Version nit markiert wäre oder ihre Status muess 
 'undeleterevision-missing'     => 'Version isch nit giltig oder fählt. Entwäder isch s Gleich falsch oder d Version isch us em Archiv widerhärgstellt oder usegnuh wore.',
 'undelete-nodiff'              => 'Kei vorigi Version vorhande.',
 'undeletebtn'                  => 'Widerhärstelle',
-'undeletelink'                 => 'widerhärstelle',
+'undeletelink'                 => 'aaluege/widerhärstelle',
 'undeletereset'                => 'Abbräche',
 'undeleteinvert'               => 'Uswahl umchehre',
 'undeletecomment'              => 'Begrindig:',

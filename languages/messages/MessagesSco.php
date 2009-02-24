@@ -405,7 +405,7 @@ Mynd an chynge yer [[Special:Preferences|{{SITENAME}} preferences]].',
 'loginsuccess'               => 'Ye\'re nou loggit in tae {{SITENAME}} as "$1".',
 'nosuchuser'                 => 'The\'r nae sic uiser as "$1".
 Uiser names are case-sensitive.
-Check yer spellin, or uise [[Special:UserLogin/signup|create a new account] tae mak a new accoont.',
+Check yer spellin, or uise [[Special:UserLogin/signup|mak a new accoont]].',
 'nosuchusershort'            => 'The\'r nae sic uiser as "<nowiki>$1</nowiki>". Check yer spellin.',
 'nouserspecified'            => 'Ye hae tae merk up a uisername.',
 'wrongpassword'              => 'The password ye entered is wrang. Please gie it anither shot.',

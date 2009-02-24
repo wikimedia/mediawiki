@@ -1463,7 +1463,7 @@ $1',
 'morelinkstoimage'          => '去睇連到呢個檔案嘅[[Special:WhatLinksHere/$1|更多連結]]。',
 'redirectstofile'           => '下面嘅$1個檔案跳轉到呢個檔案:',
 'duplicatesoffile'          => '下面嘅$1個檔案係同呢個檔案重覆:',
-'sharedupload'              => '呢個檔案係共用嘅上載，可以喺其他計劃中使用。“', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => '呢個檔案係共用嘅上載，可以喺其他計劃中使用。“ $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => '更多資訊請睇$1。',
 'shareduploadwiki-desc'     => '佢響共用檔案庫上面嘅$1描述響下面度顯示。',
 'shareduploadwiki-linktext' => '檔案描述頁面',

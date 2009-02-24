@@ -612,7 +612,7 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'imagelinks'                => 'Paginas che cuntegnan la datoteca',
 'linkstoimage'              => '{{PLURAL:$1|La suandanta pagina è colliada|Las suandantas $1 paginas èn colliadas}} cun questa datoteca:',
 'nolinkstoimage'            => 'Naginas paginas mussan sin questa datoteca.',
-'sharedupload'              => 'Quai è ina datoteca partida e vegn eventualmain utilisada dad auters projects.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Quai è ina datoteca partida e vegn eventualmain utilisada dad auters projects. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => "Ina datoteca cun quest num n'exista betg, ti pos dentant $1.",
 'noimage-linktext'          => 'chargiar sin in',
 'uploadnewversion-linktext' => 'Chargiar si ina nova versiun da questa datoteca',

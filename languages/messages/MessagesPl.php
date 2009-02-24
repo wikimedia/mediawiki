@@ -673,7 +673,7 @@ Zanim jakiekolwiek inne wiadomości zostaną wysłane na ten adres, należy wyko
 'throttled-mailpassword'     => 'Przypomnienie hasła zostało już wysłane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich $1 godzin}}.
 W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ograniczona do jednego na {{PLURAL:$1|godzinę|$1 godziny|$1 godzin}}.',
 'mailerror'                  => 'W trakcie wysyłania wiadomości e-mail wystąpił błąd: $1',
-'acct_creation_throttle_hit' => 'Z adresu IP, z którego korzystasz {{PLURAL:$1|ktoś już utworzył dziś konto|goście już utworzyli dziś $1 konta|goście już utworzyli dziś $1 kont}}, co jest maksymalną dopuszczalną liczbą w tym czasie.
+'acct_creation_throttle_hit' => 'Z adresu IP, z którego korzystasz {{PLURAL:$1|ktoś już utworzył dziś konto|czytelnicy już utworzyli dziś $1 konta|czytelnicy już utworzyli dziś $1 kont}}, co jest maksymalną dopuszczalną liczbą w tym czasie.
 W związku z tym, osoby korzystające z tego adresu IP w chwili obecnej nie mogą założyć kolejnego.',
 'emailauthenticated'         => 'Twój adres e-mail został potwierdzony $2 o $3.',
 'emailnotauthenticated'      => "Twój adres '''e-mail nie został potwierdzony'''.

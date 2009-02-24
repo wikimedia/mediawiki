@@ -844,7 +844,7 @@ $2',
 'filehist-comment'          => '註解',
 'imagelinks'                => '連結',
 'nolinkstoimage'            => '沒有頁面連接到本檔案。',
-'sharedupload'              => '該檔案是一個共享上傳，它可能在其它項目中被應用。', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => '該檔案是一個共享上傳，它可能在其它項目中被應用。 $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => '請參閱$1以了解其相關資訊。',
 'shareduploadwiki-linktext' => '檔案描述頁面',
 'noimage'                   => '不存在此名稱的檔案，您可以$1。',

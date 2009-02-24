@@ -579,7 +579,7 @@ Det må ha minst {{PLURAL:$1|ett tegn|$1 tegn}} og kan ikke være det samme som 
 'passwordremindertitle'      => 'Nytt midlertidig passord fra {{SITENAME}}',
 'passwordremindertext'       => 'Noen (antagelig deg, fra IP-adressen $1) ba oss sende deg et nytt
 passord til {{SITENAME}} ($4). Et midlertidig passord for «$2» har
-blitt laget og sendt til «$3». Om det var det du ville, må du logge inn
+blitt laget og er satt til «$3». Om det var det du ville, må du logge inn
 og velge et nytt passord nå. Det midlertidige passordet vil utgå om {{PLURAL:$5|én dag|$5 dager}}.
 
 Dersom denne forespørselen ble utført av noen andre, eller om du kom på passordet

@@ -1593,7 +1593,7 @@ $NEWPAGE
 'undelete-revision'         => 'Διαγράφειν τὴν ἀναθεώρησιν τοῦ $1 (μέχρι $4, ἐς $5) ὑπὸ $3:',
 'undelete-nodiff'           => 'Οὐδεμία προηγηθεῖσα ἀναθεώρησις εὑρέθη.',
 'undeletebtn'               => 'Ἀνορθοῦν',
-'undeletelink'              => 'ἐπανίσταναι',
+'undeletelink'              => 'ὁρᾶν/ἐπανίσταναι',
 'undeletereset'             => 'Ἐπαναθέτειν',
 'undeleteinvert'            => 'Ἀναστρέφειν τὴν ἐπιλογήν',
 'undeletecomment'           => 'Σχόλιον:',

@@ -1395,7 +1395,7 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'morelinkstoimage'          => 'Shikoni [[Special:WhatLinksHere/$1|më shumë lidhje]] tek kjo skedë.',
 'redirectstofile'           => 'Skeda vijuese {{PLURAL:$1|file redirects|$1 ridrejtohet}} tek kjo skedë:',
 'duplicatesoffile'          => 'Skedat vijuese {{PLURAL:$1|është e dyfishtë|$1 dyfishohen}} tek kjo skedë:',
-'sharedupload'              => 'Kjo skedë është një ngarkim i përbashkët dhe mund të përdoret nga projekte të tjera.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Kjo skedë është një ngarkim i përbashkët dhe mund të përdoret nga projekte të tjera. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Ju lutem shikoni $1 për më shumë informacion.',
 'shareduploadwiki-desc'     => '$1 së atjeshme tregohet më poshtë',
 'shareduploadwiki-linktext' => 'faqja përshkruese e skedës',

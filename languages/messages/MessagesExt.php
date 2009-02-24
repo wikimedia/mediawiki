@@ -1054,7 +1054,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'imagelinks'                => 'Atihus',
 'linkstoimage'              => '{{PLURAL:$1|El siguienti artículu atiha|Los siguientis $1 artículus atihan}} a esti archivu:',
 'nolinkstoimage'            => 'Nu ai denguna páhina qu´atihi a esti archivu.',
-'sharedupload'              => 'Esti archivu está compartiu i puei gastalsi dendi otrus proyeutus.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Esti archivu está compartiu i puei gastalsi dendi otrus proyeutus. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Pa mas enhormación, puei consurtal $1.',
 'shareduploadwiki-linktext' => 'páhina e descrición el archivu',
 'noimage'                   => 'Nu desisti dengún archivu llamau asina, pueis $1.',

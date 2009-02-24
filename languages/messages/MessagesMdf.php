@@ -1436,7 +1436,7 @@ $3 макссь туфталсь - ''$2''",
 'morelinkstoimage'          => 'Ванк [[Special:WhatLinksHere/$1|сяда лама сюлмафкст]] тя файлонди.',
 'redirectstofile'           => 'Сай {{PLURAL:$1|файлсь шашфтфоль|$1 файлхне шашфтфольхть}} тя файлонди:',
 'duplicatesoffile'          => 'Сай {{PLURAL:$1|файлсь ащи кафонзафксокс|$1 файлхне ащихть кафонзафксокс}} тя файлонди:',
-'sharedupload'              => 'Тя файлсь тонгозь марстонь файл пърдафксс ди сонь ули кода сувафтомс иля проектс.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Тя файлсь тонгозь марстонь файл пърдафксс ди сонь ули кода сувафтомс иля проектс. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Ванк $1 лама информацие ванома.',
 'shareduploadwiki-desc'     => 'Сёрмадома сонць $1 коряс марстонь репозиториса ванк ала.',
 'shareduploadwiki-linktext' => 'файл колга информациень лопа',

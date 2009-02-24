@@ -1668,7 +1668,7 @@ PICT # misc.
 'morelinkstoimage'          => 'عرض [[Special:WhatLinksHere/$1|لينكات اكتر]] للملف دا.',
 'redirectstofile'           => '{{PLURAL:$1| الملف|ال$1 ملف}} اللى جاى  بيحول للملف دا:',
 'duplicatesoffile'          => '{{PLURAL:$1| الملف|ال$1 ملف اللى بعده}} متكرره من الملف ده:',
-'sharedupload'              => 'الملف ده اتحمل علشان يتشارك بين المشاريع و ممكن استعماله فى المشاريع التانيه.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'الملف ده اتحمل علشان يتشارك بين المشاريع و ممكن استعماله فى المشاريع التانيه. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'لو سمحت تشوف $1 اللى فيه معلومات زيادة.',
 'shareduploadwiki-desc'     => 'الوصف على $1 فى الكومونز معروض تحت.',
 'shareduploadwiki-linktext' => 'صفحة وصف الملف',

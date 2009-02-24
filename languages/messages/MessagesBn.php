@@ -1064,7 +1064,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'imagelinks'                => 'সংযোগসমূহ',
 'linkstoimage'              => 'নিচের {{PLURAL:$1|টি পাতা|$1টি পাতা}} থেকে এই ফাইলে সংযোগ আছে:',
 'nolinkstoimage'            => 'এই ফাইলে সংযোগ করে এমন কোন পাতা নেই।',
-'sharedupload'              => 'এই ফাইলটি একটি অংশদারী আপলোড এবং অন্যান্য প্রকল্পে ব্যবহৃত হতে পারে।', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'এই ফাইলটি একটি অংশদারী আপলোড এবং অন্যান্য প্রকল্পে ব্যবহৃত হতে পারে। $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'বিস্তারিত তথ্যের জন্য $1 দেখুন।',
 'shareduploadwiki-linktext' => 'ফাইলের বিবরণ পাতা',
 'noimage'                   => 'এই নামে কোনো ফাইল নেই, কিন্তু আপনি $1।',

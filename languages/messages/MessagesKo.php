@@ -1106,6 +1106,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nextn'                            => '다음 $1개',
 'prevn-title'                      => '이전 $1개의 결과',
 'nextn-title'                      => '다음 $1개의 결과',
+'shown-title'                      => '페이지당 $1개의 결과 보이기',
 'viewprevnext'                     => '보기: ($1) ($2) ($3).',
 'searchmenu-legend'                => '검색 설정',
 'searchmenu-exists'                => "'''이 위키에 \"[[\$1]]\"의 이름을 가진 문서가 있습니다.'''",
