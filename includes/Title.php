@@ -2197,6 +2197,9 @@ class Title {
 		#
 		$dbkey = preg_replace( '/[ _]+/', '_', $dbkey );
 		$dbkey = trim( $dbkey, '_' );
+		
+		# Clean up Arabic harakats (bug 16899)
+		$dbkey = preg_replace( '/[\x{064B}-\x{0652}]/Su', '', $dbkey );
 
 		if ( '' == $dbkey ) {
 			return false;
