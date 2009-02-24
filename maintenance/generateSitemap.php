@@ -476,6 +476,7 @@ Usage: php generateSitemap.php [options]
 	--help			show this message
 
 	--fspath=<path>		The file system path to save to, e.g /tmp/sitemap
+	                    Saves to current directory if not given.
 
 	--server=<server>	The protocol and server name to use in URLs, e.g.
 		http://en.wikipedia.org. This is sometimes necessary because
