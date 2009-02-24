@@ -3171,4 +3171,5 @@ $wgMessageComments = array(
 	'userrights'                  => 'Not used as normal message but as header for the special page itself',
 	'revision-info'               => 'Additionally available: $3: revision id',
 	'revision-info-current'       => 'Available parameters: $1: timestamp; $2: userlinks; $3: revision id',
+	'nocontribs'                  => 'Optional parameter: $1 is the user name',
 );
