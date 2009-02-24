@@ -91,7 +91,11 @@ class ChangeTags {
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
 	*/
 	static function modifyDisplayQuery( &$tables, &$fields,  &$conds, &$join_conds, $filter_tag = false ) {
-		global $wgRequest;
+		global $wgRequest, $wgUseTagFilter;
+		
+		if( !$wgUseTagFilter ) {
+			return;
+		}
 		
 		if ($filter_tag === false) {
 			$filter_tag = $wgRequest->getVal( 'tagfilter' );
@@ -129,8 +133,9 @@ class ChangeTags {
 	 * If $fullForm is true, it returns an entire form.
 	 */
 	static function buildTagFilterSelector( $selected='', $fullForm = false /* used to put a full form around the selector */ ) {
-
-		if ( !count( self::listDefinedTags() ) )
+		global $wgUseTagFilter;
+		
+		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) )
 			return $fullForm ? '' : array();
 	
 		global $wgTitle;

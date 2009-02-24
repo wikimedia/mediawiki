@@ -3738,3 +3738,9 @@ $wgUseTwoButtonsSearchForm = true;
  * Preprocessor caching threshold
  */
 $wgPreprocessorCacheThreshold = 1000;
+
+/**
+ * Allow filtering by change tag in recentchanges, history, etc
+ * Has no effect if no tags are defined in valid_tag.
+ */
+$wgUseTagFilter = true;
