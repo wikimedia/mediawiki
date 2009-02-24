@@ -208,14 +208,21 @@ CONTROL;
 			$patrol = '';
 		}
 
+		$diffOnlyArg = '';
+		# Carry over 'diffonly' param via navigation links
+		if( $diffOnly != $wgUser->getBoolOption('diffonly') ) {
+			$diffOnlyArg = '&diffonly='.$diffOnly;
+		}
 		$htmldiffarg = $this->htmlDiffArgument();
+		# Make "previous revision link"
 		$prevlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'previousdiff' ),
-			'diff=prev&oldid='.$this->mOldid.$htmldiffarg, '', '', 'id="differences-prevlink"' );
-		if ( $this->mNewRev->isCurrent() ) {
+			"diff=prev&oldid={$this->mOldid}{$htmldiffarg}{$diffOnlyArg}", '', '', 'id="differences-prevlink"' );
+		# Make "next revision link"
+		if( $this->mNewRev->isCurrent() ) {
 			$nextlink = '&nbsp;';
 		} else {
 			$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ),
-				'diff=next&oldid='.$this->mNewid.$htmldiffarg, '', '', 'id="differences-nextlink"' );
+				"diff=next&oldid={$this->mNewid}{$htmldiffarg}{$diffOnlyArg}", '', '', 'id="differences-nextlink"' );
 		}
 
 		$oldminor = '';
