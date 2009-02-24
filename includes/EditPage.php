@@ -324,7 +324,7 @@ class EditPage {
 	protected function wasDeletedSinceLastEdit() {
 		if ( $this->deletedSinceEdit )
 			return true;
-		if ( $this->mTitle->isDeleted() ) {
+		if ( $this->mTitle->isDeletedQuick() ) {
 			$this->lastDelete = $this->getLastDelete();
 			if ( $this->lastDelete ) {
 				$deleteTime = wfTimestamp( TS_MW, $this->lastDelete->log_timestamp );
