@@ -93,10 +93,6 @@ class ChangeTags {
 	static function modifyDisplayQuery( &$tables, &$fields,  &$conds, &$join_conds, $filter_tag = false ) {
 		global $wgRequest, $wgUseTagFilter;
 		
-		if( !$wgUseTagFilter ) {
-			return;
-		}
-		
 		if ($filter_tag === false) {
 			$filter_tag = $wgRequest->getVal( 'tagfilter' );
 		}
@@ -118,7 +114,7 @@ class ChangeTags {
 		$join_conds['tag_summary'] = array( 'LEFT JOIN', "ts_$join_cond=$join_cond" );
 		$fields[] = 'ts_tags';
 		
-		if ($filter_tag) {
+		if ($wgUseTagFilter && $filter_tag) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 
