@@ -2160,7 +2160,7 @@ $NEWPAGE
 'undeleterevision-missing'     => 'הגרסה שגויה או חסרה. ייתכן שמדובר בקישור שבור, או שהגרסה שוחזרה או הוסרה מהארכיון.',
 'undelete-nodiff'              => 'לא נמצאה גרסה קודמת.',
 'undeletebtn'                  => 'שחזור',
-'undeletelink'                 => 'שחזור',
+'undeletelink'                 => 'צפייה/שחזור',
 'undeletereset'                => 'איפוס',
 'undeleteinvert'               => 'הפיכת הבחירה',
 'undeletecomment'              => 'תקציר:',
