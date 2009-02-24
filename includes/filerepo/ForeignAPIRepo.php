@@ -120,7 +120,7 @@ class ForeignAPIRepo extends FileRepo {
 		$ret = array();
 		if ( isset( $results['query']['allimages'] ) ) {
 			foreach ( $results['query']['allimages'] as $img ) {
-				$ret[] = new ForeignAPIFile( Title::makeTitle( NS_IMAGE, $img['name'] ), $this, $img );
+				$ret[] = new ForeignAPIFile( Title::makeTitle( NS_FILE, $img['name'] ), $this, $img );
 			}
 		}
 		return $ret;
