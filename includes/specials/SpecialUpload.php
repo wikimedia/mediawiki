@@ -993,7 +993,7 @@ wgUploadAutoFill = {$autofill};
 			}
 
 			// Show the relevant lines from deletion log (for still deleted files only)
-			if( $title instanceof Title && $title->isDeleted() > 0 && !$title->exists() ) {
+			if( $title instanceof Title && $title->isDeletedQuick() && !$title->exists() ) {
 				$this->showDeletionLog( $wgOut, $title->getPrefixedText() );
 			}
 		}

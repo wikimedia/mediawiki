@@ -1979,19 +1979,44 @@ class Title {
 	 * @return \type{\int} the number of archived revisions
 	 */
 	public function isDeleted() {
-		$fname = 'Title::isDeleted';
-		if ( $this->getNamespace() < 0 ) {
+		if( $this->getNamespace() < 0 ) {
 			$n = 0;
 		} else {
 			$dbr = wfGetDB( DB_SLAVE );
-			$n = $dbr->selectField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(),
-				'ar_title' => $this->getDBkey() ), $fname );
+			$n = $dbr->selectField( 'archive', 'COUNT(*)', 
+				array( 'ar_namespace' => $this->getNamespace(), 'ar_title' => $this->getDBkey() ),
+				__METHOD__
+			);
 			if( $this->getNamespace() == NS_FILE ) {
 				$n += $dbr->selectField( 'filearchive', 'COUNT(*)',
-					array( 'fa_name' => $this->getDBkey() ), $fname );
+					array( 'fa_name' => $this->getDBkey() ),
+					__METHOD__
+				);
 			}
 		}
 		return (int)$n;
+	}
+	
+	/**
+	 * Is there a version of this page in the deletion archive?
+	 * @return bool
+	 */
+	public function isDeletedQuick() {
+		if( $this->getNamespace() < 0 ) {
+			return false;
+		}
+		$dbr = wfGetDB( DB_SLAVE );
+		$deleted = (bool)$dbr->selectField( 'archive', '1',
+			array( 'ar_namespace' => $this->getNamespace(), 'ar_title' => $this->getDBkey() ),
+			__METHOD__
+		);
+		if( !$deleted && $this->getNamespace() == NS_FILE ) {
+			$deleted = (bool)$dbr->selectField( 'filearchive', '1',
+				array( 'fa_name' => $this->getDBkey() ),
+				__METHOD__
+			);
+		}
+		return $deleted;
 	}
 
 	/**
