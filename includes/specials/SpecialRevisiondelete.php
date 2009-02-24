@@ -227,6 +227,7 @@ class RevisionDeleteForm {
 					'ar_timestamp' => $where ),
 				__METHOD__ );
 			while( $row = $dbr->fetchObject( $result ) ) {
+				$timestamp = wfTimestamp( TS_MW, $row->ar_timestamp );
 				$revObjs[$timestamp] = new Revision( array(
 					'page'       => $this->page->getArticleId(),
 					'id'         => $row->ar_rev_id,
@@ -234,7 +235,7 @@ class RevisionDeleteForm {
 					'comment'    => $row->ar_comment,
 					'user'       => $row->ar_user,
 					'user_text'  => $row->ar_user_text,
-					'timestamp'  => wfTimestamp( TS_MW, $timestamp ),
+					'timestamp'  => $timestamp,
 					'minor_edit' => $row->ar_minor_edit,
 					'text_id'    => $row->ar_text_id,
 					'deleted'    => $row->ar_deleted,
@@ -889,6 +890,7 @@ class RevisionDeleter {
 				'ar_timestamp' => $where ),
 			__METHOD__ );
 		while( $row = $this->dbw->fetchObject( $result ) ) {
+			$timestamp = wfTimestamp( TS_MW, $row->ar_timestamp );
 			$revObjs[$timestamp] = new Revision( array(
 				'page'       => $title->getArticleId(),
 				'id'         => $row->ar_rev_id,
@@ -896,7 +898,7 @@ class RevisionDeleter {
 				'comment'    => $row->ar_comment,
 				'user'       => $row->ar_user,
 				'user_text'  => $row->ar_user_text,
-				'timestamp'  => wfTimestamp( TS_MW, $row->ar_timestamp ),
+				'timestamp'  => $timestamp,
 				'minor_edit' => $row->ar_minor_edit,
 				'text_id'    => $row->ar_text_id,
 				'deleted'    => $row->ar_deleted,
