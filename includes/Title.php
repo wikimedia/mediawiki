@@ -875,12 +875,10 @@ class Title {
 		}
 		if( $this->isExternal() ) {
 			$ret = $this->getFullURL( $query );
-		} elseif( $this->getPrefixedText() === ''
-		and $this->getFragment() !== '' ) {
+		} elseif( $this->getPrefixedText() === '' && $this->getFragment() !== '' ) {
 			$ret = $this->getFragmentForURL();
 		} else {
-			$ret = $this->getLocalURL( $query, $variant )
-				. $this->getFragmentForURL();
+			$ret = $this->getLocalURL( $query, $variant ) . $this->getFragmentForURL();
 		}
 		wfProfileOut( __METHOD__ );
 		return $ret;
