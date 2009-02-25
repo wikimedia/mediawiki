@@ -1141,21 +1141,21 @@ Please check if you want to create/edit this page.',
 Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/monobook.css as opposed to {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Updated)',
 'note'                             => "'''Note:'''",
-'previewnote'                      => "'''Remember that this is only a preview.
-Your changes have not yet been saved!'''",
+'previewnote'                      => "'''Remember that this is only a preview.'''
+Your changes have not yet been saved!",
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
-'session_fail_preview'             => "'''Sorry! We could not process your edit due to a loss of session data.
+'session_fail_preview'             => "'''Sorry! We could not process your edit due to a loss of session data.'''
 Please try again.
-If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.'''",
+If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.",
 'session_fail_preview_html'        => "'''Sorry! We could not process your edit due to a loss of session data.'''
 
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
-'''If this is a legitimate edit attempt, please try again.
-If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.'''",
-'token_suffix_mismatch'            => "'''Your edit has been rejected because your client mangled the punctuation characters in the edit token.
+'''If this is a legitimate edit attempt, please try again.'''
+If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.",
+'token_suffix_mismatch'            => "'''Your edit has been rejected because your client mangled the punctuation characters in the edit token.'''
 The edit has been rejected to prevent corruption of the page text.
-This sometimes happens when you are using a buggy web-based anonymous proxy service.'''",
+This sometimes happens when you are using a buggy web-based anonymous proxy service.",
 'editing'                          => 'Editing $1',
 'editingsection'                   => 'Editing $1 (section)',
 'editingcomment'                   => 'Editing $1 (new section)',
@@ -1167,10 +1167,10 @@ You will have to merge your changes into the existing text.
 '''Only''' the text in the upper text area will be saved when you press \"Save page\".",
 'yourtext'                         => 'Your text',
 'storedversion'                    => 'Stored version',
-'nonunicodebrowser'                => "'''WARNING: Your browser is not unicode compliant.
-A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.'''",
-'editingold'                       => "'''WARNING: You are editing an out-of-date revision of this page.
-If you save it, any changes made since this revision will be lost.'''",
+'nonunicodebrowser'                => "'''WARNING: Your browser is not unicode compliant.'''
+A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.",
+'editingold'                       => "'''WARNING: You are editing an out-of-date revision of this page.'''
+If you save it, any changes made since this revision will be lost.",
 'yourdiff'                         => 'Differences',
 'copyrightwarning'                 => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details).
 If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />
@@ -1180,13 +1180,13 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 If you do not want your writing to be edited mercilessly, then do not submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource (see $1 for details).
 '''DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!'''",
-'longpagewarning'                  => "'''WARNING: This page is $1 kilobytes long;
+'longpagewarning'                  => "'''WARNING''': This page is $1 kilobytes long;
 some browsers may have problems editing pages approaching or longer than 32kb.
-Please consider breaking the page into smaller sections.'''",
-'longpageerror'                    => "'''ERROR: The text you have submitted is $1 kilobytes long, which is longer than the maximum of $2 kilobytes.
-It cannot be saved.'''",
-'readonlywarning'                  => "'''WARNING: The database has been locked for maintenance, so you will not be able to save your edits right now.
-You may wish to cut-n-paste the text into a text file and save it for later.'''
+Please consider breaking the page into smaller sections.",
+'longpageerror'                    => "'''ERROR: The text you have submitted is $1 kilobytes long, which is longer than the maximum of $2 kilobytes.'''
+It cannot be saved.",
+'readonlywarning'                  => "'''WARNING: The database has been locked for maintenance, so you will not be able to save your edits right now.'''
+You may wish to cut-n-paste the text into a text file and save it for later.
 
 The administrator who locked it offered this explanation: $1",
 'protectedpagewarning'             => "'''WARNING: This page has been locked so that only users with administrator privileges can edit it.'''",
