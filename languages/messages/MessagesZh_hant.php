@@ -9,6 +9,7 @@
  * @author Philip
  * @author Shinjiman
  * @author Skjackey tse
+ * @author Verdy p
  * @author Wmr89502270
  * @author Wong128hk
  * @author Wrightbus
@@ -203,7 +204,7 @@ $messages = array(
 'category-file-count-limited'    => '這個分類下有$1個檔案。',
 'listingcontinuesabbrev'         => '續',
 
-'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
+'mainpagetext'      => "<big>'''已成功安裝 MediaWiki。'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟件的訊息！
 
 == 入門 ==
@@ -1915,7 +1916,7 @@ $1',
 'contributions-title' => '$1的用戶貢獻',
 'mycontris'           => '我的貢獻',
 'contribsub2'         => '$1的貢獻 ($2)',
-'nocontribs'          => '沒有找到符合特徵的更改。',
+'nocontribs'          => '沒有找到符合特徵的更改。', # Optional parameter: $1 is the user name
 'uctop'               => '(最新修改)',
 'month'               => '從該月份 (或更早):',
 'year'                => '從該年份 (或更早):',

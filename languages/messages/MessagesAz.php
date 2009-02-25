@@ -837,7 +837,7 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 # Contributions
 'contributions' => 'İstifadəçi köməkləri',
 'mycontris'     => 'Köməklərim',
-'nocontribs'    => 'Bu kriteriyaya uyğun redaktələr tapılmadı',
+'nocontribs'    => 'Bu kriteriyaya uyğun redaktələr tapılmadı', # Optional parameter: $1 is the user name
 'uctop'         => '(son)',
 'month'         => 'Ay',
 'year'          => 'Axtarışa bu tarixdən etibarən başla:',

@@ -1026,10 +1026,11 @@ Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:Special:Log/delete|page={{FULLP
 'revdelete-nologid-text'         => 'Buď jste nezadali cílový záznam v protokolu nebo zadaný záznam neexistuje.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Vybraná|Vybrané}} revize stránky [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
-'revdelete-text'                 => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale jejich text nebude veřejně dostupný.'''
+'revdelete-text'                 => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale některé jejich části nebudou veřejně dostupné.'''
 
-Ostatní správci {{grammar:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
-pokud to provozovatel serveru nezakázal.",
+Ostatní správci {{GRAMMAR:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
+pokud nebyla nastavena další omezení.
+Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].",
 'revdelete-legend'               => 'Nastavit omezení k revizi:',
 'revdelete-hide-text'            => 'Skrýt text revize',
 'revdelete-hide-name'            => 'Skrýt událost a cíl',
@@ -2099,7 +2100,7 @@ Archiv může být pravidelně vyprazdňován.',
 'undeleterevision-missing'     => 'Nesprávná nebo chybějící revize. Možná máte špatný odkaz, nebo revize byla obnovena či odstraněna z archivu.',
 'undelete-nodiff'              => 'Nebyla nalezena žádná předchozí verze.',
 'undeletebtn'                  => 'Obnovit',
-'undeletelink'                 => 'obnovit',
+'undeletelink'                 => 'prohlédnout/obnovit',
 'undeletereset'                => 'Resetovat',
 'undeleteinvert'               => 'Invertovat výběr',
 'undeletecomment'              => 'Komentář:',
@@ -2137,7 +2138,7 @@ $1',
 'contributions-title' => 'Příspěvky uživatele $1',
 'mycontris'           => 'Mé příspěvky',
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'Nenalezeny žádné změny vyhovující kritériím.',
+'nocontribs'          => 'Nenalezeny žádné změny vyhovující kritériím.', # Optional parameter: $1 is the user name
 'uctop'               => ' (aktuální)',
 'month'               => 'Do měsíce:',
 'year'                => 'Do roku:',

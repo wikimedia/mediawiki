@@ -1336,7 +1336,7 @@ Pogledajte [[{{ns:special}}:Log/delete|istoriju brisanja]] za spisak skorašnjih
 'contributions' => 'Prilozi korisnika',
 'mycontris'     => 'Moji prilozi',
 'contribsub2'   => 'Za $1 ($2)',
-'nocontribs'    => 'Nisu nađene promene koje zadovoljavaju ove uslove.',
+'nocontribs'    => 'Nisu nađene promene koje zadovoljavaju ove uslove.', # Optional parameter: $1 is the user name
 'uctop'         => ' (vrh)',
 
 'sp-contributions-newbies-sub' => 'Za novajlije',

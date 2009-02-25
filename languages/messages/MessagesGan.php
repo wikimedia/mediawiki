@@ -6,6 +6,7 @@
  *
  * @author Symane
  * @author Urhixidur
+ * @author Verdy p
  * @author Vipuser
  */
 
@@ -120,7 +121,7 @@ $messages = array(
 'hidden-category-category' => '弆到嗰分類', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => '續',
 
-'mainpagetext'      => "<big>'''安裝正MediaWiki嘍!'''</big>",
+'mainpagetext'      => "<big>'''安裝正MediaWiki嘍。'''</big>",
 'mainpagedocfooter' => '參看[http://meta.wikimedia.org/wiki/Help:Contents 用戶指南]裡頭會話到啷用wiki軟件
 
 == 開始使用 ==
@@ -1305,7 +1306,7 @@ $NEWPAGE
 'contributions' => '用戶貢獻',
 'mycontris'     => '偶嗰貢獻',
 'contribsub2'   => '$1嗰貢獻 ($2)',
-'nocontribs'    => '冇尋到合到條件嗰改動。',
+'nocontribs'    => '冇尋到合到條件嗰改動。', # Optional parameter: $1 is the user name
 'uctop'         => '(頭上)',
 'month'         => '從箇月 (或更早):',
 'year'          => '從箇年 (或更早):',

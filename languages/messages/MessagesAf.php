@@ -1724,7 +1724,7 @@ Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
 'contributions-title' => '$1 se bydraes',
 'mycontris'           => 'My bydraes',
 'contribsub2'         => 'Vir $1 ($2)',
-'nocontribs'          => 'Geen veranderinge wat by hierdie kriteria pas, is gevind nie.',
+'nocontribs'          => 'Geen veranderinge wat by hierdie kriteria pas, is gevind nie.', # Optional parameter: $1 is the user name
 'uctop'               => ' (boontoe)',
 'month'               => 'Vanaf maand (en vroeër):',
 'year'                => 'Vanaf jaar (en vroeër):',

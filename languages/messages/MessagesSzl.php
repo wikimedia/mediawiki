@@ -1775,7 +1775,7 @@ $1',
 'contributions-title' => 'Wkłod użytkowńika $1',
 'mycontris'           => 'Uody mje sprowjane',
 'contribsub2'         => 'Do užytkowńika $1 ($2)',
-'nocontribs'          => 'Brak pomjyńań uodpowjadajůncych tym kryterjům.',
+'nocontribs'          => 'Brak pomjyńań uodpowjadajůncych tym kryterjům.', # Optional parameter: $1 is the user name
 'uctop'               => '(uostatnio)',
 'month'               => 'Uod mjeśůnca (i downiyjše):',
 'year'                => 'Uod roku (i dowńijše):',
@@ -2584,7 +2584,7 @@ Kod zawarty w linku straći wažność $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Douůnčańy bez interwiki je wůuůnčůne]',
 'scarytranscludefailed'   => '[Ńy powjoduo śe pobrańy szablůna lů $1]',
-'scarytranscludetoolong'  => '[za dugi adres URL]',
+'scarytranscludetoolong'  => '[za dugo adresa URL]',
 
 # Trackbacks
 'trackbackbox'      => 'Kůmůńikaty TrackBack do tygo artikla:<br />

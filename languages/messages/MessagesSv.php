@@ -1009,7 +1009,8 @@ eller så försöker du gömma den senaste versionen av sidan.',
 'logdelete-selected'             => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
 'revdelete-text'                 => "'''Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.'''
 
-Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.",
+Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.
+Vänligen bekräfta att detta är vad du avser göra, att du förstår konsekvenserna, och att du gör detta i enlighet med [[{{MediaWiki:Policy-url}}|riktlinjerna]].",
 'revdelete-legend'               => 'Ändra synlighet',
 'revdelete-hide-text'            => 'Dölj versionstext',
 'revdelete-hide-name'            => 'Dölj åtgärd och sidnamn',
@@ -2136,7 +2137,7 @@ $1',
 'contributions-title' => 'Bidrag av $1',
 'mycontris'           => 'Mina bidrag',
 'contribsub2'         => 'För $1 ($2)',
-'nocontribs'          => 'Inga ändringar som motsvarar dessa kriterier hittades.',
+'nocontribs'          => 'Inga ändringar som motsvarar dessa kriterier hittades.', # Optional parameter: $1 is the user name
 'uctop'               => '(senaste)',
 'month'               => 'Från månad (och tidigare):',
 'year'                => 'Från år (och tidigare):',

@@ -6,6 +6,7 @@
  *
  * @author Cradel
  * @author Dardan
+ * @author Verdy p
  */
 
 $fallback = 'sq';
@@ -123,7 +124,7 @@ $messages = array(
 'hidden-category-category' => 'Kategori të mshehta', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'vazh.',
 
-'mainpagetext'      => 'Wiki software u instalue me sukses.',
+'mainpagetext'      => "<big>'''MediaWiki software u instalue me sukses.'''</big>",
 'mainpagedocfooter' => 'Për ma shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
 
 

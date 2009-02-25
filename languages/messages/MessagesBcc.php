@@ -2044,7 +2044,7 @@ $1',
 'contributions-title' => 'مشارکتان کاربر په $1',
 'mycontris'           => 'می مشارکتان',
 'contribsub2'         => 'په $1 ($2)',
-'nocontribs'          => 'هچ تغییر هم دپ گون ای معیار در نه بوت.',
+'nocontribs'          => 'هچ تغییر هم دپ گون ای معیار در نه بوت.', # Optional parameter: $1 is the user name
 'uctop'               => '(بالا)',
 'month'               => 'چه ماه(و پیش تر):',
 'year'                => 'چه سال(و پیشتر)',

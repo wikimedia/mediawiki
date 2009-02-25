@@ -349,7 +349,7 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'contributions' => 'Minyikelo ya mutirhisi',
 'mycontris'     => 'Minyikelo ya mina',
 'contribsub2'   => 'For $1 ($2)',
-'nocontribs'    => 'Ku hava ku cinca loku kumiweke eka xiyenge lexi.',
+'nocontribs'    => 'Ku hava ku cinca loku kumiweke eka xiyenge lexi.', # Optional parameter: $1 is the user name
 'uctop'         => '(Henhla)',
 'month'         => 'Kusukela e ka nhweti ya (kuya endhzaku):',
 'year'          => 'Ku sukela e ka lembe ra (kuya endhzaku):',

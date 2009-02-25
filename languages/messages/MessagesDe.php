@@ -27,6 +27,7 @@
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
  * @author UV
  * @author Umherirrender
+ * @author Verdy p
  * @author W (aka Wuzur)
  * @author לערי ריינהארט
  */
@@ -437,7 +438,7 @@ $messages = array(
 'category-file-count-limited'    => 'Folgende {{PLURAL:$1|Datei ist|$1 Dateien sind}} in dieser Kategorie enthalten:',
 'listingcontinuesabbrev'         => '(Fortsetzung)',
 
-'mainpagetext'      => 'MediaWiki wurde erfolgreich installiert.',
+'mainpagetext'      => "<big>'''MediaWiki wurde erfolgreich installiert.'''</big>",
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
 
 == Starthilfen ==
@@ -1060,9 +1061,10 @@ Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-
 'revdelete-nologid-text'         => 'Es wurde kein Logtyp ausgewählt oder der gewählte Logtyp existiert nicht.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
-'revdelete-text'                 => "'''Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte.'''
+'revdelete-text'                 => "'''Gelöschte Versionen und Aktionen verbleiben in der Versionsgeschichte und den Logbüchern, jedoch sind Teile davon für die Öffentlichkeit unzugänglich.'''
 
-{{SITENAME}}-Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.",
+Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt und können ihn mit der gleichen Seite wiederherstellen, sofern nicht zusätzliche Einschränkungen bestehen.
+Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tust.",
 'revdelete-legend'               => 'Setzen der Sichtbarkeits-Einschränkungen',
 'revdelete-hide-text'            => 'Text der Version verstecken',
 'revdelete-hide-name'            => 'Logbuch-Aktion verstecken',
@@ -2191,7 +2193,7 @@ $1',
 'contributions-title' => 'Benutzerbeiträge von „$1“',
 'mycontris'           => 'Eigene Beiträge',
 'contribsub2'         => 'Für $1 ($2)',
-'nocontribs'          => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
+'nocontribs'          => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.', # Optional parameter: $1 is the user name
 'uctop'               => '(aktuell)',
 'month'               => 'und Monat:',
 'year'                => 'bis Jahr:',

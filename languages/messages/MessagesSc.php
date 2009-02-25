@@ -459,7 +459,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 # Contributions
 'contributions' => 'Contributi di questo Utente',
 'contribsub2'   => 'Per $1 ($2)',
-'nocontribs'    => 'Nessuna modifica trovata conformemente a questi criteri.',
+'nocontribs'    => 'Nessuna modifica trovata conformemente a questi criteri.', # Optional parameter: $1 is the user name
 'uctop'         => ' (ultima per la pagina)',
 
 # What links here

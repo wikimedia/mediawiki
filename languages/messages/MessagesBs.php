@@ -10,6 +10,7 @@
  * @author Kal-El
  * @author Seha
  * @author Smooth O
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -366,7 +367,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Slijedeća $1 datoteka je|Slijedeće $1 datoteke su|Slijedećih $1 datoteka je}} u ovoj kategoriji.',
 'listingcontinuesabbrev'         => 'nast.',
 
-'mainpagetext'      => 'Viki softver is uspješno instaliran.',
+'mainpagetext'      => "<big>'''MediaViki softver is uspješno instaliran.'''</big>",
 'mainpagedocfooter' => 'Kontaktirajte [http://meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.
 
 == Početak ==
@@ -1018,9 +1019,10 @@ Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}
 'revdelete-nologid-text'         => 'Niste odredili ciljnu stavku zapisa za izvršavanje ove funkcije ili navedena stavka ne postoji.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:'''",
-'revdelete-text'                 => "'''Obrisane revizije i događaji će i dalje biti vidljivi u hisoriji stranice i zapisima, ali dijelovi njenog sadržaja neće biti dostupni javnosti.'''
+'revdelete-text'                 => "'''Obrisane revizije i događaji će i dalje biti vidljivi u historiji stranice i zapisima, ali dijelovi njenog sadržaja neće biti dostupni javnosti.'''
 
-Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakrivenom sadržaju i mogu ga ponovo vratiti kroz ovaj interfejs, osim ako nisu postavljena dodatna ograničenja.",
+Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakrivenom sadržaju i mogu ga ponovo vratiti kroz ovaj interfejs, osim ako nisu postavljena dodatna ograničenja.
+Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].",
 'revdelete-legend'               => 'Postavi ograničenja vidljivosti',
 'revdelete-hide-text'            => 'Sakrij tekst revizije',
 'revdelete-hide-name'            => 'Sakrij akciju i cilj',
@@ -2138,7 +2140,7 @@ U takvim slučajevima, morate ukloniti označene ili otkriti sakrivene najskorij
 Možda ste unijeli pogrešan link, ili je revizija vraćena ili uklonjena iz arhive.',
 'undelete-nodiff'              => 'Nije pronađena ranija revizija.',
 'undeletebtn'                  => 'Vrati',
-'undeletelink'                 => 'vrati',
+'undeletelink'                 => 'pogledaj/vrati',
 'undeletereset'                => 'Očisti',
 'undeleteinvert'               => 'Izmijeni odabir',
 'undeletecomment'              => 'Komentar:',
@@ -2178,7 +2180,7 @@ $1',
 'contributions-title' => 'Doprinosi korisnika $1',
 'mycontris'           => 'Moj doprinos',
 'contribsub2'         => 'Za $1 ($2)',
-'nocontribs'          => 'Nisu nađene promjene koje zadovoljavaju ove uslove.',
+'nocontribs'          => 'Nisu nađene promjene koje zadovoljavaju ove uslove.', # Optional parameter: $1 is the user name
 'uctop'               => ' (vrh)',
 'month'               => 'Od mjeseca (i ranije):',
 'year'                => 'Od godine (i ranije):',

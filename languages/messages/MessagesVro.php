@@ -6,6 +6,7 @@
  *
  * @author Niklas Laxström
  * @author Sulev Iva (Võrok)
+ * @author Verdy p
  * @author Võrok
  */
 
@@ -152,7 +153,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Järgmäne teedüstü om|Järgmädseq $1 teedüstüt}} ommaq seon katõgoorian.',
 'listingcontinuesabbrev'         => 'lätt edesi',
 
-'mainpagetext'      => 'Wiki tarkvara paika säet.',
+'mainpagetext'      => "<big>'''MediaWiki tarkvara paika säet.'''</big>",
 'mainpagedocfooter' => 'Vikitarkvara pruukmisõ kotsilõ loeq mano:
 * [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide MediaWiki pruukmisoppus (inglüse keelen)].
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Säädmiisi oppus (inglüse keelen)]
@@ -1372,7 +1373,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'contributions' => 'Pruukja kirotusõq',
 'mycontris'     => 'Mu kirotusõq',
 'contribsub2'   => 'Pruukja "$1 ($2)" kirotusõq',
-'nocontribs'    => 'Sääntsit muutmiisi es lövväq.',
+'nocontribs'    => 'Sääntsit muutmiisi es lövväq.', # Optional parameter: $1 is the user name
 'uctop'         => '(kõgõ vahtsõmb)',
 'month'         => 'Alostõn kuust (ja varrampa):',
 'year'          => 'Alostõn aastagast (ja varrampa):',

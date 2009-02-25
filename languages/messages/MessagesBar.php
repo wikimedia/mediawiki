@@ -7,6 +7,7 @@
  * @author Malafaya
  * @author Man77
  * @author Metalhead64
+ * @author Verdy p
  */
 
 $fallback = 'de';
@@ -51,7 +52,7 @@ $messages = array(
 'category-article-count-limited' => 'De {{PLURAL:$1|foignde Seitn is|foigndn $1 Seitn san}} in dea Kategorie enthåitn:',
 'category-file-count-limited'    => "{{PLURAL:$1|D'foignde Datei is|De foigndn $1 Datein san}} in de Kategorie eisoatiad:",
 
-'mainpagetext' => 'MediaWiki is eafoigreich installiad woan.',
+'mainpagetext' => "<big>'''MediaWiki is eafoigreich installiad woan.'''</big>",
 
 'about'          => 'Üba',
 'newwindow'      => '(wiad in am neichn Fensta aufgmåcht)',

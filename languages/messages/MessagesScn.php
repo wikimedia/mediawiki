@@ -11,6 +11,7 @@
  * @author Sarvaturi
  * @author Tonyfroio
  * @author Urhixidur
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -251,7 +252,7 @@ $messages = array(
 'category-file-count-limited'    => 'Sta catigurìa cunteni {{PLURAL:$1|lu file ndicatu|li $1 file ndicati}} ccà sutta.',
 'listingcontinuesabbrev'         => ' cunt.',
 
-'mainpagetext'      => 'Nstallazzioni di MediaWiki cumplitata currettamenti.',
+'mainpagetext'      => "<big>'''Nstallazzioni di MediaWiki cumplitata currettamenti.'''</big>",
 'mainpagedocfooter' => "Pi favuri taliari [http://meta.wikimedia.org/wiki/Help:Contents Guida utenti] pi aiutu supra l'usu e la cunfigurazzioni di stu software wiki. 
 
 == P'accuminzari == 
@@ -1886,7 +1887,7 @@ $1',
 'contributions-title' => 'Cuntribbuti di $1',
 'mycontris'           => 'Li mei cuntribbuti',
 'contribsub2'         => 'Pi $1 ($2)',
-'nocontribs'          => 'Secunnu sti criteri nun ci sunnu canci o cuntribbuti.',
+'nocontribs'          => 'Secunnu sti criteri nun ci sunnu canci o cuntribbuti.', # Optional parameter: $1 is the user name
 'uctop'               => '(ùrtima pi la pàggina)',
 'month'               => 'A pàrtiri dô mese (e pricidenti):',
 'year'                => "A pàrtiri di l'annu (e pricidenti):",

@@ -14,6 +14,7 @@
  * @author Silvonen
  * @author Str4nd
  * @author Tarmo
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -392,7 +393,7 @@ $messages = array(
 'category-file-count-limited'    => 'Tässä luokassa on {{PLURAL:$1|yksi tiedosto|$1 tiedostoa}}.',
 'listingcontinuesabbrev'         => 'jatkuu',
 
-'mainpagetext'      => "'''MediaWiki on onnistuneesti asennettu.'''",
+'mainpagetext'      => "<big>'''MediaWiki on onnistuneesti asennettu.'''</big>",
 'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].
 
 === Lisäohjeita ===
@@ -845,7 +846,7 @@ Salasanan tälle uudelle tunnukselle voi vaihtaa kirjautumisen jälkeen [[Specia
 'note'                             => "'''Huomautus:'''",
 'previewnote'                      => "'''Tämä on vasta sivun esikatselu. Sivua ei ole vielä tallennettu!'''",
 'previewconflict'                  => 'Tämä esikatselu näyttää miltä muokkausalueella oleva teksti näyttää tallennettuna.',
-'session_fail_preview'             => "'''Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet. Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ulos]] ja takaisin sisään.'''",
+'session_fail_preview'             => "'''Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet.''' Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ulos]] ja takaisin sisään.",
 'session_fail_preview_html'        => "'''Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet.'''
 
 Esikatselu on piilotettu varokeinona JavaScript-hyökkäyksiä vastaan – tässä wikissä on HTML-tila päällä.
@@ -866,7 +867,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ul
 'copyrightwarning2'                => "Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. '''TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!'''",
 'longpagewarning'                  => '<center>Tämän sivun tekstiosuus on $1 binäärikilotavua pitkä. Harkitse, voisiko sivun jakaa pienempiin osiin.</center>',
 'longpageerror'                    => "'''Sivun koko on $1 binäärikilotavua. Sivua ei voida tallentaa, koska enimmäiskoko on $2 binäärikilotavua.'''",
-'readonlywarning'                  => "'''Varoitus: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt. Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.'''
+'readonlywarning'                  => "'''Varoitus: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt.''' Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.
 
 Lukitsemisen syy: $1",
 'protectedpagewarning'             => "'''Tämä sivu on lukittu. Vain ylläpitäjät voivat muokata sitä.'''",
@@ -1678,7 +1679,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'nviews'                  => '$1 {{PLURAL:$1|lataus|latausta}}',
 'specialpage-empty'       => 'Tämä sivu on tyhjä.',
 'lonelypages'             => 'Yksinäiset sivut',
-'lonelypagestext'         => 'Seuraaviin sivuhin ei ole linkkejä tai sisällytyksiä muualta wikistä.',
+'lonelypagestext'         => 'Seuraaviin sivuihin ei ole linkkejä tai sisällytyksiä muualta wikistä.',
 'uncategorizedpages'      => 'Luokittelemattomat sivut',
 'uncategorizedcategories' => 'Luokittelemattomat luokat',
 'uncategorizedimages'     => 'Luokittelemattomat tiedostot',
@@ -2062,7 +2063,7 @@ $1',
 'contributions-title' => 'Käyttäjän $1 muokkaukset',
 'mycontris'           => 'Omat muokkaukset',
 'contribsub2'         => 'Käyttäjän $1 ($2) muokkaukset',
-'nocontribs'          => 'Näihin ehtoihin sopivia muokkauksia ei löytynyt.',
+'nocontribs'          => 'Näihin ehtoihin sopivia muokkauksia ei löytynyt.', # Optional parameter: $1 is the user name
 'uctop'               => ' (uusin)',
 'month'               => 'Kuukausi',
 'year'                => 'Vuosi',
@@ -2252,7 +2253,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'movepage-page-moved'          => 'Sivu $1 on siirretty nimelle $2.',
 'movepage-page-unmoved'        => 'Sivua $1 ei voitu siirtää nimelle $2.',
 'movepage-max-pages'           => 'Enimmäismäärä sivuja on siirretty, eikä enempää siirretä enää automaattisesti.
-$1 {{PLURAL:$1|sivu|sivua}} siirettiin.',
+$1 {{PLURAL:$1|sivu|sivua}} siirrettiin.',
 '1movedto2'                    => 'siirsi sivun [[$1]] uudelle nimelle [[$2]]',
 '1movedto2_redir'              => 'siirsi sivun [[$1]] ohjauksen [[$2]] päälle',
 'move-redirect-suppressed'     => 'ei ohjausta',
@@ -3032,15 +3033,15 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 #Laita kaikki säännöllisten lausekkeiden palaset tämän rivit yläpuolelle. Älä muuta tätä riviä lainkaan</pre>',
 
 # Special:Tags
-'tags'                    => 'Voimassa olevat muutostägit',
-'tag-filter'              => '[[Special:Tags|Tägisuodatin]]',
+'tags'                    => 'Voimassa olevat muutostagit',
+'tag-filter'              => '[[Special:Tags|Tagisuodatin]]',
 'tag-filter-submit'       => 'Suodata',
-'tags-title'              => 'Tägit',
-'tags-intro'              => 'Tämä sivu luetteloi tägit, joilla ohjelmisto voi merkitä muokkauksia, ja niiden tarkoitukset.',
-'tags-tag'                => 'Sisäinen täginimi',
+'tags-title'              => 'Tagit',
+'tags-intro'              => 'Tämä sivu luetteloi tagit, joilla ohjelmisto voi merkitä muokkauksia, ja niiden tarkoitukset.',
+'tags-tag'                => 'Sisäinen taginimi',
 'tags-display-header'     => 'Näkyvyys muutosluetteloissa',
 'tags-description-header' => 'Täysi kuvaus tarkoituksesta',
-'tags-hitcount-header'    => 'Tägätyt muutokset',
+'tags-hitcount-header'    => 'Merkityt muutokset',
 'tags-edit'               => 'muokkaa',
 'tags-hitcount'           => '$1 {{PLURAL:$1|muutos|muutosta}}',
 
@@ -3051,6 +3052,6 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'dberr-info'        => '(Tietokantapalvelimeen yhdistäminen epäonnistui: $1)',
 'dberr-usegoogle'   => 'Voit koittaa etsiä Googlesta kunnes virhe korjataan.',
 'dberr-outofdate'   => 'Googlen indeksi ei välttämättä ole ajan tasalla.',
-'dberr-cachederror' => 'Alla on välimuistissa oleva sivun version, joka ei välttämättä ole ajan tasalla.',
+'dberr-cachederror' => 'Alla on välimuistissa oleva sivun versio, joka ei välttämättä ole ajan tasalla.',
 
 );

@@ -10,6 +10,7 @@
  * @author Pahles
  * @author Remember the dot
  * @author Tibor
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -259,7 +260,7 @@ $messages = array(
 'category-file-count-limited'    => "Dees categorie bevat {{PLURAL:$1|'t volgende bestandj|de volgende $1 bestenj}}.",
 'listingcontinuesabbrev'         => 'wiejer',
 
-'mainpagetext'      => 'Wiki software succesvol geïnsjtalleerd.',
+'mainpagetext'      => "<big>'''MediaWiki software succesvol geïnsjtalleerd.'''</big>",
 'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.
 
 == Mieë hölp ==
@@ -1839,7 +1840,7 @@ $1",
 'contributions-title' => 'Biedrage van $1',
 'mycontris'           => 'Mien biedrages',
 'contribsub2'         => 'Veur $1 ($2)',
-'nocontribs'          => 'Gein wijzigingen gevonden die aan de gestelde criteria voldoen.',
+'nocontribs'          => 'Gein wijzigingen gevonden die aan de gestelde criteria voldoen.', # Optional parameter: $1 is the user name
 'uctop'               => '(lèste verangering)',
 'month'               => 'Van maond (en ierder):',
 'year'                => 'Van jaor (en ierder):',

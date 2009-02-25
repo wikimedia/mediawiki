@@ -1963,7 +1963,7 @@ $1',
 'contributions-title' => 'Kontribuzzjonijiet tal-utent għal $1',
 'mycontris'           => 'Il-Kontribuzzjonijiet tiegħi',
 'contribsub2'         => 'Għal $1 ($2)',
-'nocontribs'          => 'L-Ebda modifiki li jisodisfa l-kriterji tat-tfittxija.',
+'nocontribs'          => 'L-Ebda modifiki li jisodisfa l-kriterji tat-tfittxija.', # Optional parameter: $1 is the user name
 'uctop'               => '(l-aħħar għal paġna)',
 'month'               => 'Mix-xahar (u qabel):',
 'year'                => 'Mis-sena (u qabel):',

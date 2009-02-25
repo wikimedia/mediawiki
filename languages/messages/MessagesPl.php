@@ -2139,7 +2139,7 @@ $1',
 'contributions-title' => 'Wkład {{GENDER:$1|użytkownika|użytkowniczki}} $1',
 'mycontris'           => 'Moje edycje',
 'contribsub2'         => 'Dla użytkownika $1 ($2)',
-'nocontribs'          => 'Brak zmian odpowiadających tym kryteriom.',
+'nocontribs'          => 'Brak zmian odpowiadających tym kryteriom.', # Optional parameter: $1 is the user name
 'uctop'               => ' (jako ostatnia)',
 'month'               => 'Przed miesiącem (włącznie)',
 'year'                => 'Przed rokiem (włącznie)',

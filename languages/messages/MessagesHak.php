@@ -6,6 +6,7 @@
  *
  * @author Hakka
  * @author Urhixidur
+ * @author Verdy p
  */
 
 $messages = array(
@@ -113,7 +114,7 @@ $messages = array(
 'category-media-header'  => '"$1" fûn-lui chûng ke kî-thí tóng-on',
 'listingcontinuesabbrev' => 'Chhṳ̀-siu̍k',
 
-'mainpagetext'      => "<big>'''Yí-kîn sṳ̀n-kûng ôn-chông MediaWiki!'''</big>",
+'mainpagetext'      => "<big>'''Yí-kîn sṳ̀n-kûng ôn-chông MediaWiki.'''</big>",
 'mainpagedocfooter' => 'chhiáng fóng-mun [http://meta.wikimedia.org/wiki/Help:Contents Yung-fu sú-chhak] yî-khi̍p sṳ́-yung chhṳ́ wiki ngiôn-khien ke sin-sit！
 
 == Ngi̍p-mùn  ==
@@ -1170,7 +1171,7 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'contributions' => 'Yung-fu kung-hien',
 'mycontris'     => 'Ngô-ke kung-hien',
 'contribsub2'   => '$1 ($2) ke kung-hien',
-'nocontribs'    => 'Mò-yû chhìm-cháu to fù-ha̍p thi̍t-chṳ̂n ke kiên-kói.',
+'nocontribs'    => 'Mò-yû chhìm-cháu to fù-ha̍p thi̍t-chṳ̂n ke kiên-kói.', # Optional parameter: $1 is the user name
 'uctop'         => '(Chui-sîn siû-thin)',
 
 'sp-contributions-newbies'     => 'Chak hién-sṳ sîn kien-li̍p chṳ̂ yung-fu ke kung-hien',

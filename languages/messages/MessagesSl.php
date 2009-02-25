@@ -5,6 +5,7 @@
  * @file
  *
  * @author Smihael
+ * @author Verdy p
  * @author XJamRastafire
  * @author Yerpo
  * @author romanm
@@ -195,7 +196,7 @@ $messages = array(
 'category-file-count-limited'    => 'V tej kategoriji {{PLURAL:$1|je $1 sledeča datoteka|sta $1 sledeči datoteki|so $1 sledeče datoteke|je $1 sledečih datotek|je $1 sledečih datotek}}.',
 'listingcontinuesabbrev'         => 'nadalj.',
 
-'mainpagetext'      => 'Wikiprogramje ste uspešno naložili!',
+'mainpagetext'      => "<big>'''MediaWiki programje ste uspešno naložili!'''</big>",
 'mainpagedocfooter' => 'Za uporabo in pomoč pri nastavitvi, prosimo, preglejte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentacijo za prilagajanje vmesnika]
 in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priročnik].',
 
@@ -1471,7 +1472,7 @@ Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]
 'contributions-title' => 'Prispevki uporabnika $1',
 'mycontris'           => 'Prispevki',
 'contribsub2'         => 'Uporabnik: $1 ($2)',
-'nocontribs'          => 'Ne najdem nobene merilom ustrezajoče spremembe.',
+'nocontribs'          => 'Ne najdem nobene merilom ustrezajoče spremembe.', # Optional parameter: $1 is the user name
 'uctop'               => ' (vrh)',
 'month'               => 'Od meseca (in prej):',
 'year'                => 'Od leta (in prej):',

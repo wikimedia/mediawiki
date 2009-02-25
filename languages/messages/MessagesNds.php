@@ -6,6 +6,7 @@
  *
  * @author Slomox
  * @author Urhixidur
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -328,7 +329,7 @@ $messages = array(
 'category-file-count-limited'    => 'De Kategorie bargt disse {{PLURAL:$1|Datei|$1 Datein}}:',
 'listingcontinuesabbrev'         => 'wieder',
 
-'mainpagetext'      => 'De Wiki-Software is mit Spood installeert worrn.',
+'mainpagetext'      => "<big>'''De MediaWiki-Software is mit Spood installeert worrn.'''</big>",
 'mainpagedocfooter' => 'Kiek de [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentatschoon för dat Anpassen vun de Brukerböversiet]
 un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] för Hülp to de Bruuk un Konfiguratschoon.',
 
@@ -670,6 +671,10 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 Villicht hest du dien Passwoord al ännert oder noch wedder en nee temporär Passwoord anfeddert.',
 'resetpass-temp-password'   => 'Temporär Passwoord:',
 'resetpass-no-others'       => 'Du kannst nich anner Lüüd ehr Passwoord trüchsetten.',
+'resetpass-log'             => 'Passwoord-Trüchsett-Logbook',
+'resetpass-logtext'         => 'Ünnen warrt en Logbook mit de Brukers wiest, bi de dat Passwoord von en Administrater trüchsett worrn is.',
+'resetpass-logentry'        => 'hett dat Passwoord för $1 ännert',
+'resetpass-comment'         => 'Grund för dat Passwoord-Trüchsetten:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fetten Text',
@@ -913,6 +918,8 @@ Details dorto staht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 'rev-deleted-text-view'          => 'Disse Version is wegsmeten worrn un is nich mehr apen to sehn.
 As Administrater op {{SITENAME}} kannst du ehr aver noch jümmer sehn.
 Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook] to finnen.',
+'rev-deleted-no-diff'            => 'Du kannst dissen Ünnerscheed nich ankieken. Een von de Versionen is ut de Archiven rutnahmen worrn.
+Mehr dorto steiht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Wegsmiet-Logbook].',
 'rev-delundel'                   => 'wiesen/versteken',
 'revisiondelete'                 => 'Versionen wegsmieten/wedderhalen',
 'revdelete-nooldid-title'        => 'kene Versionen dor, de passt',
@@ -920,7 +927,9 @@ Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revdelete-nologtype-title'      => 'Keen Logbooktyp angeven',
 'revdelete-nologtype-text'       => 'Du hest keen Logtyp för disse Akschoon angeven.',
 'revdelete-toomanytargets-title' => 'To veel Telen',
+'revdelete-toomanytargets-text'  => 'Du hest to veel Logtypen för disse Akschoon angeven.',
 'revdelete-nologid-title'        => 'Ungüllig Logindrag',
+'revdelete-nologid-text'         => 'Is keen Logtyp utwählt oder den utwählten Logtyp gifft dat nich.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Wählte Version|Wählte Versionen}} vun [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Wählt Logbook-Indrag|Wählte Logbook-Indrääg}}:'''",
 'revdelete-text'                 => "'''Wegsmetene Versionen staht noch jümmer in de Versionsgeschicht, sünd aver nich mehr apen intosehn.'''
@@ -1065,6 +1074,9 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'notextmatches'                    => 'Kene Övereenstimmen',
 'prevn'                            => 'vörige $1',
 'nextn'                            => 'tokamen $1',
+'prevn-title'                      => '{{PLURAL:$1|Vörig Resultat|Vörige $1 Resultaten}}',
+'nextn-title'                      => 'Tokamen {{PLURAL:$1|Resultat|$1 Resultaten}}',
+'shown-title'                      => 'Wies $1 {{PLURAL:$1|Resultat|Resultaten}} per Sied',
 'viewprevnext'                     => 'Wies ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Söökoptionen',
 'searchmenu-exists'                => "* Sied '''[[$1]]'''",
@@ -1984,7 +1996,7 @@ Den Text vun de wegsmetene Sied köönt blot Administraters sehn.',
 'undeleterevision-missing'     => 'Version is ungüllig oder fehlt. Villicht weer de Lenk verkehrt oder de Version is wedderhaalt oder ut dat Archiv rutnahmen worrn.',
 'undelete-nodiff'              => 'Gifft kene öllere Version.',
 'undeletebtn'                  => 'Wedderhalen!',
-'undeletelink'                 => 'wedderhalen',
+'undeletelink'                 => 'ankieken/wedderhalen',
 'undeletereset'                => 'Afbreken',
 'undeleteinvert'               => 'Utwahl ümkehrn',
 'undeletecomment'              => 'Grund:',
@@ -2022,7 +2034,7 @@ $1',
 'contributions-title' => 'Brukerbidrääg vun „$1“',
 'mycontris'           => 'Mien Arbeid',
 'contribsub2'         => 'För $1 ($2)',
-'nocontribs'          => 'Kene Ännern för disse Kriterien funnen.',
+'nocontribs'          => 'Kene Ännern för disse Kriterien funnen.', # Optional parameter: $1 is the user name
 'uctop'               => ' (aktuell)',
 'month'               => 'bet Maand:',
 'year'                => 'Bet Johr:',
@@ -2253,7 +2265,12 @@ De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet scha
 
 # Export
 'export'            => 'Sieden exporteren',
-'exporttext'        => 'Du kannst de Text un de Bearbeidenshistorie vun een oder mehr Sieten no XML exporteern. Dat Resultat kann in en annern Wiki mit MediaWiki-Software inspeelt warrn, bearbeid oder archiveert warrn.',
+'exporttext'        => 'Du kannst den Text un de Historie vun een oder mehr Sieden na XML exporteren.
+Dat Resultat kann över de [[Special:Import|Import-Sied]] in en anner Wiki mit MediaWiki-Software inspeelt warrn.
+
+Sieden to exporteren, geev de Titels in dat Textfeld ünnen in, een per Reeg un wähl ut, of du de aktuelle un all de olen Versionen oder blot de aktuelle mit de Infos över den leste Version wullt.
+
+Wenn du blot de aktuelle hebben wist, kannst du ok en Lenk bruken, to’n Bispeel [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] för de Sied [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Blots de aktuelle Version vun de Siet exporteern',
 'exportnohistory'   => "----
 '''Henwies:''' Exporteren vun hele Versionsgeschichten över dit Formular geiht nich, wegen de Performance.",
@@ -2984,13 +3001,16 @@ Geev den Dateinaam ahn dat Präfix „{{ns:file}}:“ in.',
 #Delen vun reguläre Utdrück na disse Reeg indragen. Disse Reeg nich ännern</pre>',
 
 # Special:Tags
+'tags'                    => 'Güllig Änneretiketten',
 'tag-filter'              => '
 [[Special:Tags|Tag]]-Filter:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Tags',
+'tags-intro'              => 'Disse Sied wiest all Etiketten, de för Ännern bruukt warrt, un wat se bedüüdt.',
 'tags-tag'                => 'Intern Tagnaam',
 'tags-display-header'     => 'Weddergaav op de Ännernlisten',
 'tags-description-header' => 'Beschrievung, wat dat bedüüdt',
+'tags-hitcount-header'    => 'Markeert Ännern',
 'tags-edit'               => 'ännern',
 'tags-hitcount'           => '$1 {{PLURAL:$1|Ännern|Ännern}}',
 

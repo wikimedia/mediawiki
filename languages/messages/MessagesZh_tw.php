@@ -8,6 +8,7 @@
  * @author BobChao
  * @author Roc michael
  * @author Urhixidur
+ * @author Verdy p
  * @author Wong128hk
  * @author לערי ריינהארט
  */
@@ -63,7 +64,7 @@ $messages = array(
 'category-article-count'        => '{{PLURAL:$2|這個分類中只有以下的頁面。|這個分類中有以下的$1個頁面，共有$2個頁面。}}',
 'listingcontinuesabbrev'        => '續',
 
-'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
+'mainpagetext'      => "<big>'''已成功安裝 MediaWiki。'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 使用者手冊] 以獲得使用此 wiki 軟體的訊息！
 
 == 入門 ==
@@ -1241,7 +1242,7 @@ $1',
 'contributions' => '使用者編修記錄',
 'mycontris'     => '我的編修記錄',
 'contribsub2'   => '$1的編修記錄 ($2)',
-'nocontribs'    => '沒有找到符合特徵的更改。',
+'nocontribs'    => '沒有找到符合特徵的更改。', # Optional parameter: $1 is the user name
 'uctop'         => ' (最新修改)',
 'month'         => '從該月份 (或更早):',
 'year'          => '從該年份 (或更早):',

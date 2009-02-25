@@ -1751,7 +1751,7 @@ Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og end
 'contributions-title' => 'Framlög notanda $1',
 'mycontris'           => 'Framlög',
 'contribsub2'         => 'Eftir $1 ($2)',
-'nocontribs'          => 'Engar breytingar fundnar sem passa við þessa viðmiðun.',
+'nocontribs'          => 'Engar breytingar fundnar sem passa við þessa viðmiðun.', # Optional parameter: $1 is the user name
 'uctop'               => '(nýjast)',
 'month'               => 'Frá mánuðinum (og fyrr):',
 'year'                => 'Frá árinu (og fyrr):',

@@ -1980,7 +1980,7 @@ $1',
 'contributions-title' => 'Contribuţiile utilizatorului pentru $1',
 'mycontris'           => 'Contribuţii',
 'contribsub2'         => 'Pentru $1 ($2)',
-'nocontribs'          => 'Nu a fost găsită nici o modificare care să satisfacă acest criteriu.',
+'nocontribs'          => 'Nu a fost găsită nici o modificare care să satisfacă acest criteriu.', # Optional parameter: $1 is the user name
 'uctop'               => '(sus)',
 'month'               => 'Din luna (şi dinainte):',
 'year'                => 'Începând cu anul (şi precedenţii):',

@@ -20,6 +20,7 @@
  * @author Ranveig
  * @author Shauni
  * @author Urhixidur
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -384,7 +385,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'vidare',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
-'mainpagetext'      => 'MediaWiki er no installert.',
+'mainpagetext'      => "<big>'''MediaWiki er no installert.'''</big>",
 'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvaren.
 
 ==Kome i gang==
@@ -966,9 +967,9 @@ Det finst kanskje detaljar i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}
 'revdelete-nologid-text'         => 'Du har anten ikkje oppgjeve eit loggelement som denne funksjonen skal nytta, eller det oppgjeve loggelementet finst ikkje.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Vald versjon|Valde versjonar}} av [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}} for [[:$1]]:'''",
-'revdelete-text'                 => "'''Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.'''
+'revdelete-text'                 => "Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.'''
 
-Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.",
+Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane. Ver venleg å stadfesta at du meiner å gjera dette, og at du skjønar fylgjene, og at du gjer dette i samsvar med [[{{MediaWiki:Policy-url}}|MediaWiki sine retningsliner]].",
 'revdelete-legend'               => 'Vel avgrensing for synlegdom',
 'revdelete-hide-text'            => 'Gøym endringssamandraga',
 'revdelete-hide-name'            => 'Gøym handling og sidenamn',
@@ -2041,7 +2042,7 @@ Innhaldet i dei sletta versjonane er berre tilgjengeleg for administratorar.',
 'undeleterevision-missing'     => 'Ugyldig eller manglande versjon. Lenkja kan vere feil, eller han kan vere fjerna frå arkivet.',
 'undelete-nodiff'              => 'Fann ingen eldre versjonar.',
 'undeletebtn'                  => 'Attopprett',
-'undeletelink'                 => 'attopprett',
+'undeletelink'                 => 'syn/attopprett',
 'undeletereset'                => 'Nullstill',
 'undeleteinvert'               => 'Inverter val',
 'undeletecomment'              => 'Kommentar:',
@@ -2079,7 +2080,7 @@ $1',
 'contributions-title' => 'Bidrag av $1',
 'mycontris'           => 'Eigne bidrag',
 'contribsub2'         => 'For $1 ($2)',
-'nocontribs'          => 'Det vart ikkje funne nokon endringar gjorde av denne brukaren.',
+'nocontribs'          => 'Det vart ikkje funne nokon endringar gjorde av denne brukaren.', # Optional parameter: $1 is the user name
 'uctop'               => ' (øvst)',
 'month'               => 'Månad:',
 'year'                => 'År:',

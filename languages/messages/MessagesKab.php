@@ -1134,7 +1134,7 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 'contributions' => 'Tikkin n wemseqdac',
 'mycontris'     => 'Tikkin inu',
 'contribsub2'   => 'n $1 ($2)',
-'nocontribs'    => 'Ur yufi ara abddel i tebɣiḍ.',
+'nocontribs'    => 'Ur yufi ara abddel i tebɣiḍ.', # Optional parameter: $1 is the user name
 'uctop'         => '(taneggarut)',
 
 'sp-contributions-newbies'     => 'Ssken tikkin n yimseqdacen imaynuten kan',

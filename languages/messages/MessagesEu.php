@@ -1960,7 +1960,7 @@ $1',
 'contributions-title' => '$1(r)entzat lankidearen ekarpenak',
 'mycontris'           => 'Nire ekarpenak',
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'Ez da ezaugarri horiekin bat datorren aldaketarik aurkitu.',
+'nocontribs'          => 'Ez da ezaugarri horiekin bat datorren aldaketarik aurkitu.', # Optional parameter: $1 is the user name
 'uctop'               => ' (Azken aldaketa)',
 'month'               => 'Hilabetea (eta lehenagokoak):',
 'year'                => 'Urtea (eta lehenagokoak):',

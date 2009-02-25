@@ -2000,7 +2000,7 @@ $1',
 'contributions-title' => 'Naudotojo $1 indėlis',
 'mycontris'           => 'Mano įnašas',
 'contribsub2'         => 'Naudotojo $1 ($2)',
-'nocontribs'          => 'Jokie keitimai neatitiko šių kriterijų.',
+'nocontribs'          => 'Jokie keitimai neatitiko šių kriterijų.', # Optional parameter: $1 is the user name
 'uctop'               => ' (paskutinis)',
 'month'               => 'Nuo mėnesio (ir anksčiau):',
 'year'                => 'Nuo metų (ir anksčiau):',

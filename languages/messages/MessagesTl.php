@@ -629,6 +629,10 @@ Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bag
 Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
 'resetpass-temp-password'   => 'Pansamantalang hudyat:',
 'resetpass-no-others'       => 'Hindi mo maaaring muling itakda ang hudyat para sa iba pang mga tagagamit.',
+'resetpass-log'             => 'Muling itinatakda ng hudyat ang talaan',
+'resetpass-logtext'         => 'Nasa ibaba ang isang talaan ng mga tagagamit na muling nagsipagtakda ng kanilang mga hudyat sa pamamagitan ng isang tagapangasiwa.',
+'resetpass-logentry'        => 'binago ang hudyat para kay $1',
+'resetpass-comment'         => 'Dahilan ng muling pagtatakda ng hudyat:',
 
 # Edit page toolbar
 'bold_sample'     => 'Makapal na panitik',
@@ -898,11 +902,11 @@ maaaring may detalye sa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} t
 'revdelete-nologid-text'         => 'Hindi ka tumukoy ng isang pinupuntiryang kaganapang pangtala upang maisagawa ang tungkuling ito o hindi umiiral ang tinukoy na entrada/ipinasok.',
 'revdelete-selected'             => "{{PLURAL:$2|Piniling|Mga piniling}} pagbabago ng '''$1:'''",
 'logdelete-selected'             => '{{PLURAL:$1|Piniling tala ng pangyayari|Piniling tala ng mga pangyayari}}:',
-'revdelete-text'                 => 'Makikita pa rin ang mga binurang pagbabago sa pahina ng kasaysayan at mga tala,
-ngunit hindi makikita ng publiko ang mga bahagi ng kanilang nilalaman.
+'revdelete-text'                 => "'''Makikita pa rin ang mga binurang pagbabago at mga kaganapan sa pahina ng kasaysayan at mga talaan, ngunit hindi mapupuntahan ng madla ang mga bahagi ng kanilang nilalaman.
 
-Makikita ng ibang mga tagapangasiwa sa wiking ito ang mga tinagong nilalaman
-at maipapakita muli bagaman sa parehong <i>interface</i>, maliban sa karagdagang restriksyong tinakda.',
+Makikita pa rin ng iba pang mga tagapangasiwang nasa {{SITENAME}} ang mga tinagong nilalaman
+at maaaring ibalik ito mula sa pagkakabura sa pamamagitan ng kaparehong ugnayang-hangganan, maliban na lamang kung may itinakdang karagdagang mga restriksyon.
+Pakitiyak kung ito ang nais mong gawin, na nauunawaan mo ang mga kahihinatnan, at ginagawa mo ito alinsunod sa [[{{MediaWiki:Policy-url}}|patakaran]].",
 'revdelete-legend'               => 'Itakda ang mga kaantasan ng pagpapakita',
 'revdelete-hide-text'            => 'Itago ang teksto ng pagbabago',
 'revdelete-hide-name'            => 'Itago ang galaw at puntirya',
@@ -1043,6 +1047,9 @@ Maaari mong [[:\$1|likhain ang pahinang ito]].",
 'notextmatches'                    => 'Walang katugmang pahina ng teksto',
 'prevn'                            => 'nauna $1',
 'nextn'                            => 'kasunod $1',
+'prevn-title'                      => 'Nakaraang $1 {{PLURAL:$1|resulta|mga resulta}}',
+'nextn-title'                      => 'Susunod na $1 {{PLURAL:$1|resulta|mga resulta}}',
+'shown-title'                      => 'Ipakita ang $1 {{PLURAL:$1|resulta|mga resulta}} na para sa bawat isang pahina',
 'viewprevnext'                     => 'Tingnan ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Mga pagpipilian para sa paghahanap',
 'searchmenu-exists'                => "'''Mayroong pahinang may pangalang \"[[:\$1]]\" dito sa wiking ito'''",
@@ -1991,7 +1998,7 @@ Sa ganitong mga pagkakataon, dapat mong tanggalin ang tsek o huwag itago ang pin
 'undeleterevision-missing'     => 'Inbalido o nawawalang pagbabago. Maaaring mayroon kang masamang ugnay (link), o ibinalik o tinanggal mula sa arkibo ang pagbabago.',
 'undelete-nodiff'              => 'Walang mahanap na nakaraang pagbabago.',
 'undeletebtn'                  => 'Ibalik',
-'undeletelink'                 => 'ibalik',
+'undeletelink'                 => 'tingnan/ibalik muli',
 'undeletereset'                => 'I-reset',
 'undeleteinvert'               => 'Baligtarin ang pagpili/pilian',
 'undeletecomment'              => 'Kumento:',
@@ -2029,7 +2036,7 @@ $1',
 'contributions-title' => 'Mga ambag ng tagagamit na si $1',
 'mycontris'           => 'Aking mga ginawa',
 'contribsub2'         => 'Para kay $1 ($2)',
-'nocontribs'          => 'Walang pagbabagong nakita sa binigay na kondisyon.',
+'nocontribs'          => 'Walang pagbabagong nakita sa binigay na kondisyon.', # Optional parameter: $1 is the user name
 'uctop'               => ' (itaas)',
 'month'               => 'Mula sa buwan (at nauna):',
 'year'                => 'Mula sa taon (at nauna):',

@@ -1977,7 +1977,7 @@ $1',
 'contributions-title' => 'Bidrag av $1',
 'mycontris'           => 'Egne bidrag',
 'contribsub2'         => 'For $1 ($2)',
-'nocontribs'          => 'Ingen endringer er funnet som passer disse kriteriene.',
+'nocontribs'          => 'Ingen endringer er funnet som passer disse kriteriene.', # Optional parameter: $1 is the user name
 'uctop'               => '(siste)',
 'month'               => 'Måned:',
 'year'                => 'År:',

@@ -7,6 +7,7 @@
  * @author Dundak
  * @author Michawiki
  * @author Tlustulimu
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -247,7 +248,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Slědowaca dataj je|Slědowacej $1 dataji stej|Slědowace $1 dataje su|Slědowacych $1 je}} w tutej kategoriji:',
 'listingcontinuesabbrev'         => ' (pokročowane)',
 
-'mainpagetext'      => '<big><b>MediaWiki bu wuspěšnje instalowany.</b></big>',
+'mainpagetext'      => "<big>'''MediaWiki bu wuspěšnje instalowany.'''</big>",
 'mainpagedocfooter' => 'Prošu hlej [http://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.
 
 == Za nowačkow ==
@@ -838,9 +839,11 @@ Hlej ewentuelne podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAME
 'revdelete-nologid-text'         => 'Pak njejsy cilowy protokolowy podawk podał, zo by tutu funkciju wuwjedł pak podaty zapisk njeeksistuje.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
-'revdelete-text'                 => "'''Wušmórnjene wersije so w stawiznach dale jewja, jich wobsah pak za wužiwarjow čitajomne njeje.'''
+'revdelete-text'                 => "'''Wušmórnjene wersije a podawki so w stawiznach a protokolach dale jewja, ale dźěle jich wobsaha budu njepřistupne za zjawnosć.'''
 
-Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón wobnowić, chibazo su tež jich prawa wobmjezowane.",
+Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na schowany tekst přistup měć a jón z pomocu samsneho interfejsa wobnowić, chibazo tež přidatne prawa su wobmjezowane.
+
+Prošu wobkruć, zo chceš to činić, zo rozumiš sćěhi a zo činiš to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam]].",
 'revdelete-legend'               => 'Wobmjezowanja za widźomnosć nastajić',
 'revdelete-hide-text'            => 'Tekst tuteje wersije schować',
 'revdelete-hide-name'            => 'Akciju w protokolach schować',
@@ -1953,7 +1956,7 @@ $1',
 'contributions-title' => 'Wužiwarske přinoški wot „$1“',
 'mycontris'           => 'Moje přinoški',
 'contribsub2'         => 'za wužiwarja $1 ($2)',
-'nocontribs'          => 'Žane změny, kotrež podatym kriterijam wotpowěduja.',
+'nocontribs'          => 'Žane změny, kotrež podatym kriterijam wotpowěduja.', # Optional parameter: $1 is the user name
 'uctop'               => '(aktualnje)',
 'month'               => 'wot měsaca (a do toho):',
 'year'                => 'wot lěta (a do toho):',

@@ -6,6 +6,7 @@
  *
  * @author Usingha
  * @author Uttam Singha, Dec 2006
+ * @author Verdy p
  */
 
 $fallback='bn';
@@ -153,7 +154,7 @@ $messages = array(
 'hidden-category-category' => 'আরুম করিসি থাকহানি', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'চলতই',
 
-'mainpagetext'      => "<big>'''মিডিয়াউইকি হবাবালা ইয়া ইন্সটল ইল'''</big>",
+'mainpagetext'      => "<big>'''মিডিয়াউইকি হবাবালা ইয়া ইন্সটল ইল.'''</big>",
 'mainpagedocfooter' => 'উইকি সফটৱ্যার এহান আতানির বারে দরকার ইলে [http://meta.wikimedia.org/wiki/Help:Contents আতাকুরার গাইড]হানর পাঙলাক নেগা।
 
 == অকরানিহান ==

@@ -1393,7 +1393,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'contributions-title' => '$1 къулланыджысынынъ исселери',
 'mycontris'           => 'Исселерим',
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'Бу критерийлерге уйгъан денъишиклик тапыламады',
+'nocontribs'          => 'Бу критерийлерге уйгъан денъишиклик тапыламады', # Optional parameter: $1 is the user name
 'uctop'               => '(сонъки)',
 'month'               => 'Бу ай (ве ондан эрте):',
 'year'                => 'Бу сене (ве ондан эрте):',

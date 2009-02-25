@@ -675,7 +675,7 @@ Template:Khu-pia̍t-ia̍h',
 # Contributions
 'contributions' => 'Iōng-chiá ê kòng-hiàn',
 'mycontris'     => 'Góa ê kòng-hiàn',
-'nocontribs'    => 'Chhōe bô tiâu-kiāⁿ ū-tùi ê hāng-bo̍k.',
+'nocontribs'    => 'Chhōe bô tiâu-kiāⁿ ū-tùi ê hāng-bo̍k.', # Optional parameter: $1 is the user name
 'uctop'         => '(siōng téng ê)',
 'month'         => 'Kàu tó 1 kó͘ goe̍h ûi-chí:',
 'year'          => 'Kàu tó 1 nî ûi-chí:',

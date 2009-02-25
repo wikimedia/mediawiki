@@ -9,6 +9,7 @@
  * @author Nick1915
  * @author Omnipaedista
  * @author Urhixidur
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -247,7 +248,7 @@ $messages = array(
 'category-file-count-limited'    => 'Sta categoria la contien {{PLURAL:$1|el file indicà|i $1 file indicà}} de seguito.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext'      => "'''MediaWiki xè stà instałà con sucesso.'''",
+'mainpagetext'      => "<big>'''MediaWiki xè stà instałà con sucesso.'''</big>",
 'mainpagedocfooter' => "Varda ła [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] (in tałian) par verghe piassè informasion su l'uso de sto software wiki.
 
 == Par scuminsiar ==
@@ -1965,7 +1966,7 @@ $1',
 'contributions-title' => 'Contributi de $1',
 'mycontris'           => 'i me contributi',
 'contribsub2'         => 'Par $1 ($2)',
-'nocontribs'          => 'No xe stà catà nissuna modifica che vaga ben par sti critèri.',
+'nocontribs'          => 'No xe stà catà nissuna modifica che vaga ben par sti critèri.', # Optional parameter: $1 is the user name
 'uctop'               => '(ultima par ła pàxena)',
 'month'               => 'A partir dal mese (e precedenti):',
 'year'                => "A partir da l'ano (e precedenti):",

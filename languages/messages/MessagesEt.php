@@ -1408,7 +1408,7 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 'contributions-title' => 'Kasutaja $1 kaastööd',
 'mycontris'           => 'Kaastöö',
 'contribsub2'         => 'Kasutaja "$1 ($2)" jaoks',
-'nocontribs'          => 'Antud kriteeriumile vastavaid muudatusi ei leidnud.',
+'nocontribs'          => 'Antud kriteeriumile vastavaid muudatusi ei leidnud.', # Optional parameter: $1 is the user name
 'uctop'               => ' (üles)',
 'month'               => 'Alates kuust (ja varasemad):',
 'year'                => 'Alates aastast (ja varasemad):',

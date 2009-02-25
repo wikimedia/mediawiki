@@ -6,6 +6,7 @@
  *
  * @author AlimanRuna
  * @author Omnipaedista
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -240,7 +241,7 @@ $messages = array(
 'category-file-count-limited'    => 'Kay katiguriyapiqa kay qatiq {{PLURAL:$1|willañiqim|$1 willañiqikunam}}.',
 'listingcontinuesabbrev'         => 'qatiy',
 
-'mainpagetext'      => "''MediaWiki'' nisqa llamp'u kaqqa aypaylla takyachisqañam.",
+'mainpagetext'      => "<big>'''MediaWiki nisqa llamp'u kaqqa aypaylla takyachisqañam.'''</big>",
 'mainpagedocfooter' => "Wiki llamp'u kaqmanta willasunaykipaqqa [http://meta.wikimedia.org/wiki/Help:Contents Ruraqpaq yanapana] ''(User's Guide)'' sutiyuq p'anqata qhaway.
 
 == Qallarichkaspa ==
@@ -1922,7 +1923,7 @@ $1',
 'contributions-title' => "$1 sutiyuq ruraqpa llamk'apusqankuna",
 'mycontris'           => "Llamk'apusqaykuna",
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'Manam kay hina hukchasqakuna kanchu.',
+'nocontribs'          => 'Manam kay hina hukchasqakuna kanchu.', # Optional parameter: $1 is the user name
 'uctop'               => ' (qhipaq hukchasqa)',
 'month'               => 'Kay killamanta (ñawpaqmantapas):',
 'year'                => 'Kay watamanta (ñawpaqmantapas):',

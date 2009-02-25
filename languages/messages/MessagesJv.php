@@ -9,6 +9,7 @@
  * @author Meursault2004
  * @author Pras
  * @author Rex
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -161,7 +162,7 @@ $messages = array(
 'category-file-count-limited'    => 'Kategori iki ndarbèni {{PLURAL:$1|berkas|$1 berkas-berkas}} sing kapacak ing ngisor iki.',
 'listingcontinuesabbrev'         => 'samb.',
 
-'mainpagetext'      => 'Prangkat empuk wiki wis suksès dipasang.',
+'mainpagetext'      => "<big>'''Prangkat empuk wiki wis suksès dipasang.'''</big>",
 'mainpagedocfooter' => "Mangga maca [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] kanggo katrangan luwih langkung prakara panggunan prangkat empuk wiki
 == Miwiti panggunan  ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pangaturan préférènsi]
@@ -1798,7 +1799,7 @@ $1',
 'contributions-title' => 'Kontribusi panganggo kanggo $1',
 'mycontris'           => 'Kontribusiku',
 'contribsub2'         => 'Kanggo $1 ($2)',
-'nocontribs'          => 'Ora ditemokaké owah-owahan sing cocog karo kritéria kasebut iku.',
+'nocontribs'          => 'Ora ditemokaké owah-owahan sing cocog karo kritéria kasebut iku.', # Optional parameter: $1 is the user name
 'uctop'               => ' (dhuwur)',
 'month'               => 'Wiwit sasi (lan sadurungé):',
 'year'                => 'Wiwit taun (lan sadurungé):',

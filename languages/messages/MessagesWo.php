@@ -450,14 +450,16 @@ Sag mbindu sotti na. Bul fatte soppi say tànneef ni nga ko bëggee ci {{SITENAM
 'yourlanguage'               => 'Làkk :',
 'yournick'                   => 'Xaatim ngir say waxtaan :',
 'badsig'                     => 'Xaatim gu ñumm gi baaxul; saytul sa yoonub HTML.',
-'badsiglength'               => 'Sa xaatim daa gudd lool: guddaay bi ëpp mooy $1 araf.',
+'badsiglength'               => 'Sa xaatim daa gudd lool, guddaay bi warul romb $1 araf.',
+'gender-male'                => 'Góor',
+'gender-female'              => 'Jigéen',
 'email'                      => 'Màkkaanub m-bataaxal',
-'prefs-help-realname'        => 'Sa tur dëgg day lu jaasadi: soo ko ci bëgge duggal it dañ koy jëfandikoo rek ngir moomalela say cërute (li ngay indi).',
+'prefs-help-realname'        => 'Sa tur dëgg du lu manuta ñakk: soo ko ci bëgge duggal it dañ koy jëfandikoo rek ngir moomale la say cëru.',
 'loginerror'                 => 'Njuumte ci dugg gi',
-'prefs-help-email'           => 'Sa màkkaanub m-bataaxal day lu jaasadi: day tax rek ñu man laa yónne ab bataaxal jaare ko ci sa xëtu jëfandikukat walla yónne la baatujàll bu bees soo ko fattee, te du tax sa màkkaan gisuwu.',
+'prefs-help-email'           => 'Sa màkkaanub m-bataaxal du lu manuta ñakk: day tax rek ñu man laa yónne ab bataaxal jaare ko ci sa xëtu jëfandikukat walla yónne la baatujàll bu bees soo ko fattee, te du tax sa màkkaan gisuwu.',
 'prefs-help-email-required'  => 'Laaj na ab màkkaanub m-bataaxal',
-'nocookiesnew'               => 'Sàqum jëfandikukat mi sosu na, waaye duggu gi antuwul. {{SITENAME}} day jëfandikoo ay cookie ngir duggu gi, waaye da nga leen doxadil. Doxal leen ci sa joowukaay te duggaat ak sa tur ak sa baatujàll bi nga sos.',
-'nocookieslogin'             => '{{SITENAME}} day jëfandikoo ay cookie ngir dugg gi, te yaw say cookies dañoo doxadi. Doxal leen ci joowukaay te jéem a duggaat.',
+'nocookiesnew'               => 'Sàqum jëfandikukat mi sosu na, waaye dugg gi antuwul. {{SITENAME}} day jëfandikoo ay cookie ngir dugg gi, waaye danga leen doxadil. Doxal leen ci sa joowukaay te duggaat ak sa tur ak sa baatujàll bi nga sos.',
+'nocookieslogin'             => '{{SITENAME}} day jëfandikoo ay cookie ngir dugg gi, te yaw say cookies dañoo doxadi. Doxal leen ci sa joowukaay te jéem a duggaat.',
 'noname'                     => 'Bindoo turu jëfandikukat bi baax.',
 'loginsuccesstitle'          => 'Sag dugg jàll na',
 'loginsuccess'               => 'Léegi nag dugg nga ci {{SITENAME}} yaay « $1 ».',
@@ -471,7 +473,8 @@ Sag mbindu sotti na. Bul fatte soppi say tànneef ni nga ko bëggee ci {{SITENAM
 'passwordremindertitle'      => 'Sa baatujàll bu bees ci {{SITENAME}}',
 'passwordremindertext'       => 'Kenn(xéj-na yaw la) ku am bii màkkaanu IP $1 moo laaj ngir ñu yónne ko ab baatujàll bu bees ngir duggam ci {{SITENAME}} ($4).
 Baatujàll bu jëfandikukat bii di « $2 » léegi mooy « $3 ».
-Di la digal rekk nga dugg te soppi baatujàll bi ci ni mu gën a gaawee.
+Di la digal rekk nga dugg te soppi baatujàll bi ci ni mu gëna gaawee. 
+Baatujáll bii nag diirub dundam {{PLURAL:$5|fan|$5 fan}} la.
 
 Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te nammatoo koo soppi, man ngaa tankamlu bii bataaxal te wéy di jëfandikoo baatujàll bu yàgg ba.',
 'noemail'                    => 'Bii jëfandikukat « $1 » amufi benn màkkaanub m-bataaxal.',
@@ -1285,7 +1288,7 @@ Saytul [[Special:Log/delete|jaar-jaaru far bi]] ngir xool far yi ak loppanti yu 
 # Contributions
 'contributions' => 'Li jëfëndikookat bii indi',
 'mycontris'     => 'Samay cërute',
-'nocontribs'    => 'Amul benn coppite bu melokaanoo nii bu ñu gis.',
+'nocontribs'    => 'Amul benn coppite bu melokaanoo nii bu ñu gis.', # Optional parameter: $1 is the user name
 'month'         => 'Tambalee ci weeru (ak yi jiitu) :',
 'year'          => 'Tambalee ci attum (ak yi jiitu) :',
 
@@ -1390,7 +1393,12 @@ Saytul [[Special:Log/delete|jaar-jaaru far bi]] ngir xool far yi ak loppanti yu 
 'movelogpage'             => 'Jaar-jaaru tuddewaat yi',
 'movelogpagetext'         => 'Lii mooy limu xët yi ñu mujje tuddewaat.',
 'movereason'              => 'Ngirtey tuddewaat bi',
-'delete_and_move'         => 'Dindi te tuddewaat',
+'revertmove'              => 'loppanti',
+'delete_and_move'         => 'Far te tuddewaat',
+'delete_and_move_text'    => '== Laajub far ==
+Xët wi nga joge niki àgguwaay « [[:$1]] » am na fi. 
+Dëgg-dëgg namm nga koo far ngir tuddewaat gi mana antu?',
+'delete_and_move_confirm' => 'Waaw, faral xët wi',
 
 # Export
 'export-addcattext' => 'Yokkal xëti Wàll gi :',
