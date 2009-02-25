@@ -80,8 +80,13 @@ class SearchEngine {
 			if (is_null($title))
 				return NULL;
 
-			if ( $title->getNamespace() == NS_SPECIAL || $title->isExternal() 
-			     || $title->exists() ) {
+			if ( $title->getNamespace() == NS_SPECIAL || $title->isExternal() || $title->exists() ) {
+				return $title;
+			}
+			
+			# See if it still otherwise has content is some sane sense
+			$article = MediaWiki::articleFromTitle( $title );
+			if( $article->hasViewableContent() ) {
 				return $title;
 			}
 
