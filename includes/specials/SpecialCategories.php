@@ -44,7 +44,6 @@ class CategoryPager extends AlphabeticPager {
 	}
 	
 	function getQueryInfo() {
-		global $wgRequest;
 		return array(
 			'tables' => array( 'category' ),
 			'fields' => array( 'cat_title','cat_pages' ),
