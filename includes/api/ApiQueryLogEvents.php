@@ -115,9 +115,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			// Use the title index in preference to the user index if there is a conflict
 			$index = is_null($user) ? 'page_time' : array('page_time','user_time');
 		}
-		if ( $index ) {
-			$this->addOption( 'USE INDEX', array( 'logging' => $index ) );
-		}
+
+		$this->addOption( 'USE INDEX', array( 'logging' => $index ) );
+
 		// Paranoia: avoid brute force searches (bug 17342)
 		if (!is_null($title)) {
 			$this->addWhere('log_deleted & ' . LogPage::DELETED_ACTION . ' = 0');
