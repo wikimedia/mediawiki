@@ -41,8 +41,7 @@ class Category {
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			'category',
-			array( 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats',
-				'cat_files' ),
+			array( 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ),
 			$where,
 			__METHOD__
 		);
@@ -70,8 +69,7 @@ class Category {
 		# (bug 13683) If the count is negative, then 1) it's obviously wrong
 		# and should not be kept, and 2) we *probably* don't have to scan many
 		# rows to obtain the correct figure, so let's risk a one-time recount.
-		if( $this->mPages < 0 || $this->mSubcats < 0 ||
-		$this->mFiles < 0 ) {
+		if( $this->mPages < 0 || $this->mSubcats < 0 || $this->mFiles < 0 ) {
 			$this->refreshCounts();
 		}
 

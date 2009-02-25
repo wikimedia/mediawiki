@@ -3386,7 +3386,7 @@ class Title {
 		if( $this->mInterwiki != '' ) {
 			return true;  // any interwiki link might be viewable, for all we know
 		}
-		switch( $this->mNamespace ) {			
+		switch( $this->mNamespace ) {
 		case NS_MEDIA:
 		case NS_FILE:
 			return wfFindFile( $this );  // file exists, possibly in a foreign repo
