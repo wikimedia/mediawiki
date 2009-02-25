@@ -94,8 +94,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit +1);
-		
-		$index = false;
+
 		$user = $params['user'];
 		if (!is_null($user)) {
 			$userid = User::idFromName($user);
@@ -114,7 +113,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhereFld('log_title', $titleObj->getDBkey());
 
 			// Use the title index in preference to the user index if there is a conflict
-			$index = 'page_time';
+			$index = is_null($user) ? 'page_time' : array('page_time','user_time');
 		}
 		if ( $index ) {
 			$this->addOption( 'USE INDEX', array( 'logging' => $index ) );
