@@ -10,6 +10,7 @@
  * @author Kaustubh
  * @author Mahitgar
  * @author Sankalpdravid
+ * @author Verdy p
  * @author अभय नातू
  * @author कोलࣿहापࣿरी
  * @author प्रणव कुलकर्णी
@@ -293,7 +294,7 @@ $messages = array(
 'category-file-count-limited'    => 'खालील {{PLURAL:$1|संचिका|$1 संचिका}} या वर्गात आहेत.',
 'listingcontinuesabbrev'         => 'पुढे.',
 
-'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण'''</big>",
+'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''</big>",
 'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
 
 == सुरुवात ==
@@ -1727,7 +1728,7 @@ $1',
 'contributions' => 'सदस्याचे योगदान',
 'mycontris'     => 'माझे योगदान',
 'contribsub2'   => '$1 ($2) साठी',
-'nocontribs'    => 'या मानदंडाशी जुळणारे बदल सापडले नाहीत.',
+'nocontribs'    => 'या मानदंडाशी जुळणारे बदल सापडले नाहीत.', # Optional parameter: $1 is the user name
 'uctop'         => ' (वर)',
 'month'         => 'या महिन्यापासून (आणि पूर्वीचे):',
 'year'          => 'या वर्षापासून (आणि पूर्वीचे):',

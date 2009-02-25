@@ -11,10 +11,9 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Bınê gırêyan de xete bıance:',
-'tog-highlightbroken'         => 'Gırêyanê vengan {a href="" class="new"}wına{/a} (alternative: wına{a 
-href="" class="internal"}?{/a}) bımocne.',
+'tog-highlightbroken'         => 'Gırêyanê vengan <a href="" class="new">wına</a> (alternative: wına<a href="" class="internal">?</a>) bımocne',
 'tog-justify'                 => 'Nuşte dı kıştan ser bıazne',
-'tog-hideminor'               => 'Vurnayışanê şenıkan pela „vurnayışê peyêni“ de bınımne',
+'tog-hideminor'               => 'Vurnayışanê şenıkan pela vurnayışê peyêni de bınımne',
 'tog-hidepatrolled'           => 'Vurnayışanê qontrolkerdeyan pela „vurnayışê peyêni“ de bınımne',
 'tog-newpageshidepatrolled'   => 'Pelanê qontrolkerdeyan lista pelanê neweyan ra bınımne',
 'tog-extendwatchlist'         => 'Lista seyr-kerdışia herakerdiye',
@@ -31,7 +30,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'tog-watchdefault'            => 'Pelê ke mı vurnayê, lista mına seyr-kerdışi ke',
 'tog-watchmoves'              => 'Pelê ke mı kırışnayê, lista mına seyr-kerdışi ke',
 'tog-watchdeletion'           => 'Pelê ke mı esterıtê, lista mına seyr-kerdışi ke',
-'tog-minordefault'            => 'Vurnayışanê xo pêrune ‘vurnayışo qıckek’ nışan bıde',
+'tog-minordefault'            => "Vurnayışanê xo pêrune ''vurnayışo qıckek'' nışan bıde",
 'tog-previewontop'            => 'Verqayti pela nuştışi ser de bımocne',
 'tog-previewonfirst'          => 'Vurnayışo verên de verqayti tım bımocne',
 'tog-nocache'                 => 'Pelan mia xo viri',

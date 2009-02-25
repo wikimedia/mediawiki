@@ -2196,7 +2196,7 @@ $1',
 'contributions-title' => 'مساهمات اليوزر ل$1',
 'mycontris'           => 'تعديلاتى',
 'contribsub2'         => 'لليوزر $1 ($2)',
-'nocontribs'          => 'مالقيناش   تغييرات تطابق المحددات دي.',
+'nocontribs'          => 'مالقيناش   تغييرات تطابق المحددات دي.', # Optional parameter: $1 is the user name
 'uctop'               => '(فوق)',
 'month'               => 'من شهر (واللى قبل كده):',
 'year'                => 'من سنة (واللى قبل كده):',

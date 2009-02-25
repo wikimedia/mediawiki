@@ -15,6 +15,7 @@
  * @author SpeedyGonsales
  * @author Suradnik13
  * @author Treecko
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -411,7 +412,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|datoteka je|$1 datoteke su|$1 datoteka su}} u ovoj kategoriji.',
 'listingcontinuesabbrev'         => 'nast.',
 
-'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',
+'mainpagetext'      => "<big>'''Softver MediaWiki je uspješno instaliran.'''</big>",
 'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
 i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju.',
 
@@ -2136,7 +2137,7 @@ $1',
 'contributions-title' => 'Suradnički doprinosi za $1',
 'mycontris'           => 'Moji doprinosi',
 'contribsub2'         => 'Za $1 ($2)',
-'nocontribs'          => 'Nema promjena koje udovoljavaju ovim kriterijima.',
+'nocontribs'          => 'Nema promjena koje udovoljavaju ovim kriterijima.', # Optional parameter: $1 is the user name
 'uctop'               => ' (vrh)',
 'month'               => 'Od mjeseca (i ranije):',
 'year'                => 'Od godine (i ranije):',

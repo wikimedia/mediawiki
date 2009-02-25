@@ -14,6 +14,7 @@
  * @author Spacebirdy
  * @author Strommops
  * @author Urhixidur
+ * @author Verdy p
  * @author לערי ריינהארט
  * @author 80686
  */
@@ -232,7 +233,7 @@ $messages = array(
 'category-file-count-limited'    => 'In däre Kategori het s die {{PLURAL:$1|Datei|$1 Dateie}}:',
 'listingcontinuesabbrev'         => '(Forts.)',
 
-'mainpagetext'      => 'MediaWiki isch erfolgrich inschtalliert worre.',
+'mainpagetext'      => "<big>'''MediaWiki isch erfolgrich inschtalliert worre.'''</big>",
 'mainpagedocfooter' => 'Lueg uf d [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation fir d Aapassig vu dr Benutzeroberflächi] un s [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuech] fir d Hilf iber d Benutzig un s Yystelle.',
 
 'about'          => 'Über',
@@ -1952,7 +1953,7 @@ $1',
 'contributions-title' => 'Benutzerbyytreg vu „$1“',
 'mycontris'           => 'Myyni Byyträg',
 'contribsub2'         => 'Für $1 ($2)',
-'nocontribs'          => 'S sin keini Benutzerbyytreg mit däne Kriterie gfunde wore.',
+'nocontribs'          => 'S sin keini Benutzerbyytreg mit däne Kriterie gfunde wore.', # Optional parameter: $1 is the user name
 'uctop'               => '(aktuell)',
 'month'               => 'u Monet:',
 'year'                => 'bis Jahr:',

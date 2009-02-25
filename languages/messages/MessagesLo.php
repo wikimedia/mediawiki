@@ -6,6 +6,7 @@
  *
  * @author Passawuth
  * @author Tuinui
+ * @author Verdy p
  */
 
 $namespaceNames = array(
@@ -197,7 +198,7 @@ $messages = array(
 'category-article-count' => '{{PLURAL:$2|ໝວດນີ້ມີໜ້າຢູ່ພຽງໜ້າດຽວ|ມີ {{PLURAL:$1|ໜ້າດຽວ|$1 ໜ້າ}} ໃນໝວດນີ້ ເຕັມ $2}}',
 'listingcontinuesabbrev' => 'ຕໍ່.',
 
-'mainpagetext' => "<big>'''ຕິດຕັ້ງມີເດຍວິກິນີ້ສຳເລັດແລ້ວ'''</big>",
+'mainpagetext' => "<big>'''ຕິດຕັ້ງມີເດຍວິກິນີ້ສຳເລັດແລ້ວ.'''</big>",
 
 'about'          => 'ກ່ຽວກັບ',
 'article'        => 'ບົດຄວາມ',
@@ -767,7 +768,7 @@ $messages = array(
 'contributions' => 'ການປະກອບສ່ວນ',
 'mycontris'     => 'ປະກອບສ່ວນ',
 'contribsub2'   => 'ສຳຫຼັບ $1 ($2)',
-'nocontribs'    => 'ຍັງບໍ່ມີການປ່ຽນແປງ ໃນນີ້.',
+'nocontribs'    => 'ຍັງບໍ່ມີການປ່ຽນແປງ ໃນນີ້.', # Optional parameter: $1 is the user name
 'uctop'         => '(ເທິງສຸດ)',
 'month'         => 'ແຕ່ເດືອນ (ແລະກ່ອນໜ້ານັ້ນ):',
 'year'          => 'ແຕ່ປີ (ແລະກ່ອນໜ້ານັ້ນ):',

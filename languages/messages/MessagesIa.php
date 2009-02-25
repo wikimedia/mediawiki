@@ -912,7 +912,8 @@ function, o le version specificate non existe, o tu essaya celar le version actu
 'logdelete-selected'             => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
 'revdelete-text'                 => "'''Le versiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
 
-Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.",
+Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.
+Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in conformitate con [[{{MediaWiki:Policy-url}}|le politica]].",
 'revdelete-legend'               => 'Definir restrictiones de visibilitate',
 'revdelete-hide-text'            => 'Celar texto del version',
 'revdelete-hide-name'            => 'Celar action e objectivo',
@@ -2042,7 +2043,7 @@ Le texto complete de iste versiones delite es solmente disponibile al administra
 Es possibile que le adresse URL es invalide, o que le version ha essite restaurate o eliminate del archivo.',
 'undelete-nodiff'              => 'Nulle version precedente trovate.',
 'undeletebtn'                  => 'Restaurar',
-'undeletelink'                 => 'restaurar',
+'undeletelink'                 => 'vider/restaurar',
 'undeletereset'                => 'Reinitiar',
 'undeleteinvert'               => 'Inverter selection',
 'undeletecomment'              => 'Commento:',
@@ -2082,7 +2083,7 @@ $1',
 'contributions-title' => 'Contributiones del usator $1',
 'mycontris'           => 'Mi contributiones',
 'contribsub2'         => 'Pro $1 ($2)',
-'nocontribs'          => 'Necun modification ha essite trovate secundo iste criterios.',
+'nocontribs'          => 'Necun modification ha essite trovate secundo iste criterios.', # Optional parameter: $1 is the user name
 'uctop'               => '(ultime)',
 'month'               => 'A partir del mense (e anterior):',
 'year'                => 'A partir del anno (e anterior):',

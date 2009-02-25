@@ -1990,7 +1990,7 @@ $1',
 'contributions-title' => 'Sumbangan oleh $1',
 'mycontris'           => 'Sumbangan saya',
 'contribsub2'         => 'Oleh $1 ($2)',
-'nocontribs'          => 'Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.',
+'nocontribs'          => 'Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.', # Optional parameter: $1 is the user name
 'uctop'               => ' (puncak)',
 'month'               => 'Sebelum bulan:',
 'year'                => 'Sebelum tahun:',

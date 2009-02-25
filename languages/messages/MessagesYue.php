@@ -1966,7 +1966,7 @@ $1',
 'contributions-title' => '$1嘅用戶貢獻',
 'mycontris'           => '我嘅貢獻',
 'contribsub2'         => '$1嘅貢獻 ($2)',
-'nocontribs'          => '搵唔到符合呢啲條件嘅修改。',
+'nocontribs'          => '搵唔到符合呢啲條件嘅修改。', # Optional parameter: $1 is the user name
 'uctop'               => '(最頂)',
 'month'               => '由呢個月 (同更早):',
 'year'                => '由呢一年 (同更早):',

@@ -857,9 +857,10 @@ Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAM
 'revdelete-nologid-text'         => 'Pak njejsy pódał celowe protokolowe tšojenje, aby wuwjadł toś tu funkciju pak pódany zapisk njeeksistěrujo.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Wuzwólona wersija|Wuzwólonej wersiji|Wuzwólone wersije}} wót [[:$1]].'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:'''",
-'revdelete-text'                 => "'''Wulašowane wersije budu dalej se wujawjowaś w stawiznach boka, ale jich wopśimjeśe njebuźo za zjawnosć wěcej wiźobna.'''
+'revdelete-text'                 => "'''Wulašowane wersije a tšojenja budu se dalej w stawiznach boka a w protokolach pokazaś, ale źěle jich wopśimjeśa njebudu pśistupne za zjawnosć.'''
 
-Dalšne administratory we {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hyšći schowane wopśimjeśe wiźeś a mógu jo wótnowiś tak dłujko ako njepłaśe restrikcije teke za administratory.",
+Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hyšći pśistup na schowane wopśimjeśe měś a mógu jo pśez samki interfejs wótnowiś,  snaźkuli su pśidatne wobgranicowanja.
+Pšosym wobkšuś, až coš to cyniś, až rozmějoš slědy a až cyniš to wótpowědujucy [[{{MediaWiki:Policy-url}}|zasadam]].",
 'revdelete-legend'               => 'wobgranicowanja widobnosći póstajiś',
 'revdelete-hide-text'            => 'Tekst wersije schowaś',
 'revdelete-hide-name'            => 'Akciju log-lisćiny schowaś',
@@ -1969,7 +1970,7 @@ $1',
 'contributions-title' => 'Wužywarske pśinoski wót $1',
 'mycontris'           => 'Móje pśinoski',
 'contribsub2'         => 'Za $1 ($2)',
-'nocontribs'          => 'Za toś te kriterije njejsu žedne změny se namakali.',
+'nocontribs'          => 'Za toś te kriterije njejsu žedne změny se namakali.', # Optional parameter: $1 is the user name
 'uctop'               => '(aktualny)',
 'month'               => 'wót mjaseca (a jěsnjej):',
 'year'                => 'wót lěta (a jěsnjej):',

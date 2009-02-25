@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/**  ()
  *
  * @ingroup Language
  * @file
@@ -10,6 +10,7 @@
  * @author O
  * @author Philip
  * @author Shinjiman
+ * @author Verdy p
  * @author Wmr89502270
  * @author Wong128hk
  */
@@ -217,7 +218,7 @@ $messages = array(
 'tog-diffonly'                => '在比较两个修订版本差异时不显示页面内容',
 'tog-showhiddencats'          => '显示隐藏分类',
 'tog-noconvertlink'           => '不转换链接标题',
-'tog-norollbackdiff'          => '进行回退后略过差异比较',
+'tog-norollbackdiff'          => '进行反转后略过差异',
 
 'underline-always'  => '总是使用',
 'underline-never'   => '从不使用',
@@ -291,7 +292,7 @@ $messages = array(
 'category-file-count-limited'    => '这个分类中有$1个文件。',
 'listingcontinuesabbrev'         => '续',
 
-'mainpagetext'      => "<big>'''已成功安装 MediaWiki!'''</big>",
+'mainpagetext'      => "<big>'''已成功安装 MediaWiki。'''</big>",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
 
 == 入门 ==
@@ -610,7 +611,7 @@ $2',
 'acct_creation_throttle_hit' => '抱歉！您已经创建了$1个账号。你不能再创建了。',
 'emailauthenticated'         => '您的电子邮箱地址已经于$2 $3确认有效。',
 'emailnotauthenticated'      => '您的邮箱地址<strong>还没被认证</strong>。以下功能将不会发送任何邮件。',
-'noemailprefs'               => '在您的参数设置中指定一个电子邮箱地址以使用此功能',
+'noemailprefs'               => '指定一个电子邮箱地址以使用此功能',
 'emailconfirmlink'           => '确认您的邮箱地址',
 'invalidemailaddress'        => '邮箱地址格式不正确，请输入正确的邮箱地址或清空该输入框。',
 'accountcreated'             => '已建立账户',
@@ -2001,7 +2002,7 @@ $1',
 'contributions-title' => '$1的用户贡献',
 'mycontris'           => '我的贡献',
 'contribsub2'         => '$1的贡献 ($2)',
-'nocontribs'          => '没有找到符合特征的更改。',
+'nocontribs'          => '没有找到符合特征的更改。', # Optional parameter: $1 is the user name
 'uctop'               => '(最新修改)',
 'month'               => '从该月份 (或更早):',
 'year'                => '从该年份 (或更早):',

@@ -9,6 +9,7 @@
  * @author Servien
  * @author Slomox
  * @author Urhixidur
+ * @author Verdy p
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author לערי ריינהארט
  */
@@ -398,7 +399,7 @@ $messages = array(
 'category-file-count-limited'    => "Disse kattegerie bevat {{PLURAL:$1|'t volgende bestand|de volgende $1 bestanden}}.",
 'listingcontinuesabbrev'         => '(vervolg)',
 
-'mainpagetext'      => "'t Installeren van de wikipregrammetuur is succesvol.",
+'mainpagetext'      => "<big>'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''</big>",
 'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur infermasie over 't gebruuk van de wikipregrammetuur.
 
 == Meer hulpe ==
@@ -2084,7 +2085,7 @@ In dat geval mu-j de leste versie as zichbaor instellen.",
 'undeleterevision-missing'     => "Ongeldige of ontbrekende versie. 't Is meugelijk da-j een verkeerde verwiezing gebruken of dat disse pagina weerummeplaos is of dat 't uut archief ewis is.",
 'undelete-nodiff'              => 'Gien eerdere versie evunnen.',
 'undeletebtn'                  => 'Weerummeplaosen',
-'undeletelink'                 => 'weerummeplaosen',
+'undeletelink'                 => 'bekiek/weerummeplaosen',
 'undeletereset'                => 'Herstel',
 'undeleteinvert'               => 'Selectie ummekeren',
 'undeletecomment'              => 'Opmarking:',
@@ -2123,7 +2124,7 @@ $1",
 'contributions-title' => 'Biedragen van $1',
 'mycontris'           => 'Mien biedragen',
 'contribsub2'         => 'Veur $1 ($2)',
-'nocontribs'          => 'Gien wiezigingen evunnen dee an de estelde criteria voldoon.',
+'nocontribs'          => 'Gien wiezigingen evunnen dee an de estelde criteria voldoon.', # Optional parameter: $1 is the user name
 'uctop'               => ' (leste wieziging)',
 'month'               => 'Maond:',
 'year'                => 'Jaor:',
@@ -2338,7 +2339,11 @@ De overige pagina's wonnen neet autematisch herneumd.",
 
 # Export
 'export'            => "Pagina's uutvoeren",
-'exporttext'        => "De tekse en geschiedenis van een bepaolen pagina of een antal pagina's kunnen in XML-formaot uut-evoerd wonnen. 't Kan daornao naor een aandere MediaWiki-wiki in-evoerd, verwark of gewoon op-esleugen wonnen.",
+'exporttext'        => "De tekse en geschiedenisse van een pagina of een antal pagina's kunnen in XML-formaot uut-evoerd wonnen. Dit bestand ku-j daornao uutvoeren naor een aandere MediaWiki deur de [[Special:Import|invoerpagina]] te gebruken.
+
+Zet in 't onderstaonde veld de namen van de pagina's dee-j uutvoeren willen, één pagina per regel, en geef an o-j alle versies mit de bewarkingssamenvatting uutvoeren willen of allinnig de leste versies mit de bewarkingssamenvatting.
+
+A-j dat leste doon willen dan ku-j oek een verwiezing gebruken, bieveurbeeld [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] veur de pagina \"{{MediaWiki:Mainpage}}\".",
 'exportcuronly'     => 'Allinnig de actuele versie, neet de veurgeschiedenisse',
 'exportnohistory'   => "----
 '''NB:''' 't uutvoeren van de hele geschiedenisse is uut-eschakeld vanwegen prestasierejens.",
@@ -2354,7 +2359,8 @@ De overige pagina's wonnen neet autematisch herneumd.",
 'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Standardtekse',
 'allmessagescurrent'        => 'De leste versie',
-'allmessagestext'           => 'Hier vie-j alle berichen in de MediaWiki-naamruumte:',
+'allmessagestext'           => 'Hieronder steet een lieste mit alle systeemteksen in de MediaWiki-naamruumte.
+Kiek oek effen bie [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [http://translatewiki.net translatewiki.net] a-j biedragen willen an de algemene vertaling veur MediaWiki.',
 'allmessagesnotsupportedDB' => "Disse pagina kan neet gebruuk wonnen umdat '''\$wgUseDatabaseMessages''' uut-eschakeld is.",
 'allmessagesfilter'         => 'Berichnaamfilter:',
 'allmessagesmodified'       => 'Allinnig teksen dee ewiezig bin',

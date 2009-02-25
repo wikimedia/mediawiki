@@ -1474,7 +1474,7 @@ $1',
 'contributions' => 'Contribucions de ceti utilisator',
 'mycontris'     => 'Contribucions',
 'contribsub2'   => 'Lista de les contribucions de $1 ($2). Les pâges qu’ont étâ èfaciês sont pas afichiês.',
-'nocontribs'    => 'Niona modificacion corrèspondent a cetos critèros at étâ trovâ.',
+'nocontribs'    => 'Niona modificacion corrèspondent a cetos critèros at étâ trovâ.', # Optional parameter: $1 is the user name
 'uctop'         => '(dèrriére)',
 'month'         => 'Dês lo mês (et prècèdents) :',
 'year'          => 'Dês l’an (et prècèdents) :',

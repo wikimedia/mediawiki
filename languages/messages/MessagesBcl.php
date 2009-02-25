@@ -1447,7 +1447,7 @@ $1",
 'contributions' => 'Mga kontribusyon kan parágamit',
 'mycontris'     => 'Mga kontribusyon ko',
 'contribsub2'   => 'Para sa $1 ($2)',
-'nocontribs'    => 'Mayong mga pagbabago na nahanap na kapadis sa ining mga criteria.',
+'nocontribs'    => 'Mayong mga pagbabago na nahanap na kapadis sa ining mga criteria.', # Optional parameter: $1 is the user name
 'uctop'         => '(alituktok)',
 'month'         => 'Poon bulan (asin mas amay):',
 'year'          => 'Poon taon (asin mas amay):',

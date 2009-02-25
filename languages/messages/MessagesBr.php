@@ -6,6 +6,7 @@
  *
  * @author Als-Holder
  * @author Fulup
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -204,7 +205,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Emañ ar restr|Emañ an $1 restr}} da-heul er rummad-mañ.',
 'listingcontinuesabbrev'         => "(war-lerc'h)",
 
-'mainpagetext'      => 'Meziant {{SITENAME}} staliet.',
+'mainpagetext'      => "<big>'''Meziant MediaWiki staliet.'''</big>",
 'mainpagedocfooter' => "Sellit ouzh [http://meta.wikimedia.org/wiki/Help:Contents Sturlevr an implijerien] evit gouzout hiroc'h war an doare da implijout ar meziant wiki.
 
 == Kregiñ ganti ==
@@ -1885,7 +1886,7 @@ $1',
 'contributions-title' => 'Degasadennoù an implijer evit $1',
 'mycontris'           => 'Ma degasadennnoù',
 'contribsub2'         => 'Evit $1 ($2)',
-'nocontribs'          => "N'eus bet kavet kemm ebet o klotañ gant an dezverkoù-se.",
+'nocontribs'          => "N'eus bet kavet kemm ebet o klotañ gant an dezverkoù-se.", # Optional parameter: $1 is the user name
 'uctop'               => ' (diwezhañ)',
 'month'               => 'Abaoe miz (hag a-raok) :',
 'year'                => 'Abaoe bloaz (hag a-raok) :',

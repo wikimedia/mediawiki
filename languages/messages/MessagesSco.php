@@ -949,7 +949,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 # Contributions
 'contributions' => 'Uiser contreibutions',
 'mycontris'     => 'Ma contreibutions',
-'nocontribs'    => 'Nae chynges wis funnd matchin thae criteria.',
+'nocontribs'    => 'Nae chynges wis funnd matchin thae criteria.', # Optional parameter: $1 is the user name
 'uctop'         => ' (tap)',
 'month'         => 'Frae month (an afore):',
 'year'          => 'Frae year (an afore):',

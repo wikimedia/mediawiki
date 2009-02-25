@@ -957,9 +957,10 @@ función, a revisión especificada non existe, ou está intentando agochar a rev
 'revdelete-nologid-text'         => 'Ou non especificou o evento rexistrado no que levar a cabo esta función ou a entrada que deu non existe.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Revisión seleccionada|Revisións seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:'''",
-'revdelete-text'                 => "'''As revisión eliminadas aínda aparecerán no historial da páxina e nos rexistros, pero parte do seu contido será inaccesíbel ao público.'''
+'revdelete-text'                 => "'''As revisións borradas seguirán aparecendo no historial da páxina e nos rexistros, pero partes do seu contido serán inaccesibles de cara ao público.'''
 
-Outros administradores de {{SITENAME}} poderán acceder ao contido oculto e poderán restaurar a páxina a través desta mesma interface, a non ser que os operadores do sitio leven a cabo unha restrición adicional.",
+Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e poderán restaurar a páxina de novo a través desta mesma interface, a non ser que sexa establecida unha restrición adicional.
+Por favor, confirme que esta é a súa intención, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].",
 'revdelete-legend'               => 'Aplicar restricións de visibilidade',
 'revdelete-hide-text'            => 'Agochar texto da revisión',
 'revdelete-hide-name'            => 'Agochar acción e destino',
@@ -2059,7 +2060,7 @@ O texto destas revisións eliminadas só está á disposición dos administrador
 'undeleterevision-missing'     => 'Revisión non válida ou inexistente. Pode que a ligazón conteña un erro ou que a revisión se restaurase ou eliminase do arquivo.',
 'undelete-nodiff'              => 'Non se atopou ningunha revisión anterior.',
 'undeletebtn'                  => 'Restaurar',
-'undeletelink'                 => 'restaurar',
+'undeletelink'                 => 'ver/restaurar',
 'undeletereset'                => 'Limpar',
 'undeleteinvert'               => 'Inverter a selección',
 'undeletecomment'              => 'Razón para desprotexer:',
@@ -2097,7 +2098,7 @@ $1',
 'contributions-title' => 'Contribucións de $1',
 'mycontris'           => 'As miñas contribucións',
 'contribsub2'         => 'De $1 ($2)',
-'nocontribs'          => 'Non se deron atopado cambios con eses criterios.',
+'nocontribs'          => 'Non se deron atopado cambios con eses criterios.', # Optional parameter: $1 is the user name
 'uctop'               => '(última revisión)',
 'month'               => 'Desde o mes de (e anteriores):',
 'year'                => 'Desde o ano (e anteriores):',

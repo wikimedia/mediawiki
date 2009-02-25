@@ -1108,7 +1108,7 @@ Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des
 'contributions' => "Ovraedjes di l' uzeu",
 'mycontris'     => 'Mi ovraedje',
 'contribsub2'   => "Po l' uzeu $1 ($2)",
-'nocontribs'    => "Nou candjmint di trové ki corespondreut a ç' critere la.",
+'nocontribs'    => "Nou candjmint di trové ki corespondreut a ç' critere la.", # Optional parameter: $1 is the user name
 
 'sp-contributions-submit' => 'Cweri',
 

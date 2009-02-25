@@ -1908,7 +1908,7 @@ $1',
 'contributions-title' => 'Gebanakeblünots pro $1',
 'mycontris'           => 'Keblünots obik',
 'contribsub2'         => 'Tefü $1 ($2)',
-'nocontribs'          => 'Votükams nonik petuvons me paramets at.',
+'nocontribs'          => 'Votükams nonik petuvons me paramets at.', # Optional parameter: $1 is the user name
 'uctop'               => '(lätik)',
 'month'               => 'De mul (e büiks):',
 'year'                => 'De yel (e büiks):',

@@ -1551,7 +1551,7 @@ $1',
 'contributions-title' => 'የ$1 አስተዋጽኦች',
 'mycontris'           => 'የኔ አስተዋጽኦች፤',
 'contribsub2'         => 'ለ $1 ($2)',
-'nocontribs'          => 'ምንም አልተገኘም።',
+'nocontribs'          => 'ምንም አልተገኘም።', # Optional parameter: $1 is the user name
 'uctop'               => '(ላይኛ)',
 'month'               => 'እስከዚህ ወር ድረስ፦',
 'year'                => 'እስከዚህ አመት (እ.ኤ.አ.) ድረስ፡-',

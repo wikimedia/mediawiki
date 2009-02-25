@@ -1579,7 +1579,7 @@ $1',
 'contributions' => 'Ambag da reng gagamit',
 'mycontris'     => 'Deng kakung ambag',
 'contribsub2'   => 'Para $1 ($2)',
-'nocontribs'    => 'Alang pamagbayung pareu/tutud kareng kundisiung deti.',
+'nocontribs'    => 'Alang pamagbayung pareu/tutud kareng kundisiung deti.', # Optional parameter: $1 is the user name
 'uctop'         => '(babo)',
 'month'         => 'Manibat king bulan a (at minuna pa):',
 'year'          => 'Manibat banuang (at minuna pa):',

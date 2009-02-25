@@ -924,7 +924,7 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 # Contributions
 'contributions' => "Fandraisan'anjaran'ny mpikambana",
 'mycontris'     => 'Ny nosoratako',
-'nocontribs'    => "Tsy misy fanovana mifanaraka amin'ireo critères ireo.",
+'nocontribs'    => "Tsy misy fanovana mifanaraka amin'ireo critères ireo.", # Optional parameter: $1 is the user name
 'uctop'         => ' (loha)',
 
 # What links here

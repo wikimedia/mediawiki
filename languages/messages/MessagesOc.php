@@ -986,9 +986,11 @@ I pòt aver mai de detalhs dins [{{fullurl:Special:Log/delete|page={{FULLPAGENAM
 'revdelete-nologid-text'         => 'Siá avètz pas especificat un eveniment del jornal sul qual aquesta accion se deu realizar, siá existís pas.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :'''",
-'revdelete-text'                 => "'''Las versions suprimidas apareisseràn encara dins l’istoric de l’article, mas lor contengut textual serà inaccessible al public.'''
+'revdelete-text'                 => "'''Las revisions e eveniments suprimits apareisseràn encara dins l’istoric e los jornals de la pagina, mas lor contengut textual serà inaccessible al public.'''
 
-D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornarmai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del sit.",
+D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornarmai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del sit.
+
+Confirmatz qu'aquò es plan çò que voliatz far, que comprenètz las consequéncias, e qu'o fasètz en acòrd amb las [[{{MediaWiki:Policy-url}}|règlas]].",
 'revdelete-legend'               => 'Metre en plaça de restriccions de version :',
 'revdelete-hide-text'            => 'Amagar lo tèxt de la version',
 'revdelete-hide-name'            => 'Amagar l’accion e la cibla',
@@ -1128,6 +1130,9 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'notextmatches'                    => "Cap de tèxt d'article correspond pas a la recèrca",
 'prevn'                            => '$1 precedents',
 'nextn'                            => '$1 seguents',
+'prevn-title'                      => '$1 {{PLURAL:$1|resultat precedent|resultats precedents}}',
+'nextn-title'                      => '$1 {{PLURAL:$1|resultat seguent|resultats seguents}}',
+'shown-title'                      => 'Afichar $1 {{PLURAL:$1|resultat|resultats}} per pagina',
 'viewprevnext'                     => 'Veire ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opcions de recèrca',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
@@ -2073,7 +2078,7 @@ S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, 
 'undeleterevision-missing'     => 'Version invalida o mancanta. Benlèu avètz un ligam marrit, o la version es estada restablida o suprimida de l’archiu.',
 'undelete-nodiff'              => 'Cap de revision precedenta pas trobada.',
 'undeletebtn'                  => 'Restablir',
-'undeletelink'                 => 'restablir',
+'undeletelink'                 => 'veire/restablir',
 'undeletereset'                => 'Reïnicializar',
 'undeleteinvert'               => 'Inversar la seleccion',
 'undeletecomment'              => 'Comentari :',
@@ -2111,7 +2116,7 @@ $1",
 'contributions-title' => 'Tièra de las contribucions de l’utilizaire $1',
 'mycontris'           => 'Mas contribucions',
 'contribsub2'         => 'Lista de las contribucions de $1 ($2). Las paginas que son estadas escafadas son pas afichadas.',
-'nocontribs'          => 'Cap de modificacion correspondenta a aquestes critèris es pas estada trobada.',
+'nocontribs'          => 'Cap de modificacion correspondenta a aquestes critèris es pas estada trobada.', # Optional parameter: $1 is the user name
 'uctop'               => '(darrièra)',
 'month'               => 'A partir del mes (e precedents) :',
 'year'                => 'A partir de l’annada (e precedentas) :',

@@ -1674,41 +1674,95 @@ Jon e-mail address aap [[Special:Preferences|your user preferences]] me enter ka
 'emailuserfooter'  => 'Ii e-mail ke $1, $2 ke lage "E-mail user" function ke {{SITENAME}}se kaam me laae ke bhejis hai.',
 
 # Watchlist
-'watchlist'         => 'Hamaar dhyan suchi',
-'mywatchlist'       => 'Hamaar dhyaan suchi',
-'watchlistfor'      => "('''$1''' ke khatir)",
-'nowatchlist'       => 'Aap ke dhyan suchi me koi chij nai hai.',
-'watchlistanontext' => 'Aapan dhyan suchi me ke dekhe nai to badle ke khatir meharbani kar ke $1 karo.',
-'watchnologin'      => 'Logged in nai hai',
-'watchnologintext'  => 'Aapan dhyan suchi ke badle ke khatir aap ke [[Special:UserLogin|logged in]] rahe ke chaahi.',
-'addedwatch'        => 'Dhyan suchi me jorro',
-'addedwatchtext'    => "Panna \"[[:\$1]]\" ke aap ke [[Special:Watchlist|watchlist]] me jorr dewa gais hai.
+'watchlist'            => 'Hamaar dhyan suchi',
+'mywatchlist'          => 'Hamaar dhyaan suchi',
+'watchlistfor'         => "('''$1''' ke khatir)",
+'nowatchlist'          => 'Aap ke dhyan suchi me koi chij nai hai.',
+'watchlistanontext'    => 'Aapan dhyan suchi me ke dekhe nai to badle ke khatir meharbani kar ke $1 karo.',
+'watchnologin'         => 'Logged in nai hai',
+'watchnologintext'     => 'Aapan dhyan suchi ke badle ke khatir aap ke [[Special:UserLogin|logged in]] rahe ke chaahi.',
+'addedwatch'           => 'Dhyan suchi me jorro',
+'addedwatchtext'       => "Panna \"[[:\$1]]\" ke aap ke [[Special:Watchlist|watchlist]] me jorr dewa gais hai.
 Ii panna ke aage ke badlao
 Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:RecentChanges|list of recent changes]] to make it easier to pick out.",
-'removedwatch'      => 'Dhyan suchi me se hatao',
-'removedwatchtext'  => 'Panna "[[:$1]]" ke aap ke [[Special:Dhyan suchi|aap ke dhyan suchi]] se hatae dewa gais hai.',
-'watch'             => 'Dekho',
-'watchthispage'     => 'Ii panna par dhyan rakho',
-'unwatch'           => 'Nai dhyaan rakho',
-'unwatchthispage'   => 'Ab dhyan nai rakkho',
-'notanarticle'      => 'Ii content panna nai hai',
-'notvisiblerev'     => 'Badlao ke mitae dewa gais hai',
-'watchlist-details' => '{{PLURAL:$1|$1 panna|$1 panna}} pe dhyan dewa jae hai, baat waala panna ke chhorr ke.',
-'wlshowlast'        => 'Pichhla $1 ghanta $2 din $3 ke dekhao',
+'removedwatch'         => 'Dhyan suchi me se hatao',
+'removedwatchtext'     => 'Panna "[[:$1]]" ke aap ke [[Special:Dhyan suchi|aap ke dhyan suchi]] se hatae dewa gais hai.',
+'watch'                => 'Dekho',
+'watchthispage'        => 'Ii panna par dhyan rakho',
+'unwatch'              => 'Nai dhyaan rakho',
+'unwatchthispage'      => 'Ab dhyan nai rakkho',
+'notanarticle'         => 'Ii content panna nai hai',
+'notvisiblerev'        => 'Badlao ke mitae dewa gais hai',
+'watchnochange'        => 'Aap ke koi bhi dhyan me rakkhaa gae chij ke ii time me badla nai gais hai.',
+'watchlist-details'    => '{{PLURAL:$1|$1 panna|$1 panna}} pe dhyan dewa jae hai, baat waala panna ke chhorr ke.',
+'wlheader-enotif'      => '* E-mail notification ke enable kar dewa gais hai.',
+'wlheader-showupdated' => "* Panna jiske aap ke pichhla visit ke ke baad badal dewa gais hia ke '''bold''' me dekhawa gais hai",
+'watchmethod-recent'   => 'Dhyan me rakkhaa gais panna ke nawaa badlao ke check karaa jaawe hai',
+'watchmethod-list'     => 'dhyan me rakkha gais panna ke nawaa badlao ke khatir check karaa jaawe hai',
+'watchlistcontains'    => 'Aap ke dhyan suchi me  $1 {{PLURAL:$1|panna|panna}} hai.',
+'iteminvalidname'      => "'$1' chij se kuchh garrbarr hai, galat naam...",
+'wlnote'               => "Niche {{PLURAL:$1|pahile waala badlao hai| pahile'''$1''' badlao hai}} pichhle {{PLURAL:$2|ghanta|'''$2''' ghanta}} me.",
+'wlshowlast'           => 'Pichhla $1 ghanta $2 din $3 ke dekhao',
+'watchlist-options'    => 'Dhyan suchi ke options',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Dekhtaa...',
 'unwatching' => 'Nai dekhtaa...',
 
+'enotif_mailer'                => '{{SITENAME}} Notification Mailer',
+'enotif_reset'                 => 'Sab panna ke visited mark karo',
+'enotif_newpagetext'           => 'Ii ek nawaa panna hai.',
+'enotif_impersonal_salutation' => '{{SITENAME}} sadasya',
+'changed'                      => 'badal dewa gais hai',
+'created'                      => 'banae dewa gais hai',
+'enotif_subject'               => '$PAGEEDITOR {{SITENAME}} panna $PAGETITLE ke badal $CHANGEDORCREATED diis hai',
+'enotif_lastvisited'           => 'Aap ke pichhla visit ke baad ke badlao ke khatir $1 ke dekho.',
+'enotif_lastdiff'              => 'Ii badlao ke dekhe ke khatir $1 ke dekho.',
+'enotif_anon_editor'           => 'bina naam ke sadasya $1',
+'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
+
+
+{{SITENAME}} panna $PAGETITLE ke $CHANGEDORCREATED kar dewa gais hai $PAGEEDITDATE ke din, $PAGEEDITOR ke dwara, current version ke khatir $PAGETITLE_URL ke dekho.
+
+$NEWPAGE
+
+Editor\'s summary: $PAGESUMMARY $PAGEMINOREDIT
+
+Editor ke contact karo:
+mail: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+Aur koi notifications nai rahii, kahe ki koi aur badlao hoe sake hai, jab talak aap ii panna ke visit nai karta hai.
+Aap aapan dhyan suchi me sab dhyan me rakha gais panna pe notification flags ke reset kare sakta hai.
+             Aap ke  friendly {{SITENAME}} notification system
+
+--
+Aapan dhyan ke settings ke badle ke khatir, visit
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Feedback aur aage ke sahaeta:
+{{fullurl:{{MediaWiki:Helppage}}}}',
+
 # Delete
 'deletepage'            => 'Pana ke delete karo',
+'confirm'               => 'Confirm karo',
+'excontent'             => "content rahaa: '$1'",
+'excontentauthor'       => "content rahaa: '$1' (aur khaali ek contributor rahaa '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'         => "blanking se pahile content rahaa: '$1'",
+'exblank'               => 'panna khaali rahaa',
+'delete-confirm'        => '"$1" ke mitao',
+'delete-legend'         => 'Mitao',
 'historywarning'        => 'Sawadhan: Jon page aap delete kare waala hai ke itihaas hai:',
 'confirmdeletetext'     => 'Aap ek panna ke uske itihaas ke saathe delete kare waala hai.
 Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, aur aap iske [[{{MediaWiki:Policy-url}}|the policy]] ke policy ke niche delete karta hai.',
 'actioncomplete'        => 'Action puura hoe gais hai',
 'deletedtext'           => '"<nowiki>$1</nowiki>" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
 'deletedarticle'        => '"[[$1]]" ke hatae dewa gis hai',
+'suppressedarticle'     => 'suppressed "[[$1]]"',
 'dellogpage'            => 'Hatane ke suchi',
+'dellogpagetext'        => 'Niche nawaa mitawa gais panna ke suchi hai.',
+'deletionlog'           => 'deletion log',
+'reverted'              => 'Pahile ke revision pe lautae dewa gais hai',
 'deletecomment'         => 'Delete kare ke kaaran:',
 'deleteotherreason'     => 'Aur/duusra kaaran:',
 'deletereasonotherlist' => 'Duusra kaaran',

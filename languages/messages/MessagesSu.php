@@ -9,6 +9,7 @@
  * @author Meursault2004
  * @author Mssetiadi
  * @author Urhixidur
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -240,7 +241,7 @@ $messages = array(
 'category-file-count-limited'    => 'Kategori didieu ngabogaan {{PLURAL:$1|gambar|$1 gambar}} ieu.',
 'listingcontinuesabbrev'         => '(samb.)',
 
-'mainpagetext'      => "''Software'' Wiki geus diinstal.",
+'mainpagetext'      => "<big>'''''Software'' MediaWiki geus diinstal.'''</big>",
 'mainpagedocfooter' => "Mangga tingal ''[http://meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi.",
 
 'about'          => 'Ngeunaan',
@@ -1633,7 +1634,7 @@ $1',
 'contributions' => 'Tulisan pamaké',
 'mycontris'     => 'Tulisan kuring',
 'contribsub2'   => 'Pikeun $1 ($2)',
-'nocontribs'    => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
+'nocontribs'    => 'Taya robahan nu kapanggih cocog jeung patokan ieu.', # Optional parameter: $1 is the user name
 'uctop'         => ' (tempo)',
 'month'         => 'Ti bulan (jeung saméméhna):',
 'year'          => 'Ti taun (jeung saméméhna):',

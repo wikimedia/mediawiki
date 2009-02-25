@@ -909,9 +909,10 @@ Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}
 'revdelete-nologid-text'         => 'Você não especificou um evento de registo alvo para executar esta função ou a entrada especificada não existe.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Edição seleccionada|Edições seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Evento de registo seleccionado|Eventos de registo seleccionados}}:'''",
-'revdelete-text'                 => "'''Edições eliminadas continuarão a aparecer no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.'''
+'revdelete-text'                 => "'''Edições e eventos eliminados continuarão a aparecer no histórico e registos da página, mas partes do seu conteúdo estarão inacessíveis ao público.'''
 
-Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
+Outros administradores em {{SITENAME}} continuarão a poder aceder ao conteúdo escondido e podem restaurá-lo novamente através desta mesma interface, a menos que restrições adicionais sejam definidas.
+Por favor, confirme que pretende fazer isto, que compreende as consequências, e que vai fazê-lo em concordância com [[{{MediaWiki:Policy-url}}|a política]].",
 'revdelete-legend'               => 'Definir restrições de visualização',
 'revdelete-hide-text'            => 'Ocultar texto da edição',
 'revdelete-hide-name'            => 'Ocultar acção e alvo',
@@ -2039,7 +2040,7 @@ $1',
 'contributions-title' => 'Contribuições {{GENDER:$1|do utilizador|da utilizadora}} $1',
 'mycontris'           => 'Minhas contribuições',
 'contribsub2'         => 'Para $1 ($2)',
-'nocontribs'          => 'Não foram encontradas mudanças com este critério.',
+'nocontribs'          => 'Não foram encontradas mudanças com este critério.', # Optional parameter: $1 is the user name
 'uctop'               => ' (edição actual)',
 'month'               => 'Mês (inclusive anteriores):',
 'year'                => 'Ano (inclusive anteriores):',

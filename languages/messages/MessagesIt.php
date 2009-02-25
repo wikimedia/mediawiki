@@ -888,7 +888,8 @@ Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di canc
 'logdelete-selected'             => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
 'revdelete-text'                 => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
 
-Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.",
+Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.
+Conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].",
 'revdelete-legend'               => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
 'revdelete-hide-text'            => 'Nascondi il testo della versione',
 'revdelete-hide-name'            => 'Nascondi azione e oggetto della stessa',
@@ -1957,7 +1958,7 @@ Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministr
 'undeleterevision-missing'     => "Revisione errata o mancante. Il collegamento è errato oppure la revisione è stata già ripristinata o eliminata dall'archivio.",
 'undelete-nodiff'              => 'Non è stata trovata nessuna revisione precedente.',
 'undeletebtn'                  => 'Ripristina',
-'undeletelink'                 => 'ripristina',
+'undeletelink'                 => 'visualizza/ripristina',
 'undeletereset'                => 'Reimposta',
 'undeleteinvert'               => 'Inverti selezione',
 'undeletecomment'              => 'Commento:',
@@ -1995,7 +1996,7 @@ $1',
 'contributions-title' => 'Contributi di $1',
 'mycontris'           => 'Miei contributi',
 'contribsub2'         => 'Per $1 ($2)',
-'nocontribs'          => 'Non sono state trovate modifiche che soddisfino i criteri di ricerca.',
+'nocontribs'          => 'Non sono state trovate modifiche che soddisfino i criteri di ricerca.', # Optional parameter: $1 is the user name
 'uctop'               => '(ultima per la pagina)',
 'month'               => 'Dal mese (e precedenti):',
 'year'                => "Dall'anno (e precedenti):",

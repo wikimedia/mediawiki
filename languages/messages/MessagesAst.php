@@ -1885,7 +1885,7 @@ $1",
 'contributions-title' => "Contribuciones d'usuariu pa $1",
 'mycontris'           => 'Les mios contribuciones',
 'contribsub2'         => 'De $1 ($2)',
-'nocontribs'          => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
+'nocontribs'          => "Nun s'atoparon cambeos que coincidan con esi criteriu.", # Optional parameter: $1 is the user name
 'uctop'               => '(últimu cambéu)',
 'month'               => "Dende'l mes (y anteriores):",
 'year'                => "Dende l'añu (y anteriores):",

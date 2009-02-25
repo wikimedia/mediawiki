@@ -14,6 +14,7 @@
  * @author Smeira
  * @author Tlustulimu
  * @author Urhixidur
+ * @author Verdy p
  * @author Yekrats
  * @author לערי ריינהארט
  */
@@ -281,7 +282,7 @@ $messages = array(
 'category-file-count-limited'    => 'La {{PLURAL:$1|jena dosiero|jenaj $1 dosieroj}} estas en la nuna kategorio.',
 'listingcontinuesabbrev'         => 'daŭrigo',
 
-'mainpagetext'      => 'Vikisoftvaro sukcese instaliĝis.',
+'mainpagetext'      => "<big>'''MediaViki softvaro sukcese instaliĝis.'''</big>",
 'mainpagedocfooter' => "Konsultu la [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide User's Guide] por informo pri uzado de vikia programaro.
 
 ==Kiel komenci==
@@ -2028,7 +2029,7 @@ $1',
 'contributions-title' => 'Uzulaj kontribuoj de $1',
 'mycontris'           => 'Miaj kontribuoj',
 'contribsub2'         => 'De $1 ($2)',
-'nocontribs'          => 'Trovis neniajn redaktojn laŭ tiu kriterio.',
+'nocontribs'          => 'Trovis neniajn redaktojn laŭ tiu kriterio.', # Optional parameter: $1 is the user name
 'uctop'               => ' (lasta)',
 'month'               => 'Ekde monato (kaj pli frue):',
 'year'                => 'Ekde jaro (kaj pli frue):',

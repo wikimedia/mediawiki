@@ -1154,9 +1154,11 @@ Parameter $2 is a date and time.',
 'rcshowhideliu'        => 'Option text in [[Special:RecentChanges]]',
 'rcshowhideanons'      => 'Option text in [[Special:RecentChanges]]',
 'rcshowhidepatr'       => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].",
-'rclinks'              => "Used on [[Special:RecentChanges]]. \$1 is a list of different choices with number of pages to be shown, \$2 is a list of clickable links with a number of days for which recent changes are to be displayed. Example: \"''Show last 50 | 100 | 250 | 500 changes in last 1 | 3 | 7 | 14 | 30 days''\".
-
-\$3 is a block of text that consists of other messages: \"''Hide minor edits | Show bots | Hide anonymous users | Hide logged-in users | Hide patrolled edits | Hide my edits''\"",
+'rclinks'              => "Used on [[Special:RecentChanges]].
+* '''\$1''' is a list of different choices with number of pages to be shown.<br />&nbsp;Example: \"''50{{int:pipe-separator}}100{{int:pipe-separator}}250{{int:pipe-separator}}500\".
+* '''\$2''' is a list of clickable links with a number of days for which recent changes are to be displayed.<br />&nbsp;Example: \"''1{{int:pipe-separator}}3{{int:pipe-separator}}7{{int:pipe-separator}}14{{int:pipe-separator}}30''\".
+* '''\$3''' is a block of text that consists of other messages.<br />&nbsp;Example: \"''Hide minor edits{{int:pipe-separator}}Show bots{{int:pipe-separator}}Hide anonymous users{{int:pipe-separator}}Hide logged-in users{{int:pipe-separator}}Hide patrolled edits{{int:pipe-separator}}Hide my edits''\"
+List elements are separated by {{msg-mw|pipe-separator}} each. Each list element is, or contains, a link.",
 'diff'                 => 'Short form of "differences". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...',
 'hist'                 => 'Short form of "history". Used on [[Special:RecentChanges]], [[Special:Watchlist]], ...',
 'hide'                 => 'Option text in [[Special:RecentChanges]], and in [[Special:WhatLinksHere]]

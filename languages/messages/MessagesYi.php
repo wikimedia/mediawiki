@@ -6,6 +6,7 @@
  *
  * @author Jiddisch
  * @author Teak
+ * @author Verdy p
  * @author Yidel
  * @author ווארצגאנג
  * @author לערי ריינהארט
@@ -256,7 +257,7 @@ $messages = array(
 'category-file-count-limited'    => 'די פֿאלגנדע {{PLURAL:$1|טעקע|$1 טעקעס}} זענען אין דער דאזיגע קאטעגאריע.',
 'listingcontinuesabbrev'         => '(המשך)',
 
-'mainpagetext'      => "'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''",
+'mainpagetext'      => "<big>'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''</big>",
 'mainpagedocfooter' => "גיט זיך אן עצה מיט [http://meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.
 
 == נוצליכע וועבלינקען פֿאַר אנהייבערס ==
@@ -1941,10 +1942,15 @@ $NEWPAGE
 'numedits'     => 'צאל פון רעדאקציעס (בלאט): $1',
 
 # Patrolling
-'markaspatrolleddiff'    => 'באצייכנען אלס פאטראלירט',
-'markaspatrolledtext'    => 'באצייכנען בלאט אלס פאטראלירט',
-'markedaspatrolled'      => 'באצייכנט אלס פאטראלירט',
-'markedaspatrollederror' => 'נישט מעגלעך צו צייכענען אלס פאַטראלירט',
+'markaspatrolleddiff'                 => 'באצייכנען אלס פאטראלירט',
+'markaspatrolledtext'                 => 'באצייכנען בלאט אלס פאטראלירט',
+'markedaspatrolled'                   => 'באצייכנט אלס פאטראלירט',
+'markedaspatrolledtext'               => 'די אויסגעקליבענע ענדערונג איז געצייכנט געווארן אלס פאַטארלירט.',
+'rcpatroldisabled'                    => 'פאַטראלירן ענדערונגען איז  מבוטל געווארן',
+'rcpatroldisabledtext'                => 'די לעצטע ענדערונגען פאַטראלירן אייגנקייט איז אצינד בטל.',
+'markedaspatrollederror'              => 'נישט מעגלעך צו צייכענען אלס פאַטראלירט',
+'markedaspatrollederrortext'          => 'איר דארפֿט ספעציפֿירן א ווערזיע צו באַצייכענען אלס פאַטראלירט.',
+'markedaspatrollederror-noautopatrol' => 'איר טאר נישט באַצייכענען די אייגענע ענדערונגען אלס פאַטראלירט.',
 
 # Patrol log
 'patrol-log-page'      => 'פאטראלירן לאג-בוך',

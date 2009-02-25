@@ -8,6 +8,7 @@
  * @author Klenje
  * @author MF-Warburg
  * @author Urhixidur
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -218,7 +219,7 @@ $messages = array(
 'category-file-count-limited'    => 'Cheste categorie e conten {{PLURAL:$1|il file mostrât|i $1 files mostrâts}} ca sot.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext' => "'''MediaWiki e je stade instalade cun sucès.'''",
+'mainpagetext' => "<big>'''MediaWiki e je stade instalade cun sucès.'''</big>",
 
 'about'          => 'Informazions',
 'article'        => 'Vôs',
@@ -1132,7 +1133,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'contributions-title' => 'Contribûts di $1',
 'mycontris'           => 'Miei contribûts',
 'contribsub2'         => 'Par $1 ($2)',
-'nocontribs'          => 'Nissun cambiament che al rispiete chescj criteris cjatât.',
+'nocontribs'          => 'Nissun cambiament che al rispiete chescj criteris cjatât.', # Optional parameter: $1 is the user name
 'uctop'               => ' (su)',
 'month'               => 'Scomençant dal mês (e prime):',
 'year'                => 'Scomençant dal an (e prime):',

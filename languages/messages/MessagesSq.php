@@ -10,6 +10,7 @@
  * @author Ergon
  * @author Puntori
  * @author Urhixidur
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -289,7 +290,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Kjo skedë është|$1 skeda janë}} në këtë kategori.',
 'listingcontinuesabbrev'         => 'vazh.',
 
-'mainpagetext'      => 'Wiki software u instalua me sukses.',
+'mainpagetext'      => "<big>'''MediaWiki software u instalua me sukses.'''</big>",
 'mainpagedocfooter' => 'Për më shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
 
 == Sa për fillim==
@@ -1877,7 +1878,7 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 'contributions-title' => 'Kontributet e përdoruesit për $1',
 'mycontris'           => 'Redaktimet e mia',
 'contribsub2'         => 'Për $1 ($2)',
-'nocontribs'          => 'Nuk ka asnjë ndryshim që përputhet me këto kritere.',
+'nocontribs'          => 'Nuk ka asnjë ndryshim që përputhet me këto kritere.', # Optional parameter: $1 is the user name
 'uctop'               => ' (sipër)',
 'month'               => 'Nga muaji (dhe më herët):',
 'year'                => 'Nga viti (dhe më herët):',

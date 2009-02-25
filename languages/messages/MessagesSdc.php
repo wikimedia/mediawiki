@@ -1447,7 +1447,7 @@ $1",
 'contributions' => 'Cuntributi utenti',
 'mycontris'     => "li me' cuntributi",
 'contribsub2'   => 'Pa $1 ($2)',
-'nocontribs'    => 'Nò so isthaddi acciappaddi mudìfigghi cunfòimmi a li critéri sciubaraddi.',
+'nocontribs'    => 'Nò so isthaddi acciappaddi mudìfigghi cunfòimmi a li critéri sciubaraddi.', # Optional parameter: $1 is the user name
 'uctop'         => '(ulthima pa la pàgina)',
 'month'         => 'A parthì da lu mesi (e prizzidenti):',
 'year'          => "A parthì da l'anni (e prizzidenti):",

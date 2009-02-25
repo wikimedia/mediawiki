@@ -663,6 +663,10 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si vyžiadali nové dočasné heslo.',
 'resetpass-temp-password'   => 'Dočasné heslo:',
 'resetpass-no-others'       => 'Nemôžete zmeniť heslo iných používateľov.',
+'resetpass-log'             => 'Záznam zmien hesla',
+'resetpass-logtext'         => 'Toto je záznam používateľov, ktorí si nechali zmeniť heslo správcom.',
+'resetpass-logentry'        => 'zmenil heslo používateľa $1',
+'resetpass-comment'         => 'Dôvod zmeny hesla:',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučný text',
@@ -930,12 +934,11 @@ podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}
 'revdelete-nologid-text'         => 'Buď ste neuviedli cieľovú udalosť záznamu, na ktorej sa má vykonať táto operácia alebo zadaná položka neexistuje.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:'''",
-'revdelete-text'                 => "'''Zmazané revízie sú stále viditeľné v histórii úprav stránky,
-ale ich obsah nebude prístupný verejnosti.'''
+'revdelete-text'                 => "'''Zmazané revízie a udalosti sú stále viditeľné v histórii úprav stránky, ale časti ich obsahu nebudú prístupné verejnosti.'''
 
 Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupovať k skrytému obsahu a môžu
-ho znova obnoviť použitím tohto rozhrania v prípade, že operátormi projektu
-nie sú stanovené ďalšie obmedzenia.",
+ho znova obnoviť použitím tohto rozhrania v prípade, že nie sú stanovené ďalšie obmedzenia.
+Potvrďte prosím, že toto je vaším zámerom, že rozumiete dôsledkom a že tak  robíte v súlade s [[{{MediaWiki:Policy-url}}|politikou]].",
 'revdelete-legend'               => 'Nastaviť obmedzenia viditeľnosti',
 'revdelete-hide-text'            => 'Skryť text revízie',
 'revdelete-hide-name'            => 'Skryť činnosť a cieľ',
@@ -1074,6 +1077,9 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'notextmatches'                    => 'V textoch stránok nebola nájdená zhoda',
 'prevn'                            => 'predošlých $1',
 'nextn'                            => 'ďalších $1',
+'prevn-title'                      => '{{PLURAL:$1|Predošlý $1 výsledok|Predošlé $1 výsledky|Predošlých $1 výsledkov}}',
+'nextn-title'                      => '{{PLURAL:$1|Ďalší $1 výsledok|Ďalšie $1 výsledky|Ďalších $1 výsledkov}}',
+'shown-title'                      => 'Zobraziť $1 {{PLURAL:$1|výsledok|výsledky|výsledkov}} na stránku',
 'viewprevnext'                     => 'Zobraziť ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Možnosti hľadania',
 'searchmenu-exists'                => "*Stránka '''[[$1]]'''",
@@ -2019,7 +2025,7 @@ Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, obnovené rev
 'undeleterevision-missing'     => 'Neplatná alebo chýbajúca revízia. Zrejme ste použili zlý odkaz alebo revízia bola obnovená alebo odstránená z histórie.',
 'undelete-nodiff'              => 'Nebola nájdená žiadna predošlá revízia.',
 'undeletebtn'                  => 'Obnoviť!',
-'undeletelink'                 => 'obnoviť',
+'undeletelink'                 => 'zobraziť/obnoviť',
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Invertovať výber',
 'undeletecomment'              => 'Komentár:',
@@ -2057,7 +2063,7 @@ $1',
 'contributions-title' => 'Príspevky používateľa pre $1',
 'mycontris'           => 'Moje príspevky',
 'contribsub2'         => 'Príspevky $1 ($2)',
-'nocontribs'          => 'Neboli nájdené úpravy, ktoré by zodpovedali týmto kritériám.',
+'nocontribs'          => 'Neboli nájdené úpravy, ktoré by zodpovedali týmto kritériám.', # Optional parameter: $1 is the user name
 'uctop'               => '(posledná úprava)',
 'month'               => 'Mesiac:',
 'year'                => 'Rok:',

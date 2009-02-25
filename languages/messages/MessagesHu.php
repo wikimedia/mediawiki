@@ -2159,7 +2159,7 @@ $1',
 'contributions-title' => '$1 közreműködései',
 'mycontris'           => 'Közreműködéseim',
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'Nem található a feltételeknek megfelelő változtatás.',
+'nocontribs'          => 'Nem található a feltételeknek megfelelő változtatás.', # Optional parameter: $1 is the user name
 'uctop'               => ' (utolsó)',
 'month'               => 'E hónap végéig:',
 'year'                => 'Eddig az évig:',

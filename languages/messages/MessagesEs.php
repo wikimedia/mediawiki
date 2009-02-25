@@ -943,9 +943,10 @@ Consultar los detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}
 'revdelete-nologid-text'         => 'Usted tampoco ha especificado un objetivo de eventos para ejecutar esta función o la entrada especificada no existe.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
-'revdelete-text'                 => "'''Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
+'revdelete-text'                 => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 
-Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
+Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.
+Por favor confirme que está intentando hacer esto, que usted entiende las consecuencias, y que lo esta haciendo de acuerso con [[{{MediaWiki:Policy-url}}|la política]].",
 'revdelete-legend'               => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'            => 'Ocultar el texto de la revisión',
 'revdelete-hide-name'            => 'Ocultar acción y objetivo',
@@ -2027,7 +2028,7 @@ Si una nueva página con el mismo nombre ha sido creada desde que se borró la o
 o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undelete-nodiff'              => 'No existe una revisión previa.',
 'undeletebtn'                  => 'Restaurar',
-'undeletelink'                 => 'restaurar',
+'undeletelink'                 => 'ver/restaurar',
 'undeletereset'                => 'Cancelar',
 'undeleteinvert'               => 'Invertir selección',
 'undeletecomment'              => 'Razón para restaurar:',
@@ -2066,7 +2067,7 @@ $1',
 'contributions-title' => 'Contribuciones {{GENDER:$1|del usuario|de la usuaria}} $1',
 'mycontris'           => 'Mis contribuciones',
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'No se encontraron cambios que cumplieran estos criterios.',
+'nocontribs'          => 'No se encontraron cambios que cumplieran estos criterios.', # Optional parameter: $1 is the user name
 'uctop'               => ' (última modificación)',
 'month'               => 'Desde el mes (y anterior):',
 'year'                => 'Desde el año (y anterior):',

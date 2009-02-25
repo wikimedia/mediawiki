@@ -2075,7 +2075,7 @@ $1',
 'contributions-title' => 'Đóng góp của thành viên $1',
 'mycontris'           => 'Đóng góp của tôi',
 'contribsub2'         => 'Của $1 ($2)',
-'nocontribs'          => 'Không tìm thấy thay đổi nào khớp với yêu cầu.',
+'nocontribs'          => 'Không tìm thấy thay đổi nào khớp với yêu cầu.', # Optional parameter: $1 is the user name
 'uctop'               => '(mới nhất)',
 'month'               => 'Từ tháng (trở về trước):',
 'year'                => 'Từ năm (trở về trước):',

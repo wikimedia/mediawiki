@@ -6,6 +6,7 @@
  *
  * @author Huslåke
  * @author Urhixidur
+ * @author Verdy p
  * @author Ælsån
  */
 
@@ -119,7 +120,7 @@ $messages = array(
 'hidden-category-category' => 'Skjulte klynger', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'førtgøte',
 
-'mainpagetext'      => 'MediaWiki er nu installeret.',
+'mainpagetext'      => "<big>'''MediaWiki er nu installeret.'''</big>",
 'mainpagedocfooter' => "Se vores engelskspråĝede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentåsje tilpasnenge'm åf æ brugergrænseflade] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide æ brugervejlednenge] før åplysnenger åpsætnenge'm og anvendelse.",
 
 'about'          => 'Åm',

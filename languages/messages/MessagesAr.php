@@ -2327,7 +2327,7 @@ $1',
 'contributions-title' => 'مساهمات المستخدم ل$1',
 'mycontris'           => 'مساهماتي',
 'contribsub2'         => 'ل$1 ($2)',
-'nocontribs'          => 'لم يتم العثور على تغييرات تطابق هذه المحددات.',
+'nocontribs'          => 'لم يتم العثور على تغييرات تطابق هذه المحددات.', # Optional parameter: $1 is the user name
 'uctop'               => '(أعلى)',
 'month'               => 'من شهر (وأقدم):',
 'year'                => 'من سنة (وأقدم):',

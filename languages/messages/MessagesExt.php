@@ -1483,7 +1483,7 @@ $1',
 'contributions-title' => 'Contribucionis del usuáriu a $1',
 'mycontris'           => 'Los mis endirguis',
 'contribsub2'         => 'Pa $1 ($2)',
-'nocontribs'          => "Nu s'alcuentrun chambus con esus criterius.",
+'nocontribs'          => "Nu s'alcuentrun chambus con esus criterius.", # Optional parameter: $1 is the user name
 'uctop'               => '(úrtimu chambu)',
 'month'               => 'Mes:',
 'year'                => 'Añu:',

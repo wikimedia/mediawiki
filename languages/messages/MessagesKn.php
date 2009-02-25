@@ -10,6 +10,7 @@
  * @author Mana
  * @author NamwikiTL
  * @author Shushruth
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -162,7 +163,7 @@ $messages = array(
 'category-file-count-limited'    => 'ಪ್ರಸಕ್ತ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಫೈಲು ಇದೆ|$1 ಫೈಲುಗಳು ಇವೆ}}.',
 'listingcontinuesabbrev'         => 'ಮುಂದು.',
 
-'mainpagetext'      => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.',
+'mainpagetext'      => "<big>'''ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.'''</big>",
 'mainpagedocfooter' => 'ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಬಳಸುವ ಬಗ್ಗೆ ಮಾಹಿತಿಗೆ [http://meta.wikimedia.org/wiki/Help:Contents ಬಳಕೆದಾರರಿಗೆ ನಿರ್ದೇಶನ ಪುಟ] ನೋಡಿ.
 
 == ಪ್ರಾರಂಭಿಸುವುದು ==

@@ -6,6 +6,7 @@
  *
  * @author Nkosi ya Cabinda
  * @author Sab
+ * @author Verdy p
  * @author Wikimistusik
  */
 
@@ -206,7 +207,7 @@ $messages = array(
 'category-file-count-limited'    => 'Bat iyeltak {{PLURAL:$1|tir|$1 tid}} koe noeltafa loma.',
 'listingcontinuesabbrev'         => 'loon',
 
-'mainpagetext' => '{{SITENAME}} inkeyen talpeyot.',
+'mainpagetext' => "<big>'''MediaWiki inkeyen talpeyot.'''</big>",
 
 'about'          => 'Icdeuca',
 'article'        => 'Teliz',
@@ -1565,7 +1566,7 @@ $1',
 'contributions-title' => 'Favesikwebekseem icde $1',
 'mycontris'           => 'Jinaf webekseem',
 'contribsub2'         => 'Tori $1 ($2)',
-'nocontribs'          => 'Meka betara vadjesa va bata luda se al zo trasir.',
+'nocontribs'          => 'Meka betara vadjesa va bata luda se al zo trasir.', # Optional parameter: $1 is the user name
 'uctop'               => ' (ironokaf)',
 'month'               => 'Mali aksat (is logaveon) :',
 'year'                => 'Mali ilana (is logaveon) :',

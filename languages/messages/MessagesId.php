@@ -2070,7 +2070,7 @@ $1',
 'contributions-title' => 'Kontribusi pengguna untuk $1',
 'mycontris'           => 'Kontribusi saya',
 'contribsub2'         => 'Untuk $1 ($2)',
-'nocontribs'          => 'Tidak ada perubahan yang sesuai dengan kriteria tersebut.',
+'nocontribs'          => 'Tidak ada perubahan yang sesuai dengan kriteria tersebut.', # Optional parameter: $1 is the user name
 'uctop'               => ' (atas)',
 'month'               => 'Sejak bulan (dan sebelumnya):',
 'year'                => 'Sejak tahun (dan sebelumnya):',

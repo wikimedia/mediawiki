@@ -6,6 +6,7 @@
  *
  * @author Itsmine
  * @author Omnipaedista
+ * @author Verdy p
  */
 
 /**
@@ -182,7 +183,7 @@ $messages = array(
 'category-file-count-limited'    => '門有檔$1。',
 'listingcontinuesabbrev'         => '續',
 
-'mainpagetext'      => "<big>'''媒維基安置矣'''</big>",
+'mainpagetext'      => "<big>'''媒維基安置矣。'''</big>",
 'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]
 
 == 始 ==
@@ -1733,7 +1734,7 @@ $1',
 'contributions-title' => '$1之功績',
 'mycontris'           => '吾績',
 'contribsub2'         => '$1勛（$2）',
-'nocontribs'          => '無勛及也。',
+'nocontribs'          => '無勛及也。', # Optional parameter: $1 is the user name
 'uctop'               => '(至頂)',
 'month'               => '且不越',
 'year'                => '年不越',

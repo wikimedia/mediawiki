@@ -7,6 +7,7 @@
  * @author Juanpabl
  * @author Remember the dot
  * @author Urhixidur
+ * @author Verdy p
  * @author Willtron
  * @author לערי ריינהארט
  */
@@ -234,7 +235,7 @@ $messages = array(
 'category-file-count-limited'    => "{{PLURAL:$1|L'archibo siguient fa parte|Os $1 archibos siguients fan parte}} d'ista categoría.",
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext'      => "O programa MediaWiki s'ha instalato correutament.",
+'mainpagetext'      => "<big>'''O programa MediaWiki s'ha instalato correutament.'''</big>",
 'mainpagedocfooter' => "Consulta a [http://meta.wikimedia.org/wiki/Help:Contents Guía d'usuario] ta mirar informazión sobre cómo usar o software wiki.
 
 == Ta prenzipiar ==
@@ -1918,7 +1919,7 @@ $1',
 'contributions-title' => "Contrebuzions de l'usuario $1",
 'mycontris'           => 'Contrebuzions',
 'contribsub2'         => 'De $1 ($2)',
-'nocontribs'          => "No s'han trobato cambeos que concordasen con ixos criterios",
+'nocontribs'          => "No s'han trobato cambeos que concordasen con ixos criterios", # Optional parameter: $1 is the user name
 'uctop'               => '(zaguer cambeo)',
 'month'               => 'Dende o mes (y anteriors):',
 'year'                => "Dende l'año (y anteriors):",

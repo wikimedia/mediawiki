@@ -1385,7 +1385,7 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'contributions-title' => 'Dréachtaí úsáideora do $1',
 'mycontris'           => 'Mo chuid dréachtaí',
 'contribsub2'         => 'Do $1 ($2)',
-'nocontribs'          => 'Níor bhfuarthas aon athrú a raibh cosúil le na crítéir seo.',
+'nocontribs'          => 'Níor bhfuarthas aon athrú a raibh cosúil le na crítéir seo.', # Optional parameter: $1 is the user name
 'uctop'               => ' (barr)',
 'month'               => 'Ón mhí seo (agus níos luaithe):',
 'year'                => 'Ón bhliain seo (agus níos luaithe):',

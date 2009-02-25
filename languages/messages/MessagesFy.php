@@ -8,6 +8,7 @@
  * @author Pyt
  * @author Snakesteuben
  * @author Urhixidur
+ * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -256,7 +257,7 @@ $messages = array(
 'category-file-count-limited'    => 'Dizze kategory befettet {{PLURAL:$1|de folgjende triem|de folgjende $1 triemmen}}.',
 'listingcontinuesabbrev'         => '(ferfolch)',
 
-'mainpagetext'      => 'Wiki-program goed ynstallearre.',
+'mainpagetext'      => "<big>'''MediaWiki-program goed ynstallearre.'''</big>",
 'mainpagedocfooter' => "Rieplachtsje de [http://meta.wikimedia.org/wiki/Help:Ynhâldsopjefte hantlieding] foar ynformaasje oer it gebrûk fan 'e wikisoftware.
 
 == Mear help oer Mediawiki ==
@@ -1921,7 +1922,7 @@ Dit binne de rinnende ynstellings foar de side '''$1''':",
 'contributions-title' => 'Bydragen fan $1',
 'mycontris'           => 'Myn bydragen',
 'contribsub2'         => 'Foar "$1 ($2)"',
-'nocontribs'          => "Der binne gjin feroarings fûn dyt't hjirmei oerienkomme.",
+'nocontribs'          => "Der binne gjin feroarings fûn dyt't hjirmei oerienkomme.", # Optional parameter: $1 is the user name
 'uctop'               => ' (boppen)',
 'month'               => 'Fan moanne (en earder):',
 'year'                => 'Fan jier (en earder):',

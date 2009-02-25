@@ -1999,7 +1999,7 @@ $1',
 'contributions' => 'Qatıswşı ülesi',
 'mycontris'     => 'Ülesim',
 'contribsub2'   => '$1 ($2) ülesi',
-'nocontribs'    => 'Osı izdew şartına säýkes özgerister tabılğan joq.',
+'nocontribs'    => 'Osı izdew şartına säýkes özgerister tabılğan joq.', # Optional parameter: $1 is the user name
 'uctop'         => ' (üsti)',
 'month'         => 'Mına aýdan (jäne erterekten):',
 'year'          => 'Mına jıldan (jäne erterekten):',

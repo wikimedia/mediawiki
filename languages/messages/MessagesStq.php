@@ -7,6 +7,7 @@
  * @author Maartenvdbent
  * @author Pyt
  * @author Urhixidur
+ * @author Verdy p
  */
 
 $fallback = 'de';
@@ -151,7 +152,7 @@ $messages = array(
 'category-file-count-limited'    => 'Foulgjende {{PLURAL:$1|Doatäi is|$1 Doatäie sunt}} in disse Kategorie äntheelden:',
 'listingcontinuesabbrev'         => '(Foutsättenge)',
 
-'mainpagetext'      => 'Ju Wiki Software wuude mäd Ärfoulch installierd!',
+'mainpagetext'      => "<big>'''Ju MediaWiki Software wuude mäd Ärfoulch installierd.'''</big>",
 'mainpagedocfooter' => 'Sjuch ju [http://meta.wikimedia.org/wiki/MediaWiki_localization Dokumentation tou de Anpaasenge fon dän Benutseruurfläche] un dät [http://meta.wikimedia.org/wiki/Help:Contents Benutserhondbouk] foar Hälpe tou ju Benutsenge un Konfiguration.',
 
 'about'          => 'Uur',
@@ -288,7 +289,7 @@ $messages = array(
 'red-link-title'          => '$1 (Siede nit deer)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artikkel',
+'nstab-main'      => 'Siede',
 'nstab-user'      => 'Benutsersiede',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Spezioalsiede',
@@ -489,6 +490,11 @@ In dän Fal dät Benutserkonto uut Fersjoon anlaid wuude, koast du disse Ätterg
 'resetpass-wrong-oldpass'   => 'Uungultich tiedelk of aktuell Paaswoud.
 Muugelkerwiese hääst du dien Paaswoud al mäd Ärfoulch annerd of n näi tiedelk Paaswoud fräiged.',
 'resetpass-temp-password'   => 'Tiedelk Paaswoud:',
+'resetpass-no-others'       => 'Du koast dät Paaswoud fon uur Benutsere nit touräächsätte.',
+'resetpass-log'             => 'Paaswoudtouräächsättengs-Logbouk',
+'resetpass-logtext'         => 'Hierunner wäd n Logbouk fon Benutsere anwiesd, fon do dät Paaswoud truch n Administrator touräächsät wuude.',
+'resetpass-logentry'        => 'annerde dät Paaswoud foar $1',
+'resetpass-comment'         => 'Gruund foar dät Touräächsätten:',
 
 # Edit page toolbar
 'bold_sample'     => 'Fatten Text',
@@ -649,7 +655,7 @@ Gruund foar ju Speere: $1",
 'protectedpagewarning'             => "'''WOARSCHAUENGE: Disse Siede wuude speerd, so dät ju bloot truch Benutsere mäd Administrationsgjuchte beoarbeded wäide kon.'''",
 'semiprotectedpagewarning'         => "'''Oachtenge:''' Disse Siede is ousleeten un kon bloot fon anmäldede Besäikere beoarbaided wäide.",
 'cascadeprotectedwarning'          => "'''WOARSCHAUENGE: Disse Siede wuude speerd, so dät ju bloot truch Benutsere mäd Administratorgjuchte beoarbaided wäide kon. Ju is in do {{PLURAL:$1|foulgjende Siede|foulgjende Sieden}} ienbuunen, do der middels ju Kaskadenspeeroption schutsed {{PLURAL:$1|is|sunt}}:'''",
-'titleprotectedwarning'            => "'''OACHTENGE: Dät Moakjen fon Sieden wuude speerd. Bloot bestimde Benutsergruppen konnen ju Siede moakje.'''",
+'titleprotectedwarning'            => "'''WOARSCHAUENGE: Dät Moakjen fon Sieden wuude speerd. Bloot Benutsere mäd  [[Special:ListGroupRights|spezielle Gjuchte]] konnen ju Siede moakje.'''",
 'templatesused'                    => 'Foulgjende Foarloagen wäide fon disse Artikkele ferwoand:',
 'templatesusedpreview'             => 'Foulgjende Foarloagen wäide fon disse Siedefoarschau ferwoand:',
 'templatesusedsection'             => 'Foulgjende Foarloagen wuuden fon disse Oudeelenge ferwoand:',
@@ -897,6 +903,9 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'notextmatches'                    => 'Neen Uureenstimmengen',
 'prevn'                            => 'foarige $1',
 'nextn'                            => 'naiste $1',
+'prevn-title'                      => '{{PLURAL:$1|Foarich Resultoat|Foarige $1 Resultoate}}',
+'nextn-title'                      => '{{PLURAL:$1|Foulgjend Resultoat|Foulgjende $1 Resultoate}}',
+'shown-title'                      => 'Wies $1 {{PLURAL:$1|Resultoat|Resultoate}} pro Siede',
 'viewprevnext'                     => 'Wies ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Säikoptione',
 'searchmenu-exists'                => "'''Dät rakt n Siede mäd Noome \"[[:\$1]]\" ap dissen Wiki'''",
@@ -1123,6 +1132,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'right-userrights'           => 'Benutsergjuchte beoarbaidje',
 'right-userrights-interwiki' => 'Benutsergjuchte in uur Wikis beoarbaidje',
 'right-siteadmin'            => 'Doatenboank speere un äntspeere',
+'right-reset-passwords'      => 'Dät Paaswoud fon n uur Benutser touräächsätte',
 
 # User rights log
 'rightslog'      => 'Gjuchte-Logbouk',
@@ -1359,13 +1369,15 @@ Ne [[Special:WhatLinksHere/$2|fulständige Lieste]] is ferföigboar.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Wiedere Ferbiendengen]] foar disse Doatäi.',
 'redirectstofile'           => '{{PLURAL:$1|Ju foulgjende Doatäi laitet|Do foulgjende $1 Doatäie laitje}} ap disse Doatäi fääre:',
 'duplicatesoffile'          => '{{PLURAL:$1|Ju foulgjende Doatäi is n Duplikoat|Do foulgjende $1 Doatäie sunt Duplikoate}} fon disse Doatäi ([[Special:FileDuplicateSearch/$2|wiedere Details]]):',
-'sharedupload'              => 'Disse Doatäi is ne deelde Hoochleedenge un duur fon uur Projekte anwoand wäide. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Disse Doatäi stamt uut $1 un duur fon uur Projekte ferwoand wäide. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Jädden sjuch dän $1 foar wiedere Information.',
-'shareduploadwiki-desc'     => 'Hier foulget die Inhoold fon $1 uut dät gemeensoam benutsede Repositorium.',
+'shareduploadwiki-desc'     => 'Hier foulget die Inhoold fon $1.',
 'shareduploadwiki-linktext' => 'Doatäi-Beschrieuwengssiede',
 'noimage'                   => 'Ne Doatäi mäd dissen Noome existiert nit, du koast ju oawers $1.',
 'noimage-linktext'          => 'aan hoochleede',
 'uploadnewversion-linktext' => 'Ne näie Version fon disse Doatäi hoochleede',
+'shared-repo-from'          => 'uut $1', # $1 is the repository name
+'shared-repo'               => 'n gemeensoam nutsed Medienarchiv', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Touräächsätte fon "$1"',
@@ -1828,7 +1840,7 @@ Die aktuelle Text fon ju läskede Siede is bloot Administratore tougongelk.',
 'undeleterevision-missing'     => 'Uungultige of failjende Version. Äntweeder is ju Ferbiendenge falsk of ju Version wuude uut dät Archiv wier moaked of wächhoald.',
 'undelete-nodiff'              => 'Neen foargungende Version fuunen.',
 'undeletebtn'                  => 'Wier häärstaale',
-'undeletelink'                 => 'wier häärstaale',
+'undeletelink'                 => 'bekiekje/wier häärstaale',
 'undeletereset'                => 'Oubreeke',
 'undeleteinvert'               => 'Uutwoal uumekiere',
 'undeletecomment'              => 'Gruund:',
@@ -1866,7 +1878,7 @@ $1',
 'contributions-title' => 'Benutserbiedraage fon „$1“',
 'mycontris'           => 'Oaine Biedraage',
 'contribsub2'         => 'Foar $1 ($2)',
-'nocontribs'          => 'Deer wuuden neen Annerengen foar disse Kriterien fuunen.',
+'nocontribs'          => 'Deer wuuden neen Annerengen foar disse Kriterien fuunen.', # Optional parameter: $1 is the user name
 'uctop'               => '(aktuäl)',
 'month'               => 'un Mound:',
 'year'                => 'bit Jier:',
@@ -2067,6 +2079,9 @@ Fersäik jädden n uur Noome.',
 'move-redirect-suppressed'     => 'Fäärelaitenge unnerdrukt',
 'movelogpage'                  => 'Ferschuuwengs-Logbouk',
 'movelogpagetext'              => 'Dit is ne Lieste fon aal ferschäuwene Sieden.',
+'movesubpage'                  => '{{PLURAL:$1|Unnersiede|Unnersieden}}',
+'movesubpagetext'              => 'Disse Siede häd $1 {{PLURAL:$1|Unnersiede|Unnersieden}}.',
+'movenosubpage'                => 'Disse Siede häd neen Unnersieden.',
 'movereason'                   => 'Kuute Begründenge:',
 'revertmove'                   => 'tourääch ferschuuwe',
 'delete_and_move'              => 'Läskje un ferschuuwe',
@@ -2089,7 +2104,12 @@ Moatest du him foar ju Ferschuuwenge läskje?',
 
 # Export
 'export'            => 'Sieden exportierje',
-'exporttext'        => 'Du koast dän Täkst un ju Beoarbaidengshistorie fon ne bestimde Siede of fon n Uutwoal fon Sieden ättter XML exportierje.',
+'exporttext'        => 'Mäd disse Spezioalsiede koast du dän Täkst un ju Beoarbaidengshistorie fon eenpelde Sieden in ne XML-Doatäi exportierje.
+Ju Doatäi kon in n uur MediaWiki-Wiki uur ju [[Special:Import|Importfunktion]] ienspield wäide.
+
+Dräch dän of do äntspreekende Siedentittel(e) in dät foulgjende Textfäild ien (pro Riege älkemoal bloot foar een Siede).
+
+Alternativ is die Export uk mäd de Syntax [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] muugelk, biespilswiese foar ju [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Bloot ju aktuälle Version fon de Siede exportierje',
 'exportnohistory'   => "----
 '''Waiwiesenge:''' Die Export fon komplette Versionsgeschichten is uut Performancegruunden bit ap fääre nit muugelk.",
@@ -2677,7 +2697,7 @@ Disse Bestäätigengscode is gultich bit $4.',
 'scarytranscludetoolong'  => '[URL is tou loang]',
 
 # Trackbacks
-'trackbackbox'      => 'Trackbacks foar dissen Artikkel:<br />
+'trackbackbox'      => 'Trackbacks foar disse Siede:<br />
 $1',
 'trackbackremove'   => '([$1 läskje])',
 'trackbacklink'     => 'Trackback',

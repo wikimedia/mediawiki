@@ -1078,9 +1078,10 @@ Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page=
 'revdelete-nologid-text'         => 'U hebt ofwel geen doellogboekregel opgegeven of de aangegeven logboekregel bestaat niet.',
 'revdelete-selected'             => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Geselecteerde logboekactie|Geselecteerde logboekacties}}:'''",
-'revdelete-text'                 => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis, maar de inhoud is niet langer publiek toegankelijk.'''
+'revdelete-text'                 => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis en logboeken, maar delen van de inhoud zijn niet langer publiek toegankelijk.'''
 
-Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.",
+Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.
+Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet in overeenstemming met het geldende [[{{MediaWiki:Policy-url}}|beleid]].",
 'revdelete-legend'               => 'Zichtbaarheidsbeperkingen instellen',
 'revdelete-hide-text'            => 'De bewerkte tekst verbergen',
 'revdelete-hide-name'            => 'Actie en doel verbergen',
@@ -2213,7 +2214,7 @@ De verwijderde inhoud van de pagina is alleen zichtbaar voor beheerders.',
 Mogelijk hebt u een verkeerde verwijzing of is de versie hersteld of verwijderd uit het archief.',
 'undelete-nodiff'              => 'Geen eerdere versie gevonden.',
 'undeletebtn'                  => 'Terugplaatsen',
-'undeletelink'                 => 'terugplaatsen',
+'undeletelink'                 => 'bekijken/terugplaatsen',
 'undeletereset'                => 'Herinstellen',
 'undeleteinvert'               => 'Omgekeerde selectie',
 'undeletecomment'              => 'Toelichting:',
@@ -2253,7 +2254,7 @@ $1',
 'contributions-title' => 'Bijdragen van $1',
 'mycontris'           => 'Mijn bijdragen',
 'contribsub2'         => 'Voor $1 ($2)',
-'nocontribs'          => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.',
+'nocontribs'          => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.', # Optional parameter: $1 is the user name
 'uctop'               => '(laatste wijziging)',
 'month'               => 'Van maand (en eerder):',
 'year'                => 'Van jaar (en eerder):',

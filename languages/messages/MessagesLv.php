@@ -1340,7 +1340,7 @@ kāds cits iespējams to ir atjaunojis ātrāk.',
 'contributions-title' => 'Lietotāja $1 devums',
 'mycontris'           => 'Mans devums',
 'contribsub2'         => 'Lietotājs: $1 ($2)',
-'nocontribs'          => 'Netika atrastas izmaiņas, kas atbilstu šiem kritērijiem.',
+'nocontribs'          => 'Netika atrastas izmaiņas, kas atbilstu šiem kritērijiem.', # Optional parameter: $1 is the user name
 'uctop'               => '(pēdējā izmaiņa)',
 'month'               => 'No mēneša (un senāki):',
 'year'                => 'No gada (un senāki):',
