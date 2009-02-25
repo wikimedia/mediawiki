@@ -127,6 +127,8 @@ class ImagePage extends Article {
 			array( 'id' => 'filelinks' ),
 			wfMsg( 'imagelinks' ) ) . "\n" );
 		$this->imageDupes();
+		# TODO! FIXME! For some freaky reason, we can't redirect to foreign images.
+		# Yet we return metadata about the target. Definitely an issue in the FileRepo
 		$this->imageRedirects();
 		$this->imageLinks();
 
