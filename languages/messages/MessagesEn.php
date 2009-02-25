@@ -1313,7 +1313,8 @@ function, the specified revision does not exist, or you are attempting to hide t
 'logdelete-selected'             => "'''{{PLURAL:$1|Selected log event|Selected log events}}:'''",
 'revdelete-text'                 => "'''Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.'''
 
-Other admins on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.",
+Other administrators on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.
+Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].",
 'revdelete-legend'               => 'Set visibility restrictions',
 'revdelete-hide-text'            => 'Hide revision text',
 'revdelete-hide-name'            => 'Hide action and target',
