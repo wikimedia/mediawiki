@@ -1,8 +1,21 @@
 <?php
 
-$optionsWithArgs = array( 'fake-job' );
+$optionsWithArgs = array( 'fake-job', 'procs' );
 require( dirname(__FILE__).'/../commandLine.inc' );
 require( dirname(__FILE__).'/gearman.inc' );
+
+if ( isset( $options['procs'] ) ) {
+	$procs = $options['procs'];
+	if ( $procs < 1 || $procs > 1000 ) {
+		echo "Invalid number of processes, please specify a number between 1 and 1000\n";
+		exit( 1 );
+	}
+	$fc = new ForkController;
+	if ( $fc->forkWorkers( $procs ) == 'parent' ) {
+		$fc->runParent();
+		exit( 0 );
+	}
+}
 
 if ( !$args ) {
 	$args = array( 'localhost' );

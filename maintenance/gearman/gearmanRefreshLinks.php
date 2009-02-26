@@ -11,8 +11,7 @@ if ( !$args ) {
 $client = new Net_Gearman_Client( $args );
 
 $dbr = wfGetDB( DB_SLAVE );
-$res = $dbr->select( 'page', array( 'page_namespace', 'page_title' ), false,
-	__METHOD__, array( 'LIMIT' => 2 ) );
+$res = $dbr->select( 'page', array( 'page_namespace', 'page_title' ), false, __METHOD__ );
 foreach ( $res as $row ) {
 	$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 	$params = array(
