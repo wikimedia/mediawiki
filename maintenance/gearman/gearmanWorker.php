@@ -28,5 +28,15 @@ if ( isset( $options['fake-job'] ) ) {
 
 $worker = new NonScaryGearmanWorker( $args );
 $worker->addAbility( 'mw_job' );
-$worker->beginWork();
+$worker->beginWork( 'wfGearmanMonitor' );
 
+function wfGearmanMonitor( $idle, $lastJob ) {
+	static $lastSleep = 0;
+	$interval = 5;
+	$now = time();
+	if ( $now - $lastSleep >= $interval ) {
+		wfWaitForSlaves( $interval );
+		$lastSleep = $now;
+	}
+	return false;
+}

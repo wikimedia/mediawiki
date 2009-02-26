@@ -4,12 +4,20 @@ require( 'Net/Gearman/Client.php' );
 require( 'Net/Gearman/Worker.php' );
 
 class MWGearmanJob extends Net_Gearman_Job_Common {
-	function switchWiki( $wiki, $jobParams ) {
+	function switchWiki( $wiki, $params ) {
 		echo "Switching to $wiki\n";
+
+		# Pretend that we have completed it right now, because the new process won't do it
+		$this->complete( array( 'result' => true ) );
+		socket_close( $this->conn );
+
+		# Find PHP
 		$php = readlink( '/proc/' . posix_getpid() . '/exe' );
+		
+		# Run the worker script
 		$args = array( $_SERVER['PHP_SELF'], 
 			'--wiki', $wiki,
-			'--fake-job', serialize( $jobParams ) );
+			'--fake-job', serialize( $params ) );
 		$args = array_merge( $args, $GLOBALS['args'] );
 		pcntl_exec( $php, $args, $_ENV );
 		echo "Error running exec\n";
@@ -19,7 +27,7 @@ class MWGearmanJob extends Net_Gearman_Job_Common {
 		if ( wfWikiID() !== $params['wiki'] ) {
 			$this->switchWiki( $params['wiki'], $params );
 		}
-		self::runNoSwitch( $params );
+		return self::runNoSwitch( $params );
 	}
 
 	static function runNoSwitch( $params ) {
