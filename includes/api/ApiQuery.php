@@ -173,7 +173,8 @@ class ApiQuery extends ApiBase {
 	
 	public function getCustomPrinter() {
 		// If &exportnowrap is set, use the raw formatter
-		if ($this->getParameter('exportnowrap'))
+		if ($this->getParameter('export') &&
+				$this->getParameter('exportnowrap'))
 			return new ApiFormatRaw($this->getMain());
 		else
 			return null;
@@ -556,7 +557,7 @@ class ApiQuery extends ApiBase {
 			'redirects' => 'Automatically resolve redirects',
 			'indexpageids' => 'Include an additional pageids section listing all returned page IDs.',
 			'export' => 'Export the current revisions of all given or generated pages',
-			'exportnowrap' => 'Return the export XML without wrapping it in an XML result',
+			'exportnowrap' => 'Return the export XML without wrapping it in an XML result. Can only be used with export',
 		);
 	}
 
