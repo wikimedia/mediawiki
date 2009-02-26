@@ -105,7 +105,6 @@ class ImagePage extends Article {
 		} else {
 			# Just need to set the right headers
 			$wgOut->setArticleFlag( true );
-			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$this->viewUpdates();
 		}
@@ -469,6 +468,7 @@ EOT
 			$title = SpecialPage::getTitleFor( 'Upload' );
 			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('noimage-linktext'),
 				'wpDestFile=' . urlencode( $this->displayImg->getName() ) );
+			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 			$wgOut->addHTML( wfMsgWikiHtml( 'noimage', $link ) );
 		}
 	}
