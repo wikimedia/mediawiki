@@ -20,59 +20,11 @@ if ( isset( $options['procs'] ) ) {
 		echo "Invalid argument to --procs\n";
 		exit( 1 );
 	}
-
-	// Don't share DB or memcached connections
-	$lb = wfGetLB();
-	$lb->closeAll();
-	$wgCaches = array();
-	unset( $wgMemc );
-
-	// Create the child processes
-	$children = array();
-	for ( $childId = 0; $childId < $procs; $childId++ ) {
-		$pid = pcntl_fork();
-		if ( $pid === -1 || $pid === false ) {
-			echo "Error creating child processes\n";
-			exit( 1 );
-		}
-		if ( !$pid ) {
-			break;
-		}
-
-		$children[$pid] = true;
-	}
-	if ( $pid ) {
-		// Parent process
-		// Trap SIGTERM
-		pcntl_signal( SIGTERM, 'handleTermSignal', false );
-		// Wait for a child to exit
-		$status = false;
-		$termReceived = false;
-		do {
-			$deadPid = pcntl_wait( $status );
-			// Run signal handlers
-			if ( function_exists( 'pcntl_signal_dispatch' ) ) {
-				pcntl_signal_dispatch();
-			} else {
-				declare (ticks=1) { $status = $status; } 
-			}
-			if ( $deadPid > 0 ) {
-				unset( $children[$deadPid] );
-			}
-			// Respond to TERM signal
-			if ( $termReceived ) {
-				foreach ( $children as $childPid => $unused ) {
-					posix_kill( $childPid, SIGTERM );
-				}
-				$termReceived = false;
-			}
-		} while ( count( $children ) );
-		// All done
+	$fc = new ForkController;
+	if ( $fc->forkWorkers( $procs ) == 'parent' ) {
+		$fc->runParent();
 		exit( 0 );
 	}
-
-	// Set up this child
-	$wgMemc = wfGetCache( $wgMainCacheType );
 }
 
 if ( isset( $options['maxjobs'] ) ) {
@@ -126,7 +78,4 @@ function runJobsLog( $msg ) {
 	wfDebugLog( 'runJobs', $msg );
 }
 
-function handleTermSignal( $signal ) {
-	$GLOBALS['termReceived'] = true;
-}
 

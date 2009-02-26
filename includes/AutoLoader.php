@@ -75,6 +75,7 @@ $wgAutoloadLocalClasses = array(
 	'FileDependency' => 'includes/CacheDependency.php',
 	'FileRevertForm' => 'includes/FileRevertForm.php',
 	'FileStore' => 'includes/FileStore.php',
+	'ForkController' => 'includes/ForkController.php',
 	'FormatExif' => 'includes/Exif.php',
 	'FormOptions' => 'includes/FormOptions.php',
 	'FSException' => 'includes/FileStore.php',
