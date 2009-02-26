@@ -2020,7 +2020,7 @@ class User {
 	 * @return \int User'e edit count
 	 */
 	function getEditCount() {
-		if ($this->mId) {
+		if ($this->getId()) {
 			if ( !isset( $this->mEditCount ) ) {
 				/* Populate the count, if it has not been populated yet */
 				$this->mEditCount = User::edits($this->mId);
