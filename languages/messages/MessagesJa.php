@@ -2206,8 +2206,8 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'proxyblocker-disabled'           => 'この機能は無効になっています。',
 'proxyblockreason'                => 'あなたの使用しているIPアドレスは公開プロキシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
 'proxyblocksuccess'               => '完了。',
-'sorbsreason'                     => 'あなたのIPアドレスは公開プロキシであると、{{SITENAME}}のブラックリストに掲載されています。',
-'sorbs_create_account_reason'     => 'あなたのIPアドレスが公開プロキシであると{{SITENAME}}のブラックリストに掲載されているため、アカウントを作成できません。',
+'sorbsreason'                     => 'あなたのIPアドレスは{{SITENAME}}の使用しているDNSブラックリストに公開プロキシとして登録されています。',
+'sorbs_create_account_reason'     => 'あなたのIPアドレスは、{{SITENAME}}の使用しているDNSブラックリストに公開プロキシとして登録されているため、アカウントは作成できません。',
 'cant-block-while-blocked'        => 'あなたは投稿ブロックされているため、他の利用者を投稿ブロックすることはできません。',
 
 # Developer tools
@@ -2476,10 +2476,10 @@ $1 は、すでにブロックされています。設定を変更しますか�
 # Attribution
 'anonymous'        => '{{SITENAME}}の匿名利用者',
 'siteuser'         => '{{SITENAME}}の利用者$1',
-'lastmodifiedatby' => '最終更新は $3 による $2, $1 の編集です。', # $1 date, $2 time, $3 user
-'othercontribs'    => '$1の版に基づきます。',
+'lastmodifiedatby' => 'このページの最終更新は$1$2に$3によって行われました。', # $1 date, $2 time, $3 user
+'othercontribs'    => '本ページの内容は$1が編集しました。',
 'others'           => 'その他の利用者',
-'siteusers'        => '{{SITENAME}}の$2人の利用者が$1',
+'siteusers'        => '{{SITENAME}}の利用者$1',
 'creditspage'      => 'ページ・クレジット',
 'nocredits'        => 'このページには有効なクレジット情報がありません。',
 

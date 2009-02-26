@@ -14,7 +14,6 @@
  * @author Spacebirdy
  * @author Strommops
  * @author Urhixidur
- * @author Verdy p
  * @author לערי ריינהארט
  * @author 80686
  */
@@ -851,7 +850,12 @@ Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 
 'logdelete-selected'             => "'''{{PLURAL:$1|Usgwehlte Logbuechyytrag|Usgwehlti Logbuechyytreg}}:'''",
 'revdelete-text'                 => "'''Dr Inhalt oder anderi Bstandteil vu gleschte Versione chenne nimi aagluegt wäre, si erschyyne aber alno as Yytreg in dr Versiongschicht.'''
 
-{{SITENAME}}-Ammanne chenne dr Inhalt, wu glescht isch, oder di andre gleschte Bstandteil alno aaluege un au widerherstelle, user s isch feschtgleit, ass d Zuegangsbschränkige au fir Ammanne gälte.",
+{{SITENAME}}-Ammanne chenne dr Inhalt, wu glescht isch, oder di andre gleschte Bstandteil alno aaluege un au widerherstelle, user s isch feschtgleit, ass d Zuegangsbschränkige au fir Ammanne gälte.
+
+'''Gleschti Versionen un Aktione blyben in dr Versionsgschicht un in dr Logbiecher. Teil dervu sin aber fir d Efffentligkeit nimmi zuegänglig.'''
+
+Anderi Ammanne uf {{SITENAME}} hän alno Zuegriff uf dr versteckt Inhalt un chenne ne mit dr glyche Syte widerhärstelle, wänn s keini zuesätzlige Yyschränkige git.
+Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass des mit dr [[{{MediaWiki:Policy-url}}|Richtlinie]] ibereinstimmt.",
 'revdelete-legend'               => 'Setze vu dr Sichtbarkeits-Yyschränkige',
 'revdelete-hide-text'            => 'Täxt vu dr Version versteckle',
 'revdelete-hide-name'            => 'Logbuech-Aktion versteckle',

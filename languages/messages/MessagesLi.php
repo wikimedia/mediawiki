@@ -10,7 +10,6 @@
  * @author Pahles
  * @author Remember the dot
  * @author Tibor
- * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -416,7 +415,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Gevräögde hanjeling besjteit neet',
-'nosuchactiontext'  => 'De door de URL gespecifieerde handeling wordt neet herkend door de MediaWiki software',
+'nosuchactiontext'  => 'De opdrach in de URL is ongeldig.
+Mogelijk heef se een typefout gemaak in de URL, of een onjuiste verwiejzing gevolg.
+t kan ouk wiezen op n fout in de software van {{SITENAME}}.',
 'nosuchspecialpage' => "D'r besjteit gein speciaal pazjena mit deze naam",
 'nospecialpagetext' => "Doe höbs 'ne speciale pazjena aangevräögd dae neet wörd herkind door de MediaWiki software",
 
@@ -531,6 +532,12 @@ De gegaeve ree is ''$2''.",
 'badsig'                     => 'Óngeljige roew handjteikening; zuug de HTML-tags nao.',
 'badsiglength'               => "De biejnaam is te lank.
 't {{PLURAL:$1|Maag slèchs ein karakter zeen|Mót óngere $1 karaktere zeen}}.",
+'yourgender'                 => 'Geslach:',
+'gender-unknown'             => 'Neet aangegaeve',
+'gender-male'                => 'Miensj',
+'gender-female'              => 'Vrów',
+'prefs-help-gender'          => 'Optioneel: dit wört gebroek om gebroekers correk aan te spraeke in de software.
+Deze informatie is zichbaar veur angere gebroekers.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => '* Echte naam (opsjeneel): esse deze opgufs kin deze naam gebroek waere om dich erkinning te gaeve veur dien wèrk.',
 'loginerror'                 => 'Inlogfout',
@@ -542,7 +549,8 @@ De gegaeve ree is ''$2''.",
 'loginsuccesstitle'          => 'Aanmèlde geluk.',
 'loginsuccess'               => 'De bis noe es "$1" aangemèld bie {{SITENAME}}.',
 'nosuchuser'                 => 'D\'r besjteit geine gebroeker mit de naam "$1".
-Controleer dien spelling, of gebroek ongersjtaond formuleer om \'n nuuj gebroekersprofiel aan te make.',
+Die seen huidlettegevullig
+Controleer dien spelling, of gebroek ongersjtaond formuleer om \'n [[Special:UserLogin/signup|nuuj]] gebroekersprofiel aan te make.',
 'nosuchusershort'            => 'De gebroeker "<nowiki>$1</nowiki>" besjteit neet. Konterleer de sjriefwieze.',
 'nouserspecified'            => "Doe deens 'ne gebroekersnaam op te gaeve.",
 'wrongpassword'              => "'t Ingegaeve wachwaord is neet zjus. Perbeer 't obbenuujts.",
@@ -562,7 +570,8 @@ Iedat anger mail nao dat account versjik kan weure, mós te de insjtructies in d
 óm te bevèstige dat dit wirkelik dien account is.",
 'throttled-mailpassword'     => "'n Wachwaordherinnering wörd gedurende de letste {{PLURAL:$1|1 oer|$1 oer}} verzönje. Om misbroek te veurkomme, wörd d'r sjlechs éin herinnering per {{PLURAL:$1|oer|$1 oer}} verzönje.",
 'mailerror'                  => "Fout bie 't versjture van mail: $1",
-'acct_creation_throttle_hit' => "Sorry, de höbs al $1 accounts aangemak. De kins d'r gein mië aanmake.",
+'acct_creation_throttle_hit' => 'Bezeukers van deze wiki mit tzelfde IP-adres es öxch hebbe de aafgeloupe dag {{PLURAL:$1|al 1 gebroeker|al $1 gebroekers}} geregistreerd, wat t maximale aantal in deze periode is.
+Daarom kunt se as bezeuker van dit IP-adres op dit moment gein nije gebroeker registrere.',
 'emailauthenticated'         => 'Dien e-mailadres is op $2 um $3 bevestig.',
 'emailnotauthenticated'      => 'Dien e-mailadres is nog neet geauthentiseerd. De zals gein
 e-mail óntvange veur alle volgende toepassinge.',
@@ -590,7 +599,7 @@ Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 'resetpass_submit'          => 'Wachwaord instelle en aanmelje',
 'resetpass_success'         => 'Dien wachwaord is verangerd. Bezig mèt aanmelje...',
 'resetpass_bad_temporary'   => "Ongeldig tiejdelik wachwaord. Doe höbs dien wachwaord al verangerd of 'n nuuj tiejdelik wachwaord aangevräög.",
-'resetpass_forbidden'       => 'Wachwäörd kónne neet verangerd waere op {{SITENAME}}',
+'resetpass_forbidden'       => 'Wachwäörd kónne neet verangerd waere',
 'resetpass-no-info'         => 'Doe moos aangemeld zien ierdets doe dees pagina gebroeke kens.',
 'resetpass-submit-loggedin' => 'Wachwaord wiezige',
 'resetpass-wrong-oldpass'   => "'t Hujig of tiedelik wachwaord is ongeljig.
@@ -1065,7 +1074,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'stub-threshold'            => 'Drempel veur markering <a href="#" class="stub">begske</a>:',
 'recentchangesdays'         => 'Aantal daag te tuine in de recènte verangeringe:',
 'recentchangesdays-max'     => '(maximaal $1 {{PLURAL:$1|daag|daag}})',
-'recentchangescount'        => 'Aantal titels in lies recènte verangeringe',
+'recentchangescount'        => 'Aantal titels in lies recènte verangeringe, gesjiedenis en logbook:',
 'savedprefs'                => 'Dien veurkäöre zint opgesjlage.',
 'timezonelegend'            => 'Tiedzone',
 'timezonetext'              => "¹'t Aantal oere dat diene lokale tied versjilt van de servertied (UTC).",
@@ -1076,12 +1085,24 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'timezoneoffset'            => 'Tiedsversjil¹:',
 'servertime'                => 'Server tied:',
 'guesstimezone'             => 'Invulle van browser',
+'timezoneregion-africa'     => 'Afrika',
+'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antarctica',
+'timezoneregion-arctic'     => 'Arctis',
+'timezoneregion-asia'       => 'Azië',
+'timezoneregion-atlantic'   => 'Atlantische Oceaan',
+'timezoneregion-australia'  => 'Australië',
+'timezoneregion-europe'     => 'Europa',
+'timezoneregion-indian'     => 'Indische Oceaan',
+'timezoneregion-pacific'    => 'Stille Oceaan',
 'allowemail'                => 'E-mail van anger gebroekers toesjtaon',
 'prefs-searchoptions'       => 'Zeukinstellinge',
 'prefs-namespaces'          => 'Naamruimte',
 'defaultns'                 => 'Zeuk sjtandaard in dees naomruumdes:',
 'default'                   => 'sjtandaard',
 'files'                     => 'Bestenj',
+'prefs-custom-css'          => 'Persoonlijke CSS',
+'prefs-custom-js'           => 'Persoonlijke JS',
 
 # User rights
 'userrights'                  => 'Gebroekersrechtebeheer', # Not used as normal message but as header for the special page itself
@@ -1138,6 +1159,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'right-move'                 => "Pagina's hernaome",
 'right-move-subpages'        => "Pagina's inclusief subpagina's verplaatse",
 'right-move-rootuserpages'   => "Gebroekerspazjena's van 't hoegste niveau herneume",
+'right-movefile'             => 'Bestenje hernoeme',
 'right-suppressredirect'     => "Een doorverwijzing op de doelpagina verwijdere bie 't hernaome van 'n pagina",
 'right-upload'               => 'Bestande uploade',
 'right-reupload'             => "'n bestaond bestand euversjrieve",
@@ -1181,6 +1203,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'right-userrights'           => 'Alle gebroekersrechte bewerke',
 'right-userrights-interwiki' => "Gebroekersrechte van gebroekers in angere wiki's wijzige",
 'right-siteadmin'            => 'De database blokkere en weer vriegaeve',
+'right-reset-passwords'      => 'Wachtwoorde van andere gebroekers opnieuw instelle',
 
 # User rights log
 'rightslog'      => 'Gebroekersrechtelogbook',
@@ -1384,9 +1407,9 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Mier verwijzinge]] naor dit bestaand bekèèke.',
 'redirectstofile'           => 'De volgende bestaande verwèèze door naor dit bestaand:',
 'duplicatesoffile'          => 'De nègsvóggendje bestenj zeen identiek aan dit bestandj:',
-'sharedupload'              => "Dit besjtandj is 'ne gedeilde upload en kin ouch door anger projekte waere gebroek $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Dit besjtandj is $1 en kin ouch door anger projekte waere gebroek. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Zee $1 veur meer informatie.',
-'shareduploadwiki-desc'     => 'De omschrèèving op zie $1 op de gedèèlde map is hij onder wiergegeve.',
+'shareduploadwiki-desc'     => 'De omschrèèving op zie $1 is hij onder wiergegeve.',
 'shareduploadwiki-linktext' => 'bestandsbesjrieving',
 'noimage'                   => "D'r besjteit gein besjtandj mit deze naam, mer doe kèns 't $1.",
 'noimage-linktext'          => 'uploade',
@@ -1446,10 +1469,24 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'randomredirect-nopages' => "d'r zeen gein redirects in deze naamruumde.",
 
 # Statistics
-'statistics'              => 'Sjtattestieke',
-'statistics-header-users' => 'Stattestieke euver gebroekers',
-'statistics-pages-desc'   => "Alle pagina's in de wiki, inclusief euverlèkpagina's, doorverwiezinge, enz.",
-'statistics-mostpopular'  => "Meisbekeke pazjena's",
+'statistics'                   => 'Sjtattestieke',
+'statistics-header-pages'      => 'Paginastatistieke',
+'statistics-header-edits'      => 'Bewerkingsstatistieke',
+'statistics-header-views'      => 'Paginaweergavestatistieke',
+'statistics-header-users'      => 'Stattestieke euver gebroekers',
+'statistics-articles'          => "Inhoudelijke pagina's",
+'statistics-pages'             => "Pagina's",
+'statistics-pages-desc'        => "Alle pagina's in de wiki, inclusief euverlèkpagina's, doorverwiezinge, enz.",
+'statistics-files'             => 'Bestenj',
+'statistics-edits'             => 'Paginabewerkinge sins t begin van {{SITENAME}}',
+'statistics-edits-average'     => 'Gemiddeld aantal bewerkinge per pagina',
+'statistics-views-total'       => "Totaal aantal weergegeve pagina's",
+'statistics-views-peredit'     => "Weergegeve pagina's per bewerking",
+'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobqueuelengte]',
+'statistics-users'             => 'Geregistreerde [[Special:ListUsers|gebroekers]]',
+'statistics-users-active'      => 'Actieve gebroekers',
+'statistics-users-active-desc' => "Gebroekers die in de aafgeloupe {{PLURAL:$1|daag|$1 daag}} 'ne hanjeling höbbe oetgevoerd",
+'statistics-mostpopular'       => "Meisbekeke pazjena's",
 
 'disambiguations'      => "Verdudelikingspazjena's",
 'disambiguationspage'  => 'Template:Verdudeliking',
@@ -1464,7 +1501,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'double-redirect-fixer'      => 'Doorverwiezinge opsjone',
 
 'brokenredirects'        => 'Gebraoke redirects',
-'brokenredirectstext'    => "De óngersjtaonde redirectpazjena's bevatte 'n redirect nao 'n neet-besjtaonde pazjena.",
+'brokenredirectstext'    => "De óngersjtaonde redirectpazjena's bevatte 'n redirect nao 'n neet-besjtaonde pazjena:",
 'brokenredirects-edit'   => '(bewerke)',
 'brokenredirects-delete' => '(wisse)',
 
@@ -1484,7 +1521,8 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'nviews'                  => '{{PLURAL:$1|eine kieër|$1 kieër}} bekeke',
 'specialpage-empty'       => 'Deze pagina is laeg.',
 'lonelypages'             => "Weispazjena's",
-'lonelypagestext'         => "Nao de ongerstäönde pagina's wörd vanoet {{SITENAME}} neet verweze.",
+'lonelypagestext'         => "Nao de ongerstäönde pagina's wörd vanoet {{SITENAME}} neet verweze.
+De pafina's zeen ouk neet as sjabloon opgenome.",
 'uncategorizedpages'      => "Ongekattegoriseerde pazjena's",
 'uncategorizedcategories' => 'Ongekattegoriseerde kattegorië',
 'uncategorizedimages'     => 'Óngecategorizeerde bestenj',
@@ -1494,6 +1532,8 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'popularpages'            => 'Populaire artikels',
 'wantedcategories'        => 'Gewunsjde categorieë',
 'wantedpages'             => "Gewunsjde pazjena's",
+'wantedfiles'             => 'Neet-bestaonde bestenj mit verwiezinge',
+'wantedtemplates'         => 'Neet-bestaonde sjablone mit verwiezinge',
 'mostlinked'              => "Meis gelinkde pazjena's",
 'mostlinkedcategories'    => 'Meis-gelinkde categorië',
 'mostlinkedtemplates'     => 'Meis-gebroekde sjablone',
@@ -1507,6 +1547,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'deadendpagestext'        => "De ongerstäönde pagina's verwieze neet nao anger pagina's in {{SITENAME}}.",
 'protectedpages'          => "Besjörmde pagina's",
 'protectedpages-indef'    => 'Allein blokkades zonger verloupdatum',
+'protectedpages-cascade'  => 'Allein beveiliginge mit de cascade-optie',
 'protectedpagestext'      => "De volgende pagina's zeen beveilig en kinne neet bewerk en/of hernömp waere",
 'protectedpagesempty'     => "d'r Zeen noe gein pagina's besjörmp die aan deze paramaetere voldaon.",
 'protectedtitles'         => "Beveiligde pazjena's",
@@ -1804,7 +1845,7 @@ Dit zeen de hujige instellinge veur de pazjena '''[[$1]]''':",
 'undeleterevision-missing'     => "Ongeldige of missende versie. Meugelik höbse 'n verkeerde verwiezing of is de versie hersteld of verwiederd oet 't archief.",
 'undelete-nodiff'              => 'Gein eerdere versie gevonje.',
 'undeletebtn'                  => 'Trökzètte!',
-'undeletelink'                 => 'trökplaatse',
+'undeletelink'                 => 'zeen/trökplaatse',
 'undeletereset'                => 'Resette',
 'undeletecomment'              => 'Infermasie:',
 'undeletedarticle'             => '"$1" is truukgeplaatsj.',

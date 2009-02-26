@@ -1009,7 +1009,7 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 'rev-deleted-no-diff'            => "Vous ne pouvez par voir ce diff parce qu'une des versions a été supprimée des archives publiques.
 Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l'historique des suppressions].",
 'rev-delundel'                   => 'afficher/masquer',
-'revisiondelete'                 => 'Supprimer/Restaurer des versions',
+'revisiondelete'                 => 'Supprimer ou restaurer des événements',
 'revdelete-nooldid-title'        => 'Pas de cible pour la révision',
 'revdelete-nooldid-text'         => 'Vous n’avez pas précisé la(es) révision(s) cible(s) de cette fonction, la révision cible n’existe pas, ou encore la révision cible est celle en cours.',
 'revdelete-nologtype-title'      => 'Aucun type de journal spécifié',
@@ -1017,33 +1017,33 @@ Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLP
 'revdelete-toomanytargets-title' => 'Trop de cibles',
 'revdelete-toomanytargets-text'  => 'Vous avez spécifié trop de types de cibles différentes sur lesquelles cette action doit être réalisée.',
 'revdelete-nologid-title'        => 'Entrée du journal invalide',
-'revdelete-nologid-text'         => "Vous n'avez pas spécifié un événement du journal sur lequel cette action doit se réaliser, ou alors celui-ci n'existe pas.",
-'revdelete-selected'             => "'''{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''$1''' :'''",
+'revdelete-nologid-text'         => "Vous n'avez pas spécifié une entrée du journal sur laquelle cette action doit être effectuée, ou alors l'événement spécifié n'existe pas.",
+'revdelete-selected'             => "'''{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''[[:$1]]''' :'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Événement d’historique sélectionné|Événements d’historique sélectionnés}} :'''",
-'revdelete-text'                 => "'''Les révisions et événements supprimés apparaîtront encore dans l’historique et les journaux de la page, mais leur contenu textuel sera inaccessible au public.'''
+'revdelete-text'                 => "'''Les versions et événements supprimés seront encore présents dans l’historique de la page et dans les journaux, mais leur contenu textuel sera inaccessible au public.'''
 
-D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à nouveau à travers cette même interface, à moins qu’une restriction supplémentaire ne soit mise en place par les opérateurs du site.
-Confirmez que ceci est bien ce que vous vouliez faire, que vous comprenez les conséquences, et que vous le faîtes en accord avec les [[{{MediaWiki:Policy-url}}|règles]].",
-'revdelete-legend'               => 'Mettre en place des restrictions de version :',
+Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soit mises en place.
+Confirmez que ceci est bien ce que vous avez l'intention de faire, que vous en comprenez les conséquences, et que vous faîtes ceci en respect des [[{{MediaWiki:Policy-url}}|règles établies]].",
+'revdelete-legend'               => 'Mettre en place des restrictions de visibilité :',
 'revdelete-hide-text'            => 'Masquer le texte de la version',
 'revdelete-hide-name'            => 'Masquer l’action et la cible',
 'revdelete-hide-comment'         => 'Masquer le commentaire de modification',
 'revdelete-hide-user'            => 'Masquer le pseudo ou l’adresse IP du contributeur.',
-'revdelete-hide-restricted'      => 'Appliquer ces restrictions aux administrateurs ainsi qu’aux autres utilisateurs',
-'revdelete-suppress'             => 'Masquer aussi les révisions aux administrateurs',
+'revdelete-hide-restricted'      => 'Appliquer ces restrictions aux administrateurs et verrouiller cette interface',
+'revdelete-suppress'             => 'Cacher les données également pour les administrateurs',
 'revdelete-hide-image'           => 'Masquer le contenu du fichier',
 'revdelete-unsuppress'           => 'Enlever les restrictions sur les versions restaurées',
-'revdelete-log'                  => 'Commentaire pour l’historique :',
+'revdelete-log'                  => 'Commentaire pour le journal :',
 'revdelete-submit'               => 'Appliquer à la version sélectionnée',
 'revdelete-logentry'             => 'a modifié la visibilité de la version de [[$1]]',
 'logdelete-logentry'             => 'a modifié la visibilité de l’événement de [[$1]]',
-'revdelete-success'              => 'Visibilité des versions changée avec succès.',
+'revdelete-success'              => "'''Visibilité des versions changée avec succès.'''",
 'logdelete-success'              => "'''Visibilité du journal paramétrée avec succès.'''",
 'revdel-restore'                 => 'Modifier la visibilité',
 'pagehist'                       => 'Historique de la page',
 'deletedhist'                    => 'Historique des suppressions',
 'revdelete-content'              => 'contenu',
-'revdelete-summary'              => 'modifier le résumé',
+'revdelete-summary'              => 'résumé de modification',
 'revdelete-uname'                => 'nom d’utilisateur',
 'revdelete-restricted'           => 'appliquer les restrictions aux administrateurs',
 'revdelete-unrestricted'         => 'restrictions retirées pour les administrateurs',
@@ -1054,16 +1054,17 @@ Confirmez que ceci est bien ce que vous vouliez faire, que vous comprenez les co
 
 # Suppression log
 'suppressionlog'     => 'Journal des suppressions',
-'suppressionlogtext' => 'Ci-dessous, se trouve la liste des suppressions et des blocages comprenant les révisions cachées aux administrateurs. Voyez [[Special:IPBlockList|la liste des blocages des IP]] pour la liste des bannissements et des blocages opérationels.',
+'suppressionlogtext' => 'Voici la liste des suppressions et des blocages qui portent sur du contenu caché aux administrateurs.
+Voir la [[Special:IPBlockList|liste des adresses IP et utilisateurs bloqués]] pour la liste des bannissements et des blocages actuellement opérationnels.',
 
 # History merging
-'mergehistory'                     => 'Fusionner les historiques',
-'mergehistory-header'              => 'Cette page vous permet de fusionner les révisions de l’historique d’une page d’origine vers une nouvelle page.
-Assurez-vous que ce changement conserve la continuité de l’historique.',
+'mergehistory'                     => 'Fusionner les historiques des pages',
+'mergehistory-header'              => 'Cette page vous permet de fusionner des versions de l’historique d’une page d’origine vers une nouvelle page.
+Assurez-vous que cette opération conservera la continuité de l’historique de la page.',
 'mergehistory-box'                 => 'Fusionner les versions de deux pages :',
 'mergehistory-from'                => 'Page d’origine :',
 'mergehistory-into'                => 'Page de destination :',
-'mergehistory-list'                => 'Historique des éditions fusionnables',
+'mergehistory-list'                => 'Historique des modifications fusionnable',
 'mergehistory-merge'               => 'Les versions suivantes de [[:$1]] peuvent être fusionnées avec [[:$2]]. Utilisez la colonne de boutons radio pour fusionner uniquement les versions créées du début jusqu’à la date indiquée. Notez bien que l’utilisation des liens de navigation réinitialisera cette colonne.',
 'mergehistory-go'                  => 'Voir les éditions fusionnables',
 'mergehistory-submit'              => 'Fusionner les révisions',
@@ -2109,9 +2110,9 @@ Voici les réglages actuels de la page '''$1''' :",
 'undeletepagetext'             => '{{PLURAL:$1|La page suivante a été supprimée et se trouve|Les pages suivantes ont été supprimées et se trouvent}} dans la base de données archive, d’où {{PLURAL:$1|elle peut|elles peuvent}} encore être restaurée{{PLURAL:$1||s}}.
 L’archive peut être nettoyée périodiquement.',
 'undelete-fieldset-title'      => 'Restaurer les versions',
-'undeleteextrahelp'            => "Pour restaurer l’historique complet de cette page, laissez vierges toutes les cases à cocher et cliquez '''''Restaurer'''''.
-Pour ne restaurer que certaines versions, cochez les cases correspondant aux versions à rétablir, puis cliquez sur '''''Restaurer'''''.
-En cliquant sur le bouton '''''Réinitialiser''''', la boîte de résumé et les cases cochées seront remises à zéro.",
+'undeleteextrahelp'            => "Pour restaurer l’historique complet de cette page, laissez toutes les cases décochées et cliquez sur '''''Restaurer'''''.
+Pour effectuer une restauration partielle, cochez les cases correspondant aux versions à rétablir, puis cliquez sur '''''Restaurer'''''.
+Cliquer sur '''''Réinitialiser''''' effacera la boîte de commentaire et réinitialisera toutes les cases à cocher.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|version archivée|versions archivées}}',
 'undeletehistory'              => 'Si vous restaurez la page, toutes les versions seront replacées dans l’historique.
 Si une nouvelle page avec le même nom a été créée depuis la suppression, les versions restaurées apparaîtront dans l’historique antérieur et la version courante ne sera pas automatiquement remplacée.',

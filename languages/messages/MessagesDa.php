@@ -22,7 +22,6 @@
  * @author Svip
  * @author Søren Løvborg
  * @author Urhixidur
- * @author Verdy p
  */
 
 $namespaceNames = array(
@@ -696,9 +695,15 @@ Din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
 
 Adgangskoden for denne ny brugerkonto kan ændres på ''[[Special:ChangePassword|skift   adgangskode]]'', når du logger ind.",
 'newarticle'                       => '(Ny)',
-'newarticletext'                   => "'''{{SITENAME}} har endnu ikke nogen {{NAMESPACE}}-side ved navn {{PAGENAME}}.'''<br /> Du kan begynde en side ved at skrive i boksen herunder. (se [[{{MediaWiki:Helppage}}|hjælpen]] for yderligere oplysninger).<br /> Eller du kan [[Special:Search/{{PAGENAME}}|søge efter {{PAGENAME}} i {{SITENAME}}]].<br /> Hvis det ikke var din mening, så tryk på '''Tilbage'''- eller '''Back'''-knappen.",
+'newarticletext'                   => "Du har fulgt en henvisning til en side som endnu ikke findes.
+For at oprette siden skal du begynde at skrive i boksen nedenfor
+(se [[{{MediaWiki:Helppage}}|hjælpesiden]] for yderligere information).
+Hvis du er her ved en fejl, så tryk på din browsers '''tilbage'''-knap.",
 'anontalkpagetext'                 => "---- ''Dette er en diskussionsside for en anonym bruger, der ikke har oprettet en konto endnu eller ikke bruger den. Vi er derfor nødt til at bruge den nummeriske IP-adresse til at identificere ham eller hende. En IP-adresse kan være delt mellem flere brugere. Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer på sådan en side, så vær venlig at oprette en brugerkonto og [[Special:UserLogin|logge på]], så vi undgår fremtidige forvekslinger med andre anonyme brugere.''",
-'noarticletext'                    => "'''{{SITENAME}} har ikke nogen side med præcis dette navn.''' * Du kan '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} starte siden {{PAGENAME}}]''' * Eller [[Special:Search/{{PAGENAME}}|søge efter {{PAGENAME}}]] i andre artikler ---- * Hvis du har oprettet denne artikel indenfor de sidste få minutter, så kan de skyldes at der er lidt forsinkelse i opdateringen af {{SITENAME}}s cache. Vent venligst og tjek igen senere om artiklen dukker op, inden du forsøger at oprette artiklen igen.",
+'noarticletext'                    => 'Der er i øjeblikket ikke nogen tekst på denne side.
+Du kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} søge i relaterede logger]
+eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette siden]</span>.',
 'userpage-userdoesnotexist'        => 'Brugerkontoen "$1" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
 'clearyourcache'                   => "'''Bemærk''', efter at have gemt, er du nødt til at tømme din browsers cache for at kunne se ændringerne. '''Mozilla / Firefox / Safari''': hold ''shifttasten'' nede og klik på ''reload'' eller tryk på ''control-shift-r'' (Mac: ''cmd-shift-r''); '''Internet Explorer''': hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''control-F5''; '''Konqueror''': klik på ''reload'' eller tryk på ''F5''",
 'usercssjsyoucanpreview'           => "'''Tip:''' Brug knappen 'forhåndsvisning' til at teste dit nye css/js før du gemmer.",
@@ -762,7 +767,7 @@ Systemadministratoren som låste databasen, gav denne forklaring: $1",
 'nocreate-loggedin'                => 'Du har ikke rettigheder til at oprette nye sider.',
 'permissionserrors'                => 'Rettighedskonflikt',
 'permissionserrorstext'            => 'Du har ikke rettigheder til at gennemføre denne handling, {{PLURAL:$1|årsagen|årsagerne}} er:',
-'permissionserrorstext-withaction' => 'Du har ikke rettigheder til $2, med nedenstående {{PLURAL:$1|grund|grunde}}:',
+'permissionserrorstext-withaction' => 'Du har ikke rettigheder til at $2 af følgende {{PLURAL:$1|grund|grunde}}:',
 'recreate-deleted-warn'            => "'''Advarsel: Du er ved at genskabe en tidligere slettet side.'''
  
 Overvej om det er passende at genoprette siden. De slettede versioner for 
@@ -789,9 +794,10 @@ Der bør være færre end {{PLURAL:$2|$2 kald}}, lige nu er der {{PLURAL:$1|$1 k
 'parser-template-loop-warning'            => 'Skabelonløkke fundet: [[$1]]',
 
 # "Undo" feature
-'undo-success' => 'Ændringen er nu annulleret. Kontroller venligst bearbejdningen i sammenligningen og klik så på „Gem side“, for at gemme den.',
-'undo-failure' => 'Ændringen kunne ikke annulleres, da det pågældende afsnit i mellemtiden er ændret.',
-'undo-norev'   => 'Ændringen kunne ikke annuleres fordi den ikke eksisterer eller er blevet slettet.',
+'undo-success' => 'Redigeringen kan fjernes.
+Kontroller venligst sammenligningen herunder for at bekræfte at det er hvad du ønsker at gøre, og gem så ændringerne for at fuldføre fjernelsen.',
+'undo-failure' => 'Redigeringen kunne ikke fjernes på grund af konflikter med efterfølgende redigeringer.',
+'undo-norev'   => 'Redigeringen kunne ikke fjernes fordi den ikke findes eller er blevet slettet.',
 'undo-summary' => 'Fjerner version $1 af [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
 
 # Account creation failure
@@ -802,6 +808,7 @@ Der bør være færre end {{PLURAL:$2|$2 kald}}, lige nu er der {{PLURAL:$1|$1 k
 'viewpagelogs'           => 'Vis loglister for denne side',
 'nohistory'              => 'Der er ingen versionshistorik for denne side.',
 'currentrev'             => 'Nuværende version',
+'currentrev-asof'        => 'Nuværende version fra $1',
 'revisionasof'           => 'Versionen fra $1',
 'revision-info'          => 'Version fra $1 af $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Ældre version',
@@ -914,7 +921,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'compareselectedversions' => 'Sammenlign valgte versioner',
 'visualcomparison'        => 'Visuel sammenligning',
 'wikicodecomparison'      => 'Wikitekstsammenligning',
-'editundo'                => 'annuller',
+'editundo'                => 'fjern redigering',
 'diff-multi'              => '(Versionssammenligningen medtager {{plural:$1|en mellemliggende version|$1 mellemliggende versioner}}.)',
 'diff-movedto'            => 'flyttet til $1',
 'diff-added'              => '$1 tilføjet',
@@ -1015,7 +1022,8 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'showingresults'                   => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
 'showingresultsnum'                => 'Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.',
 'showingresultstotal'              => "Viser resultat {{PLURAL:$4|'''$1''' af '''$3'''|'''$1 - $2''' af '''$3'''}} nedenfor",
-'nonefound'                        => '<strong>Bemærk</strong>: Søgning uden resultat skyldes at man søger efter almindelige ord som "har" og "fra", der ikke er indekseret, eller at man har angivet mere end ét søgeord (da kun sider indeholdende alle søgeordene vil blive fundet).',
+'nonefound'                        => "'''Bemærk''': Som standard søges der kun i bestemte navnerum.
+Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. diskussionssider, skabeloner osv.), eller brug det ønskede navnerum som præfiks.",
 'powersearch'                      => 'Søg',
 'powersearch-legend'               => 'Avanceret søgning',
 'powersearch-ns'                   => 'Søg i navnerummene:',
@@ -1202,6 +1210,41 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'rightslogentry' => 'ændrede grupperettigheder for „[[$1]]“ fra „$2“ til „$3“.',
 'rightsnone'     => '(-)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'                 => 'se denne side',
+'action-edit'                 => 'redigere denne side',
+'action-createpage'           => 'oprette sider',
+'action-createtalk'           => 'oprette diskussionssider',
+'action-createaccount'        => 'Oprette denne brugerkonto',
+'action-minoredit'            => 'markere denne redigering som mindre',
+'action-move'                 => 'flytte denne side',
+'action-move-subpages'        => 'flytte denne side og dens undersider',
+'action-move-rootuserpages'   => 'flytte hovedbrugersider',
+'action-movefile'             => 'flytte denne fil',
+'action-upload'               => 'lægge denne fil op',
+'action-reupload'             => 'overskrive den nuværende fil',
+'action-reupload-shared'      => 'tilsidesætte denne fil i et delt arkiv',
+'action-upload_by_url'        => 'lægge denne fil op fra en URL-adresse',
+'action-writeapi'             => "bruge skrive-API'et",
+'action-delete'               => 'slette denne side',
+'action-deleterevision'       => 'slette denne version',
+'action-deletedhistory'       => 'se denne sides slettede historik',
+'action-browsearchive'        => 'søge i slettede sider',
+'action-undelete'             => 'gendanne denne side',
+'action-suppressrevision'     => 'se og gendanne denne skjulte version',
+'action-suppressionlog'       => 'se denne private log',
+'action-block'                => 'blokere denne bruger fra at redigere',
+'action-protect'              => 'ændre på beskyttelsen af denne side',
+'action-import'               => 'importere denne side fra en anden wiki',
+'action-importupload'         => 'importere denne side fra en filoplægning',
+'action-patrol'               => 'patruljere andres redigeringer',
+'action-autopatrol'           => 'patruljere din redigering',
+'action-unwatchedpages'       => 'se listen over uovervågede sider',
+'action-mergehistory'         => 'flette denne sides historik',
+'action-userrights'           => 'ændre alle brugerrettigheder',
+'action-userrights-interwiki' => 'ændre brugerrettigheder for brugere på andre wikier',
+'action-siteadmin'            => 'låse eller låse databasen op',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ændring|ændringer}}',
 'recentchanges'                     => 'Seneste ændringer',
@@ -1230,6 +1273,8 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'newsectionsummary'                 => '/* $1 */ nyt afsnit',
+'rc-enhanced-expand'                => 'Vis detaljer (kræver JavaScript)',
+'rc-enhanced-hide'                  => 'Skjul detaljer',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterede ændringer',
@@ -1362,6 +1407,8 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'filehist-revert'           => 'gendan',
 'filehist-current'          => 'nuværende',
 'filehist-datetime'         => 'Dato/tid',
+'filehist-thumb'            => 'Thumbnail',
+'filehist-thumbtext'        => 'Thumbnail af versionen fra $1',
 'filehist-user'             => 'Bruger',
 'filehist-dimensions'       => 'Dimensioner',
 'filehist-filesize'         => 'Filstørrelse',
@@ -1372,10 +1419,10 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'morelinkstoimage'          => 'Se [[Special:WhatLinksHere/$1|flere henvisninger]] til denne fil.',
 'redirectstofile'           => '{{PLURAL:$1|Nedenstående fil|De nedenstående $1 filer}} er en omdirigering til denne fil:',
 'duplicatesoffile'          => '{{PLURAL:$1|Nedenstående fil|De nedenstående $1 filer}} er dubletter af denne fil:',
-'sharedupload'              => 'Denne fil er en fælles upload og kan bruges af andre projekter. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Se venligst $1 for yderligere information.',
-'shareduploadwiki-desc'     => 'Dens beskrivelse på $1 vises nedenfor.',
-'shareduploadwiki-linktext' => 'siden med billedbeskrivelsen',
+'sharedupload'              => 'Denne fil er fra $1 og kan bruges af andre projekter. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'shareduploadwiki'          => 'Se venligst $1n for yderligere information.',
+'shareduploadwiki-desc'     => 'Beskrivelsen på dens $1 der vises nedenfor.',
+'shareduploadwiki-linktext' => 'filbeskrivelsesside',
 'noimage'                   => 'Der eksisterer ingen fil med dette navn, du kan $1',
 'noimage-linktext'          => 'lægge den op',
 'uploadnewversion-linktext' => 'Læg en ny version af denne fil op',
@@ -1467,7 +1514,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'nmembers'                => '– {{PLURAL:$1|1 artikel|$1 artikler}}',
 'nrevisions'              => '{{PLURAL:$1|1 ændring|$1 ændringer}}',
 'nviews'                  => '{{PLURAL:$1|1 visning|$1 visninger}}',
-'specialpage-empty'       => 'Siden indeholder i øjeblikket ingen artikler.',
+'specialpage-empty'       => 'Der er ingen resultater at vise.',
 'lonelypages'             => 'Forældreløse artikler',
 'lonelypagestext'         => 'De følgende sider har ikke henvisninger fra andre sider i denne wiki.',
 'uncategorizedpages'      => 'Ukategoriserede sider',
@@ -1561,7 +1608,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'deletedcontributions-title' => 'Slettede brugerbidrag',
 
 # Special:LinkSearch
-'linksearch'       => 'Søg i weblinks',
+'linksearch'       => 'Eksterne henvisninger',
 'linksearch-pat'   => 'Søg efter links til:',
 'linksearch-ns'    => 'Navnerum:',
 'linksearch-ok'    => 'Søg',
@@ -1746,9 +1793,9 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'protect-locked-dblock'       => "Databasen er spærret, sidebeskyttelsen kan derfor ikke ændres. her er de aktuelle beskyttelsesindstillinger for siden '''„$1“:'''",
 'protect-locked-access'       => "Den brugerkonto har ikke de nødvendige rettigheder til at ændre sidebeskyttelsen. Her er de aktuelle beskyttelsesindstillinger for siden '''„$1“:'''",
 'protect-cascadeon'           => 'Denne side er del af en nedarvet skrivebeskyttelse. Wen er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse" Sidebeskyttelsen kan ændres for denne side, det påvirker dog ikke kaskadespærringen:',
-'protect-default'             => 'Alle (Standard)',
+'protect-default'             => 'Tillad alle brugere',
 'protect-fallback'            => 'Kræv "$1"-tilladelse',
-'protect-level-autoconfirmed' => 'Spærring for ikke registrerede brugere',
+'protect-level-autoconfirmed' => 'Spær for nye og uregistrerede brugere',
 'protect-level-sysop'         => 'Kun administratorer',
 'protect-summary-cascade'     => 'nedarvende',
 'protect-expiring'            => 'til $1 (UTC)',
@@ -1886,8 +1933,8 @@ $1',
 * IP-specifikke grunde
 ** Proxy, pga. vandalisme fra enkelte, brugere spærret i længere tid',
 'ipbanononly'                     => 'Kun anonyme brugere spærres',
-'ipbcreateaccount'                => 'Forhindre oprettelse af brugerkonti',
-'ipbemailban'                     => 'Spærre brugerens adgang til at sende mail',
+'ipbcreateaccount'                => 'Forhindr oprettelse af brugerkontoer',
+'ipbemailban'                     => 'Spær brugerens adgang til at sende e-mail',
 'ipbenableautoblock'              => 'Spærre den IP-adresse, der bruges af denne bruger samt automatisk alle følgende, hvorfra han foretager ændringer eller forsøger at anlægge brugerkonti',
 'ipbsubmit'                       => 'Bloker denne bruger',
 'ipbother'                        => 'Anden varighed (engelsk)',
@@ -2105,7 +2152,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'tooltip-pt-logout'               => 'Log af',
 'tooltip-ca-talk'                 => 'Diskussion om indholdet på siden',
 'tooltip-ca-edit'                 => 'Du kan redigere denne side. Brug venligst forhåndsvisning før du gemmer.',
-'tooltip-ca-addsection'           => 'Tilføj en kommentar til denne diskussion.',
+'tooltip-ca-addsection'           => 'Start et nyt afsnit',
 'tooltip-ca-viewsource'           => 'Denne side er beskyttet. Du kan kigge på kildekoden.',
 'tooltip-ca-history'              => 'Tidligere versioner af denne side.',
 'tooltip-ca-protect'              => 'Beskyt denne side',
@@ -2152,6 +2199,9 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'tooltip-watch'                   => 'Tilføj denne side til din overvågningsliste',
 'tooltip-recreate'                => 'Opret side, selv om den blev slettet.',
 'tooltip-upload'                  => 'Upload fil',
+'tooltip-rollback'                => '"Rul tilbage" fjerner den sidste bidragsyders redigering(er) af denne side med et klik',
+'tooltip-undo'                    => '"Fjern redigering" fjerner denne redigering og åbner redigeringssiden med forhåndsvisning.
+Det giver mulighed for at tilføje en begrundelse i beskrivelsen.',
 
 # Stylesheets
 'common.css'   => '/** CSS inkluderet her vil være aktivt for alle brugere. */',

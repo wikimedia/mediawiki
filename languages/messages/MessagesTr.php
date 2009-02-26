@@ -361,7 +361,7 @@ $messages = array(
 'faqpage'              => 'Project:SSS',
 'helppage'             => 'Help:İçindekiler',
 'mainpage'             => 'Ana sayfa',
-'mainpage-description' => 'Ana Sayfa',
+'mainpage-description' => 'Ana sayfa',
 'policy-url'           => 'Project:Politika',
 'portal'               => 'Topluluk portalı',
 'portal-url'           => 'Project:Topluluk portalı',
@@ -451,7 +451,7 @@ Veritabanını kilitleyen operatörün açıklaması: $1',
 Bu durum sayfanın, silinmiş bir sayfanın geçmiş sürümü olmasından kaynaklanabilir.
 
 Eğer neden bu değilse, yazılımda bir hata ile karşılaşmış olabilirsiniz
-Lütfen bunu bir [[Özel:Listusers/sysop|yöneticiye]], URL\'yi not ederek iletin',
+Lütfen bunu bir [[Special:ListUsers/sysop|hizmetliye]], URL\'yi not ederek iletin',
 'missingarticle-rev'   => '(revizyon#: $1)',
 'missingarticle-diff'  => '(Fark: $1, $2)',
 'readonly_lag'         => 'Yedek sunucular ana sunucu ile güncellemeye çalışırken veritabanı otomatik olarak kilitlendi.',
@@ -1947,7 +1947,7 @@ Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya
 ** Değişiklik savaşı
 ** Yüksek trafiğe sahip sayfa',
 'protect-edit-reasonlist'     => 'Koruma nedenlerini değiştir',
-'protect-expiry-options'      => '15 dakika:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 hafta:1 week,1 ay:1 month,süresiz:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 saat:1 hour,1 gün:1 day,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'İzin:',
 'restriction-level'           => 'Kısıtlama düzeyi:',
 'minimum-size'                => 'Minumum boyutu',
@@ -2079,7 +2079,7 @@ $1',
 'ipbenableautoblock'              => 'Bu kullanıcı tarafından kullanılan son IP adresini ve değişişiklik yapmaya çalıştıkları mütakip IPleri otomatik olarak engelle',
 'ipbsubmit'                       => 'Bu kullanıcıyı engelle',
 'ipbother'                        => 'Farklı zaman',
-'ipboptions'                      => '15 dakika:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 hafta:1 week,1 ay:1 month,süresiz:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'farklı',
 'ipbotherreason'                  => 'Başka/ek sebepler:',
 'ipbhidename'                     => 'Kullanıcı adını, engelleme günlüğünde, aktif engelleme listesinde ve kullanıcı listesinde gizle',

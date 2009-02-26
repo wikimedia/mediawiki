@@ -11,7 +11,6 @@
  * @author Meisam
  * @author Meno25
  * @author Roozbeh Pournader <roozbeh at gmail.com>
- * @author Verdy p
  * @author לערי ריינהארט
  */
 

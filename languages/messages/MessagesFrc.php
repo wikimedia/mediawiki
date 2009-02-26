@@ -5,6 +5,7 @@
  * @file
  *
  * @author JeanVoisin
+ * @author PieRRoMaN
  * @author RoyAlcatraz
  * @author Urhixidur
  * @author Zetud
@@ -172,7 +173,7 @@ $messages = array(
 'talkpagelinktext'  => 'Discuter',
 'specialpage'       => 'Page espéciale',
 'personaltools'     => 'Outils personnels',
-'postcomment'       => 'Additionner un commentaire',
+'postcomment'       => 'Nouvelle section',
 'articlepage'       => "Voir l'article",
 'views'             => 'Vues',
 'toolbox'           => "Boëte d'outils",
@@ -432,7 +433,7 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'anoneditwarning'           => "'''Attention:''' Vous êtes pas connecté.  Votre adresse IP vas être sauvée dans la liste des changements pour cette page.",
 'missingsummary'            => "'''Attention:'''  Vous avez pas mis de description.  Si vous cliquez le bouton \"Sauver\" encore, votre changement va être sauvé sans description.",
 'missingcommenttext'        => 'Mettez donc un commentaire en bas.',
-'missingcommentheader'      => "'''Attention:'''  Vous avez pas pas mis de sujet pour ce commentaire.  Si vous cliquez le bouton \"Sauver\" encore, votre changement va être sauvé sans sujet.",
+'missingcommentheader'      => "'''Attention :''' Vous avez pas mis de sujet pour ce commentaire. Si vous cliquez le bouton \"Sauver\" encore, votre changement va être sauvé sans sujet.",
 'summary-preview'           => "Vue d'avance de la description:",
 'subject-preview'           => "Vue d'avance du sujet:",
 'blockedtitle'              => "L'useur est bloqué",

@@ -14,7 +14,6 @@
  * @author Smeira
  * @author Tlustulimu
  * @author Urhixidur
- * @author Verdy p
  * @author Yekrats
  * @author לערי ריינהארט
  */
@@ -1991,7 +1990,7 @@ Se nova paĝo kun la sama nomo estis kreita post la forigo, la restarigitaj vers
 Vi verŝajne havas malbonan ligilon, aŭ la versio eble estis restarigita aŭ forigita de la arkivo.',
 'undelete-nodiff'              => 'Neniu antaŭa versio troviĝis.',
 'undeletebtn'                  => 'Restarigi',
-'undeletelink'                 => 'restarigi',
+'undeletelink'                 => 'vidi/restarigi',
 'undeletereset'                => 'Restarigi',
 'undeleteinvert'               => 'Inversigi selektaĵon',
 'undeletecomment'              => 'Komento:',
@@ -2277,6 +2276,7 @@ La celartikolo "[[:$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon 
 'export-addcat'     => 'Aldoni',
 'export-download'   => 'Konservi kiel dosieron',
 'export-templates'  => 'Inkluzivi ŝablonojn',
+'export-pagelinks'  => 'Inkluzivi ligitajn paĝoj al profundo de:',
 
 # Namespace 8 related
 'allmessages'               => 'Ĉiuj mesaĝoj',

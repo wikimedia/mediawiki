@@ -27,7 +27,6 @@
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
  * @author UV
  * @author Umherirrender
- * @author Verdy p
  * @author W (aka Wuzur)
  * @author לערי ריינהארט
  */
@@ -508,7 +507,7 @@ $messages = array(
 'userpage'          => 'Benutzerseite',
 'projectpage'       => 'Meta-Text',
 'imagepage'         => 'Dateiseite',
-'mediawikipage'     => 'Inhaltsseite anzeigen',
+'mediawikipage'     => 'Meldungsseite anzeigen',
 'templatepage'      => 'Vorlagenseite anzeigen',
 'viewhelppage'      => 'Hilfeseite anzeigen',
 'categorypage'      => 'Kategorieseite anzeigen',
@@ -1723,7 +1722,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 
 # MIME search
 'mimesearch'         => 'Suche nach MIME-Typ',
-'mimesearch-summary' => 'Auf dieser Spezialseite können die Dateien nach dem MIME-Typ gefiltert werden. Die Eingabe muss immer den Medien- und Subtyp beinhalten: <tt>image/jpeg</tt> (siehe Bildbeschreibungsseite).',
+'mimesearch-summary' => 'Auf dieser Spezialseite können die Dateien nach dem MIME-Typ gefiltert werden. Die Eingabe muss immer den Medien- und Subtyp beinhalten: <tt>image/jpeg</tt> (siehe Dateibeschreibungsseite).',
 'mimetype'           => 'MIME-Typ:',
 'download'           => 'Herunterladen',
 

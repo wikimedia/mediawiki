@@ -1849,8 +1849,8 @@ Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
 'livepreview-error'   => 'Bağlanamadı: $1 "$2". Adiy baqıp çıquvnı qullanıp baqıñız.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => '$1 saniyeden evel ve ondan soñ yapılğan deñişikliklerniñ bu cedvelde kösterilmemesi mümkün.',
-'lag-warn-high'   => 'Malümat bazasındaki problemalar sebebinden $1 saniyeden evel ve ondan soñ yapılğan deñişikliklerniñ bu cedvelde kösterilmemesi mümkün.',
+'lag-warn-normal' => '$1 saniyeden evel ve ondan soñ yapılğan deñişiklikler bu cedvelde kösterilmeyip olalar.',
+'lag-warn-high'   => 'Malümat bazasındaki problemalar sebebinden $1 saniyeden evel ve ondan soñ yapılğan deñişiklikler bu cedvelde kösterilmeyip olalar.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Muzakere saifesini esapqa almayıp, közetüv cedveliñizde {{PLURAL:$1|1|$1}} saife bar.',

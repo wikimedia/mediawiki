@@ -776,7 +776,8 @@ iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 'revdelete-selected'             => "'''{{PLURAL:$2|Selected badlao|Selected badlao}} of [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:'''",
 'revdelete-text'                 => "'''Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.'''
-Duusra admins {{SITENAME}} me, lukawa gais content ke khole saki aur iske mitae bhi saki yahi interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.",
+Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae bhi sake hai interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.
+Meharbaani kar ke ii confirm karo ki aap ii chij kare mangta hai, aap iske natija samajhta hai, aur aap iske [[{{MediaWiki:Policy-url}}|the policy]] ke niche karta hai.",
 'revdelete-legend'               => 'Dekhe waala rukawat set karo',
 'revdelete-hide-text'            => 'Badlawa gais text ke lukao',
 'revdelete-hide-name'            => 'Kaam aur manjil ke lukao',
@@ -1744,28 +1745,35 @@ Feedback aur aage ke sahaeta:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'            => 'Pana ke delete karo',
-'confirm'               => 'Confirm karo',
-'excontent'             => "content rahaa: '$1'",
-'excontentauthor'       => "content rahaa: '$1' (aur khaali ek contributor rahaa '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'         => "blanking se pahile content rahaa: '$1'",
-'exblank'               => 'panna khaali rahaa',
-'delete-confirm'        => '"$1" ke mitao',
-'delete-legend'         => 'Mitao',
-'historywarning'        => 'Sawadhan: Jon page aap delete kare waala hai ke itihaas hai:',
-'confirmdeletetext'     => 'Aap ek panna ke uske itihaas ke saathe delete kare waala hai.
+'deletepage'             => 'Pana ke delete karo',
+'confirm'                => 'Confirm karo',
+'excontent'              => "content rahaa: '$1'",
+'excontentauthor'        => "content rahaa: '$1' (aur khaali ek contributor rahaa '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "blanking se pahile content rahaa: '$1'",
+'exblank'                => 'panna khaali rahaa',
+'delete-confirm'         => '"$1" ke mitao',
+'delete-legend'          => 'Mitao',
+'historywarning'         => 'Sawadhan: Jon page aap delete kare waala hai ke itihaas hai:',
+'confirmdeletetext'      => 'Aap ek panna ke uske itihaas ke saathe delete kare waala hai.
 Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, aur aap iske [[{{MediaWiki:Policy-url}}|the policy]] ke policy ke niche delete karta hai.',
-'actioncomplete'        => 'Action puura hoe gais hai',
-'deletedtext'           => '"<nowiki>$1</nowiki>" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
-'deletedarticle'        => '"[[$1]]" ke hatae dewa gis hai',
-'suppressedarticle'     => 'suppressed "[[$1]]"',
-'dellogpage'            => 'Hatane ke suchi',
-'dellogpagetext'        => 'Niche nawaa mitawa gais panna ke suchi hai.',
-'deletionlog'           => 'deletion log',
-'reverted'              => 'Pahile ke revision pe lautae dewa gais hai',
-'deletecomment'         => 'Delete kare ke kaaran:',
-'deleteotherreason'     => 'Aur/duusra kaaran:',
-'deletereasonotherlist' => 'Duusra kaaran',
+'actioncomplete'         => 'Action puura hoe gais hai',
+'deletedtext'            => '"<nowiki>$1</nowiki>" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
+'deletedarticle'         => '"[[$1]]" ke hatae dewa gis hai',
+'suppressedarticle'      => 'suppressed "[[$1]]"',
+'dellogpage'             => 'Hatane ke suchi',
+'dellogpagetext'         => 'Niche nawaa mitawa gais panna ke suchi hai.',
+'deletionlog'            => 'deletion log',
+'reverted'               => 'Pahile ke revision pe lautae dewa gais hai',
+'deletecomment'          => 'Delete kare ke kaaran:',
+'deleteotherreason'      => 'Aur/duusra kaaran:',
+'deletereasonotherlist'  => 'Duusra kaaran',
+'deletereason-dropdown'  => '*Sadharan mitae ke kaaran
+** Author ke request
+** Copyright ke violation
+** Vandalism',
+'delete-edit-reasonlist' => 'Mitae ke kaaran ke badlo',
+'delete-toobig'          => 'Ii panna ke barraa balao ke itihass hai, $1 se jaada {{PLURAL:$1|revision|revisions}}.
+Aisan panna ke mitae pe rok lagawa gais hai so that accidental disruption of {{SITENAME}} ke roka jaae sake hai.',
 
 # Rollback
 'rollbacklink' => 'pahile jaise karo',
