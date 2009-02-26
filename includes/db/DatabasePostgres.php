@@ -689,7 +689,7 @@ class DatabasePostgres extends Database {
 	 * Takes same arguments as Database::select()
 	 */
 
-	function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
+	function estimateRowCount( $table, $vars='*', $conds='', $fname = 'DatabasePostgres::estimateRowCount', $options = array() ) {
 		$options['EXPLAIN'] = true;
 		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		$rows = -1;
@@ -709,7 +709,7 @@ class DatabasePostgres extends Database {
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
 	 */
-	function indexInfo( $table, $index, $fname = 'Database::indexExists' ) {
+	function indexInfo( $table, $index, $fname = 'DatabasePostgres::indexInfo' ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
@@ -723,7 +723,7 @@ class DatabasePostgres extends Database {
 		return false;
 	}
 
-	function indexUnique ($table, $index, $fname = 'Database::indexUnique' ) {
+	function indexUnique ($table, $index, $fname = 'DatabasePostgres::indexUnique' ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'".
 			" AND indexdef LIKE 'CREATE UNIQUE%(" . 
 			$this->strencode( $this->indexName( $index ) ) .
@@ -925,7 +925,7 @@ class DatabasePostgres extends Database {
 	# It may be more efficient to leave off unique indexes which are unlikely to collide.
 	# However if you do this, you run the risk of encountering errors which wouldn't have
 	# occurred in MySQL
-	function replace( $table, $uniqueIndexes, $rows, $fname = 'Database::replace' ) {
+	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabasePostgres::replace' ) {
 		$table = $this->tableName( $table );
 
 		if (count($rows)==0) {
@@ -975,7 +975,7 @@ class DatabasePostgres extends Database {
 	}
 
 	# DELETE where the condition is a join
-	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = "Database::deleteJoin" ) {
+	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'DatabasePostgres::deleteJoin' ) {
 		if ( !$conds ) {
 			throw new DBUnexpectedError($this,  'Database::deleteJoin() called with empty $conds' );
 		}
@@ -1092,12 +1092,12 @@ class DatabasePostgres extends Database {
 	 */
 	function relationExists( $table, $types, $schema = false ) {
 		global $wgDBmwschema;
-		if (!is_array($types))
-			$types = array($types);
-		if (! $schema )
+		if ( !is_array( $types ) )
+			$types = array( $types );
+		if ( !$schema )
 			$schema = $wgDBmwschema;
-		$etable = $this->addQuotes($table);
-		$eschema = $this->addQuotes($schema);
+		$etable = $this->addQuotes( $table );
+		$eschema = $this->addQuotes( $schema );
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
 			. "WHERE c.relnamespace = n.oid AND c.relname = $etable AND n.nspname = $eschema "
 			. "AND c.relkind IN ('" . implode("','", $types) . "')";
@@ -1112,15 +1112,15 @@ class DatabasePostgres extends Database {
 	 * For backward compatibility, this function checks both tables and
 	 * views.
 	 */
-	function tableExists ($table, $schema = false) {
-		return $this->relationExists($table, array('r', 'v'), $schema);
+	function tableExists( $table, $schema = false ) {
+		return $this->relationExists( $table, array( 'r', 'v' ), $schema );
 	}
 
-	function sequenceExists ($sequence, $schema = false) {
-		return $this->relationExists($sequence, 'S', $schema);
+	function sequenceExists( $sequence, $schema = false ) {
+		return $this->relationExists( $sequence, 'S', $schema );
 	}
 
-	function triggerExists($table, $trigger) {
+	function triggerExists( $table, $trigger ) {
 		global $wgDBmwschema;
 
 		$q = <<<END
@@ -1136,20 +1136,20 @@ END;
 		if (!$res)
 			return NULL;
 		$rows = $res->numRows();
-		$this->freeResult($res);
+		$this->freeResult( $res );
 		return $rows;
 	}
 
-	function ruleExists($table, $rule) {
+	function ruleExists( $table, $rule ) {
 		global $wgDBmwschema;
 		$exists = $this->selectField("pg_rules", "rulename",
 				array(	"rulename" => $rule,
 					"tablename" => $table,
-					"schemaname" => $wgDBmwschema));
+					"schemaname" => $wgDBmwschema ) );
 		return $exists === $rule;
 	}
 
-	function constraintExists($table, $constraint) {
+	function constraintExists( $table, $constraint ) {
 		global $wgDBmwschema;
 		$SQL = sprintf("SELECT 1 FROM information_schema.table_constraints ".
 			   "WHERE constraint_schema = %s AND table_name = %s AND constraint_name = %s",
@@ -1228,7 +1228,7 @@ END;
 	}
 
 	/* Not even sure why this is used in the main codebase... */
-	function limitResultForUpdate($sql, $num) {
+	function limitResultForUpdate( $sql, $num ) {
 		return $sql;
 	}
 
