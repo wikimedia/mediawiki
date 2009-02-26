@@ -691,6 +691,11 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 'resetpass-wrong-oldpass'   => 'Mật khẩu tạm hoặc mật khẩu hiện thời không hợp lệ.
 Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đã yêu cầu cung cấp một mật khẩu tạm mới.',
 'resetpass-temp-password'   => 'Mật khẩu tạm:',
+'resetpass-no-others'       => 'Bạn không thể tái tạo mật khẩu cho thành viên khác.',
+'resetpass-log'             => 'Nhật trình tái tạo mật khẩu',
+'resetpass-logtext'         => 'Dưới đây là nhật trình ghi lại những thành viên đã được người quản lý tái tạo mật khẩu giúp.',
+'resetpass-logentry'        => 'đã thay đổi mật khẩu cho $1',
+'resetpass-comment'         => 'Lý do tái tạo mật khẩu:',
 
 # Edit page toolbar
 'bold_sample'     => 'Chữ đậm',
@@ -949,9 +954,10 @@ hoặc bạn đang tìm cách ẩn phiên bản hiện tại.',
 'revdelete-nologid-text'         => 'Bạn chưa chỉ định sự kiện nhật trình mục tiêu mà chức năng này ghi vào hoặc mục nhật trình chỉ định không tồn tại.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:'''",
-'revdelete-text'                 => "'''Các phiên bản và sự kiện bị xóa vẫn còn trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.'''
+'revdelete-text'                 => "'''Các phiên bản và sự kiện bị xóa sẽ vẫn xuất hiện trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.'''
 
-Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.",
+Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.
+Xin hãy xác nhận rằng bạn thực sự muốn làm điều này, hiểu được hệ quả của nó, và làm theo đúng [[{{MediaWiki:Policy-url}}|quy định]].",
 'revdelete-legend'               => 'Thiết lập hạn chế khả kiến',
 'revdelete-hide-text'            => 'Ẩn nội dung phiên bản',
 'revdelete-hide-name'            => 'Ẩn tác vụ và đích của tác vụ',
@@ -1091,6 +1097,9 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'notextmatches'                    => 'Không tìm thấy nội dung trang',
 'prevn'                            => '$1 trước',
 'nextn'                            => '$1 sau',
+'prevn-title'                      => '$1 {{PLURAL:$1|kết quả|kết quả}} trước',
+'nextn-title'                      => '$1 {{PLURAL:$1|kết quả|kết quả}} sau',
+'shown-title'                      => 'Hiển thị $1 {{PLURAL:$1|kết quả|kết quả}} mỗi trang',
 'viewprevnext'                     => 'Xem ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Tùy chọn tìm kiếm',
 'searchmenu-exists'                => "* Trang '''[[$1]]'''",
@@ -1318,6 +1327,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'right-userrights'           => 'Sửa tất cả quyền thành viên',
 'right-userrights-interwiki' => 'Sửa quyền thành viên của các thành viên ở các wiki khác',
 'right-siteadmin'            => 'Khóa và mở khóa cơ sở dữ liệu',
+'right-reset-passwords'      => 'Tái tạo mật khẩu của thành viên khác',
 
 # User rights log
 'rightslog'      => 'Nhật trình cấp quyền thành viên',
@@ -1560,13 +1570,15 @@ Có [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].',
 'morelinkstoimage'          => 'Xem [[Special:WhatLinksHere/$1|thêm liên kết]] đến tập tin này.',
 'redirectstofile'           => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau chuyển hướng đến tập tin này:',
 'duplicatesoffile'          => '{{PLURAL:$1|Tập tin sau|$1 tập tin sau}} là bản sao của tập tin này ([[Special:FileDuplicateSearch/$2|chi tiết]]):',
-'sharedupload'              => 'Tập tin này được tải lên để dùng chung và có thể dùng ở các dự án khác. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Tập tin này được tải lên tại $1 và có thể dùng ở các dự án khác. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Xin xem $1 để biết thêm thông tin.',
 'shareduploadwiki-desc'     => 'Dưới đây là nội dung từ trang $1 tại kho lưu trữ chung.',
 'shareduploadwiki-linktext' => 'trang miêu tả tập tin',
 'noimage'                   => 'Không có tập tin có tên này, nhưng bạn có thể $1.',
 'noimage-linktext'          => 'tải tập tin lên',
 'uploadnewversion-linktext' => 'Tải lên phiên bản mới',
+'shared-repo-from'          => 'tại $1', # $1 is the repository name
+'shared-repo'               => 'kho lưu trữ dùng chung', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',
@@ -2036,7 +2048,7 @@ Chỉ có người quản lý mới xem được văn bản đầy đủ của n
 'undeleterevision-missing'     => 'Phiên bản này không hợp lệ hay không tồn tại. Đây có thể là một địa chỉ sai, hoặc là phiên bản đã được phục hồi hoặc đã xóa khỏi kho lưu trữ.',
 'undelete-nodiff'              => 'Không tìm thấy phiên bản cũ hơn.',
 'undeletebtn'                  => 'Phục hồi',
-'undeletelink'                 => 'phục hồi',
+'undeletelink'                 => 'xem lại/phục hồi',
 'undeletereset'                => 'Tẩy trống',
 'undeleteinvert'               => 'Đảo sự lựa chọn',
 'undeletecomment'              => 'Lý do:',
@@ -2282,6 +2294,9 @@ Xin hãy chọn tên khác.',
 'move-redirect-suppressed'     => 'đã tắt chuyển hướng',
 'movelogpage'                  => 'Nhật trình di chuyển',
 'movelogpagetext'              => 'Dưới đây là danh sách các trang đã được di chuyển.',
+'movesubpage'                  => '{{PLURAL:$1|Trang con|Các trang con}}',
+'movesubpagetext'              => 'Trang này có $1 {{PLURAL:$1|trang con|trang con}} như hiển thị dưới đây.',
+'movenosubpage'                => 'Trang này không có trang con.',
 'movereason'                   => 'Lý do:',
 'revertmove'                   => 'lùi lại',
 'delete_and_move'              => 'Xóa và đổi tên',

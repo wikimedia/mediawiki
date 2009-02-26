@@ -298,7 +298,7 @@ $messages = array(
 'pagecategories'                 => '{{PLURAL:$1|Saachjrupp|Saachjruppe}}',
 'category_header'                => 'Atikkele in de Saachjrupp „$1“',
 'subcategories'                  => 'Ungerjruppe',
-'category-media-header'          => 'Medie en de Saachjrupp "$1"',
+'category-media-header'          => 'Dateie en de Saachjrupp "$1"',
 'category-empty'                 => "''En dä Saachjrupp hee sin kein Sigge un kein Dateie.''",
 'hidden-categories'              => 'Verstoche Saachjrupp{{PLURAL:$1||e|e}}',
 'hidden-category-category'       => 'Verstoche Saachjruppe', # Name of the category where hidden categories will be listed
@@ -338,7 +338,7 @@ Dat es och all op Änglesch:
 'and'            => ', un',
 
 # Metadata in edit box
-'metadata_help' => 'Däm Beld sing Meta-Daate:',
+'metadata_help' => 'Metta-Daate:',
 
 'errorpagetitle'    => 'Fähler',
 'returnto'          => 'Jangk widder noh: „$1“.',
@@ -374,13 +374,13 @@ Dat es och all op Änglesch:
 'personaltools'     => 'Metmaacher Werkzüch',
 'postcomment'       => 'Neu Avschnedd op de Klaafsigg donn',
 'articlepage'       => 'Aanluure wat op dä Sigg drop steiht',
-'talk'              => 'Klaaf',
+'talk'              => 'Klaafe',
 'views'             => 'Aansichte',
 'toolbox'           => 'Werkzüch',
 'userpage'          => 'Däm Metmaacher sing Sigg aanluure',
 'projectpage'       => 'De Projeksigg aanluure',
 'imagepage'         => 'De Sigg övver die Dattei aanluure',
-'mediawikipage'     => 'De Mediesigg aanluure',
+'mediawikipage'     => 'Di Sigg med enem Tex uss em Ingerfäjß vum Wiki aanluure',
 'templatepage'      => 'De Schablohn ier Sigk aanluere',
 'viewhelppage'      => 'De Hölpsigg aanluure',
 'categorypage'      => 'De Saachjruppesigg aanluure',
@@ -463,7 +463,7 @@ Dat es och all op Änglesch:
 'nstab-special'   => 'Söndersigg',
 'nstab-project'   => 'Projeksigg',
 'nstab-image'     => 'Datei',
-'nstab-mediawiki' => 'Tex',
+'nstab-mediawiki' => 'Tex/Nohreesch',
 'nstab-template'  => 'Schablon',
 'nstab-help'      => 'Hölp',
 'nstab-category'  => 'Saachjrupp',
@@ -1501,7 +1501,7 @@ de Versione uß de Fojangeheit, un de Logbööcher — als Standad:',
 'rcshowhideanons'                   => '$1 de namenlose Metmaacher ehr Änderunge',
 'rcshowhidepatr'                    => '$1 de nohjeluurte Änderunge',
 'rcshowhidemine'                    => '$1 ming eije Änderunge',
-'rclinks'                           => 'Zeich de letzte{{int:pipe-separator}}$1{{int:pipe-separator}}Änderunge us de letzte{{int:pipe-separator}}$2{{int:pipe-separator}}Däch, un dun{{int:pipe-separator}}$3',
+'rclinks'                           => 'Zeich de letzte {{int:pipe-separator}}$1{{int:pipe-separator}} Änderunge us de letzte {{int:pipe-separator}}$2{{int:pipe-separator}} Däch, un dun {{int:pipe-separator}}$3',
 'diff'                              => 'Ungerscheid',
 'hist'                              => 'Versione',
 'hide'                              => 'Usblende:',
@@ -1688,14 +1688,14 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 
 # Special:ListFiles
 'listfiles-summary'     => "Hee sin de huhjeladene Dateie opjelis. Et eetz wäde de zoletz huhjeladene Dateie aanjezeich. Wa'mer op de Övverschreff von ene Spalt klick, weed die Spalt sotteet, wa'mer norrens klick, weed de Reiejfolg ömjedrieht.",
-'listfiles_search_for'  => 'Sök noh däm Name vun däm Beld:',
+'listfiles_search_for'  => 'Sök noh däm Name vun dä Datei:',
 'imgfile'               => 'Datei',
 'listfiles'             => 'Dateie opleste',
 'listfiles_date'        => 'Datum',
 'listfiles_name'        => 'Name',
 'listfiles_user'        => 'Metmaacher',
 'listfiles_size'        => 'Byte',
-'listfiles_description' => 'Wat es op däm Beld drop?',
+'listfiles_description' => 'Wat en dä Datei dren shtish',
 'listfiles_count'       => 'Versione',
 
 # File description page
@@ -1768,7 +1768,7 @@ Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 'mimesearch-summary' => 'Op hee dä Sondersigg könne de Dateie noh em MIME-Tüpp ußjesöök wäde.
 Mer moß immer der Medietüp un der Ongertüp aanjevve.
 Zem Beispell: <tt>image/jpeg</tt>
-— kannß donoh op dä Beschrievungssigge von de Belder loore.',
+— kannß donoh op dä Beschrievungssigge von de Dateie loore.',
 'mimetype'           => 'MIME-Typ:',
 'download'           => 'Erungerlade',
 
@@ -2795,7 +2795,7 @@ $1',
 'noimages'              => 'Kein Dateie jefunge.',
 'ilsubmit'              => 'Sök',
 'bydate'                => 'nohm Datum',
-'sp-newimages-showfrom' => 'Zeich de neu Belder av däm $1 öm $2 Uhr',
+'sp-newimages-showfrom' => 'Zeich de neu Dateie av däm $1 öm $2 Uhr',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds-abbrev' => 'Sek.',
@@ -2805,8 +2805,8 @@ $1',
 # Bad image list
 'bad_image_list' => '<strong>Fomat:</strong>
 Nur Reije met ennem * am Aanfang don jet.
-Tirek noh däm * moß ene Link op e Beld sind, wat mer nit han welle.
-Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm eß.',
+Tirek noh däm * moß ene Link op en Datei sin, die mer nit han welle.
+Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm eß.',
 
 # Metadata
 'metadata'          => 'Metadaate',
@@ -3308,7 +3308,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'version-software-version'         => 'Version',
 
 # Special:FilePath
-'filepath'         => 'Bellder, Tööhn, uew. zëije, med ier URL',
+'filepath'         => 'Medije-Dateie med ier URL zëije',
 'filepath-page'    => 'Dattëij_Name:',
 'filepath-submit'  => 'Zëĳsh dä Pahdt',
 'filepath-summary' => "Med dä Söndersigg hee künnd'Er dä kompläte Paad vun de neuste Version vun ene Datei direk erusfenge. Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.
@@ -3336,7 +3336,7 @@ Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 'specialpages-group-other'       => 'Ander Sondersigge',
 'specialpages-group-login'       => 'Aamelde',
 'specialpages-group-changes'     => 'Letzte Änderunge un Logböcher',
-'specialpages-group-media'       => 'Medie',
+'specialpages-group-media'       => 'Dateie — Huhlaade un Opliste',
 'specialpages-group-users'       => 'Metmaacher un denne ier Rääschte',
 'specialpages-group-highuse'     => 'Öff jebruchte Sigge',
 'specialpages-group-pages'       => 'Siggeliste',
@@ -3353,10 +3353,11 @@ Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 'external_image_whitelist' => ' # Donn aan dä Reih hee nix ändere<pre>
 # Onge künne Brochstöck fun regular expressions aanjejovve wäde, 
 # alsu dä Deil zwesche / und /
-# Noh em Verjliische met däm URL vun enm Beld fun ußerhallef:
-# Treffer: Dat Beld weed jezeich. Söns: ene Link weed aanjezeich.
+# Noh em Verjliische met däm URL vun ene Datei fun ußerhallef:
+# Treffer: De Datei weed jezeich odder enjebonge.
+# Söns: ene Link weed aanjezeich.
 # Reije met # am Aanfang, sen bloß Kommenta
-# Donn de Brochstöck hee noh endrare, un di Reih sellver nit ändere</pre>',
+# Donn de Brochstöck hee noh endrare, un di Reihe bes hee nit ändere</pre>',
 
 # Special:Tags
 'tags'                    => 'De jöltijje Makeerunge för Änderunge',

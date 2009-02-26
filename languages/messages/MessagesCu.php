@@ -207,7 +207,7 @@ $messages = array(
 'showtoc'             => 'ви́ждь',
 'hidetoc'             => 'съкрꙑи',
 'viewdeleted'         => '$1 ви́дєти хо́щєши ;',
-'red-link-title'      => '$1 (ѥщє нє напь́сано ѥ́стъ)',
+'red-link-title'      => '$1 (си страни́цѧ нѣ́стъ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'члѣ́нъ',
@@ -528,7 +528,7 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'     => 'моꙗ́ по́льꙃєватєл҄ьска страни́ца',
-'tooltip-pt-mytalk'       => 'моꙗ́ бєсѣ́дꙑ страни́ца',
+'tooltip-pt-mytalk'       => 'твоꙗ́ бєсѣ́дꙑ страни́ца',
 'tooltip-pt-logout'       => 'ис̾хо́дъ',
 'tooltip-ca-viewsource'   => 'си страни́ца ꙁабранєна́ ѥ́стъ ⁙
 ѥѩ исто́чьнъ о́браꙁъ ви́дєти мо́жєщи',
@@ -566,7 +566,7 @@ $messages = array(
 'table_pager_limit_submit' => 'прѣиди́',
 
 # Auto-summaries
-'autosumm-new' => 'но́ва страни́ца : $1',
+'autosumm-new' => 'но́ва страни́ца сътворєна́  мѣ́роѭ $1 ѥ́стъ',
 
 # Size units
 'size-bytes' => '$1 Б҃',

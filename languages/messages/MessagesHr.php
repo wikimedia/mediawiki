@@ -15,7 +15,6 @@
  * @author SpeedyGonsales
  * @author Suradnik13
  * @author Treecko
- * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -2099,7 +2098,7 @@ Tekst izbrisanih inačica dostupan je samo administratorima.',
 ili je promjena vraćena ili uklonjena iz arhive.',
 'undelete-nodiff'              => 'Prethodne promjene nisu nađene.',
 'undeletebtn'                  => 'Vrati!',
-'undeletelink'                 => 'vrati',
+'undeletelink'                 => 'vidi/vrati',
 'undeletereset'                => 'Očisti',
 'undeleteinvert'               => 'Obrni odabir',
 'undeletecomment'              => 'Komentar:',

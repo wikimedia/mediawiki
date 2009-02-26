@@ -21,7 +21,6 @@
  * @author MaxSem
  * @author Putnik
  * @author VasilievVV
- * @author Verdy p
  * @author Александр Сигачёв
  * @author לערי ריינהארט
  */
@@ -2138,7 +2137,7 @@ $1',
 'nolinkshere-ns'           => "В выбранном пространстве имён нет страниц, ссылающихся на '''[[:$1]]'''.",
 'isredirect'               => 'страница-перенаправление',
 'istemplate'               => 'включение',
-'isimage'                  => 'ссылка с изображения',
+'isimage'                  => 'ссылка для изображения',
 'whatlinkshere-prev'       => '{{PLURAL:$1|предыдущая|предыдущие|предыдущие}} $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|следующая|следующие|следующие}} $1',
 'whatlinkshere-links'      => '← ссылки',
@@ -2327,7 +2326,7 @@ $1',
 'move-redirect-suppressed'     => 'перенаправление подавлено',
 'movelogpage'                  => 'Журнал переименований',
 'movelogpagetext'              => 'Ниже представлен список переименованных страниц.',
-'movesubpage'                  => 'Подстраницы',
+'movesubpage'                  => '{{PLURAL:$1|Подстраница|Подстраницы}}',
 'movesubpagetext'              => 'У этой страницы $1 {{PLURAL:$1|подстраница|подстраницы|подстраниц}}.',
 'movenosubpage'                => 'У этой страницы нет подстраниц.',
 'movereason'                   => 'Причина',
