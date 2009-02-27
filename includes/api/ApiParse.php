@@ -156,7 +156,7 @@ class ApiParse extends ApiBase {
 							$p_result->getDisplayTitle() :
 							$titleObj->getPrefixedText();
 		if(!is_null($oldid))
-			$result_array['revid'] = $oldid;
+			$result_array['revid'] = intval($oldid);
 
 		$result_mapping = array(
 			'redirects' => 'r',

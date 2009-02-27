@@ -94,7 +94,7 @@ class ApiBlock extends ApiBase {
 			$this->dieUsageMsg($retval);
 
 		$res['user'] = $params['user'];
-		$res['userID'] = $userID;
+		$res['userID'] = intval($userID);
 		$res['expiry'] = ($expiry == Block::infinity() ? 'infinite' : wfTimestamp(TS_ISO_8601, $expiry));
 		$res['reason'] = $params['reason'];
 		if($params['anononly'])

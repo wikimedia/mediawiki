@@ -162,7 +162,7 @@ class ApiImportReporter extends ImportReporter {
 		// Add a result entry
 		$r = array();
 		ApiQueryBase::addTitleInfo($r, $title);
-		$r['revisions'] = $successCount;
+		$r['revisions'] = intval($successCount);
 		$this->mResultArr[] = $r;
 
 		// Piggyback on the parent to do the logging

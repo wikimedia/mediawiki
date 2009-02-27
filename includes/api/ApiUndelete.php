@@ -78,9 +78,9 @@ class ApiUndelete extends ApiBase {
 				array($titleObj, array(), $wgUser, $params['reason']) );
 
 		$info['title'] = $titleObj->getPrefixedText();
-		$info['revisions'] = $retval[0];
-		$info['fileversions'] = $retval[1];
-		$info['reason'] = $retval[2];
+		$info['revisions'] = intval($retval[0]);
+		$info['fileversions'] = intval($retval[1]);
+		$info['reason'] = intval($retval[2]);
 		$this->getResult()->addValue(null, $this->getModuleName(), $info);
 	}
 

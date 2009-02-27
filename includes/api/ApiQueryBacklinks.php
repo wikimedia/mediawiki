@@ -292,7 +292,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	private function extractRowInfo($row) {
 		$this->pageMap[$row->page_namespace][$row->page_title] = $row->page_id;
 		$t = Title::makeTitle($row->page_namespace, $row->page_title);
-		$a = array('pageid' => $row->page_id);
+		$a = array('pageid' => intval($row->page_id));
 		ApiQueryBase::addTitleInfo($a, $t);
 		if($row->page_is_redirect)
 		{
@@ -305,7 +305,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	private function extractRedirRowInfo($row)
 	{
-		$a['pageid'] = $row->page_id;
+		$a['pageid'] = intval($row->page_id);
 		ApiQueryBase::addTitleInfo($a, Title::makeTitle($row->page_namespace, $row->page_title));
 		if($row->page_is_redirect)
 			$a['redirect'] = '';

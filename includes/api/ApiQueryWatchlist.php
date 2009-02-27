@@ -244,8 +244,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ($this->fld_timestamp)
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rc_timestamp);
 
-			$this->addFieldsIf('rc_new_len', $this->fld_sizes);
-
 		if ($this->fld_sizes) {
 			$vals['oldlen'] = intval($row->rc_old_len);
 			$vals['newlen'] = intval($row->rc_new_len);

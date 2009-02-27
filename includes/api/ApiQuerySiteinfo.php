@@ -137,7 +137,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$offset = 0;
 		}
 		$data['timezone'] = $tz;
-		$data['timeoffset'] = $offset;
+		$data['timeoffset'] = intval($offset);
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -148,7 +148,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach( $wgContLang->getFormattedNamespaces() as $ns => $title )
 		{
 			$data[$ns] = array(
-				'id' => $ns
+				'id' => intval($ns)
 			);
 			ApiResult :: setContent( $data[$ns], $title );
 			$canonical = MWNamespace::getCanonicalName( $ns );
@@ -176,7 +176,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				continue;
 			}
 			$item = array(
-				'id' => $ns
+				'id' => intval($ns)
 			);
 			ApiResult :: setContent( $item, strtr( $title, '_', ' ' ) );
 			$data[] = $item;
@@ -272,7 +272,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			$data[] = array(
 				'host' => $wgShowHostnames ? $host : '',
-				'lag' => $lag
+				'lag' => intval( $lag )
 			);
 		}
 

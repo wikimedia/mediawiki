@@ -103,11 +103,9 @@ if (!defined('MEDIAWIKI')) {
 				$name = $user->getName();
 				$data[$name]['name'] = $name;
 				if(isset($this->prop['editcount']))
-					// No proper member function in the User class for this
-					$data[$name]['editcount'] = $r->user_editcount;
+					$data[$name]['editcount'] = intval($user->getEditCount());
 				if(isset($this->prop['registration']))
-					// Nor for this one
-					$data[$name]['registration'] = wfTimestampOrNull(TS_ISO_8601, $r->user_registration);
+					$data[$name]['registration'] = wfTimestampOrNull(TS_ISO_8601, $user->getRegistration());
 				if(isset($this->prop['groups']) && !is_null($r->ug_group))
 					// This row contains only one group, others will be added from other rows
 					$data[$name]['groups'][] = $r->ug_group;

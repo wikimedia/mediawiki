@@ -192,7 +192,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$rev = array();
 			$rev['timestamp'] = wfTimestamp(TS_ISO_8601, $row->ar_timestamp);
 			if($fld_revid)
-				$rev['revid'] = $row->ar_rev_id;
+				$rev['revid'] = intval($row->ar_rev_id);
 			if($fld_user)
 				$rev['user'] = $row->ar_user_text;
 			if($fld_comment)
@@ -210,12 +210,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$pageID = $newPageID++;
 				$pageMap[$row->ar_namespace][$row->ar_title] = $pageID;
 				$t = Title::makeTitle($row->ar_namespace, $row->ar_title);
-				$a = array(
-					'title' => $t->getPrefixedText(),
-					'ns' => intval($row->ar_namespace),
-					'revisions' => array($rev)
-				);
+				$a['revisions'] = array($rev);
 				$result->setIndexedTagName($a['revisions'], 'rev');
+				ApiQueryBase::addTitleInfo($a, $t);
 				if($fld_token)
 					$a['token'] = $token;
 				$fit = $result->addValue(array('query', $this->getModuleName()), $pageID, $a);

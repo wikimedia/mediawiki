@@ -116,9 +116,8 @@ if (!defined('MEDIAWIKI')) {
 	private function extractRowInfo($row) {
 		$title = Title::makeTitle($row->page_namespace, $row->page_title);
 		$vals = array();
-		$vals['title'] = $title->getPrefixedText();
-		$vals['ns'] = $row->page_namespace;
-		$vals['id'] = $row->page_id;
+		$vals['id'] = intval($row->page_id);
+		ApiQueryBase::addTitleInfo($vals, $title);
 		return $vals;
 	}
 
