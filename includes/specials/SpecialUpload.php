@@ -1121,10 +1121,8 @@ wgUploadAutoFill = {$autofill};
 			$warningRow = '';
 			$destOnkeyup = '';
 		}
-		# Uploading a new version? If so, the name is fixed.
-		$on = $this->mForReUpload ? "readonly='readonly'" : "";
-
 		$encComment = htmlspecialchars( $this->mComment );
+		
 
 		$wgOut->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL(),
@@ -1152,10 +1150,27 @@ wgUploadAutoFill = {$autofill};
 				<td class='mw-label'>
 					<label for='wpDestFile'>{$destfilename}</label>
 				</td>
-				<td class='mw-input'>
-					<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='60'
-						value=\"{$encDestName}\" onchange='toggleFilenameFiller()' $on $destOnkeyup />
-				</td>
+				<td class='mw-input'>"
+		);
+		if( $this->mForReUpload ) {
+			$wgOut->addHTML(
+				"<input tabindex='2' type='hidden' name='wpDestFile' id='wpDestFile' 
+					value='{$encDestName}' />" . 
+				"<tt>" .
+				$encDestName .
+				"</tt>"
+			);
+		}
+		else {
+			$wgOut->addHTML(
+				"<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='60'
+						value='{$encDestName}' onchange='toggleFilenameFiller()' $destOnkeyup />"
+			);
+		}
+		
+
+		$wgOut->addHTML(
+				"</td>
 			</tr>
 			<tr>
 				<td class='mw-label'>
