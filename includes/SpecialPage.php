@@ -753,10 +753,22 @@ class SpecialPage
 		}
 	}
 
-	function outputHeader() {
+	/**
+	 * Outputs a summary message on top of special pages
+	 * Per default the message key is the canonical name of the special page
+	 * May be overriden, i.e. by extensions to stick with the naming conventions
+	 * for message keys: 'extensionname-xxx' 
+	 *
+	 * @param string message key of the summary
+	 */
+	function outputHeader( $summaryMessageKey = '' ) {
 		global $wgOut, $wgContLang;
 
-		$msg = $wgContLang->lc( $this->name() ) . '-summary';
+		if( $summaryMessageKey == '' ) {
+			$msg = $wgContLang->lc( $this->name() ) . '-summary';
+		} else {
+			$msg = $summaryMessageKey;
+		}
 		$out = wfMsgNoTrans( $msg );
 		if ( ! wfEmptyMsg( $msg, $out ) and  $out !== '' and ! $this->including() ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-specialpage-summary'>\n$1</div>", $msg );
