@@ -933,16 +933,16 @@ class Parser
 	}
 
 	function magicLinkCallback( $m ) {
-		if ( isset( $m[1] ) && strval( $m[1] ) !== '' ) {
+		if ( isset( $m[1] ) && $m[1] !== '' ) {
 			# Skip anchor
 			return $m[0];
-		} elseif ( isset( $m[2] ) && strval( $m[2] ) !== '' ) {
+		} elseif ( isset( $m[2] ) && $m[2] !== '' ) {
 			# Skip HTML element
 			return $m[0];
-		} elseif ( isset( $m[3] ) && strval( $m[3] ) !== '' ) {
+		} elseif ( isset( $m[3] ) && $m[3] !== '' ) {
 			# Free external link
 			return $this->makeFreeExternalLink( $m[0] );
-		} elseif ( isset( $m[4] ) && strval( $m[4] ) !== '' ) {
+		} elseif ( isset( $m[4] ) && $m[4] !== '' ) {
 			# RFC or PMID
 			if ( substr( $m[0], 0, 3 ) === 'RFC' ) {
 				$keyword = 'RFC';
@@ -960,7 +960,7 @@ class Parser
 			$sk = $this->mOptions->getSkin();
 			$la = $sk->getExternalLinkAttributes( $url, $keyword.$id );
 			return "<a href=\"{$url}\"{$la}>{$keyword} {$id}</a>";
-		} elseif ( isset( $m[5] ) && strval( $m[5] ) !== '' ) {
+		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# ISBN
 			$isbn = $m[5];
 			$num = strtr( $isbn, array(
