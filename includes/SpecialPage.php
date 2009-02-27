@@ -759,7 +759,7 @@ class SpecialPage
 		$msg = $wgContLang->lc( $this->name() ) . '-summary';
 		$out = wfMsgNoTrans( $msg );
 		if ( ! wfEmptyMsg( $msg, $out ) and  $out !== '' and ! $this->including() ) {
-			$wgOut->addWikiMsg( $msg );
+			$wgOut->wrapWikiMsg( "<div class='mw-specialpage-summary'>\n$1</div>", $msg );
 		}
 
 	}
