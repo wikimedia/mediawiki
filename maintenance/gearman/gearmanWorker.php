@@ -10,9 +10,8 @@ if ( isset( $options['procs'] ) ) {
 		echo "Invalid number of processes, please specify a number between 1 and 1000\n";
 		exit( 1 );
 	}
-	$fc = new ForkController;
-	if ( $fc->forkWorkers( $procs ) == 'parent' ) {
-		$fc->runParent();
+	$fc = new ForkController( $procs, ForkController::RESTART_ON_ERROR );
+	if ( $fc->start() != 'child' ) {
 		exit( 0 );
 	}
 }
