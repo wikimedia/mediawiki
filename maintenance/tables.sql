@@ -966,7 +966,7 @@ CREATE TABLE /*_*/math (
   math_html text,
   
   -- MathML output from texvc, if any
-  math_mathml text  
+  math_mathml text
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/math_inputhash ON /*_*/math (math_inputhash);
@@ -1237,11 +1237,11 @@ CREATE TABLE /*_*/updatelog (
 
 -- A table to track tags for revisions, logs and recent changes.
 CREATE TABLE /*_*/change_tag (
-	ct_rc_id int NULL,
-	ct_log_id int NULL,
-	ct_rev_id int NULL,
-	ct_tag varchar(255) NOT NULL,
-	ct_params BLOB NULL
+  ct_rc_id int NULL,
+  ct_log_id int NULL,
+  ct_rev_id int NULL,
+  ct_tag varchar(255) NOT NULL,
+  ct_params blob NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/change_tag_rc_tag ON /*_*/change_tag (ct_rc_id,ct_tag);
@@ -1253,10 +1253,10 @@ CREATE INDEX /*i*/change_tag_tag_id ON /*_*/change_tag (ct_tag,ct_rc_id,ct_rev_i
 
 -- Rollup table to pull a LIST of tags simply without ugly GROUP_CONCAT that only works on MySQL 4.1+
 CREATE TABLE /*_*/tag_summary (
-	ts_rc_id int NULL,
-	ts_log_id int NULL,
-	ts_rev_id int NULL,
-	ts_tags BLOB NOT NULL
+  ts_rc_id int NULL,
+  ts_log_id int NULL,
+  ts_rev_id int NULL,
+  ts_tags blob NOT NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/tag_summary_rc_id ON /*_*/tag_summary (ts_rc_id);
@@ -1265,7 +1265,7 @@ CREATE UNIQUE INDEX /*i*/tag_summary_rev_id ON /*_*/tag_summary (ts_rev_id);
 
 
 CREATE TABLE /*_*/valid_tag (
-	vt_tag varchar(255) NOT NULL PRIMARY KEY
+  vt_tag varchar(255) NOT NULL PRIMARY KEY
 ) /*$wgDBTableOptions*/;
 
 
