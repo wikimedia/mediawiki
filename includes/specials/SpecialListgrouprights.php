@@ -63,10 +63,13 @@ class SpecialListGroupRights extends SpecialPage {
 				$grouppage = $this->skin->makeLink( $grouppageLocalized, $groupnameLocalized );
 			}
 
-			if ( !in_array( $group, $wgImplicitGroups ) ) {
+			if ( $group === 'user' ) {
+				// Link to Special:listusers for implicit group 'user'
+				$grouplink = '<br />' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Listusers' ), wfMsgHtml( 'listgrouprights-members' ), ''  );
+			} elseif ( !in_array( $group, $wgImplicitGroups ) ) {
 				$grouplink = '<br />' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Listusers' ), wfMsgHtml( 'listgrouprights-members' ), 'group=' . $group );
 			} else {
-				// No link to Special:listusers for implicit groups as they are unlistable
+				// No link to Special:listusers for other implicit groups as they are unlistable
 				$grouplink = '';
 			}
 
