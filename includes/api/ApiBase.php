@@ -747,7 +747,7 @@ abstract class ApiBase {
 	 */
 	public function dieUsageMsg($error) {
 		$parsed = $this->parseMsg($error);
-		$this->dieUsage($parsed['code'], $parsed['info']);
+		$this->dieUsage($parsed['info'], $parsed['code']);
 	}
 	
 	/**
