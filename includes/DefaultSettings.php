@@ -2286,7 +2286,7 @@ $wgExportMaxLinkDepth = 0;
 
 
 /**
- * Edits matching these regular expressions in body text or edit summary
+ * Edits matching these regular expressions in body text
  * will be recognised as spam and rejected automatically.
  *
  * There's no administrator override on-wiki, so be careful what you set. :)
@@ -2295,6 +2295,9 @@ $wgExportMaxLinkDepth = 0;
  * See http://en.wikipedia.org/wiki/Regular_expression
  */
 $wgSpamRegex = array();
+
+/** Same as the above except for edit summaries */
+$wgSummarySpamRegex = array();
 
 /** Similarly you can get a function to do the job. The function will be given
  * the following args:
