@@ -119,6 +119,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgUseTagFilter to control enabling of filter-by-change-tag
 * (bug 17291) MediaWiki:Nocontribs now has an optional $1 parameter for the
   username
+* Wrap special page summary message '$specialPageName-summary' into a div
+  with class 'mw-specialpage-summary'
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
