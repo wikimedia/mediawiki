@@ -1603,7 +1603,7 @@ class Parser
 			wfProfileOut( __METHOD__."-misc" );
 			wfProfileIn( __METHOD__."-title" );
 			$nt = Title::newFromText( $this->mStripState->unstripNoWiki($link) );
-			if( !$nt ) {
+			if( $nt === NULL ) {
 				$s .= $prefix . '[[' . $line;
 				wfProfileOut( __METHOD__."-title" );
 				continue;
@@ -1729,6 +1729,7 @@ class Parser
 			# NS_MEDIA is a pseudo-namespace for linking directly to a file
 			# FIXME: Should do batch file existence checks, see comment below
 			if( $ns == NS_MEDIA ) {
+				wfProfileIn( __METHOD__."-media" );
 				# Give extensions a chance to select the file revision for us
 				$skip = $time = false;
 				wfRunHooks( 'BeforeParserMakeImageLinkObj', array( &$this, &$nt, &$skip, &$time ) );
@@ -1740,9 +1741,11 @@ class Parser
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
 				$s .= $prefix . $this->armorLinks( $link ) . $trail;
 				$this->mOutput->addImage( $nt->getDBkey() );
+				wfProfileOut( __METHOD__."-media" );
 				continue;
 			}
 
+			wfProfileIn( __METHOD__."-always_known" );
 			# Some titles, such as valid special pages or files in foreign repos, should
 			# be shown as bluelinks even though they're not included in the page table
 			#
@@ -1755,6 +1758,7 @@ class Parser
 				# Links will be added to the output link list after checking
 				$s .= $holders->makeHolder( $nt, $text, '', $trail, $prefix );
 			}
+			wfProfileOut( __METHOD__."-always_known" );
 		}
 		wfProfileOut( __METHOD__ );
 		return $holders;
