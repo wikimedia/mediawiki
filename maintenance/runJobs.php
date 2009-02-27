@@ -20,9 +20,8 @@ if ( isset( $options['procs'] ) ) {
 		echo "Invalid argument to --procs\n";
 		exit( 1 );
 	}
-	$fc = new ForkController;
-	if ( $fc->forkWorkers( $procs ) == 'parent' ) {
-		$fc->runParent();
+	$fc = new ForkController( $procs );
+	if ( $fc->start( $procs ) != 'child' ) {
 		exit( 0 );
 	}
 }

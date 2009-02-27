@@ -11,6 +11,11 @@ class MWGearmanJob extends Net_Gearman_Job_Common {
 		$this->complete( array( 'result' => true ) );
 		socket_close( $this->conn );
 
+		# Close some more sockets
+		wfGetLBFactory()->shutdown();
+		global $wgMemc;
+		$wgMemc->disconnect_all();
+
 		# Find PHP
 		$php = readlink( '/proc/' . posix_getpid() . '/exe' );
 		
