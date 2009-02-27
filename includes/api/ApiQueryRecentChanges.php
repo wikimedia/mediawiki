@@ -311,7 +311,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$vals['patrolled'] = '';
 			
 		if ($this->fld_loginfo && $row->rc_type == RC_LOG) {
-			$vals['logid'] = $row->rc_logid;
+			$vals['logid'] = intval($row->rc_logid);
 			$vals['logtype'] = $row->rc_log_type;
 			$vals['logaction'] = $row->rc_log_action;
 			ApiQueryLogEvents::addLogParams($this->getResult(),

@@ -60,7 +60,7 @@ class ApiPatrol extends ApiBase {
 		if($retval)
 			$this->dieUsageMsg(current($retval));
 		
-		$result = array('rcid' => $rc->getAttribute('rc_id'));
+		$result = array('rcid' => intval($rc->getAttribute('rc_id')));
 		ApiQueryBase::addTitleInfo($result, $rc->getTitle());
 		$this->getResult()->addValue(null, $this->getModuleName(), $result);
 	}

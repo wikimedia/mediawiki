@@ -492,10 +492,10 @@ class ApiQueryInfo extends ApiQueryBase {
 		{
 			if(MWNamespace::isTalk($row->page_namespace))
 				$this->talkids[MWNamespace::getSubject($row->page_namespace)][$row->page_title] =
-						$row->page_id;
+						intval($row->page_id);
 			else
 				$this->subjectids[MWNamespace::getTalk($row->page_namespace)][$row->page_title] =
-						$row->page_id;
+						intval($row->page_id);
 		}
 	}
 

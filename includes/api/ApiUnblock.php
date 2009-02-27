@@ -72,7 +72,7 @@ class ApiUnblock extends ApiBase {
 		if($retval)
 			$this->dieUsageMsg($retval);
 
-		$res['id'] = $id;
+		$res['id'] = intval($id);
 		$res['user'] = $user;
 		$res['reason'] = $reason;
 		$this->getResult()->addValue(null, $this->getModuleName(), $res);

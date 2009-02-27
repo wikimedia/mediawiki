@@ -125,8 +125,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 					$vals['pageid'] = intval($row->page_id);
 				if ($fld_title) {
 					$title = Title :: makeTitle($row->page_namespace, $row->page_title);
-					$vals['ns'] = intval($title->getNamespace());
-					$vals['title'] = $title->getPrefixedText();
+					ApiQueryBase::addTitleInfo($vals, $title);
 				}
 				if ($fld_url)
 					$vals['url'] = $row->el_to;

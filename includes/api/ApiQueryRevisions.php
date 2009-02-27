@@ -292,7 +292,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$vals = array ();
 
 		if ($this->fld_ids) {
-			$vals['revid'] = $revision->getId();
+			$vals['revid'] = intval($revision->getId());
 			// $vals['oldid'] = intval($row->rev_text_id);	// todo: should this be exposed?
 		}
 
@@ -314,7 +314,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ($this->fld_size && !is_null($revision->getSize())) {
-			$vals['size'] = $revision->getSize();
+			$vals['size'] = intval($revision->getSize());
 		}
 
 		if ($this->fld_comment) {

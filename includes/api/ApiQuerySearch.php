@@ -102,9 +102,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			
 			$title = $result->getTitle();
 			if (is_null($resultPageSet)) {
-				$vals = array(
-					'ns' => intval($title->getNamespace()),
-					'title' => $title->getPrefixedText());
+				$vals = array();
+				ApiQueryBase::addTitleInfo($vals, $title);
 				$fit = $this->getResult()->addValue(array('query', $this->getModuleName()), null, $vals);
 				if(!$fit)
 				{

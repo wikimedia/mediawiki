@@ -81,10 +81,10 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		while($row = $db->fetchObject($res))
 		{
 			$vals = array();
-			$vals['size'] = $row->cat_pages;
+			$vals['size'] = intval($row->cat_pages);
 			$vals['pages'] = $row->cat_pages - $row->cat_subcats - $row->cat_files;
-			$vals['files'] = $row->cat_files;
-			$vals['subcats'] = $row->cat_subcats;
+			$vals['files'] = intval($row->cat_files);
+			$vals['subcats'] = intval($row->cat_subcats);
 			if($row->cat_hidden)
 				$vals['hidden'] = '';
 			$fit = $this->addPageSubItems($catids[$row->cat_title], $vals);

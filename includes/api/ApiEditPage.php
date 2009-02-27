@@ -249,7 +249,7 @@ class ApiEditPage extends ApiBase {
 				$r['new'] = '';
 			case EditPage::AS_SUCCESS_UPDATE:
 				$r['result'] = "Success";
-				$r['pageid'] = $titleObj->getArticleID();
+				$r['pageid'] = intval($titleObj->getArticleID());
 				$r['title'] = $titleObj->getPrefixedText();
 				# HACK: We create a new Article object here because getRevIdFetched()
 				# refuses to be run twice, and because Title::getLatestRevId()
@@ -261,8 +261,8 @@ class ApiEditPage extends ApiBase {
 					$r['nochange'] = '';
 				else
 				{
-					$r['oldrevid'] = $oldRevId;
-					$r['newrevid'] = $newRevId;
+					$r['oldrevid'] = intval($oldRevId);
+					$r['newrevid'] = intval($newRevId);
 				}
 				break;
 			default:

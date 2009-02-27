@@ -103,10 +103,10 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 				$item = array();
 				$result->setContent( $item, $titleObj->getText() );
 				if( isset( $prop['size'] ) ) {
-					$item['size'] = $row->cat_pages;
+					$item['size'] = intval($row->cat_pages);
 					$item['pages'] = $row->cat_pages - $row->cat_subcats - $row->cat_files;
-					$item['files'] = $row->cat_files;
-					$item['subcats'] = $row->cat_subcats;
+					$item['files'] = intval($row->cat_files);
+					$item['subcats'] = intval($row->cat_subcats);
 				}
 				if( isset( $prop['hidden'] ) && $row->cat_hidden )
 					$item['hidden'] = '';
