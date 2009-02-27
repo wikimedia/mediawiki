@@ -121,6 +121,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   username
 * Wrap special page summary message '$specialPageName-summary' into a div
   with class 'mw-specialpage-summary'
+* $wgSummarySpamRegex added to handle edit summary spam. This is used *instead*
+  of $wgSpamRegex for edit summary checks. Text checks still use $wgSpamRegex.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

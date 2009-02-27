@@ -766,7 +766,7 @@ class EditPage {
 		$this->mMetaData = '' ;
 
 		# Check for spam
-		$match = self::matchSpamRegex( $this->summary );
+		$match = self::matchSummarySpamRegex( $this->summary );
 		if ( $match === false ) {
 			$match = self::matchSpamRegex( $this->textbox1 );
 		}
@@ -1063,14 +1063,26 @@ class EditPage {
 	 */
 	public static function matchSpamRegex( $text ) {
 		global $wgSpamRegex;
-		if ( $wgSpamRegex ) {
-			// For back compatibility, $wgSpamRegex may be a single string or an array of regexes.
-			$regexes = (array)$wgSpamRegex;
-			foreach( $regexes as $regex ) {
-				$matches = array();
-				if ( preg_match( $regex, $text, $matches ) ) {
-					return $matches[0];
-				}
+		// For back compatibility, $wgSpamRegex may be a single string or an array of regexes.
+		$regexes = (array)$wgSpamRegex;
+		return self::matchSpamRegexInternal( $text, $regexes );
+	}
+	
+	/**
+	 * Check given input text against $wgSpamRegex, and return the text of the first match.
+	 * @return mixed -- matching string or false
+	 */
+	public static function matchSummarySpamRegex( $text ) {
+		global $wgSummarySpamRegex;
+		$regexes = (array)$wgSummarySpamRegex;
+		return self::matchSpamRegexInternal( $text, $regexes );
+	}
+	
+	protected static function matchSpamRegexInternal( $text, $regexes ) {
+		foreach( $regexes as $regex ) {
+			$matches = array();
+			if( preg_match( $regex, $text, $matches ) ) {
+				return $matches[0];
 			}
 		}
 		return false;
