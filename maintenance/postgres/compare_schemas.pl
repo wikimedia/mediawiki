@@ -9,7 +9,7 @@ use warnings;
 use Data::Dumper;
 use Cwd;
 
-check_valid_sql();
+#check_valid_sql();
 
 my @old = ('../tables.sql');
 my $new = 'tables.sql';
@@ -48,7 +48,7 @@ $datatype = qr{($datatype)};
 
 my $typeval = qr{(\(\d+\))?};
 
-my $typeval2 = qr{ signed| unsigned| binary| NOT NULL| NULL| auto_increment| default ['\-\d\w"]+| REFERENCES .+CASCADE};
+my $typeval2 = qr{ signed| unsigned| binary| NOT NULL| NULL| PRIMARY KEY| AUTO_INCREMENT| default ['\-\d\w"]+| REFERENCES .+CASCADE};
 
 my $indextype = join '|' => qw(INDEX KEY FULLTEXT), 'PRIMARY KEY', 'UNIQUE INDEX', 'UNIQUE KEY';
 $indextype = qr{$indextype};
@@ -96,9 +96,15 @@ sub parse_sql {
 		chomp;
 
 		if (/CREATE\s*TABLE/i) {
-			m{^CREATE TABLE /\*\$wgDBprefix\*/(\w+) \($}
-				or die qq{Invalid CREATE TABLE at line $. of $oldfile\n};
-			$table = $1;
+			if (m{^CREATE TABLE /\*_\*/(\w+) \($}) {
+				$table = $1;
+			}
+			elsif (m{^CREATE TABLE /\*\$wgDBprefix\*/(\w+) \($}) {
+				$table = $1;
+			}
+			else {
+				die qq{Invalid CREATE TABLE at line $. of $oldfile\n};
+			}
 			$info{$table}{name}=$table;
 		}
 		elsif (m{^\) /\*\$wgDBTableOptions\*/}) {
@@ -114,14 +120,14 @@ sub parse_sql {
 			$info{$table}{type}=$2;
 			$info{$table}{charset}=$3;
 		}
-		elsif (/^  (\w+) $datatype$typeval$typeval2{0,3},?$/) {
+		elsif (/^  (\w+) $datatype$typeval$typeval2{0,4},?$/) {
 			$info{$table}{column}{$1} = $2;
 			my $extra = $3 || '';
 			$info{$table}{columnfull}{$1} = "$2$extra";
 		}
-		elsif (/^  ($indextype)(?: (\w+))? \(([\w, \(\)]+)\),?$/) {
-			$info{$table}{lc $1.'_name'} = $2 ? $2 : '';
-			$info{$table}{lc $1.'pk_target'} = $3;
+		elsif (m{^  UNIQUE KEY (\w+) \((.+?)\)}) {
+		}
+		elsif (m{^CREATE (?:UNIQUE )?(?:FULLTEXT )?INDEX /\*i\*/(\w+) ON /\*_\*/(\w+) \((.+?)\);}) {
 		}
 		else {
 			die "Cannot parse line $. of $oldfile:\n$_\n";
@@ -301,6 +307,7 @@ rc_log_type     varbinary(255) TEXT
 
 ## Simple text-only strings:
 ar_flags          tinyblob       TEXT
+ct_params         blob           TEXT
 fa_minor_mime     varbinary(32)  TEXT
 fa_storage_group  varbinary(16)  TEXT # Just 'deleted' for now, should stay plain text
 fa_storage_key    varbinary(64)  TEXT # sha1 plus text extension
@@ -331,6 +338,7 @@ qcc_type          varbinary(32)  TEXT
 qci_type          varbinary(32)  TEXT
 rc_params         blob           TEXT
 rlc_to_blob       blob           TEXT
+ts_tags           blob           TEXT
 ug_group          varbinary(16)  TEXT
 user_email_token  binary(32)     TEXT
 user_ip           varbinary(40)  TEXT
@@ -497,6 +505,8 @@ sub find_problems {
 
 	my $file = shift;
 	open my $fh, '<', $file or die qq{Could not open "$file": $!\n};
+	my $lastline = '';
+	my $inarray = 0;
 	while (<$fh>) {
 		if (/FORCE INDEX/ and $file !~ /Database\w*\.php/) {
 			warn "Found FORCE INDEX string at line $. of $file\n";
@@ -512,6 +522,29 @@ sub find_problems {
 		}
 		if (/\bGROUP\s+BY\s*\d\b/i and $file !~ /Database\w*\.php/) {
 			warn "Found GROUP BY # at line $. of $file\n";
+		}
+		if (/wfGetDB\s*\(\s+\)/io) {
+			warn "wfGETDB is missing parameters at line $. of $file\n";
+		}
+		if (/=\s*array\s*\(\s*$/) {
+			$inarray = 1;
+			next;
+		}
+		if ($inarray) {
+			if (/\s*\);\s*$/) {
+				$inarray = 0;
+				next;
+			}
+			next if ! /\w/ or /array\(\s*$/ or /^\s*#/ or m{^\s*//};
+			if (! /,/) {
+				my $nextline = <$fh>;
+				last if ! defined $nextline;
+				if ($nextline =~ /^\s*\)[;,]/) {
+					$inarray = 0;
+					next;
+				}
+				#warn "Array is missing a comma? Line $. of $file\n";
+			}
 		}
 	}
 	close $fh or die qq{Could not close "$file": $!\n};
