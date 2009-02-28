@@ -3316,8 +3316,8 @@ class Title {
 			'rev_page = ' . intval( $this->getArticleId() ) .
 			' AND rev_id > ' . intval( $old ) .
 			' AND rev_id < ' . intval( $new ),
-			__METHOD__,
-			array( 'USE INDEX' => 'PRIMARY' ) );
+			__METHOD__
+		);
 	}
 
 	/**
@@ -3336,7 +3336,7 @@ class Title {
 	/**
 	 * Callback for usort() to do title sorts by (namespace, title)
 	 */
-	static function compare( $a, $b ) {
+	public static function compare( $a, $b ) {
 		if( $a->getNamespace() == $b->getNamespace() ) {
 			return strcmp( $a->getText(), $b->getText() );
 		} else {
