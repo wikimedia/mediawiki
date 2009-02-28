@@ -3,3 +3,5 @@ ALTER TABLE /*$wgDBprefix*/logging
 	ADD log_target_id int unsigned NULL,
 	CHANGE `log_type` `log_type` VARBINARY( 15 ) NOT NULL,
 	CHANGE `log_action` `log_action` VARBINARY( 15 ) NOT NULL;
+
+CREATE INDEX /*i*/user_type_time ON /*_*/logging (log_user, log_type, log_timestamp);
