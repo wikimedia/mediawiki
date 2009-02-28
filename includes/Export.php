@@ -184,8 +184,10 @@ class WikiExporter {
 			# Hide private logs
 			$where[] = LogEventsList::getExcludeClause( $this->db );
 			if( $cond ) $where[] = $cond;
+			# Get logging table name for logging.* clause
+			$logging = $this->db->tableName('logging');
 			$result = $this->db->select( array('logging','user'), 
-				'*',
+				array( "{$logging}.*", 'user_name' ), // grab the user name
 				$where,
 				$fname,
 				array( 'ORDER BY' => 'log_id', 'USE INDEX' => array('logging' => 'PRIMARY') )
