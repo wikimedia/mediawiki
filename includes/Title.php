@@ -2110,7 +2110,7 @@ class Title {
 		$linkCache = LinkCache::singleton();
 		$linkCache->clearBadLink( $this->getPrefixedDBkey() );
 
-		if ( 0 == $newid ) { $this->mArticleID = -1; }
+		if ( $newid === false ) { $this->mArticleID = -1; }
 		else { $this->mArticleID = $newid; }
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
