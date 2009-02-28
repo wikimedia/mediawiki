@@ -847,7 +847,8 @@ Legenda: (orain) = oraingo bertsioarekiko ezberdintasuna,
 'logdelete-selected'             => "'''{{PLURAL:$1|Aukeratutako log gertakaria|Aukeratutako log gertakariak}}:'''",
 'revdelete-text'                 => "'''Ezabatutako berrikuspenek orrialdearen historian agertzen jarraituko dute, baina bere edukiak ez dira publikoki eskuratu ahal izango.'''
 
-Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.",
+{{SITENAME}}ko administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.
+Mesedez berretsi ezazu hau egin nahi zenuela, ondorioak ulertzen dituzula eta [[{{MediaWiki:Policy-url}}|politiken arabera]] egiten ari zarela.",
 'revdelete-legend'               => 'Berrikuspen mugapenak ezarri:',
 'revdelete-hide-text'            => 'Berrikuspenaren testua ezkutatu',
 'revdelete-hide-name'            => 'Helburua eta ekintza izkutatu',
@@ -1921,7 +1922,7 @@ In such cases, you must uncheck or unhide the newest deleted revision.',
 'undeleterevision-missing'     => 'Baliogabeko berrikuspena. Baliteke lotura ezegokia izatea, edo berriskupena leheneratu edo kendu izana.',
 'undelete-nodiff'              => 'Ez da aurkitu aurreko berrikuspenik.',
 'undeletebtn'                  => 'Leheneratu',
-'undeletelink'                 => 'leheneratu',
+'undeletelink'                 => 'ikusi/leheneratu',
 'undeletereset'                => 'Hasieratu',
 'undeleteinvert'               => 'Aukeraketa alderanztu',
 'undeletecomment'              => 'Iruzkina:',

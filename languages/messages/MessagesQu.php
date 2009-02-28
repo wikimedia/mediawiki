@@ -6,7 +6,6 @@
  *
  * @author AlimanRuna
  * @author Omnipaedista
- * @author Verdy p
  * @author לערי ריינהארט
  */
 

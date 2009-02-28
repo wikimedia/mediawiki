@@ -9,7 +9,6 @@
  * @author Servien
  * @author Slomox
  * @author Urhixidur
- * @author Verdy p
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author לערי ריינהארט
  */
@@ -1009,9 +1008,10 @@ De achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page=
 'revdelete-nologid-text'         => 'Of je hemmen gien doellogboekregel op-egeven of de an-egeven logboekregel besteet neet.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Esillekteren bewarking|Esillekteren bewarkingen}} van '''[[:$1]]''':'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Esillecteren logboekboekactie|Esillecteren logboekacties}}:'''",
-'revdelete-text'                 => "'''Bewarkingen dee vort-ehaold bin, ku-j wel zien in de geschiedenisse, mar de inhoud is neet langer pebliekelijk toegankelijk.'''
+'revdelete-text'                 => "'''Vort-edaone bewarkingen staon nog altied in de geschiedenisse en in logboeken, mar neet iederene kan de inhoud zomar bekieken.'''
 
-Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen mit behulpe van dit scharm, behalven as der aandere beparkingen gelden dee in-esteld bin deur de systeembeheerder.",
+Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen deur dit scharm te gebruken, behalven as der aandere beparkingen in-esteld bin.
+Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit doon in overeenstemming mit [[{{MediaWiki:Policy-url}}|'t beleid]] van disse wiki.",
 'revdelete-legend'               => 'Stel versiebeparkingen in:',
 'revdelete-hide-text'            => 'Verbarg de bewarken tekse',
 'revdelete-hide-name'            => 'Verbarg logboekactie',

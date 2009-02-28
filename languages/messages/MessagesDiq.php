@@ -116,7 +116,7 @@ $messages = array(
 'pagecategories'           => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
 'category_header'          => 'Pelê ke kategoriya "$1" derê',
 'subcategories'            => 'Kategoriyê bınêni',
-'category-media-header'    => 'Medyawa ke kategoriya "$1" (-i/-an) dera',
+'category-media-header'    => 'Medyawa ke kategoriya "$1" dera',
 'category-empty'           => "''Ena kategoriye de hewna qet nuştey ya ki medyay çıniyê.''",
 'hidden-categories'        => '{{PLURAL:$1|Kategoriya nımıtiye|Kategoriyê nımıtey}}',
 'hidden-category-category' => 'Kategoriyê nımıtey', # Name of the category where hidden categories will be listed
@@ -267,7 +267,7 @@ $messages = array(
 Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'error'               => 'Ğelet',
+'error'               => 'Xeta',
 'badtitle'            => 'Sernameya xırabe',
 'viewsource'          => 'Çımey bıvêne',
 'viewsourcefor'       => 'Seba / qandê $1',
@@ -275,7 +275,7 @@ Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:SpecialPages|{{
 'ns-specialprotected' => 'Pelê xasi nênê vurnayış.',
 
 # Login and logout pages
-'logouttitle'               => 'Veciyaena karberi',
+'logouttitle'               => 'Veciyayışê karberi',
 'loginpagetitle'            => 'Cıkewtena karberi',
 'yourname'                  => 'Namey karberi',
 'yourpassword'              => 'Parola',

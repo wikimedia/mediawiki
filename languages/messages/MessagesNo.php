@@ -5,6 +5,7 @@
  * @file
  *
  * @author Boivie
+ * @author Byrial
  * @author Eirik
  * @author EivindJ
  * @author Finnrind
@@ -1475,7 +1476,7 @@ En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 'nolinkstoimage'            => 'Det er ingen sider som bruker denne fila.',
 'morelinkstoimage'          => 'Vis [[Special:WhatLinksHere/$1|flere lenker]] til denne filen.',
 'redirectstofile'           => 'Følgende {{PLURAL:$1|fil er en omdirigering|filer er omdirigeringer}} til denne filen:',
-'duplicatesoffile'          => 'Følgende {{PLURAL:$1|fil er en dublett|filer er dubletter}} av denne filen ([[Special:FileDupelicateSearch/$2|fler detaljer]]):',
+'duplicatesoffile'          => 'Følgende {{PLURAL:$1|fil er en dublett|filer er dubletter}} av denne filen ([[Special:FileDuplicateSearch/$2|fler detaljer]]):',
 'sharedupload'              => 'Denne filen er fra $1 og kan bli brukt av andre prosjekter. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Se $1 for mer informasjon.',
 'shareduploadwiki-desc'     => 'Beskrivelsen som vist på dens $1 vises nedenfor.',

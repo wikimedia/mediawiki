@@ -5,6 +5,7 @@
  * @file
  *
  * @author Flrn
+ * @author Hanberke
  * @author Runningfridgesrule
  */
 
@@ -76,9 +77,13 @@ $messages = array(
 'searcharticle'    => 'Git',
 'history'          => 'Sahypanyň geçmişi',
 'permalink'        => 'Hemişelik aragatnaşyk',
+'print'            => 'Print et',
 'edit'             => 'Redakte',
 'create'           => 'Döret',
+'editthispage'     => 'Bu sahypany redaktirle',
+'create-this-page' => 'Bu sahypany döret',
 'protect_change'   => 'redakte',
+'newpage'          => 'Täze sahypa',
 'talkpagelinktext' => 'Çekisme',
 'specialpage'      => 'Ýörite Sahypa',
 'personaltools'    => 'Şahsy gurallar',
@@ -100,6 +105,7 @@ $messages = array(
 'editsectionhint' => '$1. bölümü redaktirle',
 'showtoc'         => 'görkez',
 'hidetoc'         => 'ýaşyr',
+'red-link-title'  => '$1 (bu sahypa heniz ýazylmandyr)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'     => 'Ulaňyjy sahypasy',
@@ -138,6 +144,7 @@ $messages = array(
 'rev-delundel' => 'görkez/ýaşyr',
 
 # Search results
+'nextn'          => 'indiki $1',
 'searchhelp-url' => 'Help:Içindäkiler',
 'powersearch'    => 'Giňişleýin Gözleg',
 
@@ -199,7 +206,7 @@ $messages = array(
 'thumbnail-more' => 'Ulal',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => 'Menim ulaňyjy sahypam',
+'tooltip-pt-userpage'       => 'Meniň ulanyjy sahypam',
 'tooltip-pt-mytalk'         => 'Menim tabşyryk sahypam',
 'tooltip-pt-mycontris'      => 'Ýasadyýym goşantlarımıň tablisasy',
 'tooltip-pt-logout'         => 'Sessiýaýy kapas',

@@ -6,7 +6,6 @@
  *
  * @author Niklas Laxström
  * @author Sulev Iva (Võrok)
- * @author Verdy p
  * @author Võrok
  */
 
@@ -719,6 +718,9 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'mergehistory-merge' => 'Järgmädseq lehe [[:$1]] muutmisõq või mano pandaq lehe [[:$2]] muutmisaolukku. Võit valliq kujo, minkast vahtsõmbit kujjõ kokko ei pandaq, a võrgokaeja linke pruukminõ kaotas taa teedüse ärq.',
 'mergehistory-go'    => 'Näütäq kokkopantavit muutuisi',
 
+# Merge log
+'revertmerge' => 'Lüüq jälki lahko',
+
 # Diffs
 'history-title'           => '"$1" muutmiisi nimekiri',
 'difference'              => '(Kujjõ lahkominegiq)',
@@ -993,7 +995,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'filehist-dimensions'       => 'Suurus',
 'filehist-filesize'         => 'Teedüstü suurus',
 'filehist-comment'          => 'Seletüs:',
-'imagelinks'                => 'Pildilingiq',
+'imagelinks'                => 'Teedüstülingiq',
 'linkstoimage'              => 'Taa pildi pääle {{PLURAL:$1|näütäs lehekülg|näütäseq leheküleq}}:',
 'nolinkstoimage'            => 'Taa pildi pääle näütä-i ütski lehekülg.',
 'sharedupload'              => 'Taa om ütine teedüstü, taad võivaq pruukiq ka tõõsõq vikiq. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
@@ -1386,17 +1388,18 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'sp-contributions-submit'      => 'Otsiq',
 
 # What links here
-'whatlinkshere'       => 'Siiäq näütäjäq lingiq',
-'whatlinkshere-title' => 'Leheq, miä näütäseq lehe "$1" pääle',
-'whatlinkshere-page'  => 'Leht:',
-'linkshere'           => 'Lehe <b>[[:$1]]</b> pääle näütäseq lingiq lehti päält:',
-'nolinkshere'         => 'Lehe <b>[[:$1]]</b> pääle näütä-i linke ütegi lehe päält.',
-'nolinkshere-ns'      => "Valitun nimeruumin näütä-i ütegi lehe päält linke lehe '''[[:$1]]''' pääle.",
-'isredirect'          => 'ümbresaatmislehekülg',
-'istemplate'          => 'pruugit näüdüssen',
-'whatlinkshere-prev'  => '← {{PLURAL:$1|mineväne leht|$1 mineväst lehte}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|mineväne leht|$1 mineväst lehte}} →',
-'whatlinkshere-links' => '← lingiq',
+'whatlinkshere'         => 'Siiäq näütäjäq lingiq',
+'whatlinkshere-title'   => 'Leheq, miä näütäseq lehe "$1" pääle',
+'whatlinkshere-page'    => 'Leht:',
+'linkshere'             => 'Lehe <b>[[:$1]]</b> pääle näütäseq lingiq lehti päält:',
+'nolinkshere'           => 'Lehe <b>[[:$1]]</b> pääle näütä-i linke ütegi lehe päält.',
+'nolinkshere-ns'        => "Valitun nimeruumin näütä-i ütegi lehe päält linke lehe '''[[:$1]]''' pääle.",
+'isredirect'            => 'ümbresaatmislehekülg',
+'istemplate'            => 'pruugit näüdüssen',
+'whatlinkshere-prev'    => '← {{PLURAL:$1|mineväne leht|$1 mineväst lehte}}',
+'whatlinkshere-next'    => '{{PLURAL:$1|mineväne leht|$1 mineväst lehte}} →',
+'whatlinkshere-links'   => '← lingiq',
+'whatlinkshere-filters' => 'Sõglaq',
 
 # Block/unblock
 'blockip'                     => 'Piäq puutri võrgoaadrõs kinniq',
@@ -1453,6 +1456,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'ipblocklist-no-results'      => 'Taa puutri võrgoaadrõss vai pruukjanimi olõ-i kinniq peet.',
 'blocklink'                   => 'piäq kinniq',
 'unblocklink'                 => 'võtaq kinniqpidämine maaha',
+'change-blocklink'            => 'muudaq kinniqpidämist',
 'contribslink'                => 'kirotusõq',
 'autoblocker'                 => 'Olõt automaatsõhe kinniq peet, selle et jaat puutri võrgoaadrõssit pruukjaga $1. Kinniqpidämise põhjus: $2.',
 'blocklogpage'                => 'Kinniqpidämiisi nimekiri',
@@ -1610,7 +1614,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mu pruukjaleht',
 'tooltip-pt-anonuserpage'         => 'Su puutri võrgoaadrõsi pruukjaleht',
-'tooltip-pt-mytalk'               => 'Mu arotuskülg',
+'tooltip-pt-mytalk'               => 'Mu arotusleht',
 'tooltip-pt-anontalk'             => 'Arotus taa puutri võrgoaadrõsi päält tettüisi toimõnduisi üle',
 'tooltip-pt-preferences'          => 'Mu säädmiseq',
 'tooltip-pt-watchlist'            => 'Nimekiri lehist, mil tahtnuq silmä pääl hoitaq',

@@ -10,7 +10,6 @@
  * @author Mana
  * @author NamwikiTL
  * @author Shushruth
- * @author Verdy p
  * @author לערי ריינהארט
  */
 

@@ -6,7 +6,6 @@
  *
  * @author Slomox
  * @author Urhixidur
- * @author Verdy p
  * @author לערי ריינהארט
  */
 

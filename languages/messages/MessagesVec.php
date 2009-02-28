@@ -9,7 +9,6 @@
  * @author Nick1915
  * @author Omnipaedista
  * @author Urhixidur
- * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -861,9 +860,10 @@ Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de s
 'revdelete-nologid-text'         => "Par eseguir sta funsion no te ghè indicà na destinassion par el registro opure el registro no l'esiste.",
 'revdelete-selected'             => "'''{{PLURAL:$2|Version selezionà|Versioni selezionà}} de [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:'''",
-'revdelete-text'                 => "'''Le versioni scancelàe le resta visibili ne la cronologia de la pagina, mentre el testo contegnùo no'l xe acessibile al publico.'''
+'revdelete-text'                 => "'''Le revision e le azion scancelàe le restarà visibili ne la cronologia de la pagina, ma parte del testo contegnùo no'l sarà visìbile al publico.'''
 
-I altri aministradori del sito i podarà accédar istesso ai contenuti sconti e ripristinarli atraverso questa stessa interfacia, se no xe stà inpostà altre limitazion in fase de instalazion del sito.",
+I altri aministradori de {{SITENAME}} i podarà vardar istesso i contenuti sconti e ripristinarli atraverso questa stessa interfacia, se no xe stà inpostà altre limitazion.
+Par piaser conferma che te voli dal bon far sta scancelassion, che te conossi le conseguense e che te sì drio operar in conformità de le [[{{MediaWiki:Policy-url}}|linee-guida]].",
 'revdelete-legend'               => 'Inposta le seguenti limitazion su le versioni scancelàe:',
 'revdelete-hide-text'            => 'Scondi el testo de ła version',
 'revdelete-hide-name'            => 'Scondi azion e ogeto de la stessa',
@@ -1002,6 +1002,9 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'notextmatches'                    => 'Voçe richiesta mìa catà nei testi dei articoli',
 'prevn'                            => 'precedenti $1',
 'nextn'                            => 'sucessivi $1',
+'prevn-title'                      => '{{PLURAL:$1|Risultato precedente|$1 risultati precedenti}}',
+'nextn-title'                      => '{{PLURAL:$1|Risultato sucessivo|$1 risultati sucessivi}}',
+'shown-title'                      => 'Mostra {{PLURAL:$1|un risultato|$1 risultati}} par pàxena',
 'viewprevnext'                     => 'Varda ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opzion de riserca',
 'searchmenu-exists'                => "*Pàxena '''[[$1]]'''",
@@ -1928,7 +1931,7 @@ Se dopo ła scancełazion xè stà creà na nova pàxena col stesso titoło, łe
 'undeleterevision-missing'     => "Revision mìa valida o mancante. O el colegamento no'l xe mìa giusto, opure la revision la xe stà zà ripristinà o eliminà da l'archivio.",
 'undelete-nodiff'              => 'No xe stà catà nissuna revision precedente.',
 'undeletebtn'                  => 'RIPRISTINA!',
-'undeletelink'                 => 'ripristina',
+'undeletelink'                 => 'varda/ripristina',
 'undeletereset'                => 'Reinposta',
 'undeleteinvert'               => 'Inverti selession',
 'undeletecomment'              => 'Comento:',
@@ -2030,8 +2033,8 @@ $1',
 'ipb-change-block'                => "Bloca de novo l'utente co ste inpostassion",
 'badipaddress'                    => "L'indirisso IP indicà no'l xè mìa coreto.",
 'blockipsuccesssub'               => 'Bloco eseguìo',
-'blockipsuccesstext'              => 'L\'indirizzo IP "$1" l\'è sta bloccà.
-<br />Varda [[Special:IPBlockList|lista IP bloccati]].',
+'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] l'è sta bloccà.<br />
+Varda [[Special:IPBlockList|lista IP bloccati]] par védar tuti i blochi.",
 'ipb-edit-dropdown'               => 'Motivi par el bloco',
 'ipb-unblock-addr'                => 'Sbloca $1',
 'ipb-unblock'                     => 'Sbloca un utente o un indirizo IP',

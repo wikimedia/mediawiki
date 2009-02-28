@@ -6,7 +6,6 @@
  *
  * @author Itsmine
  * @author Omnipaedista
- * @author Verdy p
  */
 
 /**
@@ -531,8 +530,8 @@ $2',
 'hr_tip'          => '縱線，慎用之',
 
 # Edit pages
-'summary'                          => '概：',
-'subject'                          => '題：:',
+'summary'                          => '概:',
+'subject'                          => '題:',
 'minoredit'                        => '令校',
 'watchthis'                        => '派哨',
 'savearticle'                      => '存儲',
@@ -2445,5 +2444,8 @@ $1',
 #有 # 之為注
 
 #入正表式。同留</pre>',
+
+# Special:Tags
+'tags-edit' => '纂',
 
 );

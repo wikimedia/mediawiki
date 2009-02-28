@@ -20,7 +20,6 @@
  * @author Ranveig
  * @author Shauni
  * @author Urhixidur
- * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -1695,8 +1694,8 @@ Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'specialpage-empty'       => 'Denne sida er tom.',
 'lonelypages'             => 'Foreldrelause sider',
 'lonelypagestext'         => 'Følgjande sider er ikkje lenkja til på andre sider på {{SITENAME}}.',
-'uncategorizedpages'      => 'Ikkje-kategoriserte sider',
-'uncategorizedcategories' => 'Ikkje-kategoriserte kategoriar',
+'uncategorizedpages'      => 'Ukategoriserte sider',
+'uncategorizedcategories' => 'Ukategoriserte kategoriar',
 'uncategorizedimages'     => 'Ukategoriserte filer',
 'uncategorizedtemplates'  => 'Ukategoriserte malar',
 'unusedcategories'        => 'Ubrukte kategoriar',
@@ -1814,7 +1813,7 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'newuserlog-autocreate-entry' => 'Konto oppretta automatisk',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Tilgangar for brukargrupper',
+'listgrouprights'                 => 'Rettar for brukargrupper',
 'listgrouprights-summary'         => 'Følgjande liste viser brukargruppene som er definert på denne wikien, og kvar rettar dei har. Meir informasjon om dei ulike rettane ein kan ha finn ein [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
 'listgrouprights-group'           => 'Gruppe',
 'listgrouprights-rights'          => 'Tilgangar',
@@ -2165,7 +2164,7 @@ Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringar.',
 'ipblocklist-submit'              => 'Søk',
 'blocklistline'                   => '$1, $2 blokkerte $3 ($4)',
 'infiniteblock'                   => 'uendeleg opphøyrstid',
-'expiringblock'                   => '$1 opphøyrstid',
+'expiringblock'                   => 'endar $1',
 'anononlyblock'                   => 'berre anonyme',
 'noautoblockblock'                => 'automatisk blokkering slått av',
 'createaccountblock'              => 'kontooppretting blokkert',
@@ -2467,7 +2466,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonym brukar|Anonyme brukarar}} av {{SITENAME}}',
-'siteuser'         => '{{SITENAME}} brukar $1',
+'siteuser'         => '{{SITENAME}}-brukaren $1',
 'lastmodifiedatby' => 'Denne sida vart sist endra $2, $1 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',

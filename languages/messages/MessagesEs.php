@@ -689,6 +689,8 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'resetpass-temp-password'   => 'Contraseña temporal:',
 'resetpass-no-others'       => 'No puede reajustar la contraseña de otros usuarios.',
+'resetpass-log'             => 'Registro de restablecimiento de password',
+'resetpass-logtext'         => 'Debajo está un registro de usuarios que tuvieron sus poassword restablecidos por un administrador.',
 'resetpass-logentry'        => 'cambiada la contraseña por $1',
 'resetpass-comment'         => 'Razón para el reajuste de contraseña:',
 
@@ -902,7 +904,7 @@ El motivo dado por $3 es ''$2''",
 'last'                   => 'prev',
 'page_first'             => 'primeras',
 'page_last'              => 'últimas',
-'histlegend'             => "Selecciónde diferencias: marca los selectores de las versiones a comparar y pulta ''enter'' o el botón de abajo.<br />
+'histlegend'             => "Selección de diferencias: marca los selectores de las versiones a comparar y pulsa ''enter'' o el botón de abajo.<br />
 Leyenda: (act) = diferencias con la versión actual,
 (prev) = diferencias con la versión previa, M = edición menor",
 'history-fieldset-title' => 'Buscar en el historial',
