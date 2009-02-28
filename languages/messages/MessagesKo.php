@@ -1586,7 +1586,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'noimage'                   => '파일이 없습니다. $1 할 수 있습니다.',
 'noimage-linktext'          => '업로드',
 'uploadnewversion-linktext' => '이 파일의 새로운 버전을 올리기',
-'shared-repo-from'          => '$1의', # $1 is the repository name
+'shared-repo-from'          => '($1)', # $1 is the repository name
 'shared-repo'               => '공용 저장소', # used when shared-repo-NAME does not exist
 
 # File reversion

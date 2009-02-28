@@ -645,6 +645,11 @@ Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per kla
 'resetpass-wrong-oldpass'   => 'Klaidingas laikinas ar esamas slaptažodis.
 Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikiną slaptažodį.',
 'resetpass-temp-password'   => 'Laikinas slaptažodis:',
+'resetpass-no-others'       => 'Jūs negalite atstatyti slaptažodžio kitiems naudotojams.',
+'resetpass-log'             => 'Slaptažodžio atstatymų sąrašas',
+'resetpass-logtext'         => 'Čia pateikiamas sąrašas naudotojų, kurių slaptažodis buvo atstatytas administratoriaus.',
+'resetpass-logentry'        => 'pakeistas $1 slaptažodis',
+'resetpass-comment'         => 'Slaptažodžio atstatymo priežastis:',
 
 # Edit page toolbar
 'bold_sample'     => 'Paryškintas tekstas',
@@ -714,7 +719,7 @@ Jūsų IP adresas yra $3, blokavimo ID yra $5.
 Prašome nurodyti šiuos duomenis visais atvejais, kai kreipiatės dėl blokavimo.",
 'blockednoreason'                  => 'priežastis nenurodyta',
 'blockedoriginalsource'            => "Žemiau yra rodomas '''$1''' turinys:",
-'blockededitsource'                => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
+'blockededitsource'                => "''Jūsų keitimų'' tekstas puslapiui '''$1''' yra rodomas žemiau:",
 'whitelistedittitle'               => 'Norint redaguoti reikia prisijungti',
 'whitelistedittext'                => 'Jūs turite $1, kad redaguotumėte puslapius.',
 'confirmedittitle'                 => 'Kad galėtumėte redaguoti, reikalingas el. pašto patvirtinimas',
@@ -1495,6 +1500,7 @@ Pilnas sąrašas pasiekiamas [[Special:WhatLinksHere/$2|čia]].',
 'noimage'                   => 'Failas tokiu pavadinimu neegzistuoja. Jūs galite $1',
 'noimage-linktext'          => 'įkelti jį',
 'uploadnewversion-linktext' => 'Įkelti naują failo versiją',
+'shared-repo-from'          => 'iš $1', # $1 is the repository name
 
 # File reversion
 'filerevert'                => 'Sugrąžinti $1',
@@ -1962,7 +1968,7 @@ Tokiais atvejais, jums reikia atžymėti arba atslėpti naujausią ištrintą ve
 'undeleterevision-missing'     => 'Neteisinga arba dingusi versija. Jūs turbūt turite blogą nuorodą, arba versija buvo atkurta arba pašalinta iš archyvo.',
 'undelete-nodiff'              => 'Nerasta jokių ankstesnių versijų.',
 'undeletebtn'                  => 'Atkurti',
-'undeletelink'                 => 'atstatyti',
+'undeletelink'                 => 'žiūrėti/atstatyti',
 'undeletereset'                => 'Iš naujo',
 'undeleteinvert'               => 'Žymėti priešingai',
 'undeletecomment'              => 'Komentaras:',

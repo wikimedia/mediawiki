@@ -2152,8 +2152,8 @@ specific que ha essite vandalisate).',
 'ipb-change-block'                => 'Reblocar le usator con iste configurationes',
 'badipaddress'                    => 'Adresse IP mal formate.',
 'blockipsuccesssub'               => 'Blocada succedite',
-'blockipsuccesstext'              => 'Le adresse IP "$1" ha essite blocate.
-<br />Vide [[Special:IPBlockList|Lista de IPs blocate]] pro revider le blocadas.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ha essite blocate.<br />
+Vide le [[Special:IPBlockList|lista de adresses IP blocate]] pro revider le blocadas.',
 'ipb-edit-dropdown'               => 'Modificar le motivos pro blocar',
 'ipb-unblock-addr'                => 'Disblocar $1',
 'ipb-unblock'                     => 'Disblocar un nomine de usator o un adresse IP',

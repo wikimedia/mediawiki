@@ -2148,7 +2148,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'move-redirect-suppressed'     => 'E Wyterleitig isch unterdruggt worde',
 'movelogpage'                  => 'Verschiebigs-Logbuech',
 'movelogpagetext'              => 'Des isch e Lischte mit allene Syte wo verschobe worde sin.',
-'movesubpage'                  => 'Untersyte',
+'movesubpage'                  => '{{PLURAL:$1|Untersyte|Untersyte}}',
 'movesubpagetext'              => 'Die Syte het $1 {{PLURAL:$1|Untersyte|Untersyte}}.',
 'movenosubpage'                => 'Die Syte het kei Untersyte.',
 'movereason'                   => 'Grund',

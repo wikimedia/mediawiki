@@ -9,7 +9,6 @@
  * @author Meursault2004
  * @author Pras
  * @author Rex
- * @author Verdy p
  * @author לערי ריינהארט
  */
 

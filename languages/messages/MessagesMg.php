@@ -583,17 +583,28 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'userrights-groupsmember'  => "Mpikambana amin'ny vondrona:",
 
 # Groups
+'group-user'          => 'Mpikambana',
 'group-autoconfirmed' => 'Mpikambana voasoratra',
 'group-bot'           => 'Mpikambana rôbô',
 'group-sysop'         => 'Mpandrindra',
 'group-bureaucrat'    => 'Borōkraty',
 'group-all'           => '(izy rehetra)',
 
-'group-user-member' => 'Mpikambana',
+'group-user-member'          => 'Mpikambana',
+'group-autoconfirmed-member' => 'Mpikambana voasoratra',
+'group-bot-member'           => 'Mpikambana rôbô',
+'group-sysop-member'         => 'Mpandrindra',
+'group-bureaucrat-member'    => 'Borôkraty',
+'group-suppress-member'      => 'Mpitondra',
 
-'grouppage-user'       => '{{ns:project}}:Mpikambana',
-'grouppage-sysop'      => '{{ns:project}}:Mpandrindra',
-'grouppage-bureaucrat' => '{{ns:project}}:Borōkraty',
+'grouppage-user'          => '{{ns:project}}:Mpikambana',
+'grouppage-autoconfirmed' => '{{ns:project}}:Mpikambana Voamafy',
+'grouppage-bot'           => '{{ns:project}}:Mpikambana rôbô',
+'grouppage-sysop'         => '{{ns:project}}:Mpandrindra',
+'grouppage-bureaucrat'    => '{{ns:project}}:Borōkraty',
+
+# Rights
+'right-autoconfirmed' => 'Manova ppejy voaaro an-tapaka',
 
 # User rights log
 'rightslogtext' => "Tantaran'asa momba ny fahazoan-dàlan'ny mpikambana.",

@@ -6,7 +6,6 @@
  *
  * @author Als-Holder
  * @author Fulup
- * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -801,10 +800,10 @@ Marteze e kavot munudoù all war [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'revdelete-nooldid-text'      => "Pe n'eo ket bet spisaet ganeoc'h ar stumm(où) pal da implijout an arc'hwel-mañ evito. pe n'eus ket eus ar stummoù spisaet, pe emaoc'h o klask kuzhat ar stumm red.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Stumm dibabet|Stummoù dibabet}} eus [[:$1]] :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Darvoud eus ar marilh diuzet|Darvoud eus ar marilh diuzet}} :'''",
-'revdelete-text'              => "'''Derc'hel a raio ar stummoù diverket da zont war wel war istor ar bajenn,
-met n'hallo ket an dud sellet outo.'''
+'revdelete-text'              => "'''Derc'hel a raio ar stummoù ha darvoudoù diverket da zont war wel war istor ar bajenn hag er marilhoù, met dazrn eus ar boued n'hallo ket bezañ gwelet gant an dud.'''
 
-Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da ziziverkañ anezho en-dro dre an hevelep etrefas, nemet e vije bet lakaet e plas strishadurioù ouzhpenn gant renerien al lec'hienn.",
+Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da ziziverkañ anezho en-dro dre an hevelep etrefas, nemet e vije bet lakaet e plas strishadurioù ouzhpenn.
+Kadarnait eo mat an dra-se a fell deoc'h ober, e komprenit mat ar pezh a empleg, hag en grit en ur zoujañ d'ar [[{{MediaWiki:Policy-url}}|reolennoù]].",
 'revdelete-legend'            => 'Lakaat strishadurioù gwelet',
 'revdelete-hide-text'         => 'Kuzhat testenn ar stumm',
 'revdelete-hide-name'         => 'Kuzhat an ober hag ar vukadenn',
@@ -1033,6 +1032,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'contextchars'              => 'Niver a arouezennoù kendestenn dre linenn',
 'stub-threshold'            => 'Bevenn uhelañ evit al <a href="#" class="stub">liammoù war-du an danvez pennadoù</a> (okted) :',
 'recentchangesdays'         => "Niver a zevezhioù da ziskouez er c'hemmoù diwezhañ :",
+'recentchangesdays-max'     => "(d'ar muiañ $1 {{PLURAL:$1|deiz|deiz}})",
 'recentchangescount'        => "Niver a gemmoù da ziskouez er c'hemmoù diwezhañ, er pajennoù istor hag er marilhoù, dre ziouer",
 'savedprefs'                => 'Enrollet eo bet ar penndibaboù.',
 'timezonelegend'            => 'Takad eur',
@@ -1040,6 +1040,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'localtime'                 => "Eur lec'hel :",
 'timezoneselect'            => 'Takad eur :',
 'timezoneuseserverdefault'  => 'Ober gant talvoudenn ar servijer',
+'timezoneuseoffset'         => 'Arall (resisaat al linkadur)',
 'timezoneoffset'            => 'Linkadur eur¹ :',
 'servertime'                => 'Eur ar servijer :',
 'guesstimezone'             => 'Ober gant talvoudenn ar merdeer',
@@ -1188,6 +1189,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'action-block'                => 'mirout ouzh an impplijer-mañ da zegas kemmoù',
 'action-protect'              => 'kemmañ liveoù gwareziñ ar bajenn-mañ',
 'action-import'               => 'Enporzhiañ ar bajenn-mañ adal ur wiki all',
+'action-unwatchedpages'       => "gwelet roll ar pajennoù n'int ket evezhiet",
 'action-trackback'            => "zegas ur c'hilliamm",
 'action-mergehistory'         => 'kendeuziñ istor ar bajenn-mañ',
 'action-userrights'           => 'Kemmañ an holl wirioù implijer',
@@ -1848,7 +1850,7 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undeleterevision-missing'     => "Stumm fall pe diank. Pe hoc'h eus heuliet ul liamm fall, pe eo bet diziverket ar stumm pe c'hoazh eo bet lamet diouzh an dielloù.",
 'undelete-nodiff'              => "N'eus bet kavet stumm kent ebet.",
 'undeletebtn'                  => 'Diziverkañ!',
-'undeletelink'                 => 'assevel',
+'undeletelink'                 => 'gwelet/assevel',
 'undeletereset'                => 'Adderaouiñ',
 'undeleteinvert'               => 'Eilpennañ diuzadenn',
 'undeletecomment'              => 'Notenn :',
@@ -1951,7 +1953,10 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'badipaddress'                    => "Kamm eo ar chomlec'h IP.",
 'blockipsuccesssub'               => 'Stankadenn deuet da benn vat',
 'blockipsuccesstext'              => 'Stanket eo bet chomlec\'h IP "$1".
-<br />Gallout a rit sellet ouzh ar [[Special:IPBlockList|bajenn-mañ]] evit gwelet roll ar chomlec\'hioù IP stanket.',
+<br />Gallout a rit sellet ouzh ar [[Special:IPBlockList|bajenn-mañ]] evit gwelet roll ar chomlec\'hioù IP stanket.
+
+Stanket eo bet [[Special:Contributions/$1|$1]].<br />
+Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]] evit gwiriañ ar stankadennoù.',
 'ipb-edit-dropdown'               => 'Kemmañ an abegoù stankañ',
 'ipb-unblock-addr'                => 'Distankañ $1',
 'ipb-unblock'                     => "Distankañ un implijer pe ur chomlec'h IP",
@@ -2843,6 +2848,8 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'intentionallyblankpage' => 'A-ratozh e leusker gwenn ar bajenn-mañ',
 
 # Special:Tags
+'tags'                    => "Balizennoù ar c'hemmoù reizh",
+'tag-filter'              => 'Silañ ar [[Special:Tags|balizennoù]] :',
 'tag-filter-submit'       => 'Silañ',
 'tags-title'              => 'Balizennoù',
 'tags-intro'              => "Rollañ a ra ar bajenn-mañ ar balizennoù a c'hall ar meziant implijout da verkañ kemmoù hag an dalvoudegezh anezho.",
@@ -2854,11 +2861,12 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'tags-hitcount'           => '$1 {{PLURAL:$1|kemm|kemm}}',
 
 # Database error messages
-'dberr-header'    => 'ur gudenn zo gant ar viki-mañ',
-'dberr-problems'  => "Ho tigarez ! Kudennoù teknikel zo gant al lec'hienn-mañ.",
-'dberr-again'     => 'Gortozit un nebeud munutennoù a-raok adkargañ.',
-'dberr-info'      => '(Dibosupl kevreañ ouzh servijer an diaz roadennoù: $1)',
-'dberr-usegoogle' => "E-keit-se esaeit klask dre c'hGoogle.",
-'dberr-outofdate' => "Notit mat e c'hall o menegerioù dezho bezañ dispredet e-keñver ar boued zo ganeomp.",
+'dberr-header'      => 'ur gudenn zo gant ar viki-mañ',
+'dberr-problems'    => "Ho tigarez ! Kudennoù teknikel zo gant al lec'hienn-mañ.",
+'dberr-again'       => 'Gortozit un nebeud munutennoù a-raok adkargañ.',
+'dberr-info'        => '(Dibosupl kevreañ ouzh servijer an diaz roadennoù: $1)',
+'dberr-usegoogle'   => "E-keit-se esaeit klask dre c'hGoogle.",
+'dberr-outofdate'   => "Notit mat e c'hall o menegerioù dezho bezañ dispredet e-keñver ar boued zo ganeomp.",
+'dberr-cachederror' => 'Un eilstumm memoret eus ar bajenn goulennet eo hemañ, gallout a ra bezañ dispredet.',
 
 );

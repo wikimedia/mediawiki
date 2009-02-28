@@ -240,6 +240,7 @@ $messages = array(
 'moredotdotdot'  => 'Zaidi...',
 'mypage'         => 'Ukurasa wangu',
 'mytalk'         => 'Majadiliano yangu',
+'anontalk'       => 'Majadiliano ya IP hii',
 'navigation'     => 'Safari',
 'and'            => '&#32;na',
 
@@ -524,9 +525,9 @@ Kumbukumbu ya kufuta ukurasa huu linapatikana hapa kukusaidia:",
 'viewpagelogs'           => 'Tazama kumbukumbu kwa ukurasa huu',
 'currentrev'             => 'Kiungo cha daima',
 'revisionasof'           => 'Sahihisho kutoka $1',
-'revision-info'          => 'Sahihisho kutoka $1 na $2', # Additionally available: $3: revision id
+'revision-info'          => 'Sahihisho ya $1 aliyefanya $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Sahihisho lililotangulia',
-'nextrevision'           => 'Sahihisho mpya zaidi?',
+'nextrevision'           => 'Sahihisho linalofuata →',
 'currentrevisionlink'    => 'Sahahisho ya sasa hivi',
 'cur'                    => 'sasa',
 'last'                   => 'kabla',
@@ -553,7 +554,11 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'diff-multi'              => '(Hatuonyeshi {{PLURAL:$1|sahihisho moja la katikati|masahihisho $1 ya katikati}}.)',
 
 # Search results
+'searchresults'             => 'Matokeo ya utafutaji',
+'searchresults-title'       => 'Matokeo ya utafutaji kwa ajili ya "$1"',
+'searchsubtitleinvalid'     => "Ulitafuta '''$1'''",
 'noexactmatch'              => "'''Hakuna ukurasa wenye jina \"\$1\".''' Unaweza [[:\$1|kuanza ukurasa huu]].",
+'notitlematches'            => 'Jina hili la ukurasa halikupatikana',
 'prevn'                     => '$1 iliyotangulia',
 'nextn'                     => '$1 ijayo',
 'viewprevnext'              => 'Tazama ($1) ($2) ($3)',
@@ -752,6 +757,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'ancientpages'            => 'Kurasa za kale',
 'move'                    => 'Sogeza',
 'movethispage'            => 'Sogeza ukurasa huu',
+'pager-newer-n'           => '{{PLURAL:$1|1 ya karibu zaidi|$1 ya karibu zaidi}}',
 
 # Book sources
 'booksources'    => 'Vyanzo vya vitabu',
@@ -894,7 +900,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 # Block/unblock
 'blockip'       => 'Zuia mtumiaji',
 'ipboptions'    => 'Masaa 2:2 hours,siku 1:1 day,siku 3:3 days,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite', # display1:time1,display2:time2,...
-'ipblocklist'   => 'Orodha ya anwani za IP na majina ya watumiaji kuzuiwa',
+'ipblocklist'   => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
 'blocklink'     => 'zuia',
 'unblocklink'   => 'acha kuzuia',
 'contribslink'  => 'michango',
@@ -972,6 +978,7 @@ Chagua jina lengine.',
 'tooltip-ca-watch'                => 'Fuatilia ukurasa huu kwenye maangalizi yako',
 'tooltip-ca-unwatch'              => 'Futa ukurasa huu kutoka maangalizi yako',
 'tooltip-search'                  => 'Tafuta {{SITENAME}}',
+'tooltip-search-fulltext'         => 'Tafuta kurasa kwa maandishi haya',
 'tooltip-n-mainpage'              => 'Tembelea Mwanzo',
 'tooltip-n-portal'                => 'Kuhusu mradi, mambo unaweza kufanya, na mahali pa kugundua vitu',
 'tooltip-n-currentevents'         => 'Maarifa kuhusu habari za siku hizi',
@@ -998,7 +1005,7 @@ Chagua jina lengine.',
 'tooltip-watch'                   => 'Fuatilia ukurasa huu kwenye maangalizi yako',
 
 # Attribution
-'siteuser' => '{{SITENAME}} mtumiaji $1',
+'siteuser' => 'mtumiaji $1 wa {{SITENAME}}',
 
 # Image deletion
 'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',

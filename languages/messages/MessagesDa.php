@@ -484,7 +484,8 @@ Forespørgsel: $2',
 'protectedpagetext'    => 'Denne side er skrivebeskyttet.',
 'viewsourcetext'       => 'Du kan dog se og kopiere kildekoden til siden:',
 'protectedinterface'   => 'Denne side indeholder tekst til softwarens sprog-interface og er skrivebeskyttet for at forhindre misbrug.',
-'editinginterface'     => "'''Advarsel:''' Denne side indeholder tekst, som bruges af MediaWiki-softwaren. Ændringer har virkning på brugergrænsefladen.",
+'editinginterface'     => "'''Advarsel:''' Du redigerer en side som bruges i programmets grænseflade. Ændringer på denne side vil påvirke udseendet af grænsefladen for andre brugere.
+For oversættelser bedes du venligst overveje at bruge [http://translatewiki.net/wiki/Main_Page?setlang=da translatewiki.net], projektet for oversættelse af MediaWiki.",
 'sqlhidden'            => '(SQL forespørgsel gemt)',
 'cascadeprotected'     => 'Denne side er skrivebeskyttet, da den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse":
 $2',
@@ -589,10 +590,10 @@ Derfor kan besøgende ikke oprette flere kontoer fra denne IP-adresse i øjeblik
 'accountcreated'             => 'Brugerkonto oprettet',
 'accountcreatedtext'         => 'Brugerkontoen $1 er oprettet.',
 'createaccount-title'        => 'Opret brugerkonto på {{SITENAME}}',
-'createaccount-text'         => 'En bruger ($1) har oprettet en konto for $2 på {{SITENAME}}
-($4). Password for "$2" er "$3". Du opfordres til at logge ind, og ændre kodeordet omgående.
+'createaccount-text'         => 'Nogen har oprettet en konto for din e-post-adresse på {{SITENAME}} ($4) med navnet "$2". Adgangskoden er "$3".
+Du opfordres til at logge ind og ændre adgangskoden med det samme.
 
-Denne besked kan ignorewres, hvis denne konto er oprettet som følge af en fejl.',
+Du kan ignorere denne besked hvis kontoen blev oprettet ved en fejl.',
 'login-throttled'            => 'Du har forsøgt at logge ind med forkert adgangskode til denne konto for mange gange.
 Vent, før du prøver igen.',
 'loginlanguagelabel'         => 'Sprog: $1',
@@ -665,19 +666,21 @@ Blokeringen er rettet mod: $7
 Du kan kontakte $1 eller en af de andre [[{{MediaWiki:Grouppage-sysop}}|administratorer]] for at diskutere blokeringen.
 Du kan ikke bruge funktionen 'e-mail til denne bruger' medmindre der er angivet en gyldig email-addresse i dine
 [[Special:Preferences|kontoindstillinger]]. Din nuværende IP-addresse er $3, og blokerings-ID er #$5. Angiv venligst en eller begge i alle henvendelser.",
-'autoblockedtext'                  => 'Den IP-adresse er blevet blokeret automatisk, fordi den blev brugt af en anden bruger, som blev blokeret af $1.
+'autoblockedtext'                  => 'Din IP-adresse er blevet blokeret automatisk fordi den blev brugt af en anden bruger som er blevet blokeret af $1.
 Begrundelsen for det er:
 
 :\'\'$2\'\'
 
-Blokeringsperiodens start: $8
-Blokeringen udløber: $6
+* Blokeringsperiodens start: $8
+* Blokeringen udløber: $6
+* Blokeringen er ment for: $7
 
 Du kan kontakte $1 eller en af de andre [[{{MediaWiki:Grouppage-sysop}}|administratorer]] for at diskutere blokeringen.
 
-Bemærk, at du ikke kan bruge funktionen "e-mail til denne bruger" medmindre du har en gyldig e-mail addresse registreret i din [[Special:Preferences|brugerindstilling]].
+Bemærk at du ikke kan bruge funktionen "e-mail til denne bruger" medmindre du har en gyldig e-mail-adresse registreret i din [[Special:Preferences|brugerindstilling]], og du ikke er blevet blokeret fra at bruge den.
 
-Din blokerings-ID er $5. Angiv venligst denne ID ved alle henvendelser.',
+Din nuværende IP-adresse er $3, og blokerings-id\'et er #$5.
+Angiv venligst alle de ovenstående detaljer ved eventuelle henvendelser.',
 'blockednoreason'                  => 'ingen begrundelse givet',
 'blockedoriginalsource'            => "Kildekoden fra '''$1''' vises her:",
 'blockededitsource'                => "Kildekoden fra '''Dine ændringer''' til '''$1''':",
@@ -1294,22 +1297,13 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'upload_directory_missing'    => 'upload-kataloget ($1) findes ikke. Webserveren har ikke mulighed for at oprette kataloget.',
 'upload_directory_read_only'  => 'Webserveren har ingen skriverettigheder for upload-kataloget ($1).',
 'uploaderror'                 => 'Fejl under oplægning af fil',
-'uploadtext'                  => "<strong>STOP!</strong> Før du lægger filer op her, så vær sikker på du har læst og følger {{SITENAME}}s [[{{MediaWiki:Policy-url}}|politik om brug af billeder]]. Følg venligst disse retningslinjer: * Angiv tydeligt hvor filen stammer fra * Brug et beskrivende filnavn, så det er til at se hvad filen indeholder * Tjek i [[Special:FileList|listen over filer]] om filen allerede er lagt op
+'uploadtext'                  => "Brug formularen herunder til at lægge filer op.
+Gå til [[Special:FileList|listen over filer]] for at se eller søge i eksisterende filer. (Gen-)oplægnigner logges i [[Special:Log/upload|oplægningsloggen]], sletninger i [[Special:Log/delete|sletteloggen]].
 
-Brug formularen herunder til at lægge nye filer op, som kan bruges i dine artikler.
-På de fleste browsere vil du se en \"Browse...\" knap eller en \"Gennemse...\" knap, som vil bringe dig til dit styresystems standard-dialog til åbning af filer.
-Når du vælger en fil, vil navnet på filen dukke op i tekstfeltet ved siden af knappen.
-Du skal også bekræfte, at du ikke er ved at bryde nogens ophavsret. Det gør du ved at sætte et mærke i tjekboksen. Vælg \"Læg en fil op\"-knappen for at lægge filen op. Dette kan godt tage lidt tid hvis du har en langsom internetforbindelse. De foretrukne formater er JPEG til fotografiske billeder, PNG til tegninger og andre små billeder, og OGG til lyd.
-
-For at bruge et billede i en artikel, så brug en henvisning af denne type
-'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:fil.jpg]]</nowiki>''' eller
-'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:fil.png|alternativ tekst]]</nowiki>''' eller
-
-For at indlejre '''mediefiler''' ind, bruges f.eks.:
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}:fil.ogg<nowiki>]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}:fil.ogg|Henvisningstekst<nowiki>]]</nowiki></tt>'''
-
-Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne redigere eller slette de filer, du har lagt op, hvis de mener det hjælper {{SITENAME}}, og du kan blive blokeret fra at lægge op hvis du misbruger systemet.",
+Brug en henvisning af en de følgende typer for at bruge en fil på en side:
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for at bruge at fulde version af et bilede
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|thumb|left|Alternativ tekst<nowiki>]]</nowiki></tt>''' for at bruge billedet med en bredde på 200&nbsp;pixel i en ramme til venstre med \"Alternativ tekst\" som beskrivelse
+*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></tt>''' for at henvise direkte til filen uden at vise den",
 'upload-permitted'            => 'Tilladte filtyper: $1.',
 'upload-preferred'            => 'Foretrukne filtyper: $1.',
 'upload-prohibited'           => 'Uønskede filtyper: $1.',
@@ -1351,8 +1345,8 @@ Kontroller om du har billedet i fuld størrelse og upload det under det original
 'successfulupload'            => 'Oplægningen er gennemført',
 'uploadwarning'               => 'Advarsel',
 'savefile'                    => 'Gem fil',
-'uploadedimage'               => 'Lagde "[[$1]]" op',
-'overwroteimage'              => 'Lagde en ny version af "[[$1]]" op',
+'uploadedimage'               => 'lagde "[[$1]]" op',
+'overwroteimage'              => 'lagde en ny version af "[[$1]]" op',
 'uploaddisabled'              => 'Desværre er funktionen til at lægge billeder op afbrudt på denne server.',
 'uploaddisabledtext'          => 'Upload af filer er deaktiveret.',
 'uploadscripted'              => 'Denne fil indeholder HTML eller script-kode, der i visse tilfælde can fejlfortolkes af en browser.',
@@ -1389,7 +1383,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'upload_source_file' => ' (en fil på din computer)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Denne specialside viser alle uploadede filer. Standardmæssigt vises de sidst uploadede filer først. Med et klik på spalteoverskriften kan sorteringen vendes om eller der kan sorteres efter en anden spalte.',
+'listfiles-summary'     => 'Denne specialside viser alle oplagte filer. Standardmæssigt vises de sidst oplagte filer først. Med et klik på spalteoverskriften kan sorteringen vendes om, eller der kan sorteres efter en anden spalte.',
 'listfiles_search_for'  => 'Søge efter fil:',
 'imgfile'               => 'Fil',
 'listfiles'             => 'Billedliste',
@@ -1418,7 +1412,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'nolinkstoimage'            => 'Der er ingen sider der henviser til dette billede.',
 'morelinkstoimage'          => 'Se [[Special:WhatLinksHere/$1|flere henvisninger]] til denne fil.',
 'redirectstofile'           => '{{PLURAL:$1|Nedenstående fil|De nedenstående $1 filer}} er en omdirigering til denne fil:',
-'duplicatesoffile'          => '{{PLURAL:$1|Nedenstående fil|De nedenstående $1 filer}} er dubletter af denne fil:',
+'duplicatesoffile'          => 'Følgende {{PLURAL:$1|fil er en dublet|filer er dubletter}} af denne fil ([[Special:FileDuplicateSearch/$2|flere detaljer]]):',
 'sharedupload'              => 'Denne fil er fra $1 og kan bruges af andre projekter. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Se venligst $1n for yderligere information.',
 'shareduploadwiki-desc'     => 'Beskrivelsen på dens $1 der vises nedenfor.',
@@ -2738,15 +2732,16 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'filepath'         => 'Filsti',
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Vis sti',
-'filepath-summary' => 'Denne specialside giver et direkte link til en fil. Billder vises i fuld opløsning og andre mediatyper vil blive aktiveret med deres tilhærende program.
+'filepath-summary' => 'Denne specialside giver et direkte link til en fil.
+Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med deres tilhørende program.
 
-Angiv filnavnet uden "{{ns:file}}:"-præfix.',
+Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Find dubletfiler',
 'fileduplicatesearch-summary'  => 'Find dublerede filer baseret på deres hash-værdi.
 
-Angiv filnavnet uden "{{ns:file}}:"-præfix.',
+Angiv filnavnet uden "{{ns:file}}:"-præfikset.',
 'fileduplicatesearch-legend'   => 'Find dubletfiler.',
 'fileduplicatesearch-filename' => 'Filnavn:',
 'fileduplicatesearch-submit'   => 'Find',
@@ -2775,5 +2770,18 @@ Angiv filnavnet uden "{{ns:file}}:"-præfix.',
 # Special:BlankPage
 'blankpage'              => 'Blank side',
 'intentionallyblankpage' => 'Denne side er bevidst uden indhold.',
+
+# Special:Tags
+'tags-edit'     => 'Redigér',
+'tags-hitcount' => '{{PLURAL:$1|en ændring|$1 ændringer}}',
+
+# Database error messages
+'dberr-header'      => 'Wikien har et problem',
+'dberr-problems'    => 'Undskyld! Siden har tekniske problemer.',
+'dberr-again'       => 'Prøv at vente et par minutter og opdater Nyså siden igen.',
+'dberr-info'        => '(Kan ikke komme i kontakt med databaseserveren: $1)',
+'dberr-usegoogle'   => 'Du kan prøve at søge med Google imens.',
+'dberr-outofdate'   => 'Bemærk at deres indeks over vores sider kan være forældet.',
+'dberr-cachederror' => 'Det følgende er en mellemlagret kopi af den forespurgte side. Den kan være forældet.',
 
 );

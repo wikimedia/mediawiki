@@ -761,7 +761,7 @@ Den Administrateur den D'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'nocreate-loggedin'                => 'Dir hutt keng Berechtigung fir nei Säiten unzeleeën.',
 'permissionserrors'                => 'Berechtigungs-Feeler',
 'permissionserrorstext'            => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',
-'permissionserrorstext-withaction' => "Dir sidd net berechtegt, d'Aktioun $2 auszeféieren, wéinst {{PLURAL:$1|dësem Grond|dëse Grënn}}:",
+'permissionserrorstext-withaction' => 'Dir sidd net berechtegt $2 aus {{PLURAL:$1|dësem Grond|dëse Grënn}}:',
 'recreate-deleted-warn'            => "'''Opgepasst: Dës Säit gouf schonns eng Kéier geläscht.'''
 
 Frot iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
@@ -2045,7 +2045,7 @@ Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipblocklist-sh-tempblocks'       => 'temporär Späre $1',
 'ipblocklist-sh-addressblocks'    => 'eenzel IP-Adressen déi gespaart si $1',
 'ipblocklist-submit'              => 'Sichen',
-'blocklistline'                   => '$1, $2 huet de Benotzer:$3 gespaart ($4)',
+'blocklistline'                   => '$1, $2 huet de Benotzer:$3 gespaart (gëllt $4)',
 'infiniteblock'                   => 'onbegrenzt',
 'expiringblock'                   => 'bis $1',
 'anononlyblock'                   => 'nëmmen anonym Benotzer',

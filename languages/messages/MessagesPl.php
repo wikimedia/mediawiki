@@ -987,9 +987,11 @@ wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
 'revdelete-nologid-text'         => 'Albo nie określiłeś wpisu w rejestrze do przeprowadzenie operacji albo wybrany wpis nie istnieje.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Zaznaczona wersja|Zaznaczone wersje}} strony [[:$1]]:'''",
 'logdelete-selected'             => "'''Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:'''",
-'revdelete-text'                 => "'''Usunięte wersje będą nadal widoczne w historii strony, ale ich treść nie będzie publicznie dostępna.'''
+'revdelete-text'                 => "'''Usunięte wersje i czynności będą nadal widoczne w historii strony i rejestrach, ale ich treść nie będzie publicznie dostępna.'''
 
-Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do ukrytych wersji i będą mogli je odtworzyć, chyba że operator serwisu nałożył dodatkowe ograniczenia.",
+Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do ukrytych treści oraz będą mogli je odtworzyć używając standardowych mechanizmów, chyba że operator serwisu nałożył dodatkowe ograniczenia.
+
+Potwierdź, że jesteś pewien tego co robisz, rozumiesz konsekwencje oraz, że działasz zgodnie z [[{{MediaWiki:Policy-url}}|zasadami]].",
 'revdelete-legend'               => 'Ustaw ograniczenia widoczności dla wersji',
 'revdelete-hide-text'            => 'Ukryj tekst wersji',
 'revdelete-hide-name'            => 'Ukryj akcję i cel',
@@ -1264,8 +1266,8 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'defaultns'                 => 'Domyślnie przeszukuj przestrzenie nazw',
 'default'                   => 'domyślnie',
 'files'                     => 'Pliki',
-'prefs-custom-css'          => 'Własny CSS',
-'prefs-custom-js'           => 'Własny JavaScript',
+'prefs-custom-css'          => 'własny CSS',
+'prefs-custom-js'           => 'własny JavaScript',
 
 # User rights
 'userrights'                  => 'Zarządzaj uprawnieniami użytkowników', # Not used as normal message but as header for the special page itself
@@ -2099,7 +2101,7 @@ Sama treść usuniętych wersji jest dostępna jedynie dla administratorów.',
 Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z archiwum.',
 'undelete-nodiff'              => 'Nie znaleziono poprzednich wersji.',
 'undeletebtn'                  => 'Odtwórz',
-'undeletelink'                 => 'pokaż/odtwórz',
+'undeletelink'                 => 'pokaż lub odtwórz',
 'undeletereset'                => 'Wyczyść',
 'undeleteinvert'               => 'Odwróć zaznaczenie',
 'undeletecomment'              => 'Powód odtworzenia',

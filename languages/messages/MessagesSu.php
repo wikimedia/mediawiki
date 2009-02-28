@@ -9,7 +9,6 @@
  * @author Meursault2004
  * @author Mssetiadi
  * @author Urhixidur
- * @author Verdy p
  * @author לערי ריינהארט
  */
 
