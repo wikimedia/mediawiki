@@ -3562,6 +3562,12 @@ $wgAPIMaxDBRows = 5000;
 $wgAPIMaxResultSize = 8388608;
 
 /**
+ * The maximum number of uncached diffs that can be retrieved in one API
+ * request. Set this to 0 to disable API diffs altogether
+ */
+$wgAPIMaxUncachedDiffs = 1;
+
+/**
  * Parser test suite files to be run by parserTests.php when no specific
  * filename is passed to it.
  *

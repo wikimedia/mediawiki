@@ -27,6 +27,7 @@ class DifferenceEngine {
 	var $mOldRev, $mNewRev;
 	var $mRevisionsLoaded = false; // Have the revisions been loaded
 	var $mTextLoaded = 0; // How many text blobs have been loaded, 0, 1 or 2?
+	var $mCacheHit = false; // Was the diff fetched from cache?
 	var $htmldiff;
 
 	protected $unhide = false;
@@ -52,9 +53,8 @@ class DifferenceEngine {
 			$this->mNewid = intval($old);
 			$this->mOldid = $this->mTitle->getPreviousRevisionID( $this->mNewid );
 		} elseif ( 'next' === $new ) {
-			# Show diff between revision $old and the previous one.
-			# Get previous one from DB.
-			#
+			# Show diff between revision $old and the next one.
+			# Get next one from DB.
 			$this->mOldid = intval($old);
 			$this->mNewid = $this->mTitle->getNextRevisionID( $this->mOldid );
 			if ( false === $this->mNewid ) {
@@ -75,6 +75,18 @@ class DifferenceEngine {
 
 	function getTitle() {
 		return $this->mTitle;
+	}
+	
+	function wasCacheHit() {
+		return $this->mCacheHit;
+	}
+	
+	function getOldid() {
+		return $this->mOldid;
+	}
+	
+	function getNewid() {
+		return $this->mNewid;
 	}
 
 	function showDiffPage( $diffOnly = false ) {
@@ -537,10 +549,15 @@ CONTROL;
 	function getDiffBody() {
 		global $wgMemc;
 		wfProfileIn( __METHOD__ );
+		$this->mCacheHit = true;
 		// Check if the diff should be hidden from this user
+		if ( !$this->loadRevisionData() )
+			return '';
 		if ( $this->mOldRev && !$this->mOldRev->userCan(Revision::DELETED_TEXT) ) {
 			return '';
 		} else if ( $this->mNewRev && !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+			return '';
+		} else if ( $this->mOldRev && $this->mNewRev && $this->mOldRev->getID() == $this->mNewRev->getID() ) {
 			return '';
 		}
 		// Cacheable?
@@ -559,6 +576,7 @@ CONTROL;
 				}
 			} // don't try to load but save the result
 		}
+		$this->mCacheHit = false;
 
 		// Loadtext is permission safe, this just clears out the diff
 		if ( !$this->loadText() ) {
@@ -691,7 +709,7 @@ CONTROL;
 
 	function localiseLineNumbersCb( $matches ) {
 		global $wgLang;
-		return wfMsgExt( 'lineno', array( 'parseinline' ), $wgLang->formatNum( $matches[1] ) );
+		return wfMsgExt( 'lineno', array (), $wgLang->formatNum( $matches[1] ) );
 	}
 
 
@@ -773,10 +791,10 @@ CONTROL;
 
 		// Load the new revision object
 		$this->mNewRev = $this->mNewid
-		? Revision::newFromId( $this->mNewid )
-		: Revision::newFromTitle( $this->mTitle );
+			? Revision::newFromId( $this->mNewid )
+			: Revision::newFromTitle( $this->mTitle );
 		if( !$this->mNewRev instanceof Revision )
-		return false;
+			return false;
 
 		// Update the new revision ID in case it was 0 (makes life easier doing UI stuff)
 		$this->mNewid = $this->mNewRev->getId();
