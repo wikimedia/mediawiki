@@ -2388,7 +2388,7 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 # Patrol log
 'patrol-log-page'      => 'Patrullatze loga',
 'patrol-log-header'    => 'Hau patruliatutako aldaketen log bat da.',
-'patrol-log-line'      => '$1etik $2 markatu da patrullatu moduan $3',
+'patrol-log-line'      => '$1etik $2 markatu da patruilatu moduan $3',
 'patrol-log-auto'      => '(automatikoa)',
 'patrol-log-diff'      => '$1 berrikuspena',
 'log-show-hide-patrol' => '$1 patruilatze loga',

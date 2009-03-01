@@ -1270,7 +1270,7 @@ Dostympno je tyž [[Special:WhatLinksHere/$2|pouno lista]].',
 'shareduploadwiki'          => 'Wjyncyj informacyji znojdźeš we $1',
 'shareduploadwiki-desc'     => 'Uopis kery je na $1 we wspůudźelůnych zasobach možeš uobejřeć půńižyj.',
 'shareduploadwiki-linktext' => 'zajte uopisu grafiki',
-'noimage'                   => 'Ńjy ma sam plika uo takym mjańy, nale možeš go sam $1.',
+'noimage'                   => 'Ńy mo sam plika uo takym mjańe, nale mogesz go sam $1.',
 'noimage-linktext'          => 'wćepńij plik',
 'uploadnewversion-linktext' => 'Wćepńij nowšo wersyjo tygo plika',
 

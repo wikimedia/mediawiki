@@ -758,6 +758,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'resetpass-wrong-oldpass'   => 'Nem megfelelő ideiglenes vagy jelenlegi jelszó.
 Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben új ideiglenes jelszót kértél.',
 'resetpass-temp-password'   => 'Ideiglenes jelszó:',
+'resetpass-no-others'       => 'Nem állíthatod vissza más szerkesztők jelszavát.',
 
 # Edit page toolbar
 'bold_sample'     => 'Félkövér szöveg',
@@ -1397,6 +1398,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'right-userrights'           => 'az összes szerkesztő jogainak módosítása',
 'right-userrights-interwiki' => 'más wikik szerkesztői jogainak módosítása',
 'right-siteadmin'            => 'adatbázis lezárása, felnyitása',
+'right-reset-passwords'      => 'Más felhasználók jelszavának visszaállítása',
 
 # User rights log
 'rightslog'      => 'Szerkesztői jogosultságok naplója',

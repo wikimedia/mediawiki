@@ -182,7 +182,7 @@ $messages = array(
 'category-file-count-limited'    => '門有檔$1。',
 'listingcontinuesabbrev'         => '續',
 
-'mainpagetext'      => "<big>'''媒維基安置矣。'''</big>",
+'mainpagetext'      => "<big>'''共筆臺已立'''</big>",
 'mainpagedocfooter' => "欲識維基，見[http://meta.wikimedia.org/wiki/Help:Contents User's Guide]
 
 == 始 ==

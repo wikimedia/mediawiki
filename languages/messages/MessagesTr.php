@@ -1059,7 +1059,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'searchall'                        => 'hepsi',
 'showingresults'                   => "$2. sonuçtan başlayarak {{PLURAL:$1|'''1''' sonuç |'''$1''' sonuç }} aşağıdadır:",
 'showingresultsnum'                => "'''$2''' sonuçtan başlayarak {{PLURAL:$3|'''1''' sonuç|'''$3''' sonuç}} aşağıdadır:",
-'showingresultstotal'              => "Toplam {{PLURAL:$4|'''$3''' sonuçtan '''$1''' tanesi|'''$3''' sonuçtan '''$1 - $2''' arası sonuçlar}} gösteriliyor",
+'showingresultstotal'              => "Aşağıda {{PLURAL:$4|'''$3''' sonuçtan '''$1''' tanesi|'''$1 - $2''' arası '''$3''' sonuç}} gösteriliyor",
 'nonefound'                        => "'''Not''': Sadece bazı alan adları varsayılan olarak aranır.
 Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tartışma sayfalarını, şablonları vb. kapsayacak şekilde) deneyin veya önek olarak istenilen alan adını kullanın.",
 'search-nonefound'                 => 'Sorguyla eşleşen bir sonuç yok.',

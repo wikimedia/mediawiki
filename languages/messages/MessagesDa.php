@@ -851,20 +851,20 @@ Nærmere oplysninger om sletningen samt en begrundelse for den findes i [{{fullu
 'revdelete-nooldid-title'     => 'Ingen version angivet',
 'revdelete-nooldid-text'      => 'Du har ikke angivet en version, som denne handling kan udføres på.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valgte version|Valgte versioner}} af '''$1:''''''",
-'logdelete-selected'          => "'''{{PLURAL:$1|Valgte logbogsindførsel|Valgte logbogsindførsler}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Valgt logindførsel|Valgte logindførsler}}:'''",
 'revdelete-text'              => "'''Indholdet eller andre bestanddele er ikke mere offentligt tilgængelige, vises dog fortsat i versionshistorikken.'''
 
 Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre det er bestemt, at adgangsbegrænsningen også skal gælde for administratorer.",
 'revdelete-legend'            => 'Fastlægge begrænsninger for versionerne:',
 'revdelete-hide-text'         => 'Skjul versionens tekst',
-'revdelete-hide-name'         => 'Skjul logbogsaktionen',
+'revdelete-hide-name'         => 'Skjul handling og mål',
 'revdelete-hide-comment'      => 'Skjul ændringskommentar',
 'revdelete-hide-user'         => 'Skjul brugerens grugernavn/IP',
 'revdelete-hide-restricted'   => 'Disse begrænsninger gælder også for administratorer',
 'revdelete-suppress'          => 'Skjul også årsagen til sletningen for administratorer',
 'revdelete-hide-image'        => 'Skjul billedindhold',
 'revdelete-unsuppress'        => 'Ophæve begrænsninger for gendannede versioner',
-'revdelete-log'               => 'Kommentar/begrundelse (vises også i logbogen):',
+'revdelete-log'               => 'Kommentar til loggen:',
 'revdelete-submit'            => 'Bruge på udvalgte versioner',
 'revdelete-logentry'          => 'Versionsvisning ændret for [[$1]]',
 'logdelete-logentry'          => "ændrede [[$1]]'s synlighed",
@@ -1208,7 +1208,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'right-siteadmin'            => 'Låse og frigive databasen',
 
 # User rights log
-'rightslog'      => 'Rettigheds-logbog',
+'rightslog'      => 'Rettighedslog',
 'rightslogtext'  => 'Dette er en log over ændringer i brugeres rettigheder.',
 'rightslogentry' => 'ændrede grupperettigheder for „[[$1]]“ fra „$2“ til „$3“.',
 'rightsnone'     => '(-)',
@@ -1571,7 +1571,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'all-logs-page'        => 'Alle loglister',
 'alllogstext'          => 'Samlet visning af oplægningslog, sletningslog, blokeringslog, bureaukratlog og listen over beskyttede sider. Du kan sortere i visningen ved at vælge type, brugernavn og/eller en udvalgt side.',
 'logempty'             => 'Intet passende fundet.',
-'log-title-wildcard'   => 'Titel begynder med …',
+'log-title-wildcard'   => 'Søg i titler som begynder med teksten',
 
 # Special:AllPages
 'allpages'          => 'Alle artikler',
@@ -2687,7 +2687,9 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'watchlistedit-noitems'        => 'Din overvågningsliste er tom.',
 'watchlistedit-normal-title'   => 'Rediger overvågningsliste',
 'watchlistedit-normal-legend'  => 'Slet sider fra overvågningslisten',
-'watchlistedit-normal-explain' => 'Din overvågningsliste er vist nedenfor. Du kan fjerne sider fra den ved at markere den og trykke på Fjern valgte. Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]], eller [[Special:Watchlist/clear|rydde listen]].',
+'watchlistedit-normal-explain' => 'Din overvågningsliste er vist nedenfor.
+Du kan fjerne sider fra den ved at markere den og trykke på Fjern valgte.
+Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]].',
 'watchlistedit-normal-submit'  => 'Fjern valgte',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 side|$1 sider}} er fjernet fra din overvågningsliste:',
 'watchlistedit-raw-title'      => 'Direkte redigering af overvågningsliste',

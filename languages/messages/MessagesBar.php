@@ -4,11 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author bar.wikipedia.org administrators
  * @author Malafaya
  * @author Man77
  * @author Metalhead64
- * @author Verdy p
+ * @author bar.wikipedia.org administrators
  */
 
 $fallback = 'de';
@@ -53,6 +52,7 @@ $messages = array(
 'jan'         => 'Jän.',
 
 # Categories related messages
+'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'                => 'Seitn in da Kategorie „$1“',
 'subcategories'                  => 'Untakategorien',
 'category-media-header'          => 'Medien in da Kategorie „$1“',
@@ -78,12 +78,15 @@ $messages = array(
 'mypage'         => 'Eigne Seitn',
 'mytalk'         => 'Eigne Diskussion',
 'anontalk'       => 'Diskussionsseitn vo dera IP',
+'and'            => '&#32;und',
 
 'returnto'          => 'Zruck zur Seitn $1.',
+'tagline'           => 'Aus {{SITENAME}}',
 'help'              => 'Fragen?',
 'search'            => 'Suach',
 'searchbutton'      => 'Suach',
 'searcharticle'     => 'Artikl',
+'history'           => 'Versionen',
 'updatedmarker'     => '(gändat)',
 'printableversion'  => 'Version zum Ausdruckn',
 'permalink'         => 'Bschtändige URL',
@@ -115,6 +118,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Üba {{SITENAME}}',
 'aboutpage'            => 'Project:Üba_{{SITENAME}}',
+'disclaimers'          => 'Impressum',
 'edithelp'             => 'Bearbeitungshuifn',
 'edithelppage'         => 'Help:Bearbeitungshuifn',
 'mainpage'             => 'Hauptsaitn',
@@ -216,7 +220,9 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'accmailtext'              => 'Des Passwort fia „$1“ is an $2 gschickt worn.',
 'newarticle'               => '(Nei)',
 'newarticletext'           => 'Da an Text vo da neien Seitn eintragn. Bitte nur in ganze Sätze schreim und koane urheberrechtsgeschützten Texte vo andere kopiern.',
-'anontalkpagetext'         => "---- ''De Seitn werd dazu hergnumma, am net ogmeldten Benutzer Nachrichtn zum hinterlassen. Wennst mit de Kommentare auf dera Seitn nix ofanga kåst, is vermutlich da friarare Inhaber vo dera IP-Adressn gmoant und du kånstas ignoriern. Wennst a anonymer Benutzer bist und dengst, daß irrelevante Kommentare an di grichtet worn san, [[Special:Userlogin|meld di bitte o]], um zukünftig Verwirrung zum vermeiden. ''",
+'anontalkpagetext'         => "---- ''De Seitn werd dazu hergnumma, am net ogmeldten Benutzer Nachrichtn zum hinterlassen.
+Wennst mit de Kommentare auf dera Seitn nix ofanga kåst, is vermutlich da friarare Inhaber vo dera IP-Adressn gmoant und du kånstas ignoriern.
+Wennst a anonymer Benutzer bist und dengst, daß irrelevante Kommentare an di grichtet worn san, [[Special:UserLogin|meld di bitte o]], um zukünftig Verwirrung zum vermeiden. ''",
 'previewconflict'          => "De Vorschau gibt an Inhalt vom obern Textfeld wieda; so werd de Seite ausschaun, wenn S' iatzat speichern.",
 'session_fail_preview'     => '<strong>Dei Bearbeitung is net gspeichert worn, wei deine Sitzungsdaten valorn ganga san.
 Bitte versuachs no amoi, indem du unta da foigendn Textvorschau nochmois auf „Seitn speichern“ klickst.
@@ -283,6 +289,7 @@ Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-
 'history-title'           => 'Versionsgschicht vu „$1“',
 'difference'              => '(Untaschied zwischn Versionen)',
 'compareselectedversions' => 'Gwählte Versionen vergleicha',
+'editundo'                => 'rückgängig',
 
 # Search results
 'searchresults'         => 'Suachergebnisse',
@@ -317,7 +324,8 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'action-autopatrol' => 'eigne Arbat ois kontrolliert markiern',
 
 # Recent changes
-'diff' => 'Untaschied',
+'diff'            => 'Untaschied',
+'minoreditletter' => 'K',
 
 # Recent changes linked
 'recentchangeslinked' => 'Valinkts prüfn',
@@ -329,7 +337,7 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'uploadnologintext' => "Sie miassn [[Special:UserLogin|ogmeidt sei]], wenn S' Dateien hoachladn wolln.",
 'uploadlog'         => 'Datei-Logbuach',
 'uploadlogpage'     => 'Datei-Logbuach',
-'uploadlogpagetext' => 'Des is des Logbuach vo de hoachgladna Dateien, schaug aa unta [[Special:Newimages|neie Dateien]].',
+'uploadlogpagetext' => 'Des is des Logbuach vo de hoachgladna Dateien, schaug aa unta [[Special:NewFiles|neie Dateien]].',
 'uploadedfiles'     => 'Hoachgladene Dateien',
 'badfilename'       => "Da Dateinam is in „$1“ g'ändat won.",
 'large-file'        => 'De Dateigreß sollat nach Möglichkeit $1 net überschreitn. De Datei is $2 groaß.',
@@ -377,8 +385,10 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 # Statistics
 'statistics-mostpopular' => 'Am meistn bsuachte Seitn',
 
-'disambiguationspage'  => '[[Vorlage:Begriffsklärung]]',
-'disambiguations-text' => 'De folgenden Seitn valinkn auf a Seitn zur Begriffsklärung. Sie solltn stattdessn auf de eigentlich gemoante Seitn valinkn.<br />A Seitn werd ois Begriffsklärungsseitn behandelt, wenn [[MediaWiki:disambiguationspage]] auf sie valinkt.<br />Links aus Namensräume wern da net aufglistet.',
+'disambiguationspage'  => 'Template:Begriffsklärung',
+'disambiguations-text' => 'De folgenden Seitn valinkn auf a Seitn zur Begriffsklärung.
+Sie solltn stattdessn auf de eigentlich gemoante Seitn valinkn.<br />A Seitn werd ois Begriffsklärungsseitn behandelt, wenn [[MediaWiki:Disambiguationspage]] auf sie valinkt.<br />
+Links aus Namensräume wern da net aufglistet.',
 
 'withoutinterwiki-submit' => 'Zoag',
 
@@ -436,7 +446,7 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 'addedwatch'        => 'Zua Beobachtungslistn dazuado',
 'addedwatchtext'    => 'De Seitn „$1“ is zua deina [[Special:Watchlist|Beobachtungslistn]] dazuado worn.
 Änderunga an dera Seitn und vo da Diskussionsseitn wern da glistet und
-in da Übasicht vo de [[Special:Recentchanges|letztn Änderungen]] in Fettschrift ozoagt. 
+in da Übasicht vo de [[Special:RecentChanges|letztn Änderungen]] in Fettschrift ozoagt. 
 Wennst de Seitn wieder vo deina Beobachtungslistn wegdoa mechtn, klickst auf da jeweiligen Seitn auf „nimma beobachten“.',
 'watch'             => 'Beobåchtn',
 'watchthispage'     => 'Seitn beobachtn',
@@ -469,7 +479,7 @@ Um die Einstellungen Ihrer Beobachtungslistn anzupassen bsuachans bitte: {{fullu
 'historywarning'    => 'OBACHT: Die Seitn, de Sie löschen wolln, håt a Versionsgeschichte:',
 'confirmdeletetext' => 'Sie san dabei, a Seitn oda a Datei und alle zughörigen ältern Versionen
 zum löschen. Bitte bestätigen Sie da dazu, dass Sie de Konsequenzen verstengan
-und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:policy-url}}|Richtlinien]] handeln.',
+und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] handeln.',
 'deletedtext'       => '„$1“ is glöscht worn. Im $2 findn Sie a Listn vo de letzten Löschungen.',
 'deletedarticle'    => 'håd „[[$1]]“ glöscht',
 'dellogpage'        => 'Lösch-Logbuach',
@@ -530,6 +540,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'createaccountblock' => 'Erstellung vo Benutzakonten gsperrt',
 'blocklink'          => 'sperrn',
 'unblocklink'        => 'freigem',
+'contribslink'       => 'Beiträge',
 'autoblocker'        => "Automatische Sperre, weil s' a gmeinsame IP-Adressn mit „$1“ hernehma. Grund: „$2“.",
 
 # Developer tools

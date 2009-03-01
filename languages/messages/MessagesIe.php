@@ -319,7 +319,8 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'mycontris' => 'Mi contributiones',
 
 # What links here
-'whatlinkshere' => 'Ligat págines',
+'whatlinkshere'      => 'Ligat págines',
+'whatlinkshere-page' => 'Págine:',
 
 # Block/unblock
 'ipblocklist'  => 'Blocat adresses e usatores',
@@ -340,7 +341,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'allmessages' => 'Liste del missages del sistema',
 
 # Tooltip help for the actions
-'tooltip-pt-mytalk'      => 'Mi discussion',
+'tooltip-pt-mytalk'      => 'Vor discussion',
 'tooltip-pt-preferences' => 'Mi preferenties',
 'tooltip-ca-delete'      => 'Deleter ti págine',
 'tooltip-ca-move'        => 'Moer ti págine',

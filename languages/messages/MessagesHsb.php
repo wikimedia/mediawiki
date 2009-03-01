@@ -7,7 +7,6 @@
  * @author Dundak
  * @author Michawiki
  * @author Tlustulimu
- * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -1881,7 +1880,7 @@ Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych str
 ** Wobdźěłanska wójna
 ** Strona z jara wjele změnami',
 'protect-edit-reasonlist'     => 'Škitowe přičiny wobdźěłać',
-'protect-expiry-options'      => '1 hodźinu:1 hour,2 hodźinje:2 hours, 6 hodźiny:6 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:indefinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hodźinu:1 hour,1 dźeń:1 day,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Škitowy status',
 'restriction-level'           => 'Runina škita:',
 'minimum-size'                => 'Minimalna wulkosć:',
@@ -2012,7 +2011,7 @@ $1',
 'ipbenableautoblock'              => 'IP-adresy blokować kiž buchu přez tutoho wužiwarja hižo wužiwane kaž tež naslědne adresy, z kotrychž so wobdźěłanje pospytuje',
 'ipbsubmit'                       => 'Wužiwarja zablokować',
 'ipbother'                        => 'Druha doba',
-'ipboptions'                      => '1 hodźinu:1 hour,2 hodźinje:2 hours, 6 hodźiny:6 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:indefinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 hodźinje:2 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'druha doba (jendźelsce)',
 'ipbotherreason'                  => 'Druha/přidatna přičina:',
 'ipbhidename'                     => 'Wužiwarske mjeno/IP-adresu w protokolu zablokowanjow, w lisćinje aktiwnych zablokowanjow a w zapisu wužiwarjow schować.',
@@ -2120,7 +2119,7 @@ Wobkedźbuj, zo strona so <b>nje</b> přesunje, jeli strona z nowym titlom hizo 
 W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to přeješ.',
 'movearticle'                  => 'Stronu přesunyć',
 'movenologin'                  => 'Njejsy přizjewjeny.',
-'movenologintext'              => 'Dyrbiš zregistrowany wužiwar a [[Special:UserLogin|přizjewjeny]] być, zo by stronu přesunyć móhł.',
+'movenologintext'              => 'Dyrbiš zregistrowany wužiwar a [[Special:Userlogin|přizjewjeny]] być, zo by stronu přesunył.',
 'movenotallowed'               => 'Nimaš prawo, zo by strony přesunył.',
 'movenotallowedfile'           => 'Nimaš prawo dataje přesunyć.',
 'cant-move-user-page'          => 'Nimaš prawo wužiwarske strony přesunyć (wothladajo wot podstronow)',
