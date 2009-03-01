@@ -160,9 +160,12 @@ class ApiQueryLogEvents extends ApiQueryBase {
 						$vals2 = array();
 						ApiQueryBase :: addTitleInfo($vals2, $title, "new_");
 						$vals[$type] = $vals2;
-						$params = null;
 					}
 				}
+				if (isset ($params[1])) {
+					$vals[$type]['suppressedredirect'] = (bool) $params[1];
+				} 
+				$params = null;
 				break;
 			case 'patrol':
 				$vals2 = array();
