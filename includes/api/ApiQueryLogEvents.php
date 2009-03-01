@@ -162,8 +162,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 						$vals[$type] = $vals2;
 					}
 				}
-				if (isset ($params[1])) {
-					$vals[$type]['suppressedredirect'] = (bool) $params[1];
+				if (isset ($params[1]) && $params[1]) {
+					$vals[$type]['suppressedredirect'] = '';
 				} 
 				$params = null;
 				break;
