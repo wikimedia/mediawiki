@@ -615,7 +615,10 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan sementara yang baru.',
 'resetpass-temp-password'   => 'Kata laluan sementara:',
 'resetpass-no-others'       => 'Anda tidak boleh mengeset semula kata laluan orang lain.',
+'resetpass-log'             => 'Log pengesetan semula kata laluan',
+'resetpass-logtext'         => 'Berikut ialah log pengguna yang kata laluannya telah diset semula oleh penyelia.',
 'resetpass-logentry'        => 'menukar kata laluan $1',
+'resetpass-comment'         => 'Alasan mengeset semula kata laluan:',
 
 # Edit page toolbar
 'bold_sample'     => 'Teks tebal',
@@ -874,11 +877,12 @@ Butiran lanjut boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revdelete-nologid-text'         => 'Anda tidak menyatakan peristiwa log sasaran perkara untuk melakukan fungsi ini atau entri ynag dinyatakan tidak wujud.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:'''",
-'revdelete-text'                 => "'''Semakan dan peristiwa yang dihapuskan masih muncul dalam sejarah laman dan log,
-akan tetapi kandungannya tidak boleh dilihat oleh orang awam.'''
+'revdelete-text'                 => "'''Semakan dan peristiwa yang dihapuskan akan tetap muncul dalam sejarah laman dan log,
+tetapi kandungannya tidak boleh diakses awam.'''
 
 Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya
-semula melalui laman ini melainkan mempunyai batasan.",
+semula melalui laman ini melainkan mempunyai batasan.
+Sila sahkan bahawa anda hendak lakukan ini dan memahami akibatnya, dan anda mematuhi [[{{MediaWiki:Policy-url}}|polisi]].",
 'revdelete-legend'               => 'Tetapkan batasan:',
 'revdelete-hide-text'            => 'Sembunyikan teks semakan',
 'revdelete-hide-name'            => 'Sembunyikan tindakan dan sasaran',
@@ -1952,7 +1956,7 @@ sebelum penghapusan. Teks sebenar bagi semua semakan yang dihapuskan hanya boleh
 atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undelete-nodiff'              => 'Tiada semakan sebelumnya.',
 'undeletebtn'                  => 'Pulihkan',
-'undeletelink'                 => 'pulih',
+'undeletelink'                 => 'lihat/pulih',
 'undeletereset'                => 'set semula',
 'undeleteinvert'               => 'Kecualikan pilihan',
 'undeletecomment'              => 'Komen:',

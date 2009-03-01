@@ -903,6 +903,7 @@ povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 
 'revdelete-nooldid-text'         => 'Vi ne specifis celan version aŭ versiojn fari ĉi tiun 
 funkcion, la specifigita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan version.',
 'revdelete-nologtype-title'      => 'Neniu protokol-tipo estis donita',
+'revdelete-nologtype-text'       => 'Vi ne specifigis protokolan tipon por fari ĉi tiun funkcion.',
 'revdelete-toomanytargets-title' => 'Tro multaj celoj',
 'revdelete-toomanytargets-text'  => 'Vi specifis tro tipojn da celoj por fari ĉi tiun agon.',
 'revdelete-nologid-title'        => 'Nevalida protokol-linio',
@@ -910,7 +911,8 @@ funkcion, la specifigita versio ne ekzistas, aŭ vi estas provanta kaŝi la nuna
 'logdelete-selected'             => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
 'revdelete-text'                 => "'''Forigitaj versioj kaj eventoj plu aperos en la historipaĝoj, sed iliaj tekstoj ne estos alireblaj de la publiko.'''
 
-Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj restarigi ĝin per la sama interfaco, krom se plia limigo estas metita de la paĝaradministrantoj.",
+Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj restarigi ĝin per la sama interfaco, krom se plia limigo estas metita de la paĝaradministrantoj.
+Bonvolu konfirmi ke vi intencias fari ĉi tiel, ke vi komprenas la konsekvencojn, kaj ke vi faras ĉi tiel laŭ [[{{MediaWiki:Policy-url}}|la regularo]].",
 'revdelete-legend'               => 'Fari videblecajn limigojn',
 'revdelete-hide-text'            => 'Kaŝi tekston de versio',
 'revdelete-hide-name'            => 'Kaŝi agon kaj celon',
@@ -2269,7 +2271,12 @@ La celartikolo "[[:$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon 
 
 # Export
 'export'            => 'Eksporti paĝojn',
-'exporttext'        => 'Vi povas eksporti la tekston kaj la redaktohistorion de aparta paĝo aŭ de paĝaro kolektita en ia XML ; tio povas esti importita en alian programon funkciantan per MediaWiki-softvaro, ŝanĝita, aŭ nur prenita por propra privata uzo.',
+'exporttext'        => 'Vi povas eksporti la tekston kaj la redaktohistorion de aparta paĝo aŭ de paĝaro kolektita en ia XML.
+Ĉi tio povas esti importita en alian programon funkciantan per MediaWiki-softvaro per la [[Special:Import|import-paĝo]].
+
+Eksporti paĝojn, enigu la titolojn en la jena tekst-skatolo, po unu por linio, kaj elektu ĉu vi volas kaj la nunan version kaj ĉiujn antaŭajn versiojn, kun la paĝaj historiaj linioj, a la nunan version kun la informo pri la lasta redakto.
+
+En la lasta kazo, vi ankaŭ povas uzi ligilo, ekz-e [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] por la paĝo "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Entenas nur la aktualan version, ne la malnovajn.',
 'exportnohistory'   => "----
 '''Notu:''' Eksportado de la plena historio de paĝoj per ĉi paĝo estis malebligita pro funkciigaj kialoj.",

@@ -758,6 +758,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'move'                    => 'Sogeza',
 'movethispage'            => 'Sogeza ukurasa huu',
 'pager-newer-n'           => '{{PLURAL:$1|1 ya karibu zaidi|$1 ya karibu zaidi}}',
+'pager-older-n'           => '{{PLURAL:$#|$1 ya zamani zaidi}}',
 
 # Book sources
 'booksources'    => 'Vyanzo vya vitabu',

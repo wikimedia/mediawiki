@@ -1504,7 +1504,7 @@ Podeu consultar la [[Special:WhatLinksHere/$2|llista completa]].",
 'noimage'                   => 'No existeix cap fitxer amb aquest nom, però podeu $1.',
 'noimage-linktext'          => "Carrega'n una",
 'uploadnewversion-linktext' => "Carrega una nova versió d'aquest fitxer",
-'shared-repo-from'          => "des d'", # $1 is the repository name
+'shared-repo-from'          => 'des de $1', # $1 is the repository name
 'shared-repo'               => 'un repositori compartit', # used when shared-repo-NAME does not exist
 
 # File reversion
@@ -2234,7 +2234,7 @@ Incorporeu-les manualment, si us plau.",
 'move-redirect-suppressed'     => 'redirecció suprimida',
 'movelogpage'                  => 'Registre de reanomenaments',
 'movelogpagetext'              => 'Vegeu la llista de les darreres pàgines reanomenades.',
-'movesubpage'                  => 'Subpàgines',
+'movesubpage'                  => '{{PLURAL:$1|Subpàgina|Subpàgines}}',
 'movesubpagetext'              => 'Aquesta pàgina té {{PLURAL:$1|una subpàgina|$1 subpàgines}} que es mostren a continuació.',
 'movenosubpage'                => 'Aquesta pàgina no té subpàgines.',
 'movereason'                   => 'Motiu',
