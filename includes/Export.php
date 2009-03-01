@@ -180,19 +180,27 @@ class WikiExporter {
 		
 		# For logs dumps...
 		if( $this->history & self::LOGS ) {
+			if( $this->buffer == WikiExporter::STREAM ) {
+				$prev = $this->db->bufferResults( false );
+			}
 			$where = array( 'user_id = log_user' );
 			# Hide private logs
-			$where[] = LogEventsList::getExcludeClause( $this->db );
+			$hideLogs = LogEventsList::getExcludeClause( $this->db );
+			if( $hideLogs ) $where[] = $hideLogs;
+			# Add on any caller specified conditions
 			if( $cond ) $where[] = $cond;
 			# Get logging table name for logging.* clause
 			$logging = $this->db->tableName('logging');
 			$result = $this->db->select( array('logging','user'), 
 				array( "{$logging}.*", 'user_name' ), // grab the user name
 				$where,
-				$fname,
+				__METHOD__,
 				array( 'ORDER BY' => 'log_id', 'USE INDEX' => array('logging' => 'PRIMARY') )
 			);
 			$wrapper = $this->db->resultObject( $result );
+			if( $this->buffer == WikiExporter::STREAM ) {
+				$this->db->bufferResults( $prev );
+			}
 			$this->outputLogStream( $wrapper );
 		# For page dumps...
 		} else {
