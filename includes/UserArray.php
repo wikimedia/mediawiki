@@ -12,6 +12,17 @@ abstract class UserArray implements Iterator {
 		return $userArray;
 	}
 
+	static function newFromIDs( $ids ) {
+		$ids = array_map( 'intval', (array)$ids ); // paranoia
+		if ( !$ids )
+			// Database::select() doesn't like empty arrays
+			return new ArrayIterator(array());
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'user', '*', array( 'user_id' => $ids ),
+			__METHOD__ );
+		return self::newFromResult( $res );
+	}
+
 	protected static function newFromResult_internal( $res ) {
 		$userArray = new UserArrayFromResult( $res );
 		return $userArray;

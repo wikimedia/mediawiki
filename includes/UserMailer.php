@@ -281,10 +281,41 @@ class EmailNotification {
 	 * @param $oldid (default: false)
 	 */
 	function notifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid = false) {
-		global $wgEnotifUseJobQ;
+		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker;
 
-		if( $title->getNamespace() < 0 )
+		if ($title->getNamespace() < 0)
 			return;
+
+		// Build a list of users to notfiy
+		$watchers = array();
+		if ($wgEnotifWatchlist || $wgShowUpdatedMarker) {
+			$dbw = wfGetDB( DB_MASTER );
+			$res = $dbw->select( array( 'watchlist' ),
+				array( 'wl_user' ),
+				array(
+					'wl_title' => $title->getDBkey(),
+					'wl_namespace' => $title->getNamespace(),
+					'wl_user != ' . intval( $editor->getID() ),
+					'wl_notificationtimestamp IS NULL',
+				), __METHOD__
+			);
+			while ($row = $dbw->fetchObject( $res ) ) {
+				$watchers[] = intval( $row->wl_user );
+			}
+			if ($watchers) {
+				// Update wl_notificationtimestamp for all watching users except
+				// the editor
+				$dbw->begin();
+				$dbw->update( 'watchlist',
+					array( /* SET */
+						'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
+					), array( /* WHERE */
+						'wl_user' => $watchers
+					), __METHOD__
+				);
+				$dbw->commit();
+			}
+		}
 
 		if ($wgEnotifUseJobQ) {
 			$params = array(
@@ -293,11 +324,12 @@ class EmailNotification {
 				"timestamp" => $timestamp,
 				"summary" => $summary,
 				"minorEdit" => $minorEdit,
-				"oldid" => $oldid);
+				"oldid" => $oldid,
+				"watchers" => $watchers);
 			$job = new EnotifNotifyJob( $title, $params );
 			$job->insert();
 		} else {
-			$this->actuallyNotifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid);
+			$this->actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers );
 		}
 
 	}
@@ -310,15 +342,16 @@ class EmailNotification {
 	 *
 	 * @param $editor User object
 	 * @param $title Title object
-	 * @param $timestamp
-	 * @param $summary
-	 * @param $minorEdit
-	 * @param $oldid (default: false)
+	 * @param $timestamp string Edit timestamp
+	 * @param $summary string Edit summary
+	 * @param $minorEdit bool
+	 * @param $oldid int Revision ID
+	 * @param $watchers array of user IDs
 	 */
-	function actuallyNotifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid=false) {
+	function actuallyNotifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers) {
 		# we use $wgPasswordSender as sender's address
 		global $wgEnotifWatchlist;
-		global $wgEnotifMinorEdits, $wgEnotifUserTalk, $wgShowUpdatedMarker;
+		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
 		global $wgEnotifImpersonal;
 
 		wfProfileIn( __METHOD__ );
@@ -363,30 +396,12 @@ class EmailNotification {
 
 			if ( $wgEnotifWatchlist ) {
 				// Send updates to watchers other than the current editor
-				$userCondition = 'wl_user != ' . intval( $editor->getID() );
-				if ( $userTalkId !== false ) {
-					// Already sent an email to this person
-					$userCondition .= ' AND wl_user != ' . intval( $userTalkId );
-				}
-				$dbr = wfGetDB( DB_SLAVE );
-
-				list( $user ) = $dbr->tableNamesN( 'user' );
-				$res = $dbr->select( array( 'watchlist', 'user' ),
-					array( "$user.*" ),
-					array(
-						'wl_user=user_id',
-						'wl_title' => $title->getDBkey(),
-						'wl_namespace' => $title->getNamespace(),
-						$userCondition,
-						'wl_notificationtimestamp IS NULL',
-					), __METHOD__
-				);
-				$userArray = UserArray::newFromResult( $res );
-
+				$userArray = UserArray::newFromIDs( $watchers );
 				foreach ( $userArray as $watchingUser ) {
 					if ( $watchingUser->getOption( 'enotifwatchlistpages' ) &&
 						( !$minorEdit || $watchingUser->getOption('enotifminoredits') ) &&
-						$watchingUser->isEmailConfirmed() )
+						$watchingUser->isEmailConfirmed() &&
+						$watchingUser->getID() != $userTalkId )
 					{
 						$this->compose( $watchingUser );
 					}
@@ -400,31 +415,9 @@ class EmailNotification {
 			$this->compose( $user );
 		}
 
-		$latestTimestamp = Revision::getTimestampFromId( $title, $title->getLatestRevID(GAID_FOR_UPDATE) );
-		// Do not update watchlists if something else already did.
-		if ( $timestamp >= $latestTimestamp && ($wgShowUpdatedMarker || $wgEnotifWatchlist) ) {
-			# Mark the changed watch-listed page with a timestamp, so that the page is
-			# listed with an "updated since your last visit" icon in the watch list. Do
-			# not do this to users for their own edits.
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
-			$dbw->update( 'watchlist',
-				array( /* SET */
-					'wl_notificationtimestamp' => $dbw->timestamp($timestamp)
-				), array( /* WHERE */
-					'wl_title' => $title->getDBkey(),
-					'wl_namespace' => $title->getNamespace(),
-					'wl_notificationtimestamp IS NULL', // store oldest unseen change time
-					'wl_user != ' . intval( $editor->getID() )
-				), __METHOD__
-			);
-			$dbw->commit();
-		}
-		
 		$this->sendMails();
-
 		wfProfileOut( __METHOD__ );
-	} # function NotifyOnChange
+	}
 
 	/**
 	 * @private
