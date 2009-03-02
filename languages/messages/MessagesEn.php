@@ -3601,6 +3601,7 @@ Please confirm that you really want to recreate this page.",
 'pipe-separator'      => '&#32;|&#32;', # only translate this message to other languages if you have to change it
 'word-separator'      => '&#32;', # only translate this message to other languages if you have to change it
 'ellipsis'            => '…', # only translate this message to other languages if you have to change it
+'percent'             => '$1%', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
 'imgmultipageprev' => '← previous page',

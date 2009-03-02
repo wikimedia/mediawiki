@@ -3077,6 +3077,7 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'semicolon-separator' => '&nbsp;;&#32;',
 'colon-separator'     => '&nbsp;:&#32;',
 'autocomment-prefix'  => '&#32;–&#32;',
+'percent'             => '$1&nbsp;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← page précédente',

@@ -3071,6 +3071,9 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'confirm-purge-top'    => 'Diese Seite aus dem Server-Cache löschen?',
 'confirm-purge-bottom' => 'Leert den Cache einer Seite und erzwingt die Anzeige der aktuellen Version.',
 
+# Separators for various lists, etc.
+'percent' => '$1&nbsp;%',
+
 # Multipage image navigation
 'imgmultipageprev' => '← vorige Seite',
 'imgmultipagenext' => 'nächste Seite →',
