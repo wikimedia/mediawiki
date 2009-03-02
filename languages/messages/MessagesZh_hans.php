@@ -1,5 +1,5 @@
 <?php
-/**  ()
+/** Simplified Chinese (‪中文(簡化字)‬)
  *
  * @ingroup Language
  * @file
@@ -569,7 +569,7 @@ $2',
 'yournick'                   => '签名:',
 'badsig'                     => '错误的原始签名。检查一下HTML标签。',
 'badsiglength'               => '签名过长。
-它的长度必须在$1个字符以下。',
+它的长度不可超过$1个字符。',
 'yourgender'                 => '性别:',
 'gender-unknown'             => '未指定',
 'gender-male'                => '男',
@@ -641,6 +641,10 @@ $2',
 'resetpass-wrong-oldpass'   => '无效的临时或现有的密码。
 您可能已成功地更改了您的密码，或者已经请求一个新的临时密码。',
 'resetpass-temp-password'   => '临时密码:',
+'resetpass-log'             => '密码重设日志',
+'resetpass-logtext'         => '以下是由管理员重设他们密码的日志。',
+'resetpass-logentry'        => '已更改$1的密码',
+'resetpass-comment'         => '更改密码的理由:',
 
 # Edit page toolbar
 'bold_sample'     => '粗体文字',
@@ -739,16 +743,16 @@ $2',
 'userinvalidcssjstitle'            => "'''警告:''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/monobook.css 不同于 {{ns:user}}:Foo/Monobook.css。",
 'updated'                          => '(已更新)',
 'note'                             => "'''注意:'''",
-'previewnote'                      => "'''请记住这只是预览，内容还未保存！'''",
+'previewnote'                      => "'''请记住这只是预览。'''内容还未保存！",
 'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'             => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。'''",
+'session_fail_preview'             => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。",
 'session_fail_preview_html'        => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
-'''如果这是一次合法的编辑，请重新进行尝试。如果还不行，请[[Special:UserLogout|退出]]并重新登录。'''",
-'token_suffix_mismatch'            => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
-这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。'''",
+'''如果这是一次合法的编辑，请重新进行尝试。'''如果还不行，请[[Special:UserLogout|退出]]并重新登录。",
+'token_suffix_mismatch'            => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。'''
+这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。",
 'editing'                          => '正在编辑$1',
 'editingsection'                   => '正在编辑$1 (段落)',
 'editingcomment'                   => '正在编辑$1 (评论)',
@@ -760,9 +764,9 @@ $2',
 <b>只有</b>在上面文字框中的内容会在你点击"保存页面"后被保存。<br />',
 'yourtext'                         => '您的文字',
 'storedversion'                    => '已保存版本',
-'nonunicodebrowser'                => "'''警告: 您的浏览器不兼容Unicode编码。这里有一个工作区将使您能安全地编辑页面: 非ASCII字符将以十六进制编码方式出现在编辑框中。'''",
-'editingold'                       => "'''警告：你正在编辑的是本页的旧版本。
-如果你保存它的话，在本版本之后的任何修改都会丢失。'''",
+'nonunicodebrowser'                => "'''警告: 您的浏览器不兼容Unicode编码。'''这里有一个工作区将使您能安全地编辑页面: 非ASCII字符将以十六进制编码方式出现在编辑框中。",
+'editingold'                       => "'''警告：你正在编辑的是本页的旧版本。'''
+如果你保存它的话，在本版本之后的任何修改都会丢失。",
 'yourdiff'                         => '差异',
 'copyrightwarning'                 => "请注意您对{{SITENAME}}的所有贡献都被认为是在$2下发布，请查看在$1的细节。
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
@@ -773,16 +777,16 @@ $2',
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
 您同时也要向我们保证您所提交的内容是您自己所作，或得自一个不受版权保护或相似自由的来源（参阅$1的细节）。
 '''不要在未获授权的情况下发表！'''",
-'longpagewarning'                  => "'''警告: 该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
-您应该考虑将此页面分成更小的章节。'''",
-'longpageerror'                    => "'''错误: 您所提交的文本长度有$1KB，这大于$2KB的最大值。该文本不能被保存。'''",
-'readonlywarning'                  => "'''警告: 数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本段文字复制并保存到文本文件，然后等一会儿再修改。'''
+'longpagewarning'                  => "'''警告''': 该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
+您应该考虑将此页面分成更小的章节。",
+'longpageerror'                    => "'''错误: 您所提交的文本长度有$1KB，这大于$2KB的最大值。'''该文本不能被保存。",
+'readonlywarning'                  => "'''警告: 数据库被锁以进行维护，所以您目前将无法保存您的修改。'''您或许希望先将本段文字复制并保存到文本文件，然后等一会儿再修改。
 
 管理员有如下解释: $1",
 'protectedpagewarning'             => "'''警告: 此页已经被保护，只有拥有管理员权限的用户才可修改。'''",
 'semiprotectedpagewarning'         => "'''注意：''' 本页面被锁定，仅限注册用户编辑。",
 'cascadeprotectedwarning'          => '警告: 本页已经被保护，只有拥有管理员权限的用户才可修改，因为本页已被以下连锁保护的{{PLURAL:$1|一个|多个}}页面所包含:',
-'titleprotectedwarning'            => "'''警告: 本页面已被锁上，只有一些用户方可创建。'''",
+'titleprotectedwarning'            => "'''警告: 本页面已被锁上，需要[[Special:ListGroupRights|指定权限]]方可创建。'''",
 'templatesused'                    => '在这个页面上使用的模板有:',
 'templatesusedpreview'             => '此次预览中使用的模板有:',
 'templatesusedsection'             => '在这个段落上使用的模板有:',
@@ -894,7 +898,8 @@ $2',
 'logdelete-selected'             => "'''选取'''$1'''的日志项目:'''",
 'revdelete-text'                 => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
 
-在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。",
+在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。
+请确认您肯定去做的话，您就要明白到后果，以及这个程序符合[[{{MediaWiki:Policy-url}}|政策]]。",
 'revdelete-legend'               => '设置可见性之限制',
 'revdelete-hide-text'            => '隐藏修订文本',
 'revdelete-hide-name'            => '隐藏动作和目标',
@@ -1034,6 +1039,9 @@ $2',
 'notextmatches'                    => '没有页面内容匹配',
 'prevn'                            => '前$1个',
 'nextn'                            => '后$1个',
+'prevn-title'                      => '前$1项结果',
+'nextn-title'                      => '后$1项结果',
+'shown-title'                      => '每页显示$1项结果',
 'viewprevnext'                     => '查看 ($1) ($2) ($3)',
 'searchmenu-legend'                => '搜寻选项',
 'searchmenu-exists'                => "'''在这个wiki上有一页面叫做\"[[:\$1]]\"'''",
@@ -1261,6 +1269,7 @@ $2',
 'right-userrights'           => '编辑所有用户的权限',
 'right-userrights-interwiki' => '编辑在其它wiki上的用户权限',
 'right-siteadmin'            => '锁定和解除锁定数据库',
+'right-reset-passwords'      => '重设其他用户的密码',
 
 # User rights log
 'rightslog'      => '用户权限日志',
@@ -1489,11 +1498,13 @@ $2',
 'duplicatesoffile'          => '以下的$1个文件跟这个文件重覆（[[Special:FileDuplicateSearch/$2|更多细节]]）：',
 'sharedupload'              => '该文件来自于$1，它可能在其它项目中被应用。$2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => '请参阅在共享文件库上的$1以了解其相关信息。',
-'shareduploadwiki-desc'     => '它在$1上的描述于下面显示。',
+'shareduploadwiki-desc'     => '它在$1那边上的描述于下面显示。',
 'shareduploadwiki-linktext' => '文件描述页面',
 'noimage'                   => '不存在此名称的文件，但您可以$1。',
 'noimage-linktext'          => '上传一个',
 'uploadnewversion-linktext' => '上传该文件的新版本',
+'shared-repo-from'          => '出自$1', # $1 is the repository name
+'shared-repo'               => '一个共用文件库', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => '恢复$1',
@@ -1964,7 +1975,7 @@ $NEWPAGE
 'undeleterevision-missing'     => '无效或丢失的修订版本。您可能使用了错误的链接，或者此修订版本已经被从存档中恢复或移除。',
 'undelete-nodiff'              => '找不到先前的修订版本。',
 'undeletebtn'                  => '恢复',
-'undeletelink'                 => '恢复',
+'undeletelink'                 => '查看／恢复',
 'undeletereset'                => '重设',
 'undeleteinvert'               => '反向选择',
 'undeletecomment'              => '评论:',
@@ -2209,6 +2220,9 @@ $1已经被封锁。您是否想更改这个设置？',
 'move-redirect-suppressed'     => '已禁止重新定向',
 'movelogpage'                  => '移动日志',
 'movelogpagetext'              => '以下是所有移动的页面列表:',
+'movesubpage'                  => '{{PLURAL:$1|子页面|子页面}}',
+'movesubpagetext'              => '这个页面有$1个子页面列示如下。',
+'movenosubpage'                => '这个页面没有子页面。',
 'movereason'                   => '原因',
 'revertmove'                   => '恢复该移动',
 'delete_and_move'              => '删除并移动',
