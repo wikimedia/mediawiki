@@ -3057,7 +3057,7 @@ $1',
 'intentionallyblankpage' => '이 문서는 고의적으로 빈 채 방치되어 있습니다.',
 
 # External image whitelist
-'external_image_whitelist' => '  #이 줄은 그대로 두십시오<pre>
+'external_image_whitelist' => ' #이 줄은 그대로 두십시오<pre>
 #정규 표현식을 아래에 써 주십시오.
 #이 목록은 외부 이미지의 URL과 대조될 것입니다.
 #이 목록과 일치하는 것은 그림이 직접 보여지지만, 그렇지 않은 경우 그림을 가리키는 링크만 보이게 될 것입니다.

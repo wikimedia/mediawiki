@@ -759,6 +759,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben új ideiglenes jelszót kértél.',
 'resetpass-temp-password'   => 'Ideiglenes jelszó:',
 'resetpass-no-others'       => 'Nem állíthatod vissza más szerkesztők jelszavát.',
+'resetpass-log'             => 'Jelszóvisszaállítási napló',
 
 # Edit page toolbar
 'bold_sample'     => 'Félkövér szöveg',

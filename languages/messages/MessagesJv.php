@@ -2732,7 +2732,7 @@ Katrangan tampilan:
 'intentionallyblankpage' => 'Kaca iki disengajakaké kosong',
 
 # External image whitelist
-'external_image_whitelist' => '  #Umbarna baris iki apa anané<pre>
+'external_image_whitelist' => ' #Umbarna baris iki apa anané<pre>
 #Pigunakaké fragmèn-fragmèn èksprèsi regular (mung bagéyan ing antara //) ing ngisor
 #Fragmèn-fragmèn ini bakal dicocogaké karo URL saka gambar-gambar eksternal (sing kahubung langsung)
 #Fragmèn sing cocog bakal ditampilaké minangka gambar, yèn ora mung pranala menyang gambar waé sing dituduhaké

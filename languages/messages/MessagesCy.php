@@ -1433,8 +1433,10 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 'listredirects' => "Rhestru'r ail-gyfeiriadau",
 
 # Unused templates
-'unusedtemplates'    => 'Nodiadau heb eu defnyddio',
-'unusedtemplateswlh' => 'cysylltiadau eraill',
+'unusedtemplates'     => 'Nodiadau heb eu defnyddio',
+'unusedtemplatestext' => "Dyma restr o'r holl dudalennau yn y parth {{ns:template}} nad ydynt wedi eu cynnwys yn unrhyw dudalen arall.
+Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
+'unusedtemplateswlh'  => 'cysylltiadau eraill',
 
 # Random page
 'randompage'         => 'Tudalen ar hap',

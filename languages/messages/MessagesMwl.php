@@ -198,7 +198,7 @@ $messages = array(
 'edithelppage'         => 'Help:Eiditar',
 'helppage'             => 'Help:Cuntenidos',
 'mainpage'             => 'Páigina Percipal',
-'mainpage-description' => 'Páigina Percípal',
+'mainpage-description' => 'Páigina Percipal',
 'portal'               => 'Portal da quemunidade',
 'portal-url'           => 'Project:Portal de la quemunidade',
 'privacy'              => 'Política de pribacidade',
@@ -281,10 +281,11 @@ Por fabor, spurmenta outra beç.',
 Debe de tener pul menos {{PLURAL:$1|1 caracter|$1 caracteres}} i ser defrente de l tou nome de outelizador.',
 'mailmypassword'          => 'Ambiar nuoba palabra chabe por carta eiletrónica',
 'passwordremindertitle'   => 'Nuoba palabra chabe temporária an {{SITENAME}}',
-'passwordremindertext'    => 'Alguien (l mais cierto tu, a partir de la morada de IP $1) pediu que le fusse ambiada ua nuoba palabra chabe pa {{SITENAME}} ($4).
-La palabra chabe temporária pa l outilizador "$2" ye, a partir d\'agora, "$3". Causo essa tenga sido l tou perpósito, entra na tue cuonta i cria ua nuoba palabra chabe.
+'passwordremindertext'    => 'Alguém (l mais cierto tu, a partir de la morada de IP $1) pediu que le fusse ambiada ua nouba palabra-chabe pa {{SITENAME}} ($4).
+Fui criada ua palabra-chabe temporária pa l outelizador "$2", i fui puosta outra beç cumo "$3". Causo tengas feito cun este perpósito, entra na tue cuonta i scolhe ua nouba palabra-chabe agora.
+La tue palabra-chabe temporária queda fuora de balidade {{PLURAL:$5|nun die|an $5 dies}}.
 
-Causo tenga sido outra pessona a fazer este pedido, ou causo tu yá te tengas lhembrado de la tue palabra chabe i nun la queiras demudar, nun fagas causo desta mensaige i cuntina a outelizar la tue palabra chabe antiga.',
+Causo tenga sido outra pessona a fazer este pedido, ó causo tu yá te tengas lhembrado de la palabra-chabe i nun queiras demudar-la, squece esta mensaige i cuntina a outelizar la palabra-chabe antiga.',
 'noemail'                 => 'Nun eisiste morada eiletrónica pa l outelizador "$1".',
 'passwordsent'            => 'Ua nuoba palabra chabe stá a ambiada pa la morada de correio eiletrónico de l outelizador "$1".
 Por fabor, bolta a fazer la outenticaçon al recebir-la.',

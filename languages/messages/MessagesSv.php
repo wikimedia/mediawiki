@@ -3138,7 +3138,7 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'intentionallyblankpage' => 'Denna sida har avsiktligen lämnats tom.',
 
 # External image whitelist
-'external_image_whitelist' => '  #Lämna den här raden precis som den är<pre>
+'external_image_whitelist' => ' #Lämna den här raden precis som den är<pre>
 #Skriv fragment av reguljära uttryck (bara delen som ska vara mellan //) här nedan
 #Dessa kommer att jämföras med URL:er för externa (hotlinkade) bilder
 #De som matchar kommer att visas som bilder, annars visas bara en länk till bilden

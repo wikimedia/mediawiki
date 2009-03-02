@@ -199,6 +199,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Περί {{SITENAME}}',
 'aboutpage'            => 'Project:Σχετικά',
+'copyright'            => 'Το περιεχόμενον εν άμον ντο λεει το $1.',
 'copyrightpagename'    => '{{SITENAME}} δικαιώματα πνευματί',
 'copyrightpage'        => '{{ns:project}}:Δικαιώματα Πνευματί',
 'currentevents'        => 'Ατωριζνά γεγονότα',
@@ -217,6 +218,8 @@ $messages = array(
 'portal-url'           => 'Project:Πύλη κοινότητας',
 'privacy'              => 'Ωρίαγμαν δογμενίων',
 'privacypage'          => 'Project:Πολιτική ιδιωτικού απορρήτου',
+
+'badaccess' => 'Σφάλμαν άδειας',
 
 'versionrequiredtext' => 'Για να κουλεύετε αβούτεν τη σελίδαν χρειάσκεται η έκδοση $1 τη MediaWiki.
 Τερέστεν τη [[Special:Version|version page]].',
@@ -381,10 +384,10 @@ $messages = array(
 'bold_tip'        => 'Χοντρόν κείμενον',
 'italic_sample'   => 'Ψιλόν κείμενον',
 'italic_tip'      => 'Ψιλόν κείμενον',
-'link_sample'     => 'Τίτλος σύνδεσμονος',
+'link_sample'     => 'Τίτλον σύνδεσμονος',
 'link_tip'        => 'Εσωτερικόν σύνδεσμον',
-'extlink_sample'  => 'http://www.example.com τίτλος σύνδεσμονος',
-'extlink_tip'     => 'Εξωτερικόν σύνδεσμος (να μην ανασπάλλετε το πρόθεμαν http:// )',
+'extlink_sample'  => 'http://www.example.com τίτλον σύνδεσμονος',
+'extlink_tip'     => 'Εξωτερικόν σύνδεσμον (να μην ανασπάλλετε το πρόθεμαν http:// )',
 'headline_sample' => 'Κείμενον τίτλονος',
 'headline_tip'    => 'Δεύτερον τίτλος (επίπεδον 2)',
 'math_sample'     => 'Αδά εισάγετε την φόρμουλαν',
@@ -392,7 +395,7 @@ $messages = array(
 'nowiki_sample'   => 'Αδακά πα να εισάγετε το μη μορφοποιημένον κείμενον.',
 'nowiki_tip'      => "Ξάι 'κ να τερείται η μορφοποίηση Wiki.",
 'image_tip'       => 'Ενσωματωμένον εικόνα',
-'media_tip'       => 'Σύνδεσμος αρχείατι πολυμεσίων',
+'media_tip'       => 'Σύνδεσμον αρχείατι πολυμεσίων',
 'sig_tip'         => 'Η υπογραφήν εσούν με ώραν κι ημερομηνίαν',
 'hr_tip'          => "Οριζόντιον γραμμή (μη θέκ'ς ατέν πολλά)",
 
@@ -510,6 +513,7 @@ $messages = array(
 
 # Revision deletion
 'rev-delundel'      => 'δείξον/κρύψον',
+'revdel-restore'    => 'Ἀλλαγμαν ορατότητας',
 'pagehist'          => 'Ιστορίαν σελίδας',
 'deletedhist'       => 'Σβηγμένον ιστορίαν',
 'revdelete-content' => 'περιεχόμενον',
@@ -553,6 +557,8 @@ $messages = array(
 'search-mwsuggest-disabled' => 'θίχως οδηγίας',
 'searchall'                 => 'ούλαι',
 'powersearch'               => 'Αναλυτικόν αράεμαν',
+'powersearch-legend'        => 'Αναλυτικόν αράεμαν',
+'powersearch-redir'         => 'Κατάλογον με διπλά συνδέσμ',
 'powersearch-field'         => 'Αράεμαν τη',
 'search-external'           => 'Εύρον σα εξ μερέαν',
 
@@ -697,10 +703,10 @@ $messages = array(
 'filehist-dimensions'       => 'Διαστάσεις',
 'filehist-filesize'         => 'Μέγεθος',
 'filehist-comment'          => 'Σχόλιον',
-'imagelinks'                => 'Σύνδεσμοι αρχείων',
+'imagelinks'                => 'Συνδέσμ αρχείων',
 'linkstoimage'              => "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
 'nolinkstoimage'            => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
-'sharedupload'              => "Αβούτον τ' αρχείον εφορτώθεν για κοινόν κουλάνεμαν κι εν δυνατόν να χρησιμοπισκάται και σ' άλλα έργα. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => "Αβούτον τ' αρχείον εφορτώθεν ασό το $1 για κοινόν κουλάνεμαν κι εν δυνατόν να χρησιμοπισκάται και σ' άλλα έργα. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => "Αρχείον με αείκον όνεμαν 'κ έχ', άμα επορείς να $1.",
 'noimage-linktext'          => "σκώσ' έναν",
 'uploadnewversion-linktext' => "Σκώσ' καινούραιον έκδοσην τ' αρχείου",
@@ -745,7 +751,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
-'nlinks'                  => '$1 {{PLURAL:$1|σύνδεσμος|συνδέσμ}}',
+'nlinks'                  => '$1 {{PLURAL:$1|σύνδεσμον|συνδέσμ}}',
 'nmembers'                => '$1 {{PLURAL:$1|μέλος|μέλη}}',
 'lonelypages'             => 'Ορφανά σελίδας',
 'uncategorizedpages'      => "Σελίδας ντο 'κ έχνε κατηγορίαν",
@@ -809,10 +815,12 @@ $messages = array(
 'linksearch' => 'Συνδέσμαι',
 
 # Special:Log/newusers
+'newuserlogpage'          => 'Αρχείον ποισιματίων λογαρίων χρήστε',
 'newuserlog-create-entry' => 'Νέον χρήστες',
 
 # Special:ListGroupRights
-'listgrouprights-rights' => 'Δικαιώματα',
+'listgrouprights-rights'  => 'Δικαιώματα',
+'listgrouprights-members' => '(κατάλογον μελών)',
 
 # E-mail user
 'emailuser'    => 'Στείλον μένεμαν σον χρήστεν ατόν.',
@@ -852,7 +860,7 @@ $messages = array(
 'deletedtext'           => 'Το "<nowiki>$1</nowiki>" εσβήγανατο.
 Τερέστεν το $2 και δεαβάστεν για τα υστερνά τα σβησίματα.',
 'deletedarticle'        => 'νεβζινέθεν η "[[$1]]"',
-'dellogpage'            => "Κατάλογος με τ' ατά ντ' εσβήγαν",
+'dellogpage'            => "Κατάλογον με τ' ατά ντ' εσβήγαν",
 'deletecomment'         => 'Λόγον για το σβήσιμο:',
 'deleteotherreason'     => 'Άλλον/αλλομίαν λόγον:',
 'deletereasonotherlist' => 'Άλλον λόγον',
@@ -862,11 +870,12 @@ $messages = array(
 
 # Protect
 'protectlogpage'              => 'Αρχείον ασπαλιγματίων',
+'protectedarticle'            => 'ασπαλιζμένον "[[$1]]"',
 'prot_1movedto2'              => '[[$1]] ετερχλαεύτεν σο [[$2]]',
 'protectcomment'              => 'Σχόλιον:',
 'protectexpiry'               => 'Τελείται:',
-'protect_expiry_invalid'      => "Ο χρόνος τελεματί 'κ εν σωστόν.",
-'protect_expiry_old'          => 'Ο χρόνος τελεματί πέρνιξον.',
+'protect_expiry_invalid'      => "Ο χρόνον τελεματί 'κ εν σωστόν.",
+'protect_expiry_old'          => 'Ο χρόνον τελεματί πέρνιξον.',
 'protect-unchain'             => 'Άνοιξον τα δικαιώματα ετεροχλάεματι',
 'protect-text'                => "Αδά επορείτε να τερείτε και ν' αλλάζετε τ' επίπεδον τη προστασίας για τη σελίδαν '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Η λογαρίανεσουν 'κ έχ' το δικαίωμαν να αλλάζ' τ' ασπάλιγμαν τη σελίδας.
@@ -889,7 +898,7 @@ $messages = array(
 
 # Undelete
 'undeletebtn'               => 'Ποίσον ξαν',
-'undeletelink'              => 'επαναφορά',
+'undeletelink'              => 'τέρεμαν/επαναφορά',
 'undeletedarticle'          => 'επαναφορά τη "[[$1]]"',
 'undelete-search-submit'    => 'Εύρον',
 'undelete-show-file-submit' => 'Ναι',
@@ -925,7 +934,7 @@ $messages = array(
 'isimage'                  => 'σύνδεσμον εικόνας',
 'whatlinkshere-prev'       => '{{PLURAL:$1|προτεσνή|προτεσνά $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|υστερνή|υστερναία $1}}',
-'whatlinkshere-links'      => '← σύνδεσμοι',
+'whatlinkshere-links'      => '← συνδέσμ',
 'whatlinkshere-hideredirs' => '$1 τα διπλά οι συνδέσμαι',
 'whatlinkshere-hidetrans'  => '$1 υπερκλεισμοί',
 'whatlinkshere-hidelinks'  => '$1 συνδέσμαι',
@@ -954,6 +963,7 @@ $messages = array(
 'contribslink'       => "Δουλείαν ατ'",
 'blocklogpage'       => 'Αρχείον ασπαλιγματίων',
 'blocklogentry'      => 'εσπάλισεν [[$1]] για $2 $3',
+'unblocklogentry'    => 'άνοιγμαν ασπαλιγματί τη $1',
 'blockme'            => 'Ασπάλισον με',
 'proxyblocksuccess'  => 'Εγέντον.',
 
@@ -1052,11 +1062,12 @@ $messages = array(
 'tooltip-ca-watch'                => 'Ωρίαγμαν τη σελίδας',
 'tooltip-ca-unwatch'              => 'Έπαρ αβούτεν τη σελίδαν αση λίσταν ωρίαγματι.',
 'tooltip-search'                  => 'Εύρον σο {{SITENAME}}',
+'tooltip-search-go'               => 'Δέβα σε σελίδαν με αείκον όνεμαν αν υπάρχει',
 'tooltip-search-fulltext'         => 'Εύρον αούτον το κείμενον',
 'tooltip-n-mainpage'              => 'Τερέστεν το αρχικόν τη σελίδαν',
 'tooltip-n-portal'                => 'Σχετικά με το Wiκi - πώς μπορείτε να εφτάτε γιαρτήμ, πού θα ευρίετε πράγματα',
 'tooltip-n-currentevents'         => "Εύρον άλλα πληροφορίας για τ' ατά ντ' ίντανε οψεκές.",
-'tooltip-n-recentchanges'         => "Κατάλογος με τ' υστερνά αλλαγάς σο wiki.",
+'tooltip-n-recentchanges'         => "Κατάλογον με τ' υστερνά αλλαγάς σο wiki.",
 'tooltip-n-randompage'            => 'Κατά τύχην εύρον σελίδαν και δείξον ατέν',
 'tooltip-n-help'                  => "Αδά θα ευρίετε τα απαντήσεις ντ' αραεύετε.",
 'tooltip-t-whatlinkshere'         => "Ούλ' τ' άρθρα ντο δεκνίζνε σο παρόν το άρθρον",
@@ -1066,6 +1077,7 @@ $messages = array(
 'tooltip-t-emailuser'             => "E-mail σ' αβούτον χρήστεν",
 'tooltip-t-upload'                => 'Φόρτωμα αρχείων',
 'tooltip-t-specialpages'          => 'Κατάλογον με τα ειδικά σελίδας',
+'tooltip-ca-nstab-main'           => 'Τέρεμαν σελίδας περιεχομενίων',
 'tooltip-ca-nstab-user'           => 'Τέρεμαν τη σελίδας χρήστε',
 'tooltip-ca-nstab-media'          => 'Τέρεμαν τη σελίδας μεσίων',
 'tooltip-ca-nstab-special'        => "Ατό η σελίδαν εν ειδικόν. Ξάι 'κ επορείτε να αλλάζετατεν.",
@@ -1097,7 +1109,7 @@ $messages = array(
 
 # Media information
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|σελίδα|σελίδας}}',
-'file-info-size'       => '($1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, MIME τύπος: $4)',
+'file-info-size'       => '($1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, MIME τύπον: $4)',
 'file-nohires'         => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
 'svg-long-desc'        => "(Αρχείον SVG, κατ' όνομα $1 × $2 εικονοστοιχεία, μέγεθος αρχεί: $3)",
 'show-big-image'       => 'Τζιπ τρανόν ανάλυση',
@@ -1112,7 +1124,7 @@ $messages = array(
 # Bad image list
 'bad_image_list' => "Η σύνταξην εν αέτς:
 
-Τα αντικείμενα τη λίστας (τα γραμμάς ντ' αχπάσκουνταν με *) και μόνον τερούμε. Ο πρώτον ο σύνδεσμος σε μιαν γραμμήν πρέπ' να δεκνίζ' σε κακόν αρχείον.
+Τα αντικείμενα τη λίστας (τα γραμμάς ντ' αχπάσκουνταν με *) και μόνον τερούμε. Ο πρώτον ο σύνδεσμον σε μιαν γραμμήν πρέπ' να δεκνίζ' σε κακόν αρχείον.
 Ήντιαν συνδέσμ' ντ' έρταν ασην ίδιαν γραμμήν οπίς θεωρούματα εξαιρέσεις, δηλαδή σελίδας όπου επορούμ' να συναντούμε την εικόναν σε σύνδεσην.",
 
 # Metadata

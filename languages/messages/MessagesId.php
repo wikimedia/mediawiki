@@ -3027,7 +3027,7 @@ Keterangan tampilan:
 'intentionallyblankpage' => 'Halaman ini sengaja dibiarkan kosong dan digunakan di antaranya untuk pengukuran kinerja, dan lain-lain.',
 
 # External image whitelist
-'external_image_whitelist' => '  #Biarkan baris ini sebagaimana adanya dan jangan diubah<pre>
+'external_image_whitelist' => ' #Biarkan baris ini sebagaimana adanya dan jangan diubah<pre>
 #Gunakan fragmen-fragmen ekspresi regular (hanya bagian di antara //) di bawah ini
 #Fragmen-fragmen ini akan dicocokkan dengan URL dari gambar-gambar eksternal (yang dihubungkan langsung)
 #Fragmen yang cocok akan ditampilkan sebagai gambar, sisanya hanya sebagai pranala saja

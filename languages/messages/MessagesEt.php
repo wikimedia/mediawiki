@@ -223,7 +223,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'metadata_help' => 'Metaandmed:',
 
 'errorpagetitle'    => 'Viga',
-'returnto'          => 'Naase $1 juurde',
+'returnto'          => 'Naase lehele $1',
 'tagline'           => 'Allikas: {{SITENAME}}',
 'help'              => 'Juhend',
 'search'            => 'Otsi',
@@ -644,7 +644,8 @@ Administraator, kes andmebaasi lukustas, andis järgmise selgituse: $1",
 'nocreatetext'             => '{{SITENAME}}l on piirangud uue lehekülje loomisel.
 Te võite pöörduda tagasi ja toimetada olemasolevat lehekülge või [[Special:UserLogin|logida süsteemi või luua uus konto]].',
 'nocreate-loggedin'        => 'Sul ei ole luba luua uusi lehekülgi.',
-'permissionserrorstext'    => 'Teil ei ole õigusi seda teha {{PLURAL:$1|põhjusel|järgmistel põhjustel}}:',
+'permissionserrors'        => 'Viga õigustes',
+'permissionserrorstext'    => 'Teil ei ole õigust seda teha {{PLURAL:$1|järgmisel põhjusel|järgmistel põhjustel}}:',
 'recreate-deleted-warn'    => "'''Hoiatus: Te loote uuesti lehte, mis on varem kustutatud.'''
 
 Kaaluge, kas lehe uuesti loomine on kohane.
@@ -879,6 +880,7 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'saveusergroups'           => 'Salvesta grupi muudatused',
 'userrights-groupsmember'  => 'Kuulub gruppi:',
 'userrights-no-interwiki'  => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
+'userrights-notallowed'    => 'Sulle pole antud luba jagada kasutajatele õigusi.',
 
 # Groups
 'group'               => 'Grupp:',
@@ -1221,7 +1223,9 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'categoriesfrom'     => 'Näita kategooriaid alates:',
 
 # Special:LinkSearch
-'linksearch' => 'Välislingid',
+'linksearch'    => 'Välislingid',
+'linksearch-ns' => 'Nimeruum:',
+'linksearch-ok' => 'Otsi',
 
 # Special:ListUsers
 'listusersfrom'      => 'Näita kasutajaid alustades:',
@@ -1330,8 +1334,8 @@ Kõik toodud kellaajad järgivad serveriaega.',
 'rollbacklink'   => 'tühista',
 'rollbackfailed' => 'Muudatuste tühistamine ebaõnnestus',
 'cantrollback'   => 'Ei saa muudatusi tagasi pöörata; viimane kaastööline on artikli ainus autor.',
-'editcomment'    => "Artikli sisu oli: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => 'Tühistati [[Eri:Contributions/$2|$2]] ([[Kasutaja arutelu:$2|arutelu]]) muudatus ning pöörduti tagasi viimasele muudatusele, mille tegi [[Kasutaja:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "Redaktsiooni kokkuvõte: \"''\$1''\".", # only shown if there is an edit comment
+'revertpage'     => 'Tühistati kasutaja [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]]) tehtud muudatused ning pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'Kaitsmise logi',

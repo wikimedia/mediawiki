@@ -2000,7 +2000,7 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 ** Guerra de modificationes contraproductive
 ** Pagina frequentemente visitate',
 'protect-edit-reasonlist'     => 'Modificar le motivos pro protection',
-'protect-expiry-options'      => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 die:1 day,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Nivello de restriction:',
 'minimum-size'                => 'Grandor minime',
@@ -2272,8 +2272,7 @@ per favor assecura te que tu comprende le consequentias de isto ante que tu proc
 Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate.",
 'movearticle'                  => 'Renominar pagina:',
 'movenologin'                  => 'Tu non ha aperite un session',
-'movenologintext'              => 'Tu debe esser un usator registrate e [[Special:UserLogin|aperir un session]]
-pro mover un pagina.',
+'movenologintext'              => 'Tu debe esser un usator registrate e [[Special:UserLogin|aperir un session]] pro poter renominar un pagina.',
 'movenotallowed'               => 'Tu non ha le permission de renominar paginas.',
 'movenotallowedfile'           => 'Tu non ha le permission de renominar files.',
 'cant-move-user-page'          => 'Tu non ha le permission de renominar paginas principal de usatores.',
@@ -2303,7 +2302,7 @@ Per favor fusiona los manualmente.'''",
 'move-redirect-suppressed'     => 'redirection supprimite',
 'movelogpage'                  => 'Registro de renominationes',
 'movelogpagetext'              => 'Infra es un lista de paginas renominate.',
-'movesubpage'                  => 'Subpaginas',
+'movesubpage'                  => '{{PLURAL:$1|Subpagina|Subpaginas}}',
 'movesubpagetext'              => 'Iste pagina ha $1 {{PLURAL:$1|subpagina, le qual|subpaginas, le quales}} se monstra infra.',
 'movenosubpage'                => 'Iste pagina non ha subpaginas.',
 'movereason'                   => 'Motivo:',
