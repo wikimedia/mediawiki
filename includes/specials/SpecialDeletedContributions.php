@@ -115,7 +115,7 @@ class DeletedContribsPager extends IndexPager {
 				'user_text'  => $row->ar_user_text,
 				'timestamp'  => $row->ar_timestamp,
 				'minor_edit' => $row->ar_minor_edit,
-				'rev_deleted' => $row->ar_deleted,
+				'deleted' => $row->ar_deleted,
 				) );
 
 		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
