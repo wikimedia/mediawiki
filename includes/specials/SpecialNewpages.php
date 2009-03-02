@@ -438,12 +438,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$fields = array();
 
 		## Modify query for tags
-		ChangeTags::modifyDisplayQuery( $info['tables'],
-										$fields,
-										$info['conds'],
-										$info['join_conds'],
-										$info['options'],
-										$this->opts['tagfilter'] );
+		ChangeTags::modifyDisplayQuery( $info['tables'], $fields, $info['conds'], $info['join_conds'], $this->opts['tagfilter'] );
 
 		return $info;
 	}
