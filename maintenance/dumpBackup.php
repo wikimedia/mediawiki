@@ -63,6 +63,8 @@ if( isset( $options['full'] ) ) {
 	$dumper->dump( WikiExporter::FULL, $textMode );
 } elseif( isset( $options['current'] ) ) {
 	$dumper->dump( WikiExporter::CURRENT, $textMode );
+} elseif( isset( $options['stable'] ) ) {
+	$dumper->dump( WikiExporter::STABLE, $textMode );
 } elseif( isset( $options['logs'] ) ) {
 	$dumper->dump( WikiExporter::LOGS );
 } else {
