@@ -266,7 +266,7 @@ class PageHistory {
 		$s = "($curlink) ($lastlink) $arbitrary";
 
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
-			if( $firstInList ) {
+			if( $latest ) {
 				// We don't currently handle well changing the top revision's settings
 				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.$this->message['rev-delundel'].')' );
 			} else if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
