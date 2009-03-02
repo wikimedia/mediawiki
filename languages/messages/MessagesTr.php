@@ -2906,6 +2906,9 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'confirm-purge-top'    => 'Sayfa önbelleği temizlensin mi?',
 'confirm-purge-bottom' => 'Bir sayfayı tasfiye etmek önbelleği temizler ve en güncel sürümün görünmesine zorlar.',
 
+# Separators for various lists, etc.
+'percent' => '%$1',
+
 # Multipage image navigation
 'imgmultipageprev' => '← önceki sayfa',
 'imgmultipagenext' => 'sonraki sayfa →',

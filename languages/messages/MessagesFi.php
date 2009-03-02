@@ -2897,6 +2897,9 @@ Varmista, että haluat luoda sivun uudelleen.",
 'confirm-purge-top'    => 'Poistetaanko tämän sivun välimuistikopiot?',
 'confirm-purge-bottom' => 'Välimuistikopioiden poistaminen tyhjentää välimuistin ja pakottaa sivun uusimman version näkyviin.',
 
+# Separators for various lists, etc.
+'percent' => '$1&nbsp;%',
+
 # Multipage image navigation
 'imgmultipageprev' => '← edellinen sivu',
 'imgmultipagenext' => 'seuraava sivu →',
