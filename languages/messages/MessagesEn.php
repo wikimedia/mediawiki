@@ -1103,7 +1103,7 @@ Please set and validate your e-mail address through your [[Special:Preferences|u
 'nosuchsectiontitle'               => 'No such section',
 'nosuchsectiontext'                => 'You tried to edit a section that does not exist.
 Since there is no section $1, there is no place to save your edit.',
-'loginreqtitle'                    => 'Login Required',
+'loginreqtitle'                    => 'Login required',
 'loginreqlink'                     => 'log in',
 'loginreqpagetext'                 => 'You must $1 to view other pages.',
 'accmailtitle'                     => 'Password sent.',
