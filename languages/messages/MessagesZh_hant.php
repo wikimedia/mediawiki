@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -553,7 +553,7 @@ $2',
 'yournick'                   => '簽名:',
 'badsig'                     => '錯誤的原始簽名。檢查一下HTML標籤。',
 'badsiglength'               => '您的簽名過長。
-它的長度必須在$1個字元以下。',
+它的長度不可超過$1個字元。',
 'yourgender'                 => '性別:',
 'gender-unknown'             => '未指定',
 'gender-male'                => '男',
@@ -628,6 +628,11 @@ $2',
 'resetpass-wrong-oldpass'   => '無效的臨時或現有的密碼。
 您可能已成功地更改了您的密碼，或者已經請求一個新的臨時密碼。',
 'resetpass-temp-password'   => '臨時密碼:',
+'resetpass-no-others'       => '您不可以重設其他用戶的密碼。',
+'resetpass-log'             => '密碼重設日誌',
+'resetpass-logtext'         => '以下是由管理員重設他們密碼的日誌。',
+'resetpass-logentry'        => '已更改$1的密碼',
+'resetpass-comment'         => '更改密碼的理由:',
 
 # Edit page toolbar
 'bold_sample'     => '粗體文字',
@@ -729,16 +734,16 @@ $2',
 'userinvalidcssjstitle'            => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/monobook.css 不同於 {{ns:user}}:Foo/Monobook.css。",
 'updated'                          => '(已更新)',
 'note'                             => "'''注意:'''",
-'previewnote'                      => "'''請記住這只是預覽，內容還未保存！'''",
+'previewnote'                      => "'''請記住這只是預覽。'''內容還未保存！",
 'previewconflict'                  => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
-'session_fail_preview'             => "'''抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。'''",
+'session_fail_preview'             => "'''抱歉！由於部份資料遺失，我們無法處理您的編輯。'''請再試一次，如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。",
 'session_fail_preview_html'        => "'''抱歉！部份資料已遺失，我們無法處理您的編輯。'''
 
 ''由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。''
 
 '''如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請[[Special:UserLogout|登出]]後再重新登入一次。'''",
-'token_suffix_mismatch'            => "'''由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
-這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。'''",
+'token_suffix_mismatch'            => "'''由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。'''
+這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。",
 'editing'                          => '正在編輯$1',
 'editingsection'                   => '正在編輯$1 (段落)',
 'editingcomment'                   => '正在編輯$1 (新段落)',
@@ -750,9 +755,9 @@ $2',
 <b>只有</b>在上面文字框中的內容會在你點擊"保存頁面"後被保存。<br />',
 'yourtext'                         => '您的文字',
 'storedversion'                    => '已保存版本',
-'nonunicodebrowser'                => "'''警告: 您的瀏覽器不兼容Unicode編碼。這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。'''",
-'editingold'                       => "'''警告：你正在編輯的是本頁的舊版本。
-如果你保存它的話，在本版本之後的任何修改都會丟失。'''",
+'nonunicodebrowser'                => "'''警告: 您的瀏覽器不兼容Unicode編碼。'''這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。",
+'editingold'                       => "'''警告：你正在編輯的是本頁的舊版本。'''
+如果你保存它的話，在本版本之後的任何修改都會丟失。",
 'yourdiff'                         => '差異',
 'copyrightwarning'                 => "請注意您對{{SITENAME}}的所有貢獻都被認為是在$2下發佈，請查看在$1的細節。
 如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
@@ -763,15 +768,15 @@ $2',
 如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
 您同時也要向我們保證您所提交的內容是您自己所作，或得自一個不受版權保護或相似自由的來源（參閱$1的細節）。
 '''不要在未獲授權的情況下發表！'''",
-'longpagewarning'                  => "'''警告: 本頁長度達$1KB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。'''",
-'longpageerror'                    => "'''錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。該文本不能被儲存。'''",
-'readonlywarning'                  => "'''警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。'''
+'longpagewarning'                  => "'''警告''': 本頁長度達$1KB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。",
+'longpageerror'                    => "'''錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。'''該文本不能被儲存。",
+'readonlywarning'                  => "'''警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。'''您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。
 
 管理員有如下解釋: $1",
 'protectedpagewarning'             => "'''警告: 本頁已經被保護，只有擁有管理員許可權的用戶才可修改。'''",
 'semiprotectedpagewarning'         => "'''注意:''' 本頁面被鎖定，僅限註冊用戶編輯。",
 'cascadeprotectedwarning'          => '警告: 本頁已經被保護，只有擁有管理員權限的用戶才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
-'titleprotectedwarning'            => "'''警告: 本頁面已被鎖上，只有一些用戶方可創建。'''",
+'titleprotectedwarning'            => "'''警告: 本頁面已被鎖上，需要[[Special:ListGroupRights|指定權限]]方可創建。'''",
 'templatesused'                    => '在這個頁面上使用的模板有:',
 'templatesusedpreview'             => '此次預覽中使用的模板有:',
 'templatesusedsection'             => '在這個段落上使用的模板有:',
@@ -883,7 +888,8 @@ $2',
 'logdelete-selected'             => "'''選取'''$1'''的日誌項目:'''",
 'revdelete-text'                 => "'''刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。'''
 
-在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。",
+在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。
+請確認您肯定去做的話，您就要明白到後果，以及這個程序符合[[{{MediaWiki:Policy-url}}|政策]]。",
 'revdelete-legend'               => '設定可見性之限制',
 'revdelete-hide-text'            => '隱藏修訂文字',
 'revdelete-hide-name'            => '隱藏動作和目標',
@@ -1023,6 +1029,9 @@ $2',
 'notextmatches'                    => '沒有頁面內容匹配',
 'prevn'                            => '前$1個',
 'nextn'                            => '後$1個',
+'prevn-title'                      => '前$1項結果',
+'nextn-title'                      => '後$1項結果',
+'shown-title'                      => '每頁顯示$1項結果',
 'viewprevnext'                     => '檢視 ($1) ($2) ($3)',
 'searchmenu-legend'                => '搜尋選項',
 'searchmenu-exists'                => "'''在這個wiki上有一頁面叫做\"[[:\$1]]\"'''",
@@ -1250,6 +1259,7 @@ $2',
 'right-userrights'           => '編輯所有用戶的權限',
 'right-userrights-interwiki' => '編輯在其它wiki上的用戶權限',
 'right-siteadmin'            => '鎖定和解除鎖定資料庫',
+'right-reset-passwords'      => '重設其他用戶的密碼',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -1477,13 +1487,15 @@ $2',
 'morelinkstoimage'          => '查看連接到這個檔案的[[Special:WhatLinksHere/$1|更多連結]]。',
 'redirectstofile'           => '以下的$1個檔案重新定向到這個檔案:',
 'duplicatesoffile'          => '以下的$1個文件跟這個文件重覆（[[Special:FileDuplicateSearch/$2|更多細節]]）：',
-'sharedupload'              => '該檔案是一個共享上傳，它可能在其它項目中被應用。 $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => '該檔案來自於$1，它可能在其它項目中被應用。$2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => '請參閱在共享檔案庫上的$1以了解其相關資訊。',
-'shareduploadwiki-desc'     => '它在$1上的描述於下面顯示。',
+'shareduploadwiki-desc'     => '它在$1那邊上的描述於下面顯示。',
 'shareduploadwiki-linktext' => '檔案描述頁面',
 'noimage'                   => '不存在此名稱的檔案，但您可以$1。',
-'noimage-linktext'          => '上傳它',
+'noimage-linktext'          => '上傳一個',
 'uploadnewversion-linktext' => '上傳該檔案的新版本',
+'shared-repo-from'          => '出自$1', # $1 is the repository name
+'shared-repo'               => '一個共用檔案庫', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => '恢復$1',
@@ -1956,7 +1968,7 @@ $NEWPAGE
 'undeleterevision-missing'     => '此版本的內容不正確或已經遺失。可能連結錯誤、被移除或已經被恢復。',
 'undelete-nodiff'              => '找不到先前的修訂版本。',
 'undeletebtn'                  => '恢復',
-'undeletelink'                 => '恢復',
+'undeletelink'                 => '查看／恢復',
 'undeletereset'                => '重設',
 'undeleteinvert'               => '反向選擇',
 'undeletecomment'              => '原因',
@@ -2199,6 +2211,9 @@ $1已經被封鎖。您是否想更改這個設定？',
 'move-redirect-suppressed'     => '已禁止重新定向',
 'movelogpage'                  => '移動日誌',
 'movelogpagetext'              => '以下是所有移動的頁面清單:',
+'movesubpage'                  => '{{PLURAL:$1|子頁面|子頁面}}',
+'movesubpagetext'              => '這個頁面有$1個子頁面列示如下。',
+'movenosubpage'                => '這個頁面沒有子頁面。',
 'movereason'                   => '原因',
 'revertmove'                   => '恢復該移動',
 'delete_and_move'              => '刪除並移動',
