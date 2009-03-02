@@ -897,6 +897,8 @@ Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} prot
 'rev-deleted-text-view'          => 'Ĉi versio de la paĝo estis forigita de publikaj arĥivoj.
 Kiel administranto de {{SITENAME}} vi povas rigardi ĝin;
 povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].',
+'rev-deleted-no-diff'            => 'Vi ne povas vidi ĉi tiun diferencon ĉar unu el la revizioj estis forigitaj el la publikaj arkivoj.
+Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Protokolo pri forigoj].',
 'rev-delundel'                   => 'montri/kaŝi',
 'revisiondelete'                 => 'Forigi/malforigi versiojn',
 'revdelete-nooldid-title'        => 'Nevalida cela versio',
@@ -907,6 +909,7 @@ funkcion, la specifigita versio ne ekzistas, aŭ vi estas provanta kaŝi la nuna
 'revdelete-toomanytargets-title' => 'Tro multaj celoj',
 'revdelete-toomanytargets-text'  => 'Vi specifis tro tipojn da celoj por fari ĉi tiun agon.',
 'revdelete-nologid-title'        => 'Nevalida protokol-linio',
+'revdelete-nologid-text'         => 'Vi aŭ ne specifis celan protokolan eventon por fari ĉi tiun funkcion aŭ la specifa protokolero ne ekzistas.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Selektata versio|Selektataj versioj}} de [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
 'revdelete-text'                 => "'''Forigitaj versioj kaj eventoj plu aperos en la historipaĝoj, sed iliaj tekstoj ne estos alireblaj de la publiko.'''
@@ -2246,7 +2249,7 @@ Bonvolu permane kunigi ilin.',
 'move-redirect-suppressed'     => 'alidirektilo subpremita',
 'movelogpage'                  => 'Protokolo pri paĝmovoj',
 'movelogpagetext'              => 'Jen listo de movitaj paĝoj',
-'movesubpage'                  => 'Subpaĝoj',
+'movesubpage'                  => '{{PLURAL:$1|Subpaĝo|Subpaĝoj}}',
 'movesubpagetext'              => 'Ĉi tiu paĝo havas $1 {{PLURAL:$1|subpaĝon montritan|subpaĝojn montritajn}} sube.',
 'movenosubpage'                => 'Ĉi tiu paĝo havas neniujn subpaĝojn.',
 'movereason'                   => 'Kialo:',

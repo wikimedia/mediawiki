@@ -1510,7 +1510,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 Du bør tenkje over om det er lurt å halde fram med å laste opp denne fila.
 Sletteloggen for fila finn du her:",
 'filename-bad-prefix'         => "Namnet på fila du lastar opp byrjar med '''«$1»''', som er eit inkjeseiande namn som vanlegvis vert gjeve til bilete automatisk av digitale kamera. Ver venleg og vel eit meir skildrande namn på fila di.",
-'filename-prefix-blacklist'   => '  #<!-- leave this line exactly as it is --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntaksen er som følgjer:
 #  * Alt frå teiknet «#» til slutten av linja er ein kommentar
 #  * Alle linjer som ikkje er blanke er ei forstaving som vanlegvis vert nytta automatisk av digitale kamera
@@ -3052,7 +3052,7 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'intentionallyblankpage' => 'Denne sida er tom med vilje',
 
 # External image whitelist
-'external_image_whitelist' => '  #La denne linja vere som ho er<pre>
+'external_image_whitelist' => ' #La denne linja vere som ho er<pre>
 #Skriv fragment av regulære uttrykk (delen som går mellom //) nedanfor
 #Desse vil verte sjekka mot adresser til bilete frå eksterne sider
 #Dei som vert godkjend vil visast, elles vil det verte gjeve ei lenkje til bilete

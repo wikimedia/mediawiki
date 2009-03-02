@@ -784,7 +784,7 @@ $2',
 'template-protected'               => '(محافظتین)',
 'template-semiprotected'           => '(نیم محافظتی)',
 'hiddencategories'                 => 'ای صفحه عضوی چه {{PLURAL:$1|1 hidden category|$1 پناهین دسته جات}}:',
-'edittools'                        => '<strong>په کپی و پست کتن چه CTRL+V , CTRL+C استفاده کنیت.</strong>',
+'edittools'                        => '<!-- <strong>په کپی و پست کتن چه CTRL+V , CTRL+C استفاده کنیت.</strong> -->',
 'nocreatetitle'                    => 'شرکتن صفحه محدودنت',
 'nocreatetext'                     => '{{SITENAME}} شما را چه شرکتن نوکین صفحه منه کته.
 شما تونیت برگردیت و یک پیشگین صفحه ای اصلاح کنیت، یا [[Special:UserLogin|وارد بیت یان یک حسابی شرکنیت]].',

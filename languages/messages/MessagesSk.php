@@ -3056,7 +3056,7 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'intentionallyblankpage' => 'Táto stránka je zámerne prázdna. Používa sa na meranie výkonnosti atď.',
 
 # External image whitelist
-'external_image_whitelist' => '  #Nechajte tento riadok presne tak, ako je<pre>
+'external_image_whitelist' => ' #Nechajte tento riadok presne tak, ako je<pre>
 #Časti regulárnych výrazov (tie, ktoré sa píšu medzi //) napíšte dolu
 #Budú porovnané s URL externých obrázkov
 #Tie, ktoré budú zodpovedať reg. výrazu sa zobrazia ako obrázky, inak sa zobrazí iba odkaz na obrázok

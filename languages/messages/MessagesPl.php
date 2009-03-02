@@ -1543,7 +1543,7 @@ Zastanów się, czy powinno się ładować ten plik.
 Rejestr usunięć tego pliku jest podany poniżej:",
 'filename-bad-prefix'         => "Nazwa pliku, który przesyłasz, zaczyna się od '''„$1”'''. Jest to nazwa zazwyczaj przypisywana automatycznie przez cyfrowe aparaty fotograficzne, która nie informuje o zawartości pliku.
 Zmień nazwę pliku na bardziej opisową.",
-'filename-prefix-blacklist'   => '  #<!-- nie modyfikuj tej linii --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- nie modyfikuj tej linii --> <pre>
 # Składnia jest następująca:
 #  * Wszystko od znaku "#" do końca linii uznawane jest za komentarz
 #  * Każda niepusta linia zawiera początek nazwy pliku domyślnie wykorzystywany przez aparaty cyfrowe

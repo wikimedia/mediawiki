@@ -2019,9 +2019,9 @@ Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en co
 Voir $2 pour une liste des suppressions récentes.',
 'deletedarticle'         => 'a supprimé « [[$1]] »',
 'suppressedarticle'      => 'a supprimé « [[$1]] »',
-'dellogpage'             => 'Journal des suppressions',
+'dellogpage'             => 'Journal des suppressions de page',
 'dellogpagetext'         => 'Voici la liste des suppressions les plus récentes.',
-'deletionlog'            => 'Journal des suppressions',
+'deletionlog'            => 'journal des suppressions',
 'reverted'               => 'Version précédente rétablie',
 'deletecomment'          => 'Motif de suppression :',
 'deleteotherreason'      => 'Motif autre ou supplémentaire :',
@@ -3221,7 +3221,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'intentionallyblankpage' => 'Cette page est laissée intentionellement vide.',
 
 # External image whitelist
-'external_image_whitelist' => '  #Laisser cette ligne exactement telle quelle<pre>
+'external_image_whitelist' => ' #Laisser cette ligne exactement telle quelle<pre>
 #Indiquer les fragments d’expression régulières (juste la partie indiquée entre les //) ci-dessous
 #Ils correspondront avec les URLs des images (très liées) externes
 #Celles qui correspondent s’afficheront comme des images, sinon seul un lien vers l’image sera affiché
