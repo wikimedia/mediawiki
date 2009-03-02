@@ -2608,11 +2608,10 @@ class Parser
 	 * @private
 	 */
 	function replaceVariables( $text, $frame = false, $argsOnly = false ) {
-		# Prevent too big inclusions
-		if( strlen( $text ) > $this->mOptions->getMaxIncludeSize() ) {
+		# Is there any text? Also, Prevent too big inclusions!
+		if ( strlen( $text ) < 1 || strlen( $text ) > $this->mOptions->getMaxIncludeSize() ) {
 			return $text;
 		}
-
 		wfProfileIn( __METHOD__ );
 
 		if ( $frame === false ) {
