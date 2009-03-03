@@ -294,7 +294,6 @@ $messages = array(
 'versionrequired' => 'ຕ້ອງການເວີຣ໌ຊັ່ນ $1 ຂອງມີເດຍວິກິ',
 
 'ok'                      => 'ຕົກລົງ',
-'pagetitle'               => '$1 - ວິກິພີເດຍ',
 'retrievedfrom'           => 'ຖອນມາຈາກ "$1"',
 'youhavenewmessages'      => 'ທ່ານ ມີ $1 ($2).',
 'newmessageslink'         => 'ຂໍ້ຄວາມໃໝ່',

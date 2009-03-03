@@ -172,7 +172,6 @@ $messages = array(
 Lantawa sa [[Special:Version|version kang page]].',
 
 'ok'                      => 'OK dun',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'youhavenewmessages'      => 'May rudyan kaw nga $1 ($2).',
 'newmessageslink'         => 'bag-o nga manga mensahe',
 'newmessagesdifflink'     => 'orihi nga ilis',

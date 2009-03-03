@@ -291,7 +291,7 @@ $messages = array(
 'versionrequiredtext' => 'Каб карыстацца гэтай старонкай, патрабуецца MediaWiki версіі $1. Гл. [[Special:Version]]',
 
 'ok'                      => 'Добра',
-'pagetitle'               => '$1 — Вікіпедыя',
+'pagetitle'               => '$1 — {{SITENAME}}',
 'retrievedfrom'           => 'Узята з "$1"',
 'youhavenewmessages'      => 'Вы маеце $1 ($2).',
 'newmessageslink'         => 'новыя паведамленні',

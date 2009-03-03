@@ -275,7 +275,6 @@ $messages = array(
 'versionrequiredtext' => 'यह पन्ना इस्तेमाल करने के लिये मीडियाविकीका $1 अवतरण ज़रूरी हैं । देखें [[Special:Version|अवतरण सूची]] ।',
 
 'ok'                      => 'ओके',
-'pagetitle'               => '$1 - विकिपीडिया',
 'retrievedfrom'           => '"$1" से लिया गया',
 'youhavenewmessages'      => 'आपके लिए $1 है। ($2)',
 'newmessageslink'         => 'नया संदेश',

@@ -482,7 +482,6 @@ $messages = array(
 'versionrequiredtext' => 'Potrebna je verzija $1 MediaWikija da bi se koristila ova strana. Pogledaj [[Special:Version|verziju]].',
 
 'ok'                      => 'da',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Dobavljeno iz "$1"',
 'youhavenewmessages'      => 'Imate $1 ($2).',
 'newmessageslink'         => 'novih poruka',

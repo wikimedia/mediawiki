@@ -397,7 +397,6 @@ $messages = array(
 [[Special:Version|අනුවාද පිටුව]] බලන්න.',
 
 'ok'                      => 'හරි',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => '"$1" වෙතින් නැවත ලබාගන්නා ලදි',
 'youhavenewmessages'      => 'ඔබ හට $1 ($2) ඇත.',
 'newmessageslink'         => 'නව පණිවුඩ',
