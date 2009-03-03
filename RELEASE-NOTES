@@ -24,6 +24,9 @@ NOTE: Installation of MediaWiki on SQLite has been temporarily disabled in this
 release due to the discovery of serious problems with the schema. We expect to
 fix this problem for the release of 1.15.0. 
 
+== Changes since 1.14.0 ==
+* (bug 17737) Fixed russian URLs for Special:BookSources
+
 == Changes since 1.14.0rc1 ==
 
 * Fixed the performance of the backlinks API module
