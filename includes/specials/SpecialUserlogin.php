@@ -585,7 +585,7 @@ class LoginForm {
 		global $wgOut;
 		$wgOut->addHTML( Xml::element('p', array( 'class' => 'error' ), $error ) );
 		$reset = new SpecialResetpass();
-		$reset->execute( null );
+		$reset->execute( $this->mName );
 	}
 
 	/**
