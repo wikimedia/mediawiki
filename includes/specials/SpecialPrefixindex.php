@@ -23,7 +23,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 		# GET values
 		$from = $wgRequest->getVal( 'from' );
-		$prefix = $wgRequest->getVal( 'prefix' );
+		$prefix = $wgRequest->getVal( 'prefix', '' );
 		$namespace = $wgRequest->getInt( 'namespace' );
 		$namespaces = $wgContLang->getNamespaces();
 
