@@ -990,9 +990,9 @@ class ConverterRule {
 		$unidtable = array();
 		$markup = $this->mConverter->mMarkup;
 
-		$choice = explode($markup['varsep'], $rules );
+		$choice = explode($markup['varsep'], $rules);
 		foreach($choice as $c) {
-			$v = explode($markup['codesep'], $c);
+			$v = explode($markup['codesep'], $c, 2);
 			if(count($v) != 2) 
 				continue;// syntax error, skip
 			$to=trim($v[1]);
