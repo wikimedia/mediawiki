@@ -1640,7 +1640,7 @@ class Title {
 			$options['LIMIT'] = $limit;
 		return $this->mSubpages = TitleArray::newFromResult(
 			$dbr->select( 'page',
-				array( 'page_id', 'page_namespace', 'page_title' ),
+				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' ),
 				$conds,
 				__METHOD__,
 				$options
