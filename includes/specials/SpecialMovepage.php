@@ -234,7 +234,8 @@ class MovePageForm {
 		}
 
 		if( ($this->oldTitle->hasSubpages() || $this->oldTitle->getTalkPage()->hasSubpages())
-		&& $this->oldTitle->userCan( 'move-subpages' ) ) {
+			&& $this->oldTitle->userCan( 'move-subpages' ) )
+		{
 			global $wgMaximumMovedPages, $wgLang;
 
 			$wgOut->addHTML( "
@@ -521,9 +522,6 @@ class MovePageForm {
 
 		foreach( $subpages as $subpage ) {
 			$link = $skin->link( $subpage );
-			if ( $subpage->isRedirect() )
-				$link = '<div class="allpagesredirect">' . $link . '</div>' ;
-
 			$out->addHTML( "<li>$link</li>\n" );
 		}
 		$out->addHTML( "</ul>\n" );
