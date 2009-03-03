@@ -26,6 +26,8 @@ fix this problem for the release of 1.15.0.
 
 == Changes since 1.14.0 ==
 * (bug 17737) Fixed russian URLs for Special:BookSources
+* (bug 17713) Using links with only an anchor no longer add an dummy entry in
+  the pagelinks table
 
 == Changes since 1.14.0rc1 ==
 
