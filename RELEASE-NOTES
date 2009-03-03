@@ -90,6 +90,8 @@ fix this problem for the release of 1.15.0.
 * The 'BeforeWatchlist' hook has been removed due to internal changes in
   Special:Watchlist. 'SpecialWatchlistQuery' should now be used by extensions
   to customize the watchlist database query.
+* $wgFixDoubleRedirects was added for enabling/disabling of double redirect
+  fixing.
 
 
 === Migrated extensions ===
