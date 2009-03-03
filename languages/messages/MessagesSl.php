@@ -301,7 +301,6 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'versionrequiredtext' => 'Za uporabo strani je potrebna različica MediaWiki $1. Glejte [[Special:Version]].',
 
 'ok'                      => 'V redu',
-'pagetitle'               => '$1 - {{SITENAME}}, prosta enciklopedija',
 'retrievedfrom'           => 'Vzpostavljeno iz »$1«',
 'youhavenewmessages'      => 'Imate $1 ($2)',
 'newmessageslink'         => 'novo sporočilo',

@@ -494,7 +494,6 @@ $messages = array(
 Види [[Special:Version|страница за верзија]].',
 
 'ok'                      => 'ОК',
-'pagetitle'               => '$1 - Википедија',
 'retrievedfrom'           => 'Преземено од "$1"',
 'youhavenewmessages'      => 'Имате $1 ($2).',
 'newmessageslink'         => 'нови пораки',

@@ -227,7 +227,6 @@ $messages = array(
 स्वयादिसँ [[विशेष:संस्करण|संस्करण पौ]]।',
 
 'ok'                      => 'ज्यु',
-'pagetitle'               => '$1 - {{SITENAME}}',
 'newmessageslink'         => 'न्हुगु सन्देश',
 'newmessagesdifflink'     => 'न्हापाया हिलेज्या',
 'youhavenewmessagesmulti' => '$1य् छित न्हुगु सन्देश वगु दु',

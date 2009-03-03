@@ -184,7 +184,6 @@ $messages = array(
 دیکھئے [[خاص:نسخہ|صفحۂ نسخہ]]',
 
 'ok'                      => 'ٹھیک ہے',
-'pagetitle'               => '$1 - وکیپیڈیا',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom'           => '‘‘$1’’ مستعادہ منجانب',
 'youhavenewmessages'      => 'آپکے لیۓ ایک $1 ہے۔ ($2)',
