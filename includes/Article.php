@@ -1943,7 +1943,18 @@ class Article {
 		global $wgUser, $wgRestrictionTypes, $wgContLang;
 
 		$id = $this->mTitle->getArticleID();
-		if( $id <= 0 || wfReadOnly() || !$this->mTitle->userCan('protect') ) {
+		if ( $id <= 0 ) {
+			wfDebug( "updateRestrictions failed: $id <= 0\n" );
+			return false;
+		}
+		
+		if ( wfReadOnly() ) {
+			wfDebug( "updateRestrictions failed: read-only\n" );
+			return false;
+		}
+		
+		if ( wfReadOnly() ) {
+			wfDebug( "updateRestrictions failed: insufficient permissions\n" );
 			return false;
 		}
 
@@ -2014,6 +2025,9 @@ class Article {
 				$encodedExpiry = array();
 				$protect_description = '';
 				foreach( $limit as $action => $restrictions  ) {
+					if ( !isset($expiry[$action]) )
+						$expiry[$action] = 'infinite';
+					
 					$encodedExpiry[$action] = Block::encodeExpiry($expiry[$action], $dbw );
 					if( $restrictions != '' ) {
 						$protect_description .= "[$action=$restrictions] (";
