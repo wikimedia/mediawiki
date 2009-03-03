@@ -322,17 +322,18 @@ class ChangesList {
 	/** Inserts a rollback link */
 	protected function insertRollback( &$s, &$rc ) {
 		global $wgUser;
-		if( !$rc->mAttribs['rc_new'] && $rc->mAttribs['rc_this_oldid'] && $wgUser->isAllowed('rollback') ) {
+		if( !$rc->mAttribs['rc_new'] && $rc->mAttribs['rc_this_oldid'] && $rc->mAttribs['rc_cur_id'] ) {
 			$page = $rc->getTitle();
 			/** Check for rollback and edit permissions, disallow special pages, and only
 			  * show a link on the top-most revision */
-			if( $rc->mAttribs['rc_cur_id'] && $page->getLatestRevID() == $rc->mAttribs['rc_this_oldid'] 
-				&& $page->quickUserCan('rollback') && $page->quickUserCan('edit') )
+			if( $page->quickUserCan('rollback') && $page->quickUserCan('edit')
+				&& $page->getLatestRevID() == $rc->mAttribs['rc_this_oldid'] )
 			{
 				$rev = new Revision( array(
 					'id'        => $rc->mAttribs['rc_this_oldid'],
 					'user'      => $rc->mAttribs['rc_user'],
-					'user_text' => $rc->mAttribs['rc_user_text']
+					'user_text' => $rc->mAttribs['rc_user_text'],
+					'deleted'   => $rc->mAttribs['rc_deleted']
 				) );
 				$rev->setTitle( $page );
 				$s .= ' '.$this->skin->generateRollback( $rev );
