@@ -1953,7 +1953,7 @@ class Article {
 			return false;
 		}
 		
-		if ( wfReadOnly() ) {
+		if ( !$this->mTitle->userCan( 'protect' ) ) {
 			wfDebug( "updateRestrictions failed: insufficient permissions\n" );
 			return false;
 		}
