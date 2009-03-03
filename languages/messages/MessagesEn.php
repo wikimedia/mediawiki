@@ -1346,7 +1346,8 @@ Please confirm that you intend to do this, that you understand the consequences,
 # Suppression log
 'suppressionlog'     => 'Suppression log',
 'suppressionlogtext' => 'Below is a list of deletions and blocks involving content hidden from administrators.
-See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
+See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.
+Releasing this information can result in \'\'permanent\'\' loss of Suppression privileges. ',
 
 # History merging
 'mergehistory'                     => 'Merge page histories',
@@ -2202,7 +2203,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'specialloguserlabel'  => 'User:',
 'speciallogtitlelabel' => 'Title:',
 'log'                  => 'Logs',
-'all-logs-page'        => 'All logs',
+'all-logs-page'        => 'All public logs',
 'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
 You can narrow down the view by selecting a log type, the user name (case-sensitive), or the affected page (also case-sensitive).',
 'logempty'             => 'No matching items in log.',

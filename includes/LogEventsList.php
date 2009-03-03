@@ -447,15 +447,16 @@ class LogEventsList {
 	/**
 	 * SQL clause to skip forbidden log types for this user
 	 * @param $db Database
+	 * @param $audience string, public/user
 	 * @return mixed (string or false)
 	 */
-	public static function getExcludeClause( $db ) {
+	public static function getExcludeClause( $db, $audience = 'public' ) {
 		global $wgLogRestrictions, $wgUser;
 		// Reset the array, clears extra "where" clauses when $par is used
 		$hiddenLogs = array();
 		// Don't show private logs to unprivileged users
 		foreach( $wgLogRestrictions as $logType => $right ) {
-			if( !$wgUser->isAllowed($right) ) {
+			if( $audience == 'public' || !$wgUser->isAllowed($right) ) {
 				$safeType = $db->strencode( $logType );
 				$hiddenLogs[] = $safeType;
 			}
@@ -540,16 +541,17 @@ class LogPager extends ReverseChronologicalPager {
 		if( isset($wgLogRestrictions[$type]) && !$wgUser->isAllowed($wgLogRestrictions[$type]) ) {
 			$type = '';
 		}
-		// Don't show private logs to unpriviledged users
-		$hideLogs = LogEventsList::getExcludeClause( $this->mDb );
+		// Don't show private logs to unpriviledged users.
+		// Also, only show them upon specific request to avoid suprises.
+		$audience = $type ? 'user' : 'public';
+		$hideLogs = LogEventsList::getExcludeClause( $this->mDb, $audience );
 		if( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
 		}
-		if( !$type ) {
-			return false;
+		if( $type ) {
+			$this->type = $type;
+			$this->mConds['log_type'] = $type;
 		}
-		$this->type = $type;
-		$this->mConds['log_type'] = $type;
 	}
 
 	/**
