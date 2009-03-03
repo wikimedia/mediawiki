@@ -42,7 +42,7 @@ class BitmapHandler extends ImageHandler {
 
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand, $wgImageMagickTempDir;
-		global $wgCustomConvertCommand;
+		global $wgCustomConvertCommand, $wgForceClientThumbnails;
 		global $wgSharpenParameter, $wgSharpenReductionThreshold;
 		global $wgMaxAnimatedGifArea;
 
@@ -73,6 +73,8 @@ class BitmapHandler extends ImageHandler {
 			$scaler = 'im';
 		} elseif ( $wgCustomConvertCommand ) {
 			$scaler = 'custom';
+		} elseif( $wgForceClientThumbnails ) {
+			$scaler = 'client';
 		} elseif ( function_exists( 'imagecreatetruecolor' ) ) {
 			$scaler = 'gd';
 		} else {
