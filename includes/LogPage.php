@@ -250,6 +250,8 @@ class LogPage {
 		//  is that link in HTML form, and so this just gets rid of the ugly [[]].
 		//  However, this is a horrible hack and it doesn't work like you expect if, say,
 		//  you want to link to something OTHER than the title of the log entry.
+		//  The real problem, which Erik was trying to fix (and it sort-of works now) is
+		//  that the same messages are being treated as both wikitext *and* HTML.
 		if( $filterWikilinks ) {
 			$rv = str_replace( "[[", "", $rv );
 			$rv = str_replace( "]]", "", $rv );
