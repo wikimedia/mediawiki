@@ -241,6 +241,15 @@ class LogPage {
 				$rv = "$action";
 			}
 		}
+		
+		// For the perplexed, this feature was added in r7855 by Erik.
+		//  The feature was added because we liked adding [[$1]] in our log entries
+		//  but the log entries are parsed as Wikitext on RecentChanges but as HTML
+		//  on Special:Log. The hack is essentially that [[$1]] represented a link
+		//  to the title in question. The first parameter to the HTML version (Special:Log)
+		//  is that link in HTML form, and so this just gets rid of the ugly [[]].
+		//  However, this is a horrible hack and it doesn't work like you expect if, say,
+		//  you want to link to something OTHER than the title of the log entry.
 		if( $filterWikilinks ) {
 			$rv = str_replace( "[[", "", $rv );
 			$rv = str_replace( "]]", "", $rv );
