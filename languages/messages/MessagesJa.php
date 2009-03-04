@@ -862,7 +862,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'explainconflict'                  => 'あなたがこのページを編集し始めた後に、他の誰かがこのページを変更しました。上側のテキストエリアは現在の最新の状態です。あなたの編集していた文章は下側のテキストエリアに示されています。編集していた文章を、上側のテキストエリアの文章に組み込んでください。<strong>上側のテキストエリアの内容だけ</strong>が、「{{int:Savearticle}}」をクリックした時に実際に保存されます。',
 'yourtext'                         => 'あなたの文章',
 'storedversion'                    => '保存された版',
-'nonunicodebrowser'                => "'''警告: あなたの使用しているブラウザはユニコードに準拠していません。ページを編集する前にブラウザを変更してください。'''",
+'nonunicodebrowser'                => "'''警告: ご使用のブラウザはUnicodeに対応していません。'''ページのソースを破壊しないために、編集ボックス中の非ASCII文字は16進数文字コードによって表現されます。",
 'editingold'                       => "'''警告: あなたはこのページの古い版を編集しています。もしこの文章を保存すると、この版以降に追加された全ての変更が無効になってしまいます。'''",
 'yourdiff'                         => '更新内容',
 'copyrightwarning'                 => "'''■投稿する前に以下を確認してください■'''
@@ -872,9 +872,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'copyrightwarning2'                => "'''■投稿する前に以下を確認してください■'''
 * あなたの文章が他人によって自由に編集、配布されることを望まない場合は、投稿を控えてください。
 * あなたの投稿する文章はあなた自身によって書かれたものであるか、パブリック・ドメインかそれに類する自由なリソースからの複製であることを約束してください（詳細は$1を参照）。'''あなたが著作権を保持していない作品を許諾なしに投稿してはいけません!'''",
-'longpagewarning'                  => "'''警告: このページのサイズは $1 キロバイトです。一部のブラウザには 32 キロバイト以上のページを編集すると問題が起きるものがあります。ページをセクションに分けることを検討してください。'''",
+'longpagewarning'                  => "'''警告''': このページのサイズは $1 キロバイトです。一部のブラウザには 32 キロバイト以上のページを編集すると問題が起きるものがあります。ページをセクションに分けることを検討してください。",
 'longpageerror'                    => "'''エラー: あなたが投稿したテキストは $1 キロバイトの長さがあります。これは投稿できる最大の長さである $2 キロバイトを超えています。この編集を保存することはできません。'''",
-'readonlywarning'                  => "'''警告: データベースがメンテナンスのためにロックされているため、現在は編集結果を保存できません。必要であれば文章をカットアンドペーストしてローカルファイルとして保存し、後ほど保存をやり直してください。'''
+'readonlywarning'                  => "'''警告: データベースがメンテナンスのためにロックされているため、現在は編集結果を保存できません。'''必要であれば文章をカットアンドペーストしてローカルファイルとして保存し、後ほど保存をやり直してください。
 
 データベースをロックした管理者によるロックの説明は次の通りです: $1",
 'protectedpagewarning'             => "'''警告:''' このページは保護されています。{{int:group-sysop}}しか編集できません。",
@@ -1287,9 +1287,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 'group-user-member'          => '利用者',
 'group-autoconfirmed-member' => '{{int:group-autoconfirmed}}',
-'group-bot-member'           => '{{int:group-bot}}',
+'group-bot-member'           => 'ボット',
 'group-sysop-member'         => '{{int:group-sysop}}',
-'group-bureaucrat-member'    => '{{int:group-bureaucrat}}',
+'group-bureaucrat-member'    => 'ビューロクラット',
 'group-suppress-member'      => 'Oversight',
 
 'grouppage-user'          => '{{ns:project}}:利用者',
@@ -1810,7 +1810,7 @@ PICT # misc.
 'newuserlogpagetext'          => '以下は最近作成されたアカウントの一覧です。',
 'newuserlog-byemail'          => 'パスワードを電子メールで送信しました',
 'newuserlog-create-entry'     => '新規利用者',
-'newuserlog-create2-entry'    => 'アカウント $1 が作成されました',
+'newuserlog-create2-entry'    => 'が新規にアカウント $1 を作成しました',
 'newuserlog-autocreate-entry' => 'アカウントが自動的に作成されました',
 
 # Special:ListGroupRights
@@ -1881,7 +1881,7 @@ PICT # misc.
 'watchlistcontains'    => 'あなたのウォッチリストには $1件のページが登録されています。',
 'iteminvalidname'      => '"$1" をウォッチリストから削除できません。ページ名が不正です。',
 'wlnote'               => '以下は最近 <strong>$2</strong> 時間に編集された <strong>$1</strong> ページです。',
-'wlshowlast'           => '最近の [$1時間] [$2日間] [$3] のものを表示する',
+'wlshowlast'           => '最近 [$1時間] [$2日間] [$3] のものを表示する',
 'watchlist-options'    => 'ウォッチリストのオプション',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1961,7 +1961,7 @@ $NEWPAGE
 'rollbacklink'     => '差し戻し',
 'rollbackfailed'   => '差し戻しに失敗しました',
 'cantrollback'     => '投稿者がただ一人であるため、編集を差し戻せません。',
-'alreadyrolled'    => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
+'alreadyrolled'    => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
 
 このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。',
 'editcomment'      => "編集内容の要約: \"''\$1''\"", # only shown if there is an edit comment
@@ -2045,7 +2045,7 @@ $NEWPAGE
 'undeleterevision-missing'     => '無効、あるいは誤った版です。当該版は既に復帰されたか、アーカイブから削除された可能性があります。',
 'undelete-nodiff'              => 'これより前の版はありません。',
 'undeletebtn'                  => '復帰',
-'undeletelink'                 => '閲覧または復帰',
+'undeletelink'                 => '閲覧・復帰',
 'undeletereset'                => 'リセット',
 'undeleteinvert'               => '選択を逆転する',
 'undeletecomment'              => 'コメント:',

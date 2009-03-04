@@ -983,41 +983,21 @@ Leheküljed, mis lähevad [[Special:Watchlist|Jälgimisloendi]] koosseisu, on es
 'uploadnologin'        => 'sisse logimata',
 'uploadnologintext'    => 'Kui Te soovite faile üles laadida, peate [[Special:UserLogin|sisse logima]].',
 'uploaderror'          => 'Faili laadimine ebaõnnestus',
-'uploadtext'           => '<strong>STOPP!</strong> Enne kui sooritad üleslaadimise,
-peaksid tagama, et see järgib siinset [[{{MediaWiki:Policy-url}}|piltide kasutamise korda]].
+'uploadtext'           => "Järgnevat vormi võid kasutada failide üles laadimiseks.
 
-Et näha või leida eelnevalt üleslaetud pilte,
-mine vaata [[Special:FileList|piltide nimekirja]].
-Üleslaadimised ning kustutamised logitakse [[Special:Log/upload|üleslaadimise logis]].
+Et näha või leida eelnevalt üles laetud pilte mine vaata [[Special:FileList|piltide nimekirja]].
+Üleslaadimiste ajalugu saab uurida [[Special:Log/upload|üleslaadimise logist]], kustutamiste oma [[Special:Log/delete|kustutamiste logist]].
 
-Järgneva vormi abil saad laadida üles uusi pilte
-oma artiklite illustreerimiseks.
-Enamikul brauseritest, näed nuppu "Browse...", mis viib sind
-sinu operatsioonisüsteemi standardsesse failiavamisaknasse.
-Faili valimisel sisestatakse selle faili nimi tekstiväljale
-nupu kõrval.
-Samuti pead märgistama kastikese, kinnitades sellega,
-et sa ei riku seda faili üleslaadides kellegi autoriõigusi.
-Üleslaadimise lõpuleviimiseks vajuta nupule "Üleslaadimine".
-See võib võtta pisut aega, eriti kui teil on aeglane internetiühendus.
-
-Eelistatud formaatideks on fotode puhul JPEG , joonistuste
-ja ikoonilaadsete piltide puhul PNG, helide jaoks aga OGG.
-Nimeta oma failid palun nõnda, et nad kirjeldaksid arusaadaval moel faili sisu, see aitab segadusi vältida.
-Pildi lisamiseks artiklile, kasuta linki kujul:
-<b><nowiki>[[</nowiki>{{ns:file}}<nowiki>:pilt.jpg]]</nowiki></b> või <b><nowiki>[[</nowiki>{{ns:file}}<nowiki>:pilt.png|alt. tekst]]</nowiki></b>.
-Helifaili puhul: <b><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fail.ogg]]</nowiki></b>.
-
-Pane tähele, et nagu ka ülejäänud siinsete lehekülgede puhul,
-võivad teised sinu poolt laetud faile saidi huvides
-muuta või kustutada ning juhul kui sa süsteemi kuritarvitad
-võidakse sinu ligipääs sulgeda.',
+Faili lisamiseks artiklile kasuta linki ühel kujul järgnevatest:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fail.jpg]]</nowiki></tt>''' pildi täisversiooni lisamiseks;
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fail.png|200px|thumb|left|kirjeldus]]</nowiki></tt>''' 200-pikselilise esituse loomiseks lehekülje vasakule äärele lisatavas kastis, kus 'kirjeldus' lisatakse pildiallkirjana;
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fail.ogg]]</nowiki></tt>''' helifaili-lingi loomiseks.",
 'upload-permitted'     => 'Lubatud failitüübid: $1.',
 'upload-preferred'     => 'Eelistatud failitüübid: $1.',
 'upload-prohibited'    => 'Keelatud failitüübid: $1.',
 'uploadlog'            => 'üleslaadimise logi',
 'uploadlogpage'        => 'Üleslaadimise logi',
-'uploadlogpagetext'    => 'Allpool on loend viimastest failide üleslaadimistest. Kõik ajad näidatakse serveri aja järgi.',
+'uploadlogpagetext'    => 'Allpool on loend viimastest failide üleslaadimistest. Visuaalsema esituse nägemiseks vaata [[Special:NewFiles|uute failide galeriid]].',
 'filename'             => 'Faili nimi',
 'filedesc'             => 'Lühikirjeldus',
 'fileuploadsummary'    => 'Info faili kohta:',
@@ -1027,13 +1007,16 @@ võidakse sinu ligipääs sulgeda.',
 'illegalfilename'      => 'Faili "$1" nimi sisaldab sümboleid, mis pole pealkirjades lubatud. Palun nimetage fail ümber ja proovige uuesti.',
 'badfilename'          => 'Pildi nimi on muudetud. Uus nimi on "$1".',
 'filetype-banned-type' => "'''\".\$1\"''' ei ole lubatud failitüüp.  Lubatud {{PLURAL:\$3|failitüüp|failitüübid}} on  \$2.",
+'filetype-missing'     => 'Failil puudub laiend (nagu näiteks ".jpg").',
 'large-file'           => 'On soovitatav, et üleslaetavad failid ei oleks suuremad kui $1; selle faili suurus on $2.',
 'largefileserver'      => 'Antud fail on suurem serverikonfiguratsiooni poolt lubatavast failisuurusest.',
 'emptyfile'            => 'Fail, mille Te üles laadisite, paistab olevat tühi.
 See võib olla tingitud vigasest failinimest.
 Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'fileexists'           => "Sellise nimega fail on juba olemas. Palun kontrollige '''<tt>$1</tt>''', kui te ei ole kindel, kas tahate seda muuta.",
-'fileexists-forbidden' => 'Sellise nimega fail on juba olemas, palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|thumb|center|$1]]',
+'fileexists-thumb'     => "<center>'''Fail on olemas'''</center>",
+'fileexists-forbidden' => 'Sellise nimega fail on juba olemas, seda ei saa üle kirjutada.
+Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|thumb|center|$1]]',
 'successfulupload'     => 'Üleslaadimine õnnestus',
 'uploadwarning'        => 'Üleslaadimise hoiatus',
 'savefile'             => 'Salvesta fail',
@@ -1109,7 +1092,7 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 
 # Unused templates
 'unusedtemplates'     => 'Kasutamata mallid',
-'unusedtemplatestext' => 'See lehekülg loetleb kõik mallinimeruumi leheküljed, millele teistelt lehekülgedelt ei viidata. Enne kustutamist palun kontrollige, kas siia pole muid linke.',
+'unusedtemplatestext' => 'See lehekülg loetleb kõik leheküljed nimeruumis {{ns:template}}, mida teistel lehekülgedel ei kasutata. Enne kustutamist palun kontrollige, kas siia pole muid linke.',
 'unusedtemplateswlh'  => 'teised lingid',
 
 # Random page
@@ -1138,7 +1121,7 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'doubleredirectstext' => 'Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise ümbersuunamislehe viide, mis tavaliselt on viiteks, kuhu esimene ümbersuunamisleht peaks otse suunama.',
 
 'brokenredirects'        => 'Vigased ümbersuunamised',
-'brokenredirectstext'    => 'Järgmised leheküljed on ümber suunatud olematutele lehekülgedele.',
+'brokenredirectstext'    => 'Järgmised leheküljed on ümber suunatud olematutele lehekülgedele:',
 'brokenredirects-edit'   => '(redigeeri)',
 'brokenredirects-delete' => '(kustuta)',
 
@@ -1178,6 +1161,10 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'deadendpagestext'        => 'Järgmised leheküljed ei viita ühelegi teisele Viki leheküljele.',
 'protectedpages'          => 'Kaitstud leheküljed',
 'listusers'               => 'Kasutajad',
+'listusers-editsonly'     => 'Näita vaid kasutajaid, kes on teinud muudatusi',
+'listusers-creationsort'  => 'Sorteeri konto loomise aja järgi',
+'usereditcount'           => '$1 {{PLURAL:$1|redigeerimine|redigeerimist}}',
+'usercreated'             => 'Konto loomise aeg: $1 kell $2',
 'newpages'                => 'Uued leheküljed',
 'newpages-username'       => 'Kasutajanimi:',
 'ancientpages'            => 'Kõige vanemad artiklid',
