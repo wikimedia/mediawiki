@@ -77,7 +77,7 @@ class LanguageConverter {
 			// these flags above are reserved for program
 			'A'=>'A',       // add rule for convert code (all text convert)
 			'T'=>'T',       // title convert
-			'R'=>'R',       // raw content
+			'R'=>'R',       // row content
 			'D'=>'D',       // convert description (subclass implement)
 			'-'=>'-',       // remove convert (not implement)
 			'H'=>'H',       // add rule for convert code (but no display in placed code )
@@ -91,6 +91,7 @@ class LanguageConverter {
 			$this->mManualAddTables[$v] = array();
 			$this->mManualRemoveTables[$v] = array();
 			$this->mNamespaceTables[$v] = array();
+			$this->mFlags[$v] = $v;
 		}
 	}
 
@@ -873,7 +874,7 @@ class LanguageConverter {
 /**
  * parser for rules of language conversion , parse rules in -{ }- tag
  * @ingroup Language
- * @author  fdcn <fdcn64@gmail.com>
+ * @author fdcn <fdcn64@gmail.com>, PhiLiP <philip.npc@gmail.com>
  */
 class ConverterRule {
 	var $mText; // original text in -{text}-
@@ -935,6 +936,7 @@ class ConverterRule {
 		$flags = array();
 		$markup = $this->mConverter->mMarkup;
 		$validFlags = $this->mConverter->mFlags;
+		$variants = $this->mConverter->mVariants;
 
 		$tt = explode($markup['flagsep'], $text, 2);
 		if(count($tt) == 2) {
@@ -966,14 +968,21 @@ class ConverterRule {
 			if(in_array('D',$flags)) $temp[] = 'D';
 			$flags = $temp;
 		} else {
-			if ( in_array('A',$flags)) {
+			if ( in_array('A',$flags) ) {
 				$flags[]='+';
 				$flags[]='S';
 			}
 			if ( in_array('D',$flags) )
 				$flags=array_diff($flags,array('S'));
+			$flags_temp = array();
+			foreach ($variants as $variant) {
+				if ( in_array($variant, $flags) )
+					$flags_temp[] = $variant;
+			}
+			if ( count($flags_temp) == 0 )
+				$flags = $flags_temp;
 		}
-		if ( count($flags)==0 )
+		if ( count($flags) == 0 )
 			$flags = array('S');
 		$this->mRules=$rules;
 		$this->mFlags=$flags;
@@ -992,23 +1001,24 @@ class ConverterRule {
 
 		$choice = explode($markup['varsep'], $rules);
 		foreach($choice as $c) {
-			$v = explode($markup['codesep'], $c, 2);
-			if(count($v) != 2) 
+			$v  = explode($markup['codesep'], $c, 2);
+			if( count($v) != 2 ) 
 				continue;// syntax error, skip
-			$to=trim($v[1]);
-			$v=trim($v[0]);
-			$u = explode($markup['unidsep'], $v);
-			if(count($u) == 1) {
+			$to = trim($v[1]);
+			$v  = trim($v[0]);
+			$u  = explode($markup['unidsep'], $v);
+			if( count($u) == 1 ) {
 				$bidtable[$v] = $to;
 			} else if(count($u) == 2){
-				$from=trim($u[0]);$v=trim($u[1]);
-				if( array_key_exists($v,$unidtable) && !is_array($unidtable[$v]) )
-					$unidtable[$v]=array($from=>$to);
+				$from = trim($u[0]);
+				$v    = trim($u[1]);
+				if( array_key_exists( $v, $unidtable ) && !is_array( $unidtable[$v] ) )
+					$unidtable[$v] = array( $from=>$to );
 				else
-					$unidtable[$v][$from]=$to;
+					$unidtable[$v][$from] = $to;
 			}
 			// syntax error, pass
-			if (!array_key_exists($v,$this->mConverter->mVariantNames)){
+			if ( !array_key_exists( $v, $this->mConverter->mVariantNames ) ){
 				$bidtable = array();
 				$unidtable = array();
 				break;
@@ -1124,12 +1134,30 @@ class ConverterRule {
 	 * @public
 	 */
 	function parse($variant){
-		if(!$variant) $variant = $this->mConverter->getPreferredVariant();
+		if(!$variant)
+			$variant = $this->mConverter->getPreferredVariant();
 
+		$variants = $this->mConverter->mVariants;
 		$this->parseFlags();
 		$flags = $this->mFlags;
 
-		if( !in_array('R',$flags) || !in_array('N',$flags) ){
+		//convert to specified variant
+		if( count( array_diff( $flags, $variants ) ) == 0 and count( $flags ) != 0 ) {
+			if ( in_array( $variant, $flags ) )
+				$this->mRules = $this->mConverter->autoConvert( $this->mRules, $variant );
+			else {
+				$variantFallbacks = $this->mConverter->getVariantFallbacks($variant);
+				foreach ( $variantFallbacks as $variantFallback ) {
+					if ( in_array( $variantFallback, $flags ) ) {
+						$this->mRules = $this->mConverter->autoConvert( $this->mRules, $variantFallback );
+						break;
+					}
+				}
+			}
+			$this->mFlags = $flags = array('R');
+		}
+
+		if( !in_array( 'R', $flags ) || !in_array( 'N', $flags ) ) {
 			//FIXME: may cause trouble here...
 			//strip &nbsp; since it interferes with the parsing, plus,
 			//all spaces should be stripped in this tag anyway.
@@ -1141,7 +1169,7 @@ class ConverterRule {
 		}
 		$rules = $this->mRules;
 
-		if(count($this->mBidtable)==0 && count($this->mUnidtable)==0){
+		if( count( $this->mBidtable ) == 0 && count( $this->mUnidtable ) == 0 ){
 			if(in_array('+',$flags) || in_array('-',$flags))
 				// fill all variants if text in -{A/H/-|text} without rules
 				foreach($this->mConverter->mVariants as $v)
