@@ -53,7 +53,7 @@ class ZhConverter extends LanguageConverter {
 			'Special'        => '特殊',
 			'Talk'           => '讨论',
 			'User'           => '用户',
-			'User Talk'           => '用户讨论',
+			'User talk'      => '用户讨论',
 			$nsproject
 					=> isset($projecttable[$nsproject]) ? 
 						$projecttable[$nsproject] : $nsproject,

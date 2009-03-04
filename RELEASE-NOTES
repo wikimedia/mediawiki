@@ -125,6 +125,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   with class 'mw-specialpage-summary'
 * $wgSummarySpamRegex added to handle edit summary spam. This is used *instead*
   of $wgSpamRegex for edit summary checks. Text checks still use $wgSpamRegex.
+* New function to convert content text to specified language (only applies on wiki with
+  LanguageConverter class)
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
