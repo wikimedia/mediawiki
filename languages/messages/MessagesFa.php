@@ -2327,8 +2327,8 @@ $1',
 'ipb-change-block'                => 'بستن دوبارهٔ کاربر با این تنظیم‌ها',
 'badipaddress'                    => 'کاربری با این نام وجود ندارد.',
 'blockipsuccesssub'               => 'بستن با موفقیت انجام شد',
-'blockipsuccesstext'              => '«$1» بسته شده است.
-<br />برای بررسی بسته‌شدن‌ها، به [[Special:IPBlockList|فهرست نشانی‌های آی‌پی و نام‌های کاربری بسته‌شده]] مراجعه کنید.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] بسته شد.<br />
+برای بررسی بسته‌شدن‌ها [[Special:IPBlockList|فهرست نشانی‌های آی‌پی بسته‌شده]] را ببینید.',
 'ipb-edit-dropdown'               => 'دلایل قطع دسترسی',
 'ipb-unblock-addr'                => 'بازکردن $1',
 'ipb-unblock'                     => 'باز کردن نام کاربری یا نشانی آی‌پی',

@@ -601,6 +601,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'files'                     => 'Mafaili',
 
 # Groups
+'group'       => 'Kundi:',
 'group-sysop' => 'Wakabidhi',
 
 'grouppage-sysop' => '{{ns:project}}:Wakabidhi',
@@ -753,6 +754,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'deadendpages'            => 'Kurasa ambazo haziungi na ukurasa mwingine wowote',
 'protectedpages'          => 'Kurasa zinazolindwa',
 'listusers'               => 'Orodha ya Watumiaji',
+'usercreated'             => 'Iliwekewa tarehe $1 saa $2',
 'newpages'                => 'Kurasa mpya',
 'ancientpages'            => 'Kurasa za kale',
 'move'                    => 'Sogeza',
@@ -784,6 +786,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'categories' => 'Jamii',
 
 # Special:ListGroupRights
+'listgrouprights-group'   => 'Kundi',
 'listgrouprights-members' => '(orodha ya wanachama)',
 
 # E-mail user
@@ -952,7 +955,8 @@ Chagua jina lengine.',
 'export' => 'Hamisha kurasa',
 
 # Namespace 8 related
-'allmessages' => 'Ujumbe za mfumo',
+'allmessages'     => 'Ujumbe za mfumo',
+'allmessagesname' => 'Jina',
 
 # Thumbnails
 'thumbnail-more'  => 'Kuza',

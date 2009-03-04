@@ -6,7 +6,6 @@
  *
  * @author Jiddisch
  * @author Teak
- * @author Verdy p
  * @author Yidel
  * @author ווארצגאנג
  * @author לערי ריינהארט
@@ -1598,6 +1597,7 @@ $NEWPAGE
 'undeleterevisions'         => '{{PLURAL:$1|איין ווערסיע|$1 ווערסיעס}} אַרכיווירט',
 'undeletebtn'               => 'צוריקשטעלן',
 'undeletelink'              => 'צוריקשטעלן',
+'undeleteinvert'            => 'איבערקערן דעם אויסקלויב',
 'undeletecomment'           => 'הערה:',
 'undeletedarticle'          => 'צוריק געשטעלט "[[$1]]"',
 'cannotundelete'            => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',

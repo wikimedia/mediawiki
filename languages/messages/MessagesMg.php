@@ -604,7 +604,9 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'grouppage-bureaucrat'    => '{{ns:project}}:Borōkraty',
 
 # Rights
-'right-autoconfirmed' => 'Manova ppejy voaaro an-tapaka',
+'right-autoconfirmed'  => 'Manova pejy voaaro an-tapaka',
+'right-bot'            => 'Atao hita otra ny fizorana mande hoazy',
+'right-nominornewtalk' => "Tsy alefa ny fampandrenesana ''hafatra vaovao'' rehefa manao fanovana kely ao anatin'ny pejin-dresan'ny mpikambana.",
 
 # User rights log
 'rightslogtext' => "Tantaran'asa momba ny fahazoan-dàlan'ny mpikambana.",

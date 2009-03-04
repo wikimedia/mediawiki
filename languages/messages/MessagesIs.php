@@ -1500,7 +1500,7 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'log'                  => 'Aðgerðaskrár',
 'all-logs-page'        => 'Allar aðgerðir',
 'alllogstext'          => 'Safn allra aðgerðaskráa {{SITENAME}}.
-Þú getur takmarkað listann með því að velja tegund aðgerðaskráar, notandarnafn, eða síðu.',
+Þú getur takmarkað listann með því að velja tegund aðgerðaskráar, notandanafn, eða síðu.',
 'logempty'             => 'Engin slík aðgerð fannst.',
 'log-title-wildcard'   => 'Leita að titlum sem byrja á þessum texta',
 
@@ -1531,8 +1531,8 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'special-categories-sort-abc'   => 'raða eftir stafrófinu',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Eyddar breytingar notenda',
-'deletedcontributions-title' => 'Eyddar breytingar notenda',
+'deletedcontributions'       => 'Eyddar breytingar notanda',
+'deletedcontributions-title' => 'Eyddar breytingar notanda',
 
 # Special:LinkSearch
 'linksearch'    => 'Leita að vefföngum',

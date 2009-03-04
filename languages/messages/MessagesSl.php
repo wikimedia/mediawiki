@@ -2191,9 +2191,6 @@ Prosimo, potrdite, da jo resnično želite znova ustvariti.",
 'confirm_purge_button' => 'Osveži',
 'confirm-purge-top'    => 'Osvežim predpomnjenje strani?',
 
-# Separators for various lists, etc.
-'ellipsis' => '…',
-
 # Multipage image navigation
 'imgmultigo' => 'Pojdi!',
 

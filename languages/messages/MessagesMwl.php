@@ -74,13 +74,19 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'       => 'Sublinhar hiperlhigaçones:',
-'tog-highlightbroken' => 'Formatar lhigaçones cobradas <a href="" class="new">assi</a> (alternatiba: assi<a href="" class="internal">?</a>).',
-'tog-justify'         => 'Justeficar parágrafos',
-'tog-hideminor'       => 'Scunder eidiçones secundárias nas redadeiras alteraçones',
+'tog-underline'             => 'Sublinhar lhigaçones:',
+'tog-highlightbroken'       => 'Formatar lhigaçones cobradas <a href="" class="new">assi</a> (alternatiba: assi<a href="" class="internal">?</a>).',
+'tog-justify'               => 'Justeficar parágrafos',
+'tog-hideminor'             => 'Scunder eidiçones secundárias nas redadeiras alteraçones',
+'tog-hidepatrolled'         => 'Scunder eidiçones bejiadas nas redadeiras alteraçones',
+'tog-newpageshidepatrolled' => 'Scunder eidiçones bejiadas de la lista de páiginas nuobas',
+'tog-editwidth'             => 'Caixa de eidiçon cun todo de ancho',
+'tog-previewontop'          => "Amostrar cumo queda antes de la caixa d'eidiçon",
+'tog-previewonfirst'        => 'Amostrar cumo queda na purmeira eidiçon',
 
-'underline-always' => 'Siempre',
-'underline-never'  => 'Nunca',
+'underline-always'  => 'Siempre',
+'underline-never'   => 'Nunca',
+'underline-default' => 'Oumisson de l nabegador',
 
 # Dates
 'sunday'        => 'Demingo',
@@ -135,23 +141,37 @@ $messages = array(
 'dec'           => 'Dez',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Catadorie|Catadories}}',
-'category_header'        => 'Páiginas an la catadorie "$1"',
-'subcategories'          => 'Subcatadories',
-'category-media-header'  => 'Multimédia an la catadorie "$1"',
-'category-empty'         => "''Esta catadorie neste sfergante nun ten nanhua páigina ó cuntenido multimédia.''",
-'hidden-categories'      => '{{PLURAL:$1|Catadorie scundida|Catadories scundidas}}',
-'category-subcat-count'  => '{{PLURAL:$2|Esta catadorie ten solo la seguinte subcatadorie.|Esta catadorie ten las seguintes {{PLURAL:$1|sub-catadorie|$1 subcatadories}} (dentre un total de $2).}}',
-'category-article-count' => '{{PLURAL:$2|Esta catadorie solo ten la seguinte páigina.|Hai, nesta catadorie, {{PLURAL:$1|la seguinte páigina|las seguintes $1 páiginas}}, dentre $2.}}',
-'listingcontinuesabbrev' => 'cunt.',
+'pagecategories'           => '{{PLURAL:$1|Catadorie|Catadories}}',
+'category_header'          => 'Páiginas na catadorie "$1"',
+'subcategories'            => 'Subcatadories',
+'category-media-header'    => 'Multimédia na catadorie "$1"',
+'category-empty'           => "''Esta catadorie neste sfergante nun ten nanhua páigina ó cuntenido multimédia.''",
+'hidden-categories'        => '{{PLURAL:$1|Catadorie scundida|Catadories scundidas}}',
+'hidden-category-category' => 'Catadories scundidas', # Name of the category where hidden categories will be listed
+'category-subcat-count'    => '{{PLURAL:$2|Esta catadorie ten solo la seguinte subcatadorie.|Esta catadorie ten las seguintes {{PLURAL:$1|sub-catadorie|$1 subcatadories}} (dentre un total de $2).}}',
+'category-article-count'   => '{{PLURAL:$2|Esta catadorie solo ten la seguinte páigina.|Hai, nesta catadorie, {{PLURAL:$1|la seguinte páigina|las seguintes $1 páiginas}}, dentre $2.}}',
+'listingcontinuesabbrev'   => 'cunt.',
 
-'about'      => 'Subre',
-'newwindow'  => '(abre nua nuoba jinela)',
-'cancel'     => 'Çfazer',
-'qbfind'     => 'Percurar',
-'qbedit'     => 'Eiditar',
-'mytalk'     => 'Mie cumbersa',
-'navigation' => 'Nabegaçon',
+'about'          => 'Subre',
+'article'        => 'Páigina de cuntenido',
+'newwindow'      => '(abre nua nuoba jinela)',
+'cancel'         => 'Çfazer',
+'qbfind'         => 'Percurar',
+'qbbrowse'       => 'Nabegar',
+'qbedit'         => 'Eiditar',
+'qbpageoptions'  => 'Esta páigina',
+'qbpageinfo'     => 'Cuntesto',
+'qbmyoptions'    => 'Mies páiginas',
+'qbspecialpages' => 'Páiginas speciales',
+'moredotdotdot'  => 'Mais...',
+'mypage'         => 'Mie páigina',
+'mytalk'         => 'Mie cumbersa',
+'anontalk'       => 'Çcusson pa este IP',
+'navigation'     => 'Nabegaçon',
+'and'            => '&#32;i',
+
+# Metadata in edit box
+'metadata_help' => 'Metadados:',
 
 'errorpagetitle'   => 'Erro',
 'returnto'         => 'Retornar pa $1.',
@@ -159,28 +179,43 @@ $messages = array(
 'help'             => 'Ajuda',
 'search'           => 'Percura',
 'searchbutton'     => 'Percurar',
+'go'               => 'Bota',
 'searcharticle'    => 'Bota',
 'history'          => 'Stórico de la Páigina',
 'history_short'    => 'Stórico',
-'printableversion' => 'Bersion pa Ampremir',
+'info_short'       => 'Anformaçon',
+'printableversion' => 'Berson pa Ampremir',
 'permalink'        => 'Lhigaçon pa siempre',
+'print'            => 'Ampremir',
 'edit'             => 'Eiditar',
 'create'           => 'Criar',
 'editthispage'     => 'Eiditar esta páigina',
+'create-this-page' => 'Criar esta páigina',
 'delete'           => 'Botar fuora',
+'deletethispage'   => 'Apagar esta páigina',
 'protect'          => 'Porteger',
 'protect_change'   => 'demudar',
+'protectthispage'  => 'Porteger esta páigina',
+'unprotect'        => 'Çporteger',
 'newpage'          => 'Nuoba páigina',
 'talkpage'         => 'Çcutir esta páigina',
 'talkpagelinktext' => 'Cumbersar',
+'specialpage'      => 'Páigina special',
 'personaltools'    => 'Ferramientas pessonales',
+'postcomment'      => 'Nuobo cacho',
 'talk'             => 'Çcusson',
 'views'            => 'Besitas',
 'toolbox'          => 'Caixa de Ferramientas',
+'userpage'         => 'Ber páigina de outelizador',
+'imagepage'        => 'Ber páigina de fexeiro',
+'mediawikipage'    => 'Ber páigina de mensaiges',
+'viewhelppage'     => 'Ber páigina de ajuda',
+'viewtalkpage'     => 'Ber çcusson',
 'otherlanguages'   => 'Outras lhénguas',
 'redirectedfrom'   => '(Ancaminamiento de <b>$1</b>)',
 'redirectpagesub'  => 'Páigina de ancaminamiento',
 'lastmodifiedat'   => 'Esta páigina fui demudada pula redadeira beç a las $2 de $1.', # $1 date, $2 time
+'protectedpage'    => 'Páigina portegida',
 'jumpto'           => 'Saltar pa:',
 'jumptonavigation' => 'nabegaçon',
 'jumptosearch'     => 'percura',
@@ -196,9 +231,12 @@ $messages = array(
 'disclaimerpage'       => 'Project:Abiso giral',
 'edithelp'             => 'Ajuda de eidiçon',
 'edithelppage'         => 'Help:Eiditar',
+'faq'                  => 'FAQ',
+'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Cuntenidos',
 'mainpage'             => 'Páigina Percipal',
 'mainpage-description' => 'Páigina Percipal',
+'policy-url'           => 'Project:Políticas',
 'portal'               => 'Portal da quemunidade',
 'portal-url'           => 'Project:Portal de la quemunidade',
 'privacy'              => 'Política de pribacidade',
@@ -206,49 +244,75 @@ $messages = array(
 
 'badaccess' => 'Erro de premisson',
 
-'retrievedfrom'       => 'Sacado an "$1"',
-'youhavenewmessages'  => 'Tu tenes $1 ($2).',
-'newmessageslink'     => 'nuobas mensaiges',
-'newmessagesdifflink' => 'redadeira alteraçon',
-'editsection'         => 'eiditar',
-'editold'             => 'eiditar',
-'editlink'            => 'eiditar',
-'viewsourcelink'      => 'ber código',
-'editsectionhint'     => 'Eiditar cacho: $1',
-'toc'                 => 'Tabela de cuntenido',
-'showtoc'             => 'amostrar',
-'hidetoc'             => 'scunder',
-'site-rss-feed'       => 'Feed RSS $1',
-'site-atom-feed'      => 'Feed Atom $1',
-'page-rss-feed'       => 'Feed RSS de "$1"',
-'page-atom-feed'      => 'Feed Atom de "$1"',
-'red-link-title'      => '$1 (la páigina nun eisiste)',
+'ok'                      => 'OK',
+'retrievedfrom'           => 'Sacado an "$1"',
+'youhavenewmessages'      => 'Tu tenes $1 ($2).',
+'newmessageslink'         => 'nuobas mensaiges',
+'newmessagesdifflink'     => 'redadeira alteraçon',
+'youhavenewmessagesmulti' => 'Tenes nuobas mensaiges an $1',
+'editsection'             => 'eiditar',
+'editold'                 => 'eiditar',
+'viewsourceold'           => 'ber código',
+'editlink'                => 'eiditar',
+'viewsourcelink'          => 'ber código',
+'editsectionhint'         => 'Eiditar cacho: $1',
+'toc'                     => 'Tabela de cuntenido',
+'showtoc'                 => 'amostrar',
+'hidetoc'                 => 'scunder',
+'thisisdeleted'           => 'Ber ó restourar $1?',
+'viewdeleted'             => 'Ber $1?',
+'site-rss-feed'           => 'Feed RSS $1',
+'site-atom-feed'          => 'Feed Atom $1',
+'page-rss-feed'           => 'Feed RSS de "$1"',
+'page-atom-feed'          => 'Feed Atom de "$1"',
+'red-link-title'          => '$1 (la páigina nun eisiste)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Páigina',
-'nstab-user'     => 'Páigina de l outelizador',
-'nstab-special'  => 'Páigina special',
-'nstab-project'  => 'Páigina de porjeto',
-'nstab-image'    => 'Fexeiro',
-'nstab-template' => 'Modelo',
-'nstab-category' => 'Catadorie',
+'nstab-main'      => 'Páigina',
+'nstab-user'      => 'Páigina de l outelizador',
+'nstab-media'     => 'Páigina de média',
+'nstab-special'   => 'Páigina special',
+'nstab-project'   => 'Páigina de porjeto',
+'nstab-image'     => 'Fexeiro',
+'nstab-mediawiki' => 'Mensaige',
+'nstab-template'  => 'Modelo',
+'nstab-help'      => "Páigina d'ajuda",
+'nstab-category'  => 'Catadorie',
+
+# Main script and global functions
+'nosuchaction'      => 'Acion nun eisiste',
+'nosuchspecialpage' => 'Nun eisiste la páigina special que pediste',
 
 # General errors
-'missing-article'    => 'La base de dados nun achou l testo dua páigina que deberie tener achado, cul nome "$1" $2.
+'error'               => 'Erro',
+'databaseerror'       => 'Erro na base de dados',
+'nodb'                => 'Nun fui possible scolher la base de dados $1',
+'laggedslavemode'     => 'Abiso: La páigina poderá nun cuntener las redadeiras atualizaçones.',
+'readonly'            => 'Base de dados bloquiada',
+'missing-article'     => 'La base de dados nun achou l testo dua páigina que deberie tener achado, cul nome "$1" $2.
 
 Esto normalmente ye por bias de la besita a ua lhigaçon zatualizada ó de stória dua páigina que fui apagada.
 
 Se nun fur este l causo, tu puodes tener ancuntrado algun porblema ne l software.
 Por fabor, diç esto a un [[Special:ListUsers/sysop|admenistrador]], dezindo la lhigaçon.',
-'missingarticle-rev' => '(rebison#: $1)',
-'badtitle'           => 'Títalo ambálido',
-'badtitletext'       => 'La páigina que pediste ye ambálida, bazia, ó ua lhigaçon mal feita dun títalo antre-lhéngua ó antre-biqui.
+'missingarticle-rev'  => '(rebison#: $1)',
+'missingarticle-diff' => '(Dif.: $1, $2)',
+'internalerror'       => 'Erro anterno',
+'internalerror_info'  => 'Erro anterno: $1',
+'badtitle'            => 'Títalo ambálido',
+'badtitletext'        => 'La páigina que pediste ye ambálida, bazia, ó ua lhigaçon mal feita dun títalo antre-lhéngua ó antre-biqui.
 Puode tener un ó mais carateres que nun puoden ser outelizados an títalos.',
-'viewsource'         => 'Ber código',
-'viewsourcefor'      => 'pa $1',
-'viewsourcetext'     => 'Tu puodes ber i copiar l código desta páigina:',
+'viewsource'          => 'Ber código',
+'viewsourcefor'       => 'pa $1',
+'actionthrottled'     => 'Acion lhemitada',
+'viewsourcetext'      => 'Tu puodes ber i copiar l código desta páigina:',
+
+# Virus scanner
+'virus-unknownscanner' => 'antibírus çcoincido:',
 
 # Login and logout pages
+'logouttitle'             => 'Salir de l sistema',
+'loginpagetitle'          => 'Outenticaçon de outelizador',
 'yourname'                => 'Nome de Outelizador',
 'yourpassword'            => 'Palabra chabe',
 'remembermypassword'      => 'Lhembrar-se de mi neste cumputador',
@@ -263,7 +327,15 @@ Puode tener un ó mais carateres que nun puoden ser outelizados an títalos.',
 'createaccount'           => 'Criar nuoba cuonta',
 'gotaccount'              => 'Yá tenes ua cuonta? $1.',
 'gotaccountlink'          => 'Antrar',
+'createaccountmail'       => 'por morada eiletrónica',
+'username'                => 'Nome de outelizador:',
+'prefs-memberingroups'    => 'Nembro {{PLURAL:$1|de l grupo|de ls grupos}}:',
 'yourrealname'            => 'Nome berdadeiro:',
+'yourlanguage'            => 'Lhéngua:',
+'yourgender'              => 'Sexo:',
+'gender-male'             => 'Home',
+'gender-female'           => 'Mulhier',
+'email'                   => 'Morada Eiletrónica',
 'prefs-help-realname'     => 'L nome berdadeiro ye oupcional.
 Causo l çponiblizes, este será outelizado pa te dar crédito pul tou trabalho.',
 'loginsuccesstitle'       => 'Antreste cumo debe de ser',
@@ -292,6 +364,8 @@ Por fabor, bolta a fazer la outenticaçon al recebir-la.',
 'eauthentsent'            => 'Ua carta eiletrónica de cunfirmaçon fui ambiada pa la morada de correio eiletrónico nomeada.
 Antes de qualquier outra carta eiletrónica seia ambiada pa la cuonta, terás de seguir las anstruçones na carta eiletrónica,
 de modo a cunfirmar que la cuonta ye mesmo la tue.',
+'emailconfirmlink'        => 'Cunfirma la tue morada de correio eiletrónico',
+'loginlanguagelabel'      => 'Lhéngua: $1',
 
 # Password reset dialog
 'retypenew' => 'Pon outra beç la nuoba palabra chabe:',
@@ -348,9 +422,12 @@ Se stás eiqui por anganho, carrega ne l boton '''retornar'''de l tou nabegador 
 Tu puodes [[Special:Search/{{PAGENAME}}|percurar pul títalo desta páigina]] noutras páiginas,
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} percurar ls registros que téngan a ber],
 ó [{{fullurl:{{FULLPAGENAME}}|action=edit}} eiditar esta páigina]</span>.',
+'note'                             => "'''Abiso:'''",
 'previewnote'                      => "'''Esto ye solo ua amostra; las alteraçones inda nun fúrun grabadas!'''",
 'editing'                          => 'A eiditar $1',
 'editingsection'                   => 'A eiditar $1 (cacho)',
+'yourtext'                         => 'L tou testo',
+'storedversion'                    => 'berson guardada',
 'copyrightwarning'                 => "Por fabor, bei que todas las tues cuntribuiçones an {{SITENAME}} son cunsideradas cumo feitas ne ls termos de la lhicença $2 (bei $1 pa detailhes). Se nun quieres que l tou testo seia eiditado sin piedade i reçtribuído cunsante la gana, nun l ambies.<br />
 Tu stás, al mesmo tiempo, a garantir-mos qu'esto ye algo screbido por ti, ó algo copiado d'ua fuonte de testos an domínio público ó parecido de teor lhibre.
 '''NUN AMBIES TRABALHO PORTEGIDO POR DREITOS D'OUTOR SIEN L DEBIDO PERMISSO!'''",
@@ -389,6 +466,7 @@ Ambaixo stá l registro de las eileminaçones pa refréncia.',
 Legenda: (atu) = defrénças de la berson atual,
 (red) = defrénça de la redadeira berson, m = eidiçon pequerrixa',
 'history-fieldset-title' => 'Nabegar pul stórico',
+'deletedrev'             => '[apagada]',
 'histfirst'              => 'Mais antigas',
 'histlast'               => 'Redadeiras',
 
@@ -396,8 +474,13 @@ Legenda: (atu) = defrénças de la berson atual,
 'history-feed-item-nocomment' => '$1 a $2', # user at time
 
 # Revision deletion
-'rev-delundel'   => 'amostrar/scunder',
-'revdel-restore' => 'Demudar besiblidade',
+'rev-delundel'      => 'amostrar/scunder',
+'revdel-restore'    => 'Demudar besiblidade',
+'revdelete-content' => 'cuntenido',
+'revdelete-uname'   => 'nome de outelizador',
+
+# History merging
+'mergehistory-submit' => 'Misturar eidiçones',
 
 # Merge log
 'revertmerge' => 'Çfazer ounion',
@@ -409,6 +492,14 @@ Legenda: (atu) = defrénças de la berson atual,
 'compareselectedversions' => 'Acumparar las bersones marcadas',
 'editundo'                => 'çfazer',
 'diff-multi'              => '({{PLURAL:$1|ua eidiçon antermédia nun stá a ser amostrada|$1 eidiçones antermédias nun stan a ser amostradas}}.)',
+'diff-movedto'            => 'arrastrado pa $1',
+'diff-changedto'          => 'demudado pa $1',
+'diff-src'                => 'fuonte',
+'diff-width'              => 'ancho',
+'diff-height'             => 'altura',
+'diff-strong'             => "'''fuorte'''",
+'diff-big'                => "'''grande'''",
+'diff-del'                => "'''apagado'''",
 
 # Search results
 'searchresults'             => 'Resultados de la percura',
@@ -425,6 +516,9 @@ Tu puodes [[:\$1|criar esta páigina]].",
 'nextn'                     => 'próssimos $1',
 'viewprevnext'              => 'Ber ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:Conteúdos',
+'searchprofile-images'      => 'Fexeiros',
+'searchprofile-everything'  => 'Todo',
+'searchprofile-advanced'    => 'Abançado',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 palabra|$2 palabras}})',
 'search-redirect'           => '(ancaminamiento pa $1)',
 'search-section'            => '(cacho $1)',
@@ -434,6 +528,7 @@ Tu puodes [[:\$1|criar esta páigina]].",
 'search-interwiki-more'     => '(mais)',
 'search-mwsuggest-enabled'  => 'cun sugestones',
 'search-mwsuggest-disabled' => 'sien sugestones',
+'searchall'                 => 'todos',
 'showingresultstotal'       => "A amostrar {{PLURAL:$4|l resultado '''$1''' de '''$3'''|ls resultados '''$1 a $2''' de '''$3'''}}",
 'nonefound'                 => "'''Abiso''': solo alguns spácios nominales son percurados por oumisson. Spurmenta outelizar l perfixo ''all:'' na percura, pa percurar por todos ls cuntenidos desta Biqui (até páiginas de çcusson, modelos etc), ó mesmo, outelizando l spácio nominal que queiras cumo perfixo.",
 'powersearch'               => 'Percura Abançada',
@@ -443,19 +538,56 @@ Tu puodes [[:\$1|criar esta páigina]].",
 'powersearch-field'         => 'Percurar',
 
 # Preferences page
-'preferences'   => 'Perfréncias',
-'mypreferences' => 'Las mies perfréncias',
+'preferences'               => 'Perfréncias',
+'mypreferences'             => 'Las mies perfréncias',
+'skin'                      => 'Maçcarilha',
+'skin-preview'              => 'Amostrar',
+'math'                      => 'Matemática',
+'dateformat'                => 'Formato de la data',
+'datetime'                  => 'Data i hora',
+'prefs-personal'            => 'Calantriç',
+'prefs-rc'                  => 'Redadeiras alteraçones',
+'saveprefs'                 => 'Grabar',
+'textboxsize'               => 'Oupçones de eidiçon',
+'rows'                      => 'Lhinhas:',
+'timezoneregion-africa'     => 'África',
+'timezoneregion-america'    => 'América',
+'timezoneregion-antarctica' => 'Antártida',
+'timezoneregion-arctic'     => 'Ártico',
+'timezoneregion-asia'       => 'Ásia',
+'timezoneregion-atlantic'   => 'Ouceano Atlântico',
+'timezoneregion-australia'  => 'Oustrália',
+'timezoneregion-europe'     => 'Ouropa',
+'timezoneregion-indian'     => 'Ouceano Índico',
+'timezoneregion-pacific'    => 'Ouceano Pacífico',
+'files'                     => 'Fexeiros',
+
+# User rights
+'userrights-groupsmember' => 'Nembro de:',
 
 # Groups
+'group'       => 'Grupo:',
+'group-user'  => 'Outelizadores',
+'group-bot'   => 'Rubós',
 'group-sysop' => 'Admenistradores',
 
+'group-bot-member'   => 'Rubó',
+'group-sysop-member' => 'Admenistrador',
+
+'grouppage-bot'   => '{{ns:project}}:Rubós',
 'grouppage-sysop' => '{{ns:project}}:Admenistradores',
 
 # User rights log
-'rightslog' => 'Registro de dreitos de l outelizador',
+'rightslog'  => 'Registro de dreitos de l outelizador',
+'rightsnone' => '(nanhun)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'eiditar esta páigina',
+'action-read'       => 'lher esta páigina',
+'action-edit'       => 'eiditar esta páigina',
+'action-createpage' => 'criar páiginas',
+'action-move'       => 'arrastrar esta páigina',
+'action-movefile'   => 'arrastrar este fexeiro',
+'action-delete'     => 'apagar esta páigina',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|alteraçon|alteraçones}}',
@@ -479,6 +611,8 @@ Tu puodes [[:\$1|criar esta páigina]].",
 'minoreditletter'                => 'm',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'b',
+'rc_categories_any'              => 'Qualquiera',
+'newsectionsummary'              => '/* $1 */ nuobo cacho',
 'rc-enhanced-expand'             => 'Amostrar detailhes (ye perciso JavaScript)',
 'rc-enhanced-hide'               => 'Scunder detailhes',
 
@@ -492,13 +626,28 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 'recentchangeslinked-to'       => 'Amostrar antes alteraçones a páiginas que téngan a ber cula páigina dada',
 
 # Upload
-'upload'        => 'Cargar fexeiro',
-'uploadbtn'     => 'Cargar fexeiro',
-'uploadlogpage' => 'Registro de carregamiento',
-'uploadedimage' => 'cargou "[[$1]]"',
+'upload'          => 'Cargar fexeiro',
+'uploadbtn'       => 'Cargar fexeiro',
+'uploadlogpage'   => 'Registro de carregamiento',
+'filesource'      => 'Fuonte:',
+'savefile'        => 'Grabar fexeiro',
+'uploadedimage'   => 'cargou "[[$1]]"',
+'watchthisupload' => 'Begiar esta páigina',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error28' => 'Ultrapassado l tiempo lhemite pa l ambio de l fexeiro',
+
+'license'   => 'Lhicença:',
+'nolicense' => 'Nanhua scolhida',
 
 # Special:ListFiles
-'listfiles' => 'Fexeiros',
+'imgfile'               => 'fexeiro',
+'listfiles'             => 'Fexeiros',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nome',
+'listfiles_user'        => 'Outelizador',
+'listfiles_size'        => 'Tamanho',
+'listfiles_description' => 'Çcriçon',
 
 # File description page
 'filehist'                  => 'Stórico de l fexeiro',
@@ -521,6 +670,15 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 'noimage-linktext'          => 'carga un',
 'uploadnewversion-linktext' => 'Cargar ua nuoba berson deste fexeiro',
 
+# File reversion
+'filerevert-comment' => 'Comentairo:',
+
+# File deletion
+'filedelete'                  => 'Apagar $1',
+'filedelete-legend'           => 'Apagar fexeiro',
+'filedelete-submit'           => 'Apagar',
+'filedelete-reason-otherlist' => 'Outra rezon',
+
 # MIME search
 'mimesearch' => 'Percura MIME',
 
@@ -537,7 +695,10 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 'randomredirect' => 'Ancaminamiento al calhas',
 
 # Statistics
-'statistics' => 'Statísticas',
+'statistics'              => 'Statísticas',
+'statistics-pages'        => 'Páiginas',
+'statistics-views-total'  => 'Total de bejitas',
+'statistics-users-active' => 'Outelizadores atibos',
 
 'disambiguations' => 'Páigina de zambiguaçon',
 
@@ -679,7 +840,7 @@ Esta ye la cunfiguraçon atual pa la páigina '''$1''':",
 'protect-expiring'            => 'termina an $1 (UTC)',
 'protect-cascade'             => 'Portege qualquiera páigina que steia ancluída nesta (porteçon an cachon)',
 'protect-cantedit'            => 'Tu nun puodes demudar l nible de porteçon desta páigina, porque tu nun tener outorizaçon pa la eiditar.',
-'protect-expiry-options'      => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,indefinido:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 die:1 day,1 sumana:1 week,2 sumanas:2 weeks,1 més:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,anfenito:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permisson:',
 'restriction-level'           => 'Nible de restriçon:',
 
