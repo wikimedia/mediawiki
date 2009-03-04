@@ -1346,8 +1346,7 @@ Please confirm that you intend to do this, that you understand the consequences,
 # Suppression log
 'suppressionlog'     => 'Suppression log',
 'suppressionlogtext' => 'Below is a list of deletions and blocks involving content hidden from administrators.
-See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.
-Releasing this information can result in \'\'permanent\'\' loss of Suppression privileges. ',
+See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
 
 # History merging
 'mergehistory'                     => 'Merge page histories',
