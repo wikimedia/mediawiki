@@ -77,7 +77,7 @@ class LanguageConverter {
 			// these flags above are reserved for program
 			'A'=>'A',       // add rule for convert code (all text convert)
 			'T'=>'T',       // title convert
-			'R'=>'R',       // row content
+			'R'=>'R',       // raw content
 			'D'=>'D',       // convert description (subclass implement)
 			'-'=>'-',       // remove convert (not implement)
 			'H'=>'H',       // add rule for convert code (but no display in placed code )
