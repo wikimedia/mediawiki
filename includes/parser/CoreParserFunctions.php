@@ -48,7 +48,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesize',         array( __CLASS__, 'pagesize'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'protectionlevel',  array( __CLASS__, 'protectionlevel'  ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'namespace',        array( __CLASS__, 'namespace'        ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'namespace',        array( __CLASS__, 'mwnamespace'      ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'namespacee',       array( __CLASS__, 'namespacee'       ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'talkspace',        array( __CLASS__, 'talkspace'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'talkspacee',       array( __CLASS__, 'talkspacee'       ), SFH_NO_HASH );
@@ -271,11 +271,13 @@ class CoreParserFunctions {
 	} 
 
 	
-	/*
-	* Given a title, return the namespace name that would be given by the
-	* corresponding magic word 
-	*/
-	static function namespace( $parser, $title = null ) {
+	/**
+	 * Given a title, return the namespace name that would be given by the
+	 * corresponding magic word
+	 * Note: function name changed to "mwnamespace" rather than "namespace"
+	 * to not break PHP 5.3
+	 */
+	static function mwnamespace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( is_null($t) )
 			return '';
