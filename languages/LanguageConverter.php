@@ -998,23 +998,30 @@ class ConverterRule {
 		$bidtable = array();
 		$unidtable = array();
 		$markup = $this->mConverter->mMarkup;
+		$variants = $this->mConverter->mVariants;
 
-		$choice = explode($markup['varsep'], $rules);
-		foreach($choice as $c) {
+		$varsep_pattern = '/' . $markup['varsep'] . '\s*' . '(?=';
+		foreach( $variants as $variant )
+			$varsep_pattern .= $variant . '\s*' . $markup['codesep'] . '|';
+		$varsep_pattern .= '\s*$)/';
+
+		$choice = preg_split($varsep_pattern, $rules);
+		foreach( $choice as $c ) {
 			$v  = explode($markup['codesep'], $c, 2);
 			if( count($v) != 2 ) 
 				continue;// syntax error, skip
 			$to = trim($v[1]);
 			$v  = trim($v[0]);
 			$u  = explode($markup['unidsep'], $v);
-			if( count($u) == 1 ) {
+			if( count($u) == 1 && $to && in_array( $v, $variants ) ) {
 				$bidtable[$v] = $to;
 			} else if(count($u) == 2){
 				$from = trim($u[0]);
 				$v    = trim($u[1]);
-				if( array_key_exists( $v, $unidtable ) && !is_array( $unidtable[$v] ) )
+				if( array_key_exists( $v, $unidtable ) && !is_array( $unidtable[$v] )
+					&& $to && in_array( $v, $variants ) )
 					$unidtable[$v] = array( $from=>$to );
-				else
+				elseif ( $to && in_array( $v, $variants ) )
 					$unidtable[$v][$from] = $to;
 			}
 			// syntax error, pass
@@ -1158,10 +1165,6 @@ class ConverterRule {
 		}
 
 		if( !in_array( 'R', $flags ) || !in_array( 'N', $flags ) ) {
-			//FIXME: may cause trouble here...
-			//strip &nbsp; since it interferes with the parsing, plus,
-			//all spaces should be stripped in this tag anyway.
-			$this->mRules = str_replace('&nbsp;', '', $this->mRules);
 			// decode => HTML entities modified by Sanitizer::removeHTMLtags 
 			$this->mRules = str_replace('=&gt;','=>',$this->mRules);
 
