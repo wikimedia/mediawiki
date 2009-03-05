@@ -2127,6 +2127,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'wantedcategories-summary'        => '', # do not translate or duplicate this message to other languages
 'wantedpages'                     => 'Wanted pages',
 'wantedpages-summary'             => '', # do not translate or duplicate this message to other languages
+'wantedpages-badtitle'            => 'Invalid title in result set: $1',
 'wantedfiles'                     => 'Wanted files',
 'wantedfiles-summary'             => '', # do not translate or duplicate this message to other languages
 'wantedtemplates'                 => 'Wanted templates',
