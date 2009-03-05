@@ -1730,7 +1730,7 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'watchmethod-list'     => "Gwiriañ ar c'hemmoù diwezhañ evit ar pajennoù evezhiet",
 'watchlistcontains'    => '$1 pajenn zo en ho rollad evezhiañ',
 'iteminvalidname'      => "Ur gudenn zo gant ar pennad « $1 » : n'eo ket mat e anv...",
-'wlnote'               => 'A-is emañ an $1 kemm diwezhañ abaoe an <b>$2</b> eurvezh diwezhañ.',
+'wlnote'               => "A-is emañ an $1 kemm diwezhañ abaoe an '''$2''' eurvezh diwezhañ.",
 'wlshowlast'           => 'Diskouez an $1 eurvezh $2 devezh diwezhañ $3',
 'watchlist-options'    => 'Dibarzhioù ar roll evezhiañ',
 

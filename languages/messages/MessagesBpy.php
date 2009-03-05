@@ -6,7 +6,6 @@
  *
  * @author Usingha
  * @author Uttam Singha, Dec 2006
- * @author Verdy p
  */
 
 $fallback='bn';
@@ -317,7 +316,7 @@ $messages = array(
 'yourdomainname'             => 'তর ডোমেইনগ',
 'login'                      => 'হমানি',
 'nav-login-createaccount'    => 'লগইন / একাউন্ট খুল',
-'loginprompt'                => 'তি যেসাদেউ [[Special:UserLogin|হমাসি {{SITENAME}}]] পাতা এহানর কুকিসর য়্যাথাঙ দে।',
+'loginprompt'                => 'তি যেসাদেউ হমাসি {{SITENAME}} পাতা এহানর কুকিসর য়্যাথাঙ দে।',
 'userlogin'                  => 'হমানি / নৱা একাউন্ট খুলানি',
 'logout'                     => 'নিকুলানি',
 'userlogout'                 => 'নিকুলানি',

@@ -1603,7 +1603,7 @@ Kirisi: mağlumat_türi/tür_tarawı, mısalı <tt>image/jpeg</tt>.',
 'disambiguationspage'  => '{{ns:template}}:Aýrıq',
 'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi.
 Bunıñ ornına belgili taqırıpqa siltewi kerek.<br />
-Eger [[{{ns:mediawiki}}:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
+Eger [[MediaWiki:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
 
 'doubleredirects'     => 'Şınjırlı aýdağıştar',
 'doubleredirectstext' => 'Bul bette basqa aýdatw betterge silteýtin better tizimdelinedi. Ärbir jolaqta birinşi jäne ekinşi aýdağışqa siltemeler bar, sonımen birge ekinşi aýdağış nısanası bar, ädette bul birinşi aýdağış bağıttaýtın «naqtı» nısana bet atawı bolwı kerek.',
@@ -2162,7 +2162,7 @@ osınıñ saldarın baýımdawıñızdı ärekettiñ aldınan batıl bolıñız.
 Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
 'movearticle'             => 'Jıljıtpaq bet:',
 'movenologin'             => 'Jüýege kirmegensiz',
-'movenologintext'         => 'Betti jıljıtw üşin tirkelgen bolwıñız jäne [[{{#special:Userlogin}}|kirwiñiz]] jön.',
+'movenologintext'         => 'Betti jıljıtw üşin tirkelgen bolwıñız jäne [[{{#special:UserLogin}}|kirwiñiz]] jön.',
 'movenotallowed'          => '{{SITENAME}} jobasında betterdi jıljıtw rwqsatıñız joq.',
 'newtitle'                => 'Jaña taqırıp atına:',
 'move-watch'              => 'Bul betti baqılaw',

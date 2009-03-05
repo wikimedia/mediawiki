@@ -10,6 +10,8 @@
  */
 
 $messages = array(
+'underline-never' => 'Jammes',
+
 # Dates
 'sunday'        => "Dy'Sul",
 'monday'        => "Dy'Lun",
@@ -51,10 +53,10 @@ $messages = array(
 'december-gen'  => 'Kevardhu',
 'jan'           => 'Gen',
 'feb'           => 'Hwe',
-'mar'           => 'Mrt',
+'mar'           => 'Meu',
 'apr'           => 'Ebr',
 'may'           => 'Me',
-'jun'           => 'Mvn',
+'jun'           => 'Met',
 'jul'           => 'Gor',
 'aug'           => 'Est',
 'sep'           => 'Gwy',
@@ -63,9 +65,13 @@ $messages = array(
 'dec'           => 'Kev',
 
 # Categories related messages
-'pagecategories'  => '{{PLURAL:$1|Klasyans|Klasyansow}}',
-'category_header' => 'Folennow yn klasyans "$1"',
+'pagecategories'           => '{{PLURAL:$1|Klasyans|Klasyansow}}',
+'category_header'          => 'Folennow yn klasyans "$1"',
+'hidden-categories'        => '{{PLURAL:$1|Klasyans kudh|Klasyansow kudh}}',
+'hidden-category-category' => 'Klasyansow kudh', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'   => 'pes.',
 
+'about'         => 'A-dro dhe',
 'cancel'        => 'Hedhi',
 'qbfind'        => 'Kavos',
 'qbbrowse'      => 'Peuri',
@@ -74,7 +80,7 @@ $messages = array(
 'qbmyoptions'   => 'Ow folennow',
 'moredotdotdot' => 'Moy...',
 'mypage'        => 'Ow folen',
-'mytalk'        => 'Ow hows',
+'mytalk'        => 'Ow hewsel',
 'navigation'    => 'Lewyans',
 'and'           => '&#32;ha(g)',
 
@@ -85,15 +91,26 @@ $messages = array(
 'searchbutton'     => 'Hwilas',
 'go'               => 'Ke',
 'searcharticle'    => 'Ke',
-'history'          => 'Istori an folenn',
+'history'          => 'Istori an folen',
 'history_short'    => 'Istori',
-'printableversion' => 'Vershyon printyadow',
+'info_short'       => 'Kedhlow',
+'printableversion' => 'Versyon printyadow',
 'permalink'        => 'Kevren fast',
 'print'            => 'Pryntya',
 'edit'             => 'Chanjya',
+'create'           => 'Gwruthyl',
+'editthispage'     => 'Chanjya an folen ma',
+'create-this-page' => 'Gwruthyl an folen ma',
 'delete'           => 'Dilea',
 'protect'          => 'Difres',
+'protect_change'   => 'chanjya',
+'protectthispage'  => 'Difres an folen ma',
 'newpage'          => 'Folen nowyth',
+'talkpage'         => 'Dadhelva an folen ma',
+'talkpagelinktext' => 'Kewsel',
+'specialpage'      => 'Folen arbennik',
+'personaltools'    => 'Toulys personel',
+'postcomment'      => 'Tregh nowyth',
 'talk'             => 'Dadhelva',
 'toolbox'          => 'Boks toulys',
 'otherlanguages'   => 'Tavosow erell',
@@ -115,6 +132,7 @@ $messages = array(
 'editsection'        => 'chanjya',
 'editold'            => 'chanjya',
 'editlink'           => 'chanjya',
+'editsectionhint'    => 'Chanjya tregh: $1',
 'showtoc'            => 'diskwedhes',
 'hidetoc'            => 'kudha',
 
@@ -122,6 +140,7 @@ $messages = array(
 'nstab-main'      => 'Ethygel',
 'nstab-user'      => 'Devnydhyer',
 'nstab-special'   => 'Folen arbennik',
+'nstab-project'   => 'Folen towl',
 'nstab-image'     => 'Restren',
 'nstab-mediawiki' => 'Messach',
 'nstab-template'  => 'Skantlyn',
@@ -137,6 +156,7 @@ $messages = array(
 'yourdomainname'     => 'Dha diredh:',
 'login'              => 'Omgelmi',
 'userlogin'          => 'Omgelmi / kreatya akont',
+'logout'             => 'Omdenna',
 'userlogout'         => 'Omdenna',
 'gotaccountlink'     => 'Omgelmi',
 'createaccountmail'  => 'dre e-bost',
@@ -154,7 +174,9 @@ $messages = array(
 'media_tip' => 'Kevren restren',
 
 # Edit pages
-'savearticle'  => 'Gwitha folen',
+'watchthis'    => 'Golyas an folen ma',
+'savearticle'  => 'Gwitha',
+'showdiff'     => 'Diskwedhes chanjyow',
 'loginreqlink' => 'omgelmi',
 'newarticle'   => '(Nowyth)',
 
@@ -166,6 +188,7 @@ $messages = array(
 'revdelete-uname' => 'hanow-usyer',
 
 # Diffs
+'lineno'      => 'Linen $1:',
 'editundo'    => 'diswul',
 'diff-b'      => "'''tew'''",
 'diff-strong' => "'''krev'''",
@@ -183,8 +206,14 @@ $messages = array(
 'searchprofile-everything' => 'Puptra',
 'searchprofile-advanced'   => 'Avonsys',
 'search-result-size'       => '$1 ({{PLURAL:$2|1 ger|$2 geryow}})',
+'search-section'           => '(tregh $1)',
+'search-interwiki-caption' => 'Towlow hwor',
+'search-interwiki-default' => '$1 sywyansow:',
 'search-interwiki-more'    => '(moy)',
 'searchall'                => 'oll',
+'powersearch'              => 'Hwilas avonsys',
+'powersearch-legend'       => 'Hwilas avonsys',
+'powersearch-field'        => 'Hwilas rag',
 
 # Preferences page
 'preferences'              => 'Teythi ow akont',
@@ -203,11 +232,17 @@ $messages = array(
 # Rights
 'right-upload' => 'Ughkarga restrennow',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'chanjya an folen ma',
+
 # Recent changes
-'recentchanges' => 'Chanjyow a-dhiwedhes',
-'hide'          => 'Kudha',
-'show'          => 'Diskwedhes',
-'newpageletter' => 'N',
+'recentchanges'    => 'Chanjyow a-dhiwedhes',
+'rcshowhidemine'   => '$1 ow chanjyow',
+'hist'             => 'ist',
+'hide'             => 'Kudha',
+'show'             => 'Diskwedhes',
+'newpageletter'    => 'N',
+'rc-enhanced-hide' => 'Kudha manylyon',
 
 # Recent changes linked
 'recentchangeslinked' => 'Chanjyow dhe folennow kevahal',
@@ -220,21 +255,32 @@ $messages = array(
 # Special:ListFiles
 'imgfile' => 'restren',
 
+# File description page
+'filehist-datetime'   => 'Dydh/Eur',
+'filehist-dimensions' => 'Mynsow',
+
 # Random page
 'randompage' => 'Folenn war amkan',
 
 'brokenredirects-edit' => '(chanjya)',
 
 # Miscellaneous special pages
+'nmembers'          => '$1 {{PLURAL:$1|esel|eseli}}',
 'newpages'          => 'Folennow nowyth',
 'newpages-username' => 'Hanow-usyer:',
 'move'              => 'Movya',
+'movethispage'      => 'Movya an folen ma',
+
+# Book sources
+'booksources'    => 'Penn-fentynyow lyver',
+'booksources-go' => 'Ke',
 
 # Special:AllPages
-'allpages'     => 'Oll folennow',
-'prevpage'     => 'Folen gyns ($1)',
-'allarticles'  => 'Oll folennow',
-'allpagesprev' => 'Kyns',
+'allpages'       => 'Oll folennow',
+'prevpage'       => 'Folen gyns ($1)',
+'allarticles'    => 'Oll folennow',
+'allpagesprev'   => 'Kyns',
+'allpagessubmit' => 'Ke',
 
 # Special:Categories
 'categories' => 'Klasyansow',
@@ -246,31 +292,51 @@ $messages = array(
 'listusers-submit' => 'Diskwedhes',
 
 # Watchlist
-'watchlist'   => 'Ow rol goelyas',
-'mywatchlist' => 'Ow rol goelyas',
-'watch'       => 'Goelyas',
-'unwatch'     => 'Diswoelyas',
+'watchlist'     => 'Ow rol goelyas',
+'mywatchlist'   => 'Ow rol golyas',
+'watchlistfor'  => "(rag '''$1''')",
+'watch'         => 'Golyas',
+'watchthispage' => 'Golyas an folen ma',
+'unwatch'       => 'Diswolyas',
 
 # Protect
-'pagesize' => '(bayt)',
+'restriction-type' => 'Kummyas:',
+'pagesize'         => '(bayt)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Chanjya',
 'restriction-upload' => 'Ughkarga',
 
 # Contributions
-'mycontris' => 'Ow hevrohow',
+'mycontris'   => 'Ow hevrohow',
+'contribsub2' => 'Rag $1 ($2)',
+'uctop'       => '(gwartha)',
 
 'sp-contributions-submit' => 'Hwilas',
 
 # What links here
 'whatlinkshere'           => 'Folennow ow kevrenna bys omma',
 'whatlinkshere-page'      => 'Folen:',
+'whatlinkshere-prev'      => '{{PLURAL:$1|kyns|kyns $1}}',
+'whatlinkshere-next'      => '{{PLURAL:$1|nessa|nessa $1}}',
 'whatlinkshere-links'     => '← kevrennow',
 'whatlinkshere-hidelinks' => '$1 kevrennow',
+'whatlinkshere-filters'   => 'Sidhlow',
 
 # Block/unblock
 'ipblocklist-submit' => 'Hwilas',
+
+# Move page
+'movearticle' => 'Movya an folen:',
+'move-watch'  => 'Golyas an folen ma',
+'movepagebtn' => 'Movya an folen',
+'movereason'  => 'Acheson:',
+
+# Export
+'export' => 'Esperthi folennow',
+
+# Thumbnails
+'thumbnail-more' => 'Brashe',
 
 # Special:Import
 'import-interwiki-submit' => 'Ymperthi',
@@ -278,8 +344,15 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Teythi ow akont',
+'tooltip-ca-addsection'  => 'Dalleth tregh nowyth',
+'tooltip-ca-protect'     => 'Difres an folen ma',
+'tooltip-ca-move'        => 'Movya an folen ma',
 'tooltip-search'         => 'Hwilas {{SITENAME}}',
+'tooltip-n-mainpage'     => 'Godriga an pennfolen',
 'tooltip-t-upload'       => 'Ughkarga restrennow',
+
+# Media information
+'show-big-image' => 'Klerder leun',
 
 # Special:NewFiles
 'ilsubmit' => 'Hwilas',

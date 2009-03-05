@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(簡化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -10,7 +10,6 @@
  * @author O
  * @author Philip
  * @author Shinjiman
- * @author Verdy p
  * @author Wmr89502270
  * @author Wong128hk
  */

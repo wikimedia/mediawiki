@@ -2289,7 +2289,7 @@ Tämä tieto voidaan tuoda toiseen käyttämällä MediaWikiä [[Special:Import|
 Syötä sivujen otsikoita jokainen omalle rivilleen alla olevaan laatikkoon.
 Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.
 
-Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun [[{{MediaWiki:Mainpage}}]] saa vietyä linkistä [[{{#special:Export}}/{{MediaWiki:Mainpage}}]].',
+Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun [[{{MediaWiki:Mainpage}}]] saa vietyä linkistä [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Liitä mukaan ainoastaan uusin versio – ei koko historiaa.',
 'exportnohistory'   => '----
 Sivujen koko historian vienti on estetty suorituskykysyistä.',

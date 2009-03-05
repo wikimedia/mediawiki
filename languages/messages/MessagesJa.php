@@ -1706,6 +1706,7 @@ PICT # misc.
 'popularpages'            => '人気のページ',
 'wantedcategories'        => 'カテゴリページが存在しないカテゴリ',
 'wantedpages'             => 'ページが存在しないリンク',
+'wantedpages-badtitle'    => '結果に不正なページ名が含まれています: $1',
 'wantedfiles'             => 'ファイル情報ページが存在しないファイル',
 'wantedtemplates'         => 'テンプレートページが存在しないテンプレート',
 'mostlinked'              => '被リンクの多いページ',
@@ -2136,7 +2137,7 @@ $NEWPAGE
 'ipbenableautoblock'              => 'この利用者が最後に使用したIPアドレスを自動的にブロック（ブロック後に使用したIPアドレスも含む）',
 'ipbsubmit'                       => '投稿ブロックする',
 'ipbother'                        => '期間 (その他のとき)',
-'ipboptions'                      => '15分:15 minutes,30分:30 minutes,2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'その他',
 'ipbotherreason'                  => '理由（その他/追加）',
 'ipbhidename'                     => '利用者名/IPを{{int:blocklogpage}}、{{int:ipblocklist}}、{{int:listusers}}などに載せない',

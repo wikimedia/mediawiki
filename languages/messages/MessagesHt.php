@@ -488,7 +488,7 @@ Kont ou an kreye. Pa bliye pèsonalize l nan  [[Special:Preferences|preferans ou
 'externaldberror'            => 'Li sanble ke yon erè pwodui ak bazdone a pou idantifikasyon ki pa nan sistèm an, oubyen ou pa otorize pou mete a jou kont ou genyen nan lòt sistèm yo.',
 'login'                      => 'Idantifikasyon',
 'nav-login-createaccount'    => 'Kreye yon kont oubyen konekte ou',
-'loginprompt'                => 'Ou dwèt aksepte (aktive) koukiz (cookies) yopou ou kapab [[Special:UserLogin|konekte nan {{SITENAME}}]].',
+'loginprompt'                => 'Ou dwèt aksepte (aktive) koukiz (cookies) yopou ou kapab konekte nan {{SITENAME}}.',
 'userlogin'                  => 'Kreye yon kont oubyen konekte ou',
 'logout'                     => 'Dekonekte ou',
 'userlogout'                 => 'Dekoneksyon',

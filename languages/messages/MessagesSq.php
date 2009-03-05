@@ -10,7 +10,6 @@
  * @author Ergon
  * @author Puntori
  * @author Urhixidur
- * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -1814,7 +1813,7 @@ Mund të ndryshoni nivelin e mbrojtjes të kësaj faqeje por kjo nuk do të ndry
 'protect-otherreason'         => 'Arsye tjera/shtesë:',
 'protect-otherreason-op'      => 'arsye tjera/shtesë',
 'protect-edit-reasonlist'     => 'Redakto arsyet e mbrojtjes',
-'protect-expiry-options'      => '1 Orë:1 hour,2 Orë:2 hours,6 Orë:6 hours,1 Ditë:1 day,3 Ditë:3 days,1 Javë:1 week,2 Javë:2 weeks,1 Muaj:1 month,3 Muaj:3 months,1 Vjet:1 year,Pa kufi:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Orë:1 hour,1 Ditë:1 day,1 Javë:1 week,2 Javë:2 weeks,1 Muaj:1 month,3 Muaj:3 months,6 Muaj:6 months,1 Vjet:1 year,Pa kufi:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Lejet:',
 'restriction-level'           => 'Mbrojtjet:',
 'minimum-size'                => 'Madhësia minimale',
@@ -1935,7 +1934,7 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'ipbenableautoblock'           => 'Blloko edhe IP adresën që ka përdor ky përdorues deri tash, si dhe të gjitha subadresat nga të cilat mundohet ky përdorues të editoj.',
 'ipbsubmit'                    => 'Blloko këtë përdorues',
 'ipbother'                     => 'Kohë tjetër',
-'ipboptions'                   => '1 Orë:1 hour,2 Orë:2 hours,6 Orë:6 hours,1 Ditë:1 day,3 Ditë:3 days,1 Javë:1 week,2 Javë:2 weeks,1 Muaj:1 month,3 Muaj:3 months,1 Vjet:1 year,Pa kufi:infinite', # display1:time1,display2:time2,...
+'ipboptions'                   => '2 Orë:2 hours,1 Ditë:1 day,3 Ditë:3 days,1 Javë:1 week,2 Javë:2 weeks,1 Muaj:1 month,3 Muaj:3 months,6 Muaj:6 months,1 Vjet:1 year,Pa kufi:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'               => 'tjetër',
 'ipbotherreason'               => 'Arsye tjetër/shtesë',
 'ipbwatchuser'                 => 'Shiko faqen e prezantimit dhe diskutimit të këtij përdoruesi',

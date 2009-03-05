@@ -806,7 +806,7 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'searchrelated'                  => 'skedaf',
 'searchall'                      => 'kot',
 'showingresults'                 => "Vlevefa nedira va {{PLURAL:$1|'''1''' trasiks|'''$1''' trasiks}} dem #'''$2''' toza.",
-'showingresultsnum'              => 'Nedira va <b>$3</b> trasiks male #<b>$2</b>.',
+'showingresultsnum'              => "Nedira va '''$3''' trasiks male #'''$2'''.",
 'showingresultstotal'            => "Vleveon nedira va {{PLURAL:$4|trasiks '''$1''' va '''$3'''|trasiks '''$1 - $2''' va '''$3'''}}",
 'nonefound'                      => "'''Straga''': Anton yoltxo omavon zo aneyar.
 Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce abdueosta va galpeno yoltxo favel.",
@@ -1419,7 +1419,7 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 'watchmethod-list'     => 'ageltara va suzdan bueem icde noeltafa betara',
 'watchlistcontains'    => 'Rinafi suzdasiki va $1 bu ruldar',
 'iteminvalidname'      => 'Zvak icde « $1 » teliz : yolt tir mewadaf...',
-'wlnote'               => 'Vleveon tid tela $1 ironokafa betara mali <b>$2</b> ironokaf bartiv.',
+'wlnote'               => "Vleveon tid tela '''$1''' ironokafa betara mali '''$2''' ironokaf bartiv.",
 'wlshowlast'           => 'Nedira va ironokaf $1 bartiv isu $2 viel isu $3',
 'watchlist-options'    => 'Suzdasikiolkeem',
 

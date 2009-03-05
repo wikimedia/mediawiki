@@ -1645,6 +1645,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'popularpages'            => 'Plej vizitataj paĝoj',
 'wantedcategories'        => 'Dezirataj kategorioj',
 'wantedpages'             => 'Dezirataj paĝoj',
+'wantedpages-badtitle'    => 'Nevalida titolo en rezulta aro: $1',
 'wantedfiles'             => 'Dezirataj dosieroj',
 'wantedtemplates'         => 'Dezirataj ŝablonoj',
 'mostlinked'              => 'Plej ligitaj paĝoj',
@@ -1957,7 +1958,7 @@ Vi povas ŝanĝi ties protektnivelon, sed tio ne ŝanĝos la kaskadan protekton.
 ** Malutila redakto-milito
 ** Paĝo kun multo da trafiko',
 'protect-edit-reasonlist'     => 'Redakti kialojn de protektado',
-'protect-expiry-options'      => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 horo:1 hour,1 tago:1 day,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permeso:',
 'restriction-level'           => 'Nivelo de limigo:',
 'minimum-size'                => 'Minimuma pezo',
@@ -2997,7 +2998,7 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'specialpages-group-media'       => 'Gazetaj raportoj kaj alŝutoj',
 'specialpages-group-users'       => 'Uzantoj kaj rajtoj',
 'specialpages-group-highuse'     => 'Plej uzitaj paĝoj',
-'specialpages-group-pages'       => 'Paĝaj listoj',
+'specialpages-group-pages'       => 'Listoj de paĝoj',
 'specialpages-group-pagetools'   => 'Paĝaj iloj',
 'specialpages-group-wiki'        => 'Vikidatenoj kaj iloj',
 'specialpages-group-redirects'   => 'Alidirektantaj specialaj paĝoj',

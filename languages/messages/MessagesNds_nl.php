@@ -945,10 +945,10 @@ Sommigen mallen wonnen neet in-evoeg.',
 'parser-template-recursion-depth-warning' => 'Der is over de recursiediepte veur mallen is hinne gaon ($1)',
 
 # "Undo" feature
-'undo-success' => 'De bewarking kan ongedaon-emaak wonnen. Kiek de vergelieking hieronder nao um vas te stellen da-j disse haandeling uutvoeren willen, en slao vervolgens de pagina op um de bewarking ongedaon te maken.',
-'undo-failure' => 'De wieziging kon neet ongedaon emaak wonnen vanwegen aandere striejige wiezigingen.',
-'undo-norev'   => "De bewarking kon neet ongedaon-emaak wonnen, umdat 't neet besteet of vort-edaon is.",
-'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleeg]]) ongedaon-emaak.',
+'undo-success' => 'De bewarking kan weerummedreid wonnen. Kiek de vergelieking hieronder nao um der wisse van de ween dat alles goed is, en slao de de pagina op um de bewarking weerumme te dreien.',
+'undo-failure' => "De wieziging kon neet weerummedreid wonnen umdat 't ondertussen awweer ewiezig is.",
+'undo-norev'   => "De bewarking kon neet weerummedreid wonnen, umdat 't neet besteet of vort-edaon is.",
+'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleeg]]) weerummedreid.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Anmaken van een gebrukersprefiel is neet meugelijk',
@@ -1068,7 +1068,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 # Merge log
 'mergelog'           => 'Samenvoegingslogboek',
 'pagemerge-logentry' => 'voegen [[$1]] naor [[$2]] samen (versies tot en mit $3)',
-'revertmerge'        => 'Samenvoeging ongedaonmaken',
+'revertmerge'        => 'Samenvoeging weerummedreien',
 'mergelogpagetext'   => 'Hieronder zie-j een lieste van de leste samenvoegingen van een paginageschiedenisse naor een aandere.',
 
 # Diffs
@@ -1078,7 +1078,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'compareselectedversions' => 'Vergeliek de ekeuzen versies',
 'visualcomparison'        => 'Visuele vergelieking',
 'wikicodecomparison'      => 'Vergelieking wikitekse',
-'editundo'                => 'ongedaonmaken',
+'editundo'                => 'weerummedreien',
 'diff-multi'              => '({{PLURAL:$1|1 tussenliggende versie|$1 tussenliggende versies}} wonnen neet weer-egeven.)',
 'diff-movedto'            => 'herneumd naor $1',
 'diff-styleadded'         => 'stiel $1 derbie edaon',
@@ -1995,10 +1995,10 @@ Wees veurzichtig",
 'rollbacklink'     => 'Weerummedreien',
 'rollbackfailed'   => 'Wieziging herstellen is mislok',
 'cantrollback'     => 'De wiezigingen konnen neet hersteld wonnen; der is mar 1 auteur.',
-'alreadyrolled'    => 'Kan de leste wieziging van de pagina [[$1]] deur [[User:$2|$2]] ([[User talk:$2|Overleeg]]){{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); neet ongedaonmaken.
+'alreadyrolled'    => 'Kan de leste wieziging van de pagina [[$1]] deur [[User:$2|$2]] ([[User talk:$2|Overleeg]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); neet weerummedreien.
 Een aander hef disse pagina al bewark of hersteld naor een eerdere versie.
 
-De leste bewarking op disse pagina is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleeg]]){{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+De leste bewarking op disse pagina is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleeg]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "De bewarkingssamenvatting was: ''$1''.", # only shown if there is an edit comment
 'revertpage'       => 'Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Wiezigingen van $1; weerummedreid naor de leste versie van $2.',
@@ -2188,8 +2188,7 @@ $1",
 'ipb-change-block'                => 'De gebruker opniej blokkeren mit disse instellingen',
 'badipaddress'                    => 'ongeldig IP-adres of onbestaonde gebrukersnaam',
 'blockipsuccesssub'               => 'Succesvol eblokkeerd',
-'blockipsuccesstext'              => 'IP-adres "$1" is noen eblokkeerd.
-
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] is noen eblokkeerd.<br />
 Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokkeringen.',
 'ipb-edit-dropdown'               => 'Blokkeerrejens bewarken',
 'ipb-unblock-addr'                => 'Deblokkeer $1',
@@ -2483,7 +2482,7 @@ De tiejelijke map is neet anwezig.",
 'tooltip-recreate'                => "Disse pagina opniej anmaken, ondanks 't feit dat 't vort-edaon is.",
 'tooltip-upload'                  => 'Bestaandn toovoogn',
 'tooltip-rollback'                => 'Mit "weerummedreien" ku-j mit één klik de bewarking(en) van de leste gebruker dee disse pagina bewark hef weerummezetten.',
-'tooltip-undo'                    => 'Mit "ongedaonmaken" ku-j disse bewarking weerummedreien en \'t bewarkingsvienster geet los.
+'tooltip-undo'                    => 'A-j op "weerummedreien" klikken geet \'t bewarkingsvienster los en ku-j de veurige versie weerummezetten.
 Je kunnen in de bewarkingssamenvatting een rejen opgeven.',
 
 # Metadata

@@ -385,7 +385,7 @@ $messages = array(
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => "<big>'''MediaWiki er no installert.'''</big>",
-'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvaren.
+'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvara.
 
 ==Kome i gang==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste over konfigurasjonsinnstillingar]
@@ -548,7 +548,7 @@ Dette kan òg skuldast ein feil i programvara nytta av {{SITENAME}}.',
 # General errors
 'error'                => 'Feil',
 'databaseerror'        => 'Databasefeil',
-'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvaren. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå funksjonen «<tt>$2</tt>». MySQL returnerte feilen «<tt>$3: $4</tt>».',
+'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvara. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå funksjonen «<tt>$2</tt>». MySQL returnerte feilen «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Den sist prøvde førespurnaden var: «$1» frå funksjonen "$2".
 MySQL returnerte feilen «$3: $4».',
 'noconnect'            => 'Orsak! Wikien har tekniske problem og kunne ikkje kople til databasen.<br />
@@ -583,7 +583,7 @@ Meld gjerne problemet til ein [[Special:ListUsers/sysop|administrator]] og oppgj
 'badarticleerror'      => 'Handlinga kan ikkje utførast på denne sida.',
 'cannotdelete'         => 'Kunne ikkje slette fila. (Ho kan vera sletta av andre.)',
 'badtitle'             => 'Feil i tittelen',
-'badtitletext'         => 'Den ønska tittelen var ulovleg, tom eller feil lenka frå ei anna wiki.',
+'badtitletext'         => 'Den ønskte tittelen var ulovleg, tom eller feillenkja frå ein annan wiki. Kanskje inneheld han éin eller fleire teikn som ikkje kan verta nytta i sidetitlar.',
 'perfcached'           => 'Det følgjande er frå mellomlageret åt tenaren og er ikkje nødvendigvis oppdatert.',
 'perfcachedts'         => 'Desse data er mellomlagra, og vart sist oppdaterte $1.',
 'querypage-no-updates' => 'Oppdatering av denne sida er slått av, og data her vil ikkje verte fornya.',
@@ -594,8 +594,8 @@ Meld gjerne problemet til ein [[Special:ListUsers/sysop|administrator]] og oppgj
 'actionthrottledtext'  => 'For å hindre spamming kan du ikkje utføre denne handlinga for mange gonger på kort tid. Ver venleg og prøv igjen litt seinare.',
 'protectedpagetext'    => 'Denne sida er verna for å hindre endring.',
 'viewsourcetext'       => 'Du kan sjå og kopiere kjeldekoden til denne sida:',
-'protectedinterface'   => 'Denne sida inneheld tekst som er brukt av brukargrensesnittet for programvaren, og er difor låst for å hindre hærverk.',
-'editinginterface'     => "'''Åtvaring:''' Du endrar på ei side som inneheld tekst som er brukt av brukargrensesnittet for programvaren. Endringar på denne sida påverkar utsjånaden til sida for dei andre brukarane. Dersom du ynskjer å setje om, ver venleg og vurder å bruke [http://translatewiki.net/wiki/Main_Page?setlang=nn translatewiki.net], prosjektet for omsetjing av MediaWiki.",
+'protectedinterface'   => 'Denne sida inneheld tekst som er brukt av brukargrensesnittet for programvara, og er difor låst for å hindre hærverk.',
+'editinginterface'     => "'''Åtvaring:''' Du endrar på ei side som inneheld tekst som er brukt av brukargrensesnittet for programvara. Endringar på denne sida påverkar utsjånaden til sida for dei andre brukarane. Dersom du ynskjer å setje om, ver venleg og vurder å bruke [http://translatewiki.net/wiki/Main_Page?setlang=nn translatewiki.net], prosjektet for omsetjing av MediaWiki.",
 'sqlhidden'            => '(SQL-førespurnaden er gøymd)',
 'cascadeprotected'     => 'Denne sida er verna mot endring fordi ho er inkludert i {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på:
 $2',
@@ -2294,7 +2294,7 @@ Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flyttin
 # Export
 'export'            => 'Eksporter sider',
 'exporttext'        => 'Du kan eksportere teksten og endringshistorikken til ei bestemt side eller ei gruppe sider, pakka inn i litt XML.
-Dette kan så importerast til ein annan wiki som brukar MediaWiki-programvaren gjennom [[Special:Import|import-sida]].
+Dette kan så importerast til ein annan wiki som brukar MediaWiki-programvara gjennom [[Special:Import|import-sida]].
 
 For å eksportere sider, skriv inn titlar i tekstboksen under, ein tittel per linje, og velg om du vil ha berre noverande versjon, eller alle versjonar i historikken.
 

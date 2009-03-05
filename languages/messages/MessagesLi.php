@@ -699,9 +699,9 @@ Es te hie per óngelök terech bis gekómme, klik dan op de '''trök'''-knóp va
 'anontalkpagetext'                 => "----''Dit is de euverlèkpazjena veur 'ne anonieme gebroeker dae nog gein account haet aangemaak of dae 't neet gebroek. 
 Daoveur gebroeke v'r 't IP-adres óm de gebroeker te identificere. 
 Det adres kan waere gedeild door mierdere gebroekers. 
-Es te 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r ónrelevante commentare aan dich gerich zeen, kèns te 't bèste [[Special:UserLogin/signup|'n account crëere]] of [[Special:Userlogin|inlogge]] óm toekomstige verwarring mit anger anoniem gebroekers te veurkomme.''",
+Es te 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r ónrelevante commentare aan dich gerich zeen, kèns te 't bèste [[Special:UserLogin/signup|'n account crëere]] of [[Special:UserLogin|inlogge]] óm toekomstige verwarring mit anger anoniem gebroekers te veurkomme.''",
 'noarticletext'                    => 'Dees pagina bevat gein teks.
-De kèns [[Speciaal:Zeuke/{{PAGENAME}}|nao deze term zeuke]] in anger pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} dees pagina bewirke]</span>.',
+De kèns [[Special:Search/{{PAGENAME}}|nao deze term zeuke]] in anger pagina\'s, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} de logbeuk doorzeuke] of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} dees pagina bewirke]</span>.',
 'userpage-userdoesnotexist'        => 'Doe bewirks \'n gebroekerspazjena van \'ne gebroeker dae neet besjteit (gebroeker "$1"). Controlere ofs doe dees pazjena waal wils aanmake/bewirke.',
 'clearyourcache'                   => "'''Lèt op:''' Nao 't opsjlaon mós te diene browserbuffer wisse óm de verangeringe te zeen: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''Firefox / IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssjsyoucanpreview'           => "'''Tip:''' Gebroek de knóp 'Bekiek dees bewirking' om dien nuuj CSS/JS te teste veurdets te opsjleis.",
@@ -986,7 +986,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'searchresults'                    => 'Zeukresultate',
 'searchresults-title'              => 'Zeukresultate veur "$1"',
 'searchresulttext'                 => 'Veur mier informatie euver zeuke op {{SITENAME}}, zuug [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'Doe zeukdes veur \'\'\'[[:$1]]\'\'\' ([[Speciaal:Prefixindex/$1|pagina\'s die beginne mit "$1"]] {{int:pipe-separator}}[[Speciaal:Verwiezinge nao hie/$1|pagina\'s die verwieze nao "$1"]])',
+'searchsubtitle'                   => 'Doe zeukdes veur \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|pagina\'s die beginne mit "$1"]] {{int:pipe-separator}}[[Special:WhatLinksHere/$1|pagina\'s die verwieze nao "$1"]])',
 'searchsubtitleinvalid'            => 'Voor zoekopdracht "$1"',
 'noexactmatch'                     => "'''Dao besjteit gein pazjena mit de naam $1.''' De kèns 'm [[:$1|aanmake]].",
 'noexactmatch-nocreate'            => "'''Er besteit gein pagina genaamp \"\$1\".'''",
@@ -1586,6 +1586,7 @@ De pafina's zeen ouk neet as sjabloon opgenome.",
 'popularpages'            => 'Populaire artikels',
 'wantedcategories'        => 'Gewunsjde categorieë',
 'wantedpages'             => "Gewunsjde pazjena's",
+'wantedpages-badtitle'    => "Verkeerde titel in 't rizzeltaot gezatj: $1",
 'wantedfiles'             => 'Neet-bestaonde bestenj mit verwiezinge',
 'wantedtemplates'         => 'Neet-bestaonde sjablone mit verwiezinge',
 'mostlinked'              => "Meis gelinkde pazjena's",
@@ -1894,7 +1895,7 @@ Dit zeen de hujige instellinge veur de pazjena '''[[$1]]''':",
 ** Bewèrkingskrieg
 ** Preventieve beveiliging väölbezóchde paasj',
 'protect-edit-reasonlist'     => 'Reeje veur beveiliging bewèrke',
-'protect-expiry-options'      => '2 oer:2 hours,1 daag:1 day,3 daag:3 days,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 oer:1 hour,1 daag:1 day,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Rech:',
 'restriction-level'           => 'Bepèrkingsniveau:',
 'minimum-size'                => 'Min. gruutde',

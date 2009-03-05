@@ -293,7 +293,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'portal'               => 'Portal občestva',
 'portal-url'           => 'Project:Portal občestva',
 'privacy'              => 'Politika zasebnosti',
-'privacypage'          => 'wikimedia:Politika_zasebnosti',
+'privacypage'          => 'Project:Politika_zasebnosti',
 
 'badaccess' => 'Napaka pri dovoljenju',
 
@@ -812,7 +812,7 @@ Prosimo, potrdite, da ste s tem seznanjeni, da razumete posledice dejanja in da 
 'contextchars'              => 'Znakov na vrstico:',
 'stub-threshold'            => 'Prag označevanja <a href="" class="stub" onclick="return false">škrbin</a>:',
 'recentchangesdays'         => 'Število dni prikazanih v zadnjih spremembah:',
-'recentchangescount'        => 'Število naslovov v zadnjih spremembah:',
+'recentchangescount'        => 'Privzeto število prikazanih urejanj v zadnjih spremembah, zgodovini stran in v dnevniških zapisih:',
 'savedprefs'                => 'Spremembe ste uspešno shranili!',
 'timezonelegend'            => 'Časovni pas',
 'timezonetext'              => 'Vnesite časovno razliko med vašim krajevnim in strežniškim časom (UTC).',
@@ -1627,11 +1627,7 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'move-watch'              => 'Opazuj to stran',
 'movepagebtn'             => 'Prestavi stran',
 'pagemovedsub'            => 'Uspešno prestavljeno',
-'movepage-moved'          => "<span class=\"navadnapovezava\">Stran '''»\$1«''' je prestavljena na naslov '''»\$2«'''.</span>
-
-'''Prosimo, [[{{ns:Special}}:Whatlinkshere/\$1|popravite]]''' vse [[{{ns:special}}:DoubleRedirects|dvojne preusmeritve]], ki so pri tem morda nastale. Za ta namen lahko uporabite naslednjo vrstico:
-
-<center><span style=\"font-family:monospace\"><nowiki>#REDIRECT [[</nowiki>\$2]]</span></center>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>Stran '''»$1«''' je prestavljena na naslov '''»$2«'''.</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Izbrano ime je že zasedeno ali pa ni veljavno. 
 Prosimo izberite drugo ciljno ime.',
 'cantmove-titleprotected' => 'Strani ne morete premakniti na slednjo lokacijo, saj je nov naslov zaščiten pred ustvarjanjem',

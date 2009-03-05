@@ -13,6 +13,7 @@
  * @author Boivie
  * @author Brest
  * @author BrokenArrow
+ * @author Byrial
  * @author Codex Sinaiticus
  * @author Dalibor Bosits
  * @author Darth Kule
@@ -109,7 +110,7 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-fancysig'                => 'In user preferences under the signature box',
 'tog-externaleditor'          => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external editor by default.",
 'tog-externaldiff'            => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external diff program by default.",
-'tog-showjumplinks'           => 'Toggle option used in [[Special:Preferences]]. The "jump to" links are shown as "jump to: navigation, search" but they are hidden by default (you can enable them with this option).',
+'tog-showjumplinks'           => 'Toggle option used in [[Special:Preferences]]. The "jump to" part should be the same with {{msg-mw|jumpto}} (or you can use <nowiki>{{int:jumpto}}</nowiki>). Thess links are shown in some of the older skins as "jump to: navigation, search" but they are hidden by default (you can enable them with this option).',
 'tog-uselivepreview'          => 'Toggle option used in [[Special:Preferences]]. Live preview is an experimental feature (unavailable by default) to use edit preview without loading the page again.',
 'tog-forceeditsummary'        => 'Toggle option used in [[Special:Preferences]].',
 'tog-watchlisthideown'        => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist.",
@@ -230,6 +231,7 @@ This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki
 'qbspecialpages' => '{{Identical|Special pages}}',
 'moredotdotdot'  => '{{Identical|More...}}',
 'mytalk'         => 'In the personal urls page section - right upper corner.',
+'anontalk'       => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
 'navigation'     => '{{Identical|Navigation}}',
 'and'            => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it at the beginning without a gap between it and the "&". <nowiki>&#32;</nowiki> is a blank space, one character long. Please leave it as it is.
 
@@ -362,7 +364,9 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].', # $1 date, $2 time
 'versionrequiredtext' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions. See also {{msg|versionrequired}}.',
 
 'ok'                      => '{{Identical|OK}}',
-'pagetitle'               => '{{doc-important|You most probably do not need to translate this message.}}',
+'pagetitle'               => "{{doc-important|You most probably do not need to translate this message.}}
+
+Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedic additions. The message has to be neutral for all projects.",
 'retrievedfrom'           => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
 'youhavenewmessages'      => 'The orange message appearing when someone edited your user talk page.
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
@@ -430,10 +434,9 @@ HTML markup cannot be used.",
 {{Identical|Category}}',
 
 # Main script and global functions
-'nosuchspecialpage' => 'The title of the error you get when trying to open a special page which does not exist.
-The text of the warning is the message [[MediaWiki:Nospecialpagetext/{{SUBPAGENAME}}]]. Example: [[Special:Nosuchpage]]',
-'nospecialpagetext' => "The text of the error you get when trying to open a special page which does not exist.
-The title of the warning is the message [[MediaWiki:Nosuchspecialpage/{{SUBPAGENAME}}]]. \"''<nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki>''\" should remain untranslated. Example: [[Special:Nosuchpage]]",
+'nosuchspecialpage' => 'The title of the error you get when trying to open a special page which does not exist. The text of the warning is the message {{msg-mw|nospecialpagetext}}. Example: [[Special:Nosuchpage]]',
+'nospecialpagetext' => 'The text of the error you get when trying to open a special page which does not exist.
+The title of the warning is the message {{msg-mw|nosuchspecialpage}}. <code><nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki></code> should remain untranslated. Example: [[Special:Nosuchpage]]',
 
 # General errors
 'error'                => '{{Identical|Error}}',
@@ -461,7 +464,10 @@ The title of the warning is the message [[MediaWiki:Nosuchspecialpage/{{SUBPAGEN
 [http://translatewiki.net/w/i.php?title=Translating:Tasks&diff=372398&oldid=371789000 Click here] to see an example of such an error message.',
 'readonly_lag'         => 'Error message displayed when the database is locked.',
 'internalerror'        => '{{Identical|Internal error}}',
-'badtitle'             => '{{Identical|Bad title}}',
+'badtitle'             => 'The page name when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.
+
+{{Identical|Bad title}}',
+'badtitletext'         => 'The message shown when a user requested a page with invalid page name. The page name will be {{msg-mw|badtitle}}.',
 'querypage-no-updates' => 'Text on some special pages, e.g. [[Special:FewestRevisions]].',
 'viewsource'           => 'The text displayed in place of the "edit" tab when the user has no permission to edit the page.
 
@@ -487,7 +493,9 @@ The title of the warning is the message [[MediaWiki:Nosuchspecialpage/{{SUBPAGEN
 
 {{Identical|Password}}',
 'yourpasswordagain'          => 'In user preferences',
-'remembermypassword'         => '{{Identical|Remember my login on this computer}}',
+'remembermypassword'         => 'A check box in [[Special:UserLogin]]
+
+{{Identical|Remember my login on this computer}}',
 'externaldberror'            => 'This message is thrown when a valid attempt to change the wiki password for a user fails because of a database error or an error from an external system.',
 'login'                      => "Shown to anonymous users in the upper right corner of the page. It is shown when you can't create an account, otherwise the message {{msg|nav-login-createaccount}} is shown.
 
@@ -636,13 +644,14 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg|loginreqpagetext}} and {{msg|whitelistedittext}}.
 
 {{Identical|Log in}}',
+'accmailtitle'                     => 'Page title when temporary password was sent to a user via email.',
 'accmailtext'                      => '{{doc-important|Do not translate "<nowiki>[[User talk:$1|$1]]</nowiki>"}}',
 'newarticle'                       => '{{Identical|New}}',
 'newarticletext'                   => "Text displayed above the edit box in editor when trying to create a new page.<br />'''Very important:''' leave <tt><nowiki>{{MediaWiki:Helppage}}</nowiki></tt> exactly as it is!",
 'noarticletext'                    => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.',
 'userpage-userdoesnotexist'        => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki',
 'clearyourcache'                   => 'Text displayed at the bottom in user preferences',
-'usercssjsyoucanpreview'           => 'Text displayed on every css/js page',
+'usercssjsyoucanpreview'           => "Text displayed on every css/js page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
 'updated'                          => '{{Identical|Updated}}',
 'previewnote'                      => 'Note displayed when clicking on Show preview',
 'editing'                          => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
@@ -876,6 +885,7 @@ Description: The URL of the search help page.
 $1 is the relevance of this result in per cent.
 
 {{Identical|Relevance: $1%}}',
+'search-redirect'                 => '$1 is a link to the redirect to the page (so, $1 is a redirect page)',
 'search-interwiki-default'        => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
 'search-relatedarticle'           => '{{Identical|Related}}',
 'searchrelated'                   => '{{Identical|Related}}',
@@ -944,7 +954,7 @@ $1 is the relevance of this result in per cent.
 'savedprefs'                => 'This message appears after saving changes to your user preferences.',
 'timezonetext'              => "Additional explanation given in [[Special:Preferences]], tab 'date and time' with the preference in message ''timezoneoffset''",
 'timezoneoffset'            => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
-'allowemail'                => 'Used in [[Special:Preferences]], tab "User profile".',
+'allowemail'                => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions'       => "Shown at the top of the tab 'Search' in [[Special:Preferences]]",
 'prefs-namespaces'          => "{{Identical|Namespaces}}
 Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]",
@@ -1227,6 +1237,7 @@ $1 is the value in KB/MB/GB',
 {{Identical|Watch this page}}',
 'filewasdeleted'              => 'This warning is shown when trying to upload a file that does not exist, but has previously been deleted.
 Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}.',
+'filename-prefix-blacklist'   => "Do not translate the file name prefixes before the hash mark (#). Leave all the wiki markup, including the spaces, as is. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
 
 'upload-file-error' => '{{Identical|Internal error}}',
 
@@ -1235,19 +1246,20 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 
 # Special:ListFiles
 'listfiles-summary'     => 'This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.',
-'listfiles_search_for'  => 'Input label for the form displayed on [[Special:ImageList]].',
+'listfiles_search_for'  => 'Input label for the form displayed on [[Special:ListFiles]].',
 'imgfile'               => '{{Identical|File}}',
 'listfiles'             => 'Page title and grouping label for the form displayed on [[Special:ImageList]].
 {{Identical|File list}}',
-'listfiles_date'        => 'Column header for the result table displayed on [[Special:ImageList]].
+'listfiles_date'        => 'Column header for the result table displayed on [[Special:ListFiles]].
 {{Identical|Date}}',
-'listfiles_name'        => 'Column header for the result table displayed on [[Special:ImageList]].
+'listfiles_name'        => 'Column header for the result table displayed on [[Special:ListFiles]].
 {{Identical|Name}}',
-'listfiles_user'        => 'Column header for the result table displayed on [[Special:ImageList]].
+'listfiles_user'        => 'Column header for the result table displayed on [[Special:ListFiles]].
 {{Identical|User}}',
-'listfiles_size'        => 'Column header for the result table displayed on [[Special:ImageList]].
+'listfiles_size'        => 'Column header for the result table displayed on [[Special:ListFiles]].
 {{Identical|Size}}',
-'listfiles_description' => '{{Identical|Description}}',
+'listfiles_description' => 'Column header for the result table displayed on [[Special:ListFiles]].
+{{Identical|Description}}',
 'listfiles_count'       => 'One of the table column headers in [[Special:Listfiles]] denoting the amount of saved versions of that file.',
 
 # File description page
@@ -1304,7 +1316,11 @@ Example: [[:Image:Addon-icn.png]]',
 
 {{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'The variable $1 is {{msg|shareduploadwiki-linktext}}',
-'shareduploadwiki-desc'     => "This message appears after {{msg-mw|Sharedupload}}. \$1 is a link to the file description page on the shared repository with {{msg-mw|Shareduploadwiki-linktext}} as displayed anchor text. Example: \"''The description on its <u>file description</u> page there is shown below.''\"",
+'shareduploadwiki-desc'     => "This message appears after {{msg-mw|Sharedupload}}. \$1 is a link to the file description page on the shared repository with {{msg-mw|Shareduploadwiki-linktext}} as displayed anchor text. 
+
+Example:
+* \"''The description on its <u>file description page</u> there is shown below.''\"
+* See [[:File:Xrubik 4x4x4 with odd permutation of edges.png|live example]]",
 'shareduploadwiki-linktext' => 'This message is used as variable $1 in {{msg-mw|Shareduploadwiki}} and in {{msg-mw|Shareduploadwiki-desc}}.',
 'noimage'                   => 'In image description page when there is no file by that name.  The variable $1 comes from {{msg|noimage-linktext}}, which is only substituted in this message.',
 'noimage-linktext'          => 'This message is used as a variable in {{msg|noimage}}, and will not be used anywhere else.',
@@ -1456,14 +1472,18 @@ Example: [[:Image:Addon-icn.png]]',
 'popularpages'            => 'Name of special page displayed in [[Special:SpecialPages]]',
 'wantedcategories'        => 'Name of special page displayed in [[Special:SpecialPages]]',
 'wantedpages'             => 'Name of special page displayed in [[Special:SpecialPages]]',
+'wantedpages-badtitle'    => "Error message shown when [[Special:WantedPages]] is listing a page with a title that shouldn't exist.
+
+$1 is a page title",
 'wantedfiles'             => 'Name of special page displayed in [[Special:SpecialPages]] and title of [[Special:WantedFiles]].',
+'wantedtemplates'         => 'The page name of [[Special:WantedTemplates]].',
 'mostlinked'              => 'Name of special page displayed in [[Special:SpecialPages]]',
 'mostlinkedcategories'    => 'Name of special page displayed in [[Special:SpecialPages]]',
 'mostlinkedtemplates'     => 'Name of special page displayed in [[Special:SpecialPages]]',
 'mostcategories'          => 'Name of special page displayed in [[Special:SpecialPages]]',
 'mostimages'              => 'Name of special page displayed in [[Special:SpecialPages]]',
 'mostrevisions'           => 'Name of special page displayed in [[Special:SpecialPages]]',
-'prefixindex'             => 'Name of special page displayed in [[Special:SpecialPages]]',
+'prefixindex'             => 'The page title of [[Special:PrefixIndex]]. When the user limits the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.',
 'shortpages'              => 'Name of special page displayed in [[Special:SpecialPages]]',
 'longpages'               => 'Name of special page displayed in [[Special:SpecialPages]]',
 'deadendpages'            => 'Name of special page displayed in [[Special:SpecialPages]]',
@@ -1484,7 +1504,7 @@ Example: [[:Image:Addon-icn.png]]',
 * <code>$2</code> is a time',
 'newpages'                => 'Name of special page displayed in [[Special:SpecialPages]]',
 'newpages-username'       => '{{Identical|Username}}',
-'ancientpages'            => 'Name of special page displayed in [[Special:SpecialPages]]',
+'ancientpages'            => 'The page title of [[Special:Ancientpages]]. [[mw:Manual:Interface/Special pages title|mw manual]]',
 'move'                    => 'Name of Move tab. Should be in the imperative mood.
 
 {{Identical|Move}}',
@@ -1514,37 +1534,45 @@ Example: [[:Image:Addon-icn.png]]',
 * Description: A check box to enable prefix search option',
 
 # Special:AllPages
-'allpages'       => 'Name of special page displayed in [[Special:AllPages]]
+'allpages'          => 'First part of the navigation bar for the special page [[Special:AllPages]] and [[Special:PrefixIndex]]. The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
 
 {{Identical|All pages}}',
-'alphaindexline' => 'Used on [[Special:AllPages]] if the main namespace contains more than 960 pages. Indicates the page range displayed behind the link. "from page $1 to page $2". $1 is the source page name. $1 is the target page name.',
-'nextpage'       => 'Third part of the navigation bar for the special page [[Special:AllPages]]. $1 is a page title. The other parts are {{msg-mw|Allarticles}} and {{msg-mw|Prevpage}}.
+'alphaindexline'    => 'Used on [[Special:AllPages]] if the main namespace contains more than 960 pages. Indicates the page range displayed behind the link. "from page $1 to page $2". $1 is the source page name. $1 is the target page name.',
+'nextpage'          => 'Third part of the navigation bar for the special page [[Special:AllPages]] and [[Special:PrefixIndex]]. $1 is a page title. The other parts are {{msg-mw|Allpages}} and {{msg-mw|Prevpage}}.
 
 {{Identical|Next page}}',
-'prevpage'       => 'Second part of the navigation bar for the special page [[Special:AllPages]]. $1 is a page title. The other parts are {{msg-mw|Allarticles}} and {{msg-mw|Nextpage}}.
+'prevpage'          => 'Second part of the navigation bar for the special page [[Special:AllPages]] and [[Special:PrefixIndex]]. $1 is a page title. The other parts are {{msg-mw|Allpages}} and {{msg-mw|Nextpage}}.
 
 {{Identical|Previous page}}',
-'allpagesfrom'   => 'Option in [[Special:AllPages]]. See also {{msg|allpagesto}}.',
-'allpagesto'     => 'Option in [[Special:AllPages]]. See also {{msg|allpagesfrom}}.',
-'allarticles'    => 'First part of the navigation bar for the special page [[Special:AllPages]]. The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
+'allpagesfrom'      => 'Option in [[Special:AllPages]]. See also {{msg|allpagesto}}.',
+'allpagesto'        => 'Option in [[Special:AllPages]]. See also {{msg|allpagesfrom}}.',
+'allarticles'       => 'The page title of [[Special:Allpages]]. When the user limit the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.
+
 {{Identical|All pages}}',
-'allpagesprev'   => "Allegedly used in [[Special:AllPages]], although I haven't seen it.
+'allinnamespace'    => 'The page title of [[Special:Allpages]] and [[Special:PrefixIndex]], when the user limits the display to a certain namespace. When not limited, {{msg-mw|allarticles}} and {{msg-mw|prefixindex}} is used respectively.
+
+{{Identical|All pages}}',
+'allnotinnamespace' => 'Presumably intended to be used as a page title of [[Special:Allpages]] and probably also in [[Special:PrefixIndex]] when the user limit the display to other than a certain namespace.',
+'allpagesprev'      => "Allegedly used in [[Special:AllPages]], although I haven't seen it.
 
 {{Identical|Previous}}",
-'allpagesnext'   => "Allegedly used in [[Special:AllPages]], although I haven't seen it.
+'allpagesnext'      => "Allegedly used in [[Special:AllPages]], although I haven't seen it.
 
 {{Identical|Next}}",
-'allpagessubmit' => 'Text on submit button in [[Special:AllPages]], [[Special:RecentChanges]], [[Special:RecentChangesLinked]], [[Special:NewPages]], [[Special:Log]], [[Special:ListUsers]], [[Special:ProtectedPages]], [[Special:ProtectedTitles]], [[Special:WhatLinksHere]] and [[Special:Watchlist]].
+'allpagessubmit'    => 'Text on submit button in [[Special:AllPages]], [[Special:RecentChanges]], [[Special:RecentChangesLinked]], [[Special:NewPages]], [[Special:Log]], [[Special:ListUsers]], [[Special:ProtectedPages]], [[Special:ProtectedTitles]], [[Special:WhatLinksHere]] and [[Special:Watchlist]].
 
 {{Identical|Go}}',
+'allpagesprefix'    => 'Used for the label of the input box of [[Special:PrefixIndex]].',
 
 # Special:Categories
-'categories'                    => '{{Identical|Categories}}',
+'categories'                    => 'The page name of [[Special:Categories]].
+
+{{Identical|Categories}}',
 'categoriespagetext'            => "Text displayed in [[Special:Categories]]. Do not translate or change links. In order to translate ''Unused categories'' and ''wanted categories'' see {{msg|unusedcategories}} and {{msg|wantedcategories}}.",
 'special-categories-sort-count' => 'This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'The message is shown as a link on [[Special:Contributions]] to the DeletedContributions special page.
+'deletedcontributions'       => 'The message is shown as a link on user contributions page (like [[Special:Contributions/User]]) to the corresponding [[Special:DeletedContributions]] page.
 
 {{Identical|Deleted user contributions}}',
 'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.
@@ -1811,6 +1839,7 @@ $3 = time.
 'contributions'       => "Display name for the 'User contributions', shown in the sidebar menu of all user pages and user talk pages. Also the page name of the target page. The target page shows an overview of the most recent contributions by a user.",
 'contributions-title' => 'The page title in your browser bar, but not the page title. See also {{msg|contributions}}. Parameter $1 is the username.',
 'mycontris'           => 'In the personal urls page section - right upper corner.',
+'nocontribs'          => 'Optional parameter: $1 is the user name', # Optional parameter: $1 is the user name
 'uctop'               => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)',
 'month'               => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg|year}}.',
 'year'                => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a inputbox to select a specific year to view the edits made in that year, and the earlier years. See also {{msg|month}}.',
@@ -1890,6 +1919,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 'ipbwatchuser'                 => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
 'ipballowusertalk'             => 'Option in [[Special:BlockIP]] that allows the blocked user to edit own talk page.',
 'ipb-change-block'             => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg|ipb-needreblock}}.',
+'badipaddress'                 => 'An error message shown when one entered an invalid IP address in blocking page.',
 'ipb-edit-dropdown'            => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
 'ipusubmit'                    => 'Used as button text on Special:BlockList?action=unblock. To see the message:
 * Go to [[Special:BlockList]]
@@ -1914,14 +1944,18 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 
 See also {{msg-mw|Blocklogentry}}.',
 'infiniteblock'                => '{{Identical|Infinite}}',
-'anononlyblock'                => '{{Identical|Anon only}}',
+'anononlyblock'                => 'Part of the log entry of user block.
+
+{{Identical|Anon only}}',
 'noautoblockblock'             => '{{Identical|Autoblock disabled}}',
 'emailblock'                   => '{{Identical|E-mail blocked}}',
 'blocklist-nousertalk'         => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
 'blocklink'                    => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
 'change-blocklink'             => 'Used to name the link on Special:Log',
 'contribslink'                 => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
-'blocklogpage'                 => '{{Identical|Block log}}',
+'blocklogpage'                 => 'The page name of [[Special:Log/block]]. It also appears in the drop down menu of [[Special:Log]] pages.
+
+{{Identical|Block log}}',
 'blocklog-fulllog'             => 'Shown at Special:BlockIP at the end of the block log if there are more than 10 entries for this user, see [[Special:BlockIP/Raymond]] as example (visible for sysops only).',
 'blocklogentry'                => 'This is the text of an entry in the Block log (and RC), after hour (and date, only in the Block log) and sysop name: 
 * $1 is the blocked user or IP (with link to contributions and talk)
@@ -2023,10 +2057,12 @@ Parameters:
 'allmessages'               => 'The title of the special page [[Special:AllMessages]].',
 'allmessagesname'           => 'Used on [[Special:Allmessages]] meaning "the name of the message".
 {{Identical|Name}}',
-'allmessagesdefault'        => 'Used in [[Special:AllMessages]].',
-'allmessagescurrent'        => 'Used in [[Special:AllMessages]].',
-'allmessagestext'           => 'Used in [[Special:AllMessages]].',
+'allmessagesdefault'        => 'The header for the lower row of each column in the table of [[Special:AllMessages]].',
+'allmessagescurrent'        => 'The header for the upper row of each column in the table of [[Special:AllMessages]].',
+'allmessagestext'           => 'Summary displayed at the top of [[Special:AllMessages]].',
 'allmessagesnotsupportedDB' => 'This message is displayed on [[Special:AllMessages]] on wikis were the configuration variable $wgUseDatabaseMessages is disabled. It means that the MediaWiki namespace is not used.',
+'allmessagesfilter'         => 'Label for the input box of message name filter in [[Special:Allmessages]].',
+'allmessagesmodified'       => 'It is used as a label on the button in [[Special:Allmessages]], and it switches the display from showing all messages to only the ones different between the default and the local, and vice versa.',
 
 # Thumbnails
 'thumbnail-more' => '[[Image:Yes.png|thumb|This:]]
@@ -2129,7 +2165,12 @@ If the length of the translated message is over 60 characters (including spaces)
 * $3: user
 
 See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 user
-'siteusers'        => '* $1 is a list of user names (example: "\'\'Jim, Janet, Jane, Joe\'\'")
+'othercontribs'    => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
+* $1: the name of the authors or the revisions preceding the current revision.',
+'siteusers'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
+It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]].
+
+* $1 is a list of user names (example: "\'\'Jim, Janet, Jane, Joe\'\'")
 * $2 is the number of user names in $1',
 'creditspage'      => "This message is the ''contentSub'' (the grey subtitle) shown when viewing credits of a page (example: {{fullurl:Betawiki:News|action=credits}}). Note that the credits action is disabled by default (currently enabled on Betawiki).",
 'nocredits'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on Betawiki).',
@@ -2590,7 +2631,7 @@ $1 is the name of the requested file.',
 'specialpages-group-media'       => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',
 'specialpages-group-users'       => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',
 'specialpages-group-highuse'     => 'Section heading in the list of [[Special:SpecialPages|Special pages]].',
-'specialpages-group-pages'       => 'Title of the special pages group, containing pages like [[Special:AllPages]], [[Special:PrefixIndex]], [[Special:Categories]], [[Special:Disambiguations]], etc.',
+'specialpages-group-pages'       => 'Used on [[Special:SpecialPages]]. Title of the special pages group, containing pages like [[Special:AllPages]], [[Special:PrefixIndex]], [[Special:Categories]], [[Special:Disambiguations]], etc.',
 'specialpages-group-pagetools'   => 'Title of the special pages group containing special pages like [[Special:MovePage]], [[Special:Undelete]], [[Special:WhatLinksHere]], [[Special:Export]] etc.',
 'specialpages-group-wiki'        => 'Title of the special pages group, containing special pages like [[Special:Version]], [[Special:Statistics]], [[Special:LockDB]], etc.',
 'specialpages-group-redirects'   => 'Title of the special pages group, containing special pages that redirect to another location, like [[Special:Randompage]], [[Special:Mypage]], [[Special:Mytalk]], etc.',
@@ -2599,7 +2640,7 @@ $1 is the name of the requested file.',
 'intentionallyblankpage' => 'Text displayed in [[Special:BlankPage]].',
 
 # External image whitelist
-'external_image_whitelist' => "As usual please leave all the wiki markup, including the spaces, as they are. You can translate the text, including 'Leave this line exactly as it is'.",
+'external_image_whitelist' => "As usual please leave all the wiki markup, including the spaces, as they are. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
 
 # Special:Tags
 'tags'                    => 'Shown on [[Special:Specialpages]] for page listing the tags that the software may mark an edit with, and their meaning.',

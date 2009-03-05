@@ -6,7 +6,6 @@
  *
  * @author Hakka
  * @author Urhixidur
- * @author Verdy p
  */
 
 $messages = array(

@@ -8,7 +8,6 @@
  * @author Klenje
  * @author MF-Warburg
  * @author Urhixidur
- * @author Verdy p
  * @author לערי ריינהארט
  */
 

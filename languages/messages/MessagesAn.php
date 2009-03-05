@@ -7,7 +7,6 @@
  * @author Juanpabl
  * @author Remember the dot
  * @author Urhixidur
- * @author Verdy p
  * @author Willtron
  * @author לערי ריינהארט
  */

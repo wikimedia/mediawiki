@@ -1947,7 +1947,7 @@ $1',
 'ipbenableautoblock'              => "Blocio'n awtomatig y cyfeiriad IP diwethaf y defnyddiodd y defnyddiwr hwn, ac unrhyw gyfeiriad IP arall y bydd yn ceisio defnyddio i olygu ohono.",
 'ipbsubmit'                       => 'Blociwch y defnyddiwr hwn',
 'ipbother'                        => 'Cyfnod arall:',
-'ipboptions'                      => 'o 2 awr:2 hours,o ddiwrnod:1 day,o 3 niwrnod:3 days,o wythnos:1 week,o bythefnos:2 weeks,o fis:1 month,o 3 mis:3 months,o 6 mis:6 months,o flwyddyn:1 year,o 5 mlynedd:5 years,amhenodol:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => 'o 2 awr:2 hours,o ddiwrnod:1 day,o 3 niwrnod:3 days,o wythnos:1 week,o bythefnos:2 weeks,o fis:1 month,o 3 mis:3 months,o 6 mis:6 months,o flwyddyn:1 year,amhenodol:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'arall',
 'ipbotherreason'                  => 'Rheswm arall:',
 'ipbhidename'                     => "Cuddio'r enw defnyddiwr o'r lòg blocio, rhestr y blociau cyfredol a'r rhestr defnyddwyr",

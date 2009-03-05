@@ -1639,10 +1639,10 @@ Dej pozůr, bo jei wyćepańe może spowodować zakłůcyńo w pracy {{GRAMMAR:D
 'rollbacklink'     => 'cofej',
 'rollbackfailed'   => 'Ńy idźe wycofać sprowjyńo',
 'cantrollback'     => 'Ńy idże cofnůńć pomjyńeńo, sam je ino jedna wersyja tyi zajty.',
-'alreadyrolled'    => 'Ńy idźe lů zajty [[:$1|$1]] cofnůńć uostatńygo pomjyńeńa, kere wykonoł [[User:$2|$2]] ([[User talk:$2|godka]]){{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).
+'alreadyrolled'    => 'Ńy idźe lů zajty [[:$1|$1]] cofnůńć uostatńygo pomjyńeńa, kere wykonoł [[User:$2|$2]] ([[User talk:$2|godka]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).
 Kto inkszy zdůnżůł już to zrobić abo wprowadźił własne poprowki do treśći zajty.
 
-Autorym ostatńygo pomjyńyńo je terozki [[User:$3|$3]] ([[User talk:$3|godka]]){{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+Autorym ostatńygo pomjyńyńo je terozki [[User:$3|$3]] ([[User talk:$3|godka]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Sprowjyńe uopisano: „''$1''”.", # only shown if there is an edit comment
 'revertpage'       => 'Wycofano sprowjyńe użytkowńika [[Special:Contributions/$2|$2]] ([[User talk:$2|godka]]).
 Autor prziwrůcůnej wersyji to [[User:$1|$1]].', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
@@ -1834,7 +1834,7 @@ Podej powůd (np. umješčajůnc mjana zajtůw, na kerych dopuščůno śe wanda
 'ipbenableautoblock'              => 'Zawřij uostatńi adres IP tygo užytkowńika i autůmatyčńy wšyjstke kolejne, s kerych bydźe průbowou sprowjać zajty',
 'ipbsubmit'                       => 'Zawřij uod sprowjyń tygo užytkowńika',
 'ipbother'                        => 'Ikšy čas',
-'ipboptions'                      => '2 godźiny:2 hours,1 dźyń:1 day,3 dńi:3 days,1 tydźyń:1 week,2 tygodńy:2 weeks,1 mjeśůnc:1 month,3 mjeśůnce:3 months,6 mjeśency:6 months,1 rok:1 year,ńyskůńčůny:infińite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 godźiny:2 hours,1 dźyń:1 day,3 dńi:3 days,1 tydźyń:1 week,2 tygodńy:2 weeks,1 mjeśůnc:1 month,3 mjeśůnce:3 months,6 mjeśency:6 months,1 rok:1 year,ńyskůńčůny:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'inkšy',
 'ipbotherreason'                  => 'Inkšy powůd:',
 'ipbhidename'                     => 'Schrůń mjano užytkowńika/adres IP w rejeře zawarć, na liśće aktywnych zawarć i liśće užytkowńikůw',
@@ -2157,7 +2157,7 @@ Dozwalo na naszkryflańy powodu we uopiśe půmjyńań.',
 'lastmodifiedatby' => 'Uostatńy sprowjyńy tej zajty: $2, $1 (autor půmjyńań: $3)', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Inkše autory: $1.',
 'others'           => 'inkśi',
-'siteusers'        => '{{SITENAME}} {{PLURAL:użytkowńik|użytkowńiki}} $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|użytkowńik|użytkowńiki}} $1',
 'creditspage'      => 'Autořy',
 'nocredits'        => 'Brak informacyji uo autorach tyi zajty.',
 

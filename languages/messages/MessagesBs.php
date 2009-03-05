@@ -10,7 +10,6 @@
  * @author Kal-El
  * @author Seha
  * @author Smooth O
- * @author Verdy p
  * @author לערי ריינהארט
  */
 
@@ -2099,7 +2098,7 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 ** Ne produktivni rat izmjena
 ** Stranica velikog prometa',
 'protect-edit-reasonlist'     => 'Uredi razloge zaštićavanja',
-'protect-expiry-options'      => '15 minuta:15 min,1 sat:1 hour,2 sata:2 hours,6 sati:6 hours,12 sati:12 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 sat:1 hour,1 dan:1 day,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Dopuštenje:',
 'restriction-level'           => 'Stepen ograničenja:',
 'minimum-size'                => 'Najmanja veličina',
@@ -3247,7 +3246,7 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'specialpages-group-media'       => 'Mediji i postavljanje datoteka',
 'specialpages-group-users'       => 'Korisnici i korisnička prava',
 'specialpages-group-highuse'     => 'Najčešće korištene stranice',
-'specialpages-group-pages'       => 'Spisak stranica',
+'specialpages-group-pages'       => 'Spiskovi stranica',
 'specialpages-group-pagetools'   => 'Alati stranice',
 'specialpages-group-wiki'        => 'Wiki podaci i alati',
 'specialpages-group-redirects'   => 'Preusmjeravanje posebnih stranica',
