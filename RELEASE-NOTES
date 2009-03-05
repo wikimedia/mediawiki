@@ -239,6 +239,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17761) "show/hide" link in page history in now works for the first
   displayed revision if it's not the current one
 * (bug 17722) Fix regression where users are unable to change temporary passwords
+* (bug 17799) Special:Random no longer throws a database error when a non-
+  namespace is given, silently falls back to NS_MAIN
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

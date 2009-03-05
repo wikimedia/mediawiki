@@ -23,7 +23,7 @@ class RandomPage extends SpecialPage {
 	}
 
 	public function setNamespace ( $ns ) {
-		if( $ns < NS_MAIN ) $ns = NS_MAIN;
+		if( !$ns || $ns < NS_MAIN ) $ns = NS_MAIN;
 		$this->namespaces = array( $ns );
 	}
 
