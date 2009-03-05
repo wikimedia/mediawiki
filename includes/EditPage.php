@@ -1452,7 +1452,7 @@ class EditPage {
 		if ( $this->wasDeletedSinceLastEdit() ) {
 			if ( 'save' != $this->formtype ) {
 				$wgOut->wrapWikiMsg(
-					'<div class="error mw-deleted-while-editing">\n$1</div>',
+					"<div class='error mw-deleted-while-editing'>\n$1</div>",
 					'deletedwhileediting' );
 			} else {
 				// Hide the toolbar and edit area, user can click preview to get it back
