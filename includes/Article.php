@@ -729,16 +729,18 @@ class Article {
 		# Get variables from query string
 		$oldid = $this->getOldID();
 
-		# Try file cache
+		# Try client and file cache
 		if( $oldid === 0 && $this->checkTouched() ) {
 			global $wgUseETag;
 			if( $wgUseETag ) {
 				$parserCache = ParserCache::singleton();
 				$wgOut->setETag( $parserCache->getETag($this,$wgUser) );
 			}
+			# Is is client cached?
 			if( $wgOut->checkLastModified( $this->getTouched() ) ) {
 				wfProfileOut( __METHOD__ );
 				return;
+			# Try file cache
 			} else if( $this->tryFileCache() ) {
 				# tell wgOut that output is taken care of
 				$wgOut->disable();
@@ -932,13 +934,23 @@ class Article {
 							// and we are allowed to see...
 						}
 					}
+					// Is this the current revision and otherwise cacheable? Try the parser cache...
+					if( $oldid === $this->getLatest() && $this->useParserCache( false )
+						&& $wgOut->tryParserCache( $this, $wgUser ) )
+					{
+						$outputDone = true;
+					}
 				}
 			}
 
+			// Ensure that UI elements requiring revision ID have
+			// the correct version information.
 			$wgOut->setRevisionId( $this->getRevIdFetched() );
 
-			 // Pages containing custom CSS or JavaScript get special treatment
-			if( $this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) {
+			if( $outputDone ) {
+				// do nothing...
+			// Pages containing custom CSS or JavaScript get special treatment
+			} else if( $this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) {
 				$wgOut->addHTML( wfMsgExt( 'clearyourcache', 'parse' ) );
 				// Give hooks a chance to customise the output
 				if( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->mTitle, $wgOut ) ) ) {
@@ -3145,7 +3157,7 @@ class Article {
 		if( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
-		return $this->mLatest;
+		return (int)$this->mLatest;
 	}
 
 	/**
