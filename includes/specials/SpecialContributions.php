@@ -384,6 +384,8 @@ class ContribsPager extends ReverseChronologicalPager {
 		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();
 		
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
+		// Paranoia: avoid brute force searches (bug 17792)
+		$conds[] = 'rev_deleted & ' . Revision::DELETED_USER . ' = 0';
 		$join_cond['page'] = array( 'INNER JOIN', 'page_id=rev_page' );
 		
 		$queryInfo = array(
@@ -398,7 +400,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			'join_conds' => $join_cond
 		);
 		
-		ChangeTags::modifyDisplayQuery( $queryInfo['tables'], $queryInfo['fields'], $queryInfo['conds'], $queryInfo['join_conds'], $this->tagFilter );
+		ChangeTags::modifyDisplayQuery( $queryInfo['tables'], $queryInfo['fields'], $queryInfo['conds'],
+			$queryInfo['join_conds'], $this->tagFilter );
 		
 		wfRunHooks( 'ContribsPager::getQueryInfo', array( &$this, &$queryInfo ) );
 		return $queryInfo;
