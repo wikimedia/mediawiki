@@ -976,6 +976,8 @@ class ConverterRule {
 				$flags=array_diff($flags,array('S'));
 			$flags_temp = array();
 			foreach ($variants as $variant) {
+				// try to find flags like "zh-hans", "zh-hant"
+				// allow syntaxes like "-{zh-hans;zh-hant|XXXX}-"
 				if ( in_array($variant, $flags) )
 					$flags_temp[] = $variant;
 			}
@@ -1000,6 +1002,16 @@ class ConverterRule {
 		$markup = $this->mConverter->mMarkup;
 		$variants = $this->mConverter->mVariants;
 
+		// varsep_pattern for preg_split:
+		// text should be splited by ";" only if a valid variant
+		// name exist after the markup, for example:
+		//  -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:<span style="font-size:120%;">yyy</span>;}-
+		// we should split it as:
+		//  array(
+		//        [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
+		//        [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
+		//        [2] => ''
+		//       )
 		$varsep_pattern = '/' . $markup['varsep'] . '\s*' . '(?=';
 		foreach( $variants as $variant )
 			$varsep_pattern .= $variant . '\s*' . $markup['codesep'] . '|';
@@ -1013,6 +1025,7 @@ class ConverterRule {
 			$to = trim($v[1]);
 			$v  = trim($v[0]);
 			$u  = explode($markup['unidsep'], $v);
+			// if $to is empty, strtr() could return a wrong result
 			if( count($u) == 1 && $to && in_array( $v, $variants ) ) {
 				$bidtable[$v] = $to;
 			} else if(count($u) == 2){
@@ -1148,14 +1161,19 @@ class ConverterRule {
 		$this->parseFlags();
 		$flags = $this->mFlags;
 
-		//convert to specified variant
+		// convert to specified variant
+		// syntax: -{zh-hans;zh-hant[;...]|<text to convert>}-
 		if( count( array_diff( $flags, $variants ) ) == 0 and count( $flags ) != 0 ) {
-			if ( in_array( $variant, $flags ) )
+			if ( in_array( $variant, $flags ) ) // check if current variant in flags
+				// then convert <text to convert> to current language
 				$this->mRules = $this->mConverter->autoConvert( $this->mRules, $variant );
-			else {
+			else { // if current variant no in flags,
+				   // then we check its fallback variants.
 				$variantFallbacks = $this->mConverter->getVariantFallbacks($variant);
 				foreach ( $variantFallbacks as $variantFallback ) {
+					// if current variant's fallback exist in flags
 					if ( in_array( $variantFallback, $flags ) ) {
+						// then convert <text to convert> to fallback language
 						$this->mRules = $this->mConverter->autoConvert( $this->mRules, $variantFallback );
 						break;
 					}
