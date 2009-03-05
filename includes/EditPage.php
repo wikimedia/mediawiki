@@ -403,6 +403,11 @@ class EditPage {
 				}
 			}
 		}
+		
+		// If they used redlink=1 and the page exists, redirect to the main article
+		if ( $wgRequest->getBool( 'redlink' ) && $this->mTitle->exists() ) {
+			$wgOut->redirect( $this->mTitle->getFullURL() );
+		}
 
 		wfProfileIn( __METHOD__."-business-end" );
 
