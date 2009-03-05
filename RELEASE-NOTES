@@ -280,6 +280,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13209) Added rvdiffto parameter to prop=revisions
 * Manual language conversion improve: Now we can include both ";" and ":" in
   conversion rules
+* (bug 17795) Don't report views count on meta=siteinfo if $wgDisableCounters 
+  is set
 
 === Languages updated in 1.15 ===
 
