@@ -290,7 +290,7 @@ $messages = array(
 'site-atom-feed'          => '$1-Atom-söödüs',
 'page-rss-feed'           => '$1 (RSS-söödüs)',
 'page-atom-feed'          => '$1 (Atom-söödüs)',
-'red-link-title'          => '(säänest lehte olõ-i)',
+'red-link-title'          => '$1 (säänest lehte olõ-i)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikli',
@@ -373,7 +373,8 @@ Perräküsümine: $2',
 'protectedinterface'   => "Taa lehe pääl om tarkvara pruukjapalgõ tekst. Leht om lukku pant, et taad saasi-i ärq ts'urkiq.",
 'editinginterface'     => "'''Hoiatus:''' Sa toimõndat tarkvara pruukjapalgõ tekstiga lehte. Ku siin midä muudat, mõotas tuu pruukjapalõt. Ümbrepandmisõs tasos pruukiq MediaWiki ümbrepandmisõ tüüriista [http://translatewiki.net/wiki/Main_Page?setlang=fiu-vro translatewiki.net].",
 'sqlhidden'            => '(SQL-perräküsümine käkit)',
-'cascadeprotected'     => 'Taa leht om kirotuskaidsõt, selle et taa {{PLURAL:$1|kuulus alanolõvidõ kaidsõtuidõ lehti hulka|kuulus alanolõvidõ kaidsõtuidõ lehti hulka}}:',
+'cascadeprotected'     => 'Taa leht om kirotuskaidsõt, selle et taa {{PLURAL:$1|kuulus alanolõvidõ kaidsõtuidõ lehti hulka|kuulus alanolõvidõ kaidsõtuidõ lehti hulka}}:
+$2',
 'namespaceprotected'   => "Sul olõ-i lubat toimõndaq nimeruumi '''$1''' lehti.",
 'customcssjsprotected' => 'Sul olõ-i lubat toimõndaq taad lehte, selle et tan om seen tõõsõ pruukja säädmiisi.',
 'ns-specialprotected'  => 'Tallituslehekülgi ei saaq toimõndaq.',
@@ -2038,7 +2039,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # External editor support
 'edit-externally'      => 'Toimõndaq taad teedüstüt välidse programmiga',
-'edit-externally-help' => '(Lisateedüst loeq [http://www.mediawiki.org/wiki/Manual:External_editors pruukmisoppusõ lehe päält].',
+'edit-externally-help' => '(Lisateedüst loeq [http://www.mediawiki.org/wiki/Manual:External_editors pruukmisoppusõ lehe päält])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kõik',

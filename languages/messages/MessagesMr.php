@@ -10,7 +10,6 @@
  * @author Kaustubh
  * @author Mahitgar
  * @author Sankalpdravid
- * @author Verdy p
  * @author अभय नातू
  * @author कोलࣿहापࣿरी
  * @author प्रणव कुलकर्णी

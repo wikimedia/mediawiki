@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -9,7 +9,6 @@
  * @author Philip
  * @author Shinjiman
  * @author Skjackey tse
- * @author Verdy p
  * @author Wmr89502270
  * @author Wong128hk
  * @author Wrightbus

@@ -1848,7 +1848,7 @@ Kay qatiqpiqa '''$1''' sutiyuq p'anqap kunan allinkachinankunatam rikunki:",
 ** Mana ruruchiq llamk'apuy awqanakuy
 ** Ancha qhawasqa p'anqa",
 'protect-edit-reasonlist'     => 'Kayrayku amachasqa nisqata hukchay',
-'protect-expiry-options'      => "1 ura:1 hour,2 ura:2 hours,1 p'unchaw:1 day,3 p'unchaw:3 days,1 simana:1 week,2 simana:2 weeks,1 killa:1 month,3 killa:3 months,6 killa:6 months,1 wata:1 year,wiñaypaq:infinite", # display1:time1,display2:time2,...
+'protect-expiry-options'      => "1 ura:1 hour,1 p'unchaw:1 day,1 simana:1 week,2 simana:2 weeks,1 killa:1 month,3 killa:3 months,6 killa:6 months,1 wata:1 year,wiñaypaq:infinite", # display1:time1,display2:time2,...
 'restriction-type'            => 'Saqillay:',
 'restriction-level'           => 'Amachay hanan kay:',
 'minimum-size'                => 'Kaymanta aswan hatun',

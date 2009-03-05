@@ -1458,6 +1458,7 @@ Eng [[Special:WhatLinksHere/$2|komplett Lëscht]] ass disponibel.',
 'noimage-linktext'          => 'eent eroplueden',
 'uploadnewversion-linktext' => 'Eng nei Versioun vun dësem Fichier eroplueden',
 'shared-repo-from'          => 'vu(n) $1', # $1 is the repository name
+'shared-repo'               => 'e gemeinsam genotzte Medienarchiv', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => '"$1" zrécksetzen',
@@ -2879,7 +2880,7 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'specialpages-group-media'       => 'Medie-Rapporten an Uploaden',
 'specialpages-group-users'       => 'Benotzer a Rechter',
 'specialpages-group-highuse'     => 'Dacks benotzte Säiten',
-'specialpages-group-pages'       => 'Lëscht vu Säiten',
+'specialpages-group-pages'       => 'Lëschte vu Säiten',
 'specialpages-group-pagetools'   => 'Handwierksgeschir fir Säiten',
 'specialpages-group-wiki'        => 'Systemdaten an Handwierksgeschir',
 'specialpages-group-redirects'   => 'Spezialsäiten déi viruleeden',

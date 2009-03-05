@@ -8,7 +8,6 @@
  * @author BobChao
  * @author Roc michael
  * @author Urhixidur
- * @author Verdy p
  * @author Wong128hk
  * @author לערי ריינהארט
  */

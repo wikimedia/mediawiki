@@ -10,6 +10,7 @@
  * @author Eduardo.mps
  * @author GKnedo
  * @author Heldergeovane
+ * @author Jorge Morais
  * @author Leonardo.stabile
  * @author LeonardoG
  * @author Lijealso
@@ -3002,7 +3003,7 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'specialpages-group-login'       => 'Entrar / registrar-se',
 'specialpages-group-changes'     => 'Mudanças e registros recentes',
 'specialpages-group-media'       => 'Relatórios de media e carregamentos',
-'specialpages-group-users'       => 'usuários e privilégios',
+'specialpages-group-users'       => 'Usuários e privilégios',
 'specialpages-group-highuse'     => 'Páginas muito usadas',
 'specialpages-group-pages'       => 'Listas de páginas',
 'specialpages-group-pagetools'   => 'Ferramentas de páginas',

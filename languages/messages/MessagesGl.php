@@ -376,7 +376,7 @@ $messages = array(
 'specialpage'       => 'Páxina especial',
 'personaltools'     => 'Ferramentas persoais',
 'postcomment'       => 'Nova sección',
-'articlepage'       => 'Ver artigo',
+'articlepage'       => 'Ver a páxina de contido',
 'talk'              => 'Conversa',
 'views'             => 'Vistas',
 'toolbox'           => 'Caixa de ferramentas',
@@ -1709,6 +1709,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'popularpages'            => 'Páxinas populares',
 'wantedcategories'        => 'Categorías requiridas',
 'wantedpages'             => 'Páxinas requiridas',
+'wantedpages-badtitle'    => 'Título inválido fixado nos resultados: $1',
 'wantedfiles'             => 'Ficheiros requiridos',
 'wantedtemplates'         => 'Modelos requiridos',
 'mostlinked'              => 'Páxinas máis enlazadas',
@@ -2491,11 +2492,11 @@ Gráveo no seu disco duro e cárgueo aquí.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
-'siteuser'         => '{{SITENAME}} usuario $1',
-'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 as $2 por $3.', # $1 date, $2 time, $3 user
-'othercontribs'    => 'Baseado no traballo $1.',
+'siteuser'         => '$1 de {{SITENAME}}',
+'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 ás $2 por $3.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'Baseado no traballo feito por $1.',
 'others'           => 'outros',
-'siteusers'        => '{{PLURAL:$2|do usuario|dos usuarios}} $1 de {{SITENAME}}',
+'siteusers'        => '$1 de {{SITENAME}}',
 'creditspage'      => 'Páxina de créditos',
 'nocredits'        => 'Non hai información de créditos dispoñíbel para esta páxina.',
 

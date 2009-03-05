@@ -2195,7 +2195,7 @@ vandalizirane).',
 'ipbenableautoblock'              => 'Automatski blokiraj IP adrese koje koristi ovaj suradnik',
 'ipbsubmit'                       => 'Blokiraj ovog suradnika',
 'ipbother'                        => 'Neki drugi rok (na engleskom, npr. 6 days):',
-'ipboptions'                      => '2 sata:2 hours,6 sati:6 hours,1 dan:1 day,3 dana:3 days,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,neograničeno:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,neograničeno:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'drugo',
 'ipbotherreason'                  => 'Drugi/dodatni razlog:',
 'ipbhidename'                     => 'Sakrij suradničko ime iz evidencije blokiranja, popisa blokiranja i popisa suradnika',

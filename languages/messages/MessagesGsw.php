@@ -1881,7 +1881,7 @@ Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d 
 ** Vylmol yybundeni Vorlag
 ** Syte mit ere hoche Bsuecherzahl',
 'protect-edit-reasonlist'     => 'Schutzgrind bearbeite',
-'protect-expiry-options'      => '1 Stund:1 hour,2 Stunde:2 hours,6 Stunde:6 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Stund:1 hour,1 Tag:1 day,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöchi:',
 'minimum-size'                => 'Mindeschtgressi',
@@ -1992,10 +1992,8 @@ $1',
 # Block/unblock
 'blockip'                         => 'Benutzer bzw. IP blockyre',
 'blockip-legend'                  => 'IP-Adräss/Benutzer sperre',
-'blockiptext'                     => 'Bnutz des Formular, zum e Bnutzer oder e IP-Adress z\'blockiere.<sup class="plainlinks">[http://jodies.de/ipcalc?host=&mask1=&mask2= <span title="IP-Berych ermittle; bloss kurz sperre!">(B)</span>]</sup>
-
-Des söt nummer erfolge um [[Wikipedia:Vandalismus|Vandalismus]] z\'verhindre in i Übereinstimmig mit üsre [[Wikipedia:Leitlinien|Leitlinie]] gschehe.
-Bitte gib au de Grund für d\'Blockad aa.',
+'blockiptext'                     => 'Nimm des Formular go ne Benutzer oder e IP-Adräss sperre.
+Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr [[{{MediaWiki:Policy-url}}|Leitlinie]]. Bitte gib au ne Grund fi d Sperri aa (z. B. indäm du einzel ni Syte zitiersch, wu vandaliert wore sin).',
 'ipaddress'                       => 'IP-Adräss oder Benutzername:',
 'ipadressorusername'              => 'IP-Adräss oder Benutzername:',
 'ipbexpiry'                       => 'Sperrduur:',
@@ -2017,7 +2015,7 @@ Bitte gib au de Grund für d\'Blockad aa.',
 'ipbenableautoblock'              => 'Sperr di aktuäll vu däm Benutzer brucht IP-Adräss un automatisch alli wytere, wun er nimmt go Syte bearbeite oder Benutzerchonte aalege',
 'ipbsubmit'                       => 'Adräss blockiere',
 'ipbother'                        => 'Anderi Duur (englisch):',
-'ipboptions'                      => '1 Stund:1 hour,2 Stunde:2 hours,6 Stunde:6 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 Stunde:2 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Anderi Duur',
 'ipbotherreason'                  => 'Anderi/zuesätzligi Begrindig:',
 'ipbhidename'                     => 'Benutzername im Sperr-Logbuech, in dr Lischt vu aktive Sperrine un im Benutzerverzeichnis verstecke.',
@@ -2246,7 +2244,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'importlogpage'                    => 'Import-Logbuech',
 'importlogpagetext'                => 'Adminischtrativer Import vo Sytene mit Versionsgschichte us anderi Wikis.',
 'import-logentry-upload'           => '„[[$1]]“ isch vunere Datei importiert worde',
-'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Vérsion|Vérsiona}} [[Spezial:Importieren|importiert]]',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Vérsion|Vérsiona}}',
 'import-logentry-interwiki'        => '„[[$1]]“ isch importiert worde (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} vo $2',
 

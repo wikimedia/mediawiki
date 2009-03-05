@@ -1807,6 +1807,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'popularpages'            => 'Beliebteste Seiten',
 'wantedcategories'        => 'Benutzte, aber nicht angelegte Kategorien',
 'wantedpages'             => 'Gewünschte Seiten',
+'wantedpages-badtitle'    => 'Ungültiger Titel im Ergebnis: $1',
 'wantedfiles'             => 'Fehlende Dateien',
 'wantedtemplates'         => 'Fehlende Vorlagen',
 'mostlinked'              => 'Häufig verlinkte Seiten',
@@ -2114,7 +2115,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 ** Häufig eingebundene Vorlage
 ** Seite mit hoher Besucherzahl',
 'protect-edit-reasonlist'     => 'Schutzgründe bearbeiten',
-'protect-expiry-options'      => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Stunde:1 hour,1 Tag:1 day,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unbeschränkt:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöhe',
 'minimum-size'                => 'Mindestgröße',
@@ -2252,7 +2253,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipbenableautoblock'              => 'Sperre die aktuell von diesem Benutzer genutzte IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzeraccounts versucht',
 'ipbsubmit'                       => 'IP-Adresse/Benutzer sperren',
 'ipbother'                        => 'Andere Dauer (englisch):',
-'ipboptions'                      => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unbeschränkt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Andere Dauer',
 'ipbotherreason'                  => 'Andere/ergänzende Begründung:',
 'ipbhidename'                     => 'Benutzername im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
@@ -3193,7 +3194,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'specialpages-group-media'       => 'Medien',
 'specialpages-group-users'       => 'Benutzer und Rechte',
 'specialpages-group-highuse'     => 'Häufig benutzte Seiten',
-'specialpages-group-pages'       => 'Seitenlisten',
+'specialpages-group-pages'       => 'Listen von Seiten',
 'specialpages-group-pagetools'   => 'Seitenwerkzeuge',
 'specialpages-group-wiki'        => 'Systemdaten und Werkzeuge',
 'specialpages-group-redirects'   => 'Weiterleitende Spezialseiten',

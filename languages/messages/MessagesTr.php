@@ -8,6 +8,7 @@
  * @author Dbl2010
  * @author Erkan Yilmaz
  * @author Fryed-peach
+ * @author Hanberke
  * @author Joseph
  * @author Karduelis
  * @author Katpatuka
@@ -1609,7 +1610,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'fewestrevisions' => 'En az düzenleme yapılmış sayfalar',
 
 # Miscellaneous special pages
-'nbytes'                  => '{{PLURAL:$1|bayt|bayt}}',
+'nbytes'                  => '$1 {{PLURAL:$1|bayt|bayt}}',
 'ncategories'             => '{{PLURAL:$1|kategori|kategoriler}}',
 'nlinks'                  => '$1 {{PLURAL:$1|bağlantı|bağlantı}}',
 'nmembers'                => '{{PLURAL:$1|üye|üyeler}}',
@@ -1627,6 +1628,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'popularpages'            => 'Popüler sayfalar',
 'wantedcategories'        => 'İstenen kategoriler',
 'wantedpages'             => 'İstenen sayfalar',
+'wantedpages-badtitle'    => 'Sonuç kümesinde geçersiz başlık: $1',
 'wantedfiles'             => 'İstenen dosyalar',
 'wantedtemplates'         => 'İstenen şablonlar',
 'mostlinked'              => 'Kendisine en fazla bağlantı verilmiş sayfalar',
@@ -3025,7 +3027,7 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'specialpages-group-media'       => 'Dosya raporları ve yüklemeler',
 'specialpages-group-users'       => 'Kullanıcılar ve hakları',
 'specialpages-group-highuse'     => 'Çok kullanılan sayfalar',
-'specialpages-group-pages'       => 'Sayfalar listesi',
+'specialpages-group-pages'       => 'Sayfaların listeleri',
 'specialpages-group-pagetools'   => 'Sayfa araçları',
 'specialpages-group-wiki'        => 'Viki bilgiler ve araçlar',
 'specialpages-group-redirects'   => 'Yönlendirmeli özel sayfalar',

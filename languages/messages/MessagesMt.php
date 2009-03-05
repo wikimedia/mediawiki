@@ -693,7 +693,7 @@ Sabiex jitnaqqas l-abbuż, waħda biss tista' tiġi postjata f'kull {{PLURAL:$1|
 'mailerror'                  => 'Problema bil-postar tal-messaġġ: $1',
 'acct_creation_throttle_hit' => "L-utenti ta' din il-wiki li jużaw l-indirizz IP tiegħek ħolqu {{PLURAL:$1|kont|$1 kontijiet}} fl-aħħar ġurnata, li hu n-numru massimu permess f'dan il-perjodu ta' żmien.
 Bħala riżultat, il-viżitaturi li jużaw dan l-IP ma jistgħux għall-mument, joħoloqu aktar kontijiet.",
-'emailauthenticated'         => 'L-indirizz tal-posta elettronika tiegħek ġiet konfermat nhar il-$1, fil-$3.',
+'emailauthenticated'         => 'L-indirizz tal-posta elettronika tiegħek ġiet konfermat nhar il-$2, fil-$3.',
 'emailnotauthenticated'      => "L-Indirizz tal-posta elettronika tiegħek ma ġiex awtentikat s'issa.
 L-ebda posta elettronika se tiġi postjata għal dawn il-faċċilitajiet segwenti.",
 'noemailprefs'               => "Speċifika indirizz ta' posta elettronika sabiex dawn il-faċċilitajiet jaħdmu.",

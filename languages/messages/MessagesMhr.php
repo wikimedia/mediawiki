@@ -117,6 +117,7 @@ $messages = array(
 'printableversion' => 'Савыкташлан келыштарыме',
 'permalink'        => 'Эре улшо ссылке',
 'edit'             => 'Тӧрлаташ',
+'create'           => 'Ышташ',
 'editthispage'     => 'Тӧрлаташ тиде лаштыкым',
 'delete'           => 'Шӧраш',
 'protectthispage'  => 'Тиде  лаштыкым тӧрлатымаш деч аралаш',
@@ -124,9 +125,11 @@ $messages = array(
 'talkpage'         => 'Каҥашымаш тиде лаштык нерген',
 'talkpagelinktext' => 'Каҥашымаш',
 'personaltools'    => 'Шке ӱзгар-влак',
+'articlepage'      => 'Лаштыкыште возымым ончыкташ',
 'talk'             => 'Каҥашымаш',
 'toolbox'          => 'Ӱзгар-влак',
 'viewtalkpage'     => 'Ончалаш каҥашымашым',
+'otherlanguages'   => 'Вес йылме дене',
 'jumpto'           => 'Куснаш:',
 'jumptonavigation' => 'навигациеш',
 'jumptosearch'     => 'кычалмашке',
@@ -139,6 +142,8 @@ $messages = array(
 
 'editsection'     => 'тӧрлаташ',
 'editold'         => 'тӧрлаташ',
+'editlink'        => 'тӧрлаташ',
+'viewsourcelink'  => 'тӱҥалтыш текстым ончалаш',
 'editsectionhint' => 'Тӧрлаташ ужашым: $1',
 'toc'             => 'Вуйлымаш',
 'showtoc'         => 'ончыктаж',
@@ -148,10 +153,12 @@ $messages = array(
 'site-atom-feed'  => '$1 Atom-тасма',
 'page-rss-feed'   => '"$1" RSS-тасма',
 'page-atom-feed'  => '"$1" Atom-тасма',
+'red-link-title'  => '$1 (тыгай лаштык уке)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Лаштык',
 'nstab-user'     => 'Пайдаланышын лаштыкше',
+'nstab-special'  => 'Лӱмын ыштыме лаштык',
 'nstab-image'    => 'Файл',
 'nstab-category' => 'Категорий',
 
@@ -190,6 +197,7 @@ $messages = array(
 Эше ик гана ыштен ончо.',
 'passwordtooshort'        => 'Тыйын шолыпмутет келшен огеш тол але пеш кӱчык.
 Тудо {{PLURAL:$1|1 символ|$1 символ}} деч шагал огыл лийшаш да тыйын пайдаланыше лӱмет ден икгай лийшаш огыл.',
+'mailmypassword'          => 'У шолыпмутым колташ',
 'passwordremindertitle'   => '{{SITENAME}} сайтлан жаплан ыштыме у шолыпмут',
 'passwordremindertext'    => '{{SITENAME}} сайтлан ($4) $1 IP адрес гыч ала-кӧ (але тый) у шолыпмутым йодын. "$2" пайдаланышылан жаплан ыштыме у шолыпмутым ыштыме да "$3" электрон адресыш колтымо. Тидым тый йодынат гын, системыш у шолыпмут дене пуро.
 
@@ -233,6 +241,7 @@ $messages = array(
 'preview'            => 'Ончылгоч ончымаш',
 'showpreview'        => 'Ончылгоч ончымаш',
 'showdiff'           => 'Тӧрлатымашым ончыкташ',
+'newarticle'         => '(У)',
 'clearyourcache'     => "'''Ешартыш''': Аралыме деч вара вашталтышым ужаш браузеретын кешыжым эрыкташ логалын кертеш. '''Mozilla / Firefox / Safari:''' ''Shift''-ым темдал кучен ''Reload''-ым темдал але ''Ctrl-F5'' але ''Ctrl-R'' темдал (Macintosh-влак ''Command-R''); '''Konqueror:''' темдал ''Reload'' кнопкым але ''F5'' темдал; '''Opera:''' ''Tools→Preferences''-ыште кешым эрыкте; '''Internet Explorer:''' ''Ctrl''-ым темдал кучен ''Refresh''-ым темдал але ''Ctrl-F5'' темдал.",
 'previewnote'        => "'''Тиде ончылгоч ончымаш гына;
 вашталтыш-влакым эше аралыме огыл!'''",
@@ -244,23 +253,29 @@ $messages = array(
 'revisionasof'        => '$1-лан версий',
 'currentrevisionlink' => 'Кызытсе версий',
 'cur'                 => 'кызыт',
+'last'                => 'ончычсо',
 'histfirst'           => 'Эн тошто',
 'histlast'            => 'Эн у',
 
 # Revision deletion
-'pagehist' => 'Лаштыкын историй',
+'rev-delundel' => 'ончыкташ/шылташ',
+'pagehist'     => 'Лаштыкын историй',
 
 # Diffs
 'difference'              => '(Версий-влакын ойыртемышт)',
+'lineno'                  => '$1 корно:',
 'compareselectedversions' => 'Ойырымо версий-влакым таҥастараш',
 'editundo'                => 'чараш',
 
 # Search results
 'searchresults'            => 'Кычалын мумо',
+'searchresults-title'      => 'Кычалын мумо «$1»-лан',
 'searchsubtitle'           => "Тые кычалыч '''[[:$1]]'''",
 'searchsubtitleinvalid'    => "Тые кычалыч '''$1'''",
 'noexactmatch'             => "'''\"\$1\" лӱман лаштык уке.'''
 Тый [[:\$1|тиде лаштыкым ыштен]] кертат.",
+'noexactmatch-nocreate'    => "'''\"\$1\" лӱман лаштык уке.'''",
+'notitlematches'           => 'Лаштык-влакын лӱмыштышт икгайлык уке',
 'prevn'                    => 'кодшо $1',
 'nextn'                    => 'весе $1',
 'viewprevnext'             => 'Ончал ($1) ($2) ($3)',
@@ -419,12 +434,13 @@ $messages = array(
 'protect_expiry_invalid'      => 'Йоҥылыш мучашлалтше жап.',
 'protect_expiry_old'          => 'Мучашлалтше жап эртен.',
 'protect-default'             => '(ойлыде)',
-'protect-level-autoconfirmed' => 'Регистрацийым эртыдыме да у пайдаланыше-влак деч петырыме',
+'protect-level-autoconfirmed' => 'Регистрацийым эртыдыме да у пайдаланыше-влак деч петыраш',
 'protect-level-sysop'         => 'Сайтвиктарыше-влак гына',
 'protect-otherreason'         => 'Вес/ешартыш амал:',
 'protect-otherreason-op'      => 'вес/ешартыш амал',
 
 # Undelete
+'undeletelink'           => 'ончалаш/тӧрлатен шындаш',
 'undelete-search-submit' => 'Кычал',
 
 # Namespace form on various pages
@@ -474,11 +490,11 @@ $messages = array(
 'thumbnail-more' => 'Кугемдаш',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Мыйын лаштыкем',
-'tooltip-pt-mytalk'               => 'Мыйын каҥашымаш лаштыкем',
+'tooltip-pt-userpage'             => 'Тыйын лаштыкет',
+'tooltip-pt-mytalk'               => 'Тыйын каҥашымаш лаштыкет',
 'tooltip-pt-preferences'          => 'Мыйын настройке-влак',
 'tooltip-pt-watchlist'            => 'Мыйын эскерыме лаштык-влак списке',
-'tooltip-pt-mycontris'            => 'Мыйын надыр списке',
+'tooltip-pt-mycontris'            => 'Тыйын надыр лӱмер',
 'tooltip-pt-login'                => 'Шке денет палымым ыштет гын сайрак лиеш; такшым тидым ыштыдеат кертат.',
 'tooltip-pt-logout'               => 'Системе гыч лекташ',
 'tooltip-ca-talk'                 => 'Лаштыкыште возымым каҥашымаш',
@@ -505,7 +521,9 @@ $messages = array(
 'tooltip-t-specialpages'          => 'Лӱмын ыштыме лаштык-влак списке',
 'tooltip-t-print'                 => 'Тиде лаштыкым савыкташлан келыштарыме',
 'tooltip-t-permalink'             => 'Тиде лаштык версийыш эре улшо ссылке',
+'tooltip-ca-nstab-main'           => 'Лаштыкыште возымым ончыкташ',
 'tooltip-ca-nstab-user'           => 'Пайдаланышын лаштыкшым ончалаш',
+'tooltip-ca-nstab-special'        => 'Тиде лӱмын ыштыме лаштык, тудым тый тӧрлатен от керт',
 'tooltip-ca-nstab-image'          => 'Файлын лаштыкшым ончалаш',
 'tooltip-minoredit'               => 'Тиде тӧрлымым изирак семын палемдаш',
 'tooltip-save'                    => 'Тыйын тӧрлатымашым аралаш',

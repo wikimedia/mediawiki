@@ -11,7 +11,6 @@
  * @author Sarvaturi
  * @author Tonyfroio
  * @author Urhixidur
- * @author Verdy p
  * @author לערי ריינהארט
  */
 

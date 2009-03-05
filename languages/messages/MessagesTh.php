@@ -1823,7 +1823,7 @@ $NEWPAGE
 'protect-otherreason'         => 'เหตุผลอื่นเพิ่มเติม:',
 'protect-otherreason-op'      => 'เหตุผลอื่นเพิ่มเติม',
 'protect-edit-reasonlist'     => 'สาเหตุการป้องกันการแก้ไข',
-'protect-expiry-options'      => '1 ชั่วโมง:1 hour,2 ชั่วโมง:2 hours,6 ชั่วโมง:6 hours,1 วัน:1 day,3 วัน:3 days,1 อาทิตย์:1 week,2 อาทิตย์:2 weeks,1 เดือน:1 month,3 เดือน:3 months,1 ปี:1 year,ตลอดไป:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ชั่วโมง:1 hour,1 วัน:1 day,1 อาทิตย์:1 week,2 อาทิตย์:2 weeks,1 เดือน:1 month,3 เดือน:3 months,6 เดือน:6 months,1 ปี:1 year,ตลอดไป:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'อนุญาต',
 'restriction-level'           => 'ระดับการล็อก',
 'minimum-size'                => 'ขนาดอย่างน้อย',
