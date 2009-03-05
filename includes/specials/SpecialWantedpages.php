@@ -85,7 +85,7 @@ class WantedPagesPage extends QueryPage {
 			return wfSpecialList( $pageLink, $this->makeWlhLink( $title, $skin, $result ) );
 		} else {
 			$tsafe = htmlspecialchars( $result->title );
-			return "Invalid title in result set; {$tsafe}";
+			return wfMsg( 'wantedpages-badtitle', $tsafe );
 		}
 	}
 
