@@ -1013,11 +1013,15 @@ class ConverterRule {
 		//        [2] => ''
 		//       )
 		$varsep_pattern = '/' . $markup['varsep'] . '\s*' . '(?=';
-		foreach( $variants as $variant )
-			$varsep_pattern .= $variant . '\s*' . $markup['codesep'] . '|';
+		foreach( $variants as $variant ) {
+			$varsep_pattern .= $variant . '\s*' . $markup['codesep'] . '|'; // zh-hans:xxx;zh-hant:yyy
+			$varsep_pattern .= '[^;]*?' . $markup['unidsep'] . '\s*' . $variant
+							. '\s*' . $markup['codesep'] . '|'; // xxx=>zh-hans:yyy; xxx=>zh-hant:zzz
+		}
 		$varsep_pattern .= '\s*$)/';
 
 		$choice = preg_split($varsep_pattern, $rules);
+
 		foreach( $choice as $c ) {
 			$v  = explode($markup['codesep'], $c, 2);
 			if( count($v) != 2 ) 
