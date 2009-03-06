@@ -1989,7 +1989,19 @@ class Language {
 			$list,
 			wfMsgExt( 'comma-separator', array( 'escapenoentities', 'language' => $this ) ) );
 	}
-	
+
+	/**
+	 * Take a list of strings and build a locale-friendly semicolon-separated
+	 * list, using the local semicolon-separator message.
+	 * @param $list array of strings to put in a semicolon list
+	 * @return string
+	 */
+	function semicolonList( $list ) {
+		return implode(
+			$list,
+			wfMsgExt( 'semicolon-separator', array( 'escapenoentities', 'language' => $this ) ) );
+	}
+
 	/**
 	 * Same as commaList, but separate it with the pipe instead.
 	 * @param $list array of strings to put in a pipe list
