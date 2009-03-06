@@ -559,9 +559,13 @@ function wfMsgNoDBForContent( $key ) {
  * @return String: the requested message.
  */
 function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = true ) {
+	global $wgMessageCache;
 	wfProfileIn( __METHOD__ );
-	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
+	$message = wfMsgGetKey( $key, $useDB, $forContent, false );
 	$message = wfMsgReplaceArgs( $message, $args );
+	if( $transform && is_object( $wgMessageCache ) ) {
+	  $message = $wgMessageCache->transform( $message, !$forContent );
+	}
 	wfProfileOut( __METHOD__ );
 	return $message;
 }
