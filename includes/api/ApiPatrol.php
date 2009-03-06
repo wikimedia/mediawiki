@@ -64,7 +64,7 @@ class ApiPatrol extends ApiBase {
 		$this->getResult()->addValue(null, $this->getModuleName(), $result);
 	}
 
-	public function getWriteMode() {
+	public function isWriteMode() {
 		return true;
 	}
 
