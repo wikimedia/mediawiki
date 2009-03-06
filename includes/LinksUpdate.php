@@ -199,6 +199,7 @@ class LinksUpdate {
 		$cache = $this->mTitle->getBacklinkCache();
 		$batches = $cache->partition( 'templatelinks', $wgUpdateRowsPerJob );
 		if ( !$batches ) {
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$jobs = array();
