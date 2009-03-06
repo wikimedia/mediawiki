@@ -886,7 +886,7 @@ class Parser
 
 		$text = $this->doDoubleUnderscore( $text );
 		$text = $this->doHeadings( $text );
-		if($this->mOptions->getUseDynamicDates()) {
+		if( $this->mOptions->getUseDynamicDates() ) {
 			$df = DateFormatter::getInstance();
 			$text = $df->reformat( $this->mOptions->getDateFormat(), $text );
 		}
@@ -896,7 +896,7 @@ class Parser
 
 		# replaceInternalLinks may sometimes leave behind
 		# absolute URLs, which have to be masked to hide them from replaceExternalLinks
-		$text = str_replace($this->mUniqPrefix."NOPARSE", "", $text);
+		$text = str_replace($this->mUniqPrefix.'NOPARSE', '', $text);
 
 		$text = $this->doMagicLinks( $text );
 		$text = $this->formatHeadings( $text, $isMain );
@@ -3299,6 +3299,7 @@ class Parser
 	 * Fills $this->mDoubleUnderscores, returns the modified text
 	 */
 	function doDoubleUnderscore( $text ) {
+		wfProfileIn( __METHOD__ );
 		// The position of __TOC__ needs to be recorded
 		$mw = MagicWord::get( 'toc' );
 		if( $mw->match( $text ) ) {
@@ -3341,7 +3342,7 @@ class Parser
 		} elseif( isset( $this->mDoubleUnderscores['index'] ) ) {
 			$this->mOutput->setIndexPolicy( 'index' );
 		}
-
+		wfProfileOut( __METHOD__ );
 		return $text;
 	}
 
