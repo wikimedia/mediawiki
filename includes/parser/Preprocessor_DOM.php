@@ -873,7 +873,6 @@ class PPFrame_DOM implements PPFrame {
 		if ( is_string( $root ) ) {
 			return $root;
 		}
-		wfProfileIn( __METHOD__ );
 
 		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->mMaxPPNodeCount )
 		{
@@ -883,6 +882,7 @@ class PPFrame_DOM implements PPFrame {
 		if ( $expansionDepth > $this->parser->mOptions->mMaxPPExpandDepth ) {
 			return '<span class="error">Expansion depth limit exceeded</span>';
 		}
+		wfProfileIn( __METHOD__ );
 		++$expansionDepth;
 
 		if ( $root instanceof PPNode_DOM ) {
