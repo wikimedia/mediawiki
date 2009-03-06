@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -1625,6 +1625,7 @@ Template:消除歧義',
 'popularpages'            => '热点页面',
 'wantedcategories'        => '待撰分类',
 'wantedpages'             => '待撰页面',
+'wantedpages-badtitle'    => '在结果组上的无效标题: $1',
 'wantedfiles'             => '需要的文件',
 'wantedtemplates'         => '需要的模板',
 'mostlinked'              => '最多链接页面',
@@ -1677,7 +1678,7 @@ Template:消除歧義',
 'specialloguserlabel'  => '用户:',
 'speciallogtitlelabel' => '标题:',
 'log'                  => '日志',
-'all-logs-page'        => '所有日志',
+'all-logs-page'        => '所有公共日志',
 'alllogstext'          => '综合显示{{SITENAME}}所有的可用日志。
 您可以选择日志类型，用户名（区分大小写）或者相关页面（区分大小写）来缩小查询范围。',
 'logempty'             => '在日志中不存在匹配项。',
@@ -1938,7 +1939,7 @@ $NEWPAGE
 ** 反生产性编辑战
 ** 高流量页面',
 'protect-edit-reasonlist'     => '编辑保护理由',
-'protect-expiry-options'      => '2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1小时:1 hour,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => '权限:',
 'restriction-level'           => '限制级别:',
 'minimum-size'                => '最小大小',

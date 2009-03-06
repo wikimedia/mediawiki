@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -1599,6 +1599,7 @@ Template:搞清楚',
 'popularpages'            => '受歡迎嘅頁面',
 'wantedcategories'        => '被徵求嘅分類',
 'wantedpages'             => '被徵求嘅頁面',
+'wantedpages-badtitle'    => '響結果組嘅無效標題: $1',
 'wantedfiles'             => '被徵求嘅檔案',
 'wantedtemplates'         => '被徵求嘅模',
 'mostlinked'              => '有最多連結嘅頁面',
@@ -1651,7 +1652,7 @@ Template:搞清楚',
 'specialloguserlabel'  => '用戶:',
 'speciallogtitlelabel' => '標題:',
 'log'                  => '日誌',
-'all-logs-page'        => '全部嘅日誌',
+'all-logs-page'        => '全部嘅公共日誌',
 'alllogstext'          => '響{{SITENAME}}度全部日誌嘅綜合顯示。你可以選擇一個日誌類型、用戶名、或者受影響嘅頁面，嚟縮窄顯示嘅範圍。',
 'logempty'             => '日誌中冇符合嘅項目。',
 'log-title-wildcard'   => '搵以呢個文字開始嘅標題',
@@ -1905,7 +1906,7 @@ wiki: $PAGEEDITOR_WIKI
 ** 反生產性編輯戰
 ** 高流量頁',
 'protect-edit-reasonlist'     => '編輯保護原因',
-'protect-expiry-options'      => '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '一個鐘頭:1 hour,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => '許可:',
 'restriction-level'           => '限制等級:',
 'minimum-size'                => '最小大細',

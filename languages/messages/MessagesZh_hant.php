@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -1616,6 +1616,7 @@ Template:消除歧義',
 'popularpages'            => '熱點頁面',
 'wantedcategories'        => '需要的分類',
 'wantedpages'             => '待撰頁面',
+'wantedpages-badtitle'    => '在結果組上的無效標題: $1',
 'wantedfiles'             => '需要的檔案',
 'wantedtemplates'         => '需要的模板',
 'mostlinked'              => '最多連結頁面',
@@ -1668,7 +1669,7 @@ Template:消除歧義',
 'specialloguserlabel'  => '用戶:',
 'speciallogtitlelabel' => '標題:',
 'log'                  => '日誌',
-'all-logs-page'        => '所有日誌',
+'all-logs-page'        => '所有公共日誌',
 'alllogstext'          => '綜合{{SITENAME}}的顯示上傳、刪除、保護、查封以及站務日誌。',
 'logempty'             => '在日誌中不存在匹配項。',
 'log-title-wildcard'   => '搜尋以這個文字開始的標題',
@@ -1929,7 +1930,7 @@ $NEWPAGE
 ** 反生產性編輯戰
 ** 高流量頁面',
 'protect-edit-reasonlist'     => '編輯保護理由',
-'protect-expiry-options'      => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1小時:1 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => '權限:',
 'restriction-level'           => '限制級別:',
 'minimum-size'                => '最小大小',
