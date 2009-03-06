@@ -50,6 +50,10 @@ class ApiHelp extends ApiBase {
 		return false;
 	}
 
+	public function isReadMode() {
+		return false;
+	}
+
 	public function getDescription() {
 		return array (
 			'Display this help screen.'

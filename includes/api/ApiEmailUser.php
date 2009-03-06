@@ -39,14 +39,11 @@ class ApiEmailUser extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
-		
 		// Check whether email is enabled
 		if ( !EmailUserForm::userEmailEnabled() )
 			$this->dieUsageMsg( array( 'usermaildisabled' ) );
-		
-		$this->getMain()->requestWriteMode();
+
 		$params = $this->extractRequestParams();
-		
 		// Check required parameters
 		if ( !isset( $params['target'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'target' ) );
@@ -78,6 +75,10 @@ class ApiEmailUser extends ApiBase {
 	}
 	
 	public function mustBePosted() { return true; }
+
+	public function isWriteMode() {
+		return true;
+	}
 
 	public function getAllowedParams() {
 		return array (

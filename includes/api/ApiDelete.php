@@ -49,7 +49,6 @@ class ApiDelete extends ApiBase {
 	 */
 	public function execute() {
 		global $wgUser;
-		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 
 		$this->requireOnlyOneParameter($params, 'title', 'pageid');
@@ -177,6 +176,10 @@ class ApiDelete extends ApiBase {
 	}
 	
 	public function mustBePosted() { return true; }
+
+	public function isWriteMode() {
+		return true;
+	}
 
 	public function getAllowedParams() {
 		return array (

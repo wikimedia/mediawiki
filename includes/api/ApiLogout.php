@@ -50,6 +50,10 @@ class ApiLogout extends ApiBase {
 		wfRunHooks( 'UserLogoutComplete', array(&$wgUser, &$injected_html, $oldName) );
 	}
 
+	public function isReadMode() {
+		return false;
+	}
+
 	public function getAllowedParams() {
 		return array ();
 	}

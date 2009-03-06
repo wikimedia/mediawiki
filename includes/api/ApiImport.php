@@ -41,7 +41,6 @@ class ApiImport extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
-		$this->getMain()->requestWriteMode();
 		if(!$wgUser->isAllowed('import'))
 			$this->dieUsageMsg(array('cantimport'));
 		$params = $this->extractRequestParams();
@@ -100,6 +99,10 @@ class ApiImport extends ApiBase {
 	}
 
 	public function mustBePosted() { return true; }
+
+	public function isWriteMode() {
+		return true;
+	}
 
 	public function getAllowedParams() {
 		global $wgImportSources;

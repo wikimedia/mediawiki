@@ -41,7 +41,6 @@ class ApiWatch extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
-		$this->getMain()->requestWriteMode();
 		if(!$wgUser->isLoggedIn())
 			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
 		$params = $this->extractRequestParams();
@@ -64,6 +63,10 @@ class ApiWatch extends ApiBase {
 			$this->dieUsageMsg(array('hookaborted'));
 		$this->getResult()->addValue(null, $this->getModuleName(), $res);
 	}
+
+	public function isWriteMode() {
+		return true;
+	} 
 
 	public function getAllowedParams() {
 		return array (

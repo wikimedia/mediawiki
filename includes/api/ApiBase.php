@@ -218,8 +218,15 @@ abstract class ApiBase {
 				);
 			$msg = $lnPrfx . implode($lnPrfx, $msg) . "\n";
 
+			if ($this->isReadMode())
+				$msg .= "\nThis module requires read rights.";
+			if ($this->isWriteMode())
+				$msg .= "\nThis module requires write rights.";
 			if ($this->mustBePosted())
-				$msg .= "\nThis module only accepts POST requests.\n";
+				$msg .= "\nThis module only accepts POST requests.";
+			if ($this->isReadMode() || $this->isWriteMode() ||
+					$this->mustBePosted())
+				$msg .= "\n";
 
 			// Parameters
 			$paramsMsg = $this->makeHelpMsgParameters();
@@ -758,6 +765,9 @@ abstract class ApiBase {
 		'movenotallowedfile' => array('code' => 'cantmovefile', 'info' => "You don't have permission to move files"),
 
 		// API-specific messages
+		'readrequired' => array('code' => 'readapidenied', 'info' => "You need read permission to use this module"),
+		'writedisabled' => array('code' => 'noapiwrite', 'info' => "Editing of this wiki through the API is disabled. Make sure the \$wgEnableWriteAPI=true; statement is included in the wiki's LocalSettings.php file"),
+		'writerequired' => array('code' => 'writeapidenied', 'info' => "You're not allowed to edit this wiki through the API"),
 		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
 		'invalidtitle' => array('code' => 'invalidtitle', 'info' => "Bad title ``\$1''"),
 		'nosuchpageid' => array('code' => 'nosuchpageid', 'info' => "There is no page with ID \$1"),
@@ -855,10 +865,17 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Indicates if this module requires edit mode
+	 * Indicates whether this module requires read rights
 	 * @return bool
 	 */
-	public function isEditMode() {
+	public function isReadMode() {
+		return true;
+	}
+	/**
+	 * Indicates whether this module requires write mode
+	 * @return bool
+	 */
+	public function isWriteMode() {
 		return false;
 	}
 

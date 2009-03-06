@@ -93,6 +93,12 @@ class ApiParamInfo extends ApiBase {
 		$retval['classname'] = get_class($obj);
 		$retval['description'] = (is_array($obj->getDescription()) ? implode("\n", $obj->getDescription()) : $obj->getDescription());
 		$retval['prefix'] = $obj->getModulePrefix();
+		if($obj->isReadMode())
+			$retval['readrights'] = '';
+		if($obj->isWriteMode())
+			$retval['writerights'] = '';
+		if($obj->mustBePosted())
+			$retval['mustbeposted'] = '';
 		$allowedParams = $obj->getFinalParams();
 		if(!is_array($allowedParams))
 			return $retval;
@@ -145,6 +151,10 @@ class ApiParamInfo extends ApiBase {
 		}
 		$result->setIndexedTagName($retval['parameters'], 'param');
 		return $retval;
+	}
+
+	public function isReadMode() {
+		return false;
 	}
 
 	public function getAllowedParams() {

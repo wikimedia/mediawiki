@@ -125,6 +125,10 @@ class ApiLogin extends ApiBase {
 
 	public function mustBePosted() { return true; }
 
+	public function isReadMode() {
+		return false;
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'name' => null,
