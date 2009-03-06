@@ -283,6 +283,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   conversion rules
 * (bug 17795) Don't report views count on meta=siteinfo if $wgDisableCounters 
   is set
+* (bug 17774) Don't hide read-restricted modules like action=query from users
+  without read rights, but throw an error when they try to use them.
+* Don't hide write modules when $wgEnableWriteAPI is false, but throw an error
+  when someone tries to use them
+* BREAKING CHANGE: action=purge requires write rights and, for anonymous users,
+  a POST request
 
 === Languages updated in 1.15 ===
 

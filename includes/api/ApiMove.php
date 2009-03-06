@@ -39,7 +39,6 @@ class ApiMove extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
-		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 		if(is_null($params['reason']))
 			$params['reason'] = '';
@@ -154,6 +153,10 @@ class ApiMove extends ApiBase {
 	}
 
 	public function mustBePosted() { return true; }
+
+	public function isWriteMode() {
+		return true;
+	}
 
 	public function getAllowedParams() {
 		return array (

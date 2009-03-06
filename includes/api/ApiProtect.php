@@ -38,7 +38,6 @@ class ApiProtect extends ApiBase {
 
 	public function execute() {
 		global $wgUser, $wgRestrictionTypes, $wgRestrictionLevels;
-		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 
 		$titleObj = NULL;
@@ -126,6 +125,10 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function mustBePosted() { return true; }
+
+	public function isWriteMode() {
+		return true;
+	}
 
 	public function getAllowedParams() {
 		return array (

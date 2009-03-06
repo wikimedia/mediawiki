@@ -37,7 +37,6 @@ class ApiRollback extends ApiBase {
 	}
 
 	public function execute() {
-		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 
 		$titleObj = NULL;
@@ -83,6 +82,10 @@ class ApiRollback extends ApiBase {
 	}
 
 	public function mustBePosted() { return true; }
+
+	public function isWriteMode() {
+		return true;
+	}
 
 	public function getAllowedParams() {
 		return array (

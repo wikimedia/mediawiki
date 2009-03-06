@@ -74,6 +74,15 @@ class ApiPurge extends ApiBase {
 		$this->getResult()->addValue(null, $this->getModuleName(), $result);
 	}
 
+	public function mustBePosted() {
+		global $wgUser;
+		return $wgUser->isAnon();
+	}
+
+	public function isWriteMode() {
+		return true;
+	}
+
 	public function getAllowedParams() {
 		return array (
 			'titles' => array(

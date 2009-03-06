@@ -42,7 +42,6 @@ class ApiPatrol extends ApiBase {
 	 */
 	public function execute() {
 		global $wgUser, $wgUseRCPatrol, $wgUseNPPatrol;
-		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 		
 		if(!isset($params['token']))
@@ -63,6 +62,10 @@ class ApiPatrol extends ApiBase {
 		$result = array('rcid' => intval($rc->getAttribute('rc_id')));
 		ApiQueryBase::addTitleInfo($result, $rc->getTitle());
 		$this->getResult()->addValue(null, $this->getModuleName(), $result);
+	}
+
+	public function getWriteMode() {
+		return true;
 	}
 
 	public function getAllowedParams() {

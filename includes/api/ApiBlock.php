@@ -50,7 +50,6 @@ class ApiBlock extends ApiBase {
 	 */
 	public function execute() {
 		global $wgUser, $wgBlockAllowsUTEdit;
-		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 
 		if($params['gettoken'])
@@ -114,6 +113,10 @@ class ApiBlock extends ApiBase {
 	}
 
 	public function mustBePosted() { return true; }
+
+	public function isWriteMode() {
+		return true;
+	}
 
 	public function getAllowedParams() {
 		return array (
