@@ -57,7 +57,7 @@ class ApiPatrol extends ApiBase {
 		$retval = RecentChange::markPatrolled($params['rcid']);
 			
 		if($retval)
-			$this->dieUsageMsg(current($retval));
+			$this->dieUsageMsg(reset($retval));
 		
 		$result = array('rcid' => intval($rc->getAttribute('rc_id')));
 		ApiQueryBase::addTitleInfo($result, $rc->getTitle());
