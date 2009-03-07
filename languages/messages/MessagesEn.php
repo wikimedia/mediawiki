@@ -1317,7 +1317,7 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].",
 'revdelete-suppress-text'        => 'Suppression should \'\'\'only\'\'\' be used for the following cases:
 * Inappropriate personal information
-*: \'\'home addresses and telephone numbers, social security numbers, etc\'\'',
+*: \'\'home addresses and telephone numbers, social security numbers, etc.\'\'',
 'revdelete-legend'               => 'Set visibility restrictions',
 'revdelete-hide-text'            => 'Hide revision text',
 'revdelete-hide-name'            => 'Hide action and target',
