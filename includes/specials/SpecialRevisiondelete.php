@@ -264,10 +264,7 @@ class RevisionDeleteForm {
 		
 		$wgOut->addHTML( "</ul>" );
 		// Explanation text
-		$wgOut->addWikiMsg( 'revdelete-text' );
-		if( $wgUser->isAllowed( 'hiderevision' ) ) {
-			$wgOut->addWikiMsg( 'revdelete-suppress-text' );
-		}
+		$this->addUsageText();
 
 		// Normal sysops can always see what they did, but can't always change it
 		if( !$UserAllowed ) return;
@@ -307,23 +304,6 @@ class RevisionDeleteForm {
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
-	}
-	
-	/**
-	* @param int $bitfields, aggregate bitfield of all the bitfields
-	* @returns string HTML
-	*/
-	private function buildCheckBoxes( $bitfields ) {
-		$html = '';
-		// FIXME: all items checked for just one rev are checked, even if not set for the others
-		foreach( $this->checks as $item ) {
-			list( $message, $name, $field ) = $item;
-			$line = Xml::tags( 'div', null, Xml::checkLabel( wfMsg($message), $name, $name,
-				$bitfields & $field ) );
-			if( $field == Revision::DELETED_RESTRICTED ) $line = "<b>$line</b>";
-			$html .= $line;
-		}
-		return $html;
 	}
 
 	/**
@@ -419,10 +399,7 @@ class RevisionDeleteForm {
 		
 		$wgOut->addHTML( "</ul>" );
 		// Explanation text
-		$wgOut->addWikiMsg('revdelete-text' );
-		if( $wgUser->isAllowed( 'hiderevision' ) ) {
-			$wgOut->addWikiMsg( 'revdelete-suppress-text' );
-		}
+		$this->addUsageText();
 		// Normal sysops can always see what they did, but can't always change it
 		if( !$UserAllowed ) return;
 
@@ -515,10 +492,7 @@ class RevisionDeleteForm {
 		
 		$wgOut->addHTML( "</ul>" );
 		// Explanation text
-		$wgOut->addWikiMsg( 'revdelete-text' );
-		if( $wgUser->isAllowed( 'hiderevision' ) ) {
-			$wgOut->addWikiMsg( 'revdelete-suppress-text' );
-		}
+		$this->addUsageText();
 		// Normal sysops can always see what they did, but can't always change it
 		if( !$UserAllowed ) return;
 
@@ -552,6 +526,31 @@ class RevisionDeleteForm {
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
+	}
+	
+	private function addUsageText() {
+		global $wgOut, $wgUser;
+		$wgOut->addWikiMsg( 'revdelete-text' );
+		if( $wgUser->isAllowed( 'hiderevision' ) ) {
+			$wgOut->addWikiMsg( 'revdelete-suppress-text' );
+		}
+	}
+	
+	/**
+	* @param int $bitfields, aggregate bitfield of all the bitfields
+	* @returns string HTML
+	*/
+	private function buildCheckBoxes( $bitfields ) {
+		$html = '';
+		// FIXME: all items checked for just one rev are checked, even if not set for the others
+		foreach( $this->checks as $item ) {
+			list( $message, $name, $field ) = $item;
+			$line = Xml::tags( 'div', null, Xml::checkLabel( wfMsg($message), $name, $name,
+				$bitfields & $field ) );
+			if( $field == Revision::DELETED_RESTRICTED ) $line = "<b>$line</b>";
+			$html .= $line;
+		}
+		return $html;
 	}
 
 	/**
