@@ -186,7 +186,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->validateLimit('limit', $limit, 1, $userMax, $botMax);
 
 			// There is only one ID, use it
-			$this->addWhereFld('rev_page', current(array_keys($pageSet->getGoodTitles())));
+			$this->addWhereFld('rev_page', reset(array_keys($pageSet->getGoodTitles())));
 
 			if(!is_null($params['user'])) {
 				$this->addWhereFld('rev_user_text', $params['user']);
