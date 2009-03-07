@@ -964,12 +964,15 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 {{SITENAME}}의 다른 관리자는 다른 제한이 설정되어 있지 않는 한, 숨겨진 내용을 볼 수 있고, 같은 도구를 이용해 복구할 수 있습니다.
 이 도구를 사용하는 것의 결과를 인식하고 [[{{MediaWiki:Policy-url}}|정책]]에 맞게 사용하십시오.",
+'revdelete-suppress-text'        => "숨기기는 '''다음 경우에만''' 사용되어야 합니다:
+* 부적절한 개인 정보
+*: 집 주소, 전화번호, 주민등록번호 등",
 'revdelete-legend'               => '보이기 제한을 설정',
 'revdelete-hide-text'            => '판의 내용을 숨기기',
 'revdelete-hide-name'            => '로그 내용과 대상을 숨기기',
 'revdelete-hide-comment'         => '편집 요약을 숨기기',
 'revdelete-hide-user'            => '편집자의 계정 이름/IP를 숨기기',
-'revdelete-hide-restricted'      => '관리자에게도 이 제한을 적용하고 이 인터페이스를 잠금',
+'revdelete-hide-restricted'      => '관리자도 보지 못하게 숨기기',
 'revdelete-suppress'             => '문서 내용을 관리자에게도 보이지 않게 숨기기',
 'revdelete-hide-image'           => '파일을 숨기기',
 'revdelete-unsuppress'           => '복구된 판에 대한 제한을 해제',
@@ -1706,6 +1709,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'popularpages'            => '인기있는 문서 목록',
 'wantedcategories'        => '필요한 분류 목록',
 'wantedpages'             => '필요한 문서 목록',
+'wantedpages-badtitle'    => '문서 제목이 잘못되었습니다: $1',
 'wantedfiles'             => '필요한 파일 목록',
 'wantedtemplates'         => '필요한 틀 목록',
 'mostlinked'              => '가장 많이 연결된 문서 목록',
@@ -2008,7 +2012,7 @@ $NEWPAGE
 ** 비생산적인 편집 분쟁
 ** 방문이 많은 문서',
 'protect-edit-reasonlist'     => '보호 이유를 편집하기',
-'protect-expiry-options'      => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1시간:1 hour,1일:1 day,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => '권한:',
 'restriction-level'           => '보호 수준:',
 'minimum-size'                => '최소 크기',
@@ -2094,6 +2098,7 @@ $1',
 'sp-contributions-newbies-sub'   => '새 사용자들의 기여',
 'sp-contributions-newbies-title' => '새 사용자의 기여',
 'sp-contributions-blocklog'      => '차단 기록',
+'sp-contributions-logs'          => '기록',
 'sp-contributions-search'        => '기여 검색',
 'sp-contributions-username'      => 'IP 주소 혹은 계정 이름:',
 'sp-contributions-submit'        => '찾기',

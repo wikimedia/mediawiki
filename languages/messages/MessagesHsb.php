@@ -843,12 +843,15 @@ Hlej ewentuelne podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAME
 Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na schowany tekst přistup měć a jón z pomocu samsneho interfejsa wobnowić, chibazo tež přidatne prawa su wobmjezowane.
 
 Prošu wobkruć, zo chceš to činić, zo rozumiš sćěhi a zo činiš to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam]].",
+'revdelete-suppress-text'        => "Potłóčenje dyrbjało so '''jenož''' za slědowace pady wužiwać:
+* Njepřihódne wosobinske informacije
+*: ''bydlenske adresy a telefonowe čisła, čisła socialneho zawěsćenja atd.''",
 'revdelete-legend'               => 'Wobmjezowanja za widźomnosć nastajić',
 'revdelete-hide-text'            => 'Tekst tuteje wersije schować',
 'revdelete-hide-name'            => 'Akciju w protokolach schować',
 'revdelete-hide-comment'         => 'Zjeće schować',
 'revdelete-hide-user'            => 'Wužiwarske mjeno/IP-adresu schować',
-'revdelete-hide-restricted'      => 'Tute wobmjezowanja na administratorow nałožić a tutón interfejs zawrěć',
+'revdelete-hide-restricted'      => 'Daty wot administratorow kaž tež te druhich wužiwarjow potłóčić',
 'revdelete-suppress'             => 'Přičinu wušmórnjenja tež za administratorow schować',
 'revdelete-hide-image'           => 'Wobsah wobraza schować',
 'revdelete-unsuppress'           => 'Wobmjezowanja za wobnowjene wersije zběhnyć',
@@ -1965,6 +1968,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Za nowačkow',
 'sp-contributions-newbies-title' => 'Wužiwarske přinoški za nowe konta',
 'sp-contributions-blocklog'      => 'protokol zablokowanjow',
+'sp-contributions-logs'          => 'protokole',
 'sp-contributions-search'        => 'Přinoški pytać',
 'sp-contributions-username'      => 'IP-adresa abo wužiwarske mjeno:',
 'sp-contributions-submit'        => 'OK',

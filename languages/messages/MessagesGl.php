@@ -961,12 +961,15 @@ función, a revisión especificada non existe, ou está intentando agochar a rev
 
 Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e poderán restaurar a páxina de novo a través desta mesma interface, a non ser que sexa establecida unha restrición adicional.
 Por favor, confirme que esta é a súa intención, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].",
+'revdelete-suppress-text'        => "A eliminación '''só''' debería ser usada nos seguintes casos:
+* Información persoal inapropiada
+*: ''domicilios e números de teléfono, números da seguridade social, etc.''",
 'revdelete-legend'               => 'Aplicar restricións de visibilidade',
 'revdelete-hide-text'            => 'Agochar texto da revisión',
 'revdelete-hide-name'            => 'Agochar acción e destino',
 'revdelete-hide-comment'         => 'Agochar comentario da edición',
 'revdelete-hide-user'            => 'Agochar nome de usuario/IP do editor',
-'revdelete-hide-restricted'      => 'Aplicar estas restricións aos administradores e bloquear esta interface',
+'revdelete-hide-restricted'      => 'Eliminar os datos da vista dos administradores así coma da doutros',
 'revdelete-suppress'             => 'Eliminar os datos tanto dos administradores como dos demais',
 'revdelete-hide-image'           => 'Agochar o contido do ficheiro',
 'revdelete-unsuppress'           => 'Retirar as restricións sobre as revisións restauradas',
@@ -2109,6 +2112,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Contribucións dos usuarios novos',
 'sp-contributions-newbies-title' => 'Contribucións dos usuarios novos',
 'sp-contributions-blocklog'      => 'Rexistro de bloqueos',
+'sp-contributions-logs'          => 'rexistros',
 'sp-contributions-search'        => 'Busca de contribucións',
 'sp-contributions-username'      => 'Enderezo IP ou nome de usuario:',
 'sp-contributions-submit'        => 'Procurar',

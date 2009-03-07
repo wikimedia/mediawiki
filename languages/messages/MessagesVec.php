@@ -867,6 +867,10 @@ Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de s
 
 I altri aministradori de {{SITENAME}} i podarà vardar istesso i contenuti sconti e ripristinarli atraverso questa stessa interfacia, se no xe stà inpostà altre limitazion.
 Par piaser conferma che te voli dal bon far sta scancelassion, che te conossi le conseguense e che te sì drio operar in conformità de le [[{{MediaWiki:Policy-url}}|linee-guida]].",
+'revdelete-suppress-text'        => "La sopression la se dovarìa doparar '''solo''' in sti casi qua:
+
+* Informassion personali mia apropriate
+*: ''indirissi de casa e nùmari de telefono, nùmari de previdensa sociale, etc.''",
 'revdelete-legend'               => 'Inposta le seguenti limitazion su le versioni scancelàe:',
 'revdelete-hide-text'            => 'Scondi el testo de ła version',
 'revdelete-hide-name'            => 'Scondi azion e ogeto de la stessa',
@@ -1587,6 +1591,7 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 'popularpages'            => 'Pàxene pì viste',
 'wantedcategories'        => 'Categorie richieste',
 'wantedpages'             => 'Pàxene pì richieste',
+'wantedpages-badtitle'    => 'Titolo mia valido nel grupo de risultati: $1',
 'wantedfiles'             => 'File domandà',
 'wantedtemplates'         => 'Template richiesti',
 'mostlinked'              => 'Pàxene piassè puntà',
@@ -1981,6 +1986,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Par i novi utenti',
 'sp-contributions-newbies-title' => 'Contributi dei utenti novi',
 'sp-contributions-blocklog'      => 'Registro dei blochi',
+'sp-contributions-logs'          => 'registri',
 'sp-contributions-search'        => 'Riçerca contributi',
 'sp-contributions-username'      => 'Indirizo IP o nome utente:',
 'sp-contributions-submit'        => 'Riçerca',

@@ -931,15 +931,19 @@ Mehr dorto steiht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 
 'revdelete-nologid-text'         => 'Is keen Logtyp utwählt oder den utwählten Logtyp gifft dat nich.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Wählte Version|Wählte Versionen}} vun [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Wählt Logbook-Indrag|Wählte Logbook-Indrääg}}:'''",
-'revdelete-text'                 => "'''Wegsmetene Versionen staht noch jümmer in de Versionsgeschicht, sünd aver nich mehr apen intosehn.'''
+'revdelete-text'                 => "'''Wegsmetene Versionen un Akschonen staht noch jümmer in de Versionsgeschicht un Logböker, sünd aver nich mehr apen intosehn.'''
 
-{{SITENAME}}-Administraters köönt de Sieden noch jümmer sehn un ok wedderhalen, solang dat nich extra fastleggt is, dat ok Administraters dat nich mehr mehr dröfft.",
+{{SITENAME}}-Administraters köönt de Sieden noch jümmer sehn un ok wedderhalen, solang dat nich extra fastleggt is, dat ok Administraters dat nich mehr mehr dröfft.
+Segg also to, dat du dat ok würklich wullt, dat du de Konsequenzen versteist un dat dat mit de [[{{MediaWiki:Policy-url}}|Richtlienen]] övereen geit.",
+'revdelete-suppress-text'        => "Ünnerdrücken schull '''blot''' bi disse Fäll bruukt warrn:
+* Nich passliche persönliche Information
+*: ''Adressen, Telefonnummern, Sozialversekerungsnummern etc.''",
 'revdelete-legend'               => 'Inschränkungen för de Sichtborkeit setten',
 'revdelete-hide-text'            => 'Versiontext versteken',
 'revdelete-hide-name'            => 'Akschoon un Teel versteken',
 'revdelete-hide-comment'         => 'Kommentar versteken',
 'revdelete-hide-user'            => 'Brukernaam/IP vun’n Schriever versteken',
-'revdelete-hide-restricted'      => 'Disse Inschränkungen ok för Administraters gellen laten un dit Formular sperrn',
+'revdelete-hide-restricted'      => 'Ok för Administraters versteken',
 'revdelete-suppress'             => 'Grund för dat Wegsmieten ok för Administraters versteken',
 'revdelete-hide-image'           => 'Dateiinholt versteken',
 'revdelete-unsuppress'           => 'Inschränkungen för wedderhaalte Versionen wegdoon',
@@ -1652,6 +1656,7 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'popularpages'            => 'Faken opropene Sieden',
 'wantedcategories'        => 'Kategorien, de veel bruukt warrt, aver noch keen Text hebbt (nich anleggt sünd)',
 'wantedpages'             => 'Sieden, de noch fehlt',
+'wantedpages-badtitle'    => 'Ungülligen Titel in Resultaat: $1',
 'wantedfiles'             => 'Wünschte Datein',
 'wantedtemplates'         => 'Vörlagen, de noch fehlt',
 'mostlinked'              => 'Sieden, op de vele Lenken wiest',
@@ -2042,6 +2047,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'För ne’e Kontos',
 'sp-contributions-newbies-title' => 'Brukerbidrääg vun ne’e Brukers',
 'sp-contributions-blocklog'      => 'Sparr-Logbook',
+'sp-contributions-logs'          => 'Logböker',
 'sp-contributions-search'        => 'Na Brukerbidrääg söken',
 'sp-contributions-username'      => 'IP-Adress oder Brukernaam:',
 'sp-contributions-submit'        => 'Söken',
@@ -2097,9 +2103,8 @@ Ok den Grund för dat Blocken indregen.',
 'ipb-change-block'                => 'Mit disse Sperrparameters noch wedder nee sperren',
 'badipaddress'                    => 'De IP-Adress hett en falsch Format.',
 'blockipsuccesssub'               => 'Blocken hett Spood',
-'blockipsuccesstext'              => 'De IP-Adress „$1“ is nu blockt.
-
-<br />Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.',
+'blockipsuccesstext'              => 'De IP-Adress „[[Special:Contributions/$1|$1]]“ is nu blockt.<br />
+Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.',
 'ipb-edit-dropdown'               => 'Blockgrünn bearbeiden',
 'ipb-unblock-addr'                => '„$1“ freegeven',
 'ipb-unblock'                     => 'IP-Adress/Bruker freegeven',

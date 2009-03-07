@@ -123,16 +123,16 @@ $messages = array(
 'currentevents'        => 'Darvosow a-lemmyn',
 'helppage'             => 'Help:Gweres',
 'mainpage'             => 'Pennfolen',
-'mainpage-description' => 'Pennfolenn/Penfolen',
+'mainpage-description' => 'Pennfolen',
 'portal'               => 'Porth kemmynieth',
-'portal-url'           => 'Project:Porth Kemmynieth',
+'portal-url'           => 'Project:Porth kemmynieth',
 
 'ok'                 => 'Sur',
 'youhavenewmessages' => 'Yma $1 dhis ($2).',
 'editsection'        => 'chanjya',
 'editold'            => 'chanjya',
 'editlink'           => 'chanjya',
-'editsectionhint'    => 'Chanjya tregh: $1',
+'editsectionhint'    => 'Chanjya an tregh: $1',
 'showtoc'            => 'diskwedhes',
 'hidetoc'            => 'kudha',
 
@@ -260,7 +260,7 @@ $messages = array(
 'filehist-dimensions' => 'Mynsow',
 
 # Random page
-'randompage' => 'Folenn war amkan',
+'randompage' => 'Folen dre jons',
 
 'brokenredirects-edit' => '(chanjya)',
 
@@ -349,6 +349,7 @@ $messages = array(
 'tooltip-ca-move'        => 'Movya an folen ma',
 'tooltip-search'         => 'Hwilas {{SITENAME}}',
 'tooltip-n-mainpage'     => 'Godriga an pennfolen',
+'tooltip-n-randompage'   => 'Karga folen dre jons',
 'tooltip-t-upload'       => 'Ughkarga restrennow',
 
 # Media information

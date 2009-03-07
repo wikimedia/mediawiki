@@ -2371,7 +2371,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'chick.css'       => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Chick */',
 'simple.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Simple */',
 'modern.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Modern */',
-'print.css'       => "/* I CSS posti qui influiranno sull'output in stampa */",
+'print.css'       => "/* Gli stili CSS inseriti qui si applicano all'output in stampa */",
 
 # Scripts
 'common.js'      => '/* Il codice JavaScript inserito qui viene caricato da ciascuna pagina, per tutti gli utenti. */',

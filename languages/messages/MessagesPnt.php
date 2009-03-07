@@ -1077,6 +1077,7 @@ $messages = array(
 'tooltip-t-emailuser'             => "E-mail σ' αβούτον χρήστεν",
 'tooltip-t-upload'                => 'Φόρτωμα αρχείων',
 'tooltip-t-specialpages'          => 'Κατάλογον με τα ειδικά σελίδας',
+'tooltip-t-print'                 => "Εκτυπώσιμ' μορφή τς σελίδας",
 'tooltip-ca-nstab-main'           => 'Τέρεμαν σελίδας περιεχομενίων',
 'tooltip-ca-nstab-user'           => 'Τέρεμαν τη σελίδας χρήστε',
 'tooltip-ca-nstab-media'          => 'Τέρεμαν τη σελίδας μεσίων',

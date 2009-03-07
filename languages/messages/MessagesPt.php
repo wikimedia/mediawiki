@@ -913,12 +913,15 @@ Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}
 
 Outros administradores em {{SITENAME}} continuarão a poder aceder ao conteúdo escondido e podem restaurá-lo novamente através desta mesma interface, a menos que restrições adicionais sejam definidas.
 Por favor, confirme que pretende fazer isto, que compreende as consequências, e que vai fazê-lo em concordância com [[{{MediaWiki:Policy-url}}|a política]].",
+'revdelete-suppress-text'        => "A supressão deverá '''apenas''' ser usada para os seguintes casos:
+* Informação pessoa inapropriada
+*: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
 'revdelete-legend'               => 'Definir restrições de visualização',
 'revdelete-hide-text'            => 'Ocultar texto da edição',
 'revdelete-hide-name'            => 'Ocultar acção e alvo',
 'revdelete-hide-comment'         => 'Esconder comentário de edição',
 'revdelete-hide-user'            => 'Ocultar nome de utilizador/IP',
-'revdelete-hide-restricted'      => 'Aplicar estas restrições a administradores e trancar esta interface',
+'revdelete-hide-restricted'      => 'Suprimir dados a administradores bem como a outros',
 'revdelete-suppress'             => 'Suprimir dados de administradores, bem como de outros',
 'revdelete-hide-image'           => 'Ocultar conteúdos do ficheiro',
 'revdelete-unsuppress'           => 'Remover restrições das edições restauradas',
@@ -1651,6 +1654,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'popularpages'            => 'Páginas populares',
 'wantedcategories'        => 'Categorias pedidas',
 'wantedpages'             => 'Páginas pedidas',
+'wantedpages-badtitle'    => 'Título inválido no conjunto de resultados: $1',
 'wantedfiles'             => 'Ficheiros desejados',
 'wantedtemplates'         => 'Predefinições pedidas',
 'mostlinked'              => 'Páginas com mais afluentes',
@@ -2049,6 +2053,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Para contas novas',
 'sp-contributions-newbies-title' => 'Contribuições de contas novas',
 'sp-contributions-blocklog'      => 'Registo de bloqueios',
+'sp-contributions-logs'          => 'registos',
 'sp-contributions-search'        => 'Pesquisar contribuições',
 'sp-contributions-username'      => 'Endereço de IP ou utilizador:',
 'sp-contributions-submit'        => 'Pesquisar',

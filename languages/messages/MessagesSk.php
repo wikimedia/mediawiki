@@ -939,12 +939,15 @@ podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}
 Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupovať k skrytému obsahu a môžu
 ho znova obnoviť použitím tohto rozhrania v prípade, že nie sú stanovené ďalšie obmedzenia.
 Potvrďte prosím, že toto je vaším zámerom, že rozumiete dôsledkom a že tak  robíte v súlade s [[{{MediaWiki:Policy-url}}|politikou]].",
+'revdelete-suppress-text'        => "Zatajenie by sa malo používať '''výlučne''' v nasledovných prípadoch:
+* Nevhodné osobné údaje
+*: ''adresy, telefóne čísla, rodné čísla a pod.''",
 'revdelete-legend'               => 'Nastaviť obmedzenia viditeľnosti',
 'revdelete-hide-text'            => 'Skryť text revízie',
 'revdelete-hide-name'            => 'Skryť činnosť a cieľ',
 'revdelete-hide-comment'         => 'Skryť zhrnutie úprav',
 'revdelete-hide-user'            => 'Skryť používateľské meno/IP',
-'revdelete-hide-restricted'      => 'Použiť tieto obmedzenia na správcov a zamknúť toto rozhranie',
+'revdelete-hide-restricted'      => 'Zatajiť údaje pred všetkými, aj pred správcami',
 'revdelete-suppress'             => 'Skryť údaje pred správcami rovnako ako pred ostatnými',
 'revdelete-hide-image'           => 'Skryť obsah súboru',
 'revdelete-unsuppress'           => 'Odstrániť obmedzenia obnovených revízií',
@@ -1676,6 +1679,7 @@ Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odka
 'popularpages'            => 'Populárne stránky',
 'wantedcategories'        => 'Žiadané kategórie',
 'wantedpages'             => 'Žiadané stránky',
+'wantedpages-badtitle'    => 'Neplatný názov vo výsledkoch: $1',
 'wantedfiles'             => 'Žiadané súbory',
 'wantedtemplates'         => 'Žiadané šablóny',
 'mostlinked'              => 'Najčastejšie odkazované stránky',
@@ -1825,7 +1829,7 @@ Emailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniac
 'emailccsubject'   => 'Kópia správy pre $1: $2',
 'emailsent'        => 'E-mail bol odoslaný',
 'emailsenttext'    => 'Vaša e-mailová správa bola odoslaná.',
-'emailuserfooter'  => 'Tento email poslal $1 pre $2 pomocu funkcie „Email používateľovi” na {{GRAMMAR:lokál|{{SITENAME}}}}.',
+'emailuserfooter'  => 'Tento email poslal $1 používateľovi $2 pomocou funkcie „Email používateľovi” na {{GRAMMAR:lokál|{{SITENAME}}}}.',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
@@ -2072,6 +2076,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Príspevky nováčikov',
 'sp-contributions-newbies-title' => 'Príspevky nových používateľov',
 'sp-contributions-blocklog'      => 'Záznam blokovaní',
+'sp-contributions-logs'          => 'záznamy',
 'sp-contributions-search'        => 'Hľadať príspevky',
 'sp-contributions-username'      => 'IP adresa alebo meno používateľa:',
 'sp-contributions-submit'        => 'Hľadať',

@@ -818,7 +818,7 @@ Si vous cliquez de nouveau sur le bouton « Publier », la publication sera fait
 'missingcommenttext'               => 'Veuillez entrer un commentaire ci-dessous.',
 'missingcommentheader'             => "'''Rappel :''' vous n’avez pas fourni de sujet ou de titre à ce commentaire.
 Si vous cliquez de nouveau sur « Publier », votre modification sera enregistrée sans titre.",
-'summary-preview'                  => 'Prévisualiser le résumé :',
+'summary-preview'                  => 'Aperçu du résumé :',
 'subject-preview'                  => 'Prévisualisation du sujet/titre :',
 'blockedtitle'                     => 'L’utilisateur est bloqué.',
 'blockedtext'                      => "<big>'''Votre compte utilisateur ou votre adresse IP a été bloqué.'''</big>
@@ -1038,12 +1038,15 @@ Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLP
 
 Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soit mises en place.
 Confirmez que ceci est bien ce que vous avez l'intention de faire, que vous en comprenez les conséquences, et que vous faîtes ceci en respect des [[{{MediaWiki:Policy-url}}|règles établies]].",
+'revdelete-suppress-text'        => "La suppression ne doit être utilisée '''que''' dans les cas suivants :
+* Informations personnelles inappropriées
+*: ''adresse, numéro de téléphone, numéro de sécurité sociale, ...''",
 'revdelete-legend'               => 'Mettre en place des restrictions de visibilité :',
 'revdelete-hide-text'            => 'Masquer le texte de la version',
 'revdelete-hide-name'            => 'Masquer l’action et la cible',
 'revdelete-hide-comment'         => 'Masquer le commentaire de modification',
 'revdelete-hide-user'            => 'Masquer le pseudo ou l’adresse IP du contributeur.',
-'revdelete-hide-restricted'      => 'Appliquer ces restrictions aux administrateurs et verrouiller cette interface',
+'revdelete-hide-restricted'      => "Supprimer ces données aux administrateurs ainsi qu'aux autres",
 'revdelete-suppress'             => 'Cacher les données également pour les administrateurs',
 'revdelete-hide-image'           => 'Masquer le contenu du fichier',
 'revdelete-unsuppress'           => 'Enlever les restrictions sur les versions restaurées',
@@ -2194,6 +2197,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Parmi les nouveaux comptes',
 'sp-contributions-newbies-title' => 'Contributions d’utilisateurs parmi les nouveaux comptes',
 'sp-contributions-blocklog'      => 'Journal des blocages',
+'sp-contributions-logs'          => 'journaux',
 'sp-contributions-search'        => 'Rechercher les contributions',
 'sp-contributions-username'      => 'Adresse IP ou nom d’utilisateur :',
 'sp-contributions-submit'        => 'Rechercher',

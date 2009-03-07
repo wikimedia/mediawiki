@@ -235,6 +235,8 @@ This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki
 'navigation'     => '{{Identical|Navigation}}',
 'and'            => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it at the beginning without a gap between it and the "&". <nowiki>&#32;</nowiki> is a blank space, one character long. Please leave it as it is.
 
+This can also appear in the credits page if the credits feature is enabled,for example [http://translatewiki.net/wiki/Support&action=credits the credits of the support page]. (To view any credits page type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar.)
+
 {{Identical|And}}',
 
 # Metadata in edit box
@@ -2159,19 +2161,24 @@ If the length of the translated message is over 60 characters (including spaces)
 'monobook.js' => 'JS for users using Monobook skin.',
 
 # Attribution
-'lastmodifiedatby' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
+'siteuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki). 
+
+This message is the variable $3 in the message [[Mediawiki:lastmodifiedatby/{{SUBPAGENAME}}]]. This message only appears if the user has not entered his 'real name' in his preferences. The variable $1 in this message is a user name.",
+'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
 * $1: date
 * $2: time
-* $3: user
+* $3: if the user has entered his 'real name' in his preferences then this variable is his 'real name'. If the user has not entered his 'real name' in his preferences then this variable is the message [[Mediawiki:siteuser/{{SUBPAGENAME}}]], which includes his username.
 
-See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 user
-'othercontribs'    => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
-* $1: the name of the authors or the revisions preceding the current revision.',
-'siteusers'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
+See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].", # $1 date, $2 time, $3 user
+'othercontribs'    => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
+* $1: the list of author(s) of the revisions preceding the current revision. It appears after the message [[Mediawiki:lastmodifiedatby/{{SUBPAGENAME}}]]. If there are no previous authors this message does not appear at all. If needed the messages [[Mediawiki:siteusers/{{SUBPAGENAME}}]], [[Mediawiki:anonymous/{{SUBPAGENAME}}]] and [[Mediawiki:and/{{SUBPAGENAME}}]] are part of the list of names.',
+'siteusers'        => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
 It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]].
 
-* $1 is a list of user names (example: "\'\'Jim, Janet, Jane, Joe\'\'")
-* $2 is the number of user names in $1',
+* \$1 is a list of user names (example: \"''Jim, Janet, Jane, Joe''\") where the user has not put his 'real name' in his preferences.
+* \$2 is the number of user names in \$1
+
+If there is more than one user in the list then the message [[Mediawiki:and/{{SUBPAGENAME}}]] appears before the last name.",
 'creditspage'      => "This message is the ''contentSub'' (the grey subtitle) shown when viewing credits of a page (example: {{fullurl:Betawiki:News|action=credits}}). Note that the credits action is disabled by default (currently enabled on Betawiki).",
 'nocredits'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on Betawiki).',
 

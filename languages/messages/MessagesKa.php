@@ -1420,7 +1420,7 @@ $NEWPAGE
 'protect-expiry-indefinite'   => 'განუსაზღვრელი',
 'protect-cascade'             => 'ამ გვერდში ჩართული გვერდების დაცვა (იერარქიული დაცვა)',
 'protect-cantedit'            => 'თქვენ არ შეგიძლიათ ამ გვერდის დაცვის დონის შეცვლა, ვინაიდან არ გაქვთ მისი რედაქტირების ნებართვა.',
-'protect-expiry-options'      => '2 საათი:2 hours,1 დღე:1 day,3 დღე:3 days,1 კვირა:1 week,2 კვირა:2 weeks,1 თვე:1 month,3 თვე:3 months,6 თვე:6 months,1 წელი:1 year,განუსაზღვრელი ვადით:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 საათი:1 hour,1 დღე:1 day,1 კვირა:1 week,2 კვირა:2 weeks,1 თვე:1 month,3 თვე:3 months,6 თვე:6 months,1 წელი:1 year,განუსაზღვრელი ვადით:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'უფლება',
 'restriction-level'           => 'შეზღუდვის დონე:',
 'minimum-size'                => 'მინ ზომა',
@@ -2060,7 +2060,7 @@ $1',
 'specialpages-group-other'   => 'სხვა სპეციალური გვერდები',
 'specialpages-group-changes' => 'ბოლო ცვლილებები და ჟურნალები',
 'specialpages-group-users'   => 'მომხმარებლები და უფლებები',
-'specialpages-group-pages'   => 'გვერდების სია',
+'specialpages-group-pages'   => 'გვერდების სიები',
 
 # Special:BlankPage
 'blankpage' => 'ცარიელი გვერდი',

@@ -859,7 +859,7 @@ Confirméiert w.eg. datt Dir dëst maache wellt, datt dir d'Konsequenzen dovu ve
 'revdelete-hide-name'            => 'Logbuch-Aktioun verstoppen',
 'revdelete-hide-comment'         => 'Bemierkung verstoppen',
 'revdelete-hide-user'            => 'Dem Auteur säi Benotzernumm/IP verstoppen',
-'revdelete-hide-restricted'      => 'Dës Limitatioune och fir Administrateuren uwenden an dëse Formulair spären',
+'revdelete-hide-restricted'      => 'Donnéeën och fir Administrateuren suppriméieren geneesou wéi fir déi Aner',
 'revdelete-suppress'             => 'Grond vum Läschen och fir Administrateure verstoppt',
 'revdelete-hide-image'           => 'Bildinhalt verstoppen',
 'revdelete-unsuppress'           => 'Limitatiounen fir restauréiert Versiounen ophiewen',

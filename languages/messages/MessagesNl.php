@@ -1082,12 +1082,15 @@ Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page=
 
 Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.
 Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet in overeenstemming met het geldende [[{{MediaWiki:Policy-url}}|beleid]].",
+'revdelete-suppress-text'        => "Versies verbergen dient '''alleen''' gebruikt te worden in de volgende gevallen:
+* Ongepaste persoonlijke informatie
+*: ''woonadres, telefoonnummers, Burger Service Nummers, enzovoort.''",
 'revdelete-legend'               => 'Zichtbaarheidsbeperkingen instellen',
 'revdelete-hide-text'            => 'De bewerkte tekst verbergen',
 'revdelete-hide-name'            => 'Actie en doel verbergen',
 'revdelete-hide-comment'         => 'De bewerkingssamenvatting verbergen',
 'revdelete-hide-user'            => 'Gebruikersnaam/IP van de gebruiker verbergen',
-'revdelete-hide-restricted'      => 'Deze beperkingen toepassen op beheerders en deze interface afsluiten',
+'revdelete-hide-restricted'      => 'Deze beperkingen ook op beheerders toepassen',
 'revdelete-suppress'             => 'Gegevens voor zowel beheerders als anderen onderdrukken',
 'revdelete-hide-image'           => 'Bestandsinhoud verbergen',
 'revdelete-unsuppress'           => 'Beperkingen op teruggezette wijzigingen verwijderen',
@@ -1944,7 +1947,7 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'special-categories-sort-abc'   => 'alfabetisch sorteren',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Verwijderde gbijdragen',
+'deletedcontributions'       => 'Verwijderde bijdragen',
 'deletedcontributions-title' => 'Verwijderde gebruikersbijdragen',
 
 # Special:LinkSearch
@@ -2264,6 +2267,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Voor nieuwelingen',
 'sp-contributions-newbies-title' => 'Bijdragen van nieuwe gebruikers',
 'sp-contributions-blocklog'      => 'Blokkeerlogboek',
+'sp-contributions-logs'          => 'logboeken',
 'sp-contributions-search'        => 'Zoeken naar bijdragen',
 'sp-contributions-username'      => 'IP-adres of gebruikersnaam:',
 'sp-contributions-submit'        => 'Bekijken',

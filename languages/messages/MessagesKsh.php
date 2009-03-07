@@ -1058,6 +1058,9 @@ Ene Wiki Köbes kann de fottjeschmessene Krom immer noch aanluere un kann en och
 dem Wiki singe Installation dat anders fassjelaht woode es.
 
 Bes esu joot un don bestääteje, dat De dat maache wells, dat De versteihß wat dat bedügge kann, un dat dat wat De donn wells, met de [[{{MediaWiki:Policy-url}}|Rääjelle]] zosamme jeiht.",
+'revdelete-suppress-text'        => "Dat sullt '''blooß''' jedonn wäde för:
+* unjenehmesch persöönlesch Daate
+*: ''Aanschreffte, Tellefoon- un ander Nummere, <span lang=\"en\">e-mail</span> Adräß, uew.''",
 'revdelete-legend'               => 'Dä öffentlije Zojang enschränke',
 'revdelete-hide-text'            => 'Dä Tex vun dä Version versteiche',
 'revdelete-hide-name'            => 'Der Förjang, un och der Enndraach uss_em Logboch, versteiche',
@@ -2286,6 +2289,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'För neu Metmaacher',
 'sp-contributions-newbies-title' => 'Neu Metmaacher ier Beidräsch',
 'sp-contributions-blocklog'      => 'Logboch met Metmaacher-Sperre',
+'sp-contributions-logs'          => 'Logböcher',
 'sp-contributions-search'        => 'Söök noh Metmaacher ier Beidräg',
 'sp-contributions-username'      => 'Metmaachername odder IP-Address:',
 'sp-contributions-submit'        => 'Sööke',

@@ -948,7 +948,7 @@ La lasta edito di la pagino esis da [[User:$3|$3]] ([[User talk:$3|Diskutez]]{{i
 'protect-othertime-op'   => 'altra tempo',
 'protect-otherreason'    => 'Altra/suplementala motivo:',
 'protect-otherreason-op' => 'altra/suplementala motivo',
-'protect-expiry-options' => '2 horo:2 hours,1 dio:1 day,3 dii:3 days,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => '1 horo:1 hour,1 dio:1 day,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite', # display1:time1,display2:time2,...
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redaktar',
@@ -1313,7 +1313,7 @@ Voluntez selektar altra nomo.',
 'specialpages-group-login'     => 'Enirar / krear konto',
 'specialpages-group-changes'   => 'Recenta chanji e registri',
 'specialpages-group-users'     => 'Uzanti e yuri',
-'specialpages-group-pages'     => 'Listo di pagini',
+'specialpages-group-pages'     => 'Listi di pagini',
 'specialpages-group-pagetools' => 'Paginala utensili',
 'specialpages-group-redirects' => 'Specala pagini di ridirektili',
 
