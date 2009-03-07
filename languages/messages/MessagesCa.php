@@ -647,6 +647,10 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya temporal.',
 'resetpass-temp-password'   => 'Contrasenya temporal:',
 'resetpass-no-others'       => "No podeu reiniciar la contrasenya d'altres usuaris.",
+'resetpass-log'             => 'Registre de restabliments de contrasenya',
+'resetpass-logtext'         => "A sota es mostra un registre d'usuaris als què un administrador ha restablert llur contrasenya.",
+'resetpass-logentry'        => 'canviada la contrasenya de $1',
+'resetpass-comment'         => 'Raó per al restabliment de la contrasenya:',
 
 # Edit page toolbar
 'bold_sample'     => 'Text en negreta',
@@ -903,15 +907,20 @@ funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'ac
 'revdelete-nologid-text'         => 'Heu especificat un esdeveniment del registre que no existeix o al que no se li pot aplicar aquesta funció.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Revisió seleccionada|Revisions seleccionades}} de [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:'''",
-'revdelete-text'                 => "'''Les versions esborrades es mostraran encara als historial i registres de les pàgines, si bé part del seu contingut serà inaccessible al públic.'''
+'revdelete-text'                 => "'''Les revisions esborrades es mostraran encara als historials de les pàgines i als registres, si bé part del seu contingut serà inaccessible al públic.'''
 
-Els altres administradors del projecte {{SITENAME}} encara podrien accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional pels operadors del lloc web.",
+Els altres administradors de {{SITENAME}} encara podran accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional.
+
+Si us plau, confirmeu que és això el que desitjeu fer, que enteneu les conseqüències, i que esteu fent-ho d'acord amb [[{{MediaWiki:Policy-url}}|les polítiques acordades]].",
+'revdelete-suppress-text'        => "Les supressions '''només''' han de ser portades a terme en els següents casos:
+* Informació personal inapropiada
+*: ''adreces personals, números de telèfon, números de la seguretat social, etc.''",
 'revdelete-legend'               => 'Defineix restriccions en la visibilitat',
 'revdelete-hide-text'            => 'Amaga el text de revisió',
 'revdelete-hide-name'            => "Acció d'amagar i objectiu",
 'revdelete-hide-comment'         => "Amaga el comentari de l'edició",
 'revdelete-hide-user'            => "Amaga el nom d'usuari o la IP de l'editor",
-'revdelete-hide-restricted'      => 'Aplica aquestes restriccions als administradors i bloqueja aquesta interfície',
+'revdelete-hide-restricted'      => 'Suprimir les dades als administradors així com a la resta.',
 'revdelete-suppress'             => 'Suprimeix també les dades dels administradors',
 'revdelete-hide-image'           => 'Amaga el contingut del fitxer',
 'revdelete-unsuppress'           => 'Suprimir les restriccions de les revisions restaurades',

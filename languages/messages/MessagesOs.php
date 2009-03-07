@@ -540,6 +540,8 @@ $3',
 # Special:AllPages
 'allpages'       => 'Æппæт фæрстæ',
 'alphaindexline' => '$1 (уыдоны ’хсæн цы статьятæ ис, фен) $2',
+'nextpage'       => 'Фæдылдзог фарс ($1)',
+'prevpage'       => 'Раздæры фарс ($1)',
 'allarticles'    => 'Æппæт статьятæ',
 'allpagesprev'   => 'фæстæмæ',
 'allpagesnext'   => 'дарддæр',
@@ -645,7 +647,8 @@ $3',
 'allmessages' => 'Æппæт техникон фыстытæ',
 
 # Special:Import
-'importnotext' => 'Афтид у кæнæ текст дзы нæй',
+'importnotext'          => 'Афтид у кæнæ текст дзы нæй',
+'importuploaderrortemp' => 'Импорты файл æрвитын нæ фæрæстмæ. Нæй рæстæгмæ файлдон.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'      => 'Мæхи фарс (дæу тыххæй ам ныффысс)',
@@ -715,6 +718,14 @@ $3',
 
 # action=purge
 'confirm_purge_button' => 'Афтæ уæд!',
+
+# Multipage image navigation
+'imgmultipageprev' => '← раздæры фарс',
+'imgmultipagenext' => 'фæдылдзог фарс →',
+
+# Table pager
+'table_pager_next' => 'Фæдылдзог фарс',
+'table_pager_prev' => 'Раздæры фарс',
 
 # Size units
 'size-bytes'     => '$1 байт(ы)',

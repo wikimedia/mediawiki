@@ -461,7 +461,7 @@ $messages = array(
 'otherlanguages'    => 'På andre språk',
 'redirectedfrom'    => '(Omdirigert frå $1)',
 'redirectpagesub'   => 'Omdirigeringsside',
-'lastmodifiedat'    => 'Sist endra $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Denne sida vart sist endra $1 kl. $2.', # $1 date, $2 time
 'viewcount'         => 'Sida er vist {{PLURAL:$1|éin gong|$1 gonger}}.',
 'protectedpage'     => 'Verna side',
 'jumpto'            => 'Gå til:',
@@ -774,7 +774,7 @@ Blokkeringa vart gjort av $1.
 Denne grunnen vart gjeven: ''$2''.
 
 * Blokkeringa byrja: $8
-* Blokkeringa utgår: $6
+* Blokkeringa endar: $6
 * Blokkeringa var meint for: $7
 
 Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. 
@@ -969,12 +969,15 @@ Det finst kanskje detaljar i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}
 'revdelete-text'                 => "Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.'''
 
 Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane. Ver venleg å stadfesta at du meiner å gjera dette, og at du skjønar fylgjene, og at du gjer dette i samsvar med [[{{MediaWiki:Policy-url}}|MediaWiki sine retningsliner]].",
+'revdelete-suppress-text'        => "Løyning av sideversjonar bør '''berre''' verta nytta i dei fylgjande tilfella:
+* Upassanda personleg informasjon
+*: ''heimeadresser og -telefonnummer,  personnummer, osb.''",
 'revdelete-legend'               => 'Vel avgrensing for synlegdom',
 'revdelete-hide-text'            => 'Gøym endringssamandraga',
 'revdelete-hide-name'            => 'Gøym handling og sidenamn',
 'revdelete-hide-comment'         => 'Gøym endringssamandraga',
 'revdelete-hide-user'            => 'Gøym brukarnamn/IP-adresse',
-'revdelete-hide-restricted'      => 'La desse avgrensingane gjelde for administratorar også, og steng dette grensesnittet',
+'revdelete-hide-restricted'      => 'Løyn data frå administratorar slik som med andre brukarar',
 'revdelete-suppress'             => 'Fjern informasjon frå administratorar også',
 'revdelete-hide-image'           => 'Skjul filinnhald',
 'revdelete-unsuppress'           => 'Fjern avgrensingane på dei attoppretta versjonane',
@@ -1394,7 +1397,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'recentchangestext'                 => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Fylg med på dei siste endringane på denne wikien med dette abonnementet.',
 'rcnote'                            => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} gjort {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, sidan $4, kl. $5.",
-'rcnotefrom'                        => "Nedanfor er endringane sidan  ''' $2''' (opp til '''$1''' er viste).",
+'rcnotefrom'                        => "Nedanfor vert opp til '''$1''' endringar sidan  ''' $2''' viste.",
 'rclistfrom'                        => 'Vis nye endringar sidan $1',
 'rcshowhideminor'                   => '$1 småplukk',
 'rcshowhidebots'                    => '$1 robotar',
@@ -1703,6 +1706,7 @@ Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'popularpages'            => 'Populære sider',
 'wantedcategories'        => 'Etterspurde kategoriar',
 'wantedpages'             => 'Etterspurde sider',
+'wantedpages-badtitle'    => 'Ugyldig tittel mellom resultata: $1',
 'wantedfiles'             => 'Etterspurde filer',
 'wantedtemplates'         => 'Etterspurde malar',
 'mostlinked'              => 'Sidene med flest lenkjer til seg',
@@ -1973,7 +1977,7 @@ Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'prot_1movedto2'              => '«[[$1]]» flytt til «[[$2]]»',
 'protect-legend'              => 'Stadfest vern',
 'protectcomment'              => 'Grunn til verning',
-'protectexpiry'               => 'Utgår:',
+'protectexpiry'               => 'Endar:',
 'protect_expiry_invalid'      => 'Utløpstida er ugyldig.',
 'protect_expiry_old'          => 'Utløpstida har allereie vore.',
 'protect-unchain'             => 'Tillat flytting',
@@ -1988,7 +1992,7 @@ Her er dei noverande innstillingane for sida '''$1''':",
 'protect-level-autoconfirmed' => 'Blokker nye og uregistrerte brukarar',
 'protect-level-sysop'         => 'Berre administratorar',
 'protect-summary-cascade'     => 'djupvern',
-'protect-expiring'            => 'utgår $1 (UTC)',
+'protect-expiring'            => 'endar $1 (UTC)',
 'protect-expiry-indefinite'   => 'ubestemt',
 'protect-cascade'             => 'Vern alle sidene som er inkludert på denne sida (djupvern)',
 'protect-cantedit'            => 'Du kan ikkje endre på nivået på vernet av denne sida, fordi du ikkje har tilgang til å endre henne.',
@@ -2003,7 +2007,7 @@ Her er dei noverande innstillingane for sida '''$1''':",
 ** Endringskrig
 ** Side med mange vitjande',
 'protect-edit-reasonlist'     => 'Endrar verneårsaker',
-'protect-expiry-options'      => '2 timar:2 hours,1 dag:1 day,3 dagar:3 days,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 time:1 hour,1 dag:1 day,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Tilgang:',
 'restriction-level'           => 'Avgrensingsnivå:',
 'minimum-size'                => 'Minimumstorleik',
@@ -2085,9 +2089,10 @@ $1',
 'year'                => 'År:',
 
 'sp-contributions-newbies'       => 'Vis berre bidrag frå nye brukarar',
-'sp-contributions-newbies-sub'   => 'For nybyrjarar',
+'sp-contributions-newbies-sub'   => 'Frå nye brukarkontoar',
 'sp-contributions-newbies-title' => 'Brukarbidrag av nye brukarar',
 'sp-contributions-blocklog'      => 'Blokkeringslogg',
+'sp-contributions-logs'          => 'loggar',
 'sp-contributions-search'        => 'Søk etter bidrag',
 'sp-contributions-username'      => 'IP-adresse eller brukarnamn:',
 'sp-contributions-submit'        => 'Søk',
@@ -2467,7 +2472,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonym brukar|Anonyme brukarar}} av {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-brukaren $1',
-'lastmodifiedatby' => 'Denne sida vart sist endra $2, $1 av $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Denne sida vart sist endra den $1 kl. $2 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|brukar|brukarar}} $1',
@@ -2966,7 +2971,7 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'watchlistedit-normal-title'   => 'Endre overvakingslista',
 'watchlistedit-normal-legend'  => 'Fjern sider frå overvakingslista',
 'watchlistedit-normal-explain' => 'Sidene på overvakingslista di er viste nedanfor.
-For å fjerne ei side, kryss av boksen ved sidan av sida du vil fjerne og klikk på «Fjern side».
+For å fjerne ei side, kryss av boksen ved sida av sida du vil fjerne og klikk på «Fjern side».
 Du kan òg [[Special:Watchlist/raw|endre overvakingslista i råformat]].',
 'watchlistedit-normal-submit'  => 'Fjern sider',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Éi side|$1 sider}} vart fjerna frå overvakingslista di:',

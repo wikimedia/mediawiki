@@ -927,12 +927,15 @@ Pode haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} re
 
 Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.
 Por favor confirme que deseja fazê-lo, que entende as consequências e que está fazendo isto de acordo com [[{{MediaWiki:Policy-url}}|a política]].",
+'revdelete-suppress-text'        => "A supressão deverá ser usada '''apenas''' para os seguintes casos:
+* Informação pessoal inapropriada
+*: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
 'revdelete-legend'               => 'Definir restrições de visualização',
 'revdelete-hide-text'            => 'Ocultar texto da edição',
 'revdelete-hide-name'            => 'Ocultar acção e alvo',
 'revdelete-hide-comment'         => 'Esconder comentário de edição',
 'revdelete-hide-user'            => 'Esconder nome de usuário/IP do editor',
-'revdelete-hide-restricted'      => 'Aplicar estas restrições a administradores e trancar esta interface',
+'revdelete-hide-restricted'      => 'Suprimir dados de administradores assim como de outros',
 'revdelete-suppress'             => 'Suprimir dados de administradores, bem como de outros',
 'revdelete-hide-image'           => 'Ocultar conteúdos do arquivo',
 'revdelete-unsuppress'           => 'Remover restrições das edições restauradas',
@@ -1659,6 +1662,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'popularpages'            => 'Páginas populares',
 'wantedcategories'        => 'Categorias pedidas',
 'wantedpages'             => 'Páginas pedidas',
+'wantedpages-badtitle'    => 'Título inválido no conjunto de resultados: $1',
 'wantedfiles'             => 'Arquivos pedidos',
 'wantedtemplates'         => 'Predefinições pedidas',
 'mostlinked'              => 'Páginas com mais afluentes',
@@ -1972,7 +1976,7 @@ Esta é a configuração atual para a página '''$1''':",
 ** Guerra de edições improdutiva
 ** Página bastante acessada",
 'protect-edit-reasonlist'     => 'Editar motivos de proteções',
-'protect-expiry-options'      => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 dia:1 day,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permissão:',
 'restriction-level'           => 'Nível de restrição:',
 'minimum-size'                => 'Tam. mínimo',
@@ -2058,6 +2062,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Para contas novas',
 'sp-contributions-newbies-title' => 'Contribuições de usuários de contas novas',
 'sp-contributions-blocklog'      => 'Registro de bloqueios',
+'sp-contributions-logs'          => 'registros',
 'sp-contributions-search'        => 'Pesquisar contribuições',
 'sp-contributions-username'      => 'Endereço de IP ou usuário:',
 'sp-contributions-submit'        => 'Pesquisar',

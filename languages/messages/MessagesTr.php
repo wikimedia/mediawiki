@@ -880,12 +880,15 @@ Konu ile alakalı diğer sayfaları bulmak için [[Special:Search|vikide arama y
 
 {{SITENAME}} sitesindeki diğer yöneticiler gizli içeriğe erişebilir ve ilave kısıtlamalar ayarlanmadıysa bu arayüz ile geri getirebilir.
 Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [[{{MediaWiki:Policy-url}}|ilkelere]] göre yapıyor olduğunuzu onaylayın.",
+'revdelete-suppress-text'        => "Saklama '''sadece''' aşağıdaki durumlar için kullanılmalıdır:
+* Uygunsuz kişisel bilgi
+*: ''ev adresleri ve telefon numaraları, sosyal güvenlik numaraları, vs.''",
 'revdelete-legend'               => 'Görünürlük kısıtlamaları ayarla',
 'revdelete-hide-text'            => 'Değişiklik yazısını gizle',
 'revdelete-hide-name'            => 'Olayı ve hedefi gizle',
 'revdelete-hide-comment'         => 'Özeti gösterme',
 'revdelete-hide-user'            => "Değişikliği yapan kullanıcı adını/IP'i gizle",
-'revdelete-hide-restricted'      => 'Bu kısıtlamaları yönetici ve kullanıcılara uygula ve de bu arayüzü kilitle.',
+'revdelete-hide-restricted'      => 'Verileri yöneticilerle birlikte diğerlerinden de sakla',
 'revdelete-suppress'             => 'Hem diğerlerinden hem de yöneticilerden veriyi gizle',
 'revdelete-hide-image'           => 'Dosya içeriğini gizle',
 'revdelete-unsuppress'           => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
@@ -2035,6 +2038,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Yeni kullanıcılar için',
 'sp-contributions-newbies-title' => 'Yeni hesaplar için kullanıcı katkıları',
 'sp-contributions-blocklog'      => 'Engel kaydı',
+'sp-contributions-logs'          => 'günlükler',
 'sp-contributions-search'        => 'Katkıları ara',
 'sp-contributions-username'      => 'IP veya kullanıcı:',
 'sp-contributions-submit'        => 'Ara',

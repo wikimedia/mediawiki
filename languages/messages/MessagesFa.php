@@ -1866,6 +1866,7 @@ $2',
 'popularpages'            => 'صفحه‌های محبوب',
 'wantedcategories'        => 'رده‌های مورد نیاز',
 'wantedpages'             => 'صفحه‌های مورد نیاز',
+'wantedpages-badtitle'    => 'عنوان غیر مجاز در مجموعهٔ نتایج: $1',
 'wantedfiles'             => 'پرونده‌های مورد نیاز',
 'wantedtemplates'         => 'الگوهای مورد نیاز',
 'mostlinked'              => 'صفحه‌هایی که بیشتر از همه به آنها پیوند شده است',
@@ -2186,7 +2187,7 @@ $NEWPAGE
 ** جنگ ویرایشی غیر سازنده
 ** صفحهٔ پر بازدید',
 'protect-edit-reasonlist'     => 'ویرایش دلایل محافظت',
-'protect-expiry-options'      => '۲ ساعت:2 hours,۱ روز:1 day,۳ روز:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '۱ ساعت:1 hour,۱ روز:1 day,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'دسترسی',
 'restriction-level'           => 'سطح محدودیت',
 'minimum-size'                => 'حداقل اندازه',

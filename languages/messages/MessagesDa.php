@@ -883,13 +883,16 @@ Det er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAME
 
 Andre administratorer på {{SITENAME}} vil fortsat være i stand til at se det skjulte indhold og kan gendanne det igen, medmindre der laves yderligere restriktioner.
 Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, og at du gør det i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].",
+'revdelete-suppress-text'        => "Skjulning bør '''kun''' bruges i de følgende tilfælde:
+* Upassende personlige oplysninger
+*: ''hjemadresser og -telefonnumre, CPR-numre og lign.''",
 'revdelete-legend'               => 'Fastlægge begrænsninger for versionerne:',
 'revdelete-hide-text'            => 'Skjul versionens tekst',
 'revdelete-hide-name'            => 'Skjul handling og mål',
 'revdelete-hide-comment'         => 'Skjul ændringskommentar',
 'revdelete-hide-user'            => 'Skjul brugerens brugernavn/IP',
-'revdelete-hide-restricted'      => 'Disse begrænsninger gælder også for administratorer',
-'revdelete-suppress'             => 'Skjul også årsagen til sletningen for administratorer',
+'revdelete-hide-restricted'      => 'Skjul også informationen for administratorer',
+'revdelete-suppress'             => 'Skjul også informationen for administratorer',
 'revdelete-hide-image'           => 'Skjul billedindhold',
 'revdelete-unsuppress'           => 'Ophæve begrænsninger for gendannede versioner',
 'revdelete-log'                  => 'Kommentar til loggen:',
@@ -1026,7 +1029,10 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'shown-title'                      => 'Vis $1 {{PLURAL:$1|resultat|resultater}} per side',
 'viewprevnext'                     => 'Vis ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Søgemuligheder',
+'searchmenu-exists'                => "'''Der er en side med navnet \"[[:\$1]]\" på denne wiki'''",
+'searchmenu-new'                   => "'''Opret siden \"[[:\$1]]\" på denne wiki'''",
 'searchhelp-url'                   => 'Help:Hjælp',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Vis alle sider som begynder med dette præfiks]]',
 'searchprofile-articles'           => 'Indholdssider',
 'searchprofile-articles-and-proj'  => 'Indholds- og projektsider',
 'searchprofile-project'            => 'Projektsider',
@@ -1059,6 +1065,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'showingresultstotal'              => "Viser resultat {{PLURAL:$4|'''$1''' af '''$3'''|'''$1 - $2''' af '''$3'''}} nedenfor",
 'nonefound'                        => "'''Bemærk''': Som standard søges der kun i bestemte navnerum.
 Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. diskussionssider, skabeloner osv.), eller brug det ønskede navnerum som præfiks.",
+'search-nonefound'                 => 'Søgningen gav ingen resultater.',
 'powersearch'                      => 'Søg',
 'powersearch-legend'               => 'Avanceret søgning',
 'powersearch-ns'                   => 'Søg i navnerummene:',
@@ -1298,7 +1305,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'recentchangestext'                 => "På denne side kan du følge de seneste ændringer på '''{{SITENAME}}'''.",
 'recentchanges-feed-description'    => 'Med dette feed kan du følge de seneste ændringer på {{SITENAME}}.',
 'rcnote'                            => "Herunder ses {{PLURAL:$1|'''1''' ændring|de sidste '''$1''' ændringer}} fra {{PLURAL:$2|i dag|de sidste '''$2''' dage}} fra den $4, kl. $5.",
-'rcnotefrom'                        => 'Nedenfor ses ændringerne fra <b>$2</b> til <b>$1</b> vist.',
+'rcnotefrom'                        => "Nedenfor er op til '''$1''' ændringer siden '''$2''' vist.",
 'rclistfrom'                        => 'Vis nye ændringer startende fra $1',
 'rcshowhideminor'                   => '$1 mindre ændringer',
 'rcshowhidebots'                    => '$1 robotter',
@@ -1478,6 +1485,7 @@ En [[Special:WhatLinksHere/$2|komplet liste]] er tilgængelig.',
 'noimage-linktext'          => 'lægge en op',
 'uploadnewversion-linktext' => 'Læg en ny version af denne fil op',
 'shared-repo-from'          => 'fra $1', # $1 is the repository name
+'shared-repo'               => 'et delt filarkiv', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Gendan $1',
@@ -1680,7 +1688,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Slettede brugerbidrag',
+'deletedcontributions'       => 'slettede brugerbidrag',
 'deletedcontributions-title' => 'Slettede brugerbidrag',
 
 # Special:LinkSearch
@@ -1941,6 +1949,7 @@ Teksten i de slettede versioner er kun tilgængelig for administratorer.',
 'undeletebtn'                  => 'Gendan',
 'undeletelink'                 => 'vis/gendan',
 'undeletereset'                => 'Afbryd',
+'undeleteinvert'               => 'Omvend valget af versioner',
 'undeletecomment'              => 'Begrundelse:',
 'undeletedarticle'             => 'gendannede "$1"',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|version|versioner}} gendannet',
@@ -1968,7 +1977,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Navnerum:',
-'invert'         => 'Inverter udvalg',
+'invert'         => 'Udeluk valgt navnerum',
 'blanknamespace' => '(Artikler)',
 
 # Contributions
@@ -1981,12 +1990,14 @@ $1',
 'month'               => 'Måned:',
 'year'                => 'År:',
 
-'sp-contributions-newbies'     => 'Vis kun bidrag fra nye brugere',
-'sp-contributions-newbies-sub' => 'For nybegyndere',
-'sp-contributions-blocklog'    => 'Blokeringslog',
-'sp-contributions-search'      => 'Søg efter bidrag',
-'sp-contributions-username'    => 'IP-adresse eller brugernavn:',
-'sp-contributions-submit'      => 'Søg',
+'sp-contributions-newbies'       => 'Vis kun bidrag fra nye brugere',
+'sp-contributions-newbies-sub'   => 'Fra nye kontoer',
+'sp-contributions-newbies-title' => 'Brugerbidrag fra nye kontoer',
+'sp-contributions-blocklog'      => 'blokeringslog',
+'sp-contributions-logs'          => 'loglister',
+'sp-contributions-search'        => 'Søg efter bidrag',
+'sp-contributions-username'      => 'IP-adresse eller brugernavn:',
+'sp-contributions-submit'        => 'Søg',
 
 # What links here
 'whatlinkshere'            => 'Hvad henviser hertil',
@@ -2040,15 +2051,18 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'ipbotherreason'                  => 'Anden/uddybende begrundelse',
 'ipbhidename'                     => 'Skjul brugernavn/IP-adresse i spærrelog, listen med aktive spærringer og brugerfortegnelsen.',
 'ipbwatchuser'                    => 'Overvåg denne brugers brugerside og diskussionsside.',
+'ipballowusertalk'                => 'Tillad brugeren at redigere sin egen diskussionsside under blokeringen',
+'ipb-change-block'                => 'Forny brugerens blokering med disse indstillinger',
 'badipaddress'                    => 'IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.',
 'blockipsuccesssub'               => 'Blokeringen er gennemført.',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] er blevet blokeret.<br />
 Se [[Special:IPBlockList|IP-blokeringslisten]] for alle blokeringer.',
 'ipb-edit-dropdown'               => 'Ændre spærreårsager',
-'ipb-unblock-addr'                => 'frigive „$1“',
+'ipb-unblock-addr'                => 'Ophæv blokeringen af "$1"',
 'ipb-unblock'                     => 'Frigive IP-adresse/bruger',
 'ipb-blocklist-addr'              => 'Aktuelle blokeringer af "$1"',
-'ipb-blocklist'                   => 'Vise alle aktuelle spærringer',
+'ipb-blocklist'                   => 'Vis alle blokeringer som er i kraft',
+'ipb-blocklist-contribs'          => 'Bidrag fra $1',
 'unblockip'                       => 'Ophæv blokering af bruger',
 'unblockiptext'                   => 'Brug formularen herunder for at gendanne skriveadgangen for en tidligere blokeret IP-adresse eller bruger.',
 'ipusubmit'                       => 'Ophæv blokeringen',
@@ -2068,6 +2082,7 @@ Se [[Special:IPBlockList|IP-blokeringslisten]] for alle blokeringer.',
 'noautoblockblock'                => 'Autoblok deaktiveret',
 'createaccountblock'              => 'Oprettelse af brugerkonti spærret',
 'emailblock'                      => 'e-mail blokeret',
+'blocklist-nousertalk'            => 'kan ikke redigere egen diskussionsside',
 'ipblocklist-empty'               => 'Blokeringslisten er tom.',
 'ipblocklist-no-results'          => 'Den angivene IP-addresse eller brugernavn er ikke blokeret.',
 'blocklink'                       => 'bloker',
@@ -2076,13 +2091,16 @@ Se [[Special:IPBlockList|IP-blokeringslisten]] for alle blokeringer.',
 'contribslink'                    => 'bidrag',
 'autoblocker'                     => 'Automatisk blokeret fordi du deler IP-adresse med "$1". Begrundelse "$2".',
 'blocklogpage'                    => 'Blokeringslog',
+'blocklog-fulllog'                => 'Komplet blokeringslog',
 'blocklogentry'                   => 'blokerede "[[$1]]" med en udløbstid på $2 $3',
+'reblock-logentry'                => 'ændrede blokeringsindstillinger for [[$1]] med en varighed $2 $3',
 'blocklogtext'                    => 'Dette er en liste med blokerede brugere og ophævede blokeringer af brugere. Automatisk blokerede IP-adresser er ikke anført her. Se [[Special:IPBlockList|blokeringslisten]] for den nuværende liste med blokerede brugere.',
 'unblocklogentry'                 => 'ophævede blokering af "$1"',
 'block-log-flags-anononly'        => 'kun anonyme',
 'block-log-flags-nocreate'        => 'Oprettelse af brugerkonti blokeret',
 'block-log-flags-noautoblock'     => 'Autoblok deaktiveret',
 'block-log-flags-noemail'         => 'e-mail blokeret',
+'block-log-flags-nousertalk'      => 'kan ikke redigere egen diskussionsside',
 'block-log-flags-angry-autoblock' => 'udvidet automatisk blokering slået tilenhanced autoblock enabled',
 'range_block_disabled'            => 'Sysop-muligheden for at oprette blokeringsklasser er slået fra.',
 'ipb_expiry_invalid'              => 'Udløbstiden er ugyldig.',
@@ -2227,8 +2245,9 @@ Datoen i den pågældende version og forfatterne ændres ikke.
 Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-loggen]].',
 'import-interwiki-source'    => 'Kildewiki/-side:',
 'import-interwiki-history'   => 'Importer alle versioner af denne side',
+'import-interwiki-templates' => 'Inkluder alle skabeloner',
 'import-interwiki-submit'    => 'Importer',
-'import-interwiki-namespace' => 'Importer  siderne i navnerummet:',
+'import-interwiki-namespace' => 'Importer til navnerum:',
 'import-upload-filename'     => 'Filnavn:',
 'import-comment'             => 'Kommentar:',
 'importtext'                 => "Eksportér filen fra kilde-wiki'en ved hjælp af værktøjet Special:Export, gem den på din harddisk og læg den op her.",
@@ -2419,6 +2438,9 @@ $1',
 'previousdiff' => '← Gå til forrige forskel',
 'nextdiff'     => 'Gå til næste forskel →',
 
+# Visual comparison
+'visual-comparison' => 'Visuel sammenligning',
+
 # Media information
 'mediawarning'         => "'''Advarsel''', denne filtype kan muligvis indeholde skadelig kode, du kan beskadige dit system hvis du udfører den.<hr />",
 'imagemaxsize'         => 'Begræns størrelsen af billeder på billedsiderne til:',
@@ -2541,7 +2563,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-cfapattern'                  => 'CFA-mønster',
 'exif-customrendered'              => 'Brugerdefineret billedbehandling',
 'exif-exposuremode'                => 'Belysningsmodus',
-'exif-whitebalance'                => 'Hvisafstemning',
+'exif-whitebalance'                => 'Hvidafstemning',
 'exif-digitalzoomratio'            => 'Digitalzoom',
 'exif-focallengthin35mmfilm'       => 'Brændvidde (småbilledækvivalent)',
 'exif-scenecapturetype'            => 'Optagelsestype',
@@ -2792,8 +2814,9 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'recreate'            => 'Opret igen',
 
 # action=purge
-'confirm_purge_button' => 'OK',
-'confirm-purge-top'    => 'Slette denne side fra serverens cache?',
+'confirm_purge_button' => 'O.k.',
+'confirm-purge-top'    => "Slet denne side fra serverens mellemlager (''cache'')?",
+'confirm-purge-bottom' => 'Rensning af en side sletter mellemlageret og fremtvinger den nyeste version.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← forrige side',
@@ -2859,7 +2882,7 @@ Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]].'
 # Special:Version
 'version'                          => 'Version', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Installerede udvidelser',
-'version-specialpages'             => 'Specielle sider',
+'version-specialpages'             => 'Specialsider',
 'version-parserhooks'              => 'Oversætter-funktioner',
 'version-variables'                => 'Variabler',
 'version-other'                    => 'Andet',
@@ -2919,6 +2942,15 @@ Angiv filnavnet uden "{{ns:file}}:"-præfikset.',
 # Special:BlankPage
 'blankpage'              => 'Blank side',
 'intentionallyblankpage' => 'Denne side er bevidst uden indhold.',
+
+# External image whitelist
+'external_image_whitelist' => " #Lad denne linje være som den er<pre>
+#Skriv dele af regulære uttryk (delen som er mellem //) nedenfor
+#Disse vil tjekkes mod URL'er for eksterne billeder
+#De som matcher, vil blive vist som billeder. Øvrige vil kun blive vist som henvisninger til billedet
+#Linjer som begynder med # behandles som kommentarer
+
+#Skriv alle delene af regulære udtryk over denne linje. Lad denne linje være som den er</pre>",
 
 # Special:Tags
 'tags-edit'     => 'Redigér',

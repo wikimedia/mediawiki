@@ -979,12 +979,15 @@ Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}
 
 Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti lukea piilotetun sisällön ja he voivat palauttaa sen tämän käyttöliittymän kautta, ellei sitä ole rajoitettu.
 Varmista, että haluat tehdä tämän, ymmärrät seuraukset ja teet tämän [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.",
+'revdelete-suppress-text'        => "Häivytystä pitäisi käyttää '''vain''' seuraavissa tapauksissa:
+* Sopimattomat henkilötiedot
+*: ''kotiosoitteet, puhelinnumerot, sosiaaliturvatunnukset ja muut.''",
 'revdelete-legend'               => 'Version rajoitukset',
 'revdelete-hide-text'            => 'Piilota version sisältö',
 'revdelete-hide-name'            => 'Piilota toiminto ja kohde',
 'revdelete-hide-comment'         => 'Piilota yhteenveto',
 'revdelete-hide-user'            => 'Piilota tekijän tunnus tai IP-osoite',
-'revdelete-hide-restricted'      => 'Käytä näitä rajoituksia myös ylläpitäjiin ja lukitse tämä käyttöliittymä',
+'revdelete-hide-restricted'      => 'Häivytä tiedot muiden lisäksi myös ylläpitäjiltä',
 'revdelete-suppress'             => 'Piilota myös ylläpitäjiltä',
 'revdelete-hide-image'           => 'Piilota tiedoston sisältö',
 'revdelete-unsuppress'           => 'Poista rajoitukset palautetuilta versiolta',
@@ -2072,6 +2075,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Uusien tulokkaiden muokkaukset',
 'sp-contributions-newbies-title' => 'Uusien tulokkaiden muokkaukset',
 'sp-contributions-blocklog'      => 'estot',
+'sp-contributions-logs'          => 'lokit',
 'sp-contributions-search'        => 'Etsi muokkauksia',
 'sp-contributions-username'      => 'IP-osoite tai käyttäjätunnus',
 'sp-contributions-submit'        => 'Hae',

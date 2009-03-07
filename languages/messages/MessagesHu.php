@@ -1037,7 +1037,7 @@ a tartalmat ugyanezen a felületen keresztül, ha nem adsz meg további korláto
 'revdelete-hide-comment'         => 'Megjegyzés módosításának elrejtése',
 'revdelete-hide-user'            => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
 'revdelete-hide-restricted'      => 'Alkalmazás adminisztrátorokra, valamint a felület lezárása',
-'revdelete-suppress'             => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elöl is',
+'revdelete-suppress'             => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
 'revdelete-hide-image'           => 'A fájl tartalomának elrejtése',
 'revdelete-unsuppress'           => 'Korlátozások eltávolítása a visszaállított változatokról',
 'revdelete-log'                  => 'Megjegyzés:',
@@ -2813,7 +2813,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-orientation-7' => 'Elforgatott 90° ÓSZ és függőlegesen tükrözött', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Elforgatott 90° ÓE', # 0th row: left; 0th column: bottom
 
-'exif-planarconfiguration-1' => 'sűrű formátum',
+'exif-planarconfiguration-1' => 'Egyben',
 'exif-planarconfiguration-2' => 'sík formátum',
 
 'exif-componentsconfiguration-0' => 'nem létezik',

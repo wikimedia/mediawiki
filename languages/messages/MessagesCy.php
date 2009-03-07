@@ -2258,11 +2258,11 @@ Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Defnyddiwr|Defnyddiwr|Defnyddwyr|Defnyddwyr|Defnyddwyr|Defnyddwyr}} anhysbys {{SITENAME}}',
-'siteuser'         => 'Defnyddiwr {{SITENAME}} $1',
-'lastmodifiedatby' => 'Newidiwyd y dudalen hon ddiwethaf $2, $1 gan $3', # $1 date, $2 time, $3 user
+'siteuser'         => 'y defnyddiwr {{SITENAME}} $1',
+'lastmodifiedatby' => 'Newidiwyd y dudalen hon ddiwethaf am $2, $1 gan $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Yn seiliedig ar waith gan $1.',
 'others'           => 'eraill',
-'siteusers'        => '{{PLURAL:$2|Defnyddiwr|Defnyddiwr|Defnyddwyr|Defnyddwyr|Defnyddwyr|Defnyddwyr}} {{SITENAME}} $1',
+'siteusers'        => 'y {{PLURAL:$2|defnyddiwr|defnyddiwr|defnyddwyr|defnyddwyr|defnyddwyr|defnyddwyr}} {{SITENAME}} $1',
 'creditspage'      => "Cydnabyddiaethau'r dudalen",
 'nocredits'        => "Does dim cydnabyddiaethau i'r dudalen hon.",
 

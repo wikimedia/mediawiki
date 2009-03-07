@@ -1012,15 +1012,18 @@ De achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page=
 
 Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen deur dit scharm te gebruken, behalven as der aandere beparkingen in-esteld bin.
 Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit doon in overeenstemming mit [[{{MediaWiki:Policy-url}}|'t beleid]] van disse wiki.",
+'revdelete-suppress-text'        => "Onderdrokken ma-j '''allinnig''' gebruken in de volgende gevallen:
+* Ongepassen persoonlijke infermasie
+*: ''adressen en tillefoonnummers, burgerservicenummers, en gao zo mar deur.''",
 'revdelete-legend'               => 'Stel versiebeparkingen in:',
 'revdelete-hide-text'            => 'Verbarg de bewarken tekse',
 'revdelete-hide-name'            => 'Verbarg logboekactie',
 'revdelete-hide-comment'         => 'Verbarg bewarkingssamenvatting',
 'revdelete-hide-user'            => 'Verbarg gebrukersnamen en IP-adressen van aandere luui.',
-'revdelete-hide-restricted'      => 'Pas disse beparkingen toe op beheerders en aandere gebrukers',
-'revdelete-suppress'             => 'Gegevens veur beheerders en aandere gebrukers onderdrokken',
+'revdelete-hide-restricted'      => 'Gegevens veur beheerders en aander volk onderdrokken',
+'revdelete-suppress'             => 'Gegevens veur beheerders en aander volk onderdrokken',
 'revdelete-hide-image'           => 'Verbarg bestansinhoud',
-'revdelete-unsuppress'           => 'Beparkingen op weerummezetten wiezigingen vortdoon',
+'revdelete-unsuppress'           => 'Beparkingen veur weerummezetten versies vortdoon',
 'revdelete-log'                  => 'Logopmarkingen:',
 'revdelete-submit'               => 'De esillecteren versie toepassen',
 'revdelete-logentry'             => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
@@ -1736,6 +1739,7 @@ Pagina's wonnen ezien as een deurverwiespagina, as de mal gebruuk wonnen dee ver
 'popularpages'            => 'Populaire artikels',
 'wantedcategories'        => 'Gewunste kattegerieën',
 'wantedpages'             => "Gewunste pagina's",
+'wantedpages-badtitle'    => 'Ongeldige paginanaam in risseltaot: $1',
 'wantedfiles'             => 'Gewunste bestanden',
 'wantedtemplates'         => 'Gewunste mallen',
 'mostlinked'              => "Pagina's waor 't meest naor verwezen wonnen",
@@ -2133,6 +2137,7 @@ $1",
 'sp-contributions-newbies-sub'   => 'Veur niejelingen',
 'sp-contributions-newbies-title' => 'Biedragen van nieje gebrukers',
 'sp-contributions-blocklog'      => 'Blokkeerlogboek',
+'sp-contributions-logs'          => 'logboeken',
 'sp-contributions-search'        => 'Zeuken naor biedragen',
 'sp-contributions-username'      => 'IP-adres of gebrukersnaam:',
 'sp-contributions-submit'        => 'Zeuk',
@@ -2599,7 +2604,8 @@ $1",
 # Bad image list
 'bad_image_list' => "De opmaak is as volg:
 
-Allinnig regels in een lieste (regels dee beginnen mit *) wonnen verwark. De eerste verwiezing op een regel mut een verwiezing ween naor een ongewunste ofbeelding.
+Allinnig regels in een lieste (regels dee beginnen mit *) wonnen verwark. 
+De eerste verwiezing op een regel mut een verwiezing ween naor een ongewunste ofbeelding.
 Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uutzundering, zoas pagina's waorop de ofbeelding in te tekse op-eneumen is.",
 
 # Metadata

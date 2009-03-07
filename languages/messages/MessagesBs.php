@@ -1777,6 +1777,7 @@ Stranica se smatra čvorom, ukoliko koristi šablon koji je povezan sa spiskom [
 'popularpages'            => 'Popularne stranice',
 'wantedcategories'        => 'Tražene kategorije',
 'wantedpages'             => 'Tražene stranice',
+'wantedpages-badtitle'    => 'Nevaljan naslov u setu rezultata: $1',
 'wantedfiles'             => 'Tražene datoteke',
 'wantedtemplates'         => 'Potrebni šabloni',
 'mostlinked'              => 'Članci sa najviše linkova',
@@ -2108,7 +2109,7 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 # Restrictions (nouns)
 'restriction-edit'   => 'Uredi',
 'restriction-move'   => 'Premještanje',
-'restriction-create' => 'Napraviti',
+'restriction-create' => 'Napravi',
 'restriction-upload' => 'Postavljanje',
 
 # Restriction levels

@@ -861,12 +861,15 @@ Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAM
 
 Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hyšći pśistup na schowane wopśimjeśe měś a mógu jo pśez samki interfejs wótnowiś,  snaźkuli su pśidatne wobgranicowanja.
 Pšosym wobkšuś, až coš to cyniś, až rozmějoš slědy a až cyniš to wótpowědujucy [[{{MediaWiki:Policy-url}}|zasadam]].",
+'revdelete-suppress-text'        => "Pódtłocenje by se dejał '''jano''' za slědujuce pady wužywaś:
+* Njegóźece se wósobinske informacije
+*: ''bydleńske adrese a telefonowe numery, numery socialnego zawěsćenja atd.''",
 'revdelete-legend'               => 'wobgranicowanja widobnosći póstajiś',
 'revdelete-hide-text'            => 'Tekst wersije schowaś',
 'revdelete-hide-name'            => 'Akciju log-lisćiny schowaś',
 'revdelete-hide-comment'         => 'Komentar wobźěłanja schowaś',
 'revdelete-hide-user'            => 'mě/IP-adresu wobźěłarja schowaś',
-'revdelete-hide-restricted'      => 'Toś te restrikcije na administratorow nałožyś a toś ten pówjerch zastajiś',
+'revdelete-hide-restricted'      => 'Daty wót administratorow ako teke te drugich wužywarjow pódtłocyś',
 'revdelete-suppress'             => 'Pśicynu wulašowanja teke za administratorow schowaś',
 'revdelete-hide-image'           => 'Wopśimjeśe dataje schowaś',
 'revdelete-unsuppress'           => 'Wobgranicowanja za wótnowjone wersije zasej zwignuś.',
@@ -1980,6 +1983,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Za nowackow',
 'sp-contributions-newbies-title' => 'Wužywarske pśinoski nowych kontow',
 'sp-contributions-blocklog'      => 'Log-lisćina blokěrowanjow',
+'sp-contributions-logs'          => 'protokole',
 'sp-contributions-search'        => 'Pśinoski pytaś',
 'sp-contributions-username'      => 'IP-adresa abo wužywarske mě:',
 'sp-contributions-submit'        => 'Pytaś',

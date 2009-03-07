@@ -158,7 +158,10 @@ $messages = array(
 'tog-enotifwatchlistpages' => 'هر کله چې زما په کتلي لړليک کې يو مخ بدلون مومي نو ما ته دې برېښليک راشي.',
 'tog-enotifusertalkpages'  => 'کله چې زما د خبرو اترو په مخ کې بدلون پېښېږي نو ما ته دې يو برېښليک ولېږلی شي.',
 'tog-enotifminoredits'     => 'که په مخونو کې وړې سمادېدنې هم کېږي نو ماته دې برېښليک ولېږل شي.',
+'tog-watchlisthideown'     => 'له کتنلړليک نه زما سمونې پټول',
+'tog-watchlisthideminor'   => 'په کتنلړليک کې وړې سمونې پټول',
 'tog-ccmeonemails'         => 'هغه برېښليکونه چې زه يې نورو ته لېږم، د هغو يوه کاپي دې ماته هم راشي',
+'tog-diffonly'             => 'د توپيرونو نه لاندې د مخ مېنځپانګه پټول',
 'tog-showhiddencats'       => 'پټې وېشنيزې ښکاره کول',
 
 'underline-always' => 'تل',
@@ -502,6 +505,7 @@ $messages = array(
 'resetpass_forbidden'       => 'پټنومونه مو نه شي بدلېدلای',
 'resetpass-submit-loggedin' => 'پټنوم بدلول',
 'resetpass-temp-password'   => 'لنډمهالی پټنوم:',
+'resetpass-logentry'        => 'د $1 لپاره پټنوم بدل شو',
 
 # Edit page toolbar
 'bold_sample'     => 'روڼ ليک',
@@ -1162,6 +1166,7 @@ $messages = array(
 'nolinkshere'             => "د '''[[:$1]]''' سره هېڅ يو مخ هم تړنې نه لري .",
 'isredirect'              => 'ورګرځېدلی مخ',
 'istemplate'              => 'ورګډېدنه',
+'isimage'                 => 'د انځور تړنه',
 'whatlinkshere-prev'      => '{{PLURAL:$1|پخوانی|پخواني $1}}',
 'whatlinkshere-next'      => '{{PLURAL:$1|راتلونکی|راتلونکي $1}}',
 'whatlinkshere-links'     => '← تړنې',

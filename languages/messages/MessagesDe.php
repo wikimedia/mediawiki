@@ -1064,12 +1064,15 @@ Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-
 
 Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt und können ihn mit der gleichen Seite wiederherstellen, sofern nicht zusätzliche Einschränkungen bestehen.
 Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tust.",
+'revdelete-suppress-text'        => "Unterdrückungen sollten '''nur''' in den folgenden Fällen vorgenommen werden:
+* Unangebrachte persönliche Informationen
+*: ''Adressen, Telefonnummern, Sozialversicherungsnummern etc.''",
 'revdelete-legend'               => 'Setzen der Sichtbarkeits-Einschränkungen',
 'revdelete-hide-text'            => 'Text der Version verstecken',
 'revdelete-hide-name'            => 'Logbuch-Aktion verstecken',
 'revdelete-hide-comment'         => 'Bearbeitungskommentar verstecken',
 'revdelete-hide-user'            => 'Benutzername/die IP des Bearbeiters verstecken',
-'revdelete-hide-restricted'      => 'Diese Einschränkungen gelten auch für Administratoren und dieses Formular wird gesperrt',
+'revdelete-hide-restricted'      => 'Daten auch vor Administratoren und anderen unterdrücken',
 'revdelete-suppress'             => 'Grund der Löschung auch vor Administratoren verstecken',
 'revdelete-hide-image'           => 'Bildinhalt verstecken',
 'revdelete-unsuppress'           => 'Einschränkungen für wiederhergestellte Versionen aufheben',
@@ -2202,6 +2205,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Für Neulinge',
 'sp-contributions-newbies-title' => 'Benutzerbeiträge von neuen Benutzern',
 'sp-contributions-blocklog'      => 'Sperr-Logbuch',
+'sp-contributions-logs'          => 'Logbücher',
 'sp-contributions-search'        => 'Suche nach Benutzerbeiträgen',
 'sp-contributions-username'      => 'IP-Adresse oder Benutzername:',
 'sp-contributions-submit'        => 'Suchen',

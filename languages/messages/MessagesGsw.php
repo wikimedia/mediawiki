@@ -856,12 +856,15 @@ Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 
 
 Anderi Ammanne uf {{SITENAME}} hän alno Zuegriff uf dr versteckt Inhalt un chenne ne mit dr glyche Syte widerhärstelle, wänn s keini zuesätzlige Yyschränkige git.
 Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass des mit dr [[{{MediaWiki:Policy-url}}|Richtlinie]] ibereinstimmt.",
+'revdelete-suppress-text'        => "Unterdruckige sotte '''nume''' in däne Fäll bruucht wäre:
+* Nit aabrochti Informatione
+*: ''Adrässe, Telifonnummere, Sozialversicherigsnummere usw.''",
 'revdelete-legend'               => 'Setze vu dr Sichtbarkeits-Yyschränkige',
 'revdelete-hide-text'            => 'Täxt vu dr Version versteckle',
 'revdelete-hide-name'            => 'Logbuech-Aktion versteckle',
 'revdelete-hide-comment'         => 'Bearbeitigskommentar versteckle',
 'revdelete-hide-user'            => 'Benutzername/d IP vum Bearbeiter versteckle',
-'revdelete-hide-restricted'      => 'Die Yyschränkige gälte au fir Ammanne un des Formular wird gsperrt',
+'revdelete-hide-restricted'      => 'Date vu Ammanne glyych unterdrucke wie vu andere',
 'revdelete-suppress'             => 'Grund vu dr Leschig au vor dr Ammanne versteckle',
 'revdelete-hide-image'           => 'Bildinhalt versteckle',
 'revdelete-unsuppress'           => 'Yyhscränkige fir di widerhergstellte Versione ufhebe',
@@ -1576,6 +1579,7 @@ In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Zii
 'popularpages'            => 'Beliebti Artikel',
 'wantedcategories'        => 'Bruuchti Kategorie, wo s no nid git',
 'wantedpages'             => 'Artikel, wo fähle',
+'wantedpages-badtitle'    => 'Nit giltige Titel im Ergebnis: $1',
 'wantedfiles'             => 'Dateie, wu fähle',
 'wantedtemplates'         => 'Vorlage, wu fähle',
 'mostlinked'              => 'Syte, wo am meischte vergleicht sin',
@@ -1966,6 +1970,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'vo nöji Benützer',
 'sp-contributions-newbies-title' => 'Benutzerbyytreg vu neije Benutzer',
 'sp-contributions-blocklog'      => 'Sperrlogbuech',
+'sp-contributions-logs'          => 'Logbiecher',
 'sp-contributions-search'        => 'Suech no Benutzerbiträg',
 'sp-contributions-username'      => 'IP-Adress oder Benutzername:',
 'sp-contributions-submit'        => 'Sueche',
