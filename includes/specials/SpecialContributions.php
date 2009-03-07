@@ -164,7 +164,7 @@ class SpecialContributions extends SpecialPage {
 					wfMsgHtml( 'sp-contributions-blocklog' ), 'type=block&page=' . $nt->getPrefixedUrl() );
 			}
 			# Other logs link
-			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'log' ), 
+			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsg( 'sp-contributions-logs' ), 
 				'user=' . $nt->getPartialUrl()	);
 
 			# Add link to deleted user contributions for priviledged users
