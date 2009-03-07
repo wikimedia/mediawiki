@@ -345,7 +345,7 @@
 	'yi' => 'ייִדיש',	# Yiddish
 	'yo' => 'Yorùbá',	# Yoruba
 	'yue' => '粵語', 	# Cantonese -- (bug 8217) yue instead of zh-yue, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=y
-	'za' => '(Cuengh)',		# Zhuang
+	'za' => 'Sawcuengh',	# Zhuang
 	'zea' => 'Zeêuws',	# Zeeuws/Zeaws
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
 	'zh-classical' => '文言',			# Classical Chinese/Literary Chinese -- (see bug 8217)
