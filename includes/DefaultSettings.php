@@ -3759,3 +3759,9 @@ $wgPreprocessorCacheThreshold = 1000;
  * Has no effect if no tags are defined in valid_tag.
  */
 $wgUseTagFilter = true;
+
+/**
+ * Allow redirection to another page when a user logs in.
+ * To enable, set to a string like 'Main Page'
+ */
+$wgRedirectOnLogin = null;

@@ -45,7 +45,7 @@ class LoginForm {
 	 */
 	function LoginForm( &$request, $par = '' ) {
 		global $wgLang, $wgAllowRealName, $wgEnableEmail;
-		global $wgAuth;
+		global $wgAuth, $wgRedirectOnLogin;
 
 		$this->mType = ( $par == 'signup' ) ? $par : $request->getText( 'type' ); # Check for [[Special:Userlogin/signup]]
 		$this->mName = $request->getText( 'wpName' );
@@ -65,6 +65,10 @@ class LoginForm {
 		$this->mRemember = $request->getCheck( 'wpRemember' );
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
+
+		if ( $wgRedirectOnLogin ) {
+			$this->mReturnTo = $wgRedirectOnLogin;
+		}
 
 		if( $wgEnableEmail ) {
 			$this->mEmail = $request->getText( 'wpEmail' );
