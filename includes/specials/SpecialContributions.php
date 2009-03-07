@@ -165,14 +165,23 @@ class SpecialContributions extends SpecialPage {
 			}
 			# Other logs link
 			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsg( 'sp-contributions-logs' ), 
-				'user=' . $nt->getPartialUrl()	);
+				'user=' . $nt->getPartialUrl() );
 
 			# Add link to deleted user contributions for priviledged users
 			if( $wgUser->isAllowed( 'deletedhistory' ) ) {
-					$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'DeletedContributions', 
+				$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'DeletedContributions', 
 					$nt->getDBkey() ), wfMsgHtml( 'deletedcontributions' ) );
 			}
-	
+
+			# Add a link to change user rights for privileged users
+			$userrightsPage = new UserrightsPage();
+			if( 0 !== $id && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
+				$tools[] = $sk->makeKnownLinkObj(
+					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
+					wfMsgHtml( 'userrights' )
+				);
+			}
+
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 	
 			$links = $wgLang->pipeList( $tools );
