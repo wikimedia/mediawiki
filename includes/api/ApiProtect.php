@@ -59,7 +59,7 @@ class ApiProtect extends ApiBase {
 		$errors = $titleObj->getUserPermissionsErrors('protect', $wgUser);
 		if(!empty($errors))
 			// We don't care about multiple errors, just report one of them
-			$this->dieUsageMsg(current($errors));
+			$this->dieUsageMsg(reset($errors));
 
 		if(in_array($params['expiry'], array('infinite', 'indefinite', 'never')))
 			$expiry = Block::infinity();

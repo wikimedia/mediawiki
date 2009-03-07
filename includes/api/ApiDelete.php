@@ -69,14 +69,14 @@ class ApiDelete extends ApiBase {
 			$retval = self::deletefile($params['token'], $titleObj, $params['oldimage'], $reason, false);
 			if(!empty($retval))
 				// We don't care about multiple errors, just report one of them
-				$this->dieUsageMsg(current($retval));
+				$this->dieUsageMsg(reset($retval));
 		} else {
 			$articleObj = new Article($titleObj);
 			$retval = self::delete($articleObj, $params['token'], $reason);
 			
 			if(!empty($retval))
 				// We don't care about multiple errors, just report one of them
-				$this->dieUsageMsg(current($retval));
+				$this->dieUsageMsg(reset($retval));
 			
 			if($params['watch'] || $wgUser->getOption('watchdeletion'))
 				$articleObj->doWatch();
