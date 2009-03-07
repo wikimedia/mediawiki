@@ -68,7 +68,7 @@ class ApiRollback extends ApiBase {
 
 		if($retval)
 			// We don't care about multiple errors, just report one of them
-			$this->dieUsageMsg(current($retval));
+			$this->dieUsageMsg(reset($retval));
 
 		$info = array(
 			'title' => $titleObj->getPrefixedText(),
