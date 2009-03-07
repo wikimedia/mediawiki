@@ -72,7 +72,7 @@ class ApiDelete extends ApiBase {
 		
 		if(!empty($retval))
 			// We don't care about multiple errors, just report one of them
-			$this->dieUsageMsg(current($retval));
+			$this->dieUsageMsg(reset($retval));
 
 		$dbw->commit();
 		$r = array('title' => $titleObj->getPrefixedText(), 'reason' => $reason);

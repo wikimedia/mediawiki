@@ -211,7 +211,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			} else {  // This case is obsolete. Will support this for a while
 				if ($count !== 1)
 					$this->dieUsage("The {$this->getModuleName()} query requires one title to start", 'bad_title_count');
-				$this->rootTitle = current($pageSet->getTitles()); // only one title there
+				$this->rootTitle = reset($pageSet->getTitles()); // only one title there
 				$this->setWarning('Using titles parameter is obsolete for this list. Use ' . $this->encodeParamName('title') . ' instead.');
 			}
 		}

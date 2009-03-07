@@ -77,7 +77,7 @@ class ApiMove extends ApiBase {
 					$toTitle->getUserPermissionsErrors('edit', $wgUser));
 		if(!empty($errors))
 			// We don't care about multiple errors, just report one of them
-			$this->dieUsageMsg(current($errors));
+			$this->dieUsageMsg(reset($errors));
 
 		$dbw = wfGetDB(DB_MASTER);
 		$dbw->begin();		
