@@ -263,8 +263,11 @@ class RevisionDeleteForm {
 		}
 		
 		$wgOut->addHTML( "</ul>" );
-
+		// Explanation text
 		$wgOut->addWikiMsg( 'revdelete-text' );
+		if( $wgUser->isAllowed( 'hiderevision' ) ) {
+			$wgOut->addWikiMsg( 'revdelete-suppress-text' );
+		}
 
 		// Normal sysops can always see what they did, but can't always change it
 		if( !$UserAllowed ) return;
@@ -292,11 +295,8 @@ class RevisionDeleteForm {
 			Xml::openElement( 'fieldset' ) .
 			xml::element( 'legend', null,  wfMsg( 'revdelete-legend' ) )
 		);
-		// FIXME: all items checked for just one rev are checked, even if not set for the others
-		foreach( $this->checks as $item ) {
-			list( $message, $name, $field ) = $item;
-			$wgOut->addHTML( Xml::tags( 'div', null, Xml::checkLabel( wfMsg( $message ), $name, $name, $bitfields & $field ) ) );
-		}
+
+		$wgOut->addHTML( $this->buildCheckBoxes( $bitfields ) );
 		foreach( $items as $item ) {
 			$wgOut->addHTML( Xml::tags( 'p', null, $item ) );
 		}
@@ -307,7 +307,23 @@ class RevisionDeleteForm {
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
-
+	}
+	
+	/**
+	* @param int $bitfields, aggregate bitfield of all the bitfields
+	* @returns string HTML
+	*/
+	private function buildCheckBoxes( $bitfields ) {
+		$html = '';
+		// FIXME: all items checked for just one rev are checked, even if not set for the others
+		foreach( $this->checks as $item ) {
+			list( $message, $name, $field ) = $item;
+			$line = Xml::tags( 'div', null, Xml::checkLabel( wfMsg($message), $name, $name,
+				$bitfields & $field ) );
+			if( $field == Revision::DELETED_RESTRICTED ) $line = "<b>$line</b>";
+			$html .= $line;
+		}
+		return $html;
 	}
 
 	/**
@@ -402,9 +418,12 @@ class RevisionDeleteForm {
 		}
 		
 		$wgOut->addHTML( "</ul>" );
-
+		// Explanation text
 		$wgOut->addWikiMsg('revdelete-text' );
-		//Normal sysops can always see what they did, but can't always change it
+		if( $wgUser->isAllowed( 'hiderevision' ) ) {
+			$wgOut->addWikiMsg( 'revdelete-suppress-text' );
+		}
+		// Normal sysops can always see what they did, but can't always change it
 		if( !$UserAllowed ) return;
 
 		$items = array(
@@ -429,11 +448,8 @@ class RevisionDeleteForm {
 				'id' => 'mw-revdel-form-filerevisions' ) ) .
 			Xml::fieldset( wfMsg( 'revdelete-legend' ) )
 		);
-		// FIXME: all items checked for just one file are checked, even if not set for the others
-		foreach( $this->checks as $item ) {
-			list( $message, $name, $field ) = $item;
-			$wgOut->addHTML( Xml::tags( 'div', null, Xml::checkLabel( wfMsg( $message ), $name, $name, $bitfields & $field ) ) );
-		}
+
+		$wgOut->addHTML( $this->buildCheckBoxes( $bitfields ) );
 		foreach( $items as $item ) {
 			$wgOut->addHTML( "<p>$item</p>" );
 		}
@@ -498,8 +514,11 @@ class RevisionDeleteForm {
 		}
 		
 		$wgOut->addHTML( "</ul>" );
-
+		// Explanation text
 		$wgOut->addWikiMsg( 'revdelete-text' );
+		if( $wgUser->isAllowed( 'hiderevision' ) ) {
+			$wgOut->addWikiMsg( 'revdelete-suppress-text' );
+		}
 		// Normal sysops can always see what they did, but can't always change it
 		if( !$UserAllowed ) return;
 
@@ -520,11 +539,8 @@ class RevisionDeleteForm {
 				'id' => 'mw-revdel-form-logs' ) ) .
 			Xml::fieldset( wfMsg( 'revdelete-legend' ) )
 		);
-		// FIXME: all items checked for just on event are checked, even if not set for the others
-		foreach( $this->checks as $item ) {
-			list( $message, $name, $field ) = $item;
-			$wgOut->addHTML( Xml::tags( 'div', null, Xml::checkLabel( wfMsg( $message ), $name, $name, $bitfields & $field ) ) );
-		}
+		
+		$wgOut->addHTML( $this->buildCheckBoxes( $bitfields ) );
 		foreach( $items as $item ) {
 			$wgOut->addHTML( "<p>$item</p>" );
 		}
