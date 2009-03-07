@@ -2450,6 +2450,12 @@ class Parser
 				$this->mOutput->setFlag( 'vary-revision' );
 				wfDebug( __METHOD__ . ": {{REVISIONTIMESTAMP}} used, setting vary-revision...\n" );
 				return $this->getRevisionTimestamp();
+			case 'revisionuser':
+                                // Let the edit saving system know we should parse the page
+                                // *after* a revision ID has been assigned. This is for null edits.
+				$this->mOutput->setFlag( 'vary-revision' );
+				wfDebug( __METHOD__ . ": {{REVISIONUSER}} used, setting vary-revision...\n" );
+				return $this->getRevisionUser();
 			case 'namespace':
 				return str_replace('_',' ',$wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 			case 'namespacee':
@@ -4623,6 +4629,23 @@ class Parser
 			wfProfileOut( __METHOD__ );
 		}
 		return $this->mRevisionTimestamp;
+	}
+
+	/**
+	 * Get the name of the user that edited the last revision
+	 */
+	function getRevisionUser() {
+		// if this template is subst: the revision id will be blank,
+		// so just use the current user's name
+		if( $this->mRevisionId ) {
+	                $dbr = wfGetDB( DB_SLAVE );
+	                $revuser = $dbr->selectField( 'revision', 'rev_user_text',
+ 				array( 'rev_id' => $this->mRevisionId ), __METHOD__ );
+		} else {
+			global $wgUser;
+			$revuser = $wgUser->getName();
+		}
+		return $revuser;
 	}
 
 	/**

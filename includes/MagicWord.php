@@ -78,6 +78,7 @@ class MagicWord {
 		'revisionmonth',
 		'revisionyear',
 		'revisiontimestamp',
+		'revisionuser',
 		'subpagename',
 		'subpagenamee',
 		'displaytitle',

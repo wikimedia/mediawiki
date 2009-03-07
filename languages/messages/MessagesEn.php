@@ -300,6 +300,7 @@ $magicWords = array(
 	'revisionmonth'          => array( 1,    'REVISIONMONTH'          ),
 	'revisionyear'           => array( 1,    'REVISIONYEAR'           ),
 	'revisiontimestamp'      => array( 1,    'REVISIONTIMESTAMP'      ),
+	'revisionuser'           => array( 1,    'REVISIONUSER'           ),
 	'plural'                 => array( 0,    'PLURAL:'                ),
 	'fullurl'                => array( 0,    'FULLURL:'               ),
 	'fullurle'               => array( 0,    'FULLURLE:'              ),

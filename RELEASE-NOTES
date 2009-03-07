@@ -132,6 +132,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17844) Redirect users to a specific page when they log in, see 
   $wgRedirectOnLogin
 * Added a link to Special:UserRights on Special:Contributions for privileged users
+* (bug 10336) Added new magic word {{REVISIONUSER}}, which displays the user
+  name of the last user to edit the page
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
