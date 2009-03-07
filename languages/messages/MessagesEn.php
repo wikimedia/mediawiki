@@ -1315,12 +1315,15 @@ function, the specified revision does not exist, or you are attempting to hide t
 Other administrators on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.
 
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].",
+'revdelete-suppress-text'        => 'Suppression should \'\'\'only\'\'\' be used for the following cases:
+* Inappropriate personal information
+*: \'\'home addresses and telephone numbers, social security numbers, etc\'\'',
 'revdelete-legend'               => 'Set visibility restrictions',
 'revdelete-hide-text'            => 'Hide revision text',
 'revdelete-hide-name'            => 'Hide action and target',
 'revdelete-hide-comment'         => 'Hide edit comment',
 'revdelete-hide-user'            => "Hide editor's username/IP",
-'revdelete-hide-restricted'      => 'Apply these restrictions to administrators and lock this interface',
+'revdelete-hide-restricted'      => 'Suppress data from administrators as well as others',
 'revdelete-suppress'             => 'Suppress data from administrators as well as others',
 'revdelete-hide-image'           => 'Hide file content',
 'revdelete-unsuppress'           => 'Remove restrictions on restored revisions',
