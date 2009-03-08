@@ -199,7 +199,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Περί {{SITENAME}}',
 'aboutpage'            => 'Project:Σχετικά',
-'copyright'            => 'Το περιεχόμενον εν άμον ντο λεει το $1.',
+'copyright'            => 'Το περιεχόμενον εν άμον ντο λεει η $1.',
 'copyrightpagename'    => '{{SITENAME}} δικαιώματα πνευματί',
 'copyrightpage'        => '{{ns:project}}:Δικαιώματα Πνευματί',
 'currentevents'        => 'Ατωριζνά γεγονότα',
@@ -337,6 +337,7 @@ $messages = array(
 'prefs-help-realname'        => "'Κ επρέπ' να βάλετεν το τεσέτερον το πραματικόν τ' όνεμαν.
 Άμα αν εβάλετεν ατό, αμπορεί πα ν' αναγνωρίζκεται το τεσέτερον η δουλείαν.",
 'loginerror'                 => 'Σφάλμα εγγραφής',
+'prefs-help-email-required'  => 'Χρειάσκεται το ηλεκτρονικόν η διεύθυνση.',
 'noname'                     => "'Κ έβαλατε καλόν όνεμαν χρήστονος.",
 'loginsuccesstitle'          => "Έντον τ' εσέβεμαν",
 'loginsuccess'               => "'''Εσήβετεν σο {{SITENAME}} με τ'όνεμαν \"\$1\".'''",
@@ -889,7 +890,7 @@ $messages = array(
 'protect-expiring'            => 'λήγει στις $1 (UTC)',
 'protect-cascade'             => "Ασπάλιγμαν σελιδίων ντ' είν απές σ' αβούτεν σελίδαν (διαδοχικόν προστασίαν)",
 'protect-cantedit'            => "'Κι έχετε δικαίωμαν ν' αλλάζετε τ' επίπεδον ασπάλιγματι τ' ατεινές σελίδας.",
-'protect-expiry-options'      => '2 ώρας:2 hours,1 ημέρα:1 day,3 ημέρας:3 days,1 εβδομάδα:1 week,2 εβδομάδας:2 weeks,1 μήνα:1 month,3 μήνας:3 months,6 μήνας:6 months,1 χρόνο:1 year,αόριστα:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 ώραν:2 hour,1 ημέραν:1 day,1 εβδομάδαν:1 week,2 εβδομάδας:2 weeks,1 μήναν:1 month,3 μήνας:3 months,6 μήνας:6 months,1 χρόνον:1 year,αόριστα:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Δικαίωμαν:',
 'restriction-level'           => 'Επίπεδον περιορισμού:',
 

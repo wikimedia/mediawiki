@@ -5,6 +5,7 @@
  * @file
  *
  * @author Amikeco
+ * @author HalanTul
  * @author לערי ריינהארט
  */
 
@@ -134,6 +135,7 @@ $messages = array(
 'about'          => 'Афыст',
 'article'        => 'Статья',
 'newwindow'      => '(ног рудзынджы)',
+'cancel'         => 'Фæстæмæ',
 'qbfind'         => 'Агур',
 'qbbrowse'       => 'Фен',
 'qbedit'         => 'Баив æй',
@@ -333,6 +335,7 @@ $messages = array(
 'watchthis'          => 'Ацы фарсмæ дæ цæст æрдар',
 'savearticle'        => 'Афтæ уæд!',
 'showpreview'        => 'Фен уал æй',
+'showlivepreview'    => 'Тагъд разæркаст',
 'showdiff'           => 'Цы баивтай ацы тексты, уый фен',
 'blockednoreason'    => 'аххос амынд не ’рцыд',
 'newarticle'         => '(Ног)',
@@ -349,6 +352,7 @@ $messages = array(
 
 # History pages
 'currentrev'          => 'Нырыккон верси',
+'previousrevision'    => '← Раздæры',
 'currentrevisionlink' => 'Нырыккон верси',
 'cur'                 => 'ныр.',
 'last'                => 'раздæры',
@@ -370,7 +374,9 @@ $messages = array(
 'revdelete-uname'   => 'архайæджы ном',
 
 # Diffs
-'lineno' => 'Рæнхъ $1:',
+'lineno'      => 'Рæнхъ $1:',
+'diff-width'  => 'уæрх',
+'diff-height' => 'бæрзæнд',
 
 # Search results
 'searchresults'            => 'Цы ссардæуы',
@@ -409,7 +415,7 @@ $messages = array(
 
 'group-user-member'       => 'архайæг',
 'group-bot-member'        => 'робот',
-'group-sysop-member'      => 'админ',
+'group-sysop-member'      => 'дьаһабыл',
 'group-bureaucrat-member' => 'бюрократ',
 
 'grouppage-user'       => '{{ns:project}}:Архайджытæ',
@@ -661,6 +667,7 @@ $3',
 'tooltip-ca-protect'       => 'Ацы фарс ивддзинæдтæй сæхгæн',
 'tooltip-ca-delete'        => 'Аппар ацы фарс',
 'tooltip-ca-watch'         => 'Дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъдмæ бафтау',
+'tooltip-search-fulltext'  => 'Ацы текст цы фæрсты и, уыдон бацагур',
 'tooltip-n-mainpage'       => 'Сæйраг фарсмæ рацу',
 'tooltip-n-portal'         => 'Проекты тыххæй æмæ, дæу цы бон у, уый тыххæй дæр',
 'tooltip-n-recentchanges'  => 'Чи æмæ цавæр статьяты баивта',
@@ -705,7 +712,9 @@ $3',
 'metadata-expand' => 'Фылдæр детальтæ равдис',
 
 # EXIF tags
-'exif-artist' => 'Чи йæ систа',
+'exif-imagewidth'  => 'Уæрх',
+'exif-imagelength' => 'Бæрзæнд',
+'exif-artist'      => 'Чи йæ систа',
 
 'exif-gaincontrol-0' => 'Нæй',
 
@@ -732,6 +741,9 @@ $3',
 'size-kilobytes' => '$1 КБ',
 'size-megabytes' => '$1 МБ',
 'size-gigabytes' => '$1 ГБ',
+
+# Live preview
+'livepreview-failed' => 'Тагъд разæркастæй пайда кæнæн нæй. Хуымæтæджы разæркастæй пайда кæн.',
 
 # Watchlist editor
 'watchlistedit-noitems'      => 'Иу фарсмæ дæр нæ дарыс дæ цæст, ацы номхыгъд афтид у.',

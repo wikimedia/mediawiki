@@ -954,7 +954,7 @@ Por favor confirme que está intentando hacer esto, que usted entiende las conse
 'revdelete-hide-name'            => 'Ocultar acción y objetivo',
 'revdelete-hide-comment'         => 'Ocultar comentario de edición',
 'revdelete-hide-user'            => 'Ocultar el nombre/IP del editor',
-'revdelete-hide-restricted'      => 'Aplicar estas restricciones a los administradores tal como al resto',
+'revdelete-hide-restricted'      => 'Suprimir datos de los administradores tal como al resto',
 'revdelete-suppress'             => 'Eliminar datos de los administradores tal como al resto',
 'revdelete-hide-image'           => 'Ocultar el contenido del archivo',
 'revdelete-unsuppress'           => 'Eliminar restricciones de revisiones restauradas',

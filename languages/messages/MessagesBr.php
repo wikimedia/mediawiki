@@ -2260,7 +2260,7 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'import-logentry-upload'           => 'en/he deus enporzhiet (pellgarget) [[$1]]',
 'import-logentry-upload-detail'    => '$1 stumm',
 'import-logentry-interwiki'        => 'treuzwikiet $1',
-'import-logentry-interwiki-detail' => '$1 kemm adal $2',
+'import-logentry-interwiki-detail' => "$1 {{PLURAL:$1|c'hemm|kemm}} abaoe $2",
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Ho pajenn implijer',

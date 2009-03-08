@@ -1,5 +1,5 @@
 <?php
-/** Turkmen (Türkmen)
+/** Turkmen (Türkmençe)
  *
  * @ingroup Language
  * @file

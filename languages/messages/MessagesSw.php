@@ -556,6 +556,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 # Search results
 'searchresults'             => 'Matokeo ya utafutaji',
 'searchresults-title'       => 'Matokeo ya utafutaji kwa ajili ya "$1"',
+'searchsubtitle'            => 'Ulitafuta \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|kurasa zote zinazoanza "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kurasa zote zinazoungwa na "$1"]])',
 'searchsubtitleinvalid'     => "Ulitafuta '''$1'''",
 'noexactmatch'              => "'''Hakuna ukurasa wenye jina \"\$1\".''' Unaweza [[:\$1|kuanza ukurasa huu]].",
 'notitlematches'            => 'Jina hili la ukurasa halikupatikana',
@@ -563,6 +564,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'nextn'                     => '$1 ijayo',
 'viewprevnext'              => 'Tazama ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:Yaliyomo',
+'searchmenu-prefix'         => '[[Special:PrefixIndex/$1|Tafuta kurasa kwenye eneo hili la wiki]]',
 'searchprofile-project'     => 'Kurasa za mradi',
 'searchprofile-images'      => 'Mafaili',
 'searchprofile-everything'  => 'Zote',
@@ -746,9 +748,9 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'mostlinkedcategories'    => 'Jamii zinazoungwa kuliko zote',
 'mostlinkedtemplates'     => 'Vigezo vinavyoungwa kuliko zote',
 'mostcategories'          => 'Jamii ambazo hazitumiwi',
-'mostimages'              => 'Picha zinazoungwa kuliko zote',
+'mostimages'              => 'Mafaili yanayoungwa kuliko yote',
 'mostrevisions'           => 'Kurasa zenye masahihisho mengi kuliko zote',
-'prefixindex'             => 'Kielezo cha viambishi awali',
+'prefixindex'             => 'Kurasa zote zenye viambishi awali',
 'shortpages'              => 'Kurasa fupi',
 'longpages'               => 'Kurasa ndefu',
 'deadendpages'            => 'Kurasa ambazo haziungi na ukurasa mwingine wowote',
@@ -855,7 +857,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-expiring'            => 'itakwisha $1 (UTC)',
 'protect-cascade'             => 'Linda kurasa zinazozingatiwa chini ya ukurasa huu',
 'protect-cantedit'            => 'Huwezi kubadilisha kiwango cha ulindaji wa ukurasa huu, kwa sababu huruhusiwi kuuhariri.',
-'protect-expiry-options'      => 'Masaa 2:2 hours,siku 1:1 day,siku 3:3 days,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'saa 1:1 hour,siku 1:1 day,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Ruhusa:',
 'restriction-level'           => 'Kiwango cha kizuio:',
 
@@ -1010,7 +1012,14 @@ Chagua jina lengine.',
 'tooltip-watch'                   => 'Fuatilia ukurasa huu kwenye maangalizi yako',
 
 # Attribution
-'siteuser' => 'mtumiaji $1 wa {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|mtumiaji bila jina|watumiaji bila majina}} wa {{SITENAME}}',
+'siteuser'         => 'mtumiaji $1 wa {{SITENAME}}',
+'lastmodifiedatby' => 'Ukurasa huu ulibadilishwa mwishoni saa $2, tarehe $1 na $3.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'Ukurasa uliandikwa pia na $1.',
+'others'           => 'wengine',
+'siteusers'        => '{{PLURAL:$2|mtumiaji|watumiaji}} wa {{SITENAME}} $1',
+'creditspage'      => 'Wandishi wa ukurasa',
+'nocredits'        => 'Taarifa kuhusu wandishi wa ukurasa huu haipatikana.',
 
 # Image deletion
 'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',
@@ -1110,7 +1119,7 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 # Special:SpecialPages
 'specialpages'               => 'Kurasa maalum',
 'specialpages-group-changes' => 'Mabadiliko ya karibuni na kumbukumbu',
-'specialpages-group-pages'   => 'Orodha ya kurasa',
+'specialpages-group-pages'   => 'Orodha za kurasa',
 
 # Special:Tags
 'tags-edit' => 'hariri',

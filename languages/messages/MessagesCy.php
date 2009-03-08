@@ -828,7 +828,7 @@ gall fod manylion yn y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lÃ
 'revdelete-hide-name'         => "Cuddio'r weithred a'r targed",
 'revdelete-hide-comment'      => 'Cuddio sylwad golygu',
 'revdelete-hide-user'         => 'Cuddio enw defnyddiwr/IP y golygydd',
-'revdelete-hide-restricted'   => "Gosod y cyfyngiadau gweld ar Weinyddwyr, a chloi'r rhyngwyneb hwn",
+'revdelete-hide-restricted'   => 'Gosod y cyfyngiadau gweld data ar weinyddwyr yn ogystal ag eraill',
 'revdelete-suppress'          => 'Atal data oddi wrth Weinyddwyr yn ogystal ag eraill',
 'revdelete-hide-image'        => 'Cuddio cynnwys y ffeil',
 'revdelete-unsuppress'        => "Tynnu'r cyfyngiadau ar y golygiadau a adferwyd",
@@ -1814,7 +1814,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 ** Ymrafael golygu gwrthgynhyrchiol
 ** Tudalen aml ei defnydd',
 'protect-edit-reasonlist'     => "Golygu'r rhesymau dros ddiogelu",
-'protect-expiry-options'      => '2 awr:2 hours,ddiwrnod:1 day,3 niwrnod:3 days,wythnos:1 week,bythefnos:2 weeks,fis:1 month,3 mis:3 months,6 mis:6 months,flwyddyn:1 year,5 mlynedd:5 years,amhenodol:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'awr:1 hour,ddiwrnod:1 day,wythnos:1 week,bythefnos:2 weeks,fis:1 month,3 mis:3 months,6 mis:6 months,flwyddyn:1 year,gyfnod amhenodol:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Cyfyngiad:',
 'restriction-level'           => 'Lefel cyfyngu:',
 'minimum-size'                => 'Maint lleiaf',
@@ -2257,7 +2257,7 @@ Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 'notacceptable'     => "Dydy gweinydd y wici ddim yn medru rhoi'r data mewn fformat darllenadwy i'ch cleient.",
 
 # Attribution
-'anonymous'        => '{{PLURAL:$1|Defnyddiwr|Defnyddiwr|Defnyddwyr|Defnyddwyr|Defnyddwyr|Defnyddwyr}} anhysbys {{SITENAME}}',
+'anonymous'        => 'chan {{PLURAL:$1|defnyddiwr|ddefnyddiwr|ddefnyddwyr|ddefnyddwyr|ddefnyddwyr|ddefnyddwyr}} anhysbys {{SITENAME}}',
 'siteuser'         => 'y defnyddiwr {{SITENAME}} $1',
 'lastmodifiedatby' => 'Newidiwyd y dudalen hon ddiwethaf am $2, $1 gan $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Yn seiliedig ar waith gan $1.',
@@ -2779,7 +2779,7 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'specialpages-group-media'       => 'Ffeiliau - adroddiadau ac uwchlwytho',
 'specialpages-group-users'       => "Defnyddwyr a'u galluoedd",
 'specialpages-group-highuse'     => 'Tudalennau aml eu defnydd',
-'specialpages-group-pages'       => 'Rhestr tudalennau',
+'specialpages-group-pages'       => 'Rhestrau tudalennau',
 'specialpages-group-pagetools'   => 'Offer trin tudalennau',
 'specialpages-group-wiki'        => 'Data ac offer y wici',
 'specialpages-group-redirects'   => 'Tudalennau arbennig ailgyfeirio',

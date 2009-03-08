@@ -1011,12 +1011,15 @@ eller så försöker du gömma den senaste versionen av sidan.',
 
 Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.
 Vänligen bekräfta att detta är vad du avser göra, att du förstår konsekvenserna, och att du gör detta i enlighet med [[{{MediaWiki:Policy-url}}|riktlinjerna]].",
+'revdelete-suppress-text'        => "Undanhållande ska '''bara''' användas i följande fall:
+* Opassande personlig information
+*: ''hemadresser och telefonnummer, personnummer, etc.''",
 'revdelete-legend'               => 'Ändra synlighet',
 'revdelete-hide-text'            => 'Dölj versionstext',
 'revdelete-hide-name'            => 'Dölj åtgärd och sidnamn',
 'revdelete-hide-comment'         => 'Dölj redigeringskommentar',
 'revdelete-hide-user'            => 'Dölj skribentens användarnamn/IP-adress',
-'revdelete-hide-restricted'      => 'Låt dessa begränsningar gälla även för administratörer och lås det här gränssnittet',
+'revdelete-hide-restricted'      => 'Undanhåll data från administratörer så väl som från övriga',
 'revdelete-suppress'             => 'Undanhåll data även från administratörer',
 'revdelete-hide-image'           => 'Dölj filinnehåll',
 'revdelete-unsuppress'           => 'Ta bort begränsningar på återställda versioner',
