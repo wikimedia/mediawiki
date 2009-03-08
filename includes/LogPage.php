@@ -374,11 +374,13 @@ class LogPage {
 	 * @return string
 	 */
 	public static function formatBlockFlags( $flags, $forContent = false ) {
+		global $wgLang;
+
 		$flags = explode( ',', trim( $flags ) );
 		if( count( $flags ) > 0 ) {
 			for( $i = 0; $i < count( $flags ); $i++ )
 				$flags[$i] = self::formatBlockFlag( $flags[$i], $forContent );
-			return '(' . implode( ', ', $flags ) . ')';
+			return '(' . $wgLang->commaList( $flags ) . ')';
 		} else {
 			return '';
 		}

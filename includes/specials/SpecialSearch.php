@@ -666,7 +666,7 @@ class SpecialSearch {
 	}
 
 	protected function formHeader( $term ) {
-		global $wgContLang, $wgCanonicalNamespaceNames;
+		global $wgContLang, $wgCanonicalNamespaceNames, $wgLang;
 
 		$sep = '&nbsp;&nbsp;&nbsp;';
 		$out = Xml::openElement('div', array( 'style' => 'padding-bottom:0.5em;' ) );
@@ -680,7 +680,7 @@ class SpecialSearch {
 		// search profiles headers
 		$m = wfMsg( 'searchprofile-articles' );
 		$tt = wfMsg( 'searchprofile-articles-tooltip', 
-			implode( ', ', SearchEngine::namespacesAsText( SearchEngine::defaultNamespaces() ) ) );
+			$wgLang->commaList( SearchEngine::namespacesAsText( SearchEngine::defaultNamespaces() ) ) );
 		if( $this->active == 'default' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else {
@@ -697,22 +697,10 @@ class SpecialSearch {
 			$out .= $this->makeSearchLink( $imageTextForm, array( NS_FILE ) , $m, $tt );
 		}
 		$out .= $sep;
-		
-		/*
-		$m = wfMsg( 'searchprofile-articles-and-proj' );
-		$tt = wfMsg( 'searchprofile-project-tooltip', 
-			implode( ', ', SearchEngine::namespacesAsText( SearchEngine::defaultAndProjectNamespaces() ) ) );
-		if( $this->active == 'withproject' ) {
-			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
-		} else {
-			$out .= $this->makeSearchLink( $bareterm, SearchEngine::defaultAndProjectNamespaces(), $m, $tt );
-		}
-		$out .= $sep;
-		*/
-		
+
 		$m = wfMsg( 'searchprofile-project' );
 		$tt = wfMsg( 'searchprofile-project-tooltip', 
-			implode( ', ', SearchEngine::namespacesAsText( SearchEngine::projectNamespaces() ) ) );
+			$wgLang->commaList( SearchEngine::namespacesAsText( SearchEngine::projectNamespaces() ) ) );
 		if( $this->active == 'project' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else {
