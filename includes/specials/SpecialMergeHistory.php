@@ -97,7 +97,7 @@ class MergehistoryForm {
 			);
 		}
 		
-		if ( $this->mTargetObj->equals( $this->mDestObj ) ) {
+		if ( empty($errors) && $this->mTargetObj->equals( $this->mDestObj ) ) {
 			$errors[] = wfMsgExt( 'mergehistory-same-destination', array( 'parse' ) );
 		}
 
