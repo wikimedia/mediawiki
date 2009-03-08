@@ -936,8 +936,9 @@ Prosimo, potrdite, da ste s tem seznanjeni, da razumete posledice dejanja in da 
 'rc-enhanced-hide'                  => 'Skrij podrobnosti',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Sorodne spremembe',
-'recentchangeslinked-page' => 'Ime strani:',
+'recentchangeslinked'       => 'Sorodne spremembe',
+'recentchangeslinked-title' => 'Spremembe, povezane z "$1"',
+'recentchangeslinked-page'  => 'Ime strani:',
 
 # Upload
 'upload'                      => 'Naloži datoteko',

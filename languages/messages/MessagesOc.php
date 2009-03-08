@@ -991,12 +991,15 @@ I pòt aver mai de detalhs dins [{{fullurl:Special:Log/delete|page={{FULLPAGENAM
 D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornarmai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del sit.
 
 Confirmatz qu'aquò es plan çò que voliatz far, que comprenètz las consequéncias, e qu'o fasètz en acòrd amb las [[{{MediaWiki:Policy-url}}|règlas]].",
+'revdelete-suppress-text'        => "La supression deu èsser utilizada '''sonque''' dins los cases seguents :
+* Informacions personalas inapropriadas
+*: ''adreça, numèro de telefòn, numèro de seguretat sociala, ...''",
 'revdelete-legend'               => 'Metre en plaça de restriccions de version :',
 'revdelete-hide-text'            => 'Amagar lo tèxt de la version',
 'revdelete-hide-name'            => 'Amagar l’accion e la cibla',
 'revdelete-hide-comment'         => 'Amagar lo comentari de modificacion',
 'revdelete-hide-user'            => 'Amagar lo pseudonim o l’adreça IP del contributor.',
-'revdelete-hide-restricted'      => 'Aplicar aquestas restriccions als administrators e varrolhar aquesta interfàcia',
+'revdelete-hide-restricted'      => 'Suprimir aquestas donadas als administrators e mai als autres',
 'revdelete-suppress'             => 'Suprimir las donadas dels administrators e tanben dels autres utilizaires',
 'revdelete-hide-image'           => 'Amagar lo contengut del fichièr',
 'revdelete-unsuppress'           => 'Levar las restriccions sus las versions restablidas',
@@ -1729,6 +1732,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'popularpages'            => 'Paginas mai consultadas',
 'wantedcategories'        => 'Categorias mai demandadas',
 'wantedpages'             => 'Paginas mai demandadas',
+'wantedpages-badtitle'    => 'Títol invalid dins los resultats : $1',
 'wantedfiles'             => 'Fichièrs desirats',
 'wantedtemplates'         => 'Modèls demandats',
 'mostlinked'              => 'Paginas mai ligadas',
@@ -2042,7 +2046,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 ** Guèrra d'edicion
 ** Pagina de trafic fòrt",
 'protect-edit-reasonlist'     => 'Modificar las rasons de proteccion',
-'protect-expiry-options'      => '2 oras:2 hours,1 jorn:1 day,3 jorns:3 days,1 setmana:1 week,2 setmanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 an:1 year,indefinidament:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ora:1 hour,1 jorn:1 day,1 setmana:1 week,2 setmanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 an:1 year,indefinidament:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permission :',
 'restriction-level'           => 'Nivèl de restriccion :',
 'minimum-size'                => 'Talha minimoma',
@@ -2128,6 +2132,7 @@ $1",
 'sp-contributions-newbies-sub'   => 'Lista de las contribucions dels utilizaires novèls. Las paginas que son estadas suprimidas son pas afichadas.',
 'sp-contributions-newbies-title' => 'Las contribucions de l’utilizaire pels comptes novèls',
 'sp-contributions-blocklog'      => 'Istoric dels blocatges',
+'sp-contributions-logs'          => 'jornals',
 'sp-contributions-search'        => 'Cercar las contribucions',
 'sp-contributions-username'      => 'Adreça IP o nom d’utilizaire :',
 'sp-contributions-submit'        => 'Cercar',
@@ -3098,7 +3103,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'specialpages-group-media'       => 'Rapòrts dels fichièrs de mèdias e dels impòrts',
 'specialpages-group-users'       => 'Utilizaires e dreches estacats',
 'specialpages-group-highuse'     => 'Utilizacion intensa de las paginas',
-'specialpages-group-pages'       => 'Lista de paginas',
+'specialpages-group-pages'       => 'Listas de paginas',
 'specialpages-group-pagetools'   => 'Espleches per las paginas',
 'specialpages-group-wiki'        => 'Donadas del wiki e espleches',
 'specialpages-group-redirects'   => 'Redireccions',

@@ -7,6 +7,7 @@
  * @author Assassingr
  * @author Badseed
  * @author Consta
+ * @author Crazymadlover
  * @author Dead3y3
  * @author Demmy
  * @author Flyax
@@ -3151,7 +3152,7 @@ $1',
 'specialpages-group-media'       => 'Αναφορές πολυμέσων και επιφόρτωση αρχείων',
 'specialpages-group-users'       => 'Χρήστες και δικαιώματα',
 'specialpages-group-highuse'     => 'Πολυσύχναστες σελίδες',
-'specialpages-group-pages'       => 'Κατάλογος σελίδων',
+'specialpages-group-pages'       => 'Κατάλογοι σελίδων',
 'specialpages-group-pagetools'   => 'Εργαλεία σελίδων',
 'specialpages-group-wiki'        => 'Βικι δεδομένα και εργαλεία',
 'specialpages-group-redirects'   => 'Ανακατεύθυνση ειδικών σελίδων',

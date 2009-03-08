@@ -890,12 +890,15 @@ Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di canc
 
 Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.
 Conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].",
+'revdelete-suppress-text'        => "La rimozione deve essere utilizzata '''unicamente''' nei seguenti casi:
+* Dati personali inopportuni
+*: ''indirizzi, numeri di telefono, codici fiscali, ecc.''",
 'revdelete-legend'               => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
 'revdelete-hide-text'            => 'Nascondi il testo della versione',
 'revdelete-hide-name'            => 'Nascondi azione e oggetto della stessa',
 'revdelete-hide-comment'         => "Nascondi l'oggetto della modifica",
 'revdelete-hide-user'            => "Nascondi il nome o l'indirizzo IP dell'autore",
-'revdelete-hide-restricted'      => 'Applica le limitazioni indicate anche agli amministratori',
+'revdelete-hide-restricted'      => 'Nascondi le informazioni indicate anche agli amministratori',
 'revdelete-suppress'             => 'Nascondi le informazioni anche agli amministratori',
 'revdelete-hide-image'           => 'Nascondi i contenuti del file',
 'revdelete-unsuppress'           => 'Elimina le limitazioni sulle revisioni ripristinate',
@@ -2006,6 +2009,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Per i nuovi utenti',
 'sp-contributions-newbies-title' => 'Contributi dei nuovi utenti',
 'sp-contributions-blocklog'      => 'blocchi',
+'sp-contributions-logs'          => 'registri',
 'sp-contributions-search'        => 'Ricerca contributi',
 'sp-contributions-username'      => 'Indirizzo IP o nome utente:',
 'sp-contributions-submit'        => 'Ricerca',

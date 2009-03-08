@@ -1532,7 +1532,7 @@ En [[Special:WhatLinksHere/$2|kumplette List]] gifft dat ok.',
 'sharedupload'              => 'Disse Datei is as gemeensam bruukte Datei op $1 hoochlaadt un warrt mööglicherwies ok vun annere Wikis bruukt. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Kiek bi $1 för mehr Informatschoon.',
 'shareduploadwiki-desc'     => 'Wat nu kummt is de Text vun de $1 dor.',
-'shareduploadwiki-linktext' => 'Siet mit de Datei-Beschrievung',
+'shareduploadwiki-linktext' => 'Sied to de Datei',
 'noimage'                   => 'Ene Datei mit dissen Naam gifft dat nich, du kannst ehr $1.',
 'noimage-linktext'          => 'hoochladen',
 'uploadnewversion-linktext' => 'Ne’e Version vun disse Datei hoochladen',
