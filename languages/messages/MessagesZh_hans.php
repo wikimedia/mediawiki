@@ -896,15 +896,17 @@ $2',
 'revdelete-selected'             => "'''选取'''$1'''的$2次修订:'''",
 'logdelete-selected'             => "'''选取'''$1'''的日志项目:'''",
 'revdelete-text'                 => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
-
 在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。
 请确认您肯定去做的话，您就要明白到后果，以及这个程序符合[[{{MediaWiki:Policy-url}}|政策]]。",
+'revdelete-suppress-text'        => "压制'''只'''应在以下的情况下进行:
+* 不合适的个人资料
+*: ''住家地址、电话号码、社群保安号码等。''",
 'revdelete-legend'               => '设置可见性之限制',
 'revdelete-hide-text'            => '隐藏修订文本',
 'revdelete-hide-name'            => '隐藏动作和目标',
 'revdelete-hide-comment'         => '隐藏编辑说明',
 'revdelete-hide-user'            => '隐藏编辑者的用户名/IP',
-'revdelete-hide-restricted'      => '将此限制同样应用于管理员同时锁定这个界面',
+'revdelete-hide-restricted'      => '同时废止由操作员以及其他用户的资料',
 'revdelete-suppress'             => '同时废止由操作员以及其他用户的资料',
 'revdelete-hide-image'           => '隐藏文件内容',
 'revdelete-unsuppress'           => '在已恢复的修订中移除限制',
@@ -2022,6 +2024,7 @@ $1',
 'sp-contributions-newbies-sub'   => '新手',
 'sp-contributions-newbies-title' => '新手的用户贡献',
 'sp-contributions-blocklog'      => '查封记录',
+'sp-contributions-logs'          => '日志',
 'sp-contributions-search'        => '搜寻贡献记录',
 'sp-contributions-username'      => 'IP地址或用户名称：',
 'sp-contributions-submit'        => '搜索',

@@ -874,15 +874,17 @@ $1',
 'revdelete-selected'             => "'''揀[[:$1]]嘅$2次修訂：'''",
 'logdelete-selected'             => "'''揀[[:$1]]嘅日誌事件：'''",
 'revdelete-text'                 => "'''刪除咗嘅修訂係會仍然出現喺個頁面歷史以及日誌度，但係佢哋嘅文字內容係唔可以供公眾瀏覽。'''
-
 其他喺{{SITENAME}}嘅管理員仍然可以睇已經隱藏咗嘅內容，同埋可以透過同一個介面去反刪除佢，除非已經設定咗附加嘅限制。
 請確認你肯定去做嘅話，你就要明白到後果，同埋呢個程序符合[[{{MediaWiki:Policy-url}}|政策]]。",
+'revdelete-suppress-text'        => "壓制'''只'''應該響下面嘅情況之下進行:
+* 唔合適嘅個人資料
+*: ''屋企地址、電話號碼、社群保安號碼等。''",
 'revdelete-legend'               => '設定可見性嘅限制',
 'revdelete-hide-text'            => '隱藏修訂嘅文字',
 'revdelete-hide-name'            => '隱藏動作同目標',
 'revdelete-hide-comment'         => '隱藏編輯註解',
 'revdelete-hide-user'            => '隱藏編輯者嘅用戶名／IP',
-'revdelete-hide-restricted'      => '應用呢嘅限制至操作員去鎖住呢個界面',
+'revdelete-hide-restricted'      => '同時壓制由操作員以及其他用戶的資料',
 'revdelete-suppress'             => '同時壓制由操作員以及其他用戶的資料',
 'revdelete-hide-image'           => '隱藏資料內容',
 'revdelete-unsuppress'           => '響已經恢復咗嘅修訂度移除限制',
@@ -1989,6 +1991,7 @@ $1',
 'sp-contributions-newbies-sub'   => '新戶口嘅貢獻',
 'sp-contributions-newbies-title' => '新戶口嘅用戶貢獻',
 'sp-contributions-blocklog'      => '封鎖日誌',
+'sp-contributions-logs'          => '日誌',
 'sp-contributions-search'        => '搵貢獻',
 'sp-contributions-username'      => 'IP地址或用戶名：',
 'sp-contributions-submit'        => '搵',
