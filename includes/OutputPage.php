@@ -1153,7 +1153,7 @@ class OutputPage {
 	 * @param string $permission key required
 	 */
 	public function permissionRequired( $permission ) {
-		global $wgUser;
+		global $wgUser, $wgLang;
 
 		$this->setPageTitle( wfMsg( 'badaccess' ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
@@ -1165,7 +1165,7 @@ class OutputPage {
 			User::getGroupsWithPermission( $permission ) );
 		if( $groups ) {
 			$this->addWikiMsg( 'badaccess-groups',
-				implode( ', ', $groups ),
+				$wgLang->commaList( $groups ),
 				count( $groups) );
 		} else {
 			$this->addWikiMsg( 'badaccess-group0' );

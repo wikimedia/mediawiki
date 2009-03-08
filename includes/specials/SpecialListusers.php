@@ -123,7 +123,7 @@ class UsersPager extends AlphabeticPager {
 			$list = array();
 			foreach( self::getGroups( $row->user_id ) as $group )
 				$list[] = self::buildGroupLink( $group );
-			$groups = implode( ', ', $list );
+			$groups = $wgLang->commaList( $list );
 		} elseif( $row->numgroups == 1 ) {
 			$groups = self::buildGroupLink( $row->singlegroup );
 		} else {

@@ -15,7 +15,7 @@
 function wfSpecialLinkSearch( $par ) {
 
 	list( $limit, $offset ) = wfCheckLimits();
-	global $wgOut, $wgRequest, $wgUrlProtocols, $wgMiserMode;
+	global $wgOut, $wgRequest, $wgUrlProtocols, $wgMiserMode, $wgLang;
 	$target = $GLOBALS['wgRequest']->getVal( 'target', $par );
 	$namespace = $GLOBALS['wgRequest']->getIntorNull( 'namespace', null );
 
@@ -48,7 +48,7 @@ function wfSpecialLinkSearch( $par ) {
 
 	$self = Title::makeTitle( NS_SPECIAL, 'Linksearch' );
 
-	$wgOut->addWikiText( wfMsg( 'linksearch-text', '<nowiki>' . implode( ', ',  $wgUrlProtocols) . '</nowiki>' ) );
+	$wgOut->addWikiText( wfMsg( 'linksearch-text', '<nowiki>' . $wgLang->commaList( $wgUrlProtocols) . '</nowiki>' ) );
 	$s =	Xml::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $GLOBALS['wgScript'] ) ) .
 		Xml::hidden( 'title', $self->getPrefixedDbKey() ) .
 		'<fieldset>' .
