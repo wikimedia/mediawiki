@@ -2760,8 +2760,16 @@ class Title {
 		# Update message cache for interface messages
 		if( $nt->getNamespace() == NS_MEDIAWIKI ) {
 			global $wgMessageCache;
-			$oldarticle = new Article( $this );
-			$wgMessageCache->replace( $this->getDBkey(), $oldarticle->getContent() );
+
+			# @bug 17860: old article can be deleted, if this the case,
+			# delete it from message cache
+			if ( $this->getArticleID === 0 ) {
+				$wgMessageCache->replace( $this->getDBkey(), false );
+			} else {
+				$oldarticle = new Article( $this );
+				$wgMessageCache->replace( $this->getDBkey(), $oldarticle->getContent() );
+			}
+
 			$newarticle = new Article( $nt );
 			$wgMessageCache->replace( $nt->getDBkey(), $newarticle->getContent() );
 		}
