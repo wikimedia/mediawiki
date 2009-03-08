@@ -531,7 +531,7 @@ class RevisionDeleteForm {
 	private function addUsageText() {
 		global $wgOut, $wgUser;
 		$wgOut->addWikiMsg( 'revdelete-text' );
-		if( $wgUser->isAllowed( 'hiderevision' ) ) {
+		if( $wgUser->isAllowed( 'suppressrevision' ) ) {
 			$wgOut->addWikiMsg( 'revdelete-suppress-text' );
 		}
 	}
