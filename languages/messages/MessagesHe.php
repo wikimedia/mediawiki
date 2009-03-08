@@ -158,6 +158,7 @@ $magicWords = array(
 	'revisionmonth'         => array( 1,    'חודש גרסה',                            'REVISIONMONTH'          ),
 	'revisionyear'          => array( 1,    'שנת גרסה',                             'REVISIONYEAR'           ),
 	'revisiontimestamp'     => array( 1,    'זמן גרסה',                             'REVISIONTIMESTAMP'      ),
+	'revisionuser'          => array( 1,    'כותב גרסה',                            'REVISIONUSER'           ),
 	'plural'                => array( 0,    'רבים:',                                'PLURAL:'                ),
 	'fullurl'               => array( 0,    'כתובת מלאה:',                          'FULLURL:'               ),
 	'fullurle'              => array( 0,    'כתובת מלאה מקודד:',                    'FULLURLE:'              ),
@@ -1137,6 +1138,7 @@ $2',
 'mergehistory-autocomment'         => 'מיזג את [[:$1]] לתוך [[:$2]]',
 'mergehistory-comment'             => 'מיזג את [[:$1]] לתוך [[:$2]]: $3',
 'mergehistory-same-destination'    => 'דפי המקור והיעד זהים',
+'mergehistory-reason'              => 'סיבה:',
 
 # Merge log
 'mergelog'           => 'יומן מיזוגים',
