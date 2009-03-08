@@ -165,19 +165,15 @@ class MergehistoryForm {
 			# in a nice little table
 			$table =
 				Xml::openElement( 'fieldset' ) .
+				wfMsgExt( 'mergehistory-merge', array('parseinline'),
+					$this->mTargetObj->getPrefixedText(), $this->mDestObj->getPrefixedText() ) .
 				Xml::openElement( 'table', array( 'id' => 'mw-mergehistory-table' ) ) .
 					"<tr>
 						<td class='mw-label'>" .
-							wfMsgExt( 'mergehistory-merge', array('parseinline'),
-								$this->mTargetObj->getPrefixedText(), $this->mDestObj->getPrefixedText() ) .
-						"</td>
-					</tr>
-					<tr>
-						<td class='mw-label'>" .
-							Xml::label( wfMsg( 'undeletecomment' ), 'wpComment' ) .
+							Xml::label( wfMsg( 'mergehistory-reason' ), 'wpComment' ) .
 						"</td>
 						<td class='mw-input'>" .
-							Xml::input( 'wpComment', 50, $this->mComment ) .
+							Xml::input( 'wpComment', 50, $this->mComment, array('id' => 'wpComment') ) .
 						"</td>
 					</tr>
 					<tr>
@@ -438,7 +434,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		return array(
 			'tables' => array('revision','page'),
 			'fields' => array( 'rev_minor_edit', 'rev_timestamp', 'rev_user', 'rev_user_text', 'rev_comment',
-				 'rev_id', 'rev_page', 'rev_text_id', 'rev_len', 'rev_deleted' ),
+				 'rev_id', 'rev_page', 'rev_parent_id', 'rev_text_id', 'rev_len', 'rev_deleted' ),
 			'conds' => $conds
 		);
 	}
