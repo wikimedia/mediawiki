@@ -1375,6 +1375,7 @@ Note that using the navigation links will reset this column.',
 'mergehistory-autocomment'         => 'Merged [[:$1]] into [[:$2]]',
 'mergehistory-comment'             => 'Merged [[:$1]] into [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Source and destination pages cannot be the same',
+'mergehistory-reason'              => 'Reason:',
 
 # Merge log
 'mergelog'           => 'Merge log',
