@@ -7,93 +7,73 @@
  * @ingroup SpecialPage
  */
 
-function wfSpecialRevisiondelete( $par = null ) {
-	global $wgOut, $wgRequest, $wgUser;
-	
-	if ( wfReadOnly() ) {
-		$wgOut->readOnlyPage();
-		return;
-	}
-		
-	# Handle our many different possible input types
-	$target = $wgRequest->getText( 'target' );
-	$oldid = $wgRequest->getArray( 'oldid' );
-	$artimestamp = $wgRequest->getArray( 'artimestamp' );
-	$logid = $wgRequest->getArray( 'logid' );
-	$img = $wgRequest->getArray( 'oldimage' );
-	$fileid = $wgRequest->getArray( 'fileid' );
-	# For reviewing deleted files...
-	$file = $wgRequest->getVal( 'file' );
-	# If this is a revision, then we need a target page
-	$page = Title::newFromUrl( $target );
-	if( is_null($page) ) {
-		$wgOut->addWikiMsg( 'undelete-header' );
-		return;
-	}
-	# Only one target set at a time please!
-	$i = (bool)$file + (bool)$oldid + (bool)$logid + (bool)$artimestamp + (bool)$fileid + (bool)$img;
-	if( $i !== 1 ) {
-		$wgOut->showErrorPage( 'revdelete-toomanytargets-title', 'revdelete-toomanytargets-text' );
-		return;
-	}
-	# Logs must have a type given
-	if( $logid && !strpos($page->getDBKey(),'/') ) {
-		$wgOut->showErrorPage( 'revdelete-nologtype-title', 'revdelete-nologtype-text' );
-		return;
-	}
-	# Either submit or create our form
-	$form = new RevisionDeleteForm( $page, $oldid, $logid, $artimestamp, $fileid, $img, $file );
-	if( $wgRequest->wasPosted() ) {
-		$form->submit( $wgRequest );
-	} else if( $oldid || $artimestamp ) {
-		$form->showRevs();
-	} else if( $fileid || $img ) {
-		$form->showImages();
-	} else if( $logid ) {
-		$form->showLogItems();
-	}
-	# Show relevant lines from the deletion log. This will show even if said ID
-	# does not exist...might be helpful
-	$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
-	LogEventsList::showLogExtract( $wgOut, 'delete', $page->getPrefixedText() );
-	if( $wgUser->isAllowed( 'suppressionlog' ) ){
-		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
-		LogEventsList::showLogExtract( $wgOut, 'suppress', $page->getPrefixedText() );
-	}
-}
+class SpecialRevisionDelete extends SpecialPage {
 
-/**
- * Implements the GUI for Revision Deletion.
- * @ingroup SpecialPage
- */
-class RevisionDeleteForm {
-	/**
-	 * @param Title $page
-	 * @param array $oldids
-	 * @param array $logids
-	 * @param array $artimestamps
-	 * @param array $fileids
-	 * @param array $img
-	 * @param string $file
-	 */
-	function __construct( $page, $oldids, $logids, $artimestamps, $fileids, $img, $file ) {
-		global $wgUser, $wgOut;
+	public function __construct() {
+		parent::__construct( 'RevisionDelete', 'deleterevision' );
+		$this->includable( false );
+	}
 
-		$this->page = $page;
+	public function execute( $par ) {
+		global $wgOut, $wgUser, $wgRequest;
+		if( wfReadOnly() ) {
+			$wgOut->readOnlyPage();
+			return;
+		}
+		if( !$wgUser->isAllowed( 'deleterevision' ) ) {
+			$wgOut->permissionRequired( 'deleterevision' );
+			return;
+		}
+		$this->skin =& $wgUser->getSkin();
+		# Set title and such
+		$this->setHeaders();
+		$this->outputHeader();
+		$this->wasPosted = $wgRequest->wasPosted();
+		# Handle our many different possible input types
+		$this->target = $wgRequest->getText( 'target' );
+		$this->oldids = $wgRequest->getArray( 'oldid' );
+		$this->artimestamps = $wgRequest->getArray( 'artimestamp' );
+		$this->logids = $wgRequest->getArray( 'logid' );
+		$this->oldimgs = $wgRequest->getArray( 'oldimage' );
+		$this->fileids = $wgRequest->getArray( 'fileid' );
 		# For reviewing deleted files...
-		if( $file ) {
-			$oimage = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $page, $file );
+		$this->file = $wgRequest->getVal( 'file' );
+		# If this is a revision, then we need a target page
+		$this->page = Title::newFromUrl( $this->target );
+		if( is_null($this->page) ) {
+			$wgOut->addWikiMsg( 'undelete-header' );
+			return;
+		}
+		# Only one target set at a time please!
+		$i = (bool)$this->file + (bool)$this->oldids + (bool)$this->logids
+			+ (bool)$this->artimestamps + (bool)$this->fileids + (bool)$this->oldimgs;
+		if( $i !== 1 ) {
+			$wgOut->showErrorPage( 'revdelete-toomanytargets-title', 'revdelete-toomanytargets-text' );
+			return;
+		}
+		# Logs must have a type given
+		if( $this->logids && !strpos($this->page->getDBKey(),'/') ) {
+			$wgOut->showErrorPage( 'revdelete-nologtype-title', 'revdelete-nologtype-text' );
+			return;
+		}
+		# Check edit token on submission
+		if( $this->wasPosted && !$wgUser->matchEditToken( $wgRequest->getVal('wpEditToken') ) ) {
+			$wgOut->addWikiMsg( 'sessionfailure' );
+			return;
+		}
+		# For reviewing deleted files...show it now if allowed
+		if( $this->file ) {
+			$oimage = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->page, $this->file );
 			$oimage->load();
 			// Check if user is allowed to see this file
 			if( !$oimage->userCan(File::DELETED_FILE) ) {
 				$wgOut->permissionRequired( 'suppressrevision' );
 			} else {
-				$this->showFile( $file );
+				$this->showFile( $this->file );
 			}
 			return;
 		}
-		$this->skin = $wgUser->getSkin();
-		# Give a link to the log for this page
+		# Give a link to the logs/hist for this page
 		if( !is_null($this->page) && $this->page->getNamespace() > -1 ) {
 			$links = array();
 
@@ -112,34 +92,60 @@ class RevisionDeleteForm {
 			# Logs themselves don't have histories or archived revisions
 			$wgOut->setSubtitle( '<p>'.implode($links,' / ').'</p>' );
 		}
+		# Lock the operation and the form context
+		$this->secureOperation();
+		# Either submit or create our form
+		if( $this->wasPosted ) {
+			$this->submit( $wgRequest );
+		} else if( $this->deleteKey == 'oldid' || $this->deleteKey == 'artimestamp' ) {
+			$this->showRevs();
+		} else if( $this->deleteKey == 'fileid' || $this->deleteKey == 'oldimage' ) {
+			$this->showImages();
+		} else if( $this->deleteKey == 'logid' ) {
+			$this->showLogItems();
+		}
+		# Show relevant lines from the deletion log. This will show even if said ID
+		# does not exist...might be helpful
+		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+		LogEventsList::showLogExtract( $wgOut, 'delete', $this->page->getPrefixedText() );
+		if( $wgUser->isAllowed( 'suppressionlog' ) ){
+			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
+			LogEventsList::showLogExtract( $wgOut, 'suppress', $this->page->getPrefixedText() );
+		}
+	}
+
+	private function secureOperation() {
+		global $wgUser;
+		$this->deleteKey = '';
 		// At this point, we should only have one of these
-		if( $oldids ) {
-			$this->revisions = $oldids;
+		if( $this->oldids ) {
+			$this->revisions = $this->oldids;
 			$hide_content_name = array( 'revdelete-hide-text', 'wpHideText', Revision::DELETED_TEXT );
-			$this->deleteKey='oldid';
-		} else if( $artimestamps ) {
-			$this->archrevs = $artimestamps;
+			$this->deleteKey = 'oldid';
+		} else if( $this->artimestamps ) {
+			$this->archrevs = $this->artimestamps;
 			$hide_content_name = array( 'revdelete-hide-text', 'wpHideText', Revision::DELETED_TEXT );
-			$this->deleteKey='artimestamp';
-		} else if( $img ) {
-			$this->ofiles = $img;
+			$this->deleteKey = 'artimestamp';
+		} else if( $this->oldimgs ) {
+			$this->ofiles = $this->oldimgs;
 			$hide_content_name = array( 'revdelete-hide-image', 'wpHideImage', File::DELETED_FILE );
-			$this->deleteKey='oldimage';
-		} else if( $fileids ) {
-			$this->afiles = $fileids;
+			$this->deleteKey = 'oldimage';
+		} else if( $this->fileids ) {
+			$this->afiles = $this->fileids;
 			$hide_content_name = array( 'revdelete-hide-image', 'wpHideImage', File::DELETED_FILE );
-			$this->deleteKey='fileid';
-		} else if( $logids ) {
-			$this->events = $logids;
+			$this->deleteKey = 'fileid';
+		} else if( $this->logids ) {
+			$this->events = $this->logids;
 			$hide_content_name = array( 'revdelete-hide-name', 'wpHideName', LogPage::DELETED_ACTION );
-			$this->deleteKey='logid';
+			$this->deleteKey = 'logid';
 		}
 		// Our checkbox messages depends one what we are doing,
 		// e.g. we don't hide "text" for logs or images
 		$this->checks = array(
 			$hide_content_name,
 			array( 'revdelete-hide-comment', 'wpHideComment', Revision::DELETED_COMMENT ),
-			array( 'revdelete-hide-user', 'wpHideUser', Revision::DELETED_USER ) );
+			array( 'revdelete-hide-user', 'wpHideUser', Revision::DELETED_USER )
+		);
 		if( $wgUser->isAllowed('suppressrevision') ) {
 			$this->checks[] = array( 'revdelete-hide-restricted', 'wpHideRestricted', Revision::DELETED_RESTRICTED );
 		}
@@ -167,9 +173,8 @@ class RevisionDeleteForm {
 	/**
 	 * This lets a user set restrictions for live and archived revisions
 	 */
-	function showRevs() {
-		global $wgOut, $wgUser, $action;
-
+	private function showRevs() {
+		global $wgOut, $wgUser;
 		$UserAllowed = true;
 
 		$count = ($this->deleteKey=='oldid') ?
@@ -204,7 +209,7 @@ class RevisionDeleteForm {
 					continue;
 				} else if( !$revObjs[$revid]->userCan(Revision::DELETED_RESTRICTED) ) {
 				// If a rev is hidden from sysops
-					if( $action != 'submit') {
+					if( !$this->wasPosted ) {
 						$wgOut->permissionRequired( 'suppressrevision' );
 						return;
 					}
@@ -246,7 +251,7 @@ class RevisionDeleteForm {
 					continue;
 				} else if( !$revObjs[$timestamp]->userCan(Revision::DELETED_RESTRICTED) ) {
 				// If a rev is hidden from sysops
-					if( $action != 'submit') {
+					if( !$this->wasPosted ) {
 						$wgOut->permissionRequired( 'suppressrevision' );
 						return;
 					}
@@ -309,15 +314,12 @@ class RevisionDeleteForm {
 	/**
 	 * This lets a user set restrictions for archived images
 	 */
-	function showImages() {
-		// What is $action doing here???
-		global $wgOut, $wgUser, $action, $wgLang;
-
+	private function showImages() {
+		global $wgOut, $wgUser, $wgLang;
 		$UserAllowed = true;
 
 		$count = ($this->deleteKey=='oldimage') ? count($this->ofiles) : count($this->afiles);
-		$wgOut->addWikiMsg( 'revdelete-selected',
-			$this->page->getPrefixedText(),
+		$wgOut->addWikiMsg( 'revdelete-selected', $this->page->getPrefixedText(),
 			$wgLang->formatNum($count) );
 
 		$bitfields = 0;
@@ -349,7 +351,7 @@ class RevisionDeleteForm {
 					continue;
 				} else if( !$filesObjs[$archivename]->userCan(File::DELETED_RESTRICTED) ) {
 					// If a rev is hidden from sysops
-					if( $action != 'submit' ) {
+					if( !$this->wasPosted ) {
 						$wgOut->permissionRequired( 'suppressrevision' );
 						return;
 					}
@@ -380,7 +382,7 @@ class RevisionDeleteForm {
 					continue;
 				} else if( !$filesObjs[$fileid]->userCan(File::DELETED_RESTRICTED) ) {
 					// If a rev is hidden from sysops
-					if( $action != 'submit' ) {
+					if( !$this->wasPosted ) {
 						$wgOut->permissionRequired( 'suppressrevision' );
 						return;
 					}
@@ -443,10 +445,10 @@ class RevisionDeleteForm {
 	/**
 	 * This lets a user set restrictions for log items
 	 */
-	function showLogItems() {
-		global $wgOut, $wgUser, $action, $wgMessageCache, $wgLang;
-
+	private function showLogItems() {
+		global $wgOut, $wgUser, $wgMessageCache, $wgLang;
 		$UserAllowed = true;
+
 		$wgOut->addWikiMsg( 'logdelete-selected', $wgLang->formatNum( count($this->events) ) );
 
 		$bitfields = 0;
@@ -475,7 +477,7 @@ class RevisionDeleteForm {
 				continue;
 			} else if( !LogEventsList::userCan( $logRows[$logid],Revision::DELETED_RESTRICTED) ) {
 			// If an event is hidden from sysops
-				if( $action != 'submit') {
+				if( !$this->wasPosted ) {
 					$wgOut->permissionRequired( 'suppressrevision' );
 					return;
 				}
@@ -731,7 +733,7 @@ class RevisionDeleteForm {
 	/**
 	 * @param WebRequest $request
 	 */
-	function submit( $request ) {
+	private function submit( $request ) {
 		global $wgUser, $wgOut;
 
 		$bitfield = $this->extractBitfield( $request );
