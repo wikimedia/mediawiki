@@ -238,7 +238,7 @@ class IPUnblockForm {
 		$conds = array();
 		$matches = array();
 		// Is user allowed to see all the blocks?
-		if ( !$wgUser->isAllowed( 'suppress' ) )
+		if ( !$wgUser->isAllowed( 'hideuser' ) )
 			$conds['ipb_deleted'] = 0;
 		if ( $this->ip == '' ) {
 			// No extra conditions

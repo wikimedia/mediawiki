@@ -115,7 +115,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				"ipb_range_end >= '$upper'"
 			));
 		}
-		if(!$wgUser->isAllowed('suppress'))
+		if(!$wgUser->isAllowed('hideuser'))
 			$this->addWhereFld('ipb_deleted', 0);
 
 		// Purge expired entries on one in every 10 queries
