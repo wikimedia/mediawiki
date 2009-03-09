@@ -1929,7 +1929,7 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 ** Neproduktyvus redagavimo karas
 ** Didelės svarbos puslapis',
 'protect-edit-reasonlist'     => 'Keisti užrakinimo priežastis',
-'protect-expiry-options'      => '2 valandos:2 hours,1 diena:1 day,3 dienos:3 days,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnesis:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 valanda:1 hour,1 diena:1 day,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnuo:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Leidimas:',
 'restriction-level'           => 'Apribojimo lygis:',
 'minimum-size'                => 'Min. dydis',
@@ -2225,6 +2225,7 @@ Prašome sujungti šiuos puslapius.'''",
 'move-redirect-suppressed'     => 'nukreipimas nesukurtas',
 'movelogpage'                  => 'Pervardinimų istorija',
 'movelogpagetext'              => 'Pervardintų puslapių sąrašas.',
+'movenosubpage'                => 'Šis puslapis neturi subpuslapių.',
 'movereason'                   => 'Priežastis:',
 'revertmove'                   => 'atmesti',
 'delete_and_move'              => 'Ištrinti ir perkelti',

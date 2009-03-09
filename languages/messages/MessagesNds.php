@@ -992,6 +992,7 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'mergehistory-autocomment'         => '„[[:$1]]“ tohoopföhrt mit „[[:$2]]“',
 'mergehistory-comment'             => '„[[:$1]]“ tohoopföhrt mit „[[:$2]]“: $3',
 'mergehistory-same-destination'    => 'De Sied, vun de schaven warrt un op de schaven warrt, dröfft nich desülve wesen',
+'mergehistory-reason'              => 'Grund:',
 
 # Merge log
 'mergelog'           => 'Tohoopföhr-Logbook',

@@ -875,6 +875,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'mergehistory-autocomment'         => 'Kendeuzet [[:$1]] gant [[:$2]]',
 'mergehistory-comment'             => 'Kendeuzet [[:$1]] gant [[:$2]] : $3',
 'mergehistory-same-destination'    => "N'hall ket ar pajennoù kein hag ar pajennoù tal bezañ an hevelep re",
+'mergehistory-reason'              => 'Abeg :',
 
 # Merge log
 'mergelog'           => "Marilh ar c'hendeuzadennoù.",

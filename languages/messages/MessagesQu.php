@@ -719,7 +719,7 @@ Hark'aq kamachiqqa kaytam nirqan: $1, kayraykum nispa.",
 'protectedpagewarning'             => "'''PAQTATAQ: Kay p'anqaqa llamk'apuymanta amachasqam kamachiqkunallap hukchananpaq.'''",
 'semiprotectedpagewarning'         => "'''Musyay:''' Kay p'anqaqa amachasqam rakiqunayuq ruraqkunallap hukchananpaq.",
 'cascadeprotectedwarning'          => "'''Paqtataq:''' Kay p'anqaqa amachasqam, kamachiqkunallam llamk'apuyta atin, ''phaqcha'' nisqa kamachiwan amachasqa kay {{PLURAL:$1|p'anqapim|p'anqakunapim}} ch'aqtasqa kaspanmi:",
-'titleprotectedwarning'            => "'''PAQTATAQ:  Kay p'anqaqa hark'asqam, chayrayku huk sapaq ruraqkunam kamariyta atin.'''",
+'titleprotectedwarning'            => "'''PAQTATAQ:  Kay p'anqaqa hark'asqam, chayrayku [[Special:ListGroupRights|sapaq hayñiyuqlla ruraqkunam]] kamariyta atin.'''",
 'templatesused'                    => "Kay p'anqapi llamk'achisqa plantillakuna:",
 'templatesusedpreview'             => "Kay qhawariypi llamk'achisqa plantillakuna:",
 'templatesusedsection'             => "Kay p'anqa rakipi llamk'achisqa plantillakuna:",
@@ -828,9 +828,10 @@ Imaymanacha yuyaykunataqa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}
 'revdelete-nologid-text'         => "Manam taripana hallch'a rurayta churarqankichu kay ruranata qallarinaykipaq, icha churasqayki willayqa manam kanchu.",
 'revdelete-selected'             => "'''{{PLURAL:$2|Akllasqa llamk'apusqa|Akllasqa llamk'apusqakuna}} [[:$1]]-manta:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Akllasqa tukusqa|Akllasqa tukusqakuna}} hallch'api:'''",
-'revdelete-text'                 => "'''Qullusqa llamk'apusqakunaqa p'anqap wiñay kawsayninpi paqarinqaraqmi, samiqnintaq manam uyanalla qhawanapaqchu.'''
+'revdelete-text'                 => "'''Qullusqa llamk'apusqakunaqa p'anqap wiñay kawsayninpi hallch'ankunapipas paqarinqaraqmi, samiqninpa rakinkunataq manam uyanalla qhawanapaqchu.'''
+{{SITENAME}}pi huk kamachiqkunaqa p'anqap pakasqa samiqninta qhawaspa qullusqa kaymanta kutichiyta atinkuraqmi kay kaqlla uyapuratam llamk'achispa, kay wikip kamariqninkuna mana huk saywachanakunata tiyachiptinqa.
 
-{{SITENAME}}pi huk kamachiqkunaqa p'anqap pakasqa samiqninta qhawaspa qullusqa kaymanta kutichiyta atinkuraqmi kay kaqlla uyapuratam llamk'achispa, kay wikip kamariqninkuna mana huk saywachanakunata tiyachiptinqa.",
+Ama hina kaspa, ruraykachanaykita takyachiy, saqinakunata riqsispayki, [[{{MediaWiki:Policy-url}}|rurana tiksikama]] ruraspayki.",
 'revdelete-legend'               => 'Rikunapaq saywachanakunata tiyachiy',
 'revdelete-hide-text'            => 'Qhawana qillqata pakay',
 'revdelete-hide-name'            => 'Rurayta paqtaytapas pakay',

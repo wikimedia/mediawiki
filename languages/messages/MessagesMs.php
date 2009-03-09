@@ -883,12 +883,15 @@ tetapi kandungannya tidak boleh diakses awam.'''
 Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya
 semula melalui laman ini melainkan mempunyai batasan.
 Sila sahkan bahawa anda hendak lakukan ini dan memahami akibatnya, dan anda mematuhi [[{{MediaWiki:Policy-url}}|polisi]].",
+'revdelete-suppress-text'        => "Pembatasan ini '''hanya''' untuk digunakan dalam kes-kes berikut:
+* Maklumat peribadi tidak sesuai
+*: ''alamat rumah dan nombor telefon, nombor keselamatan sosial, dsbg.''",
 'revdelete-legend'               => 'Tetapkan batasan:',
 'revdelete-hide-text'            => 'Sembunyikan teks semakan',
 'revdelete-hide-name'            => 'Sembunyikan tindakan dan sasaran',
 'revdelete-hide-comment'         => 'Sembunyikan komen suntingan',
 'revdelete-hide-user'            => 'Sembunyikan nama pengguna/IP penyunting',
-'revdelete-hide-restricted'      => 'Kenakan batasan ini ke atas semua pengguna, termasuk penyelia',
+'revdelete-hide-restricted'      => 'Sekat data daripada penyelia dan pengguna lain',
 'revdelete-suppress'             => 'Sekat data daripada semua pengguna, termasuk penyelia',
 'revdelete-hide-image'           => 'Sembunyikan kandungan fail',
 'revdelete-unsuppress'           => 'Buang batasan pada semakan yang dipulihkan',
@@ -939,6 +942,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'mergehistory-autocomment'         => 'Menggabungkan [[:$1]] dengan [[:$2]]',
 'mergehistory-comment'             => 'Menggabungkan [[:$1]] dengan [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Laman sasaran tidak boleh sama dengan laman sumber',
+'mergehistory-reason'              => 'Alasan:',
 
 # Merge log
 'mergelog'           => 'Log penggabungan',
@@ -1597,6 +1601,7 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'popularpages'            => 'Laman popular',
 'wantedcategories'        => 'Kategori dikehendaki',
 'wantedpages'             => 'Laman dikehendaki',
+'wantedpages-badtitle'    => 'Tajuk tidak sah dalam set keputusan: $1',
 'wantedfiles'             => 'Fail dikehendaki',
 'wantedtemplates'         => 'Templat dikehendaki',
 'mostlinked'              => 'Laman dipaut terbanyak',
@@ -2003,6 +2008,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Bagi akaun-akaun baru',
 'sp-contributions-newbies-title' => 'Sumbangan oleh pengguna baru',
 'sp-contributions-blocklog'      => 'Log sekatan',
+'sp-contributions-logs'          => 'log',
 'sp-contributions-search'        => 'Cari sumbangan',
 'sp-contributions-username'      => 'Alamat IP atau nama pengguna:',
 'sp-contributions-submit'        => 'Cari',
@@ -2224,7 +2230,7 @@ Laman destinasi "[[:$1]]" telah pun wujud. Adakah anda mahu menghapuskannya supa
 'imagetypemismatch'            => 'Sambungan baru fail tersebut tidak sepadan dengan jenisnya',
 'imageinvalidfilename'         => 'Nama fail imej sasaran tidak sah',
 'fix-double-redirects'         => 'Kemas kinikan semua lencongan yang menuju ke tajuk asal',
-'move-leave-redirect'          => 'Meninggalkan lencongan',
+'move-leave-redirect'          => 'Lencongkan ke tajuk baru',
 
 # Export
 'export'            => 'Eksport laman',

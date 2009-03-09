@@ -946,6 +946,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'mergehistory-autocomment'         => 'Unione di [[:$1]] in [[:$2]]',
 'mergehistory-comment'             => 'Unione di [[:$1]] in [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Le pagine di origine e di destinazione non possono coincidere',
+'mergehistory-reason'              => 'Motivo:',
 
 # Merge log
 'mergelog'           => 'Unioni',

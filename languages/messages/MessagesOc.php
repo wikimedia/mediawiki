@@ -1047,6 +1047,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'mergehistory-autocomment'         => '[[:$1]] fusionat amb [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] fusionat amb [[:$2]] : $3',
 'mergehistory-same-destination'    => "Las paginas d'origina e de destinacion pòdon pas èsser la meteissa",
+'mergehistory-reason'              => 'Motiu :',
 
 # Merge log
 'mergelog'           => 'Istoric de las fusions',

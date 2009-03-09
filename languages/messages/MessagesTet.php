@@ -632,7 +632,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'protect-otherreason'         => 'Motivu seluk/ida tan:',
 'protect-otherreason-op'      => 'motivu seluk/ida tan',
 'protect-edit-reasonlist'     => 'Edita lista motivu nian',
-'protect-expiry-options'      => '2 hours:2 hours,1 loron:1 day,3 Loron:3 days,1 semana:1 week,2 semana:2 weeks,1 fulan:1 month,3 fulan:3 months,6 fulan:6 months,1 tinan:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hour:1 hours,1 loron:1 day,1 semana:1 week,2 semana:2 weeks,1 fulan:1 month,3 fulan:3 months,6 fulan:6 months,1 tinan:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permisaun:',
 
 # Restrictions (nouns)
@@ -643,7 +643,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 # Undelete
 'undelete'               => 'Haree pájina halakon tiha',
 'undeletebtn'            => 'Restaurar',
-'undeletelink'           => 'restaurar',
+'undeletelink'           => 'lee/restaurar',
 'undeletecomment'        => 'Komentáriu:',
 'undeletedarticle'       => 'restaurar "[[$1]]"',
 'undeletedrevisions'     => 'restaurar {{PLURAL:$1|versaun|versaun}} $1',

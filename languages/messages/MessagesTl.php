@@ -907,12 +907,15 @@ maaaring may detalye sa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} t
 Makikita pa rin ng iba pang mga tagapangasiwang nasa {{SITENAME}} ang mga tinagong nilalaman
 at maaaring ibalik ito mula sa pagkakabura sa pamamagitan ng kaparehong ugnayang-hangganan, maliban na lamang kung may itinakdang karagdagang mga restriksyon.
 Pakitiyak kung ito ang nais mong gawin, na nauunawaan mo ang mga kahihinatnan, at ginagawa mo ito alinsunod sa [[{{MediaWiki:Policy-url}}|patakaran]].",
+'revdelete-suppress-text'        => "Ang paglilingid ay dapat na gamitin '''lamang''' para sa sumusunod na mga pagkakataon:
+* Hindi naaangkop na kabatirang pansarili
+*: ''mga adres ng tahanan at bilang na pangtelepono, mga bilang na pangseguridad na sosyal, atbp.''",
 'revdelete-legend'               => 'Itakda ang mga kaantasan ng pagpapakita',
 'revdelete-hide-text'            => 'Itago ang teksto ng pagbabago',
 'revdelete-hide-name'            => 'Itago ang galaw at puntirya',
 'revdelete-hide-comment'         => 'Itago ang kumento sa pagbabago',
 'revdelete-hide-user'            => 'Itago ang pangalang pantagagamit/IP ng patnugot',
-'revdelete-hide-restricted'      => 'Ilapat ang mga restriksyon na ito sa mga tagapangasiwa at sa mga iba na rin',
+'revdelete-hide-restricted'      => 'Ilingid ang dato mula sa mga tagapangasiwa at maging sa mga iba pa',
 'revdelete-suppress'             => 'Supilin ang datos mula sa mga tagapangasiwa gayon din sa iba',
 'revdelete-hide-image'           => 'Itago ang nilalaman ng talaksan',
 'revdelete-unsuppress'           => 'Tanggalin ang mga pagbabawal sa naibalik na mga pagbabago',
@@ -961,6 +964,7 @@ Tiyakin na ang pagbabago ay makapagpapanatili ng pagkakatuluy-tuloy ng pahinang 
 'mergehistory-autocomment'         => 'Pinagsanib ang [[:$1]] sa [[:$2]]',
 'mergehistory-comment'             => 'Pinagsanib ang [[:$1]] sa [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Pinagmulan at patutunguhan hindi dapat magkatulad',
+'mergehistory-reason'              => 'Dahilan:',
 
 # Merge log
 'mergelog'           => 'Tala ng pagsasanib',
@@ -2046,6 +2050,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Para sa mga bagong kuwenta',
 'sp-contributions-newbies-title' => 'Mga ambag ng tagagamit para sa mga bagong kuwenta/akawnt',
 'sp-contributions-blocklog'      => 'Tala ng paglipat',
+'sp-contributions-logs'          => 'mga tala',
 'sp-contributions-search'        => 'Maghanap ng ambag',
 'sp-contributions-username'      => 'IP Address o bansag:',
 'sp-contributions-submit'        => 'Hanapin',

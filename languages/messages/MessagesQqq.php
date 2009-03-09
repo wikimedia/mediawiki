@@ -521,12 +521,19 @@ The title of the warning is the message {{msg-mw|nosuchspecialpage}}. <code><now
 'username'                   => '{{Identical|Username}}',
 'uid'                        => '{{Identical|User ID}}',
 'prefs-memberingroups'       => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon.',
-'yourrealname'               => '{{Identical|Real name}}',
-'yourlanguage'               => '{{Identical|Language}}',
-'yourvariant'                => '{{optional}}',
-'yournick'                   => 'Used in [[Special:Preferences]].',
+'yourrealname'               => 'Used in [[Special:Preferences]], first tab.
+{{Identical|Real name}}',
+'yourlanguage'               => 'Used in [[Special:Preferences]], first tab.
+{{Identical|Language}}',
+'yourvariant'                => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.
+{{optional}}',
+'yournick'                   => 'Used in [[Special:Preferences]], first tab.',
 'badsig'                     => 'Error message displayed when entering invalid signature in user preferences',
 'badsiglength'               => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
+'yourgender'                 => 'Used in [[Special:Preferences]], first tab.',
+'gender-unknown'             => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, or cannot be determined, or matches none of the other choices preset in the select.',
+'gender-male'                => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.',
+'gender-female'              => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.',
 'email'                      => '{{Identical|E-mail}}',
 'prefs-help-realname'        => 'In user preferences.',
 'prefs-help-email'           => 'Shown as explanation text on [[Special:Preferences]].',
@@ -813,6 +820,7 @@ Please note that the parameters in a log entry will appear in the log only in th
 *Parameter $2 is the target of the redirect
 *Parameter $3 is a log comment for the merge',
 'mergehistory-same-destination' => 'Error message shown on [[Special:MergeHistory]] when the user entered the same page title to both source and destination',
+'mergehistory-reason'           => '{{Identical|Reason}}',
 
 # Merge log
 'mergelog' => 'This is the name of a log of merge actions done on [[Special:MergeHistory]]. This special page and this log is not enabled by default.',
@@ -2161,6 +2169,10 @@ If the length of the translated message is over 60 characters (including spaces)
 'monobook.js' => 'JS for users using Monobook skin.',
 
 # Attribution
+'anonymous'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
+This message appears at the very end of the list of names in the message [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]]. If there are no anonymous users in the credits list then this message does not appear at all.
+
+* $1 is the number of anonymous users in the message',
 'siteuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki). 
 
 This message is the variable $3 in the message [[Mediawiki:lastmodifiedatby/{{SUBPAGENAME}}]]. This message only appears if the user has not entered his 'real name' in his preferences. The variable $1 in this message is a user name.",
@@ -2172,13 +2184,16 @@ This message is the variable $3 in the message [[Mediawiki:lastmodifiedatby/{{SU
 See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].", # $1 date, $2 time, $3 user
 'othercontribs'    => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
 * $1: the list of author(s) of the revisions preceding the current revision. It appears after the message [[Mediawiki:lastmodifiedatby/{{SUBPAGENAME}}]]. If there are no previous authors this message does not appear at all. If needed the messages [[Mediawiki:siteusers/{{SUBPAGENAME}}]], [[Mediawiki:anonymous/{{SUBPAGENAME}}]] and [[Mediawiki:and/{{SUBPAGENAME}}]] are part of the list of names.',
-'siteusers'        => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
+'others'           => 'The following explanation is guesswork. This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar). 
+
+The message appears at the end of the list of credits given in the message [[Mediawiki:Othercontribs/{{SUBPAGENAME}}]] if the number of contributors is above a certain level.',
+'siteusers'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
 It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]].
 
-* \$1 is a list of user names (example: \"''Jim, Janet, Jane, Joe''\") where the user has not put his 'real name' in his preferences.
-* \$2 is the number of user names in \$1
+* $1 is a list of user names (example: "\'\'Jim, Janet, Jane, Joe\'\'") where the user has not put his \'real name\' in his preferences.
+* $2 is the number of user names in $1
 
-If there is more than one user in the list then the message [[Mediawiki:and/{{SUBPAGENAME}}]] appears before the last name.",
+If there is more than one user in the list then the message [[Mediawiki:and/{{SUBPAGENAME}}]] appears before the last name. If $2 is NIL then this message does not appear at all.',
 'creditspage'      => "This message is the ''contentSub'' (the grey subtitle) shown when viewing credits of a page (example: {{fullurl:Betawiki:News|action=credits}}). Note that the credits action is disabled by default (currently enabled on Betawiki).",
 'nocredits'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on Betawiki).',
 

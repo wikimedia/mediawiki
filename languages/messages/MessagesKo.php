@@ -13,6 +13,7 @@
  * @author PuzzletChung
  * @author TheAlpha for knowledge
  * @author ToePeu
+ * @author Yknok29
  * @author לערי ריינהארט
  */
 
@@ -1023,6 +1024,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'mergehistory-autocomment'         => '[[:$1]] 문서를 [[:$2]]로 병합함',
 'mergehistory-comment'             => '[[:$1]] 문서를 [[:$2]] 문서와 합침: $3',
 'mergehistory-same-destination'    => '원본 문서 이름과 새 문서 이름은 같을 수 없습니다.',
+'mergehistory-reason'              => '이유:',
 
 # Merge log
 'mergelog'           => '합병 기록',

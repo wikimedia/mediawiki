@@ -973,6 +973,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'mergehistory-autocomment'         => 'Fusionava [[:$1]] in [[:$2]]',
 'mergehistory-comment'             => 'Fusionava [[:$1]] in [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Le paginas de origine e de destination non pote esser le mesme',
+'mergehistory-reason'              => 'Motivo:',
 
 # Merge log
 'mergelog'           => 'Registro de fusiones',

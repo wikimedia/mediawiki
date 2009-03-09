@@ -1120,6 +1120,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'mergehistory-autocomment'         => '„[[:$1]]“ vereinigt nach „[[:$2]]“',
 'mergehistory-comment'             => '„[[:$1]]“ vereinigt nach „[[:$2]]“: $3',
 'mergehistory-same-destination'    => 'Ausgangs- und Zielseite dürfen nicht identisch sein',
+'mergehistory-reason'              => 'Begründung:',
 
 # Merge log
 'mergelog'           => 'Vereinigungs-Logbuch',

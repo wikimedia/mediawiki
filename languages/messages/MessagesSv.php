@@ -1068,6 +1068,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'mergehistory-autocomment'         => 'Infogade [[:$1]] i [[:$2]]',
 'mergehistory-comment'             => 'Infogade [[:$1]] i [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Käll- och målsidor kan inte vara samma',
+'mergehistory-reason'              => 'Anledning:',
 
 # Merge log
 'mergelog'           => 'Sammanfogningslogg',
