@@ -183,7 +183,7 @@ class SpecialPage
 		'Mycontributions'           => array( 'SpecialMycontributions' ),
 		'Mypage'                    => array( 'SpecialMypage' ),
 		'Mytalk'                    => array( 'SpecialMytalk' ),
-		'Revisiondelete'            => 'SpecialRevisiondelete',
+		'Revisiondelete'            => 'SpecialRevisionDelete',
 		'Specialpages'              => array( 'UnlistedSpecialPage', 'Specialpages' ),
 		'Userlogout'                => array( 'UnlistedSpecialPage', 'Userlogout' ),
 	);

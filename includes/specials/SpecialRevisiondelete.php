@@ -10,7 +10,7 @@
 class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	public function __construct() {
-		parent::__construct( 'RevisionDelete', 'deleterevision' );
+		parent::__construct( 'Revisiondelete', 'deleterevision' );
 		$this->includable( false );
 	}
 
