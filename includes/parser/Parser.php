@@ -4638,9 +4638,8 @@ class Parser
 		// if this template is subst: the revision id will be blank,
 		// so just use the current user's name
 		if( $this->mRevisionId ) {
-	                $dbr = wfGetDB( DB_SLAVE );
-	                $revuser = $dbr->selectField( 'revision', 'rev_user_text',
- 				array( 'rev_id' => $this->mRevisionId ), __METHOD__ );
+			$revision = Revision::newFromId( $this->mRevisionId );
+			$revuser = $revision->getUserText();
 		} else {
 			global $wgUser;
 			$revuser = $wgUser->getName();
