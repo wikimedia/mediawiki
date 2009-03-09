@@ -912,6 +912,7 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'mergehistory-autocomment'         => '„[[:$1]]“ zämegfierd no „[[:$2]]“',
 'mergehistory-comment'             => '„[[:$1]]“ zämegfierd no „[[:$2]]“: $3',
 'mergehistory-same-destination'    => 'Uusgangs- un Ziilsyte derfe nit di nämlige syy',
+'mergehistory-reason'              => 'Grund:',
 
 # Merge log
 'mergelog'           => 'Zämefierigs-Logbuech',

@@ -1051,6 +1051,7 @@ $2',
 'mergehistory-autocomment'         => "Гісторыя [[:$1]] аб'яднаная ў [[:$2]]",
 'mergehistory-comment'             => "Гісторыя [[:$1]] аб'яднаная ў [[:$2]]: $3",
 'mergehistory-same-destination'    => 'Крынічная і мэтавая старонкі ня могуць супадаць',
+'mergehistory-reason'              => 'Прычына:',
 
 # Merge log
 'mergelog'           => "Журнал аб'яднаньняў",

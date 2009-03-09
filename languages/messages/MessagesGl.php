@@ -1018,6 +1018,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'mergehistory-autocomment'         => '[[:$1]] fusionouse en [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] fusionouse en [[:$2]]: $3',
 'mergehistory-same-destination'    => 'A orixe das páxinas e o seu destino non poden ser os mesmos',
+'mergehistory-reason'              => 'Motivo:',
 
 # Merge log
 'mergelog'           => 'Rexistro de fusións',

@@ -289,6 +289,8 @@ $messages = array(
 'protectedpagetext'    => "Αβούτη σελίδαν εν ασπαλιγμένον και 'κ αλλάζ'.",
 'viewsourcetext'       => "Επορείτε να τερείτε και ν' αντιγράφετε το κείμενον τ' ατεινές τη σελίδας:",
 'protectedinterface'   => "Αβούτη σελίδαν έχ' απές κείμενον για το interface τη software και για τ' ατό εν ασπαλιγμένον.",
+'namespaceprotected'   => "'Κ επορείτε να αλλάζετε σελίδας σο namespace '''$1'''.",
+'customcssjsprotected' => "'Κ επορείτε να αλλάζετε αβούτο τη σελίδαν. Ατουπές, άλλος χρήστες έχ' τα προσωπικά τ'αγαπεμένα τ'.",
 'ns-specialprotected'  => "Τα ειδικά τα σελίδας 'κ επορούν ν' επεξεργάσκουνταν.",
 
 # Virus scanner
@@ -477,12 +479,15 @@ $messages = array(
 'templatesusedpreview'   => "Πρότυπα σ' αβούτον το πρώτον τέρεμαν:",
 'template-protected'     => '(ασπαλιγμένον)',
 'template-semiprotected' => '(ημψά-ασπαλιγμένον)',
+'hiddencategories'       => "Αούτο η σελίδαν ανήκ' σα {{PLURAL:$1|1 κρυμμένον κατηγορία|$1 κρυμμένα κατηγορίας}}:",
 'nocreatetext'           => "Σο {{SITENAME}} περιορίσκουτον το ποίσεμα σελιδίων.
 'Πορείτε να κλώσκεστε οπίς και ν' αλλάζετε έναν παλαιόν σελίδαν ή να [[Special:UserLogin|εμπάτε ή να εφτάτε λογαρίαν]].",
 'recreate-deleted-warn'  => "'''Ωρία: Εφτάτε αξάν μίαν σελίδαν ντο νεβζινέθεν οψεκές.'''
 
 Ίσως εν καλλίον να μην εφτάτε τη σελίδαν.
 Τερέστεν για βοήθειαν και σ' αρχείον την αιτίαν για το σβήσιμον:",
+'deleted-notice'         => 'Αούτο η σελίδαν εβζινέθεν. 
+Αφκά ευρίεται έναν γράψιμον ασο αρχείον για το σβήσεμαν τη σελίδας.',
 
 # Account creation failure
 'cantcreateaccounttitle' => "Το ποίσιμον τη λογαρίας 'κ έντον",
@@ -490,6 +495,7 @@ $messages = array(
 # History pages
 'viewpagelogs'           => "Τέρεν αρχεία γι' αβούτεν τη σελίδαν",
 'currentrev'             => 'Ατωριζνόν μορφήν',
+'currentrev-asof'        => 'Ατωριζνόν μορφήν τη $1',
 'revisionasof'           => 'Μορφήν τη $1',
 'revision-info'          => 'Έκδοση σα $1 ασόν/ασήν $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Παλαιόν μορφήν',
@@ -521,6 +527,9 @@ $messages = array(
 'revdelete-summary' => 'σύνοψην',
 'revdelete-uname'   => "όνεμαν χρήστ'",
 
+# Merge log
+'revertmerge' => 'Χώρτσον ξαν',
+
 # Diffs
 'history-title'           => 'Ιστορικόν εκδοσίων για τη σελίδαν "$1"',
 'difference'              => '(Διαφορά μεταξύ τη μορφίων)',
@@ -540,8 +549,12 @@ $messages = array(
 # Search results
 'searchresults'             => 'Εύρον αποτελέσματα',
 'searchresults-title'       => 'Εύρον αποτελέσματα για "$1"',
+'searchsubtitle'            => 'Αραέβετε \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|ούλα τα σελίδας ντ\'αρχίζνε με "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ούλα τα σελίδας ντο δεκνίζνε σο "$1"]])',
+'searchsubtitleinvalid'     => "Αράεψες το '''$1'''",
 'noexactmatch'              => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμαν \"\$1\".'''
 Εμπορείτε να [[:\$1|εφτάτε ατέναν]].",
+'noexactmatch-nocreate'     => "''''Κ έχ' σελίδαν με τ'όνομαν \"\$1\".'''",
+'notitlematches'            => "Κανέναν όνομαν σελίδας 'κ ταιριάζ",
 'prevn'                     => '$1 προηγουμένων',
 'nextn'                     => '$1 επομένων',
 'viewprevnext'              => 'Τέρεν ($1) ($2) ($3)',
@@ -707,7 +720,9 @@ $messages = array(
 'imagelinks'                => 'Συνδέσμ αρχείων',
 'linkstoimage'              => "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
 'nolinkstoimage'            => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
-'sharedupload'              => "Αβούτον τ' αρχείον εφορτώθεν ασό το $1 για κοινόν κουλάνεμαν κι εν δυνατόν να χρησιμοπισκάται και σ' άλλα έργα. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => "Αβούτον τ' αρχείον εφορτώθεν ασό $1 για κοινόν κουλάνεμαν κι εν δυνατόν να χρησιμοπισκάται και σ' άλλα έργα. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'shareduploadwiki-desc'     => "Το γράψιμον αση $1 ευρίκετε ατο κι αλλ' αφκά.",
+'shareduploadwiki-linktext' => "σελίδα ντ'εξηγίζ' τ'αρχείον",
 'noimage'                   => "Αρχείον με αείκον όνεμαν 'κ έχ', άμα επορείς να $1.",
 'noimage-linktext'          => "σκώσ' έναν",
 'uploadnewversion-linktext' => "Σκώσ' καινούραιον έκδοσην τ' αρχείου",
@@ -910,12 +925,13 @@ $messages = array(
 'blanknamespace' => '(Αρχικόν περιοχή)',
 
 # Contributions
-'contributions' => "Δουλείας ντ' εποίκε ο χρήστες",
-'mycontris'     => "Δουλείας ντ' εποίκα",
-'contribsub2'   => 'Για τον/την $1 ($2)',
-'uctop'         => '(υστερνά)',
-'month'         => 'Ασόν μήναν (και πριχού):',
-'year'          => 'Ασή χρονίαν (και πριχού):',
+'contributions'       => "Δουλείας ντ' εποίκε ο χρήστες",
+'contributions-title' => "Δουλείας ντ' εποίκε ο χρήστες $1",
+'mycontris'           => "Δουλείας ντ' εποίκα",
+'contribsub2'         => 'Για τον/την $1 ($2)',
+'uctop'               => '(υστερνά)',
+'month'               => 'Ασόν μήναν (και πριχού):',
+'year'                => 'Ασή χρονίαν (και πριχού):',
 
 'sp-contributions-newbies'     => 'Τέρεμαν γραψιματίων τη καινούρεων λογαρίων μαναχόν',
 'sp-contributions-newbies-sub' => 'Για τα καινούρεα τοι λογαρίας',
@@ -1072,13 +1088,14 @@ $messages = array(
 'tooltip-n-randompage'            => 'Κατά τύχην εύρον σελίδαν και δείξον ατέν',
 'tooltip-n-help'                  => "Αδά θα ευρίετε τα απαντήσεις ντ' αραεύετε.",
 'tooltip-t-whatlinkshere'         => "Ούλ' τ' άρθρα ντο δεκνίζνε σο παρόν το άρθρον",
+'tooltip-t-recentchangeslinked'   => "Υστερνά αλλαγάς σε σελίδας με συνδέσμ' απ'αδακά.",
 'tooltip-feed-rss'                => 'RSS συνδρομή για την σελίδαν ατέν',
 'tooltip-feed-atom'               => 'Atom συνδρομή για την σελίδαν ατέν',
 'tooltip-t-contributions'         => 'Τερέστεν τη λίσταν με τα συνεισφοράντας τη χρήστε',
 'tooltip-t-emailuser'             => "E-mail σ' αβούτον χρήστεν",
 'tooltip-t-upload'                => 'Φόρτωμα αρχείων',
 'tooltip-t-specialpages'          => 'Κατάλογον με τα ειδικά σελίδας',
-'tooltip-t-print'                 => "Εκτυπώσιμ' μορφή τς σελίδας",
+'tooltip-t-print'                 => 'Εκτυπώσιμον μορφή τη σελίδας',
 'tooltip-ca-nstab-main'           => 'Τέρεμαν σελίδας περιεχομενίων',
 'tooltip-ca-nstab-user'           => 'Τέρεμαν τη σελίδας χρήστε',
 'tooltip-ca-nstab-media'          => 'Τέρεμαν τη σελίδας μεσίων',

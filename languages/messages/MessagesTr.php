@@ -939,6 +939,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'mergehistory-autocomment'         => '[[:$1]], [[:$2]] sayfasına birleştirildi',
 'mergehistory-comment'             => '[[:$1]] ile [[:$2]] birleştirildi: $3',
 'mergehistory-same-destination'    => 'Kaynak ve hedef sayfaları aynı olamaz',
+'mergehistory-reason'              => 'Sebep:',
 
 # Merge log
 'mergelog'           => 'Birleştirme kaydı',

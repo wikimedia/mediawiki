@@ -1026,6 +1026,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'mergehistory-autocomment'         => 'Fletta «[[:$1]]» inn i «[[:$2]]»',
 'mergehistory-comment'             => 'Fletta «[[:$1]]» inn i «[[:$2]]»: $3',
 'mergehistory-same-destination'    => 'Kjelde- og målside kan ikkje vere den same.',
+'mergehistory-reason'              => 'Årsak:',
 
 # Merge log
 'mergelog'           => 'Flettingslogg',
@@ -2470,7 +2471,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'notacceptable'     => 'Wikitenaren kan ikkje gje data i noko format som programmet ditt kan lesa.',
 
 # Attribution
-'anonymous'        => '{{PLURAL:$1|Anonym brukar|Anonyme brukarar}} av {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|anonym brukar|anonyme brukarar}} av {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-brukaren $1',
 'lastmodifiedatby' => 'Denne sida vart sist endra den $1 kl. $2 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basert på arbeid av $1.',

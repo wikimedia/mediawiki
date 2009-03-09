@@ -1021,12 +1021,15 @@ Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}
 
 Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakrivenom sadržaju i mogu ga ponovo vratiti kroz ovaj interfejs, osim ako nisu postavljena dodatna ograničenja.
 Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].",
+'revdelete-suppress-text'        => "Ograničenja bi trebala biti korištena '''samo''' u slijedećim slučajevima:
+* Osjetljive korisničke informacije
+*: ''kućne adrese, brojevi telefona, brojevi bankovnih kartica itd.''",
 'revdelete-legend'               => 'Postavi ograničenja vidljivosti',
 'revdelete-hide-text'            => 'Sakrij tekst revizije',
 'revdelete-hide-name'            => 'Sakrij akciju i cilj',
 'revdelete-hide-comment'         => 'Sakrij izmjene komentara',
 'revdelete-hide-user'            => 'Sakrij korisničko ime urednika/IP',
-'revdelete-hide-restricted'      => 'Primijeni ova ograničenja na Administratore i zaključaj ovaj interfejs',
+'revdelete-hide-restricted'      => 'Ograniči podatke od administratora i kao i za druge korisnike',
 'revdelete-suppress'             => 'Sakrij podatke od administratora kao i od drugih',
 'revdelete-hide-image'           => 'Sakrij sadržaj datoteke',
 'revdelete-unsuppress'           => 'Ukloni ograničenja na vraćenim revizijama',
@@ -1075,6 +1078,7 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'mergehistory-autocomment'         => 'Spoji [[:$1]] u [[:$2]]',
 'mergehistory-comment'             => 'Spojeno [[:$1]] u [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Izvorne i odredišne stranice ne mogu biti iste',
+'mergehistory-reason'              => 'Razlog:',
 
 # Merge log
 'mergelog'           => 'Zapis spajanja',
@@ -2188,6 +2192,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Za nove korisnike',
 'sp-contributions-newbies-title' => 'Doprinosi novih korisnika',
 'sp-contributions-blocklog'      => 'Evidencija blokiranja',
+'sp-contributions-logs'          => 'zapisnici',
 'sp-contributions-search'        => 'Pretraga doprinosa',
 'sp-contributions-username'      => 'IP adresa ili korisničko ime:',
 'sp-contributions-submit'        => 'Traži',

@@ -899,6 +899,7 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'mergehistory-autocomment'         => '[[:$1]] z [[:$2]] zjednoćeny',
 'mergehistory-comment'             => '[[:$1]] z [[:$2]] zjednoćeny: $3',
 'mergehistory-same-destination'    => 'Žórłowa a cilowa strona njesmějetej identiskej być',
+'mergehistory-reason'              => 'Přičina:',
 
 # Merge log
 'mergelog'           => 'Protokol zjednoćenja',
@@ -2124,7 +2125,7 @@ Wobkedźbuj, zo strona so <b>nje</b> přesunje, jeli strona z nowym titlom hizo 
 W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to přeješ.',
 'movearticle'                  => 'Stronu přesunyć',
 'movenologin'                  => 'Njejsy přizjewjeny.',
-'movenologintext'              => 'Dyrbiš zregistrowany wužiwar a [[Special:UserLogin|přizjewjeny]] być, zo by stronu přesunył.',
+'movenologintext'              => 'Dyrbiš zregistrowany wužiwar a [[Special:Userlogin|přizjewjeny]] być, zo by stronu přesunył.',
 'movenotallowed'               => 'Nimaš prawo, zo by strony přesunył.',
 'movenotallowedfile'           => 'Nimaš prawo dataje přesunyć.',
 'cant-move-user-page'          => 'Nimaš prawo wužiwarske strony přesunyć (wothladajo wot podstronow)',

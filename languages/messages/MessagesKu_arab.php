@@ -474,6 +474,7 @@ This is usually caused by following an outdated diff or history link to a page t
 'revertmerge' => 'لەیەک جیاکردنەوە',
 
 # Diffs
+'history-title'           => 'مێژووی پیاچوونەوەکانی "$1"',
 'difference'              => '(جیاوازی نێوان پیاچوونەوەکان)',
 'lineno'                  => 'ھێڵی  $1:',
 'compareselectedversions' => 'ھەڵسەنگاندنی وەشانە ھەڵبژاردراوەکان',
@@ -566,8 +567,10 @@ This is usually caused by following an outdated diff or history link to a page t
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'دەستکاری ئەم پەڕەیە بکە',
+'action-move' => 'گواستنەوەی ئەم پەڕە',
 
 # Recent changes
+'nchanges'             => '$1 {{PLURAL:$1|گۆڕانکاری|گۆڕانکاری}}',
 'recentchanges'        => 'دوایین گۆڕانکارییەکان',
 'recentchanges-legend' => 'هەڵبژاردنەکانی دوا گۆڕانکارییەکان',
 'rcnote'               => "لە خوارەوەدا {{PLURAL:$1|'''۱''' گۆڕانکاری |دوایین '''$1''' گۆڕانکارییەکان}} لە دوایین {{PLURAL:$2|ڕۆژ|'''$2''' ڕۆژەوە}} ، تا $5، $4 دەبینن.",
@@ -725,6 +728,7 @@ for directly linking to the file without displaying the file",
 'linksearch' => 'بەستەرە دەرەکییەکان',
 
 # Special:Log/newusers
+'newuserlogpage'          => 'لۆگی دروست کردنی بەکارھێنەر',
 'newuserlog-create-entry' => 'بەکارھێنەری نوێ',
 
 # Special:ListGroupRights
@@ -733,6 +737,8 @@ for directly linking to the file without displaying the file",
 
 # E-mail user
 'emailuser'       => 'بۆ ئەم بەکارھێنەرە E-Mail بنێرە',
+'emailpage'       => 'ئیمەیل بۆ بەکارھێنەر',
+'defemailsubject' => 'ئیمەیلی {{SITENAME}}',
 'emailfrom'       => 'لە:',
 'emailto'         => 'بۆ:',
 'emailsubject'    => 'بابەت:',
@@ -784,11 +790,16 @@ for directly linking to the file without displaying the file",
 'delete-confirm'        => 'سڕینەوەی "$1"',
 'delete-legend'         => 'سڕینەوە',
 'historywarning'        => 'ئاگاداری: ئەم پەڕە کە ئەتەوێ بیسڕیتەوە مێژووی ھەیە',
+'actioncomplete'        => 'چالاکی دوایی هاو.',
 'deletedarticle'        => '"[[$1]]" سڕدرایەوە',
 'dellogpage'            => 'لۆگی سڕینەوە',
 'deletecomment'         => 'ھۆکاری سڕینەوە:',
 'deleteotherreason'     => 'ھۆکاری دیکە:',
 'deletereasonotherlist' => 'ھۆکاری دیکە',
+'deletereason-dropdown' => '* ھۆکاری سڕینەوە
+** داواکاریی نووسەر
+** تێکدانی مافی لەبەرگرتنەوە
+** خراپکاری',
 
 # Rollback
 'rollbacklink' => 'گەڕاندنەوە',
@@ -845,7 +856,7 @@ for directly linking to the file without displaying the file",
 
 'sp-contributions-newbies'     => 'تەنھا بەشدارییەکانی بەکارھێنەرە تازەکان نیشان بدە',
 'sp-contributions-newbies-sub' => 'لە بەکارھێنەرە تازەکانەوە',
-'sp-contributions-blocklog'    => 'لۆگی بلۆککردن',
+'sp-contributions-blocklog'    => 'لۆگی بەربەستن',
 'sp-contributions-search'      => 'گەڕین بۆ بەشدارییەکان',
 'sp-contributions-username'    => 'ئەدرەسی IP یان بەکارھێنەر:',
 'sp-contributions-submit'      => 'بگەڕە',
@@ -871,7 +882,7 @@ for directly linking to the file without displaying the file",
 'block-log-flags-nocreate' => 'دروستکردنی هەژمار ناچالاککراوە',
 
 # Move page
-'movepagetext'       => "لە ڕێگەی ئەم فۆرمەی خوارەوە ناوی پەڕە دەگۆڕدرێت، وە ھەموو مێژووەکەی دەگوازێتەوە بۆ ناوی نوێ.
+'movepagetext'        => "لە ڕێگەی ئەم فۆرمەی خوارەوە ناوی پەڕە دەگۆڕدرێت، وە ھەموو مێژووەکەی دەگوازێتەوە بۆ ناوی نوێ.
 ئەگەر لە بەشی گەڕان ناوە کۆنەکەی پێ بدەی بە شێوەی خۆکار پەڕەکە دەگوازرێتەوە بۆ ناوە نوێکە .
 تۆ دەتوانی ئەو بەستەری ئاڵوگۆرانە بگۆڕی کە بەشێوەی خۆکار دەچێنە سەر لاپەڕەی ئەسڵی
 ئەگەر ناتەوێت ئەم کارە بکەی، دڵنیا بە کە [[Special:DoubleRedirects|دوبلەکان]]   یان [[Special:BrokenRedirects|شکاوەکان]] تاقی بکەیتەوە.
@@ -886,21 +897,23 @@ for directly linking to the file without displaying the file",
 '''ئاگاداریی'''
 ئەمە دەتوانێت گۆڕانێکی زۆر نابەجێ و چاوەڕوانەکراو بێت لە لاپەڕەیەکی ناسراو؛
 تکایە پێش گۆڕینی ناو باش بیر لە ئاکامەکەی بکەوە.",
-'movearticle'        => 'ئەم لاپەڕە بگوازەوە:',
-'newtitle'           => 'بۆ ناوێکی نوێ:',
-'move-watch'         => 'ئەم لاپەڕە چاودێری بکە',
-'movepagebtn'        => 'ئەم لاپەڕە بگوازەوە',
-'pagemovedsub'       => 'گواستنەوە بە سەرکەوتوویی جێبەجێ کرا',
-'movepage-moved'     => '<big>\'\'\'"$1" گوازراوەتەوە بۆ "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'      => 'لاپەڕەیەک بەم ناوە ھەیە، یان ئەو ناوەی تۆ ھەڵتبژاردووە بایەخدار نیە.
+'movearticle'         => 'ئەم لاپەڕە بگوازەوە:',
+'newtitle'            => 'بۆ ناوێکی نوێ:',
+'move-watch'          => 'ئەم لاپەڕە چاودێری بکە',
+'movepagebtn'         => 'ئەم لاپەڕە بگوازەوە',
+'pagemovedsub'        => 'گواستنەوە بە سەرکەوتوویی جێبەجێ کرا',
+'movepage-moved'      => '<big>\'\'\'"$1" گوازراوەتەوە بۆ "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'       => 'لاپەڕەیەک بەم ناوە ھەیە، یان ئەو ناوەی تۆ ھەڵتبژاردووە بایەخدار نیە.
 تکایە ناوێکی دیکە ھەڵبژێرە',
-'movedto'            => 'بوو بە',
-'movetalk'           => 'پەڕەی گوفتوگۆکەشی بگۆزەرەوە',
-'move-subpages'      => 'ھەموو ژێرپەڕەکانیشی (بە ئەندازەی $1) بگۆزەرەوە، ئەگەر بیبێت',
-'move-talk-subpages' => 'ھەموو ژێرپەڕەکانی (بە ئەندارەی $1) پەڕەی گوفتوگۆکەشی بگۆزەرەوە، ئەگەر بیبێت',
-'movelogpage'        => 'لۆگ بگوازەوە',
-'movereason'         => 'بە ھۆی:',
-'revertmove'         => 'پێچەوانەکردنەوە',
+'movedto'             => 'بوو بە',
+'movetalk'            => 'پەڕەی گوفتوگۆکەشی بگۆزەرەوە',
+'move-subpages'       => 'ھەموو ژێرپەڕەکانیشی (بە ئەندازەی $1) بگۆزەرەوە، ئەگەر بیبێت',
+'move-talk-subpages'  => 'ھەموو ژێرپەڕەکانی (بە ئەندارەی $1) پەڕەی گوفتوگۆکەشی بگۆزەرەوە، ئەگەر بیبێت',
+'1movedto2_redir'     => 'بە ڕەوانکردنەوە، $1 ڕۆیشتە جێگەی $2',
+'movelogpage'         => 'لۆگ بگوازەوە',
+'movereason'          => 'بە ھۆی:',
+'revertmove'          => 'پێچەوانەکردنەوە',
+'move-leave-redirect' => 'ڕەوانکردنەوەیەک دابنە بۆ پەڕە نوێکە',
 
 # Export
 'export' => 'پەڕەکان هەناردە بکە',

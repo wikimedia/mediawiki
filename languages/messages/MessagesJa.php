@@ -1040,6 +1040,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'mergehistory-autocomment'         => '[[:$1]]を[[:$2]]に統合',
 'mergehistory-comment'             => '[[:$1]]を[[:$2]]に統合: $3',
 'mergehistory-same-destination'    => '統合元と統合先に同じページを設定することはできません。',
+'mergehistory-reason'              => '理由:',
 
 # Merge log
 'mergelog'           => '統合記録',

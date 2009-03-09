@@ -205,7 +205,7 @@ $messages = array(
 'sat'           => 'שבת',
 'january'       => 'יאַנואַר',
 'february'      => 'פֿעברואַר',
-'march'         => 'מאַרץ',
+'march'         => 'מערץ',
 'april'         => 'אַפּריל',
 'may_long'      => 'מײַ',
 'june'          => 'יוני',
@@ -229,7 +229,7 @@ $messages = array(
 'december-gen'  => 'דעצעמבער',
 'jan'           => 'יאַנ׳',
 'feb'           => 'פֿעב׳',
-'mar'           => 'מאַר׳',
+'mar'           => 'מער׳',
 'apr'           => 'אַפּר׳',
 'may'           => 'מײַ',
 'jun'           => 'יונ׳',
@@ -283,7 +283,7 @@ $messages = array(
 'and'            => '&#32;און',
 
 # Metadata in edit box
-'metadata_help' => 'מעטא־דאטא:',
+'metadata_help' => 'מעטא־דאטן:',
 
 'errorpagetitle'    => 'פעלער',
 'returnto'          => 'צוריקקערן צו $1.',
@@ -1205,9 +1205,9 @@ $2',
 'imagelinks'                => 'פֿאַרבינדונגען צום בילד',
 'linkstoimage'              => '{{PLURAL:$1|דער פאלגנדער בלאט ניצט|די פאלגנדע בלעטער ניצן}} דאס דאזיגע בילד:',
 'nolinkstoimage'            => 'נישטא קיין בלעטער וואס ניצן דאס דאזיגע בילד.',
-'sharedupload'              => 'די טעקע איז א בשותפותדיקע טעקע און מען מעג זי ניצן אין אנדערע פראיעקטן. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'די טעקע איז פֿון $1 און מען מעג זי ניצן אין אנדערע פראיעקטן. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'זעט דעם $1 פֿאר מער אינפֿארמאציע.',
-'shareduploadwiki-desc'     => 'די באשרייבונג אין איר $1  ווערט געוויזן אונטן..',
+'shareduploadwiki-desc'     => 'די באשרייבונג אין איר $1  ווערט געוויזן אונטן.',
 'shareduploadwiki-linktext' => 'טעקע באשרייבונג בלאט',
 'noimage'                   => "ס'איז נישטא א טעקע מיט דעם נאמען, איר קענט אבער $1.",
 'noimage-linktext'          => 'ארויפלאדן א טעקע',
@@ -1596,7 +1596,7 @@ $NEWPAGE
 דרוקן אויף '''איבערמאכן''' וועט אומאויסקלויבן אלע ווערסיעס און אויסמעקן אלעס אין דעם קאמענטארן קעסטל.",
 'undeleterevisions'         => '{{PLURAL:$1|איין ווערסיע|$1 ווערסיעס}} אַרכיווירט',
 'undeletebtn'               => 'צוריקשטעלן',
-'undeletelink'              => 'צוריקשטעלן',
+'undeletelink'              => 'קוקן/צוריקשטעלן',
 'undeleteinvert'            => 'איבערקערן דעם אויסקלויב',
 'undeletecomment'           => 'הערה:',
 'undeletedarticle'          => 'צוריק געשטעלט "[[$1]]"',

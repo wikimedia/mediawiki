@@ -763,6 +763,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'mergehistory-submit'      => 'Confundere emendationes',
 'mergehistory-autocomment' => 'confundavit [[:$1]] cum [[:$2]]',
 'mergehistory-comment'     => 'confundavit [[:$1]] cum [[:$2]]: $3',
+'mergehistory-reason'      => 'Causa:',
 
 # Merge log
 'mergelog'    => 'Acta confundendi',

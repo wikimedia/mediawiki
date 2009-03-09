@@ -1051,6 +1051,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'mergehistory-autocomment'         => 'Historia [[:$1]] scalona z [[:$2]]',
 'mergehistory-comment'             => 'Historia [[:$1]] scalona z [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Strona źródłowa i docelowa nie mogą być takie same',
+'mergehistory-reason'              => 'Powód',
 
 # Merge log
 'mergelog'           => 'Scalone',

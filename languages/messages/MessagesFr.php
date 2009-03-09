@@ -10,6 +10,7 @@
  * @author Crochet.david
  * @author Delhovlyn
  * @author Dereckson
+ * @author Diti
  * @author Elfix
  * @author Esbardu
  * @author Fryed-peach
@@ -47,24 +48,30 @@ $bookstoreList = array(
 $namespaceNames = array(
 	NS_MEDIA            => 'Média',
 	NS_SPECIAL          => 'Spécial',
-	NS_TALK             => 'Discuter',
+	NS_TALK             => 'Discussion',
 	NS_USER             => 'Utilisateur',
-	NS_USER_TALK        => 'Discussion_Utilisateur',
+	NS_USER_TALK        => 'Discussion_utilisateur',
 	NS_PROJECT_TALK     => 'Discussion_$1',
 	NS_FILE             => 'Fichier',
-	NS_FILE_TALK        => 'Discussion_Fichier',
+	NS_FILE_TALK        => 'Discussion_fichier',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Discussion_MediaWiki',
 	NS_TEMPLATE         => 'Modèle',
-	NS_TEMPLATE_TALK    => 'Discussion_Modèle',
+	NS_TEMPLATE_TALK    => 'Discussion_modèle',
 	NS_HELP             => 'Aide',
-	NS_HELP_TALK        => 'Discussion_Aide',
+	NS_HELP_TALK        => 'Discussion_aide',
 	NS_CATEGORY         => 'Catégorie',
-	NS_CATEGORY_TALK    => 'Discussion_Catégorie',
+	NS_CATEGORY_TALK    => 'Discussion_catégorie',
 );
 
 $namespaceAliases = array(
+	'Discuter' => NS_TALK,
+	'Discussion_Utilisateur' => NS_USER_TALK,
+	'Discussion_Fichier' => NS_FILE_TALK,
 	'Discussion_Image' => NS_FILE_TALK,
+	'Discussion_Modèle' => NS_TEMPLATE_TALK,
+	'Discussion_Aide' => NS_HELP_TALK,
+	'Discussion_Catégorie' => NS_CATEGORY_TALK
 );
 
 $linkTrail = '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu';
@@ -1095,6 +1102,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'mergehistory-autocomment'         => '[[:$1]] fusionnée avec [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] fusionnée avec [[:$2]] : $3',
 'mergehistory-same-destination'    => "Les pages d'origine et de destination ne peuvent pas être la même",
+'mergehistory-reason'              => 'Motif :',
 
 # Merge log
 'mergelog'           => 'Journal des fusions',
@@ -2799,7 +2807,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-focalplanexresolution'       => 'Résolution horizontale du plan focal',
 'exif-focalplaneyresolution'       => 'Résolution verticale du plan focal',
 'exif-focalplaneresolutionunit'    => 'Unité de résolution du plan focal',
-'exif-subjectlocation'             => 'Position du sujet',
+'exif-subjectlocation'             => 'Localisation du sujet',
 'exif-exposureindex'               => 'Index d’exposition',
 'exif-sensingmethod'               => 'Type de capteur',
 'exif-filesource'                  => 'Source du fichier',

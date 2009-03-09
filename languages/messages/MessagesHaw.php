@@ -131,13 +131,13 @@ $messages = array(
 'jan'           => 'Ian',
 'feb'           => 'Pep',
 'mar'           => 'Mal',
-'apr'           => 'Ape',
+'apr'           => 'ʻAp',
 'may'           => 'Mei',
 'jun'           => 'Iun',
 'jul'           => 'Iul',
-'aug'           => 'Auk',
+'aug'           => 'ʻAuk',
 'sep'           => 'Kep',
-'oct'           => 'Oka',
+'oct'           => 'ʻOk',
 'nov'           => 'Now',
 'dec'           => 'Kek',
 
@@ -177,7 +177,7 @@ $messages = array(
 'go'               => 'E huli',
 'searcharticle'    => 'Hele',
 'history'          => 'Mo‘olelo o ka ‘ao‘ao',
-'history_short'    => 'Mo‘olelo',
+'history_short'    => 'Mōʻaukala',
 'info_short'       => 'Hō‘ike',
 'printableversion' => 'Mana paʻi pono',
 'permalink'        => "Ka loulou pa'a",
@@ -535,6 +535,9 @@ Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe 
 'deletedcontributions'       => 'Nā ha‘awina o ka inoa mea ho‘ohana i kāpae ‘ia ai',
 'deletedcontributions-title' => 'Nā ha‘awina o ka inoa mea ho‘ohana i kāpae ‘ia ai',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Huli',
+
 # Special:ListUsers
 'listusers-submit' => 'Hō‘ike',
 
@@ -582,6 +585,9 @@ E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
 'restriction-edit' => 'E ho‘opololei',
 'restriction-move' => "E ho'ololi i ka inoa",
 
+# Undelete
+'undelete-search-submit' => 'Huli',
+
 # Namespace form on various pages
 'blanknamespace' => '(‘ano nui)',
 
@@ -594,6 +600,7 @@ E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
 'year'          => 'Mai makahiki (ame mamua):',
 
 'sp-contributions-search' => 'Huli no nā haʻawina',
+'sp-contributions-submit' => 'Huli',
 
 # What links here
 'whatlinkshere'           => 'He aha e loulou iho ai',
@@ -606,17 +613,18 @@ E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
 'whatlinkshere-hidelinks' => '$1 i nā loulou',
 
 # Block/unblock
-'blockip'       => 'E ke‘a i kēia mea ho‘ohana',
-'ipbexpiry'     => 'Pau āhea:',
-'ipbreason'     => 'Kumu:',
-'ipbsubmit'     => 'E ke‘a i kēia mea ho‘ohana',
-'ipbother'      => 'ʻĒ aʻe manawa:',
-'ipboptions'    => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
-'badipaddress'  => 'Mana ‘ole ka wahi noho IP',
-'anononlyblock' => '‘A‘ohe i hō‘ike‘ia ka inoa wale nō',
-'blocklink'     => 'e keʻa',
-'contribslink'  => 'nā ha‘awina',
-'blockme'       => 'E ke‘a ia‘u',
+'blockip'            => 'E ke‘a i kēia mea ho‘ohana',
+'ipbexpiry'          => 'Pau āhea:',
+'ipbreason'          => 'Kumu:',
+'ipbsubmit'          => 'E ke‘a i kēia mea ho‘ohana',
+'ipbother'           => 'ʻĒ aʻe manawa:',
+'ipboptions'         => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'badipaddress'       => 'Mana ‘ole ka wahi noho IP',
+'ipblocklist-submit' => 'Huli',
+'anononlyblock'      => '‘A‘ohe i hō‘ike‘ia ka inoa wale nō',
+'blocklink'          => 'e keʻa',
+'contribslink'       => 'nā ha‘awina',
+'blockme'            => 'E ke‘a ia‘u',
 
 # Move page
 'move-page-legend'        => "E ho'ololi",
@@ -625,6 +633,7 @@ E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
 'move-watch'              => 'E nānā pono i kēia mea',
 'movepagebtn'             => "E ho'ololi",
 'pagemovedsub'            => 'Kūleʻa ka neʻe ʻana',
+'movepage-moved'          => '<big>\'\'\'Ua hoʻoneʻe ʻo "$1" iā "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 '1movedto2'               => 'Ua hoʻoneʻe ʻo [[$1]] iā [[$2]]',
 'movereason'              => 'Kumu:',
 'delete_and_move'         => 'E kāpae a e ho‘ololi i ka inoa',
@@ -714,6 +723,9 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 
 # Special:Version
 'version-specialpages' => 'Nā ‘ao‘ao kūikawā',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Huli',
 
 # Special:SpecialPages
 'specialpages' => 'Nā ‘ao‘ao kūikawā',
