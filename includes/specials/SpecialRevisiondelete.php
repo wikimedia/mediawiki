@@ -7,7 +7,7 @@
  * @ingroup SpecialPage
  */
 
-class SpecialRevisionDelete extends SpecialPage {
+class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'RevisionDelete', 'deleterevision' );
