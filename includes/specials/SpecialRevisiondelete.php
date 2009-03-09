@@ -591,7 +591,7 @@ class SpecialRevisionDelete extends SpecialPage {
 		$userlink = $this->skin->revUserLink( $rev );
 		$comment = $this->skin->revComment( $rev );
 
-		return "<li> $difflink $revlink $userlink $comment{$del}</li>";
+		return "<li>$difflink $revlink $userlink $comment{$del}</li>";
 	}
 
 	/**
