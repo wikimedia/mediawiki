@@ -76,6 +76,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$this->dieUsage('user and excludeuser cannot be used together', 'badparams');
 
 		$this->addTables('archive');
+		$this->addWhere('ar_deleted = 0');
 		$this->addFields(array('ar_title', 'ar_namespace', 'ar_timestamp'));
 		if($fld_revid)
 			$this->addFields('ar_rev_id');
