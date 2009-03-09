@@ -447,8 +447,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				"api.php?action=query&generator=embeddedin&geititle=Template:Stub&prop=info"
 			),
 			'imageusage' => array (
-				"api.php?action=query&list=imageusage&iutitle=Image:Albert%20Einstein%20Head.jpg",
-				"api.php?action=query&generator=imageusage&giutitle=Image:Albert%20Einstein%20Head.jpg&prop=info"
+				"api.php?action=query&list=imageusage&iutitle=File:Albert%20Einstein%20Head.jpg",
+				"api.php?action=query&generator=imageusage&giutitle=File:Albert%20Einstein%20Head.jpg&prop=info"
 			)
 		);
 
