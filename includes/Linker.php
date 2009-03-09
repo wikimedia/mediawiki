@@ -1010,18 +1010,18 @@ class Linker {
 	/** @todo document */
 	function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
 		$attribsText = $this->getExternalLinkAttributes( $url, $text, 'external ' . $linktype );
-		if ( $attribs ) {
-			$attribsText .= Xml::expandAttributes( $attribs );
-		}
 		$url = htmlspecialchars( $url );
 		if( $escape ) {
 			$text = htmlspecialchars( $text );
 		}
 		$link = '';
-		$success = wfRunHooks('LinkerMakeExternalLink', array( &$url, &$text, &$link ) );
+		$success = wfRunHooks('LinkerMakeExternalLink', array( &$url, &$text, &$link, &$attribs ) );
 		if(!$success) {
 			wfDebug("Hook LinkerMakeExternalLink changed the output of link with url {$url} and text {$text} to {$link}\n", true);
 			return $link;
+		}
+		if ( $attribs ) {
+			$attribsText .= Xml::expandAttributes( $attribs );
 		}
 		return '<a href="'.$url.'"'.$attribsText.'>'.$text.'</a>';
 	}

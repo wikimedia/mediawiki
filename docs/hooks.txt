@@ -831,6 +831,7 @@ $options: the options.  Will always include either 'known' or 'broken', and may
 &$url: the image url
 &$alt: the image's alt text
 &$img: the new image HTML (if returning false)
+&$attribs: the attributes to be applied.
 
 'LinkerMakeExternalLink': At the end of Linker::makeExternalLink() just before the return
 &$url: the link url
