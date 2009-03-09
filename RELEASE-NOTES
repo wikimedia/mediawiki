@@ -136,6 +136,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   name of the last user to edit the page
 * LinkerMakeExternalLink now has an $attribs parameter for link attributes and 
   a $linkType parameter for the type of external link being made
+* (bug 17785) Dynamic dates surrounded with a <span> tag, fixing sortable tables with
+  dynamic dates.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

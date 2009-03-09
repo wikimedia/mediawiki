@@ -155,12 +155,22 @@ class DateFormatter
 				$bits[$key{$p}] = $matches[$p+1];
 			}
 		}
-
+		
+		return $this->formatDate( $bits );
+	}
+	
+	function formatDate( $bits ) {
 		$format = $this->targets[$this->mTarget];
 
 		# Construct new date
 		$text = '';
 		$fail = false;
+		
+		// Pre-generate y/Y stuff because we need the year for the <span> title.
+		if ( !isset( $bits['y'] ) )
+			$bits['y'] = $this->makeIsoYear( $bits['Y'] );
+		if ( !isset( $bits['Y'] ) )
+			$bits['Y'] = $this->makeNormalYear( $bits['y'] );
 
 		for ( $p=0; $p < strlen( $format ); $p++ ) {
 			$char = $format{$p};
@@ -185,11 +195,7 @@ class DateFormatter
 					}
 					break;
 				case 'y': # ISO year
-					if ( !isset( $bits['y'] ) ) {
-						$text .= $this->makeIsoYear( $bits['Y'] );
-					} else {
-						$text .= $bits['y'];
-					}
+					$text .= $bits['y'];
 					break;
 				case 'j': # ordinary day of month
 					if ( !isset($bits['j']) ) {
@@ -212,11 +218,7 @@ class DateFormatter
 					}
 					break;
 				case 'Y': # ordinary (optional BC) year
-					if ( !isset( $bits['Y'] ) ) {
-						$text .= $this->makeNormalYear( $bits['y'] );
-					} else {
-						$text .= $bits['Y'];
-					}
+					$text .= $bits['Y'];
 					break;
 				default:
 					$text .= $char;
@@ -225,6 +227,13 @@ class DateFormatter
 		if ( $fail ) {
 			$text = $matches[0];
 		}
+		
+		$isoDate = $bits['y'].$bits['m'].$bits['d'];
+		
+		// Output is not strictly HTML (it's wikitext), but <span> is whitelisted.
+		$text = Xml::tags( 'span',
+					array( 'class' => 'mw-formatted-date', 'title' => $isoDate ), $text );
+		
 		return $text;
 	}
 
