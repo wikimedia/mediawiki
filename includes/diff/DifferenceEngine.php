@@ -768,6 +768,7 @@ CONTROL;
 		$this->mOldtext = $oldText;
 		$this->mNewtext = $newText;
 		$this->mTextLoaded = 2;
+		$this->mRevisionsLoaded = true;
 	}
 
 	/**
