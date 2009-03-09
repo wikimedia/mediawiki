@@ -879,18 +879,35 @@ function wfHostname() {
  * murky circumstances, which may be triggered in part by stub objects
  * or other fancy talkin'.
  *
- * Will return an empty array if Zend Optimizer is detected, otherwise
- * the output from debug_backtrace() (trimmed).
+ * Will return an empty array if Zend Optimizer is detected or if
+ * debug_backtrace is disabled, otherwise the output from
+ * debug_backtrace() (trimmed).
  *
  * @return array of backtrace information
  */
 function wfDebugBacktrace() {
+	static $disabled = null;
+
 	if( extension_loaded( 'Zend Optimizer' ) ) {
 		wfDebug( "Zend Optimizer detected; skipping debug_backtrace for safety.\n" );
 		return array();
-	} else {
-		return array_slice( debug_backtrace(), 1 );
 	}
+
+	if ( is_null( $disabled ) ) {
+		$disabled = false;
+		$functions = explode( ',', ini_get( 'disable_functions' ) );
+		$functions = array_map( 'trim', $functions );
+		$functions = array_map( 'strtolower', $functions );
+		if ( in_array( 'debug_backtrace', $functions ) ) {
+			wfDebug( "debug_backtrace is in disabled_functions\n" );
+			$disabled = true;
+		}
+	}
+	if ( $disabled ) {
+		return array();
+	}
+
+	return array_slice( debug_backtrace(), 1 );
 }
 
 function wfBacktrace() {
