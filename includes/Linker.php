@@ -1007,7 +1007,22 @@ class Linker {
 		  wfMsg( $key ) );
 	}
 
-	/** @todo document */
+	/**
+	 * Make an external link
+	 * @param String $url URL to link to
+	 * @param String $text text of link
+	 * @param boolean $escape Do we escape the link text?
+	 * @param String $linktype Type of external link. Gets added to the classes
+	 * @param array $attribs Array of extra attributes to <a>
+	 * 
+	 * @TODO! @FIXME! This is a really crappy implementation. $linktype and 
+	 * 'external' are mashed into the class attrib for the link (which is made
+	 * into a string). Then, if we've got additional params in $attribs, we 
+	 * add to it. People using this might want to change the classes (or other
+	 * default link attributes), but passing $attribsText is just messy. Would 
+	 * make a lot more sense to make put the classes into $attribs, let the 
+	 * hook play with them, *then* expand it all at once. 
+	 */
 	function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
 		$attribsText = $this->getExternalLinkAttributes( $url, $text, 'external ' . $linktype );
 		$url = htmlspecialchars( $url );
