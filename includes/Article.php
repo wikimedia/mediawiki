@@ -697,10 +697,13 @@ class Article {
 		$user = $this->getUser();
 		$pageId = $this->getId();
 
+		$hideBit = Revision::DELETED_USER; // username hidden?
+
 		$sql = "SELECT {$userTable}.*, MAX(rev_timestamp) as timestamp
 			FROM $revTable LEFT JOIN $userTable ON rev_user = user_id
 			WHERE rev_page = $pageId
 			AND rev_user != $user
+			AND rev_deleted & $hideBit = 0
 			GROUP BY rev_user, rev_user_text, user_real_name
 			ORDER BY timestamp DESC";
 
