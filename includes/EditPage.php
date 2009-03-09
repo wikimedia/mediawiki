@@ -1687,7 +1687,7 @@ END
 		$wgOut->addHTML( '</div>' );
 	}
 
-	function getLastDelete() {
+	protected function getLastDelete() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$data = $dbr->selectRow(
 			array( 'logging', 'user' ),
@@ -1699,15 +1699,23 @@ END
 			       'log_title',
 			       'log_comment',
 			       'log_params',
-			       'user_name', ),
+				   'log_deleted',
+			       'user_name' ),
 			array( 'log_namespace' => $this->mTitle->getNamespace(),
 			       'log_title' => $this->mTitle->getDBkey(),
 			       'log_type' => 'delete',
 			       'log_action' => 'delete',
 			       'user_id=log_user' ),
 			__METHOD__,
-			array( 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' ) );
-
+			array( 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' )
+		);
+		// Quick paranoid permission checks...
+		if( is_object($data) ) {
+			if( $data->log_deleted & LogPage::DELETED_USER )
+				$data->user_name = wfMsgHtml('rev-deleted-user');
+			if( $data->log_deleted & LogPage::DELETED_COMMENT )
+				$data->log_comment = wfMsgHtml('rev-deleted-comment');
+		}
 		return $data;
 	}
 
