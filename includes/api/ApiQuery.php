@@ -553,7 +553,8 @@ class ApiQuery extends ApiBase {
 			'prop' => 'Which properties to get for the titles/revisions/pageids',
 			'list' => 'Which lists to get',
 			'meta' => 'Which meta data to get about the site',
-			'generator' => 'Use the output of a list as the input for other prop/list/meta items',
+			'generator' => array('Use the output of a list as the input for other prop/list/meta items',
+					'NOTE: generator parameter names must be prefixed with a \'g\', see examples.'),
 			'redirects' => 'Automatically resolve redirects',
 			'indexpageids' => 'Include an additional pageids section listing all returned page IDs.',
 			'export' => 'Export the current revisions of all given or generated pages',
@@ -571,7 +572,8 @@ class ApiQuery extends ApiBase {
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=query&prop=revisions&meta=siteinfo&titles=Main%20Page&rvprop=user|comment'
+			'api.php?action=query&prop=revisions&meta=siteinfo&titles=Main%20Page&rvprop=user|comment',
+			'api.php?action=query&generator=allpages&gapprefix=API/&prop=revisions',
 		);
 	}
 
