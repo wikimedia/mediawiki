@@ -10,7 +10,8 @@ The program was written by Tomasz Wegrzanowski for use with MediaWiki; it's
 included as part of the MediaWiki package (http://www.mediawiki.org) and is
 under the GPL license.
 
-Please report bugs at: https://bugzilla.wikimedia.org/ (under "MediaWiki")
+Please report bugs at: https://bugzilla.wikimedia.org/
+with "MediaWiki extensions" as product and "texvc" as component.
 
 == Setup ==
 
