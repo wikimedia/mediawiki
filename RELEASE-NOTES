@@ -134,7 +134,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added a link to Special:UserRights on Special:Contributions for privileged users
 * (bug 10336) Added new magic word {{REVISIONUSER}}, which displays the user
   name of the last user to edit the page
-* LinkerMakeExternalLink now has an $attribs parameter for link attributes
+* LinkerMakeExternalLink now has an $attribs parameter for link attributes and 
+  a $linkType parameter for the type of external link being made
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
