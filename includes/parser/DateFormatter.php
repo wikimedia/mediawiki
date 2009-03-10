@@ -117,7 +117,11 @@ class DateFormatter
 	 * @param $preference String: User preference
 	 * @param $text String: Text to reformat
 	 */
-	function reformat( $preference, $text, $linked = true ) {
+	function reformat( $preference, $text, $options = array('linked') ) {
+	
+		$linked = in_array( 'linked', $options );
+		$match_whole = in_array( 'match-whole', $options );
+		
 		if ( isset( $this->preferences[$preference] ) ) {
 			$preference = $this->preferences[$preference];
 		} else {
@@ -143,6 +147,13 @@ class DateFormatter
 			// Horrible hack
 			if (!$linked) {
 				$regex = str_replace( array( '\[\[', '\]\]' ), '', $regex );
+			}
+			
+			if ($match_whole) {
+				// Let's hope this works
+				$regex = preg_replace( '!^/!', '/^', $regex );
+				$regex = str_replace( $this->regexTrail,
+					'$'.$this->regexTrail, $regex );
 			}
 			
 			// Another horrible hack

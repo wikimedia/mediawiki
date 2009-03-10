@@ -89,11 +89,17 @@ class CoreParserFunctions {
 		}
 	}
 	
-	static function formatDate( $parser, $date ) {
+	static function formatDate( $parser, $date, $defaultPref = null ) {
 		$df = DateFormatter::getInstance();
 		
+		$date = trim($date);
+		
 		$pref = $parser->mOptions->getDateFormat();
-		$date = $df->reformat( $pref, $date, false );
+		
+		if ($pref == 'default' && $defaultPref)
+			$pref = $defaultPref;
+		
+		$date = $df->reformat( $pref, $date, array('match-whole') );
 		return $date;
 	}
 
