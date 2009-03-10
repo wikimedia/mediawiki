@@ -96,11 +96,18 @@ class UserrightsPage extends SpecialPage {
 			// save settings
 			if( $wgRequest->getCheck( 'saveusergroups' ) ) {
 				$reason = $wgRequest->getVal( 'user-reason' );
-				if( $wgUser->matchEditToken( $wgRequest->getVal( 'wpEditToken' ), $this->mTarget ) ) {
+				$tok = $wgRequest->getVal( 'wpEditToken' );
+				if( $wgUser->matchEditToken( $tok, $this->mTarget ) ) {
 					$this->saveUserGroups(
 						$this->mTarget,
 						$reason
 					);
+					
+					global $wgOut;
+					
+					$url = $this->getTitle( $this->mTarget )->getFullURL();
+					$wgOut->redirect( $url );
+					return;
 				}
 			}
 		}
