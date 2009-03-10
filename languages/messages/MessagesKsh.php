@@ -1114,7 +1114,7 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'mergehistory-autocomment'         => '„[[:$1]]“ es jetz zosamme jelaat met „[[:$2]]“',
 'mergehistory-comment'             => '„[[:$1]]“ zosamme jelaat met „[[:$2]]“ — $3',
 'mergehistory-same-destination'    => 'De Quell-Sigg un de Ziel-Sigg dörve nit deselve Sigg sinn.',
-'mergehistory-reason'              => 'Reason:',
+'mergehistory-reason'              => 'Der Jrond:',
 
 # Merge log
 'mergelog'           => 'Logboch fum Sigge zesamme Läje',

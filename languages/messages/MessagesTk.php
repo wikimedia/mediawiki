@@ -75,17 +75,23 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'category-article-count' => '{{PLURAL:$2|Bu kategoriýa diňe aşakdaky sahypany öz içine alýar.|Jemi $2 sanysyndan, aşakdaky {{PLURAL:$1|sahypa|$1 sahypa}} bu kategoriýadadyr.}}',
 'listingcontinuesabbrev' => '(dowamy)',
 
+'about'          => 'Hakynda',
 'article'        => 'Makala',
 'newwindow'      => '(täze penjirede açylýar)',
 'cancel'         => 'Goýbolsun et',
 'qbfind'         => 'Tap',
+'qbbrowse'       => 'Göz aýla',
 'qbedit'         => 'Redaktirle',
 'qbpageoptions'  => 'Bu sahypa',
+'qbpageinfo'     => 'Kontekst',
 'qbmyoptions'    => 'Meniň sahypalarym',
 'qbspecialpages' => 'Ýörite sahypalar',
 'mypage'         => 'Sahypam',
 'mytalk'         => 'Pikir alyşma sahypam',
 'navigation'     => 'Saýtda ugur kesgitleme',
+
+# Metadata in edit box
+'metadata_help' => 'Meta-maglumat:',
 
 'errorpagetitle'   => 'Säwlik',
 'returnto'         => '$1.',
@@ -93,9 +99,11 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'help'             => 'Ýardam',
 'search'           => 'Gözle',
 'searchbutton'     => 'Gözle',
+'go'               => 'Git',
 'searcharticle'    => 'Git',
 'history'          => 'Sahypanyň geçmişi',
 'history_short'    => 'Geçmiş',
+'info_short'       => 'Maglumat',
 'printableversion' => 'Print ediş wersiýasy',
 'permalink'        => 'Hemişelik çykgyt',
 'print'            => 'Print et',
@@ -111,6 +119,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'talkpagelinktext' => 'Çekisme',
 'specialpage'      => 'Ýörite Sahypa',
 'personaltools'    => 'Şahsy gurallar',
+'postcomment'      => 'Täze bölüm',
 'talk'             => 'Çekisme',
 'views'            => 'Keşpler',
 'toolbox'          => 'Gural sandygy',
@@ -154,6 +163,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'toc'                 => 'Mazmuny',
 'showtoc'             => 'görkez',
 'hidetoc'             => 'gizle',
+'feedlinks'           => 'Lenta:',
 'site-rss-feed'       => '$1 RSS lentasy',
 'site-atom-feed'      => '$1 Atom lentasy',
 'page-rss-feed'       => '"$1" RSS lentasy',
@@ -177,20 +187,40 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 Bar bolan ähli ýörite sahypalary [[Special:SpecialPages|ýörite sahypalar]] sahypasynda görüp bilersiňiz.",
 
 # General errors
-'error'              => 'Säwlik',
-'databaseerror'      => 'Maglumat bazasynyň säwligi',
-'noconnect'          => 'Bagyşlaň! Wiki käbir tehniki kynçylyklary başdan geçirýär we maglumat bazasynyň serweri bilen gatnaşygy ýola goýup bilenok.<br />
+'error'                => 'Säwlik',
+'databaseerror'        => 'Maglumat bazasynyň säwligi',
+'noconnect'            => 'Bagyşlaň! Wiki käbir tehniki kynçylyklary başdan geçirýär we maglumat bazasynyň serweri bilen gatnaşygy ýola goýup bilenok.<br />
 $1',
-'nodb'               => '$1 maglumat bazasyny saýlap bolmady',
-'missing-article'    => 'Maglumat bazasy tapylmagy talap edilýän "$1" $2 atly sahypa degişli teksti tapyp bilmedi.
+'nodb'                 => '$1 maglumat bazasyny saýlap bolmady',
+'laggedslavemode'      => 'Duýduryş: Sahypada soňky täzelemeler ýok bolmagy ahmal.',
+'readonly'             => 'Maglumat bazasy gulplandy',
+'enterlockreason'      => 'Gulplamak üçin bir sebäp görkeziň. Gulpuň haçan açyljakdygy barada takmynan bir sene ýazyň.',
+'readonlytext'         => 'Maglumat bazasyndaky adaty abatlaýyş hyzmatlary zerarly, wagtlaýynça täze makala goşmaklyk hem-de üýtgeşme girizmeklik gulplandy. Gysga salymyň içinde öňküsi ýaly bolar.
+
+Maglumat bazasyny gulplan administratoryň düşündirişi: $1',
+'missing-article'      => 'Maglumat bazasy tapylmagy talap edilýän "$1" $2 atly sahypa degişli teksti tapyp bilmedi.
 
 Bu ýagdaý sahypanyň öçürilen bir sahypanyň ozalky wersiýasy bolmaklygyndan ýüze çykýan bolup biler.
 
 Eger sebäp ol däl bolsa, programma serişdesinde bir säwlige duşan bolmagyňyz ahmal. 
 Muny bir [[Special:ListUsers/sysop|administratora]] URL-ni belläp alyp ýetirmekligiňizi haýyş edýäris.',
-'missingarticle-rev' => '(wersiýa#: $1)',
-'badtitletext'       => 'Isleýän sahypaňyzyň ady ýa nädogry ýa-da boş. Ýa-da bolmasa dilara ýa-da wikiara çykgyt nädogry berlipdir. Içinde atlarda ulanylmagy gadagan simwollardan biri ýa-da birnäçesi bar bolmagy ahmal.',
-'viewsource'         => 'Çeşmäni gör',
+'missingarticle-rev'   => '(wersiýa#: $1)',
+'missingarticle-diff'  => '(Tapawut: $1, $2)',
+'readonly_lag'         => 'Ätiýaçlyk serwerler esasy serwere boýunça täzelenýärkä, maglumat bazasy awtomatik usulda gulplandy.',
+'internalerror'        => 'Içerki säwlik',
+'internalerror_info'   => 'Içerki säwlik: $1',
+'filecopyerror'        => '"$1" faýlyny  "$2" faýlyna göçürip bolmady.',
+'filerenameerror'      => '"$1" faýlynyň adyny "$2" diýip üýtgedip bolmady.',
+'filedeleteerror'      => '"$1" faýlyny öçürip bolmady.',
+'directorycreateerror' => '"$1" direktoriýasyny döredip bolmady',
+'filenotfound'         => '
+"$1" faýly tapylmady.',
+'fileexistserror'      => '"$1" faýlyna ýazyp bolmady: faýl onsuzam bar',
+'unexpected'           => 'Garaşylmadyk baha: "$1"="$2".',
+'formerror'            => 'Säwlik: formy iberip bolmady',
+'badarticleerror'      => 'Bu işi bu sahypada amala aşyryp bolmaýar.',
+'badtitletext'         => 'Isleýän sahypaňyzyň ady ýa nädogry ýa-da boş. Ýa-da bolmasa dilara ýa-da wikiara çykgyt nädogry berlipdir. Içinde atlarda ulanylmagy gadagan simwollardan biri ýa-da birnäçesi bar bolmagy ahmal.',
+'viewsource'           => 'Çeşmäni gör',
 
 # Virus scanner
 'virus-unknownscanner' => 'nätanyş antiwirus:',
@@ -206,6 +236,8 @@ Muny bir [[Special:ListUsers/sysop|administratora]] URL-ni belläp alyp ýetirme
 'logout'                  => 'Sessiýany ýap',
 'userlogout'              => 'Sessiýany ýap',
 'nologinlink'             => 'Onda özüňize bir hasap ediniň',
+'youremail'               => 'E-poçta:',
+'username'                => 'Ulanyjy ady:',
 'yourlanguage'            => 'Interfeýs dili:',
 'yournick'                => 'Lakamyňyz (gol hökmünde):',
 'yourgender'              => 'Jyns:',
@@ -427,7 +459,7 @@ Gözlegiňiziň başyna '''all:''' pristawkasyny goşup tutuş mazmuny (şol san
 'prefixindex'   => 'Pristawka bilen ähli sahypalar',
 'newpages'      => 'Täze sahypalar',
 'move'          => 'Adyny üýtget',
-'movethispage'  => 'Bu sahypany göçür',
+'movethispage'  => 'Bu sahypanyň adyny üýtget',
 'pager-newer-n' => '{{PLURAL:$1|1 has täze|$1 has täze}}',
 'pager-older-n' => '{{PLURAL:$1|1 has köne|$1 has köne}}',
 
@@ -588,26 +620,26 @@ Eger-de täze atda ozaldan bir makala bar bolsa, onda '''at üýtgedilmeli däld
 
 '''DUÝDURYŞ!'''
 Bu üýtgeşiklik giňden tanalýan bir sahypa üçin garaşylmaýan netijelere getirip biler; Ady heniz üýtgetmänkäňiz bolup biläýjek ähtimallyklary göz öňünde tutmagyňyzy haýyş edýäris.",
-'movepagetalktext' => "Gapdalyndaky çekişme sahypasy hem (eger bar bolsa) awtomatik usulda täze ada göçürilýär. Emma şu ýagdaýlarda '''göçürilmeýär''':
+'movepagetalktext' => "Gapdalyndaky çekişme sahypasy hem (eger bar bolsa) awtomatik usulda täze ada geçirilýär. Emma şu ýagdaýlarda '''geçirilmeýär''':
 
 *Täze atda bir çekişme sahypasy öňdenem bar bolsa,
 *Aşakdaki gutujygy saýlamadyk bolsaňyz.
 
-Şeýle ýagdaýda sahypany özüňiz göçürmeli bolýarsyňyz.",
+Şeýle ýagdaýda sahypany özüňiz ell bilen geçirmeli bolýarsyňyz.",
 'movearticle'      => 'Köne at',
 'newtitle'         => 'Täze at',
 'move-watch'       => 'Bu sahypany gözegçilikde sakla',
 'movepagebtn'      => 'Adyny üýtget',
 'pagemovedsub'     => 'At üýtgedildi',
-'movepage-moved'   => '<big>\'\'\'"$1" sahypasy "$2" sahypasyna göçürildi\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" sahypasy "$2" sahypasyna geçirildi\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Şu atda eýýämden bir sahypa bar ýa-da saýlap alan adyňyz nädogry.
 Başga bir ady synap görmegiňizi haýyş edýäris.',
-'talkexists'       => "'''Sahypanyň özi şowlulyk bilen göçürildi, ýöne çekişme sahypasyny göçürip bolmady sebäbi göçürilmeli adynda öňdenem bir sahypa bar. Çekişme sahypasynyň içindäkileri özüňiziň geçirmegiňizi haýyş edýäris.'''",
-'movedto'          => 'göçürildi',
-'movetalk'         => 'Degişli "çekişme" sahypasyny hem göçür',
+'talkexists'       => "'''Sahypanyň özi şowlulyk bilen geçirildi, ýöne çekişme sahypasyny geçirip bolmady sebäbi geçirilmeli adynda öňdenem bir sahypa bar. Çekişme sahypasynyň içindäkileri özüňiziň geçirmegiňizi haýyş edýäris.'''",
+'movedto'          => 'geçirildi',
+'movetalk'         => 'Degişli "çekişme" sahypasyny hem geçir',
 '1movedto2'        => '[[$1]] sahypasynyň täze ady: [[$2]]',
 '1movedto2_redir'  => '[[$1]] ady [[$2]] sahypasyna gönükdirildi',
-'movelogpage'      => 'Göçürme gündeligi',
+'movelogpage'      => 'At üýtgetme gündeligi',
 'movereason'       => 'Sebäp:',
 'revertmove'       => 'yzyna al',
 

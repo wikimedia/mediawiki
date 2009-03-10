@@ -949,6 +949,9 @@ Consultar los detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}
 
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.
 Por favor confirme que está intentando hacer esto, que usted entiende las consecuencias, y que lo esta haciendo de acuerso con [[{{MediaWiki:Policy-url}}|la política]].",
+'revdelete-suppress-text'        => "Supresión debería '''solamente''' ser usado para los siguientes casos:
+* Información personal inapropiada
+*: ''dirección domiciliaria y números telefónicos, números de seguridad social, etc.''",
 'revdelete-legend'               => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'            => 'Ocultar el texto de la revisión',
 'revdelete-hide-name'            => 'Ocultar acción y objetivo',
@@ -1005,6 +1008,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'mergehistory-autocomment'         => 'Fusionando [[:$1]] en [[:$2]]',
 'mergehistory-comment'             => 'Fusionando [[:$1]] en [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Las páginas de origen y destino no pueden ser la misma',
+'mergehistory-reason'              => 'Razón:',
 
 # Merge log
 'mergelog'           => 'Registro de fusiones',

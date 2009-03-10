@@ -1032,6 +1032,7 @@ $3 зазначив таку причину: ''$2''",
 'mergehistory-autocomment'         => 'Редагування з [[:$1]] перенесені до [[:$2]]',
 'mergehistory-comment'             => 'Редагування [[:$1]] перенесені до [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Початкова і цільова сторінки повинні відрізнятися',
+'mergehistory-reason'              => 'Причина:',
 
 # Merge log
 'mergelog'           => "Журнал об'єднань",

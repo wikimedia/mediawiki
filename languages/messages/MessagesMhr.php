@@ -135,14 +135,17 @@ $messages = array(
 'viewtalkpage'     => 'Ончалаш каҥашымашым',
 'otherlanguages'   => 'Вес йылме дене',
 'redirectedfrom'   => '(Колтымо $1 гыч)',
+'lastmodifiedat'   => 'Тиде лаштыкым пытартыш гана $2 $1 тӧрлымӧ.', # $1 date, $2 time
 'jumpto'           => 'Куснаш:',
 'jumptonavigation' => 'навигациеш',
 'jumptosearch'     => 'кычалмашке',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} нерген',
+'aboutpage'            => 'Project:Нерген',
 'copyright'            => 'Лаштыкыште возымо $1 йӧн дене почмо.',
 'edithelp'             => 'Тӧрлатымаште полыш',
+'edithelppage'         => 'Help:Тӧрлымаш',
 'mainpage'             => 'Тӱҥ лаштык',
 'mainpage-description' => 'Тӱҥ лаштык',
 
@@ -280,6 +283,9 @@ $messages = array(
 'rev-delundel' => 'ончыкташ/шылташ',
 'pagehist'     => 'Лаштыкын историй',
 
+# Merge log
+'revertmerge' => 'Ойыраш',
+
 # Diffs
 'history-title'           => '$1 лан тӱрлык историй',
 'difference'              => '(Тӱрлык-влакын ойыртемышт)',
@@ -380,6 +386,7 @@ $messages = array(
 'listfiles_user' => 'Пайдаланыше',
 
 # File description page
+'filehist'           => 'Файлын историй',
 'filehist-deleteone' => 'шӧраш',
 'filehist-current'   => 'кызыт',
 'filehist-datetime'  => 'Кече/жап',
@@ -387,6 +394,7 @@ $messages = array(
 'filehist-filesize'  => 'Файлын кугытшо',
 'filehist-comment'   => 'Файл нерген:',
 'imagelinks'         => 'Ссылке-влак',
+'linkstoimage'       => 'Тиде {{PLURAL:$1|$1 лаштык саде файл дене кылдалтын|$1 лаштык-влак саде файл дене кылдалтыныт}}:',
 'nolinkstoimage'     => 'Тиде файл дене кылдалтше ик лаштыкат уке.',
 
 # File deletion
@@ -409,6 +417,8 @@ $messages = array(
 'newpages-username' => 'Пайдаланышын лӱмжӧ:',
 'move'              => 'Кусараш',
 'movethispage'      => 'Тиде лаштыкым кусараш',
+'pager-newer-n'     => '{{PLURAL:$1|вес|вес}}',
+'pager-older-n'     => '{{PLURAL:$1|ончычсо|ончычсо}}',
 
 # Special:Log
 'specialloguserlabel' => 'Пайдаланыше:',
@@ -576,10 +586,12 @@ $messages = array(
 'tooltip-search-fulltext'         => 'Тиде текстан лаштык-влакым кычалаш',
 'tooltip-p-logo'                  => 'Тӱҥ лаштык',
 'tooltip-n-mainpage'              => 'Тӱҥ лаштыкыш куснаш',
+'tooltip-n-portal'                => 'Проект нерген, мом тый ыштен кертат, мо кушто улеш',
 'tooltip-n-recentchanges'         => 'Шукертсе огыл тӧрлатыме лаштык-влак лӱмер',
 'tooltip-n-randompage'            => 'Вучыдымо (случайный) статьяш куснаш',
 'tooltip-n-help'                  => 'Википедийым кучылтмо да тӧрлатыме шотышто полшык.',
 'tooltip-t-whatlinkshere'         => 'Чыла лаштыкын лӱмерже кудо ты лаштыкыш куснат',
+'tooltip-t-recentchangeslinked'   => 'Шукертсе огыл тӧрлымӧ лаштык-влак, кудо дене тиде лаштык кылдалтын',
 'tooltip-t-contributions'         => 'Пайдаланышын надыр лӱмерым ончалаш',
 'tooltip-t-emailuser'             => 'Тиде пайдаланышылан электрон серышым возаш',
 'tooltip-t-upload'                => 'Файл-влакым пурташ',
