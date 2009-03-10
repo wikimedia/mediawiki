@@ -401,7 +401,7 @@ class Skin extends Linker {
 			$vars['wgLivepreviewMessageError']   = wfMsg( 'livepreview-error' );
 		}
 
-		if($wgUseAjax && $wgAjaxWatch && $wgUser->isLoggedIn() ) {
+		if ( $wgOut->isArticleRelated() && $wgUseAjax && $wgAjaxWatch && $wgUser->isLoggedIn() ) {
 			$msgs = (object)array();
 			foreach ( array( 'watch', 'unwatch', 'watching', 'unwatching' ) as $msgName ) {
 				$msgs->{$msgName . 'Msg'} = wfMsg( $msgName );
