@@ -426,7 +426,6 @@ class EditPage {
 
 		# Optional notices on a per-namespace and per-page basis
 		$editnotice_ns   = 'editnotice-'.$this->mTitle->getNamespace();
-		$editnotice_page = $editnotice_ns.'-'.$this->mTitle->getDBkey();
 		if ( !wfEmptyMsg( $editnotice_ns, wfMsgForContent( $editnotice_ns ) ) ) {
 			$wgOut->addWikiText( wfMsgForContent( $editnotice_ns )  );
 		}
@@ -439,8 +438,6 @@ class EditPage {
 					$wgOut->addWikiText( wfMsgForContent( $editnotice_base )  );
 				}
 			}
-		} else if ( !wfEmptyMsg( $editnotice_page, wfMsgForContent( $editnotice_page ) ) ) {
-			$wgOut->addWikiText( wfMsgForContent( $editnotice_page ) );
 		}
 
 		# Attempt submission here.  This will check for edit conflicts,
