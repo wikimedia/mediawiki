@@ -916,12 +916,15 @@ funkcion, la specifigita versio ne ekzistas, aŭ vi estas provanta kaŝi la nuna
 
 Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj restarigi ĝin per la sama interfaco, krom se plia limigo estas metita de la paĝaradministrantoj.
 Bonvolu konfirmi ke vi intencias fari ĉi tiel, ke vi komprenas la konsekvencojn, kaj ke vi faras ĉi tiel laŭ [[{{MediaWiki:Policy-url}}|la regularo]].",
+'revdelete-suppress-text'        => "Subpremo '''nur''' estu uzata por la jenaj kazoj:
+* Netaŭga persona informo
+*: ''hejmaj adresoj kaj telefonnumeroj, ŝtataj identnumeroj, ktp.''",
 'revdelete-legend'               => 'Fari videblecajn limigojn',
 'revdelete-hide-text'            => 'Kaŝi tekston de versio',
 'revdelete-hide-name'            => 'Kaŝi agon kaj celon',
 'revdelete-hide-comment'         => 'Kaŝi komenton de redakto',
 'revdelete-hide-user'            => 'Kaŝi nomon aŭ IP-adreson de redaktinto',
-'revdelete-hide-restricted'      => 'Apliku ĉi tiujn limigojn al administrantoj kaj ŝlosu ĉi tiun interfacon',
+'revdelete-hide-restricted'      => 'Subpremi ĉi tiujn datenojn de administrantoj kaj ankaŭ aliaj',
 'revdelete-suppress'             => 'Subpremi datenojn de kaj administrantoj kaj aliaj',
 'revdelete-hide-image'           => 'Kaŝi enhavon de dosieroj',
 'revdelete-unsuppress'           => 'Forigi limigojn al restarigitaj versioj',
@@ -970,6 +973,7 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'mergehistory-autocomment'         => 'Kunigita [[:$1]] en [[:$2]]',
 'mergehistory-comment'             => 'Kunigita [[:$1]] en [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Fontaj kaj destinaj paĝoj ne povas esti la samon',
+'mergehistory-reason'              => 'Kialo:',
 
 # Merge log
 'mergelog'           => 'Protokolo de kunigoj',
@@ -2044,6 +2048,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Kontribuoj de novaj uzantoj. Forigitaj paĝoj ne estas montritaj.',
 'sp-contributions-newbies-title' => 'Uzulaj kontribuoj de novaj kontoj',
 'sp-contributions-blocklog'      => 'Protokolo de forbaroj',
+'sp-contributions-logs'          => 'protokoloj',
 'sp-contributions-search'        => 'Serĉado de kontribuoj',
 'sp-contributions-username'      => 'IP-adreso aŭ uzantonomo:',
 'sp-contributions-submit'        => 'Serĉi',

@@ -121,6 +121,7 @@ $messages = array(
 'aboutsite'            => 'A-dro dhe {{SITENAME}}',
 'copyrightpagename'    => '{{SITENAME}} gwirbryntyans',
 'currentevents'        => 'Darvosow a-lemmyn',
+'currentevents-url'    => 'Project:Darvosow a-lemmyn',
 'helppage'             => 'Help:Gweres',
 'mainpage'             => 'Pennfolen',
 'mainpage-description' => 'Pennfolen',

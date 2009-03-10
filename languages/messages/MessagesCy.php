@@ -366,6 +366,7 @@ $messages = array(
 'restorelink'             => "$1 {{PLURAL:$1|golygiad sydd wedi'i ddileu|golygiad sydd wedi'i ddileu|olygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu}}",
 'feedlinks'               => 'Porthiant:',
 'feed-invalid'            => 'Math annilys o borthiant ar danysgrifiad.',
+'feed-unavailable'        => 'Nid oes porthiant wedi ei gynghreirio ar gael',
 'site-rss-feed'           => 'Porthiant RSS $1',
 'site-atom-feed'          => 'Porthiant Atom $1',
 'page-rss-feed'           => "Porthiant RSS '$1'",
@@ -2038,6 +2039,8 @@ Ni allwch greu cyfrif.',
 'lockdbsuccesstext'   => "Mae'r databas wedi'i gloi.<br />
 Cofiwch [[Special:UnlockDB|ddatgloi'r]] databas pan fydd y gwaith cynnal ar ben.",
 'unlockdbsuccesstext' => "Mae'r databas wedi'i ddatgloi.",
+'lockfilenotwritable' => "Ni ellir ysgrifennu'r ffeil cloi'r databas.
+Er mwyn cloi'r databas neu ei ddatgloi, mae'n rhaid i'r gweinydd gwe allu ysgrifennu'r ffeil.",
 'databasenotlocked'   => "Nid yw'r databas ar glo.",
 
 # Move page
@@ -2149,6 +2152,9 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki 
 # Special:Import
 'import'                     => 'Mewnforio tudalennau',
 'importinterwiki'            => 'Mewnforiad traws-wici',
+'import-interwiki-text'      => "Dewiswch wici a thudalen i'w mewnforio.
+Fe gedwir dyddiadau ac enwau'r golygwyr ar gyfer y diwygiadau i'r dudalen.
+Mae cofnod o bob weithred o fewnforio i'w gweld ar y [[Special:Log/inport|lòg mewnforio]].",
 'import-interwiki-source'    => 'Wici/tudalen y gwreiddiol:',
 'import-interwiki-history'   => 'Copïer yr holl fersiynau yn hanes y dudalen hon',
 'import-interwiki-submit'    => 'Mewnforio',
@@ -2456,6 +2462,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-sharpness'                   => 'Eglurder',
 'exif-devicesettingdescription'    => "Disgrifiad o osodiadau'r ddyfais",
 'exif-imageuniqueid'               => 'ID unigryw y ddelwedd',
+'exif-gpsversionid'                => 'Fersiwn y tag GPS',
 'exif-gpslatituderef'              => "Lledred i'r Gogledd neu i'r De",
 'exif-gpslatitude'                 => 'Lledred',
 'exif-gpslongituderef'             => "Hydred i'r Dwyrain neu i'r Gorllewin",
@@ -2469,13 +2476,22 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpsdop'                      => 'Manylder mesur',
 'exif-gpsspeedref'                 => 'Uned cyflymder',
 'exif-gpsspeed'                    => 'Cyflymder y derbynnydd GPS',
+'exif-gpstrackref'                 => 'Cyfeirbwynt ar gyfer cyfeiriad y symud',
 'exif-gpstrack'                    => 'Cyfeiriad symud',
+'exif-gpsimgdirectionref'          => 'Cyfeirbwynt ar gyfer cyfeiriad y ddelwedd',
 'exif-gpsimgdirection'             => 'Cyfeiriad y ddelwedd',
+'exif-gpsmapdatum'                 => 'Defnyddir data o arolwg geodetig',
+'exif-gpsdestlatituderef'          => 'Cyfeirbwynt lledred y cyrchnod',
 'exif-gpsdestlatitude'             => 'Lledred y cyrchfan',
+'exif-gpsdestlongituderef'         => 'Cyfeirbwynt hydred y cyrchfan',
 'exif-gpsdestlongitude'            => 'Hydred y cyrchfan',
+'exif-gpsdestbearingref'           => 'Cyfeirnod ar gyfer cyfeiriant y cyrchfan',
+'exif-gpsdestbearing'              => 'Cyfeiriant y cyrchfan',
+'exif-gpsdestdistanceref'          => 'Cyfeirnod ar gyfer pellter y cyrchfan',
 'exif-gpsdestdistance'             => 'Pellter i ben y daith',
 'exif-gpsareainformation'          => "Enw'r parth GPS",
 'exif-gpsdatestamp'                => 'Dyddiad GPS',
+'exif-gpsdifferential'             => 'cywiriad differol y GPS',
 
 # EXIF attributes
 'exif-compression-1' => 'Heb ei gywasgu',
