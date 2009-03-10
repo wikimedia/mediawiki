@@ -138,6 +138,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   a $linkType parameter for the type of external link being made
 * (bug 17785) Dynamic dates surrounded with a <span> tag, fixing sortable tables with
   dynamic dates.
+* (bug 4582) Provide preference-based autoformatting of unlinked dates with the dateformat
+  parser function.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
