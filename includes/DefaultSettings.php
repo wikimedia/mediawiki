@@ -987,7 +987,7 @@ $wgReadOnly             = null;
 $wgReadOnlyFile         = false; ///< defaults to "{$wgUploadDirectory}/lock_yBgMBwiR";
 
 /**
- * Filename for debug logging. See See http://www.mediawiki.org/wiki/How_to_debug
+ * Filename for debug logging. See http://www.mediawiki.org/wiki/How_to_debug
  * The debug log file should be not be publicly accessible if it is used, as it
  * may contain private data. 
  */
