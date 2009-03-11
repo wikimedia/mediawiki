@@ -372,6 +372,13 @@ $specialPageAliases = array(
 	'Tags'                      => array( 'وسوم' ),
 );
 
+/**
+ * Regular expression matching the "link trail", e.g. "ed" in [[Toast]]ed, as
+ * the first group, and the remainder of the string as the second group. Modified to match
+ * Arabic trails too.
+ */
+$linkTrail = '/^([a-z\x{0600}-\x{06FF}]+)(.*)$/suD';
+
 $imageFiles = array(
 	'button-bold'     => 'ar/button_bold.png',
 	'button-italic'   => 'ar/button_italic.png',
