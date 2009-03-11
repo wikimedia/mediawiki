@@ -17,6 +17,7 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'مدیا',
 	NS_SPECIAL          => 'ویژه',
+	NS_MAIN	            => '',
 	NS_TALK             => 'بحث',
 	NS_USER             => 'کاربر',
 	NS_USER_TALK        => 'بحث_کاربر',
@@ -331,6 +332,7 @@ $magicWords = array(
 	'revisionmonth'         => array( '1', 'ماه‌نسخه', 'ماه_نسخه', 'REVISIONMONTH' ),
 	'revisionyear'          => array( '1', 'سال‌نسخه', 'سال_نسخه', 'REVISIONYEAR' ),
 	'revisiontimestamp'     => array( '1', 'نشان‌زمان‌نسخه', 'نشان_زمان_نسخه', 'REVISIONTIMESTAMP' ),
+	'revisionuser'           => array( 1, 'کاربرنسخه', 'REVISIONUSER'),
 	'plural'                => array( '0', 'جمع:', 'PLURAL:' ),
 	'fullurl'               => array( '0', 'نشانی‌کامل:', 'FULLURL:' ),
 	'fullurle'              => array( '0', 'نشانی‌نشانی‌کامل:', 'FULLURLE:' ),
@@ -342,6 +344,7 @@ $magicWords = array(
 	'displaytitle'          => array( '1', 'عنوان‌ظاهری', 'عنوان_ظاهری', 'DISPLAYTITLE' ),
 	'rawsuffix'             => array( '1', 'ع', 'R' ),
 	'newsectionlink'        => array( '1', '__بخش‌جدید__', '__NEWSECTIONLINK__' ),
+	'nonewsectionlink'       => array( 1, '__بی‌پیوندبخش__', '__NONEWSECTIONLINK__'),
 	'currentversion'        => array( '1', 'نسخه‌کنونی', 'نسخه_کنونی', 'CURRENTVERSION' ),
 	'urlencode'             => array( '0', 'کدنشانی:', 'URLENCODE:' ),
 	'anchorencode'          => array( '0', 'کدلنگر:', 'ANCHORENCODE' ),
@@ -367,6 +370,7 @@ $magicWords = array(
 	'numberingroup'         => array( '1', 'تعداددرگروه', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__تغییرمسیرثابت__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'سطح‌حغاطت', 'سطح_حفاظت', 'PROTECTIONLEVEL' ),
+	'formatdate'             => array( 0, 'آرایش‌تاریخ', 'آرایش_تاریخ', 'formatdate', 'dateformat'),
 );
 
 # Harakat are intentionally not included in the linkTrail. Their addition should
