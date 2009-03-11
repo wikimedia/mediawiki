@@ -558,7 +558,7 @@ class ApiQuery extends ApiBase {
 			'redirects' => 'Automatically resolve redirects',
 			'indexpageids' => 'Include an additional pageids section listing all returned page IDs.',
 			'export' => 'Export the current revisions of all given or generated pages',
-			'exportnowrap' => 'Return the export XML without wrapping it in an XML result. Can only be used with export',
+			'exportnowrap' => 'Return the export XML without wrapping it in an XML result (same format as Special:Export). Can only be used with export',
 		);
 	}
 
