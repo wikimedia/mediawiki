@@ -3842,6 +3842,7 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 #These will be matched with the URLs of external (hotlinked) images
 #Those that match will be displayed as images, otherwise only a link to the image will be shown
 #Lines beginning with # are treated as comments
+#This is case-insensitive
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
 
