@@ -324,6 +324,9 @@ changes to languages because of MediaZilla reports.
 * (bug 16909) 'histlegend' now reuses messages instead of copying them
 * (bug 17832) action=delete returns 'unknownerror' instead of 'permissiondenied' when
   the user is blocked
+* Simplified Gan Chinese (gan-hans) (new)
+* Traditional Gan Chinese (gan-hant) (new)
+* Traditional/Simplified Gan Chinese conversion support
 
 == Compatibility ==
 
