@@ -1972,6 +1972,8 @@ $wgMessageStructure = array(
 		'export-submit',
 		'export-addcattext',
 		'export-addcat',
+		'export-addnstext',
+		'export-addns',
 		'export-download',
 		'export-templates',
 		'export-pagelinks',

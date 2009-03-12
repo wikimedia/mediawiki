@@ -140,6 +140,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   dynamic dates.
 * (bug 4582) Provide preference-based autoformatting of unlinked dates with the dateformat
   parser function.
+* (bug 17886) Special:Export now allows you to export a whole namespace (limited to 5000 pages)
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
@@ -260,6 +261,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17900) Fixed User Groups interface log display after saving groups.
 * (bug 17897) Fixed string offset error in <pre> tags
 * (bug 17778) MediaWiki:Catseparator can now have HTML entities
+* Special:Export doesn't use raw SQL queris anymore
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
