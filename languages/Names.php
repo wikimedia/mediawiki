@@ -99,7 +99,9 @@
 	'fy' => 'Frysk',		# Frisian
 	'ga' => 'Gaeilge',		# Irish
 	'gag' => 'Gagauz',		# Gagauz
-	'gan' => '贛語',			# Gan
+	'gan' => '贛語',		# Gan-hant
+	'gan-hans' => '赣语(简体)',	# Gan-hans
+	'gan-hant' => '贛語(繁體)',	# Gan-hant
 	'gd' => 'Gàidhlig',	# Scots Gaelic
 	'gl' => 'Galego',		# Galician
 	'glk' => 'گیلکی',	# Gilaki
