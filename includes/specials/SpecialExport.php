@@ -62,6 +62,18 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 		}
+		else if( $wgRequest->getCheck( 'addns' ) ) {
+			$page = $wgRequest->getText( 'pages' );
+			$nsindex = $wgRequest->getText( 'nsindex' );
+	
+			if ( $nsindex !== '' && $nsindex !== NULL && $nsindex !== false ) {
+				/**
+				 * Same implementation as above, so same @fixme
+				 */
+				$nspages = $this->getPagesFromNamespace( $nsindex );
+				if ( $nspages ) $page .= "\n" . implode( "\n", $nspages );
+			}		
+		}
 		else if( $wgRequest->wasPosted() && $par == '' ) {
 			$page = $wgRequest->getText( 'pages' );
 			$this->curonly = $wgRequest->getCheck( 'curonly' );
@@ -136,6 +148,10 @@ class SpecialExport extends SpecialPage {
 			'action' => $this->getTitle()->getLocalUrl( 'action=submit' ) ) );
 		$form .= Xml::inputLabel( wfMsg( 'export-addcattext' )	, 'catname', 'catname', 40 ) . '&nbsp;';
 		$form .= Xml::submitButton( wfMsg( 'export-addcat' ), array( 'name' => 'addcat' ) ) . '<br />';
+
+		$form .= Xml::namespaceSelector( '', null, 'nsindex', wfMsg( 'export-addnstext' ) ) . '&nbsp;';
+		$form .= Xml::submitButton( wfMsg( 'export-addns' ), array( 'name' => 'addns' ) ) . '<br />';
+
 		$form .= Xml::element( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ), $page, false );
 		$form .= '<br />';
 
@@ -232,20 +248,19 @@ class SpecialExport extends SpecialPage {
 		}
 	}
 
+
 	private function getPagesFromCategory( $title ) {
 		global $wgContLang;
 
 		$name = $title->getDBkey();
 
 		$dbr = wfGetDB( DB_SLAVE );
-
-		list( $page, $categorylinks ) = $dbr->tableNamesN( 'page', 'categorylinks' );
-		$sql = "SELECT page_namespace, page_title FROM $page " .
-			"JOIN $categorylinks ON cl_from = page_id " .
-			"WHERE cl_to = " . $dbr->addQuotes( $name );
+		$res = $dbr->select( array('page', 'categorylinks' ), 
+					array( 'page_namespace', 'page_title' ), 
+					array('cl_from=page_id', 'cl_to' => $name ), 
+					__METHOD__, array('LIMIT' => '5000'));
 
 		$pages = array();
-		$res = $dbr->query( $sql, __METHOD__ );
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			$n = $row->page_title;
 			if ($row->page_namespace) {
@@ -257,9 +272,31 @@ class SpecialExport extends SpecialPage {
 		}
 		$dbr->freeResult($res);
 
-	return $pages;
+		return $pages;
 	}
 
+	private function getPagesFromNamespace( $nsindex ) {
+		global $wgContLang;
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'page', array('page_namespace', 'page_title'), 
+					array('page_namespace' => $nsindex), 
+					__METHOD__, array('LIMIT' => '5000') );
+
+		$pages = array();
+		while ( $row = $dbr->fetchObject( $res ) ) {
+			$n = $row->page_title;
+			if ($row->page_namespace) {
+				$ns = $wgContLang->getNsText( $row->page_namespace );
+				$n = $ns . ':' . $n;
+			}
+
+			$pages[] = $n;
+		}
+		$dbr->freeResult($res);
+
+		return $pages;
+	}
 	/**
 	 * Expand a list of pages to include templates used in those pages.
 	 * @param $inputPages array, list of titles to look up
