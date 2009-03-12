@@ -259,6 +259,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   no longer corrupts the message cache
 * (bug 17900) Fixed User Groups interface log display after saving groups.
 * (bug 17897) Fixed string offset error in <pre> tags
+* (bug 17778) MediaWiki:Catseparator can now have HTML entities
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
