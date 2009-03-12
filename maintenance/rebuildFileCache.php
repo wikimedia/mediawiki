@@ -62,8 +62,6 @@ while( $blockEnd <= $end ) {
 					echo "Page {$row->page_id} already cached\n";
 					continue; // done already!
 				}
-			} else {
-				echo "Page {$row->page_id} not cached\n";
 			}
 			ob_start( array(&$cache, 'saveToFileCache' ) ); // save on ob_end_clean()
 			$wgUseFileCache = false; // hack, we don't want $wgArticle fiddling with filecache
