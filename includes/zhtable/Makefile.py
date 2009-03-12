@@ -101,8 +101,8 @@ def GetManualTable( dest ):
         elem = elem.strip('|')
         if elem:
             temp2 = elem.split( '|', 1 )
-            from_char = temp2[0][-1:]
-            to_chars = [code[-1:] for code in temp2[1].split('|')]
+            from_char = chr( int( temp2[0][2:7], 16 ) )
+            to_chars = [chr( int( code[2:7], 16 ) ) for code in temp2[1].split('|')]
             char_table[from_char] = to_chars
     return char_table
 
