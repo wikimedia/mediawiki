@@ -1570,7 +1570,7 @@ function do_postgres_updates() {
 		array("ipblocks",     "ipb_enable_autoblock", "smallint", "CASE WHEN ipb_enable_autoblock=' ' THEN 0 ELSE ipb_enable_autoblock::smallint END DEFAULT 1"),
 		array("ipblocks",     "ipb_block_email", "smallint", "CASE WHEN ipb_block_email=' ' THEN 0 ELSE ipb_block_email::smallint END DEFAULT 0"),
 		array("ipblocks",     "ipb_address",     "text",     "ipb_address::text"),
-		array("ipblocks",     "ipb_deleted",     "smallint", "ipb_deleted::smallint"),
+		array("ipblocks",     "ipb_deleted",     "smallint", "ipb_deleted::smallint DEFAULT 0"),
 		array("math",         "math_inputhash",  "bytea",    "decode(math_inputhash,'escape')"),
 		array("math",         "math_outputhash", "bytea",    "decode(math_outputhash,'escape')"),
 		array("mwuser",       "user_token",      "text",     ""),
