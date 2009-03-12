@@ -1523,6 +1523,7 @@ function do_postgres_updates() {
 		array("logging",       "log_id",               "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('log_log_id_seq')"),
 		array("logging",       "log_params",           "TEXT"),
 		array("mwuser",        "user_editcount",       "INTEGER"),
+		array("mwuser",        "user_hidden",          "SMALLINT NOT NULL DEFAULT 0"),
 		array("mwuser",        "user_newpass_time",    "TIMESTAMPTZ"),
 		array("oldimage",      "oi_deleted",           "SMALLINT NOT NULL DEFAULT 0"),
 		array("oldimage",      "oi_major_mime",        "TEXT NOT NULL DEFAULT 'unknown'"),
