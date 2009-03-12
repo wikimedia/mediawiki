@@ -133,7 +133,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgRedirectOnLogin
 * Added a link to Special:UserRights on Special:Contributions for privileged users
 * (bug 10336) Added new magic word {{REVISIONUSER}}, which displays the editor
-  of the current revision's user name
+  of the displayed revision's author user name
 * LinkerMakeExternalLink now has an $attribs parameter for link attributes and 
   a $linkType parameter for the type of external link being made
 * (bug 17785) Dynamic dates surrounded with a <span> tag, fixing sortable tables with
