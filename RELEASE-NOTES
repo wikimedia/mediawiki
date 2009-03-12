@@ -261,7 +261,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17900) Fixed User Groups interface log display after saving groups.
 * (bug 17897) Fixed string offset error in <pre> tags
 * (bug 17778) MediaWiki:Catseparator can now have HTML entities
-* Special:Export doesn't use raw SQL queris anymore
+* (bug 17676) Error on Special:ListFiles when using Postgres
+* Special:Export doesn't use raw SQL queries anymore
+
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
