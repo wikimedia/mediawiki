@@ -58,7 +58,7 @@ class ImageListPager extends TablePager {
 				'img_description' => wfMsg( 'listfiles_description' ),
 			);
 			if( !$wgMiserMode ) {
-				$this->mFieldNames['COUNT(oi_archive_name)'] = wfMsg( 'listfiles_count' );
+				$this->mFieldNames['count'] = wfMsg( 'listfiles_count' );
 			}
 		}
 		return $this->mFieldNames;
@@ -74,17 +74,25 @@ class ImageListPager extends TablePager {
 		$fields = array_keys( $this->getFieldNames() );
 		$fields[] = 'img_user';
 		$options = $join_conds = array();
+
 		# Depends on $wgMiserMode
-		if( isset($this->mFieldNames['COUNT(oi_archive_name)']) ) {
+		if( isset( $this->mFieldNames['count'] ) ) {
 			$tables[] = 'oldimage';
+
+			# Need to rewrite this one
+			foreach ( $fields as &$field )
+				if ( $field == 'count' )
+					$field = 'COUNT(oi_archive_name) as count';
+			unset( $field );
+
 			$dbr = wfGetDB( DB_SLAVE );
 			if( $dbr->implicitGroupby() ) {
-				$options = array('GROUP BY' => 'img_name');
+				$options = array( 'GROUP BY' => 'img_name' );
 			} else {
 				$columnlist = implode( ',', preg_grep( '/^img/', array_keys( $this->getFieldNames() ) ) );
-				$options = array('GROUP BY' => "img_user, $columnlist");
+				$options = array( 'GROUP BY' => "img_user, $columnlist" );
 			}
-			$join_conds = array('oldimage' => array('LEFT JOIN','oi_name = img_name') );
+			$join_conds = array( 'oldimage' => array( 'LEFT JOIN', 'oi_name = img_name' ) );
 		}
 		return array(
 			'tables'     => $tables,
@@ -142,7 +150,7 @@ class ImageListPager extends TablePager {
 				return $this->getSkin()->formatSize( $value );
 			case 'img_description':
 				return $this->getSkin()->commentBlock( $value );
-			case 'COUNT(oi_archive_name)':
+			case 'count':
 				return intval($value)+1;
 		}
 	}
