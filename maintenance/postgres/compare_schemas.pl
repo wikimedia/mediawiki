@@ -158,15 +158,18 @@ while (<$pfh>) {
 close $pfh or die qq{Could not close "$parsefile": $!\n};
 
 my $OK_NOT_IN_PTABLE = '
+change_tag
 filearchive
 logging
 profiling
 querycache_info
 searchindex
+tag_summary
 trackbacks
 transcache
 user_newtalk
 updatelog
+valid_tag
 ';
 
 ## Make sure all tables in main tables.sql are accounted for in the parsertest.
