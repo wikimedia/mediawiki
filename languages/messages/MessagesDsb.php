@@ -2210,6 +2210,7 @@ W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{#Special:Export}}
 'export-submit'     => 'Eksportěrowaś',
 'export-addcattext' => 'Pśidaś boki z kategorije:',
 'export-addcat'     => 'Dodaś',
+'export-addnstext'  => 'Boki z mjenjowego ruma pśidaś:',
 'export-download'   => 'Ako XML-dataju składowaś',
 'export-templates'  => 'Pśedłogi zapśimjeś',
 'export-pagelinks'  => 'Wótkazane boki zapśěgnuś, až k dłymoju wót:',

@@ -849,6 +849,9 @@ Legenda: (orain) = oraingo bertsioarekiko ezberdintasuna,
 
 {{SITENAME}}ko administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.
 Mesedez berretsi ezazu hau egin nahi zenuela, ondorioak ulertzen dituzula eta [[{{MediaWiki:Policy-url}}|politiken arabera]] egiten ari zarela.",
+'revdelete-suppress-text'        => "Ezabaketa '''bakarrik''' arrazoi hauek direla eta erabili beharko litzateke:
+* Informazio pertsonal desegokia
+*: ''etxeko helbideak eta telefono zenbakiak, segurtasun sozial zenbakiak, etab.''",
 'revdelete-legend'               => 'Berrikuspen mugapenak ezarri:',
 'revdelete-hide-text'            => 'Berrikuspenaren testua ezkutatu',
 'revdelete-hide-name'            => 'Helburua eta ekintza izkutatu',
@@ -905,6 +908,7 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'mergehistory-autocomment'         => '[[:$1]] [[:$2]]rekin batu da',
 'mergehistory-comment'             => '[[:$1]] [[:$2]]rekin batu da: $3',
 'mergehistory-same-destination'    => 'Jatorri eta helmugako orriak ezin dira berdinak izan',
+'mergehistory-reason'              => 'Arrazoia:',
 
 # Merge log
 'mergelog'           => 'Bateratze erregistroa',

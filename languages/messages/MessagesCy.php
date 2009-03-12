@@ -822,6 +822,7 @@ Fel gweinyddwr ar {{SITENAME}} gallwch ei weld;
 gall fod manylion yn y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lòg dileu].",
 'rev-delundel'                => 'dangos/cuddio',
 'revisiondelete'              => 'Dileu/dad-ddileu diwygiadau',
+'revdelete-nologid-title'     => 'Cofnod lòg annilys',
 'revdelete-selected'          => "'''Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} a ddewiswyd o'r lòg:'''",
 'revdelete-legend'            => 'Gosod cyfyngiadau ar y gallu i weld',
@@ -878,6 +879,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'mergehistory-autocomment'         => 'Cyfunwyd [[:$1]] tu mewn i [[:$2]]',
 'mergehistory-comment'             => 'Cyfunwyd [[:$1]] tu mewn i [[:$2]]: $3',
 'mergehistory-same-destination'    => "Ni all y tudalen gwreiddiol a'r cyrchfan fod yr un enw",
+'mergehistory-reason'              => 'Rheswm:',
 
 # Merge log
 'mergelog'           => 'Lòg cyfuno',
@@ -1846,7 +1848,7 @@ Gall yr archif gael ei glanhau o dro i dro.",
 'undeletehistory'              => "Os adferwch y dudalen, fe fydd yr holl ddiwygiadau yn cael eu hadfer hefyd yn hanes y dudalen.
 Os oes tudalen newydd o'r un enw wedi cael ei chreu ers y dilëad, fe ddangosir y diwygiadau cynt yn yr hanes, heb ddisodli'r dudalen bresennol.",
 'undeleterevdel'               => "Ni fydd yr adfer yn cael ei chyflawni pe byddai peth o'r diwygiad blaen i'r dudalen neu'r ffeil yn cael ei dileu oherwydd yr adfer.
-Os hynny, rhaid i chi dad-ticio neu datguddio'r diwygiad dilëedig diweddaraf.",
+Os hynny, rhaid i chi dad-ticio'r diwygiad dilëedig diweddaraf neu ei ddatguddio.",
 'undeletehistorynoadmin'       => "Mae'r dudalen hon wedi'i dileu. Dangosir y rheswm am y dileu isod, gyda manylion o'r holl ddefnyddwyr sydd wedi golygu'r dudalen cyn y dileu. Dim ond gweinyddwyr sydd yn gallu gweld testun y diwygiadau i'r dudalen.",
 'undelete-revision'            => 'Testun y golygiad gan $3 o $1 (fel ag yr oedd am $5 ar $4), a ddilëwyd:',
 'undeleterevision-missing'     => "Y diwygiad yn annilys neu yn eisiau.
@@ -2189,8 +2191,10 @@ Mae ffolder dros dro yn eisiau.',
 
 # Import log
 'importlogpage'                    => 'Lòg mewnforio',
+'importlogpagetext'                => "Cofnodion mewnforio tudalennau ynghyd â'u hanes golygu oddi ar wicïau eraill, gan weinyddwyr.",
 'import-logentry-upload'           => 'wedi mewnforio [[$1]] trwy uwchlwytho ffeil',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
+'import-logentry-interwiki'        => 'wedi symud $1 (traws-wici)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} o $2',
 
 # Tooltip help for the actions
@@ -2551,6 +2555,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 # Flash modes
 'exif-flash-fired-0' => 'Ni daniodd y fflach',
 'exif-flash-fired-1' => 'Taniodd y fflach',
+'exif-flash-mode-3'  => 'modd awtomatig',
 
 'exif-focalplaneresolutionunit-2' => 'modfeddi',
 
@@ -2815,10 +2820,11 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>",
 
 # Special:Tags
-'tag-filter-submit' => 'Hidlo',
-'tags-title'        => 'Tagiau',
-'tags-edit'         => 'golygu',
-'tags-hitcount'     => '$1 {{PLURAL:$#|newid}}',
+'tag-filter-submit'       => 'Hidlo',
+'tags-title'              => 'Tagiau',
+'tags-description-header' => 'Disgrifiad llawn yr ystyr',
+'tags-edit'               => 'golygu',
+'tags-hitcount'           => '$1 {{PLURAL:$#|newid}}',
 
 # Database error messages
 'dberr-header'      => 'Mae problem gan y wici hwn',

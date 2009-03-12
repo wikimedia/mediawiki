@@ -2953,8 +2953,18 @@ Angiv filnavnet uden "{{ns:file}}:"-præfikset.',
 #Skriv alle delene af regulære udtryk over denne linje. Lad denne linje være som den er</pre>",
 
 # Special:Tags
-'tags-edit'     => 'Redigér',
-'tags-hitcount' => '{{PLURAL:$1|en ændring|$1 ændringer}}',
+'tags'                    => 'Tags til sideversioner',
+'tag-filter'              => '[[Special:Tags|tag]]filter:',
+'tag-filter-submit'       => 'Filtrér',
+'tags-title'              => 'Tags',
+'tags-intro'              => 'This page lists the tags that the software may mark an edit with, and their meaning.
+Denne side oplister de tags som programmet kan mærke en redigering med, og deres betydning.',
+'tags-tag'                => 'Internt tagnavn',
+'tags-display-header'     => 'Udseende på ændringslister',
+'tags-description-header' => 'Beskrivelse af betydning',
+'tags-hitcount-header'    => 'Taggede ændringer',
+'tags-edit'               => 'Redigér',
+'tags-hitcount'           => '{{PLURAL:$1|en ændring|$1 ændringer}}',
 
 # Database error messages
 'dberr-header'      => 'Wikien har et problem',

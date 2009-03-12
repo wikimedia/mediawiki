@@ -461,7 +461,7 @@ $messages = array(
 'otherlanguages'    => 'På andre språk',
 'redirectedfrom'    => '(Omdirigert frå $1)',
 'redirectpagesub'   => 'Omdirigeringsside',
-'lastmodifiedat'    => 'Denne sida vart sist endra $1 kl. $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Sida vart sist endra $1 kl. $2.', # $1 date, $2 time
 'viewcount'         => 'Sida er vist {{PLURAL:$1|éin gong|$1 gonger}}.',
 'protectedpage'     => 'Verna side',
 'jumpto'            => 'Gå til:',
@@ -2473,7 +2473,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 # Attribution
 'anonymous'        => '{{PLURAL:$1|anonym brukar|anonyme brukarar}} av {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-brukaren $1',
-'lastmodifiedatby' => 'Denne sida vart sist endra den $1 kl. $2 av $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Sida vart sist endra den $1 kl. $2 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|brukar|brukarar}} $1',
