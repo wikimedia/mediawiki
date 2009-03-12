@@ -758,7 +758,7 @@ END;
 		if( count( $wgOut->mCategoryLinks ) == 0 ) return '';
 
 		# Separator
-		$sep = wfMsgHtml( 'catseparator' );
+		$sep = wfMsgExt( 'catseparator', array( 'parsemag', 'escapenoentities' ) );
 
 		// Use Unicode bidi embedding override characters,
 		// to make sure links don't smash each other up in ugly ways.
