@@ -1597,6 +1597,14 @@ function do_postgres_updates() {
 		array("user_newtalk", "user_ip",         "text",     "host(user_ip)"),
 	);
 
+	# table, column, nullability
+	$nullchanges = array(
+		array("oldimage", "oi_bits",       "NULL"),
+		array("oldimage", "oi_timestamp",  "NULL"),
+		array("oldimage", "oi_major_mime", "NULL"),
+		array("oldimage", "oi_minor_mime", "NULL"),
+	);
+
 	$newindexes = array(
 		array("archive",       "archive_user_text",  "(ar_user_text)"),
 		array("image",         "img_sha1",           "(img_sha1)"),
@@ -1683,6 +1691,34 @@ function do_postgres_updates() {
 		}
 	}
 
+	foreach ($nullchanges as $nc) {
+		$fi = $wgDatabase->fieldInfo($nc[0], $nc[1]);
+		if (is_null($fi)) {
+			wfOut( "... error: expected column $nc[0].$nc[1] to exist\n" );
+			exit(1);
+		}
+		if ($fi->nullable()) {
+			## It's NULL - does it need to be NOT NULL?
+			if ('NOT NULL' === $nc[2]) {
+				wfOut( "Changing \"$nc[0].$nc[1]\" to not allow NULLs\n" );
+				$wgDatabase->query( "ALTER TABLE $nc[0] ALTER $nc[1] SET NOT NULL" );
+			}
+			else {
+				wfOut( "... column \"$nc[0].$nc[1]\" is already set as NULL\n" );
+			}
+		}
+		else {
+			## It's NOT NULL - does it need to be NULL?
+			if ('NULL' === $nc[2]) {
+				wfOut( "Changing \"$nc[0].$nc[1]\" to allow NULLs\n" );
+				$wgDatabase->query( "ALTER TABLE $nc[0] ALTER $nc[1] DROP NOT NULL" );
+			}
+			else {
+				wfOut( "... column \"$nc[0].$nc[1]\" is already set as NOT NULL\n" );
+			}
+		}
+	}
+
 	if ($wgDatabase->fieldInfo('oldimage','oi_deleted')->type() !== 'smallint') {
 		wfOut( "Changing \"oldimage.oi_deleted\" to type \"smallint\"\n" );
 		$wgDatabase->query( "ALTER TABLE oldimage ALTER oi_deleted DROP DEFAULT" );
@@ -1712,7 +1748,7 @@ function do_postgres_updates() {
 	}
 
 	if ($wgDatabase->hasConstraint("oldimage_oi_name_fkey")) {
-		wfOut( "Making foriegn key on table \"oldimage\" (to image) a cascade delete\n" );
+		wfOut( "Making foreign key on table \"oldimage\" (to image) a cascade delete\n" );
 		$wgDatabase->query( "ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey" );
 		$wgDatabase->query( "ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascade ".
 			"FOREIGN KEY (oi_name) REFERENCES image(img_name) ON DELETE CASCADE" );
