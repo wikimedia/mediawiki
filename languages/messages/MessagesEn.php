@@ -498,7 +498,7 @@ XHTML id names.
 'tog-hideminor'               => 'Hide minor edits in recent changes',
 'tog-hidepatrolled'           => 'Hide patrolled edits in recent changes',
 'tog-newpageshidepatrolled'   => 'Hide patrolled pages from new page list',
-'tog-extendwatchlist'         => 'Expand watchlist to show all applicable changes',
+'tog-extendwatchlist'         => 'Expand watchlist to show all changes, not just the most recent',
 'tog-usenewrc'                => 'Enhanced recent changes (requires JavaScript)',
 'tog-numberheadings'          => 'Auto-number headings',
 'tog-showtoolbar'             => 'Show edit toolbar (requires JavaScript)',
