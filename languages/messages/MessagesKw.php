@@ -94,7 +94,7 @@ $messages = array(
 'history'          => 'Istori an folen',
 'history_short'    => 'Istori',
 'info_short'       => 'Kedhlow',
-'printableversion' => 'Versyon printyadow',
+'printableversion' => 'Versyon pryntyadow',
 'permalink'        => 'Kevren fast',
 'print'            => 'Pryntya',
 'edit'             => 'Chanjya',
@@ -130,6 +130,7 @@ $messages = array(
 
 'ok'                 => 'Sur',
 'youhavenewmessages' => 'Yma $1 dhis ($2).',
+'newmessageslink'    => 'messajys nowyth',
 'editsection'        => 'chanjya',
 'editold'            => 'chanjya',
 'editlink'           => 'chanjya',
@@ -172,6 +173,7 @@ $messages = array(
 'newpassword' => 'Ger-tremena nowyth:',
 
 # Edit page toolbar
+'link_tip'  => 'Kevren bervedhel',
 'media_tip' => 'Kevren restren',
 
 # Edit pages
@@ -228,7 +230,10 @@ $messages = array(
 'files'                    => 'Restrennow',
 
 # Groups
-'group-all' => '(oll)',
+'group-sysop' => 'Menysteryon',
+'group-all'   => '(oll)',
+
+'grouppage-sysop' => '{{ns:project}}:Menysteryon',
 
 # Rights
 'right-upload' => 'Ughkarga restrennow',
@@ -246,7 +251,8 @@ $messages = array(
 'rc-enhanced-hide' => 'Kudha manylyon',
 
 # Recent changes linked
-'recentchangeslinked' => 'Chanjyow dhe folennow kevahal',
+'recentchangeslinked'      => 'Chanjyow dhe folennow kevahal',
+'recentchangeslinked-page' => 'Hanow an folen:',
 
 # Upload
 'upload'    => 'Ughkarga restren',
@@ -257,7 +263,9 @@ $messages = array(
 'imgfile' => 'restren',
 
 # File description page
+'filehist'            => 'Istori an folen',
 'filehist-datetime'   => 'Dydh/Eur',
+'filehist-user'       => 'Devnydhyer',
 'filehist-dimensions' => 'Mynsow',
 
 # Random page
@@ -300,9 +308,13 @@ $messages = array(
 'watchthispage' => 'Golyas an folen ma',
 'unwatch'       => 'Diswolyas',
 
+# Delete
+'deletereasonotherlist' => 'Acheson aral',
+
 # Protect
-'restriction-type' => 'Kummyas:',
-'pagesize'         => '(bayt)',
+'protect-level-sysop' => 'Menysteryon hepken',
+'restriction-type'    => 'Kummyas:',
+'pagesize'            => '(bayt)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Chanjya',
@@ -317,7 +329,9 @@ $messages = array(
 
 # What links here
 'whatlinkshere'           => 'Folennow ow kevrenna bys omma',
+'whatlinkshere-title'     => 'Folennow ow kevrenna bys "$1"',
 'whatlinkshere-page'      => 'Folen:',
+'isimage'                 => 'kevren an imaj',
 'whatlinkshere-prev'      => '{{PLURAL:$1|kyns|kyns $1}}',
 'whatlinkshere-next'      => '{{PLURAL:$1|nessa|nessa $1}}',
 'whatlinkshere-links'     => '← kevrennow',
@@ -345,6 +359,7 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Teythi ow akont',
+'tooltip-pt-logout'      => 'Omdenna',
 'tooltip-ca-addsection'  => 'Dalleth tregh nowyth',
 'tooltip-ca-protect'     => 'Difres an folen ma',
 'tooltip-ca-move'        => 'Movya an folen ma',
@@ -352,12 +367,16 @@ $messages = array(
 'tooltip-n-mainpage'     => 'Godriga an pennfolen',
 'tooltip-n-randompage'   => 'Karga folen dre jons',
 'tooltip-t-upload'       => 'Ughkarga restrennow',
+'tooltip-t-print'        => 'Versyon pryntyadow an folen ma',
 
 # Media information
 'show-big-image' => 'Klerder leun',
 
 # Special:NewFiles
 'ilsubmit' => 'Hwilas',
+
+# Metadata
+'metadata' => 'Metadata',
 
 'exif-contrast-1' => 'Medhel',
 'exif-contrast-2' => 'Kales',

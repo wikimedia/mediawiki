@@ -386,16 +386,19 @@ $messages = array(
 'listfiles_user' => 'Пайдаланыше',
 
 # File description page
-'filehist'           => 'Файлын историй',
-'filehist-deleteone' => 'шӧраш',
-'filehist-current'   => 'кызыт',
-'filehist-datetime'  => 'Кече/жап',
-'filehist-user'      => 'Пайдаланыше',
-'filehist-filesize'  => 'Файлын кугытшо',
-'filehist-comment'   => 'Файл нерген:',
-'imagelinks'         => 'Ссылке-влак',
-'linkstoimage'       => 'Тиде {{PLURAL:$1|$1 лаштык саде файл дене кылдалтын|$1 лаштык-влак саде файл дене кылдалтыныт}}:',
-'nolinkstoimage'     => 'Тиде файл дене кылдалтше ик лаштыкат уке.',
+'filehist'                  => 'Файлын историй',
+'filehist-help'             => 'Файл ончыч могай ыле манын ончалнет гын, кече/жапым темдал.',
+'filehist-deleteone'        => 'шӧраш',
+'filehist-current'          => 'кызыт',
+'filehist-datetime'         => 'Кече/жап',
+'filehist-user'             => 'Пайдаланыше',
+'filehist-filesize'         => 'Файлын кугытшо',
+'filehist-comment'          => 'Файл нерген:',
+'imagelinks'                => 'Ссылке-влак',
+'linkstoimage'              => 'Тиде {{PLURAL:$1|$1 лаштык саде файл дене кылдалтын|$1 лаштык-влак саде файл дене кылдалтыныт}}:',
+'nolinkstoimage'            => 'Тиде файл дене кылдалтше ик лаштыкат уке.',
+'sharedupload'              => 'Тиде файлын верже: $1, туге гынат, тудым моло веренат кучылташ лиеш. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'shareduploadwiki-linktext' => 'файлын умылтартыш лаштыкше',
 
 # File deletion
 'filedelete-comment'          => 'Шӧрымын амалже:',

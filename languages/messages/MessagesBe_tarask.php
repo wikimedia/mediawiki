@@ -2094,7 +2094,7 @@ $NEWPAGE
 'undelete-nodiff'              => 'Папярэдняя вэрсія ня знойдзеная.',
 'undeletebtn'                  => 'Аднавіць',
 'undeletelink'                 => 'паглядзець/аднавіць',
-'undeletereset'                => 'Ачысьціць',
+'undeletereset'                => 'Скінуць',
 'undeleteinvert'               => 'Адваротны выбар',
 'undeletecomment'              => 'Камэнтар:',
 'undeletedarticle'             => 'адноўленая «[[$1]]»',

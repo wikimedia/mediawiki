@@ -472,8 +472,8 @@ Küpälolös, das pads anik ba nog pojenons äsva no esenunädol oli, jüs uklin
 
 Kal olik pejafon. No glömolöd ad votükön buükamis olik in {{SITENAME}}.',
 'loginpagetitle'             => 'Nunädön oki',
-'yourname'                   => 'Gebananem',
-'yourpassword'               => 'Letavöd',
+'yourname'                   => 'Gebananem:',
+'yourpassword'               => 'Letavöd:',
 'yourpasswordagain'          => 'Klavolös dönu letavödi',
 'remembermypassword'         => 'Dakipolöd ninädamanünis obik in nünöm at',
 'yourdomainname'             => 'Domen olik:',
@@ -612,7 +612,7 @@ Ba ya evotükol benosekiko letavödi olik, u ya ebegol benosekiko letavödi nela
 'summary-preview'                  => 'Büologed brefik:',
 'subject-preview'                  => 'Büologed yegäda/diläda:',
 'blockedtitle'                     => 'Geban peblokon',
-'blockedtext'                      => "<big>'''Gebananam u ladet-IP olik(s) peblokon(s).'''</big>
+'blockedtext'                      => "<big>'''Gebananem u ladet-IP olik(s) peblokon(s).'''</big>
 
 Blokam at pejenükon fa geban: $1. 
 Kod binon: ''$2''.
@@ -875,6 +875,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'mergehistory-autocomment'         => 'Pad: [[:$1]] peninükon ini pad: [[:$2]].',
 'mergehistory-comment'             => 'Pad: [[:$1]] peninükon ini pad: [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Fonäta- e zeilapad no dalons binön pad ot.',
+'mergehistory-reason'              => 'Kod:',
 
 # Merge log
 'mergelog'           => 'Jenotalised padibalamas',
@@ -1962,7 +1963,7 @@ $1',
 'ipaddress'                       => 'Ladet-IP',
 'ipadressorusername'              => 'Ladet-IP u gebananem',
 'ipbexpiry'                       => 'Dü',
-'ipbreason'                       => 'Kod',
+'ipbreason'                       => 'Kod:',
 'ipbreasonotherlist'              => 'Kod votik',
 'ipbreason-dropdown'              => '*Blokamakods suvik:
 ** Läükam nünas neverätik
@@ -2814,7 +2815,7 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 'specialpages-group-media'       => 'Nüns e löpükams ragivas',
 'specialpages-group-users'       => 'Gebans e gitäts',
 'specialpages-group-highuse'     => 'Pads suvo pegeböls',
-'specialpages-group-pages'       => 'Padalised',
+'specialpages-group-pages'       => 'Padaliseds',
 'specialpages-group-pagetools'   => 'Padastumem',
 'specialpages-group-wiki'        => 'Nüns e stums vükiks',
 'specialpages-group-redirects'   => 'Lüodükam padas patik',

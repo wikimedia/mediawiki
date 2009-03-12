@@ -525,8 +525,8 @@ Tenha em atenção que algumas páginas poderão continuar a ser apresentadas co
 A sua conta foi criada.
 Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
 'loginpagetitle'             => 'Autenticação de utilizador',
-'yourname'                   => 'Seu nome de utilizador',
-'yourpassword'               => 'Palavra-chave',
+'yourname'                   => 'Nome de utilizador:',
+'yourpassword'               => 'Palavra-chave:',
 'yourpasswordagain'          => 'Repita a sua palavra-chave',
 'remembermypassword'         => 'Lembrar a minha palavra-chave entre sessões.',
 'yourdomainname'             => 'Seu domínio',

@@ -6,6 +6,7 @@
  *
  * @author 334a
  * @author A2raya07
+ * @author Basharh
  * @author The Thadman
  */
 
@@ -58,14 +59,14 @@ $messages = array(
 'nov'         => 'ܬܫܪܝܢ ܒ',
 'dec'         => 'ܟܢܘܢ ܐ',
 
-'article'        => 'ܡܐܡܪܐ',
-'newwindow'      => '(ܦܬܚ ܒܟܘܬܐ ܚܕܬܬܐ)',
+'article'        => 'ܡܓܠܬܐ',
+'newwindow'      => '(ܦܬܚ ܒܟܘܬܐ ܚܕܬܐ)',
 'cancel'         => 'ܒܛܘܠ',
-'qbpageoptions'  => 'ܗܢܐ ܕܦܐ',
+'qbpageoptions'  => 'ܗܕܐ ܦܐܬܐ',
 'qbmyoptions'    => 'ܓܒܝ̈ܘܬܝ',
-'qbspecialpages' => 'ܦܐܬܘܬ̈ܐ ܪܫܝܬܐ',
+'qbspecialpages' => 'ܦܐܬܘܬܐ ܪܫܝܬܐ',
 'moredotdotdot'  => '...ܝܬܝܪ̈ܐ',
-'mypage'         => 'ܕܦܝ',
+'mypage'         => 'ܦܐܬܝ',
 'mytalk'         => 'ܕܘܪܫܝ',
 'navigation'     => 'ܐܠܦܪܘܬܐ',
 'and'            => '&#32;ܘ',
@@ -76,48 +77,53 @@ $messages = array(
 'searchbutton'      => 'ܒܨܝ',
 'go'                => 'ܙܠ',
 'searcharticle'     => 'ܙܠ',
-'history'           => 'ܬܫܥܝܬܐ ܕܕܦܐ',
+'history'           => 'ܬܫܥܝܬܐ ܕܦܐܬܐ',
 'history_short'     => 'ܬܫܥܝܬܐ',
-'print'             => 'ܒܨܡܐ',
+'printableversion'  => 'ܨܚܚܐ ܡܬܛܒܥܢܐ',
+'permalink'         => 'ܐܣܘܪܐ ܦܝܘܫܐ',
+'print'             => 'ܛܒܘܥ',
 'edit'              => 'ܫܚܠܦ',
-'editthispage'      => 'ܫܚܠܦ ܗܢܐ ܕܦܐ',
+'editthispage'      => 'ܫܚܠܦ ܗܕܐ ܦܐܬܐ',
 'delete'            => 'ܫܘܦ',
-'deletethispage'    => 'ܫܘܦ ܗܢܐ ܕܦܐ',
+'deletethispage'    => 'ܫܘܦ ܗܕܐ ܦܐܬܐ',
 'protect'           => 'ܚܡܝ',
-'protectthispage'   => 'ܚܡܝ ܗܢܐ ܕܦܐ',
+'protectthispage'   => 'ܚܡܝ ܗܕܐ ܦܐܬܐ',
 'unprotect'         => 'ܠܐ ܚܡܝ',
-'unprotectthispage' => 'ܠܐ ܚܡܝ ܗܢܐ ܕܦܐ',
-'newpage'           => 'ܕܦܐ ܚܕܬܐ',
-'talkpage'          => 'ܕܪܘܫ ܗܢܐ ܕܦܐ',
-'specialpage'       => 'ܕܦܐ ܝܚܝܕܐ',
+'unprotectthispage' => 'ܠܐ ܚܡܝ ܗܕܐ ܦܐܬܐ',
+'newpage'           => 'ܦܐܬܐ ܚܕܬܐ',
+'talkpage'          => 'ܕܪܘܫ ܗܕܐ ܦܐܬܐ',
+'specialpage'       => 'ܦܐܬܐ ܝܚܝܕܬܐ',
 'talk'              => 'ܕܘܪܫܐ',
 'toolbox'           => 'ܡܐܢ̈ܐ',
 'imagepage'         => 'ܚܙܝ ܕܦܐ ܕܨܘܪܬܐ',
-'viewhelppage'      => 'ܚܙܝ ܕܦܐ ܕܥܘܕܪܢܐ',
+'viewhelppage'      => 'ܚܙܝ ܦܐܬܐ ܕܥܘܕܪܢܐ',
 'viewtalkpage'      => 'ܚܙܝ ܕܘܪܫܐ',
 'otherlanguages'    => 'ܠܫܢ̈ܐ ܐܚܪ̈ܢܐ',
-'protectedpage'     => 'ܕܦܐ ܚܡܝܐ',
+'protectedpage'     => 'ܦܐܬܐ ܚܡܝܬܐ',
 'jumptonavigation'  => 'ܐܠܦܪܘܬܐ',
 'jumptosearch'      => 'ܒܨܐ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'        => 'ܓܕ̈ܫܐ ܗܫ̈ܝܐ',
 'currentevents-url'    => 'Project:ܓܕ̈ܫܐ ܗܫܝܐ',
-'mainpage'             => 'ܕܦܐ ܪܝܫܝܐ',
-'mainpage-description' => 'ܕܦܐ ܪܫܝܐ',
+'edithelp'             => 'ܥܘܕܪܢܐ ܠܫܘܚܠܦܐ',
+'mainpage'             => 'ܦܐܬܐ ܪܫܝܬܐ',
+'mainpage-description' => 'ܦܐܬܐ ܪܫܝܬܐ',
 'portal'               => 'ܬܪܥܐ ܕܟܢܫܐ',
 'portal-url'           => 'Project:ܬܪܥܐ ܕܟܢܫܐ',
 
 'ok'              => 'ܛܒ',
-'newmessageslink' => 'ܣܒܪ̈ܬܐ ܚܕ̈ܬܬܐ',
+'newmessageslink' => 'ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ',
 'editsection'     => 'ܫܚܠܦ',
 'editold'         => 'ܫܚܠܦ',
+'showtoc'         => 'ܚܘܝ',
+'hidetoc'         => 'ܛܫܝ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'ܕܦܐ',
-'nstab-mediawiki' => 'ܣܒܪܬܐ',
+'nstab-main'      => 'ܦܐܬܐ',
+'nstab-mediawiki' => 'ܐܓܪܬܐ',
 'nstab-template'  => 'ܩܠܒܐ',
-'nstab-help'      => 'ܕܦܐ ܕܥܘܕܪܢܐ',
+'nstab-help'      => 'ܦܐܬܐ ܕܥܘܕܪܢܐ',
 'nstab-category'  => 'ܣܕܪܐ',
 
 # General errors
@@ -133,7 +139,9 @@ $messages = array(
 'yourlanguage' => ':ܠܫܢܐ',
 
 # Edit pages
-'savearticle'  => 'ܫܚܠܦ ܕܦܐ',
+'savearticle'  => 'ܫܚܠܦ ܦܐܬܐ',
+'preview'      => 'ܚܝܪܬܐ ܩܕܡܝܬܐ',
+'showpreview'  => 'ܚܝܪܬܐ ܩܕܡܝܬܐ',
 'showdiff'     => 'ܚܘܝ ܫܘ̈ܚܠܦܐ',
 'loginreqlink' => 'ܥܘܠ',
 'newarticle'   => '(ܚܕܬܐ)',
@@ -145,7 +153,7 @@ $messages = array(
 # Preferences page
 'mypreferences' => 'ܦܪ̈ܝܫܘܬܝ',
 'math'          => 'ܡܬܡܐܛܝܩܘܬܐ',
-'prefs-rc'      => 'ܫܘܚ̈ܠܦܐ ܚܕ̈ܬܐ',
+'prefs-rc'      => 'ܫܚ̈ܠܦܬܐ ܚܕ̈ܬܬܐ',
 'saveprefs'     => 'ܚܡܝ',
 
 # Recent changes
@@ -155,8 +163,8 @@ $messages = array(
 'recentchangeslinked' => 'ܫܚܠ̈ܦܐ ܕܡܝܐ',
 
 # Upload
-'upload'   => 'ܛܥܢܐ ܦ̮ܥܝܠ',
-'filename' => 'ܫܡܐ ܕܫܘܦܝܢܐ',
+'upload'   => 'ܛܥܢ ܠܦܦܐ',
+'filename' => 'ܫܡܐ ܕܠܦܦܐ',
 
 # Special:ListFiles
 'listfiles_name' => 'ܫܡܐ',
@@ -181,29 +189,33 @@ $messages = array(
 'emailto'   => 'ܥܠ',
 
 # Watchlist
-'watchlist'   => 'ܟܬܒܢܘܬܝ',
-'mywatchlist' => 'ܟܬܒܢܘܬܝ',
-'watch'       => 'ܢܛܪ',
-'unwatch'     => 'ܠܐ ܢܛܪ',
+'watchlist'     => 'ܕܘܩܘܬܝ',
+'mywatchlist'   => 'ܕܘܩܘܬܝ',
+'watch'         => 'ܕܘܩ',
+'watchthispage' => 'ܕܘܩ ܗܕܐ ܦܐܬܐ',
+'unwatch'       => 'ܠܐ ܕܘܩ',
 
 # Restrictions (nouns)
 'restriction-edit' => 'ܫܚܠܦ',
-'restriction-move' => 'ܡܓ̰ܘܓ̰',
+'restriction-move' => 'ܫܢܝ',
 
 # Namespace form on various pages
 'blanknamespace' => '(ܪܫܝܐ)',
 
 # Contributions
-'mycontris' => 'ܗܝܪܬܝ',
+'mycontris' => 'ܫܘܬܦܘܬܝ',
 
 # What links here
-'whatlinkshere' => 'ܡܐ ܐܣܝܪܐ ܠܟܐ؟',
+'whatlinkshere' => 'ܡܐ ܐܣܪ ܠܟܐ؟',
 
 # Namespace 8 related
 'allmessagesname' => 'ܫܡܐ',
 
+# Tooltip help for the actions
+'tooltip-t-print' => 'ܨܚܚܐ ܡܬܛܒܥܢܐ ܕܗܕܐ ܦܐܬܐ',
+
 # Special:NewFiles
-'ilsubmit' => 'ܛܥܘܝܐ',
+'ilsubmit' => 'ܒܨܝ',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ܟܠ',
@@ -218,11 +230,15 @@ $messages = array(
 # Table pager
 'table_pager_limit_submit' => 'ܙܠ',
 
+# Watchlist editor
+'watchlistedit-raw-submit' => 'ܚܕܬ ܕܘܩܘܬܐ',
+
 # Special:FilePath
-'filepath'        => 'ܫܒܝܠܐ ܕܫܘܦܝܢܐ',
+'filepath'        => 'ܫܒܝܠܐ ܕܠܦܦܐ',
+'filepath-page'   => 'ܠܦܦܐ',
 'filepath-submit' => 'ܫܒܝܠܐ',
 
 # Special:SpecialPages
-'specialpages' => 'ܦܐܬܘܬ̈ܐ ܪܫܝܐ',
+'specialpages' => 'ܦܐܬܘܬܐ ܕܝܠܢܝܬܐ',
 
 );

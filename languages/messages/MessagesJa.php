@@ -1050,7 +1050,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 # Diffs
 'history-title'           => '$1 の変更履歴',
-'difference'              => '版間での差分',
+'difference'              => '(版間での差分)',
 'lineno'                  => '$1 行',
 'compareselectedversions' => '選択した版同士を比較',
 'visualcomparison'        => '表示結果の比較',
@@ -2014,7 +2014,7 @@ $NEWPAGE
 ** 編集合戦
 ** 高負荷ページ',
 'protect-edit-reasonlist'     => '保護理由を編集する',
-'protect-expiry-options'      => '15分:15 minutes,30分:30 minutes,2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1時間:1 hour,1日:1 day,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => '制限:',
 'restriction-level'           => '保護レベル:',
 'minimum-size'                => '最小サイズ',
@@ -2412,7 +2412,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-search'                  => 'ウィキ内を検索',
 'tooltip-search-go'               => '入力された文字列と一致するものがある場合、そのページへ移動します',
 'tooltip-search-fulltext'         => '入力された文字列が含まれるページを検索します',
-'tooltip-p-logo'                  => 'メインページ',
+'tooltip-p-logo'                  => 'メインページに移動',
 'tooltip-n-mainpage'              => 'メインページに移動',
 'tooltip-n-portal'                => 'このプロジェクトについて、あなたのできることを探す場所です',
 'tooltip-n-currentevents'         => '最近の出来事',

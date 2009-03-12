@@ -206,6 +206,8 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Авторы бартæ',
 'currentevents'        => 'Ног хабæрттæ',
 'currentevents-url'    => 'Project:Xabar',
+'disclaimers'          => 'Бæрн нæ исыны тыххæй',
+'disclaimerpage'       => 'Project:Бæрн нæ исыны тыххæй',
 'mainpage'             => 'Сæйраг фарс',
 'mainpage-description' => 'Сæйраг фарс',
 'portal'               => 'Архайджыты æхсæнад',
@@ -379,17 +381,19 @@ $messages = array(
 'diff-height' => 'бæрзæнд',
 
 # Search results
-'searchresults'            => 'Цы ссардæуы',
-'titlematches'             => 'Статьяты сæргæндты æмцаутæ',
-'textmatches'              => 'Статьяты æмцаутæ',
-'prevn'                    => '$1 фæстæмæ',
-'nextn'                    => '$1 размæ',
-'viewprevnext'             => 'Фен ($1) ($2) ($3)',
-'search-section'           => '(хай $1)',
-'search-interwiki-caption' => 'Æфсымæрон проекттæ',
-'searchall'                => 'æппæт',
-'powersearch'              => 'Сæрмагонд агуырд',
-'powersearch-legend'       => 'Сæрмагонд агуырд',
+'searchresults'             => 'Цы ссардæуы',
+'titlematches'              => 'Статьяты сæргæндты æмцаутæ',
+'textmatches'               => 'Статьяты æмцаутæ',
+'prevn'                     => '$1 фæстæмæ',
+'nextn'                     => '$1 размæ',
+'viewprevnext'              => 'Фен ($1) ($2) ($3)',
+'search-section'            => '(хай $1)',
+'search-interwiki-caption'  => 'Æфсымæрон проекттæ',
+'search-mwsuggest-enabled'  => 'æмбарынгæнæнтимæ',
+'search-mwsuggest-disabled' => 'æнæ æмбарынгæнæнтæ',
+'searchall'                 => 'æппæт',
+'powersearch'               => 'Сæрмагонд агуырд',
+'powersearch-legend'        => 'Сæрмагонд агуырд',
 
 # Preferences page
 'mypreferences'           => 'Æрмадз',
@@ -404,6 +408,9 @@ $messages = array(
 'timezonelegend'          => 'Сахаты таг',
 'localtime'               => 'Бынатон рæстæг',
 'timezoneoffset'          => 'Хъауджыдæрдзинад',
+
+# User rights
+'userrights-nodatabase' => 'Бæрæггæнæнты базæ $1 нæй кæнæ уый у бынæттон базæ.',
 
 # Groups
 'group'            => 'Къорд:',
@@ -641,6 +648,12 @@ $3',
 'blocklink'              => 'бахъоды кæн',
 'contribslink'           => 'бавæрд',
 'blocklogpage'           => 'Хъодыты лог',
+
+# Developer tools
+'lockdbsuccesssub'    => 'Бæрæггæнæнты базæ æхгæд у',
+'unlockdbsuccesssub'  => 'Бæрæггæнæнты базæ æхгæд нал у',
+'unlockdbsuccesstext' => 'Бæрæггæнæнты базæ æхгæд нал у.',
+'databasenotlocked'   => 'Бæрæггæнæнты базæ æхгæд не ’рцыд.',
 
 # Move page
 'movearticle' => 'Статьяйы ном баив',

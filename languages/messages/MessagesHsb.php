@@ -2189,6 +2189,8 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'export-submit'     => 'Eksportować',
 'export-addcattext' => 'Strony z kategorije dodawać:',
 'export-addcat'     => 'Dodawać',
+'export-addnstext'  => 'Strony z mjenoweho ruma přidać:',
+'export-addns'      => 'Přidać',
 'export-download'   => 'Jako XML-dataju składować',
 'export-templates'  => 'Předłohi zapřijeć',
 'export-pagelinks'  => 'Wotkazane strony zapřijeć, do hłubokosće wot:',

@@ -764,6 +764,11 @@ Možete zanemariti ovu poruku, ako je suradnički račun stvoren nenamjerno.',
 'resetpass-wrong-oldpass'   => 'Pogrešna privremena ili trenutačna lozinka. 
 Možda ste već uspješno promijenili vašu lozinku ili ste zatražili novu privremenu lozinku.',
 'resetpass-temp-password'   => 'Privremena lozinka:',
+'resetpass-no-others'       => "Ne možete poništiti (''resetirati'') lozinku drugog suradnika.",
+'resetpass-log'             => 'Evidencija poništavanja lozinki',
+'resetpass-logtext'         => 'Slijedi evidencija suradnika kojima su administratori poništili lozinke.',
+'resetpass-logentry'        => 'promijenjena lozinka suradnika $1',
+'resetpass-comment'         => 'Razlog za poništavanje lozinke:',
 
 # Edit page toolbar
 'bold_sample'     => 'Podebljani tekst',
@@ -1017,12 +1022,13 @@ Možda postoji više informacija u [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'revdelete-nologid-text'         => 'Niste naveli ciljnu evidenciju ili navedeni zapis ne postoji.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Odabrana izmjena|Odabrane izmjene|Odabrane izmjene}} stranice [[$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Odabrani zapis u evidenciji|Odabrani zapisi u evidenciji}}:'''",
-'revdelete-text'                 => "'''Obrisane će se izmjene i dalje nalaziti u javnom popisu izmjena,
-ali njihov sadržaj neće biti dostupan javnosti.'''
+'revdelete-text'                 => "'''Obrisane će se izmjene i dalje nalaziti u javnom popisu izmjena, ali njihov sadržaj neće biti dostupan javnosti.'''
+Drugi administratori ovoga projekta ({{SITENAME}}) moći će i dalje pristupiti skrivenom sadržaju i vratiti ga u javni pristup putem ovog sučelja, osim ako operateri na projektu nisu postavili dodatna ograničenja.
 
-Drugi administratori ovoga projekta moći će i dalje pristupiti skrivenom sadržaju i
-vratiti ga u javni pristup putem ovog sučelja, osim ako operateri na projektu nisu
-postavili dodatna ograničenja.",
+Molimo potvrdite da to želite, da razumijete posljedice, i da to radite u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama projekta]].",
+'revdelete-suppress-text'        => "Sklanjanje uređivanja treba raditi '''iznimno''' u slijedećih par slučajeva:
+* Privatne informacije neprilične javnom mediju tipa
+*: ''kućna adresa i broj telefona, JMBG ili OIB, itd.''",
 'revdelete-legend'               => 'Postavi ograničenja na izmjenu:',
 'revdelete-hide-text'            => 'Sakrij tekst izmjene',
 'revdelete-hide-name'            => 'Sakrij uređivanje i njegov predmet',
@@ -1079,6 +1085,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'mergehistory-autocomment'         => 'Stranica [[:$1]] je spojena u [[:$2]]',
 'mergehistory-comment'             => 'Stranica [[:$1]] je spojena u [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Izvorna i ciljana stranica ne mogu biti iste',
+'mergehistory-reason'              => 'Razlog:',
 
 # Merge log
 'mergelog'           => 'Evidencija spajanja povijesti stranica',
@@ -1164,6 +1171,9 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'notextmatches'                    => 'Nema pronađenih stranica prema tekstu članka',
 'prevn'                            => 'prethodnih $1',
 'nextn'                            => 'sljedećih $1',
+'prevn-title'                      => '$1 {{PLURAL:$1|prethodni rezultat|prethodna rezultata|prethodnih rezultata}}',
+'nextn-title'                      => '$1 {{PLURAL:$1|sljedeći rezultat|sljedeća rezultata|sljedećih rezultata}}',
+'shown-title'                      => 'Prikaži $1 {{PLURAL:$1|rezultat|rezultata|rezultata}} po stranici',
 'viewprevnext'                     => 'Vidi ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Mogućnosti pretraživanja',
 'searchmenu-exists'                => "* Stranica '''[[$1]]'''",
@@ -1391,6 +1401,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'right-userrights'           => 'Uređivanje svih suradničkih prava',
 'right-userrights-interwiki' => 'Uređivanje suradničkih prava na drugim Wikijima',
 'right-siteadmin'            => 'Zaključavanje i otključavanje baze podataka',
+'right-reset-passwords'      => "Poništi (''resetiraj'') lozinku drugog suradnika",
 
 # User rights log
 'rightslog'      => 'Evidencija suradničkih prava',
@@ -1743,6 +1754,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'popularpages'            => 'Popularne stranice',
 'wantedcategories'        => 'Tražene kategorije',
 'wantedpages'             => 'Tražene stranice',
+'wantedpages-badtitle'    => 'Nevaljani naslov kao rezultat: $1',
 'wantedfiles'             => 'Tražene datoteke',
 'wantedtemplates'         => 'Traženi predlošci',
 'mostlinked'              => 'Stranice na koje vodi najviše poveznica',
@@ -2059,7 +2071,7 @@ Slijede trenutačne postavke stranice '''$1''':",
 ** Neproduktivni uređivački rat
 ** Zatrpavanje nedavnih promjena',
 'protect-edit-reasonlist'     => 'Uredi razloge zaštićivanja',
-'protect-expiry-options'      => '2 sata:2 hours,6 sati:6 hours,1 dan:1 day,3 dana:3 days,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,neograničeno:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 sat:1 hour,1 dan:1 day,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godina:1 year,neograničeno:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Dopuštenje:',
 'restriction-level'           => 'Stupanj ograničenja:',
 'minimum-size'                => 'Najmanja veličina',
@@ -2145,6 +2157,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Za nove suradnike',
 'sp-contributions-newbies-title' => 'Doprinosi novih suradnika',
 'sp-contributions-blocklog'      => 'Evidencija blokiranja',
+'sp-contributions-logs'          => 'evidencije',
 'sp-contributions-search'        => 'Pretraži doprinose',
 'sp-contributions-username'      => 'IP adresa ili suradnik:',
 'sp-contributions-submit'        => 'Traži',
