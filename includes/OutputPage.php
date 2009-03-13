@@ -166,7 +166,7 @@ class OutputPage {
 	 *
 	 * @return bool True iff cache-ok headers was sent.
 	 */
-	function checkLastModified ( $timestamp ) {
+	function checkLastModified( $timestamp ) {
 		global $wgCachePages, $wgCacheEpoch, $wgUser, $wgRequest;
 		
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
@@ -339,6 +339,7 @@ class OutputPage {
 	public function setOnloadHandler( $js ) { $this->mOnloadHandler = $js; }
 	public function getOnloadHandler() { return $this->mOnloadHandler; }
 	public function disable() { $this->mDoNothing = true; }
+	public function isDisabled() { return $this->mDoNothing; }
 
 	public function setArticleRelated( $v ) {
 		$this->mIsArticleRelated = $v;
