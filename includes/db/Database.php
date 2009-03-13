@@ -2618,7 +2618,7 @@ class DBConnectionError extends DBError {
     <input type="hidden" name="ie" value="$wgInputEncoding" />
     <input type="hidden" name="oe" value="$wgInputEncoding" />
 
-    <img src="http://www.google.com/logos/Logo_40wht.gif" style="float:left; margin-left: 1.5em; margin-right: 1.5em;" />
+    <img src="http://www.google.com/logos/Logo_40wht.gif" alt="" style="float:left; margin-left: 1.5em; margin-right: 1.5em;" />
 
     <input type="text" name="q" size="31" maxlength="255" value="$search" />
     <input type="submit" name="btnG" value="$googlesearch" />
@@ -2633,8 +2633,8 @@ EOT;
 	}
 
 	function fileCachedPage() {
-		global $wgTitle, $title, $wgLang;
-
+		global $wgTitle, $title, $wgLang, $wgOut;
+		if( $wgOut->isDisabled() ) return; // Done already?
 		$cachederror = "The following is a cached copy of the requested page, and may not be up to date. ";
 		$mainpage = 'Main Page';
 		if ( $wgLang instanceof Language ) {

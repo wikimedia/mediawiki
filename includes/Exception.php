@@ -207,7 +207,7 @@ class MWException extends Exception {
 		<title>$title</title>
 		</head>
 		<body>
-		<h1><img src='$wgLogo' style='float:left;margin-right:1em' alt=''>$title</h1>
+		<h1><img src='$wgLogo' style='float:left;margin-right:1em' alt=''/>$title</h1>
 		";
 	}
 
