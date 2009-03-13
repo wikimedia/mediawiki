@@ -101,50 +101,7 @@ class LocalRepo extends FSRepo {
 		return $id;
 	}
 
-	function checkRedirect( $title ) {
-		global $wgMemc;
 
-		if( is_string( $title ) ) {
-			$title = Title::newFromTitle( $title );
-		}
-		if( $title instanceof Title && $title->getNamespace() == NS_MEDIA ) {
-			$title = Title::makeTitle( NS_FILE, $title->getText() );
-		}
-
-		$memcKey = $this->getMemcKey( "image_redirect:" . md5( $title->getPrefixedDBkey() ) );
-		$cachedValue = $wgMemc->get( $memcKey );
-		if( $cachedValue ) {
-			return Title::newFromDbKey( $cachedValue );
-		} elseif( $cachedValue == ' ' ) { # FIXME: ugly hack, but BagOStuff caching seems to be weird and return false if !cachedValue, not only if it doesn't exist
-			return false;
-		}
-
-		$id = $this->getArticleID( $title );
-		if( !$id ) {
-			$wgMemc->set( $memcKey, " ", 9000 );
-			return false;
-		}
-		$dbr = $this->getSlaveDB();
-		$row = $dbr->selectRow(
-			'redirect',
-			array( 'rd_title', 'rd_namespace' ),
-			array( 'rd_from' => $id ),
-			__METHOD__
-		);
-
-		if( $row ) $targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
-		$wgMemc->set( $memcKey, ($row ? $targetTitle->getPrefixedDBkey() : " "), 9000 );
-		if( !$row ) {
-			return false;
-		}
-		return $targetTitle;
-	}
-
-	function invalidateImageRedirect( $title ) {
-		global $wgMemc;
-		$memcKey = $this->getMemcKey( "image_redirect:" . md5( $title->getPrefixedDBkey() ) );
-		$wgMemc->delete( $memcKey );
-	}
 	
 	function findBySha1( $hash ) {
 		$dbr = $this->getSlaveDB();
