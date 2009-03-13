@@ -3190,6 +3190,11 @@ Variants for Chinese language
 'variantname-zh-my'   => 'my', # only translate this message to other languages if you have to change it
 'variantname-zh'      => 'zh', # only translate this message to other languages if you have to change it
 
+# Variants for Gan language
+'variantname-gan-hans' => 'hans', # only translate this message to other languages if you have to change it
+'variantname-gan-hant' => 'hant', # only translate this message to other languages if you have to change it
+'variantname-gan'      => 'gan', # only translate this message to other languages if you have to change it
+
 # Variants for Serbian language
 'variantname-sr-ec' => 'sr-ec', # only translate this message to other languages if you have to change it
 'variantname-sr-el' => 'sr-el', # only translate this message to other languages if you have to change it
