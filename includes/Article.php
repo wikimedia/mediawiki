@@ -1113,7 +1113,7 @@ class Article {
 					. $sk->makeLinkObj( $rt, htmlspecialchars( $rt->getFullText() ) );
 			}
 		}
-		return '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .
+		return '<img src="'.$imageUrl.'" alt="#REDIRECT" />' .
 			'<span class="redirectText">'.$link.'</span>';
 
 	}
