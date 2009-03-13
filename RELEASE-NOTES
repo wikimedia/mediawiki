@@ -263,6 +263,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17778) MediaWiki:Catseparator can now have HTML entities
 * (bug 17676) Error on Special:ListFiles when using Postgres
 * Special:Export doesn't use raw SQL queries anymore
+* (bug 14771) Thumbnail links to individual DjVu pages have two no longer have
+  two "page" parameters
 
 
 == API changes in 1.15 ==

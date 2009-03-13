@@ -882,10 +882,13 @@ class Linker {
 			}
 		}
 
-		if( $page ) {
-			$query = $query ? '&page=' . urlencode( $page ) : 'page=' . urlencode( $page );
-		}
+		# ThumbnailImage::toHtml() already adds page= onto the end of DjVu URLs
+		# So we don't need to pass it here in $query. However, the URL for the
+		# zoom icon still needs it, so we make a unique query for it. See bug 14771
 		$url = $title->getLocalURL( $query );
+		if( $page ) { 
+			$url = wfAppendQuery( $url, 'page=' . urlencode( $page ) );
+		}
 
 		$more = htmlspecialchars( wfMsg( 'thumbnail-more' ) );
 
