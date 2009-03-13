@@ -2320,6 +2320,11 @@ $wgMessageStructure = array(
 		'variantname-zh-my',
 		'variantname-zh',
 	),
+	'variantname-gan' => array(
+		'variantname-gan-hans',
+		'variantname-gan-hant',
+		'variantname-gan',
+	),
 	'variantname-sr' => array(
 		'variantname-sr-ec',
 		'variantname-sr-el',
@@ -3076,6 +3081,7 @@ XHTML id names.",
 To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language",
+	'variantname-gan'      => 'Variants for Gan language',
 	'variantname-sr'      => 'Variants for Serbian language',
 	'variantname-kk'      => 'Variants for Kazakh language',
 	'variantname-ku'      => 'Variants for Kurdish language',
