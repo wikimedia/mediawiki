@@ -2687,6 +2687,7 @@ See the [[Special:IPBlockList|IP block list]] for the list of currently operatio
 'block-log-flags-noemail'         => 'e-mail blocked',
 'block-log-flags-nousertalk'      => 'cannot edit own talk page',
 'block-log-flags-angry-autoblock' => 'enhanced autoblock enabled',
+'block-log-flags-hiddenname'      => 'username hidden',
 'range_block_disabled'            => 'The administrator ability to create range blocks is disabled.',
 'ipb_expiry_invalid'              => 'Expiry time invalid.',
 'ipb_expiry_temp'                 => 'Hidden username blocks must be permanent.',

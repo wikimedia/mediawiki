@@ -201,7 +201,7 @@ class LogPage {
 				} else {
 					$details = '';
 					array_unshift( $params, $titleLink );
-					if ( $key == 'block/block' || $key == 'suppress/block' || $key == 'block/reblock' ) {
+					if ( preg_match( '/^(block|suppress)\/(block|reblock)$/', $key ) ) {
 						if ( $skin ) {
 							$params[1] = '<span title="' . htmlspecialchars( $params[1] ). '">' . 
 								$wgLang->translateBlockExpiry( $params[1] ) . '</span>';

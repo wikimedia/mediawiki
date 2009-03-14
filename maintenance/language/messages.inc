@@ -1871,6 +1871,7 @@ $wgMessageStructure = array(
 		'block-log-flags-noemail',
 		'block-log-flags-nousertalk',
 		'block-log-flags-angry-autoblock',
+		'block-log-flags-hiddenname',
 		'range_block_disabled',
 		'ipb_expiry_invalid',
 		'ipb_expiry_temp',
