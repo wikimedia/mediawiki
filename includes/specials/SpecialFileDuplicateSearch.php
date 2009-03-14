@@ -64,7 +64,7 @@ class FileDuplicateSearchPage extends QueryPage {
  * Output the HTML search form, and constructs the FileDuplicateSearch object.
  */
 function wfSpecialFileDuplicateSearch( $par = null ) {
-	global $wgRequest, $wgTitle, $wgOut, $wgLang, $wgContLang;
+	global $wgRequest, $wgOut, $wgLang, $wgContLang, $wgScript;
 
 	$hash = '';
 	$filename =  isset( $par ) ?  $par : $wgRequest->getText( 'filename' );
@@ -85,7 +85,8 @@ function wfSpecialFileDuplicateSearch( $par = null ) {
 
 	# Create the input form
 	$wgOut->addHTML(
-		Xml::openElement( 'form', array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => $wgTitle->getLocalUrl() ) ) .
+		Xml::openElement( 'form', array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => $wgScript ) ) .
+		Xml::hidden( 'title', SpecialPage::getTitleFor( 'FileDuplicateSearch' )->getPrefixedDbKey() ) .
 		Xml::openElement( 'fieldset' ) .
 		Xml::element( 'legend', null, wfMsg( 'fileduplicatesearch-legend' ) ) .
 		Xml::inputLabel( wfMsg( 'fileduplicatesearch-filename' ), 'filename', 'filename', 50, $filename ) . ' ' .
