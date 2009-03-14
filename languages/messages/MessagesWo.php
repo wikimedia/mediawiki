@@ -1279,9 +1279,29 @@ nemmeekul [[Special:ProtectedPages|limu xët yi ñu aar]] ngir gis ab lim ci xë
 'protect-text'              => "Fii man nga fee gise ak soppi tolluwaayu kaaraange gu wii xët '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'    => "Manoo soppi tolluwaayu kaaraange gi su ñu la téyee.  
 Nii la xët wi tëdde '''$1''' :",
+'restriction-type'          => 'Sañ-sañ:',
+'restriction-level'         => 'Tolluwaayu yamale gi :',
+'minimum-size'              => 'Dayoo bi gëna tuuti',
+'maximum-size'              => 'Dayoo bi gëna rëy:',
+
+# Restrictions (nouns)
+'restriction-edit'   => 'Soppi',
+'restriction-move'   => 'Tuddewaat',
+'restriction-create' => 'Sos',
+'restriction-upload' => 'Yeb',
+
+# Restriction levels
+'restriction-level-sysop'         => 'karaange gu mat',
+'restriction-level-autoconfirmed' => 'kaarange gu diggu',
+'restriction-level-all'           => 'bépp tolluwaay',
 
 # Undelete
-'viewdeletedpage'              => 'Jaar-jaaru xët wi ñu dindi',
+'undelete'                     => 'Xool xët yi ñu far',
+'undeletepage'                 => 'Xool te loppanti xët yi ñu far',
+'undeletepagetitle'            => "'''Lim biy toftal dafa ëmb sumb yi faru yu [[:$1|$1]]'''.",
+'viewdeletedpage'              => 'Xool xët yi ñu far',
+'undeletepagetext'             => '{{PLURAL:$1|xët wii dañ koo far, waaye moo ngi dencu ba tay, manees na koo loppanti|xët yii dañ leen far, waaye ñoo ngi dencu ba tay, manees na leen loppanti}}. Dencu bi man nañu koo wëyëŋal ci benn diir bi',
+'undelete-fieldset-title'      => 'Loppanti sumb yi',
 'undeletebtn'                  => 'Loppanti',
 'undeletelink'                 => 'Wone/loppanti',
 'undeletereset'                => 'Neenal',

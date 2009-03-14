@@ -133,7 +133,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Format vu futtise Linken <a href="" class="new">esou</a> (alternativ: <a href="" class="internal">?</a>).',
 'tog-justify'                 => "Ränner vum Text riten (''justify'')",
 'tog-hideminor'               => 'Verstopp kleng Ännerungen an de rezenten Ännerungen',
-'tog-extendwatchlist'         => 'Iwwerwaachungslëscht op all Ännerungen ausbreeden',
+'tog-extendwatchlist'         => 'Iwwerwaachungslëscht op all Ännerungen ausbreeden, net nëmmen op déi rezentst',
 'tog-usenewrc'                => 'Mat JavaScript erweidert rezent Ännerungen (klappt net mat all Browser)',
 'tog-numberheadings'          => 'Iwwerschrëften automatesch numeréieren',
 'tog-showtoolbar'             => 'Ännerungstoolbar weisen (JavaScript)',
@@ -906,6 +906,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'mergehistory-autocomment'         => '[[:$1]] zesummegeluecht an [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] zesummegeluecht an [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Ausgangs- an Zilsäit däerfen net déi selwescht sinn',
+'mergehistory-reason'              => 'Grond:',
 
 # Merge log
 'mergelog'           => 'Fusiouns-Logbuch',
@@ -1970,6 +1971,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Fir déi Nei',
 'sp-contributions-newbies-title' => 'Kontributioune vun neie Benotzer',
 'sp-contributions-blocklog'      => 'Spärlescht',
+'sp-contributions-logs'          => 'Logbicher',
 'sp-contributions-search'        => 'No Kontributioune sichen',
 'sp-contributions-username'      => 'IP-Adress oder Benotzernumm:',
 'sp-contributions-submit'        => 'Sichen',
@@ -2075,6 +2077,7 @@ Kuckt d'[[Special:IPBlockList|IP Spärlëschtt]] fir déi aktuell Spären.",
 'block-log-flags-noemail'         => 'E-Mail gespaart',
 'block-log-flags-nousertalk'      => 'däerf seng Diskussiounssäite net änneren',
 'block-log-flags-angry-autoblock' => 'erweidert automatesch Spär aktivéiert',
+'block-log-flags-hiddenname'      => 'Benotzernumm verstoppt',
 'range_block_disabled'            => 'Dem Administrateur seng Fähegkeet fir ganz Adressberäicher ze spären ass ausser Kraaft.',
 'ipb_expiry_invalid'              => "D'Dauer déi Dir uginn hutt ass ongülteg.",
 'ipb_expiry_temp'                 => 'Verstoppte Späre vu Benotzernimm solle permanent sinn.',
@@ -2199,6 +2202,7 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'export-submit'     => 'Exportéieren',
 'export-addcattext' => 'Säiten aus Kategorie derbäisetzen:',
 'export-addcat'     => 'Derbäisetzen',
+'export-addns'      => 'Derbäisetzen',
 'export-download'   => 'Als XML-Datei späicheren',
 'export-templates'  => 'Inklusiv Schablounen',
 'export-pagelinks'  => 'Verlinkte Säiten mat exportéieren, bis zu enger Déift vun:',
@@ -2891,11 +2895,12 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'intentionallyblankpage' => 'Dës Säit ass absichtlech eidel. Si gëtt fir Benchmarking an Ähnleches benotzt.',
 
 # External image whitelist
-'external_image_whitelist' => " #Dës Zeil genee esou loosse wéi se ass<pre>
+'external_image_whitelist' => "#Dës Zeil genee esou loosse wéi se ass<pre>
 #Schreiwt hei ënnendrënner Fragmenter vu regulären Ausdréck (just den Deel zwëschen den // aginn)
 #Dës gi mat den URLe vu Biller aus externe Quelle verglach
 #Wann d'Resultat positiv gëtt d'Bilde gewisen, soss gëtt d'Bild just als Link gewisen
 #Zeilen, déi mat engem # ufänken, ginn als Bemierkung behandelt
+#Et gëtt en Ënnerscheed tëschent groussen a klenge Buchstawe gemaach
 
 #All regulär Ausdréck ënnen un dëser Zeil androen. Dës Zeil genee esou loosse wéi se ass</pre>",
 

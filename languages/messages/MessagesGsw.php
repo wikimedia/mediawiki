@@ -118,7 +118,7 @@ $messages = array(
 'tog-hideminor'               => 'Keini «chlyni Änderige» aazeige',
 'tog-hidepatrolled'           => 'Vum Fäldhieter aagluegti Änderige in dr „Letschte Änderige“ usblände',
 'tog-newpageshidepatrolled'   => 'Aagluegti Syten uf dr Lischt „Neiji Syte“ verstecke',
-'tog-extendwatchlist'         => 'Erwiterti Beobachtungslischte',
+'tog-extendwatchlist'         => 'Beobachtungslischte erwytere go alli Änderige aazeige, nit numme di letschte',
 'tog-usenewrc'                => 'Erwytereti «letschti Änderige» (geit nid uf allne Browser)',
 'tog-numberheadings'          => 'Überschrifte outomatisch numeriere',
 'tog-showtoolbar'             => 'Editier-Wärchzüüg aazeige',
@@ -2185,6 +2185,8 @@ Zum Exportiere trag dr Sytetitel in dr Täxtchaschte unter yy, ei Titel pro Zyyl
 'export-submit'     => 'Sytene exportiere',
 'export-addcattext' => 'Syte us dere Kategori dezuefüege',
 'export-addcat'     => 'Dezuefüege',
+'export-addnstext'  => 'Syte us em Namensruum zuefiege:',
+'export-addns'      => 'Zuefiege',
 'export-download'   => 'Als XML-Datei spychere',
 'export-templates'  => 'Vorlage mit ybinde',
 'export-pagelinks'  => 'Vergleichti Syten automatisch mit exportiere bis zuen ere Rekursionstiefi vu:',
@@ -2899,11 +2901,13 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'intentionallyblankpage' => 'Die Syte isch absichtlich leer. Si wird für Benchmarks bruucht.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Die Zyylete nit verändere<pre>
+'external_image_whitelist' => '  #Die Zyylete nit verändere<pre>
 #Unte chenne Fragmänt vu reguläre Usdrick (dr Teil zwische dr //) yygee wäre
 #Die wäre mit dr URL vu Bilder us externe Quälle vergliche
 #E positive Verglyych fiert zue dr Aazeig vum Bild, suscht wird s Bild nume as Gleich aazeigt
 #Zyylete, wu mit eme # aafange, wäre as Kommentar behandlet
+#Des isch nit abhängig vum Einzelfall
+
 #Fragmänt vu reguläre Usdrick noch däre Zyylete yytrage. Die Zyylete nit verändere</pre>',
 
 # Special:Tags

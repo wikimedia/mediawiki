@@ -1665,7 +1665,7 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'log'                  => 'Logger',
 'all-logs-page'        => 'Alle logger',
 'alllogstext'          => 'Kombinert visning av alle loggene på {{SITENAME}}.
-Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket (husk å skille mellom store og små boktaver).',
+Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket (husk å skille mellom store og små bokstaver).',
 'logempty'             => 'Ingen elementer i loggen.',
 'log-title-wildcard'   => 'Søk i titler som starter med denne teksten',
 

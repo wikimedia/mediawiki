@@ -1,5 +1,5 @@
 <?php
-/** Gan-hant (贛語繁體)
+/** Traditional Gan script (贛語(繁體))
  *
  * @ingroup Language
  * @file

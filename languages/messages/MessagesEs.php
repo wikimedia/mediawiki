@@ -217,7 +217,7 @@ $messages = array(
 'tog-hideminor'               => 'Ocultar ediciones menores en «cambios recientes»',
 'tog-hidepatrolled'           => 'Ocultar ediciones patrulladas en los cambios recientes',
 'tog-newpageshidepatrolled'   => 'ocultar páginas vigiladas de la nueva lista de páginas',
-'tog-extendwatchlist'         => 'Expandir la lista de seguimiento a todos los cambios aplicables',
+'tog-extendwatchlist'         => 'Expandir la lista de seguimiento a todos los cambios, no solo a los más recientes.',
 'tog-usenewrc'                => 'Cambios recientes realzados (no funciona en todos los navegadores)',
 'tog-numberheadings'          => 'Numerar automáticamente los encabezados',
 'tog-showtoolbar'             => 'Mostrar la barra de edición',
@@ -1557,7 +1557,7 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 'nolinkstoimage'            => 'No hay páginas que enlacen a esta imagen.',
 'morelinkstoimage'          => 'Vea [[Special:WhatLinksHere/$1|más enlaces]] a este archivo.',
 'redirectstofile'           => '{{PLURAL:$1|El siguiente fichero redirige|Los siguientes $1 ficheros redirigen}} a este:',
-'duplicatesoffile'          => 'Los siguientes {{PLURAL:$1|es un archivo duplicado|$1 archivos son duplicados}} de éste archivo ([[Special:FileDuplicateSearch/$2|mas detalles]]):',
+'duplicatesoffile'          => '{{PLURAL:$1|El siguiente archivo es un duplicado|Los siguientes $1 archivos son duplicados}} de éste ([[Special:FileDuplicateSearch/$2|más detalles]]):',
 'sharedupload'              => 'Este archivo es de $1 y puede usarse desde otros proyectos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Puede consultar $1 para más información.',
 'shareduploadwiki-desc'     => 'La descripcion en su $1 hay mostrada debajo.',
@@ -2315,6 +2315,8 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Expo
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Añadir páginas desde la categoría:',
 'export-addcat'     => 'Añadir',
+'export-addnstext'  => 'Agregar páginas del nombre del sitio:',
+'export-addns'      => 'Agregar',
 'export-download'   => 'Guardar como fichero',
 'export-templates'  => 'Incluir plantillas',
 'export-pagelinks'  => 'Incluir páginas enlazadas a una profundidad de:',
@@ -3053,12 +3055,13 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 
 # External image whitelist
 'external_image_whitelist' => ' #Deja esta línea exactamente como está<pre>
-#Put regular expression fragments (just the part that goes between the //) below
-#These will be matched with the URLs of external (hotlinked) images
-#Those that match will be displayed as images, otherwise only a link to the image will be shown
+#Colocar fragmentos de expresiones regulares (sólo la parte que va entre los //) debajo
+#Estos coincidirán con los URLs de las imágenes externas (hotlinked)
+#Aquellos que coincidan serán mostrados como imágenes, de lo contrario solamente un vínculo a la imagen será mostrada
 #Las líneas que empiezan por «#» se consideran comentarios
+#Esta es insensible a las mayúsculas
 
-#Put all regex fragments above this line. Deja esta línea exactamente como está</pre>',
+#Colocar todos los fragmentos regex arriba de esta línea. Deja esta línea exactamente como está</pre>',
 
 # Special:Tags
 'tags'                    => 'Cambio de etiquetas válida',

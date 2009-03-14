@@ -269,7 +269,7 @@ $messages = array(
 'tog-hideminor'               => 'Gøym småplukk på «siste endringar»',
 'tog-hidepatrolled'           => 'Løyn patruljerte endringar i siste endringar',
 'tog-newpageshidepatrolled'   => 'Gøym patruljerte sider frå lista over nye sider',
-'tog-extendwatchlist'         => 'Utvid overvakingslista til å vise alle endringane i det valde tidsrommet',
+'tog-extendwatchlist'         => 'Utvid overvakingslista til å vise alle endringane, ikkje berre dei siste',
 'tog-usenewrc'                => 'Utvida funksjonalitet på «siste endringar» (JavaScript)',
 'tog-numberheadings'          => 'Vis nummererte overskrifter',
 'tog-showtoolbar'             => 'Vis endringsknappar (JavaScript)',
@@ -2196,7 +2196,8 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:IPB
 'block-log-flags-noemail'         => 'sending av e-post blokkert',
 'block-log-flags-nousertalk'      => 'kan ikkje endre eiga diskusjonsside',
 'block-log-flags-angry-autoblock' => 'utvida autoblokkering aktivert',
-'range_block_disabled'            => 'Funksjonen for blokkering av IP-adresse-seriar er deaktivert på tenaren.',
+'block-log-flags-hiddenname'      => 'brukarnamn gøymt',
+'range_block_disabled'            => 'Funksjonen for blokkering av IP-adresse-seriar er inaktivert på tenaren.',
 'ipb_expiry_invalid'              => 'Ugyldig opphørstid.',
 'ipb_expiry_temp'                 => 'For å skjule brukarnamnet må blokkeringa vere permanent.',
 'ipb_already_blocked'             => '«$1» er allereie blokkert',
@@ -2311,6 +2312,8 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'export-submit'     => 'Eksporter',
 'export-addcattext' => 'Legg til sider frå kategori:',
 'export-addcat'     => 'Legg til',
+'export-addnstext'  => 'Legg til sider frå namnerommet:',
+'export-addns'      => 'Legg til',
 'export-download'   => 'Lagre som fil',
 'export-templates'  => 'Inkluder malane',
 'export-pagelinks'  => 'Inkluder lenkja sider med ei djupn på:',
@@ -3063,6 +3066,7 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 #Desse vil verte sjekka mot adresser til bilete frå eksterne sider
 #Dei som vert godkjend vil visast, elles vil det verte gjeve ei lenkje til bilete
 #Linjer som byrjar med # vert rekna som kommentarar
+#Det vert ikkje skilt mellom små og store bokstavar
 
 #Skriv alle fragment av regulære uttrykk over denne lina. La denne linja vere som ho er</pre>',
 

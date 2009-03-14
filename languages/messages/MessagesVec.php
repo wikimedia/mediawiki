@@ -135,7 +135,7 @@ $messages = array(
 'tog-hideminor'               => 'Scondi łe modifighe picenine n\'te ła paxena "Ultime modifighe"',
 'tog-hidepatrolled'           => 'Scondi le modìfeghe verificà tra le ultime modìfeghe',
 'tog-newpageshidepatrolled'   => "Scondi le pàxene verificà da l'elenco de le pàxene piassè nove",
-'tog-extendwatchlist'         => 'Espandi ła funsion osservai speciałi mostrando tute łe modifighe aplicabili',
+'tog-extendwatchlist'         => "Espandi i osservai speciałi mostrando tute łe modifighe, no solo l'ultima",
 'tog-usenewrc'                => 'Ultime modifiche avanzade (ghe vol JavaScript)',
 'tog-numberheadings'          => 'Auto-numerazion dei titoli de paragrafo',
 'tog-showtoolbar'             => 'Mostra la barra dei strumenti de modifica (ghe vol JavaScript)',
@@ -876,7 +876,7 @@ Par piaser conferma che te voli dal bon far sta scancelassion, che te conossi le
 'revdelete-hide-name'            => 'Scondi azion e ogeto de la stessa',
 'revdelete-hide-comment'         => "Scondi l'oggetto de ła modifega",
 'revdelete-hide-user'            => "Scondi el nome o l'indirisso IP dell'autore",
-'revdelete-hide-restricted'      => 'Àplica le limitazion indicà anca ai aministradori',
+'revdelete-hide-restricted'      => 'Scóndighe le informassion indicà anca ai aministradori',
 'revdelete-suppress'             => 'Scondi le informazion anca ai aministradori',
 'revdelete-hide-image'           => 'Scondi i contenuti del file',
 'revdelete-unsuppress'           => 'Elimina le limitazion su le revision ripristinà',
@@ -924,6 +924,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'mergehistory-autocomment'         => 'Union de [[:$1]] in [[:$2]]',
 'mergehistory-comment'             => 'Union d [[:$1]] in [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Le pàxene de origine e de destinasion no le pode èssar la stessa',
+'mergehistory-reason'              => 'Motivassion:',
 
 # Merge log
 'mergelog'           => 'Registro de le unioni',
@@ -2089,6 +2090,7 @@ Varda [[Special:IPBlockList|lista IP bloccati]] par védar tuti i blochi.",
 'block-log-flags-noemail'         => 'e-mail blocàe',
 'block-log-flags-nousertalk'      => "no'l pode scrìvar su la so pàxena de discussion",
 'block-log-flags-angry-autoblock' => 'bloco automatico avansado ativo',
+'block-log-flags-hiddenname'      => 'nome utente sconto',
 'range_block_disabled'            => 'La possibilità de blocar intervali de indirizzi IP no la xe ativa al momento.',
 'ipb_expiry_invalid'              => 'Tenpo de scadensa mìa valido. Controla el [http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html manual de tar] par la sintassi esatta.',
 'ipb_expiry_temp'                 => 'I blochi dei nomi utente sconti i dovarìa essar infiniti.',
@@ -2213,6 +2215,8 @@ Nel secondo caso te poli anca doparar un colegamento, par esenpio [[{{#Special:E
 'export-submit'     => 'Esporta',
 'export-addcattext' => 'Zonta pagine da la categoria:',
 'export-addcat'     => 'Zonta',
+'export-addnstext'  => 'Zonta pàxene dal namespace:',
+'export-addns'      => 'Zonta',
 'export-download'   => 'Richiedi el salvatagio come file',
 'export-templates'  => 'Includi i template',
 'export-pagelinks'  => 'Includi le pàxene corelà fin a na profondità de:',
@@ -2935,11 +2939,12 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'intentionallyblankpage' => 'Sta pagina la xe stà lassà voda aposta',
 
 # External image whitelist
-'external_image_whitelist' => " #lassa sta riga esatamente cussita come la xe<pre>
+'external_image_whitelist' => "  #Lassa sta riga esatamente cussita come la xe<pre>
 #Inserissi i framenti de espression regolari (solo el toco che va fra //) de seguito
 #Ste qua le corispondarà coi URL de imagini foreste (hotlinked)
 #Quele che corispondarà le vegnarà fora come imagini, se no vegnarà mostrà solo un colegamento a l'imagine
 #Le linee che taca con # le xe de comento
+#No vien tegnù conto del majuscolo/minuscolo
 
 #Inserissi de sora de sta riga tuti i framenti de regex. Lassa sta riga esatamente cussita come la xe</pre>",
 

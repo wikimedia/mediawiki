@@ -163,7 +163,7 @@ $messages = array(
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
 'tog-hidepatrolled'           => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled'   => 'Ocultar páginas patrulhadas da lista de páginas novas',
-'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis',
+'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações, e não apenas as mais recentes',
 'tog-usenewrc'                => 'Mudanças recentes melhoradas (JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
@@ -2283,6 +2283,8 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{Me
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Adicionar à listagem páginas da categoria:',
 'export-addcat'     => 'Adicionar',
+'export-addnstext'  => 'Adicionar páginas do espaço nominal:',
+'export-addns'      => 'Adicionar',
 'export-download'   => 'Oferecer para salvar como um ficheiro',
 'export-templates'  => 'Incluir predefinições',
 'export-pagelinks'  => 'Includir páginas ligadas até uma profundidade de:',
@@ -3020,12 +3022,14 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'intentionallyblankpage' => 'Esta página foi intencionalmente deixada em branco',
 
 # External image whitelist
-'external_image_whitelist' => '# Deixe esta linha exatamente como ela é <pre> 
-# Coloque uma expressão regular (apenas a parte que vai entre o //) a seguir
-# Estes serão compensados com as URLs de imagens (hotlinked) externas
-# Aqueles que corresponderem serão exibidos como imagens, caso contrário, apenas um link para a imagem será mostrada
+'external_image_whitelist' => '  # Deixe esta linha exatamente como ela está<pre> 
+# Coloque uma expressão regular (apenas a parte que vai entre os //) abaixo
+# Estas serão comparadas com as URLs de imagens externas (com links diretos)
+# Aquelas que corresponderem serão exibidas como imagens, caso contrário, apenas um link para a imagem será mostrado
 # As linhas que começam com # são tratadas como comentários
-# Coloque todos os fragmentos de regex acima dessa linha. Deixe esta linha exatamente como ela é </ pre>',
+# Esta lista ignora maiúsculas e minúsculas
+
+# Coloque todos os fragmentos de regex acima desta linha. Deixe esta linha exatamente como ela está</ pre>',
 
 # Special:Tags
 'tags'                    => 'Etiquetas de modificação válidas',

@@ -279,7 +279,7 @@ $messages = array(
 'tog-hideminor'               => 'Piilota pienet muutokset tuoreet muutokset -listasta',
 'tog-hidepatrolled'           => 'Piilota tarkastetut muutokset tuoreet muutokset -listasta',
 'tog-newpageshidepatrolled'   => 'Piilota tarkastetut sivut uusien sivujen listalta',
-'tog-extendwatchlist'         => 'Laajenna tarkkailulista näyttämään kaikki tehdyt muutokset',
+'tog-extendwatchlist'         => 'Laajenna tarkkailulista näyttämään kaikki tehdyt muutokset eikä vain viimeisimmät',
 'tog-usenewrc'                => 'Kehittynyt tuoreet muutokset -listaus (JavaScript)',
 'tog-numberheadings'          => 'Numeroi otsikot',
 'tog-showtoolbar'             => 'Näytä työkalupalkki',
@@ -1498,7 +1498,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'uploadwarning'               => 'Tallennusvaroitus',
 'savefile'                    => 'Tallenna',
 'uploadedimage'               => 'tallensi tiedoston [[$1]]',
-'overwroteimage'              => 'tallensi uuden version tiedostosta [[$1]]',
+'overwroteimage'              => 'tallensi uuden version [[$1]]',
 'uploaddisabled'              => 'Tiedostojen tallennus ei ole käytössä.',
 'uploaddisabledtext'          => 'Tiedostojen tallennus on poistettu käytöstä.',
 'php-uploaddisabledtext'      => 'PHP:n tiedostojen lähetys ei ole käytössä. Tarkista asetukset kohdasta file_uploads.',
@@ -2181,6 +2181,7 @@ Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
 'block-log-flags-noemail'         => 'sähköpostin lähettäminen estetty',
 'block-log-flags-nousertalk'      => 'oman keskustelusivun muokkaaminen estetty',
 'block-log-flags-angry-autoblock' => 'kehittynyt automaattiesto käytössä',
+'block-log-flags-hiddenname'      => 'käyttäjänimi piilotettu',
 'range_block_disabled'            => 'Ylläpitäjän oikeus luoda alue-estoja ei ole käytössä.',
 'ipb_expiry_invalid'              => 'Virheellinen umpeutumisaika.',
 'ipb_expiry_temp'                 => 'Piilotettujen käyttäjätunnusten estojen tulee olla pysyviä.',
@@ -2302,6 +2303,8 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'export-submit'     => 'Vie',
 'export-addcattext' => 'Lisää sivut luokasta',
 'export-addcat'     => 'Lisää',
+'export-addnstext'  => 'Lisää sivut nimiavaruudesta',
+'export-addns'      => 'Lisää',
 'export-download'   => 'Tallenna tiedostona',
 'export-templates'  => 'Liitä mallineet',
 'export-pagelinks'  => 'Sisällytä linkkien kohteina olevat sivut syvyydelle',
@@ -3039,6 +3042,7 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 #Niitä verrataan ulkoisten (suoralinkitettyjen) kuvien URLeihin
 #Ne jotka sopivat, näytetään kuvina, muutoin kuviin näytetään vain linkit
 #Rivit, jotka alkavat #-merkillä ovat kommentteja
+#Tämä on riippumaton kirjainkoosta
 
 #Laita kaikki säännöllisten lausekkeiden palaset tämän rivit yläpuolelle. Älä muuta tätä riviä lainkaan</pre>',
 

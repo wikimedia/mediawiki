@@ -323,7 +323,7 @@ $messages = array(
 'tog-hideminor'               => 'Kleine Änderungen ausblenden',
 'tog-hidepatrolled'           => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-newpageshidepatrolled'   => 'Kontrollierte Seiten auf der Liste „Neue Seiten“ verbergen',
-'tog-extendwatchlist'         => 'Erweiterte Beobachtungsliste',
+'tog-extendwatchlist'         => 'Erweiterte Beobachtungsliste zur Anzeige aller Änderungen',
 'tog-usenewrc'                => 'Erweiterte Darstellung (benötigt JavaScript)',
 'tog-numberheadings'          => 'Überschriften automatisch nummerieren',
 'tog-showtoolbar'             => 'Bearbeiten-Werkzeugleiste anzeigen',
@@ -2316,6 +2316,7 @@ Siehe die [[Special:IPBlockList|{{int:ipblocklist}}]] für alle aktiven Sperren.
 'block-log-flags-noemail'         => 'E-Mail-Versand gesperrt',
 'block-log-flags-nousertalk'      => 'darf eigene Diskussionsseite nicht bearbeiten',
 'block-log-flags-angry-autoblock' => 'erweiterter Autoblock aktiviert',
+'block-log-flags-hiddenname'      => 'Benutzername versteckt',
 'range_block_disabled'            => 'Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.',
 'ipb_expiry_invalid'              => 'Die eingegebene Dauer ist ungültig.',
 'ipb_expiry_temp'                 => 'Versteckte Benutzernamens-Sperren sollen permanent sein.',
@@ -2439,6 +2440,8 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 'export-submit'     => 'Seiten exportieren',
 'export-addcattext' => 'Seiten aus Kategorie hinzufügen:',
 'export-addcat'     => 'Hinzufügen',
+'export-addnstext'  => 'Seiten aus Namensraum hinzufügen:',
+'export-addns'      => 'Hinzufügen',
 'export-download'   => 'Als XML-Datei speichern',
 'export-templates'  => 'Inklusive Vorlagen',
 'export-pagelinks'  => 'Verlinkte Seiten automatisch mit exportieren, bis zur Rekursionstiefe von:',
@@ -3215,6 +3218,8 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 #Diese werden mit den URLs von Bildern aus externen Quellen verglichen
 #Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt
 #Zeilen, die mit einem # beginnen, werden als Kommentar behandelt
+#Es wird nicht zwischen Groß- und Kleinschreibung unterschieden
+
 #Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern</pre>',
 
 # Special:Tags

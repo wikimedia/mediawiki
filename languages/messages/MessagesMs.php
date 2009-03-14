@@ -153,7 +153,7 @@ $messages = array(
 'tog-hideminor'               => 'Sembunyikan suntingan kecil dalam laman perubahan terkini',
 'tog-hidepatrolled'           => 'Sorokkan suntingan yang telah dironda daripada senarai perubahan terkini',
 'tog-newpageshidepatrolled'   => 'Sorokkan laman yang telah dironda daripada senarai laman baru',
-'tog-extendwatchlist'         => 'Kembangkan senarai pantau untuk memaparkan semua perubahan yang berlaku',
+'tog-extendwatchlist'         => 'Kembangkan senarai pantau untuk memaparkan semua perubahan, bukan hanya yang terkini',
 'tog-usenewrc'                => 'Pertingkatkan laman perubahan terkini (JavaScript)',
 'tog-numberheadings'          => 'Nomborkan tajuk secara automatik',
 'tog-showtoolbar'             => 'Tunjukkan bar sunting (JavaScript)',
@@ -2246,6 +2246,8 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{#Spe
 'export-submit'     => 'Eksport',
 'export-addcattext' => 'Tambah laman daripada kategori:',
 'export-addcat'     => 'Tambah',
+'export-addnstext'  => 'Tambah laman dari ruang nama:',
+'export-addns'      => 'Tambah',
 'export-download'   => 'Simpan sebagai fail',
 'export-templates'  => 'Sertakan templat',
 'export-pagelinks'  => 'Sertakan laman-laman yang dipaut sedalam:',
@@ -2987,8 +2989,9 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'external_image_whitelist' => ' #Jangan ubah baris ini<pre>
 #Letakkan senarai ungkapan nalar (tidak termasuk apitan //) di baris kosong di bawah
 #Setiap ungkapan akan dipadankan dengan pautan imej luar
-#Pautan yang sepadan sahaja akan dijadikan imej
+#Pautan yang sepadan sahaja akan dijadikan imej, jika tidak hanya pautan kepada imej akan muncul
 #Baris yang bermula dengan aksara # diabaikan
+#Ini sensitif kepada atur huruf
 
 #Jangan letak ungkapan nalar di bawah baris ini dan jangan ubah baris ini</pre>',
 

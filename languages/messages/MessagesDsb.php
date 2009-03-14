@@ -152,7 +152,7 @@ $messages = array(
 'tog-hideminor'               => 'Małe změny schowaś',
 'tog-hidepatrolled'           => 'Doglědowane změny w aktualnych změnach schowaś',
 'tog-newpageshidepatrolled'   => 'Doglědowane boki z lisćiny nowych bokow schowaś',
-'tog-extendwatchlist'         => 'Rozšyrjona wobglědowańska lisćina',
+'tog-extendwatchlist'         => 'Lisćinu wobglědowańkow wócyniś, aby wšě změny pokazał, nic jano nejnowše',
 'tog-usenewrc'                => 'Rozšyrjona lisćina aktualnych změnow (JavaScript trěbny)',
 'tog-numberheadings'          => 'Nadpisma awtomatiski numerěrowaś',
 'tog-showtoolbar'             => 'Wobźěłańsku lejstwu pokazaś (JavaScript)',
@@ -1667,7 +1667,7 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'allnotinnamespace' => 'Wšykne boki (nic w mjenjowem rumje $1)',
 'allpagesprev'      => 'Pśedchadne',
 'allpagesnext'      => 'Slědujuce',
-'allpagessubmit'    => 'Start',
+'allpagessubmit'    => 'Pokazaś',
 'allpagesprefix'    => 'Boki pokazaś (z prefiksom):',
 'allpagesbadtitle'  => 'Zapódane mě boka njejo płaśece: Jo móžno, až ma pśedstajonu rěcnu resp. interwikijowu krotceńku abo wopśimjejo jadno abo wěcej znamuškow, kótarež njamgu se za mjenja bokow wužywaś.',
 'allpages-bad-ns'   => 'Mjenjowy rum „$1“ w {{SITENAME}} njeeksistěrujo.',
@@ -2089,6 +2089,7 @@ Na boce [[Special:IPBlockList|Lisćina blokěrowanych IP-adresow a wužywarskich
 'block-log-flags-noemail'         => 'e-mailowanje jo blokěrowane',
 'block-log-flags-nousertalk'      => 'njejo móžno swójski diskusijny bok wobźěłaś',
 'block-log-flags-angry-autoblock' => 'pólěpšone awtomatsike blokěrowanje zmóžnjone',
+'block-log-flags-hiddenname'      => 'wužywarske mě schowane',
 'range_block_disabled'            => 'Móžnosć administratora, blokěrowaś cełe adresowe rumy, njejo aktiwěrowana.',
 'ipb_expiry_invalid'              => 'Pódany cas jo njepłaśecy.',
 'ipb_expiry_temp'                 => 'Blokěrowanja schowanych wužywarskich mjenjow deje permanentne byś.',
@@ -2146,7 +2147,7 @@ pšosym zawěsć, až konsekwency rozmijoš, nježli až pókšacujoš.",
 W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu wjasć, jolic až to coš.",
 'movearticle'                  => 'Bok pśesunuś',
 'movenologin'                  => 'Njepśizjawjony(a)',
-'movenologintext'              => 'Musyš zregistrěrowany wužywaŕ a [[Special:Userlogin|pśizjawjony]] byś, aby pśesunuł bok.',
+'movenologintext'              => 'Musyš zregistrěrowany wužywaŕ a [[Special:UserLogin|pśizjawjony]] byś, aby pśesunuł bok.',
 'movenotallowed'               => 'Njamaš pšawo pśesuwaś boki.',
 'movenotallowedfile'           => 'Njamaš pšawo dataje pśesunuś.',
 'cant-move-user-page'          => 'Njamaš pšawo wužywarske boki pśesunuś (mimo pódbokow).',
@@ -2211,6 +2212,7 @@ W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{#Special:Export}}
 'export-addcattext' => 'Pśidaś boki z kategorije:',
 'export-addcat'     => 'Dodaś',
 'export-addnstext'  => 'Boki z mjenjowego ruma pśidaś:',
+'export-addns'      => 'Pśidaś',
 'export-download'   => 'Ako XML-dataju składowaś',
 'export-templates'  => 'Pśedłogi zapśimjeś',
 'export-pagelinks'  => 'Wótkazane boki zapśěgnuś, až k dłymoju wót:',
@@ -2957,6 +2959,7 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 #Toś te budu se pśirunowaś z URL ekseternych wobrazow
 #Te, kótarež makaju se, zwobraznuju se ako wobraze, howac pokažo se jano wótkaz k wobrazoju
 #Ze smužkami, kótarež zachopiju se z #, wobchadaju ako z komentarami
+#To njeźiwa na wjelikopisanje
 
 #Staj wše fragmenty regularnych wurazow nad smužku. Wóstaj toś tu smužku rowno tak jo</pre>',
 

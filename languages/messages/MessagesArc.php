@@ -80,7 +80,7 @@ $messages = array(
 'history'           => 'ܬܫܥܝܬܐ ܕܦܐܬܐ',
 'history_short'     => 'ܬܫܥܝܬܐ',
 'printableversion'  => 'ܨܚܚܐ ܡܬܛܒܥܢܐ',
-'permalink'         => 'ܐܣܘܪܐ ܦܝܘܫܐ',
+'permalink'         => 'ܐܣܪܐ ܦܝܘܫܐ',
 'print'             => 'ܛܒܘܥ',
 'edit'              => 'ܫܚܠܦ',
 'editthispage'      => 'ܫܚܠܦ ܗܕܐ ܦܐܬܐ',
@@ -116,6 +116,7 @@ $messages = array(
 'newmessageslink' => 'ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ',
 'editsection'     => 'ܫܚܠܦ',
 'editold'         => 'ܫܚܠܦ',
+'toc'             => 'ܚ̈ܒܝܫܬܐ',
 'showtoc'         => 'ܚܘܝ',
 'hidetoc'         => 'ܛܫܝ',
 
@@ -139,6 +140,7 @@ $messages = array(
 'yourlanguage' => ':ܠܫܢܐ',
 
 # Edit pages
+'summary'      => 'ܟܪܝܐܝܬ:',
 'savearticle'  => 'ܫܚܠܦ ܦܐܬܐ',
 'preview'      => 'ܚܝܪܬܐ ܩܕܡܝܬܐ',
 'showpreview'  => 'ܚܝܪܬܐ ܩܕܡܝܬܐ',

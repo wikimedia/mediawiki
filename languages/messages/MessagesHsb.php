@@ -134,7 +134,7 @@ $messages = array(
 'tog-hideminor'               => 'Snadne změny w aktualnych změnach schować',
 'tog-hidepatrolled'           => 'Dohladawane změny w aktualnych změnach schować',
 'tog-newpageshidepatrolled'   => 'Dohladowane strony z lisćiny nowych stronow schować',
-'tog-extendwatchlist'         => 'Rozšěrjena lisćina wobkedźbowankow',
+'tog-extendwatchlist'         => 'Lisćinu wobkedźbowankow wočinić, zo by wšě změny widźał, nic jenož najnowše',
 'tog-usenewrc'                => 'Rozšěrjena lisćina aktualnych změnow (trjeba JavaScript)',
 'tog-numberheadings'          => 'Nadpisma awtomatisce čisłować',
 'tog-showtoolbar'             => 'Gratowu lajstu pokazać (JavaScript)',
@@ -2073,6 +2073,7 @@ $1',
 'block-log-flags-noemail'         => 'wotpósłanje mejlkow bu znjemóžnjene',
 'block-log-flags-nousertalk'      => 'njeje móžno swójsku diskusijnu stronu wobdźěłać',
 'block-log-flags-angry-autoblock' => 'polěpšene awtomatiske blokowanje zmóžnjene',
+'block-log-flags-hiddenname'      => 'wužiwarske mjeno schowane',
 'range_block_disabled'            => 'Kmanosć administratorow, cyłe wobłuki IP-adresow blokować, je znjemóžnjena.',
 'ipb_expiry_invalid'              => 'Čas spadnjenja je njepłaćiwy.',
 'ipb_expiry_temp'                 => 'Blokowanja schowanych wužiwarskich mjenow maja permanentne być.',
@@ -2125,7 +2126,7 @@ Wobkedźbuj, zo strona so <b>nje</b> přesunje, jeli strona z nowym titlom hizo 
 W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to přeješ.',
 'movearticle'                  => 'Stronu přesunyć',
 'movenologin'                  => 'Njejsy přizjewjeny.',
-'movenologintext'              => 'Dyrbiš zregistrowany wužiwar a [[Special:Userlogin|přizjewjeny]] być, zo by stronu přesunył.',
+'movenologintext'              => 'Dyrbiš zregistrowany wužiwar a [[Special:UserLogin|přizjewjeny]] być, zo by stronu přesunył.',
 'movenotallowed'               => 'Nimaš prawo, zo by strony přesunył.',
 'movenotallowedfile'           => 'Nimaš prawo dataje přesunyć.',
 'cant-move-user-page'          => 'Nimaš prawo wužiwarske strony přesunyć (wothladajo wot podstronow)',
@@ -2801,7 +2802,7 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 'table_pager_first'        => 'prěnja strona',
 'table_pager_last'         => 'poslednja strona',
 'table_pager_limit'        => '$1 {{PLURAL:$1|wuslědk|wuslědkaj|wuslědki|wuslědkow}} na stronu pokazać',
-'table_pager_limit_submit' => 'OK',
+'table_pager_limit_submit' => 'Wotpósłać',
 'table_pager_empty'        => 'Žane wuslědki',
 
 # Auto-summaries
@@ -2926,6 +2927,7 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 #Tute přirunuja so z URL eksternych wobrazow
 #Přihódne zwobraznja so jako wobrazy, hewak so jenož wotkaz k wobrazej pokaza
 #Z linkami, kotrež so z # započinaja, wobchadźeja kaž komentary
+#To na wulkopisanje njedźiwa
 
 #Zapodaj wšě fragmenty regularnych wurazow nad tutej linku. Wostaj tutu linku eksaktnje kaž je</pre>',
 

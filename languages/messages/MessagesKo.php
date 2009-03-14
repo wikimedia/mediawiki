@@ -258,7 +258,7 @@ $messages = array(
 'tog-hideminor'               => '사소한 편집을 최근 바뀜에서 숨기기',
 'tog-hidepatrolled'           => '최근 바뀜에서 검토된 편집을 숨기기',
 'tog-newpageshidepatrolled'   => '새 문서 목록에서 검토된 문서를 숨기기',
-'tog-extendwatchlist'         => '주시 문서를 모든 변경 목록에 적용하기',
+'tog-extendwatchlist'         => '최근의 바뀜 뿐만 아니라 모든 편집을 보이도록 주시문서 목록을 확장',
 'tog-usenewrc'                => '향상된 최근 바뀜 (자바스크립트)',
 'tog-numberheadings'          => '머릿글 번호 매기기',
 'tog-showtoolbar'             => '편집창에 툴바 보이기 (자바스크립트)',
@@ -2325,6 +2325,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'export-submit'     => '내보내기',
 'export-addcattext' => '분류에 있는 문서 추가:',
 'export-addcat'     => '추가',
+'export-addnstext'  => '다음 이름공간을 가진 문서를 추가:',
+'export-addns'      => '추가',
 'export-download'   => '파일로 저장',
 'export-templates'  => '틀 포함하기',
 'export-pagelinks'  => '다음 단계로 링크된 문서를 포함:',
@@ -3065,10 +3067,11 @@ $1',
 
 # External image whitelist
 'external_image_whitelist' => ' #이 줄은 그대로 두십시오<pre>
-#정규 표현식을 아래에 써 주십시오.
+#정규 표현식(// 사이에 있는 부분)을 아래에 써 주십시오.
 #이 목록은 외부 이미지의 URL과 대조될 것입니다.
 #이 목록과 일치하는 것은 그림이 직접 보여지지만, 그렇지 않은 경우 그림을 가리키는 링크만 보이게 될 것입니다.
 # "#"으로 시작하는 줄은 주석으로 간주됩니다.
+#이 목록은 대소문자를 구별하지 않습니다.
 
 #모든 정규 표현식은 이 줄 위에 넣어 주십시오. 그리고 이 줄은 그대로 두십시오.</pre>',
 

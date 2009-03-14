@@ -2292,6 +2292,8 @@ En la lasta kazo, vi ankaŭ povas uzi ligilo, ekz-e [[{{#Special:Export}}/{{Medi
 'export-submit'     => 'Eksporti',
 'export-addcattext' => 'Aldoni paĝojn el kategorio:',
 'export-addcat'     => 'Aldoni',
+'export-addnstext'  => 'Aldoni paĝojn de nomspaco:',
+'export-addns'      => 'Aldoni',
 'export-download'   => 'Konservi kiel dosieron',
 'export-templates'  => 'Inkluzivi ŝablonojn',
 'export-pagelinks'  => 'Inkluzivi ligitajn paĝoj al profundo de:',

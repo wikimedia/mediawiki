@@ -261,7 +261,7 @@ $messages = array(
 'tog-hideminor'               => 'Amagar los darrièrs cambiaments menors',
 'tog-hidepatrolled'           => 'Amagar las modificacions susvelhadas dels darrièrs cambiaments',
 'tog-newpageshidepatrolled'   => 'Amagar las paginas susvelhadas de la lista de las paginas novèlas',
-'tog-extendwatchlist'         => 'Utilizar la lista de seguit melhorada',
+'tog-extendwatchlist'         => 'Espandir la lista de seguit per afichar totas las modificacions e non pas solament las mai recentas',
 'tog-usenewrc'                => 'Utilizar los darrièrs cambiaments melhorats (JavaScript)',
 'tog-numberheadings'          => 'Numerotar automaticament los títols',
 'tog-showtoolbar'             => 'Mostrar la barra de menut de modificacion (JavaScript)',
@@ -3116,12 +3116,13 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 
 # External image whitelist
 'external_image_whitelist' => " #Daissatz aquesta linha exactament coma es<pre>
-#Indicatz los còdes d’expression regularas (sonque la partida indicada entre los //) çaijós
+#Indicatz los fragments d’expression regularas (sonque la partida indicada entre los //) çaijós
 #Correspondràn amb las URLs dels imatges (fòrt ligadas) extèrnes 
-#Atal, aquesta correspondéncia s'aficharà coma d'imatges, siquenon solament un ligam cap a l'imatge serà afichat
+#Las que correspondon s'aficharàn coma d'imatges, siquenon solament un ligam cap a l'imatge serà afichat
 #Las linhas que començan amb # seràn consideradas coma de comentaris
+#Aquesta linha es pas sensibla a la cassa
 
-#Indicatz totes los fragments d’expressions regularas en bas d'aquesta linha. Aquesta darrièra deu èsser daissada exactament coma es.</pre>",
+#Metetz totes los fragments d’expressions regularas al dessús d'aquesta linha. Daissatz aquesta darrièra linha exactament coma es.</pre>",
 
 # Special:Tags
 'tags'                    => 'Balisas de las modificacions validas',
