@@ -165,7 +165,7 @@ $messages = array(
 'tog-hideminor'               => '最近更改中隱藏小修改',
 'tog-hidepatrolled'           => '於最近更改中隱藏巡查過的編輯',
 'tog-newpageshidepatrolled'   => '於新頁面清單中隱藏巡查過的頁面',
-'tog-extendwatchlist'         => '增強監視清單以顯示所有可用更改',
+'tog-extendwatchlist'         => '增強監視清單以顯示所有更改，不只是最近的',
 'tog-usenewrc'                => '增強最近更改 (需要JavaScript)',
 'tog-numberheadings'          => '標題自動編號',
 'tog-showtoolbar'             => '顯示編輯工具欄 (需要JavaScript)',
@@ -945,6 +945,7 @@ $2',
 'mergehistory-autocomment'         => '已經合併[[:$1]]去到[[:$2]]',
 'mergehistory-comment'             => '已經合併[[:$1]]去到[[:$2]]: $3',
 'mergehistory-same-destination'    => '來源頁面與目的頁面不可以相同',
+'mergehistory-reason'              => '理由:',
 
 # Merge log
 'mergelog'           => '合併日誌',
@@ -2252,6 +2253,8 @@ $1已經被封鎖。您是否想更改這個設定？',
 'export-submit'     => '匯出',
 'export-addcattext' => '由分類中加入頁面:',
 'export-addcat'     => '加入',
+'export-addnstext'  => '由名字空間中加入頁面:',
+'export-addns'      => '加入',
 'export-download'   => '另存為檔案',
 'export-templates'  => '包含模版',
 'export-pagelinks'  => '包含到這個深度連結之頁面:',
@@ -3016,6 +3019,7 @@ $1',
 #這些將會跟外部（已超連結的）圖像配合
 #那些配合到出來的會顯示成圖像，否則就只會顯示成連結
 #有 # 開頭的行會當成註解
+#大小寫並無區分
 
 #在這行上面輸入所有的regex。留下這行一樣的文字</pre>',
 
