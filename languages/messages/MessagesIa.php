@@ -134,7 +134,7 @@ $messages = array(
 'tog-hideminor'               => 'Celar modificationes recente minor',
 'tog-hidepatrolled'           => 'Celar le modificationes patruliate in le modificationes recente',
 'tog-newpageshidepatrolled'   => 'Celar le paginas patruliate del lista de nove paginas',
-'tog-extendwatchlist'         => 'Expander le observatorio a tote le modificationes applicabile',
+'tog-extendwatchlist'         => 'Expander le observatorio pro monstrar tote le modificationes, non solmente les plus recente',
 'tog-usenewrc'                => 'Modificationes recente meliorate (JavaScript)',
 'tog-numberheadings'          => 'Numerar titulos automaticamente',
 'tog-showtoolbar'             => 'Monstrar barra de instrumentos pro modification (JavaScript)',
@@ -2346,6 +2346,8 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Adder paginas del categoria:',
 'export-addcat'     => 'Adder',
+'export-addnstext'  => 'Adder paginas ab le spatio de nomines:',
+'export-addns'      => 'Adder',
 'export-download'   => 'Immagazinar como file',
 'export-templates'  => 'Includer patronos',
 'export-pagelinks'  => 'Includer paginas ligate a un profunditate de:',
@@ -3103,11 +3105,12 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'intentionallyblankpage' => 'Iste pagina es intentionalmente vacue',
 
 # External image whitelist
-'external_image_whitelist' => ' #Lassa iste linea exactemente como illo es<pre>
+'external_image_whitelist' => '  #Lassa iste linea exactemente como illo es<pre>
 #Pone fragmentos de expressiones regular (solmente le parte que va inter //) infra
 #Istes correspondera con le adresses URL de imagines externe (a ligamine directe)
 #Le correspondentes se monstrara como imagines, le alteres solmente como ligamines a imagines
 #Le lineas comenciante con # essera tractate como commentos
+#Isto non es sensibile al differentia inter majusculas e minusculas
 
 #Insere omne fragmentos regex super iste linea. Lassa iste linea exactemente como illo es</pre>',
 

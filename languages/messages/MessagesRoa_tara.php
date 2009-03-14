@@ -25,7 +25,7 @@ $messages = array(
 'tog-hideminor'               => "Scunne le cangiaminde stuédeche jndr'à le cangiaminde recende",
 'tog-hidepatrolled'           => "Scunne le cangiaminde condrollete jndr'à le cangiaminde recende",
 'tog-newpageshidepatrolled'   => "Scunne le pàggene tenute sotte condrolle da 'a liste de le pàggene nuève",
-'tog-extendwatchlist'         => 'Spanne le pàggene condrollete pe fa vedè tutte le cangiaminde fatte',
+'tog-extendwatchlist'         => "Spanne 'a liste de le pàggene condrollete pe fa vedè tutte le cangiaminde fatte, none sulamende l'urteme",
 'tog-usenewrc'                => 'Cangiaminde recende migliorete (JavaScript)',
 'tog-numberheadings'          => 'Testete auto-numerete',
 'tog-showtoolbar'             => "Fà vedè 'a barra de le cangiaminde (JavaScript)",
@@ -792,7 +792,7 @@ Pe piacere conferme ca tu vuè ccu face sta cose, ca tu è capite le conseguenze
 'revdelete-hide-name'            => 'Scunne azione e obbiettive',
 'revdelete-hide-comment'         => 'Scunne le commende de le cangiaminde',
 'revdelete-hide-user'            => "Scunne 'u nome utende/IP de quidde ca ha fatte 'u cangiamende",
-'revdelete-hide-restricted'      => "Applichesce ste restriziune a l'amministratore e bluecche sta inderfacce",
+'revdelete-hide-restricted'      => "Live le date da l'amministratore cumme pe l'otre utinde",
 'revdelete-suppress'             => "Live le date da l'amministrature cumme pe l'otre",
 'revdelete-hide-image'           => "Scunne 'u codenute d'u fail",
 'revdelete-unsuppress'           => 'Live le restriziune sus a le revisiune repristinate',
@@ -1358,12 +1358,14 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'shared-repo-from'          => 'da $1', # $1 is the repository name
 
 # File reversion
-'filerevert'          => "'Nvirte $1",
-'filerevert-backlink' => '← $1',
-'filerevert-legend'   => "'Nvirte 'u file",
-'filerevert-intro'    => "Tu ste converte 'u file '''[[Media:$1|$1]]''' jndr'à [$4 versione cumme $3, $2].",
-'filerevert-comment'  => 'Commende:',
-'filerevert-submit'   => "'Nvirte",
+'filerevert'                => "'Nvirte $1",
+'filerevert-backlink'       => '← $1',
+'filerevert-legend'         => "'Nvirte 'u file",
+'filerevert-intro'          => "Tu ste converte 'u file '''[[Media:$1|$1]]''' jndr'à [$4 versione cumme $3, $2].",
+'filerevert-comment'        => 'Commende:',
+'filerevert-defaultcomment' => "Convertite a 'a versione a le $2 d'u $1",
+'filerevert-submit'         => "'Nvirte",
+'filerevert-badversion'     => "Non ge stè 'na versiona locale precedende de stu file cu l'orarie richieste.",
 
 # File deletion
 'filedelete'                  => 'Scangille $1',
@@ -1374,7 +1376,9 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'filedelete-comment'          => "Mutive d'u scangellamende:",
 'filedelete-submit'           => 'Scangille',
 'filedelete-success'          => "'''$1''' ha state scangellete.",
+'filedelete-success-old'      => "'A versione de '''[[Media:$1|$1]]''' de le $3 d'u $2 ha state scangellete.",
 'filedelete-nofile'           => "'''$1''' non g'esiste.",
+'filedelete-nofile-old'       => "Non ge stè 'na versiona archiviate de '''$1''' cu le specifiche attrebbute.",
 'filedelete-otherreason'      => 'Otre/addizionale mutive:',
 'filedelete-reason-otherlist' => 'Otre mutive',
 'filedelete-reason-dropdown'  => "*Mutive comune pe le scangellaminde
@@ -1383,9 +1387,11 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'filedelete-edit-reasonlist'  => "Cange le mutive d'a scangellazione",
 
 # MIME search
-'mimesearch' => "Ricerca jndr'à 'u MIME",
-'mimetype'   => 'Tipe de MIME:',
-'download'   => 'scareche',
+'mimesearch'         => "Ricerca jndr'à 'u MIME",
+'mimesearch-summary' => "Sta pàgene abbilitesce 'u filtre sus a le file pu tipe de MIME.
+Input: contenttype/subtype, pe esembie <tt>image/jpeg</tt>.",
+'mimetype'           => 'Tipe de MIME:',
+'download'           => 'scareche',
 
 # Unwatched pages
 'unwatchedpages' => 'Pàggene ca non ge ste condrolle',
@@ -1394,8 +1400,10 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'listredirects' => 'Liste de le ridirezionaminde',
 
 # Unused templates
-'unusedtemplates'    => 'Template ca non ge sonde ausete',
-'unusedtemplateswlh' => 'Otre collegaminde',
+'unusedtemplates'     => 'Template ca non ge sonde ausete',
+'unusedtemplatestext' => "Sta pàgene elenghe tutte le pàggene jndr'à 'u namespace {{ns:template}} ca non ge stonne ingluse jndr'à otre pàggene.
+Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scangellarle.",
+'unusedtemplateswlh'  => 'Otre collegaminde',
 
 # Random page
 'randompage' => 'Pàgene a uecchie',
@@ -1597,12 +1605,14 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'unwatchthispage'    => "No condrollà cchiù 'a pàgene",
 'notanarticle'       => "Non g'è 'na vosce",
 'notvisiblerev'      => "'A revisione ha state scangellete",
+'watchnochange'      => "Niscune de le vôsce condrollete onne state cangete jndr'à 'u periode visualizzate.",
 'watchlist-details'  => "{{PLURAL:$1|$1 pàgene|$1 pàggene}} jndr'à liste de le pàggene condrollete, scartanne le pàggene de le 'ngazzaminde.",
 'wlheader-enotif'    => "* 'A notifiche de le e-mail notification jè abbilitete.",
 'watchmethod-recent' => 'verifiche de le cangiaminde recende pe le pàggene condrollete',
 'watchmethod-list'   => 'stoche a condrolle le pàggene condrollete pe le urteme cangiaminde',
 'watchlistcontains'  => "'A liste de le pàggene condrollete toje condene $1 {{PLURAL:$1|pàgene|pàggene}}.",
 'iteminvalidname'    => "Probbleme cu 'a vosce '$1', nome invalide...",
+'wlnote'             => "Aqquà sotte {{PLURAL:$1|ste l'urteme cangiamende|stonne l'urteme '''$1''' cangiaminde}} jndr'à {{PLURAL:$2|l'urtema ore|l'urteme '''$2''' ore}}.",
 'wlshowlast'         => "Vide l'urteme $1 ore $2 sciurne $3",
 'watchlist-options'  => "Opzione d'a liste de le pàggene condrollete",
 
@@ -1725,6 +1735,9 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'undeletedrevisions'        => '{{PLURAL:$1|1 revisione|$1 revisiune}} ripristinete',
 'undeletedrevisions-files'  => '{{PLURAL:$1|1 revisione|$1 revisiune}} e {{PLURAL:$2|1 file|$2 file}} ripristinete',
 'undeletedfiles'            => '{{PLURAL:$1|1 file|$1 file}} ripristinete',
+'undeletedpage'             => "<big>'''$1 ha state repristinate'''</big>
+
+Ligge l'[[Special:Log/delete|archivije de le scangellaminde]] pe 'nu report de le urteme scangellaminde e repristinaminde.",
 'undelete-header'           => "Vide [[Special:Log/delete|l'archivije de le scangellaminde]] pe l'urteme pàggene scangellete.",
 'undelete-search-box'       => 'Cirche le pàggene scangellete',
 'undelete-search-prefix'    => 'Fà vedè le pàggene ca accumenzene cu:',

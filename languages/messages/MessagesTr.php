@@ -149,7 +149,7 @@ $messages = array(
 'tog-hideminor'               => '"Son değişiklikler" sayfasında küçük değişiklikleri gizle',
 'tog-hidepatrolled'           => 'Son değişikliklerde gözlenmiş değişiklikleri gizle',
 'tog-newpageshidepatrolled'   => 'Denetlenmiş sayfaları yeni sayfalar listesinde gizle',
-'tog-extendwatchlist'         => 'İzleme listesini genişlet',
+'tog-extendwatchlist'         => 'İzleme listesini, sadece son değil, tüm değişiklikleri görmek için genişlet',
 'tog-usenewrc'                => 'Gelişmiş son değişiklikler (JavaScript)',
 'tog-numberheadings'          => 'Başlıkları otomatik numaralandır',
 'tog-showtoolbar'             => 'Değişiklik yaparken araç çubuğunu göster (JavaScript)',
@@ -2142,6 +2142,7 @@ $1',
 'block-log-flags-noemail'         => 'e-posta engellendi',
 'block-log-flags-nousertalk'      => 'kendi tartışma sayfasını değiştiremez',
 'block-log-flags-angry-autoblock' => 'gelişmiş oto-engelleme devrede',
+'block-log-flags-hiddenname'      => 'kullanıcı adı gizli',
 'range_block_disabled'            => 'Hizmetliler için aralık engellemesi oluşturma yeteneği devre dışı.',
 'ipb_expiry_invalid'              => 'Geçersiz bitiş zamanı.',
 'ipb_expiry_temp'                 => 'Gizli kullanıcı adı engellemeleri kalıcı olmalı.',
@@ -2269,6 +2270,8 @@ Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]
 'export-submit'     => 'Aktar',
 'export-addcattext' => 'Aşağıdaki kategoriden maddeler ekle:',
 'export-addcat'     => 'Ekle',
+'export-addnstext'  => 'Sayfaları ad alanından ekle:',
+'export-addns'      => 'Ekle',
 'export-download'   => 'Farklı kaydet',
 'export-templates'  => 'Şablonları dahil et',
 'export-pagelinks'  => 'Bağlı sayfaları içerecek derinlik:',
@@ -3048,6 +3051,7 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 #Bunlar dış (hotlink) resimlerin URLleri ile eşlenecektir
 #Eşleşenler resim olarak görünecek, aksi takdirde sadece resme bir bağlantı görünecektir
 # # ile başlayan satırlar yorum olarak muamele görecektir
+#Bu büyük-küçük harf duyarsızdır
 
 #Bütün düzenli ifade parçalarını bu satırın üstüne ekleyin. Bu satırı olduğu gibi bırakın</pre>',
 

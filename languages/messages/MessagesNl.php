@@ -294,7 +294,7 @@ $messages = array(
 'tog-hideminor'               => 'Kleine wijzigingen verbergen in recente wijzigingen',
 'tog-hidepatrolled'           => 'Gemarkeerde wijzigingen verbergen in recente wijzigingen',
 'tog-newpageshidepatrolled'   => "Gemarkeerde pagina's verbergen in de lijst met nieuwe pagina's",
-'tog-extendwatchlist'         => 'Uitgebreide volglijst gebruiken om alle toepasselijke wijzigingen te bekijken',
+'tog-extendwatchlist'         => 'Uitgebreide volglijst gebruiken om alle wijzigingen te bekijken, en niet alleen de laatste',
 'tog-usenewrc'                => 'Uitgebreide Recente Wijzigingen-pagina gebruiken (vereist JavaScript)',
 'tog-numberheadings'          => 'Koppen automatisch nummeren',
 'tog-showtoolbar'             => 'Bewerkingswerkbalk weergeven (vereist JavaScript)',
@@ -2509,6 +2509,8 @@ In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{#Spec
 'export-submit'     => 'Exporteren',
 'export-addcattext' => "Pagina's toevoegen van categorie:",
 'export-addcat'     => 'Toevoegen',
+'export-addnstext'  => "Pagina's uit de volgende naamruimte toevoegen:",
+'export-addns'      => 'Toevoegen',
 'export-download'   => 'Als bestand opslaan',
 'export-templates'  => 'Sjablonen toevoegen',
 'export-pagelinks'  => "Pagina's waarnaar verwezen wordt toevoegen tot een diepte van:",
@@ -3303,6 +3305,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 #Deze worden gehouden tegen de URL\'s van externe (gehotlinkte) afbeeldingen
 #Als de reguliere expressie van toegang is, wordt een afbeelding weergegeven, anders wordt alleen een verwijzing weergegeven
 #Regels die beginnen met "#" worden als opmerking behandeld
+#Regels in de witte lijst zijn niet hoofdlettergevoelig.
 
 #Zet alle reguliere expressiefragmenten boven deze regel. Laat deze regel onveranderd</pre>',
 

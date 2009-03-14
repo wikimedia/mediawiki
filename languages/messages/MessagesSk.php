@@ -187,7 +187,7 @@ $messages = array(
 'tog-hideminor'               => 'V posledných úpravách nezobrazovať drobné úpravy',
 'tog-hidepatrolled'           => 'Skryť strážené úpravy v Posledných úpravách',
 'tog-newpageshidepatrolled'   => 'Skryť strážené stránky zo zoznamu nových stránok',
-'tog-extendwatchlist'         => 'Rozšíriť zoznam sledovaných, aby ukazoval všetky súvisiace zmeny',
+'tog-extendwatchlist'         => 'Rozšíriť zoznam sledovaných, aby zobrazoval všetky zmeny, nie len posledné',
 'tog-usenewrc'                => 'Rozšírené zobrazenie posledných úprav (vyžaduje JavaScript)',
 'tog-numberheadings'          => 'Automaticky číslovať nadpisy',
 'tog-showtoolbar'             => 'Zobraziť panel nástrojov úprav',
@@ -2324,6 +2324,8 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[{{#Special:Export}}/{{M
 'export-submit'     => 'Export',
 'export-addcattext' => 'Pridať stránky z kategórie:',
 'export-addcat'     => 'Pridať',
+'export-addnstext'  => 'Pridať stránky z menného priestoru:',
+'export-addns'      => 'Pridať',
 'export-download'   => 'Ponúknuť uloženie ako súbor',
 'export-templates'  => 'Vrátane šablón',
 'export-pagelinks'  => 'Vrátane odkazovaných stránok do hĺbky:',
@@ -3062,11 +3064,12 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'intentionallyblankpage' => 'Táto stránka je zámerne prázdna. Používa sa na meranie výkonnosti atď.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Nechajte tento riadok presne tak, ako je<pre>
+'external_image_whitelist' => '  #Nechajte tento riadok presne tak, ako je<pre>
 #Časti regulárnych výrazov (tie, ktoré sa píšu medzi //) napíšte dolu
 #Budú porovnané s URL externých obrázkov
 #Tie, ktoré budú zodpovedať reg. výrazu sa zobrazia ako obrázky, inak sa zobrazí iba odkaz na obrázok
 #Riadky, ktoré začínajú znakom # sa považujú za komentáre
+#Na veľkosti písmen nezáleží
 
 #Napíšte všetky časti reg. výrazov nad tento riadok. Nechajte tento riadok presne tak, ako je</pre>',
 

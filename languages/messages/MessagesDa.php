@@ -162,7 +162,7 @@ $messages = array(
 'tog-hideminor'               => 'Skjul mindre ændringer i listen over seneste ændringer',
 'tog-hidepatrolled'           => 'Skjul patruljerede redigeringer i seneste ændringer',
 'tog-newpageshidepatrolled'   => 'Skjul patruljerede sider på listen over nye sider',
-'tog-extendwatchlist'         => 'Udvidet liste med seneste ændringer',
+'tog-extendwatchlist'         => 'Udvid overvågningslisten til at vise alle ændringer og ikke kun den nyeste',
 'tog-usenewrc'                => 'Forbedret liste over seneste ændringer (JavaScript)',
 'tog-numberheadings'          => 'Automatisk nummerering af overskrifter',
 'tog-showtoolbar'             => 'Vis værktøjslinje til redigering (JavaScript)',
@@ -794,7 +794,7 @@ Systemadministratoren som låste databasen, gav denne forklaring: $1",
 Overvej om det er passende at genoprette siden. De slettede versioner for 
 denne side er vist nedenfor:",
 'deleted-notice'                   => 'Denne side er blevet slettet.
-Siden slettelog er vist nedenfor.',
+Sletningsloggen for siden er vist nedenfor.',
 'deletelog-fulllog'                => 'Se hele loggen',
 'edit-hook-aborted'                => 'Redigering afbrudt af en programfunktion. Ingen tilknyttet forklaring.',
 'edit-gone-missing'                => 'Kunne ikke opdatere siden. 

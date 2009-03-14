@@ -270,7 +270,7 @@ $messages = array(
 'tog-hideminor'               => 'Visa inte mindre redigeringar i Senaste ändringar',
 'tog-hidepatrolled'           => 'Dölj patrullerade redigeringar i senaste ändringar',
 'tog-newpageshidepatrolled'   => 'Göm patrullerade sidor från listan över nya sidor',
-'tog-extendwatchlist'         => 'Utöka bevakningslistan till att visa alla ändringar',
+'tog-extendwatchlist'         => 'Utöka bevakningslistan till att visa alla ändringar, inte bara den senaste',
 'tog-usenewrc'                => 'Avancerad Senaste ändringar (Javascript)',
 'tog-numberheadings'          => 'Numrerade rubriker',
 'tog-showtoolbar'             => 'Visa verktygsrad (Javascript)',
@@ -2386,6 +2386,8 @@ I det senare fallet kan du även använda en länk, exempel [[{{#Special:Export}
 'export-submit'     => 'Exportera',
 'export-addcattext' => 'Lägg till sidor från kategori:',
 'export-addcat'     => 'Lägg till',
+'export-addnstext'  => 'Lägg till sidor från namnrymd:',
+'export-addns'      => 'Lägg till',
 'export-download'   => 'Ladda ner som fil',
 'export-templates'  => 'Inkludera mallar',
 'export-pagelinks'  => 'Inkludera länkade sidor till ett djup på:',
@@ -3144,11 +3146,12 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'intentionallyblankpage' => 'Denna sida har avsiktligen lämnats tom.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Lämna den här raden precis som den är<pre>
+'external_image_whitelist' => '#Lämna den här raden precis som den är<pre>
 #Skriv fragment av reguljära uttryck (bara delen som ska vara mellan //) här nedan
 #Dessa kommer att jämföras med URL:er för externa (hotlinkade) bilder
 #De som matchar kommer att visas som bilder, annars visas bara en länk till bilden
 #Rader som börjar med # behandlas som kommentarer
+#Detta är skiftläges-okänsligt
 
 #Skriv alla fragment av reguljära uttryck ovanför den här raden. Lämna den här raden precis som den är</pre>',
 

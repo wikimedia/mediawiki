@@ -1790,7 +1790,7 @@ PICT # διάφορα
 'popularpages'            => 'Δημοφιλείς σελίδες',
 'wantedcategories'        => 'Ζητούμενες κατηγορίες',
 'wantedpages'             => 'Σελίδες σε ζήτηση',
-'wantedpages-badtitle'    => 'Άκυρος τίτλος στο σύνολο αποτελέσματος: $1',
+'wantedpages-badtitle'    => 'Μη εγκυρός τίτλος στο σύνολο αποτελέσματος: $1',
 'wantedfiles'             => 'Ζητούμενα αρχεία',
 'wantedtemplates'         => 'Επιθυμητά πρότυπα',
 'mostlinked'              => 'Οι σελίδες με τις περισσότερες αναφορές',
@@ -1983,13 +1983,13 @@ PICT # διάφορα
 'enotif_impersonal_salutation' => 'Χρήστης του ιστοτόπου "{{SITENAME}}"',
 'changed'                      => 'έχει αλλάξει',
 'created'                      => 'δημιουργήθηκε',
-'enotif_subject'               => 'Η σελίδα $PAGETITLE του {{SITENAME}}έχει $CHANGEDORCREATED από το χρήστη $PAGEEDITOR',
+'enotif_subject'               => 'Η σελίδα $PAGETITLE του εγχειρήματος {{SITENAME}} $CHANGEDORCREATED από το χρήστη $PAGEEDITOR',
 'enotif_lastvisited'           => 'Δείτε το $1 για όλες τις αλλαγές που έγιναν από την τελευταία σας επίσκεψη.',
 'enotif_lastdiff'              => 'Δείτε το $1 για να εμφανίσετε αυτή την αλλαγή.',
 'enotif_anon_editor'           => 'ανώνυμος χρήστης $1',
 'enotif_body'                  => 'Αγαπητέ $WATCHINGUSERNAME...
 
-Η σελίδα $PAGETITLE του {{SITENAME}} έχει $CHANGEDORCREATED στις $PAGEEDITDATE από το χρήστη $PAGEEDITOR -ακολουθήστε το σύνδεσμο $PAGETITLE_URL για να δείτε την τρέχουσα αναθεώρηση.
+Η σελίδα $PAGETITLE του εγχειρήματος {{SITENAME}} $CHANGEDORCREATED στις $PAGEEDITDATE από το χρήστη $PAGEEDITOR -ακολουθήστε το σύνδεσμο $PAGETITLE_URL για να δείτε την τρέχουσα αναθεώρηση.
 
 $NEWPAGE
 
@@ -2002,7 +2002,7 @@ wiki: $PAGEEDITOR_WIKI
 Δεν θα υπάρξει άλλη ειδοποίηση για περαιτέρω αλλαγές αν δεν επισκεφθείτε τη σελίδα. Μπορείτε επίσης να επαναφέρετε την επιλογή ειδοποίησης για όλες τις σελίδες στη λίστα παρακολούθησής σας.
 
 Φιλικά,
-Tο σύστημα ειδοποίησης του {{SITENAME}}
+Tο σύστημα ειδοποίησης του εγχειρήματος {{SITENAME}}
 
 --
 Για να αλλάξετε τις προτιμήσεις της λίστας παρακολούθησής σας, ακολουθήστε το σύνδεσμο:
@@ -2421,6 +2421,7 @@ $1 είναι ήδη αποκλεισμένη. Θέλετε να αλλάξετ�
 'export-submit'     => 'Εξαγωγή',
 'export-addcattext' => 'Πρόσθετε σελίδες από την κατηγορία:',
 'export-addcat'     => 'Πρόσθεσε',
+'export-addns'      => 'Προσθήκη',
 'export-download'   => 'Δυνατότητα αποθήκευσης ως αρχείου',
 'export-templates'  => 'Συμπεριλάβετε τα πρότυπα',
 'export-pagelinks'  => 'Συμπερίληψη συνδεδεμένων σελίδων σε ένα βάθος:',

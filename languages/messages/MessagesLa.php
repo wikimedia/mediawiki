@@ -152,7 +152,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formare nexus fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Iustificare paragrapha',
 'tog-hideminor'               => 'Celare recensiones minores in indice nuper mutatorum',
-'tog-extendwatchlist'         => 'Extendere indicem paginarum custoditarum ut omnes emendationes monstrentur',
+'tog-extendwatchlist'         => 'Extendere indicem paginarum custoditarum ut omnes emendationes monstrentur, non solum emendationes recentissimae',
 'tog-usenewrc'                => 'Index nuper mutatorum amplificatus (JavaScript)',
 'tog-numberheadings'          => 'Numerare semper indices',
 'tog-showtoolbar'             => 'Monstrare instrumenta ad paginas recensendas (JavaScript)',
@@ -1664,6 +1664,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'block-log-flags-nocreate'     => 'creatio rationum obstructa',
 'block-log-flags-noemail'      => 'Litterae electronicae obstructae',
 'block-log-flags-nousertalk'   => 'non potest paginam disputationis suam recensere',
+'block-log-flags-hiddenname'   => 'nomen usoris celatum',
 'ipb_expiry_invalid'           => 'Tempus exeundo invalidum fuit.',
 'ipb_already_blocked'          => '"$1" iam obstructus est',
 'ipb-needreblock'              => '== Iam obstructus ==
@@ -1762,6 +1763,8 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'export-submit'     => 'Exportare',
 'export-addcattext' => 'Addere paginas ex categoria:',
 'export-addcat'     => 'Addere',
+'export-addnstext'  => 'Addere paginas ex spatio nominale:',
+'export-addns'      => 'Addere',
 
 # Namespace 8 related
 'allmessages'               => 'Nuntia systematis',

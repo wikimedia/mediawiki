@@ -127,7 +127,7 @@ $messages = array(
 'tog-hideminor'               => '«Ñaqha hukchasqa» nisqapi aslla hukchasqakunata pakay',
 'tog-hidepatrolled'           => "Patrullasqa llamk'apusqakunata ñaqha hukchasqapi pakay",
 'tog-newpageshidepatrolled'   => "Patrullasqa llamk'apusqakunata musuq p'anqakunapi pakay",
-'tog-extendwatchlist'         => "Watiqana sutisuyuta tukuy rurachinalla hukchaykunaman mast'ay",
+'tog-extendwatchlist'         => "Watiqana sutisuyuta tukuy rurachinalla hukchaykunaman mast'ay, ama lliwmanta aswan ñaqhallachu",
 'tog-usenewrc'                => "Sananchasqa ñaqha hukchasqakuna (JavaScript: manam tukuy wamp'unakunapichu llamk'an)",
 'tog-numberheadings'          => "Uma siq'ikunata kikinmanta yupay",
 'tog-showtoolbar'             => "Llamk'apuna sillwita rikuchiy",
@@ -2052,6 +2052,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'block-log-flags-noemail'         => 'e-chaskiman ama nisqa',
 'block-log-flags-nousertalk'      => "kikinpa rimanakuy p'anqanta manam hukchayta atinchu",
 'block-log-flags-angry-autoblock' => "ñawparikusqa kikinmanta hark'ayman arí nisqa",
+'block-log-flags-hiddenname'      => 'ruraqpa sutin pakasqa',
 'range_block_disabled'            => "Kamachiqpa patayayku hark'ay hayñinman ama nisqam.",
 'ipb_expiry_invalid'              => 'Puchukana pachaqa manam allinchu.',
 'ipb_expiry_temp'                 => "Pakasqa ruraqpa sutin hark'aykunaqa tiyaqllam kachun.",
@@ -2173,6 +2174,8 @@ Qhipaqta munaspaykiqa, t'inkitapas llamk'achiyta atinki, ahinataq [[{{#Special:E
 'export-submit'     => 'Hawaman quy',
 'export-addcattext' => "P'anqakunata yapay kay katiguriyamanta:",
 'export-addcat'     => 'Yapay',
+'export-addnstext'  => "Kay suti k'itimanta p'anqakunata yapay:",
+'export-addns'      => 'Yapay',
 'export-download'   => 'Willañiqi hina waqaychay niy',
 'export-templates'  => "Plantillata ch'aqtay",
 'export-pagelinks'  => "T'inkisqa p'anqakunata ch'aqtay kay t'inkipayay yupaykama:",
@@ -2888,11 +2891,12 @@ Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'intentionallyblankpage' => "Kay p'anqaqa munaylla ch'usaqmi kachun",
 
 # External image whitelist
-'external_image_whitelist' => " #Kay sinruta kay hinallatam saqiy<pre>
+'external_image_whitelist' => "  #Kay sinruta kay hinallatam saqiy<pre>
 #Ñiqilla hawanchana rakikunata churay (// nisqapura rakitam) urapi
 #Kaykunaqa hawa (q'uñilla t'inkisqa) rikchakunap URL tiyayninkunawanmi taripanachisqa kanqa
 #Taripasqakunaqa rikcha hinam rikurinqa, hukkunapaqtaq rikchaman t'inkillam rikurinqa
 #«#» nisqawan qallariq sinrukunaqa willapuy hinam llamk'apusqa kanqa
+#Kayqa manam musyanchu uchuy icha hatun sanancha kayta
 
 #Tukuy regex rakikunata kay siq'ip hananman churay. Kay sinruta kay hinallatam saqiy</pre>",
 

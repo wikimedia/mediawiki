@@ -201,7 +201,7 @@ $messages = array(
 'tog-hideminor'               => 'Agochar as edicións pequenas na páxina de cambios recentes',
 'tog-hidepatrolled'           => 'Agochar as edicións patrulladas nos cambios recentes',
 'tog-newpageshidepatrolled'   => 'Agochar as páxinas revisadas da lista de páxinas novas',
-'tog-extendwatchlist'         => 'Lista de vixilancia estendida',
+'tog-extendwatchlist'         => 'Expandir a lista de vixilancia para mostrar todos os cambios e non só os máis recentes',
 'tog-usenewrc'                => 'Cambios recentes avanzados (JavaScript)',
 'tog-numberheadings'          => 'Numerar automaticamente as cabeceiras',
 'tog-showtoolbar'             => 'Mostrar a caixa de ferramentas de edición (JavaScript)',
@@ -2349,6 +2349,8 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Engadir as páxinas da categoría:',
 'export-addcat'     => 'Engadir',
+'export-addnstext'  => 'Engadir as páxinas do espazo de nomes:',
+'export-addns'      => 'Engadir',
 'export-download'   => 'Ofrecer gardar como un ficheiro',
 'export-templates'  => 'Incluír os modelos',
 'export-pagelinks'  => 'Engadir as páxinas ligadas a unha profundidade de:',
@@ -3087,7 +3089,8 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 #Poña embaixo fragmentos de expresións regulares (tan só a parte que vai entre //)
 #Isto coincidirá cos enderezos URL das imaxes externas (hotlinked)
 #Aquelas que coincidan serán amosadas como imaxes, senón, só será amosada unha ligazón cara a esta
-#As liñas que comecen por "#" trátanse de comentarios
+#As liñas que comecen por "#" son comentarios
+#Non diferencia entre maiúsculas e minúsculas
 
 #Poña todos os fragmentos por riba desta liña. Deixe esta liña tal e como está</pre>',
 

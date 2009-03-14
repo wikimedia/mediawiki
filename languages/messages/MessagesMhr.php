@@ -31,7 +31,7 @@ $messages = array(
 'tog-watchlisthidebots'    => 'Эскерыме лӱмер гыч бот-влакым тӧрлатымым ончыкташ огыл',
 'tog-watchlisthideminor'   => 'Эскерыме лӱмер гыч изирак тӧрлатымаш-влакым ончыкташ огыл',
 'tog-ccmeonemails'         => 'Моло ушнышо-влаклан колтымо серышын копийжым мыламат колташ',
-'tog-diffonly'             => 'Кок версийым таҥастарыме годым лаштыкын содержанийжым ончыкташ огыл',
+'tog-diffonly'             => 'Кок версийым таҥастарыме годым лаштыкыште возымым ончыкташ огыл',
 'tog-showhiddencats'       => 'Шылтыме категорийым ончыкташ',
 
 'underline-always'  => 'Кеч-кунам',
@@ -93,6 +93,7 @@ $messages = array(
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|Категорий|Категорий}}',
 'category_header'        => '"$1" категорийыште лаштык-влак',
+'hidden-categories'      => '{{PLURAL:$1|Шылтыме категорий|Шылтыме категорий-влак}}',
 'listingcontinuesabbrev' => '(умбакыжым)',
 
 'about'          => 'Нерген',
@@ -109,6 +110,7 @@ $messages = array(
 'navigation'     => 'Навигаций',
 
 'errorpagetitle'   => 'Йоҥылыш',
+'returnto'         => '$1 деке пӧртылаш.',
 'tagline'          => '{{SITENAME}} гыч',
 'help'             => 'Полшык',
 'search'           => 'Кычалмаш',
@@ -135,6 +137,7 @@ $messages = array(
 'viewtalkpage'     => 'Ончалаш каҥашымашым',
 'otherlanguages'   => 'Вес йылме дене',
 'redirectedfrom'   => '(Колтымо $1 гыч)',
+'redirectpagesub'  => 'Вес верек колтымо лаштык',
 'lastmodifiedat'   => 'Тиде лаштыкым пытартыш гана $2 $1 тӧрлымӧ.', # $1 date, $2 time
 'jumpto'           => 'Куснаш:',
 'jumptonavigation' => 'навигациеш',
@@ -144,8 +147,11 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} нерген',
 'aboutpage'            => 'Project:Нерген',
 'copyright'            => 'Лаштыкыште возымо $1 йӧн дене почмо.',
+'copyrightpage'        => '{{ns:project}}:Авторский права',
+'currentevents'        => 'Кызытсе событий',
 'edithelp'             => 'Тӧрлатымаште полыш',
 'edithelppage'         => 'Help:Тӧрлымаш',
+'helppage'             => 'Help:Полшык',
 'mainpage'             => 'Тӱҥ лаштык',
 'mainpage-description' => 'Тӱҥ лаштык',
 
@@ -162,10 +168,10 @@ $messages = array(
 'showtoc'             => 'ончыктаж',
 'hidetoc'             => 'шылташ',
 'viewdeleted'         => 'Ончалаш $1?',
-'site-rss-feed'       => '$1 RSS-тасма',
-'site-atom-feed'      => '$1 Atom-тасма',
-'page-rss-feed'       => '"$1" RSS-тасма',
-'page-atom-feed'      => '"$1" Atom-тасма',
+'site-rss-feed'       => '$1 RSS-кыл',
+'site-atom-feed'      => '$1 Atom-кыл',
+'page-rss-feed'       => '"$1" RSS-кыл',
+'page-atom-feed'      => '"$1" Atom-кыл',
 'red-link-title'      => '$1 (тыгай лаштык уке)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -251,12 +257,15 @@ $messages = array(
 
 # Edit pages
 'summary'            => 'Тӧрлатымаш нерген:',
+'subject'            => 'Теме/вуймут:',
 'minoredit'          => 'Тиде изирак тӧрлатыме',
 'watchthis'          => 'Тиде лаштыкым эскераш',
 'savearticle'        => 'Лаштыкым аралаш',
 'preview'            => 'Ончылгоч ончымаш',
 'showpreview'        => 'Ончылгоч ончымаш',
 'showdiff'           => 'Тӧрлатымашым ончыкташ',
+'anoneditwarning'    => "'''Тӱтко лий:''': Тый шкенетым палымым ыштен отыл. Тыйын IP адресет лаштыкын вашталтыме историйштыже вазалтен кодеш.",
+'summary-preview'    => 'Тӧрлатымаш нерген ончылгоч ончымаш:',
 'newarticle'         => '(У)',
 'clearyourcache'     => "'''Ешартыш''': Аралыме деч вара вашталтышым ужаш браузеретын кешыжым эрыкташ логалын кертеш. '''Mozilla / Firefox / Safari:''' ''Shift''-ым темдал кучен ''Reload''-ым темдал але ''Ctrl-F5'' але ''Ctrl-R'' темдал (Macintosh-влак ''Command-R''); '''Konqueror:''' темдал ''Reload'' кнопкым але ''F5'' темдал; '''Opera:''' ''Tools→Preferences''-ыште кешым эрыкте; '''Internet Explorer:''' ''Ctrl''-ым темдал кучен ''Refresh''-ым темдал але ''Ctrl-F5'' темдал.",
 'previewnote'        => "'''Тиде ончылгоч ончымаш гына;
@@ -264,6 +273,9 @@ $messages = array(
 'editing'            => 'Тӧрлаталтеш $1',
 'editingsection'     => 'Тӧрлаталтеш $1 (ужаш)',
 'template-protected' => '(тӧрлаташ чарыме)',
+'hiddencategories'   => 'Тиде лаштык $1 {{PLURAL:$1|шылтыме категорийыш|шылтыме категорийыш}} лектеш:',
+'deleted-notice'     => 'Тиде лаштык шӧрымӧ лийын.
+Тиде лаштыклан шӧрымӧ нерген журнал ӱлнӧ ончыктымо.',
 
 # History pages
 'viewpagelogs'           => 'Тиде лаштык лан журнал-влак ончыкташ',
@@ -296,7 +308,7 @@ $messages = array(
 # Search results
 'searchresults'            => 'Кычалын мумо',
 'searchresults-title'      => 'Кычалын мумо «$1»-лан',
-'searchsubtitle'           => "Тые кычалыч '''[[:$1]]'''",
+'searchsubtitle'           => 'Тые кычалыч \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|чыла лаштык-влакым, кудыжо тӱҥалыт: "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|чыла лаштык-влакым, "$1" дене кылым палемдат]])',
 'searchsubtitleinvalid'    => "Тые кычалыч '''$1'''",
 'noexactmatch'             => "'''\"\$1\" лӱман лаштык уке.'''
 Тый [[:\$1|тиде лаштыкым ыштен]] кертат.",
@@ -312,6 +324,8 @@ $messages = array(
 'search-suggest'           => 'Але те $1 возынеда ыле',
 'search-interwiki-caption' => 'Родо проект-влак',
 'search-interwiki-default' => "$1'ште мумо:",
+'search-interwiki-more'    => '(эше)',
+'showingresultstotal'      => "Ӱлнӧ '''$3''' кычалын мумо гыч {{PLURAL:$4|'''$1'''|'''$1 — $2'''}} ончыктымо",
 'powersearch'              => 'Сайынрак кычал',
 'powersearch-legend'       => 'Сайынрак кычалаш',
 'powersearch-ns'           => 'Кычалаш тиде лӱм-влакын кумдыкышт-влакыште:',
@@ -340,45 +354,52 @@ $messages = array(
 'default'               => 'ойлыде',
 
 # Groups
-'group-bot' => 'Бот-влак',
+'group-bot'   => 'Бот-влак',
+'group-sysop' => 'Сайтвиктарыше-влак',
 
 'group-bot-member' => 'бот',
 
-'grouppage-bot' => '{{ns:project}}:Бот-влак',
+'grouppage-bot'   => '{{ns:project}}:Бот-влак',
+'grouppage-sysop' => '{{ns:project}}:Сайтвиктарыше-влак',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'тиде лаштыкым тӧрлаташ',
 
 # Recent changes
-'recentchanges'        => 'Шукертсе огыл тӧрлымаш-влак',
-'recentchanges-legend' => 'Шукертсе огыл тӧрлымаш-влак настройке',
-'rcnote'               => "Ӱлнӧ {{PLURAL:$1|'''1'''|'''$1'''}} вашталтыш пытартыш {{PLURAL:$2||'''$2'''}} кечылан, $5-лан, $4-лан.",
-'rclistfrom'           => '$1 гыч тӱҥалын у вашталтымашым ончыкташ',
-'rcshowhideminor'      => 'Изирак тӧрлымым $1',
-'rcshowhidebots'       => 'Бот-влакым $1',
-'rcshowhideliu'        => 'Шолып пайдаланыше-влакым $1',
-'rcshowhideanons'      => 'Ончыкталтше пайдаланыше-влакым $1',
-'rcshowhidemine'       => 'Мыйын тӧрлымым $1',
-'rclinks'              => 'Пытартыш $2 кечылан $1 вашталтымашым ончыкташ<br />$3',
-'diff'                 => 'ойырт.',
-'hist'                 => 'ист.',
-'hide'                 => 'шылташ',
-'show'                 => 'ончыкташ',
-'minoreditletter'      => 'и',
-'newpageletter'        => 'У',
-'boteditletter'        => 'б',
+'nchanges'                       => '$1 {{PLURAL:$1|тӧрлатымаш|тӧрлатымаш-влак}}',
+'recentchanges'                  => 'Шукертсе огыл тӧрлымаш-влак',
+'recentchanges-legend'           => 'Шукертсе огыл тӧрлымаш-влак настройке',
+'recentchanges-feed-description' => 'Викин тиде кылыште пытартыш вашталтышым шекланаш.',
+'rcnote'                         => "Ӱлнӧ {{PLURAL:$1|'''1'''|'''$1'''}} вашталтыш пытартыш {{PLURAL:$2||'''$2'''}} кечылан, $5-лан, $4-лан.",
+'rclistfrom'                     => '$1 гыч тӱҥалын у вашталтымашым ончыкташ',
+'rcshowhideminor'                => 'Изирак тӧрлымым $1',
+'rcshowhidebots'                 => 'Бот-влакым $1',
+'rcshowhideliu'                  => 'Шолып пайдаланыше-влакым $1',
+'rcshowhideanons'                => 'Ончыкталтше пайдаланыше-влакым $1',
+'rcshowhidemine'                 => 'Мыйын тӧрлымым $1',
+'rclinks'                        => 'Пытартыш $2 кечылан $1 вашталтымашым ончыкташ<br />$3',
+'diff'                           => 'ойырт.',
+'hist'                           => 'ист.',
+'hide'                           => 'шылташ',
+'show'                           => 'ончыкташ',
+'minoreditletter'                => 'и',
+'newpageletter'                  => 'У',
+'boteditletter'                  => 'б',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ваш кылдалтше тӧрлатымаш-влак',
 'recentchangeslinked-title'    => '"$1" лаштыклан кылдалтше тӧрлатымаш-влак',
 'recentchangeslinked-noresult' => 'Ончыктымо пагытыште кылдалтше лаштыклаште вашталтыш лийын огыл.',
 'recentchangeslinked-page'     => 'Лаштыкын лӱмжӧ:',
+'recentchangeslinked-to'       => 'Тиде лаштык дене кылдалтше лаштык-влакыште тӧрлатымашым ончыкташ тидын олмеш',
 
 # Upload
 'upload'            => 'Файлым пурташ',
 'uploadbtn'         => 'Файлым пурташ',
+'uploadlogpage'     => 'Пуртарыме журнал',
 'filedesc'          => 'Файл нерген кӱчыкын увертараш',
 'fileuploadsummary' => 'Тидын нерген кӱчыкын:',
+'uploadedimage'     => '«[[$1]]» пуртыш',
 'watchthisupload'   => 'Тиде лаштыкым эскераш',
 
 # Special:ListFiles
@@ -394,11 +415,12 @@ $messages = array(
 'filehist-user'             => 'Пайдаланыше',
 'filehist-filesize'         => 'Файлын кугытшо',
 'filehist-comment'          => 'Файл нерген:',
-'imagelinks'                => 'Ссылке-влак',
+'imagelinks'                => 'Файл деке ссылке-влак',
 'linkstoimage'              => 'Тиде {{PLURAL:$1|$1 лаштык саде файл дене кылдалтын|$1 лаштык-влак саде файл дене кылдалтыныт}}:',
 'nolinkstoimage'            => 'Тиде файл дене кылдалтше ик лаштыкат уке.',
 'sharedupload'              => 'Тиде файлын верже: $1, туге гынат, тудым моло веренат кучылташ лиеш. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-linktext' => 'файлын умылтартыш лаштыкше',
+'uploadnewversion-linktext' => 'Тиде файлын у версийжим пурташ',
 
 # File deletion
 'filedelete-comment'          => 'Шӧрымын амалже:',
@@ -409,6 +431,9 @@ $messages = array(
 # Random page
 'randompage' => 'Вучыдымо (случайный) статья',
 
+# Statistics
+'statistics' => 'Статистике',
+
 'brokenredirects-delete' => '(шӧраш)',
 
 'withoutinterwiki-submit' => 'ончыкташ',
@@ -416,12 +441,16 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|байт|байт}}',
 'nviews'            => '$1 {{PLURAL:$1|ончымо|ончымо-влак}}',
+'prefixindex'       => 'Чыла лаштык-влак префикс дене',
 'newpages'          => 'У лаштык-влак',
 'newpages-username' => 'Пайдаланышын лӱмжӧ:',
 'move'              => 'Кусараш',
 'movethispage'      => 'Тиде лаштыкым кусараш',
 'pager-newer-n'     => '{{PLURAL:$1|вес|вес}}',
 'pager-older-n'     => '{{PLURAL:$1|ончычсо|ончычсо}}',
+
+# Book sources
+'booksources-go' => 'Муаш',
 
 # Special:Log
 'specialloguserlabel' => 'Пайдаланыше:',
@@ -437,6 +466,7 @@ $messages = array(
 'allpagessubmit' => 'Кайе',
 
 # Special:LinkSearch
+'linksearch'    => 'Ӧрдыж ссылке-влак',
 'linksearch-ns' => 'Лӱм-влакын кумдыкышт:',
 'linksearch-ok' => 'Кучал',
 
@@ -444,6 +474,7 @@ $messages = array(
 'listusers-submit' => 'ончыкташ',
 
 # Special:Log/newusers
+'newuserlogpage'          => 'У пайдаланыше регистрацийым эртарыме журнал',
 'newuserlog-create-entry' => 'У пайдаланыше',
 
 # E-mail user
@@ -460,6 +491,7 @@ $messages = array(
 'watchthispage'     => 'Тиде лаштыкым эскераш',
 'unwatch'           => 'Эскерыман огыл',
 'unwatchthispage'   => 'Эскерымым чарнаш',
+'watchlist-details' => 'Тыйын эскерымаш лӱмерыште $1 {{PLURAL:$1|лаштык|лаштык-влак}}, каҥашымаш лаштык-влакым шотлыде.',
 'watchlistcontains' => 'Тыйын лӱмерыште $1 {{PLURAL:$1|лаштык|лаштык}}.',
 'wlshowlast'        => 'Пытартыш $1 шагат $2 кечылан $3 ончыкташ',
 'watchlist-options' => 'Эскерыме лӱмерын настройке-влак',
@@ -473,6 +505,8 @@ $messages = array(
 'delete-confirm'        => 'Шӧраш "$1"',
 'delete-legend'         => 'Шӧраш',
 'historywarning'        => 'Тӱтко лий: шӧраш шонымо лаштыкет вашталтыш-влак нерген историйым нумалеш:',
+'confirmdeletetext'     => 'Тый тиде лаштыкым пӱтынь историйже дене йӧршын шӧрынет.
+Пеҥгыдемде тидым [[{{MediaWiki:Policy-url}}|правил]] почеш ыштыметым да, мо тидын деч вара лиймым, умылыметым.',
 'actioncomplete'        => 'Действийым ыштыме',
 'deletedtext'           => '«<nowiki>$1</nowiki>» шӧрымӧ.
 Ончо $2 пытартыш шӧрымӧ-влак лӱмер гыч.',
@@ -484,7 +518,7 @@ $messages = array(
 'deletereasonotherlist' => 'Вес амал',
 
 # Rollback
-'rollbacklink' => 'тоштемдаш',
+'rollbacklink' => 'пӧртылаш',
 
 # Protect
 'protectlogpage'              => 'Тӧрлатымаш деч аралыме нерген журнал',
@@ -493,7 +527,7 @@ $messages = array(
 'protectexpiry'               => 'Мучашлалтеш:',
 'protect_expiry_invalid'      => 'Йоҥылыш мучашлалтше жап.',
 'protect_expiry_old'          => 'Мучашлалтше жап эртен.',
-'protect-default'             => '(ойлыде)',
+'protect-default'             => 'Чыла пайдаланыше лан йӧным пуаш',
 'protect-level-autoconfirmed' => 'Регистрацийым эртыдыме да у пайдаланыше-влак деч петыраш',
 'protect-level-sysop'         => 'Сайтвиктарыше-влак гына',
 'protect-expiring'            => '$1 мучашлалтеш (UTC)',
@@ -502,6 +536,7 @@ $messages = array(
 
 # Undelete
 'undeletelink'           => 'ончалаш/тӧрлатен шындаш',
+'undeletedarticle'       => '«[[$1]]» тӧрлатен шынден',
 'undelete-search-submit' => 'Кычал',
 
 # Namespace form on various pages
@@ -514,11 +549,13 @@ $messages = array(
 'contributions-title' => '$1 пайдаланышын надыр',
 'mycontris'           => 'Мыйын надырем',
 'contribsub2'         => '$1 лан ($2)',
+'uctop'               => '(пытартыш)',
 'month'               => 'Могай тылзе гыч тӱҥалаш? (але ондакрак):',
 'year'                => 'Могай ий гыч тӱҥалаш? (але ондакрак):',
 
 'sp-contributions-newbies'  => 'У пайдалнышын гына надырым ончыкташ',
 'sp-contributions-blocklog' => 'йӧным вашталтыме журнал',
+'sp-contributions-search'   => 'Надырым кычалаш',
 'sp-contributions-username' => 'IP-адрес ала пайдаланышын лӱмжӧ:',
 'sp-contributions-submit'   => 'Кычал',
 
@@ -526,6 +563,7 @@ $messages = array(
 'whatlinkshere'            => 'Ссылке-влак тышке',
 'whatlinkshere-title'      => '"$1" дене лаштык-влак кылым палемдат',
 'whatlinkshere-page'       => 'Лаштык:',
+'linkshere'                => "'''[[:$1]]''' лаштык дене кылдалтше лаштык-влак:",
 'isredirect'               => 'вес верек колтымо лаштык',
 'whatlinkshere-prev'       => '{{PLURAL:$1|ончычсо|$1 ончычсо}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|вес|$1 вес}}',
@@ -537,13 +575,17 @@ $messages = array(
 'blockip'            => 'Пайдаланышылан йӧным петраш',
 'ipbreason'          => 'Амал:',
 'ipbreasonotherlist' => 'Вес амал',
+'ipboptions'         => '2 жап:2 hours,1 кече:1 day,3 кече:3 days,1 арня:1 week,2 арня:2 weeks,1 тылзе:1 month,3 тылзе:3 months,6 тылзе:6 months,1 ий:1 year,нимучашдымылык:infinite', # display1:time1,display2:time2,...
 'ipbotherreason'     => 'Вес/ешартыш амал:',
+'ipblocklist'        => 'Петырыме IP адрес-влак да пайдаланыше-влак',
 'ipblocklist-submit' => 'Кычал',
 'blocklink'          => 'йӧным петраш',
 'unblocklink'        => 'йӧным почаш',
 'change-blocklink'   => 'йӧным вашталташ',
 'contribslink'       => 'надыр',
 'blocklogpage'       => 'Йӧным вашталтыме журнал',
+'blocklogentry'      => '[[$1]] лан йӧным петрен $2 $3 мучашлалтеш',
+'unblocklogentry'    => '$1 лан йӧным почен',
 
 # Move page
 'move-page-legend' => 'Лаштыкым кусараш',
@@ -558,9 +600,13 @@ $messages = array(
 'movedto'          => 'лаштыкыш кусарыме',
 'movetalk'         => 'Каҥашымаш лаштыкым кусараш',
 '1movedto2'        => '[[$1]] лаштыкым [[$2]] лаштыкыш кусарыме',
+'1movedto2_redir'  => '«[[$1]]» кусарыме лийын «[[$2]]» поверх перенаправления',
 'movelogpage'      => 'Кусарыме нерген журнал',
 'movereason'       => 'Амал:',
-'revertmove'       => 'мӧҥгешла ышташ',
+'revertmove'       => 'мӧҥгешла пӧртылаш',
+
+# Export
+'export' => 'Лаштык-влакым келыштараш',
 
 # Thumbnails
 'thumbnail-more' => 'Кугемдаш',
@@ -590,11 +636,14 @@ $messages = array(
 'tooltip-p-logo'                  => 'Тӱҥ лаштык',
 'tooltip-n-mainpage'              => 'Тӱҥ лаштыкыш куснаш',
 'tooltip-n-portal'                => 'Проект нерген, мом тый ыштен кертат, мо кушто улеш',
+'tooltip-n-currentevents'         => 'Кызытсе событий нерген увер',
 'tooltip-n-recentchanges'         => 'Шукертсе огыл тӧрлатыме лаштык-влак лӱмер',
 'tooltip-n-randompage'            => 'Вучыдымо (случайный) статьяш куснаш',
 'tooltip-n-help'                  => 'Википедийым кучылтмо да тӧрлатыме шотышто полшык.',
 'tooltip-t-whatlinkshere'         => 'Чыла лаштыкын лӱмерже кудо ты лаштыкыш куснат',
 'tooltip-t-recentchangeslinked'   => 'Шукертсе огыл тӧрлымӧ лаштык-влак, кудо дене тиде лаштык кылдалтын',
+'tooltip-feed-rss'                => 'Тиде лаштык лан RSS-кыл',
+'tooltip-feed-atom'               => 'Тиде лаштык лан Atom-кыл',
 'tooltip-t-contributions'         => 'Пайдаланышын надыр лӱмерым ончалаш',
 'tooltip-t-emailuser'             => 'Тиде пайдаланышылан электрон серышым возаш',
 'tooltip-t-upload'                => 'Файл-влакым пурташ',
@@ -606,12 +655,14 @@ $messages = array(
 'tooltip-ca-nstab-special'        => 'Тиде лӱмын ыштыме лаштык, тудым тый тӧрлатен от керт',
 'tooltip-ca-nstab-project'        => 'Проект нерген лаштыкым ончыкташ',
 'tooltip-ca-nstab-image'          => 'Файлын лаштыкшым ончалаш',
+'tooltip-ca-nstab-category'       => 'Категорийын лаштыкым ончыкташ',
 'tooltip-minoredit'               => 'Тиде тӧрлымым изирак семын палемдаш',
 'tooltip-save'                    => 'Тыйын тӧрлатымашым аралаш',
 'tooltip-preview'                 => 'Лаштыкым аралыме деч ончыч ончылгоч ончал!',
 'tooltip-diff'                    => 'Ончыкташ, могай тӧрлатымашым тый ыштенат.',
 'tooltip-compareselectedversions' => 'Кок ойырымо лаштык версийын ойыртемым ончалаш.',
 'tooltip-watch'                   => 'Тиде лаштыкым тыйын эскерыме-влак лӱмерыш ешараш',
+'tooltip-rollback'                => '"Пӧртылаш" ик темдалтыш дене пытартыш пайдаланышын тӧрлатымашым мӧҥгешла пӧртылеш',
 
 # Math options
 'mw_math_png'    => 'Эре PNG-ым генерироватлаш',
@@ -626,11 +677,19 @@ $messages = array(
 'nextdiff'     => 'Вес тӧрлатымаш →',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|лаштык|лаштык}}',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|лаштык|лаштык}}',
+'file-info-size'       => '($1 × $2 пиксел, файлын кугытшо: $3, MIME-тип: $4)',
+'show-big-image-thumb' => '<small>Ончылгоч ончымашын кугытшо $1 × $2 пиксель</small>',
 
 # Special:NewFiles
 'showhidebots' => '(Бот-влакым $1 )',
 'ilsubmit'     => 'Кычал',
+
+# Metadata
+'metadata' => 'Метаданный-влак',
+
+# External editor support
+'edit-externally' => 'Файлым ӧрдыж программыште тӧрлаташ',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'чыла',

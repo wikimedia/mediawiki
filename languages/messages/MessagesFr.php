@@ -304,7 +304,7 @@ $messages = array(
 'tog-hideminor'               => 'Cacher les modifications récentes mineures',
 'tog-hidepatrolled'           => 'Masquer les modifications surveillées des modifications récentes',
 'tog-newpageshidepatrolled'   => 'Masquer les pages surveillées de la liste des nouvelles pages',
-'tog-extendwatchlist'         => 'Utiliser la liste de suivi améliorée',
+'tog-extendwatchlist'         => 'Étendre la liste de suivi pour afficher toutes les modification et non seulement les plus récentes',
 'tog-usenewrc'                => 'Utiliser les modifications récentes améliorées (JavaScript)',
 'tog-numberheadings'          => 'Numéroter automatiquement les titres de section',
 'tog-showtoolbar'             => 'Montrer la barre de menu de modification (JavaScript doit être activé)',
@@ -2313,6 +2313,7 @@ Consultez la [[Special:IPBlockList|liste des IP bloquées]] pour voir les bannis
 'block-log-flags-noemail'         => 'envoi de courriel interdit',
 'block-log-flags-nousertalk'      => 'ne peut modifier sa propre page de discussion',
 'block-log-flags-angry-autoblock' => 'autoblocage amélioré activé',
+'block-log-flags-hiddenname'      => "nom d'utilisateur caché",
 'range_block_disabled'            => 'Le droit administrateur de créer des blocages de plages IP est désactivé.',
 'ipb_expiry_invalid'              => 'Durée d’expiration incorrecte.',
 'ipb_expiry_temp'                 => 'Les blocages de noms d’utilisateurs cachés doivent être permanents.',
@@ -2445,6 +2446,8 @@ Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Exp
 'export-submit'     => 'Exporter',
 'export-addcattext' => 'Ajouter les pages de la catégorie :',
 'export-addcat'     => 'Ajouter',
+'export-addnstext'  => "Ajouter des pages dans l'espace de noms :",
+'export-addns'      => 'Ajouter',
 'export-download'   => 'Enregistrer dans un fichier',
 'export-templates'  => 'Inclure les modèles',
 'export-pagelinks'  => 'Inclure les pages liées à une profondeur de :',
@@ -3234,13 +3237,14 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'intentionallyblankpage' => 'Cette page est laissée intentionellement vide.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Laisser cette ligne exactement telle quelle<pre>
+'external_image_whitelist' => " #Laisser cette ligne exactement telle quelle<pre>
 #Indiquer les fragments d’expression régulières (juste la partie indiquée entre les //) ci-dessous
 #Ils correspondront avec les URLs des images (très liées) externes
 #Celles qui correspondent s’afficheront comme des images, sinon seul un lien vers l’image sera affiché
 #Les lignes commençant par un # seront considérées comme des commentaires
+#Cette liste n'est pas sensible à la casse
 
-#Mettez tous les fragments d’expressions régulières au dessus de cette ligne. Laissez cette dernière ligne telle quelle.</pre>',
+#Mettez tous les fragments d’expressions régulières au dessus de cette ligne. Laissez cette dernière ligne telle quelle.</pre>",
 
 # Special:Tags
 'tags'                    => 'Balises des modifications valides',

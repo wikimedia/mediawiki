@@ -215,7 +215,7 @@ $messages = array(
 'tog-hideminor'               => 'Kene lütten Ännern in letzte Ännern wiesen',
 'tog-hidepatrolled'           => 'Nakeken Ännern bi „Toletzt ännert“ nich wiesen',
 'tog-newpageshidepatrolled'   => 'Nakeken Ännern bi „Ne’e Sieden“ nich wiesen',
-'tog-extendwatchlist'         => 'Utwiedt Oppasslist',
+'tog-extendwatchlist'         => 'Oppasslist utwieden, dat se all, un nich blot de jüngsten, wiest',
 'tog-usenewrc'                => 'Erwiederte letzte Ännern (nich för alle Browser bruukbor)',
 'tog-numberheadings'          => 'Överschrieven automatsch nummereern',
 'tog-showtoolbar'             => 'Editeer-Warktüüchlist wiesen',
@@ -2282,6 +2282,8 @@ Wenn du blot de aktuelle hebben wist, kannst du ok en Lenk bruken, to’n Bispee
 'export-submit'     => 'Export',
 'export-addcattext' => 'Sieden ut Kategorie tofögen:',
 'export-addcat'     => 'Tofögen',
+'export-addnstext'  => 'Sieden ut Naamruum tofögen:',
+'export-addns'      => 'Tofögen',
 'export-download'   => 'As XML-Datei spiekern',
 'export-templates'  => 'mit Vörlagen',
 'export-pagelinks'  => 'Sieden op de Lenken wiest, automaatsch mit exporteren, bet to en Deepd vun:',
@@ -2998,11 +3000,13 @@ Geev den Dateinaam ahn dat Präfix „{{ns:file}}:“ in.',
 'intentionallyblankpage' => 'Disse Sied is mit Afsicht leddig.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Disse Reeg nich ännern<pre>
+'external_image_whitelist' => '  #Disse Reeg nich ännern<pre>
 #Ünnen köönt Delen vun reguläre Utdrück (de Deel twischen de //) angeven warrn.
 #De warrt mit de URLs vun Biller ut externe Borns vergleken
 #En positiv Vergliek föhrt dorto, dat dat Bild wiest warrt, ans warrt dat Bild blot as Lenk wiest
 #Regen, de mit en # anfangt, warrt as Kommentar behannelt
+#De List maakt keen Ünnerscheed bi grote un lütte Bookstaven
+
 #Delen vun reguläre Utdrück na disse Reeg indragen. Disse Reeg nich ännern</pre>',
 
 # Special:Tags

@@ -1,13 +1,13 @@
 <?php
-/** Gan-hans (赣语简体)
+/** Simplified Gan script (赣语(简体))
  *
  * @ingroup Language
  * @file
  *
+ * @author Philip <philip.npc@gmail.com>
  * @author Symane
  * @author Urhixidur
  * @author Vipuser
- * @author Philip <philip.npc@gmail.com>
  */
 
 $fallback = 'zh-hans';

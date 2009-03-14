@@ -188,7 +188,7 @@ $messages = array(
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
 'tog-hidepatrolled'           => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled'   => 'Esconder páginas patrulhadas da lista de páginas novas',
-'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis',
+'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis, não apenas as mais recentes',
 'tog-usenewrc'                => 'Mudanças recentes melhoradas (JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
@@ -427,7 +427,7 @@ $messages = array(
 'viewsourceold'           => 'ver código',
 'editlink'                => 'editar',
 'viewsourcelink'          => 'ver fonte',
-'editsectionhint'         => 'Editar secção: $1',
+'editsectionhint'         => 'Editar seção: $1',
 'toc'                     => 'Tabela de conteúdo',
 'showtoc'                 => 'mostrar',
 'hidetoc'                 => 'esconder',
@@ -740,7 +740,7 @@ Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for re
 'confirmedittext'                  => 'Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas.
 Por favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de usuário]].',
 'nosuchsectiontitle'               => 'Seção inexistente',
-'nosuchsectiontext'                => 'Você tentou editar uma seção que não existe. Uma vez que não há a secção $1, não há um local para salvar a sua edição.',
+'nosuchsectiontext'                => 'Você tentou editar uma seção que não existe. Uma vez que não há a seção $1, não há um local para salvar a sua edição.',
 'loginreqtitle'                    => 'Autenticação Requerida',
 'loginreqlink'                     => 'autenticar-se',
 'loginreqpagetext'                 => 'Você precisa de $1 para poder visualizar outras páginas.',
@@ -2288,6 +2288,8 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{Me
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Adicionar à listagem páginas da categoria:',
 'export-addcat'     => 'Adicionar',
+'export-addnstext'  => 'Adicionar páginas do domínio:',
+'export-addns'      => 'Adicionar',
 'export-download'   => 'Oferecer para salvar como um arquivo',
 'export-templates'  => 'Incluir predefinições',
 'export-pagelinks'  => 'Incluir páginas ligadas até uma profundidade de:',
@@ -3024,9 +3026,10 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 # External image whitelist
 'external_image_whitelist' => " # Deixe esta linha exatamente como ela é <pre> 
 # Coloque uma expressão regular (apenas a parte que vai entre o //) a seguir
-# Estes serão casados com as URLs de imagens externas (''hotlinked'')
+# Estas serão casadas com as URLs de imagens externas (''hotlinked'')
 # Aqueles que corresponderem serão exibidos como imagens, caso contrário, apenas uma ligação para a imagem será mostrada
 # As linhas que começam com # são tratadas como comentários
+# Isto não é sensível à capitalização
 
 # Coloque todos os fragmentos de ''regex'' acima dessa linha. Deixe esta linha exatamente como ela é</pre>",
 

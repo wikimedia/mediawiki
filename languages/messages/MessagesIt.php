@@ -2116,6 +2116,7 @@ Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'block-log-flags-noemail'         => 'e-mail bloccate',
 'block-log-flags-nousertalk'      => 'non può modificare la propria pagina di discussione',
 'block-log-flags-angry-autoblock' => 'blocco automatico avanzato attivo',
+'block-log-flags-hiddenname'      => 'nome utente nascosto',
 'range_block_disabled'            => 'La possibilità di bloccare intervalli di indirizzi IP non è attiva al momento.',
 'ipb_expiry_invalid'              => 'Durata o scadenza del blocco non valida.',
 'ipb_expiry_temp'                 => 'I blocchi dei nomi utenti nascosti dovrebbero essere infiniti',
@@ -2234,6 +2235,8 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[{{#S
 'export-submit'     => 'Esporta',
 'export-addcattext' => 'Aggiungi pagine dalla categoria:',
 'export-addcat'     => 'Aggiungi',
+'export-addnstext'  => 'Aggiungi pagine dal namespace:',
+'export-addns'      => 'Aggiungi',
 'export-download'   => 'Richiedi il salvataggio come file',
 'export-templates'  => 'Includi i template',
 'export-pagelinks'  => 'Includi pagine correlate ad una profondità di:',
@@ -2978,13 +2981,14 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 'intentionallyblankpage' => 'Questa pagina è lasciata volutamente vuota ed è usata per benchmark, ecc.',
 
 # External image whitelist
-'external_image_whitelist' => " #lascia questa riga esattamente com'è<pre>
-#Inserisci i frammenti di espressioni regolari (solo la parte che va fra //) di seguito
-#Queste corrisponderanno con gli URL di immagini esterne (hotlinked)
-#Quelle che corrisponderanno saranno mostrate come immagini, altrimenti verrà mostrano solo un collegamento all'immagine
-#Le linee che iniziano con # sono di commento
+'external_image_whitelist' => " #Lasciare questa riga esattamente com'è<pre>
+#Inserire i frammenti delle espressioni regolari (solo la parte che va fra //) di seguito
+#Queste verranno messe a confronto con gli indirizzi URL delle immagini esterne (hotlinked)
+#Le corrispondenze saranno mostrate come immagini, altrimenti verrà mostrato solo un collegamento
+#Le righe che iniziano con # sono considerate dei commenti
+#La differenza tra maiuscole e minuscole non  significativa
 
-#Inserisci sopra questa riga tutti i frammenti di regex. Lascia questa riga esattamente com'è</pre>",
+#Inserire sopra questa riga tutti i frammenti di regex. Lasciare questa riga esattamente com'è</pre>",
 
 # Special:Tags
 'tags'                    => 'Tag di modifiche valide',

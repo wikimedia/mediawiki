@@ -618,6 +618,7 @@ $messages = array(
 'group-bureaucrat-member'    => 'Γέροντας',
 'group-suppress-member'      => 'Επόπτες',
 
+'grouppage-user'          => '{{ns:project}}:Χρηστς',
 'grouppage-autoconfirmed' => '{{ns:project}}:Αυτόματα βεβαιωμένοι χρηστ',
 'grouppage-sysop'         => '{{ns:project}}:Νοματέοι',
 'grouppage-bureaucrat'    => '{{ns:project}}:Γεροντάδες',

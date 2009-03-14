@@ -226,7 +226,7 @@ $messages = array(
 'tog-hideminor'               => 'Ukryj drobne poprawki w „Ostatnich zmianach”',
 'tog-hidepatrolled'           => 'Ukryj sprawdzone edycje w ostatnich zmianach',
 'tog-newpageshidepatrolled'   => 'Ukryj sprawdzone strony z listy nowych stron',
-'tog-extendwatchlist'         => 'Rozszerzona lista obserwowanych',
+'tog-extendwatchlist'         => 'Pokaż na liście obserwowanych wszystkie a nie tylko ostatnie zmiany',
 'tog-usenewrc'                => 'Rozszerzenie ostatnich zmian (JavaScript)',
 'tog-numberheadings'          => 'Automatyczna numeracja nagłówków',
 'tog-showtoolbar'             => 'Pokaż pasek narzędzi (JavaScript)',
@@ -591,7 +591,7 @@ Zauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektó
 Twoje konto zostało utworzone.
 Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{SITENAME}}}}]].',
 'loginpagetitle'             => 'Logowanie',
-'yourname'                   => 'Nazwa użytkownika',
+'yourname'                   => 'Nazwa {{GENDER:|użytkownika|użytkowniczki}}',
 'yourpassword'               => 'Hasło',
 'yourpasswordagain'          => 'Powtórz hasło',
 'remembermypassword'         => 'Zapamiętaj moje hasło na tym komputerze',
@@ -749,8 +749,8 @@ Być może właśnie zmieniłeś swoje hasło lub poprosiłeś o nowe tymczasowe
 'showpreview'                      => 'Pokaż podgląd',
 'showlivepreview'                  => 'Dynamiczny podgląd',
 'showdiff'                         => 'Podgląd zmian',
-'anoneditwarning'                  => "'''Uwaga:''' Nie jesteś zalogowany.
-Twój adres IP będzie zapisany w historii edycji strony.",
+'anoneditwarning'                  => "'''Uwaga:''' Nie jesteś {{GENDER:|zalogowany|zalogowana}}.
+Twój adres IP zostanie zapisany w historii edycji strony.",
 'missingsummary'                   => "'''Uwaga:''' Nie wprowadziłeś opisu zmian.
 Jeżeli nie chcesz go wprowadzać, naciśnij przycisk Zapisz jeszcze raz.",
 'missingcommenttext'               => 'Wprowadź komentarz poniżej.',
@@ -2215,7 +2215,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipb-change-block'                => 'Zmień ustawienia blokady',
 'badipaddress'                    => 'Niepoprawny adres IP',
 'blockipsuccesssub'               => 'Zablokowanie powiodło się',
-'blockipsuccesstext'              => 'Użytkownik [[Special:Contributions/$1|$1]] został zablokowany.<br />
+'blockipsuccesstext'              => '{{GENDER:$1|Użytkownik|Użytkowniczka}} [[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />
 Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrzeć blokady.',
 'ipb-edit-dropdown'               => 'Edytuj przyczynę blokady',
 'ipb-unblock-addr'                => 'Odblokuj $1',
@@ -2265,6 +2265,7 @@ By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:IPB
 'block-log-flags-noemail'         => 'e‐mail zablokowany',
 'block-log-flags-nousertalk'      => 'nie może edytować własnej strony dyskusji',
 'block-log-flags-angry-autoblock' => 'rozszerzone automatyczne blokowanie włączone',
+'block-log-flags-hiddenname'      => 'nazwa użytkownika jest ukryta',
 'range_block_disabled'            => 'Możliwość blokowania zakresu adresów IP została wyłączona.',
 'ipb_expiry_invalid'              => 'Błędny czas wygaśnięcia blokady.',
 'ipb_expiry_temp'                 => 'Ukryte blokowanie nazwy użytkownika należy wykonać trwale.',
@@ -2395,6 +2396,8 @@ Możesz również użyć linku, np. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}
 'export-submit'     => 'Eksportuj',
 'export-addcattext' => 'Dodaj strony z kategorii',
 'export-addcat'     => 'Dodaj',
+'export-addnstext'  => 'Dodaj strony z przestrzeni nazw',
+'export-addns'      => 'Dodaj',
 'export-download'   => 'Zapisz do pliku',
 'export-templates'  => 'Dołącz szablony',
 'export-pagelinks'  => 'Dołącz linkowane strony na głębokości:',
@@ -3203,6 +3206,7 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 #Wyrażenia te zostaną dopasowane do adresów URL zewnętrznych (bezpośrednio linkowanych) grafik.
 #Dopasowane adresy URL zostaną wyświetlone jako grafiki, w przeciwnym wypadku będzie pokazany jedynie link do grafiki.
 #Linie zaczynające się od # są traktowane jako komentarze.
+#We wpisach ma znaczenie wielkość znaków.
 
 #Wstaw wszystkie deklaracje wyrażeniami regularnymi poniżej tej linii. Pozostaw tę linię dokładnie tak, jak jest.</pre>',
 

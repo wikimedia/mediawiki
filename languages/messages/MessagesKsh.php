@@ -196,7 +196,7 @@ $messages = array(
 'tog-hideminor'               => 'Dun de klein Mini-Änderunge (<strong>M</strong>) en de Liss  met „{{int:Recentchanges}}“ <strong>nit</strong> aanzeije',
 'tog-hidepatrolled'           => 'Dun de nohjeloorte Änderunge en de „{{int:recentchanges}}“ eez ens <strong>nit</strong> aanzeije',
 'tog-newpageshidepatrolled'   => 'Dun de nohjeloorte Änderunge en de Leß „{{int:newpages}}“ eez ens <strong>nit</strong> aanzeije',
-'tog-extendwatchlist'         => 'Verjrößer de Oppassliss för jede Aat vun müjjeliche Änderunge ze zeije',
+'tog-extendwatchlist'         => 'Verjrößer de Oppassliss för jede Aat vun müjjeliche Änderunge ze zeije, nit nor de neuste',
 'tog-usenewrc'                => 'Dun de opgemotzte Liss met „{{int:Recentchanges}}“ aanzeije (bruch Java_Skripp)',
 'tog-numberheadings'          => 'Dun de Üvverschrefte automatisch nummereere',
 'tog-showtoolbar'             => 'Zeich de Werkzüchliss zom Ändere aan (bruch Java_Skripp)',
@@ -611,7 +611,7 @@ Et dörve darf nit nieh wi {{PLURAL:$1|eij|$1|keij}} Zeische do dren sin.',
 'gender-female'              => 'Möhn, Weech odder Mädche',
 'prefs-help-gender'          => '* Moß mer nit aanjevve, un wann et aanjejovve eß, dann kallt et Wiki övver Desch als „dä Pitter“ udder „dat Tiina“, sönß uns „Metmaacher Pütz“. Dat kritt de janne Welt se sinn, nit nur Do allein.',
 'email'                      => 'E-mail',
-'prefs-help-realname'        => '* Dinge richtije Name - kanns De fott looße - wann De en nenne wells, dann weed hee jebruch, öm Ding Beidräch domet ze schmöcke.',
+'prefs-help-realname'        => '* Dinge richtije Name - kanns De fott looße - wann De en nenne wells, dann weed dä jebruch, öm Ding Beidräch domet ze schmöcke.',
 'loginerror'                 => 'Fähler beim Enlogge',
 'prefs-help-email'           => '* Ding <i lang="en">e-mail</i> Adress - kanns De fottlooße, un se es för Andre nit ze sinn - mäht et ävver müjjelich, Der e neu Passwoot ze schecke, wann De et ens verjäße häß. Do kannß och zohlohße, dat mer Der domet övver Ding Metmaacherklaafsigg en <i lang="en">e-mail</i> schecke kann. Esu künne ander Metmaacher met Der en Kontak kumme, ohne dat se Dinge Name oder Ding <i lang="en">e-Mail</i> Adress kenne mööte.',
 'prefs-help-email-required'  => 'Do moß en jöltije E-Mail-Adress aanjevve.',
@@ -2534,6 +2534,8 @@ zo jroße Lass för dä Sörver.',
 'export-submit'     => 'Loss_Jonn!',
 'export-addcattext' => 'Sigge dobei donn us dä Saachjrupp:',
 'export-addcat'     => 'Dobei donn',
+'export-addnstext'  => 'Sigge dobei donn uß dämm Appachtemang:',
+'export-addns'      => 'Dobei Donn!',
 'export-download'   => 'Als en XML-Datei afspeichere',
 'export-templates'  => 'De Schablone met expochteere, die die Sigge bruche',
 'export-pagelinks'  => 'Donn de Sigge metnämme, wo vun hee Lengks drop jon, un vun do wigger, bes esu vill Schrette:',
@@ -3364,12 +3366,13 @@ Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 'intentionallyblankpage' => 'Op dä Sigg es med Afseesh nix drop.',
 
 # External image whitelist
-'external_image_whitelist' => ' # Donn aan dä Reih hee nix ändere<pre>
+'external_image_whitelist' => '# Donn aan dä Reih hee nix ändere<pre>
 # Onge künne Brochstöck fun regular expressions aanjejovve wäde, 
 # alsu dä Deil zwesche / und /
 # Noh em Verjliische met däm URL vun ene Datei fun ußerhallef:
 # Treffer: De Datei weed jezeich odder enjebonge.
 # Söns: ene Link weed aanjezeich.
+# Wam_mer et nit ömschtällt, es Jruß- un Kleinschrevv_ejaal.
 # Reije met # am Aanfang, sen bloß Kommenta
 # Donn de Brochstöck hee noh endrare, un di Reihe bes hee nit ändere</pre>',
 

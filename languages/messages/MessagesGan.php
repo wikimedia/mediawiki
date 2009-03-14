@@ -31,13 +31,9 @@ $namespaceNames = array(
 );
 
 $messages = array(
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-gan-hans' => 'disable',
-Variants for Chinese language
-*/
+# Variants for Gan language
 'variantname-gan-hans' => '简体',
 'variantname-gan-hant' => '繁體',
 'variantname-gan'      => '贛語原文',
+
 );
