@@ -161,7 +161,7 @@ class MWException extends Exception {
 			if( $hookResult = $this->runHooks( get_class( $this ) . "Raw" ) ) {
 				die( $hookResult );
 			}
-			if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
+			if ( defined( 'MEDIAWIKI_INSTALL' ) || $this->htmlBodyOnly() ) {
 				echo $this->getHTML();
 			} else {
 				echo $this->htmlHeader();
@@ -216,6 +216,13 @@ class MWException extends Exception {
 	 */
 	function htmlFooter() {
 		echo "</body></html>";
+	}
+	
+	/**
+	 * headers handled by subclass?
+	 */
+	function htmlBodyOnly() {
+		return false;
 	}
 
 	static function isCommandLine() {

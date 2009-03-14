@@ -2586,12 +2586,25 @@ class DBConnectionError extends DBError {
 
 		$extra = $this->searchForm();
 
-		if($wgUseFileCache) {
+		if( $wgUseFileCache ) {
 			$cache = $this->fileCachedPage();
-			if ( $cache !== null ) $extra = $cache;
+			# Cached version on file system?
+			if( $cache !== null ) {
+				# Hack: extend the body for error messages
+				$cache = str_replace( array('</html>','</body>'), '', $cache );
+				# Add cache notice...
+				$cachederror = "This is a cached copy of the requested page, and may not be up to date. ";
+				# Localize it if possible...
+				if( $wgLang instanceof Language ) {
+					$cachederror = htmlspecialchars( $wgLang->getMessage( 'dberr-cachederror' ) );
+				}
+				$warning = "<div style='color:red;font-size:150%;font-weight:bold;'>$cachederror</div>";
+				# Output cached page with notices on bottom and re-close body
+				return "{$cache}{$warning}<hr />$text<hr />$extra</body></html>";
+			}
 		}
-
-		return $text . '<hr />' . $extra;
+		# Headers needed here - output is just the error message
+		return $this->htmlHeader()."$text<hr />$extra".$this->htmlFooter();
 	}
 
 	function searchForm() {
@@ -2635,10 +2648,8 @@ EOT;
 	function fileCachedPage() {
 		global $wgTitle, $title, $wgLang, $wgOut;
 		if( $wgOut->isDisabled() ) return; // Done already?
-		$cachederror = "The following is a cached copy of the requested page, and may not be up to date. ";
 		$mainpage = 'Main Page';
 		if ( $wgLang instanceof Language ) {
-			$cachederror = htmlspecialchars( $wgLang->getMessage( 'dberr-cachederror' ) );
 			$mainpage    = htmlspecialchars( $wgLang->getMessage( 'mainpage' ) );
 		}
 
@@ -2652,11 +2663,14 @@ EOT;
 
 		$cache = new HTMLFileCache( $t );
 		if( $cache->isFileCached() ) {
-			$warning = "<div style='color:red;font-size:150%;font-weight:bold;'>$cachederror</div>";
-			return $warning . $cache->fetchPageText();
+			return $cache->fetchPageText();
 		} else {
 			return '';
 		}
+	}
+	
+	function htmlBodyOnly() {
+		return true;
 	}
 
 }

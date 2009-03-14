@@ -3871,6 +3871,6 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'dberr-info'        => '(Cannot contact the database server: $1)',
 'dberr-usegoogle'   => 'You can try searching via Google in the meantime.',
 'dberr-outofdate'   => 'Note that their indexes of our content may be out of date.',
-'dberr-cachederror' => 'The following is a cached copy of the requested page, and may not be up to date.',
+'dberr-cachederror' => 'This is a cached copy of the requested page, and may not be up to date.',
 
 );
