@@ -529,7 +529,8 @@ table.rimage {
 	background: url(external.png) center right no-repeat;
 	padding: 0 13px;
 }
-.rtl #bodyContent a[href ^="http://"] {
+.rtl #bodyContent a.external,
+.rtl #bodyContent a[href ^="gopher://"] {
 	background-image: url(external-rtl.png);
 }
 #bodyContent a[href ^="https://"],
