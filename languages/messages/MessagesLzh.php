@@ -775,6 +775,7 @@ $2',
 'mergehistory-autocomment'         => '併[[:$1]]至[[:$2]]',
 'mergehistory-comment'             => '併[[:$1]]至[[:$2]]：$3',
 'mergehistory-same-destination'    => '源頁和到頁無同也',
+'mergehistory-reason'              => '因：',
 
 # Merge log
 'mergelog'           => '誌併',
@@ -1947,6 +1948,8 @@ $1已被禁矣。爾是否改此置？',
 'export-submit'     => '出匯',
 'export-addcattext' => '索門擇題：',
 'export-addcat'     => '增',
+'export-addnstext'  => '索名集擇題：',
+'export-addns'      => '增',
 'export-download'   => '備檔以載',
 'export-templates'  => '含模',
 
@@ -2447,6 +2450,7 @@ $1',
 #乃外（連）圖配之
 #配乃成像，非配則成連
 #有 # 之為注
+#無為大小之異也
 
 #入正表式。同留</pre>',
 

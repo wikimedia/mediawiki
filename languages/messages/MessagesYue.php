@@ -144,7 +144,7 @@ $messages = array(
 'tog-hideminor'               => '最新更改唔顯示小修改',
 'tog-hidepatrolled'           => '響最近修改度隱藏巡查過嘅編輯',
 'tog-newpageshidepatrolled'   => '響新頁清單度隱藏巡查過嘅版',
-'tog-extendwatchlist'         => '展開監視清單去顯示合適嘅更改',
+'tog-extendwatchlist'         => '展開監視清單去顯示全部更改，唔係淨係最新嘅',
 'tog-usenewrc'                => '強化版最近更改（需要JavaScript）',
 'tog-numberheadings'          => '標題自動編號',
 'tog-showtoolbar'             => '顯示修改工具列（需要JavaScript）',
@@ -933,6 +933,7 @@ $1',
 'mergehistory-autocomment'         => '已經合併咗[[:$1]]去到[[:$2]]',
 'mergehistory-comment'             => '已經合併咗[[:$1]]去到[[:$2]]: $3',
 'mergehistory-same-destination'    => '來源頁同目的頁唔可以一樣',
+'mergehistory-reason'              => '原因:',
 
 # Merge log
 'mergelog'           => '合併日誌',
@@ -2219,6 +2220,8 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'export-submit'     => '倒出/導出/匯出',
 'export-addcattext' => '由分類度加入頁面：',
 'export-addcat'     => '加入',
+'export-addnstext'  => '由空間名度加入頁面：',
+'export-addns'      => '加入',
 'export-download'   => '另存做檔案',
 'export-templates'  => '包含模',
 'export-pagelinks'  => '包含到一個深度嘅連結版:',
@@ -2995,6 +2998,7 @@ $1',
 #呢啲將會同外面（已超連結嘅）圖像配合
 #嗰啲晒對到出來嘅會顯示做圖像，唔係嘅話就只係會顯示連結
 #有 # 開頭嘅行會當做註解
+#無分大細楷
 
 #響呢行上面入晒全部嘅regex。留番呢行一樣嘅字</pre>',
 

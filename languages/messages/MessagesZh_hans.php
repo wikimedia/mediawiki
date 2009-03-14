@@ -177,7 +177,7 @@ $messages = array(
 'tog-hideminor'               => '最近更改中隐藏小修改',
 'tog-hidepatrolled'           => '于最近更改中隐藏巡查过的编辑',
 'tog-newpageshidepatrolled'   => '於新頁面清單中隱藏巡查過的頁面',
-'tog-extendwatchlist'         => '增强监视列表以显示所有可用更改',
+'tog-extendwatchlist'         => '增强监视列表以显示所有更改，不只是最近的',
 'tog-usenewrc'                => '增强最近更改 (JavaScript)',
 'tog-numberheadings'          => '标题自动编号',
 'tog-showtoolbar'             => '显示编辑工具条 (JavaScript)',
@@ -955,6 +955,7 @@ $2',
 'mergehistory-autocomment'         => '已经合并[[:$1]]去到[[:$2]]',
 'mergehistory-comment'             => '已经合并[[:$1]]去到[[:$2]]: $3',
 'mergehistory-same-destination'    => '来源页面与目的页面不可以相同',
+'mergehistory-reason'              => '理由:',
 
 # Merge log
 'mergelog'           => '合并日志',
@@ -2261,6 +2262,8 @@ $1已经被封锁。您是否想更改这个设置？',
 'export-submit'     => '导出',
 'export-addcattext' => '由分类中添加页面:',
 'export-addcat'     => '添加',
+'export-addnstext'  => '由名字空间中添加页面:',
+'export-addns'      => '添加',
 'export-download'   => '另存为文件',
 'export-templates'  => '包含模版',
 'export-pagelinks'  => '包含到这个深度连结之页面:',
@@ -3025,6 +3028,7 @@ $1',
 #这些将会跟外部（已超连结的）图像配合
 #那些配合到出来的会显示成图像，否则就只会显示成连结
 #有 # 开头的行会当成注解
+#大小写并无区分
 
 #在这行上面输入所有的regex。留下这行一样的文字</pre>',
 
