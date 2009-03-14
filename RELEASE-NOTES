@@ -265,6 +265,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:Export doesn't use raw SQL queries anymore
 * (bug 14771) Thumbnail links to individual DjVu pages have two no longer have
   two "page" parameters
+* (bug 17972) Special:FileDuplicateSearch form now works correctly on wikis that
+  don't use PathInfo or short urls
 
 
 == API changes in 1.15 ==
