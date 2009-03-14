@@ -407,6 +407,8 @@ class IPBlockForm {
 			$this->BlockEmail, isset( $this->BlockAllowUsertalk ) ? $this->BlockAllowUsertalk : $wgBlockAllowsUTEdit
 		);
 
+		# Should this be privately logged?
+		$suppressLog = (bool)$this->BlockHideName;
 		if ( wfRunHooks('BlockIp', array(&$block, &$wgUser)) ) {
 
 			if ( !$block->insert() ) {
@@ -419,6 +421,7 @@ class IPBlockForm {
 					if( $block->equals( $currentBlock ) ) {
 						return array( 'ipb_already_blocked' );
 					}
+					$suppressLog = $suppressLog || (bool)$currentBlock->mHideName;
 					$currentBlock->delete();
 					$block->insert();
 					$log_action = 'reblock';
@@ -444,7 +447,7 @@ class IPBlockForm {
 			$logParams[] = $this->blockLogFlags();
 
 			# Make log entry, if the name is hidden, put it in the oversight log
-			$log_type = ($this->BlockHideName) ? 'suppress' : 'block';
+			$log_type = $suppressLog ? 'suppress' : 'block';
 			$log = new LogPage( $log_type );
 			$log->addEntry( $log_action, Title::makeTitle( NS_USER, $this->BlockAddress ),
 			  $reasonstr, $logParams );
@@ -517,6 +520,8 @@ class IPBlockForm {
 			$flags[] = 'noemail';
 		if ( !$this->BlockAllowUsertalk && $wgBlockAllowsUTEdit )
 			$flags[] = 'nousertalk';
+		if ( $this->BlockHideName )
+			$flags[] = 'hiddenname';
 		return implode( ',', $flags );
 	}
 
