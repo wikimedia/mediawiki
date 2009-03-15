@@ -2008,9 +2008,6 @@ function wfMkdirParents( $dir, $mode = null ) {
 	if ( is_null( $mode ) )
 		$mode = $wgDirectoryMode;
 
-	if ( !is_writable( $dir ) ) {
-		return false;
-	}
 	return mkdir( $dir, $mode, true );  // PHP5 <3
 }
 
