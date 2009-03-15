@@ -1997,10 +1997,15 @@ function wfTempDir() {
  * 
  * @param string $dir Full path to directory to create
  * @param int $mode Chmod value to use, default is $wgDirectoryMode
+ * @param string $caller Optional caller param for debugging.
  * @return bool
  */
-function wfMkdirParents( $dir, $mode = null ) {
+function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	global $wgDirectoryMode;
+
+	if ( !is_null( $caller ) ) {
+		wfDebug( "$caller: called wfMkdirParents($dir)" );
+	}
 
 	if( strval( $dir ) === '' || file_exists( $dir ) )
 		return true;
