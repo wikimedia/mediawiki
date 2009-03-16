@@ -141,6 +141,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 4582) Provide preference-based autoformatting of unlinked dates with the dateformat
   parser function.
 * (bug 17886) Special:Export now allows you to export a whole namespace (limited to 5000 pages)
+* (bug 17714) Limited TIFF upload support now built in if 'tif' extension is
+  enabled. Image width and height are now recognized, and when using ImageMagick,
+  optional flattening to PNG or JPEG for inline display can be enabled by setting
+  $wgTiffThumbnailType
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
