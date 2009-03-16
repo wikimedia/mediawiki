@@ -17,7 +17,7 @@ $messages = array(
 'tog-hideminor'               => '"Soňky üýtgeşmeler" sahypasynda ujypsyzja özgerdişleri gizle',
 'tog-hidepatrolled'           => '"Soňky üýtgeşmeler" sahypasynda patrullyk edilen özgerdişleri gizle',
 'tog-newpageshidepatrolled'   => 'Patrullyk edilen sahypalary täze sahypalaryň sanawynda gizle',
-'tog-extendwatchlist'         => 'Gözegçilik sanawyny giňeldip, ähli üýtgeşmeleri görkez',
+'tog-extendwatchlist'         => 'Gözegçilik sanawyny, diňe soňky däl-de, eýsem ähli üýtgeşmeleri görkezer ýaly edip giňelt',
 'tog-usenewrc'                => 'Soňky üýtgeşmeleriň gowulandyrylan sanawy (JavaScript)',
 'tog-numberheadings'          => 'Atlary awtomatik usulda belgile',
 'tog-showtoolbar'             => 'Redaktirleme mahalynda gural panelini görkez (JavaScript)',
@@ -31,9 +31,36 @@ $messages = array(
 'tog-watchdefault'            => 'Redaktirlän sahypalarymy gözegçilik sanawyma goş',
 'tog-watchmoves'              => 'Adyny üýtgeden sahypalarymy gözegçilik sanawyma goş',
 'tog-watchdeletion'           => 'Öçüren sahypalarymy gözegçilik sanawyma goş',
+'tog-minordefault'            => 'Ähli özgerdişleri "ujypsyzja" diýip belle',
+'tog-previewontop'            => 'Deslapky syny redaktirleme gutusynyň üstünde görkez',
+'tog-previewonfirst'          => 'Özgerdişde deslapky syny görkez',
+'tog-nocache'                 => '
+Sahypalary keşirleme',
+'tog-enotifwatchlistpages'    => 'Gözegçilik sanawymdaky sahypa redaktirlenen mahaly maňa e-poçta iber',
+'tog-enotifusertalkpages'     => 'Ulanyjy sahypamda üýtgeşme bolan mahaly maňa e-poçta iber',
+'tog-enotifminoredits'        => 'Sahypalardaky ujypsyzja özgerdişlerde-de maňa e-poçta iber',
+'tog-enotifrevealaddr'        => 'E-poçta adresimi bildiriş e-poçtalarynda görkez.',
+'tog-shownumberswatching'     => 'Gözegçilikde saklaýan ulanyjylaryň sanyny görkez',
+'tog-fancysig'                => 'Işlenmedik gol (awtomatik çykgytsyz)',
+'tog-externaleditor'          => 'Başga programmalar bilen redaktirle (diňe hünärmenler üçin, kompýuteriňizde ýörite sazlamalar talap edilýär)',
+'tog-externaldiff'            => 'Başga programmalaryň üsti bilen deňeşdir (diňe hünärmenler üçin, kompýuteriňizde ýörite sazlamalar talap edilýär)',
+'tog-showjumplinks'           => '"Git" çykgydyny işlet',
+'tog-uselivepreview'          => 'Tiz deslapky syny ulan (JavaScript) (Synag edilýär)',
+'tog-forceeditsummary'        => 'Gysgaça mazmuny boş galdyran mahalym maňa ýatlat',
+'tog-watchlisthideown'        => 'Gözegçilik sanawymdan öz özgerdişlerimi gizle',
+'tog-watchlisthidebots'       => 'Gözegçilik sanawymdan bot özgerdişlerini gizle',
+'tog-watchlisthideminor'      => 'Gözegçilik sanawymdan ujypsyzja özgerdişleri gizle',
+'tog-watchlisthideliu'        => 'Gözegçilik sanawymda, sessiýa açan ulanyjylar tarapyndan edilen özgerdişleri görkezme',
+'tog-watchlisthideanons'      => 'Gözegçilik sanawymda, anonim ulanyjylar tarapyndan edilen özgerdişleri görkezme',
+'tog-watchlisthidepatrolled'  => 'Gözegçilik sanawymdan patrullyk edilen özgerdişleri gizle',
+'tog-ccmeonemails'            => 'Beýleki ulanyjylara iberen e-poçtalarymyň nusgalaryny maňa-da iber',
+'tog-diffonly'                => 'Sahypanyň mazmunyny wersiýa aratapawutlarynyň aşagynda görkezme',
+'tog-showhiddencats'          => 'Gizlin kategoriýalary görkez',
+'tog-norollbackdiff'          => '"Öňki katdyna getir" berjaý edilensoň wersiýalaryň aratapawudyny görkezme',
 
-'underline-always' => 'Hemişe',
-'underline-never'  => 'Hiç haçan',
+'underline-always'  => 'Hemişe',
+'underline-never'   => 'Hiç haçan',
+'underline-default' => 'Brauzeriň sazlamalary',
 
 # Dates
 'sunday'        => 'Ýekşenbe',
@@ -88,14 +115,29 @@ $messages = array(
 'dec'           => 'dek',
 
 # Categories related messages
-'pagecategories'         => 'Sahypanyň {{PLURAL:$1|kategoriýasy|kategoriýalary}}',
-'category_header'        => '"$1" kategoriýasyndaky sahypalar',
-'subcategories'          => 'Kiçi kategoriýalar',
-'hidden-categories'      => '{{PLURAL:$1|Gizlin kategoriýa|Gizlin kategoriýalar}}',
-'category-subcat-count'  => '{{PLURAL:$2|Bu kategoriýa diňe aşakdaky kiçi kategoriýany öz içine alýar.|Bu kategoriýada jemi $2 sany 
+'pagecategories'                 => 'Sahypanyň {{PLURAL:$1|kategoriýasy|kategoriýalary}}',
+'category_header'                => '"$1" kategoriýasyndaky sahypalar',
+'subcategories'                  => 'Kiçi kategoriýalar',
+'category-media-header'          => '"$1" kategoriýasyndaky multimediýa faýllary',
+'category-empty'                 => "''Bu kategoriýada heniz hiçhili sahypa ýa-da multimediýa faýly ýok.''",
+'hidden-categories'              => '{{PLURAL:$1|Gizlin kategoriýa|Gizlin kategoriýalar}}',
+'hidden-category-category'       => 'Gizlin kategoriýalar', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Bu kategoriýa diňe aşakdaky kiçi kategoriýany öz içine alýar.|Bu kategoriýada jemi $2 sany 
 kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriýa}} bardyr}}',
-'category-article-count' => '{{PLURAL:$2|Bu kategoriýa diňe aşakdaky sahypany öz içine alýar.|Jemi $2 sanysyndan, aşakdaky {{PLURAL:$1|sahypa|$1 sahypa}} bu kategoriýadadyr.}}',
-'listingcontinuesabbrev' => '(dowamy)',
+'category-subcat-count-limited'  => 'Bu kategoriýada aşakdaky {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriýa}} bardyr.',
+'category-article-count'         => '{{PLURAL:$2|Bu kategoriýa diňe aşakdaky sahypany öz içine alýar.|Jemi $2 sanysyndan, aşakdaky {{PLURAL:$1|sahypa|$1 sahypa}} bu kategoriýadadyr.}}',
+'category-article-count-limited' => 'Aşakdaky {{PLURAL:$1|sahypa|$1 sahypa}} şu kategoriýadadyr.',
+'category-file-count'            => '{{PLURAL:$2|Bu kategoriýa diňe aşakdaky faýly öz içine alýar.|Jemi $2 sanydan, aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu kategoriýadadyr.}}',
+'category-file-count-limited'    => 'Aşakdaky {{PLURAL:$1|faýl|$1 faýl}} şu kategoriýadadyr.',
+'listingcontinuesabbrev'         => '(dowamy)',
+
+'mainpagetext'      => "<big>'''MediaWiki şowlulyk bilen guruldy.'''</big>",
+'mainpagedocfooter' => 'Wiki programmasynyň ulanylyşy hakynda maglumat almak üçin [http://meta.wikimedia.org/wiki/Help:Contents ulanyjy gollanmasyna] serediň.
+
+== Öwrenjeler ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurasiýa sazlamalary]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçta sanawy]',
 
 'about'          => 'Hakynda',
 'article'        => 'Makala',
@@ -108,8 +150,10 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'qbpageinfo'     => 'Kontekst',
 'qbmyoptions'    => 'Meniň sahypalarym',
 'qbspecialpages' => 'Ýörite sahypalar',
+'moredotdotdot'  => 'Has köp...',
 'mypage'         => 'Sahypam',
 'mytalk'         => 'Pikir alyşma sahypam',
+'anontalk'       => 'Bu IP-niň habarlaşyklary',
 'navigation'     => 'Saýtda ugur kesgitleme',
 
 # Metadata in edit box

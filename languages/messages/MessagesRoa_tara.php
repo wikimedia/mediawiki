@@ -1365,6 +1365,7 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'filerevert-comment'        => 'Commende:',
 'filerevert-defaultcomment' => "Convertite a 'a versione a le $2 d'u $1",
 'filerevert-submit'         => "'Nvirte",
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ha state convertite a 'a versiona [$4 de le $3 d'u $2].",
 'filerevert-badversion'     => "Non ge stè 'na versiona locale precedende de stu file cu l'orarie richieste.",
 
 # File deletion
@@ -1431,10 +1432,15 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'statistics-users-active-desc' => "Sonde l'utinde ca onne fatte quacchecose jndr'à l'urteme {{PLURAL:$1|giurne|$1 giurne}}",
 'statistics-mostpopular'       => 'Pàggene cchiù visitete',
 
-'disambiguations'     => 'Pàggene de disambiguazione',
-'disambiguationspage' => 'Template:disambigue',
+'disambiguations'      => 'Pàggene de disambiguazione',
+'disambiguationspage'  => 'Template:disambigue',
+'disambiguations-text' => "Le pàggene seguende appondene a 'na '''pàgene de disambiguazione'''.
+'Nvece avessere appondà a 'a temateca appropriate.<br />
+'Na pàgene jè trattate cumme pàgene de disambiguazione ce tu ause 'nu template ca è appundate da [[MediaWiki:Disambiguationspage|Pàggene de disambiguazione]]",
 
-'doubleredirects' => 'Ridirezionaminde a doppie',
+'doubleredirects'     => 'Ridirezionaminde a doppie',
+'doubleredirectstext' => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.
+Ogne righe condiene 'nu collegamende a 'u prime e a 'u seconde ridirezionamendem pe fà vedè addò arrive 'u seconde ridirezionamende, 'u quale jè normalmende 'na pàgena de destinaziona \"rèale\", addò 'u prime ridirezionamende avesse appondà.",
 
 'brokenredirects'        => 'Redirezionamninde scuasciete',
 'brokenredirectstext'    => "Le ridirezionaminde ca seguene appondene a pàggene ca non g'esistene:",
@@ -1495,7 +1501,10 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'ancientpages'            => 'Pàggene vìcchje',
 'move'                    => 'Spuèste',
 'movethispage'            => 'Spueste sta pàgene',
+'unusedimagestext'        => "Pe piacere note ca otre site de Indernette ponne appondà a 'nu file cu 'na URL dirette, e accussì ponne essere elengate aqquà fine a ca avènene ausate.",
+'unusedcategoriestext'    => 'Le seguende categorije esistene, allore che non ge stonne otre pàggene o categorije ause a lore.',
 'notargettitle'           => 'Nisciuna destinazione',
+'notargettext'            => "Tu non g'è specificate 'na pàgene o 'n'utende de destinazione sus a 'u quale vuè ccu face l'operazione.",
 'pager-newer-n'           => '{{PLURAL:$1|cchiù nueve 1|cchiù nueve $1}}',
 'pager-older-n'           => '{{PLURAL:$1|cchiù vecchie 1|cchiù vicchie $1}}',
 
@@ -1504,12 +1513,15 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'booksources-search-legend' => 'Cirche pe le fonde de le libbre',
 'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Veje',
+'booksources-text'          => "Sotte stè 'na liste de collegaminde a otre site ca vennene libbre nuève e ausete e puà pure acchià cchiù 'mbormaziune sus a le libbre ca tu ste cirche:",
 
 # Special:Log
 'specialloguserlabel'  => 'Utende:',
 'speciallogtitlelabel' => 'Titele:',
 'log'                  => 'Archivije',
 'all-logs-page'        => "Tutte l'archivije",
+'alllogstext'          => "Visualizzazione combinate de tutte le archivije disponibbele sus a {{SITENAME}}.
+Tu puè restringere 'a viste selezionanne 'u tipe de archivije, 'u nome utende (senzibbile a le maiuscole), o le pàggene coinvolte (pure chiste senzibbile a le maiuscole).",
 'logempty'             => "Non ge stè 'n'anema de priatorie jndr'à l'archivije.",
 'log-title-wildcard'   => 'Cirche le titele ca accumenzene cu stu teste',
 
@@ -1527,10 +1539,15 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'allpagesnext'      => 'Prossime',
 'allpagessubmit'    => 'Veje',
 'allpagesprefix'    => "Fa vedè le pàggene cu 'u prefisse:",
+'allpagesbadtitle'  => "'U titele d'a vôsce ca è date ere invalide o tenève 'nu prefisse inter-lènghe o inter-uicchi.
+Pò condenè une  cchiù carattere ca non ge ponne essere ausate jndr'à le titele.",
 'allpages-bad-ns'   => '{{SITENAME}} non ge tène \'u namaspace "$1".',
 
 # Special:Categories
 'categories'                    => 'Le Categorije',
+'categoriespagetext'            => 'Le seguende categorije tènene pàggene o media.
+[[Special:UnusedCategories|Categorije non ausete]] non ge se vèdene aqquà.
+Vide pure [[Special:WantedCategories|Categorije cerchete]].',
 'special-categories-sort-count' => 'ordere pe condegge',
 'special-categories-sort-abc'   => 'ordere alfabbeticamende',
 
@@ -1569,11 +1586,15 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 
 # E-mail user
 'mailnologin'      => 'Nisciune indirizze de invie',
+'mailnologintext'  => "Tu a essere [[Special:UserLogin|collegate]] e a avè 'n'indirizze email valide jndr'à le [[Special:Preferences|preferenze]] tue pe mannà 'na mail a otre utinde.",
 'emailuser'        => "Manne n'email a stu utende",
 'emailpage'        => "E-mail de l'utende",
+'emailpagetext'    => "Tu puè ausà 'a schermate aqquà sotte pe mannà 'n'email a stu utende.
+L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze tue]] iesse jndr'à 'u cambe \"Da\" de l'e-mail, accussìa ce riceve 'a mail sape a ce addà responnere.",
 'usermailererror'  => "L'oggette ''Mail'' ha returnete 'n'errore:",
 'defemailsubject'  => 'e-mail de {{SITENAME}}',
 'noemailtitle'     => 'Nisciune indirizze e-mail',
+'noemailtext'      => "Stu utende non g'à specificate 'n'indirizze e-mail valide.",
 'nowikiemailtitle' => 'Nisciuna e-mail è permesse',
 'email-legend'     => "Manne 'na mail a n'otre utende de {{SITENAME}}",
 'emailfrom'        => 'Da:',
@@ -1587,34 +1608,35 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'emailsenttext'    => "'U messagge email tue ha state mannete.",
 
 # Watchlist
-'watchlist'          => 'Pàggene condrollete',
-'mywatchlist'        => 'Pàggene condrollete',
-'watchlistfor'       => "(pe '''$1''')",
-'nowatchlist'        => "Non ge tine pàggene jndr'à liste de le pàggene condrollete.",
-'watchlistanontext'  => 'Pe piacere $1 pe vedè o cangià le vosce sus a liste de le pàggene condrollete.',
-'watchnologin'       => 'Non ge sinde colleghete',
-'watchnologintext'   => 'Tu a essere [[Special:UserLogin|colleghete]] pe cangià le pàggene condrollete tue.',
-'addedwatch'         => "Mise jndr'à le pàggene condrollete",
-'addedwatchtext'     => "'A pàgene \"[[:\$1]]\" ha state aggiunde jndr'à le [[Special:Watchlist|pàggene condrollete]].
+'watchlist'            => 'Pàggene condrollete',
+'mywatchlist'          => 'Pàggene condrollete',
+'watchlistfor'         => "(pe '''$1''')",
+'nowatchlist'          => "Non ge tine pàggene jndr'à liste de le pàggene condrollete.",
+'watchlistanontext'    => 'Pe piacere $1 pe vedè o cangià le vosce sus a liste de le pàggene condrollete.',
+'watchnologin'         => 'Non ge sinde colleghete',
+'watchnologintext'     => 'Tu a essere [[Special:UserLogin|colleghete]] pe cangià le pàggene condrollete tue.',
+'addedwatch'           => "Mise jndr'à le pàggene condrollete",
+'addedwatchtext'       => "'A pàgene \"[[:\$1]]\" ha state aggiunde jndr'à le [[Special:Watchlist|pàggene condrollete]].
 Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le puè acchià aqquà, e 'a pàgene avène signete cu 'u '''grascette''' jndr'à [[Special:RecentChanges|liste de le cangiaminde recende]] pe facilità l'identificazione.",
-'removedwatch'       => 'Live da le pàggene condrollete',
-'removedwatchtext'   => '\'A pàgene "[[:$1]]" ha state scangillete da [[Special:Watchlist|le pàggene condrollete tue]].',
-'watch'              => 'Condrolle',
-'watchthispage'      => 'Condrolle sta pàgene',
-'unwatch'            => 'No condrollà cchiù',
-'unwatchthispage'    => "No condrollà cchiù 'a pàgene",
-'notanarticle'       => "Non g'è 'na vosce",
-'notvisiblerev'      => "'A revisione ha state scangellete",
-'watchnochange'      => "Niscune de le vôsce condrollete onne state cangete jndr'à 'u periode visualizzate.",
-'watchlist-details'  => "{{PLURAL:$1|$1 pàgene|$1 pàggene}} jndr'à liste de le pàggene condrollete, scartanne le pàggene de le 'ngazzaminde.",
-'wlheader-enotif'    => "* 'A notifiche de le e-mail notification jè abbilitete.",
-'watchmethod-recent' => 'verifiche de le cangiaminde recende pe le pàggene condrollete',
-'watchmethod-list'   => 'stoche a condrolle le pàggene condrollete pe le urteme cangiaminde',
-'watchlistcontains'  => "'A liste de le pàggene condrollete toje condene $1 {{PLURAL:$1|pàgene|pàggene}}.",
-'iteminvalidname'    => "Probbleme cu 'a vosce '$1', nome invalide...",
-'wlnote'             => "Aqquà sotte {{PLURAL:$1|ste l'urteme cangiamende|stonne l'urteme '''$1''' cangiaminde}} jndr'à {{PLURAL:$2|l'urtema ore|l'urteme '''$2''' ore}}.",
-'wlshowlast'         => "Vide l'urteme $1 ore $2 sciurne $3",
-'watchlist-options'  => "Opzione d'a liste de le pàggene condrollete",
+'removedwatch'         => 'Live da le pàggene condrollete',
+'removedwatchtext'     => '\'A pàgene "[[:$1]]" ha state scangillete da [[Special:Watchlist|le pàggene condrollete tue]].',
+'watch'                => 'Condrolle',
+'watchthispage'        => 'Condrolle sta pàgene',
+'unwatch'              => 'No condrollà cchiù',
+'unwatchthispage'      => "No condrollà cchiù 'a pàgene",
+'notanarticle'         => "Non g'è 'na vosce",
+'notvisiblerev'        => "'A revisione ha state scangellete",
+'watchnochange'        => "Niscune de le vôsce condrollete onne state cangete jndr'à 'u periode visualizzate.",
+'watchlist-details'    => "{{PLURAL:$1|$1 pàgene|$1 pàggene}} jndr'à liste de le pàggene condrollete, scartanne le pàggene de le 'ngazzaminde.",
+'wlheader-enotif'      => "* 'A notifiche de le e-mail notification jè abbilitete.",
+'wlheader-showupdated' => "* Le pàggene ca onne cangete da quanne tu l'è visitate sonde visualizzate in '''grascette'''",
+'watchmethod-recent'   => 'verifiche de le cangiaminde recende pe le pàggene condrollete',
+'watchmethod-list'     => 'stoche a condrolle le pàggene condrollete pe le urteme cangiaminde',
+'watchlistcontains'    => "'A liste de le pàggene condrollete toje condene $1 {{PLURAL:$1|pàgene|pàggene}}.",
+'iteminvalidname'      => "Probbleme cu 'a vosce '$1', nome invalide...",
+'wlnote'               => "Aqquà sotte {{PLURAL:$1|ste l'urteme cangiamende|stonne l'urteme '''$1''' cangiaminde}} jndr'à {{PLURAL:$2|l'urtema ore|l'urteme '''$2''' ore}}.",
+'wlshowlast'           => "Vide l'urteme $1 ore $2 sciurne $3",
+'watchlist-options'    => "Opzione d'a liste de le pàggene condrollete",
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Fà vedè...',
@@ -1630,6 +1652,30 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'enotif_lastvisited'           => "Vide $1 pe tutte le cangiaminde da l'urtema visita toje.",
 'enotif_lastdiff'              => 'Vide $1 pe vedè stu cangiamende.',
 'enotif_anon_editor'           => 'Utende anonime $1',
+'enotif_body'                  => 'Care $WATCHINGUSERNAME,
+
+
+\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATE da $PAGEEDITOR, vide $PAGETITLE_URL pa versina corrende.
+
+$NEWPAGE
+
+Riepileghe de le cangiaminde: $PAGESUMMARY $PAGEMINOREDIT
+
+Condatte l\'editore:
+mail: $PAGEEDITOR_EMAIL
+uicchi: $PAGEEDITOR_WIKI
+
+Non ge stonne otre notifiche ce tu face otre cangiaminde senza ca tu visite sta pàgene.
+Tu puè pure azzerà \'a spunde de le notifiche pe tutte le pàggene condrollete jndr\'à lista toje.
+
+             Statte Bbuene, \'u sisteme de notificaziune de {{SITENAME}}
+
+--
+Pe cangià le \'mbostaziune d\'a liste de le pàggene condrollete tue, vè vide
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Segnalaziune e otre assistenze:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => "Scangille 'a pàgene",
@@ -1652,6 +1698,7 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'dellogpage'            => 'Archivie de le scangellaminde',
 'dellogpagetext'        => "Sotte ste 'na liste de le cchiù recende scangellaziune.",
 'deletionlog'           => 'Archivije de le scangellaminde',
+'reverted'              => "Turnà a 'a revisiona cchiù recende",
 'deletecomment'         => "Mutive p'a scangellazione:",
 'deleteotherreason'     => 'Otre mutive de cchiù:',
 'deletereasonotherlist' => 'Otre mutive',
@@ -1665,6 +1712,8 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'rollback_short' => 'Annulle',
 'rollbacklink'   => "annulle 'u cangiaminde",
 'rollbackfailed' => 'Annullamende fallite',
+'cantrollback'   => "Non ge se pò annullà stu cangiamende;
+l'urteme condrebbutore jè sulamende l'autore de sta pàgene.",
 'editcomment'    => "'U riepileghe d'u cangiamende ere: \"''\$1''\".", # only shown if there is an edit comment
 
 # Protect

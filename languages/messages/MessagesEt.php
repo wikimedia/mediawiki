@@ -502,6 +502,8 @@ Seega, hetkel ei saa antud IP kasutajad uusi kontosid avada.',
 'emailconfirmlink'           => 'Kinnita oma e-posti aadress',
 'accountcreated'             => 'Konto loodud',
 'createaccount-title'        => 'Konto loomine portaali {{SITENAME}}',
+'login-throttled'            => 'Sa oled lühikese aja jooksul teinud liiga palju äpardunud katseid selle konto parooli sisestada.
+Palun pea nüüd pisut vahet.',
 'loginlanguagelabel'         => 'Keel: $1',
 
 # Password reset dialog
@@ -675,6 +677,9 @@ Tundub, et see on kustutatud.',
 'edit-already-exists'       => 'Ei saanud alustada uut lehekülge.
 See on juba olemas.',
 
+# Parser/template warnings
+'parser-template-loop-warning' => 'Mallid moodustavad tsükli: [[$1]]',
+
 # "Undo" feature
 'undo-success' => 'Selle redaktsiooni käigus tehtud muudatusi saab eemaldada. Palun kontrolli allolevat võrdlust veendumaks, et tahad need muudatused tõepoolest eemaldada. Seejärel saad lehekülje salvestada.',
 'undo-summary' => 'Tühistati muudatus $1, mille tegi [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]])',
@@ -802,6 +807,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'nextn'                           => 'järgmised $1',
 'viewprevnext'                    => 'Näita ($1) ($2) ($3).',
 'searchmenu-legend'               => 'Otsingu sätted',
+'searchmenu-new'                  => "'''Loo siia wikisse lehekülg pealkirjaga \"[[:\$1]]\"!'''",
 'searchhelp-url'                  => 'Help:Juhend',
 'searchprofile-articles'          => 'Sisuleheküljed',
 'searchprofile-articles-and-proj' => 'Sisu- & projektileheküljed',
@@ -1134,18 +1140,19 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'randomredirect' => 'Juhuslik ümbersuunamine',
 
 # Statistics
-'statistics'               => 'Statistika',
-'statistics-header-pages'  => 'Lehekülgede statistika',
-'statistics-header-edits'  => 'Redigeerimise statistika',
-'statistics-header-users'  => 'Kasutajate statistika',
-'statistics-articles'      => 'Sisulehekülgi',
-'statistics-pages'         => 'Lehekülgi',
-'statistics-files'         => 'Üleslaaditud faile',
-'statistics-edits'         => 'Redigeerimisi alates {{SITENAME}} loomisest',
-'statistics-edits-average' => 'Keskmiselt redigeerimisi lehekülje kohta',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Tööjärje] pikkus',
-'statistics-users'         => 'Registreeritud [[Special:ListUsers|kasutajaid]]',
-'statistics-users-active'  => 'Aktiivseid kasutajaid',
+'statistics'                   => 'Statistika',
+'statistics-header-pages'      => 'Lehekülgede statistika',
+'statistics-header-edits'      => 'Redigeerimise statistika',
+'statistics-header-users'      => 'Kasutajate statistika',
+'statistics-articles'          => 'Sisulehekülgi',
+'statistics-pages'             => 'Lehekülgi',
+'statistics-files'             => 'Üleslaaditud faile',
+'statistics-edits'             => 'Redigeerimisi alates {{SITENAME}} loomisest',
+'statistics-edits-average'     => 'Keskmiselt redigeerimisi lehekülje kohta',
+'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Tööjärje] pikkus',
+'statistics-users'             => 'Registreeritud [[Special:ListUsers|kasutajaid]]',
+'statistics-users-active'      => 'Aktiivseid kasutajaid',
+'statistics-users-active-desc' => 'Kasutajad, kes on viimase {{PLURAL:$1|päeva|$1 päeva}} jooksul tegutsenud',
 
 'disambiguations' => 'Täpsustusleheküljed',
 
@@ -1806,7 +1813,8 @@ Kinnituskood aegub $4.',
 'watchlisttools-raw'  => 'Redigeeri lähtefaili',
 
 # Special:Version
-'version' => 'Versioon', # Not used as normal message but as header for the special page itself
+'version'              => 'Versioon', # Not used as normal message but as header for the special page itself
+'version-specialpages' => 'Erileheküljed',
 
 # Special:FilePath
 'filepath' => 'Failitee',

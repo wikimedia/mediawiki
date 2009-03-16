@@ -2152,6 +2152,7 @@ Kiek [[Special:IPBlockList|IP-Blocklist]] för en List vun den blockten Brukern.
 'block-log-flags-noemail'         => 'E-Mail schrieven sperrt',
 'block-log-flags-nousertalk'      => 'kann de egene Diskuschoonssied nich ännern',
 'block-log-flags-angry-autoblock' => 'utwiedt Autoblock aktiv',
+'block-log-flags-hiddenname'      => 'Brukernaam versteken',
 'range_block_disabled'            => 'De Mööglichkeit, ganze Adressrüüm to sparren, is nich aktiveert.',
 'ipb_expiry_invalid'              => 'De angeven Aflooptiet is nich güllig.',
 'ipb_expiry_temp'                 => 'Versteken Brukernaam-Sperren schöölt duurhaft wesen.',

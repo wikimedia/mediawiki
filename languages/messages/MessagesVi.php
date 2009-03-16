@@ -233,7 +233,7 @@ $messages = array(
 'tog-hideminor'               => 'Ẩn sửa đổi nhỏ trong thay đổi gần đây',
 'tog-hidepatrolled'           => 'Ẩn sửa đổi đã tuần tra trong trang thay đổi gần đây',
 'tog-newpageshidepatrolled'   => 'Ẩn trang đã tuần trang trong danh sách các trang mới',
-'tog-extendwatchlist'         => 'Danh sách theo dõi nhiều chức năng (JavaScript)',
+'tog-extendwatchlist'         => 'Mở rộng danh sách theo dõi để hiển thị tất cả các thay đổi, chứ không chỉ các thay đổi gần đây',
 'tog-usenewrc'                => 'Thay đổi gần đây nhiều chức năng (JavaScript)',
 'tog-numberheadings'          => 'Tự động đánh số các đề mục',
 'tog-showtoolbar'             => 'Hiển thị thanh định dạng (JavaScript)',
@@ -2210,6 +2210,7 @@ $1',
 'block-log-flags-noemail'         => 'cấm thư điện tử',
 'block-log-flags-nousertalk'      => 'không được sửa trang thảo luận của mình',
 'block-log-flags-angry-autoblock' => 'bật tự động cấm nâng cao',
+'block-log-flags-hiddenname'      => 'đã ẩn tên người dùng',
 'range_block_disabled'            => 'Đã tắt khả năng cấm hàng loạt của quản lý.',
 'ipb_expiry_invalid'              => 'Thời điểm hết hạn không hợp lệ.',
 'ipb_expiry_temp'                 => 'Cấm tên người dùng ẩn nên là cấm vô hạn.',
@@ -2337,6 +2338,8 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'export-submit'     => 'Xuất',
 'export-addcattext' => 'Thêm trang từ thể loại:',
 'export-addcat'     => 'Thêm',
+'export-addnstext'  => 'Thêm trang từ không gian tên:',
+'export-addns'      => 'Thêm vào',
 'export-download'   => 'Lưu xuống tập tin',
 'export-templates'  => 'Gồm cả tiêu bản',
 'export-pagelinks'  => 'Gồm cả các trang liên kết sâu đến:',
@@ -3099,13 +3102,14 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
 'intentionallyblankpage' => 'Trang này được chủ định để trắng',
 
 # External image whitelist
-'external_image_whitelist' => ' #Hãy để yên dòng này.<pre>
-#Hãy cho vào các mảnh biểu thức chính quy -- chỉ phần ở giữa đôi dấu chéo (/) -- ở dưới.
-#Các mảnh này sẽ được so với địa chỉ của các hình được nhúng từ bên ngoài.
-#Các trang sẽ hiển thị những hình ảnhy có địa chỉ trùng với nó, còn chỉ liên kết đến các hình ảnh kia.
-#Các dòng chú thích bắt đầu với dấu thăng (#).
+'external_image_whitelist' => ' #Hãy để yên dòng này<pre>
+#Hãy đặt các mẩu biểu thức chính quy (chỉ gồm phần ở giữa //) vào phía dưới
+#Những mẩu này sẽ được so trùng với địa chỉ URL của hình ảnh được nhúng trực tiếp từ bên ngoài
+#Những địa chỉ nào trùng sẽ hiển thị thành hình ảnh, nếu không thì chỉ hiển thị liên kết đến hình
+#Những dòng bắt đầu bằng # được xem là chú thích
+#Không phân biệt chữ hoa chữ thường
 
-#Hãy cho vào các mảnh biểu thức chính quy ở trên dòng này. Xin để yên dòng này.</pre>',
+#Hãy đặt các mẩu biểu thức chính quy ở phía trên dòng này. Hãy để yên dòng này</pre>',
 
 # Special:Tags
 'tags'                    => 'Các thẻ đánh dấu thay đổi hợp lệ',

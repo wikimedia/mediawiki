@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Als-Holder
  * @author SPS
  */
 
@@ -12,12 +13,27 @@ $messages = array(
 'underline-never'   => 'Garnet',
 'underline-default' => 'Des nemme, was em Broweser gsaacht hoscht.',
 
+# Dates
+'january'   => 'Januar',
+'february'  => 'Februar',
+'march'     => 'März',
+'april'     => 'April',
+'may_long'  => 'Mai',
+'june'      => 'Juni',
+'july'      => 'Juli',
+'august'    => 'Auguscht',
+'september' => 'September',
+'october'   => 'Oktower',
+'november'  => 'November',
+'december'  => 'Dezember',
+
 'about'      => 'Iwwer',
 'mytalk'     => 'Gebabbel mit dir.',
 'navigation' => 'Navigation',
 
 'help'           => 'Hilfe',
 'search'         => 'Such',
+'searchbutton'   => 'Suche',
 'go'             => 'Adiggel',
 'history_short'  => 'Versione',
 'permalink'      => 'Permanentlink',

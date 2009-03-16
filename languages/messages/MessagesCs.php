@@ -312,7 +312,7 @@ $messages = array(
 'tog-hideminor'               => 'Skrýt malé editace v posledních změnách',
 'tog-hidepatrolled'           => 'Skrýt patrolované editace v posledních změnách',
 'tog-newpageshidepatrolled'   => 'Skrýt patrolované stránky ze seznamu nových stránek',
-'tog-extendwatchlist'         => 'Rozšířený seznam sledovaných stránek',
+'tog-extendwatchlist'         => 'Na seznamu sledovaných stránek zobrazovat všechny změny, ne jen tu poslední',
 'tog-usenewrc'                => 'Zdokonalené poslední změny (JavaScript)',
 'tog-numberheadings'          => 'Automaticky číslovat nadpisy',
 'tog-showtoolbar'             => 'Ukázat lištu s nástroji při editaci',
@@ -1088,6 +1088,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mergehistory-autocomment'         => 'Sloučena stránka [[:$1]] do stránky [[:$2]]',
 'mergehistory-comment'             => 'Sloučena stránka [[:$1]] do stránky [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Zdrojová a cílová stránka se nemůžou shodovat',
+'mergehistory-reason'              => 'Důvod:',
 
 # Merge log
 'mergelog'           => 'Kniha slučování',
@@ -1179,7 +1180,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'viewprevnext'                     => 'Ukázat ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Možnosti hledání',
 'searchmenu-exists'                => "*Stránka '''[[$1]]'''",
-'searchmenu-new'                   => "'''Vytvořte na této wiki stránku „[[:$1]]”!'''",
+'searchmenu-new'                   => "'''Vytvořte na této wiki stránku „[[:$1]]“!'''",
 'searchhelp-url'                   => 'Help:Obsah',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zobrazit stránky, jejichž název začíná „$1“]]',
 'searchprofile-articles'           => 'Články',
@@ -1380,7 +1381,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'right-browsearchive'        => 'Vyhledávání ve smazaných stránkách',
 'right-undelete'             => 'Obnovování smazaných stránek',
 'right-suppressrevision'     => 'Prohlížení a obnovování revizí skrytých před správci',
-'right-suppressionlog'       => 'Zobrazování skrytých protokolovacích záznamů',
+'right-suppressionlog'       => 'Prohlížení skrytých protokolovacích záznamů',
 'right-block'                => 'Blokování možnosti editace ostatním uživatelům',
 'right-blockemail'           => 'Blokování možnosti poslat e-mail',
 'right-hideuser'             => 'Blokování uživatelského jména a jeho skrytí',
@@ -1434,7 +1435,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'action-browsearchive'        => 'hledat smazané stránky',
 'action-undelete'             => 'obnovit tuto stránku',
 'action-suppressrevision'     => 'zkontrolovat a obnovit tuto skrytou revizi',
-'action-suppressionlog'       => 'zobrazit tento soukromý záznam',
+'action-suppressionlog'       => 'prohlížet si tento skrytý protokolovací záznam',
 'action-block'                => 'znemožnit tomuto uživateli editování',
 'action-protect'              => 'změnit úrovně ochrany této stránky',
 'action-import'               => 'importovat tuto stránku z jiné wiki',
@@ -2152,6 +2153,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Noví uživatelé',
 'sp-contributions-newbies-title' => 'Příspěvky nových uživatelů',
 'sp-contributions-blocklog'      => 'Kniha zablokování',
+'sp-contributions-logs'          => 'záznamy',
 'sp-contributions-search'        => 'Zobrazení příspěvků',
 'sp-contributions-username'      => 'IP adresa nebo uživatelské jméno:',
 'sp-contributions-submit'        => 'Zobrazit',
@@ -2256,6 +2258,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'block-log-flags-noemail'         => 'e-maily zablokovány',
 'block-log-flags-nousertalk'      => 'nemůže editovat svou diskusní stránku',
 'block-log-flags-angry-autoblock' => 'rozšířené automatické blokování zapnuto',
+'block-log-flags-hiddenname'      => 'uživatelské jméno skryto',
 'range_block_disabled'            => 'Blokování rozsahů IP adres je zakázáno.',
 'ipb_expiry_invalid'              => 'Neplatný čas vypršení.',
 'ipb_expiry_temp'                 => 'Blokování skrytých uživatelských jmen by měla být trvalá.',
@@ -2367,6 +2370,8 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'export-submit'     => 'Exportovat',
 'export-addcattext' => 'Přidat stránky z kategorie:',
 'export-addcat'     => 'Přidat',
+'export-addnstext'  => 'Přidat stránky z jmenného prostoru:',
+'export-addns'      => 'Přidat',
 'export-download'   => 'Nabídnout uložení jako soubor',
 'export-templates'  => 'Zahrnout šablony',
 'export-pagelinks'  => 'Zahrnout odkazované stránky až do hloubky:',
@@ -3153,6 +3158,7 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 #Tyto výrazy se aplikují na URL vkládaných externích obrázků.
 #Ty, které vyhoví, se zobrazí jako obrázek; ostatní pouze jako externí odkaz.
 #Řádky začínající znakem # se považují za komentáře.
+#Na velikosti písmen nezáleží.
 
 #Všechny regulární výrazy uveďte nad touto řádkou. Tuto řádku ponechte beze změny.</pre>',
 

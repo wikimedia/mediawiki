@@ -2222,6 +2222,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] se qu
 'block-log-flags-noemail'         => 'correo electrónico bloqueado',
 'block-log-flags-nousertalk'      => 'desactivada a edición da súa conversa',
 'block-log-flags-angry-autoblock' => 'realzou o autobloqueo permitido',
+'block-log-flags-hiddenname'      => 'nome de usuario agochado',
 'range_block_disabled'            => 'A funcionalidade de administrador de crear rangos de bloqueos está deshabilitada.',
 'ipb_expiry_invalid'              => 'Tempo de duración non válido.',
 'ipb_expiry_temp'                 => 'Os bloqueos a nomes de usuario agochados deberían ser permanentes.',

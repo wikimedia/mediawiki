@@ -133,8 +133,8 @@ $messages = array(
 'tog-hideminor'               => 'Itago ang mga maliliit na pagbabago sa mga huling binago',
 'tog-hidepatrolled'           => 'Ikubli ang napatrolyang mga pagbabagong nasa kamakailang mga pagbabago',
 'tog-newpageshidepatrolled'   => 'Itago ang napatrolyang mga pahina mula talaan ng bagong pahina',
-'tog-extendwatchlist'         => 'Palawigin ang talaan ng mga binabantayan upang maipakita ang lahat ng mapapakinabangang mga pagbabago.',
-'tog-usenewrc'                => 'Pinadagdagang huling binago (JavaScript)',
+'tog-extendwatchlist'         => 'Palawigin ang talaan ng mga binabantayan upang maipakita ang lahat ng mga pagbabago, hindi lamang ang pinakakamakailan lamang',
+'tog-usenewrc'                => 'Pinadagdagang huling binago (kailangan ng JavaScript)',
 'tog-numberheadings'          => 'Automatikong bilangin ang mga pamagat',
 'tog-showtoolbar'             => "Ipakita ang ''toolbar'' ng pagbabago (JavaScript)",
 'tog-editondblclick'          => 'Magbago ng mga pahina sa dalawahang pagpindot (JavaScript)',
@@ -2157,6 +2157,7 @@ Tingnan ang [[Special:IPBlockList|talaan ng mga hinarang na/hinadlangang IP]] pa
 'block-log-flags-noemail'         => 'hinadlangan/hinarang ang e-liham',
 'block-log-flags-nousertalk'      => 'hindi mo mababago ang iyong pansariling pahina ng usapan',
 'block-log-flags-angry-autoblock' => 'pinaandar ang pinainam/pinagibayong kusang paghadlang o awtomatikong pagharang',
+'block-log-flags-hiddenname'      => 'nakatago ang pangalan ng tagagamit',
 'range_block_disabled'            => 'Hindi gumagana ang kakayahan ng tagapangasiwa para makalikha ng mga pagharang/paghadlang na may sakop.',
 'ipb_expiry_invalid'              => 'Hindi tama ang oras ng pagtatapos.',
 'ipb_expiry_temp'                 => 'Kinakailangang palagian/permanente ang mga nakatagong pagharang/paghadlang ng pangalan ng tagagamit.',
@@ -2285,6 +2286,8 @@ Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{#Special:Export}}/{{Media
 'export-submit'     => 'Magluwas',
 'export-addcattext' => 'Magdagdag ng mga pahina mula sa kategorya:',
 'export-addcat'     => 'Magdagdag',
+'export-addnstext'  => 'Magdagdag ng mga pahina mula sa espasyo ng pangalan:',
+'export-addns'      => 'Idagdag',
 'export-download'   => 'Itala bilang talaksan',
 'export-templates'  => 'Kabilang ang mga suleras',
 'export-pagelinks'  => 'Isama ang nakakawing na mga pahina magpahanggang sa isang lalim na:',
@@ -3090,13 +3093,13 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 'intentionallyblankpage' => 'Sinadyang walang laman ang pahinang ito',
 
 # External image whitelist
-'external_image_whitelist' => ' #Pabayaang talagang ganito lang ang hanay na ito<pre>
-#Ilagay ang mga piraso ng karaniwang pagpapahayag (iyong bahagi lang na napupunta sa pagitan ng //) sa ibaba
-#Tutugmaan ang mga ito ng mga URL ng panlabas (mga naging "maiinit na kawing") na mga larawan
-#Ang mga magtutugma ay ipapakita bilang mga larawan, kung hindi naman bilang isang kawing lang patungo sa larawan ang ipapakita
-#Itinuturing bilang mga kumento/puna ang mga hanay/hilerang nagsisimula sa #
+'external_image_whitelist' => '  #Pabayaang talagang ganito lang ang hanay na ito<pre>
+#Ilagay ang mga piraso ng karaniwang pagpapahayag (ang bahagi lang na napupunta sa pagitan ng //) sa ibaba
+#Tutugmaan ang mga ito ng mga URL ng panlabas (mainit na kawing) na mga larawan
+#Ang mga magtutugma ay ipapakita bilang mga larawan, kung hindi bilang isang kawing lamang patungo sa larawan ang ipapakita
+#Ituturing bilang mga kumento ang mga hanay na nagsisimula sa #
 
-#Ilagay sa ibabaw ng hanay na ito ang mga piraso ng karaniwang pagpapahayag.  Pabayaang talagang ganito lang ang hanay/hilerang ito</pre>',
+#Ilagay sa ibabaw ng hanay na ito ang mga piraso ng karaniwang pagpapahayag.  Pabayaang ganito lang talaga ang hanay na ito</pre>',
 
 # Special:Tags
 'tags'                    => 'Tanggap na mga tatak ng pagbabago',

@@ -94,7 +94,7 @@ $messages = array(
 'tog-hideminor'               => "Kuzhat ar <i>C'hemmoù nevez</i> dister",
 'tog-hidepatrolled'           => "Kuzhat ar c'hemmoù evezhiet e-touez ar c'hemmoù diwezhañ",
 'tog-newpageshidepatrolled'   => 'Kuzhat ar pajennoù evezhiet diouzh roll ar pajennoù nevez',
-'tog-extendwatchlist'         => 'Implijout ar roll evezhiañ gwellaet evit heuliañ an holl gemmoù',
+'tog-extendwatchlist'         => 'Astenn ar roll evezhiañ a-benn diskouez an holl gemmoù ha neket ar re ziwezhañ hepken.',
 'tog-usenewrc'                => 'Kemmoù nevez gwellaet<br /> (gant merdeerioù zo hepken)',
 'tog-numberheadings'          => 'Niverenniñ emgefre an titloù',
 'tog-showtoolbar'             => 'Diskouez ar varrenn gant ar meuzioù skridaozañ',
@@ -2070,6 +2070,7 @@ Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]]
 'block-log-flags-noemail'         => 'postel stanket',
 'block-log-flags-nousertalk'      => "n'hall ket degas kemmoù war e bajenn gaozeal dezhañ e-unan",
 'block-log-flags-angry-autoblock' => 'Emstankañ gwellaet gweredekaet',
+'block-log-flags-hiddenname'      => 'anv implijer kuzhet',
 'range_block_disabled'            => "Diweredekaet eo bet ar stankañ stuc'hadoù IP.",
 'ipb_expiry_invalid'              => 'amzer termen direizh.',
 'ipb_expiry_temp'                 => "Peurbadus e rank bezañ bloc'hadoù an implijerien guzh.",
@@ -2194,6 +2195,8 @@ Mard eo se e c'hallit ivez implijout ul liamm a seurt gant [[{{#Special:Export}}
 'export-submit'     => 'Ezporzhiañ',
 'export-addcattext' => 'Ouzhpennañ pajennoù ar rummad :',
 'export-addcat'     => 'Ouzhpennañ',
+'export-addnstext'  => 'Ouzhpennañ pajennoù eus an esaouenn anv :',
+'export-addns'      => 'Ouzhpennañ',
 'export-download'   => 'Aotren enrollañ evel ur restr',
 'export-templates'  => 'Lakaat ar patromoù e-barzh ivez',
 'export-pagelinks'  => 'Lakaat ar pajennoù liammet e-barzh betek un donder a :',
@@ -2948,11 +2951,12 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'intentionallyblankpage' => 'A-ratozh e leusker gwenn ar bajenn-mañ',
 
 # External image whitelist
-'external_image_whitelist' => " #Lezel al linenn-mañ tre evel m'emañ<pre>
-#Merkañ an tammoù bommoù reoliek (ar rann zo etre ar //) a-is nemetken
+'external_image_whitelist' => "  #Lezel al linenn-mañ tre evel m'emañ<pre>
+#Merkañ an tammoù bommoù reoliek (ar rann zo etre ar // nemetken) a-is 
 #Klotañ a raint gant URLoù ar skeudennoù diavaez (gourliammet)
 #En em ziskwel evel skeudennoù a raio ar re a glot, evit ar re all e vo diskwelet ul liamm war-du ar skeudenn nemetken
 #Sellet e vo ouzh a linennoù a grog gant # evel ouzh notennoù
+#Kizidik eo ar roll-mañ ouzh an diforc'h etre lizherennoù bihan ha lizherennoù bras
 
 #Merkit holl rannoù ar bommoù reoliek a-us d'al linenn-mañ. Lezit al linenn ziwezhañ-mañ tre evel m'emañ</pre>",
 
