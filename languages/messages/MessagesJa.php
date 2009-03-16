@@ -2198,6 +2198,7 @@ $NEWPAGE
 'block-log-flags-noemail'         => 'メール送信のブロック',
 'block-log-flags-nousertalk'      => '自身の会話ページの編集禁止',
 'block-log-flags-angry-autoblock' => '拡張自動ブロック有効',
+'block-log-flags-hiddenname'      => '利用者名非表示',
 'range_block_disabled'            => '広域ブロックは無効に設定されています。',
 'ipb_expiry_invalid'              => '不正な期間です。',
 'ipb_expiry_temp'                 => '利用者名を秘匿したブロックは無期限でなければなりません。',

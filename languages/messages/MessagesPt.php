@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Jorge Morais
  * @author Leonardo.stabile
  * @author Lijealso
  * @author Lugusto
@@ -228,7 +229,7 @@ $messages = array(
 'february'      => 'fevereiro',
 'march'         => 'março',
 'april'         => 'abril',
-'may_long'      => 'Maio',
+'may_long'      => 'maio',
 'june'          => 'junho',
 'july'          => 'julho',
 'august'        => 'agosto',
@@ -2160,6 +2161,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'block-log-flags-noemail'         => 'impedido de enviar e-mail',
 'block-log-flags-nousertalk'      => 'impossibilitado de editar a própria página de discussão',
 'block-log-flags-angry-autoblock' => 'autobloqueio melhorado activado',
+'block-log-flags-hiddenname'      => 'nome de utilizador ocultado',
 'range_block_disabled'            => 'A funcionalidade de bloquear gamas de IPs encontra-se desactivada.',
 'ipb_expiry_invalid'              => 'Tempo de expiração inválido.',
 'ipb_expiry_temp'                 => 'Bloqueios com nome de utilizador ocultado devem ser permanentes.',

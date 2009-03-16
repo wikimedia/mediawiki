@@ -2209,6 +2209,7 @@ Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos
 'block-log-flags-noemail'         => 'e-mail blocate',
 'block-log-flags-nousertalk'      => 'non pote modificar su proprie pagina de discussion',
 'block-log-flags-angry-autoblock' => 'autoblocadas avantiate activate',
+'block-log-flags-hiddenname'      => 'nomine de usator celate',
 'range_block_disabled'            => 'Le capacitate del administratores a blocar intervallos de adresses IP es disactivate.',
 'ipb_expiry_invalid'              => 'Tempore de expiration invalide.',
 'ipb_expiry_temp'                 => 'Le blocadas de nomines de usator celate debe esser permanente.',

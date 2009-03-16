@@ -284,7 +284,7 @@ $messages = array(
 'tog-hideminor'               => 'Kleine wiezigingen verbargen in leste wiezigingen',
 'tog-hidepatrolled'           => 'Wiezigingen dee emarkeerd bin verbargen in leste wiezigingen',
 'tog-newpageshidepatrolled'   => "Pagina's dee emarkeerd bin verbargen in de lieste mit nieje artikels",
-'tog-extendwatchlist'         => 'Uut-ebreien volglieste',
+'tog-extendwatchlist'         => 'Volglieste uutbreien zodat alle wiezigingen zichbaor bin, en neet allinnig de leste wieziging',
 'tog-usenewrc'                => 'Gebruuk de uut-ebreien pagina "leste wiezigingen" (hierveur he-j JavaScript neudig)',
 'tog-numberheadings'          => 'Koppen vanzelf nummeren',
 'tog-showtoolbar'             => 'Warkbalke weergeven',
@@ -2241,6 +2241,7 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'block-log-flags-noemail'         => "'t versturen van berichen is eblokkeerd",
 'block-log-flags-nousertalk'      => 'kan zien eigen overlegpagina neet bewarken',
 'block-log-flags-angry-autoblock' => 'uut-ebreide autematische blokkering in-eschakeld',
+'block-log-flags-hiddenname'      => 'gebrukersnaam verbörgen',
 'range_block_disabled'            => 'De meugelijkheid veur beheerders um een groep adressen te blokkeren is uut-eschakeld.',
 'ipb_expiry_invalid'              => 'De op-egeven verlooptied is ongeldig.',
 'ipb_expiry_temp'                 => 'Blokkeringen veur verbörgen gebrukers mutten permenent ween.',
@@ -2355,6 +2356,8 @@ A-j dat leste doon willen dan ku-j oek een verwiezing gebruken, bieveurbeeld [[{
 'export-submit'     => 'Uutvoeren',
 'export-addcattext' => "Pagina's toevoegen uut kattegerie:",
 'export-addcat'     => 'Toevoegen',
+'export-addnstext'  => "Pagina's uut de volgende naamruumte toevoegen:",
+'export-addns'      => 'Toevoegen',
 'export-download'   => 'As bestand opslaon',
 'export-templates'  => 'Mit mallen derbie',
 'export-pagelinks'  => "Pagina's waor naor verwezen wonnen opnemen tot:",
@@ -3083,8 +3086,9 @@ Voer de bestansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'external_image_whitelist' => " #Laot disse regel onveraanderd<pre>
 #Hieronder kunnen delen van regeliere uutdrokkingen ('t deel tussen //) an-egeven wonnen.
 #'t Wonnen mit de webadressen van ofbeeldingen uut bronnen van butenof vergeleken
-#Een positief vergeliekingsrisseltaot zörg dertoe dat de ofbeelding weer-egeven wonnen, aanders wonnen de ofbeelding allinnig as verwiezing weer-egeven
+#Een positief vergeliekingsrisseltaot zörg derveur dat de ofbeelding weer-egeven wonnen, aanders wonnen de ofbeelding allinnig as verwiezing weer-egeven
 #Regels dee mit een # beginnen, wonnen as commetaar behaandeld
+#De regels in de lieste bin neet heuflettergeleuvig
 
 #Delen van regeliere uutdrokkingen boven disse regel plaosen. Laot disse regel onveraanderd</pre>",
 

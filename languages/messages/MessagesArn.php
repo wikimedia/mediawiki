@@ -227,6 +227,7 @@ $messages = array(
 'timezoneregion-africa'  => 'Afrika',
 'timezoneregion-america' => 'Amerika',
 'timezoneregion-arctic'  => 'Artiku',
+'timezoneregion-asia'    => 'Asia',
 'timezoneregion-europe'  => 'Ewropa',
 
 # Groups
@@ -252,7 +253,10 @@ $messages = array(
 'rightsnone' => 'chemnorume',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-move' => 'Nengümün tüfachi pakina',
+'action-edit'          => 'Wirin tüfach pakina',
+'action-move'          => 'Nengümün tüfachi pakina',
+'action-delete'        => 'Ñamümün tüfachi pakina',
+'action-browsearchive' => 'Kintun ñamümün pakina',
 
 # Recent changes
 'rcshowhideminor'                   => '$1 wirin pichi',
@@ -392,6 +396,8 @@ $messages = array(
 
 # Block/unblock
 'ipbexpiry'          => 'Afi',
+'ipbreason'          => 'Dungu:',
+'ipbreasonotherlist' => 'Kake dungu:',
 'ipboptions'         => '2 ora:2 hours,1 aṉtü:1 day,3 aṉtü:3 days,1 semana:1 week,2 semana:2 weeks,1 küyeṉ:1 month,3 küyeṉ:3 months,6 küyeṉ:6 months,1 tripantu:1 year,rumel:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'Kakelu',
 'ipblocklist-submit' => 'Kintun',

@@ -167,7 +167,7 @@ $messages = array(
 'tog-hideminor'               => 'Kaŝi malgrandajn redaktetojn ĉe <i>Lastaj ŝanĝoj</i>',
 'tog-hidepatrolled'           => 'Kaŝi patrolitajn redaktojn en lastaj ŝanĝoj',
 'tog-newpageshidepatrolled'   => 'Kaŝi patrolitajn paĝojn de listo de novaj paĝoj',
-'tog-extendwatchlist'         => 'Etendi la atentaron por montri ĉiujn aplikeblajn ŝanĝon',
+'tog-extendwatchlist'         => 'Etendi la atentaron por montri ĉiujn ŝanĝon, ne nur la plej lastaj',
 'tog-usenewrc'                => 'Novstila Lastaj Ŝanĝoj (bezonas JavaSkripton)',
 'tog-numberheadings'          => 'Aŭtomate numerigi sekciojn',
 'tog-showtoolbar'             => 'Montri eldonilaron',
@@ -2152,6 +2152,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'block-log-flags-noemail'         => 'retpoŝto blokita',
 'block-log-flags-nousertalk'      => 'ne povas redakti propran diskuto-paĝon',
 'block-log-flags-angry-autoblock' => 'progresa aŭtoforbaro ebliĝis',
+'block-log-flags-hiddenname'      => 'salutnomo kaŝita',
 'range_block_disabled'            => 'La ebleco de administranto krei forbaritajn intervalojn da IP-adresoj estas malebligita.',
 'ipb_expiry_invalid'              => 'Nevalida blokdaŭro.',
 'ipb_expiry_temp'                 => 'Kaŝitaj salutnomaj blokoj estu daŭraj.',
@@ -3021,8 +3022,9 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 #Ĝi estos kongruita kun la URL-o de eksteraj (ligeblaj) bildoj
 #Kongruantaĵoj estos montritaj kiel bildoj; se ne eble montri, nur ligilo estos montrita
 #Linioj komencantaj kun # estas traktata kiel komentoj.
+#Ĉi tiu estas usklecodistinga.
 
-#Enmetu ĉiujn koderojn pri regulaj esprimoj super ĉi tiu linio. Lasu la linion senŝanĝe.</pre>',
+#Enmetu ĉiujn koderojn de regulaj esprimoj super ĉi tiu linio. Lasu la linion senŝanĝe.</pre>',
 
 # Special:Tags
 'tags'                    => 'Validaj ŝanĝaj etikedoj',

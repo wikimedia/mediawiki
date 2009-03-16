@@ -2077,6 +2077,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'block-log-flags-noemail'         => 'E-Mail-Versand gsperrt',
 'block-log-flags-nousertalk'      => 'derf di eigene Diskussionssyte nit bearbeite',
 'block-log-flags-angry-autoblock' => 'erwyterete Autoblock aktiviert',
+'block-log-flags-hiddenname'      => 'Benutzername versteckt',
 'range_block_disabled'            => 'D Megligkeit, ganzi Adrässryym z sperre, isch nit aktiviert.',
 'ipb_expiry_invalid'              => 'D Duur, wu yygee woren isch, isch nit giltig.',
 'ipb_expiry_temp'                 => 'Versteckti Benutzername-Sperrine solle permanent syy.',

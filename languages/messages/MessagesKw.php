@@ -7,6 +7,7 @@
  * @author Kw-Moon
  * @author MF-Warburg
  * @author Malafaya
+ * @author Mongvras
  */
 
 $messages = array(
@@ -142,6 +143,7 @@ $messages = array(
 'editsectionhint'    => 'Chanjya an tregh: $1',
 'showtoc'            => 'diskwedhes',
 'hidetoc'            => 'kudha',
+'red-link-title'     => '$1 (nyns eus folenn hynwys yndelma na hwath)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Ethygel',

@@ -1240,7 +1240,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher daans tout le contenu 
 
 # Preferences page
 'preferences'               => 'Préférences',
-'mypreferences'             => 'Préférences',
+'mypreferences'             => 'Mes préférences',
 'prefs-edits'               => 'Nombre de modifications :',
 'prefsnologin'              => 'Non connecté',
 'prefsnologintext'          => 'Vous devez être <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} connecté]</span> pour modifier vos préférences d’utilisateur.',
@@ -1947,7 +1947,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 
 # Watchlist
 'watchlist'            => 'Ma liste de suivi',
-'mywatchlist'          => 'ma liste de suivi',
+'mywatchlist'          => 'Ma liste de suivi',
 'watchlistfor'         => "(pour '''$1''')",
 'nowatchlist'          => 'Votre liste de suivi ne référence aucune page.',
 'watchlistanontext'    => 'Veuillez vous $1 pour visualiser ou modifier les éléments de votre liste de suivi.',

@@ -298,7 +298,7 @@ $messages = array(
 'tog-hideminor'               => 'Sakrij manje izmjene na stranici Nedavnih promjena',
 'tog-hidepatrolled'           => 'Sakrij pregledane izmjene u nedavnim promjenama',
 'tog-newpageshidepatrolled'   => 'Sakrij pregledane stranice iz popisa novih stranica',
-'tog-extendwatchlist'         => 'Proširi popis praćenih stranica tako da prikaže sve odgovarajuće promjene',
+'tog-extendwatchlist'         => 'Proširi popis praćenih stranica tako da prikaže sve promjene, ne samo najnovije',
 'tog-usenewrc'                => 'Poboljšan izgled Nedavnih promjena (nije za sve preglednike)',
 'tog-numberheadings'          => 'Automatski označi naslove brojevima',
 'tog-showtoolbar'             => 'Prikaži traku s alatima za uređivanje',
@@ -2264,6 +2264,7 @@ Pogledaj [[Special:IPBlockList|popis blokiranih IP adresa]] za pregled.',
 'block-log-flags-noemail'         => 'e-mail je blokiran',
 'block-log-flags-nousertalk'      => 'bez uređivanja vlastite stranice za razgovor',
 'block-log-flags-angry-autoblock' => 'Poboljšan autoblok uključen',
+'block-log-flags-hiddenname'      => 'suradničko ime skriveno',
 'range_block_disabled'            => 'Isključena je administratorska naredba za blokiranje raspona IP adresa.',
 'ipb_expiry_invalid'              => 'Vremenski rok nije valjan.',
 'ipb_expiry_temp'                 => 'Sakriveni računi bi trebali biti trajno blokirani.',
@@ -2389,6 +2390,8 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{#Special:Export}}/{{
 'export-submit'     => 'Izvezi',
 'export-addcattext' => 'Dodaj stranice iz kategorije:',
 'export-addcat'     => 'Dodaj',
+'export-addnstext'  => 'Dodaj stranice iz imenskog prostora:',
+'export-addns'      => 'Dodaj',
 'export-download'   => 'Ponudi opciju snimanja u datoteku',
 'export-templates'  => 'Uključi predloške',
 'export-pagelinks'  => 'Uključi povezane stranice do dubine od:',
@@ -3125,11 +3128,12 @@ Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 'intentionallyblankpage' => 'Ova stranica je namjerno ostavljena praznom',
 
 # External image whitelist
-'external_image_whitelist' => ' #Ovaj redak ostavite točno ovakvim kakav je<pre>
+'external_image_whitelist' => '#Ovaj redak ostavite točno ovakvim kakav je<pre>
 #Stavite ulomke s regularnim izrazom (samo dio koji ide između //) ispod
 #Ovo će biti usklađeno s URL-ovima vanjskih slika (hotlink)
 #Oni koji se poklapaju će biti prikazani kao slike, u suprotnom će biti prikazana samo poveznica do slike
-#Redovi koji počinju sa # smatraju se komentarom.
+#Redovi koji počinju sa # smatraju se komentarom
+#Ovo je osjetljivo na velika slova
 
 #Stavite sve regularne izraze iznad ovog reda. Ostavite ovaj redak točno ovakvim kakav je</pre>',
 
