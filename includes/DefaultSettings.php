@@ -1306,7 +1306,7 @@ $wgGroupsRemoveFromSelf = array();
 /**
  * Set of available actions that can be restricted via action=protect
  * You probably shouldn't change this.
- * Translated trough restriction-* messages.
+ * Translated through restriction-* messages.
  */
 $wgRestrictionTypes = array( 'edit', 'move' );
 
@@ -2802,17 +2802,17 @@ $wgLocalTZoffset = null;
 
 
 /**
- * When translating messages with wfMsg(), it is not always clear what should be
- * considered UI messages and what shoud be content messages.
+ * When translating messages with wfMsg(), it is not always clear what should
+ * be considered UI messages and what should be content messages.
  *
- * For example, for regular wikipedia site like en, there should be only one
- * 'mainpage', therefore when getting the link of 'mainpage', we should treate
- * it as content of the site and call wfMsgForContent(), while for rendering the
- * text of the link, we call wfMsg(). The code in default behaves this way.
- * However, sites like common do offer different versions of 'mainpage' and the
- * like for different languages. This array provides a way to override the
- * default behavior. For example, to allow language specific mainpage and
- * community portal, set
+ * For example, for the English Wikipedia, there should be only one 'mainpage',
+ * so when getting the link for 'mainpage', we should treat it as site content
+ * and call wfMsgForContent(), but for rendering the text of the link, we call
+ * wfMsg(). The code behaves this way by default. However, sites like the
+ * Wikimedia Commons do offer different versions of 'mainpage' and the like for
+ * different languages. This array provides a way to override the default
+ * behavior. For example, to allow language-specific main page and community
+ * portal, set
  *
  * $wgForceUIMsgAsContentMsg = array( 'mainpage', 'portal-url' );
  */
