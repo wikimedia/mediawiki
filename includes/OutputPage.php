@@ -1479,7 +1479,7 @@ class OutputPage {
 		$ret = '';
 
 		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
-			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?>\n";
+			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
 		}
 
 		$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
