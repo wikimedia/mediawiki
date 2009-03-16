@@ -1276,6 +1276,7 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
  */
 # $wgGroupPermissions['developer']['siteadmin'] = true;
 
+$wgGroupPermissions['bigexport']['override-export-depth']      = true;
 
 /**
  * Implicit groups, aren't shown on Special:Listusers or somewhere else
