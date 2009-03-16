@@ -209,6 +209,7 @@ def GetDefaultWordsTable( src_wordlist, src_tomany, char_conv_table, char_reconv
     return word_reconv_table
 
 def GetManualWordsTable( src_wordlist, conv_table ):
+    src_wordlist = [items.split('#')[0].strip() for items in src_wordlist]
     wordlist = list( set( src_wordlist ) )
     wordlist.sort( key = len, reverse = True )
     reconv_table = {}
@@ -368,12 +369,12 @@ def main():
     s2t_1to1_supp.update( CustomRules( 'simp2trad_supp_set.manual' ) )
     # simpphrases.manual
     text = ReadFile( 'simpphrases.manual' )
-    s_wordlist_manual = text.split()
+    s_wordlist_manual = text.split('\n')
     t2s_word2word_manual = GetManualWordsTable(s_wordlist_manual, s2t_1to1_supp)
     t2s_word2word_manual.update( CustomRules( 'toSimp.manual' ) )
     # tradphrases.manual
     text = ReadFile( 'tradphrases.manual' )
-    t_wordlist_manual = text.split()
+    t_wordlist_manual = text.split('\n')
     s2t_word2word_manual = GetManualWordsTable(t_wordlist_manual, t2s_1to1_supp)
     s2t_word2word_manual.update( CustomRules( 'toTrad.manual' ) )
     # t2s_word2word
