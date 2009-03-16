@@ -1527,7 +1527,7 @@ class OutputPage {
 
 		if ( count( $this->mKeywords ) > 0 ) {
 			$strip = array(
-				"/<.*?>/" => '',
+				"/<.*?" . ">/" => '',
 				"/_/" => ' '
 			);
 			$this->addMeta( 'keywords', preg_replace(array_keys($strip), array_values($strip),implode( ",", $this->mKeywords ) ) );
