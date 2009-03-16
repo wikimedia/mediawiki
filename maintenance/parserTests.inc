@@ -616,7 +616,7 @@ class ParserTest {
 	 * the db will be visible to later tests in the run.
 	 */
 	private function setupDatabase() {
-		global $wgDBprefix;
+		global $wgDBprefix, $wgDBtype;
 		if ( $this->databaseSetupDone ) {
 			return;
 		}
@@ -638,15 +638,16 @@ class ParserTest {
 		$db = wfGetDB( DB_MASTER );
 		$tables = $this->listTables();
 
-		if (!(strcmp($db->getServerVersion(), '4.1') < 0 and stristr($db->getSoftwareLink(), 'MySQL'))) {
+		if ( !( $wgDBtype == 'mysql' && strcmp( $db->getServerVersion(), '4.1' ) < 0 ) ) {
 			# Database that supports CREATE TABLE ... LIKE
-			global $wgDBtype;
+			
 			if( $wgDBtype == 'postgres' ) {
 				$def = 'INCLUDING DEFAULTS';
+				$temporary = 'TEMPORARY';
 			} else {
 				$def = '';
 			}
-			foreach ($tables as $tbl) {
+			foreach ( $tables as $tbl ) {
 				# Clean up from previous aborted run.  So that table escaping
 				# works correctly across DB engines, we need to change the pre-
 				# fix back and forth so tableName() works right.
@@ -655,11 +656,11 @@ class ParserTest {
 				$this->changePrefix( 'parsertest_' );
 				$newTableName = $db->tableName( $tbl );
 
-				if ( $db->tableExists( $tbl ) ) {
-					$db->query("DROP TABLE $newTableName");
+				if ( $db->tableExists( $tbl ) && $wgDBtype != 'postgres' ) {
+					$db->query( "DROP TABLE $newTableName" );
 				}
 				# Create new table
-				$db->query("CREATE $temporary TABLE $newTableName (LIKE $oldTableName $def)");
+				$db->query( "CREATE $temporary TABLE $newTableName (LIKE $oldTableName $def)" );
 			}
 		} else {
 			# Hack for MySQL versions < 4.1, which don't support

@@ -269,6 +269,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   don't use PathInfo or short urls
 * (bug 17990) trackback.php now has a trackback.php5 alias and works with 
   $wgScriptExtension
+* (bug 14990) Parser tests works again with PostgreSQL
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
