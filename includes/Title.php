@@ -3500,9 +3500,9 @@ class Title {
 	 * @return \type{\string} Trackback URL
 	 */
 	public function trackbackURL() {
-		global $wgScriptPath, $wgServer;
+		global $wgScriptPath, $wgServer, $wgScriptExtension;
 
-		return "$wgServer$wgScriptPath/trackback.php?article="
+		return "$wgServer$wgScriptPath/trackback$wgScriptExtension?article="
 			. htmlspecialchars(urlencode($this->getPrefixedDBkey()));
 	}
 

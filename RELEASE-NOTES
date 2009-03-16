@@ -267,7 +267,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   two "page" parameters
 * (bug 17972) Special:FileDuplicateSearch form now works correctly on wikis that
   don't use PathInfo or short urls
-
+* (bug 17990) trackback.php now has a trackback.php5 alias and works with 
+  $wgScriptExtension
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
