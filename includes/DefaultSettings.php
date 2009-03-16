@@ -1997,6 +1997,7 @@ $wgMediaHandlers = array(
 	'image/jpeg' => 'BitmapHandler',
 	'image/png' => 'BitmapHandler',
 	'image/gif' => 'BitmapHandler',
+	'image/tiff' => 'TiffHandler',
 	'image/x-ms-bmp' => 'BmpHandler',
 	'image/x-bmp' => 'BmpHandler',
 	'image/svg+xml' => 'SvgHandler', // official
@@ -2074,6 +2075,16 @@ $wgMaxImageArea = 1.25e7;
  * Defaulting to 1 megapixel (1000x1000)
  */
 $wgMaxAnimatedGifArea = 1.0e6;
+/**
+ * Browsers don't support TIFF inline generally...
+ * For inline display, we need to convert to PNG or JPEG.
+ * Note scaling should work with ImageMagick, but may not with GD scaling.
+ *  // PNG is lossless, but inefficient for photos
+ *  $wgTiffThumbnailType = array( 'png', 'image/png' );
+ *  // JPEG is good for photos, but has no transparency support. Bad for diagrams.
+ *  $wgTiffThumbnailType = array( 'jpg', 'image/jpeg' );
+ */
+$wgTiffThumbnailType = false;
 /**
  * If rendered thumbnail files are older than this timestamp, they
  * will be rerendered on demand as if the file didn't already exist.

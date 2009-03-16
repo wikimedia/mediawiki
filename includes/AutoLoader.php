@@ -189,6 +189,7 @@ $wgAutoloadLocalClasses = array(
 	'StringUtils' => 'includes/StringUtils.php',
 	'TablePager' => 'includes/Pager.php',
 	'ThumbnailImage' => 'includes/MediaTransformOutput.php',
+	'TiffHandler' => 'includes/media/Tiff.php',
 	'TitleDependency' => 'includes/CacheDependency.php',
 	'Title' => 'includes/Title.php',
 	'TitleArray' => 'includes/TitleArray.php',
