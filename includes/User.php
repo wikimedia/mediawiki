@@ -157,6 +157,7 @@ class User {
 		'move-subpages',
 		'nominornewtalk',
 		'noratelimit',
+		'override-export-depth',
 		'patrol',
 		'protect',
 		'proxyunbannable',
