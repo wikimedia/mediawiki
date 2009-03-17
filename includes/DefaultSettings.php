@@ -1259,6 +1259,8 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 # $wgGroupPermissions['bureaucrat']['reset-passwords'] = true;
 // Permission to change users' groups assignments across wikis
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
+// Permission to export pages including linked pages regardless of $wgExportMaxLinkDepth
+#$wgGroupPermissions['bureaucrat']['override-export-depth'] = true;
 
 #$wgGroupPermissions['sysop']['deleterevision']  = true;
 // To hide usernames from users and Sysops
@@ -2298,9 +2300,12 @@ $wgExportAllowListContributors = false ;
  * pages linked to from the pages you specify. Since this number
  * can become *insanely large* and could easily break your wiki,
  * it's disabled by default for now.
+ *
+ * There's a HARD CODED limit of 5 levels of recursion to prevent a
+ * crazy-big export from being done by someone setting the depth
+ * number too high. In other words, last resort safety net.
  */
 $wgExportMaxLinkDepth = 0;
-
 
 /**
  * Edits matching these regular expressions in body text
