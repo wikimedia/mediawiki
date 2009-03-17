@@ -17,6 +17,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 	var $mMinimumTime = 0;
 	var $mProfileID = false;
 	var $trace = "";
+	var $memory = 0;
 
 	function __construct() {
 		global $wgRequestTime, $wgRUstart;
@@ -31,7 +32,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 	function profileIn($functionname) {
 		global $wgDebugFunctionEntry;
 		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), microtime(true), $this->getCpuTime());
-		$this->trace .= str_repeat( " ", count($this->mWorkStack) + 14) . " > " . $functionname . "\n";
+		$this->trace .= "         " . sprintf("%6.1f",$this->memoryDiff()) . str_repeat( " ", count($this->mWorkStack)) . " > " . $functionname . "\n";
 	}
 
 	function profileOut($functionname) {
@@ -56,8 +57,14 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 			}
 			$elapsedcpu = $this->getCpuTime() - $octime;
 			$elapsedreal = microtime(true) - $ortime;
-			$this->trace .= sprintf("%03.6f      ",$elapsedreal) .  str_repeat(" ",count($this->mWorkStack)+1) . " < " . $functionname . "\n";
+			$this->trace .= sprintf("%03.6f %6.1f",$elapsedreal,$this->memoryDiff()) .  str_repeat(" ",count($this->mWorkStack)+1) . " < " . $functionname . "\n";
 		}
+	}
+	
+	function memoryDiff() {
+		$diff = memory_get_usage() - $this->memory;
+		$this->memory = memory_get_usage();
+		return $diff/1024;
 	}
 
 	function getOutput() {
