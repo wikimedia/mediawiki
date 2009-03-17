@@ -345,7 +345,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$this->protections[$row->page_namespace][$row->page_title][] = $a;
 
 				# Also check old restrictions
-				if($pageRestrictions[$row->pr_page]) {
+				if($this->pageRestrictions[$row->pr_page]) {
 					$restrictions = explode(':', trim($this->pageRestrictions[$row->pr_page]));
 					foreach($restrictions as $restrict) {
 						$temp = explode('=', trim($restrict));
