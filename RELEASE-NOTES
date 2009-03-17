@@ -276,6 +276,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14990) Parser tests works again with PostgreSQL
 * (bug 11487) Special:Protectedpages doesn't list protections with pr_expiry
   IS NULL
+* (bug 18018) Deleting a file redirect leaves behind a malfunctioning redirect
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

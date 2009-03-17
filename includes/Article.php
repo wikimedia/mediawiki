@@ -3310,6 +3310,8 @@ class Article {
 			$user = User::newFromName( $title->getText(), false );
 			$user->setNewtalk( false );
 		}
+		# Image redirects
+		RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $title );
 	}
 
 	/**
