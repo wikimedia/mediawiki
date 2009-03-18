@@ -3378,7 +3378,7 @@ class Parser
 		}
 
 		# Inhibit editsection links if requested in the page
-		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
+		if ( isset( $this->mDoubleUnderscores['noeditsection'] )  || $this->mOptions->getIsPrintable() ) {
 			$showEditLink = 0;
 		}
 

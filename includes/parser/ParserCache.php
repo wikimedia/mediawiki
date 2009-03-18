@@ -26,8 +26,11 @@ class ParserCache {
 		$this->mMemc =& $memCached;
 	}
 
-	function getKey( &$article, &$user ) {
-		global $action;
+	function getKey( &$article, $popts ) {
+		global $wgRequest;
+		
+		$user = $popts->mUser;
+		$printable = ( $popts->getIsPrintable() ) ? '!printable=1' : '';
 		$hash = $user->getPageRenderingHash();
 		if( !$article->mTitle->quickUserCan( 'edit' ) ) {
 			// section edit links are suppressed even if the user has them on
@@ -36,21 +39,21 @@ class ParserCache {
 			$edit = '';
 		}
 		$pageid = $article->getID();
-		$renderkey = (int)($action == 'render');
-		$key = wfMemcKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}{$edit}" );
+		$renderkey = (int)($wgRequest->getVal('action') == 'render');
+		$key = wfMemcKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}{$edit}{$printable}" );
 		return $key;
 	}
 
-	function getETag( &$article, &$user ) {
-		return 'W/"' . $this->getKey($article, $user) . "--" . $article->mTouched. '"';
+	function getETag( &$article, $popts ) {
+		return 'W/"' . $this->getKey($article, $popts) . "--" . $article->mTouched. '"';
 	}
 
-	function get( &$article, &$user ) {
+	function get( &$article, $popts ) {
 		global $wgCacheEpoch;
 		$fname = 'ParserCache::get';
 		wfProfileIn( $fname );
 
-		$key = $this->getKey( $article, $user );
+		$key = $this->getKey( $article, $popts );
 
 		wfDebug( "Trying parser cache $key\n" );
 		$value = $this->mMemc->get( $key );
@@ -86,9 +89,9 @@ class ParserCache {
 		return $value;
 	}
 
-	function save( $parserOutput, &$article, &$user ){
+	function save( $parserOutput, &$article, $popts ){
 		global $wgParserCacheExpireTime;
-		$key = $this->getKey( $article, $user );
+		$key = $this->getKey( $article, $popts );
 
 		if( $parserOutput->getCacheTime() != -1 ) {
 

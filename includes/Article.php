@@ -727,6 +727,11 @@ class Article {
 		global $wgUseTrackbacks, $wgNamespaceRobotPolicies, $wgArticleRobotPolicies;
 		global $wgDefaultRobotPolicy;
 
+		# Let the parser know if this is the printable version
+		if( $wgOut->isPrintable() ) {
+			$wgOut->parserOptions()->setIsPrintable( true );
+		}
+		
 		wfProfileIn( __METHOD__ );
 
 		# Get variables from query string
@@ -737,7 +742,7 @@ class Article {
 			global $wgUseETag;
 			if( $wgUseETag ) {
 				$parserCache = ParserCache::singleton();
-				$wgOut->setETag( $parserCache->getETag($this,$wgUser) );
+				$wgOut->setETag( $parserCache->getETag($this, $wgOut->parserOptions()) );
 			}
 			# Is is client cached?
 			if( $wgOut->checkLastModified( $this->getTouched() ) ) {
@@ -862,7 +867,7 @@ class Article {
 
 		$outputDone = false;
 		wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$pcache ) );
-		if( $pcache && $wgOut->tryParserCache( $this, $wgUser ) ) {
+		if( $pcache && $wgOut->tryParserCache( $this ) ) {
 			// Ensure that UI elements requiring revision ID have
 			// the correct version information.
 			$wgOut->setRevisionId( $this->mLatest );
@@ -939,7 +944,7 @@ class Article {
 					}
 					// Is this the current revision and otherwise cacheable? Try the parser cache...
 					if( $oldid === $this->getLatest() && $this->useParserCache( false )
-						&& $wgOut->tryParserCache( $this, $wgUser ) )
+						&& $wgOut->tryParserCache( $this ) )
 					{
 						$outputDone = true;
 					}
@@ -2916,8 +2921,11 @@ class Article {
 
 		# Save it to the parser cache
 		if( $wgEnableParserCache ) {
+			$popts = new ParserOptions;
+			$popts->setTidy( true );
+			$popts->enableLimitReport();
 			$parserCache = ParserCache::singleton();
-			$parserCache->save( $editInfo->output, $this, $wgUser );
+			$parserCache->save( $editInfo->output, $this, $popts );
 		}
 
 		# Update the links tables
@@ -3551,7 +3559,7 @@ class Article {
 		$popts->enableLimitReport( false );
 		if( $wgEnableParserCache && $cache && $this && $parserOutput->getCacheTime() != -1 ) {
 			$parserCache = ParserCache::singleton();
-			$parserCache->save( $parserOutput, $this, $wgUser );
+			$parserCache->save( $parserOutput, $this, $popts );
 		}
 		// Make sure file cache is not used on uncacheable content.
 		// Output that has magic words in it can still use the parser cache

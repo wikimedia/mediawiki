@@ -105,7 +105,7 @@ class ApiParse extends ApiBase {
 					$p_result = $wgParser->parse($articleObj->getContent(), $titleObj, $popts);
 					global $wgUseParserCache;
 					if($wgUseParserCache)
-						$pcache->save($p_result, $articleObj, $wgUser);
+						$pcache->save($p_result, $articleObj, $popts);
 				}
 			}
 		}
