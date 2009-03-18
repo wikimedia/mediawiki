@@ -224,9 +224,9 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		$text = preg_replace("#api\\.php\\?[^ \\()<\n\t]+#", '<a href="\\0">\\0</a>', $text);
 		if( $this->mHelp ) {
 			// make strings inside * bold
-			$text = ereg_replace("\\*[^<>\n]+\\*", '<b>\\0</b>', $text);
+			$text = preg_replace("#\\*[^<>\n]+\\*#", '<b>\\0</b>', $text);
 			// make strings inside $ italic
-			$text = ereg_replace("\\$[^<>\n]+\\$", '<b><i>\\0</i></b>', $text);
+			$text = preg_replace("#\\$[^<>\n]+\\$#", '<b><i>\\0</i></b>', $text);
 		}
 
 		/* Temporary fix for bad links in help messages. As a special case,
