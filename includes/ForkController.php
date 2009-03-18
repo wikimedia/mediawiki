@@ -151,6 +151,7 @@ class ForkController {
 		global $wgMemc, $wgMainCacheType;
 		$wgMemc = wfGetCache( $wgMainCacheType );
 		$this->children = null;
+		pcntl_signal( SIGTERM, SIG_DFL );		
 	}
 
 	protected function handleTermSignal( $signal ) {
