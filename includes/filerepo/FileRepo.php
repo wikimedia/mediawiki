@@ -590,4 +590,12 @@ abstract class FileRepo {
 		}
 		return wfMsg( 'shared-repo' ); 
 	}
+	
+	function getSlaveDB() {
+		return wfGetDB( DB_SLAVE );
+	}
+
+	function getMasterDB() {
+		return wfGetDB( DB_MASTER );
+	}
 }
