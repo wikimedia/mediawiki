@@ -48,6 +48,7 @@ function wfStreamFile( $fname, $headers = array() ) {
 		$modsince = preg_replace( '/;.*$/', '', $_SERVER['HTTP_IF_MODIFIED_SINCE'] );
 		$sinceTime = strtotime( $modsince );
 		if ( $stat['mtime'] <= $sinceTime ) {
+			ini_set('zlib.output_compression', 0);
 			header( "HTTP/1.0 304 Not Modified" );
 			return;
 		}
