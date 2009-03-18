@@ -441,6 +441,7 @@ $isWatch: (No longer used)
 $section: (No longer used)
 $flags: Flags passed to Article::doEdit()
 $revision: New Revision of the article
+$baseRevId: the rev ID (or false) this edit was based on
 
 'ArticleUndelete': When one or more revisions of an article are restored
 $title: Title corresponding to the article restored
