@@ -11,9 +11,19 @@
 class SpecialResetpass extends SpecialPage {
 
 	private $mSelfChange = true; // Usually, but sometimes not :)
+	private $mUser = null; // The user requesting the reset
 
 	public function __construct() {
 		parent::__construct( 'Resetpass' );
+	}
+	
+	/**
+	 * Sometimes the user requesting the password change is not $wgUser
+	 * See bug 17722
+	 * @param User $usr
+	 */
+	public function setUser( $usr ) {
+		$this->mUser = $usr;
 	}
 
 	/**
@@ -28,6 +38,10 @@ class SpecialResetpass extends SpecialPage {
 		$this->mRetype = $wgRequest->getVal( 'wpRetype' );
 		$this->mComment = $wgRequest->getVal( 'wpComment' );
 		
+		if ( is_null( $this->mUser ) ) {
+			$this->mUser = $wgUser;
+		}
+		
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -38,25 +52,25 @@ class SpecialResetpass extends SpecialPage {
 		
 		// Default to our own username when not given one
 		if ( !$this->mUserName ) {
-			$this->mUserName = $wgUser->getName();
+			$this->mUserName = $this->mUser->getName();
 		}
 		
 		// Are we changing our own?
-		if ( $wgUser->getName() != $this->mUserName  ) {
+		if ( $this->mUser->getName() != $this->mUserName  ) {
 			$this->mSelfChange = false; // We're changing someone else
 		}
 
-		if( !$wgRequest->wasPosted() && !$wgUser->isLoggedIn() ) {
+		if( !$wgRequest->wasPosted() && !$this->mUser->isLoggedIn() ) {
 			$this->error( wfMsg( 'resetpass-no-info' ) );
 			return;
 		}
 
-		if ( !$this->mSelfChange && !$wgUser->isAllowed( 'reset-passwords' ) ) {
+		if ( !$this->mSelfChange && !$this->mUser->isAllowed( 'reset-passwords' ) ) {
 			$this->error( wfMsg( 'resetpass-no-others' ) );
 			return;
 		}
 
-		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal('token') ) ) {
+		if( $wgRequest->wasPosted() && $this->mUser->matchEditToken( $wgRequest->getVal('token') ) ) {
 			try {
 				$this->attemptReset( $this->mNewpass, $this->mRetype );
 				$wgOut->addWikiMsg( 'resetpass_success' );
@@ -96,14 +110,14 @@ class SpecialResetpass extends SpecialPage {
 
 		$wgOut->disallowUserJs();
 		
-		if ( $wgUser->isAllowed( 'reset-passwords') ) {
+		if ( $this->mUser->isAllowed( 'reset-passwords') ) {
 			$wgOut->addScriptFile( 'changepassword.js' );
 		}
 
 		$self = SpecialPage::getTitleFor( 'Resetpass' );
 
 		$rememberMe = '';
-		if ( !$wgUser->isLoggedIn() ) {
+		if ( !$this->mUser->isLoggedIn() ) {
 			$rememberMe = '<tr>' .
 				'<td></td>' .
 				'<td class="mw-input">' .
@@ -124,16 +138,16 @@ class SpecialResetpass extends SpecialPage {
 					'method' => 'post',
 					'action' => $self->getLocalUrl(),
 					'id' => 'mw-resetpass-form' ) ) .	
-			Xml::hidden( 'token', $wgUser->editToken() ) .
+			Xml::hidden( 'token', $this->mUser->editToken() ) .
 			Xml::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) .
 			wfMsgExt( 'resetpass_text', array( 'parse' ) ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) );
 		$formElements = array(
-				array( 'wpName', 'username', 'text', $this->mUserName, $wgUser->isAllowed( 'reset-passwords' ) ),
+				array( 'wpName', 'username', 'text', $this->mUserName, $this->mUser->isAllowed( 'reset-passwords' ) ),
 				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass, $this->mSelfChange ),
 				array( 'wpNewPassword', 'newpassword', 'password', '', true ),
 				array( 'wpRetype', 'retypenew', 'password', '', true ) );
-		if ( $wgUser->isAllowed( 'reset-passwords' ) && $this->mSelfChange )
+		if ( $this->mUser->isAllowed( 'reset-passwords' ) && $this->mSelfChange )
 			$formElements[] = array( 'wpComment', 'resetpass-comment', 'text', $this->mComment, true );
 		$s .= $this->pretty( $formElements ) .
 			$rememberMe .
