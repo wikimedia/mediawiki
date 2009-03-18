@@ -247,16 +247,16 @@ abstract class ApiBase {
 
 			if ($this->getMain()->getShowVersions()) {
 				$versions = $this->getVersion();
-				$pattern = '(\$.*) ([0-9a-z_]+\.php) (.*\$)';
+				$pattern = '/(\$.*) ([0-9a-z_]+\.php) (.*\$)/i';
 				$replacement = '\\0' . "\n    " . 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/api/\\2';
 
 				if (is_array($versions)) {
 					foreach ($versions as &$v)
-						$v = eregi_replace($pattern, $replacement, $v);
+						$v = preg_replace($pattern, $replacement, $v);
 					$versions = implode("\n  ", $versions);
 				}
 				else
-					$versions = eregi_replace($pattern, $replacement, $versions);
+					$versions = preg_replace($pattern, $replacement, $versions);
 
 				$msg .= "Version:\n  $versions\n";
 			}
