@@ -155,6 +155,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'mytalk'         => 'Pikir alyşma sahypam',
 'anontalk'       => 'Bu IP-niň habarlaşyklary',
 'navigation'     => 'Saýtda ugur kesgitleme',
+'and'            => '&#32;we',
 
 # Metadata in edit box
 'metadata_help' => 'Meta-maglumat:',
@@ -519,7 +520,7 @@ Gözlegiňiziň başyna '''all:''' pristawkasyny goşup tutuş mazmuny (şol san
 'uploadnewversion-linktext' => 'Bu faýlyň täze wersiýasyny ýükläň',
 
 # Random page
-'randompage' => 'Mesaýy sahypa',
+'randompage' => 'Mesaýy makala',
 
 # Statistics
 'statistics' => 'Statistika',
