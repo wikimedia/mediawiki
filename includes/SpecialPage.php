@@ -715,7 +715,9 @@ class SpecialPage
 	 *   pages?
 	 */
 	public function isRestricted() {
-		return $this->mRestriction != '';
+		global $wgGroupPermissions;
+		// DWIM: If all anons can do something, then it is not restricted
+		return $this->mRestriction != '' && empty($wgGroupPermissions['*'][$this->mRestriction]);
 	}
 
 	/**
