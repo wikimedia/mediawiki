@@ -10,14 +10,6 @@ class LocalRepo extends FSRepo {
 	var $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
 	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
 
-	function getSlaveDB() {
-		return wfGetDB( DB_SLAVE );
-	}
-
-	function getMasterDB() {
-		return wfGetDB( DB_MASTER );
-	}
-
 	function getMemcKey( $key ) {
 		return wfWikiID( $this->getSlaveDB() ) . ":{$key}";
 	}
