@@ -1771,7 +1771,7 @@ class Article {
 		$status->value['revision'] = $revision;
 
 		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $text, $summary,
-			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status ) );
+			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId ) );
 
 		wfProfileOut( __METHOD__ );
 		return $status;
