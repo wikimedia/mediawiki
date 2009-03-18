@@ -60,7 +60,7 @@ while ( $dbw->selectField( 'job', 'job_id', $conds, 'runJobs.php' ) ) {
 		$status = $job->run();
 		$t = microtime( true ) - $t;
 		$timeMs = intval( $t * 1000 );
-		if ( !$job->run() ) {
+		if ( !$status ) {
 			runJobsLog( $job->toString() . " t=$timeMs error={$job->error}" );
 		} else {
 			runJobsLog( $job->toString() . " t=$timeMs good" );
