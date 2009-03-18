@@ -762,6 +762,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik otsiduq sõnaq).',
 'powersearch'               => 'Otsminõ',
 'powersearch-legend'        => 'Laendõt otsminõ',
+'powersearch-redir'         => 'Loeq üles ümbresaatmisõq',
 'search-external'           => 'Väline otsminõ',
 'searchdisabled'            => "{{SITENAME}} otsminõ parhillaq ei tüütäq. Niikavva, ku otsminõ jälq tüüle saa, võit pruukiq otsmisõs alanolõvat Google'i otsikasti, a näide teedüs {{SITENAME}} sisust pruugi-i ollaq alasi kõgõ värskimb.",
 

@@ -267,11 +267,11 @@ $messages = array(
 'category-empty'                 => "''Denne kategori indeholder for øjeblikket hverken sider eller medie-filer.''",
 'hidden-categories'              => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
 'hidden-category-category'       => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Denne kategori har en underkategori.|Denne kategori indeholder nedenstående {{PLURAL:$1|underkategori|$1 underkategorier}}, af ialt $2.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Denne kategori har en underkategori.|Denne kategori indeholder nedenstående {{PLURAL:$1|underkategori|$1 underkategorier}}, af i alt $2.}}',
 'category-subcat-count-limited'  => 'Denne kategori indeholder {{PLURAL:$1|underkategori|$1 underkategorier}}.',
-'category-article-count'         => 'Denne kategori indeholder {{PLURAL:$2|kun den nedenstående side|{{PLURAL:$1|den nedenstående side|de nedenstående $1 sider}} af ialt $2.}}',
+'category-article-count'         => 'Denne kategori indeholder {{PLURAL:$2|kun den nedenstående side|{{PLURAL:$1|den nedenstående side|de nedenstående $1 sider}} af i alt $2.}}',
 'category-article-count-limited' => 'Kategorien indeholder {{PLURAL:$1|den nedenstående side|de nedenstående $1 sider}}.',
-'category-file-count'            => 'Denne kategori indeholder {{PLURAL:$2|kun den nedenstående fil|{{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}} af ialt $2.}}',
+'category-file-count'            => 'Denne kategori indeholder {{PLURAL:$2|kun den nedenstående fil|{{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}} af i alt $2.}}',
 'category-file-count-limited'    => 'Kategorien indeholder {{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}}.',
 'listingcontinuesabbrev'         => ' forts.',
 

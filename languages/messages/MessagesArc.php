@@ -18,46 +18,50 @@ $defaultUserOptionOverrides = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-hideminor' => 'ܛܫܝ ܫ̈ܚܠܦܬܐ ܙܥܘܪ̈ܬܐ ܒܫ̈ܚܠܦܬܐ ܚ̈ܕܬܬܐ',
+
 # Dates
-'sunday'      => 'ܚܕܒܫܒܐ',
-'monday'      => 'ܬܪܝܢܒܫܒܐ',
-'tuesday'     => 'ܬܠܬܒܫܒܐ',
-'wednesday'   => 'ܐܪܒܥܒܫܒܐ',
-'thursday'    => 'ܚܡܫܒܫܒܐ',
-'friday'      => 'ܥܪܘܒܬܐ',
-'saturday'    => 'ܫܒܬܐ',
-'sun'         => 'ܚܕܒܫܒܐ',
-'mon'         => 'ܬܪܝܢܒܫܒܐ',
-'tue'         => 'ܬܠܬܒܫܒܐ',
-'wed'         => 'ܐܪܒܥܒܫܒܐ',
-'thu'         => 'ܚܡܫܒܫܒܐ',
-'fri'         => 'ܥܪܘܒܬܐ',
-'sat'         => 'ܫܒܬܐ',
-'january'     => 'ܟܢܘܢ ܬܪܝܢܐ',
-'february'    => 'ܫܒܛ',
-'march'       => 'ܐܕܪ',
-'april'       => 'ܢܝܣܢ',
-'may_long'    => 'ܐܝܪ',
-'june'        => 'ܚܙܝܪܢ',
-'july'        => 'ܬܡܘܙ',
-'august'      => 'ܐܒ',
-'september'   => 'ܐܝܠܘܠ',
-'october'     => 'ܬܫܪܝܢ ܩܕܝܡ',
-'november'    => 'ܬܫܪܝܢ ܬܪܝܢܐ',
-'december'    => 'ܟܢܘܢ ܩܕܝܡ',
-'january-gen' => 'ܟܢܘܢ ܬܪܝܢܐ',
-'jan'         => 'ܟܢܘܢ ܒ',
-'feb'         => 'ܫܒܛ',
-'mar'         => 'ܐܕܪ',
-'apr'         => 'ܢܝܣܢ',
-'may'         => 'ܐܝܪ',
-'jun'         => 'ܚܙܝܪܢ',
-'jul'         => 'ܬܡܘܙ',
-'aug'         => 'ܐܒ',
-'sep'         => 'ܐܝܠܘܠ',
-'oct'         => 'ܬܫܪܝܢ ܐ',
-'nov'         => 'ܬܫܪܝܢ ܒ',
-'dec'         => 'ܟܢܘܢ ܐ',
+'sunday'       => 'ܚܕܒܫܒܐ',
+'monday'       => 'ܬܪܝܢܒܫܒܐ',
+'tuesday'      => 'ܬܠܬܒܫܒܐ',
+'wednesday'    => 'ܐܪܒܥܒܫܒܐ',
+'thursday'     => 'ܚܡܫܒܫܒܐ',
+'friday'       => 'ܥܪܘܒܬܐ',
+'saturday'     => 'ܫܒܬܐ',
+'sun'          => 'ܚܕܒܫܒܐ',
+'mon'          => 'ܬܪܝܢܒܫܒܐ',
+'tue'          => 'ܬܠܬܒܫܒܐ',
+'wed'          => 'ܐܪܒܥܒܫܒܐ',
+'thu'          => 'ܚܡܫܒܫܒܐ',
+'fri'          => 'ܥܪܘܒܬܐ',
+'sat'          => 'ܫܒܬܐ',
+'january'      => 'ܟܢܘܢ ܬܪܝܢܐ',
+'february'     => 'ܫܒܛ',
+'march'        => 'ܐܕܪ',
+'april'        => 'ܢܝܣܢ',
+'may_long'     => 'ܐܝܪ',
+'june'         => 'ܚܙܝܪܢ',
+'july'         => 'ܬܡܘܙ',
+'august'       => 'ܐܒ',
+'september'    => 'ܐܝܠܘܠ',
+'october'      => 'ܬܫܪܝܢ ܩܕܝܡ',
+'november'     => 'ܬܫܪܝܢ ܬܪܝܢܐ',
+'december'     => 'ܟܢܘܢ ܩܕܝܡ',
+'january-gen'  => 'ܟܢܘܢ ܬܪܝܢܐ',
+'february-gen' => 'ܫܒܛ',
+'jan'          => 'ܟܢܘܢ ܒ',
+'feb'          => 'ܫܒܛ',
+'mar'          => 'ܐܕܪ',
+'apr'          => 'ܢܝܣܢ',
+'may'          => 'ܐܝܪ',
+'jun'          => 'ܚܙܝܪܢ',
+'jul'          => 'ܬܡܘܙ',
+'aug'          => 'ܐܒ',
+'sep'          => 'ܐܝܠܘܠ',
+'oct'          => 'ܬܫܪܝܢ ܐ',
+'nov'          => 'ܬܫܪܝܢ ܒ',
+'dec'          => 'ܟܢܘܢ ܐ',
 
 'article'        => 'ܡܓܠܬܐ',
 'newwindow'      => '(ܦܬܚ ܒܟܘܬܐ ܚܕܬܐ)',
@@ -71,7 +75,7 @@ $messages = array(
 'navigation'     => 'ܐܠܦܪܘܬܐ',
 'and'            => '&#32;ܘ',
 
-'errorpagetitle'    => 'ܛܥܝܘܬܐ',
+'errorpagetitle'    => 'ܦܘܕܐ',
 'help'              => 'ܥܘܕܪܢܐ',
 'search'            => 'ܒܨܐ',
 'searchbutton'      => 'ܒܨܝ',
@@ -83,7 +87,9 @@ $messages = array(
 'permalink'         => 'ܐܣܪܐ ܦܝܘܫܐ',
 'print'             => 'ܛܒܘܥ',
 'edit'              => 'ܫܚܠܦ',
+'create'            => 'ܒܪܝ',
 'editthispage'      => 'ܫܚܠܦ ܗܕܐ ܦܐܬܐ',
+'create-this-page'  => 'ܒܪܝ ܗܕܐ ܦܐܬܐ',
 'delete'            => 'ܫܘܦ',
 'deletethispage'    => 'ܫܘܦ ܗܕܐ ܦܐܬܐ',
 'protect'           => 'ܚܡܝ',
@@ -92,10 +98,12 @@ $messages = array(
 'unprotectthispage' => 'ܠܐ ܚܡܝ ܗܕܐ ܦܐܬܐ',
 'newpage'           => 'ܦܐܬܐ ܚܕܬܐ',
 'talkpage'          => 'ܕܪܘܫ ܗܕܐ ܦܐܬܐ',
-'specialpage'       => 'ܦܐܬܐ ܝܚܝܕܬܐ',
+'specialpage'       => 'ܦܐܬܐ ܕܝܠܢܝܬܐ',
 'talk'              => 'ܕܘܪܫܐ',
-'toolbox'           => 'ܡܐܢ̈ܐ',
-'imagepage'         => 'ܚܙܝ ܕܦܐ ܕܨܘܪܬܐ',
+'toolbox'           => 'ܣܢܕܘܩܐ ܕܡܐܢ̈ܐ',
+'imagepage'         => 'ܚܙܝ ܦܐܬܐ ܕܠܦܦܐ',
+'mediawikipage'     => 'ܚܙܝ ܦܐܬܐ ܕܐܓܪܬܐ',
+'templatepage'      => 'ܚܙܝ ܦܐܬܐ ܕܩܠܒܐ',
 'viewhelppage'      => 'ܚܙܝ ܦܐܬܐ ܕܥܘܕܪܢܐ',
 'viewtalkpage'      => 'ܚܙܝ ܕܘܪܫܐ',
 'otherlanguages'    => 'ܠܫܢ̈ܐ ܐܚܪ̈ܢܐ',
@@ -112,13 +120,16 @@ $messages = array(
 'portal'               => 'ܬܪܥܐ ܕܟܢܫܐ',
 'portal-url'           => 'Project:ܬܪܥܐ ܕܟܢܫܐ',
 
-'ok'              => 'ܛܒ',
-'newmessageslink' => 'ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ',
-'editsection'     => 'ܫܚܠܦ',
-'editold'         => 'ܫܚܠܦ',
-'toc'             => 'ܚ̈ܒܝܫܬܐ',
-'showtoc'         => 'ܚܘܝ',
-'hidetoc'         => 'ܛܫܝ',
+'ok'                  => 'ܛܒ',
+'newmessageslink'     => 'ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ',
+'newmessagesdifflink' => 'ܫܚܠܦܬܐ ܐܚܪܝܬܐ',
+'editsection'         => 'ܫܚܠܦ',
+'editold'             => 'ܫܚܠܦ',
+'viewsourceold'       => 'ܚܙܝ ܥܩܪܐ',
+'viewsourcelink'      => 'ܚܙܝ ܥܩܪܐ',
+'toc'                 => 'ܚ̈ܒܝܫܬܐ',
+'showtoc'             => 'ܚܘܝ',
+'hidetoc'             => 'ܛܫܝ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ܦܐܬܐ',
@@ -128,19 +139,22 @@ $messages = array(
 'nstab-category'  => 'ܣܕܪܐ',
 
 # General errors
-'error'      => 'ܛܥܝܘܬܐ',
+'error'      => 'ܦܘܕܐ',
 'viewsource' => 'ܚܙܝ ܥܩܪܐ',
 
 # Login and logout pages
-'login'        => 'ܥܘܠ',
-'userlogin'    => 'ܥܘܠ \\ ܒܪܝ ܫܡܐ',
-'logout'       => 'ܦܠܛ',
-'userlogout'   => 'ܦܠܘܛ',
-'yourrealname' => ':ܫܡܐ ܫܪܝܪܐ',
-'yourlanguage' => ':ܠܫܢܐ',
+'login'          => 'ܥܘܠ',
+'userlogin'      => 'ܥܘܠ \\ ܒܪܝ ܫܡܐ',
+'logout'         => 'ܦܠܛ',
+'userlogout'     => 'ܦܠܘܛ',
+'yourrealname'   => ':ܫܡܐ ܫܪܝܪܐ',
+'yourlanguage'   => ':ܠܫܢܐ',
+'mailmypassword' => 'ܚܕܬܐ password ܫܕܪ ܠܐܝܡܝܠܝ',
 
 # Edit pages
-'summary'      => 'ܟܪܝܐܝܬ:',
+'summary'      => 'ܟܪܝܐܝܬ',
+'minoredit'    => 'ܗܢܐ ܗܘ ܫܚܠܦܬܐ ܙܥܘܪܬܐ',
+'watchthis'    => 'ܕܘܩ ܦܐܬܐ ܗܕܐ',
 'savearticle'  => 'ܫܚܠܦ ܦܐܬܐ',
 'preview'      => 'ܚܝܪܬܐ ܩܕܡܝܬܐ',
 'showpreview'  => 'ܚܝܪܬܐ ܩܕܡܝܬܐ',
@@ -152,8 +166,11 @@ $messages = array(
 # History pages
 'historyempty' => '(ܣܦܝܩܐ)',
 
+# Revision deletion
+'rev-delundel' => 'ܚܘܝ/ܛܫܝ',
+
 # Preferences page
-'mypreferences' => 'ܦܪ̈ܝܫܘܬܝ',
+'mypreferences' => 'ܦܪ̈ܝܫܘܝܬܝ',
 'math'          => 'ܡܬܡܐܛܝܩܘܬܐ',
 'prefs-rc'      => 'ܫܚ̈ܠܦܬܐ ܚܕ̈ܬܬܐ',
 'saveprefs'     => 'ܚܡܝ',
@@ -172,7 +189,7 @@ $messages = array(
 'listfiles_name' => 'ܫܡܐ',
 
 # Random page
-'randompage' => 'ܡܓܠܬܐ ܚܘܝܚܐ',
+'randompage' => 'ܡ̈ܓܠܬܐ ܚܘ̈ܝܚܐ',
 
 # Miscellaneous special pages
 'move' => 'ܫܢܝ',
@@ -205,7 +222,7 @@ $messages = array(
 'blanknamespace' => '(ܪܫܝܐ)',
 
 # Contributions
-'mycontris' => 'ܫܘܬܦܘܬܝ',
+'mycontris' => 'ܫ̈ܘܬܦܘܝܬܝ',
 
 # What links here
 'whatlinkshere' => 'ܡܐ ܐܣܪ ܠܟܐ؟',
@@ -241,6 +258,6 @@ $messages = array(
 'filepath-submit' => 'ܫܒܝܠܐ',
 
 # Special:SpecialPages
-'specialpages' => 'ܦܐܬܘܬܐ ܕܝܠܢܝܬܐ',
+'specialpages' => 'ܦܐܬܘ̈ܬܐ ܕܝܠܢܝ̈ܬܐ',
 
 );

@@ -15,6 +15,7 @@
  * @author McDutchie
  * @author Niels
  * @author SPQRobin
+ * @author Servien
  * @author Siebrand
  * @author Slomox
  * @author Troefkaart
@@ -3320,7 +3321,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'tags-display-header'     => 'Weergave in wijzigingslijsten',
 'tags-description-header' => 'Volledige beschrijving van betekenis',
 'tags-hitcount-header'    => 'Gelabelde bewerkingen',
-'tags-edit'               => 'bewerking',
+'tags-edit'               => 'bewerken',
 'tags-hitcount'           => '$1 {{PLURAL:$1|wijziging|wijzigingen}}',
 
 # Database error messages

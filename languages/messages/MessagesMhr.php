@@ -180,6 +180,7 @@ $messages = array(
 'nstab-special'  => 'Лӱмын ыштыме лаштык',
 'nstab-project'  => 'Проект нерген',
 'nstab-image'    => 'Файл',
+'nstab-template' => 'Ямдылык',
 'nstab-category' => 'Категорий',
 
 # General errors
@@ -256,25 +257,27 @@ $messages = array(
 'hr_tip'          => 'Тореш (шуэн кучылт)',
 
 # Edit pages
-'summary'            => 'Тӧрлатымаш нерген:',
-'subject'            => 'Теме/вуймут:',
-'minoredit'          => 'Тиде изирак тӧрлатыме',
-'watchthis'          => 'Тиде лаштыкым эскераш',
-'savearticle'        => 'Лаштыкым аралаш',
-'preview'            => 'Ончылгоч ончымаш',
-'showpreview'        => 'Ончылгоч ончымаш',
-'showdiff'           => 'Тӧрлатымашым ончыкташ',
-'anoneditwarning'    => "'''Тӱтко лий:''': Тый шкенетым палымым ыштен отыл. Тыйын IP адресет лаштыкын вашталтыме историйштыже вазалтен кодеш.",
-'summary-preview'    => 'Тӧрлатымаш нерген ончылгоч ончымаш:',
-'newarticle'         => '(У)',
-'clearyourcache'     => "'''Ешартыш''': Аралыме деч вара вашталтышым ужаш браузеретын кешыжым эрыкташ логалын кертеш. '''Mozilla / Firefox / Safari:''' ''Shift''-ым темдал кучен ''Reload''-ым темдал але ''Ctrl-F5'' але ''Ctrl-R'' темдал (Macintosh-влак ''Command-R''); '''Konqueror:''' темдал ''Reload'' кнопкым але ''F5'' темдал; '''Opera:''' ''Tools→Preferences''-ыште кешым эрыкте; '''Internet Explorer:''' ''Ctrl''-ым темдал кучен ''Refresh''-ым темдал але ''Ctrl-F5'' темдал.",
-'previewnote'        => "'''Тиде ончылгоч ончымаш гына;
+'summary'              => 'Тӧрлатымаш нерген:',
+'subject'              => 'Теме/вуймут:',
+'minoredit'            => 'Тиде изирак тӧрлатыме',
+'watchthis'            => 'Тиде лаштыкым эскераш',
+'savearticle'          => 'Лаштыкым аралаш',
+'preview'              => 'Ончылгоч ончымаш',
+'showpreview'          => 'Ончылгоч ончымаш',
+'showdiff'             => 'Тӧрлатымашым ончыкташ',
+'anoneditwarning'      => "'''Тӱтко лий:''': Тый шкенетым палымым ыштен отыл. Тыйын IP адресет лаштыкын вашталтыме историйштыже вазалтен кодеш.",
+'summary-preview'      => 'Тӧрлатымаш нерген ончылгоч ончымаш:',
+'newarticle'           => '(У)',
+'clearyourcache'       => "'''Ешартыш''': Аралыме деч вара вашталтышым ужаш браузеретын кешыжым эрыкташ логалын кертеш. '''Mozilla / Firefox / Safari:''' ''Shift''-ым темдал кучен ''Reload''-ым темдал але ''Ctrl-F5'' але ''Ctrl-R'' темдал (Macintosh-влак ''Command-R''); '''Konqueror:''' темдал ''Reload'' кнопкым але ''F5'' темдал; '''Opera:''' ''Tools→Preferences''-ыште кешым эрыкте; '''Internet Explorer:''' ''Ctrl''-ым темдал кучен ''Refresh''-ым темдал але ''Ctrl-F5'' темдал.",
+'previewnote'          => "'''Тиде ончылгоч ончымаш гына;
 вашталтыш-влакым эше аралыме огыл!'''",
-'editing'            => 'Тӧрлаталтеш $1',
-'editingsection'     => 'Тӧрлаталтеш $1 (ужаш)',
-'template-protected' => '(тӧрлаташ чарыме)',
-'hiddencategories'   => 'Тиде лаштык $1 {{PLURAL:$1|шылтыме категорийыш|шылтыме категорийыш}} лектеш:',
-'deleted-notice'     => 'Тиде лаштык шӧрымӧ лийын.
+'editing'              => 'Тӧрлаталтеш $1',
+'editingsection'       => 'Тӧрлаталтеш $1 (ужаш)',
+'templatesused'        => 'Тиде лаштыкыште кучылтмо ямдылык-влак:',
+'templatesusedpreview' => 'Тиде ончылгоч ончымаште кучылтмо ямдылык-влак:',
+'template-protected'   => '(тӧрлаташ чарыме)',
+'hiddencategories'     => 'Тиде лаштык $1 {{PLURAL:$1|шылтыме категорийыш|шылтыме категорийыш}} лектеш:',
+'deleted-notice'       => 'Тиде лаштык шӧрымӧ лийын.
 Тиде лаштыклан шӧрымӧ нерген журнал ӱлнӧ ончыктымо.',
 
 # History pages
@@ -308,6 +311,7 @@ $messages = array(
 # Search results
 'searchresults'            => 'Кычалын мумо',
 'searchresults-title'      => 'Кычалын мумо «$1»-лан',
+'searchresulttext'         => "{{SITENAME}}'ыште кычалмаш нерген шукырак палнеда гын, [[{{MediaWiki:Helppage}}|полышым]] ончыза.",
 'searchsubtitle'           => 'Тые кычалыч \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|чыла лаштык-влакым, кудыжо тӱҥалыт: "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|чыла лаштык-влакым, "$1" дене кылым палемдат]])',
 'searchsubtitleinvalid'    => "Тые кычалыч '''$1'''",
 'noexactmatch'             => "'''\"\$1\" лӱман лаштык уке.'''
@@ -655,6 +659,7 @@ $messages = array(
 'tooltip-ca-nstab-special'        => 'Тиде лӱмын ыштыме лаштык, тудым тый тӧрлатен от керт',
 'tooltip-ca-nstab-project'        => 'Проект нерген лаштыкым ончыкташ',
 'tooltip-ca-nstab-image'          => 'Файлын лаштыкшым ончалаш',
+'tooltip-ca-nstab-template'       => 'Ямдылыкым ончыкташ',
 'tooltip-ca-nstab-category'       => 'Категорийын лаштыкым ончыкташ',
 'tooltip-minoredit'               => 'Тиде тӧрлымым изирак семын палемдаш',
 'tooltip-save'                    => 'Тыйын тӧрлатымашым аралаш',

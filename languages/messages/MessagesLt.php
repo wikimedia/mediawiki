@@ -961,6 +961,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'mergehistory-autocomment'         => '[[:$1]] prijungtas prie [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] prijungtas prie [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Šaltinio ir tikslo puslapiai negali būti vienodi',
+'mergehistory-reason'              => 'Priežastis:',
 
 # Merge log
 'mergelog'           => 'Sujungimų istorija',
@@ -2260,6 +2261,7 @@ Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{#Special:Expo
 'export-submit'     => 'Eksportuoti',
 'export-addcattext' => 'Pridėti puslapius iš kategorijos:',
 'export-addcat'     => 'Pridėti',
+'export-addns'      => 'Pridėti',
 'export-download'   => 'Saugoti kaip failą',
 'export-templates'  => 'Įtraukti šablonus',
 

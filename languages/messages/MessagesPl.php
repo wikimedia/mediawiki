@@ -644,7 +644,7 @@ Masz obecnie w przeglądarce wyłączoną obsługę ciasteczek.
 Spróbuj ponownie po ich odblokowaniu.',
 'noname'                     => 'To nie jest poprawna nazwa użytkownika.',
 'loginsuccesstitle'          => 'Zalogowano pomyślnie',
-'loginsuccess'               => "'''Zalogowałeś się do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
+'loginsuccess'               => "'''{{GENDER:|Zalogowałeś|Zalogowałaś}} się do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
 'nosuchuser'                 => 'Brak użytkownika o nazwie „$1”.
 W nazwa użytkownika ma znaczenie wielkość znaków.
 Sprawdź pisownię lub [[Special:UserLogin/signup|utwórz nowe konto]].',
@@ -900,7 +900,7 @@ Wystąpił z nieokreślonej przyczyny.',
 'edit-gone-missing'                => 'Nie udało się zaktualizować strony.
 Zdaje się, że została skasowana.',
 'edit-conflict'                    => 'Konflikt edycji.',
-'edit-no-change'                   => 'Twoja edycja została zignorowana, ponieważ nie zmieniono nic w tekście.',
+'edit-no-change'                   => 'Twoja edycja została zignorowana, ponieważ nie {{GENDER:|zmieniłeś|zmieniłaś}} niczego w tekście.',
 'edit-already-exists'              => 'Nie udało się stworzyć nowej strony.
 Strona już istnieje.',
 
@@ -1174,8 +1174,8 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'mwsuggest-disable'                => 'Wyłącz dynamiczne podpowiedzi',
 'searchrelated'                    => 'pokrewne',
 'searchall'                        => 'wszystkie',
-'showingresults'                   => "Poniżej znajduje się lista z {{PLURAL:$1|'''1''' wynikiem|'''$1''' wynikami}}, rozpoczynając od wyniku numer '''$2'''.",
-'showingresultsnum'                => "Poniżej znajduje się lista z {{PLURAL:$3|'''1''' wynikiem|'''$3''' wynikami}}, rozpoczynając od wyniku numer '''$2'''.",
+'showingresults'                   => "Poniżej znajduje się lista {{PLURAL:$1|z '''1''' wynikiem|'''$1''' wyników}}, rozpoczynając od wyniku numer '''$2'''.",
+'showingresultsnum'                => "Poniżej znajduje się lista {{PLURAL:$3|z '''1''' wynikiem|'''$3''' wyników}}, rozpoczynając od wyniku numer '''$2'''.",
 'showingresultstotal'              => "Poniżej {{PLURAL:$4|znajduje się wynik wyszukania numer '''$1''' z '''$3'''|znajdują się wyniki wyszukiwania '''$1 – $2''', z ogólnej liczby '''$3'''}}",
 'nonefound'                        => "'''Uwaga''': Domyślnie przeszukiwane są wyłącznie niektóre przestrzenie nazw. Spróbuj poprzedzić wyszukiwaną frazę przedrostkiem ''all:'', co spowoduje przeszukanie całej zawartości {{GRAMMAR:D.lp|{{SITENAME}}}} (włącznie ze stronami dyskusji, szablonami itp) lub spróbuj użyć jako przedrostka wybranej, jednej przestrzeni nazw.",
 'search-nonefound'                 => 'Brak wyników spełniających kryteria podane w zapytaniu.',
