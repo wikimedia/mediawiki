@@ -45,7 +45,7 @@ class AjaxResponse {
 		$this->mText = '';
 		$this->mResponseCode = '200 OK';
 		$this->mLastModified = false;
-		$this->mContentType= 'text/html; charset=utf-8';
+		$this->mContentType= 'application/x-wiki';
 
 		if ( $text ) {
 			$this->addText( $text );
