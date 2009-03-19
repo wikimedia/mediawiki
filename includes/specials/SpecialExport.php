@@ -175,8 +175,8 @@ class SpecialExport extends SpecialPage {
 	
 	private function userCanOverrideExportDepth() {
 		global $wgUser;   
-		
-		return in_array( 'override-export-depth', $wgUser->getRights());
+
+		return $wgUser->isAllowed( 'override-export-depth' );
 	}
 	
 	/**
