@@ -7251,6 +7251,33 @@ Multibyte character in padright
 </p>
 !! end
 
+!! test
+Formatted date
+!! input
+[[2009-03-24]]
+!! result
+<p><span class="mw-formatted-date" title="2009-03-24"><a href="/index.php?title=2009&amp;action=edit&amp;redlink=1" class="new" title="2009 (page does not exist)">2009</a>-<a href="/index.php?title=March_24&amp;action=edit&amp;redlink=1" class="new" title="March 24 (page does not exist)">03-24</a></span>
+</p>
+!!end
+
+!!test
+Formatted unlinked date
+!!input
+{{formatdate:2009-03-24}}
+!! result
+<p><span class="mw-formatted-date" title="2009-03-24">2009-03-24</span>
+</p>
+!! end
+
+!!test
+Formatted unlinked date with default format
+!!input
+{{formatdate:2009-03-24|mdy}}
+!! result
+<p><span class="mw-formatted-date" title="2009-03-24">March 24, 2009</span>
+</p>
+!! end
+
 #
 #
 #
