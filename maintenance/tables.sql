@@ -126,10 +126,7 @@ CREATE TABLE /*_*/user (
   -- Meant primarily for heuristic checks to give an impression of whether
   -- the account has been used much.
   --
-  user_editcount int,
-  
-   -- Flag for entries hidden from users and Sysops
-  user_hidden bool NOT NULL default 0
+  user_editcount int
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/user_name ON /*_*/user (user_name);
