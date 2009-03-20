@@ -390,11 +390,14 @@ class ContribsPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
+		global $wgUser;
 		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();
 		
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
-		// Paranoia: avoid brute force searches (bug 17792)
-		$conds[] = 'rev_deleted & ' . Revision::DELETED_USER . ' = 0';
+		// Paranoia: avoid brute force searches (bug 17342)
+		if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+			$conds[] = 'rev_deleted & ' . Revision::DELETED_USER . ' = 0';
+		}
 		$join_cond['page'] = array( 'INNER JOIN', 'page_id=rev_page' );
 		
 		$queryInfo = array(
