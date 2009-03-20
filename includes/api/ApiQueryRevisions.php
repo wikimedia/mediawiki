@@ -254,7 +254,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 			
 			// Get all page IDs
 			$this->addWhereFld('page_id', array_keys($titles));
-
+			// Every time someone relies on equality propagation, god kills a kitten :)
+			$this->addWhereFld('rev_page', array_keys($titles));
+			
 			if(!is_null($params['continue']))
 			{
 				$cont = explode('|', $params['continue']);
