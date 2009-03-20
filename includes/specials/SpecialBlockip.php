@@ -251,11 +251,11 @@ class IPBlockForm {
 			$wgOut->addHTML("
 				<tr id='wpEnableHideUser'>
 					<td>&nbsp;</td>
-					<td class='mw-input'>" .
+					<td class='mw-input'><strong>" .
 						Xml::checkLabel( wfMsg( 'ipbhidename' ),
 							'wpHideName', 'wpHideName', $this->BlockHideName,
 							array( 'tabindex' => '10' ) ) . "
-					</td>
+					</strong></td>
 				</tr>"
 			);
 		}
