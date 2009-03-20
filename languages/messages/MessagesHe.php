@@ -2282,7 +2282,7 @@ $1',
 'ipboptions'                      => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year,לצמיתות:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'אחר',
 'ipbotherreason'                  => 'סיבה אחרת/נוספת:',
-'ipbhidename'                     => 'הסתרת שם המשתמש מיומן החסימות, רשימת המשתמשים החסומים ורשימת המשתמשים',
+'ipbhidename'                     => 'הסתרת שם המשתמש מהעריכות ומהרשימות',
 'ipbwatchuser'                    => 'מעקב אחרי דפי המשתמש והשיחה של משתמש זה',
 'ipballowusertalk'                => 'מתן אפשרות למשתמש לערוך את דף השיחה של עצמו בעת החסימה',
 'ipb-change-block'                => 'חסימת המשתמש מחדש עם הגדרות אלה',
