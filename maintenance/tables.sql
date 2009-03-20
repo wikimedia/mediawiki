@@ -611,7 +611,7 @@ CREATE UNIQUE INDEX /*i*/ss_row_id ON /*_*/site_stats (ss_row_id);
 -- Stores an ID for every time any article is visited;
 -- depending on $wgHitcounterUpdateFreq, it is
 -- periodically cleared and the page_counter column
--- in the page table updated for the all articles
+-- in the page table updated for all the articles
 -- that have been visited.)
 --
 CREATE TABLE /*_*/hitcounter (
