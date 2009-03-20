@@ -32,6 +32,8 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
  */
 
 
@@ -47,7 +49,7 @@ wfProfileIn( 'main-misc-setup' );
 OutputPage::setEncodings(); # Not really used yet
 
 $maxLag = $wgRequest->getVal( 'maxlag' );
-if( !is_null($maxLag) && !$mediaWiki->checkMaxLag( $maxLag ) ) {
+if( !is_null( $maxLag ) && !$mediaWiki->checkMaxLag( $maxLag ) ) {
 	exit;
 }
 
@@ -73,7 +75,7 @@ if( $wgUseAjax && $action == 'ajax' ) {
 	exit;
 }
 
-if( $wgUseFileCache && isset($wgTitle) ) {
+if( $wgUseFileCache && isset( $wgTitle ) ) {
 	wfProfileIn( 'main-try-filecache' );
 	// Raw pages should handle cache control on their own,
 	// even when using file cache. This reduces hits from clients.
