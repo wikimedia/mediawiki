@@ -175,7 +175,8 @@ class ApiQuery extends ApiBase {
 		// If &exportnowrap is set, use the raw formatter
 		if ($this->getParameter('export') &&
 				$this->getParameter('exportnowrap'))
-			return new ApiFormatRaw($this->getMain());
+			return new ApiFormatRaw($this->getMain(),
+				$this->getMain()->createPrinterByName('xml'));
 		else
 			return null;
 	}
@@ -375,36 +376,35 @@ class ApiQuery extends ApiBase {
 			}
 
 			$result->setIndexedTagName($pages, 'page');
-			$result->addValue('query', 'pages', $pages);
-			
-			if ($this->params['export']) {
-				$exporter = new WikiExporter($this->getDB());
-				// WikiExporter writes to stdout, so catch its
-				// output with an ob
-				ob_start();
-				$exporter->openStream();
-				foreach ($pageSet->getGoodTitles() as $title)
-					if ($title->userCanRead())
-						$exporter->pageByTitle($title);
-				$exporter->closeStream();
-				$exportxml = ob_get_contents();
-				ob_end_clean();
-				// Don't check the size of exported stuff
-				// It's not continuable, so it would cause more
-				// problems than it'd solve
-				$result->disableSizeCheck();
-				if ($this->params['exportnowrap']) {
-					$result->reset();
-					// Raw formatter will handle this
-					$result->addValue(null, 'text', $exportxml);
-					$result->addValue(null, 'mime', 'text/xml');
-				} else {
-					$r = array();
-					ApiResult::setContent($r, $exportxml);
-					$result->addValue('query', 'export', $r);
-				}
-				$result->enableSizeCheck();
+			$result->addValue('query', 'pages', $pages);			
+		}
+		if ($this->params['export']) {
+			$exporter = new WikiExporter($this->getDB());
+			// WikiExporter writes to stdout, so catch its
+			// output with an ob
+			ob_start();
+			$exporter->openStream();
+			foreach (@$pageSet->getGoodTitles() as $title)
+				if ($title->userCanRead())
+					$exporter->pageByTitle($title);
+			$exporter->closeStream();
+			$exportxml = ob_get_contents();
+			ob_end_clean();
+			// Don't check the size of exported stuff
+			// It's not continuable, so it would cause more
+			// problems than it'd solve
+			$result->disableSizeCheck();
+			if ($this->params['exportnowrap']) {
+				$result->reset();
+				// Raw formatter will handle this
+				$result->addValue(null, 'text', $exportxml);
+				$result->addValue(null, 'mime', 'text/xml');
+			} else {
+				$r = array();
+				ApiResult::setContent($r, $exportxml);
+				$result->addValue('query', 'export', $r);
 			}
+			$result->enableSizeCheck();
 		}
 	}
 

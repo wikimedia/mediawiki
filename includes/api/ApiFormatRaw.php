@@ -34,12 +34,20 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiFormatRaw extends ApiFormatBase {
 
-	public function __construct($main, $format) {
-		parent :: __construct($main, $format);
+	/**
+	 * Constructor
+	 * @param $main ApiMain object
+	 * @param $errorFallback Formatter object to fall back on for errors
+	 */
+	public function __construct($main, $errorFallback) {
+		parent :: __construct($main, 'raw');
+		$this->mErrorFallback = $errorFallback;
 	}
 
 	public function getMimeType() {
 		$data = $this->getResultData();
+		if(isset($data['error']))
+			return $this->mErrorFallback->getMimeType();
 		if(!isset($data['mime']))
 			ApiBase::dieDebug(__METHOD__, "No MIME type set for raw formatter");
 		return $data['mime'];
@@ -47,6 +55,11 @@ class ApiFormatRaw extends ApiFormatBase {
 
 	public function execute() {
 		$data = $this->getResultData();
+		if(isset($data['error']))
+		{
+			$this->mErrorFallback->execute();
+			return;
+		}
 		if(!isset($data['text']))
 			ApiBase::dieDebug(__METHOD__, "No text given for raw formatter");
 		$this->printText($data['text']);
