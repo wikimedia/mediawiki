@@ -557,7 +557,7 @@ class EmailNotification {
 	 * @private
 	 */
 	function sendPersonalised( $watchingUser ) {
-		global $wgLang, $wgEnotifUseRealName;
+		global $wgContLang, $wgEnotifUseRealName;
 		// From the PHP manual:
 		//     Note:  The to parameter cannot be an address in the form of "Something <someone@example.com>".
 		//     The mail command will not parse this properly while talking with the MTA.
@@ -571,7 +571,7 @@ class EmailNotification {
 		# expressed in terms of individual local time of the notification
 		# recipient, i.e. watching user
 		$body = str_replace('$PAGEEDITDATE',
-			$wgLang->timeanddate( $this->timestamp, true, false, $timecorrection ),
+			$wgContLang->timeanddate( $this->timestamp, true, false, $timecorrection ),
 			$body);
 
 		return UserMailer::send($to, $this->from, $this->subject, $body, $this->replyto);
@@ -582,7 +582,7 @@ class EmailNotification {
 	 * mailing.  Takes an array of MailAddress objects.
 	 */
 	function sendImpersonal( $addresses ) {
-		global $wgLang;
+		global $wgContLang;
 
 		if (empty($addresses))
 			return;
@@ -591,7 +591,7 @@ class EmailNotification {
 				array(	'$WATCHINGUSERNAME',
 					'$PAGEEDITDATE'),
 				array(	wfMsgForContent('enotif_impersonal_salutation'),
-					$wgLang->timeanddate($this->timestamp, true, false, false)),
+					$wgContLang->timeanddate($this->timestamp, true, false, false)),
 				$this->body);
 
 		return UserMailer::send($addresses, $this->from, $this->subject, $body, $this->replyto);
