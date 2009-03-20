@@ -84,7 +84,7 @@ $messages = array(
 'history'           => 'ܬܫܥܝܬܐ ܕܦܐܬܐ',
 'history_short'     => 'ܬܫܥܝܬܐ',
 'printableversion'  => 'ܨܚܚܐ ܡܬܛܒܥܢܐ',
-'permalink'         => 'ܐܣܪܐ ܦܝܘܫܐ',
+'permalink'         => 'ܐܣܘܪܐ ܦܝܘܫܐ',
 'print'             => 'ܛܒܘܥ',
 'edit'              => 'ܫܚܠܦ',
 'create'            => 'ܒܪܝ',
@@ -149,15 +149,15 @@ $messages = array(
 'userlogout'     => 'ܦܠܘܛ',
 'yourrealname'   => ':ܫܡܐ ܫܪܝܪܐ',
 'yourlanguage'   => ':ܠܫܢܐ',
-'mailmypassword' => 'ܚܕܬܐ password ܫܕܪ ܠܐܝܡܝܠܝ',
+'mailmypassword' => 'ܚܕܬܐ password ܫܕܪ ܠܝ',
 
 # Edit pages
-'summary'      => 'ܟܪܝܐܝܬ',
+'summary'      => 'ܟܪܝܘܬܐ ܕܫܘܚܠܦܐ',
 'minoredit'    => 'ܗܢܐ ܗܘ ܫܚܠܦܬܐ ܙܥܘܪܬܐ',
 'watchthis'    => 'ܕܘܩ ܦܐܬܐ ܗܕܐ',
 'savearticle'  => 'ܫܚܠܦ ܦܐܬܐ',
 'preview'      => 'ܚܝܪܬܐ ܩܕܡܝܬܐ',
-'showpreview'  => 'ܚܝܪܬܐ ܩܕܡܝܬܐ',
+'showpreview'  => 'ܚܘܝ ܚܝܪܬܐ ܩܕܡܝܬܐ',
 'showdiff'     => 'ܚܘܝ ܫܘ̈ܚܠܦܐ',
 'loginreqlink' => 'ܥܘܠ',
 'newarticle'   => '(ܚܕܬܐ)',
@@ -182,7 +182,7 @@ $messages = array(
 'recentchangeslinked' => 'ܫܚܠ̈ܦܐ ܕܡܝܐ',
 
 # Upload
-'upload'   => 'ܛܥܢ ܠܦܦܐ',
+'upload'   => 'ܐܛܥܢ ܠܦܦܐ',
 'filename' => 'ܫܡܐ ܕܠܦܦܐ',
 
 # Special:ListFiles

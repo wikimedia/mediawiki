@@ -1708,13 +1708,16 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 ** Vandalisme",
 
 # Rollback
-'rollback'       => 'Annulle le cangiaminde',
-'rollback_short' => 'Annulle',
-'rollbacklink'   => "annulle 'u cangiaminde",
-'rollbackfailed' => 'Annullamende fallite',
-'cantrollback'   => "Non ge se pò annullà stu cangiamende;
+'rollback'         => 'Annulle le cangiaminde',
+'rollback_short'   => 'Annulle',
+'rollbacklink'     => "annulle 'u cangiaminde",
+'rollbackfailed'   => 'Annullamende fallite',
+'cantrollback'     => "Non ge se pò annullà stu cangiamende;
 l'urteme condrebbutore jè sulamende l'autore de sta pàgene.",
-'editcomment'    => "'U riepileghe d'u cangiamende ere: \"''\$1''\".", # only shown if there is an edit comment
+'editcomment'      => "'U riepileghe d'u cangiamende ere: \"''\$1''\".", # only shown if there is an edit comment
+'revertpage'       => "Cangiaminde annullate da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) a l'urtema versione da [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "Cangiaminde annullate da $1;
+turnate rete a l'urtema versione da $2.",
 
 # Protect
 'protectlogpage'              => 'Archibie de le prutezziune',
@@ -1901,6 +1904,9 @@ $1 ha state già blocchete. Vuè cu cange le 'mbostaziune?",
 'proxyblocker-disabled'        => "'A funzione ha state disabbilitete.",
 'proxyblocksuccess'            => 'Spicciete.',
 'sorbs'                        => 'DNSBL',
+'sorbsreason'                  => "L'indirizze IP tue jè elegate cumme a 'nu proxy apirte jndr'à DNSBL ausate da {{SITENAME}}.",
+'sorbs_create_account_reason'  => "L'indirizze IP tue jè elegate cumme a 'nu proxy apirte jndr'à DNSBL ausate da {{SITENAME}}.
+Tu nonge puè ccrejà 'nu cunde utende",
 'cant-block-while-blocked'     => 'Tu non ge puè bloccà otre utinde quanne tu si blocchete.',
 
 # Developer tools
@@ -2035,7 +2041,9 @@ Pe piacere vè vide [http://www.mediawiki.org/wiki/Localisation Localizzazione d
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "'A pàgene utende meje",
+'tooltip-pt-anonuserpage'         => "'A pàgene utende pe l'IP ca tu ste cange cumme",
 'tooltip-pt-mytalk'               => "'Ngazzaminde mie",
+'tooltip-pt-anontalk'             => "'Ngazzamende sus a le cangiaminde da stu indirizze IP",
 'tooltip-pt-preferences'          => 'Me piece accussì',
 'tooltip-pt-watchlist'            => "'A liste de le pàggene ca ste condrolle pe le camgiaminde",
 'tooltip-pt-mycontris'            => 'Liste de le condrebbute mie',

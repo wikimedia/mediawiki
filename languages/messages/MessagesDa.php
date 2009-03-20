@@ -6,6 +6,7 @@
  *
  * @author Amjaabc
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
+ * @author Boivie
  * @author Byrial
  * @author EPO
  * @author H92
@@ -2213,6 +2214,7 @@ Hvis du kun vil have den seneste version, kan du også bruge en henvisning, for 
 'export-submit'     => 'Eksporter',
 'export-addcattext' => 'Tilføj sider fra kategori:',
 'export-addcat'     => 'Tilføj',
+'export-addns'      => 'Tilføje',
 'export-download'   => 'Tilbyd at gemme som en fil',
 'export-templates'  => 'Medtag skabeloner',
 'export-pagelinks'  => 'Inkluder henviste sider til en dybde på:',

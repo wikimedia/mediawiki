@@ -1578,6 +1578,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'popularpages'            => 'Populär Säiten',
 'wantedcategories'        => 'Gewënschte Kategorien',
 'wantedpages'             => 'Gewënschte Säiten',
+'wantedpages-badtitle'    => 'Net valabelen Titel am Resultat: $1',
 'wantedfiles'             => 'Gewënschte Fichieren',
 'wantedtemplates'         => 'Gewënschte Schablounen',
 'mostlinked'              => 'Dacks verlinkte Säiten',
