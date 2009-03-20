@@ -30,7 +30,7 @@ class DeletedContribsPager extends IndexPager {
 		list( $index, $userCond ) = $this->getUserCond();
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
 		// Paranoia: avoid brute force searches (bug 17792)
-		if( !$wgUser->isAllowed( 'hiderevision' ) ) {
+		if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
 			$conds[] = 'ar_deleted & ' . Revision::DELETED_USER . ' = 0';
 		}
 		return array(
