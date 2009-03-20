@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Marzedu
  * @author לערי ריינהארט
  */
 
@@ -37,7 +38,7 @@ $linkTrail = "/^([a-z]+)(.*)\$/sD";
 
 $messages = array(
 # User preference toggles
-'tog-underline'        => 'Sottolinea links',
+'tog-underline'        => 'Sutalìnia is cullegamentos',
 'tog-highlightbroken'  => 'Evidenzia i links che puntano ad articoli ancora da scrivere',
 'tog-justify'          => 'Paragrafo: giustificato',
 'tog-hideminor'        => 'Nascondi le modifiche minori nella pagina "Modifiche recenti"',
@@ -49,81 +50,122 @@ $messages = array(
 'tog-minordefault'     => 'Indica ogni modifica come minore (solo come predefinito)',
 
 # Dates
-'sunday'    => 'Domiga',
-'monday'    => 'Lúnis',
-'tuesday'   => 'Màrtis',
-'wednesday' => 'Mércuris',
-'thursday'  => 'Zóbia',
-'friday'    => 'Canàbara',
-'saturday'  => 'Sàudu',
-'january'   => 'Ghenàlliu',
-'february'  => 'Fiàrzu',
-'march'     => 'Màrtu',
-'april'     => 'Abríli',
-'may_long'  => 'Màzu',
-'june'      => 'Làmparas',
-'july'      => 'Luglio',
-'august'    => 'Agosto',
-'september' => 'Settembre',
-'october'   => 'Ottobre',
-'november'  => 'Novembre',
-'december'  => 'Dicembre',
-'jan'       => 'Gen',
-'may'       => 'Mag',
-'jun'       => 'Giu',
-'jul'       => 'Lug',
-'aug'       => 'Ago',
-'sep'       => 'Set',
-'oct'       => 'Ott',
-'dec'       => 'Dic',
+'sunday'        => 'Domìniga',
+'monday'        => 'Lunis',
+'tuesday'       => 'Martis',
+'wednesday'     => 'Mércuris',
+'thursday'      => 'Giòvia',
+'friday'        => 'Chenàbura',
+'saturday'      => 'Sàbadu',
+'sun'           => 'Dom',
+'mon'           => 'Lun',
+'tue'           => 'Mar',
+'wed'           => 'Mèr',
+'thu'           => 'Giò',
+'fri'           => 'Che',
+'sat'           => 'Sàb',
+'january'       => 'Ghennàrgiu',
+'february'      => 'Freàrgiu',
+'march'         => 'Martzu',
+'april'         => 'Abrile',
+'may_long'      => 'Maju',
+'june'          => 'Làmpadas',
+'july'          => 'Trìulas',
+'august'        => 'Austu',
+'september'     => 'Cabudanni',
+'october'       => 'Santugaine',
+'november'      => 'Santandria',
+'december'      => 'Nadale',
+'january-gen'   => 'Ghennàrgiu',
+'february-gen'  => 'Freàrgiu',
+'march-gen'     => 'Martzu',
+'april-gen'     => 'Abrile',
+'may-gen'       => 'Maju',
+'june-gen'      => 'Làmpadas',
+'july-gen'      => 'Trìulas',
+'august-gen'    => 'Austu',
+'september-gen' => 'Cabudanni',
+'october-gen'   => 'Santugaine',
+'november-gen'  => 'Santandria',
+'december-gen'  => 'Nadale',
+'jan'           => 'Ghe',
+'feb'           => 'Fre',
+'mar'           => 'Mar',
+'apr'           => 'Abr',
+'may'           => 'Maj',
+'jun'           => 'Làm',
+'jul'           => 'Trì',
+'aug'           => 'Aus',
+'sep'           => 'Cab',
+'oct'           => 'Stg',
+'nov'           => 'Std',
+'dec'           => 'Nad',
 
-'about'         => 'A proposito di',
-'cancel'        => 'Cancella',
-'qbfind'        => 'Trova',
-'qbbrowse'      => 'Sfoglia',
-'qbedit'        => 'Modifica',
-'qbpageoptions' => 'Opzioni pagina',
-'qbpageinfo'    => 'Informazioni sulla pagina',
-'qbmyoptions'   => 'Le mie preferenze',
-'mypage'        => 'La mia pagina',
-'mytalk'        => 'Le mie discussioni',
+# Categories related messages
+'pagecategories'        => '{{PLURAL:$1|Categoria|Categorias}}',
+'category_header'       => 'Pàginas in sa categoria "$1"',
+'subcategories'         => 'Subcategorias',
+'category-media-header' => 'Mèdius in sa categoria "$1"',
+'category-empty'        => "''In custa categoria non bi est peruna pàgina o mèdiu.''",
 
-'errorpagetitle'    => 'Errore',
-'returnto'          => 'Torna a $1.',
-'tagline'           => 'Da {{SITENAME}}',
-'help'              => 'Aiuto',
-'search'            => 'Cerca',
-'searchbutton'      => 'Cerca',
-'go'                => 'Vai',
-'searcharticle'     => 'Vai',
-'history'           => 'Versioni precedenti',
+'about'         => 'A propòsitu de',
+'cancel'        => 'Burra',
+'qbfind'        => 'Agata',
+'qbbrowse'      => 'Nàviga',
+'qbedit'        => 'Acontza',
+'qbpageoptions' => 'possibbilidadis de sa pàgina',
+'qbpageinfo'    => 'Cuntestu de sa pàgina',
+'qbmyoptions'   => 'Is preferentzias meas',
+'mypage'        => 'Sa pàgina mea',
+'mytalk'        => 'Cuntierras meas',
+
+'errorpagetitle'    => 'Faddina',
+'returnto'          => 'Torra a $1.',
+'tagline'           => 'Dae {{SITENAME}}',
+'help'              => 'Agiudu',
+'search'            => 'Chirca',
+'searchbutton'      => 'Chirca',
+'go'                => 'Bae',
+'searcharticle'     => 'Bae',
+'history'           => 'Istòria de sa pàgina',
+'history_short'     => 'Istòria',
 'printableversion'  => 'Versione stampabile',
-'edit'              => 'Modificare',
-'editthispage'      => 'Modifica questo articolo',
-'deletethispage'    => 'Cancella questa pagina',
-'protectthispage'   => 'Proteggi questa pagina',
-'unprotectthispage' => 'Togli la protezione a questa pagina',
-'talkpage'          => "Discussione sull'articolo",
-'articlepage'       => 'Leggi articolo',
-'userpage'          => 'Vedi pagina Utente',
-'projectpage'       => 'Vedi pagina meta',
+'edit'              => 'Acontza',
+'create'            => 'Crea',
+'editthispage'      => 'Acontza custa pàgina',
+'create-this-page'  => 'Crea custa pàgina',
+'delete'            => 'Fùlia',
+'deletethispage'    => 'Fùlia custa pàgina',
+'protectthispage'   => 'Ampàra custa pàgina',
+'unprotect'         => 'Disampàra',
+'unprotectthispage' => 'Disampàra custa pàgina',
+'newpage'           => 'Pàgina noa',
+'talkpage'          => "Cummenta s'artìculu",
+'articlepage'       => "Castia s'artìculu",
+'talk'              => 'Cuntierras',
+'userpage'          => 'Castia sa pàgina usuàriu',
+'projectpage'       => 'Castia sa pàgina meta',
 'imagepage'         => 'Vedi pagina immagine',
-'otherlanguages'    => 'Altre lingue',
-'redirectedfrom'    => '(Reindirizzamento da $1)',
-'lastmodifiedat'    => 'Ultima modifica il $2, $1.', # $1 date, $2 time
-'viewcount'         => 'Questo articolo è stato letto $1 volte.',
-'protectedpage'     => 'Pagina protetta',
+'otherlanguages'    => 'Áteras limbas',
+'redirectedfrom'    => '(Redirect dae $1)',
+'lastmodifiedat'    => 'Ùrtimu acontzu su $1, a is $2.', # $1 date, $2 time
+'viewcount'         => 'Custu artìculu est istetiu lìgiu $1 bortas.',
+'protectedpage'     => 'Pàgina amparada',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'A proposito di {{SITENAME}}',
-'currentevents'        => 'Attualità',
-'edithelp'             => 'Guida per la modifica o la scrittura di un articolo',
-'edithelppage'         => 'Help:Come_scrivere_un_articolo',
-'helppage'             => 'Help:Aiuto',
-'mainpage'             => 'Pàggina principali',
-'mainpage-description' => 'Pàggina principali',
+'aboutsite'            => 'A propòsitu de {{SITENAME}}',
+'currentevents'        => 'Novas',
+'edithelp'             => "Agiudu pro s'acontzu o s'iscritura",
+'edithelppage'         => "Help:Comente_iscrìere_un'artìculu",
+'helppage'             => 'Help:Agiudu',
+'mainpage'             => 'Pàgina printzipali',
+'mainpage-description' => 'Pàgina printzipali',
 
-'retrievedfrom' => 'Ricavato da  "$1"',
+'retrievedfrom' => 'Bogau dae  "$1"',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-user'     => 'Pàgina usuàriu',
+'nstab-category' => 'Categoria',
 
 # Main script and global functions
 'nosuchaction'      => 'Operazione non riconosciuta',
@@ -164,47 +206,47 @@ L/'amministratore di sistema che ha imposto il blocco, ha lasciato questa nota:
 Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.',
 'welcomecreation'         => '<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br />Grazie per aver scelto di far crescere {{SITENAME}} con il tuo aiuto.<br />Per rendere {{SITENAME}} più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.',
 'loginpagetitle'          => 'Login',
-'yourname'                => 'Il tuo  user name',
-'yourpassword'            => 'La tua  password',
-'yourpasswordagain'       => 'Ripeti la password',
+'yourname'                => 'Nòmene usuàriu',
+'yourpassword'            => 'Pàssword',
+'yourpasswordagain'       => 'Arripiti sa pàssword',
 'remembermypassword'      => 'Ricorda la mia password per più sessioni (richiede uso dei cookies).',
-'nav-login-createaccount' => 'Log in',
-'userlogin'               => 'Log in',
-'createaccount'           => 'Crea nuovo account',
-'badretype'               => 'Le password che hai immesso non coincidono, sono diverse fra loro.',
+'nav-login-createaccount' => 'Intra / crea account',
+'userlogin'               => 'Intrada',
+'createaccount'           => 'Crea account',
+'badretype'               => 'Sas password chi as insertau non currenspundint.',
 'userexists'              => 'Siamo spiacenti. Lo user name che hai scelto è già usato da un altro Utente. Ti preghiamo perciò di voler scegliere uno user name diverso.',
-'youremail'               => 'La tua e-mail',
-'yournick'                => 'Il tuo diminutivo o soprannome (per le firme)',
-'loginerror'              => 'Errore di Login',
-'noname'                  => 'Lo user name indicato non è valido, non è possibile creare un account a questo nome.',
-'loginsuccesstitle'       => 'Login effettuato con successo!',
-'loginsuccess'            => 'Sei stato ammesso alla connessione al server di {{SITENAME}} con il nome utente di "$1".',
+'youremail'               => 'E-mail:',
+'yournick'                => 'Sa firma tua:',
+'loginerror'              => 'Login error',
+'noname'                  => 'Su nòmene usuàriu insertau non est bonu.',
+'loginsuccesstitle'       => 'Ses intrau',
+'loginsuccess'            => "'''Como ses intrau in {{SITENAME}} cun nòmene usuàriu \"\$1\".'''",
 'nosuchuser'              => 'Attenzione<br /><br />a seguito di verifica, non ci risulta alcun Utente con il nome di  "$1".<br /><br />
 Controlla per favore il nome digitato, oppure usa il modulo qui sotto per creare un nuovo user account.',
-'wrongpassword'           => 'La password immessa non è corretta.<br /><br />Riprova, per favore.',
+'wrongpassword'           => 'Sa pàssword insertada non est bona. Prova torra.',
 'mailmypassword'          => 'Spediscimi una nuova password in posta elettronica',
-'passwordremindertitle'   => 'Servizio Password Reminder di {{SITENAME}}',
+'passwordremindertitle'   => 'Servitziu Password Reminder di {{SITENAME}}',
 'passwordremindertext'    => 'Qualcuno (probabilmente tu, con indirizzo IP $1)
 ha richiesto l\'invio di una nuova password per il login a {{SITENAME}}.
 La password per l\'Utente "$2" è ora "$3".
 Per evidenti ragioni di sicurezza, dovresti fare un log in il prima possibile, e cambiare la password immediatamente.',
-'noemail'                 => 'Nessuna casella e-mail risulta registrata per l\'Utente "$1".',
-'passwordsent'            => 'Una nuova password è stata inviata alla casella e-mail registrata per l\'Utente "$1".
-Per favore, fai subito un log in non appena la ricevi.',
+'noemail'                 => 'Peruna e-mail risultada registrada pro s\'usuàriu "$1".',
+'passwordsent'            => 'Una password noa est istetia ispedia a s\'indiritzu e-mail de s\'usuàriu "$1".
+Pro pregheri, candu d\'arretzis faghe su login.',
 
 # Password reset dialog
-'oldpassword' => 'Vecchia password',
-'newpassword' => 'Nuova password',
-'retypenew'   => 'Riscrivi qui la nuova password',
+'oldpassword' => 'Password betza:',
+'newpassword' => 'Password noa:',
+'retypenew'   => 'Re-iscrie sa password noa:',
 
 # Edit pages
-'summary'         => 'Oggetto:',
-'minoredit'       => 'Questa è una modifica minore',
-'watchthis'       => "Tieni d'occhio questo articolo",
-'savearticle'     => 'Salva la pagina',
-'preview'         => 'Anteprima',
-'showpreview'     => 'Visualizza Anteprima',
-'blockedtitle'    => 'Questo User name corrisponde purtroppo ad un Utente che è stato disabilitato alla modifica degli articoli.',
+'summary'         => 'Ogetu:',
+'minoredit'       => "Custu est un'acontzu minore:",
+'watchthis'       => 'Pone ogru a custu artìculu',
+'savearticle'     => 'Sarva sa pàgina',
+'preview'         => 'Antiprima',
+'showpreview'     => "Castia s'antiprima",
+'blockedtitle'    => "S'usuàriu est istetiu bloccau",
 'blockedtext'     => "Il tuo User name o il tuo indirizzo IP sono stati bloccati da $1.
 
 
@@ -213,15 +255,17 @@ La motivazione del blocco è la seguente:
 ''$2''
 
 Se lo desideri, puoi contattare $1, o uno degli altri [[{{MediaWiki:Grouppage-sysop}}|administrators]] per discutere del blocco.",
-'newarticle'      => '(Nuovo)',
-'newarticletext'  => 'Scrivi qui il tuo testo.',
+'newarticle'      => '(Nou)',
+'newarticletext'  => "Custa pagina non esistit ancora.
+Pro creare sa pagina, iscrie in su box inoghe in basciu (abàida sa [[{{MediaWiki:Helppage}}|pàgina de agiudu]] pro prus informatziones).
+Chi ses intrau inoghe pro isballiu, clicca in su browser tuo su pulsante '''back/indietro'''.",
 'noarticletext'   => "(L'articolo è vuoto, potresti gentilmente iniziare l'articolo oppure richiedere la cancellazione di questa pagina)",
-'updated'         => '(Aggiornato)',
+'updated'         => '(Agiornau)',
 'note'            => "'''Nota:'''",
-'previewnote'     => "'''Tieni presente che questa è solo una ANTEPRIMA, e che la tua versione non è ancora stata salvata!'''",
-'previewconflict' => "Questa anteprima rappresenta il testo nella casella di edizione di sopra, l'articolo apparirà n questa forma se sceglierai di salvare la pagina.",
-'editing'         => 'Modifica di $1',
-'editconflict'    => 'Conflitto di edizione: $1',
+'previewnote'     => "'''Arregodadia  ca custa est isceti una ANTIPRIMA. Sa versione tua non est istetia ancora allogada!'''",
+'previewconflict' => "Custa antiprima rapresentada su testu in s'area acontzu testu de susu comente at a aparire chi da sarvas.",
+'editing'         => 'Acontzu de $1',
+'editconflict'    => 'Cunflitu de editzione: $1',
 'explainconflict' => 'Qualcun altro ha salvato una sua versione dell\'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
 La casella di modifica di sopra contiene il testo dell\'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore.
 Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò scriverle nella casella di sopra.
@@ -236,32 +280,33 @@ Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno 
 'nohistory'    => 'Cronologia delle versioni di questa pagina non reperibile.',
 'currentrev'   => 'Versione attuale',
 'revisionasof' => 'Revisione $1',
-'cur'          => 'corr',
+'cur'          => 'cur',
 'next'         => 'succ',
-'last'         => 'prec',
-'histlegend'   => 'Legend: (corr) = differenze con la versione corrente,
-(prec) = differenze con la versione precedente, M = modifica minore',
+'last'         => 'prev',
+'histlegend'   => "Cunfruntu fra versiones: scebera sa casella de sa versione che boles e cracca Invio o su butoni in basciu.
+
+Legenda: '''({{int:cur}})''' = diferentzias cun sa versione currenti, '''({{int:last}})''' = diferentzias cun sa versione de prima, '''{{int:minoreditletter}}''' = acontzu minore",
 
 # Diffs
-'difference' => '(Differenze fra le revisioni)',
-'lineno'     => 'Riga $1:',
+'difference' => '(Diferèntzias fra revisiones)',
+'lineno'     => 'Lìnnia $1:',
 
 # Search results
 'searchresults'         => 'Risultato della ricerca',
-'searchresulttext'      => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:Helppage}}|Ricerca in {{SITENAME}}]].',
+'searchresulttext'      => 'Pro àteras informatziones pro sa chirca interna de {{SITENAME}}, castia [[{{MediaWiki:Helppage}}|Chirca in {{SITENAME}}]].',
 'searchsubtitle'        => 'Richiesta "[[:$1]]"',
-'searchsubtitleinvalid' => 'Richiesta "$1"',
+'searchsubtitleinvalid' => 'As chircadu "$1"',
 'titlematches'          => 'Nei titoli degli articoli',
-'notitlematches'        => 'Voce richiesta non trovata in titoli di articolo',
+'notitlematches'        => 'Peruna currispondentzia de is tìtulos de pàgina',
 'textmatches'           => 'Nel testo degli articoli',
-'notextmatches'         => 'Voce richiesta non trovata in testi di articolo',
-'prevn'                 => 'precedenti $1',
-'nextn'                 => 'successivi $1',
-'viewprevnext'          => 'Vedi ($1) ($2) ($3).',
+'notextmatches'         => "Peruna currispondentzia in su testu de s'artìculu",
+'prevn'                 => 'cabidianos $1',
+'nextn'                 => 'imbenientes $1',
+'viewprevnext'          => 'Càstia ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Aiuto',
 'showingresults'        => 'Qui di seguito <b>$1</b> risultati, partendo dal numero #<b>$2</b>.',
 'nonefound'             => '<strong>Nota</strong>: la ricerca di parole troppo comuni, come "avere" o "essere", che non sono indicizzate, può causare un esito negativo, così come indicare più di un termine da ricercare (solo le pagine che contengano tutti i termini ricercati verrebbero infatti visualizzate fra i risultati).',
-'powersearch'           => 'Ricerca',
+'powersearch'           => 'Chirca delantada',
 
 # Preferences page
 'preferences'              => 'Preferenze',
@@ -296,18 +341,18 @@ per poter personalizzare le tue preferenze.',
 'editinguser' => "Modifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Recent changes
-'recentchanges'   => 'Ultime Modifiche',
+'recentchanges'   => 'Úrtimas mudàntzias',
 'rcnote'          => 'Qui di seguito sono elencate le ultime <strong>$1</strong> pagine modificate negli ultimi <strong>$2</strong> giorni.',
 'rcnotefrom'      => ' Qui di seguito sono elencate le modifiche da <b>$2</b> (fino a <b>$1</b>).',
-'rclistfrom'      => 'Mostra modifiche a partire da $1',
+'rclistfrom'      => 'Amosta mudaduras dae $1',
 'rclinks'         => 'Mostra le ultime $1 modifiche negli ultimi $2 giorni.',
-'hist'            => 'cron',
-'hide'            => 'nascondi',
-'show'            => 'mostra',
-'minoreditletter' => 'M',
+'hist'            => 'istò',
+'hide'            => 'Cua',
+'show'            => 'Amosta',
+'minoreditletter' => 'm',
 
 # Recent changes linked
-'recentchangeslinked' => 'Modifiche correlate',
+'recentchangeslinked' => 'Cambiamentos ligados',
 
 # Upload
 'reupload'          => 'Ri-upload',
@@ -339,7 +384,7 @@ Per inserire la nuova immagine in un articolo, usa semplicemente un link nella f
 '''<nowiki>[[media:file.ogg]]</nowiki>''' per i suoni.
 
 Tieni presente che, come per tutte le pagine di {{SITENAME}}, chiunque può modificare o sostituire o cancellare i tuoi files ove ritenga che ciò sia negli interessi della nostra enciclopedia. Tieni anche presente che, in caso di abuso, o di sovraccarico sul sistema, potresti essere bloccato (oltre ad essere perseguito per le connesse responsabilità).",
-'uploadlogpage'     => 'Upload_log',
+'uploadlogpage'     => 'Carrigadas',
 'uploadlogpagetext' => 'Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
 Tutti i tempi indicati sono calcolati sul fuso orario del server.',
 'filename'          => 'Nome del file',
@@ -349,14 +394,15 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server.',
 'successfulupload'  => 'Caricamento completato',
 'uploadwarning'     => 'Avviso di Upload',
 'savefile'          => 'Salva file',
-'uploadedimage'     => 'caricato "[[$1]]"',
+'uploadedimage'     => 'carrigadu "[[$1]]"',
 
 # Special:ListFiles
 'listfiles' => 'Lista delle immagini',
 
 # File description page
+'filehist-user'  => 'Usuariu',
 'imagelinks'     => 'Link alle immagini',
-'linkstoimage'   => 'Le pagine seguenti linkano questa immagine:',
+'linkstoimage'   => 'Is pàginas chi sighint ligant a custa imàgine:',
 'nolinkstoimage' => 'Nessuna pagina linka questa immagine.',
 
 # Random page
@@ -386,19 +432,19 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'shortpages'       => 'Pagine corte',
 'longpages'        => 'Pagine lunghe',
 'listusers'        => 'Elenco degli Utenti',
-'newpages'         => 'Pagine nuove',
+'newpages'         => 'Pàginas noas',
 'movethispage'     => 'Sposta questa pagina',
 'unusedimagestext' => '<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui anche essendo magari in uso.',
 'notargettitle'    => 'Dati mancanti',
 'notargettext'     => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
 
 # Special:AllPages
-'allpages' => 'Tutte le pagine',
+'allpages' => 'Totu is pàginas',
 
 # E-mail user
 'mailnologintext' => 'Devi fare il [[Special:UserLogin|login]]
 ed aver registrato una valida casella e-mail nelle tue [[Special:Preferences|preferenze]] per mandare posta elettronica ad altri Utenti.',
-'emailuser'       => 'Manda una E-mail a questo Utente',
+'emailuser'       => "Ispedi un'e-mail a custu usuàriu",
 'emailpagetext'   => 'Se questo Utente ha registrato una valida casella e-mail, il modulo qui sotto ti consentirà di scrivergli un solo messaggio.
 La e-mail che hai indicato nelle tue preferenze apparirà nel campo "From" della mail, così che il destinatario possa, solo se lo desidera però, risponderti.',
 'noemailtitle'    => 'Nessun indirizzo e-mail',
@@ -408,8 +454,8 @@ oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.',
 'emailsenttext'   => 'La tua e-mail è stata inviata.',
 
 # Watchlist
-'watchlist'        => 'Osservati Speciali',
-'mywatchlist'      => 'Osservati Speciali',
+'watchlist'        => 'Sa watchlist mea',
+'mywatchlist'      => 'Sa watchlist mea',
 'nowatchlist'      => "Non hai indicato articoli da tenere d'occhio.",
 'watchnologin'     => 'Manca il login',
 'watchnologintext' => 'Devi prima fare il [[Special:UserLogin|login]]
@@ -431,11 +477,11 @@ Se in seguito vorrai togliere questo articolo dalla tua lista di osservati speci
 'confirmdeletetext' => 'Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia.
 Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, conferma che hai piena consapevolezza delle conseguenze della tua azione, e conferma che la tua azione è pienamente ottemperante alle regole stabilite nella
 [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'    => 'Azione completata',
+'actioncomplete'    => 'Atzioni cumpletada',
 'deletedtext'       => 'La pagina "<nowiki>$1</nowiki>" è stata cancellata.
 Vedi $2 per un elenco delle pagine cancellate di recente.',
-'deletedarticle'    => 'Cancellata "$1"',
-'dellogpage'        => 'Deletion_log',
+'deletedarticle'    => 'fuliada "[[$1]]"',
+'dellogpage'        => 'Burraduras',
 'dellogpagetext'    => 'Qui di seguito, un elenco delle pagine cancellate di recente.
 Tutti i tempi sono in ora del server.',
 'reverted'          => 'Ripristinata versione precedente',
@@ -454,16 +500,16 @@ Tutti i tempi sono in ora del server.',
 'undeletehistory'   => 'Se recuperi questo articolo, tutte le sue revisioni verranno recuperate nella relativa cronologia.
 Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.',
 'undeletebtn'       => 'RIPRISTINA!',
-'undeletedarticle'  => 'Recuperata "$1"',
+'undeletedarticle'  => 'Recuperadu "$1"',
 
 # Contributions
-'contributions' => 'Contributi di questo Utente',
-'contribsub2'   => 'Per $1 ($2)',
+'contributions' => "Contributziones de s'usuàriu",
+'contribsub2'   => 'Pro $1 ($2)',
 'nocontribs'    => 'Nessuna modifica trovata conformemente a questi criteri.', # Optional parameter: $1 is the user name
-'uctop'         => ' (ultima per la pagina)',
+'uctop'         => '(ùrtimu de sa pàgina)',
 
 # What links here
-'whatlinkshere' => 'Pagine che linkano questa',
+'whatlinkshere' => 'Pàginas che ligant a custa',
 'linkshere'     => 'Le seguenti pagine contengono link che puntano qui:',
 'nolinkshere'   => 'Nessuna pagina contiene links che puntano a questa.',
 'isredirect'    => 'redirect',
@@ -486,7 +532,7 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 'blocklistline'      => '$1, $2 ha bloccato $3 ($4)',
 'blocklink'          => 'blocca',
 'unblocklink'        => 'sblocca',
-'contribslink'       => 'contributi',
+'contribslink'       => 'contributziones',
 
 # Developer tools
 'lockdb'              => 'Blocca il database',
@@ -543,7 +589,10 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 'ilsubmit'      => 'Cerca',
 'bydate'        => 'data',
 
+# 'all' in various places, this might be different for inflected languages
+'monthsall' => 'totu',
+
 # Special:SpecialPages
-'specialpages' => 'Pagine speciali',
+'specialpages' => 'Pàginas ispetziales',
 
 );

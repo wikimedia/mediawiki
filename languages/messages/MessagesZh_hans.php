@@ -217,7 +217,7 @@ $messages = array(
 'tog-diffonly'                => '在比较两个修订版本差异时不显示页面内容',
 'tog-showhiddencats'          => '显示隐藏分类',
 'tog-noconvertlink'           => '不转换链接标题',
-'tog-norollbackdiff'          => '进行反转后略过差异',
+'tog-norollbackdiff'          => '执行回退后不显示差异',
 
 'underline-always'  => '总是使用',
 'underline-never'   => '从不使用',

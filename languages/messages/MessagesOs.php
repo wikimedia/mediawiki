@@ -419,7 +419,10 @@ $messages = array(
 # Search results
 'searchresults'             => 'Цы ссардæуы',
 'searchresults-title'       => 'Агуырды фæстиуæг: «$1»',
+'noexactmatch'              => "'''Бæлвырд уыцы дзырд йæ сæргонды кæмæн уаид, ахæм статья нæй.''' [[:$1|Скæн æй]].",
+'noexactmatch-nocreate'     => "'''«$1», зæгъгæ, бæлвырд уыцы дзырд йæ сæргонды кæмæн уаид, ахæм статья нæй.'''",
 'titlematches'              => 'Статьяты сæргæндты æмцаутæ',
+'notitlematches'            => 'Фæрсты сæргæндты нæй',
 'textmatches'               => 'Статьяты æмцаутæ',
 'prevn'                     => '$1 фæстæмæ',
 'nextn'                     => '$1 размæ',
@@ -433,8 +436,10 @@ $messages = array(
 'search-mwsuggest-enabled'  => 'æмбарынгæнæнтимæ',
 'search-mwsuggest-disabled' => 'æнæ æмбарынгæнæнтæ',
 'searchall'                 => 'æппæт',
+'showingresultstotal'       => "Дæлæ дæ агуырды {{PLURAL:$4|'''$1''' фæстиуæг, æдæппæт сты '''$3'''|фæстиуджытæ '''$1 — $2''', æдæппæт сты '''$3'''}}",
 'powersearch'               => 'Сæрмагонд агуырд',
 'powersearch-legend'        => 'Сæрмагонд агуырд',
+'powersearch-redir'         => 'Рарвыстытæ дæр æвдис',
 
 # Preferences page
 'mypreferences'             => 'Æрмадз',

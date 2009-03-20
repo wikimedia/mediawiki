@@ -51,6 +51,7 @@ $messages = array(
 'tog-editondblclick'      => 'Άλλαγμαν σελιδίων με διπλόν κλικ (JavaScript)',
 'tog-shownumberswatching' => "Δείξον τοι χρήστς π' δεαβάζνε",
 'tog-showhiddencats'      => 'Δείξον κρυμμένα κατηγορίας',
+'tog-norollbackdiff'      => 'Χάσον τα διαφοράς ασην αναστροφήν κιάν',
 
 'underline-always' => 'Πάντα',
 'underline-never'  => 'Καμίαν',
@@ -894,6 +895,7 @@ $messages = array(
 # Protect
 'protectlogpage'              => 'Αρχείον ασπαλιγματίων',
 'protectedarticle'            => 'ασπαλιζμένον "[[$1]]"',
+'modifiedarticleprotection'   => 'έλλαξεν τ\'ωρίαγμαν για "[[$1]]"',
 'prot_1movedto2'              => '[[$1]] ετερχλαεύτεν σο [[$2]]',
 'protectcomment'              => 'Σχόλιον:',
 'protectexpiry'               => 'Τελείται:',
@@ -1105,6 +1107,7 @@ $messages = array(
 'tooltip-t-upload'                => 'Φόρτωμα αρχείων',
 'tooltip-t-specialpages'          => 'Κατάλογον με τα ειδικά σελίδας',
 'tooltip-t-print'                 => 'Εκτυπώσιμον μορφή τη σελίδας',
+'tooltip-t-permalink'             => "Μόνιμον σύνδεσμος σ'αούτο τη μορφήν τη σελίδας",
 'tooltip-ca-nstab-main'           => 'Τέρεμαν σελίδας περιεχομενίων',
 'tooltip-ca-nstab-user'           => 'Τέρεμαν τη σελίδας χρήστε',
 'tooltip-ca-nstab-media'          => 'Τέρεμαν τη σελίδας μεσίων',
@@ -1121,6 +1124,7 @@ $messages = array(
 'tooltip-diff'                    => "Τέρεμαν τ' αλλαγίων ντ' εποίκατε σο κείμενον.",
 'tooltip-compareselectedversions' => "Τερέστε τα διαφοράς τ' εκδωσίων τη σελίδας",
 'tooltip-watch'                   => 'Βαλέστεν την σελίδαν σην λίσταν ωριαγματί νεσουν',
+'tooltip-rollback'                => "Μ'έναν κλικ σην \"αναστροφήν\" θα χάται τ' υστερνόν η αλλαγή σ'αούτον τη σελίδαν.",
 
 # Attribution
 'others' => "άλλ'",

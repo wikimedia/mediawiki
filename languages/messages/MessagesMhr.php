@@ -93,6 +93,7 @@ $messages = array(
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|Категорий|Категорий}}',
 'category_header'        => '"$1" категорийыште лаштык-влак',
+'subcategories'          => 'Подкатегорий-влак',
 'hidden-categories'      => '{{PLURAL:$1|Шылтыме категорий|Шылтыме категорий-влак}}',
 'listingcontinuesabbrev' => '(умбакыжым)',
 
@@ -154,6 +155,8 @@ $messages = array(
 'helppage'             => 'Help:Полшык',
 'mainpage'             => 'Тӱҥ лаштык',
 'mainpage-description' => 'Тӱҥ лаштык',
+
+'badaccess' => 'Кертмаште йоҥылыш лийын',
 
 'retrievedfrom'       => 'Налме вер — "$1"',
 'youhavenewmessages'  => 'Тендан $1 уло ($2).',
@@ -257,27 +260,28 @@ $messages = array(
 'hr_tip'          => 'Тореш (шуэн кучылт)',
 
 # Edit pages
-'summary'              => 'Тӧрлатымаш нерген:',
-'subject'              => 'Теме/вуймут:',
-'minoredit'            => 'Тиде изирак тӧрлатыме',
-'watchthis'            => 'Тиде лаштыкым эскераш',
-'savearticle'          => 'Лаштыкым аралаш',
-'preview'              => 'Ончылгоч ончымаш',
-'showpreview'          => 'Ончылгоч ончымаш',
-'showdiff'             => 'Тӧрлатымашым ончыкташ',
-'anoneditwarning'      => "'''Тӱтко лий:''': Тый шкенетым палымым ыштен отыл. Тыйын IP адресет лаштыкын вашталтыме историйштыже вазалтен кодеш.",
-'summary-preview'      => 'Тӧрлатымаш нерген ончылгоч ончымаш:',
-'newarticle'           => '(У)',
-'clearyourcache'       => "'''Ешартыш''': Аралыме деч вара вашталтышым ужаш браузеретын кешыжым эрыкташ логалын кертеш. '''Mozilla / Firefox / Safari:''' ''Shift''-ым темдал кучен ''Reload''-ым темдал але ''Ctrl-F5'' але ''Ctrl-R'' темдал (Macintosh-влак ''Command-R''); '''Konqueror:''' темдал ''Reload'' кнопкым але ''F5'' темдал; '''Opera:''' ''Tools→Preferences''-ыште кешым эрыкте; '''Internet Explorer:''' ''Ctrl''-ым темдал кучен ''Refresh''-ым темдал але ''Ctrl-F5'' темдал.",
-'previewnote'          => "'''Тиде ончылгоч ончымаш гына;
+'summary'                => 'Тӧрлатымаш нерген:',
+'subject'                => 'Теме/вуймут:',
+'minoredit'              => 'Тиде изирак тӧрлатыме',
+'watchthis'              => 'Тиде лаштыкым эскераш',
+'savearticle'            => 'Лаштыкым аралаш',
+'preview'                => 'Ончылгоч ончымаш',
+'showpreview'            => 'Ончылгоч ончымаш',
+'showdiff'               => 'Тӧрлатымашым ончыкташ',
+'anoneditwarning'        => "'''Тӱтко лий:''': Тый шкенетым палымым ыштен отыл. Тыйын IP адресет лаштыкын вашталтыме историйштыже вазалтен кодеш.",
+'summary-preview'        => 'Тӧрлатымаш нерген ончылгоч ончымаш:',
+'newarticle'             => '(У)',
+'clearyourcache'         => "'''Ешартыш''': Аралыме деч вара вашталтышым ужаш браузеретын кешыжым эрыкташ логалын кертеш. '''Mozilla / Firefox / Safari:''' ''Shift''-ым темдал кучен ''Reload''-ым темдал але ''Ctrl-F5'' але ''Ctrl-R'' темдал (Macintosh-влак ''Command-R''); '''Konqueror:''' темдал ''Reload'' кнопкым але ''F5'' темдал; '''Opera:''' ''Tools→Preferences''-ыште кешым эрыкте; '''Internet Explorer:''' ''Ctrl''-ым темдал кучен ''Refresh''-ым темдал але ''Ctrl-F5'' темдал.",
+'previewnote'            => "'''Тиде ончылгоч ончымаш гына;
 вашталтыш-влакым эше аралыме огыл!'''",
-'editing'              => 'Тӧрлаталтеш $1',
-'editingsection'       => 'Тӧрлаталтеш $1 (ужаш)',
-'templatesused'        => 'Тиде лаштыкыште кучылтмо ямдылык-влак:',
-'templatesusedpreview' => 'Тиде ончылгоч ончымаште кучылтмо ямдылык-влак:',
-'template-protected'   => '(тӧрлаташ чарыме)',
-'hiddencategories'     => 'Тиде лаштык $1 {{PLURAL:$1|шылтыме категорийыш|шылтыме категорийыш}} лектеш:',
-'deleted-notice'       => 'Тиде лаштык шӧрымӧ лийын.
+'editing'                => 'Тӧрлаталтеш $1',
+'editingsection'         => 'Тӧрлаталтеш $1 (ужаш)',
+'templatesused'          => 'Тиде лаштыкыште кучылтмо ямдылык-влак:',
+'templatesusedpreview'   => 'Тиде ончылгоч ончымаште кучылтмо ямдылык-влак:',
+'template-protected'     => '(тӧрлаташ чарыме)',
+'template-semiprotected' => '(верын аралыме)',
+'hiddencategories'       => 'Тиде лаштык $1 {{PLURAL:$1|шылтыме категорийыш|шылтыме категорийыш}} лектеш:',
+'deleted-notice'         => 'Тиде лаштык шӧрымӧ лийын.
 Тиде лаштыклан шӧрымӧ нерген журнал ӱлнӧ ончыктымо.',
 
 # History pages
@@ -444,6 +448,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|байт|байт}}',
+'nmembers'          => '$1 {{PLURAL:$1|лаштык|лаштык-влак}}',
 'nviews'            => '$1 {{PLURAL:$1|ончымо|ончымо-влак}}',
 'prefixindex'       => 'Чыла лаштык-влак префикс дене',
 'newpages'          => 'У лаштык-влак',
@@ -480,6 +485,9 @@ $messages = array(
 # Special:Log/newusers
 'newuserlogpage'          => 'У пайдаланыше регистрацийым эртарыме журнал',
 'newuserlog-create-entry' => 'У пайдаланыше',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(тӱшкаште улшо-влак)',
 
 # E-mail user
 'emailuser' => 'Пайдаланыше дек серыш',
@@ -527,16 +535,27 @@ $messages = array(
 # Protect
 'protectlogpage'              => 'Тӧрлатымаш деч аралыме нерген журнал',
 'protectedarticle'            => '«[[$1]]» тӧрлатымаш деч аралыме лийын',
+'modifiedarticleprotection'   => '"[[$1]]" лаштыкын  шыгыремдымашын чотшым вашталтыме.',
 'protectcomment'              => 'Аралыме нерген:',
 'protectexpiry'               => 'Мучашлалтеш:',
 'protect_expiry_invalid'      => 'Йоҥылыш мучашлалтше жап.',
 'protect_expiry_old'          => 'Мучашлалтше жап эртен.',
+'protect-text'                => "Тыште тый '''<nowiki>$1</nowiki>''' лаштыкын шыгыремдымашыжым ончалаш да тӧрлаташ кертат.",
+'protect-locked-access'       => "Тыйын лаштыкын шыгыремдымашыжым тӧрлаш кертежет шагал.
+Ӱлнӧ '''$1''' лаштыкын кызытсе настройкыже-влак.",
+'protect-cascadeon'           => 'Тиде лаштыкым кылдалтше аралтышан лаштыкыш пурымыжылан кӧра кызыт аралыме. Тый тиде лаштыкын шыгыремдымашыжым тӧрлатен кертат, тидын годым кылдалтше аралтыш огеш вашталт.',
 'protect-default'             => 'Чыла пайдаланыше лан йӧным пуаш',
+'protect-fallback'            => '«$1» кертеж кӱлеш',
 'protect-level-autoconfirmed' => 'Регистрацийым эртыдыме да у пайдаланыше-влак деч петыраш',
 'protect-level-sysop'         => 'Сайтвиктарыше-влак гына',
+'protect-summary-cascade'     => 'кылдалтше',
 'protect-expiring'            => '$1 мучашлалтеш (UTC)',
+'protect-cascade'             => 'Тиде лаштыкыш пурышо лаштыш-влакым аралаш (кылдалтше аралтыш)',
+'protect-cantedit'            => 'Тый тиде лаштыкын шыгыремдымашыжым тӧрлатен от керт, тидлан тылат кертеж пуалтын огыл.',
 'protect-otherreason'         => 'Вес/ешартыш амал:',
 'protect-otherreason-op'      => 'вес/ешартыш амал',
+'restriction-type'            => 'Кертеж:',
+'restriction-level'           => 'Тыгай шыгыремдаш:',
 
 # Undelete
 'undeletelink'           => 'ончалаш/тӧрлатен шындаш',
