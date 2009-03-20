@@ -394,6 +394,16 @@ class IPBlockForm {
 			return array('ipb_expiry_invalid');
 		}
 		
+		if( $this->BlockHideName ) {
+			if( !$userId ) {
+				// IP users should not be hidden
+				$this->BlockHideName = false;
+			} else if( $expiry !== 'infinity' ) {
+				// Bad expiry.
+				return array('ipb_expiry_temp');
+			}
+		}
+		
 		if( $this->BlockHideName && $expiry != 'infinity' ) {
 			// Bad expiry.
 			return array('ipb_expiry_temp');
@@ -410,10 +420,12 @@ class IPBlockForm {
 		# Should this be privately logged?
 		$suppressLog = (bool)$this->BlockHideName;
 		if ( wfRunHooks('BlockIp', array(&$block, &$wgUser)) ) {
-
+			# Try to insert block. Is there a conflicting block?
 			if ( !$block->insert() ) {
+				# Show form unless the user is already aware of this...
 				if ( !$this->BlockReblock ) {
 					return array( 'ipb_already_blocked' );
+				# Otherwise, try to update the block...
 				} else {
 					# This returns direct blocks before autoblocks/rangeblocks, since we should
 					# be sure the user is blocked by now it should work for our purposes
@@ -421,15 +433,30 @@ class IPBlockForm {
 					if( $block->equals( $currentBlock ) ) {
 						return array( 'ipb_already_blocked' );
 					}
-					$suppressLog = $suppressLog || (bool)$currentBlock->mHideName;
+					# If the name was hidden and the blocking user cannot hide
+					# names, then don't allow any block changes...
+					if( $currentBlock->mHideName && !$wgUser->isAllowed('hideuser') ) {
+						return array( 'hookaborted' );
+					}
 					$currentBlock->delete();
 					$block->insert();
+					# If hiding/unhiding a name, this should go in the private logs
+					$suppressLog = $suppressLog || (bool)$currentBlock->mHideName;
 					$log_action = 'reblock';
+					# Unset _deleted fields if requested
+					if( $currentBlock->mHideName && !$this->BlockHideName ) {
+						$this->unsuppressUserName( $this->BlockAddress, $userId );
+					}
 				}
 			} else {
 				$log_action = 'block';
 			}
 			wfRunHooks('BlockIpComplete', array($block, $wgUser));
+
+			# Set *_deleted fields if requested
+			if( $this->BlockHideName ) {
+				$this->suppressUserName( $this->BlockAddress, $userId );
+			}
 
 			if ( $this->BlockWatchUser &&
 				# Only show watch link when this is no range block
@@ -454,9 +481,57 @@ class IPBlockForm {
 
 			# Report to the user
 			return array();
-		}
-		else
+		} else {
 			return array('hookaborted');
+		}
+	}
+	
+	private function suppressUserName( $name, $userId ) {
+		$op = '|'; // bitwise OR
+		return $this->setUsernameBitfields( $name, $userId, $op );
+	}
+	
+	private function unsuppressUserName( $name, $userId ) {
+		$op = '&'; // bitwise AND
+		return $this->setUsernameBitfields( $name, $userId, $op );
+	}
+	
+	private function setUsernameBitfields( $name, $userId, $op ) {
+		if( $op !== '|' && $op !== '&' )
+			return false; // sanity check
+		// Typically, the user should have a handful of edits.
+		// Disallow hiding users with many edits for performance.
+		if( User::edits($userId) > 3000 ) {
+			return false;
+		}
+		$dbw = wfGetDB( DB_MASTER );
+		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+		# To suppress, we OR the current bitfields with Revision::DELETED_USER
+		# to put a 1 in the username *_deleted bit. To unsuppress we AND the
+		# current bitfields with the inverse of Revision::DELETED_USER. The
+		# username bit is made to 0 (x & 0 = 0), while others are unchanged (x & 1 = x).
+		# The same goes for the sysop-restricted *_deleted bit.
+		if( $op == '&' ) $delUser = "~{$delUser}";
+		# Hide name from live edits
+		$dbw->update( 'revision', array("rev_deleted = rev_deleted $op $delUser"),
+			array('rev_user' => $userId), __METHOD__ );
+		# Hide name from deleted edits
+		$dbw->update( 'archive', array("ar_deleted = ar_deleted $op $delUser"),
+			array('ar_user_text' => $userId), __METHOD__ );
+		# Hide name from logs
+		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delUser"),
+			array('log_user' => $userId), __METHOD__ );
+		# Hide name from RC
+		$dbw->update( 'recentchanges', array("rc_deleted = rc_deleted $op $delUser"),
+			array('rc_user_text' => $name), __METHOD__ );
+		# Hide name from live images
+		$dbw->update( 'oldimage', array("oi_deleted = oi_deleted $op $delUser"),
+			array('oi_user_text' => $name), __METHOD__ );
+		# Hide name from deleted images
+		$dbw->update( 'filearchive', array("fa_deleted = fa_deleted $op $delUser"),
+			array('fa_user_text' => $name), __METHOD__ );
+		# Done!
+		return true;
 	}
 
 	/**
