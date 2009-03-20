@@ -74,14 +74,16 @@ class ArchivedFile
 		}
 		$conds = array();
 		
-		if ($this->id>0)
+		if( $this->id > 0 )
 			$conds['fa_id'] = $this->id;
-		if ($this->key)
-			$conds['fa_storage_key'] = $this->key;	
-		if ($this->title)
+		if( $this->key ) {
+			$conds['fa_storage_group'] = $this->group;	
+			$conds['fa_storage_key'] = $this->key;
+		}
+		if( $this->title )
 			$conds['fa_name'] = $this->title->getDBkey();
 			
-		if (!count($conds))
+		if( !count($conds))
 			throw new MWException( "No specific information for retrieving archived file" );
 		
 		if( !$this->title || $this->title->getNamespace() == NS_FILE ) {
