@@ -573,9 +573,12 @@ class LogPager extends ReverseChronologicalPager {
 			   but for now it won't pass anywhere behind the optimizer */
 			$this->mConds[] = "NULL";
 		} else {
+			global $wgUser;
 			$this->mConds['log_user'] = $userid;
 			// Paranoia: avoid brute force searches (bug 17342)
-			$this->mConds[] = 'log_deleted & ' . LogPage::DELETED_USER . ' = 0';
+			if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+				$this->mConds[] = 'log_deleted & ' . LogPage::DELETED_USER . ' = 0';
+			}
 			$this->user = $usertitle->getText();
 		}
 	}
@@ -587,7 +590,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param $pattern String
 	 */
 	private function limitTitle( $page, $pattern ) {
-		global $wgMiserMode;
+		global $wgMiserMode, $wgUser;
 
 		$title = Title::newFromText( $page );
 		if( strlen($page) == 0 || !$title instanceof Title )
@@ -617,7 +620,9 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds['log_title'] = $title->getDBkey();
 		}
 		// Paranoia: avoid brute force searches (bug 17342)
-		$this->mConds[] = 'log_deleted & ' . LogPage::DELETED_ACTION . ' = 0';
+		if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+			$this->mConds[] = 'log_deleted & ' . LogPage::DELETED_ACTION . ' = 0';
+		}
 	}
 
 	public function getQueryInfo() {
@@ -639,7 +644,8 @@ class LogPager extends ReverseChronologicalPager {
 			'join_conds' => array( 'user' => array( 'INNER JOIN', 'user_id=log_user' ) ),
 		);
 
-		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'], $info['join_conds'], $this->mTagFilter );
+		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'],
+			$info['join_conds'], $this->mTagFilter );
 
 		return $info;
 	}
