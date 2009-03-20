@@ -28,7 +28,10 @@ class ParserCache {
 
 	function getKey( &$article, $popts ) {
 		global $wgRequest;
-		
+
+		if( $popts instanceof User )	// It used to be getKey( &$article, &$user )
+			$popts = ParserOptions::newFromUser( $popts );
+
 		$user = $popts->mUser;
 		$printable = ( $popts->getIsPrintable() ) ? '!printable=1' : '';
 		$hash = $user->getPageRenderingHash();
