@@ -5,11 +5,13 @@
  *
  * To use this:
  *
- * Set $wgUploadDirectory to a non-public directory (not web accessible)
- * Set $wgUploadPath to point to this file
+ * - Set $wgUploadDirectory to a non-public directory (not web accessible)
+ * - Set $wgUploadPath to point to this file
  *
  * Your server needs to support PATH_INFO; CGI-based configurations
  * usually don't.
+ *
+ * @file
  */
  
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );

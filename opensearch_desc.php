@@ -2,6 +2,8 @@
 
 /**
  * Generate an OpenSearch description file
+ *
+ * @file
  */
 
 require_once( dirname(__FILE__) . '/includes/WebStart.php' );
