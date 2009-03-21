@@ -155,7 +155,7 @@ class UploadForm {
 	 * Returns true if there was an error, false otherwise
 	 */
 	private function curlCopy( $url, $dest ) {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgHTTPProxy;
 
 		if( !$wgUser->isAllowed( 'upload_by_url' ) ) {
 			$wgOut->permissionRequired( 'upload_by_url' );
@@ -183,6 +183,9 @@ class UploadForm {
 		curl_setopt( $ch, CURLOPT_TIMEOUT, 10); # 10 seconds timeout
 		curl_setopt( $ch, CURLOPT_LOW_SPEED_LIMIT, 512); # 0.5KB per second minimum transfer speed
 		curl_setopt( $ch, CURLOPT_URL, $url);
+		if( $wgHTTPProxy ) {
+			curl_setopt( $ch, CURLOPT_PROXY, $wgHTTPProxy );
+		}
 		curl_setopt( $ch, CURLOPT_WRITEFUNCTION, array( $this, 'uploadCurlCallback' ) );
 		curl_exec( $ch );
 		$error = curl_errno( $ch ) ? true : false;
