@@ -1876,6 +1876,7 @@ $wgMessageStructure = array(
 		'range_block_disabled',
 		'ipb_expiry_invalid',
 		'ipb_expiry_temp',
+		'ipb_hide_invalid',
 		'ipb_already_blocked',
 		'ipb-needreblock',
 		'ipb_cant_unblock',
