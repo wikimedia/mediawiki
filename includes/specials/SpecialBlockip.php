@@ -401,12 +401,11 @@ class IPBlockForm {
 			} else if( $expiry !== 'infinity' ) {
 				// Bad expiry.
 				return array('ipb_expiry_temp');
+			} else if( User::edits($userId) > 3000 ) {
+				// Typically, the user should have a handful of edits.
+				// Disallow hiding users with many edits for performance.
+				return array('ipb_hide_invalid');
 			}
-		}
-		
-		if( $this->BlockHideName && $expiry != 'infinity' ) {
-			// Bad expiry.
-			return array('ipb_expiry_temp');
 		}
 
 		# Create block
@@ -499,11 +498,6 @@ class IPBlockForm {
 	private function setUsernameBitfields( $name, $userId, $op ) {
 		if( $op !== '|' && $op !== '&' )
 			return false; // sanity check
-		// Typically, the user should have a handful of edits.
-		// Disallow hiding users with many edits for performance.
-		if( User::edits($userId) > 3000 ) {
-			return false;
-		}
 		$dbw = wfGetDB( DB_MASTER );
 		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
 		# To suppress, we OR the current bitfields with Revision::DELETED_USER
@@ -528,8 +522,9 @@ class IPBlockForm {
 		$dbw->update( 'oldimage', array("oi_deleted = oi_deleted $op $delUser"),
 			array('oi_user_text' => $name), __METHOD__ );
 		# Hide name from deleted images
-		$dbw->update( 'filearchive', array("fa_deleted = fa_deleted $op $delUser"),
-			array('fa_user_text' => $name), __METHOD__ );
+		# WMF - schema change pending
+		# $dbw->update( 'filearchive', array("fa_deleted = fa_deleted $op $delUser"),
+		#	array('fa_user_text' => $name), __METHOD__ );
 		# Done!
 		return true;
 	}

@@ -2692,6 +2692,7 @@ See the [[Special:IPBlockList|IP block list]] for the list of currently operatio
 'range_block_disabled'            => 'The administrator ability to create range blocks is disabled.',
 'ipb_expiry_invalid'              => 'Expiry time invalid.',
 'ipb_expiry_temp'                 => 'Hidden username blocks must be permanent.',
+'ipb_hide_invalid'                => 'Unable to suppress this account; it may have too many edits.',
 'ipb_already_blocked'             => '"$1" is already blocked',
 'ipb-needreblock'                 => '== Already blocked ==
 $1 is already blocked. Do you want to change the settings?',
