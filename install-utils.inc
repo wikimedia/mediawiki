@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file contains functions used by the install script (config/index.php)
+ * and maintenance scripts. It is not loaded in normal web requests.
+ *
+ * @file
+ */
+
 function install_version_checks() {
 	# We dare not turn output buffer _off_ since this will break completely
 	# if PHP is globally configured to run through a gzip filter.
