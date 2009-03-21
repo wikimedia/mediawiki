@@ -279,6 +279,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18018) Deleting a file redirect leaves behind a malfunctioning redirect
 * (bug 17537) Disable bad zlib.output_compression output on HTTP 304 responses
 * (bug 11213) [edit] section links in printable version no longer appear when you cut-and-paste article text
+* (bug 17405) "Did you mean" to mirror Go/Search behavior of original request
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

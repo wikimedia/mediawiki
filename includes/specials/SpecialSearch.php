@@ -74,6 +74,7 @@ class SpecialSearch {
 		$this->active = 'advanced';
 		$this->sk = $user->getSkin();
 		$this->didYouMeanHtml = ''; # html of did you mean... link
+		$this->fulltext = $request->getVal('fulltext'); 
 	}
 
 	/**
@@ -163,9 +164,13 @@ class SpecialSearch {
 
 		// did you mean... suggestions
 		if( $textMatches && $textMatches->hasSuggestion() ) {
-			$st = SpecialPage::getTitleFor( 'Search' );			
+			$st = SpecialPage::getTitleFor( 'Search' );
+			# mirror Go/Search behaviour of original request ..
+			$didYouMeanParams = array( 'search' => $textMatches->getSuggestionQuery() );
+			if($this->fulltext != NULL)
+				$didYouMeanParams['fulltext'] = $this->fulltext;				
 			$stParams = wfArrayToCGI( 
-				array( 'search' => $textMatches->getSuggestionQuery(), 'fulltext' 	=> wfMsg('search') ),
+				$didYouMeanParams,
 				$this->powerSearchOptions()
 			);
 			$suggestLink = $sk->makeKnownLinkObj( $st,
@@ -856,6 +861,7 @@ class SpecialSearchOld {
 		}
 
 		$this->searchRedirects = $request->getcheck( 'redirs' ) ? true : false;
+		$this->fulltext = $request->getVal('fulltext'); 
 	}
 
 	/**
@@ -929,11 +935,16 @@ class SpecialSearchOld {
 
 		// did you mean... suggestions
 		if($textMatches && $textMatches->hasSuggestion()){
-			$st = SpecialPage::getTitleFor( 'Search' );			
-			$stParams = wfArrayToCGI( array( 
-					'search' 	=> $textMatches->getSuggestionQuery(), 
-					'fulltext' 	=> wfMsg('search')),
-					$this->powerSearchOptions());
+			$st = SpecialPage::getTitleFor( 'Search' );
+			
+			# mirror Go/Search behaviour of original request		
+			$didYouMeanParams = array( 'search' => $textMatches->getSuggestionQuery() );
+			if($this->fulltext != NULL)
+				$didYouMeanParams['fulltext'] = $this->fulltext;				
+			$stParams = wfArrayToCGI( 
+				$didYouMeanParams,
+				$this->powerSearchOptions()
+			);	
 
 			$suggestLink = $sk->makeKnownLinkObj( $st,
 				$textMatches->getSuggestionSnippet(),
