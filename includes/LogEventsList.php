@@ -170,7 +170,7 @@ class LogEventsList {
 	 * @return String: Formatted HTML
 	 */
 	private function getUserInput( $user ) {
-		return Xml::inputLabel( wfMsg( 'specialloguserlabel' ), 'user', 'user', 15, $user );
+		return Xml::inputLabel( wfMsg( 'specialloguserlabel' ), 'user', 'mw-log-user', 15, $user );
 	}
 
 	/**
@@ -178,7 +178,7 @@ class LogEventsList {
 	 * @return String: Formatted HTML
 	 */
 	private function getTitleInput( $title ) {
-		return Xml::inputLabel( wfMsg( 'speciallogtitlelabel' ), 'page', 'page', 20, $title );
+		return Xml::inputLabel( wfMsg( 'speciallogtitlelabel' ), 'page', 'mw-log-page', 20, $title );
 	}
 
 	/**
