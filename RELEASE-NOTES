@@ -145,6 +145,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   enabled. Image width and height are now recognized, and when using ImageMagick,
   optional flattening to PNG or JPEG for inline display can be enabled by setting
   $wgTiffThumbnailType
+* Renamed two input IDs on Special:Log from 'page' and 'user' to 'mw-log-page' and
+  'mw-log-user', respectively
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
