@@ -1058,13 +1058,15 @@ $2',
 'rev-deleted-comment'            => '(תקציר העריכה הוסתר)',
 'rev-deleted-user'               => '(שם המשתמש הוסתר)',
 'rev-deleted-event'              => '(פעולת היומן הוסתרה)',
-'rev-deleted-text-permission'    => 'גרסת הדף הזו הוסרה מהארכיונים הציבוריים.
-ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].',
-'rev-deleted-text-view'          => 'גרסת הדף הזו הוסרה מהארכיונים הציבוריים.
-כמפעיל מערכת, באפשרותך לצפות בגרסה;
-ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].',
-'rev-deleted-no-diff'            => 'אינכם יכולים לצפות בהבדלים בין הגרסאות שציינתם משום שאחת מהן הוסרה מהארכיונים הציבוריים.
-ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].',
+'rev-deleted-text-permission'    => "גרסת הדף הזו '''הוסרה מהארכיונים הציבוריים'''.
+ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
+'rev-deleted-text-view'          => "גרסת הדף הזו '''הוסרה מהארכיונים הציבוריים'''.
+כיוון שאתם בעלי הרשאות מפעיל מערכת ב{{grammar:תחילית|{{SITENAME}}}}, באפשרותכם לצפות בגרסה; ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
+'rev-deleted-no-diff'            => "אינכם יכולים לצפות בהבדלים בין הגרסאות שציינתם משום שאחת מהן '''הוסרה מהארכיונים הציבוריים'''.
+ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
+'rev-deleted-unhide-diff'        => "אחת מהגרסאות שציינתם '''הוסרה מהארכיונים הציבוריים'''.
+ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
+כיוון שאתם בעלי הרשאות מפעיל מערכת ב{{grammar:תחילית|{{SITENAME}}}}, באפשרותכם [$1 לצפות בהבדלים בין הגרסאות] אם ברצונכם להמשיך.",
 'rev-delundel'                   => 'הצגה/הסתרה',
 'revisiondelete'                 => 'מחיקת ושחזור גרסאות',
 'revdelete-nooldid-title'        => 'גרסת מטרה בלתי תקינה',
