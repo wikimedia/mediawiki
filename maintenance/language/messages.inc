@@ -643,6 +643,7 @@ $wgMessageStructure = array(
 		'rev-deleted-text-permission',
 		'rev-deleted-text-view',
 		'rev-deleted-no-diff',
+		'rev-deleted-unhide-diff',
 		'rev-delundel',
 		'revisiondelete',
 		'revdelete-nooldid-title',

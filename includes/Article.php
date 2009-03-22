@@ -792,10 +792,10 @@ class Article {
 
 		# Allow admins to see deleted content if explicitly requested
 		$delId = $diff ? $diff : $oldid;
-		$unhide = $wgRequest->getInt('unhide') == 1 && $wgUser->matchEditToken( $wgRequest->getVal('token'), $delId );
+		$unhide = $wgRequest->getInt('unhide') == 1
+			&& $wgUser->matchEditToken( $wgRequest->getVal('token'), $delId );
 		# If we got diff and oldid in the query, we want to see a
 		# diff page instead of the article.
-
 		if( !is_null( $diff ) ) {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
