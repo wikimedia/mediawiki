@@ -283,15 +283,27 @@ CONTROL;
 			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly, !$this->unhide ).$rdel."</div>" .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $patrol . '</div>';
 
-		# Output the diff if allowed
-		$allowed = $this->mOldRev->userCan(Revision::DELETED_TEXT) && $this->mNewRev->userCan(Revision::DELETED_TEXT);
-		$deleted = $this->mOldRev->isDeleted(Revision::DELETED_TEXT) || $this->mNewRev->isDeleted(Revision::DELETED_TEXT);
+		# Check if this user can see the revisions
+		$allowed = $this->mOldRev->userCan(Revision::DELETED_TEXT)
+			&& $this->mNewRev->userCan(Revision::DELETED_TEXT);
+		$deleted = $this->mOldRev->isDeleted(Revision::DELETED_TEXT)
+			|| $this->mNewRev->isDeleted(Revision::DELETED_TEXT);
+		# Output the diff if allowed...
 		if( $deleted && (!$this->unhide || !$allowed) ) {
 			$this->showDiffStyle();
 			$multi = $this->getMultiNotice();
 			$wgOut->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
-				array( 'rev-deleted-no-diff' ) );
+			if( !$allowed ) {
+				# Give explanation for why revision is not visible
+				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
+					array( 'rev-deleted-no-diff' ) );
+			} else {
+				# Give explanation and add a link to view the diff...
+				$link = $this->mTitle->getFullUrl( "diff={$this->mNewid}&oldid={$this->mOldid}".
+					'&unhide=1&token='.urlencode( $wgUser->editToken($this->mNewid) ) );
+				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
+					array( 'rev-deleted-unhide-diff', $link ) );
+			}
 		} else if( $wgEnableHtmlDiff && $this->htmldiff ) {
 			$multi = $this->getMultiNotice();
 			$wgOut->addHTML('<div class="diff-switchtype">'.$sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'wikicodecomparison' ),
