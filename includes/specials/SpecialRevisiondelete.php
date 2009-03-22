@@ -52,9 +52,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			return;
 		}
 		$this->page = Title::newFromUrl( $this->target );
-		# If this is just one revision, get the title from it.
-		# This allows for more flexibility with page moves...
-		if( count($this->oldids) === 1 ) {
+		# If we have revisions, get the title from the first one
+		# since they should all be from the same page. This allows 
+		# for more flexibility with page moves...
+		if( count($this->oldids) > 0 ) {
 			$rev = Revision::newFromId( $this->oldids[0] );
 			$this->page = $rev ? $rev->getTitle() : $this->page;
 		}
