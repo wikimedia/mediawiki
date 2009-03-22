@@ -1296,12 +1296,12 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 'rev-deleted-text-permission'    => "This page revision has been '''removed from the public archives'''.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-deleted-text-view'          => "This page revision has been '''removed from the public archives'''.
-As an administrator on {{SITENAME}} you can view it; there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].",
+As an administrator you can view it; there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-deleted-no-diff'            => "You cannot view this diff because one of the revisions has been '''removed from the public archives'''.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-deleted-unhide-diff'        => "One of the revisions of this diff has been '''removed from the public archives'''.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
-As an administrator on {{SITENAME}} you can still [$1 view this diff] if you wish to proceed.",
+As an administrator you can still [$1 view this diff] if you wish to proceed.",
 'rev-delundel'                   => 'show/hide',
 'revisiondelete'                 => 'Delete/undelete revisions',
 'revdelete-nooldid-title'        => 'Invalid target revision',
