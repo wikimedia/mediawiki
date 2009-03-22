@@ -39,7 +39,8 @@ class LogEventsList {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
 			$messages = array( 'revertmerge', 'protect_change', 'unblocklink', 'change-blocklink',
-				'revertmove', 'undeletelink', 'revdel-restore', 'rev-delundel', 'hist', 'pipe-separator' );
+				'revertmove', 'undeletelink', 'revdel-restore', 'rev-delundel', 'hist', 'diff',
+				'pipe-separator' );
 			foreach( $messages as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
 			}
@@ -291,8 +292,17 @@ class LogEventsList {
 				foreach( $Ids as $n => $id ) {
 					$revParams .= '&' . urlencode($key) . '[]=' . urlencode($id);
 				}
-				$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
-					'target=' . $title->getPrefixedUrl() . $revParams ) . ')';
+				$revert = array();
+				// Diff link for single rev deletions
+				if( $key === 'oldid' && count($Ids) == 1 ) {
+					$token = urlencode( $wgUser->editToken( intval($Ids[0]) ) );
+					$revert[] = $this->skin->makeKnownLinkObj( $title, $this->message['diff'], 
+						'diff='.intval($Ids[0])."&unhide=1&token=$token" );
+				}
+				// View/modify link...
+				$revert[] = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
+					'target=' . $title->getPrefixedUrl() . $revParams );
+				$revert = '(' . implode(' | ',$revert) . ')';
 			}
 		// Hidden log items, give review link
 		} else if( self::typeAction($row,array('delete','suppress'),'event','deleterevision') ) {
