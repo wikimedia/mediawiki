@@ -41,6 +41,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		# Only one target set at a time please!
 		$i = (bool)$this->file + (bool)$this->oldids + (bool)$this->logids
 			+ (bool)$this->artimestamps + (bool)$this->fileids + (bool)$this->oldimgs;
+		# No targets?
+		if( $i == 0 ) {
+			$wgOut->showErrorPage( 'notargettitle', 'notargettext' );
+			return;
+		}
+		# Too many targets?
 		if( $i !== 1 ) {
 			$wgOut->showErrorPage( 'revdelete-toomanytargets-title', 'revdelete-toomanytargets-text' );
 			return;
@@ -60,11 +66,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		# Logs must have a type given
 		if( $this->logids && !strpos($this->page->getDBKey(),'/') ) {
 			$wgOut->showErrorPage( 'revdelete-nologtype-title', 'revdelete-nologtype-text' );
-			return;
-		}
-		# Check edit token on submission
-		if( $this->wasPosted && !$wgUser->matchEditToken( $wgRequest->getVal('wpEditToken') ) ) {
-			$wgOut->addWikiMsg( 'sessionfailure' );
 			return;
 		}
 		# For reviewing deleted files...show it now if allowed
@@ -741,7 +742,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	private function submit( $request ) {
 		global $wgUser, $wgOut;
-
+		# Check edit token on submission
+		if( $this->wasPosted && !$wgUser->matchEditToken( $request->getVal('wpEditToken') ) ) {
+			$wgOut->addWikiMsg( 'sessionfailure' );
+			return false;
+		}
 		$bitfield = $this->extractBitfield( $request );
 		$comment = $request->getText( 'wpReason' );
 		# Can the user set this field?
