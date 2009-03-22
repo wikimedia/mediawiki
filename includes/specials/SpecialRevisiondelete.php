@@ -38,17 +38,23 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->fileids = $wgRequest->getArray( 'fileid' );
 		# For reviewing deleted files...
 		$this->file = $wgRequest->getVal( 'file' );
-		# If this is a revision, then we need a target page
-		$this->page = Title::newFromUrl( $this->target );
-		if( is_null($this->page) ) {
-			$wgOut->addWikiMsg( 'undelete-header' );
-			return;
-		}
 		# Only one target set at a time please!
 		$i = (bool)$this->file + (bool)$this->oldids + (bool)$this->logids
 			+ (bool)$this->artimestamps + (bool)$this->fileids + (bool)$this->oldimgs;
 		if( $i !== 1 ) {
 			$wgOut->showErrorPage( 'revdelete-toomanytargets-title', 'revdelete-toomanytargets-text' );
+			return;
+		}
+		$this->page = Title::newFromUrl( $this->target );
+		# If this is just one revision, get the title from it.
+		# This allows for more flexibility with page moves...
+		if( count($this->oldids) === 1 ) {
+			$rev = Revision::newFromId( $this->oldids[0] );
+			$this->page = $rev ? $rev->getTitle() : $this->page;
+		}
+		# We need a target page!
+		if( is_null($this->page) ) {
+			$wgOut->addWikiMsg( 'undelete-header' );
 			return;
 		}
 		# Logs must have a type given
