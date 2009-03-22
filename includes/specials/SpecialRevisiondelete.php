@@ -191,7 +191,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$wgOut->addHTML( "<ul>" );
 
 		$where = $revObjs = array();
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_MASTER );
 		
 		$revisions = 0;
 		// Live revisions...
@@ -332,7 +332,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$wgOut->addHTML( "<ul>" );
 
 		$where = $filesObjs = array();
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_MASTER );
 		// Live old revisions...
 		$revisions = 0;
 		if( $this->deleteKey=='oldimage' ) {
@@ -461,7 +461,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$wgOut->addHTML( "<ul>" );
 
 		$where = $logRows = array();
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_MASTER );
 		// Run through and pull all our data in one query
 		$logItems = 0;
 		foreach( $this->events as $logid ) {
