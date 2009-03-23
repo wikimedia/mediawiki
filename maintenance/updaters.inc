@@ -1834,7 +1834,12 @@ function do_postgres_updates() {
 			continue;
 		}
 		wfOut( "Creating index \"$ni[1]\" on table \"$ni[0]\"\n" );
-		dbsource($ni[2]);
+		if ( preg_match( '/^\(/', $ni[2] ) ) {
+			$wgDatabase->query( "CREATE INDEX $ni[1] ON $ni[0] $ni[2]" );
+		}
+		else {
+			dbsource($ni[2]);
+		}
 	}
 
 	# Tweak the page_title tsearch2 trigger to filter out slashes
