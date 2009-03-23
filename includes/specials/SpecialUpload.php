@@ -1261,7 +1261,9 @@ wgUploadAutoFill = {$autofill};
 				<td></td>
 				<td class='mw-input'>"
 		);
-		$wgOut->addWikiText( wfMsgForContent( 'edittools' ) );
+		$wgOut->addHTML( '<div class="mw-editTools">' );
+		$wgOut->addWikiMsgArray( 'edittools', array(), array( 'content' ) );
+		$wgOut->addHTML( '</div>' );
 		$wgOut->addHTML( "
 				</td>
 			</tr>" .
