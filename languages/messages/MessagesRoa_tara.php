@@ -1718,9 +1718,14 @@ l'urteme condrebbutore jè sulamende l'autore de sta pàgene.",
 'revertpage'       => "Cangiaminde annullate da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) a l'urtema versione da [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "Cangiaminde annullate da $1;
 turnate rete a l'urtema versione da $2.",
+'sessionfailure'   => "Pare ca stonne probbleme cu 'a sessiona toje de collegamende;
+st'azione ha state scangellate pe precauzione condre a le 'ngasinaminde d'a sessione.
+Pe piacere cazze \"rete\" e recareche 'a pàgene da addò tu è venute e pruève 'n'otra vote.",
 
 # Protect
 'protectlogpage'              => 'Archibie de le prutezziune',
+'protectlogtext'              => "Sotte ste 'na liste de pàggene bloccate e sbloccate.
+Vide 'a [[Special:ProtectedPages|liste de le pàggene prutette]] pa liste de le operaziune currende sus a le prutezzione de le pàggene.",
 'protectedarticle'            => 'prutette "[[$1]]"',
 'modifiedarticleprotection'   => '\'u levèlle de protezione ha state cangete pe "[[$1]]"',
 'unprotectedarticle'          => 'sprutette "[[$1]]"',
@@ -1734,6 +1739,10 @@ turnate rete a l'urtema versione da $2.",
 'protect_expiry_old'          => "L'ore de scadenza jè jndr'à 'u passate.",
 'protect-unchain'             => 'Sblocche le permisse de spustaminde',
 'protect-text'                => "Tu puè vedè e cangià 'u levèlle de protezzione p'a pàgene '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Tu non ge puè cangià le levèlle de protezzione quanne si bloccate.
+Aqquà stonne le 'mbostaziune corrende pa pàgene '''$1''':",
+'protect-locked-dblock'       => "Le levèlle de protezzione non ge ponne essere cangete purcè stè 'nu blocche d'u database.
+Aqquà stonne le 'mbostaziune corrende pa pàgene '''$1''':",
 'protect-locked-access'       => "Tu non ge tine le permesse pe putè cangià le levèlle de protezione de le pàggene.
 Chiste sonde le configuraziune corrende p'a pàgene '''$1''':",
 'protect-cascadeon'           => "Sta pàgene mò jè  prutette purcè jè ingluse jndr'à {{PLURAL:$1|'a seguende pàgene, ca tène|le seguende pàggene, ca tènene}} a protezione a cascata appizzechete.
@@ -1771,32 +1780,54 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'restriction-level-all'           => 'ogne levèlle',
 
 # Undelete
-'undelete'                  => 'Vide le pàggene scangellete',
-'undeletepage'              => 'Vide e sripristine le pàggene scangellete',
-'viewdeletedpage'           => 'Vide le pàggene scangellete',
-'undelete-fieldset-title'   => 'Repristine le revisiune',
-'undeleterevisions'         => '$1 {{PLURAL:$1|revisione|revisiune}} archiviete',
-'undelete-revision'         => 'Revisiona scangellete de $1 (cumme de $4, a $5) da $3:',
-'undelete-nodiff'           => 'Nisciuna revisiona precedende ha state acchijate.',
-'undeletebtn'               => 'Repristine',
-'undeletelink'              => 'vide/repristine',
-'undeletereset'             => 'Azzere',
-'undeleteinvert'            => 'Selezione a smerse',
-'undeletecomment'           => 'Commende:',
-'undeletedarticle'          => 'ripristinete "[[$1]]"',
-'undeletedrevisions'        => '{{PLURAL:$1|1 revisione|$1 revisiune}} ripristinete',
-'undeletedrevisions-files'  => '{{PLURAL:$1|1 revisione|$1 revisiune}} e {{PLURAL:$2|1 file|$2 file}} ripristinete',
-'undeletedfiles'            => '{{PLURAL:$1|1 file|$1 file}} ripristinete',
-'undeletedpage'             => "<big>'''$1 ha state repristinate'''</big>
+'undelete'                     => 'Vide le pàggene scangellete',
+'undeletepage'                 => 'Vide e sripristine le pàggene scangellete',
+'viewdeletedpage'              => 'Vide le pàggene scangellete',
+'undelete-fieldset-title'      => 'Repristine le revisiune',
+'undeleteextrahelp'            => "Pe repristina totte 'a storie d'a pàgene, lasse tutte le caselle cu le spunde vacande e cazze '''''Repristine'''''.
+Pe fà 'nu repristine selettive, mitte 'a spunde jndr'à le caselle corrispondende a le revisiune ca vuè ccu repristine e pò cazze '''''Repristine'''''.
+Cazzanne '''''Azzera''''' avène pulezzate 'u cambe d'u commende e tutte le caselle cu 'a spunde.",
+'undeleterevisions'            => '$1 {{PLURAL:$1|revisione|revisiune}} archiviete',
+'undeletehistory'              => "Ce tu repristine 'a pàgene, tutte le revisiune avènene repristinate jndr'à storie.
+Ce 'na pàgena nove cu 'u stesse nome ha state ccrejate da 'a scangellazione, le revisiune repristinate iessène jndr'à storia prengepàle.",
+'undeletehistorynoadmin'       => "Sta pàgene ha state scangellate.
+'U mutive d'a scangellazione ste scritte jndr'à 'u riepileghe de sotte, cu tutte le dettaglie de l'utinde ca onne mise mane jndr'à sta pàgene apprima d'u scangellamende.
+'U teste corrende de ste revisiune scangellate jè sulamende disponibbile pe l'amministrature.",
+'undelete-revision'            => 'Revisiona scangellete de $1 (cumme de $4, a $5) da $3:',
+'undeleterevision-missing'     => "Revisiona invalide o mangande.
+Tu puè avè 'nu collegamende sbagliate o 'a revisione pò essere ca ha state repristinate o luvete da l'archivije.",
+'undelete-nodiff'              => 'Nisciuna revisiona precedende ha state acchijate.',
+'undeletebtn'                  => 'Repristine',
+'undeletelink'                 => 'vide/repristine',
+'undeletereset'                => 'Azzere',
+'undeleteinvert'               => 'Selezione a smerse',
+'undeletecomment'              => 'Commende:',
+'undeletedarticle'             => 'ripristinete "[[$1]]"',
+'undeletedrevisions'           => '{{PLURAL:$1|1 revisione|$1 revisiune}} ripristinete',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 revisione|$1 revisiune}} e {{PLURAL:$2|1 file|$2 file}} ripristinete',
+'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 file}} ripristinete',
+'cannotundelete'               => "Repristine fallite;
+quaccheotre pò essere ca ha repristinate 'a pàgene apprime.",
+'undeletedpage'                => "<big>'''$1 ha state repristinate'''</big>
 
 Ligge l'[[Special:Log/delete|archivije de le scangellaminde]] pe 'nu report de le urteme scangellaminde e repristinaminde.",
-'undelete-header'           => "Vide [[Special:Log/delete|l'archivije de le scangellaminde]] pe l'urteme pàggene scangellete.",
-'undelete-search-box'       => 'Cirche le pàggene scangellete',
-'undelete-search-prefix'    => 'Fà vedè le pàggene ca accumenzene cu:',
-'undelete-search-submit'    => 'Cirche',
-'undelete-cleanup-error'    => 'Errore scangellanne \'n\'archivije de file non ausate "$1".',
-'undelete-error-short'      => 'Errore file non recuperate: $1',
-'undelete-show-file-submit' => 'Sine',
+'undelete-header'              => "Vide [[Special:Log/delete|l'archivije de le scangellaminde]] pe l'urteme pàggene scangellete.",
+'undelete-search-box'          => 'Cirche le pàggene scangellete',
+'undelete-search-prefix'       => 'Fà vedè le pàggene ca accumenzene cu:',
+'undelete-search-submit'       => 'Cirche',
+'undelete-no-results'          => "Non ge stonne pàggene acchiate jndr'à l'archivije de le scangellaminde.",
+'undelete-filename-mismatch'   => "Non ge pozze repristinà 'a revisione d'u file cu orarie $1: nome d'u file errate",
+'undelete-bad-store-key'       => "Cannot undelete file revision with timestamp $1: file was missing before deletion.
+Non ge pozze repristinà 'a revisione d'u file cu orarie $1: 'u file ha state perdute apprime da scangellazione.",
+'undelete-cleanup-error'       => 'Errore scangellanne \'n\'archivije de file non ausate "$1".',
+'undelete-missing-filearchive' => "Non ge pozze repristinà 'u file archiviate cu ID $1 purcè non ge stè jndr'à 'u database.
+Pò essere ca già ha state scangellate.",
+'undelete-error-short'         => 'Errore file non recuperate: $1',
+'undelete-error-long'          => "Errore ca s'onne acchiate quanne amme pruvate a reprisitinà 'u file:
+
+$1",
+'undelete-show-file-confirm'   => 'Sì secure ca tu vuè ccu vide \'na revisiona scangellate d\'u file "<nowiki>$1</nowiki>" d\'u $2 a le $3?',
+'undelete-show-file-submit'    => 'Sine',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -1826,6 +1857,7 @@ Ligge l'[[Special:Log/delete|archivije de le scangellaminde]] pe 'nu report de l
 'whatlinkshere-backlink'   => '← $1',
 'linkshere'                => "Le pàggene ca avènene appondene a '''[[:$1]]''':",
 'nolinkshere'              => "Nisciuna pàgene apponde a '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Nisciuna pàgene apponde a '''[[:$1]]''' jndr'à 'u namespace scacchiete.",
 'isredirect'               => 'pàgene de ridirezionamende',
 'istemplate'               => 'inclusione',
 'isimage'                  => "collegamende a l'immaggine",
@@ -1841,6 +1873,9 @@ Ligge l'[[Special:Log/delete|archivije de le scangellaminde]] pe 'nu report de l
 # Block/unblock
 'blockip'                      => "Blocche l'utende",
 'blockip-legend'               => "Bluecche l'utende",
+'blockiptext'                  => "Ause 'a schermata de sotte pe bloccà l'accesse in scritture de 'nu specifiche indirizze IP o utende.
+Quiste avessa essere fatte sulamende pe prevenìe 'u vandalisme e in accorde cu [[{{MediaWiki:Policy-url}}|le reghele]].
+Mitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene addò è acchiate 'u vandalisme).",
 'ipaddress'                    => 'Indirizze IP:',
 'ipadressorusername'           => "Indirizze IP o nome de l'utende:",
 'ipbexpiry'                    => 'More:',
@@ -1854,8 +1889,11 @@ Ligge l'[[Special:Log/delete|archivije de le scangellaminde]] pe 'nu report de l
 'ipboptions'                   => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'               => 'otre',
 'ipbotherreason'               => 'Otre mutive:',
+'ipbhidename'                  => 'Scunne le nome utinde da le cangiaminde e da le liste',
 'badipaddress'                 => 'Indirizze IP invalide',
 'blockipsuccesssub'            => 'Blocche effettuate',
+'blockipsuccesstext'           => "[[Special:Contributions/$1|$1]] ha state bloccate.<br />
+Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'ipb-edit-dropdown'            => "Cange le mutive d'u blocche",
 'ipb-unblock-addr'             => 'Sblocche $1',
 'ipb-unblock'                  => 'Sblocche nome utende o indirizze IP',
@@ -1916,6 +1954,7 @@ Tu nonge puè ccrejà 'nu cunde utende",
 'unlockconfirm'       => "Sine, Je avveramende vogghie cu sblocche 'u database.",
 'lockbtn'             => 'Blocche databeise',
 'unlockbtn'           => 'Sblocche databeise',
+'locknoconfirm'       => "Tu non g'è selezionate 'a scatele de conferme.",
 'lockdbsuccesssub'    => "'U blocche d'u database ha state fatte cu successe",
 'unlockdbsuccesssub'  => "'U blocche d'u database ha state luete",
 'lockdbsuccesstext'   => "'U database ha state blocchete.<br />
@@ -1973,6 +2012,8 @@ Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'revertmove'                => 'a smerse',
 'delete_and_move'           => 'Scangille e spuèste',
 'delete_and_move_confirm'   => "Sine, scangille 'a pàggene",
+'selfmove'                  => "Le titele sorgende e destinazione sonde le stesse;
+non ge se pò movere 'na pàgene sus a sè stesse.",
 'immobile-source-namespace' => 'Non ge pozze spustà le pàggene da \'u namespace "$1"',
 'immobile-target-namespace' => 'Non ge pozze spustà le pàggene jndr\'à \'u namespace "$1"',
 'immobile-source-page'      => 'Sta pàgene non ge se pò spustà.',
@@ -2026,11 +2067,13 @@ Pe piacere vè vide [http://www.mediawiki.org/wiki/Localisation Localizzazione d
 'importnotext'               => 'Vacande o senza teste',
 'importsuccess'              => "'Mbortaziona spicciete!",
 'importnofile'               => "Nisciune file de 'mbortazione ha state carecate.",
+'import-parse-failure'       => "Analizzatore de 'mbortaziune de l'XML ha fallite",
 'import-noarticle'           => "Nisciuna pàgene 'mbortete!",
 'import-nonewrevisions'      => "Tutte le revisiune avèrene già state 'mbortate.",
 'xml-error-string'           => "$1 a 'a linea $2, colonne $3 (byte $4): $5",
 'import-upload'              => 'Careche le date in XML',
 'import-token-mismatch'      => "S'à perse 'a sessione de le date. Pruève 'n'otra vote.",
+'import-invalid-interwiki'   => "Non ge pozze 'mbortà da 'a Uicchi specificate.",
 
 # Import log
 'importlogpage'                    => "Archivie de le 'mbortaziune",
@@ -2109,16 +2152,19 @@ Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 'others'        => 'otre',
 'siteusers'     => '{{PLURAL:$2|utende|utinde}} de {{SITENAME}} $1',
 'creditspage'   => 'Pàgene de le crediti',
+'nocredits'     => "Non ge stonne 'mbormaziune sus a le credite disponibbele pe sta pàgene.",
 
 # Spam protection
 'spamprotectiontitle' => "Filtre de protezione da 'u spam",
 'spambot_username'    => "Sdevacatore d'u spam de MediaUicchi",
 
 # Info page
-'infosubtitle' => "'Mbormazione pe pàgene",
-'numedits'     => 'Numere de cangiaminde (pàgene): $1',
-'numtalkedits' => "Numere de cangiaminde (pàgene de le 'ngazzaminde): $1",
-'numwatchers'  => 'Numere de visitature: $1',
+'infosubtitle'   => "'Mbormazione pe pàgene",
+'numedits'       => 'Numere de cangiaminde (pàgene): $1',
+'numtalkedits'   => "Numere de cangiaminde (pàgene de le 'ngazzaminde): $1",
+'numwatchers'    => 'Numere de visitature: $1',
+'numauthors'     => 'Numere de autore distinde (vôsce): $1',
+'numtalkauthors' => "Numere de autore distinde (pàgene de le 'ngazzaminde): $1",
 
 # Math options
 'mw_math_png'    => "Fà sembre 'u render de le PNG",
@@ -2131,12 +2177,13 @@ Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 'patrol-log-diff' => 'revisione $1',
 
 # Image deletion
-'deletedrevision'       => 'Vecchia revisione scangellete $1',
-'filedeleteerror-short' => "Errore mentre stè scangelleve 'u file: $1",
-'filedeleteerror-long'  => "Quanne ste scangelleve 'u file s'onne presendede ste errore:
+'deletedrevision'                 => 'Vecchia revisione scangellete $1',
+'filedeleteerror-short'           => "Errore mentre stè scangelleve 'u file: $1",
+'filedeleteerror-long'            => "Quanne ste scangelleve 'u file s'onne presendede ste errore:
 
 $1",
-'filedelete-missing'    => '\'U file "$1" non ge pò essere scangellete purcè non g\'esiste!',
+'filedelete-missing'              => '\'U file "$1" non ge pò essere scangellete purcè non g\'esiste!',
+'filedelete-current-unregistered' => '\'U file specificate "$1" non ge stè jndr\'à \'u database.',
 
 # Browsing diffs
 'previousdiff' => '← Cangiaminde vecchije',
@@ -2187,6 +2234,9 @@ Otre avènene scunnute pe defolt.
 # EXIF tags
 'exif-imagewidth'                  => 'Larghezze',
 'exif-imagelength'                 => 'Altezze',
+'exif-bitspersample'               => 'Bit pe combonende',
+'exif-compression'                 => 'Scheme de combressione',
+'exif-photometricinterpretation'   => 'Combosizione de le pixel',
 'exif-orientation'                 => 'Oriendamende',
 'exif-jpeginterchangeformatlength' => "Byte d'u date d'u JPEG",
 'exif-imagedescription'            => "Titele de l'immaggine",

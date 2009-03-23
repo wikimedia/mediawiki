@@ -916,12 +916,20 @@ Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
 'rev-deleted-comment'            => '(komentár odstránený)',
 'rev-deleted-user'               => '(používateľské meno odstránené)',
 'rev-deleted-event'              => '(činnosť odstránená zo záznamu)',
-'rev-deleted-text-permission'    => 'Táto revízia stránky bola odstránená z verejných archívov.
-Podrobnosti nájdete v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].',
-'rev-deleted-text-view'          => 'Táto revízia stránky bola odstránená z verejných archívov.
-Ako správca tohto projektu si ju môžete prezrieť;
-podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].',
-'rev-deleted-no-diff'            => 'Tento rozdiel nemôžete zobraziť, pretože bol odstránený z verejných archívov. Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].',
+'rev-deleted-text-permission'    => "Táto revízia stránky bola '''odstránená z verejných archívov'''.
+Podrobnosti nájdete v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
+'rev-deleted-text-view'          => "Táto revízia stránky bola '''odstránená z verejných archívov'''.
+Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si ju môžete prezrieť;
+podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
+'rev-deleted-no-diff'            => "Tento rozdiel nemôžete zobraziť, pretože bol '''odstránený z verejných archívov'''.
+Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
+'rev-deleted-unhide-diff'        => "Jedna z revízií tohto rozdielu bola '''odstránený z verejných archívov'''.
+Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
+Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť];
+
+One of the revisions of this diff has been '''removed from the public archives'''.
+There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
+As an administrator on {{SITENAME}} you can still [$1 view this diff] if you wish to proceed.",
 'rev-delundel'                   => 'zobraziť/skryť',
 'revisiondelete'                 => 'Zmazať/obnoviť revízie',
 'revdelete-nooldid-title'        => 'Neplatná cieľová revízia',
@@ -2130,7 +2138,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipboptions'                      => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'iný čas',
 'ipbotherreason'                  => 'Iný/ďalší dôvod',
-'ipbhidename'                     => 'Skryť používateľa zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
+'ipbhidename'                     => 'Skryť meno používateľa z úprav a zoznamov',
 'ipbwatchuser'                    => 'Sledovať používateľskú a diskusnú stránku tohto používateľa',
 'ipballowusertalk'                => 'Umožniť tomuto používateľovi upravovať vlastnú diskusnú stránku aj keď je zablokovaný.',
 'ipb-change-block'                => 'Znovu zablokovať používateľa s týmito voľbami',
@@ -2190,6 +2198,7 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'range_block_disabled'            => 'Možnosť správcov vytvárať rozsah zablokovaní je vypnutá.',
 'ipb_expiry_invalid'              => 'Neplatný čas ukončenia.',
 'ipb_expiry_temp'                 => 'Blokovania skrytých používateľských mien by mali byť trvalé.',
+'ipb_hide_invalid'                => 'Nepodarilo sa potlačiť tento účet; je možné, že má príliš veľa úprav.',
 'ipb_already_blocked'             => '„$1“ je už zablokovaný',
 'ipb-needreblock'                 => '== Už je zablokovaný ==
 $1 je už zablokovaný. Chcete zmeniť voľby blokovania?',

@@ -937,13 +937,15 @@ Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.'
 'rev-deleted-comment'            => '(comentario eliminado)',
 'rev-deleted-user'               => '(nome de usuario eliminado)',
 'rev-deleted-event'              => '(rexistro de evento eliminado)',
-'rev-deleted-text-permission'    => 'Esta revisión da páxina foi eliminada dos arquivos públicos.
-Pode ampliar detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].',
-'rev-deleted-text-view'          => 'Esta revisión da páxina foi eliminada dos arquivos públicos.
-Como administrador de {{SITENAME}} pode vela;
-se quere ampliar detalles, visite o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].',
-'rev-deleted-no-diff'            => 'Non pode ver esta diferenza porque unha das revisións foi eliminada dos arquivos públicos.
-Pode que haxa detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].',
+'rev-deleted-text-permission'    => "Esta revisión da páxina foi '''eliminada dos arquivos públicos'''.
+Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+'rev-deleted-text-view'          => "Esta revisión da páxina foi '''eliminada dos arquivos públicos'''.
+Como administrador de {{SITENAME}} pode vela; pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+'rev-deleted-no-diff'            => "Non pode ver esta diferenza porque unha das revisións foi '''eliminada dos arquivos públicos'''.
+Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+'rev-deleted-unhide-diff'        => "Unha das revisións desta diferenza foi '''eliminada dos arquivos públicos'''.
+Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
+Como administrador de {{SITENAME}} aínda podería [$1 ver esta diferenza] se quixese.",
 'rev-delundel'                   => 'mostrar/agochar',
 'revisiondelete'                 => 'Borrar/restaurar revisións',
 'revdelete-nooldid-title'        => 'Revisión inválida',
@@ -2167,7 +2169,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipboptions'                      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'outra',
 'ipbotherreason'                  => 'Outro motivo:',
-'ipbhidename'                     => 'Agochar nome de usuario no rexistro de bloqueos, na lista de bloqueos activos e na lista de usuarios',
+'ipbhidename'                     => 'Agochar o nome de usuario nas edicións e listas',
 'ipbwatchuser'                    => 'Vixiar a páxina de usuario e a de conversa deste usuario',
 'ipballowusertalk'                => 'Permitir que este usuario poida editar a súa páxina de conversa mentres estea bloqueado',
 'ipb-change-block'                => 'Volver bloquear o usuario con estas configuracións',
@@ -2227,6 +2229,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] se qu
 'range_block_disabled'            => 'A funcionalidade de administrador de crear rangos de bloqueos está deshabilitada.',
 'ipb_expiry_invalid'              => 'Tempo de duración non válido.',
 'ipb_expiry_temp'                 => 'Os bloqueos a nomes de usuario agochados deberían ser permanentes.',
+'ipb_hide_invalid'                => 'Incapaz de suprimir esta conta; pode que teña moitas edicións.',
 'ipb_already_blocked'             => '"$1" xa está bloqueado',
 'ipb-needreblock'                 => '== Xa está bloqueado ==
 "$1" xa está bloqueado. Quere cambiar as configuracións?',

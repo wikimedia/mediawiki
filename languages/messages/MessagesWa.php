@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Lucyin
  * @author Srtxg
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -165,11 +166,12 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'pagecategories'        => '{{PLURAL:$1|Categoreye|Categoreyes}}',
-'category_header'       => 'Årtikes el categoreye «$1»',
-'subcategories'         => 'Dizo-categoreyes',
-'category-media-header' => 'Media el categoreye «$1»',
-'category-empty'        => "''Cisse categoreye ci n' a pol moumint nol årtike ni media.''",
+'pagecategories'         => '{{PLURAL:$1|Categoreye|Categoreyes}}',
+'category_header'        => 'Årtikes el categoreye «$1»',
+'subcategories'          => 'Dizo-categoreyes',
+'category-media-header'  => 'Media el categoreye «$1»',
+'category-empty'         => "''Cisse categoreye ci n' a pol moumint nol årtike ni media.''",
+'category-article-count' => 'Dins cisse categoreye cial, gn a {{PLURAL:$2|li pådje ki shût|$2 pådje, inte di zeles {{PLURAL:$1|li cene|les $1}} cial padzo}}.',
 
 'mainpagetext' => "<big>'''Li programe Wiki a stî astalé a l' idêye.'''</big>",
 
@@ -538,6 +540,12 @@ Do côp, vos n' såroz schaper vos candjmints asteure; motoit vos dvrîz copyî 
 'template-semiprotected'    => '(dimey-protedjî)',
 'nocreatetitle'             => 'Ahivaedje di pådjes limité',
 'nocreatetext'              => "Cisse waibe ci a limité l' possibilité d' ahiver des novelès pådjes. Vos ploz rivni en erî eyet candjî ene pådje k' egzistêye dedja, oudonbén, [[Special:UserLogin|vos elodjî ou ahiver on conte d' uzeu]].",
+'recreate-deleted-warn'     => "'''Asteme : vous estoz ki rahive ene pådje k' a stî dsfacêye davance.'''
+
+Tuzez bén s' el fåt vormint rahiver, tot tapant èn ouy so l' istwere del pådje :",
+
+# Account creation failure
+'cantcreateaccounttitle' => "Vos n' ploz nén ahiver-st on conte.",
 
 # History pages
 'viewpagelogs'        => 'Vey les djournås po cisse pådje ci',
@@ -702,6 +710,11 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'rightslogtext'  => "Çouchal, c' est on djournå des candjmints des droets des uzeus.",
 'rightslogentry' => "l' uzeu «$1» a stî candjî do groupe «$2» viè «$3»",
 'rightsnone'     => '(nouk)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-createpage'    => 'ahiver des pådjes',
+'action-createtalk'    => 'ahiver des pådjes di copinaedje',
+'action-createaccount' => "ahiver ci conte d' uzeu ci",
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|candjmint|candjmints}}',
@@ -1559,6 +1572,7 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'table_pager_last'  => 'Dierinne pådje',
 
 # Auto-summaries
+'autosumm-replace' => 'Li contnou a stî replaecé pa « $1 »',
 'autoredircomment' => 'Redjiblaedje viè [[$1]]',
 'autosumm-new'     => 'Novele pådje: $1',
 

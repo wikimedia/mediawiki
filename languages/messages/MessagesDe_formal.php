@@ -227,12 +227,15 @@ Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhe
 'edit-no-change'                   => 'Ihre Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenomme wurde.',
 
 # Revision deletion
-'rev-deleted-text-view'  => 'Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
-Als Administrator auf {{SITENAME}} können Sie sie weiterhin einsehen.
-Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].',
-'rev-deleted-no-diff'    => 'Sie können diesen Unterschied nicht betrachten, da eine der Versionen aus den öffentlichen Archiven entfernt wurde.
-Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].',
-'revdelete-nooldid-text' => 'Sie haben entweder keine Version angegeben, auf die diese Aktion ausgeführt werden soll, die gewählte Version ist nicht vorhanden oder Sie versuchen, die aktuelle Version zu entfernen.',
+'rev-deleted-text-view'   => "Diese Version wurde gelöscht und ist '''nicht mehr öffentlich einsehbar'''.
+Als Administrator können Sie sie weiterhin einsehen.
+Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+'rev-deleted-no-diff'     => "Sie können diesen Unterschied nicht betrachten, da eine der Versionen '''aus den öffentlichen Archiven entfernt wurde'''.
+Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+'rev-deleted-unhide-diff' => "Eine der Versionen dieses Unterschieds wurde '''aus den öffentlichen Archiven entfernt'''.
+Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
+Einem Administrator können Sie [$1 diesen Link zum Versionsunterschied] nennen.",
+'revdelete-nooldid-text'  => 'Sie haben entweder keine Version angegeben, auf die diese Aktion ausgeführt werden soll, die gewählte Version ist nicht vorhanden oder Sie versuchen, die aktuelle Version zu entfernen.',
 
 # History merging
 'mergehistory-header' => 'Mit dieser Spezialseite können Sie die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.

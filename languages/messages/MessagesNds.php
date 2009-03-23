@@ -219,9 +219,9 @@ $messages = array(
 'tog-usenewrc'                => 'Erwiederte letzte Ännern (nich för alle Browser bruukbor)',
 'tog-numberheadings'          => 'Överschrieven automatsch nummereern',
 'tog-showtoolbar'             => 'Editeer-Warktüüchlist wiesen',
-'tog-editondblclick'          => 'Sieten mit Dubbelklick bearbeiden (JavaScript)',
-'tog-editsection'             => 'Links för dat Bearbeiden vun en Afsatz wiesen',
-'tog-editsectiononrightclick' => 'En Afsatz mit en Rechtsklick bearbeiden (Javascript)',
+'tog-editondblclick'          => 'Sieden mit Dubbelklick ännern (JavaScript)',
+'tog-editsection'             => 'Links för dat Ännern vun en Afsatz wiesen',
+'tog-editsectiononrightclick' => 'En Afsatz mit en Rechtsklick ännern (Javascript)',
 'tog-showtoc'                 => "Wiesen vun'n Inholtsverteken bi Sieten mit mehr as dree Överschriften",
 'tog-rememberpassword'        => 'Duersam Inloggen',
 'tog-editwidth'               => 'Text-Ingaavfeld mit vulle Breed',
@@ -445,7 +445,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'newmessagesdifflink'     => 'Ünnerscheed to vörher',
 'youhavenewmessagesmulti' => 'Du hest ne’e Narichten op $1',
 'editsection'             => 'ännern',
-'editold'                 => 'bearbeiden',
+'editold'                 => 'ännern',
 'viewsourceold'           => 'Borntext wiesen',
 'editlink'                => 'ännern',
 'viewsourcelink'          => 'Borntext ankieken',
@@ -788,11 +788,11 @@ Dat kann to’n Bispeel dor vun kamen, dat du en anonymen Proxy-Deenst bruukst, 
 'editing'                          => 'Ännern vun $1',
 'editingsection'                   => 'Ännern vun $1 (Afsatz)',
 'editingcomment'                   => 'Ännern vun $1 (nee Afsnidd)',
-'editconflict'                     => 'Konflikt bi dat Bearbeiden: $1',
-'explainconflict'                  => 'En anner Bruker hett disse Siet ännert, no de Tied dat du anfungen hest, de Siet to bearbeiden.
-Dat Textfeld baven wiest de aktuelle Siet.
-Dat Textfeld nerrn wiest diene Ännern.
-Föög diene Ännern in dat Textfeld baven in.
+'editconflict'                     => 'Konflikt bi’t Sied ännern: $1',
+'explainconflict'                  => 'En annern Bruker hett disse Sied ännert, na de Tied dat du anfungen hest, de Sied to ännern.
+Dat Textfeld baven wiest de aktuelle Sied.
+Dat Textfeld ünnen wiest dien Ännern.
+Föög dien Ännern in dat Textfeld baven in.
 
 <b>Blots</b> de Text in dat Textfeld baven warrt spiekert, wenn du op Spiekern klickst!<br />',
 'yourtext'                         => 'Dien Text',
@@ -808,8 +808,8 @@ Wenn du dat nich wullst, dröffst du dien Text hier nich apentlich maken.<br />
 
 Du bestätigst ok, dat du den Text sülvst schreven hest oder ut en „Public Domain“-Born oder en annere fre'e Born kopeert hest (Kiek ok $1 för Details).
 '''Kopeer kene Warken, de enen Oorheverrecht ünnerliggt, ahn Verlööv vun de Copyright-Inhebbers!'''",
-'longpagewarning'                  => "'''Wohrscho: Disse Siet is $1 kB groot; en poor Browser köönt Probleme hebben, Sieten to bearbeiden, de grötter as 32 kB sünd.
-Bedenk of disse Siet vilicht in lüttere Afsnitten opdeelt warrn kann.'''",
+'longpagewarning'                  => "'''Wohrschau: Disse Sied is $1 kB groot; en poor Browsers köönt Problemen hebben, Sieden to ännern, de grötter as 32 kB sünd.
+Överlegg, wat disse Sied nich villicht in lüttere Afsneed opdeelt warrn kann.'''",
 'longpageerror'                    => "'''Fehler: Dien Text is $1 Kilobytes lang. Dat is länger as dat Maximum vun $2 Kilobytes. Kann den Text nich spiekern.'''",
 'readonlywarning'                  => "'''Wohrscho: De Datenbank is för Pleegarbeiden sparrt worrn, so dat du de Sied en Stoot nich
 spiekern kannst. Seker di den Text un versöök dat later noch wedder.'''
@@ -842,7 +842,7 @@ Dat du bescheed weetst, worüm de Siet vörher wegsmeten worrn is, hier nu de Ut
 'edit-hook-aborted'                => 'Ännern is ahn angeven Grund vun en Hook afbraken worrn.',
 'edit-gone-missing'                => 'De Sied kunn nich aktuell maakt warrn.
 Schient so, as wenn se wegdaan worrn is.',
-'edit-conflict'                    => 'Konflikt bi’t Bearbeiden.',
+'edit-conflict'                    => 'Konflikt bi’t Sied ännern.',
 'edit-no-change'                   => 'Dien Ännern is nich afspiekert worrn, denn dor hett sik nix an’n Text ännert.',
 'edit-already-exists'              => 'Kunn keen ne’e Sied opstellen, dat gifft ehr al.',
 
@@ -914,10 +914,10 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'rev-deleted-event'              => '(Logbook-Indrag rutnahmen)',
 'rev-deleted-text-permission'    => 'Disse Version is nu wegdaan un is nich mehr apen in’t Archiv to sehn.
 Details dorto staht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook].',
-'rev-deleted-text-view'          => 'Disse Version is wegsmeten worrn un is nich mehr apen to sehn.
+'rev-deleted-text-view'          => 'Disse Version is wegsmeten worrn un is nich mehr apen in’t Archiv to sehn.
 As Administrater op {{SITENAME}} kannst du ehr aver noch jümmer sehn.
 Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook] to finnen.',
-'rev-deleted-no-diff'            => 'Du kannst dissen Ünnerscheed nich ankieken. Een von de Versionen is ut de Archiven rutnahmen worrn.
+'rev-deleted-no-diff'            => 'Du kannst dissen Ünnerscheed nich ankieken. Een von de Versionen is nich mehr apen in’t Archiv to sehn.
 Mehr dorto steiht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Wegsmiet-Logbook].',
 'rev-delundel'                   => 'wiesen/versteken',
 'revisiondelete'                 => 'Versionen wegsmieten/wedderhalen',
@@ -1215,7 +1215,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'userrights'                  => 'Brukerrechten inrichten', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Brukergruppen verwalten',
 'userrights-user-editname'    => 'Brukernaam ingeven:',
-'editusergroup'               => 'Brukergruppen bearbeiden',
+'editusergroup'               => 'Brukergruppen ännern',
 'editinguser'                 => "Ännern vun Brukerrechten vun '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Brukergruppen ännern',
 'saveusergroups'              => 'Brukergruppen spiekern',
@@ -1567,7 +1567,7 @@ En [[Special:WhatLinksHere/$2|kumplette List]] gifft dat ok.',
 'filedelete-reason-dropdown'  => '* Faken bruukte Grünn
 ** Verstoot gegen Oorheverrecht
 ** dubbelt vörhannen',
-'filedelete-edit-reasonlist'  => 'Grünn för’t Wegsmieten bearbeiden',
+'filedelete-edit-reasonlist'  => 'Grünn för’t Wegsmieten ännern',
 
 # MIME search
 'mimesearch'         => 'MIME-Söök',
@@ -2099,7 +2099,7 @@ Ok den Grund för dat Blocken indregen.',
 'ipboptions'                      => '2 Stünnen:2 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,6 Maand:6 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Annere Duer',
 'ipbotherreason'                  => 'Annern Grund:',
-'ipbhidename'                     => 'Brukernaam in dat Sperr-Logbook, de List vun de aktiven Sperren un de Brukerlist versteken.',
+'ipbhidename'                     => 'Brukernaam narms mehr wiesen',
 'ipbwatchuser'                    => 'Op Brukersiet un Brukerdiskuschoon oppassen',
 'ipballowusertalk'                => 'Den sperrten Bruker verlöven de egene Diskuschoonssied to ännern',
 'ipb-change-block'                => 'Mit disse Sperrparameters noch wedder nee sperren',
@@ -2107,7 +2107,7 @@ Ok den Grund för dat Blocken indregen.',
 'blockipsuccesssub'               => 'Blocken hett Spood',
 'blockipsuccesstext'              => 'De IP-Adress „[[Special:Contributions/$1|$1]]“ is nu blockt.<br />
 Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.',
-'ipb-edit-dropdown'               => 'Blockgrünn bearbeiden',
+'ipb-edit-dropdown'               => 'Blockgrünn ännern',
 'ipb-unblock-addr'                => '„$1“ freegeven',
 'ipb-unblock'                     => 'IP-Adress/Bruker freegeven',
 'ipb-blocklist-addr'              => 'Aktuelle Sperren för „$1“',
@@ -2362,8 +2362,8 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'tooltip-pt-preferences'          => 'Mien Instellen',
 'tooltip-pt-watchlist'            => 'Mien Oppasslist',
 'tooltip-pt-mycontris'            => 'List vun dien Bidrääg',
-'tooltip-pt-login'                => 'Du kannst di geern anmellen, dat is aver nich neudig, üm Sieten to bearbeiden.',
-'tooltip-pt-anonlogin'            => 'Du kannst di geern anmellen, dat is aver nich neudig, üm Sieten to bearbeiden.',
+'tooltip-pt-login'                => 'Du kannst di geern anmellen, dat is aver nich nödig, dat du Sieden ännern kannst.',
+'tooltip-pt-anonlogin'            => 'Du kannst di geern anmellen, dat is aver nich nödig, dat du Sieden ännern kannst.',
 'tooltip-pt-logout'               => 'Afmellen',
 'tooltip-ca-talk'                 => 'Diskuschoon över disse Siet',
 'tooltip-ca-edit'                 => 'Du kannst disse Siet ännern. Bruuk dat vör dat Spiekern.',

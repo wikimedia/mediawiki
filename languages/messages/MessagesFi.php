@@ -959,10 +959,10 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'rev-deleted-comment'            => '(kommentti poistettu)',
 'rev-deleted-user'               => '(käyttäjänimi poistettu)',
 'rev-deleted-event'              => '(lokitapahtuma poistettu)',
-'rev-deleted-text-permission'    => 'Tämä versio on poistettu julkisesta arkistosta. [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.',
+'rev-deleted-text-permission'    => "Tämä versio on '''poistettu julkisesta arkistosta'''. [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.",
 'rev-deleted-text-view'          => 'Tämä versio on poistettu julkisesta arkistosta.',
-'rev-deleted-no-diff'            => 'Et voi katsoa tätä muokkausta, koska yksi versioista on poistettu julkisista arkistoista.
-Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].',
+'rev-deleted-no-diff'            => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu julkisista arkistoista'''.
+Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-delundel'                   => 'näytä tai piilota',
 'revisiondelete'                 => 'Poista tai palauta versioita',
 'revdelete-nooldid-title'        => 'Ei kohdeversiota',

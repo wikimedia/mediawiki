@@ -1041,13 +1041,16 @@ Grund der Sperre: ''$2''",
 'rev-deleted-comment'            => '(Bearbeitungskommentar entfernt)',
 'rev-deleted-user'               => '(Benutzername entfernt)',
 'rev-deleted-event'              => '(Logbuchaktion entfernt)',
-'rev-deleted-text-permission'    => 'Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
-Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].',
-'rev-deleted-text-view'          => 'Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
-Als Administrator auf {{SITENAME}} kannst du sie weiterhin einsehen.
-Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].',
-'rev-deleted-no-diff'            => 'Du kannst diesen Unterschied nicht betrachten, da eine der Versionen aus den öffentlichen Archiven entfernt wurde.
-Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].',
+'rev-deleted-text-permission'    => "Diese Version wurde gelöscht und ist '''nicht mehr öffentlich einsehbar'''.
+Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+'rev-deleted-text-view'          => "Diese Version wurde gelöscht und ist '''nicht mehr öffentlich einsehbar'''.
+Als Administrator kannst du sie weiterhin einsehen.
+Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+'rev-deleted-no-diff'            => "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''aus den öffentlichen Archiven entfernt wurde'''.
+Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+'rev-deleted-unhide-diff'        => "Eine der Versionen dieses Unterschieds wurde '''aus den öffentlichen Archiven entfernt'''.
+Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
+Einem Administrator kannst du [$1 diesen Link zum Versionsunterschied] nennen.",
 'rev-delundel'                   => 'zeige/verstecke',
 'revisiondelete'                 => 'Versionen löschen/wiederherstellen',
 'revdelete-nooldid-title'        => 'Keine Version angegeben',
@@ -2262,7 +2265,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipboptions'                      => '2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unbeschränkt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Andere Dauer',
 'ipbotherreason'                  => 'Andere/ergänzende Begründung:',
-'ipbhidename'                     => 'Benutzername im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
+'ipbhidename'                     => 'Benutzername in Bearbeitungen und Listen verstecken',
 'ipbwatchuser'                    => 'Benutzer(diskussions)seite beobachten',
 'ipballowusertalk'                => 'Benutzer darf eigene Diskussionsseiten während seiner Sperre bearbeiten',
 'ipb-change-block'                => 'Sperre mit diesen Sperrparametern erneuern',
@@ -2321,6 +2324,7 @@ Siehe die [[Special:IPBlockList|{{int:ipblocklist}}]] für alle aktiven Sperren.
 'range_block_disabled'            => 'Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.',
 'ipb_expiry_invalid'              => 'Die eingegebene Dauer ist ungültig.',
 'ipb_expiry_temp'                 => 'Versteckte Benutzernamens-Sperren sollen permanent sein.',
+'ipb_hide_invalid'                => 'Dieses Konto kann nicht unterdrückt werden, da es zu viele Bearbeitungen aufweist.',
 'ipb_already_blocked'             => '„$1“ wurde bereits gesperrt.',
 'ipb-needreblock'                 => '== Sperre vorhanden ==
 „$1“ ist bereits gesperrt. Möchtest du die Sperrparameter ändern?',

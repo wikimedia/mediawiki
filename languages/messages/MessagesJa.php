@@ -965,9 +965,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'rev-deleted-comment'            => '(要約は削除されています)',
 'rev-deleted-user'               => '(投稿者名は削除されています)',
 'rev-deleted-event'              => '(ログは削除されています)',
-'rev-deleted-text-permission'    => 'この版は公のアーカイブから削除されています。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。',
-'rev-deleted-text-view'          => 'この版は公のアーカイブから削除されています。あなたは{{SITENAME}}の{{int:group-sysop}}であるため内容を見ることができます。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。',
-'rev-deleted-no-diff'            => '表示させようとした差分のいずれかの版が公開アーカイブから削除されているため、差分表示できません。関連情報が[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]にあるかもしれません。',
+'rev-deleted-text-permission'    => "この版は'''公開アーカイブから削除されています'''。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。",
+'rev-deleted-text-view'          => "この版は'''公開アーカイブから削除されています'''。あなたは{{SITENAME}}の{{int:group-sysop}}であるため内容を見ることができます。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。",
+'rev-deleted-no-diff'            => "表示させようとした差分のいずれかの版が'''公開アーカイブから削除されているため'''、差分表示できません。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。",
+'rev-deleted-unhide-diff'        => "この差分のいずれかの版が'''公開アーカイブから削除されています'''。削除の詳細は[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。あなたは{{SITENAME}}の{{int:group-sysop}}であるため、このまま続けたければ[$1 差分を見る]ことができます。",
 'rev-delundel'                   => '表示/秘匿',
 'revisiondelete'                 => '版の削除と復帰',
 'revdelete-nooldid-title'        => '対象版がありません',
@@ -1676,7 +1677,7 @@ PICT # misc.
 [[MediaWiki:Disambiguationspage]] からリンクされたテンプレートを使用しているページは曖昧さ回避ページと見なされます。",
 
 'doubleredirects'            => '二重リダイレクト',
-'doubleredirectstext'        => 'このページは他のリダイレクトページにリダイレクトしているページの一覧です。各行は始点のリダイレクトとそのリダイレクト先のリダイレクトページ、および、そのまたリダイレクトしている先のページを含んでいます。3つ目のページがたいていは「真の」リダイレクト先であり、1つ目のリダイレクトはそこを直接指すべきです。',
+'doubleredirectstext'        => 'これは他のリダイレクトページにリダイレクトしているページの一覧です。各行は始点のリダイレクトとそのリダイレクト先ページ、および、そのまたリダイレクトしている先のページを含んでいます。3つ目のページがたいていは「真の」リダイレクト先であり、1つ目のリダイレクトはそこを直接指すべきです。',
 'double-redirect-fixed-move' => '[[$1]] が移動されているため、リダイレクト先を移動先の [[$2]] へ変更しました。',
 'double-redirect-fixer'      => 'リダイレクト修正係',
 
@@ -2146,7 +2147,7 @@ $NEWPAGE
 'ipboptions'                      => '2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'その他',
 'ipbotherreason'                  => '理由（その他/追加）',
-'ipbhidename'                     => '利用者名/IPを{{int:blocklogpage}}、{{int:ipblocklist}}、{{int:listusers}}などに載せない',
+'ipbhidename'                     => '利用者名やIPアドレスを編集履歴や各種一覧に載せない',
 'ipbwatchuser'                    => 'この利用者の利用者ページと利用者‐会話ページをウォッチリストに追加',
 'ipballowusertalk'                => 'ブロックされる利用者に対してブロック中の自身の会話ページ編集を許可',
 'ipb-change-block'                => '上記の設定で利用者を再びブロック',
@@ -2203,6 +2204,7 @@ $NEWPAGE
 'range_block_disabled'            => '広域ブロックは無効に設定されています。',
 'ipb_expiry_invalid'              => '不正な期間です。',
 'ipb_expiry_temp'                 => '利用者名を秘匿したブロックは無期限でなければなりません。',
+'ipb_hide_invalid'                => 'この利用者を非表示にできません。編集が多すぎるためかもしれません。',
 'ipb_already_blocked'             => '「$1」は既にブロックされています',
 'ipb-needreblock'                 => '== すでにブロックされています ==
 $1 は、すでにブロックされています。設定を変更しますか？',

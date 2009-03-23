@@ -998,13 +998,15 @@ Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 'rev-deleted-comment'            => '(komentar uklonjen)',
 'rev-deleted-user'               => '(korisničko ime uklonjeno)',
 'rev-deleted-event'              => '(stavka zapisa obrisana)',
-'rev-deleted-text-permission'    => 'Revizija ove stranice je uklonjena iz javne arhive.
-Detalje možete vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].',
-'rev-deleted-text-view'          => 'Revizija ove stranice je uklonjena iz javne arhive.
-Kao administrator na {{SITENAME}} Vi je možete vidjeti;
-detalji o tome se mogu vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].',
-'rev-deleted-no-diff'            => 'Ne možete vidjeti ove razlike jer je jedna od revizija uklonjena iz javne arhive.
-Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisima brisanja].',
+'rev-deleted-text-permission'    => "Revizija ove stranice je '''uklonjena iz javne arhive'''.
+Detalje možete vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
+'rev-deleted-text-view'          => "Revizija ove stranice je '''uklonjena iz javne arhive'''.
+Kao administrator na {{SITENAME}} Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
+'rev-deleted-no-diff'            => "Ne možete vidjeti ove razlike jer je jedna od revizija '''uklonjena iz javne arhive'''.
+Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisima brisanja].",
+'rev-deleted-unhide-diff'        => "Jedna od revizija u ovom pregledu razlika je '''uklonjena iz javne arhive'''.
+Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
+Kao administrator na {{SITENAME}} Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
 'rev-delundel'                   => 'pokaži/sakrij',
 'revisiondelete'                 => 'Obriši/vrati revizije',
 'revdelete-nooldid-title'        => 'Nije unesena tačna revizija',
@@ -2243,7 +2245,7 @@ $1',
 'ipboptions'                      => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'ostalo',
 'ipbotherreason'                  => 'Ostali/dodatni razlozi:',
-'ipbhidename'                     => 'Sakrij korisničko ime iz zapisa blokiranja, spiska aktivnih blokiranja i spisak korisnika',
+'ipbhidename'                     => 'Sakrij korisničko ime iz uređivanja i spiskova',
 'ipbwatchuser'                    => 'Prati korisničku stranicu i stranicu za razgovor ovog korisnika',
 'ipballowusertalk'                => 'Dopusti ovom korisniku da mijenja vlastitu stranicu za razgovor dok je blokiran',
 'ipb-change-block'                => 'Ponovno blokiraj korisnika sa novim postavkama',
@@ -2302,6 +2304,7 @@ ili korisničkom imenu.',
 'range_block_disabled'            => 'Administratorska mogućnost da blokira grupe je isključena.',
 'ipb_expiry_invalid'              => 'Pogrešno vrijeme trajanja.',
 'ipb_expiry_temp'                 => 'Sakrivene blokade korisničkih imena moraju biti stalne.',
+'ipb_hide_invalid'                => 'Ne može se onemogućiti ovaj račun; možda ima isuviše izmjena.',
 'ipb_already_blocked'             => '"$1" je već blokiran',
 'ipb-needreblock'                 => '== Već blokirano ==
 $1 je već blokiran. Da li želite promijeniti postavke?',

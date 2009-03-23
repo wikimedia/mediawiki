@@ -83,7 +83,7 @@ $messages = array(
 'moredotdotdot'  => 'Moy...',
 'mypage'         => 'Ow folen',
 'mytalk'         => 'Ow hewsel',
-'navigation'     => 'Lywyans',
+'navigation'     => 'Lewyans',
 'and'            => '&#32;ha(g)',
 
 # Metadata in edit box
@@ -100,7 +100,7 @@ $messages = array(
 'history_short'    => 'Istori',
 'info_short'       => 'Kedhlow',
 'printableversion' => 'Versyon pryntyadow',
-'permalink'        => 'Kevrenn stag',
+'permalink'        => 'Kevren stag',
 'print'            => 'Pryntya',
 'edit'             => 'Chanjya',
 'create'           => 'Gwruthyl',
@@ -129,7 +129,7 @@ $messages = array(
 'currentevents'        => 'Darvosow a-lemmyn',
 'currentevents-url'    => 'Project:Darvosow a-lemmyn',
 'helppage'             => 'Help:Gweres',
-'mainpage'             => 'Pennfolenn',
+'mainpage'             => 'Pennfolen',
 'mainpage-description' => 'Pennfolen',
 'portal'               => 'Porth kemmynieth',
 'portal-url'           => 'Project:Porth kemmynieth',
@@ -150,7 +150,7 @@ $messages = array(
 'nstab-user'      => 'Devnydhyer',
 'nstab-special'   => 'Folen arbennek',
 'nstab-project'   => 'Folen towl',
-'nstab-image'     => 'Skeusenn',
+'nstab-image'     => 'Restren',
 'nstab-mediawiki' => 'Messach',
 'nstab-template'  => 'Skantlyn',
 'nstab-help'      => 'Gweres',
@@ -190,12 +190,14 @@ $messages = array(
 
 # Edit page toolbar
 'link_tip'  => 'Kevren bervedhel',
+'image_tip' => 'Restren neythys',
 'media_tip' => 'Kevren restren',
 
 # Edit pages
 'minoredit'    => 'Hemm yw chanj bian',
 'watchthis'    => 'Golyas an folen ma',
 'savearticle'  => 'Gwitha',
+'preview'      => 'Ragwel',
 'showdiff'     => 'Diskwedhes chanjyow',
 'loginreqlink' => 'omgelmi',
 'newarticle'   => '(Nowyth)',
@@ -298,7 +300,7 @@ $messages = array(
 'recentchangeslinked-page' => 'Hanow an folen:',
 
 # Upload
-'upload'          => 'Karga restrenn',
+'upload'          => 'Ughkarga restren',
 'uploadbtn'       => 'Ughkarga restren',
 'filename'        => 'Hanow-restren',
 'filesource'      => 'Pennfenten:',
@@ -370,6 +372,7 @@ $messages = array(
 'listusers-submit' => 'Diskwedhes',
 
 # E-mail user
+'emailuser' => 'E-bostya an devnydhyer ma',
 'emailsend' => 'Danvon',
 
 # Watchlist

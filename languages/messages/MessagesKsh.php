@@ -317,7 +317,10 @@ $messages = array(
 Dat es och all op Änglesch:
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]
+
+== Enstellunge för däm Wiki singe Name ==
+Em Appachtemang <span class="plainlinks">[{{fullurl:Special:AllPages|namespace={{ns:MediaWiki}}}} {{ns:MediaWiki}}]</span> sinn_er de Nohrechte un Texshtöckscher vun de Wiki-Sofwäer dren faßjehallde. Loor Der op dä Sigg [[{{#special:AllMessages}}]] aan, wat do dren shteiht. Et jit en Aanzahl Nohreschte met „{{SITENAME}}“ dren, do moß mer nohloore, of de Jrammatik reschtesch es, un wo nüdesch esu Wöötscher wi „die“, „dä“, „dat“, „em“, „op däm“, un esu jet för „{{SITENAME}}“ zerääsch maache.',
 
 'about'          => 'Üvver',
 'article'        => 'Atikkel',
@@ -1032,14 +1035,16 @@ Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 'rev-deleted-comment'            => '(„Koot Zosammejefass, Quell“ usjeblendt)',
 'rev-deleted-user'               => '(Metmaacher Name usjeblendt)',
 'rev-deleted-event'              => '(Logboch-Enndraach fottjenomme)',
-'rev-deleted-text-permission'    => "Die Version es fottjeschmesse woode.
-Jetz ka'mer se nit mieh beluure.
-Ene Wiki Köbes künnt se ävver zeröck holle.
-Mieh drüvver, wat met däm Fottschmieße vun dä Sigg jewäse es, künnt Ehr em [{{FULLURL:Spezial:Log/delete|page={{PAGENAMEE}}}} Logboch] nohlese.",
-'rev-deleted-text-view'          => "Die Version es fottjeschmesse woode.
-Jetz ka'mer se nit mieh beluure. Als ene Wiki-Köbes kriss De se ävver doch ze sinn, un künnts se och zeröck holle. Mieh drüvver, wat met däm Fottschmieße vun dä Sigg jewäse es, künnt Ehr em [{{FULLURL:Spezial:Log/delete|page={{FULLPAGENAMEE}}}} Logboch] nohlese.",
-'rev-deleted-no-diff'            => 'De kanns de Ongerscheide nit beloore, denn ein vun de Versione wood för de Öffentleschkeit vershtoche.
-Mieh Einzelheite hät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].',
+'rev-deleted-text-permission'    => "Die Version ''' ka'mer nit mieh öffentlesch beluure'''.
+Mieh drövver künnt Ehr velleisch em [{{FULLURL:Spezial:Log/delete|page={{PAGENAMEE}}}} Logboch] nohlese.",
+'rev-deleted-text-view'          => "Die Version '''ka'mer nit mieh öffentlesch beluure'''.
+Als ene Wiki-Köbes kriss De se ävver doch ze sinn, un künnts se och zeröck holle.
+Mieh drövver künnt Ehr velleisch em [{{FULLURL:Spezial:Log/delete|page={{PAGENAMEE}}}} Logboch] nohlese.",
+'rev-deleted-no-diff'            => "De kanns de Ongerscheide nit beloore, denn ein vun de Versione '''ka'mer nit mieh öffentlesch beluure'''.
+Mieh Einzelheite hät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].",
+'rev-deleted-unhide-diff'        => "De kanns de Ongerscheide nit beloore, denn ein vun de Versione '''ka'mer nit mieh öffentlesch beluure'''.
+Mieh Einzelheite hät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].
+Als ene Wiki_Köbes kanns De [$1 de Ungerscheide doch aankike] wann De wells.",
 'rev-delundel'                   => 'zeije/usblende',
 'revisiondelete'                 => 'Versione fottschmieße un widder zeröck holle',
 'revdelete-nooldid-title'        => 'Kein Version aanjejovve, oddeer en Stuß-Nommer',
@@ -2346,7 +2351,7 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'ipboptions'                      => '1 Stund:1 hour,2 Stund:2 hours,3 Stund:3 hours,6 Stund:6 hours,12 Stund:12 hours,1 Dach:1 day,3 Däch:3 days,1 Woch:1 week,2 Woche:2 weeks,3 Woche:3 weeks,1 Mond:1 month,3 Mond:3 months,6 Mond:6 months,9 Mond:9 months,1 Johr:1 year,2 Johre:2 years,3 Johre:3 years,Unbejrenz:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Söns wie lang',
 'ipbotherreason'                  => 'Ander Jrund oder Zosätzlich:',
-'ipbhidename'                     => 'Don däm Metmaacher singe Name versteiche: Em [[Special:Log/block|{{int:blocklogpage}}]], en de [[Special:IPBlockList|{{int:ipblocklist}}]], un en de [[Special:ListUsers|{{int:listusers}}]].',
+'ipbhidename'                     => 'Don däm Metmaacher singe Name versteiche, en de Leste un däm sing Änderunge.',
 'ipbwatchuser'                    => 'Op däm Metmaacher sing Metmaachersigg un Klaafsigg oppasse',
 'ipballowusertalk'                => 'Lohß dä Metmaacher an sing eije Klaafsigg ändere, och su lang, wi sing Sperr dooht',
 'ipb-change-block'                => 'Wigger sperre met dä neue Enstellunge',
@@ -2405,6 +2410,7 @@ Automatich jesperrte IP-Adresse sin nit hee, ävver en de [[Special:IPBlockList|
 'range_block_disabled'            => 'Adresse Jebeede ze sperre, es nit erlaub.',
 'ipb_expiry_invalid'              => 'De Duur es Dress. Jevv se richtich aan.',
 'ipb_expiry_temp'                 => 'Sperre för Metmaacher met verstoche Name mößße för iewish doore.',
+'ipb_hide_invalid'                => 'Kann dä Metmaacher nit vershteishe. Müjjelesch, dat dä zoh vill Änderunge jemaat hät.',
 'ipb_already_blocked'             => '„$1“ es ald jesperrt',
 'ipb-needreblock'                 => '== Ald jespert ==
 Dä Metmaacher „$1“ es ald jesperrt. Wellß De de Enstellunge för di Spär ändere?',

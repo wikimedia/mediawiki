@@ -6,6 +6,7 @@
  *
  * @author Belekvor
  * @author Mirzali
+ * @author Xoser
  */
 
 $messages = array(
@@ -314,14 +315,18 @@ It must have at least $1 characters and be different from your username.',
 'newpassword' => 'Parola newiye:',
 'retypenew'   => 'Parola newiye tekrar ke:',
 
+# Edit page toolbar
+'media_tip' => 'Linkê dosyayi',
+
 # Edit pages
-'summary'      => 'Xulasa:',
-'savearticle'  => 'Ena pele qeyd ke',
-'preview'      => 'Verqayt',
-'showpreview'  => 'Verqayti bımocne',
-'showdiff'     => 'Vurnayışan bımocne',
-'loginreqlink' => 'Cıkewe',
-'newarticle'   => '(Newe)',
+'summary'              => 'Xulasa:',
+'savearticle'          => 'Ena pele qeyd ke',
+'preview'              => 'Verqayt',
+'showpreview'          => 'Verqayti bımocne',
+'showdiff'             => 'Vurnayışan bımocne',
+'loginreqlink'         => 'Cıkewe',
+'newarticle'           => '(Newe)',
+'templatesusedpreview' => 'Ena verqayt dı templateyan:',
 
 # History pages
 'revisionasof'     => 'Verziyonê roca $1ine',
@@ -337,6 +342,7 @@ It must have at least $1 characters and be different from your username.',
 'editundo' => 'peyser biya',
 
 # Search results
+'searchresults'      => 'neticeyanê cıgeyrayış',
 'searchhelp-url'     => 'Help:Tedeestey',
 'search-result-size' => '$1 ({{PLURAL:$2|1 çekuye|$2 çekuy}})',
 'powersearch'        => 'Cıgeyrayışo hera',
@@ -347,6 +353,7 @@ It must have at least $1 characters and be different from your username.',
 'search-external'    => 'Cıgeyrayışê teberi',
 
 # Preferences page
+'preferences'     => 'Tercihan',
 'mypreferences'   => 'tercihê mı',
 'qbsettings-none' => 'çino',
 'skin-preview'    => 'Verqayt',
@@ -420,6 +427,7 @@ It must have at least $1 characters and be different from your username.',
 'newpages-username' => 'Namey Karberi:',
 'ancientpages'      => 'Pelê kıhanêri',
 'move'              => 'bere',
+'movethispage'      => 'Ena pele itiya ra ber',
 
 # Book sources
 'booksources-go' => 'Şo',
@@ -431,6 +439,7 @@ It must have at least $1 characters and be different from your username.',
 'alphaindexline' => '$1 ra $2ine',
 'nextpage'       => 'Pela peyêne ($1)',
 'prevpage'       => 'Pela verêne ($1)',
+'allarticles'    => 'Pelanê hemi',
 'allpagessubmit' => 'Şo',
 
 # Special:Categories
@@ -439,11 +448,21 @@ It must have at least $1 characters and be different from your username.',
 # Special:ListUsers
 'listusers-submit' => 'Bımocne',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Logê hesab vıraştış',
+'newuserlog-create-entry' => 'Hesabê karberê newe',
+
+# E-mail user
+'emailuser' => 'Ena karberi ri email bışırav',
+
 # Watchlist
-'watchlist'   => 'lista mına seyr-kerdışi',
-'mywatchlist' => 'Lista mına seyr-kerdışi',
-'watch'       => 'bıgê seyr-kerdış',
-'unwatch'     => 'Endi seyr meke',
+'watchlist'    => 'lista mına seyr-kerdışi',
+'mywatchlist'  => 'Lista mına seyr-kerdışi',
+'watchlistfor' => "(semed '''$1''')",
+'addedwatch'   => 'lista mına seyr-kerdışi ri dek',
+'removedwatch' => 'lista mına seyr-kerdışi ra bıvec',
+'watch'        => 'bıgê seyr-kerdış',
+'unwatch'      => 'Endi seyr meke',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Seyr ke...',
@@ -451,22 +470,38 @@ It must have at least $1 characters and be different from your username.',
 
 # Delete
 'deletepage'            => 'Pele bıestere',
+'deletedarticle'        => 'wedariya "[[$1]]"',
 'deletereasonotherlist' => 'Sebebo bin',
 
 # Rollback
 'rollbacklink' => 'peyser bia',
 
+# Protect
+'protectedarticle'    => 'kılit biya "[[$1]]"',
+'protectcomment'      => 'Mınaqaşe:',
+'protect-level-sysop' => 'Teyna menageran (sysopan)',
+'restriction-type'    => 'Izin:',
+
 # Restrictions (nouns)
 'restriction-edit' => 'Bıvurne',
+
+# Undelete
+'undeletelink' => 'bevinin/peyser biya',
 
 # Namespace form on various pages
 'blanknamespace' => '(Ser)',
 
 # Contributions
-'mycontris' => 'iştırakê mı',
+'contributions-title' => 'İştirakê karberi semed $1',
+'mycontris'           => 'iştırakê mı',
+'contribsub2'         => 'Semed $1 ($2)',
+'uctop'               => '(ser)',
+'year'                => 'Serr ra (u verniyer):',
 
 'sp-contributions-newbies'  => 'Tenya iştıraqanê karberanê neweyan bımocne',
+'sp-contributions-blocklog' => 'Logê kılit kerdişê karberi',
 'sp-contributions-username' => 'Adresa IPy ya ki namey karberi:',
+'sp-contributions-submit'   => 'Cıgeyr',
 
 # What links here
 'whatlinkshere'       => 'Gırey be pele',
@@ -474,6 +509,7 @@ It must have at least $1 characters and be different from your username.',
 'whatlinkshere-links' => '← gırey',
 
 # Block/unblock
+'blockip'      => 'Ena karberi blok bık',
 'blocklink'    => 'kılit ke',
 'unblocklink'  => 'ake',
 'contribslink' => 'iştıraki',
@@ -496,6 +532,9 @@ Sebebê kılit-biyayışê $1\'i: "$2"o',
 'tooltip-ca-talk'          => 'Pela tedeesteyan sero werênayış',
 'tooltip-ca-edit'          => 'Tı eşkenay na pele bıvurnê.
 Kerem ke, qeyd-kerdış ra ver gozega verqayti bıxebıtne.',
+'tooltip-ca-addsection'    => 'Yew kısımê newe a bık',
+'tooltip-ca-protect'       => 'Ena pele kılit bık',
+'tooltip-ca-delete'        => 'Ena pele bıwedarn',
 'tooltip-search'           => 'Zerrey {{SITENAME}} de cıgeyre',
 'tooltip-search-go'        => 'Ebe nê namey şo yew pele, eke esta',
 'tooltip-search-fulltext'  => 'Seba nê meqaley pelan saye ke',
@@ -514,6 +553,9 @@ Kerem ke, qeyd-kerdış ra ver gozega verqayti bıxebıtne.',
 # Attribution
 'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye', # $1 date, $2 time, $3 user
 
+# Browsing diffs
+'nextdiff' => 'Vurnayışe newiyer →',
+
 # Special:NewFiles
 'ilsubmit' => 'Cıgeyre',
 
@@ -525,6 +567,11 @@ Yew rêze de gırêyo sıfteyın gani gırêyo de dosya xırabıne bo.
 Na rêze de her gırêyo bin zey istisna vêniyeno, yanê pelê ke dosya beno ke sero rêzbiyaye asena.',
 
 'exif-gaincontrol-0' => 'çino',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'hemi',
+'namespacesall' => 'hemi',
+'monthsall'     => 'hemi',
 
 # Special:FilePath
 'filepath-page' => 'Dosya:',

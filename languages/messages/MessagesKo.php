@@ -949,6 +949,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.',
 'rev-deleted-no-diff'            => '당신은 특정 판이 문서 역사에서 제거되었기 때문에 이 차이를 확인할 수 없습니다.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..',
+'rev-deleted-unhide-diff'        => '특정판의 차이가 문서 역사에서 삭제되었습니다.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.
+{{SITENAME}}의 관리자로서 작업하기를 원하다면 [$1 차이보기]에서 차이를 볼 수 있습니다.',
 'rev-delundel'                   => '보이기/숨기기',
 'revisiondelete'                 => '버전 삭제/복구',
 'revdelete-nooldid-title'        => '대상 판이 잘못되었습니다.',
@@ -2153,7 +2156,7 @@ $1',
 'ipboptions'                      => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => '수동으로 지정',
 'ipbotherreason'                  => '다른 이유/추가적인 이유:',
-'ipbhidename'                     => '사용자 이름을 차단 기록, 차단된 사용자 목록, 사용자 목록에서 숨기기',
+'ipbhidename'                     => '사용자 이름을 목록과 편집기록에서 숨깁니다.',
 'ipbwatchuser'                    => '이 사용자의 사용자 문서와 토론 문서를 주시하기',
 'ipballowusertalk'                => '차단되어 있는 중에도 자신의 토론 문서를 편집할 수 있게 허용',
 'ipb-change-block'                => '이 설정으로 이 사용자를 다시 차단합니다',
@@ -2209,6 +2212,7 @@ $1',
 'range_block_disabled'            => 'IP 범위 차단 기능이 비활성화되어 있습니다.',
 'ipb_expiry_invalid'              => '차단 기간이 잘못되었습니다.',
 'ipb_expiry_temp'                 => '사용자 이름을 숨기는 차단은 반드시 무기한이어야 합니다.',
+'ipb_hide_invalid'                => '이 계정의 활동을 금지시킬수 없습니다; 이 것은 매우 많은 기여를 했습니다.',
 'ipb_already_blocked'             => '"$1" 사용자는 이미 차단됨',
 'ipb-needreblock'                 => '== 이미 차단되어 있습니다 ==
 $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습니까?',

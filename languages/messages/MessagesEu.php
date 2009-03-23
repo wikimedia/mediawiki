@@ -2193,6 +2193,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/
 'export-submit'     => 'Esportatu',
 'export-addcattext' => 'Orrialdeak gehitu kategoria honetatik:',
 'export-addcat'     => 'Gehitu',
+'export-addns'      => 'Gehitu',
 'export-download'   => 'Fitxategi moduan gordetzeko eskaini',
 'export-templates'  => 'Txantiloiak barneratu',
 'export-pagelinks'  => 'Sartu lotutako orriak honako sakoneran:',
@@ -2951,6 +2952,7 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 #Hauek kanpo irudien URLekin lotuko dira
 #Lotutako horiek irudi bezala agertuko dira, bestela lotura besterik ez da agertuko
 # #-arekin hasten diren lerroak iruzkin bezala hartuko dira
+# Hau case-insensitive da
 
 #Jarri regex zatiak lerro honen gainetik. Lerro hau utzi dagoen bezala</pre>',
 

@@ -217,7 +217,7 @@ See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for
 'linkprefix'        => '{{optional}}',
 'mainpagetext'      => 'Along with {{msg|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
 'mainpagedocfooter' => 'Along with {{msg|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.
-This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for example.',
+This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for an example. For languages having grammatical distinctions and not having an appropriate <nowiki>{{GRAMMAR:}}</nowiki> software available, a suggestion to check and possibly amend the messages having <nowiki>{{SITENAME}}</nowiki> may be valuable. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/ksh]] for an example.',
 
 'about'          => '{{Identical|About}}',
 'article'        => '{{Identical|Content page}}',
@@ -316,14 +316,16 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].', # $1 date, $2 time
 {{Identical|Search}}',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Used as page name and link at the bottom of each wiki page. The contents of the page explain the purpose of the site.
+'aboutsite'            => 'Used as the label of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. The link target is {{msg-mw|aboutpage}}.
 
-{{doc-important|Do not change <nowiki>{{SITENAME}}</nowiki>}}
+[[mw:Manual:Interface/Aboutsite|MediaWiki manual]].
+
+{{doc-important|Do not change <nowiki>{{SITENAME}}</nowiki>.}}
 
 {{Identical|About}}',
-'aboutpage'            => 'Used as page for that contains the site description. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Aboutpage}}|{{MediaWiki:About}} {{SITENAME}}]].
+'aboutpage'            => 'Used as the target of the link that appears at the footer of every page on the wiki (in most of  the skins) and leads to the page that contains the site description. Therefore the content should be the same with the page name of the site description page. Only the message in the [[mw:Manual:$wgLanguageCode|site language]]  ([[MediaWiki:Aboutpage]]) is used. The link label is {{msg-mw|aboutsite}}.
 
-{{doc-important|Do not translate "Project:" part}}',
+{{doc-important|Do not translate "Project:" part, for this is the namespace prefix.}}',
 'copyrightpagename'    => '{{doc-important|Do not change <nowiki>{{SITENAME}}</nowiki>}}',
 'copyrightpage'        => '{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}',
 'currentevents'        => 'Standard link in the sidebar, for news. See also {{msg|currentevents-url}} for the link url.',
@@ -488,9 +490,11 @@ The title of the warning is the message {{msg-mw|nosuchspecialpage}}. <code><now
 # Login and logout pages
 'logouttext'                 => 'Log out message',
 'welcomecreation'            => 'The welcome message users see after registering a user account. $1 is the username of the new user.',
-'yourname'                   => 'In user preferences
+'yourname'                   => "In user preferences
 
-{{Identical|Username}}',
+<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.
+
+{{Identical|Username}}",
 'yourpassword'               => 'In user preferences
 
 {{Identical|Password}}',
@@ -540,7 +544,9 @@ The title of the warning is the message {{msg-mw|nosuchspecialpage}}. <code><now
 'nocookiesnew'               => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
 'nocookieslogin'             => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'loginsuccesstitle'          => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
-'loginsuccess'               => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.',
+'loginsuccess'               => 'The content of the page saying that you are logged in. The title of the page is "[[MediaWiki:Loginsuccesstitle/{{SUBPAGENAME}}|{{int:loginsuccesstitle}}]]". $1 is the name of the logged in user.
+
+<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
 'nosuchuser'                 => 'Displayed when trying to log in with an unexisting username. When you are not allowed to create an account, the message {{msg|nosuchusershort}} is displayed.',
 'nosuchusershort'            => "Displayed when trying to log in with an unexisting username. This message is only shown when you can't create an account, otherwise the message {{msg|nosuchusershort}} is displayed.",
 'wrongpasswordempty'         => 'Error message displayed when entering a blank password',
@@ -631,7 +637,9 @@ $1 is the minimum number of characters in the password.',
 {{Identical|Preview}}',
 'showpreview'                      => 'The text of the button to preview the page you are editing. See also {{msg|showdiff}} and {{msg|savearticle}} for the other buttons.',
 'showdiff'                         => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.',
-'anoneditwarning'                  => 'Shown when editing a page anonymously.',
+'anoneditwarning'                  => 'Shown when editing a page anonymously.
+
+<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
 'summary-preview'                  => 'Preview of the edit summary, shown under the edit summary itself.',
 'blockedtext'                      => 'Text displayed to blocked users',
 'autoblockedtext'                  => 'Text displayed to automatically blocked users.
@@ -654,7 +662,9 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 
 {{Identical|Log in}}',
 'accmailtitle'                     => 'Page title when temporary password was sent to a user via email.',
-'accmailtext'                      => '{{doc-important|Do not translate "<nowiki>[[User talk:$1|$1]]</nowiki>"}}',
+'accmailtext'                      => "The message shown when a temporary password has been sent to the user's email address.
+
+{{doc-important|Do not translate \"<nowiki>[[User talk:\$1|\$1]]</nowiki>\" and ''Special:ChangePassword''.}}",
 'newarticle'                       => '{{Identical|New}}',
 'newarticletext'                   => "Text displayed above the edit box in editor when trying to create a new page.<br />'''Very important:''' leave <tt><nowiki>{{MediaWiki:Helppage}}</nowiki></tt> exactly as it is!",
 'noarticletext'                    => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.',
@@ -1024,77 +1034,78 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'grouppage-suppress'      => 'Link to project page of this group, displayed on [[Special:ListUsers/suppress]].',
 
 # Rights
-'right-read'               => '{{doc-right}}
+'right-read'                  => '{{doc-right}}
 Basic right to read any page.',
-'right-edit'               => '{{doc-right}}
+'right-edit'                  => '{{doc-right}}
 Basic right to edit pages that are not protected.',
-'right-createpage'         => '{{doc-right}}
+'right-createpage'            => '{{doc-right}}
 Basic right to create pages. The right to edit discussion/talk pages is {{msg|right-createtalk|pl=yes}}.',
-'right-createtalk'         => '{{doc-right}}
+'right-createtalk'            => '{{doc-right}}
 Basic right to create discussion/talk pages. The right to edit other pages is {{msg|right-createpage|pl=yes}}.',
-'right-createaccount'      => '{{doc-right}}
+'right-createaccount'         => '{{doc-right}}
 The right to [[Special:CreateAccount|create a user account]].',
-'right-minoredit'          => '{{doc-right}}
+'right-minoredit'             => '{{doc-right}}
 The right to use the "This is a minor edit" checkbox. See {{msg|minoredit|pl=yes}} for the message used for that checkbox.',
-'right-move'               => '{{doc-right}}
+'right-move'                  => '{{doc-right}}
 The right to move any page that is not protected from moving.',
-'right-move-rootuserpages' => '{{doc-right}}',
-'right-movefile'           => '{{doc-right}}',
-'right-upload'             => '{{doc-right}}
+'right-move-rootuserpages'    => '{{doc-right}}',
+'right-movefile'              => '{{doc-right}}',
+'right-upload'                => '{{doc-right}}
 The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).',
-'right-reupload'           => '{{doc-right}}
+'right-reupload'              => '{{doc-right}}
 The right to upload a file under a file name that already exists. Related messages: {{msg|right-upload|pl=yes}}, {{msg|right-reupload-own|pl=yes}} and {{msg|right-reupload-shared|pl=yes}}.',
-'right-reupload-own'       => '{{doc-right}}
+'right-reupload-own'          => '{{doc-right}}
 Right to upload a file under a file name that already exists, and that the same user has uploaded. Related messages: {{msg|right-upload|pl=yes}} and {{msg|right-reupload|pl=yes}}.',
-'right-reupload-shared'    => '{{doc-right}}
+'right-reupload-shared'       => '{{doc-right}}
 The right to upload a file locally under a file name that already exists in a shared database (for example Commons). Related messages: {{msg|right-upload|pl=yes}} and {{msg|right-reupload|pl=yes}}.',
-'right-purge'              => '{{doc-right}}
+'right-purge'                 => '{{doc-right}}
 The right to use <tt>&action=purge</tt> in the URL, without needing to confirm it (by default, anonymous users need to confirm it).',
-'right-autoconfirmed'      => "{{doc-right}}
+'right-autoconfirmed'         => "{{doc-right}}
 If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] and if you have at least [[mw:Manual:\$wgAutoConfirmCount|\$wgAutoConfirmCount]] edits, you are in the '''group \"autoconfirmed\"''' (note that you can't see this group at [[Special:ListUsers]]).
 If you are in that group, you have (by default) the '''right \"autoconfirmed\"'''. With this right, you can for example <!-- I think this right includes more things --> edit semi-protected pages.",
-'right-nominornewtalk'     => '{{doc-right}}
+'right-nominornewtalk'        => '{{doc-right}}
 If someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg|right-minoredit|pl=yes}}), the user will not get a notification "You have new messages".',
-'right-writeapi'           => '{{doc-right}}',
-'right-deleterevision'     => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-writeapi'              => '{{doc-right}}',
+'right-deleterevision'        => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}',
-'right-suppressrevision'   => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-suppressrevision'      => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-suppressionlog'     => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-suppressionlog'        => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-hideuser'           => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-hideuser'              => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-ipblock-exempt'     => 'This user automatically 
+'right-ipblock-exempt'        => 'This user automatically 
 bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
-'right-rollback'           => '{{Identical|Rollback}}',
-'right-markbotedits'       => '{{doc-right}}
+'right-rollback'              => '{{Identical|Rollback}}',
+'right-markbotedits'          => '{{doc-right}}
 A user with this right can mark a roll-back edit as a bot edit by adding <tt>&bot=1</tt> to the URL (not by default).',
-'right-noratelimit'        => '{{doc-right}}
+'right-noratelimit'           => '{{doc-right}}
 The rate limits have no effect on the groups that have this right. Rate limits is a restriction that you can only do X actions (edits, moves, etc.) in Y number of seconds (set by [[mw:Manual:$wgRateLimits|$wgRateLimits]]).',
-'right-import'             => '{{doc-right}}',
-'right-importupload'       => '{{doc-right}}',
-'right-patrol'             => '{{doc-right}}',
-'right-reset-passwords'    => '{{doc-right}}',
+'right-import'                => '{{doc-right}}',
+'right-importupload'          => '{{doc-right}}',
+'right-patrol'                => '{{doc-right}}',
+'right-reset-passwords'       => '{{doc-right}}',
+'right-override-export-depth' => '{{doc-right|override-export-depth}}',
 
 # User rights log
 'rightslog'      => 'In [[Special:Log]]',
@@ -1784,7 +1795,7 @@ $3 = time.
 * Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.
 
 {{Identical|Infinite}}", # display1:time1,display2:time2,...
-'restriction-type'          => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See the help page on [http://meta.wikimedia.org/wiki/Protect Meta] for more information on protection.',
+'restriction-type'          => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See [[mw:Manual:Administrators|MediaWiki Manual]] for more information on protection.',
 'restriction-level'         => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.',
 'minimum-size'              => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Maximum-size]]. There is an input box to specify the minimum bites of the projected pages listed.',
 'maximum-size'              => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Minimum-size]]. There is an input box to specify the maximum bites of the projected pages listed.',
@@ -1925,11 +1936,12 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 {{Identical|Infinite}}", # display1:time1,display2:time2,...
 'ipbotheroption'               => '{{Identical|Other}}',
 'ipbotherreason'               => '{{Identical|Other/additional reason}}',
-'ipbhidename'                  => 'This is the label for a checkbox in the user block form on [[Special:BlockIP]].',
+'ipbhidename'                  => 'This is the label for a checkbox in the user block form on [[Special:Block]].',
 'ipbwatchuser'                 => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
 'ipballowusertalk'             => 'Option in [[Special:BlockIP]] that allows the blocked user to edit own talk page.',
 'ipb-change-block'             => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg|ipb-needreblock}}.',
 'badipaddress'                 => 'An error message shown when one entered an invalid IP address in blocking page.',
+'blockipsuccesstext'           => '<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
 'ipb-edit-dropdown'            => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
 'ipusubmit'                    => 'Used as button text on Special:BlockList?action=unblock. To see the message:
 * Go to [[Special:BlockList]]
@@ -2037,7 +2049,7 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 'move-talk-subpages'      => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the talk page to a new title.',
 '1movedto2'               => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
 '1movedto2_redir'         => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
-'movelogpage'             => 'Title of special page',
+'movelogpage'             => 'Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
 'movelogpagetext'         => "Text on the special page 'Move log'.",
 'movesubpage'             => "This is a page header.
 Parameters:
@@ -2059,6 +2071,7 @@ Parameters:
 
 {{Identical|Export}}',
 'export-addcat'    => '{{Identical|Add}}',
+'export-addns'     => '{{Identical|Add}}',
 'export-download'  => 'A label of checkbox option in [[Special:Export]]',
 'export-templates' => 'A label of checkbox option in [[Special:Export]]',
 'export-pagelinks' => 'This is an input in [[Special:Export]]',
@@ -2095,6 +2108,7 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 
 # Import log
 'importlogpage'          => '{{Identical|Import log}}',
+'importlogpagetext'      => 'This text appears at the top of the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=import&user=&page=&year=&month=-1 import log] special page.',
 'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
 * $1 is the name of the imported file',
 
@@ -2126,7 +2140,7 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 'tooltip-search'                  => 'The tooltip when hovering over the search menu.',
 'tooltip-search-go'               => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Go|Go]]” button next to the search box.',
 'tooltip-search-fulltext'         => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Search|Search]]” button under the search box.',
-'tooltip-p-logo'                  => '{{Identical|Main page}}',
+'tooltip-p-logo'                  => 'Tool tip shown when hovering the mouse over the logo that links to [[Main Page]].',
 'tooltip-n-mainpage'              => 'Tool tip shown when hovering the mouse over the link to [[{{MediaWiki:Mainpage}}]].',
 'tooltip-n-portal'                => "Tooltip shown when hovering over the link to 'Community portal' shown in the side bar menu on all pages.",
 'tooltip-n-currentevents'         => 'Tooltip shown when hovering over {{msg|currentevents}} in the sidebar.',
@@ -2279,15 +2293,44 @@ To disable showing a particular link, set it to 'disable', e.g.
 'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
-'variantname-zh-hans' => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-zh-hant' => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-zh-cn'   => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-zh-tw'   => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-zh-hk'   => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-zh-mo'   => '{{optional}}',
-'variantname-zh-sg'   => 'Varient Option for wikis with variants conversion enabled.',
-'variantname-zh-my'   => '{{optional}}',
-'variantname-zh'      => 'Varient Option for wikis with variants conversion enabled.',
+'variantname-zh-hans' => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+'variantname-zh-hant' => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+'variantname-zh-cn'   => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+'variantname-zh-tw'   => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+'variantname-zh-hk'   => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+'variantname-zh-mo'   => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+'variantname-zh-sg'   => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+'variantname-zh-my'   => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+'variantname-zh'      => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+
+# Variants for Gan language
+'variantname-gan-hans' => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+'variantname-gan-hant' => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
+'variantname-gan'      => '{{Optional}}
+
+Variant option for wikis with variants conversion enabled.',
 
 # Variants for Serbian language
 'variantname-sr-ec' => 'Varient Option for wikis with variants conversion enabled.',
@@ -2376,6 +2419,8 @@ Spatial frequency response is a measure for the capability of camera lenses to d
 'exif-sensingmethod-8' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).",
 
 'exif-filesource-3' => '{{optional}}',
+
+'exif-exposuremode-2' => "A type of exposure mode shown as part of the metadata on image description pages. The Wikipedia article on [http://en.wikipedia.org/wiki/Bracketing#Exposure_bracketing bracketing] says that 'auto bracket' is a camera exposure setting which automatically takes a series of pictures at slightly different light exposures.",
 
 'exif-scenecapturetype-0' => '{{Identical|Standard}}',
 
@@ -2676,7 +2721,8 @@ $1 is the name of the requested file.',
 'tags-display-header'     => 'Caption of a column in [[Special:Tags]]',
 'tags-description-header' => 'Caption of a column in [[Special:Tags]]',
 'tags-hitcount-header'    => 'Caption of a column in [[Special:Tags]]',
-'tags-edit'               => '{{Identical|Edit}}',
+'tags-edit'               => '{{Identical|Edit}}
+Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a description.',
 'tags-hitcount'           => 'Shown in the “Tagged changes” column in [[Special:Tags]].
 
 * <code>$1</code> is the number of changes marked with the tag',
