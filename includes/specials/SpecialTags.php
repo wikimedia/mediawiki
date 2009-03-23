@@ -13,10 +13,10 @@ class SpecialTags extends SpecialPage {
 		global $wgOut, $wgUser, $wgMessageCache;
 
 		$wgMessageCache->loadAllMessages();
-		
+
 		$sk = $wgUser->getSkin();
 		$wgOut->setPageTitle( wfMsg( 'tags-title' ) );
-		$wgOut->addWikiMsg( 'tags-intro' );
+		$wgOut->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1</div>", 'tags-intro' );
 
 		// Write the headers
 		$html = '';
@@ -36,9 +36,7 @@ class SpecialTags extends SpecialPage {
 			$html .= $this->doTagRow( $tag, 0 );
 		}
 
-		$html = "<table style='width: 80%'><tbody>$html</tbody></table>";
-
-		$wgOut->addHTML( $html );
+		$wgOut->addHTML( Xml::tags( 'table', array( 'style' => 'width: 80%', 'class' => 'mw-tags-table' ), $html ) );
 	}
 
 	function doTagRow( $tag, $hitcount ) {
