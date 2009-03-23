@@ -967,13 +967,16 @@ Spróbuj [[Special:Search|poszukać]] tej strony.',
 'rev-deleted-comment'            => '(komentarz usunięty)',
 'rev-deleted-user'               => '(użytkownik usunięty)',
 'rev-deleted-event'              => '(wpis usunięty)',
-'rev-deleted-text-permission'    => 'Wersja tej strony została usunięta i nie jest dostępna publicznie.
-Szczegóły mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].',
-'rev-deleted-text-view'          => 'Ta wersja strony została usunięta i nie jest dostępna publicznie.
+'rev-deleted-text-permission'    => "Ta wersja strony została '''usunięta i nie jest dostępna publicznie'''.
+Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-deleted-text-view'          => "Ta wersja strony została '''usunięta i nie jest dostępna publicznie'''.
 Jednak jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz ją obejrzeć.
-Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].',
-'rev-deleted-no-diff'            => 'Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została usunięta.
-Szczegóły można znaleźć w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].',
+Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-deleted-no-diff'            => "Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została '''usunięta i nie jest dostępna publicznie'''.
+Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-deleted-unhide-diff'        => "Jedna z wersji tej strony została '''usunięta i nie jest dostępna publicznie'''.
+Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
+Jednak jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz [$1 obejrzeć porównanie wersji].",
 'rev-delundel'                   => 'pokaż/ukryj',
 'revisiondelete'                 => 'Usuń/przywróć wersje',
 'revdelete-nooldid-title'        => 'Nieprawidłowa wersja do przeprowadzenia operacji',
@@ -2210,7 +2213,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipboptions'                      => '2 godziny:2 hours,1 dzień:1 day,3 dni:3 days,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,na zawsze:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'inny',
 'ipbotherreason'                  => 'Inne lub dodatkowe uzasadnienie',
-'ipbhidename'                     => 'Ukryj nazwę użytkownika (adres IP) w rejestrze blokad, na liście aktywnych blokad i liście użytkowników',
+'ipbhidename'                     => 'Ukryj nazwę użytkownika w edycjach i listach',
 'ipbwatchuser'                    => 'Obserwuj stronę osobistą i stronę dyskusji tego użytkownika',
 'ipballowusertalk'                => 'Pozwól temu użytkownikowi edytować własną stronę dyskusji, kiedy jest zablokowany',
 'ipb-change-block'                => 'Zmień ustawienia blokady',
@@ -2270,6 +2273,7 @@ By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:IPB
 'range_block_disabled'            => 'Możliwość blokowania zakresu adresów IP została wyłączona.',
 'ipb_expiry_invalid'              => 'Błędny czas wygaśnięcia blokady.',
 'ipb_expiry_temp'                 => 'Ukryte blokowanie nazwy użytkownika należy wykonać trwale.',
+'ipb_hide_invalid'                => 'Ukrycie konta tego użytkownika nie jest możliwe, prawdopodobnie wykonał on zbyt wiele edycji.',
 'ipb_already_blocked'             => '„$1” jest już zablokowany',
 'ipb-needreblock'                 => '== Istniejąca blokada ==
 $1 jest już zablokowany. Czy chcesz zmienić ustawienia blokady?',

@@ -1025,10 +1025,15 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 'rev-deleted-comment'            => '(commentaire supprimé)',
 'rev-deleted-user'               => '(nom d’utilisateur supprimé)',
 'rev-deleted-event'              => '(entrée supprimée)',
-'rev-deleted-text-permission'    => 'Cette version de la page a été retirée des archives publiques. Il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].',
-'rev-deleted-text-view'          => 'Cette version de la page a été retirée des archives publiques. En tant qu’administrateur de ce site, vous pouvez la visualiser ; il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} historique des suppressions].',
-'rev-deleted-no-diff'            => "Vous ne pouvez par voir ce diff parce qu'une des versions a été supprimée des archives publiques.
+'rev-deleted-text-permission'    => "Cette version de la page a été '''retirée des archives publiques'''.
+Il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].",
+'rev-deleted-text-view'          => "Cette version de la page a été '''retirée des archives publiques'''.
+En tant qu’administrateur de ce site, vous pouvez la visualiser ; il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} historique des suppressions].",
+'rev-deleted-no-diff'            => "Vous ne pouvez par voir ce diff parce qu'une des versions a été '''retirée des archives publiques'''.
 Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l'historique des suppressions].",
+'rev-deleted-unhide-diff'        => "Une des révisions de cette différence a été '''retirée des archives publiques'''.
+Il peut y avoir plus de détails dans le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].
+En tant qu'administrateur de {{SITENAME}} vous pouvez toujours [$1 voir cette différence] si vous le voulez.",
 'rev-delundel'                   => 'afficher/masquer',
 'revisiondelete'                 => 'Supprimer ou restaurer des événements',
 'revdelete-nooldid-title'        => 'Version cible non valide',
@@ -2258,7 +2263,7 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'ipboptions'                      => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'autre',
 'ipbotherreason'                  => 'Motif différent ou supplémentaire :',
-'ipbhidename'                     => 'Masquer le nom d’utilisateur du journal des blocages, de la liste des blocages actifs et de la liste des utilisateurs',
+'ipbhidename'                     => 'Masquer le nom d’utilisateur des modifications et des listes',
 'ipbwatchuser'                    => 'Suivre les pages utilisateur et de discussion de cet utilisateur',
 'ipballowusertalk'                => 'Permet à cet utilisateur de modifier sa propre page de discussion durant sa période de blocage',
 'ipb-change-block'                => 'Bloquer à nouveau cet utilisateur avec ces paramètres',
@@ -2318,6 +2323,7 @@ Consultez la [[Special:IPBlockList|liste des IP bloquées]] pour voir les bannis
 'range_block_disabled'            => 'Le droit administrateur de créer des blocages de plages IP est désactivé.',
 'ipb_expiry_invalid'              => 'Durée d’expiration incorrecte.',
 'ipb_expiry_temp'                 => 'Les blocages de noms d’utilisateurs cachés doivent être permanents.',
+'ipb_hide_invalid'                => 'Impossible de supprimer ce compte ; il semble avoir trop de modifications.',
 'ipb_already_blocked'             => '« $1 » est déjà bloqué',
 'ipb-needreblock'                 => '== Déjà bloqué ==
 $1 est déjà bloqué. Voulez-vous modifier les paramètres ?',

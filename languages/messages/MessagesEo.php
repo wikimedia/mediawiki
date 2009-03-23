@@ -892,8 +892,8 @@ Provu [[Special:Search|serĉi en la vikio]] por rilataj novaj paĝoj.',
 'rev-deleted-comment'            => '(komento forigita)',
 'rev-deleted-user'               => '(uzanto-nomo forigita)',
 'rev-deleted-event'              => '(protokola ago forigita)',
-'rev-deleted-text-permission'    => 'Ĉi tiu versio de la paĝo estis forigita de publikaj arĥivoj.
-Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} protokolo de forigoj].',
+'rev-deleted-text-permission'    => "Ĉi tiu revizio de la paĝo estis '''forigita de publikaj arĥivoj'''.
+Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].",
 'rev-deleted-text-view'          => 'Ĉi versio de la paĝo estis forigita de publikaj arĥivoj.
 Kiel administranto de {{SITENAME}} vi povas rigardi ĝin;
 povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].',
@@ -2099,7 +2099,7 @@ $1',
 'ipboptions'                      => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'alia',
 'ipbotherreason'                  => 'Alia/kroma kialo:',
-'ipbhidename'                     => 'Kaŝi la salutnomon de la forbara protokolo, aktuala forbarlisto kaj uzula listo',
+'ipbhidename'                     => 'Kaŝi salutnomon de redaktoj kaj listoj',
 'ipbwatchuser'                    => 'Kontroli la paĝojn por uzanto kaj diskuto de ĉi tiu uzanto.',
 'ipballowusertalk'                => 'Permsi al ĉi tiu uzanto redakti propran diskuto-paĝon dum forbaro',
 'ipb-change-block'                => 'Reforbari la uzanton kun ĉi tiuj preferoj',
@@ -2157,6 +2157,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'range_block_disabled'            => 'La ebleco de administranto krei forbaritajn intervalojn da IP-adresoj estas malebligita.',
 'ipb_expiry_invalid'              => 'Nevalida blokdaŭro.',
 'ipb_expiry_temp'                 => 'Kaŝitaj salutnomaj blokoj estu daŭraj.',
+'ipb_hide_invalid'                => 'Ne eblas subpremi ĉi tiun konton; ĝi eble havas tro multajn redaktojn.',
 'ipb_already_blocked'             => '"$1" estas jam forbarita',
 'ipb-needreblock'                 => '== Jam forbarita ==
 $1 estas jam forbarita. Ĉu vi volas ŝanĝi la opciojn?',

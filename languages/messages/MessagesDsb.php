@@ -841,10 +841,14 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 'rev-deleted-comment'            => '(Komentar wulašowany)',
 'rev-deleted-user'               => '(Wužywarske mě wulašowane)',
 'rev-deleted-event'              => '(protokolowa akcija wulašowana)',
-'rev-deleted-text-permission'    => 'Toś ta wersija jo ze zjawnych archiwow se wulašowała. Dalšne informacije wó wulašowanju a pśicynu wulašowanja namakaju se we [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wulašowańskej log-lisćinje].',
-'rev-deleted-text-view'          => 'Toś ta wersija jo ze zjawnych archiwow se wulašowała. Ako administrator móžoš je dalej wiźeś. Dalšne informacije wó wulašowanju a pśicyna wulašowanja namakaju se w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wulašowańskej lisćinje].',
-'rev-deleted-no-diff'            => 'Njamóžoš se toś ten rozdźěl woglědaś, dokulaž jadna z wersijow jo se wótpórała ze zjawnych archiwow.
-Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].',
+'rev-deleted-text-permission'    => "Toś ta wersija boka jo se '''ze zjawnych archiwow wulašowała. Ewentuelne drobnostki su w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+'rev-deleted-text-view'          => "Toś ta wersija boka jo se '''ze zjawnych archiwow wulašowała'''.
+Ako administrator na {{GRAMMAR:lokatiw|{{SITENAME}}}} móžoš se ju woglědaś. Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+'rev-deleted-no-diff'            => "Njamóžoš se toś ten rozdźěl woglědaś, dokulaž jadna z wersijow jo se '''wótpórała ze zjawnych archiwow'''.
+Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+'rev-deleted-unhide-diff'        => "Jadna z wersijow toś togo rozdźěla jo se '''wótpórała ze zjawnych archiwow'''.
+Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
+Ako administrator na {{GRAMMAR:lokatiw|{{SITENAME}}}} móžoš hyšći se [$1 toś ten rozdźěl woglědaś], jolic coš pókšacowaś.",
 'rev-delundel'                   => 'pokazaś/schowaś',
 'revisiondelete'                 => 'Wersije wulašowaś/wótnowiś',
 'revdelete-nooldid-title'        => 'Njepłaśiwa celowa wersija',
@@ -2035,7 +2039,7 @@ $1',
 'ipboptions'                      => '2 góźinje:2 hours,1 źeń:1 day,3 dny:3 days,1 tyźeń:1 week,2 tyźenja:2 weeks,1 mjasec:1 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'drugi',
 'ipbotherreason'                  => 'Hynakša/dalšna pśicyna:',
-'ipbhidename'                     => 'Wužywarske mě z protokola blokěrowanjow, lisćiny aktiwnych blokěrowanjow a lisćiny wužywarjow schowaś',
+'ipbhidename'                     => 'Wužywarske mě w změnach a lisćinach schowaś',
 'ipbwatchuser'                    => 'Wužywarski a diskusijny bok toś togo wužywarja wobglědowaś',
 'ipballowusertalk'                => 'Toś tomu wužywarjeju dowóliś swój diskusijny bok wobźěłaś, mjazytm až jo blokěrowany.',
 'ipb-change-block'                => 'Wužywarja z toś tymi nastajenjami znowego blokěrowaś',
@@ -2094,6 +2098,7 @@ Na boce [[Special:IPBlockList|Lisćina blokěrowanych IP-adresow a wužywarskich
 'range_block_disabled'            => 'Móžnosć administratora, blokěrowaś cełe adresowe rumy, njejo aktiwěrowana.',
 'ipb_expiry_invalid'              => 'Pódany cas jo njepłaśecy.',
 'ipb_expiry_temp'                 => 'Blokěrowanja schowanych wužywarskich mjenjow deje permanentne byś.',
+'ipb_hide_invalid'                => 'Njejo móžno toś to konto pódtłocyś; jo snaź pśewjele změnow.',
 'ipb_already_blocked'             => '"$1" jo južo blokěrowany.',
 'ipb-needreblock'                 => '== Južo zablokěrowany ==
 $1 jo južo zablokěrowany. Coš nastajenja změniś?',

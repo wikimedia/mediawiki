@@ -1088,6 +1088,8 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'defaultns'                 => 'Chwiliwch y parthau rhagosodedig isod:',
 'default'                   => 'rhagosodyn',
 'files'                     => 'Ffeiliau',
+'prefs-custom-css'          => 'CSS o hunan-ddewis',
+'prefs-custom-js'           => 'JS o hunan-ddewis',
 
 # User rights
 'userrights'                  => 'Rheoli galluoedd defnyddwyr', # Not used as normal message but as header for the special page itself
@@ -1916,6 +1918,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Ar gyfer cyfrifon newydd',
 'sp-contributions-newbies-title' => 'Cyfraniadau defnyddwyr newydd',
 'sp-contributions-blocklog'      => 'Lòg blocio',
+'sp-contributions-logs'          => 'logiau',
 'sp-contributions-search'        => 'Chwilio am gyfraniadau',
 'sp-contributions-username'      => 'Cyfeiriad IP neu enw defnyddiwr:',
 'sp-contributions-submit'        => 'Chwilier',
@@ -2018,6 +2021,7 @@ $1',
 'block-log-flags-noemail'         => 'analluogwyd e-bostio',
 'block-log-flags-nousertalk'      => 'ni all olygu ei dudalen sgwrs ei hun',
 'block-log-flags-angry-autoblock' => 'galluogwyd blocio awtomatig uwch',
+'block-log-flags-hiddenname'      => 'cuddiwyd yr enw defnyddiwr',
 'range_block_disabled'            => 'Ar hyn o bryd nid yw gweinyddwyr yn gallu blocio ystod o gyfeiriadau IP.',
 'ipb_expiry_invalid'              => 'Amser terfynu yn annilys.',
 'ipb_expiry_temp'                 => "Rhaid i floc ar ddefnyddiwr fod yn barhaus os am guddio'r enw.",
@@ -2141,8 +2145,11 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{#Special:Export}}/{
 'export-submit'     => 'Allforier',
 'export-addcattext' => "Ychwanegu tudalennau i'w hallforio o'r categori:",
 'export-addcat'     => 'Ychwaneger',
+'export-addnstext'  => "Ychwanegu tudalennau o'r parth:",
+'export-addns'      => 'Ychwaneger',
 'export-download'   => 'Cynnig rhoi ar gadw ar ffurf ffeil',
 'export-templates'  => 'Cynnwys nodiadau',
+'export-pagelinks'  => 'Cynhwyser tudalennau cysylltiedig hyd at ddyfnder o:',
 
 # Namespace 8 related
 'allmessages'               => 'Pob neges',
@@ -2430,6 +2437,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-transferfunction'            => 'Ffwythiant trosglwyddo',
 'exif-whitepoint'                  => 'Cromatigedd y cyfeirbwynt gwyn',
 'exif-primarychromaticities'       => 'Cromatigedd y lliwiau cysefin',
+'exif-ycbcrcoefficients'           => 'Cyfernodau matrics trawsffurfio gofod lliw',
+'exif-referenceblackwhite'         => 'Pâr o gyfeirnodau du a gwyn',
 'exif-datetime'                    => "Dyddiad ac amser y newid i'r ffeil",
 'exif-imagedescription'            => 'Teitl y ddelwedd',
 'exif-make'                        => 'Gwneuthurwr y camera',
@@ -2457,6 +2466,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-exposureprogram'             => 'Rhaglen Dinoethi',
 'exif-spectralsensitivity'         => 'Sensitifedd sbectrol',
 'exif-isospeedratings'             => 'Cyfraddiad cyflymder ISO',
+'exif-oecf'                        => 'Ffactor trawsnewid optoelectronig',
 'exif-shutterspeedvalue'           => 'Cyflymder y caead',
 'exif-aperturevalue'               => 'Agorfa',
 'exif-brightnessvalue'             => 'Disgleirdeb',
@@ -2469,6 +2479,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-focallength'                 => 'Hyd ffocal y lens',
 'exif-subjectarea'                 => 'Maint a lleoliad y goddrych',
 'exif-flashenergy'                 => "Ynni'r fflach",
+'exif-spatialfrequencyresponse'    => 'Spatial frequency response
+Ymateb yr amledd gofodol',
 'exif-focalplanexresolution'       => 'Datrysiad y plân ffocysu X',
 'exif-focalplaneyresolution'       => 'Datrysiad y plân ffocysu Y',
 'exif-focalplaneresolutionunit'    => 'Uned mesur datrysiad y plân ffocysu',
@@ -2537,6 +2549,9 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-orientation-7' => "Wedi troi 90° gyda'r cloc a thu chwith yn fertigol", # 0th row: right; 0th column: bottom
 'exif-orientation-8' => "Wedi troi 90° yn groes i'r cloc", # 0th row: left; 0th column: bottom
 
+'exif-planarconfiguration-1' => 'fformat talpiog',
+'exif-planarconfiguration-2' => 'fformat planar',
+
 'exif-componentsconfiguration-0' => "ddim i'w gael",
 
 'exif-exposureprogram-0' => 'Heb ei gosod',
@@ -2586,6 +2601,12 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-focalplaneresolutionunit-2' => 'modfeddi',
 
 'exif-sensingmethod-1' => 'Heb ei ddiffinio',
+'exif-sensingmethod-2' => 'Synhwyrydd lliw ardal un-naddyn',
+'exif-sensingmethod-3' => 'Synhwyrydd lliw ardal dau-naddyn',
+'exif-sensingmethod-4' => 'Synhwyrydd lliw ardal tri-naddyn',
+'exif-sensingmethod-5' => 'Synhwyrydd lliw ardal dilyniannol',
+'exif-sensingmethod-7' => 'Synhwyrydd trillinol',
+'exif-sensingmethod-8' => 'Synhwyrydd lliw llinellol dilyniannol',
 
 'exif-scenetype-1' => "Delwedd wedi ei dynnu'n uniongyrchol",
 
@@ -2594,6 +2615,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 'exif-exposuremode-0' => 'Dinoethi awtomatig',
 'exif-exposuremode-1' => 'Hunan-ddewis hyd y dinoethiad',
+'exif-exposuremode-2' => 'Cyfres dinoethi awtomatig',
 
 'exif-whitebalance-0' => 'Cydwysedd gwyn awtomatig',
 'exif-whitebalance-1' => 'Cydbwysedd gwyn hunan-ddewisedig',

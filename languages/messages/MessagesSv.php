@@ -988,11 +988,15 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'rev-deleted-comment'            => '(kommentar borttagen)',
 'rev-deleted-user'               => '(användarnamn borttaget)',
 'rev-deleted-event'              => '(loggåtgärd borttagen)',
-'rev-deleted-text-permission'    => 'Denna version av sidan har avlägsnats från de öppna arkiven.
-Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].',
-'rev-deleted-text-view'          => 'Denna version av sidan har avlägsnats från de öppna arkiven. Som administratör på denna wiki kan du se den. Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].',
-'rev-deleted-no-diff'            => 'Du kan inte se denna diff på grund av att en av versionerna har tagits bort från de öppna arkiven.
-Det kan finnas detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].',
+'rev-deleted-text-permission'    => "Denna version av sidan har '''avlägsnats från de öppna arkiven'''.
+Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+'rev-deleted-text-view'          => "Denna version av sidan har '''avlägsnats från de öppna arkiven'''.
+Som administratör på {{SITENAME}} kan du se den. Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+'rev-deleted-no-diff'            => "Du kan inte se denna diff på grund av att en av versionerna har '''tagits bort från de öppna arkiven'''.
+Det kan finnas detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
+'rev-deleted-unhide-diff'        => "En av versionerna för denna diff har '''tagits bort från de öppna arkiven'''.
+Det kan finnas detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
+Som administratör på {{SITENAME}} kan du fortfarande [$1 se denna diff] om du önskar fortsätta.",
 'rev-delundel'                   => 'visa/göm',
 'revisiondelete'                 => 'Ta bort/återställ versioner',
 'revdelete-nooldid-title'        => 'Ogiltig målversion',
@@ -2204,7 +2208,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipboptions'                      => '2 timmar:2 hours,1 dag:1 day,3 dagar:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'annan tidsperiod',
 'ipbotherreason'                  => 'Annan/ytterligare anledning:',
-'ipbhidename'                     => 'Dölj användarnamnet från blockeringsloggen, blockeringslistan och användarlistan',
+'ipbhidename'                     => 'Dölj användarnamnet från redigeringar och listor',
 'ipbwatchuser'                    => 'Bevaka användarens användarsida och diskussionssida',
 'ipballowusertalk'                => 'Låt användaren redigera sin egen diskussionssida under blockeringen',
 'ipb-change-block'                => 'Återblockera användaren med de här inställningarna',
@@ -2264,6 +2268,7 @@ I [[Special:IPBlockList|blockeringslistan]] listas alla IP-adresser och använda
 'range_block_disabled'            => 'Möjligheten för administratörer att blockera intervall av IP-adresser har stängts av.',
 'ipb_expiry_invalid'              => 'Ogiltig varaktighetstid.',
 'ipb_expiry_temp'                 => 'För att dölja användarnamnet måste blockeringen vara permanent.',
+'ipb_hide_invalid'                => 'Kan inte undanhålla detta konto; det kan ha för många redigeringar.',
 'ipb_already_blocked'             => '"$1" är redan blockerad',
 'ipb-needreblock'                 => '== Redan blockerad ==
 $1 är redan blockerad. Vill du ändra inställningarna?',

@@ -2262,15 +2262,15 @@ $NEWPAGE
 ** صفحة زوارها كثيرون',
 'protect-edit-reasonlist'     => 'عدل أسباب الحماية',
 'protect-expiry-options'      => '1 ساعة:1 hour,1 يوم:1 day,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائي:infinite', # display1:time1,display2:time2,...
-'restriction-type'            => 'سماح:',
+'restriction-type'            => 'إذن:',
 'restriction-level'           => 'مستوى الضوابط:',
 'minimum-size'                => 'الحجم الأدنى',
 'maximum-size'                => 'الحجم الأقصى:',
 'pagesize'                    => '(بايت)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'عدل',
-'restriction-move'   => 'نقل',
+'restriction-edit'   => 'التعديل',
+'restriction-move'   => 'النقل',
 'restriction-create' => 'أنشىء',
 'restriction-upload' => 'رفع',
 

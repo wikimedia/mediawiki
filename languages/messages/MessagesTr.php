@@ -858,12 +858,15 @@ Konu ile alakalı diğer sayfaları bulmak için [[Special:Search|vikide arama y
 'rev-deleted-comment'            => '(yorum silindi)',
 'rev-deleted-user'               => '(kullanıcı adı silindi)',
 'rev-deleted-event'              => '(kayıt işlemi silindi)',
-'rev-deleted-text-permission'    => 'Bu sayfa değişikliği kamu arşivlerinden silinmiştir.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulabilirsiniz.',
-'rev-deleted-text-view'          => 'Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
-{{SITENAME}} üzerinde bir yönetici iseniz görebilirsiniz; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] detaylar olabilir.',
-'rev-deleted-no-diff'            => 'Bu farkı göremezsiniz çünkü revizyonlardan biri umumi arşivlerden çıkarılmış.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.',
+'rev-deleted-text-permission'    => "Bu sayfa değişikliği '''kamu arşivlerinden silinmiştir'''.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulabilirsiniz.",
+'rev-deleted-text-view'          => "Bu sayfa değişikiliği '''kamu arşivlerinden silinmiştir'''.
+{{SITENAME}} üzerinde bir yönetici iseniz görebilirsiniz; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] detaylar olabilir.",
+'rev-deleted-no-diff'            => "Bu sayfa değişikliğini göremezsiniz çünkü revizyonlardan biri '''kamu arşivlerinden çıkarılmış'''.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.",
+'rev-deleted-unhide-diff'        => "Bu sayfa değişikliğinin revizyonlarından birisi '''kamu arşivlerinden silinmiştir'''.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtları]nda daha ayrıntılı bilgi bulunabilir.
+Yine de eğer bakmak istiyorsanız {{SITENAME}} sitesinde yönetici olarak [$1 bu sayfa değişikliğine bakabilirsiniz].",
 'rev-delundel'                   => 'göster/gizle',
 'revisiondelete'                 => 'Sürümleri sil/geri getir',
 'revdelete-nooldid-title'        => 'Hedef sürüm geçersiz',
@@ -2090,7 +2093,7 @@ $1',
 'ipboptions'                      => '2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'farklı',
 'ipbotherreason'                  => 'Başka/ek sebepler:',
-'ipbhidename'                     => 'Kullanıcı adını, engelleme günlüğünde, aktif engelleme listesinde ve kullanıcı listesinde gizle',
+'ipbhidename'                     => 'Kullanıcı adını katkılarda ve listelerde gizle',
 'ipbwatchuser'                    => 'Bu kullanıcının kullanıcı ve tartışma sayfalarını izle',
 'ipballowusertalk'                => 'Bu kullanıcının engelliyken kendi tartışma sayfasını değiştirebilmesine izin ver',
 'ipb-change-block'                => 'Bu ayarlarla kullanıcıyı yeniden engelle',
@@ -2147,6 +2150,7 @@ $1',
 'range_block_disabled'            => 'Hizmetliler için aralık engellemesi oluşturma yeteneği devre dışı.',
 'ipb_expiry_invalid'              => 'Geçersiz bitiş zamanı.',
 'ipb_expiry_temp'                 => 'Gizli kullanıcı adı engellemeleri kalıcı olmalı.',
+'ipb_hide_invalid'                => 'Kullanıcı hesabı gizlenemiyor; çok fazla değişikliği olabilir.',
 'ipb_already_blocked'             => '"$1" zaten engellenmiş',
 'ipb-needreblock'                 => '== Zaten engellenmiş ==
 $1 zaten engellenmiş. Ayarları değiştirmek istiyor musunuz?',

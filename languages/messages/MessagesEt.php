@@ -525,6 +525,7 @@ Sa võid olla juba edukalt muutnud oma parooli või küsinud uue ajutise parooli
 'resetpass-submit-loggedin' => 'Muuda parool',
 'resetpass-temp-password'   => 'Ajutine parool:',
 'resetpass-no-others'       => 'Sul ei ole luba teiste kasutajate paroole algseadistada.',
+'resetpass-logtext'         => 'Järgneb nimekiri kasutajatest, kes on lasknud oma salasõna administraatoril ümber muuta.',
 
 # Edit page toolbar
 'bold_sample'     => 'Rasvane kiri',
@@ -1146,6 +1147,7 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'statistics-header-users'      => 'Kasutajate statistika',
 'statistics-articles'          => 'Sisulehekülgi',
 'statistics-pages'             => 'Lehekülgi',
+'statistics-pages-desc'        => 'Kõik lehed wikis, kaasa arvatud arutelulehed, ümbersuunamised jne.',
 'statistics-files'             => 'Üleslaaditud faile',
 'statistics-edits'             => 'Redigeerimisi alates {{SITENAME}} loomisest',
 'statistics-edits-average'     => 'Keskmiselt redigeerimisi lehekülje kohta',
@@ -1602,6 +1604,7 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 
 # Special:Import
 'import'          => 'Lehekülgede import',
+'importinterwiki' => 'Vikidevaheline import',
 'importfailed'    => 'Importimine ebaõnnestus: $1',
 'importnosources' => 'Ühtegi transwiki impordiallikat ei ole defineeritud ning ajaloo otseimpordi funktsioon on välja lülitatud.',
 

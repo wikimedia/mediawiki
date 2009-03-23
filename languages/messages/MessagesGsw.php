@@ -830,12 +830,15 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'rev-deleted-comment'            => '(Bearbeitigskommentar uusegnuh)',
 'rev-deleted-user'               => '(Benutzername uusegnuh)',
 'rev-deleted-event'              => '(Logbuechaktion uusegnuh)',
-'rev-deleted-text-permission'    => 'Die Version isch glescht wore un chaa nimi aagluegt wäre.
-Information zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].',
-'rev-deleted-text-view'          => 'Die Version isch glescht wore un cha nimi aagluegt wäre. As Amman chasch si aber alno aaluege uf {{SITENAME}}.
-Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].',
-'rev-deleted-no-diff'            => 'Du chasch die Änderig nit aaluege, wel eini vu dr Versione us dr Effentlige Archiv usegnuu woren isch.
-Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].',
+'rev-deleted-text-permission'    => "Die Version isch '''us dr effentlige Archiv glescht''' glescht wore.
+Information zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+'rev-deleted-text-view'          => "Die Version isch '''us dr effentlige Archiv glescht''' wore. As Amman chasch si aber alno aaluege uf {{SITENAME}}.
+Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+'rev-deleted-no-diff'            => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''us dr effentlige Archiv glescht''' woren isch.
+Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+'rev-deleted-unhide-diff'        => "Eini vu dr Versione isch '''us dr effentlige Archiv glescht''' wore.
+Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
+Wänn Du Ammann bisch uf {{SITENAME}} chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
 'rev-delundel'                   => 'zeig/versteck',
 'revisiondelete'                 => 'Versione lesche/widerherstelle',
 'revdelete-nooldid-title'        => 'Kei Version aagee',
@@ -1978,7 +1981,7 @@ $1',
 'sp-contributions-submit'        => 'Sueche',
 
 # What links here
-'whatlinkshere'            => 'Was linkt da ane?',
+'whatlinkshere'            => 'Was verwyst do druff?',
 'whatlinkshere-title'      => 'Sytene, wo uf „$1“ verlinke',
 'whatlinkshere-page'       => 'Syte:',
 'linkshere'                => "Die Sytene hän e Gleich, wu zu '''„[[:$1]]“''' fiere:",
@@ -2025,7 +2028,7 @@ Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr 
 'ipboptions'                      => '2 Stunde:2 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Anderi Duur',
 'ipbotherreason'                  => 'Anderi/zuesätzligi Begrindig:',
-'ipbhidename'                     => 'Benutzername im Sperr-Logbuech, in dr Lischt vu aktive Sperrine un im Benutzerverzeichnis verstecke.',
+'ipbhidename'                     => 'Benutzername in dr Lischt vu aktive Sperrine un im Benutzerverzeichnis verstecke.',
 'ipbwatchuser'                    => 'Benutzer(diskussions)syte beobachte',
 'ipballowusertalk'                => 'Benutzer derf di eige Diskussionssyte bearbeite derwylscht er gsperrt isch',
 'ipb-change-block'                => 'Nomol sperre mit däne Sperrparameter',
@@ -2082,6 +2085,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'range_block_disabled'            => 'D Megligkeit, ganzi Adrässryym z sperre, isch nit aktiviert.',
 'ipb_expiry_invalid'              => 'D Duur, wu yygee woren isch, isch nit giltig.',
 'ipb_expiry_temp'                 => 'Versteckti Benutzername-Sperrine solle permanent syy.',
+'ipb_hide_invalid'                => 'S isch nit megli des Benutzerkonto z unterdrucke; villicht het s viili Bearbeitige.',
 'ipb_already_blocked'             => '„$1“ isch scho gsperrt wore.',
 'ipb-needreblock'                 => '== Sperri vorhande ==
 {{GENDER:|De|D|}} „$1“ isch scho gsperrt. Mechtsch d Sperrparameter ändere?',

@@ -822,10 +822,15 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'rev-deleted-comment'            => '(komentar wotstronjeny)',
 'rev-deleted-user'               => '(wužiwarske mjeno wotstronjene)',
 'rev-deleted-event'              => '(Protokolowa akcija bu wotstronjena)',
-'rev-deleted-text-permission'    => 'Tuta wersija bu wušmórnjena a njeda so wjace čitać. Přićinu móžeš w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow] zhonić.',
-'rev-deleted-text-view'          => 'Tuta wersija bu wušmórnjena a njeda so wjace čitać. Jako administrator móžeš ju pak dale čitać. Přićinu móžeš w [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow] zhonić.',
-'rev-deleted-no-diff'            => 'Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow je so ze zjawnych archiwow wotstroniła.
-Hlej ewentuelne podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnenjow].',
+'rev-deleted-text-permission'    => "Tuta wersija strony bu '''ze zjawnych archiwow wotstronjena'''.
+Hlej podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
+'rev-deleted-text-view'          => "Tuta wersija strony bu '''ze zjawnych archiwow wotstronjena'''.
+Jako administrator na {{GRAMMAR:lokatiw|{{SITENAME}}}} móžeš sej ju wobhladać; hlej podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
+'rev-deleted-no-diff'            => "Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow je so '''ze zjawnych archiwow wotstroniła'''.
+Hlej ewentuelne podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
+'rev-deleted-unhide-diff'        => "Jedna z wersijow tutoho rozdźěla je so '''ze zjawnych archiwow wotstroniła'''.
+Podrobnosće hlej w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokol wušmórnjenjow].
+Jako administrator na {{GRAMMAR:lokatiw|{{SITENAME}}}} móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli chceš pokročować.",
 'rev-delundel'                   => 'pokazać/schować',
 'revisiondelete'                 => 'Wersije wušmórnyć/wobnowić',
 'revdelete-nooldid-title'        => 'Njepłaćiwa cilowa wersija',
@@ -2021,7 +2026,7 @@ $1',
 'ipboptions'                      => '2 hodźinje:2 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'druha doba (jendźelsce)',
 'ipbotherreason'                  => 'Druha/přidatna přičina:',
-'ipbhidename'                     => 'Wužiwarske mjeno/IP-adresu w protokolu zablokowanjow, w lisćinje aktiwnych zablokowanjow a w zapisu wužiwarjow schować.',
+'ipbhidename'                     => 'Wužiwarske mjeno stawiznach a lisćinach schować',
 'ipbwatchuser'                    => 'Wužiwarsku a diskusijnu stronu tutoho wužiwarja wobkedźbować',
 'ipballowusertalk'                => 'Tutomu wužiwarjej dowolić swójsku diskusijnu stronu wobdźěłać, mjeztym zo je blokowany',
 'ipb-change-block'                => 'Wužiwarja z tutymi nastajenjemi znowa blokować',
@@ -2078,6 +2083,7 @@ $1',
 'range_block_disabled'            => 'Kmanosć administratorow, cyłe wobłuki IP-adresow blokować, je znjemóžnjena.',
 'ipb_expiry_invalid'              => 'Čas spadnjenja je njepłaćiwy.',
 'ipb_expiry_temp'                 => 'Blokowanja schowanych wužiwarskich mjenow maja permanentne być.',
+'ipb_hide_invalid'                => 'Njeje móžno tute konto potłóčić; ma snano přewjele změnow.',
 'ipb_already_blocked'             => 'Wužiwar „$1” je hižo zablokowany.',
 'ipb-needreblock'                 => '== Hižo zablokowany ==
 $1 je hižo zablokowany. Chceš nastajenja změnić?',

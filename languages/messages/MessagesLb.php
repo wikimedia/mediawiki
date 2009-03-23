@@ -834,13 +834,12 @@ Vläicht gouf se geläscht oder geréckelt.
 'rev-deleted-comment'            => '(Bemierkung geläscht)',
 'rev-deleted-user'               => '(Benotzernumm ewechgeholl)',
 'rev-deleted-event'              => '(Aktioun aus dem Logbuch erausgeholl)',
-'rev-deleted-text-permission'    => 'Dës Versioun gouf aus den ëffentlechen Archiven erausgeholl.
-Dir fannt eventuell méi Informatiounen an der [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läschlëscht].',
-'rev-deleted-text-view'          => "Dës Versioun gouf geläscht a kann net méi ëffentlech gewise ginn.
-Als Administrateur op {{SITENAME}} kënnt Dir se weiderhi gesinn.
-Prezisiounen iwwert d'Läschen esou wéi de Grond fannt Dir am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
-'rev-deleted-no-diff'            => 'Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen aus den ëffentlechen Archiven erausgeholl gouf.
-Details stinn am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].',
+'rev-deleted-text-permission'    => "Dës Versioun '''gouf aus den ëffentlechen Archiven erausgeholl'''.
+Dir fannt eventuell méi Informatiounen an der [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läschlëscht].",
+'rev-deleted-text-view'          => "Dës Versioun gouf '''aus den ëffentlechen Archiven erausgeholl'''.
+Als Administrateur kënnt Dir se weiderhi gesinn; Dir wannt eventuell méi Detailer am  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
+'rev-deleted-no-diff'            => "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''aus den ëffentlechen Archiven erausgeholl gouf'''.
+Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-delundel'                   => 'weisen/verstoppen',
 'revisiondelete'                 => 'Versioune läschen/restauréieren',
 'revdelete-nooldid-title'        => 'Ongülteg Zilversioun',
@@ -2022,7 +2021,7 @@ $1',
 'ipboptions'                      => '2 Stonen:2 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Aner Dauer',
 'ipbotherreason'                  => 'Aneren oder zousätzleche Grond:',
-'ipbhidename'                     => 'Benotzernumm an der Spärlëscht, der Lëscht vun den aktive Spären an der Lëscht vun de Benotzer verstoppen',
+'ipbhidename'                     => 'Benotzernumm op Lëschten a bäi Ännerunge verstoppen',
 'ipbwatchuser'                    => 'Dësem Benotzer seng Benotzer- an Diskussiouns-Säit iwwerwaachen',
 'ipballowusertalk'                => 'Benotzer däerf seng Diskussiounssäiten änneren esouguer wann e gespaart ass',
 'ipb-change-block'                => 'De Benotzer mat dese Parameteren nees spären',
