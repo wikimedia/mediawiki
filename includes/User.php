@@ -589,11 +589,12 @@ class User {
 	 * @return \bool True or false
 	 */
 	static function isCreatableName( $name ) {
+		global $wgInvalidUsernameCharacters;
 		return
 			self::isUsableName( $name ) &&
 
 			// Registration-time character blacklisting...
-			strpos( $name, '@' ) === false;
+			!preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, ']/' ) . ']/', $name );
 	}
 
 	/**

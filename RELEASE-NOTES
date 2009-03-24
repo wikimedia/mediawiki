@@ -149,7 +149,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgTiffThumbnailType
 * Renamed two input IDs on Special:Log from 'page' and 'user' to 'mw-log-page' and
   'mw-log-user', respectively
-
+* Added $wgInvalidUsernameCharacters to disallow certain characters in
+  usernames during registration (such as "@")
+* Added $wgUserrightsInterwikiDelimiter to allow changing the delimiter
+  used in Special:UserRights to denote the user should be searched for
+  on a different database
+  
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
 * (bug 17000) Special:RevisionDelete now checks if the database is locked

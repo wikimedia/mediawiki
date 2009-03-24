@@ -3786,3 +3786,21 @@ $wgUseTagFilter = true;
  * To enable, set to a string like 'Main Page'
  */
 $wgRedirectOnLogin = null;
+
+/**
+ * Characters to prevent during new account creations.
+ * This is used in a regular expression character class during
+ * registration (regex metacharacters like / are escaped).
+ */
+$wgInvalidUsernameCharacters = '@';
+
+/**
+ * Character used as a delimiter when testing for interwiki userrights
+ * (In Special:UserRights, it is possible to modify users on different
+ * databases if the delimiter is used, e.g. Someuser@enwiki).
+ *
+ * It is recommended that you have this delimiter in
+ * $wgInvalidUsernameCharacters above, or you will not be able to
+ * modify the user rights of those users via Special:UserRights
+ */
+$wgUserrightsInterwikiDelimiter = '@';
