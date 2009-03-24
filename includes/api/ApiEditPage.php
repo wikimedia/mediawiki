@@ -75,7 +75,14 @@ class ApiEditPage extends ApiBase {
 		$toMD5 = $params['text'];
 		if(!is_null($params['appendtext']) || !is_null($params['prependtext']))
 		{
-			$content = $articleObj->getContent();
+			// For non-existent pages, Article::getContent()
+			// returns an interface message rather than ''
+			// We do want getContent()'s behavior for non-existent
+			// MediaWiki: pages, though
+			if($articleObj->getID() == 0 && $titleObj->getNamespace() != NS_MEDIAWIKI)
+				$content = '';
+			else
+				$content = $articleObj->getContent();
 			$params['text'] = $params['prependtext'] . $content . $params['appendtext'];
 			$toMD5 = $params['prependtext'] . $params['appendtext'];
 		}
