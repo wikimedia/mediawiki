@@ -253,9 +253,9 @@ class UserrightsPage extends SpecialPage {
 	 * @return mixed User, UserRightsProxy, or null
 	 */
 	function fetchUser( $username ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgUserrightsInterwikiDelimiter;
 
-		$parts = explode( '@', $username );
+		$parts = explode( $wgUserrightsInterwikiDelimiter, $username );
 		if( count( $parts ) < 2 ) {
 			$name = trim( $username );
 			$database = '';
