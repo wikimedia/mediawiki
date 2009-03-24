@@ -594,7 +594,7 @@ class User {
 			self::isUsableName( $name ) &&
 
 			// Registration-time character blacklisting...
-			!preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, ']/' ) . ']/', $name );
+			!preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, '/' ) . ']/', $name );
 	}
 
 	/**
