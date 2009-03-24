@@ -330,6 +330,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   when someone tries to use them
 * BREAKING CHANGE: action=purge requires write rights and, for anonymous users,
   a POST request
+* (bug 15935) Added action=userrights to add/remove users to/from groups
 
 === Languages updated in 1.15 ===
 
