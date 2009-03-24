@@ -933,6 +933,9 @@ Como administrador en {{SITENAME}} puedes verla;
 puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].",
 'rev-deleted-no-diff'            => "No puede visualizarse este cambio debido a que las revisiones han sido '''retiradas de los archivos públicos'''.
 Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].",
+'rev-deleted-unhide-diff'        => "Una de las revisiones de este cambio ha sido '''removido de los archivos públicos'''.
+Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].
+Como administrador todavía puedes [$1 ver este cambio] si deseas proceder.",
 'rev-delundel'                   => 'mostrar/ocultar',
 'revisiondelete'                 => 'Borrar/deshacer borrado revisiones',
 'revdelete-nooldid-title'        => 'No hay revisión destino',

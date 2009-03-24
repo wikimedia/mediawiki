@@ -386,6 +386,11 @@ Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe 
 'template-semiprotected' => '(hapa-ho‘omalu ‘ia)',
 'edittools'              => '<!-- Eia ka ‘ōlelo e hō‘ike ‘ia malalo o nā palapala ho‘ololi ame nā palapala ho‘ohui. -->',
 
+# "Undo" feature
+'undo-success' => 'Hiki iā ʻoe ke hoʻihoʻi mai i kēia loli ʻana.
+E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā loli i lalo no ka hoʻopau ʻana i ka hoʻihoʻi mai ʻana i ka loli.',
+'undo-summary' => 'Hoʻihoʻi mai i ke kāmua $1 na [[Special:Contributions/$2|$2]] ([[User talk:$2|kūkākūkā]])',
+
 # History pages
 'currentrev'          => 'Kāmua hou',
 'revisionasof'        => 'Ka loli ʻana ma $1',
@@ -410,7 +415,7 @@ Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe 
 
 # Diffs
 'lineno'   => 'Laina $1:',
-'editundo' => 'wehe',
+'editundo' => 'hoʻihoʻi mai',
 
 # Search results
 'searchresults'             => 'Nā hualoaʻa',
@@ -667,15 +672,15 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 'tooltip-ca-delete'        => 'E kāpae i kēia mo‘olelo',
 'tooltip-ca-move'          => 'E ne‘e i kēia mo‘olelo',
 'tooltip-search'           => 'Huli iā {{SITENAME}}',
-'tooltip-search-go'        => 'Hele i ʻaoʻao me kēia inoa inā kū',
+'tooltip-search-go'        => 'Hele i ka ʻaoʻao me kēia inoa inā kū',
 'tooltip-search-fulltext'  => 'Huli i nā ʻaoʻao no kēia kikokikona',
 'tooltip-n-mainpage'       => 'Kele i ka papa kinohi',
 'tooltip-n-portal'         => 'E pili ana i ka pāhana, he aha kāu hana, nā wahi no ka loaʻa ʻana',
 'tooltip-n-currentevents'  => 'ʻIke i nā nū hou',
-'tooltip-n-recentchanges'  => 'Nā loli hou ma ka wiki.',
-'tooltip-n-randompage'     => 'Ho‘ouka he akikala kaulele',
+'tooltip-n-recentchanges'  => 'Nā loli hou ma ka wiki',
+'tooltip-n-randompage'     => 'Ho‘ouka he ʻaoʻao kaulele',
 'tooltip-n-help'           => 'Ka wahi e kōkua ai iā ‘oe',
-'tooltip-t-whatlinkshere'  => 'Ka papa o nā ‘ao‘ao āpau e loulou mai',
+'tooltip-t-whatlinkshere'  => 'Nā ‘ao‘ao a pau i loulou mai ai',
 'tooltip-t-upload'         => 'Ho‘ouka i nā waihona',
 'tooltip-t-specialpages'   => 'Helu o nā papa nui apau',
 'tooltip-t-print'          => 'Mana paʻi pono o kēia ʻaoʻao',
