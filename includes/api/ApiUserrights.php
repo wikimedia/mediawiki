@@ -112,6 +112,6 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiMove.php 48091 2009-03-06 13:49:44Z catrope $';
+		return __CLASS__ . ': $Id$';
 	}
 }
