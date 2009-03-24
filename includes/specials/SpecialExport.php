@@ -33,6 +33,7 @@ class SpecialExport extends SpecialPage {
 	public function execute( $par ) {
 		global $wgOut, $wgRequest, $wgSitename, $wgExportAllowListContributors;
 		global $wgExportAllowHistory, $wgExportMaxHistory, $wgExportMaxLinkDepth;
+		global $wgExportFromNamespaces;
 		
 		$this->setHeaders();
 		$this->outputHeader();
@@ -62,7 +63,7 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 		}
-		else if( $wgRequest->getCheck( 'addns' ) ) {
+		else if( $wgRequest->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
 			$page = $wgRequest->getText( 'pages' );
 			$nsindex = $wgRequest->getText( 'nsindex' );
 			
@@ -149,8 +150,10 @@ class SpecialExport extends SpecialPage {
 		$form .= Xml::inputLabel( wfMsg( 'export-addcattext' )    , 'catname', 'catname', 40 ) . '&nbsp;';
 		$form .= Xml::submitButton( wfMsg( 'export-addcat' ), array( 'name' => 'addcat' ) ) . '<br />';
 		
-		$form .= Xml::namespaceSelector( '', null, 'nsindex', wfMsg( 'export-addnstext' ) ) . '&nbsp;';
-		$form .= Xml::submitButton( wfMsg( 'export-addns' ), array( 'name' => 'addns' ) ) . '<br />';
+		if ( $wgExportFromNamespaces ) {
+			$form .= Xml::namespaceSelector( '', null, 'nsindex', wfMsg( 'export-addnstext' ) ) . '&nbsp;';
+			$form .= Xml::submitButton( wfMsg( 'export-addns' ), array( 'name' => 'addns' ) ) . '<br />';
+		}
 		
 		$form .= Xml::element( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ), $page, false );
 		$form .= '<br />';

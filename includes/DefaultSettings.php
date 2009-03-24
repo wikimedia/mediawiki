@@ -2308,6 +2308,11 @@ $wgExportAllowListContributors = false ;
 $wgExportMaxLinkDepth = 0;
 
 /**
+ * Whether to allow the "export all pages in namespace" option
+ */
+$wgExportFromNamespaces = false;
+
+/**
  * Edits matching these regular expressions in body text
  * will be recognised as spam and rejected automatically.
  *
