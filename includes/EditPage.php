@@ -1163,7 +1163,7 @@ class EditPage {
 		$wgOut->setArticleRelated( true );
 
 		if ( $this->isConflict ) {
-			$wgOut->addWikiMsg( 'explainconflict' );
+			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1</div>", 'explainconflict' );
 
 			$this->textbox2 = $this->textbox1;
 			$this->textbox1 = $this->getContent();
