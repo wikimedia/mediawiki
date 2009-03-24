@@ -201,7 +201,7 @@ class CoreParserFunctions {
 		// allow prefix.
 		$title = Title::newFromText( $user );
 		
-		if ($title->getNamespace == NS_USER)
+		if (is_object( $title ) && $title->getNamespace() == NS_USER)
 			$user = $title->getText();
 
 		// check parameter, or use $wgUser if in interface message
