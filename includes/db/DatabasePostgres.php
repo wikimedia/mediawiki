@@ -257,7 +257,7 @@ class DatabasePostgres extends Database {
 					print "<li>Database \"" . htmlspecialchars( $wgDBname ) . "\" already exists, skipping database creation.</li>";
 				}
 				else {
-					if ($perms < 2) {
+					if ($perms < 1) {
 						print "<li>ERROR: the user \"" . htmlspecialchars( $wgDBsuperuser ) . "\" cannot create databases. ";
 						print 'Please use a different Postgres user.</li>';
 						dieout('</ul>');
