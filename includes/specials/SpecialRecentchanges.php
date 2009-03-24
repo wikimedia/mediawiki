@@ -55,7 +55,7 @@ class SpecialRecentChanges extends SpecialPage {
 			$this->parseParameters( $parameters, $opts );
 		}
 
-		$opts->validateIntBounds( 'limit', 0, 5000 );
+		$opts->validateIntBounds( 'limit', 0, 500 );
 		return $opts;
 	}
 
