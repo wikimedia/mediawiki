@@ -78,7 +78,7 @@ installations.
 	rebuildImages.php
 	Update image metadata records
 
-	rebuildMessages.php
+	rebuildmessages.php
 	Update the MediaWiki namespace after changing site language
 
 	rebuildtextindex.php
