@@ -424,7 +424,7 @@ $2',
 'noarticletext'             => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜尋此頁標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編輯此頁]。',
 'userpage-userdoesnotexist' => '使用者帳號「$1」未曾建立。請在建立／編輯這個頁面前先檢查一下。',
 'clearyourcache'            => "'''注意:''' 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。 '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''(或按下''Ctrl-Shift-R''，在蘋果Mac上按下''Cmd-Shift-R'')；'''IE:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''；'''Konqueror:''' 只需點擊 ''重新整理''；'''Opera:''' 使用者需要在 ''工具-設定'' 中完整地清除它們的快取。",
-'usercssjsyoucanpreview'    => "'''提示:''' 在保存前請用'顯示預覽'按鈕來測試您新的 CSS/JS 。",
+'usercssjsyoucanpreview'    => "'''提示:''' 在保存前請用'顯示預覧'按鈕來測試您新的 CSS/JS 。",
 'usercsspreview'            => "'''注意您只是在預覽您的個人 CSS, 還沒有儲存﹗'''",
 'userjspreview'             => "'''注意您只是在測試／預覽您的個人 JavaScript，還沒有儲存﹗'''",
 'userinvalidcssjstitle'     => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/monobook.css 不同於 {{ns:user}}:Foo/Monobook.css。",
@@ -906,8 +906,8 @@ $2',
 'disambiguationspage'  => 'Template:disambig
 Template:消含糊
 Template:消除含糊
-Template:消歧義
-Template:消除歧義
+Template:消歧义
+Template:消除歧义
 Template:消歧義
 Template:消除歧義',
 'disambiguations-text' => '以下的頁面都有到<b>消歧義頁</b>的鏈接,
@@ -1170,7 +1170,7 @@ $NEWPAGE
 以下是'''$1'''現時的保護級別:",
 'protect-locked-access'       => "您的帳號權限不能修改保護級別。
 以下是'''$1'''現時的保護級別:",
-'protect-cascadeon'           => '以下的{{PLURAL:$1|一個|多個}}頁面包含著本頁面的同時，啟動了連鎖保護，因此本頁面目前也被保護，未能編輯。您可以設定本頁面的保護級別，但這並不會對連鎖保護有所影響。',
+'protect-cascadeon'           => '以下的{{PLURAL:$1|一個|多個}}頁面包含着本頁面的同時，啟動了連鎖保護，因此本頁面目前也被保護，未能編輯。您可以設定本頁面的保護級別，但這並不會對連鎖保護有所影響。',
 'protect-default'             => '(預設)',
 'protect-fallback'            => '需要"$1"的許可',
 'protect-level-autoconfirmed' => '禁止未註冊使用者',
@@ -1976,7 +1976,7 @@ Variants for Chinese language
 # Trackbacks
 'trackbackbox'      => '此頁面的引用:<br />
 $1',
-'trackbackremove'   => '([$1刪除])',
+'trackbackremove'   => '([$1删除])',
 'trackbacklink'     => '迴響',
 'trackbackdeleteok' => 'Trackback 刪除成功。',
 

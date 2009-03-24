@@ -868,13 +868,16 @@ Legenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:la
 'rev-deleted-comment'            => '(commento rimosso)',
 'rev-deleted-user'               => '(nome utente rimosso)',
 'rev-deleted-event'              => '(azione del log rimossa)',
-'rev-deleted-text-permission'    => 'Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
-Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.',
-'rev-deleted-text-view'          => 'Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
+'rev-deleted-text-permission'    => "Questa versione della pagina è stata '''rimossa dagli archivi visibili al pubblico'''.
+Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
+'rev-deleted-text-view'          => "Questa versione della pagina è stata '''rimossa dagli archivi visibili al pubblico'''.
 Il testo può essere visualizzato soltanto dagli amministratori del sito.
-Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.',
-'rev-deleted-no-diff'            => 'Non puoi visualizzare questo diff perché una delle revisioni è stata rimossa dagli archivi pubblici.
-Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.',
+Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
+'rev-deleted-no-diff'            => "Non è possibile visualizzare questo diff perché una delle revisioni è stata '''rimossa dagli archivi visibili al pubblico'''.
+Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
+'rev-deleted-unhide-diff'        => "Una delle revisioni di questo diff è stata '''rimossa dagli archivi visibili al pubblico'''.
+Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
+Da amministratore è possibile ancora [$1 visualizzare questo diff] se si desidera procedere.",
 'rev-delundel'                   => 'mostra/nascondi',
 'revisiondelete'                 => 'Cancella o ripristina versioni',
 'revdelete-nooldid-title'        => 'Versione non specificata',
@@ -2064,7 +2067,7 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 'ipboptions'                      => '2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'altro',
 'ipbotherreason'                  => 'Altri motivi/dettagli:',
-'ipbhidename'                     => "Nascondi il nome utente dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
+'ipbhidename'                     => 'Nascondi il nome utente dalle modifiche e dagli elenchi.',
 'ipbwatchuser'                    => 'Segui le pagine e le discussioni utente di questo utente',
 'ipballowusertalk'                => "Permetti all'utente di modificare la propria pagina di discussione mentre è bloccato",
 'ipb-change-block'                => "Ri-blocca l'utente con queste impostazioni",
@@ -2122,6 +2125,7 @@ Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'range_block_disabled'            => 'La possibilità di bloccare intervalli di indirizzi IP non è attiva al momento.',
 'ipb_expiry_invalid'              => 'Durata o scadenza del blocco non valida.',
 'ipb_expiry_temp'                 => 'I blocchi dei nomi utenti nascosti dovrebbero essere infiniti',
+'ipb_hide_invalid'                => "Impossibile cancellare l'account; potrebbe avere troppe modifiche.",
 'ipb_already_blocked'             => 'L\'utente "$1" è già bloccato',
 'ipb-needreblock'                 => "== Già bloccato ==
 L'utente $1 è già bloccato. Modificare le impostazioni?",

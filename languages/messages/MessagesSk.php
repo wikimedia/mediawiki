@@ -925,11 +925,7 @@ podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}
 Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
 'rev-deleted-unhide-diff'        => "Jedna z revízií tohto rozdielu bola '''odstránený z verejných archívov'''.
 Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
-Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť];
-
-One of the revisions of this diff has been '''removed from the public archives'''.
-There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
-As an administrator on {{SITENAME}} you can still [$1 view this diff] if you wish to proceed.",
+Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť];",
 'rev-delundel'                   => 'zobraziť/skryť',
 'revisiondelete'                 => 'Zmazať/obnoviť revízie',
 'revdelete-nooldid-title'        => 'Neplatná cieľová revízia',

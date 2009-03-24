@@ -725,7 +725,7 @@ $2',
 '''Konqueror:''' 只需點擊 ''重新整理''或按下''F5''；
 '''Opera:''' 在 ''工具→設定'' 中完整地清除它們的快取；
 '''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
-'usercssjsyoucanpreview'           => "'''提示:''' 在保存前請用'顯示預覽'按鈕來測試您新的 CSS/JS 。",
+'usercssjsyoucanpreview'           => "'''提示:''' 在保存前請用'顯示預覧'按鈕來測試您新的 CSS/JS 。",
 'usercsspreview'                   => "'''注意您只是在預覽您的個人 CSS。'''
 '''還沒有儲存﹗'''",
 'userjspreview'                    => "'''注意您只是在測試／預覽您的個人 JavaScript。'''
@@ -796,7 +796,7 @@ $2',
 'deleted-notice'                   => '這個頁面已經刪除。
 這個頁面的刪除日誌已在下面提供以便參考。',
 'deletelog-fulllog'                => '查看整個日誌',
-'edit-hook-aborted'                => '編輯被鉤取消。
+'edit-hook-aborted'                => '編輯被鈎取消。
 它並無給出解釋。',
 'edit-gone-missing'                => '不能更新頁面。
 它可能剛剛被刪除。',
@@ -815,7 +815,7 @@ $2',
 'post-expand-template-inclusion-category' => '模板包含上限已經超過的頁面',
 'post-expand-template-argument-warning'   => '警告: 這個頁面有最少一個模參數有過大擴展大小。
 這些參數會被略過。',
-'post-expand-template-argument-category'  => '包含著略過模板參數的頁面',
+'post-expand-template-argument-category'  => '包含着略過模板參數的頁面',
 'parser-template-loop-warning'            => '已偵測迴歸模板: [[$1]]',
 'parser-template-recursion-depth-warning' => '已超過迴歸模板深度限制 ($1)',
 
@@ -1577,8 +1577,8 @@ $2',
 'disambiguationspage'  => 'Template:disambig
 Template:消含糊
 Template:消除含糊
-Template:消歧義
-Template:消除歧義
+Template:消歧义
+Template:消除歧义
 Template:消歧義
 Template:消除歧義',
 'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的鏈接, 但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:Disambiguationspage]]。',
@@ -1912,7 +1912,7 @@ $NEWPAGE
 以下是'''$1'''現時的保護級別:",
 'protect-locked-access'       => "您的帳戶權限不能修改保護級別。
 以下是'''$1'''現時的保護級別:",
-'protect-cascadeon'           => '以下的{{PLURAL:$1|一個|多個}}頁面包含著本頁面的同時，啟動了連鎖保護，因此本頁面目前也被保護，未能編輯。您可以設定本頁面的保護級別，但這並不會對連鎖保護有所影響。',
+'protect-cascadeon'           => '以下的{{PLURAL:$1|一個|多個}}頁面包含着本頁面的同時，啟動了連鎖保護，因此本頁面目前也被保護，未能編輯。您可以設定本頁面的保護級別，但這並不會對連鎖保護有所影響。',
 'protect-default'             => '容許所有用戶',
 'protect-fallback'            => '需要"$1"的許可',
 'protect-level-autoconfirmed' => '禁止新的和未註冊的用戶',
@@ -2873,7 +2873,7 @@ $5
 # Trackbacks
 'trackbackbox'      => '此頁面的引用:<br />
 $1',
-'trackbackremove'   => '([$1刪除])',
+'trackbackremove'   => '([$1删除])',
 'trackbacklink'     => '迴響',
 'trackbackdeleteok' => 'Trackback 刪除成功。',
 
@@ -2954,16 +2954,16 @@ $1',
 'version'                          => '版本', # Not used as normal message but as header for the special page itself
 'version-extensions'               => '已經安裝的擴展',
 'version-specialpages'             => '特殊頁面',
-'version-parserhooks'              => '語法鉤',
+'version-parserhooks'              => '語法鈎',
 'version-variables'                => '變數',
 'version-other'                    => '其它',
 'version-mediahandlers'            => '媒體處理器',
-'version-hooks'                    => '鉤',
+'version-hooks'                    => '鈎',
 'version-extension-functions'      => '擴展函數',
 'version-parser-extensiontags'     => '語法擴展標籤',
-'version-parser-function-hooks'    => '語法函數鉤',
+'version-parser-function-hooks'    => '語法函數鈎',
 'version-skin-extension-functions' => '面版擴展函數',
-'version-hook-name'                => '鉤名',
+'version-hook-name'                => '鈎名',
 'version-hook-subscribedby'        => '利用於',
 'version-version'                  => '版本',
 'version-license'                  => '授權',

@@ -796,13 +796,15 @@ Implijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe
 'rev-deleted-comment'            => '(evezhiadenn diverket)',
 'rev-deleted-user'               => '(anv implijer diverket)',
 'rev-deleted-event'              => '(elfenn dilamet)',
-'rev-deleted-text-permission'    => 'Lamet eo bet kuit ar stumm-mañ eus ar bajenn eus an dielloù foran.
-Marteze e kavot munudoù war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].',
-'rev-deleted-text-view'          => "Lamet eo bet kuit ar stumm-mañ eus ar bajenn diouzh an dielloù foran.
+'rev-deleted-text-permission'    => "'''Lamet eo bet kuit eus an dielloù foran''' ar stumm-mañ eus ar bajenn.
+Marteze e kavot munudoù war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].",
+'rev-deleted-text-view'          => "'''Lamet eo bet kuit eus an dielloù foran''' ar stumm-mañ eus ar bajenn.
 Dre ma'z oc'h merour war al lec'hienn-mañ e c'hallit sellet outañ;
 Marteze e kavot munudoù all war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].",
-'rev-deleted-no-diff'            => "N'hallit ket gwelet an diff-mañ rak diverket ez eus bet unan eus ar stummoù esu an dielloù foran.
-Marteze ez eus traoù dre ar munud e [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
+'rev-deleted-no-diff'            => "N'hallit ket gwelet an diff-mañ rak '''lamet eo bet kuit eus an dielloù foran''' unan eus ar stummoù.
+Marteze ez eus muioc'h a vnudoù war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
+'rev-deleted-unhide-diff'        => "'''Lamet kuit eus an dielloù foran''' eo bet unan eus stummoù an diforc'h-mañ. Marteze e kavot muoic'h a ditouroù e [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
+Evel merour ez oc'h aotreet da [$1 sellet ouzh an diforc'h-mañ] ma karit.",
 'rev-delundel'                   => 'diskouez/kuzhat',
 'revisiondelete'                 => 'Diverkañ/diziverkañ stummoù',
 'revdelete-nooldid-title'        => "N'eus stumm pal ebet evit an degasadennoù",
@@ -2015,7 +2017,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipboptions'                      => '2 eurvezh:2 hours,1 devezh:1 day,3 devezh:3 days,1 sizhunvezh:1 week,2 sizhunvezh:2 weeks,1 mizvezh:1 month,3 mizvezh:3 months,6 mizvezh:6 months,1 bloaz:1 year,da viken:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'prantad all',
 'ipbotherreason'                  => 'Abeg all/ouzhpenn',
-'ipbhidename'                     => 'Kuzhat an anv implijer ar marilh stankañ, diouzh roll ar stankadennoù red hag ar roll implijerien',
+'ipbhidename'                     => "Kuzhat anv an implijer er rolloù hag er c'hemmoù",
 'ipbwatchuser'                    => 'Evezhiañ pajennoù implijer ha kaozeal an implijer-mañ',
 'ipballowusertalk'                => 'Aotren an implijer-mañ da zegas kemmoù war e bajenn gaozeal dezhañ e-unan pa vez stanket',
 'ipb-change-block'                => 'Adstankañ an implijer-mañ gant an hevelep arventennoù',
@@ -2075,6 +2077,7 @@ Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]]
 'range_block_disabled'            => "Diweredekaet eo bet ar stankañ stuc'hadoù IP.",
 'ipb_expiry_invalid'              => 'amzer termen direizh.',
 'ipb_expiry_temp'                 => "Peurbadus e rank bezañ bloc'hadoù an implijerien guzh.",
+'ipb_hide_invalid'                => 'Dibosupl diverkañ ar gont-mañ; evit doare ez eus bet graet re a gemmoù enni.',
 'ipb_already_blocked'             => 'Stanket eo "$1" dija',
 'ipb-needreblock'                 => "== Stanket dija ==
 Stanket eo $1 c'hoazh. Kemmañ an arventennoù a fell deoc'h ?",

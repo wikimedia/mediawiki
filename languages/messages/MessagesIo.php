@@ -43,9 +43,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatigez ruptita ligili <a href="" class="new">tale</a> (alternativo: tale<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Adjustigez paragrafi',
 'tog-hideminor'               => 'Celez mikra redaktaji de recenta chanji',
-'tog-hidepatrolled'           => 'Celez patrol-igita redakti en recenta chanji',
-'tog-newpageshidepatrolled'   => 'Hide patrolled pages from new page list
-Celez patrol-igita pagini en la listo di nova pagino',
+'tog-hidepatrolled'           => 'Celez patroliigita redakti en recenta chanji',
+'tog-newpageshidepatrolled'   => 'Celez patroliigita pagini en la listo di nova pagino',
 'tog-usenewrc'                => 'Recenta chanji augmentita (JavaScript bezonesas)',
 'tog-numberheadings'          => 'Autonumerez tituli',
 'tog-showtoolbar'             => 'Montrez redaktilo (JavaScript bezonesas)',

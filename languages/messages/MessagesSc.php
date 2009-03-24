@@ -112,17 +112,18 @@ $messages = array(
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
-'about'         => 'A propòsitu de',
-'cancel'        => 'Burra',
-'qbfind'        => 'Agata',
-'qbbrowse'      => 'Nàviga',
-'qbedit'        => 'Acontza',
-'qbpageoptions' => 'possibbilidadis de sa pàgina',
-'qbpageinfo'    => 'Cuntestu de sa pàgina',
-'qbmyoptions'   => 'Is preferentzias meas',
-'mypage'        => 'Sa pàgina mea',
-'mytalk'        => 'Cuntierras meas',
-'navigation'    => 'Navigatzioni',
+'about'          => 'A propòsitu de',
+'cancel'         => 'Burra',
+'qbfind'         => 'Agata',
+'qbbrowse'       => 'Nàviga',
+'qbedit'         => 'Acontza',
+'qbpageoptions'  => 'possibbilidadis de sa pàgina',
+'qbpageinfo'     => 'Cuntestu de sa pàgina',
+'qbmyoptions'    => 'Is preferentzias meas',
+'qbspecialpages' => 'Pàginas ispetziales',
+'mypage'         => 'Sa pàgina mea',
+'mytalk'         => 'Cuntierras meas',
+'navigation'     => 'Navigatzioni',
 
 'errorpagetitle'    => 'Faddina',
 'returnto'          => 'Torra a $1.',
@@ -250,6 +251,7 @@ L/'amministratore di sistema che ha imposto il blocco, ha lasciato questa nota:
 'badtitle'        => 'Titolo non corretto',
 'badtitletext'    => "Su tìtulu de sa pagina c'as pediu est bùidu, isbaliau, o iscritu ne is cullegamentus inter-wiki in modu non curregiu o cun carateres non ammitius.",
 'viewsource'      => 'Castia mitza',
+'viewsourcefor'   => 'pro $1',
 
 # Login and logout pages
 'logouttitle'             => 'Logout Utente',
@@ -271,7 +273,10 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 'badretype'               => 'Sas password chi as insertau non currenspundint.',
 'userexists'              => 'Siamo spiacenti. Lo user name che hai scelto è già usato da un altro Utente. Ti preghiamo perciò di voler scegliere uno user name diverso.',
 'youremail'               => 'E-mail:',
+'yourrealname'            => 'Nòmene beru:',
+'yourlanguage'            => 'Limba:',
 'yournick'                => 'Sa firma tua:',
+'email'                   => 'E-mail',
 'loginerror'              => 'Login error',
 'noname'                  => 'Su nòmene usuàriu insertau non est bonu.',
 'loginsuccesstitle'       => 'Ses intrau',
@@ -290,6 +295,7 @@ Chi non ses istadu a pediri sa password, o chi as torrau a agatare sa password t
 'noemail'                 => 'Peruna e-mail risultada registrada pro s\'usuàriu "$1".',
 'passwordsent'            => 'Una password noa est istada ispedia a s\'indiritzu e-mail de s\'usuàriu "$1".
 Pro pregheri, candu d\'arretzis faghe su login.',
+'loginlanguagelabel'      => 'Limba: $1',
 
 # Password reset dialog
 'oldpassword' => 'Password betza:',
@@ -336,6 +342,7 @@ Nota ca sa funtzioni 'Ispedi un'e-mail a custu usuàriu' non est ativa chi non e
 
 S'indiritzu IP atuale est $3, su numeru ID de su bloccu est #$5.
 Pro pregheri ispetzifica totu is detaglios innanti in carchi siat pedimentu de chiarimentu.",
+'accmailtitle'           => 'Password ispedia.',
 'newarticle'             => '(Nou)',
 'newarticletext'         => "Custa pagina non esistit ancora.
 Pro creare sa pagina, iscrie in su box inoghe in basciu (abàida sa [[{{MediaWiki:Helppage}}|pàgina de agiudu]] pro prus informatziones).
@@ -348,6 +355,7 @@ Podes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in àteras pàginas
 'previewconflict'        => "Custa antiprima rapresentada su testu in s'area acontzu testu de susu comente at a aparire chi da sarvas.",
 'editing'                => 'Acontzu de $1',
 'editingsection'         => 'Acontzendi $1 (setzioni)',
+'editingcomment'         => 'Acontzu de $1 (setzione noa)',
 'editconflict'           => 'Cunflitu de editzione: $1',
 'explainconflict'        => 'Qualcun altro ha salvato una sua versione dell\'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
 La casella di modifica di sopra contiene il testo dell\'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore.
@@ -358,7 +366,9 @@ Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò
 'editingold'             => "'''ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.
 Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno persi per sempre.'''",
 'yourdiff'               => 'Differenze',
+'templatesused'          => 'Templates impreaus in custa pàgina:',
 'templatesusedpreview'   => 'Templates impreadus in custa antiprima:',
+'templatesusedsection'   => 'Templates impreaus in custa setzione:',
 'template-protected'     => '(amparau)',
 'template-semiprotected' => '(semi-amparau)',
 
@@ -372,15 +382,22 @@ Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno 
 'cur'              => 'cur',
 'next'             => 'succ',
 'last'             => 'prima',
+'page_first'       => 'prima',
+'page_last'        => 'ùrtima',
 'histlegend'       => "Cunfruntu fra versiones: scebera sa casella de sa versione che boles e cracca Invio o su butoni in basciu.
 
 Legenda: '''({{int:cur}})''' = diferentzias cun sa versione currenti, '''({{int:last}})''' = diferentzias cun sa versione de prima, '''{{int:minoreditletter}}''' = acontzu minore",
 'histfirst'        => 'Prima',
 'histlast'         => 'Úrtima',
 
+# Revision feed
+'history-feed-item-nocomment' => '$1 su $2', # user at time
+
 # Revision deletion
 'rev-delundel'   => 'mosta/cua',
 'revdel-restore' => 'Muda sa visibilidadi',
+'pagehist'       => 'Istòria de sa pàgina',
+'deletedhist'    => 'Istòria fuliada',
 
 # Diffs
 'difference'           => '(Diferèntzias fra revisiones)',
@@ -447,14 +464,25 @@ Legenda: '''({{int:cur}})''' = diferentzias cun sa versione currenti, '''({{int:
 'timezonetext'             => 'Immetti il numero di ore di differenza fra la tua ora locale e la ora del server (UTC).',
 'localtime'                => 'Ora Locale',
 'timezoneoffset'           => 'Offset',
+'timezoneregion-africa'    => 'África',
+'timezoneregion-asia'      => 'Ásia',
 
 # User rights
 'editinguser'                    => "Modifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-irreversible-marker' => '$1*',
 
 # Groups
+'group-bot'   => 'Bots',
 'group-sysop' => 'Aministratoris',
+'group-all'   => '(totus)',
 
+'group-user-member'          => 'Usuàriu',
+'group-autoconfirmed-member' => 'Autocunfirmados usuàrios',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Aministradore',
+
+'grouppage-user'  => '{{ns:project}}:Usuàrios',
+'grouppage-bot'   => '{{ns:project}}:Bots',
 'grouppage-sysop' => '{{ns:project}}:Aministradores',
 
 # User rights log
@@ -561,6 +589,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 
 # Miscellaneous special pages
 'nbytes'           => '$1 {{PLURAL:$1|byte|bytes}}',
+'ncategories'      => '$1 {{PLURAL:$1|categoria|categorias}}',
 'nlinks'           => '$1 {{PLURAL:$1|liga|ligas}}',
 'nmembers'         => '$1 {{PLURAL:$1|elementu|elementos}}',
 'nviews'           => '$1 {{PLURAL:$1|bisura|bisuras}}',
@@ -583,7 +612,8 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'booksources-go'   => 'Bae',
 
 # Special:Log
-'log' => 'Registros',
+'specialloguserlabel' => 'Usuàriu:',
+'log'                 => 'Registros',
 
 # Special:AllPages
 'allpages'       => 'Totu is pàginas',
@@ -593,8 +623,15 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'allarticles'    => 'Totu is pàginas',
 'allpagessubmit' => 'Bae',
 
+# Special:Categories
+'categories' => 'Categorias',
+
 # Special:LinkSearch
-'linksearch' => 'Ligas a foras',
+'linksearch'    => 'Ligas a foras',
+'linksearch-ok' => 'Chirca',
+
+# Special:ListUsers
+'listusers-submit' => 'Amosta',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Usuàrios novos',
@@ -800,6 +837,9 @@ Pro pregheri scebera un àteru nòmene.',
 'movelogpage'        => 'Moviduras',
 'revertmove'         => 'revert',
 
+# Export
+'export-download' => 'Sarva comente file',
+
 # Thumbnails
 'thumbnail-more' => 'Amannia',
 
@@ -880,6 +920,7 @@ Podes castiare sa mitza sua',
 
 # EXIF tags
 'exif-fnumber-format'     => 'f/$1',
+'exif-flash'              => 'Flash',
 'exif-focallength-format' => '$1 mm',
 
 # EXIF attributes
@@ -902,9 +943,13 @@ Podes castiare sa mitza sua',
 'edit-externally' => 'Acontza custu file usendi unu programma de foras',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'totu',
-'namespacesall' => 'totu',
-'monthsall'     => 'totu',
+'recentchangesall' => 'totu',
+'watchlistall2'    => 'totu',
+'namespacesall'    => 'totu',
+'monthsall'        => 'totu',
+
+# action=purge
+'confirm_purge_button' => 'OK',
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';&#32;',
