@@ -116,8 +116,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:ListUsers: Sort list of usergroups by alphabet
 * (bug 16762) Special:Movepage now shows a list of subpages when possible
 * (bug 17585) Hide legend on Special:Specialpages from non-privileged users
-* Add an ID if 'missingsummary' is triggered to allow styling of the summary
-  line
+
 * Added $wgUseTagFilter to control enabling of filter-by-change-tag
 * (bug 17291) MediaWiki:Nocontribs now has an optional $1 parameter for the
   username
