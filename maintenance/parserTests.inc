@@ -353,6 +353,9 @@ class ParserTest {
 					else {
 						$data['options'] = $this->chomp( $data['options'] );
 					}
+					if (!isset( $data['config'] ) )
+						$data['config'] = '';
+					
 					if (preg_match('/\\bdisabled\\b/i', $data['options'])
 						|| !preg_match("/{$this->regex}/i", $data['test'])) {
 						# disabled test
@@ -364,7 +367,9 @@ class ParserTest {
 						$this->chomp( $data['test'] ),
 						$this->chomp( $data['input'] ),
 						$this->chomp( $data['result'] ),
-						$this->chomp( $data['options'] ) );
+						$this->chomp( $data['options'] ),
+						$this->chomp( $data['config']   )
+						);
 					$ok = $ok && $result;
 					$this->recorder->record( $this->chomp( $data['test'] ), $result );
 					$data = array();
@@ -414,12 +419,12 @@ class ParserTest {
 	 * @param string $result Result to output
 	 * @return bool
 	 */
-	private function runTest( $desc, $input, $result, $opts ) {
+	private function runTest( $desc, $input, $result, $opts, $config ) {
 		if( $this->showProgress ) {
 			$this->showTesting( $desc );
 		}
 
-		$this->setupGlobals($opts);
+		$this->setupGlobals($opts, $config);
 
 		$user = new User();
 		$options = ParserOptions::newFromUser( $user );
@@ -502,7 +507,7 @@ class ParserTest {
 	 * Set up the global variables for a consistent environment for each test.
 	 * Ideally this should replace the global configuration entirely.
 	 */
-	private function setupGlobals($opts = '') {
+	private function setupGlobals($opts = '', $config = '') {
 		if( !isset( $this->uploadDir ) ) {
 			$this->uploadDir = $this->setupUploadDir();
 		}
@@ -568,6 +573,17 @@ class ParserTest {
 			'wgExternalLinkTarget' => false,
 			'wgAlwaysUseTidy' => false,
 			);
+
+		if ($config) {
+			$configLines = explode( "\n", $config );
+			
+			foreach( $configLines as $line ) {
+				list( $var, $value ) = explode( '=', $line, 2 );
+				
+				$settings[$var] = eval("return $value;" );
+			}
+		}
+		
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
 			$this->savedGlobals[$var] = $GLOBALS[$var];

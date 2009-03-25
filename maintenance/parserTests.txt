@@ -7253,6 +7253,8 @@ Multibyte character in padright
 
 !! test
 Formatted date
+!! config
+wgUseDynamicDates=1
 !! input
 [[2009-03-24]]
 !! result
@@ -7277,6 +7279,17 @@ Formatted unlinked date with default format
 <p><span class="mw-formatted-date" title="2009-03-24">March 24, 2009</span>
 </p>
 !! end
+
+!! test
+Formatted date with autoformatting disabled
+!! config
+wgUseDynamicDates=false
+!! input
+[[2009-03-24]]
+!! result
+<p><a href="/index.php?title=2009-03-24&amp;action=edit&amp;redlink=1" class="new" title="2009-03-24 (page does not exist)">2009-03-24</a>
+</p>
+!!end
 
 #
 #
