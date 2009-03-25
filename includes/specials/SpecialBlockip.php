@@ -560,7 +560,7 @@ class IPBlockForm {
 		global $wgUser;
 		$out->addHTML( Xml::element( 'h2', NULL, LogPage::logName( 'block' ) ) );
 		$count = LogEventsList::showLogExtract( $out, 'block', $title->getPrefixedText(), '', 10 );
-		if($count > 10){
+		if( $count > 10 ) {
 			$out->addHTML( $wgUser->getSkin()->link(
 				SpecialPage::getTitleFor( 'Log' ),
 				wfMsgHtml( 'blocklog-fulllog' ),
@@ -568,6 +568,12 @@ class IPBlockForm {
 				array(
 					'type' => 'block',
 					'page' => $title->getPrefixedText() ) ) );
+		}
+		// Add suppression block entries if allowed
+		if( $wgUser->isAllowed('hideuser') ) {
+			$out->addHTML( Xml::element( 'h2', NULL, LogPage::logName( 'suppress' ) ) );
+			LogEventsList::showLogExtract( $out, 'suppress', $title->getPrefixedText(), '',
+				10, array('log_action' => array('block','reblock','unblock')) );
 		}
 	}
 
