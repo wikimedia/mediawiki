@@ -113,14 +113,46 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else if( $this->deleteKey == 'logid' ) {
 			$this->showLogItems();
 		}
+		$qc = $this->getLogQueryCond();
 		# Show relevant lines from the deletion log
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
-		LogEventsList::showLogExtract( $wgOut, 'delete', $this->page->getPrefixedText() );
+		LogEventsList::showLogExtract( $wgOut, 'delete', $this->page->getPrefixedText(), '', 25, $qc );
 		# Show relevant lines from the suppression log
 		if( $wgUser->isAllowed( 'suppressionlog' ) ) {
 			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
-			LogEventsList::showLogExtract( $wgOut, 'suppress', $this->page->getPrefixedText() );
+			LogEventsList::showLogExtract( $wgOut, 'suppress', $this->page->getPrefixedText(), '', 25, $qc );
 		}
+	}
+	
+	private function getLogQueryCond() {
+		$ids = $safeIds = array();
+		switch( $this->deleteKey ) {
+			case 'oldid':
+				$ids = $this->oldids;
+				break;
+			case 'artimestamp':
+				$ids = $this->artimestamps;
+				break;
+			case 'oldimage':
+				$ids = $this->oldimgs;
+				break;
+			case 'fileid':
+				$ids = $this->fileids;
+				break;
+			case 'logid':
+				$ids = $this->logids;
+				break;
+		}
+		// Digit chars only
+		foreach( $ids as $id ) {
+			if( preg_match( '/^\d+$/', $id, $m ) ) {
+				$safeIds[] = $m[0];
+			}
+		}
+		if( count($safeIds) ) {
+			return array("log_params RLIKE '".implode('|',$safeIds)."'");
+		}
+		return null;
 	}
 
 	private function secureOperation() {
@@ -1497,12 +1529,14 @@ class RevisionDeleter {
 	 * @param string $param, URL param
 	 * @param Array $items
 	 */
-	function updateLog( $title, $count, $nbitfield, $obitfield, $comment, $target, $param, $items = array() ) {
+	function updateLog( $title, $count, $nbitfield, $obitfield, $comment,
+		$target, $param, $items = array() )
+	{
 		// Put things hidden from sysops in the oversight log
 		$logtype = ( ($nbitfield | $obitfield) & Revision::DELETED_RESTRICTED ) ? 'suppress' : 'delete';
 		$log = new LogPage( $logtype );
 
-		$reason = $this->getLogMessage ( $count, $nbitfield, $obitfield, $comment, $param == 'logid' );
+		$reason = $this->getLogMessage( $count, $nbitfield, $obitfield, $comment, $param == 'logid' );
 
 		if( $param == 'logid' ) {
 			$params = array( implode( ',', $items) );
