@@ -149,7 +149,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgUserrightsInterwikiDelimiter to allow changing the delimiter
   used in Special:UserRights to denote the user should be searched for
   on a different database
-  
+* Add a class if 'missingsummary' is triggered to allow styling of the summary
+  line
+
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
 * (bug 17000) Special:RevisionDelete now checks if the database is locked
