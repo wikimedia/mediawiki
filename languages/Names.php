@@ -332,6 +332,7 @@
 	'uz' => 'O\'zbek',	# Uzbek
 	've' => 'Tshivenda',		# Venda
 	'vec' => 'Vèneto',	# Venetian
+	'vep' => 'Vepsan kel\'',	# Veps
 	'vi' => 'Tiếng Việt',	# Vietnamese
 	'vls' => 'West-Vlams', # West Flemish
 	'vo' => 'Volapük',	# Volapük
