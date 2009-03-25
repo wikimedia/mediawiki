@@ -63,7 +63,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 				Xml::label( wfMsg( 'allpagesprefix' ), 'nsfrom' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'from', 30, str_replace('_',' ',$from), array( 'id' => 'nsfrom' ) ) .
+					Xml::input( 'prefix', 30, str_replace('_',' ',$from), array( 'id' => 'nsfrom' ) ) .
 				"</td>
 			</tr>
 			<tr>
