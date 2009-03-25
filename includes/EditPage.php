@@ -1363,13 +1363,10 @@ class EditPage {
 		if ( $this->section == 'new' ) {
 			$commentsubject = '';
 			if ( !$wgRequest->getBool( 'nosummary' ) ) {
-				# Add an ID if 'missingsummary' is triggered to allow styling of the summary line
-				$summaryMissedID = $this->missingSummary ? ' mw-summarymissed' : '';
-
 				$commentsubject =
 					Xml::tags( 'label', array( 'for' => 'wpSummary' ), $subject );
 				$commentsubject =
-					Xml::tags( 'span', array( 'id' => "wpSummaryLabel$summaryMissedID" ), $commentsubject );
+					Xml::tags( 'span', array( 'id' => 'wpSummaryLabel' ), $commentsubject );
 				$commentsubject .= '&nbsp;';
 				$commentsubject .= Xml::input( 'wpSummary',
 									60,
@@ -1388,12 +1385,10 @@ class EditPage {
 		} else {
 			$commentsubject = '';
 
-			# Add an ID if 'missingsummary' is triggered to allow styling of the summary line
-			$summaryMissedID = $this->missingSummary ? ' mw-summarymissed' : '';
-
 			$editsummary = Xml::tags( 'label', array( 'for' => 'wpSummary' ), $summary );
-			$editsummary = Xml::tags( 'span', array( 'id' => "wpSummaryLabel$summaryMissedID" ), $editsummary ) . ' ';
-
+			$editsummary =
+				Xml::tags( 'span', array( 'id' => 'wpSummaryLabel' ), $editsummary ) . ' ';
+				
 			$editsummary .= Xml::input( 'wpSummary',
 				60,
 				$summarytext,
@@ -1402,11 +1397,11 @@ class EditPage {
 					'maxlength' => '200',
 					'tabindex' => '1'
 				) );
-
+			
 			// No idea where this is closed.
 			$editsummary = Xml::openElement( 'div', array( 'class' => 'editOptions' ) )
 							. $editsummary . '<br/>';
-
+				
 			$summarypreview = '';
 			if ( $summarytext && $this->preview ) {
 				$summarypreview =
