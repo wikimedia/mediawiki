@@ -143,6 +143,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$ids = $this->logids;
 				break;
 		}
+		// Just get the whole log if there are a lot if items
+		if( $ids > 20 ) return null;
 		// Digit chars only
 		foreach( $ids as $id ) {
 			if( preg_match( '/^\d+$/', $id, $m ) ) {
