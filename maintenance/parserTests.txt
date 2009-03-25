@@ -7281,7 +7281,7 @@ Formatted unlinked date with default format
 !! end
 
 !! test
-Formatted date with autoformatting disabled
+Linked date with autoformatting disabled
 !! config
 wgUseDynamicDates=false
 !! input
