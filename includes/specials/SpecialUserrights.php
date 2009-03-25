@@ -161,7 +161,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param $reason String: reason for group change
 	 * @return Array: Tuple of added, then removed groups
 	 */
-	static function doSaveUserGroups( User $user, $add, $remove, $reason = '' ) {
+	static function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
 		global $wgUser;
 
 		// Validate input set...
