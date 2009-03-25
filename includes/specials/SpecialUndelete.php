@@ -1139,10 +1139,11 @@ class UndeleteForm {
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
-				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml('rev-delundel').')' );
+				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
+					'('.wfMsgHtml('rev-delundel').')' );
 			} else {
 				$query = array( 'target' => $this->mTargetObj->getPrefixedUrl(),
-					'artimestamp[]' => $ts
+					'artimestamp' => $ts
 				);
 				$revdlink = $sk->revDeleteLink( $query, $rev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}

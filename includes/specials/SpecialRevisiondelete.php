@@ -25,17 +25,18 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			return;
 		}
 		$this->skin =& $wgUser->getSkin();
-		# Set title and such
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->wasPosted = $wgRequest->wasPosted();
-		# Handle our many different possible input types
+		# Set title and such
 		$this->target = $wgRequest->getText( 'target' );
-		$this->oldids = $wgRequest->getArray( 'oldid' );
-		$this->artimestamps = $wgRequest->getArray( 'artimestamp' );
-		$this->logids = $wgRequest->getArray( 'logid' );
-		$this->oldimgs = $wgRequest->getArray( 'oldimage' );
-		$this->fileids = $wgRequest->getArray( 'fileid' );
+		# Handle our many different possible input types.
+		# Use CVS, since the cgi handling will break on arrays.
+		$this->oldids = array_filter( explode( ',', $wgRequest->getVal('oldid') ) );
+		$this->artimestamps = array_filter( explode( ',', $wgRequest->getVal('artimestamp') ) );
+		$this->logids = array_filter( explode( ',', $wgRequest->getVal('logid') ) );
+		$this->oldimgs = array_filter( explode( ',', $wgRequest->getVal('oldimage') ) );
+		$this->fileids = array_filter( explode( ',', $wgRequest->getVal('fileid') ) );
 		# For reviewing deleted files...
 		$this->file = $wgRequest->getVal( 'file' );
 		# Only one target set at a time please!
@@ -112,11 +113,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else if( $this->deleteKey == 'logid' ) {
 			$this->showLogItems();
 		}
-		# Show relevant lines from the deletion log. This will show even if said ID
-		# does not exist...might be helpful
+		# Show relevant lines from the deletion log
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
 		LogEventsList::showLogExtract( $wgOut, 'delete', $this->page->getPrefixedText() );
-		if( $wgUser->isAllowed( 'suppressionlog' ) ){
+		# Show relevant lines from the suppression log
+		if( $wgUser->isAllowed( 'suppressionlog' ) ) {
 			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
 			LogEventsList::showLogExtract( $wgOut, 'suppress', $this->page->getPrefixedText() );
 		}
@@ -155,7 +156,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			array( 'revdelete-hide-user', 'wpHideUser', Revision::DELETED_USER )
 		);
 		if( $wgUser->isAllowed('suppressrevision') ) {
-			$this->checks[] = array( 'revdelete-hide-restricted', 'wpHideRestricted', Revision::DELETED_RESTRICTED );
+			$this->checks[] = array( 'revdelete-hide-restricted',
+				'wpHideRestricted', Revision::DELETED_RESTRICTED );
 		}
 	}
 
@@ -292,15 +294,14 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			Xml::hidden( 'type', $this->deleteKey )
 		);
 		if( $this->deleteKey=='oldid' ) {
-			foreach( $revObjs as $rev )
-				$hidden[] = Xml::hidden( 'oldid[]', $rev->getId() );
+			$hidden[] = Xml::hidden( 'oldid', implode(',',$this->oldids) );
 		} else {
-			foreach( $revObjs as $rev )
-				$hidden[] = Xml::hidden( 'artimestamp[]', $rev->getTimestamp() );
+			$hidden[] = Xml::hidden( 'artimestamp', implode(',',$this->artimestamps) );
 		}
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 
+			Xml::openElement( 'form', array( 'method' => 'post',
+				'action' => $special->getLocalUrl( 'action=submit' ), 
 				'id' => 'mw-revdel-form-revisions' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			xml::element( 'legend', null,  wfMsg( 'revdelete-legend' ) )
@@ -423,16 +424,16 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			Xml::hidden( 'type', $this->deleteKey )
 		);
 		if( $this->deleteKey=='oldimage' ) {
-			foreach( $this->ofiles as $filename )
-				$hidden[] = Xml::hidden( 'oldimage[]', $filename );
+			$hidden[] = Xml::hidden( 'oldimage', implode(',',$this->oldimgs) );
 		} else {
-			foreach( $this->afiles as $fileid )
-				$hidden[] = Xml::hidden( 'fileid[]', $fileid );
+			$hidden[] = Xml::hidden( 'fileid', implode(',',$this->fileids) );
 		}
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 
-				'id' => 'mw-revdel-form-filerevisions' ) ) .
+			Xml::openElement( 'form', array( 'method' => 'post',
+				'action' => $special->getLocalUrl( 'action=submit' ), 
+				'id' => 'mw-revdel-form-filerevisions' )
+			) .
 			Xml::fieldset( wfMsg( 'revdelete-legend' ) )
 		);
 
@@ -512,15 +513,14 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$hidden = array(
 			Xml::hidden( 'wpEditToken', $wgUser->editToken() ),
 			Xml::hidden( 'target', $this->page->getPrefixedText() ),
-			Xml::hidden( 'type', $this->deleteKey ) );
-		foreach( $this->events as $logid ) {
-			$hidden[] = Xml::hidden( 'logid[]', $logid );
-		}
+			Xml::hidden( 'type', $this->deleteKey ),
+			Xml::hidden( 'logid', implode(',',$this->logids) )
+		);
 
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 
-				'id' => 'mw-revdel-form-logs' ) ) .
+			Xml::openElement( 'form', array( 'method' => 'post',
+				'action' => $special->getLocalUrl( 'action=submit' ), 'id' => 'mw-revdel-form-logs' ) ) .
 			Xml::fieldset( wfMsg( 'revdelete-legend' ) )
 		);
 		

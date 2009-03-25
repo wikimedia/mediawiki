@@ -789,7 +789,7 @@ class ImageHistoryList {
 				$q = array();
 				$q[] = 'action=delete';
 				if( !$iscur )
-					$q[] = 'oldimage[]=' . urlencode( $img );
+					$q[] = 'oldimage=' . urlencode( $img );
 				$row .= $this->skin->makeKnownLinkObj(
 					$this->title,
 					wfMsgHtml( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' ),
