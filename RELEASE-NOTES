@@ -349,8 +349,11 @@ changes to languages because of MediaZilla reports.
 
 * Austrian German (de-at) (new)
 * Swiss Standard German (de-ch) (new)
+* Simplified Gan Chinese (gan-hans) (new)
+* Traditional Gan Chinese (gan-hant) (new)
 * Literary Chinese (lzh) (new)
 * Uyghur (Latin script) (ug-latn) (renamed from 'ug')
+* Veps (vep) (new)
 * Võro (vro) (renamed from fiu-vro)
 * (bug 17151) Add magic word alias for #redirect for Vietnamese
 * (bug 17288) Messages improved for default language (English)
@@ -358,8 +361,6 @@ changes to languages because of MediaZilla reports.
 * (bug 16909) 'histlegend' now reuses messages instead of copying them
 * (bug 17832) action=delete returns 'unknownerror' instead of 'permissiondenied' when
   the user is blocked
-* Simplified Gan Chinese (gan-hans) (new)
-* Traditional Gan Chinese (gan-hant) (new)
 * Traditional/Simplified Gan Chinese conversion support
 
 == Compatibility ==
