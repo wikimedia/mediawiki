@@ -395,7 +395,8 @@ class IPBlockForm {
 		}
 		
 		if( $this->BlockHideName ) {
-			if( !$userId ) {
+			// Recheck params here...
+			if( !$userId || !$wgUser->isAllowed('hideuser') ) {
 				// IP users should not be hidden
 				$this->BlockHideName = false;
 			} else if( $expiry !== 'infinity' ) {
