@@ -36,7 +36,7 @@ class SpecialTags extends SpecialPage {
 			$html .= $this->doTagRow( $tag, 0 );
 		}
 
-		$wgOut->addHTML( Xml::tags( 'table', array( 'style' => 'width: 80%', 'class' => 'mw-tags-table' ), $html ) );
+		$wgOut->addHTML( Xml::tags( 'table', array( 'class' => 'mw-tags-table' ), $html ) );
 	}
 
 	function doTagRow( $tag, $hitcount ) {
