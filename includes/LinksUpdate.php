@@ -428,25 +428,18 @@ class LinksUpdate {
 	function getCategoryInsertions( $existing = array() ) {
 		global $wgContLang;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
-		foreach ( $this->mCategories as $name => $sortkey ) {
-			$newname = $name;
-			$nt = Title::makeTitleSafe( NS_CATEGORY, $newname );
-			$wgContLang->findVariantLink( $newname, $nt, true );
-			// for category redirection
-			if ( $nt->isRedirect() ) {
-				$at = new Article( $nt );
-				$nt = $at->getRedirectTarget();
-				$newname = $nt->getText();
-				// we only redirect a category to another category
-				if ( ! array_key_exists( $newname, $existing )
-					 and $nt->getNamespace() == NS_CATEGORY )
-					$diffs[$newname] = $sortkey;
-			}
-		}
 		$arr = array();
 		foreach ( $diffs as $name => $sortkey ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
 			$wgContLang->findVariantLink( $name, $nt, true );
+			// for category redirection
+			if ( $nt->isRedirect() ) {
+				$at = new Article( $nt );
+				$nt = $at->getRedirectTarget();
+				// we only redirect a category to another category
+				if ( $nt->getNamespace() == NS_CATEGORY )
+					$name = $nt->getText();
+			}
 			$arr[] = array(
 				'cl_from'    => $this->mId,
 				'cl_to'      => $name,
