@@ -144,15 +144,16 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				break;
 		}
 		// Just get the whole log if there are a lot if items
-		if( $ids > 20 ) return null;
+		if( count($ids) > 20 ) return null;
 		// Digit chars only
 		foreach( $ids as $id ) {
 			if( preg_match( '/^\d+$/', $id, $m ) ) {
 				$safeIds[] = $m[0];
 			}
 		}
+		// Format is <id1,id2,i3...>
 		if( count($safeIds) ) {
-			return array("log_params RLIKE '".implode('|',$safeIds)."'");
+			return array("log_params RLIKE '(^|\n|,)(".implode('|',$safeIds).")(,|$)'");
 		}
 		return null;
 	}
