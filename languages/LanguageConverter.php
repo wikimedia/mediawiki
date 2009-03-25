@@ -981,7 +981,7 @@ class ConverterRule {
 				if ( in_array($variant, $flags) )
 					$flags_temp[] = $variant;
 			}
-			if ( count($flags_temp) == 0 )
+			if ( count($flags_temp) !== 0 )
 				$flags = $flags_temp;
 		}
 		if ( count($flags) == 0 )
