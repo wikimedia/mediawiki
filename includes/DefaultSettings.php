@@ -2118,13 +2118,6 @@ $wgGenerateThumbnailOnParse = true;
 /** Whether or not to use image resizing */
 $wgUseImageResize = true;
 
-/** 
- * Use this if you have issues using gd for image thumbnails--like with 
- * safe_mode--and want to force thumbnailing to users. Not needed for most
- * installs. See bug 12970.
- */
-$wgForceClientThumbnails = false;
-
 /** Set $wgCommandLineMode if it's not set already, to avoid notices */
 if( !isset( $wgCommandLineMode ) ) {
 	$wgCommandLineMode = false;
