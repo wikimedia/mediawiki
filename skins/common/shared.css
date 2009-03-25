@@ -339,3 +339,23 @@ a.feedlink {
 	background: url("images/feed-icon.png") center left no-repeat;
 	padding-left: 16px;
 }
+
+/* wikitable class for skinning normal tables */
+table.wikitable {
+    margin: 1em 1em 1em 0;
+    background: #f9f9f9;
+    border: 1px #aaa solid;
+    border-collapse: collapse;
+}
+.wikitable th, .wikitable td {
+    border: 1px #aaa solid;
+    padding: 0.2em;
+}
+.wikitable th {
+    background: #f2f2f2;
+    text-align: center;
+}
+.wikitable caption {
+    font-weight: bold;
+}
+
