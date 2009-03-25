@@ -255,7 +255,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17460) Client ecoding is now correctly set for PostgreSQL
 * (bug 17648) Prevent floats from intruding into edit area in previews if no
   toolbar present
-* (bug 16899) DISPLAYTITLE should allow Arabic and Persian harakats
 * (bug 17692) Added (list of members) link to 'user' in Special:Listgrouprights
 * (bug 17707) Show file destination as plain text if &wpForReUpload=1
 * (bug 10172) Moved setting of "changed since last visit" flags out of the job
