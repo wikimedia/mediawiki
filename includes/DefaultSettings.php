@@ -1255,8 +1255,6 @@ $wgGroupPermissions['sysop']['movefile']         = true;
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights']  = true;
 $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
-// Permission to change users' passwords
-# $wgGroupPermissions['bureaucrat']['reset-passwords'] = true;
 // Permission to change users' groups assignments across wikis
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 // Permission to export pages including linked pages regardless of $wgExportMaxLinkDepth
@@ -1471,7 +1469,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '207';
+$wgStyleVersion = '206';
 
 
 # Server-side caching:
@@ -2873,7 +2871,6 @@ $wgLogTypes = array( '',
 	'patrol',
 	'merge',
 	'suppress',
-	'password',
 );
 
 /**
@@ -2928,7 +2925,6 @@ $wgLogNames = array(
 	'patrol'  => 'patrol-log-page',
 	'merge'   => 'mergelog',
 	'suppress' => 'suppressionlog',
-	'password' => 'resetpass-log'
 );
 
 /**
@@ -2949,7 +2945,6 @@ $wgLogHeaders = array(
 	'patrol'  => 'patrol-log-header',
 	'merge'   => 'mergelogpagetext',
 	'suppress' => 'suppressionlogtext',
-	'password' => 'resetpass-logtext',
 );
 
 /**
@@ -2985,7 +2980,6 @@ $wgLogActions = array(
 	'suppress/delete'   => 'suppressedarticle',
 	'suppress/block'	=> 'blocklogentry',
 	'suppress/reblock'  => 'reblock-logentry',
-	'password/reset'    => 'resetpass-logentry'
 );
 
 /**
