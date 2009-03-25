@@ -1015,7 +1015,7 @@ class RevisionDeleter {
 				if( $filesObjs[$archivename]->deleted & File::DELETED_FILE ) {
 					if( $bitfield & File::DELETED_FILE ) {
 						# Leave it alone if we are not changing this...
-						$set[]=$archivename;
+						$set[]=$timestamp;
 						$transaction = true;
 					} else {
 						# We are moving this out
