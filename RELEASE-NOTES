@@ -286,6 +286,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11213) [edit] section links in printable version no longer appear when you cut-and-paste article text
 * (bug 17405) "Did you mean" to mirror Go/Search behavior of original request
 * (bug 18116) 'edittools' is now output identically on edit and upload pages
+* (bug 17241) The diffonly URI parameter should cascade to "Next edit" and "Previous edit" diff links
+* (bug 16823) 'Sidebar search form should not use Special:Search view URL as target'
+* (bug 16343) Non-existing, but in use, category pages can be "go" match hits
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
