@@ -67,7 +67,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'subjectpagename',  array( __CLASS__, 'subjectpagename'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
-		$parser->setFunctionHook( 'formatdate',		  array( __CLASS__, 'formatDate'	   ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'formatdate',		  array( __CLASS__, 'formatDate'	   ) );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );

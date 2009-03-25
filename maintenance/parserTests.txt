@@ -7263,18 +7263,18 @@ wgUseDynamicDates=1
 !!end
 
 !!test
-Formatted unlinked date
+formatdate parser function
 !!input
-{{formatdate:2009-03-24}}
+{{#formatdate:2009-03-24}}
 !! result
 <p><span class="mw-formatted-date" title="2009-03-24">2009-03-24</span>
 </p>
 !! end
 
 !!test
-Formatted unlinked date with default format
+formatdate parser function, with default format
 !!input
-{{formatdate:2009-03-24|mdy}}
+{{#formatdate:2009-03-24|mdy}}
 !! result
 <p><span class="mw-formatted-date" title="2009-03-24">March 24, 2009</span>
 </p>
