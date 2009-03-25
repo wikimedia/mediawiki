@@ -2115,7 +2115,7 @@ $wgIgnoreImageErrors = false;
  */
 $wgGenerateThumbnailOnParse = true;
 
-/** Obsolete, always true, kept for compatibility with extensions */
+/** Whether or not to use image resizing */
 $wgUseImageResize = true;
 
 /** 
