@@ -25,8 +25,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgUseTwoButtonsSearchForm to choose the Search form behavior/look
 * Added $wgNoFollowDomainExceptions to allow exempting particular domain names
   from rel="nofollow" on external links
-* (bug 12970) Added $wgForceClientThumbnails to force client rendering of thumbs,
-  instead of falling back to GD.
+* (bug 12970) Brought back $wgUseImageResize.
 * Added $wgRedirectOnLogin to allow specifying a specifc page to redirect users
   to upon logging in (ex: "Main Page")
 * Add $wgExportFromNamespaces for enabling/disabling the "export all from 
