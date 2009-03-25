@@ -224,14 +224,16 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public static function processMetaData($metadata, $result)
 	{
 		$retval = array();
-		foreach($metadata as $key => $value)
-		{
-			$r = array('name' => $key);
-			if(is_array($value))
-				$r['value'] = self::processMetaData($value, $result);
-			else
-				$r['value'] = $value;
-			$retval[] = $r;
+		if ( is_array( $metadata ) ) {
+			foreach($metadata as $key => $value)
+			{
+				$r = array('name' => $key);
+				if(is_array($value))
+					$r['value'] = self::processMetaData($value, $result);
+				else
+					$r['value'] = $value;
+				$retval[] = $r;
+			}
 		}
 		$result->setIndexedTagName($retval, 'metadata');
 		return $retval;
