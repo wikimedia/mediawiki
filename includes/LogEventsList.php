@@ -286,12 +286,9 @@ class LogEventsList {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// Different revision types use different URL params...
 				$key = $paramArray[0];
-				// Link to each hidden object ID, $paramArray[1] is the url param
+				// $paramArray[1] is a CVS of the IDs
 				$Ids = explode( ',', $paramArray[1] );
-				$revParams = '';
-				foreach( $Ids as $n => $id ) {
-					$revParams .= '&' . urlencode($key) . '[]=' . urlencode($id);
-				}
+				$query = urlencode($paramArray[1]);
 				$revert = array();
 				// Diff link for single rev deletions
 				if( $key === 'oldid' && count($Ids) == 1 ) {
@@ -300,22 +297,21 @@ class LogEventsList {
 						'diff='.intval($Ids[0])."&unhide=1&token=$token" );
 				}
 				// View/modify link...
-				$revert[] = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
-					'target=' . $title->getPrefixedUrl() . $revParams );
+				$revert[] = $this->skin->makeKnownLinkObj( $revdel,
+					$this->message['revdel-restore'], "$key=$query" );
+				// Pipe links
 				$revert = '(' . implode(' | ',$revert) . ')';
 			}
 		// Hidden log items, give review link
 		} else if( self::typeAction($row,array('delete','suppress'),'event','deleterevision') ) {
 			if( count($paramArray) == 1 ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+				// $paramArray[1] is a CVS of the IDs
 				$Ids = explode( ',', $paramArray[0] );
+				$query = urlencode($paramArray[0]);
 				// Link to each hidden object ID, $paramArray[1] is the url param
-				$logParams = '';
-				foreach( $Ids as $n => $id ) {
-					$logParams .= '&logid[]=' . intval($id);
-				}
 				$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
-					'target=' . $title->getPrefixedUrl() . $logParams ) . ')';
+					'target='.$title->getPrefixedUrl()."&logid=$query" ) . ')';
 			}
 		// Self-created users
 		} else if( self::typeAction($row,'newusers','create2') ) {
@@ -370,7 +366,7 @@ class LogEventsList {
 		} else {
 			$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
 			$query = array( 'target' => $target->getPrefixedDBkey(),
-				'logid[]' => $row->log_id
+				'logid' => $row->log_id
 			);
 			$del = $this->skin->revDeleteLink( $query, self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) );
 		}
