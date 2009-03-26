@@ -1393,6 +1393,10 @@ function wfMerge( $old, $mine, $yours, &$result ){
  * @return string Unified diff of $before and $after
  */
 function wfDiff( $before, $after, $params = '-u' ) {
+	if ($before == $after) {
+		return '';
+	}
+	
 	global $wgDiff;
 
 	# This check may also protect against code injection in
