@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Lucyin
  * @author Srtxg
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -548,6 +549,12 @@ Do côp, vos n' såroz schaper vos candjmints asteure; motoit vos dvrîz copyî 
 'template-semiprotected'    => '(dimey-protedjî)',
 'nocreatetitle'             => 'Ahivaedje di pådjes limité',
 'nocreatetext'              => "Cisse waibe ci a limité l' possibilité d' ahiver des novelès pådjes. Vos ploz rivni en erî eyet candjî ene pådje k' egzistêye dedja, oudonbén, [[Special:UserLogin|vos elodjî ou ahiver on conte d' uzeu]].",
+'recreate-deleted-warn'     => "'''Asteme : vous estoz ki rahive ene pådje k' a stî dsfacêye davance.'''
+
+Tuzez bén s' el fåt vormint rahiver, tot tapant èn ouy so l' istwere del pådje :",
+
+# Account creation failure
+'cantcreateaccounttitle' => "Vos n' ploz nén ahiver-st on conte.",
 
 # History pages
 'viewpagelogs'        => 'Vey les djournås po cisse pådje ci',
@@ -1617,6 +1624,7 @@ $1",
 'table_pager_last'  => 'Dierinne pådje',
 
 # Auto-summaries
+'autosumm-replace' => 'Li contnou a stî replaecé pa « $1 »',
 'autoredircomment' => 'Redjiblaedje viè [[$1]]',
 'autosumm-new'     => 'Novele pådje: $1',
 

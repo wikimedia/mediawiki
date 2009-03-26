@@ -89,7 +89,7 @@ $messages = array(
 'tog-highlightbroken'         => '无效链接格式<a href="" class="new">像这样</a> (或者像这个<a href="" class="internal">?</a>)',
 'tog-justify'                 => '段落对齐',
 'tog-hideminor'               => '最近更改中隐藏小修改',
-'tog-extendwatchlist'         => '增强监视列表以显示所有可用更改',
+'tog-extendwatchlist'         => '增强监视列表以显示所有更改，不只是最近的',
 'tog-usenewrc'                => '增强最近更改 (JavaScript)',
 'tog-numberheadings'          => '标题自动编号',
 'tog-showtoolbar'             => '显示编辑工具条 (JavaScript)',
@@ -191,7 +191,7 @@ $messages = array(
 'category-media-header' => '"$1"分类中的媒体',
 'category-empty'        => "''这个分类中尚未包含任何页面或媒体。''",
 
-'mainpagetext'      => "<big>'''已成功安装 MediaWiki!'''</big>",
+'mainpagetext'      => "<big>'''已成功安装 MediaWiki。'''</big>",
 'mainpagedocfooter' => '请访问 [http://meta.wikimedia.org/wiki/Help:Contents 用户手册] 以获得使用此 wiki 软件的信息！
 
 == 入门 ==
@@ -496,7 +496,7 @@ $2',
 'acct_creation_throttle_hit' => '抱歉！您已经创建了$1个账号。你不能再创建了。',
 'emailauthenticated'         => '您的电子邮箱地址已经于$2 $3确认有效。',
 'emailnotauthenticated'      => '您的邮箱地址<strong>还没被认证</strong>。以下功能将不会发送任何邮件。',
-'noemailprefs'               => '在您的参数设置中指定一个电子邮箱地址以使用此功能',
+'noemailprefs'               => '指定一个电子邮箱地址以使用此功能',
 'emailconfirmlink'           => '确认您的邮箱地址',
 'invalidemailaddress'        => '邮箱地址格式不正确，请输入正确的邮箱地址或清空该输入框。',
 'accountcreated'             => '已建立账户',
@@ -620,16 +620,16 @@ $2',
 'userinvalidcssjstitle'     => "'''警告:''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/monobook.css 不同于 {{ns:user}}:Foo/Monobook.css。",
 'updated'                   => '(已更新)',
 'note'                      => "'''注意:'''",
-'previewnote'               => "'''请记住这只是预览，内容还未保存！'''",
+'previewnote'               => "'''请记住这只是预览。'''内容还未保存！",
 'previewconflict'           => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'      => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。'''",
+'session_fail_preview'      => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。",
 'session_fail_preview_html' => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
-'''如果这是一次合法的编辑，请重新进行尝试。如果还不行，请[[Special:UserLogout|退出]]并重新登录。'''",
-'token_suffix_mismatch'     => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
-这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。'''",
+'''如果这是一次合法的编辑，请重新进行尝试。'''如果还不行，请[[Special:UserLogout|退出]]并重新登录。",
+'token_suffix_mismatch'     => "'''由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。'''
+这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。",
 'editing'                   => '正在编辑$1',
 'editinguser'               => "正在更改用户'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用户权限",
 'editingsection'            => '正在编辑$1 (段落)',
@@ -642,9 +642,9 @@ $2',
 <b>只有</b>在上面文字框中的内容会在你点击"保存页面"后被保存。<br />',
 'yourtext'                  => '您的文字',
 'storedversion'             => '已保存版本',
-'nonunicodebrowser'         => "'''警告: 您的浏览器不兼容Unicode编码。这里有一个工作区将使您能安全地编辑页面: 非ASCII字符将以十六进制编码方式出现在编辑框中。'''",
-'editingold'                => "'''警告：你正在编辑的是本页的旧版本。
-如果你保存它的话，在本版本之后的任何修改都会丢失。'''",
+'nonunicodebrowser'         => "'''警告: 您的浏览器不兼容Unicode编码。'''这里有一个工作区将使您能安全地编辑页面: 非ASCII字符将以十六进制编码方式出现在编辑框中。",
+'editingold'                => "'''警告：你正在编辑的是本页的旧版本。'''
+如果你保存它的话，在本版本之后的任何修改都会丢失。",
 'yourdiff'                  => '差异',
 'copyrightwarning'          => "请注意您对{{SITENAME}}的所有贡献都被认为是在$2下发布，请查看在$1的细节。
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
@@ -655,9 +655,9 @@ $2',
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
 您同时也要向我们保证您所提交的内容是您自己所作，或得自一个不受版权保护或相似自由的来源（参阅$1的细节）。
 '''不要在未获授权的情况下发表！'''",
-'longpagewarning'           => "'''警告: 该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
-您应该考虑将此页面分成更小的章节。'''",
-'longpageerror'             => "'''错误: 您所提交的文本长度有$1KB，这大于$2KB的最大值。该文本不能被保存。'''",
+'longpagewarning'           => "'''警告''': 该页面的长度是$1KB；一些浏览器在编辑长度接近或大于32KB的页面可能存在问题。
+您应该考虑将此页面分成更小的章节。",
+'longpageerror'             => "'''错误: 您所提交的文本长度有$1KB，这大于$2KB的最大值。'''该文本不能被保存。",
 'readonlywarning'           => '<strong>警告: 数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本段文字复制并保存到文本文件，然后等一会儿再修改。</strong>
 
 管理员有如下解释: $1',
@@ -743,8 +743,8 @@ $2',
 'revdelete-selected'          => "'''选取'''$1'''的$2次修订:'''",
 'logdelete-selected'          => "选取'''$1'''的$2个日志项目:",
 'revdelete-text'              => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
-
-在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。",
+在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。
+请确认您肯定去做的话，您就要明白到后果，以及这个程序符合[[{{MediaWiki:Policy-url}}|政策]]。",
 'revdelete-legend'            => '设置可见性之限制',
 'revdelete-hide-text'         => '隐藏修订文本',
 'revdelete-hide-name'         => '隐藏动作和目标',
@@ -1092,7 +1092,7 @@ $2',
 'nolinkstoimage'            => '没有页面链接到本文件。',
 'sharedupload'              => '该文件是一个共享上传，它可能在其它项目中被应用。',
 'shareduploadwiki'          => '请参阅在共享文件库上的$1以了解其相关信息。',
-'shareduploadwiki-desc'     => '它在$1上的描述于下面显示。',
+'shareduploadwiki-desc'     => '它在$1那边上的描述于下面显示。',
 'shareduploadwiki-linktext' => '文件描述页面',
 'noimage'                   => '不存在此名称的文件，但您可以$1。',
 'noimage-linktext'          => '上传一个',
@@ -1275,7 +1275,7 @@ Template:消除歧義',
 'specialloguserlabel'  => '用户:',
 'speciallogtitlelabel' => '标题:',
 'log'                  => '日志',
-'all-logs-page'        => '所有日志',
+'all-logs-page'        => '所有公共日志',
 'log-search-legend'    => '搜寻日志',
 'log-search-submit'    => '去',
 'alllogstext'          => '综合显示{{SITENAME}}所有的可用日志。
@@ -1504,7 +1504,7 @@ $NEWPAGE
 'undeleterevision-missing'     => '无效或丢失的修订版本。您可能使用了错误的链接，或者此修订版本已经被从存档中恢复或移除。',
 'undelete-nodiff'              => '找不到先前的修订版本。',
 'undeletebtn'                  => '恢复',
-'undeletelink'                 => '恢复',
+'undeletelink'                 => '查看／恢复',
 'undeletereset'                => '重设',
 'undeletecomment'              => '评论:',
 'undeletedarticle'             => '已恢复的"[[$1]]"',

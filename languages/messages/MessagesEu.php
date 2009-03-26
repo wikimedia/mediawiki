@@ -48,7 +48,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Lotura hautsiak <a href="" class="new">horrela</a> erakutsi (bestela, honela<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragrafoak justifikatu',
 'tog-hideminor'               => 'Azken aldaketetan aldaketa txikiak ezkutatu',
-'tog-extendwatchlist'         => 'Jarraipen-zerrenda zabaldu aldaketa guztiak ikusteko',
+'tog-extendwatchlist'         => 'Jarraipen-zerrenda zabaldu aldaketa guztiak ikusteko, ez bakarrik azken aldaketak',
 'tog-usenewrc'                => 'Hobetutako azken aldaketak (JavaScript)',
 'tog-numberheadings'          => 'Goiburukoak automatikoki zenbakitu',
 'tog-showtoolbar'             => 'Aldaketen tresna-barra erakutsi (JavaScript)',
@@ -699,9 +699,11 @@ Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Guneko administratz
 'revdelete-nooldid-title'     => 'Helburu berrikuspenik ez',
 'revdelete-nooldid-text'      => 'Ez d(it)uzu eragiketa hau burutzeko helburu berrikuspena(k) zehaztu.',
 'revdelete-selected'          => "'''{{PLURAL:$2|[[:$1]](r)en hautatutako berrikuspena:|[[:$1]](r)en hautatutako berrikuspenak}}'''",
+'logdelete-selected'          => "'''$1'''(r)entzat aukeratutako erregistro {{PLURAL:$2|gertaera|gertaerak}}:",
 'revdelete-text'              => "'''Ezabatutako berrikuspenek orrialdearen historian agertzen jarraituko dute, baina bere edukiak ez dira publikoki eskuratu ahal izango.'''
 
-Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.",
+{{SITENAME}}ko administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.
+Mesedez berretsi ezazu hau egin nahi zenuela, ondorioak ulertzen dituzula eta [[{{MediaWiki:Policy-url}}|politiken arabera]] egiten ari zarela.",
 'revdelete-legend'            => 'Berrikuspen mugapenak ezarri:',
 'revdelete-hide-text'         => 'Berrikuspenaren testua ezkutatu',
 'revdelete-hide-name'         => 'Helburua eta ekintza izkutatu',
@@ -715,8 +717,12 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'revdelete-submit'            => 'Hautatutako berrikuspenari aplikatu',
 'revdelete-logentry'          => '[[$1]](r)entzako berriskupen ikusgaitasuna aldatu da',
 'logdelete-logentry'          => '[[$1]]en gertakarien ikusgarritasuna aldatu da',
+'revdelete-logaction'         => '{{PLURAL:$1|Aldaketa $1i $2 modua jarri zaio|$1 aldaketei $ modua jarri zaie}}',
 'revdelete-success'           => "'''Berrikuspenen ikusgarritasuna ondo ezarri da.'''",
 'logdelete-success'           => "'''Log ikusgarritasuna ondo ezarri da.'''",
+
+# Oversight log
+'oversightlog' => 'Gainbegiratze erregistroa',
 
 # History merging
 'mergehistory'                     => 'Orrialdeen historiak bateratu',
@@ -1100,14 +1106,13 @@ Zutabe bakoitzaren goialdean klik eginez ordena aldatzen da.',
 'statistics'             => 'Estatistikak',
 'sitestats'              => '{{SITENAME}}(e)ko estatistikak',
 'userstats'              => 'Erabiltzaile estatistikak',
-'sitestatstext'          => "Datu-basean guztira <b>$1</b> orri daude; eztabaidatzeko, wikipedari buruzko orriak, birzuzenketak eta artikulu laburrak barne hartzen.
+'sitestatstext'          => "Datu-basean guztira {{PLURAL:$1|orri '''1''' dago| '''$1''' orri daude}}.
+Honek eztabaidatzeko, {{SITENAME}} buruzko orriak, birzuzenketak eta artikulu laburrak barne hartzen direlarik.
+Horiek baztertzen, {{PLURAL:$2|orri '''1''' dago|'''$2''' orri daude}} eduki legitimoa {{PLURAL:$2|duena|dituztenak}}.
 
-Horiek baztertzen, <b>$2</b> artikulu dauzakagu datu-basean.
+'''$8''' irudi igo {{PLURAL:$8|da|dira}}.
 
-'''$8''' irudi igo dira.
-
-Guztira '''$3''' bisitaturiko orri, eta <b>$4</b> artikulu aldaketa egon dira software-a berritu zenetik (2002.eko uztailaren 20a).
-
+Guztira bisitaturiko '''$3''' orri {{PLURAL:$3|dago|daude}}, eta '''$4''' artikulu aldaketa {{PLURAL:$4|egon da|egon dira}} {{SITENAME}} berritu zenetik.
 Emaitza hauekin hurrengo arrazoiak atera daitezke: '''$5''' aldaketa egon dira orrialde bakoitzeko, eta '''$6''' bisita aldaketa bakoitzeko.
 
 Gure [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] '''$7'''-koa da.",
@@ -1426,7 +1431,7 @@ Ezabatu ondoren izen berdina duen orrialde berri bat sortzen bada leheneratutako
 'undeleterevision-missing'     => 'Baliogabeko berrikuspena. Baliteke lotura ezegokia izatea, edo berriskupena leheneratu edo kendu izana.',
 'undelete-nodiff'              => 'Ez da aurkitu aurreko berrikuspenik.',
 'undeletebtn'                  => 'Leheneratu',
-'undeletelink'                 => 'leheneratu',
+'undeletelink'                 => 'ikusi/leheneratu',
 'undeletereset'                => 'Hasieratu',
 'undeletecomment'              => 'Iruzkina:',
 'undeletedarticle'             => '"[[$1]]" leheneratu da',
@@ -1604,7 +1609,7 @@ Artikulu oso erabilia edo asko aldatzen denaren izenburua aldatzera bazoaz, mese
 Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'movearticle'             => 'Orrialdea mugitu',
 'movenologin'             => 'Saioa hasi gabe',
-'movenologintext'         => 'Orrialde bat mugitzeko erregistratutako erabiltzailea izan behar duzu eta [[Special:UserLogin|saioa hasi]].',
+'movenologintext'         => 'Orrialde bat mugitzeko erregistratutako lankidea izan behar duzu eta [[Special:UserLogin|saioa hasi]].',
 'movenotallowed'          => 'Ez daukazu orrialdeak mugitzeko baimenik.',
 'newtitle'                => 'Izenburu berria',
 'move-watch'              => 'Orrialde hau jarraitu',
@@ -1655,7 +1660,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/
 'allmessagesdefault'        => 'Testu lehenetsia',
 'allmessagescurrent'        => 'Oraingo testua',
 'allmessagestext'           => 'MediaWikin erabiltzen diren mezu guztien zerrenda.
-Mesedez bisitatu [http://www.mediawiki.org/wiki/Localisation MediaWiki] eta [[http://translatewiki.net translatewiki.net] orrialdeak MediaWikira ekarpenak egin badituzu.',
+Mesedez bisitatu [http://www.mediawiki.org/wiki/Localisation MediaWiki] eta [http://translatewiki.net translatewiki.net] orrialdeak MediaWikira ekarpenak egin badituzu.',
 'allmessagesnotsupportedDB' => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
 'allmessagesfilter'         => 'Mezu izenaren iragazkia:',
 'allmessagesmodified'       => 'Aldatutakoak bakarrik erakutsi',
@@ -1835,7 +1840,7 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 
 # Patrol log
 'patrol-log-page' => 'Patrullatze loga',
-'patrol-log-line' => '$1etik $2 markatu da patrullatu moduan $3',
+'patrol-log-line' => '$1etik $2 markatu da patruilatu moduan $3',
 'patrol-log-auto' => '(automatikoa)',
 'patrol-log-diff' => '$1 berrikuspena',
 

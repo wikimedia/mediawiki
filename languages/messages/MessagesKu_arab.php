@@ -108,18 +108,18 @@ $messages = array(
 'october'       => 'تشرینی یەکەم',
 'november'      => 'تشرینی دووەم',
 'december'      => 'کانونی یەکەم',
-'january-gen'   => 'كانونی دووه‌م',
-'february-gen'  => 'شوبات',
-'march-gen'     => 'مارت',
-'april-gen'     => 'نیسان',
-'may-gen'       => 'مایس',
-'june-gen'      => 'حوزه‌یران',
-'july-gen'      => 'ته‌مموز',
-'august-gen'    => 'ئاب',
-'september-gen' => 'ئه‌لیلول',
-'october-gen'   => 'تشرینی یه‌كه‌م',
-'november-gen'  => 'تشرینی دووه‌م',
-'december-gen'  => 'كانونی یه‌كه‌م',
+'january-gen'   => 'كانونی دووه‌می',
+'february-gen'  => 'شوباتی',
+'march-gen'     => 'مارتی',
+'april-gen'     => 'نیسانی',
+'may-gen'       => 'مایسی',
+'june-gen'      => 'حوزه‌یرانی',
+'july-gen'      => 'ته‌مموزی',
+'august-gen'    => 'ئابی',
+'september-gen' => 'ئه‌لیلولی',
+'october-gen'   => 'تشرینی یه‌كه‌می',
+'november-gen'  => 'تشرینی دووه‌می',
+'december-gen'  => 'كانونی یه‌كه‌می',
 'jan'           => 'كا١',
 'feb'           => 'شوب',
 'mar'           => 'مارت',
@@ -134,7 +134,7 @@ $messages = array(
 'dec'           => 'كا١',
 
 # Bits of text used by many pages
-'categories'            => 'هاوپۆله‌كان',
+'categories'            => 'ھاوپۆلەكان',
 'pagecategories'        => '{{PLURAL:$1|ھاوپۆل|ھاوپۆلەکان}}',
 'category_header'       => 'پەڕە ھاوپۆلەکانی "$1"',
 'subcategories'         => 'به‌شه‌هاوپۆله‌كان',
@@ -176,11 +176,11 @@ $messages = array(
 'help'              => 'ڕێنمایی',
 'search'            => 'گەڕان',
 'searchbutton'      => 'بگەڕێ',
-'go'                => 'ده‌ی',
+'go'                => 'بڕۆ',
 'searcharticle'     => 'بڕۆ',
-'history'           => 'مێژووی په‌ڕه‌',
-'history_short'     => 'مێژووی نووسین',
-'updatedmarker'     => 'گۆڕانكارییه‌كان پاش دوا سه‌ردانی من',
+'history'           => 'مێژووی پەڕە',
+'history_short'     => 'مێژووی پەڕە',
+'updatedmarker'     => 'گۆڕانکارییەكان پاش دوا سەردانی من',
 'info_short'        => 'زانیاری',
 'printableversion'  => 'وەشانی ئامادەی چاپ',
 'permalink'         => 'بەسته‌ری ھەمیشەیی',
@@ -244,9 +244,9 @@ $messages = array(
 
 'badaccess' => 'ھەڵە لە بە دەست ھێنان',
 
-'versionrequired'     => 'پێویستیت به‌ وه‌شانی $1 ـی‌ ویكیمیدیایه‌',
-'versionrequiredtext' => 'پێویستیت به‌ وه‌شانی $1 ـێ ویكیمیدیا هه‌یه‌ بۆ به‌كاربردنی ئه‌م په‌ڕه‌یه‌
-. ته‌ماشای [[Special:Version|وه‌شانی]] بكه‌.',
+'versionrequired'     => 'پێویستیت بە وەشانی $1ی‌ ویكیمیدیایە',
+'versionrequiredtext' => 'پێویستیت بە وەشانی $1ی ویکیمیدیا ھەیە بۆ بەکاربردنی ئەم پەڕەیە.
+تەماشای [[Special:Version|پەڕەی وەشان]] بکە.',
 
 'ok'                      => 'باشه‌',
 'retrievedfrom'           => 'له‌ لایه‌ن "$1" گه‌ڕاوه‌ته‌وه‌.',
@@ -265,42 +265,49 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|گۆڕانکاریی سڕاو|$1 یەک گۆڕانکاریی سڕاو}}',
 'site-rss-feed'           => 'RSS FEED ـی $1',
 'site-atom-feed'          => 'Atom Feed ـی $1',
+'page-rss-feed'           => 'RSS Feed ـی "$1"',
+'page-atom-feed'          => 'Atom Feed ـی "$1"',
 'red-link-title'          => '$1 (پەڕە بوونی نییە)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'پەڕە',
 'nstab-user'      => 'پەڕەی بەکارھێنەر',
 'nstab-media'     => 'میدیا',
-'nstab-special'   => 'په‌ڕه‌ی تایبه‌ت',
-'nstab-project'   => 'په‌ڕه‌ی پرۆژه‌',
-'nstab-image'     => 'وێنه‌',
-'nstab-mediawiki' => 'په‌یام',
+'nstab-special'   => 'پەڕەی تایبەت',
+'nstab-project'   => 'پەڕەی پرۆژە',
+'nstab-image'     => 'پەڕگە',
+'nstab-mediawiki' => 'پەیام',
 'nstab-template'  => 'قاڵب',
-'nstab-help'      => 'یارمه‌تی',
-'nstab-category'  => 'هاوپۆل',
+'nstab-help'      => 'پەڕەی یارمەتی',
+'nstab-category'  => 'ھاوپۆل',
 
 # Main script and global functions
 'nosuchaction'      => 'كرداری به‌م شێوه‌یه‌ نییه‌',
-'nosuchactiontext'  => 'ئه‌و كرده‌یه‌ی كه‌ له‌ URL دا هاتووه‌ نه‌ناسراوه‌',
+'nosuchactiontext'  => 'ئەو چالاکییەی لە لایەن بەستەرەوە دیاریکراوە ناتەواوە.
+لەوانەیە بە هەڵە بەستەرەکەت نووسیبێت، یان بەستەرێکی هەڵەی بە دواوە بێت.
+لەوانەیە ئەمە نیشانەی هەڵەیەک بێت لەو نەرمەکاڵایەی کە بەکاردێت لە لایەن {{SITENAME}}.',
 'nosuchspecialpage' => 'په‌ڕه‌ی تایبه‌تی له‌و شێوه‌یه‌ نییه‌',
 'nospecialpagetext' => "<big>''په‌ڕه‌یكی تایبه‌ت ده‌خوازیت كه‌ بوونی نییه‌'''</big>
 
 لیستی په‌ڕه‌ تایبه‌تییه‌كان له‌ [[Special:SpecialPages|لیسته‌ی په‌ڕه‌ تایبه‌ته‌كان]] ده‌توانرێت ببینرێت.",
 
 # General errors
-'error'              => 'هه‌ڵه‌',
-'databaseerror'      => 'هه‌ڵه‌ له‌ بنكه‌دراوه‌دا هه‌یه‌',
-'readonly'           => 'بنکەدراوە داخراوە',
-'readonly_lag'       => 'بنكه‌دراوه‌كه‌ به‌شێوه‌ی خۆكار به‌ندكراوه‌، له‌كاتێكدا بنكه‌دراوه‌ی ڕاژه‌كاره‌كه‌ ڕۆڵی له‌خۆگرتن ده‌گێڕێت',
-'internalerror'      => 'هه‌ڵه‌یه‌كی ناوخۆیی ڕویدا',
-'internalerror_info' => 'هه‌ڵه‌ی ناوخۆیی: $1',
-'filecopyerror'      => 'په‌ڕگه‌ی „$1“ ڕوونوس نابێت بۆ „$2“ .',
-'filerenameerror'    => 'ناوی په‌ڕگه‌ی "$1" نه‌گۆڕدرا بۆ "$2".',
-'filedeleteerror'    => 'بسڕدرێته‌وه‌"$1" نه‌توانرا په‌ڕگه‌ی',
-'filenotfound'       => 'په‌ڕگه‌ی "$1" نه‌دۆزرایه‌وه‌',
-'badtitle'           => 'ناونیشانێكی بێ كه‌ڵك',
-'viewsource'         => 'سه‌رچاوه‌ ببینه‌',
-'viewsourcefor'      => 'بۆ $1',
+'error'                => 'هه‌ڵه‌',
+'databaseerror'        => 'هه‌ڵه‌ له‌ بنكه‌دراوه‌دا هه‌یه‌',
+'readonly'             => 'بنکەدراوە داخراوە',
+'readonly_lag'         => 'بنكه‌دراوه‌كه‌ به‌شێوه‌ی خۆكار به‌ندكراوه‌، له‌كاتێكدا بنكه‌دراوه‌ی ڕاژه‌كاره‌كه‌ ڕۆڵی له‌خۆگرتن ده‌گێڕێت',
+'internalerror'        => 'هه‌ڵه‌یه‌كی ناوخۆیی ڕویدا',
+'internalerror_info'   => 'هه‌ڵه‌ی ناوخۆیی: $1',
+'filecopyerror'        => 'په‌ڕگه‌ی „$1“ ڕوونوس نابێت بۆ „$2“ .',
+'filerenameerror'      => 'ناوی په‌ڕگه‌ی "$1" نه‌گۆڕدرا بۆ "$2".',
+'filedeleteerror'      => 'بسڕدرێته‌وه‌"$1" نه‌توانرا په‌ڕگه‌ی',
+'directorycreateerror' => 'نەتوانرا بوخچەی "$1"دروست بکرێت.',
+'filenotfound'         => 'په‌ڕگه‌ی "$1" نه‌دۆزرایه‌وه‌',
+'cannotdelete'         => 'نەتوانرا پەڕە یان پەڕگەی دیاریکراو بسڕدرێتەوە.
+لەوانەیە پێشتر لە لایەن کەسێکی ترەوە سڕدرابێتەوە.',
+'badtitle'             => 'ناونیشانێكی بێ كه‌ڵك',
+'viewsource'           => 'سه‌رچاوه‌ ببینه‌',
+'viewsourcefor'        => 'بۆ $1',
 
 # Login and logout pages
 'logouttitle'           => 'دەرچوونی بەکارهێنەر',
@@ -449,6 +456,7 @@ $messages = array(
 'revertmerge' => 'لەیەک جیاکردنەوە',
 
 # Diffs
+'history-title'           => 'مێژووی پیاچوونەوەکانی "$1"',
 'difference'              => '(جیاوازی نێوان پیاچوونەوەکان)',
 'lineno'                  => 'ھێڵی  $1:',
 'compareselectedversions' => 'ھەڵسەنگاندنی وەشانە ھەڵبژاردراوەکان',
@@ -511,6 +519,7 @@ $messages = array(
 'rightslog' => 'لۆگی مافەکانی بەکارهێنەر',
 
 # Recent changes
+'nchanges'        => '$1 {{PLURAL:$1|گۆڕانکاری|گۆڕانکاری}}',
 'recentchanges'   => 'دوایین گۆڕانکارییەکان',
 'rclistfrom'      => 'گۆڕانکارییە نوێکان کە لە $1ەوە دەست پێدەکەن نیشان بدە.',
 'rcshowhideminor' => '$1 دەستکارییە بچووکەکان',
@@ -596,7 +605,7 @@ $messages = array(
 'wantedpages'             => 'پەڕە داواکراوەکان',
 'mostcategories'          => 'پەڕەکان بە زۆرترین ھاوپۆلەوە',
 'allpages'                => 'ھەموو پەڕەکان',
-'prefixindex'             => 'هەموو پەڕەکان بە prefix ـەوە',
+'prefixindex'             => 'ھەموو پەڕەکان بە prefix ەوە',
 'shortpages'              => 'پەڕە کورتەکان',
 'longpages'               => 'پەڕە دڕێژەکان',
 'specialpages'            => 'لاپەڕە تایبەتەکان',
@@ -628,16 +637,18 @@ $messages = array(
 'allpagessubmit' => 'بڕۆ',
 
 # E-mail user
-'emailuser'      => 'بۆ ئەم بەکارھێنەرە E-Mail بنێرە',
-'emailfrom'      => 'لە:',
-'emailto'        => 'بۆ:',
-'emailsubject'   => 'بابەت:',
-'emailmessage'   => 'نامە:',
-'emailsend'      => 'بینێرە',
-'emailccme'      => 'کۆپییەک لە نامەکە بنێرە بۆ ئیمەیلەکەم.',
-'emailccsubject' => 'کۆپیی نامەکەت بۆ $1: $2',
-'emailsent'      => 'نامەکەت ناردرا',
-'emailsenttext'  => 'نامەکەت ناردرا',
+'emailuser'       => 'بۆ ئەم بەکارھێنەرە E-Mail بنێرە',
+'emailpage'       => 'ئیمەیل بۆ بەکارھێنەر',
+'defemailsubject' => 'ئیمەیلی {{SITENAME}}',
+'emailfrom'       => 'لە:',
+'emailto'         => 'بۆ:',
+'emailsubject'    => 'بابەت:',
+'emailmessage'    => 'نامە:',
+'emailsend'       => 'بینێرە',
+'emailccme'       => 'کۆپییەک لە نامەکە بنێرە بۆ ئیمەیلەکەم.',
+'emailccsubject'  => 'کۆپیی نامەکەت بۆ $1: $2',
+'emailsent'       => 'نامەکەت ناردرا',
+'emailsenttext'   => 'نامەکەت ناردرا',
 
 # Watchlist
 'watchlist'            => 'لیستی چاودێڕییەکانی من',
@@ -677,11 +688,16 @@ $messages = array(
 'delete-confirm'              => 'سڕینەوەی "$1"',
 'delete-legend'               => 'سڕینەوە',
 'historywarning'              => 'ئاگاداری: ئەم پەڕە کە ئەتەوێ بیسڕیتەوە مێژووی ھەیە',
+'actioncomplete'              => 'چالاکی دوایی ھاو.',
 'deletedarticle'              => '"[[$1]]" سڕدرایەوە',
 'dellogpage'                  => 'لۆگی سڕینەوە',
 'deletecomment'               => 'ھۆکاری سڕینەوە:',
 'deleteotherreason'           => 'ھۆکاری دیکە:',
 'deletereasonotherlist'       => 'ھۆکاری دیکە',
+'deletereason-dropdown'       => '* ھۆکاری سڕینەوە
+** داواکاریی نووسەر
+** تێکدانی مافی لەبەرگرتنەوە
+** خراپکاری',
 'rollbacklink'                => 'گەڕاندنەوە',
 'protectlogpage'              => 'لۆگی پاراستن',
 'protectedarticle'            => 'پارێزراو[[$1]]',
@@ -710,7 +726,7 @@ $messages = array(
 'restriction-level'           => 'ئاستی سنووردارکردن:',
 
 # Undelete
-'undeletelink'     => 'گێڕاندنەوە',
+'undeletelink'     => 'بینین/گێڕاندنەوە',
 'undeletedarticle' => '"[[$1]]" گێڕدرایەوە',
 
 # Namespace form on various pages
@@ -728,7 +744,7 @@ $messages = array(
 
 'sp-contributions-newbies'     => 'تەنھا بەشدارییەکانی بەکارھێنەرە تازەکان نیشان بدە',
 'sp-contributions-newbies-sub' => 'لە بەکارھێنەرە تازەکانەوە',
-'sp-contributions-blocklog'    => 'لۆگی بلۆککردن',
+'sp-contributions-blocklog'    => 'لۆگی بەربەستن',
 'sp-contributions-search'      => 'گەڕین بۆ بەشدارییەکان',
 'sp-contributions-username'    => 'ئەدرەسی IP یان بەکارھێنەر:',
 'sp-contributions-submit'      => 'بگەڕە',
@@ -737,6 +753,7 @@ $messages = array(
 'whatlinkshere'       => 'بەسراوەکان بە ئێرەوە',
 'whatlinkshere-title' => 'ئەو پەڕانەی بەستەرکراون بۆ "$1"',
 'whatlinkshere-page'  => 'پەڕە:',
+'isredirect'          => 'پەڕە ئاڕاستە بکە',
 'whatlinkshere-links' => '← بەستەرەکان',
 
 # Block/unblock
@@ -750,7 +767,7 @@ $messages = array(
 'block-log-flags-nocreate' => 'دروستکردنی هەژمار ناچالاککراوە',
 
 # Move page
-'movepagetext'   => "لە ڕێگەی ئەم فۆرمەی خوارەوە ناوی پەڕە دەگۆڕدرێت، وە ھەموو مێژووەکەی دەگوازێتەوە بۆ ناوی نوێ.
+'movepagetext'    => "لە ڕێگەی ئەم فۆرمەی خوارەوە ناوی پەڕە دەگۆڕدرێت، وە ھەموو مێژووەکەی دەگوازێتەوە بۆ ناوی نوێ.
 ئەگەر لە بەشی گەڕان ناوە کۆنەکەی پێ بدەی بە شێوەی خۆکار پەڕەکە دەگوازرێتەوە بۆ ناوە نوێکە .
 تۆ دەتوانی ئەو بەستەری ئاڵوگۆرانە بگۆڕی کە بەشێوەی خۆکار دەچێنە سەر لاپەڕەی ئەسڵی
 ئەگەر ناتەوێت ئەم کارە بکەی، دڵنیا بە کە [[Special:DoubleRedirects|دوبلەکان]]   یان [[Special:BrokenRedirects|شکاوەکان]] تاقی بکەیتەوە.
@@ -765,19 +782,20 @@ $messages = array(
 '''ئاگاداریی'''
 ئەمە دەتوانێت گۆڕانێکی زۆر نابەجێ و چاوەڕوانەکراو بێت لە لاپەڕەیەکی ناسراو؛
 تکایە پێش گۆڕینی ناو باش بیر لە ئاکامەکەی بکەوە.",
-'movearticle'    => 'ئەم لاپەڕە بگوازەوە:',
-'newtitle'       => 'بۆ ناوێکی نوێ:',
-'move-watch'     => 'ئەم لاپەڕە چاودێری بکە',
-'movepagebtn'    => 'ئەم لاپەڕە بگوازەوە',
-'pagemovedsub'   => 'گواستنەوە بە سەرکەوتوویی جێبەجێ کرا',
-'movepage-moved' => '<big>\'\'\'"$1" گوازراوەتەوە بۆ "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'  => 'لاپەڕەیەک بەم ناوە ھەیە، یان ئەو ناوەی تۆ ھەڵتبژاردووە بایەخدار نیە.
+'movearticle'     => 'ئەم لاپەڕە بگوازەوە:',
+'newtitle'        => 'بۆ ناوێکی نوێ:',
+'move-watch'      => 'ئەم لاپەڕە چاودێری بکە',
+'movepagebtn'     => 'ئەم لاپەڕە بگوازەوە',
+'pagemovedsub'    => 'گواستنەوە بە سەرکەوتوویی جێبەجێ کرا',
+'movepage-moved'  => '<big>\'\'\'"$1" گوازراوەتەوە بۆ "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'   => 'لاپەڕەیەک بەم ناوە ھەیە، یان ئەو ناوەی تۆ ھەڵتبژاردووە بایەخدار نیە.
 تکایە ناوێکی دیکە ھەڵبژێرە',
-'movedto'        => 'بوو بە',
-'movetalk'       => 'پەڕەی گوفتوگۆکەشی بگۆزەرەوە',
-'movelogpage'    => 'لۆگ بگوازەوە',
-'movereason'     => 'بە ھۆی:',
-'revertmove'     => 'پێچەوانەکردنەوە',
+'movedto'         => 'بوو بە',
+'movetalk'        => 'پەڕەی گوفتوگۆکەشی بگۆزەرەوە',
+'1movedto2_redir' => 'بە ڕەوانکردنەوە، $1 ڕۆیشتە جێگەی $2',
+'movelogpage'     => 'لۆگ بگوازەوە',
+'movereason'      => 'بە ھۆی:',
+'revertmove'      => 'پێچەوانەکردنەوە',
 
 # Export
 'export' => 'پەڕەکان هەناردە بکە',
@@ -887,7 +905,7 @@ $messages = array(
 'imagelistall'     => 'ھەموو',
 'watchlistall2'    => 'ھەموو',
 'namespacesall'    => 'ھەموو',
-'monthsall'        => 'هەموو',
+'monthsall'        => 'ھەموو',
 
 # Separators for various lists
 'semicolon-separator' => '؛&#32;',

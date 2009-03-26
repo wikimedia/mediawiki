@@ -1,5 +1,5 @@
 <?php
-/** Zhuang ((Cuengh))
+/** Zhuang (Sawcuengh)
  *
  * @ingroup Language
  * @file

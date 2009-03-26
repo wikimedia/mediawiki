@@ -127,7 +127,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Format vu futtise Linken <a href="" class="new">esou</a> (alternativ: <a href="" class="internal">?</a>).',
 'tog-justify'                 => "Ränner vum Text riten (''justify'')",
 'tog-hideminor'               => 'Verstopp kleng Ännerungen an de rezenten Ännerungen',
-'tog-extendwatchlist'         => 'Iwwerwaachungslëscht op all Ännerungen ausbreeden',
+'tog-extendwatchlist'         => 'Iwwerwaachungslëscht op all Ännerungen ausbreeden, net nëmmen op déi rezentst',
 'tog-usenewrc'                => 'Mat JavaScript erweidert rezent Ännerungen (klappt net mat all Browser)',
 'tog-numberheadings'          => 'Iwwerschrëften automatesch numeréieren',
 'tog-showtoolbar'             => 'Ännerungstoolbar weisen (JavaScript)',
@@ -786,12 +786,14 @@ Prezisiounen iwwert d\'Läschen esou wéi de Grond fannt Dir am [{{fullurl:Speci
 'revdelete-selected'          => "'''{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :'''",
 'revdelete-text'              => "'''Geläschte Versiounen oder aner geäschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhinn an der Versiounsgeschicht vun der Säit.'''
 
-{{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.",
+Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.
+Confirméiert w.eg. datt Dir dëst maache wellt, datt dir d'Konsequenzen dovu verstitt an datt Dir dëst am Aklang matt de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
 'revdelete-legend'            => "Limitatioune fir d'Sichtbarkeet festleeën",
 'revdelete-hide-text'         => 'Text vun der Versioun verstoppen',
 'revdelete-hide-name'         => 'Logbuch-Aktioun verstoppen',
 'revdelete-hide-comment'      => 'Bemierkung verstoppen',
 'revdelete-hide-user'         => 'Dem Auteur säi Benotzernumm/IP verstoppen',
+'revdelete-hide-restricted'   => 'Dës Limitatiounen och fir Administrateuren uwenden an dës Spezialsäit spären',
 'revdelete-suppress'          => 'Grond vum Läschen och fir Administrateure verstoppt',
 'revdelete-hide-image'        => 'Bildinhalt verstoppen',
 'revdelete-unsuppress'        => 'Limitatiounen fir restauréiert Versiounen ophiewen',
@@ -802,10 +804,13 @@ Prezisiounen iwwert d\'Läschen esou wéi de Grond fannt Dir am [{{fullurl:Speci
 'revdelete-success'           => "'''Sichtbarkeet vun de Versioune geännert.''''",
 
 # Oversight log
+'oversightlog'    => 'Oversight-Logbuch',
 'overlogpagetext' => "Dëst ass d'Lëscht vun de Läschungen a Spären, déi virun den Administrateure verstoppt sinn.",
 
 # History merging
 'mergehistory'                     => 'Historiquë fusionéieren',
+'mergehistory-header'              => "Dës Säit erlaabt Iech et Versioune vum Historique vun enger Quellsäit op eng nei ze fusionéieren.
+Vergewëssert Iech datt dës Ännerung d'Kontinuitéit vun deverschiddene Versiounen oprechterhält.",
 'mergehistory-box'                 => 'Historiquë vun zwou Säite fusionéieren',
 'mergehistory-from'                => 'Originalsäit:',
 'mergehistory-into'                => 'Zilsäit:',
@@ -932,6 +937,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'userrights-groupsmember'          => 'Member vun:',
 'userrights-groupsremovable'       => 'Gruppen déi geläscht kënne ginn:',
 'userrights-groupsavailable'       => "Et ginn d'Gruppen:",
+'userrights-groupshelp'            => "wielt déi Gruppen, aus deenen de Benotzer erausgeholl oder debäigesat gi soll. Gruppen déi net ausgewielt sinn ginn net gepäichert. Dir kënnt d'Selektioun vun engem Gruppewechhuelen mat Ctrl + lënkse Mausklick.",
 'userrights-reason'                => 'Grond:',
 'userrights-available-none'        => 'Dir däerft keng Benotzerrechter änneren.',
 'userrights-available-add'         => 'Dir kënnt Benotzer an déi folgend {{PLURAL:$2|Grupp|Grupppen}}: $1 <br \\>
@@ -1036,7 +1042,7 @@ Kuckt [[Special:NewImages|d'Gallerie vun de neie Fichieren]] wann Dir méi e vis
 'minlength1'                  => "D'Nimm vu Fichiere musse mindestens e Buschtaf am Numm hunn.",
 'illegalfilename'             => 'Am Fichiernumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
 'badfilename'                 => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
-'filetype-badmime'            => 'Fichieren vum MIME-Typ "$1" kënnen net eropgeluede ginn.',
+'filetype-badmime'            => 'Fichiere vum MIME-Typ "$1" kënnen net eropgeluede ginn.',
 'filetype-bad-ie-mime'        => 'Dëse Fichier kann net eropgeluede ginn, well den Internet Explorer en als „$1“ erkennt, deen net erlaabt ass well et e potentiell geféierleche Fichierstyp ass.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' ass een onerwënschte Fichiersformat. Erwënschte Formater sinn: \$2.",
 'filetype-banned-type'        => "'''.$1''' ass ee Fichersformat deen net erlaabt ass. Erlaabt sinn: $2.",
@@ -1045,6 +1051,9 @@ Kuckt [[Special:NewImages|d'Gallerie vun de neie Fichieren]] wann Dir méi e vis
 'largefileserver'             => 'Dëse Fichier ass méi grouss wéi déi um Server agestallte Maximalgréisst.',
 'emptyfile'                   => 'De Fichier deen Dir eropgelueden hutt, schéngt eidel ze sinn. Dëst kann duerch en Tippfeeler am Numm vum Fichier kommen. Préift w.e.g. no, op Dir dëse Fichier wierklech eropluede wëllt.',
 'fileexists'                  => "Et gëtt schonn e Fichier mat dësem Numm, kuckt w.e.g. '''<tt>$1</tt>''' wann Dir net sécher sidd, op Dir den Numm ännere wëllt.",
+'filepageexists'              => "D'Beschreiwungssäit fir dëse Fichier gëtt et schonn op strong><tt>$1</tt></strong>, awer et gëtt kee Fichier mat dem Numm.
+De Resmé deen Dir agitt kënntnet op d'Beschreiwungssäit.
+Fir datt äre Resumé hei erschéngt, muss Dir en hei manuell aginn.",
 'fileexists-extension'        => "E Fichier mat engem ähnlechen Namen gëtt et schonn:<br />
 Numm vum Fichier den Dir versicht eropzelueden: '''<tt>$1</tt>'''<br />
 Numm vum Fichier den et scho gëtt: '''<tt>$2</tt>'''<br />
@@ -1064,7 +1073,7 @@ Wann Dir dëse Fichier trotzdem eroplued wellt da gitt w.e.g. zréck a lued dës
 'savefile'                    => 'Fichier späicheren',
 'uploadedimage'               => 'huet "[[$1]]" eropgelueden',
 'overwroteimage'              => 'huet eng nei Versioun vun "[[$1]]" eropgelueden',
-'uploaddisabled'              => "Pardon, d'Eroplueden vu Fichieren ass ausgeschalt.",
+'uploaddisabled'              => "Pardon, d'Eropluede vu Fichieren ass ausgeschalt.",
 'uploaddisabledtext'          => "D'Eropluede vu Fichieren ass ausgeschalt.",
 'uploadscripted'              => 'An dësem Fichier ass HTML- oder Scriptcode, de vun engem Webbrowser falsch interpretéiert kéint ginn.',
 'uploadcorrupt'               => 'De Fichier ass futti oder en huet eng falsch Fichiers-Erweiderung. Kuckt de Fichier weg no a lued de Fichier nach eng Kéier erop.',
@@ -1571,7 +1580,7 @@ Wann zënter dem Läschen eng nei Säit mat dem selweschte Numm ugeluecht gouf, 
 'undeleterevision-missing'     => "Ongëlteg oder Versioun déi feelt. Entweder ass de Link falsch oder d'Versioun gouf aus dem Archiv restauréiert oder geläscht.",
 'undelete-nodiff'              => 'Et si keng méi al Versiounen do.',
 'undeletebtn'                  => 'Restauréieren',
-'undeletelink'                 => 'restauréieren',
+'undeletelink'                 => 'weisen/restauréieren',
 'undeletereset'                => 'Ofbriechen',
 'undeletecomment'              => 'Grond:',
 'undeletedarticle'             => 'huet "[[$1]]" restauréiert',
@@ -1663,7 +1672,7 @@ $1',
 'ipboptions'                  => '2 Stonen:2 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Aner Dauer',
 'ipbotherreason'              => 'Aneren oder zousätzleche Grond:',
-'ipbhidename'                 => 'Benotzernumm an der Spärlëscht, der Lëscht vun den aktive Spären an der Lëscht vun de Benotzer verstoppen',
+'ipbhidename'                 => 'Benotzernumm op Lëschten a bäi Ännerunge verstoppen',
 'badipaddress'                => "D'IP-Adress huet dat falscht Format.",
 'blockipsuccesssub'           => 'Gouf gespaart',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
@@ -1684,7 +1693,7 @@ Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipblocklist-username'        => 'Benotzernumm oder IP-Adress:',
 'ipblocklist-summary'         => "Op dëser Säit stinn all déi Mataarbechter an IP-Adressen, déi '''momentan''' gespaart sinn. Do dernieft gëtt et [[Special:Log/block|hei]] e Logbuch, wou all Spären an d'Ophiewe vun de Spären, déi manuell gemaach goufen, protokolléiert ginn.",
 'ipblocklist-submit'          => 'Sichen',
-'blocklistline'               => '$1, $2 gespaart $3 (gülteg bis $4)',
+'blocklistline'               => '$1, $2 huet de Benotzer:$3 gespaart (gëllt $4)',
 'infiniteblock'               => 'onbegrenzt',
 'expiringblock'               => 'bis $1',
 'anononlyblock'               => 'nëmmen anonym Benotzer',
@@ -1698,7 +1707,7 @@ Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'contribslink'                => 'Kontributiounen',
 'autoblocker'                 => 'Dir sidd automatesch gespaart well dir eng IP Adress mam "$1" deelt. Grond "$2".',
 'blocklogpage'                => 'Spärlëscht',
-'blocklogentry'               => '"[[$1]]" gespaart, gülteg bis $2 $3',
+'blocklogentry'               => '"[[$1]]" gespaart fir $2 $3',
 'blocklogtext'                => "Dëst ass eng Lëscht vu Spären an de Spären déi opgehuewe goufen.
 Automatesch gespaarten IP-Adresse sinn hei net opgelëscht.
 Kuckt d'[[Special:IPBlockList|IP Spärlëschtt]] fir déi aktuell Spären.",
@@ -2159,7 +2168,9 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-orientation-2' => 'Horizontal gedréit', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Ëm 180° gedréit', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Vertikal gedréit', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => "90° géint d'Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint", # 0th row: left; 0th column: top
 'exif-orientation-6' => "Ëm 90° an d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: right; 0th column: top
+'exif-orientation-7' => '90° an der Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => "Ëm 90° géint d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => 'Gëtt et net',
@@ -2169,6 +2180,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-exposureprogram-2' => 'Standardprogramm',
 'exif-exposureprogram-3' => 'Zäitautomatik',
 'exif-exposureprogram-4' => 'Blendenautomatik',
+'exif-exposureprogram-7' => 'Portrait-Programm (fir Fotoen vun no mat engem net-scharfen Hannergrond)',
 'exif-exposureprogram-8' => 'Landschaftsopnamen',
 
 'exif-subjectdistance-value' => '$1 Meter',

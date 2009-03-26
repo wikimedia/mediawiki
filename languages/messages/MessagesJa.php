@@ -73,7 +73,7 @@ $messages = array(
 'tog-highlightbroken'         => '未作成のページへのリンクをハイライトする',
 'tog-justify'                 => '段落を均等割り付けする',
 'tog-hideminor'               => '最近更新したページに細部の編集を表示しない',
-'tog-extendwatchlist'         => 'ウォッチリストを拡張する',
+'tog-extendwatchlist'         => 'ウォッチリストを拡張し、最新のものだけではなくすべての変更を表示する',
 'tog-usenewrc'                => '最近更新したページを拡張する (JavaScript)',
 'tog-numberheadings'          => '見出しに番号を振る',
 'tog-showtoolbar'             => '編集ボタンを表示する (JavaScript)',
@@ -472,7 +472,7 @@ $2',
 'throttled-mailpassword'     => '新しいパスワードは $1 時間以内に送信済みです。悪用防止のため、パスワードは $1 時間間隔で再発行可能となります。',
 'mailerror'                  => 'メールの送信中にエラーが発生しました: $1',
 'acct_creation_throttle_hit' => 'あなたは既に $1 アカウントを作成しています。これ以上作成できません。',
-'emailauthenticated'         => 'あなたのメールアドレスは $2 の $3 に確認されています。',
+'emailauthenticated'         => 'あなたのメールアドレスは $1 に確認されています。',
 'emailnotauthenticated'      => 'あなたのメールアドレスは確認されていません。確認されるまで以下のいかなるメールも送られません。',
 'noemailprefs'               => 'これらの機能を有効にするためには個人設定でメールアドレスを登録する必要があります。',
 'emailconfirmlink'           => 'メールアドレスを確認する',
@@ -622,7 +622,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'explainconflict'           => 'あなたがこのページを編集し始めた後に、他の誰かがこのページを変更しました。上側のテキストエリアは現在の最新の状態です。あなたの編集していた文章は下側のテキストエリアに示されています。編集していた文章を、上側のテキストエリアの文章に組み込んでください。<strong>上側のテキストエリアの内容だけ</strong>が、「{{int:Savearticle}}」をクリックした時に実際に保存されます。',
 'yourtext'                  => 'あなたの文章',
 'storedversion'             => '保存された版',
-'nonunicodebrowser'         => "'''警告: あなたの使用しているブラウザはユニコードに準拠していません。ページを編集する前にブラウザを変更してください。'''",
+'nonunicodebrowser'         => "'''警告: ご使用のブラウザはUnicodeに対応していません。'''ページのソースを破壊しないために、編集ボックス中の非ASCII文字は16進数文字コードによって表現されます。",
 'editingold'                => "'''警告: あなたはこのページの古い版を編集しています。もしこの文章を保存すると、この版以降に追加された全ての変更が無効になってしまいます。'''",
 'yourdiff'                  => '更新内容',
 'copyrightwarning'          => "'''■投稿する前に以下を確認してください■'''
@@ -632,11 +632,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'copyrightwarning2'         => "'''■投稿する前に以下を確認してください■'''
 * あなたの文章が他人によって自由に編集、配布されることを望まない場合は、投稿を控えてください。
 * あなたの投稿する文章はあなた自身によって書かれたものであるか、パブリック・ドメインかそれに類する自由なリソースからの複製であることを約束してください（詳細は$1を参照）。'''あなたが著作権を保持していない作品を許諾なしに投稿してはいけません!'''",
-'longpagewarning'           => "'''警告: このページのサイズは $1 キロバイトです。一部のブラウザには 32 キロバイト以上のページを編集すると問題が起きるものがあります。ページをセクションに分けることを検討してください。'''",
+'longpagewarning'           => "'''警告''': このページのサイズは $1 キロバイトです。一部のブラウザには 32 キロバイト以上のページを編集すると問題が起きるものがあります。ページをセクションに分けることを検討してください。",
 'longpageerror'             => "'''エラー: あなたが投稿したテキストは $1 キロバイトの長さがあります。これは投稿できる最大の長さである $2 キロバイトを超えています。この編集を保存することはできません。'''",
-'readonlywarning'           => '<strong>警告: データベースがメンテナンスのためにロックされているため、現在は編集結果を保存できません。必要であれば文章をカットアンドペーストしてローカルファイルとして保存し、後ほど保存をやり直してください。</strong>
-
-データベースをロックした管理者によるロックの説明は次の通りです: $1',
+'readonlywarning'           => '<strong>警告: データベースがメンテナンスのためにロックされているため、現時点では編集結果を保存できません。必要であれば文章をカットアンドペーストしてローカルファイルとして保存し、後ほど保存をやり直してください。</strong>',
 'protectedpagewarning'      => "'''警告:''' このページは保護されています。{{int:group-sysop}}しか編集できません。",
 'semiprotectedpagewarning'  => "'''お知らせ:''' このページは登録利用者のみが編集できるよう保護されています。",
 'cascadeprotectedwarning'   => "'''警告:''' このページはカスケード保護されている以下のページから呼び出されているため、{{int:group-sysop}}しか編集できません。",
@@ -713,10 +711,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'revdelete-nooldid-title'     => '対象版がありません',
 'revdelete-nooldid-text'      => '操作の完了に必要な版が指定されていません。',
 'revdelete-selected'          => "'''[[:$1]]の特定版:'''",
-'logdelete-selected'          => '[[:$1]]の、以下の選択されたログに対する操作:',
+'logdelete-selected'          => "'''$1'''の、以下の選択されたログに対する操作:",
 'revdelete-text'              => "'''削除された版や記録はページの履歴やログに表示され続けますが、一般の利用者はその内容にアクセスできなくなります。'''
 
-追加の制限がかけられない限り、{{SITENAME}}の他の{{int:group-sysop}}もこれと同じインターフェースを使って隠された内容にアクセスしたり、元に戻したりできます。",
+追加の制限がかけられない限り、{{SITENAME}} の他の{{int:group-sysop}}もこれと同じインターフェースを使って隠された内容にアクセスしたり、復元したりできます。あなたが何をしようとしているのか、それによってどんな影響がうまれるか、および、[[{{MediaWiki:Policy-url}}|方針]]に従っているかどうか、確認をしてください。",
 'revdelete-legend'            => '閲覧制限を設定',
 'revdelete-hide-text'         => '版のテキストを隠す',
 'revdelete-hide-name'         => '操作および対象を隠す',
@@ -768,7 +766,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 # Diffs
 'history-title'           => '$1 の変更履歴',
-'difference'              => '版間での差分',
+'difference'              => '(版間での差分)',
 'lineno'                  => '$1 行',
 'compareselectedversions' => '選択した版同士を比較',
 'editundo'                => '取り消し',
@@ -777,7 +775,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 # Search results
 'searchresults'         => '検索結果',
 'searchresulttext'      => '{{SITENAME}}の検索に関する詳しい情報は、[[{{MediaWiki:Helppage}}|{{int:help}}]]をご覧ください。',
-'searchsubtitle'        => '検索語: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" から始まるページ]] | [[Special:WhatLinksHere/$1|"$1" のリンク元]])',
+'searchsubtitle'        => "検索語: '''[[:$1]]'''",
 'searchsubtitleinvalid' => "検索語: '''$1'''",
 'noexactmatch'          => "'''「$1」という名前のページは存在しません。'''[[:$1|新規作成する]]ことができます。",
 'noexactmatch-nocreate' => "'''「$1」という名前のページは存在しません。'''",
@@ -889,9 +887,9 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'group-all'           => '(全員)',
 
 'group-autoconfirmed-member' => '{{int:group-autoconfirmed}}',
-'group-bot-member'           => '{{int:group-bot}}',
+'group-bot-member'           => 'ボット',
 'group-sysop-member'         => '{{int:group-sysop}}',
-'group-bureaucrat-member'    => '{{int:group-bureaucrat}}',
+'group-bureaucrat-member'    => 'ビューロクラット',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:自動承認された利用者',
 'grouppage-bot'           => '{{ns:project}}:ボット',
@@ -909,7 +907,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'recentchanges'                     => '最近更新したページ',
 'recentchangestext'                 => '最近の更新はこのページから確認できます。',
 'recentchanges-feed-description'    => '最近の更新はこのフィードで確認できます。',
-'rcnote'                            => '以下は $3 までの <strong>$2</strong> 日間に編集された <strong>$1</strong> ページです（<strong>{{int:newpageletter}}</strong>=新規項目、<strong>{{int:minoreditletter}}</strong>=細部の編集、<strong>{{int:boteditletter}}</strong>=ボットの編集、日時はオプションで未設定ならUTC）',
+'rcnote'                            => "以下は $3 までの '''$2'''日間になされた '''$1'''件の編集です（'''{{int:newpageletter}}'''=新規項目、'''{{int:minoreditletter}}'''=細部の編集、'''{{int:boteditletter}}'''=ボットの編集）",
 'rcnotefrom'                        => "以下は '''$2''' 以降になされた変更です (最大 '''$1'''件)。",
 'rclistfrom'                        => '$1からの更新を表示する',
 'rcshowhideminor'                   => '細部の編集を$1',
@@ -946,7 +944,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'uploadnologintext'           => 'ファイルをアップロードするには[[Special:UserLogin|ログイン]]する必要があります。',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロードのエラー',
-'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロード記録]]、削除の記録は[[Special:Log/delete|削除記録]]にも記録されます。
+'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードおよび削除の記録は[[Special:Log/upload|アップロード記録]]にも記録されます。
 
 ページにファイルを挿入するには以下の書式のリンクを使います。
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
@@ -957,7 +955,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'upload-prohibited'           => '禁止されているファイル形式: $1',
 'uploadlog'                   => 'アップロード記録',
 'uploadlogpage'               => 'アップロード記録',
-'uploadlogpagetext'           => '以下はファイルアップロードの最近の記録です。画像付きで見るには[[Special:NewImages|新規画像ギャラリー]]をご覧ください。',
+'uploadlogpagetext'           => '以下はファイルアップロードの最近の記録です。',
 'filename'                    => 'ファイル名',
 'filedesc'                    => 'ファイルの概要',
 'fileuploadsummary'           => 'ファイルの概要:',
@@ -1151,7 +1149,7 @@ PICT # misc.
 ページの総閲覧回数は'''$3'''回です。また、'''$4'''回の編集が行われました。平均すると、1ページあたり'''$5'''回の編集が行われ、1編集あたり'''$6'''回閲覧されています。
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue ジョブ・キュー]の長さは '''$7'''です。",
-'userstatstext'          => "[[Special:ListUsers|登録利用者]]は'''$1人'''で、その内'''$2人''' ('''$4%''') が$5権限を持っています。現在活動中の登録利用者は約'''$6人'''です。",
+'userstatstext'          => "[[Special:ListUsers|登録利用者]]は '''$1人'''で、その内 '''$2人''' ('''$4%''') が$5権限を持っています。",
 'statistics-mostpopular' => '最も閲覧されているページ',
 
 'disambiguations'      => '曖昧さ回避ページ',
@@ -1160,7 +1158,7 @@ PICT # misc.
 [[MediaWiki:Disambiguationspage]] からリンクされたテンプレートを使用しているページは曖昧さ回避ページと見なされます。",
 
 'doubleredirects'     => '二重リダイレクト',
-'doubleredirectstext' => 'このページは他のリダイレクトページにリダイレクトしているページの一覧です。各行は始点のリダイレクトとそのリダイレクト先のリダイレクトページ、および、そのまたリダイレクトしている先のページを含んでいます。3つ目のページがたいていは「真の」リダイレクト先であり、1つ目のリダイレクトはそこを直接指すべきです。',
+'doubleredirectstext' => 'これは他のリダイレクトページにリダイレクトしているページの一覧です。各行は始点のリダイレクトとそのリダイレクト先ページ、および、そのまたリダイレクトしている先のページを含んでいます。3つ目のページがたいていは「真の」リダイレクト先であり、1つ目のリダイレクトはそこを直接指すべきです。',
 
 'brokenredirects'        => '迷子のリダイレクト',
 'brokenredirectstext'    => '以下は存在しないページにリンクしているリダイレクトです。',
@@ -1256,8 +1254,8 @@ PICT # misc.
 'nextpage'          => '次のページ ($1)',
 'prevpage'          => '前のページ ($1)',
 'allpagesfrom'      => '最初に表示するページ:',
-'allarticles'       => '全ページ',
-'allinnamespace'    => '全ページ ($1 名前空間)',
+'allarticles'       => 'ページ一覧',
+'allinnamespace'    => 'ページ一覧 ($1名前空間)',
 'allnotinnamespace' => '全ページ ($1 名前空間を除く)',
 'allpagesprev'      => '前へ',
 'allpagesnext'      => '次へ',
@@ -1322,7 +1320,7 @@ PICT # misc.
 'watchlistcontains'    => 'あなたのウォッチリストには $1件のページが登録されています。',
 'iteminvalidname'      => '"$1" をウォッチリストから削除できません。ページ名が不正です。',
 'wlnote'               => '以下は最近 <strong>$2</strong> 時間に編集された <strong>$1</strong> ページです。',
-'wlshowlast'           => '最近の [$1時間] [$2日間] [$3] のものを表示する',
+'wlshowlast'           => '最近 [$1時間] [$2日間] [$3] のものを表示する',
 'watchlist-show-bots'  => 'ボットの編集を表示',
 'watchlist-hide-bots'  => 'ボットの編集を隠す',
 'watchlist-show-own'   => '自分の編集を表示',
@@ -1403,9 +1401,9 @@ $NEWPAGE
 'rollbacklink'                => '差し戻し',
 'rollbackfailed'              => '差し戻しに失敗しました',
 'cantrollback'                => '投稿者がただ一人であるため、編集を差し戻せません。',
-'alreadyrolled'               => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]] | [[Special:Contributions/$2|{{int:contribslink}}]])による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
+'alreadyrolled'               => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]]) による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
 
-このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]] | [[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。',
+このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]]) によるものです。',
 'editcomment'                 => "編集内容の要約: \"''\$1''\"", # only shown if there is an edit comment
 'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による版へ差し戻し', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 による編集を取り消して $2 による直前の版へ差し戻しました。',
@@ -1465,11 +1463,11 @@ $NEWPAGE
 'undeleterevdel'               => 'トップページの版が一時的に削除されているものに対しては、復帰処理を実行できません。このような場合、まずは最新の削除履歴に対するチェックまたは隠蔽を解除する必要があります。
 ファイル履歴を表示する権限がない場合も、復帰させることはできません。',
 'undeletehistorynoadmin'       => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
-'undelete-revision'            => '$1 の削除された版 ($4 $5時点、投稿者$3) :',
+'undelete-revision'            => '$1 の削除された版 ($2時点、投稿者$3):',
 'undeleterevision-missing'     => '無効、あるいは誤った版です。当該版は既に復帰されたか、アーカイブから削除された可能性があります。',
 'undelete-nodiff'              => 'これより前の版はありません。',
 'undeletebtn'                  => '復帰',
-'undeletelink'                 => '復帰',
+'undeletelink'                 => '閲覧・復帰',
 'undeletereset'                => 'リセット',
 'undeletecomment'              => 'コメント:',
 'undeletedarticle'             => '"$1" を復帰しました。',
@@ -1555,10 +1553,10 @@ $NEWPAGE
 'ipbenableautoblock'          => 'この利用者が最後に使用したIPアドレスを自動的にブロック（ブロック後に使用したIPアドレスも含む）',
 'ipbsubmit'                   => '投稿ブロックする',
 'ipbother'                    => '期間 (その他のとき)',
-'ipboptions'                  => '15分:15 minutes,30分:30 minutes,2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'その他',
 'ipbotherreason'              => '理由（その他/追加）',
-'ipbhidename'                 => '利用者名/IPを{{int:blocklogpage}}、{{int:ipblocklist}}、{{int:listusers}}などに載せない',
+'ipbhidename'                 => '利用者名やIPアドレスを編集履歴や各種一覧に載せない',
 'badipaddress'                => 'IPアドレスが異常です。',
 'blockipsuccesssub'           => 'ブロックに成功しました。',
 'blockipsuccesstext'          => '利用者またはIPアドレス [[Special:Contributions/$1|$1]] の投稿をブロックしました。<br />
@@ -1609,8 +1607,8 @@ $NEWPAGE
 'proxyblocker-disabled'       => 'この機能は無効になっています。',
 'proxyblockreason'            => 'あなたの使用しているIPアドレスは公開プロキシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
 'proxyblocksuccess'           => '完了。',
-'sorbsreason'                 => 'あなたのIPアドレスは公開プロキシであると、{{SITENAME}}のブラックリストに掲載されています。',
-'sorbs_create_account_reason' => 'あなたのIPアドレスが公開プロキシであると{{SITENAME}}のブラックリストに掲載されているため、アカウントを作成できません。',
+'sorbsreason'                 => 'あなたのIPアドレスは{{SITENAME}}の使用しているDNSブラックリストに公開プロキシとして登録されています。',
+'sorbs_create_account_reason' => 'あなたのIPアドレスは、{{SITENAME}}の使用しているDNSブラックリストに公開プロキシとして登録されているため、アカウントは作成できません。',
 
 # Developer tools
 'lockdb'              => 'データベースのロック',
@@ -1683,7 +1681,7 @@ $NEWPAGE
 
 # Export
 'export'            => 'ページデータの書き出し',
-'exporttext'        => 'ここでは単独のまたは複数のページのテキストと編集履歴をXMLの形で書き出すことができます。書き出されたXML文書は他の MediaWiki で動いているウィキに[[Special:Import|取り込みページ]]を使って取り込めます。
+'exporttext'        => 'ここでは単独あるいは複数のページのテキストと編集履歴をXMLの形で書き出すことができます。書き出されたXML文書は他の MediaWiki で動いているウィキに[[Special:Import|取り込みページ]]を使って取り込めます。
 
 ページデータを書き出すには下のテキストボックスに書き出したいページの名前を一行に一つずつ記入してください。また編集履歴とともに全ての古い版を含んで書き出すのか、最新版のみを書き出すのか選択してください。
 
@@ -1692,7 +1690,7 @@ $NEWPAGE
 'exportnohistory'   => "----
 '''注:''' パフォーマンス上の理由により、このフォームによるページの完全な履歴の書き出しは行えません。",
 'export-submit'     => '書き出し',
-'export-addcattext' => '次のカテゴリ内のページを対象に加える:',
+'export-addcattext' => '次のカテゴリ内のページを加える:',
 'export-addcat'     => '追加',
 'export-download'   => '書き出した結果をファイルに保存する',
 'export-templates'  => 'テンプレートも含める',
@@ -1779,7 +1777,7 @@ $NEWPAGE
 'tooltip-search'                  => 'ウィキ内を検索',
 'tooltip-search-go'               => '入力された文字列と一致するものがある場合、そのページへ移動します',
 'tooltip-search-fulltext'         => '入力された文字列が含まれるページを検索します',
-'tooltip-p-logo'                  => 'メインページ',
+'tooltip-p-logo'                  => 'メインページに移動',
 'tooltip-n-mainpage'              => 'メインページに移動',
 'tooltip-n-portal'                => 'このプロジェクトについて、あなたのできることを探す場所です',
 'tooltip-n-currentevents'         => '最近の出来事',
@@ -1830,12 +1828,12 @@ $NEWPAGE
 'notacceptable'     => 'ウィキサーバーはあなたの使用しているクライアントが読める形式で情報を提供できません。',
 
 # Attribution
-'anonymous'        => '{{SITENAME}}の$1人の匿名利用者',
+'anonymous'        => '{{SITENAME}}の匿名利用者',
 'siteuser'         => '{{SITENAME}}の利用者$1',
-'lastmodifiedatby' => '最終更新は $3 による $2, $1 の編集です。', # $1 date, $2 time, $3 user
-'othercontribs'    => '$1の版に基づきます。',
+'lastmodifiedatby' => 'このページの最終更新は$1$2に$3によって行われました。', # $1 date, $2 time, $3 user
+'othercontribs'    => '本ページの内容は$1が編集しました。',
 'others'           => 'その他の利用者',
-'siteusers'        => '{{SITENAME}}の$2人の利用者が$1',
+'siteusers'        => '{{SITENAME}}の利用者 $1',
 'creditspage'      => 'ページ・クレジット',
 'nocredits'        => 'このページには有効なクレジット情報がありません。',
 
@@ -1843,9 +1841,9 @@ $NEWPAGE
 'spamprotectiontitle'    => 'スパム防御フィルター',
 'spamprotectiontext'     => 'あなたが保存しようとしたページはスパム・フィルターによって保存をブロックされました。これは主に外部サイトへのリンクが原因です。',
 'spamprotectionmatch'    => '以下はスパム・フィルターによって検出されたテキストです: $1',
-'subcategorycount'       => 'このカテゴリには $1 のサブカテゴリがあります。',
-'categoryarticlecount'   => 'このカテゴリには $1 のページがあります。',
-'category-media-count'   => 'このカテゴリには $1 のファイルがあります。',
+'subcategorycount'       => 'このカテゴリには $1個のサブカテゴリがあります。',
+'categoryarticlecount'   => 'このカテゴリには $1個のページが入っています。',
+'category-media-count'   => 'このカテゴリには $1個のファイルが入っています。',
 'listingcontinuesabbrev' => 'の続き',
 'spambot_username'       => 'MediaWiki スパム除去',
 'spam_reverting'         => '$1 へのリンクを含まない以前の版に差し戻し',

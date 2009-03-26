@@ -1333,7 +1333,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'log-search-legend'    => 'Søk i loggene.',
 'log-search-submit'    => 'Gå',
 'alllogstext'          => 'Kombinert visning av alle loggene på {{SITENAME}}.
-Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket (husk å skille mellom store og små boktaver).',
+Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket (husk å skille mellom store og små bokstaver).',
 'logempty'             => 'Ingen elementer i loggen.',
 'log-title-wildcard'   => 'Søk i titler som starter med denne teksten',
 

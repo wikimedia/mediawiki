@@ -143,7 +143,7 @@ $messages = array(
 'category-media-header' => 'Média dina kategori "$1"',
 'category-empty'        => "''Kategori ieu, ayeuna teu ngabogaan artikel atawa gambar.''",
 
-'mainpagetext'      => "''Software'' Wiki geus diinstal.",
+'mainpagetext'      => "<big>'''''Software'' MediaWiki geus diinstal.'''</big>",
 'mainpagedocfooter' => "Mangga tingal ''[http://meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi.",
 
 'about'          => 'Ngeunaan',

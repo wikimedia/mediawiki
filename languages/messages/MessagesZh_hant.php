@@ -72,7 +72,7 @@ $messages = array(
 'tog-highlightbroken'         => '毀壞的鏈結格式<a href="" class="new">像這樣</a> (或者像這個<a href="" class="internal">?</a>)',
 'tog-justify'                 => '段落對齊',
 'tog-hideminor'               => '最近更改中隱藏小修改',
-'tog-extendwatchlist'         => '增強監視清單以顯示所有可用更改',
+'tog-extendwatchlist'         => '增強監視清單以顯示所有更改，不只是最近的',
 'tog-usenewrc'                => '增強最近更改 (需要JavaScript)',
 'tog-numberheadings'          => '標題自動編號',
 'tog-showtoolbar'             => '顯示編輯工具欄 (需要JavaScript)',
@@ -174,7 +174,7 @@ $messages = array(
 'category-media-header' => '"$1"分類中的媒體',
 'category-empty'        => "''這個分類中尚未包含任何頁面或媒體。''",
 
-'mainpagetext'      => "<big>'''已成功安裝 MediaWiki!'''</big>",
+'mainpagetext'      => "<big>'''已成功安裝 MediaWiki。'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 用戶手冊] 以獲得使用此 wiki 軟件的訊息！
 
 == 入門 ==
@@ -594,7 +594,7 @@ $2',
 '''Konqueror:''' 只需點擊 ''重新整理''或按下''F5''；
 '''Opera:''' 在 ''工具→設定'' 中完整地清除它們的快取；
 '''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
-'usercssjsyoucanpreview'    => "'''提示:''' 在保存前請用'顯示預覧'按鈕來測試您新的 CSS/JS 。",
+'usercssjsyoucanpreview'    => "'''提示:''' 在保存前請用'顯示預覽'按鈕來測試您新的 CSS/JS 。",
 'usercsspreview'            => "'''注意您只是在預覽您的個人 CSS。'''
 '''還沒有儲存﹗'''",
 'userjspreview'             => "'''注意您只是在測試／預覽您的個人 JavaScript。'''
@@ -602,16 +602,16 @@ $2',
 'userinvalidcssjstitle'     => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/monobook.css 不同於 {{ns:user}}:Foo/Monobook.css。",
 'updated'                   => '(已更新)',
 'note'                      => "'''注意:'''",
-'previewnote'               => "'''請記住這只是預覽，內容還未保存！'''",
+'previewnote'               => "'''請記住這只是預覽。'''內容還未保存！",
 'previewconflict'           => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
-'session_fail_preview'      => "'''抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。'''",
+'session_fail_preview'      => "'''抱歉！由於部份資料遺失，我們無法處理您的編輯。'''請再試一次，如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。",
 'session_fail_preview_html' => "'''抱歉！部份資料已遺失，我們無法處理您的編輯。'''
 
 ''由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。''
 
 '''如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請[[Special:UserLogout|登出]]後再重新登入一次。'''",
-'token_suffix_mismatch'     => "'''由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
-這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。'''",
+'token_suffix_mismatch'     => "'''由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。'''
+這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。",
 'editing'                   => '正在編輯$1',
 'editinguser'               => "正在更改用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 的用戶權限",
 'editingsection'            => '正在編輯$1 (段落)',
@@ -624,9 +624,9 @@ $2',
 <b>只有</b>在上面文字框中的內容會在你點擊"保存頁面"後被保存。<br />',
 'yourtext'                  => '您的文字',
 'storedversion'             => '已保存版本',
-'nonunicodebrowser'         => "'''警告: 您的瀏覽器不兼容Unicode編碼。這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。'''",
-'editingold'                => "'''警告：你正在編輯的是本頁的舊版本。
-如果你保存它的話，在本版本之後的任何修改都會丟失。'''",
+'nonunicodebrowser'         => "'''警告: 您的瀏覽器不兼容Unicode編碼。'''這裡有一個工作區將使您能安全地編輯頁面: 非ASCII字元將以十六進製編碼模式出現在編輯框中。",
+'editingold'                => "'''警告：你正在編輯的是本頁的舊版本。'''
+如果你保存它的話，在本版本之後的任何修改都會丟失。",
 'yourdiff'                  => '差異',
 'copyrightwarning'          => "請注意您對{{SITENAME}}的所有貢獻都被認為是在$2下發佈，請查看在$1的細節。
 如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
@@ -637,8 +637,8 @@ $2',
 如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
 您同時也要向我們保證您所提交的內容是您自己所作，或得自一個不受版權保護或相似自由的來源（參閱$1的細節）。
 '''不要在未獲授權的情況下發表！'''",
-'longpagewarning'           => "'''警告: 本頁長度達$1KB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。'''",
-'longpageerror'             => "'''錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。該文本不能被儲存。'''",
+'longpagewarning'           => "'''警告''': 本頁長度達$1KB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。",
+'longpageerror'             => "'''錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。'''該文本不能被儲存。",
 'readonlywarning'           => '<strong>警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。</strong>
 
 管理員有如下解釋: $1',
@@ -724,8 +724,8 @@ $2',
 'revdelete-selected'          => "'''選取'''$1'''的$2次修訂:'''",
 'logdelete-selected'          => "選取'''$1'''的$2個日誌項目:",
 'revdelete-text'              => "'''刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。'''
-
-在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。",
+在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。
+請確認您肯定去做的話，您就要明白到後果，以及這個程序符合[[{{MediaWiki:Policy-url}}|政策]]。",
 'revdelete-legend'            => '設定可見性之限制',
 'revdelete-hide-text'         => '隱藏修訂文字',
 'revdelete-hide-name'         => '隱藏動作和目標',
@@ -1074,10 +1074,10 @@ $2',
 'nolinkstoimage'            => '沒有頁面連接到本檔案。',
 'sharedupload'              => '該檔案是一個共享上傳，它可能在其它項目中被應用。',
 'shareduploadwiki'          => '請參閱在共享檔案庫上的$1以了解其相關資訊。',
-'shareduploadwiki-desc'     => '它在$1上的描述於下面顯示。',
+'shareduploadwiki-desc'     => '它在$1那邊上的描述於下面顯示。',
 'shareduploadwiki-linktext' => '檔案描述頁面',
 'noimage'                   => '不存在此名稱的檔案，但您可以$1。',
-'noimage-linktext'          => '上傳它',
+'noimage-linktext'          => '上傳一個',
 'uploadnewversion-linktext' => '上傳該檔案的新版本',
 'imagelist_date'            => '日期',
 'imagelist_name'            => '名稱',
@@ -1163,8 +1163,8 @@ $2',
 'disambiguationspage'  => 'Template:disambig
 Template:消含糊
 Template:消除含糊
-Template:消歧义
-Template:消除歧义
+Template:消歧義
+Template:消除歧義
 Template:消歧義
 Template:消除歧義',
 'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的鏈接, 但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:Disambiguationspage]]。',
@@ -1257,7 +1257,7 @@ Template:消除歧義',
 'specialloguserlabel'  => '用戶:',
 'speciallogtitlelabel' => '標題:',
 'log'                  => '日誌',
-'all-logs-page'        => '所有日誌',
+'all-logs-page'        => '所有公共日誌',
 'log-search-legend'    => '搜尋日誌',
 'log-search-submit'    => '去',
 'alllogstext'          => '綜合{{SITENAME}}的顯示上傳、刪除、保護、查封以及站務日誌。',
@@ -1445,7 +1445,7 @@ $NEWPAGE
 以下是'''$1'''現時的保護級別:",
 'protect-locked-access'       => "您的帳戶權限不能修改保護級別。
 以下是'''$1'''現時的保護級別:",
-'protect-cascadeon'           => '以下的{{PLURAL:$1|一個|多個}}頁面包含着本頁面的同時，啟動了連鎖保護，因此本頁面目前也被保護，未能編輯。您可以設定本頁面的保護級別，但這並不會對連鎖保護有所影響。',
+'protect-cascadeon'           => '以下的{{PLURAL:$1|一個|多個}}頁面包含著本頁面的同時，啟動了連鎖保護，因此本頁面目前也被保護，未能編輯。您可以設定本頁面的保護級別，但這並不會對連鎖保護有所影響。',
 'protect-default'             => '容許所有用戶',
 'protect-fallback'            => '需要"$1"的許可',
 'protect-level-autoconfirmed' => '禁止新的和未註冊的用戶',
@@ -1488,7 +1488,7 @@ $NEWPAGE
 'undeleterevision-missing'     => '此版本的內容不正確或已經遺失。可能連結錯誤、被移除或已經被恢復。',
 'undelete-nodiff'              => '找不到先前的修訂版本。',
 'undeletebtn'                  => '恢復',
-'undeletelink'                 => '恢復',
+'undeletelink'                 => '查看／恢復',
 'undeletereset'                => '重設',
 'undeletecomment'              => '原因',
 'undeletedarticle'             => '已經恢復「$1」',
@@ -2378,16 +2378,16 @@ $1
 # Special:Version
 'version-extensions'               => '已經安裝的擴展',
 'version-specialpages'             => '特殊頁面',
-'version-parserhooks'              => '語法鈎',
+'version-parserhooks'              => '語法鉤',
 'version-variables'                => '變數',
 'version-other'                    => '其它',
 'version-mediahandlers'            => '媒體處理器',
-'version-hooks'                    => '鈎',
+'version-hooks'                    => '鉤',
 'version-extension-functions'      => '擴展函數',
 'version-parser-extensiontags'     => '語法擴展標籤',
-'version-parser-function-hooks'    => '語法函數鈎',
+'version-parser-function-hooks'    => '語法函數鉤',
 'version-skin-extension-functions' => '面版擴展函數',
-'version-hook-name'                => '鈎名',
+'version-hook-name'                => '鉤名',
 'version-hook-subscribedby'        => '利用於',
 'version-version'                  => '版本',
 'version-license'                  => '授權',

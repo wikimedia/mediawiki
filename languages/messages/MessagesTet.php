@@ -585,7 +585,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 # Undelete
 'undelete'               => 'Haree pájina halakon tiha',
 'undeletebtn'            => 'Restaurar',
-'undeletelink'           => 'restaurar',
+'undeletelink'           => 'lee/restaurar',
 'undeletecomment'        => 'Komentáriu:',
 'undeletedarticle'       => 'restaurar "[[$1]]"',
 'undeletedrevisions'     => 'restaurar {{PLURAL:$1|versaun|versaun}} $1',

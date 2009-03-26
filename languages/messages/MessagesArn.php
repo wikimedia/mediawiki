@@ -337,6 +337,8 @@ $messages = array(
 
 # Block/unblock
 'ipbexpiry'          => 'Afi',
+'ipbreason'          => 'Dungu:',
+'ipbreasonotherlist' => 'Kake dungu:',
 'ipboptions'         => '2 ora:2 hours,1 aṉtü:1 day,3 aṉtü:3 days,1 semana:1 week,2 semana:2 weeks,1 küyeṉ:1 month,3 küyeṉ:3 months,6 küyeṉ:6 months,1 tripantu:1 year,rumel:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'Kakelu',
 'ipblocklist-submit' => 'Kintun',

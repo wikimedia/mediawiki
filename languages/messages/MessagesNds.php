@@ -179,13 +179,13 @@ $messages = array(
 'tog-highlightbroken'         => 'Verwies op leddige Sieten hervörheven',
 'tog-justify'                 => 'Text as Blocksatz',
 'tog-hideminor'               => 'Kene lütten Ännern in letzte Ännern wiesen',
-'tog-extendwatchlist'         => 'Utwiedt Oppasslist',
+'tog-extendwatchlist'         => 'Oppasslist utwieden, dat se all, un nich blot de jüngsten, wiest',
 'tog-usenewrc'                => 'Erwiederte letzte Ännern (nich för alle Browser bruukbor)',
 'tog-numberheadings'          => 'Överschrieven automatsch nummereern',
 'tog-showtoolbar'             => 'Editeer-Warktüüchlist wiesen',
-'tog-editondblclick'          => 'Sieten mit Dubbelklick bearbeiden (JavaScript)',
-'tog-editsection'             => 'Links för dat Bearbeiden vun en Afsatz wiesen',
-'tog-editsectiononrightclick' => 'En Afsatz mit en Rechtsklick bearbeiden (Javascript)',
+'tog-editondblclick'          => 'Sieden mit Dubbelklick ännern (JavaScript)',
+'tog-editsection'             => 'Links för dat Ännern vun en Afsatz wiesen',
+'tog-editsectiononrightclick' => 'En Afsatz mit en Rechtsklick ännern (Javascript)',
 'tog-showtoc'                 => "Wiesen vun'n Inholtsverteken bi Sieten mit mehr as dree Överschriften",
 'tog-rememberpassword'        => 'Duersam Inloggen',
 'tog-editwidth'               => 'Text-Ingaavfeld mit vulle Breed',
@@ -281,7 +281,7 @@ $messages = array(
 'category-media-header' => 'Mediendatein in de Kategorie „$1“',
 'category-empty'        => "''In disse Kategorie sünd aktuell kene Sieden.''",
 
-'mainpagetext'      => 'De Wiki-Software is mit Spood installeert worrn.',
+'mainpagetext'      => "<big>'''De MediaWiki-Software is mit Spood installeert worrn.'''</big>",
 'mainpagedocfooter' => 'Kiek de [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentatschoon för dat Anpassen vun de Brukerböversiet]
 un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] för Hülp to de Bruuk un Konfiguratschoon.',
 
@@ -401,7 +401,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'newmessagesdifflink'     => 'Ünnerscheed to vörher',
 'youhavenewmessagesmulti' => 'Du hest ne’e Narichten op $1',
 'editsection'             => 'ännern',
-'editold'                 => 'bearbeiden',
+'editold'                 => 'ännern',
 'editsectionhint'         => 'Ännere Afsnitt: $1',
 'toc'                     => 'Inholtsverteken',
 'showtoc'                 => 'wiesen',
@@ -715,11 +715,11 @@ Dat kann to’n Bispeel dor vun kamen, dat du en anonymen Proxy-Deenst bruukst, 
 'editinguser'               => "Ännern vun Brukerrechten vun '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Ännern vun $1 (Afsatz)',
 'editingcomment'            => 'Ännern vun $1 (nee Afsnidd)',
-'editconflict'              => 'Konflikt bi dat Bearbeiden: $1',
-'explainconflict'           => 'En anner Bruker hett disse Siet ännert, no de Tied dat du anfungen hest, de Siet to bearbeiden.
-Dat Textfeld baven wiest de aktuelle Siet.
-Dat Textfeld nerrn wiest diene Ännern.
-Föög diene Ännern in dat Textfeld baven in.
+'editconflict'              => 'Konflikt bi’t Sied ännern: $1',
+'explainconflict'           => 'En annern Bruker hett disse Sied ännert, na de Tied dat du anfungen hest, de Sied to ännern.
+Dat Textfeld baven wiest de aktuelle Sied.
+Dat Textfeld ünnen wiest dien Ännern.
+Föög dien Ännern in dat Textfeld baven in.
 
 <b>Blots</b> de Text in dat Textfeld baven warrt spiekert, wenn du op Spiekern klickst!<br />',
 'yourtext'                  => 'Dien Text',
@@ -735,8 +735,8 @@ Wenn du dat nich wullst, dröffst du dien Text hier nich apentlich maken.<br />
 
 Du bestätigst ok, dat du den Text sülvst schreven hest oder ut en „Public Domain“-Born oder en annere fre'e Born kopeert hest (Kiek ok $1 för Details).
 '''Kopeer kene Warken, de enen Oorheverrecht ünnerliggt, ahn Verlööv vun de Copyright-Inhebbers!'''",
-'longpagewarning'           => "'''Wohrscho: Disse Siet is $1 kB groot; en poor Browser köönt Probleme hebben, Sieten to bearbeiden, de grötter as 32 kB sünd.
-Bedenk of disse Siet vilicht in lüttere Afsnitten opdeelt warrn kann.'''",
+'longpagewarning'           => "'''Wohrschau: Disse Sied is $1 kB groot; en poor Browsers köönt Problemen hebben, Sieden to ännern, de grötter as 32 kB sünd.
+Överlegg, wat disse Sied nich villicht in lüttere Afsneed opdeelt warrn kann.'''",
 'longpageerror'             => "'''Fehler: Dien Text is $1 Kilobytes lang. Dat is länger as dat Maximum vun $2 Kilobytes. Kann den Text nich spiekern.'''",
 'readonlywarning'           => '<strong>Wohrscho: De Datenbank is för Pleegarbeiden sparrt worrn, so dat du de Sied en Stoot nich
 spiekern kannst. Seker di den Text un versöök dat later noch wedder.</strong>
@@ -830,9 +830,10 @@ Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revdelete-nooldid-title'     => 'kene Versionen dor, de passt',
 'revdelete-selected'          => "'''{{PLURAL:$2|Wählte Version|Wählte Versionen}} vun [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|wählt Logbook-Indrag|wählte Logbook-Indrääg}} för '''$1:'''",
-'revdelete-text'              => "'''Wegsmetene Versionen staht noch jümmer in de Versionsgeschicht, sünd aver nich mehr apen intosehn.'''
+'revdelete-text'              => "'''Wegsmetene Versionen un Akschonen staht noch jümmer in de Versionsgeschicht un Logböker, sünd aver nich mehr apen intosehn.'''
 
-{{SITENAME}}-Administraters köönt de Sieden noch jümmer sehn un ok wedderhalen, solang dat nich extra fastleggt is, dat ok Administraters dat nich mehr mehr dröfft.",
+{{SITENAME}}-Administraters köönt de Sieden noch jümmer sehn un ok wedderhalen, solang dat nich extra fastleggt is, dat ok Administraters dat nich mehr mehr dröfft.
+Segg also to, dat du dat ok würklich wullt, dat du de Konsequenzen versteist un dat dat mit de [[{{MediaWiki:Policy-url}}|Richtlienen]] övereen geit.",
 'revdelete-legend'            => 'Inschränkungen för de Sichtborkeit setten',
 'revdelete-hide-text'         => 'Versiontext versteken',
 'revdelete-hide-name'         => 'Akschoon un Teel versteken',
@@ -975,7 +976,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 # User rights
 'userrights-lookup-user'           => 'Brukergruppen verwalten',
 'userrights-user-editname'         => 'Brukernaam ingeven:',
-'editusergroup'                    => 'Brukergruppen bearbeiden',
+'editusergroup'                    => 'Brukergruppen ännern',
 'userrights-editusergroup'         => 'Brukergruppen ännern',
 'saveusergroups'                   => 'Brukergruppen spiekern',
 'userrights-groupsmember'          => 'Liddmaat vun:',
@@ -1174,7 +1175,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'sharedupload'              => 'Disse Datei is as gemeensam bruukte Datei hoochlaadt un warrt mööglicherwies ok vun annere Wikis bruukt.',
 'shareduploadwiki'          => 'Kiek bi $1 för mehr Informatschoon.',
 'shareduploadwiki-desc'     => 'Wat nu kummt is de Text vun de $1 dor.',
-'shareduploadwiki-linktext' => 'Siet mit de Datei-Beschrievung',
+'shareduploadwiki-linktext' => 'Sied to de Datei',
 'noimage'                   => 'Ene Datei mit dissen Naam gifft dat nich, du kannst ehr $1.',
 'noimage-linktext'          => 'hoochladen',
 'uploadnewversion-linktext' => 'Ne’e Version vun disse Datei hoochladen',
@@ -1571,7 +1572,7 @@ Den Text vun de wegsmetene Sied köönt blot Administraters sehn.',
 'undeleterevision-missing'     => 'Version is ungüllig oder fehlt. Villicht weer de Lenk verkehrt oder de Version is wedderhaalt oder ut dat Archiv rutnahmen worrn.',
 'undelete-nodiff'              => 'Gifft kene öllere Version.',
 'undeletebtn'                  => 'Wedderhalen!',
-'undeletelink'                 => 'wedderhalen',
+'undeletelink'                 => 'ankieken/wedderhalen',
 'undeletereset'                => 'Afbreken',
 'undeletecomment'              => 'Grund:',
 'undeletedarticle'             => '„$1“ wedderhaalt',
@@ -1662,13 +1663,12 @@ Ok den Grund för dat Blocken indregen.',
 'ipboptions'                  => '2 Stünnen:2 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,6 Maand:6 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Annere Duer',
 'ipbotherreason'              => 'Annern Grund:',
-'ipbhidename'                 => 'Brukernaam in dat Sperr-Logbook, de List vun de aktiven Sperren un de Brukerlist versteken.',
+'ipbhidename'                 => 'Brukernaam narms mehr wiesen',
 'badipaddress'                => 'De IP-Adress hett en falsch Format.',
 'blockipsuccesssub'           => 'Blocken hett Spood',
-'blockipsuccesstext'          => 'De IP-Adress „$1“ is nu blockt.
-
-<br />Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.',
-'ipb-edit-dropdown'           => 'Blockgrünn bearbeiden',
+'blockipsuccesstext'          => 'De IP-Adress „[[Special:Contributions/$1|$1]]“ is nu blockt.<br />
+Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.',
+'ipb-edit-dropdown'           => 'Blockgrünn ännern',
 'ipb-unblock-addr'            => '„$1“ freegeven',
 'ipb-unblock'                 => 'IP-Adress/Bruker freegeven',
 'ipb-blocklist-addr'          => 'Aktuelle Sperren för „$1“',
@@ -1795,7 +1795,12 @@ De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet scha
 
 # Export
 'export'            => 'Sieden exporteren',
-'exporttext'        => 'Du kannst de Text un de Bearbeidenshistorie vun een oder mehr Sieten no XML exporteern. Dat Resultat kann in en annern Wiki mit MediaWiki-Software inspeelt warrn, bearbeid oder archiveert warrn.',
+'exporttext'        => 'Du kannst den Text un de Historie vun een oder mehr Sieden na XML exporteren.
+Dat Resultat kann över de [[Special:Import|Import-Sied]] in en anner Wiki mit MediaWiki-Software inspeelt warrn.
+
+Sieden to exporteren, geev de Titels in dat Textfeld ünnen in, een per Reeg un wähl ut, of du de aktuelle un all de olen Versionen oder blot de aktuelle mit de Infos över den leste Version wullt.
+
+Wenn du blot de aktuelle hebben wist, kannst du ok en Lenk bruken, to’n Bispeel [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] för de Sied [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Blots de aktuelle Version vun de Siet exporteern',
 'exportnohistory'   => "----
 '''Henwies:''' Exporteren vun hele Versionsgeschichten över dit Formular geiht nich, wegen de Performance.",
@@ -1872,8 +1877,8 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'tooltip-pt-preferences'          => 'Mien Instellen',
 'tooltip-pt-watchlist'            => 'Mien Oppasslist',
 'tooltip-pt-mycontris'            => 'List vun dien Bidrääg',
-'tooltip-pt-login'                => 'Du kannst di geern anmellen, dat is aver nich neudig, üm Sieten to bearbeiden.',
-'tooltip-pt-anonlogin'            => 'Du kannst di geern anmellen, dat is aver nich neudig, üm Sieten to bearbeiden.',
+'tooltip-pt-login'                => 'Du kannst di geern anmellen, dat is aver nich nödig, dat du Sieden ännern kannst.',
+'tooltip-pt-anonlogin'            => 'Du kannst di geern anmellen, dat is aver nich nödig, dat du Sieden ännern kannst.',
 'tooltip-pt-logout'               => 'Afmellen',
 'tooltip-ca-talk'                 => 'Diskuschoon över disse Siet',
 'tooltip-ca-edit'                 => 'Du kannst disse Siet ännern. Bruuk dat vör dat Spiekern.',

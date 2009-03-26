@@ -9,6 +9,8 @@
  * @author Eduardo.mps
  * @author GKnedo
  * @author Heldergeovane
+ * @author Jorge Morais
+ * @author Leonardo.stabile
  * @author Lijealso
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
@@ -164,7 +166,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
-'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis',
+'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis, não apenas as mais recentes',
 'tog-usenewrc'                => 'Mudanças recentes melhoradas (JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
@@ -224,14 +226,14 @@ $messages = array(
 'january'       => 'janeiro',
 'february'      => 'fevereiro',
 'march'         => 'março',
-'april'         => 'Abril',
-'may_long'      => 'Maio',
-'june'          => 'Junho',
-'july'          => 'Julho',
-'august'        => 'Agosto',
-'september'     => 'Setembro',
-'october'       => 'Outubro',
-'november'      => 'Novembro',
+'april'         => 'abril',
+'may_long'      => 'maio',
+'june'          => 'junho',
+'july'          => 'julho',
+'august'        => 'agosto',
+'september'     => 'setembro',
+'october'       => 'outubro',
+'november'      => 'novembro',
 'december'      => 'Dezembro',
 'january-gen'   => 'janeiro',
 'february-gen'  => 'fevereiro',
@@ -392,7 +394,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Tem novas mensagens em $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
-'editsectionhint'         => 'Editar secção: $1',
+'editsectionhint'         => 'Editar seção: $1',
 'toc'                     => 'Tabela de conteúdo',
 'showtoc'                 => 'mostrar',
 'hidetoc'                 => 'esconder',
@@ -680,7 +682,7 @@ Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for re
 'confirmedittext'           => 'Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas.
 Por favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de usuário]].',
 'nosuchsectiontitle'        => 'Seção inexistente',
-'nosuchsectiontext'         => 'Você tentou editar uma seção que não existe. Uma vez que não há a secção $1, não há um local para salvar a sua edição.',
+'nosuchsectiontext'         => 'Você tentou editar uma seção que não existe. Uma vez que não há a seção $1, não há um local para salvar a sua edição.',
 'loginreqtitle'             => 'Autenticação Requerida',
 'loginreqlink'              => 'autenticar-se',
 'loginreqpagetext'          => 'Você precisa de $1 para poder visualizar outras páginas.',
@@ -833,9 +835,10 @@ mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de 
 'revdelete-nooldid-text'      => 'Você não especificou uma ou mais revisões para realizar esta função.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Evento de registro selecionado|Eventos de registro selecionados}} para '''$1:'''",
-'revdelete-text'              => "'''Revisões eliminadas continuarão aparecendo no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.'''
+'revdelete-text'              => "'''Revisões eliminadas e eventos continuarão aparecendo no histórico da página e nos registros, apesar de o seu conteúdo textual estar inacessível ao público.'''
 
-Outros administradores nesta wiki continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
+Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.
+Por favor confirme que deseja fazê-lo, que entende as consequências e que está fazendo isto de acordo com [[{{MediaWiki:Policy-url}}|a política]].",
 'revdelete-legend'            => 'Definir restrições de visualização',
 'revdelete-hide-text'         => 'Ocultar texto da edição',
 'revdelete-hide-name'         => 'Ocultar acção e alvo',
@@ -901,8 +904,8 @@ Certifique-se de que esta alteração irá manter a continuidade do conteúdo da
 'toomanymatches'        => 'Foram retornados muitos resultados. Por favor, tente um filtro de pesquisa diferente',
 'titlematches'          => 'Resultados nos títulos das páginas',
 'notitlematches'        => 'Nenhum título de página coincide',
-'textmatches'           => 'Resultados dos textos das páginas',
-'notextmatches'         => 'Nenhum texto nas páginas coincide',
+'textmatches'           => 'Resultados nos textos das páginas',
+'notextmatches'         => 'Não foi possível localizar, no conteúdo das páginas, o termo pesquisado',
 'prevn'                 => 'anteriores $1',
 'nextn'                 => 'próximos $1',
 'viewprevnext'          => 'Ver ($1) ($2) ($3).',
@@ -1600,7 +1603,7 @@ Revisões de arquivos para as quais você não tem permissão de visualização 
 'undeleterevision-missing'     => 'Edição inválida ou não encontrada. Talvez você esteja com um link incorreto ou talvez a edição foi restaurada ou removida dos arquivos.',
 'undelete-nodiff'              => 'Não foram encontradas edições anteriores.',
 'undeletebtn'                  => 'Restaurar',
-'undeletelink'                 => 'restaurar',
+'undeletelink'                 => 'ver/restaurar',
 'undeletereset'                => 'Limpar',
 'undeletecomment'              => 'Comentário:',
 'undeletedarticle'             => 'restaurado "[[$1]]"',
@@ -2062,7 +2065,7 @@ Qualquer link posterior na mesma linha são consideradas como exceções, ou sej
 'metadata'          => 'Metadados',
 'metadata-help'     => "Este arquivo contém informação adicional, provavelmente adicionada a partir da câmara digital ou ''scanner'' utilizada para criar ou digitalizá-lo.
 Caso o arquivo tenha sido modificado a partir do seu estado original, alguns detalhes poderão não refletir completamente as mudanças efetuadas.",
-'metadata-expand'   => 'Mostrar restantes detalhes',
+'metadata-expand'   => 'Mostrar detalhes adicionais',
 'metadata-collapse' => 'Esconder detalhes restantes',
 'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.
 * make

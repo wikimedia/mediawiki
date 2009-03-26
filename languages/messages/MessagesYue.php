@@ -140,10 +140,10 @@ $linkTrail = '/^([a-z]+)(.*)$/sD';
 $messages = array(
 # User preference toggles
 'tog-underline'               => '連結加底線：',
-'tog-highlightbroken'         => '格式化連結 <a href="" class="new">好似咁</a>（又或者: 好似咁<a href="" class="internal">?</a>）.',
+'tog-highlightbroken'         => '格式化連結 <a href="" class="new">好似咁</a>（又或者: 好似咁<a href="" class="internal">?</a>）',
 'tog-justify'                 => '拍齊段落',
 'tog-hideminor'               => '最新更改唔顯示小修改',
-'tog-extendwatchlist'         => '展開監視清單去顯示合適嘅更改',
+'tog-extendwatchlist'         => '展開監視清單去顯示全部更改，唔係淨係最新嘅',
 'tog-usenewrc'                => '強化版最近更改（需要JavaScript）',
 'tog-numberheadings'          => '標題自動編號',
 'tog-showtoolbar'             => '顯示修改工具列（需要JavaScript）',
@@ -680,17 +680,18 @@ $1',
 'userinvalidcssjstitle'     => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
 'updated'                   => '(己更新)',
 'note'                      => "'''留意:'''",
-'previewnote'               => "'''請記住呢個只係預覽；更改嘅内容重未儲存！'''",
+'previewnote'               => "'''請記住呢個只係預覽。'''
+更改嘅内容重未儲存！",
 'previewconflict'           => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
-'session_fail_preview'      => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
-請再試過喇。如果仍然唔得嘅話，試下[[Special:UserLogout|登出]]，然後重新登入。'''",
+'session_fail_preview'      => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。'''
+請再試過喇。如果仍然唔得嘅話，試下[[Special:UserLogout|登出]]，然後重新登入。",
 'session_fail_preview_html' => "'''對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。'''
 
 ''由於{{SITENAME}}已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。''
 
-'''如果呢個係正當嘅編輯嘗試，請再試過。如果重係唔得嘅話，請先[[Special:UserLogout|登出]]然後再登入。'''",
-'token_suffix_mismatch'     => "'''因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。
-當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。'''",
+'''如果呢個係正當嘅編輯嘗試，請再試過。'''如果重係唔得嘅話，請先[[Special:UserLogout|登出]]然後再登入。",
+'token_suffix_mismatch'     => "'''因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。'''個編輯已經拒絕，以防止嗰版嘅文字損毀。
+當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。",
 'editing'                   => '而家喺度編輯$1',
 'editinguser'               => "改緊用戶'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 嘅用戶權限",
 'editingsection'            => '而家喺度編輯$1 （小節）',
@@ -703,8 +704,8 @@ $1',
 喺你撳「儲存頁面」之後，'''只有'''喺上面嘅文字區會被儲存。",
 'yourtext'                  => '你嘅文字',
 'storedversion'             => '已經儲存咗嘅版本',
-'nonunicodebrowser'         => "'''警告：你嘅瀏覽器係唔係用緊 Unicode 。而家暫時有個解決方法，方便你可以安全咁編輯呢版：唔係 ASCII 嘅字元會喺編輯框裏面用十六進位編碼顯示。'''",
-'editingold'                => "'''警告：你而家係編輯緊喺呢一頁嘅過時版本。如果你儲存佢，喺呢個版本嘅任何更改都會被遺失。'''",
+'nonunicodebrowser'         => "'''警告：你嘅瀏覽器係唔係用緊 Unicode 。'''而家暫時有個解決方法，方便你可以安全咁編輯呢版：唔係 ASCII 嘅字元會喺編輯框裏面用十六進位編碼顯示。",
+'editingold'                => "'''警告：你而家係編輯緊喺呢一頁嘅過時版本。'''如果你儲存佢，喺呢個版本嘅任何更改都會被遺失。",
 'yourdiff'                  => '差異',
 'copyrightwarning'          => "請留意喺{{SITENAME}}度，所有喺呢度嘅貢獻會被考慮到喺$2之下發出（睇$1有更詳細嘅資訊）。如果你係唔想你編輯嘅文字無喇喇咁被分發，咁就唔好喺呢度遞交。
 
@@ -714,9 +715,9 @@ $1',
 
 你亦都要同我哋保證啲文字係你自己寫嘅，或者係由公有領域或相似嘅自由資源複製落嚟（睇$1有更詳細嘅資訊）。
 '''喺未有任何許可嘅情況之下千祈唔好遞交有版權嘅作品！'''",
-'longpagewarning'           => "'''警告：呢一頁有 $1 kilobytes 咁長；有啲瀏覽器可能會喺就離或者超過 32kb 編輯頁面會出現一啲問題。
-請考慮分割呢個頁面到細啲嘅小節。'''",
-'longpageerror'             => "'''錯誤：你所遞交嘅文字係有 $1 kilobytes 咁長，係長過最大嘅 $2 kilobytes。儲唔到你遞交嘅文字。'''",
+'longpagewarning'           => "'''警告'''：呢一頁有 $1 kilobytes 咁長；有啲瀏覽器可能會喺就離或者超過 32kb 編輯頁面會出現一啲問題。
+請考慮分割呢個頁面到細啲嘅小節。",
+'longpageerror'             => "'''錯誤：你所遞交嘅文字係有 $1 kilobytes 咁長，係長過最大嘅 $2 kilobytes。'''儲唔到你遞交嘅文字。",
 'readonlywarning'           => "'''錯誤：料庫已經鎖住咗，以便定期保養。而家你唔可以儲起你嘅編輯。你可以儲啲文字落一份文字檔先。'''
 
 管理員嘅解釋： $1",
@@ -805,8 +806,8 @@ $1',
 'revdelete-selected'          => "'''揀[[:$1]]嘅$2次修訂：'''",
 'logdelete-selected'          => '揀[[:$1]]嘅$2次日誌事件：',
 'revdelete-text'              => "'''刪除咗嘅修訂係會仍然出現喺個頁面歷史以及日誌度，但係佢哋嘅文字內容係唔可以供公眾瀏覽。'''
-
-其他喺{{SITENAME}}嘅管理員仍然可以睇已經隱藏咗嘅內容，同埋可以透過同一個介面去反刪除佢，除非已經設定咗附加嘅限制。",
+其他喺{{SITENAME}}嘅管理員仍然可以睇已經隱藏咗嘅內容，同埋可以透過同一個介面去反刪除佢，除非已經設定咗附加嘅限制。
+請確認你肯定去做嘅話，你就要明白到後果，同埋呢個程序符合[[{{MediaWiki:Policy-url}}|政策]]。",
 'revdelete-legend'            => '設定可見性嘅限制',
 'revdelete-hide-text'         => '隱藏修訂嘅文字',
 'revdelete-hide-name'         => '隱藏動作同目標',
@@ -1154,10 +1155,10 @@ $1',
 'nolinkstoimage'            => '冇個頁面連結到呢個檔案。',
 'sharedupload'              => '呢個檔案係共用嘅上載，可以喺其他計劃中使用。“',
 'shareduploadwiki'          => '更多資訊請睇$1。',
-'shareduploadwiki-desc'     => '佢響共用檔案庫上面嘅$1描述響下面度顯示。',
+'shareduploadwiki-desc'     => '佢響嗰邊嘅$1描述響下面度顯示。',
 'shareduploadwiki-linktext' => '檔案描述頁面',
 'noimage'                   => '冇同名嘅檔案存在，你可以$1。',
-'noimage-linktext'          => '上載佢',
+'noimage-linktext'          => '上載一個',
 'uploadnewversion-linktext' => '上載呢個檔案嘅一個新版本',
 'imagelist_date'            => '日期',
 'imagelist_name'            => '名',
@@ -1330,7 +1331,7 @@ Template:搞清楚',
 'specialloguserlabel'  => '用戶:',
 'speciallogtitlelabel' => '標題:',
 'log'                  => '日誌',
-'all-logs-page'        => '全部嘅日誌',
+'all-logs-page'        => '全部嘅公共日誌',
 'log-search-legend'    => '搵日誌',
 'log-search-submit'    => '去',
 'alllogstext'          => '響{{SITENAME}}度全部日誌嘅綜合顯示。你可以選擇一個日誌類型、用戶名、或者受影響嘅頁面，嚟縮窄顯示嘅範圍。',
@@ -1552,7 +1553,7 @@ wiki: $PAGEEDITOR_WIKI
 'undeleterevision-missing'     => '唔正確或者遺失咗修訂。你可能有一個壞連結，或者嗰個修訂已經響存檔度恢復咗或者刪除咗。',
 'undelete-nodiff'              => '搵唔到之前嘅修訂。',
 'undeletebtn'                  => '恢復',
-'undeletelink'                 => '恢復',
+'undeletelink'                 => '睇／恢復',
 'undeletereset'                => '重設',
 'undeletecomment'              => '註解：',
 'undeletedarticle'             => '已經恢復咗"[[$1]]"',
@@ -1725,7 +1726,7 @@ $1',
 'movepagetext'            => "使用以下表格會將頁面改名，兼且連同搬埋佢嘅歷史過去。
 舊標題會變成指去新標題嘅跳轉頁。
 你可以自動噉更新指到原先標題嘅跳轉。
-如果你揀咗唔去做嘅話，請務必要檢查吓有冇[[Special:Doubledirects|雙重跳轉]]或者[[Special:BrokenRedirects|死跳轉]]（嘅情況發生）。
+如果你揀咗唔去做嘅話，請務必要檢查吓有冇[[Special:DoubleRedirects|雙重跳轉]]或者[[Special:BrokenRedirects|死跳轉]]（嘅情況發生）。
 你有責任確保啲連結依然指去佢哋應該指去嘅地方。
 
 注意如果已經有一個同個新名同名嘅頁面，噉呢個頁面係搬'''唔到'''嘅，除非嗰個同名嘅頁面係空嘅或者佢係一個跳轉頁，兼且要之前冇編輯過（冇編輯歷史）先得。噉即係講萬一你搞錯咗，你可以將呢個頁面改返去佢改之前噉，你唔可以覆蓋一個現有嘅頁面。

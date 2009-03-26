@@ -16,6 +16,7 @@
  * @author Cerealito
  * @author Crazymadlover
  * @author Cvmontuy
+ * @author Dferg
  * @author Dmcdevit
  * @author Drini
  * @author Dvortygirl
@@ -31,6 +32,7 @@
  * @author Omnipaedista
  * @author Orgullomoore
  * @author Piolinfax
+ * @author Plasmoid
  * @author Platonides
  * @author Remember the dot
  * @author Richard Wolf VI
@@ -82,7 +84,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Destacar enlaces a artículos vacíos <a href="" class="new">como este</a> (alternativa: como éste<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ajustar párrafos',
 'tog-hideminor'               => 'Ocultar ediciones menores en «cambios recientes»',
-'tog-extendwatchlist'         => 'Expandir la lista de seguimiento a todos los cambios aplicables',
+'tog-extendwatchlist'         => 'Expandir la lista de seguimiento a todos los cambios, no solo a los más recientes.',
 'tog-usenewrc'                => 'Cambios recientes realzados (no funciona en todos los navegadores)',
 'tog-numberheadings'          => 'Numerar automáticamente los encabezados',
 'tog-showtoolbar'             => 'Mostrar la barra de edición',
@@ -297,7 +299,7 @@ $messages = array(
 'badaccess-group0' => 'No está autorizado a ejecutar la acción que ha solicitado.',
 'badaccess-group1' => 'La acción que ha solicitado está restringida a los usuarios de uno de estos grupos: $1.',
 'badaccess-group2' => 'La acción que ha solicitado está restringida a los usuarios de uno de estos grupos: $1.',
-'badaccess-groups' => 'La acción que ha solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos:}} $1.',
+'badaccess-groups' => 'La acción que ha solicitado está restringida a los usuarios en uno de los grupos $1.',
 
 'versionrequired'     => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
 'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consulte [[Special:Version|la página de versión]]',
@@ -305,7 +307,7 @@ $messages = array(
 'ok'                      => 'Aceptar',
 'retrievedfrom'           => 'Obtenido de "$1"',
 'youhavenewmessages'      => 'Tiene $1 ($2).',
-'newmessageslink'         => 'un nuevo mensaje',
+'newmessageslink'         => 'nuevos mensajes',
 'newmessagesdifflink'     => '(diferencia)',
 'youhavenewmessagesmulti' => 'Tienes nuevos mensajes en $1',
 'editsection'             => 'editar',
@@ -493,7 +495,7 @@ Antes de que se envíe cualquier otro correo a la cuenta tienes que seguir las i
 'mailerror'                  => 'Error al enviar correo: $1',
 'acct_creation_throttle_hit' => 'Lo sentimos, ya has creado {{PLURAL:$1|una cuenta|$1 cuentas}}.
 No puedes crear más.',
-'emailauthenticated'         => 'Su dirección electrónica fue autenticada en $2 a $3.',
+'emailauthenticated'         => 'Su dirección electrónica fue autenticada el $1.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'noemailprefs'               => 'Especifique una dirección electrónica para habilitar estas características.',
@@ -593,9 +595,9 @@ Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor 
 'whitelistedittitle'        => 'Se requiere identificación para editar.',
 'whitelistedittext'         => 'Tienes que $1 para editar artículos.',
 'whitelistreadtitle'        => 'Se requiere identificación para leer',
-'whitelistreadtext'         => 'Tienes que [[Special:UserLogin|registrarte]] para leer artículos.',
+'whitelistreadtext'         => 'Tienes que [[Special:Userlogin|iniciar sesión]] para leer artículos.',
 'whitelistacctitle'         => 'No se le permite crear una cuenta',
-'whitelistacctext'          => 'Para poder crear cuentas en {{SITENAME}} se ha de [[Special:UserLogin|iniciar sesión]] y tener los permisos apropiados.',
+'whitelistacctext'          => 'Para poder crear cuentas en {{SITENAME}} se ha de [[Special:Userlogin|iniciar sesión]] y tener los permisos apropiados.',
 'confirmedittitle'          => 'Se requiere confirmación de dirección electrónica para editar',
 'confirmedittext'           => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
 'nosuchsectiontitle'        => 'No existe tal sección',
@@ -656,9 +658,7 @@ Si la grabas, los cambios hechos desde esa revisión se perderán.'''",
 Por favor considere la posibilidad de dividir esta página en secciones más pequeñas.'''",
 'longpageerror'             => "'''ERROR: El texto que has enviado ocupa $1 kilobytes, que excede el máximo de $2 kilobytes. No se puede guardar.'''",
 'readonlywarning'           => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
-Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>
-
-El administrador que la bloqueó dio esta explicación: $1',
+Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>',
 'protectedpagewarning'      => "'''ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.'''",
 'semiprotectedpagewarning'  => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
 'cascadeprotectedwarning'   => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
@@ -709,7 +709,7 @@ Por favor, revise la dirección que usó para acceder a esta página.',
 'orig'                => 'orig',
 'page_first'          => 'primeras',
 'page_last'           => 'últimas',
-'histlegend'          => "Selecciónde diferencias: marca los selectores de las versiones a comparar y pulta ''enter'' o el botón de abajo.<br />
+'histlegend'          => "Selección de diferencias: marca los selectores de las versiones a comparar y pulsa ''enter'' o el botón de abajo.<br />
 Leyenda: (act) = diferencias con la versión actual,
 (prev) = diferencias con la versión previa, M = edición menor",
 'deletedrev'          => '[borrado]',
@@ -745,9 +745,10 @@ puede haber detalles en el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} re
 'revdelete-nooldid-text'      => 'No se ha especificado una revisión o revisiones destino sobre las que realizar esta función.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Seleccionado un evento|Seleccionados $2 eventos}} de registro para '''$1:'''",
-'revdelete-text'              => "'''Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
+'revdelete-text'              => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 
-Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
+Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.
+Por favor confirme que está intentando hacer esto, que usted entiende las consecuencias, y que lo esta haciendo de acuerso con [[{{MediaWiki:Policy-url}}|la política]].",
 'revdelete-legend'            => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
 'revdelete-hide-name'         => 'Ocultar acción y objetivo',
@@ -808,7 +809,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 # Search results
 'searchresults'         => 'Resultados de la búsqueda',
 'searchresulttext'      => 'Para más información acerca de las búsquedas en {{SITENAME}}, consulte la [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => "Has consultado por '''[[:$1]]''' ([[Special:Prefixindex/$1|todas las páginas que empiezan por «$1»]] | [[Special:WhatLinksHere/$1|todas las páginas que enlazan con «$1»]])",
+'searchsubtitle'        => "Has consultado por '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Buscaste '''$1'''",
 'noexactmatch'          => "'''No existe una página llamada \"\$1\".''' Puedes [[:\$1|crearla]].",
 'noexactmatch-nocreate' => "'''No existe la página «$1».'''",
@@ -968,7 +969,7 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'newsectionsummary'                 => 'Nueva sección: /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Cambios en enlazadas',
+'recentchangeslinked'          => 'Cambios relacionados',
 'recentchangeslinked-title'    => 'Cambios relacionados con "$1"',
 'recentchangeslinked-noresult' => 'No hubo cambios en las páginas enlazadas durante el periodo indicado.',
 'recentchangeslinked-summary'  => "Esta página especial lista los últimos cambios en las páginas enlazadas. Las páginas en su lista de seguimiento están en '''negrita'''.",
@@ -983,21 +984,19 @@ Los grupos no seleccionados no cambiarán. Puede deseleccionar pulsando la tecla
 'upload_directory_read_only'  => 'El servidor web no puede escribir en el directorio de subida de archivos ($1).',
 'uploaderror'                 => 'Error al intentar subir archivo',
 'uploadtext'                  => "Utilize el siguiente formulario para subir archivos.
-Para ver o buscar archivos subidos con anterioridad, ve a la [[Special:ImageList|lista de archivos subidos]].
-Los archivos subidos quedarán registrado además en el [[Special:Log/upload|registro de archivos subidos]] y los borrados en el [[Special:Log/delete|registro de borrados]].
+Para ver o buscar archivos subidos con anterioridad, ve a la [[Special:Imagelist|lista de archivos subidos]].
+Los archivos subidos y borrados quedarán registrados además en el [[Special:Log/upload|registro de archivos subidos]].
 
-Para incluir un archivo en una página, use un enlace como los que siguen
-
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar el fichero en tamaño completo
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 pixeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para enlazar directamente al fichero sin mostrarlo.",
+Para incluir un archivo en una página, use un enlace como los que siguen:
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivo.png|texto alternativo]]</nowiki>''' o
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivo.ogg]]</nowiki>''' para enlazar directamente al archivo.",
 'upload-permitted'            => 'Tipos de archivo permitidos: $1.',
 'upload-preferred'            => 'Tipos de archivo aconsejados: $1.',
 'upload-prohibited'           => 'Tipos de archivo prohibidos: $1.',
 'uploadlog'                   => 'registro de subidas',
 'uploadlogpage'               => 'Subidas de archivos',
-'uploadlogpagetext'           => 'Abajo hay una lista de los últimos archivos subidos.
-Mira la [[Special:NewImages|galería de archivos nuevos]] para una descripción visual',
+'uploadlogpagetext'           => 'Abajo hay una lista de los últimos archivos subidos.',
 'filename'                    => 'Nombre del archivo',
 'filedesc'                    => 'Sumario',
 'fileuploadsummary'           => 'Descripción:',
@@ -1188,9 +1187,7 @@ Esto resulta en un promedio de '''$5''' {{PLURAL:$5|edición|ediciones}} por pá
 
 La longitud de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola de tareas] es de '''$7'''",
 'userstatstext'          => "Hay {{PLURAL:$1|'''1''' [[Special:ListUsers|usuario]] registrado|'''$1''' [[Special:ListUsers|usuarios]] registrados}},
-de los cuales '''$2''' (el '''$4%''') {{PLURAL:$2|tiene|tienen}} privilegios de $5.
-
-Actualmente hay alrededor de  {{PLURAL:$6|una cuenta de usuario activa|'''$6''' cuentas de usuario activas}}.",
+de los cuales '''$2''' (el '''$4%''') {{PLURAL:$2|tiene|tienen}} privilegios de $5.",
 'statistics-mostpopular' => 'Páginas más vistas',
 
 'disambiguations'      => 'Páginas de desambiguación',
@@ -1447,9 +1444,9 @@ Véase $2 para un registro de los borrados recientes.',
 'rollbacklink'                => 'Revertir',
 'rollbackfailed'              => 'No se pudo revertir',
 'cantrollback'                => 'No se pueden revertir las ediciones; el último colaborador es el único autor de esta página.',
-'alreadyrolled'               => 'No se puede revertir la última edición de [[:$1]] hecha por [[User:$2|$2]] ([[User talk:$2|discusión]] | [[Special:Contributions/$2|{{int:contribslink}}]]); alguien más ya ha editado o revertido esa página.
+'alreadyrolled'               => 'No se puede revertir la última edición de [[:$1]] hecha por [[User:$2|$2]] ([[User talk:$2|discusión]]); alguien más ya ha editado o revertido esa página.
 
-La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]).',
 'editcomment'                 => "El resumen de la edición fue: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'                  => 'Revertidas las ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discusión]]) a la última edición de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
@@ -1516,7 +1513,7 @@ Si una nueva página con el mismo nombre ha sido creada desde que se borró la o
 o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undelete-nodiff'              => 'No existe una revisión previa.',
 'undeletebtn'                  => 'Restaurar',
-'undeletelink'                 => 'restaurar',
+'undeletelink'                 => 'ver/restaurar',
 'undeletereset'                => 'Cancelar',
 'undeletecomment'              => 'Razón para restaurar:',
 'undeletedarticle'             => 'restauró "$1"',
@@ -1614,7 +1611,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipboptions'                  => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,Para siempre:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'otro',
 'ipbotherreason'              => 'Otra razón:',
-'ipbhidename'                 => 'Ocultar usuario/IP en el registro de bloqueos, la lista de bloqueos activos y la lista de usuarios',
+'ipbhidename'                 => 'Ocultar nombre de usuario de ediciones y listas',
 'badipaddress'                => 'La dirección IP no tiene el formato correcto.',
 'blockipsuccesssub'           => 'Bloqueo realizado con éxito',
 'blockipsuccesstext'          => '"[[Special:Contributions/$1|$1]]" ha sido bloqueado. <br />Puede revisar la [[Special:IPBlockList|lista de bloqueos]].',
@@ -1683,7 +1680,7 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'lockdbsuccesstext'   => 'La base de datos de {{SITENAME}} ha sido bloqueada.
 <br />Recuerde retirar el bloqueo después de completar las tareas de mantenimiento.',
 'unlockdbsuccesstext' => 'La base de datos de {{SITENAME}} ha sido desbloqueada.',
-'lockfilenotwritable' => 'El archivo-cerrojo de la base de datos no tiene permiso de escritura. Para bloquear o desbloquear la base de datos, este archivo tiene que ser escribible por el sesrvidor web.',
+'lockfilenotwritable' => 'El archivo-cerrojo de la base de datos no tiene permiso de escritura. Para bloquear o desbloquear la base de datos, este archivo tiene que ser escribible por el servidor web.',
 'databasenotlocked'   => 'La base de datos no está bloqueada.',
 
 # Move page
@@ -1758,7 +1755,8 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Expo
 'allmessagesname'           => 'Nombre',
 'allmessagesdefault'        => 'Texto predeterminado',
 'allmessagescurrent'        => 'Texto actual',
-'allmessagestext'           => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:',
+'allmessagestext'           => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:
+Por favor visite [http://www.mediawiki.org/wiki/Localisation Localización MediaWiki] y [http://translatewiki.net translatewiki.net] Si desea contribuir a la localización genérica MediaWiki.',
 'allmessagesnotsupportedDB' => "Esta página no está disponible porque '''\$wgUseDatabaseMessages''' está deshabilitado.",
 'allmessagesfilter'         => 'Filtrar por nombre del mensaje:',
 'allmessagesmodified'       => 'Mostrar sólo los modificados',

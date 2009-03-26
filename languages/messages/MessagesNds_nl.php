@@ -272,7 +272,7 @@ $messages = array(
 'tog-highlightbroken'         => "Verwiezingen naor lege pagina's op laoten lochen",
 'tog-justify'                 => "Alinea's uutvullen",
 'tog-hideminor'               => 'Kleine wiezigingen verbargen in leste wiezigingen',
-'tog-extendwatchlist'         => 'Uut-ebreien volglieste',
+'tog-extendwatchlist'         => 'Volglieste uutbreien zodat alle wiezigingen zichbaor bin, en neet allinnig de leste wieziging',
 'tog-usenewrc'                => 'Gebruuk de uut-ebreien pagina "leste wiezigingen" (hierveur he-j JavaScript neudig)',
 'tog-numberheadings'          => 'Koppen vanzelf nummeren',
 'tog-showtoolbar'             => 'Warkbalke weergeven',
@@ -374,7 +374,7 @@ $messages = array(
 'category-media-header' => 'Media in kattegerie "$1"',
 'category-empty'        => "''Disse kattegerie bevat op 't mement nog gien artikels of media.''",
 
-'mainpagetext'      => "'t Installeren van de wikipregrammetuur is succesvol.",
+'mainpagetext'      => "<big>'''’t Installeren van de MediaWiki pregrammetuur is succesvol.'''</big>",
 'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/Help:Contents haandleiding] veur infermasie over 't gebruuk van de wikipregrammetuur.
 
 == Meer hulpe ==
@@ -418,30 +418,30 @@ $messages = array(
 'printableversion'  => 'Ofdrokbaore versie',
 'permalink'         => 'Vaste verwiezing',
 'print'             => 'Ofdrokken',
-'edit'              => 'Bewark',
+'edit'              => 'Bewarken',
 'editthispage'      => 'Pagina bewarken',
-'delete'            => 'vortdoon',
-'deletethispage'    => 'Pagina vortdoon',
+'delete'            => 'Vortdoon',
+'deletethispage'    => 'Disse pagina vortdoon',
 'undelete_short'    => '$1 {{PLURAL:$1|versie|versies}} weerummeplaosen',
 'protect'           => 'Beveiligen',
 'protect_change'    => 'wiezigen',
 'protectthispage'   => 'Beveiligen',
-'unprotect'         => 'ontgrendelen',
+'unprotect'         => 'Vriegeven',
 'unprotectthispage' => 'Beveiliging opheffen',
 'newpage'           => 'Nieje pagina',
 'talkpage'          => 'Overlegpagina',
-'talkpagelinktext'  => 'Overleeg',
+'talkpagelinktext'  => 'Overleg',
 'specialpage'       => 'speciale pagina',
 'personaltools'     => 'Persoonlijke instellingen',
 'postcomment'       => 'Niej onderwarp',
 'articlepage'       => 'Artikel',
-'talk'              => 'Overleeg',
+'talk'              => 'Overleg',
 'views'             => 'Aspekken/acties',
 'toolbox'           => 'Hulpmiddels',
 'userpage'          => 'gebrukerspagina',
 'projectpage'       => 'Bekiek prejekpagina',
 'imagepage'         => 'Bestanspagina bekieken',
-'mediawikipage'     => 'Berichpagina bekieken',
+'mediawikipage'     => 'Tiejige bekieken',
 'templatepage'      => 'Mal bekieken',
 'viewhelppage'      => 'Hulppagina bekieken',
 'categorypage'      => 'Kattegeriepagina bekieken',
@@ -522,7 +522,7 @@ $messages = array(
 'nstab-special'   => 'Speciale pagina',
 'nstab-project'   => 'Prejekpagina',
 'nstab-image'     => 'Ofbeelding',
-'nstab-mediawiki' => 'Berich',
+'nstab-mediawiki' => 'Tiejige',
 'nstab-template'  => 'Mal',
 'nstab-help'      => 'Hulpe',
 'nstab-category'  => 'Kattegerie',
@@ -869,9 +869,9 @@ Bedenk eers of 't neudig is um disse pagina veerder te bewarken.
 't Logboek mit de rejen(s) waorumme as disse pagina vort-edaon is, wonnen veur de dudelijkheid eteund:",
 
 # "Undo" feature
-'undo-success' => 'De bewarking kan ongedaon-emaak wonnen. Kiek de vergelieking hieronder nao um vas te stellen da-j disse haandeling uutvoeren willen, en slao vervolgens de pagina op um de bewarking ongedaon te maken.',
-'undo-failure' => 'De wieziging kon neet ongedaon emaak wonnen vanwegen aandere striejige wiezigingen.',
-'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleeg]]) ongedaon-emaak.',
+'undo-success' => 'De bewarking kan weerummedreid wonnen. Kiek de vergelieking hieronder nao um der wisse van de ween dat alles goed is, en slao de de pagina op um de bewarking weerumme te dreien.',
+'undo-failure' => "De wieziging kon neet weerummedreid wonnen umdat 't ondertussen awweer ewiezig is.",
+'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) weerummedreid.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Anmaken van een gebrukersprefiel is neet meugelijk',
@@ -929,18 +929,19 @@ der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{PAG
 'revdelete-nooldid-text'      => 'Je hemmen gien doelversie(s) op-egeven veur disse actie',
 'revdelete-selected'          => "'''{{PLURAL:$2|Esillekteren bewarking|Esillekteren bewarkingen}} van '''[[:$1]]''':'''",
 'logdelete-selected'          => "{{PLURAL:$2|Esillekteren logboekactie|Esillekteren logboekacties}} veur '''$1:'''",
-'revdelete-text'              => "'''Bewarkingen dee vort-ehaold bin, ku-j wel zien in de geschiedenisse, mar de inhoud is neet langer pebliekelijk toegankelijk.'''
+'revdelete-text'              => "'''Vort-edaone bewarkingen staon nog altied in de geschiedenisse en in logboeken, mar neet iederene kan de inhoud zomar bekieken.'''
 
-Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen mit behulpe van dit scharm, behalven as der aandere beparkingen gelden dee in-esteld bin deur de systeembeheerder.",
+Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen deur dit scharm te gebruken, behalven as der aandere beparkingen in-esteld bin.
+Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit doon in overeenstemming mit [[{{MediaWiki:Policy-url}}|'t beleid]] van disse wiki.",
 'revdelete-legend'            => 'Stel versiebeparkingen in:',
 'revdelete-hide-text'         => 'Verbarg de bewarken tekse',
 'revdelete-hide-name'         => 'Verbarg logboekactie',
 'revdelete-hide-comment'      => 'Verbarg bewarkingssamenvatting',
 'revdelete-hide-user'         => 'Verbarg gebrukersnamen en IP-adressen van aandere luui.',
 'revdelete-hide-restricted'   => 'Disse beparkingen toepassen op beheerders en aander volk',
-'revdelete-suppress'          => 'Gegevens veur beheerders en aandere gebrukers onderdrokken',
+'revdelete-suppress'          => 'Gegevens veur beheerders en aander volk onderdrokken',
 'revdelete-hide-image'        => 'Verbarg bestansinhoud',
-'revdelete-unsuppress'        => 'Beparkingen op weerummezetten wiezigingen vortdoon',
+'revdelete-unsuppress'        => 'Beparkingen veur weerummezetten versies vortdoon',
 'revdelete-log'               => 'Logopmarkingen:',
 'revdelete-submit'            => 'De esillecteren versie toepassen',
 'revdelete-logentry'          => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
@@ -976,7 +977,7 @@ Zörg derveur dat disse wieziging de geschiedenisse neet in de wiere schop.',
 # Merge log
 'mergelog'           => 'Samenvoegingslogboek',
 'pagemerge-logentry' => 'voegen [[$1]] naor [[$2]] samen (versies tot en mit $3)',
-'revertmerge'        => 'Samenvoeging ongedaonmaken',
+'revertmerge'        => 'Samenvoeging weerummedreien',
 'mergelogpagetext'   => 'Hieronder zie-j een lieste van de leste samenvoegingen van een paginageschiedenisse naor een aandere.',
 
 # Diffs
@@ -984,7 +985,7 @@ Zörg derveur dat disse wieziging de geschiedenisse neet in de wiere schop.',
 'difference'              => '(Verschil tussen bewarkingen)',
 'lineno'                  => 'Regel $1:',
 'compareselectedversions' => 'Vergeliek de ekeuzen versies',
-'editundo'                => 'ongedaonmaken',
+'editundo'                => 'weerummedreien',
 'diff-multi'              => '({{PLURAL:$1|1 tussenliggende versie|$1 tussenliggende versies}} wonnen neet weer-egeven.)',
 
 # Search results
@@ -1282,7 +1283,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'nolinkstoimage'            => 'Ofbeelding is neet in gebruuk.',
 'sharedupload'              => 'Dit bestand is een gedeelde upload en kan ook deur andere prejekken ebruukt worden.',
 'shareduploadwiki'          => 'Zie $1 veur veerdere infermasie.',
-'shareduploadwiki-desc'     => 'De $1 in de edelen bestansbanke zie-j hieronder.',
+'shareduploadwiki-desc'     => 'De beschrieving van de $1 vie-j hieronder.',
 'shareduploadwiki-linktext' => 'bestandbeschrievingspagina',
 'noimage'                   => "Der besteet gien bestand mit disse naam, je kunnen 't $1.",
 'noimage-linktext'          => 'toevoegen',
@@ -1428,7 +1429,7 @@ Pagina's wonnen ezien as een deurverwiespagina, as de mal gebruuk wonnen dee ver
 'newpages-username'       => 'Gebrukersnaam:',
 'ancientpages'            => 'Artikels dee lange neet bewörk bin',
 'intl'                    => 'Interwikiverwiezingen',
-'move'                    => 'Herneum',
+'move'                    => 'Herneumen',
 'movethispage'            => 'Herneum',
 'unusedimagestext'        => "Vergeet neet dat aandere wiki's meschien oek enkele van disse ofbeeldingen gebruken.",
 'unusedcategoriestext'    => 'De onderstaonde kattegerieën bin an-emaak mar wonnen neet gebruuk.',
@@ -1520,9 +1521,9 @@ De ontvanger kan dus drek beantwoorden.",
 Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld wonnen, oek zullen disse pagina's '''vet-edrok''' ween in de lieste mit de [[Special:RecentChanges|leste wiezigingen]] zoda-j 't makkelijker zien kunnen.",
 'removedwatch'         => 'Van volglieste ofhaolen',
 'removedwatchtext'     => 'De pagina "$1" is van joew volglieste op-ehaold.',
-'watch'                => 'Volg',
+'watch'                => 'Volgen',
 'watchthispage'        => 'Volg disse pagina',
-'unwatch'              => 'Neet volgen',
+'unwatch'              => 'neet volgen',
 'unwatchthispage'      => 'Neet volgen',
 'notanarticle'         => 'Gien artikel',
 'watchnochange'        => "Gien van de pagina's op joew volglieste is in disse periode ewiezig.",
@@ -1683,7 +1684,7 @@ As der al een nieje pagina mit dezelfde naam an-emaak is, zullen disse versies a
 'undeleterevision-missing'     => "Ongeldige of ontbrekende versie. 't Is meugelijk da-j een verkeerde verwiezing gebruken of dat disse pagina weerummeplaos is of dat 't uut archief ewis is.",
 'undelete-nodiff'              => 'Gien eerdere versie evunnen.',
 'undeletebtn'                  => 'Weerummeplaosen',
-'undeletelink'                 => 'weerummeplaosen',
+'undeletelink'                 => 'bekiek/weerummeplaosen',
 'undeletereset'                => 'Herstel',
 'undeletecomment'              => 'Opmarking:',
 'undeletedarticle'             => '"$1" is weerummeplaos',
@@ -1775,11 +1776,10 @@ $1",
 'ipboptions'                  => '2 uren:2 hours,1 dag:1 day,3 dagen:3 days,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbepark:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'aanders',
 'ipbotherreason'              => 'Aandere/extra rejen:',
-'ipbhidename'                 => "Verbarg de gebrukersnaam of 't IP-adres van 't blokkeerlogboek, de actieve blokkeerlieste en de gebrukerslieste",
+'ipbhidename'                 => 'Verbarg de gebrukersnaam in bewarkingen en liesten',
 'badipaddress'                => 'ongeldig IP-adres of onbestaonde gebrukersnaam',
 'blockipsuccesssub'           => 'Succesvol eblokkeerd',
-'blockipsuccesstext'          => 'IP-adres "$1" is noen eblokkeerd.
-
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] is noen eblokkeerd.<br />
 Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokkeringen.',
 'ipb-edit-dropdown'           => 'Blokkeerrejens bewarken',
 'ipb-unblock-addr'            => 'Deblokkeer $1',
@@ -1890,7 +1890,11 @@ Vergeet neet de [[Special:UnlockDB|databanke vrie te geven]] a-j klaor bin mit '
 
 # Export
 'export'            => "Pagina's uutvoeren",
-'exporttext'        => "De tekse en geschiedenis van een bepaolen pagina of een antal pagina's kunnen in XML-formaot uut-evoerd wonnen. 't Kan daornao naor een aandere MediaWiki-wiki in-evoerd, verwark of gewoon op-esleugen wonnen.",
+'exporttext'        => "De tekse en geschiedenisse van een pagina of een antal pagina's kunnen in XML-formaot uut-evoerd wonnen. Dit bestand ku-j daornao uutvoeren naor een aandere MediaWiki deur de [[Special:Import|invoerpagina]] te gebruken.
+
+Zet in 't onderstaonde veld de namen van de pagina's dee-j uutvoeren willen, één pagina per regel, en geef an o-j alle versies mit de bewarkingssamenvatting uutvoeren willen of allinnig de leste versies mit de bewarkingssamenvatting.
+
+A-j dat leste doon willen dan ku-j oek een verwiezing gebruken, bieveurbeeld [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] veur de pagina \"{{MediaWiki:Mainpage}}\".",
 'exportcuronly'     => 'Allinnig de actuele versie, neet de veurgeschiedenisse',
 'exportnohistory'   => "----
 '''NB:''' 't uutvoeren van de hele geschiedenisse is uut-eschakeld vanwegen prestasierejens.",
@@ -1905,7 +1909,8 @@ Vergeet neet de [[Special:UnlockDB|databanke vrie te geven]] a-j klaor bin mit '
 'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Standardtekse',
 'allmessagescurrent'        => 'De leste versie',
-'allmessagestext'           => 'Hier vie-j alle berichen in de MediaWiki-naamruumte:',
+'allmessagestext'           => 'Hieronder steet een lieste mit alle systeemteksen in de MediaWiki-naamruumte.
+Kiek oek effen bie [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [http://translatewiki.net translatewiki.net] a-j biedragen willen an de algemene vertaling veur MediaWiki.',
 'allmessagesnotsupportedDB' => "Disse pagina kan neet gebruuk wonnen umdat '''\$wgUseDatabaseMessages''' uut-eschakeld is.",
 'allmessagesfilter'         => 'Berichnaamfilter:',
 'allmessagesmodified'       => 'Allinnig teksen dee ewiezig bin',
@@ -2120,7 +2125,8 @@ $1",
 # Bad image list
 'bad_image_list' => "De opmaak is as volg:
 
-Allinnig regels in een lieste (regels dee beginnen mit *) wonnen verwark. De eerste verwiezing op een regel mut een verwiezing ween naor een ongewunste ofbeelding.
+Allinnig regels in een lieste (regels dee beginnen mit *) wonnen verwark. 
+De eerste verwiezing op een regel mut een verwiezing ween naor een ongewunste ofbeelding.
 Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uutzundering, zoas pagina's waorop de ofbeelding in te tekse op-eneumen is.",
 
 # Metadata
@@ -2442,7 +2448,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => "'''Waorschuwing''': disse pagina is vort-edaon terwiel jie 't an 't bewarken wanen!",
-'confirmrecreate'     => "Gebruker [[User:$1|$1]] ([[User talk:$1|Overleeg]]) hef disse pagina vort-edaon naoda-j  begunnen bin mit joew wieziging, mit opgave van de volgende rejen: ''$2''. Bevestig da-j 't artikel herschrieven willen.",
+'confirmrecreate'     => "Gebruker [[User:$1|$1]] ([[User talk:$1|Overleg]]) hef disse pagina vort-edaon naoda-j  begunnen bin mit joew wieziging, mit opgave van de volgende rejen: ''$2''. Bevestig da-j 't artikel herschrieven willen.",
 'recreate'            => 'Herschrieven',
 
 # HTML dump

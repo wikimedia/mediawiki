@@ -117,7 +117,7 @@ $messages = array(
 'category-media-header' => 'Skeda në kategori "$1"',
 'category-empty'        => "''Kjo kategori tashpërtash nuk përmban asnji faqe apo media.''",
 
-'mainpagetext'      => 'Wiki software u instalue me sukses.',
+'mainpagetext'      => "<big>'''MediaWiki software u instalue me sukses.'''</big>",
 'mainpagedocfooter' => 'Për ma shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
 
 

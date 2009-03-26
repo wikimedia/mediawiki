@@ -38,7 +38,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Ätterdruk lääse ap Ferwiese ätter loose Themen',
 'tog-justify'                 => 'Text as Bloksats',
 'tog-hideminor'               => 'Litje Annerengen uutbländje',
-'tog-extendwatchlist'         => 'Uutdiende Beooboachtengslieste',
+'tog-extendwatchlist'         => 'Uutgediende Beooboachtengslieste tou Anwiesenge fon aal Annerengen',
 'tog-usenewrc'                => 'Fermeerde Deerstaalenge (bruukt Javascript)',
 'tog-numberheadings'          => 'Uurschrifte automatisk nuumerierje',
 'tog-showtoolbar'             => 'Beoarbaidengs-Reewen anwiese',
@@ -140,7 +140,7 @@ $messages = array(
 'category-media-header' => 'Media in Kategorie "$1"',
 'category-empty'        => "''Disse Kategorie is loos.''",
 
-'mainpagetext'      => 'Ju Wiki Software wuude mäd Ärfoulch installierd!',
+'mainpagetext'      => "<big>'''Ju MediaWiki Software wuude mäd Ärfoulch installierd.'''</big>",
 'mainpagedocfooter' => 'Sjuch ju [http://meta.wikimedia.org/wiki/MediaWiki_localization Dokumentation tou de Anpaasenge fon dän Benutseruurfläche] un dät [http://meta.wikimedia.org/wiki/Help:Contents Benutserhondbouk] foar Hälpe tou ju Benutsenge un Konfiguration.',
 
 'about'          => 'Uur',
@@ -277,7 +277,7 @@ $messages = array(
 'red-link-title'          => '$1 (Siede nit deer)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artikkel',
+'nstab-main'      => 'Siede',
 'nstab-user'      => 'Benutsersiede',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Spezioalsiede',
@@ -292,7 +292,7 @@ $messages = array(
 'nosuchaction'      => 'Disse Aktion rakt et nit',
 'nosuchactiontext'  => 'Ju in de URL anroate Aktion wäd fon MediaWiki nit unnerstöänd.
 Der kon n Schrieuwfailer in de URL foarlääse of der wuud n wrakken Link anklikt.
-Dät kon sik uk uum n Bug ap ((SITENAME}} honnelje.',
+Dät kon sik uk uum n Bug ap {{SITENAME}} honnelje.',
 'nosuchspecialpage' => 'Disse Spezialsiede rakt et nit',
 'nospecialpagetext' => 'Disse Spezialsiede wäd fon dän MediaWiki-Software nit unnerstöänd.',
 
@@ -696,9 +696,10 @@ Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{f
 'revdelete-nooldid-text'      => 'Du hääst neen Version ounroat, wierap disse Aktion uutfierd wäide schäl.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Uutwäälde Version|Uutwäälde Versione}} fon [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Uutwäälden Logboukiendraach|Uutwäälde Logboukiendraage}} foar '''$1:'''",
-'revdelete-text'              => "'''Die Inhoold of uur Bestanddeele fon läskede Versione sunt nit moor eepentelk ientousjoon, man ärschiene wieders as Iendraage in ju Versionsgeschichte.'''
+'revdelete-text'              => "'''Läskede Versione un Aktione ferblieuwe in ju Versionsgeschichte un do Logbouke, man Deele deerfon sunt nit eepentelk ientoukiekjen.'''
 
-Uur Administratore ap {{SITENAME}} konnen dän wächhoalde Inhoold of uur wächhoalde Bestanddeele wieders ienkiekje un wier häärstaale, of dät moaste weese, dät fäästlaid wuude, dät do Tougongsbeschränkengen uk foar Administratore jäilde.",
+Uur Administratore ap {{SITENAME}} hääbe Tougriep ap dän ferstatte Inhoold un konnen him mäd ju glieke Siede wier moakje, insowied uurhoop neen Ientuunengen bestounde.
+Bestäätigje, dät du dät dwoo wolt, do Konsequenze ferstoanst un dät in Uureenstimmenge mäd do [[{{MediaWiki:Policy-url}}|Gjuchtlinien]] dääst.",
 'revdelete-legend'            => 'Sät Ienschränkengen foar do Versione',
 'revdelete-hide-text'         => 'Text fon ju Version ferstopje',
 'revdelete-hide-name'         => 'Logbouk-Aktion ferstopje',
@@ -1062,7 +1063,7 @@ dän Software häär, man schoadet fääre niks.)</small>',
 'nolinkstoimage'            => 'Naan Artikkel benutset disse Bielde.',
 'sharedupload'              => 'Disse Doatäi is ne deelde Hoochleedenge un duur fon uur Projekte anwoand wäide.',
 'shareduploadwiki'          => 'Jädden sjuch dän $1 foar wiedere Information.',
-'shareduploadwiki-desc'     => 'Hier foulget die Inhoold fon $1 uut dät gemeensoam benutsede Repositorium.',
+'shareduploadwiki-desc'     => 'Hier foulget die Inhoold fon $1.',
 'shareduploadwiki-linktext' => 'Doatäi-Beschrieuwengssiede',
 'noimage'                   => 'Ne Doatäi mäd dissen Noome existiert nit, du koast ju oawers $1.',
 'noimage-linktext'          => 'aan hoochleede',
@@ -1469,7 +1470,7 @@ Die aktuelle Text fon ju läskede Siede is bloot Administratore tougongelk.',
 'undeleterevision-missing'     => 'Uungultige of failjende Version. Äntweeder is ju Ferbiendenge falsk of ju Version wuude uut dät Archiv wier moaked of wächhoald.',
 'undelete-nodiff'              => 'Neen foargungende Version fuunen.',
 'undeletebtn'                  => 'Wier häärstaale',
-'undeletelink'                 => 'wier häärstaale',
+'undeletelink'                 => 'bekiekje/wier häärstaale',
 'undeletereset'                => 'Oubreeke',
 'undeletecomment'              => 'Gruund:',
 'undeletedarticle'             => 'häd "[[$1]]" wier häärstoald',
@@ -1561,7 +1562,7 @@ Reek dän Gruund foar ju Speere oun.',
 'ipbenableautoblock'          => 'Speer ju aktuell fon dissen Benutser nutsede IP-Adresse as uk automatisk aal foulgjende, fon do uut hie Beoarbaidengen of dät Anlääsen fon Benutseraccounts fersäkt',
 'ipbsubmit'                   => 'Adrässe blokkierje',
 'ipbother'                    => 'Uur Duur (ängelsk):',
-'ipboptions'                  => '1 Uure:1 hour,2 Uuren:2 hours,6 Uuren:6 hours,1 Dai:1 day,3 Deege:3 days,1 Wiek:1 week,2 Wieke:2 weeks,1 Mound:1 month,3 Mounde:3 months,1 Jier:1 year,Uunbestimd:indefinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 Uuren:2 hours,1 Dai:1 day,3 Deege:3 days,1 Wiek:1 week,2 Wieke:2 weeks,1 Mound:1 month,3 Mounde:3 months,6 Mounde:6 months,1 Jier:1 year,Uunbestimd:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Uur Duur',
 'ipbotherreason'              => 'Uur/additionelle Begründenge:',
 'ipbhidename'                 => 'Benutsernoome in dät Speer-Logbouk, in ju Lieste fon aktive Speeren un in dät Benutserferteeknis ferstopje.',
@@ -1688,7 +1689,12 @@ Moatest du him foar ju Ferschuuwenge läskje?',
 
 # Export
 'export'            => 'Sieden exportierje',
-'exporttext'        => 'Du koast dän Täkst un ju Beoarbaidengshistorie fon ne bestimde Siede of fon n Uutwoal fon Sieden ättter XML exportierje.',
+'exporttext'        => 'Mäd disse Spezioalsiede koast du dän Täkst un ju Beoarbaidengshistorie fon eenpelde Sieden in ne XML-Doatäi exportierje.
+Ju Doatäi kon in n uur MediaWiki-Wiki uur ju [[Special:Import|Importfunktion]] ienspield wäide.
+
+Dräch dän of do äntspreekende Siedentittel(e) in dät foulgjende Textfäild ien (pro Riege älkemoal bloot foar een Siede).
+
+Alternativ is die Export uk mäd de Syntax [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] muugelk, biespilswiese foar ju [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Bloot ju aktuälle Version fon de Siede exportierje',
 'exportnohistory'   => "----
 '''Waiwiesenge:''' Die Export fon komplette Versionsgeschichten is uut Performancegruunden bit ap fääre nit muugelk.",

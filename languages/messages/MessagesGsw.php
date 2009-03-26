@@ -28,7 +28,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Links uf lääri Themene durestryche',
 'tog-justify'                 => 'Tekscht als Blocksatz',
 'tog-hideminor'               => 'Keini «chlyni Änderige» aazeige',
-'tog-extendwatchlist'         => 'Erwiterti Beobachtungslischte',
+'tog-extendwatchlist'         => 'Beobachtungslischte erwytere go alli Änderige aazeige, nit numme di letschte',
 'tog-usenewrc'                => 'Erwytereti «letschti Änderige» (geit nid uf allne Browser)',
 'tog-numberheadings'          => 'Überschrifte outomatisch numeriere',
 'tog-showtoolbar'             => 'Editier-Wärchzüüg aazeige',
@@ -130,7 +130,7 @@ $messages = array(
 'category-media-header' => 'Medie in dr Kategori „$1“',
 'category-empty'        => "''Die Kategori het im Momänt kaini Syte oder Medie.''",
 
-'mainpagetext'      => 'MediaWiki isch erfolgrich inschtalliert worre.',
+'mainpagetext'      => "<big>'''MediaWiki isch erfolgrich inschtalliert worre.'''</big>",
 'mainpagedocfooter' => 'Lueg uf d [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation fir d Aapassig vu dr Benutzeroberflächi] un s [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuech] fir d Hilf iber d Benutzig un s Yystelle.',
 
 'about'          => 'Über',
@@ -160,7 +160,7 @@ $messages = array(
 'help'              => 'Hilf',
 'search'            => 'Suech',
 'searchbutton'      => 'Suech',
-'go'                => 'Sueche',
+'go'                => 'Site',
 'searcharticle'     => 'Sueche',
 'history'           => 'Versione',
 'history_short'     => 'Versione/Autore',
@@ -237,7 +237,7 @@ $messages = array(
 'badaccess-group0' => 'Du hesch d Berächtigung nid, wo s brucht fir die Aktion.',
 'badaccess-group1' => 'Die Aktion isch bschränkt uf Benutzer, wu zue dr Grupp „$1“ ghere.',
 'badaccess-group2' => 'Die Aktion isch bschränkt uf Benutzer, wu zue einere vu dr Gruppe „$1“ ghere.',
-'badaccess-groups' => 'Die Aktion isch bschränkt uf Benutzer, wu {{PLURAL:$2|dr Grupp|einere vu dr Gruppe}} „$1“ aaghere.',
+'badaccess-groups' => 'Die Aktion isch bschränkt uf Benutzer, wu dr Gruppe „$1“ aaghere.',
 
 'versionrequired'     => 'Version $1 vun MediaWiki wird brucht',
 'versionrequiredtext' => 'Version $1 vu MediaWiki wird brucht zum die Syte nutze. Lueg [[Special:Version]]',
@@ -431,7 +431,7 @@ Voreb ass no mee Mails iber d {{SITENAME}}-Mailfunktion an die Adräss gschickt 
 'mailerror'                  => 'Fähler bim Sende vun de Mail: $1',
 'acct_creation_throttle_hit' => 'Si hand bereits {{PLURAL:$1|1 Benutzerkonto|$1 Benutzerkontos}} agleit.
 Si chönne cheini meh aalege.',
-'emailauthenticated'         => 'Di E-Bost-Adräss isch am $2 um $3 Uhr bschtätigt worde.',
+'emailauthenticated'         => 'Dyy E-Mail-Adräss isch am $1 bstätigt wore.',
 'emailnotauthenticated'      => 'Dyni E-Mail-Adräss isch nonig bstätigt. Wäg däm gehn di erwyterete E-Mail-Funktione nonig.
 Fir d Bstätigung muesch em Gleich nogoh, wu Dir gschickt woren isch. Du chasch au e neie sonig Gleich aafordere:',
 'noemailprefs'               => 'Du hesch kei E-Mail-Adrässen aaggä, drum sy di folgende Funktione nid müglech.',
@@ -548,7 +548,7 @@ Du chasch $1 oder ein vu dr andre [[{{MediaWiki:Grouppage-sysop}}|Ammanne]] kont
 'accmailtext'               => 'S Passwort für "$1" isch uf $2 gschickt worde.',
 'newarticle'                => '(Nej)',
 'newarticletext'            => "Du bisch eme Gleich nogange zuen ere Syte, wu s nid git. 
-Zum die Syte aalege, chasch do in däm Chaschte unte aafange schrybe (lueg [[{{MediaWiki:Helppage}}|Hilfe]] fir meh Informationeo).
+Zum die Syte aalege, chasch do in däm Chaschte unte aafange schrybe (lueg [[{{MediaWiki:Helppage}}|Hilfe]] fir meh Informatione).
 Wänn do nid hesch welle aane goh, no druck in Dyynem Browser uf '''Zruck'''.",
 'anontalkpagetext'          => "''Des isch e Diskussionssyte vo me anonyme Benutzer, wo kei Zuegang aaglait het oder wo ne nit bruucht. Sälleweg muen mir di numerischi IP-Adräss bruuche zum ihn oder si z identifiziere. Sone IP-Adräss cha au vo mehrere Benutzer deilt werde. Wenn Si en anonyme Benutzer sin un s Gfiehl hen, dass do irrelevanti Kommentar an Si grichtet wärde, derno [[Special:UserLogin|lege Si sich bitte en Zuegang aa odr mälde sich aa]] zum in Zuekunft Verwirrige mit andere anonyme Benutzer z vermide.''",
 'noarticletext'             => 'Uf däre Syte het s no kei Täxt. Du chasch uf andere Syte [[Special:Search/{{PAGENAME}}|dä Yytrag sueche]], <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} dr Logbuechyytrag sueche, wo dezue ghert],
@@ -686,7 +686,12 @@ Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delet
 'logdelete-selected'          => "{{PLURAL:$2|Usgwählte Logbuechyytrag|Usgwählti Logbuechyyträg}} fir '''$1:'''",
 'revdelete-text'              => "'''Dr Inhalt oder anderi Bstandteil vu gleschte Versione chenne nimi aagluegt wäre, si erschyyne aber alno as Yytreg in dr Versiongschicht.'''
 
-{{SITENAME}}-Ammanne chenne dr Inhalt, wu glescht isch, oder di andre gleschte Bstandteil alno aaluege un au widerherstelle, user s isch feschtgleit, ass d Zuegangsbschränkige au fir Ammanne gälte.",
+{{SITENAME}}-Ammanne chenne dr Inhalt, wu glescht isch, oder di andre gleschte Bstandteil alno aaluege un au widerherstelle, user s isch feschtgleit, ass d Zuegangsbschränkige au fir Ammanne gälte.
+
+'''Gleschti Versionen un Aktione blyben in dr Versionsgschicht un in dr Logbiecher. Teil dervu sin aber fir d Efffentligkeit nimmi zuegänglig.'''
+
+Anderi Ammanne uf {{SITENAME}} hän alno Zuegriff uf dr versteckt Inhalt un chenne ne mit dr glyche Syte widerhärstelle, wänn s keini zuesätzlige Yyschränkige git.
+Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass des mit dr [[{{MediaWiki:Policy-url}}|Richtlinie]] ibereinstimmt.",
 'revdelete-legend'            => 'Setze vu dr Sichtbarkeits-Yyschränkige',
 'revdelete-hide-text'         => 'Täxt vu dr Version versteckle',
 'revdelete-hide-name'         => 'Logbuech-Aktion versteckle',
@@ -925,20 +930,19 @@ Nicht selektierte Gruppen werden nicht geändert. Eine Selektion kann mit Strg +
 'uploadnologintext'           => 'Si mien [[Special:UserLogin|aagmäldet syy]], zum Dateie uffelade z chenne.',
 'upload_directory_read_only'  => 'Dr Netzserver het kei Schryybrächt fir s Upload-Verzeichnis ($1).',
 'uploaderror'                 => 'Fähler bim Uffelade',
-'uploadtext'                  => "Bruuche Si sell Formular unte go Dateie uffelade. Zuem aaluege odr fruener uffegladeni Bilder go sueche lueg uff de [[Special:ImageList|Lischte vo uffegladene Dateie]], Uffeladige un Löschige sin au protokolliert uff [[Special:Log/upload|Uffeladige Protokoll]].
+'uploadtext'                  => "Bruuch des Formular unte go Dateie uffelade. Zum aaluege oder frijer uffegladeni Bilder go sueche lueg uf dr [[Special:ImageList|Lischt vu uffegladene Dateie]], Uffeladige un Leschige sin au protokolliert uff [[Special:Log/upload|Uffeladigs-Logbuech]].
 
-Go e Datei odr en Bild innere Syte iizbaue schriibe Si eifach ane:
+Go ne Datei oder e Bild in e Syte yyzbaue schryyb eifach ane:
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.png|alt text]]</nowiki>'''
-or
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.png|alt text]]</nowiki>''' oder
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>'''
-go direkt e Gleich uff d Datei z'mache.",
+go diräkt e Gleich uf d Datei z mache.",
 'upload-permitted'            => 'Dateitype, wu erlaubt sin: $1.',
 'upload-preferred'            => 'Dateitype, wu bevorzugt sin: $1.',
 'upload-prohibited'           => 'Dateitype, wu nit erlaubt sin: $1.',
 'uploadlog'                   => 'Datei-Logbuech',
 'uploadlogpage'               => 'Dateie-Logbuech',
-'uploadlogpagetext'           => 'Des isch s Logbuech vu dr Dateie, wu uffeglade wore sin. Lueg ug d [[Special:NewImages|Galerii vu dr neije Dateie]] fir e Iberblick.',
+'uploadlogpagetext'           => 'Des isch s Logbuech vu dr letschte Dateie, wu uffeglade wore sin.',
 'filename'                    => 'Dateiname',
 'filedesc'                    => 'Bschryybig',
 'fileuploadsummary'           => 'Bschryybig/Quälle:',
@@ -1124,8 +1128,7 @@ Insgsamt het s '''$3''' {{PLURAL:$3|Syteabruef|Syteabruef}} gää, '''$4''' mol 
 Es het '''$8''' Dateie, wo uffeglade wore sin.
 
 Längi vo de [http://www.mediawiki.org/wiki/Manual:Job_queue „Job queue“]: '''$7'''",
-'userstatstext'          => "'''$1''' {{PLURAL:$1|[[Special:ListUsers|Benutzer]] isch|[[Special:ListUsers|Benutzer]] sy}} regischtriirt. Dodrvo {{PLURAL:$2|hät|händ}} '''$2''' (also '''$4 %''') $5-Recht.
-S git im moment ungefähr $6 {{PLURAL:$6|aktive|aktivi}} Benutzer.",
+'userstatstext'          => "S git {{PLURAL:$1|'''1''' regischtrierte [[Special:Listusers|Benutzer]]|'''$1''' regischtrierti [[Special:Listusers|Benutzer]]}}. Dodervu {{PLURAL:$2|het|hän}} '''$2''' ('''$4%''') $5-Rächt.",
 'statistics-mostpopular' => 'Am meischte aagluegti Syte',
 
 'disambiguations'      => 'Begriffsklärigssytene',
@@ -1442,11 +1445,11 @@ Wänn syt dr Leschig e neiji Syte mit em glyche Name aagleit woren isch, no wär
 In däm Fall derf di neijscht Version nit markiert wäre oder dr Status vun ere muess uf "normal" gänderet wäre.
 Versione vu Dateie, wu Du kei Zuegriff druf hesch, wäre nit widerhärgstellt.',
 'undeletehistorynoadmin'       => 'Dä Artikel isch glescht wore. Dr Grund fir d Leschig isch in dr Zämmefassig aagee, derzue au Aagaabe zum letschte Benutzer, wu dä Artikel bearbeitet het vor dr Leschig. Dr aktuäll Täxt vum gleschte Artikel isch nume zuegängli fir Ammanne.',
-'undelete-revision'            => 'Gleschti Version vu $1 (vum $4 am $5 Uhr), $3:',
+'undelete-revision'            => 'Gleschti Version vu $1 (vum $2), dur $3:',
 'undeleterevision-missing'     => 'Version isch nit giltig oder fählt. Entwäder isch s Gleich falsch oder d Version isch us em Archiv widerhärgstellt oder usegnuh wore.',
 'undelete-nodiff'              => 'Kei vorigi Version vorhande.',
 'undeletebtn'                  => 'Widerhärstelle',
-'undeletelink'                 => 'widerhärstelle',
+'undeletelink'                 => 'aaluege/widerhärstelle',
 'undeletereset'                => 'Abbräche',
 'undeletecomment'              => 'Begrindig:',
 'undeletedarticle'             => 'hät d Site „[[$1]]“ widderhergstellt',
@@ -1499,7 +1502,7 @@ $1',
 'sp-newimages-showfrom' => 'Zeig neiji Dateie ab $1, $2 Uhr',
 
 # What links here
-'whatlinkshere'       => 'Was linkt da ane?',
+'whatlinkshere'       => 'Was verwyst do druff?',
 'whatlinkshere-title' => 'Sytene, wo uf „$1“ verlinke',
 'whatlinkshere-page'  => 'Syte:',
 'linklistsub'         => 'Lischt vo Gleicher (Links)',
@@ -1514,10 +1517,8 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Benutzer bzw. IP blockyre',
-'blockiptext'                 => 'Bnutz des Formular, zum e Bnutzer oder e IP-Adress z\'blockiere.<sup class="plainlinks">[http://jodies.de/ipcalc?host=&mask1=&mask2= <span title="IP-Berych ermittle; bloss kurz sperre!">(B)</span>]</sup>
-
-Des söt nummer erfolge um [[Wikipedia:Vandalismus|Vandalismus]] z\'verhindre in i Übereinstimmig mit üsre [[Wikipedia:Leitlinien|Leitlinie]] gschehe.
-Bitte gib au de Grund für d\'Blockad aa.',
+'blockiptext'                 => 'Nimm des Formular go ne Benutzer oder e IP-Adräss sperre.
+Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr [[{{MediaWiki:Policy-url}}|Leitlinie]]. Bitte gib au ne Grund fi d Sperri aa (z. B. indäm du einzel ni Syte zitiersch, wu vandaliert wore sin).',
 'ipaddress'                   => 'IP-Adräss oder Benutzername:',
 'ipadressorusername'          => 'IP-Adräss oder Benutzername:',
 'ipbexpiry'                   => 'Sperrduur:',
@@ -1539,10 +1540,10 @@ Bitte gib au de Grund für d\'Blockad aa.',
 'ipbenableautoblock'          => 'Sperr di aktuäll vu däm Benutzer brucht IP-Adräss un automatisch alli wytere, wun er nimmt go Syte bearbeite oder Benutzerchonte aalege',
 'ipbsubmit'                   => 'Adräss blockiere',
 'ipbother'                    => 'Anderi Duur (englisch):',
-'ipboptions'                  => '1 Stund:1 hour,2 Stunde:2 hours,6 Stunde:6 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 Stunde:2 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'Anderi Duur',
 'ipbotherreason'              => 'Anderi/zuesätzligi Begrindig:',
-'ipbhidename'                 => 'Benutzername im Sperr-Logbuech, in dr Lischt vu aktive Sperrine un im Benutzerverzeichnis verstecke.',
+'ipbhidename'                 => 'Benutzername in dr Lischt vu aktive Sperrine un im Benutzerverzeichnis verstecke.',
 'badipaddress'                => 'D IP-Adräss het e falsch Format.',
 'blockipsuccesssub'           => 'Mit Erfolg gsperrt',
 'blockipsuccesstext'          => 'Dr Benutzer/d IP-Adräss [[Special:Contributions/$1|$1]] isch gsperrt wore.<br />
@@ -1624,7 +1625,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde.",
 'movearticle'             => 'Artikel verschiebe',
 'movenologin'             => 'Du bisch nid aagmäldet',
-'movenologintext'         => 'Du muesch dich zersch [[Special:UserLogin|aamälde]] damit du die Syte chasch verschiebe.',
+'movenologintext'         => 'Du muesch e regischtrierte Benutzer syy un Di [[Special:UserLogin|aamälde]] go die Syte verschiebe.',
 'movenotallowed'          => 'Du derfsch kei Syte verschiebe.',
 'newtitle'                => 'Zum nöie Titel',
 'move-watch'              => 'Die Syte beobachte',
@@ -1722,7 +1723,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'importlogpage'                    => 'Import-Logbuech',
 'importlogpagetext'                => 'Adminischtrativer Import vo Sytene mit Versionsgschichte us anderi Wikis.',
 'import-logentry-upload'           => '„[[$1]]“ isch vunere Datei importiert worde',
-'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Vérsion|Vérsiona}} [[Spezial:Importieren|importiert]]',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Vérsion|Vérsiona}}',
 'import-logentry-interwiki'        => '„[[$1]]“ isch importiert worde (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} vo $2',
 
@@ -1794,12 +1795,12 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'notacceptable'     => 'Dr Wiki-Server cha d Date nit im e Format z Verfiegig stelle, wu Dyy Grät cha läse.',
 
 # Attribution
-'anonymous'        => '{{PLURAL:$1|Anonyme Benutzer|Anonymi Benutzer}} uff {{SITENAME}}',
+'anonymous'        => 'Anonymi Benutzer uf {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutzer $1',
 'lastmodifiedatby' => 'Diese Seite wurde zuletzt geändert um $2, $1 von $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basiert auf der Arbeit von $1.',
 'others'           => 'anderi',
-'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
+'siteusers'        => '{{SITENAME}}-Benutzer $1',
 'creditspage'      => 'Syteinformatione',
 'nocredits'        => 'Fir die Syte sin kein Informatione vorhande.',
 

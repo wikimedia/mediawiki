@@ -152,7 +152,7 @@ $messages = array(
 'category-media-header' => 'Média ing kategori "$1"',
 'category-empty'        => "''Kategori iki saiki ora ngandhut artikel utawa média.''",
 
-'mainpagetext'      => 'Prangkat empuk wiki wis suksès dipasang.',
+'mainpagetext'      => "<big>'''Prangkat empuk wiki wis suksès dipasang.'''</big>",
 'mainpagedocfooter' => "Mangga maca [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] kanggo katrangan luwih langkung prakara panggunan prangkat empuk wiki
 == Miwiti panggunan  ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pangaturan préférènsi]

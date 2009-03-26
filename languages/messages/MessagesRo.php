@@ -238,14 +238,14 @@ pe titlul secţiunii (JavaScript)',
 'talkpagelinktext'  => 'Discuţie',
 'specialpage'       => 'Pagină Specială',
 'personaltools'     => 'Unelte personale',
-'postcomment'       => 'Adaugă un comentariu',
+'postcomment'       => 'Secţiune nouă',
 'articlepage'       => 'Vezi articolul',
 'talk'              => 'Discuţie',
 'views'             => 'Vizualizări',
 'toolbox'           => 'Trusa de unelte',
 'userpage'          => 'Vizualizaţi pagina utilizatorului',
 'projectpage'       => 'Vezi pagina proiectului',
-'imagepage'         => 'Vizualizaţi pagina imaginii',
+'imagepage'         => 'Vizualizaţi pagina fişierului',
 'mediawikipage'     => 'Vizualizaţi pagina mesajului',
 'templatepage'      => 'Vizualizaţi pagina formatului',
 'viewhelppage'      => 'Vizualizaţi pagina de ajutor',
@@ -324,7 +324,7 @@ pe titlul secţiunii (JavaScript)',
 'nstab-main'      => 'Pagină',
 'nstab-user'      => 'Pagină de utilizator',
 'nstab-media'     => 'Pagină Media',
-'nstab-special'   => 'Special',
+'nstab-special'   => 'Pagină specială',
 'nstab-project'   => 'Proiect',
 'nstab-image'     => 'Fişier',
 'nstab-mediawiki' => 'Mesaj',
@@ -334,7 +334,9 @@ pe titlul secţiunii (JavaScript)',
 
 # Main script and global functions
 'nosuchaction'      => 'Această acţiune nu există',
-'nosuchactiontext'  => 'Acţiunea specificată în adresă nu este recunoscută de {{SITENAME}}.',
+'nosuchactiontext'  => 'Acţiunea specificată în URL este invalidă.
+S-ar putea să fi introdus greşit URL-ul, sau să fi urmat o legătură incorectă.
+Aceasta s-ar putea să indice şi un bug în programul folosit de {{SITENAME}}.',
 'nosuchspecialpage' => 'Această pagină specială nu există',
 'nospecialpagetext' => 'Ai cerut o [[Special:SpecialPages|pagină specială]] care nu este recunoscută de {{SITENAME}}.',
 
@@ -586,7 +588,9 @@ Vă rugăm să includeţi detaliile de mai sus în orice interogări pe care le 
 De aceea trebuie să folosim adresă IP pentru a identifica această persoană.
 O adresă IP poate fi folosită în comun de mai mulţi utilizatori.
 Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje irelevante, vă rugăm să [[Special:UserLogin/signup|vă creaţi un cont]] sau să [[Special:UserLogin|vă autentificaţi]] pentru a evita confuzii cu alţi utilizatori anonimi în viitor.''",
-'noarticletext'             => '{{SITENAME}} nu are încă un articol referitor la această pagină. Puteţi [[Special:Search/{{PAGENAME}}|căuta titlul paginii cu acest nume]] în alte pagini sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita această pagină].',
+'noarticletext'             => 'În acest moment nu este niciun text în această pagină.
+Puteţi [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini,
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} căuta înregistrări în jurnale], sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
 'userpage-userdoesnotexist' => 'Contul de utilizator "$1" nu este înregistrat. Verificaţi dacă doriţi să creaţi/modificaţi această pagină.',
 'clearyourcache'            => "'''Notă:''' După salvare, trebuie să treceţi peste cache-ul browser-ului pentru a vedea modificările. '''Mozilla/Safari/Konqueror:''' ţineţi apăsat ''Shift'' în timp ce apăsaţi ''Reload'' (sau apăsaţi ''Ctrl-Shift-R''), '''IE:''' apăsaţi ''Ctrl-F5'', '''Opera:''' apăsaţi ''F5''.",
 'usercssjsyoucanpreview'    => "'''Sfat:''' Foloseşte butonul 'Arată previzualizare' pentru a testa noul tău css/js înainte de a salva.",
@@ -611,7 +615,7 @@ Acest fapt se poate întâmpla atunci când foloseşti un serviciu proxy anonim.
 'editing'                   => 'modificare $1',
 'editinguser'               => "modificare permisiuni de utilizator ale utilizatorului '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'modificare $1 (secţiune)',
-'editingcomment'            => 'modificare $1 (comentariu)',
+'editingcomment'            => 'Modificare $1 (secţiune nouă)',
 'editconflict'              => 'Conflict de modificare: $1',
 'explainconflict'           => "Altcineva a modificat această pagină de când ai început să o editezi.
 Caseta de text de sus conţine pagina aşa cum este ea acum (după editarea celeilalte persoane).
@@ -719,7 +723,7 @@ Ca administrator la acest site poţi să o vezi; s-ar putea să găseşti mai mu
 'logdelete-selected'          => "{{PLURAL:$2|Evenimentul din jurnal|Evenimentele din jurnal}} pentru '''$1:'''",
 'revdelete-text'              => "'''Reviziile şterse vor apărea în istoricul paginii, dar conţinutul lor nu va fi accesibil publicului.'''
 
-Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi îl pot recupera prin aceeaşi interfaţă, dacă nu este impusă o altă restricţie de către operatorii sitului.",
+Alţi administratori {{SITENAME}} vor putea accesa conţinutul ascuns şi îl pot recupera prin aceeaşi interfaţă, dacă nu este impusă altă restricţie de către operatorii sitului. Confirmă că doreşti să finalizezi acţiunea, că înţelegi consecinţele şi că faci acest lucru în concordanţă cu [[{{MediaWiki:Policy-url}}|politica sitului]].",
 'revdelete-legend'            => 'Setează restricţii pentru vizualizare',
 'revdelete-hide-text'         => 'Ascunde textul reviziei',
 'revdelete-hide-name'         => 'Ascunde acţiunea şi destinaţia',
@@ -851,7 +855,7 @@ Căutări după $3 $9',
 'contextchars'             => 'Numărul de caractere per linie',
 'stub-threshold'           => 'Valoarea minimă pentru un <a href="#" class="stub">ciot</a> (octeţi):',
 'recentchangesdays'        => 'Numărul de zile afişate în schimbări recente:',
-'recentchangescount'       => 'Numărul de articole pentru schimbări recente:',
+'recentchangescount'       => 'Numărul de modificări arătate în schimbările recente, istoricul paginii, şi în jurnale, implicit:',
 'savedprefs'               => 'Preferinţele tale au fost salvate.',
 'timezonelegend'           => 'Fus orar',
 'timezonetext'             => 'Introduceţi numărul de ore diferenţă între ora Dv. locală şi ora serverului (UTC, timp universal). Dacă vă aflaţi în România, diferenţa este 02:00 iarna şi 03:00 vara.',
@@ -1079,7 +1083,7 @@ O apăsare pe antetul coloanei schimbă sortarea.',
 'nolinkstoimage'            => 'Nici o pagină nu se leagă la această imagine.',
 'sharedupload'              => 'Acest fişier transferat (upload) poate fi folosit în comun de către alte proiecte.',
 'shareduploadwiki'          => 'Vă rugăm citiţi [$1 pagina de descriere a fişierului] pentru alte informaţii.',
-'shareduploadwiki-desc'     => 'Mai jos, găsiţi $1 provenind de la repertoarul partajat.',
+'shareduploadwiki-desc'     => 'Descrierea din pagina $1 este disponibilă mai jos.',
 'shareduploadwiki-linktext' => 'pagina descriptivă a fişierului',
 'noimage'                   => 'Nu există nici un fişier cu acest nume, puteţi să îl $1.',
 'noimage-linktext'          => 'trimiteţi',
@@ -1104,7 +1108,7 @@ O apăsare pe antetul coloanei schimbă sortarea.',
 # File deletion
 'filedelete'                  => 'Şterge $1',
 'filedelete-legend'           => 'Şterge fişierul',
-'filedelete-intro'            => "Ştergi '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Sunteţi pe cale să ştergeţi fişierul '''[[Media:$1|$1]]''' cu tot istoricul acestuia.",
 'filedelete-intro-old'        => "Ştergi versiunea fişierului '''[[Media:$1|$1]]''' din [$4 $3, $2].",
 'filedelete-comment'          => 'Motiv pentru ştergere:',
 'filedelete-submit'           => 'Şterge',
@@ -1184,7 +1188,7 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'doubleredirectstext' => '<b>Atenţie:</b> Această listă poate conţine articole care nu sunt în fapt duble rediriecţionări. Acest lucru înseamnă de obicei că există text adiţional sub primul #REDIRECT.<br />',
 
 'brokenredirects'        => 'Redirecţionări greşite',
-'brokenredirectstext'    => 'Următoarele redirecţionări conduc spre articole inexistente.',
+'brokenredirectstext'    => 'Următoarele redirecţionări conduc spre articole inexistente:',
 'brokenredirects-edit'   => '(modifică)',
 'brokenredirects-delete' => '(şterge)',
 
@@ -1424,7 +1428,7 @@ Asistenţă şi suport:
 'alreadyrolled'               => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuţie]] | [[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.
 
 Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţie]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => "Comentariul de modificare a fost: \"''\$1''\".", # only shown if there is an edit comment
+'editcomment'                 => "Descrierea modificărilor a fost: „''$1''”.", # only shown if there is an edit comment
 'revertpage'                  => 'Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]) şi revenire la ultima versiune de către [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Anularea modificărilor făcute de $1;
 revenire la ultima versiune de $2.',
@@ -1491,7 +1495,7 @@ Reviziile fişierelor asupra cărora nu ai drepturi de vizualizare nu pot fi res
 S-ar putea ca această legătură să fie greşită, sau revizia a fost restaurată ori ştearsă din arhivă.',
 'undelete-nodiff'              => 'Nu s-a găsit vreo revizie anterioară.',
 'undeletebtn'                  => 'Recuperează',
-'undeletelink'                 => 'recuperează',
+'undeletelink'                 => 'vezi/recuperează',
 'undeletereset'                => 'Resetează',
 'undeletecomment'              => 'Comentariu:',
 'undeletedarticle'             => '"[[$1]]" a fost recuperat',
@@ -1522,7 +1526,7 @@ $1',
 # Namespace form on various pages
 'namespace'      => 'Spaţiu de nume:',
 'invert'         => 'Exclude spaţiul',
-'blanknamespace' => '(Principală)',
+'blanknamespace' => 'Articole',
 
 # Contributions
 'contributions' => 'Contribuţii ale utilizatorului',
@@ -1588,8 +1592,8 @@ Precizaţi motivul blocării; de exemplu indicaţi paginile vandalizate de acest
 'ipbhidename'                 => 'Ascunde numele de utilizator din jurnalul blocărilor, lista activă a blocărilor şi lista utilizatorilor',
 'badipaddress'                => 'Adresa IP este invalidă.',
 'blockipsuccesssub'           => 'Utilizatorul a fost blocat',
-'blockipsuccesstext'          => 'Adresa IP "$1" a fost blocată.
-<br />Vezi [[Special:IPBlockList|lista de adrese IP şi conturi blocate]] pentru a revizui adresele blocate.',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] a fost blocată.<br />
+Vezi [[Special:IPBlockList|lista de adrese IP şi conturi blocate]] pentru a revizui adresele blocate.',
 'ipb-edit-dropdown'           => 'Modifică motivele blocării',
 'ipb-unblock-addr'            => 'Deblochează $1',
 'ipb-unblock'                 => 'Deblocaţi un nume de utilizator sau o adresă IP',
@@ -1597,7 +1601,7 @@ Precizaţi motivul blocării; de exemplu indicaţi paginile vandalizate de acest
 'ipb-blocklist'               => 'Vezi blocările existente',
 'unblockip'                   => 'Deblochează adresă IP',
 'unblockiptext'               => 'Folosiţi formularul de mai jos pentru a restaura permisiunea de scriere pentru adrese IP sau nume de utilizator blocate anterior.',
-'ipusubmit'                   => 'Deblochează această adresă',
+'ipusubmit'                   => 'Elimină blocarea',
 'unblocked'                   => '[[User:$1|$1]] a fost deblocat',
 'unblocked-id'                => 'Blocarea $1 a fost eliminată',
 'ipblocklist'                 => 'Lista adreselor IP şi a conturilor blocate',
@@ -1721,7 +1725,12 @@ Articolul de destinaţie "[[:$1]]" există deja. Doriţi să îl ştergeţi pent
 
 # Export
 'export'            => 'Exportă pagini',
-'exporttext'        => 'Poţi exporta textul şi istoria unei pagini anume sau ale unui grup de pagini în XML. Acesta poate fi apoi importat în alt Wiki care rulează software MediaWiki, poate fi transformat sau păstrat pur şi simplu fiindcă doreşti tu să-l păstrezi.',
+'exporttext'        => 'Puteţi exporta textul şi istoricul unei pagini anume sau ale unui grup de pagini în XML. 
+Acesta poate fi apoi importate în alt wiki care rulează software MediaWiki prin [[Special:Import|pagina de importare]].
+
+Pentru a exporta, introduceţi titlurile în căsuţa de mai jos, unul pe linie, şi alegeţi dacă doriţi să exportaţi doar această versiune sau şi cele mai vechi, cu istoricul lor, sau versiunea curentă cu informaţii despre ultima modificare.
+
+În al doilea caz puteţi folosi o legătură, de exemplu [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pentru pagina „[[{{MediaWiki:Mainpage}}]]”.',
 'exportcuronly'     => 'Include numai versiunea curentă, nu şi toată istoria',
 'exportnohistory'   => "---- '''Notă:''' exportarea versiunii complete a paginilor prin acest formular a fost scoasă din uz din motive de performanţă.",
 'export-submit'     => 'Exportă',

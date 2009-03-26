@@ -14,6 +14,7 @@
  * @author Teak
  * @author TheAlpha for knowledge
  * @author ToePeu
+ * @author Yknok29
  * @author לערי ריינהארט
  */
 
@@ -63,7 +64,7 @@ $messages = array(
 'tog-highlightbroken'         => '없는 문서로 연결된 링크를 <a href="" class="new">이렇게</a> 보이기(선택하지 않으면 <a href="" class="internal">이렇게</a> 보임)',
 'tog-justify'                 => '문단 정렬하기',
 'tog-hideminor'               => '사소한 편집을 최근 바뀜에서 숨기기',
-'tog-extendwatchlist'         => '주시 문서를 모든 변경 목록에 적용하기',
+'tog-extendwatchlist'         => '최근의 바뀜 뿐만 아니라 모든 편집을 보이도록 주시문서 목록을 확장',
 'tog-usenewrc'                => '향상된 최근 바뀜 (자바스크립트)',
 'tog-numberheadings'          => '머릿글 번호 매기기',
 'tog-showtoolbar'             => '편집창에 툴바 보이기 (자바스크립트)',
@@ -696,7 +697,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-selected'          => "'''[[:$1]]의 선택된 판:'''",
 'revdelete-text'              => "'''삭제된 판과 기록은 문서 역사와 기록에 계속 나타나지만, 내용은 공개되지 않을 것입니다.'''
 
-{{SITENAME}}의 다른 관리자는 다른 제한이 설정되어 있지 않는 한, 숨겨진 내용을 볼 수 있고, 같은 도구를 이용해 복구할 수 있습니다.",
+{{SITENAME}}의 다른 관리자는 다른 제한이 설정되어 있지 않는 한, 숨겨진 내용을 볼 수 있고, 같은 도구를 이용해 복구할 수 있습니다.
+이 도구를 사용하는 것의 결과를 인식하고 [[{{MediaWiki:Policy-url}}|정책]]에 맞게 사용하십시오.",
 'revdelete-legend'            => '보이기 제한을 설정',
 'revdelete-hide-text'         => '판의 내용을 숨기기',
 'revdelete-hide-name'         => '로그 내용과 대상을 숨기기',
@@ -1436,7 +1438,7 @@ $NEWPAGE
 잘못된 링크를 따라왔거나, 특정 판이 이미 복구되거나 데이터베이스에서 제거되었을 수도 있습니다.',
 'undelete-nodiff'              => '이전의 판이 없습니다.',
 'undeletebtn'                  => '복구',
-'undeletelink'                 => '되살리기',
+'undeletelink'                 => '보기/되살리기',
 'undeletereset'                => '초기화',
 'undeletecomment'              => '설명:',
 'undeletedarticle'             => '"[[$1]]" 복구됨',
@@ -1530,7 +1532,7 @@ $1',
 'ipboptions'                  => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '수동으로 지정',
 'ipbotherreason'              => '다른 이유/추가적인 이유:',
-'ipbhidename'                 => '사용자 이름을 차단 기록, 차단된 사용자 목록, 사용자 목록에서 숨기기',
+'ipbhidename'                 => '사용자 이름을 목록과 편집기록에서 숨깁니다.',
 'badipaddress'                => '잘못된 IP 주소',
 'blockipsuccesssub'           => '차단 완료',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:IPBlockList|여기]]에서 볼 수 있습니다.',

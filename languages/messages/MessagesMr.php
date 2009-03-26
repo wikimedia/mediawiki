@@ -156,7 +156,7 @@ $messages = array(
 'category-media-header' => '"$1" वर्गातील माध्यमे',
 'category-empty'        => "''या वर्गात अद्याप एकही लेख नाही.''",
 
-'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण'''</big>",
+'mainpagetext'      => "<big>'''मीडियाविकीचे इन्स्टॉलेशन पूर्ण.'''</big>",
 'mainpagedocfooter' => 'विकी सॉफ्टवेअर वापरण्याकरिता [http://meta.wikimedia.org/wiki/Help:Contents यूजर गाईड] पहा.
 
 == सुरुवात ==

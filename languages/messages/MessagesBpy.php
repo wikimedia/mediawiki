@@ -150,7 +150,7 @@ $messages = array(
 'category-media-header' => '"$1" থাকর মিডিয়া',
 'category-empty'        => "''এরে থাক এহাত এবাকা কোন পাতা বা মিডিয়া নেই''",
 
-'mainpagetext'      => "<big>'''মিডিয়াউইকি হবাবালা ইয়া ইন্সটল ইল'''</big>",
+'mainpagetext'      => "<big>'''মিডিয়াউইকি হবাবালা ইয়া ইন্সটল ইল.'''</big>",
 'mainpagedocfooter' => 'উইকি সফটৱ্যার এহান আতানির বারে দরকার ইলে [http://meta.wikimedia.org/wiki/Help:Contents আতাকুরার গাইড]হানর পাঙলাক নেগা।
 
 == অকরানিহান ==
@@ -314,7 +314,7 @@ $messages = array(
 'remembermypassword'         => 'এরে কম্পিউটার এহাত্ত সাইট এহাত মর হমানিহান মনে থ',
 'yourdomainname'             => 'তর ডোমেইনগ',
 'login'                      => 'হমানি',
-'loginprompt'                => 'তি যেসাদেউ [[Special:UserLogin|হমাসি {{SITENAME}}]] পাতা এহানর কুকিসর য়্যাথাঙ দে।',
+'loginprompt'                => 'তি যেসাদেউ হমাসি {{SITENAME}} পাতা এহানর কুকিসর য়্যাথাঙ দে।',
 'userlogin'                  => 'হমানি / নৱা একাউন্ট খুলানি',
 'logout'                     => 'নিকুলানি',
 'userlogout'                 => 'নিকুলানি',

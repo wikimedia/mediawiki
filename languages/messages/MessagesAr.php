@@ -353,7 +353,7 @@ $messages = array(
 'tog-highlightbroken'         => 'أظهر الوصلات المعطوبة <a href="" class="new">هكذا</a> (البديل: هكذا<a href="" class="internal">؟</a>).',
 'tog-justify'                 => 'ساوِ الفقرات',
 'tog-hideminor'               => 'أخف التعديلات الطفيفة في أحدث التغييرات',
-'tog-extendwatchlist'         => 'مدد قائمة المراقبة لعرض كل التغييرات المطبقة',
+'tog-extendwatchlist'         => 'مدد قائمة المراقبة لعرض كل التغييرات، وليس فقط الأحدث',
 'tog-usenewrc'                => 'شكل متقدم من أحدث التغييرات (جافا سكريبت)',
 'tog-numberheadings'          => 'رقم العناوين تلقائيا',
 'tog-showtoolbar'             => 'أظهر شريط التحرير (جافا سكريبت)',
@@ -535,7 +535,7 @@ $messages = array(
 'viewcount'         => 'تم عرض هذه الصفحة {{PLURAL:$1|مرة واحدة|مرتان|$1 مرات|$1 مرة}}.',
 'protectedpage'     => 'صفحة محمية',
 'jumpto'            => 'اذهب إلى:',
-'jumptonavigation'  => 'اذهب إلى',
+'jumptonavigation'  => 'إبحار',
 'jumptosearch'      => 'بحث',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -543,7 +543,7 @@ $messages = array(
 'aboutpage'         => 'Project:حول',
 'bugreports'        => 'بلاغ الأخطاء',
 'bugreportspage'    => 'Project:بلاغ أخطاء',
-'copyright'         => 'المحتوى متوفر حسب $1.',
+'copyright'         => 'المحتوى متوفر تحت $1.',
 'copyrightpagename' => 'حقوق النسخ في {{SITENAME}}',
 'copyrightpage'     => '{{ns:project}}:حقوق النسخ',
 'currentevents'     => 'الأحداث الجارية',
@@ -574,7 +574,7 @@ $messages = array(
 'versionrequiredtext' => 'تلزم النسخة $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة النسخة]]',
 
 'ok'                      => 'موافق',
-'retrievedfrom'           => 'منقول من "$1"',
+'retrievedfrom'           => 'تم الاسترجاع من "$1"',
 'youhavenewmessages'      => 'توجد لديك $1 ($2).',
 'newmessageslink'         => 'رسائل جديدة',
 'newmessagesdifflink'     => 'آخر تغيير',
@@ -1059,9 +1059,10 @@ $1 ساعة.',
 'revdelete-selected'          => "'''{{PLURAL:$2|المراجعة المختارة|المراجعات المختارة}} ل[[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|الحدث المختار|الحدثان المختاران|الأحداث المختارة}} من السجل لـ '''$1:'''",
 'revdelete-text'              => "'''المراجعات والأحداث المحذوفة ستظل تظهر في تاريخ الصفحة والسجلات،'''
-لكن أجزاء من محتواهم لن يكون مسموحا للعامة برؤيتها.
+لكن أجزاء من محتواها لن يكون مسموحا للعامة برؤيتها.
 
-الإداريون الآخرون في {{SITENAME}} سيظل بإمكانهم رؤية المحتوى المخفي ويمكنهم استرجاعه مجددا من خلال هذه الواجهة نفسها، مالم يتم وضع قيود إضافية.",
+الإداريون الآخرون في {{SITENAME}} سيظل بإمكانهم رؤية المحتوى المخفي ويمكنهم استرجاعه مجددا من خلال هذه الواجهة نفسها، مالم يتم وضع قيود إضافية.
+من فضلك أكد أنك تنوي فعل هذا، وأنك تفهم العواقب، وأنك تفعل هذا بالتوافق مع [[{{MediaWiki:Policy-url}}|السياسة]].",
 'revdelete-legend'            => 'وضع ضوابط رؤية',
 'revdelete-hide-text'         => 'إخفاء نص المراجعة',
 'revdelete-hide-name'         => 'إخفاء الفعل والهدف',
@@ -1829,15 +1830,15 @@ $NEWPAGE
 'protect-expiring'            => 'تنتهي في $1 (UTC)',
 'protect-cascade'             => 'احم الصفحات المضمنة في هذه الصفحة (حماية مضمنة)',
 'protect-cantedit'            => 'لا يمكنك تغيير مستويات الحماية لهذه الصفحة، لأنك لا تمتلك الصلاحية لتعديلها.',
-'restriction-type'            => 'سماح:',
+'restriction-type'            => 'إذن:',
 'restriction-level'           => 'مستوى الضوابط:',
 'minimum-size'                => 'الحجم الأدنى',
 'maximum-size'                => 'الحجم الأقصى:',
 'pagesize'                    => '(بايت)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'عدل',
-'restriction-move'   => 'نقل',
+'restriction-edit'   => 'التعديل',
+'restriction-move'   => 'النقل',
 'restriction-create' => 'أنشىء',
 
 # Restriction levels
@@ -1867,7 +1868,7 @@ $NEWPAGE
 ربما لديك وصلة سيئة، أو ربما المراجعة تم استرجاعها أو إزالتها من الأرشيف.',
 'undelete-nodiff'              => 'لم يتم العثور على مراجعة سابقة.',
 'undeletebtn'                  => 'استرجاع',
-'undeletelink'                 => 'استعادة',
+'undeletelink'                 => 'عرض/استعادة',
 'undeletereset'                => 'إلغاء',
 'undeletecomment'              => 'تعليق:',
 'undeletedarticle'             => 'استرجع "[[$1]]"',
@@ -1963,7 +1964,7 @@ $1',
 'ipboptions'                  => '2 ساعة:2 hours,1 يوم:1 day,3 يوم:3 days,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائي:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'غير ذلك',
 'ipbotherreason'              => 'سبب إضافي/آخر:',
-'ipbhidename'                 => 'أخف اسم المستخدم من سجل المنع، قائمة المنع النشطة وقائمة المستخدمين',
+'ipbhidename'                 => 'أخف اسم المستخدم من التعديلات والقوائم',
 'badipaddress'                => 'عنوان أيبي غير صحيح',
 'blockipsuccesssub'           => 'تم المنع بنجاح',
 'blockipsuccesstext'          => 'تم منع [[Special:Contributions/$1|$1]].<br />
@@ -2212,7 +2213,7 @@ $1',
 'tooltip-n-currentevents'         => 'مطالعة سريعة لأهم الأحداث الجارية',
 'tooltip-n-recentchanges'         => 'قائمة أحدث التغييرات في الويكي.',
 'tooltip-n-randompage'            => 'حمل صفحة عشوائية',
-'tooltip-n-help'                  => 'تحتاج مساعدة؟ انظر هذه الصفحة!',
+'tooltip-n-help'                  => 'المكان للمساعدة',
 'tooltip-n-sitesupport'           => 'ادعمنا',
 'tooltip-t-whatlinkshere'         => 'قائمة بكل صفحات الويكي التي تصل هنا',
 'tooltip-t-recentchangeslinked'   => 'أحدث التغييرات في الصفحات الموصولة من هذه الصفحة',

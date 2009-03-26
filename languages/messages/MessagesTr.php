@@ -8,6 +8,7 @@
  * @author Dbl2010
  * @author Erkan Yilmaz
  * @author Fryed-peach
+ * @author Hanberke
  * @author Joseph
  * @author Karduelis
  * @author Katpatuka
@@ -53,7 +54,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Boş bağlantıları <a href="" class="new">bu şekilde</a> (alternatif: bu şekilde<a href="" class="internal">?</a>) göster.',
 'tog-justify'                 => 'Paragrafları iki yana yasla',
 'tog-hideminor'               => '"Son değişiklikler" sayfasında küçük değişiklikleri gizle',
-'tog-extendwatchlist'         => 'İzleme listesini genişlet',
+'tog-extendwatchlist'         => 'İzleme listesini, sadece son değil, tüm değişiklikleri görmek için genişlet',
 'tog-usenewrc'                => 'Gelişmiş son değişiklikler (JavaScript)',
 'tog-numberheadings'          => 'Başlıkları otomatik numaralandır',
 'tog-showtoolbar'             => 'Değişiklik yaparken araç çubuğunu göster (JavaScript)',
@@ -134,18 +135,18 @@ $messages = array(
 'october-gen'   => 'Ekim',
 'november-gen'  => 'Kasım',
 'december-gen'  => 'Aralık',
-'jan'           => 'Ocak',
-'feb'           => 'Şubat',
-'mar'           => 'Mart',
-'apr'           => 'Nisan',
-'may'           => 'Mayıs',
-'jun'           => 'Haziran',
-'jul'           => 'Temmuz',
-'aug'           => 'Ağustos',
-'sep'           => 'Eylül',
-'oct'           => 'Ekim',
-'nov'           => 'Kasım',
-'dec'           => 'Aralık',
+'jan'           => 'Oca',
+'feb'           => 'Şub',
+'mar'           => 'Mar',
+'apr'           => 'Nis',
+'may'           => 'May',
+'jun'           => 'Haz',
+'jul'           => 'Tem',
+'aug'           => 'Ağu',
+'sep'           => 'Eyl',
+'oct'           => 'Eki',
+'nov'           => 'Kas',
+'dec'           => 'Ara',
 
 # Bits of text used by many pages
 'categories'            => 'Kategoriler',
@@ -216,7 +217,7 @@ $messages = array(
 'personaltools'     => 'Kişisel aletler',
 'postcomment'       => 'Yeni bölüm',
 'articlepage'       => 'Maddeye git',
-'talk'              => '{{#ifeq:{{TALKSPACE}}|Kullanıcı mesaj|mesaj|tartışma}}',
+'talk'              => 'Tartışma',
 'views'             => 'Görünümler',
 'toolbox'           => 'Araçlar',
 'userpage'          => 'Kullanıcı sayfasını görüntüle',
@@ -711,7 +712,8 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'logdelete-selected'          => "'''$1''' sayfasının {{PLURAL:$2|seçili kayıt olayı|seçili kayıt olayları}}:",
 'revdelete-text'              => "'''Silinen revizyonlar ve olaylar hala sayfa geçmişinde ve günlüklerde görünecektir, fakat içeriğin parçaları umumi olarak erişilemeyecektir.'''
 
-{{SITENAME}} sitesindeki diğer yöneticiler gizli içeriğe erişebilir ve ilave kısıtlamalar ayarlanmadıysa bu arayüz ile geri getirebilir.",
+{{SITENAME}} sitesindeki diğer yöneticiler gizli içeriğe erişebilir ve ilave kısıtlamalar ayarlanmadıysa bu arayüz ile geri getirebilir.
+Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [[{{MediaWiki:Policy-url}}|ilkelere]] göre yapıyor olduğunuzu onaylayın.",
 'revdelete-legend'            => 'Görünürlük kısıtlamaları ayarla',
 'revdelete-hide-text'         => 'Değişiklik yazısını gizle',
 'revdelete-hide-name'         => 'Olayı ve hedefi gizle',
@@ -954,7 +956,7 @@ veya doğrudan bağlantı için
 'uploadlogpagetext'           => 'Aşağıda en son eklenen [[Special:NewImages|dosyaların bir listesi]] bulunmaktadır.',
 'filename'                    => 'Dosya adı',
 'filedesc'                    => 'Dosya ile ilgili açıklama',
-'fileuploadsummary'           => 'Açıklama:',
+'fileuploadsummary'           => 'Özet:',
 'filestatus'                  => 'Telif hakkı durumu:',
 'filesource'                  => 'Kaynak:',
 'uploadedfiles'               => 'Yüklenen dosyalar',
@@ -977,7 +979,7 @@ bu dosyanın boyutu $2.',
 Yüklenilen dosyanın adı: '''<tt>$1</tt>'''<br />
 Varolan dosyanın adı: '''<tt>$2</tt>'''<br />
 Lütfen başka bir isim seçin",
-'fileexists-thumb'            => "<center>'''Bu isimde zaten bir resim var'''</center>",
+'fileexists-thumb'            => "<center>'''Bu isimde zaten bir dosya var'''</center>",
 'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
 Please check the file '''<tt>$1</tt>'''.<br />
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.
@@ -1051,6 +1053,9 @@ Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 
 # Image list
 'imagelist'                 => 'Resim listesi',
+'imagelist-summary'         => 'Bu özel sayfa yüklenen tüm dosyaları gösterir.
+Varsayılan olarak en son yüklenen dosyalar listenin en üstünde görünür.
+Sütun başlığına bir tıklama sıralamayı değiştirir.',
 'imagelisttext'             => "Aşağıdaki liste '''$2''' göre dizilmiş {{PLURAL:$1|adet dosyayı|adet dosyayı}} göstermektedir.",
 'getimagelist'              => 'dosya listesi hazırlanıyor',
 'ilsubmit'                  => 'Ara',
@@ -1110,6 +1115,8 @@ Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' dosyasının $3, $2 tarihli sürümü silindi.",
 'filedelete-nofile'           => "'''$1''' mevcut değildir.",
 'filedelete-nofile-old'       => "'''$1''' için belirtilen niteliklerde arşivlenmiş bir sürüm yok.",
+'filedelete-iscurrent'        => 'Bu dosyanın en son sürümünü silmeye çalışıyorsunuz.
+Lütfen önce eski bir sürüme geri döndürün.',
 'filedelete-otherreason'      => 'Diğer/ilave gerekçe:',
 'filedelete-reason-otherlist' => 'Başka sebeb',
 'filedelete-reason-dropdown'  => '*Genel silme gerekçeleri
@@ -1118,8 +1125,7 @@ Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 
 # MIME search
 'mimesearch'         => 'MIME araması',
-'mimesearch-summary' => 'Bu sayfa dosyaların MIME-tiplerine göre süzülmesine olanak sağlar.
-Girdi: contenttype/subtype, ör: <tt>resim/jpeg</tt>.',
+'mimesearch-summary' => 'Bu sayfa, MIME tipi dosyaların süzülmesini sağlar. Girdi: içeriktipi/alttipi, e.g. <tt>resim/jpeg</tt>.',
 'mimetype'           => 'MIME tipi:',
 'download'           => 'yükle',
 
@@ -1145,15 +1151,14 @@ Girdi: contenttype/subtype, ör: <tt>resim/jpeg</tt>.',
 'statistics'             => 'İstatistikler',
 'sitestats'              => '{{SITENAME}} sitesi istatistikleri',
 'userstats'              => 'Kullanıcı istatistikleri',
-'sitestatstext'          => "{{SITENAME}} sitesinde şu anda '''\$2''' geçerli sayfa mevcuttur.
+'sitestatstext'          => "Veritabanında {{PLURAL:\$1|'''1''' sayfa|toplam '''\$1''' sayfa}} var.
+Bu sayıya; \"tartışma\" sayfaları, \"{{SITENAME}}\" hakkında sayfalar, asgari \"taslak\" sayfaları, yönlendirmeler, ve muhtemelen içerik sayfası olarak nitelendirilemeyen diğerleri dahildir.
+Bunlar dışarıda bırakılarak, \$2 tane muhtemel meşru içerik sayfası mevcut.
 
-Bu sayıya; \"yönlendirme\", \"tartışma\", \"resim\", \"kullanıcı\", \"yardım\", \"{{SITENAME}}\", \"şablon\" alanlarındakiler ve iç bağlantı içermeyen maddeler dahil değildir. Geçerli madde sayısına bu sayfaların sayısı eklendiğinde ise toplam '''\$1''' sayfa mevcuttur.
+'''\$8''' tane dosya yüklenmiştir.
 
-\$8 tane dosya yüklenmiştir.
-
-Site kurulduğundan bu güne kadar toplam '''\$4''' sayfa değişikliği ve sayfa başına ortalama '''\$5''' katkı olmuştur.
-
-Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görüntüleme sayısı '''\$6''' olmuştur.
+{{SITENAME}} sitesi kurulduğundan bu güne kadar toplam '''\$3''' ziyaret, ve '''\$4''' sayfa değişikliği vardır
+Bu sayfa başına ortalama '''\$5''' katkıya, ve değişiklik başına '''\$6''' görüntülemeye denk gelmektedir.
 
 Şu andaki [http://www.mediawiki.org/wiki/Manual:Job_queue iş kuyruğu] sayısı '''\$7'''.",
 'userstatstext'          => "'''$1''' kayıtlı [[Special:Listusers|kullanıcı]] var. Bunlardan '''$2''' tanesi ('''%$4''' kadarı) $5 haklarına sahiptir.",
@@ -1179,7 +1184,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'fewestrevisions' => 'En az düzenleme yapılmış sayfalar',
 
 # Miscellaneous special pages
-'nbytes'                  => '{{PLURAL:$1|bayt|bayt}}',
+'nbytes'                  => '$1 {{PLURAL:$1|bayt|bayt}}',
 'ncategories'             => '{{PLURAL:$1|kategori|kategoriler}}',
 'nlinks'                  => '$1 {{PLURAL:$1|bağlantı|bağlantı}}',
 'nmembers'                => '{{PLURAL:$1|üye|üyeler}}',
@@ -1481,7 +1486,7 @@ Silindikten sonra aynı isimle yeni bir sayfa oluşturulmuşsa, geri gelen reviz
 Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz bağlantı yanlıştır.',
 'undelete-nodiff'              => 'Önceki bir revizyon bulunamadı.',
 'undeletebtn'                  => 'Geri getir!',
-'undeletelink'                 => 'geri getir',
+'undeletelink'                 => 'görüntüle/geri getir',
 'undeletereset'                => 'Vazgeç',
 'undeletecomment'              => 'Neden:',
 'undeletedarticle'             => '"$1" geri getirildi.',
@@ -1570,14 +1575,14 @@ $1',
 'ipbenableautoblock'          => 'Bu kullanıcı tarafından kullanılan son IP adresini ve değişişiklik yapmaya çalıştıkları mütakip IPleri otomatik olarak engelle',
 'ipbsubmit'                   => 'Bu kullanıcıyı engelle',
 'ipbother'                    => 'Farklı zaman',
-'ipboptions'                  => '15 dakika:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 hafta:1 week,1 ay:1 month,süresiz:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'farklı',
 'ipbotherreason'              => 'Başka/ek sebepler:',
-'ipbhidename'                 => 'Kullanıcı adını, engelleme günlüğünde, aktif engelleme listesinde ve kullanıcı listesinde gizle',
+'ipbhidename'                 => 'Kullanıcı adını katkılarda ve listelerde gizle',
 'badipaddress'                => 'Geçersiz IP adresi',
 'blockipsuccesssub'           => 'IP adresi engelleme işlemi başarılı oldu',
-'blockipsuccesstext'          => '"$1" engellendi.
-<br />[[Special:IPBlockList|IP adresi engellenenler]] listesine bakınız.',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] engellendi.
+<br />Engellemeleri gözden geçirmek için [[Special:IPBlockList|IP adresi engellenenler]] listesine bakınız.',
 'ipb-edit-dropdown'           => 'Engelleme nedenleri düzenle',
 'ipb-unblock-addr'            => '$1 için engellemeyi kaldır',
 'ipb-unblock'                 => 'Engellemeyi kaldır',
@@ -1697,6 +1702,7 @@ Lütfen başka bir isim deneyiniz.',
 'delete_and_move_confirm' => 'Evet, sayfayı sil',
 'delete_and_move_reason'  => 'İsim değişikliğinin gerçekleşmesi için silindi.',
 'selfmove'                => 'Olmasını istediğiniz isim ile mevcut isim aynı. Değişiklik mümkün değil.',
+'immobile_namespace'      => 'Kaynak ya da hedef başlık özel tipte; bu ad alanına ve alanından sayfalar taşınamaz.',
 
 # Export
 'export'            => 'Sayfa kaydet',
@@ -1720,7 +1726,8 @@ Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]
 'allmessagesname'           => 'İsim',
 'allmessagesdefault'        => 'Orjinal metin',
 'allmessagescurrent'        => 'Kullanımdaki metin',
-'allmessagestext'           => "Bu liste  MediaWiki'de mevcut olan tüm terimlerin listesidir",
+'allmessagestext'           => 'Bu liste  MediaWiki ad alanında mevcut olan sistem mesajlarının listesidir.
+Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [http://www.mediawiki.org/wiki/Localisation MediaWiki Yerelleştirmesi] ve [http://translatewiki.net translatewiki.net] sayfalarını ziyaret edin.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' kapalı olduğu için '''{{ns:special}}:Allmessages''' kullanıma açık değil.",
 'allmessagesfilter'         => 'Metin ayrıştırıcı filtresi:',
 'allmessagesmodified'       => 'Sadece değiştirilmişleri göster',

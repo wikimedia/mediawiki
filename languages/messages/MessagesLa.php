@@ -147,7 +147,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formare nexus fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Iustificare paragrapha',
 'tog-hideminor'               => 'Celare recensiones minores in indice nuper mutatorum',
-'tog-extendwatchlist'         => 'Extendere indicem paginarum custoditarum ut omnes emendationes monstrentur',
+'tog-extendwatchlist'         => 'Extendere indicem paginarum custoditarum ut omnes emendationes monstrentur, non solum emendationes recentissimae',
 'tog-usenewrc'                => 'Index nuper mutatorum amplificatus (JavaScript)',
 'tog-numberheadings'          => 'Numerare semper indices',
 'tog-showtoolbar'             => 'Monstrare instrumenta ad paginas recensendas (JavaScript)',
@@ -941,6 +941,9 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'imagelinks'                => 'Nexus ad fasciculum',
 'linkstoimage'              => 'Hae paginae ad hunc fasciculum nectunt:',
 'nolinkstoimage'            => 'Nullae paginae ad hunc fasciculum nectunt.',
+'shareduploadwiki'          => 'Vide contenta $1.',
+'shareduploadwiki-desc'     => 'Contenta $1 subter monstrantur.',
+'shareduploadwiki-linktext' => 'paginae descriptionis fasciculi',
 'noimage'                   => 'Fasciculus huius nominis non est, sed $1 potes.',
 'noimage-linktext'          => 'fasciculum imponere',
 'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi imponere',
@@ -1181,6 +1184,30 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'enotif_subject'               => 'Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR $CHANGEDORCREATED est',
 'enotif_lastdiff'              => 'Vide $1 ad hanc recensionem inspiciendum.',
 'enotif_anon_editor'           => 'usor ignotus $1',
+'enotif_body'                  => '
+Salve $WATCHINGUSERNAME,
+
+Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR die $PAGEEDITDATE $CHANGEDORCREATED est, vide emendationem currentem apud $PAGETITLE_URL
+
+$NEWPAGE
+
+Auctor hunc summarium dedit: $PAGESUMMARY $PAGEMINOREDIT
+
+Contact the editor:
+litterae electronicae: $PAGEEDITOR_EMAIL
+vici: $PAGEEDITOR_WIKI
+
+There will be no other notifications in case of further changes unless you visit this page.
+You could also reset the notification flags for all your watched pages on your watchlist.
+
+             Your friendly {{SITENAME}} notification system
+
+--
+To change your watchlist settings, visit
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Feedback and further assistance:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                => 'Delere paginam',
@@ -1260,7 +1287,7 @@ ad emendationem proximam ab $2.',
 Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitutae in historia priori apparebunt.',
 'undelete-revision'         => 'Emendatio deleta paginae $1 (ex $5, $4) ab usore $3:',
 'undeletebtn'               => 'Restituere',
-'undeletelink'              => 'restituere',
+'undeletelink'              => 'inspicere/restituere',
 'undeletereset'             => 'Reperscriptare',
 'undeletecomment'           => 'Sententia:',
 'undeletedarticle'          => 'restituit "[[$1]]"',
@@ -1293,7 +1320,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 
 'sp-contributions-newbies'     => 'Monstrare solum conlationes rationum novarum',
 'sp-contributions-newbies-sub' => 'Conlationes rationum novarum',
-'sp-contributions-blocklog'    => 'Acta obstructionum',
+'sp-contributions-blocklog'    => 'acta obstructionum',
 'sp-contributions-search'      => 'Conlationes usoris quaerere',
 'sp-contributions-username'    => 'Locus IP aut nomen usoris:',
 'sp-contributions-submit'      => 'Quaerere',

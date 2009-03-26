@@ -40,7 +40,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Darlles formato ás ligazóns crebadas <a href="" class="new">deste xeito</a> (alternativa: así<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Xustificar os parágrafos',
 'tog-hideminor'               => 'Agochar as edicións pequenas na páxina de cambios recentes',
-'tog-extendwatchlist'         => 'Lista de vixilancia estendida',
+'tog-extendwatchlist'         => 'Expandir a lista de vixilancia para mostrar todos os cambios e non só os máis recentes',
 'tog-usenewrc'                => 'Cambios recentes avanzados (JavaScript)',
 'tog-numberheadings'          => 'Numerar automaticamente as cabeceiras',
 'tog-showtoolbar'             => 'Mostrar a caixa de ferramentas de edición (JavaScript)',
@@ -68,7 +68,7 @@ $messages = array(
 'tog-externaldiff'            => 'Usar diferenzas externas (dif) por omisión (só para expertos, precisa duns parámetros especiais no seu computador)',
 'tog-showjumplinks'           => 'Permitir as ligazóns de accesibilidade "ir a"',
 'tog-uselivepreview'          => 'Usar <i>live preview</i> (JavaScript) (Experimental)',
-'tog-forceeditsummary'        => 'Avisarme cando o campo resumo estea baleiro',
+'tog-forceeditsummary'        => 'Avisádeme cando o campo resumo estea baleiro',
 'tog-watchlisthideown'        => 'Agochar as edicións propias na lista de vixilancia',
 'tog-watchlisthidebots'       => 'Agochar as edicións dos bots na lista de vixilancia',
 'tog-watchlisthideminor'      => 'Agochar as edicións pequenas na lista de vixilancia',
@@ -202,7 +202,7 @@ $messages = array(
 'specialpage'       => 'Páxina especial',
 'personaltools'     => 'Ferramentas persoais',
 'postcomment'       => 'Nova sección',
-'articlepage'       => 'Ver artigo',
+'articlepage'       => 'Ver a páxina de contido',
 'talk'              => 'Conversa',
 'views'             => 'Vistas',
 'toolbox'           => 'Caixa de ferramentas',
@@ -231,7 +231,7 @@ $messages = array(
 'bugreportspage'    => 'Project:Informe de erros',
 'copyright'         => 'Todo o texto está dispoñíbel baixo $1.',
 'copyrightpagename' => 'Dereitos de autor (copyright) de {{SITENAME}}',
-'copyrightpage'     => '{{ns:project}}: Dereitos de autor (Copyrights)',
+'copyrightpage'     => '{{ns:project}}:Dereitos de autor',
 'currentevents'     => 'Actualidade',
 'currentevents-url' => 'Project:Actualidade',
 'disclaimers'       => 'Advertencias',
@@ -322,7 +322,7 @@ MySQL devolveu o erro "$3: $4"',
 'noconnect'            => 'O wiki está experimentando algunhas dificultades técnicas e non se pode contactar co servidor da base de datos.<br />
 $1',
 'nodb'                 => 'Non se pode seleccionar a base de datos $1',
-'cachederror'          => 'Esta é unha copia gardada da páxina requirida e pode non estar ao día.',
+'cachederror'          => 'Esta é unha copia gardada da páxina solicitada, polo que pode non estar ao día.',
 'laggedslavemode'      => 'Aviso: a páxina pode non conter actualizacións recentes.',
 'readonly'             => 'Base de datos fechada',
 'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
@@ -350,7 +350,8 @@ Por favor, informe a un administrador, tomando nota do URL.',
 'cannotdelete'         => 'Non se pode borrar a páxina ou imaxe especificada.
 Se cadra, xa foi borrada por alguén.',
 'badtitle'             => 'Título incorrecto',
-'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta. Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
+'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta.
+Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
 'perfdisabled'         => 'Sentímolo! Esta funcionalidade foi deshabilitada temporalmente porque fai moi lenta a base de datos até o punto no que non se pode usar o wiki.',
 'perfcached'           => 'A información seguinte é da memoria caché e pode ser que non estea completamente actualizada.',
 'perfcachedts'         => 'Esta información é da memoria caché. Última actualización: $1.',
@@ -414,7 +415,7 @@ Escolla un nome diferente.',
 'uid'                        => 'ID do usuario:',
 'yourrealname'               => 'Nome real:',
 'yourlanguage'               => 'Lingua da interface:',
-'yourvariant'                => 'Variante de idioma:',
+'yourvariant'                => 'Variante de lingua:',
 'yournick'                   => 'Sinatura:',
 'badsig'                     => 'Sinatura non válida; comprobe o código HTML utilizado.',
 'badsiglength'               => 'O alcume é demasiado longo; ha de ter menos de $1 caracteres.',
@@ -469,7 +470,7 @@ Non pode crear máis.',
 Introduza un enderezo cun formato válido ou limpe ese campo.',
 'accountcreated'             => 'Conta creada',
 'accountcreatedtext'         => 'A conta de usuario para $1 foi creada.',
-'createaccount-title'        => 'Creación da conta para {{SITENAME}}',
+'createaccount-title'        => 'Creación dunha conta para {{SITENAME}}',
 'createaccount-text'         => 'Alguén creou unha conta chamada "$2" para o seu enderezo de correo electrónico en {{SITENAME}} ($4), e con contrasinal "$3".
 Debe acceder ao sistema e mudar o contrasinal agora.
 
@@ -503,7 +504,7 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'nowiki_sample'   => 'Insira aquí un texto sen formato',
 'nowiki_tip'      => 'Ignorar o formato wiki',
 'image_sample'    => 'Exemplo.jpg',
-'image_tip'       => 'Ficheiro embebido',
+'image_tip'       => 'Ficheiro embelecido',
 'media_sample'    => 'Exemplo.ogg',
 'media_tip'       => 'Ligazón a un ficheiro',
 'sig_tip'         => 'A súa sinatura con selo temporal',
@@ -579,7 +580,7 @@ Por favor, inclúa eses datos nas consultas que faga.',
 'newarticletext'            => "Seguiu unha ligazón a unha páxina que aínda non existe.
 Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para máis información).
 Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navegador.",
-'anontalkpagetext'          => "----''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódenno compartir varios usuarios distintos. Se pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor, [[Special:UserLogin/signup|cree unha conta]] ou [[Special:UserLogin|acceda ao sistema]] para evitar futuras confusións con outros usuarios anónimos.''",
+'anontalkpagetext'          => "----''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor, [[Special:UserLogin/signup|cree unha conta]] ou [[Special:UserLogin|acceda ao sistema]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'             => 'Actualmente non hai ningún texto nesta páxina.
 Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas,
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} ollar os rexistros relacionados]
@@ -638,10 +639,8 @@ Por favor, considere partir a páxina en seccións máis pequenas.'''",
 'longpageerror'             => "'''ERRO: o texto que pretende gardar supera en $1 kilobytes o permitido.
 Hai un límite máximo de $2 kilobytes;
 polo tanto, non se pode gardar.'''",
-'readonlywarning'           => '<strong>ATENCIÓN: a base de datos foi fechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.
-Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.</strong>
-
-O administrador que a fechou deu esta explicación: $1',
+'readonlywarning'           => '<strong>ATENCIÓN: a base de datos foi pechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.
+Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.</strong>',
 'protectedpagewarning'      => "'''ATENCIÓN: esta páxina foi fechada de xeito que só os usuarios con privilexios de administrador do sistema poden editala.'''",
 'semiprotectedpagewarning'  => "'''Nota:''' esta páxina foi bloqueada e só os usuarios rexistrados poden editala.",
 'cascadeprotectedwarning'   => "'''Aviso:''' esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina protexida|nas seguintes páxinas protexidas}} coa opción \"protección en serie\" activada:",
@@ -730,9 +729,10 @@ se quere ampliar detalles, visite o [{{fullurl:Special:Log/delete|page={{PAGENAM
 'revdelete-nooldid-text'      => 'Non indicou a revisión ou revisións sobre as que realizar esta función.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisións seleccionadas}} de [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Evento de rexistro seleccionado|Eventos de rexistro seleccionados}} para '''$1:'''",
-'revdelete-text'              => "'''As revisión eliminadas aínda aparecerán no historial da páxina e nos rexistros, pero parte do seu contido será inaccesíbel ao público.'''
+'revdelete-text'              => "'''As revisións borradas seguirán aparecendo no historial da páxina e nos rexistros, pero partes do seu contido serán inaccesibles de cara ao público.'''
 
-Outros administradores de {{SITENAME}} poderán acceder ao contido oculto e poderán restaurar a páxina a través desta mesma interface, a non ser que os operadores do sitio leven a cabo unha restrición adicional.",
+Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e poderán restaurar a páxina de novo a través desta mesma interface, a non ser que sexa establecida unha restrición adicional.
+Por favor, confirme que esta é a súa intención, que comprende as consecuencias e que o fai de acordo [[{{MediaWiki:Policy-url}}|coas políticas]].",
 'revdelete-legend'            => 'Aplicar restricións de visibilidade',
 'revdelete-hide-text'         => 'Agochar texto da revisión',
 'revdelete-hide-name'         => 'Agochar acción e destino',
@@ -879,7 +879,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 
 # User rights
 'userrights-lookup-user'           => 'Administrar os grupos do usuario',
-'userrights-user-editname'         => 'Escriba o nome do usuario:',
+'userrights-user-editname'         => 'Escriba un nome de usuario:',
 'editusergroup'                    => 'Editar os grupos do usuario',
 'userrights-editusergroup'         => 'Editar os grupos do usuario',
 'saveusergroups'                   => 'Gardar os grupos do usuario',
@@ -896,7 +896,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'userrights-no-interwiki'          => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
 'userrights-nodatabase'            => 'A base de datos $1 non existe ou non é local.',
 'userrights-nologin'               => 'Debe [[Special:UserLogin|acceder ao sistema]] cunta conta de administrador para asignar dereitos de usuario.',
-'userrights-notallowed'            => 'A súa conta non dispón de permiso para asignar dereitos de usuario.',
+'userrights-notallowed'            => 'A súa conta non dispón dos permisos necesarios para asignar dereitos de usuario.',
 
 # Groups
 'group'               => 'Grupo:',
@@ -1302,7 +1302,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Seguinte',
 'allpagessubmit'    => 'Amosar',
-'allpagesprefix'    => 'Mostrar páxinas no espazo de nomes:',
+'allpagesprefix'    => 'Mostrar as páxinas que comezan co prefixo:',
 'allpagesbadtitle'  => 'O título dado á páxina non era válido ou contiña un prefixo inter-linguas ou inter-wikis. Pode que conteña un ou máis caracteres que non se poden empregar nos títulos.',
 'allpages-bad-ns'   => '{{SITENAME}} carece do espazo de nomes "$1".',
 
@@ -1352,7 +1352,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'notanarticle'         => 'Non é unha páxina de contido',
 'watchnochange'        => 'Ningún dos elementos baixo vixilancia foi editado no período de tempo amosado.',
 'watchlist-details'    => 'Hai {{PLURAL:$1|unha páxina|$1 páxinas}} na súa lista de vixilancia, sen contar as de conversa.',
-'wlheader-enotif'      => '* Está dispoñíbel a notificación por correo electrónico.',
+'wlheader-enotif'      => '* Está dispoñible a notificación por correo electrónico.',
 'wlheader-showupdated' => "* As páxinas que cambiaron desde a súa última visita amósanse en '''negra'''",
 'watchmethod-recent'   => 'comprobando as edicións recentes na procura de páxinas vixiadas',
 'watchmethod-list'     => 'comprobando as páxinas vixiadas na procura de edicións recentes',
@@ -1375,23 +1375,23 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'enotif_reset'                 => 'Marcar todas as páxinas como visitadas',
 'enotif_newpagetext'           => 'Esta é unha páxina nova.',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
-'changed'                      => 'modificado',
-'created'                      => 'creado',
-'enotif_subject'               => 'A páxina da {{SITENAME}} co título $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
+'changed'                      => 'modificada',
+'created'                      => 'creada',
+'enotif_subject'               => 'A páxina de {{SITENAME}} chamada "$PAGETITLE" foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vexa $1 para comprobar todos os cambios desde a súa última visita.',
 'enotif_lastdiff'              => 'Vexa $1 para visualizar esta modificación.',
 'enotif_anon_editor'           => 'usuario anónimo $1',
 'enotif_body'                  => 'Estimado $WATCHINGUSERNAME,
 
-a páxina da {{SITENAME}} "$PAGETITLE" cambiou $CHANGEDORCREATED o $PAGEEDITDATE por unha edición de $PAGEEDITOR, vexa $PAGETITLE_URL para comprobar a versión actual.
+a páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATE por $PAGEEDITOR, vexa $PAGETITLE_URL para comprobar a versión actual.
 
 $NEWPAGE
 
 Resumo de edición: $PAGESUMMARY $PAGEMINOREDIT
 
-Contactar co editor:
-correo electrónico: $PAGEEDITOR_EMAIL
-wiki: $PAGEEDITOR_WIKI
+Pode contactar co editor:
+por correo electrónico: $PAGEEDITOR_EMAIL
+no wiki: $PAGEEDITOR_WIKI
 
 Non se producirán novas notificacións cando haxa novos cambios ata que vostede visite a páxina. Pode borrar os indicadores de aviso de notificación para o conxunto das páxinas marcadas na súa lista de vixilancia.
 
@@ -1421,7 +1421,7 @@ Por favor, confirme que é realmente a súa intención, que comprende as consecu
 No $2 pode ver unha lista dos borrados máis recentes.',
 'deletedarticle'              => 'borrou "[[$1]]"',
 'dellogpage'                  => 'Rexistro de borrados',
-'dellogpagetext'              => 'Abaixo está a lista dos borrados máis recentes.',
+'dellogpagetext'              => 'A continuación atópase a lista cos borrados máis recentes.',
 'deletionlog'                 => 'rexistro de borrados',
 'reverted'                    => 'Devolto a unha versión anterior',
 'deletecomment'               => 'Razón para o borrado:',
@@ -1467,16 +1467,17 @@ Vexa a [[Special:ProtectedPages|lista de páxinas protexidas]] se quere obter a 
 Velaquí a configuración actual da páxina '''$1''':",
 'protect-locked-access'       => "A súa conta non dispón de permisos para mudar os niveis de protección.
 Velaquí a configuración actual da páxina '''$1''':",
-'protect-cascadeon'           => 'Esta páxina está protexida neste momento porque está incluída {{PLURAL:$1|na seguinte páxina, que foi protexida|páxinas, que foron protexidas}} coa opción protección en serie activada. Pode mudar o nivel de protección da páxina pero iso non afectará á protección en serie.',
+'protect-cascadeon'           => 'Esta páxina está protexida neste momento porque está incluída {{PLURAL:$1|na seguinte páxina, que foi protexida|nas seguintes páxinas, que foron protexidas}} coa opción protección en serie activada.
+Pode mudar o nivel de protección da páxina pero iso non afectará á protección en serie.',
 'protect-default'             => 'Permitir a todos os usuarios',
 'protect-fallback'            => 'Require permisos de "$1"',
 'protect-level-autoconfirmed' => 'Bloquear os usuarios novos e anónimos',
 'protect-level-sysop'         => 'Só os administradores',
 'protect-summary-cascade'     => 'protección en serie',
-'protect-expiring'            => 'remata $1 (UTC)',
+'protect-expiring'            => 'remata o $2 ás $3 (UTC)',
 'protect-cascade'             => 'Protexer as páxinas incluídas nesta (protección en serie)',
-'protect-cantedit'            => 'Non pode modificar os niveis de protección desta páxina porque non ten permiso para editala.',
-'restriction-type'            => 'Permiso',
+'protect-cantedit'            => 'Non pode modificar os niveis de protección desta páxina porque non ten os permisos necesarios para editala.',
+'restriction-type'            => 'Permiso:',
 'restriction-level'           => 'Nivel de protección:',
 'minimum-size'                => 'Tamaño mínimo',
 'maximum-size'                => 'Tamaño máximo:',
@@ -1513,7 +1514,7 @@ O texto destas revisións eliminadas só está á disposición dos administrador
 'undeleterevision-missing'     => 'Revisión non válida ou inexistente. Pode que a ligazón conteña un erro ou que a revisión se restaurase ou eliminase do arquivo.',
 'undelete-nodiff'              => 'Non se atopou ningunha revisión anterior.',
 'undeletebtn'                  => 'Restaurar',
-'undeletelink'                 => 'restaurar',
+'undeletelink'                 => 'ver/restaurar',
 'undeletereset'                => 'Limpar',
 'undeletecomment'              => 'Razón para desprotexer:',
 'undeletedarticle'             => 'restaurou "[[$1]]"',
@@ -1581,7 +1582,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => 'Bloquear un usuario',
-'blockiptext'                 => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear a un usuario específico.
+'blockiptext'                 => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear un usuario específico.
 Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.
 Explique a razón específica do bloqueo (por exemplo, citando as páxinas concretas que sufriron vandalismo).',
 'ipaddress'                   => 'Enderezo IP:',
@@ -1607,9 +1608,9 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipboptions'                  => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'outra',
 'ipbotherreason'              => 'Outro motivo:',
-'ipbhidename'                 => 'Agochar nome de usuario no rexistro de bloqueos, na lista de bloqueos activos e na lista de usuarios',
+'ipbhidename'                 => 'Agochar o nome de usuario nas edicións e listas',
 'badipaddress'                => 'O enderezo IP non é válido',
-'blockipsuccesssub'           => 'Bloqueo con éxito',
+'blockipsuccesssub'           => 'Bloqueo exitoso',
 'blockipsuccesstext'          => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
 Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para revisalo.',
 'ipb-edit-dropdown'           => 'Editar os motivos de bloqueo',
@@ -1715,7 +1716,7 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'pagemovedsub'            => 'O movemento foi un éxito',
 'movepage-moved'          => '<big>\'\'\'A páxina "$1" foi movida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
-Por favor escolla outro nome.',
+Por favor, escolla outro nome.',
 'cantmove-titleprotected' => 'Non pode mover a páxina a este destino, xa que o novo título foi protexido fronte á creación',
 'talkexists'              => "'''Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.'''",
 'movedto'                 => 'movido a',
@@ -1746,7 +1747,7 @@ Para exportar páxinas, insira os títulos na caixa de texto que está máis aba
 No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]], para a páxina "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Incluír só a revisión actual, non o historial completo',
 'exportnohistory'   => "----
-'''Aviso:''' foi desactivada a exportación do historial completo das páxinas con este formulario debido a razóns relacionadas co rendemento do servidor.",
+'''Aviso:''' foi desactivada a exportación do historial completo das páxinas mediante este formulario debido a razóns relacionadas co rendemento do servidor.",
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Engadir as páxinas da categoría:',
 'export-addcat'     => 'Engadir',
@@ -1758,7 +1759,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'allmessagesname'           => 'Nome',
 'allmessagesdefault'        => 'Texto predeterminado',
 'allmessagescurrent'        => 'Texto actual',
-'allmessagestext'           => 'Esta é unha lista de todas as mensaxes dispoñíbeis no espazo de nomes MediaWiki.
+'allmessagestext'           => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
 Por favor, visite a [http://www.mediawiki.org/wiki/Localisation localización MediaWiki] e [http://translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
 'allmessagesfilter'         => 'Filtrar polo nome da mensaxe:',
@@ -1891,9 +1892,9 @@ Gráveo no seu disco duro e cárgueo aquí.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
-'siteuser'         => '{{SITENAME}} usuario $1',
-'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 as $2 por $3.', # $1 date, $2 time, $3 user
-'othercontribs'    => 'Baseado no traballo $1.',
+'siteuser'         => '$1 de {{SITENAME}}',
+'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 ás $2 por $3.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'Baseado no traballo feito por $1.',
 'others'           => 'outros',
 'siteusers'        => '{{PLURAL:$2|Usuario|Usuarios}} de {{SITENAME}} $1',
 'creditspage'      => 'Páxina de créditos',
@@ -1983,7 +1984,8 @@ $1',
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
 
-Só se consideran os elementos dunha lista (liñas que comezan por *). A primeira ligazón dunha liña ten que apuntar para unha imaxe mala.
+Só se consideran os elementos dunha lista (liñas que comezan por *).
+A primeira ligazón dunha liña ten que apuntar cara a un ficheiro mala.
 As ligazóns posteriores da mesma liña considéranse excepcións, isto é, páxinas nas que o ficheiro pode aparecer inserido na liña.',
 
 # Metadata
@@ -2265,7 +2267,10 @@ Outros agocharanse por omisión.
 # E-mail address confirmation
 'confirmemail'            => 'Confirmar o enderezo de correo electrónico',
 'confirmemail_noemail'    => 'Non ten rexistrado ningún enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias de usuario]].',
-'confirmemail_text'       => '{{SITENAME}} require que lle dea validez ao seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el. Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo. O correo incluirá unha ligazón cun código: faga clic nesta ligazón para abrila no seu navegador web e así confirmar que o seu enderezo é válido.',
+'confirmemail_text'       => '{{SITENAME}} require que lle dea validez ao seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el.
+Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo.
+O correo incluirá unha ligazón cun código:
+faga clic nesta ligazón para abrila no seu navegador web e así confirmar que o seu enderezo é válido.',
 'confirmemail_pending'    => '<div class="error"> Envióuselle un código de confirmación ao enderezo de correo electrónico; se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código.</div>',
 'confirmemail_send'       => 'Enviar por correo elecrónico un código de confirmación',
 'confirmemail_sent'       => 'Correo electrónico de confirmación enviado.',

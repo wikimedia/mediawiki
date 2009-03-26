@@ -118,7 +118,7 @@ $messages = array(
 'category-media-header' => "Medier i'n klynge „$1“",
 'category-empty'        => "''Denne klynge endeholter før øjeblikket æ verke sider æller medie-gøret.''",
 
-'mainpagetext'      => 'MediaWiki er nu installeret.',
+'mainpagetext'      => "<big>'''MediaWiki er nu installeret.'''</big>",
 'mainpagedocfooter' => "Se vores engelskspråĝede [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentåsje tilpasnenge'm åf æ brugergrænseflade] og [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide æ brugervejlednenge] før åplysnenger åpsætnenge'm og anvendelse.",
 
 'about'          => 'Åm',

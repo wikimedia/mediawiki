@@ -77,7 +77,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Afichar <a href="" class="new">en roge</a> los ligams cap a las paginas inexistentas (siquenon :  coma aquò<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justificar los paragrafs',
 'tog-hideminor'               => 'Amagar los darrièrs cambiaments menors',
-'tog-extendwatchlist'         => 'Utilizar la lista de seguit melhorada',
+'tog-extendwatchlist'         => 'Espandir la lista de seguit per afichar totas las modificacions e non pas solament las mai recentas',
 'tog-usenewrc'                => 'Utilizar los darrièrs cambiaments melhorats (JavaScript)',
 'tog-numberheadings'          => 'Numerotar automaticament los títols',
 'tog-showtoolbar'             => 'Mostrar la barra de menut de modificacion (JavaScript)',
@@ -737,9 +737,11 @@ I Pòt aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAME
 'revdelete-nooldid-text'      => 'Avètz pas precisat la o las revision(s) cibla(s) per utilizar aquesta foncion.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :'''",
 'logdelete-selected'          => "{{PLURAL:$2|Eveniment de jornal seleccionat|Eveniments de jornal seleccionats}} per '''$1''' :",
-'revdelete-text'              => "'''Las versions suprimidas apareisseràn encara dins l’istoric de l’article, mas lor contengut textual serà inaccessible al public.'''
+'revdelete-text'              => "'''Las revisions e eveniments suprimits apareisseràn encara dins l’istoric e los jornals de la pagina, mas lor contengut textual serà inaccessible al public.'''
 
-D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornarmai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del sit.",
+D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornarmai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del sit.
+
+Confirmatz qu'aquò es plan çò que voliatz far, que comprenètz las consequéncias, e qu'o fasètz en acòrd amb las [[{{MediaWiki:Policy-url}}|règlas]].",
 'revdelete-legend'            => 'Metre en plaça de restriccions de version :',
 'revdelete-hide-text'         => 'Amagar lo tèxt de la version',
 'revdelete-hide-name'         => 'Amagar l’accion e la cibla',
@@ -1106,7 +1108,7 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 'nolinkstoimage'            => 'Cap de pagina compòrta pas de ligam cap a aqueste imatge.',
 'sharedupload'              => 'Aqueste fichièr es partejat e pòt èsser utilizat per d’autres projèctes.',
 'shareduploadwiki'          => 'Reportatz-vos a la $1 per mai d’informacion.',
-'shareduploadwiki-desc'     => 'La descripcion de sa $1 dins lo repertòri partejat es afichada çaijós.',
+'shareduploadwiki-desc'     => 'La descripcion afichada çaijós es eissida de sa $1 dins lo depaus partejat.',
 'shareduploadwiki-linktext' => 'pagina de descripcion del fichièr',
 'noimage'                   => 'Cap de fichièr amb aqueste nom existís pas, mas podètz $1.',
 'noimage-linktext'          => "n'importar un",
@@ -1529,7 +1531,7 @@ S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, 
 'undeleterevision-missing'     => 'Version invalida o mancanta. Benlèu avètz un ligam marrit, o la version es estada restablida o suprimida de l’archiu.',
 'undelete-nodiff'              => 'Cap de revision precedenta pas trobada.',
 'undeletebtn'                  => 'Restablir',
-'undeletelink'                 => 'restablir',
+'undeletelink'                 => 'veire/restablir',
 'undeletereset'                => 'Reïnicializar',
 'undeletecomment'              => 'Comentari :',
 'undeletedarticle'             => 'a restablit « [[$1]] »',
@@ -1624,7 +1626,7 @@ Donatz çaijós una rason precisa (per exemple en indicant las paginas que son e
 'ipboptions'                  => '2 oras:2 hours,1 jorn:1 day,3 jorns:3 days,1 setmana:1 week,2 setmanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 an:1 year,indefinidament:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'autre',
 'ipbotherreason'              => 'Motiu diferent o suplementari',
-'ipbhidename'                 => "Amagar lo nom d’utilizaire de l'istoric de blocatge, de la lista dels blocatges actius e de la lista dels utilizaires",
+'ipbhidename'                 => 'Amagar lo nom d’utilizaire de las modificacions e de las listas',
 'badipaddress'                => "L'adreça IP es incorrècta",
 'blockipsuccesssub'           => 'Blocatge capitat',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] es estat blocat.<br />

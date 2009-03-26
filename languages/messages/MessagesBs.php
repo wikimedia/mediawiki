@@ -100,7 +100,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatiraj pokvarene veze <a href="" class="new">ovako</a> (alternativa: ovako<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Uravnjaj pasuse',
 'tog-hideminor'               => 'Sakrij male izmjene u spisku nedavnih izmjena',
-'tog-extendwatchlist'         => 'Proširi spisak praćenja za pogled svih izmjena',
+'tog-extendwatchlist'         => 'Proširi spisak praćenja za pogled svih izmjena, ne samo nedavnih',
 'tog-usenewrc'                => 'Poboljšan spisak nedavnih izmjena (JavaScript)',
 'tog-numberheadings'          => 'Automatski numeriši podnaslove',
 'tog-showtoolbar'             => 'Prikaži dugmiće za izmjene (JavaScript)',
@@ -201,7 +201,7 @@ $messages = array(
 'category-media-header' => 'Mediji u kategoriji "$1"',
 'category-empty'        => "''Ova kategorija trenutno ne sadrži članke ni medije.''",
 
-'mainpagetext'      => 'Viki softver is uspješno instaliran.',
+'mainpagetext'      => "<big>'''MediaViki softver is uspješno instaliran.'''</big>",
 'mainpagedocfooter' => 'Kontaktirajte [http://meta.wikimedia.org/wiki/Help:Contents uputstva za korisnike] za informacije o upotrebi wiki programa.
 
 == Početak ==
@@ -706,9 +706,9 @@ nemojte ih slati ovdje. Takođe, slanje članka podrazumijeva i vašu izjavu da 
 'copyrightwarning2'         => "Zapamtite da svaki doprinos na stranici {{SITENAME}} može biti izmijenjen, promijenjen ili uklonjen od strane ostalih korisnika. Ako ne želite da ovo desi sa Vašim tekstom, onda ga nemojte slati ovdje.<br />
 Takođe nam garantujete da ste ovo Vi napisali, ili da ste ga kopirali iz javne domene ili sličnog slobodnog izvora informacija (pogledajte $1 za više detalja).
 '''NE ŠALJITE AUTORSKIM PRAVOM ZAŠTIĆENE TEKSTOVE BEZ DOZVOLE!'''",
-'longpagewarning'           => "'''PAŽNJA: Ova stranica ima $1 kilobajta; neki
-preglednici mogu imati problema kad uređujete stranice skoro ili veće od 32 kilobajta.
-Molimo Vas da razmotrite razbijanje stranice na manje dijelove.'''",
+'longpagewarning'           => "'''PAŽNJA''': Ova stranica ima $1 kilobajta; 
+neki preglednici mogu imati problema kad uređujete stranice skoro ili veće od 32 kilobajta.
+Molimo Vas da razmotrite razbijanje stranice na manje dijelove.",
 'longpageerror'             => "'''Greška: Tekst, koji ste poslali, je dug $1 kilobajta, što je veće od maksimuma, koji iznosi $2 kilobajta. 
 Stranica ne može biti spremljena.'''",
 'readonlywarning'           => '<strong>PAŽNJA: Baza je zaključana zbog održavanja, tako da nećete moći da sačuvate svoje izmjene za sada. 
@@ -800,9 +800,10 @@ detalji o tome se mogu vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'revdelete-nooldid-text'      => 'Niste odredili ciljnu reviziju ili revizije da bi se mogla izvršiti ova funkcija.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Izabrani događaj zapisa|Izabrani događaji zapisa}} za '''$1:'''",
-'revdelete-text'              => "'''Obrisane revizije i događaji će i dalje biti vidljivi u hisoriji stranice i zapisima, ali dijelovi njenog sadržaja neće biti dostupni javnosti.'''
+'revdelete-text'              => "'''Obrisane revizije i događaji će i dalje biti vidljivi u historiji stranice i zapisima, ali dijelovi njenog sadržaja neće biti dostupni javnosti.'''
 
-Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakrivenom sadržaju i mogu ga ponovo vratiti kroz ovaj interfejs, osim ako nisu postavljena dodatna ograničenja.",
+Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakrivenom sadržaju i mogu ga ponovo vratiti kroz ovaj interfejs, osim ako nisu postavljena dodatna ograničenja.
+Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].",
 'revdelete-legend'            => 'Postavi ograničenja vidljivosti',
 'revdelete-hide-text'         => 'Sakrij tekst revizije',
 'revdelete-hide-name'         => 'Sakrij akciju i cilj',
@@ -1574,7 +1575,7 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 # Restrictions (nouns)
 'restriction-edit'   => 'Uredi',
 'restriction-move'   => 'Premještanje',
-'restriction-create' => 'Napraviti',
+'restriction-create' => 'Napravi',
 
 # Restriction levels
 'restriction-level-sysop'         => 'potpuno zaštićeno',
@@ -1601,7 +1602,7 @@ Revizije datoteka za koje nemate dopuštenje za pregledanje neće biti vraćene.
 Možda ste unijeli pogrešan link, ili je revizija vraćena ili uklonjena iz arhive.',
 'undelete-nodiff'              => 'Nije pronađena ranija revizija.',
 'undeletebtn'                  => 'Vrati',
-'undeletelink'                 => 'vrati',
+'undeletelink'                 => 'pogledaj/vrati',
 'undeletereset'                => 'Očisti',
 'undeletecomment'              => 'Komentar:',
 'undeletedarticle'             => 'vraćeno "$1"',
@@ -1694,7 +1695,7 @@ $1',
 'ipboptions'                  => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'ostalo',
 'ipbotherreason'              => 'Ostali/dodatni razlozi:',
-'ipbhidename'                 => 'Sakrij korisničko ime iz zapisa blokiranja, spiska aktivnih blokiranja i spisak korisnika',
+'ipbhidename'                 => 'Sakrij korisničko ime iz uređivanja i spiskova',
 'badipaddress'                => 'Pogrešna IP adresa',
 'blockipsuccesssub'           => 'Blokiranje je uspjelo',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] je blokiran.
@@ -1856,7 +1857,8 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWi
 'allmessagesname'           => 'Naziv',
 'allmessagesdefault'        => 'Pretpostavljeni tekst',
 'allmessagescurrent'        => 'Trenutni tekst',
-'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u {{ns:mediawiki}} imenskom prostoru.',
+'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u dostupnih u MedijaViki imenskom prostoru.
+Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MedijaViki lokalizaciju] i [http://translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MedijaVikija.',
 'allmessagesnotsupportedDB' => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
 'allmessagesfilter'         => 'Filter naziva poruka:',
 'allmessagesmodified'       => 'Prikaži samo izmijenjeno',

@@ -117,7 +117,7 @@ $messages = array(
 'category-media-header' => '“$1”分類裡頭嗰媒體',
 'category-empty'        => '“箇隻分類有包到任何文章或媒體”',
 
-'mainpagetext'      => "<big>'''安裝正MediaWiki嘍!'''</big>",
+'mainpagetext'      => "<big>'''安裝正MediaWiki嘍。'''</big>",
 'mainpagedocfooter' => '參看[http://meta.wikimedia.org/wiki/Help:Contents 用戶指南]裡頭會話到啷用wiki軟件
 
 == 開始使用 ==
@@ -360,8 +360,8 @@ $2',
 'userlogout'                 => '退出',
 'notloggedin'                => '冇登入',
 'nologin'                    => '倷冇得帳戶啊？ $1。',
-'nologinlink'                => '開隻新帳戶',
-'createaccount'              => '開隻新帳戶',
+'nologinlink'                => '新開隻帳戶',
+'createaccount'              => '新開隻帳戶',
 'gotaccount'                 => '有嘍帳戶？ $1.',
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '通過email',
@@ -443,7 +443,7 @@ $2',
 'image_tip'       => '扻進文件',
 'media_tip'       => '檔案連結',
 'sig_tip'         => '倷帶時間嗰簽名',
-'hr_tip'          => '橫線 (小聲使用)',
+'hr_tip'          => '橫線 (好生使用)',
 
 # Edit pages
 'summary'                   => '摘要',
@@ -499,7 +499,7 @@ $2',
 'nosuchsectiontext'         => '倷嘗試編寫嗰段落伓存在。到箇首係冇第$1隻段落，所以係冇場窪去存到倷嗰編輯。',
 'loginreqtitle'             => '需要登入',
 'loginreqlink'              => '登入',
-'loginreqpagetext'          => '倷要$1才能眵別嗰頁面。',
+'loginreqpagetext'          => '倷要$1才眵得正別嗰頁面。',
 'accmailtitle'              => '密碼寄出嘞',
 'accmailtext'               => "'$1'嗰密碼發到$2嘞。",
 'newarticle'                => '(新)',
@@ -523,10 +523,10 @@ $2',
 '''要係佢係合法編輯嗰，請試過吖。哈係扤伓正嗰話，試吖退出後登入過。'''",
 'token_suffix_mismatch'     => "'''倷嗰用戶端嗰編輯信毀吥嘞嚸標點符號字符，噉嗰話倷嗰編輯就拕拒絕嘞。
 箇種情況通常係含到好多臭蟲、以網絡為主嗰匿名代理服務扤得。'''",
-'editing'                   => '倷編輯嘚嗰係$1',
+'editing'                   => '編輯嘚$1',
 'editinguser'               => "眼下在編輯用戶嗰權限 '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'editingsection'            => '倷編輯嘚嗰係$1 (段落)',
-'editingcomment'            => '倷編輯嘚嗰係$1 (新段落)',
+'editingsection'            => '編輯嘚$1 (段落)',
+'editingcomment'            => '編輯嘚$1 (新段落)',
 'editconflict'              => '編輯仗: $1',
 'explainconflict'           => "倷起手編輯之後有人動過箇頁。
 上首嗰方框顯示嗰係眼下本頁嗰內容。

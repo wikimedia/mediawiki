@@ -143,7 +143,7 @@ $messages = array(
 'category-media-header' => 'Files inte categorie "$1"',
 'category-empty'        => "''Par cumò la categorie no conten ni pagjinis ni files multimediâi.''",
 
-'mainpagetext' => "'''MediaWiki e je stade instalade cun sucès.'''",
+'mainpagetext' => "<big>'''MediaWiki e je stade instalade cun sucès.'''</big>",
 
 'about'          => 'Informazions',
 'article'        => 'Vôs',

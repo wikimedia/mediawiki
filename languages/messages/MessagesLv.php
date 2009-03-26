@@ -291,7 +291,7 @@ $messages = array(
 'nosuchaction'      => 'Šādas darbības nav.',
 'nosuchactiontext'  => 'Iekš URL norādītā darbība ir nederīga.
 Tas var būt no drukas kļūdas URL, vai arī no kļūdainas saites.
-Tas arī var būt saistīts ar ((grammar:ģenitīvs{{SITENAME}}}} programmatūras kļūdu.',
+Tas arī var būt saistīts ar {{GRAMMAR:ģenitīvs|{{SITENAME}}}} programmatūras kļūdu.',
 'nosuchspecialpage' => 'Nav tādas īpašās lapas',
 'nospecialpagetext' => 'Tu esi pieprasījis īpašo lapu, ko wiki neatpazīst.',
 
@@ -1214,7 +1214,7 @@ Dzēšanas iemesls ir redzams apakšā, kopsavilkumā, kopā ar informāciju par
 Vai nu tu šeit esi nonācis lietojot kļūdainu saiti, vai arī šī versija jau ir tikusi atjaunota, vai arī tā ir izdzēsta pavisam.',
 'undelete-nodiff'          => 'Netika atrastas iepriekšējās versijas.',
 'undeletebtn'              => 'Atjaunot!',
-'undeletelink'             => 'atjaunot',
+'undeletelink'             => 'apskatīt/atjaunot',
 'undeletereset'            => 'Notīrīt',
 'undeletecomment'          => 'Komentārs:',
 'undeletedarticle'         => 'atjaunoju "$1"',
@@ -1691,8 +1691,10 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 'watchlisttools-raw'  => 'Izmainīt uzraugāmo rakstu saraksta kodu',
 
 # Special:Version
-'version-extensions'   => 'Ieinstalētie paplašinājumi',
-'version-specialpages' => 'Īpašās lapas',
+'version-extensions'       => 'Ieinstalētie paplašinājumi',
+'version-specialpages'     => 'Īpašās lapas',
+'version-version'          => 'Versija',
+'version-software-version' => 'Versija',
 
 # Special:Filepath
 'filepath'        => 'Failu adreses',
