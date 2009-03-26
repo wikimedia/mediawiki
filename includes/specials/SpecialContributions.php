@@ -251,7 +251,7 @@ class SpecialContributions extends SpecialPage {
 			Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parseinline' ) ), 
 				'contribs', 'newbie' , 'newbie', $this->opts['contribs'] == 'newbie' ? true : false ) . '<br />' .
-			Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parseinline' ) ), 
+			Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parsemag' ) ), 
 				'contribs' , 'user', 'user', $this->opts['contribs'] == 'user' ? true : false ) . ' ' .
 			Xml::input( 'target', 20, $this->opts['target']) . ' '.
 			'<span style="white-space: nowrap">' .
