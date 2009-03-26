@@ -342,6 +342,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15935) Added action=userrights to add/remove users to/from groups
 * (bug 18099) Using appendtext to edit a non-existent page causes an interface
   message to be included in the page text
+* Added uiprop=changeablegroups to meta=userinfo
 
 === Languages updated in 1.15 ===
 

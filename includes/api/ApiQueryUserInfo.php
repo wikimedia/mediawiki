@@ -80,6 +80,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['rights'] = array_values(array_unique($wgUser->getRights()));
 			$result->setIndexedTagName($vals['rights'], 'r');	// even if empty
 		}
+		if (isset($this->prop['changeablegroups'])) {
+			$vals['changeablegroups'] = $wgUser->changeableGroups();
+			$result->setIndexedTagName($vals['changeablegroups']['add'], 'g');
+			$result->setIndexedTagName($vals['changeablegroups']['remove'], 'g');
+			$result->setIndexedTagName($vals['changeablegroups']['add-self'], 'g');
+			$result->setIndexedTagName($vals['changeablegroups']['remove-self'], 'g');
+		}
 		if (isset($this->prop['options'])) {
 			$vals['options'] = (is_null($wgUser->mOptions) ? User::getDefaultOptions() : $wgUser->mOptions);
 		}
@@ -144,6 +151,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'hasmsg',
 					'groups',
 					'rights',
+					'changeablegroups',
 					'options',
 					'preferencestoken',
 					'editcount',
@@ -161,7 +169,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  blockinfo  - tags if the current user is blocked, by whom, and for what reason',
 				'  hasmsg     - adds a tag "message" if the current user has pending messages',
 				'  groups     - lists all the groups the current user belongs to',
-				'  rights     - lists of all rights the current user has',
+				'  rights     - lists all the rights the current user has',
+				'  changeablegroups - lists the groups the current user can add to and remove from',
 				'  options    - lists all preferences the current user has set',
 				'  editcount  - adds the current user\'s edit count',
 				'  ratelimits - lists all rate limits applying to the current user'
