@@ -497,16 +497,17 @@ class IPBlockForm {
 	}
 	
 	private function setUsernameBitfields( $name, $userId, $op ) {
-		if( $op !== '|' && $op !== '&' )
-			return false; // sanity check
+		if( $op !== '|' && $op !== '&' ) return false; // sanity check
 		$dbw = wfGetDB( DB_MASTER );
 		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
 		# To suppress, we OR the current bitfields with Revision::DELETED_USER
 		# to put a 1 in the username *_deleted bit. To unsuppress we AND the
 		# current bitfields with the inverse of Revision::DELETED_USER. The
 		# username bit is made to 0 (x & 0 = 0), while others are unchanged (x & 1 = x).
 		# The same goes for the sysop-restricted *_deleted bit.
 		if( $op == '&' ) $delUser = "~{$delUser}";
+		if( $op == '&' ) $delAction = "~{$delAction}";
 		# Hide name from live edits
 		$dbw->update( 'revision', array("rev_deleted = rev_deleted $op $delUser"),
 			array('rev_user' => $userId), __METHOD__ );
@@ -516,6 +517,8 @@ class IPBlockForm {
 		# Hide name from logs
 		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delUser"),
 			array('log_user' => $userId), __METHOD__ );
+		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delAction"),
+			array('log_namespace' => NS_USER, 'log_title' => $name), __METHOD__ );
 		# Hide name from RC
 		$dbw->update( 'recentchanges', array("rc_deleted = rc_deleted $op $delUser"),
 			array('rc_user_text' => $name), __METHOD__ );
