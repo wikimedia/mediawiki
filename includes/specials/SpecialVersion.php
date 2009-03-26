@@ -162,17 +162,6 @@ class SpecialVersion extends SpecialPage {
 					if ( isset( $extension['version'] ) ) {
 						$version = $extension['version'];
 					}
-					if ( isset( $extension['svn-revision'] ) && 
-						preg_match( '/\$(?:Rev|LastChangedRevision|Revision): *(\d+)/', 
-							$extension['svn-revision'], $m ) ) {
-						$subVersion = 'r' . $m[1];
-					}
-
-					if( $version && $subVersion ) {
-						$version = $version . ' [' . $subVersion . ']';
-					} elseif ( !$version && $subVersion ) {
-						$version = $subVersion;
-					}
 
 					$out .= $this->formatCredits(
 						isset ( $extension['name'] )           ? $extension['name']        : '',
