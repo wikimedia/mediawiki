@@ -252,7 +252,9 @@ class PageHistory {
 	 * @param bool $firstInList Whether this row corresponds to the first displayed on this history page.
 	 * @return string HTML output for the row
 	 */
-	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false, $latest = false, $firstInList = false ) {
+	function historyLine( $row, $next, $counter = '', $notificationtimestamp = false,
+		$latest = false, $firstInList = false )
+	{
 		global $wgUser, $wgLang;
 		$rev = new Revision( $row );
 		$rev->setTitle( $this->mTitle );
@@ -268,10 +270,12 @@ class PageHistory {
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			if( $latest ) {
 				// We don't currently handle well changing the top revision's settings
-				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.$this->message['rev-delundel'].')' );
+				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.
+					$this->message['rev-delundel'].')' );
 			} else if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				// If revision was hidden from sysops
-				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.$this->message['rev-delundel'].')' );
+				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.
+					$this->message['rev-delundel'].')' );
 			} else {
 				$query = array( 'target' => $this->mTitle->getPrefixedDbkey(),
 					'oldid' => $rev->getId()
@@ -350,10 +354,13 @@ class PageHistory {
 	function revLink( $rev ) {
 		global $wgLang;
 		$date = $wgLang->timeanddate( wfTimestamp(TS_MW, $rev->getTimestamp()), true );
-		if( !$rev->isDeleted( Revision::DELETED_TEXT ) ) {
+		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
 			$link = $this->mSkin->makeKnownLinkObj( $this->mTitle, $date, "oldid=" . $rev->getId() );
 		} else {
-			$link = '<span class="history-deleted">' . $date . '</span>';
+			$link = $date;
+		}
+		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			$link = "<span class=\"history-deleted\">$link</span>";
 		}
 		return $link;
 	}
@@ -366,7 +373,7 @@ class PageHistory {
 	 */
 	function curLink( $rev, $latest ) {
 		$cur = $this->message['cur'];
-		if( $latest || $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+		if( $latest || !$rev->userCan( Revision::DELETED_TEXT ) ) {
 			return $cur;
 		} else {
 			return $this->mSkin->makeKnownLinkObj( $this->mTitle, $cur,
@@ -392,7 +399,7 @@ class PageHistory {
 			# Next row probably exists but is unknown, use an oldid=prev link
 			return $this->mSkin->makeKnownLinkObj( $this->mTitle, $last,
 				"diff=" . $prevRev->getId() . "&oldid=prev" );
-		} elseif( $prevRev->isDeleted(Revision::DELETED_TEXT) || $nextRev->isDeleted(Revision::DELETED_TEXT) ) {
+		} elseif( !$prevRev->userCan(Revision::DELETED_TEXT) || !$nextRev->userCan(Revision::DELETED_TEXT) ) {
 			return $last;
 		} else {
 			return $this->mSkin->makeKnownLinkObj( $this->mTitle, $last,
@@ -419,7 +426,7 @@ class PageHistory {
 				$checkmark = array( 'checked' => 'checked' );
 			} else {
 				# Check visibility of old revisions
-				if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+				if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
 					$radio['disabled'] = 'disabled';
 					$checkmark = array(); // We will check the next possible one
 				} else if( $counter == 2 || !$this->mOldIdChecked ) {
