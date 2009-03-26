@@ -501,6 +501,9 @@ class IPBlockForm {
 		$dbw = wfGetDB( DB_MASTER );
 		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
 		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
+		# Normalize user name
+		$userTitle = Title::makeTitleSafe( NS_USER, $name );
+		$userDbKey = $userTitle->getDBKey();
 		# To suppress, we OR the current bitfields with Revision::DELETED_USER
 		# to put a 1 in the username *_deleted bit. To unsuppress we AND the
 		# current bitfields with the inverse of Revision::DELETED_USER. The
@@ -518,7 +521,7 @@ class IPBlockForm {
 		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delUser"),
 			array('log_user' => $userId), __METHOD__ );
 		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delAction"),
-			array('log_namespace' => NS_USER, 'log_title' => $name), __METHOD__ );
+			array('log_namespace' => NS_USER, 'log_title' => $userDbKey), __METHOD__ );
 		# Hide name from RC
 		$dbw->update( 'recentchanges', array("rc_deleted = rc_deleted $op $delUser"),
 			array('rc_user_text' => $name), __METHOD__ );
