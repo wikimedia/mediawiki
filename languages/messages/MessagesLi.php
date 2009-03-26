@@ -608,7 +608,6 @@ Doe mós effe wachte ierdets te 't obbenuuts kens perbere.",
 'resetpass-wrong-oldpass'   => "'t Hujig of tiedelik wachwaord is ongeljig.
 Meugelik höbs doe dien wachwaord al gewiezig of 'n nuuj tiedelik wachwaord aangevraog.",
 'resetpass-temp-password'   => 'Tiedelik wachwaord:',
-'resetpass-no-others'       => 'De kins gein wachwaorde veur anger gebroekers opnuuj instelle.',
 'resetpass-log'             => 'Wachwaordherinstellingelogbook',
 'resetpass-logtext'         => 'Deze pagina bevat n logbook met gebroekers wovan t wachwaord opnuuj is ingesteld door ne beheerder.',
 'resetpass-logentry'        => 'haet t wachwaord veur $1 gewiezig',

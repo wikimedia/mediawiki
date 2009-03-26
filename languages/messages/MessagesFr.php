@@ -452,7 +452,7 @@ $messages = array(
 'qbspecialpages' => 'Pages spéciales',
 'moredotdotdot'  => 'Et plus …',
 'mypage'         => 'Ma page',
-'mytalk'         => 'Ma page de discussion',
+'mytalk'         => 'Page de discussion',
 'anontalk'       => 'Discussion avec cette adresse IP',
 'navigation'     => 'Navigation',
 'and'            => '&#32;et',
@@ -489,7 +489,7 @@ $messages = array(
 'unprotectthispage' => 'Déprotéger cette page',
 'newpage'           => 'Nouvelle page',
 'talkpage'          => 'Discussion sur cette page',
-'talkpagelinktext'  => 'Discuter',
+'talkpagelinktext'  => 'discuter',
 'specialpage'       => 'Page spéciale',
 'personaltools'     => 'Outils personnels',
 'postcomment'       => 'Nouvelle section',
@@ -793,7 +793,6 @@ Veuillez attendre avant d’essayer à nouveau.',
 'resetpass-wrong-oldpass'   => 'Mot de passe actuel ou temporaire invalide.
 Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mot de passe temporaire.',
 'resetpass-temp-password'   => 'Mot de passe temporaire :',
-'resetpass-no-others'       => "Vous ne pouvez pas changer le mot de passe d'autres utilisateurs.",
 'resetpass-log'             => 'Journal des réinitialisations de mot de passe',
 'resetpass-logtext'         => 'Voici la liste des utilisateurs dont le mot de passe a été réinitialisé par un administrateur.',
 'resetpass-logentry'        => 'a changé le mot de passe de $1',
@@ -1244,8 +1243,8 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'showingresults'                   => 'Affichage de <b>$1</b> {{PLURAL:$1|résultat|résultats}} à partir du #<b>$2</b>.',
 'showingresultsnum'                => 'Affichage de <b>$3</b> {{PLURAL:$3|résultat|résultats}} à partir du #<b>$2</b>.',
 'showingresultstotal'              => "Affichage {{PLURAL:$4|du résultat '''$1'''|des résultats '''$1 – $2'''}} sur '''$3'''",
-'nonefound'                        => "<strong>Note</strong> : seuls quelques espaces de nommage sont recherchés par défaut.
-Essayez en utilisant le préfixe ''all:'' pour rechercher daans tout le contenu (y compris les pages de discussion, les modèles, etc.) ou bien utilisez l’espace de nommage désiré comme préfixe.",
+'nonefound'                        => "'''Note''' : seuls certains espaces de noms sont recherchés par défaut.
+Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (y compris les pages de discussion, les modèles, etc.) ou bien utilisez l’espace de noms souhaité comme préfixe.",
 'search-nonefound'                 => "Il n'y a aucun résultat correspondant à la requête.",
 'powersearch'                      => 'Rechercher',
 'powersearch-legend'               => 'Recherche avancée',
@@ -1257,7 +1256,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher daans tout le contenu 
 
 # Preferences page
 'preferences'               => 'Préférences',
-'mypreferences'             => 'Mes préférences',
+'mypreferences'             => 'Préférences',
 'prefs-edits'               => 'Nombre de modifications :',
 'prefsnologin'              => 'Non connecté',
 'prefsnologintext'          => 'Vous devez être <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} connecté]</span> pour modifier vos préférences d’utilisateur.',
@@ -1746,7 +1745,7 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 
 # Random redirect
 'randomredirect'         => 'Page de redirection au hasard',
-'randomredirect-nopages' => 'Il n’y a aucune page de redirection dans l’espace de nommage « $1 ».',
+'randomredirect-nopages' => 'Il n’y a aucune page de redirection dans l’espace de noms « $1 ».',
 
 # Statistics
 'statistics'                   => 'Statistiques',
@@ -1843,7 +1842,7 @@ Chaque entrée contient des liens vers la première et la seconde redirections, 
 'ancientpages'            => 'Pages les plus anciennement modifiées',
 'move'                    => 'Renommer',
 'movethispage'            => 'Renommer cette page',
-'unusedimagestext'        => '<p>N’oubliez pas que d’autres sites peuvent avoir un lien direct vers un fichier, notamment s’ils autorisent les accès directs à cet espace de nommage partagé, et donc qu’un fichier peut être listé comme inutilisé ici alors qu’il est en réalité utilisé sur ces sites.</p>',
+'unusedimagestext'        => 'Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier, et donc qu’un fichier peut être listé comme inutilisé ici alors qu’il est en réalité utilisé sur ces sites.',
 'unusedcategoriestext'    => 'Les catégories suivantes existent mais aucune page ou catégorie ne les utilise.',
 'notargettitle'           => 'Pas de cible',
 'notargettext'            => 'Vous n’avez pas indiqué une page ou un utilisateur sur lequel vous souhaitez effectuer cette action.',
@@ -1879,15 +1878,15 @@ Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’
 'allpagesfrom'      => 'Afficher les pages à partir de :',
 'allpagesto'        => 'Afficher les pages jusqu’à :',
 'allarticles'       => 'Toutes les pages',
-'allinnamespace'    => 'Toutes les pages (dans l’espace de nommage $1)',
-'allnotinnamespace' => 'Toutes les pages (hors de l’espace de nommage $1)',
+'allinnamespace'    => 'Toutes les pages (dans l’espace de noms $1)',
+'allnotinnamespace' => 'Toutes les pages (hors de l’espace de noms $1)',
 'allpagesprev'      => 'Précédent',
 'allpagesnext'      => 'Suivant',
 'allpagessubmit'    => 'Lister',
 'allpagesprefix'    => 'Afficher les pages commençant par le préfixe :',
 'allpagesbadtitle'  => 'Le titre de page indiqué est incorrect ou contient un préfixe inter-langue ou inter-wiki réservé.
 Il peut aussi contenir un ou plusieurs caractères inutilisables dans les titres.',
-'allpages-bad-ns'   => '{{SITENAME}} n’a pas d’espace de nommage « $1 ».',
+'allpages-bad-ns'   => '{{SITENAME}} n’a pas d’espace de noms « $1 ».',
 
 # Special:Categories
 'categories'                    => 'Catégories',
@@ -1899,13 +1898,13 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'special-categories-sort-abc'   => 'tri alphabétique',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Contributions de l’utilisateur supprimées',
+'deletedcontributions'       => 'contributions supprimées',
 'deletedcontributions-title' => 'Contributions supprimées',
 
 # Special:LinkSearch
 'linksearch'       => 'Liens externes',
 'linksearch-pat'   => 'Expression recherchée :',
-'linksearch-ns'    => 'Espace de nommage :',
+'linksearch-ns'    => 'Espace de noms :',
 'linksearch-ok'    => 'Rechercher',
 'linksearch-text'  => 'Des caractères « jokers » peuvent être utilisés, par exemple <code>*.wikipedia.org</code>.<br />
 Protocoles reconnus : <tt>$1</tt>.',
@@ -1964,8 +1963,8 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'emailuserfooter'  => 'Ce courriel a été envoyé par « $1 » à « $2 » par la fonction « Envoyer un courriel à l’utilisateur » de {{SITENAME}}.',
 
 # Watchlist
-'watchlist'            => 'Ma liste de suivi',
-'mywatchlist'          => 'Ma liste de suivi',
+'watchlist'            => 'Liste de suivi',
+'mywatchlist'          => 'Liste de suivi',
 'watchlistfor'         => "(pour '''$1''')",
 'nowatchlist'          => 'Votre liste de suivi ne référence aucune page.',
 'watchlistanontext'    => 'Veuillez vous $1 pour visualiser ou modifier les éléments de votre liste de suivi.',
@@ -2096,7 +2095,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[$1]] »',
 'unprotectedarticle'          => 'a déprotégé « [[$1]] »',
 'movedarticleprotection'      => 'a déplacé les paramètres de protection depuis « [[$2]] » vers « [[$1]] »',
-'protect-title'               => 'Changer le niveau de protection pour « [[$1]] »',
+'protect-title'               => 'Changer le niveau de protection pour « $1 »',
 'prot_1movedto2'              => '[[$1]] renommé en [[$2]]',
 'protect-legend'              => 'Confirmer la protection',
 'protectcomment'              => 'Motif de la protection :',
@@ -2205,14 +2204,14 @@ $1',
 'undelete-show-file-submit'    => 'Oui',
 
 # Namespace form on various pages
-'namespace'      => 'Espace de nommage :',
+'namespace'      => 'Espace de noms :',
 'invert'         => 'Inverser la sélection',
 'blanknamespace' => '(Principal)',
 
 # Contributions
 'contributions'       => 'Contributions de l’utilisateur',
 'contributions-title' => 'Liste des contributions de l’utilisateur $1',
-'mycontris'           => 'Mes contributions',
+'mycontris'           => 'Contributions',
 'contribsub2'         => 'Pour $1 ($2)',
 'nocontribs'          => 'Aucune modification correspondant à ces critères n’a été trouvée.', # Optional parameter: $1 is the user name
 'uctop'               => '(dernière)',
@@ -2222,7 +2221,7 @@ $1',
 'sp-contributions-newbies'       => 'Ne montrer que les contributions des nouveaux utilisateurs',
 'sp-contributions-newbies-sub'   => 'Parmi les nouveaux comptes',
 'sp-contributions-newbies-title' => 'Contributions d’utilisateurs parmi les nouveaux comptes',
-'sp-contributions-blocklog'      => 'Journal des blocages',
+'sp-contributions-blocklog'      => 'journal des blocages',
 'sp-contributions-logs'          => 'journaux',
 'sp-contributions-search'        => 'Rechercher les contributions',
 'sp-contributions-username'      => 'Adresse IP ou nom d’utilisateur :',
@@ -2234,7 +2233,7 @@ $1',
 'whatlinkshere-page'       => 'Page :',
 'linkshere'                => "Les pages ci-dessous contiennent un lien vers '''[[:$1]]''' :",
 'nolinkshere'              => "Aucune page ne contient de lien vers '''[[:$1]]'''.",
-'nolinkshere-ns'           => "Aucune page ne contient de lien vers '''[[:$1]]''' dans l’espace de nommage choisi.",
+'nolinkshere-ns'           => "Aucune page ne contient de lien vers '''[[:$1]]''' dans l’espace de noms choisi.",
 'isredirect'               => 'page de redirection',
 'istemplate'               => 'inclusion',
 'isimage'                  => 'fichier lié',
@@ -2440,12 +2439,12 @@ Voulez-vous vraiment la supprimer pour permettre ce renommage ?',
 'delete_and_move_reason'       => 'Page supprimée automatiquement pour permettre un renommage',
 'selfmove'                     => 'Les titres d’origine et de destination sont les mêmes ;
 impossible de renommer une page sur elle-même.',
-'immobile-source-namespace'    => 'Vous ne pouvez pas renommer les pages dans l’espace de nommage « $1 »',
+'immobile-source-namespace'    => 'Vous ne pouvez pas renommer les pages dans l’espace de noms « $1 »',
 'immobile-target-namespace'    => 'Vous ne pouvez pas renommer des pages vers l’espace de noms « $1 »',
 'immobile-target-namespace-iw' => 'Les liens interwikis ne sont pas une cible valide pour les renommages.',
 'immobile-source-page'         => 'Cette page n’est pas renommable.',
 'immobile-target-page'         => 'Il n’est pas possible de renommer la page vers ce titre.',
-'imagenocrossnamespace'        => 'Vous ne pouvez pas déplacer un fichier vers un espace de nommage qui ne soit pas un fichier.',
+'imagenocrossnamespace'        => 'Impossible de renommer un fichier vers un espace de noms autre que fichier.',
 'imagetypemismatch'            => 'La nouvelle extension de ce fichier ne correspond pas à son type.',
 'imageinvalidfilename'         => 'Le nom du fichier cible est incorrect',
 'fix-double-redirects'         => 'Mettre à jour les redirections pointant vers le titre original',
@@ -2501,7 +2500,7 @@ Toutes les actions d’importation inter-wiki sont consignées dans l’[[Specia
 'import-interwiki-history'   => 'Copier toutes les versions de l’historique de cette page',
 'import-interwiki-templates' => 'Inclure tous les modèles',
 'import-interwiki-submit'    => 'Importer',
-'import-interwiki-namespace' => 'Espace de nommage de la destination :',
+'import-interwiki-namespace' => 'Espace de noms de destination :',
 'import-upload-filename'     => 'Nom du fichier :',
 'import-comment'             => 'Commentaire :',
 'importtext'                 => 'Veuillez exporter le fichier depuis le wiki d’origine en utilisant son [[Special:Export|outil d’exportation]].
@@ -3160,16 +3159,16 @@ Essayez la prévisualisation normale.',
 'watchlistedit-noitems'        => 'Votre liste de suivi ne contient aucun titre.',
 'watchlistedit-normal-title'   => 'Modifier la liste de suivi',
 'watchlistedit-normal-legend'  => 'Retirer des titres de la liste de suivi',
-'watchlistedit-normal-explain' => 'Les titres de votre liste de suivi sont visibles ci-dessous, classés par espace de nommage.
+'watchlistedit-normal-explain' => 'Les titres de votre liste de suivi sont visibles ci-dessous.
 Pour retirer un titre de la liste (et sa page de discussion), cochez la case à côté puis cliquez sur le bouton « Retirer les titres sélectionnés ».
-Vous pouvez aussi [[Special:Watchlist/raw|la modifier en mode brut]].',
+Vous pouvez aussi [[Special:Watchlist/raw|modifier la liste en mode brut]].',
 'watchlistedit-normal-submit'  => 'Retirer les titres sélectionnés',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Un titre a été enlevé|$1 titres ont été enlevés}} de votre liste de suivi :',
 'watchlistedit-raw-title'      => 'Modifier la liste de suivi en mode brut',
 'watchlistedit-raw-legend'     => 'Modification de la liste de suivi en mode brut',
-'watchlistedit-raw-explain'    => 'La liste des titres de votre liste de suivi est montrée ci-dessous et triée par espace de nommage, sans les pages de discussion (automatiquement incluses). Vous pouvez modifier cette liste : ajoutez n’importe où et dans un ordre quelconque les titres (un par ligne) de chacune des pages que vous voulez suivre et supprimez les titres des pages que vous ne voulez plus suivre.
-Quand vous avez fini, cliquez sur le bouton « Mettre à jour la liste de suivi » en bas.
-Vous pouvez aussi utiliser [[Special:Watchlist/edit|l’éditeur normal]].',
+'watchlistedit-raw-explain'    => 'Les titres de votre liste de suivi sont affichés ci-dessous et peuvent être modifiés en les ajoutant ou les retirant de la liste (un titre par ligne).
+Lorsque vous avez fini, cliquez sur le bouton « Mettre à jour la liste de suivi » en bas.
+Vous pouvez aussi [[Special:Watchlist/edit|utiliser l’éditeur normal]].',
 'watchlistedit-raw-titles'     => 'Titres :',
 'watchlistedit-raw-submit'     => 'Mettre à jour la liste de suivi',
 'watchlistedit-raw-done'       => 'Votre liste de suivi a été mise à jour.',

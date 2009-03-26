@@ -691,7 +691,6 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'resetpass-wrong-oldpass'   => 'La contraseña antigua no es correcta.
 Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'resetpass-temp-password'   => 'Contraseña temporal:',
-'resetpass-no-others'       => 'No puede reajustar la contraseña de otros usuarios.',
 'resetpass-log'             => 'Registro de restablecimiento de password',
 'resetpass-logtext'         => 'Debajo se muestra un registro de usuarios a los que un administrador restableció sus contraseñas.',
 'resetpass-logentry'        => 'cambiada la contraseña por $1',

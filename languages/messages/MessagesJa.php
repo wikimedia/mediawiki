@@ -741,7 +741,6 @@ $2',
 'resetpass-wrong-oldpass'   => '仮パスワードまたは現在のパスワードが無効です。
 すでにパスワード変更を行っているか、新しい仮パスワードの発行を依頼していませんか。',
 'resetpass-temp-password'   => '仮パスワード:',
-'resetpass-no-others'       => '他の利用者のパスワードを再設定することはできません。',
 'resetpass-log'             => 'パスワード再設定記録',
 'resetpass-logtext'         => '以下は管理者が利用者のパスワードを再設定した記録です。',
 'resetpass-logentry'        => '$1のパスワードを変更しました',

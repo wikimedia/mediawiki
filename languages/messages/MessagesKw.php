@@ -119,7 +119,7 @@ $messages = array(
 'postcomment'      => 'Tregh nowyth',
 'talk'             => 'Dadhelva',
 'toolbox'          => 'Boks toulys',
-'otherlanguages'   => 'Tavosow erell',
+'otherlanguages'   => 'Tavosow erel',
 'jumptonavigation' => 'lewyans',
 'jumptosearch'     => 'hwilas',
 
@@ -132,7 +132,7 @@ $messages = array(
 'mainpage'             => 'Pennfolen',
 'mainpage-description' => 'Pennfolen',
 'portal'               => 'Porth kemmynieth',
-'portal-url'           => 'Project:Porth kemmynieth',
+'portal-url'           => 'Project:Porth Kemmynieth',
 
 'ok'                 => 'Sur',
 'youhavenewmessages' => 'Yma $1 dhis ($2).',
@@ -146,7 +146,7 @@ $messages = array(
 'red-link-title'     => '$1 (nyns eus folenn hynwys yndelma na hwath)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Ethygel',
+'nstab-main'      => 'Erthygel',
 'nstab-user'      => 'Devnydhyer',
 'nstab-special'   => 'Folen arbennek',
 'nstab-project'   => 'Folen towl',
@@ -376,7 +376,7 @@ $messages = array(
 'emailsend' => 'Danvon',
 
 # Watchlist
-'watchlist'     => 'Ow rol goelyas',
+'watchlist'     => 'Ow rol golyas',
 'mywatchlist'   => 'Ow rol golyas',
 'watchlistfor'  => "(rag '''$1''')",
 'watch'         => 'Golyas',
@@ -455,6 +455,10 @@ $messages = array(
 'tooltip-t-upload'       => 'Ughkarga restrennow',
 'tooltip-t-specialpages' => 'Rol a bub folenn arbennik',
 'tooltip-t-print'        => 'Versyon pryntyadow an folen ma',
+
+# Attribution
+'siteuser'  => 'devnydhyer {{SITENAME}} $1',
+'siteusers' => '{{PLURAL:$2|devnydhyer|devnydhyoryon}} {{SITENAME}} $1',
 
 # Media information
 'show-big-image' => 'Klerder leun',

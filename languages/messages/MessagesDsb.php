@@ -607,7 +607,6 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'resetpass-wrong-oldpass'   => 'Njepłaśiwe nachylne abo aktualne gronidło.
 Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło pominał.',
 'resetpass-temp-password'   => 'Nachylne gronidło:',
-'resetpass-no-others'       => 'Njamóžoš gronidło za drugich wužywarjow slědk stajiś.',
 'resetpass-log'             => 'Protokol wó anulěrowanju gronidłow',
 'resetpass-logtext'         => 'Dołojce jo protokol wužywarjow, kótarychž gronidło administrator jo anulěrował.',
 'resetpass-logentry'        => 'jo změnił gronidło za $1',

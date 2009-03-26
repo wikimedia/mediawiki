@@ -711,7 +711,6 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło. 
 Być może właśnie zmieniłeś swoje hasło lub poprosiłeś o nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
-'resetpass-no-others'       => 'Nie masz uprawnień do zerowania haseł innych użytkowników.',
 'resetpass-log'             => 'Rejestr zerowania haseł',
 'resetpass-logtext'         => 'Rejestr użytkowników których hasła zerowali administratorzy.',
 'resetpass-logentry'        => 'zmienił hasło $1',

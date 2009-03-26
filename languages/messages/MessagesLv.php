@@ -398,6 +398,10 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'badsig'                     => "Kļūdains ''paraksta'' kods; pārbaudi HTML (ja tāds ir lietots).",
 'badsiglength'               => 'Paraksts ir pārāk garš.
 Tam ir jābūt īsākam par  $1 {{PLURAL:$1|simbolu|simboliem}}.',
+'yourgender'                 => 'Dzimums:',
+'gender-unknown'             => 'Nav norādīts',
+'gender-male'                => 'Vīrietis',
+'gender-female'              => 'Sieviete',
 'email'                      => 'E-pasts',
 'prefs-help-realname'        => 'Īstais vārds nav obligāts.
 Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldījumu {{grammar:lokatīvs|{{SITENAME}}}}).',
@@ -659,6 +663,9 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'revdelete-nologtype-title' => 'Nav dots žurnāla veids.',
 'revdelete-nologid-title'   => 'Nederīgs žurnāla ieraksts',
 
+# History merging
+'mergehistory-reason' => 'Iemesls:',
+
 # Diffs
 'history-title'           => '"$1" versiju hronoloģija',
 'difference'              => '(Atšķirības starp versijām)',
@@ -683,6 +690,7 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'nextn'                 => 'nākamās $1',
 'viewprevnext'          => 'Skatīt ($1) ($2) ($3 vienā lapā).',
 'searchhelp-url'        => 'Help:Saturs',
+'search-suggest'        => 'Vai jūs domājāt: $1',
 'showingresults'        => 'Šobrīd ir redzamas <b>$1</b> {{PLURAL:$1|lapa|lapas}}, sākot ar #<b>$2</b>.',
 'showingresultsnum'     => "Šobrīd ir redzamas '''$3''' {{PLURAL:$3|lapa|lapas}}, sākot ar #'''$2'''>.",
 'showingresultstotal'   => "Rāda {{PLURAL:$4|rezultātu '''$1''' no '''$3'''|rezultātus '''$1 - $2''' no '''$3'''}}",
@@ -1121,6 +1129,9 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 # Special:DeletedContributions
 'deletedcontributions'       => 'Izdzēstais lietotāju devums',
 'deletedcontributions-title' => 'Izdzēstais lietotāju devums',
+
+# Special:LinkSearch
+'linksearch' => 'Ārējās saites',
 
 # Special:ListUsers
 'listusersfrom' => 'Parādīt lietotājus sākot ar:',
@@ -1803,9 +1814,11 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 'watchlisttools-raw'  => 'Izmainīt uzraugāmo rakstu saraksta kodu',
 
 # Special:Version
-'version'              => 'Versija', # Not used as normal message but as header for the special page itself
-'version-extensions'   => 'Ieinstalētie paplašinājumi',
-'version-specialpages' => 'Īpašās lapas',
+'version'                  => 'Versija', # Not used as normal message but as header for the special page itself
+'version-extensions'       => 'Ieinstalētie paplašinājumi',
+'version-specialpages'     => 'Īpašās lapas',
+'version-version'          => 'Versija',
+'version-software-version' => 'Versija',
 
 # Special:FilePath
 'filepath'        => 'Failu adreses',
@@ -1825,9 +1838,18 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 'specialpages-group-changes'     => 'Pēdējās izmaiņas un reģistri',
 'specialpages-group-media'       => 'Failu atskaites un augšuplāde',
 'specialpages-group-users'       => 'Lietotāji un piekļuves tiesības',
+'specialpages-group-highuse'     => 'Bieži izmantotās lapas',
 'specialpages-group-pages'       => 'Lapu saraksti',
+'specialpages-group-pagetools'   => 'Lapu rīki',
 'specialpages-group-wiki'        => 'Wiki dati un rīki',
 'specialpages-group-redirects'   => 'Pāradresējošas īpašās lapas',
 'specialpages-group-spam'        => 'Spama rīki',
+
+# Special:BlankPage
+'blankpage'              => 'Tukša lapa',
+'intentionallyblankpage' => 'Šī lapa ar nodomu ir atstāta tukša.',
+
+# Database error messages
+'dberr-header' => 'Šim viki ir problēma',
 
 );

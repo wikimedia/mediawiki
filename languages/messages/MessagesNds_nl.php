@@ -754,7 +754,6 @@ Je mutten effen wachen veurda-j 't opniej preberen kunnen.",
 'resetpass-wrong-oldpass'   => "'t Veurlopige wachwoord of 't wachwoord da-j noen hemmen is ongeldig.
 Meschien he-j 't wachwoord al ewiezig of een niej veurlopig wachwoord an-evreugen.",
 'resetpass-temp-password'   => 'Veurlopig wachwoord:',
-'resetpass-no-others'       => "Je kunnen 't wachwoord veur aandere gebrukers neet opniej instellen.",
 'resetpass-log'             => 'Wachwoordherstellogboek',
 'resetpass-logtext'         => "Disse pagina bevat een logboek mit gebrukers waovan 't wachwoord opniej in-esteld is deur een beheerder.",
 'resetpass-logentry'        => "hef 't wachwoord van $1 ewiezig",
@@ -989,13 +988,16 @@ De deur $3 op-egeven rejen is ''$2''",
 'rev-deleted-comment'            => '(commentaar vort-ehaold)',
 'rev-deleted-user'               => '(gebrukersnaam vort-edaon)',
 'rev-deleted-event'              => '(antekening vort-edaon)',
-'rev-deleted-text-permission'    => "De geschiedenisse van disse pagina is uut de peblieke archieven ewis.
-Der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek vort-edaone pagina's].",
-'rev-deleted-text-view'          => "De geschiedenisse van disse pagina is uut de peblieke archieven ewis.
+'rev-deleted-text-permission'    => "Disse bewarking is uut de peblieke archieven ewis.
+As der meer infermasie is, ku-j dat vienen in 't [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek vort-edaone pagina's].",
+'rev-deleted-text-view'          => "Disse bewarking is uut de peblieke archieven ewis.
 As beheerder van disse wiki ku-j 't wel zien;
-der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek vort-edaone pagina's].",
+as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek vort-edaone pagina's].",
 'rev-deleted-no-diff'            => "Je kunnen de verschillen neet bekieken umdat één van de versies uut 't peblieke archief vort-edaon is.
 De achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone pagina's].",
+'rev-deleted-unhide-diff'        => "Eén van de bewarkingen van disse vergeliekingen is uut de peblieke archieven ewis.
+Achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek vort-edaone pagina's].
+As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
 'rev-delundel'                   => 'teun/verbarg',
 'revisiondelete'                 => 'Wiezigingen vortdoon/herstellen',
 'revdelete-nooldid-title'        => 'Gien doelversie',
@@ -2189,7 +2191,7 @@ $1",
 'ipboptions'                      => '2 uren:2 hours,1 dag:1 day,3 dagen:3 days,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbepark:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'aanders',
 'ipbotherreason'                  => 'Aandere/extra rejen:',
-'ipbhidename'                     => "Verbarg de gebrukersnaam of 't IP-adres van 't blokkeerlogboek, de actieve blokkeerlieste en de gebrukerslieste",
+'ipbhidename'                     => 'Verbarg de gebrukersnaam in bewarkingen en liesten',
 'ipbwatchuser'                    => 'Gebrukerspagina en overlegpagina op volglieste zetten',
 'ipballowusertalk'                => 'Disse gebruker toestaon tiejens de blokkering zien eigen overlegpagina te bewarken',
 'ipb-change-block'                => 'De gebruker opniej blokkeren mit disse instellingen',
@@ -2246,6 +2248,7 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'range_block_disabled'            => 'De meugelijkheid veur beheerders um een groep adressen te blokkeren is uut-eschakeld.',
 'ipb_expiry_invalid'              => 'De op-egeven verlooptied is ongeldig.',
 'ipb_expiry_temp'                 => 'Blokkeringen veur verbörgen gebrukers mutten permenent ween.',
+'ipb_hide_invalid'                => 'Kan disse gebruker neet verbargen; werschienlijk hef e al te veule bewarkingen emaak.',
 'ipb_already_blocked'             => '"$1" is al eblokkeerd',
 'ipb-needreblock'                 => '== Disse gebruker is al eblokkeerd ==
 $1 is al eblokkeerd.

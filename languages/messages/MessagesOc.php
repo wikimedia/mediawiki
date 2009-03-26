@@ -733,7 +733,6 @@ Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'resetpass-wrong-oldpass'   => 'Senhal actual o temporari invalid.
 Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl.',
 'resetpass-temp-password'   => 'Senhal temporari :',
-'resetpass-no-others'       => "Podètz pas cambia lo senhal d'autres utilizaires.",
 'resetpass-log'             => 'Istoric de las reïnicializacions dels senhals',
 'resetpass-logtext'         => "Çaijós se tròba la lista dels utilizaires qu'an agut lor senhal reïnicializat per un administrator.",
 'resetpass-logentry'        => 'cambiat lo senhal de $1',
@@ -969,11 +968,15 @@ Ensajatz de [[Special:Search|recercar sul wiki]] per trobar de paginas en rapòr
 'rev-deleted-comment'            => '(comentari suprimit)',
 'rev-deleted-user'               => '(nom d’utilizaire suprimit)',
 'rev-deleted-event'              => '(entrada suprimida)',
-'rev-deleted-text-permission'    => 'Aquesta version de la pagina es estada levada dels archius publics.
-I Pòt aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].',
-'rev-deleted-text-view'          => "Aquesta version de la pagina es estada levada dels archius publics. En tant qu’administrator d'aqueste sit, la podètz visualizar ; i pòt aver de detahls dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
-'rev-deleted-no-diff'            => "Podètz pas veire aqueste diff per que una de las versions es estada suprimida dels archius publics.
+'rev-deleted-text-permission'    => "Aquesta version de la pagina es estada '''levada dels archius publics'''.
+I Pòt aver de detalhs dins l'[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} istoric de las supressions].",
+'rev-deleted-text-view'          => "Aquesta version de la pagina es estada '''levada dels archius publics'''.
+En tant qu’administrator d'aqueste sit, la podètz visualizar ; i pòt aver de detahls dins l'[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} istoric de las supressions].",
+'rev-deleted-no-diff'            => "Podètz pas veire aqueste diff per que una de las versions es estada '''levada dels archius publics'''.
 I pòt aver mai de detalhs dins [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l'istoric de las supressions].",
+'rev-deleted-unhide-diff'        => "Una de las revisions d'aquesta diferéncia es estada '''levada dels archius publics'''.
+I pòt aver mai de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].
+En tant qu'administrator de {{SITENAME}} podètz encara [$1 veire aquesta diferéncia] se o volètz.",
 'rev-delundel'                   => 'afichar/amagar',
 'revisiondelete'                 => 'Suprimir/Restablir de versions',
 'revdelete-nooldid-title'        => 'Cibla per la revision invalida',
@@ -2187,7 +2190,7 @@ Donatz çaijós una rason precisa (per exemple en indicant las paginas que son e
 'ipboptions'                      => '2 oras:2 hours,1 jorn:1 day,3 jorns:3 days,1 setmana:1 week,2 setmanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 an:1 year,indefinidament:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'autre',
 'ipbotherreason'                  => 'Motiu diferent o suplementari',
-'ipbhidename'                     => "Amagar lo nom d’utilizaire de l'istoric de blocatge, de la lista dels blocatges actius e de la lista dels utilizaires",
+'ipbhidename'                     => 'Amagar lo nom d’utilizaire de las modificacions e de las listas',
 'ipbwatchuser'                    => "Seguir las paginas d'utilizaire e de discussion d'aqueste utilizaire",
 'ipballowusertalk'                => 'Permet a aqueste utilizaire de modificar sa pròpria pagina de discussion pendent son periòde de blocatge',
 'ipb-change-block'                => 'Tronar blocar aqueste utilizaire amb aquestes paramètres',
@@ -2246,6 +2249,7 @@ La rason balhada per $1 es : « $2 ».',
 'range_block_disabled'            => "Lo blocatge de plajas d'IP es estat desactivat.",
 'ipb_expiry_invalid'              => 'Temps d’expiracion invalid.',
 'ipb_expiry_temp'                 => 'Las plajas dels utilizaires amagats deurián èsser permanentas.',
+'ipb_hide_invalid'                => "Impossible de suprimir aqueste compte ; sembla qu'a tròp de modificacions.",
 'ipb_already_blocked'             => '« $1 » ja es blocat',
 'ipb-needreblock'                 => '== Ja blocat ==
 $1 ja es blocat. Volètz modificar los paramètres ?',

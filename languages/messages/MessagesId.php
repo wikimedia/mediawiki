@@ -720,7 +720,6 @@ Anda dapat mengabaikan pesan nini jika akun ini dibuat karena suatu kesalahan.',
 'resetpass-wrong-oldpass'   => 'Kata sandi tidak sah.
 Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sandi sementara yang baru.',
 'resetpass-temp-password'   => 'Kata sandi sementara:',
-'resetpass-no-others'       => 'Anda tak dapat mereset kata sandi untuk pengguna lain.',
 'resetpass-log'             => 'Log reset kata sandi',
 'resetpass-logtext'         => 'Berikut adalah log pengguna yang telah direset kata sandinya oleh seorang pengurus.',
 'resetpass-logentry'        => 'mengganti kata sandi untuk $1',

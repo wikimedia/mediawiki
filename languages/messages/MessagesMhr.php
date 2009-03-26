@@ -95,6 +95,8 @@ $messages = array(
 'category_header'        => '"$1" категорийыште лаштык-влак',
 'subcategories'          => 'Подкатегорий-влак',
 'hidden-categories'      => '{{PLURAL:$1|Шылтыме категорий|Шылтыме категорий-влак}}',
+'category-subcat-count'  => '{{PLURAL:$2|Тиде категорийыш ик подкатегорий гына пура.|{{PLURAL:$1|Тыгай $1 подкатегорий|Тыгане $1 подкатегорий-влак}} тиде категорийыште, чыла $2.}}',
+'category-article-count' => '{{PLURAL:$2|Тиде категорийыш ик лаштык гына пура.|{{PLURAL:$1|Тыгай $1 лаштык|Тыгане $1 лаштык-влак}} тиде категорийыште, чыла $2.}}',
 'listingcontinuesabbrev' => '(умбакыжым)',
 
 'about'          => 'Нерген',
@@ -272,6 +274,11 @@ $messages = array(
 'anoneditwarning'        => "'''Тӱтко лий:''': Тый шкенетым палымым ыштен отыл. Тыйын IP адресет лаштыкын вашталтыме историйштыже вазалтен кодеш.",
 'summary-preview'        => 'Тӧрлатымаш нерген ончылгоч ончымаш:',
 'newarticle'             => '(У)',
+'newarticletext'         => "Тый ссылка почеш уке улшо лаштыкыш кусненат.
+Лаштыкым ышташлан ӱлнӧ возаш тӱҥал (сайрак палашлан [[{{MediaWiki:Helppage}}|полшыкым]] ончал).
+Тый тышке йонгылыш логалынат гын, браузерыште '''шенгек''' кнопкым темдал.",
+'noarticletext'          => 'Кызытсе жаплан тиде лаштыкышты нимом возымо огыл.
+Тый тиде лаштыкын лӱмжым вес лаштык-влакыште [[Special:Search/{{PAGENAME}}|кычалын]] кертат, але <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}}журнал-влакыште кычалын кертат], але [{{fullurl:{{FULLPAGENAME}}|action=edit}} тыйгай лӱман лаштыкым ышташ]</span>.',
 'clearyourcache'         => "'''Ешартыш''': Аралыме деч вара вашталтышым ужаш браузеретын кешыжым эрыкташ логалын кертеш. '''Mozilla / Firefox / Safari:''' ''Shift''-ым темдал кучен ''Reload''-ым темдал але ''Ctrl-F5'' але ''Ctrl-R'' темдал (Macintosh-влак ''Command-R''); '''Konqueror:''' темдал ''Reload'' кнопкым але ''F5'' темдал; '''Opera:''' ''Tools→Preferences''-ыште кешым эрыкте; '''Internet Explorer:''' ''Ctrl''-ым темдал кучен ''Refresh''-ым темдал але ''Ctrl-F5'' темдал.",
 'previewnote'            => "'''Тиде ончылгоч ончымаш гына;
 вашталтыш-влакым эше аралыме огыл!'''",
@@ -300,8 +307,9 @@ $messages = array(
 'histlast'               => 'Эн у',
 
 # Revision deletion
-'rev-delundel' => 'ончыкташ/шылташ',
-'pagehist'     => 'Лаштыкын историй',
+'rev-delundel'   => 'ончыкташ/шылташ',
+'revdel-restore' => 'Коймашым вашталташ',
+'pagehist'       => 'Лаштыкын историй',
 
 # Merge log
 'revertmerge' => 'Ойыраш',
@@ -337,6 +345,7 @@ $messages = array(
 'search-mwsuggest-enabled'  => 'сугынь дене',
 'search-mwsuggest-disabled' => 'сугынь деч посна',
 'showingresultstotal'       => "Ӱлнӧ '''$3''' кычалын мумо гыч {{PLURAL:$4|'''$1'''|'''$1 — $2'''}} ончыктымо",
+'nonefound'                 => "'''Ешартыш''':  Посна каласыме огыл дык, кычалмаш южо лӱм-влакын кумдыкышто эрта. Уло лӱм-влакын кумдыкышто кычалашлан(чӱктен каҥашымаш лаштык-влакым, ямдылык-влакым и туге молат) шке йодмашыштет ''all:'' префиксым кучылт, але кӱлешан лӱм-влакын кумдыкым ончыкто.",
 'powersearch'               => 'Сайынрак кычал',
 'powersearch-legend'        => 'Сайынрак кычалаш',
 'powersearch-ns'            => 'Кычалаш тиде лӱм-влакын кумдыкышт-влакыште:',
@@ -372,6 +381,9 @@ $messages = array(
 
 'grouppage-bot'   => '{{ns:project}}:Бот-влак',
 'grouppage-sysop' => '{{ns:project}}:Сайтвиктарыше-влак',
+
+# User rights log
+'rightslog' => 'Пайдаланышын права нерген журнал',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'тиде лаштыкым тӧрлаташ',
@@ -432,7 +444,8 @@ $messages = array(
 'linkstoimage'              => 'Тиде {{PLURAL:$1|$1 лаштык саде файл дене кылдалтын|$1 лаштык-влак саде файл дене кылдалтыныт}}:',
 'nolinkstoimage'            => 'Тиде файл дене кылдалтше ик лаштыкат уке.',
 'sharedupload'              => 'Тиде файлын верже: $1, туге гынат, тудым моло веренат кучылташ лиеш. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki-linktext' => 'файлын умылтартыш лаштыкше',
+'shareduploadwiki-desc'     => 'Ӱлнӧ $1 возымо ончыктымо.',
+'shareduploadwiki-linktext' => 'файлын умылтартыш лаштыкыште',
 'uploadnewversion-linktext' => 'Тиде файлын у версийжим пурташ',
 
 # File deletion
@@ -464,7 +477,9 @@ $messages = array(
 'pager-older-n'     => '{{PLURAL:$1|ончычсо|ончычсо}}',
 
 # Book sources
-'booksources-go' => 'Муаш',
+'booksources'               => 'Негызым пыштыше книга-влак',
+'booksources-search-legend' => 'Негызым пыштыше книгам кычалаш',
+'booksources-go'            => 'Муаш',
 
 # Special:Log
 'specialloguserlabel' => 'Пайдаланыше:',
@@ -482,7 +497,7 @@ $messages = array(
 # Special:LinkSearch
 'linksearch'    => 'Ӧрдыж ссылке-влак',
 'linksearch-ns' => 'Лӱм-влакын кумдыкышт:',
-'linksearch-ok' => 'Кучал',
+'linksearch-ok' => 'Кычал',
 
 # Special:ListUsers
 'listusers-submit' => 'ончыкташ',
@@ -547,6 +562,7 @@ $messages = array(
 'protectexpiry'               => 'Мучашлалтеш:',
 'protect_expiry_invalid'      => 'Йоҥылыш мучашлалтше жап.',
 'protect_expiry_old'          => 'Мучашлалтше жап эртен.',
+'protect-unchain'             => 'Лаштык кусараш кертме йоным ышташ',
 'protect-text'                => "Тыште тый '''<nowiki>$1</nowiki>''' лаштыкын шыгыремдымашыжым ончалаш да тӧрлаташ кертат.",
 'protect-locked-access'       => "Тыйын лаштыкын шыгыремдымашыжым тӧрлаш кертежет шагал.
 Ӱлнӧ '''$1''' лаштыкын кызытсе настройкыже-влак.",
@@ -600,22 +616,24 @@ $messages = array(
 'whatlinkshere-links'      => '← ссылке-влак',
 'whatlinkshere-hideredirs' => 'вес верек колтымо лаштык-влакым $1',
 'whatlinkshere-hidelinks'  => 'ссылке-влакым $1',
+'whatlinkshere-filters'    => 'Фильтр-влак',
 
 # Block/unblock
-'blockip'            => 'Пайдаланышылан йӧным петраш',
-'ipbreason'          => 'Амал:',
-'ipbreasonotherlist' => 'Вес амал',
-'ipboptions'         => '2 жап:2 hours,1 кече:1 day,3 кече:3 days,1 арня:1 week,2 арня:2 weeks,1 тылзе:1 month,3 тылзе:3 months,6 тылзе:6 months,1 ий:1 year,нимучашдымылык:infinite', # display1:time1,display2:time2,...
-'ipbotherreason'     => 'Вес/ешартыш амал:',
-'ipblocklist'        => 'Петырыме IP адрес-влак да пайдаланыше-влак',
-'ipblocklist-submit' => 'Кычал',
-'blocklink'          => 'йӧным петраш',
-'unblocklink'        => 'йӧным почаш',
-'change-blocklink'   => 'йӧным вашталташ',
-'contribslink'       => 'надыр',
-'blocklogpage'       => 'Йӧным вашталтыме журнал',
-'blocklogentry'      => '[[$1]] лан йӧным петрен $2 $3 мучашлалтеш',
-'unblocklogentry'    => '$1 лан йӧным почен',
+'blockip'                  => 'Пайдаланышылан йӧным петраш',
+'ipbreason'                => 'Амал:',
+'ipbreasonotherlist'       => 'Вес амал',
+'ipboptions'               => '2 жап:2 hours,1 кече:1 day,3 кече:3 days,1 арня:1 week,2 арня:2 weeks,1 тылзе:1 month,3 тылзе:3 months,6 тылзе:6 months,1 ий:1 year,нимучашдымылык:infinite', # display1:time1,display2:time2,...
+'ipbotherreason'           => 'Вес/ешартыш амал:',
+'ipblocklist'              => 'Петырыме IP адрес-влак да пайдаланыше-влак',
+'ipblocklist-submit'       => 'Кычал',
+'blocklink'                => 'йӧным петраш',
+'unblocklink'              => 'йӧным почаш',
+'change-blocklink'         => 'йӧным вашталташ',
+'contribslink'             => 'надыр',
+'blocklogpage'             => 'Йӧным вашталтыме журнал',
+'blocklogentry'            => '[[$1]] лан йӧным петрен $2 $3 мучашлалтеш',
+'unblocklogentry'          => '$1 лан йӧным почен',
+'block-log-flags-nocreate' => 'у пайдаланыше-влаклан регистрацийым чактарыме',
 
 # Move page
 'move-page-legend' => 'Лаштыкым кусараш',
@@ -715,14 +733,16 @@ $messages = array(
 'show-big-image-thumb' => '<small>Ончылгоч ончымашын кугытшо $1 × $2 пиксель</small>',
 
 # Special:NewFiles
-'showhidebots' => '(Бот-влакым $1 )',
-'ilsubmit'     => 'Кычал',
+'newimages-legend' => 'Фильтр',
+'showhidebots'     => '(Бот-влакым $1 )',
+'ilsubmit'         => 'Кычал',
 
 # Metadata
 'metadata' => 'Метаданный-влак',
 
 # External editor support
-'edit-externally' => 'Файлым ӧрдыж программыште тӧрлаташ',
+'edit-externally'      => 'Файлым ӧрдыж программыште тӧрлаташ',
+'edit-externally-help' => '(Сайрак палашлан ончал [http://www.mediawiki.org/wiki/Manual:External_editors шындымаш нерген туныктымашым])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'чыла',

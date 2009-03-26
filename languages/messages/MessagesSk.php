@@ -662,7 +662,6 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 'resetpass-wrong-oldpass'   => 'Neplatné dočasné alebo aktuálne heslo. 
 Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si vyžiadali nové dočasné heslo.',
 'resetpass-temp-password'   => 'Dočasné heslo:',
-'resetpass-no-others'       => 'Nemôžete zmeniť heslo iných používateľov.',
 'resetpass-log'             => 'Záznam zmien hesla',
 'resetpass-logtext'         => 'Toto je záznam používateľov, ktorí si nechali zmeniť heslo správcom.',
 'resetpass-logentry'        => 'zmenil heslo používateľa $1',

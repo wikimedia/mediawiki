@@ -38,7 +38,7 @@ $messages = array(
 'tog-hideminor'               => 'Litje Annerengen uutbländje',
 'tog-hidepatrolled'           => 'Kontrollierde Annerengen in do "Lääste Annerengen" uutbländje',
 'tog-newpageshidepatrolled'   => 'Kontrollierde Sieden ap ju Lieste „Näie Sieden“ ferbierge',
-'tog-extendwatchlist'         => 'Uutdiende Beooboachtengslieste',
+'tog-extendwatchlist'         => 'Uutgediende Beooboachtengslieste tou Anwiesenge fon aal Annerengen',
 'tog-usenewrc'                => 'Fermeerde Deerstaalenge (bruukt Javascript)',
 'tog-numberheadings'          => 'Uurschrifte automatisk nuumerierje',
 'tog-showtoolbar'             => 'Beoarbaidengs-Reewen anwiese',
@@ -489,7 +489,6 @@ In dän Fal dät Benutserkonto uut Fersjoon anlaid wuude, koast du disse Ätterg
 'resetpass-wrong-oldpass'   => 'Uungultich tiedelk of aktuell Paaswoud.
 Muugelkerwiese hääst du dien Paaswoud al mäd Ärfoulch annerd of n näi tiedelk Paaswoud fräiged.',
 'resetpass-temp-password'   => 'Tiedelk Paaswoud:',
-'resetpass-no-others'       => 'Du koast dät Paaswoud fon uur Benutsere nit touräächsätte.',
 'resetpass-log'             => 'Paaswoudtouräächsättengs-Logbouk',
 'resetpass-logtext'         => 'Hierunner wäd n Logbouk fon Benutsere anwiesd, fon do dät Paaswoud truch n Administrator touräächsät wuude.',
 'resetpass-logentry'        => 'annerde dät Paaswoud foar $1',
@@ -740,13 +739,13 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'rev-deleted-comment'            => '(Beoarbaidengskommentoar wächhoald)',
 'rev-deleted-user'               => '(Benutsernoome wächhoald)',
 'rev-deleted-event'              => '(Logbouk-Aktion wächhoald)',
-'rev-deleted-text-permission'    => 'Disse Version wuude läsked un is nit moor eepentelk ientousjoon.
-Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].',
-'rev-deleted-text-view'          => 'Disse Version wuude läsked un is nit moor eepentelk ientousjoon.
+'rev-deleted-text-permission'    => "Disse Version wuude läsked un is '''nit moor eepentelk ientousjoon'''.
+Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+'rev-deleted-text-view'          => "Disse Version wuude läsked un is '''nit moor eepentelk ientousjoon'''.
 As Administrator koast du ju wieders ienkiekje.
-Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].',
-'rev-deleted-no-diff'            => 'Du koast dissen Unnerscheed nit betrachtje, deer een fon do Versione uut do eepentelke Archive wáchhoald wuud.
-Details stounde in dän [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].',
+Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+'rev-deleted-no-diff'            => "Du koast dissen Unnerscheed nit betrachtje, deer een fon do Versione '''uut do eepentelke Archive wächhoald wuud'''.
+Details stounde in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-delundel'                   => 'wiese/ferbierge',
 'revisiondelete'                 => 'Versione läskje/wier häärstaale',
 'revdelete-nooldid-title'        => 'Uunjäildige Siel-Beoarbaidenge',
@@ -2122,6 +2121,7 @@ Alternativ is die Export uk mäd de Syntax [[{{#Special:Export}}/{{MediaWiki:Mai
 'export-submit'     => 'Sieden exportierje',
 'export-addcattext' => 'Sieden uut Kategorie bietouföigje:',
 'export-addcat'     => 'Bietouföigje',
+'export-addns'      => 'Bietouföigje',
 'export-download'   => 'As XML-Doatäi spiekerje',
 'export-templates'  => 'Inklusive Foarloagen',
 'export-pagelinks'  => 'Ferlinkede Sieden automatisk mee exportierje, bit tou ju Rekursionsjupte fon:',

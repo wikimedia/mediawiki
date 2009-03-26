@@ -75,10 +75,19 @@ $messages = array(
 'jumptosearch'     => 'sisku',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'About {{SITENAME}}',
+'aboutpage'            => 'Project:About',
 'copyright'            => "lo selvau cu gubni ja'i la'o gy. $1 .gy.",
-'currentevents'        => 'nuzba ckupau',
-'currentevents-url'    => 'Project:nuzba ckupau',
-'disclaimers'          => "xusra lo za'i na fuzme",
+'copyrightpagename'    => "{{SITENAME}} fukyzifpo'e",
+'copyrightpage'        => "{{ns:project}}:fukyzifpo'e",
+'currentevents'        => "caca'a fasnu",
+'currentevents-url'    => "Project:caca'a fasnu",
+'disclaimers'          => "nunxusra lo za'i na fuzme",
+'disclaimerpage'       => "Project:kampu nunxusra be lo za'i na fuzme",
+'edithelp'             => 'stika nunsidju',
+'edithelppage'         => 'Help:Editing',
+'faq'                  => 'FAQ',
+'faqpage'              => 'Project:FAQ',
 'mainpage'             => 'ralju ckupau',
 'mainpage-description' => 'ralju ckupau',
 'portal'               => 'bende ckupau',
@@ -101,8 +110,13 @@ $messages = array(
 'feedlinks'            => 'Feed:',
 'feed-invalid'         => 'Invalid subscription feed type.',
 'feed-unavailable'     => 'Syndication feeds are not available',
+'red-link-title'       => '$1 (le vi kibypapri cu na zasti)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'      => 'kibypapri',
+'nstab-user'      => 'pilno kibypapri',
+'nstab-media'     => 'Media page',
+'nstab-special'   => 'steci kibypapri',
 'nstab-mediawiki' => 'notci',
 'nstab-category'  => 'klesi',
 
@@ -119,6 +133,8 @@ $messages = array(
 'showpreview'    => 'troci jarco',
 'showdiff'       => 'jarco lo te frica',
 'loginreqlink'   => "co'a se jaspu",
+'previewnote'    => "'''ko morji le du'u ti seljarco o'i'''
+.i lo do nunstika cu na pu vreji",
 'editing'        => "ca galfi la'e lu $1 li'u",
 'editingsection' => 'ca galfi le selcmene be zoi $1 (section)',
 'editingcomment' => 'ca galfi le selcmene be zoi $1 (comment)',
@@ -132,8 +148,11 @@ $messages = array(
 'searchresults' => "tu'a le se sisku",
 
 # Preferences page
+'preferences'       => 'zmaselnei',
+'mypreferences'     => 'zmaselnei liste',
 'textboxsize'       => 'ca galfi',
 'searchresultshead' => "tu'a le se sisku",
+'savedprefs'        => 'le do zmaselnei pu vreji',
 
 # Recent changes
 'recentchanges'     => 'puzi nunstika',
@@ -161,6 +180,8 @@ $messages = array(
 'categories' => 'klesi',
 
 # Watchlist
+'watchlist'     => 'selzgaste',
+'mywatchlist'   => 'selzgaste',
 'watch'         => 'zgana',
 'watchthispage' => 'zgana ti',
 
@@ -190,7 +211,10 @@ $messages = array(
 '1movedto2' => "le pu se cmene lu [[$1]] li'u cu ca se cmene lu [[$2]] li'u",
 
 # Tooltip help for the actions
+'tooltip-pt-watchlist'          => 'le liste be lo kibypapri poi do zgana',
+'tooltip-pt-mycontris'          => 'le liste be le do selstika',
 'tooltip-pt-logout'             => "co'u se jaspu",
+'tooltip-ca-watch'              => 'jmive le vi kibypapri le do selzgaste',
 'tooltip-n-mainpage'            => 'vitke le ralju ckupau',
 'tooltip-n-randompage'          => 'jarco lo cunso ckupau',
 'tooltip-n-help'                => 'sidju kibypapri',

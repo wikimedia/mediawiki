@@ -710,7 +710,6 @@ $messages = array(
 'resetpass-wrong-oldpass'   => '비밀번호가 잘못되었거나 현재의 비밀번호와 같습니다.
 당신은 이미 비밀번호를 성공적으로 변경하였거나 새 임시 비밀번호를 발급받았을 수 있습니다.',
 'resetpass-temp-password'   => '임시 비밀번호:',
-'resetpass-no-others'       => '당신은 다른 사용자의 비밀번호를 변경할 수 없습니다.',
 'resetpass-log'             => '비밀번호 변경 기록',
 'resetpass-logtext'         => '다음은 관리자에 의해 비밀번호가 변경된 사용자에 대한 기록입니다.',
 'resetpass-logentry'        => '$1 사용자의 비밀번호를 변경',

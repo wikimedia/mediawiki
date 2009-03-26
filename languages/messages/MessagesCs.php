@@ -778,7 +778,6 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'resetpass-wrong-oldpass'   => 'Nesprávné dočasné nebo aktuální heslo.
 Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové dočasné heslo.',
 'resetpass-temp-password'   => 'Dočasné heslo:',
-'resetpass-no-others'       => 'Nemáte oprávnění měnit heslo jiným uživatelům.',
 'resetpass-log'             => 'Kniha záznamů změn hesla',
 'resetpass-logtext'         => 'Toto je kniha záznamů uživatelů, kteří si nechali administrátory změnit heslo.',
 'resetpass-logentry'        => 'změnil heslo pro uživatele $1',

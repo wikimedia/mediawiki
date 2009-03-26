@@ -520,7 +520,6 @@ Pò essere ca tu è già chieste 'na password temboranea nove oppure è già can
 'resetpass-wrong-oldpass'   => "'A password temboranea o quedda corrende jè invalide.
 Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea nove.",
 'resetpass-temp-password'   => 'Password temboranea:',
-'resetpass-no-others'       => "Tu non ge puè azzerà 'a password de otre utinde.",
 'resetpass-log'             => 'Archivije de le azzeraminde de le password',
 'resetpass-logtext'         => "Sotte stè 'n'archivije de utinde ca onne avute 'a password lore azzerate da 'n'amministratore.",
 'resetpass-logentry'        => "cangete 'a password pe $1",
@@ -1884,6 +1883,7 @@ Mitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene a
 'ipbanononly'                  => "Blocche sulamende l'utinde anonime",
 'ipbcreateaccount'             => 'No fà ccrejà le cunde utinde',
 'ipbemailban'                  => "No fà mannà email a l'utinde",
+'ipbenableautoblock'           => "Automaticamende blocche l'urteme indirizze IP ausate da stu utende e tutte le sottosequenze de le IP ca onne state ausate pe cangià",
 'ipbsubmit'                    => "Blocche st'utende",
 'ipbother'                     => 'Otre orarie:',
 'ipboptions'                   => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
@@ -1932,6 +1932,7 @@ Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'block-log-flags-nocreate'     => 'ccreazione de le cunde utinde disabbilitete',
 'block-log-flags-noautoblock'  => 'auto blocche disabbilitete',
 'block-log-flags-noemail'      => 'e-mail blocchete',
+'range_block_disabled'         => "L'abbilità de le amministrature de ccrejà blocche a indervalle jè disabbilitate.",
 'ipb_expiry_invalid'           => "L'orarije de scadenze non g'è valide.",
 'ipb_already_blocked'          => '"$1" jè ggià blocchete',
 'ipb-needreblock'              => "== Già blocchete ==
@@ -1940,6 +1941,8 @@ $1 ha state già blocchete. Vuè cu cange le 'mbostaziune?",
 'blockme'                      => 'Bloccheme',
 'proxyblocker'                 => 'Bloccaore de proxy',
 'proxyblocker-disabled'        => "'A funzione ha state disabbilitete.",
+'proxyblockreason'             => "L'indirizze IP tue ha state bloccate purcè jè 'nu proxy apirte.
+Pe piacere condatte 'u provider de Indernette tue o 'u supporte tecniche e 'mbormescele de stu serie probbleme de securezze.",
 'proxyblocksuccess'            => 'Spicciete.',
 'sorbs'                        => 'DNSBL',
 'sorbsreason'                  => "L'indirizze IP tue jè elegate cumme a 'nu proxy apirte jndr'à DNSBL ausate da {{SITENAME}}.",
@@ -1960,6 +1963,8 @@ Tu nonge puè ccrejà 'nu cunde utende",
 'lockdbsuccesstext'   => "'U database ha state blocchete.<br />
 Arrecuerdete de [[Special:UnlockDB|luvà 'u blocche]] apprrisse ca 'a manutenziona ha state combletate.",
 'unlockdbsuccesstext' => "'U database ha state sblocchete.",
+'lockfilenotwritable' => "'U blocche sus a le file d'u database non g'è scrivibbile.
+Pe bloccà o sbloccà 'u database quiste abbesogne de essere scritte da 'nu web server.",
 'databasenotlocked'   => "'U database non g'è blocchete.",
 
 # Move page
@@ -1998,6 +2003,7 @@ Jndr'à ste case, 'a pàgene non g'avène spustete e pò t'a cupià a màne 'u c
 'movepage-moved'            => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => "'Na pàgene cu stu nome già esiste, o 'u nome ca tu è scacchiete non g'è valide.
 Pe piacere scacchie n'otre nome.",
+'cantmove-titleprotected'   => "Tu non ge puè spustà 'na pògene jndr'à sta locazzione purcè 'u titele nuève ha state protette da 'a ccrejazione",
 'talkexists'                => "''''A pàgene ha state spustete, però 'a pàgene de le 'ngazzaminde pò essere ca non g'à state spustete purcè ne ste n'otre già cu 'u titele nuéve.
 Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'movedto'                   => 'spustete a',
@@ -2012,6 +2018,7 @@ Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'revertmove'                => 'a smerse',
 'delete_and_move'           => 'Scangille e spuèste',
 'delete_and_move_confirm'   => "Sine, scangille 'a pàggene",
+'delete_and_move_reason'    => "'U scangellamende avène fatte pe spustà",
 'selfmove'                  => "Le titele sorgende e destinazione sonde le stesse;
 non ge se pò movere 'na pàgene sus a sè stesse.",
 'immobile-source-namespace' => 'Non ge pozze spustà le pàggene da \'u namespace "$1"',
@@ -2030,14 +2037,15 @@ non ge se pò movere 'na pàgene sus a sè stesse.",
 'export-templates'  => 'Inglude le template',
 
 # Namespace 8 related
-'allmessages'         => "Messagge d'u Sisteme",
-'allmessagesname'     => 'Nome',
-'allmessagesdefault'  => 'Teste de default',
-'allmessagescurrent'  => 'Teste corrende',
-'allmessagestext'     => "Queste jè 'na liste de tutte le messagge d'u sisteme ca se ponne acchià jndr'à le namespace de MediaUicchi.
+'allmessages'               => "Messagge d'u Sisteme",
+'allmessagesname'           => 'Nome',
+'allmessagesdefault'        => 'Teste de default',
+'allmessagescurrent'        => 'Teste corrende',
+'allmessagestext'           => "Queste jè 'na liste de tutte le messagge d'u sisteme ca se ponne acchià jndr'à le namespace de MediaUicchi.
 Pe piacere vè vide [http://www.mediawiki.org/wiki/Localisation Localizzazione de MediaUicchi] e [http://translatewiki.net translatewiki.net] ce tu vuè ccu condrebbuisce a 'a localizzazione de MediaUicchi.",
-'allmessagesfilter'   => "Nome d'u filtre d'u Mèssagge:",
-'allmessagesmodified' => 'Fà vedè sulamende le cangete',
+'allmessagesnotsupportedDB' => "Sta pàgene non ge pò essere ausate purcè '''\$wgUseDatabaseMessages''' ha state disabbilitate.",
+'allmessagesfilter'         => "Nome d'u filtre d'u Mèssagge:",
+'allmessagesmodified'       => 'Fà vedè sulamende le cangete',
 
 # Thumbnails
 'thumbnail-more'           => 'Allarije',
@@ -2046,6 +2054,7 @@ Pe piacere vè vide [http://www.mediawiki.org/wiki/Localisation Localizzazione d
 'djvu_page_error'          => 'Pàgene DjVu fore da le limite',
 'djvu_no_xml'              => "Non ge riesche a esaminà l'XML d'u file DjVu",
 'thumbnail_invalid_params' => 'Parametre pe le miniature invalide',
+'thumbnail_dest_directory' => "Non ge pozze ccrejà 'a cartella de destinazione",
 
 # Special:Import
 'import'                     => "Pàggene 'mbortete",
@@ -2315,6 +2324,9 @@ Otre avènene scunnute pe defolt.
 'exif-subjectdistancerange-2' => "Chiude 'a viste",
 'exif-subjectdistancerange-3' => "Distanzie 'a viste",
 
+'exif-gpsmeasuremode-2' => 'mesurazzione a doje dimenziune',
+'exif-gpsmeasuremode-3' => 'mesurazzione a ttre dimenziune',
+
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => "Chilometre a l'ore",
 'exif-gpsspeed-m' => 'Miglie pe ore',
@@ -2340,13 +2352,21 @@ Otre avènene scunnute pe defolt.
 'confirmemail_noemail'     => "Tu non ge tine 'n'indirizze e-mail valide configurate sus a le [[Special:Preferences|preferenze tue]].",
 'confirmemail_send'        => "Manne 'nu codece de conferme",
 'confirmemail_sent'        => 'E-mail de conferme mannete.',
+'confirmemail_oncreate'    => "'Nu codece de conferme ha state mannate a l'indirizze e-mail tue.
+Stu codece non g'è richieste pe collegarte, ma tu n'è abbesogne de averle apprime ca tu ause quacche cose ca se base sus a l'use de le e-mail sus a Uicchi.",
+'confirmemail_invalid'     => "Codece de conferme invalide.
+Pò essere ca 'u codece ha scadute.",
 'confirmemail_needlogin'   => "A confermà $1 l'indirizze email ca è mise.",
+'confirmemail_success'     => "L'indirizze e-mail tue ha state confermate.
+Tu, mò te puè [[Special:UserLogin|collegà]] e te puè devertì sus 'a Uicchipèdie.",
 'confirmemail_loggedin'    => "L'indirizze e-mail tue ha state confermate.",
+'confirmemail_error'       => "Quacchedune ha sbagliate reggistranne 'a conferma toje.",
 'confirmemail_subject'     => 'Indirizze email de conferme pe {{SITENAME}}',
 'confirmemail_invalidated' => "Conferme de l'indirizze e-mail scangellete",
 'invalidateemail'          => "Scangille 'a conferme de l'e-mail",
 
 # Scary transclusion
+'scarytranscludefailed'  => "[L'analisi d'u template ha fallite pe $1]",
 'scarytranscludetoolong' => '[URL jè troppe longhe]',
 
 # Trackbacks
@@ -2395,6 +2415,7 @@ $1',
 Prueve l\'andeprima normele.',
 
 # Watchlist editor
+'watchlistedit-numitems'      => "'A liste de le pàggene condrollate tène {{PLURAL:$1|1 titele|$1 titele}}, 'scudenne le pàggne de le 'ngazzaminde.",
 'watchlistedit-noitems'       => "'A lista de le pàggene condrollete toja no tène 'na vosce.",
 'watchlistedit-normal-title'  => 'Vide le pàggene condrollete',
 'watchlistedit-normal-legend' => "Live le titele da 'a liste de le pàggene condrollete",

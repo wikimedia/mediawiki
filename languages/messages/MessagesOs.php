@@ -340,7 +340,6 @@ $messages = array(
 'resetpass_forbidden'       => 'Пароль баивæн нæй',
 'resetpass-submit-loggedin' => 'Пароль баив',
 'resetpass-temp-password'   => 'Рæстæгмæ пароль:',
-'resetpass-no-others'       => 'Æндæр архайæджы пароль аппарын дæ бон нæу.',
 'resetpass-log'             => 'Парольтæ аппарыны лог',
 'resetpass-comment'         => 'Пароль аппарын цæмæн бахъуыд:',
 

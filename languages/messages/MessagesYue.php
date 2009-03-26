@@ -610,7 +610,6 @@ $1',
 'resetpass-wrong-oldpass'   => '無效嘅臨時或現有嘅密碼。
 你可能已經成功咁更改你嘅密碼，又或者重新請求過一個新嘅臨時密碼。',
 'resetpass-temp-password'   => '臨時密碼:',
-'resetpass-no-others'       => '你唔可以重設其他用戶嘅密碼。',
 'resetpass-log'             => '密碼重設日誌',
 'resetpass-logtext'         => '下面係由管理員重設用戶密碼嘅日誌。',
 'resetpass-logentry'        => '改咗$1嘅密碼',

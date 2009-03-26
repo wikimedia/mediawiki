@@ -724,7 +724,6 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'resetpass-wrong-oldpass'   => 'Feil mellombels eller noverande passord.
 Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels passord.',
 'resetpass-temp-password'   => 'Mellombels passord:',
-'resetpass-no-others'       => 'Du kan ikkje nullstilla passordet for andre brukarar.',
 'resetpass-log'             => 'Loggføring over attendestilling av passord',
 'resetpass-logtext'         => 'Nedanfor finst ei loggføring over brukarar som har fått passorda sine stilt attende av ein administrator.',
 'resetpass-logentry'        => 'endra passordet for $1',

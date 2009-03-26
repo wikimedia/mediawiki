@@ -636,7 +636,6 @@ Riprovare più tardi.',
 'resetpass-wrong-oldpass'   => 'Password temporanea o corrente non valida.
 La password potrebbe essere stata già cambiata, oppure potrebbe essere stata richiesta una nuova password temporanea.',
 'resetpass-temp-password'   => 'Password temporanea:',
-'resetpass-no-others'       => 'Non puoi reimpostare la password di altri utenti.',
 'resetpass-log'             => 'Reimpostazione password',
 'resetpass-logtext'         => 'Di seguito sono elencati gli utenti la cui password è stata reimpostata da un amministratore.',
 'resetpass-logentry'        => 'ha modificato la password di $1',

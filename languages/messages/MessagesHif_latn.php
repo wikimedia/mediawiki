@@ -498,7 +498,6 @@ Aap sait pahile password ke badal diya hoi nai to nawaa temporary password ke ma
 'resetpass-wrong-oldpass'   => 'Temporary nai to abhi ke password valid nai hai. 
 Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password ke maang karaa hoga.',
 'resetpass-temp-password'   => 'Kachcha password:',
-'resetpass-no-others'       => 'Aap ke duusra sadasya ke password ke badle ke ijajat nai hai.',
 'resetpass-log'             => 'Password resets ke log',
 'resetpass-logtext'         => 'Niche uu sadasya ke log hai jiske password ke koi administrator reset kar diis hai.',
 'resetpass-logentry'        => '$1 ke password ke badal dia hai',

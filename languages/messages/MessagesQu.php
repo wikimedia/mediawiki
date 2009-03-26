@@ -725,7 +725,6 @@ Kay willay pantasqa kaptinqa, qhawarparillay.',
 'resetpass-wrong-oldpass'   => "Mit'alla icha kunan yaykuna rimaqa manam allinchu. 
 Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata mañakurqunkiñachá.",
 'resetpass-temp-password'   => "Mit'alla yaykuna rima:",
-'resetpass-no-others'       => 'Huk ruraqkunap yaykuna rimankunataqa manam kutichiyta atinkichu.',
 'resetpass-log'             => "Yaykuna rima kutichiy hallch'a",
 'resetpass-logtext'         => 'Kay qatiqpi rikunalla ruraqkunaqa yaykuna rimanta kamachiqwanmi kutichikuchirqan.',
 'resetpass-logentry'        => '$1-paq yaykuna rimata hukcharqan',
@@ -951,13 +950,16 @@ Musuq chaniyuq p'anqakunata [[Special:Search|wikipi maskaykachay]].",
 'rev-deleted-comment'            => '(qullusqa rimapuy)',
 'rev-deleted-user'               => '(qullusqa ruraqpa sutin)',
 'rev-deleted-event'              => "(qullusqa hallch'a)",
-'rev-deleted-text-permission'    => "P'anqamanta kay llamk'apusqaqa uyana hallch'akunamanta qullusqam.
+'rev-deleted-text-permission'    => "P'anqamanta kay llamk'apusqaqa '''uyana hallch'akunamanta qullusqam'''.
 Astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
-'rev-deleted-text-view'          => "P'anqamanta kay llamk'apusqaqa uyana hallch'akunamanta qullusqam.
+'rev-deleted-text-view'          => "P'anqamanta kay llamk'apusqaqa '''uyana hallch'akunamanta qullusqam'''.
 Kay wikipi kamachiq kaspaykim rikuyta atinkim;
 astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
-'rev-deleted-no-diff'            => "Kay hukchasqataqa manam rikuyta atinkichu, huk musuqchasqa sapsi hallch'akunamanta qichusqa kaptinmi.
+'rev-deleted-no-diff'            => "Kay hukchasqataqa manam rikuyta atinkichu, huk musuqchasqa '''sapsi uyana hallch'akunamanta qichusqa''' kaptinmi.
 Imaymanacha yuyaykunataqa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.",
+'rev-deleted-unhide-diff'        => "Kay wakin kaypaqqa huk musuqchasqa '''sapsi uyana hallch'akunamanta qichusqam'''.
+Imaymanacha yuyaykunataqa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.
+Kamachiq kaspayki kunanraqpas munaspaykiqa, [$1 kay wakin kayta qhawayta] atinkiraqmi.",
 'rev-delundel'                   => 'rikuchiy/pakay',
 'revisiondelete'                 => "Mawk'a llamk'apusqakunata qulluy/paqarichiy",
 'revdelete-nooldid-title'        => "Taripana llamk'apusqaqa manam allinchu",
@@ -2138,7 +2140,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipboptions'                      => "2 ura:2 hours,1 p'unchaw:1 day,3 p'unchaw:3 days,1 simana:1 week,2 simana:2 weeks,1 killa:1 month,3 killa:3 months,6 killa:6 months,1 wata:1 year,Wiña-wiñaypaq:infinite", # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'huk',
 'ipbotherreason'                  => 'Huk imarayku:',
-'ipbhidename'                     => "Ruraqpa sutinta pakay hark'ay hallch'amanta, kunan hark'asqakunapi ruraqkunapipas",
+'ipbhidename'                     => "Ruraqpa sutinta llamk'apusqakunamanta, sutisuyukunamantapas pakay",
 'ipbwatchuser'                    => "Kay ruraqpa p'anqanta rimachinantapas watiqay",
 'ipballowusertalk'                => "Kay ruraqta kikinpa rimanakuy p'anqanta hukchayta saqillay, hark'asqa kaptinpas",
 'ipb-change-block'                => "Ruraqta musuqmanta hark'ay kay allinchanakunata churaspa",
@@ -2194,6 +2196,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'range_block_disabled'            => "Kamachiqpa patayayku hark'ay hayñinman ama nisqam.",
 'ipb_expiry_invalid'              => 'Puchukana pachaqa manam allinchu.',
 'ipb_expiry_temp'                 => "Pakasqa ruraqpa sutin hark'aykunaqa tiyaqllam kachun.",
+'ipb_hide_invalid'                => "Manam atinichu kay rakiqunata ñit'ipayta; nisyu llamk'apusqayuqñachá.",
 'ipb_already_blocked'             => '"$1" sutiyuqqa hark\'asqañam kachkan.',
 'ipb-needreblock'                 => "== Hark'asqaña ==
 $1 sutiyuqqa hark'asqañam. Allinchanakunata hukchayta munankichu?",

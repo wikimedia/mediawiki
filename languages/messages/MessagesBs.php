@@ -733,7 +733,6 @@ Možda ste već promjenili šifru ili ste zatražili novu privremenu šifru.',
 'resetpass-wrong-oldpass'   => 'Privremena ili trenutna šifra nije validna. 
 Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privremenu šifru.',
 'resetpass-temp-password'   => 'Privremena šifra:',
-'resetpass-no-others'       => 'Ne možete resetovati šifre drugih korisnika.',
 'resetpass-log'             => 'Zapisnik resetovanja šifre',
 'resetpass-logtext'         => 'Ispod je zapisnik korisnika koji su zatražili od administratora resetovanje svoje šifre.',
 'resetpass-logentry'        => 'promijenjena šifra za {{GENDER:$1|korisnika|korisnicu}} $1',
@@ -892,9 +891,9 @@ nemojte ih slati ovdje. Takođe, slanje članka podrazumijeva i vašu izjavu da 
 'copyrightwarning2'                => "Zapamtite da svaki doprinos na stranici {{SITENAME}} može biti izmijenjen, promijenjen ili uklonjen od strane ostalih korisnika. Ako ne želite da ovo desi sa Vašim tekstom, onda ga nemojte slati ovdje.<br />
 Takođe nam garantujete da ste ovo Vi napisali, ili da ste ga kopirali iz javne domene ili sličnog slobodnog izvora informacija (pogledajte $1 za više detalja).
 '''NE ŠALJITE AUTORSKIM PRAVOM ZAŠTIĆENE TEKSTOVE BEZ DOZVOLE!'''",
-'longpagewarning'                  => "'''PAŽNJA: Ova stranica ima $1 kilobajta; neki
-preglednici mogu imati problema kad uređujete stranice skoro ili veće od 32 kilobajta.
-Molimo Vas da razmotrite razbijanje stranice na manje dijelove.'''",
+'longpagewarning'                  => "'''PAŽNJA''': Ova stranica ima $1 kilobajta; 
+neki preglednici mogu imati problema kad uređujete stranice skoro ili veće od 32 kilobajta.
+Molimo Vas da razmotrite razbijanje stranice na manje dijelove.",
 'longpageerror'                    => "'''Greška: Tekst, koji ste poslali, je dug $1 kilobajta, što je veće od maksimuma, koji iznosi $2 kilobajta. 
 Stranica ne može biti spremljena.'''",
 'readonlywarning'                  => "'''PAŽNJA: Baza je zaključana zbog održavanja, tako da nećete moći da sačuvate svoje izmjene za sada. 
@@ -1031,7 +1030,7 @@ Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to �
 'revdelete-hide-name'            => 'Sakrij akciju i cilj',
 'revdelete-hide-comment'         => 'Sakrij izmjene komentara',
 'revdelete-hide-user'            => 'Sakrij korisničko ime urednika/IP',
-'revdelete-hide-restricted'      => 'Ograniči podatke od administratora i kao i za druge korisnike',
+'revdelete-hide-restricted'      => 'Ograniči podatke za administratore kao i za druge korisnike',
 'revdelete-suppress'             => 'Sakrij podatke od administratora kao i od drugih',
 'revdelete-hide-image'           => 'Sakrij sadržaj datoteke',
 'revdelete-unsuppress'           => 'Ukloni ograničenja na vraćenim revizijama',

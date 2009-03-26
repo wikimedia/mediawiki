@@ -691,7 +691,6 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 'resetpass-wrong-oldpass'   => 'Mật khẩu tạm hoặc mật khẩu hiện thời không hợp lệ.
 Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đã yêu cầu cung cấp một mật khẩu tạm mới.',
 'resetpass-temp-password'   => 'Mật khẩu tạm:',
-'resetpass-no-others'       => 'Bạn không thể tái tạo mật khẩu cho thành viên khác.',
 'resetpass-log'             => 'Nhật trình tái tạo mật khẩu',
 'resetpass-logtext'         => 'Dưới đây là nhật trình ghi lại những thành viên đã được người quản lý tái tạo mật khẩu giúp.',
 'resetpass-logentry'        => 'đã thay đổi mật khẩu cho $1',

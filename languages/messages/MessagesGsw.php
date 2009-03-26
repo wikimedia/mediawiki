@@ -586,7 +586,6 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'resetpass-wrong-oldpass'   => 'S temporär oder aktuäll Passwort isch nimi giltig.
 Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagforderet.',
 'resetpass-temp-password'   => 'Temporär Passwort:',
-'resetpass-no-others'       => 'Du chasch s Passwort vu andere Benutzer nit zrucksetze.',
 'resetpass-log'             => 'Logbuech vu dr zruckgsetzte Passwerter',
 'resetpass-logtext'         => 'Unte findsch e Logbuech vu dr Benutzer, wu s Passwort vun ene zruckgsetzt woren isch dur e Ammann.',
 'resetpass-logentry'        => 'het s Passwort fir $1 gänderet',

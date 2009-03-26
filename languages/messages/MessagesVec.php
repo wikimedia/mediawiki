@@ -602,7 +602,6 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'resetpass-wrong-oldpass'   => 'Password corente o tenporanea mia valida.
 Forse te ghè zà canbià la to password o te ghè domandà na password tenporanea nova.',
 'resetpass-temp-password'   => 'Password tenporanea:',
-'resetpass-no-others'       => 'No te poli reinpostar la password de altri utenti.',
 'resetpass-log'             => 'Registro dei reset de le password',
 'resetpass-logtext'         => "Qua soto ghe xe un registro dei utenti la cui password la xe stà reinpostà da n'aministrador.",
 'resetpass-logentry'        => 'gà canbià la password de $1',

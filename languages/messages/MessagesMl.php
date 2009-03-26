@@ -270,10 +270,10 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|വര്‍ഗ്ഗം|വര്‍ഗ്ഗങ്ങള്‍}}',
-'category_header'                => '"$1" എന്ന വിഭാഗത്തിലെ താളുകള്‍',
+'category_header'                => '"$1" എന്ന വര്‍ഗ്ഗത്തിലെ താളുകള്‍',
 'subcategories'                  => 'ഉപവിഭാഗങ്ങള്‍',
-'category-media-header'          => '"$1" എന്ന വിഭാഗത്തിലെ പ്രമാണങ്ങള്‍',
-'category-empty'                 => "''ഈ വിഭാഗത്തില്‍ താളുകളോ പ്രമാണങ്ങളോ ഇല്ല.''",
+'category-media-header'          => '"$1" എന്ന വര്‍ഗ്ഗത്തിലെ പ്രമാണങ്ങള്‍',
+'category-empty'                 => "''ഈ വര്‍ഗ്ഗത്തില്‍ താളുകളോ പ്രമാണങ്ങളോ ഇല്ല.''",
 'hidden-categories'              => '{{PLURAL:$1|മറഞ്ഞിരിക്കുന്ന വര്‍ഗ്ഗം|മറഞ്ഞിരിക്കുന്ന വര്‍ഗ്ഗങ്ങള്‍}}',
 'hidden-category-category'       => 'മറഞ്ഞിരിക്കുന്ന വിഭാഗങ്ങള്‍', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|ഈ വിഭാഗത്തില്‍ താഴെ പ്രദര്‍ശിപ്പിച്ചിരിക്കുന്ന ഒരു ഉപവിഭാഗം മാത്രമേ ഉള്ളൂ.|മൊത്തം $2 ഉപവിഭാഗങ്ങള്‍ ഉള്ളതില്‍  ഈ വിഭാഗത്തില്‍ താഴെ പ്രദര്‍ശിപ്പിച്ചിരിക്കുന്ന {{PLURAL:$1|ഉപവിഭാഗം|$1 ഉപവിഭാഗങ്ങള്‍}} ആണ്‌ ഉള്ളത്.}}',

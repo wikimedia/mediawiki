@@ -527,7 +527,6 @@ Voib olda, tö olet jo vajehtanuded teiden peitsana vai olet pakinuded sistemalp
 'resetpass-wrong-oldpass'   => 'Vär pordaigaine vai nügüdläine peitsana.
 Voib olda, tö olet jo toižetanuded peitsanan vai pakinuded uden peitsanan.',
 'resetpass-temp-password'   => 'Pordaigaline peitsana:',
-'resetpass-no-others'       => 'Teile ei sa vajehtada toižen kävutajan peitsanad.',
 'resetpass-log'             => 'Peitsanoiden heitmižen aigkirj',
 'resetpass-logtext'         => 'Alemba om niiden kävutajiden nimikirjutez, kudambiden peitsanad oma heittud administratoril.',
 'resetpass-logentry'        => 'om vajehtanu $1-kävutajan peitsanan',

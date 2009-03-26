@@ -627,7 +627,6 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'resetpass-wrong-oldpass'   => 'Feil midlertidig eller nåværende passord.
 Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.',
 'resetpass-temp-password'   => 'Midlertidig passord:',
-'resetpass-no-others'       => 'Du kan ikke nullstille passordet til andre brukere.',
 'resetpass-log'             => 'Logg for passordnullstilling',
 'resetpass-logtext'         => 'Nedenfor er en logg over brukere som har fått deres passord endret av en administrator.',
 'resetpass-logentry'        => 'endret passordet for $1',
