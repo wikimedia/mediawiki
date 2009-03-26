@@ -174,7 +174,7 @@ $magicWords = array(
 	'numberofarticles'      => array( '1', 'عدد_المقالات', 'عدد_مقالات', 'NUMBEROFARTICLES' ),
 	'numberoffiles'         => array( '1', 'عدد_الملفات', 'عدد_ملفات', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'عدد_المستخدمين', 'عدد_مستخدمين', 'NUMBEROFUSERS' ),
-	'numberofactiveusers'   => array( '1', 'مستخدمون_نشطون', 'NUMBEROFACTIVEUSERS' ),
+	'numberofactiveusers'   => array( '1', 'عدد_المستخدمين_النشطين', 'عدد_مستخدمين_نشطين', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'         => array( '1', 'عدد_التعديلات', 'عدد_تعديلات', 'NUMBEROFEDITS' ),
 	'numberofviews'         => array( '1', 'عدد_المشاهدات', 'عدد_مشاهدات', 'NUMBEROFVIEWS' ),
 	'pagename'              => array( '1', 'اسم_الصفحة', 'اسم_صفحة', 'PAGENAME' ),
@@ -280,6 +280,7 @@ $magicWords = array(
 	'numberingroup'         => array( '1', 'عدد_في_المجموعة', 'عدد_في_مجموعة', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__تحويلة_إستاتيكية__', '__تحويلة_ساكنة__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'مستوى_الحماية', 'مستوى_حماية', 'PROTECTIONLEVEL' ),
+	'formatdate'            => array( '0', 'تهيئةالتاريخ', 'تهيئة_تاريخ', 'formatdate', 'dateformat' ),
 );
 
 $specialPageAliases = array(

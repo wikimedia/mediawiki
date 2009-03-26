@@ -143,7 +143,7 @@ $magicWords = array(
 	'numberofadmins'        => array( '1', 'ADMINTAL', 'ADMINISTRATORTAL', 'NUMBEROFADMINS' ),
 	'filepath'              => array( '0', 'FILSTIG', 'FILEPATH:' ),
 	'hiddencat'             => array( '1', '__GØYMDKAT__', '__LØYNDKAT__', '__HIDDENCAT__' ),
-	'pagesincategory'       => array( '1', '__SIDERIKAT__', '__SIDERIKATEGORI__', 'PAGESINCATEGORY', 'PAGESINCAT' ),
+	'pagesincategory'       => array( '1', 'SIDERIKAT', 'SIDERIKATEGORI', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'protectionlevel'       => array( '1', 'VERNENIVÅ', 'PROTECTIONLEVEL' ),
 );
 
@@ -180,6 +180,7 @@ $specialPageAliases = array(
 	'Listfiles'                 => array( 'Filliste' ),
 	'Newimages'                 => array( 'Nye filer' ),
 	'Listusers'                 => array( 'Brukarliste' ),
+	'Listgrouprights'           => array( 'Grupperettar' ),
 	'Statistics'                => array( 'Statistikk' ),
 	'Randompage'                => array( 'Tilfeldig side' ),
 	'Lonelypages'               => array( 'Foreldrelause sider' ),

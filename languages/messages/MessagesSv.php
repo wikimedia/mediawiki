@@ -192,7 +192,7 @@ $magicWords = array(
 	'img_framed'            => array( '1', 'inramad', 'ram', 'framed', 'enframed', 'frame' ),
 	'img_frameless'         => array( '1', 'ramlös', 'frameless' ),
 	'img_page'              => array( '1', 'sida=$1', 'sida $1', 'page=$1', 'page $1' ),
-	'img_border'            => array( '1', 'ram', 'border' ),
+	'img_border'            => array( '1', 'kantlinje', 'border' ),
 	'img_sub'               => array( '1', 'ned', 'sub' ),
 	'img_super'             => array( '1', 'upp', 'super', 'sup' ),
 	'img_top'               => array( '1', 'topp', 'top' ),

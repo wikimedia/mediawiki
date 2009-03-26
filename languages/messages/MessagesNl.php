@@ -124,6 +124,8 @@ $magicWords = array(
 	'msg'                   => array( '0', 'BERICHT:', 'MSG:' ),
 	'subst'                 => array( '0', 'VERV:', 'SUBST:' ),
 	'msgnw'                 => array( '0', 'BERICHTNW', 'MSGNW:' ),
+	'img_thumbnail'         => array( '1', 'miniatuur', 'thumbnail', 'thumb' ),
+	'img_manualthumb'       => array( '1', 'miniatuur=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'             => array( '1', 'rechts', 'right' ),
 	'img_left'              => array( '1', 'links', 'left' ),
 	'img_none'              => array( '1', 'geen', 'none' ),
@@ -139,6 +141,7 @@ $magicWords = array(
 	'img_middle'            => array( '1', 'midden', 'middle' ),
 	'img_bottom'            => array( '1', 'beneden', 'bottom' ),
 	'img_text_bottom'       => array( '1', 'tekst-beneden', 'text-bottom' ),
+	'img_link'              => array( '1', 'verwijzing=$1', 'link=$1' ),
 	'sitename'              => array( '1', 'SITENAAM', 'SITENAME' ),
 	'ns'                    => array( '0', 'NR:', 'NS:' ),
 	'localurl'              => array( '0', 'LOKALEURL', 'LOCALURL:' ),
@@ -147,7 +150,7 @@ $magicWords = array(
 	'scriptpath'            => array( '0', 'SCRIPTPAD', 'SCRIPTPATH' ),
 	'grammar'               => array( '0', 'GRAMMATICA:', 'GRAMMAR:' ),
 	'gender'                => array( '0', 'GESLACHT:', 'GENDER:' ),
-	'notitleconvert'        => array( '0', '__GEENTITELCONVERSIE__', '__GEENTC__', '__NOTITLECONVERT__', '__NOTC__' ),
+	'notitleconvert'        => array( '0', '__GEENPAGINANAAMCONVERSIE__', '__GEENTITELCONVERSIE__', '__GEENTC__', '__NOTITLECONVERT__', '__NOTC__' ),
 	'nocontentconvert'      => array( '0', '__GEENINHOUDCONVERSIE__', '__GEENIC__', '__NOCONTENTCONVERT__', '__NOCC__' ),
 	'currentweek'           => array( '1', 'HUIDIGEWEEK', 'CURRENTWEEK' ),
 	'currentdow'            => array( '1', 'HUIDIGEDVDW', 'CURRENTDOW' ),
@@ -169,6 +172,7 @@ $magicWords = array(
 	'raw'                   => array( '0', 'RAUW:', 'RUW:', 'RAW:' ),
 	'displaytitle'          => array( '1', 'TOONTITEL', 'TITELTONEN', 'DISPLAYTITLE' ),
 	'newsectionlink'        => array( '1', '__NIEUWESECTIELINK__', '__NIEUWESECTIEKOPPELING__', '__NEWSECTIONLINK__' ),
+	'nonewsectionlink'      => array( '1', '__GEENNIEUWKOPJEVERWIJZING__', '__NONEWSECTIONLINK__' ),
 	'currentversion'        => array( '1', 'HUIDIGEVERSIE', 'CURRENTVERSION' ),
 	'urlencode'             => array( '0', 'URLCODEREN', 'CODEERURL', 'URLENCODE:' ),
 	'anchorencode'          => array( '0', 'ANKERCODEREN', 'CODEERANKER', 'ANCHORENCODE' ),
@@ -193,6 +197,7 @@ $magicWords = array(
 	'numberingroup'         => array( '1', 'AANTALINGROEP', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__STATISCHEDOORVERWIJZING__', '__STATISCHEREDIRECT__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'BEVEILIGINGSNIVEAU', 'PROTECTIONLEVEL' ),
+	'formatdate'            => array( '0', 'datumopmaak', 'formatdate', 'dateformat' ),
 );
 
 $specialPageAliases = array(
