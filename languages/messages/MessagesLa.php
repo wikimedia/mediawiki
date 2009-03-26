@@ -549,7 +549,6 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'resetpass_forbidden'       => 'Tesserae mutari non possunt',
 'resetpass-no-info'         => 'Necesse est conventum aperire ad hanc paginam adhibendum.',
 'resetpass-submit-loggedin' => 'Tesseram mutare',
-'resetpass-no-others'       => 'Tibi non licet tesseram usorum aliorum mutare.',
 
 # Edit page toolbar
 'bold_sample'     => 'Litterae pingues',

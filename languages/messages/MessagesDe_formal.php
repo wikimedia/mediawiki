@@ -112,7 +112,6 @@ Bitte warten Sie, bevor Sie es erneut probieren.',
 'resetpass-no-info'       => 'Sie müssen sich anmelden, um auf diese Seite direkt zuzugreifen.',
 'resetpass-wrong-oldpass' => 'Ungültiges temporäres oder aktuelles Passwort.
 Möglicherweise haben Sie Ihr Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.',
-'resetpass-no-others'     => 'Sie können das Passwort anderer Benutzer nicht zurücksetzen.',
 
 # Edit page toolbar
 'sig_tip' => 'Ihre Signatur mit Zeitstempel',

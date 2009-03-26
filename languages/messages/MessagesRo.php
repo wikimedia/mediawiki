@@ -648,7 +648,6 @@ Ignoraţi acest mesaj, dacă acea creare a fost o greşeală.',
 'resetpass-wrong-oldpass'   => 'Parolă curentă sau temporară incorectă. 
 Este posibil să fi reuşit deja schimbarea parolei sau să fi cerut o parolă temporară nouă.',
 'resetpass-temp-password'   => 'Parolă temporară:',
-'resetpass-no-others'       => 'Nu poţi reseta parola pentru alţi utilizatori.',
 'resetpass-log'             => 'Jurnalul resetărilor parolei',
 'resetpass-logtext'         => 'Mai jos este jurnalul utilizatorilor care au avut parola resetată de un administrator.',
 'resetpass-logentry'        => 'a fost schimbată parola pentru $1',

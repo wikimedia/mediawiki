@@ -802,7 +802,6 @@ U hebt uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.
 'resetpass-wrong-oldpass'   => 'Het huidige of tijdelijke wachtwoord is ongeldig.
 Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.',
 'resetpass-temp-password'   => 'Tijdelijk wachtwoord:',
-'resetpass-no-others'       => 'U kunt geen wachtwoorden voor andere gebruikers opnieuw instellen.',
 'resetpass-log'             => 'Wachtwoordherinstellingenlogboek',
 'resetpass-logtext'         => 'Deze pagina bevat een logboek met gebruikers waarvan het wachtwoord opnieuw is ingesteld door een beheerder.',
 'resetpass-logentry'        => 'heeft het wachtwoord voor $1 gewijzigd',

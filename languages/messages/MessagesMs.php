@@ -614,7 +614,6 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 'resetpass-wrong-oldpass'   => 'Kata laluan sementara atau semasa tidak sah.
 Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan sementara yang baru.',
 'resetpass-temp-password'   => 'Kata laluan sementara:',
-'resetpass-no-others'       => 'Anda tidak boleh mengeset semula kata laluan orang lain.',
 'resetpass-log'             => 'Log pengesetan semula kata laluan',
 'resetpass-logtext'         => 'Berikut ialah log pengguna yang kata laluannya telah diset semula oleh penyelia.',
 'resetpass-logentry'        => 'menukar kata laluan $1',

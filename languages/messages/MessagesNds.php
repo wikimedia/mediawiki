@@ -669,7 +669,6 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'resetpass-wrong-oldpass'   => 'Dat Passwoord (temporär oder aktuell) gellt nich.
 Villicht hest du dien Passwoord al ännert oder noch wedder en nee temporär Passwoord anfeddert.',
 'resetpass-temp-password'   => 'Temporär Passwoord:',
-'resetpass-no-others'       => 'Du kannst nich anner Lüüd ehr Passwoord trüchsetten.',
 'resetpass-log'             => 'Passwoord-Trüchsett-Logbook',
 'resetpass-logtext'         => 'Ünnen warrt en Logbook mit de Brukers wiest, bi de dat Passwoord von en Administrater trüchsett worrn is.',
 'resetpass-logentry'        => 'hett dat Passwoord för $1 ännert',
@@ -919,6 +918,9 @@ As Administrater op {{SITENAME}} kannst du ehr aver noch jümmer sehn.
 Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook] to finnen.',
 'rev-deleted-no-diff'            => 'Du kannst dissen Ünnerscheed nich ankieken. Een von de Versionen is nich mehr apen in’t Archiv to sehn.
 Mehr dorto steiht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Wegsmiet-Logbook].',
+'rev-deleted-unhide-diff'        => 'Een vun de Versionen vun dissen Ünnerscheed is nich mehr apen in’t Archiv to sehn.
+Details staht in’t [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Wegsmiet-Logbook].
+As Administrater kannst du [$1 mit dissen Lenk] den Ünnerscheed ankieken.',
 'rev-delundel'                   => 'wiesen/versteken',
 'revisiondelete'                 => 'Versionen wegsmieten/wedderhalen',
 'revdelete-nooldid-title'        => 'kene Versionen dor, de passt',
@@ -2157,6 +2159,7 @@ Kiek [[Special:IPBlockList|IP-Blocklist]] för en List vun den blockten Brukern.
 'range_block_disabled'            => 'De Mööglichkeit, ganze Adressrüüm to sparren, is nich aktiveert.',
 'ipb_expiry_invalid'              => 'De angeven Aflooptiet is nich güllig.',
 'ipb_expiry_temp'                 => 'Versteken Brukernaam-Sperren schöölt duurhaft wesen.',
+'ipb_hide_invalid'                => 'Dit Konto kunn nich versteken warrn, dat hett toveel Ännern maakt.',
 'ipb_already_blocked'             => '„$1“ is al blockt.',
 'ipb-needreblock'                 => '== Is al sperrt ==
 „$1“ is al sperrt. Wullt du de Sperrparameters ännern?',

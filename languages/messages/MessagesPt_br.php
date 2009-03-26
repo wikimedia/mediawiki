@@ -7,6 +7,7 @@
  * @author Bani
  * @author Brunoy Anastasiya Seryozhenko
  * @author Carla404
+ * @author Crazymadlover
  * @author Eduardo.mps
  * @author GKnedo
  * @author Heldergeovane
@@ -658,7 +659,6 @@ Por favor aguarde antes de tentar novamente.',
 'resetpass-wrong-oldpass'   => 'Senha temporária ou atual inválida. 
 Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senha temporária.',
 'resetpass-temp-password'   => 'Senha temporária:',
-'resetpass-no-others'       => 'Você não pode redefinir a senha para outros usuários.',
 'resetpass-log'             => 'Registro de redefinições de senha',
 'resetpass-logtext'         => 'Abaixo encontra-se uma lista de usuários que tiveram sua senha redefinida por um administrador.',
 'resetpass-logentry'        => 'alterou a senha de $1',
@@ -904,13 +904,13 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'            => '(comentário removido)',
 'rev-deleted-user'               => '(nome de usuário removido)',
 'rev-deleted-event'              => '(entrada removida)',
-'rev-deleted-text-permission'    => 'Esta revisão desta página foi removida dos arquivos públicos.
-Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de eliminação].',
-'rev-deleted-text-view'          => 'A revisão desta página foi removida dos arquivos públicos.
+'rev-deleted-text-permission'    => "Esta revisão desta página foi '''removida dos arquivos públicos'''.
+Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de eliminação].",
+'rev-deleted-text-view'          => "A revisão desta página foi '''removida dos arquivos públicos'''.
 Como um administrador desta wiki pode visualizá-la;
-mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].',
-'rev-deleted-no-diff'            => 'Você não pode ver esta modificação porque uma das revisões foi removida dos arquivos públicos.
-Pode haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].',
+mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+'rev-deleted-no-diff'            => "Você não pode ver esta modificação porque uma das revisões foi '''removida dos arquivos públicos'''.
+Pode haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-delundel'                   => 'mostrar/esconder',
 'revisiondelete'                 => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'        => 'Nenhuma revisão selecionada',

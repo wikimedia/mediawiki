@@ -635,7 +635,6 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'resetpass-wrong-oldpass'   => 'Palavra-chave temporária ou actual inválida. 
 Você pode já ter alterado com sucesso a sua palavra-chave, ou solicitado uma nova palavra-chave temporária.',
 'resetpass-temp-password'   => 'Palavra-chave temporária:',
-'resetpass-no-others'       => 'Você não pode repor a palavra-chave para outros utilizadores.',
 'resetpass-log'             => 'Registo de reposições de palavra-chave',
 'resetpass-logtext'         => 'Abaixo encontra-se um registo dos utilizadores que tiveram a sua palavra-chave reposta por um administrador.',
 'resetpass-logentry'        => 'alterou a palavra-chave de $1',
@@ -891,13 +890,15 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'            => '(comentário removido)',
 'rev-deleted-user'               => '(nome de utilizador removido)',
 'rev-deleted-event'              => '(entrada removida)',
-'rev-deleted-text-permission'    => 'Esta edição desta página foi removida dos arquivos públicos.
-Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
-'rev-deleted-text-view'          => 'Esta edição desta página foi removida dos arquivos públicos.
-Por ser um administrador desta wiki, poderá vê-la;
-mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
-'rev-deleted-no-diff'            => 'Você não pode ver estas diferenças porque uma das revisões foi removida dos arquivos públicos.
-Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].',
+'rev-deleted-text-permission'    => "Esta edição desta página foi '''removida dos arquivos públicos'''.
+Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+'rev-deleted-text-view'          => "Esta edição desta página foi '''removida dos arquivos públicos'''.
+Por ser um administrador desta wiki, poderá vê-la; poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+'rev-deleted-no-diff'            => "Você não pode ver estas diferenças porque uma das revisões foi '''removida dos arquivos públicos'''.
+Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+'rev-deleted-unhide-diff'        => "Uma das revisões destas diferenças foi '''removida dos arquivos públicos'''.
+Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Como administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-delundel'                   => 'mostrar/esconder',
 'revisiondelete'                 => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'        => 'Edição de destino inválida',
@@ -2107,7 +2108,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipboptions'                      => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'outro',
 'ipbotherreason'                  => 'Outro motivo/motivo adicional:',
-'ipbhidename'                     => 'Ocultar utilizador/IP do registo de bloqueios, lista de bloqueios e lista de utilizadores',
+'ipbhidename'                     => 'Ocultar nome de utilizador em edições e listas',
 'ipbwatchuser'                    => 'Vigiar as páginas de utilizador e de discussão deste utilizador',
 'ipballowusertalk'                => 'Permitir que este utilizador edite sua própria página de discussão mesmo estando bloqueado',
 'ipb-change-block'                => 'Re-bloquear o utilizador com estes parâmetros',
@@ -2166,6 +2167,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'range_block_disabled'            => 'A funcionalidade de bloquear gamas de IPs encontra-se desactivada.',
 'ipb_expiry_invalid'              => 'Tempo de expiração inválido.',
 'ipb_expiry_temp'                 => 'Bloqueios com nome de utilizador ocultado devem ser permanentes.',
+'ipb_hide_invalid'                => 'Não foi possível suprimir esta conta; ela poderá ter demasiadas edições.',
 'ipb_already_blocked'             => '"$1" já se encontra bloqueado',
 'ipb-needreblock'                 => '== Já se encontra bloqueado ==
 $1 já se encontra bloqueado. Deseja alterar as configurações?',

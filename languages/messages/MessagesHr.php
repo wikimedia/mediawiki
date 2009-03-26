@@ -764,7 +764,6 @@ Možete zanemariti ovu poruku, ako je suradnički račun stvoren nenamjerno.',
 'resetpass-wrong-oldpass'   => 'Pogrešna privremena ili trenutačna lozinka. 
 Možda ste već uspješno promijenili vašu lozinku ili ste zatražili novu privremenu lozinku.',
 'resetpass-temp-password'   => 'Privremena lozinka:',
-'resetpass-no-others'       => "Ne možete poništiti (''resetirati'') lozinku drugog suradnika.",
 'resetpass-log'             => 'Evidencija poništavanja lozinki',
 'resetpass-logtext'         => 'Slijedi evidencija suradnika kojima su administratori poništili lozinke.',
 'resetpass-logentry'        => 'promijenjena lozinka suradnika $1',

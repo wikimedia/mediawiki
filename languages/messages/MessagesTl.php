@@ -628,7 +628,6 @@ Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bag
 'resetpass-wrong-oldpass'   => 'Hindi tanggap na pansamantala o pangkasalukuyang hudyat.
 Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
 'resetpass-temp-password'   => 'Pansamantalang hudyat:',
-'resetpass-no-others'       => 'Hindi mo maaaring muling itakda ang hudyat para sa iba pang mga tagagamit.',
 'resetpass-log'             => 'Muling itinatakda ng hudyat ang talaan',
 'resetpass-logtext'         => 'Nasa ibaba ang isang talaan ng mga tagagamit na muling nagsipagtakda ng kanilang mga hudyat sa pamamagitan ng isang tagapangasiwa.',
 'resetpass-logentry'        => 'binago ang hudyat para kay $1',

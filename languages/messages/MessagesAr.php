@@ -890,7 +890,6 @@ $2',
 'resetpass-wrong-oldpass'   => 'كلمة سر حالية أو مؤقتة غير صحيحة.
 ربما تكون غيرت كلمة السر الخاصة بك بنجاح أو طلبت كلمة سر مؤقتة جديدة.',
 'resetpass-temp-password'   => 'كلمة سر مؤقتة:',
-'resetpass-no-others'       => 'أنت لا يمكنك إعادة ضبط كلمة السر للمستخدمين الآخرين.',
 'resetpass-log'             => 'سجل إعادة ضبط كلمات السر',
 'resetpass-logtext'         => 'بالأسفل سجل بالمستخدمين الذين تمت إعادة ضبط كلمات السر الخاصة بهم بواسطة إداري.',
 'resetpass-logentry'        => 'غير كلمة السر ل$1',
@@ -1150,13 +1149,15 @@ $2',
 'rev-deleted-comment'            => '(التعليق تمت إزالته)',
 'rev-deleted-user'               => '(اسم المستخدم تمت إزالته)',
 'rev-deleted-event'              => '(فعل السجل تمت إزالته)',
-'rev-deleted-text-permission'    => 'مراجعة الصفحة هذه أزيلت من الأرشيفات العامة.
-ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].',
-'rev-deleted-text-view'          => 'تمت إزالة هذه المراجعة من الأرشيف العام.
-بإمكانك رؤية هذه المراجعة لكونك إداريا على هذا الموقع.
-من الممكن أن يكون هناك تفاصيل حول هذا في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].',
-'rev-deleted-no-diff'            => 'أنت لا يمكنك رؤية هذا الفرق لأن واحدة من المراجعات تمت إزالتها من الأرشيفات العلنية.
-ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].',
+'rev-deleted-text-permission'    => "مراجعة الصفحة هذه '''أزيلت من الأرشيفات العامة'''.
+ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-deleted-text-view'          => "مراجعة الصفحة هذه تمت '''إزالتها من الأرشيف العلني'''.
+كإداري يمكنك رؤيتها؛ ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-deleted-no-diff'            => "لا يمكنك رؤية هذا الفرق لأن واحدة من المراجعات تمت '''إزالتها من الأرشيفات العلنية'''.
+ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-deleted-unhide-diff'        => "واحدة من مراجعتي هذا الفرق تمت '''إزالتها من الأرشيفات العامة'''.
+ربما تكون هناك هناك تفاصيل [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
+كإداري مازال بإمكانك [$1 رؤية هذا الفرق] لو أنك تود المتابعة.",
 'rev-delundel'                   => 'عرض/إخفاء',
 'revisiondelete'                 => 'حذف/استرجاع المراجعات',
 'revdelete-nooldid-title'        => 'مراجعة هدف غير صحيحة',
@@ -1621,7 +1622,7 @@ $2',
 'hide'                              => 'إخفاء',
 'show'                              => 'عرض',
 'minoreditletter'                   => 'ط',
-'newpageletter'                     => 'ج',
+'newpageletter'                     => 'ج‌',
 'boteditletter'                     => 'ب',
 'sectionlink'                       => '←',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|مستخدم مراقب|مستخدم مراقب}}]',
@@ -2406,7 +2407,7 @@ $1',
 'ipboptions'                      => '2 ساعة:2 hours,1 يوم:1 day,3 يوم:3 days,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائي:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'غير ذلك',
 'ipbotherreason'                  => 'سبب إضافي/آخر:',
-'ipbhidename'                     => 'أخف اسم المستخدم من سجل المنع، قائمة المنع النشطة وقائمة المستخدمين',
+'ipbhidename'                     => 'أخف اسم المستخدم من التعديلات والقوائم',
 'ipbwatchuser'                    => 'راقب صفحتي المستخدم والنقاش لهذا المستخدم',
 'ipballowusertalk'                => 'السماح لهذا المستخدم بتعديل صفحة نقاشه الخاصة أثناء المنع',
 'ipb-change-block'                => 'أعد منع المستخدم بهذه الإعدادات',
@@ -2466,6 +2467,7 @@ $1',
 'range_block_disabled'            => 'إمكانية مدير النظام لمنع نطاق معطلة.',
 'ipb_expiry_invalid'              => 'تاريخ الانتهاء غير صحيح.',
 'ipb_expiry_temp'                 => 'عمليات منع أسماء المستخدمين المخفية يجب أن تكون دائمة.',
+'ipb_hide_invalid'                => 'غير قادر على إخفاء هذا الحساب؛ ربما يكون قد قام بالكثير من التعديلات.',
 'ipb_already_blocked'             => '"$1" ممنوع بالفعل',
 'ipb-needreblock'                 => '== ممنوع بالفعل ==
 $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',

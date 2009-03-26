@@ -284,7 +284,7 @@ $messages = array(
 'tog-hideminor'               => 'Apró változtatások elrejtése a friss változtatások lapon',
 'tog-hidepatrolled'           => 'Az ellenőrzött szerkesztések elrejtése a friss változtatások lapon',
 'tog-newpageshidepatrolled'   => 'Ellenőrzött lapok elrejtése az új lapok listájáról',
-'tog-extendwatchlist'         => 'A figyelőlistán az összes változtatás látszódjon (ne csak az utolsó)',
+'tog-extendwatchlist'         => 'A figyelőlistán az összes változtatás látszódjon, ne csak az utolsó',
 'tog-usenewrc'                => 'Fejlettebb friss változások listája (JavaScript-alapú)',
 'tog-numberheadings'          => 'Fejezetcímek automatikus számozása',
 'tog-showtoolbar'             => 'Szerkesztőeszközsor megjelenítése (JavaScript-alapú)',
@@ -758,7 +758,6 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'resetpass-wrong-oldpass'   => 'Nem megfelelő ideiglenes vagy jelenlegi jelszó.
 Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben új ideiglenes jelszót kértél.',
 'resetpass-temp-password'   => 'Ideiglenes jelszó:',
-'resetpass-no-others'       => 'Nem állíthatod vissza más szerkesztők jelszavát.',
 'resetpass-log'             => 'Jelszóvisszaállítási napló',
 
 # Edit page toolbar
@@ -1007,12 +1006,12 @@ Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].
 'rev-deleted-comment'            => '(megjegyzés eltávolítva)',
 'rev-deleted-user'               => '(szerkesztőnév eltávolítva)',
 'rev-deleted-event'              => '(bejegyzés eltávolítva)',
-'rev-deleted-text-permission'    => 'Ezt a változatot eltávolítottuk a nyilvános archívumokból.
-További információkat a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.',
-'rev-deleted-text-view'          => 'Ezt a változatot eltávolították a nyilvános archívumokból.
-Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.',
-'rev-deleted-no-diff'            => 'A változatok közötti eltérés nem jeleníthető meg, mert a változatok egyike el lett távolítva a nyilvános archívumból.
-További részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.',
+'rev-deleted-text-permission'    => "Ez a változat '''el lett távolítva a nyilvános archívumokból'''.
+További információkat a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
+'rev-deleted-text-view'          => "Ez a változat '''el lett távolítva a nyilvános archívumokból'''.
+Mivel adminisztrátor vagy, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
+'rev-deleted-no-diff'            => "A változatok közötti eltérés nem jeleníthető meg, mert a változatok egyike '''el lett távolítva a nyilvános archívumokból'''.
+További részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-delundel'                   => 'megjelenítés/elrejtés',
 'revisiondelete'                 => 'Változatok törlése vagy helyreállítása',
 'revdelete-nooldid-title'        => 'Érvénytelen célváltozat',
@@ -1026,17 +1025,18 @@ vagy a legutolsó változatot próbáltad meg elrejteni.',
 'revdelete-nologid-text'         => 'Nem adtad meg azt a naplóbejegyzést, amin el szeretnéd végezni a műveletet, vagy olyat adtál meg, ami nem létezik.',
 'revdelete-selected'             => "'''A(z) [[:$1]] lap {{PLURAL:$2|kiválasztott változata|kiválasztott változatai}}:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:'''",
-'revdelete-text'                 => "'''A törölt változatok és események még láthatóak lesznek a laptörténetben és a naplókban,
+'revdelete-text'                 => "'''A törölt változatok és események továbbra is megjelennek a laptörténetben és a naplókban,
 azonban a tartalmuk egyes részei el lesznek rejtve a nyilvánosság elől.'''
 
-A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni és helyre tudják állítani
-a tartalmat ugyanezen a felületen keresztül, ha nem adsz meg további korlátozásokat.",
+A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni az elrejtett tartalmat, és helyre tudják állítani ugyanezen a felületen keresztül, amennyiben nincs további korlátozás beállítva.
+
+Kérlek, erősítsd meg, hogy valóban ez a szándékod, tisztában vagy a következményekkel, és hogy az [[{{MediaWiki:Policy-url}}|irányelveknek]] megfelelően cselekszel.",
 'revdelete-legend'               => 'Korlátozások megadása:',
 'revdelete-hide-text'            => 'Változat szövegének elrejtése',
 'revdelete-hide-name'            => 'Művelet és cél elrejtése',
 'revdelete-hide-comment'         => 'Megjegyzés módosításának elrejtése',
 'revdelete-hide-user'            => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
-'revdelete-hide-restricted'      => 'Alkalmazás adminisztrátorokra, valamint a felület lezárása',
+'revdelete-hide-restricted'      => 'Adatok elrejtése az adminisztrátorok és mindenki más elől',
 'revdelete-suppress'             => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
 'revdelete-hide-image'           => 'A fájl tartalomának elrejtése',
 'revdelete-unsuppress'           => 'Korlátozások eltávolítása a visszaállított változatokról',
@@ -2220,7 +2220,7 @@ $1',
 'ipboptions'                      => '2 óra:2 hours,1 nap:1 day,3 nap:3 days,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Más időtartam',
 'ipbotherreason'                  => 'Más/további ok:',
-'ipbhidename'                     => 'A felhasználónév/IP elrejtése a blokkolási naplóból, az aktív blokkolási listából és a felhasználólistából',
+'ipbhidename'                     => 'A felhasználónév ne jelenjen meg a szerkesztéseknél és a listákban',
 'ipbwatchuser'                    => 'A felhasználó lapjának és vitalapjának figyelése',
 'ipballowusertalk'                => 'A szerkesztő módosíthatja saját vitalapját a blokkolás ideje alatt',
 'ipb-change-block'                => 'Blokk beállításainak megváltoztatása',
@@ -2276,6 +2276,7 @@ $1',
 'range_block_disabled'            => 'A rendszerfelelős tartományblokkolás létrehozási képessége letiltott.',
 'ipb_expiry_invalid'              => 'Hibás lejárati dátum.',
 'ipb_expiry_temp'                 => 'A láthatatlan felhasználóinév-blokkok lehetnek állandóak.',
+'ipb_hide_invalid'                => 'A felhasználói fiókot nem lehet elrejteni; lehet, hogy túl sok szerkesztése van.',
 'ipb_already_blocked'             => '"$1" már blokkolva',
 'ipb-needreblock'                 => '== Már blokkolva ==
 $1 már blokkolva van. Meg szeretnéd változtatni a beállításokat?',
@@ -3142,10 +3143,11 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 
 # External image whitelist
 'external_image_whitelist' => ' #Ezt a sort hagyd pontosan így, ahogy van<pre>
-#Ide reguláris kifejezéseket írharsz (Azon részüket, amik a // közé mennek)
+#Ide reguláris kifejezéseket írhatsz (azon részüket, amik a // közé mennek)
 #Ezek egyeztetve lesznek a külső képek URL-jeivel
-#Azoknál, amelyeknél egyezés van, képként fognak megjelenni, egyébként csak egy link fog rá mutatni
+#Egyezés esetén képként fognak megjelenni, egyébként csak link fog rájuk mutatni
 #A #-tel kezdődő sorok megjegyzésnek számítanak
+#A kis- és nagybetűk nincsenek megkülönböztetve
 
 #A reguláris kifejezéseket ezen sor alá írd. Ezt a sort hagyd így, ahogy van.</pre>',
 

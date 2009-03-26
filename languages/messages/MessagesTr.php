@@ -620,7 +620,6 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass-wrong-oldpass'   => 'Geçersiz geçici veya güncel şifre.
 Şifrenizi zaten başarıyla değiştirdiniz ya da yeni bir geçici şifre istediniz.',
 'resetpass-temp-password'   => 'Geçici parola:',
-'resetpass-no-others'       => 'Diğer kullanıcılar için parolayı sıfırlayamazsınız.',
 'resetpass-log'             => 'Parola sıfırlamaları günlüğü',
 'resetpass-logtext'         => 'Aşağıdaki, bir yönetici tafından şifreleri değiştirilen kullanıcıların günlüğüdür.',
 'resetpass-logentry'        => '$1 için parolayı değiştirdi',

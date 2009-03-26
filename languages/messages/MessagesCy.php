@@ -583,7 +583,6 @@ Efallai eich bod eisoes wedi llwyddo newid eich cyfrinair neu eich bod wedi gwne
 'resetpass-wrong-oldpass'   => "Mae'r cyfrinair dros dro neu gyfredol yn annilys.
 Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gofyn am gyfrinair dros dro newydd.",
 'resetpass-temp-password'   => 'Cyfrinair dros dro:',
-'resetpass-no-others'       => 'Ni allwch ailosod cyfrinair dros ddefnyddwyr eraill.',
 'resetpass-log'             => 'Lòg ailosod cyfrineiriau',
 'resetpass-logtext'         => 'Dyma lòg y defnyddwyr hynny y mae eu cyfrinair wedi ei ailosod ar eu rhan gan weinyddwr.',
 'resetpass-logentry'        => 'wedi newid y cyfrinair ar gyfer $1',

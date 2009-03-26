@@ -595,7 +595,6 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'resetpass-wrong-oldpass'   => 'Njepłaćiwe nachwilne abo aktualne hesło.
 Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
 'resetpass-temp-password'   => 'Nachwilne hesło:',
-'resetpass-no-others'       => 'Njemóžeš hesło za druhich wužiwarjow wróćo stajić.',
 'resetpass-log'             => 'Protokol wo změnjenju hesłow',
 'resetpass-logtext'         => 'Deleka je protokol wužiwarjow, kotrychž hesło administrator je anulował.',
 'resetpass-logentry'        => 'změni hesło za $1',

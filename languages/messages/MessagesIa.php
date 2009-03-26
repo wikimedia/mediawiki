@@ -625,7 +625,6 @@ Es possibile que tu ha ja cambiate tu contrasigno o ha requestate un nove contra
 'resetpass-wrong-oldpass'   => 'Le contrasigno temporari o actual es invalide. 
 Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasigno temporari.',
 'resetpass-temp-password'   => 'Contrasigno temporari:',
-'resetpass-no-others'       => 'Tu non pote redefinir le contrasigno de altere usatores.',
 'resetpass-log'             => 'Registro de redefinitiones de contrasigno',
 'resetpass-logtext'         => 'Infra es un registro de usatores cuje contrasigno ha essite redefinite per un administrator.',
 'resetpass-logentry'        => 'cambiava le contrasigno de $1',
@@ -890,13 +889,16 @@ Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 'rev-deleted-comment'            => '(commento eliminate)',
 'rev-deleted-user'               => '(nomine de usator eliminate)',
 'rev-deleted-event'              => '(entrata eliminate)',
-'rev-deleted-text-permission'    => 'Iste version del pagina ha essite eliminate del archivos public.
-Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
-'rev-deleted-text-view'          => 'Iste version del pagina ha essite eliminate del archivos public.
-Como administrator in {{SITENAME}} tu pote vider lo;
-es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
-'rev-deleted-no-diff'            => 'Tu non pote vider iste diff proque un del versiones ha essite removite del archivos public.
-Il pote haber detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
+'rev-deleted-text-permission'    => "Iste version del pagina ha essite '''eliminate del archivos public'''.
+Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+'rev-deleted-text-view'          => "Iste version del pagina ha essite '''eliminate del archivos public'''.
+Tu, qua administrator, pote vider lo;
+es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+'rev-deleted-no-diff'            => "Tu non pote vider iste diff proque un del versiones ha essite '''eliminate del archivos public'''.
+Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+'rev-deleted-unhide-diff'        => "Un del versiones de iste diff ha essite '''eliminate del archivos public'''.
+Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
+Tu, qua administrator, pote ancora [$1 vider iste diff] si tu vole proceder.",
 'rev-delundel'                   => 'revelar/celar',
 'revisiondelete'                 => 'Deler/restaurar versiones',
 'revdelete-nooldid-title'        => 'Le version de destination es invalide',
@@ -2153,7 +2155,7 @@ specific que ha essite vandalisate).',
 'ipboptions'                      => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'altere',
 'ipbotherreason'                  => 'Motivo altere/additional:',
-'ipbhidename'                     => 'Celar le nomine del usator del registro de blodadas, del lista de blocadas active e del lista de usatores',
+'ipbhidename'                     => 'Celar le nomine del usator del modificationes e del listas',
 'ipbwatchuser'                    => 'Observar le paginas de usator e de discussion de iste usator',
 'ipballowusertalk'                => 'Permitter que iste usator modifica su proprie pagina de discussion in despecto de esser blocate',
 'ipb-change-block'                => 'Reblocar le usator con iste configurationes',
@@ -2214,6 +2216,7 @@ Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos
 'range_block_disabled'            => 'Le capacitate del administratores a blocar intervallos de adresses IP es disactivate.',
 'ipb_expiry_invalid'              => 'Tempore de expiration invalide.',
 'ipb_expiry_temp'                 => 'Le blocadas de nomines de usator celate debe esser permanente.',
+'ipb_hide_invalid'                => 'Impossibile supprimer iste conto; illo pote haber troppo de modificationes.',
 'ipb_already_blocked'             => '"$1" es ja blocate',
 'ipb-needreblock'                 => '== Ja blocate ==
 $1 es ja blocate. Esque tu vole cambiar le configurationes?',

@@ -599,7 +599,6 @@ Berriro saiatu aurretik itxoin ezazu, mesedez.',
 'resetpass-wrong-oldpass'   => 'Behin-behineko edo oraintxuko pasahitza ez da baliagarria. 
 Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat eskatu duzu.',
 'resetpass-temp-password'   => 'Behin-behineko pasahitza:',
-'resetpass-no-others'       => 'Ezin duzu beste erabiltzaile batzuen pasahitza berritu.',
 'resetpass-log'             => 'Pasahitza berrezartze erregistroa',
 'resetpass-logtext'         => 'Hemen azpian administratzaile batek pasahitza berrezarri dien erabiltzaileen zerrenda bat dago.',
 'resetpass-logentry'        => '$1(e)n pasahitza aldatu da',

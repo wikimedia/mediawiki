@@ -644,7 +644,6 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 'resetpass-wrong-oldpass'   => 'Nevalida provizora aŭ nuna pasvorto.
 Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'resetpass-temp-password'   => 'Provizora pasvorto:',
-'resetpass-no-others'       => 'Vi ne povas reŝanĝi la pasvorton por aliaj uzantoj.',
 'resetpass-log'             => 'Loglibro de pasvortaj reŝanĝoj',
 'resetpass-logtext'         => 'Jen protokolo de uzantoj kies pasvortoj estis reŝanĝitaj de administranto.',
 'resetpass-logentry'        => 'ŝanĝis la pasvorton por $1',

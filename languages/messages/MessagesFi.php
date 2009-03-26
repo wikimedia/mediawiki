@@ -736,7 +736,6 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'resetpass-wrong-oldpass'   => 'Virheellinen väliaikainen tai nykyinen salasana.
 Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikaista salasanaa.',
 'resetpass-temp-password'   => 'Väliaikainen salasana:',
-'resetpass-no-others'       => 'Et voi alustaa salasanaa muille käyttäjille.',
 'resetpass-log'             => 'Salasanojen alustusloki',
 'resetpass-logtext'         => 'Alla on loki käyttäjistä, joiden salasanat on alustettu ylläpitäjän toimesta.',
 'resetpass-logentry'        => 'vaihtoi salasanan käyttäjälle $1',
@@ -960,7 +959,8 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'rev-deleted-user'               => '(käyttäjänimi poistettu)',
 'rev-deleted-event'              => '(lokitapahtuma poistettu)',
 'rev-deleted-text-permission'    => "Tämä versio on '''poistettu julkisesta arkistosta'''. [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.",
-'rev-deleted-text-view'          => 'Tämä versio on poistettu julkisesta arkistosta.',
+'rev-deleted-text-view'          => "Tämä versio on '''poistettu julkisesta arkistosta'''.
+Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-deleted-no-diff'            => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu julkisista arkistoista'''.
 Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-delundel'                   => 'näytä tai piilota',

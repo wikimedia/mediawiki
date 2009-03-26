@@ -596,7 +596,6 @@ Dir hutt ärt Passwuert scho geännert oder een  neit temporairt Passwuert ugefr
 'resetpass-wrong-oldpass'   => 'Net valabelt temporärt oder aktuellt Passwuert.
 Vläicht hutt Dir Ärt Passwuert scho geännert oder en neit temporärt Passwuert ugefrot.',
 'resetpass-temp-password'   => 'Temporärt Passwuert:',
-'resetpass-no-others'       => "dir kënnt d'Passwuert net fir aner Benotzer zrécksetzen.",
 'resetpass-log'             => 'Logbuch vun den zréckgesate Passwierder',
 'resetpass-logtext'         => "Hei ass d'Logbuch vun de Benotzer denen hiirt Passwuert vun engem Admin zréckgesat gouf.",
 'resetpass-logentry'        => "huet d'Passwuert vum Benotzer:$1 geännert",
@@ -2591,7 +2590,9 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-orientation-2' => 'Horizontal gedréit', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Ëm 180° gedréit', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Vertikal gedréit', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => "90° géint d'Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint", # 0th row: left; 0th column: top
 'exif-orientation-6' => "Ëm 90° an d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: right; 0th column: top
+'exif-orientation-7' => '90° an der Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => "Ëm 90° géint d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => 'Gëtt et net',

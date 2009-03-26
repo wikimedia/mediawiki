@@ -646,7 +646,6 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 'resetpass-wrong-oldpass'   => 'Contrasenya actual o temporal no vàlida.
 Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya temporal.',
 'resetpass-temp-password'   => 'Contrasenya temporal:',
-'resetpass-no-others'       => "No podeu reiniciar la contrasenya d'altres usuaris.",
 'resetpass-log'             => 'Registre de restabliments de contrasenya',
 'resetpass-logtext'         => "A sota es mostra un registre d'usuaris als què un administrador ha restablert llur contrasenya.",
 'resetpass-logentry'        => 'canviada la contrasenya de $1',

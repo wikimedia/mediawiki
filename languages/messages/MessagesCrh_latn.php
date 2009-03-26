@@ -554,7 +554,6 @@ Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 'resetpass-wrong-oldpass'   => 'Ruhsetsiz muvaqqat ya da al-azırki parоl.
 Parоliñizni endi muvafaqiyetnen deñiştirdiñiz ya da yañı bir muvaqqat parоl istediñiz.',
 'resetpass-temp-password'   => 'Muvaqqat parol:',
-'resetpass-no-others'       => 'Diger qullanıcılarnıñ parollerini sıfırlap olamaysıñız.',
 
 # Edit page toolbar
 'bold_sample'     => 'Qalın yazılış',

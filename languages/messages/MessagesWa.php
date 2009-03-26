@@ -166,12 +166,14 @@ $messages = array(
 'dec'           => 'dec',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Categoreye|Categoreyes}}',
-'category_header'        => 'Årtikes el categoreye «$1»',
-'subcategories'          => 'Dizo-categoreyes',
-'category-media-header'  => 'Media el categoreye «$1»',
-'category-empty'         => "''Cisse categoreye ci n' a pol moumint nol årtike ni media.''",
-'category-article-count' => 'Dins cisse categoreye cial, gn a {{PLURAL:$2|li pådje ki shût|$2 pådje, inte di zeles {{PLURAL:$1|li cene|les $1}} cial padzo}}.',
+'pagecategories'                 => '{{PLURAL:$1|Categoreye|Categoreyes}}',
+'category_header'                => 'Årtikes el categoreye «$1»',
+'subcategories'                  => 'Dizo-categoreyes',
+'category-media-header'          => 'Media el categoreye «$1»',
+'category-empty'                 => "''Cisse categoreye ci n' a pol moumint nol årtike ni media.''",
+'category-article-count'         => 'Dins cisse categoreye cial, gn a {{PLURAL:$2|li pådje ki shût|$2 pådje, inte di zeles {{PLURAL:$1|li cene|les $1}} cial padzo}}.',
+'category-article-count-limited' => "{{PLURAL:$1|Gn a l' pådje ki shût|Les $1 pådjes ki shuvnut si trovèt ddja}} dins cisse categoreye ci.",
+'category-file-count'            => "{{PLURAL:$2|Dins cisse categoreye ci, gn a k' ene pådje.|{{PLURAL:$1|Gn a cisse pådje ci|Gn a les $1 pådjes ki shuvèt}} dins cisse categoreye ci, po $2 pådjes å totå.}}",
 
 'mainpagetext' => "<big>'''Li programe Wiki a stî astalé a l' idêye.'''</big>",
 
@@ -715,6 +717,9 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'action-createpage'    => 'ahiver des pådjes',
 'action-createtalk'    => 'ahiver des pådjes di copinaedje',
 'action-createaccount' => "ahiver ci conte d' uzeu ci",
+'action-delete'        => 'Disfacer cisse pådje ci',
+'action-browsearchive' => 'Loukî après les disfacêyès pådjes',
+'action-block'         => 'Espaitchî cist(e) uzeu(se) ci di scrire',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|candjmint|candjmints}}',

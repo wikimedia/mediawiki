@@ -682,7 +682,6 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'resetpass-wrong-oldpass'   => 'Contrasinal temporal ou actual inválido. 
 Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal temporal.',
 'resetpass-temp-password'   => 'Contrasinal temporal:',
-'resetpass-no-others'       => 'Non pode restablecer o contrasinal doutros usuarios.',
 'resetpass-log'             => 'Rexistro de restablecementos de contrasinais',
 'resetpass-logtext'         => 'A continuación hai un rexistro cos usuarios aos que un administrador lles restableceu o seu contrasinal.',
 'resetpass-logentry'        => 'cambiou o contrasinal de $1',
