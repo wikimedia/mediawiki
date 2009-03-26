@@ -143,8 +143,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$ids = $this->logids;
 				break;
 		}
+		// Revision delete logs
+		$conds = array( 'log_action' => 'revision' );
 		// Just get the whole log if there are a lot if items
-		if( count($ids) > 20 ) return null;
+		if( count($ids) > 20 ) return $conds;
 		// Digit chars only
 		foreach( $ids as $id ) {
 			if( preg_match( '/^\d+$/', $id, $m ) ) {
@@ -153,9 +155,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 		// Format is <id1,id2,i3...>
 		if( count($safeIds) ) {
-			return array("log_params RLIKE '(^|\n|,)(".implode('|',$safeIds).")(,|$)'");
+			$conds[] = "log_params RLIKE '(^|\n|,)(".implode('|',$safeIds).")(,|$)'";
 		}
-		return null;
+		return $conds;
 	}
 
 	private function secureOperation() {
