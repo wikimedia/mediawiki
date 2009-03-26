@@ -14,9 +14,6 @@
  * @author לערי ריינהארט
  */
 
-/**
- * Transform table for decimal point '.' and thousands separator ','
- */
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 $namespaceNames = array(
@@ -66,6 +63,7 @@ $magicWords = array(
 	'forcetoc'              => array( '0', '__PAKSADAFTARISI__', '__FORCETOC__' ),
 	'toc'                   => array( '0', '__DAFTARISI__', '__TOC__' ),
 	'noeditsection'         => array( '0', '__TANPASUNTINGANBAGIAN__', '__NOEDITSECTION__' ),
+	'noheader'              => array( '0', '__TANPAKEPALA__', '__NOHEADER__' ),
 	'currentmonth'          => array( '1', 'BULANKINI', 'CURRENTMONTH' ),
 	'currentmonthname'      => array( '1', 'NAMABULANKINI', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'   => array( '1', 'NAMASINGKATBULANKINI', 'CURRENTMONTHNAMEGEN' ),
@@ -90,7 +88,9 @@ $magicWords = array(
 	'numberofarticles'      => array( '1', 'JUMLAHARTIKEL', 'NUMBEROFARTICLES' ),
 	'numberoffiles'         => array( '1', 'JUMLAHBERKAS', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'JUMLAHPENGGUNA', 'NUMBEROFUSERS' ),
+	'numberofactiveusers'   => array( '1', 'JUMLAHPENGGUNAAKTIF', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'         => array( '1', 'JUMLAHSUNTINGAN', 'NUMBEROFEDITS' ),
+	'numberofviews'         => array( '1', 'JUMLAHTAMPILAN', 'NUMBEROFVIEWS' ),
 	'pagename'              => array( '1', 'NAMAHALAMAN', 'PAGENAME' ),
 	'pagenamee'             => array( '1', 'NAMAHALAMANE', 'PAGENAMEE' ),
 	'namespace'             => array( '1', 'RUANGNAMA', 'NAMESPACE' ),
@@ -157,6 +157,7 @@ $magicWords = array(
 	'displaytitle'          => array( '1', 'JUDULTAMPILAN', 'DISPLAYTITLE' ),
 	'rawsuffix'             => array( '1', 'M', 'R' ),
 	'newsectionlink'        => array( '1', '__PRANALABAGIANBARU__', '__NEWSECTIONLINK__' ),
+	'nonewsectionlink'      => array( '1', '_TANPAPRANALABAGIANBARU__', '__NONEWSECTIONLINK__' ),
 	'currentversion'        => array( '1', 'VERSIKINI', 'CURRENTVERSION' ),
 	'urlencode'             => array( '0', 'KODEURL:', 'URLENCODE:' ),
 	'anchorencode'          => array( '0', 'KODEJANGKAR', 'ANCHORENCODE' ),
@@ -200,6 +201,8 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'Berkastakdigunakan' ),
 	'Wantedpages'               => array( 'Halamandiinginkan' ),
 	'Wantedcategories'          => array( 'Kategoridiinginkan' ),
+	'Wantedfiles'               => array( 'Berkasdiinginkan' ),
+	'Wantedtemplates'           => array( 'Templatdiinginkan' ),
 	'Mostlinked'                => array( 'Palingdituju' ),
 	'Mostlinkedcategories'      => array( 'Kategoripalingdigunakan' ),
 	'Mostlinkedtemplates'       => array( 'Templatpalingdigunakan' ),
@@ -258,6 +261,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Halaman kosong' ),
 	'LinkSearch'                => array( 'Pencarian pranala' ),
 	'DeletedContributions'      => array( 'Kontribusi yang dihapus' ),
+	'Tags'                      => array( 'Tag' ),
 );
 
 $messages = array(

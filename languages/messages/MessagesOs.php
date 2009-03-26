@@ -32,6 +32,12 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Категорийы_тыххæй_дискусси',
 );
 
+$magicWords = array(
+	'redirect'              => array( '0', '#РАРВЫСТ', '#перенаправление', '#перенаправление', '#перенапр', '#REDIRECT' ),
+	'img_right'             => array( '1', 'рахиз', 'справа', 'right' ),
+	'img_left'              => array( '1', 'галиу', 'слева', 'left' ),
+);
+
 $linkTrail = '/^((?:[a-z]|а|æ|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я|“|»)+)(.*)$/sDu';
 $fallback8bitEncoding =  'windows-1251';
 
