@@ -2283,6 +2283,9 @@ $wgExportAllowHistory = true;
  */
 $wgExportMaxHistory = 0;
 
+/**
+ * Return distinct author list (when not returning full history)
+ */
 $wgExportAllowListContributors = false ;
 
 /**
