@@ -126,6 +126,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	
 	private function getLogQueryCond() {
 		$ids = $safeIds = array();
+		$action = 'revision';
 		switch( $this->deleteKey ) {
 			case 'oldid':
 				$ids = $this->oldids;
@@ -141,10 +142,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				break;
 			case 'logid':
 				$ids = $this->logids;
+				$action = 'event';
 				break;
 		}
 		// Revision delete logs
-		$conds = array( 'log_action' => 'revision' );
+		$conds = array( 'log_action' => $action );
 		// Just get the whole log if there are a lot if items
 		if( count($ids) > 20 ) return $conds;
 		// Digit chars only
