@@ -26,21 +26,29 @@ $wgExternalBlobCache = array();
  */
 class ExternalStoreDB {
 
+	function __construct( $params = array() ) {
+		$this->mParams = $params;
+	}
+
 	/** @todo Document.*/
 	function &getLoadBalancer( $cluster ) {
-		return wfGetLBFactory()->getExternalLB( $cluster );
+		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
+		
+		return wfGetLBFactory()->getExternalLB( $cluster, $wiki );
 	}
 
 	/** @todo Document.*/
 	function &getSlave( $cluster ) {
+		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
-		return $lb->getConnection( DB_SLAVE );
+		return $lb->getConnection( DB_SLAVE, array(), $wiki );
 	}
 
 	/** @todo Document.*/
 	function &getMaster( $cluster ) {
+		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
-		return $lb->getConnection( DB_MASTER );
+		return $lb->getConnection( DB_MASTER, array(), $wiki );
 	}
 
 	/** @todo Document.*/
