@@ -929,17 +929,30 @@ class Article {
 				if( is_null( $this->mRevision ) ) {
 					// FIXME: This would be a nice place to load the 'no such page' text.
 				} else {
-					$this->setOldSubtitle( isset($this->mOldId) ? $this->mOldId : $oldid );
+					$this->setOldSubtitle( $oldid );
 					# Allow admins to see deleted content if explicitly requested
 					if( $this->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
-						if( !$unhide || !$this->mRevision->userCan(Revision::DELETED_TEXT) ) {
-							$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-permission' );
+						// If the user is not allowed to see it...
+						if( !$this->mRevision->userCan(Revision::DELETED_TEXT) ) {
+							$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
+								'rev-deleted-text-permission' );
 							$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 							wfProfileOut( __METHOD__ );
 							return;
+						// If the user needs to confirm that they want to see it...
+						} else if( !$unhide ) {
+							# Give explanation and add a link to view the revision...
+							$link = $this->mTitle->getFullUrl( "oldid={$oldid}".
+								'&unhide=1&token='.urlencode( $wgUser->editToken($oldid) ) );
+							$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
+								array('rev-deleted-text-unhide',$link) );
+							$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+							wfProfileOut( __METHOD__ );
+							return;
+						// We are allowed to see...
 						} else {
-							$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", 'rev-deleted-text-view' );
-							// and we are allowed to see...
+							$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
+								'rev-deleted-text-view' );
 						}
 					}
 					// Is this the current revision and otherwise cacheable? Try the parser cache...
