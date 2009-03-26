@@ -65,9 +65,9 @@ class SpecialExport extends SpecialPage {
 		}
 		else if( $wgRequest->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
 			$page = $wgRequest->getText( 'pages' );
-			$nsindex = $wgRequest->getText( 'nsindex' );
+			$nsindex = $wgRequest->getText( 'nsindex', '' );
 			
-			if ( $nsindex !== '' && $nsindex !== NULL && $nsindex !== false ) {
+			if ( $nsindex !== '' && $nsindex !== null && $nsindex !== false ) {
 				/**
 				 * Same implementation as above, so same @fixme
 				 */
@@ -151,7 +151,7 @@ class SpecialExport extends SpecialPage {
 		$form .= Xml::submitButton( wfMsg( 'export-addcat' ), array( 'name' => 'addcat' ) ) . '<br />';
 		
 		if ( $wgExportFromNamespaces ) {
-			$form .= Xml::namespaceSelector( '', null, 'nsindex', wfMsg( 'export-addnstext' ) ) . '&nbsp;';
+			$form .= Xml::namespaceSelector( $nsindex, null, 'nsindex', wfMsg( 'export-addnstext' ) ) . '&nbsp;';
 			$form .= Xml::submitButton( wfMsg( 'export-addns' ), array( 'name' => 'addns' ) ) . '<br />';
 		}
 		
