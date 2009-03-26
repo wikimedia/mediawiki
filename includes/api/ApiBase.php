@@ -772,6 +772,7 @@ abstract class ApiBase {
 		'invalidtitle' => array('code' => 'invalidtitle', 'info' => "Bad title ``\$1''"),
 		'nosuchpageid' => array('code' => 'nosuchpageid', 'info' => "There is no page with ID \$1"),
 		'nosuchrevid' => array('code' => 'nosuchrevid', 'info' => "There is no revision with ID \$1"),
+		'nosuchuser' => array('code' => 'nosuchuser', 'info' => "User ``\$1'' doesn't exist"),
 		'invaliduser' => array('code' => 'invaliduser', 'info' => "Invalid username ``\$1''"),
 		'invalidexpiry' => array('code' => 'invalidexpiry', 'info' => "Invalid expiry time ``\$1''"),
 		'pastexpiry' => array('code' => 'pastexpiry', 'info' => "Expiry time ``\$1'' is in the past"),
