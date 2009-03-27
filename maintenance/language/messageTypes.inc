@@ -69,6 +69,7 @@ $wgIgnoredMessages = array(
 	'accesskey-watch',
 	'accesskey-upload',
 	'addsection',
+	'talkpageheader',
 	'anonnotice',
 	'autoblock_whitelist',
 	'searchmenu-help',

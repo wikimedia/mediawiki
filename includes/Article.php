@@ -865,6 +865,13 @@ class Article {
 			}
 		}
 
+		# Allow a specific header on talk pages, like [[MediaWiki:Talkpagetext]]
+		if( $this->mTitle->isTalkPage() ) {
+			if ( wfMsgForContent( 'talkpageheader' ) != '-' ) {
+				$wgOut->addWikiMsgArray( 'talkpageheader', array(), array( 'content' ) );
+			}
+		}
+
 		$outputDone = false;
 		wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$pcache ) );
 		if( $pcache && $wgOut->tryParserCache( $this ) ) {
