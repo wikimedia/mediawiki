@@ -488,6 +488,7 @@ $messages = array(
 
 'sp-contributions-newbies-sub' => 'ახალეფშოთ',
 'sp-contributions-blocklog'    => 'ბლოკირებაშ ისტორია',
+'sp-contributions-talk'        => 'სხუნუა',
 
 # What links here
 'whatlinkshere'       => 'სო რე თენა ხასილა წურაფილ',

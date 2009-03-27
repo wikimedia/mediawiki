@@ -307,6 +307,7 @@ $messages = array(
 # Contributions
 'mycontris' => 'ᑕᓕᐊᖅ',
 
+'sp-contributions-talk'   => 'ᐅᖃᓕᒪᔪᖅ',
 'sp-contributions-submit' => 'ᐃᕚᖅᐳᖅ',
 
 # What links here

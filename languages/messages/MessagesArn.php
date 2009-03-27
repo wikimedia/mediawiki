@@ -388,6 +388,7 @@ $messages = array(
 'month'       => 'Küyeṉ:',
 'year'        => 'Tripantu:',
 
+'sp-contributions-talk'   => 'Nütramkawe',
 'sp-contributions-submit' => 'Kintun',
 
 # What links here

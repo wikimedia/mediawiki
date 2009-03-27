@@ -845,6 +845,8 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 'sp-contributions-newbies'     => 'Ancaq yeni istifadəçilərin fəaliyyətlərini göstər',
 'sp-contributions-newbies-sub' => 'Yeni istifadəçilər üçün',
 'sp-contributions-blocklog'    => 'Bloklama qeydləri',
+'sp-contributions-talk'        => 'Müzakirə',
+'sp-contributions-userrights'  => 'İstifadəçi hüququ idarəsi',
 'sp-contributions-search'      => 'Fəaliyyətləri axtar',
 'sp-contributions-username'    => 'İP Ünvanı və ya istifadəçi adı:',
 'sp-contributions-submit'      => 'Axtar',

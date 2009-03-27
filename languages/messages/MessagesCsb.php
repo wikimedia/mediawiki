@@ -825,6 +825,7 @@ Slédnym ùsódzcą starnë bëł [[User:$3|$3]] ([[User talk:$3|Diskùsëjô]]{
 
 'sp-contributions-newbies'     => 'Pòkażë edicëjã blós nowich brëkòwników',
 'sp-contributions-newbies-sub' => 'Dlô nowich brëkòwników',
+'sp-contributions-talk'        => 'Diskùsëjô',
 'sp-contributions-search'      => 'Szëkba za edicëjama',
 'sp-contributions-username'    => 'Adresa IP abò miono brëkòwnika:',
 'sp-contributions-submit'      => 'Szëkôj',

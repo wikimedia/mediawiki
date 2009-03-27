@@ -125,6 +125,8 @@ $messages = array(
 # Contributions
 'mycontris' => 'Makabu ya munu',
 
+'sp-contributions-talk' => 'Disolo',
+
 # What links here
 'whatlinkshere' => 'Balukaya ke songa awa',
 

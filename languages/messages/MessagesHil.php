@@ -242,6 +242,7 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 # Contributions
 'mycontris' => 'Akon contribusyon',
 
+'sp-contributions-talk'   => 'Hisayranay',
 'sp-contributions-submit' => 'Pangita-a',
 
 # What links here

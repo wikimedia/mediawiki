@@ -52,6 +52,8 @@ $messages = array(
 # Watchlist
 'watch' => 'Rewindaande',
 
+'sp-contributions-talk' => 'Kaldigal',
+
 # Special:NewFiles
 'ilsubmit' => 'Yiilaade',
 

@@ -318,6 +318,8 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 # Contributions
 'mycontris' => 'Mi contributiones',
 
+'sp-contributions-talk' => 'Discussion',
+
 # What links here
 'whatlinkshere'      => 'Ligat págines',
 'whatlinkshere-page' => 'Págine:',

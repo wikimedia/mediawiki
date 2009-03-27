@@ -637,4 +637,6 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'contributions' => "Changements de l'useur",
 'mycontris'     => 'Mes changements',
 
+'sp-contributions-talk' => 'Discuter',
+
 );

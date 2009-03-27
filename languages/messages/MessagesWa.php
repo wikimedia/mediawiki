@@ -1128,7 +1128,9 @@ Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des
 'contribsub2'   => "Po l' uzeu $1 ($2)",
 'nocontribs'    => "Nou candjmint di trové ki corespondreut a ç' critere la.", # Optional parameter: $1 is the user name
 
-'sp-contributions-submit' => 'Cweri',
+'sp-contributions-talk'       => 'Copiner',
+'sp-contributions-userrights' => 'Manaedjî les liveas des uzeus',
+'sp-contributions-submit'     => 'Cweri',
 
 # What links here
 'whatlinkshere' => 'Pådjes ki loynut chal',

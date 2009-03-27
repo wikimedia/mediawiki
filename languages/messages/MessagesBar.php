@@ -521,6 +521,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'contribsub2'   => 'Fia $1 ($2)',
 
 'sp-contributions-newbies-sub' => 'Fia Neiling',
+'sp-contributions-talk'        => 'bschprecha',
 'sp-contributions-search'      => 'Suach nach Benutzerbeiträge',
 
 # What links here

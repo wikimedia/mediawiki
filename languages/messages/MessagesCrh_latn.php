@@ -1398,6 +1398,8 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'sp-contributions-newbies'     => 'Tek yañı qullanıcılarnıñ isselerini köster',
 'sp-contributions-newbies-sub' => 'Yañı qullanıcılar içün',
 'sp-contributions-blocklog'    => 'Blok etüv jurnalı',
+'sp-contributions-talk'        => 'Muzakere',
+'sp-contributions-userrights'  => 'Qullanıcı aqlarını idare etüv',
 'sp-contributions-search'      => 'İsselerni qıdıruv',
 'sp-contributions-username'    => 'IP adresi ya da qullanıcı adı:',
 'sp-contributions-submit'      => 'Qıdır',

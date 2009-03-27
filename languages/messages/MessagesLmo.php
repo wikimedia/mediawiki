@@ -498,6 +498,9 @@ L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]])."
 'mycontris'     => 'I mè interveent',
 'uctop'         => '(ültima per la pagina)',
 
+'sp-contributions-deleted' => 'Cuntribüziun scancelaa',
+'sp-contributions-talk'    => 'ciciarada',
+
 # What links here
 'whatlinkshere' => 'Pagin che se culeghen chì',
 

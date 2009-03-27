@@ -390,6 +390,8 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'contribsub2'   => 'Per $1 ($2)',
 'month'         => 'Da u mese (è nanzu):',
 
+'sp-contributions-talk' => 'discussione',
+
 # What links here
 'istemplate' => 'inclusione',
 

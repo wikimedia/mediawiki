@@ -567,6 +567,7 @@ $1',
 'uctop'         => '(баш)',
 
 'sp-contributions-newbies'  => 'Чүгле чаа кирерилерниң деткимчемнерин көргүзер',
+'sp-contributions-talk'     => 'Чугаалажыр',
 'sp-contributions-username' => 'ИП-адрес азы ажыглачының ады:',
 'sp-contributions-submit'   => 'Дилээр',
 

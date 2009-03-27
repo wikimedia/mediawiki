@@ -887,6 +887,7 @@ $messages = array(
 'sp-contributions-newbies'     => 'صرف نویں ورتن والیاں دے کم وکھاؤ',
 'sp-contributions-newbies-sub' => 'نویں کھاتیاں آستے',
 'sp-contributions-blocklog'    => 'لاگ روکو',
+'sp-contributions-talk'        => 'گل بات',
 'sp-contributions-search'      => 'حصے پان آلیاں دی تلاش',
 'sp-contributions-username'    => 'آئی پی پتہ یا ورتن آلا ناں:',
 'sp-contributions-submit'      => 'کھوجو',

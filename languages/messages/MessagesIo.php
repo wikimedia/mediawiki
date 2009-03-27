@@ -993,6 +993,8 @@ La lasta edito di la pagino esis da [[User:$3|$3]] ([[User talk:$3|Diskutez]]{{i
 
 'sp-contributions-newbies'     => 'Montrez nur kontributadi di nova konti',
 'sp-contributions-newbies-sub' => 'Di nova konti',
+'sp-contributions-deleted'     => 'Efacita uzanto-kontributadi',
+'sp-contributions-talk'        => 'Diskutez',
 'sp-contributions-search'      => 'Serchar kontributadi',
 'sp-contributions-username'    => 'IP-adreso od uzantonomo:',
 'sp-contributions-submit'      => 'Serchez',

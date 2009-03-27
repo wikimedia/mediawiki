@@ -78,4 +78,6 @@ $messages = array(
 # Special:Log
 'specialloguserlabel' => 'Гьурттучув:',
 
+'sp-contributions-talk' => 'Ихтилат',
+
 );

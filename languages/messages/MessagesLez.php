@@ -183,6 +183,8 @@ $messages = array(
 # Contributions
 'uctop' => '(кIукI)',
 
+'sp-contributions-talk' => 'Рахун',
+
 # Block/unblock
 'blocklink' => 'тIаб',
 

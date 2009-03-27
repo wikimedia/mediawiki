@@ -349,6 +349,8 @@ $messages = array(
 'contributions-title' => 'Mosálá ya moto mpɔ̂ na $1',
 'mycontris'           => 'Nkásá nakomí',
 
+'sp-contributions-talk' => 'Ntembe',
+
 # What links here
 'whatlinkshere'       => 'Ekangísí áwa',
 'isredirect'          => 'Lokásá ya boyendisi',

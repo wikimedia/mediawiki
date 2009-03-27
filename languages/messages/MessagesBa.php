@@ -290,6 +290,8 @@ $messages = array(
 'contributions' => 'Ҡатнашыусы өлөшө',
 'mycontris'     => 'ҡылған эштәр',
 
+'sp-contributions-deleted' => 'Ҡулланыусыларҙың юйылған өлөшө',
+
 # What links here
 'whatlinkshere' => 'Бында һылтанмалар',
 

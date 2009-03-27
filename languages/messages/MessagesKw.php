@@ -408,6 +408,7 @@ $messages = array(
 'contribsub2' => 'Rag $1 ($2)',
 'uctop'       => '(gwartha)',
 
+'sp-contributions-talk'   => 'Kewsel',
 'sp-contributions-submit' => 'Hwilas',
 
 # What links here

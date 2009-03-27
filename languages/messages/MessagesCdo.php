@@ -687,6 +687,8 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 'sp-contributions-newbies'     => 'Nâ hiēng-sê sĭng kŭi dióng-hô gì góng-hióng',
 'sp-contributions-newbies-sub' => 'Ciáh lì gì',
 'sp-contributions-blocklog'    => 'Hŭng-sō̤ nĭk-cé',
+'sp-contributions-deleted'     => 'Ké̤ṳk chēng lâi gì ê̤ṳng-hô góng-hióng',
+'sp-contributions-talk'        => 'Tō̤-lâung',
 'sp-contributions-search'      => 'Sìng-tō̤ góng-hióng',
 'sp-contributions-username'    => 'IP dê-cī hĕ̤k ê̤ṳng-hô-miàng:',
 'sp-contributions-submit'      => 'Sìng-tō̤',

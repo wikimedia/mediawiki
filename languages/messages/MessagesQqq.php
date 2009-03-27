@@ -590,7 +590,6 @@ $1 is the minimum number of characters in the password.',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.',
 'resetpass-wrong-oldpass'   => 'Error message shown on [[Special:Resetpass]] when the old password is not valid.',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
-'resetpass-no-others'       => 'Error message shown to a user not having the reset-passwords right, when he tries to reset the password for another user. For example: http://translatewiki.net/wiki/Special:ChangePassword/Foo',
 'resetpass-logentry'        => 'Log entry.
 * $1 is a link to a user page.',
 

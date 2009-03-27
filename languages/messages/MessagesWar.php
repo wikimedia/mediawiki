@@ -271,6 +271,8 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 # Contributions
 'mycontris' => 'Akon mga ámot',
 
+'sp-contributions-talk' => 'Hiruhimangraw',
+
 # What links here
 'whatlinkshere' => 'Mga nasumpay dinhi',
 

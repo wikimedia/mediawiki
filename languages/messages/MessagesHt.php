@@ -1027,6 +1027,7 @@ Men reglaj pou paj '''$1''' an kounye a:",
 'sp-contributions-newbies'     => 'Montre sèlman kontribisyon nouvo itilizatè yo',
 'sp-contributions-newbies-sub' => 'Lis kontribisyon pou nouvo itilizatè yo. Paj ki efase pe ke ap montre.',
 'sp-contributions-blocklog'    => 'jounal blokaj yo',
+'sp-contributions-talk'        => 'Diskite',
 'sp-contributions-search'      => 'Chache kontribisyon yo',
 'sp-contributions-username'    => 'Adrès IP oubyen non itilizatè:',
 

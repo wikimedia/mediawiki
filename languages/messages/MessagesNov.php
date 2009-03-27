@@ -354,6 +354,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'mycontris'     => 'Men kontributiones',
 
 'sp-contributions-newbies' => 'Montra kontributiones nur de novi useres',
+'sp-contributions-talk'    => 'Diskusione',
 'sp-contributions-search'  => 'Sercha kontributiones',
 'sp-contributions-submit'  => 'Sercha',
 

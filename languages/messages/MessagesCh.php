@@ -979,6 +979,7 @@ Estague taiguini i nibet i påhina '''$1''':",
 
 'sp-contributions-newbies-sub' => 'Para i mannuebu na kuenta siha',
 'sp-contributions-blocklog'    => "Na'påra i log",
+'sp-contributions-talk'        => 'Kuentusi',
 'sp-contributions-submit'      => 'Aligao',
 
 # What links here

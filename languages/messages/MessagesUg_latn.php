@@ -152,6 +152,7 @@ $messages = array(
 # Undelete
 'undelete-search-submit' => 'Izdash',
 
+'sp-contributions-talk'   => 'Monazire',
 'sp-contributions-submit' => 'Izdash',
 
 # What links here

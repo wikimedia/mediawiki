@@ -136,6 +136,8 @@ $messages = array(
 # Namespace form on various pages
 'blanknamespace' => '(Принчиал)',
 
+'sp-contributions-talk' => 'Дискуций',
+
 # What links here
 'whatlinkshere'       => 'Че се лягэ аичь',
 'whatlinkshere-links' => '← легэтурь',

@@ -356,6 +356,7 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 
 'sp-contributions-newbies'     => 'Komba minyikela ya ti akhawunti tintswa ntsena',
 'sp-contributions-newbies-sub' => 'Eka ti akhawunti ti ntswa',
+'sp-contributions-talk'        => 'Mbulavulo',
 'sp-contributions-search'      => 'Lava minyikelo',
 
 # What links here

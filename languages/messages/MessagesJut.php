@@ -707,6 +707,8 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 
 'sp-contributions-newbies-sub' => 'Før nybegyndere',
 'sp-contributions-blocklog'    => 'Blokerengslog',
+'sp-contributions-deleted'     => 'Slettede brugerbidråg',
+'sp-contributions-talk'        => 'diskusje',
 
 # What links here
 'whatlinkshere'       => 'Vat henveser hertil',

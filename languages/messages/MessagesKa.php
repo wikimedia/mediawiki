@@ -1489,6 +1489,8 @@ $NEWPAGE
 'sp-contributions-newbies'     => 'მხოლოდ ახალი მომხმარებლების წვლილის ჩვენება',
 'sp-contributions-newbies-sub' => 'ახალბედებისთვის',
 'sp-contributions-blocklog'    => 'ბლოკირების ისტორია',
+'sp-contributions-talk'        => 'განხილვა',
+'sp-contributions-userrights'  => 'მომხმარებელთა უფლებების მართვა',
 'sp-contributions-search'      => 'წვლილის ძიება',
 'sp-contributions-username'    => 'IP მისამართი ან მომხმარებლის სახელი:',
 'sp-contributions-submit'      => 'ძიება',

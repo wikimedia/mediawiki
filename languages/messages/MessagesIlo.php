@@ -1224,6 +1224,7 @@ Binsiren ti [[Special:Log/delete|log ti naik-ikkat]] para iti rekord dagiti naud
 'sp-contributions-newbies'     => 'Iparang dagiti contributions dagiti kabarbaro nga accounts laeng',
 'sp-contributions-newbies-sub' => 'Para kadagiti kabarbaro nga account',
 'sp-contributions-blocklog'    => 'Serraan ti log',
+'sp-contributions-talk'        => 'Makipatang',
 'sp-contributions-search'      => 'Agsapul kadagiti contributions',
 'sp-contributions-username'    => 'IP Address wenno nagan-agar-aramat:',
 'sp-contributions-submit'      => 'Agsapul',

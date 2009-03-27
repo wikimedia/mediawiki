@@ -601,6 +601,7 @@ $messages = array(
 
 'sp-contributions-newbies'  => 'У пайдалнышын гына надырым ончыкташ',
 'sp-contributions-blocklog' => 'йӧным вашталтыме журнал',
+'sp-contributions-talk'     => 'Каҥашымаш',
 'sp-contributions-search'   => 'Надырым кычалаш',
 'sp-contributions-username' => 'IP-адрес ала пайдаланышын лӱмжӧ:',
 'sp-contributions-submit'   => 'Кычал',

@@ -876,6 +876,9 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'mycontris'     => 'Foaki ʻaʻaku',
 'uctop'         => ' (ʻi ʻolunga)',
 
+'sp-contributions-deleted' => 'Ngaahi foaki ʻo ha ʻetita kuo tāmateʻi',
+'sp-contributions-talk'    => 'Alea',
+
 # What links here
 'whatlinkshere'       => 'Ngaahi fehokotaki ki heni',
 'linkshere'           => 'ʻOku fehokotaki ki heni ʻa e ngaahi peesi:',

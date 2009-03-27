@@ -159,6 +159,8 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 # Contributions
 'uctop' => '(kaarfa)',
 
+'sp-contributions-talk' => 'Oqallinneq',
+
 # What links here
 'whatlinkshere' => 'Suna maangamut innersuussivoq',
 

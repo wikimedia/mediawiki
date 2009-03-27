@@ -65,6 +65,8 @@ $messages = array(
 # Special:Categories
 'categories' => 'رجؤن',
 
+'sp-contributions-talk' => 'گب',
+
 # Block/unblock
 'blocklink' => 'دَوَسته ببه',
 

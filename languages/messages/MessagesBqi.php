@@ -638,6 +638,7 @@ $2',
 
 'sp-contributions-newbies-sub' => 'سی حسابهای کاربری تازه',
 'sp-contributions-blocklog'    => 'نمایه بسته وابیده ها',
+'sp-contributions-talk'        => 'صحبت',
 
 # What links here
 'whatlinkshere'       => 'لینک های ای صفحه',

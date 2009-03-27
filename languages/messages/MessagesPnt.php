@@ -945,6 +945,7 @@ $messages = array(
 'sp-contributions-newbies'     => 'Τέρεμαν γραψιματίων τη καινούρεων λογαρίων μαναχόν',
 'sp-contributions-newbies-sub' => 'Για τα καινούρεα τοι λογαρίας',
 'sp-contributions-blocklog'    => 'Αρχείον ασπαλιγματίων',
+'sp-contributions-talk'        => 'Καλάτσεμαν',
 'sp-contributions-search'      => 'Εύρον συνεισφοράντας',
 'sp-contributions-username'    => 'Διεύθυνσην IP γιά όνεμαν χρήστε:',
 'sp-contributions-submit'      => 'Αράεμαν',

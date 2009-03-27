@@ -134,6 +134,8 @@ $2، $1', # $1 date, $2 time
 'contributions' => 'کارور ره جور هکارده ئون',
 'mycontris'     => 'مه جور هکاردئون',
 
+'sp-contributions-talk' => 'گپ',
+
 # What links here
 'whatlinkshere' => 'ایجه ره که جه لینک هدائه؟',
 

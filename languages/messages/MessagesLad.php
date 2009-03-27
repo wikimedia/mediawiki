@@ -320,6 +320,8 @@ $messages = array(
 # Contributions
 'mycontris' => 'Mis contribuciones',
 
+'sp-contributions-talk' => 'Diścutir',
+
 # What links here
 'whatlinkshere'       => 'Lo que se ata con aquí',
 'whatlinkshere-links' => '← linkes',

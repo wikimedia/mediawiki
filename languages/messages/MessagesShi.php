@@ -191,6 +191,8 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 # Contributions
 'mycontris' => 'tikkin ino',
 
+'sp-contributions-talk' => 'assays',
+
 # Block/unblock
 'contribslink' => 'tikkin',
 

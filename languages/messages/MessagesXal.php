@@ -66,4 +66,6 @@ $messages = array(
 # Contributions
 'mycontris' => 'Мини өгүллһдүд',
 
+'sp-contributions-talk' => 'Ухалвр',
+
 );

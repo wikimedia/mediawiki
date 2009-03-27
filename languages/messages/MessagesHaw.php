@@ -626,8 +626,11 @@ E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
 'month'         => 'Mai mahina (ame mamua):',
 'year'          => 'Mai makahiki (ame mamua):',
 
-'sp-contributions-search' => 'Huli no nā haʻawina',
-'sp-contributions-submit' => 'Huli',
+'sp-contributions-deleted'    => 'Nā ha‘awina o ka inoa mea ho‘ohana i kāpae ‘ia ai',
+'sp-contributions-talk'       => 'Kūkākūkā',
+'sp-contributions-userrights' => 'Ho‘oponopono ‘ana o nā kuleana',
+'sp-contributions-search'     => 'Huli no nā haʻawina',
+'sp-contributions-submit'     => 'Huli',
 
 # What links here
 'whatlinkshere'           => 'He aha e loulou iho ai',

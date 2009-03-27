@@ -536,6 +536,8 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 # Contributions
 'mycontris' => 'Wax qoraalkeyga',
 
+'sp-contributions-talk' => 'Wadahadal',
+
 # Block/unblock
 'anononlyblock'            => 'anon. oo kaliya',
 'autoblocker'              => 'Waxaa automaatik u xirista keenay in mudo dhow uu cinwaanka IP:ga isticmaalay "[[User:$1|$1]]". Sababta keentay in loo xiro $1 waa: "\'\'\'$2\'\'\'"',

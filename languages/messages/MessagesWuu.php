@@ -649,6 +649,7 @@ $messages = array(
 'uctop'         => '(顶浪)',
 
 'sp-contributions-blocklog' => '查封记录',
+'sp-contributions-talk'     => '讲张',
 'sp-contributions-username' => 'IP地址或用户名：',
 
 # What links here

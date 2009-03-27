@@ -603,6 +603,7 @@ $1',
 
 'sp-contributions-newbies'  => 'ಪೊಸ ಖಾತೆಲೆದ ಕಾಣಿಕೆಲೆನ್ ಮಾತ್ರ ತೊಜ್ಪಾವು',
 'sp-contributions-blocklog' => 'ತಡೆಪತ್ತುನ ದಾಖಲೆ',
+'sp-contributions-talk'     => 'ಪಾತೆರ',
 'sp-contributions-search'   => 'ಕಾಣಿಕೆಲೆನ್ ನಾಡ್ಲೆ',
 'sp-contributions-username' => 'ಐ.ಪಿ ವಿಳಾಸ ಅತ್ತ್’ನ್ಡ ಬಳಕೆದ ಪುದರ್:',
 'sp-contributions-submit'   => 'ನಾಡ್',

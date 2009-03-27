@@ -410,6 +410,7 @@ $messages = array(
 
 'sp-contributions-newbies-sub' => 'Faúr niujis niutandis',
 'sp-contributions-blocklog'    => 'Logboka af afdraúsjan',
+'sp-contributions-talk'        => 'Maþleiseido',
 
 # What links here
 'whatlinkshere'       => '𐍈𐌰𐍂𐌾𐌹𐍃 𐍃𐌴𐌹𐌳𐍉𐌽𐌰 𐌷𐌻𐌰𐌲𐌺𐌾𐌰𐌽𐌳 𐌷𐌹𐌳𐍂𐌴',

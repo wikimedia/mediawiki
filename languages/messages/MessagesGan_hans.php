@@ -1325,6 +1325,8 @@ $NEWPAGE
 'sp-contributions-newbies'     => '单显到新用户𠮶贡献',
 'sp-contributions-newbies-sub' => '新用户𠮶贡献',
 'sp-contributions-blocklog'    => '封锁记录',
+'sp-contributions-talk'        => '谈詑',
+'sp-contributions-userrights'  => '用户权限管理',
 'sp-contributions-search'      => '寻贡献',
 'sp-contributions-username'    => 'IP地址或用户名：',
 'sp-contributions-submit'      => '寻',

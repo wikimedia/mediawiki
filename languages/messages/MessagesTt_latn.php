@@ -586,6 +586,8 @@ Soñğı beterülär $2 bitendä terkälenä.',
 'contribsub2'   => '$1 ($2) öçen',
 'uctop'         => ' (soñ)',
 
+'sp-contributions-talk' => 'tartış',
+
 # What links here
 'whatlinkshere' => 'Kem bäyle moña',
 'isredirect'    => 'küçerelü bite',

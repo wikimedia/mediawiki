@@ -971,9 +971,11 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'contribsub2'   => '$1 ӳсĕмĕ ($2)',
 'uctop'         => ' (пуçламăш)',
 
-'sp-contributions-blocklog' => 'Чарса лартнисен журналĕ',
-'sp-contributions-search'   => 'Тӳпе шыравĕ',
-'sp-contributions-submit'   => 'Шырас',
+'sp-contributions-blocklog'   => 'Чарса лартнисен журналĕ',
+'sp-contributions-talk'       => 'Сӳтсе яв',
+'sp-contributions-userrights' => 'Хутшăнакансен прависемпе ĕçлесси',
+'sp-contributions-search'     => 'Тӳпе шыравĕ',
+'sp-contributions-submit'     => 'Шырас',
 
 # What links here
 'whatlinkshere'       => 'Кунта килекен ссылкăсем',

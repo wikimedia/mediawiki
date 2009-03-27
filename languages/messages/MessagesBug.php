@@ -384,6 +384,8 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 # Namespace form on various pages
 'blanknamespace' => '(Utama)',
 
+'sp-contributions-talk' => 'Bicara',
+
 # What links here
 'whatlinkshere'          => 'Pranala ri halamang édé',
 'whatlinkshere-page'     => 'Leppa:',

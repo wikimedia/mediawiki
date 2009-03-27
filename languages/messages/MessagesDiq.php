@@ -500,6 +500,7 @@ It must have at least $1 characters and be different from your username.',
 
 'sp-contributions-newbies'  => 'Tenya iştıraqanê karberanê neweyan bımocne',
 'sp-contributions-blocklog' => 'Logê kılit kerdişê karberi',
+'sp-contributions-talk'     => 'Werênayış',
 'sp-contributions-username' => 'Adresa IPy ya ki namey karberi:',
 'sp-contributions-submit'   => 'Cıgeyr',
 

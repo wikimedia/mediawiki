@@ -222,6 +222,8 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'contributions' => 'Ol senis yusa i wokim',
 'mycontris'     => 'Ol senis mi wokim',
 
+'sp-contributions-talk' => 'Toktok',
+
 # What links here
 'whatlinkshere' => 'Ol link ikam long hia',
 

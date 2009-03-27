@@ -453,6 +453,8 @@ Ang mga panid sa [[Special:Watchlist|imong gibantayan]] '''nakalugom'''.",
 'contributions' => 'Mga tampo ning gumagamit',
 'mycontris'     => 'Akong tampo',
 
+'sp-contributions-talk' => 'Hisgot',
+
 # What links here
 'whatlinkshere'       => 'Unsay mga misumpay dinhi',
 'whatlinkshere-title' => 'Mga panid nga misumpay ngadto sa "$1"',

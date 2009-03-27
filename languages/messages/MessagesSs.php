@@ -128,6 +128,7 @@ $messages = array(
 # Undelete
 'undelete-search-submit' => 'Kucálata',
 
+'sp-contributions-talk'   => 'Kúcoca',
 'sp-contributions-submit' => 'Kucálata',
 
 # Block/unblock

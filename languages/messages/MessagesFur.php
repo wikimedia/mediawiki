@@ -1140,6 +1140,8 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'sp-contributions-newbies'     => 'Mostre dome i contribûts dai gnûfs utents',
 'sp-contributions-newbies-sub' => 'Pai gnûfs utents',
 'sp-contributions-blocklog'    => 'Regjistri dai blocs',
+'sp-contributions-deleted'     => 'Contribûts dal utent eliminâts',
+'sp-contributions-talk'        => 'discussion',
 'sp-contributions-search'      => 'Cîr contribûts',
 'sp-contributions-username'    => 'Direzion IP o non utent:',
 'sp-contributions-submit'      => 'Cîr',

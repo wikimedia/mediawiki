@@ -392,6 +392,8 @@ $messages = array(
 'contributions' => 'މެންބަރު ގެ ހިއްސާ',
 'mycontris'     => 'މަގޭ ހިއްސާ',
 
+'sp-contributions-userrights' => 'މެންބަރުގެ ހައްގުތަކުގެ އިންތިޒާމް',
+
 # What links here
 'whatlinkshere' => 'މިއާ ގުޅެނީ ކޮންއެއްޗެއް',
 

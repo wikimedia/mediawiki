@@ -732,7 +732,9 @@ HTML tags جانچئے.',
 'contribsub2'   => 'براۓ $1 ($2)',
 'uctop'         => ' (اوپر)',
 
-'sp-contributions-blocklog' => 'نوشتۂ پابندی',
+'sp-contributions-blocklog'   => 'نوشتۂ پابندی',
+'sp-contributions-talk'       => 'گفتگو',
+'sp-contributions-userrights' => 'صارف کے حقوق کا انتظام',
 
 # What links here
 'whatlinkshere' => 'ادھر کس کا جوڑ ہے',

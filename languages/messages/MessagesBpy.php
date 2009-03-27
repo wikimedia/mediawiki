@@ -724,6 +724,7 @@ $messages = array(
 
 'sp-contributions-newbies-sub' => 'নুৱা একাউন্টর কা',
 'sp-contributions-blocklog'    => 'থেপকরিসি লগ',
+'sp-contributions-talk'        => 'য়্যারি',
 
 # What links here
 'whatlinkshere'       => 'যে পাতাহানিত্ত এহানাত মিলাপ আসে',

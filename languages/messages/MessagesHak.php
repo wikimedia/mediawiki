@@ -1176,6 +1176,8 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'sp-contributions-newbies'     => 'Chak hién-sṳ sîn kien-li̍p chṳ̂ yung-fu ke kung-hien',
 'sp-contributions-newbies-sub' => 'Sîn-sú',
 'sp-contributions-blocklog'    => 'Fûng-kim ki-liu̍k',
+'sp-contributions-talk'        => 'Tui-fa',
+'sp-contributions-userrights'  => 'Yung-fu khièn-han kón-lî',
 'sp-contributions-search'      => 'Chhìm-cháu kung-hien ki-liu̍k',
 'sp-contributions-username'    => 'IP chhô-vi fe̍t-chá yung-fu miàng-chhṳ̂n:',
 'sp-contributions-submit'      => 'Chhìm-cháu',

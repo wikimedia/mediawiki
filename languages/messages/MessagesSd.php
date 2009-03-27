@@ -770,6 +770,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 
 'sp-contributions-newbies-sub' => 'نون کاتن لاءِ',
 'sp-contributions-blocklog'    => 'بنسش لاگ',
+'sp-contributions-talk'        => 'بحث',
 
 # What links here
 'whatlinkshere'       => 'هتان ڇا ڳنڍيل آهي',

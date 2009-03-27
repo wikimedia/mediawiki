@@ -219,4 +219,6 @@ $messages = array(
 # Special:Categories
 'categories' => 'Категореш',
 
+'sp-contributions-talk' => 'Къамьал',
+
 );

@@ -239,6 +239,7 @@ $messages = array(
 # Undelete
 'undelete-search-submit' => 'Thaqaña',
 
+'sp-contributions-talk'   => 'Kutkatasiña',
 'sp-contributions-submit' => 'Thaqaña',
 
 # Block/unblock
