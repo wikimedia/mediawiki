@@ -151,6 +151,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add a class if 'missingsummary' is triggered to allow styling of the summary
   line
 * Add CSS defintion of the 'wikitable' class to shared.css
+* (bug 17163) Added MediaWiki:Talkpage which will be displayed when viewing talk
+  pages
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

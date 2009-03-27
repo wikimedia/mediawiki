@@ -211,6 +211,7 @@ $wgMessageStructure = array(
 		'otherlanguages',
 		'redirectedfrom',
 		'redirectpagesub',
+		'talkpageheader',
 		'lastmodifiedat',
 		'viewcount',
 		'protectedpage',
