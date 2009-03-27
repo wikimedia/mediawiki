@@ -210,7 +210,13 @@ class SpecialExport extends SpecialPage {
 		 */
 		
 		$pages = array_keys( $pageSet );
-		
+
+		// Normalize titles to the same format and remove dupes, see bug 17374
+		foreach( $pages as $k => $v ) {
+			$pages[$k] = str_replace( " ", "_", $v );
+		}
+		$pages = array_unique( $pages );
+
 		/* Ok, let's get to it... */
 		if( $history == WikiExporter::CURRENT ) {
 			$lb = false;

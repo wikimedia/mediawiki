@@ -294,6 +294,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18031) Make namespace selector on Special:Export remember the previous 
   selection
 * The svn-version version numbers on Special:Version have been removed
+* (bug 17374) Special:Export no longer exports two copies of the same page
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
