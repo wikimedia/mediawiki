@@ -167,7 +167,7 @@ $messages = array(
 'tog-enotifminoredits'        => '小修改都要電郵通知我',
 'tog-enotifrevealaddr'        => '喺電郵通知信上面話畀人聽我嘅電郵地址',
 'tog-shownumberswatching'     => '顯示有幾多人監視',
-'tog-fancysig'                => '程式碼簽名（冇自動連結）',
+'tog-fancysig'                => '將簽名以維基字對待（冇自動連結）',
 'tog-externaleditor'          => '預設用外掛編輯器（高階者專用，需要響你部電腦度做一啲特別設定）',
 'tog-externaldiff'            => '預設用外掛比較器（高階者專用，需要響你部電腦度做一啲特別設定）',
 'tog-showjumplinks'           => '啟用 "跳至" 協助連結',
@@ -852,13 +852,20 @@ $1',
 'rev-deleted-comment'            => '(評論已經移除咗)',
 'rev-deleted-user'               => '(用戶名已經移除咗)',
 'rev-deleted-event'              => '(日誌動作已經移除咗)',
-'rev-deleted-text-permission'    => '呢頁嘅修訂喺公共檔案庫中已經被洗咗。
-喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。',
-'rev-deleted-text-view'          => '呢頁嘅修訂喺公共檔案庫中已經洗咗。
-作為一個喺{{SITENAME}}嘅管理員，你可以去睇吓佢；
-喺[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。',
-'rev-deleted-no-diff'            => '因為其中一次修訂響公眾歸檔度拎走咗，你唔可以睇呢個差異。
-響[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]度可能有更多嘅資料。',
+'rev-deleted-text-permission'    => "呢頁嘅修訂已經被'''洗咗'''。
+喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。",
+'rev-deleted-text-unhide'        => "呢頁嘅修訂已經被'''洗咗'''。
+喺[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
+作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
+'rev-deleted-text-view'          => "呢頁嘅修訂已經'''洗咗'''。
+作為嘅管理員，你可以去睇吓佢；
+喺[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。",
+'rev-deleted-no-diff'            => "因為其中一次修訂'''洗咗'''，你唔可以睇呢個差異。
+響[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]度可能有更多嘅資料。",
+'rev-deleted-unhide-diff'        => "呢頁嘅其中一次修訂已經'''洗咗'''。
+喺[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
+作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
+
 'rev-delundel'                   => '顯示／隱藏',
 'revisiondelete'                 => '刪除／反刪除修訂',
 'revdelete-nooldid-title'        => '無效嘅目標修訂',
@@ -1249,6 +1256,7 @@ $1',
 'right-userrights-interwiki' => '編輯響其它wiki嘅用戶權限',
 'right-siteadmin'            => '鎖同解鎖資料庫',
 'right-reset-passwords'      => '重設其他用戶嘅密碼',
+'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -2047,7 +2055,7 @@ $1',
 'ipboptions'                      => '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => '其它',
 'ipbotherreason'                  => '其它／附加嘅原因:',
-'ipbhidename'                     => '響個封鎖日誌、現時嘅封鎖名單以用戶名單度隱藏用戶名',
+'ipbhidename'                     => '響編輯同名單度隱藏用戶名',
 'ipbwatchuser'                    => '監視呢位用戶嘅用戶頁同埋佢嘅討論頁',
 'ipballowusertalk'                => '當被封鎖嗰陣容許呢位用戶去編輯自己嘅討論版',
 'ipb-change-block'                => '用呢啲設定重新封鎖用戶',
@@ -2100,9 +2108,11 @@ $1',
 'block-log-flags-noemail'         => '封咗電郵',
 'block-log-flags-nousertalk'      => '唔可以編輯自己嘅討論版',
 'block-log-flags-angry-autoblock' => '加強自動封鎖已經啟用',
+'block-log-flags-hiddenname'      => '隱藏用戶名',
 'range_block_disabled'            => '操作員嘅建立範圍封鎖已經停用。',
 'ipb_expiry_invalid'              => '無效嘅期限。',
 'ipb_expiry_temp'                 => '隱藏用戶名封鎖定一定係要永久性嘅。',
+'ipb_hide_invalid'                => '唔能夠壓止呢個戶口；佢可能有太多編輯。',
 'ipb_already_blocked'             => '"$1"已經封鎖咗',
 'ipb-needreblock'                 => '== 已經封鎖咗 ==
 $1已經被封鎖。你係咪想更改呢個設定？',
@@ -2355,7 +2365,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'tooltip-recreate'                => '即使已經刪除過都要重新整過呢頁',
 'tooltip-upload'                  => '開始上載',
 'tooltip-rollback'                => '『反轉』可以一撳復原上一位貢獻者對呢版嘅編輯',
-'tooltip-undo'                    => '『復原』可以響編輯模式度開編輯表以便復原。容許響摘要度加入原因',
+'tooltip-undo'                    => '『復原』可以響編輯模式度開編輯表以便復原。佢容許響摘要度加入原因。',
 
 # Stylesheets
 'common.css'      => '/* 響呢度放 CSS 碼來改成個網站嘅畫面 */',
@@ -3024,6 +3034,6 @@ $1',
 'dberr-info'        => '(唔能夠連繫個資料伺服器: $1)',
 'dberr-usegoogle'   => '響現階段你可以用 Google 去搵嘢。',
 'dberr-outofdate'   => '留意佢哋索引嘅內容可能會過時。',
-'dberr-cachederror' => '下面係所要求版嘅快取複本，可能會過時。',
+'dberr-cachederror' => '呢個係所要求版嘅快取複本，可能會過時。',
 
 );
