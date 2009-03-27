@@ -428,6 +428,8 @@ $wgSharedUploadDBprefix = '';
 $wgCacheSharedUploads = true;
 /** Allow for upload to be copied from an URL. Requires Special:Upload?source=web */
 $wgAllowCopyUploads = false;
+$wgCopyUploadTimeout = 30; // 30 seconds default timeout for upload-by-URL
+
 /**
  * Max size for uploads, in bytes.  Currently only works for uploads from URL
  * via CURL (see $wgAllowCopyUploads).  The only way to impose limits on
