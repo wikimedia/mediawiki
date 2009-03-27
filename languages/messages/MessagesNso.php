@@ -861,6 +861,8 @@ Seemo sa go lota ga letlakala '''$1''':",
 
 'sp-contributions-newbies-sub' => 'Tša tšhupaleloko tše mphsa',
 'sp-contributions-blocklog'    => "''Log'' yago thiba",
+'sp-contributions-deleted'     => 'Diabe tša mošomiši tšeo di phumutšwego',
+'sp-contributions-talk'        => 'Bolela',
 'sp-contributions-search'      => 'Fetleka diabe',
 'sp-contributions-username'    => 'IP Atrese goba leina la mošomiši:',
 'sp-contributions-submit'      => 'Fetleka',

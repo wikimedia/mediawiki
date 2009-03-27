@@ -640,6 +640,7 @@ $messages = array(
 'sp-contributions-newbies'     => 'માત્ર નવા ખુલેલાં ખાતાઓનું યોગદાન બતાવો',
 'sp-contributions-newbies-sub' => 'નવા ખાતાઓ માટે',
 'sp-contributions-blocklog'    => 'પ્રતિબંધ સૂચિ',
+'sp-contributions-talk'        => 'ચર્ચા',
 'sp-contributions-search'      => 'યોગદાન શોધો',
 'sp-contributions-username'    => 'IP સરનામું અથવા સભ્યનામ:',
 'sp-contributions-submit'      => 'શોધો',

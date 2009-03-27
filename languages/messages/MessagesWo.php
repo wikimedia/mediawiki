@@ -1440,6 +1440,8 @@ Xéj-na keeneen loppanti na ko ba noppi',
 'month'         => 'Tambalee ci weeru (ak yi jiitu) :',
 'year'          => 'Tambalee ci attum (ak yi jiitu) :',
 
+'sp-contributions-talk' => 'Waxtaan',
+
 # What links here
 'whatlinkshere'            => 'Xët yi mu lëkkalool',
 'whatlinkshere-title'      => 'Xët yi lëkkalook wii « $1 »',

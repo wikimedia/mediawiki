@@ -421,6 +421,8 @@ Bitte nemm eenen aundren.',
 'month'     => 'Fonn Moonat (onn ferdäm):',
 'year'      => 'Fonn Joa (onn ferdäm):',
 
+'sp-contributions-talk' => 'Beredsied',
+
 # What links here
 'whatlinkshere'          => 'Links opp dise Sied',
 'whatlinkshere-title'    => 'Siede, woone opp "$1" eenen Link habe',

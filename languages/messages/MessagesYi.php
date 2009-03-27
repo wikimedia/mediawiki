@@ -1649,6 +1649,8 @@ $NEWPAGE
 'sp-contributions-newbies-sub'   => 'פאר נייע קאנטעס',
 'sp-contributions-newbies-title' => 'בײַשטײַערונגען פֿון נײַע באַניצערס',
 'sp-contributions-blocklog'      => 'בלאקירן לאג',
+'sp-contributions-deleted'       => 'אויסגעמעקטע באַניצער בײַשטײַערונגען',
+'sp-contributions-talk'          => 'שמועס',
 'sp-contributions-search'        => 'זוכן בײַשטײַערונגען',
 'sp-contributions-username'      => 'באניצער נאמען אדער IP אדרעס:',
 'sp-contributions-submit'        => 'זוכן',

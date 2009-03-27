@@ -441,6 +441,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'year'          => "Mu mwaka (n'egyakulembera):",
 
 'sp-contributions-blocklog' => 'Ebifa ku bagaanidwa',
+'sp-contributions-talk'     => 'Yogera nange',
 
 # What links here
 'whatlinkshere'       => 'Empapula ezikuggusa ku luno',

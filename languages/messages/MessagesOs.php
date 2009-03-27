@@ -706,6 +706,7 @@ $3',
 'uctop'         => '(уæле баззад)',
 
 'sp-contributions-blocklog' => 'Хъодыты лог',
+'sp-contributions-talk'     => 'Дискусси',
 
 # What links here
 'whatlinkshere'            => 'Цавæр æрвитæнтæ цæуынц ардæм',

@@ -949,6 +949,9 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 'nocontribs'    => "Tsy misy fanovana mifanaraka amin'ireo critères ireo.", # Optional parameter: $1 is the user name
 'uctop'         => ' (loha)',
 
+'sp-contributions-talk'       => 'Dinika',
+'sp-contributions-userrights' => 'Fandrindràna ny fahazoan-dàlana',
+
 # What links here
 'whatlinkshere' => 'Iza avy no mirohy eto',
 'linkshere'     => 'Ireto avy no pejy mirohy eto:',

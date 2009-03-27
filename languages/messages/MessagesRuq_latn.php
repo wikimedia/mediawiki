@@ -276,6 +276,8 @@ $3',
 'contribsub2'   => 'Pentru $1 ($2)',
 'uctop'         => '(susverf)',
 
+'sp-contributions-talk' => 'Diskuţu',
+
 # What links here
 'whatlinkshere'       => 'Legǎtul a ce pažu',
 'whatlinkshere-title' => 'Paži legǎtulent a $1',

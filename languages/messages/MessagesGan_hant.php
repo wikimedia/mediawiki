@@ -1324,6 +1324,8 @@ $NEWPAGE
 'sp-contributions-newbies'     => '單顯到新用戶嗰貢獻',
 'sp-contributions-newbies-sub' => '新用戶嗰貢獻',
 'sp-contributions-blocklog'    => '封鎖記錄',
+'sp-contributions-talk'        => '談詑',
+'sp-contributions-userrights'  => '用戶許可權管理',
 'sp-contributions-search'      => '尋貢獻',
 'sp-contributions-username'    => 'IP地址或用戶名：',
 'sp-contributions-submit'      => '尋',

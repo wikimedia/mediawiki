@@ -936,6 +936,8 @@ $1',
 
 'sp-contributions-newbies-sub' => 'নতুন সভ্যৰ কাৰণে',
 'sp-contributions-blocklog'    => 'বাৰণ সুচী',
+'sp-contributions-talk'        => 'বাৰ্তালাপ',
+'sp-contributions-userrights'  => 'সদস্যৰ অধিকাৰ ব্যৱস্থাপনা',
 'sp-contributions-submit'      => 'সন্ধান কৰক',
 
 # What links here

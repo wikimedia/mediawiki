@@ -529,6 +529,8 @@ Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet
 'contributions' => 'Kontributet',
 'mycontris'     => 'Redaktimet e mia',
 
+'sp-contributions-talk' => 'Diskuto',
+
 # What links here
 'whatlinkshere'       => "Lidhjet k'tu",
 'whatlinkshere-title' => 'Faqe qi lidhen me $1',

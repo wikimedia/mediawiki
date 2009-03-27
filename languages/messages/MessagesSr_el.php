@@ -1340,6 +1340,9 @@ Pogledajte [[{{ns:special}}:Log/delete|istoriju brisanja]] za spisak skorašnjih
 'uctop'         => ' (vrh)',
 
 'sp-contributions-newbies-sub' => 'Za novajlije',
+'sp-contributions-deleted'     => 'Obrisane izmene',
+'sp-contributions-talk'        => 'Razgovor',
+'sp-contributions-userrights'  => 'Upravljanje korisničkim pravima',
 
 # What links here
 'whatlinkshere' => 'Šta je povezano ovde',

@@ -539,6 +539,7 @@ $messages = array(
 
 'sp-contributions-newbies-sub' => 'རྩིས་ཐོ་གསརཔ་གི་དོན་ལུ།',
 'sp-contributions-blocklog'    => 'སྡེབ་ཚན་ལོག།',
+'sp-contributions-talk'        => 'བློ།',
 
 # What links here
 'whatlinkshere'       => 'ནཱ་ལུ་ ག་ཅི་འབྲེལ་མཐུད་འོང་ནི་མས།',

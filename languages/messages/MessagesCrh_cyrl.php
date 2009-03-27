@@ -1400,6 +1400,8 @@ e-mail: $PAGEEDITOR_EMAIL
 'sp-contributions-newbies'     => 'Тек янъы къулланыджыларнынъ исселерини косьтер',
 'sp-contributions-newbies-sub' => 'Янъы къулланыджылар ичюн',
 'sp-contributions-blocklog'    => 'Блок этюв журналы',
+'sp-contributions-talk'        => 'Музакере',
+'sp-contributions-userrights'  => 'Къулланыджы акъларыны идаре этюв',
 'sp-contributions-search'      => 'Исселерни къыдырув',
 'sp-contributions-username'    => 'IP адреси я да къулланыджы ады:',
 'sp-contributions-submit'      => 'Къыдыр',

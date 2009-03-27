@@ -510,6 +510,7 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot ken Aifluss uff 
 
 'sp-contributions-newbies'  => 'Zaich numme Baidräch vun naie Benutzerkonte',
 'sp-contributions-blocklog' => 'Sperrlogbuch',
+'sp-contributions-talk'     => 'Dischbediere',
 'sp-contributions-search'   => 'No Baidräch suche',
 'sp-contributions-username' => 'IP-Adress orrer Benutzername:',
 'sp-contributions-submit'   => 'Suche',

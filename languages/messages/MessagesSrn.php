@@ -1069,6 +1069,8 @@ Disi ben a tapunivo fu a papira '''[[$1]]''' now:",
 
 'sp-contributions-newbies-sub' => 'Gi nyun account',
 'sp-contributions-blocklog'    => 'Log buku fu den tapu pasi',
+'sp-contributions-deleted'     => 'Trowe kenki fu masyin',
+'sp-contributions-talk'        => 'Taki',
 'sp-contributions-submit'      => 'Suku',
 
 # What links here

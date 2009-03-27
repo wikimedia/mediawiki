@@ -276,6 +276,8 @@ $3',
 'contribsub2'   => 'пентру $1 ($2)',
 'uctop'         => '(сусверф)',
 
+'sp-contributions-talk' => 'дискућу',
+
 # What links here
 'whatlinkshere'       => 'Легајтул а це пажу',
 'whatlinkshere-title' => 'Пажус легајтулент а $1',

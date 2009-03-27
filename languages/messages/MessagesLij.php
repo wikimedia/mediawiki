@@ -877,6 +877,7 @@ $1',
 
 'sp-contributions-newbies-sub' => 'Pe i nêuvi ûtenti',
 'sp-contributions-blocklog'    => 'Blocchi',
+'sp-contributions-talk'        => 'Ciæti',
 'sp-contributions-submit'      => 'Çerca',
 
 # What links here

@@ -1077,6 +1077,9 @@ De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggien
 'contributions' => 'Biedraegen gebruker',
 'mycontris'     => 'Mien biedraegen',
 
+'sp-contributions-talk'       => 'Overleg',
+'sp-contributions-userrights' => 'Gebrukersrechenbeheer',
+
 # What links here
 'whatlinkshere' => 'Links nae deze bladzie',
 

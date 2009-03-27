@@ -136,6 +136,7 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 'contributions' => 'Imisebenzi ye lungu',
 'mycontris'     => 'Inkxaso yam',
 
+'sp-contributions-talk'   => 'Inthetho',
 'sp-contributions-submit' => 'Khangela',
 
 # Block/unblock

@@ -774,6 +774,7 @@ to upload files.',
 'contribsub2'   => '$1 ($2) ਲਈ',
 
 'sp-contributions-newbies-sub' => 'ਨਵੇਂ ਅਕਾਊਂਟਾਂ ਲਈ',
+'sp-contributions-talk'        => 'ਗੱਲਬਾਤ',
 'sp-contributions-username'    => 'IP ਐਡਰੈੱਸ ਜਾਂ ਯੂਜ਼ਰ ਨਾਂ:',
 'sp-contributions-submit'      => 'ਖੋਜ',
 

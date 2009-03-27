@@ -954,6 +954,8 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'month'         => 'Frae month (an afore):',
 'year'          => 'Frae year (an afore):',
 
+'sp-contributions-talk' => 'Collogue',
+
 # What links here
 'whatlinkshere' => 'Whit airts tae here',
 'linkshere'     => "The follaein pages airts tae '''[[:$1]]''':",

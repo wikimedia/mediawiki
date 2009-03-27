@@ -661,6 +661,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'year'          => 'Tinan (ho molok):',
 
 'sp-contributions-newbies'  => "Hatudu de'it kontribuisaun uza-na'in foun sira-nia",
+'sp-contributions-talk'     => 'Diskusaun',
 'sp-contributions-search'   => 'Buka kontribuisaun',
 'sp-contributions-username' => "Diresaun IP ka naran uza-na'in:",
 'sp-contributions-submit'   => 'Buka',

@@ -153,7 +153,7 @@ class SpecialContributions extends SpecialPage {
 		$talk = $nt->getTalkPage();
 		if( $talk ) {
 			# Talk page link
-			$tools[] = $sk->makeLinkObj( $talk, wfMsgHtml( 'talkpagelinktext' ) );
+			$tools[] = $sk->makeLinkObj( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
 			if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && IP::isIPAddress( $nt->getText() ) ) ) {
 				# Block link
 				if( $wgUser->isAllowed( 'block' ) )
@@ -170,7 +170,7 @@ class SpecialContributions extends SpecialPage {
 			# Add link to deleted user contributions for priviledged users
 			if( $wgUser->isAllowed( 'deletedhistory' ) ) {
 				$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'DeletedContributions', 
-					$nt->getDBkey() ), wfMsgHtml( 'deletedcontributions' ) );
+					$nt->getDBkey() ), wfMsgHtml( 'sp-contributions-deleted' ) );
 			}
 
 			# Add a link to change user rights for privileged users
@@ -178,7 +178,7 @@ class SpecialContributions extends SpecialPage {
 			if( 0 !== $id && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
 				$tools[] = $sk->makeKnownLinkObj(
 					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
-					wfMsgHtml( 'userrights' )
+					wfMsgHtml( 'sp-contributions-userrights' )
 				);
 			}
 

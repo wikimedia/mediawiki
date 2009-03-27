@@ -395,6 +395,8 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'contributions' => 'Contribbute utente',
 'mycontris'     => 'Mie contribbute',
 
+'sp-contributions-talk' => 'Chiàcchiera',
+
 # What links here
 'whatlinkshere'       => 'Paggene ca cullegano a chesta',
 'whatlinkshere-title' => 'Paggene ca cullegano a $1',

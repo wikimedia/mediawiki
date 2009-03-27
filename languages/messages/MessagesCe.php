@@ -270,6 +270,8 @@ $messages = array(
 'month'         => 'За год (и ранее):',
 'year'          => 'За месяц (и ранее):',
 
+'sp-contributions-talk' => 'Дийца',
+
 # What links here
 'whatlinkshere' => 'Линкаш Кхуза',
 

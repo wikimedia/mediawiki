@@ -197,6 +197,7 @@ $messages = array(
 'contributions' => 'selstika le pilno',
 'mycontris'     => 'pu selstika mi',
 
+'sp-contributions-talk'   => 'casnu',
 'sp-contributions-submit' => 'sisku',
 
 # What links here

@@ -491,6 +491,8 @@ $messages = array(
 'uctop'         => '(послѣ́дьнꙗ мѣ́на)',
 
 'sp-contributions-blocklog' => 'ꙁаграждє́ниꙗ їсторі́ꙗ',
+'sp-contributions-deleted'  => 'пони́чьжєнꙑ добродѣꙗ́ниꙗ',
+'sp-contributions-talk'     => 'бєсѣ́да',
 'sp-contributions-submit'   => 'ищи́',
 
 # What links here

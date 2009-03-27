@@ -634,6 +634,7 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie '''$1''' lea:",
 
 'sp-contributions-newbies-sub' => 'Ihke orre nuhtjienh',
 'sp-contributions-blocklog'    => 'Tjöödtjehtidh logge',
+'sp-contributions-talk'        => 'Digkiedimmie',
 'sp-contributions-username'    => 'IP Tjaalesijjie jallh nuhtjiennomme:',
 'sp-contributions-submit'      => 'Ohtsedh',
 

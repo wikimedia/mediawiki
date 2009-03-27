@@ -732,6 +732,7 @@ Burada bitki seçimner '''$1''' yazı diiştirmää deyni:",
 
 'sp-contributions-newbies-sub' => 'Eni kullanıcılara deyni',
 'sp-contributions-blocklog'    => 'Köstek jurnalı',
+'sp-contributions-talk'        => 'Konuşmaa',
 
 # What links here
 'whatlinkshere'       => 'Baalantılar sayfaa',

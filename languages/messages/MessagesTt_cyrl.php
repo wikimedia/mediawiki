@@ -896,6 +896,7 @@ $2',
 
 'sp-contributions-newbies-sub' => 'Яңа хисап язмалары өчен',
 'sp-contributions-blocklog'    => 'Кысу журналы',
+'sp-contributions-talk'        => 'Фикер алышу',
 'sp-contributions-username'    => 'Кулланучының IP адресы яки исеме:',
 'sp-contributions-submit'      => 'Эзләргә',
 

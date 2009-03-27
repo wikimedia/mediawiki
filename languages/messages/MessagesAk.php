@@ -54,4 +54,6 @@ $messages = array(
 # Watchlist
 'watch' => 'Hwɛ',
 
+'sp-contributions-talk' => 'Kasa',
+
 );

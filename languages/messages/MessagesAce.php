@@ -509,6 +509,7 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'sp-contributions-newbies'     => 'Keu ureuëng-ureuëng nyang ban nguy mantöng',
 'sp-contributions-newbies-sub' => 'Keu nyang nguy barô',
 'sp-contributions-blocklog'    => 'Log peutheun',
+'sp-contributions-talk'        => 'Peugah haba',
 'sp-contributions-search'      => 'Mita soë nyang tuléh',
 'sp-contributions-username'    => 'Alamat IP atawa nan nyang nguy:',
 

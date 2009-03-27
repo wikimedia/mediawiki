@@ -388,6 +388,8 @@ $1',
 # Contributions
 'mycontris' => 'जिगु योगदान',
 
+'sp-contributions-talk' => 'खँल्हाबँल्हा',
+
 # What links here
 'whatlinkshere' => 'थन छु स्वाई',
 

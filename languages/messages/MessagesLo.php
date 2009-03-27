@@ -807,6 +807,7 @@ $messages = array(
 
 'sp-contributions-newbies'  => 'ສະແດງສະເພາະ ການປະກອບສ່ວນ ໂດຍ ບັນຊີໃໝ່',
 'sp-contributions-blocklog' => 'ບັນທຶກການຫ້າມ',
+'sp-contributions-talk'     => 'ສົນທະນາ',
 'sp-contributions-search'   => 'ຊອກຫາ ການປະກອບສ່ວນ',
 'sp-contributions-username' => 'ທີ່ຢູ່ IP ຫຼື ຊື່ຜູ້ໃຊ້:',
 'sp-contributions-submit'   => 'ຊອກຫາ',

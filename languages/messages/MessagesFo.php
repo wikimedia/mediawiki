@@ -890,6 +890,7 @@ Sí $2 fyri fulla skráseting av strikingum.',
 
 'sp-contributions-newbies'  => 'Vís bert íkast frá nýggjum kontoum',
 'sp-contributions-blocklog' => 'Bannagerðabók',
+'sp-contributions-talk'     => 'Kjak',
 'sp-contributions-search'   => 'Leita eftir íkøstum',
 'sp-contributions-username' => 'IP adressa ella brúkaranavn:',
 'sp-contributions-submit'   => 'Leita',

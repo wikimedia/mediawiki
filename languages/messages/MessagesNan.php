@@ -682,6 +682,8 @@ Template:Khu-pia̍t-ia̍h',
 
 'sp-contributions-newbies'     => 'Kan-taⁿ hián-sī sin kháu-chō ê kòng-kiàn',
 'sp-contributions-newbies-sub' => 'Sin lâi--ê',
+'sp-contributions-deleted'     => 'Hō͘ lâng thâi tiāu ê kòng-hiàn',
+'sp-contributions-talk'        => 'thó-lūn',
 'sp-contributions-search'      => 'Chhoē chhut kòng-kiàn',
 'sp-contributions-username'    => 'IP Chū-chí a̍h iōng-chiá miâ:',
 'sp-contributions-submit'      => 'Chhoē',

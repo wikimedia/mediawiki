@@ -948,6 +948,7 @@ iitom e-iitomde diijömde caitóm.',
 'mycontris'     => 'Hecontribución',
 'uctop'         => '(quániit)',
 
+'sp-contributions-talk'     => 'Czaxö',
 'sp-contributions-search'   => 'Yahöx contribución mii',
 'sp-contributions-username' => 'Addressade IP jöx caitom ID:',
 'sp-contributions-submit'   => 'Yahöx',

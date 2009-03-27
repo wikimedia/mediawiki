@@ -239,6 +239,8 @@ $messages = array(
 # Contributions
 'mycontris' => 'हमर योगदान',
 
+'sp-contributions-talk' => 'कहू',
+
 # What links here
 'whatlinkshere'       => 'एतय कोन लिंक अछि',
 'whatlinkshere-links' => '← लिंक',

@@ -107,6 +107,8 @@ $messages = array(
 # Contributions
 'year' => 'Yia:',
 
+'sp-contributions-talk' => 'Toktok',
+
 # Block/unblock
 'proxyblocksuccess' => 'Finis.',
 

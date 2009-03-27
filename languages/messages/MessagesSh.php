@@ -268,6 +268,7 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 
 'sp-contributions-newbies'  => 'Pokaži doprinose samo novih korisnika',
 'sp-contributions-blocklog' => 'registar blokiranja',
+'sp-contributions-talk'     => 'Razgovor',
 'sp-contributions-search'   => 'Pretraga doprinosa',
 'sp-contributions-username' => 'IP adresa ili korisničko ime:',
 'sp-contributions-submit'   => 'Traži',

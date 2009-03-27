@@ -470,6 +470,8 @@ $messages = array(
 'namespace'      => 'नामविश्व:',
 'blanknamespace' => '(मुख्य)',
 
+'sp-contributions-talk' => 'संवाद',
+
 # What links here
 'whatlinkshere'       => 'किम्‌ पृष्ठ सम्बद्धं करोति',
 'whatlinkshere-links' => '← निबन्धन',

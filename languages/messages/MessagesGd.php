@@ -384,6 +384,8 @@ $1",
 'mycontris' => 'Mo chuideachaidhean',
 'uctop'     => ' (bàrr)',
 
+'sp-contributions-talk' => 'Deasbaireachd',
+
 # What links here
 'whatlinkshere' => "Dè tha a' ceangal ri seo?",
 'isredirect'    => 'duilleag ath-stiùireidh',

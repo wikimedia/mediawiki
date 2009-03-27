@@ -532,6 +532,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 
 'sp-contributions-newbies'  => 'Faqatgina yangi foydalanuvchilarning hissalarini koʻrsat',
 'sp-contributions-blocklog' => 'Chetlashtirish qaydlari',
+'sp-contributions-talk'     => 'Munozara',
 'sp-contributions-search'   => 'Hissalarni qidir',
 'sp-contributions-username' => 'IP manzil yoki foydalanuvchi ismi:',
 'sp-contributions-submit'   => 'Qidir',

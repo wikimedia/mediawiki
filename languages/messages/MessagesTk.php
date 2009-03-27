@@ -651,6 +651,7 @@ Bu sahypanyň gorag derejesini üýtgedip bilersiňiz, ýöne ol kaskadly goraga
 
 'sp-contributions-newbies'  => 'Diňe täze hasap açan ulanyjylaryň goşantlaryny görkez',
 'sp-contributions-blocklog' => 'Blokirleme gündeligi',
+'sp-contributions-talk'     => 'Çekisme',
 'sp-contributions-search'   => 'Goşantlary gözle',
 'sp-contributions-username' => 'IP adresi ýa-da ulanyjy ady:',
 'sp-contributions-submit'   => 'Gözle',

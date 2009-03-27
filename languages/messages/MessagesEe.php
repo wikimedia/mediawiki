@@ -371,6 +371,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'year'                => 'Tso ƒe (kple do ŋgɔ):',
 
 'sp-contributions-newbies' => 'Fia ŋkɔŋlɔla yeyewo ƒe ɖɔɖɔɖowo ko.',
+'sp-contributions-talk'    => 'Nyamedzroƒe',
 
 # What links here
 'whatlinkshere'       => 'Nusiwo kaa afii ŋu',

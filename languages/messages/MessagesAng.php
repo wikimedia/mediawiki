@@ -535,6 +535,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'contributions' => 'Brūcendforðunga',
 'mycontris'     => 'Mīna forðunga',
 
+'sp-contributions-talk'   => 'Gesprec',
 'sp-contributions-submit' => 'Sēcan',
 
 # What links here

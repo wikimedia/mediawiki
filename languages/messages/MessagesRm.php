@@ -827,6 +827,7 @@ Ti pos midar il livel da protecziun da quest\'artitgel, quai na vegn dentant bet
 'sp-contributions-newbies'     => 'Be mussar contribuziuns da contos novs',
 'sp-contributions-newbies-sub' => "Per novs contos d'utilisader",
 'sp-contributions-blocklog'    => 'Log dal bloccar',
+'sp-contributions-talk'        => 'Discussiun',
 'sp-contributions-search'      => "Tschertgar contribuziuns d'utilisaders",
 'sp-contributions-username'    => "Adressa d'IP u num d'utilisader:",
 'sp-contributions-submit'      => 'Tschertga',

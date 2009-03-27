@@ -367,6 +367,7 @@ $messages = array(
 
 'sp-contributions-blocklog' => 'ܣܓܠܐ ܕܚܪܡܐ',
 'sp-contributions-logs'     => 'ܣܓܠ̈ܐ',
+'sp-contributions-talk'     => 'ܡܡܠܠܐ',
 'sp-contributions-search'   => 'ܒܨܝ ܫܘ̈ܬܦܘܝܬܐ',
 'sp-contributions-submit'   => 'ܒܨܝ',
 

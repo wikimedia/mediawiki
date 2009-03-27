@@ -75,6 +75,8 @@ $messages = array(
 # Delete
 'actioncomplete' => 'ᎠᏍᏆᏙᏅᎯ',
 
+'sp-contributions-talk' => 'ᎧᏃᎮᎸᏗ',
+
 # What links here
 'whatlinkshere' => 'ᎦᏙ ᎤᏍᏗ ᏗᏕᎬᏔᏛ ᎠᎭᏂ',
 

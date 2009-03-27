@@ -322,6 +322,7 @@ Di [[Special:WhatLinksHere/$2|ful list]] de yah.',
 # Undelete
 'undelete-search-submit' => 'Luk foh am',
 
+'sp-contributions-talk'   => 'Tòk',
 'sp-contributions-submit' => 'Luk foh am',
 
 # What links here

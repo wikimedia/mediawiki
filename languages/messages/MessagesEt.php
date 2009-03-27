@@ -1475,6 +1475,8 @@ Kui vahepeal on loodud uus samanimeline lehekülg, ilmuvad taastatud versioonid 
 'sp-contributions-newbies'     => 'Näita ainult uute kasutajate kaastööd.',
 'sp-contributions-newbies-sub' => 'Uued kasutajad',
 'sp-contributions-blocklog'    => 'Blokeerimise logi',
+'sp-contributions-talk'        => 'Arutelu',
+'sp-contributions-userrights'  => 'Kasutaja õiguste muutmine',
 'sp-contributions-search'      => 'Otsi kaastöid',
 'sp-contributions-username'    => 'IP aadress või kasutajanimi:',
 'sp-contributions-submit'      => 'Otsi',

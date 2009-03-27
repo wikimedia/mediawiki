@@ -815,6 +815,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 
 'sp-contributions-newbies'  => 'Amosta isceti is contributziones de is account novos',
 'sp-contributions-blocklog' => 'registru de is bloccos',
+'sp-contributions-talk'     => 'Cuntierras',
 'sp-contributions-search'   => 'Chirca contributziones',
 'sp-contributions-username' => 'Indiritzu IP o nòmene usuàriu:',
 'sp-contributions-submit'   => 'Chirca',

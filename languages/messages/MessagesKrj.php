@@ -263,6 +263,7 @@ Lantawa sa [[Special:Version|version kang page]].',
 # Undelete
 'undelete-search-submit' => 'Sagap',
 
+'sp-contributions-talk'   => 'Wakal',
 'sp-contributions-submit' => 'Sagap',
 
 # What links here

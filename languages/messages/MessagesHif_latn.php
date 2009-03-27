@@ -1823,6 +1823,9 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 'sp-contributions-newbies'     => 'Khaali nawaa account ke yogdaan dekhao',
 'sp-contributions-newbies-sub' => 'Nawaa account khatir',
 'sp-contributions-blocklog'    => 'Suchi roko',
+'sp-contributions-deleted'     => 'Sadasya ke yogdaan ke mitae dia hai',
+'sp-contributions-talk'        => 'Baat',
+'sp-contributions-userrights'  => 'Sadasya ke adhikaar ke chalao',
 'sp-contributions-search'      => 'Yogdaan ke khojo',
 'sp-contributions-username'    => 'IP Address nai to username:',
 
