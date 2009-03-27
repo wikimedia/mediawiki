@@ -297,8 +297,8 @@ class LogEventsList {
 						'diff='.intval($Ids[0])."&unhide=1&token=$token" );
 				}
 				// View/modify link...
-				$revert[] = $this->skin->makeKnownLinkObj( $revdel,
-					$this->message['revdel-restore'], "$key=$query" );
+				$revert[] = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
+					'target='.$title->getPrefixedUrl()."&$key=$query" );
 				// Pipe links
 				$revert = '(' . implode(' | ',$revert) . ')';
 			}
