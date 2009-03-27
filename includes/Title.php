@@ -179,20 +179,15 @@ class Title {
 	/**
 	 * Create a new Title from an article ID
 	 *
-	 * @todo This is inefficiently implemented, the page row is requested
-	 *       but not used for anything else
-	 *
 	 * @param $id \type{\int} the page_id corresponding to the Title to create
 	 * @param $flags \type{\int} use GAID_FOR_UPDATE to use master
 	 * @return \type{Title} the new object, or NULL on an error
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
-		$fname = 'Title::newFromID';
 		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
-		$row = $db->selectRow( 'page', array( 'page_namespace', 'page_title' ),
-			array( 'page_id' => $id ), $fname );
-		if ( $row !== false ) {
-			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$row = $db->selectRow( 'page', '*', array( 'page_id' => $id ), __METHOD__ );
+		if( $row !== false ) {
+			$title = Title::newFromRow( $row );
 		} else {
 			$title = NULL;
 		}
