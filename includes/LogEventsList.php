@@ -359,16 +359,15 @@ class LogEventsList {
 		$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 		// If event was hidden from sysops
 		if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
-			$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.$this->message['rev-delundel'].')' );
+			$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
+				'('.$this->message['rev-delundel'].')' );
 		} else if( $row->log_type == 'suppress' ) {
-			// No one should be hiding from the oversight log
-			$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.$this->message['rev-delundel'].')' );
+			$del = ''; // No one should be hiding from the oversight log
 		} else {
 			$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
-			$query = array( 'target' => $target->getPrefixedDBkey(),
-				'logid' => $row->log_id
-			);
-			$del = $this->skin->revDeleteLink( $query, self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) );
+			$query = array( 'target' => $target->getPrefixedDBkey(), 'logid' => $row->log_id );
+			$del = $this->skin->revDeleteLink( $query,
+				self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) );
 		}
 		return $del;
 	}
@@ -381,7 +380,8 @@ class LogEventsList {
 	 * @return bool
 	 */
 	public static function typeAction( $row, $type, $action, $right='' ) {
-		$match = is_array($type) ? in_array($row->log_type,$type) : $row->log_type == $type;
+		$match = is_array($type) ?
+			in_array($row->log_type,$type) : $row->log_type == $type;
 		if( $match ) {
 			$match = is_array($action) ?
 				in_array($row->log_action,$action) : $row->log_action == $action;
