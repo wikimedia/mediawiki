@@ -903,13 +903,6 @@ $2',
 'statistics-mostpopular'  => '被查閱次數最多的頁面',
 
 'disambiguations'      => '消歧義',
-'disambiguationspage'  => 'Template:disambig
-Template:消含糊
-Template:消除含糊
-Template:消歧義
-Template:消除歧義
-Template:消歧義
-Template:消除歧義',
 'disambiguations-text' => '以下的頁面都有到<b>消歧義頁</b>的鏈接,
 但它們應該是連到適當的標題。<br />
 個頁面會被視為消含糊頁如果它是連自[[MediaWiki:Disambiguationspage]]。',
