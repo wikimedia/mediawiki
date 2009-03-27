@@ -200,7 +200,7 @@ $messages = array(
 'tog-enotifminoredits'        => '在页面有微小编辑时也发邮件通知我',
 'tog-enotifrevealaddr'        => '在通知电子邮件列表中显示我的电子邮件地址',
 'tog-shownumberswatching'     => '显示监视此页的用户数',
-'tog-fancysig'                => '原始签名 (没有自动链接)',
+'tog-fancysig'                => '将签名以维基文字对待 (不产生自动连结)',
 'tog-externaleditor'          => '默认使用外部编辑器  (高级者专用，需要在您的电脑上作出一些特别设置)',
 'tog-externaldiff'            => '默认使用外部差异分析  (高级者专用，需要在您的电脑上作出一些特别设置)',
 'tog-showjumplinks'           => '启用"转到"访问链接',
@@ -876,12 +876,18 @@ $2',
 'rev-deleted-comment'            => '(注释已移除)',
 'rev-deleted-user'               => '(用户名已移除)',
 'rev-deleted-event'              => '(日志动作已移除)',
-'rev-deleted-text-permission'    => '该页面修订已经被从公共文档中移除。
-在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。',
-'rev-deleted-text-view'          => '该页面修订已经被从公共文档中移除。作为{{SITENAME}}的管理员，您可以查看它；
-在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。',
-'rev-deleted-no-diff'            => '因为其中一次修订从公众存档中移除，您不可以查看这个差异。
-在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的资料。',
+'rev-deleted-text-permission'    => "该页面修订已经被'''删除'''。
+在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。",
+'rev-deleted-text-unhide'        => "该页面修订已经被'''删除'''。
+在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。
+作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
+'rev-deleted-text-view'          => "该页面修订已经被'''删除'''。作为管理员，您可以查看它；
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。",
+'rev-deleted-no-diff'            => "因为其中一次修订'''删除'''，您不可以查看这个差异。
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的资料。",
+'rev-deleted-unhide-diff'        => "该页面的其中一次修订已经被'''删除'''。
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的资料。
+作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
 'rev-delundel'                   => '显示/隐藏',
 'revisiondelete'                 => '删除/恢复删除修订',
 'revdelete-nooldid-title'        => '无效的目标修订',
@@ -1272,6 +1278,7 @@ $2',
 'right-userrights-interwiki' => '编辑在其它wiki上的用户权限',
 'right-siteadmin'            => '锁定和解除锁定数据库',
 'right-reset-passwords'      => '重设其他用户的密码',
+'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 
 # User rights log
 'rightslog'      => '用户权限日志',
@@ -2081,7 +2088,7 @@ $1',
 'ipboptions'                      => '2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => '其它',
 'ipbotherreason'                  => '其它／附带原因:',
-'ipbhidename'                     => '在查封日志、活跃查封列表以及用户列表中隐藏用户名',
+'ipbhidename'                     => '在编辑及列表中隐藏用户名',
 'ipbwatchuser'                    => '监视这位用户的用户页面以及其对话页面',
 'ipballowusertalk'                => '当被封锁时容许这位用户去编辑自己的讨论页面',
 'ipb-change-block'                => '利用这些设置重新封锁用户',
@@ -2135,9 +2142,11 @@ $1',
 'block-log-flags-noemail'         => '禁止电子邮件',
 'block-log-flags-nousertalk'      => '不可编辑自己的讨论页面',
 'block-log-flags-angry-autoblock' => '加强自动封锁已启用',
+'block-log-flags-hiddenname'      => '隐藏用户名称',
 'range_block_disabled'            => '只有管理员才能创建禁止查封的范围。',
 'ipb_expiry_invalid'              => '无效的终止时间。',
 'ipb_expiry_temp'                 => '隐藏用户名封锁必须是永久性的。',
+'ipb_hide_invalid'                => '不能压止这个账户；它可能有太多编辑。',
 'ipb_already_blocked'             => '已经封锁"$1"',
 'ipb-needreblock'                 => '== 已经封锁 ==
 $1已经被封锁。您是否想更改这个设置？',
@@ -2398,7 +2407,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-recreate'                => '重建该页面，无论是否被删除。',
 'tooltip-upload'                  => '开始上传',
 'tooltip-rollback'                => '‘反转’可以一按恢复上一位贡献者对这个页面的编辑',
-'tooltip-undo'                    => '‘复原’可以在编辑方式上开启编辑表格以便复原。容许在摘要中加入原因',
+'tooltip-undo'                    => '‘复原’可以在编辑方式上开启编辑表格以便复原。它容许在摘要中加入原因。',
 
 # Stylesheets
 'common.css'      => '/* 此处的 CSS 将应用于所有的皮肤 */',
@@ -3055,6 +3064,6 @@ $1',
 'dberr-info'        => '(无法连系到资料库服务器: $1)',
 'dberr-usegoogle'   => '在现阶段您可以尝试通过 Google 搜寻。',
 'dberr-outofdate'   => '留意他们索引出来之内容可能不是最新的。',
-'dberr-cachederror' => '以下是所要求出来的缓存复本，可能不是最新的。',
+'dberr-cachederror' => '这个是所要求出来的缓存复本，可能不是最新的。',
 
 );

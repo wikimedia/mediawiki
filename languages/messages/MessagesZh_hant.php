@@ -188,7 +188,7 @@ $messages = array(
 'tog-enotifminoredits'        => '即使是頁面的小修改也向我發電子郵件',
 'tog-enotifrevealaddr'        => '在通知電子郵件中顯示我的電子郵件位址',
 'tog-shownumberswatching'     => '顯示監視用戶的數目',
-'tog-fancysig'                => '使用原始簽名 (不產生自動連結)',
+'tog-fancysig'                => '將簽名以維基文字對待 (不產生自動連結)',
 'tog-externaleditor'          => '預設使用外部編輯器 (進階者專用，需要在您的電腦上作出一些特別設定)',
 'tog-externaldiff'            => '預設使用外部差異分析 (進階者專用，需要在您的電腦上作出一些特別設定)',
 'tog-showjumplinks'           => '啟用「跳轉到」訪問連結',
@@ -865,12 +865,18 @@ $2',
 'rev-deleted-comment'            => '(註釋已移除)',
 'rev-deleted-user'               => '(用戶名已移除)',
 'rev-deleted-event'              => '(日誌動作已移除)',
-'rev-deleted-text-permission'    => '該頁面修訂已經被從公共文檔中移除。
-在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。',
-'rev-deleted-text-view'          => '該頁面修訂已經被從公共文檔中移除。作為{{SITENAME}}的管理員，您可以檢視它；
-在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。',
-'rev-deleted-no-diff'            => '因為其中一次修訂從公眾存檔中移除，您不可以查看這個差異。
-在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可能有更多的資料。',
+'rev-deleted-text-permission'    => "該頁面修訂已經被'''刪除'''。
+在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。",
+'rev-deleted-text-unhide'        => "該頁面修訂已經被'''刪除'''。
+在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。
+作為管理員，如果您想繼續的話，您可以仍然[$1 去查看這次修訂]。",
+'rev-deleted-text-view'          => "該頁面修訂已經被'''刪除'''。作為管理員，您可以檢視它；
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。",
+'rev-deleted-no-diff'            => "因為其中一次修訂'''刪除'''，您不可以查看這個差異。
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可能有更多的資料。",
+'rev-deleted-unhide-diff'        => "該頁面的其中一次修訂已經被'''刪除'''。
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可能有更多的資料。
+作為管理員，如果您想繼續的話，您可以仍然[$1 去查看這次修訂]。",
 'rev-delundel'                   => '顯示/隱藏',
 'revisiondelete'                 => '刪除/恢復刪除修訂',
 'revdelete-nooldid-title'        => '無效的目標修訂',
@@ -1261,6 +1267,7 @@ $2',
 'right-userrights-interwiki' => '編輯在其它wiki上的用戶權限',
 'right-siteadmin'            => '鎖定和解除鎖定資料庫',
 'right-reset-passwords'      => '重設其他用戶的密碼',
+'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -2071,7 +2078,7 @@ $1',
 'ipboptions'                      => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => '其它',
 'ipbotherreason'                  => '其它／附帶原因:',
-'ipbhidename'                     => '在查封日誌、活躍查封列表以及用戶列表中隱藏用戶名',
+'ipbhidename'                     => '在編輯及列表中隱藏用戶名',
 'ipbwatchuser'                    => '監視這位用戶的用戶頁面以及其對話頁面',
 'ipballowusertalk'                => '當被封鎖時容許這位用戶去編輯自己的討論頁面',
 'ipb-change-block'                => '利用這些設定重新封鎖用戶',
@@ -2124,9 +2131,11 @@ $1',
 'block-log-flags-noemail'         => '禁止電子郵件',
 'block-log-flags-nousertalk'      => '不可編輯自己的討論頁面',
 'block-log-flags-angry-autoblock' => '加強自動封鎖已啟用',
+'block-log-flags-hiddenname'      => '隱藏用戶名稱',
 'range_block_disabled'            => '只有管理員才能創建禁止查封的範圍。',
 'ipb_expiry_invalid'              => '無效的終止時間。',
 'ipb_expiry_temp'                 => '隱藏用戶名封鎖必須是永久性的。',
+'ipb_hide_invalid'                => '不能壓止這個賬戶；它可能有太多編輯。',
 'ipb_already_blocked'             => '已經封鎖"$1"',
 'ipb-needreblock'                 => '== 已經封鎖 ==
 $1已經被封鎖。您是否想更改這個設定？',
@@ -2388,7 +2397,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'tooltip-recreate'                => '重建該頁面，無論是否被刪除。',
 'tooltip-upload'                  => '開始上傳',
 'tooltip-rollback'                => '『反轉』可以一按恢復上一位貢獻者對這個頁面的編輯',
-'tooltip-undo'                    => '『復原』可以在編輯模式上開啟編輯表格以便復原。容許在摘要中加入原因',
+'tooltip-undo'                    => '『復原』可以在編輯模式上開啟編輯表格以便復原。它容許在摘要中加入原因。',
 
 # Stylesheets
 'common.css'      => '/* 此處的 CSS 將應用於所有的面板 */',
@@ -3045,6 +3054,6 @@ $1',
 'dberr-info'        => '(無法連繫到資料庫伺服器: $1)',
 'dberr-usegoogle'   => '在現階段您可以嘗試透過 Google 搜尋。',
 'dberr-outofdate'   => '留意他們索引出來之內容可能不是最新的。',
-'dberr-cachederror' => '以下是所要求出來的快取複本，可能不是最新的。',
+'dberr-cachederror' => '這個是所要求出來的快取複本，可能不是最新的。',
 
 );
