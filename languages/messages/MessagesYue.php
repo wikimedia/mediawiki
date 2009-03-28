@@ -1488,7 +1488,7 @@ $1',
 'sharedupload-desc-there'   => '呢個檔案係出自$1，可以喺其他計劃中使用。
 更多資訊請睇[$2 檔案描述頁]。',
 'sharedupload-desc-here'    => '呢個檔案係出自$1，可以喺其他計劃中使用。
-佢響嗰邊嘅[$2 檔案描述頁]響下面度顯示。'
+佢響嗰邊嘅[$2 檔案描述頁]響下面度顯示。',
 'noimage'                   => '冇同名嘅檔案存在，你可以$1。',
 'noimage-linktext'          => '上載一個',
 'uploadnewversion-linktext' => '上載呢個檔案嘅一個新版本',
