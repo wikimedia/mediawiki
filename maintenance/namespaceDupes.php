@@ -115,6 +115,7 @@ class NamespaceConflictChecker {
 	
 	private function getInterwikiList() {
 		$result = $this->db->select( 'interwiki', array( 'iw_prefix' ) );
+		$prefixes = array();
 		while( $row = $this->db->fetchObject( $result ) ) {
 			$prefixes[] = $row->iw_prefix;
 		}
