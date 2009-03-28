@@ -920,7 +920,8 @@ It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'gender-unknown'             => 'Unspecified',
 'gender-male'                => 'Male',
 'gender-female'              => 'Female',
-'prefs-help-gender'          => 'Optional: used for gender-correct addressing by the software. This information will be public.',
+'prefs-help-gender'          => 'Optional: used for gender-correct addressing by the software.
+This information will be public.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
@@ -1886,7 +1887,8 @@ If you still want to upload your file, please go back and use a new name. [[File
 'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository.
 If you still want to upload your file, please go back and use a new name. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'This file is a duplicate of the following {{PLURAL:$1|file|files}}:',
-'file-deleted-duplicate'      => "A file identical to this file ([[$1]]) has previously been deleted. You should check that file's deletion history before proceeding to re-upload it.",
+'file-deleted-duplicate'      => "A file identical to this file ([[$1]]) has previously been deleted.
+You should check that file's deletion history before proceeding to re-upload it.",
 'successfulupload'            => 'Successful upload',
 'uploadwarning'               => 'Upload warning',
 'savefile'                    => 'Save file',
@@ -1894,7 +1896,8 @@ If you still want to upload your file, please go back and use a new name. [[File
 'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
 'uploaddisabled'              => 'Uploads disabled',
 'uploaddisabledtext'          => 'File uploads are disabled.',
-'php-uploaddisabledtext'      => 'File uploads are disabled in PHP. Please check the file_uploads setting.',
+'php-uploaddisabledtext'      => 'File uploads are disabled in PHP.
+Please check the file_uploads setting.',
 'uploadscripted'              => 'This file contains HTML or script code that may be erroneously interpreted by a web browser.',
 'uploadcorrupt'               => 'The file is corrupt or has an incorrect extension.
 Please check the file and upload again.',
@@ -1991,8 +1994,10 @@ A [[Special:WhatLinksHere/$2|full list]] is available.',
 'redirectstofile'           => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:',
 'duplicatesoffile'          => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file ([[Special:FileDuplicateSearch/$2|more details]]):',
 'sharedupload'              => 'This file is from $1 and may be used by other projects.',
-'sharedupload-desc-there'   => 'This file is from $1 and may be used by other projects. Please see the [$2 file description page] for further information.',
-'sharedupload-desc-here'    => 'This file is from $1 and may be used by other projects. The description on its [$2 file description page] there is shown below.',
+'sharedupload-desc-there'   => 'This file is from $1 and may be used by other projects.
+Please see the [$2 file description page] for further information.',
+'sharedupload-desc-here'    => 'This file is from $1 and may be used by other projects.
+The description on its [$2 file description page] there is shown below.',
 'shareddescriptionfollows'  => '-', # do not translate or duplicate this message to other languages
 'noimage'                   => 'No file by this name exists, but you can $1.',
 'noimage-linktext'          => 'upload one',
@@ -2094,7 +2099,8 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'doubleredirects-summary'    => '', # do not translate or duplicate this message to other languages
 'doubleredirectstext'        => 'This page lists pages which redirect to other redirect pages.
 Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually "real" target page, which the first redirect should point to.',
-'double-redirect-fixed-move' => '[[$1]] has been moved. It now redirects to [[$2]].',
+'double-redirect-fixed-move' => '[[$1]] has been moved.
+It now redirects to [[$2]].',
 'double-redirect-fixer'      => 'Redirect fixer',
 
 'brokenredirects'         => 'Broken redirects',
@@ -2702,7 +2708,8 @@ See the [[Special:IPBlockList|IP block list]] for the list of currently operatio
 'ipb_hide_invalid'                => 'Unable to suppress this account; it may have too many edits.',
 'ipb_already_blocked'             => '"$1" is already blocked',
 'ipb-needreblock'                 => '== Already blocked ==
-$1 is already blocked. Do you want to change the settings?',
+$1 is already blocked.
+Do you want to change the settings?',
 'ipb_cant_unblock'                => 'Error: Block ID $1 not found.
 It may have been unblocked already.',
 'ipb_blocked_as_range'            => 'Error: The IP $1 is not blocked directly and cannot be unblocked.
@@ -2896,7 +2903,8 @@ A temporary folder is missing.',
 'import-nonewrevisions'      => 'All revisions were previously imported.',
 'xml-error-string'           => '$1 at line $2, col $3 (byte $4): $5',
 'import-upload'              => 'Upload XML data',
-'import-token-mismatch'      => 'Loss of session data. Please try again.',
+'import-token-mismatch'      => 'Loss of session data.
+Please try again.',
 'import-invalid-interwiki'   => 'Cannot import from the specified wiki.',
 
 # Import log
