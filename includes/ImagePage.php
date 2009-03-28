@@ -483,20 +483,18 @@ EOT
 
 		$descUrl = $this->img->getDescriptionUrl();
 		$descText = $this->img->getDescriptionText();
+
+		$wrap = "<div class='sharedUploadNotice'>\n$1\n</div>";
+		$repo = $this->img->getRepo()->getDisplayName();
+
 		$msg = '';
-		if( $descUrl ) {
-			$sk = $wgUser->getSkin();
-			$link = $sk->makeExternalLink( $descUrl, wfMsg( 'shareduploadwiki-linktext' ) );
-			$msg = ( $descText ) ? 'shareduploadwiki-desc' : 'shareduploadwiki';
-			$msg = wfMsgExt( $msg, array( 'parseinline', 'replaceafter' ), $link );
-			if( $msg == '-' ) {
-				$msg = '';
-			}
+		if( $descUrl && $descText && wfMsgNoTrans( 'sharedupload-desc-here' ) !== '-'  ) {
+			$wgOut->wrapWikiMsg( $wrap, array( 'sharedupload-desc-here', $repo, $descUrl ) );
+		} elseif ( $descUrl && wfMsgNoTrans( 'sharedupload-desc-there' ) !== '-' ) {
+			$wgOut->wrapWikiMsg( $wrap, array( 'sharedupload-desc-there', $repo, $descUrl ) );
+		} else {
+			$wgOut->wrapWikiMsg( $wrap, array( 'sharedupload', $repo ), ''/*BACKCOMPAT*/ );
 		}
-		$s  = "<div class='sharedUploadNotice'>";
-		$s .= wfMsgWikiHtml( 'sharedupload', $this->img->getRepo()->getDisplayName(), $msg );
-		$s .= "</div>";
-		$wgOut->addHTML( $s );
 
 		if( $descText ) {
 			$this->mExtraDescription = $descText;
