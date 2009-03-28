@@ -1990,10 +1990,9 @@ A [[Special:WhatLinksHere/$2|full list]] is available.',
 'morelinkstoimage'          => 'View [[Special:WhatLinksHere/$1|more links]] to this file.',
 'redirectstofile'           => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:',
 'duplicatesoffile'          => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file ([[Special:FileDuplicateSearch/$2|more details]]):',
-'sharedupload'              => 'This file is from $1 and may be used by other projects. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Please see the $1 for further information.',
-'shareduploadwiki-desc'     => 'The description on its $1 there is shown below.',
-'shareduploadwiki-linktext' => 'file description page',
+'sharedupload'              => 'This file is from $1 and may be used by other projects.',
+'sharedupload-desc-there'   => 'This file is from $1 and may be used by other projects. Please see the [$2 file description page] for further information.',
+'sharedupload-desc-here'    => 'This file is from $1 and may be used by other projects. The description on its [$2 file description page] there is shown below.',
 'shareddescriptionfollows'  => '-', # do not translate or duplicate this message to other languages
 'noimage'                   => 'No file by this name exists, but you can $1.',
 'noimage-linktext'          => 'upload one',
