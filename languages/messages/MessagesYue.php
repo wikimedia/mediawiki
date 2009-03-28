@@ -1484,10 +1484,11 @@ $1',
 'morelinkstoimage'          => '去睇連到呢個檔案嘅[[Special:WhatLinksHere/$1|更多連結]]。',
 'redirectstofile'           => '下面嘅$1個檔案跳轉到呢個檔案:',
 'duplicatesoffile'          => '下面嘅$1個檔案係同呢個檔案重覆 ([[Special:FileDuplicateSearch/$2|更多細節]]):',
-'sharedupload'              => '呢個檔案係出自$1，可以喺其他計劃中使用。“ $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => '更多資訊請睇$1。',
-'shareduploadwiki-desc'     => '佢響嗰邊嘅$1描述響下面度顯示。',
-'shareduploadwiki-linktext' => '檔案描述頁面',
+'sharedupload'              => '呢個檔案係出自$1，可以喺其他計劃中使用。', # $1 is the repo name
+'sharedupload-desc-there'   => '呢個檔案係出自$1，可以喺其他計劃中使用。
+更多資訊請睇[$2 檔案描述頁]。',
+'sharedupload-desc-here'    => '呢個檔案係出自$1，可以喺其他計劃中使用。
+佢響嗰邊嘅[$2 檔案描述頁]響下面度顯示。'
 'noimage'                   => '冇同名嘅檔案存在，你可以$1。',
 'noimage-linktext'          => '上載一個',
 'uploadnewversion-linktext' => '上載呢個檔案嘅一個新版本',
