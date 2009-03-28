@@ -1269,10 +1269,11 @@ $2',
 'morelinkstoimage'          => '閱檔[[Special:WhatLinksHere/$1|接]]。',
 'redirectstofile'           => '下檔轉到此檔有$1：',
 'duplicatesoffile'          => '下檔重此檔有$1：',
-'sharedupload'              => '此檔為共傳，可另項用也。 $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => '詳閱$1。',
-'shareduploadwiki-desc'     => '於共庫上$1之示。',
-'shareduploadwiki-linktext' => '檔述',
+'sharedupload'              => '此檔為$1之共傳，可另項用也。', # $1 is the repo name
+'sharedupload-desc-there'   => '此檔為$1之共傳，可另項用也。
+詳閱[$2 檔述]。',
+'sharedupload-desc-here'    => '此檔為$1之共傳，可另項用也。
+於共庫上[$2 檔述]之示。',
 'noimage'                   => '查無此檔，爾可$1。',
 'noimage-linktext'          => '貢焉',
 'uploadnewversion-linktext' => '更新此檔',
