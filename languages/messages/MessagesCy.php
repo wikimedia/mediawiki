@@ -1394,10 +1394,7 @@ Mae'r rhestr canlynol yn dangos y {{PLURAL:$1|$1 cysylltiad cyntaf}} at y ffeil 
 'morelinkstoimage'          => 'Gweld [[Special:WhatLinksHere/$1|rhagor o gysylltiadau]] at y ffeil hon.',
 'redirectstofile'           => "Mae'r {{PLURAL:$1||ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn ailgyfeirio at y ffeil hon:",
 'duplicatesoffile'          => "Mae'r {{PLURAL:$1||ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn union debyg i'r ffeil hon ([[Special:FileDuplicateSearch/$2|rhagor o fanylion]]):",
-'sharedupload'              => 'Daw y ffeil hon o $1, felly gall fod ar waith ar brosiectau eraill. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Gwelwch $1 am fwy o fanylion.',
-'shareduploadwiki-desc'     => 'Dangosir isod y disgrifiad ohoni sydd yno ar $1.',
-'shareduploadwiki-linktext' => 'dudalen ddisgrifiad y ffeil',
+'sharedupload'              => 'Daw y ffeil hon o $1, felly gall fod ar waith ar brosiectau eraill.',
 'noimage'                   => "Does dim ffeil a'r enw hwn i gael, ond gallwch $1.",
 'noimage-linktext'          => 'uwchlwytho un',
 'uploadnewversion-linktext' => "Uwchlwytho fersiwn newydd o'r ffeil hon",

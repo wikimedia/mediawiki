@@ -36,7 +36,7 @@ $messages = array(
 'tog-hideminor'               => 'Кыра көннөрүүлэри көрдөрбөккө',
 'tog-hidepatrolled'           => 'Ботурууллааччы көрбүт көннөрүүтүн саҥа көннөрүүлэр тиһиктэригэр көрдөрүмэ',
 'tog-newpageshidepatrolled'   => 'Ботуруулламмыт сирэйдэри саҥа сирэйдэр тиһиктэригэр көрдөрүмэ',
-'tog-extendwatchlist'         => 'Кэтээһин тупсарыллыбыт испииһэгэ',
+'tog-extendwatchlist'         => 'Кэтээһин тупсарыллыбыт испииһэгэ. Бары уларытыылар көстөллөр (бүтэһиктэр эрэ буолбатах)',
 'tog-usenewrc'                => 'Саҥа уларытыылар тупсарыллыбыт испииһэктэрэ (JavaScript)',
 'tog-numberheadings'          => 'Бас тыллары нүөмэрдээ',
 'tog-showtoolbar'             => 'Көннөрүү үстүрүмүөннэрин көрдөр (JavaScript)',
@@ -757,12 +757,13 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'rev-deleted-comment'            => '(ырытыы сотулунна)',
 'rev-deleted-user'               => '(кыттааччы аата сотулунна)',
 'rev-deleted-event'              => '(бэлиэтээһин дьайыыта сотулунна)',
-'rev-deleted-text-permission'    => 'Ыстатыйа бу торума архыыптан сотуллубут. Быһаарыыта  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.',
-'rev-deleted-text-view'          => 'Ыстатыйа бу торума архыыптан сотуллубут.
-Ол эрэн эн администратор буоларыҥ быһыытынан көрүөххүн сөп.
-Сотуллубутун быһаарыыта [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.',
-'rev-deleted-no-diff'            => 'Барыллар бу сирэйдэрин көрөр кыаҕыҥ суох, тоҕо диэтэххэ сирэй биир барыла аһаҕас архыыптан сотуллубут.
-Сиһилии [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] суруллубут буолуон сөп.',
+'rev-deleted-text-permission'    => "Ыстатыйа бу барыла '''аһаҕас архыыптан сотуллубут'''. 
+Быһаарыыта  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
+'rev-deleted-text-view'          => "Ыстатыйа бу торума '''аһаҕас архыыптан сотуллубут'''.
+Ол эрэн эн {{SITENAME}} дьаһабыла буоларыҥ быһыытынан ону көрүөххүн сөп.
+Тоҕо сотуллубутун быһаарыыта [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
+'rev-deleted-no-diff'            => "Барыллар бу сирэйдэрин көрөр кыаҕыҥ суох, тоҕо диэтэххэ сирэй биир барыла '''аһаҕас архыыптан сотуллубут'''.
+Сиһилии [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] суруллубут буолуон сөп.",
 'rev-delundel'                   => 'көрдөр/кистээ',
 'revisiondelete'                 => 'Соторго/торуму төнүннэрэргэ',
 'revdelete-nooldid-title'        => 'Торум чопчу ыйыллыбата',
@@ -787,7 +788,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'revdelete-hide-name'            => 'Дьайыыны уонна дьайыы сыалын кистээ.',
 'revdelete-hide-comment'         => 'Ырытыыны кистээ',
 'revdelete-hide-user'            => 'Ааппын/IP-бын көрдөрүмэ',
-'revdelete-hide-restricted'      => 'Бу хааччахтааһыннары администраатардарга эмиэ туттарга',
+'revdelete-hide-restricted'      => 'Маны дьаһабыллартан эмиэ кистииргэ',
 'revdelete-suppress'             => 'Бу суругу администратордартан эмиэ кистээ',
 'revdelete-hide-image'           => 'Билэ иһин кистээ',
 'revdelete-unsuppress'           => 'Төннөрүллүбүт торумнартан хааччахтааһыны ылан кэбиһэргэ',
@@ -836,6 +837,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'mergehistory-autocomment'         => '[[:$1]] манна [[:$2]] көһүүтэ (көһөрүү)',
 'mergehistory-comment'             => '[[:$1]] манна [[:$2]] көһүүтэ. Быһаарыы: $3',
 'mergehistory-same-destination'    => 'Саҕалыыр уонна түмүктүүр сирэйдэриҥ атын (уратылаах) буолуохтаахтар.',
+'mergehistory-reason'              => 'Төрүөтэ:',
 
 # Merge log
 'mergelog'           => 'Силбэһиилэр сурунааллара',
@@ -1394,10 +1396,7 @@ PICT # misc.
 'morelinkstoimage'          => 'Бу билэҕэ [[Special:WhatLinksHere/$1|атын сигэлэри]] көрөргө.',
 'redirectstofile'           => 'Билэҕэ бу {{PLURAL:$1|билэттэн сигэ олохтоммут|$1 билэлэртэн сигэлэр олохтоммуттар}}:',
 'duplicatesoffile'          => 'Бу билэ {{PLURAL:$1|дубликаата манна көстөр|$1 дубликаата манна көстөллөр}} ([[Special:FileDuplicateSearch/$2|сиһилии]]):',
-'sharedupload'              => 'Бу билэ манна сытар: $1, уонна атын бырайыактарга туттуллуон сөп. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Эбиитин мантан ааҕыаххын сөп $1.',
-'shareduploadwiki-desc'     => 'Уопсай ыскылааттан $1 сирэй аллара көрдөрүлүннэ.',
-'shareduploadwiki-linktext' => 'Билэни хос быһаарар сирэй',
+'sharedupload'              => 'Бу билэ манна сытар: $1, уонна атын бырайыактарга туттуллуон сөп.',
 'noimage'                   => 'Маннык ааттаах билэ суох эбит, маны гыныаххын сөп $1.',
 'noimage-linktext'          => 'итини суруттар',
 'uploadnewversion-linktext' => 'Бу билэ саҥа барылын суруттар',
@@ -1829,7 +1828,7 @@ $NEWPAGE
 ** уларытыы мөккүөрүгэр аһара барыы
 ** элбэхтик туттуллар сирэй',
 'protect-edit-reasonlist'     => 'Уларытыыттан көмүскээһин төрүөтүн көннөрөн биэрии',
-'protect-expiry-options'      => '2 чаас:2 hours,1 күн:1 day,3 күн:3 day,1 нэдиэлэ:1 week,2 нэдиэлэ:2 week,1 ый:1 month,3 ый:3 month,6 ый:6 month,1 сыл:1 month,больдьоҕо суох:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 чаас:1 hour,1 күн:1 day,1 нэдиэлэ:1 week,2 нэдиэлэ:2 weeks,1 ый:1 month,3 ый:3 months,6 ый:6 months,1 сыл:6 months,1 сыл:1 year, больдьоҕо суох:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Маны оҥорор кыахтааххын:',
 'restriction-level'           => 'Киирии таһыма:',
 'minimum-size'                => 'Оччугуй',

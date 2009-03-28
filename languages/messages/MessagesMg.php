@@ -693,14 +693,12 @@ Hamarino tsara aloha dia avereno alefa indray.',
 'listfiles' => 'Lisitry ny rakitra',
 
 # File description page
-'imagelinks'                => 'Rohy',
-'linkstoimage'              => "Ireto avy no pejy mirohy amin'io rakitra io:",
-'nolinkstoimage'            => "Tsy misy pejy mirohy amin'ity sary ity.",
-'sharedupload'              => "Mety ho rakitra itambarana amin'ny tetikasa hafa io rakitra io. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Fanazavana fanampiny, jereo $1.',
-'shareduploadwiki-linktext' => 'pejy famaritana ny rakitra',
-'noimage'                   => 'Tsy misy rakitra mitondra io anarana io, afaka $1 ianao.',
-'noimage-linktext'          => 'alefaso',
+'imagelinks'       => 'Rohy',
+'linkstoimage'     => "Ireto avy no pejy mirohy amin'io rakitra io:",
+'nolinkstoimage'   => "Tsy misy pejy mirohy amin'ity sary ity.",
+'sharedupload'     => "Mety ho rakitra itambarana amin'ny tetikasa hafa io rakitra io.",
+'noimage'          => 'Tsy misy rakitra mitondra io anarana io, afaka $1 ianao.',
+'noimage-linktext' => 'alefaso',
 
 # MIME search
 'mimesearch' => 'Fikarohana MIME',

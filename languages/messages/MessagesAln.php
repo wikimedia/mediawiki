@@ -6,7 +6,6 @@
  *
  * @author Cradel
  * @author Dardan
- * @author Verdy p
  */
 
 $fallback = 'sq';
@@ -459,7 +458,7 @@ Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet
 'filehist-comment'    => 'Koment',
 'imagelinks'          => 'Lidhje e skedave',
 'linkstoimage'        => "K'to faqe lidhen te kjo figurë/skedë:",
-'sharedupload'        => 'Kjo skedë asht një ngarkim i përbashkët dhe munet me u përdor nga projekte të tjera. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'        => 'Kjo skedë asht një ngarkim i përbashkët dhe munet me u përdor nga projekte të tjera.',
 
 # File deletion
 'filedelete-reason-otherlist' => 'Arsyje tjera',

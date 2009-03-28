@@ -821,9 +821,7 @@ ou co po les sons
 'imagelinks'                => 'Loyéns viè ciste imådje chal',
 'linkstoimage'              => 'Les pådjes shuvantes eployèt ciste imådje chal:',
 'nolinkstoimage'            => "I n' a nole pådje k' eploye ciste imådje chal.",
-'sharedupload'              => "Ci fitchî ci est so on ridant pårtaedjî ey i s' pout k' i soeye eployî pa ds ôtes pordjets. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Loukîz li $1 po pus di racsegnes.',
-'shareduploadwiki-linktext' => 'pådje di discrijhaedje',
+'sharedupload'              => "Ci fitchî ci est so on ridant pårtaedjî ey i s' pout k' i soeye eployî pa ds ôtes pordjets.",
 'noimage'                   => "I n' a nou fitchî avou ç' no la, vos l' poloz $1",
 'noimage-linktext'          => 'eberweter',
 'uploadnewversion-linktext' => 'Eberweter ene nouve modêye di ci fitchî ci',

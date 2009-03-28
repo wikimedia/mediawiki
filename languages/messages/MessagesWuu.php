@@ -490,7 +490,6 @@ $messages = array(
 'filehist-user'             => '用户',
 'imagelinks'                => '链接',
 'nolinkstoimage'            => '呒拨页面链接到该只文件。',
-'shareduploadwiki-linktext' => '文件描述页面',
 'noimage'                   => '呒拨叫该个名字个文件，倷可以$1。',
 'noimage-linktext'          => '上载俚',
 'uploadnewversion-linktext' => '上载该文件个新版',

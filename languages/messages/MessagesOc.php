@@ -284,7 +284,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'M’avertir per corrièr electronic quitament en cas de modificacions menoras',
 'tog-enotifrevealaddr'        => 'Afichar mon adreça electronica dins la los corrièrs electronics d’avertiment',
 'tog-shownumberswatching'     => "Afichar lo nombre d'utilizaires que seguisson aquesta pagina",
-'tog-fancysig'                => 'Signatura bruta (sens ligam automatic)',
+'tog-fancysig'                => 'Tractar la signatura coma de wikitèxte (sens ligam automatic)',
 'tog-externaleditor'          => 'Utilizar un editor extèrn per defaut (pels utilizaires avançats, necessita una configuracion especiala sus vòstre ordenador)',
 'tog-externaldiff'            => 'Utilizar un comparator extèrn per defaut (pels utilizaires avançats, necessita una configuracion especiala sus vòstre ordenador)',
 'tog-showjumplinks'           => 'Activar los ligams « navigacion » e « recèrca » en naut de pagina (aparéncias Myskin e autres)',
@@ -968,15 +968,18 @@ Ensajatz de [[Special:Search|recercar sul wiki]] per trobar de paginas en rapòr
 'rev-deleted-comment'            => '(comentari suprimit)',
 'rev-deleted-user'               => '(nom d’utilizaire suprimit)',
 'rev-deleted-event'              => '(entrada suprimida)',
-'rev-deleted-text-permission'    => "Aquesta version de la pagina es estada '''levada dels archius publics'''.
-I Pòt aver de detalhs dins l'[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} istoric de las supressions].",
-'rev-deleted-text-view'          => "Aquesta version de la pagina es estada '''levada dels archius publics'''.
-En tant qu’administrator d'aqueste sit, la podètz visualizar ; i pòt aver de detahls dins l'[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} istoric de las supressions].",
-'rev-deleted-no-diff'            => "Podètz pas veire aqueste diff per que una de las versions es estada '''levada dels archius publics'''.
-I pòt aver mai de detalhs dins [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l'istoric de las supressions].",
-'rev-deleted-unhide-diff'        => "Una de las revisions d'aquesta diferéncia es estada '''levada dels archius publics'''.
+'rev-deleted-text-permission'    => "Aquesta version de la pagina es estada '''suprimida'''.
+I pòt aver de detalhs dins l'[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} istoric de las supressions].",
+'rev-deleted-text-unhide'        => "Aquesta version de la pagina es estada '''suprimida'''.
+I pòt aver mai de detalhs dins [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lo jornal de las supressions].
+Coma administrator, podètz encara [$1 veire aquesta version] s'o volètz.",
+'rev-deleted-text-view'          => "Aquesta version de la pagina es estada '''suprimida'''.
+En tant qu’administrator, la podètz visualizar ; i pòt aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
+'rev-deleted-no-diff'            => "Podètz pas veire aquesta dif per que una de las versions es estada '''suprimida'''.
+I pòt aver mai de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
+'rev-deleted-unhide-diff'        => "Una de las revisions d'aquesta diferéncia es estada '''suprimida'''.
 I pòt aver mai de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].
-En tant qu'administrator de {{SITENAME}} podètz encara [$1 veire aquesta diferéncia] se o volètz.",
+En tant qu'administrator, podètz encara [$1 veire aquesta diferéncia] se o volètz.",
 'rev-delundel'                   => 'afichar/amagar',
 'revisiondelete'                 => 'Suprimir/Restablir de versions',
 'revdelete-nooldid-title'        => 'Cibla per la revision invalida',
@@ -1611,10 +1614,7 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'morelinkstoimage'          => 'Vejatz [[Special:WhatLinksHere/$1|mai de ligams]] cap a aqueste imatge.',
 'redirectstofile'           => '{{PLURAL:$1|Lo fichièr seguent redirigís|Los fichièrs seguents redirigisson}} cap a aqueste fichièr :',
 'duplicatesoffile'          => "{{PLURAL:$1|Lo fichièr seguent es un duplicata|Los fichièrs seguents son de duplicatas}} d'aqueste fichièr ([[Special:FileDuplicateSearch/$2|mai de detalhs]]):",
-'sharedupload'              => 'Aqueste fichièr proven de $1 e pòt èsser utilizat per d’autres projèctes. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Reportatz-vos a la $1 per mai d’informacion.',
-'shareduploadwiki-desc'     => 'La descripcion afichada çaijós es eissida de sa $1 dins lo depaus partejat.',
-'shareduploadwiki-linktext' => 'pagina de descripcion del fichièr',
+'sharedupload'              => 'Aqueste fichièr proven de $1 e pòt èsser utilizat per d’autres projèctes.',
 'noimage'                   => 'Cap de fichièr amb aqueste nom existís pas, mas podètz $1.',
 'noimage-linktext'          => "n'importar un",
 'uploadnewversion-linktext' => "Importar una version novèla d'aqueste fichièr",
@@ -2137,9 +2137,10 @@ $1",
 'sp-contributions-newbies-sub'   => 'Lista de las contribucions dels utilizaires novèls. Las paginas que son estadas suprimidas son pas afichadas.',
 'sp-contributions-newbies-title' => 'Las contribucions de l’utilizaire pels comptes novèls',
 'sp-contributions-blocklog'      => 'Istoric dels blocatges',
-'sp-contributions-deleted'       => 'Contribucions suprimidas d’un utilizaire',
+'sp-contributions-deleted'       => 'contribucions suprimidas',
 'sp-contributions-logs'          => 'jornals',
-'sp-contributions-talk'          => 'Discussion',
+'sp-contributions-talk'          => 'Discutir',
+'sp-contributions-userrights'    => 'gerir los dreches',
 'sp-contributions-search'        => 'Cercar las contribucions',
 'sp-contributions-username'      => 'Adreça IP o nom d’utilizaire :',
 'sp-contributions-submit'        => 'Cercar',

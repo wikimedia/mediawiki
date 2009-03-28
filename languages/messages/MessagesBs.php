@@ -277,7 +277,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pošalji mi e-poštu takođe za male izmjene stranica',
 'tog-enotifrevealaddr'        => 'Otkrij adresu moje e-pošte u porukama obaviještenja',
 'tog-shownumberswatching'     => 'Prikaži broj korisnika koji prate',
-'tog-fancysig'                => 'Jednostavan potpis (bez automatskog linka)',
+'tog-fancysig'                => 'Smatraj potpis kao wikitekst (bez automatskog linka)',
 'tog-externaleditor'          => 'Po potrebi koristite vanjski program za uređivanje (samo za naprednije korisnike, potrebne su promjene na računaru)',
 'tog-externaldiff'            => 'Koristi vanjski (diff) program za prikaz razlika',
 'tog-showjumplinks'           => 'Omogući "skoči na" poveznice',
@@ -997,13 +997,16 @@ Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 'rev-deleted-comment'            => '(komentar uklonjen)',
 'rev-deleted-user'               => '(korisničko ime uklonjeno)',
 'rev-deleted-event'              => '(stavka zapisa obrisana)',
-'rev-deleted-text-permission'    => "Revizija ove stranice je '''uklonjena iz javne arhive'''.
+'rev-deleted-text-permission'    => "Revizija ove stranice je '''obrisana'''.
 Detalje možete vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
-'rev-deleted-text-view'          => "Revizija ove stranice je '''uklonjena iz javne arhive'''.
+'rev-deleted-text-unhide'        => "Revizija ove stranice je '''obrisana'''.
+Detalje o tome možer vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
+Kao administrator još uvijek možete [$1 vidjeti ovu reviziju] ako želite.",
+'rev-deleted-text-view'          => "Revizija ove stranice je '''obrisana'''.
 Kao administrator na {{SITENAME}} Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
-'rev-deleted-no-diff'            => "Ne možete vidjeti ove razlike jer je jedna od revizija '''uklonjena iz javne arhive'''.
+'rev-deleted-no-diff'            => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisima brisanja].",
-'rev-deleted-unhide-diff'        => "Jedna od revizija u ovom pregledu razlika je '''uklonjena iz javne arhive'''.
+'rev-deleted-unhide-diff'        => "Jedna od revizija u ovom pregledu razlika je '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
 Kao administrator na {{SITENAME}} Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
 'rev-delundel'                   => 'pokaži/sakrij',
@@ -1656,10 +1659,7 @@ Ovdje je dostupan [[Special:WhatLinksHere/$2|potpuni spisak]].',
 'morelinkstoimage'          => 'Vidi [[Special:WhatLinksHere/$1|ostale linkove]] prema ovoj datoteci.',
 'redirectstofile'           => '{{PLURAL:$1|Slijedeća datoteka|Slijedeće $1 datoteke|Slijedećih $1 datoteka}} preusmjerava prema ovoj datoteci:',
 'duplicatesoffile'          => '{{PLURAL:$1|Slijedeća datoteka je dvojnik|Slijedeće $1 datoteke su dvojnici}} ove datoteke ([[Special:FileDuplicateSearch/$2|detaljnije]]):',
-'sharedupload'              => 'Ova datoteka se nalazi na $1 i može se koristiti i na drugim projektima. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Molimo pogledajte $1 za više informacija.',
-'shareduploadwiki-desc'     => 'Opis na njenoj $1 je prikazan ispod.',
-'shareduploadwiki-linktext' => 'stranici opisa datoteke',
+'sharedupload'              => 'Ova datoteka se nalazi na $1 i može se koristiti i na drugim projektima.',
 'noimage'                   => 'Slika sa ovim imenom ne postoji, ali je možete $1.',
 'noimage-linktext'          => 'postaviti',
 'uploadnewversion-linktext' => 'Postavite noviju verziju ove datoteke',
@@ -2194,10 +2194,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Za nove korisnike',
 'sp-contributions-newbies-title' => 'Doprinosi novih korisnika',
 'sp-contributions-blocklog'      => 'Evidencija blokiranja',
-'sp-contributions-deleted'       => 'Obrisani doprinosi korisnika',
+'sp-contributions-deleted'       => 'obrisani doprinosi korisnika',
 'sp-contributions-logs'          => 'zapisnici',
-'sp-contributions-talk'          => 'Razgovor',
-'sp-contributions-userrights'    => 'Postavke korisničkih prava',
+'sp-contributions-talk'          => 'razgovor',
+'sp-contributions-userrights'    => 'postavke korisničkih prava',
 'sp-contributions-search'        => 'Pretraga doprinosa',
 'sp-contributions-username'      => 'IP adresa ili korisničko ime:',
 'sp-contributions-submit'        => 'Traži',

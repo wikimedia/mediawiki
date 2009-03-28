@@ -38,16 +38,21 @@ $linkTrail = "/^([a-z]+)(.*)\$/sD";
 
 $messages = array(
 # User preference toggles
-'tog-underline'        => 'Sutalìnia is cullegamentos',
-'tog-highlightbroken'  => 'Evidèntzia <a href="" class="new">aici</a> is cullegamentos a pàginas inesistentes (si disativau: aici<a href="" class="internal">?</a>).',
-'tog-justify'          => 'Alliniamentu paragrafos gistificados',
-'tog-hideminor'        => 'Cua is acontzos minores in sa pàgina de is ùrtimas mudàntzias',
-'tog-numberheadings'   => 'Auto-numeratzioni de is tìtulos',
-'tog-editondblclick'   => "Acontza pàginas cun d'unu dopiu click (esigit JavaScript)",
-'tog-rememberpassword' => 'Ammenta sa password in custa computera',
-'tog-editwidth'        => 'Casella di edizione ampliata alla massima larghezza',
-'tog-watchdefault'     => 'Notifica articoli nuovi e modificati',
-'tog-minordefault'     => 'Signa totu is acontzos comente minores pro difetu',
+'tog-underline'            => 'Sutalìnia is cullegamentos',
+'tog-highlightbroken'      => 'Evidèntzia <a href="" class="new">aici</a> is cullegamentos a pàginas inesistentes (si disativau: aici<a href="" class="internal">?</a>).',
+'tog-justify'              => 'Alliniamentu paragrafos gistificados',
+'tog-hideminor'            => 'Cua is acontzos minores in sa pàgina de is ùrtimas mudàntzias',
+'tog-numberheadings'       => 'Auto-numeratzioni de is tìtulos',
+'tog-editondblclick'       => "Acontza pàginas cun d'unu dopiu click (esigit JavaScript)",
+'tog-rememberpassword'     => 'Ammenta sa password in custa computera',
+'tog-editwidth'            => 'Casella di edizione ampliata alla massima larghezza',
+'tog-watchdefault'         => 'Notifica articoli nuovi e modificati',
+'tog-minordefault'         => 'Signa totu is acontzos comente minores pro difetu',
+'tog-enotifwatchlistpages' => 'Ispedimia una missada eletronica candu una pàgina de sa watchlist mes est acontzada',
+'tog-enotifusertalkpages'  => 'Ispedimia una missada eletronica candu sa pàgina usuàriu mia est acontzada',
+'tog-enotifminoredits'     => 'Ispedimia una missada eletronica fintzas pro is acontzos minores de is pàginas',
+'tog-shownumberswatching'  => 'Amosta su nùmeru de is usuàrios ca funt ponende ogru a sa pàgina',
+'tog-fancysig'             => 'Trata sa firma comente unu testu wiki (chentza cullegamentos automaticos)',
 
 'underline-always' => 'Semper',
 'underline-never'  => 'Mai',
@@ -112,6 +117,7 @@ $messages = array(
 'category-empty'           => "''In custa categoria non bi est peruna pàgina o mèdiu.''",
 'hidden-categories'        => '{{PLURAL:$1|Categoria cuada|Categorias cuadas}}',
 'hidden-category-category' => 'Categorias cuadas', # Name of the category where hidden categories will be listed
+'category-subcat-count'    => "{{PLURAL:$2|Custa categoria cuntenet un'ùnica subcategoria. Amostada a suta.|Custa categoria cuntenet {{PLURAL:$1|sa subcategoria indicada|$1 subcategorias indicadas}} a suta, de $2 totales.}}",
 'listingcontinuesabbrev'   => 'sìghi',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
@@ -146,7 +152,7 @@ $messages = array(
 'history'           => 'Istòria de sa pàgina',
 'history_short'     => 'Istòria',
 'printableversion'  => 'Versione de imprentai',
-'permalink'         => 'Acapiu permanenti',
+'permalink'         => 'Acàpiu permanenti',
 'print'             => 'Imprenta',
 'edit'              => 'Acontza',
 'create'            => 'Crea',
@@ -200,6 +206,8 @@ $messages = array(
 'privacy'              => 'Polìtiga pro is datos brivados',
 'privacypage'          => 'Project:Polìtiga pro is datos brivados',
 
+'badaccess' => 'Permissu non bastante',
+
 'pagetitle'               => '$1 - {{SITENAME}}',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom'           => 'Bogau dae  "$1"',
@@ -224,7 +232,7 @@ $messages = array(
 'page-atom-feed'          => 'Feed Atom pro "$1"',
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
-'red-link-title'          => '$1 (sa pàgina non esistit)',
+'red-link-title'          => '$1 (sa pàgina no esistit)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Pàgina',
@@ -257,18 +265,24 @@ $1',
 'readonlytext'       => "Il database di {{SITENAME}} è al momento bloccato, e non consente nuove immissioni né modifiche, molto probabilmente per manutenzione server, nel qual caso il database sarà presto di nuovo completamente accessibile.
 L/'amministratore di sistema che ha imposto il blocco, ha lasciato questa nota:
 <p>$1",
+'missing-article'    => 'Su database no at agatau su testu de una pàgina chi diat àere agatau a suta de su nòmene "$1" $2.
+
+Custu a su sòlitu si verìficat candu du est unu acàpiu in s\'istòria o in d\'unu cunfruntu tra arrevisiones de una pàgina chi est istada fuliada.
+
+Si no est cussu su casu, s\'est agatada una faddina de su software. 
+Pro pregheri signala s\'acuntèssiu a unu [[Special:ListUsers/sysop|aministradore]] spetzifichedi su URL de sa faddina.',
 'missingarticle-rev' => '(arrevisioni nùmeru: $1)',
 'internalerror'      => 'Errore interno',
 'filecopyerror'      => 'Non è stato possibile copiare il file "$1" come "$2".',
 'filerenameerror'    => 'Non è stato possibile rinominare il file "$1" in "$2".',
 'filedeleteerror'    => 'Non è stato possibile cancellare il file "$1".',
-'filenotfound'       => 'Non è stato possibile trovare il file "$1".',
+'filenotfound'       => 'No est istadu possìbili agatare "$1".',
 'unexpected'         => 'Valore imprevisto: "$1"="$2".',
 'formerror'          => 'Errore: il modulo non è stato inviato correttamente',
 'badarticleerror'    => 'Questa operazione non è consentita su questa pagina.',
 'cannotdelete'       => "Impossibile cancellare la pagina o l'immagine richiesta.",
 'badtitle'           => 'Titolo non corretto',
-'badtitletext'       => "Su tìtulu de sa pagina c'as pediu est bùidu, isbaliau, o iscritu ne is cullegamentus inter-wiki in modu non curregiu o cun carateres non ammitius.",
+'badtitletext'       => "Su tìtulu de sa pagina c'as pediu est bùidu, isbaliau, o iscritu ne is cullegamentus inter-wiki in modu non curregiu o cun carateres no ammitius.",
 'viewsource'         => 'Castia mitza',
 'viewsourcefor'      => 'pro $1',
 
@@ -298,12 +312,12 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 'yournick'                => 'Sa firma tua:',
 'email'                   => 'E-mail',
 'loginerror'              => 'Login error',
-'noname'                  => 'Su nòmene usuàriu insertau non est bonu.',
+'noname'                  => 'Su nòmene usuàriu insertau no est bonu.',
 'loginsuccesstitle'       => 'Ses intrau',
 'loginsuccess'            => "'''Como ses intrau in {{SITENAME}} cun nòmene usuàriu \"\$1\".'''",
 'nosuchuser'              => 'Attenzione<br /><br />a seguito di verifica, non ci risulta alcun Utente con il nome di  "$1".<br /><br />
 Controlla per favore il nome digitato, oppure usa il modulo qui sotto per creare un nuovo user account.',
-'wrongpassword'           => 'Sa pàssword insertada non est bona. Prova torra.',
+'wrongpassword'           => 'Sa pàssword insertada no est bona. Prova torra.',
 'mailmypassword'          => "Ispedi una password noa a s'indiritzu e-mail miu",
 'passwordremindertitle'   => 'Servitziu Password Reminder di {{SITENAME}}',
 'passwordremindertext'    => 'Calicunu (probabilmenti tue, cun s\'indiritzu IP $1) at pediu de arritziri una password noa pro intrare a {{SITENAME}} ($4).
@@ -347,18 +361,20 @@ Pro pregheri, candu d\'arretzis faghe su login.',
 'hr_tip'          => 'Lìnnia orizontale (de usai cun critèriu)',
 
 # Edit pages
-'summary'                => 'Ogetu:',
-'subject'                => 'Tema/tìtulu:',
-'minoredit'              => "Custu est un'acontzu minore:",
-'watchthis'              => 'Pone ogru a custu artìculu',
-'savearticle'            => 'Sarva pàgina',
-'preview'                => 'Antiprima',
-'showpreview'            => "Amosta s'antiprima",
-'showdiff'               => 'Amosta mudàntzias',
-'summary-preview'        => 'Antiprima ogetu:',
-'subject-preview'        => 'Antiprima tema/tìtulu:',
-'blockedtitle'           => "S'usuàriu est istadu bloccau",
-'blockedtext'            => "<big>'''Custu nòmene usuàriu o indiritzu IP est istadu bloccau.'''</big>
+'summary'                          => 'Ogetu:',
+'subject'                          => 'Tema/tìtulu:',
+'minoredit'                        => "Custu est un'acontzu minore:",
+'watchthis'                        => 'Pone ogru a custu artìculu',
+'savearticle'                      => 'Sarva pàgina',
+'preview'                          => 'Antiprima',
+'showpreview'                      => "Amosta s'antiprima",
+'showdiff'                         => 'Amosta mudàntzias',
+'anoneditwarning'                  => "'''Atentzioni:''' Non ses intrau (log in). 
+S'indiritzu IP tuo at a èssere arregistrau in s'istòria de custa pàgina.",
+'summary-preview'                  => 'Antiprima ogetu:',
+'subject-preview'                  => 'Antiprima tema/tìtulu:',
+'blockedtitle'                     => "S'usuàriu est istadu bloccau",
+'blockedtext'                      => "<big>'''Custu nòmene usuàriu o indiritzu IP est istadu bloccau.'''</big>
 
 Su bloccu est istadu postu dae $1. Su motivu de su bloccu est: ''$2''
 
@@ -368,39 +384,43 @@ Su bloccu est istadu postu dae $1. Su motivu de su bloccu est: ''$2''
 
 Chi boles, podes cuntatare $1 o un àteru [[{{MediaWiki:Grouppage-sysop}}|aministradori]] pro faeddare de su bloccu.
 
-Nota ca sa funtzioni 'Ispedi un'e-mail a custu usuàriu' non est ativa chi non est istadu registrau un indiritzu e-mail validu ne is [[Special:Preferences|preferentzias]] tuas o chi s'usu de custa funtzioni est istadu bloccau.
+Nota ca sa funtzioni 'Ispedi un'e-mail a custu usuàriu' no est ativa chi no est istadu registrau un indiritzu e-mail validu ne is [[Special:Preferences|preferentzias]] tuas o chi s'usu de custa funtzioni est istadu bloccau.
 
 S'indiritzu IP atuale est $3, su numeru ID de su bloccu est #$5.
 Pro pregheri ispetzifica totu is detaglios innanti in carchi siat pedimentu de chiarimentu.",
-'accmailtitle'           => 'Password ispedia.',
-'newarticle'             => '(Nou)',
-'newarticletext'         => "Custa pagina non esistit ancora.
+'accmailtitle'                     => 'Password ispedia.',
+'newarticle'                       => '(Nou)',
+'newarticletext'                   => "Custa pagina no esistit ancora.
 Pro creare sa pagina, iscrie in su box inoghe in basciu (abàida sa [[{{MediaWiki:Helppage}}|pàgina de agiudu]] pro prus informatziones).
 Chi ses intrau inoghe pro isballiu, clicca in su browser tuo su pulsante '''back/indietro'''.",
-'noarticletext'          => 'In custu momentu sa pàgina est bùida.
+'noarticletext'                    => 'In custu momentu sa pàgina est bùida.
 Podes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in àteras pàginas, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} chircare ne is registros ligados] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} acontzare sa pàgina]</span>.',
-'updated'                => '(Agiornau)',
-'note'                   => "'''Nota:'''",
-'previewnote'            => "'''Arregodadia  ca custa est isceti una ANTIPRIMA. Sa versione tua non est istada ancora allogada!'''",
-'previewconflict'        => "Custa antiprima rapresentada su testu in s'area acontzu testu de susu comente at a aparire chi da sarvas.",
-'editing'                => 'Acontzu de $1',
-'editingsection'         => 'Acontzendi $1 (setzioni)',
-'editingcomment'         => 'Acontzu de $1 (setzione noa)',
-'editconflict'           => 'Cunflitu de editzione: $1',
-'explainconflict'        => 'Qualcun altro ha salvato una sua versione dell\'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
+'updated'                          => '(Agiornau)',
+'note'                             => "'''Nota:'''",
+'previewnote'                      => "'''Arregodadia  ca custa est isceti una ANTIPRIMA. Sa versione tua no est istada ancora allogada!'''",
+'previewconflict'                  => "Custa antiprima rapresentada su testu in s'area acontzu testu de susu comente at a aparire chi da sarvas.",
+'editing'                          => 'Acontzu de $1',
+'editingsection'                   => 'Acontzendi $1 (setzioni)',
+'editingcomment'                   => 'Acontzu de $1 (setzione noa)',
+'editconflict'                     => 'Cunflitu de editzione: $1',
+'explainconflict'                  => 'Qualcun altro ha salvato una sua versione dell\'articolo nel tempo in cui tu stavi preparando la tua versione.<br />
 La casella di modifica di sopra contiene il testo dell\'articolo nella sua forma attuale (cioè il testo attualmente online). Le tue modifiche sono invece contenute nella casella di modifica inferiore.
 Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò scriverle nella casella di sopra.
 <b>Soltanto</b> il testo nella casella di sopra sarà sakvato se premerai il bottone "Salva".<br />',
-'yourtext'               => 'Il tuo testo',
-'storedversion'          => 'Versione in archivio',
-'editingold'             => "'''ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.
+'yourtext'                         => 'Il tuo testo',
+'storedversion'                    => 'Versione in archivio',
+'editingold'                       => "'''ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.
 Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno persi per sempre.'''",
-'yourdiff'               => 'Differenze',
-'templatesused'          => 'Templates impreaus in custa pàgina:',
-'templatesusedpreview'   => 'Templates impreadus in custa antiprima:',
-'templatesusedsection'   => 'Templates impreaus in custa setzione:',
-'template-protected'     => '(amparau)',
-'template-semiprotected' => '(semi-amparau)',
+'yourdiff'                         => 'Differenze',
+'templatesused'                    => 'Templates impreaus in custa pàgina:',
+'templatesusedpreview'             => 'Templates impreadus in custa antiprima:',
+'templatesusedsection'             => 'Templates impreaus in custa setzione:',
+'template-protected'               => '(amparau)',
+'template-semiprotected'           => '(semi-amparau)',
+'hiddencategories'                 => 'Custa pàgina faghet parti de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:',
+'permissionserrorstext-withaction' => 'Non tenes su permissu de $2, pro {{PLURAL:$1|custu motivu|custus motivus}}:',
+'deleted-notice'                   => "Custa pàgina est istada fuliada. 
+S'arregistru de is fuliaduras est amostau pro informatzione.",
 
 # History pages
 'viewpagelogs'           => 'Castia sos registros de custa pàgina',
@@ -436,6 +456,9 @@ Legenda: '''({{int:cur}})''' = diferentzias cun sa versioni currenti, '''({{int:
 # History merging
 'mergehistory-reason' => 'Motivu:',
 
+# Merge log
+'revertmerge' => "Fùrria s'unione",
+
 # Diffs
 'history-title'           => 'Istòria de is arrevisionis de "$1"',
 'difference'              => '(Diferèntzias fra revisiones)',
@@ -451,7 +474,9 @@ Legenda: '''({{int:cur}})''' = diferentzias cun sa versioni currenti, '''({{int:
 'searchresulttext'          => 'Pro àteras informatziones pro sa chirca interna a {{SITENAME}}, càstia [[{{MediaWiki:Helppage}}|Chirca in {{SITENAME}}]].',
 'searchsubtitle'            => 'Chirca de \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|totu is pàginas ca incumentzant pro "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totu is pàginas ca ligant a "$1"]])',
 'searchsubtitleinvalid'     => 'As chircadu "$1"',
-'noexactmatch-nocreate'     => "'''Sa pàgina tìtolada \"\$1\" non esistit.'''",
+'noexactmatch'              => "'''Sa pàgina \"\$1\" no esistit.''' 
+Podes [[:\$1|creare custa pàgina]].",
+'noexactmatch-nocreate'     => "'''Sa pàgina tìtolada \"\$1\" no esistit.'''",
 'titlematches'              => 'Nei titoli degli articoli',
 'notitlematches'            => 'Peruna currispondentzia de is tìtulos de pàgina',
 'textmatches'               => 'Nel testo degli articoli',
@@ -472,9 +497,11 @@ Legenda: '''({{int:cur}})''' = diferentzias cun sa versioni currenti, '''({{int:
 'searchall'                 => 'totu',
 'showingresults'            => "Innoe sighendi {{PLURAL:$1|benit amostau '''1''' risultadu|benint amostaus '''$1''' risultados}} a incumentzai dae su numeru '''$2'''.",
 'showingresultstotal'       => "Sighendi {{PLURAL:$4|benit amostau su resultau '''$1''' de '''$3'''|benint amostaus is resultaos '''$1 - $2''' de '''$3'''}}",
-'nonefound'                 => '<strong>Nota</strong>: la ricerca di parole troppo comuni, come "avere" o "essere", che non sono indicizzate, può causare un esito negativo, così come indicare più di un termine da ricercare (solo le pagine che contengano tutti i termini ricercati verrebbero infatti visualizzate fra i risultati).',
+'nonefound'                 => "'''Annota''': sa chirca est fata pro difetu isceti in unos Nòmene-logos. 
+Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàginas de cuntierra, template, etc), oppuru sciobera comente prefissu su pretzisu Nòmene-logu chi boles.",
 'powersearch'               => 'Chirca delantada',
 'powersearch-legend'        => 'Chirca avantzada',
+'powersearch-ns'            => 'Chirca in su Nòmene-logu:',
 'powersearch-redir'         => 'Lista redirect',
 'powersearch-field'         => 'Chirca',
 
@@ -541,7 +568,7 @@ Legenda: '''({{int:cur}})''' = diferentzias cun sa versioni currenti, '''({{int:
 'rightslog' => 'Deretos de is usuàrios',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'acontza custa pàgina',
+'action-edit' => 'acontzare custa pàgina',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|mudàntzia|mudàntzias}}',
@@ -583,13 +610,13 @@ Legenda: '''({{int:cur}})''' = diferentzias cun sa versioni currenti, '''({{int:
 'uploadnologintext' => 'Devi eseguire [[Special:UserLogin|il login]]
 per fare lo upload di files.',
 'uploaderror'       => 'Faddina de carrigamentu',
-'uploadtext'        => "(de traduire)
-Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:FileList|log dei file caricati]]. Caricamenti di file e di nuove versioni di file sono registrati nel [[Special:Log/upload|log degli upload]], le cancellazioni nell'[[Special:Log/delete|apposito]].
+'uploadtext'        => "Imprea su modulu a suta pro carrigare files nous. 
+Pro castiare o chircare is files giai carrigaus, bae a sa [[Special:FileList|lista de is files carrigaus]]. Carrigamentos de files e de noas versiones de files sunt arregistradas in su [[Special:Log/upload|registru de carrigamentu]], is burraduras in su [[Special:Log/delete|registru burraduras]].
 
-Per inserire un file all'interno di una pagina, fare un collegamento di questo tipo:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' per usare la versione completa del file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></tt>''' per usare una versione larga 200 pixel inserita in un box, allineata a sinistra e con 'testo alternativo' come didascalia
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' per generare un collegamento diretto al file senza visualizzarlo",
+Pro insertare unu file aintru de una pàgina, tocat a faghere unu cullegamentu tipu custu:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' pro impreare sa versioni cumpleta de su file
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></tt>''' pro impreare una versioni lada 200 pixel insertada in d'unu box, allinniada a manca e cun 'testu alternativu' comente didascalia
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' pro ingenerare unu cullegamentu a su file chentza de du biri",
 'uploadlogpage'     => 'Carrigadas',
 'uploadlogpagetext' => 'Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
 Tutti i tempi indicati sono calcolati sul fuso orario del server.',
@@ -607,6 +634,7 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server.',
 
 # File description page
 'filehist'                  => 'Istòria de su file',
+'filehist-help'             => 'Fache click in unu grupu data/ora pro castiari su file comente si presentada in su tempus indicau.',
 'filehist-current'          => 'currenti',
 'filehist-datetime'         => 'Data/Ora',
 'filehist-thumb'            => 'Miniatura',
@@ -618,8 +646,7 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server.',
 'imagelinks'                => 'Ligant a custu file',
 'linkstoimage'              => '{{PLURAL:$1|Sa pàgina chi sighit ligat|$1 Sas pàgina ca sighint ligant}} a custu file:',
 'nolinkstoimage'            => 'Peruna pàgina ligat cun custu file.',
-'sharedupload'              => 'Custu file benit dae $1 e podet èssere impreau in àteros progetos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki-linktext' => 'Pàgina che descriet su file',
+'sharedupload'              => 'Custu file benit dae $1 e podet èssere impreau in àteros progetos.',
 'uploadnewversion-linktext' => 'Carriga una versione noa de custu file',
 
 # File reversion
@@ -646,7 +673,7 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server.',
 Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il "reale" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.',
 
 'brokenredirects'     => 'Redirects errati',
-'brokenredirectstext' => 'Custus redirects ligant cun pàginas chi non esistint.',
+'brokenredirectstext' => 'Custus redirects ligant cun pàginas chi no esistint.',
 
 'withoutinterwiki-submit' => 'Amosta',
 
@@ -660,6 +687,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'unusedimages'      => 'Immagini non utilizzate',
 'popularpages'      => 'Pàginas popularis',
 'wantedpages'       => 'Articoli più richiesti',
+'prefixindex'       => 'Indighe de is pàginas pro initzialis',
 'shortpages'        => 'Pagine corte',
 'longpages'         => 'Pagine lunghe',
 'listusers'         => 'Elenco degli Utenti',
@@ -670,10 +698,14 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'unusedimagestext'  => '<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui anche essendo magari in uso.',
 'notargettitle'     => 'Dati mancanti',
 'notargettext'      => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
+'pager-newer-n'     => '{{PLURAL:$1|1 prus nou|$1 prus nous}}',
+'pager-older-n'     => '{{PLURAL:$1|1 prus bèciu|$1 prus bècius}}',
 
 # Book sources
-'booksources-isbn' => 'ISBN:',
-'booksources-go'   => 'Bae',
+'booksources'               => 'Fontes librarias',
+'booksources-search-legend' => 'Chirca fontes librarias',
+'booksources-isbn'          => 'ISBN:',
+'booksources-go'            => 'Bae',
 
 # Special:Log
 'specialloguserlabel' => 'Usuàriu:',
@@ -692,7 +724,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'categories' => 'Categorias',
 
 # Special:LinkSearch
-'linksearch'    => 'Acapius a foras',
+'linksearch'    => 'Acàpius a foras',
 'linksearch-ok' => 'Chirca',
 
 # Special:ListUsers
@@ -723,7 +755,7 @@ oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.',
 'mywatchlist'       => 'Sa watchlist mea',
 'watchlistfor'      => "(pro '''$1''')",
 'nowatchlist'       => "Non hai indicato articoli da tenere d'occhio.",
-'watchnologin'      => 'Non intrau (log in)',
+'watchnologin'      => 'No intrau (log in)',
 'watchnologintext'  => 'Devi prima fare il [[Special:UserLogin|login]]
 per modificare la tua lista di osservati speciali.',
 'addedwatch'        => 'Aciùngiu a sa watchlist tua',
@@ -735,7 +767,8 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'watchthispage'     => 'Pone ogru a custu artìculu',
 'unwatch'           => 'Tira dae sa watchlist',
 'unwatchthispage'   => 'Smetti di seguire',
-'notanarticle'      => 'Custa pàgina non est unu artìculu',
+'notanarticle'      => 'Custa pàgina no est unu artìculu',
+'watchlist-details' => 'Sa watchlist tua cuntènnit {{PLURAL:$1|$1 pàgina|$1 pàginas}}, chentza contare is pàginas de cuntierras.',
 'wlshowlast'        => 'Amosta is ùrtimas $1 oras $2 dies $3',
 'watchlist-options' => 'Possibilidadis de sa watchlist',
 
@@ -746,21 +779,22 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'enotif_impersonal_salutation' => 'Usuàriu de {{SITENAME}}',
 
 # Delete
-'deletepage'        => 'Fùlia pàgina',
-'confirm'           => 'Cunfima',
-'delete-backlink'   => '← $1',
-'confirmdeletetext' => "Ses acanta de burrare una pàgina cun totu s'istòria sua.
+'deletepage'            => 'Fùlia pàgina',
+'confirm'               => 'Cunfima',
+'delete-backlink'       => '← $1',
+'confirmdeletetext'     => "Ses acanta de burrare una pàgina cun totu s'istòria sua.
 Pro pregheri, cunfirma ca est intentzioni tua faghere custu, ca connosches is conseguentzias de s'atzione tua, a ca custa est cunforme a is [[{{MediaWiki:Policy-url}}|lìnnias polìtigas]].",
-'actioncomplete'    => 'Atzioni cumpletada',
-'deletedtext'       => 'Sa pàgina "<nowiki>$1</nowiki>" est istada fuliada.
+'actioncomplete'        => 'Atzioni cumpletada',
+'deletedtext'           => 'Sa pàgina "<nowiki>$1</nowiki>" est istada fuliada.
 Castia su log $2 pro unu registru de is ùrtimas fuliaduras.',
-'deletedarticle'    => 'at fuliau "[[$1]]"',
-'dellogpage'        => 'Burraduras',
-'dellogpagetext'    => 'Qui di seguito, un elenco delle pagine cancellate di recente.
+'deletedarticle'        => 'at fuliau "[[$1]]"',
+'dellogpage'            => 'Burraduras',
+'dellogpagetext'        => 'Qui di seguito, un elenco delle pagine cancellate di recente.
 Tutti i tempi sono in ora del server.',
-'reverted'          => 'Torrada a sa versioni in antis',
-'deletecomment'     => 'Motivu de sa burradura:',
-'deleteotherreason' => 'Áteru motivu o motivu agiuntivu:',
+'reverted'              => 'Torrada a sa versioni in antis',
+'deletecomment'         => 'Motivu de sa burradura:',
+'deleteotherreason'     => 'Áteru motivu o motivu agiuntivu:',
+'deletereasonotherlist' => 'Áteru motivu',
 
 # Rollback
 'rollback'     => 'Annudda is acontzos',
@@ -771,12 +805,15 @@ s'ùrtimu contribudori est s'ùnicu autori de custa pàgina.",
 
 # Protect
 'protectlogpage'              => 'Amparaduras',
+'protectedarticle'            => 'at amparau "[[$1]]"',
+'modifiedarticleprotection'   => 'at cambiau su livellu de amparadura pro "[[$1]]"',
 'protect-backlink'            => '← $1',
 'protectcomment'              => 'Cummentu:',
 'protectexpiry'               => 'Iscadèntzia:',
 'protect_expiry_invalid'      => "S'iscadèntzia est imbàlida.",
 'protect_expiry_old'          => 'Iscadentzia giai passada.',
 'protect-unchain'             => 'Sblocca is permissos de movere',
+'protect-text'                => "Custu modulu serbit pro castiari e cambiari su livellu de amparadura de sa pàgina '''<nowiki>$1</nowiki>'''.",
 'protect-default'             => 'Autoritza totu is usuàrios',
 'protect-fallback'            => 'Esigit su permissu "$1"',
 'protect-level-autoconfirmed' => 'Blocca is usuàrios nobos o non registrados',
@@ -829,40 +866,44 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 'nolinkshere'              => "Peruna pàgina ligat a '''[[:$1]]'''.",
 'isredirect'               => 'redirect',
 'istemplate'               => 'inclusione',
-'isimage'                  => 'acapiu pintura',
-'whatlinkshere-links'      => '← acapius',
+'isimage'                  => 'acàpiu pintura',
+'whatlinkshere-prev'       => '{{PLURAL:$1|cabidianu|cabidianos $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|imbeniente|imbenientes $1}}',
+'whatlinkshere-links'      => '← acàpius',
 'whatlinkshere-hideredirs' => '$1 redirects',
-'whatlinkshere-hidelinks'  => '$1 acapius',
+'whatlinkshere-hidetrans'  => '$1 inclusionis',
+'whatlinkshere-hidelinks'  => '$1 acàpius',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
-'blockip'            => 'Blocca usuàriu',
-'blockiptext'        => "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP. Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]]. Il blocco non può in nessun caso essere applicato per motivi ideologici.
+'blockip'                  => 'Blocca usuàriu',
+'blockiptext'              => "Usa il modulo sottostante per bloccare l'accesso con diritto di scrittura da uno specifico indirizzo IP. Questo blocco deve essere operato SOLO per prevenire atti di vandalismo, ed in stretta osservanza dei principi tutti della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]]. Il blocco non può in nessun caso essere applicato per motivi ideologici.
 Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avviso essere bloccato (per esempio, cita i titoli di pagine eventualmente già oggetto di vandalismo editoriale).",
-'ipaddress'          => 'Indiritzu IP:',
-'ipadressorusername' => 'Indiritzu IP o nòmene usuàriu:',
-'ipbreason'          => 'Motivu:',
-'ipbsubmit'          => 'Blocca custu usuàriu',
-'ipboptions'         => '2 oras:2 hours,1 die:1 day,3 dies:3 days,1 chida:1 week,2 chidas:2 weeks,1 mese:1 month,3 meses:3 months,6 meses:6 months,1 annu:1 year,infinidu:infinite', # display1:time1,display2:time2,...
-'badipaddress'       => "L'indirizzo IP indicato non è corretto.",
-'blockipsuccesssub'  => 'Blocco eseguito',
-'blockipsuccesstext' => ' L\'indirizzo IP "$1" è stato bloccato.
+'ipaddress'                => 'Indiritzu IP:',
+'ipadressorusername'       => 'Indiritzu IP o nòmene usuàriu:',
+'ipbreason'                => 'Motivu:',
+'ipbsubmit'                => 'Blocca custu usuàriu',
+'ipboptions'               => '2 oras:2 hours,1 die:1 day,3 dies:3 days,1 chida:1 week,2 chidas:2 weeks,1 mese:1 month,3 meses:3 months,6 meses:6 months,1 annu:1 year,infinidu:infinite', # display1:time1,display2:time2,...
+'badipaddress'             => "L'indirizzo IP indicato non è corretto.",
+'blockipsuccesssub'        => 'Blocco eseguito',
+'blockipsuccesstext'       => ' L\'indirizzo IP "$1" è stato bloccato.
 <br />Vedi [[Special:IPBlockList|lista IP bloccati]].',
-'ipb-unblock-addr'   => 'Sblocca $1',
-'unblockip'          => "Sblocca s'usuàriu",
-'unblockiptext'      => 'Usa il modulo sottostante per restituire il diritto di scrittura ad un indirizzo IP precedentemente bloccato.',
-'ipusubmit'          => 'Sblocca questo indirizzo IP',
-'ipblocklist'        => 'Usuàrios e indiritzos bloccados',
-'ipblocklist-submit' => 'Chirca',
-'blocklistline'      => '$1, $2 ha bloccato $3 ($4)',
-'blocklink'          => 'blocca',
-'unblocklink'        => 'sblocca',
-'change-blocklink'   => 'tramuda su bloccu',
-'contribslink'       => 'contributziones',
-'blocklogpage'       => 'Bloccos de usuàrios',
-'blocklogentry'      => 'bloccau [[$1]] pro unu tempu de $2 $3',
-'unblocklogentry'    => 'at sbloccau $1',
-'sorbs'              => 'DNSBL',
+'ipb-unblock-addr'         => 'Sblocca $1',
+'unblockip'                => "Sblocca s'usuàriu",
+'unblockiptext'            => 'Usa il modulo sottostante per restituire il diritto di scrittura ad un indirizzo IP precedentemente bloccato.',
+'ipusubmit'                => 'Sblocca questo indirizzo IP',
+'ipblocklist'              => 'Usuàrios e indiritzos bloccados',
+'ipblocklist-submit'       => 'Chirca',
+'blocklistline'            => '$1, $2 ha bloccato $3 ($4)',
+'blocklink'                => 'blocca',
+'unblocklink'              => 'sblocca',
+'change-blocklink'         => 'tramuda su bloccu',
+'contribslink'             => 'contributziones',
+'blocklogpage'             => 'Bloccos de usuàrios',
+'blocklogentry'            => 'bloccau [[$1]] pro unu tempu de $2 $3',
+'unblocklogentry'          => 'at sbloccau $1',
+'block-log-flags-nocreate' => 'creatzione account bloccada',
+'sorbs'                    => 'DNSBL',
 
 # Developer tools
 'lockdb'              => 'Blocca su database',
@@ -900,7 +941,7 @@ pro pregheri depis èssere siguru de àere cumpresu is cunseguèntzias prima de 
 'movepagetalktext'   => "Sa pàgina cuntierras asotziada, chi esistit, at a èssere movida automaticamenti impare a sa pàgina printzipali, '''a parte in custos casos''':
 * su movimentu de sa pàgina est tra namespaces diversos;
 * in currispondentzia de su tìtulu nou esistit giai una pàgina de cuntierras (non bùida);
-* sa casella inoe in basciu non est istata sceberada.
+* sa casella inoe in basciu no est istata sceberada.
 
 In custus casos, chi boles, depis mòvere a manu su cuntentu de sa pàgina.",
 'movearticle'        => 'Movi sa pàgina:',
@@ -911,9 +952,9 @@ In custus casos, chi boles, depis mòvere a manu su cuntentu de sa pàgina.",
 'movepagebtn'        => 'Movi sa pàgina',
 'pagemovedsub'       => 'Movimentu andau beni',
 'movepage-moved'     => '<big>\'\'\'"$1" est istada mòvida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'      => 'Una pàgina cun custu nòmene esistit giai, o su nòmene chi as sceberau non est validu.
+'articleexists'      => 'Una pàgina cun custu nòmene esistit giai, o su nòmene chi as sceberau no est bàlidu.
 Pro pregheri scebera un àteru nòmene.',
-'talkexists'         => "'''Su movimentu de sa pàgina est andau beni, ma non est istadu possibile moviri sa pàgina de cuntierras proite ndi esistit giai un àtera cun su stessu tìtulu. Pro preghere aciungi tue su cuntestu de sa pàgina becia.'''",
+'talkexists'         => "'''Su movimentu de sa pàgina est andau beni, ma no est istadu possibile moviri sa pàgina de cuntierras proite ndi esistit giai un àtera cun su stessu tìtulu. Pro preghere aciungi tue su cuntestu de sa pàgina becia.'''",
 'movedto'            => 'mòvida a',
 'movetalk'           => 'Movi puru sa pàgina de cuntierras',
 '1movedto2'          => 'at mòvidu [[$1]] a [[$2]]',
@@ -954,6 +995,7 @@ Podes castiare sa mitza sua',
 'tooltip-search-fulltext'         => 'Chirca custu testu ne is pàginas',
 'tooltip-n-mainpage'              => 'Visita sa pàgina printzipali',
 'tooltip-n-portal'                => 'Descritzioni de su progetu, ita podes faghere, ainnui agatas cosas',
+'tooltip-n-currentevents'         => 'Informatziones subra acuntèssias atuales',
 'tooltip-n-recentchanges'         => 'Sa lista de is ùrtimas mudàntzias de su giassu',
 'tooltip-n-randompage'            => 'Mosta una pàgina a sorte',
 'tooltip-n-help'                  => 'Pàginas de agiudu',
@@ -966,7 +1008,7 @@ Podes castiare sa mitza sua',
 'tooltip-t-upload'                => 'Carriga file multimediale',
 'tooltip-t-specialpages'          => 'Lista de is pàginas ispetziales',
 'tooltip-t-print'                 => "Versione de custa pàgina pro s'imprenta",
-'tooltip-t-permalink'             => 'Acapiu permanenti a custa versioni de sa pàgina',
+'tooltip-t-permalink'             => 'Acàpiu permanenti a custa versioni de sa pàgina',
 'tooltip-ca-nstab-main'           => 'Càstia su cuntènnidu de sa pàgina',
 'tooltip-ca-nstab-user'           => 'Càstia sa pàgina usuàriu',
 'tooltip-ca-nstab-special'        => 'Custa est una pàgina ispetziale, non da podes acontzare',
@@ -991,9 +1033,11 @@ Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 'nextdiff'     => 'Acontzu in fatu →',
 
 # Media information
-'widthheight'    => '$1×$2',
-'file-info-size' => '($1 × $2 pixels, mannesa de su file: $3, tipu de MIME: $4)',
-'svg-long-desc'  => '(file in formadu SVG, mannesa nominale $1 × $2 pixel, mannesa de su file: $3)',
+'file-info-size'       => '($1 × $2 pixels, mannesa de su file: $3, tipu de MIME: $4)',
+'file-nohires'         => '<small>Non si tenent risolutziones prus artas.</small>',
+'svg-long-desc'        => '(file in formadu SVG, mannesa nominale $1 × $2 pixel, mannesa de su file: $3)',
+'show-big-image'       => 'Versioni a risolutzioni arta',
+'show-big-image-thumb' => '<small>Mannesa de custa antiprima: $1 × $2 pixels</small>',
 
 # Special:NewFiles
 'imagelisttext' => "Innoe sighendi du est una lista de '''$1''' {{PLURAL:$1|file|files}} ordinada $2.",
@@ -1007,7 +1051,9 @@ Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 'hours-abbrev'   => 'h',
 
 # Metadata
-'metadata' => 'Metadatos',
+'metadata'          => 'Metadatos',
+'metadata-expand'   => 'Amosta particolaris',
+'metadata-collapse' => 'Cua particolaris',
 
 # EXIF tags
 'exif-fnumber-format'     => 'f/$1',
@@ -1062,6 +1108,7 @@ Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 'watchlistedit-raw-titles' => 'Tìtulos:',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Càstia mudàntzias de importu',
 'watchlisttools-edit' => 'Castia e acontza sa watchlist',
 'watchlisttools-raw'  => 'Acontza sa watchlist dae su testu',
 

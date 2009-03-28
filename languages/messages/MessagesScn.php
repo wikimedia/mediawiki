@@ -1391,10 +1391,7 @@ Di sècutu sunnu alincati sulu {{PLURAL:$1|la prima pàggina ca punta|li primi $
 'morelinkstoimage'          => 'Visualizza [[Special:WhatLinksHere/$1|àutri link]] a stu file.',
 'redirectstofile'           => '{{PLURAL:$1|Chistu|Chisti $1}} file {{PLURAL:$1|è|sunnu}} nu redirect a stu file:',
 'duplicatesoffile'          => '{{PLURAL:$1|Chistu|Chisti $1}} file {{PLURAL:$1|è nu dupppiuni|sunnu duppiuni}} di stu file ([[Special:FileDuplicateSearch/$2|cchiù dittagli]]):',
-'sharedupload'              => "Chistu file è n'upload condivisu; pò èssiri quinni utilizzatu di cchiù pruggetti wiki. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Si preja di taliari $1 pi ultiriuri nfurmazzioni.',
-'shareduploadwiki-desc'     => 'La discrizzioni ca appari supra la rilativa $1 veni ammustrata sutta.',
-'shareduploadwiki-linktext' => "pàggina di discrizzioni dû ''file''",
+'sharedupload'              => "Chistu file è n'upload condivisu; pò èssiri quinni utilizzatu di cchiù pruggetti wiki.",
 'noimage'                   => 'Un file cu stu nomu nun esisti, ma è pussìbbili, voi $1 tu?',
 'noimage-linktext'          => 'carricàrilu ora',
 'uploadnewversion-linktext' => 'Càrrica na virsioni nova di stu file',

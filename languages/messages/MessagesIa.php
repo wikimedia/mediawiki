@@ -157,7 +157,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Notificar me etiam de modificationes minor',
 'tog-enotifrevealaddr'        => 'Revelar mi adresse de e-mail in messages de notification',
 'tog-shownumberswatching'     => 'Monstrar le numero de usatores que observa le pagina',
-'tog-fancysig'                => 'Signaturas crude (sin ligamine automatic)',
+'tog-fancysig'                => 'Tractar signatura como wikitexto (sin ligamine automatic)',
 'tog-externaleditor'          => 'Usar editor externe qua standard (pro expertos solmente, necessita configuration special in tu computator)',
 'tog-externaldiff'            => "Usar un programma ''diff'' externe qua standard (pro expertos solmente, necessita configuration special in tu computator)",
 'tog-showjumplinks'           => 'Activar ligamines de accessibilitate "saltar a"',
@@ -889,14 +889,17 @@ Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 'rev-deleted-comment'            => '(commento eliminate)',
 'rev-deleted-user'               => '(nomine de usator eliminate)',
 'rev-deleted-event'              => '(entrata eliminate)',
-'rev-deleted-text-permission'    => "Iste version del pagina ha essite '''eliminate del archivos public'''.
+'rev-deleted-text-permission'    => "Iste version del pagina ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
-'rev-deleted-text-view'          => "Iste version del pagina ha essite '''eliminate del archivos public'''.
+'rev-deleted-text-unhide'        => "Iste version del pagina ha essite '''delite'''.
+Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
+Tu, qua administrator, pote ancora [$1 vider iste version] si tu vole proceder.",
+'rev-deleted-text-view'          => "Iste version del pagina ha essite '''delite'''.
 Tu, qua administrator, pote vider lo;
 es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
-'rev-deleted-no-diff'            => "Tu non pote vider iste diff proque un del versiones ha essite '''eliminate del archivos public'''.
+'rev-deleted-no-diff'            => "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
-'rev-deleted-unhide-diff'        => "Un del versiones de iste diff ha essite '''eliminate del archivos public'''.
+'rev-deleted-unhide-diff'        => "Un del versiones de iste diff ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
 Tu, qua administrator, pote ancora [$1 vider iste diff] si tu vole proceder.",
 'rev-delundel'                   => 'revelar/celar',
@@ -1553,10 +1556,7 @@ Un [[Special:WhatLinksHere/$2|lista complete]] es disponibile.',
 'morelinkstoimage'          => 'Vider [[Special:WhatLinksHere/$1|plus ligamines]] a iste file.',
 'redirectstofile'           => 'Le sequente {{PLURAL:$1|file|$1 files}} se redirige a iste file:',
 'duplicatesoffile'          => 'Le sequente {{PLURAL:$1|file es un duplicato|$1 files es duplicatos}} de iste file ([[Special:FileDuplicateSearch/$2|plus detalios]]):',
-'sharedupload'              => 'Iste file proveni de $1 e pote esser usate per altere projectos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Per favor vide le $1 pro ulterior informationes.',
-'shareduploadwiki-desc'     => 'Le description, prendite del $1 a iste sito, es monstrate infra.',
-'shareduploadwiki-linktext' => 'pagina de description del file',
+'sharedupload'              => 'Iste file proveni de $1 e pote esser usate per altere projectos.',
 'noimage'                   => 'Non existe un file con iste nomine, sed tu pote $1.',
 'noimage-linktext'          => 'cargar un',
 'uploadnewversion-linktext' => 'Cargar un nove version de iste file',
@@ -2100,10 +2100,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Pro nove contos',
 'sp-contributions-newbies-title' => 'Contributiones de nove contos de usator',
 'sp-contributions-blocklog'      => 'Registro de blocadas',
-'sp-contributions-deleted'       => 'Contributiones delite de usatores',
+'sp-contributions-deleted'       => 'contributiones delite de usatores',
 'sp-contributions-logs'          => 'registros',
-'sp-contributions-talk'          => 'Discussion',
-'sp-contributions-userrights'    => 'Gestion de derectos de usator',
+'sp-contributions-talk'          => 'discussion',
+'sp-contributions-userrights'    => 'gestion de derectos de usator',
 'sp-contributions-search'        => 'Cercar contributiones',
 'sp-contributions-username'      => 'Adresse IP o nomine de usator:',
 'sp-contributions-submit'        => 'Cercar',

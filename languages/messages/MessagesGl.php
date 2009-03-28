@@ -224,7 +224,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Envíenme tamén unha mensaxe de correo electrónico cando se produzan pequenos cambios nas páxinas',
 'tog-enotifrevealaddr'        => 'Revelar o meu enderezo de correo electrónico nos correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar o número de usuarios que están a vixiar',
-'tog-fancysig'                => 'Sinatura tal como está, sen ligazón automática',
+'tog-fancysig'                => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
 'tog-externaleditor'          => 'Usar un editor externo por omisión (só para expertos, precisa duns parámetros especiais no seu computador)',
 'tog-externaldiff'            => 'Usar diferenzas externas (dif) por omisión (só para expertos, precisa duns parámetros especiais no seu computador)',
 'tog-showjumplinks'           => 'Permitir as ligazóns de accesibilidade "ir a"',
@@ -936,15 +936,18 @@ Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.'
 'rev-deleted-comment'            => '(comentario eliminado)',
 'rev-deleted-user'               => '(nome de usuario eliminado)',
 'rev-deleted-event'              => '(rexistro de evento eliminado)',
-'rev-deleted-text-permission'    => "Esta revisión da páxina foi '''eliminada dos arquivos públicos'''.
+'rev-deleted-text-permission'    => "Esta revisión da páxina foi '''eliminada'''.
 Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
-'rev-deleted-text-view'          => "Esta revisión da páxina foi '''eliminada dos arquivos públicos'''.
-Como administrador de {{SITENAME}} pode vela; pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
-'rev-deleted-no-diff'            => "Non pode ver esta diferenza porque unha das revisións foi '''eliminada dos arquivos públicos'''.
-Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
-'rev-deleted-unhide-diff'        => "Unha das revisións desta diferenza foi '''eliminada dos arquivos públicos'''.
+'rev-deleted-text-unhide'        => "Esta revisión da páxina foi '''eliminada'''.
 Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
-Como administrador de {{SITENAME}} aínda podería [$1 ver esta diferenza] se quixese.",
+Como administrador aínda podería [$1 ver esta revisión] se quixese.",
+'rev-deleted-text-view'          => "Esta revisión da páxina foi '''eliminada'''.
+Como administrador pode vela; pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+'rev-deleted-no-diff'            => "Non pode ver esta diferenza porque unha das revisións foi '''eliminada'''.
+Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+'rev-deleted-unhide-diff'        => "Unha das revisións desta diferenza foi '''eliminada'''.
+Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
+Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
 'rev-delundel'                   => 'mostrar/agochar',
 'revisiondelete'                 => 'Borrar/restaurar revisións',
 'revdelete-nooldid-title'        => 'Revisión inválida',
@@ -1588,10 +1591,7 @@ Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
 'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|máis ligazóns]] cara a este ficheiro.',
 'redirectstofile'           => '{{PLURAL:$1|O seguinte ficheiro redirixe|Os seguintes $1 ficheiros redirixen}} cara a este:',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte ficheiro é un duplicado|Os seguintes $1 ficheiros son duplicados}} destoutro ([[Special:FileDuplicateSearch/$2|máis detalles]]):',
-'sharedupload'              => 'Este ficheiro é da $1 e pode ser usado por outros proxectos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Por favor, vexa a $1 para máis información.',
-'shareduploadwiki-desc'     => 'A continuación móstrase a descrición que alí hai na $1.',
-'shareduploadwiki-linktext' => 'páxina de descrición do ficheiro',
+'sharedupload'              => 'Este ficheiro é da $1 e pode ser usado por outros proxectos.',
 'noimage'                   => 'Non existe ningún ficheiro con ese nome, pero pode $1.',
 'noimage-linktext'          => 'cargar un',
 'uploadnewversion-linktext' => 'Cargar unha nova versión deste ficheiro',
@@ -2115,10 +2115,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Contribucións dos usuarios novos',
 'sp-contributions-newbies-title' => 'Contribucións dos usuarios novos',
 'sp-contributions-blocklog'      => 'Rexistro de bloqueos',
-'sp-contributions-deleted'       => 'Contribucións borradas do usuario',
+'sp-contributions-deleted'       => 'contribucións borradas do usuario',
 'sp-contributions-logs'          => 'rexistros',
-'sp-contributions-talk'          => 'Conversa',
-'sp-contributions-userrights'    => 'Xestión dos dereitos de usuario',
+'sp-contributions-talk'          => 'conversa',
+'sp-contributions-userrights'    => 'xestión dos dereitos de usuario',
 'sp-contributions-search'        => 'Busca de contribucións',
 'sp-contributions-username'      => 'Enderezo IP ou nome de usuario:',
 'sp-contributions-submit'        => 'Procurar',

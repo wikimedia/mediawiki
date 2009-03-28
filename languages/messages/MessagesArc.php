@@ -178,6 +178,13 @@ $messages = array(
 'viewsource'         => 'ܚܙܝ ܥܩܪܐ',
 
 # Login and logout pages
+'logouttext'              => "'''ܗܫܐ ܦܠܛܠܟ ܡܢ ܚܘܫܒܢܟ.'''
+
+You can continue to use {{SITENAME}} anonymously, or you can [[Special:UserLogin|log in again]] as the same or as a different user.
+Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
+'welcomecreation'         => '== ܒܫܝܢܐ, $1! ==
+ܐܬܒܪܝ ܚܘܫܒܢܟ.
+Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname'                => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 'login'                   => 'ܥܘܠ',
 'nav-login-createaccount' => 'ܥܘܠ \\ ܒܪܝ ܚܘܫܒܢܐ',
@@ -243,6 +250,7 @@ $messages = array(
 'diff-movedto' => 'ܐܫܬܢܝ ܠ $1',
 
 # Search results
+'notitlematches'     => 'ܠܝܬ ܫܡܐ ܕܦܐܬܐ ܐܘܝܢܐ',
 'viewprevnext'       => 'ܚܘܝ ($1) ($2) ($3)',
 'powersearch'        => 'ܒܨܝܐ ܡܬܩܕܡܢܐ',
 'powersearch-legend' => 'ܒܨܝܐ ܡܬܩܕܡܢܐ',
@@ -382,12 +390,15 @@ $messages = array(
 'blocklog-fulllog' => 'ܣܓܠܐ ܕܚܪܡܐ ܫܠܡܐ',
 
 # Move page
-'movearticle'  => 'ܫܢܝ ܦܐܬܐ:',
-'move-watch'   => 'ܕܘܩ ܦܐܬܐ ܗܕܐ',
-'movepagebtn'  => 'ܫܢܝ ܦܐܬܐ',
-'pagemovedsub' => 'ܫܘܢܝܐ ܐܬܓܡܪ',
-'movelogpage'  => 'ܣܓܠܐ ܕܫܘܢܝܐ',
-'movereason'   => 'ܥܠܬܐ:',
+'move-page'               => 'ܫܢܝ $1',
+'movearticle'             => 'ܫܢܝ ܦܐܬܐ:',
+'move-watch'              => 'ܕܘܩ ܦܐܬܐ ܗܕܐ',
+'movepagebtn'             => 'ܫܢܝ ܦܐܬܐ',
+'pagemovedsub'            => 'ܫܘܢܝܐ ܐܬܓܡܪ',
+'movelogpage'             => 'ܣܓܠܐ ܕܫܘܢܝܐ',
+'movereason'              => 'ܥܠܬܐ:',
+'delete_and_move'         => 'ܡܫܝ ܘܫܢܝ',
+'delete_and_move_confirm' => 'ܐܝܢ, ܡܫܝ ܦܐܬܐ',
 
 # Namespace 8 related
 'allmessagesname' => 'ܫܡܐ',
@@ -408,6 +419,7 @@ $messages = array(
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ܟܠ',
+'imagelistall'     => 'ܟܠ',
 'watchlistall2'    => 'ܟܠ',
 'namespacesall'    => 'ܟܠ',
 'monthsall'        => 'ܟܠ',
@@ -416,9 +428,12 @@ $messages = array(
 'confirm_purge_button' => 'ܛܒ',
 
 # Multipage image navigation
-'imgmultigo' => 'ܙܠ!',
+'imgmultigo'   => 'ܙܠ!',
+'imgmultigoto' => 'ܙܠ ܠܦܐܬܐ $1',
 
 # Table pager
+'table_pager_first'        => 'ܦܐܬܐ ܩܕܡܝܬܐ',
+'table_pager_last'         => 'ܦܐܬܐ ܐܚܪܝܬܐ',
 'table_pager_limit_submit' => 'ܙܠ',
 
 # Watchlist editor
@@ -427,16 +442,26 @@ $messages = array(
 # Watchlist editing tools
 'watchlisttools-view' => 'ܚܘܝ ܫܚܠܦܬ̈ܐ ܕܡܝܐ',
 
+# Special:Version
+'version-specialpages' => 'ܦܐܬܘܬ̈ܐ ܕܝܠܢܝܬ̈ܐ',
+
 # Special:FilePath
 'filepath'        => 'ܫܒܝܠܐ ܕܠܦܦܐ',
 'filepath-page'   => 'ܠܦܦܐ',
 'filepath-submit' => 'ܫܒܝܠܐ',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'ܫܡܐ ܕܠܦܦܐ:',
+
 # Special:SpecialPages
-'specialpages'               => 'ܦܐܬܘ̈ܬܐ ܕܝܠܢܝܬ̈ܐ',
-'specialpages-group-other'   => 'ܦܐܬܘܬ̈ܐ ܕܝܠܢܝܬ̈ܐ ܐܚܪ̈ܢܐ',
-'specialpages-group-login'   => 'ܥܘܠ / ܒܪܝ',
-'specialpages-group-changes' => 'ܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ ܘܣܓܠ̈ܐ',
-'specialpages-group-users'   => 'ܡܦܠܚܢ̈ܐ ܘܙܕܩ̈ܐ',
+'specialpages'                 => 'ܦܐܬܘ̈ܬܐ ܕܝܠܢܝܬ̈ܐ',
+'specialpages-group-other'     => 'ܦܐܬܘܬ̈ܐ ܕܝܠܢܝܬ̈ܐ ܐܚܪ̈ܢܐ',
+'specialpages-group-login'     => 'ܥܘܠ / ܒܪܝ',
+'specialpages-group-changes'   => 'ܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ ܘܣܓܠ̈ܐ',
+'specialpages-group-users'     => 'ܡܦܠܚܢ̈ܐ ܘܙܕܩ̈ܐ',
+'specialpages-group-pagetools' => 'ܡܐܢ̈ܐ ܕܦܐܬܐ',
+
+# Special:BlankPage
+'blankpage' => 'ܦܐܬܐ ܣܦܝܩܬܐ',
 
 );

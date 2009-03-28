@@ -779,7 +779,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'filehist-filesize'         => 'Bajlipde ciúchan',
 'filehist-comment'          => 'Commentua',
 'imagelinks'                => 'Linkám',
-'shareduploadwiki-linktext' => 'discripcionde ciúchan páhina',
 'noimage-linktext'          => 'z(o) uploadan',
 'uploadnewversion-linktext' => 'Uploadan hunvercion zode jan ciúchan',
 

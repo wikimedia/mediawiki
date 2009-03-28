@@ -744,7 +744,7 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 # Auto-summaries
 'autosumm-replace' => "Ke pani nei i ka ‘ao‘ao me '$1'",
 'autoredircomment' => 'Ke alaka‘i nei hou i [[$1]]',
-'autosumm-new'     => 'Ka ‘ao‘ao hou: $1',
+'autosumm-new'     => 'He ‘ao‘ao hou: $1',
 
 # Live preview
 'livepreview-loading' => 'Ke ho‘ouka nei…',

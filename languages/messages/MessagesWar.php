@@ -229,8 +229,7 @@ $messages = array(
 'imagelinks'        => 'Mga sumpay',
 'linkstoimage'      => 'Nasumpay hini nga fayl an mga nasunod nga mga pakli:',
 'nolinkstoimage'    => 'Waray mga pakli nga nasumpay hini nga fayl.',
-'sharedupload'      => 'Ini nga fayl ginsaro nga pagkarga ngan puyde gamiton hin iba nga mga proyekto. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'  => 'Alayon pagkita han $1 para hin dugang nga impormasyon.',
+'sharedupload'      => 'Ini nga fayl ginsaro nga pagkarga ngan puyde gamiton hin iba nga mga proyekto.',
 
 # Unused templates
 'unusedtemplateswlh' => 'iba nga mga sumpay',

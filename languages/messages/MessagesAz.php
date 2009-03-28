@@ -565,7 +565,6 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 
 # File description page
 'imagelinks'                => 'İstifadə edilən səhifələr',
-'shareduploadwiki-linktext' => 'fayl təsvir səhifəsi',
 'noimage-linktext'          => 'faylı yüklə',
 'uploadnewversion-linktext' => 'Bu faylın yeni versiyasını yüklə',
 

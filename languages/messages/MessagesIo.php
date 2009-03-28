@@ -43,8 +43,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatigez ruptita ligili <a href="" class="new">tale</a> (alternativo: tale<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Adjustigez paragrafi',
 'tog-hideminor'               => 'Celez mikra redaktaji de recenta chanji',
-'tog-hidepatrolled'           => 'Celez patroliigita redakti en recenta chanji',
-'tog-newpageshidepatrolled'   => 'Celez patroliigita pagini en la listo di nova pagino',
+'tog-hidepatrolled'           => 'Celez patroliita redakti en recenta chanji',
+'tog-newpageshidepatrolled'   => 'Celez patroliita pagini en la listo di nova pagino',
 'tog-usenewrc'                => 'Recenta chanji augmentita (JavaScript bezonesas)',
 'tog-numberheadings'          => 'Autonumerez tituli',
 'tog-showtoolbar'             => 'Montrez redaktilo (JavaScript bezonesas)',
@@ -482,9 +482,12 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'hiddencategories'                 => 'Ca pagino esas membro di {{PLURAL:$1|1 celita kategorio|$1 celita kategorii}}:',
 'nocreatetitle'                    => 'Kreado di pagini limitita',
 'permissionserrorstext-withaction' => 'Vu ne darfas $2, pro la {{PLURAL:$1|kauzo|kauzi}} sequanta:',
+'deleted-notice'                   => 'Ca pagino efacesabas.
+La efaco-registro dil pagino provizesar sequante pro refero.',
 'edit-conflict'                    => 'Konflikto di editi.',
 
 # History pages
+'viewpagelogs'        => 'Videz registri por ca pagino',
 'nohistory'           => 'Ne esas redakto-historio por ica pagino.',
 'currentrev'          => 'Aktuala versiono',
 'currentrev-asof'     => 'Aktuala versiono ye $1',
@@ -863,6 +866,7 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'listusers-submit' => 'Montrez',
 
 # Special:Log/newusers
+'newuserlogpage'          => 'Uzanto-kreo-registro',
 'newuserlog-create-entry' => 'Nova uzanto',
 
 # Special:ListGroupRights
@@ -908,6 +912,7 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'iteminvalidname'    => "Problemo en la artiklo '$1', nevalida nomo...",
 'wlnote'             => "Infre esas la lasta {{PLURAL:$1|chanjo|'''$1''' chanji}} dum la lasta {{PLURAL:$2|horo|'''$2''' hori}}.",
 'wlshowlast'         => 'Montrar la lasta $1 hori $2 dii $3',
+'watchlist-options'  => 'Surveryo-listo selekti',
 
 'enotif_newpagetext'           => 'Ico esas nula pagino.',
 'enotif_impersonal_salutation' => 'Uzanto di {{SITENAME}}',
@@ -1096,6 +1101,7 @@ Voluntez selektar altra nomo.',
 'movedto'                 => 'rinomizita ad',
 'movetalk'                => 'Rinomizar la debato-pagino se to esas aplikebla.',
 '1movedto2'               => '[[$1]] movita a [[$2]]',
+'movelogpage'             => 'Movo-registro',
 'movereason'              => 'Motivo:',
 'revertmove'              => 'rekuperar',
 'delete_and_move_confirm' => 'Yes, efacez la pagino',

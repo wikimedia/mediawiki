@@ -827,7 +827,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'morelinkstoimage'          => 'Tiquinttāz [[Special:WhatLinksHere/$1|achi tzonhuiliztli]] inīn tlahcuilōlhuīc.',
 'redirectstofile'           => 'Inōn {{PLURAL:$1|tlahcuilōlli mocuepa|$1 tlahcuilōlli mocuepah}} nicān:',
 'duplicatesoffile'          => 'Inōn {{PLURAL:$1|tlahcuilōlli cah|$1 tlahcuilōlli cateh}} neneuhqui inīn:',
-'sharedupload'              => 'Inīn īxiptli huelīti motequitiltia zāzocāmpa $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Inīn īxiptli huelīti motequitiltia zāzocāmpa',
 'noimage'                   => 'Ahmo ia inōn tlahcuilōlli; $1',
 'noimage-linktext'          => 'ticquetzāz cē',
 'uploadnewversion-linktext' => 'Ticquetzāz yancuīc tlahcuilōlli',

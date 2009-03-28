@@ -621,7 +621,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'imagelinks'                => 'Àwọn ìjápọ̀',
 'linkstoimage'              => '{{PLURAL:$1|Ojúewé yí|$1 Àwọn ojúewé yí}} jápọ̀ mọ́ àpò yí:',
 'nolinkstoimage'            => 'Kò sí ojúewé tó jápọ̀ mọ́ faili yìí.',
-'sharedupload'              => 'Faili yìí jẹ́ ìrùsókè pínpín pẹ̀lú àwọn iṣẹ́owọ́ mìíràn tí wọ́n n lòó. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Faili yìí jẹ́ ìrùsókè pínpín pẹ̀lú àwọn iṣẹ́owọ́ mìíràn tí wọ́n n lòó.',
 'noimage'                   => 'Kò sí faili tí únjẹ́ báun, sùgbọ́n ẹ le ẹ̀ $1.',
 'noimage-linktext'          => 'Ìrùsókè ẹyọkan',
 'uploadnewversion-linktext' => 'Ẹ ṣe ìrùsókè àtúnṣe tuntun faili yìí',

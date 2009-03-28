@@ -1625,10 +1625,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 'morelinkstoimage'          => 'Pogledaj [[Special:WhatLinksHere/$1|više poveznica]] za ovu datoteku.',
 'redirectstofile'           => '{{PLURAL:$1|Sljedeća datoteka preusmjerava|$1 Sljedeće datoteke preusmjeravaju}} na ovu datoteku:',
 'duplicatesoffile'          => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 sljedeće datoteke su kopije|$1 sljedećih datoteka su kopije}} ove datoteke ([[Special:FileDuplicateSearch/$2|više detalja]]):',
-'sharedupload'              => 'Ova je datoteka postavljena na $1 i mogu je koristiti ostali wikiji. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Za podrobnije informacije vidi $1.',
-'shareduploadwiki-desc'     => 'Opis datoteke $1 na zajedničkom poslužitelju je prikazan ispod',
-'shareduploadwiki-linktext' => 'stranica s opisom datoteke',
+'sharedupload'              => 'Ova je datoteka postavljena na $1 i mogu je koristiti ostali wikiji.',
 'noimage'                   => 'Ne postoji datoteka s ovim imenom. Možete ju $1.',
 'noimage-linktext'          => 'postaviti',
 'uploadnewversion-linktext' => 'Postavi novu inačicu datoteke',

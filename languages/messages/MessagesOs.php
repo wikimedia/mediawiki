@@ -556,15 +556,14 @@ $3',
 'listfiles' => 'Нывты номхыгъд',
 
 # File description page
-'filehist'                  => 'Файлы истори',
-'filehist-current'          => 'нырыккон',
-'filehist-datetime'         => 'Датæ/рæстæг',
-'filehist-user'             => 'Архайæг',
-'filehist-filesize'         => 'Файлы бæрцуат',
-'filehist-comment'          => 'Фиппаинаг',
-'imagelinks'                => 'Æрвитæнтæ файлмæ',
-'linkstoimage'              => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
-'shareduploadwiki-linktext' => 'файлы сфысты фарсы',
+'filehist'          => 'Файлы истори',
+'filehist-current'  => 'нырыккон',
+'filehist-datetime' => 'Датæ/рæстæг',
+'filehist-user'     => 'Архайæг',
+'filehist-filesize' => 'Файлы бæрцуат',
+'filehist-comment'  => 'Фиппаинаг',
+'imagelinks'        => 'Æрвитæнтæ файлмæ',
+'linkstoimage'      => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
 
 # File deletion
 'filedelete-submit'           => 'Аппар',

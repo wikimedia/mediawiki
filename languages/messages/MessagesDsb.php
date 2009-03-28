@@ -175,7 +175,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'E-mail teke małych změnow dla pósłaś',
 'tog-enotifrevealaddr'        => 'Móju e-mailowu adresu w e-mailowych pówěźeńkach pokazaś',
 'tog-shownumberswatching'     => 'Licbu wobglědujucych wužywarjow pokazaś',
-'tog-fancysig'                => 'Signaturu mimo awtomatiskego wótkaza na diskusijny bok',
+'tog-fancysig'                => 'Ze signaturu kaž z wikitekstom wobchadaś (bźez awtomatiskego wótkaza)',
 'tog-externaleditor'          => 'Eksterny editor ako standard wužywaś (jano za ekspertow, pomina sebje specialne nastajenja na wašom licadle)',
 'tog-externaldiff'            => 'Eksterny diff-program ako standard wužywaś (jano za ekspertow, pominma sebje specialne nastajenja na wašom licadle)',
 'tog-showjumplinks'           => 'Wótkaze typa „źi do” zmóžniś',
@@ -840,14 +840,17 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 'rev-deleted-comment'            => '(Komentar wulašowany)',
 'rev-deleted-user'               => '(Wužywarske mě wulašowane)',
 'rev-deleted-event'              => '(protokolowa akcija wulašowana)',
-'rev-deleted-text-permission'    => "Toś ta wersija boka jo se '''ze zjawnych archiwow wulašowała. Ewentuelne drobnostki su w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
-'rev-deleted-text-view'          => "Toś ta wersija boka jo se '''ze zjawnych archiwow wulašowała'''.
-Ako administrator na {{GRAMMAR:lokatiw|{{SITENAME}}}} móžoš se ju woglědaś. Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
-'rev-deleted-no-diff'            => "Njamóžoš se toś ten rozdźěl woglědaś, dokulaž jadna z wersijow jo se '''wótpórała ze zjawnych archiwow'''.
+'rev-deleted-text-permission'    => "Toś ta wersija boka jo se '''wulašowała'''. Ewentuelne drobnostki su w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+'rev-deleted-text-unhide'        => "Toś ta wersija boka jo se '''wulašowała'''.
+Glědaj drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
+Ako administrator móžoš se hyšći [$1 toś tu wersiju woglědaś], jolic coš pókšacowaś.",
+'rev-deleted-text-view'          => "Toś ta wersija boka jo se '''wulašowała'''.
+Ako administrator móžoš se ju woglědaś; glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+'rev-deleted-no-diff'            => "Njamóžoš se toś ten rozdźěl woglědaś, dokulaž jadna z wersijow jo se '''wulašowała'''.
 Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
-'rev-deleted-unhide-diff'        => "Jadna z wersijow toś togo rozdźěla jo se '''wótpórała ze zjawnych archiwow'''.
+'rev-deleted-unhide-diff'        => "Jadna z wersijow toś togo rozdźěla jo se '''wulašowała'''.
 Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
-Ako administrator na {{GRAMMAR:lokatiw|{{SITENAME}}}} móžoš hyšći se [$1 toś ten rozdźěl woglědaś], jolic coš pókšacowaś.",
+Ako administrator móžoš hyšći se [$1 toś ten rozdźěl woglědaś], jolic coš pókšacowaś.",
 'rev-delundel'                   => 'pokazaś/schowaś',
 'revisiondelete'                 => 'Wersije wulašowaś/wótnowiś',
 'revdelete-nooldid-title'        => 'Njepłaśiwa celowa wersija',
@@ -1475,10 +1478,9 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Dalšne wótkazy]] k toś tej dataji wobglědaś.',
 'redirectstofile'           => '{{PLURAL:$1|Slědujuca dataja dalej pósrědnja|Slědujucej $1 dataji dalej pósrědnjatej|slědujuce $1 dataje dalej póšrědnjaju|Slědujucych $1 datajow dalej pósrědnja}} k toś tej dataji:',
 'duplicatesoffile'          => '{{PLURAL:$1|Slědujuca dataja jo duplikat|Slědujucej $1 dataji stej duplikata|Slědujuce dataje $1 su duplikaty|Slědujucych $1 datajow jo duplikaty}} toś teje dataje ([[Special:FileDuplicateSearch/$2|dalšne drobnostki]])::',
-'sharedupload'              => 'Toś ta dataja jo z $1 a dajo se pśez druge projekty wužywaś. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Za dalšne informacije glědaj $1.',
-'shareduploadwiki-desc'     => 'Wopisanje na $1 se dołojce pókazujo.',
-'shareduploadwiki-linktext' => 'boku wopisanja dataje',
+'sharedupload'              => 'Toś ta dataja jo z $1 a dajo se pśez druge projekty wužywaś.',
+'sharedupload-desc-there'   => 'Toś ta dataja jo z $1 a dajo se pśez druge projekty wužywaś. Pšosym glědaj [$2 bok datajowego wopisanja] za dalšne informacije.',
+'sharedupload-desc-here'    => 'Toś ta dataja jo z $1 a dajo se pśez druge projekty wužywaś. Wopisanje na jeje [$2 boku datajowego wopisanja] pokazujo se dołojce.',
 'noimage'                   => 'Dataja z takim mjenim njeeksistěrujo, ale móžoš ju $1.',
 'noimage-linktext'          => 'nagraś',
 'uploadnewversion-linktext' => 'Uploaduj nowu wersiju toś teje dataje.',

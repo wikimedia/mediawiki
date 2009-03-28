@@ -270,7 +270,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Уведомлять по эл. почте даже при малозначительных изменениях',
 'tog-enotifrevealaddr'        => 'Показывать мой почтовый адрес в сообщениях оповещения',
 'tog-shownumberswatching'     => 'Показывать число участников, включивших страницу в свой список наблюдения',
-'tog-fancysig'                => 'Собственная вики-разметка подписи',
+'tog-fancysig'                => 'Собственная вики-разметка подписи (без автоматической ссылки)',
 'tog-externaleditor'          => 'Использовать внешний редактор (необходима специальная настройка компьютера)',
 'tog-externaldiff'            => 'Использовать внешнюю программу сравнения версий (необходима специальная настройка компьютера)',
 'tog-showjumplinks'           => 'Включить вспомогательные ссылки «перейти к»',
@@ -964,15 +964,18 @@ $3 указал следующую причину: ''$2''",
 'rev-deleted-comment'            => '(комментарий удалён)',
 'rev-deleted-user'               => '(имя автора стёрто)',
 'rev-deleted-event'              => '(запись удалена)',
-'rev-deleted-text-permission'    => "Эта версия страницы была '''удалена из общедоступного архива'''.
+'rev-deleted-text-permission'    => "Эта версия страницы была '''удалена'''.
 Возможно, объяснения даны в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
-'rev-deleted-text-view'          => "Эта версия страницы была '''удалена из общедоступного архива'''.
-Вы можете просмотреть её, так как являетесь администратором сайта {{SITENAME}}. Возможно, объяснения удаления даны в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
-'rev-deleted-no-diff'            => "Вы не можете просмотреть эту разницу версий, так как одна из версий страницы '''была удалена из общедоступного архива'''.
+'rev-deleted-text-unhide'        => "Эта версия страницы была '''удалена'''.
+Возможно, объяснения даны в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале удалений].
+Вы можете [$1 просмотреть данную версию], так как являетесь администратором.",
+'rev-deleted-text-view'          => "Эта версия страницы была '''удалена'''.
+Вы можете просмотреть её, так как являетесь администратором. Возможно, объяснения удаления даны в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
+'rev-deleted-no-diff'            => "Вы не можете просмотреть эту разницу версий, так как одна из версий страницы была '''удалена'''.
 Возможно, подробности можно найти в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале удалений].",
-'rev-deleted-unhide-diff'        => "Одна из версий страницы '''была удалена из общедоступного архива'''.
+'rev-deleted-unhide-diff'        => "Одна из версий страницы была '''удалена'''.
 Возможно, подробности можно найти в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале удалений].
-Вы можете [$1 просмотреть разницу версий], так как являетесь администратором сайта {{SITENAME}}.",
+Вы можете [$1 просмотреть данную версию], так как являетесь администратором.",
 'rev-delundel'                   => 'показать/скрыть',
 'revisiondelete'                 => 'Удалить / восстановить версии страницы',
 'revdelete-nooldid-title'        => 'Не задана целевая версия',
@@ -1267,7 +1270,7 @@ $3 указал следующую причину: ''$2''",
 'prefs-custom-js'           => 'Собственный JS',
 
 # User rights
-'userrights'                  => 'Управление правами участников', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Управление правами участника', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Управление группами участников',
 'userrights-user-editname'    => 'Введите имя участника:',
 'editusergroup'               => 'Изменить группы участника',
@@ -1607,10 +1610,7 @@ PICT # различные
 'morelinkstoimage'          => 'Просмотреть [[Special:WhatLinksHere/$1|остальные ссылки]] на этот файл.',
 'redirectstofile'           => 'Со {{PLURAL:$1|следующего $1 файла установлено перенаправление|следующих $1 файлов установлены перенаправления|следующих $1 файлов установлены перенаправления}} на этот файл:',
 'duplicatesoffile'          => '{{PLURAL:$1|Следующий $1 файл является дубликатом|Следующие $1 файла являются дубликатами|Следующие $1 файлов являются дубликатами}} этого файла ([[Special:FileDuplicateSearch/$2|подробности]]):',
-'sharedupload'              => 'Это файл из общего хранилища $1, он может использоваться также в других проектах. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Дополнительную информацию можно найти на $1.',
-'shareduploadwiki-desc'     => 'Содержимое его $1 показано ниже.',
-'shareduploadwiki-linktext' => 'страницы описания',
+'sharedupload'              => 'Это файл из общего хранилища $1, он может использоваться также в других проектах.',
 'noimage'                   => 'Файла с таким именем не существует, но вы можете $1.',
 'noimage-linktext'          => 'загрузить его',
 'uploadnewversion-linktext' => 'Загрузить новую версию этого файла',
@@ -1819,7 +1819,7 @@ PICT # различные
 'special-categories-sort-abc'   => 'упорядочить по алфавиту',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Удалённый вклад',
+'deletedcontributions'       => 'удалённый вклад',
 'deletedcontributions-title' => 'Удалённый вклад',
 
 # Special:LinkSearch
@@ -2131,11 +2131,11 @@ $1',
 'sp-contributions-newbies'       => 'Показать только вклад, сделанный с новых учётных записей',
 'sp-contributions-newbies-sub'   => 'С новых учётных записей',
 'sp-contributions-newbies-title' => 'Вклад с недавно созданных учётных записей',
-'sp-contributions-blocklog'      => 'Журнал блокировок',
-'sp-contributions-deleted'       => 'Удалённый вклад',
+'sp-contributions-blocklog'      => 'блокировки',
+'sp-contributions-deleted'       => 'удалённые правки участника',
 'sp-contributions-logs'          => 'журналы',
-'sp-contributions-talk'          => 'Обсуждение',
-'sp-contributions-userrights'    => 'Управление правами участников',
+'sp-contributions-talk'          => 'обсуждение',
+'sp-contributions-userrights'    => 'управление правами участников',
 'sp-contributions-search'        => 'Поиск вклада',
 'sp-contributions-username'      => 'IP-адрес или имя участника:',
 'sp-contributions-submit'        => 'Найти',

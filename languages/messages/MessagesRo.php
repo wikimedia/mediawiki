@@ -1497,10 +1497,7 @@ O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'redirectstofile'           => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:
 {{PLURAL:$1|Fişierul următor|Următoarele $1 fişiere}} redirectează la acest fişier:',
 'duplicatesoffile'          => '{{PLURAL:$1|Fişierul următor este duplicat|Următoarele $1 fişiere sunt duplicate}} ale acestui fişier ([[Special:FileDuplicateSearch/$2|mai multe detalii]]):',
-'sharedupload'              => 'Acest fişier este de la $1 şi poate fi folosit şi de alte proiecte. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Vă rugăm citiţi [$1 pagina de descriere a fişierului] pentru alte informaţii.',
-'shareduploadwiki-desc'     => 'Descrierea din pagina $1 este disponibilă mai jos.',
-'shareduploadwiki-linktext' => 'pagina descriptivă a fişierului',
+'sharedupload'              => 'Acest fişier este de la $1 şi poate fi folosit şi de alte proiecte.',
 'noimage'                   => 'Nu există nici un fişier cu acest nume, puteţi să îl $1.',
 'noimage-linktext'          => 'trimiteţi',
 'uploadnewversion-linktext' => 'Încarcă o versiune nouă a acestui fişier',

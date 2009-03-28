@@ -1111,9 +1111,7 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'imagelinks'                => 'Viited failidele',
 'linkstoimage'              => 'Sellele pildile {{PLURAL:$1|viitab järgmine lehekülg|viitavad järgmised leheküljed}}:',
 'nolinkstoimage'            => 'Sellele pildile ei viita ükski lehekülg.',
-'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla jagatud kasutuses teistes projektides. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki-desc'     => 'Sealne $1 on toodud allpool.',
-'shareduploadwiki-linktext' => 'faili kirjelduse lehekülg',
+'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla jagatud kasutuses teistes projektides.',
 'noimage'                   => 'Sellise nimega faili pole, võite selle $1.',
 'noimage-linktext'          => 'üles laadida',
 'uploadnewversion-linktext' => 'Lae üles selle faili uus versioon',

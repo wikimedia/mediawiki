@@ -674,8 +674,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'imagelinks'                => 'Viungo vya mafaili',
 'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu|Kurasa hizi $1}} zimeunganishwa na faili hili:',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
-'sharedupload'              => 'Faili hii inatoka $1 na inaweza kushirikiwa na miradi mingine. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki-linktext' => 'ukurasa wa maelezo ya faili',
+'sharedupload'              => 'Faili hii inatoka $1 na inaweza kushirikiwa na miradi mingine.',
 'noimage'                   => 'Hakuna faili yenye jina hili, $1 kama unayo.',
 'noimage-linktext'          => 'pakia faili',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',

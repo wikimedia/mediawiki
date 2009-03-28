@@ -6,6 +6,7 @@
  *
  * @author Agurzil
  * @author Alnokta
+ * @author Basharh
  * @author Chaos
  * @author Ciphers
  * @author Gharbeia
@@ -1313,7 +1314,7 @@ $2',
 'searchsubtitleinvalid'            => "أنت بحثت عن '''$1'''",
 'noexactmatch'                     => "'''لا توجد صفحة بالاسم \"\$1\"'''.
 يمكنك [[:\$1|إنشاء هذه الصفحة]].",
-'noexactmatch-nocreate'            => "'''لا توجد صفحة بالاسم \"\$1\".'''",
+'noexactmatch-nocreate'            => "'''ܠܝܬ ܦܐܬܐ ܒܫܡܐ ܕ \"\$1\".'''",
 'toomanymatches'                   => 'وجدت مطابقات كثيرة، من فضلك جرب استعلاما مختلفا',
 'titlematches'                     => 'عنوان الصفحة يطابق',
 'notitlematches'                   => 'لم يتم إيجاد أي عنوان مطابق',
@@ -1815,10 +1816,7 @@ PICT # متنوع
 'redirectstofile'           => '{{PLURAL:$1|الملف|ال$1 ملف}} التالي يحول إلى هذا الملف:',
 'duplicatesoffile'          => '{{PLURAL:$1|الملف التالي مكرر|ال$1 ملف التالي مكررات}} لهذا الملف
 ([[Special:FileDuplicateSearch/$2|المزيد من التفاصيل]]):',
-'sharedupload'              => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'من فضلك انظر $1 لمزيد من المعلومات.',
-'shareduploadwiki-desc'     => 'الوصف على $1 الخاصة به هناك معروض بالأسفل.',
-'shareduploadwiki-linktext' => 'صفحة وصف الملف',
+'sharedupload'              => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى.',
 'noimage'                   => 'لا يوجد ملف بهذا الاسم، لكن بإمكانك أن تقوم بـ$1.',
 'noimage-linktext'          => 'رفع واحد',
 'uploadnewversion-linktext' => 'ارفع نسخة جديدة من هذا الملف',

@@ -219,7 +219,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Scheck mer och en E-Mail för de klein Mini-Änderunge',
 'tog-enotifrevealaddr'        => 'Zeich dä Andere ming E-Mail Adress aan, en de Benohrichtijunge per E-Mail',
 'tog-shownumberswatching'     => 'Zeich de Aanzahl Metmaacher, die op die Sigg am oppasse sin',
-'tog-fancysig'                => 'Ungerschreff ohne automatische Link',
+'tog-fancysig'                => 'Donn de „Ungerschreff“ als Wiki-Tex behandelle (ohne enne automattesche Lengk)',
 'tog-externaleditor'          => 'Nemm jedes Mol en extern Editor-Projramm (Doför bruchs de spezjell Enstellunge op Dingem Kompjutor)',
 'tog-externaldiff'            => 'Nemm jedes Mol en extern Diff-Projramm (Doför bruchs de spezjell Enstellunge op Dingem Kompjutor)',
 'tog-showjumplinks'           => '„Jangk-noh“-Links usjevve, die bei em „Zojang ohne Barrikad“ helfe dun',
@@ -319,8 +319,8 @@ Dat es och all op Änglesch:
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]
 
-== Enstellunge för däm Wiki singe Name ==
-Em Appachtemang <span class="plainlinks">[{{fullurl:Special:AllPages|namespace={{ns:MediaWiki}}}} {{ns:MediaWiki}}]</span> sinn_er de Nohrechte un Texshtöckscher vun de Wiki-Sofwäer dren faßjehallde. Loor Der op dä Sigg [[{{#special:AllMessages}}]] aan, wat do dren shteiht. Et jit en Aanzahl Nohreschte met „{{SITENAME}}“ dren, do moß mer nohloore, of de Jrammatik reschtesch es, un wo nüdesch esu Wöötscher wi „die“, „dä“, „dat“, „em“, „op däm“, un esu jet för „{{SITENAME}}“ zerääsch maache.',
+== Enstellunge för däm Wiki singe eije Name ==
+Em Appachtemang <span class="plainlinks">[{{fullurl:Special:AllPages|namespace={{ns:MediaWiki}}}} {{ns:MediaWiki}}]</span> sinn_er de Nohrechte un Texshtöckscher vun de Wiki-Sofwäer dren faßjehallde. Loor Der op dä Sigg [[{{#special:AllMessages}}]] aan, wat do dren shteiht. Et jit en Aanzahl Nohreschte met „{{SITENAME}}“ dren, do moß mer nohloore, of de Jrammatik reschtesch es, un wo nüdesch esu Wöötscher wi „die“, „dä“, „dat“, „em“, „op däm“, un esu jet för „{{SITENAME}}“ zerääsch maache, woh et noch nit paß.',
 
 'about'          => 'Üvver',
 'article'        => 'Atikkel',
@@ -1034,16 +1034,15 @@ Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 'rev-deleted-comment'            => '(„Koot Zosammejefass, Quell“ usjeblendt)',
 'rev-deleted-user'               => '(Metmaacher Name usjeblendt)',
 'rev-deleted-event'              => '(Logboch-Enndraach fottjenomme)',
-'rev-deleted-text-permission'    => "Die Version ''' ka'mer nit mieh öffentlesch beluure'''.
-Mieh drövver künnt Ehr velleisch em [{{FULLURL:Spezial:Log/delete|page={{PAGENAMEE}}}} Logboch] nohlese.",
-'rev-deleted-text-view'          => "Die Version '''ka'mer nit mieh öffentlesch beluure'''.
-Als ene Wiki-Köbes kriss De se ävver doch ze sinn, un künnts se och zeröck holle.
-Mieh drövver künnt Ehr velleisch em [{{FULLURL:Spezial:Log/delete|page={{PAGENAMEE}}}} Logboch] nohlese.",
-'rev-deleted-no-diff'            => "De kanns de Ongerscheide nit beloore, denn ein vun de Versione '''ka'mer nit mieh öffentlesch beluure'''.
+'rev-deleted-text-permission'    => "Die Version fun dä Sigg es '''fottjeschmeße'''. 
+Wann Ehr en [{{FULLURL:Spezial:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:deletionlog}}}}] loore doht, künnt Ehr velleisch mieh do drövver lesse.",
+'rev-deleted-text-unhide'        => '{{int:rev-deleted-text-permission}} Als ene Wiki-Köbes kanns De [$1 se ävver doch bekike], wann De wells.',
+'rev-deleted-text-view'          => '{{int:rev-deleted-text-permission}} Als ene Wiki-Köbes kanns De se ävver bekike.',
+'rev-deleted-no-diff'            => "De kanns de Ongerscheide nit beloore, denn ein vun de Versione es '''fottjeschmeße'''.
 Mieh Einzelheite hät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].",
-'rev-deleted-unhide-diff'        => "De kanns de Ongerscheide nit beloore, denn ein vun de Versione '''ka'mer nit mieh öffentlesch beluure'''.
+'rev-deleted-unhide-diff'        => "Ein vun de Versione es '''fottjeschmeße'''.
 Mieh Einzelheite hät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].
-Als ene Wiki_Köbes kanns De [$1 de Ungerscheide doch aankike] wann De wells.",
+Als ene Wiki_Köbes kanns De [$1 de Ungerscheide ävver aankike] wann De wells.",
 'rev-delundel'                   => 'zeije/usblende',
 'revisiondelete'                 => 'Versione fottschmieße un widder zeröck holle',
 'revdelete-nooldid-title'        => 'Kein Version aanjejovve, oddeer en Stuß-Nommer',
@@ -1731,10 +1730,12 @@ Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 'morelinkstoimage'          => 'Belohr Der [[Special:WhatLinksHere/$1|de Links]] op di Datei.',
 'redirectstofile'           => 'Di {{PLURAL:$1|Datei heenoh leid|$1 Dateie leide}} op he di Datei öm:',
 'duplicatesoffile'          => 'Mer hann_er {{PLURAL:$1|en dubbelte Datei|$1 dubbelte Dateie|kei dubbelte Dateije}} fon he dä Datei, di {{PLURAL:$1|hät|han all|han}} dersellve Enhalldt ([[Special:FileDuplicateSearch/$2|mieh Einzelheite]]):',
-'sharedupload'              => 'De Datei es esu parat jelaht, dat se en diverse, ungerscheidlije Projekte jebruch wääde kann. Se kütt fun $1. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Mieh Informatione fings De op dä $1.',
-'shareduploadwiki-desc'     => 'Hee noh kütt dä Enhalt fun dä $1 uß dämm jemeinsame Beshtand.',
-'shareduploadwiki-linktext' => 'Sigg övver die Datei',
+'sharedupload'              => 'De Datei es för diverse ungerscheidlije Projekte parat jelaht. Se kütt fun $1.',
+'sharedupload-desc-there'   => 'Di Datei kütt vun $1 un kann en andere Projekte jebruch wäde.
+Mer han och [$2 jenouer Date övver se].',
+'sharedupload-desc-here'    => 'Di Datei kütt vun $1 un kann en ander Projekte jebruch wäde.
+Jenouer Date övver se fingk mer op dä [$2 Sigg övver se].
+Dat sellve shteiht hee dronger.',
 'noimage'                   => 'Mer han kein Datei met däm Name, kanns De ävver $1.',
 'noimage-linktext'          => 'huhlade!',
 'uploadnewversion-linktext' => 'Dun en neu Version vun dä Datei huhlade',
@@ -2295,10 +2296,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'För neu Metmaacher',
 'sp-contributions-newbies-title' => 'Neu Metmaacher ier Beidräsch',
 'sp-contributions-blocklog'      => 'Logboch met Metmaacher-Sperre',
-'sp-contributions-deleted'       => 'Fottjeschmesse Versione',
+'sp-contributions-deleted'       => 'fottjeschmesse Beidrääsch fun Metmaachere',
 'sp-contributions-logs'          => 'Logböcher',
 'sp-contributions-talk'          => 'Klaaf',
-'sp-contributions-userrights'    => 'Metmaacher ehr Räächde verwalte',
+'sp-contributions-userrights'    => 'De Metmaacher ehr Räächde verwalde',
 'sp-contributions-search'        => 'Söök noh Metmaacher ier Beidräg',
 'sp-contributions-username'      => 'Metmaachername odder IP-Address:',
 'sp-contributions-submit'        => 'Sööke',
@@ -2796,7 +2797,6 @@ $1',
 'mediawarning'         => "<strong>Opjepass</strong>: En dä Datei künnt en <b>jefährlich Projrammstöck</b> dren stecke. Wa'mer et laufe looße dät, do künnt dä Sörver met för de Cracker opjemaht wääde. <hr />",
 'imagemaxsize'         => 'Belder op de Sigge, wo se beschrevve wääde, nit jrößer maache wie:',
 'thumbsize'            => 'Esu breid solle de klein Beldche (Thumbnails/Breefmarke) sin:',
-'widthheight'          => '$1×$2',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|eij Sigg|$3 Sigge|keij Sigge}}',
 'file-info'            => '(Dateiömfang: $1, MIME-Tüp: <code>$2</code>)',
 'file-info-size'       => '({{PLURAL:$1|Ei Pixel|$1 Pixelle}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle}} huh, de Datei hät $3, dä MIME-Typ es: <code>$4</code>)',

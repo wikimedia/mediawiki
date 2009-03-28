@@ -706,9 +706,7 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 'imagelinks'                => 'Lhigaçones de Fexeiros',
 'linkstoimage'              => '{{PLURAL:$1|Esta páigina lhigan|Estas $1 páiginas lhigan}} este fexeiro:',
 'nolinkstoimage'            => 'Nanhua páigina apunta pa este fexeiro.',
-'sharedupload'              => 'Este fexeiro ye de $1 i puode ser outelizado por outros porjetos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki-desc'     => 'La çcriçon an $1 ye amostrada ambaixo.',
-'shareduploadwiki-linktext' => 'páigina de çcriçon de fexeiro',
+'sharedupload'              => 'Este fexeiro ye de $1 i puode ser outelizado por outros porjetos.',
 'noimage'                   => 'Nun eisiste nanhun fexeiro cun este nome, mas puodes $1',
 'noimage-linktext'          => 'carga un',
 'uploadnewversion-linktext' => 'Cargar ua nuoba berson deste fexeiro',

@@ -1518,10 +1518,7 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'morelinkstoimage'          => 'Uri [[Special:WhatLinksHere/$1|aktar links]] għal dan il-fajl.',
 'redirectstofile'           => '{{PLURAL:$1|Il-fajl segwenti huwa rindirizzat|Il-$1 fajls segwenti huma rindirizzati}} għal dan il-fajl.',
 'duplicatesoffile'          => "{{PLURAL:$1|Il-fajl segwenti huwa duplikat|Il-$1 fajls segwenti huma duplikati}} ta' dan il-fajl ([[Special:FileDuplicateSearch/$2|aktar dettalji]]):",
-'sharedupload'              => "Dan il-fajl ġej minn $1 u jista' jiġi wżat minn proġetti oħra. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Jekk jogħġbok ara $1 għal aktar informazzjoni.',
-'shareduploadwiki-desc'     => 'Id-deskrizzjoni fuq il-$1, tinsab hawn taħt.',
-'shareduploadwiki-linktext' => 'paġna tad-deskrizzjoni tal-fajl',
+'sharedupload'              => "Dan il-fajl ġej minn $1 u jista' jiġi wżat minn proġetti oħra.",
 'noimage'                   => "Ebda fajl ma jeżisti b'dan l-isem, imma jekk trid tista' $1.",
 'noimage-linktext'          => "tella' wieħed",
 'uploadnewversion-linktext' => "Tella' verżjoni ġdida ta' dan il-fajl",

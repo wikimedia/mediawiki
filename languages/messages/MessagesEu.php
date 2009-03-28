@@ -1450,10 +1450,7 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'morelinkstoimage'          => 'Ikusi fitxategi honen [[Special:WhatLinksHere/$1|lotura gehiago]].',
 'redirectstofile'           => 'Honako {{PLURAL:$1|artxiboak fitxategi honetara birzuzentzen du:|$1 artxiboek fitxategi honetara birzuzentzen dute:}}',
 'duplicatesoffile'          => 'Ondorengo fitxategi {{PLURAL:$1|hau beste honen berdina da|$1 hauek beste honen berdinak dira}} ([[Special:FileDuplicateSearch/$2|zehaztasun gehiago]]):',
-'sharedupload'              => 'Elkarbanatutako fitxategi hau $1-ko igoera bat da eta beste proiektuek ere erabil dezakete. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Informazio gehiagorako $1 ikusi mesedez.',
-'shareduploadwiki-desc'     => 'Deskribapena $1-(e)an erakusten da azpian.',
-'shareduploadwiki-linktext' => 'fitxategiaren deskribapen orrialdea',
+'sharedupload'              => 'Elkarbanatutako fitxategi hau $1-ko igoera bat da eta beste proiektuek ere erabil dezakete.',
 'noimage'                   => 'Ez dago fitxategirik izen honekin, $1 dezakezu.',
 'noimage-linktext'          => 'bat igo',
 'uploadnewversion-linktext' => 'Fitxategi honen bertsio berri bat igo',

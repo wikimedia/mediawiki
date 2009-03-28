@@ -191,7 +191,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Segnalami via e-mail anche le modifiche minori',
 'tog-enotifrevealaddr'        => 'Rivela il mio indirizzo e-mail nei messaggi di avviso',
 'tog-shownumberswatching'     => 'Mostra il numero di utenti che hanno la pagina in osservazione',
-'tog-fancysig'                => 'Non modificare il markup della firma (usare per firme non standard)',
+'tog-fancysig'                => 'Interpreta i comandi wiki nella firma (senza collegamento automatico)',
 'tog-externaleditor'          => "Usa per default un editor di testi esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer)",
 'tog-externaldiff'            => "Usa per default un programma di diff esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer)",
 'tog-showjumplinks'           => 'Attiva i collegamenti accessibili "vai a"',
@@ -867,16 +867,18 @@ Legenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:la
 'rev-deleted-comment'            => '(commento rimosso)',
 'rev-deleted-user'               => '(nome utente rimosso)',
 'rev-deleted-event'              => '(azione del log rimossa)',
-'rev-deleted-text-permission'    => "Questa versione della pagina è stata '''rimossa dagli archivi visibili al pubblico'''.
+'rev-deleted-text-permission'    => "Questa versione della pagina è stata '''cancellata'''.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
-'rev-deleted-text-view'          => "Questa versione della pagina è stata '''rimossa dagli archivi visibili al pubblico'''.
-Il testo può essere visualizzato soltanto dagli amministratori del sito.
-Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
-'rev-deleted-no-diff'            => "Non è possibile visualizzare questo diff perché una delle revisioni è stata '''rimossa dagli archivi visibili al pubblico'''.
-Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
-'rev-deleted-unhide-diff'        => "Una delle revisioni di questo diff è stata '''rimossa dagli archivi visibili al pubblico'''.
+'rev-deleted-text-unhide'        => "Questa versione della pagina è stata '''cancellata'''.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
-Da amministratore è possibile ancora [$1 visualizzare questo diff] se si desidera procedere.",
+Agli amministratori è ancora consentito [$ visualizzare questa versione] se necessario.",
+'rev-deleted-text-view'          => "Questa versione della pagina è stata '''cancellata'''.
+Gli amministratori possono ancora visualizzarla; consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
+'rev-deleted-no-diff'            => "Non è possibile visualizzare questo diff perché una delle revisioni è stata '''cancellata'''.
+Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
+'rev-deleted-unhide-diff'        => "Una delle revisioni di questa diff è stata '''cancellata'''.
+Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
+Agli amministratori è ancora consentito [$1 visualizzare questa diff] se necessario.",
 'rev-delundel'                   => 'mostra/nascondi',
 'revisiondelete'                 => 'Cancella o ripristina versioni',
 'revdelete-nooldid-title'        => 'Versione non specificata',
@@ -1499,10 +1501,11 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'morelinkstoimage'          => 'Visualizza [[Special:WhatLinksHere/$1|altri link]] a questo file.',
 'redirectstofile'           => '{{PLURAL:$1|Il seguente|I seguenti $1}} file {{PLURAL:$1|è|sono}} un redirect a questo file:',
 'duplicatesoffile'          => '{{PLURAL:$1|Il seguente file è un duplicato|I seguenti $1 file sono duplicati}} di questo file ([[Special:FileDuplicateSearch/$2|ulteriori dettagli]]):',
-'sharedupload'              => 'Questo file proviene da $1 e può essere utilizzato da altri progetti. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Si veda $1 per ulteriori informazioni.',
-'shareduploadwiki-desc'     => 'La descrizione che appare sulla relativa $1 viene mostrata di seguito.',
-'shareduploadwiki-linktext' => 'pagina di descrizione del file',
+'sharedupload'              => 'Questo file proviene da $1 e può essere utilizzato da altri progetti.',
+'sharedupload-desc-there'   => 'Questo file proviene da $1 e può essere utilizzato da altri progetti.
+Consultare la [$2 pagina di descrizione del file] per ulteriori informazioni.',
+'sharedupload-desc-here'    => 'Questo file proviene da $1 e può essere utilizzato da altri progetti.
+Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizione del file].',
 'noimage'                   => 'Un file con questo nome non esiste ma è possibile $1.',
 'noimage-linktext'          => 'caricarlo ora',
 'uploadnewversion-linktext' => 'Carica una nuova versione di questo file',
@@ -2014,10 +2017,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Per i nuovi utenti',
 'sp-contributions-newbies-title' => 'Contributi dei nuovi utenti',
 'sp-contributions-blocklog'      => 'blocchi',
-'sp-contributions-deleted'       => 'Contributi utente cancellati',
+'sp-contributions-deleted'       => 'contributi utente cancellati',
 'sp-contributions-logs'          => 'registri',
 'sp-contributions-talk'          => 'discussione',
-'sp-contributions-userrights'    => 'Gestione dei permessi relativi agli utenti',
+'sp-contributions-userrights'    => 'gestione dei permessi relativi agli utenti',
 'sp-contributions-search'        => 'Ricerca contributi',
 'sp-contributions-username'      => 'Indirizzo IP o nome utente:',
 'sp-contributions-submit'        => 'Ricerca',
