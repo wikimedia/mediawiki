@@ -115,7 +115,7 @@ class ImagePage extends Article {
 			if( $fol != '-' && !wfEmptyMsg( 'shareddescriptionfollows', $fol ) ) {
 				$wgOut->addWikiText( $fol );
 			}
-			$wgOut->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . '</div>' );
+			$wgOut->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . "</div>\n" );
 		}
 
 		$this->closeShowImage();
@@ -135,7 +135,7 @@ class ImagePage extends Article {
 			global $wgStylePath, $wgStyleVersion;
 			$expand = htmlspecialchars( Xml::escapeJsString( wfMsg( 'metadata-expand' ) ) );
 			$collapse = htmlspecialchars( Xml::escapeJsString( wfMsg( 'metadata-collapse' ) ) );
-			$wgOut->addHTML( Xml::element( 'h2', array( 'id' => 'metadata' ), wfMsg( 'metadata' ) ). "\n" );
+			$wgOut->addHTML( Xml::element( 'h2', array( 'id' => 'metadata' ), wfMsg( 'metadata' ) ) . "\n" );
 			$wgOut->addWikiText( $this->makeMetadataTable( $formattedMetadata ) );
 			$wgOut->addScriptFile( 'metadata.js' );
 			$wgOut->addHTML(
@@ -226,9 +226,9 @@ class ImagePage extends Article {
 		$r = '<ul id="filetoc">
 			<li><a href="#file">' . $wgLang->getNsText( NS_FILE ) . '</a></li>
 			<li><a href="#filehistory">' . wfMsgHtml( 'filehist' ) . '</a></li>
-			<li><a href="#filelinks">' . wfMsgHtml( 'imagelinks' ) . '</a></li>' .
-			($metadata ? ' <li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>' : '') . '
-		</ul>';
+			<li><a href="#filelinks">' . wfMsgHtml( 'imagelinks' ) . "</a></li>\n" .
+			($metadata ? '			<li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>' : '') . "
+			</ul>\n";
 		return $r;
 	}
 
@@ -241,8 +241,9 @@ class ImagePage extends Article {
 	 * @return string
 	 */
 	protected function makeMetadataTable( $metadata ) {
-		$r = wfMsg( 'metadata-help' ) . "\n\n";
-		$r .= "{| id=mw_metadata class=mw_metadata\n";
+		$r = "<div class=\"mw-imagepage-section-metadata\">\n";
+		$r .= wfMsg( 'metadata-help' );
+		$r .= "<table id=\"mw_metadata\" class=\"mw_metadata\">\n";
 		foreach ( $metadata as $type => $stuff ) {
 			foreach ( $stuff as $v ) {
 				# FIXME, why is this using escapeId for a class?!
@@ -250,12 +251,12 @@ class ImagePage extends Article {
 				if( $type == 'collapsed' ) {
 					$class .= ' collapsable';
 				}
-				$r .= "|- class=\"$class\"\n";
-				$r .= "!| {$v['name']}\n";
-				$r .= "|| {$v['value']}\n";
+				$r .= "<tr class=\"$class\">\n";
+				$r .= "<th>{$v['name']}</th>\n";
+				$r .= "<td>{$v['value']}</td>\n</tr>";
 			}
 		}
-		$r .= '|}';
+		$r .= "</table>\n</div>\n";
 		return $r;
 	}
 
@@ -371,7 +372,7 @@ class ImagePage extends Article {
 					);
 					$wgOut->addHTML( '<div class="fullImageLink" id="file">' .
 						$thumbnail->toHtml( $options ) .
-						$anchorclose . '</div>' );
+						$anchorclose . "</div>\n" );
 				}
 
 				if( $this->displayImg->isMultipage() ) {
@@ -428,7 +429,7 @@ class ImagePage extends Article {
 
 					$wgOut->addHTML( '<div class="fullImageLink" id="file">' .
 					$icon->toHtml( array( 'desc-link' => true ) ) .
-					'</div>' );
+					"</div>\n" );
 				}
 
 				$showLink = true;
@@ -443,16 +444,16 @@ class ImagePage extends Article {
 					$wgOut->addWikiText( <<<EOT
 <div class="fullMedia">
 <span class="dangerousLink">[[Media:$filename|$filename]]</span>$dirmark
-<span class="fileInfo"> $longDesc</span>
+<span class="fileInfo">$longDesc</span>
 </div>
-
 <div class="mediaWarning">$warning</div>
 EOT
 						);
 				} else {
 					$wgOut->addWikiText( <<<EOT
 <div class="fullMedia">
-[[Media:$filename|$filename]]$dirmark <span class="fileInfo"> $longDesc</span>
+[[Media:$filename|$filename]]$dirmark
+<span class="fileInfo">$longDesc</span>
 </div>
 EOT
 						);
@@ -484,7 +485,7 @@ EOT
 		$descUrl = $this->img->getDescriptionUrl();
 		$descText = $this->img->getDescriptionText();
 
-		$wrap = "<div class='sharedUploadNotice'>\n$1\n</div>";
+		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
 		$repo = $this->img->getRepo()->getDisplayName();
 
 		$msg = '';
@@ -520,19 +521,19 @@ EOT
 
 		$sk = $wgUser->getSkin();
 
-		$wgOut->addHTML( '<br /><ul>' );
+		$wgOut->addHTML( "<br /><ul>\n" );
 
 		# "Upload a new version of this file" link
 		if( UploadForm::userCanReUpload($wgUser,$this->img->name) ) {
 			$ulink = $sk->makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
-			$wgOut->addHTML( "<li><div class='plainlinks'>{$ulink}</div></li>" );
+			$wgOut->addHTML( "<li id=\"mw-imagepage-reupload-link\"><div class=\"plainlinks\">{$ulink}</div></li>\n" );
 		}
 
 		# External editing link
 		$elink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'edit-externally' ), 'action=edit&externaledit=true&mode=file' );
-		$wgOut->addHTML( '<li>' . $elink . ' <small>' . wfMsgExt( 'edit-externally-help', array( 'parseinline' ) ) . '</small></li>' );
+		$wgOut->addHTML( '<li id="mw-imagepage-edit-external">' . $elink . ' <small>' . wfMsgExt( 'edit-externally-help', array( 'parseinline' ) ) . "</small></li>\n" );
 
-		$wgOut->addHTML( '</ul>' );
+		$wgOut->addHTML( "</ul>\n" );
 	}
 
 	protected function closeShowImage() {} # For overloading
@@ -602,12 +603,13 @@ EOT
 				$wgOut->addHTML( "<li>{$link}</li>\n" );
 			}
 		}
-		$wgOut->addHTML( "</ul></div>\n" );
+		$wgOut->addHTML( "</ul>\n" );
 		$res->free();
 
 		// Add a links to [[Special:Whatlinkshere]]
 		if( $count > $limit )
 			$wgOut->addWikiMsg( 'morelinkstoimage', $this->mTitle->getPrefixedDBkey() );
+		$wgOut->addHTML( "</div>\n" );
 	}
 	
 	protected function imageRedirects() {
@@ -746,9 +748,10 @@ class ImageHistoryList {
 
 	public function beginImageHistoryList( $navLinks = '' ) {
 		global $wgOut, $wgUser;
-		return Xml::element( 'h2', array( 'id' => 'filehistory' ), wfMsg( 'filehist' ) )
+		return Xml::element( 'h2', array( 'id' => 'filehistory' ), wfMsg( 'filehist' ) ) . "\n"
+			. "<div id=\"mw-imagepage-section-filehistory\">\n"
 			. $wgOut->parse( wfMsgNoTrans( 'filehist-help' ) )
-			. $navLinks
+			. $navLinks . "\n"
 			. Xml::openElement( 'table', array( 'class' => 'filehistory' ) ) . "\n"
 			. '<tr><td></td>'
 			. ( $this->current->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ? '<td></td>' : '' )
@@ -761,7 +764,7 @@ class ImageHistoryList {
 	}
 
 	public function endImageHistoryList( $navLinks = '' ) {
-		return "</table>\n$navLinks\n";
+		return "</table>\n$navLinks\n</div>\n";
 	}
 
 	public function imageHistoryLine( $iscur, $file ) {
