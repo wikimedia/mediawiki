@@ -1290,10 +1290,7 @@ Dhaftar ing ngisor nuduhaké {{PLURAL:$1|kaca pisanan kanthi pranala langsung|$1
 'morelinkstoimage'          => 'Ndeleng [[Special:WhatLinksHere/$1|luwih akèh pranala]] menyang berkas iki.',
 'redirectstofile'           => '{{PLURAL:$1|berkas kaalihaké|$1 berkas-berkas kaalihaké}} menyang berkas iki:',
 'duplicatesoffile'          => 'Ing ngisor iki {{PLURAL:$1|berkas arupa duplikat|$1 berkas-berkas arupa duplikat}} saka berkas iki:',
-'sharedupload'              => 'Berkas iki saka $1 lan bisa digunakaké déning proyèk-proyèk liya. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Mangga mirsani $1 kanggo informasi sabanjuré.',
-'shareduploadwiki-desc'     => 'Dhèskripsi ing $1 ditampilaké ing ngisor.',
-'shareduploadwiki-linktext' => 'kaca dèskripsi berkas',
+'sharedupload'              => 'Berkas iki saka $1 lan bisa digunakaké déning proyèk-proyèk liya.',
 'noimage'                   => 'Ora ana berkas mawa jeneng iku, nanging panjenengan bisa $1.',
 'noimage-linktext'          => 'ngunggahaké sawiji',
 'uploadnewversion-linktext' => 'Unggahna vèrsi sing luwih anyar tinimbang gambar iki',

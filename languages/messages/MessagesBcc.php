@@ -1531,10 +1531,7 @@ PICT # misc.
 'morelinkstoimage'          => 'View [[Special:WhatLinksHere/$1|گیشتر لینکان]]به ای فایل',
 'redirectstofile'           => 'جهلیگین {{PLURAL:$1|فایل غیر مستقیم بنت|$1 فایلان غیر مستقیم بنت.}} به ای فایل',
 'duplicatesoffile'          => 'جهلیگین {{PLURAL:$1|فایل یک کپی انت|$2 فایلان کپی انت}} چه هی فایل ([[Special:FileDuplicateSearch/$2|گیشترین اطلاعات]]):',
-'sharedupload'              => 'ای فایل چه $1 انت و شاید گون دگه پروژه یان استفاده بیت. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'لطفا بجار  $1 په گیشترین اطلاعات',
-'shareduploadwiki-desc'     => 'توضیح  $1 ای جهل  پیش دارگ بیت.',
-'shareduploadwiki-linktext' => 'صفحه توضیح فایل',
+'sharedupload'              => 'ای فایل چه $1 انت و شاید گون دگه پروژه یان استفاده بیت.',
 'noimage'                   => 'چوشین فایل گون ای نام نیست، بله شما تونیت $1',
 'noimage-linktext'          => 'یکیء آپلود کن',
 'uploadnewversion-linktext' => 'یک نوکین نسخه ای چه ای فایل آپلود کن',

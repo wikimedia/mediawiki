@@ -349,7 +349,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Auch bei kleinen Änderungen an beobachteten Seiten E-Mails senden',
 'tog-enotifrevealaddr'        => 'Deine E-Mail-Adresse wird in Benachrichtigungs-E-Mails angezeigt',
 'tog-shownumberswatching'     => 'Anzahl der beobachtenden Benutzer anzeigen',
-'tog-fancysig'                => 'Signatur ohne Verlinkung zur Benutzerseite',
+'tog-fancysig'                => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
 'tog-externaleditor'          => 'Externen Editor als Standard benutzen (nur für Experten, es müssen spezielle Einstellungen auf dem eigenen Computer vorgenommen werden)',
 'tog-externaldiff'            => 'Externes Diff-Programm als Standard benutzen (nur für Experten, es müssen spezielle Einstellungen auf dem eigenen Computer vorgenommen werden)',
 'tog-showjumplinks'           => '„Wechseln zu“-Links aktivieren',
@@ -1043,14 +1043,17 @@ Grund der Sperre: ''$2''",
 'rev-deleted-comment'            => '(Bearbeitungskommentar entfernt)',
 'rev-deleted-user'               => '(Benutzername entfernt)',
 'rev-deleted-event'              => '(Logbuchaktion entfernt)',
-'rev-deleted-text-permission'    => "Diese Version wurde gelöscht und ist '''nicht mehr öffentlich einsehbar'''.
+'rev-deleted-text-permission'    => "Diese Version wurde '''gelöscht'''.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-text-view'          => "Diese Version wurde gelöscht und ist '''nicht mehr öffentlich einsehbar'''.
+'rev-deleted-text-unhide'        => "Diese Version wurde '''gelöscht'''.
+Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
+Einem Administrator kannst du [$1 diesen Link zur Version] nennen.",
+'rev-deleted-text-view'          => "Diese Version wurde '''gelöscht'''.
 Als Administrator kannst du sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-no-diff'            => "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''aus den öffentlichen Archiven entfernt wurde'''.
+'rev-deleted-no-diff'            => "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.
 Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-unhide-diff'        => "Eine der Versionen dieses Unterschieds wurde '''aus den öffentlichen Archiven entfernt'''.
+'rev-deleted-unhide-diff'        => "Eine der Versionen dieses Unterschieds wurde '''gelöscht'''.
 Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
 Einem Administrator kannst du [$1 diesen Link zum Versionsunterschied] nennen.",
 'rev-delundel'                   => 'zeige/verstecke',
@@ -1691,10 +1694,9 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Weitere Links]] für diese Datei.',
 'redirectstofile'           => 'Die {{PLURAL:$1|folgende Datei leitet|folgenden $1 Dateien leiten}} auf diese Datei weiter:',
 'duplicatesoffile'          => 'Die {{PLURAL:$1|folgende Datei ist ein Duplikat|folgenden $1 Dateien sind Duplikate}} dieser Datei ([[Special:FileDuplicateSearch/$2|weitere Details]]):',
-'sharedupload'              => 'Diese Datei stammt aus $1 und darf von anderen Projekten verwendet werden. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Für weitere Informationen siehe die $1.',
-'shareduploadwiki-desc'     => 'Es folgt der Inhalt der $1.',
-'shareduploadwiki-linktext' => 'Datei-Beschreibungsseite',
+'sharedupload'              => 'Diese Datei stammt aus $1 und darf von anderen Projekten verwendet werden.',
+'sharedupload-desc-there'   => 'Diese Datei stammt aus $1 und darf von anderen Projekten verwendet werden. Siehe auf der [$2 Dateibeschreibungsseite] nach weiteren Informationen.',
+'sharedupload-desc-here'    => 'Diese Datei stammt aus $1 und darf von anderen Projekten verwendet werden. Die Beschreibung der [$2 Dateibeschreibungsseite] wird unten angezeigt.',
 'noimage'                   => 'Eine Datei mit diesem Namen existiert nicht, du kannst sie jedoch $1.',
 'noimage-linktext'          => 'hochladen',
 'uploadnewversion-linktext' => 'Eine neue Version dieser Datei hochladen',

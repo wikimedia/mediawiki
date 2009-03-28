@@ -360,7 +360,6 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 
 # File description page
 'filehist-datetime'         => 'Version vum',
-'shareduploadwiki-desc'     => 'Es folgt der Inhalt der $1 aus dem gemeinsam benutzten Repositorium.',
 'noimage'                   => "A Datei mit dem Nam existiert net, Sie kinnan s' abe $1.",
 'uploadnewversion-linktext' => 'A neie Version vo dera Datei hoachladn',
 

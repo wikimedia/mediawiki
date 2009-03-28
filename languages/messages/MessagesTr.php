@@ -172,7 +172,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Sayfalardaki küçük değişikliklerde de bana e-posta gönder',
 'tog-enotifrevealaddr'        => 'E-mail adresimi bildiri maillerinde göster.',
 'tog-shownumberswatching'     => 'İzleyen kullanıcı sayısını göster',
-'tog-fancysig'                => 'Ham imza (İmzanız yukarda belirttiğiniz gibi görünür. Sayfanıza otomatik bağlantı yaratılmaz)',
+'tog-fancysig'                => 'İmzaya vikimetin muamelesi yap (otomatik bir bağlantı olmadan)',
 'tog-externaleditor'          => 'Değişiklikleri başka editör programı ile yap',
 'tog-externaldiff'            => 'Karşılaştırmaları dış programa yaptır.',
 'tog-showjumplinks'           => '"Git" bağlantısı etkinleştir',
@@ -857,15 +857,18 @@ Konu ile alakalı diğer sayfaları bulmak için [[Special:Search|vikide arama y
 'rev-deleted-comment'            => '(yorum silindi)',
 'rev-deleted-user'               => '(kullanıcı adı silindi)',
 'rev-deleted-event'              => '(kayıt işlemi silindi)',
-'rev-deleted-text-permission'    => "Bu sayfa değişikliği '''kamu arşivlerinden silinmiştir'''.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulabilirsiniz.",
-'rev-deleted-text-view'          => "Bu sayfa değişikiliği '''kamu arşivlerinden silinmiştir'''.
-{{SITENAME}} üzerinde bir yönetici iseniz görebilirsiniz; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] detaylar olabilir.",
-'rev-deleted-no-diff'            => "Bu sayfa değişikliğini göremezsiniz çünkü revizyonlardan biri '''kamu arşivlerinden çıkarılmış'''.
+'rev-deleted-text-permission'    => "Bu sayfa revizyonu '''silinmiş'''.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulunabilir.",
+'rev-deleted-text-unhide'        => "Bu sayfa revizyonu '''silinmiş'''.
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulunabilir.
+Bir yönetici olarak eğer devam ederseniz [$1 bu revizyonu görebilirsiniz].",
+'rev-deleted-text-view'          => "Bu sayfa revizyonu '''silinmiş'''.
+Bir yönetici olarak sayfayı görebilirsiniz; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} silme kayıtlarında] ayrıntılar bulunabilir.",
+'rev-deleted-no-diff'            => "Bu sayfa değişikliğini göremezsiniz çünkü revizyonlardan biri '''silinmiş'''.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.",
-'rev-deleted-unhide-diff'        => "Bu sayfa değişikliğinin revizyonlarından birisi '''kamu arşivlerinden silinmiştir'''.
+'rev-deleted-unhide-diff'        => "Bu sayfa değişikliğinin revizyonlarından birisi '''silinmiş'''.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtları]nda daha ayrıntılı bilgi bulunabilir.
-Yine de eğer bakmak istiyorsanız {{SITENAME}} sitesinde yönetici olarak [$1 bu sayfa değişikliğine bakabilirsiniz].",
+Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği görebilirsiniz].",
 'rev-delundel'                   => 'göster/gizle',
 'revisiondelete'                 => 'Sürümleri sil/geri getir',
 'revdelete-nooldid-title'        => 'Hedef sürüm geçersiz',
@@ -1512,10 +1515,9 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'morelinkstoimage'          => 'Bu dosyaya [[Special:WhatLinksHere/$1|daha fazla bağlantıları]] gör.',
 'redirectstofile'           => 'Şu {{PLURAL:$1|dosya|$1 dosya}}, bu dosyaya yönlendiriyor:',
 'duplicatesoffile'          => 'Şu {{PLURAL:$1|dosya|$1 dosya}}, bu dosyanın kopyası ([[Special:FileDuplicateSearch/$2|daha fazla ayrıntı]]):',
-'sharedupload'              => 'Bu dosya $1 deposundan ve diğer projelerde kullanılıyor olabilir. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Lütfen daha fazla bilgi için $1 sayfasına bakın.',
-'shareduploadwiki-desc'     => '$1ndaki açıklaması aşağıda gösterilmektedir.',
-'shareduploadwiki-linktext' => 'dosya açıklama sayfası',
+'sharedupload'              => 'Bu dosya $1 deposundan ve diğer projelerde kullanılıyor olabilir.',
+'sharedupload-desc-there'   => 'Bu dosya $1 deposundan ve diğer projeler tarafından kullanılıyor olabilir. Daha fazla bilgi için lütfen [$2 dosya açıklama sayfasına] bakın.',
+'sharedupload-desc-here'    => 'Bu dosya $1 deposundan ve diğer projeler tarafından kullanılıyor olabilir. [$2 Dosya açıklama sayfasındaki] açıklama aşağıda gösteriliyor.',
 'noimage'                   => 'Bu isimde dosya yok. Siz $1.',
 'noimage-linktext'          => 'yükleyebilirsiniz',
 'uploadnewversion-linktext' => 'Dosyanın yenisini yükleyin',
@@ -2042,10 +2044,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Yeni kullanıcılar için',
 'sp-contributions-newbies-title' => 'Yeni hesaplar için kullanıcı katkıları',
 'sp-contributions-blocklog'      => 'Engel kaydı',
-'sp-contributions-deleted'       => 'Silinen kullanıcı katkıları',
+'sp-contributions-deleted'       => 'silinen kullanıcı katkıları',
 'sp-contributions-logs'          => 'günlükler',
-'sp-contributions-talk'          => 'Mesaj',
-'sp-contributions-userrights'    => 'Kullanıcı hakları yönetimi',
+'sp-contributions-talk'          => 'tartışma',
+'sp-contributions-userrights'    => 'kullanıcı hakları yönetimi',
 'sp-contributions-search'        => 'Katkıları ara',
 'sp-contributions-username'      => 'IP veya kullanıcı:',
 'sp-contributions-submit'        => 'Ara',
@@ -2510,7 +2512,6 @@ $1',
 'mediawarning'         => "'''Uyarı!''': Bu dosya kötü niyetli kodlar içerebilir ve işletim sisteminize zarar verebilir.<hr />",
 'imagemaxsize'         => 'Resim açıklamalar sayfalarındaki resmin en büyük boyutu:',
 'thumbsize'            => 'Küçük boyut:',
-'widthheight'          => '$1×$2',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',
 'file-info'            => '(dosya boyutu: $1, MIME tipi: $2)',
 'file-info-size'       => '($1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4)',

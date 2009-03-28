@@ -277,7 +277,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'filehist-datetime' => 'Ŋkeke/Gaƒoƒo',
 'filehist-user'     => 'Ezãla',
 'linkstoimage'      => 'Axa {{PLURAL:$1|sia|$1 siawo}} ku ɖe agbalẽ sia ŋu.',
-'sharedupload'      => "Agbalɛ̃ sia tso $1 eye dɔ (''alo project'') bubuawo woateŋu azãe fãa. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'      => "Agbalɛ̃ sia tso $1 eye dɔ (''alo project'') bubuawo woateŋu azãe fãa.",
 
 # MIME search
 'mimesearch' => 'MIME me didi',

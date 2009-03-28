@@ -6,7 +6,6 @@
  *
  * @author Chavash
  * @author PCode
- * @author Verdy p
  * @author Александр Сигачёв
  */
 
@@ -751,7 +750,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'imagelinks'                => 'Ссылкăсем',
 'linkstoimage'              => 'Çак страницăсем ку файл çине кăтартаççĕ:',
 'nolinkstoimage'            => 'Ку файл çине кăтартакан страницăсем çук.',
-'shareduploadwiki'          => 'Тĕплĕнрех информацине $1 синче тупма пулать.',
 'noimage'                   => 'Ун пек ятлă файл çук, эсир ăна $1.',
 'noimage-linktext'          => 'кĕртме пултаратăр',
 'uploadnewversion-linktext' => 'Ку файлăн çĕнĕ версине кĕрт',

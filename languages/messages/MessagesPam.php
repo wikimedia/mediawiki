@@ -1134,10 +1134,7 @@ Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).'
 'imagelinks'                => 'Deng suglung',
 'linkstoimage'              => 'Makasuglung la king simpan a reti deng makatuking bulung:',
 'nolinkstoimage'            => 'Alang bulung a pakasuglung king simpan (file) a ini.',
-'sharedupload'              => 'Abe-abe yang milulan (shared upload) ya ing simpan a ini, at mapalyaring gagamitan de murin deng aliwang proyektu. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Pakilawe me ing $1 para king karagdagang impormasiun.',
-'shareduploadwiki-desc'     => 'Makabili ya king lalam ing pamilarawan (description) ketang kayang $1.',
-'shareduploadwiki-linktext' => 'bulung ning pamilarawan simpan (file description page)',
+'sharedupload'              => 'Abe-abe yang milulan (shared upload) ya ing simpan a ini, at mapalyaring gagamitan de murin deng aliwang proyektu.',
 'noimage'                   => 'Alang simpan a anti kaniyan lagyu; malyari kang $1.',
 'noimage-linktext'          => 'ilulan ya',
 'uploadnewversion-linktext' => 'Maglulan bayung bersion na niting simpan',

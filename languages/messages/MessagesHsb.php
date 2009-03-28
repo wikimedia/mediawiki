@@ -157,7 +157,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Tež dla snadnych změnow mejlki pósłać',
 'tog-enotifrevealaddr'        => 'Moju e-mejlowu adresu w e-mejlowych zdźělenkach wotkryć',
 'tog-shownumberswatching'     => 'Ličbu wobkedźbowacych wužiwarjow pokazać',
-'tog-fancysig'                => 'Hrube signatury (bjez awtomatiskeho wotkaza)',
+'tog-fancysig'                => 'Ze signaturu kaž z wikitekstom wobchadźeć  (bjez awtomatiskeho wotkaza)',
 'tog-externaleditor'          => 'Eksterny editor jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku)',
 'tog-externaldiff'            => 'Eksterny diff-program jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku)',
 'tog-showjumplinks'           => 'Wotkazy typa „dźi do” zmóžnić',
@@ -821,15 +821,18 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'rev-deleted-comment'            => '(komentar wotstronjeny)',
 'rev-deleted-user'               => '(wužiwarske mjeno wotstronjene)',
 'rev-deleted-event'              => '(Protokolowa akcija bu wotstronjena)',
-'rev-deleted-text-permission'    => "Tuta wersija strony bu '''ze zjawnych archiwow wotstronjena'''.
+'rev-deleted-text-permission'    => "Tuta wersija strony bu '''wušmórnjena'''.
 Hlej podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
-'rev-deleted-text-view'          => "Tuta wersija strony bu '''ze zjawnych archiwow wotstronjena'''.
-Jako administrator na {{GRAMMAR:lokatiw|{{SITENAME}}}} móžeš sej ju wobhladać; hlej podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
-'rev-deleted-no-diff'            => "Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow je so '''ze zjawnych archiwow wotstroniła'''.
+'rev-deleted-text-unhide'        => "Tuta wersija strony bu '''wušmórnjena'''.
+Hlej podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].
+Jako administrator móžeš [$1 sej tutu wersiju wobhladać], jeli chceš pokročować.",
+'rev-deleted-text-view'          => "Tuta wersija strony bu '''wušmórnjena'''.
+Jako administrator móžeš sej ju wobhladać; hlej podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
+'rev-deleted-no-diff'            => "Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow bu '''wušmórnjena'''.
 Hlej ewentuelne podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
-'rev-deleted-unhide-diff'        => "Jedna z wersijow tutoho rozdźěla je so '''ze zjawnych archiwow wotstroniła'''.
+'rev-deleted-unhide-diff'        => "Jedna z wersijow tutoho rozdźěla bu '''wušmórnjena'''.
 Podrobnosće hlej w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokol wušmórnjenjow].
-Jako administrator na {{GRAMMAR:lokatiw|{{SITENAME}}}} móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli chceš pokročować.",
+Jako administrator móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli chceš pokročować.",
 'rev-delundel'                   => 'pokazać/schować',
 'revisiondelete'                 => 'Wersije wušmórnyć/wobnowić',
 'revdelete-nooldid-title'        => 'Njepłaćiwa cilowa wersija',
@@ -1462,10 +1465,9 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Dalše wotkazy]] k tutej dataji wobhladać.',
 'redirectstofile'           => '{{PLURAL:$1|Slědowaca dataja pósrednja|Slědowacej $1 pósrědnjatej|Slědowace $1 posrědnjaju|Slěddowacych $1 pósrědnja}} k toś tej dataji dalej:',
 'duplicatesoffile'          => '{{PLURAL:$1|Slědowaca dataja je duplikat|Slědowacej $1 dataji stej duplikata|Slědowace $1 dataje su duplikaty|Slědowacych $1 duplikatow je duplikaty}} tuteje dataje ([[Special:FileDuplicateSearch/$2|dalše podrobnosće]])::',
-'sharedupload'              => 'Tuta dataja je z $1 a da so za druhe projekty wužiwać. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Za dalše informacije hlej $1.',
-'shareduploadwiki-desc'     => 'Wopisanje na $1 so deleka pokazuje.',
-'shareduploadwiki-linktext' => 'stronu datajoweho wopisanja',
+'sharedupload'              => 'Tuta dataja je z $1 a da so za druhe projekty wužiwać.',
+'sharedupload-desc-there'   => 'Tuta dataja je z $1 a da so přez druhe projekty wužiwać. Prošu hlej [$2 stronu datajoweho wopisanja] za dalše informacije.',
+'sharedupload-desc-here'    => 'Tuta dataja je z $1 a da so přez druhe projekty wužiwać. Wopisanje na jeje [$2 stronje datajoweho wopisanja] so deleka pokazuje.',
 'noimage'                   => 'Dataja z tutym mjenom njeeksistuje, ale móžeš $1.',
 'noimage-linktext'          => 'nahrać',
 'uploadnewversion-linktext' => 'nowu wersiju tuteje dataje nahrać',
@@ -1974,7 +1976,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Za nowačkow',
 'sp-contributions-newbies-title' => 'Wužiwarske přinoški za nowe konta',
 'sp-contributions-blocklog'      => 'protokol zablokowanjow',
-'sp-contributions-deleted'       => 'wušmórnjene přinoški',
+'sp-contributions-deleted'       => 'wušmórnjene wužiwarske přinoški',
 'sp-contributions-logs'          => 'protokole',
 'sp-contributions-talk'          => 'diskusija',
 'sp-contributions-userrights'    => 'Zrjadowanje wužiwarskich prawow',

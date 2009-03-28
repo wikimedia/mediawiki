@@ -1000,9 +1000,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'imagelinks'                => 'Teedüstülingiq',
 'linkstoimage'              => 'Taa pildi pääle {{PLURAL:$1|näütäs lehekülg|näütäseq leheküleq}}:',
 'nolinkstoimage'            => 'Taa pildi pääle näütä-i ütski lehekülg.',
-'sharedupload'              => 'Taa om ütine teedüstü, taad võivaq pruukiq ka tõõsõq vikiq. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Taa kotsilõ saa lähkümbält kaiaq $1.',
-'shareduploadwiki-linktext' => 'seletüsleheküle päält',
+'sharedupload'              => 'Taa om ütine teedüstü, taad võivaq pruukiq ka tõõsõq vikiq.',
 'noimage'                   => 'Olõ-i säänest teedüstüt, võit taa esiq $1.',
 'noimage-linktext'          => 'üles laatiq',
 'uploadnewversion-linktext' => 'Laadiq taa teedüstü vahtsõnõ kujo',

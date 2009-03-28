@@ -657,7 +657,6 @@ for directly linking to the file without displaying the file",
 'filehist-dimensions'       => 'دوورییەکان',
 'filehist-comment'          => 'لێدوان',
 'imagelinks'                => 'بەستەرەکانی پەڕگە',
-'shareduploadwiki-linktext' => 'پەڕەی پەسنی پەڕگە',
 'uploadnewversion-linktext' => 'وەشانێکی نوێی ئەم پەڕەیە بار بکە',
 
 # Unused templates

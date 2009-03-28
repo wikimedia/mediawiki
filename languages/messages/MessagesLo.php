@@ -609,7 +609,7 @@ $messages = array(
 'imagelinks'          => 'ລິ້ງຄ໌',
 'linkstoimage'        => 'ລິ້ງຄ໌ຕໍ່ໄປນີ້ເຊື່ອມຕໍ່ຫາໄຟລ໌:',
 'nolinkstoimage'      => 'ບໍ່ມີໜ້າໃດ ລິ້ງຄ໌ ຫາ ໄຟລ໌ນີ້.',
-'sharedupload'        => 'ໄຟລ໌ນີ້ແມ່ນການອັບໂຫຼດຣ່ວມ ແລະ ອາດຖືກໃຊ້ໂດຍໂຄງການອື່ນໆ. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'        => 'ໄຟລ໌ນີ້ແມ່ນການອັບໂຫຼດຣ່ວມ ແລະ ອາດຖືກໃຊ້ໂດຍໂຄງການອື່ນໆ.',
 'noimage'             => 'ຍັງບໍ່ມີ ໄຟລ໌ຊື່ນີ້ ເທື່ອ, ທ່ານ ສາມາດ  $1.',
 'noimage-linktext'    => 'ອັບໂຫຼດມັນ',
 

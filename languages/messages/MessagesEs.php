@@ -243,7 +243,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Notifícame también los cambios menores de página',
 'tog-enotifrevealaddr'        => 'Revela mi dirección electrónica en los correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar el número de usuarios que la vigilan',
-'tog-fancysig'                => 'Firma sin enlace automático',
+'tog-fancysig'                => 'Tratar firma como wikitexto (sin un enlace automático)',
 'tog-externaleditor'          => 'Utilizar editor externo por defecto',
 'tog-externaldiff'            => "Utilizar ''diff'' externo por defecto",
 'tog-showjumplinks'           => 'Habilitar enlaces de accesibilidad «saltar a»',
@@ -928,14 +928,17 @@ Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
 'rev-deleted-comment'            => '(comentario eliminado)',
 'rev-deleted-user'               => '(nombre de usuario eliminado)',
 'rev-deleted-event'              => '(entrada borrada)',
-'rev-deleted-text-permission'    => "Esta revisión de la página ha sido '''eliminada de los archivos públicos'''.
+'rev-deleted-text-permission'    => "Esta revisión de la página ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].",
-'rev-deleted-text-view'          => "Esta revisión de la página ha sido '''eliminada de los archivos públicos'''.
+'rev-deleted-text-unhide'        => "Esta revisión de página ha sido '''borrada'''.
+Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].
+Como administrador todavía puedes [$1 ver esta revisión] si deseas proceder.",
+'rev-deleted-text-view'          => "Esta revisión de la página ha sido '''borrada'''.
 Como administrador en {{SITENAME}} puedes verla;
 puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].",
-'rev-deleted-no-diff'            => "No puede visualizarse este cambio debido a que las revisiones han sido '''retiradas de los archivos públicos'''.
+'rev-deleted-no-diff'            => "No puede visualizarse este cambio debido a que las revisiones han sido '''borradas'''.
 Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].",
-'rev-deleted-unhide-diff'        => "Una de las revisiones de este cambio ha sido '''removido de los archivos públicos'''.
+'rev-deleted-unhide-diff'        => "Una de las revisiones de este cambio ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].
 Como administrador todavía puedes [$1 ver este cambio] si deseas proceder.",
 'rev-delundel'                   => 'mostrar/ocultar',
@@ -1564,10 +1567,11 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 'morelinkstoimage'          => 'Vea [[Special:WhatLinksHere/$1|más enlaces]] a este archivo.',
 'redirectstofile'           => '{{PLURAL:$1|El siguiente fichero redirige|Los siguientes $1 ficheros redirigen}} a este:',
 'duplicatesoffile'          => '{{PLURAL:$1|El siguiente archivo es un duplicado|Los siguientes $1 archivos son duplicados}} de éste ([[Special:FileDuplicateSearch/$2|más detalles]]):',
-'sharedupload'              => 'Este archivo es de $1 y puede usarse desde otros proyectos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Puede consultar $1 para más información.',
-'shareduploadwiki-desc'     => 'La descripcion en su $1 hay mostrada debajo.',
-'shareduploadwiki-linktext' => 'página de descripción del archivo',
+'sharedupload'              => 'Este archivo es de $1 y puede ser usado por otros proyectos.',
+'sharedupload-desc-there'   => 'Este archivo es de $1 y puede ser usado por otros proyectos.
+Por favor mira la [$2 página de descripción del archivo] para información adicional.',
+'sharedupload-desc-here'    => 'Este archivo es de $1 y puede ser usado por otros proyectos.
+La descripción en su [$2 página de descripción del archivo] está mostrada debajo.',
 'noimage'                   => 'No existe un archivo con este nombre, pero puede $1.',
 'noimage-linktext'          => 'subir uno',
 'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
@@ -2091,8 +2095,8 @@ $1',
 'sp-contributions-blocklog'      => 'Registro de bloqueos',
 'sp-contributions-deleted'       => 'Contribuciones de usuario borradas',
 'sp-contributions-logs'          => 'registros',
-'sp-contributions-talk'          => 'Discutir',
-'sp-contributions-userrights'    => 'Configuración de permisos de usuarios',
+'sp-contributions-talk'          => 'discutir',
+'sp-contributions-userrights'    => 'administración de derechos de usuarios',
 'sp-contributions-search'        => 'Buscar contribuciones',
 'sp-contributions-username'      => 'Dirección IP o nombre de usuario:',
 'sp-contributions-submit'        => 'Buscar',

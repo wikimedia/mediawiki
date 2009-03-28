@@ -1006,11 +1006,11 @@ Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].
 'rev-deleted-comment'            => '(megjegyzés eltávolítva)',
 'rev-deleted-user'               => '(szerkesztőnév eltávolítva)',
 'rev-deleted-event'              => '(bejegyzés eltávolítva)',
-'rev-deleted-text-permission'    => "Ez a változat '''el lett távolítva a nyilvános archívumokból'''.
+'rev-deleted-text-permission'    => "Ez a változat '''törölték'''.
 További információkat a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
-'rev-deleted-text-view'          => "Ez a változat '''el lett távolítva a nyilvános archívumokból'''.
+'rev-deleted-text-view'          => "Ez a változat '''törölték'''.
 Mivel adminisztrátor vagy, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
-'rev-deleted-no-diff'            => "A változatok közötti eltérés nem jeleníthető meg, mert a változatok egyike '''el lett távolítva a nyilvános archívumokból'''.
+'rev-deleted-no-diff'            => "A változatok közötti eltérés nem jeleníthető meg, mert a változatok egyikét '''törölték'''.
 További részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-delundel'                   => 'megjelenítés/elrejtés',
 'revisiondelete'                 => 'Változatok törlése vagy helyreállítása',
@@ -1640,10 +1640,7 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|További hivatkozások]] megtekintése',
 'redirectstofile'           => 'A következő {{PLURAL:$1|fájl|$1 fájl}} van átirányítva erre a névre:',
 'duplicatesoffile'          => 'A következő {{PLURAL:$1|fájl|$1 fájl}} ennek a fájlnak a duplikátuma ([[Special:FileDuplicateSearch/$2|további részletek]]):',
-'sharedupload'              => 'Ez a fájl a(z) $1 megosztott tárhelyről származik, és más projektek használhatják. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Lásd a [$1 fájl leírólapját] a további információkért.',
-'shareduploadwiki-desc'     => 'A $1 található leírás alább látható.',
-'shareduploadwiki-linktext' => 'fájl leírólapján',
+'sharedupload'              => 'Ez a fájl a(z) $1 megosztott tárhelyről származik, és más projektek használhatják.',
 'noimage'                   => 'Nem létezik ilyen nevű fájl, de $1 egyet.',
 'noimage-linktext'          => 'feltölthetsz',
 'uploadnewversion-linktext' => 'Új változat feltöltése',

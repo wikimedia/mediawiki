@@ -256,7 +256,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Gửi thư cho tôi cả những thay đổi nhỏ trong trang',
 'tog-enotifrevealaddr'        => 'Hiện địa chỉ thư điện tử của tôi trong thư thông báo',
 'tog-shownumberswatching'     => 'Hiển thị số người đang xem',
-'tog-fancysig'                => 'Chữ ký không dùng liên kết tự động',
+'tog-fancysig'                => 'Xem chữ ký là mã wiki (không có liên kết tự động)',
 'tog-externaleditor'          => 'Mặc định dùng trình soạn thảo bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn)',
 'tog-externaldiff'            => 'Mặc định dùng trình so sánh bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn)',
 'tog-showjumplinks'           => 'Bật liên kết “bước tới” trên đầu trang cho bộ trình duyệt thuần văn bản hay âm thanh',
@@ -932,16 +932,18 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 'rev-deleted-comment'            => '(bàn luận đã xóa)',
 'rev-deleted-user'               => '(tên người dùng đã xóa)',
 'rev-deleted-event'              => '(tác vụ nhật trình đã xóa)',
-'rev-deleted-text-permission'    => "Phiên bản này đã bị '''xóa khỏi các bản lưu mà mọi người có thể thấy'''.
+'rev-deleted-text-permission'    => "Phiên bản này đã bị '''xóa'''.
 Có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
-'rev-deleted-text-view'          => "Phiên bản này đã bị '''xóa khỏi các bản lưu mà mọi người có thể thấy'''.
-Vì bạn là người quản lý ở {{SITENAME}}, bạn có thể xem được nó;
-có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
-'rev-deleted-no-diff'            => "Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị '''xóa khỏi kho lưu trữ công cộng'''.
+'rev-deleted-text-unhide'        => "Phiên bản này đã bị '''xóa'''.
+Có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
+Vì là người quản lý, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
+'rev-deleted-text-view'          => "Phiên bản này đã bị '''xóa'''.
+Vì là người quản lý bạn vẫn có thể xem nó;có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+'rev-deleted-no-diff'            => "Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị '''xóa'''.
 Bạn có thể xem thêm chi tiết trong [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
-'rev-deleted-unhide-diff'        => "Một trong những phiên bản của khác biệt này đã bị '''xóa khỏi kho lưu trữ công cộng'''.
+'rev-deleted-unhide-diff'        => "Một trong những phiên bản của khác biệt này đã bị '''xóa'''.
 Bạn có thể xem thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
-Là một người quản lý tại {{SITENAME}} bạn vẫn có thể [$1 xem khác biệt này] nếu bạn muốn.",
+Vì là người quản lý, bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
 'rev-delundel'                   => 'hiện/ẩn',
 'revisiondelete'                 => 'Xóa hay phục hồi phiên bản',
 'revdelete-nooldid-title'        => 'Chưa chọn phiên bản',
@@ -1577,10 +1579,11 @@ Có [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].',
 'morelinkstoimage'          => 'Xem [[Special:WhatLinksHere/$1|thêm liên kết]] đến tập tin này.',
 'redirectstofile'           => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau chuyển hướng đến tập tin này:',
 'duplicatesoffile'          => '{{PLURAL:$1|Tập tin sau|$1 tập tin sau}} là bản sao của tập tin này ([[Special:FileDuplicateSearch/$2|chi tiết]]):',
-'sharedupload'              => 'Tập tin này được tải lên tại $1 và có thể dùng ở các dự án khác. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Xin xem $1 để biết thêm thông tin.',
-'shareduploadwiki-desc'     => 'Dưới đây là nội dung từ trang $1 tại kho lưu trữ chung.',
-'shareduploadwiki-linktext' => 'trang miêu tả tập tin',
+'sharedupload'              => 'Tập tin này đặt tại $1 và các dự án khác có thể dùng chúng.',
+'sharedupload-desc-there'   => 'Tập tin này đặt tại $1 và các dự án khác có thể sử dụng chúng.
+Mời xem [$2 trang mô tả tập tin] để có thêm thông tin.',
+'sharedupload-desc-here'    => 'Tập tin này đặt tại $1 và các dự án khác có thể sử dụng chúng.
+Lời miêu tả tại [$2 trang mô tả tập tin] tại đấy được hiển thị dưới đây.',
 'noimage'                   => 'Không có tập tin có tên này, nhưng bạn có thể $1.',
 'noimage-linktext'          => 'tải tập tin lên',
 'uploadnewversion-linktext' => 'Tải lên phiên bản mới',
@@ -2104,10 +2107,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Các thành viên mới',
 'sp-contributions-newbies-title' => 'Đóng góp của các thành viên mới',
 'sp-contributions-blocklog'      => 'Nhật trình cấm',
-'sp-contributions-deleted'       => 'Đóng góp đã bị xóa của thành viên',
+'sp-contributions-deleted'       => 'đóng góp đã bị xóa của thành viên',
 'sp-contributions-logs'          => 'nhật trình',
-'sp-contributions-talk'          => 'Thảo luận',
-'sp-contributions-userrights'    => 'Quản lý quyền thành viên',
+'sp-contributions-talk'          => 'thảo luận',
+'sp-contributions-userrights'    => 'quản lý quyền thành viên',
 'sp-contributions-search'        => 'Tìm kiếm đóng góp',
 'sp-contributions-username'      => 'Địa chỉ IP hay tên thành viên:',
 'sp-contributions-submit'        => 'Tìm kiếm',

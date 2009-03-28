@@ -846,9 +846,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'imagelinks'                => 'Izdayen',
 'linkstoimage'              => 'isebtar-agi sɛan azday ar afaylu-agi',
 'nolinkstoimage'            => 'Ulaḥedd seg isebtar sɛan azday ar afaylu-agi.',
-'sharedupload'              => 'Afaylu-yagi yettuseqdac sɣur wiki tiyaḍ. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Ẓer $1 iwakken ad tessneḍ kter.',
-'shareduploadwiki-linktext' => 'Asebter n weglam n ufaylu',
+'sharedupload'              => 'Afaylu-yagi yettuseqdac sɣur wiki tiyaḍ.',
 'noimage'                   => 'Afaylu s yisem-agi ulac-it, tzemreḍ ad $1.',
 'noimage-linktext'          => 't-tazneḍ',
 'uploadnewversion-linktext' => 'tazneḍ tasiwelt tamaynut n ufaylu-yagi',

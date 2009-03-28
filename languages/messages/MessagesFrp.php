@@ -1036,10 +1036,7 @@ PICT # de totes sôrtes
 'imagelinks'                => 'Pâges contegnent l’émâge',
 'linkstoimage'              => 'Les pâges ce-desot contegnont ceta émâge :',
 'nolinkstoimage'            => 'Niona pâge contint ceta émâge.',
-'sharedupload'              => 'Ceti fichiér est partagiê et pôt étre utilisâ per d’ôtros projèts. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Reportâd-vos a la [$1 pâge de dèscripcion] por més d’enformacions.',
-'shareduploadwiki-desc'     => 'La dèscripcion de son $1 est lé afichiê ce-desot.',
-'shareduploadwiki-linktext' => 'Pâge de dèscripcion du fichiér',
+'sharedupload'              => 'Ceti fichiér est partagiê et pôt étre utilisâ per d’ôtros projèts.',
 'noimage'                   => 'Nion fichiér èyent cél nom ègziste, vos pouede $1.',
 'noimage-linktext'          => 'nen importar yon',
 'uploadnewversion-linktext' => 'Copiyér una novèla vèrsion de ceti fichiér',

@@ -323,7 +323,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mij e-mailen bij kleine bewerkingen van pagina’s op mijn volglijst',
 'tog-enotifrevealaddr'        => 'Mijn e-mailadres weergeven in e-mailberichten',
 'tog-shownumberswatching'     => 'Het aantal gebruikers weergeven dat deze pagina volgt',
-'tog-fancysig'                => 'Ondertekenen zonder verwijzing naar gebruikerspagina',
+'tog-fancysig'                => 'Als wikitekst behandelen (zonder automatische verwijzing)',
 'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig)',
 'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig)',
 'tog-showjumplinks'           => '“ga naar”-toegankelijkheidsverwijzingen inschakelen',
@@ -1064,14 +1064,17 @@ Wellicht is die verwijderd of hernoemd.
 'rev-deleted-comment'            => '(opmerking verwijderd)',
 'rev-deleted-user'               => '(gebruiker verwijderd)',
 'rev-deleted-event'              => '(logboekregel verwijderd)',
-'rev-deleted-text-permission'    => "Deze bewerking is '''uit de publieke archieven verwijderd'''.
+'rev-deleted-text-permission'    => "Deze bewerking is '''verwijderd'''.
 Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
-'rev-deleted-text-view'          => "Deze bewerking is '''uit de publieke archieven verwijderd'''.
+'rev-deleted-text-unhide'        => "Deze versie van de pagina is '''verwijderd'''.
+Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].
+Als beheerder kunt u [$1 deze versie bekijken] als u wilt.",
+'rev-deleted-text-view'          => "Deze bewerking is '''verwijderd'''.
 Als beheerder kunt u deze zien;
 er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
-'rev-deleted-no-diff'            => "U kunt de verschillen niet bekijken omdat een van de versies '''uit de publieke archieven verwijderd''' is.
+'rev-deleted-no-diff'            => "U kunt de verschillen niet bekijken omdat een van de versies is '''verwijderd'''.
 Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
-'rev-deleted-unhide-diff'        => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''uit de publieke archieven verwijderd'''.
+'rev-deleted-unhide-diff'        => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''verwijderd'''.
 Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].
 Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
 'rev-delundel'                   => 'weergeven/verbergen',
@@ -1737,10 +1740,11 @@ Er is ook een [[Special:WhatLinksHere/$2|volledige lijst]].',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Meer verwijzingen]] naar dit bestand bekijken.',
 'redirectstofile'           => '{{PLURAL:$1|Het volgende bestand verwijst|De volgende $1 bestanden verwijzen}} door naar dit bestand:',
 'duplicatesoffile'          => '{{PLURAL:$1|Het volgende bestand is|De volgende $1 bestanden zijn}} identiek aan dit bestand ([[Special:FileDuplicateSearch/$2|meer details]]):',
-'sharedupload'              => 'Dit bestand komt van $1 en kan ook door andere projecten gebruikt worden. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Zie de $1 voor verdere informatie.',
-'shareduploadwiki-desc'     => 'De beschijving in de $1 wordt hieronder weergegeven.',
-'shareduploadwiki-linktext' => 'bestandsbeschrijving',
+'sharedupload'              => 'Dit bestand komt van $1 en kan ook door andere projecten gebruikt worden.',
+'sharedupload-desc-there'   => 'Dit bestand komt van $1 en kan ook in andere projecten gebruikt worden.
+Zie de [$2 pagina met de bestandsbeschrijving] voor meer informatie.',
+'sharedupload-desc-here'    => 'Dit bestand komt van $1 en kan ook in andere projecten gebruikt worden.
+De [$2 pagina met de bestandsbeschrijving] wordt hieronder weergegeven.',
 'noimage'                   => 'Er bestaat geen bestand met deze naam, maar u kunt het $1.',
 'noimage-linktext'          => 'uploaden',
 'uploadnewversion-linktext' => 'Een nieuwe versie van dit bestand uploaden',
@@ -2276,7 +2280,7 @@ $1',
 'sp-contributions-newbies'       => 'Alleen de bijdragen van nieuwe gebruikers bekijken',
 'sp-contributions-newbies-sub'   => 'Voor nieuwelingen',
 'sp-contributions-newbies-title' => 'Bijdragen van nieuwe gebruikers',
-'sp-contributions-blocklog'      => 'Blokkeerlogboek',
+'sp-contributions-blocklog'      => 'blokkeerlogboek',
 'sp-contributions-deleted'       => 'verwijderde bijdragen',
 'sp-contributions-logs'          => 'logboeken',
 'sp-contributions-talk'          => 'overleg',

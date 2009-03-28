@@ -914,7 +914,7 @@ Niektóre szablony nie zostaną użyte.',
 'post-expand-template-argument-warning'   => 'Uwaga – strona zawiera co najmniej jeden argument szablonu, który po rozwinięciu jest zbyt duży.
 Argument ten będzie pominięty.',
 'post-expand-template-argument-category'  => 'Strony, w których użyto szablon z pominięciem argumentów',
-'parser-template-loop-warning'            => 'Wykryto szablon zapętlenia: [[$1]]',
+'parser-template-loop-warning'            => 'Wykryto pętle w szablonie: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Przekroczno limit głębokości rekurencji szablonu ($1)',
 
 # "Undo" feature
@@ -966,16 +966,18 @@ Spróbuj [[Special:Search|poszukać]] tej strony.',
 'rev-deleted-comment'            => '(komentarz usunięty)',
 'rev-deleted-user'               => '(użytkownik usunięty)',
 'rev-deleted-event'              => '(wpis usunięty)',
-'rev-deleted-text-permission'    => "Ta wersja strony została '''usunięta i nie jest dostępna publicznie'''.
-Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-deleted-text-view'          => "Ta wersja strony została '''usunięta i nie jest dostępna publicznie'''.
-Jednak jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz ją obejrzeć.
-Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-deleted-no-diff'            => "Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została '''usunięta i nie jest dostępna publicznie'''.
-Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-deleted-unhide-diff'        => "Jedna z wersji tej strony została '''usunięta i nie jest dostępna publicznie'''.
-Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
-Jednak jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz [$1 obejrzeć porównanie wersji].",
+'rev-deleted-text-permission'    => "Ta wersja strony została '''usunięta'''.
+Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-deleted-text-unhide'        => "Ta wersja strony została '''usunięta'''.
+Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
+Jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz [$1 obejrzeć tę wersję].",
+'rev-deleted-text-view'          => "Ta wersja strony została '''usunięta'''.
+Jednak jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-deleted-no-diff'            => "Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została '''usunięta'''.
+Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-deleted-unhide-diff'        => "Jedna z wersji tej strony została '''usunięta'''.
+Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
+Jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz [$1 obejrzeć porównanie wersji].",
 'rev-delundel'                   => 'pokaż/ukryj',
 'revisiondelete'                 => 'Usuń/przywróć wersje',
 'revdelete-nooldid-title'        => 'Nieprawidłowa wersja do przeprowadzenia operacji',
@@ -1627,10 +1629,7 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 'morelinkstoimage'          => 'Pokaż [[Special:WhatLinksHere/$1|więcej odnośników]] do tego pliku.',
 'redirectstofile'           => '{{PLURAL:$1|Następujący plik przekierowuje|Następujące pliki przekierowują}} do tego pliku:',
 'duplicatesoffile'          => '{{PLURAL:$1|Następujący plik jest kopią|Następujące pliki są kopiami}} pliku ([[Special:FileDuplicateSearch/$2|więcej informacji]]):',
-'sharedupload'              => 'Ten plik znajduje się na wspólnym serwerze plików $1 i może być używany w innych projektach. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Więcej informacji odnajdziesz na $1.',
-'shareduploadwiki-desc'     => 'Opis znajdujący się na $1 we współdzielonych zasobach możesz zobaczyć poniżej.',
-'shareduploadwiki-linktext' => 'stronie opisu pliku',
+'sharedupload'              => 'Ten plik znajduje się na wspólnym serwerze plików $1 i może być używany w innych projektach.',
 'noimage'                   => 'Nie istnieje plik o tej nazwie. Możesz go $1.',
 'noimage-linktext'          => 'przesłać',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
@@ -2158,10 +2157,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Dla nowych użytkowników',
 'sp-contributions-newbies-title' => 'Wkład nowych użytkowników',
 'sp-contributions-blocklog'      => 'blokady',
-'sp-contributions-deleted'       => 'Usunięty wkład użytkownika',
+'sp-contributions-deleted'       => 'usunięty wkład użytkownika',
 'sp-contributions-logs'          => 'rejestry',
 'sp-contributions-talk'          => 'dyskusja',
-'sp-contributions-userrights'    => 'Zarządzaj uprawnieniami użytkowników',
+'sp-contributions-userrights'    => 'zarządzanie uprawnieniami użytkowników',
 'sp-contributions-search'        => 'Szukaj wkładu',
 'sp-contributions-username'      => 'Adres IP lub nazwa użytkownika',
 'sp-contributions-submit'        => 'Szukaj',

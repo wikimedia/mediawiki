@@ -158,7 +158,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Segnàleme via e-mail anca le modifiche picenine',
 'tog-enotifrevealaddr'        => 'Rivela el me indirizo e-mail nei messagi de aviso',
 'tog-shownumberswatching'     => "Mostra el nùmaro de utenti che tien d'ocio la pagina",
-'tog-fancysig'                => 'No modificar mìa el markup de la firma (da doparar par firme mìa standard)',
+'tog-fancysig'                => 'Tràta la firma come la fusse un testo wiki (sensa el colegamento automatico)',
 'tog-externaleditor'          => 'Dòpara par default un editor de testi esterno (solo par i esperti, ghe vole dele inpostassion speciali sul to computer)',
 'tog-externaldiff'            => 'Dòpara par default un programa de diff esterno (solo par i esperti, ghe vole dele inpostassion speciali sul to computer)',
 'tog-showjumplinks'           => "Ativa i cołegamenti acesibiłi 'và a'",
@@ -843,13 +843,19 @@ La motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 'rev-deleted-comment'            => '(comento cavà)',
 'rev-deleted-user'               => '(nome utente cavà)',
 'rev-deleted-event'              => '(elemento cavà)',
-'rev-deleted-text-permission'    => 'Sta version de la pagina la xe stà cavà dai archivi visibili al publico.
-Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.',
-'rev-deleted-text-view'          => 'Sta version de la pagina la xe stà cavà dai archivi visibili al publico.
+'rev-deleted-text-permission'    => "Sta version de la pagina la xe stà '''scancelà'''.
+Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
+'rev-deleted-text-unhide'        => "Sta version de la pàxena la xe sta '''scancelà'''.
+Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
+Ai aministradori xe ancora consentìo [$ vardar sta version] se necessario.",
+'rev-deleted-text-view'          => "Sta version de la pagina la xe stà '''scancelà'''.
 El testo el pode èssar visualizà soltanto dai aministradori del sito.
-Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.',
-'rev-deleted-no-diff'            => 'No te pode vardar sta difarensa parché una de le revision la xe stà cavà dai archivi pùblici.
-Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par savérghene piessè.',
+Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
+'rev-deleted-no-diff'            => "No te pode vardar sta difarensa parché una de le revision la xe stà '''scancelà'''.
+Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par savérghene piessè.",
+'rev-deleted-unhide-diff'        => "Una dele revision de sta difarensa la xe stà '''scancelà'''.
+Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
+I aministradori i pode ancora [$1 vardar sta difarensa] se i vole.",
 'rev-delundel'                   => 'mostra/scondi',
 'revisiondelete'                 => 'Scanceła o ripristina version',
 'revdelete-nooldid-title'        => 'Version mìa specificà',
@@ -1468,10 +1474,11 @@ Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 'morelinkstoimage'          => 'Varda i [[Special:WhatLinksHere/$1|altri colegamenti]] verso sto file.',
 'redirectstofile'           => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} redirige verso sto file:',
 'duplicatesoffile'          => '{{PLURAL:$1|El file seguente el xe un dopion|I $1 file seguenti i xe dei dopioni}} de sto file ([[Special:FileDuplicateSearch/$2|ulteriori detagli]]):',
-'sharedupload'              => 'Sto file qua el vien da $1 e se pol dopararlo anca su altri projeti. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Varda $1 par ulteriori informazion.',
-'shareduploadwiki-desc'     => 'La descrizion che se cata su la so $1 la vien mostrà qua soto.',
-'shareduploadwiki-linktext' => 'pagina de descrizion del file',
+'sharedupload'              => 'Sto file qua el vien da $1 e se pol dopararlo anca su altri projeti.',
+'sharedupload-desc-there'   => 'Sto file el vien da $1 e se pode dopararlo su altri projeti.
+Consulta la [$2 pàxena de descrission del file] par ulteriori informassion.',
+'sharedupload-desc-here'    => 'Sto file el vien da $1 e se pode dopararlo su altri projeti.
+Qua soto vien mostrà la descrission presente in te la [$2 pàxena de descrission del file].',
 'noimage'                   => "Un file con sto nome no l'esiste mìa, ma te pol $1.",
 'noimage-linktext'          => 'cargarne uno desso',
 'uploadnewversion-linktext' => 'Carica na version nova de sto file',
@@ -1987,10 +1994,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Par i novi utenti',
 'sp-contributions-newbies-title' => 'Contributi dei utenti novi',
 'sp-contributions-blocklog'      => 'Registro dei blochi',
-'sp-contributions-deleted'       => 'Contributi utente scancelà',
+'sp-contributions-deleted'       => 'contributi utente scancelà',
 'sp-contributions-logs'          => 'registri',
 'sp-contributions-talk'          => 'discussion',
-'sp-contributions-userrights'    => 'Gestion dei parmessi relativi ai utenti',
+'sp-contributions-userrights'    => 'gestion dei parmessi relativi ai utenti',
 'sp-contributions-search'        => 'Riçerca contributi',
 'sp-contributions-username'      => 'Indirizo IP o nome utente:',
 'sp-contributions-submit'        => 'Riçerca',
@@ -2040,7 +2047,7 @@ $1',
 'ipboptions'                      => '2 ore:2 hours,1 giòrno:1 day,3 giòrni:3 days,1 setimana:1 week,2 setimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 ano:1 year,infinito:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'altro',
 'ipbotherreason'                  => 'Altri motivi/detagli:',
-'ipbhidename'                     => "Scondi el nome utente dal registro dei blochi, da l'elenco dei blochi ativi e da l'elenco utenti.",
+'ipbhidename'                     => 'Scondi el nome utente da le modìfeghe e da i elenchi.',
 'ipbwatchuser'                    => "Tien d'ocio la pagina utente e la pagina de discussion de sto utente",
 'ipballowusertalk'                => 'Parmétighe a sto utente de scrìvar su la so pàxena de discussion finché el xe blocà',
 'ipb-change-block'                => "Bloca de novo l'utente co ste inpostassion",
@@ -2097,6 +2104,7 @@ Varda [[Special:IPBlockList|lista IP bloccati]] par védar tuti i blochi.",
 'range_block_disabled'            => 'La possibilità de blocar intervali de indirizzi IP no la xe ativa al momento.',
 'ipb_expiry_invalid'              => 'Tenpo de scadensa mìa valido. Controla el [http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html manual de tar] par la sintassi esatta.',
 'ipb_expiry_temp'                 => 'I blochi dei nomi utente sconti i dovarìa essar infiniti.',
+'ipb_hide_invalid'                => "No se riesse a scancelar l'utensa; podarìa èssar che la gà massa contributi.",
 'ipb_already_blocked'             => 'L\'utente "$1" el xe zà blocà',
 'ipb-needreblock'                 => '== Xà blocà ==
 $1 xe xà blocà. Vuto canbiar le inpostassion?',

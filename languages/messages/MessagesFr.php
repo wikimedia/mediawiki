@@ -339,7 +339,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modification mineure',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse électronique dans les courriels d’avertissement',
 'tog-shownumberswatching'     => 'Afficher le nombre d’utilisateurs qui suivent cette page',
-'tog-fancysig'                => 'Signature brute (sans lien automatique)',
+'tog-fancysig'                => 'Traiter la signature comme du wikitexte (sans lien automatique)',
 'tog-externaleditor'          => 'Utiliser un éditeur de texte externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur)',
 'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur)',
 'tog-showjumplinks'           => 'Activer les liens « navigation » et « recherche » en haut de page',
@@ -1036,15 +1036,18 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 'rev-deleted-comment'            => '(commentaire supprimé)',
 'rev-deleted-user'               => '(nom d’utilisateur supprimé)',
 'rev-deleted-event'              => '(entrée supprimée)',
-'rev-deleted-text-permission'    => "Cette version de la page a été '''retirée des archives publiques'''.
+'rev-deleted-text-permission'    => "Cette version de la page a été '''supprimée'''.
 Il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].",
-'rev-deleted-text-view'          => "Cette version de la page a été '''retirée des archives publiques'''.
-En tant qu’administrateur de ce site, vous pouvez la visualiser ; il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} historique des suppressions].",
-'rev-deleted-no-diff'            => "Vous ne pouvez par voir ce diff parce qu'une des versions a été '''retirée des archives publiques'''.
-Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l'historique des suppressions].",
-'rev-deleted-unhide-diff'        => "Une des révisions de cette différence a été '''retirée des archives publiques'''.
+'rev-deleted-text-unhide'        => "Cette version de la page a été '''supprimée'''.
+Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} le journal des suppression].
+Comme administrateur, vous pouvez toujours [$1 voir cette version] si vous le voulez.",
+'rev-deleted-text-view'          => "Cette version de la page a été '''supprimée'''.
+En tant qu’administrateur, vous pouvez la visualiser ; il peut y avoir des détails dans le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
+'rev-deleted-no-diff'            => "Vous ne pouvez par voir ce diff parce qu'une des versions a été '''supprimée'''.
+Il peut y avoir plus de détails dans le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jounral des suppressions].",
+'rev-deleted-unhide-diff'        => "Une des révisions de cette différence a été '''supprimée'''.
 Il peut y avoir plus de détails dans le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].
-En tant qu'administrateur de {{SITENAME}} vous pouvez toujours [$1 voir cette différence] si vous le voulez.",
+En tant qu'administrateur vous pouvez toujours [$1 voir cette différence] si vous le voulez.",
 'rev-delundel'                   => 'afficher/masquer',
 'revisiondelete'                 => 'Supprimer ou restaurer des événements',
 'revdelete-nooldid-title'        => 'Version cible non valide',
@@ -1682,10 +1685,9 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'morelinkstoimage'          => 'Voir [[Special:WhatLinksHere/$1|plus de liens]] vers ce fichier.',
 'redirectstofile'           => '{{PLURAL:$1|Le fichier suivant redirige|Les fichiers suivants redirigent}} vers celui-ci :',
 'duplicatesoffile'          => '{{PLURAL:$1|Le fichier suivant est un duplicata|Les fichiers suivants sont des duplicatas}} de celui-ci ([[Special:FileDuplicateSearch/$2|plus de détails]]) :',
-'sharedupload'              => 'Ce fichier provient de $1 et peut-être utilisé par d’autres projets. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Reportez-vous à la $1 pour plus d’informations.',
-'shareduploadwiki-desc'     => 'La description affichée ci-dessous est issue de sa $1 dans le dépôt partagé.',
-'shareduploadwiki-linktext' => 'page de description du fichier',
+'sharedupload'              => 'Ce fichier provient de $1 et peut-être utilisé par d’autres projets.',
+'sharedupload-desc-there'   => "Ce fichier provient de $1 et peut être utilisé par d'autres projets. Voyez [$2 sa page de description] pour plus d'informations.",
+'sharedupload-desc-here'    => "Ce fichier provient de $1 et peut être utilisé par d'autres projets. La description de [$2 sa page de description] là-bas est affichée ci-dessous.",
 'noimage'                   => 'Aucun fichier n’existe sous ce nom, mais vous pouvez $1.',
 'noimage-linktext'          => 'en téléverser un',
 'uploadnewversion-linktext' => 'Téléverser une nouvelle version de ce fichier',
@@ -1866,7 +1868,7 @@ Chaque entrée contient des liens vers la première et la seconde redirections, 
 'log'                  => 'Journaux d’opérations',
 'all-logs-page'        => 'Toutes les opérations',
 'alllogstext'          => 'Affichage combiné de tous les journaux disponibles des opérations sur {{SITENAME}}.
-Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’utilisateur (sensible à la casse) ou une page affectée (même remarque).',
+Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’utilisateur ou une page affectée (tous les deux étant sensibles à la casse).',
 'logempty'             => 'Aucune opération correspondante dans les journaux.',
 'log-title-wildcard'   => 'Chercher parmi les titres commençant par ce texte',
 
@@ -1898,7 +1900,7 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'special-categories-sort-abc'   => 'tri alphabétique',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'contributions supprimées',
+'deletedcontributions'       => 'Contributions supprimées',
 'deletedcontributions-title' => 'Contributions supprimées',
 
 # Special:LinkSearch
@@ -2225,7 +2227,7 @@ $1',
 'sp-contributions-deleted'       => 'contributions supprimées',
 'sp-contributions-logs'          => 'journaux',
 'sp-contributions-talk'          => 'discuter',
-'sp-contributions-userrights'    => 'gestion des droits utilisateur',
+'sp-contributions-userrights'    => 'gérer les droits',
 'sp-contributions-search'        => 'Rechercher les contributions',
 'sp-contributions-username'      => 'Adresse IP ou nom d’utilisateur :',
 'sp-contributions-submit'        => 'Rechercher',
@@ -2648,7 +2650,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'nocredits'        => 'Il n’y a pas d’informations d’attribution disponibles pour cette page.',
 
 # Spam protection
-'spamprotectiontitle' => 'Page automatiquement protégée pour cause de pourriel',
+'spamprotectiontitle' => 'Page automatiquement protégée pour cause de spam',
 'spamprotectiontext'  => 'La page que vous avez voulu publier a été bloquée par le filtre anti-pourriel.
 Ceci est probablement causé par un lien sur liste noire pointant vers un site externe.',
 'spamprotectionmatch' => "La chaîne de caractères « '''$1''' » a déclenché le détecteur de pourriel.",

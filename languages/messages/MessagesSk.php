@@ -210,7 +210,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Upozorniť ma emailom aj na drobné úpravy stránok',
 'tog-enotifrevealaddr'        => 'Zobraziť moju emailovú adresu v emailoch s upozorneniami',
 'tog-shownumberswatching'     => 'Zobraziť počet používateľov sledujúcich stránku',
-'tog-fancysig'                => 'Nespracovávať podpisy (bez automatických odkazov)',
+'tog-fancysig'                => 'Považovať podpisy za wikitext (bez automatických odkazov)',
 'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
 'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
 'tog-showjumplinks'           => 'Používať odkazy „skočiť na“ pre lepšiu dostupnosť',
@@ -915,14 +915,17 @@ Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
 'rev-deleted-comment'            => '(komentár odstránený)',
 'rev-deleted-user'               => '(používateľské meno odstránené)',
 'rev-deleted-event'              => '(činnosť odstránená zo záznamu)',
-'rev-deleted-text-permission'    => "Táto revízia stránky bola '''odstránená z verejných archívov'''.
+'rev-deleted-text-permission'    => "Táto revízia stránky bola '''zmazaná'''.
 Podrobnosti nájdete v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
-'rev-deleted-text-view'          => "Táto revízia stránky bola '''odstránená z verejných archívov'''.
+'rev-deleted-text-unhide'        => "Táto revízia stránky bola '''zmazaná'''.
+Podrobnosti nájdete v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
+Ako správca máte stále možnosť [$1 zobraziť túto revíziu] ak chcete.",
+'rev-deleted-text-view'          => "Táto revízia stránky bola '''zmazaná'''.
 Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si ju môžete prezrieť;
 podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
-'rev-deleted-no-diff'            => "Tento rozdiel nemôžete zobraziť, pretože bol '''odstránený z verejných archívov'''.
+'rev-deleted-no-diff'            => "Tento rozdiel nemôžete zobraziť, pretože bol '''zmazaný'''.
 Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
-'rev-deleted-unhide-diff'        => "Jedna z revízií tohto rozdielu bola '''odstránený z verejných archívov'''.
+'rev-deleted-unhide-diff'        => "Jedna z revízií tohto rozdielu bola '''zmazaná'''.
 Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
 Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť];",
 'rev-delundel'                   => 'zobraziť/skryť',
@@ -1559,10 +1562,9 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'morelinkstoimage'          => 'Zobraziť [[Special:WhatLinksHere/$1|ďalšie odkazy]] na tento súbor.',
 'redirectstofile'           => '{{PLURAL:$1|Nasledujúci súbor presmerúva|Nasledujúce $1 súbory presmerúvajú|Nasledujúcich $1 súborov presmerúva}} na tento súbor:',
 'duplicatesoffile'          => '{{PLURAL:$1|Nasledujúci súbor je duplikát|Nasledujúce $1 súbory sú duplikáty||Nasledujúcich $1 súborov sú duplikáty}} tohto súboru ([[Special:FileDuplicateSearch/$2|podrobnosti]]):',
-'sharedupload'              => 'Tento zdieľaný súbor je z $1 a je možné ho používať na iných projektoch. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Ďalšie informácie pozrite na $1.',
-'shareduploadwiki-desc'     => 'Dolu je zobrazený popis, ktorý obsahuje jeho $1.',
-'shareduploadwiki-linktext' => 'popisná stránka súboru',
+'sharedupload'              => 'Tento zdieľaný súbor je z $1 a je možné ho používať na iných projektoch.',
+'sharedupload-desc-there'   => 'Tento zdieľaný súbor je z $1 a je možné ho používať na iných projektoch. Ďalšie informácie nájdete na [$2 popisnej stránke súboru].',
+'sharedupload-desc-here'    => 'Tento zdieľaný súbor je z $1 a je možné ho používať na iných projektoch. Nižšie sú zobrazené informácie z [$2 popisnej stránky súboru].',
 'noimage'                   => 'Súbor s takým názvom neexistuje, ale môžete ho $1',
 'noimage-linktext'          => 'nahrať',
 'uploadnewversion-linktext' => 'Nahrať novú verziu tohto súboru',
@@ -2081,10 +2083,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Príspevky nováčikov',
 'sp-contributions-newbies-title' => 'Príspevky nových používateľov',
 'sp-contributions-blocklog'      => 'Záznam blokovaní',
-'sp-contributions-deleted'       => 'Zmazané príspevky používateľa',
+'sp-contributions-deleted'       => 'zmazané príspevky používateľa',
 'sp-contributions-logs'          => 'záznamy',
-'sp-contributions-talk'          => 'Diskusia',
-'sp-contributions-userrights'    => 'Spravovanie používateľských práv',
+'sp-contributions-talk'          => 'diskusia',
+'sp-contributions-userrights'    => 'spravovanie používateľských práv',
 'sp-contributions-search'        => 'Hľadať príspevky',
 'sp-contributions-username'      => 'IP adresa alebo meno používateľa:',
 'sp-contributions-submit'        => 'Hľadať',

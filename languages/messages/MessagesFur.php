@@ -835,10 +835,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'imagelinks'                => 'Leams de figure',
 'linkstoimage'              => '{{PLURAL:$1|La pagjine ca sot e je leade|Lis $1 pagjinis ca sot a son leadis}} a cheste figure:',
 'nolinkstoimage'            => 'No son pagjinis leadis a chest file.',
-'sharedupload'              => 'Chest file al è condivîs e al pues jessi doprât di altris progjets. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Cjale par plasê la [pagjine di descrizion dal file $1] par altris informazions.',
-'shareduploadwiki-desc'     => 'La descrizion su la $1 intal dipuesit condividût e ven mostrade ca sot.',
-'shareduploadwiki-linktext' => 'pagjine di descrizion dal file',
+'sharedupload'              => 'Chest file al è condivîs e al pues jessi doprât di altris progjets.',
 'noimage'                   => 'Nol esist un file cun chest non, ma tu puedis $1 tu.',
 'noimage-linktext'          => 'cjamâlu sù',
 'uploadnewversion-linktext' => 'Cjame sù une gnove version di chest file',

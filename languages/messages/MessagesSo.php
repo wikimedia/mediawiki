@@ -396,8 +396,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'watchthisupload' => 'Boggaan waardiyey',
 
 # File description page
-'nolinkstoimage'   => "Ma'ay jiraan beyjaj ku xiran faylkaan.",
-'shareduploadwiki' => 'Fadlan meeshaa $1 ka fiiri warbixin dheeraad ah.',
+'nolinkstoimage' => "Ma'ay jiraan beyjaj ku xiran faylkaan.",
 
 # File deletion
 'filedelete'         => 'Tirtir $1',

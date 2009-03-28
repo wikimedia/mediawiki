@@ -835,16 +835,19 @@ Wellich is d'r gewis of vernäömp.
 'rev-deleted-comment'            => '(opmerking weggehaold)',
 'rev-deleted-user'               => '(gebroeker weggehaold)',
 'rev-deleted-event'              => '(actie weggehaold)',
-'rev-deleted-text-permission'    => "De historie van dees pazjena is '''gewusj oet de publieke archieve'''.
+'rev-deleted-text-permission'    => "Dees bewerking is '''gewusj oet de publieke archieve'''.
 Dao kónne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wusjlogbook].",
-'rev-deleted-text-view'          => "Dees bewèrking van dees pazjena is '''gewösj oet de publieke archieve'''.
-Es beheerder van {{SITENAME}} kèns te deze zeen;
+'rev-deleted-text-unhide'        => "Dees versie van de pagina is '''verwijderd'''.
+Achtergrönj zeen meugelik te vinje in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogbook].
+As beheerder kins se [$1 dees versie bekieke] as se wils.",
+'rev-deleted-text-view'          => "Dees bewèrking is '''gewösj oet de publieke archieve'''.
+Es beheerder kèns te deze zeen;
 dao kónne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wusjlogbook].",
-'rev-deleted-no-diff'            => "De kins de versjille neet bekieke omdet ein van de versies oet t '''publieke archief is verwiederd'''.
+'rev-deleted-no-diff'            => "De kins de versjille neet bekieke omdet ein van de versies oet 't '''publieke archief is verwiederd'''.
 Achtergrönj zeen meugelik te vinje in t [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwiederlogbook].",
 'rev-deleted-unhide-diff'        => "Eine venne angerversjiller is '''gwösj oete pebliek archiever'''.
 Details in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wislog].
-Es behieërder ven {{SITENAME}} kèns se nag [$1 de angering zeen] es se doearch wils gaon.",
+Es behieërder kèns se nag [$1 de angering zeen] es se doearch wils gaon.",
 'rev-delundel'                   => 'tuun/verberg',
 'revisiondelete'                 => 'Verwijder/herstel bewerkinge',
 'revdelete-nooldid-title'        => 'Geine doelverzie',
@@ -1466,10 +1469,11 @@ d'r Is ouch ne [[Special:WhatLinksHere/$2|volledige lies]].",
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Mier verwijzinge]] naor dit bestaand bekèèke.',
 'redirectstofile'           => 'De volgende bestaande {{PLURAL:$1|verwèès|verwèèze}} door naor dit bestaand:',
 'duplicatesoffile'          => "{{PLURAL:$1|'t Nègsvóggendj bestandj is|De $1 nègsvóggendje bestenj zeen}} identiek aan dit bestandj ([[Special:FileDuplicateSearch/$2|deper]]):",
-'sharedupload'              => 'Dit besjtandj is $1 en kin ouch door anger projekte waere gebroek. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'Zee $1 veur meer informatie.',
-'shareduploadwiki-desc'     => 'De omschrèèving op zie $1 is hij onder wiergegeve.',
-'shareduploadwiki-linktext' => 'bestandsbesjrieving',
+'sharedupload'              => 'Dit besjtandj is van $1 en kin ouch door anger projekte waere gebroek.',
+'sharedupload-desc-there'   => 'Dit bestandj komp van $1 en kin ouch in anger projecte gebroek waere.
+Zee de [$2 pagina mit de bestandjsbesjrieving] veur meer informatie.',
+'sharedupload-desc-here'    => 'Dit bestandj komp van $1 en kin ouch in anger projecte gebroekt waere.
+De [$2 pagina mit de bestandjsbesjrieving] wurt hie ónger weergegaeve.',
 'noimage'                   => "D'r besjteit gein besjtandj mit deze naam, mer doe kèns 't $1.",
 'noimage-linktext'          => 'uploade',
 'uploadnewversion-linktext' => "Upload 'n nuuje versie van dit bestand",
@@ -1986,10 +1990,10 @@ $1",
 'sp-contributions-newbies-sub'   => 'Veur nuujelinge',
 'sp-contributions-newbies-title' => 'Biedraag ven nuuj gebroekers',
 'sp-contributions-blocklog'      => 'Blokkeerlogbook',
-'sp-contributions-deleted'       => 'Gewisde gebroekersbiedrage',
+'sp-contributions-deleted'       => 'gewisde gebroekersbiedrage',
 'sp-contributions-logs'          => 'logbeuk',
-'sp-contributions-talk'          => 'Euverlèk',
-'sp-contributions-userrights'    => 'Gebroekersrechtebeheer',
+'sp-contributions-talk'          => 'euverlèk',
+'sp-contributions-userrights'    => 'gebroekersrechtebeheer',
 'sp-contributions-search'        => 'Zeuke nao biedrages',
 'sp-contributions-username'      => 'IP-adres of gebroekersnaam:',
 'sp-contributions-submit'        => 'Zeuk/tuun',
@@ -2930,8 +2934,8 @@ Gaef de bestandjsnaam zónger \'t "{{ns:file}}:" veurvoogsel.',
 
 # External image whitelist
 'external_image_whitelist' => ' #Laot deze regel onveranderd<pre>
-#Zet hieronder reguliere expressiefragmente (alleen het deel dat tusse de // staat)
-#Deze worden gehoude tege de URL\'s van externe (gehotlinkte) afbeeldinge
+#Zèt hierónger reguliere expressiefragmente (allein \'t deil det tusse de // steit)
+#Deze waere gehaaje taenge de URL\'s van externe (gehotlinkte) aafbeeldinge
 #Als de reguliere expressie van toegang is, wordt een afbeelding weergegeve, anders wordt alleen een verwijzing weergegeve
 #Regels die beginne met "#" worde as opmerking behandeld
 

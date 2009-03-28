@@ -343,7 +343,7 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'imagelinks'                => 'Hubông',
 'linkstoimage'              => 'Ôn di yup nyoë na {{PLURAL:$1|hubông|$1 hubông}} u beureukah nyoë:',
 'nolinkstoimage'            => 'Hana ôn nyang na hubông u beureukah nyoë.',
-'sharedupload'              => 'Beureukah nyoë nakeuh teunamong sama-sama nyang mungkén geunguy lé reunancang la’én. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Beureukah nyoë nakeuh teunamong sama-sama nyang mungkén geunguy lé reunancang la’én.',
 'noimage'                   => 'Hana beureukah ngön nan nyan, Droëneuh jeuët $1.',
 'noimage-linktext'          => 'peutamong beureukah',
 'uploadnewversion-linktext' => 'Peulöt seunalén nyang leubèh barô nibak beureukah nyoë.',

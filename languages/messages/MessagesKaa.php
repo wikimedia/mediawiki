@@ -1261,8 +1261,7 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'imagelinks'                => 'Fayl siltewleri',
 'linkstoimage'              => "To'mendegi {{PLURAL:$1|bet|$1 bet}} bul faylg'a siltelgen:",
 'nolinkstoimage'            => "Bul faylg'a hesh bir bet siltelmegen.",
-'sharedupload'              => '$1 ortalıq faylı basqa proektlerde paydalanılsa boladı. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki-linktext' => "fayl juwmag'ının' beti",
+'sharedupload'              => '$1 ortalıq faylı basqa proektlerde paydalanılsa boladı.',
 'noimage'                   => "Bunday atlı fayl joq, biraq sizde $1 mu'mkinshiligi bar.",
 'noimage-linktext'          => 'usını aploud qılıw',
 'uploadnewversion-linktext' => "Bul fayldın' jan'a nusqasın aploud qılıw",
