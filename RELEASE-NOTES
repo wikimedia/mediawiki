@@ -30,6 +30,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to upon logging in (ex: "Main Page")
 * Add $wgExportFromNamespaces for enabling/disabling the "export all from 
   namespace" option (disabled by default)
+* (bug 18222) $wgMinimalPasswordLength default is now 1
 
 === New features in 1.15 ===
 

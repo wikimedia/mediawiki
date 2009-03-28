@@ -3204,7 +3204,7 @@ $wgExemptFromUserRobotsControl = null;
  * Specifies the minimal length of a user password. If set to 0, empty pass-
  * words are allowed.
  */
-$wgMinimalPasswordLength = 0;
+$wgMinimalPasswordLength = 1;
 
 /**
  * Activate external editor interface for files and pages
