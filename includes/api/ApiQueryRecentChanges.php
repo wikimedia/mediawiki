@@ -43,12 +43,13 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	private $fld_comment = false, $fld_user = false, $fld_flags = false,
 			$fld_timestamp = false, $fld_title = false, $fld_ids = false,
 			$fld_sizes = false;
-	
+	/**
+	 * Get an array mapping token names to their handler functions.
+	 * The prototype for a token function is func($pageid, $title, $rc)
+	 * it should return a token or false (permission denied)
+	 * @return array(tokenname => function)
+	 */
 	protected function getTokenFunctions() {
-		// tokenname => function
-		// function prototype is func($pageid, $title, $rev)
-		// should return token or false
-
 		// Don't call the hooks twice
 		if(isset($this->tokenFunctions))
 			return $this->tokenFunctions;
