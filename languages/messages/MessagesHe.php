@@ -1706,10 +1706,11 @@ PICT # שונות
 'morelinkstoimage'          => 'ראו [[Special:WhatLinksHere/$1|דפים נוספים]] המשתמשים בקובץ זה.',
 'redirectstofile'           => '{{PLURAL:$1|הדף הבא הוא דף הפניה|הדפים הבאים הם דפי הפניה}} לקובץ זה:',
 'duplicatesoffile'          => '{{PLURAL:$1|הקובץ הבא זהה|הקבצים הבאים זהים}} לקובץ זה ([[Special:FileDuplicateSearch/$2|לפרטים נוספים]]):',
-'sharedupload'              => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'למידע נוסף, ראו את $1.',
-'shareduploadwiki-desc'     => 'תיאורו ב$1 המקורי מוצג למטה.',
-'shareduploadwiki-linktext' => 'דף תיאור הקובץ',
+'sharedupload'              => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.',
+'sharedupload-desc-there'   => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.
+למידע נוסף, ראו את [$2 דף תיאור הקובץ].',
+'sharedupload-desc-here'    => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.
+תיאורו ב[$2 דף תיאור הקובץ] שלו מוצג למטה.',
 'noimage'                   => 'לא נמצא קובץ בשם זה, אך יש באפשרותכם $1.',
 'noimage-linktext'          => 'להעלות אחד',
 'uploadnewversion-linktext' => 'העלאת גרסה חדשה של קובץ זה',

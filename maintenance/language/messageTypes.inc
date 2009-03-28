@@ -153,7 +153,6 @@ $wgIgnoredMessages = array(
 	'fewestrevisions-summary',
 	'upload-summary',
 	'newuserlogentry',
-	'restrictlogpage',
 	'wantedtemplates-summary',
 );
 
