@@ -227,6 +227,13 @@ class Linker {
 		return $ret;
 	}
 
+	/**
+	 * Identical to link(), except $options defaults to 'known'.
+	 */
+	public function linkKnown( $target, $text = null, $customAttribs = array(), $query = array(), $options = 'known' ) {
+		return $this->link( $target, $text, $customAttribs, $query, $options );
+	}
+
 	private function linkUrl( $target, $query, $options ) {
 		wfProfileIn( __METHOD__ );
 		# We don't want to include fragments for broken links, because they

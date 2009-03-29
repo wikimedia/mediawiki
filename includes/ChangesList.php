@@ -484,7 +484,7 @@ class EnhancedChangesList extends ChangesList {
 		// FIXME: Would be good to replace this extract() call with something
 		// that explicitly initializes variables.
 		extract( $rc->mAttribs );
-		$curIdEq = 'curid=' . $rc_cur_id;
+		$curIdEq = array( 'curid' => $rc_cur_id );
 
 		# If it's a new day, add the headline and flush the cache
 		$date = $wgLang->date( $rc_timestamp, true );
@@ -509,19 +509,21 @@ class EnhancedChangesList extends ChangesList {
 		// Page moves
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$msg = ( $rc_type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
-			$clink = wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
-			  $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
+			$clink = wfMsg( $msg, $this->skin->linkKnown( $rc->getTitle(), null,
+				array(), array( 'redirect' => 'no' ) ),
+				$this->skin->linkKnown( $rc->getMovedToTitle() ) );
 		// New unpatrolled pages
 		} else if( $rc->unpatrolled && $rc_type == RC_NEW ) {
-			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
+			$clink = $this->skin->linkKnown( $rc->getTitle(), null, array(),
+				array( 'rcid' => $rc_id ) );
 		// Log entries
 		} else if( $rc_type == RC_LOG ) {
 			if( $rc_log_type ) {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $rc_log_type );
-				$clink = '(' . $this->skin->makeKnownLinkObj( $logtitle, 
+				$clink = '(' . $this->skin->linkKnown( $logtitle, 
 					LogPage::logName($rc_log_type) ) . ')';
 			} else {
-				$clink = $this->skin->makeLinkObj( $rc->getTitle(), '' );
+				$clink = $this->skin->link( $rc->getTitle() );
 			}
 			$watched = false;
 		// Log entries (old format) and special pages
@@ -530,14 +532,14 @@ class EnhancedChangesList extends ChangesList {
 			if ( $specialName == 'Log' ) {
 				# Log updates, etc
 				$logname = LogPage::logName( $logtype );
-				$clink = '(' . $this->skin->makeKnownLinkObj( $rc->getTitle(), $logname ) . ')';
+				$clink = '(' . $this->skin->linkKnown( $rc->getTitle(), $logname ) . ')';
 			} else {
 				wfDebug( "Unexpected special page in recentchanges\n" );
 				$clink = '';
 			}
 		// Edits
 		} else {
-			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '' );
+			$clink = $this->skin->linkKnown( $rc->getTitle() );
 		}
 
 		# Don't show unusable diff links
@@ -553,26 +555,28 @@ class EnhancedChangesList extends ChangesList {
 
 		# Make "cur" and "diff" links
 		if( $rc->unpatrolled ) {
-			$rcIdQuery = "&rcid={$rc_id}";
+			$rcIdQuery = array( 'rcid' => $rc_id );
 		} else {
-			$rcIdQuery = '';
+			$rcIdQuery = array();
 		}
-		$querycur = $curIdEq."&diff=0&oldid=$rc_this_oldid";
-		$querydiff = $curIdEq."&diff=$rc_this_oldid&oldid=$rc_last_oldid$rcIdQuery";
-		$aprops = ' tabindex="'.$baseRC->counter.'"';
+		$querycur = $curIdEq + array( 'diff' => '0', 'oldid' => $rc_this_oldid );
+		$querydiff = $curIdEq + array( 'diff' => $rc_this_oldid, 'oldid' =>
+			$rc_last_oldid ) + $rcIdQuery;
+		$attribs = array( 'tabindex' => $baseRC->counter );
 
-		# Make "diff" an "cur" links
+		# Make "diff" and "cur" links
 		if( !$showdifflinks ) {
 			$curLink = $this->message['cur'];
 			$diffLink = $this->message['diff'];
 		} else if( in_array( $rc_type, array(RC_NEW,RC_LOG,RC_MOVE,RC_MOVE_OVER_REDIRECT) ) ) {
 			$curLink = ($rc_type != RC_NEW) ? $this->message['cur']
-				: $this->skin->makeKnownLinkObj( $rc->getTitle(),
-				$this->message['cur'], $querycur, '' ,'', $aprops );
+				: $this->skin->linkKnown( $rc->getTitle(), $this->message['cur'], $attribs, $querycur );
 			$diffLink = $this->message['diff'];
 		} else {
-			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'], 
-				$querydiff, '' ,'', $aprops );
+			$diffLink = $this->skin->linkKnown( $rc->getTitle(), $this->message['diff'], 
+				$attribs, $querydiff );
+			$curLink = $this->skin->linkKnown( $rc->getTitle(), $this->message['cur'],
+				$attribs, $querycur );
 		}
 
 		# Make "last" link
@@ -581,8 +585,8 @@ class EnhancedChangesList extends ChangesList {
 		} else if( $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$lastLink = $this->message['last'];
 		} else {
-			$lastLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['last'],
-			$curIdEq.'&diff='.$rc_this_oldid.'&oldid='.$rc_last_oldid . $rcIdQuery );
+			$lastLink = $this->skin->linkKnown( $rc->getTitle(), $this->message['last'],
+				array(), $curIdEq + array('diff' => $rc_this_oldid, 'oldid' => $rc_last_oldid) + $rcIdQuery );
 		}
 
 		# Make user links
