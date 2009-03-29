@@ -152,8 +152,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add a class if 'missingsummary' is triggered to allow styling of the summary
   line
 * Add CSS defintion of the 'wikitable' class to shared.css
-* (bug 17163) Added MediaWiki:Talkpage which will be displayed when viewing talk
-  pages
+* (bug 17163) Added MediaWiki:Talkpageheader which will be displayed when
+  viewing talk pages
 * Add group convertsion support for LanguageConverter. New magic word "{{GROUPCONVERT:xxx}}"
   enabled for this new feature. You can set related conversion rules in
   [[MediaWiki:Groupconversiontable-xxx/language_code]].
