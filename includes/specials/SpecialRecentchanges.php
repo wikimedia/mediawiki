@@ -287,7 +287,7 @@ class SpecialRecentChanges extends SpecialPage {
 		}
 		if ($wgUser->isAllowed("rollback")) {
 			$tables[] = 'page';
-			$join_conds['page'] = array('LEFT JOIN', 'rc_namespace=page_namespace AND rc_title=page_title AND rc_this_oldid=page_latest');
+			$join_conds['page'] = array('LEFT JOIN', 'rc_cur_id=page_id');
 		}
 		// Tag stuff.
 		$fields = array(); // Fields are * in this case, so let the function modify an empty array to keep it happy.
