@@ -553,7 +553,8 @@ class EnhancedChangesList extends ChangesList {
 		$rc->timestamp = $time;
 		$rc->numberofWatchingusers = $baseRC->numberofWatchingusers;
 
-		# Make "cur" and "diff" links
+		# Make "cur" and "diff" links.  Don't use link(), it's too slow if
+		# called too many times (50% of CPU time on RecentChanges!).
 		if( $rc->unpatrolled ) {
 			$rcIdQuery = array( 'rcid' => $rc_id );
 		} else {
@@ -564,19 +565,23 @@ class EnhancedChangesList extends ChangesList {
 			$rc_last_oldid ) + $rcIdQuery;
 		$attribs = array( 'tabindex' => $baseRC->counter );
 
-		# Make "diff" and "cur" links
 		if( !$showdifflinks ) {
 			$curLink = $this->message['cur'];
 			$diffLink = $this->message['diff'];
 		} else if( in_array( $rc_type, array(RC_NEW,RC_LOG,RC_MOVE,RC_MOVE_OVER_REDIRECT) ) ) {
-			$curLink = ($rc_type != RC_NEW) ? $this->message['cur']
-				: $this->skin->linkKnown( $rc->getTitle(), $this->message['cur'], $attribs, $querycur );
+			if ( $rc_type != RC_NEW ) {
+				$curLink = $this->message['cur'];
+			} else {
+				$curUrl = wfUrlencode( wfAppendQuery( $rc->getTitle()->getLinkUrl(), $querycur ) );
+				$curLink = "<a href=\"$curUrl\" tabindex=\"{$baseRC->counter}\">{$this->message['cur']}</a>";
+			}
 			$diffLink = $this->message['diff'];
 		} else {
-			$diffLink = $this->skin->linkKnown( $rc->getTitle(), $this->message['diff'], 
-				$attribs, $querydiff );
-			$curLink = $this->skin->linkKnown( $rc->getTitle(), $this->message['cur'],
-				$attribs, $querycur );
+			$url = $rc->getTitle()->getLinkUrl();
+			$diffUrl = wfUrlencode( wfAppendQuery( $url, $querydiff ) );
+			$curUrl = wfUrlencode( wfAppendQuery( $url, $querycur ) );
+			$diffLink = "<a href=\"$diffUrl\" tabindex=\"{$baseRC->counter}\">{$this->message['diff']}</a>";
+			$curLink = "<a href=\"$curUrl\" tabindex=\"{$baseRC->counter}\">{$this->message['cur']}</a>";
 		}
 
 		# Make "last" link
