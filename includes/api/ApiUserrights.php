@@ -42,17 +42,21 @@ class ApiUserrights extends ApiBase {
 		$params = $this->extractRequestParams();
 		if(is_null($params['user']))
 			$this->dieUsageMsg(array('missingparam', 'user'));
-		$user = User::newFromName($params['user']);
-		if($user->isAnon())
-			$this->dieUsageMsg(array('nosuchuser', $params['user']));
 		if(is_null($params['token']))
 			$this->dieUsageMsg(array('missingparam', 'token'));
+		
+		$form = new UserrightsPage;
+		$user = $form->fetchUser($params['user']);
+		if($user instanceof WikiErrorMsg)
+			$this->dieUsageMsg(array_merge(
+				(array)$user->getMessageKey(),
+				$user->getMessageArgs()));
 		if(!$wgUser->matchEditToken($params['token'], $user->getName()))
 			$this->dieUsageMsg(array('sessionfailure'));
 		
 		$r['user'] = $user->getName();
 		list($r['added'], $r['removed']) =
-			UserrightsPage::doSaveUserGroups(
+			$form->doSaveUserGroups(
 				$user, (array)$params['add'],
 				(array)$params['remove'], $params['reason']);
 
@@ -71,9 +75,7 @@ class ApiUserrights extends ApiBase {
 
 	public function getAllowedParams() {
 		return array (
-			'user' => array(
-				ApiBase :: PARAM_TYPE => 'user'
-			),
+			'user' => null,
 			'add' => array(
 				ApiBase :: PARAM_TYPE => User::getAllGroups(),
 				ApiBase :: PARAM_ISMULTI => true

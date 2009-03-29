@@ -134,7 +134,8 @@ class UserrightsPage extends SpecialPage {
 		global $wgRequest, $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
 		$user = $this->fetchUser( $username );
-		if( !$user ) {
+		if( $user instanceof WikiErrorMsg ) {
+			$wgOut->addWikiMsgArray($user->getMessageKey(), $user->getMessageArgs());
 			return;
 		}
 
@@ -153,7 +154,7 @@ class UserrightsPage extends SpecialPage {
 				$removegroup[] = $group;
 			}
 		}
-		self::doSaveUserGroups( $user, $addgroup, $removegroup, $reason );
+		$this->doSaveUserGroups( $user, $addgroup, $removegroup, $reason );
 	}
 	
 	/**
@@ -165,7 +166,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param $reason String: reason for group change
 	 * @return Array: Tuple of added, then removed groups
 	 */
-	static function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
+	function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
 		global $wgUser;
 
 		// Validate input set...
@@ -206,7 +207,7 @@ class UserrightsPage extends SpecialPage {
 		wfRunHooks( 'UserRights', array( &$user, $add, $remove ) );
 
 		if( $newGroups != $oldGroups ) {
-			self::addLogEntry( $user, $oldGroups, $newGroups, $reason );
+			$this->addLogEntry( $user, $oldGroups, $newGroups, $reason );
 		}
 		return array( $add, $remove );
 	}
@@ -215,22 +216,15 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Add a rights log entry for an action.
 	 */
-	static function addLogEntry( $user, $oldGroups, $newGroups, $reason ) {
-		// Just overriding addLogEntry in a subclass would be cleaner,
-		// but that requires PHP 5.3 (late static bindings)
-		if( !wfRunHooks( 'UserRightsLogEntry', array( $user, $oldGroups,
-				$newGroups, $reason ) ) ) {
-			return;
-		}
-		
+	function addLogEntry( $user, $oldGroups, $newGroups, $reason ) {
 		$log = new LogPage( 'rights' );
 
 		$log->addEntry( 'rights',
 			$user->getUserPage(),
 			$reason,
 			array(
-				self::makeGroupNameListForLog( $oldGroups ),
-				self::makeGroupNameListForLog( $newGroups )
+				$this->makeGroupNameListForLog( $oldGroups ),
+				$this->makeGroupNameListForLog( $newGroups )
 			)
 		);
 	}
@@ -243,7 +237,8 @@ class UserrightsPage extends SpecialPage {
 		global $wgOut;
 
 		$user = $this->fetchUser( $username );
-		if( !$user ) {
+		if( $user instanceof WikiErrorMsg ) {
+			$wgOut->addWikiMsgArray($user->getMessageKey(), $user->getMessageArgs());
 			return;
 		}
 
@@ -261,10 +256,10 @@ class UserrightsPage extends SpecialPage {
 	 * return a user (or proxy) object for manipulating it.
 	 *
 	 * Side effects: error output for invalid access
-	 * @return mixed User, UserRightsProxy, or null
+	 * @return mixed User, UserRightsProxy, or WikiErrorMsg
 	 */
 	function fetchUser( $username ) {
-		global $wgOut, $wgUser, $wgUserrightsInterwikiDelimiter;
+		global $wgUser, $wgUserrightsInterwikiDelimiter;
 
 		$parts = explode( $wgUserrightsInterwikiDelimiter, $username );
 		if( count( $parts ) < 2 ) {
@@ -274,18 +269,15 @@ class UserrightsPage extends SpecialPage {
 			list( $name, $database ) = array_map( 'trim', $parts );
 
 			if( !$wgUser->isAllowed( 'userrights-interwiki' ) ) {
-				$wgOut->addWikiMsg( 'userrights-no-interwiki' );
-				return null;
+				return new WikiErrorMsg( 'userrights-no-interwiki' );
 			}
 			if( !UserRightsProxy::validDatabase( $database ) ) {
-				$wgOut->addWikiMsg( 'userrights-nodatabase', $database );
-				return null;
+				return new WikiErrorMsg( 'userrights-nodatabase', $database );
 			}
 		}
 
 		if( $name == '' ) {
-			$wgOut->addWikiMsg( 'nouserspecified' );
-			return false;
+			return new WikiErrorMsg( 'nouserspecified' );
 		}
 
 		if( $name{0} == '#' ) {
@@ -300,8 +292,7 @@ class UserrightsPage extends SpecialPage {
 			}
 
 			if( !$name ) {
-				$wgOut->addWikiMsg( 'noname' );
-				return null;
+				return new WikiErrorMsg( 'noname' );
 			}
 		}
 
@@ -312,14 +303,13 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		if( !$user || $user->isAnon() ) {
-			$wgOut->addWikiMsg( 'nosuchusershort', $username );
-			return null;
+			return new WikiErrorMsg( 'nosuchusershort', $username );
 		}
 
 		return $user;
 	}
 
-	static function makeGroupNameList( $ids ) {
+	function makeGroupNameList( $ids ) {
 		if( empty( $ids ) ) {
 			return wfMsgForContent( 'rightsnone' );
 		} else {
@@ -327,11 +317,11 @@ class UserrightsPage extends SpecialPage {
 		}
 	}
 
-	static function makeGroupNameListForLog( $ids ) {
+	function makeGroupNameListForLog( $ids ) {
 		if( empty( $ids ) ) {
 			return '';
 		} else {
-			return self::makeGroupNameList( $ids );
+			return $this->makeGroupNameList( $ids );
 		}
 	}
 

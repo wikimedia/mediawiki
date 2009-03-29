@@ -1440,12 +1440,6 @@ $addergroups : Array of groups that the user is in
 					'remove-self' => array( removable groups from self )
 				)
 
-'UserRightsLogEntry': before a log entry is added by UserrightsPage::addLogEntry(). If you use this hook to add your own log entries, you can return false to prevent the usual log entry from being added
-$user: User or UserrightsProxy object
-$oldGroups: Array of groups the user was a member of before the change
-$newGroups: Array of groups the user is a member of after the change
-$reason: User-provided summary
-
 'UserRetrieveNewTalks': called when retrieving "You have new messages!" message(s)
 $user: user retrieving new talks messages
 $talks: array of new talks page(s)
