@@ -560,15 +560,15 @@ class EnhancedChangesList extends ChangesList {
 		$querycur = $curIdEq."&diff=0&oldid=$rc_this_oldid";
 		$querydiff = $curIdEq."&diff=$rc_this_oldid&oldid=$rc_last_oldid$rcIdQuery";
 		$aprops = ' tabindex="'.$baseRC->counter.'"';
-		$curLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), 
-			$this->message['cur'], $querycur, '' ,'', $aprops );
 
 		# Make "diff" an "cur" links
 		if( !$showdifflinks ) {
-		   $curLink = $this->message['cur'];
-		   $diffLink = $this->message['diff'];
+			$curLink = $this->message['cur'];
+			$diffLink = $this->message['diff'];
 		} else if( in_array( $rc_type, array(RC_NEW,RC_LOG,RC_MOVE,RC_MOVE_OVER_REDIRECT) ) ) {
-			$curLink = ($rc_type != RC_NEW) ? $this->message['cur'] : $curLink;
+			$curLink = ($rc_type != RC_NEW) ? $this->message['cur']
+				: $this->skin->makeKnownLinkObj( $rc->getTitle(),
+				$this->message['cur'], $querycur, '' ,'', $aprops );
 			$diffLink = $this->message['diff'];
 		} else {
 			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'], 
