@@ -68,6 +68,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate',		  array( __CLASS__, 'formatDate'	   ) );
+		$parser->setFunctionHook( 'groupconvert', 	  array( __CLASS__, 'groupconvert'	   ), SFH_NO_HASH );
 
 		if ( $wgAllowDisplayTitle ) {
 			$parser->setFunctionHook( 'displaytitle', array( __CLASS__, 'displaytitle' ), SFH_NO_HASH );
@@ -104,7 +105,7 @@ class CoreParserFunctions {
 		$date = $df->reformat( $pref, $date, array('match-whole') );
 		return $date;
 	}
-
+	
 	static function ns( $parser, $part1 = '' ) {
 		global $wgContLang;
 		if ( intval( $part1 ) || $part1 == "0" ) {
@@ -615,5 +616,13 @@ class CoreParserFunctions {
 			'close' => "</$tagName>",
 		);
 		return $parser->extensionSubstitution( $params, $frame );
+	}
+	
+	/**
+	 * magic word call for a group convert from LanguageConverter.
+	 */
+	public static function groupconvert( $parser, $group ) {
+		global $wgContLang;
+		return $wgContLang->groupConvert( $group );
 	}
 }

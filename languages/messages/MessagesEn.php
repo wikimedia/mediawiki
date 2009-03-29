@@ -339,6 +339,7 @@ $magicWords = array(
 	'staticredirect'         => array( 1,    '__STATICREDIRECT__'     ),
 	'protectionlevel'        => array( 1,    'PROTECTIONLEVEL'        ),
 	'formatdate'             => array( 0,    'formatdate', 'dateformat' ),
+	'groupconvert'           => array( 0,    'GROUPCONVERT:', 'GC:'   ),
 );
 
 /**
