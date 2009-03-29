@@ -1234,10 +1234,13 @@ function wfCgiToArray( $query ) {
  * have query string parameters already. If so, they will be combined.
  *
  * @param string $url
- * @param string $query
+ * @param mixed $query String or associative array
  * @return string
  */
 function wfAppendQuery( $url, $query ) {
+	if ( is_array( $query ) ) {
+		$query = wfArrayToCGI( $query );
+	}
 	if( $query != '' ) {
 		if( false === strpos( $url, '?' ) ) {
 			$url .= '?';
