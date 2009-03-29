@@ -214,9 +214,12 @@ function wfSpecialWatchlist( $par ) {
 	if( $andHidePatrolled ) $conds[] = $andHidePatrolled;
 	if( $nameSpaceClause ) $conds[] = $nameSpaceClause;
 
-	if ( $usePage ) {
+	$rollbacker = $wgUser->isAllowed('rollback');
+	if ( $usePage || $rollbacker ) {
 		$tables[] = 'page';
 		$join_conds['page'] = array('LEFT JOIN','rc_cur_id=page_id');
+		if ($rollbacker) 
+			$fields[] = 'page_latest';
 	}
 
 	ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, '' );
