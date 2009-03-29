@@ -124,26 +124,28 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   with class 'mw-specialpage-summary'
 * $wgSummarySpamRegex added to handle edit summary spam. This is used *instead*
   of $wgSpamRegex for edit summary checks. Text checks still use $wgSpamRegex.
-* New function to convert content text to specified language (only applies on wiki with
-  LanguageConverter class)
+* New function to convert content text to specified language (only applies on
+  wiki with LanguageConverter class)
 * (bug 17844) Redirect users to a specific page when they log in, see 
   $wgRedirectOnLogin
-* Added a link to Special:UserRights on Special:Contributions for privileged users
+* Added a link to Special:UserRights on Special:Contributions for privileged
+  users
 * (bug 10336) Added new magic word {{REVISIONUSER}}, which displays the editor
   of the displayed revision's author user name
 * LinkerMakeExternalLink now has an $attribs parameter for link attributes and 
   a $linkType parameter for the type of external link being made
-* (bug 17785) Dynamic dates surrounded with a <span> tag, fixing sortable tables with
-  dynamic dates.
-* (bug 4582) Provide preference-based autoformatting of unlinked dates with the dateformat
-  parser function.
-* (bug 17886) Special:Export now allows you to export a whole namespace (limited to 5000 pages)
+* (bug 17785) Dynamic dates surrounded with a <span> tag, fixing sortable tables
+  with dynamic dates.
+* (bug 4582) Provide preference-based autoformatting of unlinked dates with the
+  dateformat parser function.
+* (bug 17886) Special:Export now allows you to export a whole namespace (limited
+  to 5000 pages)
 * (bug 17714) Limited TIFF upload support now built in if 'tif' extension is
-  enabled. Image width and height are now recognized, and when using ImageMagick,
-  optional flattening to PNG or JPEG for inline display can be enabled by setting
-  $wgTiffThumbnailType
-* Renamed two input IDs on Special:Log from 'page' and 'user' to 'mw-log-page' and
-  'mw-log-user', respectively
+  enabled. Image width and height are now recognized, and when using
+  ImageMagick, optional flattening to PNG or JPEG for inline display can be
+  enabled by setting $wgTiffThumbnailType
+* Renamed two input IDs on Special:Log from 'page' and 'user' to 'mw-log-page'
+  and 'mw-log-user', respectively
 * Added $wgInvalidUsernameCharacters to disallow certain characters in
   usernames during registration (such as "@")
 * Added $wgUserrightsInterwikiDelimiter to allow changing the delimiter
@@ -154,9 +156,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add CSS defintion of the 'wikitable' class to shared.css
 * (bug 17163) Added MediaWiki:Talkpageheader which will be displayed when
   viewing talk pages
-* Add group convertsion support for LanguageConverter. New magic word "{{GROUPCONVERT:xxx}}"
-  enabled for this new feature. You can set related conversion rules in
-  [[MediaWiki:Groupconversiontable-xxx/language_code]].
+* Add group convertsion support for LanguageConverter. New magic word
+  "{{GROUPCONVERT:xxx}}" enabled for this new feature. You can set related
+  conversion rules in [[MediaWiki:Groupconversiontable-xxx/language_code]].
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
@@ -267,7 +269,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   queue
 * (bug 17761) "show/hide" link in page history in now works for the first
   displayed revision if it's not the current one
-* (bug 17722) Fix regression where users are unable to change temporary passwords
+* (bug 17722) Fix regression where users are unable to change temporary
+  passwords
 * (bug 17799) Special:Random no longer throws a database error when a non-
   namespace is given, silently falls back to NS_MAIN
 * (bug 17751) The message for bad titles in WantedPages is now localized
@@ -289,11 +292,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   IS NULL
 * (bug 18018) Deleting a file redirect leaves behind a malfunctioning redirect
 * (bug 17537) Disable bad zlib.output_compression output on HTTP 304 responses
-* (bug 11213) [edit] section links in printable version no longer appear when you cut-and-paste article text
+* (bug 11213) [edit] section links in printable version no longer appear when
+  you cut-and-paste article text
 * (bug 17405) "Did you mean" to mirror Go/Search behavior of original request
 * (bug 18116) 'edittools' is now output identically on edit and upload pages
-* (bug 17241) The diffonly URI parameter should cascade to "Next edit" and "Previous edit" diff links
-* (bug 16823) 'Sidebar search form should not use Special:Search view URL as target'
+* (bug 17241) The diffonly URI parameter should cascade to "Next edit" and
+  "Previous edit" diff links
+* (bug 16823) 'Sidebar search form should not use Special:Search view URL as
+  target'
 * (bug 16343) Non-existing, but in use, category pages can be "go" match hits
 * (bug 18031) Make namespace selector on Special:Export remember the previous 
   selection
@@ -372,8 +378,8 @@ changes to languages because of MediaZilla reports.
 * (bug 17288) Messages improved for default language (English)
 * (bug 12937) Update native name for Afar
 * (bug 16909) 'histlegend' now reuses messages instead of copying them
-* (bug 17832) action=delete returns 'unknownerror' instead of 'permissiondenied' when
-  the user is blocked
+* (bug 17832) action=delete returns 'unknownerror' instead of 'permissiondenied'
+  when the user is blocked
 * Traditional/Simplified Gan Chinese conversion support
 
 == Compatibility ==
