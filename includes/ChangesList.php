@@ -331,8 +331,7 @@ class ChangesList {
 			$page = $rc->getTitle();
 			/** Check for rollback and edit permissions, disallow special pages, and only
 			  * show a link on the top-most revision */
-			if( $page->quickUserCan('rollback') && $page->quickUserCan('edit')
-				&& $page->getLatestRevID() == $rc->mAttribs['rc_this_oldid'] )
+			if ($wgUser->isAllowed('rollback') && $rc->mAttribs['page_latest'] == $rc->mAttribs['rc_this_oldid'] )
 			{
 				$rev = new Revision( array(
 					'id'        => $rc->mAttribs['rc_this_oldid'],
