@@ -913,7 +913,7 @@ Niektóre szablony nie zostaną użyte.',
 'post-expand-template-argument-warning'   => 'Uwaga – strona zawiera co najmniej jeden argument szablonu, który po rozwinięciu jest zbyt duży.
 Argument ten będzie pominięty.',
 'post-expand-template-argument-category'  => 'Strony, w których użyto szablon z pominięciem argumentów',
-'parser-template-loop-warning'            => 'Wykryto pętle w szablonie: [[$1]]',
+'parser-template-loop-warning'            => 'Wykryto pętlę w szablonie [[$1]]',
 'parser-template-recursion-depth-warning' => 'Przekroczno limit głębokości rekurencji szablonu ($1)',
 
 # "Undo" feature
@@ -1628,7 +1628,11 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 'morelinkstoimage'          => 'Pokaż [[Special:WhatLinksHere/$1|więcej odnośników]] do tego pliku.',
 'redirectstofile'           => '{{PLURAL:$1|Następujący plik przekierowuje|Następujące pliki przekierowują}} do tego pliku:',
 'duplicatesoffile'          => '{{PLURAL:$1|Następujący plik jest kopią|Następujące pliki są kopiami}} pliku ([[Special:FileDuplicateSearch/$2|więcej informacji]]):',
-'sharedupload'              => 'Ten plik znajduje się na wspólnym serwerze plików $1 i może być używany w innych projektach.',
+'sharedupload'              => 'Ten plik znajduje się na $1 i może być używany w innych projektach.',
+'sharedupload-desc-there'   => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
+Więcej informacji odnajdziesz na [$2 stronie opisu pliku].',
+'sharedupload-desc-here'    => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
+Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
 'noimage'                   => 'Nie istnieje plik o tej nazwie. Możesz go $1.',
 'noimage-linktext'          => 'przesłać',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',

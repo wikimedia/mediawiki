@@ -390,8 +390,8 @@ Pro pregheri ispetzifica totu is detaglios innanti in carchi siat pedimentu de c
 'accmailtitle'                     => 'Password ispedia.',
 'newarticle'                       => '(Nou)',
 'newarticletext'                   => "Custa pagina no esistit ancora.
-Pro creare sa pagina, iscrie in su box inoghe in basciu (abàida sa [[{{MediaWiki:Helppage}}|pàgina de agiudu]] pro prus informatziones).
-Chi ses intrau inoghe pro isballiu, clicca in su browser tuo su pulsante '''back/indietro'''.",
+Pro creare sa pagina, iscrie in su box inoghe in basciu (abàida sa [[{{MediaWiki:Helppage}}|pàgina de agiudu]] pro àteras informatziones).
+Chi ses intrau inoghe pro isballiu, clicca in su browser tuo su butoni '''back/indietro'''.",
 'noarticletext'                    => 'In custu momentu sa pàgina est bùida.
 Podes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in àteras pàginas, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} chircare ne is registros ligados] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} acontzare sa pàgina]</span>.',
 'updated'                          => '(Agiornau)',
@@ -780,7 +780,12 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 # Delete
 'deletepage'            => 'Fùlia pàgina',
 'confirm'               => 'Cunfima',
+'excontent'             => "su cuntènnidu fiat: '$1'",
+'excontentauthor'       => "su cuntènnidu fiat: '$1' (e s'ùnicu contribudori fiat '[[Special:Contributions/$2|$2]]')",
+'exblank'               => 'sa pàgina fiat bùida',
+'delete-confirm'        => 'Fùlia "$1"',
 'delete-backlink'       => '← $1',
+'delete-legend'         => 'Fuliare',
 'confirmdeletetext'     => "Ses acanta de burrare una pàgina cun totu s'istòria sua.
 Pro pregheri, cunfirma ca est intentzioni tua faghere custu, ca connosches is conseguentzias de s'atzione tua, a ca custa est cunforme a is [[{{MediaWiki:Policy-url}}|lìnnias polìtigas]].",
 'actioncomplete'        => 'Atzioni cumpletada',
@@ -1096,6 +1101,10 @@ Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 'word-separator'      => '&#32;',
 'ellipsis'            => '…',
 'percent'             => '$1%',
+
+# Auto-summaries
+'autoredircomment' => 'Redirect a sa pàgina [[$1]]',
+'autosumm-new'     => "Pàgina creada cun '$1'",
 
 # Size units
 'size-bytes'     => '$1 B',

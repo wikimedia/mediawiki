@@ -190,7 +190,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Sendi al mi ankaŭ retmesaĝojn por malgrandaj redaktoj de paĝoj',
 'tog-enotifrevealaddr'        => 'Malkaŝi mian retadreson en informaj retpoŝtaĵoj',
 'tog-shownumberswatching'     => 'Montri la nombron da priatentaj uzantoj',
-'tog-fancysig'                => 'Simpla subskribo (sen aŭtomata ligo)',
+'tog-fancysig'                => 'Trakti subskribon kiel vikitekston (sen aŭtomata ligo)',
 'tog-externaleditor'          => 'Uzi defaŭlte eksteran tekstprilaborilon',
 'tog-externaldiff'            => 'Uzi defaŭlte eksteran ŝanĝmontrilon',
 'tog-showjumplinks'           => 'Ebligi alirligojn "salti al"
@@ -890,13 +890,18 @@ Provu [[Special:Search|serĉi en la vikio]] por rilataj novaj paĝoj.',
 'rev-deleted-comment'            => '(komento forigita)',
 'rev-deleted-user'               => '(uzanto-nomo forigita)',
 'rev-deleted-event'              => '(protokola ago forigita)',
-'rev-deleted-text-permission'    => "Ĉi tiu revizio de la paĝo estis '''forigita de publikaj arĥivoj'''.
+'rev-deleted-text-permission'    => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].",
-'rev-deleted-text-view'          => 'Ĉi versio de la paĝo estis forigita de publikaj arĥivoj.
-Kiel administranto de {{SITENAME}} vi povas rigardi ĝin;
-povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].',
-'rev-deleted-no-diff'            => 'Vi ne povas vidi ĉi tiun diferencon ĉar unu el la revizioj estis forigitaj el la publikaj arkivoj.
-Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Protokolo pri forigoj].',
+'rev-deleted-text-unhide'        => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
+Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].
+Kiel administranto, vi ankoraŭ povas [$1 vidi ĉi tiun revizio] se vi volas kontinui.",
+'rev-deleted-text-view'          => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
+Kiel administranto vi povas rigardi ĝin; eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigoj].",
+'rev-deleted-no-diff'            => "Vi ne povas vidi ĉi tiun diferencon ĉar unu el la revizioj estis '''forigitaj'''.
+Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigoj].",
+'rev-deleted-unhide-diff'        => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
+Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].
+Kiel administranto vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volas kontinui.",
 'rev-delundel'                   => 'montri/kaŝi',
 'revisiondelete'                 => 'Forigi/malforigi versiojn',
 'revdelete-nooldid-title'        => 'Nevalida cela versio',
@@ -1522,6 +1527,10 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 'redirectstofile'           => 'Jen {{PLURAL:$1|dosiero liganta|dosieroj ligantaj}} al ĉi tiu dosiero:',
 'duplicatesoffile'          => 'La {{PLURAL:$1|jena dosiero estas duplikato|jenaj dosieroj estas duplikatoj}} de ĉi tiu dosiero ([[Special:FileDuplicateSearch/$2|pluaj detaloj]]):',
 'sharedupload'              => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla de aliaj projektoj.',
+'sharedupload-desc-there'   => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla en aliaj projektoj.
+Bonvolu vidi la [$2 dosier-priskriban paĝon] por plua informo.',
+'sharedupload-desc-here'    => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla de aliaj projektoj.
+Jen la priskribo en ties [$2 dosier-priskriba paĝo].',
 'noimage'                   => 'Neniu dosiero de ĉi tiu nomo ekzistas, sed vi povas $1.',
 'noimage-linktext'          => 'alŝuti unu',
 'uploadnewversion-linktext' => 'Alŝuti novan version de ĉi tiu dosiero',
@@ -2044,10 +2053,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Kontribuoj de novaj uzantoj. Forigitaj paĝoj ne estas montritaj.',
 'sp-contributions-newbies-title' => 'Uzulaj kontribuoj de novaj kontoj',
 'sp-contributions-blocklog'      => 'Protokolo de forbaroj',
-'sp-contributions-deleted'       => 'Forigitaj kontribuoj de uzantoj',
+'sp-contributions-deleted'       => 'forigitaj kontribuoj de uzantoj',
 'sp-contributions-logs'          => 'protokoloj',
-'sp-contributions-talk'          => 'Diskuto',
-'sp-contributions-userrights'    => 'Prizorgi rajtojn de uzantoj',
+'sp-contributions-talk'          => 'diskuto',
+'sp-contributions-userrights'    => 'administri rajtojn de uzantoj',
 'sp-contributions-search'        => 'Serĉado de kontribuoj',
 'sp-contributions-username'      => 'IP-adreso aŭ uzantonomo:',
 'sp-contributions-submit'        => 'Serĉi',

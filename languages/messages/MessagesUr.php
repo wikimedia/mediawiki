@@ -553,7 +553,8 @@ latex، dvips، gs کی صحیح تنصیب کی جانچ کرنے کے بعد �
 # User rights
 'userrights'               => 'حقوقِ صارف کی نظامت', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'   => 'گروہائے صارف کا انتظام',
-'userrights-user-editname' => 'اسمِ رکنیت داخل کریں:',
+'userrights-user-editname' => 'کوئی اسم‌صارف داخل کیجئے:',
+'editusergroup'            => 'Edit user groups',
 
 'group-bot-member' => 'خودکار صارف',
 

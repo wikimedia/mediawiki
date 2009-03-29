@@ -1164,8 +1164,8 @@ Contenta [$2 paginae descriptionis fasciculi] subter monstrantur.',
 'noimage'                   => 'Fasciculus huius nominis non est, sed $1 potes.',
 'noimage-linktext'          => 'fasciculum imponere',
 'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi imponere',
-'shared-repo-from'          => 'ex {{grammar:ablative|$1}}', # $1 is the repository name
-'shared-repo'               => 'repositorio communi', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'apud {{grammar:accusative|$1}}', # $1 is the repository name
+'shared-repo'               => 'repositorium commune', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Revertere $1',

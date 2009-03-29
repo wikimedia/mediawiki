@@ -186,7 +186,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Send mig også en e-mail ved mindre ændringer af overvågede sider',
 'tog-enotifrevealaddr'        => 'Vis min e-mail-adresse i mails med besked om ændringer',
 'tog-shownumberswatching'     => 'Vis antal brugere, der overvåger',
-'tog-fancysig'                => 'Signaturer uden automatisk henvisning',
+'tog-fancysig'                => 'Behandl signatur som wikitekst uden automatisk henvisning',
 'tog-externaleditor'          => 'Brug ekstern editor automatisk',
 'tog-externaldiff'            => 'Brug ekstern forskelsvisning automatisk',
 'tog-showjumplinks'           => 'Vis tilgængeligheds-henvisninger',
@@ -540,7 +540,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'yourrealname'               => 'Dit rigtige navn:',
 'yourlanguage'               => 'Sprog:',
 'yourvariant'                => 'Sprogvariant:',
-'yournick'                   => 'Kaldenavn (til signaturer):',
+'yournick'                   => 'Signatur:',
 'badsig'                     => 'Syntaksen i underskriften er ugyldig; kontroller venligst den brugte HTML.',
 'badsiglength'               => 'Din sigantur er for lang. Den må højst indeholde {{PLURAL:$1|}}$1 tegn.',
 'yourgender'                 => 'Køn:',
@@ -859,13 +859,19 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 'rev-deleted-comment'            => '(kommentar fjernet)',
 'rev-deleted-user'               => '(brugernavn fjernet)',
 'rev-deleted-event'              => '(loghandling fjernet)',
-'rev-deleted-text-permission'    => 'Denne version er slettet og er ikke mere offentligt tilgængelig.
-Nærmere oplysninger om sletningen samt en begrundelse for den findes i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} slette-loggen].',
-'rev-deleted-text-view'          => 'Denne version er slettet og er ikke længere offentligt tilgængelig.
-Som administrator kan du stadig se den.
-Nærmere oplysninger om sletningen samt en begrundelse for den findes i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} slette-loggen].',
-'rev-deleted-no-diff'            => 'Du kan ikke vise denne forskel fordi en af versionerne er blevet fjernet fra de offentlige arkiver.
-Det er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}sletteloggen].',
+'rev-deleted-text-permission'    => "Denne version af siden er '''slettet'''.
+Der er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-deleted-text-unhide'        => "Denne version af siden er '''slettet'''.
+Der er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Som administrator kan du stadig [$1 se versionen] hvis du ønsker at fortsætte.",
+'rev-deleted-text-view'          => "Denne version af siden er '''slettet'''.
+Som administrator kan du se den. 
+Der er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-deleted-no-diff'            => "Du kan ikke vise denne forskel fordi en af versionerne er '''slettet'''
+Der er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-deleted-unhide-diff'        => "En af versionerne for denne forskel er '''slettet'''.
+Der er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Som administrator kan du stadig [$1 se forskellen] hvis du ønsker at fortsætte.",
 'rev-delundel'                   => 'vise/skjule',
 'revisiondelete'                 => 'Slette/gendanne versioner',
 'revdelete-nooldid-title'        => 'Ingen version angivet',
@@ -1156,7 +1162,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-custom-js'           => 'Personlig JavaScript',
 
 # User rights
-'userrights'                  => 'Forvaltning af brugerrettigheder', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Håndtering af brugerrettigheder', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Administrér brugergrupper',
 'userrights-user-editname'    => 'Skriv et brugernavn:',
 'editusergroup'               => 'Redigér brugergrupper',
@@ -1477,6 +1483,10 @@ En [[Special:WhatLinksHere/$2|komplet liste]] er tilgængelig.',
 'redirectstofile'           => '{{PLURAL:$1|Nedenstående fil|De nedenstående $1 filer}} er en omdirigering til denne fil:',
 'duplicatesoffile'          => 'Følgende {{PLURAL:$1|fil er en dublet|filer er dubletter}} af denne fil ([[Special:FileDuplicateSearch/$2|flere detaljer]]):',
 'sharedupload'              => 'Denne fil er fra $1 og kan bruges af andre projekter.',
+'sharedupload-desc-there'   => 'Denne fil er fra $1 og kan bruges på andre projekter.
+Se [$2 filbeskrivelsessiden] for nærmere information.',
+'sharedupload-desc-here'    => 'Denne fil er fra $1 og kan bruges på andre projekter.
+Indholdet på dens [$2 filbeskrivelsesside] er vist herunder.',
 'noimage'                   => 'Der findes ingen fil med dette navn, men du kan $1.',
 'noimage-linktext'          => 'lægge en op',
 'uploadnewversion-linktext' => 'Læg en ny version af denne fil op',
@@ -1993,7 +2003,7 @@ $1',
 'sp-contributions-deleted'       => 'slettede brugerbidrag',
 'sp-contributions-logs'          => 'loglister',
 'sp-contributions-talk'          => 'diskussion',
-'sp-contributions-userrights'    => 'Forvaltning af brugerrettigheder',
+'sp-contributions-userrights'    => 'håndtering af brugerrettigheder',
 'sp-contributions-search'        => 'Søg efter bidrag',
 'sp-contributions-username'      => 'IP-adresse eller brugernavn:',
 'sp-contributions-submit'        => 'Søg',
@@ -2048,7 +2058,7 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'ipboptions'                      => '2 timer:2 hours,1 dag:1 day,3 dage:3 days,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,ubegrænset:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Anden varighed',
 'ipbotherreason'                  => 'Anden/uddybende begrundelse',
-'ipbhidename'                     => 'Skjul brugernavn/IP-adresse i spærrelog, listen med aktive spærringer og brugerfortegnelsen.',
+'ipbhidename'                     => 'Skjul brugernavnet i redigeringer og lister',
 'ipbwatchuser'                    => 'Overvåg denne brugers brugerside og diskussionsside.',
 'ipballowusertalk'                => 'Tillad brugeren at redigere sin egen diskussionsside under blokeringen',
 'ipb-change-block'                => 'Forny brugerens blokering med disse indstillinger',
@@ -2101,6 +2111,7 @@ Se [[Special:IPBlockList|IP-blokeringslisten]] for alle blokeringer.',
 'block-log-flags-noemail'         => 'e-mail blokeret',
 'block-log-flags-nousertalk'      => 'kan ikke redigere egen diskussionsside',
 'block-log-flags-angry-autoblock' => 'udvidet automatisk blokering slået tilenhanced autoblock enabled',
+'block-log-flags-hiddenname'      => 'brugernavnet er skjult',
 'range_block_disabled'            => 'Sysop-muligheden for at oprette blokeringsklasser er slået fra.',
 'ipb_expiry_invalid'              => 'Udløbstiden er ugyldig.',
 'ipb_expiry_temp'                 => 'Brugernavnet kan kun skjules ved permanente blokeringer.',

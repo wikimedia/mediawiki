@@ -1571,6 +1571,10 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'redirectstofile'           => '{{PLURAL:$1|Seuraava tiedosto ohjaa|Seuraavat $1 tiedostoa ohjaavat}} tähän tiedostoon:',
 'duplicatesoffile'          => '{{PLURAL:$1|Seuraava tiedosto on tämän tiedoston kaksoiskappale|Seuraavat $1 tiedostoa ovat tämän tiedoston kaksoiskappaleita}} ([[Special:FileDuplicateSearch/$2|lisätietoja]]):',
 'sharedupload'              => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.',
+'sharedupload-desc-there'   => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.
+Katso [$2 tiedoston kuvaussivulta] lisätietoja.',
+'sharedupload-desc-here'    => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.
+Tiedot [$2 tiedoston kuvaussivulta] näkyvät alla.',
 'noimage'                   => 'Tämän nimistä tiedostoa ei ole olemassa, mutta voit $1.',
 'noimage-linktext'          => 'tallentaa sen',
 'uploadnewversion-linktext' => 'Tallenna uusi versio tästä tiedostosta',

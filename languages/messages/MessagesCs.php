@@ -335,7 +335,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Poslat e-mail i pro menší editace (které jinak nezpůsobují odeslání e-mailu)',
 'tog-enotifrevealaddr'        => 'Prozradit mou e-mailovou adresu v upozorňujících e-mailech',
 'tog-shownumberswatching'     => 'Zobrazovat počet sledujících uživatelů',
-'tog-fancysig'                => 'Neupravovat podpis (nevkládat automaticky odkaz)',
+'tog-fancysig'                => 'Používat v podpisu wikitext (bez automatického odkazu)',
 'tog-externaleditor'          => 'Implicitně používat externí editor',
 'tog-externaldiff'            => 'Implicitně používat externí porovnávací program',
 'tog-showjumplinks'           => 'Používat odkazy „skočit na“ pro vyšší přístupnost',
@@ -1009,13 +1009,18 @@ Zkuste [[Special:Search|hledání]].',
 'rev-deleted-comment'            => '(komentář odstraněn)',
 'rev-deleted-user'               => '(uživatelské jméno odstraněno)',
 'rev-deleted-event'              => '(záznam odstraněn)',
-'rev-deleted-text-permission'    => 'Tato revize byla odstraněna z veřejného archivu.
-Podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} knize smazaných stránek].',
-'rev-deleted-text-view'          => 'Tato revize byla odstraněna z veřejného archivu.
-Jako správce si ji však můžete prohlédnout;
-podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].',
-'rev-deleted-no-diff'            => 'Toto porovnání si nemůžete prohlédnout, protože jedna z&nbsp;verzí byla z&nbsp;veřejně dostupného archivu odstraněna.
-Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].',
+'rev-deleted-text-permission'    => "Tato revize byla '''smazána'''.
+Podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+'rev-deleted-text-unhide'        => "Tato revize byla '''smazána'''.
+Podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
+Jako správce si však můžete [$1 tuto revizi prohlédnout], pokud chcete.",
+'rev-deleted-text-view'          => "Tato revize byla '''smazána'''.
+Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+'rev-deleted-no-diff'            => "Tento rozdíl si nemůžete prohlédnout, protože jedna z&nbsp;revizí byla '''smazána'''.
+Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+'rev-deleted-unhide-diff'        => "Jedna z revizí k tomuto porovnání byla '''smazána'''.
+Podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
+Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
 'rev-delundel'                   => 'skrýt/zobrazit',
 'revisiondelete'                 => 'Smazat/obnovit revize',
 'revdelete-nooldid-title'        => 'Nezadána revize',
@@ -1033,13 +1038,16 @@ Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:Special:Log/delete|page={{FULLP
 Ostatní správci {{GRAMMAR:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
 pokud nebyla nastavena další omezení.
 Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].",
+'revdelete-suppress-text'        => "Utajování by se mělo používat '''pouze''' v následujících případech:
+* Nevhodné osobní údaje
+*: ''adresy bydliště a telefonní čísla, rodná čísla apod.''",
 'revdelete-legend'               => 'Nastavit omezení k revizi:',
 'revdelete-hide-text'            => 'Skrýt text revize',
 'revdelete-hide-name'            => 'Skrýt událost a cíl',
 'revdelete-hide-comment'         => 'Skrýt editační komentář',
 'revdelete-hide-user'            => 'Skrýt uživatelské jméno/IP adresu',
-'revdelete-hide-restricted'      => 'Tato omezení aplikovat i na správce',
-'revdelete-suppress'             => 'Skrýt data i před správci',
+'revdelete-hide-restricted'      => 'Utajit data i před správci',
+'revdelete-suppress'             => 'Utajit data i před správci',
 'revdelete-hide-image'           => 'Skrýt obsah souboru',
 'revdelete-unsuppress'           => 'Odstranit omezení na vrácené verze',
 'revdelete-log'                  => 'Komentář:',
@@ -1062,7 +1070,7 @@ Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky 
 'logdelete-log-message'          => '$1 $2 událost{{PLURAL:$2||i|í}}',
 
 # Suppression log
-'suppressionlog'     => 'Záznam potlačení',
+'suppressionlog'     => 'Záznam utajení',
 'suppressionlogtext' => 'Toto je záznam činností dohlížitelů – mazání a blokování zahrnující skrytí obsahu i před správci. Vizte též [[Special:IPBlockList|seznam všech probíhajících bloků]].',
 
 # History merging
@@ -1641,6 +1649,10 @@ Můžete si prohlédnout [[Special:WhatLinksHere/$2|úplný seznam]].',
 'redirectstofile'           => '{{plural:$1|Následující soubor přesměrovává|Následující $1 soubory přesměrovávají|Následujících $1 souborů přesměrovává}} na tento soubor:',
 'duplicatesoffile'          => '{{plural:$1|Následující soubor je duplikát|Následující $1 soubory jsou duplikáty|Následujících $1 souborů jsou duplikáty}} tohoto souboru ([[Special:FileDuplicateSearch/$2|podrobnosti]]):',
 'sharedupload'              => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.',
+'sharedupload-desc-there'   => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.
+Více informací obsahuje jeho [$2 tamější stránka s popisem souboru].',
+'sharedupload-desc-here'    => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.
+Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s popisem souboru].',
 'noimage'                   => 'Soubor s tímto jménem neexistuje, můžete ho $1',
 'noimage-linktext'          => 'načíst',
 'uploadnewversion-linktext' => 'Načíst novou verzi tohoto souboru',
@@ -1993,7 +2005,7 @@ Rady a kontakt:
 'actioncomplete'         => 'Provedeno',
 'deletedtext'            => 'Stránka nebo soubor „<nowiki>$1</nowiki>“ byla smazána. $2 zaznamenává poslední smazání.',
 'deletedarticle'         => 'maže „$1“',
-'suppressedarticle'      => 'potlačil „[[$1]]“',
+'suppressedarticle'      => 'utajil „[[$1]]“',
 'dellogpage'             => 'Kniha smazaných stránek',
 'dellogpagetext'         => 'Zde je seznam posledních smazaných stránek.',
 'deletionlog'            => 'Kniha smazaných stránek',
@@ -2149,10 +2161,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Noví uživatelé',
 'sp-contributions-newbies-title' => 'Příspěvky nových uživatelů',
 'sp-contributions-blocklog'      => 'Kniha zablokování',
-'sp-contributions-deleted'       => 'Smazané editace uživatele',
+'sp-contributions-deleted'       => 'smazané editace uživatele',
 'sp-contributions-logs'          => 'záznamy',
 'sp-contributions-talk'          => 'diskuse',
-'sp-contributions-userrights'    => 'Správa uživatelských skupin',
+'sp-contributions-userrights'    => 'správa uživatelských práv',
 'sp-contributions-search'        => 'Zobrazení příspěvků',
 'sp-contributions-username'      => 'IP adresa nebo uživatelské jméno:',
 'sp-contributions-submit'        => 'Zobrazit',
@@ -2204,7 +2216,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipboptions'                      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'jiný',
 'ipbotherreason'                  => 'Jiný nebo další důvod:',
-'ipbhidename'                     => 'Skrýt uživatelské jméno v knize zablokování, seznamu probíhajících bloků a seznamu uživatelů',
+'ipbhidename'                     => 'Skrýt uživatelské jméno u editací a v seznamech',
 'ipbwatchuser'                    => 'Sledovat uživatelskou a diskusní stranu tohoto uživatele',
 'ipballowusertalk'                => 'Umožnit tomuto uživateli i při zablokování editovat svou diskusní stránku',
 'ipb-change-block'                => 'Znovu zablokovat uživatele s tímto nastavením',
@@ -2261,6 +2273,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'range_block_disabled'            => 'Blokování rozsahů IP adres je zakázáno.',
 'ipb_expiry_invalid'              => 'Neplatný čas vypršení.',
 'ipb_expiry_temp'                 => 'Blokování skrytých uživatelských jmen by měla být trvalá.',
+'ipb_hide_invalid'                => 'Tento účet nelze utajit; možná má příliš mnoho editací.',
 'ipb_already_blocked'             => '„$1“ již je zablokován.',
 'ipb-needreblock'                 => '== Již zablokován(a) ==
 $1 je již zablokován(a). Chcete změnit nastavení bloku?',

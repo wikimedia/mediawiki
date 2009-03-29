@@ -1591,6 +1591,10 @@ Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
 'redirectstofile'           => '{{PLURAL:$1|O seguinte ficheiro redirixe|Os seguintes $1 ficheiros redirixen}} cara a este:',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte ficheiro é un duplicado|Os seguintes $1 ficheiros son duplicados}} destoutro ([[Special:FileDuplicateSearch/$2|máis detalles]]):',
 'sharedupload'              => 'Este ficheiro é da $1 e pode ser usado por outros proxectos.',
+'sharedupload-desc-there'   => 'Este ficheiro é da $1 e pode ser usado por outros proxectos.
+Por favor, vexa a [$2 páxina de descrición do ficheiro] para obter máis información.',
+'sharedupload-desc-here'    => 'Este ficheiro é da $1 e pode ser usado por outros proxectos.
+A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuación.',
 'noimage'                   => 'Non existe ningún ficheiro con ese nome, pero pode $1.',
 'noimage-linktext'          => 'cargar un',
 'uploadnewversion-linktext' => 'Cargar unha nova versión deste ficheiro',
