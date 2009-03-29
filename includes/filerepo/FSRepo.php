@@ -213,12 +213,12 @@ class FSRepo extends FileRepo {
 	}
 
 	/**
-	 * Checks existance of specified array of files.
+	 * Checks existence of specified array of files.
 	 *
 	 * @param array $files URLs of files to check
 	 * @param integer $flags Bitwise combination of the following flags:
 	 *     self::FILES_ONLY     Mark file as existing only if it is a file (not directory)
-	 * @return Either array of files and existance flags, or false
+	 * @return Either array of files and existence flags, or false
 	 */
 	function fileExistsBatch( $files, $flags = 0 ) {
 		if ( !file_exists( $this->directory ) || !is_readable( $this->directory ) ) {

@@ -1789,9 +1789,9 @@ class LocalFileMoveBatch {
 		$status = $repo->newGood();
 		$triplets = $this->getMoveTriplets();
 
-		$statusPreCheck = $this->checkFileExistance( 0 );
+		$statusPreCheck = $this->checkFileExistence( 0 );
 		if( !$statusPreCheck->isOk() ) {
-			wfDebugLog( 'imagemove', "Move of {$this->file->name} aborted due to pre-move file existance check failure" );
+			wfDebugLog( 'imagemove', "Move of {$this->file->name} aborted due to pre-move file existence check failure" );
 			return $statusPreCheck;
 		}
 		$statusDb = $this->doDBUpdates();
@@ -1802,7 +1802,7 @@ class LocalFileMoveBatch {
 			wfDebugLog( 'imagemove', "Error in moving files: " . $statusMove->getWikiText() );
 			$this->db->rollback();
 		} else {
-			$statusPostCheck = $this->checkFileExistance( 1 );
+			$statusPostCheck = $this->checkFileExistence( 1 );
 			if( !$statusPostCheck->isOk() ) {
 				// This clearly mustn't have happend. FSRepo::storeBatch should have given out an error in that case.
 				wfDebugLog( 'imagemove', "ATTENTION! Move of {$this->file->name} has some files missing, while storeBatch() reported success" );
@@ -1870,11 +1870,11 @@ class LocalFileMoveBatch {
 	}
 
 	/*
-	 * Checks file existance.
+	 * Checks file existence.
 	 * Set $key = 0 for source files check
 	 * and $key = 1 for destination files check.
 	 */ 
-	function checkFileExistance( $key = 0 ) {
+	function checkFileExistence( $key = 0 ) {
 		$files = array();
 		foreach( array_merge( array( $this->cur ), $this->olds ) as $file )
 			$files[$file[$key]] = $this->file->repo->getVirtualUrl() . '/public/' . rawurlencode( $file[$key] );
