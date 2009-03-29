@@ -17,8 +17,7 @@ class Interwiki {
 
 	protected $mPrefix, $mURL, $mLocal, $mTrans;
 
-	function __construct( $prefix = null, $url = '', $local = 0, $trans = 0 )
-	{
+	function __construct( $prefix = null, $url = '', $local = 0, $trans = 0 ){
 		$this->mPrefix = $prefix;
 		$this->mURL = $url;
 		$this->mLocal = $local;
@@ -52,7 +51,7 @@ class Interwiki {
 			return self::$smCache[$prefix];
 		}
 		global $wgInterwikiCache;
-		if ($wgInterwikiCache) {
+		if( $wgInterwikiCache ) {
 			$iw = Interwiki::getInterwikiCached( $prefix );
 		} else {
 			$iw = Interwiki::load( $prefix );
@@ -67,7 +66,7 @@ class Interwiki {
 		self::$smCache[$prefix] = $iw;
 		return $iw;
 	}
-	
+
 	/**
 	 * Fetch interwiki prefix data from local cache in constant database.
 	 *
@@ -78,19 +77,19 @@ class Interwiki {
 	 */
 	protected static function getInterwikiCached( $prefix ) {
 		$value = self::getInterwikiCacheEntry( $prefix );
-		
+
 		$s = new Interwiki( $prefix );
 		if ( $value != '' ) {
 			// Split values
 			list( $local, $url ) = explode( ' ', $value, 2 );
 			$s->mURL = $url;
 			$s->mLocal = (int)$local;
-		}else{
+		} else {
 			$s = false;
 		}
 		return $s;
 	}
-	
+
 	/**
 	 * Get entry from interwiki cache
 	 *
@@ -110,11 +109,11 @@ class Interwiki {
 		/* Resolve site name */
 		if( $wgInterwikiScopes>=3 && !$site ) {
 			$site = dba_fetch( '__sites:' . wfWikiID(), $db );
-			if ( $site == "" ){
+			if ( $site == '' ){
 				$site = $wgInterwikiFallbackSite;
 			}
 		}
-		
+
 		$value = dba_fetch( wfMemcKey( $prefix ), $db );
 		// Site level
 		if ( $value == '' && $wgInterwikiScopes >= 3 ) {
@@ -126,7 +125,7 @@ class Interwiki {
 		}
 		if ( $value == 'undef' )
 			$value = '';
-			
+
 		return $value;
 	}
 
@@ -136,7 +135,6 @@ class Interwiki {
 	 * @param $prefix The interwiki prefix
 	 * @return bool The prefix is valid
 	 * @static
-	 *
 	 */
 	protected static function load( $prefix ) {
 		global $wgMemc, $wgInterwikiExpiry;
@@ -149,9 +147,9 @@ class Interwiki {
 				return $iw;
 			}
 		}
-		
+
 		$db = wfGetDB( DB_SLAVE );
-			
+
 		$row = $db->fetchRow( $db->select( 'interwiki', '*', array( 'iw_prefix' => $prefix ),
 			__METHOD__ ) );
 		$iw = Interwiki::loadFromArray( $row );
@@ -160,7 +158,7 @@ class Interwiki {
 			$wgMemc->add( $key, $mc, $wgInterwikiExpiry );
 			return $iw;
 		}
-		
+
 		return false;
 	}
 
@@ -181,8 +179,8 @@ class Interwiki {
 		}
 		return false;
 	}
-	
-	/** 
+
+	/**
 	 * Get the URL for a particular title (or with $1 if no title given)
 	 * 
 	 * @param $title string What text to put for the article name
@@ -195,11 +193,11 @@ class Interwiki {
 		}
 		return $url;
 	}
-	
+
 	function isLocal(){
 		return $this->mLocal;
 	}
-	
+
 	function isTranscludable(){
 		return $this->mTrans;
 	}
