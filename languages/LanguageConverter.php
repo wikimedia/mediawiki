@@ -34,6 +34,7 @@ class LanguageConverter {
 	var $mFlags;
 	var $mDescCodeSep = ':',$mDescVarSep = ';';
 	var $mUcfirst = false;
+	var $mGroups = array();
 
 	const CACHE_VERSION_KEY = 'VERSION 6';
 
@@ -414,7 +415,7 @@ class LanguageConverter {
 		global $wgDisableLangConversion;
 		/* don't do anything if this is the conversion table */
 		if ( $parser->getTitle()->getNamespace() == NS_MEDIAWIKI &&
-				 strpos($parser->mTitle->getText(), "Conversiontable") !== false ) 
+				 strpos($parser->mTitle->getText(), 'onversiontable') !== false ) 
 		{
 			return $text;
 		}
@@ -663,7 +664,7 @@ class LanguageConverter {
 	 * load conversion tables either from the cache or the disk
 	 * @private
 	 */
-	function loadTables($fromcache=true) {
+	function loadTables( $fromcache = true ) {
 		global $wgMemc;
 		if( $this->mTablesLoaded )
 			return;
@@ -681,9 +682,14 @@ class LanguageConverter {
 			// we will first load the default tables
 			// then update them using things in MediaWiki:Zhconversiontable/*
 			$this->loadDefaultTables();
-			foreach($this->mVariants as $var) {
-				$cached = $this->parseCachedTable($var);
-				$this->mTables[$var]->mergeArray($cached);
+			foreach( $this->mVariants as $var ) {
+				$cached = $this->parseCachedTable( $var );
+				// load group convert table, e.g. [[MediaWiki:Groupconversiontable-StarTrek]].
+				foreach( $this->mGroups as $group ) {
+					$cachedgroup = $this->parseCachedTable( $var, '', true, "Groupconversiontable-$group" );
+					$cached = array_merge( $cached, $cachedgroup );
+				}
+				$this->mTables[$var]->mergeArray( $cached );
 			}
 
 			$this->postLoadTables();
@@ -731,24 +737,24 @@ class LanguageConverter {
 	 *	and will be parsed recursively if $recursive=true
 	 *
 	 */
-	function parseCachedTable($code, $subpage='', $recursive=true) {
+	function parseCachedTable($code, $subpage='', $recursive=true, $table='Conversiontable') {
 		global $wgMessageCache;
 		static $parsed = array();
 
 		if(!is_object($wgMessageCache))
 			return array();
 
-		$key = 'Conversiontable/'.$code;
+		$key = "$table/".$code;
 		if($subpage)
 			$key .= '/' . $subpage;
 
 		if(array_key_exists($key, $parsed))
 			return array();
-
+		
 		if ( strpos( $code, '/' ) === false ) {
-			$txt = $wgMessageCache->get( 'Conversiontable', true, $code );
+			$txt = $wgMessageCache->get( $table, true, $code );
 		} else {
-			$title = Title::makeTitleSafe( NS_MEDIAWIKI, "Conversiontable/$code" );
+			$title = Title::makeTitleSafe( NS_MEDIAWIKI, "$table/$code" );
 			if ( $title && $title->exists() ) {
 				$article = new Article( $title );
 				$txt = $article->getContents();
@@ -756,10 +762,9 @@ class LanguageConverter {
 				$txt = '';
 			}
 		}
-
 		// get all subpage links of the form
 		// [[MediaWiki:conversiontable/zh-xx/...|...]]
-		$linkhead = $this->mLangObj->getNsText(NS_MEDIAWIKI) . ':Conversiontable';
+		$linkhead = $this->mLangObj->getNsText(NS_MEDIAWIKI) . ":$table";
 		$subs = explode('[[', $txt);
 		$sublinks = array();
 		foreach( $subs as $sub ) {
@@ -777,7 +782,6 @@ class LanguageConverter {
 				$sublinks[] = $sublink;
 			}
 		}
-
 
 		// parse the mappings in this page
 		$blocks = explode($this->mMarkup['begin'], $txt);
@@ -868,6 +872,17 @@ class LanguageConverter {
  	function armourMath($text){ 
 		$ret = $this->mMarkup['begin'] . 'R|' . $text . $this->mMarkup['end'];
 		return $ret;
+	}
+	
+	/**
+	 * Callback function for magicword 'groupconvert'
+	 *
+	 * @param string $group: the group name called for
+	 * @return blank string
+	 */
+	function groupConvert( $group ) {
+		$this->mGroups[] = $group;
+		return '';
 	}
 }
 

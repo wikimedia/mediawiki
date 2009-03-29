@@ -46,6 +46,7 @@ class FakeConverter {
 	function convertCategoryKey( $key ) {return $key; }
 	function convertLinkToAllVariants($text){ return array( $this->mLang->getCode() => $text); }
 	function armourMath($text){ return $text; }
+	function groupConvert($group) {return '';}
 }
 
 /**
@@ -2289,6 +2290,16 @@ class Language {
 	 */
 	function markNoConversion( $text, $noParse=false ) {
 		return $this->mConverter->markNoConversion( $text, $noParse );
+	}
+	
+	/**
+	 * Callback function for magicword 'groupconvert'
+	 *
+	 * @param string $group: the group name called for
+	 * @return blank string
+	 */
+	function groupConvert( $group ) {
+		return $this->mConverter->groupConvert( $group );
 	}
 
 	/**
