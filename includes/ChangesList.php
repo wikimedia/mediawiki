@@ -563,7 +563,6 @@ class EnhancedChangesList extends ChangesList {
 		$querycur = $curIdEq + array( 'diff' => '0', 'oldid' => $rc_this_oldid );
 		$querydiff = $curIdEq + array( 'diff' => $rc_this_oldid, 'oldid' =>
 			$rc_last_oldid ) + $rcIdQuery;
-		$attribs = array( 'tabindex' => $baseRC->counter );
 
 		if( !$showdifflinks ) {
 			$curLink = $this->message['cur'];
