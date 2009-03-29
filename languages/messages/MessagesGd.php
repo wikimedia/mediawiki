@@ -153,7 +153,6 @@ $1",
 'badtitle'        => 'Droch thiotal',
 
 # Login and logout pages
-'logouttitle'                => 'Log a-mach an neach-cleachdaidh',
 'loginpagetitle'             => 'Log a-steach an neach-cleachdaidh',
 'yourname'                   => "D' ainm-cleachdaidh",
 'yourpassword'               => 'Am facal-faire agaibh',

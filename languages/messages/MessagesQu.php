@@ -614,7 +614,6 @@ $2",
 'virus-unknownscanner' => 'mana riqsisqa añaw qulluna (antivirus):',
 
 # Login and logout pages
-'logouttitle'                => "Llamk'apuy tiyaypa puchukaynin",
 'logouttext'                 => "'''Llamk'apuy tiyayniykiqa puchukasqañam.'''
 
 Sutinnaq kaspaykipas {{SITENAME}}pi wamp'uytam atinki. Mana hinataq munaspaykiqa, [[Special:UserLogin|musuqmanta yaykuy]] ñawpaq icha huk sutiwan. Huk p'anqakunaqa kaqllam rikch'akunqa, ''cache'' nisqa pakasqa hallch'ata mana ch'usaqchaptiykiqa.",

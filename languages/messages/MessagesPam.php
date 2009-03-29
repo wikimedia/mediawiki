@@ -348,7 +348,6 @@ Ala kang paintulut a i-edit ya ing bulung a ini, uling atin yang personal settin
 Iti ing binie nang sangkan: ''$2''.",
 
 # Login and logout pages
-'logouttitle'                => 'Talagamit isulat-lumual (logout)',
 'logouttext'                 => "'''Maka logout na ka.'''
 
 Malyari mung isundu ing pamangamit mu king {{SITENAME}} a e ka papakilala, o malyari kang mag login pasibayu anting pareu o aliwang talagamit.

@@ -423,7 +423,6 @@ Päring: $2',
 'virus-unknownscanner' => 'tundmatu viirusetõrje:',
 
 # Login and logout pages
-'logouttitle'                => 'Väljalogimine',
 'logouttext'                 => 'Te olete välja loginud.
 Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana uuesti sisse logida.',
 'welcomecreation'            => '<h2>Tere tulemast, $1!</h2><p>Teie konto on loodud. Ärge unustage seada oma eelistusi.',

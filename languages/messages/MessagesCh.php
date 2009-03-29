@@ -292,7 +292,6 @@ $messages = array(
 Ha nå'i i rason ''$2''.",
 
 # Login and logout pages
-'logouttitle'                => "Logout ni muna'sesetbi",
 'logouttext'                 => "'''Malog-out hao på'go.'''
 
 Siña hao kumontinua manu'usa {{SITENAME}} sin nå'an, pat siña uma'log ta'lo pat siña un usa otra na nå'an muna'sesetbi.

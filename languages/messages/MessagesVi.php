@@ -580,7 +580,6 @@ Lý do được cung cấp là ''$2''.",
 'virus-unknownscanner' => 'không nhận ra phần mềm diệt virus:',
 
 # Login and logout pages
-'logouttitle'                => 'Đăng xuất',
 'logouttext'                 => "'''Bạn đã đăng xuất.'''
 
 Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể [[Special:UserLogin|đăng nhập lại]] dưới cùng tên người dùng này hoặc một tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",

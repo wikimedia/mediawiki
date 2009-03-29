@@ -363,7 +363,6 @@ Norādītais iemesls bija ''$2''.",
 'virus-unknownscanner' => 'nezināms antivīruss:',
 
 # Login and logout pages
-'logouttitle'                => 'Lietotāja iziešana',
 'logouttext'                 => "'''Tu esi izgājis no {{grammar:ģenitīvs|{{SITENAME}}}}.'''
 
 Vari turpināt to izmantot anonīmi, vari [[Special:UserLogin|atgriezties]] kā cits lietotājs vai varbūt tas pats.

@@ -356,7 +356,6 @@ Ožklausėms: $2',
 'ns-specialprotected'  => 'Specēlė̅ jė poslapē negal būtė keitamė.',
 
 # Login and logout pages
-'logouttitle'                => 'Nauduotuojė atsėjongėms',
 'logouttext'                 => "'''Daba Tamsta esat atsėjongės.'''
 
 Galėt ė tuoliau nauduotė {{SITENAME}} anuonimėškā aba prisėjonkėt ėš naujė šėtuo patiu a kėto nauduotuojė vardu.

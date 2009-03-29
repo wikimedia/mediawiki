@@ -395,7 +395,6 @@ $2',
 La rêson avanciê est « ''$2'' ».",
 
 # Login and logout pages
-'logouttitle'                => 'Dèconèccion',
 'logouttext'                 => "'''Orendrêt, vos éte dèconèctâ.'''<br />
 Vos pouede continuar a utilisar {{SITENAME}} de façon anonima, ou ben vos tornar conèctar desot lo mémo nom ou un ôtro.",
 'welcomecreation'            => '== Benvegnua, $1 ! ==

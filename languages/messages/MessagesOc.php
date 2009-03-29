@@ -614,7 +614,6 @@ Lo motiu avançat es « ''$2'' ».",
 'virus-unknownscanner' => 'antivirús desconegut :',
 
 # Login and logout pages
-'logouttitle'                => 'Desconnexion',
 'logouttext'                 => "'''Ara, sètz desconnectat(ada).'''
 
 Podètz contunhar d'utilizar {{SITENAME}} anonimament, o vos podètz [[Special:UserLogin|tornar connectar]] jol meteis nom o amb un autre nom.",

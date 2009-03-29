@@ -539,7 +539,6 @@ Udaný dôvod: ''$2''.",
 'virus-unknownscanner' => 'neznámy antivírus:',
 
 # Login and logout pages
-'logouttitle'                => 'Odhlásiť používateľa',
 'logouttext'                 => "'''Práve ste sa odhlásili.'''
 
 Odteraz môžete používať {{GRAMMAR:akuzatív|{{SITENAME}}}} ako anonymný používateľ alebo sa môžete

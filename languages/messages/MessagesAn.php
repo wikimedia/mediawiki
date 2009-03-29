@@ -468,7 +468,6 @@ A razón data ye ''$2''.",
 'virus-unknownscanner' => 'antibirus esconoixito:',
 
 # Login and logout pages
-'logouttitle'                => "Fin d'a sesión",
 'logouttext'                 => "'''Ha rematato a sesión.'''
 
 Puede continar nabegando por {{SITENAME}} anonimament, u puede [[Special:UserLogin|enzetar]] una nueba sesión con o mesmo nombre d'usuario u unatro diferent. Pare cuenta que, entre que se limpia a caché d'o nabegador, puet estar que bellas pachinas s'amuestren como si encara continase en a sesión anterior.",

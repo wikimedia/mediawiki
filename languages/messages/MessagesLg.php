@@ -169,7 +169,6 @@ $messages = array(
 'editinginterface' => "'''Kulabula:''' Okyusa olupapula sofutiweya kw'egya ebigambo byayo. Enkyukakyuka z'okola wano zigyakubaako engeri gye zikola ku ngeri abantu gye bakozesaamu enfo eno.",
 
 # Login and logout pages
-'logouttitle'                => 'Kuvaamu',
 'logouttext'                 => "'''Kati ovuddemu.'''<br />
 Osobola okusigala nga okozesa {{SITENAME}} nga atamanyise, ate osobola
 n'okuddamu okuyingira nga bw'obadde oba nga okozesezza ery'obwa memba

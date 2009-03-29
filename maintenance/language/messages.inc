@@ -364,7 +364,6 @@ $wgMessageStructure = array(
 		'virus-unknownscanner',
 	),
 	'login' => array(
-		'logouttitle',
 		'logouttext',
 		'welcomecreation',
 		'loginpagetitle',

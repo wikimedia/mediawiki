@@ -500,7 +500,6 @@ De gegaeve ree is ''$2''.",
 'virus-unknownscanner' => 'onbekeng antivirus:',
 
 # Login and logout pages
-'logouttitle'                => 'Aafmèlde gebroeker',
 'logouttext'                 => 'De bis noe aafgemèld. De kins {{SITENAME}} noe anoniem (mit vermèlding van IP adres) gebroeke, of opnuui aanmèlde onger dezelfde of ein anger naam.',
 'welcomecreation'            => '<h2>Wilkóm, $1!</h2><p>Dien gebroekersprofiel is vaerdig. De kins noe dien persuunlike veurkäöre insjtèlle.',
 'loginpagetitle'             => 'gebroekersnaam',

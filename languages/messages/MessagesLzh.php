@@ -406,7 +406,6 @@ $2',
 'virus-unknownscanner' => '不明之反毒：',
 
 # Login and logout pages
-'logouttitle'                => '去簿',
 'logouttext'                 => "'''子去簿矣'''<br />
 子可匿名還覽{{SITENAME}}，或[[Special:UserLogin|復登]]同簿、異簿。未清謄本，覽器文舊，且慎之。",
 'welcomecreation'            => '== $1大駕光臨! ==

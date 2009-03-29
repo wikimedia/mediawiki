@@ -500,7 +500,6 @@ Pertanyaan: $2',
 'virus-unknownscanner' => 'antivirus tidak dikenali:',
 
 # Login and logout pages
-'logouttitle'                => 'Log keluar',
 'logouttext'                 => "'''Anda telah log keluar.'''
 
 Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh [[Special:UserLogin|log masuk sekali lagi]] sebagai pengguna lain. Anda boleh membersihkan cache pelayar web anda sekiranya terdapat laman yang memaparkan seolah-olah anda masih log masuk.",

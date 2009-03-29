@@ -610,7 +610,6 @@ Alasan yang diberikan adalah ''$2''.",
 'virus-unknownscanner' => 'Antivirus tidak dikenal:',
 
 # Login and logout pages
-'logouttitle'                => 'Keluar log pengguna',
 'logouttext'                 => 'Anda telah keluar log dari sistem. Anda dapat terus menggunakan {{SITENAME}} secara anonim, atau Anda dapat masuk log lagi sebagai pengguna yang sama atau pengguna yang lain. Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda masih masuk log sampai Anda membersihkan <em>cache</em> penjelajah web Anda',
 'welcomecreation'            => '== Selamat datang, $1! ==
 

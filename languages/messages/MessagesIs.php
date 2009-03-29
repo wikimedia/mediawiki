@@ -568,7 +568,6 @@ $2',
 'virus-unknownscanner' => 'óþekkt mótveira:',
 
 # Login and logout pages
-'logouttitle'                => 'Útskráning notanda',
 'logouttext'                 => "'''Þú hefur verið skráð(ur) út.'''
 
 Þú getur haldið áfram að nota {{SITENAME}} óþekkt(ur), eða þú getur [[Special:UserLogin|skráð þig inn aftur]] sem sami eða annar notandi.

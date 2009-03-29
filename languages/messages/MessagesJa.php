@@ -628,7 +628,6 @@ $2',
 'virus-unknownscanner' => '不明なウイルス駆除プログラム:',
 
 # Login and logout pages
-'logouttitle'                => 'ログアウト',
 'logouttext'                 => "'''ログアウトしました。'''
 
 このまま匿名で{{SITENAME}}を使い続けることができます。もう一度元の、あるいは別の利用者としてログインすることもできます。

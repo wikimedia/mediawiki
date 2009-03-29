@@ -524,7 +524,6 @@ Nurodyta priežastis yra ''$2''.",
 'virus-unknownscanner' => 'nežinomas antivirusas:',
 
 # Login and logout pages
-'logouttitle'                => 'Naudotojo atsijungimas',
 'logouttext'                 => "'''Dabar jūs esate atsijungęs.'''
 
 Galite toliau naudoti {{SITENAME}} anonimiškai arba [[Special:UserLogin|prisijunkite]] iš naujo tuo pačiu ar kitu naudotoju.

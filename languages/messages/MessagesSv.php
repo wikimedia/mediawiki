@@ -620,7 +620,6 @@ Den uppgivna anledningen är "\'\'$2\'\'".',
 'virus-unknownscanner' => 'okänt antivirusprogram:',
 
 # Login and logout pages
-'logouttitle'                => 'Användarutloggning',
 'logouttext'                 => "'''Du är nu utloggad.'''
 
 Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du [[Special:UserLogin|logga in igen]] som samma eller som en annan användare.

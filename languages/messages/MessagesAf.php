@@ -479,7 +479,6 @@ Die rede gegee is ''$2''.",
 'virus-unknownscanner' => 'onbekende antivirus:',
 
 # Login and logout pages
-'logouttitle'                => 'Teken uit',
 'logouttext'                 => "'''U is nou uitgeteken'''
 
 U kan aanhou om {{SITENAME}} anoniem te gebruik; of u kan [[Special:UserLogin|inteken]] as dieselfde of 'n ander gebruiker.",

@@ -371,7 +371,6 @@ $2",
 'virus-unknownscanner' => 'ያልታወቀ antivirus:',
 
 # Login and logout pages
-'logouttitle'                => 'የአባል መውጫ',
 'logouttext'                 => "'''አሁን ወጥተዋል።'''<br /> አሁንም በቁጥር መታወቂያዎ ማዘጋጀት ይቻላል። ወይም ደግሞ እንደገና በብዕር ስምዎ መግባት ይችላሉ።
 ----
 በጥቂት ሴኮንድ ውስጥ ወደሚከተለው ገጽ በቀጥታ ይመለሳል፦",

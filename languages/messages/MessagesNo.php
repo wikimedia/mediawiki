@@ -511,7 +511,6 @@ Den angitte grunnen er ''$2''.",
 'virus-unknownscanner' => 'ukjent antivirusprogram:',
 
 # Login and logout pages
-'logouttitle'                => 'Logg ut',
 'logouttext'                 => "'''Du er nå logget ut.'''
 
 Du kan fortsette å bruke {{SITENAME}} anonymt, eller [[Special:UserLogin|logge inn igjen]] som samme eller annen bruker.

@@ -287,7 +287,6 @@ Pro pregheri signala s\'acuntèssiu a unu [[Special:ListUsers/sysop|aministrador
 'viewsourcefor'      => 'pro $1',
 
 # Login and logout pages
-'logouttitle'             => 'Bessida usuàriu',
 'logouttext'              => 'Logout effettuato.
 Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.',
 'welcomecreation'         => '<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br />Grazie per aver scelto di far crescere {{SITENAME}} con il tuo aiuto.<br />Per rendere {{SITENAME}} più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.',

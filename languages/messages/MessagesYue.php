@@ -495,7 +495,6 @@ $1',
 'virus-unknownscanner' => '未知嘅防病毒:',
 
 # Login and logout pages
-'logouttitle'                => '用戶登出',
 'logouttext'                 => "'''你而家已經登出咗。'''
 
 你仍然可以用匿名身份用{{SITENAME}}，又或者[[Special:UserLogin|重新登入]]。但係留意某啲頁面可能會繼續話你登入咗，除非等你清除瀏覽器嘅快取儲存。",

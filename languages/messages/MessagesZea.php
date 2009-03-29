@@ -378,7 +378,6 @@ $2",
 De heheven reeën is ''$2''.",
 
 # Login and logout pages
-'logouttitle'                => 'Gebruker afmelden',
 'logouttext'                 => "'''Je bin noe ofemeld.'''<br />
 Je kan {{SITENAME}} noe anoniem gebruken of wee anmelden as dezelven of een aore gebruker.
 Meuhlijk worn nog een antal pagina's weereheven asof a je anemeld bin totda je de cache van je browser leeg.",

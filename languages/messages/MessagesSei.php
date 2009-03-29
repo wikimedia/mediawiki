@@ -324,7 +324,6 @@ $2',
 'ns-specialprotected'  => 'Páhinámde {{ns:special}} zo iti neticpatlöx.',
 
 # Login and logout pages
-'logouttitle'                => 'Caitom cuípo',
 'logouttext'                 => "'''Me cuípo.'''<br />
 Mecontinudad usadad {{SITENAME}} anon jïx me caápo dajcaitom ö jömcaitom. Páhinám pac continudad displayom dajme caápo, jánclearom mecachede browser.",
 'welcomecreation'            => "== Q'$1! ==

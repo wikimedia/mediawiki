@@ -557,7 +557,6 @@ A razón dada foi ''$2''.",
 'virus-unknownscanner' => 'antivirus descoñecido:',
 
 # Login and logout pages
-'logouttitle'                => 'Saída de usuario ao anonimato',
 'logouttext'                 => "'''Agora está fóra do sistema.'''
 
 Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode [[Special:UserLogin|acceder de novo]] co mesmo nome de usuario ou con outro.

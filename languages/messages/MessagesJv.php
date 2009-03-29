@@ -380,7 +380,6 @@ Alesané yaiku ''$2''.",
 'virus-unknownscanner' => 'Antivirus ora ditepungi:',
 
 # Login and logout pages
-'logouttitle'                => 'Metu log panganggo',
 'logouttext'                 => "Panjenengan wis metu (oncat) saka cathetan sistem. Panjenengan bisa migunakaké {{SITENAME}} kanthi anonim, utawa panjenengan bisa mlebu manèh .
 Supaya dimangertèni bilih ana kaca sing isih nganggo panjenengan kacathet ing sistém amerga panjenengan durung mbusak <em>cache</em> ''browser'' panjenengan.",
 'welcomecreation'            => '== Sugeng rawuh, $1! ==

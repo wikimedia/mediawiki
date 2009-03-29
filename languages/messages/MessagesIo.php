@@ -316,7 +316,6 @@ nekorekta interlinguale od interwikale ligilo.',
 'ns-specialprotected' => 'On ne povas redaktar speciala pagini.',
 
 # Login and logout pages
-'logouttitle'                => 'Ekiro',
 'logouttext'                 => "'''Vu esas nun ek {{SITENAME}}.'''<br />
 Vu povas durar uzante {{SITENAME}} anonimale, o vu povas enirar altrafoye kom la sama o diferenta uzanto.",
 'welcomecreation'            => '<h2>Bonveno, $1!</h2><p>Vua konto kreesis.

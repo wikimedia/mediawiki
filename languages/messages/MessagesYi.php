@@ -522,7 +522,6 @@ $2',
 'virus-unknownscanner' => 'אומבאוואוסטער אנטי־ווירוס:',
 
 # Login and logout pages
-'logouttitle'                => 'באנוצער ארויסלאגירן',
 'logouttext'                 => "'''האָסט זיך ארויסלאָגירט מיט הצלחה.'''",
 'welcomecreation'            => '== ברוך הבא, $1! ==
 אייער קאנטע איז באשאפן געווארן. נישט פארגעסן צו ענדערן אייערע [[Special:Preferences|{{SITENAME}} פרעפֿערענצן]].',

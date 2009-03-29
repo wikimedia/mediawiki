@@ -349,7 +349,6 @@ $2',
 La razón es la siguienti: ''$2''.",
 
 # Login and logout pages
-'logouttitle'                => 'Salil',
 'logouttext'                 => "'''Cuenta afechá corretamenti.'''<br />
 Pueis acontinal en {{SITENAME}} de horma anónima, u entral ena tu cuenta otra vezi con el mesmu usuáriu, u con otru.",
 'welcomecreation'            => '== Bienviniu, $1! ==

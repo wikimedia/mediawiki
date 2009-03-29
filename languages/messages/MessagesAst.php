@@ -404,7 +404,6 @@ $2',
 'virus-unknownscanner' => 'antivirus desconocíu:',
 
 # Login and logout pages
-'logouttitle'                => 'Desconexón',
 'logouttext'                 => "'''Yá tas desconectáu.'''<br />
 
 Pues siguir usando {{SITENAME}} de forma anónima, o pues [[Special:UserLogin|volver a entrar]] como'l mesmu o como otru usuariu.

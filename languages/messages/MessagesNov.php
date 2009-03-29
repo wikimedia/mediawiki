@@ -138,7 +138,6 @@ $messages = array(
 'badtitletext' => 'Li pregati pagine esed non-valid, vakui, o non-korektim linkat inter-lingue o inter-wiki title. Lu povud kontena un o plusi karakteres kel on non pove usa in titles.',
 
 # Login and logout pages
-'logouttitle'                => 'Useren eksignato',
 'logouttext'                 => "'''Vu es nun eksignatat.'''<br />
 Vu pove kontinua usa {{SITENAME}} anonimim, o vu pove riensignata
 kom li sami o altri usere.",

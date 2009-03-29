@@ -335,7 +335,6 @@ Pyetja: $2',
 'customcssjsprotected' => 'Nuk keni leje me ndryshu këtë faqe sepse përmban informata personale të një përdoruesi tjetër',
 
 # Login and logout pages
-'logouttitle'             => 'Përdoruesi ka dál',
 'logouttext'              => 'Keni dálë jashtë {{SITENAME}}-s. Muneni me vazhdu me përdor {{SITENAME}}-n anonimisht, ose muneni me hy brenda prap.',
 'welcomecreation'         => '== Mirësevini, $1! ==
 

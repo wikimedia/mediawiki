@@ -493,7 +493,6 @@ Le ration date es ''$2''.",
 'virus-unknownscanner' => 'antivirus non cognoscite:',
 
 # Login and logout pages
-'logouttitle'                => 'Session claudite',
 'logouttext'                 => "'''Tu ha claudite tu session.'''
 
 Tu pote continuar a usar {{SITENAME}} anonymemente, o tu pote [[Special:UserLogin|initiar un nove session]] como le mesme o como un altere usator.

@@ -478,7 +478,6 @@ La mutivazzioni è chista: ''$2''.",
 'virus-unknownscanner' => 'antivirus scanusciutu:',
 
 # Login and logout pages
-'logouttitle'                => 'Logout utenti',
 'logouttext'                 => "'''Ora tu niscisti.'''<br />
 Poi cuntinuari a usari {{SITENAME}} di manera anònima, o poi tràsiri n'àutra vota cu lu stissu o cu n'àutru nomu d'utenti. Accura chi quarchi pàggina pò cuntinuari a èssiri ammustrata comu si nun avissi nisciutu nzinu a quannu tu nun scancelli tutta la mimoria dû tò browser.",
 'welcomecreation'            => "== Bonvinutu, $1! ==

@@ -296,7 +296,6 @@ $messages = array(
 'virus-unknownscanner' => 'æнæзонгæ антивирус:',
 
 # Login and logout pages
-'logouttitle'               => 'Номсусæг суын',
 'welcomecreation'           => '<h2>Æгас цу, $1!</h2><p>Регистрацигонд æрцыдтæ.',
 'loginpagetitle'            => 'Дæхи бацамон системæйæн',
 'yourname'                  => 'Архайæджы ном:',

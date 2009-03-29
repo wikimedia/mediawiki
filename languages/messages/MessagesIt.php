@@ -523,7 +523,6 @@ La motivazione è la seguente: ''$2''.",
 'virus-unknownscanner' => 'antivirus sconosciuto:',
 
 # Login and logout pages
-'logouttitle'                => 'Logout utente',
 'logouttext'                 => "'''Logout effettuato.'''
 
 Si può continuare ad usare {{SITENAME}} come utente anonimo oppure eseguire un nuovo accesso, con lo stesso nome utente o un nome diverso.

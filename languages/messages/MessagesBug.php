@@ -167,7 +167,6 @@ $messages = array(
 'virus-unknownscanner' => "Antivirus dé' riisseŋ:",
 
 # Login and logout pages
-'logouttitle'             => 'Log maessu papaké',
 'loginpagetitle'          => 'Log mattama papaké',
 'yourname'                => 'Aseŋ papaké:',
 'yourpassword'            => 'Pasewodo:',

@@ -257,7 +257,6 @@ $messages = array(
 'viewsourcetext'     => 'Siz bu səhifənin məzmununu görə və köçürə bilərsiniz:',
 
 # Login and logout pages
-'logouttitle'                => 'İstifadəçi çıxış',
 'logouttext'                 => "'''Sistemdən çıxdınız.'''<br /> Vikipediyanı anonim olaraq istifadə etməyə davam edəbilər, və ya eyni yaxud başqa istifadəçi adı ilə yenidən daxil ola bilərsiniz. Diqqətinizə çatdırırıq ki, ön yaddaşı (browser cache) təmizləyənə qədər bə'zi səhifələr sistemdən çıxdığınız halda da göstərilə bilər.",
 'welcomecreation'            => '== $1, xoş gəlmişsiniz! == Hesabınız yaradıldı. {{SITENAME}} nizamlamalarını dəyişdirməyi unutmayın.',
 'loginpagetitle'             => 'İstifadəçi Giriş Səhifəsi',

@@ -223,7 +223,6 @@ $messages = array(
 'protectedpagetext' => 'Beyjkan wuu xiranyahay si aan war loogabadalin.',
 
 # Login and logout pages
-'logouttitle'                => 'Isticmaalaha ka bax',
 'logouttext'                 => "'''Hada waa aad ka baxday.'''
 
 Waad sii isticmaali kartaa {{SITENAME}}han adoonlagu aqoon, ama gudaha ayaad gali kartaa markale adiga oo isticmaalaya gudagalkaagii hore ama mid kaduwan. OGEYSIIS waxaa lagayabaa beyjajka qaarkood in ay yiraahdaa wali gudaha ayaad kujirtaa, ilaa aad internet barowsarkaaaga aad nadiifiso.",

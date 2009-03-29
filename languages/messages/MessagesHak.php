@@ -316,7 +316,6 @@ Chhà-khon: $2',
 'virus-unknownscanner' => 'vù-tî ke fòng phiang-thu̍k:',
 
 # Login and logout pages
-'logouttitle'                => 'Yung-fu thui-chhut',
 'logouttext'                 => "'''Ngì hien-chhai yí-kîn thui-chhut.'''<br />
 Ngì khó-yî ki-siu̍k yî ngia̍k-miàng fông-sṳt sṳ́-yung {{SITENAME}}, fe̍t-chá chai-chhṳ yî siông-thùng fe̍t-he mò-thùng yung-fu sṳ̂n-fun tên-ngi̍p.",
 'welcomecreation'            => '<h2>Fôn-ngiàng, $1!</h2><p>Ngì-ke chong-ho yí-kîn kien-li̍p, put-yeu mong-ki sat-chṳ {{SITENAME}} ke-ngìn chhâm-sṳ.</p>',

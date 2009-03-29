@@ -664,7 +664,6 @@ De gegeven reden is ''$2''.",
 'virus-unknownscanner' => 'onbekend antivirus:',
 
 # Login and logout pages
-'logouttitle'                => 'Gebruiker afmelden',
 'logouttext'                 => "'''U bent nu afgemeld.'''<br />
 U kunt {{SITENAME}} nu anoniem gebruiken of weer [[Special:UserLogin|aanmelden]] als dezelfde of een andere gebruiker.
 Mogelijk worden nog een aantal pagina's weergegeven alsof u aangemeld bent totdat u de cache van uw browser leegt.",

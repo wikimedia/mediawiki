@@ -478,7 +478,6 @@ Emandako arrazoia ''$2'' izan zen.",
 'virus-unknownscanner' => 'antibirus ezezaguna:',
 
 # Login and logout pages
-'logouttitle'                => 'Saioa ixtea',
 'logouttext'                 => "'''Saioa itxi egin duzu.'''<br />
 Erabiltzaile anonimo bezala jarraitu dezakezu {{SITENAME}} erabiltzen, edo saioa has dezakezu berriz erabiltzaile berdinarekin edo ezberdin batekin. Kontuan izan orrialde batzuk saioa hasita bazenu bezala ikus ditzakezula nabigatzailearen katxea garbitu arte.",
 'welcomecreation'            => '== Ongi etorri, $1! ==

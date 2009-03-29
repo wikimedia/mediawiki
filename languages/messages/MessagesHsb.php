@@ -488,7 +488,6 @@ Podata přičina je ''$2''.",
 'virus-unknownscanner' => 'njeznaty antiwirus:',
 
 # Login and logout pages
-'logouttitle'                => 'Wotzjewjenje',
 'logouttext'                 => "'''Sy nětko wotzjewjeny.'''<br />
 Móžeš {{GRAMMAR:akuzatiw|{{SITENAME}}}} nětko anonymnje dale wužiwać abo so ze samsnym abo druhim wužiwarskim mjenom zaso přizjewić. Wobkedźbuj zo so někotre strony dale jewja kaž by hišće přizjewjeny był doniž pufrowak swojeho wobhladowaka njewuprózdnješ.",
 'welcomecreation'            => '== Witaj, $1! ==

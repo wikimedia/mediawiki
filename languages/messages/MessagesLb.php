@@ -474,7 +474,6 @@ $2',
 'virus-unknownscanner' => 'onbekannten Antivirus:',
 
 # Login and logout pages
-'logouttitle'                => 'Benotzer-Ofmeldung',
 'logouttext'                 => "'''Dir sidd elo ofgemellt.'''
 
 Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|nach eemol umellen]].

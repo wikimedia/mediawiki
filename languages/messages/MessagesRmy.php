@@ -163,7 +163,6 @@ $messages = array(
 'viewsource'           => 'Dikh i sursa',
 
 # Login and logout pages
-'logouttitle'                => 'San avri akana',
 'logouttext'                 => 'Akana san avryal i {{SITENAME}}. Shai te labyares {{SITENAME}} sar ekh bijanglo jeno vai shai te prinjares tut palem sar o jeno le kadale navesa vai le aver navesa.',
 'welcomecreation'            => '== Mishto avilyan, $1! ==
 

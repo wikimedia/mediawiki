@@ -506,7 +506,6 @@ $2',
 'virus-unknownscanner' => 'ukendt virus-scanner:',
 
 # Login and logout pages
-'logouttitle'                => 'Bruger-log-af',
 'logouttext'                 => 'Du er nu logget af.
 Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan logge på igen som den samme eller en anden bruger.',
 'welcomecreation'            => '== Velkommen, $1! ==

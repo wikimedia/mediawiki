@@ -344,7 +344,6 @@ Puode tener un ó mais carateres que nun puoden ser outelizados an títalos.',
 'virus-unknownscanner' => 'antibírus çcoincido:',
 
 # Login and logout pages
-'logouttitle'             => 'Salir de l sistema',
 'loginpagetitle'          => 'Outenticaçon de outelizador',
 'yourname'                => 'Nome de Outelizador',
 'yourpassword'            => 'Palabra chabe',

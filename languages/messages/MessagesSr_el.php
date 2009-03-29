@@ -520,7 +520,6 @@ Pretraga: $2',
 'sqlhidden'            => '(SQL pretraga sakrivena)',
 
 # Login and logout pages
-'logouttitle'                => 'Odjavi se',
 'logouttext'                 => "'''Sada ste odjavljeni.'''<br />
 Možete da nastavite da koristite projekat {{SITENAME}} anonimno, ili se ponovo prijaviti kao drugi korisnik. Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvek prijavljeni, dok ne očistite keš svog brauzera.",
 'welcomecreation'            => '== Dobrodošli, $1! ==

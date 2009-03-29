@@ -516,7 +516,6 @@ $2',
 'virus-unknownscanner' => '未知的防病毒:',
 
 # Login and logout pages
-'logouttitle'                => '用戶退出',
 'logouttext'                 => '您現在已經退出。
 您可以繼續以匿名方式使用{{SITENAME}}，或再次以相同或不同用戶身份[[Special:UserLogin|登入]]。',
 'welcomecreation'            => '<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設置[[Special:Preferences|{{SITENAME}}個人參數]]。</p>',

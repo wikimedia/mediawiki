@@ -377,7 +377,6 @@ Al podarès vê dentri caratars che no podin jessi doprâts tai titui.',
 'viewsourcetext'     => 'Tu puedis viodi e copiâ la risultive di cheste pagjine:',
 
 # Login and logout pages
-'logouttitle'               => 'Jessude dal utent',
 'logouttext'                => "'''Tu sâs cumò lât fûr.'''<br />Tu puedis continuâ a doprâ {{SITENAME}} come anonim, o tu puedis jentrâ cul stes o cuntun altri non utent. Note che cualchi pagjine e pues mostrâti ancjemò come jentrât tal sît fin cuant che no tu netis la cache dal sgarfadôr.",
 'welcomecreation'           => '== Mandi e benvignût $1! ==
 

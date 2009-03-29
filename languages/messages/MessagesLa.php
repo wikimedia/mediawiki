@@ -456,7 +456,6 @@ Ratio data est "\'\'$2\'\'".',
 'virus-unknownscanner' => 'antivirus incognitus:',
 
 # Login and logout pages
-'logouttitle'                => 'Conventum concludere',
 'logouttext'                 => "'''Conventum tuum conclusum est.'''
 
 Ignote continues {{grammar:ablative|{{SITENAME}}}} uti, aut conventum novum vel sub eodem vel novo nomine [[Special:UserLogin|aperias]].

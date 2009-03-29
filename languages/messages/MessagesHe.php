@@ -702,7 +702,6 @@ $2',
 'virus-unknownscanner' => 'אנטי־וירוס בלתי ידוע:',
 
 # Login and logout pages
-'logouttitle'                => 'יציאה מהחשבון',
 'logouttext'                 => 'יצאתם זה עתה מהחשבון. באפשרותכם להמשיך ולעשות שימוש ב{{grammar:תחילית|{{SITENAME}}}} באופן אנונימי, או [[Special:UserLogin|לשוב ולהיכנס לאתר]] עם שם משתמש זהה או אחר.',
 'welcomecreation'            => '== ברוך הבא, $1! ==
 חשבונך נפתח. אל תשכח להתאים את [[Special:Preferences|העדפות המשתמש]] שלך.',

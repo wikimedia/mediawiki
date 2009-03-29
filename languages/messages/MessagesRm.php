@@ -283,7 +283,6 @@ El po cuntegnair in u plirs segns che na pon betg vegnir utilisads en titels.',
 'editinginterface' => "'''Attenziun:''' Questa pagina cuntegn text che vegn duvra da software da mediawiki. Midadas influenzeschan directamain l'interface da l'utilisader. Sche ti vuls far translaziuns u correcturas: Studegia da far quai sin [http://translatewiki.net/wiki/Main_Page?setlang=rm translatewiki.net], per che las midadas pon vegnidas surprendidas da tut ils projects.",
 
 # Login and logout pages
-'logouttitle'                => "Log-out d'utilisaders",
 'logouttext'                 => "'''Log-out cun success.'''<br />
 
 Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos [[Special:UserLogin|t'annunziar]] sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti era annunzià enfin che ti has stidà il cache da tes browser.",

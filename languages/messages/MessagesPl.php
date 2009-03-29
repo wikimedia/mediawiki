@@ -582,7 +582,6 @@ Uzasadnienie blokady: ''$2''.",
 'virus-unknownscanner' => 'nieznany program antywirusowy',
 
 # Login and logout pages
-'logouttitle'                => 'Wylogowanie użytkownika',
 'logouttext'                 => "'''Nie jesteś już zalogowany.'''
 
 Możesz kontynuować pracę w {{GRAMMAR:MS.lp|{{SITENAME}}}} jako niezarejestrowany użytkownik albo [[Special:UserLogin|zalogować się ponownie]] jako ten sam lub inny użytkownik.

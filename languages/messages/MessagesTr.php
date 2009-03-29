@@ -500,7 +500,6 @@ Verilen sebep: ''$2''.",
 'virus-unknownscanner' => 'bilinmeyen antivürüs:',
 
 # Login and logout pages
-'logouttitle'                => 'Oturumu kapat',
 'logouttext'                 => 'Oturumu kapattınız.
 Şimdi kimliğinizi belirtmeksizin {{SITENAME}} sitesini kullanmaya devam edebilirsiniz, ya da yeniden oturum açabilirsiniz (ister aynı kullanıcı adıyla, ister başka bir kullanıcı adıyla). Web tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hala oturumunuz açıkmış gibi görünebilir.',
 'welcomecreation'            => '== Hoşgeldiniz, $1! ==

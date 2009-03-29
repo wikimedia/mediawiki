@@ -715,7 +715,6 @@ $2',
 Keltirilgen sebebi: ''$2''.",
 
 # Login and logout pages
-'logouttitle'                => 'Qatıswşı şığwı',
 'logouttext'                 => "'''Endi jüýeden şıqtıñız.'''
 
 Jüýege kirmesten {{SITENAME}} jobasın paýdalanwın jalğastıra alasız, nemese däl sol ne özge qatıswşı bop qaýta krwiñiz mümkin.

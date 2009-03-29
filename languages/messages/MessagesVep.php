@@ -416,7 +416,6 @@ Sü om "\'\'$2\'\'".',
 'virus-unknownscanner' => 'tundmatoi antivirus:',
 
 # Login and logout pages
-'logouttitle'               => 'Lähtta sistemaspäi',
 'logouttext'                => "'''Tö olet lähtnuded sistemaspäi.'''
 
 Sab jatkta rad {{SITENAME}}-saital anonimižikš, vai [[Special:UserLogin|kirjutagatoiš udes]] sil-žo vai toižel kävutajan nimel.

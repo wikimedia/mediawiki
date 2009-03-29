@@ -268,7 +268,6 @@ A list of valid special pages can be found at [[Special:SpecialPages]].",
 'viewsourcefor'      => '$1 ਲਈ',
 
 # Login and logout pages
-'logouttitle'                => 'ਯੂਜ਼ਰ ਲਾਗਆਉਟ',
 'logouttext'                 => "'''ਹੁਣ ਤੁਸੀਂ ਲਾਗਆਉਟ ਹੋ ਗਏ ਹੋ।'''<br />
 You can continue to use {{SITENAME}} anonymously, or you can log in
 again as the same or as a different user. Note that some pages may

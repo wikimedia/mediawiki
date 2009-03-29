@@ -487,7 +487,6 @@ La motivazion la xe sta qua: ''$2''.",
 'virus-unknownscanner' => 'antivirus sconossiùo:',
 
 # Login and logout pages
-'logouttitle'                => 'Logout utente',
 'logouttext'                 => "'''Logout efetuà.'''
 
 Ora te podi continuar a doparar {{SITENAME}} come utente anonimo, opure te podi far [[Special:UserLogin|de novo el login]] col nome utente de prima, opure con uno difarente. Nota che çerte pagine le podarìa èssar visualizà come se te fussi ancora loggà, fin che no te neti la cache del to browser.",

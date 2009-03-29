@@ -491,7 +491,6 @@ De oanfierde reden is ''$2''.",
 'virus-unknownscanner' => 'ûnbekend antivirus:',
 
 # Login and logout pages
-'logouttitle'                => 'Ofmelde',
 'logouttext'                 => "'''Jo binne no ôfmeld.'''
 
 Jo kinne de {{SITENAME}} fierders anonym brûke,

@@ -276,7 +276,6 @@ $2',
 'ns-specialprotected'  => '在{{ns:special}}名字空間中的頁面是不可以編輯的。',
 
 # Login and logout pages
-'logouttitle'                => '使用者退出',
 'logouttext'                 => '您現在已經退出。
 您可以繼續以匿名方式使用{{SITENAME}}，或再次以相同或不同使用者身份登入。',
 'welcomecreation'            => '<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設置{{SITENAME}}個人參數。</p>',

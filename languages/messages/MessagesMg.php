@@ -316,7 +316,6 @@ Io ny antony : « ''$2'' ».",
 'virus-unknownscanner' => 'Tsy fantatra io Antivirus io :',
 
 # Login and logout pages
-'logouttitle'                => 'Fivoahana',
 'logouttext'                 => "
 '''Tafavoaka ianao ankehitriny.'''<br />
 Afaka manohy ny fampiasana ny {{SITENAME}} ianao ka tsy mitonona anarana, ary afaka

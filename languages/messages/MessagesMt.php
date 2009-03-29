@@ -607,7 +607,6 @@ Ir-raġuni li ġiet mogħtija kienet ''$2''.",
 'virus-unknownscanner' => 'antivirus mhux magħruf:',
 
 # Login and logout pages
-'logouttitle'                => 'Oħroġ utent',
 'logouttext'                 => "'''Int issa illogjajt barra.'''
 
 Tista' tkompli tuża' {{SITENAME}} bħala utent anonimu, jew tista' terġa tidħol bħala l-istess utent jew wieħed differenti.

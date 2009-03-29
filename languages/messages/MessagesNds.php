@@ -561,7 +561,6 @@ As Grund is angeven: ''$2''.",
 'virus-unknownscanner' => 'Unbekannten Virenscanner:',
 
 # Login and logout pages
-'logouttitle'                => 'Bruker-Afmellen',
 'logouttext'                 => "'''Du büst nu afmellt.'''
 
 Du kannst {{SITENAME}} nu anonym wiederbruken oder di ünner dissen oder en annern Brukernaam wedder [[Special:UserLogin|anmellen]].

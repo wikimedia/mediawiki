@@ -226,7 +226,6 @@ $messages = array(
 'viewsourcefor' => 'бо $1',
 
 # Login and logout pages
-'logouttitle'             => 'ис̾хо́дъ',
 'loginpagetitle'          => 'Въходъ',
 'yourname'                => 'твоѥ́ и́мѧ',
 'yourpassword'            => 'Таино слово напиши',

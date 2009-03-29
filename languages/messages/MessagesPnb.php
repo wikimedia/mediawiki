@@ -231,7 +231,6 @@ $messages = array(
 'virus-unknownscanner' => 'اندیکھا اینٹیوائرس:',
 
 # Login and logout pages
-'logouttitle'               => 'ورتن آلے توں لاگ آوٹ ہو جاؤ',
 'loginpagetitle'            => 'لاگن ان',
 'yourname'                  => 'ورتن والہ:',
 'yourpassword'              => 'کنجی:',

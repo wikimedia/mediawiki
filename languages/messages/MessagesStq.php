@@ -379,7 +379,6 @@ Ju Speere wuude truch [[User:$1|$1]] mäd ju Begruundenge ''$2'' ienroat.",
 'virus-unknownscanner' => 'Uunbekoanden Virenscanner:',
 
 # Login and logout pages
-'logouttitle'                => 'Benutser-Oumäldenge',
 'logouttext'                 => "'''Du bäst nu oumälded.'''
 Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dän sälwe of n uur Benutsernoome wier [[Special:UserLogin|anmäldje]].",
 'welcomecreation'            => '== Wäilkuumen, $1 ==

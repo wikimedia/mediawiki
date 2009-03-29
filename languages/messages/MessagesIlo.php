@@ -327,7 +327,6 @@ Para kadagiti patarus, pangngaasim ta padasem nga aramaten ti [http://translatew
 Ti naited a rason ket ''$2''.",
 
 # Login and logout pages
-'logouttitle'                => 'Rummuar ti agar-aramat',
 'logouttext'                 => "'''Nakaruarkan.'''
 
 Mabalinmo nga ituloy ti agaramat iti {{SITENAME}} a kas di am-ammo, wenno makastrek manen a kas iti sigud wenno kas sabali nga agar-aramat.

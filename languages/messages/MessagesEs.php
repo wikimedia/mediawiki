@@ -571,7 +571,6 @@ El motivo dado fue: ''$2''",
 'virus-unknownscanner' => 'antivirus desconocido:',
 
 # Login and logout pages
-'logouttitle'                => 'Fin de sesión',
 'logouttext'                 => "'''Ha terminado su sesión.'''
 
 Puedes continuar usando {{SITENAME}} de forma anónima, o puedes [[Special:UserLogin|iniciar sesión otra vez]] con el mismo u otro usuario.

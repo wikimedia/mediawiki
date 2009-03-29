@@ -372,7 +372,6 @@ Iske kaaran hai ''$2''.",
 'virus-unknownscanner' => 'jaana waala antivirus nai hai:',
 
 # Login and logout pages
-'logouttitle'                => 'Sadasya logout',
 'logouttext'                 => "'''Aap abhi logged out hai.'''
 
 Aap bina naam ke {{SITENAME}} ke kaam me lae sakta hai, nai to aap wahi sadasya ke naam se nai to duusra sadasya ke naam se [[Special:UserLogin|log in kare sakta hai]].

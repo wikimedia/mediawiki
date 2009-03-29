@@ -566,7 +566,6 @@ $2',
 'virus-unknownscanner' => 'Dat Projamm fö noh Komjuterviere ze sööke kenne mer nit:',
 
 # Login and logout pages
-'logouttitle'                => 'Uslogge',
 'logouttext'                 => "'''Jetz bes de usjelogg'''
 
 Do künnts op de {{SITENAME}} wigger maache, als ene namelose Metmaacher. Do kanns De ävver och [[Special:UserLogin|widder enlogge]], als däselve oder och ene andere Metmaacher.

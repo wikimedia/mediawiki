@@ -463,7 +463,6 @@ Die Sperri isch dur [[User:$1|$1]] yygrichtet wore mit dr Begrindig ''„$2“''
 'virus-unknownscanner' => 'Virescanner, wu nid bekannt isch:',
 
 # Login and logout pages
-'logouttitle'                => 'Benutzer-Abmäldig',
 'logouttext'                 => '<div align="center" style="background-color:white;">
 <b>Du bisch jitz abgmäldet!</b>
 </div><br />

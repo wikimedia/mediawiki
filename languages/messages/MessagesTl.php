@@ -494,7 +494,6 @@ Ang ibinigay na dahilan ay ''$2''.",
 'virus-unknownscanner' => 'hindi kilalang panlaban sa birus:',
 
 # Login and logout pages
-'logouttitle'                => 'Pangalis sa pagkakalagda ng tagagamit',
 'logouttext'                 => "'''Nakaalis ka na sa pagkakalagda.'''
 
 Maaari kang magpatuloy sa paggamit ng {{SITENAME}} na hindi nakikilala (anonimo), o maaaring kang [[Special:UserLogin|lumagda/tumala uli]] bilang kapareho o bilang ibang tagagamit.

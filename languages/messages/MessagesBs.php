@@ -609,7 +609,6 @@ Iz razloga "\'\'$2\'\'".',
 'virus-unknownscanner' => 'nepoznati anti-virus program:',
 
 # Login and logout pages
-'logouttitle'                => 'Odjavite se',
 'logouttext'                 => "'''Sad ste odjavljeni.'''
 
 Možete nastaviti da koristite {{SITENAME}} anonimno, ili se ponovo [[Special:UserLogin|prijaviti]] kao isti ili kao drugi korisnik.
