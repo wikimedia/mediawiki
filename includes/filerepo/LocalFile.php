@@ -1789,6 +1789,11 @@ class LocalFileMoveBatch {
 		$status = $repo->newGood();
 		$triplets = $this->getMoveTriplets();
 
+		$statusPreCheck = $this->checkFileExistance( 0 );
+		if( !$statusPreCheck->isOk() ) {
+			wfDebugLog( 'imagemove', "Move of {$this->file->name} aborted due to pre-move file existance check failure" );
+			return $statusPreCheck;
+		}
 		$statusDb = $this->doDBUpdates();
 		wfDebugLog( 'imagemove', "Renamed {$this->file->name} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
 		$statusMove = $repo->storeBatch( $triplets, FSRepo::DELETE_SOURCE );
@@ -1796,7 +1801,14 @@ class LocalFileMoveBatch {
 		if( !$statusMove->isOk() ) {
 			wfDebugLog( 'imagemove', "Error in moving files: " . $statusMove->getWikiText() );
 			$this->db->rollback();
+		} else {
+			$statusPostCheck = $this->checkFileExistance( 1 );
+			if( !$statusPostCheck->isOk() ) {
+				// This clearly mustn't have happend. FSRepo::storeBatch should have given out an error in that case.
+				wfDebugLog( 'imagemove', "ATTENTION! Move of {$this->file->name} has some files missing, while storeBatch() reported success" );
+			}
 		}
+
 		$status->merge( $statusDb );
 		$status->merge( $statusMove );
 		return $status;
@@ -1855,5 +1867,24 @@ class LocalFileMoveBatch {
 			wfDebugLog( 'imagemove', "Generated move triplet for {$this->file->name}: {$srcUrl} :: public :: {$move[1]}" );
 		}
 		return $triplets;
+	}
+
+	/*
+	 * Checks file existance.
+	 * Set $key = 0 for source files check
+	 * and $key = 1 for destination files check.
+	 */ 
+	function checkFileExistance( $key = 0 ) {
+		$files = array();
+		foreach( array_merge( array( $this->cur ), $this->olds ) as $file )
+			$files[$file[$key]] = $this->file->repo->getVirtualUrl() . '/public/' . rawurlencode( $file[$key] );
+		$result = $this->file->repo->fileExistsBatch( $files, FSRepo::FILES_ONLY );
+		$status = $this->file->repo->newGood();
+		foreach( $result as $filename => $exists )
+			if( !$exists ) {
+				wfDebugLog( 'imagemove', "File {$filename} does not exist" );
+				$status->fatal( 'filenotfound', $filename );
+			}
+		return $status;
 	}
 }

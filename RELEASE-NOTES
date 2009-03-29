@@ -308,6 +308,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18190) Proper parsing in MediaWiki:Sharedupload message
 * (bug 17617) HTML cleanup for ImagePage
 * (bug 17964) namespaceDupes.php no longer fails on an empty interwiki table
+* Improved error handling for image moving
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

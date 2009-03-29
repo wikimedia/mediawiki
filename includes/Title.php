@@ -2664,6 +2664,18 @@ class Title {
 			return $err;
 		}
 
+		// If it is a file, more it first. It is done before all other moving stuff is done because it's hard to revert
+		$dbw = wfGetDB( DB_MASTER );
+		if( $this->getNamespace() == NS_FILE ) {
+			$file = wfLocalFile( $this );
+			if( $file->exists() ) {
+				$status = $file->move( $nt );
+				if( !$status->isOk() ) {
+					return $status->getErrorsArray();
+				}
+			}
+		}
+
 		$pageid = $this->getArticleID();
 		$protected = $this->isProtected();
 		if( $nt->exists() ) {
@@ -2690,7 +2702,6 @@ class Title {
 		// we can't actually distinguish it from a default here, and it'll
 		// be set to the new title even though it really shouldn't.
 		// It'll get corrected on the next edit, but resetting cl_timestamp.
-		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'categorylinks',
 			array(
 				'cl_sortkey' => $nt->getPrefixedText(),
@@ -2873,18 +2884,6 @@ class Title {
 			$redirectSuppressed = true;
 		}
 
-		# Move an image if this is a file
-		if( $this->getNamespace() == NS_FILE ) {
-			$file = wfLocalFile( $this );
-			if( $file->exists() ) {
-				$status = $file->move( $nt );
-				if( !$status->isOk() ) {
-					$dbw->rollback();
-					return $status->getErrorsArray();
-				}
-			}
-		}
-
 		# Log the move
 		$log = new LogPage( 'move' );
 		$log->addEntry( 'move_redir', $this, $reason, array( 1 => $nt->getPrefixedText(), 2 => $redirectSuppressed ) );
@@ -2968,18 +2967,6 @@ class Title {
 		} else {
 			$this->resetArticleID( 0 );
 			$redirectSuppressed = true;
-		}
-
-		# Move an image if this is a file
-		if( $this->getNamespace() == NS_FILE ) {
-			$file = wfLocalFile( $this );
-			if( $file->exists() ) {
-				$status = $file->move( $nt );
-				if( !$status->isOk() ) {
-					$dbw->rollback();
-					return $status->getErrorsArray();
-				}
-			}
 		}
 
 		# Log the move
