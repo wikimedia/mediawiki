@@ -1,8 +1,8 @@
 <?php
 /**
- * See docs/skin.txt
+ * Simple: A lightweight skin with a simple white-background sidebar and no
+ * top bar.
  *
- * @todo document
  * @file
  * @ingroup Skins
  */
@@ -14,7 +14,7 @@ if( !defined( 'MEDIAWIKI' ) )
 require_once( dirname(__FILE__) . '/MonoBook.php' );
 
 /**
- * @todo document
+ * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @ingroup Skins
  */
 class SkinSimple extends SkinTemplate {
@@ -28,17 +28,16 @@ class SkinSimple extends SkinTemplate {
 	function setupSkinUserCss( OutputPage $out ){
 		$out->addStyle( 'simple/main.css', 'screen' );
 		$out->addStyle( 'simple/rtl.css', '', '', 'rtl' );
-
 	}
 
 	function reallyGenerateUserStylesheet() {
 		global $wgUser;
 		$s = '';
-		if (($undopt = $wgUser->getOption("underline")) != 2) {
+		if( ( $undopt = $wgUser->getOption( 'underline' ) ) != 2 ) {
 			$underline = $undopt ? 'underline' : 'none';
 			$s .= "a { text-decoration: $underline; }\n";
 		}
-		if ($wgUser->getOption('highlightbroken')) {
+		if( $wgUser->getOption( 'highlightbroken' ) ) {
 			$s .= "a.new, #quickbar a.new { text-decoration: line-through; }\n";
 		} else {
 			$s .= <<<END
@@ -59,17 +58,15 @@ a.stub:after, #quickbar a.stub:after {
 }
 END;
 		}
-		if ($wgUser->getOption('justify')) {
+		if( $wgUser->getOption( 'justify' ) ) {
 			$s .= "#article, #bodyContent { text-align: justify; }\n";
 		}
-		if (!$wgUser->getOption('showtoc')) {
+		if( !$wgUser->getOption( 'showtoc' ) ) {
 			$s .= "#toc { display: none; }\n";
 		}
-		if (!$wgUser->getOption('editsection')) {
+		if( !$wgUser->getOption( 'editsection' ) ) {
 			$s .= ".editsection { display: none; }\n";
 		}
 		return $s;
 	}
 }
-
-

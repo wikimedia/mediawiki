@@ -1,8 +1,7 @@
 <?php
 /**
- * See docs/skin.txt
+ * Standard (a.k.a. Classic) skin: old MediaWiki default skin
  *
- * @todo document
  * @file
  * @ingroup Skins
  */
@@ -72,10 +71,10 @@ class SkinStandard extends Skin {
 
 		if ( 3 == $this->qbSetting() ) { # Floating left
 			$qb = "setup(\"quickbar\")";
-			if($a["onload"]) {
-				$a["onload"] .= ";$qb";
+			if( $a['onload'] ) {
+				$a['onload'] .= ";$qb";
 			} else {
-				$a["onload"] = $qb;
+				$a['onload'] = $qb;
 			}
 		}
 		return $a;
@@ -83,27 +82,26 @@ class SkinStandard extends Skin {
 
 	function doAfterContent() {
 		global $wgContLang, $wgLang;
-		$fname =  'SkinStandard::doAfterContent';
-		wfProfileIn( $fname );
-		wfProfileIn( $fname.'-1' );
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-1' );
 
 		$s = "\n</div><br style=\"clear:both\" />\n";
 		$s .= "\n<div id='footer'>";
 		$s .= '<table border="0" cellspacing="0"><tr>';
 
-		wfProfileOut( $fname.'-1' );
-		wfProfileIn( $fname.'-2' );
+		wfProfileOut( __METHOD__ . '-1' );
+		wfProfileIn( __METHOD__ . '-2' );
 
 		$qb = $this->qbSetting();
-		$shove = ($qb != 0);
-		$left = ($qb == 1 || $qb == 3);
-		if($wgContLang->isRTL()) $left = !$left;
+		$shove = ( $qb != 0 );
+		$left = ( $qb == 1 || $qb == 3 );
+		if( $wgContLang->isRTL() ) $left = !$left;
 
 		if ( $shove && $left ) { # Left
 				$s .= $this->getQuickbarCompensator();
 		}
-		wfProfileOut( $fname.'-2' );
-		wfProfileIn( $fname.'-3' );
+		wfProfileOut( __METHOD__ . '-2' );
+		wfProfileIn( __METHOD__ . '-3' );
 		$l = $wgContLang->isRTL() ? 'right' : 'left';
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
@@ -115,17 +113,19 @@ class SkinStandard extends Skin {
 			$this->searchForm() ) )
 		  . '<br /><span id="pagestats">' . $this->pageStats() . '</span>';
 
-		$s .= "</td>";
+		$s .= '</td>';
 		if ( $shove && !$left ) { # Right
 			$s .= $this->getQuickbarCompensator();
 		}
 		$s .= "</tr></table>\n</div>\n</div>\n";
 
-		wfProfileOut( $fname.'-3' );
-		wfProfileIn( $fname.'-4' );
-		if ( 0 != $qb ) { $s .= $this->quickBar(); }
-		wfProfileOut( $fname.'-4' );
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ . '-3' );
+		wfProfileIn( __METHOD__ . '-4' );
+		if ( 0 != $qb ) {
+			$s .= $this->quickBar();
+		}
+		wfProfileOut( __METHOD__ . '-4' );
+		wfProfileOut( __METHOD__ );
 		return $s;
 	}
 
@@ -133,12 +133,11 @@ class SkinStandard extends Skin {
 		global $wgOut, $wgTitle, $wgUser, $wgRequest, $wgContLang;
 		global $wgEnableUploads, $wgRemoteUploads;
 
-		$fname =  'Skin::quickBar';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		$action = $wgRequest->getText( 'action' );
 		$wpPreview = $wgRequest->getBool( 'wpPreview' );
-		$tns=$wgTitle->getNamespace();
+		$tns = $wgTitle->getNamespace();
 
 		$s = "\n<div id='quickbar'>";
 		$s .= "\n" . $this->logoText() . "\n<hr class='sep' />";
@@ -162,17 +161,17 @@ class SkinStandard extends Skin {
 		if( $wgUser->isLoggedIn() ) {
 			$s.= $this->specialLink( 'watchlist' ) ;
 			$s .= $sep . $this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
-				wfMsg( 'mycontris' ), 'target=' . wfUrlencode($wgUser->getName() ) );
+				wfMsg( 'mycontris' ), 'target=' . wfUrlencode( $wgUser->getName() ) );
 		}
 		// only show watchlist link if logged in
 		$s .= "\n<hr class='sep' />";
 		$articleExists = $wgTitle->getArticleId();
-		if ( $wgOut->isArticle() || $action =='edit' || $action =='history' || $wpPreview) {
-			if($wgOut->isArticle()) {
+		if ( $wgOut->isArticle() || $action == 'edit' || $action == 'history' || $wpPreview ) {
+			if( $wgOut->isArticle() ) {
 				$s .= '<strong>' . $this->editThisPage() . '</strong>';
 			} else { # backlink to the article in edit or history mode
-				if($articleExists){ # no backlink if no article
-					switch($tns) {
+				if( $articleExists ){ # no backlink if no article
+					switch( $tns ) {
 						case NS_TALK:
 						case NS_USER_TALK:
 						case NS_PROJECT_TALK:
@@ -208,19 +207,19 @@ class SkinStandard extends Skin {
 							$text = wfMsg( 'categorypage' );
 							break;
 						default:
-							$text= wfMsg( 'articlepage' );
+							$text = wfMsg( 'articlepage' );
 					}
 
 					$link = $wgTitle->getText();
-					if ($nstext = $wgContLang->getNsText($tns) ) { # add namespace if necessary
-						$link = $nstext . ':' . $link ;
+					if( $nstext = $wgContLang->getNsText( $tns ) ) { # add namespace if necessary
+						$link = $nstext . ':' . $link;
 					}
 
 					$s .= $this->makeLink( $link, $text );
 				} elseif( $wgTitle->getNamespace() != NS_SPECIAL ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
-					$s .= '<strong>' . wfMsg('newpage') . '</strong>';
+					$s .= '<strong>' . wfMsg( 'newpage' ) . '</strong>';
 				}
 
 			}
@@ -240,32 +239,31 @@ class SkinStandard extends Skin {
 			unwatched. Therefore we do not show the "Watch this page" link in edit mode
 			*/
 			if ( $wgUser->isLoggedIn() && $articleExists) {
-				if($action!='edit' && $action != 'submit' )
-				{
+				if( $action != 'edit' && $action != 'submit' ){
 					$s .= $sep . $this->watchThisPage();
 				}
 				if ( $wgTitle->userCan( 'edit' ) )
 					$s .= $sep . $this->moveThisPage();
 			}
-			if ( $wgUser->isAllowed('delete') and $articleExists ) {
+			if ( $wgUser->isAllowed( 'delete' ) and $articleExists ) {
 				$s .= $sep . $this->deleteThisPage() .
 				$sep . $this->protectThisPage();
 			}
 			$s .= $sep . $this->talkLink();
-			if ($articleExists && $action !='history') {
+			if( $articleExists && $action != 'history' ) {
 				$s .= $sep . $this->historyLink();
 			}
-			$s.=$sep . $this->whatLinksHere();
+			$s.= $sep . $this->whatLinksHere();
 
-			if($wgOut->isArticleRelated()) {
+			if( $wgOut->isArticleRelated() ) {
 				$s .= $sep . $this->watchPageLinksLink();
 			}
 
 			if ( NS_USER == $wgTitle->getNamespace()
 				|| $wgTitle->getNamespace() == NS_USER_TALK ) {
 
-				$id=User::idFromName($wgTitle->getText());
-				$ip=User::isIP($wgTitle->getText());
+				$id = User::idFromName( $wgTitle->getText() );
+				$ip = User::isIP( $wgTitle->getText() );
 
 				if( $id || $ip ){
 					$s .= $sep . $this->userContribsLink();
@@ -289,9 +287,8 @@ class SkinStandard extends Skin {
 		}
 
 		$s .= "\n<br /></div>\n";
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $s;
 	}
-
 
 }
