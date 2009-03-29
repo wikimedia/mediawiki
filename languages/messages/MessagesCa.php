@@ -202,7 +202,7 @@ $messages = array(
 'tog-enotifminoredits'        => "Notifica'm per correu també en casos d'edicions menors",
 'tog-enotifrevealaddr'        => "Mostra la meua adreça electrònica en els missatges d'avís per correu",
 'tog-shownumberswatching'     => "Mostra el nombre d'usuaris que hi vigilen",
-'tog-fancysig'                => 'Signatures netes (sense enllaç automàtic)',
+'tog-fancysig'                => 'Tractar la signatura com a text wiki (sense enllaç automàtic)',
 'tog-externaleditor'          => "Utilitza per defecte un editor extern (opció per a experts, requereix la configuració adient de l'ordinador)",
 'tog-externaldiff'            => "Utilitza per defecte un altre visualitzador de diferències (opció per a experts, requereix la configuració adient de l'ordinador)",
 'tog-showjumplinks'           => "Habilita els enllaços de dreceres d'accessibilitat",
@@ -887,11 +887,18 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 'rev-deleted-comment'            => "(s'ha suprimit el comentari)",
 'rev-deleted-user'               => "(s'ha suprimit el nom d'usuari)",
 'rev-deleted-event'              => "(s'ha suprimit el registre d'accions)",
-'rev-deleted-text-permission'    => "Aquesta versió de la pàgina ha estat eliminada dels arxius públics.
-Vegeu més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
-'rev-deleted-text-view'          => "Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a administrador d'aquest wiki podeu veure-la; vegeu-ne més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
-'rev-deleted-no-diff'            => "No podeu veure aquesta comparativa perquè una de les versions ha estat esborrada dels arxius públics.
+'rev-deleted-text-permission'    => "Aquesta versió de la pàgina ha estat '''eliminada'''.
+Hi poden haver més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+'rev-deleted-text-unhide'        => "La revisió d'aquesta pàgina ha estat '''eliminada'''.
+Hi poden haver més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
+Com a administrador encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
+'rev-deleted-text-view'          => "Aquesta versió de la pàgina ha estat '''eliminada'''.
+Com a administrador podeu veure-la; vegeu-ne més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+'rev-deleted-no-diff'            => "No podeu veure aquesta comparativa perquè una de les versions ha estat '''esborrada'''.
 Potser trobareu detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+'rev-deleted-unhide-diff'        => "Una de les revisions d'aquesta comparativa ha estat '''eliminada'''.
+Potser trobareu detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
+Com a administrador encara podeu [$1 veure aquesta comparativa] si així ho desitgeu.",
 'rev-delundel'                   => 'mostra/amaga',
 'revisiondelete'                 => 'Esborrar/restaurar revisions',
 'revdelete-nooldid-title'        => 'La revisió objectiu no és vàlida',
@@ -1510,6 +1517,8 @@ Podeu consultar la [[Special:WhatLinksHere/$2|llista completa]].",
 'redirectstofile'           => '{{PLURAL:$1|El fitxer següent redirigeix cap aquest fitxer|Els següents $1 fitxers redirigeixen cap aquest fitxer:}}',
 'duplicatesoffile'          => "{{PLURAL:$1|Aquest fitxer és un duplicat del que apareix a continuació|A continuació s'indiquen els $1 duplicats d'aquest fitxer}} ([[Special:FileDuplicateSearch/$2|vegeu-ne més detalls]]):",
 'sharedupload'              => 'Aquest fitxer prové de $1 i pot ser utilitzat per altres projectes.',
+'sharedupload-desc-there'   => 'Aquest fitxer prové de $1 i pot ser utilitzat per altres projectes.
+Si us plau vegeu la [$2 pàgina de descripció del fitxer] per a més informació.',
 'noimage'                   => 'No existeix cap fitxer amb aquest nom, però podeu $1.',
 'noimage-linktext'          => "Carrega'n una",
 'uploadnewversion-linktext' => "Carrega una nova versió d'aquest fitxer",
@@ -2039,9 +2048,9 @@ $1",
 'sp-contributions-newbies-sub'   => 'Per a novells',
 'sp-contributions-newbies-title' => "Contribucions dels comptes d'usuari més nous",
 'sp-contributions-blocklog'      => 'Registre de bloquejos',
-'sp-contributions-deleted'       => 'Contribucions esborrades',
+'sp-contributions-deleted'       => "contribucions d'usuari esborrades",
 'sp-contributions-logs'          => 'registres',
-'sp-contributions-talk'          => 'Discussió',
+'sp-contributions-talk'          => 'discutir',
 'sp-contributions-search'        => 'Cerca les contribucions',
 'sp-contributions-username'      => "Adreça IP o nom d'usuari:",
 'sp-contributions-submit'        => 'Cerca',

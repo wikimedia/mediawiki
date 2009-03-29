@@ -293,7 +293,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-post från systemet',
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
-'tog-fancysig'                => 'Rå signatur, utan automatisk länk',
+'tog-fancysig'                => 'Rå signatur som wikitext (utan en automatisk länk)',
 'tog-externaleditor'          => 'Använd extern texteditor som standard (avancerat, kräver speciella inställningar i din dator)',
 'tog-externaldiff'            => 'Använd externt diff-verktyg (avancerat, kräver speciella inställningar i din dator)',
 'tog-showjumplinks'           => 'Aktivera "hoppa till"-tillgänglighetslänkar',
@@ -986,15 +986,18 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'rev-deleted-comment'            => '(kommentar borttagen)',
 'rev-deleted-user'               => '(användarnamn borttaget)',
 'rev-deleted-event'              => '(loggåtgärd borttagen)',
-'rev-deleted-text-permission'    => "Denna version av sidan har '''avlägsnats från de öppna arkiven'''.
+'rev-deleted-text-permission'    => "Denna version av sidan har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
-'rev-deleted-text-view'          => "Denna version av sidan har '''avlägsnats från de öppna arkiven'''.
-Som administratör på {{SITENAME}} kan du se den. Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
-'rev-deleted-no-diff'            => "Du kan inte se denna diff på grund av att en av versionerna har '''tagits bort från de öppna arkiven'''.
-Det kan finnas detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
-'rev-deleted-unhide-diff'        => "En av versionerna för denna diff har '''tagits bort från de öppna arkiven'''.
-Det kan finnas detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
-Som administratör på {{SITENAME}} kan du fortfarande [$1 se denna diff] om du önskar fortsätta.",
+'rev-deleted-text-unhide'        => "Den här versionen av sidan har '''raderats'''.
+Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
+Som administratör kan du fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
+'rev-deleted-text-view'          => "Denna version av sidan har '''raderats'''.
+Som administratör kan du se den; det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+'rev-deleted-no-diff'            => "Du kan inte se den här diffen på grund av att en av versionerna har '''raderats'''.
+Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+'rev-deleted-unhide-diff'        => "En av versionerna för den här diffen har '''raderats'''.
+Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
+Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att fortsätta.",
 'rev-delundel'                   => 'visa/göm',
 'revisiondelete'                 => 'Ta bort/återställ versioner',
 'revdelete-nooldid-title'        => 'Ogiltig målversion',
@@ -1633,7 +1636,11 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'morelinkstoimage'          => 'Visa [[Special:WhatLinksHere/$1|fler länkar]] till den här filen.',
 'redirectstofile'           => 'Följande {{PLURAL:$1|fil är en omdirigering|filer är omdirigeringar}} till den här filen:',
 'duplicatesoffile'          => 'Följande {{PLURAL:$1|fil är en dubblett|filer är dubbletter}} till den här filen ([[Special:FileDuplicateSearch/$2|mer detaljer]]):',
-'sharedupload'              => 'Denna fil är från $1 och kan användas av andra projekt.',
+'sharedupload'              => 'Den här filen är från $1 och kan användas av andra projekt.',
+'sharedupload-desc-there'   => 'Den här filen är från $1 och kan användas av andra projekt.
+Var god se [$2 filbeskrivningssidan] för mer information.',
+'sharedupload-desc-here'    => 'Den här filen är från $1 och kan användas av andra projekt.
+Beskrivningen på dess [$2 filbeskrivningssida] visas nedan.',
 'noimage'                   => 'Det finns ingen fil med detta namn, men du kan $1.',
 'noimage-linktext'          => 'ladda upp en',
 'uploadnewversion-linktext' => 'Ladda upp en ny version av denna fil',
@@ -2151,10 +2158,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Från nya konton',
 'sp-contributions-newbies-title' => 'Bidrag från nya konton',
 'sp-contributions-blocklog'      => 'Blockeringslogg',
-'sp-contributions-deleted'       => 'Raderade användarbidrag',
+'sp-contributions-deleted'       => 'raderade användarbidrag',
 'sp-contributions-logs'          => 'loggar',
-'sp-contributions-talk'          => 'Diskussion',
-'sp-contributions-userrights'    => 'Hantering av användarrättigheter',
+'sp-contributions-talk'          => 'diskussion',
+'sp-contributions-userrights'    => 'hantering av användarrättigheter',
 'sp-contributions-search'        => 'Sök efter användarbidrag',
 'sp-contributions-username'      => 'IP-adress eller användarnamn:',
 'sp-contributions-submit'        => 'Sök',

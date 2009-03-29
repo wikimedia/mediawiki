@@ -1556,6 +1556,10 @@ Un [[Special:WhatLinksHere/$2|lista complete]] es disponibile.',
 'redirectstofile'           => 'Le sequente {{PLURAL:$1|file|$1 files}} se redirige a iste file:',
 'duplicatesoffile'          => 'Le sequente {{PLURAL:$1|file es un duplicato|$1 files es duplicatos}} de iste file ([[Special:FileDuplicateSearch/$2|plus detalios]]):',
 'sharedupload'              => 'Iste file proveni de $1 e pote esser usate per altere projectos.',
+'sharedupload-desc-there'   => 'Iste file proveni de $1 e pote esser usate per altere projectos.
+Vide le [$2 pagina de description del file] pro ulterior informationes.',
+'sharedupload-desc-here'    => 'Iste file proveni de $1 e pote esser usate per altere projectos.
+Le description de su [$2 pagina de description] ibi es monstrate in basso.',
 'noimage'                   => 'Non existe un file con iste nomine, sed tu pote $1.',
 'noimage-linktext'          => 'cargar un',
 'uploadnewversion-linktext' => 'Cargar un nove version de iste file',

@@ -834,6 +834,9 @@ Vläicht gouf se geläscht oder geréckelt.
 'rev-deleted-event'              => '(Aktioun aus dem Logbuch erausgeholl)',
 'rev-deleted-text-permission'    => "Dës Versioun vun der Säit gouf '''geläscht'''.
 Dir fannt eventuell méi Informatiounen an der [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läschlëscht].",
+'rev-deleted-text-unhide'        => "Diese Versioun gouf '''geläscht'''.
+Detailer kënnen am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] fonnt ginn.
+als Administrateur kënnt Dir [$1 dës Versioun kucken] wann Dir weiderfuere wëllt.",
 'rev-deleted-text-view'          => "Dës Versioun vun der Säit gouf '''eläscht'''.
 Als Administrateur kënnt Dir se weiderhi gesinn; Dir fannt eventuell méi Detailer am  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-no-diff'            => "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.
@@ -2569,6 +2572,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gpstrack'                    => 'Bewegungsrichtung',
 'exif-gpsimgdirectionref'          => "Referenz fir d'Ausriichtung vum Bild",
 'exif-gpsimgdirection'             => 'Bildrichtung',
+'exif-gpsmapdatum'                 => 'Geodäteschen Datum benotzt',
 'exif-gpsdestlatituderef'          => "Referenz fir d'Breet",
 'exif-gpsdestlatitude'             => 'Breet',
 'exif-gpsdestlongituderef'         => "Referenz fir d'Längt",

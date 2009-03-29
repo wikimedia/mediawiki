@@ -281,7 +281,7 @@ $messages = array(
 'tog-enotifminoredits'        => '사소한 편집에도 이메일을 보내기',
 'tog-enotifrevealaddr'        => '알림 메일에 내 이메일 주소를 밝히기',
 'tog-shownumberswatching'     => '주시 사용자 수를 보여주기',
-'tog-fancysig'                => '서명에 링크를 걸지 않기',
+'tog-fancysig'                => '서명을 위키텍스트로 취급하기(자동 링크를 걸지 않기)',
 'tog-externaleditor'          => '외부 입력기를 기본값으로 사용하기 (숙련자용, 컴퓨터에 특별한 설정이 필요합니다)',
 'tog-externaldiff'            => '외부 비교 툴을 기본값으로 사용하기 (숙련자용, 컴퓨터에 특별한 설정이 필요합니다)',
 'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
@@ -942,6 +942,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rev-deleted-event'              => '(로그 삭제됨)',
 'rev-deleted-text-permission'    => '이 문서의 편집은 문서 역사에서 제거되었습니다.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..',
+'rev-deleted-text-unhide'        => "이 페이지의 판은 '''삭제되었습니다.'''
+자세한 내용은 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제기록]에 있을 것입니다.
+관리자로서 확인을 원한다면 [$1 특정판 보기]를 할 수 있습니다.",
 'rev-deleted-text-view'          => '이 문서의 편집은 문서 역사에서 제거되었습니다.
 당신은 {{SITENAME}}의 관리자로서, 삭제된 편집을 볼 수 있습니다;
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.',
@@ -1586,7 +1589,11 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'morelinkstoimage'          => '이 파일이 쓰이고 있는 문서 목록 [[Special:WhatLinksHere/$1|더 보기]].',
 'redirectstofile'           => '다음 {{PLURAL:$1|파일|$1개의 파일}}이 이 파일로 넘겨주고 있습니다:',
 'duplicatesoffile'          => '다음 {{PLURAL:$1|파일이|$1개의 파일이}} 이 파일과 중복됩니다 ([[Special:FileDuplicateSearch/$2|자세한 정보]]):',
-'sharedupload'              => '이 자료는 $1에 있습니다. 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.',
+'sharedupload'              => '이 자료는 $1으로부터 왔고, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.',
+'sharedupload-desc-there'   => '이 파일은 $1으로부터 왔고 다른 프로젝트에서 사용될 수 있습니다.
+더 알고 싶으시면, [$2 파일 설명 페이지]를 보십시오.',
+'sharedupload-desc-here'    => '이 파일은 $1으로부터 왔고 다른 프로젝트에서 사용되고 있을 것입니다.
+[$2 파일 설명 페이지]에 있는 설명은 아래에 보십시오.',
 'noimage'                   => '파일이 없습니다. $1 할 수 있습니다.',
 'noimage-linktext'          => '업로드',
 'uploadnewversion-linktext' => '이 파일의 새로운 버전을 올리기',

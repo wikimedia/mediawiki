@@ -659,10 +659,10 @@ dat och. Usserdäm es "$3"
 villeich nit esu jod ze merke?
 
 Wann nit Do, söndern söns wä noh däm
-neue Passwood verlank hät, wann De 
+neue Passwood verlangk hät, wann De 
 Dich jetz doch widder aan Ding ahl Passwood
 entsenne kanns, jo do bruchs de jar nix
-ze dun, do kanns De Ding ahl Passwood wigger 
+ze don, do kanns De Ding ahl Passwood wigger 
 bruche, un die e-mail hee, die kanns De 
 jlatt verjesse.
 
@@ -673,9 +673,7 @@ Ene schöne Jroß vun de {{SITENAME}}.
 'noemail'                    => 'Dä Metmaacher „$1“ hät en dämm sing Enstellunge kein E-Mail Adress aanjejovve.',
 'passwordsent'               => 'E neu Passwood es aan de E-Mail Adress vun däm Metmaacher „$1“ ungerwähs. Meld dich domet aan, wann De et häs. Dat ahle Passwood bliev erhalde un kann och noch jebruch wääde, bes dat De Dich et eetste Mol met däm Neue enjelogg häs.',
 'blocked-mailpassword'       => 'Ding IP Adress es blockeet.',
-'eauthentsent'               => 'En E-Mail es jetz ungerwähs aan de Adress, die en de Enstellunge vum Metmaacher steiht.
-Ih dat E-Mails üvver de {{SITENAME}} ehre E-Mail-Knopp verscheck wääde künne, muss de E-Mail Adress 
-eets  ens bestätich woode sin. Wat mer doför maache muss, steiht en dä E-Mail dren, die jrad avjescheck woode es.',
+'eauthentsent'               => 'En E-Mail es jetz ungerwähs aan de Adress, die en de Enstellunge steiht. Ih dat E-Mails üvver de {{SITENAME}} ehre E-Mail-Knopp verscheck wääde künne, muss de E-Mail Adress eets ens bestätich woode sin. Wat mer doför maache moß, steiht en dä E-Mail dren, die jrad avjescheck woode es.',
 'throttled-mailpassword'     => 'En Erennerung för di Passwood es ungerwähs. Domet ene fiese Möpp keine Dress fabrizeet, passeet dat hüchstens eimol en {{PLURAL:$1|der Stund|$1 Stunde|nidd ens eine Stund}}.',
 'mailerror'                  => 'Fähler beim E-Mail Verschecke: $1.',
 'acct_creation_throttle_hit' => '<b>Schad.</b> 
@@ -760,9 +758,9 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'showlivepreview'                  => 'Lebendije Vör-Aansich zeije',
 'showdiff'                         => 'De Ungerscheide zeije',
 'anoneditwarning'                  => 'Weil De nit aanjemeldt bes, weed Ding IP-Adress opjezeichnet wääde.',
-'missingsummary'                   => '<strong>Opjepass:</strong> Do häs nix bei „Koot Zosammejefass, Quell“ enjejovve. Dun noch ens op „<b style="padding:2px; background-color:#ddd; color:black">De Sigg Avspeichere</b>“ klicke, öm Ding Änderunge ohne de Zosammefassung ze Speicheree. Ävver besser jiss De do jetz tirek ens jet en!',
+'missingsummary'                   => '<strong>Opjepass:</strong> Do häs nix bei „{{int:summary}}“ enjejovve. Dun noch ens op „{{int:savearticle}}“ klicke, öm Ding Änderunge ohne de Zosammefassung ze Speichere. Ävver besser jiss De do jetz tirek ens jet en!',
 'missingcommenttext'               => 'Jevv en „Koot Zosammejefass, Quell“ aan!',
-'missingcommentheader'             => "'''Opjepass:''' Do häs kein Üvverschreff för Dinge Beidrach enjejovve. Wann De noch ens op „De Sigg Avspeichere“ dröcks, weed dä Beidrach ohne Üvverschreff avjespeichert.",
+'missingcommentheader'             => "'''Opjepass:''' Do häs kein Üvverschreff för Dinge Beidrach enjejovve. Wann De noch ens op „{{int:savearticle}}“ dröcks, weed dä Beidrach ohne Üvverschreff avjespeichert.",
 'summary-preview'                  => 'Vör-Aansich vun „Koot Zosammejefass, Quell“:',
 'subject-preview'                  => 'Vör-Aansich vun de Üvverschreff:',
 'blockedtitle'                     => 'Dä Metmaacher es jesperrt',
@@ -894,10 +892,8 @@ Wann dat widder nit flupp, dann versök et ens met [[Special:UserLogout|Uslogge]
 'editingcomment'                   => '„$1“ ändere (ene neue Avschnedd schrieve)',
 'editconflict'                     => 'Problemche: „$1“ dubbelt bearbeidt.',
 'explainconflict'                  => '<br />Ene andere Metmaacher hät aan dä Sigg och jet jeändert, un zwar nohdäm Do et Ändere aanjefange häs. Jetz ha\'mer dr Dress am Jang, un Do darfs et widder uszoteere.
-<strong>Opjepass:</strong>
-<ul><li>Dat bovvere Texfeld zeich die Sigg esu, wie se jetz em Momang jespeichert es, alsu met de Änderunge vun alle andere Metmaacher, die flöcker wie Do jespeichert han.</li><li>Dat ungere Texfeld zeich die Sigg esu, wie De se selver zoletz zerääch jebraselt häs.</li></ul>
-Do muss jetz Ding Änderunge och in dat <strong>bovvere</strong> Texxfeld eren bränge. Natörlich ohne dä 
-Andere ihr Saache kapott ze maache.
+<strong>Opjepass:</strong><ul><li>Dat bovvere Texfeld zeich die Sigg esu, wie se jetz em Momang jespeichert es, alsu met de Änderunge vun alle andere Metmaacher, die flöcker wie Do jespeichert han.</li><li>Dat ungere Texfeld zeich die Sigg esu, wie De se selver zoletz zerääch jebrasselt häs.</li></ul>
+Do muss jetz Ding Änderunge och in dat <strong>bovvere</strong> Texxfeld eren bränge. Natörlich ohne dä Andere ihr Saache kapott ze maache.
 <strong>Nor wat em bovvere Texfeld steiht,</strong> dat weed üvvernomme un avjespeichert, wann De „<b 
 style="padding:2px; background-color:#ddd; color:black">{{int:savearticle}}</b>“ klicks. Bes dohin kanns De esu off 
 wie De wells op „<b style="padding:2px; background-color:#ddd; color:black">{{int:showdiff}}</b>“ un „<b 
@@ -3145,11 +3141,11 @@ Jetz künns De och noch enlogge. Vill Spass!',
 'confirmemail_subject'     => 'Dun Ding E-Mail Adress bestätije för de {{SITENAME}}.',
 'confirmemail_body'        => 'Künnt jod sin, Do wors et selver,
 vun de IP_Adress $1
-hät sich jedenfalls einer aanjemeldt,
-un well dä Metmaacher „$2“ op de {{SITENAME}}
-wääde, un hät en E-Mail Adress aanjejovve.
+hät sich jedenfalls einer jemeldt, un well 
+dä Metmaacher "$2" op de {{SITENAME}}
+sin, un hät en E-Mail Adress aanjejovve.
 Öm jetz klor ze krije, dat die E-Mail
-Adress un dä neue Metmaacher och beienander
+Adress un dä neue Metmaacher och zosamme
 jehüre, muss dä Neue en singem Brauser
 dä Link:
 
@@ -3158,18 +3154,18 @@ $3
 opmaache. Noch för em $4. 
 Alsu dun dat, wann de et selver bes.
 
-Wann nit Do, sondern söns wer Ding E-Mail
+Wann nit Do, sondern söns wä Ding E-Mail
 Adress aanjejovve hät, do bruchs de jar nix
-ze dun. De E-Mail Adress kann nit jebruch
+ze don. De E-Mail Adress kann nit jebruch
 wääde, ih dat se nit bestätich es.
 Do kanns ävver och op he dä Link jon:
 
 $5
 
-Domet deiß De tirek sare, dat De Adress
+Domet deiß De tirek sare, dat De di Adress
 nit bestätije wells.
 
-Wann de jetz neujeerich jewoode bes un wells
+Wann de jetz neujeerich jewoode bes, un wells
 wesse, wat met de {{SITENAME}} loss es,
 do  jang met Dingem Brauser noh:
 {{FULLURL:{{MediaWiki:Mainpage}}}}

@@ -1943,7 +1943,7 @@ $NEWPAGE
 'confirmdeletetext'      => '指定したページをその全変更履歴とともに削除しようとしています。
 あなたが削除を望んでおり、それがもたらす帰結を理解しており、かつあなたのしようとしていることが[[{{MediaWiki:Policy-url}}|方針]]に即したものであることを確認してください。',
 'actioncomplete'         => '完了しました',
-'deletedtext'            => '"<nowiki>$1</nowiki>" は削除されました。最近の削除に関しては $2 を参照してください。',
+'deletedtext'            => '「<nowiki>$1</nowiki>」は削除されました。最近の削除に関しては、$2を参照してください。',
 'deletedarticle'         => '"$1" を削除しました。',
 'suppressedarticle'      => '"[[$1]]"の秘匿を実施',
 'dellogpage'             => '削除記録',

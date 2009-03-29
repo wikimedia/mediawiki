@@ -48,7 +48,7 @@ $messages = array(
 'tog-enotifminoredits'        => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus 'a pàgene",
 'tog-enotifrevealaddr'        => "Fa vedè l'indirizze e-mail jndr'à le e-mail de notifiche",
 'tog-shownumberswatching'     => "Fa vedè 'u numere de le utinde ca uardene",
-'tog-fancysig'                => 'Firma grezze (senza collegamende automatiche)',
+'tog-fancysig'                => "Firma grezze cumme a 'nu teste de Uicchi (senza collegamende automatiche)",
 'tog-externaleditor'          => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tue)",
 'tog-externaldiff'            => "Ause na differenze esterne pe default (sulamende pe l'esperte, abbesogne de 'na configuraziona speciele sus a 'u computer tue)",
 'tog-showjumplinks'           => 'Abbilite "zumbe a" pe accedere a le collegaminde',
@@ -838,6 +838,7 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 'mergehistory-autocomment'         => "Squagghiete [[:$1]] jndr'à [[:$2]]",
 'mergehistory-comment'             => "Squagghiete [[:$1]] jndr'à [[:$2]]: $3",
 'mergehistory-same-destination'    => 'Le pàggene sorgende e de destinazione non ge ponne essere le stesse',
+'mergehistory-reason'              => 'Mutive:',
 
 # Merge log
 'mergelog'           => 'Archivije de le scuagghiaminde',
@@ -1346,7 +1347,7 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'imagelinks'                => 'Collegaminde de file',
 'linkstoimage'              => '{{PLURAL:$1|sta pàgene apponde |$1 ste pàggene appondene}} a stu fail:',
 'nolinkstoimage'            => 'Non ge stonne pàggene ca appodene a stu fail.',
-'sharedupload'              => 'Stu file avène da $1 e pò essere ausete da otre pruggette.',
+'sharedupload'              => 'Stu file avène da $1 e pò essere ausate da otre pruggette.',
 'noimage'                   => "Non g'esiste nisciune fail cu stu nome, ma tu puè $1.",
 'noimage-linktext'          => 'carechene une',
 'uploadnewversion-linktext' => "Careche 'na versiona nove de stu fail",
@@ -1402,10 +1403,12 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'unusedtemplateswlh'  => 'Otre collegaminde',
 
 # Random page
-'randompage' => 'Pàgene a uecchie',
+'randompage'         => 'Pàgene a uecchie',
+'randompage-nopages' => 'Non ge stonne pàggene jndr\'à \'u namespace "$1".',
 
 # Random redirect
-'randomredirect' => 'Redirezionamende a uecchie',
+'randomredirect'         => 'Redirezionamende a uecchie',
+'randomredirect-nopages' => 'Non ge stonne redirezionaminde jndr\'à \'u namespace "$1".',
 
 # Statistics
 'statistics'                   => 'Statisteche',
@@ -1841,7 +1844,7 @@ $1",
 'sp-contributions-newbies'     => 'Fà vedè sulamende le condrebbute de le utinde nueve',
 'sp-contributions-newbies-sub' => "Pe l'utinde nuève",
 'sp-contributions-blocklog'    => 'Archivije de le Bloccaminde',
-'sp-contributions-talk'        => 'Parle',
+'sp-contributions-talk'        => 'parle',
 'sp-contributions-userrights'  => 'Gestione de le deritte utende',
 'sp-contributions-search'      => 'Ricerche pe condrebbute',
 'sp-contributions-username'    => "Indirizze IP o nome de l'utende:",
