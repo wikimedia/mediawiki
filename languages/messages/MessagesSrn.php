@@ -451,7 +451,6 @@ A kan taki a abi wan noso moro karakter san no bun fu kebroiki gi nen.',
 Fu san ede: ''$2''.",
 
 # Login and logout pages
-'logouttitle'               => 'Kenroikiman psa gwe',
 'logouttext'                => "'''Yu psa gwe now.'''<br />
 Yu kan tan kebroiki {{SITENAME}} sondro nen, noso yu kan psa kon baka leki a srefi noso wan tra kebroikiman.
 Sabi taki a kan gersi leki yu psa kon ete, te leki yu leygi a cache fu yu browser.",

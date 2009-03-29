@@ -280,7 +280,6 @@ Beno ke, tedı yew ya zi jêdê işareti esti ke sernameyan dı nıgurini.",
 'ns-specialprotected' => 'Pelê xasi nênê vurnayış.',
 
 # Login and logout pages
-'logouttitle'               => 'Veciyayışê karberi',
 'loginpagetitle'            => 'Cıkewtena karberi',
 'yourname'                  => 'Namey karberi',
 'yourpassword'              => 'Parola',

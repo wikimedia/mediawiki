@@ -453,7 +453,6 @@ $2',
 'ns-specialprotected'  => 'Strani v imenskem prostoru {{ns:special}} ni možno urejati.',
 
 # Login and logout pages
-'logouttitle'                => 'Odjava uporabnika',
 'logouttext'                 => 'Odjavili ste se. {{GRAMMAR:tožilnik|{{SITENAME}}}} lahko zdaj uporabljate neprijavljeni ali pa se ponovno prijavite. Morda bodo nekatere strani še naprej prikazane, kot da ste prijavljeni. To lahko popravite z izpraznitvijo predpomnilnika.',
 'welcomecreation'            => '== Dobrodošli, $1! ==
 Ustvarili ste račun.

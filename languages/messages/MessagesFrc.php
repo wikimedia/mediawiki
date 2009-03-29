@@ -318,7 +318,6 @@ Demande: $2',
 'ns-specialprotected'  => "Vous pouvez pas changer les pages dans l'espace de noms {{ns:special}}.",
 
 # Login and logout pages
-'logouttitle'                => 'Déconnecter',
 'logouttext'                 => "'''Vous êtes déconnecté asteur.'''<br /> Vous pouvez continuer à user {{SITENAME}} sans nom ou vous pouvez connecter encore une fois avec le même nom ou un autre nom.<br />Notez: certaines pages pourriont être vues comme si vous êtes connecté, jusqu'à vous videz l'information de votre navigateur.",
 'welcomecreation'            => '== Bonjour, $1! ==
 

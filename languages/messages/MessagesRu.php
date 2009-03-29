@@ -602,7 +602,6 @@ $2',
 'virus-unknownscanner' => 'неизвестный антивирус:',
 
 # Login and logout pages
-'logouttitle'                => 'Стать инкогнито',
 'logouttext'                 => "'''Вы завершили сеанс работы.'''
 
 Вы можете продолжить участие в {{grammar:genitive|{{SITENAME}}}} анонимно или [[Special:UserLogin|представиться заново]] под тем же или другим именем.

@@ -285,7 +285,6 @@ $messages = array(
 'viewsourcetext'     => 'Var nicä görmää hem kopiya etmää bu yapraa gelinirini:',
 
 # Login and logout pages
-'logouttitle'                => 'Sessiyanı kapat',
 'logouttext'                 => 'Sessiyayı kapattınız.
 Şindi var nicä devam etmää kullanmaa {{SITENAME}} saytını kimlik göstermedän yaki enidän sessiya açmaa (ister hep o kullanıcı adıylan, ister başka bir kullanıcı adıylan). O zamana kadar ani web brauzerinizin keşi temizlenecek bir takım sayfalar var nicä görünsün sansın sessiya hep açık.',
 'welcomecreation'            => '== Hoş geldiniz $1! ==

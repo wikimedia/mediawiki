@@ -240,7 +240,6 @@ $messages = array(
 'actionthrottled' => '动作已压制',
 
 # Login and logout pages
-'logouttitle'                => '用户登出',
 'logouttext'                 => "'''倷已经登出哉。'''<br /> 倷可以继续匿名使用{{SITENAME}} ，倷也可以再次以相同或者两样个用户名登录。注意，有星页面作兴还是会搭倷登出前头一样显示，一脚到倷清脱倷个浏览器缓存。",
 'welcomecreation'            => '== 欢迎， $1！ ==
 

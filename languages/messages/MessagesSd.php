@@ -374,7 +374,6 @@ $messages = array(
 'ns-specialprotected' => 'خاص صفحا سنواري نٿا سگھجن.',
 
 # Login and logout pages
-'logouttitle'                => 'يوزر لاگ آئوٽ',
 'yourname'                   => 'يُوزرنانءُ:',
 'yourpassword'               => 'ڳجھو لفظ:',
 'remembermypassword'         => 'هن ڳڻپيوڪر تي مون کي ياد رکو',

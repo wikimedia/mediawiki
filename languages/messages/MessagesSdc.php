@@ -431,7 +431,6 @@ $2',
 La rasgioni frunidda è ''$2''.",
 
 # Login and logout pages
-'logouttitle'                => 'Iscidda utenti',
 'logouttext'                 => "'''Iscidda effettuadda.'''<br />
 Si pò sighì a usà {{SITENAME}} cumenti utenti anònimu oppuru eseguì una noba intradda, cu' lu matessi innòmu utenti o un'innòmu dibessu.
 

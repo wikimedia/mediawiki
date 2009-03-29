@@ -301,7 +301,6 @@ Mòże to zgłoszëc [[Special:ListUsers/sysop|sprôwnikòwi]], pòdając adres�
 Przemëszlë dolmaczënié na [http://translatewiki.net/wiki/Main_Page?setlang=csb translatewiki.net], ekstra ùdbie lokalizacëji softwôrë MediaWiki.",
 
 # Login and logout pages
-'logouttitle'                => 'Wëlogòwanié brëkòwnika',
 'logouttext'                 => 'Të jes ju wëlogòwóny. Mòżesz prôcowac z {{SITENAME}} jakno anonimòwi brëkòwnik abò wlogòwac sã jakno zaregistrowóny brëkòwnik.',
 'loginpagetitle'             => 'Logòwanié brëkòwnika',
 'yourname'                   => 'Miono brëkòwnika',

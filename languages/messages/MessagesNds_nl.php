@@ -635,7 +635,6 @@ De op-egeven rejen is ''$2''.",
 'virus-unknownscanner' => 'onbekende virusscanner:',
 
 # Login and logout pages
-'logouttitle'                => 'Ofmelden gebruker',
 'logouttext'                 => "'''Je bin noen of-emeld.'''
 
 Je kunnen {{SITENAME}} noen anneniem gebruken of onder disse of een aandere gebrukersnaam je eigen weer anmelden.

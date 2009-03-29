@@ -275,7 +275,6 @@ Query: $2",
 'sqlhidden'            => '(SQL query sa cwankekile)',
 
 # Login and logout pages
-'logouttitle'               => 'Sebelu ile',
 'loginpagetitle'            => 'Sebelu menuhile',
 'yourname'                  => 'Sebelu:',
 'yourpassword'              => 'Sebu dafi:',

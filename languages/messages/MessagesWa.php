@@ -343,7 +343,6 @@ Cweraedje: $2',
 'editinginterface'     => "'''Asteme:''' Vos candjîz ene pådje k' est eployeye po dner on tecse d' eterface pol programe. Les candjmints a cisse pådje ci vont-st aveur èn efet so l' eterface d' uzeu des ôtes uzeus.",
 
 # Login and logout pages
-'logouttitle'                => 'Dislodjaedje',
 'logouttext'                 => "'''Vos vs avoz dislodjî.'''<br />
 Vos ploz continouwer a naivyî so {{SITENAME}} anonimmint, oudonbén
 vos relodjî dizo l' minme uzeu ou dizo èn uzeu diferin. Notez ki des

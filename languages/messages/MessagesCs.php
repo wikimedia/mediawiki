@@ -664,7 +664,6 @@ $2',
 'virus-unknownscanner' => 'neznámý antivirus:',
 
 # Login and logout pages
-'logouttitle'                => 'Na shledanou!',
 'logouttext'                 => 'Nyní jste odhlášeni.<br />
 Tento počítač může být používán k prohlížení a editaci {{grammar:2sg|{{SITENAME}}}} bez uživatelského jména, nebo pro přihlášení jiného uživatele. Upozorňujeme, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni. Tento jev potrvá do smazání cache vašeho prohlížeče.',
 'welcomecreation'            => '== Vítejte, $1! ==

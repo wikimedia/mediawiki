@@ -498,7 +498,6 @@ Wótpšašanje: $2',
 'virus-unknownscanner' => 'njeznaty antiwirus:',
 
 # Login and logout pages
-'logouttitle'                => 'Wužywarja wótzjawiś',
 'logouttext'                 => "'''Sy se něnto wótzjawił.'''
 Móžoš {{SITENAME}} anomymnje dalej wužywaś abo móžoš [[Special:UserLogin|se znowego pśizjawiś]] ako samski abo hynakšy wužywaŕ.
 Źiwaj na to, až někotare boki se dalej tak zwobraznjuju ako by hyšći pśizjawjeny był, až njewuproznijoš cache swójego wobglědowaka.",

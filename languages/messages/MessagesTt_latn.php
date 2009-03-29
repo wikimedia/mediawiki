@@ -241,7 +241,6 @@ $messages = array(
 'viewsource'      => 'Mäqälä çığanağı',
 
 # Login and logout pages
-'logouttitle'           => 'Äğzä çığuı',
 'welcomecreation'       => "== Räxim it, $1! ==
 
 Sineñ xísabıñ yasaldı. {{SITENAME}}'dağı köyläwläreñne dä üzgärtergä onıtma.",

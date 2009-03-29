@@ -645,7 +645,6 @@ $2',
 'virus-unknownscanner' => 'nepoznati antivirus:',
 
 # Login and logout pages
-'logouttitle'                => 'Odjava suradnika',
 'logouttext'                 => 'Odjavili ste se.<br />
 Možete nastaviti s korištenjem projekta {{SITENAME}} neprijavljeni,
 ili se možete ponovo prijaviti pod istim ili drugim imenom. Neke se stranice mogu

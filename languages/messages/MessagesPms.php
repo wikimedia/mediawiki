@@ -367,7 +367,6 @@ Query: $2',
 Coma rason a l'ha butà: ''$2''.",
 
 # Login and logout pages
-'logouttitle'                => "Seurte da 'nt ël sistema",
 'logouttext'                 => "A l'é sortù da 'nt ël sistema.
 A peul tiré anans a dovré {{SITENAME}} coma Utent anonim, ò pura a peul rintré torna ant ël sistema con l'istess stranòm che a dovrava prima, ò con un diferent.",
 'welcomecreation'            => '<h2>Bin avnù, $1!</h2><p>Sò cont a l\'è stait creà.<br />Mersì për avej sërnù dë giutene a fé chërse {{SITENAME}}.<br />Për fé {{SITENAME}} pì soa, e përchè a sia pì belfé dovrela, che as dësmentia nen dë compilé la pàgina dij "sò gust".',

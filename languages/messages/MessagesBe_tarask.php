@@ -603,7 +603,6 @@ $2',
 'virus-unknownscanner' => 'невядомы антывірус:',
 
 # Login and logout pages
-'logouttitle'                => 'Выхад з сыстэмы',
 'logouttext'                 => "'''Вы выйшлі з сыстэмы.'''
 
 Вы можаце працягваць працу ў {{GRAMMAR:месны|{{SITENAME}}}} ананімна, альбо можаце [[Special:UserLogin|ўвайсьці ў сыстэму]] як той жа альбо іншы ўдзельнік.

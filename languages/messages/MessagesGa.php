@@ -430,7 +430,6 @@ An fáth ná ''$2''.",
 'virus-unknownscanner' => 'frithvíreas anaithnid:',
 
 # Login and logout pages
-'logouttitle'                => 'Logáil amach',
 'logouttext'                 => "'''Tá tú logáilte amach anois.'''
 
 Is féidir leat an {{SITENAME}} a úsáid fós gan ainm, nó is féidir leat [[Special:UserLogin|logáil isteach arís]] mar an úsáideoir céanna, nó mar úsáideoir eile.

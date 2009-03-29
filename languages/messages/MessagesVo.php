@@ -463,7 +463,6 @@ Kod binon: ''$2''.",
 'virus-unknownscanner' => 'program tavirudik nesëvadik:',
 
 # Login and logout pages
-'logouttitle'                => 'Senunädön oki',
 'logouttext'                 => "'''Esenunädol oli.'''
 
 Kanol laigebön {{SITENAME}} nennemiko, u kanol [[Special:UserLogin|nunädön oli dönu]] me gebananem ot u gebenanem votik.

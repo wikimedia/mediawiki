@@ -1283,68 +1283,61 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'listfiles_count'       => 'One of the table column headers in [[Special:Listfiles]] denoting the amount of saved versions of that file.',
 
 # File description page
-'filehist'                  => 'Text shown on a media description page. Heads the section where the different versions of the file are displayed.',
-'filehist-help'             => 'In file description page',
-'filehist-deleteall'        => 'Link in image description page for admins.',
-'filehist-deleteone'        => 'Link description on file description page to delete an earlier version of a file.
+'filehist'            => 'Text shown on a media description page. Heads the section where the different versions of the file are displayed.',
+'filehist-help'       => 'In file description page',
+'filehist-deleteall'  => 'Link in image description page for admins.',
+'filehist-deleteone'  => 'Link description on file description page to delete an earlier version of a file.
 
 {{Identical|Delete}}',
-'filehist-revert'           => 'Link in image description page.
+'filehist-revert'     => 'Link in image description page.
 
 {{Identical|Revert}}',
-'filehist-current'          => 'Link in file description page.
+'filehist-current'    => 'Link in file description page.
 
 {{Identical|Current}}',
-'filehist-datetime'         => 'Used on image descriptions, see for example [[:File:Yes.png#filehistory]].
+'filehist-datetime'   => 'Used on image descriptions, see for example [[:File:Yes.png#filehistory]].
 {{Identical|Date}}',
-'filehist-thumb'            => 'Shown in the file history list of a file desription page.
+'filehist-thumb'      => 'Shown in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
-'filehist-thumbtext'        => "Shown in the file history list of a file description page. '''$1''' is a time followed by a date, e.g. ''10:23, 18 april 2007''.
+'filehist-thumbtext'  => "Shown in the file history list of a file description page. '''$1''' is a time followed by a date, e.g. ''10:23, 18 april 2007''.
 
 Example: [[wikipedia:Image:Madeleine close2.jpg]]",
-'filehist-nothumb'          => 'Shown if no thumbnail is available in the file history list of a file desription page.
+'filehist-nothumb'    => 'Shown if no thumbnail is available in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
-'filehist-user'             => 'In image description page.
+'filehist-user'       => 'In image description page.
 
 {{Identical|User}}',
-'filehist-dimensions'       => 'In file description page',
-'filehist-filesize'         => 'In image description page',
-'filehist-comment'          => 'In file description page
+'filehist-dimensions' => 'In file description page',
+'filehist-filesize'   => 'In image description page',
+'filehist-comment'    => 'In file description page
 
 {{Identical|Comment}}',
-'imagelinks'                => 'In top header of the image description page, see for example [[:Image:Yes.png]].
+'imagelinks'          => 'In top header of the image description page, see for example [[:Image:Yes.png]].
 
 {{Identical|Links}}',
-'linkstoimage'              => 'Used on image description, see for example [[:Image:Yes.png#filelinks]].
+'linkstoimage'        => 'Used on image description, see for example [[:Image:Yes.png#filelinks]].
 * Parameter $1 is the number of pages that link to the file/image.',
-'linkstoimage-more'         => 'Shown on an image description page when a file is used/linked more than 100 times on other pages.
+'linkstoimage-more'   => 'Shown on an image description page when a file is used/linked more than 100 times on other pages.
 
 * $1: limit. At the moment hardcoded at 100
 * $2: filename',
-'nolinkstoimage'            => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
-'redirectstofile'           => 'Used on file description pages after the list of pages which used this file',
-'duplicatesoffile'          => 'Shown on file description pages when a file is duplicated
+'nolinkstoimage'      => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
+'redirectstofile'     => 'Used on file description pages after the list of pages which used this file',
+'duplicatesoffile'    => 'Shown on file description pages when a file is duplicated
 
 * $1: Number of identical files
 * $2: Name of the shown file to link to the special page "FileDuplicateSearch"',
-'sharedupload'              => 'Shown on an image description page when it is used in a central repository (i.e. [http://commons.wikimedia.org/ Commons] for Wikimedia wikis).
+'sharedupload'        => 'Shown on an image description page when it is used in a central repository (i.e. [http://commons.wikimedia.org/ Commons] for Wikimedia wikis).
 
 * $1 is the name of the shared repo. Defined in [[MediaWiki:Shared-repo-name-shared]]
 * $2 is the content of {{msg-mw|Shareduploadwiki}} or {{msg-mw|Shareduploadwiki-desc}}
 
-{{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}', # $1 is the repo name, $2 is shareduploadwiki(-desc)
-'shareduploadwiki'          => 'The variable $1 is {{msg|shareduploadwiki-linktext}}',
-'shareduploadwiki-desc'     => "This message appears after {{msg-mw|Sharedupload}}. \$1 is a link to the file description page on the shared repository with {{msg-mw|Shareduploadwiki-linktext}} as displayed anchor text. 
-
-Example:
-* \"''The description on its <u>file description page</u> there is shown below.''\"
-* See [[:File:Xrubik 4x4x4 with odd permutation of edges.png|live example]]",
-'shareduploadwiki-linktext' => 'This message is used as variable $1 in {{msg-mw|Shareduploadwiki}} and in {{msg-mw|Shareduploadwiki-desc}}.',
-'noimage'                   => 'In image description page when there is no file by that name.  The variable $1 comes from {{msg|noimage-linktext}}, which is only substituted in this message.',
-'noimage-linktext'          => 'This message is used as a variable in {{msg|noimage}}, and will not be used anywhere else.',
-'shared-repo-from'          => 'likely, $1 is {{msg-mw|shared-repo-name-shared}}', # $1 is the repository name
+{{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
+'noimage'             => 'In image description page when there is no file by that name.  The variable $1 comes from {{msg|noimage-linktext}}, which is only substituted in this message.',
+'noimage-linktext'    => 'This message is used as a variable in {{msg|noimage}}, and will not be used anywhere else.',
+'shared-repo-from'    => 'likely, $1 is {{msg-mw|shared-repo-name-shared}}', # $1 is the repository name
 
 # File reversion
 'filerevert'                => '{{Identical|Revert}}',

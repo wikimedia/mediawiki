@@ -524,7 +524,6 @@ La kialo donata estis ''$2''.",
 'virus-unknownscanner' => 'nekonata kontraŭviruso:',
 
 # Login and logout pages
-'logouttitle'                => 'Elsaluti',
 'logouttext'                 => "'''Vi nun estas elsalutita.'''
 
 Vi rajtas daŭre vikiumi sennome, aŭ vi povas [[Special:UserLogin|reensaluti]] kiel la sama aŭ kiel alia uzanto.

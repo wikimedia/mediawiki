@@ -517,7 +517,6 @@ Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
 'virus-unknownscanner' => 'antivírus desconhecido:',
 
 # Login and logout pages
-'logouttitle'                => 'Desautenticar do sistema',
 'logouttext'                 => "'''Você agora está desautenticado.'''
 
 Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode [[Special:UserLogin|autenticar-se novamente]] com o mesmo nome de utilizador ou com um nome de utilizador diferente.

@@ -206,7 +206,6 @@ $messages = array(
 'badtitle'        => 'Unandfenge títul',
 
 # Login and logout pages
-'logouttitle'                => 'Brūcendūtmeldung',
 'welcomecreation'            => '== Wilcume, $1! ==
 
 Þín hordcleofa wearþ geseted.  Ne forgiet tó hwierfenne þína {{SITENAME}} foreberunga.',

@@ -424,7 +424,6 @@ Batdume : ''$2''.",
 'virus-unknownscanner' => 'megrupena kevkioxeka :',
 
 # Login and logout pages
-'logouttitle'                => 'Solgluyara',
 'logouttext'                 => 'Rin daletoe til solgluyanaf.
 Rin va {{SITENAME}} yoltiskon ware rofavel oke, bifoton kan ar yolt, va int toldogluyal.',
 'welcomecreation'            => '<h2>Til drumbaf, $1!</h2><p>Rinaf favesikpata su zo redur.

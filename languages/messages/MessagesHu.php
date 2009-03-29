@@ -636,7 +636,6 @@ A blokkolás oka: „''$2''”.",
 'virus-unknownscanner' => 'ismeretlen antivírus:',
 
 # Login and logout pages
-'logouttitle'                => 'Kijelentkezés',
 'logouttext'                 => "'''Sikeresen kijelentkeztél.'''
 
 Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy [[Special:UserLogin|ismét bejelentkezhetsz]] ugyanezzel, vagy egy másik névvel.

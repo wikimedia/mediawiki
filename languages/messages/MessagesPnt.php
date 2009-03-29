@@ -298,7 +298,6 @@ $messages = array(
 'virus-unknownscanner' => 'αναγνώριμον αντιικόν:',
 
 # Login and logout pages
-'logouttitle'                => 'Εξέβεμαν χρήστονος',
 'welcomecreation'            => "== Καλώς έρθετεν, $1! ==
 Η λογαρίαν εσουν εγέντον.
 Τ' άλλαγμαν τη [[Special:Preferences|{{SITENAME}} προτιμησίων]] εσουν μη νεσπάλετε.",

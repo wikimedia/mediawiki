@@ -386,7 +386,6 @@ $2',
 'virus-unknownscanner' => 'tundmalda viirusõkaidsõq:',
 
 # Login and logout pages
-'logouttitle'                => 'Nime alt välläminek',
 'logouttext'                 => "'''Olõt nime alt vällä lännüq.'''
 
 Võit {{SITENAME}}t ilma nimeldä edesi toimõndaq vai [[Special:UserLogin|vahtsõst sama vai tõõsõ nimega sisse minnäq]]. 

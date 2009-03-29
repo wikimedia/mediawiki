@@ -597,7 +597,6 @@ $messages = array(
 'virus-unknownscanner' => '알려지지 않은 백신:',
 
 # Login and logout pages
-'logouttitle'                => '로그아웃',
 'logouttext'                 => "'''{{SITENAME}}에서 로그아웃했습니다.'''
 
 이대로 이름 없이 {{SITENAME}}을(를) 이용하거나, 방금 사용했던 계정이나 다른 계정으로 다시 [[Special:UserLogin|로그인]]해서 이용할 수 있습니다.

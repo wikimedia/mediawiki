@@ -472,7 +472,6 @@ Rezon li bay yo se « ''$2'' ».",
 'virus-unknownscanner' => 'antiviris nou pa konnen :',
 
 # Login and logout pages
-'logouttitle'                => 'Dekoneksyon-Sòti',
 'logouttext'                 => "'''Monchè oubyen machè, ou dekonekte kounye a.'''
 
 Ou mèt kontinye itilize {{SITENAME}} san ou pa bezwen konekte w, oubyen si ou [[Special:UserLogin|rekonekte]] w ankò ak menm non an oubyen yon lòt.",

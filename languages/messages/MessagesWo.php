@@ -419,7 +419,6 @@ $2',
 Ngirte li mu joxe mooy ne « ''$2'' ».",
 
 # Login and logout pages
-'logouttitle'                => 'Génnu',
 'logouttext'                 => "Fi mu nekk nii génn nga.'''<br />
 Man ngaa wéy di jëfandikoo {{SITENAME}} ci anam buñ la dul xamme walla nga  [[Special:UserLogin|duggewaat]] ak wenn tur wi walla ak weneen.",
 'welcomecreation'            => '== Dalal-jamm, $1 ! ==

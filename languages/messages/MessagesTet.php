@@ -284,7 +284,6 @@ Lista ida pájina espesiál nian [[Special:SpecialPages|iha ne'e]].",
 'ns-specialprotected' => 'La ema ida bele edita pájina espesiál sira.',
 
 # Login and logout pages
-'logouttitle'               => 'Husik',
 'welcomecreation'           => "== Loron di'ak, $1! ==
 Ó kria konta ó-nia.
 La haluha filak ó-nia [[Special:Preferences|preferénsia]].",

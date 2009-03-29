@@ -530,7 +530,6 @@ Els seus motius han estat: «''$2''».",
 'virus-unknownscanner' => 'antivirus desconegut:',
 
 # Login and logout pages
-'logouttitle'                => 'Fi de la sessió',
 'logouttext'                 => "'''Heu finalitzat la vostra sessió.'''<br />
 Podeu continuar utilitzant {{SITENAME}} de forma anònima, o podeu [[Special:UserLogin|iniciar una sessió una altra vegada]] amb el mateix o un altre usuari. 
 Tingueu en compte que algunes pàgines poden continuar mostrant-se com si encara estiguéssiu en una sessió, fins que buideu la memòria cau del vostre navegador.",

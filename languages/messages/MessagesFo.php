@@ -358,7 +358,6 @@ afturkend av wiki',
 'viewsourcetext'    => 'Tú kanst síggja og avrita kelduna til hesa grein:',
 
 # Login and logout pages
-'logouttitle'                => 'Brúkaraútritan',
 'logouttext'                 => "'''Tú hevur nú ritað út.'''<br />
 Tú kanst halda áfram at nýta {{SITENAME}} dulnevnt.
 Ella kanst tú rita inn aftur sum sami ella annar brúkari.

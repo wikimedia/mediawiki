@@ -464,7 +464,6 @@ Mangga laporkeun ha ieu ka salasaurang [[Special:ListUsers/sysop|Kuncén]], bari
 'virus-unknownscanner' => 'antivirus teu dipikawanoh:',
 
 # Login and logout pages
-'logouttitle'                => 'Kaluar log pamaké',
 'logouttext'                 => 'Anjeun ayeuna geus kaluar log. Anjeun bisa neruskeun migunakeun {{SITENAME}} bari anonim, atawa bisa asup log deui maké pamaké nu sarua atawa nu béda. Perlu dicatet yén sababaraha kaca bakal terus némbongan saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun sindangan panyungsi anjeun.',
 'welcomecreation'            => '==Wilujeng sumping, $1!==
 Rekening anjeun geus dijieun. 

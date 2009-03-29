@@ -466,7 +466,6 @@ $messages = array(
 'virus-unknownscanner' => 'апак содань антивирус:',
 
 # Login and logout pages
-'logouttitle'                => 'Теицянь лисема',
 'welcomecreation'            => '== Совак, инеськеть, $1! ==
 Совамотаркат теезь.
 Иля стувто полавтнемс эсеть [[Special:Preferences|{{SITENAME}} ладсематнень]].',

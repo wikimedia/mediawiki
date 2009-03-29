@@ -350,7 +350,6 @@ $2',
 'virus-unknownscanner' => '不曉得嗰防病毒:',
 
 # Login and logout pages
-'logouttitle'                => '用戶退出',
 'logouttext'                 => "'''倷退出正嘞。'''
 
 倷可以接到匿名使用{{SITENAME}}，或重登入過，隻把子頁面可能會接到話倷係登入狀態，除非係倷刪吥瀏覽器緩存。",

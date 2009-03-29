@@ -283,7 +283,6 @@ $messages = array(
 'viewsourcetext'      => 'Tu pote vide e copia la orijin de esta paje:',
 
 # Login and logout pages
-'logouttitle'             => 'Sinia per retira',
 'yourname'                => 'Nom de usor:',
 'yourpassword'            => 'Sinia de entra:',
 'yourpasswordagain'       => 'Retape la sinia:',

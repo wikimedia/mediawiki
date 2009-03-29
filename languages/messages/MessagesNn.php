@@ -612,7 +612,6 @@ Grunnen som er gjeven er: ''$2''.",
 'virus-unknownscanner' => 'ukjend antivirusprogram:',
 
 # Login and logout pages
-'logouttitle'                => 'Logg ut',
 'logouttext'                 => "'''Du er no utlogga.'''
 
 Du kan no halde fram og bruke {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge inn att]]  med same kontoen eller ein annan brukar kan logge inn. 

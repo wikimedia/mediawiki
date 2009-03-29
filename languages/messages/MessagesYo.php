@@ -282,7 +282,6 @@ $messages = array(
 'titleprotected'       => "This title has been protected from creation by [[User:$1|$1]]. The reason given is ''$2''.",
 
 # Login and logout pages
-'logouttitle'               => 'Ibọsóde oníṣe',
 'logouttext'                => "'''Ẹ ti bọ́sọ́de.'''
 
 Ẹ le tẹ̀síwájú sí ní lo {{SITENAME}} láìmorúkọ yín, tàbí kí ẹ [[Special:UserLogin|padà wọlé]] bí ẹnikanan tàbí ẹlòmíràn.

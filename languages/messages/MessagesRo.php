@@ -536,7 +536,6 @@ Motivul invocat este ''$2''.",
 'virus-unknownscanner' => 'antivirus necunoscut:',
 
 # Login and logout pages
-'logouttitle'                => 'Sesiune închisă',
 'logouttext'                 => 'Sesiunea ta în {{SITENAME}} a fost încheiată. Poţi continua să foloseşti {{SITENAME}} anonim, sau poţi să te [[Special:UserLogin|reautentifici]] ca acelaşi sau ca alt utilizator.',
 'welcomecreation'            => '==Bun venit, $1!==
 

@@ -244,7 +244,6 @@ $messages = array(
 'viewsourcetext'     => 'Foddee oo jeeagh er as jean aascreeuyn bun y ghuillag shoh:',
 
 # Login and logout pages
-'logouttitle'                => 'Log magh yn ymmydeyr',
 'welcomecreation'            => '== Failt ort, $1! ==
 Ta dty choontys chrooit nish.<br />
 Ny jean jarrood dty [[Special:Preferences|{{SITENAME}} hosheeaghtyn]] y arraghey.',

@@ -678,7 +678,6 @@ Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerich
 'virus-unknownscanner' => 'Unbekannter Virenscanner:',
 
 # Login and logout pages
-'logouttitle'                => 'Benutzer-Abmeldung',
 'logouttext'                 => "'''Du bist nun abgemeldet.'''
 
 Du kannst {{SITENAME}} jetzt anonym weiter benutzen, oder dich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].",

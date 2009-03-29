@@ -874,7 +874,6 @@ The reason given is "\'\'$2\'\'".',
 'virus-unknownscanner' => 'unknown antivirus:',
 
 # Login and logout pages
-'logouttitle'                => 'User logout',
 'logouttext'                 => "'''You are now logged out.'''
 
 You can continue to use {{SITENAME}} anonymously, or you can [[Special:UserLogin|log in again]] as the same or as a different user.

@@ -386,7 +386,6 @@ $2',
 'virus-unknownscanner' => 'antivirus scanusciute:',
 
 # Login and logout pages
-'logouttitle'                => 'Utende assute',
 'logouttext'                 => "'''Tu tè scolleghete.'''
 
 Tu puè condinuà a ausà {{SITENAME}} in mode anonime, o tu puè [[Special:UserLogin|collegarte 'n'otra vote]] cumme 'u stesse utende o cumme 'n'otre utende.

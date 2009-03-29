@@ -229,7 +229,6 @@ $1',
 'viewsource'         => 'Бажы көөр',
 
 # Login and logout pages
-'logouttitle'        => 'Ажыглакчы үнери',
 'loginpagetitle'     => 'Ажыглакчы кирери',
 'yourname'           => 'Aжыглакчының ады',
 'yourpassword'       => 'Чажыт сөс',

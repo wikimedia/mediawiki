@@ -309,7 +309,6 @@ $2',
 'ns-specialprotected' => '‘A‘ole hiki ke ho‘opololei i nā ‘ao‘ao kūikawā',
 
 # Login and logout pages
-'logouttitle'               => 'E haʻalele ka mea hoʻohana',
 'welcomecreation'           => '== E komo mai, $1! ==
 Hoʻokumu ʻia i kou waihona.
 Mai poina e loli kāu makemake ma {{SITENAME}}.',

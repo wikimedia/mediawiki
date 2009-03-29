@@ -529,7 +529,6 @@ $2',
 'virus-unknownscanner' => '未知的反病毒:',
 
 # Login and logout pages
-'logouttitle'                => '退出',
 'logouttext'                 => "'''您现在已经退出。'''<br />
 您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份[[Special:UserLogin|登录]]。
 请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",

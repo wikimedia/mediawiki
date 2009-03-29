@@ -631,7 +631,6 @@ $2',
 'virus-unknownscanner' => 'tuntematon virustutka:',
 
 # Login and logout pages
-'logouttitle'                => 'Uloskirjautuminen',
 'logouttext'                 => "'''Olet nyt kirjautunut ulos.'''
 
 Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai [[Special:UserLogin|kirjautua uudelleen sisään]].",

@@ -447,7 +447,6 @@ $2',
 Sebep: ''$2''.",
 
 # Login and logout pages
-'logouttitle'                => 'Oturımnı qapat',
 'logouttext'                 => "'''Oturımnı qapattıñız.'''
 
 Şimdi {{SITENAME}} saytını anonim olaraq qullanıp olasıñız, ya da yañıdan [[Special:UserLogin|oturım açıp]] olasıñız (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen). Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken kibi körünip olur.",

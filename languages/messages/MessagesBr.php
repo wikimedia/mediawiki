@@ -442,7 +442,6 @@ Setu amañ perak ''$2''.",
 'virus-unknownscanner' => 'diviruzer dianav :',
 
 # Login and logout pages
-'logouttitle'                => 'Dilugañ',
 'logouttext'                 => "Diluget oc'h bremañ.
 Gallout a rit kenderc'hel da implijout {{SITENAME}} en un doare dizanv, pe en em lugañ en-dro gant un anv all mar fell deoc'h.",
 'welcomecreation'            => '== Degemer mat, $1! ==

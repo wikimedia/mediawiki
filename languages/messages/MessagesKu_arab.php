@@ -316,7 +316,6 @@ This is usually caused by following an outdated diff or history link to a page t
 'viewsourcefor'        => 'بۆ $1',
 
 # Login and logout pages
-'logouttitle'             => 'دەرچوونی بەکارهێنەر',
 'welcomecreation'         => '== خۆش هاتیت, $1! ==
 
 هه‌ژماری تایبه‌تی تۆ سه‌ركه‌وتووانه‌ دروست كرا، له‌بیرت نه‌چێت گۆڕانكاری له {{SITENAME}} تایبه‌ت به‌خۆت دا بكه‌.',

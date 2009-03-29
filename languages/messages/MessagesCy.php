@@ -470,7 +470,6 @@ Rhoddwyd y rheswm hwn - ''$2''.",
 'virus-unknownscanner' => 'gwrthfirysydd anhysbys:',
 
 # Login and logout pages
-'logouttitle'                => "Allgofnodi'r defnyddiwr",
 'logouttext'                 => "'''Rydych wedi allgofnodi.'''
 
 Gallwch ddefnyddio {{SITENAME}} yn anhysbys, neu fe allwch [[Special:UserLogin|fewngofnodi eto]] wrth yr un un enw neu wrth enw arall. 

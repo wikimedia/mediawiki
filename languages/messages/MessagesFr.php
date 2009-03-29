@@ -672,7 +672,6 @@ Le motif avancé est « ''$2'' ».",
 'virus-unknownscanner' => 'antivirus inconnu :',
 
 # Login and logout pages
-'logouttitle'                => 'Déconnexion',
 'logouttext'                 => "'''Vous êtes à présent déconnecté{{GENDER:||e|(e)}}.'''<br />
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, [[Special:UserLogin|vous reconnecter]] sous le même nom ou un autre.
 Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté, jusqu'à ce que vous effaciez le cache de votre navigateur.",

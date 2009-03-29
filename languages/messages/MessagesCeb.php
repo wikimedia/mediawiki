@@ -305,7 +305,6 @@ Basin aduna kini usa o daghan pang mga karakter nga dili magamit isip titulo.',
 'ns-specialprotected' => 'Ang mga espesyal nga panid dili mausban.',
 
 # Login and logout pages
-'logouttitle'             => 'Pagbiya sa tiggamit',
 'welcomecreation'         => '== Maayong pag-abot, $1! ==
 Nahimo na ang imong akawnt.
 Ayaw kalimot sa pag-usab sa imong [[Special:Preferences|{{SITENAME}} mga preperensiya]].',
