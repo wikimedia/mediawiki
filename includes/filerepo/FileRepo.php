@@ -6,6 +6,7 @@
  * @ingroup FileRepo
  */
 abstract class FileRepo {
+	const FILES_ONLY = 1;
 	const DELETE_SOURCE = 1;
 	const FIND_PRIVATE = 1;
 	const FIND_IGNORE_REDIRECT = 2;

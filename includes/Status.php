@@ -175,7 +175,10 @@ class Status {
 		$result = array();
 		foreach ( $this->errors as $error ) {
 			if ( $error['type'] == 'error' )
-				$result[] = $error['message'];
+				if( $error['params'] )
+					$result[] = array_merge( array( $error['message'] ), $error['params'] );
+				else
+					$result[] = $error['message'];
 		}
 		return $result;
 	}
