@@ -68,7 +68,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	public static function getPatrolToken($pageid, $title, $rc)
 	{
 		global $wgUser;
-		if(!$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
+		if(!$wgUser->useRCPatrol() && (!$wgUser->useNPPatrol() ||
+				 $rc->getAttribute('rc_type') != RC_NEW))
 			return false;
 		
 		// The patrol token is always the same, let's exploit that
