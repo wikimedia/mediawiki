@@ -763,6 +763,10 @@ abstract class ApiBase {
 		'markedaspatrollederror-noautopatrol' => array('code' => 'noautopatrol', 'info' => "You don't have permission to patrol your own changes"),
 		'delete-toobig' => array('code' => 'bigdelete', 'info' => "You can't delete this page because it has more than \$1 revisions"),
 		'movenotallowedfile' => array('code' => 'cantmovefile', 'info' => "You don't have permission to move files"),
+		'userrights-no-interwiki' => array('code' => 'nointerwikiuserrights', 'info' => "You don't have permission to change user rights on other wikis"),
+		'userrights-nodatabase' => array('code' => 'nosuchdatabase', 'info' => "Database ``\$1'' does not exist or is not local"),
+		'nouserspecified' => array('code' => 'invaliduser', 'info' => "Invalid username ``\$1''"),
+		'noname' => array('code' => 'invaliduser', 'info' => "Invalid username ``\$1''"),
 
 		// API-specific messages
 		'readrequired' => array('code' => 'readapidenied', 'info' => "You need read permission to use this module"),
