@@ -309,6 +309,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17617) HTML cleanup for ImagePage
 * (bug 17964) namespaceDupes.php no longer fails on an empty interwiki table
 * Improved error handling for image moving
+* (bug 17947) On Special:SpecialPages, restricted special pages are now marked 
+  with <strong> tags, helps with text-based browsers
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
