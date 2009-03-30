@@ -206,7 +206,7 @@ class QueryPage {
 	function recache( $limit, $ignoreErrors = true ) {
 		$fname = get_class( $this ) . '::recache';
 		$dbw = wfGetDB( DB_MASTER );
-		$dbr = wfGetDB( DB_SLAVE, array( $this->getName(), 'QueryPage::recache', 'vslow' ) );
+		$dbr = wfGetDB( DB_SLAVE, array( $this->getName(), __METHOD__, 'vslow' ) );
 		if ( !$dbw || !$dbr ) {
 			return false;
 		}
@@ -229,30 +229,23 @@ class QueryPage {
 		if ( $res ) {
 			$num = $dbr->numRows( $res );
 			# Fetch results
-			$insertSql = "INSERT INTO $querycache (qc_type,qc_namespace,qc_title,qc_value) VALUES ";
-			$first = true;
+			$vals = array();
 			while ( $res && $row = $dbr->fetchObject( $res ) ) {
-				if ( $first ) {
-					$first = false;
-				} else {
-					$insertSql .= ',';
-				}
 				if ( isset( $row->value ) ) {
 					$value = intval( $row->value ); // @bug 14414
 				} else {
 					$value = 0;
 				}
-
-				$insertSql .= '(' .
-					$dbw->addQuotes( $row->type ) . ',' .
-					$dbw->addQuotes( $row->namespace ) . ',' .
-					$dbw->addQuotes( $row->title ) . ',' .
-					$dbw->addQuotes( $value ) . ')';
+				
+				$vals[] = array('qc_type' => $row->type,
+						'qc_namespace' => $row->namespace,
+						'qc_title' => $row->title,
+						'qc_value' => $value);
 			}
 
 			# Save results into the querycache table on the master
-			if ( !$first ) {
-				if ( !$dbw->query( $insertSql, $fname ) ) {
+			if ( count( $vals ) ) {
+				if ( !$dbw->insert( 'querycache', $vals, __METHOD__ ) {
 					// Set result to false to indicate error
 					$dbr->freeResult( $res );
 					$res = false;
