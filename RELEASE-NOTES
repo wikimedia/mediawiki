@@ -311,6 +311,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Improved error handling for image moving
 * (bug 17974) On Special:SpecialPages, restricted special pages are now marked 
   with <strong> tags, helps with text-based browsers
+* (bug 18259) Special:DeletedContributions now also uses
+  MediaWiki:Sp-contributions-logs for the link to Special:Log
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
