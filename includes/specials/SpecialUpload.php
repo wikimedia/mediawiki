@@ -1157,8 +1157,7 @@ wgUploadAutoFill = {$autofill};
 		);
 		if( $this->mForReUpload ) {
 			$wgOut->addHTML(
-				"<input tabindex='2' type='hidden' name='wpDestFile' id='wpDestFile' 
-					value='{$encDestName}' />" . 
+				Xml::hidden( 'wpDestFile', $this->mDesiredDestName, array('id'=>'wpDestFile','tabindex'=>2) ) .
 				"<tt>" .
 				$encDestName .
 				"</tt>"
@@ -1254,7 +1253,8 @@ wgUploadAutoFill = {$autofill};
 			<tr>
 				<td></td>
 					<td class='mw-input'>
-						<input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\"" . $wgUser->getSkin()->tooltipAndAccesskey( 'upload' ) . " />
+						<input tabindex='9' type='submit' name='wpUpload' value=\"{$ulb}\"" .
+							$wgUser->getSkin()->tooltipAndAccesskey( 'upload' ) . " />
 					</td>
 			</tr>
 			<tr>
