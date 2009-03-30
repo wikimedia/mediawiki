@@ -867,7 +867,8 @@ class Article {
 
 		# Allow a specific header on talk pages, like [[MediaWiki:Talkpagetext]]
 		if( $this->mTitle->isTalkPage() ) {
-			if ( wfMsg( 'talkpageheader' ) != '-' ) {
+			$msg = wfMsgNoTrans( 'talkpageheader' );
+			if ( $msg !== '-' && !wfEmptyMsg( 'talkpageheader', $msg ) ) {
 				$wgOut->wrapWikiMsg( "<div class=\"mw-talkpageheader\">\n$1</div>", array( 'talkpageheader' ) );
 			}
 		}
