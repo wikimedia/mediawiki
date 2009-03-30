@@ -2226,7 +2226,7 @@ $1',
 'specialpages'                   => 'Սպասարկող էջեր',
 'specialpages-note'              => '----
 * Հասարակ հատուկ էջեր։
-* <span class="mw-specialpagerestricted">Սահմանափակված հատուկ էջեր։</span>',
+* <strong class="mw-specialpagerestricted">Սահմանափակված հատուկ էջեր։</strong>',
 'specialpages-group-maintenance' => 'Տեխնիկական սպասարկման տեղեկատուներ',
 'specialpages-group-other'       => 'Այլ հատուկ էջեր',
 'specialpages-group-login'       => 'Մտնել / Գրանցվել',

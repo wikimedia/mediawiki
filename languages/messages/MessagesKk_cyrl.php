@@ -2981,7 +2981,7 @@ $1',
 'specialpages'                   => 'Арнайы беттер',
 'specialpages-note'              => '----
 * Кәдімгі арнайы беттер.
-* <span class="mw-specialpagerestricted">Шектелген арнайы беттер.</span>',
+* <strong class="mw-specialpagerestricted">Шектелген арнайы беттер.</strong>',
 'specialpages-group-maintenance' => 'Баптау баянаттары',
 'specialpages-group-other'       => 'Тағы басқа арнайы беттер',
 'specialpages-group-login'       => 'Кіру / тіркелу',

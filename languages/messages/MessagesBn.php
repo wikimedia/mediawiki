@@ -2281,7 +2281,7 @@ $1',
 'specialpages'                   => 'বিশেষ পাতাসমূহ',
 'specialpages-note'              => '----
 * সাধারণ বিশেষ পাতাসমূহ।
-* <span class="mw-specialpagerestricted">সীমাবদ্ধ বিশেষ পাতাসমূহ।</span>',
+* <strong class="mw-specialpagerestricted">সীমাবদ্ধ বিশেষ পাতাসমূহ।</strong>',
 'specialpages-group-maintenance' => 'রক্ষণাবেক্ষণের কার্যবিবরণীসমূহ',
 'specialpages-group-other'       => 'অন্যান্য বিশেষ পাতাসমূহ',
 'specialpages-group-login'       => 'অ্যাকাউন্টে প্রবেশ',

@@ -2712,7 +2712,7 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:file}}:".',
 'specialpages-note'              => '----
 Katrangan tampilan:
 * Kaca astamèwa normal
-* <span class="mw-specialpagerestricted">Kaca astamèwa winates</span>',
+* <strong class="mw-specialpagerestricted">Kaca astamèwa winates</strong>',
 'specialpages-group-maintenance' => 'Lapuran pangopènan',
 'specialpages-group-other'       => 'Kaca-kaca astaméwa liyané',
 'specialpages-group-login'       => 'Mlebu log / ndaftar',

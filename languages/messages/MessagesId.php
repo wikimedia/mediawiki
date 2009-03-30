@@ -3010,7 +3010,7 @@ Masukkan nama berkas tanpa prefiks "{{ns:file}}:".',
 'specialpages-note'              => '----
 Keterangan tampilan:
 * Halaman istimewa normal
-* <span class="mw-specialpagerestricted">Halaman istimewa terbatas</span>',
+* <strong class="mw-specialpagerestricted">Halaman istimewa terbatas</strong>',
 'specialpages-group-maintenance' => 'Laporan pemeliharaan',
 'specialpages-group-other'       => 'Halaman istimewa lainnya',
 'specialpages-group-login'       => 'Masuk log / mendaftar',

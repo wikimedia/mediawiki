@@ -2789,7 +2789,7 @@ $1',
 'specialpages'                   => 'Адмысловыя старонкі',
 'specialpages-note'              => '----
 * Агульныя адмысловыя старонкі.
-* <span class="mw-specialpagerestricted">Абмежаваныя адмысловыя старонкі.</span>',
+* <strong class="mw-specialpagerestricted">Абмежаваныя адмысловыя старонкі.</strong>',
 'specialpages-group-maintenance' => 'Звесткі аб працы',
 'specialpages-group-other'       => 'Іншыя адмысловыя старонкі',
 'specialpages-group-login'       => 'Прадстаўленне / рэгістрацыя',

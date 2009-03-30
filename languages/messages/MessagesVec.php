@@ -2930,7 +2930,7 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'specialpages'                   => 'Pàxene speciałi',
 'specialpages-note'              => '----
 * Pagine speciali normali.
-* <span class="mw-specialpagerestricted">Pagine speciali ad acesso limità.</span>',
+* <strong class="mw-specialpagerestricted">Pagine speciali ad acesso limità.</strong>',
 'specialpages-group-maintenance' => 'Resoconti de manutenzion',
 'specialpages-group-other'       => 'Altre pagine speciali',
 'specialpages-group-login'       => 'Login / registrazion',

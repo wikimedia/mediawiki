@@ -53,6 +53,8 @@ $messages = array(
 'tog-enotifminoredits'     => 'Ispedimia una missada eletronica fintzas pro is acontzos minores de is pàginas',
 'tog-shownumberswatching'  => 'Amosta su nùmeru de is usuàrios ca funt ponende ogru a sa pàgina',
 'tog-fancysig'             => 'Trata sa firma comente unu testu wiki (chentza cullegamentos automaticos)',
+'tog-watchlisthideown'     => 'Cua is acontzos meos dae sa watclist',
+'tog-showhiddencats'       => 'Amosta is categorias cuadas',
 
 'underline-always' => 'Semper',
 'underline-never'  => 'Mai',
@@ -135,7 +137,7 @@ $messages = array(
 'qbspecialpages' => 'Pàginas ispetziales',
 'mypage'         => 'Sa pàgina mea',
 'mytalk'         => 'Cuntierras meas',
-'navigation'     => 'Navigatzioni',
+'navigation'     => 'Navigadura',
 'and'            => '&#32;e',
 
 # Metadata in edit box
@@ -179,14 +181,14 @@ $messages = array(
 'projectpage'       => 'Castia sa pàgina meta',
 'imagepage'         => 'Castia sa pàgina de su file',
 'categorypage'      => 'Càstia sa categoria',
-'otherlanguages'    => 'Áteras limbas',
+'otherlanguages'    => 'Àteras limbas',
 'redirectedfrom'    => '(Redirect dae $1)',
 'redirectpagesub'   => 'Pàgina de reindiritzamentu',
 'lastmodifiedat'    => 'Ùrtimu acontzu su $1, a is $2.', # $1 date, $2 time
 'viewcount'         => 'Custu artìculu est istadu lìgiu {{PLURAL:$1|borta|$1 bortas}}.',
 'protectedpage'     => 'Pàgina amparada',
 'jumpto'            => 'Bae a:',
-'jumptonavigation'  => 'navigatzioni',
+'jumptonavigation'  => 'navigadura',
 'jumptosearch'      => 'chirca',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -203,6 +205,7 @@ $messages = array(
 'helppage'             => 'Help:Agiudu',
 'mainpage'             => 'Pàgina printzipali',
 'mainpage-description' => 'Pàgina printzipali',
+'policy-url'           => 'Project:Polìtigas',
 'privacy'              => 'Polìtiga pro is datos brivados',
 'privacypage'          => 'Project:Polìtiga pro is datos brivados',
 
@@ -294,12 +297,13 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 'yourname'                => 'Nòmene usuàriu',
 'yourpassword'            => 'Pàssword',
 'yourpasswordagain'       => 'Arripiti sa pàssword',
-'remembermypassword'      => 'Ammenta sa pàssword in custu computer',
+'remembermypassword'      => 'Ammenta sa password in custu elaboradori',
 'login'                   => 'Intra',
 'nav-login-createaccount' => 'Intra / crea account',
 'userlogin'               => 'Intra / crea account',
 'logout'                  => 'Serra sessione',
 'userlogout'              => 'Bessida',
+'nologin'                 => 'Non tenes unu account? $1.',
 'nologinlink'             => 'Crea unu account',
 'createaccount'           => 'Crea account',
 'gotaccountlink'          => 'Intra',
@@ -441,7 +445,7 @@ Legenda: '''({{int:cur}})''' = diferentzias cun sa versioni currenti, '''({{int:
 'history-fieldset-title' => "Isfogia s'istòria",
 'deletedrev'             => '[fuliada]',
 'histfirst'              => 'Prima',
-'histlast'               => 'Úrtima',
+'histlast'               => 'Ùrtima',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 su $2', # user at time
@@ -567,11 +571,14 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'rightslog' => 'Deretos de is usuàrios',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'acontzare custa pàgina',
+'action-edit'          => 'acontzare custa pàgina',
+'action-move'          => 'movi custa pàgina',
+'action-movefile'      => 'movi custu file',
+'action-browsearchive' => 'chirca pàginas fuliadas',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|mudàntzia|mudàntzias}}',
-'recentchanges'                  => 'Úrtimas mudàntzias',
+'recentchanges'                  => 'Ùrtimas mudàntzias',
 'recentchanges-legend'           => 'Possibilidadis subra ùrtimas mudàntzias',
 'recentchanges-feed-description' => 'Custu feed riportada is ùrtimas mudàntzias a is cuntènnidos de su giassu.',
 'rcnote'                         => "Innoe sighendi {{PLURAL:$1|du est s'ùrtima mudàntzia|is ùrtimas '''$1''' mudàntzias}} {{PLURAL:$2|in s'ùrtima die|ne is ùrtimas '''$2''' dies}}; is datos funt agiornaus a  $5, $4.",
@@ -797,8 +804,8 @@ Castia su log $2 pro unu registru de is ùrtimas fuliaduras.',
 Tutti i tempi sono in ora del server.',
 'reverted'              => 'Torrada a sa versioni in antis',
 'deletecomment'         => 'Motivu de sa burradura:',
-'deleteotherreason'     => 'Áteru motivu o motivu agiuntivu:',
-'deletereasonotherlist' => 'Áteru motivu',
+'deleteotherreason'     => 'Àteru motivu o motivu agiuntivu:',
+'deletereasonotherlist' => 'Àteru motivu',
 
 # Rollback
 'rollback'     => 'Annudda is acontzos',
@@ -827,17 +834,22 @@ s'ùrtimu contribudori est s'ùnicu autori de custa pàgina.",
 'protect-cascade'             => 'Ampara totu is pàginas inclùdias in custa (cascading protection)',
 'restriction-type'            => 'Permissu:',
 'restriction-level'           => 'Livellu de restritzioni:',
+'pagesize'                    => '(bytes)',
 
 # Undelete
-'undelete'          => 'Càstia pàginas fuliadas',
-'undeletepage'      => 'Càstia e restaura pàginas fuliadas',
-'undeletepagetext'  => "{{PLURAL:$1|Sa pàgina chi sighit est istada fuliada, ma est ancora in archiviu e podit èssere recuperada|Is pàginas chi sighint sunt istadas fuliadas, ma sunt ancora in archiviu e podint èssere recuperadas}}. S'archiviu podit èssere sbudiau a periodus.",
-'undeleterevisions' => '$1 {{PLURAL:$1|arrevisioni|arrevisionis}} in archìviu',
-'undeletehistory'   => 'Se recuperi questo articolo, tutte le sue revisioni verranno recuperate nella relativa cronologia.
+'undelete'               => 'Càstia pàginas fuliadas',
+'undeletepage'           => 'Càstia e restaura pàginas fuliadas',
+'viewdeletedpage'        => 'Càstia pàginas fuliadas',
+'undeletepagetext'       => "{{PLURAL:$1|Sa pàgina chi sighit est istada fuliada, ma est ancora in archiviu e podit èssere recuperada|Is pàginas chi sighint sunt istadas fuliadas, ma sunt ancora in archiviu e podint èssere recuperadas}}. S'archiviu podit èssere sbudiau a periodus.",
+'undeleterevisions'      => '$1 {{PLURAL:$1|arrevisioni|arrevisionis}} in archìviu',
+'undeletehistory'        => 'Se recuperi questo articolo, tutte le sue revisioni verranno recuperate nella relativa cronologia.
 Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.',
-'undeletebtn'       => 'Ripristina',
-'undeletelink'      => 'càstia/riprìstina',
-'undeletedarticle'  => 'Restaurada "$1"',
+'undeletebtn'            => 'Ripristina',
+'undeletelink'           => 'càstia/riprìstina',
+'undeletecomment'        => 'Cummentu:',
+'undeletedarticle'       => 'Restaurada "$1"',
+'undelete-search-box'    => 'Chirca pàginas fuliadas',
+'undelete-search-submit' => 'Chirca',
 
 # Namespace form on various pages
 'namespace'      => 'Nòmene logu:',
@@ -886,6 +898,7 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 'ipaddress'                => 'Indiritzu IP:',
 'ipadressorusername'       => 'Indiritzu IP o nòmene usuàriu:',
 'ipbreason'                => 'Motivu:',
+'ipbreasonotherlist'       => 'Àteru motivu',
 'ipbsubmit'                => 'Blocca custu usuàriu',
 'ipboptions'               => '2 oras:2 hours,1 die:1 day,3 dies:3 days,1 chida:1 week,2 chidas:2 weeks,1 mese:1 month,3 meses:3 months,6 meses:6 months,1 annu:1 year,infinidu:infinite', # display1:time1,display2:time2,...
 'badipaddress'             => "L'indirizzo IP indicato non è corretto.",

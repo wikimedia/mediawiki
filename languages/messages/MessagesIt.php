@@ -870,7 +870,7 @@ Legenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:la
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
 'rev-deleted-text-unhide'        => "Questa versione della pagina è stata '''cancellata'''.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
-Agli amministratori è ancora consentito [$ visualizzare questa versione] se necessario.",
+Agli amministratori è ancora consentito [$1 visualizzare questa versione] se necessario.",
 'rev-deleted-text-view'          => "Questa versione della pagina è stata '''cancellata'''.
 Gli amministratori possono ancora visualizzarla; consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
 'rev-deleted-no-diff'            => "Non è possibile visualizzare questo diff perché una delle revisioni è stata '''cancellata'''.
@@ -2972,7 +2972,7 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 'specialpages'                   => 'Pagine speciali',
 'specialpages-note'              => '----
 * Pagine speciali non riservate.
-* <span class="mw-specialpagerestricted">Pagine speciali riservate ad alcune categorie di utenti.</span>',
+* <strong class="mw-specialpagerestricted">Pagine speciali riservate ad alcune categorie di utenti.</strong>',
 'specialpages-group-maintenance' => 'Resoconti di manutenzione',
 'specialpages-group-other'       => 'Altre pagine speciali',
 'specialpages-group-login'       => 'Login / registrazione',

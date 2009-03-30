@@ -2776,7 +2776,7 @@ $1',
 'specialpages'                   => 'ప్రత్యేక పేజీలు',
 'specialpages-note'              => '----
 * మామూలు ప్రత్యేక పేజీలు.
-* <span class="mw-specialpagerestricted">నియంత్రిత ప్రత్యేక పేజీలు.</span>',
+* <strong class="mw-specialpagerestricted">నియంత్రిత ప్రత్యేక పేజీలు.</strong>',
 'specialpages-group-maintenance' => 'నిర్వహణా నివేదికలు',
 'specialpages-group-other'       => 'ఇతర ప్రత్యేక పేజీలు',
 'specialpages-group-login'       => 'ప్రవేశించండి / నమోదుచేసుకోండి',

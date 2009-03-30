@@ -3139,7 +3139,7 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'specialpages'                   => 'Specialsidor',
 'specialpages-note'              => '----
 * Normala specialsidor.
-* <span class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</span>',
+* <strong class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</strong>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',
 'specialpages-group-other'       => 'Övriga specialsidor',
 'specialpages-group-login'       => 'Inloggning/registrering',

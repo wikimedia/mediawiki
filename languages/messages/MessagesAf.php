@@ -2447,7 +2447,7 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 'specialpages'                   => 'Spesiale bladsye',
 'specialpages-note'              => '----
 * Normale spesiale bladsye.
-* <span class="mw-specialpagerestricted">Beperkte spesiale bladsye.</span>',
+* <strong class="mw-specialpagerestricted">Beperkte spesiale bladsye.</strong>',
 'specialpages-group-maintenance' => 'Onderhoud verslae',
 'specialpages-group-other'       => 'Ander spesiale bladsye',
 'specialpages-group-login'       => 'Inteken / aansluit',

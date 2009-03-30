@@ -3298,7 +3298,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'specialpages'                   => "Speciale pagina's",
 'specialpages-note'              => '----
 * Normale speciale pagina\'s
-* <span class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</span>',
+* <strong class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</strong>',
 'specialpages-group-maintenance' => 'Onderhoudsrapporten',
 'specialpages-group-other'       => "Overige speciale pagina's",
 'specialpages-group-login'       => 'Aanmelden / registreren',

@@ -3278,7 +3278,7 @@ $1',
 'specialpages'                   => 'صفحات مخصوصه',
 'specialpages-note'              => '----
 * صفحات خاصة عادية.
-* <span class="mw-specialpagerestricted">صفحات خاصة للناس اللى مسموح لهم.</span>',
+* <strong class="mw-specialpagerestricted">صفحات خاصة للناس اللى مسموح لهم.</strong>',
 'specialpages-group-maintenance' => 'تقارير الصيانة',
 'specialpages-group-other'       => 'صفحات خاصه تا نيه',
 'specialpages-group-login'       => 'ادخل / سجل',

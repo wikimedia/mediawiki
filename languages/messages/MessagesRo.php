@@ -2938,7 +2938,7 @@ Introdu numele fişierului fără prefixul "{{ns:file}}:".',
 'specialpages'                   => 'Pagini speciale',
 'specialpages-note'              => '----
 * Pagini speciale normale.
-* <span class="mw-specialpagerestricted">Pagini speciale restricţionate.</span>',
+* <strong class="mw-specialpagerestricted">Pagini speciale restricţionate.</strong>',
 'specialpages-group-maintenance' => 'Întreţinere',
 'specialpages-group-other'       => 'Alte pagini speciale',
 'specialpages-group-login'       => 'Autentificare / Înregistrare',

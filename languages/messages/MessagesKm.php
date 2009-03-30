@@ -2617,7 +2617,7 @@ $5
 'specialpages'                   => 'ទំព័រ​ពិសេស​ៗ',
 'specialpages-note'              => '----
 * ទំព័រពិសេសៗធម្មតាដែលអ្នកប្រើប្រាស់គ្រប់រូបអាចប្រើប្រាស់បាន។
-* <span class="mw-specialpagerestricted">ទំព័រពិសេសៗដែលត្រូវបានដាក់កំហិត អ្នកប្រើប្រាស់ធម្មតាមិនអាចប្រើប្រាស់បាន។</span>',
+* <strong class="mw-specialpagerestricted">ទំព័រពិសេសៗដែលត្រូវបានដាក់កំហិត អ្នកប្រើប្រាស់ធម្មតាមិនអាចប្រើប្រាស់បាន។</strong>',
 'specialpages-group-maintenance' => 'របាយការណ៍នានាអំពីតំហែទាំ',
 'specialpages-group-other'       => 'ទំព័រពិសេសៗផ្សេងៗទៀត',
 'specialpages-group-login'       => 'ឡុកអ៊ីន / ចុះឈ្មោះ',

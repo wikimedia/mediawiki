@@ -2979,7 +2979,7 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 'specialpages'                   => 'Specialieji puslapiai',
 'specialpages-note'              => '----
 * Normalūs specialieji puslapiai.
-* <span class="mw-specialpagerestricted">Apriboti specialieji puslapiai.</span>',
+* <strong class="mw-specialpagerestricted">Apriboti specialieji puslapiai.</strong>',
 'specialpages-group-maintenance' => 'Sistemos palaikymo pranešimai',
 'specialpages-group-other'       => 'Kiti specialieji puslapiai',
 'specialpages-group-login'       => 'Prisijungimas / Registracija',

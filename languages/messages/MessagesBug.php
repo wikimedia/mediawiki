@@ -475,7 +475,7 @@ Eloko peddéï supaya weddiŋi mapalecé?',
 'specialpages'                 => 'Leppa spésiala',
 'specialpages-note'            => '----
 * Leppa spésiala normal
-* <span class="mw-specialpagerestricted">Leppa spésiala terbatas</span>',
+* <strong class="mw-specialpagerestricted">Leppa spésiala terbatas</strong>',
 'specialpages-group-other'     => 'Leppa spésiala laiŋë',
 'specialpages-group-login'     => 'Log attama / mendaftar',
 'specialpages-group-changes'   => 'Pinrana tanappaë sibawa logeë',

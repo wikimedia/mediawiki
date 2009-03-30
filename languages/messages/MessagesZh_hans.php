@@ -1535,7 +1535,7 @@ $2',
 'filedelete-success'          => "'''$1'''已经删除。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''于 $2 $3 的版本已经删除。",
 'filedelete-nofile'           => "'''$1'''不存在。",
-'filedelete-nofile-old'       => "在已指定属性的情况下，这里没有'''$1'''于 $2 $3 的版本。",
+'filedelete-nofile-old'       => "在已指定属性的情况下，这里没有'''$1'''的版本。",
 'filedelete-otherreason'      => '其它／附加的理由:',
 'filedelete-reason-otherlist' => '其它理由',
 'filedelete-reason-dropdown'  => '
@@ -3016,7 +3016,7 @@ $1',
 'specialpages'                   => '特殊页面',
 'specialpages-note'              => '----
 * 标准特殊页面。
-* <span class="mw-specialpagerestricted">有限制的特殊页面。</span>',
+* <strong class="mw-specialpagerestricted">有限制的特殊页面。</strong>',
 'specialpages-group-maintenance' => '维护报告',
 'specialpages-group-other'       => '其它特殊页面',
 'specialpages-group-login'       => '登入／创建',

@@ -3092,7 +3092,7 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
 'specialpages'                   => 'Các trang đặc biệt',
 'specialpages-note'              => '----
 * Trang đặc biệt thông thường.
-* <span class="mw-specialpagerestricted">Trang đặc biệt có hạn chế.</span>',
+* <strong class="mw-specialpagerestricted">Trang đặc biệt có hạn chế.</strong>',
 'specialpages-group-maintenance' => 'Báo cáo bảo quản',
 'specialpages-group-other'       => 'Những trang đặc biệt khác',
 'specialpages-group-login'       => 'Đăng nhập / Mở tài khoản',

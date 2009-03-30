@@ -992,7 +992,7 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu’il y en a maint
 'undo-success' => "Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c'est bien ce que vous voulez faire.",
 'undo-failure' => 'Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.',
 'undo-norev'   => 'La modification n’a pas pu être défaite parce qu’elle est inexistante ou qu’elle a été supprimée.',
-'undo-summary' => 'Annulation des modifications $1 par [[Special:Contributions/$2|$2]] ([[User talk:$2|Discuter]])',
+'undo-summary' => 'Annulation des modifications $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discuter]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Vous ne pouvez pas créer de compte.',
@@ -3240,7 +3240,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'specialpages'                   => 'Pages spéciales',
 'specialpages-note'              => '----
 * Pages spéciales normales.
-* <span class="mw-specialpagerestricted">Pages spéciales restreintes.</span>',
+* <strong class="mw-specialpagerestricted">Pages spéciales restreintes.</strong>',
 'specialpages-group-maintenance' => 'Rapports de maintenance',
 'specialpages-group-other'       => 'Autres pages spéciales',
 'specialpages-group-login'       => 'S’identifier / s’inscrire',

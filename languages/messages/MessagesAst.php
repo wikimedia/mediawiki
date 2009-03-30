@@ -2824,7 +2824,7 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:file}}:".',
 'specialpages'                   => 'Páxines especiales',
 'specialpages-note'              => '----
 * Páxines especiales normales.
-* <span class="mw-specialpagerestricted">Páxines especiales restrinxíes.</span>',
+* <strong class="mw-specialpagerestricted">Páxines especiales restrinxíes.</strong>',
 'specialpages-group-maintenance' => 'Informes de mantenimientu',
 'specialpages-group-other'       => 'Otres páxines especiales',
 'specialpages-group-login'       => 'Entrar / Crear cuenta',

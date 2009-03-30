@@ -3191,7 +3191,7 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 'specialpages'                   => 'Strony specjalne',
 'specialpages-note'              => '----
 * Strony specjalne ogólnie dostępne.
-* <span class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</span>',
+* <strong class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</strong>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
 'specialpages-group-other'       => 'Inne strony specjalne',
 'specialpages-group-login'       => 'Logowanie i rejestracja',

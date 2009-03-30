@@ -212,7 +212,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de usuários a vigiar',
-'tog-fancysig'                => 'Assinaturas sem atalhos automáticos',
+'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem ligação automática)',
 'tog-externaleditor'          => 'Utilizar editor externo por padrão (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
 'tog-externaldiff'            => 'Utilizar diferenças externas por padrão (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
 'tog-showjumplinks'           => 'Activar hiperligações de acessibilidade "ir para"',
@@ -903,13 +903,19 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'            => '(comentário removido)',
 'rev-deleted-user'               => '(nome de usuário removido)',
 'rev-deleted-event'              => '(entrada removida)',
-'rev-deleted-text-permission'    => "Esta revisão desta página foi '''removida dos arquivos públicos'''.
-Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de eliminação].",
-'rev-deleted-text-view'          => "A revisão desta página foi '''removida dos arquivos públicos'''.
-Como um administrador desta wiki pode visualizá-la;
+'rev-deleted-text-permission'    => "Esta revisão desta página foi '''removida'''.
+Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+'rev-deleted-text-unhide'        => "Esta revisão desta página foi '''removida'''.
+Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].
+Como administrador, você ainda pode [$1 ver esta revisão] se desejar continuar.",
+'rev-deleted-text-view'          => "A revisão desta página foi '''removida'''.
+Como administrador desta wiki você pode visualizá-la;
 mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
-'rev-deleted-no-diff'            => "Você não pode ver esta modificação porque uma das revisões foi '''removida dos arquivos públicos'''.
-Pode haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+'rev-deleted-no-diff'            => "Você não pode ver esta modificação porque uma das revisões foi '''removida'''.
+Podem haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+'rev-deleted-unhide-diff'        => "Uma das revisões destas diferenças foi '''removida dos arquivos públicos'''.
+Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Como administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-delundel'                   => 'mostrar/esconder',
 'revisiondelete'                 => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'        => 'Nenhuma revisão selecionada',
@@ -1540,6 +1546,10 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] está disponível.',
 'redirectstofile'           => '{{PLURAL:$1|O seguinte arquivo redireciona|Os seguintes arquivos redirecionam}} para este arquivo:',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte arquivo é duplicado|Os seguintes arquivos são duplicados}} deste arquivo ([[Special:FileDuplicateSearch/$2|mais detalhes]]):',
 'sharedupload'              => 'Este arquivo é do $1 e pode ser usado por outros projetos.',
+'sharedupload-desc-there'   => 'Este arquivo é do $1 e pode ser utilizado por outros projetos.
+Por favor veja a [$2 página de descrição do arquivo] para mais informações.',
+'sharedupload-desc-here'    => 'Este arquivo é do $1 e pode ser utilizado por outros projetos.
+A descrição na sua [$2 página de descrição de arquivo] é exibida abaixo.',
 'noimage'                   => 'Não existe nenhum arquivo com este nome, mas você pode $1.',
 'noimage-linktext'          => 'carregar um',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste arquivo',
@@ -2060,10 +2070,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Para contas novas',
 'sp-contributions-newbies-title' => 'Contribuições de usuários de contas novas',
 'sp-contributions-blocklog'      => 'Registro de bloqueios',
-'sp-contributions-deleted'       => 'Contribuições de usuário eliminadas',
+'sp-contributions-deleted'       => 'contribuições de usuário eliminadas',
 'sp-contributions-logs'          => 'registros',
-'sp-contributions-talk'          => 'Discussão',
-'sp-contributions-userrights'    => 'Gestão de privilégios de usuários',
+'sp-contributions-talk'          => 'disc',
+'sp-contributions-userrights'    => 'gerenciamento de privilégios de utilizadores',
 'sp-contributions-search'        => 'Pesquisar contribuições',
 'sp-contributions-username'      => 'Endereço de IP ou usuário:',
 'sp-contributions-submit'        => 'Pesquisar',
@@ -2114,7 +2124,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipboptions'                      => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'outro',
 'ipbotherreason'                  => 'Outro motivo/motivo adicional:',
-'ipbhidename'                     => 'Ocultar usuário/IP do registro de bloqueios, lista de bloqueios e lista de usuários',
+'ipbhidename'                     => 'Ocultar nome de utilizador em edições e listas',
 'ipbwatchuser'                    => 'Vigiar as páginas de usuários e de discussão deste usuário',
 'ipballowusertalk'                => 'Permitir que este usuário edite sua própria página de discussão mesmo estando bloqueado',
 'ipb-change-block'                => 'Bloquear o usuário novamente com estes parâmetros',
@@ -2173,6 +2183,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'range_block_disabled'            => 'A funcionalidade de bloquear gamas de IPs encontra-se desativada.',
 'ipb_expiry_invalid'              => 'Tempo de expiração inválido.',
 'ipb_expiry_temp'                 => 'Bloqueios com nome de usuário ocultado devem ser permanentes.',
+'ipb_hide_invalid'                => 'Não foi possível suprimir esta conta; ela poderá ter demasiadas edições.',
 'ipb_already_blocked'             => '"$1" já se encontra bloqueado',
 'ipb-needreblock'                 => '== Já se encontra bloqueado ==
 $1 já se encontra bloqueado. Deseja alterar as configurações?',
@@ -3006,7 +3017,7 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'specialpages'                   => 'Páginas especiais',
 'specialpages-note'              => '----
 * Páginas especiais normais.
-* <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
+* <strong class="mw-specialpagerestricted">Páginas especiais restritas.</strong>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registrar-se',

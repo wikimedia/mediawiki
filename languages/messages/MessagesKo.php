@@ -3058,7 +3058,7 @@ $1',
 'specialpages'                   => '특수 문서 목록',
 'specialpages-note'              => '----
 * 일반 특수 문서.
-* <span class="mw-specialpagerestricted">제한된 특수 문서.</span>',
+* <strong class="mw-specialpagerestricted">제한된 특수 문서.</strong>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other'       => '다른 특수문서',
 'specialpages-group-login'       => '로그인 / 등록',

@@ -2823,7 +2823,7 @@ Nziriri lu nomu di lu file senza lu prifissu \"{{ns:file}}:\"",
 'specialpages'                   => 'Pàggini spiciali',
 'specialpages-note'              => '----
 * Pàggini spiciali non risirvati.
-* <span class="mw-specialpagerestricted">Pàggini spiciali risirvati sulu a quarchi catigurìa d\'utenti.</span>',
+* <strong class="mw-specialpagerestricted">Pàggini spiciali risirvati sulu a quarchi catigurìa d\'utenti.</strong>',
 'specialpages-group-maintenance' => 'Resocunti di manutinzioni',
 'specialpages-group-other'       => 'Autri pàggini spiciali',
 'specialpages-group-login'       => 'Trasi / riggìstrazzioni',

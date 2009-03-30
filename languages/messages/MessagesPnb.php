@@ -833,7 +833,7 @@ $messages = array(
 'protect-cascadeon'           => 'اے صفحہ ایس ویلے بچایا گیا کیوجہ اے اونھاں {{PLURAL:$1|page, which has|صفحیاں وچ شامل اے }} جیناں دی کسکیڈنگ حفاظت آن اے۔ 
 
 تسی اس صفحے دا بچاؤ لیول نوں تبدیل کرسکدے او لیکن اے اودھے کسکیڈنگ بچاؤ تے اثر نئیں کریگی۔',
-'protect-default'             => '(اصلی حالت)',
+'protect-default'             => 'ساریاں نوں جان دیو',
 'protect-fallback'            => '"$1" دی اجازت دی لوڑ اے',
 'protect-level-autoconfirmed' => 'غیر تسلیم شدہ ورتن والے نوں روکو',
 'protect-level-sysop'         => 'صرف سائسوپس',

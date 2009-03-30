@@ -2157,7 +2157,7 @@ Prooviq harilikku kaehust.',
 'specialpages'                   => 'Tallitusleheküleq',
 'specialpages-note'              => '----
 * Hariliguq tallitusleheq.
-* <span class="mw-specialpagerestricted">Piiredüq tallitusleheq.</span>',
+* <strong class="mw-specialpagerestricted">Piiredüq tallitusleheq.</strong>',
 'specialpages-group-maintenance' => 'Kõrranpidämisteedüseq',
 'specialpages-group-other'       => 'Muuq tallitusleheq',
 'specialpages-group-login'       => 'Nimega sisseminek / Pruukjanime luuminõ',

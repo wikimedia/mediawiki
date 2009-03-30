@@ -3049,7 +3049,7 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'specialpages'                   => 'Páginas especiales',
 'specialpages-note'              => '----
 * Páginas especiales normales.
-* <span class="mw-specialpagerestricted">Páginas especiales restringidas.</span>',
+* <strong class="mw-specialpagerestricted">Páginas especiales restringidas.</strong>',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',
 'specialpages-group-other'       => 'Otras páginas especiales',
 'specialpages-group-login'       => 'Registrarse / entrar',

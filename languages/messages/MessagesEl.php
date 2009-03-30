@@ -3155,7 +3155,7 @@ $1',
 'specialpages'                   => 'Σελίδες λειτουργιών',
 'specialpages-note'              => '----
 * Κανονικές ειδικές σελίδες.
-* <span class="mw-specialpagerestricted">Περιορισμένες ειδικές σελίδες.</span>',
+* <strong class="mw-specialpagerestricted">Περιορισμένες ειδικές σελίδες.</strong>',
 'specialpages-group-maintenance' => 'Αναφορές συντήρησης',
 'specialpages-group-other'       => 'Άλλες ειδικές σελίδες',
 'specialpages-group-login'       => 'Σύνδεση / δημιουργία λογαριασμού',

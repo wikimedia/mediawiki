@@ -141,7 +141,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Benachrichtigungsmail ou bi chlyne Sytenänderige',
 'tog-enotifrevealaddr'        => 'Dyni E-Mail-Adrässe wird i Benachrichtigungsmails zeigt',
 'tog-shownumberswatching'     => 'Aazahl Benutzer aazeige, wo ne Syten am Aaluege sy (i den Artikelsyte, i de «letschten Änderigen» und i der Beobachtigslischte)',
-'tog-fancysig'                => 'Kei outomatischi Verlinkig vor Signatur uf d Benutzersyte',
+'tog-fancysig'                => 'Signatur as Wikitext behandle (ohni automatischi Vergleichig)',
 'tog-externaleditor'          => 'Externe Editor als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer)',
 'tog-externaldiff'            => 'Externi diff als default',
 'tog-showjumplinks'           => '«Wächsle-zu»-Links ermügleche',
@@ -828,15 +828,18 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'rev-deleted-comment'            => '(Bearbeitigskommentar uusegnuh)',
 'rev-deleted-user'               => '(Benutzername uusegnuh)',
 'rev-deleted-event'              => '(Logbuechaktion uusegnuh)',
-'rev-deleted-text-permission'    => "Die Version isch '''us dr effentlige Archiv glescht''' glescht wore.
+'rev-deleted-text-permission'    => "Die Version isch '''glescht''' wore.
 Information zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
-'rev-deleted-text-view'          => "Die Version isch '''us dr effentlige Archiv glescht''' wore. As Amman chasch si aber alno aaluege uf {{SITENAME}}.
+'rev-deleted-text-unhide'        => "Die Version isch '''glescht''' wore.
+Detail stehn im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
+As Ammann chasch Du [$1 des Gelich aaluege], wänn du witt wytermache.",
+'rev-deleted-text-view'          => "Die Version isch '''glescht''' wore. As Amman chasch si aber alno aaluege.
 Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
-'rev-deleted-no-diff'            => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''us dr effentlige Archiv glescht''' woren isch.
+'rev-deleted-no-diff'            => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''glescht''' woren isch.
 Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
-'rev-deleted-unhide-diff'        => "Eini vu dr Versione isch '''us dr effentlige Archiv glescht''' wore.
+'rev-deleted-unhide-diff'        => "Eini vu dr Versione isch '''glescht''' wore.
 Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
-Wänn Du Ammann bisch uf {{SITENAME}} chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
+Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
 'rev-delundel'                   => 'zeig/versteck',
 'revisiondelete'                 => 'Versione lesche/widerherstelle',
 'revdelete-nooldid-title'        => 'Kei Version aagee',
@@ -1458,6 +1461,8 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 'redirectstofile'           => 'Die {{PLURAL:$1|Datei leitet|$1 Dateie leite}} uf die Datei wyter:',
 'duplicatesoffile'          => 'Die {{PLURAL:$1|Datei isch e Duplikat|$1 Dateie sin Duplikat}} vu däre Datei ([[Special:FileDuplicateSearch/$2|meh Detail]]):',
 'sharedupload'              => 'Die Datei isch vu $1. S cha syy, ass si vu andere Projekt brucht wird.',
+'sharedupload-desc-there'   => 'Die Datei isch vu $1 un derf vu andere Projäkt bruucht wäre. Lueg uf dr [$2 Dateibschryybigssyte] no wytere Informatione.',
+'sharedupload-desc-here'    => 'Die Datei isch vu $1 un derf vu andere Projäkt bruucht wäre. D Bschryybig vu dr [$2 Dateibschryybigssyte] wird unten aazeigt.',
 'noimage'                   => 'Es git kei Datei mit däm Name, aber du chasch se $1.',
 'noimage-linktext'          => 'ufelade',
 'uploadnewversion-linktext' => 'E nöui Version vo dere Datei ufelade',
@@ -1970,7 +1975,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'vo nöji Benützer',
 'sp-contributions-newbies-title' => 'Benutzerbyytreg vu neije Benutzer',
 'sp-contributions-blocklog'      => 'Sperrlogbuech',
-'sp-contributions-deleted'       => 'Gleschti Bytreg',
+'sp-contributions-deleted'       => 'gleschti Bytreg',
 'sp-contributions-logs'          => 'Logbiecher',
 'sp-contributions-talk'          => 'Diskussion',
 'sp-contributions-userrights'    => 'Benutzerrächtsverwaltig',
@@ -2886,7 +2891,7 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'specialpages'                   => 'Spezialsytene',
 'specialpages-note'              => '----
 * D Spezialsyte für alli
-* <span class="mw-specialpagerestricted">d Spezialsyte für d Benutzer mit bsundri Rächt</span>',
+* <strong class="mw-specialpagerestricted">d Spezialsyte für d Benutzer mit bsundri Rächt</strong>',
 'specialpages-group-maintenance' => 'Wartigslischte',
 'specialpages-group-other'       => 'Andri Spezialsyte',
 'specialpages-group-login'       => 'Aamälde',

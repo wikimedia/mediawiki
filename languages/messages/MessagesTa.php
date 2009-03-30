@@ -2402,7 +2402,7 @@ $5
 'specialpages'                   => 'சிறப்புப் பக்கங்கள்',
 'specialpages-note'              => '----
 * சாதாரண சிறப்புப் பக்கங்கள்.
-* <span class="mw-specialpagerestricted">கட்டுப்படுத்தப்பட்ட சிறப்புப் பக்கங்கள்.</span>',
+* <strong class="mw-specialpagerestricted">கட்டுப்படுத்தப்பட்ட சிறப்புப் பக்கங்கள்.</strong>',
 'specialpages-group-maintenance' => 'பராமரிப்பு அறிக்கைகள்',
 'specialpages-group-other'       => 'ஏனைய சிறப்பு பக்கங்கள்',
 'specialpages-group-login'       => 'புகுபதிகை / கணக்கு தொடக்கம்',

@@ -3007,7 +3007,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'specialpages'                   => 'Páginas especiais',
 'specialpages-note'              => '----
 * Páginas especiais normais.
-* <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
+* <strong class="mw-specialpagerestricted">Páginas especiais restritas.</strong>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registar-se',

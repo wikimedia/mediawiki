@@ -3160,7 +3160,7 @@ $1',
 'specialpages'                   => 'Спецстраницы',
 'specialpages-note'              => '----
 * Обычные служебные страницы.
-* <span class="mw-specialpagerestricted">Служебные страницы с ограниченным доступом.</span>',
+* <strong class="mw-specialpagerestricted">Служебные страницы с ограниченным доступом.</strong>',
 'specialpages-group-maintenance' => 'Отчёты технического обслуживания',
 'specialpages-group-other'       => 'Другие служебные страницы',
 'specialpages-group-login'       => 'Представиться / Зарегистрироваться',

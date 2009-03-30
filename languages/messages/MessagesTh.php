@@ -2822,7 +2822,7 @@ $1',
 'specialpages'                   => 'หน้าพิเศษ',
 'specialpages-note'              => '----
 * หน้าพิเศษปกติ
-* <span class="mw-specialpagerestricted">หน้าพิเศษสำหรับผู้ดูแล</span>',
+* <strong class="mw-specialpagerestricted">หน้าพิเศษสำหรับผู้ดูแล</strong>',
 'specialpages-group-maintenance' => 'รายงานการเก็บกวาด',
 'specialpages-group-other'       => 'หน้าพิเศษอื่น ๆ',
 'specialpages-group-login'       => 'ล็อกอิน / สร้างบัญชีผู้ใช้ใหม่',

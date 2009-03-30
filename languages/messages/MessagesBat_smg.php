@@ -1905,7 +1905,7 @@ Tamsta tēpuogi galėt [[Special:Watchlist/raw|redagoutė grīnaji keravuojamu s
 'specialpages'                   => 'Specēlė̅jė poslapē',
 'specialpages-note'              => '----
 * Normalūs specēlė̅jė puslapē.
-* <span class="mw-specialpagerestricted">Apribuotė specēlė̅jė puslapē.</span>',
+* <strong class="mw-specialpagerestricted">Apribuotė specēlė̅jė puslapē.</strong>',
 'specialpages-group-maintenance' => 'Sėstemas palaikīma pranešėmā',
 'specialpages-group-other'       => 'Kėtė specēlė̅jė poslapē',
 'specialpages-group-login'       => 'Prisėjongėms / Registracėjė',

@@ -3007,7 +3007,7 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'specialpages'                   => 'Specialaj paĝoj',
 'specialpages-note'              => '----
 * Normaj specialaj paĝoj.
-* <span class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</span>',
+* <strong class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</strong>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
 'specialpages-group-other'       => 'Aliaj specialaj paĝoj',
 'specialpages-group-login'       => 'Ensaluti / Krei novan konton',

@@ -3237,7 +3237,7 @@ $1',
 'specialpages'                   => 'Специјални страници',
 'specialpages-note'              => '----
 * Нормални специјални страници.
-* <span class="mw-specialpagerestricted">Специјални страници со ограничен пристап.</span>',
+* <strong class="mw-specialpagerestricted">Специјални страници со ограничен пристап.</strong>',
 'specialpages-group-maintenance' => 'Извештаи за одржување на википедија',
 'specialpages-group-other'       => 'Други специјални страници',
 'specialpages-group-login'       => 'Најавување',

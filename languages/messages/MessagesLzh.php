@@ -2438,7 +2438,7 @@ $1',
 'specialpages'                   => '特查',
 'specialpages-note'              => '----
 * 準特查。
-* <span class="mw-specialpagerestricted">限特查。</span>',
+* <strong class="mw-specialpagerestricted">限特查。</strong>',
 'specialpages-group-maintenance' => '護報',
 'specialpages-group-other'       => '它之奇頁',
 'specialpages-group-login'       => '登／增',

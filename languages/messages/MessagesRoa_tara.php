@@ -2480,7 +2480,7 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 'specialpages'                   => 'Pàggene speciele',
 'specialpages-note'              => '----
 * Pàggene speciale normale.
-* <span class="mw-specialpagerestricted">Pàggene speciale cu le restriziune.</span>',
+* <strong class="mw-specialpagerestricted">Pàggene speciale cu le restriziune.</strong>',
 'specialpages-group-maintenance' => "Report d'a manutenzione",
 'specialpages-group-other'       => 'Otre pàggene speciele',
 'specialpages-group-login'       => 'Tràse / Reggistrete',

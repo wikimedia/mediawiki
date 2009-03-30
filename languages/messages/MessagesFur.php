@@ -1490,7 +1490,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'specialpages'                   => 'Pagjinis speciâls',
 'specialpages-note'              => '----
 * Pagjinis speciâls no riservadis.
-* <span class="mw-specialpagerestricted">Pagjinis speciâls a ciertis categoriis di utents.</span>',
+* <strong class="mw-specialpagerestricted">Pagjinis speciâls a ciertis categoriis di utents.</strong>',
 'specialpages-group-maintenance' => 'Rapuarts di manutenzion',
 'specialpages-group-other'       => 'Altris pagjinis speciâls',
 'specialpages-group-login'       => 'Jentrade / regjistrazion',

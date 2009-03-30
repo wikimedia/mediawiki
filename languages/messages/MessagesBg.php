@@ -2926,7 +2926,7 @@ $1',
 'specialpages'                   => 'Специални страници',
 'specialpages-note'              => '----
 * Обикновени специални страници.
-* <span class="mw-specialpagerestricted">Специални страници с ограничения.</span>',
+* <strong class="mw-specialpagerestricted">Специални страници с ограничения.</strong>',
 'specialpages-group-maintenance' => 'Доклади по поддръжката',
 'specialpages-group-other'       => 'Други специални страници',
 'specialpages-group-login'       => 'Влизане / регистриране',

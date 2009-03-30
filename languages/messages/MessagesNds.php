@@ -2985,7 +2985,7 @@ Geev den Dateinaam ahn dat Präfix „{{ns:file}}:“ in.',
 'specialpages'                   => 'Sünnerliche Sieden',
 'specialpages-note'              => '----
 * Normale Spezialsieden
-* <span class="mw-specialpagerestricted">Spezialsieden för Brukers mit mehr Rechten</span>',
+* <strong class="mw-specialpagerestricted">Spezialsieden för Brukers mit mehr Rechten</strong>',
 'specialpages-group-maintenance' => 'Pleeglisten',
 'specialpages-group-other'       => 'Annere Spezialsieden',
 'specialpages-group-login'       => 'Anmellen',

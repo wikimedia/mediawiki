@@ -2272,7 +2272,7 @@ $5
 'specialpages'                   => 'ספּעציעלע זײטן',
 'specialpages-note'              => '----
 * נארמאַלע ספעציעלע בלעטער.
-* <span class="mw-specialpagerestricted">באַגרענעצטע ספעציעלע בלעטער.</span>',
+* <strong class="mw-specialpagerestricted">באַגרענעצטע ספעציעלע בלעטער.</strong>',
 'specialpages-group-maintenance' => 'אויפֿהאַלטונג באַריכטן',
 'specialpages-group-other'       => 'אַנדערע ספעציעלע בלעטער',
 'specialpages-group-login'       => 'ארײַנלאגירן / אײַנשרײַבן',

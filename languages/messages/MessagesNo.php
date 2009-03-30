@@ -2970,7 +2970,7 @@ Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 # Special:SpecialPages
 'specialpages'                   => 'Spesialsider',
 'specialpages-note'              => '----
-* <span class="mw-specialpagerestricted">Markerte spesialsider har begrenset tilgang.</span>',
+* <strong class="mw-specialpagerestricted">Markerte spesialsider har begrenset tilgang.</strong>',
 'specialpages-group-maintenance' => 'Vedlikeholdsrapporter',
 'specialpages-group-other'       => 'Andre spesialsider',
 'specialpages-group-login'       => 'Innlogging / registrering',

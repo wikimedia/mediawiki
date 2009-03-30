@@ -3015,7 +3015,7 @@ $1',
 'specialpages'                   => 'ارنايى بەتتەر',
 'specialpages-note'              => '----
 * كادىمگى ارنايى بەتتەر.
-* <span class="mw-specialpagerestricted">شەكتەلگەن ارنايى بەتتەر.</span>',
+* <strong class="mw-specialpagerestricted">شەكتەلگەن ارنايى بەتتەر.</strong>',
 'specialpages-group-maintenance' => 'باپتاۋ باياناتتارى',
 'specialpages-group-other'       => 'تاعى باسقا ارنايى بەتتەر',
 'specialpages-group-login'       => 'كىرۋ / تىركەلۋ',

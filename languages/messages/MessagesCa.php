@@ -3015,7 +3015,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 'specialpages'                   => 'Pàgines especials',
 'specialpages-note'              => '----
 * Pàgines especials normals.
-* <span class="mw-specialpagerestricted">Pàgines especials restringides.</span>',
+* <strong class="mw-specialpagerestricted">Pàgines especials restringides.</strong>',
 'specialpages-group-maintenance' => 'Informes de manteniment',
 'specialpages-group-other'       => 'Altres pàgines especials',
 'specialpages-group-login'       => 'Inici de sessió / Registre',
