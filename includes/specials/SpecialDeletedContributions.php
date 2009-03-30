@@ -307,7 +307,7 @@ class DeletedContributionsPage extends SpecialPage {
 			}
 			# Other logs link
 			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ),
-				wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl() );
+				wfMsgHtml( 'sp-contributions-logs' ), 'user=' . $nt->getPartialUrl() );
 			# Link to undeleted contributions
 			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Contributions', $nt->getDBkey() ),
 				wfMsgHtml( 'contributions' ) );
