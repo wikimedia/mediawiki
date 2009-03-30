@@ -245,7 +245,7 @@ class QueryPage {
 
 			# Save results into the querycache table on the master
 			if ( count( $vals ) ) {
-				if ( !$dbw->insert( 'querycache', $vals, __METHOD__ ) {
+				if ( !$dbw->insert( 'querycache', $vals, __METHOD__ ) ) {
 					// Set result to false to indicate error
 					$dbr->freeResult( $res );
 					$res = false;
