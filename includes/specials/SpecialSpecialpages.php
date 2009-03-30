@@ -63,7 +63,7 @@ function wfSpecialSpecialpages() {
 			$link = $sk->makeKnownLinkObj( $title , htmlspecialchars( $desc ) );
 			if( $restricted ) {
 				$includesRestrictedPages = true;
-				$wgOut->addHTML( "<li class='mw-specialpages-page mw-specialpagerestricted'>{$link}</li>\n" );
+				$wgOut->addHTML( "<li class='mw-specialpages-page mw-specialpagerestricted'><strong>{$link}</strong></li>\n" );
 			} else {
 				$wgOut->addHTML( "<li>{$link}</li>\n" );
 			}
