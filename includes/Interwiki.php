@@ -17,7 +17,7 @@ class Interwiki {
 
 	protected $mPrefix, $mURL, $mLocal, $mTrans;
 
-	function __construct( $prefix = null, $url = '', $local = 0, $trans = 0 ){
+	function __construct( $prefix = null, $url = '', $local = 0, $trans = 0 ) {
 		$this->mPrefix = $prefix;
 		$this->mURL = $url;
 		$this->mLocal = $local;
@@ -30,7 +30,7 @@ class Interwiki {
 	 * @return bool Whether it exists
 	 * @param $prefix string Interwiki prefix to use
 	 */
-	static public function isValidInterwiki( $prefix ){
+	static public function isValidInterwiki( $prefix ) {
 		$result = self::fetch( $prefix );
 		return (bool)$result;
 	}
@@ -47,7 +47,7 @@ class Interwiki {
 			return null;
 		}
 		$prefix = $wgContLang->lc( $prefix );
-		if( isset( self::$smCache[$prefix] ) ){
+		if( isset( self::$smCache[$prefix] ) ) {
 			return self::$smCache[$prefix];
 		}
 		global $wgInterwikiCache;
@@ -55,11 +55,11 @@ class Interwiki {
 			$iw = Interwiki::getInterwikiCached( $prefix );
 		} else {
 			$iw = Interwiki::load( $prefix );
-			if( !$iw ){
+			if( !$iw ) {
 				$iw = false;
 			}
 		}
-		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
+		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ) {
 			reset( self::$smCache );
 			unset( self::$smCache[ key( self::$smCache ) ] );
 		}
@@ -98,18 +98,18 @@ class Interwiki {
 	 * @param $prefix \type{\string} Database key
 	 * @return \type{\string) The entry
 	 */
-	protected static function getInterwikiCacheEntry( $prefix ){
+	protected static function getInterwikiCacheEntry( $prefix ) {
 		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
 		static $db, $site;
 
 		wfDebug( __METHOD__ . "( $prefix )\n" );
-		if( !$db ){
+		if( !$db ) {
 			$db = dba_open( $wgInterwikiCache, 'r', 'cdb' );
 		}
 		/* Resolve site name */
 		if( $wgInterwikiScopes>=3 && !$site ) {
 			$site = dba_fetch( '__sites:' . wfWikiID(), $db );
-			if ( $site == '' ){
+			if ( $site == '' ) {
 				$site = $wgInterwikiFallbackSite;
 			}
 		}
@@ -141,9 +141,9 @@ class Interwiki {
 		$key = wfMemcKey( 'interwiki', $prefix );
 		$mc = $wgMemc->get( $key );
 		$iw = false;
-		if( $mc && is_array( $mc ) ){ // is_array is hack for old keys
+		if( $mc && is_array( $mc ) ) { // is_array is hack for old keys
 			$iw = Interwiki::loadFromArray( $mc );
-			if( $iw ){
+			if( $iw ) {
 				return $iw;
 			}
 		}
@@ -170,7 +170,7 @@ class Interwiki {
 	 * @static
 	 */
 	protected static function loadFromArray( $mc ) {
-		if( isset( $mc['iw_url'] ) && isset( $mc['iw_local'] ) && isset( $mc['iw_trans'] ) ){
+		if( isset( $mc['iw_url'] ) && isset( $mc['iw_local'] ) && isset( $mc['iw_trans'] ) ) {
 			$iw = new Interwiki();
 			$iw->mURL = $mc['iw_url'];
 			$iw->mLocal = $mc['iw_local'];
@@ -186,19 +186,19 @@ class Interwiki {
 	 * @param $title string What text to put for the article name
 	 * @return string The URL
 	 */
-	function getURL( $title = null ){
+	function getURL( $title = null ) {
 		$url = $this->mURL;
-		if( $title != null ){
+		if( $title != null ) {
 			$url = str_replace( "$1", $title, $url );
 		}
 		return $url;
 	}
 
-	function isLocal(){
+	function isLocal() {
 		return $this->mLocal;
 	}
 
-	function isTranscludable(){
+	function isTranscludable() {
 		return $this->mTrans;
 	}
 
