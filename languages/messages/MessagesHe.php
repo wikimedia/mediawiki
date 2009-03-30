@@ -197,6 +197,7 @@ $magicWords = array(
 	'staticredirect'        => array( 1,    '__הפניה_קבועה__',                     '__STATICREDIRECT__'     ),
 	'protectionlevel'       => array( 1,    'רמת הגנה',                           'PROTECTIONLEVEL'        ),
 	'formatdate'            => array( 0,    'עיצוב תאריך',                         'formatdate', 'dateformat' ),
+	'groupconvert'          => array( 0,    'המרה קבוצתית:',                      'GROUPCONVERT:', 'GC:'   ),
 );
 
 $specialPageAliases = array(
@@ -3266,7 +3267,7 @@ $1',
 'specialpages'                   => 'דפים מיוחדים',
 'specialpages-note'              => '----
 * דפים מיוחדים רגילים.
-* <span class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',
+* <strong class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',
 'specialpages-group-maintenance' => 'דיווחי תחזוקה',
 'specialpages-group-other'       => 'דפים מיוחדים אחרים',
 'specialpages-group-login'       => 'כניסה / הרשמה לחשבון',
