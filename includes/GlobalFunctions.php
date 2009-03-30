@@ -72,6 +72,54 @@ if ( !function_exists( 'mb_strlen' ) ) {
 	}
 }
 
+
+if( !function_exists( 'mb_strpos' ) ) {
+	/**
+	 * Fallback implementation of mb_strpos, hardcoded to UTF-8.
+	 * @param string $haystack
+	 * @param string $needle
+	 * @param string $offset optional start position
+	 * @param string $encoding optional encoding; ignored
+	 * @return int
+	 */
+	function mb_strpos( $haystack, $needle, $offset = 0, $encoding="" ) {
+		$needle = preg_quote( $needle, '/' );
+
+		$ar = array();
+		preg_match( '/'.$needle.'/u', $haystack, $ar, PREG_OFFSET_CAPTURE, $offset );
+
+		if( isset( $ar[0][1] ) ) {
+			return $ar[0][1];
+		} else {
+			return false;
+		}
+	}
+}
+
+if( !function_exists( 'mb_strrpos' ) ) {
+	/**
+	 * Fallback implementation of mb_strrpos, hardcoded to UTF-8.
+	 * @param string $haystack
+	 * @param string $needle
+	 * @param string $offset optional start position
+	 * @param string $encoding optional encoding; ignored
+	 * @return int
+	 */
+	function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = "" ) {
+		$needle = preg_quote( $needle, '/' );
+
+		$ar = array();
+		preg_match_all( '/'.$needle.'/u', $haystack, $ar, PREG_OFFSET_CAPTURE, $offset );
+
+		if( isset( $ar[0] ) && count( $ar[0] ) > 0 && 
+		    isset( $ar[0][count($ar[0])-1][1] ) ) {
+			return $ar[0][count($ar[0])-1][1];
+		} else {
+			return false;
+		} 
+	}
+}
+
 if ( !function_exists( 'array_diff_key' ) ) {
 	/**
 	 * Exists in PHP 5.1.0+
