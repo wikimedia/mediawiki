@@ -3034,7 +3034,7 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'specialpages'                   => 'Özel sayfalar',
 'specialpages-note'              => '----
 * Normal özel sayfalar.
-* <span class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</span>',
+* <strong class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</strong>',
 'specialpages-group-maintenance' => 'Bakım raporları',
 'specialpages-group-other'       => 'Diğer özel sayfalar',
 'specialpages-group-login'       => 'Oturum aç / hesap edin',

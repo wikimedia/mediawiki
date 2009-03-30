@@ -2712,7 +2712,7 @@ Wklepej mjano plika s půmińjyńćym prefiksu „{{ns:file}}:”.',
 'specialpages'                   => 'Szpecjalne zajty',
 'specialpages-note'              => '----
 * Ekstra zajty uogůlńy dostympne.
-* <span class="mw-specialpagerestricted">Ekstra zajty do kerych dostymp je uograńiczůny.</span>',
+* <strong class="mw-specialpagerestricted">Ekstra zajty do kerych dostymp je uograńiczůny.</strong>',
 'specialpages-group-maintenance' => 'Raporty kůnserwacyjne',
 'specialpages-group-other'       => 'Inkše ekstra zajty',
 'specialpages-group-login'       => 'Lůgowańy / rejerowańy',

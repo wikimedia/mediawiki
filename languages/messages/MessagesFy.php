@@ -2407,7 +2407,7 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'specialpages'                   => 'Bysûndere siden',
 'specialpages-note'              => '----
 * Normale bysûndere siden.
-* <span class="mw-specialpagerestricted">Beheinde bysûndere siden.</span>',
+* <strong class="mw-specialpagerestricted">Beheinde bysûndere siden.</strong>',
 'specialpages-group-maintenance' => 'Underhâld siden',
 'specialpages-group-other'       => 'Oare bysûndere siden',
 'specialpages-group-login'       => 'Oanmelde',

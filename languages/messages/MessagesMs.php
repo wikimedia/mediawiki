@@ -2965,7 +2965,7 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'specialpages'                   => 'Laman khas',
 'specialpages-note'              => '----
 * Laman khas biasa.
-* <span class="mw-specialpagerestricted">Laman khas terhad.</span>',
+* <strong class="mw-specialpagerestricted">Laman khas terhad.</strong>',
 'specialpages-group-maintenance' => 'Laporan penyenggaraan',
 'specialpages-group-other'       => 'Laman khas lain',
 'specialpages-group-login'       => 'Log masuk / daftar',

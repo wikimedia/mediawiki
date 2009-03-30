@@ -3105,7 +3105,7 @@ $1',
 'specialpages'                   => 'Спэцыяльныя старонкі',
 'specialpages-note'              => '----
 * Звычайныя спэцыяльныя старонкі.
-* <span class="mw-specialpagerestricted">Спэцыяльныя старонкі з абмежаваным доступам.</span>',
+* <strong class="mw-specialpagerestricted">Спэцыяльныя старонкі з абмежаваным доступам.</strong>',
 'specialpages-group-maintenance' => 'Тэхнічныя справаздачы',
 'specialpages-group-other'       => 'Іншыя спэцыяльныя старонкі',
 'specialpages-group-login'       => 'Уваход / стварэньне рахунку',

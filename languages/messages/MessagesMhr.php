@@ -409,6 +409,8 @@ $messages = array(
 'minoreditletter'                => 'и',
 'newpageletter'                  => 'У',
 'boteditletter'                  => 'б',
+'rc-enhanced-expand'             => 'Тӱткынрак ончыкташ (JavaScript кӱлеш)',
+'rc-enhanced-hide'               => 'Тӱткынрак ончыкташ',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ваш кылдалтше тӧрлатымаш-влак',

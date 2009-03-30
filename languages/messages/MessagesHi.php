@@ -2625,7 +2625,7 @@ $1',
 'specialpages'                   => 'खास पन्नें',
 'specialpages-note'              => '----
 * साधारण विशेष पृष्ठ।
-* <span class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठ।</span>',
+* <strong class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठ।</strong>',
 'specialpages-group-maintenance' => 'अनुरक्षण रिपोर्ट',
 'specialpages-group-other'       => 'अन्य विशेष पृष्ठ',
 'specialpages-group-login'       => 'सत्र प्रारम्भ / हस्ताक्षर करें',

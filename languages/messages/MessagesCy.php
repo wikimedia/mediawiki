@@ -2841,7 +2841,7 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'specialpages'                   => 'Tudalennau arbennig',
 'specialpages-note'              => '----
 * Tudalennau arbennig ar gael i bawb.
-* <span class="mw-specialpagerestricted">Tudalennau arbennig cyfyngedig.</span>',
+* <strong class="mw-specialpagerestricted">Tudalennau arbennig cyfyngedig.</strong>',
 'specialpages-group-maintenance' => 'Adroddiadau cynnal a chadw',
 'specialpages-group-other'       => 'Eraill',
 'specialpages-group-login'       => 'Mewngofnodi / creu cyfrif',

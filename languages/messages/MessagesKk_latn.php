@@ -2975,7 +2975,7 @@ Faýl atawın «{{ns:file}}:» degen bastawışsız engiziñiz.',
 'specialpages'                   => 'Arnaýı better',
 'specialpages-note'              => '----
 * Kädimgi arnaýı better.
-* <span class="mw-specialpagerestricted">Şektelgen arnaýı better.</span>',
+* <strong class="mw-specialpagerestricted">Şektelgen arnaýı better.</strong>',
 'specialpages-group-maintenance' => 'Baptaw bayanattarı',
 'specialpages-group-other'       => 'Tağı basqa arnaýı better',
 'specialpages-group-login'       => 'Kirw / tirkelw',

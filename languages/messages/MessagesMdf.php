@@ -2877,7 +2877,7 @@ $1',
 'specialpages'                   => 'Башка лопат',
 'specialpages-note'              => '----
 * Кърдань башка лопат.
-* <span class="mw-specialpagerestricted">Кардаф башка лопат.</span>',
+* <strong class="mw-specialpagerestricted">Кардаф башка лопат.</strong>',
 'specialpages-group-maintenance' => 'Латцема лувоматне',
 'specialpages-group-other'       => 'Иля башка тевонь лопатне',
 'specialpages-group-login'       => 'Сувамс / сёрматфтомс',

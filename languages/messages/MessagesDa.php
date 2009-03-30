@@ -2936,7 +2936,7 @@ Angiv filnavnet uden "{{ns:file}}:"-præfikset.',
 'specialpages'                   => 'Specialsider',
 'specialpages-note'              => '----
 * Normale specialsider.
-* <span class="mw-specialpagerestricted">Specialsider med begrænset adgang.</span>',
+* <strong class="mw-specialpagerestricted">Specialsider med begrænset adgang.</strong>',
 'specialpages-group-maintenance' => 'Vedligeholdelsesside',
 'specialpages-group-other'       => 'Andre specialsider',
 'specialpages-group-login'       => 'Opret bruger / logon',

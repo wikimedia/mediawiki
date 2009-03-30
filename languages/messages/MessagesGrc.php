@@ -2462,7 +2462,7 @@ $1',
 'specialpages'                   => 'Εἰδικαὶ δέλτοι',
 'specialpages-note'              => '----
 * Κανονικαὶ εἰδικαὶ δέλτοι.
-* <span class="mw-specialpagerestricted">Περιωρισμέναι εἰδικαὶ δἐλτοι.</span>',
+* <strong class="mw-specialpagerestricted">Περιωρισμέναι εἰδικαὶ δἐλτοι.</strong>',
 'specialpages-group-maintenance' => 'Ἀναφοραὶ συντηρήσεως',
 'specialpages-group-other'       => 'Ἕτεραι εἰδικαὶ δέλτοι',
 'specialpages-group-login'       => 'Συνδεῖσθαι / ἐγγράφεσθαι',

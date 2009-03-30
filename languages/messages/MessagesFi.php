@@ -3023,7 +3023,7 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'specialpages'                   => 'Toimintosivut',
 'specialpages-note'              => '----
 * Normaalit toimintosivut.
-* <span class="mw-specialpagerestricted">Rajoitetut toimintosivut.</span>',
+* <strong class="mw-specialpagerestricted">Rajoitetut toimintosivut.</strong>',
 'specialpages-group-maintenance' => 'Ylläpito',
 'specialpages-group-other'       => 'Muut',
 'specialpages-group-login'       => 'Kirjautuminen ja tunnusten luonti',

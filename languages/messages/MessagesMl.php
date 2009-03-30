@@ -2331,7 +2331,7 @@ $5
 'specialpages'                   => 'പ്രത്യേക താളുകള്‍',
 'specialpages-note'              => '----
 * സര്‍‌വോപയോഗ പ്രത്യേക താളുകള്‍.
-* <span class="mw-specialpagerestricted">ഉപയോഗം പരിമിതപ്പെടുത്തിയിരിക്കുന്ന പ്രത്യേക താളുകള്‍.</span>',
+* <strong class="mw-specialpagerestricted">ഉപയോഗം പരിമിതപ്പെടുത്തിയിരിക്കുന്ന പ്രത്യേക താളുകള്‍.</strong>',
 'specialpages-group-maintenance' => 'പരിചരണം വേണ്ടവ',
 'specialpages-group-other'       => 'മറ്റു പ്രത്യേക താളുകള്‍',
 'specialpages-group-login'       => 'ലോഗിന്‍ ചെയ്യുക / അംഗത്വം എടുക്കുക',

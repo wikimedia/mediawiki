@@ -2790,7 +2790,7 @@ $1',
 'specialpages'                   => 'Посебне странице',
 'specialpages-note'              => '----
 * Обичне посебне странице
-* <span class="mw-specialpagerestricted">Заштићене посебне странице.</span>',
+* <strong class="mw-specialpagerestricted">Заштићене посебне странице.</strong>',
 'specialpages-group-maintenance' => 'Извештаји',
 'specialpages-group-other'       => 'Остале посебне странице',
 'specialpages-group-login'       => 'Пријави се / региструј се',

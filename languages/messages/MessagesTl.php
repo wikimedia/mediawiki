@@ -3080,7 +3080,7 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 'specialpages'                   => 'Mga natatanging pahina',
 'specialpages-note'              => '----
 * Karaniwang natatanging pahina.
-* <span class="mw-specialpagerestricted">Mga pinaghihigpitang natatanging pahina.</span>',
+* <strong class="mw-specialpagerestricted">Mga pinaghihigpitang natatanging pahina.</strong>',
 'specialpages-group-maintenance' => 'Mga pagpapanatiling ulat',
 'specialpages-group-other'       => 'Iba pang natatanging mga pahina',
 'specialpages-group-login'       => 'Lumagda/tumala',

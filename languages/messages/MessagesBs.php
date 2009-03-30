@@ -1658,7 +1658,11 @@ Ovdje je dostupan [[Special:WhatLinksHere/$2|potpuni spisak]].',
 'morelinkstoimage'          => 'Vidi [[Special:WhatLinksHere/$1|ostale linkove]] prema ovoj datoteci.',
 'redirectstofile'           => '{{PLURAL:$1|Slijedeća datoteka|Slijedeće $1 datoteke|Slijedećih $1 datoteka}} preusmjerava prema ovoj datoteci:',
 'duplicatesoffile'          => '{{PLURAL:$1|Slijedeća datoteka je dvojnik|Slijedeće $1 datoteke su dvojnici}} ove datoteke ([[Special:FileDuplicateSearch/$2|detaljnije]]):',
-'sharedupload'              => 'Ova datoteka se nalazi na $1 i može se koristiti i na drugim projektima.',
+'sharedupload'              => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.',
+'sharedupload-desc-there'   => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.
+Molimo pogledajte [$2 stranicu opisa datoteke] za ostale informacije.',
+'sharedupload-desc-here'    => 'Ova datoteka je sa $1 i može se koristiti i na drugim projektima.
+Opis sa njene [$2 stranici opisa datoteke] je prikan ispod.',
 'noimage'                   => 'Slika sa ovim imenom ne postoji, ali je možete $1.',
 'noimage-linktext'          => 'postaviti',
 'uploadnewversion-linktext' => 'Postavite noviju verziju ove datoteke',
@@ -3252,7 +3256,7 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'specialpages'                   => 'Posebne stranice',
 'specialpages-note'              => '----
 * Normalne posebne stranice.
-* <span class="mw-specialpagerestricted">Zaštićene posebne stranice.</span>',
+* <strong class="mw-specialpagerestricted">Zaštićene posebne stranice.</strong>',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other'       => 'Ostale posebne stranice',
 'specialpages-group-login'       => 'Prijava / Otvaranje računa',

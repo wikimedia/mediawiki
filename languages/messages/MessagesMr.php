@@ -2603,7 +2603,7 @@ $1',
 'specialpages'                   => 'विशेष पृष्ठे',
 'specialpages-note'              => '----
 * सर्वसाधारण विशेष पृष्ठे.
-* <span class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठे.</span>',
+* <strong class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठे.</strong>',
 'specialpages-group-maintenance' => 'व्यवस्थापन अहवाल',
 'specialpages-group-other'       => 'इतर विशेष पृष्ठे',
 'specialpages-group-login'       => 'प्रवेश / नवीन सदस्य नोंदणी',

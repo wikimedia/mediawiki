@@ -2597,7 +2597,7 @@ Kävutagat normaline ezikacund.',
 'specialpages'                   => 'Specialižed lehtpoled',
 'specialpages-note'              => '----
 * Järgeližed specialižed lehtpoled.
-* <span class="mw-specialpagerestricted">Kaitud specialižed lehtpoled.</span>',
+* <strong class="mw-specialpagerestricted">Kaitud specialižed lehtpoled.</strong>',
 'specialpages-group-maintenance' => 'Tehnižen holitandan satusenladindad',
 'specialpages-group-other'       => 'Toižed specialižed lehtpoled',
 'specialpages-group-login'       => 'Kirjutadas sistemha / Sada registracii',

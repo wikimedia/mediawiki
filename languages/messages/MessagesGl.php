@@ -3076,7 +3076,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 'specialpages'                   => 'Páxinas especiais',
 'specialpages-note'              => '----
 * Páxinas especiais normais.
-* <span class="mw-specialpagerestricted">Páxinas especiais restrinxidas.</span>',
+* <strong class="mw-specialpagerestricted">Páxinas especiais restrinxidas.</strong>',
 'specialpages-group-maintenance' => 'Informes de mantemento',
 'specialpages-group-other'       => 'Outras páxinas especiais',
 'specialpages-group-login'       => 'Rexistro',

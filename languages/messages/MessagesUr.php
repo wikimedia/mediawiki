@@ -554,7 +554,9 @@ latex، dvips، gs کی صحیح تنصیب کی جانچ کرنے کے بعد �
 'userrights'               => 'حقوقِ صارف کی نظامت', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'   => 'گروہائے صارف کا انتظام',
 'userrights-user-editname' => 'کوئی اسم‌صارف داخل کیجئے:',
-'editusergroup'            => 'Edit user groups',
+'editinguser'              => "تبدیلئ حقوق برائے صارف '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-groupsmember'  => 'رکنِ:',
+'userrights-reason'        => 'وجۂ تبدیلی:',
 
 'group-bot-member' => 'خودکار صارف',
 

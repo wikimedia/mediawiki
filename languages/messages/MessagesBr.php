@@ -117,7 +117,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Kas ur postel din, ha pa vije evit kemenn kemmoù dister',
 'tog-enotifrevealaddr'        => "Lakaat ma chomlec'h postel war wel er posteloù kemenn-diwall",
 'tog-shownumberswatching'     => 'Diskouez an niver a lennerien',
-'tog-fancysig'                => 'Sinadurioù diliamm (hep liamm emgefre)',
+'tog-fancysig'                => 'Ober gant ar sinadur evel pa vefe wikitestenn (hep liamm emgefre)',
 'tog-externaleditor'          => "Ober gant ur skridaozer diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se)",
 'tog-externaldiff'            => "Ober gant ur c'heñverier diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se)",
 'tog-showjumplinks'           => 'Gweredekaat al liammoù moned "lammat da"',
@@ -2934,7 +2934,7 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'specialpages'                   => 'Pajennoù dibar',
 'specialpages-note'              => '----
 * Pajennoù dibar boutin.
-* <span class="mw-specialpagerestricted">Pajennoù dibar miret strizh.</span>',
+* <strong class="mw-specialpagerestricted">Pajennoù dibar miret strizh.</strong>',
 'specialpages-group-maintenance' => "Rentaoù-kont trezalc'h",
 'specialpages-group-other'       => 'Pajennoù dibar all',
 'specialpages-group-login'       => 'Em lugañ / en em enrollañ',

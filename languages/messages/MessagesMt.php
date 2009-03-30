@@ -2936,7 +2936,7 @@ Daħħal l-isem tal-fajl mingħajr il-prefiss \"{{ns:file}}:\".",
 'specialpages'                   => 'Paġni speċjali',
 'specialpages-note'              => '----
 * Paġni normali speċjali.
-* <span class="mw-specialpagerestricted">Paġni speċjali limitati.</span>',
+* <strong class="mw-specialpagerestricted">Paġni speċjali limitati.</strong>',
 'specialpages-group-maintenance' => 'Rapporti tal-manteniment',
 'specialpages-group-other'       => 'Paġni speċjali oħrajn',
 'specialpages-group-login'       => 'Idħol / irreġistra',

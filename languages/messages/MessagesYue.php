@@ -2985,7 +2985,7 @@ $1',
 'specialpages'                   => '特別頁',
 'specialpages-note'              => '----
 * 標準特別頁。
-* <span class="mw-specialpagerestricted">有限制嘅特別頁。</span>',
+* <strong class="mw-specialpagerestricted">有限制嘅特別頁。</strong>',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other'       => '其它特別頁',
 'specialpages-group-login'       => '登入／開戶口',

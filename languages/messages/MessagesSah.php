@@ -2874,7 +2874,7 @@ $1',
 'specialpages'                   => 'Анал сирэйдэр',
 'specialpages-note'              => '----
 * Көннөрү анал сирэйдэр.
-* <span class="mw-specialpagerestricted">Киирэргэ хааччахтардаах анал сирэйдэр.</span>',
+* <strong class="mw-specialpagerestricted">Киирэргэ хааччахтардаах анал сирэйдэр.</strong>',
 'specialpages-group-maintenance' => 'Техническэй отчуоттар',
 'specialpages-group-other'       => 'Атын аналлаах сирэйдэр',
 'specialpages-group-login'       => 'Киирии / бэлиэтэнии',

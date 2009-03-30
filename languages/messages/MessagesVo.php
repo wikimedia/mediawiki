@@ -2806,7 +2806,7 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 'specialpages'                   => 'Pads patik',
 'specialpages-note'              => '----
 * Pads patik nomik.
-* <span class="mw-specialpagerestricted">Pads patik pemiedüköl.</span>',
+* <strong class="mw-specialpagerestricted">Pads patik pemiedüköl.</strong>',
 'specialpages-group-maintenance' => 'Nunods tefü kiped',
 'specialpages-group-other'       => 'Pads patik votik',
 'specialpages-group-login'       => 'Nunädön oki / jafön kali',

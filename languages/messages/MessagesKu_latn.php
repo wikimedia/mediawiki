@@ -1700,7 +1700,7 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'specialpages'               => 'Rûpelên taybet',
 'specialpages-note'          => '----
 * Rûpelên taybetî ji her kesan ra
-* <span class="mw-specialpagerestricted">Rûpelên taybetî ji bikarhêneran bi mafên zêdetir ra</span>',
+* <strong class="mw-specialpagerestricted">Rûpelên taybetî ji bikarhêneran bi mafên zêdetir ra</strong>',
 'specialpages-group-other'   => 'Rûpelên taybetî yên din',
 'specialpages-group-login'   => 'Têkevê',
 'specialpages-group-changes' => 'Guherandinên dawî û reşahîyan',

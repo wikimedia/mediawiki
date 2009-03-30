@@ -2926,7 +2926,7 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'specialpages'                   => 'Aparteko orrialdeak',
 'specialpages-note'              => '----
 * Orrialde berezi arruntak.
-* <span class="mw-specialpagerestricted">Mugatutako orrialde bereziak.</span>',
+* <strong class="mw-specialpagerestricted">Mugatutako orrialde bereziak.</strong>',
 'specialpages-group-maintenance' => 'Mantentze-oharrak',
 'specialpages-group-other'       => 'Beste orrialde berezi batzuk',
 'specialpages-group-login'       => 'Sartu / Izena eman',

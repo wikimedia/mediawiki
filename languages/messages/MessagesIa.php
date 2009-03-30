@@ -3097,7 +3097,7 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'specialpages'                   => 'Paginas special',
 'specialpages-note'              => '----
 * Paginas special normal.
-* <span class="mw-specialpagerestricted">Paginas special restringite.</span>',
+* <strong class="mw-specialpagerestricted">Paginas special restringite.</strong>',
 'specialpages-group-maintenance' => 'Reportos de mantenentia',
 'specialpages-group-other'       => 'Altere paginas special',
 'specialpages-group-login'       => 'Aperir session / crear conto',

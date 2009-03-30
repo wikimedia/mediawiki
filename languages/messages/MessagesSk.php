@@ -3055,7 +3055,7 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'specialpages'                   => 'Špeciálne stránky',
 'specialpages-note'              => '----
 * Bežné špeciálne stránky.
-* <span class="mw-specialpagerestricted">Špeciálne stránky s obmedzeným prístupom.</span>',
+* <strong class="mw-specialpagerestricted">Špeciálne stránky s obmedzeným prístupom.</strong>',
 'specialpages-group-maintenance' => 'Údržbové správy',
 'specialpages-group-other'       => 'Iné špeciálne stránky',
 'specialpages-group-login'       => 'Prihlásenie / registrácia',

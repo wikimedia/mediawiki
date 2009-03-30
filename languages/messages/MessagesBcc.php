@@ -3155,7 +3155,7 @@ $1',
 'specialpages'                   => 'حاصین صفحات',
 'specialpages-note'              => '----
 * نرمال صفحات حاص.
-*  <span class="mw-specialpagerestricted">محدودین صفحات حاص.</span>',
+*  <strong class="mw-specialpagerestricted">محدودین صفحات حاص.</strong>',
 'specialpages-group-maintenance' => 'گزارشات دارگ',
 'specialpages-group-other'       => 'دگر حاصین صفحات',
 'specialpages-group-login'       => 'ورود/ثبت نام',

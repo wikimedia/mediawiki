@@ -1448,7 +1448,7 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 'specialpages'                 => 'Nōncuahquīzqui āmatl',
 'specialpages-note'            => '----
 * Nōncuahquīzqui.
-* <span class="mw-specialpagerestricted">Tzacuilic.</span>',
+* <strong class="mw-specialpagerestricted">Tzacuilic.</strong>',
 'specialpages-group-other'     => 'Occequīntīn nōncuahquīzqui zāzaniltin',
 'specialpages-group-login'     => 'Ximocalaqui / ximomachiyōmaca',
 'specialpages-group-changes'   => 'Yancuīc tlapatlaliztli īhuān tlahcuilōlloh',

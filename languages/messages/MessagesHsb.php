@@ -2913,7 +2913,7 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'specialpages'                   => 'Specialne strony',
 'specialpages-note'              => '----
 * Normalne specialne strony.
-* <span class="mw-specialpagerestricted">Specialne strony z wobmjezowanym přistupom</span>',
+* <strong class="mw-specialpagerestricted">Specialne strony z wobmjezowanym přistupom</strong>',
 'specialpages-group-maintenance' => 'Hladanske lisćiny',
 'specialpages-group-other'       => 'Druhe specialne strony',
 'specialpages-group-login'       => 'Přizjewjenje',

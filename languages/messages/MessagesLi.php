@@ -2913,7 +2913,7 @@ Gaef de bestandjsnaam zónger \'t "{{ns:file}}:" veurvoogsel.',
 'specialpages'                   => "Speciaal pagina's",
 'specialpages-note'              => '----
 * Normale speciale pagina\'s
-* <span class="mw-specialpagerestricted">Beperk toegankelijke speciale pagina\'s</span>',
+* <strong class="mw-specialpagerestricted">Beperk toegankelijke speciale pagina\'s</strong>',
 'specialpages-group-maintenance' => 'Óngerhajingsrapporter',
 'specialpages-group-other'       => "Euverige speciaal pazjena's",
 'specialpages-group-login'       => 'Aanmelje / registrere',

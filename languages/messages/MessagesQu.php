@@ -286,7 +286,7 @@ $messages = array(
 'tog-enotifminoredits'        => "P'anqapi uchuy hukchasqamantapas willawaspa e-chaskita kachamuway",
 'tog-enotifrevealaddr'        => 'E-chaski imamaytayta rikuchiy willamuwanayki e-chaskikunapi',
 'tog-shownumberswatching'     => "Rikuchiy hayk'a watiqaq ruraqkuna",
-'tog-fancysig'                => "Mana kikinmanta t'inkichaq silq'uy",
+'tog-fancysig'                => "Silq'uyta wiki qillqa hinata llamk'achiy (mana kikinmanta t'inkichaq silq'uy)",
 'tog-externaleditor'          => "Kikinmanta hawa llamk'apunata llamk'achiy (kamayuqkunallapaq, antañiqiqniykipi sapaq allinkachinakuna kananmi)",
 'tog-externaldiff'            => "Kikinmanta hawa ''diff'' (wakin kay) nisqata llamk'achiy (kamayuqkunallapaq, antañiqiqniykipi sapaq allinkachinakuna kananmi)",
 'tog-showjumplinks'           => "«Chayman phinkiy» aypanalla t'inkikunata saqillay",
@@ -949,14 +949,17 @@ Musuq chaniyuq p'anqakunata [[Special:Search|wikipi maskaykachay]].",
 'rev-deleted-comment'            => '(qullusqa rimapuy)',
 'rev-deleted-user'               => '(qullusqa ruraqpa sutin)',
 'rev-deleted-event'              => "(qullusqa hallch'a)",
-'rev-deleted-text-permission'    => "P'anqamanta kay llamk'apusqaqa '''uyana hallch'akunamanta qullusqam'''.
+'rev-deleted-text-permission'    => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
 Astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
-'rev-deleted-text-view'          => "P'anqamanta kay llamk'apusqaqa '''uyana hallch'akunamanta qullusqam'''.
+'rev-deleted-text-unhide'        => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
+Astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].
+Kamachiq kaspayki kunanraqpas munaspaykiqa, [$1 kay wakin kayta qhawayta] atinkiraqmi.",
+'rev-deleted-text-view'          => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
 Kay wikipi kamachiq kaspaykim rikuyta atinkim;
 astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
-'rev-deleted-no-diff'            => "Kay hukchasqataqa manam rikuyta atinkichu, huk musuqchasqa '''sapsi uyana hallch'akunamanta qichusqa''' kaptinmi.
+'rev-deleted-no-diff'            => "Kay hukchasqataqa manam rikuyta atinkichu, huk musuqchasqa '''qullusqa''' kaptinmi.
 Imaymanacha yuyaykunataqa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.",
-'rev-deleted-unhide-diff'        => "Kay wakin kaypaqqa huk musuqchasqa '''sapsi uyana hallch'akunamanta qichusqam'''.
+'rev-deleted-unhide-diff'        => "Kay wakin kaypaqqa huk musuqchasqa '''qullusqam'''.
 Imaymanacha yuyaykunataqa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.
 Kamachiq kaspayki kunanraqpas munaspaykiqa, [$1 kay wakin kayta qhawayta] atinkiraqmi.",
 'rev-delundel'                   => 'rikuchiy/pakay',
@@ -1575,6 +1578,10 @@ Munaspaykiqa, [[Special:WhatLinksHere/$2|hunt'a sutisuyuta]] qhaway.",
 'redirectstofile'           => "Kay qatiq {{PLURAL:$1|p'anqam|$1 p'anqakunam}} kay willañiqiman pusampun:",
 'duplicatesoffile'          => 'Kay willañiqimanta iskaychasqa {{PLURAL:$1|willañiqim|$1 willañiqikunam}} kay qatiqpi ([[Special:FileDuplicateSearch/$2|astawan willachikuy]]):',
 'sharedupload'              => "Kay p'anqaqa $1 nisqamantam. Huk ruraykamaykunapipas llamk'achinapaq kanman.",
+'sharedupload-desc-there'   => "Kay p'anqaqa $1 nisqamantam. Huk ruraykamaykunapipas llamk'achinapaq kanman.
+Ama hina kaspa, [$2 willañiqi ch'uyanchana p'anqata] qhaway astawan willachikunaykipaq.",
+'sharedupload-desc-here'    => "Kay p'anqaqa $1 nisqamantam. Huk ruraykamaykunapipas llamk'achinapaq kanman.
+[$2 Willañiqi ch'uyanchana p'anqanpi] ch'uyanchaytaqa kay qatiqpim rikunki.",
 'noimage'                   => 'Manam kanchu kay sutiyuq willañiqi, ichataq $1ta atinki.',
 'noimage-linktext'          => 'hukta churkuy',
 'uploadnewversion-linktext' => 'Kay willañiqi ñaqha musuqchasqata churkuy',
@@ -2084,10 +2091,10 @@ $1',
 'sp-contributions-newbies-sub'   => 'Musuqkunapaq',
 'sp-contributions-newbies-title' => "Musuq ruraqkunap llamk'apusqankuna",
 'sp-contributions-blocklog'      => "Hark'ay hallch'asqakuna",
-'sp-contributions-deleted'       => 'Qullusqa ruraqpa hukchasqankuna',
+'sp-contributions-deleted'       => 'qullusqa ruraqpa hukchasqankuna',
 'sp-contributions-logs'          => "hallch'akuna",
 'sp-contributions-talk'          => 'rimanakuy',
-'sp-contributions-userrights'    => 'Ruraqkunata saqillanap allinkachinan',
+'sp-contributions-userrights'    => 'ruraqkunata saqillanap allinkachinan',
 'sp-contributions-search'        => "Llamk'apusqakunata maskay",
 'sp-contributions-username'      => 'IP huchha icha ruraqpa sutin:',
 'sp-contributions-submit'        => 'Maskay',
@@ -3028,7 +3035,7 @@ Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'specialpages'                   => "Sapaq p'anqakuna",
 'specialpages-note'              => '----
 * Sapsipaq sapaq p\'anqakuna.
-* <span class="mw-specialpagerestricted">Sapaqkunallapaq sapaq p\'anqakuna.</span>',
+* <strong class="mw-specialpagerestricted">Sapaqkunallapaq sapaq p\'anqakuna.</strong>',
 'specialpages-group-maintenance' => 'Hatalliy willaykuna',
 'specialpages-group-other'       => "Huk sapaq p'anqakuna",
 'specialpages-group-login'       => 'Yaykuy / rakiqunata kichariy',

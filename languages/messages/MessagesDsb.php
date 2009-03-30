@@ -2944,7 +2944,7 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'specialpages'                   => 'Specialne boki',
 'specialpages-note'              => '----
 * Normalne specialne boki
-* <span class="mw-specialpagerestricted">Specialne boki z wobgranicowanym pśistupom</span>',
+* <strong class="mw-specialpagerestricted">Specialne boki z wobgranicowanym pśistupom</strong>',
 'specialpages-group-maintenance' => 'Wótwardowańske lisćiny',
 'specialpages-group-other'       => 'Druge specialne boki',
 'specialpages-group-login'       => 'Pśizjawjenje',

@@ -1852,7 +1852,7 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 'specialpages'                   => 'Īpašās lapas',
 'specialpages-note'              => '----
 * Normālas īpašās lapas.
-* <span class="mw-specialpagerestricted">Ierobežotas pieejas īpašās lapas.</span>',
+* <strong class="mw-specialpagerestricted">Ierobežotas pieejas īpašās lapas.</strong>',
 'specialpages-group-maintenance' => 'Uzturēšanas atskaites',
 'specialpages-group-other'       => 'Citas īpašās lapas',
 'specialpages-group-changes'     => 'Pēdējās izmaiņas un reģistri',

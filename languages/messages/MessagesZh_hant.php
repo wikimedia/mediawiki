@@ -3006,7 +3006,7 @@ $1',
 'specialpages'                   => '特殊頁面',
 'specialpages-note'              => '----
 * 標準特殊頁面。
-* <span class="mw-specialpagerestricted">有限制的特殊頁面。</span>',
+* <strong class="mw-specialpagerestricted">有限制的特殊頁面。</strong>',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other'       => '其它特殊頁面',
 'specialpages-group-login'       => '登入／創建',

@@ -3122,7 +3122,7 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'specialpages'                   => 'Speciális lapok',
 'specialpages-note'              => '----
 * Mindenki számára elérhető speciális lapok.
-* <span class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</span>',
+* <strong class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</strong>',
 'specialpages-group-maintenance' => 'Állapotjelentések',
 'specialpages-group-other'       => 'További speciális lapok',
 'specialpages-group-login'       => 'Bejelentkezés / fiók létrehozása',

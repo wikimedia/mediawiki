@@ -3190,7 +3190,7 @@ $1',
 'specialpages'                   => 'විශේෂ පිටු',
 'specialpages-note'              => '----
 * සාමාන්‍ය විශේෂ පිටු.
-* <span class="mw-specialpagerestricted">සීමිත විශේෂ පිටු.</span>',
+* <strong class="mw-specialpagerestricted">සීමිත විශේෂ පිටු.</strong>',
 'specialpages-group-maintenance' => 'නඩත්තු වාර්තා',
 'specialpages-group-other'       => 'අනෙකුත් විශේෂ පිටු',
 'specialpages-group-login'       => 'ප්‍රවිෂ්ට වන්න / ගිණුමක් තනන්න',

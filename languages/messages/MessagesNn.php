@@ -949,10 +949,17 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'rev-deleted-comment'            => '(samandraget er fjerna)',
 'rev-deleted-user'               => '(brukarnamnet er fjerna)',
 'rev-deleted-event'              => '(fjerna loggoppføring)',
-'rev-deleted-text-permission'    => "Denne versjonen av sida er '''sletta'''. Det kan ligge detaljar om dette i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
-'rev-deleted-text-view'          => 'Denne versjonen av sida er fjerna frå den offentlege historikken, men du som administrator på {{SITENAME}} kan sjå han. Det kan ligge detaljar om fjerninga i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].',
+'rev-deleted-text-permission'    => "Denne sideversjonen er vorten '''sletta'''. Det finst kan henda detaljar om dette i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-deleted-text-unhide'        => "Denne sideversjonen er vorten '''sletta'''.
+Det finst kan henda detaljar i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Som ein administrator kan du enno [$1 sjå denne versjonen] om du ynskjer å halda fram.",
+'rev-deleted-text-view'          => "Denne sideversjonen er vorten '''sletta'''.
+Som administrator kan du sjå han; det finst kan henda detaljar i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-no-diff'            => "Du kan ikkje sjå denne skilnaden av di ein av versjonane er vorten '''sletta'''. 
 Det finst kan henda detaljar i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-deleted-unhide-diff'        => "Éin av versjonane i denne skilnaden er vorten '''sletta'''.
+Det finst kan henda detaljar i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Som ein administrator kan du enno [$1 sjå skilnaden] om du ynskjer å halda fram.",
 'rev-delundel'                   => 'vis/gøym',
 'revisiondelete'                 => 'Slett/attopprett versjonar',
 'revdelete-nooldid-title'        => 'Ugyldig målversjon',
@@ -1584,6 +1591,10 @@ Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'redirectstofile'           => 'Følgjande {{PLURAL:$1|fil er ei omdirigering|filer er omdirigeringar}} til denne fila:',
 'duplicatesoffile'          => 'Følgjande {{PLURAL:$1|fil er ein dublett|filer er dublettar}} av denne fila ([[Special:FileDuplicateSearch/$2|fleire detaljar]]):',
 'sharedupload'              => 'Denne fila er frå $1 og kan verta brukt av andre prosjekt.',
+'sharedupload-desc-there'   => 'Denne fila er frå $1 og kan verta nytta av andre prosjekt.
+Sjå [$2 filskildringssida] for meir informasjon.',
+'sharedupload-desc-here'    => 'Denne fila er frå $1 og kan verta nytta av andre prosjekt.
+Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'noimage'                   => 'Det finst inga fil med dette namnet, men du kan $1.',
 'noimage-linktext'          => 'laste opp eitt',
 'uploadnewversion-linktext' => 'Last opp ny versjon av denne fila',
@@ -2141,7 +2152,7 @@ $1',
 'ipboptions'                      => '2 timar:2 hours,1 dag:1 day,3 dagar:3 days,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'anna tid',
 'ipbotherreason'                  => 'Anna grunn/tilleggsgrunn:',
-'ipbhidename'                     => 'Gøym brukarnamnet frå blokkeringsloggen, lista over aktive blokkeringar og brukarlista',
+'ipbhidename'                     => 'Gøym brukarnamnet frå endringar og lister',
 'ipbwatchuser'                    => 'Overvak brukarsida og diskusjonssida til brukaren',
 'ipballowusertalk'                => 'La brukaren endre si eiga diskusjonsside under blokkeringa',
 'ipb-change-block'                => 'Blokker brukaren på nytt med desse innstillingane',
@@ -2199,6 +2210,7 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:IPB
 'range_block_disabled'            => 'Funksjonen for blokkering av IP-adresse-seriar er inaktivert på tenaren.',
 'ipb_expiry_invalid'              => 'Ugyldig opphørstid.',
 'ipb_expiry_temp'                 => 'For å skjule brukarnamnet må blokkeringa vere permanent.',
+'ipb_hide_invalid'                => 'Kan ikkje halda nede denne kontoen; han har kan henda for mange endringar.',
 'ipb_already_blocked'             => '«$1» er allereie blokkert',
 'ipb-needreblock'                 => '== Alt blokkert ==
 $1 er alt blokkert. Vil du endre innstillingane?',
@@ -3041,7 +3053,7 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'specialpages'                   => 'Spesialsider',
 'specialpages-note'              => '----
 * Vanlege spesialsider.
-* <span class="mw-specialpagerestricted">Spesialsider med avgrensa tilgang.</span>',
+* <strong class="mw-specialpagerestricted">Spesialsider med avgrensa tilgang.</strong>',
 'specialpages-group-maintenance' => 'Vedlikehaldsrapportar',
 'specialpages-group-other'       => 'Andre spesialsider',
 'specialpages-group-login'       => 'Innlogging / registrering',

@@ -2375,7 +2375,7 @@ Coba ku sawangan normal.',
 'specialpages'                   => 'Kaca husus',
 'specialpages-note'              => '----
 * Kaca husus bisa di buka ku umum.
-* <span class="mw-specialpagerestricted">Cetak kandel kaca husus nu kawates.</span>',
+* <strong class="mw-specialpagerestricted">Cetak kandel kaca husus nu kawates.</strong>',
 'specialpages-group-maintenance' => 'Laporan pigawéeun',
 'specialpages-group-other'       => 'Kaca husus lainna',
 'specialpages-group-login'       => 'Asup log / Nyieun rekening',
