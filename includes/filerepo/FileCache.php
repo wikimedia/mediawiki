@@ -69,8 +69,8 @@ class FileCache {
 	 */
 	function clearFiles( $remove ) {
 		wfDebug( "FileCache clearing data for ".count( $remove )." files\n" );
-		$this->cache = array_diff_keys( $this->cache, $remove );
-		$this->notFound = array_diff_keys( $this->notFound, $remove );
+		$this->cache = array_diff_key( $this->cache, $remove );
+		$this->notFound = array_diff_key( $this->notFound, $remove );
 	}
 
 	/**
@@ -80,7 +80,7 @@ class FileCache {
 	 */
 	function markNotFound( $dbkeys ) {
 		wfDebug( "FileCache marking ".count( $dbkeys )." files as not found\n" );
-		$this->notFound += array_fill_keys( $dbkeys, true );
+		$this->notFound += array_fill_key( $dbkeys, true );
 	}
 
 
