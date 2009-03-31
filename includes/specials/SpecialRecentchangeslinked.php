@@ -76,6 +76,7 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 		$tables = array( 'recentchanges' );
 		$select = array( $dbr->tableName( 'recentchanges' ) . '.*' );
 		$join_conds = array();
+		$query_options = array();
 
 		// left join with watchlist table to highlight watched rows
 		if( $uid = $wgUser->getId() ) {
@@ -84,7 +85,13 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 			$join_conds['watchlist'] = array( 'LEFT JOIN', "wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace" );
 		}
 
-		ChangeTags::modifyDisplayQuery( $tables, $select, $conds, $join_conds, $opts['tagfilter'] );
+		ChangeTags::modifyDisplayQuery( $tables,
+										$select,
+										$conds,
+										$join_conds,
+										$query_options,
+										$opts['tagfilter'],
+										);
 
 		// XXX: parent class does this, should we too?
 		// wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts ) );
@@ -142,7 +149,7 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 				$select, 
 				$conds + $subconds,
 				__METHOD__, 
-				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ),
+				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) + $query_options,
 				$join_conds + array( $link_table => array( 'INNER JOIN', $subjoin ) )
 			);
 		}

@@ -412,8 +412,12 @@ class ContribsPager extends ReverseChronologicalPager {
 			'join_conds' => $join_cond
 		);
 		
-		ChangeTags::modifyDisplayQuery( $queryInfo['tables'], $queryInfo['fields'], $queryInfo['conds'],
-			$queryInfo['join_conds'], $this->tagFilter );
+		ChangeTags::modifyDisplayQuery( $queryInfo['tables'],
+										$queryInfo['fields'],
+										$queryInfo['conds'],
+										$queryInfo['join_conds'],
+										$queryInfo['options'],
+										$this->tagFilter );
 		
 		wfRunHooks( 'ContribsPager::getQueryInfo', array( &$this, &$queryInfo ) );
 		return $queryInfo;

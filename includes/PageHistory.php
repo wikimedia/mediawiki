@@ -579,7 +579,12 @@ class PageHistoryPager extends ReverseChronologicalPager {
 			'options' => array( 'USE INDEX' => array('revision' => 'page_timestamp') ),
 			'join_conds' => array( 'tag_summary' => array( 'LEFT JOIN', 'ts_rev_id=rev_id' ) ),
 		);
-		ChangeTags::modifyDisplayQuery( $queryInfo['tables'], $queryInfo['fields'], $queryInfo['conds'], $queryInfo['join_conds'], $this->tagFilter );
+		ChangeTags::modifyDisplayQuery( $queryInfo['tables'],
+										$queryInfo['fields'],
+										$queryInfo['conds'],
+										$queryInfo['join_conds'],
+										$queryInfo['options'],
+										$this->tagFilter );
 		wfRunHooks( 'PageHistoryPager::getQueryInfo', array( &$this, &$queryInfo ) );
 		return $queryInfo;
 	}

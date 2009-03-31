@@ -651,7 +651,7 @@ class LogPager extends ReverseChronologicalPager {
 		);
 
 		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'],
-			$info['join_conds'], $this->mTagFilter );
+			$info['join_conds'], $info['options'], $this->mTagFilter );
 
 		return $info;
 	}
