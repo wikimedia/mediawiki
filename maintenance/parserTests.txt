@@ -1454,7 +1454,7 @@ Example for such a section: == < ==
 !! input
 [[%23%3c]][[%23%3e]]
 !! result
-<p><a href="#.3C" title="">#&lt;</a><a href="#.3E" title="">#&gt;</a>
+<p><a href="#.3C">#&lt;</a><a href="#.3E">#&gt;</a>
 </p>
 !! end
 
@@ -4662,7 +4662,7 @@ Sanitizer: Escaping of spaces, multibyte characters, colons & other stuff in id=
 !! input
 <span id="æ: v">byte</span>[[#æ: v|backlink]]
 !! result
-<p><span id=".C3.A6:_v">byte</span><a href="#.C3.A6:_v" title="">backlink</a>
+<p><span id=".C3.A6:_v">byte</span><a href="#.C3.A6:_v">backlink</a>
 </p>
 !! end
 

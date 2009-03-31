@@ -291,7 +291,10 @@ class Linker {
 		}
 
 		# Get a default title attribute.
-		if( in_array( 'known', $options ) ) {
+		if( $target->getPrefixedText() == '' ) {
+			# A link like [[#Foo]].  This used to mean an empty title
+			# attribute, but that's silly.  Just don't output a title.
+		} elseif( in_array( 'known', $options ) ) {
 			$defaults['title'] = $target->getPrefixedText();
 		} else {
 			$defaults['title'] = wfMsg( 'red-link-title', $target->getPrefixedText() );

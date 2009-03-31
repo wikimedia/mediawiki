@@ -313,6 +313,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   with <strong> tags, helps with text-based browsers
 * (bug 18259) Special:DeletedContributions now also uses
   MediaWiki:Sp-contributions-logs for the link to Special:Log
+* Don't add empty title="" attributes to links to anchors on the current page
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
