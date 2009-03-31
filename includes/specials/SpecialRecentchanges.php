@@ -306,7 +306,7 @@ class SpecialRecentChanges extends SpecialPage {
 		// Is there either one namespace selected or excluded?
 		// Tag filtering also has a better index.
 		// Also, if this is "all" or main namespace, just use timestamp index.
-		if( is_null($namespace) || $invert || $namespace == NS_MAIN || $opts['tagfilter'] ) {
+		if( is_null($namespace) || $invert || $opts['tagfilter'] ) {
 			$res = $dbr->select( $tables, '*', $conds, __METHOD__,
 				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) +
 				$query_options,
