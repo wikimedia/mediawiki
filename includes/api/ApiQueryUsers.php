@@ -145,6 +145,8 @@ if (!defined('MEDIAWIKI')) {
 				}
 				if(isset($this->prop['emailable']) && $user->canReceiveEmail())
 					$data[$name]['emailable'] = '';
+				if(isset($this->prop['gender']))
+					$data[$name]['gender'] = $user->getOption( 'gender' );
 				if(!is_null($params['token']))
 				{
 					$tokenFunctions = $this->getTokenFunctions();
@@ -191,6 +193,7 @@ if (!defined('MEDIAWIKI')) {
 					'editcount',
 					'registration',
 					'emailable',
+					'gender',
 				)
 			),
 			'users' => array(
@@ -212,6 +215,7 @@ if (!defined('MEDIAWIKI')) {
 				'  editcount    - adds the user\'s edit count',
 				'  registration - adds the user\'s registration timestamp',
 				'  emailable    - tags if the user can and wants to receive e-mail through [[Special:Emailuser]]',
+				'  gender       - tags the gender of the user. Returns "male", "female", or "unknown"',
 			),
 			'users' => 'A list of users to obtain the same information for',
 			'token' => 'Which tokens to obtain for each user',
@@ -223,7 +227,7 @@ if (!defined('MEDIAWIKI')) {
 	}
 
 	protected function getExamples() {
-		return 'api.php?action=query&list=users&ususers=brion|TimStarling&usprop=groups|editcount';
+		return 'api.php?action=query&list=users&ususers=brion|TimStarling&usprop=groups|editcount|gender';
 	}
 
 	public function getVersion() {
