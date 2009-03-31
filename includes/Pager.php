@@ -468,6 +468,7 @@ abstract class IndexPager implements Pager {
 	 *    fields => Field(s) for passing to Database::select(), may be *
 	 *    conds => WHERE conditions
 	 *    options => option array
+	 *    join_conds => JOIN conditions
 	 */
 	abstract function getQueryInfo();
 
