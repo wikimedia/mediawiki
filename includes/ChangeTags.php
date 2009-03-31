@@ -90,7 +90,8 @@ class ChangeTags {
 	 * Handles selecting tags, and filtering.
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
 	*/
-	static function modifyDisplayQuery( &$tables, &$fields,  &$conds, &$join_conds, $filter_tag = false ) {
+	static function modifyDisplayQuery( &$tables, &$fields,  &$conds,
+										&$join_conds, &$options, $filter_tag = false ) {
 		global $wgRequest, $wgUseTagFilter;
 		
 		if ($filter_tag === false) {
@@ -118,6 +119,9 @@ class ChangeTags {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 
+			// FORCE INDEX -- change_tags will almost ALWAYS be the correct query plan.
+			$options['USE INDEX'] = array( 'change_tag' => 'change_tag_tag_id' );
+			unset( $options['FORCE INDEX'] );
 			$tables[] = 'change_tag';
 			$join_conds['change_tag'] = array( 'INNER JOIN', "ct_$join_cond=$join_cond" );
 			$conds['ct_tag'] = $filter_tag;

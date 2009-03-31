@@ -270,6 +270,7 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$tables = array( 'recentchanges' );
 		$join_conds = array();
+		$query_options = array( 'USE INDEX' => array('recentchanges' => 'rc_timestamp') );
 
 		$uid = $wgUser->getId();
 		$dbr = wfGetDB( DB_SLAVE );
@@ -290,17 +291,25 @@ class SpecialRecentChanges extends SpecialPage {
 			$join_conds['page'] = array('LEFT JOIN', 'rc_cur_id=page_id');
 		}
 		// Tag stuff.
-		$fields = array(); // Fields are * in this case, so let the function modify an empty array to keep it happy.
-		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $opts['tagfilter'] );
+		$fields = array();
+		// Fields are * in this case, so let the function modify an empty array to keep it happy.
+		ChangeTags::modifyDisplayQuery( $tables,
+										$fields,
+										$conds,
+										$join_conds,
+										$query_options,
+										$opts['tagfilter']
+									);
 
 		wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts ) );
 
 		// Is there either one namespace selected or excluded?
+		// Tag filtering also has a better index.
 		// Also, if this is "all" or main namespace, just use timestamp index.
-		if( is_null($namespace) || $invert || $namespace == NS_MAIN ) {
+		if( is_null($namespace) || $invert || $namespace == NS_MAIN || $opts['tagfilter'] ) {
 			$res = $dbr->select( $tables, '*', $conds, __METHOD__,
-				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit,
-					'USE INDEX' => array('recentchanges' => 'rc_timestamp') ),
+				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ) +
+				$query_options,
 				$join_conds );
 		// We have a new_namespace_time index! UNION over new=(0,1) and sort result set!
 		} else {
