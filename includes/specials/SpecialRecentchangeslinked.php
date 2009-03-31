@@ -85,13 +85,8 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 			$join_conds['watchlist'] = array( 'LEFT JOIN', "wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace" );
 		}
 
-		ChangeTags::modifyDisplayQuery( $tables,
-										$select,
-										$conds,
-										$join_conds,
-										$query_options,
-										$opts['tagfilter'],
-										);
+		ChangeTags::modifyDisplayQuery( $tables, $select, $conds, $join_conds,
+			$query_options, $opts['tagfilter'] );
 
 		// XXX: parent class does this, should we too?
 		// wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts ) );
