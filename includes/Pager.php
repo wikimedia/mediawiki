@@ -746,7 +746,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	function formatRow( $row ) {
-		$rowClass = $this->getRowClass( $row );
+		$rowClass = htmlspecialchars( $this->getRowClass( $row ) );
 		$s = "<tr class=\"$rowClass\">\n";
 		$fieldNames = $this->getFieldNames();
 		$this->mCurrentRow = $row;  # In case formatValue needs to know
@@ -763,6 +763,10 @@ abstract class TablePager extends IndexPager {
 		return $s;
 	}
 
+	/**
+	 * Get a class name to be applied to the given row.
+	 * @param object $row The database result row
+	 */
 	function getRowClass($row) {
 		return '';
 	}
