@@ -150,13 +150,24 @@ class IP {
    		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
        	return $ip_oct;
 	}
+
+	/**
+	 * Convert an IPv4 or IPv6 hexadecimal representation back to readable format
+	 */
+	public static function formatHex( $hex ) {
+		if ( substr( $hex, 0, 3 ) == 'v6-' ) {
+			return self::hexToOctet( $hex );
+		} else {
+			return self::hexToQuad( $hex );
+		}
+	}
 	
 	/**
 	 * Given a hexadecimal number, returns to an IPv6 address in octet notation
 	 * @param $ip string hex IP
 	 * @return string
 	 */
-	public static function HextoOctet( $ip_hex ) {
+	public static function hextoOctet( $ip_hex ) {
    		// Convert to padded uppercase hex
    		$ip_hex = str_pad( strtoupper($ip_hex), 32, '0');
    		// Separate into 8 octets
@@ -176,14 +187,14 @@ class IP {
 	 */ 
 	public static function hexToQuad( $ip ) {
 		// Converts a hexadecimal IP to nnn.nnn.nnn.nnn format
-		$dec = wfBaseConvert( $ip, 16, 10 );
-		$parts[3] = $dec % 256;
-		$dec /= 256;
-		$parts[2] = $dec % 256;
-		$dec /= 256;
-		$parts[1] = $dec % 256;
-		$parts[0] = $dec / 256;
-		return implode( '.', array_reverse( $parts ) );
+		$s = '';
+		for ( $i = 0; $i < 4; $i++ ) {
+			if ( $s !== '' ) {
+				$s .= '.';
+			}
+			$s .= base_convert( substr( $ip, $i * 2, 2 ), 16, 10 );
+		}
+		return $s;
 	}
 
 	/**
