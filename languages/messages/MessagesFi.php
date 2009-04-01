@@ -1828,7 +1828,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'emailpage'        => 'Lähetä sähköpostia käyttäjälle',
 'emailpagetext'    => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror'  => 'Postitus palautti virheen:',
-'defemailsubject'  => '{{SITENAME}}-sähköposti',
+'defemailsubject'  => 'Sähköpostia sivustolta {{SITENAME}}',
 'noemailtitle'     => 'Ei sähköpostiosoitetta',
 'noemailtext'      => 'Tämä käyttäjä ei ole määritellyt kelvollista sähköpostiosoitetta.',
 'nowikiemailtitle' => 'Sähköpostin lähettäminen ei sallittu',

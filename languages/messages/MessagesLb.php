@@ -2174,6 +2174,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'movelogpage'                  => 'Réckellëscht',
 'movelogpagetext'              => 'Dëst ass eng Lëscht vun alle geréckelte Säiten.',
 'movesubpage'                  => 'Ënnersäiten',
+'movesubpagetext'              => 'Dës Säit huet $1 {{PLURAL:$1|Ënnersäit|Ënnersäiten}} déi hei ënnendrënner stinn.',
 'movenosubpage'                => 'Dës Säit huet keng Ënnersäiten.',
 'movereason'                   => 'Grond:',
 'revertmove'                   => 'zréck réckelen',

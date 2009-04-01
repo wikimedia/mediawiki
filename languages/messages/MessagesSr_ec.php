@@ -7,6 +7,7 @@
  * @author Kale
  * @author Meno25
  * @author Millosh
+ * @author Nikola Smolenski
  * @author Red Baron
  * @author Sasa Stefanovic
  * @author Slaven Kosanovic
@@ -848,7 +849,7 @@ $2',
 Требало би да размотрите да ли је прикладно да наставите са уређивањем ове странице.
 Дневник брисања ове стране је приказан овде:",
 'deletelog-fulllog'                => 'Погледај целу историју',
-'edit-conflict'                    => 'Конфликт измена',
+'edit-conflict'                    => 'Сукоб измена',
 'edit-already-exists'              => 'Неможе се направити нова страница.
 Она већ постоји.',
 

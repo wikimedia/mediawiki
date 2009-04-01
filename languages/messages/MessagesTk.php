@@ -375,53 +375,123 @@ Görkezilen sebäp: ''$2''.",
 'virus-unknownscanner' => 'nätanyş antiwirus:',
 
 # Login and logout pages
-'logouttext'              => "'''Sessiýany ýapdyňyz.'''
+'logouttext'                 => "'''Sessiýany ýapdyňyz.'''
 Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen [[Special:UserLogin|sessiýany ýaňadan]] açyp bilersiňiz. Web brauzeriňiziň keşini arassalaýançaňyz käbir sahypalar sessiýaňyzyň açyk wagtkysy ýaly görünip biler.",
-'welcomecreation'         => '== Hoşgeldiňiz, $1! ==
+'welcomecreation'            => '== Hoşgeldiňiz, $1! ==
 
 Hasabyňyz açyldy.  
 [[Special:Preferences|{{SITENAME}} saýtyndaky sazlamalaryňyzy]] üýtgetmegi ýatdan çykarmaň.',
-'loginpagetitle'          => 'Sessiýa aç',
-'yourname'                => 'Ulanyjy adyňyz:',
-'yourpassword'            => 'Parolyňyz:',
-'yourpasswordagain'       => 'Paroly gaýtadan ýaz:',
-'remembermypassword'      => 'Parolymy ýatda sakla',
-'yourdomainname'          => 'Siziň domeniňiz:',
-'externaldberror'         => 'Ýa tassyklama maglumat bazasynyň säwligi bar ýa-da öz ulanyjy hasabyňyzy täzelemegiňize rugsat berilmeýär.',
-'login'                   => 'Sessiýa aç',
-'nav-login-createaccount' => 'Sessiýa aç / täze hasap edin',
-'loginprompt'             => '{{SITENAME}} saýtynda sessiýa açmak üçin kukileri işletmegiňiz zerurdyr.',
-'userlogin'               => 'Sessiýa aç / täze hasap edin',
-'logout'                  => 'Sessiýany ýap',
-'userlogout'              => 'Sessiýany ýap',
-'notloggedin'             => 'Sessiýa açyk däl',
-'nologin'                 => 'Siziň heniz hasabyňyz ýokmy? $1',
-'nologinlink'             => 'Onda özüňize bir hasap ediniň',
-'createaccount'           => 'Täze hasap aç',
-'gotaccount'              => 'Eýýäm hasap açdyňyzmy? $1.',
-'gotaccountlink'          => 'Onda giriberiň!',
-'createaccountmail'       => 'e-poçta bilen',
-'youremail'               => 'E-poçta:',
-'username'                => 'Ulanyjy ady:',
-'yourlanguage'            => 'Interfeýs dili:',
-'yournick'                => 'Lakamyňyz (gol hökmünde):',
-'yourgender'              => 'Jyns:',
-'gender-unknown'          => 'Görkezilmedik',
-'gender-male'             => 'Erkek',
-'gender-female'           => 'Aýal-gyz',
-'loginsuccesstitle'       => 'Sessiýa açyldy',
-'mailmypassword'          => 'Maňa e-poçta bilen täze parol iber',
-'loginlanguagelabel'      => 'Dil: $1',
+'loginpagetitle'             => 'Sessiýa aç',
+'yourname'                   => 'Ulanyjy adyňyz:',
+'yourpassword'               => 'Parolyňyz:',
+'yourpasswordagain'          => 'Paroly gaýtadan ýaz:',
+'remembermypassword'         => 'Parolymy ýatda sakla',
+'yourdomainname'             => 'Siziň domeniňiz:',
+'externaldberror'            => 'Ýa tassyklama maglumat bazasynyň säwligi bar ýa-da öz ulanyjy hasabyňyzy täzelemegiňize rugsat berilmeýär.',
+'login'                      => 'Sessiýa aç',
+'nav-login-createaccount'    => 'Sessiýa aç / täze hasap edin',
+'loginprompt'                => '{{SITENAME}} saýtynda sessiýa açmak üçin kukileri işletmegiňiz zerurdyr.',
+'userlogin'                  => 'Sessiýa aç / täze hasap edin',
+'logout'                     => 'Sessiýany ýap',
+'userlogout'                 => 'Sessiýany ýap',
+'notloggedin'                => 'Sessiýa açyk däl',
+'nologin'                    => 'Siziň heniz hasabyňyz ýokmy? $1',
+'nologinlink'                => 'Onda özüňize bir hasap ediniň',
+'createaccount'              => 'Täze hasap aç',
+'gotaccount'                 => 'Eýýäm hasap açdyňyzmy? $1.',
+'gotaccountlink'             => 'Onda giriberiň!',
+'createaccountmail'          => 'e-poçta bilen',
+'badretype'                  => 'Girizen parollaryňyz biri-birine gabat gelmeýär.',
+'userexists'                 => 'Girizen ulanyjy adyňyz ulanylýar. 
+Başga bir at saýlamagyňyzy haýyş edýäris.',
+'youremail'                  => 'E-poçta:',
+'username'                   => 'Ulanyjy ady:',
+'uid'                        => 'Ulanyjy belgisi:',
+'prefs-memberingroups'       => '{{PLURAL:$1|toparyň|toparyň}} agzasy:',
+'yourrealname'               => 'Hakyky adyňyz:',
+'yourlanguage'               => 'Interfeýs dili:',
+'yournick'                   => 'Lakamyňyz (gol hökmünde):',
+'badsig'                     => 'Nädogry işlenmedik gol. HTML tegleri gözden geçiriň.',
+'badsiglength'               => 'Goluňyz çakdanaşa uzyn.
+$1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
+'yourgender'                 => 'Jyns:',
+'gender-unknown'             => 'Görkezilmedik',
+'gender-male'                => 'Erkek',
+'gender-female'              => 'Aýal-gyz',
+'prefs-help-gender'          => 'Hökmany däl: programma tarapyndan ulanyjynyň jynsyna görä ýüzlenmek üçin ulanylýar. Bu maglumat köpçülige açyk boljakdyr.',
+'email'                      => 'E-poçta',
+'prefs-help-realname'        => 'Hakyky at (hökmany däl): eger hakyky adyňyz berseňiz, onda eden işleriňiz görkezilende ulanyljakdyr.',
+'loginerror'                 => 'Sessiýa açyş säwligi',
+'prefs-help-email'           => 'E-poçta adresi hökmany däl; ýöne parolyňyz ýadyňyzdan çykan ýagdaýynda e-poçta adresiňize täze parol iberilmegine mümkinçilik berýär.
+Şeýle-de ol başga ulanyjylaryň ulanyjy we pikir alyşma sahypalaryňyzyň üsti bilen kimdigiňizi bilmezden siziň bilen habarlaşyp bilmeklerine şert döredýär.',
+'prefs-help-email-required'  => 'E-poçta adresi talap edilýär.',
+'nocookiesnew'               => 'Ulanyjy hasaby döredildi, ýöne sessiýa açmadyňyz.
+{{SITENAME}} sessiýa açmak üçin kukilerden peýdalanýar.
+Kukileriňiz togtadylgy dur.
+Olary işletmegiňizi, soňra bolsa täze ulanyjy adyňyz we parolyňyz bilen sessiýa açmagyňyzy haýyş edýäris.',
+'nocookieslogin'             => '{{SITENAME}} sessiýa açmak üçin kukilerden peýdalanýar.
+Siziň kukileriňiz togtadylgy dur.
+Olary işletmegiňizi we gaýtadan synanyşyp görmegiňizi haýyş edýäris.',
+'noname'                     => 'Dogry bir ulanyjy adyny görkezmediňiz.',
+'loginsuccesstitle'          => 'Sessiýa açyldy',
+'loginsuccess'               => "'''{{SITENAME}} saýtynda \"\$1\" ulanyjy ady bilen sessiýa açdyňyz.'''",
+'nosuchuser'                 => '"$1" diýen at bilen ulanyjy ýok.
+Ulanyjy atlary baş hem-de setir harplara duýgurdyr.
+Ýazylyşyny barlaň ýa-da [[Special:UserLogin/signup|täze hasap açyň]].',
+'nosuchusershort'            => '"<nowiki>$1</nowiki>" dýen at bilen ulanyjy ýok. Ýazylyşyny barlaň.',
+'nouserspecified'            => 'Ulanyjy adyny görkezmegiňiz hökmanydyr.',
+'wrongpassword'              => 'Paroly nädogry girizdiňiz. Gaýtadan synanyşmagyňyzy haýyş edýäris.',
+'wrongpasswordempty'         => 'Paroly boş girizdiňiz. Gaýtadan synanyşmagyňyzy haýyş edýäris.',
+'passwordtooshort'           => 'Parolyňyz nädogry ýa-da çakdanaşa gysga.
+Parol iň bolmanda {{PLURAL:$1|1 simwoldan|$1 simwoldan}} ybarat hem-de ulanyjy adyňyzdan tapawutly bolmalydyr.',
+'mailmypassword'             => 'Maňa e-poçta bilen täze parol iber',
+'passwordremindertitle'      => '{{SITENAME}} üçin täze wagtlaýyn parol',
+'passwordremindertext'       => 'Kimdir biri (ähtimal özüňiz $1 IP adresinden) {{SITENAME}} ($4) üçin täze parol iberilmegini talap etdi. "$2" ulanyjysy üçin wagtlaýynça "$3" paroly döredildi. Eger bu siziň öz talabyňyz bolsa, onda sessiýa açyp, bir täze parol saýlap almagyňyz zerurdyr. Wagtlaýyn parolyňyzyň möhleti {{PLURAL:$5|1 günden|$5 günden}} gutarjakdyr.
+
+Parol üýtgetmekligi siz talap etmedik bolsaňyz ýa-da parolyňyz ýadyňyza düşen bolsa hem-de indi parolyňyzy üýtgedesiňiz gelmeýän bolsa, onda bu habarlaşyga ähmiýet bermän öňki parolyňyzy ulanmaklygy dowam etdirip bilersiňiz.',
+'noemail'                    => '"$1" atly ulanyjynyň hasabynda duran hiç hili e-poçta adresi ýok.',
+'passwordsent'               => '"$1" ulanyjysynyň hasabynda duran e-poçta adresine täze parol iberildi. Paroly alanyňyzdan soňra sessiýany ýaňadan açmagyňyzy haýyş edýäris.',
+'blocked-mailpassword'       => 'IP adresiňiz blokirlenipdir, şonuň üçinem parol dikeldiş funksiýasyny ulanmaklyga rugsat berilmeýär.',
+'eauthentsent'               => 'Görkezilen adrese tassyklama e-poçtasy iberildi.
+E-poçtadaky görkezmeleri berjaý edip, adresiň özüňize degişlidigini tassyklaýançaňyz, başga e-poçta iberiljek däldir.',
+'throttled-mailpassword'     => 'Parol ýatladyjy soňky {{PLURAL:$1|bir sagadyň|$1 sagadyň}} içinde eýýäm iberildi.
+Bu hyzmatyň erbet niýetli ulanylmagynyň öňüni almak üçin, her {{PLURAL:$1|bir sagatda|$1 sagatdan}} diňe ýekeje parol ýatladyjysy iberiljekdir.',
+'mailerror'                  => 'E-poçta iberiş säwligi: $1',
+'acct_creation_throttle_hit' => 'Siziň IP adresiňizi ulanyp, bu wikini açan ulanyjylar iň soňky gün {{PLURAL:$1|1 hasap|$1 hasap}} döretdi. Bu san şol wagt aralygynda rugsat berilýän maksimum mukdar bolup durýar.
+Netijede, bu IP adresini ulanyjylar häzirki pursatda mundan artyk hasap açyp bilmeýärler.',
+'emailauthenticated'         => 'E-poçta adresiňiz $2 $3 senesinde tassyklanyldy.',
+'emailnotauthenticated'      => 'E-poçta adresiňiz heniz tassyklanmady.
+Aşakdaky funksiýalaryň hiç biri üçin e-poçta iberiljek däldir.',
+'noemailprefs'               => 'Bu funksiýalaryň işlemegi üçin sazlamalaryňyzda bir e-poçta adresi görkeziň.',
+'emailconfirmlink'           => 'E-poçta adresiňizi tassyklaň',
+'invalidemailaddress'        => 'Nädogry formatda ýazylandygy üçin bu e-poçta adresini kabul edip bolmaýar.
+Dogry formatda e-poçta adresi ýazmagyňyzy ýa-da bu bölümi boş goýmagyňyzy haýyş edýäris.',
+'accountcreated'             => 'Hasap döredildi',
+'accountcreatedtext'         => '$1 üçin ulanyjy hasaby döredildi.',
+'createaccount-title'        => '{{SITENAME}} üçin täze ulanyjy hasabynyň döredilmegi',
+'createaccount-text'         => 'Kimdir biri {{SITENAME}} saýtynda ($4) siziň e-poçta adresiňizi ulanyp, paroly "$3" bolan, "$2" atly bir hasap döretdi.
+
+Saýtda sessiýaňyzy açyň we parolyňyzy üýtgediň.
+
+Eger-de ulanyjy hasabyny ýalňyşlyk bilen döreden bolsaňyz, onda bu habarlaşyga ünsem berip oturmaň.',
+'login-throttled'            => 'Bu hasabyň paroly boýunça ýaňy-ýakynda aşa köp synanyşyk etdiňiz.
+Gaýtadan synanyşmankaňyz garaşmagyňyzy haýyş edýäris.',
+'loginlanguagelabel'         => 'Dil: $1',
 
 # Password reset dialog
-'resetpass'               => 'Paroly üýtget',
-'resetpass_header'        => 'Hasap parolyny üýtget',
-'oldpassword'             => 'Köne parol:',
-'newpassword'             => 'Täze parol:',
-'retypenew'               => 'Täze paroly gaýtadan ýaz:',
-'resetpass_success'       => 'Parolyňyz şowlulyk bilen üýtgedildi! Häzir sessiýaňyz açylýar...',
-'resetpass_forbidden'     => 'Parollary üýtgedip bolmaýar',
-'resetpass-temp-password' => 'Wagtlaýyn parol:',
+'resetpass'                 => 'Paroly üýtget',
+'resetpass_announce'        => 'Size iberilen wagtlaýyn parol bilen sessiýa açdyňyz.
+Sessiýa açmaklygy tamamlamak üçin, bu ýere täze parol ýazyň:',
+'resetpass_header'          => 'Hasap parolyny üýtget',
+'oldpassword'               => 'Köne parol:',
+'newpassword'               => 'Täze parol:',
+'retypenew'                 => 'Täze paroly gaýtadan ýaz:',
+'resetpass_submit'          => 'Paroly sazlaň we sessiýa açyň',
+'resetpass_success'         => 'Parolyňyz şowlulyk bilen üýtgedildi! Häzir sessiýaňyz açylýar...',
+'resetpass_bad_temporary'   => 'Nädogry wagtlaýyn parol. Eýýäm şowlulyk bilen parolyňyzy üýtgeden ýa-da täze wagtlaýyn parol talap eden bolmagyňyz mümkin.',
+'resetpass_forbidden'       => 'Parollary üýtgedip bolmaýar',
+'resetpass-submit-loggedin' => 'Paroly üýtget',
+'resetpass-temp-password'   => 'Wagtlaýyn parol:',
 
 # Edit page toolbar
 'bold_sample'     => 'Goýy tekst',
@@ -458,6 +528,7 @@ Hasabyňyz açyldy.
 'blockednoreason'                  => 'sebäp görkezilmedik',
 'whitelistedittitle'               => 'Redaktirlemek üçin sessiýa açmaly',
 'whitelistedittext'                => 'Sahypa redaktirlemek üçin $1.',
+'loginreqlink'                     => 'sessiýa aç',
 'loginreqpagetext'                 => 'Siz beýleki sahypalary görmek üçin $1 bolmaly.',
 'accmailtitle'                     => 'Parol iberildi.',
 'newarticle'                       => '(Täze)',
@@ -466,9 +537,11 @@ Hasabyňyz açyldy.
 Bu ady başga sahypalarda [[Special:Search/{{PAGENAME}}|gözläp bilersiňiz]],
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} degişli gündeliklerde gözleg geçirip bilersiňiz],
 ýa-da bu sahypany [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktirläp bilersiňiz]</span>.',
+'note'                             => "'''Bellik:'''",
 'previewnote'                      => "'''Bu bir ýöne deslapky syn. Üýtgeşmeleriňiz heniz ýazdyrylan däldir!'''",
 'editing'                          => '$1 sahypasyny redaktirleýärsiňiz',
 'editingsection'                   => '"$1" sahypasynda bölüm redaktirleýärsiňiz',
+'yourtext'                         => 'Siziň tekstiňiz',
 'copyrightwarning'                 => "'''Üns beriň:''' {{SITENAME}} saýtyna edilen ähli goşantlar <i>$2</i> ygtyýarnamasyna laýyklykdadyr (jikme-jiklikler üçin $1-na serediň).
 Eden goşandyňyzyň başga gatnaşyjylar tarapyndan gypynç etmezden redaktirlenmegini ýa-da erkin hem-de çäklendirilmedik tertipde başga ýerlere paýlanmagyny islemeýän bolsaňyz, goşant etmäň.<br />
 Mundan hem başga, siz bu ýere goşant goşmak bilen bu goşandyň özüňiz tarapyndan ýazylandygyna, ýa-da jemgyýetçilige açyk bir çeşmeden ýa-da başga bir erkin çeşmeden göçürilip alnandygyna güwä geçýärsiňiz.<br />
@@ -495,8 +568,13 @@ Bu sahypanyň öçürme gündeligi aşakda görkezilendir.',
 Kesgitleme: ('''häzirki''') = häzirki wersiýa bilen aradaky tapawut,
 ('''öňündäki''') = öň ýanyndaky wersiýa bilen aradaky tapawut, '''uj''' = Ujypsyzja özgerdiş.",
 'history-fieldset-title' => 'Geçmişe göz aýla',
+'deletedrev'             => '[öçürildi]',
 'histfirst'              => 'Iň irki',
 'histlast'               => 'Ýaňy-ýakyndaky',
+'historyempty'           => '(boş)',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1, $2 senesinde', # user at time
 
 # Revision deletion
 'rev-delundel'   => 'görkez/gizle',
@@ -698,7 +776,7 @@ Bu amalyň getirip biljek netijelerine gözüňiz ýetýän bolsa we amalyň [[{
 
 # Protect
 'protectlogpage'              => 'Gorag gündeligi',
-'protectedarticle'            => '"[[$1]]" gorag astyna alyndy',
+'protectedarticle'            => '"[[$1]]" sahypasyny gorag astyna aldy.',
 'modifiedarticleprotection'   => '"[[$1]]" üçin gorag derejesi üýtgedildi',
 'prot_1movedto2'              => '[[$1]] sahypasy [[$2]] sahypasyna göçürildi',
 'protectcomment'              => 'Gorag astyna almagyň sebäbi:',

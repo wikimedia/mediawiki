@@ -2821,7 +2821,7 @@ Bevèsteg estebleef dats te dees pazjena ech obbenuujts wils make.",
 'table_pager_empty'        => 'Gein resultate',
 
 # Auto-summaries
-'autosumm-blank'   => 'De paasj is gelaeg',
+'autosumm-blank'   => 'De pagina is laeggehaold',
 'autosumm-replace' => "Teks vervange mit '$1'",
 'autoredircomment' => 'Verwies door nao [[$1]]',
 'autosumm-new'     => 'Nuuj pazjena mit $1',
