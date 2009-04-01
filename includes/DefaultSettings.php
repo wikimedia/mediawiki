@@ -1852,7 +1852,13 @@ $wgShowEXIF = function_exists( 'exif_read_data' );
  * uploads do work.
  */
 $wgRemoteUploads = false;
+
+/**
+ * Disable links to talk pages of anonymous users (IPs) in listings on special
+ * pages like page history, Special:Recentchanges, etc.
+ */
 $wgDisableAnonTalk = false;
+
 /**
  * Do DELETE/INSERT for link updates instead of incremental
  */
