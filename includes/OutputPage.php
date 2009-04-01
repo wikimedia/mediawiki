@@ -103,7 +103,15 @@ class OutputPage {
 		} else {
 			$path =  "{$wgStylePath}/common/{$file}";
 		}
-		$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"$path?$wgStyleVersion\"></script>\n" );
+		$this->addScript( 
+			Xml::element( 'script', 
+				array(
+					'type' => $wgJsMimeType,
+					'src' => "$path?$wgStyleVersion",
+				),
+				'', false
+			)
+		);	
 	}
 	
 	/**
