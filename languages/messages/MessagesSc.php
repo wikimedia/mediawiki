@@ -42,11 +42,16 @@ $messages = array(
 'tog-highlightbroken'      => 'Evidèntzia <a href="" class="new">aici</a> is cullegamentos a pàginas inesistentes (si disativau: aici<a href="" class="internal">?</a>).',
 'tog-justify'              => 'Alliniamentu paragrafos gistificados',
 'tog-hideminor'            => 'Cua is acontzos minores in sa pàgina de is ùrtimas mudàntzias',
+'tog-usenewrc'             => 'Ùrtimas mudàntzias miglioradas (esigit JavaScript)',
 'tog-numberheadings'       => 'Auto-numeratzioni de is tìtulos',
+'tog-showtoolbar'          => "Amosta s'amusta de is ainas pro is acontzos (esigit JavaScript)",
 'tog-editondblclick'       => "Acontza pàginas cun d'unu dopiu click (esigit JavaScript)",
 'tog-rememberpassword'     => 'Ammenta sa password in custa computera',
 'tog-editwidth'            => 'Casella di edizione ampliata alla massima larghezza',
+'tog-watchcreations'       => 'Aciungi is pàginas chi apo creadu a sa watchlist mea',
 'tog-watchdefault'         => 'Notifica articoli nuovi e modificati',
+'tog-watchmoves'           => 'Aciungi is pàginas chi apo mòvidu a sa watchlist mea',
+'tog-watchdeletion'        => 'Aciungi is pàginas chi apo fuliadu a sa watchlist mea',
 'tog-minordefault'         => 'Signa totu is acontzos comente minores pro difetu',
 'tog-enotifwatchlistpages' => 'Ispedimia una missada eletronica candu una pàgina de sa watchlist mes est acontzada',
 'tog-enotifusertalkpages'  => 'Ispedimia una missada eletronica candu sa pàgina usuàriu mia est acontzada',
@@ -54,6 +59,10 @@ $messages = array(
 'tog-shownumberswatching'  => 'Amosta su nùmeru de is usuàrios ca funt ponende ogru a sa pàgina',
 'tog-fancysig'             => 'Trata sa firma comente unu testu wiki (chentza cullegamentos automaticos)',
 'tog-watchlisthideown'     => 'Cua is acontzos meos dae sa watclist',
+'tog-watchlisthidebots'    => 'Cua is acontzos de is bots dae sa watchlist',
+'tog-watchlisthideminor'   => 'Cua is acontzos minores dae sa watchlist',
+'tog-watchlisthideliu'     => 'Cua is acontzos de is usuàrios intraus dae sa watchlist',
+'tog-watchlisthideanons'   => 'Cua is acontzos de is usuàrios anonimus dae sa watchlist',
 'tog-showhiddencats'       => 'Amosta is categorias cuadas',
 
 'underline-always' => 'Semper',
@@ -112,15 +121,17 @@ $messages = array(
 'dec'           => 'Nad',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Categoria|Categorias}}',
-'category_header'          => 'Pàginas in sa categoria "$1"',
-'subcategories'            => 'Subcategorias',
-'category-media-header'    => 'Mèdius in sa categoria "$1"',
-'category-empty'           => "''In custa categoria non bi est peruna pàgina o mèdiu.''",
-'hidden-categories'        => '{{PLURAL:$1|Categoria cuada|Categorias cuadas}}',
-'hidden-category-category' => 'Categorias cuadas', # Name of the category where hidden categories will be listed
-'category-subcat-count'    => "{{PLURAL:$2|Custa categoria cuntenet un'ùnica subcategoria. Amostada a suta.|Custa categoria cuntenet {{PLURAL:$1|sa subcategoria indicada|$1 subcategorias indicadas}} a suta, de $2 totales.}}",
-'listingcontinuesabbrev'   => 'sìghi',
+'pagecategories'                => '{{PLURAL:$1|Categoria|Categorias}}',
+'category_header'               => 'Pàginas in sa categoria "$1"',
+'subcategories'                 => 'Subcategorias',
+'category-media-header'         => 'Mèdius in sa categoria "$1"',
+'category-empty'                => "''In custa categoria non bi est peruna pàgina o mèdiu.''",
+'hidden-categories'             => '{{PLURAL:$1|Categoria cuada|Categorias cuadas}}',
+'hidden-category-category'      => 'Categorias cuadas', # Name of the category where hidden categories will be listed
+'category-subcat-count'         => "{{PLURAL:$2|Custa categoria cuntenet un'ùnica subcategoria. Amostada a suta.|Custa categoria cuntenet {{PLURAL:$1|sa subcategoria indicada|$1 subcategorias indicadas}} a suta, de $2 totales.}}",
+'category-subcat-count-limited' => 'Custa categoria tenet {{PLURAL:$1|una subcategoria, amostada|$1 subcategorias, amostadas}} a suta.',
+'category-article-count'        => '{{PLURAL:$2|Custa categoria cuntènnit isceti sa pàgina chi sighit.|Custa categoria cuntènnit {{PLURAL:$1|sa pàgina indicada|is $1 pàginas indicadas}} a suta, dae unu totale de $2.}}',
+'listingcontinuesabbrev'        => 'sighit',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
@@ -197,7 +208,7 @@ $messages = array(
 'copyright'            => 'Cuntènnidu a suta lissèntzia $1.',
 'copyrightpagename'    => 'Copyright de {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
-'currentevents'        => 'Novas',
+'currentevents'        => 'Noas',
 'disclaimers'          => 'Abbertimentos',
 'disclaimerpage'       => 'Project:Abbertimentos generales',
 'edithelp'             => "Agiudu pro s'acontzu o s'iscritura",
@@ -211,6 +222,7 @@ $messages = array(
 
 'badaccess' => 'Permissu non bastante',
 
+'ok'                      => 'OK',
 'pagetitle'               => '$1 - {{SITENAME}}',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom'           => 'Bogau dae  "$1"',
@@ -307,9 +319,12 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 'nologinlink'             => 'Crea unu account',
 'createaccount'           => 'Crea account',
 'gotaccountlink'          => 'Intra',
+'createaccountmail'       => 'via e-mail',
 'badretype'               => 'Sas passwords chi as insertau non currenspundint.',
 'userexists'              => 'Siamo spiacenti. Lo user name che hai scelto è già usato da un altro Utente. Ti preghiamo perciò di voler scegliere uno user name diverso.',
 'youremail'               => 'E-mail:',
+'username'                => 'Nòmene usuàriu:',
+'uid'                     => 'ID usuàriu:',
 'yourrealname'            => 'Nòmene beru:',
 'yourlanguage'            => 'Limba:',
 'yournick'                => 'Sa firma tua:',
@@ -337,9 +352,12 @@ Pro pregheri, candu d\'arretzis faghe su login.',
 'loginlanguagelabel'      => 'Limba: $1',
 
 # Password reset dialog
-'oldpassword' => 'Password betza:',
-'newpassword' => 'Password noa:',
-'retypenew'   => 'Re-iscrie sa password noa:',
+'resetpass'                 => 'Càmbia sa password',
+'resetpass_header'          => 'Càmbia sa password de su account',
+'oldpassword'               => 'Password betza:',
+'newpassword'               => 'Password noa:',
+'retypenew'                 => 'Re-iscrie sa password noa:',
+'resetpass-submit-loggedin' => 'Càmbia password',
 
 # Edit page toolbar
 'bold_sample'     => 'Grassetu',
@@ -361,7 +379,7 @@ Pro pregheri, candu d\'arretzis faghe su login.',
 'media_sample'    => 'Example.ogg',
 'media_tip'       => 'Cullegamentu a unu file',
 'sig_tip'         => 'Firma cun data e ora',
-'hr_tip'          => 'Lìnnia orizontale (de usai cun critèriu)',
+'hr_tip'          => 'Lìnia orizontale (de usai cun critèriu)',
 
 # Edit pages
 'summary'                          => 'Ogetu:',
@@ -415,6 +433,8 @@ Dovrai inserire, se lo desideri, le tue modifiche nel testo esistente, e perciò
 'editingold'                       => "'''ATTENZIONE: Stai modificando una versione dell'articolo non aggiornata.
 Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno persi per sempre.'''",
 'yourdiff'                         => 'Differenze',
+'copyrightwarning'                 => "Abàida, pro pregheri, chi totu is contributziones a {{SITENAME}} sunt cunsideradas lassadas a suta permissu de tipu $2 (càstia $1 pro nde ischire de prus). Si non cheres chi s'iscritu tuo podat èssere acontzau e redistribuidu dae chie si siat sena piedade e sena àteros lìmites, non ddu imbies a {{SITENAME}}.<br />
+Cun s'imbiu de custu iscritu ses garantende, a responsabilidade tua, chi s'iscritu ddu as cumpostu tue de persona e in originale, opuru chi est istadu copiadu dae una fonte de domìniu pùbricu, o una fonte de gai, opuru chi as otentu permissu craru de impreare custu iscritu e chi ddu podes demustrare. '''NO IMPREARE MATERIALE COBERTU DAE DERETU DE AUTORE SENA PERMISSU CRARU!'''",
 'templatesused'                    => 'Templates impreaus in custa pàgina:',
 'templatesusedpreview'             => 'Templates impreadus in custa antiprima:',
 'templatesusedsection'             => 'Templates impreaus in custa setzione:',
@@ -465,11 +485,14 @@ Legenda: '''({{int:cur}})''' = diferentzias cun sa versioni currenti, '''({{int:
 # Diffs
 'history-title'           => 'Istòria de is arrevisionis de "$1"',
 'difference'              => '(Diferèntzias fra revisiones)',
-'lineno'                  => 'Lìnnia $1:',
+'lineno'                  => 'Lìnia $1:',
 'compareselectedversions' => 'Cumpara versionis scioberadas',
 'editundo'                => 'annudda',
+'diff-movedto'            => 'mòvidu a $1',
 'diff-src'                => 'mitza',
+'diff-with'               => '&#32;cun $1 $2',
 'diff-with-additional'    => '$1 $2',
+'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
 'searchresults'             => 'Resultau de sa chirca',
@@ -522,6 +545,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'qbsettings-floatingright' => 'Fluttuante a destra',
 'changepassword'           => 'Cambia password',
 'skin'                     => 'Aspetto',
+'prefs-watchlist'          => 'Watchlist',
 'saveprefs'                => 'Salva preferenze',
 'resetprefs'               => 'Resetta preferenze',
 'textboxsize'              => 'Dimensione della casella di edizione',
@@ -534,7 +558,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'recentchangescount'       => 'Numero di titoli nelle "modifiche recenti"',
 'savedprefs'               => 'Le tue preferenze sono state salvate.',
 'timezonetext'             => 'Immetti il numero di ore di differenza fra la tua ora locale e la ora del server (UTC).',
-'localtime'                => 'Ora Locale',
+'localtime'                => 'Ora locale:',
 'timezoneoffset'           => 'Offset',
 'timezoneregion-africa'    => 'África',
 'timezoneregion-asia'      => 'Ásia',
@@ -545,6 +569,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'userrights-irreversible-marker' => '$1*',
 
 # Groups
+'group'               => 'Grupu:',
 'group-user'          => 'Usuàrios',
 'group-autoconfirmed' => 'Usuàrios autocunfirmadus',
 'group-bot'           => 'Bots',
@@ -606,7 +631,10 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'recentchangeslinked'          => 'Mudàntzias ligadas',
 'recentchangeslinked-title'    => 'Mudàntzias ligadas a "$1"',
 'recentchangeslinked-backlink' => '← $1',
+'recentchangeslinked-summary'  => "Custa est una lista de is mudàntzias fatas urtimamenti a is pàginas ligadas a cussa ispetzificada. 
+Is pàginas de sa [[Special:Watchlist|watchlist tua]] sunt in '''grassetu'''.",
 'recentchangeslinked-page'     => 'Nòmene pàgina:',
+'recentchangeslinked-to'       => 'Amosta isceti is mudàntzias a is pàginas ligadas a cussa ispetzificada',
 
 # Upload
 'upload'            => 'Carriga file',
@@ -636,7 +664,8 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server.',
 'uploadedimage'     => 'carrigadu "[[$1]]"',
 
 # Special:ListFiles
-'listfiles' => 'Lista delle immagini',
+'listfiles'      => 'Lista delle immagini',
+'listfiles_user' => 'Usuàriu',
 
 # File description page
 'filehist'                  => 'Istòria de su file',
@@ -654,6 +683,7 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server.',
 'nolinkstoimage'            => 'Peruna pàgina ligat cun custu file.',
 'sharedupload'              => 'Custu file benit dae $1 e podet èssere impreau in àteros progetos.',
 'uploadnewversion-linktext' => 'Carriga una versione noa de custu file',
+'shared-repo-from'          => 'dae $1', # $1 is the repository name
 
 # File reversion
 'filerevert-backlink' => '← $1',
@@ -688,6 +718,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'ncategories'       => '$1 {{PLURAL:$1|categoria|categorias}}',
 'nlinks'            => '$1 {{PLURAL:$1|liga|ligas}}',
 'nmembers'          => '$1 {{PLURAL:$1|elementu|elementos}}',
+'nrevisions'        => '$1 {{PLURAL:$1|arrevisioni|arrevisionis}}',
 'nviews'            => '$1 {{PLURAL:$1|bisura|bisuras}}',
 'lonelypages'       => 'Pàginas burdas',
 'unusedimages'      => 'Immagini non utilizzate',
@@ -696,7 +727,9 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'prefixindex'       => 'Indighe de is pàginas pro initzialis',
 'shortpages'        => 'Pagine corte',
 'longpages'         => 'Pagine lunghe',
+'deadendpages'      => 'Pàginas chentza bessida',
 'listusers'         => 'Elenco degli Utenti',
+'usercreated'       => 'Creadu su $1 a is $2',
 'newpages'          => 'Pàginas noas',
 'newpages-username' => 'Nòmene usuàriu:',
 'move'              => 'Movi',
@@ -714,8 +747,9 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'booksources-go'            => 'Bae',
 
 # Special:Log
-'specialloguserlabel' => 'Usuàriu:',
-'log'                 => 'Registros',
+'specialloguserlabel'  => 'Usuàriu:',
+'speciallogtitlelabel' => 'Tìtulu:',
+'log'                  => 'Registros',
 
 # Special:AllPages
 'allpages'       => 'Totu is pàginas',
@@ -750,6 +784,7 @@ ed aver registrato una valida casella e-mail nelle tue [[Special:Preferences|pre
 'emailuser'       => 'E-mail a custu usuàriu',
 'emailpagetext'   => 'Se questo Utente ha registrato una valida casella e-mail, il modulo qui sotto ti consentirà di scrivergli un solo messaggio.
 La e-mail che hai indicato nelle tue preferenze apparirà nel campo "From" della mail, così che il destinatario possa, solo se lo desidera però, risponderti.',
+'defemailsubject' => 'Missada dae {{SITENAME}}',
 'noemailtitle'    => 'Perunu indiritzu e-mail',
 'noemailtext'     => 'Questo Utente non ha registrato alcuna casella e-mail,
 oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.',
@@ -794,7 +829,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'delete-backlink'       => '← $1',
 'delete-legend'         => 'Fuliare',
 'confirmdeletetext'     => "Ses acanta de burrare una pàgina cun totu s'istòria sua.
-Pro pregheri, cunfirma ca est intentzioni tua faghere custu, ca connosches is conseguentzias de s'atzione tua, a ca custa est cunforme a is [[{{MediaWiki:Policy-url}}|lìnnias polìtigas]].",
+Pro pregheri, cunfirma ca est intentzioni tua faghere custu, ca connosches is conseguentzias de s'atzione tua, a ca custa est cunforme a is [[{{MediaWiki:Policy-url}}|lìnias polìtigas]].",
 'actioncomplete'        => 'Atzioni cumpletada',
 'deletedtext'           => 'Sa pàgina "<nowiki>$1</nowiki>" est istada fuliada.
 Castia su log $2 pro unu registru de is ùrtimas fuliaduras.',
@@ -825,31 +860,36 @@ s'ùrtimu contribudori est s'ùnicu autori de custa pàgina.",
 'protect_expiry_old'          => 'Iscadentzia giai passada.',
 'protect-unchain'             => 'Sblocca is permissos de movere',
 'protect-text'                => "Custu modulu serbit pro castiari e cambiari su livellu de amparadura de sa pàgina '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Non tenes su permissu pro cambiare is livellus de amparadura de sa pàgina. 
+Is impostatziones atuales pro sa pàgina '''$1''':",
+'protect-cascadeon'           => "A su momentu custa pàgina est bloccada pro ite est inclùdia {{PLURAL:$1|in sa pàgina indicada a suta, pro sa cali|ne is pàginas indicadas a suta, pro is calis}} est ativa s'amparadura ricorsiva. Est possibili cambiare su livellu de amparadura de custa pàgina, ma is impostatziones derivadas dae s'amparadura ricorsiva non ant a èssere mudadas.",
 'protect-default'             => 'Autoritza totu is usuàrios',
 'protect-fallback'            => 'Esigit su permissu "$1"',
 'protect-level-autoconfirmed' => 'Blocca is usuàrios nobos o non registrados',
 'protect-level-sysop'         => 'Isceti aministratoris',
 'protect-summary-cascade'     => 'ricorsiva',
 'protect-expiring'            => 'Iscadentzia: $1 (UTC)',
-'protect-cascade'             => 'Ampara totu is pàginas inclùdias in custa (cascading protection)',
+'protect-cascade'             => 'Ampara totu is pàginas inclùdias in custa (amparadura ricorsiva)',
+'protect-cantedit'            => 'Non podes cambiare is livellus de amparadura pro sa pàgina, pro ite non tenes su permissu de acontzare sa pàgina etotu.',
 'restriction-type'            => 'Permissu:',
 'restriction-level'           => 'Livellu de restritzioni:',
 'pagesize'                    => '(bytes)',
 
 # Undelete
-'undelete'               => 'Càstia pàginas fuliadas',
-'undeletepage'           => 'Càstia e restaura pàginas fuliadas',
-'viewdeletedpage'        => 'Càstia pàginas fuliadas',
-'undeletepagetext'       => "{{PLURAL:$1|Sa pàgina chi sighit est istada fuliada, ma est ancora in archiviu e podit èssere recuperada|Is pàginas chi sighint sunt istadas fuliadas, ma sunt ancora in archiviu e podint èssere recuperadas}}. S'archiviu podit èssere sbudiau a periodus.",
-'undeleterevisions'      => '$1 {{PLURAL:$1|arrevisioni|arrevisionis}} in archìviu',
-'undeletehistory'        => 'Se recuperi questo articolo, tutte le sue revisioni verranno recuperate nella relativa cronologia.
+'undelete'                  => 'Càstia pàginas fuliadas',
+'undeletepage'              => 'Càstia e restaura pàginas fuliadas',
+'viewdeletedpage'           => 'Càstia pàginas fuliadas',
+'undeletepagetext'          => "{{PLURAL:$1|Sa pàgina chi sighit est istada fuliada, ma est ancora in archiviu e podit èssere recuperada|Is pàginas chi sighint sunt istadas fuliadas, ma sunt ancora in archiviu e podint èssere recuperadas}}. S'archiviu podit èssere sbudiau a periodus.",
+'undeleterevisions'         => '$1 {{PLURAL:$1|arrevisioni|arrevisionis}} in archìviu',
+'undeletehistory'           => 'Se recuperi questo articolo, tutte le sue revisioni verranno recuperate nella relativa cronologia.
 Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.',
-'undeletebtn'            => 'Ripristina',
-'undeletelink'           => 'càstia/riprìstina',
-'undeletecomment'        => 'Cummentu:',
-'undeletedarticle'       => 'Restaurada "$1"',
-'undelete-search-box'    => 'Chirca pàginas fuliadas',
-'undelete-search-submit' => 'Chirca',
+'undeletebtn'               => 'Ripristina',
+'undeletelink'              => 'càstia/riprìstina',
+'undeletecomment'           => 'Cummentu:',
+'undeletedarticle'          => 'Restaurada "$1"',
+'undelete-search-box'       => 'Chirca pàginas fuliadas',
+'undelete-search-submit'    => 'Chirca',
+'undelete-show-file-submit' => 'Eia',
 
 # Namespace form on various pages
 'namespace'      => 'Nòmene logu:',
@@ -868,7 +908,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 
 'sp-contributions-newbies'  => 'Amosta isceti is contributziones de is account novos',
 'sp-contributions-blocklog' => 'registru de is bloccos',
-'sp-contributions-talk'     => 'Cuntierras',
+'sp-contributions-talk'     => 'cuntierra',
 'sp-contributions-search'   => 'Chirca contributziones',
 'sp-contributions-username' => 'Indiritzu IP o nòmene usuàriu:',
 'sp-contributions-submit'   => 'Chirca',
@@ -1067,15 +1107,31 @@ Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 'minutes-abbrev' => 'm',
 'hours-abbrev'   => 'h',
 
+# Bad image list
+'bad_image_list' => 'Su formau est su chi sighit:
+
+Benint consideraus isceti is listas putadas (lìnias chi incumentzant cun *). 
+Su primu cullegamentu depit èssere unu acàpiu a unu file malu (o indesiderau). 
+Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetziones (ossiat, pàginas innui si podet usare su file).',
+
 # Metadata
 'metadata'          => 'Metadatos',
+'metadata-help'     => 'Custu file cuntènnit informatziones aciuntivas, probabilmente aciuntas dae sa fotocamera o dae su scannerizadori impreaus pro ddu creare o ddu digitalizare. Si su file est istadu acontzau, unos particolares podent non currispundere a sa realtade.',
 'metadata-expand'   => 'Amosta particolaris',
 'metadata-collapse' => 'Cua particolaris',
+'metadata-fields'   => "Is campus de is metadatos EXIF listaus in custu messàgiu ant a èssere amostaus in sa pàgina de s'immàgine candu sa tabella de is metadatos est presentada in forma breve. Pro impostatzione predefinia, is àteros campus ant a èssere cuaus. 
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength", # Do not translate list items
 
 # EXIF tags
-'exif-fnumber-format'     => 'f/$1',
-'exif-flash'              => 'Flash',
-'exif-focallength-format' => '$1 mm',
+'exif-exposuretime-format' => '$1 s ($2)',
+'exif-fnumber-format'      => 'f/$1',
+'exif-flash'               => 'Flash',
+'exif-focallength-format'  => '$1 mm',
 
 # EXIF attributes
 'exif-compression-6' => 'JPEG',
@@ -1093,6 +1149,8 @@ Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 'exif-componentsconfiguration-2' => 'Cb',
 'exif-componentsconfiguration-3' => 'Cr',
 
+'exif-subjectdistance-value' => '$1 metros',
+
 # External editor support
 'edit-externally'      => 'Acontza custu file usendi unu programma de foras',
 'edit-externally-help' => '(Pro àteras informatziones càstia is [http://www.mediawiki.org/wiki/Manual:External_editors istrutziones])',
@@ -1102,6 +1160,9 @@ Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 'watchlistall2'    => 'totu',
 'namespacesall'    => 'totu',
 'monthsall'        => 'totu',
+
+# E-mail address confirmation
+'confirmemail' => "Cunfirma s'indiritzu e-mail",
 
 # action=purge
 'confirm_purge_button' => 'OK',
@@ -1114,6 +1175,13 @@ Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 'word-separator'      => '&#32;',
 'ellipsis'            => '…',
 'percent'             => '$1%',
+
+# Multipage image navigation
+'imgmultigo'   => 'Bae!',
+'imgmultigoto' => 'Bae a sa pàgina $1',
+
+# Table pager
+'table_pager_limit_submit' => 'Bae',
 
 # Auto-summaries
 'autoredircomment' => 'Redirect a sa pàgina [[$1]]',
@@ -1138,6 +1206,7 @@ Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 
 # Special:Version
 'version'                  => 'Versioni', # Not used as normal message but as header for the special page itself
+'version-version'          => 'Versioni',
 'version-software-version' => 'Versioni',
 
 # Special:FilePath

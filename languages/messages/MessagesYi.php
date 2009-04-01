@@ -166,7 +166,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'אימעיל מיך פאר מינדערע עדיטס צו די בלעטער',
 'tog-enotifrevealaddr'        => 'דעק אויף מיין בליצפאסט אדרעס אין פאסט מודעות',
 'tog-shownumberswatching'     => 'ווייזן דעם נומער פון בלאט אויפֿפאסערס',
-'tog-fancysig'                => 'רויע אונטערשריפט (אָן אויטאמאטישן לינק)',
+'tog-fancysig'                => 'באַהאַנדלן  אונטערשריפט אַלס וויקיטעקסט (אָן אויטאמאטישן לינק)',
 'tog-externaleditor'          => 'ניצט א דרויסנדיגן רעדאקטירער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען)',
 'tog-externaldiff'            => 'ניצט א דרויסנדיגן פֿארגלייכער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען)',
 'tog-showjumplinks'           => 'באמעגלעך צוטריט לינקס פון "שפרינג צו"',
@@ -857,10 +857,10 @@ $2',
 'rev-deleted-comment'            => '(אנמערקונג אראפגענומען)',
 'rev-deleted-user'               => '(באנוצער נאמען אראפגענומען)',
 'rev-deleted-event'              => '(לאגירן אקציע אראפגענומען)',
-'rev-deleted-text-permission'    => "די בלאט רעוויזיע איז געווארן '''אראפגענומען פון די פובליקע ארכיוון'''. 
+'rev-deleted-text-permission'    => "די בלאט רעוויזיע איז געווארן '''אויסגעמעקט '''. 
 עס איז מעגלעך דא נאך פרטים אין דעם
 [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג].",
-'rev-deleted-text-view'          => "די בלאט רעוויזיע איז געווארן '''אראפגענומען פון די פובליקע ארכיוון'''. 
+'rev-deleted-text-view'          => "די בלאט רעוויזיע איז געווארן '''אויסגעמעקט'''. 
 אלס סיסאפ קענט איר באַקוקן די רעוויזיע; עס איז מעגליך דא נאך דעטאלן אינעם [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג בוך].",
 'rev-delundel'                   => 'ווייז/באהאלט',
 'revisiondelete'                 => 'אויסמעקן\\צוריקשטעלן רעוויזיעס',
@@ -1029,8 +1029,10 @@ $2',
 'prefs-watchlist-days'     => 'טעג צו ווייזן אין דער אויפפאסונג ליסטע:',
 'prefs-watchlist-days-max' => '(מאקסימום 7 טעג)',
 'prefs-misc'               => 'באַאַרבעטן',
+'prefs-resetpass'          => 'טוישן פאַסווארט',
 'saveprefs'                => 'אפהיטן',
 'resetprefs'               => 'אוועקנעמען נישט-אויפגעהיטענע ענדערונגען',
+'restoreprefs'             => 'צוריקשטעלן אלע גרונטלעכע שטעלונגען',
 'textboxsize'              => 'באַאַרבעטן',
 'rows'                     => 'שורות:',
 'columns'                  => 'עמודים:',
@@ -1038,10 +1040,11 @@ $2',
 'contextlines'             => 'שורות פער רעזולטאט',
 'contextchars'             => 'קאנטעקסט פער שורה',
 'recentchangesdays'        => 'צאל פון טעג צו ווייזן אין די לעצטע ענדערונגן:',
-'recentchangescount'       => 'דער צאָל פון ליניעס אין די לעצטע ענדערונגען:',
+'recentchangescount'       => 'די צאָל רעדאַקטירונגען צו ווײַזן גרונטלעך אין די לעצטע ענדערונגען , בלאט היסטאריעס און לאג־ביכער:',
 'savedprefs'               => 'אייערע פרעפערענצן איז אפגעהיטן געווארן.',
 'timezonelegend'           => 'צייט זאנע',
 'localtime'                => 'לאקאלע צייט:',
+'timezoneselect'           => 'צײַט זאנע:',
 'allowemail'               => 'ערלויבן אנדערע צו אײַך שיקן אימעילס',
 'prefs-searchoptions'      => 'ברירות פאר זוכן',
 'prefs-namespaces'         => 'נאמענטיילן',
@@ -1291,7 +1294,7 @@ $2',
 'double-redirect-fixed-move' => '[[$1]] איז געווארן באוועגט, און איז יעצט א ווייטערפֿירונג צו [[$2]]',
 
 'brokenredirects'        => 'צעבראָכענע ווײַטערפֿירונגען',
-'brokenredirectstext'    => 'די פאלגענדע רידיירעקטס לינקן צו בלעטער וואס עקזיסטירן נאך נישט:',
+'brokenredirectstext'    => 'די פֿאלגנדע ווײַטערפֿירונגען פֿאַרבינדן צו בלעטער וואס עקזיסטירן נאך נישט:',
 'brokenredirects-edit'   => '(ענדערן)',
 'brokenredirects-delete' => '(אויסמעקן)',
 
@@ -1413,7 +1416,7 @@ $2',
 'newuserlogpagetext'          => 'דאס איז א לאג פון באַניצערס אײַנשרײַבונגען.',
 'newuserlog-byemail'          => 'פאַסווארט געשיקט דורך ע-פאסט',
 'newuserlog-create-entry'     => 'נײַער באניצער',
-'newuserlog-create2-entry'    => 'געשאפֿן קאנטע פֿאר $1',
+'newuserlog-create2-entry'    => 'געשאפֿן נײַע קאנטע $1',
 'newuserlog-autocreate-entry' => 'קאנטע באַשאַפֿן אויטאמאַטיש',
 
 # Special:ListGroupRights
@@ -1552,11 +1555,11 @@ $NEWPAGE
 'rollbacklink'     => 'צוריקדרייען',
 'rollbackfailed'   => 'צוריקדרייען דורכגעפֿאַלן',
 'cantrollback'     => 'מען קען נישט צוריקדרייען די ענדערונג – די לעצטער באטייליגער איז דער איינציגסטער באטייליגונג; פארט, קען מען אויסמעקן דעם בלאט.',
-'alreadyrolled'    => 'מען קעגן נישט צוריקדריין די לעצטע ענדערונג פון בלאט [[:$1]] דורך
-[[User:$2|$2]] ([[User talk:$2|רעדן]]| [[Special:Contributions/$2|{{int:contribslink}}]]); 
+'alreadyrolled'    => 'מען קעגן נישט צוריקדריין די לעצטע ענדערונג פון בלאט [[:$1]] פֿון
+[[User:$2|$2]] ([[User talk:$2|רעדן]]{{int:pipe-separator}} [[Special:Contributions/$2|{{int:contribslink}}]]); 
 אן אנדערער האט שוין געענדערט אדער צוריקגעדרייט דעם בלאט.
 
-די לעצטע ענדערונג איז געווען פון [[User:$3|$3]] ([[User talk:$3|רעדן]]|[[Special:Contributions/$3|{{int:contribslink}}]]).',
+די לעצטע ענדערונג צום בלאַט איז געווען פון [[User:$3|$3]] ([[User talk:$3|רעדן]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "קורץ ווארט איז געווען: \"'''\$1'''\".", # only shown if there is an edit comment
 'revertpage'       => 'רעדאַקטירונגען פֿון  [[Special:Contributions/$2|$2]] צוריקגענומען ([[User talk:$2|רעדן]])  צו דער לעצטער ווערסיע פֿון [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'צוריקגעדרייט רעדאַקטירונגען פֿון $1 צו דער לעצטע ווערסיע פֿון $2',
@@ -2212,10 +2215,10 @@ $5
 'table_pager_empty'        => 'קיין רעזולטאטן',
 
 # Auto-summaries
-'autosumm-blank'   => 'אויסגעמעקט דעם גאנצן אינהאלט פון בלאט',
+'autosumm-blank'   => 'אויסגעליידיקט דעם בלאט',
 'autosumm-replace' => "פֿאַרבײַט דעם בלאַט מיט '$1'",
 'autoredircomment' => 'ווייטערפירן צו [[$1]]',
-'autosumm-new'     => 'נייער בלאט: $1',
+'autosumm-new'     => "געשאַפֿן בלאַט מיט '$1'",
 
 # Live preview
 'livepreview-loading' => 'לאדנדיג…',

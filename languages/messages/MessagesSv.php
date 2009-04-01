@@ -15,6 +15,7 @@
  * @author M.M.S.
  * @author Micke
  * @author Najami
+ * @author Petter Strandmark
  * @author S.Örvarr.S
  * @author Sannab
  * @author Skalman
@@ -3168,15 +3169,15 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 #Skriv alla fragment av reguljära uttryck ovanför den här raden. Lämna den här raden precis som den är</pre>',
 
 # Special:Tags
-'tags'                    => 'Giltiga ändringstaggar',
-'tag-filter'              => 'Filter för [[Special:Tags|taggar]]:',
+'tags'                    => 'Giltiga ändringsmärken',
+'tag-filter'              => 'Filter för [[Special:Tags|märken]]:',
 'tag-filter-submit'       => 'Filter',
-'tags-title'              => 'Taggar',
-'tags-intro'              => 'Denna sida listar taggarna som mjukvaran kan markera en redigering med, och deras betydelse.',
-'tags-tag'                => 'Internt taggnamn',
+'tags-title'              => 'Märken',
+'tags-intro'              => 'Denna sida listar märkena som mjukvaran kan markera en redigering med, och deras betydelse.',
+'tags-tag'                => 'Internt märkesnamn',
 'tags-display-header'     => 'Utseende på listor över ändringar',
 'tags-description-header' => 'Full beskrivning av betydelse',
-'tags-hitcount-header'    => 'Taggade ändringar',
+'tags-hitcount-header'    => 'Märkta ändringar',
 'tags-edit'               => 'redigering',
 'tags-hitcount'           => '$1 {{PLURAL:$1|ändring|ändringar}}',
 

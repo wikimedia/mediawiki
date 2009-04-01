@@ -238,7 +238,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Schriev mi en Nettbreef, ok wenn dat blots en lütte Ännern weer',
 'tog-enotifrevealaddr'        => 'Miene Nettbreefadress in Bestätigungsnettbreven wiesen',
 'tog-shownumberswatching'     => 'Wies de Tall vun Brukers, de op disse Siet oppasst',
-'tog-fancysig'                => 'eenfache Signatur (ahn Lenk)',
+'tog-fancysig'                => 'Signatur as Wikitext behanneln (ahn automaatsch Lenk)',
 'tog-externaleditor'          => 'Jümmer extern Editor bruken (blot för Lüüd, de sik dor mit utkennt, dor mutt noch mehr op dien Reekner instellt warrn, dat dat geiht)',
 'tog-externaldiff'            => 'Extern Warktüüch to’n Wiesen vun Ünnerscheden as Standard bruken (blot för Lüüd, de sik dor mit utkennt, dor mutt noch mehr op dien Reekner instellt warrn, dat dat geiht)',
 'tog-showjumplinks'           => '„Wesseln-na“-Lenken tolaten',
@@ -912,6 +912,9 @@ Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 'rev-deleted-event'              => '(Logbook-Indrag rutnahmen)',
 'rev-deleted-text-permission'    => 'Disse Version is nu wegdaan un is nich mehr apen in’t Archiv to sehn.
 Details dorto staht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook].',
+'rev-deleted-text-unhide'        => 'Disse Version is nu wegdaan un is nich mehr apen in’t Archiv to sehn.
+Details dorto staht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook].
+As Administrator kannst du de Version [$1 över dissen Lenk] ankieken.',
 'rev-deleted-text-view'          => 'Disse Version is wegsmeten worrn un is nich mehr apen in’t Archiv to sehn.
 As Administrater op {{SITENAME}} kannst du ehr aver noch jümmer sehn.
 Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook] to finnen.',
@@ -1533,6 +1536,10 @@ En [[Special:WhatLinksHere/$2|kumplette List]] gifft dat ok.',
 'redirectstofile'           => 'Disse {{PLURAL:$1|Datei is|Datein sünd}} en Redirect op disse Datei:',
 'duplicatesoffile'          => 'Disse {{PLURAL:$1|Datei is|Datein sünd}} jüst de {{PLURAL:$1|glieke|glieken}} as disse Datei hier ([[Special:FileDuplicateSearch/$2|mehr Infos]]):',
 'sharedupload'              => 'Disse Datei is as gemeensam bruukte Datei op $1 hoochlaadt un warrt mööglicherwies ok vun annere Wikis bruukt.',
+'sharedupload-desc-there'   => 'Disse Datei is as gemeensam bruukte Datei op $1 hoochlaadt un warrt mööglicherwies ok vun annere Wikis bruukt.
+Kiek op de [$2 Bildsied dor] för mehr Infos.',
+'sharedupload-desc-here'    => 'Disse Datei is as gemeensam bruukte Datei op $1 hoochlaadt un warrt mööglicherwies ok vun annere Wikis bruukt.
+De [$2 Bildsied vun dor] warrt ünnen wiest.',
 'noimage'                   => 'Ene Datei mit dissen Naam gifft dat nich, du kannst ehr $1.',
 'noimage-linktext'          => 'hoochladen',
 'uploadnewversion-linktext' => 'Ne’e Version vun disse Datei hoochladen',

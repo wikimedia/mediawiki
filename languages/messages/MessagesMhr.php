@@ -249,7 +249,7 @@ $messages = array(
 'italic_tip'      => 'Шӧрын текст',
 'link_sample'     => 'Ссылкын лӱмжӧ',
 'link_tip'        => 'Кӧргысӧ ссылке',
-'extlink_sample'  => 'http://www.mari-el.name ссылкын лӱмжӧ',
+'extlink_sample'  => 'http://www.example.com ссылкын лӱмжӧ',
 'extlink_tip'     => 'Ӧрдыж ссылке (http:// префиксым ит мондо)',
 'headline_sample' => 'Вуймут',
 'headline_tip'    => '2-шо кӱкшытан вуймут',
@@ -409,8 +409,8 @@ $messages = array(
 'minoreditletter'                => 'и',
 'newpageletter'                  => 'У',
 'boteditletter'                  => 'б',
-'rc-enhanced-expand'             => 'Тӱткынрак ончыкташ (JavaScript кӱлеш)',
-'rc-enhanced-hide'               => 'Тӱткынрак ончыкташ',
+'rc-enhanced-expand'             => 'Тӱткынракым ончыкташ (JavaScript кӱлеш)',
+'rc-enhanced-hide'               => 'Тӱткынракым шылташ',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ваш кылдалтше тӧрлатымаш-влак',
@@ -441,6 +441,7 @@ $messages = array(
 'filehist-current'          => 'кызыт',
 'filehist-datetime'         => 'Кече/жап',
 'filehist-user'             => 'Пайдаланыше',
+'filehist-dimensions'       => 'Кугытшо',
 'filehist-filesize'         => 'Файлын кугытшо',
 'filehist-comment'          => 'Файл нерген:',
 'imagelinks'                => 'Файл деке ссылке-влак',
@@ -613,6 +614,7 @@ $messages = array(
 'whatlinkshere-page'       => 'Лаштык:',
 'linkshere'                => "'''[[:$1]]''' лаштык дене кылдалтше лаштык-влак:",
 'isredirect'               => 'вес верек колтымо лаштык',
+'isimage'                  => 'изображенийышке ссылке',
 'whatlinkshere-prev'       => '{{PLURAL:$1|ончычсо|$1 ончычсо}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|вес|$1 вес}}',
 'whatlinkshere-links'      => '← ссылке-влак',
@@ -732,6 +734,9 @@ $messages = array(
 # Media information
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|лаштык|лаштык}}',
 'file-info-size'       => '($1 × $2 пиксел, файлын кугытшо: $3, MIME-тип: $4)',
+'file-nohires'         => '<small>Кугурак чаплык уке.</small>',
+'svg-long-desc'        => '(SVG файл, шкенжын кугытшо: $1 × $2 пиксел, файлын кугытшо: $3)',
+'show-big-image'       => 'Шкенжын чаплыкше',
 'show-big-image-thumb' => '<small>Ончылгоч ончымашын кугытшо $1 × $2 пиксель</small>',
 
 # Special:NewFiles
@@ -740,7 +745,19 @@ $messages = array(
 'ilsubmit'         => 'Кычал',
 
 # Metadata
-'metadata' => 'Метаданный-влак',
+'metadata'          => 'Метаданный-влак',
+'metadata-help'     => 'Файл содержит дополнительные данные, обычно добавляемые цифровыми камерами или сканерами. Файлым ыштыме деч вара тӧрлымӧ гын, то некоторые параметры могут не соответствовать текущему изображению.
+
+тудын южо данныйже весе лийын кертеш.
+
+
+Этот файл содержит дополнительную информацию, возможно добавленную цифровым фотоаппаратом или сканером используемыми при его создании или оцифровке.
+Если файл после создания редактировался, то некоторые данные могут не соответствовать измененному файлу.
+
+
+тиде файлыште ешартыш пале уло, тудым фотоаппарат але сканер йо:н дене ыштыме. Фафлым ыштым деч вара тудым то:рлымо: гын, южо пале тиде файллан келшен огыт тол лийын кертеш',
+'metadata-expand'   => 'Ончыкташ тӱткынрак палым',
+'metadata-collapse' => 'Шылташ тӱткынрак палым',
 
 # External editor support
 'edit-externally'      => 'Файлым ӧрдыж программыште тӧрлаташ',

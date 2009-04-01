@@ -309,7 +309,7 @@ $messages = array(
 'metadata_help' => 'Metadados:',
 
 'errorpagetitle'    => 'Erro',
-'returnto'          => 'Retornar para $1.',
+'returnto'          => 'Voltar para $1.',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Ajuda',
 'search'            => 'Pesquisa',
@@ -889,15 +889,18 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'            => '(comentário removido)',
 'rev-deleted-user'               => '(nome de utilizador removido)',
 'rev-deleted-event'              => '(entrada removida)',
-'rev-deleted-text-permission'    => "Esta edição desta página foi '''removida dos arquivos públicos'''.
+'rev-deleted-text-permission'    => "Esta edição desta página foi '''eliminada'''.
 Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
-'rev-deleted-text-view'          => "Esta edição desta página foi '''removida dos arquivos públicos'''.
-Por ser um administrador desta wiki, poderá vê-la; poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
-'rev-deleted-no-diff'            => "Você não pode ver estas diferenças porque uma das revisões foi '''removida dos arquivos públicos'''.
+'rev-deleted-text-unhide'        => "Esta edição desta página foi '''eliminada'''.
+Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].
+Por ser um administrador você pode mesmo assim [$1 ver esta versão] se desejar prosseguir.",
+'rev-deleted-text-view'          => "Esta edição desta página foi '''eliminada'''.
+Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+'rev-deleted-no-diff'            => "Você não pode ver estas diferenças porque uma das revisões foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
-'rev-deleted-unhide-diff'        => "Uma das revisões destas diferenças foi '''removida dos arquivos públicos'''.
+'rev-deleted-unhide-diff'        => "Uma das revisões destas diferenças foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
-Como administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
+Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-delundel'                   => 'mostrar/esconder',
 'revisiondelete'                 => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'        => 'Edição de destino inválida',
@@ -1534,6 +1537,10 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] se encontra disponível.',
 'redirectstofile'           => '{{PLURAL:$1|O seguinte ficheiro redirecciona|Os seguintes ficheiros redireccionam}} para este ficheiro:',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte ficheiro é duplicado|Os seguintes $1 ficheiros são duplicados}} deste ficheiro ([[Special:FileDuplicateSearch/$2|mais detalhes]]):',
 'sharedupload'              => 'Este ficheiro provém de $1 e pode ser utilizado por outros projectos.',
+'sharedupload-desc-there'   => 'Este ficheiro provém de $1 e pode ser utilizado por outros projectos.
+Por favor veja a [$2 página de descrição do ficheiro] para mais informações.',
+'sharedupload-desc-here'    => 'Este ficheiro provém de $1 e pode ser utilizado por outros projectos.
+A descrição presente na sua [$2 página de descrição] é mostrada abaixo.',
 'noimage'                   => 'Não existe nenhum ficheiro com este nome, mas pode $1.',
 'noimage-linktext'          => 'carregá-lo',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
@@ -2053,7 +2060,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Para contas novas',
 'sp-contributions-newbies-title' => 'Contribuições de contas novas',
 'sp-contributions-blocklog'      => 'Registo de bloqueios',
-'sp-contributions-deleted'       => 'Edições eliminadas',
+'sp-contributions-deleted'       => 'Contribuições de utilizador eliminadas',
 'sp-contributions-logs'          => 'registos',
 'sp-contributions-talk'          => 'disc',
 'sp-contributions-userrights'    => 'Gestão de privilégios de utilizadores',

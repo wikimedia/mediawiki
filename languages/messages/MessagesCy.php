@@ -2436,7 +2436,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-primarychromaticities'       => 'Cromatigedd y lliwiau cysefin',
 'exif-ycbcrcoefficients'           => 'Cyfernodau matrics trawsffurfio gofod lliw',
 'exif-referenceblackwhite'         => 'Pâr o gyfeirnodau du a gwyn',
-'exif-datetime'                    => "Dyddiad ac amser y newid i'r ffeil",
+'exif-datetime'                    => 'Dyddiad ac amser y newidiwyd y ffeil ddiwethaf',
 'exif-imagedescription'            => 'Teitl y ddelwedd',
 'exif-make'                        => 'Gwneuthurwr y camera',
 'exif-model'                       => 'Model y camera',

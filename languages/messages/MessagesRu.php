@@ -1609,12 +1609,16 @@ PICT # различные
 'morelinkstoimage'          => 'Просмотреть [[Special:WhatLinksHere/$1|остальные ссылки]] на этот файл.',
 'redirectstofile'           => 'Со {{PLURAL:$1|следующего $1 файла установлено перенаправление|следующих $1 файлов установлены перенаправления|следующих $1 файлов установлены перенаправления}} на этот файл:',
 'duplicatesoffile'          => '{{PLURAL:$1|Следующий $1 файл является дубликатом|Следующие $1 файла являются дубликатами|Следующие $1 файлов являются дубликатами}} этого файла ([[Special:FileDuplicateSearch/$2|подробности]]):',
-'sharedupload'              => 'Это файл из общего хранилища $1, он может использоваться также в других проектах.',
+'sharedupload'              => 'Этот файл из $1 и может использоваться в других проектах.',
+'sharedupload-desc-there'   => 'Этот файл из $1 и может использоваться в других проектах.
+Дополнительную информацию можно найти на [$2 странице описания файла].',
+'sharedupload-desc-here'    => 'Этот файл из $1 и может использоваться в других проектах.
+Информация с его [$2 страницы описания] приведена ниже.',
 'noimage'                   => 'Файла с таким именем не существует, но вы можете $1.',
 'noimage-linktext'          => 'загрузить его',
 'uploadnewversion-linktext' => 'Загрузить новую версию этого файла',
-'shared-repo-from'          => 'из проекта $1', # $1 is the repository name
-'shared-repo'               => 'общее хранилище', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'из $1', # $1 is the repository name
+'shared-repo'               => 'общего хранилища', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Возврат к старой версии $1',
@@ -1818,7 +1822,7 @@ PICT # различные
 'special-categories-sort-abc'   => 'упорядочить по алфавиту',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'удалённый вклад',
+'deletedcontributions'       => 'Удалённый вклад участника',
 'deletedcontributions-title' => 'Удалённый вклад',
 
 # Special:LinkSearch

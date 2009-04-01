@@ -204,8 +204,8 @@ $messages = array(
 'tog-showhiddencats'          => 'Vis skjulte kategorier',
 'tog-norollbackdiff'          => 'Vis ikke forskel efter tilbagerulning',
 
-'underline-always'  => 'altid',
-'underline-never'   => 'aldrig',
+'underline-always'  => 'Altid',
+'underline-never'   => 'Aldrig',
 'underline-default' => 'efter browserindstilling',
 
 # Dates
@@ -390,7 +390,7 @@ $messages = array(
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nye beskeder',
 'newmessagesdifflink'     => 'ændringer siden sidste visning',
-'youhavenewmessagesmulti' => 'Der er nye meddelelser til dig: $1',
+'youhavenewmessagesmulti' => 'Du har nye beskeder på $1',
 'editsection'             => 'redigér',
 'editold'                 => 'redigér',
 'viewsourceold'           => 'vis kildekode',
@@ -495,7 +495,7 @@ For oversættelser bedes du venligst overveje at bruge [http://translatewiki.net
 'sqlhidden'            => '(SQL forespørgsel gemt)',
 'cascadeprotected'     => 'Denne side er skrivebeskyttet, da den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse":
 $2',
-'namespaceprotected'   => 'Du har ikke rettigheder til t redigere sider i $1-navnerummet.',
+'namespaceprotected'   => 'Du har ikke rettigheder til at redigere sider i $1-navnerummet.',
 'customcssjsprotected' => 'Du har ikke rettigheder til at redigere denne side, da den indeholder en anden brugers personlige indstillinger.',
 'ns-specialprotected'  => 'Sider i navnerummet {{ns:special}} kan ikke redigeres.',
 'titleprotected'       => "Dette sidenavn er beskyttet mod oprettelse af [[User:$1|$1]]. Begrundelsen for beskyttelsen er ''$2''.",
@@ -1419,7 +1419,7 @@ Hvis du fortsat vil lægge filen op, bedes du gå tilbage og bruge et nyt navn.
 'sourcefilename'              => 'Kildefil',
 'destfilename'                => 'Målnavn',
 'upload-maxfilesize'          => 'Maksimal filstørrelse: $1',
-'watchthisupload'             => 'Overvåge denne side',
+'watchthisupload'             => 'Overvåg denne side',
 'filewasdeleted'              => 'En fil med dette navn er tidligere uploadet og i mellemtiden slettet igen. Kontroller først indførslen i $1, før du gemmer filen.',
 'upload-wasdeleted'           => "'''Advarsel: Du er ved at uploade en fil der tidligere er blevet slettet.'''
 
@@ -1789,8 +1789,8 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'watchlist-options'    => 'Indstillinger for overvågningslisten',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Overvåge …',
-'unwatching' => 'Ikke overvåge …',
+'watching'   => 'Tilføjer overvågning …',
+'unwatching' => 'Fjerner overvågning …',
 
 'enotif_mailer'                => '{{SITENAME}} informationsmail',
 'enotif_reset'                 => 'Marker alle sider som besøgt',
