@@ -3687,13 +3687,13 @@ class Parser
 	 *
 	 * @param string $text the text to transform
 	 * @param Title &$title the Title object for the current article
-	 * @param User &$user the User object describing the current user
+	 * @param User $user the User object describing the current user
 	 * @param ParserOptions $options parsing options
 	 * @param bool $clearState whether to clear the parser state first
 	 * @return string the altered wiki markup
 	 * @public
 	 */
-	function preSaveTransform( $text, &$title, $user, $options, $clearState = true ) {
+	function preSaveTransform( $text, Title $title, $user, $options, $clearState = true ) {
 		$this->mOptions = $options;
 		$this->setTitle( $title );
 		$this->setOutputType( self::OT_WIKI );
