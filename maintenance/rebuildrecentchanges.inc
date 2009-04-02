@@ -125,7 +125,8 @@ function rebuildRecentChangesTablePass3()
 	// Some logs don't go in RC. This can't really detect all of those.
 	// At least do the basics logs for a standard install...
 	// FIXME: this needs to be maintained
-	$basicRCLogs = array( 
+	$basicRCLogs = array(
+		'newusers',
 		'block',
 		'protect',
 		'rights',
