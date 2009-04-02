@@ -202,7 +202,7 @@ class MWException extends Exception {
 			header( 'Pragma: nocache' );
 		}
 		$title = $this->getPageTitle();
-		echo "<html>
+		return "<html>
 		<head>
 		<title>$title</title>
 		</head>
@@ -215,7 +215,7 @@ class MWException extends Exception {
 	 * print the end of the html page if not using $wgOut.
 	 */
 	function htmlFooter() {
-		echo "</body></html>";
+		return "</body></html>";
 	}
 	
 	/**
@@ -297,7 +297,7 @@ function wfReportException( Exception $e ) {
 				wfPrintError( $message );
 			} else {
 				echo nl2br( htmlspecialchars( $message ) ). "\n";
-				}
+			}
 		}
 	} else {
 		$message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"\n" .
@@ -322,8 +322,7 @@ function wfPrintError( $message ) {
 	#      Try to produce meaningful output anyway. Using echo may corrupt output to STDOUT though.
 	if ( defined( 'STDERR' ) ) {
 		fwrite( STDERR, $message );
-	}
-	else {
+	} else {
 		echo( $message );
 	}
 }
