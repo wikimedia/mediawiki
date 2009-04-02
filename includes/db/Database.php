@@ -2587,20 +2587,24 @@ class DBConnectionError extends DBError {
 		$extra = $this->searchForm();
 
 		if( $wgUseFileCache ) {
-			$cache = $this->fileCachedPage();
-			# Cached version on file system?
-			if( $cache !== null ) {
-				# Hack: extend the body for error messages
-				$cache = str_replace( array('</html>','</body>'), '', $cache );
-				# Add cache notice...
-				$cachederror = "This is a cached copy of the requested page, and may not be up to date. ";
-				# Localize it if possible...
-				if( $wgLang instanceof Language ) {
-					$cachederror = htmlspecialchars( $wgLang->getMessage( 'dberr-cachederror' ) );
+			try {
+				$cache = $this->fileCachedPage();
+				# Cached version on file system?
+				if( $cache !== null ) {
+					# Hack: extend the body for error messages
+					$cache = str_replace( array('</html>','</body>'), '', $cache );
+					# Add cache notice...
+					$cachederror = "This is a cached copy of the requested page, and may not be up to date. ";
+					# Localize it if possible...
+					if( $wgLang instanceof Language ) {
+						$cachederror = htmlspecialchars( $wgLang->getMessage( 'dberr-cachederror' ) );
+					}
+					$warning = "<div style='color:red;font-size:150%;font-weight:bold;'>$cachederror</div>";
+					# Output cached page with notices on bottom and re-close body
+					return "{$cache}{$warning}<hr />$text<hr />$extra</body></html>";
 				}
-				$warning = "<div style='color:red;font-size:150%;font-weight:bold;'>$cachederror</div>";
-				# Output cached page with notices on bottom and re-close body
-				return "{$cache}{$warning}<hr />$text<hr />$extra</body></html>";
+			} catch( MWException $e ) {
+				// Do nothing, just use the default page
 			}
 		}
 		# Headers needed here - output is just the error message
@@ -2653,9 +2657,9 @@ EOT;
 			$mainpage    = htmlspecialchars( $wgLang->getMessage( 'mainpage' ) );
 		}
 
-		if($wgTitle) {
+		if( $wgTitle ) {
 			$t =& $wgTitle;
-		} elseif($title) {
+		} elseif( $title ) {
 			$t = Title::newFromURL( $title );
 		} else {
 			$t = Title::newFromText( $mainpage );
