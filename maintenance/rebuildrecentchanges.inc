@@ -110,6 +110,7 @@ function rebuildRecentChangesTablePass2()
 			$dbw->query( $sql3 );
 			
 			$lastOldId = intval( $obj->rc_this_oldid );
+			$lastSize = $size;
 		}
 	}
 	$dbw->freeResult( $res );
