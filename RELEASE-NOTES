@@ -319,6 +319,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18304) rebuildrecentchanges.php got size changes wrong
 * (bug 18170) Fixed a PHP warning in Parser::preSaveTransform() in PHP 5.3
 * (bug 18289) Database connection error page now returns correct HTML
+* "successbox", "errorbox" and related CSS classes are now available in all
+  skins
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
