@@ -159,6 +159,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add group convertsion support for LanguageConverter. New magic word
   "{{GROUPCONVERT:xxx}}" enabled for this new feature. You can set related
   conversion rules in [[MediaWiki:Groupconversiontable-xxx/language_code]].
+* Superfluous border="0" removed from images
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

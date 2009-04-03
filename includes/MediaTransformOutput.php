@@ -174,7 +174,6 @@ class ThumbnailImage extends MediaTransformOutput {
 			'src' => $this->url,
 			'width' => $this->width,
 			'height' => $this->height,
-			'border' => 0,
 		);
 		if ( !empty( $options['valign'] ) ) {
 			$attribs['style'] = "vertical-align: {$options['valign']}";
