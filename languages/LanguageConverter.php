@@ -177,25 +177,22 @@ class LanguageConverter {
 			return $this->mPreferredVariant;
 		}
 
-		# FIXME rewrite code for parsing http header. The current code
-		# is written specific for detecting zh- variants
 		if( !$this->mPreferredVariant ) {
 			// see if some supported language variant is set in the
 			// http header, but we don't set the mPreferredVariant
 			// variable in case this is called before the user's
 			// preference is loaded
-			$pv=$this->mMainLanguageCode;
-			if(array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
-				$header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
-				$zh = strstr($header, $pv.'-');
-				if($zh) {
-					$ary = split("[,;]",$zh);
-					$pv = $ary[0];
+			$preferredVariant = $this->mMainLanguageCode;
+			if( array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
+				$acceptLanguage = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
+				$languages = preg_split('/[,;]/', $acceptLanguage);
+				foreach( $languages as $language ) {
+					if( in_array( $language, $this->mVariants ) ) {
+						return $language;
+						break;
+					}
 				}
 			}
-			// don't try to return bad variant
-			if(in_array( $pv, $this->mVariants ))
-				return $pv;
 		}
 
 		return $this->mMainLanguageCode;
@@ -870,6 +867,9 @@ class LanguageConverter {
 	 * @public
 	 */
  	function armourMath($text){ 
+ 		// we need to convert '-{' and '}-' to '-&#123;' and '&#125;-'
+ 		// to avoid a unwanted '}-' appeared after the math-image.
+ 		$text = strtr( $text, array('-{' => '-&#123;', '}-' => '&#125;-') );
 		$ret = $this->mMarkup['begin'] . 'R|' . $text . $this->mMarkup['end'];
 		return $ret;
 	}
