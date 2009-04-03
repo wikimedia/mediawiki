@@ -372,6 +372,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added uiprop=changeablegroups to meta=userinfo
 * Added usprop=gender to list=users
 * (bug 18311) action=purge now works for images too
+* Fixed a bug caused by LanguageConverter.php, which brings an abnormal '}-'
+  after some parsed math syntax.
 
 === Languages updated in 1.15 ===
 
