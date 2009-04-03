@@ -83,14 +83,14 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else if( $this->deleteKey == 'logid' ) {
 			$this->showLogItems();
 		}
-		$qc = $this->getLogQueryCond();
+		list($qc,$lim) = $this->getLogQueryCond();
 		# Show relevant lines from the deletion log
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
-		LogEventsList::showLogExtract( $wgOut, 'delete', $this->page->getPrefixedText(), '', 25, $qc );
+		LogEventsList::showLogExtract( $wgOut, 'delete', $this->page->getPrefixedText(), '', $lim, $qc );
 		# Show relevant lines from the suppression log
 		if( $wgUser->isAllowed( 'suppressionlog' ) ) {
 			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
-			LogEventsList::showLogExtract( $wgOut, 'suppress', $this->page->getPrefixedText(), '', 25, $qc );
+			LogEventsList::showLogExtract( $wgOut, 'suppress', $this->page->getPrefixedText(), '', $lim, $qc );
 		}
 	}
 	
@@ -119,6 +119,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	private function getLogQueryCond() {
 		$ids = $safeIds = array();
 		$action = 'revision';
+		$limit = 25; // default
 		switch( $this->deleteKey ) {
 			case 'oldid':
 				$ids = $this->oldids;
@@ -140,7 +141,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// Revision delete logs
 		$conds = array( 'log_action' => $action );
 		// Just get the whole log if there are a lot if items
-		if( count($ids) > 20 ) return $conds;
+		if( count($ids) > $limit )
+			return array($conds,$limit);
 		// Digit chars only
 		foreach( $ids as $id ) {
 			if( preg_match( '/^\d+$/', $id, $m ) ) {
@@ -149,22 +151,20 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 		// Optimization for logs
 		if( $action == 'event' ) {
-			# If a context page is given, use title,time index
-			if( $this->contextPage ) {
-				$conds['log_namespace'] = $this->contextPage->getNamespace();
-				$conds['log_title'] = $this->contextPage->getDBKey();
-			} else {
-				$first = wfGetDB( DB_SLAVE )->selectField( 'logging',
-					'MIN(log_timestamp)', array('log_id' => $safeIds) );
-				# The event was be hidden after it was made
-				$conds[] = "log_timestamp >= {$first}"; // use type,time index
-			}
+			$dbr = wfGetDB( DB_SLAVE );
+			# Get the timestamp of the first item
+			$first = $dbr->selectField( 'logging', 'log_timestamp',
+				array('log_id' => $safeIds), __METHOD__, array('ORDER BY' => 'log_id') );
+			# If there are no items, then stop here
+			if( $first == false ) $conds = '1 = 0';
+			# The event was be hidden after it was made
+			$conds[] = 'log_timestamp > '.$dbr->addQuotes($first); // type,time index
 		}
 		// Format is <id1,id2,i3...>
 		if( count($safeIds) ) {
 			$conds[] = "log_params RLIKE '(^|\n|,)(".implode('|',$safeIds).")(,|$)'";
 		}
-		return $conds;
+		return array($conds,$limit);
 	}
 
 	private function secureOperation() {
