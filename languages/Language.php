@@ -2382,6 +2382,8 @@ class Language {
 						return self::$mLocalisationCache[$code]['deps'];
 					}
 				}
+			} else {
+				$cache = false;
 			}
 
 			# Try the global cache

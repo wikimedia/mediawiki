@@ -321,6 +321,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18289) Database connection error page now returns correct HTML
 * "successbox", "errorbox" and related CSS classes are now available in all
   skins
+* Fixed a PHP notice when $wgEnableSerializedMessages was set to false
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
