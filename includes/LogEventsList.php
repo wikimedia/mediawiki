@@ -365,7 +365,9 @@ class LogEventsList {
 			$del = ''; // No one should be hiding from the oversight log
 		} else {
 			$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
-			$query = array( 'target' => $target->getPrefixedDBkey(), 'logid' => $row->log_id );
+			$page = Title::makeTitle( $row->log_namespace, $row->log_title );
+			$query = array( 'target' => $target->getPrefixedDBkey(),
+				'logid' => $row->log_id, 'page' => $page->getPrefixedDBkey() );
 			$del = $this->skin->revDeleteLink( $query,
 				self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) );
 		}

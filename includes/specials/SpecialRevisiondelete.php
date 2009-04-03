@@ -49,6 +49,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			return;
 		}
 		$this->page = Title::newFromUrl( $this->target );
+		$this->contextPage = Title::newFromUrl( $wgRequest->getText( 'page' ) );
 		# If we have revisions, get the title from the first one
 		# since they should all be from the same page. This allows 
 		# for more flexibility with page moves...
@@ -144,6 +145,19 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		foreach( $ids as $id ) {
 			if( preg_match( '/^\d+$/', $id, $m ) ) {
 				$safeIds[] = $m[0];
+			}
+		}
+		// Optimization for logs
+		if( $action == 'event' ) {
+			# If a context page is given, use title,time index
+			if( $this->contextPage ) {
+				$conds['log_namespace'] = $this->contextPage->getNamespace();
+				$conds['log_title'] = $this->contextPage->getDBKey();
+			} else {
+				$first = wfGetDB( DB_SLAVE )->selectField( 'logging',
+					'MIN(log_timestamp)', array('log_id' => $safeIds) );
+				# The event was be hidden after it was made
+				$conds[] = "log_timestamp >= {$first}"; // use type,time index
 			}
 		}
 		// Format is <id1,id2,i3...>
@@ -548,7 +562,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			Xml::submitButton( wfMsg( 'revdelete-submit' ) ) );
 		$hidden = array(
 			Xml::hidden( 'wpEditToken', $wgUser->editToken() ),
-			Xml::hidden( 'target', $this->page->getPrefixedText() ),
+			Xml::hidden( 'target', $this->page->getPrefixedDBKey() ),
+			Xml::hidden( 'page', $this->contextPage ? $this->contextPage->getPrefixedDBKey() : '' ),
 			Xml::hidden( 'type', $this->deleteKey ),
 			Xml::hidden( 'logid', implode(',',$this->logids) )
 		);
