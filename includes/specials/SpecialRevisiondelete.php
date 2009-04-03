@@ -156,7 +156,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$first = $dbr->selectField( 'logging', 'log_timestamp',
 				array('log_id' => $safeIds), __METHOD__, array('ORDER BY' => 'log_id') );
 			# If there are no items, then stop here
-			if( $first == false ) $conds = '1 = 0';
+			if( $first == false ) {
+				$conds = array('1=0');
+				return array($conds,$limit);
+			}
 			# The event was be hidden after it was made
 			$conds[] = 'log_timestamp > '.$dbr->addQuotes($first); // type,time index
 		}
