@@ -1110,7 +1110,7 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'imagelinks'                => 'Viited failidele',
 'linkstoimage'              => 'Sellele pildile {{PLURAL:$1|viitab järgmine lehekülg|viitavad järgmised leheküljed}}:',
 'nolinkstoimage'            => 'Sellele pildile ei viita ükski lehekülg.',
-'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla jagatud kasutuses teistes projektides.',
+'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
 'noimage'                   => 'Sellise nimega faili pole, võite selle $1.',
 'noimage-linktext'          => 'üles laadida',
 'uploadnewversion-linktext' => 'Lae üles selle faili uus versioon',
@@ -1472,8 +1472,8 @@ Kui vahepeal on loodud uus samanimeline lehekülg, ilmuvad taastatud versioonid 
 'sp-contributions-newbies'     => 'Näita ainult uute kasutajate kaastööd.',
 'sp-contributions-newbies-sub' => 'Uued kasutajad',
 'sp-contributions-blocklog'    => 'Blokeerimise logi',
-'sp-contributions-talk'        => 'Arutelu',
-'sp-contributions-userrights'  => 'Kasutaja õiguste muutmine',
+'sp-contributions-talk'        => 'arutelu',
+'sp-contributions-userrights'  => 'kasutaja õiguste muutmine',
 'sp-contributions-search'      => 'Otsi kaastöid',
 'sp-contributions-username'    => 'IP aadress või kasutajanimi:',
 'sp-contributions-submit'      => 'Otsi',
@@ -1890,5 +1890,8 @@ Kinnituskood aegub $4.',
 
 # Special:BlankPage
 'blankpage' => 'Tühi leht',
+
+# Special:Tags
+'tags-hitcount' => '$1 {{PLURAL:$1|muudatus|muudatust}}',
 
 );

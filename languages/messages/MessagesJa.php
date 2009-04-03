@@ -1320,7 +1320,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'right-reupload'              => '存在するファイルの上書き',
 'right-reupload-own'          => '自らがアップロードした存在するファイルの上書き',
 'right-reupload-shared'       => '共有メディア・リポジトリ上のファイルのローカルでの上書き',
-'right-upload_by_url'         => 'URL アドレスからのファイルのアップロード',
+'right-upload_by_url'         => 'URL からのファイルのアップロード',
 'right-purge'                 => '確認を省略したサイトキャッシュの破棄',
 'right-autoconfirmed'         => '半保護されたページの編集',
 'right-bot'                   => '自動処理として認識',
@@ -1381,7 +1381,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'action-upload'               => 'このファイルのアップロード',
 'action-reupload'             => 'このファイルの上書き',
 'action-reupload-shared'      => '共有リポジトリにあるこのファイルの上書き',
-'action-upload_by_url'        => 'URLアドレスからのファイルのアップロード',
+'action-upload_by_url'        => 'URL からのファイルのアップロード',
 'action-writeapi'             => 'API書き込み',
 'action-delete'               => 'このページの削除',
 'action-deleterevision'       => 'この版の削除',
@@ -1451,7 +1451,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'upload_directory_missing'    => 'アップロードディレクトリ ($1) が見つからずウェブサーバによっても作成できませんでした。',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロードのエラー',
-'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの表示・検索には[[Special:FileList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロード記録]]、削除の記録は[[Special:Log/delete|削除記録]]にも記録されます。
+'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの表示・検索には[[Special:FileList|{{int:listfiles}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロード記録]]、削除の記録は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを挿入するには以下の書式のリンクを使います。
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
@@ -2097,7 +2097,7 @@ $NEWPAGE
 'sp-contributions-newbies-title' => '新規アカウントの投稿記録',
 'sp-contributions-blocklog'      => '投稿ブロック記録',
 'sp-contributions-deleted'       => '削除された投稿履歴',
-'sp-contributions-logs'          => '各種記録',
+'sp-contributions-logs'          => '各種ログ',
 'sp-contributions-talk'          => '会話',
 'sp-contributions-userrights'    => '利用者権限の管理',
 'sp-contributions-search'        => '投稿履歴の検索',
@@ -2399,7 +2399,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-pt-userpage'             => 'あなたの利用者ページ',
 'tooltip-pt-anonuserpage'         => 'あなたのIPアドレス用の利用者ページ',
 'tooltip-pt-mytalk'               => 'あなたの会話ページ',
-'tooltip-pt-anontalk'             => 'あなたのIPアドレスからなされた編集の会話ページ',
+'tooltip-pt-anontalk'             => 'このIPアドレスからなされた編集についての議論',
 'tooltip-pt-preferences'          => '個人設定',
 'tooltip-pt-watchlist'            => '変更を監視しているページの一覧',
 'tooltip-pt-mycontris'            => 'あなたの投稿記録',

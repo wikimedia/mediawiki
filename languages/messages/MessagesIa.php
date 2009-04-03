@@ -2372,7 +2372,7 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 Per favor visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
 'allmessagesnotsupportedDB' => "Iste pagina non pote esser usate proque '''\$wgUseDatabaseMessages''' ha essite disactivate.",
 'allmessagesfilter'         => 'Filtro de nomine de message:',
-'allmessagesmodified'       => 'Monstrar solmente modificates',
+'allmessagesmodified'       => 'Monstrar solmente messages modificate',
 
 # Thumbnails
 'thumbnail-more'           => 'Aggrandir',
