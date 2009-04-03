@@ -370,6 +370,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   message to be included in the page text
 * Added uiprop=changeablegroups to meta=userinfo
 * Added usprop=gender to list=users
+* (bug 18311) action=purge now works for images too
 
 === Languages updated in 1.15 ===
 
