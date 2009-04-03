@@ -182,7 +182,6 @@ class LanguageConverter {
 			// http header, but we don't set the mPreferredVariant
 			// variable in case this is called before the user's
 			// preference is loaded
-			$preferredVariant = $this->mMainLanguageCode;
 			if( array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
 				$acceptLanguage = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
 				$languages = preg_split('/[,;]/', $acceptLanguage);
