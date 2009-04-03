@@ -1174,7 +1174,7 @@ class Article {
 	}
 
 	public function deletetrackback() {
-		global $wgUser, $wgRequest, $wgOut, $wgTitle;
+		global $wgUser, $wgRequest, $wgOut;
 		if( !$wgUser->matchEditToken($wgRequest->getVal('token')) ) {
 			$wgOut->addWikiMsg( 'sessionfailure' );
 			return;
