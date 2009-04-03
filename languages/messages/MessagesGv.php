@@ -31,7 +31,7 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'        => 'Cur linnaghyn fo chianglaghyn:',
-'tog-highlightbroken'  => 'Cur y cummey shoh <a href="" class="new">er kianglaghey brisht</a> (aght elley: myr shoh<a href="" class="internal">?</a>).',
+'tog-highlightbroken'  => 'Croo kianglaghyn brisht <a href="" class="new">myr shoh</a> (aght elley: myr shoh<a href="" class="internal">?</a>).',
 'tog-hideminor'        => "Follaghey myn-arraghyn ayns caghlaaghyn s'noa",
 'tog-numberheadings'   => 'Cur earrooyn gyn smooinaght er kione-linnaghyn',
 'tog-rememberpassword' => "Cooinnee m'ockle arrey",
@@ -138,7 +138,7 @@ $messages = array(
 'searchbutton'      => 'Ronsaghey',
 'go'                => 'Gow',
 'searcharticle'     => 'Gow',
-'history'           => 'Shennaghys y ghuillag',
+'history'           => 'Shennaghys ny duillag',
 'history_short'     => 'Shennaghys',
 'info_short'        => 'Oayllys',
 'printableversion'  => 'Lhieggan clou',
@@ -226,7 +226,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Duillag',
 'nstab-user'      => 'Duillag yn ymmydeyr',
-'nstab-special'   => 'er lheh',
+'nstab-special'   => 'Er lheh',
 'nstab-project'   => 'Duillag shalee',
 'nstab-image'     => 'Coadan',
 'nstab-mediawiki' => 'Çhaghteraght',
@@ -241,7 +241,7 @@ $messages = array(
 'badtitle'           => 'Drogh-ennym',
 'viewsource'         => 'Jeeagh er bun',
 'viewsourcefor'      => 'dy $1',
-'viewsourcetext'     => 'Foddee oo jeeagh er as jean aascreeuyn bun y ghuillag shoh:',
+'viewsourcetext'     => 'Foddee oo jeeagh as jean aascreeuyn er bun ny duillag shoh:',
 
 # Login and logout pages
 'welcomecreation'            => '== Failt ort, $1! ==
@@ -390,7 +390,7 @@ Ta lioar ny scryssaghyn magh kiarit ayns shoh rere dty chaays hene:",
 'cantcreateaccounttitle' => 'Cha nod coontys y chroo',
 
 # History pages
-'viewpagelogs'        => 'Jeeagh er lioaryn chooishyn y ghuillag shoh',
+'viewpagelogs'        => 'Jeeagh er lioaryn chooishyn ny duillag shoh',
 'currentrev'          => 'Aavriwnys immeeaght',
 'revisionasof'        => 'Aavriwnys veih $1',
 'revision-info'       => 'Aavriwnys veih $1 ec $2', # Additionally available: $3: revision id
@@ -523,7 +523,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'nchanges'                       => '$1 {{PLURAL:$1|caghlaa|chaghlaa|chaghlaa|caghlaaghyn}}',
 'recentchanges'                  => "Caghlaaghyn s'noa",
 'recentchanges-legend'           => "Reihyssyn da ny caghlaaghyn s'noa",
-'recentchangestext'              => "Shirrey ny caghlaaghyn s'noa da'n wiki er y ghuillag shoh.",
+'recentchangestext'              => "Shirrey ny caghlaaghyn s'noa da'n wiki er y duillag shoh.",
 'recentchanges-feed-description' => 'Lorgey ny caghlaaghyn jeianagh er y wiki ayns y veaghey shoh.',
 'rcnote'                         => "Ny ta heese, she {{PLURAL:$1|ny '''$1''' caghlaa|yn '''$1''' chaghlaa|ny '''$1''' chaghlaa|ny '''$1''' caghlaaghyn}} s'jerree ayns {{PLURAL:$2|ny '''$2''' laa|yn '''$2''' laa|ny '''$2''' laa|ny '''$2''' laaghyn}} s'jerree, kiart ec $4, $5.",
 'rcnotefrom'                     => "Shoh heese ny caghlaaghyn veih '''$2''' (gys '''$1''' taishbynit).",
@@ -816,9 +816,7 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'protect-summary-cascade'     => 'spooytey',
 'protect-expiring'            => 'jerrey jeant ec $1 (UTC)',
 'protect-cascade'             => "Cur fo ghlass ny duillagyn t'ayns y duillag shoh (coadee spooytal)",
-'protect-cantedit'            => 'You cannot change the protection levels of this page, because you do not have permission to edit it.
-
-Cha nod oo caghlaa keim choadey y ghuillag shoh.  Cha nel kied ayd dy reaghey eh.',
+'protect-cantedit'            => 'Cha nod oo caghlaa keim choadey ny duillag shoh.  Cha nel kied ayd ee y reaghey.',
 'protect-expiry-options'      => '2 oor:2 hours,1 laa:1 day,3 laaghyn:3 days,1 hiaghtin:1 week,2 hiaghtin:2 weeks,1 vee:1 month,3 meeghyn:3 months,6 meeghyn:6 months,1 vlein:1 year,neuyerrinagh:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Kied:',
 'restriction-level'           => 'Rea teorey:',
