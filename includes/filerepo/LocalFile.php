@@ -333,12 +333,14 @@ class LocalFile extends File
 		# Don't destroy file info of missing files
 		if ( !$this->fileExists ) {
 			wfDebug( __METHOD__.": file does not exist, aborting\n" );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$dbw = $this->repo->getMasterDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
 		if ( wfReadOnly() ) {
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 		wfDebug(__METHOD__.': upgrading '.$this->getName()." to the current schema\n");
@@ -1441,6 +1443,7 @@ class LocalFileDeleteBatch {
 			// Roll back inserts, release lock and abort
 			// TODO: delete the defunct filearchive rows if we are using a non-transactional DB
 			$this->file->unlockAndRollback();
+			wfProfileOut( __METHOD__ );
 			return $this->status;
 		}
 
