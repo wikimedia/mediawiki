@@ -617,7 +617,7 @@ class SpecialSearch {
 		$redirectLabel = Xml::label( wfMsg( 'powersearch-redir' ), 'redirs' );
 		$searchField = Xml::inputLabel( wfMsg('powersearch-field'), 'search', 'powerSearchText', 50, $term,
 			array( 'type' => 'text') );
-		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'fulltext' )) . "\n";
+		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ) ) . "\n";
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
 		
 		$redirectText = '';
@@ -759,7 +759,7 @@ class SpecialSearch {
 		// Term box
 		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . "\n";
 		$out .= Xml::hidden( 'fulltext', 'Search' );
-		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
+		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) );
 		$out .= ' (' . wfMsgExt('searchmenu-help',array('parseinline') ) . ')';
 		$out .= Xml::closeElement( 'form' );
 		// Add prefix link for single-namespace searches
@@ -1428,7 +1428,7 @@ class SpecialSearchOld {
 		$redirect = Xml::check( 'redirs', $this->searchRedirects, array( 'value' => '1', 'id' => 'redirs' ) );
 		$redirectLabel = Xml::label( wfMsg( 'powersearch-redir' ), 'redirs' );
 		$searchField = Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'powerSearchText' ) );
-		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'fulltext' ) ) . "\n";
+		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ) ) . "\n";
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
 		$searchHiddens = Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
 		$searchHiddens .= Xml::hidden( 'fulltext', 'Advanced search' ) . "\n";
@@ -1480,7 +1480,7 @@ class SpecialSearchOld {
 		}
 		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() );
 		$out .= Xml::hidden( 'fulltext', 'Search' );
-		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
+		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) );
 		$out .= Xml::closeElement( 'form' );
 
 		return $out;
