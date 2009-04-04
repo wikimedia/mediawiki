@@ -322,6 +322,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * "successbox", "errorbox" and related CSS classes are now available in all
   skins
 * Fixed a PHP notice when $wgEnableSerializedMessages was set to false
+* (bug 18316) Removed superfluous name="fulltext" from Special:Search
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
