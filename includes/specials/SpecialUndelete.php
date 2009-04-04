@@ -642,7 +642,7 @@ class UndeleteForm {
 					$this->showList( $result );
 				}
 			} else {
-				$wgOut->addWikiText( wfMsgHtml( 'undelete-header' ) );
+				$wgOut->addWikiMsg( 'undelete-header' );
 			}
 			return;
 		}
@@ -763,7 +763,7 @@ class UndeleteForm {
 					$wgOut->addHTML( '<hr />' );
 				}
 			} else {
-				$wgOut->addHTML( wfMsgHtml( 'undelete-nodiff' ) );
+				$wgOut->addWikiMsg( 'undelete-nodiff' );
 			}
 		}
 
@@ -774,13 +774,16 @@ class UndeleteForm {
 		$t = htmlspecialchars( $wgLang->time( $timestamp, true ) );
 		$user = $skin->revUserTools( $rev );
 
-		$wgOut->addHTML( '<p>' . wfMsgHtml( 'undelete-revision', $link, $time, $user, $d, $t ) . '</p>' );
+		if( $this->mPreview ) {
+			$openDiv = '<div id="mw-undelete-revision" class="mw-warning">';
+		} else {
+			$openDiv = '<div id="mw-undelete-revision">';
+		}
 
+		$wgOut->addHTML( $openDiv . wfMsgWikiHtml( 'undelete-revision', $link, $time, $user, $d, $t ) . '</div>' );
 		wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) );
 
 		if( $this->mPreview ) {
-			$wgOut->addHTML( "<hr />\n" );
-
 			//Hide [edit]s
 			$popts = $wgOut->parserOptions();
 			$popts->setEditSection( false );
@@ -941,7 +944,7 @@ class UndeleteForm {
 			$wgOut->setPagetitle( wfMsg( 'viewdeletedpage' ) );
 		}
 
-		$wgOut->addWikiText( wfMsgHtml( 'undeletepagetitle', $this->mTargetObj->getPrefixedText()) );
+		$wgOut->addWikiMsg( 'undeletepagetitle', $this->mTargetObj->getPrefixedText() );
 
 		$archive = new PageArchive( $this->mTargetObj );
 		/*
