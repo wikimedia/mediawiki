@@ -148,6 +148,7 @@ class LocalFile extends File
 		$this->dataLoaded = false;
 		$key = $this->getCacheKey();
 		if ( !$key ) {
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		$cachedValues = $wgMemc->get( $key );
