@@ -225,7 +225,7 @@ class LogEventsList {
 		$paramArray = LogPage::extractParams( $row->log_params );
 		$revert = $del = '';
 		// Some user can hide log items and have review links
-		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+		if( !($this->flags & self::NO_ACTION_LINK) && $wgUser->isAllowed( 'deleterevision' ) ) {
 			$del = $this->getShowHideLinks( $row ) . ' ';
 		}
 		// Add review links and such...
