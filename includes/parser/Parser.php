@@ -2808,6 +2808,8 @@ class Parser
 
 					# Workaround for PHP bug 35229 and similar
 					if ( !is_callable( $callback ) ) {
+						wfProfileOut( __METHOD__ . '-pfunc' );
+						wfProfileOut( __METHOD__ );
 						throw new MWException( "Tag hook for $function is not callable\n" );
 					}
 					$result = call_user_func_array( $callback, $allArgs );
