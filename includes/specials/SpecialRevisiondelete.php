@@ -1190,10 +1190,9 @@ class RevisionDeleter {
 		}
 		list($log,$logtype) = explode( '/',$title->getDBKey(), 2 );
 		$result = $this->dbw->select( 'logging', '*',
-			array(
-				'log_type' => $logtype,
-				'log_id' => $where ),
-			__METHOD__ );
+			array( 'log_type' => $logtype, 'log_id' => $where ),
+			__METHOD__
+		);
 		while( $row = $this->dbw->fetchObject( $result ) ) {
 			$logRows[$row->log_id] = $row;
 		}
@@ -1203,18 +1202,17 @@ class RevisionDeleter {
 				$success = false;
 				continue; // Must exist
 			} else if( !LogEventsList::userCan($logRows[$logid], LogPage::DELETED_RESTRICTED)
-				 || $logRows[$logid]->log_type == 'suppress' ) {
-			// Don't hide from oversight log!!!
-    			$userAllowedAll=false;
+				|| $logRows[$logid]->log_type == 'suppress' )
+			{
+    			$userAllowedAll=false; // Don't hide from oversight log!!!
     			continue;
 			}
 			// Which logs did we change anything about?
 			if( $logRows[$logid]->log_deleted != $bitfield ) {
-				$log_Ids[]=$logid;
-				$count++;
-
+				$log_Ids[] = $logid;
 			   	$this->updateLogs( $logRows[$logid], $bitfield );
-				$this->updateRecentChangesLog( $logRows[$logid], $bitfield, true );
+				$this->updateRecentChangesLog( $logRows[$logid], $bitfield );
+				$count++;
 			}
 		}
 		// Don't log or touch if nothing changed
