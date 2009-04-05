@@ -598,7 +598,8 @@ class IPBlockForm {
 			$flags[] = 'anononly';
 		if( $this->BlockCreateAccount )
 			$flags[] = 'nocreate';
-		if( !$this->BlockEnableAutoblock )
+		if( !$this->BlockEnableAutoblock && !IP::isIPAddress( $this->BlockAddress ) )
+			// Same as anononly, this is not displayed when blocking an IP address
 			$flags[] = 'noautoblock';
 		if ( $this->BlockEmail )
 			$flags[] = 'noemail';
