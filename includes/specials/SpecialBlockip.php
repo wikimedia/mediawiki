@@ -519,7 +519,7 @@ class IPBlockForm {
 			array('ar_user_text' => $userId), __METHOD__ );
 		# Hide name from logs
 		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delUser"),
-			array('log_user' => $userId), __METHOD__ );
+			array('log_user' => $userId, "log_type != 'suppress'"), __METHOD__ );
 		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delAction"),
 			array('log_namespace' => NS_USER, 'log_title' => $userDbKey,
 				"log_type != 'suppress'"), __METHOD__ );
