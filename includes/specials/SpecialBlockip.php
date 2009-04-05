@@ -521,7 +521,8 @@ class IPBlockForm {
 		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delUser"),
 			array('log_user' => $userId), __METHOD__ );
 		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delAction"),
-			array('log_namespace' => NS_USER, 'log_title' => $userDbKey), __METHOD__ );
+			array('log_namespace' => NS_USER, 'log_title' => $userDbKey,
+				"log_type != 'suppress'"), __METHOD__ );
 		# Hide name from RC
 		$dbw->update( 'recentchanges', array("rc_deleted = rc_deleted $op $delUser"),
 			array('rc_user_text' => $name), __METHOD__ );
