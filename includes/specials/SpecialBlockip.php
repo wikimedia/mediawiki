@@ -526,6 +526,8 @@ class IPBlockForm {
 		# Hide name from RC
 		$dbw->update( 'recentchanges', array("rc_deleted = rc_deleted $op $delUser"),
 			array('rc_user_text' => $name), __METHOD__ );
+		$dbw->update( 'recentchanges', array("rc_deleted = rc_deleted $op $delAction"),
+			array('rc_namespace' => NS_USER, 'rc_title' => $userDbKey, 'rc_logid > 0'), __METHOD__ );
 		# Hide name from live images
 		$dbw->update( 'oldimage', array("oi_deleted = oi_deleted $op $delUser"),
 			array('oi_user_text' => $name), __METHOD__ );
