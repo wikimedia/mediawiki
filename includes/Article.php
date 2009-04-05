@@ -2413,10 +2413,10 @@ class Article {
 		if( $wgUser->isAllowed( 'suppressrevision' ) ) {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\" name=\"wpDeleteSuppressRow\">
 					<td></td>
-					<td class='mw-input'>" .
+					<td class='mw-input'><strong>" .
 						Xml::checkLabel( wfMsg( 'revdelete-suppress' ),
 							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
-					"</td>
+					"</strong></td>
 				</tr>";
 		} else {
 			$suppress = '';
