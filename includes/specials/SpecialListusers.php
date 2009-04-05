@@ -74,7 +74,7 @@ class UsersPager extends AlphabeticPager {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
 		// Don't show hidden names
-		$conds[] = 'ipb_deleted IS NULL OR ipb_deleted = 0';
+		$conds[] = 'ipb_deleted IS NULL';
 		if( $this->requestedGroup != '' ) {
 			$conds['ug_group'] = $this->requestedGroup;
 			$useIndex = '';
@@ -97,7 +97,7 @@ class UsersPager extends AlphabeticPager {
 
 		$query = array(
 			'tables' => " $user $useIndex LEFT JOIN $user_groups ON user_id=ug_user
-				LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_auto=0 ",
+				LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_deleted=1 AND ipb_auto=0 ",
 			'fields' => array(
 				$this->creationSort ? 'MAX(user_name) AS user_name' : 'user_name',
 				$this->creationSort ? 'user_id' : 'MAX(user_id) AS user_id',
