@@ -39,7 +39,7 @@ Options:
 	* remove-unknown: Remove unknown messages.
 
 END;
-	exit();
+	exit(1);
 }
 
 # Get the language code

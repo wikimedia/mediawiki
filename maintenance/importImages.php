@@ -184,7 +184,7 @@ if( count( $args ) > 0 ) {
 	showUsage();
 }
 
-exit();
+exit(0);
 
 function showUsage( $reason = false ) {
 	if( $reason ) {
@@ -211,5 +211,5 @@ Options:
 --unprotect             Unprotects all uploaded images
 
 END;
-	exit();
+	exit(1);
 }

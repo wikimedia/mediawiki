@@ -327,6 +327,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The "noautoblock" flag is no longer displayed in the block log when blocking
   an IP address
 * (bug 18009) $wgHooks and $wgExtensionFunctions now support closures
+* (bug 17948) Maintenance scripts now exit(0) or exit(1) as appropriate
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

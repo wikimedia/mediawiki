@@ -2447,7 +2447,7 @@ function validateHTML($text) {
     if (curl_error($ch)) {
         trigger_error("Curl error #: " . curl_errno($ch) . " - " . curl_error ($ch) );
         print "Curl error #: " . curl_errno($ch) . " - " . curl_error ($ch) . " - exiting.\n";
-        exit();
+        exit(1);
     }
 
     curl_close ($ch);

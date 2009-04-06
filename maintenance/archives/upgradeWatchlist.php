@@ -10,7 +10,7 @@ print "This script is obsolete!";
 print "It is retained in the source here in case some of its
 code might be useful for ad-hoc conversion tasks, but it is
 not maintained and probably won't even work as is.";
-exit();
+exit(1);
 
 # Convert watchlists to new format
 
