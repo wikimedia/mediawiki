@@ -326,6 +326,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18331) MediaWiki:Undelete-revision can now have wikitext
 * The "noautoblock" flag is no longer displayed in the block log when blocking
   an IP address
+* (bug 18009) $wgHooks and $wgExtensionFunctions now support closures
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
