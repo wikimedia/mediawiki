@@ -877,6 +877,7 @@ Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass d
 'revdelete-logentry'             => 'het d Versionsaasicht fir „[[$1]]“ gänderet',
 'logdelete-logentry'             => 'het d Sichtbarkeit fir „[[$1]]“ gänderet',
 'revdelete-success'              => "'''Versionsaasicht erfolgryych gänderet.'''",
+'revdelete-failure'              => "'''Versionssichtbarkeit het nit chenne gsetzt wäre.'''",
 'logdelete-success'              => "'''Logbuechaasicht erfolgryych gänderet.'''",
 'revdel-restore'                 => 'Sichtbarkeit ändere',
 'pagehist'                       => 'Versionsgeschicht',

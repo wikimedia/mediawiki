@@ -1056,7 +1056,6 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|jëfandikukat moo koy topp|$1 jëfandikukat ñoo koy topp}}]',
 'rc_categories'                     => 'Digalub wàll yi (xaajale leen ak « "|" »)',
 'rc_categories_any'                 => 'Yépp',
@@ -1165,7 +1164,11 @@ Ab [[Special:WhatLinksHere/$2|lim bu mat]] jàppandi na.',
 'morelinkstoimage'          => 'Xool [[Special:WhatLinksHere/$1|yeneeni lëkkalekaay]] yuy jëme ci wii ŋara.',
 'redirectstofile'           => '{{PLURAL:$1|ŋara wii di toftal ab|$1ŋara yii di toftal ay}} jubluwaat {{PLURAL:$1|la buy|lañu yuy}} jëme ci wii ŋara:',
 'duplicatesoffile'          => '{{PLURAL:$1|ŋara wii|$1ŋara  yii}} di toftal {{PLURAL:$1|ab duppitu|ay duppitu}} bii {{PLURAL:$2|la|lañu}} ([[Special:FileDuplicateSearch/$2|yeneeni faramfacce]])::',
-'sharedupload'              => 'ŋara wii $1 la bàyyikoo, te man nañu koo jëfandikoo ci yeneen sémbi wiki.',
+'sharedupload'              => 'Ŋara wii $1 la bàyyikoo, te man nañu koo jëfandikoo ci yeneen sémb.',
+'sharedupload-desc-there'   => 'Ŋara wii $1 la bàyyikoo te man nañu koo jëfandikoo ci yeneen sémb.
+Saytul [$2 xëtu faramfaccewaayu ŋara wi] ngir yeneeni xibaar.',
+'sharedupload-desc-here'    => 'Ŋara wii $1 la bàyyikoo te man nañu koo jëfandikoo ci yeneen sémb.
+Faramfacce gi ci [$2 xëtu faramfaccewaayu xët wi] lañuy wone ci suuf .',
 'noimage'                   => 'Amul wenn ŋara wu ni tudd wu am, waaye man ngaa $1.',
 'noimage-linktext'          => 'yeb benn',
 'uploadnewversion-linktext' => 'Yeb sumb bu bees bu wii ŋara',
@@ -1209,19 +1212,38 @@ Dugalal baat bi ci pax mi  ''xeet/''ron-xeet'', ci misaal <tt>image/jpeg</tt>.",
 'mimetype'           => 'Xeet wu MIME :',
 'download'           => 'yebbi',
 
+# Unwatched pages
+'unwatchedpages' => 'Xët yi ñu toppul',
+
 # List redirects
 'listredirects' => 'Limu jubluwaat yi',
 
 # Unused templates
-'unusedtemplates'     => 'Royuwaay yi ñu jëfëndikoowul',
-'unusedtemplatestext' => 'Mii xët day limal xët yëpp yi tudd « Royuwaay » yu ñu duggalul ci benn xët. Bul fattee seet baxam amul yeneen lëkkalekaay yu lay jëmale ci royuwaay yi balaa nga leen di dindi.',
+'unusedtemplates'     => 'Royuwaay yi ñu jëfandikoowul',
+'unusedtemplatestext' => 'Ci wii xët dañ fiy lim xët yépp yi tudd {{ns:template}} yu ñu dugalul ci wenn xët. 
+Bul fattee seet baxam amul yeneen lëkkalekaay yu lay jëmale ci royuwaay yi balaa nga leen di far.',
 'unusedtemplateswlh'  => 'yeneeni lëkkalekaay',
 
 # Random page
-'randompage' => 'Aw xët ci mbetteel',
+'randompage'         => 'Aw xët ci mbetteel',
+'randompage-nopages' => 'Amul wenn xët wu barabu turam doon « $1 ».',
+
+# Random redirect
+'randomredirect-nopages' => 'Amul benn jubluwaat bu barabu turam doon  « $1 ».',
 
 # Statistics
-'statistics-header-users' => 'Limbarem jëfëndikookat',
+'statistics-header-users'      => 'Limbarem jëfëndikookat',
+'statistics-articles'          => 'Xëti ëmbit',
+'statistics-pages'             => 'Xët',
+'statistics-pages-desc'        => 'Xët yépp yi ci wiki bi, xëti waxtaanuwaay yi, jubluwaat yi, añs.',
+'statistics-files'             => 'Xët yi ñu fi yeb',
+'statistics-edits'             => 'Coppitey xët yi dalee ca campug  {{SITENAME}}',
+'statistics-views-total'       => 'Mbooleem saytu yi',
+'statistics-views-peredit'     => 'Saytu ngir soppi',
+'statistics-users'             => '[[Special:ListUsers|Jëfandikukat]] yi bindu',
+'statistics-users-active'      => 'Jëfandikukat yu yëngu',
+'statistics-users-active-desc' => 'Jëfandikukat yi amal ag yëngu-yëngu ci {{PLURAL:$1|bés bu mujj bi|$1 bés yu mujj yi}}',
+'statistics-mostpopular'       => 'Xët yi ñu gën a saytu',
 
 'brokenredirectstext'    => "Yoonalaat yii dañuy jëmee ci'y xët yu amul :",
 'brokenredirects-edit'   => '(Soppi)',
@@ -1286,50 +1308,75 @@ Dugalal baat bi ci pax mi  ''xeet/''ron-xeet'', ci misaal <tt>image/jpeg</tt>.",
 'speciallogtitlelabel' => 'Koj :',
 'log'                  => 'Yéenekaay',
 'all-logs-page'        => 'Yéenekaay yépp',
-'logempty'             => 'Dara nekkul ci jaar-jaaru xët mii.',
+'logempty'             => 'Dara nekkul ci jaar-jaaru xët wii.',
+'log-title-wildcard'   => 'Seet ay koj yu tambalee mii mbind',
 
 # Special:AllPages
-'allpages'         => 'Xët yëpp',
-'alphaindexline'   => '$1 ba $2',
-'nextpage'         => 'Xët wi tegu ($1)',
-'prevpage'         => 'Xët wi jiitu ($1)',
-'allpagesfrom'     => 'Wonel xët yi tambalee ci :',
-'allpagesto'       => 'Wone xët yi ba :',
-'allarticles'      => 'Jukki yëpp',
-'allinnamespace'   => 'Xët yépp(turu barab bu $1)',
-'allpagesprev'     => 'Jiitu',
-'allpagesnext'     => 'Tegu',
-'allpagessubmit'   => 'Baaxal',
-'allpagesprefix'   => 'Wone xët yi tambalee :',
-'allpagesbadtitle' => 'Koj gi nga bindal xët mii jaaduwul. xayna dafa am ay araf yu ñu manula jëfëndikoo ci koj yi.',
+'allpages'          => 'Xët yépp',
+'alphaindexline'    => '$1 ba $2',
+'nextpage'          => 'Xët wi toftal ($1)',
+'prevpage'          => 'Xët wi jiitu ($1)',
+'allpagesfrom'      => 'Wone xët yi tambalee ci:',
+'allpagesto'        => 'Wone xët yi ba :',
+'allarticles'       => 'Xët yépp',
+'allinnamespace'    => 'Xët yépp(turu barab bu $1)',
+'allnotinnamespace' => 'Xët yépp (génne ci barabu tur bu $1)',
+'allpagesprev'      => 'Jiitu',
+'allpagesnext'      => 'Toftal',
+'allpagessubmit'    => 'Ayca',
+'allpagesprefix'    => 'Wone xët yi tambalee :',
+'allpagesbadtitle'  => 'Koj bi nga bindal xët wii baaxul. xéj-na dafa am ay araf yu ñu manula jëfandikoo cib koj.',
+'allpages-bad-ns'   => 'Barabu tur bii di « $1 » amul ci {{SITENAME}}.',
 
 # Special:Categories
 'categories'                    => 'Wàll',
-'categoriespagetext'            => 'Wàll yii ñoo am ci biir wiki gi.',
-'special-categories-sort-count' => 'nose sàq',
-'special-categories-sort-abc'   => 'nose abajada',
+'categoriespagetext'            => 'Wàll yii di toftal dañoo ëmb ay xët walla ay ŋaray xibaarukaay.
+[[Special:UnusedCategories|Wáll yu këmm]] yi wonewuñu leen fi.
+Xoola itam [[Special:WantedCategories|wáll yi ñuy laaj]].',
+'categoriesfrom'                => 'Wone wáll yi dalee ko ci :',
+'special-categories-sort-count' => 'nosee lim',
+'special-categories-sort-abc'   => 'nosee abajada',
+
+# Special:DeletedContributions
+'deletedcontributions'       => 'Cëru yi ñu far',
+'deletedcontributions-title' => 'Cëru yi ñu far',
 
 # Special:LinkSearch
 'linksearch'      => 'Lëkkalekaay yu biti',
 'linksearch-pat'  => 'Kaddu yi ngay seet :',
-'linksearch-ns'   => 'Turu jëfandikukat :',
+'linksearch-ns'   => 'Barabu tur:',
 'linksearch-ok'   => 'Seet',
 'linksearch-line' => '$1 moo ngi ci xët wii di $2',
 
 # Special:ListUsers
-'listusers-submit' => 'Wone',
+'listusersfrom'      => 'Wone jëfandikukat yi doore ko ci:',
+'listusers-submit'   => 'Wone',
+'listusers-noresult' => 'Benn jëfandikukat giseesu ko',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Jëfandikukat yu yees yi',
+'newuserlogpagetext'          => 'Xët wii daf lay won limu sáq yi fi mujjee sosu.',
+'newuserlog-byemail'          => 'baatujáll bi yónne nañu ko cib bataaxal',
 'newuserlog-create-entry'     => 'Jëfandikukat bu bees',
-'newuserlog-create2-entry'    => 'moo sos mii saq mu bees $1',
-'newuserlog-autocreate-entry' => 'Saq mi sos na boppam',
+'newuserlog-create2-entry'    => 'moo sos mii sáq mu bees $1',
+'newuserlog-autocreate-entry' => 'Sáq mi sos na boppam',
 
 # Special:ListGroupRights
-'listgrouprights-members'       => '(limu cër yi)',
-'listgrouprights-right-display' => '$1 ($2)',
+'listgrouprights'                 => 'Sañ-sañi mbooloom jëfandikukat mi',
+'listgrouprights-summary'         => 'Lii di toftal mooy limu mboolooy jëfandikukat yi ne ci bii wiki, ak sañ-sañ yi ñu leen féetaleel.
+Man ngaa fee gis itam [[{{MediaWiki:Listgrouprights-helppage}}|yeneen xibaar]] ñeel sañ-sañi mbooloo mu ci nekk.',
+'listgrouprights-group'           => 'Mbooloo',
+'listgrouprights-rights'          => 'Sañ-sañ',
+'listgrouprights-helppage'        => 'Help:Sañ-sañi mbooloo yi',
+'listgrouprights-members'         => '(limu cër yi)',
+'listgrouprights-right-display'   => '$1 ($2)',
+'listgrouprights-addgroup'        => 'Man ngaa yokk {{PLURAL:$2|mbooloo mi|mbooloo yi}} : $1',
+'listgrouprights-removegroup'     => 'Man ngaa far {{PLURAL:$2|mbooloo mi|mbooloo yi}}: $1',
+'listgrouprights-addgroup-all'    => 'Man ngaa yokk ci mbooloo yépp',
+'listgrouprights-removegroup-all' => 'Man ngaa faree ci mbooloo yépp',
 
 # E-mail user
+'mailnologin'   => 'Amul benn mákkaan boo man a yónne bataaxal bi',
 'emailuser'     => 'Yònnee ab bataaxal jëfëndikookat bii',
 'emailpage'     => 'Yònnee ab bataaxal jëfëndikookat bii',
 'emailmessage'  => 'Bataaxal&nbsp;:',

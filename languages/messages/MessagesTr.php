@@ -282,10 +282,10 @@ $messages = array(
 'qbmyoptions'    => 'Sayfalarım',
 'qbspecialpages' => 'Özel sayfalar',
 'moredotdotdot'  => 'Daha...',
-'mypage'         => 'Sayfam',
-'mytalk'         => 'Mesaj sayfam',
+'mypage'         => 'sayfam',
+'mytalk'         => 'mesaj sayfam',
 'anontalk'       => "Bu IP'nin mesajları",
-'navigation'     => 'Sitede yol bulma',
+'navigation'     => 'gezinti',
 'and'            => '&#32;ve',
 
 # Metadata in edit box
@@ -306,11 +306,11 @@ $messages = array(
 'printableversion'  => 'Basılmaya uygun görünüm',
 'permalink'         => 'Bu hâline bağlantı',
 'print'             => 'Bastır',
-'edit'              => 'Değiştir',
-'create'            => 'Oluştur',
+'edit'              => 'değiştir',
+'create'            => 'oluştur',
 'editthispage'      => 'Sayfayı değiştir',
 'create-this-page'  => 'Bu sayfayı oluştur',
-'delete'            => 'Sil',
+'delete'            => 'sil',
 'deletethispage'    => 'Sayfayı sil',
 'undelete_short'    => '{{PLURAL:$1|değişikliği|$1 değişiklikleri}} geri getir',
 'protect'           => 'Korumaya al',
@@ -404,7 +404,7 @@ $messages = array(
 'red-link-title'          => '$1 (sayfa mevcut değil)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Sayfa',
+'nstab-main'      => 'Madde',
 'nstab-user'      => 'kullanıcı sayfası',
 'nstab-media'     => 'Medya',
 'nstab-special'   => 'Özel sayfa',
@@ -506,7 +506,7 @@ Verilen sebep: ''$2''.",
 
 Hesabınız açıldı. 
 [[Special:Preferences|{{SITENAME}} tercihlerinizi]] değiştirmeyi unutmayın.',
-'loginpagetitle'             => 'Oturum aç',
+'loginpagetitle'             => 'oturum aç',
 'yourname'                   => 'Kullanıcı adınız:',
 'yourpassword'               => 'Parolanız',
 'yourpasswordagain'          => 'Parolayı yeniden yaz',
@@ -653,16 +653,16 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'watchthis'                        => 'Sayfayı izle',
 'savearticle'                      => 'Sayfayı kaydet',
 'preview'                          => 'Ön izleme',
-'showpreview'                      => 'Önizlemeyi göster',
-'showlivepreview'                  => 'Canlı önizleme',
+'showpreview'                      => 'Ön izlemeyi göster',
+'showlivepreview'                  => 'Canlı ön izleme',
 'showdiff'                         => 'Değişiklikleri göster',
 'anoneditwarning'                  => 'Oturum açmadığınızdan maddenin değişiklik kayıtlarına rumuzunuz yerine IP adresiniz kaydedilecektir.',
 'missingsummary'                   => "'''Uyarı:''' Herhangi bir özet yazmadın. 
 Kaydet tuşuna tekrar basarsan sayfa özetsiz kaydedilecek.",
 'missingcommenttext'               => 'Lütfen aşağıda bir açıklama yazınız.',
 'missingcommentheader'             => "'''Hatırlatıcı:''' Bu yorum için konu/başlık sunmadınız. Eğer tekrar Kaydet tuşuna basarsanız, değişikliğiniz konu/başlık olmadan kaydedilecektir.",
-'summary-preview'                  => 'Önizleme özeti:',
-'subject-preview'                  => 'Konu/Başlık önizlemesi:',
+'summary-preview'                  => 'Ön izleme özeti:',
+'subject-preview'                  => 'Konu/Başlık ön izlemesi:',
 'blockedtitle'                     => 'Kullanıcı erişimi engellendi.',
 'blockedtext'                      => '<big>\'\'\'Kullanıcı adı veya IP adresiniz engellenmiştir.\'\'\'</big>
 
@@ -901,6 +901,7 @@ Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [
 'revdelete-logentry'             => '[[$1]] için revizyon görünürlüğü değişti',
 'logdelete-logentry'             => '[[$1]] için olay görünürlüğü değişti',
 'revdelete-success'              => "'''Revizyon görünürlüğü başarıyla ayarlandı.'''",
+'revdelete-failure'              => "'''Revizyon görünürlüğü ayarlanamıyor.'''",
 'logdelete-success'              => "'''Günlük görünürlüğü başarıyla ayarlandı.'''",
 'revdel-restore'                 => 'Görünürlüğü değiştir',
 'pagehist'                       => 'Sayfa geçmişi',
@@ -1082,7 +1083,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 
 # Preferences page
 'preferences'               => 'Tercihler',
-'mypreferences'             => 'Tercihlerim',
+'mypreferences'             => 'tercihlerim',
 'prefs-edits'               => 'Değişiklik sayısı:',
 'prefsnologin'              => 'Oturum açık değil',
 'prefsnologintext'          => 'Kullanıcı tercihlerinizi ayarlamak için <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} giriş yapmalısınız]</span>.',
@@ -1539,7 +1540,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'filedelete-intro'            => "'''[[Media:$1|$1]]''' dosyasını tüm geçmişiyle birlikte silmek üzeresiniz.",
 'filedelete-intro-old'        => "'''[[Media:$1|$1]]''' dosyasının [$4 $3, $2] tarihli sürümünü siliyorsunuz.",
 'filedelete-comment'          => 'Silinme sebebi:',
-'filedelete-submit'           => 'Sil',
+'filedelete-submit'           => 'sil',
 'filedelete-success'          => "'''$1''' silindi.",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' dosyasının $3, $2 tarihli sürümü silindi.",
 'filedelete-nofile'           => "'''$1''' mevcut değildir.",
@@ -1728,7 +1729,7 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 # Special:LinkSearch
 'linksearch'       => 'Dış bağlantılar',
 'linksearch-pat'   => 'Motif ara:',
-'linksearch-ns'    => 'İsimalanı:',
+'linksearch-ns'    => 'Alan adı:',
 'linksearch-ok'    => 'Ara',
 'linksearch-text'  => '"*.wikipedia.org" gibi jokerler kullanılabilir.<br />
 Desteklenen iletişim kuralları: <tt>$1</tt>',
@@ -1787,8 +1788,8 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'emailuserfooter'  => 'Bu e-posta $1 tarafından $2 kullanıcısına, {{SITENAME}} sitesindeki "Kullanıcıya e-posta gönder" fonksiyonu ile gönderilmiştir.',
 
 # Watchlist
-'watchlist'            => 'İzleme listem',
-'mywatchlist'          => 'İzleme listem',
+'watchlist'            => 'izleme listem',
+'mywatchlist'          => 'izleme listem',
 'watchlistfor'         => "('''$1''' için)",
 'nowatchlist'          => 'İzleme listesinde hiçbir madde bulunmuyor.',
 'watchlistanontext'    => 'Lütfen izleme listenizdeki maddeleri görmek yada değiştirmek için $1.',
@@ -1804,7 +1805,7 @@ Kolayca seçilebilmeleri için de [[Special:RecentChanges|son değişiklikler li
 Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur" bağlantısına tıklayabilirsiniz.',
 'removedwatch'         => 'İzleme listenizden silindi',
 'removedwatchtext'     => '"<nowiki>$1</nowiki>" sayfası izleme listenizden silinmiştir.',
-'watch'                => 'İzlemeye al',
+'watch'                => 'izlemeye al',
 'watchthispage'        => 'Sayfayı izle',
 'unwatch'              => 'Sayfa izlemeyi durdur',
 'unwatchthispage'      => 'Sayfa izlemeyi durdur',
@@ -1867,7 +1868,7 @@ Yardım ve öneriler için:
 'exbeforeblank'          => "Silinmeden önceki içerik: '$1'",
 'exblank'                => 'sayfa içeriği boş',
 'delete-confirm'         => '"$1" sil',
-'delete-legend'          => 'Sil',
+'delete-legend'          => 'sil',
 'historywarning'         => 'Uyarı: Silmek üzere olduğunuz sayfanın geçmişi vardır:',
 'confirmdeletetext'      => 'Bu sayfayı veya dosyayı tüm geçmişi ile birlikte veritabanından kalıcı olarak silmek üzeresiniz.
 Bu işlemden kaynaklı doğabilecek sonuçların farkında iseniz ve işlemin [[{{MediaWiki:Policy-url}}|Silme kurallarına]] uygun olduğuna eminseniz, işlemi onaylayın.',
@@ -1965,7 +1966,7 @@ Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya
 'pagesize'                    => '(bayt)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'Değiştir',
+'restriction-edit'   => 'değiştir',
 'restriction-move'   => 'Taşı',
 'restriction-create' => 'Yarat',
 'restriction-upload' => 'Yükle',
@@ -2032,7 +2033,7 @@ $1',
 # Contributions
 'contributions'       => 'Kullanıcının katkıları',
 'contributions-title' => '$1 için kullanıcı katkıları',
-'mycontris'           => 'Katkılarım',
+'mycontris'           => 'katkılarım',
 'contribsub2'         => '$1 ($2)',
 'nocontribs'          => 'Bu kriterlere uyan değişiklik bulunamadı', # Optional parameter: $1 is the user name
 'uctop'               => '(son)',
@@ -2298,7 +2299,7 @@ Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [http:/
 # Thumbnails
 'thumbnail-more'           => 'Büyüt',
 'filemissing'              => 'Dosya bulunmadı',
-'thumbnail_error'          => 'Önizleme oluşturmada hata: $1',
+'thumbnail_error'          => 'Ön izleme oluşturmada hata: $1',
 'djvu_page_error'          => 'DjVu sayfası kapsamdışı',
 'djvu_no_xml'              => 'DjVu dosyası için XML alınamıyor',
 'thumbnail_invalid_params' => 'Geçersiz küçük resim parametreleri',
@@ -2315,7 +2316,7 @@ Bütün vikilerarası içe aktarım eylemleri [[Special:Log/import|içe aktarım
 'import-interwiki-templates' => 'Tüm şablonları içer',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Hedef ad alanı:',
-'import-upload-filename'     => 'Dosyaadı:',
+'import-upload-filename'     => 'Dosya adı:',
 'import-comment'             => 'Yorum:',
 'importtext'                 => 'Lütfen dosyayı viki kaynağından [[Special:Export|dışa aktarım uygulamasıyla]] dışa aktarın.
 Bilgisayarınıza kaydedin ve buraya yükleyin.',

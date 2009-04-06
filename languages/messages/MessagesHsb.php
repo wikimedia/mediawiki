@@ -866,6 +866,7 @@ Prošu wobkruć, zo chceš to činić, zo rozumiš sćěhi a zo činiš to wotpo
 'revdelete-logentry'             => 'Widźomnosć wersije změnjena za [[$1]]',
 'logdelete-logentry'             => 'je widźomnosć za [[$1]] změnił',
 'revdelete-success'              => "'''Widźomnosć wersije bu wuspěšnje změnjena.'''",
+'revdelete-failure'              => "'''Wersijowa widźomnosć njeda so nastajić.'''",
 'logdelete-success'              => 'Widźomnosć zapiska bu wuspěšnje změnjena.',
 'revdel-restore'                 => 'Widźomnosć změnić',
 'pagehist'                       => 'Stawizny strony',

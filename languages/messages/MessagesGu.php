@@ -5,6 +5,7 @@
  * @file
  *
  * @author Aksi great
+ * @author Dineshjk
  * @author Dsvyas
  * @author לערי ריינהארט
  */
@@ -43,27 +44,35 @@ $digitTransformTable = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'            => 'કડીઓની નીચે લીટી (અંડરલાઇન) ઉમેરો:',
-'tog-highlightbroken'      => 'અપૂર્ણ કડીઓ<a href="" class="new">ને આ રીતે</a> (alternative: like this<a href="" class="internal">?</a>) લખો.',
-'tog-hideminor'            => 'હાલમાં થયેલા ફેરફારમાં નાના ફેરફારો છુપાવો',
-'tog-extendwatchlist'      => 'ધ્યાનસૂચિને વિસ્તૃત કરો જેથી બધા આનુષાંગિક ફેરફારો જોઇ શકાય',
-'tog-numberheadings'       => 'મથાળાઓને આપો-આપ ક્રમ (ઑટો નંબર) આપો',
-'tog-showtoolbar'          => 'ફેરફારો માટેનો ટૂલબાર બતાવો (જાવા સ્ક્રિપ્ટ)',
-'tog-showtoc'              => 'અનુક્રમણિકા દર્શાવો (૩થી વધુ પેટા-મથાળા વાળા લેખો માટે)',
-'tog-rememberpassword'     => 'આ કમ્પ્યૂટર પર મારી લોગ-ઇન વિગતો યાદ રાખો',
-'tog-watchcreations'       => 'મેં લખેલા નવા લેખો મારી ધ્યાનસૂચિમાં ઉમેરો',
-'tog-watchdefault'         => 'હું ફેરફાર કરૂં તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
-'tog-watchmoves'           => 'હું જેનું નામ બદલું તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
-'tog-watchdeletion'        => 'હું હટાવું તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
-'tog-enotifwatchlistpages' => 'મારી ધ્યાનસૂચિમાંનાં પાનામાં ફેરફાર થાય ત્યારે મને ઇ-મેલ મોકલો',
-'tog-enotifusertalkpages'  => 'મારી ચર્ચાનાં પાનામાં ફેરફાર થાય ત્યારે મને ઇ-મેલ મોકલો',
-'tog-enotifminoredits'     => 'પાનામાં નાનાં ફેરફાર થાય ત્યારે પણ મને ઇ-મેલ મોકલો',
-'tog-fancysig'             => 'સ્વાચાલિત કડી વગરની (કાચી) સહી',
-'tog-forceeditsummary'     => "કોરો 'ફેરફાર સારાંશ' ઉમેરતા પહેલા મને ચેતવો",
-'tog-watchlisthideown'     => "'મારી ધ્યાનસુચી'માં મે કરેલા ફેરફારો છુપાવો",
-'tog-watchlisthideminor'   => "'મારી ધ્યાનસુચી'માં નાનાં ફેરફારો છુપાવો",
-'tog-ccmeonemails'         => 'મે અન્યોને મોકલેલા ઇ-મેઇલની નકલ મને મોકલો',
-'tog-showhiddencats'       => 'છુપી શ્રેણીઓ દર્શાવો',
+'tog-underline'               => 'કડીઓની નીચે લીટી (અંડરલાઇન) ઉમેરો:',
+'tog-highlightbroken'         => 'અપૂર્ણ કડીઓ<a href="" class="new">ને આ રીતે</a> (alternative: like this<a href="" class="internal">?</a>) લખો.',
+'tog-justify'                 => 'ફકરો લાઇનસર કરો',
+'tog-hideminor'               => 'હાલમાં થયેલા ફેરફારમાં નાના ફેરફારો છુપાવો',
+'tog-hidepatrolled'           => 'હાલના સલામતી માટે કરવામાં આવેલાં થયેલા ફેરફારો છુપાવો.',
+'tog-newpageshidepatrolled'   => 'હાલમાં સુરક્ષા કાજે બનાવેલા નવાં પાનાંની યાદી છુપાવો',
+'tog-extendwatchlist'         => 'ધ્યાનસૂચિને વિસ્તૃત કરો જેથી બધા આનુષાંગિક ફેરફારો જોઇ શકાય',
+'tog-usenewrc'                => 'વર્ધિત ફેરફારો (જાવાસ્ક્રીપ્ટ જરૂરી)',
+'tog-numberheadings'          => 'મથાળાંઓને આપો-આપ ક્રમ (ઑટો નંબર) આપો',
+'tog-showtoolbar'             => 'ફેરફારો માટેનો ટૂલબાર બતાવો (જાવા સ્ક્રિપ્ટ)',
+'tog-editondblclick'          => 'ડબલ ક્લિક દ્વારા ફેરફાર કરો (જાવાસ્ક્રિપ્ટ જરૂરી)',
+'tog-editsection'             => 'વિભાગોમાં [ફેરફાર કરો] કડી દ્વારા વિભાગીય ફેરફાર લાગુ કરો.',
+'tog-editsectiononrightclick' => 'વિભાગના મથાળાં ને રાઇટ ક્લિક દ્વારા ફેરફાર કરવાની રીત અપનાવો. (જાવાસ્ક્રિપ્ટ જરૂરી)',
+'tog-showtoc'                 => 'અનુક્રમણિકા દર્શાવો (૩થી વધુ પેટા-મથાળા વાળા લેખો માટે)',
+'tog-rememberpassword'        => 'આ કમ્પ્યૂટર પર મારી લોગ-ઇન વિગતો યાદ રાખો',
+'tog-editwidth'               => 'ફેરફાર બોક્સની પુરી પહોળાઇ રાખો',
+'tog-watchcreations'          => 'મેં લખેલા નવા લેખો મારી ધ્યાનસૂચિમાં ઉમેરો',
+'tog-watchdefault'            => 'હું ફેરફાર કરૂં તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
+'tog-watchmoves'              => 'હું જેનું નામ બદલું તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
+'tog-watchdeletion'           => 'હું હટાવું તે પાના મારી ધ્યાનસૂચિમાં ઉમેરો',
+'tog-enotifwatchlistpages'    => 'મારી ધ્યાનસૂચિમાંનાં પાનામાં ફેરફાર થાય ત્યારે મને ઇ-મેલ મોકલો',
+'tog-enotifusertalkpages'     => 'મારી ચર્ચાનાં પાનામાં ફેરફાર થાય ત્યારે મને ઇ-મેલ મોકલો',
+'tog-enotifminoredits'        => 'પાનામાં નાનાં ફેરફાર થાય ત્યારે પણ મને ઇ-મેલ મોકલો',
+'tog-fancysig'                => 'સ્વાચાલિત કડી વગરની (કાચી) સહી',
+'tog-forceeditsummary'        => "કોરો 'ફેરફાર સારાંશ' ઉમેરતા પહેલા મને ચેતવો",
+'tog-watchlisthideown'        => "'મારી ધ્યાનસુચી'માં મે કરેલા ફેરફારો છુપાવો",
+'tog-watchlisthideminor'      => "'મારી ધ્યાનસુચી'માં નાનાં ફેરફારો છુપાવો",
+'tog-ccmeonemails'            => 'મે અન્યોને મોકલેલા ઇ-મેઇલની નકલ મને મોકલો',
+'tog-showhiddencats'          => 'છુપી શ્રેણીઓ દર્શાવો',
 
 'underline-always' => 'હંમેશાં',
 'underline-never'  => 'કદી નહિ',

@@ -961,6 +961,7 @@ Potvrďte prosím, že toto je vaším zámerom, že rozumiete dôsledkom a že 
 'revdelete-logentry'             => 'viditeľnosť revízie bola zmenená pre [[$1]]',
 'logdelete-logentry'             => 'viditeľnosť udalosti [[$1]] bola zmenená',
 'revdelete-success'              => "'''Viditeľnosť revízie bola úspešne nastavená.'''",
+'revdelete-failure'              => "'''Nebolo možné nastaviť viditeľnosť revízie.'''",
 'logdelete-success'              => "'''Viditeľnosť záznamu bola úspešne nastavená.'''",
 'revdel-restore'                 => 'Zmeniť viditeľnosť',
 'pagehist'                       => 'História stránky',

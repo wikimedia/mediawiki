@@ -531,7 +531,7 @@ Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea 
 'italic_tip'      => 'Scritte in corsivo',
 'link_sample'     => "Titele d'u collegamende",
 'link_tip'        => "Collegamende 'nderne",
-'extlink_sample'  => "http://www.esembie.it Nome d'u collegamende",
+'extlink_sample'  => "http://www.example.com Nome d'u collegamende",
 'extlink_tip'     => "Collegamende de fore a Uicchipedie (arrecuerdete 'u prefisse http://)",
 'headline_sample' => "Teste d'a Testete",
 'headline_tip'    => 'Levèlle 2 tèstete',
@@ -1200,7 +1200,6 @@ pe piacere vide math/README pe configurà.',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|utende|utinde}} ca condrollene]',
 'rc_categories'                     => 'Limite de le categorije (separate cu "|")',
 'rc_categories_any'                 => 'Tutte',
@@ -1269,6 +1268,7 @@ Ce 'u file condrollete jè d'a stesse dimenzione de quedda originale allore non 
 'file-thumbnail-no'          => "'U nome d'u file accumenze pe '''<tt>$1</tt>'''.
 Pare ca jè 'n'immaggine piccenne ''(miniature)''.
 Ce tu tìne sulamende st'immaggine da carecà apposte, ce nò vide ce cange 'u file.",
+'file-exists-duplicate'      => "Stu file jè 'na copie {{PLURAL:$1|d'u seguende file|de le seguende file}}:",
 'successfulupload'           => 'Carecamende sciute apposte',
 'uploadwarning'              => 'Avvise de carecamende',
 'savefile'                   => "Reggistre 'u file",
@@ -1347,11 +1347,13 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'imagelinks'                => 'Collegaminde de file',
 'linkstoimage'              => '{{PLURAL:$1|sta pàgene apponde |$1 ste pàggene appondene}} a stu fail:',
 'nolinkstoimage'            => 'Non ge stonne pàggene ca appodene a stu fail.',
+'morelinkstoimage'          => 'Vide [[Special:WhatLinksHere/$1|cchiù collegaminde]] a stu file.',
 'sharedupload'              => 'Stu file avène da $1 e pò essere ausate da otre pruggette.',
 'noimage'                   => "Non g'esiste nisciune fail cu stu nome, ma tu puè $1.",
 'noimage-linktext'          => 'carechene une',
 'uploadnewversion-linktext' => "Careche 'na versiona nove de stu fail",
 'shared-repo-from'          => 'da $1', # $1 is the repository name
+'shared-repo'               => "'nu condenitore de cose condivise", # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => "'Nvirte $1",
@@ -1436,9 +1438,10 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'Nvece avessere appondà a 'a temateca appropriate.<br />
 'Na pàgene jè trattate cumme pàgene de disambiguazione ce tu ause 'nu template ca è appundate da [[MediaWiki:Disambiguationspage|Pàggene de disambiguazione]]",
 
-'doubleredirects'     => 'Ridirezionaminde a doppie',
-'doubleredirectstext' => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.
+'doubleredirects'       => 'Ridirezionaminde a doppie',
+'doubleredirectstext'   => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.
 Ogne righe condiene 'nu collegamende a 'u prime e a 'u seconde ridirezionamendem pe fà vedè addò arrive 'u seconde ridirezionamende, 'u quale jè normalmende 'na pàgena de destinaziona \"rèale\", addò 'u prime ridirezionamende avesse appondà.",
+'double-redirect-fixer' => 'Correttore de redirezionaminde',
 
 'brokenredirects'        => 'Redirezionamninde scuasciete',
 'brokenredirectstext'    => "Le ridirezionaminde ca seguene appondene a pàggene ca non g'esistene:",
@@ -1503,6 +1506,7 @@ Ogne righe condiene 'nu collegamende a 'u prime e a 'u seconde ridirezionamendem
 'unusedcategoriestext'    => 'Le seguende categorije esistene, allore che non ge stonne otre pàggene o categorije ause a lore.',
 'notargettitle'           => 'Nisciuna destinazione',
 'notargettext'            => "Tu non g'è specificate 'na pàgene o 'n'utende de destinazione sus a 'u quale vuè ccu face l'operazione.",
+'nopagetitle'             => 'Nisciuna pàgene de destinazione',
 'pager-newer-n'           => '{{PLURAL:$1|cchiù nueve 1|cchiù nueve $1}}',
 'pager-older-n'           => '{{PLURAL:$1|cchiù vecchie 1|cchiù vicchie $1}}',
 
@@ -1676,34 +1680,35 @@ Segnalaziune e otre assistenze:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'            => "Scangille 'a pàgene",
-'confirm'               => 'Conferme',
-'excontent'             => "'u condenute ere: '$1'",
-'excontentauthor'       => "'u condenute ere: '$1' (e l'uneche condrebbutore ere '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'         => "'u condenute apprime d'a pulizie ere: '$1'",
-'exblank'               => "'a vosce ere vacande",
-'delete-confirm'        => 'Scangille "$1"',
-'delete-backlink'       => '← $1',
-'delete-legend'         => 'Scangille',
-'historywarning'        => "Vide Bbuene: 'a pàgene ca ste scangille tène 'na storie de cangiaminde:",
-'confirmdeletetext'     => "Vide Bbuene, vide ca ste scangille 'na pàgene ca tène pure nu sbuenne de cangiaminde.
+'deletepage'             => "Scangille 'a pàgene",
+'confirm'                => 'Conferme',
+'excontent'              => "'u condenute ere: '$1'",
+'excontentauthor'        => "'u condenute ere: '$1' (e l'uneche condrebbutore ere '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "'u condenute apprime d'a pulizie ere: '$1'",
+'exblank'                => "'a vosce ere vacande",
+'delete-confirm'         => 'Scangille "$1"',
+'delete-backlink'        => '← $1',
+'delete-legend'          => 'Scangille',
+'historywarning'         => "Vide Bbuene: 'a pàgene ca ste scangille tène 'na storie de cangiaminde:",
+'confirmdeletetext'      => "Vide Bbuene, vide ca ste scangille 'na pàgene ca tène pure nu sbuenne de cangiaminde.
 Conferme quidde ca ste face, ce si sicure ca è capite quidde ca ste cumbine e ce è corrette rispette a [[{{MediaWiki:Policy-url}}|le regole de scangellazione]], ce no statte quiete.",
-'actioncomplete'        => 'Aziona Combletete',
-'deletedtext'           => '"<nowiki>$1</nowiki>" onne state scangillete.
+'actioncomplete'         => 'Aziona Combletete',
+'deletedtext'            => '"<nowiki>$1</nowiki>" onne state scangillete.
 Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
-'deletedarticle'        => 'scangillete "[[$1]]"',
-'suppressedarticle'     => 'soppresse "[[$1]]"',
-'dellogpage'            => 'Archivie de le scangellaminde',
-'dellogpagetext'        => "Sotte ste 'na liste de le cchiù recende scangellaziune.",
-'deletionlog'           => 'Archivije de le scangellaminde',
-'reverted'              => "Turnà a 'a revisiona cchiù recende",
-'deletecomment'         => "Mutive p'a scangellazione:",
-'deleteotherreason'     => 'Otre mutive de cchiù:',
-'deletereasonotherlist' => 'Otre mutive',
-'deletereason-dropdown' => "*Mutive comune de scangellaminde
+'deletedarticle'         => 'scangillete "[[$1]]"',
+'suppressedarticle'      => 'soppresse "[[$1]]"',
+'dellogpage'             => 'Archivie de le scangellaminde',
+'dellogpagetext'         => "Sotte ste 'na liste de le cchiù recende scangellaziune.",
+'deletionlog'            => 'Archivije de le scangellaminde',
+'reverted'               => "Turnà a 'a revisiona cchiù recende",
+'deletecomment'          => "Mutive p'a scangellazione:",
+'deleteotherreason'      => 'Otre mutive de cchiù:',
+'deletereasonotherlist'  => 'Otre mutive',
+'deletereason-dropdown'  => "*Mutive comune de scangellaminde
 ** Richieste de l'autore
 ** Violazione d'u Copyright
 ** Vandalisme",
+'delete-edit-reasonlist' => 'Mutive de scangellazione de le cangiaminde',
 
 # Rollback
 'rollback'         => 'Annulle le cangiaminde',
@@ -1933,6 +1938,7 @@ Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'block-log-flags-nocreate'     => 'ccreazione de le cunde utinde disabbilitete',
 'block-log-flags-noautoblock'  => 'auto blocche disabbilitete',
 'block-log-flags-noemail'      => 'e-mail blocchete',
+'block-log-flags-hiddenname'   => "nome de l'utende scunnute",
 'range_block_disabled'         => "L'abbilità de le amministrature de ccrejà blocche a indervalle jè disabbilitate.",
 'ipb_expiry_invalid'           => "L'orarije de scadenze non g'è valide.",
 'ipb_already_blocked'          => '"$1" jè ggià blocchete',

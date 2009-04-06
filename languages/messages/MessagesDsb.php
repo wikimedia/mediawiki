@@ -883,6 +883,7 @@ Pšosym wobkšuś, až coš to cyniś, až rozmějoš slědy a až cyniš to wó
 'revdelete-logentry'             => 'Woglědanje wersije změnjone za [[$1]]',
 'logdelete-logentry'             => 'wiźobnosć za [[$1]] změnjona.',
 'revdelete-success'              => "'''Wiźobnosć wersije jo se z wuspěchom změniła.'''",
+'revdelete-failure'              => "'''Wersijowa widobnosć njedajo se nastajiś.'''",
 'logdelete-success'              => "'''Wiźobnosć log-lisćiny z wuspěchom změnjona.'''",
 'revdel-restore'                 => 'Widobnosć změniś',
 'pagehist'                       => 'stawizny boka',

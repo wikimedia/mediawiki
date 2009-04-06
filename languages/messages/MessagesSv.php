@@ -1034,6 +1034,7 @@ Vänligen bekräfta att detta är vad du avser göra, att du förstår konsekven
 'revdelete-logentry'             => 'ändrade synlighet för versioner av [[$1]]',
 'logdelete-logentry'             => 'ändrade synlighet för åtgärder i [[$1]]',
 'revdelete-success'              => "'''Versionens synlighet har ändrats.'''",
+'revdelete-failure'              => "'''Synlighet för sidversioner kunde inte ställas in.'''",
 'logdelete-success'              => "'''Loggåtgärdens synlighet har ändrats.'''",
 'revdel-restore'                 => 'Ändra synlighet',
 'pagehist'                       => 'Sidhistorik',

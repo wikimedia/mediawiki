@@ -1012,6 +1012,7 @@ Potwierdź, że jesteś pewien tego co robisz, rozumiesz konsekwencje oraz, że 
 'revdelete-logentry'             => 'zmienił widoczność wersji w [[$1]]',
 'logdelete-logentry'             => 'zmienił widoczność zdarzenia dla [[$1]]',
 'revdelete-success'              => "'''Zmieniono widoczność wersji.'''",
+'revdelete-failure'              => "'''Widoczność wersji nie może zostać ustawiona.'''",
 'logdelete-success'              => "'''Zmieniono widoczność zdarzeń.'''",
 'revdel-restore'                 => 'Zmień widoczność',
 'pagehist'                       => 'Historia edycji strony',

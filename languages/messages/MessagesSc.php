@@ -72,7 +72,7 @@ $messages = array(
 'sunday'        => 'Domìniga',
 'monday'        => 'Lunis',
 'tuesday'       => 'Martis',
-'wednesday'     => 'Mércuris',
+'wednesday'     => 'Mèrcuris',
 'thursday'      => 'Giòvia',
 'friday'        => 'Chenàbura',
 'saturday'      => 'Sàbadu',
@@ -142,9 +142,9 @@ $messages = array(
 'qbfind'         => 'Agata',
 'qbbrowse'       => 'Nàviga',
 'qbedit'         => 'Acontza',
-'qbpageoptions'  => 'Possibbilidadis de sa pàgina',
+'qbpageoptions'  => 'Possibbilidades de sa pàgina',
 'qbpageinfo'     => 'Cuntestu de sa pàgina',
-'qbmyoptions'    => 'Is preferentzias meas',
+'qbmyoptions'    => 'Is preferèntzias meas',
 'qbspecialpages' => 'Pàginas ispetziales',
 'mypage'         => 'Sa pàgina mea',
 'mytalk'         => 'Cuntierras meas',
@@ -216,7 +216,7 @@ $messages = array(
 'edithelp'             => "Agiudu pro s'acontzu o s'iscritura",
 'edithelppage'         => 'Help:Acontzare',
 'helppage'             => 'Help:Agiudu',
-'mainpage'             => 'Pàgina printzipali',
+'mainpage'             => 'Pàgina printzipale',
 'mainpage-description' => 'Pàgina printzipali',
 'policy-url'           => 'Project:Polìtigas',
 'privacy'              => 'Polìtiga pro is datos brivados',
@@ -368,7 +368,7 @@ Pro pregheri, candu d\'arretzis faghe su login.',
 'italic_tip'      => 'Corsivu',
 'link_sample'     => 'Tìtulu cullegamentu',
 'link_tip'        => 'Cullegamentu internu',
-'extlink_sample'  => 'http://www.esèmpiu.com tìtulu de sa liga',
+'extlink_sample'  => 'http://www.example.com tìtulu de sa liga',
 'extlink_tip'     => 'Ligadura de foras (ammenta su prefissu http://)',
 'headline_sample' => 'Testu de su tìtulu',
 'headline_tip'    => 'Tìtulu de secundu livellu',
@@ -407,7 +407,7 @@ Su bloccu est istadu postu dae $1. Su motivu de su bloccu est: ''$2''
 
 Chi boles, podes cuntatare $1 o un àteru [[{{MediaWiki:Grouppage-sysop}}|aministradori]] pro faeddare de su bloccu.
 
-Nota ca sa funtzioni 'Ispedi un'e-mail a custu usuàriu' no est ativa chi no est istadu registrau un indiritzu e-mail validu ne is [[Special:Preferences|preferentzias]] tuas o chi s'usu de custa funtzioni est istadu bloccau.
+Nota ca sa funtzioni 'Ispedi un'e-mail a custu usuàriu' no est ativa chi no est istadu registrau un indiritzu e-mail validu ne is [[Special:Preferences|preferèntzias]] tuas o chi s'usu de custa funtzioni est istadu bloccau.
 
 S'indiritzu IP atuale est $3, su numeru ID de su bloccu est #$5.
 Pro pregheri ispetzifica totu is detaglios innanti in carchi siat pedimentu de chiarimentu.",
@@ -534,10 +534,10 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'powersearch-field'         => 'Chirca',
 
 # Preferences page
-'preferences'              => 'Preferentzias',
-'mypreferences'            => 'Preferentzias meas',
+'preferences'              => 'Preferèntzias',
+'mypreferences'            => 'Preferèntzias meas',
 'prefsnologin'             => 'Non hai eseguito il login',
-'prefsnologintext'         => 'Depis èssere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} intrau]</span> pro scioberai is preferentzias.',
+'prefsnologintext'         => 'Depis èssere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} intrau]</span> pro scioberai is preferèntzias.',
 'prefsreset'               => 'Le tue Preferenze sono state ripescate dalla memoria di sistema del potente server di {{SITENAME}}.',
 'qbsettings'               => 'Settaggio della barra menu',
 'qbsettings-none'          => 'Nessuno',
@@ -548,7 +548,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'changepassword'           => 'Cambia password',
 'skin'                     => 'Aspetto',
 'prefs-watchlist'          => 'Watchlist',
-'saveprefs'                => 'Salva preferenze',
+'saveprefs'                => 'Sarva preferèntzias',
 'resetprefs'               => 'Resetta preferenze',
 'textboxsize'              => 'Dimensione della casella di edizione',
 'rows'                     => 'Righe',
@@ -606,7 +606,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|mudàntzia|mudàntzias}}',
 'recentchanges'                  => 'Ùrtimas mudàntzias',
-'recentchanges-legend'           => 'Possibilidadis subra ùrtimas mudàntzias',
+'recentchanges-legend'           => 'Possibilidades subra ùrtimas mudàntzias',
 'recentchanges-feed-description' => 'Custu feed riportada is ùrtimas mudàntzias a is cuntènnidos de su giassu.',
 'rcnote'                         => "Innoe sighendi {{PLURAL:$1|du est s'ùrtima mudàntzia|is ùrtimas '''$1''' mudàntzias}} {{PLURAL:$2|in s'ùrtima die|ne is ùrtimas '''$2''' dies}}; is datos funt agiornaus a  $5, $4.",
 'rcnotefrom'                     => "Sighendi dui sunt amostadas is mudàntzias dae '''$2''' (fintzas a '''$1''').",
@@ -618,13 +618,12 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'rcshowhidemine'                 => '$1 is acontzos meos',
 'rclinks'                        => 'Amosta is $1 ùrtimas mudàntzias fatas ne is ùrtimas $2 dies<br />$3',
 'diff'                           => 'dif',
-'hist'                           => 'istò',
+'hist'                           => 'ist',
 'hide'                           => 'Cua',
 'show'                           => 'Amosta',
 'minoreditletter'                => 'm',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'b',
-'sectionlink'                    => '→',
 'rc-change-size'                 => '$1',
 'rc-enhanced-expand'             => 'Amosta particolaris (esigit JavaScript)',
 'rc-enhanced-hide'               => 'Cua particulares',
@@ -813,7 +812,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'notanarticle'      => 'Custa pàgina no est unu artìculu',
 'watchlist-details' => 'Sa watchlist tua cuntènnit {{PLURAL:$1|$1 pàgina|$1 pàginas}}, chentza contare is pàginas de cuntierras.',
 'wlshowlast'        => 'Amosta is ùrtimas $1 oras $2 dies $3',
-'watchlist-options' => 'Possibilidadis de sa watchlist',
+'watchlist-options' => 'Possibilidades de sa watchlist',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aciungendi a sa watchlist...',
@@ -832,7 +831,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'delete-legend'         => 'Fuliare',
 'confirmdeletetext'     => "Ses acanta de burrare una pàgina cun totu s'istòria sua.
 Pro pregheri, cunfirma ca est intentzioni tua faghere custu, ca connosches is conseguentzias de s'atzione tua, a ca custa est cunforme a is [[{{MediaWiki:Policy-url}}|lìnias polìtigas]].",
-'actioncomplete'        => 'Atzioni cumpletada',
+'actioncomplete'        => 'Atzione cumpletada',
 'deletedtext'           => 'Sa pàgina "<nowiki>$1</nowiki>" est istada fuliada.
 Castia su log $2 pro unu registru de is ùrtimas fuliaduras.',
 'deletedarticle'        => 'at fuliau "[[$1]]"',
@@ -864,7 +863,7 @@ s'ùrtimu contribudori est s'ùnicu autori de custa pàgina.",
 'protect-text'                => "Custu modulu serbit pro castiari e cambiari su livellu de amparadura de sa pàgina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Non tenes su permissu pro cambiare is livellus de amparadura de sa pàgina. 
 Is impostatziones atuales pro sa pàgina '''$1''':",
-'protect-cascadeon'           => "A su momentu custa pàgina est bloccada pro ite est inclùdia {{PLURAL:$1|in sa pàgina indicada a suta, pro sa cali|ne is pàginas indicadas a suta, pro is calis}} est ativa s'amparadura ricorsiva. Est possibili cambiare su livellu de amparadura de custa pàgina, ma is impostatziones derivadas dae s'amparadura ricorsiva non ant a èssere mudadas.",
+'protect-cascadeon'           => "A su momentu custa pàgina est bloccada pro ite est inclùdia {{PLURAL:$1|in sa pàgina indicada a suta, pro sa cali|ne is pàginas indicadas a suta, pro is calis}} est ativa s'amparadura ricorsiva. Est possibile cambiare su livellu de amparadura de custa pàgina, ma is impostatziones derivadas dae s'amparadura ricorsiva non ant a èssere mudadas.",
 'protect-default'             => 'Autoritza totu is usuàrios',
 'protect-fallback'            => 'Esigit su permissu "$1"',
 'protect-level-autoconfirmed' => 'Blocca is usuàrios nobos o non registrados',
@@ -896,7 +895,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 # Namespace form on various pages
 'namespace'      => 'Nòmene logu:',
 'invert'         => 'Fùrria sa seletzioni',
-'blanknamespace' => '(Printzipali)',
+'blanknamespace' => '(Printzipale)',
 
 # Contributions
 'contributions'       => 'Contributziones usuàriu',
@@ -997,7 +996,7 @@ Annota ca sa pàgina '''non''' s'at a mòvere si ndi esistit giai un'àtera a su
 '''ATENTZIONI:'''
 Unu cambiamentu dràsticu podet creare problemas, mascamenti a is pàginas prus populares; 
 pro pregheri depis èssere siguru de àere cumpresu is cunseguèntzias prima de andari a in antis.",
-'movepagetalktext'   => "Sa pàgina cuntierras asotziada, chi esistit, at a èssere movida automaticamenti impare a sa pàgina printzipali, '''a parte in custos casos''':
+'movepagetalktext'   => "Sa pàgina cuntierras asotziada, chi esistit, at a èssere movida automaticamenti impare a sa pàgina printzipale, '''a parte in custos casos''':
 * su movimentu de sa pàgina est tra namespaces diversos;
 * in currispondentzia de su tìtulu nou esistit giai una pàgina de cuntierras (non bùida);
 * sa casella inoe in basciu no est istata sceberada.
@@ -1032,7 +1031,7 @@ Pro pregheri scebera un àteru nòmene.',
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Sa pàgina usuàriu tua',
 'tooltip-pt-mytalk'               => 'Sa pàgina de is cuntierras tuas',
-'tooltip-pt-preferences'          => 'Is preferentzias ca podes scioberai',
+'tooltip-pt-preferences'          => 'Is preferèntzias chi podes scioberai',
 'tooltip-pt-watchlist'            => 'Sa lista de is pàginas che dui ses ponendi ogru',
 'tooltip-pt-mycontris'            => 'Sa lista de is contributziones meas',
 'tooltip-pt-login'                => 'Si cunsigiat sa registratzioni; mancari non siat obligatoria',
@@ -1052,7 +1051,7 @@ Podes castiare sa mitza sua',
 'tooltip-search'                  => 'Chirca a intru de {{SITENAME}}',
 'tooltip-search-go'               => 'Bae a una pàgina cun custu nòmene, chi esistit',
 'tooltip-search-fulltext'         => 'Chirca custu testu ne is pàginas',
-'tooltip-n-mainpage'              => 'Visita sa pàgina printzipali',
+'tooltip-n-mainpage'              => 'Vìsita sa pàgina printzipale',
 'tooltip-n-portal'                => 'Descritzioni de su progetu, ita podes faghere, ainnui agatas cosas',
 'tooltip-n-currentevents'         => 'Informatziones subra acuntèssias atuales',
 'tooltip-n-recentchanges'         => 'Sa lista de is ùrtimas mudàntzias de su giassu',
