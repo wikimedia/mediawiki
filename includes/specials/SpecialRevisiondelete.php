@@ -267,11 +267,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$revObjs[$row->rev_id] = new Revision( $row );
 			}
 			foreach( $this->revisions as $revid ) {
-				// Hiding top revisison is bad
-				if( !isset($revObjs[$revid]) || $revObjs[$revid]->isCurrent() ) {
-					continue;
-				} else if( !$revObjs[$revid]->userCan(Revision::DELETED_RESTRICTED) ) {
-				// If a rev is hidden from sysops
+				if( !isset($revObjs[$revid]) ) continue; // Must exist
+				// Check if the revision was Oversighted
+				if( !$revObjs[$revid]->userCan(Revision::DELETED_RESTRICTED) ) {
 					if( !$this->wasPosted ) {
 						$wgOut->permissionRequired( 'suppressrevision' );
 						return;
@@ -812,37 +810,50 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$wgOut->permissionRequired( 'suppressrevision' );
 			return false;
 		}
-		# If the save went through, go to success message. Otherwise
-		# bounce back to form...
+		# If the save went through, go to success message...
 		if( $this->save( $bitfield, $comment, $this->page ) ) {
 			$this->success();
-		} else if( $request->getCheck( 'oldid' ) || $request->getCheck( 'artimestamp' ) ) {
-			return $this->showRevs();
-		} else if( $request->getCheck( 'logid' ) ) {
-			return $this->showLogs();
-		} else if( $request->getCheck( 'oldimage' ) || $request->getCheck( 'fileid' ) ) {
-			return $this->showImages();
+			return true;
+		# ...otherwise, bounce back to form...
+		} else {
+			$this->failure();
 		}
+		return false;
 	}
 
 	private function success() {
 		global $wgOut;
-
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
-
 		$wrap = '<span class="success">$1</span>';
-
 		if( $this->deleteKey == 'logid' ) {
 			$wgOut->wrapWikiMsg( $wrap, 'logdelete-success' );
 			$this->showLogItems();
 		} else if( $this->deleteKey == 'oldid' || $this->deleteKey == 'artimestamp' ) {
-				$wgOut->wrapWikiMsg( $wrap, 'revdelete-success' );
+			$wgOut->wrapWikiMsg( $wrap, 'revdelete-success' );
 		  	$this->showRevs();
 		} else if( $this->deleteKey == 'fileid' ) {
 			$wgOut->wrapWikiMsg( $wrap, 'revdelete-success' );
 		  	$this->showImages();
 		} else if( $this->deleteKey == 'oldimage' ) {
 			$wgOut->wrapWikiMsg( $wrap, 'revdelete-success' );
+			$this->showImages();
+		}
+	}
+	
+	private function failure() {
+		global $wgOut;
+		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
+		$wrap = '<span class="error">$1</span>';
+		if( $this->deleteKey == 'logid' ) {
+			$this->showLogItems();
+		} else if( $this->deleteKey == 'oldid' || $this->deleteKey == 'artimestamp' ) {
+			$wgOut->wrapWikiMsg( $wrap, 'revdelete-failure' );
+		  	$this->showRevs();
+		} else if( $this->deleteKey == 'fileid' ) {
+			$wgOut->wrapWikiMsg( $wrap, 'revdelete-failure' );
+		  	$this->showImages();
+		} else if( $this->deleteKey == 'oldimage' ) {
+			$wgOut->wrapWikiMsg( $wrap, 'revdelete-failure' );
 			$this->showImages();
 		}
 	}
@@ -882,6 +893,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else if( isset($this->events) ) {
 			return $deleter->setEventVisibility( $title, $this->events, $bitfield, $reason );
 		}
+		return false;
 	}
 }
 
@@ -910,30 +922,32 @@ class RevisionDeleter {
 		foreach( $items as $revid ) {
 			$where[] = intval($revid);
 		}
-		$result = $this->dbw->select( 'revision', '*',
-			array(
-				'rev_page' => $title->getArticleID(),
-				'rev_id' => $where ),
-			__METHOD__ );
+		$result = $this->dbw->select( array('revision','page'), '*',
+			array( 'rev_page' => $title->getArticleID(),
+				'rev_id' => $where, 'rev_page = page_id' ),
+			__METHOD__
+		);
 		while( $row = $this->dbw->fetchObject( $result ) ) {
 			$revObjs[$row->rev_id] = new Revision( $row );
 		}
 		// To work!
 		foreach( $items as $revid ) {
-			if( !isset($revObjs[$revid]) || $revObjs[$revid]->isCurrent() ) {
+			if( !isset($revObjs[$revid]) ) {
 				$success = false;
 				continue; // Must exist
+			} else if( $revObjs[$revid]->isCurrent() && ($bitfield & Revision::DELETED_TEXT) ) {
+				$success = false;
+				continue; // Cannot hide current version text
 			} else if( !$revObjs[$revid]->userCan(Revision::DELETED_RESTRICTED) ) {
-    			$userAllowedAll=false;
+    			$userAllowedAll = false;
 				continue;
 			}
 			// For logging, maintain a count of revisions
 			if( $revObjs[$revid]->mDeleted != $bitfield ) {
-				$revCount++;
-				$revIDs[]=$revid;
-
+				$revIDs[] = $revid;
 			   	$this->updateRevision( $revObjs[$revid], $bitfield );
 				$this->updateRecentChangesEdits( $revObjs[$revid], $bitfield, false );
+				$revCount++;
 			}
 		}
 		// Clear caches...
