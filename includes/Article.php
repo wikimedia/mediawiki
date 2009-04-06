@@ -2185,18 +2185,16 @@ class Article {
 
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions
-		$limit = 20;
 		$res = $dbw->select( 'revision', 'rev_user_text',
-			array( 'rev_page' => $this->getID() ), __METHOD__,
-			array( 'LIMIT' => $limit )
+			array( 'rev_page' => $this->getID(), 'rev_deleted & '.Revision::DELETED_USER.'=0' ),
+			__METHOD__,
+			array( 'LIMIT' => 20 )
 		);
 		if( $res === false )
 			// This page has no revisions, which is very weird
 			return false;
-		if( $res->numRows() > 1 )
-				$hasHistory = true;
-		else
-				$hasHistory = false;
+			
+		$hasHistory = ( $res->numRows() > 1 );
 		$row = $dbw->fetchObject( $res );
 		$onlyAuthor = $row->rev_user_text;
 		// Try to find a second contributor
