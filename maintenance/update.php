@@ -29,7 +29,7 @@ if( !isset( $wgDBadminuser ) || !isset( $wgDBadminpassword ) ) {
 	echo( "No superuser credentials could be found. Please provide the details\n" );
 	echo( "of a user with appropriate permissions to update the database. See\n" );
 	echo( "AdminSettings.sample for more details.\n\n" );
-	exit();
+	exit(1);
 }
 
 # Attempt to connect to the database as a privileged user
@@ -40,7 +40,7 @@ if( !$wgDatabase->isOpen() ) {
 	# Appears to have failed
 	echo( "A connection to the database could not be established. Check the\n" );
 	echo( "values of \$wgDBadminuser and \$wgDBadminpassword.\n" );
-	exit();
+	exit(1);
 }
 
 print "Going to run database updates for ".wfWikiID()."\n";

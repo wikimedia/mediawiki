@@ -15,8 +15,10 @@ require_once( 'commandLine.inc' );
 require_once( 'deleteOrphanedRevisions.inc.php' );
 echo( "Delete Orphaned Revisions\n" );
 
-if( isset( $options['help'] ) )
+if( isset( $options['help'] ) ) {
 	showUsage();
+	exit(1);
+}
 
 $report = isset( $options['report'] );
 
@@ -39,7 +41,7 @@ echo( "found {$count}.\n" );
 # Nothing to do?
 if( $report || $count == 0 ) {
 	$dbw->immediateCommit();
-	exit();
+	exit(0);
 }
 
 # Delete each revision

@@ -40,7 +40,7 @@ Usage: php transstat.php [--help] [--output=csv|text|wiki]
 Example: php maintenance/transstat.php --output=text
 
 END;
-	exit();
+	exit(1);
 }
 
 

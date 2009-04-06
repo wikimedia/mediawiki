@@ -37,6 +37,6 @@ print "\n\n** Rebuilding links tables -- this can take a long time. It should be
 refreshLinks( 1 );
 
 print "Done.\n";
-exit();
+exit(0);
 
 
