@@ -1385,6 +1385,7 @@ class Linker {
 	 * @return string HTML
 	 */
 	function revComment( Revision $rev, $local = false, $isPublic = false ) {
+		if( $rev->getComment() == "" ) return "";
 		if( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
 		} else if( $rev->userCan( Revision::DELETED_COMMENT ) ) {
