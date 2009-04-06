@@ -7,6 +7,7 @@
  * @author Ans
  * @author LMNOP at Thai Wikipedia (manop@itshee.com) since July 2007
  * @author Manop
+ * @author Mopza
  * @author Octahedron80
  * @author Passawuth
  * @author לערי ריינהארט
@@ -1996,6 +1997,7 @@ $1',
 'blocklogpage'                 => 'บันทึกการบล็อก',
 'blocklog-fulllog'             => 'บันทึกการบล็อกทั้งหมด',
 'blocklogentry'                => 'บล็อก "[[$1]]" หมดอายุ $2 $3',
+'reblock-logentry'             => 'เปลี่ยนระดับการบล็อกสำหรับ [[$1]] หมดอายุ $2 $3',
 'blocklogtext'                 => 'ด้านล่างเป็นบันทึกการบล็อกและการเลิกบล็อก  ส่วนการบล็อกอัตโนมัติจะไม่ถูกรวมอยู่ในรายการนี้ ดู [[Special:IPBlockList|รายการบล็อกไอพี]] สำหรับการบล็อกทั้งหมด',
 'unblocklogentry'              => 'เลิกบล็อก $1',
 'block-log-flags-anononly'     => 'ผู้ใช้ไม่ล็อกอินเท่านั้น',
@@ -2852,5 +2854,8 @@ $1',
 'tags-hitcount-header'    => 'การเปลี่ยนแปลงที่มีป้ายนี้กำกับ',
 'tags-edit'               => 'แก้ไข',
 'tags-hitcount'           => '$1 การเปลี่ยนแปลง',
+
+# Database error messages
+'dberr-info' => '(ไม่สามารถติดต่อเซิร์ฟเวอร์ฐานข้อมูลได้: $1)',
 
 );

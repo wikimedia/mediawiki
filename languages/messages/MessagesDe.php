@@ -1088,6 +1088,7 @@ Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst
 'revdelete-logentry'             => 'hat die Versionsansicht für „[[$1]]“ geändert',
 'logdelete-logentry'             => 'hat die Sichtbarkeit für „[[$1]]“ geändert',
 'revdelete-success'              => "'''Versionsansicht erfolgreich geändert.'''",
+'revdelete-failure'              => "'''Versionssichtbarkeit kann nicht geändert werden.'''",
 'logdelete-success'              => "'''Logbuchansicht erfolgreich geändert.'''",
 'revdel-restore'                 => 'Sichtbarkeit ändern',
 'pagehist'                       => 'Versionsgeschichte',

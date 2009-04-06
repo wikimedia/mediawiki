@@ -1001,6 +1001,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'revdelete-logentry'             => '[[$1]]の版の閲覧レベルを変更しました',
 'logdelete-logentry'             => '[[$1]]の操作の閲覧レベルを変更しました',
 'revdelete-success'              => "'''版の閲覧レベルを変更しました。'''",
+'revdelete-failure'              => "'''版の可視性を設定できませんでした。'''",
 'logdelete-success'              => "'''ログの閲覧レベルを変更しました。'''",
 'revdel-restore'                 => '閲覧レベルを変更',
 'pagehist'                       => 'ページの履歴',

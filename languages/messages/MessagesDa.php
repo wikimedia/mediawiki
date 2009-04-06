@@ -635,7 +635,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'italic_tip'      => 'Kursiv tekst',
 'link_sample'     => 'Henvisning',
 'link_tip'        => 'Intern henvisning',
-'extlink_sample'  => 'http://www.eksempel.dk Titel på henvisning',
+'extlink_sample'  => 'http://www.example.com Titel på henvisning',
 'extlink_tip'     => 'Ekstern henvisning (husk http:// præfiks)',
 'headline_sample' => 'Tekst til overskrift',
 'headline_tip'    => 'Type 2 overskrift',

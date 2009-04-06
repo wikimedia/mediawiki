@@ -215,7 +215,7 @@ $messages = array(
 
 # Edit page toolbar
 'italic_tip'     => 'Texhto en cursiva',
-'extlink_sample' => 'http://www.enxemplo.com Título del link',
+'extlink_sample' => 'http://www.example.com Título del link',
 'headline_tip'   => 'Titular de nivel 2',
 'image_tip'      => 'Imagen incorporada',
 'media_tip'      => 'Link al arxivo multimedia',

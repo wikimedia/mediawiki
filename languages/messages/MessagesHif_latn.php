@@ -11,12 +11,12 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Jorr ke underline karo:',
-'tog-highlightbroken'         => 'Tuuta waala link ke format karo<a href="" class="new">ii rakam se</a> (nai to: ii rakam se<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Tuuta waala jorr ke format karo <a href="" class="new">ii rakam se</a> (nai to: ii rakam se<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragraphs ke justify karo',
 'tog-hideminor'               => 'Chhota aur nawaa badlao ke lukao',
 'tog-hidepatrolled'           => 'Pahraa dewa gais badlao ke nawaa badlao me se lukao',
 'tog-newpageshidepatrolled'   => 'Pahraa dewa gais badlao ke nawaa panna me se lukao',
-'tog-extendwatchlist'         => 'Dhyaan suchi ke khol ke sab uchit badlao ke dekhao',
+'tog-extendwatchlist'         => 'Dhyaan suchi ke khol ke sab badlao ke dekhao, khaali nawaa waala nai',
 'tog-usenewrc'                => 'Aur jaada nawaa badlao (Javascript)',
 'tog-numberheadings'          => 'Sab heading ke apne se number karo',
 'tog-showtoolbar'             => 'Badle waala aujaar ke bar dekhao (JavaScript)',
@@ -39,7 +39,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Panna me mamuli badlao khatir bhi hame E-mail karo',
 'tog-enotifrevealaddr'        => 'Notification E-mail me hamaar E-mail address ke dekhao.',
 'tog-shownumberswatching'     => 'Ketna sadasya dekhe hai ke number dekhao',
-'tog-fancysig'                => 'Kachchaa signature (binaa apne se jorr)',
+'tog-fancysig'                => 'Signature ke wikitext ke rakam dekho (binaa automatic jorr se)',
 'tog-externaleditor'          => 'Apne se bahaari editor ke use karo (khali chalaak logan khatir, computer me special settings ke jaruri hai)',
 'tog-externaldiff'            => 'Apne se bahaari diff ke use karo (khali chalaak logan khatir, computer me special settings ke jaruri hai)',
 'tog-showjumplinks'           => '"jump to" accessibility jorr ke laabu karo',
@@ -754,13 +754,18 @@ Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 'rev-deleted-comment'            => '(comment ke hatae dewa gais hai)',
 'rev-deleted-user'               => '(username ke hatae dewa gais hai)',
 'rev-deleted-event'              => '(log action ke hatae dewa gais hai)',
-'rev-deleted-text-permission'    => 'Panna ke ii badlao ke public archives me se hatae dewa gais hai.
+'rev-deleted-text-permission'    => 'Panna ke ii badlao ke mitae dewa gais hai.
 Iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
-'rev-deleted-text-view'          => 'Panna ke ii badlao ke public archives me se hatae dewa gais hai.
-Aap {{SITENAME}} me ek administrator hoe ke kaaran iske dekhe sakta hai;
-iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
-'rev-deleted-no-diff'            => 'Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao ke public archives se hatae dewa gais hai.
+'rev-deleted-text-unhide'        => "Ii panna ke badlao ke '''mitae''' dewa gais hai.
+Iske baare me aur jaankari saait [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
+Ek administrator rahe se aap fir bhi [$1 view this revision] agar aap aage barrhe mangtaa hai tab.",
+'rev-deleted-text-view'          => 'Panna ke ii badlao ke mitae dewa gais hai.
+Aap ek administrator hoe ke kaaran iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
+'rev-deleted-no-diff'            => 'Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao mitae dewa gais hai.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me sait kuch aur jaankari hoi.',
+'rev-deleted-unhide-diff'        => "Ii diff me se ek badlao ke '''mitae''' dewa gais hai.
+Aur jaankari saait [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
+Ek administrator hoe ke kaaran aap fir bhi [$1 view this diff] agar aap aage barrhe mangtaa hai tab.",
 'rev-delundel'                   => 'dekhao/lukao',
 'revisiondelete'                 => 'Badlao ke mitao/nai mitao',
 'revdelete-nooldid-title'        => 'Target revision jon ki valid nai hai',
@@ -776,12 +781,15 @@ iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 'revdelete-text'                 => "'''Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.'''
 Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae bhi sake hai interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.
 Meharbaani kar ke ii confirm karo ki aap ii chij kare mangta hai, aap iske natija samajhta hai, aur aap iske [[{{MediaWiki:Policy-url}}|the policy]] ke niche karta hai.",
+'revdelete-suppress-text'        => "Suppression ke '''khaali''' ii chij ke khatir kaam me lawa jaae sake hai:
+* Aapan baare me jaankari thik nai hai
+*: ''ghar ke address aur telephone number, social security number, etc.''",
 'revdelete-legend'               => 'Dekhe waala rukawat set karo',
 'revdelete-hide-text'            => 'Badlawa gais text ke lukao',
 'revdelete-hide-name'            => 'Kaam aur manjil ke lukao',
 'revdelete-hide-comment'         => 'Badlao ke baare me comment ke lukao',
 'revdelete-hide-user'            => "Editor's username/IP ke lukao",
-'revdelete-hide-restricted'      => 'Ii rukawat ke Sysops pe lagae ke interface ke lock karo.',
+'revdelete-hide-restricted'      => 'Ii rukawat ke administrator aur duusra log se lukao.',
 'revdelete-suppress'             => 'Sysops ke saathe saathe aur sab se data ke suppress karo',
 'revdelete-hide-image'           => 'File content ke lukao',
 'revdelete-unsuppress'           => 'Restored revisions me se rukawat hatao',
@@ -832,6 +840,7 @@ Note that using the navigation links will reset this column.',
 'mergehistory-autocomment'         => '[[:$1]] [[:$2]] me jorr dewa gais hai',
 'mergehistory-comment'             => '[[:$1]] [[:$2]] me jorr dewa gais hai: $3',
 'mergehistory-same-destination'    => 'Suruu aur khatam kare waala panna ek nai hoe sake hai.',
+'mergehistory-reason'              => 'Kaaran:',
 
 # Merge log
 'mergelog'           => 'Log ke jorro',
@@ -1100,60 +1109,61 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'grouppage-suppress'      => '{{ns:project}}:Oversight',
 
 # Rights
-'right-read'                 => 'Panna ke parrho',
-'right-edit'                 => 'Panna ke badlo',
-'right-createpage'           => 'Panna banao (jon ki salah kare waala panna nai hai)',
-'right-createtalk'           => 'Salah kare waala panna banao',
-'right-createaccount'        => 'Nawaa sadasya ke account banao',
-'right-minoredit'            => 'Badlao ke chhota mark karo',
-'right-move'                 => 'Panna ke naam badlo',
-'right-move-subpages'        => 'Panna aur uske subpanna ke naam badlo',
-'right-move-rootuserpages'   => 'Root sadasya ke panna ke naam badlo',
-'right-movefile'             => 'File ke naam badlo',
-'right-suppressredirect'     => 'Panna ke naam badalte ke time, purana naam se redirect ke nai banao.',
-'right-upload'               => 'File ke upload karo',
-'right-reupload'             => 'Ek abhi waala file ke uppar se likho',
-'right-reupload-own'         => 'Ek abhi waala file jiske aap upload karaa hai ke uppar likh do',
-'right-reupload-shared'      => 'Share media repository ke file ke uppar likh do',
-'right-upload_by_url'        => 'URL address se ek file ke upload karo',
-'right-purge'                => 'Site cache se ek panna ke mina fir se puchhe mitae do',
-'right-autoconfirmed'        => 'Semi-protected panna ke badlo',
-'right-bot'                  => 'Automated process ke rakam treat karo',
-'right-nominornewtalk'       => 'Not have minor edits to discussion pages trigger the new messages prompt',
-'right-apihighlimits'        => 'Use higher limits in API queries',
-'right-writeapi'             => 'Use of the write API',
-'right-delete'               => 'Panna ke mitao',
-'right-bigdelete'            => 'Barraa itihaas waala panna ke mitao',
-'right-deleterevision'       => 'Panna ke khaas badlao ke mitao nai to bachao',
-'right-deletedhistory'       => 'Mitawa gais itihass ke entry ke binaa saathe waala text ke dekho',
-'right-browsearchive'        => 'Mitawa gais panna ke khojo',
-'right-undelete'             => 'Ek panna ke undelete karo',
-'right-suppressrevision'     => 'Review and restore revisions hidden from Sysops',
-'right-suppressionlog'       => 'Private logs ke dekho',
-'right-block'                => 'Duusra sadasya ke badle se roko',
-'right-blockemail'           => 'Sadasya ke email bheje se roko',
-'right-hideuser'             => 'Username ke roko, jisse ki janta iske dekhe nai sake',
-'right-ipblock-exempt'       => 'Bypass IP blocks, auto-blocks and range blocks',
-'right-proxyunbannable'      => 'Proxies ke automatic blocks ke bypass karo',
-'right-protect'              => 'Protection level ke badlo aur bachawa gais panna ke badlo',
-'right-editprotected'        => 'Bachawa gais panna ke badlo (without cascading protection)',
-'right-editinterface'        => 'User interface ke badlo',
-'right-editusercssjs'        => 'Duusra sadsya ke CSS aur JS files ke badlo',
-'right-rollback'             => 'Jaldi se ek khaas panna ke pichhla sadasya ke badlao ke ulta kar do',
-'right-markbotedits'         => 'Rolled-back edits ke bot edits mark karo',
-'right-noratelimit'          => 'Rrate limits se koi asar nai hai',
-'right-import'               => 'Duusra wiki me se panna ke import karo',
-'right-importupload'         => 'Ek file upload se panna ke import karo',
-'right-patrol'               => 'Duusra ke badlao pr pahraa do',
-'right-autopatrol'           => 'Aapan badlao pe apne se pahraa do',
-'right-patrolmarks'          => 'Haali ke badlao ke pahraa ke mark ke dekho',
-'right-unwatchedpages'       => 'Unwatched panna ke suchi ke dekho',
-'right-trackback'            => 'Ek trackback ke submit karo',
-'right-mergehistory'         => 'Panna ke itihass ke jorro',
-'right-userrights'           => 'Sadasya ke adhikar ke badlo',
-'right-userrights-interwiki' => 'Duusra wiki me sadasya ke adhikar ke badlo',
-'right-siteadmin'            => 'Database ke band karo aur kholo',
-'right-reset-passwords'      => 'Duusra sadasya ke password ke badlo',
+'right-read'                  => 'Panna ke parrho',
+'right-edit'                  => 'Panna ke badlo',
+'right-createpage'            => 'Panna banao (jon ki salah kare waala panna nai hai)',
+'right-createtalk'            => 'Salah kare waala panna banao',
+'right-createaccount'         => 'Nawaa sadasya ke account banao',
+'right-minoredit'             => 'Badlao ke chhota mark karo',
+'right-move'                  => 'Panna ke naam badlo',
+'right-move-subpages'         => 'Panna aur uske subpanna ke naam badlo',
+'right-move-rootuserpages'    => 'Root sadasya ke panna ke naam badlo',
+'right-movefile'              => 'File ke naam badlo',
+'right-suppressredirect'      => 'Panna ke naam badalte ke time, purana naam se redirect ke nai banao.',
+'right-upload'                => 'File ke upload karo',
+'right-reupload'              => 'Ek abhi waala file ke uppar se likho',
+'right-reupload-own'          => 'Ek abhi waala file jiske aap upload karaa hai ke uppar likh do',
+'right-reupload-shared'       => 'Share media repository ke file ke uppar likh do',
+'right-upload_by_url'         => 'URL address se ek file ke upload karo',
+'right-purge'                 => 'Site cache se ek panna ke mina fir se puchhe mitae do',
+'right-autoconfirmed'         => 'Semi-protected panna ke badlo',
+'right-bot'                   => 'Automated process ke rakam treat karo',
+'right-nominornewtalk'        => 'Not have minor edits to discussion pages trigger the new messages prompt',
+'right-apihighlimits'         => 'Use higher limits in API queries',
+'right-writeapi'              => 'Use of the write API',
+'right-delete'                => 'Panna ke mitao',
+'right-bigdelete'             => 'Barraa itihaas waala panna ke mitao',
+'right-deleterevision'        => 'Panna ke khaas badlao ke mitao nai to bachao',
+'right-deletedhistory'        => 'Mitawa gais itihass ke entry ke binaa saathe waala text ke dekho',
+'right-browsearchive'         => 'Mitawa gais panna ke khojo',
+'right-undelete'              => 'Ek panna ke undelete karo',
+'right-suppressrevision'      => 'Review and restore revisions hidden from Sysops',
+'right-suppressionlog'        => 'Private logs ke dekho',
+'right-block'                 => 'Duusra sadasya ke badle se roko',
+'right-blockemail'            => 'Sadasya ke email bheje se roko',
+'right-hideuser'              => 'Username ke roko, jisse ki janta iske dekhe nai sake',
+'right-ipblock-exempt'        => 'Bypass IP blocks, auto-blocks and range blocks',
+'right-proxyunbannable'       => 'Proxies ke automatic blocks ke bypass karo',
+'right-protect'               => 'Protection level ke badlo aur bachawa gais panna ke badlo',
+'right-editprotected'         => 'Bachawa gais panna ke badlo (without cascading protection)',
+'right-editinterface'         => 'User interface ke badlo',
+'right-editusercssjs'         => 'Duusra sadsya ke CSS aur JS files ke badlo',
+'right-rollback'              => 'Jaldi se ek khaas panna ke pichhla sadasya ke badlao ke ulta kar do',
+'right-markbotedits'          => 'Rolled-back edits ke bot edits mark karo',
+'right-noratelimit'           => 'Rrate limits se koi asar nai hai',
+'right-import'                => 'Duusra wiki me se panna ke import karo',
+'right-importupload'          => 'Ek file upload se panna ke import karo',
+'right-patrol'                => 'Duusra ke badlao pr pahraa do',
+'right-autopatrol'            => 'Aapan badlao pe apne se pahraa do',
+'right-patrolmarks'           => 'Haali ke badlao ke pahraa ke mark ke dekho',
+'right-unwatchedpages'        => 'Unwatched panna ke suchi ke dekho',
+'right-trackback'             => 'Ek trackback ke submit karo',
+'right-mergehistory'          => 'Panna ke itihass ke jorro',
+'right-userrights'            => 'Sadasya ke adhikar ke badlo',
+'right-userrights-interwiki'  => 'Duusra wiki me sadasya ke adhikar ke badlo',
+'right-siteadmin'             => 'Database ke band karo aur kholo',
+'right-reset-passwords'       => 'Duusra sadasya ke password ke badlo',
+'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
 
 # User rights log
 'rightslog'      => 'Sadasya adhikar suchi',
@@ -1395,6 +1405,10 @@ Ek [[Special:WhatLinksHere/$2|Puura suchi]] available hai.',
 'redirectstofile'           => 'Niche waala file ii file {{PLURAL:$1|file redirects|$1 files redirect}} se redirect hoe hai:',
 'duplicatesoffile'          => 'Niche ke suchi waala {{PLURAL:$1|file ke dui copy hai|$1 files ke dui copy hai}} ii file ke ([[Special:FileDuplicateSearch/$2|more details]]):',
 'sharedupload'              => 'Ii file $1 se aais hai aur duusra project me bhi kaam lawa jaae sake hai.',
+'sharedupload-desc-there'   => 'Ii file $1 se aais hai aur duusra projects me bhi kaam me lawa jaae sake hai.
+Meharbaani kar ke  aur jaankari kr khatir [$2 file description page] ke dekho.',
+'sharedupload-desc-here'    => 'Ii file $1 se aais hai aur duusra projects me bhi kaam me lawa jaae sake hai. 
+Iske baare me aur jaankari [$2 file description page] ke niche dekhawa jaae hai.',
 'noimage'                   => 'Ii naam ke koi file nai hai, lekin aap sakta hai $1.',
 'noimage-linktext'          => 'ek ke upload karo',
 'uploadnewversion-linktext' => 'Ii file ke nawaa version ke upload karo',
@@ -1519,6 +1533,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'popularpages'            => 'Popular panna',
 'wantedcategories'        => 'Maange waala vibhag',
 'wantedpages'             => 'Jaruri panna',
+'wantedpages-badtitle'    => 'Result set me kharaa title hai: $1',
 'wantedfiles'             => 'Maange waala files',
 'wantedtemplates'         => 'Maange waala templates',
 'mostlinked'              => 'Jon panna me sab se jaada chij jorra hai',
@@ -1769,13 +1784,40 @@ Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, au
 'delete-edit-reasonlist' => 'Mitae ke kaaran ke badlo',
 'delete-toobig'          => 'Ii panna ke barraa balao ke itihass hai, $1 se jaada {{PLURAL:$1|revision|revisions}}.
 Aisan panna ke mitae pe rok lagawa gais hai so that accidental disruption of {{SITENAME}} ke roka jaae sake hai.',
+'delete-warning-toobig'  => 'Ii panna ke lambaa badlao ke itihaas hai, $1 {{PLURAL:$1|revision|revisions}} se jaada.
+Iske mitae se {{SITENAME}} me database operations me baadha parri;
+sawadhani se aage barrho.',
 
 # Rollback
-'rollbacklink' => 'pahile jaise karo',
+'rollback'         => 'Pahile jaise kare waala badlao',
+'rollback_short'   => 'Pahile jaise karo',
+'rollbacklink'     => 'pahile jaise karo',
+'rollbackfailed'   => 'Pahile jaise kare ke kosis safal nai bhais',
+'cantrollback'     => 'Badlao ke pahile jaise nai kare sakta hai;
+isse pahile waala sadasya ii panna ke khaali yogdaan de waala hai.',
+'alreadyrolled'    => '[[:$1]] by [[User:$2|$2]] ke pahile jaise nai kare sakta hai. ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+aur koi ii panna ke badal nai to pahile jaise kar diis hai.
+
+Ii panna ke pichla badla [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) se rahaa',
+'editcomment'      => "Badlao ke summary rahaa: \"''\$1''\".", # only shown if there is an edit comment
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ke badlao ke [[User:$1|$1]] ke aakhri badlao ke jaise kar dewa gais hai.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 ke badlao ke pahile jaise kar dewa gais hai;
+badal ke $2 ke aakhri version kar dewa gais hai.',
+'sessionfailure'   => 'Aap ke login session me kuch karrbarr hai.
+iske cancel kar dewa gais hai jisse ki koi iisession ke hijack nai kar.
+Meharbani kar ke  "back" ke press kar ke jon pana se aap aae rahaa ke fir se load karo, tab fir kosis karo.',
 
 # Protect
 'protectlogpage'              => 'Surakchha suchi',
+'protectlogtext'              => 'Niche panna ke lock aur unlock ke suchi hai
+Abhi ke laabu panna protection ke dekho [[Special:ProtectedPages|protected pages list]]',
+'protectedarticle'            => 'bachawal "[[$1]]"',
+'modifiedarticleprotection'   => '[[$1]]" ke protection level ke badal dia hai',
+'unprotectedarticle'          => 'bina bachawal "[[$1]]"',
+'movedarticleprotection'      => 'protection settings ke "[[$2]]" se "[[$1]]" kae dia hai',
+'protect-title'               => '"$1" ke protection level ke badlo',
 'prot_1movedto2'              => '[[$1]] ke naam badal ke [[$2]] kar dewa gae hai',
+'protect-legend'              => 'Protection ke confirm karo',
 'protectcomment'              => 'Tiprri:',
 'protectexpiry'               => 'Khalas hoe hai:',
 'protect_expiry_invalid'      => 'Khalas hoe waala time valid nai hai.',
@@ -1783,25 +1825,58 @@ Aisan panna ke mitae pe rok lagawa gais hai so that accidental disruption of {{S
 'protect-unchain'             => 'Naam badle waala ijaajat kholo',
 'protect-text'                => "Aap ii panna ke protection level ke dekhe aur badle sakta hai
 '''<nowiki>$1</nowiki>'''.",
+'protect-locked-blocked'      => "Aap blocked rahe pe protection level ke nai badle sakta hai.
+Panna '''$1''' ke abhi ke settings hai:",
+'protect-locked-dblock'       => "Active database lock ke kaaran protection level ke bala nai jaawe sake hai.
+Panna '''$1''' ke abhi ke settings hai:",
 'protect-locked-access'       => "Aap ke account ke panna ke ijaajat badle ijaajat nai dewe hai.
 Panna ke abhi ke settings hian hai '''$1''':",
 'protect-cascadeon'           => 'Ii panna abhi surakchhit hai kahe ki isme hai {{PLURAL:$1|page, which has|pages, which have}} cascading protection turned on.
 
 Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai affect kari.',
-'protect-default'             => '(default)',
+'protect-default'             => 'Sab sadasya ke allow karo',
 'protect-fallback'            => '"$1" permission chaahi',
-'protect-level-autoconfirmed' => 'Unregistered sadasya ke roko',
+'protect-level-autoconfirmed' => 'Nawaa aur unregistered sadasya ke roko',
 'protect-level-sysop'         => 'Khali sysops',
 'protect-summary-cascade'     => 'cascading',
 'protect-expiring'            => '$1 khalaas hoe hai (UTC)',
+'protect-expiry-indefinite'   => 'sab time khatir',
 'protect-cascade'             => 'Ii panna me ke panna ke bachao (cascading protection)',
 'protect-cantedit'            => 'Aap ii panna ke protection level badle nai sakta hai, kahe ki aap ke badle ke ijaajat nai hai.',
-'protect-expiry-options'      => '2 ghanta:2 hours,1 din:1 day,3 din:3 daya,1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,pura:infinite', # display1:time1,display2:time2,...
+'protect-othertime'           => 'Duusra time:',
+'protect-othertime-op'        => 'duusra time',
+'protect-existing-expiry'     => 'Abhi ke khatam hoe waala time: $3, $2',
+'protect-otherreason'         => 'Duusra/aur kaaran:',
+'protect-otherreason-op'      => 'duusra/aur kaaran:',
+'protect-dropdown'            => '*Bachae ke sadharan kaaran
+** Jaada vandalism
+** Jaada spamming
+** Counter-productive edit warring
+** Jaada traffic waala panna',
+'protect-edit-reasonlist'     => 'Badlao se bachae ke kaaran',
+'protect-expiry-options'      => '1 ghanta:1 hour,1 din:1 day, 1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,sab time ke khatir:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Ijaajat:',
 'restriction-level'           => 'Roke ke niyam:',
+'minimum-size'                => 'Kamti se kamti size',
+'maximum-size'                => 'Jaada se jaada size:',
+'pagesize'                    => '(bytes)',
+
+# Restrictions (nouns)
+'restriction-edit'   => 'Badlo',
+'restriction-move'   => 'Hatao',
+'restriction-create' => 'Banao',
+'restriction-upload' => 'Upload karo',
+
+# Restriction levels
+'restriction-level-sysop'         => 'puura protected',
+'restriction-level-autoconfirmed' => 'thora protected',
+'restriction-level-all'           => 'koi bhi level',
 
 # Undelete
-'undeletebtn' => 'Pahile jaise kar do',
+'undelete'        => 'Mitawa gais panna ke dekho',
+'undeletepage'    => 'Dekho aur mitawa gais panna ke pahile jaise karo',
+'viewdeletedpage' => 'Mitawa gais panna ke dekho',
+'undeletebtn'     => 'Pahile jaise kar do',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -1819,7 +1894,7 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 'sp-contributions-newbies'     => 'Khaali nawaa account ke yogdaan dekhao',
 'sp-contributions-newbies-sub' => 'Nawaa account khatir',
 'sp-contributions-blocklog'    => 'Suchi roko',
-'sp-contributions-deleted'     => 'Sadasya ke yogdaan ke mitae dia hai',
+'sp-contributions-deleted'     => 'Mitawa gais adasya ke yogdaan',
 'sp-contributions-talk'        => 'Baat',
 'sp-contributions-userrights'  => 'Sadasya ke adhikaar ke chalao',
 'sp-contributions-search'      => 'Yogdaan ke khojo',

@@ -936,6 +936,7 @@ Bonvolu konfirmi ke vi intencias fari ĉi tiel, ke vi komprenas la konsekvencojn
 'revdelete-logentry'             => 'ŝanĝis videblecon de versio por [[$1]]',
 'logdelete-logentry'             => 'ŝanĝis eventan videblecon de [[$1]]',
 'revdelete-success'              => "'''Revizia videbleco estas sukcese farita.'''",
+'revdelete-failure'              => "'''Videblecon de revizio ne eblis agordi.'''",
 'logdelete-success'              => "'''Videbleco de evento sukcese farita.'''",
 'revdel-restore'                 => 'Ŝanĝi videblecon',
 'pagehist'                       => 'Paĝa historio',

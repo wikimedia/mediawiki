@@ -1055,6 +1055,7 @@ Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky 
 'revdelete-logentry'             => 'změnil viditelnost revizí u [[$1]]',
 'logdelete-logentry'             => 'mění viditelnost události [[$1]]',
 'revdelete-success'              => "'''Viditelnost revize úspěšně nastavena.'''",
+'revdelete-failure'              => "'''Není možné nastavit viditelnost revize.'''",
 'logdelete-success'              => "'''Viditelnost události úspěšně nastavena.'''",
 'revdel-restore'                 => 'Změnit viditelnost',
 'pagehist'                       => 'Historie stránky',
