@@ -674,6 +674,7 @@ $wgMessageStructure = array(
 		'revdelete-logaction',
 		'logdelete-logaction',
 		'revdelete-success',
+		'revdelete-failure',
 		'logdelete-success',
 		'revdel-restore',
 		'pagehist',
