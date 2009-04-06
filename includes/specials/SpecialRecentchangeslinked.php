@@ -190,7 +190,6 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 
 	function setBottomText( OutputPage $out, FormOptions $opts ){
 		if( isset( $this->mTargetTitle ) && is_object( $this->mTargetTitle ) ){
-			global $wgUser;
 			$out->setFeedAppendQuery( "target=" . urlencode( $this->mTargetTitle->getPrefixedDBkey() ) );
 		}
 		if( isset( $this->mResultEmpty ) && $this->mResultEmpty ){
