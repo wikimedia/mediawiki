@@ -21,7 +21,7 @@ class DatabaseSqlite extends Database {
 	 * Constructor
 	 */
 	function __construct($server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0) {
-		global $wgOut,$wgSQLiteDataDir, $wgSQLiteDataDirMode;
+		global $wgSQLiteDataDir, $wgSQLiteDataDirMode;
 		if ("$wgSQLiteDataDir" == '') $wgSQLiteDataDir = dirname($_SERVER['DOCUMENT_ROOT']).'/data';
 		if (!is_dir($wgSQLiteDataDir)) wfMkdirParents( $wgSQLiteDataDir, $wgSQLiteDataDirMode );
 		$this->mFailFunction = $failFunction;
