@@ -136,7 +136,7 @@ class SpecialImport extends SpecialPage {
 		if( !$wgUser->isAllowed( 'import' ) && !$wgUser->isAllowed( 'importupload' ) )
 			return $wgOut->permissionRequired( 'import' );
 
-		$action = SpecialPage::getTitleFor( 'Import' )->getLocalUrl( 'action=submit' );
+		$action = $this->getTitle()->getLocalUrl( 'action=submit' );
 
 		if( $wgUser->isAllowed( 'importupload' ) ) {
 			$wgOut->addWikiMsg( "importtext" );
