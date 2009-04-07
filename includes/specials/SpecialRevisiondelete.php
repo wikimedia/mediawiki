@@ -349,10 +349,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else {
 			$hidden[] = Xml::hidden( 'artimestamp', implode(',',$this->artimestamps) );
 		}
-		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $special->getLocalUrl( 'action=submit' ), 
+				'action' => $this->getTitle()->getLocalUrl( 'action=submit' ), 
 				'id' => 'mw-revdel-form-revisions' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			xml::element( 'legend', null,  wfMsg( 'revdelete-legend' ) )
@@ -479,10 +478,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else {
 			$hidden[] = Xml::hidden( 'fileid', implode(',',$this->fileids) );
 		}
-		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $special->getLocalUrl( 'action=submit' ), 
+				'action' => $this->getTitle()->getLocalUrl( 'action=submit' ), 
 				'id' => 'mw-revdel-form-filerevisions' )
 			) .
 			Xml::fieldset( wfMsg( 'revdelete-legend' ) )
@@ -569,10 +567,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			Xml::hidden( 'logid', implode(',',$this->logids) )
 		);
 
-		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $special->getLocalUrl( 'action=submit' ), 'id' => 'mw-revdel-form-logs' ) ) .
+				'action' => $this->getTitle()->getLocalUrl( 'action=submit' ), 'id' => 'mw-revdel-form-logs' ) ) .
 			Xml::fieldset( wfMsg( 'revdelete-legend' ) )
 		);
 		
@@ -671,7 +668,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			if( !$file->userCan(File::DELETED_FILE) ) {
 				$pageLink = $date;
 			} else {
-				$pageLink = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Revisiondelete' ), $date,
+				$pageLink = $this->skin->makeKnownLinkObj( $this->getTitle(), $date,
 					"target=$target&file=$file->sha1.".$file->getExtension() );
 			}
 			$pageLink = '<span class="history-deleted">' . $pageLink . '</span>';
