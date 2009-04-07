@@ -346,7 +346,7 @@ class WhatLinksHerePage {
 	}
 
 	function whatlinkshereForm() {
-		global $wgScript, $wgTitle;
+		global $wgScript;
 
 		// We get nicer value from the title object
 		$this->opts->consumeValue( 'target' );
@@ -360,7 +360,7 @@ class WhatLinksHerePage {
 		$f = Xml::openElement( 'form', array( 'action' => $wgScript ) );
 		
 		# Values that should not be forgotten
-		$f .= Xml::hidden( 'title', $wgTitle->getPrefixedText() );
+		$f .= Xml::hidden( 'title', SpecialPage::getTitleFor( 'Whatlinkshere' )->getPrefixedText() );
 		foreach ( $this->opts->getUnconsumedValues() as $name => $value ) {
 			$f .= Xml::hidden( $name, $value );
 		}

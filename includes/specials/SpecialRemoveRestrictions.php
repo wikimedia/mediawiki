@@ -1,9 +1,9 @@
 <?php
 
 function wfSpecialRemoveRestrictions() {
-	global $wgOut, $wgRequest, $wgUser, $wgLang, $wgTitle;
+	global $wgOut, $wgRequest, $wgUser, $wgLang;
 	$sk = $wgUser->getSkin();
-
+	$title = SpecialPage::getTitleFor( 'RemoveRestrictions' );
 	$id = $wgRequest->getVal( 'id' );
 	if( !is_numeric( $id ) ) {
 		$wgOut->addWikiMsg( 'removerestrictions-noid' );
@@ -36,11 +36,11 @@ function wfSpecialRemoveRestrictions() {
 	if( $result )
 		$wgOut->addHTML( '<strong class="success">' . wfMsgExt( 'removerestrictions-success',
 			'parseinline', $r->getSubjectText() ) . '</strong>' );
-	$wgOut->addHTML( Xml::openElement( 'form', array( 'action' => $wgTitle->getLocalUrl( array( 'id' => $id ) ),
+	$wgOut->addHTML( Xml::openElement( 'form', array( 'action' => $title->getLocalUrl( array( 'id' => $id ) ),
 		'method' => 'post' ) ) );
 	$wgOut->addHTML( Xml::buildForm( $form, 'removerestrictions-submit' ) );
 	$wgOut->addHTML( Xml::hidden( 'id', $r->getId() ) );
-	$wgOut->addHTML( Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() ) );
+	$wgOut->addHTML( Xml::hidden( 'title', $title->getPrefixedDbKey() ) );
 	$wgOut->addHTML( Xml::hidden( 'edittoken', $wgUser->editToken() ) );
 	$wgOut->addHTML( "</form></fieldset>" );
 }

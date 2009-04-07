@@ -306,7 +306,7 @@ class IPUnblockForm {
 	}
 
 	function searchForm() {
-		global $wgTitle, $wgScript, $wgRequest, $wgLang;
+		global $wgScript, $wgRequest, $wgLang;
 
 		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ) );
 		$nondefaults = array();
@@ -334,7 +334,7 @@ class IPUnblockForm {
 
 		return
 			Xml::tags( 'form', array( 'action' => $wgScript ),
-				Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() ) .
+				Xml::hidden( 'title', SpecialPage::getTitleFor( 'Ipblocklist' )->getPrefixedDbKey() ) .
 				Xml::openElement( 'fieldset' ) .
 				Xml::element( 'legend', null, wfMsg( 'ipblocklist-legend' ) ) .
 				Xml::inputLabel( wfMsg( 'ipblocklist-username' ), 'ip', 'ip', /* size */ false, $this->ip ) .
