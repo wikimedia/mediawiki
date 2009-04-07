@@ -787,14 +787,13 @@ class ImageHistoryList {
 			$row .= '<td>';
 			# Link to remove from history
 			if( $wgUser->isAllowed( 'delete' ) ) {
-				$q = array();
-				$q[] = 'action=delete';
+				$q = array( 'action' => 'delete' );
 				if( !$iscur )
-					$q[] = 'oldimage=' . urlencode( $img );
-				$row .= $this->skin->makeKnownLinkObj(
+					$q['oldimage'] = $img;
+				$row .= $this->skin->link(
 					$this->title,
 					wfMsgHtml( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' ),
-					implode( '&', $q )
+					array(), $q, array( 'known' )
 				);
 			}
 			# Link to hide content
@@ -808,10 +807,12 @@ class ImageHistoryList {
 					$del = wfMsgHtml( 'rev-delundel' );
 				} else {
 					// If the file was hidden, link to sha-1
-					list($ts,$name) = explode('!',$img,2);
-					$del = $this->skin->makeKnownLinkObj( $revdel, 	wfMsg( 'rev-delundel' ),
-						'target=' . urlencode( $wgTitle->getPrefixedText() ) .
-						'&oldimage=' . urlencode( $ts ) );
+					list( $ts, $name ) = explode( '!', $img, 2 );
+					$del = $this->skin->link( $revdel, wfMsgHtml( 'rev-delundel' ),
+						array(),
+						array( 'target' => $wgTitle->getPrefixedText(), 'oldimage' => $ts ),
+						array( 'known' )
+					);
 					// Bolden oversighted content
 					if( $file->isDeleted(File::DELETED_RESTRICTED) )
 						$del = "<strong>$del</strong>";
