@@ -9,7 +9,7 @@
  * Constructor.
  */
 function wfSpecialAllmessages() {
-	global $wgOut, $wgRequest, $wgMessageCache, $wgTitle;
+	global $wgOut, $wgRequest, $wgMessageCache;
 	global $wgUseDatabaseMessages, $wgLang;
 
 	# The page isn't much use if the MediaWiki namespace is not being used
@@ -47,12 +47,13 @@ function wfSpecialAllmessages() {
 
 	wfProfileIn( __METHOD__ . '-output' );
 	$wgOut->addScriptFile( 'allmessages.js' );
+	$title = SpecialPage::getTitleFor( 'Allmessages' );
 	if ( $ot == 'php' ) {
 		$navText .= wfAllMessagesMakePhp( $messages );
 		$wgOut->addHTML( $wgLang->pipeList( array(
 			'PHP',
-			'<a href="' . $wgTitle->escapeLocalUrl( 'ot=html' ) . '">HTML</a>',
-			'<a href="' . $wgTitle->escapeLocalUrl( 'ot=xml' ) . '">XML</a>' .
+			'<a href="' . $title->escapeLocalUrl( 'ot=html' ) . '">HTML</a>',
+			'<a href="' . $title->escapeLocalUrl( 'ot=xml' ) . '">XML</a>' .
 			'<pre>' . htmlspecialchars( $navText ) . '</pre>'
 		) ) );
 	} else if ( $ot == 'xml' ) {
@@ -61,9 +62,9 @@ function wfSpecialAllmessages() {
 		echo wfAllMessagesMakeXml( $messages );
 	} else {
 		$wgOut->addHTML( $wgLang->pipeList( array(
-			'<a href="' . $wgTitle->escapeLocalUrl( 'ot=php' ) . '">PHP</a>',
+			'<a href="' . $title->escapeLocalUrl( 'ot=php' ) . '">PHP</a>',
 			'HTML',
-			'<a href="' . $wgTitle->escapeLocalUrl( 'ot=xml' ) . '">XML</a>'
+			'<a href="' . $title->escapeLocalUrl( 'ot=xml' ) . '">XML</a>'
 		) ) );
 		$wgOut->addWikiText( $navText );
 		$wgOut->addHTML( wfAllMessagesMakeHTMLText( $messages ) );

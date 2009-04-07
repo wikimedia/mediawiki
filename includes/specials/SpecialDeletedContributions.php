@@ -333,9 +333,9 @@ class DeletedContributionsPage extends SpecialPage {
 	 * @param $options Array: the options to be included.
 	 */
 	function getForm( $options ) {
-		global $wgScript, $wgTitle, $wgRequest;
+		global $wgScript, $wgRequest;
 
-		$options['title'] = $wgTitle->getPrefixedText();
+		$options['title'] = SpecialPage::getTitleFor( 'DeletedContributions' )->getPrefixedText();
 		if ( !isset( $options['target'] ) ) {
 			$options['target'] = '';
 		} else {

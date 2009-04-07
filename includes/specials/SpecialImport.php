@@ -132,11 +132,11 @@ class SpecialImport extends SpecialPage {
 	}
 
 	private function showForm() {
-		global $wgUser, $wgOut, $wgRequest, $wgTitle, $wgImportSources, $wgExportMaxLinkDepth;
+		global $wgUser, $wgOut, $wgRequest, $wgImportSources, $wgExportMaxLinkDepth;
 		if( !$wgUser->isAllowed( 'import' ) && !$wgUser->isAllowed( 'importupload' ) )
 			return $wgOut->permissionRequired( 'import' );
 
-		$action = $wgTitle->getLocalUrl( 'action=submit' );
+		$action = SpecialPage::getTitleFor( 'Import' )->getLocalUrl( 'action=submit' );
 
 		if( $wgUser->isAllowed( 'importupload' ) ) {
 			$wgOut->addWikiMsg( "importtext" );

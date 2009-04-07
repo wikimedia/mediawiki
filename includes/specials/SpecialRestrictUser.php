@@ -36,12 +36,12 @@ function wfSpecialRestrictUser( $par = null ) {
 
 class RestrictUserForm {
 	public static function selectUserForm( $val = null, $error = null ) {
-		global $wgScript, $wgTitle;
+		global $wgScript;
 		$action = htmlspecialchars( $wgScript );
 		$s  = Xml::fieldset( wfMsg( 'restrictuser-userselect' ) ) . "<form action=\"{$action}\">";
 		if( $error )
 			$s .= '<p>' . $error . '</p>';
-		$s .= Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() );
+		$s .= Xml::hidden( 'title', SpecialPage::getTitleFor( 'RestrictUser' )->getPrefixedDbKey() );
 		$form = array( 'restrictuser-user' => Xml::input( 'user', false, $val ) );
 		$s .= Xml::buildForm( $form, 'restrictuser-go' );
 		$s .= "</form></fieldset>";
@@ -59,7 +59,7 @@ class RestrictUserForm {
 	}
 
 	public static function pageRestrictionForm( $uid, $user, $oldRestrictions ) {
-		global $wgOut, $wgTitle, $wgRequest, $wgUser;
+		global $wgOut, $wgRequest, $wgUser;
 		$error = '';
 		$success = false;
 		if( $wgRequest->wasPosted() && $wgRequest->getVal( 'type' ) == UserRestriction::PAGE &&
@@ -86,7 +86,7 @@ class RestrictUserForm {
 
 		self::printSuccessError( $success, $error );
 
-		$wgOut->addHTML( Xml::openElement( 'form', array( 'action' => $wgTitle->getLocalUrl(),
+		$wgOut->addHTML( Xml::openElement( 'form', array( 'action' => SpecialPage::getTitleFor( 'RestrictUser' )->getLocalUrl(),
 			'method' => 'post' ) ) );
 		$wgOut->addHTML( Xml::hidden( 'type', UserRestriction::PAGE ) );
 		$wgOut->addHTML( Xml::hidden( 'edittoken', $wgUser->editToken() ) );
@@ -130,7 +130,7 @@ class RestrictUserForm {
 	}
 
 	public static function namespaceRestrictionForm( $uid, $user, $oldRestrictions ) {
-		global $wgOut, $wgTitle, $wgRequest, $wgUser, $wgContLang;
+		global $wgOut, $wgRequest, $wgUser, $wgContLang;
 		$error = '';
 		$success = false;
 		if( $wgRequest->wasPosted() && $wgRequest->getVal( 'type' ) == UserRestriction::NAMESPACE &&
@@ -154,7 +154,7 @@ class RestrictUserForm {
 
 		self::printSuccessError( $success, $error );
 
-		$wgOut->addHTML( Xml::openElement( 'form', array( 'action' => $wgTitle->getLocalUrl(),
+		$wgOut->addHTML( Xml::openElement( 'form', array( 'action' => SpecialPage::getTitleFor( 'RestrictUser' )->getLocalUrl(),
 			'method' => 'post' ) ) );
 		$wgOut->addHTML( Xml::hidden( 'type', UserRestriction::NAMESPACE ) );
 		$wgOut->addHTML( Xml::hidden( 'edittoken', $wgUser->editToken() ) );

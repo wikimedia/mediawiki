@@ -37,13 +37,13 @@ class FilepathForm {
 	}
 
 	function execute() {
-		global $wgOut, $wgTitle, $wgScript;
+		global $wgOut, $wgScript;
 
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'specialfilepath' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'filepath' ) ) .
-			Xml::hidden( 'title', $wgTitle->getPrefixedText() ) .
+			Xml::hidden( 'title', SpecialPage::getTitleFor( 'Filepath' )->getPrefixedText() ) .
 			Xml::inputLabel( wfMsg( 'filepath-page' ), 'file', 'file', 25, is_object( $this->mTitle ) ? $this->mTitle->getText() : '' ) . ' ' .
 			Xml::submitButton( wfMsg( 'filepath-submit' ) ) . "\n" .
 			Xml::closeElement( 'fieldset' ) .

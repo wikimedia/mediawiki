@@ -659,7 +659,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * @returns string
 	 */
 	private function fileLine( $file ) {
-		global $wgLang, $wgTitle;
+		global $wgLang;
 
 		$target = $this->page->getPrefixedText();
 		$date = $wgLang->timeanddate( $file->getTimestamp(), true  );
@@ -671,7 +671,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			if( !$file->userCan(File::DELETED_FILE) ) {
 				$pageLink = $date;
 			} else {
-				$pageLink = $this->skin->makeKnownLinkObj( $wgTitle, $date,
+				$pageLink = $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Revisiondelete' ), $date,
 					"target=$target&file=$file->sha1.".$file->getExtension() );
 			}
 			$pageLink = '<span class="history-deleted">' . $pageLink . '</span>';

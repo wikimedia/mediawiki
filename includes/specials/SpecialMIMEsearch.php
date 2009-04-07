@@ -83,12 +83,12 @@ class MIMEsearchPage extends QueryPage {
  * Output the HTML search form, and constructs the MIMEsearchPage object.
  */
 function wfSpecialMIMEsearch( $par = null ) {
-	global $wgRequest, $wgTitle, $wgOut;
+	global $wgRequest, $wgOut;
 
 	$mime = isset( $par ) ? $par : $wgRequest->getText( 'mime' );
 
 	$wgOut->addHTML(
-		Xml::openElement( 'form', array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => $wgTitle->getLocalUrl() ) ) .
+		Xml::openElement( 'form', array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => SpecialPage::getTitleFor( 'MIMEsearch' )->getLocalUrl() ) ) .
 		Xml::openElement( 'fieldset' ) .
 		Xml::element( 'legend', null, wfMsg( 'mimesearch' ) ) .
 		Xml::inputLabel( wfMsg( 'mimetype' ), 'mime', 'mime', 20, $mime ) . ' ' .
