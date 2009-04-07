@@ -983,8 +983,9 @@ class OutputPage {
 	}
 
 	/**
-	 * @todo document
-	 * @param string $ins
+	 * Actually output something with print(). Performs an iconv to the
+	 * output encoding, if needed.
+	 * @param string $ins The string to output
 	 */
 	public function out( $ins ) {
 		global $wgInputEncoding, $wgOutputEncoding, $wgContLang;
