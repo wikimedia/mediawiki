@@ -64,7 +64,7 @@ class SkinCologneBlue extends Skin {
 	}
 
 	function doAfterContent(){
-		global $wgOut, $wgLang;
+		global $wgLang;
 
 		$s = "\n</div><br clear='all' />\n";
 

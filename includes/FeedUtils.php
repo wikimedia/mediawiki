@@ -13,7 +13,7 @@ class FeedUtils {
 	}
 
 	public static function checkFeedOutput( $type ) {
-		global $wgFeed, $wgOut, $wgFeedClasses;
+		global $wgFeed, $wgFeedClasses;
 
 		if ( !$wgFeed ) {
 			global $wgOut;

@@ -218,7 +218,7 @@ class ProtectionForm {
 	}
 
 	function save() {
-		global $wgRequest, $wgUser, $wgOut;
+		global $wgRequest, $wgUser;
 		# Permission check!
 		if ( $this->disabled ) {
 			$this->show();
