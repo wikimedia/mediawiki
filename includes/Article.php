@@ -3437,7 +3437,7 @@ class Article {
 	 * @param $title Title object
 	 * @return array
 	 */
-	protected function pageCountInfo( $title ) {
+	public function pageCountInfo( $title ) {
 		$id = $title->getArticleId();
 		if( $id == 0 ) {
 			return false;
