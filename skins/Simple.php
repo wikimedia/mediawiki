@@ -19,7 +19,7 @@ require_once( dirname(__FILE__) . '/MonoBook.php' );
  */
 class SkinSimple extends SkinTemplate {
 	function initPage( OutputPage $out ) {
-		SkinTemplate::initPage( $out );
+		parent::initPage( $out );
 		$this->skinname  = 'simple';
 		$this->stylename = 'simple';
 		$this->template  = 'MonoBookTemplate';
