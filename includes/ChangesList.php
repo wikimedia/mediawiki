@@ -368,7 +368,7 @@ class OldChangesList extends ChangesList {
 	 * Format a line using the old system (aka without any javascript).
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = NULL ) {
-		global $wgContLang, $wgLang, $wgRCShowChangedSize, $wgUser;
+		global $wgLang, $wgRCShowChangedSize, $wgUser;
 		wfProfileIn( __METHOD__ );
 		# Should patrol-related stuff be shown?
 		$unpatrolled = $wgUser->useRCPatrol() && !$rc->mAttribs['rc_patrolled'];
@@ -473,7 +473,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
 	public function recentChangesLine( &$baseRC, $watched = false ) {
-		global $wgLang, $wgContLang, $wgUser;
+		global $wgLang, $wgUser;
 		
 		wfProfileIn( __METHOD__ );
 
@@ -547,7 +547,7 @@ class EnhancedChangesList extends ChangesList {
 			$showdifflinks = false;
 		}
 
-		$time = $wgContLang->time( $rc_timestamp, true, true );
+		$time = $wgLang->time( $rc_timestamp, true, true );
 		$rc->watched = $watched;
 		$rc->link = $clink;
 		$rc->timestamp = $time;
@@ -918,7 +918,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string a HTML formated line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
-		global $wgContLang, $wgRCShowChangedSize;
+		global $wgRCShowChangedSize;
 
 		wfProfileIn( __METHOD__ );
 
