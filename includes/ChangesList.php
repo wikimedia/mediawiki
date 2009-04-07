@@ -108,11 +108,18 @@ class ChangesList {
 	public static function showCharacterDifference( $old, $new ) {
 		global $wgRCChangedSizeThreshold, $wgLang, $wgMiserMode;
 		$szdiff = $new - $old;
+
+		$code = $wgLang->getCode();
+		static $fastCharDiff = array();
+		if ( !isset($fastCharDiff[$code]) ) {
+			$fastCharDiff[$code] = $wgMiserMode || wfMsgNoTrans( 'rc-change-size' ) === '$1';
+		}
 			
-		$formatedSize = ( $wgMiserMode? 
-			$wgLang->formatNum($szdiff) : // avoid expensive calculations
-			wfMsgExt( 'rc-change-size', array( 'parsemag', 'escape' ), $wgLang->formatNum( $szdiff ) )
-			);
+		$formatedSize = $wgLang->formatNum($szdiff);
+
+		if ( !$fastCharDiff[$code] ) {
+			$formatedSize = wfMsgExt( 'rc-change-size', array( 'parsemag', 'escape' ), $formatedSize );
+		}
 			
 		if( abs( $szdiff ) > abs( $wgRCChangedSizeThreshold ) ) {
 			$tag = 'strong';
