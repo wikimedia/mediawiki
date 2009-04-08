@@ -3892,11 +3892,4 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'dberr-outofdate'   => 'Note that their indexes of our content may be out of date.',
 'dberr-cachederror' => 'This is a cached copy of the requested page, and may not be up to date.',
 
-# Unknown messages
-'editinginterface-doc' => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
-Changes to this page will affect the appearance of the user interface for other users. Documentation for this message is shown below.
-For translations and updates to the documentation, please consider using [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.
-
-$1",
-
 );
