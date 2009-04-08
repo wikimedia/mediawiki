@@ -160,6 +160,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   "{{GROUPCONVERT:xxx}}" enabled for this new feature. You can set related
   conversion rules in [[MediaWiki:Groupconversiontable-xxx/language_code]].
 * Superfluous border="0" removed from images
+* Added new hook 'MessageCacheReplace' into MessageCache.php. For instance 
+  to allow extensions to update caches in similar way as MediaWiki invalidates
+  a cached MonoBook sidebar
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

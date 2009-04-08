@@ -407,6 +407,8 @@ class MessageCache {
 		$sidebarKey = wfMemcKey( 'sidebar', $code );
 		$parserMemc->delete( $sidebarKey );
 
+		wfRunHooks( "MessageCacheReplace", array( $title, $text ) );
+
 		wfProfileOut( __METHOD__ );
 	}
 
