@@ -798,6 +798,7 @@ Meharbaani kar ke ii confirm karo ki aap ii chij kare mangta hai, aap iske natij
 'revdelete-logentry'             => 'badla gae revision visibility of [[$1]]',
 'logdelete-logentry'             => 'badla gais event visibility of [[$1]]',
 'revdelete-success'              => "'''Badlao dekhe khatir taiyaar hai.'''",
+'revdelete-failure'              => "'''Revision visibility set nai hoe sakis.'''",
 'logdelete-success'              => "'''Log dekhe khatir taiyaar hai.'''",
 'revdel-restore'                 => 'Visibility ke badlo',
 'pagehist'                       => 'Panna ke itihaas',
@@ -1873,10 +1874,58 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 'restriction-level-all'           => 'koi bhi level',
 
 # Undelete
-'undelete'        => 'Mitawa gais panna ke dekho',
-'undeletepage'    => 'Dekho aur mitawa gais panna ke pahile jaise karo',
-'viewdeletedpage' => 'Mitawa gais panna ke dekho',
-'undeletebtn'     => 'Pahile jaise kar do',
+'undelete'                     => 'Mitawa gais panna ke dekho',
+'undeletepage'                 => 'Dekho aur mitawa gais panna ke pahile jaise karo',
+'undeletepagetitle'            => "'''Niche ke list me [[:$1|$1]] ke mitawa gais badlao hai'''.",
+'viewdeletedpage'              => 'Mitawa gais panna ke dekho',
+'undeletepagetext'             => 'Niche dekhawa gais {{PLURAL:$1|panna ke mitae dewa gais hai lekin|$1 panna ke mitae dewa gais hai lekin}} abhi archive me hai aur iske pahile jaise karaa jaawe sake hai.
+Archive ke time time se safaa karaa jaawe hai.',
+'undelete-fieldset-title'      => 'Badlao ke pahile jaise karo',
+'undeleteextrahelp'            => "Panna ke itihaas ke pahile jaise kare ke khatir sab checkboxes me kuch nai karna aur '''''Restore''''' ke click karo.
+Chuna gais panna ke pahile jaise kare ke khatir, uu box ke check karo jon badlao ke aap pahile jaise kare mangta hai aur '''''Restore''''' ke click karo.
+'''''Reset''''' click kare se comment field aur sab checkboxes clear hoe jaai.",
+'undeleterevisions'            => '$1 {{PLURAL:$1|badlao|badlao}} ke archive kar dewa gais hai',
+'undeletehistory'              => 'Agar aap panna ke pahile jaise karaa tab sab badlao itihass me restore hoe jaai.
+Agar koi wahii naam ke nawaa panna mitae ke baad banaa hoi tab restore karaa gais badlao pahile ke itihass me dekhai.',
+'undeleterevdel'               => 'Pahile jaise nai kare sakega agar isse uppar waala panna nai to file revision bhi delete hoe jaai.
+Aisan time pe, aap ke chaahi ki aap sab se nawaa deleted revision ke uncheck nai to unhide karo.',
+'undeletehistorynoadmin'       => 'Ii panna ke mitae dewa gais hai.
+Mitae ke kaaran niche ke summary me dewa gais hai, aur iske saathe uu sadasya ke baare me bhi jaankari hai jon ki ii panna ke badle rahin.
+Ii mitawa gais badlao ke baare me puura jankari khaali administrators ke mile sake hai.',
+'undelete-revision'            => '$1 ke badlao ke (as of $4, at $5) by $3 mitae dewa gais hai:',
+'undeleterevision-missing'     => 'Badlao kharaab nai to pawa nai jaawe sake hai.
+Sait aap ke kharaab link hoi, nai to badlao ke sait pahile jaise kar dewa gais hoi, nai to archive se mitae dewa gais hoi.',
+'undelete-nodiff'              => 'Koi pahile ke badlao ke nai pawa gais hai.',
+'undeletebtn'                  => 'Pahile jaise kar do',
+'undeletelink'                 => 'dekho/pahile jaise karo',
+'undeletereset'                => 'Pahile jaise karo',
+'undeleteinvert'               => 'Selection ke ulta karo',
+'undeletecomment'              => 'Aapan bichar do:',
+'undeletedarticle'             => '"[[$1]]" ke pahile jaise kar dewa gais hai',
+'undeletedrevisions'           => '{{PLURAL:$1|1 badlao|$1 badlao}} ke pahile jaise kar dewa gais hai',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 badlao|$1 badlao}} aur {{PLURAL:$2|1 file|$2 files}} ke pahile jaise kar dewa gais hai',
+'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} ke pahile jaise kar dewa gais hai',
+'cannotundelete'               => 'Pahile jaise nai kare sakaa;
+saait aur koi panna ke pahile jaise kar diis hai.',
+'undeletedpage'                => "<big>'''$1 ke pahile jaise kar dewa gais hai'''</big>
+
+Nawaa mitawa gais aur badlao ke ulta karaa gais panna ke dekhe ke khatir [[Special:Log/delete|deletion log]] ke dekho.",
+'undelete-header'              => 'Nawaa mitawa gais panna ke dekhe ke khatir [[Special:Log/delete|the deletion log]] ke dekho.',
+'undelete-search-box'          => 'Mitawa gais panna ke khojo',
+'undelete-search-prefix'       => 'Uu panna ke dekhao jon ki isse suruu hoe hai:',
+'undelete-search-submit'       => 'Khojo',
+'undelete-no-results'          => 'Mitawa gais panna ke archive me ii rakam ke koi panna ke nai pawa gais hai.',
+'undelete-filename-mismatch'   => 'File revision jiske timestamp $1 hai ke pahile jaise nai karaa jaawe sake hai: filename mismatch',
+'undelete-bad-store-key'       => 'File revision jiske timestamp $1 hai ke pahile jaise nai karaa jaawe sake hai: file was missing before deletion.',
+'undelete-cleanup-error'       => 'Bina use karaa gais archive file "$1" ke delete kare me mistake hoe gais.',
+'undelete-missing-filearchive' => 'File archive ID $1 ke pahile jaise nai kare sakaa hai kahe ki ii database me nai hai.
+Saait iske aur koi pahile jaise kar diis hai.',
+'undelete-error-short'         => 'File ke pahile jaise kare me eror: $1',
+'undelete-error-long'          => 'Ii file ke pahile jaise kare me error hoe gais:
+
+$1',
+'undelete-show-file-confirm'   => 'Ka aap sure hai ki aap mitawa gais file ke badlao ke dekhe mangta hai  "<nowiki>$1</nowiki>" from $2 at $3?',
+'undelete-show-file-submit'    => 'Haan',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -1884,42 +1933,118 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 'blanknamespace' => '(Pahila)',
 
 # Contributions
-'contributions' => 'Sadasya ke yogdaan',
-'mycontris'     => 'Hamaar yogdaan',
-'contribsub2'   => '$1 ($2) ke khatir',
-'uctop'         => '(uppar)',
-'month'         => 'Mahina se (aur pahile):',
-'year'          => 'Saal se (aur pahile):',
+'contributions'       => 'Sadasya ke yogdaan',
+'contributions-title' => '$1 ke yogdaan',
+'mycontris'           => 'Hamaar yogdaan',
+'contribsub2'         => '$1 ($2) ke khatir',
+'nocontribs'          => 'Ii critera ke rakam ke koi badlao nai pawa gais hai.', # Optional parameter: $1 is the user name
+'uctop'               => '(uppar)',
+'month'               => 'Mahina se (aur pahile):',
+'year'                => 'Saal se (aur pahile):',
 
-'sp-contributions-newbies'     => 'Khaali nawaa account ke yogdaan dekhao',
-'sp-contributions-newbies-sub' => 'Nawaa account khatir',
-'sp-contributions-blocklog'    => 'Suchi roko',
-'sp-contributions-deleted'     => 'Mitawa gais adasya ke yogdaan',
-'sp-contributions-talk'        => 'Baat',
-'sp-contributions-userrights'  => 'Sadasya ke adhikaar ke chalao',
-'sp-contributions-search'      => 'Yogdaan ke khojo',
-'sp-contributions-username'    => 'IP Address nai to username:',
+'sp-contributions-newbies'       => 'Khaali nawaa account ke yogdaan dekhao',
+'sp-contributions-newbies-sub'   => 'Nawaa account khatir',
+'sp-contributions-newbies-title' => 'Nawaa account ke sadasya ke yogdaan',
+'sp-contributions-blocklog'      => 'Suchi roko',
+'sp-contributions-deleted'       => 'Mitawa gais adasya ke yogdaan',
+'sp-contributions-logs'          => 'logs',
+'sp-contributions-talk'          => 'baat',
+'sp-contributions-userrights'    => 'sadasya ke adhikaar ke manage karo',
+'sp-contributions-search'        => 'Yogdaan ke khojo',
+'sp-contributions-username'      => 'IP Address nai to username:',
+'sp-contributions-submit'        => 'Khojo',
 
 # What links here
-'whatlinkshere'       => 'Hian konchi link hoe',
-'whatlinkshere-title' => 'Panna jon ki $1 se jurre hai',
-'linkshere'           => "Niche waala panna '''[[:$1]]''' se jorre hai:",
-'nolinkshere'         => "Koi panna '''[[:$1]]''' ke nai jorre hai.",
-'isredirect'          => 'panna ke redirect karo',
-'istemplate'          => 'milao',
-'whatlinkshere-prev'  => '{{PLURAL:$1|pahile waala|pahile waala $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|aage waala|aage waala $1}}',
-'whatlinkshere-links' => '← jorr',
+'whatlinkshere'            => 'Hian konchi link hoe',
+'whatlinkshere-title'      => 'Panna jon ki $1 se jurre hai',
+'whatlinkshere-page'       => 'Panna:',
+'linkshere'                => "Niche waala panna '''[[:$1]]''' se jorre hai:",
+'nolinkshere'              => "Koi panna '''[[:$1]]''' ke nai jorre hai.",
+'nolinkshere-ns'           => "Chuna gais namespace me koi panna '''[[:$1]]''' se nai jiurre hai.",
+'isredirect'               => 'panna ke redirect karo',
+'istemplate'               => 'milao',
+'isimage'                  => 'chapa ke jorr',
+'whatlinkshere-prev'       => '{{PLURAL:$1|pahile waala|pahile waala $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|aage waala|aage waala $1}}',
+'whatlinkshere-links'      => '← jorr',
+'whatlinkshere-hideredirs' => '$1 redirects',
+'whatlinkshere-hidetrans'  => '$1 transclusions',
+'whatlinkshere-hidelinks'  => '$1 jorr',
+'whatlinkshere-hideimages' => '$1 chapa ke jorr',
+'whatlinkshere-filters'    => 'Filters',
 
 # Block/unblock
-'blockip'       => 'Sadasya ke roko',
-'ipboptions'    => '2 ghanta:2 hours,1 din:1 day,3 din:3 daya,1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,pura:infinite', # display1:time1,display2:time2,...
-'ipblocklist'   => 'Roka gais IP addresses aur usernames',
-'blocklink'     => 'rok do',
-'unblocklink'   => 'rukawat khatam karo',
-'contribslink'  => 'yogdaan',
-'blocklogpage'  => 'Suchi ke roko',
-'blocklogentry' => '[[$1]] ke roka jon ki $2 $3 khala hoi',
+'blockip'                      => 'Sadasya ke roko',
+'blockip-legend'               => 'Sadasya ke roko',
+'blockiptext'                  => 'Niche ke form ke use kar ke koi khaas IP address nai to username ke write access ke roko.
+Iske khaali vandalism ke roke ke khatir use kare ke chaahi [[{{MediaWiki:Policy-url}}|policy]] ke niche.
+Niche ek khaas kaaran likho (jaise ki, citing particular pages that were vandalized).',
+'ipaddress'                    => 'IP Address:',
+'ipadressorusername'           => 'IP Address nai to username:',
+'ipbexpiry'                    => 'Expiry:',
+'ipbreason'                    => 'Kaaran:',
+'ipbreasonotherlist'           => 'Duusra kaaran',
+'ipbreason-dropdown'           => '*Sadharan block kare ke kaaran
+** Galat jaankari dewe
+** Panna se content nikalo
+** Spamming links to external sites
+** Inserting nonsense/gibberish into pages
+** Intimidating behaviour/harassment
+** Abusing multiple accounts
+** Unacceptable username',
+'ipbanononly'                  => 'Khaali anonymous sadasya ke roko',
+'ipbcreateaccount'             => 'account banae se roko',
+'ipbemailban'                  => 'Sadasya ke e-mail bheje se roko',
+'ipbenableautoblock'           => 'Apne se sadasya ke kaam me lawa gais last IP address ke roko, aur iske saathe aur koi IPs jisme se baad me badlao kare ke kosis karaa jaae ke bhi roko.',
+'ipbsubmit'                    => 'Ii sadasya ke roko',
+'ipbother'                     => 'Duusra time:',
+'ipboptions'                   => '2 ghanta:2 hours,1 din:1 day,3 din:3 daya,1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,pura:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'               => 'duusra',
+'ipbotherreason'               => 'Duusra/aur kaaran:',
+'ipbhidename'                  => 'Badlao aur suchi se username ke hatao',
+'ipbwatchuser'                 => 'Ii sadasya ke user aur talk panna pe dhyan rakho',
+'ipballowusertalk'             => 'Blocked rake par bhi ii sadasya ke aapan baat waala panna ke badle ke ijajat do',
+'ipb-change-block'             => 'Ii sadasya ke jiske ii settings hai ke fir se roko',
+'badipaddress'                 => 'IP address kharaab hai',
+'blockipsuccesssub'            => 'Rukawat safal rahaa',
+'blockipsuccesstext'           => '[[Special:Contributions/$1|$1]] ke rok dewa gais hai.<br />
+Ii rukawat pe fir se bichar kare ke khatir [[Special:IPBlockList|IP block list]] ke dekho.',
+'ipb-edit-dropdown'            => 'Badlao ke roke ke kaaran',
+'ipb-unblock-addr'             => '$1 ke rukawat ke khalaas karo',
+'ipb-unblock'                  => 'Ek username nai to IP address ke rukawat ke khalaas karo',
+'ipb-blocklist-addr'           => '$1 ke abhi ke rukawat',
+'ipb-blocklist'                => 'Abhi ke rukawat ke dekho',
+'ipb-blocklist-contribs'       => '$1 ke yogdaan',
+'unblockip'                    => 'Sadasya ke rukawat ke khalaas karo',
+'unblockiptext'                => 'Niche ke form ke use kar ke pahile roka gais IP address nai to username ke likhe ke adhikar do.',
+'ipusubmit'                    => 'Ii rukawat ke hatao',
+'unblocked'                    => '[[User:$1|$1]] ke rukawat ke khalaas kar dewa gais hai',
+'unblocked-id'                 => 'Roko $1 ke khalaas kar dewa gais hai',
+'ipblocklist'                  => 'Roka gais IP addresses aur usernames',
+'ipblocklist-legend'           => 'Ek roka gais sadasya ke khojo',
+'ipblocklist-username'         => 'Username nai to IP address:',
+'ipblocklist-sh-userblocks'    => '$1 account rukawat',
+'ipblocklist-sh-tempblocks'    => '$1 temporary rukawat',
+'ipblocklist-sh-addressblocks' => '$1 ek IP rukawat',
+'ipblocklist-submit'           => 'Khojo',
+'blocklistline'                => '$1, $2 $3 ($4) ke rok diis hai',
+'infiniteblock'                => 'sab din ke khatir',
+'expiringblock'                => 'khalaas hoe hai $1',
+'anononlyblock'                => 'khaali bina naam ke',
+'noautoblockblock'             => 'ab apne se rokaa nai jaawe sake hai',
+'createaccountblock'           => 'account banae ke adhikar ke rok dewa gais hai',
+'emailblock'                   => 'e-mail ke rok dewa gais hai',
+'blocklist-nousertalk'         => 'aapan baat waala panna ke badle ke adhikar nai hai',
+'ipblocklist-empty'            => 'Rukawat ke suchi khaali hai.',
+'ipblocklist-no-results'       => 'Maanga gais IP address nai to username rokaa nai gais hai.',
+'blocklink'                    => 'rok do',
+'unblocklink'                  => 'rukawat khatam karo',
+'change-blocklink'             => 'rukawat ke badlo',
+'contribslink'                 => 'yogdaan',
+'autoblocker'                  => 'Apne se rokaa gais hai kaahe ki aap ke IP address ke abhi haali "[[User:$1|$1]]" use karis hai.
+$1 ke roke ke kaaran hai: "$2"',
+'blocklogpage'                 => 'Suchi ke roko',
+'blocklogentry'                => '[[$1]] ke roka jon ki $2 $3 khala hoi',
 
 # Move page
 'movepagetext'     => "Niche ke form kaam me laae se panna ke naam badal jaai aur iske itihass nawaa naam ke niche hoe jaai.

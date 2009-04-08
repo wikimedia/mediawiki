@@ -797,7 +797,7 @@ $2',
 'nocreate-loggedin'                => '您并无权限去创建新页面。',
 'permissionserrors'                => '权限错误',
 'permissionserrorstext'            => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做以下的动作:',
-'permissionserrorstext-withaction' => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做$2:',
+'permissionserrorstext-withaction' => '根据以下的{{PLURAL:$1|原因|原因}}，您无权限进行$2操作：',
 'recreate-deleted-warn'            => "'''警告: 你现在重新创建一个先前曾经删除过的页面。'''
 
 你应该要考虑一下继续编辑这一个页面是否合适。

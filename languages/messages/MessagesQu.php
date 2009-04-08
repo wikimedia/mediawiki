@@ -1662,7 +1662,7 @@ Ama hina kaspa, [$2 willañiqi ch'uyanchana p'anqata] qhaway astawan willachikun
 'statistics-mostpopular'       => "Lliwmanta astawan rikusqa p'anqakuna",
 
 'disambiguations'      => "Sut'ichana qillqakuna",
-'disambiguationspage'  => "Plantilla:Sut'ichana qillqa",
+'disambiguationspage'  => "Template:Sut'ichana qillqa",
 'disambiguations-text' => "Kay qatiq p'anqakunam t'inkimun '''sut'ichana qillqaman'''. Chiqap, hukchanasqa p'anqaman t'inkichun.<br />Tukuy [[MediaWiki:Disambiguationspage]] plantillayuq p'anqakunaqa sut'ichana qillqam.",
 
 'doubleredirects'            => 'Iskaylla pusapunakuna',

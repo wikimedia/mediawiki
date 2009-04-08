@@ -866,6 +866,7 @@ Confirméiert w.eg. datt Dir dëst maache wellt, datt dir d'Konsequenzen dovu ve
 'revdelete-log'                  => "Bemierkung (fir d'Logbicher/Lëschten):",
 'revdelete-submit'               => 'Op déi gewielte Versioun uwenden',
 'revdelete-logentry'             => 'Sichtbarkeet vun der Versioun gouf geännert fir [[$1]]',
+'logdelete-logentry'             => "huet d'Sichtbarkeet vun [[$1]] geännert",
 'revdelete-success'              => "'''Sichtbarkeet vun de Versioune geännert.''''",
 'revdel-restore'                 => 'Sichtbarkeet änneren',
 'pagehist'                       => 'Versioune vun dëser Säit',
@@ -1536,7 +1537,7 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <tt>image/jpeg</tt>.",
 'statistics-mostpopular'       => 'Am meeschte gekuckte Säiten',
 
 'disambiguations'      => 'Homonymie Säiten',
-'disambiguationspage'  => 'Schabloun:Homonymie',
+'disambiguationspage'  => 'Template:Homonymie',
 'disambiguations-text' => 'Dës Säite si mat enger Homonymie-Säit verlinkt.
 Sie sollten am beschten op déi eigentlech gemengte Säit verlinkt sinn.<br />
 Eng Säite gëtt als Homonymiesäit behandelt, wa si eng Schabloun benotzt déi vu [[MediaWiki:Disambiguationspage]] verlinkt ass.',

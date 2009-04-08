@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Xqt
  * @author לערי ריינהארט
  */
 
@@ -21,7 +22,7 @@ $messages = array(
 'january'   => 'Yenner',
 'february'  => 'Hanning',
 'march'     => 'Matz',
-'april'     => 'Abrill',
+'april'     => 'Abril',
 'may_long'  => 'Moi',
 'june'      => 'Yuni',
 'july'      => 'Yuli',
@@ -30,27 +31,40 @@ $messages = array(
 'october'   => 'Oktower',
 'november'  => 'Nowember',
 'december'  => 'Disember',
+'jan'       => 'Yen.',
+'feb'       => 'Han.',
+'mar'       => 'Matz',
+'apr'       => 'Abr.',
 'may'       => 'Moi',
+'jun'       => 'Yuni',
+'jul'       => 'Yuli',
+'dec'       => 'Dis.',
 
 'mytalk'     => 'Mei Gschwetz-Blatt',
 'navigation' => 'Faahre-Gnepp',
 
-'help'           => 'Hilf',
-'search'         => 'Guuck uff',
-'searchbutton'   => 'Guuck uff',
-'go'             => 'Geh',
-'history'        => "G'schicht",
-'history_short'  => "G'schicht",
-'edit'           => 'ennere / tscheensche',
-'talk'           => 'Gschwetz',
-'otherlanguages' => 'Annere Schprooche',
-'jumptosearch'   => 'guuck uff',
+'help'             => 'Hilf',
+'search'           => 'Guuck uff',
+'searchbutton'     => 'Guuck uff',
+'go'               => 'Geh',
+'history'          => "G'schicht",
+'history_short'    => "G'schicht",
+'edit'             => 'ennere / tscheensche',
+'talkpagelinktext' => 'Gschwetz',
+'talk'             => 'Gschwetz',
+'otherlanguages'   => 'Annere Schprooche',
+'jumptonavigation' => 'Faahre-Gnepp',
+'jumptosearch'     => 'guuck uff',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'mainpage'             => 'Haaptblatt',
 'mainpage-description' => 'Haaptblatt',
 'portal'               => 'Gmeeschafts-Portal',
 'portal-url'           => 'Project:Gmeeschafts-Portal',
+
+'retrievedfrom' => 'Vun „$1“',
+'editsection'   => 'Ennere',
+'editlink'      => 'ennere',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-help' => 'Hilf',
@@ -60,6 +74,7 @@ $messages = array(
 'logout' => 'geh naus',
 
 # Search results
+'nextn'       => 'neegschte $1',
 'powersearch' => 'Guuck uff',
 
 # Preferences page

@@ -1081,6 +1081,7 @@ Confirmez que ceci est bien ce que vous avez l’intention de faire, que vous en
 'revdelete-logentry'             => 'a modifié la visibilité de la version de [[$1]]',
 'logdelete-logentry'             => 'a modifié la visibilité de l’événement de [[$1]]',
 'revdelete-success'              => "'''Visibilité des versions changée avec succès.'''",
+'revdelete-failure'              => "'''La visibilité de la révision n'a pas pu être définie.'''",
 'logdelete-success'              => "'''Visibilité du journal paramétrée avec succès.'''",
 'revdel-restore'                 => 'Modifier la visibilité',
 'pagehist'                       => 'Historique de la page',
