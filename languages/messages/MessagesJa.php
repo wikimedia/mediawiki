@@ -1750,8 +1750,8 @@ PICT # misc.
 'notargettext'            => '対象となるページまたは利用者が指定されていません。',
 'nopagetitle'             => 'そのようなページはありません',
 'nopagetext'              => 'あなたの指定したページは存在しません。',
-'pager-newer-n'           => '以後の$1件',
-'pager-older-n'           => '以前の$1件',
+'pager-newer-n'           => '後の$1件',
+'pager-older-n'           => '先の$1件',
 'suppress'                => 'Oversight',
 
 # Book sources
@@ -1950,7 +1950,7 @@ $NEWPAGE
 'dellogpage'             => '削除記録',
 'dellogpagetext'         => '以下は最近の削除と復帰の記録です。',
 'deletionlog'            => '削除記録',
-'reverted'               => '以前のバージョンへの差し戻し',
+'reverted'               => '以前の版への差し戻し',
 'deletecomment'          => '削除理由:',
 'deleteotherreason'      => 'その他 / 理由の付記:',
 'deletereasonotherlist'  => 'その他の理由',

@@ -1781,7 +1781,7 @@ L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres prefe
 'noemailtitle'     => 'No hi ha cap adreça electrònica',
 'noemailtext'      => 'Aquest usuari no ha especificat una adreça electrònica vàlida.',
 'nowikiemailtitle' => 'No es permet el correu electrònic',
-'nowikiemailtext'  => "Aquest usuari ha escollir no rebre missatges electrònics d'altres usuaris.",
+'nowikiemailtext'  => "Aquest usuari ha escollit no rebre missatges electrònics d'altres usuaris.",
 'email-legend'     => 'Enviar un correu electrònic a un altre usuari de {{SITENAME}}',
 'emailfrom'        => 'De:',
 'emailto'          => 'Per a:',

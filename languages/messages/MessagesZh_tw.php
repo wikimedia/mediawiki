@@ -479,7 +479,7 @@ $2',
 
 你應該要考慮一下繼續編輯這一個頁面是否合適。
 為方便起見，這一個頁面的刪除記錄已經在下面提供:",
-'edit-hook-aborted'                => '編輯被鉤取消。
+'edit-hook-aborted'         => '編輯被鉤取消。
 它並無給出解釋。',
 
 # "Undo" feature
@@ -2040,11 +2040,11 @@ $1',
 'watchlisttools-raw'  => '編輯原始監視列表',
 
 # Special:Version
-'version' => '版本', # Not used as normal message but as header for the special page itself
-'version-parserhooks'              => '語法鉤',
-'version-hooks'                    => '鉤',
-'version-parser-function-hooks'    => '語法函數鉤',
-'version-hook-name'                => '鉤名',
+'version'                       => '版本', # Not used as normal message but as header for the special page itself
+'version-parserhooks'           => '語法鉤',
+'version-hooks'                 => '鉤',
+'version-parser-function-hooks' => '語法函數鉤',
+'version-hook-name'             => '鉤名',
 
 # Special:SpecialPages
 'specialpages' => '特殊頁面',

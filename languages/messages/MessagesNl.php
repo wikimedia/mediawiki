@@ -1109,6 +1109,7 @@ Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet
 'revdelete-logentry'             => 'zichtbaarheid van bewerkingen is gewijzigd voor [[$1]]',
 'logdelete-logentry'             => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
 'revdelete-success'              => "'''Zichtbaarheid van de wijziging succesvol ingesteld.'''",
+'revdelete-failure'              => "'''De zichtbaarheid voor de versie kon niet ingesteld worden.'''",
 'logdelete-success'              => "'''Zichtbaarheid van de gebeurtenis succesvol ingesteld.'''",
 'revdel-restore'                 => 'Zichtbaarheid wijzigen',
 'pagehist'                       => 'Paginageschiedenis',

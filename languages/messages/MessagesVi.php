@@ -978,6 +978,7 @@ Xin hãy xác nhận rằng bạn thực sự muốn làm điều này, hiểu �
 'revdelete-logentry'             => 'đã thay đổi khả năng nhìn thấy phiên bản của [[$1]]',
 'logdelete-logentry'             => 'đã thay đổi khả năng nhìn thấy sự kiện của [[$1]]',
 'revdelete-success'              => "'''Khả năng nhìn thấy của phiên bản đã được thiết lập thành công.'''",
+'revdelete-failure'              => "'''Không thể thiết lập khả năng hiển thị của phiên bản.'''",
 'logdelete-success'              => "'''Khả năng nhìn thấy của sự kiện đã được thiết lập thành công.'''",
 'revdel-restore'                 => 'Thay đổi mức khả kiến',
 'pagehist'                       => 'Lịch sử trang',

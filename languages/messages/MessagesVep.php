@@ -731,12 +731,12 @@ Naprigat [[Special:Search|ectä wikišpäi]] sättujid lehtpolid.",
 'rev-deleted-comment'            => '(komment om čutud poiš)',
 'rev-deleted-user'               => '(avtoran nimi om čutud poiš)',
 'rev-deleted-event'              => '(kirjutez om čutud poiš)',
-'rev-deleted-text-permission'    => 'Nece lehtpolen versii om čutud ühthižes arhivaspäi.
-Voib olda, süd oma anttud [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].',
-'rev-deleted-text-view'          => 'Nece lehtpolen versii om čutud ühthižes arhivaspäi.
+'rev-deleted-text-permission'    => "Nece lehtpolen versii om '''čutud'''.
+Voib olda, süd oma anttud [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
+'rev-deleted-text-view'          => "Nece lehtpolen versii om '''čutud'''.
 Tö voit lugeda sidä, sikš ku olet saitan administrator.
-Voib olda, süd oma anttud [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].',
-'rev-deleted-no-diff'            => "Tö et voigoi kacta necidä versijoiden erod, sikš miše üks' toižetusišpäi om čutud ühthižes arhivaspäi.
+Voib olda, süd oma anttud [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
+'rev-deleted-no-diff'            => "Tö et voigoi kacta necidä versijoiden erod, sikš miše üks' toižetusišpäi om '''čutud'''.
 Detalid voidas olda [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
 'rev-delundel'                   => 'ozutada/peitta',
 'revisiondelete'                 => 'Čuta poiš/endištada lehtpolen versijad',
@@ -1782,10 +1782,10 @@ $1',
 'sp-contributions-newbies'     => 'Ozutada vaiše uziden kävutajiden tondad',
 'sp-contributions-newbies-sub' => 'Uziden registracijoiden täht',
 'sp-contributions-blocklog'    => 'Blokiruindoiden aigkirj',
-'sp-contributions-deleted'     => 'Čutud tond',
+'sp-contributions-deleted'     => 'Čutud kävutajan tond',
 'sp-contributions-logs'        => 'aigkirjad',
-'sp-contributions-talk'        => 'Lodu',
-'sp-contributions-userrights'  => 'Kävutajiden oiktusiden ohjandamine',
+'sp-contributions-talk'        => 'lodu',
+'sp-contributions-userrights'  => 'kävutajiden oiktusiden ohjandamine',
 'sp-contributions-search'      => 'Ectä tond',
 'sp-contributions-username'    => 'IP-adres vai kävutajan nimi:',
 'sp-contributions-submit'      => 'Ectä',

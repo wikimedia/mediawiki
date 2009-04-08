@@ -237,7 +237,7 @@ $messages = array(
 'category_header'                => 'Articulos in le categoria "$1"',
 'subcategories'                  => 'Subcategorias',
 'category-media-header'          => 'Media in categoria "$1"',
-'category-empty'                 => "''Iste categoria non contine alcun paginas o media al momento.''",
+'category-empty'                 => "''Iste categoria non contine alcun pagina o file multimedia al momento.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria celate|Categorias celate}}',
 'hidden-category-category'       => 'Categorias celate', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Iste categoria ha solmente le sequente subcategoria.|Iste categoria ha le sequente {{PLURAL:$1|subcategoria|$1 subcategorias}}, ex $2 in total.}}',
@@ -935,6 +935,7 @@ Per favor confirma que tu ha le intention de facer isto, que tu comprende le con
 'revdelete-logentry'             => 'cambiava le visibilitate de versiones pro [[$1]]',
 'logdelete-logentry'             => 'cambiava le visibilitate de eventos pro [[$1]]',
 'revdelete-success'              => "'''Le visibilitate de versiones ha essite definite con successo.'''",
+'revdelete-failure'              => "'''Le visibilitate del version non poteva esser cambiate.'''",
 'logdelete-success'              => "'''Le visibilitate del registro ha essite definite con successo.'''",
 'revdel-restore'                 => 'Cambiar visibilitate',
 'pagehist'                       => 'Historia del pagina',

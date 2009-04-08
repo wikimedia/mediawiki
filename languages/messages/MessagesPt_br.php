@@ -949,6 +949,7 @@ Por favor confirme que deseja fazê-lo, que entende as consequências e que est�
 'revdelete-logentry'             => 'modificou visibilidade de revisão para [[$1]]',
 'logdelete-logentry'             => 'alterada visibilidade de eventos para [[$1]]',
 'revdelete-success'              => 'Visibilidade de edição definida com sucesso.',
+'revdelete-failure'              => "'''Visibilidade da revisão não poderia ser configurada.'''",
 'logdelete-success'              => "'''Visibilidade de evento definida com sucesso.'''",
 'revdel-restore'                 => 'Alterar visibilidade',
 'pagehist'                       => 'Histórico da página',

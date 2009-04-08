@@ -1117,7 +1117,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'statistics-mostpopular'  => 'Páhinas mas visoreás',
 
 'disambiguations'      => 'Páhinas de desambiguáncia',
-'disambiguationspage'  => 'Prantilla:desambiguáncia',
+'disambiguationspage'  => 'Template:desambiguáncia',
 'disambiguations-text' => "Las siguientis páhinas atihan a una '''páhina e desambiguáncia'''. Estas eberian atihal al artículu apropiau.<br />Una páhina se consiera e desambiguáncia si gasta una prantilla qu'está atihá endi [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Redirecionis dobris',

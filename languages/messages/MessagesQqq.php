@@ -469,10 +469,8 @@ The title of the warning is the message {{msg-mw|nosuchspecialpage}}. <code><now
 [http://translatewiki.net/w/i.php?title=Translating:Tasks&diff=372398&oldid=371789000 Click here] to see an example of such an error message.',
 'readonly_lag'         => 'Error message displayed when the database is locked.',
 'internalerror'        => '{{Identical|Internal error}}',
-'badtitle'             => 'The page name when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.
-
-{{Identical|Bad title}}',
-'badtitletext'         => 'The message shown when a user requested a page with invalid page name. The page name will be {{msg-mw|badtitle}}.',
+'badtitle'             => 'The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.',
+'badtitletext'         => 'The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.',
 'querypage-no-updates' => 'Text on some special pages, e.g. [[Special:FewestRevisions]].',
 'viewsource'           => 'The text displayed in place of the "edit" tab when the user has no permission to edit the page.
 
