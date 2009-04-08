@@ -935,6 +935,10 @@ $this:    The $mediawiki object
 $title: title of the message (string)
 $message: value (string), change it to the message you want to define
 
+'MessageCacheReplace': When a message page is changed. Useful for updating caches.
+$title: name of the page changed.
+$text: new contents of the page.
+
 'MonoBookTemplateToolboxEnd': Called by Monobook skin after toolbox links have been rendered (useful for adding more)
 Note: this is only run for the Monobook skin.  To add items to the toolbox
 for all 'SkinTemplate'-type skins, use the SkinTemplateToolboxEnd hook
