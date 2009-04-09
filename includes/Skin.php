@@ -1870,8 +1870,7 @@ END;
 			if( strpos( $line, '*' ) !== 0 )
 				continue;
 			if( strpos( $line, '**') !== 0 ) {
-				$line = trim( $line, '* ' );
-				$heading = $line;
+				$heading = trim( $line, '* ' );
 				if( !array_key_exists( $heading, $bar ) ) $bar[$heading] = array();
 			} else {
 				if( strpos( $line, '|' ) !== false ) { // sanity check

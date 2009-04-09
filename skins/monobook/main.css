@@ -889,6 +889,47 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
 	z-index: 3;
 }
 
+/* Override text-transform on languages where capitalization is significant */
+.portlet h5[lang|=bar],
+.portlet h6[lang|=bar],
+#p-personal ul[lang|=bar],
+#p-cactions ul[lang|=bar] li a,
+.portlet h5[lang|=de],
+.portlet h6[lang|=de],
+#p-personal ul[lang|=de],
+#p-cactions ul[lang|=de] li a,
+.portlet h5[lang|=gsw],
+.portlet h6[lang|=gsw],
+#p-personal ul[lang|=gsw],
+#p-cactions ul[lang|=gsw] li a,
+.portlet h5[lang|=ksh],
+.portlet h6[lang|=ksh],
+#p-personal ul[lang|=ksh],
+#p-cactions ul[lang|=ksh] li a,
+.portlet h5[lang|=lb],
+.portlet h6[lang|=lb],
+#p-personal ul[lang|=lb],
+#p-cactions ul[lang|=lb] li a,
+.portlet h5[lang|=nds],
+.portlet h6[lang|=nds],
+#p-personal ul[lang|=nds],
+#p-cactions ul[lang|=nds] li a,
+.portlet h5[lang|=pdc],
+.portlet h6[lang|=pdc],
+#p-personal ul[lang|=pdc],
+#p-cactions ul[lang|=pdc] li a,
+.portlet h5[lang|=pdt],
+.portlet h6[lang|=pdt],
+#p-personal ul[lang|=pdt],
+#p-cactions ul[lang|=pdt] li a
+.portlet h5[lang|=pfl],
+.portlet h6[lang|=pfl],
+#p-personal ul[lang|=pfl],
+#p-cactions ul[lang|=pfl] li a {
+	text-transform: none;
+}
+
+
 /* TODO: #t-iscite is only used by the Cite extension, come up with some
  * system which allows extensions to add to this file on the fly
  */
