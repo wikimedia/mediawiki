@@ -64,9 +64,7 @@ class MonoBookTemplate extends QuickTemplate {
 	 * @access private
 	 */
 	function execute() {
-		global $wgLang;
 		global $wgRequest;
-		$wgLangCode = $wgLang->getCode();
 		$this->skin = $skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
 
@@ -137,7 +135,7 @@ class MonoBookTemplate extends QuickTemplate {
 	<div id="p-cactions" class="portlet">
 		<h5><?php $this->msg('views') ?></h5>
 		<div class="pBody">
-			<ul lang="<?php echo $wgLangCode; ?>" xml:lang="<?php echo $wgLangCode; ?>">
+			<ul <?php echo $this->langAttributes() ?>>
 	<?php		foreach($this->data['content_actions'] as $key => $tab) {
 					echo '
 				 <li id="' . Sanitizer::escapeId( "ca-$key" ) . '"';
@@ -165,7 +163,7 @@ class MonoBookTemplate extends QuickTemplate {
 	<div class="portlet" id="p-personal">
 		<h5><?php $this->msg('personaltools') ?></h5>
 		<div class="pBody">
-			<ul lang="<?php echo $wgLangCode; ?>" xml:lang="<?php echo $wgLangCode; ?>">
+			<ul <?php echo $this->langAttributes() ?>>
 <?php 			foreach($this->data['personal_urls'] as $key => $item) { ?>
 				<li id="<?php echo Sanitizer::escapeId( "pt-$key" ) ?>"<?php
 					if ($item['active']) { ?> class="active"<?php } ?>><a href="<?php
@@ -227,7 +225,7 @@ class MonoBookTemplate extends QuickTemplate {
 <?php
 			foreach( $validFooterLinks as $aLink ) {
 				if( isset( $this->data[$aLink] ) && $this->data[$aLink] ) {
-?>					<li id="<?php echo$aLink?>"><?php $this->html($aLink) ?></li>
+?>					<li id="<?php echo $aLink ?>"><?php $this->html($aLink) ?></li>
 <?php 			}
 			}
 ?>
@@ -251,12 +249,10 @@ class MonoBookTemplate extends QuickTemplate {
 
 	/*************************************************************************************************/
 	function searchBox() {
-		global $wgLang;
 		global $wgUseTwoButtonsSearchForm;
-		$wgLangCode = $wgLang->getCode();
 ?>
 	<div id="p-search" class="portlet">
-		<h5 lang="<?php echo $wgLangCode; ?>" xml:lang="<?php echo $wgLangCode; ?>"><label for="searchInput"><?php $this->msg('search') ?></label></h5>
+		<h5 <?php echo $this->langAttributes() ?>><label for="searchInput"><?php $this->msg('search') ?></label></h5>
 		<div id="searchBody" class="pBody">
 			<form action="<?php $this->text('wgScript') ?>" id="searchform"><div>
 				<input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
@@ -276,11 +272,9 @@ class MonoBookTemplate extends QuickTemplate {
 
 	/*************************************************************************************************/
 	function toolbox() {
-		global $wgLang;
-		$wgLangCode = $wgLang->getCode();
 ?>
 	<div class="portlet" id="p-tb">
-		<h5 lang="<?php echo $wgLangCode; ?>" xml:lang="<?php echo $wgLangCode; ?>"><?php $this->msg('toolbox') ?></h5>
+		<h5 <?php echo $this->langAttributes() ?>><?php $this->msg('toolbox') ?></h5>
 		<div class="pBody">
 			<ul>
 <?php
@@ -338,12 +332,10 @@ class MonoBookTemplate extends QuickTemplate {
 
 	/*************************************************************************************************/
 	function languageBox() {
-		global $wgLang;
-		$wgLangCode = $wgLangCode;
 		if( $this->data['language_urls'] ) {
 ?>
 	<div id="p-lang" class="portlet">
-		<h5 lang="<?php echo $wgLangCode; ?>" xml:lang="<?php echo $wgLangCode; ?>"><?php $this->msg('otherlanguages') ?></h5>
+		<h5 <?php echo $this->langAttributes() ?>><?php $this->msg('otherlanguages') ?></h5>
 		<div class="pBody">
 			<ul>
 <?php		foreach($this->data['language_urls'] as $langlink) { ?>
@@ -359,11 +351,9 @@ class MonoBookTemplate extends QuickTemplate {
 
 	/*************************************************************************************************/
 	function customBox( $bar, $cont ) {
-		global $wgLang;
-		$wgLangCode = $wgLang->getCode();
 ?>
 	<div class='generated-sidebar portlet' id='<?php echo Sanitizer::escapeId( "p-$bar" ) ?>'<?php echo $this->skin->tooltip('p-'.$bar) ?>>
-		<h5 lang="<?php echo $wgLangCode; ?>" xml:lang="<?php echo $wgLangCode; ?>"><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo htmlspecialchars($bar); else echo htmlspecialchars($out); ?></h5>
+		<h5 <?php echo $this->langAttributes() ?>><?php $out = wfMsg( $bar ); if (wfEmptyMsg($bar, $out)) echo htmlspecialchars($bar); else echo htmlspecialchars($out); ?></h5>
 		<div class='pBody'>
 <?php   if ( is_array( $cont ) ) { ?>
 			<ul>
@@ -383,6 +373,12 @@ class MonoBookTemplate extends QuickTemplate {
 <?php
 	}
 
+	private function langAttributes()
+	{
+		global $wgLang;
+		$wgLangCode = $wgLang->getCode();
+		return 'lang="' . $wgLangCode . '" xml:lang="' . $wgLangCode . '"';
+	}
 } // end of class
 
 
