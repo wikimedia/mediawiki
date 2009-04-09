@@ -994,7 +994,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'visualcomparison'        => 'Comparation visual',
 'wikicodecomparison'      => 'Comparation del wikitexto',
 'editundo'                => 'annullar',
-'diff-multi'              => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} non se revela.)',
+'diff-multi'              => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} non es monstrate)',
 'diff-movedto'            => 'displaciate verso $1',
 'diff-styleadded'         => '$1 stilo addite',
 'diff-added'              => '$1 addite',

@@ -1015,6 +1015,7 @@ Confirmatz qu'aquò es plan çò que voliatz far, que comprenètz las consequén
 'revdelete-logentry'             => 'La visibilitat de la version es estada modificada per [[$1]]',
 'logdelete-logentry'             => 'La visibilitat de l’eveniment es estada modificada per [[$1]]',
 'revdelete-success'              => "'''Visibilitat de las versions cambiadas amb succès.'''",
+'revdelete-failure'              => "'''La visibilitat de la revision a pas pogut èsser definida.'''",
 'logdelete-success'              => "'''Jornal de las visibilitat parametrat amb succès.'''",
 'revdel-restore'                 => 'Modificar la visibilitat',
 'pagehist'                       => 'Istoric de la pagina',

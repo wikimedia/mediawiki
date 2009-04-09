@@ -995,6 +995,7 @@ Ama hina kaspa, ruraykachanaykita takyachiy, saqinakunata riqsispayki, [[{{Media
 'revdelete-logentry'             => "hukchasqa [[$1]]-paq llamk'apusqap rikunalla kaynin",
 'logdelete-logentry'             => 'hukchasqa [[$1]]-paq tukusqap rikunalla kaynin',
 'revdelete-success'              => "'''Llamk'apusqap rikunalla kayninqa aypalla hukchasqañam.'''",
+'revdelete-failure'              => "'''Manam atinichu musuqchasqakunap rikunalla kayninta churayta.'''",
 'logdelete-success'              => "'''Tukusqap rikunalla kayninqa aypalla hukchasqañam.'''",
 'revdel-restore'                 => 'Rikunalla kayta hukchay',
 'pagehist'                       => "P'anqap wiñay kawsaynin",

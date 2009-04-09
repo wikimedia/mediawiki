@@ -121,6 +121,8 @@ $messages = array(
 'category-empty'           => "''Ena kategoriye de hewna qet nuştey ya ki medyay çıniyê.''",
 'hidden-categories'        => '{{PLURAL:$1|Kategoriya nımıtiye|Kategoriyê nımıtey}}',
 'hidden-category-category' => 'Kategoriyê nımıtey', # Name of the category where hidden categories will be listed
+'category-subcat-count'    => '{{PLURAL:$2|Ena kategori dı teyna ena kategoriyan-bıni esta.|Ena kategori dı {{PLURAL:$1|kategoriyan-bın|$1 kategoriyan-bıni}}, pyero-pia $2 yekun.}}',
+'category-article-count'   => '{{PLURAL:$2|Ena kategori dı teyna ena pelayan esta.|The following {{PLURAL:$1|pela|$1 pelayan}} ena kategori dı, miyan $2 pyero-piya.}}',
 'listingcontinuesabbrev'   => 'dewam',
 
 'mainpagetext'      => "<big>'''MediaWiki vıst ra ser, vıraziya.'''</big>",
@@ -274,6 +276,12 @@ Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:SpecialPages|{{
 
 # General errors
 'error'               => 'Xeta',
+'missing-article'     => "Databasey ma, pela bı namê \"\$1\" \$2 dı gunê bıbo, nıdiya.
+
+Ena belki qe yew vurnayışo kıhan ya zi tarixê girê yew pela wedariya.
+
+Eke ına niyo, belki ''software''i dı yew xeta esta.
+Ena bı namê ''URL''i yew [[Special:ListUsers/sysop|karber]]i ra vaci.",
 'missingarticle-rev'  => '(tekrar diyayış#: $1)',
 'badtitle'            => 'Sernameya xırabe',
 'badtitletext'        => 'Sernameyê pela ke şıma waşt, nêvêrde, thal, ya gırê bênatey zıwani ğelet ya zi sernameyê bênatey wiki bi. Beno ke, tede yew ya zi zêdê işareti estê ke sernameyan de nêxebetiyenê.',
@@ -376,6 +384,9 @@ Qe referansi, logê wedernayışi bın dı mocnayiya.',
 'currentrevisionlink'    => 'Revizyono peni',
 'cur'                    => 'ferq',
 'last'                   => 'pey',
+'histlegend'             => "Ferqê weçinıtış: Qutiya versiyonan isaret bık u dest bı ''enter''i ya zi gozaga cêrêne klik bık.<br />
+Cetwel: (pey) = ferqê versiyonê peni,
+(ver) = ferqê versiyonê verni, Q = vurnayışo qıçkek.",
 'history-fieldset-title' => 'Tarixê browsey',
 'histfirst'              => 'Verênêr',
 'histlast'               => 'Peyênêr',
@@ -391,7 +402,7 @@ Qe referansi, logê wedernayışi bın dı mocnayiya.',
 'history-title'           => 'Tarixê revizyoniyê "$1"',
 'difference'              => '(Farqê revizyonan)',
 'lineno'                  => 'Rêza $1i:',
-'compareselectedversions' => 'versiyonan control bık',
+'compareselectedversions' => 'Versiyonan control bık',
 'editundo'                => 'peyser biya',
 
 # Search results
@@ -477,6 +488,7 @@ Tı şeno/eşkeno [[:\$1|ena name dı nuşte bınusi]].",
 'recentchangeslinked'       => 'Ney sero vurnayışi',
 'recentchangeslinked-title' => 'vurnayışan ser "$1"',
 'recentchangeslinked-page'  => 'Nameyê pele:',
+'recentchangeslinked-to'    => 'Pelayan ke ena pela ri gire bi, ser ayi vurnayışi bımoc',
 
 # Upload
 'upload'        => 'Dosya bar ke',
@@ -624,6 +636,8 @@ Qe qeydê wedarnayışi, $2 bevinin.',
 'protect_expiry_old'          => 'Demo qediyayışi tarix dı.',
 'protect-unchain'             => 'desturê berdışi a bık',
 'protect-text'                => "Tı eşkeno bıvin u seviyê kılit-kerdışi bıvin '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Hesabê tu nıeşken seviyeyê kılit-kerdışi bıvurn. 
+Ser pela '''$1''', itiya dı enformasyon esta:",
 'protect-default'             => 'Destur bıde karberan pêrune',
 'protect-fallback'            => 'Desturê "$1" lazımo',
 'protect-level-autoconfirmed' => 'Karberanê neweyan u qeyd-nêbiyaoğan kılit ke',
@@ -701,6 +715,8 @@ Sebebê kılit-biyayışê $1\'i: "$2"o',
 'movepagebtn'     => 'Pele bere',
 'pagemovedsub'    => 'Berdışi kerd temam',
 'movepage-moved'  => '<big>\'\'\'"$1" berd "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'   => 'Ena nameyê pela database ma dı esta ya zi tı raşt nınuşt. .
+Yewna name bınus.',
 'movedto'         => 'berd be',
 'movetalk'        => 'Pela werênayışiê elaqedare bere',
 '1movedto2'       => '[[$1]] berd be [[$2]]',
@@ -769,6 +785,8 @@ Kerem ke, qeyd-kerdış ra ver gozega verqayti bıxebıtne.',
 'tooltip-compareselectedversions' => 'Ferqê versiyonan bevinin',
 'tooltip-watch'                   => 'Eno pele listey tıyo seyir-kerdişi ri dek',
 'tooltip-rollback'                => 'Yew klik dı vurnayışê peni peyser biya',
+'tooltip-undo'                    => '"Undo" ena vurnayışê newi iptal kena u vurnayışê verni a kena.
+Tı eşkeno yew sebeb bınus.',
 
 # Attribution
 'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye', # $1 date, $2 time, $3 user
