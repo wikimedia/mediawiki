@@ -123,7 +123,7 @@ class SkinCologneBlue extends Skin {
 	}
 
 	function sysLinks() {
-		global $wgUser, $wgLang, $wgContLang, $wgOut;
+		global $wgUser, $wgLang, $wgContLang;
 		$li = $wgContLang->specialPage( 'Userlogin' );
 		$lo = $wgContLang->specialPage( 'Userlogout' );
 

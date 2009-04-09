@@ -517,7 +517,8 @@ class OutputPage {
 	 * @param bool   $linestart
 	 */
 	public function addWikiText( $text, $linestart = true ) {
-		$this->addWikiTextTitle( $text, $this->getTitle(), $linestart );
+		$title = $this->getTitle(); // Work arround E_STRICT
+		$this->addWikiTextTitle( $text, $title, $linestart );
 	}
 
 	public function addWikiTextWithTitle($text, &$title, $linestart = true) {
@@ -625,7 +626,7 @@ class OutputPage {
 	 * @deprecated Use Article::outputWikitext
 	 */
 	public function addPrimaryWikiText( $text, $article, $cache = true ) {
-		global $wgParser, $wgUser;
+		global $wgParser;
 
 		wfDeprecated( __METHOD__ );
 
@@ -1032,7 +1033,7 @@ class OutputPage {
 	 */
 	public static function setEncodings() {
 		global $wgInputEncoding, $wgOutputEncoding;
-		global $wgUser, $wgContLang;
+		global $wgContLang;
 
 		$wgInputEncoding = strtolower( $wgInputEncoding );
 
@@ -1190,7 +1191,7 @@ class OutputPage {
 	 * @param string $permission key required
 	 */
 	public function permissionRequired( $permission ) {
-		global $wgUser, $wgLang;
+		global $wgLang;
 
 		$this->setPageTitle( wfMsg( 'badaccess' ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
@@ -1505,7 +1506,7 @@ class OutputPage {
 	public function headElement( Skin $sk ) {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
-		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgStyleVersion;
+		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion;
 
 		$this->addMeta( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" );
 		$this->addStyle( 'common/wikiprintable.css', 'print' );
