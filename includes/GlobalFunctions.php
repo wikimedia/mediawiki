@@ -606,7 +606,7 @@ function wfMsgNoDBForContent( $key ) {
  * @param $forContent Boolean
  * @return String: the requested message.
  */
-function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = true ) {
+function wfMsgReal( $key, $args, $useDB = true, $forContent = false, $transform = true ) {
 	wfProfileIn( __METHOD__ );
 	$message = wfMsgGetKey( $key, $useDB, $forContent, $transform );
 	$message = wfMsgReplaceArgs( $message, $args );
@@ -618,7 +618,7 @@ function wfMsgReal( $key, $args, $useDB = true, $forContent=false, $transform = 
  * This function provides the message source for messages to be edited which are *not* stored in the database.
  * @param $key String:
  */
-function wfMsgWeirdKey ( $key ) {
+function wfMsgWeirdKey( $key ) {
 	$source = wfMsgGetKey( $key, false, true, false );
 	if ( wfEmptyMsg( $key, $source ) )
 		return "";

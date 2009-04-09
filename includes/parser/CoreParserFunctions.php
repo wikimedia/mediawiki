@@ -229,17 +229,15 @@ class CoreParserFunctions {
 	 * @param string $text Desired title text
 	 * @return string
 	 */
-	static function displaytitle( $parser, $text = '' ) {
-		global $wgRestrictDisplayTitle;
-		$text = trim( Sanitizer::decodeCharReferences( $text ) );
+	static function displaytitle( $parser, $displayTitle = '' ) {
+		#only requested titles that normalize to the actual title are allowed through
+		#mimic the escaping process that occurs in OutputPage::setPageTitle
+		$title = Title::newFromText( Sanitizer::stripAllTags( Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $displayTitle ) ) ) );
 
-		if ( !$wgRestrictDisplayTitle ) {
-			$parser->mOutput->setDisplayTitle( $text );
-		} else {
-			$title = Title::newFromText( $text );
-			if( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) )
-				$parser->mOutput->setDisplayTitle( $text );
+		if ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
+			$parser->mOutput->setDisplayTitle( $displayTitle );
 		}
+
 		return '';
 	}
 
