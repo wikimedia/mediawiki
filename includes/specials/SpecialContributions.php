@@ -39,7 +39,7 @@ class SpecialContributions extends SpecialPage {
 			return;
 		}
 
-		$this->opts['limit'] = $wgRequest->getInt( 'limit', 50 );
+		$this->opts['limit'] = $wgRequest->getInt( 'limit', $wgUser->getOption('rclimit') );
 		$this->opts['target'] = $target;
 
 		$nt = Title::makeTitleSafe( NS_USER, $target );
