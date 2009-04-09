@@ -528,10 +528,10 @@ class SkinTemplate extends Skin {
 			# from request values or be specified in "sub page" form. The plot
 			# thickens, because $wgTitle is altered for special pages, so doesn't
 			# contain the original alias-with-subpage.
-			$title = Title::newFromText( $wgRequest->getText( 'title' ) );
-			if( $title instanceof Title && $title->getNamespace() == NS_SPECIAL ) {
+			$origTitle = Title::newFromText( $wgRequest->getText( 'title' ) );
+			if( $origTitle instanceof Title && $origTitle->getNamespace() == NS_SPECIAL ) {
 				list( $spName, $spPar ) =
-					SpecialPage::resolveAliasWithSubpage( $title->getText() );
+					SpecialPage::resolveAliasWithSubpage( $origTitle->getText() );
 				$active = $spName == 'Contributions'
 					&& ( ( $spPar && $spPar == $this->username )
 						|| $wgRequest->getText( 'target' ) == $this->username );
