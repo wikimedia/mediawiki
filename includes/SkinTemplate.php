@@ -134,7 +134,7 @@ class SkinTemplate extends Skin {
 	 * @param $out OutputPage
 	 */
 	function outputPage( OutputPage $out ) {
-		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang;
+		global $wgArticle, $wgUser, $wgLang, $wgContLang;
 		global $wgScript, $wgStylePath, $wgContLanguageCode;
 		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgRequest;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
@@ -231,7 +231,7 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'feeds', false );
 		}
 		if( $wgUseTrackbacks && $out->isArticleRelated() ) {
-			$tpl->set( 'trackbackhtml', $wgTitle->trackbackRDF() );
+			$tpl->set( 'trackbackhtml', $out->getTitle()->trackbackRDF() );
 		} else {
 			$tpl->set( 'trackbackhtml', null );
 		}
@@ -488,9 +488,10 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function buildPersonalUrls() {
-		global $wgTitle, $wgRequest;
+		global $wgOut, $wgRequest;
 
-		$pageurl = $wgTitle->getLocalURL();
+		$title = $wgOut->getTitle();
+		$pageurl = $title->getLocalURL();
 		wfProfileIn( __METHOD__ );
 
 		/* set up the default links for the personal toolbar */
@@ -547,7 +548,7 @@ class SkinTemplate extends Skin {
 			$personal_urls['logout'] = array(
 				'text' => wfMsg( 'userlogout' ),
 				'href' => self::makeSpecialUrl( 'Userlogout',
-					$wgTitle->isSpecial( 'Preferences' ) ? '' : "returnto={$this->thisurl}"
+					$title->isSpecial( 'Preferences' ) ? '' : "returnto={$this->thisurl}"
 				),
 				'active' => false
 			);
@@ -575,18 +576,18 @@ class SkinTemplate extends Skin {
 				$personal_urls['anonlogin'] = array(
 					'text' => wfMsg( $loginlink ),
 					'href' => self::makeSpecialUrl( 'Userlogin', 'returnto=' . $this->thisurl ),
-					'active' => $wgTitle->isSpecial( 'Userlogin' )
+					'active' => $title->isSpecial( 'Userlogin' )
 				);
 			} else {
 				$personal_urls['login'] = array(
 					'text' => wfMsg( $loginlink ),
 					'href' => self::makeSpecialUrl( 'Userlogin', 'returnto=' . $this->thisurl ),
-					'active' => $wgTitle->isSpecial( 'Userlogin' )
+					'active' => $title->isSpecial( 'Userlogin' )
 				);
 			}
 		}
-
-		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$wgTitle ) );
+		
+		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$title ) );
 		wfProfileOut( __METHOD__ );
 		return $personal_urls;
 	}
@@ -848,7 +849,7 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function buildNavUrls() {
-		global $wgUseTrackbacks, $wgTitle, $wgUser, $wgRequest;
+		global $wgUseTrackbacks, $wgOut, $wgUser, $wgRequest;
 		global $wgEnableUploads, $wgUploadNavigationUrl;
 
 		wfProfileIn( __METHOD__ );
@@ -886,7 +887,7 @@ class SkinTemplate extends Skin {
 			if ( $this->mRevisionId ) {
 				$nav_urls['permalink'] = array(
 					'text' => wfMsg( 'permalink' ),
-					'href' => $wgTitle->getLocalURL( "oldid=$this->mRevisionId" )
+					'href' => $wgOut->getTitle()->getLocalURL( "oldid=$this->mRevisionId" )
 				);
 			}
 
@@ -910,7 +911,7 @@ class SkinTemplate extends Skin {
 			}
 			if( $wgUseTrackbacks )
 				$nav_urls['trackbacklink'] = array(
-					'href' => $wgTitle->trackbackURL()
+					'href' => $wgOut->getTitle()->trackbackURL()
 				);
 		}
 
@@ -1088,10 +1089,10 @@ class QuickTemplate {
 	 * @private
 	 */
 	function msgWiki( $str ) {
-		global $wgParser, $wgTitle, $wgOut;
+		global $wgParser, $wgOut;
 
 		$text = $this->translator->translate( $str );
-		$parserOutput = $wgParser->parse( $text, $wgTitle,
+		$parserOutput = $wgParser->parse( $text, $wgOut->getTitle(),
 			$wgOut->parserOptions(), true );
 		echo $parserOutput->getText();
 	}

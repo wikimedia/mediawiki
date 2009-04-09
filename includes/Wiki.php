@@ -52,6 +52,9 @@ class MediaWiki {
 	 */
 	function initialize( &$title, &$article, &$output, &$user, $request ) {
 		wfProfileIn( __METHOD__ );
+		
+		$output->setTitle( $title );
+		
 		if( !$this->preliminaryChecks( $title, $output, $request ) ) {
 			wfProfileOut( __METHOD__ );
 			return;

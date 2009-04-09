@@ -123,11 +123,11 @@ class SkinCologneBlue extends Skin {
 	}
 
 	function sysLinks() {
-		global $wgUser, $wgLang, $wgContLang, $wgTitle;
+		global $wgUser, $wgLang, $wgContLang, $wgOut;
 		$li = $wgContLang->specialPage( 'Userlogin' );
 		$lo = $wgContLang->specialPage( 'Userlogout' );
 
-		$rt = $wgTitle->getPrefixedURL();
+		$rt = $wgOut->getTitle()->getPrefixedURL();
 		if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
 			$q = '';
 		} else {
@@ -163,9 +163,9 @@ class SkinCologneBlue extends Skin {
 	 * @access private
 	 */
 	function quickBar(){
-		global $wgOut, $wgTitle, $wgUser, $wgEnableUploads;
+		global $wgOut, $wgUser, $wgEnableUploads;
 
-		$tns = $wgTitle->getNamespace();
+		$tns = $wgOut->getTitle()->getNamespace();
 
 		$s = "\n<div id='quickbar'>";
 
@@ -228,7 +228,7 @@ class SkinCologneBlue extends Skin {
 			  . $sep . $this->watchPageLinksLink();
 
 			if( $tns == NS_USER || $tns == NS_USER_TALK ) {
-				$id = User::idFromName( $wgTitle->getText() );
+				$id = User::idFromName( $wgOut->getTitle()->getText() );
 				if( $id != 0 ) {
 					$s .= $sep . $this->userContribsLink();
 					if( $this->showEmailUser( $id ) ) {

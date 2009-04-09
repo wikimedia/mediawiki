@@ -130,14 +130,14 @@ class SkinStandard extends Skin {
 	}
 
 	function quickBar() {
-		global $wgOut, $wgTitle, $wgUser, $wgRequest, $wgContLang;
+		global $wgOut, $wgUser, $wgRequest, $wgContLang;
 		global $wgEnableUploads, $wgRemoteUploads;
 
 		wfProfileIn( __METHOD__ );
 
 		$action = $wgRequest->getText( 'action' );
 		$wpPreview = $wgRequest->getBool( 'wpPreview' );
-		$tns = $wgTitle->getNamespace();
+		$tns = $wgOut->getTitle()->getNamespace();
 
 		$s = "\n<div id='quickbar'>";
 		$s .= "\n" . $this->logoText() . "\n<hr class='sep' />";
@@ -165,7 +165,7 @@ class SkinStandard extends Skin {
 		}
 		// only show watchlist link if logged in
 		$s .= "\n<hr class='sep' />";
-		$articleExists = $wgTitle->getArticleId();
+		$articleExists = $wgOut->getTitle()->getArticleId();
 		if ( $wgOut->isArticle() || $action == 'edit' || $action == 'history' || $wpPreview ) {
 			if( $wgOut->isArticle() ) {
 				$s .= '<strong>' . $this->editThisPage() . '</strong>';
@@ -210,13 +210,13 @@ class SkinStandard extends Skin {
 							$text = wfMsg( 'articlepage' );
 					}
 
-					$link = $wgTitle->getText();
+					$link = $wgOut->getTitle()->getText();
 					if( $nstext = $wgContLang->getNsText( $tns ) ) { # add namespace if necessary
 						$link = $nstext . ':' . $link;
 					}
 
 					$s .= $this->makeLink( $link, $text );
-				} elseif( $wgTitle->getNamespace() != NS_SPECIAL ) {
+				} elseif( $wgOut->getTitle()->getNamespace() != NS_SPECIAL ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
 					$s .= '<strong>' . wfMsg( 'newpage' ) . '</strong>';
@@ -225,8 +225,8 @@ class SkinStandard extends Skin {
 			}
 
 			# "Post a comment" link
-			if( ( $wgTitle->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
-				$s .= '<br />' . $this->makeKnownLinkObj( $wgTitle, wfMsg( 'postcomment' ), 'action=edit&section=new' );
+			if( ( $wgOut->getTitle()->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
+				$s .= '<br />' . $this->makeKnownLinkObj( $wgOut->getTitle(), wfMsg( 'postcomment' ), 'action=edit&section=new' );
 			
 			#if( $tns%2 && $action!='edit' && !$wpPreview) {
 				#$s.= '<br />'.$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg('postcomment'),'action=edit&section=new');
@@ -242,7 +242,7 @@ class SkinStandard extends Skin {
 				if( $action != 'edit' && $action != 'submit' ){
 					$s .= $sep . $this->watchThisPage();
 				}
-				if ( $wgTitle->userCan( 'edit' ) )
+				if ( $wgOut->getTitle()->userCan( 'edit' ) )
 					$s .= $sep . $this->moveThisPage();
 			}
 			if ( $wgUser->isAllowed( 'delete' ) and $articleExists ) {
@@ -259,11 +259,11 @@ class SkinStandard extends Skin {
 				$s .= $sep . $this->watchPageLinksLink();
 			}
 
-			if ( NS_USER == $wgTitle->getNamespace()
-				|| $wgTitle->getNamespace() == NS_USER_TALK ) {
+			if ( NS_USER == $wgOut->getTitle()->getNamespace()
+				|| $wgOut->getTitle()->getNamespace() == NS_USER_TALK ) {
 
-				$id = User::idFromName( $wgTitle->getText() );
-				$ip = User::isIP( $wgTitle->getText() );
+				$id = User::idFromName( $wgOut->getTitle()->getText() );
+				$ip = User::isIP( $wgOut->getTitle()->getText() );
 
 				if( $id || $ip ){
 					$s .= $sep . $this->userContribsLink();

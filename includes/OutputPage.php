@@ -35,6 +35,7 @@ class OutputPage {
 	var $mParseWarnings = array();
 	var $mSquidMaxage = 0;
 	var $mRevisionId = null;
+	protected $mTitle = null;
 
 	/**
 	 * An array of stylesheet filenames (relative from skins path), with options
@@ -332,6 +333,21 @@ class OutputPage {
 
 		$this->setHTMLTitle( wfMsg( 'pagetitle', $name ) );
 	}
+	
+	public function setTitle( $t ) {
+		$this->mTitle = $t;
+	}
+	
+	public function getTitle() {
+		if ( $this->mTitle instanceof Title ) {
+			return $this->mTitle;
+		}
+		else {
+			wfDebug( __METHOD__ . ' called and $mTitle is null. Return $wgTitle for sanity' );
+			global $wgTitle;
+			return $wgTitle;
+		}
+	}
 
 	public function getHTMLTitle() { return $this->mHTMLtitle; }
 	public function getPageTitle() { return $this->mPagetitle; }
@@ -485,8 +501,7 @@ class OutputPage {
 	 * @param bool   $linestart
 	 */
 	public function addWikiText( $text, $linestart = true ) {
-		global $wgTitle;
-		$this->addWikiTextTitle($text, $wgTitle, $linestart);
+		$this->addWikiTextTitle( $text, $this->getTitle(), $linestart );
 	}
 
 	public function addWikiTextWithTitle($text, &$title, $linestart = true) {
@@ -522,7 +537,7 @@ class OutputPage {
 	 * @param ParserOutput object &$parserOutput
 	 */
 	public function addParserOutputNoText( &$parserOutput ) {
-		global $wgTitle, $wgExemptFromUserRobotsControl, $wgContentNamespaces;
+		global $wgExemptFromUserRobotsControl, $wgContentNamespaces;
 
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
@@ -534,7 +549,7 @@ class OutputPage {
 		} else {
 			$bannedNamespaces = $wgExemptFromUserRobotsControl;
 		}
-		if( !in_array( $wgTitle->getNamespace(), $bannedNamespaces ) ) {
+		if( !in_array( $this->getTitle()->getNamespace(), $bannedNamespaces ) ) {
 			# FIXME (bug 14900): This overrides $wgArticleRobotPolicies, and it
 			# shouldn't
 			$this->setIndexPolicy( $parserOutput->getIndexPolicy() );
@@ -615,17 +630,15 @@ class OutputPage {
 	 * @deprecated use addWikiTextTidy()
 	 */
 	public function addSecondaryWikiText( $text, $linestart = true ) {
-		global $wgTitle;
 		wfDeprecated( __METHOD__ );
-		$this->addWikiTextTitleTidy($text, $wgTitle, $linestart);
+		$this->addWikiTextTitleTidy($text, $this->getTitle(), $linestart);
 	}
 
 	/**
 	 * Add wikitext with tidy enabled
 	 */
 	public function addWikiTextTidy(  $text, $linestart = true ) {
-		global $wgTitle;
-		$this->addWikiTextTitleTidy($text, $wgTitle, $linestart);
+		$this->addWikiTextTitleTidy($text, $this->getTitle(), $linestart);
 	}
 
 
@@ -649,13 +662,13 @@ class OutputPage {
 	 * @param bool   $interface ??
 	 */
 	public function parse( $text, $linestart = true, $interface = false ) {
-		global $wgParser, $wgTitle;
-		if( is_null( $wgTitle ) ) {
-			throw new MWException( 'Empty $wgTitle in ' . __METHOD__ );
+		global $wgParser;
+		if( is_null( $this->getTitle() ) ) {
+			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
 		}
 		$popts = $this->parserOptions();
 		if ( $interface) { $popts->setInterfaceMessage(true); }
-		$parserOutput = $wgParser->parse( $text, $wgTitle, $popts,
+		$parserOutput = $wgParser->parse( $text, $this->getTitle(), $popts,
 			$linestart, true, $this->mRevisionId );
 		if ( $interface) { $popts->setInterfaceMessage(false); }
 		return $parserOutput->getText();
@@ -833,7 +846,7 @@ class OutputPage {
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
 		global $wgJsMimeType, $wgUseAjax, $wgAjaxWatch;
 		global $wgEnableMWSuggest, $wgUniversalEditButton;
-		global $wgArticle, $wgTitle;
+		global $wgArticle;
 
 		if( $this->mDoNothing ){
 			return;
@@ -941,20 +954,20 @@ class OutputPage {
 		}
 
 		if( $wgUniversalEditButton ) {
-			if( isset( $wgArticle ) && isset( $wgTitle ) && $wgTitle->quickUserCan( 'edit' )
-				&& ( $wgTitle->exists() || $wgTitle->quickUserCan( 'create' ) ) ) {
+			if( isset( $wgArticle ) && $this->getTitle() && $this->getTitle()->quickUserCan( 'edit' )
+				&& ( $this->getTitle()->exists() || $this->getTitle()->quickUserCan( 'create' ) ) ) {
 				// Original UniversalEditButton
 				$this->addLink( array(
 					'rel' => 'alternate',
 					'type' => 'application/x-wiki',
 					'title' => wfMsg( 'edit' ),
-					'href' => $wgTitle->getLocalURL( 'action=edit' )
+					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
 				) );
 				// Alternate edit link
 				$this->addLink( array(
 					'rel' => 'edit',
 					'title' => wfMsg( 'edit' ),
-					'href' => $wgTitle->getLocalURL( 'action=edit' )
+					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
 				) );
 			}
 		}
@@ -1032,7 +1045,7 @@ class OutputPage {
 	 * @return nothing
 	 */
 	function blockedPage( $return = true ) {
-		global $wgUser, $wgContLang, $wgTitle, $wgLang;
+		global $wgUser, $wgContLang, $wgLang;
 
 		$this->setPageTitle( wfMsg( 'blockedtitle' ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
@@ -1082,7 +1095,7 @@ class OutputPage {
 
 		# Don't auto-return to special pages
 		if( $return ) {
-			$return = $wgTitle->getNamespace() > -1 ? $wgTitle : NULL;
+			$return = $this->getTitle()->getNamespace() > -1 ? $this->getTitle() : null;
 			$this->returnToMain( null, $return );
 		}
 	}
@@ -1095,9 +1108,8 @@ class OutputPage {
 	 * @param array $params Message parameters
 	 */
 	public function showErrorPage( $title, $msg, $params = array() ) {
-		global $wgTitle;
-		if ( isset($wgTitle) ) {
-			$this->mDebugtext .= 'Original title: ' . $wgTitle->getPrefixedText() . "\n";
+		if ( $this->getTitle() ) {
+			$this->mDebugtext .= 'Original title: ' . $this->getTitle()->getPrefixedText() . "\n";
 		}
 		$this->setPageTitle( wfMsg( $title ) );
 		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
@@ -1121,10 +1133,8 @@ class OutputPage {
 	 */
 	public function showPermissionsErrorPage( $errors, $action = null )
 	{
-		global $wgTitle;
-
 		$this->mDebugtext .= 'Original title: ' .
-		$wgTitle->getPrefixedText() . "\n";
+		$this->getTitle()->getPrefixedText() . "\n";
 		$this->setPageTitle( wfMsg( 'permissionserrors' ) );
 		$this->setHTMLTitle( wfMsg( 'permissionserrors' ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
@@ -1204,7 +1214,7 @@ class OutputPage {
 	 * Produce the stock "please login to use the wiki" page
 	 */
 	public function loginToUse() {
-		global $wgUser, $wgTitle, $wgContLang;
+		global $wgUser, $wgContLang;
 
 		if( $wgUser->isLoggedIn() ) {
 			$this->permissionRequired( 'read' );
@@ -1219,9 +1229,9 @@ class OutputPage {
 		$this->setArticleFlag( false );
 
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
-		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $wgTitle->getPrefixedUrl() );
+		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->getTitle()->getPrefixedUrl() );
 		$this->addHTML( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
-		$this->addHTML( "\n<!--" . $wgTitle->getPrefixedUrl() . "-->" );
+		$this->addHTML( "\n<!--" . $this->getTitle()->getPrefixedUrl() . "-->" );
 
 		# Don't return to the main page if the user can't read it
 		# otherwise we'll end up in a pointless loop
@@ -1285,7 +1295,7 @@ class OutputPage {
 	 * @param array  $reasons   List of reasons for this error, as returned by Title::getUserPermissionsErrors().
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
-		global $wgUser, $wgTitle;
+		global $wgUser;
 		$skin = $wgUser->getSkin();
 
 		$this->setRobotPolicy( 'noindex,nofollow' );
@@ -1301,7 +1311,7 @@ class OutputPage {
 			// Permissions error
 			if( $source ) {
 				$this->setPageTitle( wfMsg( 'viewsource' ) );
-				$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $wgTitle ) ) );
+				$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $this->getTitle() ) ) );
 			} else {
 				$this->setPageTitle( wfMsg( 'badaccess' ) );
 			}
@@ -1328,7 +1338,7 @@ class OutputPage {
 
 			// Show templates used by this article
 			$skin = $wgUser->getSkin();
-			$article = new Article( $wgTitle );
+			$article = new Article( $this->getTitle() );
 			$this->addHTML( "<div class='templatesUsed'>
 {$skin->formatTemplates( $article->getUsedTemplates() )}
 </div>
@@ -1338,8 +1348,8 @@ class OutputPage {
 		# If the title doesn't exist, it's fairly pointless to print a return
 		# link to it.  After all, you just tried editing it and couldn't, so
 		# what's there to do there?
-		if( $wgTitle->exists() ) {
-			$this->returnToMain( null, $wgTitle );
+		if( $this->getTitle()->exists() ) {
+			$this->returnToMain( null, $this->getTitle() );
 		}
 	}
 
@@ -1457,8 +1467,7 @@ class OutputPage {
 	 * @param ParserOutput &$parserOutput
 	 */
 	private function addKeywords( &$parserOutput ) {
-		global $wgTitle;
-		$this->addKeyword( $wgTitle->getPrefixedText() );
+		$this->addKeyword( $this->getTitle()->getPrefixedText() );
 		$count = 1;
 		$links2d =& $parserOutput->getLinks();
 		if ( !is_array( $links2d ) ) {
@@ -1480,7 +1489,7 @@ class OutputPage {
 	public function headElement( Skin $sk ) {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
-		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgTitle, $wgStyleVersion;
+		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgStyleVersion;
 
 		$this->addMeta( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" );
 		$this->addStyle( 'common/wikiprintable.css', 'print' );
@@ -1517,7 +1526,7 @@ class OutputPage {
 		}
 
 		if ($wgUseTrackbacks && $this->isArticleRelated())
-			$ret .= $wgTitle->trackbackRDF();
+			$ret .= $this->getTitle()->trackbackRDF();
 
 		$ret .= "</head>\n";
 		return $ret;
@@ -1572,7 +1581,6 @@ class OutputPage {
 		}
 
 		if( $wgFeed ) {
-			global $wgTitle;
 			foreach( $this->getSyndicationLinks() as $format => $link ) {
 				# Use the page name for the title (accessed through $wgTitle since
 				# there's no other way).  In principle, this could lead to issues
@@ -1582,7 +1590,7 @@ class OutputPage {
 				$tags[] = $this->feedLink(
 					$format,
 					$link,
-					wfMsg( "page-{$format}-feed", $wgTitle->getPrefixedText() ) ); # Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
+					wfMsg( "page-{$format}-feed", $this->getTitle()->getPrefixedText() ) ); # Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
 			}
 
 			# Recent changes feed should appear on every page (except recentchanges, 
@@ -1604,7 +1612,7 @@ class OutputPage {
 						wfMsg( "site-{$type}-feed", $wgSitename ) );
 				}
 			}
-			else if ( $wgTitle->getPrefixedText() != $rctitle->getPrefixedText() ) {
+			else if ( $this->getTitle()->getPrefixedText() != $rctitle->getPrefixedText() ) {
 				foreach( $wgFeedClasses as $format => $class ) {
 					$tags[] = $this->feedLink(
 						$format,
@@ -1622,7 +1630,7 @@ class OutputPage {
 	 * @return array associating format keys with URLs
 	 */
 	public function getSyndicationLinks() {
-		global $wgTitle, $wgFeedClasses;
+		global $wgFeedClasses;
 		$links = array();
 
 		if( $this->isSyndicated() ) {
@@ -1633,7 +1641,7 @@ class OutputPage {
 			}
 
 			foreach( $wgFeedClasses as $format => $class ) {
-				$links[$format] = $wgTitle->getLocalUrl( "feed=$format{$appendQuery}" );
+				$links[$format] = $this->getTitle()->getLocalUrl( "feed=$format{$appendQuery}" );
 			}
 		}
 		return $links;
@@ -1767,7 +1775,6 @@ class OutputPage {
 	 * for when rate limiting has triggered.
 	 */
 	public function rateLimited() {
-		global $wgTitle;
 
 		$this->setPageTitle(wfMsg('actionthrottled'));
 		$this->setRobotPolicy( 'noindex,follow' );
@@ -1778,7 +1785,7 @@ class OutputPage {
 		$this->setStatusCode(503);
 		$this->addWikiMsg( 'actionthrottledtext' );
 
-		$this->returnToMain( null, $wgTitle );
+		$this->returnToMain( null, $this->getTitle() );
 	}
 
 	/**
