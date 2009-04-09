@@ -332,6 +332,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18009) $wgHooks and $wgExtensionFunctions now support closures
 * (bug 17948) Maintenance scripts now exit(0) or exit(1) as appropriate
 * (bug 18377) Time in Enhanced ChangesList lacking localisation
+* (bug 12998) Allow <sup>, <sub>, etc. in DISPLAYTITLE
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

@@ -320,18 +320,34 @@ class OutputPage {
 		}
 	}
 
-	public function setHTMLTitle( $name ) { $this->mHTMLtitle = $name; }
+	/**
+	 * "HTML title" means the contents of <title>. It is stored as plain, unescaped text and will be run through htmlspecialchars in the skin file.
+	 */
+	public function setHTMLTitle( $name ) {
+		$this->mHTMLtitle = $name;
+	}
+
+	/**
+	 * "Page title" means the contents of <h1>. It is stored as a valid HTML fragment.
+	 * This function allows good tags like <sup> in the <h1> tag, but not bad tags like <script>.
+	 * This function automatically sets <title> to the same content as <h1> but with all tags removed.
+	 * Bad tags that were escaped in <h1> will still be escaped in <title>, and good tags like <i> will be dropped entirely.
+         */
 	public function setPageTitle( $name ) {
 		global $wgContLang;
 		$name = $wgContLang->convert( $name, true );
-		$this->mPagetitle = $name;
+		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
+		# but leave "<i>foobar</i>" alone
+		$nameWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $name ) );
+		$this->mPagetitle = $nameWithTags;
 
 		$taction =  $this->getPageTitleActionText();
 		if( !empty( $taction ) ) {
 			$name .= ' - '.$taction;
 		}
 
-		$this->setHTMLTitle( wfMsg( 'pagetitle', $name ) );
+		# change "<i>foo&amp;bar</i>" to "foo&bar"
+		$this->setHTMLTitle( wfMsg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) ) );
 	}
 	
 	public function setTitle( $t ) {
