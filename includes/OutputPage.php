@@ -655,7 +655,7 @@ class OutputPage {
 	 * Add wikitext with tidy enabled
 	 */
 	public function addWikiTextTidy(  $text, $linestart = true ) {
-		$title = &$this->getTitle();
+		$title = $this->getTitle();
 		$this->addWikiTextTitleTidy($text, $title, $linestart);
 	}
 
