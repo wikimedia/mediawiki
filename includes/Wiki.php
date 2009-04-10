@@ -152,8 +152,9 @@ class MediaWiki {
 		# the Read array in order for the user to see it. (We have to check here to
 		# catch special pages etc. We check again in Article::view())
 		if( !is_null( $title ) && !$title->userCanRead() ) {
+			global $wgDeferredUpdateList;
 			$output->loginToUse();
-			$output->output();
+			$this->finalCleanup( $wgDeferredUpdateList, $output );
 			$output->disable();
 			return false;
 		}
