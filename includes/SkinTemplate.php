@@ -142,7 +142,7 @@ class SkinTemplate extends Skin {
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 		global $wgUseTrackbacks, $wgUseSiteJs;
-		global $wgArticlePath, $wgScriptPath, $wgServer, $wgLang, $wgCanonicalNamespaceNames;
+		global $wgArticlePath, $wgScriptPath, $wgServer, $wgCanonicalNamespaceNames;
 
 		wfProfileIn( __METHOD__ );
 
