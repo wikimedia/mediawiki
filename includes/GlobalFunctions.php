@@ -2708,13 +2708,14 @@ function wfHttpOnlySafe() {
  * Initialise php session
  */
 function wfSetupSession() {
-	global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly;
+	global $wgSessionsInMemcached, $wgCookiePath, $wgCookieDomain, 
+			$wgCookieSecure, $wgCookieHttpOnly, $wgSessionHandler;
 	if( $wgSessionsInMemcached ) {
 		require_once( 'MemcachedSessions.php' );
-	} elseif( 'files' != ini_get( 'session.save_handler' ) ) {
-		# If it's left on 'user' or another setting from another
-		# application, it will end up failing. Try to recover.
-		ini_set ( 'session.save_handler', 'files' );
+	} elseif( $wgSessionHandler && $wgSessionHandler != ini_get( 'session.save_handler' ) ) {
+		# Only set this if $wgSessionHandler isn't null and session.save_handler
+		# hasn't already been set to the desired value (that causes errors)
+		ini_set ( 'session.save_handler', $wgSessionHandler );
 	}
 	$httpOnlySafe = wfHttpOnlySafe();
 	wfDebugLog( 'cookie',
