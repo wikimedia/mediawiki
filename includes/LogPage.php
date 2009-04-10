@@ -201,6 +201,7 @@ class LogPage {
 				} else {
 					$details = '';
 					array_unshift( $params, $titleLink );
+					// User suppression
 					if ( preg_match( '/^(block|suppress)\/(block|reblock)$/', $key ) ) {
 						if ( $skin ) {
 							$params[1] = '<span title="' . htmlspecialchars( $params[1] ). '">' . 
@@ -210,6 +211,7 @@ class LogPage {
 						}
 						$params[2] = isset( $params[2] ) ? 
 							self::formatBlockFlags( $params[2], is_null( $skin ) ) : '';
+					// Page protections
 					} else if ( $type == 'protect' && count($params) == 3 ) {
 						$details .= " {$params[1]}"; // restrictions and expiries
 						if( $params[2] ) {
@@ -219,6 +221,7 @@ class LogPage {
 								$details .= ' ['.wfMsgForContent('protect-summary-cascade').']';
 							}
 						}
+					// Page moves
 					} else if ( $type == 'move' && count( $params ) == 3 ) {
 						if( $params[2] ) {
 							if ( $skin ) {
@@ -227,6 +230,18 @@ class LogPage {
 								$details .= ' [' . wfMsgForContent( 'move-redirect-suppressed' ) . ']';
 							}
 						}
+					// Revision deletion
+					} else if ( preg_match( '/^(delete|suppress)\/revision$/', $key ) && count( $params ) == 5 ) {
+						$count = substr_count( $params[1], ',' ) + 1; // revisions
+						$ofield = intval( substr( $params[3], 7 ) ); // <ofield=x>
+						$nfield = intval( substr( $params[4], 7 ) ); // <nfield=x>
+						$details .= ': '.RevisionDeleter::getLogMessage( $count, $nfield, $ofield, false );
+					// Log deletion
+					} else if ( preg_match( '/^(delete|suppress)\/event$/', $key ) && count( $params ) == 4 ) {
+						$count = substr_count( $params[1], ',' ) + 1; // log items
+						$ofield = intval( substr( $params[2], 7 ) ); // <ofield=x>
+						$nfield = intval( substr( $params[3], 7 ) ); // <nfield=x>
+						$details .= ': '.RevisionDeleter::getLogMessage( $count, $nfield, $ofield, true );
 					}
 					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin ) . $details;
 				}

@@ -282,7 +282,7 @@ class LogEventsList {
 					'mergepoint' => $paramArray[1] ) ) ) . ')';
 		// If an edit was hidden from a page give a review link to the history
 		} else if( self::typeAction($row,array('delete','suppress'),'revision','deleterevision') ) {
-			if( count($paramArray) == 2 ) {
+			if( count($paramArray) >= 2 ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// Different revision types use different URL params...
 				$key = $paramArray[0];
@@ -304,7 +304,7 @@ class LogEventsList {
 			}
 		// Hidden log items, give review link
 		} else if( self::typeAction($row,array('delete','suppress'),'event','deleterevision') ) {
-			if( count($paramArray) == 1 ) {
+			if( count($paramArray) >= 1 ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// $paramArray[1] is a CVS of the IDs
 				$Ids = explode( ',', $paramArray[0] );

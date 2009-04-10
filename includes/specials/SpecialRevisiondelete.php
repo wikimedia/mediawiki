@@ -165,7 +165,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 		// Format is <id1,id2,i3...>
 		if( count($safeIds) ) {
-			$conds[] = "log_params RLIKE '(^|\n|,)(".implode('|',$safeIds).")(,|$)'";
+			$conds[] = "log_params RLIKE '(^|\n|,)(".implode('|',$safeIds).")(,|\n|$)'";
+		} else {
+			$conds = array('1=0');
 		}
 		return array($conds,$limit);
 	}
@@ -678,9 +680,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$pageLink = "<a href=\"{$url}\">{$date}</a>";
 		}
 
-		$data = wfMsg( 'widthheight',
-					$wgLang->formatNum( $file->getWidth() ),
-					$wgLang->formatNum( $file->getHeight() ) ) .
+		$data = wfMsg( 'widthheight', $wgLang->formatNum( $file->getWidth() ),
+			$wgLang->formatNum( $file->getHeight() ) ) .
 			' (' . wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $file->getSize() ) ) . ')';
 		$data = htmlspecialchars( $data );
 
@@ -707,9 +708,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$del = ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
 		}
 
-		$data = wfMsg( 'widthheight',
-					$wgLang->formatNum( $file->getWidth() ),
-					$wgLang->formatNum( $file->getHeight() ) ) .
+		$data = wfMsg( 'widthheight', $wgLang->formatNum( $file->getWidth() ),
+			$wgLang->formatNum( $file->getHeight() ) ) .
 			' (' . wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $file->getSize() ) ) . ')';
 		$data = htmlspecialchars( $data );
 
@@ -1467,7 +1467,7 @@ class RevisionDeleter {
 	 * @param int $diff The xor of the old and new bitfields.
 	 * @param array $arr The array to update.
 	 */
-	function checkItem( $desc, $field, $diff, $new, &$arr ) {
+	protected static function checkItem( $desc, $field, $diff, $new, &$arr ) {
 		if( $diff & $field ) {
 			$arr[ ( $new & $field ) ? 0 : 1 ][] = $desc;
 		}
@@ -1485,15 +1485,15 @@ class RevisionDeleter {
 	 * @param int $o The old bitfield.
 	 * @return An array as described above.
 	 */
-	function getChanges( $n, $o ) {
+	protected static function getChanges( $n, $o ) {
 		$diff = $n ^ $o;
 		$ret = array( 0 => array(), 1 => array(), 2 => array() );
 		// Build bitfield changes in language
-		$this->checkItem( wfMsgForContent( 'revdelete-content' ),
+		self::checkItem( wfMsgForContent( 'revdelete-content' ),
 			Revision::DELETED_TEXT, $diff, $n, $ret );
-		$this->checkItem( wfMsgForContent( 'revdelete-summary' ),
+		self::checkItem( wfMsgForContent( 'revdelete-summary' ),
 			Revision::DELETED_COMMENT, $diff, $n, $ret );
-		$this->checkItem( wfMsgForContent( 'revdelete-uname' ),
+		self::checkItem( wfMsgForContent( 'revdelete-uname' ),
 			Revision::DELETED_USER, $diff, $n, $ret );
 		// Restriction application to sysops
 		if( $diff & Revision::DELETED_RESTRICTED ) {
@@ -1513,15 +1513,12 @@ class RevisionDeleter {
 	 * @param int $count The number of effected revisions.
 	 * @param int $nbitfield The new bitfield for the revision.
 	 * @param int $obitfield The old bitfield for the revision.
-	 * @param string $comment The comment associated with the change.
 	 * @param bool $isForLog
 	 */
-	function getLogMessage( $count, $nbitfield, $obitfield, $comment, $isForLog = false ) {
-		global $wgContLang;
-
+	public static function getLogMessage( $count, $nbitfield, $obitfield, $isForLog = false ) {
+		global $wgLang;
 		$s = '';
-		$changes = $this->getChanges( $nbitfield, $obitfield );
-
+		$changes = self::getChanges( $nbitfield, $obitfield );
 		if( count( $changes[0] ) ) {
 			$s .= wfMsgForContent ( 'revdelete-hid', implode ( ', ', $changes[0] ) );
 		}
@@ -1532,14 +1529,8 @@ class RevisionDeleter {
 		if( count( $changes[2] ) ) {
 			$s .= $s ? ' (' . $changes[2][0] . ')' : $changes[2][0];
 		}
-
 		$msg = $isForLog ? 'logdelete-log-message' : 'revdelete-log-message';
-		$ret = wfMsgExt ( $msg, array( 'parsemag', 'content' ),
-			$s, $wgContLang->formatNum( $count ) );
-
-		if( $comment ) $ret .= ": $comment";
-
-		return $ret;
+		return wfMsgExt( $msg, array( 'parsemag', 'content' ), $s, $wgLang->formatNum($count) );
 
 	}
 
@@ -1561,16 +1552,15 @@ class RevisionDeleter {
 		$logtype = ( ($nbitfield | $obitfield) & Revision::DELETED_RESTRICTED ) ?
 			'suppress' : 'delete';
 		$log = new LogPage( $logtype );
-
-		$reason = $this->getLogMessage( $count, $nbitfield, $obitfield, $comment, $param == 'logid' );
+		$itemCSV = implode(',',$items);
 
 		if( $param == 'logid' ) {
-			$params = array( implode( ',', $items) );
-			$log->addEntry( 'event', $title, $reason, $params );
+			$params = array( $itemCSV, "ofield={$obitfield}", "nfield={$nbitfield}" );
+			$log->addEntry( 'event', $title, $comment, $params );
 		} else {
 			// Add params for effected page and ids
-			$params = array( $param, implode( ',', $items) );
-			$log->addEntry( 'revision', $title, $reason, $params );
+			$params = array( $param, $itemCSV, "ofield={$obitfield}", "nfield={$nbitfield}" );
+			$log->addEntry( 'revision', $title, $comment, $params );
 		}
 	}
 }
