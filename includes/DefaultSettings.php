@@ -736,6 +736,12 @@ $wgParserCacheExpireTime = 86400;
 
 $wgSessionsInMemcached = false;
 
+/** This is used for setting php's session.save_handler. In practice, you will
+ * almost never need to change this ever. Other options might be 'user' or 
+ * 'session_mysql.' Setting to null skips setting this entirely (which might be
+ * useful if you're doing cross-application sessions, see bug 11381) */
+$wgSessionHandler = 'files';
+
 /**@{
  * Memcached-specific settings
  * See docs/memcached.txt

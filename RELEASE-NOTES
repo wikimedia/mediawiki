@@ -31,6 +31,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add $wgExportFromNamespaces for enabling/disabling the "export all from 
   namespace" option (disabled by default)
 * (bug 18222) $wgMinimalPasswordLength default is now 1
+* $wgSessionHandler can be used to configure session.save_handler
 
 === New features in 1.15 ===
 
@@ -335,6 +336,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12998) Allow <sup>, <sub>, etc. in DISPLAYTITLE
 * (bug 1553) Lowercase navigation headings in German
 * (bug 7830) Pending transactions failed to commit on loginToUse() error
+* (bug 11613) session.save_handler being over-ridden
+* (bug 11381) session.save_handler being set twice (causes error)
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
