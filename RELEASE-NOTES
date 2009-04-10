@@ -338,6 +338,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7830) Pending transactions failed to commit on loginToUse() error
 * (bug 11613) session.save_handler being over-ridden
 * (bug 11381) session.save_handler being set twice (causes error)
+* (bug 17835) ForeignAPIRepo throwing error on first page load for file
+* (bug 18115) ForeignAPIRepo cache isn't working
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
