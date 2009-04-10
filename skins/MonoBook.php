@@ -374,8 +374,7 @@ class MonoBookTemplate extends QuickTemplate {
 	}
 
 	private function langAttributes() {
-		global $wgLang;
-		$languageCode = $wgLang->getCode();
+		$languageCode = $this->data['userlang'];
 		return 'lang="' . $languageCode . '" xml:lang="' . $languageCode . '"';
 	}
 } // end of class
