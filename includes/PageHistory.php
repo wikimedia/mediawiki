@@ -153,33 +153,48 @@ class PageHistory {
 	 * @return string HTML output
 	 */
 	function beginHistoryList() {
-		global $wgTitle, $wgScript, $wgEnableHtmlDiff;
+		global $wgTitle, $wgUser, $wgScript, $wgEnableHtmlDiff;
 		$this->lastdate = '';
 		$s = wfMsgExt( 'histlegend', array( 'parse') );
-		$s .= Xml::openElement( 'form', array( 'action' => $wgScript, 'id' => 'mw-history-compare' ) );
+		if( $wgUser->isAllowed('deleterevision') ) {
+			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+			$s .= Xml::openElement( 'form',
+				array(
+					'action' => $revdel->getFullUrl(),
+					'method' => 'get', 'id' => 'mw-history-revdeleteform',
+					'style'  => 'visibility:hidden;float:right;'
+				)
+			);
+			$s .= Xml::hidden( 'target', $wgTitle->getPrefixedDbKey() );
+			$s .= Xml::hidden( 'oldid', '', array('id'=>'revdel-oldid') );
+			$s .= Xml::submitButton( wfMsg( 'showhideselectedversions' ) );
+			$s .= Xml::closeElement( 'form' );
+		}
+		$s .= Xml::openElement( 'form', array( 'action' => $wgScript,
+			'id' => 'mw-history-compare' ) );
 		$s .= Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() );
 		if( $wgEnableHtmlDiff ) {
 			$s .= $this->submitButton( wfMsg( 'visualcomparison'),
 				array(
-						'name' => 'htmldiff',
-						'class'     => 'historysubmit',
-						'accesskey' => wfMsg( 'accesskey-visualcomparison' ),
-						'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+					'name' => 'htmldiff',
+					'class'     => 'historysubmit',
+					'accesskey' => wfMsg( 'accesskey-visualcomparison' ),
+					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
 				)
 			);
 			$s .= $this->submitButton( wfMsg( 'wikicodecomparison'),
 				array(
-						'class'     => 'historysubmit',
-						'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-						'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+					'class'     => 'historysubmit',
+					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
+					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
 				)
 			);
 		} else {
 			$s .= $this->submitButton( wfMsg( 'compareselectedversions'),
 				array(
-						'class'     => 'historysubmit',
-						'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-						'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+					'class'     => 'historysubmit',
+					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
+					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
 				)
 			);
 		}
@@ -198,25 +213,25 @@ class PageHistory {
 		if( $wgEnableHtmlDiff ) {
 			$s .= $this->submitButton( wfMsg( 'visualcomparison'),
 				array(
-						'name' => 'htmldiff',
-						'class'     => 'historysubmit',
-						'accesskey' => wfMsg( 'accesskey-visualcomparison' ),
-						'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+					'name' => 'htmldiff',
+					'class'     => 'historysubmit',
+					'accesskey' => wfMsg( 'accesskey-visualcomparison' ),
+					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
 				)
 			);
 			$s .= $this->submitButton( wfMsg( 'wikicodecomparison'),
 				array(
-						'class'     => 'historysubmit',
-						'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-						'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+					'class'     => 'historysubmit',
+					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
+					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
 				)
 			);
 		} else {
 			$s .= $this->submitButton( wfMsg( 'compareselectedversions'),
 				array(
-						'class'     => 'historysubmit',
-						'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-						'title'     => wfMsg( 'tooltip-compareselectedversions' ),
+					'class'     => 'historysubmit',
+					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
+					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
 				)
 			);
 		}
@@ -268,15 +283,23 @@ class PageHistory {
 		$s = "($curlink) ($lastlink) $arbitrary";
 
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			// Hide JS by default for non-JS browsing
+			$hidden = array( 'style' => 'visibility:hidden' );
+			// If revision was hidden from sysops
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				// If revision was hidden from sysops
-				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.
-					$this->message['rev-delundel'].')' );
+				$del = Xml::check( 'deleterevisions', false,
+					$hidden + array('disabled' => 'disabled') );
+				$del .= Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
+					'(' . $this->message['rev-delundel'] . ')' );
+			// Otherwise, show the link...
 			} else {
+				$jsCall = 'updateShowHideForm('.$rev->getId().',this.checked)';
+				$del = Xml::check( 'showhiderevisions', false,
+					$hidden + array('onchange' => $jsCall) );
 				$query = array( 'target' => $this->mTitle->getPrefixedDbkey(),
-					'oldid' => $rev->getId()
-				);
-				$del = $this->mSkin->revDeleteLink( $query, $rev->isDeleted( Revision::DELETED_RESTRICTED ) );
+					'oldid' => $rev->getId() );
+				$del .= $this->mSkin->revDeleteLink( $query,
+					$rev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
 			$s .= " $del ";
 		}

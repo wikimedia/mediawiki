@@ -726,6 +726,7 @@ $wgMessageStructure = array(
 		'difference',
 		'lineno',
 		'compareselectedversions',
+		'showhideselectedversions',
 		'visualcomparison',
 		'wikicodecomparison',
 		'editundo',
