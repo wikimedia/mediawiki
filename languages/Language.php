@@ -35,7 +35,7 @@ if( function_exists( 'mb_strtoupper' ) ) {
 class FakeConverter {
 	var $mLang;
 	function FakeConverter($langobj) {$this->mLang = $langobj;}
-	function convert($t, $i) {return $t;}
+	function convert($t, $i, $v) {return $t;}
 	function parserConvert($t, $p) {return $t;}
 	function getVariants() { return array( $this->mLang->getCode() ); }
 	function getPreferredVariant() {return $this->mLang->getCode(); }
@@ -2183,8 +2183,8 @@ class Language {
 	}
 
 	# convert text to different variants of a language.
-	function convert( $text, $isTitle = false) {
-		return $this->mConverter->convert($text, $isTitle);
+	function convert( $text, $isTitle = false, $variant = none) {
+		return $this->mConverter->convert($text, $isTitle, $variant);
 	}
 
 	# Convert text from within Parser
