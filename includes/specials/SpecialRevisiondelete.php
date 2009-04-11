@@ -29,11 +29,16 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->target = $wgRequest->getText( 'target' );
 		# Handle our many different possible input types.
 		# Use CVS, since the cgi handling will break on arrays.
-		$this->oldids = array_filter( explode( ',', $wgRequest->getVal('oldid') ) );
-		$this->artimestamps = array_filter( explode( ',', $wgRequest->getVal('artimestamp') ) );
-		$this->logids = array_filter( explode( ',', $wgRequest->getVal('logid') ) );
-		$this->oldimgs = array_filter( explode( ',', $wgRequest->getVal('oldimage') ) );
-		$this->fileids = array_filter( explode( ',', $wgRequest->getVal('fileid') ) );
+		$this->oldids = explode( ',', $wgRequest->getVal('oldid') );
+		$this->oldids = array_unique( array_filter($this->oldids) );
+		$this->artimestamps = explode( ',', $wgRequest->getVal('artimestamp') );
+		$this->artimestamps = array_unique( array_filter($this->artimestamps) );
+		$this->logids = explode( ',', $wgRequest->getVal('logid') );
+		$this->logids = array_unique( array_filter($this->logids) );
+		$this->oldimgs = explode( ',', $wgRequest->getVal('oldimage') );
+		$this->oldimgs = array_unique( array_filter($this->oldimgs) );
+		$this->fileids = explode( ',', $wgRequest->getVal('fileid') );
+		$this->fileids = array_unique( array_filter($this->fileids) );
 		# For reviewing deleted files...
 		$this->file = $wgRequest->getVal( 'file' );
 		# Only one target set at a time please!
@@ -260,9 +265,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$result = $dbr->select( array('revision','page'), '*',
 				array(
 					'rev_page' => $this->page->getArticleID(),
-					'rev_id' => $where,
-					'rev_page = page_id' ),
-				__METHOD__ );
+					'rev_id'   => $where,
+					'rev_page = page_id'
+				),
+				__METHOD__
+			);
 			while( $row = $dbr->fetchObject( $result ) ) {
 				$revObjs[$row->rev_id] = new Revision( $row );
 			}
@@ -288,9 +295,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$result = $dbr->select( 'archive', '*',
 				array(
 					'ar_namespace' => $this->page->getNamespace(),
-					'ar_title' => $this->page->getDBKey(),
-					'ar_timestamp' => $where ),
-				__METHOD__ );
+					'ar_title'     => $this->page->getDBKey(),
+					'ar_timestamp' => $where
+				),
+				__METHOD__
+			);
 			while( $row = $dbr->fetchObject( $result ) ) {
 				$timestamp = wfTimestamp( TS_MW, $row->ar_timestamp );
 				$revObjs[$timestamp] = new Revision( array(
@@ -392,9 +401,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			}
 			$result = $dbr->select( 'oldimage', '*',
 				array(
-					'oi_name' => $this->page->getDBKey(),
-					'oi_archive_name' => $where ),
-				__METHOD__ );
+					'oi_name'         => $this->page->getDBKey(),
+					'oi_archive_name' => $where
+				),
+				__METHOD__
+			);
 			while( $row = $dbr->fetchObject( $result ) ) {
 				$filesObjs[$row->oi_archive_name] = RepoGroup::singleton()->getLocalRepo()->newFileFromRow( $row );
 				$filesObjs[$row->oi_archive_name]->user = $row->oi_user;
@@ -426,8 +437,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$result = $dbr->select( 'filearchive', '*',
 				array(
 					'fa_name' => $this->page->getDBKey(),
-					'fa_id' => $where ),
-				__METHOD__ );
+					'fa_id'   => $where
+				),
+				__METHOD__
+			);
 			while( $row = $dbr->fetchObject( $result ) ) {
 				$filesObjs[$row->fa_id] = ArchivedFile::newFromRow( $row );
 			}
