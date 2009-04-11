@@ -487,10 +487,11 @@ class LanguageConverter {
 	 *
 	 * @param string $text text to be converted
 	 * @param bool $isTitle whether this conversion is for the article title
+	 * @param string $variant the variant we convert to
 	 * @return string converted text
 	 * @public
 	 */
-	function convert( $text, $isTitle = false ) {
+	function convert( $text, $isTitle = false, $variant = none ) {
 
 		$mw =& MagicWord::get( 'notitleconvert' );
 		if( $mw->matchAndRemove( $text ) )
@@ -505,7 +506,10 @@ class LanguageConverter {
 		if( $mw->matchStart( $text ) )
 			return $text;
 
-		$plang = $this->getPreferredVariant();
+		if( $variant && in_array( $variant, $this->mVariants ) )
+			$plang = $variant;
+		else
+			$plang = $this->getPreferredVariant();
 
 		// for title convertion
 		if ( $isTitle ) return $this->convertTitle( $text, $plang );
