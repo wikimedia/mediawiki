@@ -2183,7 +2183,7 @@ class Language {
 	}
 
 	# convert text to different variants of a language.
-	function convert( $text, $isTitle = false, $variant = none) {
+	function convert( $text, $isTitle = false, $variant = null ) {
 		return $this->mConverter->convert($text, $isTitle, $variant);
 	}
 

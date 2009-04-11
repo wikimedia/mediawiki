@@ -491,7 +491,7 @@ class LanguageConverter {
 	 * @return string converted text
 	 * @public
 	 */
-	function convert( $text, $isTitle = false, $variant = none ) {
+	function convert( $text, $isTitle = false, $variant = null ) {
 
 		$mw =& MagicWord::get( 'notitleconvert' );
 		if( $mw->matchAndRemove( $text ) )
