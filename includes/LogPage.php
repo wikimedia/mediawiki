@@ -232,7 +232,7 @@ class LogPage {
 						}
 					// Revision deletion
 					} else if ( preg_match( '/^(delete|suppress)\/revision$/', $key ) && count( $params ) == 5 ) {
-						$count = substr_count( $params[1], ',' ) + 1; // revisions
+						$count = substr_count( $params[2], ',' ) + 1; // revisions
 						$ofield = intval( substr( $params[3], 7 ) ); // <ofield=x>
 						$nfield = intval( substr( $params[4], 7 ) ); // <nfield=x>
 						$details .= ': '.RevisionDeleter::getLogMessage( $count, $nfield, $ofield, false );
