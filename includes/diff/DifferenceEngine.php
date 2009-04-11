@@ -380,7 +380,7 @@ CONTROL;
 
 
 	function renderHtmlDiff() {
-		global $wgOut, $wgTitle, $wgParser, $wgDebugComments;
+		global $wgOut, $wgParser, $wgDebugComments;
 		wfProfileIn( __METHOD__ );
 
 		$this->showDiffStyle();
@@ -408,7 +408,7 @@ CONTROL;
 		$oldTidy = $popts->setTidy( true );
 		$popts->setEditSection( false );
 
-		$parserOutput = $wgParser->parse( $this->mOldtext, $wgTitle, $popts, true, true, $wgOut->getRevisionId() );
+		$parserOutput = $wgParser->parse( $this->mOldtext, $this->getTitle(), $popts, true, true, $wgOut->getRevisionId() );
 		$popts->setTidy( $oldTidy );
 
 		//only for new?
@@ -424,7 +424,7 @@ CONTROL;
 		$popts = $wgOut->parserOptions();
 		$oldTidy = $popts->setTidy( true );
 
-		$parserOutput = $wgParser->parse( $this->mNewtext, $wgTitle, $popts, true, true, $wgOut->getRevisionId() );
+		$parserOutput = $wgParser->parse( $this->mNewtext, $this->getTitle(), $popts, true, true, $wgOut->getRevisionId() );
 		$popts->setTidy( $oldTidy );
 
 		$wgOut->addParserOutputNoText( $parserOutput );
