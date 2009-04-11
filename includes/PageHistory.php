@@ -67,7 +67,7 @@ class PageHistory {
 	 * @returns nothing
 	 */
 	function history() {
-		global $wgOut, $wgRequest, $wgTitle, $wgScript;
+		global $wgOut, $wgRequest, $wgScript;
 
 		/*
 		 * Allow client caching.
@@ -153,7 +153,7 @@ class PageHistory {
 	 * @return string HTML output
 	 */
 	function beginHistoryList() {
-		global $wgTitle, $wgUser, $wgScript, $wgEnableHtmlDiff;
+		global $wgUser, $wgScript, $wgEnableHtmlDiff;
 		$this->lastdate = '';
 		$s = wfMsgExt( 'histlegend', array( 'parse') );
 		if( $wgUser->isAllowed('deleterevision') ) {
@@ -165,14 +165,14 @@ class PageHistory {
 					'style'  => 'visibility:hidden;float:right;'
 				)
 			);
-			$s .= Xml::hidden( 'target', $wgTitle->getPrefixedDbKey() );
+			$s .= Xml::hidden( 'target', $this->mTitle->getPrefixedDbKey() );
 			$s .= Xml::hidden( 'oldid', '', array('id'=>'revdel-oldid') );
 			$s .= Xml::submitButton( wfMsg( 'showhideselectedversions' ) );
 			$s .= Xml::closeElement( 'form' );
 		}
 		$s .= Xml::openElement( 'form', array( 'action' => $wgScript,
 			'id' => 'mw-history-compare' ) );
-		$s .= Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() );
+		$s .= Xml::hidden( 'title', $this->mTitle->getPrefixedDbKey() );
 		if( $wgEnableHtmlDiff ) {
 			$s .= $this->submitButton( wfMsg( 'visualcomparison'),
 				array(

@@ -1528,11 +1528,11 @@ class RevisionDeleter {
 		$s = '';
 		$changes = self::getChanges( $nbitfield, $obitfield );
 		if( count( $changes[0] ) ) {
-			$s .= wfMsgForContent ( 'revdelete-hid', implode ( ', ', $changes[0] ) );
+			$s .= wfMsgForContent( 'revdelete-hid', implode( ', ', $changes[0] ) );
 		}
 		if( count( $changes[1] ) ) {
 			if ($s) $s .= '; ';
-			$s .= wfMsgForContent ( 'revdelete-unhid', implode ( ', ', $changes[1] ) );
+			$s .= wfMsgForContent( 'revdelete-unhid', implode( ', ', $changes[1] ) );
 		}
 		if( count( $changes[2] ) ) {
 			$s .= $s ? ' (' . $changes[2][0] . ')' : $changes[2][0];
