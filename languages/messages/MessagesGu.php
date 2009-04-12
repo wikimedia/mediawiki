@@ -221,10 +221,12 @@ $messages = array(
 'site-rss-feed'       => '$1 RSS Feed',
 'site-atom-feed'      => '$1 Atom Feed',
 'page-rss-feed'       => '"$1" RSS Feed',
+'red-link-title'      => '$1 (પાનું અસ્તિત્વ ધરાવતું નથી)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'લેખ',
 'nstab-user'      => 'મારા વિષે',
+'nstab-media'     => 'મિડીયા પાનું',
 'nstab-special'   => 'ખાસ',
 'nstab-project'   => 'પરિયોજનાનું પાનું',
 'nstab-image'     => 'ફાઇલ/દસ્તાવેજ',
@@ -393,14 +395,21 @@ $messages = array(
 'diff-multi'              => '({{PLURAL:$1|વચગાળાનું એક પુનરાવર્તન|વચગાળાનાં $1 પુનરાવર્તનો}} દર્શાવેલ નથી.)',
 
 # Search results
-'searchresults'  => 'પરિણામોમાં શોધો',
-'noexactmatch'   => "'''\"\$1\" શિર્ષક વાળું કોઇ પાનું નથી.'''
+'searchresults'            => 'પરિણામોમાં શોધો',
+'noexactmatch'             => "'''\"\$1\" શિર્ષક વાળું કોઇ પાનું નથી.'''
 <br />તમે [[:\$1|આ પાનું બનાવી શકો છો]].",
-'prevn'          => 'પાછળનાં $1',
-'nextn'          => 'આગળનાં $1',
-'viewprevnext'   => 'જુઓ: ($1) ($2) ($3)',
-'searchhelp-url' => 'Help:સૂચિ',
-'powersearch'    => 'શોધો (વધુ પર્યાય સાથે)',
+'prevn'                    => 'પાછળનાં $1',
+'nextn'                    => 'આગળનાં $1',
+'viewprevnext'             => 'જુઓ: ($1) ($2) ($3)',
+'searchhelp-url'           => 'Help:સૂચિ',
+'search-result-size'       => '$1 ({{બહુવચન:$2|1 શબ્દword|$2 શબ્દો}})',
+'search-result-score'      => 'પ્રસ્તુતિ: $1%',
+'search-redirect'          => '(અન્યત્ર પ્રસ્થાન $1)',
+'search-section'           => '(વિભાગ $1)',
+'search-suggest'           => 'શું તમે $1 કહેવા માંગો છો?',
+'search-interwiki-caption' => 'બંધુ પ્રકલ્પ',
+'search-interwiki-default' => '$1 પરીણામો:',
+'powersearch'              => 'શોધો (વધુ પર્યાય સાથે)',
 
 # Preferences page
 'preferences'       => 'પસંદ',

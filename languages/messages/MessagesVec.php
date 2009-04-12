@@ -846,7 +846,7 @@ La motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
 'rev-deleted-text-unhide'        => "Sta version de la pàxena la xe sta '''scancelà'''.
 Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
-Ai aministradori xe ancora consentìo [$ vardar sta version] se necessario.",
+Ai aministradori xe ancora consentìo [$1 vardar sta version] se necessario.",
 'rev-deleted-text-view'          => "Sta version de la pagina la xe stà '''scancelà'''.
 El testo el pode èssar visualizà soltanto dai aministradori del sito.
 Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
@@ -889,6 +889,7 @@ Par piaser conferma che te voli dal bon far sta scancelassion, che te conossi le
 'revdelete-logentry'             => 'gà modificà la visibilità par una revision de [[$1]]',
 'logdelete-logentry'             => "gà modificà la visibilità de l'evento [[$1]]",
 'revdelete-success'              => "'''Visibilità de la revision inpostà coretamente.'''",
+'revdelete-failure'              => "'''No se riesse a inpostar la visibilità de la version.'''",
 'logdelete-success'              => "'''Visibilità de l'evento inpostà coretamente.'''",
 'revdel-restore'                 => 'Canbia visibilità',
 'pagehist'                       => 'Cronologia de la pagina',

@@ -1110,7 +1110,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'morelinkstoimage'          => 'ለዚህ ፋይል [[Special:WhatLinksHere/$1|ተጨማሪ መያያዣዎችን]] ለማየት።',
 'redirectstofile'           => 'ለዚህ ፋይል {{PLURAL:$1|የሚከተለው ፋይል መምሪያ መንገድ አለ|የሚከተሉት $1 ፋይሎች መምሪያ መንገዶች አሉ}}፦',
 'duplicatesoffile'          => '{{PLURAL:$1|የሚከተለው ፋይል የዚህ ፋይል ቅጂ ነው|የሚከተሉት $1 ፋይሎች የዚሁ ፋይል ቅጂዎች ናቸው}}፦',
-'sharedupload'              => 'ይህ ፋይል ከጋራ ምንጭ የተቀሰመ ነው። በማንኛውም ዊኪ ላይ ሊጠቅም ይቻላል።',
+'sharedupload'              => 'ይህ ፋይል ከጋራ ምንጭ ($1) የተቀሰመ ነው። በማንኛውም ዊኪ ላይ ሊጠቅም ይቻላል።',
 'noimage'                   => 'በዚህ ስም የሚታወቅ ፋይል የለም፤ እርስዎ ግን $1 ይችላሉ።',
 'noimage-linktext'          => 'ሊልኩት',
 'uploadnewversion-linktext' => 'ለዚሁ ፋይል አዲስ ዕትም ለመላክ',

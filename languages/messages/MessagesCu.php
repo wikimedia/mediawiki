@@ -153,6 +153,7 @@ $messages = array(
 'and'            => '&#32;и',
 
 'errorpagetitle'   => 'блаꙁна',
+'tagline'          => '{{grammar:genitive|{{SITENAME}}}} страни́ца',
 'help'             => 'по́мощь',
 'search'           => 'иска́ниѥ',
 'searchbutton'     => 'ищи́',
@@ -322,6 +323,9 @@ $messages = array(
 # User rights log
 'rightslog' => 'чинода́тєльства їсторі́ꙗ',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'си страни́цѧ исправлє́ниѥ',
+
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|мѣ́на|мѣ́нꙑ|мѣ́нъ}}',
 'recentchanges'   => 'послѣ́дьнѩ мѣ́нꙑ',
@@ -364,7 +368,7 @@ $messages = array(
 'filehist-deleteone' => 'поничьжє́ниѥ',
 'filehist-current'   => 'нꙑнѣщьн҄ь о́браꙁъ',
 'filehist-user'      => 'по́льꙃєватєл҄ь',
-'imagelinks'         => 'съвѧ́ꙁи',
+'imagelinks'         => 'дѣ́ла съвѧ́ꙁи',
 
 # File deletion
 'filedelete-submit' => 'поничьжє́ниѥ',
@@ -528,7 +532,7 @@ $messages = array(
 'allmessagesname' => 'и́мѧ',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'моꙗ́ по́льꙃєватєл҄ьска страни́ца',
+'tooltip-pt-userpage'     => 'твоꙗ́ по́льꙃєватєл҄ьска страни́ца',
 'tooltip-pt-mytalk'       => 'твоꙗ́ бєсѣ́дꙑ страни́ца',
 'tooltip-pt-logout'       => 'ис̾хо́дъ',
 'tooltip-ca-viewsource'   => 'си страни́ца ꙁабранєна́ ѥ́стъ ⁙

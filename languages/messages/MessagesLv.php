@@ -44,7 +44,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Saites uz neesošām lapām rādīt <a href="" class="new">šādi</a> (alternatīva: šādi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Taisnot rindkopas',
 'tog-hideminor'               => 'Paslēpt maznozīmīgus labojumus pēdējo izmaiņu lapā',
-'tog-extendwatchlist'         => 'Izvērst uzraugāmo sarakstu, lai parādītu visas veiktās izmaiņas',
+'tog-extendwatchlist'         => 'Izvērst uzraugāmo sarakstu, lai parādītu visas veiktās izmaiņas (ne tikai pašas svaigākās)',
 'tog-usenewrc'                => "Uzlabotas pēdējās izmaiņas (izmanto ''JavaScript'')",
 'tog-numberheadings'          => 'Automātiski numurēt virsrakstus.',
 'tog-showtoolbar'             => 'Rādīt rediģēšanas rīkjoslu',
@@ -1306,7 +1306,7 @@ Pašreizējie lapas '''$1''' iestatījumi ir:",
 'protect-level-sysop'         => 'Tikai adminiem',
 'protect-cascade'             => "Aizsargāt šajā lapā iekļautās lapas (veidnes) ''(cascading protection)''",
 'protect-cantedit'            => 'Tu nevari izmainīt šīs lapas aizsardzības līmeņus, tāpēc, ka tur nevari izmainīt šo lapu.',
-'protect-expiry-options'      => '2 stundas:2 hours,1 diena:1 day,3 dienas:3 days,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 stunda:1 hour,1 diena:1 day,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Atļauja:',
 'restriction-level'           => 'Aizsardzības līmenis:',
 
