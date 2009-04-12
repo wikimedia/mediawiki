@@ -152,23 +152,22 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$safeIds[] = $m[0];
 			}
 		}
-		// Optimization for logs
+		// Optimization for logs: the event was hidden after it was made
 		if( $action == 'event' ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			# Get the timestamp of the first item
 			$first = $dbr->selectField( 'logging', 'log_timestamp',
 				array('log_id' => $safeIds), __METHOD__, array('ORDER BY' => 'log_id') );
-			# If there are no items, then stop here
 			if( $first == false ) {
-				$conds = array('1=0');
-				return array($conds,$limit);
+				return array( array('1=0'), $limit ); // If there are no items, then stop here
 			}
-			# The event was be hidden after it was made
 			$conds[] = 'log_timestamp > '.$dbr->addQuotes($first); // type,time index
 		}
 		// Format is <id1,id2,i3...>
 		if( count($safeIds) ) {
-			$conds[] = "log_params RLIKE '(^|\n|,)(".implode('|',$safeIds).")(,|\n|$)'";
+			// Log deletions do not have an item type, others do...
+			$type = ($this->deleteKey != 'logid') ? "^{$this->deleteKey}.*" : '';
+			$conds[] = "log_params RLIKE '$type(^|\n|,)(".implode('|',$safeIds).")(,|\n|$)'";
 		} else {
 			$conds = array('1=0');
 		}
