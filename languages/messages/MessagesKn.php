@@ -9,6 +9,7 @@
  * @author Hari Prasad Nadig <hpnadig@gmail.com> http://en.wikipedia.org/wiki/User:Hpnadig
  * @author Mana
  * @author NamwikiTL
+ * @author Nayvik
  * @author Shushruth
  * @author לערי ריינהארט
  */
@@ -493,6 +494,7 @@ $2',
 'resetpass_bad_temporary' => 'ಸರಿಯಾಗಿರದ ತಾತ್ಕಾಲಿಕ ಪ್ರವೇಶಪದ.
 ನೀವಾಗಲೆ ಯಶಸ್ವಿಯಾಗಿ ನಿಮ್ಮ ಪ್ರವೇಶಪದವನ್ನು ಬದಲಾಯಿಸಿರಬಹುದು ಅಥವ ಹೊಸ ತಾತ್ಕಾಲಿಕ ಪ್ರವೇಶಪದ ಒಂದನ್ನು ಕೋರಿರಬಹುದು.',
 'resetpass_forbidden'     => 'ಪ್ರವೇಶಪದಗಳನ್ನು ಬದಲಾಯಿಸುವಂತಿಲ್ಲ.',
+'resetpass-temp-password' => 'ತಾತ್ಕಾಲಿಕ ಪ್ರವೇಶಪದ:',
 
 # Edit page toolbar
 'bold_sample'     => 'ದಪ್ಪಗಿನ ಅಚ್ಚು',

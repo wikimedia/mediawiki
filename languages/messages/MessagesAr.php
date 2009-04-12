@@ -2384,7 +2384,7 @@ $1',
 'whatlinkshere-hidetrans'  => '$1 التضمينات',
 'whatlinkshere-hidelinks'  => '$1 الوصلات',
 'whatlinkshere-hideimages' => '$1 وصلة صورة',
-'whatlinkshere-filters'    => 'مرشحات',
+'whatlinkshere-filters'    => 'مُرشّحات',
 
 # Block/unblock
 'blockip'                         => 'منع مستخدم',
@@ -2785,8 +2785,8 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'nocredits'        => 'لا توجد معلومات حقوق متوفرة لهذه الصفحة.',
 
 # Spam protection
-'spamprotectiontitle' => 'فلتر الحماية من السبام',
-'spamprotectiontext'  => 'الصفحة التي أردت حفظها تم منعها بواسطة فلتر السبام.
+'spamprotectiontitle' => 'مُرشّح الحماية من السبام',
+'spamprotectiontext'  => 'الصفحة التي أردت حفظها تم منعها بواسطة مُرشّح السبام.
 هذا على الأرجح بسبب وصلة إلى موقع خارجي في القائمة السوداء.',
 'spamprotectionmatch' => 'النص التالي هو ما نشط مانع السبام الخاص بنا: $1',
 'spambot_username'    => 'تنظيف سبام ميدياويكي',
@@ -2872,7 +2872,7 @@ $1',
 'newimages'             => 'معرض الملفات الجديدة',
 'imagelisttext'         => 'فيما يلي قائمة تحوي $1 {{PLURAL:$1|ملف|ملفات}} مرتبة $2.',
 'newimages-summary'     => 'هذه الصفحة الخاصة تعرض آخر الملفات المرفوعة.',
-'newimages-legend'      => 'اسم الملف',
+'newimages-legend'      => 'المرشّح',
 'newimages-label'       => 'اسم الملف (أو جزء منه):',
 'showhidebots'          => '($1 بوتات)',
 'noimages'              => 'لا شيء للعرض.',
@@ -3485,8 +3485,8 @@ $1',
 
 # Special:Tags
 'tags'                    => 'وسوم التغيير الصحيحة',
-'tag-filter'              => 'فلتر [[Special:Tags|الوسم]]:',
-'tag-filter-submit'       => 'فلتر',
+'tag-filter'              => 'مُرشّح [[Special:Tags|الوسوم]]:',
+'tag-filter-submit'       => 'مُرشّح',
 'tags-title'              => 'وسوم',
 'tags-intro'              => 'هذه الصفحة تعرض الوسوم التي ربما يعلم البرنامج تعديلا بها، ومعانيها.',
 'tags-tag'                => 'اسم وسم داخلي',

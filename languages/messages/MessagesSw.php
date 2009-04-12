@@ -1069,6 +1069,12 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 * fnumber
 * focallength', # Do not translate list items
 
+# EXIF tags
+'exif-componentsconfiguration' => 'Maana ya kila kijenzi',
+'exif-makernote'               => 'Maelezo ya mtengenezaji',
+'exif-usercomment'             => 'Maoni ya mtumiaji',
+'exif-relatedsoundfile'        => 'Faili ya sauti inayohusika',
+
 # External editor support
 'edit-externally'      => 'Tumia programu ya nje kuhariri faili hii',
 'edit-externally-help' => '(Ona [http://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.)',

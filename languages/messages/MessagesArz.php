@@ -1667,7 +1667,7 @@ PICT # misc.
 'morelinkstoimage'          => 'عرض [[Special:WhatLinksHere/$1|لينكات اكتر]] للملف دا.',
 'redirectstofile'           => '{{PLURAL:$1| الملف|ال$1 ملف}} اللى جاى  بيحول للملف دا:',
 'duplicatesoffile'          => '{{PLURAL:$1| الملف|ال$1 ملف اللى بعده}} متكرره من الملف ده:',
-'sharedupload'              => 'الملف ده اتحمل على $1 علشان يتشارك بين المشاريع و ممكن استعماله فى المشاريع التانيه.',
+'sharedupload'              => 'الملف دا من  $1 و ممكن تستعمله مشاريع تانيه.',
 'noimage'                   => 'مافيش  ملف بالاسم ده، لكن ممكن انك  تـ$1.',
 'noimage-linktext'          => 'حمل واحد',
 'uploadnewversion-linktext' => 'حمل نسخه جديده من الملف ده',

@@ -21,6 +21,8 @@ $messages = array(
 # User preference toggles
 'tog-hideminor' => 'ܛܫܝ ܫ̈ܚܠܦܬܐ ܙܥܘܪ̈ܬܐ ܒܫܚܠܦܬ̈ܐ ܚܕܬܬ̈ܐ',
 
+'underline-never' => 'ܠܐ ܡܡܬܘܡ',
+
 # Dates
 'sunday'        => 'ܚܕܒܫܒܐ',
 'monday'        => 'ܬܪܝܢܒܫܒܐ',
@@ -73,6 +75,9 @@ $messages = array(
 'nov'           => 'ܬܫܪܝܢ ܒ',
 'dec'           => 'ܟܢܘܢ ܐ',
 
+# Categories related messages
+'listingcontinuesabbrev' => '(ܫܘܠܡܐ)',
+
 'article'        => 'ܡܓܠܬܐ',
 'newwindow'      => '(ܦܬܚ ܒܟܘܬܐ ܚܕܬܐ)',
 'cancel'         => 'ܒܛܘܠ',
@@ -116,6 +121,7 @@ $messages = array(
 'talkpagelinktext'  => 'ܡܡܠܠܐ',
 'specialpage'       => 'ܦܐܬܐ ܕܝܠܢܝܬܐ',
 'personaltools'     => 'ܡܐ̈ܢܐ ܦܪ̈ܨܘܦܝܐ',
+'postcomment'       => 'ܡܢܬܐ ܚܕܬܐ',
 'talk'              => 'ܕܘܪܫܐ',
 'views'             => 'ܚܙ̈ܝܬܐ',
 'toolbox'           => 'ܣܢܕܘܩܐ ܕܡܐ̈ܢܐ',
@@ -136,7 +142,7 @@ $messages = array(
 'currentevents'        => 'ܓܕ̈ܫܐ ܗ̈ܫܝܐ',
 'currentevents-url'    => 'ܬܪܡܝܬܐ:ܓܕ̈ܫܐ ܗܫܝܐ',
 'disclaimers'          => 'ܠܐ ܡܫܬܐܠܢܘܬܐ',
-'edithelp'             => 'ܥܘܕܪܢܐ ܠܫܘܚܠܦܐ',
+'edithelp'             => 'ܥܘܕܪܢܐ ܠܫܚܠܦܬܐ',
 'mainpage'             => 'ܦܐܬܐ ܪܫܝܬܐ',
 'mainpage-description' => 'ܦܐܬܐ ܪܫܝܬܐ',
 'portal'               => 'ܬܪܥܐ ܕܟܢܫܐ',
@@ -153,6 +159,7 @@ $messages = array(
 'viewsourceold'       => 'ܚܙܝ ܥܩܪܐ',
 'editlink'            => 'ܫܚܠܦ',
 'viewsourcelink'      => 'ܚܙܝ ܥܩܪܐ',
+'editsectionhint'     => 'ܫܚܠܦ ܡܢܬܐ: $1',
 'toc'                 => 'ܚܒܝܫܬ̈ܐ',
 'showtoc'             => 'ܚܘܝ',
 'hidetoc'             => 'ܛܫܝ',
@@ -253,6 +260,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 # Search results
 'notitlematches'     => 'ܠܝܬ ܫܡܐ ܕܦܐܬܐ ܐܘܝܢܐ',
 'viewprevnext'       => 'ܚܘܝ ($1) ($2) ($3)',
+'search-section'     => '(ܡܢܬܐ $1)',
 'powersearch'        => 'ܒܨܝܐ ܡܬܩܕܡܢܐ',
 'powersearch-legend' => 'ܒܨܝܐ ܡܬܩܕܡܢܐ',
 
@@ -294,6 +302,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'show'                 => 'ܚܘܝ',
 'minoreditletter'      => 'ܙ',
 'newpageletter'        => 'ܚ',
+'newsectionsummary'    => '/* $1 */ ܡܢܬܐ ܚܕܬܐ',
 
 # Recent changes linked
 'recentchangeslinked'      => 'ܫܚܠܦܬ̈ܐ ܕܡܝܐ',
@@ -370,6 +379,9 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 # Restrictions (nouns)
 'restriction-edit' => 'ܫܚܠܦ',
 'restriction-move' => 'ܫܢܝ',
+
+# Undelete
+'undelete-search-box' => 'ܒܨܝ ܦܐܬܘܬ̈ܐ ܫܝܦ̈ܐ',
 
 # Namespace form on various pages
 'invert'         => 'ܐܗܦܟ ܓܘܒܝܐ',

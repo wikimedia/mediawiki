@@ -11,6 +11,9 @@
 $fallback = 'de';
 
 $messages = array(
+'underline-always' => 'allfart',
+'underline-never'  => 'nie net',
+
 # Dates
 'sunday'    => 'Sunndaag',
 'monday'    => 'Mundaag',
@@ -19,6 +22,13 @@ $messages = array(
 'thursday'  => 'Dunnerschdaag',
 'friday'    => 'Freidaag',
 'saturday'  => 'Samschdaag',
+'sun'       => 'Su',
+'mon'       => 'Mo',
+'tue'       => 'Di',
+'wed'       => 'Mi',
+'thu'       => 'Du',
+'fri'       => 'Fr',
+'sat'       => 'Sa',
 'january'   => 'Yenner',
 'february'  => 'Hanning',
 'march'     => 'Matz',
@@ -38,17 +48,25 @@ $messages = array(
 'may'       => 'Moi',
 'jun'       => 'Yuni',
 'jul'       => 'Yuli',
+'aug'       => 'Aug.',
+'sep'       => 'Sep.',
+'oct'       => 'Okt.',
+'nov'       => 'Nov.',
 'dec'       => 'Dis.',
 
+'about'      => 'Iwwer',
+'qbedit'     => 'Ennere',
 'mytalk'     => 'Mei Gschwetz-Blatt',
 'navigation' => 'Faahre-Gnepp',
+'and'        => '&#32;unn',
 
+'tagline'          => 'Vun {{SITENAME}}',
 'help'             => 'Hilf',
 'search'           => 'Guuck uff',
 'searchbutton'     => 'Guuck uff',
 'go'               => 'Geh',
 'history'          => "G'schicht",
-'history_short'    => "G'schicht",
+'history_short'    => 'Gschicht',
 'edit'             => 'ennere / tscheensche',
 'talkpagelinktext' => 'Gschwetz',
 'talk'             => 'Gschwetz',
@@ -57,6 +75,7 @@ $messages = array(
 'jumptosearch'     => 'guuck uff',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'Iwwer {{SITENAME}}',
 'mainpage'             => 'Haaptblatt',
 'mainpage-description' => 'Haaptblatt',
 'portal'               => 'Gmeeschafts-Portal',
@@ -64,6 +83,7 @@ $messages = array(
 
 'retrievedfrom' => 'Vun „$1“',
 'editsection'   => 'Ennere',
+'editold'       => 'Ennere',
 'editlink'      => 'ennere',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -74,21 +94,27 @@ $messages = array(
 'logout' => 'geh naus',
 
 # Search results
-'nextn'       => 'neegschte $1',
-'powersearch' => 'Guuck uff',
+'nextn'              => 'neegschte $1',
+'search-result-size' => '$1 ({{PLURAL:$2|1 Wadd|$2 Wadde}})',
+'powersearch'        => 'Guuck uff',
 
 # Preferences page
 'preferences'       => 'paerseenlich Profil',
 'searchresultshead' => 'Guuck uff',
 
 # Recent changes
-'recentchanges' => 'Was mer letscht geduh henn',
+'recentchanges'   => 'Was mer letscht geduh henn',
+'minoreditletter' => 'g',
+'newpageletter'   => 'N',
+'boteditletter'   => 'B',
 
 # Random page
 'randompage' => 'Ennich Ardickel',
 
+'brokenredirects-edit' => '(ennere)',
+
 # Miscellaneous special pages
-'move' => 'ziehe',
+'move' => 'Ziehe',
 
 # Watchlist
 'watchlist'     => 'Mei Watsch-Lischt',
@@ -108,9 +134,13 @@ $messages = array(
 'ipblocklist-submit' => 'Guuck uff',
 
 # Tooltip help for the actions
-'tooltip-p-logo' => 'Haaptblatt',
+'tooltip-pt-mytalk' => 'Dei Gschwetz-Blatt',
+'tooltip-p-logo'    => 'Haaptblatt',
 
 # Special:NewFiles
 'ilsubmit' => 'Guuck uff',
+
+# Special:Tags
+'tags-edit' => 'ennere',
 
 );

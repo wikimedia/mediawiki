@@ -956,6 +956,7 @@ Segg also to, dat du dat ok würklich wullt, dat du de Konsequenzen versteist un
 'revdelete-logentry'             => 'Sichtborkeit vun Version för [[$1]] ännert',
 'logdelete-logentry'             => 'Sichtborkeit vun Begeevnis för [[$1]] ännert',
 'revdelete-success'              => "'''Sichtborkeit vun Version mit Spood ännert.'''",
+'revdelete-failure'              => "'''Sichtborkeit vun de Version kann nich ännert warrn.'''",
 'logdelete-success'              => "'''Sichtborkeit in Logbook mit Spood ännert.'''",
 'revdel-restore'                 => 'Sichtborkeit ännern',
 'pagehist'                       => 'Versionshistorie',
