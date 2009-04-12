@@ -1230,18 +1230,18 @@ function wfArrayToCGI( $array1, $array2 = NULL )
 			if ( '' != $cgi ) {
 				$cgi .= '&';
 			}
-			if(is_array($value))
-			{
+			if ( is_array( $value ) ) {
 				$firstTime = true;
-				foreach($value as $v)
-				{
-					$cgi .= ($firstTime ? '' : '&') .
+				foreach ( $value as $v ) {
+					$cgi .= ( $firstTime ? '' : '&') .
 						urlencode( $key . '[]' ) . '=' .
 						urlencode( $v );
 					$firstTime = false;
 				}
-			}
-			else
+			} else {
+				if ( is_object( $value ) ) {
+					$value = $value->__toString();
+				}
 				$cgi .= urlencode( $key ) . '=' .
 					urlencode( $value );
 		}
