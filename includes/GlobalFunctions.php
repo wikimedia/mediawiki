@@ -1244,6 +1244,7 @@ function wfArrayToCGI( $array1, $array2 = NULL )
 				}
 				$cgi .= urlencode( $key ) . '=' .
 					urlencode( $value );
+			}
 		}
 	}
 	return $cgi;
