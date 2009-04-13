@@ -18,8 +18,8 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
-	function mustRender() { return true; }
-	function isMultiPage() { return true; }
+	function mustRender( $file ) { return true; }
+	function isMultiPage( $file ) { return true; }
 
 	function getParamMap() {
 		return array(
