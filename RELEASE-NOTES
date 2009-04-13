@@ -340,6 +340,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11381) session.save_handler being set twice (causes error)
 * (bug 17835) ForeignAPIRepo throwing error on first page load for file
 * (bug 18115) ForeignAPIRepo cache isn't working
+* Fixed a bug caused by LanguageConverter.php, which brings an abnormal '}-'
+  after some parsed math syntax.
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
@@ -393,8 +395,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added uiprop=changeablegroups to meta=userinfo
 * Added usprop=gender to list=users
 * (bug 18311) action=purge now works for images too
-* Fixed a bug caused by LanguageConverter.php, which brings an abnormal '}-'
-  after some parsed math syntax.
+* Add parentid to prop=revisions output
 
 === Languages updated in 1.15 ===
 

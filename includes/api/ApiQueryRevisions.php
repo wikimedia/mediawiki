@@ -317,6 +317,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 		if ($this->fld_ids) {
 			$vals['revid'] = intval($revision->getId());
 			// $vals['oldid'] = intval($row->rev_text_id);	// todo: should this be exposed?
+			if (!is_null($revision->getParentId()))
+				$vals['parentid'] = intval($revision->getParentId());
 		}
 
 		if ($this->fld_flags && $revision->isMinor())
