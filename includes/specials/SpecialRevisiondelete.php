@@ -138,7 +138,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$ids = $this->fileids;
 				break;
 			default: // bad type?
-				$ids = $this->logids;
 				return array($conds,$limit);
 		}
 		// Just get the whole log if there are a lot if items
