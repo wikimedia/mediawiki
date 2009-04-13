@@ -191,6 +191,12 @@ class BitmapHandler extends ImageHandler {
 				return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
 			}
 
+			if ( !file_exists( $srcPath ) ) {
+				$err = "File seems to be missing: $srcPath";
+				wfDebug( "$err\n" );
+				return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
+			}
+
 			$src_image = call_user_func( $loader, $srcPath );
 			$dst_image = imagecreatetruecolor( $physicalWidth, $physicalHeight );
 
