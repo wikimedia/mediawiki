@@ -343,6 +343,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed a bug caused by LanguageConverter.php, which brings an abnormal '}-'
   after some parsed math syntax.
 * (bug 18441) rebuildrecentchanges.inc no longer ignores $wgLogRestrictions
+* (bug 18317) Bolded selections in 1 | 3 | etc days on RecentChanges now use
+  <strong> instead of hardcoded styles
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
