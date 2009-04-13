@@ -342,6 +342,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18115) ForeignAPIRepo cache isn't working
 * Fixed a bug caused by LanguageConverter.php, which brings an abnormal '}-'
   after some parsed math syntax.
+* (bug 18441) rebuildrecentchanges.inc no longer ignores $wgLogRestrictions
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

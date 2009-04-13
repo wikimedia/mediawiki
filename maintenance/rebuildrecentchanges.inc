@@ -122,20 +122,10 @@ function rebuildRecentChangesTablePass3()
 
 	print( "Loading from user, page, and logging tables...\n" );
 	
-	global $wgRCMaxAge;
-	// Some logs don't go in RC. This can't really detect all of those.
-	// At least do the basics logs for a standard install...
-	// FIXME: this needs to be maintained
-	$basicRCLogs = array(
-		'newusers',
-		'block',
-		'protect',
-		'rights',
-		'delete',
-		'upload',
-		'move',
-		'import',
-		'merge' );
+	global $wgRCMaxAge, $wgLogTypes, $wgLogRestrictions;
+	// Some logs don't go in RC. This should check for that
+	$baseRCLogs = array_diff( $wgLogTypes, array_keys( $wgLogRestrictions ) );
+		
 	// Escape...blah blah
 	$selectLogs = array();
 	foreach( $basicRCLogs as $logtype ) {
