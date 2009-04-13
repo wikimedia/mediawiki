@@ -83,10 +83,12 @@ $messages = array(
 'dec'           => 'دسمبر',
 
 # Categories related messages
+'pagecategories'           => '{{PLURAL:$1|گٹھ|گٹھیاں}}',
 'category_header'          => '"$1" کیٹاگری وچ صفحے',
 'subcategories'            => 'تھلے آلی کیٹاگری',
 'category-media-header'    => 'اس "$1" کیٹاگری وچ میڈيا',
 'category-empty'           => "''اس کیٹاگری وچ کوئی صفحہ یا میڈیا موجود نہیں۔''",
+'hidden-categories'        => '{{PLURAL:$1|چھپی گٹھ|چھپی گٹھیاں}}',
 'hidden-category-category' => 'لکائیاں ٹولیاں', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'جاری',
 
@@ -156,6 +158,8 @@ $messages = array(
 'otherlanguages'    => 'دوجیاں زبانں وچ',
 'redirectedfrom'    => '(لیایا گیا $1)',
 'redirectpagesub'   => 'صفحہ ریڈائریکٹ کرو',
+'lastmodifiedat'    => 'This page was last modified on $1, at $2.
+اس صفحے نوں آخری آری $1 تریخ نوں $2 وجے بدلیا گیا۔', # $1 date, $2 time
 'protectedpage'     => 'بجایا صفحہ',
 'jumpto'            => 'جاو:',
 'jumptonavigation'  => 'مدد',
@@ -164,6 +168,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'بارے چ {{SITENAME}}',
 'aboutpage'            => 'Project:بارے وچ',
+'copyright'            => 'مال $1 دے تھلے ہے گا اے۔',
 'copyrightpage'        => '{{ns:project}}:نقل دے حق',
 'currentevents'        => 'اج کل دے واقعات',
 'currentevents-url'    => 'Project:اج کل دے واقعات',
@@ -199,12 +204,13 @@ $messages = array(
 'site-rss-feed'       => '$1 RSS Feed',
 'site-atom-feed'      => '$1 Atom Feed',
 'page-rss-feed'       => '"$1" RSS Feed',
+'red-link-title'      => '$1 (اے صفحہ حلے تک نئیں بنایا گیا)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'صفحہ',
 'nstab-user'      => 'ورتن والے دا صفحہ',
 'nstab-media'     => 'میڈیا آلا صفحہ',
-'nstab-special'   => 'خاص',
+'nstab-special'   => 'خاص صفحہ',
 'nstab-project'   => 'منصوبے دا صفحہ',
 'nstab-image'     => 'فائل',
 'nstab-mediawiki' => 'سنیعا',
@@ -217,15 +223,20 @@ $messages = array(
 'nosuchspecialpage' => 'انج دا کوئی خاص صفحہ نئیں',
 
 # General errors
-'error'          => 'مسئلا',
-'databaseerror'  => 'ڈیٹابیس دی غلطی',
-'internalerror'  => 'اندر دا مسئلا',
-'badtitle'       => 'پیڑا عنوان',
-'badtitletext'   => 'منگیا گۓ صفحہ دا ناں غلط اے، خالی اے یا غلط تریقے نال جوڑیا گیا اے۔<div/>
+'error'           => 'مسئلا',
+'databaseerror'   => 'ڈیٹابیس دی غلطی',
+'missing-article' => 'وکیپیڈیا نوں تواڈے لفظ "$1" $2 دے نال دا صفحہ نئیں لبیا جیڑا کے اینوں کھوج لینا چائیدا سی۔
+
+اے مسئلہ عام طور تے اس ویلے ہوندا اے جدوں تسی کسی پرانے جوڑ یا فیر کسی صفحے دی تاریخ چ جا کے جوڑ تے کلک کر دے اوہ۔
+
+اگر انج نئیں فیر تسی سافٹویئر چ اک مسئلا لب لیا اے۔ توانوں اے گل کسی مکھیے نوں دسو۔',
+'internalerror'   => 'اندر دا مسئلا',
+'badtitle'        => 'پیڑا عنوان',
+'badtitletext'    => 'منگیا گۓ صفحہ دا ناں غلط اے، خالی اے یا غلط تریقے نال جوڑیا گیا اے۔<div/>
 ہوسکدا اے ایدے چ اک دو ھندسے ایسے ہون جیڑے عنوان وچ استعمال نہیں کیتے جاسکدے۔',
-'viewsource'     => 'ویکھو',
-'viewsourcefor'  => '$1 لئ',
-'viewsourcetext' => 'تسی اس صفحے دی لکھائی نوں ویکھ تے نقل کر سکدے او:',
+'viewsource'      => 'ویکھو',
+'viewsourcefor'   => '$1 لئ',
+'viewsourcetext'  => 'تسی اس صفحے دی لکھائی نوں ویکھ تے نقل کر سکدے او:',
 
 # Virus scanner
 'virus-unknownscanner' => 'اندیکھا اینٹیوائرس:',
@@ -421,6 +432,7 @@ $messages = array(
 'revdelete-hide-comment' => 'لکھن دے بارے چ صلاع لکاؤ',
 'revdelete-hide-user'    => 'لکھن آلے دا ناں/آئی پی پتہ لکاؤ',
 'revdelete-hide-image'   => 'فائل دا مواد لکاؤ',
+'revdel-restore'         => 'وکھالا بدلو',
 'pagehist'               => 'صفحے دی تاریخ',
 'deletedhist'            => 'مٹائی گئی تاریخ',
 'revdelete-content'      => 'مواد',
@@ -444,20 +456,34 @@ $messages = array(
 
 # Search results
 'searchresults'             => 'کھوج دا نتارا',
+'searchresults-title'       => '"$1" دے کھوج نتارے',
+'searchresulttext'          => 'وکیپیڈیا چ کھوجن دے بارے چ ہور معلومات آستے کھوجن دا صفحہ ویکھو',
+'searchsubtitle'            => "تواڈی لفظ '''[[:$1]] آستے کھوج",
 'noexactmatch'              => "'''اس \"\$1\" ناں دا کوئی صفحہ نہیں۔'''
 تسی اے [[:\$1|صفحہ لکھ سکدے او]]۔",
+'notitlematches'            => 'اے لفظ کسی صفحے دے ناں چ نئیں اے۔',
+'notextmatches'             => 'کوئی صفح نئیں لبیا',
 'prevn'                     => 'پہلا $1',
 'nextn'                     => 'اگلا $1',
 'viewprevnext'              => 'ویکھو ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:فہرست',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 لفظ|$2 الفاظ}})',
+'search-redirect'           => '($1 ریڈائریکٹ)',
+'search-section'            => '($1 ٹوٹا)',
+'search-suggest'            => 'تسی $1 دی گل تے نئیں کر رۓ:',
 'search-interwiki-caption'  => 'نال دے منصوبے',
 'search-mwsuggest-enabled'  => 'صلاع دے نال',
 'search-mwsuggest-disabled' => 'کوئی صلاع نئیں',
 'search-relatedarticle'     => 'جڑیاں',
 'searchrelated'             => 'جڑیا',
 'searchall'                 => 'سارے',
+'showingresultstotal'       => 'اس صفحے تے $1 توں $2 تک نتارے وکھاۓ جارۓ نیں۔ جدوں کہ $4 وچوں $3 نتارے تھلے نیں۔',
+'nonefound'                 => "'''صفحیاں دے ناں ڈیفالٹ تے کھوجے جاندے نیں'''
+اپنے لفظ توں پہلاں ''all:'' لا کے کھوجو۔ اس نال گلاں باتاں آلے صفحے، سچے وغیرہ سب چ تواڈا لفظ کھوجیا جاۓ گل۔",
 'powersearch'               => 'ودیا کھوج',
 'powersearch-legend'        => 'ہور کھوج',
+'powersearch-ns'            => 'ناں الیاں جگہاں چ لبو:',
+'powersearch-redir'         => 'ریڈائریکٹس دی لسٹ وکھاؤ',
 'powersearch-field'         => 'لئی کھوج',
 'search-external'           => 'باہر دی کھوج',
 
@@ -494,6 +520,7 @@ $messages = array(
 'group'            => 'ٹولی:',
 'group-user'       => 'ورتن آلے',
 'group-bot'        => 'بوٹ',
+'group-sysop'      => 'مکھیۓ',
 'group-bureaucrat' => 'بیوروکریٹ',
 'group-all'        => '(سارے)',
 
@@ -561,6 +588,8 @@ $messages = array(
 'newpageletter'                  => 'نواں',
 'boteditletter'                  => 'بوٹ',
 'rc_categories_any'              => 'کوئی',
+'rc-enhanced-expand'             => 'لمبی کہانی وکھاؤ (جاوا سکرپٹ چائیدا اے)',
+'rc-enhanced-hide'               => 'لمبی کہانی لکاؤ',
 
 # Recent changes linked
 'recentchangeslinked'          => 'ملدیاں جلدیاں تبدیلیاں',
@@ -623,11 +652,13 @@ $messages = array(
 'filehist-revert'           => 'واپس',
 'filehist-current'          => 'موجودہ',
 'filehist-datetime'         => 'تاریخ/ویلہ',
+'filehist-thumb'            => 'نکی مورت',
+'filehist-thumbtext'        => '$1 ورثن دی نکی مورت',
 'filehist-user'             => 'ورتن والا',
 'filehist-dimensions'       => 'پاسے',
 'filehist-filesize'         => 'فائل دا ناپ',
 'filehist-comment'          => 'راۓ',
-'imagelinks'                => 'کتھے کتھے تعلق اے',
+'imagelinks'                => 'کتھے کتھے جوڑ اے',
 'linkstoimage'              => 'تھلے دتے گۓ {{PLURAL:$1|$1 صفحے}} اس فائل نال جڑدے نے',
 'nolinkstoimage'            => 'اس فائل نال جڑیا کوئی صفحہ نہیں۔',
 'sharedupload'              => 'اے فائل مشترکہ اپلوڈ اے تے اے دوجے منصوبے وی استعمال کر سکدے نے۔',
@@ -863,7 +894,7 @@ $messages = array(
 'undeletepage'              => 'مٹاۓ گۓ صفحے ویکھو تے واپس لے آؤ',
 'viewdeletedpage'           => 'مٹاۓ گۓ صفحے ویکھو',
 'undeletebtn'               => 'بحال کرو',
-'undeletelink'              => 'واپس لے چلو',
+'undeletelink'              => 'ویکھو/بحال کرو',
 'undeletereset'             => 'پہلی حالت تے لے آؤ',
 'undeletecomment'           => 'صلاع:',
 'undelete-search-box'       => 'مٹاۓ گۓ صفحے کھوجو',
@@ -932,6 +963,7 @@ $messages = array(
 'emailblock'              => 'ای میل روک دتی گئی اے',
 'blocklink'               => 'روک',
 'unblocklink'             => 'روک ختم',
+'change-blocklink'        => 'روک نوں بدلو',
 'contribslink'            => 'حصے داری',
 'blocklogpage'            => 'لاگ روکو',
 'blocklogentry'           => 'روک دتا گیا تے اے رکاوٹ دا ویلا $2 $3 مک جاۓ گا [[$1]]',
@@ -1044,6 +1076,8 @@ $messages = array(
 'tooltip-ca-watch'                => 'اس صفحہ تے نظر رکھو',
 'tooltip-ca-unwatch'              => 'اس صفحے توں نظر ہٹاؤ',
 'tooltip-search'                  => 'کھوج {{SITENAME}}',
+'tooltip-search-go'               => 'اس ناں دے صفحے تے چلو، اگر اے ہے گا اے',
+'tooltip-search-fulltext'         => 'اس لفظ نوں صفحیاں چ لبو',
 'tooltip-p-logo'                  => 'پہلا صفحہ',
 'tooltip-n-mainpage'              => 'پہلے صفحے دی سیر',
 'tooltip-n-portal'                => 'منصوبے دے بارے وچ، توسی کی کر سکدے او تے کنج کھوج سکدے او',
@@ -1052,11 +1086,13 @@ $messages = array(
 'tooltip-n-randompage'            => 'بیترتیب صفحے کھولو۔',
 'tooltip-n-help'                  => 'مدد لینے آلی جگہ۔',
 'tooltip-t-whatlinkshere'         => 'اس نال جڑے سارے وکی صفحے۔',
+'tooltip-t-recentchangeslinked'   => 'اس صفحے توں جڑے صفحیاں چ نویاں تبدیلیاں',
 'tooltip-t-contributions'         => 'اس ورتن والے دے کم ویکھو',
 'tooltip-t-emailuser'             => 'اس ورتن والے نو ای میل کرو',
 'tooltip-t-upload'                => 'فائل چڑھاؤ',
 'tooltip-t-specialpages'          => 'سارے خاص صفحے',
 'tooltip-t-print'                 => 'اس صفحے دا چھپنے آلا ورژن ویکھو',
+'tooltip-t-permalink'             => 'اس صفحے دے اس ورژن نال پرماننٹ لنک',
 'tooltip-ca-nstab-main'           => 'مواد آلا صفحہ ویکھو',
 'tooltip-ca-nstab-user'           => 'ورتن آلے دا صفحہ ویکھو',
 'tooltip-ca-nstab-media'          => 'میڈیا آلا صفحہ ویکھو',
@@ -1073,6 +1109,9 @@ $messages = array(
 'tooltip-compareselectedversions' => 'چنے ہوۓ صفحیاں وچ فرق ویکھو۔',
 'tooltip-watch'                   => 'اس صفحے تے نظر رکھو',
 'tooltip-upload'                  => 'فائل چڑھانا شروع کرو',
+'tooltip-rollback'                => '"رول بیک" اک کلک چ صفحے نوں پچھلی حالت چ لے چلے گا',
+'tooltip-undo'                    => '"واپس" تے کلک کرن نال توانوں صفحہ کچا وکھایا جاۓ گا۔
+اس نال تسی واپس کرن دی وجہ لکھ سکو گے۔',
 
 # Attribution
 'others' => 'دوجے',

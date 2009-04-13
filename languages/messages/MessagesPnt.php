@@ -48,6 +48,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
+'tog-underline'           => 'Υπογράμμιση συνδεσμίων:',
 'tog-editondblclick'      => 'Άλλαγμαν σελιδίων με διπλόν κλικ (JavaScript)',
 'tog-shownumberswatching' => "Δείξον τοι χρήστς π' δεαβάζνε",
 'tog-showhiddencats'      => 'Δείξον κρυμμένα κατηγορίας',
@@ -528,6 +529,9 @@ $messages = array(
 'revdelete-summary' => 'σύνοψην',
 'revdelete-uname'   => "όνεμαν χρήστ'",
 
+# History merging
+'mergehistory-into' => 'Σελίδα προορισμού:',
+
 # Merge log
 'revertmerge' => 'Χώρτσον ξαν',
 
@@ -654,6 +658,7 @@ $messages = array(
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|αλλαγή|αλλαγάς}}',
 'recentchanges'                  => 'Υστερνά αλλαγάς',
+'recentchanges-legend'           => 'Επιλογάς υστερνιδίων αλλαγίων',
 'recentchanges-feed-description' => "Τ' ασ' όλεα καινούρεα αλλαγάς τη wiki ωρία σ' αβούτεν την περίληψην.",
 'rcnote'                         => "Αφκά {{PLURAL:$1|έχ' '''1''' αλλαγήν|έχ' τα '''$1''' τελευταία αλλαγάς}} τη {{PLURAL:$2|τελευταίας ημέρας|τελευταίων '''$2''' ημερίων}}, σα $5, $4.",
 'rcnotefrom'                     => "Αφκά καικά ευρίουνταν τ' αλλαγάς ασό <b>$2</b> (εμφάνιση <b>$1</b> αλλαγίων max).",
@@ -866,6 +871,7 @@ $messages = array(
 'unwatchthispage'   => 'Τέλεμαν ωριαγματί',
 'watchlist-details' => '{{PLURAL:$1|$1 σελίδα|$1 σελίδας}} ωριάσκουνταν, θέγα τα σελίδας καλατσεματί.',
 'wlshowlast'        => "Φανέρωμαν τ' υστερναίων $1 ωρίων $2 ημερίων $3",
+'watchlist-options' => 'Επιλογάς ωριαγματί',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ωριάζω...',

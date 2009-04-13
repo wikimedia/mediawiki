@@ -918,7 +918,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'unblocklink'   => 'acha kuzuia',
 'contribslink'  => 'michango',
 'blocklogpage'  => 'Kumbukumbu ya uzuio',
-'blocklogentry' => '[[$1]] imezuiwa mpaka $2 $3',
+'blocklogentry' => 'amemzuia [[$1]] mpaka $2 $3',
 
 # Move page
 'move-page-legend' => 'Sogeza ukurasa',
