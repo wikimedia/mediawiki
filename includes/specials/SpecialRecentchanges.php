@@ -597,8 +597,12 @@ class SpecialRecentChanges extends SpecialPage {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
 		$params = $override + $options;
-		return $sk->link( $this->getTitle(), htmlspecialchars( $title ),
-			( $active ? array( 'style'=>'font-weight: bold;' ) : array() ), $params, array( 'known' ) );
+		if ( $active ) {
+			return $sk->link( $this->getTitle(), '<strong>' . htmlspecialchars( $title ) . '</strong>',
+							  array(), $params, array( 'known' ) );
+		} else {
+			return $sk->link( $this->getTitle(), htmlspecialchars( $title ), array() , $params, array( 'known' ) );
+		}
 	}
 
 	/**
