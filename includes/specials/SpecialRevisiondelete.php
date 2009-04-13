@@ -85,6 +85,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->showImages();
 		} else if( $this->deleteKey == 'logid' ) {
 			$this->showLogItems();
+			return; // no logs for now
 		}
 		list($qc,$lim) = $this->getLogQueryCond();
 		# Show relevant lines from the deletion log
@@ -121,8 +122,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	
 	private function getLogQueryCond() {
 		$ids = $safeIds = array();
-		$action = 'revision';
 		$limit = 25; // default
+		$conds = array( 'log_action' => 'revision' ); // revision delete logs
 		switch( $this->deleteKey ) {
 			case 'oldid':
 				$ids = $this->oldids;
@@ -136,13 +137,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			case 'fileid':
 				$ids = $this->fileids;
 				break;
-			case 'logid':
+			default: // bad type?
 				$ids = $this->logids;
-				$action = 'event';
-				break;
+				return array($conds,$limit);
 		}
-		// Revision delete logs
-		$conds = array( 'log_action' => $action );
 		// Just get the whole log if there are a lot if items
 		if( count($ids) > $limit )
 			return array($conds,$limit);
@@ -152,22 +150,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$safeIds[] = $m[0];
 			}
 		}
-		// Optimization for logs: the event was hidden after it was made
-		if( $action == 'event' ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			# Get the timestamp of the first item
-			$first = $dbr->selectField( 'logging', 'log_timestamp',
-				array('log_id' => $safeIds), __METHOD__, array('ORDER BY' => 'log_id') );
-			if( $first == false ) {
-				return array( array('1=0'), $limit ); // If there are no items, then stop here
-			}
-			$conds[] = 'log_timestamp > '.$dbr->addQuotes($first); // type,time index
-		}
 		// Format is <id1,id2,i3...>
 		if( count($safeIds) ) {
-			// Log deletions do not have an item type, others do...
-			$type = ($this->deleteKey != 'logid') ? "^{$this->deleteKey}.*" : '';
-			$conds[] = "log_params RLIKE '$type(^|\n|,)(".implode('|',$safeIds).")(,|\n|$)'";
+			$conds[] = "log_params RLIKE '^{$this->deleteKey}.*(^|\n|,)(".implode('|',$safeIds).")(,|\n|$)'";
 		} else {
 			$conds = array('1=0');
 		}
