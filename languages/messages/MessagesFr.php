@@ -1037,7 +1037,7 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 'rev-deleted-user'               => '(nom d’utilisateur supprimé)',
 'rev-deleted-event'              => '(entrée supprimée)',
 'rev-deleted-text-permission'    => "Cette version de la page a été '''supprimée'''.
-Il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} historique des suppressions].",
+Il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} historique des suppressions].",
 'rev-deleted-text-unhide'        => "Cette version de la page a été '''supprimée'''.
 Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} le journal des suppression].
 Comme administrateur, vous pouvez toujours [$1 voir cette version] si vous le voulez.",

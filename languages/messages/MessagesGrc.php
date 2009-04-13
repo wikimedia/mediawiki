@@ -472,6 +472,7 @@ $1',
 'resetpass-no-info'         => 'Ἐὰν μὴ συνδέῃς οὐκ ἔξεστί σοι εὐθέως δεῦρο βαίνειν.',
 'resetpass-submit-loggedin' => 'Ἀλλάττειν σύνθημα',
 'resetpass-temp-password'   => 'Προσωρινὸν σύνθημα:',
+'resetpass-log'             => 'Τὸ σύνθημα ἀναρρυθμίζει τὸν κατάλογον',
 'resetpass-comment'         => 'Αἰτία μεταρρυθμίσεως συνθήματος:',
 
 # Edit page toolbar

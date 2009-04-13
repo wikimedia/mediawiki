@@ -5,6 +5,7 @@
  * @file
  *
  * @author Kamizu
+ * @author Sdm1985
  * @author לערי ריינהארט
  */
 
@@ -73,29 +74,57 @@ $messages = array(
 'protect'           => 'Protehá',
 'unprotect'         => 'stop di protehá',
 'unprotectthispage' => 'Stop di protehá e página aki',
+'talkpagelinktext'  => 'Papia',
 'specialpage'       => 'Página Spesial',
-'articlepage'       => 'Wak artíkulo',
+'personaltools'     => 'Hèrmèntnan Personal',
+'postcomment'       => 'Sekshon Nobo',
+'articlepage'       => 'Wak página di kontenido',
 'talk'              => 'Diskushon',
+'views'             => 'Kantidat di biaha mirá',
+'toolbox'           => 'Kaha di Hèrmènt',
 'userpage'          => 'Wak página di uzadó',
+'projectpage'       => 'Wak página di e proyekto',
+'imagepage'         => 'Mira página di e dokumento',
+'mediawikipage'     => 'Mira paginanan di mensahe',
+'templatepage'      => 'Mira malchi di e página',
+'viewhelppage'      => 'Mira página di yudansa',
+'categorypage'      => 'Mira e página di kategoria',
 'viewtalkpage'      => 'Wak diskushon',
 'otherlanguages'    => 'Na otro idioma',
+'redirectedfrom'    => '(Bo a yega akinan pa via di e página $1)',
+'redirectpagesub'   => 'Página ku ta sirbi komo portal',
+'lastmodifiedat'    => 'E páginá aki a wòrdu kambiá ultimo biaha riba $1, ora $2.', # $1 date, $2 time
+'viewcount'         => 'E paginá aki a wòrdu mirá {{PLURAL:$1|biaha|$1 biaha}}.',
+'protectedpage'     => 'Página Protehá',
+'jumpto'            => 'Bai na:',
+'jumptonavigation'  => 'Nabegashon',
+'jumptosearch'      => 'Buska',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tokante {{SITENAME}}',
 'aboutpage'            => 'Project:Info',
+'copyright'            => 'E kontenido ta disponibel bou di $1.',
+'copyrightpagename'    => '{{SITENAME}} derecho di outor',
 'copyrightpage'        => '{{ns:project}}:Derechinan di outor',
 'currentevents'        => 'Eventonan aktual',
 'currentevents-url'    => 'Project:Eventonan aktual',
+'disclaimers'          => 'Deklarashon di Liberashon for di Responsabilidatnan',
+'disclaimerpage'       => 'Project:Deklarashon di Liberashon for di Responsabilidat General',
 'edithelp'             => 'Ayudo ku editamentu',
 'edithelppage'         => 'Help:Kon pa editá artíkulo',
-'faqpage'              => 'Project:FAQ',
+'faq'                  => 'Preguntanan mas Puntrá',
+'faqpage'              => 'Project:Preguntanan mas Puntrá',
 'helppage'             => 'Help:Kontenido',
 'mainpage'             => 'Página Prinsipal',
 'mainpage-description' => 'Página Prinsipal',
+'policy-url'           => 'Project:Pólisa',
 'portal'               => 'Portal di komunidat',
 'portal-url'           => 'Project:Portal di komunidat',
+'privacy'              => 'Pólisa di Privasidat',
+'privacypage'          => 'Project:Pólisa di Privasidat',
 
-'badaccess' => 'Eror di permiso',
+'badaccess'        => 'Eror di outorisashon',
+'badaccess-group0' => 'Bo no tin outorisashon pa ehekutá e akshon ku bo a skohe.',
 
 'youhavenewmessages'      => 'Bo tin $1 ($2).',
 'newmessageslink'         => 'mensahe nobo',
