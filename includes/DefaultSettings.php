@@ -2888,6 +2888,7 @@ $wgLogTypes = array( '',
  * Users without this will not see it in the option menu and can not view it
  * Restricted logs are not added to recent changes
  * Logs should remain non-transcludable
+ * Format: logtype => permissiontype
  */
 $wgLogRestrictions = array(
 	'suppress' => 'suppressionlog'
