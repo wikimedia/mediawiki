@@ -197,10 +197,10 @@ class WikiExporter {
 				array( 'ORDER BY' => 'log_id', 'USE INDEX' => array('logging' => 'PRIMARY') )
 			);
 			$wrapper = $this->db->resultObject( $result );
+			$this->outputLogStream( $wrapper );
 			if( $this->buffer == WikiExporter::STREAM ) {
 				$this->db->bufferResults( $prev );
 			}
-			$this->outputLogStream( $wrapper );
 		# For page dumps...
 		} else {
 			$tables = array( 'page', 'revision' );
