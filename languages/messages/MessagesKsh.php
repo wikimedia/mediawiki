@@ -521,7 +521,7 @@ un doht em och de URL vun dä Sigg hee sage.',
 'unexpected'           => 'Domet hät keiner jerechnet: „$1“=„$2“',
 'formerror'            => 'Dat es donevve jejange: Wor nix, met däm Fomular.',
 'badarticleerror'      => 'Dat jeiht met hee dä Sigg nit ze maache.',
-'cannotdelete'         => 'De Sigg oder de Datei hee fottzeschmieße es nit müjjelich. Mach sin, dat ene andere Metmaacher flöcker wor, hät et vürher hee jo ald jedon, un jetz es die Sigg ald fott.',
+'cannotdelete'         => 'De Sigg oder de Datei hee fottzeschmieße es nit müjjelich. Mach sin, dat ene andere Metmaacher flöcker wor, hät et vürher jedon, un jetz es die Sigg ald fott.',
 'badtitle'             => 'Verkihrte Üvverschreff',
 'badtitletext'         => 'De Üvverschreff es esu nit en Odenung. Et muss jet dren stonn.
 Et künnt sin, dat ein vun de speziell Zeiche dren steiht,

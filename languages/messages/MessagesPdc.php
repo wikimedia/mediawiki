@@ -65,7 +65,7 @@ $messages = array(
 'search'           => 'Guuck uff',
 'searchbutton'     => 'Guuck uff',
 'go'               => 'Geh',
-'history'          => "G'schicht",
+'history'          => 'Gschicht',
 'history_short'    => 'Gschicht',
 'edit'             => 'ennere / tscheensche',
 'talkpagelinktext' => 'Gschwetz',
@@ -87,6 +87,7 @@ $messages = array(
 'editlink'      => 'ennere',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main' => 'Blatt',
 'nstab-help' => 'Hilf',
 
 # Login and logout pages
@@ -118,6 +119,7 @@ $messages = array(
 
 # Watchlist
 'watchlist'     => 'Mei Watsch-Lischt',
+'mywatchlist'   => 'Mei Watsch-Lischt',
 'watch'         => 'watsche',
 'watchthispage' => 'watsch des Blatt',
 

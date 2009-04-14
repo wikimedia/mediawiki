@@ -5,6 +5,7 @@
  * @file
  *
  * @author Arikasikis
+ * @author Spacebirdy
  */
 
 $messages = array(
@@ -133,6 +134,10 @@ $messages = array(
 'newarticle'            => '(Balo)',
 'editing'               => 'Babaloen so $1',
 'yourdiff'              => 'Saray niduma',
+'copyrightwarning'      => "Tandaan komon ya amin ya contribution para ed {{SITENAME}} et nonoten ya pinaolian onong ed $2 (nengnengen so $1 para ed detalye).
+No ag mo labay ya say inkorit mo ed sarag ya baloen odino ibonog ed anggan siopa, ag mo ipapalima dia.<br />
+San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya public domain odino parehas ya libren resource.
+'''AG MANPALIMA NA KIMEY YA WALAY COPYRIGHT TO YA ANGGAPOY ABOLOY!'''",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Aga makagawa na account',
