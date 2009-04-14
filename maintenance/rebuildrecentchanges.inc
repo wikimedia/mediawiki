@@ -124,7 +124,7 @@ function rebuildRecentChangesTablePass3()
 	
 	global $wgRCMaxAge, $wgLogTypes, $wgLogRestrictions;
 	// Some logs don't go in RC. This should check for that
-	$baseRCLogs = array_diff( $wgLogTypes, array_keys( $wgLogRestrictions ) );
+	$basicRCLogs = array_diff( $wgLogTypes, array_keys( $wgLogRestrictions ) );
 		
 	// Escape...blah blah
 	$selectLogs = array();
