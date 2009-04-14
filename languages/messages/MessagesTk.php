@@ -258,7 +258,7 @@ Bu sahypany ulanmak üçin MediaWikiniň $1 wersiýasy talap edilýär. [[Specia
 'viewsourceold'           => 'çeşmäni gör',
 'editlink'                => 'redaktirle',
 'viewsourcelink'          => 'çeşmesini gör',
-'editsectionhint'         => '$1. bölümü redaktirle',
+'editsectionhint'         => '$1 bölümini redaktirle',
 'toc'                     => 'Mazmuny',
 'showtoc'                 => 'görkez',
 'hidetoc'                 => 'gizle',
@@ -491,6 +491,8 @@ Sessiýa açmaklygy tamamlamak üçin, bu ýere täze parol ýazyň:',
 'resetpass_bad_temporary'   => 'Nädogry wagtlaýyn parol. Eýýäm şowlulyk bilen parolyňyzy üýtgeden ýa-da täze wagtlaýyn parol talap eden bolmagyňyz mümkin.',
 'resetpass_forbidden'       => 'Parollary üýtgedip bolmaýar',
 'resetpass-submit-loggedin' => 'Paroly üýtget',
+'resetpass-wrong-oldpass'   => 'Nädogry wagtlaýyn ýa-da häzirki parol.
+Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol talap eden bolmagyňyz ahmal.',
 'resetpass-temp-password'   => 'Wagtlaýyn parol:',
 
 # Edit page toolbar
@@ -542,8 +544,8 @@ Bu ady başga sahypalarda [[Special:Search/{{PAGENAME}}|gözläp bilersiňiz]],
 'editing'                          => '$1 sahypasyny redaktirleýärsiňiz',
 'editingsection'                   => '"$1" sahypasynda bölüm redaktirleýärsiňiz',
 'yourtext'                         => 'Siziň tekstiňiz',
-'copyrightwarning'                 => "'''Üns beriň:''' {{SITENAME}} saýtyna edilen ähli goşantlar <i>$2</i> ygtyýarnamasyna laýyklykdadyr (jikme-jiklikler üçin $1-na serediň).
-Eden goşandyňyzyň başga gatnaşyjylar tarapyndan gypynç etmezden redaktirlenmegini ýa-da erkin hem-de çäklendirilmedik tertipde başga ýerlere paýlanmagyny islemeýän bolsaňyz, goşant etmäň.<br />
+'copyrightwarning'                 => "'''Üns beriň:''' {{SITENAME}} saýtyna edilen ähli goşantlar <i>$2</i> ygtyýarnamasyna laýyklykdadyr (jikme-jiklikler üçin serediň:  $1).
+Eden goşandyňyzyň başga ulanyjylar tarapyndan gypynç etmezden redaktirlenmegini ýa-da erkin hem-de çäklendirilmedik tertipde başga ýerlere paýlanmagyny islemeýän bolsaňyz, goşant etmäň.<br />
 Mundan hem başga, siz bu ýere goşant goşmak bilen bu goşandyň özüňiz tarapyndan ýazylandygyna, ýa-da jemgyýetçilige açyk bir çeşmeden ýa-da başga bir erkin çeşmeden göçürilip alnandygyna güwä geçýärsiňiz.<br />
 '''<center>AWTORLYK HUKUGY BOÝUNÇA GORALÝAN HIÇ BIR IŞI BU ÝERE BIRUGSAT GOŞMAŇ!</center>'''",
 'templatesused'                    => 'Bu sahypada ulanylan şablonlar:',
@@ -992,5 +994,12 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 
 # Special:SpecialPages
 'specialpages' => 'Ýörite sahypalar',
+
+# Special:BlankPage
+'blankpage' => 'Boş sahypa',
+
+# Special:Tags
+'tag-filter-submit' => 'Filtr',
+'tags-edit'         => 'redaktirle',
 
 );
