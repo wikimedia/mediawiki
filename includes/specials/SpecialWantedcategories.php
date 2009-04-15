@@ -13,18 +13,10 @@
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
-class WantedCategoriesPage extends QueryPage {
+class WantedCategoriesPage extends WantedQueryPage {
 
 	function getName() {
 		return 'Wantedcategories';
-	}
-
-	function isExpensive() {
-		return true;
-	}
-
-	function isSyndicated() {
-		return false;
 	}
 
 	function getSQL() {
@@ -43,23 +35,6 @@ class WantedCategoriesPage extends QueryPage {
 			WHERE page_title IS NULL
 			GROUP BY cl_to
 			";
-	}
-
-	function sortDescending() { return true; }
-
-	/**
-	 * Fetch user page links and cache their existence
-	 */
-	function preprocessResults( $db, $res ) {
-		$batch = new LinkBatch;
-		while ( $row = $db->fetchObject( $res ) )
-			$batch->add( $row->namespace, $row->title );
-		$batch->execute();
-
-		// Back to start for display
-		if ( $db->numRows( $res ) > 0 )
-			// If there are no rows we get an error seeking.
-			$db->dataSeek( $res, 0 );
 	}
 
 	function formatResult( $skin, $result ) {
