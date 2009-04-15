@@ -2144,11 +2144,12 @@ class User {
 	}
 
 	/**
-	 * Get the current skin, loading it if required
-	 * @return \type{Skin} Current skin
+	 * Get the current skin, loading it if required, and setting a title
+	 * @param Title $t The title to use in the skin
+	 * @return Skin The current skin
 	 * @todo FIXME : need to check the old failback system [AV]
 	 */
-	function &getSkin() {
+	function &getSkin( $t = null ) {
 		global $wgRequest, $wgAllowUserSkin, $wgDefaultSkin;
 		if ( ! isset( $this->mSkin ) ) {
 			wfProfileIn( __METHOD__ );
@@ -2165,6 +2166,11 @@ class User {
 			$this->mSkin =& Skin::newFromKey( $userSkin );
 			wfProfileOut( __METHOD__ );
 		}
+		if ( !$t ) {
+			global $wgOut;
+			$t = $wgOut->getTitle();
+		}
+		$this->mSkin->setTitle( $t );
 		return $this->mSkin;
 	}
 

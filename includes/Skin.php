@@ -176,8 +176,6 @@ class Skin extends Linker {
 
 		wfProfileIn( __METHOD__ );
 
-		$this->mTitle = $out->getTitle();
-
 		# Generally the order of the favicon and apple-touch-icon links
 		# should not matter, but Konqueror (3.5.9 at least) incorrectly
 		# uses whichever one appears later in the HTML source.  Make sure
@@ -268,11 +266,22 @@ class Skin extends Linker {
 		}
 	}
 
-	function setMembers(){
+	/**
+	 * Set some local globals
+	 */
+	protected function setMembers(){
 		global $wgUser;
 		$this->mUser = $wgUser;
 		$this->userpage = $wgUser->getUserPage()->getPrefixedText();
 		$this->usercss = false;
+	}
+	
+	/**
+	 * Set the title
+	 * @param Title $t The title to use
+	 */
+	public function setTitle( $t ) {
+		$this->mTitle = $t;
 	}
 
 	function outputPage( OutputPage $out ) {
