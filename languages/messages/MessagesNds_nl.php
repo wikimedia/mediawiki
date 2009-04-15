@@ -608,7 +608,7 @@ Meld \'t dan effen bie een [[Special:ListUsers/sysop|systeembeheerder]] van {{SI
 'badtitletext'         => 'De naam van de op-evreugen pagina is neet geldig, leeg, of een interwiki-verwiezing naor een onbekende of ongeldige wiki.',
 'perfcached'           => 'Disse gegevens kwammen uut de kas en bin werschienlijk neet actueel:',
 'perfcachedts'         => 'De infermasie dee hieronder steet, is op-esleugen, en is van $1.',
-'querypage-no-updates' => "Opwerderingen veur disse pagina bin op 't mement uut-eschakeld. Data zal noen neet verniejd wonnen.",
+'querypage-no-updates' => "'''Disse pagina wonnen neet meer bie-ewark.'''",
 'wrong_wfQuery_params' => 'Parremeters veur wfQuery() wanen verkeerd<br />
 Functie: $1<br />
 Zeukopdrachte: $2',
@@ -2317,8 +2317,8 @@ Vergeet neet de [[Special:UnlockDB|databanke vrie te geven]] a-j klaor bin mit '
 'talkexists'                   => "De pagina zelf is verplaos, mar de overlegpagina kon neet verplaos wonnen, umdat de doelnaam al een neet-lege overlegpagina had. Combineer de overlegpagina's haandmaotig.",
 'movedto'                      => 'wiezigen naor',
 'movetalk'                     => "De overlegpagina oek wiezigen, as 't meuglijk is.",
-'move-subpages'                => "Herneum subpagina's (tot en mit $1), as ze der bin",
-'move-talk-subpages'           => "Herneum subpagina's van overlegpagina's (tot en mit $1), as ze der bin",
+'move-subpages'                => "Herneum subpagina's (tot en mit $1)",
+'move-talk-subpages'           => "Herneum subpagina's van overlegpagina's (tot en mit $1)",
 'movepage-page-exists'         => 'De pagina $1 besteet al en kan neet autematisch vort-edaon wonnen.',
 'movepage-page-moved'          => 'De pagina $1 is herneumd naor $2.',
 'movepage-page-unmoved'        => 'De pagina $1 kon neet herneumd wonnen naor $2.',

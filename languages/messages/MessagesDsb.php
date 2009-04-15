@@ -2175,8 +2175,8 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'talkexists'                   => 'Samy bok jo se pśesunuł, ale pśisłušny diskusijny bok nic, dokulaž eksistěrujo južo taki bok z nowym mjenim. Pšosym pśirownaj wopśimjeśi manualnje.',
 'movedto'                      => 'pśesunjony do',
 'movetalk'                     => 'Diskusijny bok sobu pśesunuś.',
-'move-subpages'                => 'Wše pódboki (až do $1) pśesunuś, jolic móžno',
-'move-talk-subpages'           => 'Wše pódboki diskusijnego boka  (až do $1) pśesunuś, jolic móžno',
+'move-subpages'                => 'Wše pódboki (až do $1) pśesunuś',
+'move-talk-subpages'           => 'Wše pódboki diskusijnego boka  (až do $1) pśesunuś',
 'movepage-page-exists'         => 'Bok $1 južo eksistěrujo a njedajo se awtomatiski pśepisaś.',
 'movepage-page-moved'          => 'Bok $1 jo se do $2 pśesunuł.',
 'movepage-page-unmoved'        => 'Bok $1 njejo se do $2 pśesunuś dał.',
@@ -2247,6 +2247,9 @@ Pšosym wobglědaj [http://www.mediawiki.org/wiki/Localisation lokalizaciju Medi
 'djvu_no_xml'              => 'Njejo móžno, XML za DjVu-dataju wótwołaś.',
 'thumbnail_invalid_params' => 'Njepłaśece parametry pśeglěda',
 'thumbnail_dest_directory' => 'Njejo móžno celowy zapis stwóriś.',
+'thumbnail_image-type'     => 'Wobrazy typ se njepódpěra',
+'thumbnail_gd-library'     => 'Njedopołna konfiguracija GD-biblioteki: felujuca funkcija $1',
+'thumbnail_image-missing'  => 'Zda se, až dataja felujo: $1',
 
 # Special:Import
 'import'                     => 'Boki importěrowaś',

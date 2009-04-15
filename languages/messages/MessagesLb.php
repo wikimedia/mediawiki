@@ -2166,8 +2166,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'talkexists'                   => "D'Säit selwer gouf erfollegräich geréckelt, mee d'Diskussiounssäit konnt net mat eriwwergeholl gi well et schonns eng ënnert deem neien Titel gëtt. W.e.g. setzt dës manuell zesummen.",
 'movedto'                      => 'geréckelt op',
 'movetalk'                     => "D'Diskussiounssäit matréckelen, wa méiglich.",
-'move-subpages'                => 'All Ënnersäite (bis zu $1), wann et der gëtt, mattréckelen',
-'move-talk-subpages'           => 'Ënnersäite vun der Diskussiounssäit (bis zu $1), wann et der gëtt, matréckelen',
+'move-subpages'                => 'Ënnersäite (bis zu $1) réckelen',
+'move-talk-subpages'           => 'Ënnersäite vun der Diskussiounssäit (bis zu $1), matréckelen',
 'movepage-page-exists'         => "D'Säit $1 gëtt et schonn a kann net automatesch iwwerschriwwe ginn.",
 'movepage-page-moved'          => "D'Säit $1 gouf schonn op $2 geréckelt.",
 'movepage-page-unmoved'        => "D'Säit $1 konnt nett op $2 geréckelt ginn.",
@@ -2235,6 +2235,7 @@ Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatio
 'thumbnail_error'          => 'Feeler beim Erstelle vum Thumbnail vun: $1',
 'djvu_page_error'          => 'DjVu-Säit baussent dem Säiteberäich',
 'thumbnail_invalid_params' => 'Ongëlteg Thumbnail-Parameter',
+'thumbnail_image-missing'  => 'De Fichier schengt ze feelen: $1',
 
 # Special:Import
 'import'                     => 'Säiten importéieren',

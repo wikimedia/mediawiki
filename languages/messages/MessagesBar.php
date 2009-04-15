@@ -111,6 +111,7 @@ $messages = array(
 'mediawikipage'     => 'Inhaltsseitn ozoang',
 'categorypage'      => 'Kategorieseitn ozoang',
 'otherlanguages'    => 'Åndane Språchn',
+'redirectedfrom'    => '(vu $1 weida gschickt)',
 'lastmodifiedat'    => 'De Seitn is zletzt am $1 um $2 gändert worn.', # $1 date, $2 time
 'jumpto'            => 'Wechseln zua:',
 'jumptosearch'      => 'Suach',
@@ -135,6 +136,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Sie ham neie Nachrichten: $1',
 'editsection'             => 'werkln',
 'editold'                 => 'werkln',
+'viewsourcelink'          => 'in Quöitext ãschau',
 'toc'                     => 'Inhoitsvazeichnis',
 'showtoc'                 => 'Ozoang',
 'thisisdeleted'           => '$1 ooschaun oda wieda herstelln?',
@@ -201,6 +203,7 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 
 # Edit pages
 'summary'                  => 'Zsammafassung',
+'subject'                  => 'Betreff:',
 'minoredit'                => 'Nur Kloanigkeitn san verändert worn',
 'watchthis'                => 'De Seitn beobachtn',
 'savearticle'              => 'Seitn speichern',
@@ -223,6 +226,9 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'anontalkpagetext'         => "---- ''De Seitn werd dazu hergnumma, am net ogmeldten Benutzer Nachrichtn zum hinterlassen.
 Wennst mit de Kommentare auf dera Seitn nix ofanga kåst, is vermutlich da friarare Inhaber vo dera IP-Adressn gmoant und du kånstas ignoriern.
 Wennst a anonymer Benutzer bist und dengst, daß irrelevante Kommentare an di grichtet worn san, [[Special:UserLogin|meld di bitte o]], um zukünftig Verwirrung zum vermeiden. ''",
+'noarticletext'            => 'De Seitn enthåit zua Zeid kan Text ned.
+Du kãnnst in Titl vu dea Seitn auf de ãndan Seitn [[Special:Search/{{PAGENAME}}|suacha]],
+<span class="plainlinks"> in de dazuaghearadn [{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} Logbiache suachn] oda de Seitn [{{fullurl:{{FULLPAGENAME}}|action=edit}} beåabeitn]</span>.',
 'previewconflict'          => "De Vorschau gibt an Inhalt vom obern Textfeld wieda; so werd de Seite ausschaun, wenn S' iatzat speichern.",
 'session_fail_preview'     => '<strong>Dei Bearbeitung is net gspeichert worn, wei deine Sitzungsdaten valorn ganga san.
 Bitte versuachs no amoi, indem du unta da foigendn Textvorschau nochmois auf „Seitn speichern“ klickst.
@@ -299,10 +305,14 @@ Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-
 'searchsubtitleinvalid' => 'Dei Suachãnfråg: „$1“.',
 'noexactmatch'          => "'''Es gibt ka Seitn mi'm Titl „$1“.'''
 Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
+'prevn'                 => "d'voahearing $1",
+'nextn'                 => 'de nextn $1',
 'viewprevnext'          => 'Zoag ($1) ($2) ($3)',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 Woat|$2 Wöata}})',
+'showingresultstotal'   => "Es {{PLURAL:$4|foigt s'Suacheagebnis '''$1''' vu '''$3:'''|foing de Suacheagebnisse '''$1–$2''' vu '''$3:'''}}",
 'powersearch'           => 'Suach',
 'powersearch-redir'     => 'Weidaleitungen ãnzoang',
+'powersearch-field'     => 'Suach nåch:',
 
 # Preferences page
 'mypreferences'         => 'Eistellunga',
@@ -324,7 +334,9 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'action-autopatrol' => 'eigne Arbat ois kontrolliert markiern',
 
 # Recent changes
+'recentchanges'   => 'Letzte Ändarungen',
 'diff'            => 'Untaschied',
+'hide'            => 'ausblendn',
 'minoreditletter' => 'K',
 
 # Recent changes linked
@@ -359,7 +371,20 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 'upload_source_file' => ' (a Datei auf deim Computa)',
 
 # File description page
+'filehist'                  => 'Dateiveasionen',
 'filehist-datetime'         => 'Version vum',
+'filehist-thumbtext'        => "Vorschaubüidl fia'd Veasion vum $1",
+'filehist-user'             => 'Benutza',
+'linkstoimage'              => "{{PLURAL:$1|D'foignde Seitn vawendt|De foigndn $1 Seitn vawendn}} de Datei:",
+'linkstoimage-more'         => "Es {{PLURAL:$1|valinkt|valinkn}} mea wia {{PLURAL:$1|oa Seitn |$1 Seitn}} auf de Datei.
+De foignde Listn zaagt netta {{PLURAL:$1|in easten Link|de easten $1 Links}} auf de Datei.
+A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
+'nolinkstoimage'            => 'Ka Seitn benutzt de Datei.',
+'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Weidare Links]] fia de Datei.',
+'redirectstofile'           => "{{PLURAL:$1|D'foignde Datei leitet|De foigndn $1 Datein leitn}} auf de Datei weida:",
+'duplicatesoffile'          => "{{PLURAL:$1|D'foignde Datei is a Duplikat|De foigndn $1 Datein han Duplikate}} vu dea Datei ([[Special:FileDuplicateSearch/$2|weidare Deteus]]):",
+'sharedupload'              => 'De Datei stãmmt aus $1 und deaf bei ãndare Projekte vawendt wean.',
+'sharedupload-desc-there'   => "De Datei stãmmt aus $1 und deaf bei ãndera Projekte vawendt wean. Schau auf'd [$2 Dateibeschreibungsseitn] fia weidare Infoamazionen.",
 'noimage'                   => "A Datei mit dem Nam existiert net, Sie kinnan s' abe $1.",
 'uploadnewversion-linktext' => 'A neie Version vo dera Datei hoachladn',
 
@@ -579,6 +604,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'importlogpage' => 'Import-Logbuach',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'             => 'Dei Benutzaseitn',
 'tooltip-pt-preferences'          => 'Eigene Eistellunga',
 'tooltip-pt-mycontris'            => 'Liste vo eigene Beiträg',
 'tooltip-pt-logout'               => 'Obmeidn',
@@ -598,6 +624,9 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-nstab-main'           => 'Seitninhalt ozoagn',
 'tooltip-ca-nstab-help'           => 'Huifseitn oozoang',
 'tooltip-save'                    => 'Änderunga speichan',
+'tooltip-preview'                 => "a Voaschau vu de Ändarungen ãn dea Seitn. Bittschee voa'm Speichan benutzn!
+Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
+'tooltip-diff'                    => "d'Ändarungen an dem Text in ana Taböin ãzoang",
 'tooltip-compareselectedversions' => 'Unterschiede zwischn zwoa ausgewählte Versiona vo dera  Seitn vergleicha.',
 'tooltip-watch'                   => 'De Seitn da persönlichn Beobachtungslistn dazua doa.',
 'tooltip-recreate'                => 'Seitn nei erstelln, obwoi sie glöscht worn is.',

@@ -212,6 +212,7 @@ $messages = array(
 'restorelink'             => '个被删除个版本',
 'site-rss-feed'           => '$1的RSS订阅',
 'site-atom-feed'          => '$1的Atom订阅',
+'red-link-title'          => '$1 (网页不存在)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '文章',
@@ -358,16 +359,18 @@ $messages = array(
 'diff-multi'              => '($1个中途个修订版本无没显示。)',
 
 # Search results
-'searchresults'         => '搜索结果',
-'searchresulttext'      => '更加全面个关于拉{{SITENAME}}里向搜索个信息，请倷看[[{{MediaWiki:Helppage}}:搜索|搜索{{SITENAME}}]]。',
-'searchsubtitle'        => "倷搜寻 '''[[:$1]]'''",
-'searchsubtitleinvalid' => "倷搜寻 '''$1'''",
-'noexactmatch'          => "''呒拨叫\"\$1\"个页面啘。''' 倷可以[[:\$1|建立俚]]。",
-'prevn'                 => '上个 $1',
-'nextn'                 => '下个 $1',
-'viewprevnext'          => '查看 ($1) ($2) ($3)',
-'searchhelp-url'        => 'Help:目录',
-'powersearch'           => '高级搜索',
+'searchresults'             => '搜索结果',
+'searchresulttext'          => '更加全面个关于拉{{SITENAME}}里向搜索个信息，请倷看[[{{MediaWiki:Helppage}}:搜索|搜索{{SITENAME}}]]。',
+'searchsubtitle'            => "倷搜寻 '''[[:$1]]'''",
+'searchsubtitleinvalid'     => "倷搜寻 '''$1'''",
+'noexactmatch'              => "''呒拨叫\"\$1\"个页面啘。''' 倷可以[[:\$1|建立俚]]。",
+'prevn'                     => '上个 $1',
+'nextn'                     => '下个 $1',
+'viewprevnext'              => '查看 ($1) ($2) ($3)',
+'searchhelp-url'            => 'Help:目录',
+'search-mwsuggest-enabled'  => '与建议',
+'search-mwsuggest-disabled' => ' 没有建议',
+'powersearch'               => '高级搜索',
 
 # Preferences page
 'preferences'           => '偏好',

@@ -2155,8 +2155,8 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'talkexists'                   => 'Strona sama bu z wuspěchom přesunjena, diskusijna strona pak njeda so přesunyć, dokelž pod nowym titulom hižo eksistuje. Prošu změš jeju manuelnje.',
 'movedto'                      => 'přesunjena do hesła',
 'movetalk'                     => 'Přisłušnu diskusijnu stronu tohorunja přesunyć',
-'move-subpages'                => 'Wšě podstrony (hač do $1) přesunyć, jeli móžno',
-'move-talk-subpages'           => 'Wšě podstrony diskusijneje strony (hač do $1) přesunyć, jeli móžno',
+'move-subpages'                => 'Wšě podstrony (hač do $1) přesunyć',
+'move-talk-subpages'           => 'Wšě podstrony diskusijneje strony (hač do $1) přesunyć',
 'movepage-page-exists'         => 'Strona $1 hižo eksistuje a njeda so awtomatisce přepisać.',
 'movepage-page-moved'          => 'Strona $1 bu do $2 přesunjena.',
 'movepage-page-unmoved'        => 'Strona $1 njeda so do $2 přesunyć.',
@@ -2226,6 +2226,9 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'djvu_no_xml'              => 'Daty XML njemóža so za dataju DjVU wotwołać',
 'thumbnail_invalid_params' => 'Njepłaćiwe parametry miniaturki',
 'thumbnail_dest_directory' => 'Njemóžno cilowy zapis wutworić.',
+'thumbnail_image-type'     => 'Wobrazowy typ so njepodpěruje',
+'thumbnail_gd-library'     => 'Njedospołna konfiguracija GD-biblioteki: falowaca funkcija $1',
+'thumbnail_image-missing'  => 'Zda so, zo dataja faluje: $1',
 
 # Special:Import
 'import'                     => 'Strony importować',

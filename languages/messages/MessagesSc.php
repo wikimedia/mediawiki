@@ -54,7 +54,7 @@ $messages = array(
 'tog-watchdeletion'        => 'Aciungi is pàginas chi apo fuliadu a sa watchlist mea',
 'tog-minordefault'         => 'Signa totu is acontzos comente minores pro difetu',
 'tog-enotifwatchlistpages' => 'Ispedimia una missada eletrònica candu una pàgina de sa watchlist mes est acontzada',
-'tog-enotifusertalkpages'  => 'Ispedimia una missada eletrònica candu sa pàgina usuàriu mia est acontzada',
+'tog-enotifusertalkpages'  => 'Ispedimia una missada eletrònica candu sa pàgina de is cuntierras mias est acontzada',
 'tog-enotifminoredits'     => 'Ispedimia una missada eletrònica fintzas pro is acontzos minores de is pàginas',
 'tog-shownumberswatching'  => 'Amosta su nùmeru de is usuàrios ca funt ponende ogru a sa pàgina',
 'tog-fancysig'             => 'Trata sa firma comente unu testu wiki (chentza cullegamentos automaticos)',
@@ -337,10 +337,10 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 'loginerror'              => 'Login error',
 'noname'                  => 'Su nòmene usuàriu insertau no est bonu.',
 'loginsuccesstitle'       => 'Ses intrau',
-'loginsuccess'            => "'''Como ses intrau in {{SITENAME}} cun nòmene usuàriu \"\$1\".'''",
+'loginsuccess'            => "'''Immoe ses intrau in {{SITENAME}} cun su nòmene usuàriu \"\$1\".'''",
 'nosuchuser'              => 'Attenzione<br /><br />a seguito di verifica, non ci risulta alcun Utente con il nome di  "$1".<br /><br />
 Controlla per favore il nome digitato, oppure usa il modulo qui sotto per creare un nuovo user account.',
-'wrongpassword'           => 'Sa pàssword insertada no est bona. Prova torra.',
+'wrongpassword'           => 'Sa password insertada no est bona. Prova torra.',
 'mailmypassword'          => "Ispedi una password noa a s'indiritzu e-mail miu",
 'passwordremindertitle'   => 'Servitziu Password Reminder di {{SITENAME}}',
 'passwordremindertext'    => 'Calicunu (probabilmenti tue, cun s\'indiritzu IP $1) at pediu de arritziri una password noa pro intrare a {{SITENAME}} ($4).
@@ -413,7 +413,7 @@ Chi boles, podes cuntatare $1 o un àteru [[{{MediaWiki:Grouppage-sysop}}|aminis
 Nota ca sa funtzioni 'Ispedi un'e-mail a custu usuàriu' no est ativa chi no est istadu registrau un indiritzu e-mail validu ne is [[Special:Preferences|preferèntzias]] tuas o chi s'usu de custa funtzioni est istadu bloccau.
 
 S'indiritzu IP atuale est $3, su numeru ID de su bloccu est #$5.
-Pro pregheri ispetzifica totu is detaglios innanti in carchi siat pedimentu de chiarimentu.",
+Pro pregheri ispetzìfica totu is particolares in antis in carchi siat pregunta de chiarimentu.",
 'accmailtitle'                     => 'Password ispedia.',
 'newarticle'                       => '(Nou)',
 'newarticletext'                   => "Custa pagina no esistit ancora.
@@ -533,7 +533,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'powersearch'               => 'Chirca',
 'powersearch-legend'        => 'Chirca avantzada',
 'powersearch-ns'            => 'Chirca in su Nòmene-logu:',
-'powersearch-redir'         => 'Lista redirect',
+'powersearch-redir'         => 'Lista re-indiritzamentos',
 'powersearch-field'         => 'Chirca',
 
 # Preferences page
@@ -628,7 +628,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'b',
 'rc-change-size'                 => '$1',
-'rc-enhanced-expand'             => 'Amosta particolaris (esigit JavaScript)',
+'rc-enhanced-expand'             => 'Amosta particulares (esigit JavaScript)',
 'rc-enhanced-hide'               => 'Cua particulares',
 
 # Recent changes linked
@@ -682,7 +682,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 'filehist-dimensions'       => 'Dimensiones',
 'filehist-comment'          => 'Cummentu',
 'imagelinks'                => 'Ligant a custu file',
-'linkstoimage'              => '{{PLURAL:$1|Sa pàgina chi sighit ligat|$1 Sas pàgina ca sighint ligant}} a custu file:',
+'linkstoimage'              => '{{PLURAL:$1|Sa pàgina chi sighit ligat|$1 Sas pàginas chi sighint ligant}} a custu file:',
 'nolinkstoimage'            => 'Peruna pàgina ligat cun custu file.',
 'sharedupload'              => 'Custu file benit dae $1 e podet èssere impreau in àteros progetos.',
 'uploadnewversion-linktext' => 'Carriga una versione noa de custu file',
@@ -702,7 +702,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 'randompage' => 'Una pàgina a sorte',
 
 # Statistics
-'statistics'              => 'Istatisticas',
+'statistics'              => 'Istatìsticas',
 'statistics-header-users' => 'Istatisticas usuàriu',
 
 'disambiguationspage' => 'Template:Disambigua',
@@ -719,19 +719,19 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'       => '$1 {{PLURAL:$1|categoria|categorias}}',
-'nlinks'            => '$1 {{PLURAL:$1|liga|ligas}}',
-'nmembers'          => '$1 {{PLURAL:$1|elementu|elementos}}',
-'nrevisions'        => '$1 {{PLURAL:$1|arrevisioni|arrevisionis}}',
+'nlinks'            => '$1 {{PLURAL:$1|ligadura|ligaduras}}',
+'nmembers'          => '$1 {{PLURAL:$1|cumponente|cumponentes}}',
+'nrevisions'        => '$1 {{PLURAL:$1|arrevisione|arrevisiones}}',
 'nviews'            => '$1 {{PLURAL:$1|bisura|bisuras}}',
 'lonelypages'       => 'Pàginas burdas',
-'unusedimages'      => 'Immagini non utilizzate',
+'unusedimages'      => 'Files no impreaus',
 'popularpages'      => 'Pàginas popularis',
 'wantedpages'       => 'Articoli più richiesti',
 'prefixindex'       => 'Indighe de is pàginas pro initzialis',
-'shortpages'        => 'Pagine corte',
-'longpages'         => 'Pagine lunghe',
+'shortpages'        => 'Pàginas crutzas',
+'longpages'         => 'Pàginas longas',
 'deadendpages'      => 'Pàginas chentza bessida',
-'listusers'         => 'Elenco degli Utenti',
+'listusers'         => 'Lista usuàrios',
 'usercreated'       => 'Creadu su $1 a is $2',
 'newpages'          => 'Pàginas noas',
 'newpages-username' => 'Nòmene usuàriu:',
@@ -741,7 +741,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'notargettitle'     => 'Dati mancanti',
 'notargettext'      => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
 'pager-newer-n'     => '{{PLURAL:$1|1 prus nou|$1 prus nous}}',
-'pager-older-n'     => '{{PLURAL:$1|1 prus bèciu|$1 prus bècius}}',
+'pager-older-n'     => '{{PLURAL:$1|1 prus betzu|$1 prus betzos}}',
 
 # Book sources
 'booksources'               => 'Fontes librarias',
@@ -757,7 +757,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 # Special:AllPages
 'allpages'       => 'Totu is pàginas',
 'alphaindexline' => 'da $1 a $2',
-'prevpage'       => 'Pàgina innantis ($1)',
+'prevpage'       => 'Pàgina in antis ($1)',
 'allpagesfrom'   => 'Amosta pàginas a partiri dae:',
 'allpagesto'     => 'Amosta is pàginas fintzas a:',
 'allarticles'    => 'Totu is pàginas',
@@ -774,7 +774,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'listusers-submit' => 'Amosta',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Usuàrios novos',
+'newuserlogpage'          => 'Usuàrios nous',
 'newuserlog-create-entry' => 'Account usuàriu nou',
 
 # Special:ListGroupRights
@@ -810,7 +810,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'watch'             => 'Poni in sa watchlist',
 'watchthispage'     => 'Pone ogru a custu artìculu',
 'unwatch'           => 'Tira dae sa watchlist',
-'unwatchthispage'   => 'Smetti di seguire',
+'unwatchthispage'   => 'Boga custa pàgina dae sa watchlist tua',
 'notanarticle'      => 'Custa pàgina no est unu artìculu',
 'watchlist-details' => 'Sa watchlist tua cuntènnit {{PLURAL:$1|$1 pàgina|$1 pàginas}}, chentza contare is pàginas de cuntierras.',
 'wlshowlast'        => 'Amosta is ùrtimas $1 oras $2 dies $3',
@@ -840,7 +840,7 @@ Castia su log $2 pro unu registru de is ùrtimas fuliaduras.',
 'dellogpage'            => 'Burraduras',
 'dellogpagetext'        => 'Qui di seguito, un elenco delle pagine cancellate di recente.
 Tutti i tempi sono in ora del server.',
-'reverted'              => 'Torrada a sa versioni in antis',
+'reverted'              => 'Torrada a sa versione innantis',
 'deletecomment'         => 'Motivu de sa burradura:',
 'deleteotherreason'     => 'Àteru motivu o motivu agiuntivu:',
 'deletereasonotherlist' => 'Àteru motivu',
@@ -850,7 +850,7 @@ Tutti i tempi sono in ora del server.',
 'rollbacklink' => 'rollback',
 'cantrollback' => "Non si podet furriai s'acontzu;
 s'ùrtimu contribudori est s'ùnicu autori de custa pàgina.",
-'revertpage'   => 'Burrados is acontzos de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), torrada a sa versione cabidiana de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'   => 'Burradas is mudàntzias de [[Special:Contributions/$2|$2]] ([[User talk:$2|cuntierras]]), torrada a sa versione cabudiana de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'Amparaduras',
@@ -871,7 +871,7 @@ Is impostatziones atuales pro sa pàgina '''$1''':",
 'protect-level-autoconfirmed' => 'Blocca is usuàrios nobos o non registrados',
 'protect-level-sysop'         => 'Isceti aministradores',
 'protect-summary-cascade'     => 'ricorsiva',
-'protect-expiring'            => 'Iscadentzia: $1 (UTC)',
+'protect-expiring'            => 'Iscadèntzia: $1 (UTC)',
 'protect-cascade'             => 'Ampara totu is pàginas inclùdias in custa (amparadura ricorsiva)',
 'protect-cantedit'            => 'Non podes cambiare is livellus de amparadura pro sa pàgina, pro ite non tenes su permissu de acontzare sa pàgina etotu.',
 'restriction-type'            => 'Permissu:',
@@ -895,7 +895,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 'undelete-show-file-submit' => 'Eia',
 
 # Namespace form on various pages
-'namespace'      => 'Nòmene logu:',
+'namespace'      => 'Nòmene-logu:',
 'invert'         => 'Fùrria sa seletzioni',
 'blanknamespace' => '(Printzipale)',
 
@@ -909,7 +909,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 'month'               => 'Dae su mese (e innantis):',
 'year'                => "Dae s'annu (e innantis):",
 
-'sp-contributions-newbies'  => 'Amosta isceti is contributziones de is account novos',
+'sp-contributions-newbies'  => 'Amosta isceti is contributziones de is accounts nous',
 'sp-contributions-blocklog' => 'registru de is bloccos',
 'sp-contributions-talk'     => 'cuntierra',
 'sp-contributions-search'   => 'Chirca contributziones',
@@ -1044,7 +1044,7 @@ Pro pregheri, prima de sarvari càstia s'antiprima",
 'tooltip-ca-addsection'           => 'Incumintza una setzione noa',
 'tooltip-ca-viewsource'           => 'Sa pàgina est amparada.
 Podes castiare sa mitza sua',
-'tooltip-ca-history'              => 'Versiones innantis de custa pàgina',
+'tooltip-ca-history'              => 'Versiones in antis de custa pàgina',
 'tooltip-ca-protect'              => 'Ampara custa pàgina',
 'tooltip-ca-delete'               => 'Fùlia custa pàgina',
 'tooltip-ca-move'                 => 'Movi custa pàgina',
