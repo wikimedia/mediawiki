@@ -167,7 +167,7 @@ class SpecialPage
 		'Export'                    => 'SpecialExport',
 		'Import'                    => 'SpecialImport',
 		'Undelete'                  => array( 'SpecialPage', 'Undelete', 'deletedhistory' ),
-		'Whatlinkshere'             => array( 'SpecialPage', 'Whatlinkshere' ),
+		'Whatlinkshere'             => 'SpecialWhatlinkshere',
 		'MergeHistory'              => array( 'SpecialPage', 'MergeHistory', 'mergehistory' ),	
 		
 		# Other
