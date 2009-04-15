@@ -252,7 +252,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			"<a href=\"$link\">$inpointf</a></td><td>",
 			"</td><td><a href=\"$link\">$outpointf</a>"
 		);
-		return '<tr><td class="mw-allpages-nav">' . $out . '</td></tr>';
+		return '<tr><td class="mw-allpages-alphaindexline">' . $out . '</td></tr>';
 	}
 
 	/**
