@@ -267,7 +267,7 @@ class Skin extends Linker {
 	}
 
 	/**
-	 * Set some local globals
+	 * Set some local variables
 	 */
 	protected function setMembers(){
 		global $wgUser;
