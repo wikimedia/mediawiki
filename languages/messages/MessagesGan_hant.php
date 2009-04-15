@@ -22,6 +22,32 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => '分類談詑'
 );
 
+$specialPageAliases = array(
+	'BrokenRedirects'           => array( '壞吥嗰重定向頁' ),
+	'Disambiguations'           => array( '多義項' ),
+	'CreateAccount'             => array( '新建隻帳戶' ),
+	'Preferences'               => array( '個人設定' ),
+	'Watchlist'                 => array( '監視列表' ),
+	'Recentchanges'             => array( '最晏嗰改動' ),
+	'Uncategorizedpages'        => array( '冇歸類嗰頁面' ),
+	'Uncategorizedcategories'   => array( '冇歸類嗰分類' ),
+	'Uncategorizedimages'       => array( '冇歸類嗰檔案' ),
+	'Uncategorizedtemplates'    => array( '冇歸類嗰模板' ),
+	'Unusedcategories'          => array( '冇用嗰分類' ),
+	'Unusedimages'              => array( '冇用嗰檔案' ),
+	'Mostlinked'                => array( '拕連得最多嗰頁面' ),
+	'Mostlinkedcategories'      => array( '拕連得最多嗰分類' ),
+	'Mostlinkedtemplates'       => array( '拕連得最多嗰模板' ),
+	'Mostimages'                => array( '拕連得最多嗰檔案' ),
+	'Mostcategories'            => array( '最多分類嗰頁面' ),
+	'Mostrevisions'             => array( '最多改動嗰頁面' ),
+	'Fewestrevisions'           => array( '最少改動嗰頁面' ),
+	'Shortpages'                => array( '細文章' ),
+	'Longpages'                 => array( '莽文章' ),
+	'Newpages'                  => array( '全新嗰頁面' ),
+	'Ancientpages'              => array( '老早嗰頁面' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => '下劃連結',

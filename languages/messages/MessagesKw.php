@@ -10,6 +10,11 @@
  * @author Mongvras
  */
 
+$specialPageAliases = array(
+	'Upload'                    => array( 'Ughkarga' ),
+	'Allpages'                  => array( 'OllFolennow' ),
+);
+
 $messages = array(
 'underline-never' => 'Jammes',
 

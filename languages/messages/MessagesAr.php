@@ -282,7 +282,8 @@ $magicWords = array(
 	'numberingroup'         => array( '1', 'عدد_في_المجموعة', 'عدد_في_مجموعة', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__تحويلة_إستاتيكية__', '__تحويلة_ساكنة__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'مستوى_الحماية', 'مستوى_حماية', 'PROTECTIONLEVEL' ),
-	'formatdate'            => array( '0', 'تهيئةالتاريخ', 'تهيئة_تاريخ', 'formatdate', 'dateformat' ),
+	'formatdate'            => array( '0', 'تهيئة_التاريخ', 'تهيئة_تاريخ', 'formatdate', 'dateformat' ),
+	'groupconvert'          => array( '0', 'تحويل_مجموعة:', 'تم:', 'GROUPCONVERT:', 'GC:' ),
 );
 
 $specialPageAliases = array(
