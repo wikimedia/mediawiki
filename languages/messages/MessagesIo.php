@@ -800,7 +800,7 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'withoutinterwiki-submit' => 'Montrar',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|baito|baiti}}',
+'nbytes'                  => '$1 {{PLURAL:$1|bicoko|bicoki}}',
 'ncategories'             => '$1 {{PLURAL:$1|kategorio|kategorii}}',
 'nlinks'                  => '$1 {{PLURAL:$1|ligilo|ligili}}',
 'nmembers'                => '$1 {{PLURAL:$1|membro|membri}}',

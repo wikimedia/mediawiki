@@ -912,7 +912,7 @@ Description: The URL of the search help page.
 $1 is the relevance of this result in per cent.
 
 {{Identical|Relevance: $1%}}',
-'search-redirect'                 => '$1 is a link to the redirect to the page (so, $1 is a redirect page)',
+'search-redirect'                 => "$1 is a link to the redirect to the page (so, $1 is the page that the search result is redirected '''from''').",
 'search-interwiki-default'        => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
 'search-relatedarticle'           => '{{Identical|Related}}',
 'searchrelated'                   => '{{Identical|Related}}',
@@ -2104,8 +2104,15 @@ Parameters:
 'allmessagesmodified'       => 'It is used as a label on the button in [[Special:Allmessages]], and it switches the display from showing all messages to only the ones different between the default and the local, and vice versa.',
 
 # Thumbnails
-'thumbnail-more' => '[[Image:Yes.png|thumb|This:]]
+'thumbnail-more'          => '[[Image:Yes.png|thumb|This:]]
 Tooltip shown when hovering over a little sign of a thumb image, to go to the image page (where it is bigger). For example, see the image at the right:',
+'thumbnail_error'         => 'Message shown in a thumbnail frame when creation of the thumbnail fails.
+* $1 is the reason',
+'thumbnail_image-type'    => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}',
+'thumbnail_gd-library'    => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}.
+*$1 is a function name of the GD library',
+'thumbnail_image-missing' => 'This is the parameter 1 of the message {{msg-mw|thumbnail error}}.
+*$1 is the path incl. filename of the missing image',
 
 # Special:Import
 'import'                  => 'The title of the special page [[Special:Import]];',
