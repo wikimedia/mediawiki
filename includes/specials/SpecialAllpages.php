@@ -114,8 +114,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * @param integer $namespace (default NS_MAIN)
 	 */
 	function showToplevel( $namespace = NS_MAIN, $from = '', $to = '' ) {
-		global $wgOut, $wgContLang;
-		$align = $wgContLang->isRtl() ? 'left' : 'right';
+		global $wgOut;
 
 		# TODO: Either make this *much* faster or cache the title index points
 		# in the querycache table.
@@ -198,13 +197,13 @@ class SpecialAllpages extends IncludableSpecialPage {
 		}
 
 		# At this point, $lines should contain an even number of elements.
-		$out .= "<table class='allpageslist' style='background: inherit;'>";
+		$out .= Xml::openElement( 'table', array( 'class' => 'allpageslist' ) );
 		while( count ( $lines ) > 0 ) {
 			$inpoint = array_shift( $lines );
 			$outpoint = array_shift( $lines );
 			$out .= $this->showline( $inpoint, $outpoint, $namespace );
 		}
-		$out .= '</table>';
+		$out .= Xml::closeElement( 'table' );
 		$nsForm = $this->namespaceForm( $namespace, $from, $to );
 
 		# Is there more?
@@ -213,11 +212,17 @@ class SpecialAllpages extends IncludableSpecialPage {
 		} else {
 			if( isset($from) || isset($to) ) {
 				global $wgUser;
-				$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
-				$out2 .= '<tr valign="top"><td>' . $nsForm;
-				$out2 .= '</td><td align="' . $align . '" style="font-size: smaller; margin-bottom: 1em;">' .
-					$wgUser->getSkin()->makeKnownLinkObj( $this->getTitle(), wfMsgHtml ( 'allpages' ) );
-				$out2 .= "</td></tr></table>";
+				$out2 = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-form' ) ).
+						'<tr>
+							<td>' .
+								$nsForm .
+							'</td>
+							<td class="mw-allpages-nav">' .
+								$wgUser->getSkin()->link( $this->getTitle(), wfMsgHtml ( 'allpages' ),
+									array(), array(), 'known' ) .
+							"</td>
+						</tr>" .
+					Xml::closeElement( 'table' );
 			} else {
 				$out2 = $nsForm;
 			}
@@ -233,7 +238,6 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 */
 	function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 		global $wgContLang;
-		$align = $wgContLang->isRtl() ? 'left' : 'right';
 		$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 		$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
 		// Don't let the length runaway
@@ -248,7 +252,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			"<a href=\"$link\">$inpointf</a></td><td>",
 			"</td><td><a href=\"$link\">$outpointf</a>"
 		);
-		return '<tr><td align="' . $align . '">'.$out.'</td></tr>';
+		return '<tr><td class="mw-allpages-nav">' . $out . '</td></tr>';
 	}
 
 	/**
@@ -264,8 +268,6 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$fromList = $this->getNamespaceKeyAndText($namespace, $from);
 		$toList = $this->getNamespaceKeyAndText( $namespace, $to );
 		$namespaces = $wgContLang->getNamespaces();
-		$align = $wgContLang->isRtl() ? 'left' : 'right';
-
 		$n = 0;
 
 		if ( !$fromList || !$toList ) {
@@ -299,8 +301,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			);
 
 			if( $res->numRows() > 0 ) {
-				$out = '<table style="background: inherit;" border="0" width="100%">';
-
+				$out = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-chunk' ) );
 				while( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::makeTitle( $s->page_namespace, $s->page_title );
 					if( $t ) {
@@ -316,13 +317,13 @@ class SpecialAllpages extends IncludableSpecialPage {
 					$out .= "<td width=\"33%\">$link</td>";
 					$n++;
 					if( $n % 3 == 0 ) {
-						$out .= '</tr>';
+						$out .= "</tr>\n";
 					}
 				}
 				if( ($n % 3) != 0 ) {
-					$out .= '</tr>';
+					$out .= "</tr>\n";
 				}
-				$out .= '</table>';
+				$out .= Xml::closeElement( 'table' );
 			} else {
 				$out = '';
 			}
@@ -370,11 +371,13 @@ class SpecialAllpages extends IncludableSpecialPage {
 			$self = $this->getTitle();
 
 			$nsForm = $this->namespaceForm( $namespace, $from, $to );
-			$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
-			$out2 .= '<tr valign="top"><td>' . $nsForm;
-			$out2 .= '</td><td align="' . $align . '" style="font-size: smaller; margin-bottom: 1em;">' .
-					$sk->makeKnownLinkObj( $self,
-						wfMsgHtml ( 'allpages' ) );
+			$out2 = Xml::openElement( 'table', array( 'class' => 'mw-allpages-table-form' ) ).
+						'<tr>
+							<td>' .
+								$nsForm .
+							'</td>
+							<td class="mw-allpages-nav">' .
+								$sk->link( $self, wfMsgHtml ( 'allpages' ), array(), array(), 'known' );
 
 			# Do we put a previous link ?
 			if( isset( $prevTitle ) &&  $pt = $prevTitle->getText() ) {
@@ -399,7 +402,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		$wgOut->addHTML( $out2 . $out );
 		if( isset($prevLink) or isset($nextLink) ) {
-			$wgOut->addHTML( '<hr /><p style="font-size: smaller; float: ' . $align . '">' );
+			$wgOut->addHTML( '<hr /><p class="mw-allpages-nav">' );
 			if( isset( $prevLink ) ) {
 				$wgOut->addHTML( $prevLink );
 			}
