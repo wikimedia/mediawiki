@@ -152,6 +152,10 @@ html > body div#mw_contentholder ul#filetoc {
 	display: block;
 }
 
+/* Special:Allpages styling */
+td.mw-allpages-nav, p.mw-allpages-nav {
+	text-align: left;
+
 /* Special:Prefixindex styling */
 td#mw-prefixindex-nav-form  {
 	text-align: left;

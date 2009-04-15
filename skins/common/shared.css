@@ -300,6 +300,23 @@ td#mw-emailuser-sender, td#mw-emailuser-recipient {
 	font-weight: bold;
 }
 
+/* Special:Allpages styling */
+table.allpageslist {
+	background-color: transparent;
+}
+table.mw-allpages-table-form, table.mw-allpages-table-chunk {
+	background-color: transparent;
+	width: 100%;
+}
+td.mw-allpages-nav, p.mw-allpages-nav {
+	text-align: right;
+	font-size: smaller;
+	margin-bottom: 1em;
+}
+table.mw-allpages-table-form tr  {
+	vertical-align: top;
+}
+
 /* Special:Prefixindex styling */
 table#mw-prefixindex-list-table,
 table#mw-prefixindex-nav-table {
