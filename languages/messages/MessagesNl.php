@@ -2556,6 +2556,9 @@ Ga naar [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [h
 'djvu_no_xml'              => 'De XML voor het DjVu-bestand kon niet opgehaald worden',
 'thumbnail_invalid_params' => 'Onjuiste parameters voor miniatuurafbeelding',
 'thumbnail_dest_directory' => 'Niet in staat doelmap aan te maken',
+'thumbnail_image-type'     => 'Dit bestandstype wordt niet ondersteund',
+'thumbnail_gd-library'     => 'De instellingen voor de GD-bibliotheek zijn incompleet. De functie $1 mist',
+'thumbnail_image-missing'  => 'Het bestand lijkt niet aanwezig te zijn: $1',
 
 # Special:Import
 'import'                     => "Pagina's importeren",
