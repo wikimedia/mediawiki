@@ -202,6 +202,7 @@ $wgAutoloadLocalClasses = array(
 	'UserArrayFromResult' => 'includes/UserArray.php',
 	'UserMailer' => 'includes/UserMailer.php',
 	'UserRightsProxy' => 'includes/UserRightsProxy.php',
+	'WantedQueryPage' => 'includes/QueryPage.php',
 	'WatchedItem' => 'includes/WatchedItem.php',
 	'WatchlistEditor' => 'includes/WatchlistEditor.php',
 	'WebRequest' => 'includes/WebRequest.php',

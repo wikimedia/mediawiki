@@ -535,3 +535,73 @@ class QueryPage {
 		return $title->getFullURL();
 	}
 }
+
+/**
+ * Class definition for a wanted query page like
+ * WantedPages, WantedTemplates, etc
+ */
+abstract class WantedQueryPage extends QueryPage {
+
+	function isExpensive() {
+		return true;
+	}
+
+	function isSyndicated() {
+		return false;
+	}
+	
+	/**
+	 * Cache page existence for performance
+	 */
+	function preprocessResults( $db, $res ) {
+		$batch = new LinkBatch;
+		while ( $row = $db->fetchObject( $res ) )
+			$batch->add( $row->namespace, $row->title );
+		$batch->execute();
+
+		// Back to start for display
+		if ( $db->numRows( $res ) > 0 )
+			// If there are no rows we get an error seeking.
+			$db->dataSeek( $res, 0 );
+	}
+	
+	/**
+	 * Format an individual result
+	 *
+	 * @param $skin Skin to use for UI elements
+	 * @param $result Result row
+	 * @return string
+	 */
+	public function formatResult( $skin, $result ) {
+		$title = Title::makeTitleSafe( $result->namespace, $result->title );
+		if( $title instanceof Title ) {
+			if( $this->isCached() ) {
+				$pageLink = $title->exists()
+					? '<s>' . $skin->makeLinkObj( $title ) . '</s>'
+					: $skin->makeBrokenLinkObj( $title );
+			} else {
+				$pageLink = $skin->makeBrokenLinkObj( $title );
+			}
+			return wfSpecialList( $pageLink, $this->makeWlhLink( $title, $skin, $result ) );
+		} else {
+			$tsafe = htmlspecialchars( $result->title );
+			return wfMsg( 'wantedpages-badtitle', $tsafe );
+		}
+	}
+	
+	/**
+	 * Make a "what links here" link for a given title
+	 *
+	 * @param Title $title Title to make the link for
+	 * @param Skin $skin Skin to use
+	 * @param object $result Result row
+	 * @return string
+	 */
+	private function makeWlhLink( $title, $skin, $result ) {
+		global $wgLang;
+		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere' );
+		$label = wfMsgExt( 'nlinks', array( 'parsemag', 'escape' ),
+		$wgLang->formatNum( $result->value ) );
+		return $skin->link( $wlh, $label, array(), array( 'target' => $title->getPrefixedText() ) );
+	}
+}
