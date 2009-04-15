@@ -181,20 +181,23 @@ class BitmapHandler extends ImageHandler {
 			if( !isset( $typemap[$mimeType] ) ) {
 				$err = 'Image type not supported';
 				wfDebug( "$err\n" );
-				return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
+				$errMsg = wfMsg ( 'thumbnail_image-type' );
+				return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $errMsg );
 			}
 			list( $loader, $colorStyle, $saveType ) = $typemap[$mimeType];
 
 			if( !function_exists( $loader ) ) {
 				$err = "Incomplete GD library configuration: missing function $loader";
 				wfDebug( "$err\n" );
-				return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
+				$errMsg = wfMsg ( 'thumbnail_gd-library', $loader );
+				return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $errMsg );
 			}
 
 			if ( !file_exists( $srcPath ) ) {
 				$err = "File seems to be missing: $srcPath";
 				wfDebug( "$err\n" );
-				return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
+				$errMsg = wfMsg ( 'thumbnail_image-missing', $srcPath );
+				return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $errMsg );
 			}
 
 			$src_image = call_user_func( $loader, $srcPath );
