@@ -37,6 +37,13 @@ $namespaceAliases = array(
 	'Shablono_Debato' => NS_TEMPLATE_TALK,
 );
 
+$specialPageAliases = array(
+	'Preferences'               => array( 'Preferaji' ),
+	'Recentchanges'             => array( 'RecentaChanji' ),
+	'Allpages'                  => array( 'OmnaPagini' ),
+	'Specialpages'              => array( 'SpecalaPagini' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sub-strekizez ligili:',

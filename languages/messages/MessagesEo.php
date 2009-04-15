@@ -98,8 +98,10 @@ $specialPageAliases = array(
 	'Log'                       => array( 'Loglibro', 'Loglibroj' ),
 	'Blockip'                   => array( 'Forbari IP-adreson' ),
 	'Undelete'                  => array( 'Restarigi' ),
+	'Import'                    => array( 'Importi' ),
 	'Popularpages'              => array( 'Popularaj paĝoj' ),
 	'Search'                    => array( 'Serĉi' ),
+	'Tags'                      => array( 'Etikedoj' ),
 );
 
 $magicWords = array(

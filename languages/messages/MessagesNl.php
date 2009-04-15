@@ -162,6 +162,7 @@ $magicWords = array(
 	'revisionmonth'         => array( '1', 'VERSIEMAAND', 'REVISIONMONTH' ),
 	'revisionyear'          => array( '1', 'VERSIEJAAR', 'REVISIONYEAR' ),
 	'revisiontimestamp'     => array( '1', 'VERSIETIJD', 'REVISIONTIMESTAMP' ),
+	'revisionuser'          => array( '1', 'VERSIEGEBRUIKER', 'REVISIONUSER' ),
 	'plural'                => array( '0', 'MEERVOUD:', 'PLURAL:' ),
 	'fullurl'               => array( '0', 'VOLLEDIGEURL', 'FULLURL:' ),
 	'fullurle'              => array( '0', 'VOLLEDIGEURLE', 'FULLURLE:' ),
@@ -171,6 +172,7 @@ $magicWords = array(
 	'uc'                    => array( '0', 'HL:', 'UC:' ),
 	'raw'                   => array( '0', 'RAUW:', 'RUW:', 'RAW:' ),
 	'displaytitle'          => array( '1', 'TOONTITEL', 'TITELTONEN', 'DISPLAYTITLE' ),
+	'rawsuffix'             => array( '1', 'V', 'R' ),
 	'newsectionlink'        => array( '1', '__NIEUWESECTIELINK__', '__NIEUWESECTIEKOPPELING__', '__NEWSECTIONLINK__' ),
 	'nonewsectionlink'      => array( '1', '__GEENNIEUWKOPJEVERWIJZING__', '__NONEWSECTIONLINK__' ),
 	'currentversion'        => array( '1', 'HUIDIGEVERSIE', 'CURRENTVERSION' ),
@@ -198,6 +200,7 @@ $magicWords = array(
 	'staticredirect'        => array( '1', '__STATISCHEDOORVERWIJZING__', '__STATISCHEREDIRECT__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'BEVEILIGINGSNIVEAU', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'datumopmaak', 'formatdate', 'dateformat' ),
+	'groupconvert'          => array( '0', 'GROEPCONVERSIE:', 'GROUPCONVERT:', 'GC:' ),
 );
 
 $specialPageAliases = array(

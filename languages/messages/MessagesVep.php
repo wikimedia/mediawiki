@@ -42,6 +42,21 @@ $specialPageAliases = array(
 	'Upload'                    => array( 'Jügutoitta' ),
 	'Statistics'                => array( 'Statistikad' ),
 	'Lonelypages'               => array( 'ÜksjäižedLehtpoled', 'ArmotomadLehtesed' ),
+	'Shortpages'                => array( 'LühüdadLehtpoled' ),
+	'Longpages'                 => array( 'Pit\'kädLehtpoled' ),
+	'Newpages'                  => array( 'UdedLehtpoled' ),
+	'Ancientpages'              => array( 'VanhadLehtpoled' ),
+	'Protectedpages'            => array( 'KaitudLehtpoled' ),
+	'Protectedtitles'           => array( 'KaitudPälkirjutesed' ),
+	'Allpages'                  => array( 'KaikLehtesed' ),
+	'Categories'                => array( 'Kategorijad' ),
+	'Export'                    => array( 'Eksport' ),
+	'Version'                   => array( 'Versii' ),
+	'Allmessages'               => array( 'KaikTedotused' ),
+	'Mypage'                    => array( 'MinunLehtpol\'' ),
+	'Mytalk'                    => array( 'MinunLodu' ),
+	'Mycontributions'           => array( 'MinunTond' ),
+	'Search'                    => array( 'Ectä' ),
 );
 
 $magicWords = array(
