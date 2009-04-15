@@ -242,7 +242,7 @@ html > body div#bodyContent ul#filetoc {
 }
 
 /* Special:Allpages styling */
-td.mw-allpages-nav, p.mw-allpages-nav {
+td.mw-allpages-nav, p.mw-allpages-nav, td.mw-allpages-alphaindexline {
 	text-align: left;
 
 /* Special:Prefixindex styling */
