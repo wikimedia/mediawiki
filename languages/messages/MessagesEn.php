@@ -2866,6 +2866,9 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'djvu_no_xml'              => 'Unable to fetch XML for DjVu file',
 'thumbnail_invalid_params' => 'Invalid thumbnail parameters',
 'thumbnail_dest_directory' => 'Unable to create destination directory',
+'thumbnail_image-type'     => 'Image type not supported',
+'thumbnail_gd-library'     => 'Incomplete GD library configuration: missing function $1',
+'thumbnail_image-missing'  => 'File seems to be missing: $1',
 
 # Special:Import
 'import'                     => 'Import pages',

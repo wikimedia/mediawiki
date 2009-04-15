@@ -2004,6 +2004,9 @@ $wgMessageStructure = array(
 		'djvu_no_xml',
 		'thumbnail_invalid_params',
 		'thumbnail_dest_directory',
+		'thumbnail_image-type',
+		'thumbnail_gd-library',
+		'thumbnail_image-missing',
 	),
 	'import' => array(
 		'import',
