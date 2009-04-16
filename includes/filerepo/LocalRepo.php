@@ -10,10 +10,6 @@ class LocalRepo extends FSRepo {
 	var $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
 	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
 
-	function getMemcKey( $key ) {
-		return wfWikiID( $this->getSlaveDB() ) . ":{$key}";
-	}
-
 	function newFileFromRow( $row ) {
 		if ( isset( $row->img_name ) ) {
 			return call_user_func( $this->fileFromRowFactory, $row, $this );
