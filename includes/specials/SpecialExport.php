@@ -45,6 +45,7 @@ class SpecialExport extends SpecialPage {
 		$this->images = $wgRequest->getCheck( 'images' ); // Doesn't do anything yet
 		$this->pageLinkDepth = $this->validateLinkDepth(
 														$wgRequest->getIntOrNull( 'pagelink-depth' ) );
+		$nsindex = '';
 		
 		if ( $wgRequest->getCheck( 'addcat' ) ) {
 			$page = $wgRequest->getText( 'pages' );
