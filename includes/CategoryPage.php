@@ -362,7 +362,8 @@ class CategoryViewer {
 	 */
 	function columnList( $articles, $articles_start_char ) {
 		// divide list into three equal chunks
-		$chunk = (int) (count ( $articles ) / 3);
+		$chunk = (int) ( count( $articles ) / 3 );
+		$remaining = count( $articles ) % 3;
 
 		// get and display header
 		$r = '<table width="100%"><tr valign="top">';
@@ -370,9 +371,9 @@ class CategoryViewer {
 		$prev_start_char = 'none';
 
 		// loop through the chunks
-		for($startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
+		for( $startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
 			$chunkIndex < 3;
-			$chunkIndex++, $startChunk = $endChunk, $endChunk += $chunk + 1)
+			$chunkIndex++, $startChunk = $endChunk, $endChunk += $remaining == 0 ? $chunk : $chunk + 1 )
 		{
 			$r .= "<td>\n";
 			$atColumnTop = true;
