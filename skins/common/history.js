@@ -87,9 +87,7 @@ function diffcheck() {
 // Attach event handlers to the input elements on history page
 function histrowinit() {
 	var hf = document.getElementById('pagehistory');
-	if (!hf) {
-		return;
-	}
+	if (!hf) return;
 	var df = document.getElementById('mw-history-revdeleteform');
 	if( df ) df.style.visibility = 'visible'; // Enable JS form
 	var lis = hf.getElementsByTagName('li');
@@ -101,7 +99,7 @@ function histrowinit() {
 		}
 		var check = deleteCheck(lis[i]);
 		if( df && check ) {
-			check.style.visibility = 'visible'; // Enable JS form
+			check.style.display = 'inline'; // Enable JS form
 		}
 	}
 	diffcheck();

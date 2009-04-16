@@ -91,7 +91,7 @@ class LogPage {
 				$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
 			$rc->notifyRC2UDP();
 		}
-		return true;
+		return $newId;
 	}
 
 	/**
@@ -357,6 +357,16 @@ class LogPage {
 		$this->actionText = LogPage::actionText( $this->type, $action, $target, NULL, $params );
 
 		return $this->saveContent();
+	}
+	
+	public function addRelations( $field, $values, $logid ) {
+		$data = array();
+		foreach( $values as $value ) {
+			$data[] = array('ls_field' => $field,'ls_value' => $value,'ls_log_id' => $logid);
+		}
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->insert( 'log_search', $data, __METHOD__ );
+		return true;
 	}
 
 	/**

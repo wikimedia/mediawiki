@@ -156,7 +156,7 @@ class PageHistory {
 		global $wgUser, $wgScript, $wgEnableHtmlDiff;
 		$this->lastdate = '';
 		$s = wfMsgExt( 'histlegend', array( 'parse') );
-		if( $wgUser->isAllowed('deleterevision') ) {
+		if( $this->linesonpage > 1 && $wgUser->isAllowed('deleterevision') ) {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			$s .= Xml::openElement( 'form',
 				array(
@@ -284,7 +284,7 @@ class PageHistory {
 
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			// Hide JS by default for non-JS browsing
-			$hidden = array( 'style' => 'visibility:hidden' );
+			$hidden = array( 'style' => 'display:none' );
 			// If revision was hidden from sysops
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$del = Xml::check( 'deleterevisions', false,
