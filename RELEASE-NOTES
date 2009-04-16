@@ -165,6 +165,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to allow extensions to update caches in similar way as MediaWiki invalidates
   a cached MonoBook sidebar
 * Special:AllPages: Move hardcoded styles from code to CSS
+* (bug 6092) Add parser function equivalents of {{REVISIONID}},
+  {{REVISIONTIMESTAMP}}  (and friends) and {{REVISIONUSER}} magic words
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
