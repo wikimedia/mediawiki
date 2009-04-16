@@ -1,6 +1,9 @@
 <?php
 /** Moksha (Мокшень)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -245,7 +248,7 @@ $messages = array(
 'category-media-header'          => '"$1" категориеса медиясь',
 'category-empty'                 => "''Медиа лопат тя категориеса ашет.''",
 'hidden-categories'              => '{{PLURAL:$1|Кяшф категорие|Кяшф категориет}}',
-'hidden-category-category'       => 'Кяшф категориет', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Кяшф категориет',
 'category-subcat-count'          => '{{PLURAL:$2|Тя категориеса аньцек фкя субкатегорие.|Тя категориеса  {{PLURAL:$1|субкатегорие|$1 субкатегориет}}, $2-нь эста.}}',
 'category-subcat-count-limited'  => 'Тя категориеса {{PLURAL:$1|субкатегорие|$1 субкатегориет}}.',
 'category-article-count'         => '{{PLURAL:$2|Тя категориеса аньцек фкя лопа.|Вага {{PLURAL:$1|лопа|$1 лопат}} тя категориеса $2-нь эста.}}',
@@ -332,7 +335,7 @@ $messages = array(
 'otherlanguages'    => 'Иля кяльса',
 'redirectedfrom'    => '(Шашфтф $1ста)',
 'redirectpagesub'   => 'Шашфтф лопа',
-'lastmodifiedat'    => 'Тя лопать мекольцеда петнезь $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Тя лопать мекольцеда петнезь $2, $1.',
 'viewcount'         => 'Тя лопас сувасть {{PLURAL:$1|весть|$1-ксть}}.',
 'protectedpage'     => 'Тя лопать аралаф',
 'jumpto'            => 'Юпадемс тязк:',
@@ -807,7 +810,7 @@ $3 макссь туфталсь - ''$2''",
 'currentrev'             => 'Тяниень верзие',
 'currentrev-asof'        => 'Тяниень $1нь верзиец',
 'revisionasof'           => '$1-нь верзиесь',
-'revision-info'          => '$1-нь иялякстоптомась конань тизе $2', # Additionally available: $3: revision id
+'revision-info'          => '$1-нь иялякстоптомась конань тизе $2',
 'previousrevision'       => 'Сядынгольдень илякстоптома',
 'nextrevision'           => 'Сяда од илякстоптома',
 'currentrevisionlink'    => 'Тяниень илякстоптома',
@@ -829,7 +832,7 @@ $3 макссь туфталсь - ''$2''",
 # Revision feed
 'history-feed-title'          => 'Верзиетнень историясна',
 'history-feed-description'    => 'Викиса тя лопать верзиетнень историясна',
-'history-feed-item-nocomment' => '$1-сь $2-са', # user at time
+'history-feed-item-nocomment' => '$1-сь $2-са',
 'history-feed-empty'          => 'Лопась, конань тон вешеть тяса аш.
 Улема сонь нардазь Викиста эли сонь лемоц полафтозь.
 Сувак [[Special:Вешендемас|Викиса вешендемас]] сяда мала лопатнень муманкса.',
@@ -1118,7 +1121,7 @@ $3 макссь туфталсь - ''$2''",
 'files'                     => 'Файлхт',
 
 # User rights
-'userrights'                  => 'Тиинь видекснень вятема', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Тиинь видекснень вятема',
 'userrights-lookup-user'      => 'Тиихнень полгаснон вятемасна',
 'userrights-user-editname'    => 'Путт тиить лемонц:',
 'editusergroup'               => 'Полафтомс тиить полганзон',
@@ -1813,8 +1816,8 @@ $NEWPAGE
 иля тиись сонь петезе эли кевордазе ни.
 
 Мекольце петнема  тизе [[User:$3|$3]] ([[User talk:$3|Корхнема]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Петнема лихтема ульсь: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Петнематнень мърдафтозь [[Special:Contributions/$2|$2]] ([[User talk:$2|Корхнема]]) сядынгольдень верзиес мърдафтозе [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Петнема лихтема ульсь: \"''\$1''\".",
+'revertpage'       => 'Петнематнень мърдафтозь [[Special:Contributions/$2|$2]] ([[User talk:$2|Корхнема]]) сядынгольдень верзиес мърдафтозе [[User:$1|$1]]',
 'rollback-success' => 'Петнематнень мърдафтозе $1; сядынгольдень верзиес мърдафтозе $2.',
 'sessionfailure'   => 'Улема, лиссь прябала тонь сувама пингста; програмонь якамась лотказевсь сувамать върьгятемада аралама туфталонкса. Эняльттяма, люпштак "меки" ди одонзафтт лопать, конаста тон сать, меле тик сембе одукс.',
 
@@ -1861,7 +1864,7 @@ $NEWPAGE
 ** Потафнема петнематнень мархта тюремась
 ** Вельф лама лисемат-сувамот лопаса',
 'protect-edit-reasonlist'     => 'Петнемс аралама туфталхне',
-'protect-expiry-options'      => '1 ой (час):1 hour,1 ши:1 day,1 тарга (недля):1 week,2 таргат (недлят):1 ков:1 month,3 кофт:3 months,6 кофт:6 months,1 киза:1 year,пефтома:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ой (час):1 hour,1 ши:1 day,1 тарга (недля):1 week,2 таргат (недлят):1 ков:1 month,3 кофт:3 months,6 кофт:6 months,1 киза:1 year,пефтома:infinite',
 'restriction-type'            => 'Мярьговома:',
 'restriction-level'           => 'Пякстама вийсь:',
 'minimum-size'                => 'Минимум кувалмоц',
@@ -1935,7 +1938,7 @@ $1',
 'contributions-title' => 'Тиить путксонза $1нди',
 'mycontris'           => 'Монь путксне',
 'contribsub2'         => '$1 ($2)-нди',
-'nocontribs'          => 'Тя вешфксть коряс кодамога полафтомат исть мув.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Тя вешфксть коряс кодамога полафтомат исть мув.',
 'uctop'               => '(прянь)',
 'month'               => 'Ковста (ди сядынголе):',
 'year'                => 'Кизоста (ди сядынголе):',
@@ -1995,7 +1998,7 @@ $1',
 'ipbenableautoblock'              => 'Эсезонза сёлгомс тя тиить мекольце IP адресть эди иля IP адрест конань эста сон тяряфни петнемат тиемс',
 'ipbsubmit'                       => 'Сёлгомс тя тиить',
 'ipbother'                        => 'Иля пинге:',
-'ipboptions'                      => '2 ойхть (част):2 hours,1 ши:1 day,3 шит:3 days,1 тарга (недля):1 week,2 таргат (недлят):2 weeks,1 ков:1 month,3 кофт:3 months,6 кофт:6 months,1 киза:1 year,пефтома:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 ойхть (част):2 hours,1 ши:1 day,3 шит:3 days,1 тарга (недля):1 week,2 таргат (недлят):2 weeks,1 ков:1 month,3 кофт:3 months,6 кофт:6 months,1 киза:1 year,пефтома:infinite',
 'ipbotheroption'                  => 'иля',
 'ipbotherreason'                  => 'Иля/поладомань туфтал:',
 'ipbhidename'                     => 'Кяшемс тиить лемоц петнемада ди лувомада',
@@ -2124,7 +2127,7 @@ $1 сёлкф ни. Мяльце полафтомс латцематнень?',
 'move-watch'                   => 'Ваномс тя лопать мельге',
 'movepagebtn'                  => 'Шашфтомс лопать иля вастс',
 'pagemovedsub'                 => 'Шашфтомась ётась лац',
-'movepage-moved'               => '<big>\'\'\'"$1"сь шашфтфоль "$2"с\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1"сь шашфтфоль "$2"с\'\'\'</big>',
 'movepage-moved-redirect'      => 'Умборондафтфкс тифоль.',
 'movepage-moved-noredirect'    => 'Умборондафтфксонь тиемась лоткафоль.',
 'articleexists'                => 'Тя лем мархта лопась ульсь ни эли лемсь, кона тон кочкать аф кондясти.
@@ -2318,7 +2321,7 @@ $1 сёлкф ни. Мяльце полафтомс латцематнень?',
 # Attribution
 'anonymous'        => 'Лемфтома {{SITENAME}}-нь {{PLURAL:$1|тиись|тиихне}}',
 'siteuser'         => '{{SITENAME}}-нь тиись $1',
-'lastmodifiedatby' => 'Тя лопать мекольцеда петнезь $3 $2, $1', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Тя лопать мекольцеда петнезь $3 $2, $1',
 'othercontribs'    => 'Тиф $1-нь покаманц коряс.',
 'others'           => 'илят',
 'siteusers'        => '{{SITENAME}}-нь {{PLURAL:$2|тиись|тиихне}} $1',
@@ -2427,7 +2430,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Келец',
@@ -2554,14 +2557,14 @@ $1',
 
 'exif-unknowndate' => 'Аф содаф шись',
 
-'exif-orientation-1' => 'Апак полафтт', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Шарфтф горизонталь коряс', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Шарфтф 180° градусс', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Шарфтф вертикаль коряс', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Шарфтф 90° градусс ойхть каршес ди вертикаль коряс', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Шарфтф 90° градусс ойхть коряс', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Шарфтф 90° градусс ойхть коряс ди  вертикаль коряс', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Шарфтф 90° градусс ойхть каршес', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Апак полафтт',
+'exif-orientation-2' => 'Шарфтф горизонталь коряс',
+'exif-orientation-3' => 'Шарфтф 180° градусс',
+'exif-orientation-4' => 'Шарфтф вертикаль коряс',
+'exif-orientation-5' => 'Шарфтф 90° градусс ойхть каршес ди вертикаль коряс',
+'exif-orientation-6' => 'Шарфтф 90° градусс ойхть коряс',
+'exif-orientation-7' => 'Шарфтф 90° градусс ойхть коряс ди  вертикаль коряс',
+'exif-orientation-8' => 'Шарфтф 90° градусс ойхть каршес',
 
 'exif-planarconfiguration-1' => 'нюрьхкяня форматсь',
 'exif-planarconfiguration-2' => 'лапш форматсь',
@@ -2831,7 +2834,7 @@ $1',
 'duplicate-defaultsort' => 'Инголе мярьгома: Апак полафтт сортонь панжема "$2" апак полафтт сортонь панжема "$1"да вяре.',
 
 # Special:Version
-'version'                          => 'MediaWiki-ть верзиец', # Not used as normal message but as header for the special page itself
+'version'                          => 'MediaWiki-ть верзиец',
 'version-extensions'               => 'Нолдаф тевс келепнематне',
 'version-specialpages'             => 'Башка тевонь лопат',
 'version-parserhooks'              => 'Синтакс анализаторонь кярьмодихне',

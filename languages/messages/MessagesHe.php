@@ -1,6 +1,9 @@
 <?php
 /** Hebrew (עברית)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -428,7 +431,7 @@ $messages = array(
 'category-media-header'          => 'קובצי מדיה בקטגוריה "$1"',
 'category-empty'                 => "'''קטגוריה זו אינה כוללת דפים או קובצי מדיה.'''",
 'hidden-categories'              => '{{PLURAL:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}}',
-'hidden-category-category'       => 'קטגוריות מוסתרות', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'קטגוריות מוסתרות',
 'category-subcat-count'          => '{{PLURAL:$2|קטגוריה זו כוללת את קטגוריית המשנה הבאה בלבד|דף קטגוריה זה כולל את {{PLURAL:$1|קטגוריית המשנה הבאה|$1 קטגוריות המשנה הבאות}}, מתוך $2 בקטגוריה כולה}}.',
 'category-subcat-count-limited'  => 'קטגוריה זו כוללת את {{PLURAL:$1|קטגוריית המשנה הבאה|$1 קטגוריות המשנה הבאות}}.',
 'category-article-count'         => '{{PLURAL:$2|קטגוריה זו כוללת את הדף הבא בלבד|דף קטגוריה זה כולל את {{PLURAL:$1|הדף הבא|$1 הדפים הבאים}}, מתוך $2 בקטגוריה כולה}}.',
@@ -514,7 +517,7 @@ $messages = array(
 'otherlanguages'    => 'שפות אחרות',
 'redirectedfrom'    => '(הופנה מהדף $1)',
 'redirectpagesub'   => 'דף הפניה',
-'lastmodifiedat'    => 'שונה לאחרונה ב־$2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'שונה לאחרונה ב־$2, $1.',
 'viewcount'         => 'דף זה נצפה {{PLURAL:$1|פעם אחת|$1 פעמים|פעמיים}}.',
 'protectedpage'     => 'דף מוגן',
 'jumpto'            => 'קפיצה אל:',
@@ -1026,7 +1029,7 @@ $2',
 'currentrev'             => 'גרסה נוכחית',
 'currentrev-asof'        => 'גרסה נוכחית מתאריך $1',
 'revisionasof'           => 'גרסה מתאריך $1',
-'revision-info'          => 'גרסה מתאריך $1 מאת $2', # Additionally available: $3: revision id
+'revision-info'          => 'גרסה מתאריך $1 מאת $2',
 'previousrevision'       => '→ הגרסה הקודמת',
 'nextrevision'           => 'הגרסה הבאה ←',
 'currentrevisionlink'    => 'הגרסה הנוכחית',
@@ -1048,7 +1051,7 @@ $2',
 # Revision feed
 'history-feed-title'          => 'היסטוריית גרסאות',
 'history-feed-description'    => 'היסטוריית הגרסאות של הדף הזה בוויקי',
-'history-feed-item-nocomment' => '$1 ב־$2', # user at time
+'history-feed-item-nocomment' => '$1 ב־$2',
 'history-feed-empty'          => 'הדף המבוקש לא נמצא.
 ייתכן שהוא נמחק, או ששמו שונה.
 נסו [[Special:Search|לחפש]] אחר דפים רלוונטיים חדשים.',
@@ -1364,7 +1367,7 @@ $2',
 'prefs-custom-js'           => 'קובץ JS מותאם אישית',
 
 # User rights
-'userrights'                  => 'ניהול הרשאות משתמש', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'ניהול הרשאות משתמש',
 'userrights-lookup-user'      => 'ניהול קבוצות משתמש',
 'userrights-user-editname'    => 'שם משתמש:',
 'editusergroup'               => 'עריכת קבוצות משתמשים',
@@ -1716,8 +1719,8 @@ PICT # שונות
 'noimage'                   => 'לא נמצא קובץ בשם זה, אך יש באפשרותכם $1.',
 'noimage-linktext'          => 'להעלות אחד',
 'uploadnewversion-linktext' => 'העלאת גרסה חדשה של קובץ זה',
-'shared-repo-from'          => 'מתוך $1', # $1 is the repository name
-'shared-repo'               => 'מקום איחסון משותף', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'מתוך $1',
+'shared-repo'               => 'מקום איחסון משותף',
 
 # File reversion
 'filerevert'                => 'שחזור $1',
@@ -2099,8 +2102,8 @@ $NEWPAGE
 'alreadyrolled'    => 'לא ניתן לשחזר את עריכת הדף [[:$1]] על ידי [[User:$2|$2]] ([[User talk:$2|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); מישהו אחר כבר ערך או שחזר דף זה.
 
 העריכה האחרונה הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "תקציר העריכה היה: \"'''\$1'''\".", # only shown if there is an edit comment
-'revertpage'       => 'שוחזר מעריכה של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "תקציר העריכה היה: \"'''\$1'''\".",
+'revertpage'       => 'שוחזר מעריכה של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]',
 'rollback-success' => 'שוחזר מעריכה של $1 לעריכה האחרונה של $2',
 'sessionfailure'   => 'נראה שיש בעיה בחיבורכם לאתר. פעולתכם בוטלה כאמצעי זהירות כנגד התחזות לתקשורת ממחשבכם. אנא חיזרו לדף הקודם ונסו שנית.',
 
@@ -2148,7 +2151,7 @@ $NEWPAGE
 ** מלחמת עריכה בלתי מועילה
 ** דף בשימוש רב',
 'protect-edit-reasonlist'     => 'עריכת סיבות ההגנה',
-'protect-expiry-options'      => 'שעה:1 hour,יום:1 day,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year,לצמיתות:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'שעה:1 hour,יום:1 day,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year,לצמיתות:infinite',
 'restriction-type'            => 'הרשאה:',
 'restriction-level'           => 'רמת ההגבלה:',
 'minimum-size'                => 'גודל מינימלי',
@@ -2224,7 +2227,7 @@ $1',
 'contributions-title' => 'תרומות של המשתמש $1',
 'mycontris'           => 'התרומות שלי',
 'contribsub2'         => 'עבור $1 ($2)',
-'nocontribs'          => 'לא נמצאו שינויים המתאימים לקריטריונים אלו.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'לא נמצאו שינויים המתאימים לקריטריונים אלו.',
 'uctop'               => '(אחרון)',
 'month'               => 'עד החודש:',
 'year'                => 'עד השנה:',
@@ -2289,7 +2292,7 @@ $1',
 'ipbenableautoblock'              => 'חסימה גם של כתובת ה־IP שלו וכל כתובת IP אחרת שישתמש בה',
 'ipbsubmit'                       => 'חסימה',
 'ipbother'                        => 'זמן אחר:',
-'ipboptions'                      => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year,לצמיתות:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year,לצמיתות:infinite',
 'ipbotheroption'                  => 'אחר',
 'ipbotherreason'                  => 'סיבה אחרת/נוספת:',
 'ipbhidename'                     => 'הסתרת שם המשתמש מהעריכות ומהרשימות',
@@ -2422,7 +2425,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'move-watch'                   => 'מעקב אחרי דף זה',
 'movepagebtn'                  => 'העברה',
 'pagemovedsub'                 => 'ההעברה הושלמה בהצלחה',
-'movepage-moved'               => '<big>הדף "$1" הועבר לשם "$2".</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>הדף "$1" הועבר לשם "$2".</big>',
 'movepage-moved-redirect'      => 'נוצרה הפניה.',
 'movepage-moved-noredirect'    => 'יצירת ההפניה בוטלה.',
 'articleexists'                => 'קיים כבר דף עם אותו שם, או שהשם שבחרתם אינו חוקי.
@@ -2648,7 +2651,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 # Attribution
 'anonymous'        => '{{PLURAL:$1|משתמש אנונימי|משתמשים אנונימיים}} של {{SITENAME}}',
 'siteuser'         => 'משתמש {{SITENAME}} $1',
-'lastmodifiedatby' => 'דף זה שונה לאחרונה בתאריך $2, $1 על ידי $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'דף זה שונה לאחרונה בתאריך $2, $1 על ידי $3.',
 'othercontribs'    => 'מבוסס על העבודה של $1.',
 'others'           => 'אחרים',
 'siteusers'        => '{{PLURAL:$2|משתמש|משתמשי}} {{SITENAME}} $1',
@@ -2769,7 +2772,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'רוחב',
@@ -2897,14 +2900,14 @@ $1',
 
 'exif-unknowndate' => 'תאריך בלתי ידוע',
 
-'exif-orientation-1' => 'רגילה', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'הפוך אופקית', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'מסובב 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'הפוך אנכית', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'מסובב 90° נגד כיוון השעון והפוך אנכית', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'מסובב 90° עם כיוון השעון', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'מסובב 90° עם כיוון השעון והפוך אנכית', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'מסובב 90° נגד כיוון השעון', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'רגילה',
+'exif-orientation-2' => 'הפוך אופקית',
+'exif-orientation-3' => 'מסובב 180°',
+'exif-orientation-4' => 'הפוך אנכית',
+'exif-orientation-5' => 'מסובב 90° נגד כיוון השעון והפוך אנכית',
+'exif-orientation-6' => 'מסובב 90° עם כיוון השעון',
+'exif-orientation-7' => 'מסובב 90° עם כיוון השעון והפוך אנכית',
+'exif-orientation-8' => 'מסובב 90° נגד כיוון השעון',
 
 'exif-planarconfiguration-1' => 'פורמט חסון',
 'exif-planarconfiguration-2' => 'פורמט שטוח',
@@ -3227,7 +3230,7 @@ $1',
 'duplicate-defaultsort' => 'אזהרה: המיון הרגיל "$2" דורס את המיון הרגיל המוקדם ממנו "$1".',
 
 # Special:Version
-'version'                          => 'גרסת התוכנה', # Not used as normal message but as header for the special page itself
+'version'                          => 'גרסת התוכנה',
 'version-extensions'               => 'הרחבות מותקנות',
 'version-specialpages'             => 'דפים מיוחדים',
 'version-parserhooks'              => 'הרחבות מפענח',

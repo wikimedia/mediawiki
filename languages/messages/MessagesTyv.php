@@ -1,6 +1,9 @@
 <?php
 /** Tuvinian (Тыва дыл)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -165,7 +168,7 @@ $messages = array(
 'categorypage'      => 'Бөлүк арынын көөр',
 'viewtalkpage'      => 'Чугаалажырыны көөр',
 'otherlanguages'    => 'Өске дылдарга',
-'lastmodifiedat'    => 'Бо арын сөөлгү каттап $2, $1 өскерилген.', # $1 date, $2 time
+'lastmodifiedat'    => 'Бо арын сөөлгү каттап $2, $1 өскерилген.',
 'jumptonavigation'  => 'навигация',
 'jumptosearch'      => 'дилээр',
 
@@ -711,7 +714,7 @@ $1',
 'watchlisttools-raw'  => 'Чиг хайгаарылга даңзын өскертир',
 
 # Special:Version
-'version' => 'Үндүрери', # Not used as normal message but as header for the special page itself
+'version' => 'Үндүрери',
 
 # Special:SpecialPages
 'specialpages' => 'Тускай арыннар',

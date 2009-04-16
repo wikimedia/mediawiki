@@ -1,6 +1,9 @@
 <?php
 /** Kazakh (Latin) (Қазақша (Latin))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -470,7 +473,7 @@ $messages = array(
 'category-media-header'          => '«$1» sanatındağı taspalar',
 'category-empty'                 => "''Bul sanatta ağımda eş bet ne taspa joq.''",
 'hidden-categories'              => '{{PLURAL:$1|Jasırın sanat|Jasırın sanattar}}',
-'hidden-category-category'       => 'Jasırın sanattar', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Jasırın sanattar',
 'category-subcat-count'          => '{{PLURAL:$2|Bul sanatta tek kelesi sanatşa bar.|Bul sanatta kelesi $1 sanatşa bar (ne barlığı $2).}}',
 'category-subcat-count-limited'  => 'Bul sanatta kelesi $1 sanatşa bar.',
 'category-article-count'         => '{{PLURAL:$2|Bul sanatta tek kelesi bet bar.|Bul sanatta kelesi $1 bet bar (ne barlığı $2).}}',
@@ -556,7 +559,7 @@ $messages = array(
 'otherlanguages'    => 'Basqa tilderde',
 'redirectedfrom'    => '($1 betinen aýdatılğan)',
 'redirectpagesub'   => 'Aýdatw beti',
-'lastmodifiedat'    => 'Bul bettiñ özgertilgen soñğı kezi: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Bul bettiñ özgertilgen soñğı kezi: $2, $1.',
 'viewcount'         => 'Bul bet $1 ret qatınalğan.',
 'protectedpage'     => 'Qorğalğan bet',
 'jumpto'            => 'Mında ötw:',
@@ -1023,7 +1026,7 @@ $3 keltirilgen sebebi: ''$2''",
 'nohistory'           => 'Mında bul bettiniñ tüzetw tarïxı joq.',
 'currentrev'          => 'Ağımdıq tüzetw',
 'revisionasof'        => '$1 kezindegi tüzetw',
-'revision-info'       => '$1 kezindegi $2 istegen tüzetw', # Additionally available: $3: revision id
+'revision-info'       => '$1 kezindegi $2 istegen tüzetw',
 'previousrevision'    => '← Eskilew tüzetwi',
 'nextrevision'        => 'Jañalaw tüzetwi →',
 'currentrevisionlink' => 'Ağımdıq tüzetwi',
@@ -1044,7 +1047,7 @@ $3 keltirilgen sebebi: ''$2''",
 # Revision feed
 'history-feed-title'          => 'Tüzetw tarïxı',
 'history-feed-description'    => 'Mına wïkïdegi bul bettiñ tüzetw tarïxı',
-'history-feed-item-nocomment' => '$2 kezindegi $1 degen', # user at time
+'history-feed-item-nocomment' => '$2 kezindegi $1 degen',
 'history-feed-empty'          => 'Suratılğan bet joq boldı.
 Ol mına wïkïden joýılğan, nemese atawı awıstırılğan.
 Osığan qatıstı jaña betterdi [[{{#special:Search}}|bul wïkïden izdewdi]] baýqap köriñiz.',
@@ -1247,7 +1250,7 @@ baptaw üşin math/README qujatın qarañız.',
 'files'                    => 'Faýldar',
 
 # User rights
-'userrights'                  => 'Qatıswşı quqıqtarın rettew', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Qatıswşı quqıqtarın rettew',
 'userrights-lookup-user'      => 'Qatıswşı toptarın rettew',
 'userrights-user-editname'    => 'Qatıswşı atın engiziñiz:',
 'editusergroup'               => 'Qatıswşı toptarın öñdew',
@@ -1878,8 +1881,8 @@ soñğı üleskeri tek osı bettiñ bastawşısı boldı.',
 basqa birew bul betti aldaqaşan öñdegen ne şegindirgen.
 
 soñğı öñdemesin [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) istegen.',
-'editcomment'      => "Bolğan öñdeme mändemesi: «''$1''».", # only shown if there is an edit comment
-'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) öñdemelerinen [[{{ns:user}}:$1|$1]] soñğı nusqasına qaýtardı', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Bolğan öñdeme mändemesi: «''$1''».",
+'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) öñdemelerinen [[{{ns:user}}:$1|$1]] soñğı nusqasına qaýtardı',
 'rollback-success' => '$1 öñdemelerinen qaýtarğan;
 $2 soñğı nusqasına özgertti.',
 'sessionfailure'   => 'Kirw sessïyasında şataq bolğan sïyaqtı;
@@ -1918,7 +1921,7 @@ Bul bettiñ qorğaw deñgeýin özgerte alasız, biraq bul bawlı qorğawğa ıq
 'protect-expiring'            => 'merzimi bitpek: $1 (UTC)',
 'protect-cascade'             => 'Bul bettiñ kirikbetterin qorğaw (bawlı qorğaw).',
 'protect-cantedit'            => 'Bul bettiñ qorğaw deñgeýin özgerte almaýsız, sebebi bunı öñdewge ruqstañız joq.',
-'protect-expiry-options'      => '2 sağat:2 hours,1 kün:1 day,3 kün:3 days,1 apta:1 week,2 apta:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 jıl:1 year,mängi:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 sağat:2 hours,1 kün:1 day,3 kün:3 days,1 apta:1 week,2 apta:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 jıl:1 year,mängi:infinite',
 'restriction-type'            => 'Ruqsatı:',
 'restriction-level'           => 'Tïımdıq deñgeýi:',
 'minimum-size'                => 'Eñ az mölşeri',
@@ -1995,7 +1998,7 @@ $1',
 'contributions' => 'Qatıswşı ülesi',
 'mycontris'     => 'Ülesim',
 'contribsub2'   => '$1 ($2) ülesi',
-'nocontribs'    => 'Osı izdew şartına säýkes özgerister tabılğan joq.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Osı izdew şartına säýkes özgerister tabılğan joq.',
 'uctop'         => ' (üsti)',
 'month'         => 'Mına aýdan (jäne erterekten):',
 'year'          => 'Mına jıldan (jäne erterekten):',
@@ -2054,7 +2057,7 @@ Tömende tïisti sebebin toltırıp körsetiñiz (mısalı, däýekke buzaqılı
 'ipbenableautoblock'          => 'Bul qatıswşı soñğı qoldanğan IP mekenjaýın, jäne keýin öñdewge baýqap körgen är IP mekenjaýların özbuğattawı',
 'ipbsubmit'                   => 'Qatıswşını buğatta',
 'ipbother'                    => 'Basqa merzimi:',
-'ipboptions'                  => '2 sağat:2 hours,1 kün:1 day,3 kün:3 days,1 apta:1 week,2 apta:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 jıl:1 year,mängi:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 sağat:2 hours,1 kün:1 day,3 kün:3 days,1 apta:1 week,2 apta:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 jıl:1 year,mängi:infinite',
 'ipbotheroption'              => 'basqa',
 'ipbotherreason'              => 'Basqa/qosımşa sebep:',
 'ipbhidename'                 => 'Qatıswşı atın buğattaw jwrnalınnan, belsendi buğattaw tiziminen, qatıswşı tiziminen jasırw',
@@ -2167,7 +2170,7 @@ Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
 'move-watch'              => 'Bul betti baqılaw',
 'movepagebtn'             => 'Betti jıljıt',
 'pagemovedsub'            => 'Jıljıtw sätti ayaqtaldı',
-'movepage-moved'          => '<big>\'\'\'"$1" beti "$2" betine jıljıtıldı\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" beti "$2" betine jıljıtıldı\'\'\'</big>',
 'articleexists'           => 'Osılaý atalğan bet aldaqaşan bar, ne tañdağan atawıñız jaramdı emes.
 Özge atawdı tañdañız',
 'cantmove-titleprotected' => 'Betti osı orınğa jıljıta almaýsız, sebebi jaña taqırıp atı bastawdan qorğalğan',
@@ -2366,7 +2369,7 @@ Wïkï-aparw üşin sırttan alw barlıq äreketter [[{{#special:Log}}/import|s�
 # Attribution
 'anonymous'        => '{{SITENAME}} tirkelgisiz qatıswşı(ları)',
 'siteuser'         => '{{SITENAME}} qatıswşı $1',
-'lastmodifiedatby' => 'Bul betti $3 qatıswşı soñğı özgertken kezi: $2, $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Bul betti $3 qatıswşı soñğı özgertken kezi: $2, $1.',
 'othercontribs'    => 'Şığarma negizin $1 jazğan.',
 'others'           => 'basqalar',
 'siteusers'        => '{{SITENAME}} qatıswşı(lar) $1',
@@ -2488,7 +2491,7 @@ Basqaları ädepkiden jasırıladı.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Eni',
@@ -2615,14 +2618,14 @@ Basqaları ädepkiden jasırıladı.
 
 'exif-unknowndate' => 'Belgisiz kün-aýı',
 
-'exif-orientation-1' => 'Qalıptı', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Dereleý şağılısqan', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° burışqa aýnalğan', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Tireleý şağılısqan', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Sağat tilşesine qarsı 90° burışqa aýnalğan jäne tireleý şağılısqan', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Sağat tilşe boýınşa 90° burışqa aýnalğan', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Sağat tilşe boýınşa 90° burışqa aýnalğan jäne tireleý şağılısqan', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Sağat tilşesine qarsı 90° burışqa aýnalğan', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Qalıptı',
+'exif-orientation-2' => 'Dereleý şağılısqan',
+'exif-orientation-3' => '180° burışqa aýnalğan',
+'exif-orientation-4' => 'Tireleý şağılısqan',
+'exif-orientation-5' => 'Sağat tilşesine qarsı 90° burışqa aýnalğan jäne tireleý şağılısqan',
+'exif-orientation-6' => 'Sağat tilşe boýınşa 90° burışqa aýnalğan',
+'exif-orientation-7' => 'Sağat tilşe boýınşa 90° burışqa aýnalğan jäne tireleý şağılısqan',
+'exif-orientation-8' => 'Sağat tilşesine qarsı 90° burışqa aýnalğan',
 
 'exif-planarconfiguration-1' => 'talpaq pişim',
 'exif-planarconfiguration-2' => 'taýpaq pişim',
@@ -2930,7 +2933,7 @@ Tağı da [[{{#special:Watchlist}}/edit|qalıpalğan öñdewişti paýdalana]] a
 'unknown_extension_tag' => 'Tanılmağan keñeýtpe belgisi «$1»',
 
 # Special:Version
-'version'                          => 'Jüýe nusqası', # Not used as normal message but as header for the special page itself
+'version'                          => 'Jüýe nusqası',
 'version-extensions'               => 'Ornatılğan keñeýtimder',
 'version-specialpages'             => 'Arnaýı better',
 'version-parserhooks'              => 'Qurılımdıq taldatqıştıñ tuzaqtarı',

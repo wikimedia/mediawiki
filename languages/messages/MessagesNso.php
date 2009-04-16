@@ -1,6 +1,9 @@
 <?php
 /** Northern Sotho (Sesotho sa Leboa)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -195,7 +198,7 @@ $messages = array(
 'otherlanguages'    => 'Ka dipolelo tše dingwe',
 'redirectedfrom'    => "(''Redirect'' go tšwa $1)",
 'redirectpagesub'   => "''Redirect'' letlakala",
-'lastmodifiedat'    => 'Letlakala le  fetotšwe la mafelelo ka $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Letlakala le  fetotšwe la mafelelo ka $2, $1.',
 'viewcount'         => 'Letlakala le le butšwe ga {{PLURAL:$1|tee|$1}}.',
 'protectedpage'     => 'Letlakala la go lotiwa',
 'jumpto'            => 'Taboga go:',
@@ -462,7 +465,7 @@ Sedi ya phumulo ya letlakala e re:",
 'viewpagelogs'        => "Nyakoretša di-''log'' tša letlakala le",
 'currentrev'          => 'Poeletšo tša bjale',
 'revisionasof'        => 'Thumeletšo go tloga ka $1',
-'revision-info'       => 'Poeletšo go tloga $1 ka $2', # Additionally available: $3: revision id
+'revision-info'       => 'Poeletšo go tloga $1 ka $2',
 'previousrevision'    => '←Poeletšo tša kgalenyana',
 'nextrevision'        => 'Peletšo tše dimphsanyana→',
 'currentrevisionlink' => 'Poeletšo ya bjale',
@@ -482,7 +485,7 @@ Nane: (bjale) = phapang le diphetogo tša bjale,
 # Revision feed
 'history-feed-title'          => 'Histori ya poeletšo',
 'history-feed-description'    => 'History ya poeletšo ya letlakala le go wiki',
-'history-feed-item-nocomment' => '$1 go $2', # user at time
+'history-feed-item-nocomment' => '$1 go $2',
 'history-feed-empty'          => 'Letlakala lewe ga le gona.
 Mohlomongwe le phumutšwe go wiki, goba le fetotšwe leina.
 Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
@@ -805,7 +808,7 @@ Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 
 # Rollback
 'rollbacklink' => 'bošetša morago',
-'editcomment'  => "Ahlaahlo ya phetogo ke : \"''\$1''\".", # only shown if there is an edit comment
+'editcomment'  => "Ahlaahlo ya phetogo ke : \"''\$1''\".",
 
 # Protect
 'protectlogpage'              => "''Log'' yago lota",
@@ -829,7 +832,7 @@ Seemo sa go lota ga letlakala '''$1''':",
 'protect-expiring'            => 'fetatšatši ke $1 (UTC)',
 'protect-cascade'             => 'Lota matlakala, akaretša le letlakala le (go lota ka kakaretšo)',
 'protect-cantedit'            => 'Ga o kgone go fetola tekano ya bolotego letlakaleng le, ka ge o sena tumello yago bofetola.',
-'protect-expiry-options'      => '2 diiri:2 hours,1 letšatši:1 day,3 matšatši:3 days,1 beke:1 week,2 dibeke:2 weeks,1 kgwedi:1 month,3 digkwedi:3 months,6 dikgwedi:6 months,1 ngwaga:1 year,ga efele:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 diiri:2 hours,1 letšatši:1 day,3 matšatši:3 days,1 beke:1 week,2 dibeke:2 weeks,1 kgwedi:1 month,3 digkwedi:3 months,6 dikgwedi:6 months,1 ngwaga:1 year,ga efele:infinite',
 'restriction-type'            => 'Tumello:',
 'restriction-level'           => 'Seemo sago Lota:',
 
@@ -887,7 +890,7 @@ Seemo sa go lota ga letlakala '''$1''':",
 'ipbreasonotherlist'      => 'Lebaka le lengwe',
 'ipbsubmit'               => 'Thiba mošomiši yo',
 'ipbother'                => 'Nako yengwe:',
-'ipboptions'              => '2 diiri:2 hours,1 letšatši:1 day,3 matšatši:3 days,1 beke:1 week,2 dibeke:2 weeks,1 kgwedi:1 month,3 digkwedi:3 months,6 dikgwedi:6 months,1 ngwaga:1 year,ga efele:infinite', # display1:time1,display2:time2,...
+'ipboptions'              => '2 diiri:2 hours,1 letšatši:1 day,3 matšatši:3 days,1 beke:1 week,2 dibeke:2 weeks,1 kgwedi:1 month,3 digkwedi:3 months,6 dikgwedi:6 months,1 ngwaga:1 year,ga efele:infinite',
 'ipbotheroption'          => 'yengwe',
 'ipblocklist'             => "Lenano la IP le bašumiši bao bathibilwego(''blocked'')",
 'ipblocklist-submit'      => 'Fetleka',
@@ -926,7 +929,7 @@ Ge go le bjalo,o tla swanela ke go huduša goba go kopanya matlakala ka bowena."
 'move-watch'              => 'Tlhapetša letlakala le',
 'movepagebtn'             => 'Huduša letlakala',
 'pagemovedsub'            => 'Hudugile ka katlego',
-'movepage-moved'          => '<big>\'\'\'"$1" e hudušitšwe go "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" e hudušitšwe go "$2"\'\'\'</big>',
 'articleexists'           => 'Letlakala la goba le leina le legona, goba
 leina leo o le kgethilego ga la dumelega.
 Ka kgopelo, kgetha leina le lengwe.',
@@ -1003,7 +1006,7 @@ Ka kgopelo, kgetha leina le lengwe.',
 
 # Attribution
 'siteuser'         => '{{SITENAME}} mošumiši $1',
-'lastmodifiedatby' => 'Letlakala le  fetotšwe la mafelelo ka $2, $1 ke $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Letlakala le  fetotšwe la mafelelo ka $2, $1 ke $3.',
 'others'           => 'tše dingwe',
 'siteusers'        => '{{SITENAME}} mošumiši/bašumiši $1',
 
@@ -1054,7 +1057,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'  => 'Bophara',
@@ -1105,7 +1108,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 'watchlisttools-raw'  => "Fetola lenano le letala (''raw'') la ditlhapetšo",
 
 # Special:Version
-'version' => "''Version''", # Not used as normal message but as header for the special page itself
+'version' => "''Version''",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Fetleka',

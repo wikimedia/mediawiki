@@ -1,6 +1,9 @@
 <?php
 /** Vietnamese (Tiếng Việt)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -338,7 +341,7 @@ $messages = array(
 'category-media-header'          => 'Các tập tin trong thể loại “$1”',
 'category-empty'                 => "''Thể loại này hiện không có trang hay tập tin nào.''",
 'hidden-categories'              => '{{PLURAL:$1|Thể loại ẩn|Thể loại ẩn}}',
-'hidden-category-category'       => 'Thể loại ẩn', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Thể loại ẩn',
 'category-subcat-count'          => 'Thể loại này có {{PLURAL:$2|tiểu thể loại sau|{{PLURAL:$1||$1}} tiểu thể loại sau, trên tổng số $2 tiểu thể loại}}.',
 'category-subcat-count-limited'  => 'Thể loại này có {{PLURAL:$1||$1}} tiểu thể loại sau.',
 'category-article-count'         => '{{PLURAL:$2|Thể loại này gồm trang sau.|{{PLURAL:$1|Trang|$1 trang}} sau nằm trong thể loại này, trên tổng số $2 trang.}}',
@@ -425,7 +428,7 @@ $messages = array(
 'otherlanguages'    => 'Ngôn ngữ khác',
 'redirectedfrom'    => '(đổi hướng từ $1)',
 'redirectpagesub'   => 'Trang đổi hướng',
-'lastmodifiedat'    => 'Lần sửa cuối : $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Lần sửa cuối : $2, $1.',
 'viewcount'         => 'Trang này đã được đọc {{PLURAL:$1|một|$1}} lần.',
 'protectedpage'     => 'Trang bị khóa',
 'jumpto'            => 'Bước tới:',
@@ -902,7 +905,7 @@ Lý do được $3 đưa ra là ''$2''",
 'currentrev'             => 'Bản hiện tại',
 'currentrev-asof'        => 'Bản hiện tại lúc $1',
 'revisionasof'           => 'Phiên bản lúc $1',
-'revision-info'          => 'Phiên bản vào lúc $1 do $2 sửa đổi', # Additionally available: $3: revision id
+'revision-info'          => 'Phiên bản vào lúc $1 do $2 sửa đổi',
 'previousrevision'       => '← Phiên bản cũ',
 'nextrevision'           => 'Phiên bản mới →',
 'currentrevisionlink'    => 'xem phiên bản hiện hành',
@@ -924,7 +927,7 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 # Revision feed
 'history-feed-title'          => 'Lịch sử thay đổi',
 'history-feed-description'    => 'Lịch sử thay đổi của trang này ở wiki',
-'history-feed-item-nocomment' => '$1 vào lúc $2', # user at time
+'history-feed-item-nocomment' => '$1 vào lúc $2',
 'history-feed-empty'          => 'Trang bạn yêu cầu không tồn tại. Có thể là nó đã bị xóa khỏi wiki hay được đổi tên. Hãy [[Special:Search|tìm kiếm trong wiki]] về các trang mới có liên quan.',
 
 # Revision deletion
@@ -1238,7 +1241,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'prefs-custom-js'           => 'sửa JS',
 
 # User rights
-'userrights'                  => 'Quản lý quyền thành viên', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Quản lý quyền thành viên',
 'userrights-lookup-user'      => 'Quản lý nhóm thành viên',
 'userrights-user-editname'    => 'Nhập tên thành viên:',
 'editusergroup'               => 'Sửa nhóm thành viên',
@@ -1588,8 +1591,8 @@ Lời miêu tả tại [$2 trang mô tả tập tin] tại đấy được hiể
 'noimage'                   => 'Không có tập tin có tên này, nhưng bạn có thể $1.',
 'noimage-linktext'          => 'tải tập tin lên',
 'uploadnewversion-linktext' => 'Tải lên phiên bản mới',
-'shared-repo-from'          => 'tại $1', # $1 is the repository name
-'shared-repo'               => 'kho lưu trữ dùng chung', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'tại $1',
+'shared-repo'               => 'kho lưu trữ dùng chung',
 
 # File reversion
 'filerevert'                => 'Lùi lại phiên bản của $1',
@@ -1971,8 +1974,8 @@ người viết trang cuối cùng cũng là tác giả duy nhất của trang n
 'alreadyrolled'    => 'Không thể lùi tất cả sửa đổi cuối của [[User:$2|$2]] ([[User talk:$2|thảo luận]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tại [[:$1]]; ai đó đã thực hiện sửa đổi hoặc thực hiện lùi tất cả rồi.
 
 Sửa đổi cuối cùng tại trang do [[User:$3|$3]] ([[User talk:$3|thảo luận]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) thực hiện.',
-'editcomment'      => "Tóm lược sửa đổi: “''$1''”.", # only shown if there is an edit comment
-'revertpage'       => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) quay về phiên bản của [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Tóm lược sửa đổi: “''$1''”.",
+'revertpage'       => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) quay về phiên bản của [[User:$1|$1]]',
 'rollback-success' => 'Đã hủy sửa đổi của $1;
 quay về phiên bản cuối của $2.',
 'sessionfailure'   => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
@@ -2020,7 +2023,7 @@ hiện tại của trang '''$1''':",
 ** Bút chiến thiếu tính xây dựng
 ** Trang nhiều người xem',
 'protect-edit-reasonlist'     => 'Sửa lý do khóa trang',
-'protect-expiry-options'      => '1 giờ:1 hour,1 ngày:1 day,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 giờ:1 hour,1 ngày:1 day,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite',
 'restriction-type'            => 'Quyền:',
 'restriction-level'           => 'Mức độ hạn chế:',
 'minimum-size'                => 'Kích thước tối thiểu',
@@ -2099,7 +2102,7 @@ $1',
 'contributions-title' => 'Đóng góp của thành viên $1',
 'mycontris'           => 'Đóng góp của tôi',
 'contribsub2'         => 'Của $1 ($2)',
-'nocontribs'          => 'Không tìm thấy thay đổi nào khớp với yêu cầu.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Không tìm thấy thay đổi nào khớp với yêu cầu.',
 'uctop'               => '(mới nhất)',
 'month'               => 'Từ tháng (trở về trước):',
 'year'                => 'Từ năm (trở về trước):',
@@ -2164,7 +2167,7 @@ $1',
 'ipbenableautoblock'              => 'Tự động cấm các địa chỉ IP mà thành viên này sử dụng',
 'ipbsubmit'                       => 'Cấm',
 'ipbother'                        => 'Thời hạn khác:',
-'ipboptions'                      => '2 giờ:2 hours,1 ngày:1 day,3 ngày:3 days,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 giờ:2 hours,1 ngày:1 day,3 ngày:3 days,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite',
 'ipbotheroption'                  => 'khác',
 'ipbotherreason'                  => 'Lý do khác',
 'ipbhidename'                     => 'Ẩn tên người dùng ra khỏi các sửa đổi và danh sách',
@@ -2292,7 +2295,7 @@ Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất
 'move-watch'                   => 'Theo dõi trang này',
 'movepagebtn'                  => 'Di chuyển trang',
 'pagemovedsub'                 => 'Di chuyển thành công',
-'movepage-moved'               => "<big>'''“$1” đã được di chuyển đến “$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''“$1” đã được di chuyển đến “$2”'''</big>",
 'movepage-moved-redirect'      => 'Đã tạo trang chuyển hướng.',
 'movepage-moved-noredirect'    => 'Chức năng tạo trang chuyển hướng đã bị tắt.',
 'articleexists'                => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.
@@ -2516,7 +2519,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Thành viên|Thành viên}} vô danh của {{SITENAME}}',
 'siteuser'         => 'Thành viên $1 của {{SITENAME}}',
-'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2, $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2, $1.',
 'othercontribs'    => 'Dựa trên công trình của $1.',
 'others'           => 'những người khác',
 'siteusers'        => '{{PLURAL:$2|Thành viên|Các thành viên}} $1 của {{SITENAME}}',
@@ -2640,7 +2643,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bề ngang',
@@ -2772,14 +2775,14 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 
 'exif-unknowndate' => 'Không biết ngày',
 
-'exif-orientation-1' => 'Thường', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Lộn ngược theo phương ngang', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Quay 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Lộn ngược theo phương dọc', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Quay 90° bên trái và lộn thẳng đứng', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Quay 90° bên phải', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Quay 90° bên phải và lộn thẳng đứng', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Quay 90° bên trái', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Thường',
+'exif-orientation-2' => 'Lộn ngược theo phương ngang',
+'exif-orientation-3' => 'Quay 180°',
+'exif-orientation-4' => 'Lộn ngược theo phương dọc',
+'exif-orientation-5' => 'Quay 90° bên trái và lộn thẳng đứng',
+'exif-orientation-6' => 'Quay 90° bên phải',
+'exif-orientation-7' => 'Quay 90° bên phải và lộn thẳng đứng',
+'exif-orientation-8' => 'Quay 90° bên trái',
 
 'exif-planarconfiguration-1' => 'định dạng thấp',
 'exif-planarconfiguration-2' => 'định dạng phẳng',
@@ -3050,7 +3053,7 @@ Bạn cũng có thể [[Special:Watchlist/edit|dùng trình soạn thảo chuẩ
 'duplicate-defaultsort' => 'Cảnh báo: Từ khóa xếp mặc định “$2” ghi đè từ khóa trước, “$1”.',
 
 # Special:Version
-'version'                          => 'Phiên bản', # Not used as normal message but as header for the special page itself
+'version'                          => 'Phiên bản',
 'version-extensions'               => 'Các phần mở rộng được cài đặt',
 'version-specialpages'             => 'Trang đặc biệt',
 'version-parserhooks'              => 'Hook trong bộ xử lý',

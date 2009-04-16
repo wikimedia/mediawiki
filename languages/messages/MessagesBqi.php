@@ -1,6 +1,9 @@
 <?php
 /** Bakhtiari (بختياري)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -118,7 +121,7 @@ $messages = array(
 'category-media-header'          => 'مدیا دردسته "$1"',
 'category-empty'                 => 'ای دسته درحال حاضر دارای هیچ صفحه یا مدیایی نه',
 'hidden-categories'              => '{{PLURAL:$1|دسته قایم|دسته های قایم}}',
-'hidden-category-category'       => 'دسته های قایم', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'دسته های قایم',
 'category-subcat-count'          => '{{PLURAL:$2|ای دسته فقط دسته های فرعی زیر راداره.|ای دسته چیزهای زیر راداره {{PLURAL:$1|دسته فرعی|$1 دسته های فرعی}}, بیشتراز$2 کل.}}',
 'category-subcat-count-limited'  => 'ای دسته چیزهای زیر راداره {{PLURAL:$1|دسته فرعی|$1 دسته های فرعی}}.',
 'category-article-count'         => '{{PLURAL:$2|ای دسته فقط دارای صفحات زیره.|ذیل الذکر{{PLURAL:$1|صفحه است|$1 صفحات هستند}} دراین دسته, بیشترزه$2 کل.}}',
@@ -171,7 +174,7 @@ $messages = array(
 'otherlanguages'   => 'درزبانهای دیگر',
 'redirectedfrom'   => '(تصحیح مجدداز$1)',
 'redirectpagesub'  => 'صفحه تصحیح وهدایت مجدد',
-'lastmodifiedat'   => 'این صفحه اخیرا تغییر واصلاح شددر $1, در $2.', # $1 date, $2 time
+'lastmodifiedat'   => 'این صفحه اخیرا تغییر واصلاح شددر $1, در $2.',
 'viewcount'        => 'این صفحه قابل دسترسی شده است {{PLURAL:$1|once|$1 times}}.',
 'protectedpage'    => 'صفحه حمایت شده',
 'jumpto'           => 'پریدن به:',
@@ -372,7 +375,7 @@ $1',
 'viewpagelogs'        => 'نشودادن نمایه ها سی ای صفحه',
 'currentrev'          => 'نسخه جاری',
 'revisionasof'        => 'اصلاح $1',
-'revision-info'       => 'یه نسخه اصلاح شده درتاریخ  $1 بوسیله $2', # Additionally available: $3: revision id
+'revision-info'       => 'یه نسخه اصلاح شده درتاریخ  $1 بوسیله $2',
 'previousrevision'    => '← اصلاح قبلی',
 'nextrevision'        => 'نسخه بعدی →',
 'currentrevisionlink' => 'نسخه جاری',
@@ -387,7 +390,7 @@ $1',
 'histlast'            => 'تازه ترین',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 در $2', # user at time
+'history-feed-item-nocomment' => '$1 در $2',
 
 # Diffs
 'history-title'           => 'گزارش تاریخی نسخه زه "$1"',
@@ -616,7 +619,7 @@ $2',
 'protect-expiring'            => 'سپری وابیده $1 (UTC)',
 'protect-cascade'             => 'حمایت صفحات دربرگیرنده در ای صفحه (cascading protection)',
 'protect-cantedit'            => 'ایسا نترین تغییر بدین سطوح حمایتی ای صفحه را, زیرا ایسا اجازه اصلاح آن را ندارین.',
-'protect-expiry-options'      => '۲ ساعت:2 hours,۱ روز:1 day,۳ روز:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '۲ ساعت:2 hours,۱ روز:1 day,۳ روز:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite',
 'restriction-type'            => 'اجازه:',
 'restriction-level'           => 'سطح محدودیت:',
 
@@ -653,7 +656,7 @@ $2',
 
 # Block/unblock
 'blockip'       => 'بستن کاربر',
-'ipboptions'    => '۲ ساعت:2 hours,۱ روز:1 day,۳ روز:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite', # display1:time1,display2:time2,...
+'ipboptions'    => '۲ ساعت:2 hours,۱ روز:1 day,۳ روز:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite',
 'ipblocklist'   => 'آدرسهای  آی پی وکاربران بسته وابیدند',
 'blocklink'     => 'بسته بوه !',
 'unblocklink'   => 'باز بوه',
@@ -690,7 +693,7 @@ $2',
 'move-watch'       => 'پیگیری ای صفحه',
 'movepagebtn'      => 'جابجایی صفحه',
 'pagemovedsub'     => 'جابجایی با بخت وتوفیق انجام وابید',
-'movepage-moved'   => '<big>\'\'\'"$1" جابجا وابیده به "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" جابجا وابیده به "$2"\'\'\'</big>',
 'articleexists'    => 'یه صفحه زه ای  نوم تقریبا موجوده, یا نومی که ایسا انتخاب کردین غیر  معتبره
 لطفا نوم دیه انتخاب کنین.',
 'talkexists'       => "'''آن صفحه خوس با بخت وتوفیق جابجا وابید, ولی صفحه صحبت نتره جابجا بوه چونکه یکی تقریبا موجوده درعنوان تازه 
@@ -801,7 +804,7 @@ $2',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'اصلاح ای صفحه با استفاده زه یه ویرایشگر خارجی',
@@ -818,7 +821,7 @@ $2',
 'watchlisttools-raw'  => 'اصلاح لیست خام پی‌گیری‌ها',
 
 # Special:Version
-'version' => 'ترجمه یا تفسیر', # Not used as normal message but as header for the special page itself
+'version' => 'ترجمه یا تفسیر',
 
 # Special:SpecialPages
 'specialpages' => 'صفحات ویژه',

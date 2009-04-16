@@ -1,6 +1,9 @@
 <?php
 /** Eastern Mari (Олык Марий)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -142,7 +145,7 @@ $messages = array(
 'otherlanguages'   => 'Вес йылме дене',
 'redirectedfrom'   => '(Колтымо $1 гыч)',
 'redirectpagesub'  => 'Вес верек колтымо лаштык',
-'lastmodifiedat'   => 'Тиде лаштыкым пытартыш гана $2 $1 тӧрлымӧ.', # $1 date, $2 time
+'lastmodifiedat'   => 'Тиде лаштыкым пытартыш гана $2 $1 тӧрлымӧ.',
 'jumpto'           => 'Куснаш:',
 'jumptonavigation' => 'навигациеш',
 'jumptosearch'     => 'кычалмашке',
@@ -647,7 +650,7 @@ $messages = array(
 'blockip'                  => 'Пайдаланышылан йӧным петраш',
 'ipbreason'                => 'Амал:',
 'ipbreasonotherlist'       => 'Вес амал',
-'ipboptions'               => '2 жап:2 hours,1 кече:1 day,3 кече:3 days,1 арня:1 week,2 арня:2 weeks,1 тылзе:1 month,3 тылзе:3 months,6 тылзе:6 months,1 ий:1 year,нимучашдымылык:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 жап:2 hours,1 кече:1 day,3 кече:3 days,1 арня:1 week,2 арня:2 weeks,1 тылзе:1 month,3 тылзе:3 months,6 тылзе:6 months,1 ий:1 year,нимучашдымылык:infinite',
 'ipbotherreason'           => 'Вес/ешартыш амал:',
 'ipblocklist'              => 'Петырыме IP адрес-влак да пайдаланыше-влак',
 'ipblocklist-submit'       => 'Кычал',
@@ -684,7 +687,7 @@ $messages = array(
 'move-watch'       => 'Тиде лаштыкым эскераш',
 'movepagebtn'      => 'Лаштыкым кусараш',
 'pagemovedsub'     => 'Кусарымаш сайын эртен',
-'movepage-moved'   => '<big>\'\'\'"$1" лаштыкым "$2" лаштыкыш кусарыме\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" лаштыкым "$2" лаштыкыш кусарыме\'\'\'</big>',
 'articleexists'    => 'Тыгай лӱман лаштык уло але тиде лӱмым кучылташ огеш лий. Вес лӱмым ойыро.',
 'talkexists'       => "'''Лаштыкым кусарыме гынат, тудын каҥашымаш лаштыкшым тыгай лӱман лаштык улмылан кӧра кусараш огеш лий. Нуным шке кидет дене иктыш ушно.'''",
 'movedto'          => 'лаштыкыш кусарыме',
@@ -801,7 +804,7 @@ $messages = array(
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Файлым ӧрдыж программыште тӧрлаташ',

@@ -1,6 +1,9 @@
 <?php
 /** Sassaresu (Sassaresu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -207,7 +210,7 @@ $messages = array(
 'category-media-header'    => 'File i\' la categuria "$1"',
 'category-empty'           => "''Attuarmenti la categuria no cunteni nisciuna pàgina o file.''",
 'hidden-categories'        => '{{PLURAL:$1|Categuria cuadda|Categuri cuaddi}}',
-'hidden-category-category' => 'Categuri cuaddi', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Categuri cuaddi',
 'listingcontinuesabbrev'   => '(séguiddu)',
 
 'mainpagetext'      => "<big>'''Isthallazioni di MediaWiki accabadda currentementi.'''</big>",
@@ -289,7 +292,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'otherlanguages'    => 'Althri linghi',
 'redirectedfrom'    => '(Rinviu da $1)',
 'redirectpagesub'   => 'Pàgina di rinviu',
-'lastmodifiedat'    => 'Ulthima mudìfigga pa la pàgina: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ulthima mudìfigga pa la pàgina: $2, $1.',
 'viewcount'         => 'Chistha pàgina è isthadda liggidda {{PLURAL:$1|una voltha|$1 volthi}}.',
 'protectedpage'     => 'Pàgina broccadda',
 'jumpto'            => 'Vai a:',
@@ -697,7 +700,7 @@ La rasgioni frunidda da $3 è ''$2''",
 'nohistory'           => 'Cronologia di li versioni di chistha pàgina nò riperìbiri.',
 'currentrev'          => 'Versioni currenti',
 'revisionasof'        => 'Versioni di lu $1',
-'revision-info'       => 'Versioni di lu $1, autori: $2', # Additionally available: $3: revision id
+'revision-info'       => 'Versioni di lu $1, autori: $2',
 'previousrevision'    => '← Versioni mancu rizzenti',
 'nextrevision'        => 'Versioni più rizzenti →',
 'currentrevisionlink' => 'Versioni currenti',
@@ -718,7 +721,7 @@ Ippiegazioni: (curr) = diffarènzi cu la versioni currenti, (priz) = diffarènzi
 # Revision feed
 'history-feed-title'          => 'Cronologia',
 'history-feed-description'    => 'Cronologia di la pàgina i chisthu situ',
-'history-feed-item-nocomment' => '$1 lu $2', # user at time
+'history-feed-item-nocomment' => '$1 lu $2',
 'history-feed-empty'          => 'La pàgina dumandadda no isisthi; pudia assé isthadda canzilladda da lu situ o rinuminadda. Verifiggà cu la [[Special:Search|pàgina di zercha]] si vi so pàgini nobi.',
 
 # Revision deletion
@@ -872,7 +875,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rigisthru d
 'files'                    => 'File',
 
 # User rights
-'userrights'               => "Gisthioni di li primissi reratibi a l'utenti", # Not used as normal message but as header for the special page itself
+'userrights'               => "Gisthioni di li primissi reratibi a l'utenti",
 'userrights-lookup-user'   => 'Gisthioni di li gruppi utenti',
 'userrights-user-editname' => "Insirì l'innòmu utenti:",
 'editusergroup'            => 'Mudìfigga gruppi utenti',
@@ -1355,7 +1358,7 @@ Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguèn
 'rollbacklink'     => 'turra che primma',
 'rollbackfailed'   => 'Nò è ridisciddu a turrà che primma',
 'cantrollback'     => "Impussìbiri annullà li mudìfigghi; l'utenti chi n'è l'autori è l'unicu cuntribudori di la pàgina.",
-'editcomment'      => "Lu cummentu a la mudìfigga era: \"''\$1''\".", # only shown if there is an edit comment
+'editcomment'      => "Lu cummentu a la mudìfigga era: \"''\$1''\".",
 'rollback-success' => 'Annulladdi li mudìfigghi di $1; turradda a la versioni prizzidenti di $2.',
 'sessionfailure'   => "S'è verifigaddu un probrema i' la sissioni ch'identifigga l'intradda; lu sistham nò à eseguiddu lu cumandu imparthiddu pa precauzioni. Turrà a la pàgina prizzidenti cu' lu buttoni \"Indareddu\" di lu proprio nabigaddori, turrà a carriggà la pàgina e riprubà.",
 
@@ -1386,7 +1389,7 @@ L'impusthazioni currenti pa la pàgina so '''$1''':",
 'protect-expiring'            => 'ischadènzia: $1 (UTC)',
 'protect-cascade'             => 'Prutizioni ricussiba (isthendi la prutizioni a tutti li pàgini incrusi in chistha)',
 'protect-cantedit'            => 'Nò è pussìbiri mudìfiggà li libelli di prutizioni pa la pàgina parchí nò si diponi di pimmissi nezzessàri pa mudìfiggà la pàgina.',
-'protect-expiry-options'      => '2 ori:2 hours,1 dì:1 day,3 dì:3 days,1 chedda:1 week,2 cheddi:2 weeks,1 mesi:1 month,3 mesi:3 months,6 mesi:6 months,1 anni:1 year,infiniddu:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 ori:2 hours,1 dì:1 day,3 dì:3 days,1 chedda:1 week,2 cheddi:2 weeks,1 mesi:1 month,3 mesi:3 months,6 mesi:6 months,1 anni:1 year,infiniddu:infinite',
 'restriction-type'            => 'Primmissu:',
 'restriction-level'           => 'Libellu di isthrigniddura',
 'minimum-size'                => 'Misura mìnima',
@@ -1444,7 +1447,7 @@ $1",
 'contributions' => 'Cuntributi utenti',
 'mycontris'     => "li me' cuntributi",
 'contribsub2'   => 'Pa $1 ($2)',
-'nocontribs'    => 'Nò so isthaddi acciappaddi mudìfigghi cunfòimmi a li critéri sciubaraddi.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Nò so isthaddi acciappaddi mudìfigghi cunfòimmi a li critéri sciubaraddi.',
 'uctop'         => '(ulthima pa la pàgina)',
 'month'         => 'A parthì da lu mesi (e prizzidenti):',
 'year'          => "A parthì da l'anni (e prizzidenti):",
@@ -1483,7 +1486,7 @@ $1",
 'ipbenableautoblock'          => "Brocca automatiggamenti l'ulthimu indirizzu IP usaddu da l'utenti e l'althri chi zerchani di fà mudìfigghi",
 'ipbsubmit'                   => "Brocca l'utenti",
 'ipbother'                    => 'Duradda nò in erencu:',
-'ipboptions'                  => '2 ori:2 hours,1 dì:1 day,3 dì:3 days,1 chedda:1 week,2 cheddi:2 weeks,1 mesi:1 month,3 mesi:3 months,6 mesi:6 months,1 anni:1 year,infiniddu:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 ori:2 hours,1 dì:1 day,3 dì:3 days,1 chedda:1 week,2 cheddi:2 weeks,1 mesi:1 month,3 mesi:3 months,6 mesi:6 months,1 anni:1 year,infiniddu:infinite',
 'ipbotheroption'              => 'althru',
 'ipbotherreason'              => 'Althri dettàgli/rasgioni aggiuntiba:',
 'ipbhidename'                 => "Cua l'innòmu utenti da lu rigisthru di li brocchi, da l'erencu di li brocci attibi e da l'erencu utenti.",
@@ -1739,7 +1742,7 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 # Attribution
 'anonymous'        => 'utenti anònimi di {{SITENAME}}',
 'siteuser'         => '$1, utenti di {{SITENAME}}',
-'lastmodifiedatby' => "Chistha pàgina è isthadda mudìfiggadda pa l'ulthima voltha lu $2, $1 da $3.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Chistha pàgina è isthadda mudìfiggadda pa l'ulthima voltha lu $2, $1 da $3.",
 'othercontribs'    => "Lu testhu attuari è basaddu i' li cuntributi di $1.",
 'others'           => 'althri',
 'siteusers'        => '$1, utenti di {{SITENAME}}',
@@ -1838,7 +1841,7 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                => 'Larghèzia',
@@ -1857,7 +1860,7 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 'exif-flashenergy'               => 'Putènzia di lu lampu',
 'exif-contrast'                  => 'Cuntrollu cuntrasthu',
 
-'exif-orientation-1' => 'Noimmari', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Noimmari',
 
 'exif-componentsconfiguration-0' => 'assenti',
 
@@ -2021,7 +2024,7 @@ Pa piazeri, cunfèimma chi vòi ricrià avveru chistha pàgina.",
 'watchlisttools-raw'  => 'Mudìfigga la listha in fuimmaddu testhu',
 
 # Special:Version
-'version' => 'Versioni', # Not used as normal message but as header for the special page itself
+'version' => 'Versioni',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-legend'   => "Zercha d'un dupricaddu",

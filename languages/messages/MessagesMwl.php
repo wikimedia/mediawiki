@@ -1,6 +1,9 @@
 <?php
 /** Mirandese (Mirandés)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -162,7 +165,7 @@ $messages = array(
 'category-media-header'    => 'Multimédia na catadorie "$1"',
 'category-empty'           => "''Esta catadorie neste sfergante nun ten nanhua páigina ó cuntenido multimédia.''",
 'hidden-categories'        => '{{PLURAL:$1|Catadorie scundida|Catadories scundidas}}',
-'hidden-category-category' => 'Catadories scundidas', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Catadories scundidas',
 'category-subcat-count'    => '{{PLURAL:$2|Esta catadorie ten solo la seguinte subcatadorie.|Esta catadorie ten las seguintes {{PLURAL:$1|sub-catadorie|$1 subcatadories}} (dentre un total de $2).}}',
 'category-article-count'   => '{{PLURAL:$2|Esta catadorie solo ten la seguinte páigina.|Hai, nesta catadorie, {{PLURAL:$1|la seguinte páigina|las seguintes $1 páiginas}}, dentre $2.}}',
 'listingcontinuesabbrev'   => 'cunt.',
@@ -232,7 +235,7 @@ $messages = array(
 'otherlanguages'    => 'Outras lhénguas',
 'redirectedfrom'    => '(Ancaminamiento de <b>$1</b>)',
 'redirectpagesub'   => 'Páigina de ancaminamiento',
-'lastmodifiedat'    => 'Esta páigina fui demudada pula redadeira beç a las $2 de $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Esta páigina fui demudada pula redadeira beç a las $2 de $1.',
 'protectedpage'     => 'Páigina portegida',
 'jumpto'            => 'Saltar pa:',
 'jumptonavigation'  => 'nabegaçon',
@@ -496,7 +499,7 @@ Ambaixo stá l registro de las eileminaçones pa refréncia.',
 'currentrev'             => 'Rebison atual',
 'currentrev-asof'        => 'Eidiçon atual cumo $1',
 'revisionasof'           => 'Eidiçon cumo la de $1',
-'revision-info'          => 'Rebison de $1 por $2', # Additionally available: $3: revision id
+'revision-info'          => 'Rebison de $1 por $2',
 'previousrevision'       => "← Berson d'atrás",
 'nextrevision'           => 'Berson mais nuoba→',
 'currentrevisionlink'    => 'Ber berson atual',
@@ -513,7 +516,7 @@ Legenda: (atu) = defrénças de la berson atual,
 'histlast'               => 'Redadeiras',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 a $2', # user at time
+'history-feed-item-nocomment' => '$1 a $2',
 
 # Revision deletion
 'rev-delundel'      => 'amostrar/scunder',
@@ -880,7 +883,7 @@ Esta ye la cunfiguraçon atual pa la páigina '''$1''':",
 'protect-expiring'            => 'termina an $1 (UTC)',
 'protect-cascade'             => 'Portege qualquiera páigina que steia ancluída nesta (porteçon an cachon)',
 'protect-cantedit'            => 'Tu nun puodes demudar l nible de porteçon desta páigina, porque tu nun tener outorizaçon pa la eiditar.',
-'protect-expiry-options'      => '1 hora:1 hour,1 die:1 day,1 sumana:1 week,2 sumanas:2 weeks,1 més:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,anfenito:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 die:1 day,1 sumana:1 week,2 sumanas:2 weeks,1 més:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,anfenito:infinite',
 'restriction-type'            => 'Permisson:',
 'restriction-level'           => 'Nible de restriçon:',
 
@@ -930,7 +933,7 @@ Esta ye la cunfiguraçon atual pa la páigina '''$1''':",
 
 # Block/unblock
 'blockip'                  => 'Bloquiar outelizador',
-'ipboptions'               => '2 horas:2 hours,1 die:1 day,3 dias:3 days,1 sumana:1 week,2 sumanas:2 weeks,1 més:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,anfenito:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 horas:2 hours,1 die:1 day,3 dias:3 days,1 sumana:1 week,2 sumanas:2 weeks,1 més:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,anfenito:infinite',
 'ipblocklist'              => 'IPs i outelizadores bloquiados',
 'blocklink'                => 'bloquiar',
 'unblocklink'              => 'zbloquiar',
@@ -962,7 +965,7 @@ Nestes causos, tu terás que arrastrar ou ajuntar la páigina a la mano, se assi
 'move-watch'       => 'Begiar esta páigina',
 'movepagebtn'      => 'Arrastrar páigina',
 'pagemovedsub'     => 'Páigina arrastrada cumo debe de ser',
-'movepage-moved'   => '<big>\'\'\'"$1" fui arrastrado pa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" fui arrastrado pa "$2"\'\'\'</big>',
 'articleexists'    => 'Yá eisiste ua páigina cun este títalo, ou l títalo que scolhiste ye ambálido.
 Por fabor, scuolhe outro nome.',
 'talkexists'       => "'''La páigina an si fui arrastrada cun éisito. Inda assi, la páigina de çcusson nun fui arrastrada, ua beç que yá eisistie ua cun este títalo. Por fabor, ajunta-las a la mano.'''",
@@ -1084,7 +1087,7 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Eiditar este fexeiro outelizando ua aplicaçon sterna',
@@ -1101,7 +1104,7 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 'watchlisttools-raw'  => 'Ediçon bruta da lhista de ls bigiados',
 
 # Special:Version
-'version' => 'Berson', # Not used as normal message but as header for the special page itself
+'version' => 'Berson',
 
 # Special:SpecialPages
 'specialpages' => 'Páiginas speciales',

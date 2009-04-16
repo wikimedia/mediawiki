@@ -1,6 +1,9 @@
 <?php
 /** Esperanto (Esperanto)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -274,7 +277,7 @@ $messages = array(
 'category-media-header'          => 'Dosieroj en kategorio "$1"',
 'category-empty'                 => "''Ĉi tiu kategorio momente ne enhavas artikolojn aŭ mediojn.''",
 'hidden-categories'              => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}}',
-'hidden-category-category'       => 'Kaŝitaj kategorioj', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Kaŝitaj kategorioj',
 'category-subcat-count'          => '{{PLURAL:$2|Ĉi tiu kategorio havas nur la suban subkategorion.|Ĉi tiu kategorio havas la {{PLURAL:$1|suban subkategorion|$1 subajn subkategoriojn}}, el $2 entute.}}',
 'category-subcat-count-limited'  => 'Ĉi tiu kategorio havas la {{PLURAL:$1|jenan subkategorion|jenajn $1 subkategoriojn}}.',
 'category-article-count'         => '{{PLURAL:$2|Ĉi tiu kategorio enhavas nur la jenan paĝon.|La {{PLURAL:$1|jena paĝo|jenaj $1 paĝoj}} estas en ĉi tiu kategorio, el $2 entute.}}',
@@ -361,7 +364,7 @@ $messages = array(
 'otherlanguages'    => 'Aliaj lingvoj',
 'redirectedfrom'    => '(Alidirektita el $1)',
 'redirectpagesub'   => 'Alidirektilo',
-'lastmodifiedat'    => 'Laste redaktita je $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Laste redaktita je $2, $1.',
 'viewcount'         => 'Montrita {{PLURAL:$1|unufoje|$1 fojojn}}.',
 'protectedpage'     => 'Protektita paĝo',
 'jumpto'            => 'Iri al:',
@@ -863,7 +866,7 @@ La kialo donata de $3 estas ''$2''.",
 'currentrev'             => 'Aktuala versio',
 'currentrev-asof'        => 'Nuna versio ekde $1',
 'revisionasof'           => 'Kiel registrite je $1',
-'revision-info'          => 'Redakto de $1 de $2', # Additionally available: $3: revision id
+'revision-info'          => 'Redakto de $1 de $2',
 'previousrevision'       => '← Antaŭa versio',
 'nextrevision'           => 'Sekva versio →',
 'currentrevisionlink'    => 'Rigardi nunan version',
@@ -883,7 +886,7 @@ La kialo donata de $3 estas ''$2''.",
 # Revision feed
 'history-feed-title'          => 'Historio de redaktoj',
 'history-feed-description'    => 'Revizia historio por ĉi tiu paĝo en la vikio',
-'history-feed-item-nocomment' => '$1 ĉe $2', # user at time
+'history-feed-item-nocomment' => '$1 ĉe $2',
 'history-feed-empty'          => 'La petita paĝo ne ekzistas.
 Ĝi verŝajne estis forigita de la vikio, aŭ alinomita.
 Provu [[Special:Search|serĉi en la vikio]] por rilataj novaj paĝoj.',
@@ -1202,7 +1205,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'prefs-custom-js'           => 'Propra JS',
 
 # User rights
-'userrights'                  => 'Prizorgi rajtojn de uzantoj', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Prizorgi rajtojn de uzantoj',
 'userrights-lookup-user'      => 'Administri grupojn de uzantoj',
 'userrights-user-editname'    => 'Entajpi uzantonomon:',
 'editusergroup'               => 'Redakti grupojn de uzantoj',
@@ -1538,8 +1541,8 @@ Jen la priskribo en ties [$2 dosier-priskriba paĝo].',
 'noimage'                   => 'Neniu dosiero de ĉi tiu nomo ekzistas, sed vi povas $1.',
 'noimage-linktext'          => 'alŝuti unu',
 'uploadnewversion-linktext' => 'Alŝuti novan version de ĉi tiu dosiero',
-'shared-repo-from'          => 'de $1', # $1 is the repository name
-'shared-repo'               => 'komuna dosierujo', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'de $1',
+'shared-repo'               => 'komuna dosierujo',
 
 # File reversion
 'filerevert'                => 'Restarigi $1',
@@ -1920,8 +1923,8 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'alreadyrolled'    => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 pro tio, ke oni intertempe redaktis aŭ restarigis la paĝon. 
 La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "La resumo de la komento estis: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "La resumo de la komento estis: \"''\$1''\".",
+'revertpage'       => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]',
 'rollback-success' => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',
 'sessionfailure'   => 'Ŝajnas ke estas problemo kun via ensalutado;
 Ĉi ago estis nuligita por malhelpi fiensalutadon.
@@ -1971,7 +1974,7 @@ Vi povas ŝanĝi ties protektnivelon, sed tio ne ŝanĝos la kaskadan protekton.
 ** Malutila redakto-milito
 ** Paĝo kun multo da trafiko',
 'protect-edit-reasonlist'     => 'Redakti kialojn de protektado',
-'protect-expiry-options'      => '1 horo:1 hour,1 tago:1 day,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 horo:1 hour,1 tago:1 day,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite',
 'restriction-type'            => 'Permeso:',
 'restriction-level'           => 'Nivelo de limigo:',
 'minimum-size'                => 'Minimuma pezo',
@@ -2048,7 +2051,7 @@ $1',
 'contributions-title' => 'Uzulaj kontribuoj de $1',
 'mycontris'           => 'Miaj kontribuoj',
 'contribsub2'         => 'De $1 ($2)',
-'nocontribs'          => 'Trovis neniajn redaktojn laŭ tiu kriterio.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Trovis neniajn redaktojn laŭ tiu kriterio.',
 'uctop'               => ' (lasta)',
 'month'               => 'Ekde monato (kaj pli frue):',
 'year'                => 'Ekde jaro (kaj pli frue):',
@@ -2107,7 +2110,7 @@ $1',
 'ipbenableautoblock'              => 'Aŭtomate forbaru la lastan IP-adreson uzitan de la uzanto, kaj ĉiajn subsekvantajn adresojn el kiuj tiu provos redakti',
 'ipbsubmit'                       => 'Forbari ĉi tiun uzanton',
 'ipbother'                        => 'Alia daŭro:',
-'ipboptions'                      => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite',
 'ipbotheroption'                  => 'alia',
 'ipbotherreason'                  => 'Alia/kroma kialo:',
 'ipbhidename'                     => 'Kaŝi salutnomon de redaktoj kaj listoj',
@@ -2247,7 +2250,7 @@ Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'move-watch'                   => 'Atenti ĉi tiun paĝon',
 'movepagebtn'                  => 'Alinomigi paĝon',
 'pagemovedsub'                 => 'Sukcesis alinomigo',
-'movepage-moved'               => '<big>\'\'\'"$1" estis alinomigita al "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" estis alinomigita al "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Alidirektilo estis kreita.',
 'movepage-moved-noredirect'    => 'La kreado de alidirektilo estis nuligita.',
 'articleexists'                => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.
@@ -2449,7 +2452,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonima uzanto|Anonimaj uzantoj}} de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} uzanto $1',
-'lastmodifiedatby' => 'Ĉi paĝo estis laste ŝanĝita je $2, $1 de $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ĉi paĝo estis laste ŝanĝita je $2, $1 de $3.',
 'othercontribs'    => 'Bazita sur la laboro de $1.',
 'others'           => 'aliaj',
 'siteusers'        => '{{PLURAL:$2|uzanto|uzantoj}} de {{SITENAME}} $1',
@@ -2569,7 +2572,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larĝeco',
@@ -2696,14 +2699,14 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 
 'exif-unknowndate' => 'Nekonata dato',
 
-'exif-orientation-1' => 'Normala', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Spegulumita horizontale', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotaciigita 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Spegulumita vertikale', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Turnita 90° maldekstre kaj spegulita vertikale', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Turnita 90° dekstre', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Turnita 90° dekstre kaj spegulita vertikale', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Turnita 90° maldekstre', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normala',
+'exif-orientation-2' => 'Spegulumita horizontale',
+'exif-orientation-3' => 'Rotaciigita 180°',
+'exif-orientation-4' => 'Spegulumita vertikale',
+'exif-orientation-5' => 'Turnita 90° maldekstre kaj spegulita vertikale',
+'exif-orientation-6' => 'Turnita 90° dekstre',
+'exif-orientation-7' => 'Turnita 90° dekstre kaj spegulita vertikale',
+'exif-orientation-8' => 'Turnita 90° maldekstre',
 
 'exif-planarconfiguration-1' => 'bloka formato',
 'exif-planarconfiguration-2' => 'ebena formato',
@@ -2969,7 +2972,7 @@ Vi povas ankaŭ [[Special:Watchlist/edit|uzu la norman redaktilon]].',
 'duplicate-defaultsort' => 'Averto: Defauxlta ordiga ŝlosilo "$2" anstataŭigas pli fruan defaŭlta ordiga ŝlosilo "$1".',
 
 # Special:Version
-'version'                          => 'Versio', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versio',
 'version-extensions'               => 'Instalitaj kromprogramoj',
 'version-specialpages'             => 'Specialaj paĝoj',
 'version-parserhooks'              => 'Sintaksaj hokoj',

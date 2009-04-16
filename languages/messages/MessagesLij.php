@@ -1,6 +1,9 @@
 <?php
 /** Líguru (Líguru)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -193,7 +196,7 @@ $messages = array(
 'subcategories'                  => 'Sottocategorîe',
 'category-media-header'          => 'Archivvio inta categorîa "$1"',
 'category-empty'                 => "''Pe-o momento 'sta categorîa a no contegne nisciûnn-a paggina ò archivvio multimedia.''",
-'hidden-category-category'       => 'Categorîe ascôse', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categorîe ascôse',
 'category-subcat-count-limited'  => "'Sta categorîa a contegne {{PLURAL:$1|ûnn-a sottocategorîa, indicaa|$1 sottocategorîe, indicæ}} chì inzû.",
 'category-article-count-limited' => "'Sta categorîa a contegne {{PLURAL:$1|'sta paggina|'ste $1 paggine}}.",
 'listingcontinuesabbrev'         => 'cont.',
@@ -253,7 +256,7 @@ $messages = array(
 'otherlanguages'    => 'In ätre lengue',
 'redirectedfrom'    => '(Rediritto da $1)',
 'redirectpagesub'   => 'Paggina de rindirissamento',
-'lastmodifiedat'    => "Sta pagina a l'è stæta cangiâ l'urtima votta a e $2 do $1.", # $1 date, $2 time
+'lastmodifiedat'    => "Sta pagina a l'è stæta cangiâ l'urtima votta a e $2 do $1.",
 'viewcount'         => "'Sta paggina a l'è stæta vista {{PLURAL:$1|solo 'na vòtta|$1 vòtte}}.",
 'protectedpage'     => 'Paggina protezûa',
 'jumpto'            => 'Vanni a:',
@@ -511,7 +514,7 @@ A razon dæta a l'è ''$2''",
 'viewpagelogs'        => "Veddi i log relativi a 'sta paggina.",
 'currentrev'          => 'Verscion attuâle',
 'revisionasof'        => 'Verscion do $1',
-'revision-info'       => 'Verscion do $1, outô: $2', # Additionally available: $3: revision id
+'revision-info'       => 'Verscion do $1, outô: $2',
 'previousrevision'    => '← Verscion meno reçente',
 'nextrevision'        => 'Revixon ciû nêuva →',
 'currentrevisionlink' => 'Ûrtima revixon',
@@ -529,7 +532,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 
 # Revision feed
 'history-feed-title'          => 'Stöia de e revisioin',
-'history-feed-item-nocomment' => '$1 o $2', # user at time
+'history-feed-item-nocomment' => '$1 o $2',
 
 # Diffs
 'history-title'           => 'Cronologîa de-e revixoîn de "$1"',
@@ -815,7 +818,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 da [[User:$2|$2]] ([[User talk:$2|Ciæti]]); quarche âtro 
 o l'à cangiâ ò o l'è zà tornòu inderê.
 L'ûrtimo cangiamento o ghe l'à fæto [[User:$3|$3]] ([[User talk:$3|Ciæti]]).",
-'revertpage'    => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'    => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]',
 
 # Protect
 'protectlogpage'              => 'Protessioîn',
@@ -839,7 +842,7 @@ Queste son e impostassioîn correnti pe 'sta paggina ('''$1'''):",
 'protect-expiring'            => 'scadensa: $1 (UTC)',
 'protect-cascade'             => 'Protession recorsciva (estende a protession a tûtte e paggine inclûse in questa chì).',
 'protect-cantedit'            => "Ti no ti pêu modificâ i livelli de protession pe-a paggina se no ti g'hæ i permissi pe modificâ a paggina mæxima.",
-'protect-expiry-options'      => '2 ôe:2 hours,1 giorno:1 day,3 giorni:3 days,1 settemann-a:1 week,2 settemann-e:2 weeks,1 meise:1 month,3 meixi:3 months,6 meixi:6 months,1 anno:1 year,infinîo:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 ôe:2 hours,1 giorno:1 day,3 giorni:3 days,1 settemann-a:1 week,2 settemann-e:2 weeks,1 meise:1 month,3 meixi:3 months,6 meixi:6 months,1 anno:1 year,infinîo:infinite',
 'restriction-type'            => 'Permisso',
 'restriction-level'           => 'Livello de restrission',
 
@@ -893,7 +896,7 @@ $1',
 # Block/unblock
 'blockip'                     => "Blocca l'ûtente",
 'ipbreason'                   => 'Raxon do blòcco:',
-'ipboptions'                  => '2 ôe:2 hours,1 giorno:1 day,3 giorni:3 days,1 settemann-a:1 week,2 settemann-e:2 weeks,1 meise:1 month,3 meixi:3 months,6 meixi:6 months,1 anno:1 year,infinîo:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 ôe:2 hours,1 giorno:1 day,3 giorni:3 days,1 settemann-a:1 week,2 settemann-e:2 weeks,1 meise:1 month,3 meixi:3 months,6 meixi:6 months,1 anno:1 year,infinîo:infinite',
 'badipaddress'                => 'Indirisso IP non valido',
 'blockipsuccesssub'           => 'Affermaçion arriescïa',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] o l'è stæto affermoö.
@@ -1028,7 +1031,7 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 
 # Attribution
 'anonymous'        => 'Utente anonimmo de {{SITENAME}}',
-'lastmodifiedatby' => "Sta pagina a l'è stæta cangiâ l'urtima votta a e $2 do $1 da $3.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Sta pagina a l'è stæta cangiâ l'urtima votta a e $2 do $1 da $3.",
 
 # Browsing diffs
 'previousdiff' => '← Differensa preçedente',
@@ -1064,7 +1067,7 @@ L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (p
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-datetime'   => 'Data e öa do cangiamento do papê',
@@ -1112,7 +1115,7 @@ L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (p
 'watchlisttools-raw'  => 'Modiffica a lista in formato testo',
 
 # Special:Version
-'version' => 'Verscion', # Not used as normal message but as header for the special page itself
+'version' => 'Verscion',
 
 # Special:SpecialPages
 'specialpages' => 'Paggine speçiâli',

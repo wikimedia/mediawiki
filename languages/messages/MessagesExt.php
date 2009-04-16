@@ -1,6 +1,9 @@
 <?php
 /** Extremaduran (Estremeñu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -114,7 +117,7 @@ $messages = array(
 'category-media-header'          => 'Meya ena categoria "$1"',
 'category-empty'                 => "''Atualmenti nu desistin ni artículus ni archivus murtimeya nesta categoria.''",
 'hidden-categories'              => '{{PLURAL:$1|categoria açonchá|categorias açonchás}}',
-'hidden-category-category'       => 'Categorias açonchás', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categorias açonchás',
 'category-subcat-count'          => '{{PLURAL:$2|Esta categoria solu tiini la siguienti sucategoria.|Esta categoria tiini {{PLURAL:$1|la siguienti sucategoria|las siguientis $1 sucategorias}}, dun total de $2.}}',
 'category-subcat-count-limited'  => 'Esta categoria tiini {{PLURAL:$1|la siguienti sucategoria|las siguientis $1 sucategorias}}.',
 'category-article-count'         => '{{PLURAL:$2|Esta categoria solu contiini la siguienti páhina.|{{PLURAL:$1|La siguienti páhina está|Las siguientis $1 páhinas están}} nesta categoria, dun total de $2.}}',
@@ -201,7 +204,7 @@ $messages = array(
 'otherlanguages'    => 'En otras palras',
 'redirectedfrom'    => '(Rederihiu dendi $1)',
 'redirectpagesub'   => 'Rederihil páhina',
-'lastmodifiedat'    => 'Los úrtimus chambus desta páhina huerun a las $2 el dia $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Los úrtimus chambus desta páhina huerun a las $2 el dia $1.',
 'viewcount'         => 'Esta páhina á siu visoreá {{PLURAL:$1|una vezi|$1 vezis}}.',
 'protectedpage'     => 'Páhina protehia',
 'jumpto'            => 'Sartal a:',
@@ -618,7 +621,7 @@ La razón dá pol $3 es ''$2''",
 'nohistory'           => 'Nu ai dengún estorial d´eicionis pa esta páhina.',
 'currentrev'          => 'Revisión atual',
 'revisionasof'        => 'Revisión de $1',
-'revision-info'       => 'Revisión de $1 hecha pol $2', # Additionally available: $3: revision id
+'revision-info'       => 'Revisión de $1 hecha pol $2',
 'previousrevision'    => '←Revisión mas antigua',
 'nextrevision'        => 'Revisión mas recienti→',
 'currentrevisionlink' => 'Revisión atual',
@@ -637,7 +640,7 @@ La razón dá pol $3 es ''$2''",
 # Revision feed
 'history-feed-title'          => 'Estorial de revisionis',
 'history-feed-description'    => 'Estorial de revisionis pa esta páhina nel güiqui',
-'history-feed-item-nocomment' => '$1 en $2', # user at time
+'history-feed-item-nocomment' => '$1 en $2',
 'history-feed-empty'          => 'Esa páhina nu desisti.
 Es posibri qu´aiga siu esborrá e la güiqui, u que s´aiga chambau el su nombri.
 Preba [[Special:Search|landeandu]] entri las nuevas páhinas de la güiqui.',
@@ -824,7 +827,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'files'                    => 'Archivus',
 
 # User rights
-'userrights'                  => "Alministral premisus d'usuárius", # Not used as normal message but as header for the special page itself
+'userrights'                  => "Alministral premisus d'usuárius",
 'userrights-lookup-user'      => "Alministral grupus d'usuárius",
 'userrights-user-editname'    => 'Escrebi un nombri d´usuáriu:',
 'editusergroup'               => "Eital grupus d'usuárius",
@@ -1378,8 +1381,8 @@ Consurta $2 pa vel los úrtimus esborraus.',
 'alreadyrolled'    => 'Nu es posibri revertil la úrtima eición de [[:$1]], hecha pol [[User:$2|$2]] ([[User talk:$2|Caraba]]); alguien ya á eitau u revertiu la páhina.
 
 La úrtima eición á siu hecha pol [[User:$3|$3]] ([[User talk:$3|Caraba]]).',
-'editcomment'      => "La síntesis la eición hue: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Án siu revertias las eicionis de [[Special:Contributions/$2|$2]] ([[User talk:$2|Caraba]]); chambau a la úrtima velsión de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "La síntesis la eición hue: \"''\$1''\".",
+'revertpage'       => 'Án siu revertias las eicionis de [[Special:Contributions/$2|$2]] ([[User talk:$2|Caraba]]); chambau a la úrtima velsión de [[User:$1|$1]]',
 'rollback-success' => 'Revertias las eicionis de $1; chambau a la úrtima velsión de $2.',
 'sessionfailure'   => "Paci qu'ai un pobrema cola tu sesión; pol precaución
 s'á cancelau l'ación solicitá. Pursa nel botón \"Atrás\" del
@@ -1414,7 +1417,7 @@ Velaquí las ocionis atualis la páhina '''$1''':",
 'protect-expiring'            => 'acabiha el $1 (UTC)',
 'protect-cascade'             => 'Protehel las páhinas encluias nesta páhina (proteción en "cascá")',
 'protect-cantedit'            => "Nu t'es posibri chambal el nivel de proteción desta páhina ebiu a que nu tienis los premisus nesezárius pa eitala.",
-'protect-expiry-options'      => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite',
 'restriction-type'            => 'Premisus:',
 'restriction-level'           => 'Nivel de restrición:',
 'minimum-size'                => 'Grandol mén',
@@ -1480,7 +1483,7 @@ $1',
 'contributions-title' => 'Contribucionis del usuáriu a $1',
 'mycontris'           => 'Los mis endirguis',
 'contribsub2'         => 'Pa $1 ($2)',
-'nocontribs'          => "Nu s'alcuentrun chambus con esus criterius.", # Optional parameter: $1 is the user name
+'nocontribs'          => "Nu s'alcuentrun chambus con esus criterius.",
 'uctop'               => '(úrtimu chambu)',
 'month'               => 'Mes:',
 'year'                => 'Añu:',
@@ -1537,7 +1540,7 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'ipbenableautoblock'          => "Atarugal autumáticamenti la direción IP gastá pol esti usuáriu, i cualisquiel IP posteriol endi la cual trati d'eital",
 'ipbsubmit'                   => 'Atarugal a esti usuáriu',
 'ipbother'                    => 'Otra ora:',
-'ipboptions'                  => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 mesis:3 months,6 mesis:6 months,1 añu:1 year,enfinitu:infinite',
 'ipbotheroption'              => 'otru',
 'ipbotherreason'              => 'Anguna otra razón?:',
 'ipbhidename'                 => 'Açonchal nombri d\'usuáriu nel "rustrihu e tarugus", "lista e tarugus ativus" i "lista d\'usuárius"',
@@ -1645,7 +1648,7 @@ En dambus los dos chascus, si lo deseas, tendrás que movel u mestural la páhin
 'move-watch'              => 'Vehilal esta páhina',
 'movepagebtn'             => 'Movel páhina',
 'pagemovedsub'            => 'S´á moviu la páhina',
-'movepage-moved'          => "<big>S'á muau '''\"\$1\" a \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>S'á muau '''\"\$1\" a \"\$2\"'''</big>",
 'articleexists'           => 'Ya desisti una páhina con esi nombri u nu se premiti el nombri qu´as lihiu.
 Pol favol, escrebi otru entítulu.',
 'cantmove-titleprotected' => "Nu t'es posibri movel la páhina ebiu a qu'el nuevu entítulu s'alcuentra atarugau",
@@ -1801,7 +1804,7 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 # Attribution
 'anonymous'        => 'Usuáriu/s anónimu/s en {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuáriu $1',
-'lastmodifiedatby' => 'Esta páhina se chambó pol úrtima vezi a las $2, el dia $1 pol $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Esta páhina se chambó pol úrtima vezi a las $2, el dia $1 pol $3.',
 'othercontribs'    => 'Basau nun labutu e $1.',
 'others'           => 'otrus',
 'siteusers'        => '{{SITENAME}} usuáriu/s $1',
@@ -1901,7 +1904,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                => 'Anchón',
@@ -1994,13 +1997,13 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 
 'exif-unknowndate' => 'Fecha andarria',
 
-'exif-orientation-2' => 'Gorteau orizontalmenti', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Repiau 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Gorteau verticalmenti', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Repiau 90° CCW i gorteau verticalmenti', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Repiau 90° CW', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Repiau 90° CW i gorteau verticalmenti', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Repiau 90° CCW', # 0th row: left; 0th column: bottom
+'exif-orientation-2' => 'Gorteau orizontalmenti',
+'exif-orientation-3' => 'Repiau 180°',
+'exif-orientation-4' => 'Gorteau verticalmenti',
+'exif-orientation-5' => 'Repiau 90° CCW i gorteau verticalmenti',
+'exif-orientation-6' => 'Repiau 90° CW',
+'exif-orientation-7' => 'Repiau 90° CW i gorteau verticalmenti',
+'exif-orientation-8' => 'Repiau 90° CCW',
 
 'exif-planarconfiguration-1' => 'hormatu gruesu',
 'exif-planarconfiguration-2' => 'hormatu pranu',
@@ -2250,7 +2253,7 @@ Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 'unknown_extension_tag' => 'estensión andarria: "$1"',
 
 # Special:Version
-'version'                     => 'Velsión', # Not used as normal message but as header for the special page itself
+'version'                     => 'Velsión',
 'version-extensions'          => 'Estensionis istalás',
 'version-specialpages'        => 'Páhinas especialis',
 'version-variables'           => 'Variabris',

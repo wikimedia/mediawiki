@@ -1,6 +1,9 @@
 <?php
 /** Sicilian (Sicilianu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -242,7 +245,7 @@ $messages = array(
 'category-media-header'          => 'File multimidiali ntâ catigurìa "$1"',
 'category-empty'                 => "''Sta catigurìa attuarmenti nun havi artìculi o \"media\".''",
 'hidden-categories'              => '{{PLURAL:$1|Catigurìa ammucciata|Catigurìi ammuciati}}',
-'hidden-category-category'       => 'Catigurìi ammucciati', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Catigurìi ammucciati',
 'category-subcat-count'          => '{{PLURAL:$2|Sta catigurìa cunteni na sula suttacatigurìa, nnicata ccà sutta.|Sta catigurìa cunteni {{PLURAL:$1|la suttacatigurìa|li $1 suttacatigurìi nnicati}} ccà sutta, sùpira nu tutali di $2.}}',
 'category-subcat-count-limited'  => 'Sta catigurìa cunteni {{PLURAL:$1|na suttacatigurìa, nnicata|$1 suttacatigurìi, nnicati}} ccà sutta.',
 'category-article-count'         => '{{PLURAL:$2|Sta catigurìa cunteni na pàggina sula, nnicata ccà sutta.|Sta catigurìa cunteni {{PLURAL:$1|la pàggina nnicata|li $1 pàggini nnicati}} di sècutu, supra nu tutali di $2.}}',
@@ -328,7 +331,7 @@ $messages = array(
 'otherlanguages'    => 'Àutri lingui',
 'redirectedfrom'    => '(Rinnirizzata di $1)',
 'redirectpagesub'   => 'Pàggina di rinnirizzamentu',
-'lastmodifiedat'    => 'Sta pàggina fu canciata a $2 di lu $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Sta pàggina fu canciata a $2 di lu $1.',
 'viewcount'         => 'Sta pàggina hà statu liggiuta {{PLURAL:$1|una vota|$1 voti}}.',
 'protectedpage'     => 'Pàggina bluccata',
 'jumpto'            => "Va' a:",
@@ -767,7 +770,7 @@ Lu mutivu è ''$2''",
 'currentrev'             => 'Virsioni currenti',
 'currentrev-asof'        => 'Virsioni currenti dû $1',
 'revisionasof'           => 'Virsioni dû $1',
-'revision-info'          => 'Virsioni dû $1 di $2', # Additionally available: $3: revision id
+'revision-info'          => 'Virsioni dû $1 di $2',
 'previousrevision'       => '← Virsioni menu ricenti',
 'nextrevision'           => 'Virsioni cchiù ricenti →',
 'currentrevisionlink'    => 'Virsioni currenti',
@@ -787,7 +790,7 @@ Lu mutivu è ''$2''",
 # Revision feed
 'history-feed-title'          => 'Lista dî canciamenti',
 'history-feed-description'    => 'Cronoluggìa dâ pàggina supra stu situ',
-'history-feed-item-nocomment' => '$1 lu $2', # user at time
+'history-feed-item-nocomment' => '$1 lu $2',
 'history-feed-empty'          => 'La pàggina richiesta nun asisti; putissi aviri stata cancillata dû situ o rinuminata. Virificari cu la [[Special:Search|pàggina di ricerca]] siddu ci sunnu novi pàggini.',
 
 # Revision deletion
@@ -1060,7 +1063,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'files'                     => 'Mmàggini',
 
 # User rights
-'userrights'                  => 'Gistioni dî dritti utenti', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Gistioni dî dritti utenti',
 'userrights-lookup-user'      => "Gistisci li gruppi di l'utenti",
 'userrights-user-editname'    => "Trasi nu nomu d'utenti:",
 'editusergroup'               => 'Cancia gruppi utenti',
@@ -1762,8 +1765,8 @@ Talìa $2 pi na lista di cancillazzioni ricenti.',
 'alreadyrolled'    => "Nun è pussìbbili annullari li canciamenti appurtati â pàggina [[:$1]] di parti di [[User:$2|$2]] ([[User talk:$2|discussioni]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); n'àutru utenti hà già canciatu la pàggina oppuru hà effittuatu lu rollback.
 
 Lu canciamentu cchiù ricenti â pàggina fu appurtata di [[User:$3|$3]] ([[User talk:$3|discussioni]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "Â discrizzioni â mudìfica era: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => "Canciu narrè di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussioni]]) cu l'ùrtima virsioni di [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Â discrizzioni â mudìfica era: \"''\$1''\".",
+'revertpage'       => "Canciu narrè di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussioni]]) cu l'ùrtima virsioni di [[User:$1|$1]]",
 'rollback-success' => 'Annullati li canciamenti di $1; ritornata â virsioni pricidenti di $2.',
 'sessionfailure'   => 'S\'hà virificatu un prubbrema cu la tò sissioni di login;
 lu sistema nun hà esiquitu lu cumannu mpartitu pi pricauzzioni.
@@ -1812,7 +1815,7 @@ Li mpostazzioni correnti pâ pàggina sugnu '''$1''':",
 ** Pàggina usata assai
 ** Pàggina archiviata',
 'protect-edit-reasonlist'     => 'Cancia li mutivi pâ prutizzioni',
-'protect-expiry-options'      => '2 uri:2 hours,1 jornu:1 day,3 jorna:3 days,1 simana:1 week,2 simani:2 weeks,1 misi:1 month,3 misi:3 months,6 misi:6 months,1 annu:1 year,nfinitu:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 uri:2 hours,1 jornu:1 day,3 jorna:3 days,1 simana:1 week,2 simani:2 weeks,1 misi:1 month,3 misi:3 months,6 misi:6 months,1 annu:1 year,nfinitu:infinite',
 'restriction-type'            => 'Pirmissu',
 'restriction-level'           => 'Liveddu di ristrizzioni:',
 'minimum-size'                => 'Dimensioni minima',
@@ -1882,7 +1885,7 @@ $1',
 'contributions-title' => 'Cuntribbuti di $1',
 'mycontris'           => 'Li mei cuntribbuti',
 'contribsub2'         => 'Pi $1 ($2)',
-'nocontribs'          => 'Secunnu sti criteri nun ci sunnu canci o cuntribbuti.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Secunnu sti criteri nun ci sunnu canci o cuntribbuti.',
 'uctop'               => '(ùrtima pi la pàggina)',
 'month'               => 'A pàrtiri dô mese (e pricidenti):',
 'year'                => "A pàrtiri di l'annu (e pricidenti):",
@@ -1940,7 +1943,7 @@ $1',
 'ipbenableautoblock'              => "Blocca automaticamenti l'ùrtimu ndirizzu IP usatu di l'utenti e li succissivi cu cui vèninu tintati canciamenti",
 'ipbsubmit'                       => "Blocca st'utenti",
 'ipbother'                        => 'Durata nun n alencu',
-'ipboptions'                      => '2 uri:2 hours,1 jornu:1 day,3 jorna:3 days,1 simana:1 week,2 simani:2 weeks,1 misi:1 month,3 misi:3 months,6 misi:6 months,1 annu:1 year,nfinitu:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 uri:2 hours,1 jornu:1 day,3 jorna:3 days,1 simana:1 week,2 simani:2 weeks,1 misi:1 month,3 misi:3 months,6 misi:6 months,1 annu:1 year,nfinitu:infinite',
 'ipbotheroption'                  => 'àutru',
 'ipbotherreason'                  => 'Àutri mutivi/dittagghi:',
 'ipbhidename'                     => "Ammuccia lu nomu utenti dô log dî blocchi, di l'alencu dî blocchi attivi e di l'alencu utenti.",
@@ -2060,7 +2063,7 @@ Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discus
 'move-watch'                   => 'Talìa sta pàggina',
 'movepagebtn'                  => 'Sposta la pàggina',
 'pagemovedsub'                 => 'Lu spustamentu riniscìu.',
-'movepage-moved'               => '<big>\'\'\'"$1" fu spustata a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" fu spustata a "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Vinni criatu nu riinnirizzamentu.',
 'movepage-moved-noredirect'    => 'La criazzioni di nu riinnirizzamentu vinni scancillata.',
 'articleexists'                => "Na pàggina cu stu nomu esisti già, oppuru lu nomu scigghiutu nun è vàlidu. Scègghiri n'àutru tìtulu.",
@@ -2255,7 +2258,7 @@ Visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [ht
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utenti anònimu|Utenti anònimi}} di {{SITENAME}}',
 'siteuser'         => '$1, utenti di {{SITENAME}}',
-'lastmodifiedatby' => "Sta pàggina hà statu canciata pi l'ùrtima vota lu $2, $1 di $3.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Sta pàggina hà statu canciata pi l'ùrtima vota lu $2, $1 di $3.",
 'othercontribs'    => 'Basatu supra lu travagghiu di $1.',
 'others'           => 'àutri',
 'siteusers'        => '$1, {{PLURAL:$2|utenti|utenti}} di {{SITENAME}}',
@@ -2374,7 +2377,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghizza',
@@ -2501,14 +2504,14 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 
 'exif-unknowndate' => 'Data scanusciuta',
 
-'exif-orientation-1' => 'Nurmali', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Capuvortu urizzontarmenti', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rutatu di 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Capuvortu virticarmenti', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => "Rotatu 90° 'n sensu antiurariu e capuvortu virticarmenti", # 0th row: left; 0th column: top
-'exif-orientation-6' => "Rutatu 90° 'n senzu orariu", # 0th row: right; 0th column: top
-'exif-orientation-7' => "Rotatu 90° 'n sensu urariu e capuvortu virticarmenti", # 0th row: right; 0th column: bottom
-'exif-orientation-8' => "Rutatu 90° 'n senzu antiorariu", # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Nurmali',
+'exif-orientation-2' => 'Capuvortu urizzontarmenti',
+'exif-orientation-3' => 'Rutatu di 180°',
+'exif-orientation-4' => 'Capuvortu virticarmenti',
+'exif-orientation-5' => "Rotatu 90° 'n sensu antiurariu e capuvortu virticarmenti",
+'exif-orientation-6' => "Rutatu 90° 'n senzu orariu",
+'exif-orientation-7' => "Rotatu 90° 'n sensu urariu e capuvortu virticarmenti",
+'exif-orientation-8' => "Rutatu 90° 'n senzu antiorariu",
 
 'exif-planarconfiguration-1' => 'a blocchi (chunky)',
 'exif-planarconfiguration-2' => 'liniari (planar)',
@@ -2779,7 +2782,7 @@ $1',
 'duplicate-defaultsort' => 'Accura: la chiavi priddifinuta d\'urdinamentu "$2" si sciarrìa cu chidda d\'antura "$1".',
 
 # Special:Version
-'version'                          => 'virsioni', # Not used as normal message but as header for the special page itself
+'version'                          => 'virsioni',
 'version-extensions'               => 'Estenzioni nstallati',
 'version-specialpages'             => 'Pàggini spiciali',
 'version-parserhooks'              => 'Hook dû parser',

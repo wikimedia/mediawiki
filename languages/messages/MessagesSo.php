@@ -1,6 +1,9 @@
 <?php
 /** Somali (Soomaaliga)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -100,7 +103,7 @@ $messages = array(
 'pagecategories'           => '{{PLURAL:$1|Qaybta|Qaybaha}}',
 'category_header'          => 'Maqaalada ku jirta qaybta "$1"',
 'subcategories'            => 'Qaybaha hoose',
-'hidden-category-category' => 'Qeybaha qarsoon', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Qeybaha qarsoon',
 'category-subcat-count'    => '{{PLURAL:$2|Qeybtaan waxaa kaliya ay leedahay qeyb-hooseedyadaan.|Qeybtaan waxay leedahay {{PLURAL:$1|qeyb-hoosaad|$1 qeyb-hoosaadyo}} ee soo socda, guud ahaan $2 marka loo fiiriyo.}}',
 
 'about'          => 'Warbixin',
@@ -159,7 +162,7 @@ $messages = array(
 'categorypage'      => 'Fiiri bogga qaybta',
 'viewtalkpage'      => 'Fiiri bogga wadahadalka',
 'otherlanguages'    => 'Luqadaha kale',
-'lastmodifiedat'    => 'Boggan waxaa markii ugu dambeysay wax laga bedelay $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Boggan waxaa markii ugu dambeysay wax laga bedelay $2, $1.',
 'viewcount'         => 'This page has been accessed {{PLURAL:$1|one time|$1 times}}.',
 'protectedpage'     => "Bog la'difaacay",
 'jumpto'            => 'U bood:',
@@ -605,7 +608,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Attribution
 'anonymous'        => "{{PLURAL:$1|Isticmaalaha|Isticmaaleyaasa}} aanan la'aqoonsanin ee {{SITENAME}}",
 'siteuser'         => '{{SITENAME}} isticmaale $1',
-'lastmodifiedatby' => 'Bogaan waxaa ugu dambeyntii wax laga bedelay $2, $1 kana bedelay $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Bogaan waxaa ugu dambeyntii wax laga bedelay $2, $1 kana bedelay $3.',
 'othercontribs'    => 'Waxay ku saleysantahay shaqada $1.',
 
 # Info page

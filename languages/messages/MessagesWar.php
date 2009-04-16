@@ -1,6 +1,9 @@
 <?php
 /** Waray (Winaray)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -103,7 +106,7 @@ $messages = array(
 'category-media-header'    => 'Media ha kategorya "$1"',
 'category-empty'           => "''Ini nga kategorya ha yana waray mga pakli o media.''",
 'hidden-categories'        => '{{PLURAL:$1|Tinago nga kategorya|Tinago nga mga kategorya}}',
-'hidden-category-category' => 'Tinago nga mga kategorya', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Tinago nga mga kategorya',
 
 'qbfind'         => 'Bilnga',
 'qbbrowse'       => 'Igdalikyat',

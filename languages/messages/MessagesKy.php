@@ -1,6 +1,9 @@
 <?php
 /** Kirghiz (Кыргызча)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -327,7 +330,7 @@ $messages = array(
 'confirmemail_loggedin' => 'Электрондук дарегиңиз ырасталды.',
 
 # Special:Version
-'version' => 'Версия', # Not used as normal message but as header for the special page itself
+'version' => 'Версия',
 
 # Special:SpecialPages
 'specialpages' => 'Атайын барактар',

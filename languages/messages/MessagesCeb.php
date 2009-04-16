@@ -1,6 +1,9 @@
 <?php
 /** Cebuano (Cebuano)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -145,7 +148,7 @@ $messages = array(
 'category-media-header'         => 'Medya sa kategoriyang "$1"',
 'category-empty'                => "''Kini nga kategoriya kasamtangang way sulod nga mga panid ug mga medya.''",
 'hidden-categories'             => '{{PLURAL:$1|Nakatagong kategoriya|Mga nakatagong kategoriya}}',
-'hidden-category-category'      => 'Mga nakatagong kategoriya', # Name of the category where hidden categories will be listed
+'hidden-category-category'      => 'Mga nakatagong kategoriya',
 'category-subcat-count'         => '{{PLURAL:$2|Kini nga kategoriya may usa lamang ka subkategoriya.|Kini nga kategoriya may {{PLURAL:$1|subkategoriya|$1 ka mga subkategorya}}, sa total nga $2.}}',
 'category-subcat-count-limited' => 'Kini nga kategoriya adunay {{PLURAL:$1|ka subkategorya|$1 ka mga subkategoriya}}.',
 'category-article-count'        => '{{PLURAL:$2|Kini nga kategoriya may usa lang ka panid.|Ang kining {{PLURAL:$1|ka panid|$1 ka mga panid}} nahiapil niining kategoryaha, sa $2 nga total.}}',
@@ -217,7 +220,7 @@ $messages = array(
 'otherlanguages'    => 'Sa ubang pinulongan',
 'redirectedfrom'    => '(Naredirek gikan sa $1)',
 'redirectpagesub'   => 'Panid sa redirekta',
-'lastmodifiedat'    => 'Kini nga panid kataposang giusab niadtong $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Kini nga panid kataposang giusab niadtong $2, $1.',
 'viewcount'         => 'Naablihan na sa {{PLURAL:$1|maka-usa|$1 ka higayon}} ang kining panid.',
 'protectedpage'     => 'Giprotektahang panid',
 'jumpto'            => 'Ambak sa:',

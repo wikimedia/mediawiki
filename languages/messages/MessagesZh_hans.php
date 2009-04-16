@@ -1,6 +1,9 @@
 <?php
 /** Simplified Chinese (‪中文(简化字)‬)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -294,7 +297,7 @@ $messages = array(
 'category-media-header'          => '"$1"分类中的媒体',
 'category-empty'                 => "''这个分类中尚未包含任何页面或媒体。''",
 'hidden-categories'              => '$1个隐藏分类',
-'hidden-category-category'       => '隐藏分类', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => '隐藏分类',
 'category-subcat-count'          => '{{PLURAL:$2|这个分类中只有以下的亚类。|这个分类中有以下的$1个亚类，共有$2个附分类。}}',
 'category-subcat-count-limited'  => '这个分类中有$1个亚类。',
 'category-article-count'         => '{{PLURAL:$2|这个分类中只有以下的页面。|这个分类中有以下的$1个页面，共有$2个页面。}}',
@@ -381,7 +384,7 @@ $messages = array(
 'otherlanguages'    => '其它语言',
 'redirectedfrom'    => '(重定向自$1)',
 'redirectpagesub'   => '重定向页面',
-'lastmodifiedat'    => '这页的最后修订在 $1 $2。', # $1 date, $2 time
+'lastmodifiedat'    => '这页的最后修订在 $1 $2。',
 'viewcount'         => '本页面已经被浏览$1次。',
 'protectedpage'     => '被保护页',
 'jumpto'            => '跳转到:',
@@ -858,7 +861,7 @@ $2',
 'currentrev'             => '当前修订版本',
 'currentrev-asof'        => '在$1的当前修订版本',
 'revisionasof'           => '在$1所做的修订版本',
-'revision-info'          => '在$1由$2所做的修订版本', # Additionally available: $3: revision id
+'revision-info'          => '在$1由$2所做的修订版本',
 'previousrevision'       => '←上一修订',
 'nextrevision'           => '下一修订→',
 'currentrevisionlink'    => '当前修订',
@@ -879,7 +882,7 @@ $2',
 # Revision feed
 'history-feed-title'          => '修订历史',
 'history-feed-description'    => '本站上此页的修订历史',
-'history-feed-item-nocomment' => '$1在$2', # user at time
+'history-feed-item-nocomment' => '$1在$2',
 'history-feed-empty'          => '所请求的页面不存在。它可能已被删除或重命名。
 尝试[[Special:Search|搜索本站]]获得相关的新建页面。',
 
@@ -1192,7 +1195,7 @@ $2',
 'prefs-custom-js'           => '自定义JS',
 
 # User rights
-'userrights'                  => '用户权限管理', # Not used as normal message but as header for the special page itself
+'userrights'                  => '用户权限管理',
 'userrights-lookup-user'      => '管理用户群组',
 'userrights-user-editname'    => '输入用户名:',
 'editusergroup'               => '编辑用户群组',
@@ -1526,8 +1529,8 @@ $2',
 'noimage'                   => '不存在此名称的文件，但您可以$1。',
 'noimage-linktext'          => '上传一个',
 'uploadnewversion-linktext' => '上传该文件的新版本',
-'shared-repo-from'          => '出自$1', # $1 is the repository name
-'shared-repo'               => '一个共用文件库', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => '出自$1',
+'shared-repo'               => '一个共用文件库',
 
 # File reversion
 'filerevert'                => '恢复$1',
@@ -1915,8 +1918,8 @@ $NEWPAGE
 其他人已经编辑或是恢复了该页。
 
 最后对页面编辑的编辑者: [[User:$3|$3]] ([[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])。',
-'editcomment'      => '编辑摘要: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'       => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => '编辑摘要: "<i>$1</i>"。',
+'revertpage'       => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个版本',
 'rollback-success' => '恢复由$1的编辑；更改回$2的最后一个版本。',
 'sessionfailure'   => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 
@@ -1963,7 +1966,7 @@ $NEWPAGE
 ** 反生产性编辑战
 ** 高流量页面',
 'protect-edit-reasonlist'     => '编辑保护理由',
-'protect-expiry-options'      => '1小时:1 hour,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1小时:1 hour,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite',
 'restriction-type'            => '权限:',
 'restriction-level'           => '限制级别:',
 'minimum-size'                => '最小大小',
@@ -2037,7 +2040,7 @@ $1',
 'contributions-title' => '$1的用户贡献',
 'mycontris'           => '我的贡献',
 'contribsub2'         => '$1的贡献 ($2)',
-'nocontribs'          => '没有找到符合特征的更改。', # Optional parameter: $1 is the user name
+'nocontribs'          => '没有找到符合特征的更改。',
 'uctop'               => '(最新修改)',
 'month'               => '从该月份 (或更早):',
 'year'                => '从该年份 (或更早):',
@@ -2099,7 +2102,7 @@ $1',
 'ipbenableautoblock'              => '自动查封此用户最后所用的IP地址，以及后来试图编辑所用的所有地址',
 'ipbsubmit'                       => '查封该地址',
 'ipbother'                        => '其它时间:',
-'ipboptions'                      => '2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite',
 'ipbotheroption'                  => '其它',
 'ipbotherreason'                  => '其它／附带原因:',
 'ipbhidename'                     => '在编辑及列表中隐藏用户名',
@@ -2230,7 +2233,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'move-watch'                   => '监视此页',
 'movepagebtn'                  => '移动页面',
 'pagemovedsub'                 => '移动成功',
-'movepage-moved'               => "<big>'''“$1”已经移动到“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''“$1”已经移动到“$2”'''</big>",
 'movepage-moved-redirect'      => '一个重新定向已经被创建。',
 'movepage-moved-noredirect'    => '已经压制创建重新定向。',
 'articleexists'                => '该名字的页面已经存在，或者您选择的名字无效。请再选一个名字。',
@@ -2458,7 +2461,7 @@ $1已经被封锁。您是否想更改这个设置？',
 # Attribution
 'anonymous'        => '{{SITENAME}}的匿名{{PLURAL:$1|用户|用户}}',
 'siteuser'         => '{{SITENAME}}用户$1',
-'lastmodifiedatby' => '此页由$3于$1 $2的最后更改。', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => '此页由$3于$1 $2的最后更改。',
 'othercontribs'    => '在$1的工作基础上。',
 'others'           => '其他',
 'siteusers'        => '{{SITENAME}}{{PLURAL:$2|用户|用户}}$1',
@@ -2591,7 +2594,7 @@ Variants for Chinese language
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => '宽度',
@@ -2718,14 +2721,14 @@ Variants for Chinese language
 
 'exif-unknowndate' => '未知的日期',
 
-'exif-orientation-1' => '标准', # 0th row: top; 0th column: left
-'exif-orientation-2' => '水平翻转', # 0th row: top; 0th column: right
-'exif-orientation-3' => '旋转180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => '垂直翻转', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '旋转90° 逆时针并垂直翻转', # 0th row: left; 0th column: top
-'exif-orientation-6' => '旋转90° 顺时针', # 0th row: right; 0th column: top
-'exif-orientation-7' => '旋转90° 顺时针并垂直翻转', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '旋转90° 逆时针', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => '标准',
+'exif-orientation-2' => '水平翻转',
+'exif-orientation-3' => '旋转180°',
+'exif-orientation-4' => '垂直翻转',
+'exif-orientation-5' => '旋转90° 逆时针并垂直翻转',
+'exif-orientation-6' => '旋转90° 顺时针',
+'exif-orientation-7' => '旋转90° 顺时针并垂直翻转',
+'exif-orientation-8' => '旋转90° 逆时针',
 
 'exif-planarconfiguration-1' => '矮胖格式',
 'exif-planarconfiguration-2' => '平面格式',
@@ -2989,7 +2992,7 @@ $1',
 'duplicate-defaultsort' => '警告: 预设的排序键 "$2" 覆盖先前的预设排序键 "$1"。',
 
 # Special:Version
-'version'                          => '版本', # Not used as normal message but as header for the special page itself
+'version'                          => '版本',
 'version-extensions'               => '已经安装的扩展',
 'version-specialpages'             => '特殊页面',
 'version-parserhooks'              => '语法钩',

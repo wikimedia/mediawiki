@@ -1,6 +1,9 @@
 <?php
 /** Interlingue (Interlingue)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -358,7 +361,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'monthsall'     => 'omni',
 
 # Special:Version
-'version' => 'Version', # Not used as normal message but as header for the special page itself
+'version' => 'Version',
 
 # Special:SpecialPages
 'specialpages' => 'Special págines',

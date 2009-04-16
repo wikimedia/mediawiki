@@ -1,6 +1,9 @@
 <?php
 /** Korean (한국어)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -362,7 +365,7 @@ $messages = array(
 'category-media-header'          => '‘$1’ 분류에 속하는 자료',
 'category-empty'                 => '이 분류에 속하는 문서나 자료가 없습니다.',
 'hidden-categories'              => '숨은 분류',
-'hidden-category-category'       => '숨은 분류', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => '숨은 분류',
 'category-subcat-count'          => '{{PLURAL:$2|이 분류에는 다음의 하위 분류만이 속해 있습니다.|다음은 이 분류에 속하는 $2 개의 하위 분류 중 $1 개입니다.}}',
 'category-subcat-count-limited'  => '이 분류에는 하위 분류가 $1개 있습니다.',
 'category-article-count'         => '{{PLURAL:$2|이 분류에는 다음의 문서만이 속해 있습니다.|다음은 이 분류에 속하는 $2 개의 문서 중 $1 개입니다.}}',
@@ -449,7 +452,7 @@ $messages = array(
 'otherlanguages'    => '다른 언어',
 'redirectedfrom'    => '($1에서 넘어옴)',
 'redirectpagesub'   => '넘겨주기 문서',
-'lastmodifiedat'    => '이 문서는 $2, $1에 마지막으로 바뀌었습니다.', # $1 date, $2 time
+'lastmodifiedat'    => '이 문서는 $2, $1에 마지막으로 바뀌었습니다.',
 'viewcount'         => '이 문서는 총 $1번 읽혔습니다.',
 'protectedpage'     => '보호된 문서',
 'jumpto'            => '이동:',
@@ -912,7 +915,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'currentrev'             => '현재 판',
 'currentrev-asof'        => '$1 현재 판',
 'revisionasof'           => '$1 판',
-'revision-info'          => '$2 사용자의 $1 버전', # Additionally available: $3: revision id
+'revision-info'          => '$2 사용자의 $1 버전',
 'previousrevision'       => '← 이전 판',
 'nextrevision'           => '다음 판 →',
 'currentrevisionlink'    => '현재 판',
@@ -932,7 +935,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 # Revision feed
 'history-feed-title'          => '편집 역사',
 'history-feed-description'    => '이 문서의 편집 역사',
-'history-feed-item-nocomment' => '$2에 대한 $1의 편집', # user at time
+'history-feed-item-nocomment' => '$2에 대한 $1의 편집',
 'history-feed-empty'          => '요청한 문서가 존재하지 않습니다.
 해당 문서가 삭제되었거나, 문서 이름이 바뀌었을 수 있습니다.
 [[Special:Search|위키 검색 기능]]을 이용해 관련 문서를 찾아보세요.',
@@ -1249,7 +1252,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'prefs-custom-js'           => '사용자 자바스크립트',
 
 # User rights
-'userrights'                  => '사용자 권한 관리', # Not used as normal message but as header for the special page itself
+'userrights'                  => '사용자 권한 관리',
 'userrights-lookup-user'      => '사용자 권한 관리',
 'userrights-user-editname'    => '계정 이름:',
 'editusergroup'               => '사용자 그룹 편집',
@@ -1600,8 +1603,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'noimage'                   => '파일이 없습니다. $1 할 수 있습니다.',
 'noimage-linktext'          => '업로드',
 'uploadnewversion-linktext' => '이 파일의 새로운 버전을 올리기',
-'shared-repo-from'          => '($1)', # $1 is the repository name
-'shared-repo'               => '공용 저장소', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => '($1)',
+'shared-repo'               => '공용 저장소',
 
 # File reversion
 'filerevert'                => '$1 되돌리기',
@@ -1977,8 +1980,8 @@ $NEWPAGE
 'alreadyrolled'    => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) 의 편집을 되돌릴 수 없습니다; 누군가가 문서를 고치거나 되돌렸습니다.
 
 마지막으로 문서를 편집한 사람은 [[User:$3|$3]] ([[User talk:$3|토론]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) 입니다.',
-'editcomment'      => "편집 요약: ''$1''", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "편집 요약: ''$1''",
+'revertpage'       => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림',
 'rollback-success' => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
 'sessionfailure'   => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
 
@@ -2023,7 +2026,7 @@ $NEWPAGE
 ** 비생산적인 편집 분쟁
 ** 방문이 많은 문서',
 'protect-edit-reasonlist'     => '보호 이유를 편집하기',
-'protect-expiry-options'      => '1시간:1 hour,1일:1 day,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1시간:1 hour,1일:1 day,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite',
 'restriction-type'            => '권한:',
 'restriction-level'           => '보호 수준:',
 'minimum-size'                => '최소 크기',
@@ -2100,7 +2103,7 @@ $1',
 'contributions-title' => '$1 사용자의 기여 목록',
 'mycontris'           => '내 기여 목록',
 'contribsub2'         => '$1($2)의 기여',
-'nocontribs'          => '이 사용자는 어디에도 기여하지 않았습니다.', # Optional parameter: $1 is the user name
+'nocontribs'          => '이 사용자는 어디에도 기여하지 않았습니다.',
 'uctop'               => '(최신)',
 'month'               => '월:',
 'year'                => '연도:',
@@ -2161,7 +2164,7 @@ $1',
 'ipbenableautoblock'              => '이 사용자가 최근에 사용했거나 앞으로 사용하는 IP를 자동으로 막기',
 'ipbsubmit'                       => '사용자 차단',
 'ipbother'                        => '다른 기간:',
-'ipboptions'                      => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite',
 'ipbotheroption'                  => '수동으로 지정',
 'ipbotherreason'                  => '다른 이유/추가적인 이유:',
 'ipbhidename'                     => '사용자 이름을 목록과 편집기록에서 숨깁니다.',
@@ -2284,7 +2287,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-watch'                   => '이 문서 주시하기',
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
-'movepage-moved'               => "<big>'''‘$1’ 문서를 ‘$2’ 문서로 이동함'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''‘$1’ 문서를 ‘$2’ 문서로 이동함'''</big>",
 'movepage-moved-redirect'      => '넘겨주기 문서가 생성되었습니다.',
 'movepage-moved-noredirect'    => '넘겨주기 문서가 생성되지 않았습니다.',
 'articleexists'                => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
@@ -2492,7 +2495,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Attribution
 'anonymous'        => '{{SITENAME}} 익명 사용자',
 'siteuser'         => '{{SITENAME}} 사용자 $1',
-'lastmodifiedatby' => '이 문서는 $3에 의해 $2, $1에 마지막으로 바뀌었습니다.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => '이 문서는 $3에 의해 $2, $1에 마지막으로 바뀌었습니다.',
 'othercontribs'    => '$1의 작업을 바탕으로 함.',
 'others'           => '기타',
 'siteusers'        => '{{SITENAME}}의 $2명의 사용자 $1',
@@ -2622,7 +2625,7 @@ Variants for Chinese language
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => '너비',
@@ -2749,14 +2752,14 @@ Variants for Chinese language
 
 'exif-unknowndate' => '날짜를 알 수 없음',
 
-'exif-orientation-1' => '일반', # 0th row: top; 0th column: left
-'exif-orientation-2' => '수평으로 뒤집음', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° 회전됨', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => '수직으로 뒤집음', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '시계 반대 방향으로 90° 회전하고 수직으로 뒤집음', # 0th row: left; 0th column: top
-'exif-orientation-6' => '시계 방향으로 90° 회전함', # 0th row: right; 0th column: top
-'exif-orientation-7' => '시계 방향으로 90° 회전하고 수직으로 뒤집음', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '시계 반대 방향으로 90° 회전됨', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => '일반',
+'exif-orientation-2' => '수평으로 뒤집음',
+'exif-orientation-3' => '180° 회전됨',
+'exif-orientation-4' => '수직으로 뒤집음',
+'exif-orientation-5' => '시계 반대 방향으로 90° 회전하고 수직으로 뒤집음',
+'exif-orientation-6' => '시계 방향으로 90° 회전함',
+'exif-orientation-7' => '시계 방향으로 90° 회전하고 수직으로 뒤집음',
+'exif-orientation-8' => '시계 반대 방향으로 90° 회전됨',
 
 'exif-planarconfiguration-1' => '덩어리 형식',
 'exif-planarconfiguration-2' => '평면형',
@@ -3016,7 +3019,7 @@ $1',
 'duplicate-defaultsort' => '경고: 기본 정렬 키 "$2"가 이전의 기본 정렬 키 "$2"를 덮어쓰고 있습니다.',
 
 # Special:Version
-'version'                          => '버전', # Not used as normal message but as header for the special page itself
+'version'                          => '버전',
 'version-extensions'               => '설치된 확장 기능',
 'version-specialpages'             => '특수 문서',
 'version-parserhooks'              => '파서 훅',

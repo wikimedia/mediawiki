@@ -1,6 +1,9 @@
 <?php
 /** Vèneto (Vèneto)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -238,7 +241,7 @@ $messages = array(
 'category-media-header'          => 'File ne la categoria "$1"',
 'category-empty'                 => "''Al momento la categoria no la contien nissuna pagina né file multimediai.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria sconta|Categorie sconte}}',
-'hidden-category-category'       => 'Categorie sconte', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categorie sconte',
 'category-subcat-count'          => "{{PLURAL:$2|Sta categoria la contien un'unica sotocategoria, indicà de seguito.|Sta categoria la contien {{PLURAL:$1|la sotocategoria indicà|le $1 sotocategorie indicà}} de seguito, su un totale de $2.}}",
 'category-subcat-count-limited'  => 'Sta categoria la contien {{PLURAL:$1|una sotocategoria, indicà|$1 sotocategorie, indicà}} de seguito.',
 'category-article-count'         => "{{PLURAL:$2|Sta categoria la contien un'unica pagina, indicà de seguito.|Sta categoria la contien {{PLURAL:$1|la pagina indicà|le $1 pagine indicà}} de seguito, su un totale de $2.}}",
@@ -326,7 +329,7 @@ I seguenti cołegamenti i xe en lengua inglese:
 'otherlanguages'    => 'Altre łengoe',
 'redirectedfrom'    => '(Reindirizamento da $1)',
 'redirectpagesub'   => 'Pàxena de reindirizamento',
-'lastmodifiedat'    => 'Ultima modifica $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ultima modifica $2, $1.',
 'viewcount'         => 'Sta pàxena la xè stà leta {{PLURAL:$1|na olta|$1 olte}}.',
 'protectedpage'     => 'Pàxena proteta',
 'jumpto'            => 'Va a:',
@@ -814,7 +817,7 @@ La motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 'currentrev'             => 'Version atuałe',
 'currentrev-asof'        => 'Version corrente del $1',
 'revisionasof'           => 'Revixion $1',
-'revision-info'          => 'Version del $1, autor: $2', # Additionally available: $3: revision id
+'revision-info'          => 'Version del $1, autor: $2',
 'previousrevision'       => '← Version manco reçente',
 'nextrevision'           => 'Version pì reçente →',
 'currentrevisionlink'    => 'Varda ła version atuałe',
@@ -835,7 +838,7 @@ La motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 # Revision feed
 'history-feed-title'          => 'Cronołogia',
 'history-feed-description'    => 'Cronołogia de ła pàxena su sto sito',
-'history-feed-item-nocomment' => '$1 el $2', # user at time
+'history-feed-item-nocomment' => '$1 el $2',
 'history-feed-empty'          => 'La pàxena richiesta no la esiste; la podarìa èssar stà scancełà dal sito o rinominà. Verifica con la [[Special:Search|pàxena de riçerca]] se ghe xè nove pàxene.',
 
 # Revision deletion
@@ -1147,7 +1150,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'prefs-custom-js'           => 'JS personalixà',
 
 # User rights
-'userrights'                  => 'Gestion dei parmessi relativi ai utenti', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Gestion dei parmessi relativi ai utenti',
 'userrights-lookup-user'      => 'Gestion de i gruppi utente',
 'userrights-user-editname'    => 'Inserir el nome utente:',
 'editusergroup'               => 'Modifica grupi utente',
@@ -1482,8 +1485,8 @@ Qua soto vien mostrà la descrission presente in te la [$2 pàxena de descrissio
 'noimage'                   => "Un file con sto nome no l'esiste mìa, ma te pol $1.",
 'noimage-linktext'          => 'cargarne uno desso',
 'uploadnewversion-linktext' => 'Carica na version nova de sto file',
-'shared-repo-from'          => 'da $1', # $1 is the repository name
-'shared-repo'               => 'un archivio condiviso', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'da $1',
+'shared-repo'               => 'un archivio condiviso',
 
 # File reversion
 'filerevert'                => 'Ripristina $1',
@@ -1862,8 +1865,8 @@ Par piaser, conferma che l'è to intenzion proçedere a tałe scancełazion, con
 'alreadyrolled'    => "No xè mia possibile efetuar el ripristino de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); qualcun altro gà xà modificà o efetuà el ripristino de sta voçe.
 
 L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "El comento a la modifica el xera: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Anułàe łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła version preçedente de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "El comento a la modifica el xera: \"''\$1''\".",
+'revertpage'       => 'Anułàe łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła version preçedente de [[User:$1|$1]]',
 'rollback-success' => 'Anulà le modifiche de $1; riportà a la version precedente de $2.',
 'sessionfailure'   => "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
 
@@ -1910,7 +1913,7 @@ Le impostazion atuali par la pagina le xe '''$1''':",
 ** Pàxena doparà assè
 ** Vandalismi ripetùi',
 'protect-edit-reasonlist'     => 'Cànbia i motivi de la protesion',
-'protect-expiry-options'      => '1 ora:1 hour,1 zòrno:1 day,1 stimana:1 week,2 stimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 ano:1 year,infinito:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ora:1 hour,1 zòrno:1 day,1 stimana:1 week,2 stimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 ano:1 year,infinito:infinite',
 'restriction-type'            => 'Parmesso:',
 'restriction-level'           => 'Livel de restrizion',
 'minimum-size'                => 'Dimension minima',
@@ -1985,7 +1988,7 @@ $1',
 'contributions-title' => 'Contributi de $1',
 'mycontris'           => 'i me contributi',
 'contribsub2'         => 'Par $1 ($2)',
-'nocontribs'          => 'No xe stà catà nissuna modifica che vaga ben par sti critèri.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'No xe stà catà nissuna modifica che vaga ben par sti critèri.',
 'uctop'               => '(ultima par ła pàxena)',
 'month'               => 'A partir dal mese (e precedenti):',
 'year'                => "A partir da l'ano (e precedenti):",
@@ -2044,7 +2047,7 @@ $1',
 'ipbenableautoblock'              => "Bloca automaticamente l'ultimo indirizo IP doparà da l'utente e i sucessivi con cui vien tentà modifiche",
 'ipbsubmit'                       => 'Bloca sto indirisso IP',
 'ipbother'                        => 'Altra durata:',
-'ipboptions'                      => '2 ore:2 hours,1 giòrno:1 day,3 giòrni:3 days,1 setimana:1 week,2 setimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 ano:1 year,infinito:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 ore:2 hours,1 giòrno:1 day,3 giòrni:3 days,1 setimana:1 week,2 setimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 ano:1 year,infinito:infinite',
 'ipbotheroption'                  => 'altro',
 'ipbotherreason'                  => 'Altri motivi/detagli:',
 'ipbhidename'                     => 'Scondi el nome utente da le modìfeghe e da i elenchi.',
@@ -2170,7 +2173,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'move-watch'                   => "Tien d'ocio",
 'movepagebtn'                  => 'Sposta sta pàxena',
 'pagemovedsub'                 => 'Spostamento efetuà con sucesso',
-'movepage-moved'               => '<big>\'\'\'"$1" la xe stà spostà a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" la xe stà spostà a "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Un reindirissamento el xe stà creà.',
 'movepage-moved-noredirect'    => 'La creassion de un reindirissamento la xe stà sopressa.',
 'articleexists'                => "Na pàxena con sto nome la existe xà, opure el nome che te ghè sielto no'l xè vałido.<br />Siegli, par piaser, un titoło diverso par ła voçe.",
@@ -2369,7 +2372,7 @@ Salvalo sul to computer e càrghelo qua.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utente anonimo|Utenti anonimi}} de {{SITENAME}}',
 'siteuser'         => '$1, utente de {{SITENAME}}',
-'lastmodifiedatby' => "Sta pàxena la xè stà modificà l'ultima olta el $2, $1 da $3.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Sta pàxena la xè stà modificà l'ultima olta el $2, $1 da $3.",
 'othercontribs'    => 'El testo atuale el xe basà su contributi de $1.',
 'others'           => 'altri',
 'siteusers'        => '$1, {{PLURAL:$2|utente|utenti}} de {{SITENAME}}',
@@ -2480,7 +2483,7 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largheza',
@@ -2607,14 +2610,14 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 
 'exif-unknowndate' => 'Data sconossiùa',
 
-'exif-orientation-1' => 'Normałe', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Roersà orixontalmente', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Ruotà de 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Roersà verticalmente', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Ruotà 90° in senso antiorario e roersà verticalmente', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Ruotà 90° in senso orario', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Ruotà 90° in senso orario e capovolto verticalmente', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Ruotà 90° in senso antiorario', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normałe',
+'exif-orientation-2' => 'Roersà orixontalmente',
+'exif-orientation-3' => 'Ruotà de 180°',
+'exif-orientation-4' => 'Roersà verticalmente',
+'exif-orientation-5' => 'Ruotà 90° in senso antiorario e roersà verticalmente',
+'exif-orientation-6' => 'Ruotà 90° in senso orario',
+'exif-orientation-7' => 'Ruotà 90° in senso orario e capovolto verticalmente',
+'exif-orientation-8' => 'Ruotà 90° in senso antiorario',
 
 'exif-planarconfiguration-1' => 'a blochi (chunky)',
 'exif-planarconfiguration-2' => 'lineare (planar)',
@@ -2887,7 +2890,7 @@ Doparar l\'anteprima standard.',
 'duplicate-defaultsort' => 'Ocio: la ciave de ordinamento predefinìa "$2" la va in conflito co\' quela de prima "$1".',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Estension instalè',
 'version-specialpages'             => 'Pagine speciali',
 'version-parserhooks'              => 'Hook del parser',

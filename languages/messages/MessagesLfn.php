@@ -1,6 +1,9 @@
 <?php
 /** Lingua Franca Nova (Lingua Franca Nova)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -130,7 +133,7 @@ $messages = array(
 'category-media-header'    => 'Medio en catagoria "$1"',
 'category-empty'           => "''Aora, esta categoria no conteni pajes o medio.''",
 'hidden-categories'        => '{{PLURAL:$1|Categoria|Categorias}} ascondeda',
-'hidden-category-category' => 'Categorias ascondeda', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Categorias ascondeda',
 'listingcontinuesabbrev'   => 'cont.',
 
 'mainpagetext'      => "<big>'''MediaWiki es aora instalada.'''</big>",
@@ -425,7 +428,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'currentrev'             => 'Cambia presente',
 'currentrev-asof'        => 'Cambia presente a departi di $1',
 'revisionasof'           => 'Revisa de $1',
-'revision-info'          => 'Revisa de $1 par $2', # Additionally available: $3: revision id
+'revision-info'          => 'Revisa de $1 par $2',
 'previousrevision'       => '← Altera presedente',
 'nextrevision'           => 'Revisa plu nova→',
 'currentrevisionlink'    => 'Revisa presente',
@@ -445,7 +448,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 
 # Revision feed
 'history-feed-title'          => 'Istoria de revises',
-'history-feed-item-nocomment' => '$1 a $2', # user at time
+'history-feed-item-nocomment' => '$1 a $2',
 
 # Revision deletion
 'rev-delundel' => 'mostra/asconde',
@@ -499,7 +502,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'files'                     => 'Fixes',
 
 # User rights
-'userrights'     => 'Dirije de la diretos de usores', # Not used as normal message but as header for the special page itself
+'userrights'     => 'Dirije de la diretos de usores',
 'saveusergroups' => 'Fisa la grupo de usores',
 
 # Groups
@@ -752,7 +755,7 @@ Asi es la ajustas presente per la paje '''$1''':",
 'protect-expiring'            => 'fini $1 (UTC)',
 'protect-cascade'             => 'Proteje pajes ce es incluida en esta paje (proteje cascadente)',
 'protect-cantedit'            => 'Tu no pote cambia la nivel de proteje de esta paje, per ce tu no ave la permite per edita el.',
-'protect-expiry-options'      => '1 ora:1 hour,1 dia:1 day,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ora:1 hour,1 dia:1 day,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite',
 'restriction-type'            => 'Permete:',
 'restriction-level'           => 'Nivel de restrinje:',
 
@@ -802,7 +805,7 @@ Asi es la ajustas presente per la paje '''$1''':",
 'blockip'            => 'Impedi usor',
 'ipbreason'          => 'Razona:',
 'ipbsubmit'          => 'Impedi esta usor',
-'ipboptions'         => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite',
 'blockipsuccesssub'  => 'La impedi susede',
 'ipusubmit'          => 'Desimpedi esta adirije',
 'ipblocklist'        => 'Liste de adirijes de IP e usores impedida',
@@ -837,7 +840,7 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'move-watch'       => 'Oserva esta paje',
 'movepagebtn'      => 'Move paje',
 'pagemovedsub'     => 'La move ia susede',
-'movepage-moved'   => '<big>\'\'\'"$1" ia es moveda a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" ia es moveda a "$2"\'\'\'</big>',
 'articleexists'    => 'Un paje con acel nom esiste ja, o la nom ce tu ia eleje no es un nom legal. Per favore, eleje un otra nom.',
 'talkexists'       => "'''La paje se mesma ia es moveda, ma la paje de discutes no pote es moveda, per ce un esiste ja a la titulo nova. Per favore, fusa los per mano'''",
 'movedto'          => 'moveda a',
@@ -945,7 +948,7 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-exposuretime-format' => '$1 sec. ($2)',
@@ -968,7 +971,7 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 'watchlisttools-raw'  => 'Edita la lista rua de pajes oservada',
 
 # Special:Version
-'version'         => 'Varia', # Not used as normal message but as header for the special page itself
+'version'         => 'Varia',
 'version-version' => 'Varia',
 
 # Special:FilePath

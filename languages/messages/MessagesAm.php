@@ -1,6 +1,9 @@
 <?php
 /** Amharic (አማርኛ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -142,7 +145,7 @@ $messages = array(
 'category-media-header'          => 'በመደቡ «$1» የተገኙ ፋይሎች፦',
 'category-empty'                 => 'ይህ መደብ አሁን ባዶ ነው።',
 'hidden-categories'              => '{{PLURAL:$1|የተደበቀ መደብ|የተደበቁ መደቦች}}',
-'hidden-category-category'       => 'የተደበቁ መደቦች', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'የተደበቁ መደቦች',
 'category-subcat-count'          => '{{PLURAL:$2|በዚሁ መደብ ውስጥ አንድ ንዑስ-መደብ አለ|በዚሁ መደብ ውስጥ {{PLURAL:$1|የሚከተለው ንዕስ-መደብ አለ|የሚከተሉት $1 ንዑስ-መደቦች አሉ}} (በጠቅላላም ከነስውር መደቦች $2 አሉ)}}፦',
 'category-subcat-count-limited'  => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|የሚከተለው ንዑስ መደብ አለ| የሚከተሉት $1 ንዑስ መደቦች አሉ}}፦',
 'category-article-count'         => '{{PLURAL:$2|ይኸው መደብ የሚከተለውን መጣጥፍ ብቻ አለው።|በዚሁ መደብ ውስጥ (ከ$2 በጠቅላላ) {{PLURAL:$1|የሚከተለው መጣጥፍ አለ።|የሚከተሉት $1 መጣጥፎች አሉ።}}}}',
@@ -229,7 +232,7 @@ $messages = array(
 'otherlanguages'    => 'በሌሎች ቋንቋዎች',
 'redirectedfrom'    => '(ከ$1 የተዛወረ)',
 'redirectpagesub'   => 'መምሪያ መንገድ',
-'lastmodifiedat'    => 'ይህ ገጽ መጨረሻ የተቀየረው እ.ኣ.አ በ$2፣ $1 ዓ.ም. ነበር።', # $1 date, $2 time
+'lastmodifiedat'    => 'ይህ ገጽ መጨረሻ የተቀየረው እ.ኣ.አ በ$2፣ $1 ዓ.ም. ነበር።',
 'viewcount'         => 'ይህ ገጽ {{PLURAL:$1|አንዴ|$1 ጊዜ}} ታይቷል።',
 'protectedpage'     => 'የተቆለፈ ገጽ',
 'jumpto'            => 'ዘልለው ለመሐድ፦',
@@ -626,7 +629,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'currentrev'             => 'የአሁኑ እትም',
 'currentrev-asof'        => 'በ$1 የታተመው ያሁኑኑ እትም',
 'revisionasof'           => 'እትም በ$1',
-'revision-info'          => 'የ$1 ዕትም (ከ$2 ተዘጋጅቶ)', # Additionally available: $3: revision id
+'revision-info'          => 'የ$1 ዕትም (ከ$2 ተዘጋጅቶ)',
 'previousrevision'       => '← የፊተኛው እትም',
 'nextrevision'           => 'የሚከተለው እትም →',
 'currentrevisionlink'    => '«የአሁኑን እትም ለመመልከት»',
@@ -646,7 +649,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 # Revision feed
 'history-feed-title'          => 'የዕትሞች ታሪክ',
 'history-feed-description'    => 'በዊኪ ላይ የዕትሞች ታሪክ ለዚሁ ገጽ',
-'history-feed-item-nocomment' => '$1 በ$2', # user at time
+'history-feed-item-nocomment' => '$1 በ$2',
 'history-feed-empty'          => 'የተጠየቀው ገጽ አይኖርም። ምናልባት ከዊኪው ጠፍቷል፣ ወይም ወደ አዲስ ስም ተዛወረ። ለተመሳሳይ አዲስ ገጽ [[Special:Search|ፍለጋ]] ይሞክሩ።',
 
 # Revision deletion
@@ -849,7 +852,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'files'                     => 'የስዕሎች መጠን',
 
 # User rights
-'userrights'                  => 'የአባል መብቶች ለማስተዳደር', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'የአባል መብቶች ለማስተዳደር',
 'userrights-lookup-user'      => 'የ1 አባል ማዕረግ ለማስተዳደር',
 'userrights-user-editname'    => 'ለዚሁ ብዕር ስም፦',
 'editusergroup'               => 'የአባሉ ማዕረግ ለማስተካከል',
@@ -1447,8 +1450,8 @@ $NEWPAGE
 'alreadyrolled'    => 'የ[[:$1]] መጨረሻ ለውጥ በ[[User:$2|$2]] ([[User talk:$2|ውይይት]]) መገልበት አይቻልም፤ ሌላ ሰው አሁን ገጹን መልሶታል።
 
 መጨረሻው ለውጥ በ[[User:$3|$3]] ([[User talk:$3|ውይይት]]) ነበረ።',
-'editcomment'      => "ማጠቃለያው፦ «''$1''» ነበረ።", # only shown if there is an edit comment
-'revertpage'       => 'የ$2ን ለውጦች ወደ $1 እትም መለሰ።', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "ማጠቃለያው፦ «''$1''» ነበረ።",
+'revertpage'       => 'የ$2ን ለውጦች ወደ $1 እትም መለሰ።',
 'rollback-success' => 'የ$1 ለውጦች ተገለበጡ፣ ወደ $2 ዕትም ተመልሷል።',
 
 # Protect
@@ -1485,7 +1488,7 @@ $NEWPAGE
 'protect-otherreason'         => 'ሌላ/ተጨማሪ ምክንያት፦',
 'protect-otherreason-op'      => 'ሌላ/ተጨማሪ ምክንያት',
 'protect-edit-reasonlist'     => "'ተራ የመቆለፍ ምክንያቶች' ለማዘጋጀት",
-'protect-expiry-options'      => '2 ሰዓቶች:2 hours,1 ቀን:1 day,3 ቀን:3 days,1 ሳምንት:1 week,2 ሳምንት:2 weeks,1 ወር:1 month,3 ወር:3 months,6 ወር:6 months,1 አመት:1 year,ዘላለም:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 ሰዓቶች:2 hours,1 ቀን:1 day,3 ቀን:3 days,1 ሳምንት:1 week,2 ሳምንት:2 weeks,1 ወር:1 month,3 ወር:3 months,6 ወር:6 months,1 አመት:1 year,ዘላለም:infinite',
 'restriction-type'            => 'ፈቃድ፦',
 'restriction-level'           => 'የመቆለፍ ደረጃ፦',
 'minimum-size'                => 'ቢያንስ',
@@ -1547,7 +1550,7 @@ $1',
 'contributions-title' => 'የ$1 አስተዋጽኦች',
 'mycontris'           => 'የኔ አስተዋጽኦች፤',
 'contribsub2'         => 'ለ $1 ($2)',
-'nocontribs'          => 'ምንም አልተገኘም።', # Optional parameter: $1 is the user name
+'nocontribs'          => 'ምንም አልተገኘም።',
 'uctop'               => '(ላይኛ)',
 'month'               => 'እስከዚህ ወር ድረስ፦',
 'year'                => 'እስከዚህ አመት (እ.ኤ.አ.) ድረስ፡-',
@@ -1600,7 +1603,7 @@ $1',
 'ipbenableautoblock'          => 'በተጠቃሚው መጨረሻ ቁ.# እና ካሁን ወዲያ በሚጠቀመው አድራሻ ላይ ማገጃ ይጣል።',
 'ipbsubmit'                   => 'ማገጃ ለመጣል',
 'ipbother'                    => 'ሌላ የተወሰነ ግዜ፦',
-'ipboptions'                  => '2 ሰዓቶች:2 hours,1 ቀን:1 day,3 ቀን:3 days,1 ሳምንት:1 week,2 ሳምንት:2 weeks,1 ወር:1 month,3 ወር:3 months,6 ወር:6 months,1 አመት:1 year,ዘላለም:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 ሰዓቶች:2 hours,1 ቀን:1 day,3 ቀን:3 days,1 ሳምንት:1 week,2 ሳምንት:2 weeks,1 ወር:1 month,3 ወር:3 months,6 ወር:6 months,1 አመት:1 year,ዘላለም:infinite',
 'ipbotheroption'              => 'ሌላ',
 'ipbotherreason'              => 'ሌላ/ተጨማሪ ምክንያት፦',
 'badipaddress'                => 'የማይሆን የቁ. አድራሻ',
@@ -1700,7 +1703,7 @@ $1 አሁን ገና ታግዷል። ዝርዝሩን ማስተካከል ፈለጉ
 'move-watch'                => 'ይህ ገጽ በተከታተሉት ገጾች ይጨመር',
 'movepagebtn'               => 'ገጹ ይዛወር',
 'pagemovedsub'              => 'መዛወሩ ተከናወነ',
-'movepage-moved'            => "<big>'''«$1» ወደ «$2» ተዛውሯል'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => "<big>'''«$1» ወደ «$2» ተዛውሯል'''</big>",
 'articleexists'             => 'በዚያ አርዕሥት ሌላ ገጽ አሁን አለ። አለበለዚያ የመረጡት ስም ልክ አይደለም - ሌላ አርእስት ይምረጡ።',
 'cantmove-titleprotected'   => 'አዲሱ አርዕስት ከመፈጠር ስለተጠበቀ፣ ገጽ ወደዚያው ሥፍራ ለማዛወር አይችሉም።',
 'talkexists'                => "'''ገጹ ወደ አዲሱ አርዕስት ተዛወረ፤ እንጂ በአዲሱ አርዕስት የቆየ ውይይት ገጽ አስቀድሞ ስለ ኖረ የዚህ ውይይት ገጽ ሊዛወር አልተቻለም። እባክዎ፣ በእጅ ያጋጥሙአቸው።'''",
@@ -1853,7 +1856,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Attribution
 'anonymous'        => 'የ{{SITENAME}} ቁ. አድራሻ ተጠቃሚ(ዎች)',
 'siteuser'         => '{{SITENAME}} ተጠቃሚ $1',
-'lastmodifiedatby' => 'ይህ ገጽ መጨረሻ የተቀየረው $2፣ $1 በ$3 ነበር።', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'ይህ ገጽ መጨረሻ የተቀየረው $2፣ $1 በ$3 ነበር።',
 'others'           => 'ሌሎች',
 'siteusers'        => '{{SITENAME}} ተጠቃሚ(ዎች) $1',
 
@@ -1943,7 +1946,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'ስፋት',
@@ -2046,10 +2049,10 @@ $1',
 
 'exif-unknowndate' => 'ያልታወቀ ቀን',
 
-'exif-orientation-1' => 'የተለመደ', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'በአድማሱ ላይ ተገለበጠ', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° የዞረ', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'በዋልታው ላይ ተገለበጠ', # 0th row: bottom; 0th column: left
+'exif-orientation-1' => 'የተለመደ',
+'exif-orientation-2' => 'በአድማሱ ላይ ተገለበጠ',
+'exif-orientation-3' => '180° የዞረ',
+'exif-orientation-4' => 'በዋልታው ላይ ተገለበጠ',
 
 'exif-componentsconfiguration-0' => 'አይኖርም',
 
@@ -2261,7 +2264,7 @@ $3
 'unknown_extension_tag' => 'ያልታወቀ የቅጥያ ምልክት «$1»',
 
 # Special:Version
-'version'                          => 'ዝርያ', # Not used as normal message but as header for the special page itself
+'version'                          => 'ዝርያ',
 'version-extensions'               => 'የተሳኩ ቅጥያዎች',
 'version-specialpages'             => 'ልዩ ገጾች',
 'version-parserhooks'              => 'የዘርዛሪ ሜንጦዎች',

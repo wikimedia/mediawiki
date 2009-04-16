@@ -1,6 +1,9 @@
 <?php
 /** Marathi (मराठी)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -284,7 +287,7 @@ $messages = array(
 'category-media-header'          => '"$1" वर्गातील माध्यमे',
 'category-empty'                 => "''या वर्गात अद्याप एकही लेख नाही.''",
 'hidden-categories'              => '{{PLURAL:$1|लपविलेला वर्ग|लपविलेले वर्ग}}',
-'hidden-category-category'       => 'लपविलेले वर्ग', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'लपविलेले वर्ग',
 'category-subcat-count'          => '{{PLURAL:$2|या वर्गात फक्त खालील उपवर्ग आहे.|एकूण $2 उपवर्गांपैकी या वर्गात खालील {{PLURAL:$1|उपवर्ग आहे.|$1 उपवर्ग आहेत.}}}}',
 'category-subcat-count-limited'  => 'या वर्गात खालील $1 उपवर्ग {{PLURAL:$1|आहे|आहेत}}.',
 'category-article-count'         => '{{PLURAL:$2|या वर्गात फक्त खालील लेख आहे.|एकूण $2 पैकी खालील {{PLURAL:$1|पान|$1 पाने}} या वर्गात {{PLURAL:$1|आहे|आहेत}}.}}',
@@ -371,7 +374,7 @@ $messages = array(
 'otherlanguages'    => 'इतर भाषा',
 'redirectedfrom'    => '($1 पासून पुनर्निर्देशित)',
 'redirectpagesub'   => 'पुनर्निर्देशनाचे पान',
-'lastmodifiedat'    => 'या पानातील शेवटचा बदल $1 रोजी $2 वाजता केला गेला.', # $1 date, $2 time
+'lastmodifiedat'    => 'या पानातील शेवटचा बदल $1 रोजी $2 वाजता केला गेला.',
 'viewcount'         => 'हे पान {{PLURAL:$1|एकदा|$1 वेळा}} बघितले गेलेले आहे.',
 'protectedpage'     => 'सुरक्षित पृष्ठ',
 'jumpto'            => 'येथे जा:',
@@ -799,7 +802,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'nohistory'              => 'या पृष्ठासाठी आवृत्ती इतिहास अस्तित्वात नाही.',
 'currentrev'             => 'चालू आवृत्ती',
 'revisionasof'           => '$1 नुसारची आवृत्ती',
-'revision-info'          => '$2ने $1चे आवर्तन', # Additionally available: $3: revision id
+'revision-info'          => '$2ने $1चे आवर्तन',
 'previousrevision'       => '←मागील आवृत्ती',
 'nextrevision'           => 'पुढील आवृत्ती→',
 'currentrevisionlink'    => 'आताची आवृत्ती',
@@ -821,7 +824,7 @@ $3ने ''$2'' कारण दिले आहे.",
 # Revision feed
 'history-feed-title'          => 'आवृत्ती इतिहास',
 'history-feed-description'    => 'विकिवरील या पानाच्या आवृत्त्यांचा इतिहास',
-'history-feed-item-nocomment' => '$2 इथले $1', # user at time
+'history-feed-item-nocomment' => '$2 इथले $1',
 'history-feed-empty'          => 'विनंती केलेले पान अस्तित्वात नाही.
 
 ते विकिवरून वगळले किंवा नाव बदललेले असण्याची शक्यता आहे.
@@ -1017,7 +1020,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'files'                    => 'संचिका',
 
 # User rights
-'userrights'                  => 'सदस्य अधिकार व्यवस्थापन', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'सदस्य अधिकार व्यवस्थापन',
 'userrights-lookup-user'      => 'सदस्य गटांचे(ग्रूप्स) व्यवस्थापन करा.',
 'userrights-user-editname'    => 'सदस्य नाव टाका:',
 'editusergroup'               => 'सदस्य गट (ग्रूप्स) संपादीत करा',
@@ -1621,8 +1624,8 @@ $NEWPAGE
 'alreadyrolled'    => 'Cannot rollback last edit of by [[User:$2|$2]] ([[User talk:$2|Talk]])चे शेवटाचे [[:$1]]वे संपादन माघारी परतवता येतनाही; पान आधीच कुणी माघारी परतवले आहे किंवा संपादीत केले आहे.
 
 शेवटचे संपादन [[User:$3|$3]] ([[User talk:$3|Talk]])-चे होते.',
-'editcomment'      => "बदलासोबतची नोंद होती : \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "बदलासोबतची नोंद होती : \"''\$1''\".",
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.',
 'rollback-success' => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
 'sessionfailure'   => 'तुमच्या दाखल सत्रात काही समस्या दिसते;सत्र अपहारणा पासून काळजी घेण्याच्या दृष्टीने ही कृती रद्द केली गेली आहे.कपया आपल्या विचरकाच्या "back" कळीवर टिचकी मारा आणि तुम्ही ज्या पानावरून आला ते पुन्हा चढवा,आणि प्रत प्रयत्न करा.',
 
@@ -1654,7 +1657,7 @@ $NEWPAGE
 'protect-expiring'            => '$1 (UTC) ला संपेल',
 'protect-cascade'             => 'या पानात असलेली पाने सुरक्षित करा (सुरक्षा शिडी)',
 'protect-cantedit'            => 'तुम्ही या पानाची सुरक्षा पातळी बदलू शकत नाही कारण तुम्हाला तसे करण्याची परवानगी नाही.',
-'protect-expiry-options'      => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite',
 'restriction-type'            => 'परवानगी:',
 'restriction-level'           => 'सुरक्षापातळी:',
 'minimum-size'                => 'किमान आकार',
@@ -1723,7 +1726,7 @@ $1',
 'contributions' => 'सदस्याचे योगदान',
 'mycontris'     => 'माझे योगदान',
 'contribsub2'   => '$1 ($2) साठी',
-'nocontribs'    => 'या मानदंडाशी जुळणारे बदल सापडले नाहीत.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'या मानदंडाशी जुळणारे बदल सापडले नाहीत.',
 'uctop'         => ' (वर)',
 'month'         => 'या महिन्यापासून (आणि पूर्वीचे):',
 'year'          => 'या वर्षापासून (आणि पूर्वीचे):',
@@ -1782,7 +1785,7 @@ $1',
 'ipbenableautoblock'          => 'या सदस्याने वापरलेला शेवटचा अंकपत्ता आणि जेथून या पुढे तो संपादनाचा प्रयत्न करेल ते सर्व अंकपत्ते आपोआप प्रतिबंधीत करा.',
 'ipbsubmit'                   => 'हा पत्ता अडवा',
 'ipbother'                    => 'इतर वेळ:',
-'ipboptions'                  => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite',
 'ipbotheroption'              => 'इतर',
 'ipbotherreason'              => 'इतर/अजून कारण:',
 'ipbhidename'                 => 'सदस्य नाम प्रतिबंधन नोंदी, प्रतिबंधनाची चालू यादी आणि सदस्य यादी इत्यादीतून लपवा',
@@ -1892,7 +1895,7 @@ $1',
 'move-watch'              => 'या पानावर लक्ष ठेवा',
 'movepagebtn'             => 'स्थानांतरण करा',
 'pagemovedsub'            => 'स्थानांतरण यशस्वी',
-'movepage-moved'          => '<big>\'\'\'"$1" ला "$2" मथळ्याखाली स्थानांतरीत केले\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" ला "$2" मथळ्याखाली स्थानांतरीत केले\'\'\'</big>',
 'articleexists'           => 'त्या नावाचे पृष्ठ अगोदरच अस्तित्वात आहे, किंवा तुम्ही निवडलेले
 नाव योग्य नाही आहे.
 कृपया दुसरे नाव शोधा.',
@@ -2067,7 +2070,7 @@ $1',
 # Attribution
 'anonymous'        => '{{SITENAME}} वरील अनामिक सदस्य',
 'siteuser'         => '<!--{{SITENAME}}-->मराठी विकिपीडियाचा सदस्य $1',
-'lastmodifiedatby' => 'या पानातील शेवटचा बदल $3ने $2, $1 यावेळी केला.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'या पानातील शेवटचा बदल $3ने $2, $1 यावेळी केला.',
 'othercontribs'    => '$1 ने केलेल्या कामानुसार.',
 'others'           => 'इतर',
 'siteusers'        => '{{SITENAME}} सदस्य $1',
@@ -2178,7 +2181,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'रूंदी',
@@ -2305,14 +2308,14 @@ $1',
 
 'exif-unknowndate' => 'अज्ञात तारीख',
 
-'exif-orientation-1' => 'सामान्य', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'समांतर पालटले', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° फिरवले', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'उभ्या बाजूने पालटले', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '९०° CCW अंशात वळवले आणि उभे पालटले', # 0th row: left; 0th column: top
-'exif-orientation-6' => '90° CW फिरवले', # 0th row: right; 0th column: top
-'exif-orientation-7' => '90° CW वळवले आणि उभे पलटवले', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '90° CCW फिरवले', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'सामान्य',
+'exif-orientation-2' => 'समांतर पालटले',
+'exif-orientation-3' => '180° फिरवले',
+'exif-orientation-4' => 'उभ्या बाजूने पालटले',
+'exif-orientation-5' => '९०° CCW अंशात वळवले आणि उभे पालटले',
+'exif-orientation-6' => '90° CW फिरवले',
+'exif-orientation-7' => '90° CW वळवले आणि उभे पलटवले',
+'exif-orientation-8' => '90° CCW फिरवले',
 
 'exif-planarconfiguration-1' => 'चंकी संरचना (रूपरेषा)',
 'exif-planarconfiguration-2' => 'प्लानर संरचना(रूपरेषा)',
@@ -2558,7 +2561,7 @@ $1',
 'unknown_extension_tag' => 'अज्ञात विस्तार खूण "$1"',
 
 # Special:Version
-'version'                          => 'आवृत्ती', # Not used as normal message but as header for the special page itself
+'version'                          => 'आवृत्ती',
 'version-extensions'               => 'स्थापित विस्तार',
 'version-specialpages'             => 'विशेष पाने',
 'version-parserhooks'              => 'पृथकक अंकुश',

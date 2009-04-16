@@ -1,6 +1,9 @@
 <?php
 /** Serbian Cyrillic ekavian (ћирилица)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -323,7 +326,7 @@ $messages = array(
 'category-media-header'          => 'Мултимедијалних фајлова у категорији "$1"',
 'category-empty'                 => "''Ова категорија тренутно не садржи чланке нити медије.''",
 'hidden-categories'              => '{{PLURAL:$1|Скривена категорија|Скривене категорије|Скривених категорија}}',
-'hidden-category-category'       => 'Скривене категорије', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Скривене категорије',
 'category-subcat-count'          => '{{PLURAL:$2|Ова категорија има само следећу поткатегорију.|Ова категорија има {{PLURAL:$1|следећу поткатегорију|$1 следеће поткатегорије|$1 следећих поткатегорија}}, од укупно $2.}}',
 'category-subcat-count-limited'  => 'Ова категорија садржи {{PLURAL:$1|следећу поткатегорију|$1 следеће поткатегорије}}.',
 'category-article-count'         => '{{PLURAL:$2|Ова категорија садржи само следећу страну.|{{PLURAL:$1|страна је|$1 стране је|$1 страна је}} у овој категорији од укупно $2.}}',
@@ -409,7 +412,7 @@ $messages = array(
 'otherlanguages'    => 'Остали језици',
 'redirectedfrom'    => '(Преусмерено са $1)',
 'redirectpagesub'   => 'Страна преусмерења',
-'lastmodifiedat'    => 'Ова страница је последњи пут измењена $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ова страница је последњи пут измењена $2, $1.',
 'viewcount'         => 'Овој страници је приступљено {{PLURAL:$1|једном|$1 пута|$1 пута}}.',
 'protectedpage'     => 'Заштићена страница',
 'jumpto'            => 'Скочи на:',
@@ -903,7 +906,7 @@ $2',
 'currentrev'             => 'Тренутна ревизија',
 'currentrev-asof'        => 'Тренутна ревизија од $1',
 'revisionasof'           => 'Ревизија од $1',
-'revision-info'          => 'Ревизија од $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Ревизија од $1; $2',
 'previousrevision'       => '← Претходна ревизија',
 'nextrevision'           => 'Следећа ревизија →',
 'currentrevisionlink'    => 'Тренутна ревизија',
@@ -925,7 +928,7 @@ $2',
 # Revision feed
 'history-feed-title'          => 'Контролна историја',
 'history-feed-description'    => 'Историја ревизија за ову страну на викију',
-'history-feed-item-nocomment' => '$1, $2', # user at time
+'history-feed-item-nocomment' => '$1, $2',
 'history-feed-empty'          => 'Тражена страна не постоји.
 Могуће да је обрисана из викија или преименована.
 Покушајте [[Special:Search|да претражите вики]] за релевантне нове стране.',
@@ -1186,7 +1189,7 @@ $2',
 'prefs-custom-js'           => 'Кориснички JS',
 
 # User rights
-'userrights'                  => 'Управљање корисничким правима', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Управљање корисничким правима',
 'userrights-lookup-user'      => 'Управљај корисничким групама',
 'userrights-user-editname'    => 'Унесите корисничко име:',
 'editusergroup'               => 'Мењај групе корисника',
@@ -1869,8 +1872,8 @@ $NEWPAGE
 'alreadyrolled'    => 'Не могу да вратим последњу измену [[:$1]] од корисника [[User:$2|$2]] ([[User talk:$2|разговор]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); неко други је већ изменио или вратио чланак.
 
 Последња измена од корисника [[User:$3|$3]] ([[User talk:$3|разговор]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Коментар измене је: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Враћене измене корисника [[Special:Contributions/$2|$2]] ([[User talk:$2|Разговор]]) на последњу измену корисника [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Коментар измене је: \"''\$1''\".",
+'revertpage'       => 'Враћене измене корисника [[Special:Contributions/$2|$2]] ([[User talk:$2|Разговор]]) на последњу измену корисника [[User:$1|$1]]',
 'rollback-success' => 'Враћене измене од стране $1; на последњу измену од стране $2.',
 'sessionfailure'   => 'Изгледа да постоји проблем са вашом сеансом пријаве;
 ова акција је прекинута као предострожност против преотимања сеанси.
@@ -1920,7 +1923,7 @@ Protect pages included in this page (cascading protection)',
 ** Контра-продуктивне измене
 ** Страница са великим бројем посета',
 'protect-edit-reasonlist'     => 'Измените разлоге заштите',
-'protect-expiry-options'      => '1 сат:1 hour,1 дан:1 day,1 недеља:1 week,2 недеље:2 weeks,1 месец:1 month,3 месеца:3 months,6 месеци:6 months,1 година:1 year,бесконачно:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 сат:1 hour,1 дан:1 day,1 недеља:1 week,2 недеље:2 weeks,1 месец:1 month,3 месеца:3 months,6 месеци:6 months,1 година:1 year,бесконачно:infinite',
 'restriction-type'            => 'Овлашћење:',
 'restriction-level'           => 'Ниво заштите:',
 'minimum-size'                => 'Мин величина',
@@ -1999,7 +2002,7 @@ $1',
 'contributions-title' => 'Прилози корисника за $1',
 'mycontris'           => 'Моји прилози',
 'contribsub2'         => 'За $1 ($2)',
-'nocontribs'          => 'Нису нађене промене које задовољавају ове услове.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Нису нађене промене које задовољавају ове услове.',
 'uctop'               => ' (врх)',
 'month'               => 'За месец (и раније):',
 'year'                => 'Од године (и раније):',
@@ -2061,7 +2064,7 @@ $1',
 'ipbenableautoblock'              => 'Аутоматски блокирај последњу ИП адресу овог корисника, и сваку следећу адресу са које се покуша уређивање.',
 'ipbsubmit'                       => 'Блокирај овог корисника',
 'ipbother'                        => 'Остало време',
-'ipboptions'                      => '2 сата:2 hours,1 дан:1 day,3 дана:3 days,1 недеља:1 week,2 недеље:2 weeks,1 месец:1 month,3 месеца:3 months,6 месеци:6 months,1 година:1 year,бесконачно:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 сата:2 hours,1 дан:1 day,3 дана:3 days,1 недеља:1 week,2 недеље:2 weeks,1 месец:1 month,3 месеца:3 months,6 месеци:6 months,1 година:1 year,бесконачно:infinite',
 'ipbotheroption'                  => 'остало',
 'ipbotherreason'                  => 'Други/додатни разлог:',
 'ipbhidename'                     => 'Сакрој корисничко име са измена и спискова',
@@ -2189,7 +2192,7 @@ $1 је већ блокиран. Да ли желите да промените 
 'move-watch'                => 'Надгледај ову страницу',
 'movepagebtn'               => 'премести страницу',
 'pagemovedsub'              => 'Премештање успело',
-'movepage-moved'            => '<big>\'\'\'Страна "$1" је преименована у "$2"!\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'Страна "$1" је преименована у "$2"!\'\'\'</big>',
 'articleexists'             => 'Страница под тим именом већ постоји, или је
 име које сте изабрали неисправно.
 Молимо изаберите друго име.',
@@ -2381,7 +2384,7 @@ $1 је већ блокиран. Да ли желите да промените 
 # Attribution
 'anonymous'        => 'Анонимни {{PLURAL:$1|корисник|корисници}} на {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} корисник $1',
-'lastmodifiedatby' => 'Ову страницу је последњи пут променио $3 у $2, $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ову страницу је последњи пут променио $3 у $2, $1.',
 'othercontribs'    => 'Базирано на раду корисника $1.',
 'others'           => 'остали',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|корисник|корисници}} $1',
@@ -2494,7 +2497,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ширина',
@@ -2622,14 +2625,14 @@ $1',
 
 'exif-unknowndate' => 'Непознат датум',
 
-'exif-orientation-1' => 'Нормално', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Обрнуто по хоризонтали', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Заокренуто 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Обрнуто по вертикали', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Заокренуто 90° супротно од смера казаљке на сату и обрнуто по вертикали', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Заокренуто 90° у смеру казаљке на сату', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Заокренуто 90° у смеру казаљке на сату и обрнуто по вертикали', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Заокренуто 90° супротно од смера казаљке на сату', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Нормално',
+'exif-orientation-2' => 'Обрнуто по хоризонтали',
+'exif-orientation-3' => 'Заокренуто 180°',
+'exif-orientation-4' => 'Обрнуто по вертикали',
+'exif-orientation-5' => 'Заокренуто 90° супротно од смера казаљке на сату и обрнуто по вертикали',
+'exif-orientation-6' => 'Заокренуто 90° у смеру казаљке на сату',
+'exif-orientation-7' => 'Заокренуто 90° у смеру казаљке на сату и обрнуто по вертикали',
+'exif-orientation-8' => 'Заокренуто 90° супротно од смера казаљке на сату',
 
 'exif-planarconfiguration-1' => 'делимични формат',
 'exif-planarconfiguration-2' => 'планарни формат',
@@ -2883,7 +2886,7 @@ $1',
 'unknown_extension_tag' => 'Непознати таг за екстензију: "$1".',
 
 # Special:Version
-'version'                          => 'Верзија', # Not used as normal message but as header for the special page itself
+'version'                          => 'Верзија',
 'version-extensions'               => 'Инсталисане екстензије',
 'version-specialpages'             => 'Посебне странице',
 'version-parserhooks'              => 'закачке парсера',

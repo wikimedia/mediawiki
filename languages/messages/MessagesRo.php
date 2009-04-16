@@ -1,6 +1,9 @@
 <?php
 /** Romanian (Română)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -294,7 +297,7 @@ pe titlul secţiunii (JavaScript)',
 'category-media-header'          => 'Fişiere media în categoria "$1"',
 'category-empty'                 => "''Această categorie nu conţine articole sau fişiere media.''",
 'hidden-categories'              => '{{PLURAL:$1|categorie ascunsă|categorii ascunse}}',
-'hidden-category-category'       => 'Categorii ascunse', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categorii ascunse',
 'category-subcat-count'          => '{{PLURAL:$2|Această categorie conţine doar următoarea subcategorie.|Această categorie conţine {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii}}, dintr-un total de $2.}}',
 'category-subcat-count-limited'  => 'Această categorie conţine {{PLURAL:$1|următoarea subcategorie|următoarele $1 subcategorii}}.',
 'category-article-count'         => '{{PLURAL:$2|Această categorie conţine doar următoarea pagină.|{{PLURAL:$1|Următoarea pagină|Următoarele $1 pagini}} se află în această categorie, dintr-un total de $2.}}',
@@ -380,7 +383,7 @@ pe titlul secţiunii (JavaScript)',
 'otherlanguages'    => 'În alte limbi',
 'redirectedfrom'    => '(Redirecţionat de la $1)',
 'redirectpagesub'   => 'Pagină de redirecţionare',
-'lastmodifiedat'    => 'Ultima modificare $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ultima modificare $2, $1.',
 'viewcount'         => 'Această pagină a fost vizitată {{PLURAL:$1|odată|de $1 ori}}.',
 'protectedpage'     => 'Pagină protejată',
 'jumpto'            => 'Salt la:',
@@ -854,7 +857,7 @@ Motivul invocat de $3 este ''$2''",
 'currentrev'             => 'Versiunea curentă',
 'currentrev-asof'        => 'Versiunea curentă din $1',
 'revisionasof'           => 'Versiunea de la data $1',
-'revision-info'          => 'Revizia pentru $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Revizia pentru $1; $2',
 'previousrevision'       => '←Versiunea anterioară',
 'nextrevision'           => 'Versiunea următoare →',
 'currentrevisionlink'    => 'afişează versiunea curentă',
@@ -875,7 +878,7 @@ Motivul invocat de $3 este ''$2''",
 # Revision feed
 'history-feed-title'          => 'Revizia istoricului',
 'history-feed-description'    => 'Revizia istoricului pentru această pagină de pe wiki',
-'history-feed-item-nocomment' => '$1 la $2', # user at time
+'history-feed-item-nocomment' => '$1 la $2',
 'history-feed-empty'          => 'Pagina solicitată nu există.
 E posibil să fi fost ştearsă sau redenumită.
 Încearcă să [[Special:Search|cauţi]] pe wiki pentru pagini noi semnificative.',
@@ -1170,7 +1173,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'files'                     => 'Fişiere',
 
 # User rights
-'userrights'                  => 'Administrarea permisiunilor de utilizator', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Administrarea permisiunilor de utilizator',
 'userrights-lookup-user'      => 'Administrare grupuri de utilizatori',
 'userrights-user-editname'    => 'Introdu un nume de utilizator:',
 'editusergroup'               => 'Modificare grup de utilizatori',
@@ -1885,8 +1888,8 @@ continuă cu atenţie.',
 'alreadyrolled'    => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuţie]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.
 
 Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţie]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Descrierea modificărilor a fost: „''$1''”.", # only shown if there is an edit comment
-'revertpage'       => 'Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]) şi revenire la ultima versiune de către [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Descrierea modificărilor a fost: „''$1''”.",
+'revertpage'       => 'Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]) şi revenire la ultima versiune de către [[User:$1|$1]]',
 'rollback-success' => 'Anularea modificărilor făcute de $1;
 revenire la ultima versiune de $2.',
 'sessionfailure'   => 'Se pare că este o problemă cu sesiunea de autentificare; această acţiune a fost oprită ca o precauţie împotriva hijack. Apăsaţi "back" şi reîncărcaţi pagina de unde aţi venit, apoi reîncercaţi.',
@@ -1933,7 +1936,7 @@ Puteţi schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 ** Modificări neproductive
 ** Pagină cu trafic mare',
 'protect-edit-reasonlist'     => 'Modifică motivele protejării',
-'protect-expiry-options'      => '15 minute:15 minutes,1 oră:1 hour,3 ore:3 hours,24 ore:24 hours,48 ore:48 hours,1 săptămână:1 week,1 lună:1 month,nelimitat:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '15 minute:15 minutes,1 oră:1 hour,3 ore:3 hours,24 ore:24 hours,48 ore:48 hours,1 săptămână:1 week,1 lună:1 month,nelimitat:infinite',
 'restriction-type'            => 'Permisiune:',
 'restriction-level'           => 'Nivel de restricţie:',
 'minimum-size'                => 'Mărime minimă',
@@ -2008,7 +2011,7 @@ $1',
 'contributions-title' => 'Contribuţiile utilizatorului pentru $1',
 'mycontris'           => 'Contribuţii',
 'contribsub2'         => 'Pentru $1 ($2)',
-'nocontribs'          => 'Nu a fost găsită nici o modificare care să satisfacă acest criteriu.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Nu a fost găsită nici o modificare care să satisfacă acest criteriu.',
 'uctop'               => '(sus)',
 'month'               => 'Din luna (şi dinainte):',
 'year'                => 'Începând cu anul (şi precedenţii):',
@@ -2068,7 +2071,7 @@ Precizaţi motivul blocării; de exemplu indicaţi paginile vandalizate de acest
 'ipbenableautoblock'              => 'Blochează automat ultima adresă IP folosită de acest utilizator şi toate adresele de la care încearcă să editeze în viitor',
 'ipbsubmit'                       => 'Blochează acest utilizator',
 'ipbother'                        => 'Alt termen:',
-'ipboptions'                      => '15 minute:15 minutes,1 oră:1 hour,3 ore:3 hours,24 ore:24 hours,48 ore:48 hours,1 săptămână:1 week,1 lună:1 month,nelimitat:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '15 minute:15 minutes,1 oră:1 hour,3 ore:3 hours,24 ore:24 hours,48 ore:48 hours,1 săptămână:1 week,1 lună:1 month,nelimitat:infinite',
 'ipbotheroption'                  => 'altul',
 'ipbotherreason'                  => 'Motiv diferit/adiţional:',
 'ipbhidename'                     => 'Ascunde numele de utilizator din jurnalul blocărilor, lista activă a blocărilor şi lista utilizatorilor',
@@ -2196,7 +2199,7 @@ manual paginile de discuţii, dacă doreşti acest lucru.",
 'move-watch'                => 'Urmăreşte această pagină',
 'movepagebtn'               => 'Mută pagina',
 'pagemovedsub'              => 'Pagina a fost mutată',
-'movepage-moved'            => '<big>\'\'\'Pagina "$1" a fost mutată la pagina "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'Pagina "$1" a fost mutată la pagina "$2"\'\'\'</big>',
 'articleexists'             => 'O pagină cu acelaşi nume există deja, sau numele pe care l-ai ales este invalid. Te rugăm să alegi un alt nume.',
 'cantmove-titleprotected'   => 'Nu poţi muta o pagina în această locaţie, pentru că noul titlu a fost protejat la creare',
 'talkexists'                => "'''Pagina în sine a fost mutată, dar pagina de discuţii nu a putut fi mutată deoarece deja există o alta cu acelaşi nume. Te rugăm să unifici manual cele două pagini de discuţii.'''",
@@ -2387,7 +2390,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizator anonim|Utilizatori anonimi}} ai {{SITENAME}}',
 'siteuser'         => 'Utilizator {{SITENAME}} $1',
-'lastmodifiedatby' => 'Această pagină a fost modificată $2, $1 de către $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Această pagină a fost modificată $2, $1 de către $3.',
 'othercontribs'    => 'Bazat pe munca lui $1.',
 'others'           => 'alţii',
 'siteusers'        => '{{PLURAL:$2|Utilizator|Utilozatori}} {{SITENAME}} $1',
@@ -2503,7 +2506,7 @@ Altele vor fi ascunse implicit.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lăţime',
@@ -2630,14 +2633,14 @@ Altele vor fi ascunse implicit.
 
 'exif-unknowndate' => 'Dată necunoscută',
 
-'exif-orientation-1' => 'Normală', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Oglindită orizontal', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotită cu 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Oglindită vertical', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotită 90° în sens opus acelor de ceasornic şi oglindită vertical', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotită 90° în sensul acelor de ceasornic', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotită 90° în sensul acelor de ceasornic şi oglindită vertical', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotită 90° în sens opus acelor de ceasornic', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normală',
+'exif-orientation-2' => 'Oglindită orizontal',
+'exif-orientation-3' => 'Rotită cu 180°',
+'exif-orientation-4' => 'Oglindită vertical',
+'exif-orientation-5' => 'Rotită 90° în sens opus acelor de ceasornic şi oglindită vertical',
+'exif-orientation-6' => 'Rotită 90° în sensul acelor de ceasornic',
+'exif-orientation-7' => 'Rotită 90° în sensul acelor de ceasornic şi oglindită vertical',
+'exif-orientation-8' => 'Rotită 90° în sens opus acelor de ceasornic',
 
 'exif-planarconfiguration-1' => 'format compact',
 'exif-planarconfiguration-2' => 'format plat',
@@ -2893,7 +2896,7 @@ Poţi şi să [[Special:Watchlist/edit|foloseşti un editor standard]].',
 'unknown_extension_tag' => 'Extensie etichetă necunoscută "$1"',
 
 # Special:Version
-'version'                          => 'Versiune', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versiune',
 'version-extensions'               => 'Extensii instalate',
 'version-specialpages'             => 'Pagini speciale',
 'version-parserhooks'              => 'Hook-uri parser',

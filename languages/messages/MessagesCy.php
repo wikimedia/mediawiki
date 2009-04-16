@@ -1,6 +1,9 @@
 <?php
 /** Welsh (Cymraeg)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -222,7 +225,7 @@ $messages = array(
 'category-media-header'          => "Cyfryngau yn y categori '$1'",
 'category-empty'                 => "''Ar hyn o bryd nid oes unrhyw erthyglau na ffeiliau yn y categori hwn.''",
 'hidden-categories'              => '{{PLURAL:$1|Categori cuddiedig|Categori cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig|Categorïau cuddiedig}}',
-'hidden-category-category'       => 'Categorïau cuddiedig', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categorïau cuddiedig',
 'category-subcat-count'          => "{{PLURAL:$1|Nid oes dim is-gategorïau|Dim ond yr is-gategori sy'n dilyn sydd|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2|Mae'r $1 is-gategori sy'n dilyn ymhlith cyfanswm o $2}} yn y categori hwn.",
 'category-subcat-count-limited'  => 'Mae gan y categori hwn $1 {{PLURAL:$1|is-gategori}} fel a ganlyn.',
 'category-article-count'         => "{{PLURAL:$2|Nid oes dim tudalennau|Dim ond y dudalen sy'n dilyn sydd|Dangosir isod y $1 dudalen sydd|Dangosir isod y $1 tudalen sydd|Dangosir isod y $1 thudalen sydd|Dangosir isod $1 {{PLURAL:$1|Dim|dudalen|dudalen|tudalen|thudalen|tudalen}} ymhlith cyfanswm o $2 sydd}} yn y categori hwn.",
@@ -309,7 +312,7 @@ $messages = array(
 'otherlanguages'    => 'Ieithoedd eraill',
 'redirectedfrom'    => '(Ailgyfeiriad oddi wrth $1)',
 'redirectpagesub'   => 'Tudalen ailgyfeirio',
-'lastmodifiedat'    => 'Newidiwyd y dudalen hon ddiwethaf $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Newidiwyd y dudalen hon ddiwethaf $2, $1.',
 'viewcount'         => "{{PLURAL:$1|Ni chafwyd dim|Cafwyd $1|Cafwyd $1|Cafwyd $1|Cafwyd $1|Cafwyd $1}} ymweliad â'r dudalen hon.",
 'protectedpage'     => 'Tudalen a ddiogelwyd',
 'jumpto'            => 'Neidio i:',
@@ -784,7 +787,7 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 'currentrev'             => 'Diwygiad cyfoes',
 'currentrev-asof'        => 'Y diwygiad cyfredol, am $1',
 'revisionasof'           => 'Diwygiad $1',
-'revision-info'          => 'Y fersiwn a roddwyd ar gadw am $1 gan $2', # Additionally available: $3: revision id
+'revision-info'          => 'Y fersiwn a roddwyd ar gadw am $1 gan $2',
 'previousrevision'       => '← at y diwygiad blaenorol',
 'nextrevision'           => 'At y diwygiad dilynol →',
 'currentrevisionlink'    => 'Y diwygiad cyfoes',
@@ -806,7 +809,7 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 # Revision feed
 'history-feed-title'          => 'Hanes diwygio',
 'history-feed-description'    => "Hanes diwygio'r dudalen hon ar y wici",
-'history-feed-item-nocomment' => '$1 am $2', # user at time
+'history-feed-item-nocomment' => '$1 am $2',
 'history-feed-empty'          => "Nid yw'r dudalen a ofynwyd amdani'n bod. 
 Gall fod iddi gael ei dileu neu ei hailenwi.
 Gallwch [[Special:Search|chwilio'r]] wici am dudalennau eraill perthnasol.",
@@ -1091,7 +1094,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'prefs-custom-js'           => 'JS o hunan-ddewis',
 
 # User rights
-'userrights'                  => 'Rheoli galluoedd defnyddwyr', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Rheoli galluoedd defnyddwyr',
 'userrights-lookup-user'      => 'Rheoli grwpiau defnyddiwr',
 'userrights-user-editname'    => 'Rhowch enw defnyddiwr:',
 'editusergroup'               => 'Golygu Grwpiau Defnyddwyr',
@@ -1398,8 +1401,8 @@ Mae'r rhestr canlynol yn dangos y {{PLURAL:$1|$1 cysylltiad cyntaf}} at y ffeil 
 'noimage'                   => "Does dim ffeil a'r enw hwn i gael, ond gallwch $1.",
 'noimage-linktext'          => 'uwchlwytho un',
 'uploadnewversion-linktext' => "Uwchlwytho fersiwn newydd o'r ffeil hon",
-'shared-repo-from'          => 'oddi ar $1', # $1 is the repository name
-'shared-repo'               => 'storfa cyfrannol', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'oddi ar $1',
+'shared-repo'               => 'storfa cyfrannol',
 
 # File reversion
 'filerevert'                => 'Gwrthdroi $1',
@@ -1777,8 +1780,8 @@ Gallai dileu tudalen, gyda hanes golygu cymaint â hyn iddi, beri dryswch i weit
 mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.
 
 [[User:$3|$3]] ([[User talk:$3|Sgwrs]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) a wnaeth y golygiad diwethaf.",
-'editcomment'      => "Crynodeb y golygiad oedd: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Crynodeb y golygiad oedd: \"''\$1''\".",
+'revertpage'       => 'Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]',
 'rollback-success' => "Gwrthdrowyd y golygiadau gan $1; 
 wedi gwrthdroi i'r golygiad olaf gan $2.",
 'sessionfailure'   => "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",
@@ -1827,7 +1830,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen '''$1''':",
 ** Ymrafael golygu gwrthgynhyrchiol
 ** Tudalen aml ei defnydd',
 'protect-edit-reasonlist'     => "Golygu'r rhesymau dros ddiogelu",
-'protect-expiry-options'      => 'awr:1 hour,ddiwrnod:1 day,wythnos:1 week,bythefnos:2 weeks,fis:1 month,3 mis:3 months,6 mis:6 months,flwyddyn:1 year,gyfnod amhenodol:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'awr:1 hour,ddiwrnod:1 day,wythnos:1 week,bythefnos:2 weeks,fis:1 month,3 mis:3 months,6 mis:6 months,flwyddyn:1 year,gyfnod amhenodol:infinite',
 'restriction-type'            => 'Cyfyngiad:',
 'restriction-level'           => 'Lefel cyfyngu:',
 'minimum-size'                => 'Maint lleiaf',
@@ -1905,7 +1908,7 @@ $1',
 'contributions-title' => "Cyfraniadau'r defnyddiwr $1",
 'mycontris'           => 'Fy nghyfraniadau',
 'contribsub2'         => 'Dros $1 ($2)',
-'nocontribs'          => "Heb ddod o hyd i newidiadau gyda'r maen prawf hwn.", # Optional parameter: $1 is the user name
+'nocontribs'          => "Heb ddod o hyd i newidiadau gyda'r maen prawf hwn.",
 'uctop'               => '(cyfredol)',
 'month'               => 'Cyfraniadau hyd at fis:',
 'year'                => 'Cyfraniadau hyd at y flwyddyn:',
@@ -1964,7 +1967,7 @@ $1',
 'ipbenableautoblock'              => "Blocio'n awtomatig y cyfeiriad IP diwethaf y defnyddiodd y defnyddiwr hwn, ac unrhyw gyfeiriad IP arall y bydd yn ceisio defnyddio i olygu ohono.",
 'ipbsubmit'                       => 'Blociwch y defnyddiwr hwn',
 'ipbother'                        => 'Cyfnod arall:',
-'ipboptions'                      => 'o 2 awr:2 hours,o ddiwrnod:1 day,o 3 niwrnod:3 days,o wythnos:1 week,o bythefnos:2 weeks,o fis:1 month,o 3 mis:3 months,o 6 mis:6 months,o flwyddyn:1 year,amhenodol:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => 'o 2 awr:2 hours,o ddiwrnod:1 day,o 3 niwrnod:3 days,o wythnos:1 week,o bythefnos:2 weeks,o fis:1 month,o 3 mis:3 months,o 6 mis:6 months,o flwyddyn:1 year,amhenodol:infinite',
 'ipbotheroption'                  => 'arall',
 'ipbotherreason'                  => 'Rheswm arall:',
 'ipbhidename'                     => "Cuddio'r enw defnyddiwr rhag ymddangos ar restri a golygiadau",
@@ -2092,7 +2095,7 @@ Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei 
 'move-watch'                => 'Gwylier y dudalen hon',
 'movepagebtn'               => 'Symud y dudalen',
 'pagemovedsub'              => 'Y symud wedi llwyddo',
-'movepage-moved'            => '<big>\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'</big>',
 'movepage-moved-redirect'   => 'Gosodwyd ail-gyfeiriad.',
 'movepage-moved-noredirect' => 'Ni osodwyd tudalen ailgyfeirio.',
 'articleexists'             => "Mae tudalen gyda'r darpar enw yn bodoli'n barod, neu mae eich darpar enw yn annilys.
@@ -2289,7 +2292,7 @@ Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 # Attribution
 'anonymous'        => 'chan {{PLURAL:$1|defnyddiwr|ddefnyddiwr|ddefnyddwyr|ddefnyddwyr|ddefnyddwyr|ddefnyddwyr}} anhysbys {{SITENAME}}',
 'siteuser'         => 'y defnyddiwr {{SITENAME}} $1',
-'lastmodifiedatby' => 'Newidiwyd y dudalen hon ddiwethaf am $2, $1 gan $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Newidiwyd y dudalen hon ddiwethaf am $2, $1 gan $3.',
 'othercontribs'    => 'Yn seiliedig ar waith gan $1.',
 'others'           => 'eraill',
 'siteusers'        => 'y {{PLURAL:$2|defnyddiwr|defnyddiwr|defnyddwyr|defnyddwyr|defnyddwyr|defnyddwyr}} {{SITENAME}} $1',
@@ -2412,7 +2415,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lled',
@@ -2540,14 +2543,14 @@ Ymateb yr amledd gofodol',
 
 'exif-unknowndate' => 'Dyddiad anhysbys',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Wedi troi tu chwith ar lorwedd', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Wedi ei droi 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Wedi troi wyneb i waered', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Wedi troi 90° yn erbyn y cloc a thu chwith yn fertigol', # 0th row: left; 0th column: top
-'exif-orientation-6' => "Wedi troi 90° gyda'r cloc", # 0th row: right; 0th column: top
-'exif-orientation-7' => "Wedi troi 90° gyda'r cloc a thu chwith yn fertigol", # 0th row: right; 0th column: bottom
-'exif-orientation-8' => "Wedi troi 90° yn groes i'r cloc", # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Wedi troi tu chwith ar lorwedd',
+'exif-orientation-3' => 'Wedi ei droi 180°',
+'exif-orientation-4' => 'Wedi troi wyneb i waered',
+'exif-orientation-5' => 'Wedi troi 90° yn erbyn y cloc a thu chwith yn fertigol',
+'exif-orientation-6' => "Wedi troi 90° gyda'r cloc",
+'exif-orientation-7' => "Wedi troi 90° gyda'r cloc a thu chwith yn fertigol",
+'exif-orientation-8' => "Wedi troi 90° yn groes i'r cloc",
 
 'exif-planarconfiguration-1' => 'fformat talpiog',
 'exif-planarconfiguration-2' => 'fformat planar',
@@ -2799,7 +2802,7 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 'duplicate-defaultsort' => 'Rhybudd: Mae\'r allwedd trefnu diofyn "$2" yn gwrthwneud yr allwedd trefnu diofyn blaenorol "$1".',
 
 # Special:Version
-'version'                          => 'Fersiwn', # Not used as normal message but as header for the special page itself
+'version'                          => 'Fersiwn',
 'version-extensions'               => 'Estyniadau gosodedig',
 'version-specialpages'             => 'Tudalennau arbennig',
 'version-parserhooks'              => 'Bachau dosrannydd',

@@ -1,6 +1,9 @@
 <?php
 /** Seeltersk (Seeltersk)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -142,7 +145,7 @@ $messages = array(
 'category-media-header'          => 'Media in Kategorie "$1"',
 'category-empty'                 => "''Disse Kategorie is loos.''",
 'hidden-categories'              => '{{PLURAL:$1|Ferstatte Kategorie|Ferstatte Kategorien}}',
-'hidden-category-category'       => 'Ferstatte Kategorien', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Ferstatte Kategorien',
 'category-subcat-count'          => '{{PLURAL:$2|Disse Kategorie änthaalt foulgjende Unnerkategorie:|{{PLURAL:$1|Foulgjende Unnerkategorie is een fon mädnunner $2 Unnerkategorien in disse Kategorie:|Der wäide $1 fon mädnunner $2 Unnerkategorien in disse Kategorie anwiesd:}}}}',
 'category-subcat-count-limited'  => 'Disse Kategorie änthaalt foulgjende {{PLURAL:$1|Unnerkategorie|$1 Unnerkategorien}}:',
 'category-article-count'         => '{{PLURAL:$2|Disse Kategorie änthaalt foulgjende Siede:|{{PLURAL:$1|Foulgjende Siede is een fon mädnunner $2 Sieden in disse Kategorie:|Der wäide $1 fon mädnunner $2 Sieden in disse Kategorie anwiesd:}}}}',
@@ -223,7 +226,7 @@ $messages = array(
 'otherlanguages'    => 'Uur Sproaken',
 'redirectedfrom'    => '(Fäärelaited fon $1)',
 'redirectpagesub'   => 'Fäärelaitenge',
-'lastmodifiedat'    => 'Disse Siede wuude toulääst annerd uum $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Disse Siede wuude toulääst annerd uum $2, $1.',
 'viewcount'         => 'Disse Siede wuude bit nu {{PLURAL:$1|eenmoal|$1 moal}} ouruupen.',
 'protectedpage'     => 'Schutsede Siede',
 'jumpto'            => 'Wikselje tou:',
@@ -709,7 +712,7 @@ Gruund fon ju Speere: ''$2''",
 'currentrev'             => 'Aktuälle Version',
 'currentrev-asof'        => 'Aktuelle Version fon $1',
 'revisionasof'           => 'Version fon $1',
-'revision-info'          => 'Dit is ne oolde Version. Tiedpunkt fon ju Beoarbaidenge: $1 truch $2.', # Additionally available: $3: revision id
+'revision-info'          => 'Dit is ne oolde Version. Tiedpunkt fon ju Beoarbaidenge: $1 truch $2.',
 'previousrevision'       => '← Naistallere Version',
 'nextrevision'           => 'Naistjungere Version →',
 'currentrevisionlink'    => 'Aktuälle Version',
@@ -731,7 +734,7 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 # Revision feed
 'history-feed-title'          => 'Versionsgeschichte',
 'history-feed-description'    => 'Versionsgeschichte foar disse Siede in {{SITENAME}}',
-'history-feed-item-nocomment' => '$1 uum $2', # user at time
+'history-feed-item-nocomment' => '$1 uum $2',
 'history-feed-empty'          => 'Ju anfoarderde Siede existiert nit. Fielicht wuud ju läsked of ferschäuwen. [[Special:Search|Truchsäik]] {{SITENAME}} foar paasjende näie Sieden.',
 
 # Revision deletion
@@ -1037,7 +1040,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'prefs-custom-js'           => 'Benutserdefinierd JS',
 
 # User rights
-'userrights'                  => 'Benutsergjuchteferwaltenge', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Benutsergjuchteferwaltenge',
 'userrights-lookup-user'      => 'Ferwaltede Gruppentouheeregaid',
 'userrights-user-editname'    => 'Benutsernoome anreeke:',
 'editusergroup'               => 'Beoarbaidede Benutsergjuchte',
@@ -1375,8 +1378,8 @@ Ne [[Special:WhatLinksHere/$2|fulständige Lieste]] is ferföigboar.',
 'noimage'                   => 'Ne Doatäi mäd dissen Noome existiert nit, du koast ju oawers $1.',
 'noimage-linktext'          => 'aan hoochleede',
 'uploadnewversion-linktext' => 'Ne näie Version fon disse Doatäi hoochleede',
-'shared-repo-from'          => 'uut $1', # $1 is the repository name
-'shared-repo'               => 'n gemeensoam nutsed Medienarchiv', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'uut $1',
+'shared-repo'               => 'n gemeensoam nutsed Medienarchiv',
 
 # File reversion
 'filerevert'                => 'Touräächsätte fon "$1"',
@@ -1755,8 +1758,8 @@ In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'alreadyrolled'    => 'Dät Touräächsätten fon do Annerengen fon [[User:$2|$2]] ([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]]) an Siede [[:$1]] hied naan Ärfoulch, deer in ju Twiskentied al n uur Benutser Annerengen an disse Siede foarnuumen häd.
 
 Ju lääste Annerenge stamt fon [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Ju Annerengs-Touhoopefoatenge waas: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Tounichte moakede Beoarbaidengen fon [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tou ju lääste Version fon [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Ju Annerengs-Touhoopefoatenge waas: \"''\$1''\".",
+'revertpage'       => 'Tounichte moakede Beoarbaidengen fon [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tou ju lääste Version fon [[User:$1|$1]]',
 'rollback-success' => 'Do Annerengen fon $1 wuuden tourääch annerd un ju lääste Version fon $2 wuude wier moaked.',
 'sessionfailure'   => 'Dät roat n Problem mäd ju Uurdreegenge fon dien Benutserdoaten. Disse Aktion wuude deeruum sicherheidshoolwe oubreeken, uum ne falske Touoardnenge fon dien Annerengen tou n uur Benutser tou ferhinnerjen. Gung jädden tourääch un fersäik dän Foargong fonnäien uuttoufieren.',
 
@@ -1801,7 +1804,7 @@ Sjuch [[Special:ProtectedPages|Schutsede Siede]] foar moor Informatione.',
 ** Oafte ienbuundene Foarloage
 ** Siede mäd hooge Besäikertaal',
 'protect-edit-reasonlist'     => 'Schutsgruunde beoarbaidje',
-'protect-expiry-options'      => '1 Uure:1 hour,1 Dai:1 day,1 Wiek:1 week,2 Wieke:2 weeks,1 Mound:1 month,3 Mounde:3 months,6 Mounde:6 months,1 Jier:1 year,Uunbestimd:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Uure:1 hour,1 Dai:1 day,1 Wiek:1 week,2 Wieke:2 weeks,1 Mound:1 month,3 Mounde:3 months,6 Mounde:6 months,1 Jier:1 year,Uunbestimd:infinite',
 'restriction-type'            => 'Schutsstoatus',
 'restriction-level'           => 'Schutshöchte',
 'minimum-size'                => 'Minstgrööte',
@@ -1878,7 +1881,7 @@ $1',
 'contributions-title' => 'Benutserbiedraage fon „$1“',
 'mycontris'           => 'Oaine Biedraage',
 'contribsub2'         => 'Foar $1 ($2)',
-'nocontribs'          => 'Deer wuuden neen Annerengen foar disse Kriterien fuunen.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Deer wuuden neen Annerengen foar disse Kriterien fuunen.',
 'uctop'               => '(aktuäl)',
 'month'               => 'un Mound:',
 'year'                => 'bit Jier:',
@@ -1941,7 +1944,7 @@ Reek dän Gruund foar ju Speere oun.',
 'ipbenableautoblock'              => 'Speer ju aktuell fon dissen Benutser nutsede IP-Adresse as uk automatisk aal foulgjende, fon do uut hie Beoarbaidengen of dät Anlääsen fon Benutseraccounts fersäkt',
 'ipbsubmit'                       => 'Adrässe blokkierje',
 'ipbother'                        => 'Uur Duur (ängelsk):',
-'ipboptions'                      => '2 Uuren:2 hours,1 Dai:1 day,3 Deege:3 days,1 Wiek:1 week,2 Wieke:2 weeks,1 Mound:1 month,3 Mounde:3 months,6 Mounde:6 months,1 Jier:1 year,Uunbestimd:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 Uuren:2 hours,1 Dai:1 day,3 Deege:3 days,1 Wiek:1 week,2 Wieke:2 weeks,1 Mound:1 month,3 Mounde:3 months,6 Mounde:6 months,1 Jier:1 year,Uunbestimd:infinite',
 'ipbotheroption'                  => 'Uur Duur',
 'ipbotherreason'                  => 'Uur/additionelle Begründenge:',
 'ipbhidename'                     => 'Benutsernoome in dät Speer-Logbouk, in ju Lieste fon aktive Speeren un in dät Benutserferteeknis ferstopje.',
@@ -2063,7 +2066,7 @@ In disse Falle moast du ju Siede, wan wonsked, fon Hounde ferschuuwe. Jädden d�
 'move-watch'                   => 'Disse Siede beooboachtje',
 'movepagebtn'                  => 'Siede ferschuuwe',
 'pagemovedsub'                 => 'Ferschuuwenge mäd Ärfoulch',
-'movepage-moved'               => "<big>'''Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.'''</big>",
 'movepage-moved-redirect'      => 'Der wuud ne Fäärelaitenge moaked.',
 'movepage-moved-noredirect'    => 'Dät Moakjen fon ne Fäärelaitenge wuud unnerdrukt.',
 'articleexists'                => 'Dät rakt al n Siede mäd disse Noome, of uurs is die Noome dän du anroat hääst, nit toulät.
@@ -2269,7 +2272,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymen Benutser|Anonyme Benutsere}} ap {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutser $1',
-'lastmodifiedatby' => 'Disse Siede wuude toulääst annerd uum $2, $1 fon $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Disse Siede wuude toulääst annerd uum $2, $1 fon $3.',
 'othercontribs'    => 'Basierd ap ju Oarbaid fon $1.',
 'others'           => 'uur',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|Benutser|Benutsere}} $1',
@@ -2384,7 +2387,7 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 * fnumber
 * datetimeoriginal
 * exposuretime
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bratte',
@@ -2511,14 +2514,14 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 
 'exif-unknowndate' => 'Uunbekoand Doatum',
 
-'exif-orientation-1' => 'Normoal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Horizontoal uumewoand', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Uum 180° uumewoand', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Vertikoal uumewoand', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Juun dän Klokkenwiesersin uum 90° troald un vertikoal uumewoand', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Uum 90° in Klokkenwiesersin troald', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Uum 90° in Klokkenwiesersin troald un vertikoal uumewoand', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Uum 90° juun dän Klokkenwiesersin troald', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normoal',
+'exif-orientation-2' => 'Horizontoal uumewoand',
+'exif-orientation-3' => 'Uum 180° uumewoand',
+'exif-orientation-4' => 'Vertikoal uumewoand',
+'exif-orientation-5' => 'Juun dän Klokkenwiesersin uum 90° troald un vertikoal uumewoand',
+'exif-orientation-6' => 'Uum 90° in Klokkenwiesersin troald',
+'exif-orientation-7' => 'Uum 90° in Klokkenwiesersin troald un vertikoal uumewoand',
+'exif-orientation-8' => 'Uum 90° juun dän Klokkenwiesersin troald',
 
 'exif-planarconfiguration-1' => 'Groafformoat',
 'exif-planarconfiguration-2' => 'Planoarformoat',
@@ -2784,7 +2787,7 @@ Bestäätigje, dät du disse Siede wuddelk näi moakje moatest.",
 'duplicate-defaultsort' => 'Paas ap: Die Sortierengskoai „$2“ uurschrift dän toufoarne ferwoanden Koai „$1“.',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Installierde Ärwiederengen',
 'version-specialpages'             => 'Spezioalsieden',
 'version-parserhooks'              => 'Parser-Hooks',

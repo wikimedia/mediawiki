@@ -1,6 +1,9 @@
 <?php
 /** Western Frisian (Frysk)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -247,7 +250,7 @@ $messages = array(
 'category-media-header'          => 'Media yn de kategory "$1"',
 'category-empty'                 => "''Yn dizze kategory binne gjin siden of triemmen opnaam.''",
 'hidden-categories'              => 'Ferburgen {{PLURAL:$1|kategory|kategoryen}}',
-'hidden-category-category'       => 'Ferburgen kategoryen', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Ferburgen kategoryen',
 'category-subcat-count'          => '{{PLURAL:$2|Dizze kategory hat allinne de folgjende ûnderkategory.|Dizze kategory hat de folgjende {{PLURAL:$1|ûnderkategory|$1 ûnderkategoryen}}, fan in totaal fan $2.}}',
 'category-subcat-count-limited'  => 'Dizze kategory hat de folgjende {{PLURAL:$1|ûnderkategory|$1 ûnderkategoryen}}.',
 'category-article-count'         => '{{PLURAL:$2|Dizze kategory befettet allinne de folgjende side.|De folgjende {{PLURAL:$1|side is|$1 siden binne}} yn dizze kategory, fan yn totaal $2.}}',
@@ -334,7 +337,7 @@ $messages = array(
 'otherlanguages'    => 'Oare talen',
 'redirectedfrom'    => '(Trochwiisd fan "$1")',
 'redirectpagesub'   => 'Trochferwiis-side',
-'lastmodifiedat'    => 'Lêste kear bewurke op $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Lêste kear bewurke op $2, $1.',
 'viewcount'         => 'Disse side is {{PLURAL:$1|ienris|$1 kear}} iepenslein.',
 'protectedpage'     => 'Skoattele side',
 'jumpto'            => 'Gean nei:',
@@ -794,7 +797,7 @@ De fan $3 opjûne reden is ''$2''",
 'currentrev'             => 'Aktuele ferzje',
 'currentrev-asof'        => 'Hjoeddeiske ferzje sûnt $1',
 'revisionasof'           => 'Ferzje op $1',
-'revision-info'          => 'Ferzje op $1 fan $2', # Additionally available: $3: revision id
+'revision-info'          => 'Ferzje op $1 fan $2',
 'previousrevision'       => '←Eardere ferskillen',
 'nextrevision'           => 'Nijere ferzje→',
 'currentrevisionlink'    => 'Rinnende ferzje',
@@ -815,7 +818,7 @@ De fan $3 opjûne reden is ''$2''",
 # Revision feed
 'history-feed-title'          => 'Sideskiednis',
 'history-feed-description'    => 'Sideskiednis foar dizze side op de wiki',
-'history-feed-item-nocomment' => '$1 op $2', # user at time
+'history-feed-item-nocomment' => '$1 op $2',
 'history-feed-empty'          => 'De frege side bestiet net.
 Faaks is dy fuorthelle of omneamd.
 [[Special:Search|Sykje de wiki troch]] foar relevante nije siden.',
@@ -1106,7 +1109,7 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 'files'                     => 'Triemen',
 
 # User rights
-'userrights'                  => 'Behear fan meidoggerrjochten', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Behear fan meidoggerrjochten',
 'userrights-lookup-user'      => 'Behear fan meidoggerrjochten',
 'userrights-user-editname'    => 'Meidoggernamme:',
 'editusergroup'               => 'Wizigje meidoggerrjochten',
@@ -1831,8 +1834,8 @@ troch [[User:$2|$2]] ([[User talk:$2|Oerlis]]) net werom sette;
 in oar hat de feroaring werom set, of oars wat oan de side feroare.
 
 De lêste feroaring wie fan [[User:$3|$3]] ([[User talk:$3|Oerlis]]).',
-'editcomment'      => "De gearfetting wie: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Bewurkings fan [[Special:Contributions/$2|$2]] ([[User talk:$2|Oerlis]]) werom set ta de ferzje fan [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "De gearfetting wie: \"''\$1''\".",
+'revertpage'       => 'Bewurkings fan [[Special:Contributions/$2|$2]] ([[User talk:$2|Oerlis]]) werom set ta de ferzje fan [[User:$1|$1]]',
 'rollback-success' => 'Feroarings werom set fan $1; werom set nei de lêste ferzje fan $2.',
 
 # Protect
@@ -1865,7 +1868,7 @@ Dit binne de rinnende ynstellings foar de side '''$1''':",
 'protect-expiring'            => 'ferrint $1 (UTC)',
 'protect-cascade'             => "Underlizzende siden - skoattelje ek alle siden dy't in ûnderdiel útmeitsje fan dizze side",
 'protect-cantedit'            => "Jo kinne it befeiligingsnivo fan dizze side net feroarje, om't jo gjin rjochten hawwe om it te bewurkjen.",
-'protect-expiry-options'      => '1 oere:1 hour,1 dei:1 day,1 wike:1 week,2 wiken:2 weeks,1 moanne:1 month,3 moanne:3 months,6 moanne:6 months,1 jier:1 year,ûnbeheind:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 oere:1 hour,1 dei:1 day,1 wike:1 week,2 wiken:2 weeks,1 moanne:1 month,3 moanne:3 months,6 moanne:6 months,1 jier:1 year,ûnbeheind:infinite',
 'restriction-type'            => 'Permisje:',
 'restriction-level'           => 'Skoattel nivo:',
 'minimum-size'                => 'Min. grutte',
@@ -1917,7 +1920,7 @@ Dit binne de rinnende ynstellings foar de side '''$1''':",
 'contributions-title' => 'Bydragen fan $1',
 'mycontris'           => 'Myn bydragen',
 'contribsub2'         => 'Foar "$1 ($2)"',
-'nocontribs'          => "Der binne gjin feroarings fûn dyt't hjirmei oerienkomme.", # Optional parameter: $1 is the user name
+'nocontribs'          => "Der binne gjin feroarings fûn dyt't hjirmei oerienkomme.",
 'uctop'               => ' (boppen)',
 'month'               => 'Fan moanne (en earder):',
 'year'                => 'Fan jier (en earder):',
@@ -1975,7 +1978,7 @@ Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
 'ipbenableautoblock'   => "Automatysk de lêste IP adressen útslute dy't troch dizze meidogger brûkt binne.",
 'ipbsubmit'            => 'Slút dizze meidogger út',
 'ipbother'             => 'In oare tiid:',
-'ipboptions'           => '2 oeren:2 hours,1 dei:1 day,3 dagen:3 days,1 wike:1 week,2 wiken:2 weeks,1 moanne:1 month,3 moanne:3 months,6 moanne:6 months,1 jier:1 year,ûnbeheind:infinite', # display1:time1,display2:time2,...
+'ipboptions'           => '2 oeren:2 hours,1 dei:1 day,3 dagen:3 days,1 wike:1 week,2 wiken:2 weeks,1 moanne:1 month,3 moanne:3 months,6 moanne:6 months,1 jier:1 year,ûnbeheind:infinite',
 'ipbotheroption'       => 'oare tiid',
 'ipbotherreason'       => 'Oare/eventuele reden:',
 'badipaddress'         => 'Gjin jildige IP-adres',
@@ -2049,7 +2052,7 @@ In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle
 'move-watch'              => 'Folch dizze side',
 'movepagebtn'             => 'Werneam side',
 'pagemovedsub'            => 'Werneamen slagge',
-'movepage-moved'          => '<big>\'\'\'"$1" hjit no "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" hjit no "$2"\'\'\'</big>',
 'articleexists'           => "Der is al in side mei dy namme, of oars is de namme dy't jo oanjûn hawwe net tastien. Besykje it op 'e nij.",
 'talkexists'              => "It werneamen fan de side is slagge, mar de eardere oerlisside is net mear keppele om't der foar de side mei de nije namme al in oerlisside wie. Kopiearje de oerlisside fan de 'âlde' side mei de nije.",
 'movedto'                 => 'werneamd as',
@@ -2243,7 +2246,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-samplesperpixel'        => 'Oantal komponinten',
@@ -2264,7 +2267,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 
 'exif-unknowndate' => 'Datum ûnbekend',
 
-'exif-orientation-1' => 'Normaal', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Normaal',
 
 'exif-componentsconfiguration-0' => 'bestiet net',
 
@@ -2378,7 +2381,7 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'watchlisttools-raw'  => 'Rûge folchlist bewurkje',
 
 # Special:Version
-'version'                  => 'Ferzje', # Not used as normal message but as header for the special page itself
+'version'                  => 'Ferzje',
 'version-extensions'       => 'Ynstallearre útwreidings',
 'version-specialpages'     => 'Bysûndere siden',
 'version-variables'        => 'Fariabels',

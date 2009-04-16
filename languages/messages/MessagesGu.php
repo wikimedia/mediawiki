@@ -1,6 +1,9 @@
 <?php
 /** Gujarati (ગુજરાતી)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -136,7 +139,7 @@ $messages = array(
 'category-media-header'       => 'શ્રેણી "$1"માં દ્રશ્ય કે શ્રાવ્ય સભ્યો',
 'category-empty'              => "''આ શ્રેણીમાં હાલમાં કોઇ લેખ કે અન્ય સભ્ય નથી.''",
 'hidden-categories'           => '{{PLURAL:$1|છુપી શ્રેણી|છુપી શ્રેણીઓ}}',
-'hidden-category-category'    => 'છુપી શ્રેણીઓ', # Name of the category where hidden categories will be listed
+'hidden-category-category'    => 'છુપી શ્રેણીઓ',
 'category-file-count'         => '{{PLURAL:$2|આ શ્રેણીમાં ફક્ત નીચે દર્શાવેલ દસ્તાવેજ છે.|આ શ્રેણીમાં કુલ $2 પૈકી નીચે દર્શાવેલ {{PLURAL:$1|દસ્તાવેજ|દસ્તાવેજો}} છે.}}',
 'category-file-count-limited' => 'નીચે દર્શાવેલ {{PLURAL:$1|દસ્તાવેજ|દસ્તાવેજો}} પ્રસ્તુત શ્રેણીમાં છે.',
 'listingcontinuesabbrev'      => 'ચાલુ..',
@@ -183,7 +186,7 @@ $messages = array(
 'otherlanguages'   => 'બીજી ભાષાઓમાં',
 'redirectedfrom'   => '($1 થી અહીં વાળેલું)',
 'redirectpagesub'  => 'પાનું અન્યત્ર વાળો',
-'lastmodifiedat'   => 'આ પાનાંમાં છેલ્લો ફેરફાર $1ના રોજ $2 વાગ્યે થયો.', # $1 date, $2 time
+'lastmodifiedat'   => 'આ પાનાંમાં છેલ્લો ફેરફાર $1ના રોજ $2 વાગ્યે થયો.',
 'jumpto'           => 'સીધા આના પર જાઓ:',
 'jumptonavigation' => 'ભ્રમણ',
 'jumptosearch'     => 'શોધો',
@@ -379,7 +382,7 @@ $messages = array(
 'nohistory'           => 'આ પાનાનાં ફેરફારનો ઇતિહાસ નથી.',
 'currentrev'          => 'હાલની આવૃત્તિ',
 'revisionasof'        => '$1 સુધીનાં પુનરાવર્તન',
-'revision-info'       => '$2 દ્વારા $1 સુધીમાં કરવામાં આવેલાં ફેરફારો', # Additionally available: $3: revision id
+'revision-info'       => '$2 દ્વારા $1 સુધીમાં કરવામાં આવેલાં ફેરફારો',
 'previousrevision'    => '←જુના ફેરફારો',
 'nextrevision'        => 'આ પછીનું પુનરાવર્તન→',
 'currentrevisionlink' => 'વર્તમાન આવૃત્તિ',
@@ -393,7 +396,7 @@ $messages = array(
 'historyempty'        => '(ખાલી)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1, $2 સમયે', # user at time
+'history-feed-item-nocomment' => '$1, $2 સમયે',
 
 # Diffs
 'history-title'           => '"$1" નાં ફેરફારોનો ઇતિહાસ',
@@ -640,7 +643,7 @@ $messages = array(
 'protect-expiring'            => '$1 (UTC) એ સમાપ્ત થાય છે',
 'protect-cascade'             => 'આ પાનાંમાં સમાવિષ્ટ પેટા પાનાં પણ સુરક્ષિત કરો (કૅસ્કેડીંગ સુરક્ષા)',
 'protect-cantedit'            => 'આપ આ પાનાનાં સુરક્ષા સ્તરમાં ફેરફાર ના કરી શકો, કેમકે આપને અહિં ફેરફાર કરવાની પરવાનગી નથી.',
-'protect-expiry-options'      => '૨ કલાક:2 hours,૧ દિવસ:1 day,૩ દિવસ:3 days,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '૨ કલાક:2 hours,૧ દિવસ:1 day,૩ દિવસ:3 days,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite',
 'restriction-type'            => 'પરવાનગી:',
 'restriction-level'           => 'નિયંત્રણ સ્તર:',
 
@@ -688,7 +691,7 @@ $messages = array(
 'ipbreason'          => 'કારણ',
 'ipbreasonotherlist' => 'બીજું કારણ',
 'ipbother'           => 'અન્ય સમય',
-'ipboptions'         => '૨ કલાક:2 hours,૧ દિવસ:1 day,૩ દિવસ:3 days,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '૨ કલાક:2 hours,૧ દિવસ:1 day,૩ દિવસ:3 days,૧ સપ્તાહ:1 week,૨ સપ્તાહ:2 weeks,૧ માસ:1 month,૩ માસ:3 months,૬ માસ:6 months,૧ વર્ષ:1 year,અમર્યાદ:infinite',
 'ipbotheroption'     => 'બીજું',
 'ipblocklist'        => 'પ્રતિબંધિત IP સરનામા અને સભ્યોની યાદી',
 'ipblocklist-submit' => 'શોધો',
@@ -705,7 +708,7 @@ $messages = array(
 'move-watch'              => 'આ પાનું ધ્યાનમાં રાખો',
 'movepagebtn'             => 'પાનું ખસેડો',
 'pagemovedsub'            => 'પાનું સફળતા પૂર્વક ખસેડવામાં આવ્યું છે',
-'movepage-moved'          => '<big>\'\'\'"$1" નું નામ બદલીને "$2" કરવામાં આવ્યું છે\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" નું નામ બદલીને "$2" કરવામાં આવ્યું છે\'\'\'</big>',
 'articleexists'           => 'આ નામનું પાનું અસ્તિત્વમાં છે, અથવાતો તમે પસંદ કરેલું નામ અસ્વિકાર્ય છો.
 કૃપા કરી અન્ય નામ પસંદ કરો.',
 'movedto'                 => 'બદલ્યા પછીનું નામ',
@@ -811,7 +814,7 @@ $messages = array(
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'  => 'પહોળાઈ',
@@ -820,7 +823,7 @@ $messages = array(
 
 'exif-unknowndate' => 'અજ્ઞાત તારીખ',
 
-'exif-orientation-1' => 'સામાન્ય', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'સામાન્ય',
 
 'exif-componentsconfiguration-0' => 'નથી',
 
@@ -872,7 +875,7 @@ $messages = array(
 'watchlisttools-raw'  => 'કાચી ધ્યાનસૂચિમાં ફેરફાર કરો',
 
 # Special:Version
-'version' => 'આવૃત્તિ', # Not used as normal message but as header for the special page itself
+'version' => 'આવૃત્તિ',
 
 # Special:SpecialPages
 'specialpages' => 'ખાસ પાનાં',

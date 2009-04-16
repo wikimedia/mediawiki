@@ -1,6 +1,9 @@
 <?php
 /** Armenian (Հայերեն)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -450,7 +453,7 @@ $messages = array(
 'otherlanguages'    => 'Այլ լեզուներով',
 'redirectedfrom'    => '(Վերահղված է $1-ից)',
 'redirectpagesub'   => 'Վերահղման էջ',
-'lastmodifiedat'    => 'Այս էջը վերջին անգամ փոփոխվել է $2, $1։', # $1 date, $2 time
+'lastmodifiedat'    => 'Այս էջը վերջին անգամ փոփոխվել է $2, $1։',
 'viewcount'         => 'Այս էջին դիմել են {{PLURAL:$1|մեկ անգամ|$1 անգամ}}։',
 'protectedpage'     => 'Պաշտպանված էջ',
 'jumpto'            => 'Անցնել՝',
@@ -848,7 +851,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'currentrev'             => 'Ընթացիկ տարբերակ',
 'currentrev-asof'        => 'Ընթացիկ տարբերակը $1-ի դրությամբ',
 'revisionasof'           => '$1-ի տարբերակ',
-'revision-info'          => '$1 տարբերակ, $2', # Additionally available: $3: revision id
+'revision-info'          => '$1 տարբերակ, $2',
 'previousrevision'       => '←Նախորդ տարբերակ',
 'nextrevision'           => 'Հաջորդ տարբերակ→',
 'currentrevisionlink'    => 'Ընթացիկ տարբերակ',
@@ -870,7 +873,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 # Revision feed
 'history-feed-title'          => 'Փոփոխությունների պատմություն',
 'history-feed-description'    => 'Վիքիի այս էջի փոփոխումների պատմություն',
-'history-feed-item-nocomment' => '$1՝ $2', # user at time
+'history-feed-item-nocomment' => '$1՝ $2',
 'history-feed-empty'          => 'Հայցված էջը գոյություն չունի։
 Հնարավոր է այն ջնջվել է վիքիից կամ վերանվանվել։
 Փորձեք [[Special:Search|որոնել վիքիում]] նոր համանման էջեր։',
@@ -1024,7 +1027,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'files'                    => 'Ֆայլեր',
 
 # User rights
-'userrights'               => 'Մասնակիցների իրավունքների կառավարում', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Մասնակիցների իրավունքների կառավարում',
 'userrights-lookup-user'   => 'Մասնակիցների խմբերի կառավարում',
 'userrights-user-editname' => 'Մուտքագրեք մասնակցի անուն.',
 'editusergroup'            => 'Խմբագրել մասնակիցների խմբերը',
@@ -1535,8 +1538,8 @@ $NEWPAGE
 'alreadyrolled'    => 'Չհաջողվեց ետ գլորել [[:$1]] էջի վերջին խմբագրումները՝ կատարված [[User:$2|$2]] ([[User talk:$2|Քննարկում]]) մասնակցի կողմից։ Մեկ ուրիշը արդեն խմբագրել է կամ ետ է գլորել էջը։
 
 Վերջին խմբագրումը կատարվել է [[User:$3|$3]] ([[User talk:$3|Քննարկում]]) մասնակցի կողմից։',
-'editcomment'      => "Խմբագրման մեկնաբանումն է. ''«$1»''.", # only shown if there is an edit comment
-'revertpage'       => 'Ետ են շրջվել [[Special:Contributions/$2|$2]] ([[User talk:$2|քննարկում]]) մասնակցի խմբագրումները. վերադառձվել է [[User:$1|$1]] մասնակցի վերջին տարբերակին։', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Խմբագրման մեկնաբանումն է. ''«$1»''.",
+'revertpage'       => 'Ետ են շրջվել [[Special:Contributions/$2|$2]] ([[User talk:$2|քննարկում]]) մասնակցի խմբագրումները. վերադառձվել է [[User:$1|$1]] մասնակցի վերջին տարբերակին։',
 'rollback-success' => 'Ետ են շրջվել $1 մասնակցի խմբագրումները. վերադառձվել է $2 մասնակցի վերջին տարբերակին։',
 'sessionfailure'   => 'Կարծես խնդիր է առաջացել կապված ձեր ընթացիկ աշխատանքային սեսիայի հետ.
 այս գործողությունը բեկանվել է սեսիայի հափշտակման կանխման նպատակով։
@@ -1570,7 +1573,7 @@ $NEWPAGE
 'protect-expiring'            => 'մարում՝ $1 (UTC)',
 'protect-cascade'             => 'Պաշտպանել այս էջում ընդգրկված էջերը (կասկադային պաշտպանում)',
 'protect-cantedit'            => 'Դուք չեք կարող փոխել այս էջի պաշտպանության մակարդակը, քանի որ ձեզ չի թույլատրվում խմբագրել այն։',
-'protect-expiry-options'      => '2 ժամ:2 hours,1 օր:1 day,3 օր:3 days,1 շաբաթ:1 week,2 շաբաթ:2 weeks,1 ամիս:1 month,3 ամիս:3 months,6 ամիս:6 months,1 տարի:1 year,առհավետ:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 ժամ:2 hours,1 օր:1 day,3 օր:3 days,1 շաբաթ:1 week,2 շաբաթ:2 weeks,1 ամիս:1 month,3 ամիս:3 months,6 ամիս:6 months,1 տարի:1 year,առհավետ:infinite',
 'restriction-type'            => 'Իրավունքներ.',
 'restriction-level'           => 'Սահմանափակման մակարդակ.',
 'minimum-size'                => 'Նվազագույն չափ',
@@ -1638,7 +1641,7 @@ $1',
 'contributions-title' => '$1 մասնակցի ներդրումը',
 'mycontris'           => 'Իմ ներդրումը',
 'contribsub2'         => '$1-ի ներդրումները ($2)',
-'nocontribs'          => 'Այս չափանիշներին համապատասխանող փոփոխություններ չեն գտնվել։', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Այս չափանիշներին համապատասխանող փոփոխություններ չեն գտնվել։',
 'uctop'               => ' (վերջինը)',
 'month'               => 'Սկսած ամսից (և վաղ)՝',
 'year'                => 'Սկսած տարեթվից (և վաղ)՝',
@@ -1695,7 +1698,7 @@ $1',
 'ipbenableautoblock'          => 'Ավտոմատիկ արգելափակել այս մասնակցի վերջին IP-հասցեն և բոլոր հետագա IP-հասցեները, որոնցից նա կփորձի խբագրումներ կատարել',
 'ipbsubmit'                   => 'Արգելափակել այս մասնակցին',
 'ipbother'                    => 'Այլ ժամկետ.',
-'ipboptions'                  => '2 ժամ:2 hours,1 օր:1 day,3 օր:3 days,1 շաբաթ:1 week,2 շաբաթ:2 weeks,1 ամիս:1 month,3 ամիս:3 months,6 ամիս:6 months,1 տարի:1 year,առհավետ:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 ժամ:2 hours,1 օր:1 day,3 օր:3 days,1 շաբաթ:1 week,2 շաբաթ:2 weeks,1 ամիս:1 month,3 ամիս:3 months,6 ամիս:6 months,1 տարի:1 year,առհավետ:infinite',
 'ipbotheroption'              => 'այլ',
 'ipbotherreason'              => 'Այլ/հավելյալ պատճառներ.',
 'ipbhidename'                 => 'Թաքցնել մասնակցի անունը արգելափակման տեղեկամատյանից, գործող արգելափակումների ցանկից և մասնակիցների ցանկից։',
@@ -1799,7 +1802,7 @@ $1',
 'move-watch'              => 'Հսկել էջը',
 'movepagebtn'             => 'Տեղափոխել էջը',
 'pagemovedsub'            => 'Էջը տեղափոխվեց',
-'movepage-moved'          => "<big>'''«$1» էջը վերանվանվել է «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''«$1» էջը վերանվանվել է «$2»'''</big>",
 'articleexists'           => 'Այդ անվանմամբ էջ արդեն գոյություն ունի կամ ձեր ընտրած անվանումը անթույլատրելի է։
 Խնդրում ենք ընտրել այլ անվանում։',
 'talkexists'              => "'''Էջը հաջողությամբ տեղափոխվեց, սակայն կցված քննարկման էջը հնարավոր չէր տեղափոխել, քանի որ նոր անվանմամբ էջ արդեն գոյություն ուներ։ Խնդրում ենք միաձուլել դրանք ձեռքով։'''",
@@ -1966,7 +1969,7 @@ The wiki server can't provide data in a format your client can read.",
 # Attribution
 'anonymous'        => '{{grammar:genitive|{{SITENAME}}}} անանուն մասնակիցները',
 'siteuser'         => '{{grammar:genitive|{{SITENAME}}}} մասնակից $1',
-'lastmodifiedatby' => 'Այս էջը վերջին անգամ փոփոխվել է $2, $1 $3 մասնակցի կողմից։', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Այս էջը վերջին անգամ փոփոխվել է $2, $1 $3 մասնակցի կողմից։',
 'othercontribs'    => 'Հիմնված է {{grammar:genitive|$1}} գործի վրա։',
 'others'           => 'այլոք',
 'siteusers'        => '{{grammar:genitive|{{SITENAME}}}} մասնակից(ներ) $1',
@@ -2083,7 +2086,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'  => 'Լայնք',
@@ -2217,7 +2220,7 @@ $1',
 'watchlisttools-raw'  => 'Խմբագրել հում հսկացանկը',
 
 # Special:Version
-'version' => 'MediaWiki տարբերակը', # Not used as normal message but as header for the special page itself
+'version' => 'MediaWiki տարբերակը',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Որոնել',

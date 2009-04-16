@@ -1,6 +1,9 @@
 <?php
 /** Burmese (Myanmasa)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -305,7 +308,7 @@ $messages = array(
 
 # Protect
 'prot_1movedto2'         => '[[$1]]  မှ​ [[$2]] သို့​',
-'protect-expiry-options' => '၂ နာရီ:2 hours,၁ နေ့:1 day,၃ နေ့:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => '၂ နာရီ:2 hours,၁ နေ့:1 day,၃ နေ့:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite',
 'restriction-type'       => 'အခွင့်:',
 
 # Restrictions (nouns)
@@ -330,7 +333,7 @@ $messages = array(
 # Block/unblock
 'ipbreason'          => 'အ​ကြောင်း​ပြ​ချက်:',
 'ipbother'           => 'အခြားအချိန်:',
-'ipboptions'         => '၂ နာရီ:2 hours,၁ နေ့:1 day,၃ နေ့:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '၂ နာရီ:2 hours,၁ နေ့:1 day,၃ နေ့:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite',
 'ipbotheroption'     => 'အခြား',
 'ipblocklist-submit' => 'ရှာ​ဖွေ​ရန်​',
 'expiringblock'      => '$1 ဆုံးမည်',

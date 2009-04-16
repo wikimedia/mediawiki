@@ -1,6 +1,9 @@
 <?php
 /** Estonian (Eesti)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -189,7 +192,7 @@ $messages = array(
 'category-media-header'          => 'Meediafailid kategooriast "$1"',
 'category-empty'                 => "''Selles kategoorias pole ühtegi artiklit ega meediafaili.''",
 'hidden-categories'              => '{{PLURAL:$1|Peidetud kategooria|Peidetud kategooriad}}',
-'hidden-category-category'       => 'Peidetud kategooriad', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Peidetud kategooriad',
 'category-subcat-count'          => '{{PLURAL:$2|Sellel kategoorial on ainult järgmine allkategooria.|Sellel kategoorial on {{PLURAL:$1|järgmine allkategooria|järgmised $1 allkategooriat}}, (kokku $2).}}',
 'category-subcat-count-limited'  => 'Sellel kategoorial on {{PLURAL:$1|järgmine allkategooria|järgmised $1 allkategooriat}}.',
 'category-article-count'         => '{{PLURAL:$2|Antud kategoorias on ainult järgmine lehekülg.|Antud kategoorias on {{PLURAL:$1|järgmine lehekülg|järgmised $1 lehekülge}} (kokku $2).}}',
@@ -271,7 +274,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'otherlanguages'    => 'Teistes keeltes',
 'redirectedfrom'    => '(Ümber suunatud artiklist $1)',
 'redirectpagesub'   => 'Ümbersuunamisleht',
-'lastmodifiedat'    => 'Viimane muutmine: $2, $1', # $1 date, $2 time
+'lastmodifiedat'    => 'Viimane muutmine: $2, $1',
 'viewcount'         => 'Seda lehekülge on külastatud {{PLURAL:$1|üks kord|$1 korda}}.',
 'protectedpage'     => 'Kaitstud lehekülg',
 'jumpto'            => 'Mine:',
@@ -693,7 +696,7 @@ See on juba olemas.',
 'currentrev'             => 'Viimane redaktsioon',
 'currentrev-asof'        => 'Viimane redaktsioon ($1)',
 'revisionasof'           => 'Redaktsioon: $1',
-'revision-info'          => 'Redaktsioon seisuga $1 kasutajalt $2', # Additionally available: $3: revision id
+'revision-info'          => 'Redaktsioon seisuga $1 kasutajalt $2',
 'previousrevision'       => '←Vanem redaktsioon',
 'nextrevision'           => 'Uuem redaktsioon→',
 'currentrevisionlink'    => 'vaata viimast redaktsiooni',
@@ -714,7 +717,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 
 # Revision feed
 'history-feed-title'          => 'Redigeerimiste ajalugu',
-'history-feed-item-nocomment' => '$1 - $2', # user at time
+'history-feed-item-nocomment' => '$1 - $2',
 
 # Revision deletion
 'rev-deleted-comment'    => '(kommentaar eemaldatud)',
@@ -914,7 +917,7 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'files'                     => 'Failid',
 
 # User rights
-'userrights'               => 'Kasutaja õiguste muutmine', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Kasutaja õiguste muutmine',
 'userrights-lookup-user'   => 'Muuda kasutajagruppi',
 'userrights-user-editname' => 'Sisesta kasutajatunnus:',
 'editusergroup'            => 'Muuda kasutajagruppi',
@@ -1374,8 +1377,8 @@ Kõik toodud kellaajad järgivad serveriaega.',
 'rollbacklink'   => 'tühista',
 'rollbackfailed' => 'Muudatuste tühistamine ebaõnnestus',
 'cantrollback'   => 'Ei saa muudatusi tagasi pöörata; viimane kaastööline on artikli ainus autor.',
-'editcomment'    => "Redaktsiooni kokkuvõte: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => 'Tühistati kasutaja [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]]) tehtud muudatused ning pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "Redaktsiooni kokkuvõte: \"''\$1''\".",
+'revertpage'     => 'Tühistati kasutaja [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]]) tehtud muudatused ning pöörduti tagasi viimasele muudatusele, mille tegi [[User:$1|$1]]',
 
 # Protect
 'protectlogpage'              => 'Kaitsmise logi',
@@ -1412,7 +1415,7 @@ Nõuab "$1" õiguseid',
 ** Counter-productive edit warring
 ** Kõrge liiklusega lehekülg',
 'protect-edit-reasonlist'     => 'Muudatuste eest kaitsmise põhjused',
-'protect-expiry-options'      => '1 tund:1 hour,1 päev:1 day,1 nädal:1 week,2 nädalat: 2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 tund:1 hour,1 päev:1 day,1 nädal:1 week,2 nädalat: 2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite',
 'restriction-type'            => 'Lubatud:',
 'restriction-level'           => 'Kaitsmise tase:',
 'minimum-size'                => 'Min suurus',
@@ -1464,7 +1467,7 @@ Kui vahepeal on loodud uus samanimeline lehekülg, ilmuvad taastatud versioonid 
 'contributions-title' => 'Kasutaja $1 kaastööd',
 'mycontris'           => 'Kaastöö',
 'contribsub2'         => 'Kasutaja "$1 ($2)" jaoks',
-'nocontribs'          => 'Antud kriteeriumile vastavaid muudatusi ei leidnud.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Antud kriteeriumile vastavaid muudatusi ei leidnud.',
 'uctop'               => ' (üles)',
 'month'               => 'Alates kuust (ja varasemad):',
 'year'                => 'Alates aastast (ja varasemad):',
@@ -1512,7 +1515,7 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 'ipbemailban'                => 'Takista kasutaja poolt e-maili saatmist',
 'ipbsubmit'                  => 'Blokeeri see aadress',
 'ipbother'                   => 'Muu tähtaeg',
-'ipboptions'                 => '2 tundi:2 hours,1 päev:1 day,3 päeva:3 days,1 nädal:1 week,2 nädalat:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite', # display1:time1,display2:time2,...
+'ipboptions'                 => '2 tundi:2 hours,1 päev:1 day,3 päeva:3 days,1 nädal:1 week,2 nädalat:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite',
 'ipbotheroption'             => 'muu tähtaeg',
 'ipbotherreason'             => 'Muu/täiendav põhjus:',
 'ipbwatchuser'               => 'Jälgi selle kasutaja lehekülge ja arutelu',
@@ -1586,7 +1589,7 @@ kasutajaks ja [[Special:UserLogin|sisse logima]]',
 'move-watch'              => 'Jälgi seda lehekülge',
 'movepagebtn'             => 'Teisalda artikkel',
 'pagemovedsub'            => 'Artikkel on teisaldatud',
-'movepage-moved'          => '<big>\'\'\'"$1" teisaldatud pealkirja "$2" alla\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" teisaldatud pealkirja "$2" alla\'\'\'</big>',
 'articleexists'           => 'Selle nimega artikkel on juba olemas või pole valitud nimi lubatav. Palun valige uus nimi.',
 'cantmove-titleprotected' => 'Lehte ei saa sinna teisaldada, sest uus pealkiri on artikli loomise eest kaitstud',
 'talkexists'              => 'Artikkel on teisaldatud, kuid arutelulehekülge ei saanud teisaldada, sest uue nime all on arutelulehekülg juba olemas. Palun ühendage aruteluleheküljed ise.',
@@ -1757,7 +1760,7 @@ Kui faili on muudetud mõne tarkvara programmiga, siis võivad osad andmed olla 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'               => 'Laius',
@@ -1862,7 +1865,7 @@ Kinnituskood aegub $4.',
 'watchlisttools-raw'  => 'Redigeeri lähtefaili',
 
 # Special:Version
-'version'              => 'Versioon', # Not used as normal message but as header for the special page itself
+'version'              => 'Versioon',
 'version-specialpages' => 'Erileheküljed',
 
 # Special:FilePath

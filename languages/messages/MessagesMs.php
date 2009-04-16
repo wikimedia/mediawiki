@@ -1,6 +1,9 @@
 <?php
 /** Malay (Bahasa Melayu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -258,7 +261,7 @@ $messages = array(
 'category-media-header'          => 'Media-media dalam kategori "$1"',
 'category-empty'                 => "''Kategori ini tidak mengandungi sebarang laman atau media.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategori tersembunyi|Kategori-kategori tersembunyi}}',
-'hidden-category-category'       => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Kategori tersembunyi',
 'category-subcat-count'          => '{{PLURAL:$2|Kategori ini mengandungi sebuah subkategori berikut.|Yang berikut ialah $1 daripada $2 buah subkategori dalam kategori ini.}}',
 'category-subcat-count-limited'  => 'Kategori ini mengandungi $1 subkategori berikut.',
 'category-article-count'         => '{{PLURAL:$2|Kategori ini mengandungi sebuah laman berikut.|Yang berikut ialah $1 daripada $2 buah laman dalam kategori ini.}}',
@@ -345,7 +348,7 @@ $messages = array(
 'otherlanguages'    => 'Bahasa lain',
 'redirectedfrom'    => '(Dilencongkan dari $1)',
 'redirectpagesub'   => 'Laman lencongan',
-'lastmodifiedat'    => 'Laman ini diubah buat kali terakhir pada $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Laman ini diubah buat kali terakhir pada $2, $1.',
 'viewcount'         => 'Laman ini telah dilihat {{PLURAL:$1|sekali|sebanyak $1 kali}}.',
 'protectedpage'     => 'Laman dilindungi',
 'jumpto'            => 'Lompat ke:',
@@ -826,7 +829,7 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 'currentrev'             => 'Semakan semasa',
 'currentrev-asof'        => 'Semakan semasa pada $1',
 'revisionasof'           => 'Semakan pada $1',
-'revision-info'          => 'Semakan pada $1 oleh $2', # Additionally available: $3: revision id
+'revision-info'          => 'Semakan pada $1 oleh $2',
 'previousrevision'       => '←Semakan sebelumnya',
 'nextrevision'           => 'Semakan berikutnya→',
 'currentrevisionlink'    => 'Semakan semasa',
@@ -848,7 +851,7 @@ Petunjuk: (kini) = perbezaan dengan versi terkini,
 # Revision feed
 'history-feed-title'          => 'Sejarah semakan',
 'history-feed-description'    => 'Sejarah semakan bagi laman ini',
-'history-feed-item-nocomment' => '$1 pada $2', # user at time
+'history-feed-item-nocomment' => '$1 pada $2',
 'history-feed-empty'          => 'Laman yang diminta tidak wujud.
 Mungkin ia telah dihapuskan atau namanya telah ditukar.
 Cuba [[Special:Search|cari]] laman lain yang mungkin berkaitan.',
@@ -1166,7 +1169,7 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'prefs-custom-js'           => 'JS tempahan',
 
 # User rights
-'userrights'                  => 'Pengurusan hak pengguna', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Pengurusan hak pengguna',
 'userrights-lookup-user'      => 'Urus kumpulan pengguna',
 'userrights-user-editname'    => 'Masukkan nama pengguna:',
 'editusergroup'               => 'Sunting Kumpulan Pengguna',
@@ -1491,8 +1494,8 @@ Penerangan pada [$2 laman penerangan failnya] di sana ditunjukkan di bawah.',
 'noimage'                   => 'Fail ini tidak wujud. Anda boleh $1.',
 'noimage-linktext'          => 'memuat naik fail baru',
 'uploadnewversion-linktext' => 'Muat naik versi baru bagi fail ini',
-'shared-repo-from'          => 'dari $1', # $1 is the repository name
-'shared-repo'               => 'sebuah gedung kongsi', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'dari $1',
+'shared-repo'               => 'sebuah gedung kongsi',
 
 # File reversion
 'filerevert'                => 'Balikkan $1',
@@ -1879,8 +1882,8 @@ Sila lihat $2 untuk rekod penghapusan terkini.',
 'alreadyrolled'    => 'Suntingan terakhir bagi [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|Perbualan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tidak dapat dibalikkan; terdapat pengguna lain yang telah menyunting atau membalikkan laman itu.
 
 Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbualan]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Ringkasan sutingan: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Ringkasan sutingan: \"''\$1''\".",
+'revertpage'       => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]',
 'rollback-success' => 'Membalikkan suntingan oleh $1 kepada versi terakhir oleh $2.',
 'sessionfailure'   => 'Terdapat sedikit masalah pada sesi log masuk anda.
 Tindakan ini telah dibatalkan untuk mencegah perampasan sesi.
@@ -1929,7 +1932,7 @@ Ini adalah tetapan semasa bagi laman '''$1''':",
 ** Perang sunting
 ** Laman popular',
 'protect-edit-reasonlist'     => 'Ubah sebab-sebab perlindungan',
-'protect-expiry-options'      => '1 jam:1 hour,1 hari:1 day,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 jam:1 hour,1 hari:1 day,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite',
 'restriction-type'            => 'Keizinan:',
 'restriction-level'           => 'Peringkat pembatasan:',
 'minimum-size'                => 'Saiz minimum',
@@ -2006,7 +2009,7 @@ $1',
 'contributions-title' => 'Sumbangan oleh $1',
 'mycontris'           => 'Sumbangan saya',
 'contribsub2'         => 'Oleh $1 ($2)',
-'nocontribs'          => 'Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.',
 'uctop'               => ' (puncak)',
 'month'               => 'Sebelum bulan:',
 'year'                => 'Sebelum tahun:',
@@ -2071,7 +2074,7 @@ dirosakkan).',
 'ipbenableautoblock'              => 'Sekat alamat IP terakhir dan mana-mana alamat berikutnya yang digunakan oleh pengguna ini secara automatik',
 'ipbsubmit'                       => 'Sekat pengguna ini',
 'ipbother'                        => 'Waktu lain:',
-'ipboptions'                      => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite',
 'ipbotheroption'                  => 'lain',
 'ipbotherreason'                  => 'Sebab tambahan/lain:',
 'ipbhidename'                     => 'Sembunyikan nama pengguna daripada senarai suntingan dan pengguna',
@@ -2200,7 +2203,7 @@ Dalam kes tersebut, anda terpaksa melencongkan atau menggabungkan laman secara m
 'move-watch'                   => 'Pantau laman ini',
 'movepagebtn'                  => 'Pindah laman',
 'pagemovedsub'                 => 'Pemindahan berjaya',
-'movepage-moved'               => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Sebuah lencongan telah dicipta.',
 'movepage-moved-noredirect'    => 'Penciptaan lencongan telah dihalang.',
 'articleexists'                => 'Laman dengan nama tersebut telah pun wujud,
@@ -2400,7 +2403,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Pengguna|Pengguna-pengguna}} {{SITENAME}} tanpa nama',
 'siteuser'         => 'Pengguna {{SITENAME}}, $1',
-'lastmodifiedatby' => 'Laman ini diubah buat kali terakhir pada $2, $1 oleh $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Laman ini diubah buat kali terakhir pada $2, $1 oleh $3.',
 'othercontribs'    => 'Berdasarkan karya $1.',
 'others'           => 'lain-lain',
 'siteusers'        => '{{PLURAL:$2|Pengguna|Pengguna-pengguna}} {{SITENAME}}, $1',
@@ -2519,7 +2522,7 @@ Ruangan lain akan disembunyikan.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lebar',
@@ -2646,14 +2649,14 @@ Ruangan lain akan disembunyikan.
 
 'exif-unknowndate' => 'Tarikh tidak diketahui',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Dibalikkan secara mengufuk', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Diputar 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Dibalikkan secara menegak', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Diputarkan 90° melawan arah jam dan dibalikkan secara menegak', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Diputarkan 90° mengikut arah jam', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Diputarkan 90° mengikut arah jam dan dibalikkan secara menegak', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Diputarkan 90° melawan arah jam', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Dibalikkan secara mengufuk',
+'exif-orientation-3' => 'Diputar 180°',
+'exif-orientation-4' => 'Dibalikkan secara menegak',
+'exif-orientation-5' => 'Diputarkan 90° melawan arah jam dan dibalikkan secara menegak',
+'exif-orientation-6' => 'Diputarkan 90° mengikut arah jam',
+'exif-orientation-7' => 'Diputarkan 90° mengikut arah jam dan dibalikkan secara menegak',
+'exif-orientation-8' => 'Diputarkan 90° melawan arah jam',
 
 'exif-planarconfiguration-1' => 'format besar',
 'exif-planarconfiguration-2' => 'format satah',
@@ -2934,7 +2937,7 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 'duplicate-defaultsort' => 'Amaran: Kunci susunan lalai "$2" mengatasi kunci susunan lalai "$1" sebelumnya.',
 
 # Special:Version
-'version'                          => 'Versi', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versi',
 'version-extensions'               => 'Penyambung yang dipasang',
 'version-specialpages'             => 'Laman khas',
 'version-parserhooks'              => 'Penyangkuk penghurai',

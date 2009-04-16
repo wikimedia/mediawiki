@@ -1,6 +1,9 @@
 <?php
 /** Võro (Võro)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -143,7 +146,7 @@ $messages = array(
 'category-media-header'          => 'Kiräkotus katõgoorian "$1"',
 'category-empty'                 => "''Seon katõgoorian olõ-i parhilla artikliid ega teedüstüid.''",
 'hidden-categories'              => '{{PLURAL:$1|Käkit katõgooria|Käkidüq katõgooriaq}}',
-'hidden-category-category'       => 'Käkidüq katõgooriaq', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Käkidüq katõgooriaq',
 'category-subcat-count'          => '{{PLURAL:$2|Seol katõgoorial om õnnõ järgmäne allkatõgooria.|Seol katõgoorial  {{PLURAL:$1|om järgmäne allkatõgooria|ommaq järgmädsed $1 allkatõgooriat}} (kokko $2).}}',
 'category-subcat-count-limited'  => 'Seol katõgoorial {{PLURAL:$1|om järgmäne allkatõgooria|ommaq järgmädsed $1 allkatõgooriaq}}.',
 'category-article-count'         => '{{PLURAL:$2|Seon katõgoorian om õnnõ järgmäne lehekülg.|Seon katõgoorian {{PLURAL:$1|om järgmäne lehekülg|ommaq järgmädseq $1 lehekülge}} (kokko $2).}}',
@@ -228,7 +231,7 @@ $messages = array(
 'otherlanguages'    => 'Tõisin keelin',
 'redirectedfrom'    => '(Ümbre saadõt artiklist $1)',
 'redirectpagesub'   => 'Ümbresaatmislehekülg',
-'lastmodifiedat'    => 'Seo leht om viimäte muudõt $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Seo leht om viimäte muudõt $2, $1.',
 'viewcount'         => 'Seo lehe pääl om käüt $1 {{PLURAL:$1|kõrd|kõrda}}.',
 'protectedpage'     => 'Kaidsõt artikli',
 'jumpto'            => 'Mineq üle:',
@@ -651,7 +654,7 @@ $3 kirjäpant põhjus: ''$2''",
 'nohistory'              => 'Seo leheküle pääl ei olõq vanõmbit kujjõ.',
 'currentrev'             => 'Viimäne kujo',
 'revisionasof'           => 'Kujo $1',
-'revision-info'          => 'Kujo aost $1 - tennüq $2', # Additionally available: $3: revision id
+'revision-info'          => 'Kujo aost $1 - tennüq $2',
 'previousrevision'       => '←Vanõmb kujo',
 'nextrevision'           => 'Vahtsõmb kujo→',
 'currentrevisionlink'    => 'Viimäne kujo',
@@ -673,7 +676,7 @@ Seletüs: (viim) = lahkominegiq viimätsest kujost,
 # Revision feed
 'history-feed-title'          => 'Muutmislugu',
 'history-feed-description'    => 'Seo lehe muutmislugu',
-'history-feed-item-nocomment' => '$1 ($2)', # user at time
+'history-feed-item-nocomment' => '$1 ($2)',
 'history-feed-empty'          => 'Säänest lehte olõ-i. Taa või ollaq ärq kistutõt vai ümbre nimetet. Võit pruumiq [[Special:Search|otsiq]] lehti, miä võivaq ollaq taa lehega köüdedüq.',
 
 # Revision deletion
@@ -825,7 +828,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'files'                    => 'Teedüstüq',
 
 # User rights
-'userrights'               => 'Pruukja õiguisi muutminõ', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Pruukja õiguisi muutminõ',
 'userrights-lookup-user'   => 'Pruukjaõiguisi muutminõ',
 'userrights-user-editname' => 'Kirodaq pruukjanimi:',
 'editusergroup'            => 'Muudaq pruukjidõ rühmi',
@@ -1289,8 +1292,8 @@ Kelläaoq ummaq serveriao perrä.',
 'rollbackfailed' => 'Muutmiisi tagasivõtminõ lää-s kõrda',
 'cantrollback'   => 'Saa-i muutmiisi tagasi pöördäq; viimäne muutja om lehe ainugõnõ toimõndaja.',
 'alreadyrolled'  => 'Pruukja [[User:$2|$2]] ([[User talk:$2|arotus]]) tettüid lehe [[:$1]] muutmiisi saa-i tagasi võttaq, selle et pruukja [[User:$3|$3]] ([[User talk:$3|arotus]]) om tennüq vahtsõmbit muutmiisi.',
-'editcomment'    => "Toimõndamiskokkovõtõq oll': \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => 'Pruukja [[Special:Contributions/$2|$2]] ([[User_talk:$2|arotus]]) toimõndusõq pöörediq tagasi ja leht panti tagasi pruukja [[User:$1|$1]] tettü kujo pääle.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "Toimõndamiskokkovõtõq oll': \"''\$1''\".",
+'revertpage'     => 'Pruukja [[Special:Contributions/$2|$2]] ([[User_talk:$2|arotus]]) toimõndusõq pöörediq tagasi ja leht panti tagasi pruukja [[User:$1|$1]] tettü kujo pääle.',
 'sessionfailure' => 'Paistus ollõv määnegi hädä su toimõndamiskõrraga, tuuperäst om viimäne muutminõ egäs johtumisõs jätet tegemäldä. Vaodaq võrgokaeja "tagasi"-nuppi, laadiq üle lehekülg, kost sa tullit ja prooviq vahtsõst.',
 
 # Protect
@@ -1319,7 +1322,7 @@ Tan ommaq lehe '''$1''' parhilladsõq säädmiseq:",
 'protect-expiring'            => 'tähtaig $1',
 'protect-cascade'             => 'Laendaq kaitsmist - võtaq kaitsõ ala kõik seo lehe pääl olõvaq leheq.',
 'protect-cantedit'            => 'Sa tohe-i muutaq seo lehe kaitsmistasõt, selle et sul olõ-i õigust seod lehte muutaq.',
-'protect-expiry-options'      => '15 minotit:15 minutes,1 päiv:1 day,3 päivä:3 days,1 nätäl:1 week,2 nädälit:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aastak:1 year,igävene:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '15 minotit:15 minutes,1 päiv:1 day,3 päivä:3 days,1 nätäl:1 week,2 nädälit:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aastak:1 year,igävene:infinite',
 'restriction-type'            => 'Luba',
 'restriction-level'           => 'Piirdmisastõq',
 'minimum-size'                => 'Kõgõ vähämb maht',
@@ -1374,7 +1377,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'contributions' => 'Pruukja kirotusõq',
 'mycontris'     => 'Mu kirotusõq',
 'contribsub2'   => 'Pruukja "$1 ($2)" kirotusõq',
-'nocontribs'    => 'Sääntsit muutmiisi es lövväq.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Sääntsit muutmiisi es lövväq.',
 'uctop'         => '(kõgõ vahtsõmb)',
 'month'         => 'Alostõn kuust (ja varrampa):',
 'year'          => 'Alostõn aastagast (ja varrampa):',
@@ -1424,7 +1427,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'ipbenableautoblock'          => 'Piäq kinniq viimäne puutri võrgoaadrõs, kost pruukja om toimõnduisi tennüq, ja edespiten aadrõsiq, kost tä viil pruuv toimõnduisi tetäq.',
 'ipbsubmit'                   => 'Piäq taa aadrõs kinniq',
 'ipbother'                    => 'Muu tähtaig',
-'ipboptions'                  => '15 minotit:15 minutes,1 päiv:1 day,3 päivä:3 days,1 nätäl:1 week,2 nädälit:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aastak:1 year,igävene:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '15 minotit:15 minutes,1 päiv:1 day,3 päivä:3 days,1 nätäl:1 week,2 nädälit:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aastak:1 year,igävene:infinite',
 'ipbotheroption'              => 'Muu tähtaig',
 'ipbotherreason'              => 'Muu põhjus',
 'ipbhidename'                 => 'Käkiq pruukjanimi vai puutri võrgoaadrõs ärq kinniqpidämis-, toimõndus-, ja pruukjanimekiräst',
@@ -1526,7 +1529,7 @@ Kui om nii, sis panõq vana arotuskülg eräle vai panõq taa kokko vahtsõ arot
 'move-watch'              => 'Kaeq taa lehe perrä',
 'movepagebtn'             => 'Panõq artikli tõistõ paika',
 'pagemovedsub'            => 'Artikli om tõistõ paika pant',
-'movepage-moved'          => "<big>'''$1 om pant nime ala $2'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''$1 om pant nime ala $2'''</big>",
 'articleexists'           => 'Sääntse nimega artikli om jo olõman vai olõ-i lubat säänest nimme valliq. Valiq vahtsõnõ nimi.',
 'talkexists'              => 'Artikli om tõistõ paika pant, a arotuslehekülge saa-s pandaq, selle et vahtsõ nime all om jo arotuskülg. Panõq arotusküleq esiq kokko.',
 'movedto'                 => 'Pant päälkirä ala:',
@@ -1689,7 +1692,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Attribution
 'anonymous'        => '{{SITENAME}} {{PLURAL:$1|nimeldä pruukja|nimeldä pruukjaq}}',
 'siteuser'         => '{{SITENAME}} pruukja $1',
-'lastmodifiedatby' => "Taad lehte toimõnd' viimäte ”$3” $2 kell $1.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Taad lehte toimõnd' viimäte ”$3” $2 kell $1.",
 'othercontribs'    => 'Tennüq pruukja $1.',
 'others'           => 'tõõsõq',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|pruukja|pruukjaq}}  $1',
@@ -1784,7 +1787,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lakjus',
@@ -1911,14 +1914,14 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 'exif-unknowndate' => 'Tundmalda kuupäiv',
 
-'exif-orientation-1' => 'Harilik', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Pikäle käänet', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° käänet', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Pistü käänet', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Käänet 90° vastapäivä ja pistü', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Käänet 90° peripäivä', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Käänet 90° peripäivä ja pistü', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Käänet 90° vastapäivä', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Harilik',
+'exif-orientation-2' => 'Pikäle käänet',
+'exif-orientation-3' => '180° käänet',
+'exif-orientation-4' => 'Pistü käänet',
+'exif-orientation-5' => 'Käänet 90° vastapäivä ja pistü',
+'exif-orientation-6' => 'Käänet 90° peripäivä',
+'exif-orientation-7' => 'Käänet 90° peripäivä ja pistü',
+'exif-orientation-8' => 'Käänet 90° vastapäivä',
 
 'exif-planarconfiguration-1' => "''chunky''-formaat",
 'exif-planarconfiguration-2' => "''planar''-formaat",
@@ -2140,7 +2143,7 @@ Prooviq harilikku kaehust.',
 'watchlisttools-raw'  => 'Toimõndaq lätteteedüstüt',
 
 # Special:Version
-'version'                  => 'Kujo', # Not used as normal message but as header for the special page itself
+'version'                  => 'Kujo',
 'version-version'          => 'Kujo',
 'version-software-version' => 'Kujo',
 

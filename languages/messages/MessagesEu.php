@@ -1,6 +1,9 @@
 <?php
 /** Basque (Euskara)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -229,7 +232,7 @@ $messages = array(
 'category-media-header'          => 'Media "$1" kategorian',
 'category-empty'                 => "''Kategoria honek ez dauka artikulurik uneotan.''",
 'hidden-categories'              => '{{PLURAL:$1|Izkutuko kategoria|Izkutuko kategoriak}}',
-'hidden-category-category'       => 'Kategoria ezkutuak', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Kategoria ezkutuak',
 'category-subcat-count'          => '{{PLURAL:$2|Kategoria honek beste honako azpikategoria baino ez du.|Kategoria honek honako {{PLURAL:$1|azpikategoria du|$1 azpikategoriak ditu}}, guztira dauden $2tik.}}',
 'category-subcat-count-limited'  => 'Kategoria honek {{PLURAL:$1|azpikategoria hau du|$1 azpikategoria hauek ditu}}.',
 'category-article-count'         => '{{PLURAL:$2|Kategoria honek honako orrialdea baino ez du.|Honako {{PLURAL:$1|orrialdea kategoria honetan dago|$1 orrialdeak kategoria hauetan daude}}, guztira dauden $2tik.}}',
@@ -316,7 +319,7 @@ $messages = array(
 'otherlanguages'    => 'Beste hizkuntzetan',
 'redirectedfrom'    => '($1(e)tik birzuzenduta)',
 'redirectpagesub'   => 'Birzuzenketa orria',
-'lastmodifiedat'    => 'Orrialdearen azken aldaketa: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Orrialdearen azken aldaketa: $2, $1.',
 'viewcount'         => 'Orrialde hau {{PLURAL:$1|behin|$1 aldiz}} bisitatu da.',
 'protectedpage'     => 'Babestutako orrialdea',
 'jumpto'            => 'Hona jo:',
@@ -798,7 +801,7 @@ $3(e)k emandako arrazoia: ''$2''",
 'currentrev'             => 'Oraingo berrikuspena',
 'currentrev-asof'        => '$1(e)an momentuko aldaketa',
 'revisionasof'           => '$1(e)ko berrikuspena',
-'revision-info'          => '$2(r)en berrikusketa, ordua: $1', # Additionally available: $3: revision id
+'revision-info'          => '$2(r)en berrikusketa, ordua: $1',
 'previousrevision'       => '←Berrikuspen zaharragoa',
 'nextrevision'           => 'Berrikuspen berriagoa→',
 'currentrevisionlink'    => 'Oraingo berrikuspena ikusi',
@@ -820,7 +823,7 @@ Legenda: (orain) = oraingo bertsioarekiko ezberdintasuna,
 # Revision feed
 'history-feed-title'          => 'Berrikuspenen historia',
 'history-feed-description'    => 'Wikiko orrialde honen berrikuspenen historia',
-'history-feed-item-nocomment' => 'nork: $1 noiz: $2', # user at time
+'history-feed-item-nocomment' => 'nork: $1 noiz: $2',
 'history-feed-empty'          => 'Eskatutako orrialdea ez da existitzen. Baliteke wikitik ezabatu edo izenez aldatu izana. Saiatu [[Special:Search|wikian zerikusia duten orrialdeak bilatzen]].',
 
 # Revision deletion
@@ -1128,7 +1131,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'prefs-custom-js'           => 'JS pertsonalizatua',
 
 # User rights
-'userrights'                  => 'Erabiltzaile baimenen kudeaketa', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Erabiltzaile baimenen kudeaketa',
 'userrights-lookup-user'      => 'Erabiltzaile taldeak kudeatu',
 'userrights-user-editname'    => 'Erabiltzaile izena idatzi:',
 'editusergroup'               => 'Erabiltzaile taldeak editatu',
@@ -1455,8 +1458,8 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'noimage'                   => 'Ez dago fitxategirik izen honekin, $1 dezakezu.',
 'noimage-linktext'          => 'bat igo',
 'uploadnewversion-linktext' => 'Fitxategi honen bertsio berri bat igo',
-'shared-repo-from'          => '$1-tik', # $1 is the repository name
-'shared-repo'               => 'elkarbanatutako biltegia', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => '$1-tik',
+'shared-repo'               => 'elkarbanatutako biltegia',
 
 # File reversion
 'filerevert'                => '$1 leheneratu',
@@ -1833,8 +1836,8 @@ kontu izan.',
 beste norbaitek editatu du edo jada desegin du.
 
  Azken aldaketa [[User:$3|$3]](e)k ([[User talk:$3|Eztabaida]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) egin du.',
-'editcomment'      => "Aldaketaren laburpena: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => '$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Aldaketaren laburpena: \"''\$1''\".",
+'revertpage'       => '$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.',
 'rollback-success' => '$1(r)en aldaketak desegin dira, $2(r)en azken bertsiora itzuliz.',
 'sessionfailure'   => 'Badirudi saioarekin arazoren bat dagoela; bandalismoak saihesteko ekintza hau ezeztatu egin da. Mesedez, nabigatzaileko "atzera" botoian klik egin, hona ekarri zaituen orrialde hori berriz kargatu, eta saiatu berriz.',
 
@@ -1882,7 +1885,7 @@ Orrialde honen babes maila alda dezakezu, baina ez du eraginik izango kaskada bi
 ** Produkzioaren aurkakoa den edizio gerra
 ** Trafiko handiko orrialdea',
 'protect-edit-reasonlist'     => 'Babesteko arrazoiak aldatu',
-'protect-expiry-options'      => 'ordu 1:1 hour,egun 1:1 day,aste 1:1 week,2 aste:2 weeks,hilabete 1:1 month,3 hilabete:3 months,6 hilabete:6 months,urte 1:1 year,betirako:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'ordu 1:1 hour,egun 1:1 day,aste 1:1 week,2 aste:2 weeks,hilabete 1:1 month,3 hilabete:3 months,6 hilabete:6 months,urte 1:1 year,betirako:infinite',
 'restriction-type'            => 'Baimena:',
 'restriction-level'           => 'Murrizketa maila:',
 'minimum-size'                => 'Tamaina minimoa',
@@ -1963,7 +1966,7 @@ $1',
 'contributions-title' => '$1(r)entzat lankidearen ekarpenak',
 'mycontris'           => 'Nire ekarpenak',
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'Ez da ezaugarri horiekin bat datorren aldaketarik aurkitu.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Ez da ezaugarri horiekin bat datorren aldaketarik aurkitu.',
 'uctop'               => ' (Azken aldaketa)',
 'month'               => 'Hilabetea (eta lehenagokoak):',
 'year'                => 'Urtea (eta lehenagokoak):',
@@ -2022,7 +2025,7 @@ $1',
 'ipbenableautoblock'              => 'Erabiltzaile honek erabilitako azken IP helbidea automatikoki blokeatu, eta baita erabili dezakeen beste edozein IP ere',
 'ipbsubmit'                       => 'Erabiltzaile hau blokeatu',
 'ipbother'                        => 'Beste denbora-tarte bat',
-'ipboptions'                      => '2 ordu:2 hours,egun 1:1 day,3 egun:3 days,aste 1:1 week,2 aste:2 weeks,hilabete 1:1 month,3 hilabete:3 months,6 hilabete:6 months,urte 1:1 year,betirako:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 ordu:2 hours,egun 1:1 day,3 egun:3 days,aste 1:1 week,2 aste:2 weeks,hilabete 1:1 month,3 hilabete:3 months,6 hilabete:6 months,urte 1:1 year,betirako:infinite',
 'ipbotheroption'                  => 'beste bat',
 'ipbotherreason'                  => 'Arrazoi gehigarria:',
 'ipbhidename'                     => 'Lankide izena aldaketa eta zerrendetatik ezkutatu',
@@ -2139,7 +2142,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'move-watch'                   => 'Orrialde hau jarraitu',
 'movepagebtn'                  => 'Orrialde mugitu',
 'pagemovedsub'                 => 'Mugimendua eginda',
-'movepage-moved'               => '<big>\'\'\'"$1" "$2"(e)ra mugitu da\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" "$2"(e)ra mugitu da\'\'\'</big>',
 'movepage-moved-redirect'      => 'Birzuzenketa orrialde bat sortu da.',
 'movepage-moved-noredirect'    => 'Birzuzenketa baten sorrera kendu da.',
 'articleexists'                => 'Izen hori duen artikulu bat badago edo hautatutako izena ez da baliozkoa. Mesedez, beste izen bat aukeratu.',
@@ -2343,7 +2346,7 @@ Laburpenean arrazoi bat gehitzea baimentzen du',
 # Attribution
 'anonymous'        => '{{SITENAME}}(e)ko lankide {{PLURAL:$1|anonimoa|anonimoak}}',
 'siteuser'         => '{{SITENAME}}(e)ko $1 erabiltzailea',
-'lastmodifiedatby' => 'Orrialdearen azken aldaketa: $2, $1. Nork: $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Orrialdearen azken aldaketa: $2, $1. Nork: $3.',
 'othercontribs'    => '$1(r)en lanean oinarrituta.',
 'others'           => 'besteak',
 'siteusers'        => '{{SITENAME}}(e)ko $1 {{PLURAL:$2|erabiltzailea|erabiltzaileak}}',
@@ -2465,7 +2468,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Zabalera',
@@ -2598,14 +2601,14 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 
 'exif-unknowndate' => 'Data ezezaguna',
 
-'exif-orientation-1' => 'Arrunta', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Horizontalki buelta emana', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° biratuta', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Bertikalki buelta emana', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Erlojuaren aurka 90º biratuta eta bertikalki buelta emana', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Erlojuaren norantzan 90º biratua', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Erlojuaren norantzan 90º biratuta eta bertikalki buelta emana', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Erlojuaren aurka 90º biratua', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Arrunta',
+'exif-orientation-2' => 'Horizontalki buelta emana',
+'exif-orientation-3' => '180° biratuta',
+'exif-orientation-4' => 'Bertikalki buelta emana',
+'exif-orientation-5' => 'Erlojuaren aurka 90º biratuta eta bertikalki buelta emana',
+'exif-orientation-6' => 'Erlojuaren norantzan 90º biratua',
+'exif-orientation-7' => 'Erlojuaren norantzan 90º biratuta eta bertikalki buelta emana',
+'exif-orientation-8' => 'Erlojuaren aurka 90º biratua',
 
 'exif-planarconfiguration-1' => 'formatu potoloa',
 'exif-planarconfiguration-2' => 'formatu planarra',
@@ -2884,7 +2887,7 @@ Halaber [[Special:Watchlist/edit|aldatzaile estandarra]] erabil dezakezu.',
 'duplicate-defaultsort' => 'Adi: Berezko "$2" antolatzeak aurreko berezko "$1" antolatzea gainditzen du.',
 
 # Special:Version
-'version'                          => 'Bertsioa', # Not used as normal message but as header for the special page itself
+'version'                          => 'Bertsioa',
 'version-extensions'               => 'Instalatutako luzapenak',
 'version-specialpages'             => 'Aparteko orrialdeak',
 'version-parserhooks'              => 'Parser estentsioak',

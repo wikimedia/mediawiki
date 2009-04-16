@@ -1,6 +1,9 @@
 <?php
 /** Ukrainian (Українська)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -326,7 +329,7 @@ $messages = array(
 'category-media-header'          => 'Файли в категорії «$1»',
 'category-empty'                 => "''Ця категорія зараз порожня.''",
 'hidden-categories'              => '{{PLURAL:$1|Прихована категорія|Приховані категорії}}',
-'hidden-category-category'       => 'Приховані категорії', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Приховані категорії',
 'category-subcat-count'          => '{{PLURAL:$2|Ця категорія містить лише таку підкатегорію.|{{PLURAL:$1|Показана $1 підкатегорія|Показані $1 підкатегорії|Показані $1 підкатегорій}} із $2.}}',
 'category-subcat-count-limited'  => 'У цій категорії {{PLURAL:$1|$1 підкатегорія|$1 підкатегорії|$1 підкатегорій}}.',
 'category-article-count'         => '{{PLURAL:$2|Ця категорія містить тільки таку сторінку.|{{PLURAL:$1|Показана $1 сторінка|Показані $1 сторінки|Показані $1 сторінок}} цієї категорії з $2.}}',
@@ -413,7 +416,7 @@ $messages = array(
 'otherlanguages'    => 'Іншими мовами',
 'redirectedfrom'    => '(Перенаправлено з $1)',
 'redirectpagesub'   => 'Сторінка-перенаправлення',
-'lastmodifiedat'    => 'Остання зміна цієї сторінки: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Остання зміна цієї сторінки: $2, $1.',
 'viewcount'         => 'Цю сторінку переглядали $1 {{PLURAL:$1|раз|рази|разів}}.',
 'protectedpage'     => 'Захищена сторінка',
 'jumpto'            => 'Перейти до:',
@@ -922,7 +925,7 @@ $3 зазначив таку причину: ''$2''",
 'currentrev'             => 'Поточна версія',
 'currentrev-asof'        => 'Поточна версія на $1',
 'revisionasof'           => 'Версія $1',
-'revision-info'          => 'Версія від $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Версія від $1; $2',
 'previousrevision'       => '← Старіша версія',
 'nextrevision'           => 'Новіша версія →',
 'currentrevisionlink'    => 'Поточна версія',
@@ -943,7 +946,7 @@ $3 зазначив таку причину: ''$2''",
 # Revision feed
 'history-feed-title'          => 'Історія редагувань',
 'history-feed-description'    => 'Історія редагувань цієї сторінки в вікі',
-'history-feed-item-nocomment' => '$1 в $2', # user at time
+'history-feed-item-nocomment' => '$1 в $2',
 'history-feed-empty'          => 'Такої сторінки не існує.
 Її могли вилучити чи перейменувати.
 Спробуйте [[Special:Search|знайти в вікі]] подібні сторінки.',
@@ -1263,7 +1266,7 @@ $3 зазначив таку причину: ''$2''",
 'prefs-custom-js'           => 'Власний JS',
 
 # User rights
-'userrights'                  => 'Управління правами користувачів', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Управління правами користувачів',
 'userrights-lookup-user'      => 'Управління групами користувача',
 'userrights-user-editname'    => "Введіть ім'я користувача:",
 'editusergroup'               => 'Редагувати групи користувача',
@@ -1625,8 +1628,8 @@ PICT # різні
 'noimage'                   => 'Немає файлу з такою назвою, але ви можете $1.',
 'noimage-linktext'          => 'завантажити його',
 'uploadnewversion-linktext' => 'Завантажити нову версію цього файлу',
-'shared-repo-from'          => 'з $1', # $1 is the repository name
-'shared-repo'               => 'спільного сховища', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'з $1',
+'shared-repo'               => 'спільного сховища',
 
 # File reversion
 'filerevert'                => 'Повернення до старої версії $1',
@@ -2003,8 +2006,8 @@ $NEWPAGE
 'alreadyrolled'    => 'Неможливо відкинути останні редагування [[:$1]], зроблені [[User:$2|$2]] ([[User talk:$2|обговорення]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); хтось інший уже змінив чи відкинув редагування цієї статті.
 
 Останні редагування зробив [[User:$3|$3]] ([[User talk:$3|обговорення]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Пояснення редагування було: «''$1''».", # only shown if there is an edit comment
-'revertpage'       => 'Редагування користувача [[Special:Contributions/$2|$2]] ([[User talk:$2|обговорення]]) відкинуті до версії користувача [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Пояснення редагування було: «''$1''».",
+'revertpage'       => 'Редагування користувача [[Special:Contributions/$2|$2]] ([[User talk:$2|обговорення]]) відкинуті до версії користувача [[User:$1|$1]]',
 'rollback-success' => 'Відкинуті редагування користувача $1; повернення до версії користувача $2.',
 'sessionfailure'   => 'Здається, виникли проблеми з поточним сеансом роботи;
 ця дія була скасована з метою попередити «захоплення сеансу».
@@ -2054,7 +2057,7 @@ $NEWPAGE
 ** непродуктивна війна редагувань
 ** популярна сторінка',
 'protect-edit-reasonlist'     => 'Причини захисту від редагувань',
-'protect-expiry-options'      => '1 година:1 hour,1 день:1 day,1 тиждень:1 week,2 тижні:2 weeks,1 місяць:1 month,3 місяці:3 months,6 місяців:6 months,1 рік:1 year,назавжди:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 година:1 hour,1 день:1 day,1 тиждень:1 week,2 тижні:2 weeks,1 місяць:1 month,3 місяці:3 months,6 місяців:6 months,1 рік:1 year,назавжди:infinite',
 'restriction-type'            => 'Права:',
 'restriction-level'           => 'Рівень доступу:',
 'minimum-size'                => 'Мінімальний розмір',
@@ -2129,7 +2132,7 @@ $1',
 'contributions-title' => 'Внесок користувача $1',
 'mycontris'           => 'Мій внесок',
 'contribsub2'         => 'Внесок $1 ($2)',
-'nocontribs'          => 'Редагувань, що задовольняють заданим умовам не знайдено.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Редагувань, що задовольняють заданим умовам не знайдено.',
 'uctop'               => ' (остання)',
 'month'               => 'Від місяця (і раніше):',
 'year'                => 'Від року (і раніше):',
@@ -2190,7 +2193,7 @@ $1',
 'ipbenableautoblock'              => 'Автоматично блокувати IP-адреси, які використовуються цим користувачем та будь-які наступні адреси, з яких він буде редагувати',
 'ipbsubmit'                       => 'Заблокувати доступ цьому користувачу',
 'ipbother'                        => 'Інший термін',
-'ipboptions'                      => '2 години:2 hours,1 день:1 day,3 дні:3 days,1 тиждень:1 week,2 тижні:2 weeks,1 місяць:1 month,3 місяці:3 months,6 місяців:6 months,1 рік:1 year,назавжди:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 години:2 hours,1 день:1 day,3 дні:3 days,1 тиждень:1 week,2 тижні:2 weeks,1 місяць:1 month,3 місяці:3 months,6 місяців:6 months,1 рік:1 year,назавжди:infinite',
 'ipbotheroption'                  => 'інший термін',
 'ipbotherreason'                  => 'Інша/додаткова причина:',
 'ipbhidename'                     => "Приховати ім'я користувача у редагуваннях ті списках",
@@ -2321,7 +2324,7 @@ IP-адреси, що блокуються автоматично тут не в
 'move-watch'                   => 'Спостерігати за цією сторінкою',
 'movepagebtn'                  => 'Перейменувати сторінку',
 'pagemovedsub'                 => 'Сторінка перейменована',
-'movepage-moved'               => "<big>'''Сторінка «$1» перейменована на «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''Сторінка «$1» перейменована на «$2»'''</big>",
 'movepage-moved-redirect'      => 'Створено перенаправлення.',
 'movepage-moved-noredirect'    => 'Створення перенаправлення було заборонене.',
 'articleexists'                => 'Сторінка з такою назвою вже існує або зазначена вами назва недопустима.
@@ -2540,7 +2543,7 @@ The wiki server can't provide data in a format your client can read.",
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Анонімний користувач|Анонімні користувачі}} {{grammar:genitive|{{SITENAME}}}}',
 'siteuser'         => 'Користувач {{grammar:genitive|{{SITENAME}}}} $1',
-'lastmodifiedatby' => 'Остання зміна $2, $1 користувачем $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Остання зміна $2, $1 користувачем $3.',
 'othercontribs'    => 'Базується на праці $1.',
 'others'           => 'інші',
 'siteusers'        => '{{PLURAL:$2|Користувач|Користувачі}} {{grammar:genitive|{{SITENAME}}}} $1',
@@ -2661,7 +2664,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ширина',
@@ -2789,14 +2792,14 @@ $1',
 
 'exif-unknowndate' => 'Невідома дата',
 
-'exif-orientation-1' => 'Нормальна', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Відображено по горизонталі', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Повернуто на 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Відображено по вертикалі', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Повернуто на 90° проти годинникової стрілки й відображено по вертикалі', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Повернуто на 90° за годинниковою стрілкою', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Повернуто на 90° за годинниковою стрілкою й відображено по вертикалі', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Повернуто на 90° проти годинникової стрілки', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Нормальна',
+'exif-orientation-2' => 'Відображено по горизонталі',
+'exif-orientation-3' => 'Повернуто на 180°',
+'exif-orientation-4' => 'Відображено по вертикалі',
+'exif-orientation-5' => 'Повернуто на 90° проти годинникової стрілки й відображено по вертикалі',
+'exif-orientation-6' => 'Повернуто на 90° за годинниковою стрілкою',
+'exif-orientation-7' => 'Повернуто на 90° за годинниковою стрілкою й відображено по вертикалі',
+'exif-orientation-8' => 'Повернуто на 90° проти годинникової стрілки',
 
 'exif-planarconfiguration-1' => 'формат «chunky»',
 'exif-planarconfiguration-2' => 'формат «planar»',
@@ -3073,7 +3076,7 @@ $1',
 'duplicate-defaultsort' => 'Увага. Ключ сортування «$2» перекриває попередній ключ сортування «$1».',
 
 # Special:Version
-'version'                          => 'Версія MediaWiki', # Not used as normal message but as header for the special page itself
+'version'                          => 'Версія MediaWiki',
 'version-extensions'               => 'Установлені розширення',
 'version-specialpages'             => 'Спеціальні сторінки',
 'version-parserhooks'              => 'Перехоплювачі синтаксичного аналізатора',

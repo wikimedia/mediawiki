@@ -1,6 +1,9 @@
 <?php
 /** Icelandic (Íslenska)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -318,7 +321,7 @@ $messages = array(
 'category-media-header'          => 'Margmiðlunarefni í flokknum „$1“',
 'category-empty'                 => "''Þessi flokkur inniheldur engar síður eða margmiðlunarefni.''",
 'hidden-categories'              => '{{PLURAL:$1|Falinn flokkur|Faldir flokkar}}',
-'hidden-category-category'       => 'Faldir flokkar', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Faldir flokkar',
 'category-subcat-count'          => '{{PLURAL:$2|Þessi flokkur hefur einungis eftirfarandi undirflokk.|Þessi flokkur hefur eftirfarandi {{PLURAL:$1|undirflokk|$1 undirflokka}}, af alls $2.}}',
 'category-subcat-count-limited'  => 'Þessi flokkur hefur eftirfarandi {{PLURAL:$1|undirflokk|$1 undirflokka}}.',
 'category-article-count'         => '{{PLURAL:$2|Þessi flokkur inniheldur aðeins eftirfarandi síðu.|Eftirfarandi {{PLURAL:$1|síða er|síður eru}} í þessum flokki, af alls $1.}}',
@@ -406,7 +409,7 @@ $messages = array(
 'otherlanguages'    => 'Á öðrum tungumálum',
 'redirectedfrom'    => '(Tilvísað frá $1)',
 'redirectpagesub'   => 'Tilvísunarsíða',
-'lastmodifiedat'    => 'Þessari síðu var síðast breytt $2, klukkan $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Þessari síðu var síðast breytt $2, klukkan $1.',
 'viewcount'         => 'Þessi síða hefur verið skoðuð {{PLURAL:$1|einu sinni|$1 sinnum}}.',
 'protectedpage'     => 'Vernduð síða',
 'jumpto'            => 'Stökkva á:',
@@ -874,7 +877,7 @@ Hún er nú þegar til.',
 'currentrev'             => 'Núverandi útgáfa',
 'currentrev-asof'        => 'Núverandi breyting frá og með $1',
 'revisionasof'           => 'Útgáfa síðunnar $1',
-'revision-info'          => 'Útgáfa frá $1 eftir $2', # Additionally available: $3: revision id
+'revision-info'          => 'Útgáfa frá $1 eftir $2',
 'previousrevision'       => '←Fyrri útgáfa',
 'nextrevision'           => 'Næsta útgáfa→',
 'currentrevisionlink'    => 'Núverandi útgáfa',
@@ -896,7 +899,7 @@ Skýringartexti: (nú) = skoðanamunur á núverandi útgáfu,
 # Revision feed
 'history-feed-title'          => 'Breytingaskrá',
 'history-feed-description'    => 'Breytingaskrá fyrir þessa síðu á wiki-síðunni',
-'history-feed-item-nocomment' => '$1 á $2', # user at time
+'history-feed-item-nocomment' => '$1 á $2',
 'history-feed-empty'          => 'Síðan sem þú leitaðir að er ekki til.
 Möglegt er að henni hafi verið eytt út af þessari wiki síðu, eða endurnefnd.
 Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum síðum.',
@@ -1109,7 +1112,7 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'files'                     => 'Skrár',
 
 # User rights
-'userrights'                  => 'Breyta notandaréttindum', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Breyta notandaréttindum',
 'userrights-lookup-user'      => 'Yfirlit notandahópa',
 'userrights-user-editname'    => 'Skráðu notandanafn:',
 'editusergroup'               => 'Breyta notandahópum',
@@ -1658,8 +1661,8 @@ Sjá lista yfir nýlegar eyðingar í $2.',
 eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
 
 Síðasta breyting er frá [[User:$3|$3]] ([[User talk:$3|Spjall]]).',
-'editcomment'      => "Beytingarágripið var: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Tók aftur breytingar [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Beytingarágripið var: \"''\$1''\".",
+'revertpage'       => 'Tók aftur breytingar [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]',
 'rollback-success' => 'Tók til baka breytingar eftir $1; núverandi $2.',
 
 # Protect
@@ -1693,7 +1696,7 @@ Núverandi staða síðunnar er '''$1''':",
 'protect-cantedit'            => 'Þú getur ekki breytt verndunarstigi þessarar síðu, vegna þess að þú hefur ekki réttindin til að breyta því.',
 'protect-othertime'           => 'Annar tími:',
 'protect-othertime-op'        => 'annar tími',
-'protect-expiry-options'      => '2 tíma:2 hours,1 dag:1 day,3 daga:3 days,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 tíma:2 hours,1 dag:1 day,3 daga:3 days,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite',
 'restriction-type'            => 'Réttindi:',
 'restriction-level'           => 'Takmarkaði við:',
 'minimum-size'                => 'Lágmarksstærð',
@@ -1750,7 +1753,7 @@ Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og end
 'contributions-title' => 'Framlög notanda $1',
 'mycontris'           => 'Framlög',
 'contribsub2'         => 'Eftir $1 ($2)',
-'nocontribs'          => 'Engar breytingar fundnar sem passa við þessa viðmiðun.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Engar breytingar fundnar sem passa við þessa viðmiðun.',
 'uctop'               => '(nýjast)',
 'month'               => 'Frá mánuðinum (og fyrr):',
 'year'                => 'Frá árinu (og fyrr):',
@@ -1809,7 +1812,7 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'ipbenableautoblock'          => 'Banna síðasta vistfang notanda sjálfkrafa; og þau vistföng sem viðkomandi notar til að breyta síðum',
 'ipbsubmit'                   => 'Banna notanda',
 'ipbother'                    => 'Annar tími:',
-'ipboptions'                  => '2 tíma:2 hours,1 dag:1 day,3 daga:3 days,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 tíma:2 hours,1 dag:1 day,3 daga:3 days,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite',
 'ipbotheroption'              => 'annar',
 'ipbotherreason'              => 'Önnur/auka ástæða:',
 'ipbhidename'                 => 'Fela notandanafn/vistfang úr bannskrá og notandaskrá',
@@ -1908,7 +1911,7 @@ Athugaðu að þessi aðgerð getur kallað fram viðbrögð annarra notenda og 
 'move-watch'                => 'Vakta þessa síðu',
 'movepagebtn'               => 'Færa síðu',
 'pagemovedsub'              => 'Færsla tókst',
-'movepage-moved'            => "<big>'''„$1“ hefur verið færð á „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => "<big>'''„$1“ hefur verið færð á „$2“'''</big>",
 'articleexists'             => 'Annaðhvort er þegar til síða undir þessum titli, eða sá titill sem þú hefur valið er ekki gildur.
 Vinsamlegast veldu annan titil.',
 'cantmove-titleprotected'   => 'Þú getur ekki fært síðu á þessa staðsetningu, því nýi titillinn hefur verið verndaður gegn sköpun',
@@ -2070,7 +2073,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Óþekktur notandi|Óþekktir notendur}} á {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} notandi $1',
-'lastmodifiedatby' => 'Þessari síðu var síðast breytt $2, $1 af $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Þessari síðu var síðast breytt $2, $1 af $3.',
 'othercontribs'    => 'Byggt á verkum $1.',
 'others'           => 'aðrir',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|notandi|notendur}} $1',
@@ -2176,7 +2179,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'       => 'Breidd',
@@ -2347,7 +2350,7 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 'watchlisttools-raw'  => 'Breyta opnum vaktlistanum',
 
 # Special:Version
-'version'                  => 'Útgáfa', # Not used as normal message but as header for the special page itself
+'version'                  => 'Útgáfa',
 'version-extensions'       => 'Uppsettar viðbætur',
 'version-specialpages'     => 'Kerfissíður',
 'version-variables'        => 'Breytur',

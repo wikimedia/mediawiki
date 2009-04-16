@@ -1,6 +1,9 @@
 <?php
 /** Araucanian (Mapudungun)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -192,7 +195,7 @@ $messages = array(
 'historyempty'           => '(welli)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 $2 mew', # user at time
+'history-feed-item-nocomment' => '$1 $2 mew',
 
 # Revision deletion
 'rev-delundel'  => 'pengelün/ellkan',
@@ -367,7 +370,7 @@ $messages = array(
 'protectexpiry'           => 'Afi:',
 'protect-level-sysop'     => 'Pu ngünefe müṯen',
 'protect-summary-cascade' => 'Trayengko',
-'protect-expiry-options'  => '1 ora:1 hour,1 aṉtü:1 day,1 semana:1 week,2 semanas:2 weeks,1 küyeṉ:1 month,3 küyeṉ:3 months,6 küyeṉ:6 months,1 tripantu:1 year,Rumel:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'  => '1 ora:1 hour,1 aṉtü:1 day,1 semana:1 week,2 semanas:2 weeks,1 küyeṉ:1 month,3 küyeṉ:3 months,6 küyeṉ:6 months,1 tripantu:1 year,Rumel:infinite',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Pepiwelukay',
@@ -399,7 +402,7 @@ $messages = array(
 'ipbexpiry'          => 'Afi',
 'ipbreason'          => 'Dungu:',
 'ipbreasonotherlist' => 'Kake dungu:',
-'ipboptions'         => '2 ora:2 hours,1 aṉtü:1 day,3 aṉtü:3 days,1 semana:1 week,2 semana:2 weeks,1 küyeṉ:1 month,3 küyeṉ:3 months,6 küyeṉ:6 months,1 tripantu:1 year,rumel:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '2 ora:2 hours,1 aṉtü:1 day,3 aṉtü:3 days,1 semana:1 week,2 semana:2 weeks,1 küyeṉ:1 month,3 küyeṉ:3 months,6 küyeṉ:6 months,1 tripantu:1 year,rumel:infinite',
 'ipbotheroption'     => 'Kakelu',
 'ipblocklist-submit' => 'Kintun',
 'expiringblock'      => 'afi $1',

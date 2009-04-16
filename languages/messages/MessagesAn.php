@@ -1,6 +1,9 @@
 <?php
 /** Aragonese (Aragonés)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -225,7 +228,7 @@ $messages = array(
 'category-media-header'          => 'Contenius multimedia en a categoría "$1"',
 'category-empty'                 => "''Ista categoría no tiene por agora garra articlo ni conteniu multimedia''",
 'hidden-categories'              => '{{PLURAL:$1|Categoría amagata|Categorías amagatas}}',
-'hidden-category-category'       => 'Categorías amagatas', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categorías amagatas',
 'category-subcat-count'          => "{{PLURAL:$2|Ista categoría contiene nomás a siguient subcategoría.|Ista categoría encluye {{PLURAL:$1|a siguient subcategoría|as siguients $1 subcategorías}}, d'un total de $2.}}",
 'category-subcat-count-limited'  => 'Ista categoría contiene {{PLURAL:$1|a siguient subcategoría|as siguients $1 subcategorías}}.',
 'category-article-count'         => "{{PLURAL:$2|Ista categoría nomás encluye a pachina siguient.|{{PLURAL:$1|A pachina siguient fa parte|As pachinas siguients fan parte}} d'esta categoría, d'un total de $2.}}",
@@ -312,7 +315,7 @@ $messages = array(
 'otherlanguages'    => 'En atras luengas',
 'redirectedfrom'    => '(Reendrezato dende $1)',
 'redirectpagesub'   => 'Pachina reendrezata',
-'lastmodifiedat'    => "Zaguera edizión d'ista pachina: $2, $1.", # $1 date, $2 time
+'lastmodifiedat'    => "Zaguera edizión d'ista pachina: $2, $1.",
 'viewcount'         => 'Ista pachina ha tenito {{PLURAL:$1|una besita|$1 besitas}}.',
 'protectedpage'     => 'Pachina protechita',
 'jumpto'            => 'Ir ta:',
@@ -779,7 +782,7 @@ A razón endicata por $3 ye ''$2''",
 'currentrev'             => 'Bersión autual',
 'currentrev-asof'        => "zaguera bersión d'o $1",
 'revisionasof'           => "Bersión d'o $1",
-'revision-info'          => "Bersión d'o $1 feita por $2", # Additionally available: $3: revision id
+'revision-info'          => "Bersión d'o $1 feita por $2",
 'previousrevision'       => '← Bersión anterior',
 'nextrevision'           => 'Bersión siguient →',
 'currentrevisionlink'    => 'Beyer bersión autual',
@@ -800,7 +803,7 @@ A razón endicata por $3 ye ''$2''",
 # Revision feed
 'history-feed-title'          => 'Istorial de bersions',
 'history-feed-description'    => "Istorial de bersions d'ista pachina en o wiki",
-'history-feed-item-nocomment' => '$1 en $2', # user at time
+'history-feed-item-nocomment' => '$1 en $2',
 'history-feed-empty'          => "A pachina demandata no esiste.
 Puede que aiga estato borrata d'o wiki u renombrata.
 Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relebants.",
@@ -1086,7 +1089,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'prefs-custom-js'           => 'JS presonalizato',
 
 # User rights
-'userrights'                  => "Confegurazión d'os dreitos d'os usuarios", # Not used as normal message but as header for the special page itself
+'userrights'                  => "Confegurazión d'os dreitos d'os usuarios",
 'userrights-lookup-user'      => "Confegurar collas d'usuarios",
 'userrights-user-editname'    => "Escriba un nombre d'usuario:",
 'editusergroup'               => "Editar as collas d'usuarios",
@@ -1798,8 +1801,8 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 'alreadyrolled'    => "No se puet desfer a zaguer edizión de [[:$1]] feita por [[User:$2|$2]] ([[User talk:$2|descusión]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u desfeito edizions en ixa pachina. 
 
 A zaguer edizión d'a pachina la fazió [[User:$3|$3]] ([[User talk:$3|descusión]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "O resumen d'a edizión ye: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => "S'han esfeito as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "O resumen d'a edizión ye: \"''\$1''\".",
+'revertpage'       => "S'han esfeito as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]",
 'rollback-success' => "Esfeitas as edizions de $1; s'ha retornato á la zaguer bersión de $2.",
 'sessionfailure'   => 'Pareix que bi ha un problema con a suya sesión;
 s\'ha anulato ista aizión como mida de precura contra secuestros de sesión.
@@ -1846,7 +1849,7 @@ Contino se i amuestran as opzions autuals d'a pachina '''$1''':",
 **Guerra d'edizions
 **Pachina muit besitada",
 'protect-edit-reasonlist'     => 'Editar as razons ta protecher',
-'protect-expiry-options'      => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite',
 'restriction-type'            => 'Premiso:',
 'restriction-level'           => 'Libel de restrizión:',
 'minimum-size'                => 'Grandaria menima',
@@ -1919,7 +1922,7 @@ $1',
 'contributions-title' => "Contrebuzions de l'usuario $1",
 'mycontris'           => 'Contrebuzions',
 'contribsub2'         => 'De $1 ($2)',
-'nocontribs'          => "No s'han trobato cambeos que concordasen con ixos criterios", # Optional parameter: $1 is the user name
+'nocontribs'          => "No s'han trobato cambeos que concordasen con ixos criterios",
 'uctop'               => '(zaguer cambeo)',
 'month'               => 'Dende o mes (y anteriors):',
 'year'                => "Dende l'año (y anteriors):",
@@ -1980,7 +1983,7 @@ as pachinas que s'han bandalizato).",
 'ipbenableautoblock'              => "bloqueyar automaticament l'adreza IP emplegata por iste usuario, y cualsiquier IP posterior dende a que prebe d'editar",
 'ipbsubmit'                       => 'bloqueyar á iste usuario',
 'ipbother'                        => 'Espezificar atro periodo',
-'ipboptions'                      => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite',
 'ipbotheroption'                  => 'atro',
 'ipbotherreason'                  => 'Razons diferens u adizionals',
 'ipbhidename'                     => "Amagar usuario en o rechistro de bloqueyos, a lista de bloqueyos autibos y a lista d'usuarios",
@@ -2103,7 +2106,7 @@ En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu
 'move-watch'                   => 'Cosirar iste articlo',
 'movepagebtn'                  => 'Tresladar pachina',
 'pagemovedsub'                 => 'Treslado feito correutament',
-'movepage-moved'               => "<big>S'ha tresladato '''\"\$1\"  ta \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>S'ha tresladato '''\"\$1\"  ta \"\$2\"'''</big>",
 'movepage-moved-redirect'      => "S'ha creyato una reendrezera.",
 'movepage-moved-noredirect'    => "S'ha canzelato a creyazión d'una reendrezera.",
 'articleexists'                => 'Ya bi ha una pachina con ixe nombre u o nombre que ha eslechito no ye conforme. Por fabor trigue un atro nombre.',
@@ -2293,7 +2296,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
 'siteuser'         => 'Usuario $1 de {{SITENAME}}',
-'lastmodifiedatby' => 'Ista pachina estió modificata por zaguer begada á $2, $1 por $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ista pachina estió modificata por zaguer begada á $2, $1 por $3.',
 'othercontribs'    => 'Basato en o treballo de $1.',
 'others'           => 'atros',
 'siteusers'        => '{{PLURAL:$2|Usuario|Usuarios}} $1 de {{SITENAME}}',
@@ -2407,7 +2410,7 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Amplaria',
@@ -2534,14 +2537,14 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 
 'exif-unknowndate' => 'Calendata esconoixita',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Contornata orizontalment', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Chirata 180º', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Contornata berticalment', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => "Chirata 90° en contra d'as agullas d'o reloch y contornata berticalment", # 0th row: left; 0th column: top
-'exif-orientation-6' => "Chirata 90° como as agullas d'o reloch", # 0th row: right; 0th column: top
-'exif-orientation-7' => "Chirata 90° como as agullas d'o reloch y contornata berticalment", # 0th row: right; 0th column: bottom
-'exif-orientation-8' => "Chirata 90° en contra d'as agullas d'o reloch", # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Contornata orizontalment',
+'exif-orientation-3' => 'Chirata 180º',
+'exif-orientation-4' => 'Contornata berticalment',
+'exif-orientation-5' => "Chirata 90° en contra d'as agullas d'o reloch y contornata berticalment",
+'exif-orientation-6' => "Chirata 90° como as agullas d'o reloch",
+'exif-orientation-7' => "Chirata 90° como as agullas d'o reloch y contornata berticalment",
+'exif-orientation-8' => "Chirata 90° en contra d'as agullas d'o reloch",
 
 'exif-planarconfiguration-1' => 'formato de paquez de píxels',
 'exif-planarconfiguration-2' => 'formato plano',
@@ -2803,7 +2806,7 @@ Tamién puede fer serbir o [[Special:Watchlist/edit|editor estándar]].",
 'duplicate-defaultsort' => "Pare cuenta: A clau d'ordenazión por defeuto «$2» anula l'anterior clau d'ordenazión por defeuto «$1».",
 
 # Special:Version
-'version'                          => 'Bersión', # Not used as normal message but as header for the special page itself
+'version'                          => 'Bersión',
 'version-extensions'               => 'Estensions instalatas',
 'version-specialpages'             => 'Pachinas espezials',
 'version-parserhooks'              => "Grifios d'o parser (parser hooks)",

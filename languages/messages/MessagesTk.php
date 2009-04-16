@@ -1,6 +1,9 @@
 <?php
 /** Turkmen (Türkmençe)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -121,7 +124,7 @@ Sahypalary keşirleme',
 'category-media-header'          => '"$1" kategoriýasyndaky multimediýa faýllary',
 'category-empty'                 => "''Bu kategoriýada heniz hiçhili sahypa ýa-da multimediýa faýly ýok.''",
 'hidden-categories'              => '{{PLURAL:$1|Gizlin kategoriýa|Gizlin kategoriýalar}}',
-'hidden-category-category'       => 'Gizlin kategoriýalar', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Gizlin kategoriýalar',
 'category-subcat-count'          => '{{PLURAL:$2|Bu kategoriýa diňe aşakdaky kiçi kategoriýany öz içine alýar.|Bu kategoriýada jemi $2 sany 
 kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriýa}} bardyr}}',
 'category-subcat-count-limited'  => 'Bu kategoriýada aşakdaky {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriýa}} bardyr.',
@@ -208,7 +211,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'otherlanguages'    => 'Başga dillerde',
 'redirectedfrom'    => '($1 sahypasyndan gönükdirildi)',
 'redirectpagesub'   => 'Gönükdirme sahypasy',
-'lastmodifiedat'    => 'Bu sahypa iň soňky gezek $2, $1 senesinde üýtgedildi.', # $1 date, $2 time
+'lastmodifiedat'    => 'Bu sahypa iň soňky gezek $2, $1 senesinde üýtgedildi.',
 'viewcount'         => 'Bu sahypa {{PLURAL:$1|bir|$1 }} gezek görülipdir.',
 'protectedpage'     => 'Goragly sahypa',
 'jumpto'            => 'Git we:',
@@ -576,7 +579,7 @@ Kesgitleme: ('''häzirki''') = häzirki wersiýa bilen aradaky tapawut,
 'historyempty'           => '(boş)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1, $2 senesinde', # user at time
+'history-feed-item-nocomment' => '$1, $2 senesinde',
 
 # Revision deletion
 'rev-delundel'   => 'görkez/gizle',
@@ -845,7 +848,7 @@ Bu sahypanyň gorag derejesini üýtgedip bilersiňiz, ýöne ol kaskadly goraga
 
 # Block/unblock
 'blockip'                  => 'Ulanyjyny blokirle',
-'ipboptions'               => '2 sagat:2 hours,1 gün:1 day,3 gün:3 days,1 hepde:1 week,2 hepde:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 ýyl:1 year,Möhletsiz:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 sagat:2 hours,1 gün:1 day,3 gün:3 days,1 hepde:1 week,2 hepde:2 weeks,1 aý:1 month,3 aý:3 months,6 aý:6 months,1 ýyl:1 year,Möhletsiz:infinite',
 'ipblocklist'              => 'Blokirlenen IP adresleri we ulanyjy atlary',
 'blocklink'                => 'blokirle',
 'unblocklink'              => 'blokirowkany aýyr',
@@ -875,7 +878,7 @@ Bu üýtgeşiklik giňden tanalýan bir sahypa üçin garaşylmaýan netijelere 
 'move-watch'       => 'Bu sahypany gözegçilikde sakla',
 'movepagebtn'      => 'Adyny üýtget',
 'pagemovedsub'     => 'At üýtgedildi',
-'movepage-moved'   => '<big>\'\'\'"$1" sahypasy "$2" sahypasyna geçirildi\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" sahypasy "$2" sahypasyna geçirildi\'\'\'</big>',
 'articleexists'    => 'Şu atda eýýämden bir sahypa bar ýa-da saýlap alan adyňyz nädogry.
 Başga bir ady synap görmegiňizi haýyş edýäris.',
 'talkexists'       => "'''Sahypanyň özi şowlulyk bilen geçirildi, ýöne çekişme sahypasyny geçirip bolmady sebäbi geçirilmeli adynda öňdenem bir sahypa bar. Çekişme sahypasynyň içindäkileri özüňiziň geçirmegiňizi haýyş edýäris.'''",
@@ -976,7 +979,7 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Bu faýly daşarky programmalary ulanyp redaktirläň',

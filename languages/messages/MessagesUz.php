@@ -1,6 +1,9 @@
 <?php
 /** Uzbek (O'zbek)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -156,7 +159,7 @@ $messages = array(
 'otherlanguages'   => 'Boshqa tillarda',
 'redirectedfrom'   => '($1dan yoʻnaltirildi)',
 'redirectpagesub'  => 'Yoʻnaltiruvchi sahifa',
-'lastmodifiedat'   => 'Bu sahifa oxirgi marta $2, $1 sanasida tahrirlangan.', # $1 date, $2 time
+'lastmodifiedat'   => 'Bu sahifa oxirgi marta $2, $1 sanasida tahrirlangan.',
 'viewcount'        => 'Bu sahifaga {{PLURAL:$1|bir marta|$1 marta}} murojaat qilingan.',
 'jumpto'           => 'Oʻtish:',
 'jumptonavigation' => 'foydalanish',
@@ -511,7 +514,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 # Protect
 'protectlogpage'         => 'Himoyalash qaydlari',
 'protect-level-sysop'    => 'Faqat administratorlar uchun',
-'protect-expiry-options' => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Tahrirlash',
@@ -547,7 +550,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 
 # Block/unblock
 'blockip'      => 'Foydalanuvchini chetlashtir',
-'ipboptions'   => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite', # display1:time1,display2:time2,...
+'ipboptions'   => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite',
 'ipblocklist'  => 'Chetlashtirilgan IP manzillari va foydalanuvchilar',
 'blocklink'    => 'chetlashtir',
 'contribslink' => 'hissasi',
@@ -557,7 +560,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'movearticle'    => "Sahifani ko'chirish",
 'movepagebtn'    => 'Sahifani koʻchir',
 'pagemovedsub'   => 'Koʻchirildi',
-'movepage-moved' => '<big>\'\'\'"$1" nomli sahifa "$2" nomli sahifaga koʻchirildi\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved' => '<big>\'\'\'"$1" nomli sahifa "$2" nomli sahifaga koʻchirildi\'\'\'</big>',
 '1movedto2'      => "[[$1]] [[$2]]ga ko'chirildi",
 'movelogpage'    => 'Koʻchirish qaydlari',
 'movereason'     => 'Sabab:',

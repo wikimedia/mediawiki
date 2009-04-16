@@ -1,6 +1,9 @@
 <?php
 /** Lao (ລາວ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -196,7 +199,7 @@ $messages = array(
 'category-media-header'         => 'ໜ້າຕ່າງ າ ໃນ "$1"',
 'category-empty'                => "''ບໍ່ມີໜ້າໃດຢູ່ໃນໝວດນີ້''",
 'hidden-categories'             => '{{PLURAL:$1|ໜວດເຊື່ອງ|ໜວດເຊື່ອງ}}',
-'hidden-category-category'      => 'ບັນດາໜວດເຊື່ອງ', # Name of the category where hidden categories will be listed
+'hidden-category-category'      => 'ບັນດາໜວດເຊື່ອງ',
 'category-subcat-count-limited' => 'ໜວດນີ້ ມີ ໜວດຍ່ອຍ ດັ່ງຕໍ່ໄປນີ້ {{PLURAL:$1|ໜວດຍ່ອຍ|$1 ໜວດຍ່ອຍ}}.',
 'category-article-count'        => '{{PLURAL:$2|ໝວດນີ້ມີໜ້າຢູ່ພຽງໜ້າດຽວ|ມີ {{PLURAL:$1|ໜ້າດຽວ|$1 ໜ້າ}} ໃນໝວດນີ້ ເຕັມ $2}}',
 'listingcontinuesabbrev'        => 'ຕໍ່.',
@@ -261,7 +264,7 @@ $messages = array(
 'otherlanguages'   => 'ເປັນພາສາອື່ນໆ',
 'redirectedfrom'   => '(ໂອນມາຈາກ $1)',
 'redirectpagesub'  => 'ໜ້າໂອນ',
-'lastmodifiedat'   => 'ໜ້ານີ້ຖຶກດັດແກ້ຫຼ້າສຸດ $2, $1.', # $1 date, $2 time
+'lastmodifiedat'   => 'ໜ້ານີ້ຖຶກດັດແກ້ຫຼ້າສຸດ $2, $1.',
 'viewcount'        => 'ໜ້ານີ້ຖືກເຂົ້າເບິ່ງ {{PLURAL:$1|ເທື່ອໜຶ່ງ|$1 ເທື່ອ}}.',
 'protectedpage'    => 'ໜ້າຖືກປົກປ້ອງ',
 'jumpto'           => 'ໄປຫາ:',
@@ -799,7 +802,7 @@ $messages = array(
 'contributions' => 'ການປະກອບສ່ວນ',
 'mycontris'     => 'ປະກອບສ່ວນ',
 'contribsub2'   => 'ສຳຫຼັບ $1 ($2)',
-'nocontribs'    => 'ຍັງບໍ່ມີການປ່ຽນແປງ ໃນນີ້.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'ຍັງບໍ່ມີການປ່ຽນແປງ ໃນນີ້.',
 'uctop'         => '(ເທິງສຸດ)',
 'month'         => 'ແຕ່ເດືອນ (ແລະກ່ອນໜ້ານັ້ນ):',
 'year'          => 'ແຕ່ປີ (ແລະກ່ອນໜ້ານັ້ນ):',
@@ -997,7 +1000,7 @@ $messages = array(
 'watchlisttools-edit' => 'ເບິ່ງ ແລະ ດັດແກ້ ລາຍການຕິດຕາມ',
 
 # Special:Version
-'version' => 'ສະບັບ', # Not used as normal message but as header for the special page itself
+'version' => 'ສະບັບ',
 
 # Special:FilePath
 'filepath' => 'ທາງໄປຫາໄຟລ໌',

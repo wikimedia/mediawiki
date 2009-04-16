@@ -1,6 +1,9 @@
 <?php
 /** Gheg Albanian (Gegë)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -120,7 +123,7 @@ $messages = array(
 'category-media-header'    => 'Skeda në kategori "$1"',
 'category-empty'           => "''Kjo kategori tashpërtash nuk përmban asnji faqe apo media.''",
 'hidden-categories'        => '{{PLURAL:$1|Kategoritë e mshehta|Kategoritë e mshehta}}',
-'hidden-category-category' => 'Kategori të mshehta', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Kategori të mshehta',
 'listingcontinuesabbrev'   => 'vazh.',
 
 'mainpagetext'      => "<big>'''MediaWiki software u instalue me sukses.'''</big>",
@@ -200,7 +203,7 @@ $messages = array(
 'otherlanguages'    => "N'gjuhë tjera",
 'redirectedfrom'    => '(Përcjellë nga $1)',
 'redirectpagesub'   => 'Faqe përcjellëse',
-'lastmodifiedat'    => 'Kjo faqe asht ndryshue për herë të fundit më $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Kjo faqe asht ndryshue për herë të fundit më $2, $1.',
 'viewcount'         => 'Kjo faqe asht pá $1 herë.',
 'protectedpage'     => 'Faqe e mbrojtme',
 'jumpto'            => 'Shko te:',
@@ -403,7 +406,7 @@ Llogaria juej asht hap. Mos harroni me ndryshu parapëlqimet e {{SITENAME}}-s.',
 
 # History pages
 'revisionasof'     => 'Versioni i $1',
-'revision-info'    => 'Versioni me $1 nga $2', # Additionally available: $3: revision id
+'revision-info'    => 'Versioni me $1 nga $2',
 'previousrevision' => '← Verzion ma i vjetër',
 'cur'              => 'tash',
 'last'             => 'fund',

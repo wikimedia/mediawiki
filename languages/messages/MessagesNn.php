@@ -1,6 +1,9 @@
 <?php
 /** Norwegian Nynorsk (‪Norsk (nynorsk)‬)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -375,7 +378,7 @@ $messages = array(
 'category-media-header'          => 'Media i kategorien «$1»',
 'category-empty'                 => "''Denne kategorien inneheld for tida ingen sider eller anna media.''",
 'hidden-categories'              => '{{PLURAL:$1|Gøymd kategori|Gøymde kategoriar}}',
-'hidden-category-category'       => 'Gøymde kategoriar', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Gøymde kategoriar',
 'category-subcat-count'          => '{{PLURAL:$2|Denne kategorien har berre den følgjande underkategorien.|Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}, av totalt $2.}}',
 'category-subcat-count-limited'  => 'Denne kategorien har {{PLURAL:$1|den følgjande underkategorien|dei følgjande $1 underkategoriane}}.',
 'category-article-count'         => '{{PLURAL:$2|Denne kategorien inneheld berre den følgjande sida.|Følgjande {{PLURAL:$1|side|$1 sider}} er i denne kategorien, av totalt $2.}}',
@@ -462,7 +465,7 @@ $messages = array(
 'otherlanguages'    => 'På andre språk',
 'redirectedfrom'    => '(Omdirigert frå $1)',
 'redirectpagesub'   => 'Omdirigeringsside',
-'lastmodifiedat'    => 'Sida vart sist endra $1 kl. $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Sida vart sist endra $1 kl. $2.',
 'viewcount'         => 'Sida er vist {{PLURAL:$1|éin gong|$1 gonger}}.',
 'protectedpage'     => 'Verna side',
 'jumpto'            => 'Gå til:',
@@ -922,7 +925,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'currentrev'             => 'Noverande versjon',
 'currentrev-asof'        => 'Noverande versjon frå $1',
 'revisionasof'           => 'Versjonen frå $1',
-'revision-info'          => 'Versjonen frå $1 av $2', # Additionally available: $3: revision id
+'revision-info'          => 'Versjonen frå $1 av $2',
 'previousrevision'       => '←Eldre versjon',
 'nextrevision'           => 'Nyare versjon→',
 'currentrevisionlink'    => 'Noverande versjon',
@@ -942,7 +945,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 # Revision feed
 'history-feed-title'          => 'Endringshistorikk',
 'history-feed-description'    => 'Endringshistorikk for denne sida på wikien',
-'history-feed-item-nocomment' => '$1 på $2', # user at time
+'history-feed-item-nocomment' => '$1 på $2',
 'history-feed-empty'          => 'Den etterspurde sida finst ikkje. Ho kan vere sletta frå wikien, eller vere flytta. Prøv å [[Special:Search|søke på wikien]] for relevante nye sider.',
 
 # Revision deletion
@@ -1256,7 +1259,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-custom-js'           => 'Eigendefinert JavaScript',
 
 # User rights
-'userrights'                  => 'Administrering av brukartilgang', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Administrering av brukartilgang',
 'userrights-lookup-user'      => 'Administrer brukargrupper',
 'userrights-user-editname'    => 'Skriv inn brukarnamn:',
 'editusergroup'               => 'Endre brukargrupper',
@@ -1600,8 +1603,8 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'noimage'                   => 'Det finst inga fil med dette namnet, men du kan $1.',
 'noimage-linktext'          => 'laste opp eitt',
 'uploadnewversion-linktext' => 'Last opp ny versjon av denne fila',
-'shared-repo-from'          => 'frå $1', # $1 is the repository name
-'shared-repo'               => 'eit sams fillager', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'frå $1',
+'shared-repo'               => 'eit sams fillager',
 
 # File reversion
 'filerevert'                => 'Rull attende $1',
@@ -1971,8 +1974,8 @@ For hjelp og meir informasjon:
 'alreadyrolled'    => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) fordi nokon andre alt har endra sida att eller fjerna endringa.
 
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Samandraget for endringa var: «''$1''».", # only shown if there is an edit comment
-'revertpage'       => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Samandraget for endringa var: «''$1''».",
+'revertpage'       => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]',
 'rollback-success' => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
 'sessionfailure'   => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 
@@ -2017,7 +2020,7 @@ Her er dei noverande innstillingane for sida '''$1''':",
 ** Endringskrig
 ** Side med mange vitjande',
 'protect-edit-reasonlist'     => 'Endrar verneårsaker',
-'protect-expiry-options'      => '1 time:1 hour,1 dag:1 day,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 time:1 hour,1 dag:1 day,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite',
 'restriction-type'            => 'Tilgang:',
 'restriction-level'           => 'Avgrensingsnivå:',
 'minimum-size'                => 'Minimumstorleik',
@@ -2093,7 +2096,7 @@ $1',
 'contributions-title' => 'Bidrag av $1',
 'mycontris'           => 'Eigne bidrag',
 'contribsub2'         => 'For $1 ($2)',
-'nocontribs'          => 'Det vart ikkje funne nokon endringar gjorde av denne brukaren.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Det vart ikkje funne nokon endringar gjorde av denne brukaren.',
 'uctop'               => ' (øvst)',
 'month'               => 'Månad:',
 'year'                => 'År:',
@@ -2151,7 +2154,7 @@ $1',
 'ipbenableautoblock'              => 'Blokker den førre IP-adressa som vart brukt av denne brukaren automatisk, og alle andre IP-adresser brukaren prøvar å endre sider med i framtida',
 'ipbsubmit'                       => 'Blokker denne brukaren',
 'ipbother'                        => 'Anna tid',
-'ipboptions'                      => '2 timar:2 hours,1 dag:1 day,3 dagar:3 days,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 timar:2 hours,1 dag:1 day,3 dagar:3 days,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite',
 'ipbotheroption'                  => 'anna tid',
 'ipbotherreason'                  => 'Anna grunn/tilleggsgrunn:',
 'ipbhidename'                     => 'Gøym brukarnamnet frå endringar og lister',
@@ -2269,7 +2272,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'move-watch'                   => 'Overvak denne sida',
 'movepagebtn'                  => 'Flytt side',
 'pagemovedsub'                 => 'Flyttinga er gjennomført',
-'movepage-moved'               => "<big>'''«$1» er flytt til «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''«$1» er flytt til «$2»'''</big>",
 'movepage-moved-redirect'      => 'Ei omdirigering er vorten oppretta.',
 'movepage-moved-noredirect'    => 'Det vart ikkje oppretta ei omdirigering.',
 'articleexists'                => 'Ei side med det namnet finst allereie, eller det namnet du har valt er ikkje gyldig. Vel eit anna namn.',
@@ -2489,7 +2492,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 # Attribution
 'anonymous'        => '{{PLURAL:$1|anonym brukar|anonyme brukarar}} av {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-brukaren $1',
-'lastmodifiedatby' => 'Sida vart sist endra den $1 kl. $2 av $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Sida vart sist endra den $1 kl. $2 av $3.',
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|brukar|brukarar}} $1',
@@ -2611,7 +2614,7 @@ Dei andre felta er gøymde som standard.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breidd',
@@ -2738,14 +2741,14 @@ Dei andre felta er gøymde som standard.
 
 'exif-unknowndate' => 'Ukjend dato',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Spegla vassrett', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotert 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Spegla loddrett', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotert 90° motsols og spegla vassrett', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotert 90° medsols', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotert 90° medsols og spegla loddrett', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotert 90° motsols', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Spegla vassrett',
+'exif-orientation-3' => 'Rotert 180°',
+'exif-orientation-4' => 'Spegla loddrett',
+'exif-orientation-5' => 'Rotert 90° motsols og spegla vassrett',
+'exif-orientation-6' => 'Rotert 90° medsols',
+'exif-orientation-7' => 'Rotert 90° medsols og spegla loddrett',
+'exif-orientation-8' => 'Rotert 90° motsols',
 
 'exif-planarconfiguration-1' => 'grovformat',
 'exif-planarconfiguration-2' => 'planærformat',
@@ -3011,7 +3014,7 @@ Du kan òg [[Special:Watchlist/raw|endre overvakingslista i råformat]].',
 'duplicate-defaultsort' => 'Åtvaring: Standarsorteringa «$2» tar over for den tidlegare sorteringa «$1».',
 
 # Special:Version
-'version'                          => 'Versjon', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versjon',
 'version-extensions'               => 'Installerte utvidingar',
 'version-specialpages'             => 'Spesialsider',
 'version-parserhooks'              => 'Parsertillegg',

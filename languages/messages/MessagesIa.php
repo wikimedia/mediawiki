@@ -1,6 +1,9 @@
 <?php
 /** Interlingua (Interlingua)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -239,7 +242,7 @@ $messages = array(
 'category-media-header'          => 'Media in categoria "$1"',
 'category-empty'                 => "''Iste categoria non contine alcun pagina o file multimedia al momento.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria celate|Categorias celate}}',
-'hidden-category-category'       => 'Categorias celate', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categorias celate',
 'category-subcat-count'          => '{{PLURAL:$2|Iste categoria ha solmente le sequente subcategoria.|Iste categoria ha le sequente {{PLURAL:$1|subcategoria|$1 subcategorias}}, ex $2 in total.}}',
 'category-subcat-count-limited'  => 'Iste categoria ha le sequente {{PLURAL:$1|subcategoria|$1 subcategorias}}.',
 'category-article-count'         => '{{PLURAL:$2|Iste categoria contine solmente le sequente pagina.|Le sequente {{PLURAL:$1|pagina es|$1 paginas es}} in iste categora, ex $2 in total.}}',
@@ -325,7 +328,7 @@ $messages = array(
 'otherlanguages'    => 'In altere linguas',
 'redirectedfrom'    => '(Redirigite ab $1)',
 'redirectpagesub'   => 'Pagina de redirection',
-'lastmodifiedat'    => 'Ultime modification de iste pagina: le $1 a $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ultime modification de iste pagina: le $1 a $2.',
 'viewcount'         => 'Iste pagina ha essite visitate {{PLURAL:$1|un vice|$1 vices}}.',
 'protectedpage'     => 'Pagina protegite',
 'jumpto'            => 'Saltar a:',
@@ -857,7 +860,7 @@ Le motivo que $3 dava es ''$2''",
 'currentrev'             => 'Version actual',
 'currentrev-asof'        => 'Version actual in data del $1',
 'revisionasof'           => 'Version del $1',
-'revision-info'          => 'Version del $1 per $2', # Additionally available: $3: revision id
+'revision-info'          => 'Version del $1 per $2',
 'previousrevision'       => '← Version precedente',
 'nextrevision'           => 'Version sequente →',
 'currentrevisionlink'    => 'Version actual',
@@ -879,7 +882,7 @@ Legenda: (actu) = comparar con le version actual,
 # Revision feed
 'history-feed-title'          => 'Historia de versiones',
 'history-feed-description'    => 'Historia del versiones de iste pagina in le wiki',
-'history-feed-item-nocomment' => '$1 a $2', # user at time
+'history-feed-item-nocomment' => '$1 a $2',
 'history-feed-empty'          => 'Le pagina que tu requestava non existe.
 Es possibile que illo esseva delite del wiki, o renominate.
 Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
@@ -1202,7 +1205,7 @@ per favor vide math/README pro configurar lo.",
 'prefs-custom-js'           => 'JS personalisate',
 
 # User rights
-'userrights'                  => 'Gestion de derectos de usator', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Gestion de derectos de usator',
 'userrights-lookup-user'      => 'Gerer gruppos de usatores',
 'userrights-user-editname'    => 'Entra un nomine de usator:',
 'editusergroup'               => 'Modificar gruppos de usatores',
@@ -1565,8 +1568,8 @@ Le description de su [$2 pagina de description] ibi es monstrate in basso.',
 'noimage'                   => 'Non existe un file con iste nomine, sed tu pote $1.',
 'noimage-linktext'          => 'cargar un',
 'uploadnewversion-linktext' => 'Cargar un nove version de iste file',
-'shared-repo-from'          => 'ab $1', # $1 is the repository name
-'shared-repo'               => 'un deposito pro uso in commun', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'ab $1',
+'shared-repo'               => 'un deposito pro uso in commun',
 
 # File reversion
 'filerevert'                => 'Reverter $1',
@@ -1960,8 +1963,8 @@ le ultime contributor es le sol autor de iste pagina.',
 un altere persona ha ja modificate o revocate le pagina.
 
 Le ultime modification esseva facite per [[User:$3|$3]] ([[User talk:$3|discussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Le summario del modification esseva: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Le summario del modification esseva: \"''\$1''\".",
+'revertpage'       => 'Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]',
 'rollback-success' => 'Revocava modificationes per $1;
 retornava al version per $2.',
 'sessionfailure'   => 'Il pare haber un problema con tu session de conto;
@@ -2013,7 +2016,7 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 ** Guerra de modificationes contraproductive
 ** Pagina frequentemente visitate',
 'protect-edit-reasonlist'     => 'Modificar le motivos pro protection',
-'protect-expiry-options'      => '1 hora:1 hour,1 die:1 day,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 die:1 day,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite',
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Nivello de restriction:',
 'minimum-size'                => 'Grandor minime',
@@ -2096,7 +2099,7 @@ $1',
 'contributions-title' => 'Contributiones del usator $1',
 'mycontris'           => 'Mi contributiones',
 'contribsub2'         => 'Pro $1 ($2)',
-'nocontribs'          => 'Necun modification ha essite trovate secundo iste criterios.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Necun modification ha essite trovate secundo iste criterios.',
 'uctop'               => '(ultime)',
 'month'               => 'A partir del mense (e anterior):',
 'year'                => 'A partir del anno (e anterior):',
@@ -2160,7 +2163,7 @@ specific que ha essite vandalisate).',
 'ipbenableautoblock'              => 'Blocar automaticamente le adresse IP usate le plus recentemente per iste usator, e omne IPs successive desde le quales ille/-a tenta facer modificationes',
 'ipbsubmit'                       => 'Blocar iste adresse',
 'ipbother'                        => 'Altere tempore:',
-'ipboptions'                      => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite',
 'ipbotheroption'                  => 'altere',
 'ipbotherreason'                  => 'Motivo altere/additional:',
 'ipbhidename'                     => 'Celar le nomine del usator del modificationes e del listas',
@@ -2300,7 +2303,7 @@ Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate."
 'move-watch'                   => 'Observar iste pagina',
 'movepagebtn'                  => 'Renominar pagina',
 'pagemovedsub'                 => 'Renomination succedite',
-'movepage-moved'               => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Un redirection ha essite create.',
 'movepage-moved-noredirect'    => 'Le creation de un redirection ha essite supprimite.',
 'articleexists'                => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
@@ -2524,7 +2527,7 @@ Immagazina lo in tu disco e carga lo hic.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usator|Usatores}} anonyme de {{SITENAME}}',
 'siteuser'         => 'Usator $1 de {{SITENAME}}',
-'lastmodifiedatby' => 'Le modification le plus recente de iste pagina esseva facite le $1 a $2 per $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Le modification le plus recente de iste pagina esseva facite le $1 a $2 per $3.',
 'othercontribs'    => 'A base de contributiones per $1.',
 'others'           => 'alteres',
 'siteusers'        => '{{PLURAL:$2|Usator|Usatores}} $1 de {{SITENAME}}',
@@ -2647,7 +2650,7 @@ Le alteres essera initialmente celate.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Latitude',
@@ -2774,14 +2777,14 @@ Le alteres essera initialmente celate.
 
 'exif-unknowndate' => 'Data incognite',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Invertite horizontalmente', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotate 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Invertite verticalmente', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotate 90° in senso antihorologic e invertite verticalmente', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotate 90° in senso horologic', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotate 90° in senso horologic e invertite verticalmente', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotate 90° in senso antihorologic', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Invertite horizontalmente',
+'exif-orientation-3' => 'Rotate 180°',
+'exif-orientation-4' => 'Invertite verticalmente',
+'exif-orientation-5' => 'Rotate 90° in senso antihorologic e invertite verticalmente',
+'exif-orientation-6' => 'Rotate 90° in senso horologic',
+'exif-orientation-7' => 'Rotate 90° in senso horologic e invertite verticalmente',
+'exif-orientation-8' => 'Rotate 90° in senso antihorologic',
 
 'exif-planarconfiguration-1' => 'formato a blocos (chunky)',
 'exif-planarconfiguration-2' => 'formato planar',
@@ -3054,7 +3057,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'duplicate-defaultsort' => 'Attention: Le clave de ordination predefinite "$2" supplanta le anterior clave de ordination predefinite "$1".',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Extensiones installate',
 'version-specialpages'             => 'Paginas special',
 'version-parserhooks'              => 'Uncinos del analysator syntactic',

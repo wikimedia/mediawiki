@@ -1,6 +1,9 @@
 <?php
 /** Malagasy (Malagasy)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -134,7 +137,7 @@ $messages = array(
 'category-media-header'    => "Fisy multimedia anatin'ny sokajy « $1 »",
 'category-empty'           => "''Tsy misy pejy, sokajy ambany na sary ao anatin'io sokajy io''",
 'hidden-categories'        => 'Sokajy misitrika',
-'hidden-category-category' => 'Sokajy misitrika', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Sokajy misitrika',
 'category-subcat-count'    => 'Ity sokajy manana $1 sokajy ambany. Ny taotaliny dia $2',
 'listingcontinuesabbrev'   => ' manaraka.',
 
@@ -583,7 +586,7 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'files'                 => 'Rakitra',
 
 # User rights
-'userrights'               => 'Fandrindràna ny fahazoan-dàlana', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Fandrindràna ny fahazoan-dàlana',
 'userrights-lookup-user'   => 'Handrindra vondrom-pikambana',
 'userrights-user-editname' => 'Manomeza solonanarana:',
 'userrights-editusergroup' => 'Hanova vondrom-pikambana',
@@ -887,8 +890,8 @@ Jereo amin\'ny $2 ny lisitry ny famafana pejy faramparany.',
 nataon'i [[User:$2|$2]] ([[User talk:$2|Dinika]]); satria efa nisy nanova ny pejy na nisy nanafoana io fanovana io.
 
 Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
-'editcomment'    => "Toy izao no fanamarihana momba io fanovana io: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "Toy izao no fanamarihana momba io fanovana io: \"''\$1''\".",
+'revertpage'     => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]",
 
 # Protect
 'protectlogtext'              => 'Eto ambany ny lisitry ny fiarovana/fanalana hidy ny pejy. Fanazavana fanampiny: jereo [[Special:ProtectedPages]].',
@@ -917,7 +920,7 @@ Ity ny reglajy ny pejy  '''$1'''",
 ** Misy be mpametraka spam
 ** Misy adim-panontana
 ** Misy olona maro no mandalo eo",
-'protect-expiry-options'      => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite',
 
 # Undelete
 'undelete'               => 'Jereo ny pejy voafafa',
@@ -943,7 +946,7 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 # Contributions
 'contributions' => "Fandraisan'anjaran'ny mpikambana",
 'mycontris'     => 'Ny nosoratako',
-'nocontribs'    => "Tsy misy fanovana mifanaraka amin'ireo critères ireo.", # Optional parameter: $1 is the user name
+'nocontribs'    => "Tsy misy fanovana mifanaraka amin'ireo critères ireo.",
 'uctop'         => ' (loha)',
 
 'sp-contributions-talk'       => 'Dinika',
@@ -967,7 +970,7 @@ Fenoy etsy ambany ny antony manokana (ohatra, mitanisà pejy nosomparana).",
 'ipbreason'                   => 'Antony',
 'ipbsubmit'                   => 'Sakano',
 'ipbother'                    => 'Hafa',
-'ipboptions'                  => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite',
 'ipbotheroption'              => 'hafa',
 'badipaddress'                => 'Tsy mety ny adiresy IP (invalid)',
 'blockipsuccesssub'           => 'Vita soa aman-tsara ny sakana',

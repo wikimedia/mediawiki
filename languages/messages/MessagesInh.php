@@ -1,6 +1,9 @@
 <?php
 /** Ingush (ГІалгІай Ğalğaj)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -176,7 +179,7 @@ $messages = array(
 'otherlanguages'    => 'Вокхо меттала',
 'redirectedfrom'    => '($1 тIера хьайахьийта)',
 'redirectpagesub'   => 'Йука меттиге йахьийта оагIув',
-'lastmodifiedat'    => 'Тiехьара хувцам у оагIувна: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Тiехьара хувцам у оагIувна: $2, $1.',
 'viewcount'         => 'Ер оагIув $1 хьо йай.',
 'protectedpage'     => 'Лораеж йоа оагIув',
 'jumpto'            => 'Уккуз дехьадала:',

@@ -1,6 +1,9 @@
 <?php
 /** Pangasinan (Pangasinan)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -56,7 +59,7 @@ $messages = array(
 'categorypage'      => 'Nengnengen so bolong na saray category',
 'viewtalkpage'      => 'Nengnengen so tongtongan',
 'otherlanguages'    => 'Diad arom ran salita',
-'lastmodifiedat'    => 'Say ayan bolong: otet ya binalo nen $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Say ayan bolong: otet ya binalo nen $2, $1.',
 'protectedpage'     => 'Iyayagel yan bolong',
 'jumptosearch'      => 'anapen',
 
@@ -359,7 +362,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'tooltip-ca-nstab-mediawiki' => 'Nengnengen so pakabat na oksoy',
 
 # Attribution
-'lastmodifiedatby' => 'Sampot ya binalo yan bolong nen agew ya $2, $1 nen $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Sampot ya binalo yan bolong nen agew ya $2, $1 nen $3.',
 
 # Special:NewFiles
 'ilsubmit' => 'Anapen',

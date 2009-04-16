@@ -1,6 +1,9 @@
 <?php
 /** Galician (Galego)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -305,7 +308,7 @@ $messages = array(
 'category-media-header'          => 'Multimedia na categoría "$1"',
 'category-empty'                 => "''Actualmente esta categoría non conta con ningunha páxina ou ficheiro multimedia.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}}',
-'hidden-category-category'       => 'Categorías ocultas', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categorías ocultas',
 'category-subcat-count'          => '{{PLURAL:$2|Esta categoría só ten a seguinte subcategoría.|Esta categoría ten {{PLURAL:$1|a seguinte subcategoría|as seguintes $1 subcategorías}}, dun total de $2.}}',
 'category-subcat-count-limited'  => 'Esta categoría ten {{PLURAL:$1|a seguinte subcategoría|as seguintes $1 subcategorías}}.',
 'category-article-count'         => '{{PLURAL:$2|Esta categoría só contén a seguinte páxina.|{{PLURAL:$1|A seguinte páxina está|As seguintes $1 páxinas están}} nesta categoría, dun total de $2.}}',
@@ -391,7 +394,7 @@ $messages = array(
 'otherlanguages'    => 'Outras linguas',
 'redirectedfrom'    => '(Redirixido desde "$1")',
 'redirectpagesub'   => 'Páxina de redirección',
-'lastmodifiedat'    => 'A última modificación desta páxina foi o $1 ás $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'A última modificación desta páxina foi o $1 ás $2.',
 'viewcount'         => 'Esta páxina foi visitada {{PLURAL:$1|unha vez|$1 veces}}.',
 'protectedpage'     => 'Páxina protexida',
 'jumpto'            => 'Ir a:',
@@ -904,7 +907,7 @@ A razón dada por $3 foi ''$2''",
 'currentrev'             => 'Revisión actual',
 'currentrev-asof'        => 'Revisión actual ás $1',
 'revisionasof'           => 'Revisión como estaba ás $1',
-'revision-info'          => 'Revisión feita por $2 ás $1', # Additionally available: $3: revision id
+'revision-info'          => 'Revisión feita por $2 ás $1',
 'previousrevision'       => '← Revisión máis antiga',
 'nextrevision'           => 'Revisión máis nova →',
 'currentrevisionlink'    => 'Revisión actual',
@@ -926,7 +929,7 @@ Lenda: (actual) = diferenza coa versión actual,
 # Revision feed
 'history-feed-title'          => 'Historial de revisións',
 'history-feed-description'    => 'Historial de revisións desta páxina no wiki',
-'history-feed-item-nocomment' => '$1 en $2', # user at time
+'history-feed-item-nocomment' => '$1 en $2',
 'history-feed-empty'          => 'A páxina solicitada non existe.
 Puido borrarse ou moverse a outro nome.
 Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.',
@@ -1245,7 +1248,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-custom-js'           => 'JS personalizado',
 
 # User rights
-'userrights'                  => 'Xestión dos dereitos de usuario', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Xestión dos dereitos de usuario',
 'userrights-lookup-user'      => 'Administrar os grupos do usuario',
 'userrights-user-editname'    => 'Escriba un nome de usuario:',
 'editusergroup'               => 'Editar os grupos do usuario',
@@ -1600,8 +1603,8 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 'noimage'                   => 'Non existe ningún ficheiro con ese nome, pero pode $1.',
 'noimage-linktext'          => 'cargar un',
 'uploadnewversion-linktext' => 'Cargar unha nova versión deste ficheiro',
-'shared-repo-from'          => 'da $1', # $1 is the repository name
-'shared-repo'               => 'un repositorio compartido', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'da $1',
+'shared-repo'               => 'un repositorio compartido',
 
 # File reversion
 'filerevert'                => 'Desfacer $1',
@@ -1982,8 +1985,8 @@ proceda con coidado.',
 'alreadyrolled'    => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
 
 A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
-'editcomment'      => "O resumo de edición era: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "O resumo de edición era: \"''\$1''\".",
+'revertpage'       => 'Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]',
 'rollback-success' => 'Desfixéronse as edicións de $1;
 volveuse á última edición, feita por $2.',
 'sessionfailure'   => 'Parece que hai un problema co rexistro da súa sesión; esta acción cancelouse como precaución fronte ao secuestro de sesións. Prema no botón "atrás", volva cargar a páxina da que proviña e ténteo de novo.',
@@ -2032,7 +2035,7 @@ Pode mudar o nivel de protección da páxina pero iso non afectará á protecci�
 ** Guerra de edicións
 ** Páxina moi visitada',
 'protect-edit-reasonlist'     => 'Editar os motivos de protección',
-'protect-expiry-options'      => '1 hora:1 hour,1 día:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 día:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite',
 'restriction-type'            => 'Permiso:',
 'restriction-level'           => 'Nivel de protección:',
 'minimum-size'                => 'Tamaño mínimo',
@@ -2111,7 +2114,7 @@ $1',
 'contributions-title' => 'Contribucións de $1',
 'mycontris'           => 'As miñas contribucións',
 'contribsub2'         => 'De $1 ($2)',
-'nocontribs'          => 'Non se deron atopado cambios con eses criterios.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Non se deron atopado cambios con eses criterios.',
 'uctop'               => '(última revisión)',
 'month'               => 'Desde o mes de (e anteriores):',
 'year'                => 'Desde o ano (e anteriores):',
@@ -2173,7 +2176,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbenableautoblock'              => 'Bloquear automaticamente o último enderezo IP utilizado por este usuario, e calquera outro enderezo desde o que intente editar',
 'ipbsubmit'                       => 'Bloquear este usuario',
 'ipbother'                        => 'Outro período de tempo:',
-'ipboptions'                      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite',
 'ipbotheroption'                  => 'outra',
 'ipbotherreason'                  => 'Outro motivo:',
 'ipbhidename'                     => 'Agochar o nome de usuario nas edicións e listas',
@@ -2305,7 +2308,7 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'move-watch'                   => 'Vixiar esta páxina',
 'movepagebtn'                  => 'Mover a páxina',
 'pagemovedsub'                 => 'O movemento foi un éxito',
-'movepage-moved'               => '<big>\'\'\'A páxina "$1" foi movida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'A páxina "$1" foi movida a "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Creouse unha redirección da primeira cara á segunda.',
 'movepage-moved-noredirect'    => 'A creación da redirección da primeira cara á segunda foi cancelada.',
 'articleexists'                => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
@@ -2512,7 +2515,7 @@ Gráveo no seu disco duro e cárgueo aquí.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
 'siteuser'         => '$1 de {{SITENAME}}',
-'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 ás $2 por $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 ás $2 por $3.',
 'othercontribs'    => 'Baseado no traballo feito por $1.',
 'others'           => 'outros',
 'siteusers'        => '$1 de {{SITENAME}}',
@@ -2627,7 +2630,7 @@ Outros agocharanse por omisión.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ancho',
@@ -2754,14 +2757,14 @@ Outros agocharanse por omisión.
 
 'exif-unknowndate' => 'Data descoñecida',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Volteada horizontalmente', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotada 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Volteada verticalmente', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotada 90° CCW e volteada verticalmente', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotada 90° CW', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotada 90° CW e volteada verticalmente', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotada 90° CCW', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Volteada horizontalmente',
+'exif-orientation-3' => 'Rotada 180°',
+'exif-orientation-4' => 'Volteada verticalmente',
+'exif-orientation-5' => 'Rotada 90° CCW e volteada verticalmente',
+'exif-orientation-6' => 'Rotada 90° CW',
+'exif-orientation-7' => 'Rotada 90° CW e volteada verticalmente',
+'exif-orientation-8' => 'Rotada 90° CCW',
 
 'exif-planarconfiguration-1' => 'Formato de paquete de píxeles',
 'exif-planarconfiguration-2' => 'Formato de planos',
@@ -3033,7 +3036,7 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'duplicate-defaultsort' => 'Aviso: a clave de ordenación por defecto "$2" anula a clave de ordenación anterior por defecto "$1".',
 
 # Special:Version
-'version'                          => 'Versión', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versión',
 'version-extensions'               => 'Extensións instaladas',
 'version-specialpages'             => 'Páxinas especiais',
 'version-parserhooks'              => 'Asociadores analíticos',

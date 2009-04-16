@@ -1,6 +1,9 @@
 <?php
 /** Swedish (Svenska)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -376,7 +379,7 @@ $messages = array(
 'category-media-header'          => 'Media i kategorin "$1"',
 'category-empty'                 => "''Den här kategorin innehåller just nu inga sidor eller filer.''",
 'hidden-categories'              => '{{PLURAL:$1|Dold kategori|Dolda kategorier}}',
-'hidden-category-category'       => 'Dolda kategorier', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Dolda kategorier',
 'category-subcat-count'          => '{{PLURAL:$2|Denna kategori har endast följande underkategori.|Denna kategori har följande {{PLURAL:$1|underkategori|$1 underkategorier}} (av totalt $2).}}',
 'category-subcat-count-limited'  => 'Denna kategori har följande {{PLURAL:$1|underkategori|$1 underkategorier}}.',
 'category-article-count'         => '{{PLURAL:$2|Denna kategori innehåller endast följande sida.|Följande {{PLURAL:$1|sida|$1 sidor}} (av totalt $2) finns i denna kategori.}}',
@@ -463,7 +466,7 @@ $messages = array(
 'otherlanguages'    => 'På andra språk',
 'redirectedfrom'    => '(Omdirigerad från $1)',
 'redirectpagesub'   => 'Omdirigeringssida',
-'lastmodifiedat'    => 'Sidan ändrades senast den $1 kl. $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Sidan ändrades senast den $1 kl. $2.',
 'viewcount'         => 'Denna sidan har visats {{PLURAL:$1|en gång|$1 gånger}}.',
 'protectedpage'     => 'Skrivskyddad sida',
 'jumpto'            => 'Hoppa till:',
@@ -957,7 +960,7 @@ Anledningen till blockeringen var "$2".',
 'currentrev'             => 'Nuvarande version',
 'currentrev-asof'        => 'Nuvarande version från $1',
 'revisionasof'           => 'Versionen från $1',
-'revision-info'          => 'Version från den $1 av $2', # Additionally available: $3: revision id
+'revision-info'          => 'Version från den $1 av $2',
 'previousrevision'       => '← Äldre version',
 'nextrevision'           => 'Nyare version →',
 'currentrevisionlink'    => 'Nuvarande version',
@@ -978,7 +981,7 @@ Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skil
 # Revision feed
 'history-feed-title'          => 'Versionshistorik',
 'history-feed-description'    => 'Versionshistorik för denna sida på wikin',
-'history-feed-item-nocomment' => '$1 den $2', # user at time
+'history-feed-item-nocomment' => '$1 den $2',
 'history-feed-empty'          => 'Den begärda sidan finns inte.
 Den kan ha tagits bort från wikin eller bytt namn.
 Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
@@ -1296,7 +1299,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-custom-js'           => 'Personlig JavaScript',
 
 # User rights
-'userrights'                  => 'Hantering av användarrättigheter', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Hantering av användarrättigheter',
 'userrights-lookup-user'      => 'Hantera användargrupper',
 'userrights-user-editname'    => 'Skriv in ett användarnamn:',
 'editusergroup'               => 'Ändra användargrupper',
@@ -1647,8 +1650,8 @@ Beskrivningen på dess [$2 filbeskrivningssida] visas nedan.',
 'noimage'                   => 'Det finns ingen fil med detta namn, men du kan $1.',
 'noimage-linktext'          => 'ladda upp en',
 'uploadnewversion-linktext' => 'Ladda upp en ny version av denna fil',
-'shared-repo-from'          => 'från $1', # $1 is the repository name
-'shared-repo'               => 'en gemensam filförvaring', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'från $1',
+'shared-repo'               => 'en gemensam filförvaring',
 
 # File reversion
 'filerevert'                => 'Återställ $1',
@@ -2025,8 +2028,8 @@ Se $2 för noteringar om de senaste raderingarna.',
 'alreadyrolled'    => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
 
 Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
-'editcomment'      => "Redigeringskommentaren var: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Redigeringskommentaren var: \"''\$1''\".",
+'revertpage'       => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]',
 'rollback-success' => 'Återställde ändringar av $1;
 ändrade tillbaka till senaste version av $2.',
 'sessionfailure'   => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
@@ -2075,7 +2078,7 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 ** Redigeringskrig
 ** Sida med många besökare',
 'protect-edit-reasonlist'     => 'Redigera skyddsanledningar',
-'protect-expiry-options'      => '1 timme:1 hour,1 dag:1 day,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 timme:1 hour,1 dag:1 day,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite',
 'restriction-type'            => 'Typ av skydd:',
 'restriction-level'           => 'Skyddsnivå:',
 'minimum-size'                => 'Minsta storlek',
@@ -2152,7 +2155,7 @@ $1',
 'contributions-title' => 'Bidrag av $1',
 'mycontris'           => 'Mina bidrag',
 'contribsub2'         => 'För $1 ($2)',
-'nocontribs'          => 'Inga ändringar som motsvarar dessa kriterier hittades.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Inga ändringar som motsvarar dessa kriterier hittades.',
 'uctop'               => '(senaste)',
 'month'               => 'Från månad (och tidigare):',
 'year'                => 'Från år (och tidigare):',
@@ -2213,7 +2216,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipbenableautoblock'              => 'Blockera automatiskt den IP-adress som användaren använde senast, samt alla adresser som användaren försöker redigera ifrån',
 'ipbsubmit'                       => 'Blockera användaren',
 'ipbother'                        => 'Annan tidsperiod:',
-'ipboptions'                      => '2 timmar:2 hours,1 dag:1 day,3 dagar:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 timmar:2 hours,1 dag:1 day,3 dagar:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite',
 'ipbotheroption'                  => 'annan tidsperiod',
 'ipbotherreason'                  => 'Annan/ytterligare anledning:',
 'ipbhidename'                     => 'Dölj användarnamnet från redigeringar och listor',
@@ -2343,7 +2346,7 @@ I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
 'move-watch'                   => 'Bevaka denna sida',
 'movepagebtn'                  => 'Flytta sidan',
 'pagemovedsub'                 => 'Flyttningen lyckades',
-'movepage-moved'               => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'En omdirigering har skapats.',
 'movepage-moved-noredirect'    => 'Skapandet av en omdirigering avbröts.',
 'articleexists'                => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.
@@ -2567,7 +2570,7 @@ Ger möjlighet att skriva en motivering i redigeringssammanfattningen',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonym användare|Anonyma användare}} på {{SITENAME}}',
 'siteuser'         => 'användaren $1 på {{SITENAME}}',
-'lastmodifiedatby' => 'Den här sidan ändrades senast kl. $2 den $1 av $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Den här sidan ändrades senast kl. $2 den $1 av $3.',
 'othercontribs'    => 'Baserad på arbete av $1.',
 'others'           => 'andra',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|användaren|användarna}} $1',
@@ -2692,7 +2695,7 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bredd',
@@ -2819,14 +2822,14 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 
 'exif-unknowndate' => 'Okänt datum',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Spegelvänd horisontellt', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Roterad 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Spegelvänd vertikalt', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Roterad 90° moturs och spegelvänd vertikalt', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Roterad 90° medurs', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Roterad 90° medurs och spegelvänd vertikalt', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Roterad 90° moturs', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Spegelvänd horisontellt',
+'exif-orientation-3' => 'Roterad 180°',
+'exif-orientation-4' => 'Spegelvänd vertikalt',
+'exif-orientation-5' => 'Roterad 90° moturs och spegelvänd vertikalt',
+'exif-orientation-6' => 'Roterad 90° medurs',
+'exif-orientation-7' => 'Roterad 90° medurs och spegelvänd vertikalt',
+'exif-orientation-8' => 'Roterad 90° moturs',
 
 'exif-planarconfiguration-1' => 'chunkformat',
 'exif-planarconfiguration-2' => 'planärformat',
@@ -3098,7 +3101,7 @@ Du kan också [[Special:Watchlist/edit|använda standardeditorn]].',
 'duplicate-defaultsort' => 'Varning: Standardsorteringsnyckeln "$2" tar över från den tidigare standardsorteringsnyckeln "$1".',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Installerade programtillägg',
 'version-specialpages'             => 'Specialsidor',
 'version-parserhooks'              => 'Parsertillägg',

@@ -1,6 +1,9 @@
 <?php
 /** Cajun French (Français cadien)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -188,7 +191,7 @@ $messages = array(
 'otherlanguages'    => 'Autres langues',
 'redirectedfrom'    => '(Envoyé ici de la page $1)',
 'redirectpagesub'   => 'Page de redirection',
-'lastmodifiedat'    => 'Cette page a été changée le $1 à $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Cette page a été changée le $1 à $2.',
 'viewcount'         => 'Cette page a été visitée {{PLURAL:$1|$1 fois|$1 fois}}.',
 'protectedpage'     => 'Page protégée',
 'jumpto'            => 'Aller à:',
@@ -544,7 +547,7 @@ Les notes d'ôtage pour cette page sont données ici pour vous aider:",
 'nohistory'           => 'Y a pas de changements pour cette page.',
 'currentrev'          => 'Version courante',
 'revisionasof'        => 'Version depuis le $1',
-'revision-info'       => 'Version depuis le $1 par $2', # Additionally available: $3: revision id
+'revision-info'       => 'Version depuis le $1 par $2',
 'previousrevision'    => '←Version avant',
 'nextrevision'        => 'Version après→',
 'currentrevisionlink' => 'Version courante',
@@ -563,7 +566,7 @@ Clé: (cour.) = différence avec la version courante, (dernier) = différence av
 # Revision feed
 'history-feed-title'          => 'Détails des changements',
 'history-feed-description'    => 'Détails des changements pour cette page sus le wiki',
-'history-feed-item-nocomment' => '$1 le $2', # user at time
+'history-feed-item-nocomment' => '$1 le $2',
 'history-feed-empty'          => 'La page que vous avez demandé est pas là.
 Ça a peut-être été ôté du wiki, ou renommé.
 Assayez de [[Special:Search|charcher dans le wiki]] pour des nouvelles pages.',

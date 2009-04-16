@@ -1,6 +1,9 @@
 <?php
 /** Zulu (isiZulu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -317,7 +320,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'exif-artist'      => 'Umbhali',
 'exif-sharpness'   => 'Ububukhali',
 
-'exif-orientation-1' => 'Kuphelele', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Kuphelele',
 
 'exif-meteringmode-5' => 'Umhlobiso',
 

@@ -1,6 +1,9 @@
 <?php
 /** Khmer (ភាសាខ្មែរ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -353,7 +356,7 @@ $messages = array(
 'category-media-header'          => 'ឯកសារមេឌា​ដែលមានក្នុង​ចំណាត់ថ្នាក់ក្រុម "$1"',
 'category-empty'                 => "''ចំណាត់ថ្នាក់ក្រុមនេះ​មិនមានផ្ទុកអត្ថបទឬ​ឯកសារមេឌា​ណាមួយទេ។''",
 'hidden-categories'              => '{{PLURAL:$1|ចំណាត់ថ្នាក់ក្រុមដែលត្រូវបានលាក់|ចំណាត់ថ្នាក់ក្រុមដែលត្រូវបានលាក់}}',
-'hidden-category-category'       => 'ចំណាត់ថ្នាក់ក្រុមដែលត្រូវបានលាក់', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'ចំណាត់ថ្នាក់ក្រុមដែលត្រូវបានលាក់',
 'category-subcat-count'          => '{{PLURAL:$2|ចំណាត់ថ្នាក់ក្រុមនេះមានតែចំណាត់ថ្នាក់ក្រុមរងដូចតទៅ។|ចំណាត់ថ្នាក់ក្រុមនេះមាន{{PLURAL:$1|ចំណាត់ថ្នាក់ក្រុមរង|$1 ចំណាត់ថ្នាក់ក្រុមរង}}ដូចតទៅ, ក្នុងចំណោមចំណាត់ថ្នាក់ក្រុមរងសរុប $2។}}',
 'category-subcat-count-limited'  => 'ចំណាត់ថ្នាក់ក្រុមនេះមាន {{PLURAL:$1|ចំណាត់ថ្នាក់ក្រុមរង|$1 ចំណាត់ថ្នាក់ក្រុមរង}} ដូចតទៅ។',
 'category-article-count'         => '{{PLURAL:$2|ចំណាត់ថ្នាក់ក្រុមនេះមានទំព័រដូចតទៅនេះ។|ទំព័រចំនួន {{PLURAL:$1|១ ទំព័រ|$1 ទំព័រ}} ក្នុងចំណោមទំព័រសរុប $2 ដូចតទៅនេះស្ថិតក្នុងចំណាត់ថ្នាក់ក្រុមនេះ។}}',
@@ -440,7 +443,7 @@ $messages = array(
 'otherlanguages'    => 'ជាភាសាដទៃទៀត',
 'redirectedfrom'    => '(ត្រូវបានបញ្ជូនបន្តពី $1)',
 'redirectpagesub'   => 'ទំព័របញ្ជូនបន្ត',
-'lastmodifiedat'    => 'ទំព័រនេះត្រូវបានកែចុងក្រោយនៅ$2 $1', # $1 date, $2 time
+'lastmodifiedat'    => 'ទំព័រនេះត្រូវបានកែចុងក្រោយនៅ$2 $1',
 'viewcount'         => "ទំព័រនេះ​ត្រូវបានចូលមើល​ចំនួន'''{{PLURAL:$1|ម្ដង|$1ដង}}'''",
 'protectedpage'     => 'ទំព័រដែលត្រូវបានការពារ',
 'jumpto'            => 'ទៅកាន់៖',
@@ -904,7 +907,7 @@ $2',
 'currentrev'             => 'កំណែបច្ចុប្បន្ន',
 'currentrev-asof'        => 'កំណែប្រែបច្ចុប្បន្ន $1',
 'revisionasof'           => 'កំណែ​របស់ $1',
-'revision-info'          => 'កំណែ​របស់ $1 ដោយ $2', # Additionally available: $3: revision id
+'revision-info'          => 'កំណែ​របស់ $1 ដោយ $2',
 'previousrevision'       => '← កំណែ​មុន',
 'nextrevision'           => 'កំណែបន្ទាប់ →',
 'currentrevisionlink'    => 'កំណែប្រែបច្ចុប្បន្ន',
@@ -925,7 +928,7 @@ $2',
 # Revision feed
 'history-feed-title'          => 'ប្រវត្តិនៃកំណែ',
 'history-feed-description'    => 'ប្រវត្តិនៃកំណែទំព័រនេះលើវិគី',
-'history-feed-item-nocomment' => 'ដោយ$1នៅវេលា$2', # user at time
+'history-feed-item-nocomment' => 'ដោយ$1នៅវេលា$2',
 'history-feed-empty'          => 'ទំព័រដែលអ្នកបានស្នើមិនមានទេ។
 ប្រហែលជាវាត្រូវបានគេលុបចោលពីវីគីឬ​ត្រូវបានគេដាក់ឈ្មោះថ្មី។
 សូមសាក [[Special:Search|ស្វែងរកនៅក្នុងវិគី]] ដើម្បីរកទំព័រថ្មីដែលមានការទាក់ទិន។',
@@ -1169,7 +1172,7 @@ $2',
 'files'                     => 'ឯកសារ',
 
 # User rights
-'userrights'                  => 'ការគ្រប់គ្រងសិទ្ធិអ្នកប្រើប្រាស់', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'ការគ្រប់គ្រងសិទ្ធិអ្នកប្រើប្រាស់',
 'userrights-lookup-user'      => 'គ្រប់គ្រងក្រុមអ្នកប្រើប្រាស់',
 'userrights-user-editname'    => 'បញ្ចូលឈ្មោះអ្នកប្រើប្រាស់៖',
 'editusergroup'               => 'កែប្រែក្រុមអ្នកប្រើប្រាស់',
@@ -1793,8 +1796,8 @@ $NEWPAGE
 'rollback_short' => 'ត្រឡប់',
 'rollbacklink'   => 'ត្រឡប់',
 'cantrollback'   => 'មិនអាចត្រឡប់កំណែប្រែ។ អ្នករួមចំណែកចុងក្រោយទើបជាអ្នកនិពន្ធ​របស់ទំព័រនេះ។',
-'editcomment'    => "វិចារក្នុងការកែប្រែ៖ \"''\$1''\"។", # only shown if there is an edit comment
-'revertpage'     => 'បានត្រឡប់កំណែប្រែដោយ[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ទៅកំណែប្រែចុងក្រោយដោយ [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "វិចារក្នុងការកែប្រែ៖ \"''\$1''\"។",
+'revertpage'     => 'បានត្រឡប់កំណែប្រែដោយ[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ទៅកំណែប្រែចុងក្រោយដោយ [[User:$1|$1]]',
 
 # Protect
 'protectlogpage'              => 'កំណត់ហេតុនៃការការពារ',
@@ -1837,7 +1840,7 @@ $NEWPAGE
 ** សង្រ្គាមនៃការកែប្រែដែលនាំឲខូចប្រយោជន៍
 ** ទំព័រដែលមានចរាចរកម្រិតខ្ពស់',
 'protect-edit-reasonlist'     => 'មូលហេតុដែលគេការពារមិនឱ្យមានការកែប្រែ',
-'protect-expiry-options'      => '១ ម៉ោង:1 hour,១ ថ្ងៃ:1 day,១ សប្ដាហ៍:1 week,២ សប្ដាហ៍:2 weeks,១ ខែ:1 month,៣ ខែ:3 months,៦ ខែ:6 months,១ ឆ្នាំ:1 year,គ្មានកំណត់:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '១ ម៉ោង:1 hour,១ ថ្ងៃ:1 day,១ សប្ដាហ៍:1 week,២ សប្ដាហ៍:2 weeks,១ ខែ:1 month,៣ ខែ:3 months,៦ ខែ:6 months,១ ឆ្នាំ:1 year,គ្មានកំណត់:infinite',
 'restriction-type'            => 'ការអនុញ្ញាត៖',
 'restriction-level'           => 'កម្រិត​នៃ​ការដាក់កំហិត ៖',
 'minimum-size'                => 'ទំហំអប្បបរមា',
@@ -1899,7 +1902,7 @@ $1',
 'contributions-title' => 'ការរួមចំណែករបស់អ្នកប្រើប្រាស់ $1',
 'mycontris'           => 'ការរួមចំណែក',
 'contribsub2'         => 'សម្រាប់ $1 ($2)',
-'nocontribs'          => 'គ្មានការផ្លាស់ប្តូរត្រូវបានឃើញដូចនឹងលក្ខណៈវិនិច្ឆ័យទាំងនេះ។', # Optional parameter: $1 is the user name
+'nocontribs'          => 'គ្មានការផ្លាស់ប្តូរត្រូវបានឃើញដូចនឹងលក្ខណៈវិនិច្ឆ័យទាំងនេះ។',
 'uctop'               => '(ទាន់សម័យ)',
 'month'               => 'ខែ៖',
 'year'                => 'ឆ្នាំ៖',
@@ -1957,7 +1960,7 @@ $1',
 'ipbemailban'                  => 'ការពារអ្នកប្រើប្រាស់ពីការផ្ញើរអ៊ីមែល',
 'ipbsubmit'                    => 'ហាមឃាត់អ្នកប្រើប្រាស់នេះ',
 'ipbother'                     => 'រយៈពេលផ្សេងទៀត៖',
-'ipboptions'                   => '២ម៉ោង:2 hours,១ថ្ងៃ:1 day,៣ថ្ងៃ:3 days,១សប្តាហ៍:1 week,២សប្តាហ៍:2 weeks,១ខែ:1 month,៣ខែ:3 months,៦ខែ:6 months,១ឆ្នាំ:1 year,គ្មានកំណត់:infinite', # display1:time1,display2:time2,...
+'ipboptions'                   => '២ម៉ោង:2 hours,១ថ្ងៃ:1 day,៣ថ្ងៃ:3 days,១សប្តាហ៍:1 week,២សប្តាហ៍:2 weeks,១ខែ:1 month,៣ខែ:3 months,៦ខែ:6 months,១ឆ្នាំ:1 year,គ្មានកំណត់:infinite',
 'ipbotheroption'               => 'ផ្សេងៗទៀត',
 'ipbotherreason'               => 'មូលហេតុ(ផ្សេងទៀតឬបន្ថែម)៖',
 'ipbwatchuser'                 => 'តាមដានទំព័រអ្នកប្រើប្រាស់និងទំព័រពិភាក្សារបស់អ្នកប្រើប្រាស់នេះ។',
@@ -2073,7 +2076,7 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 'move-watch'                => 'តាមដានទំព័រនេះ',
 'movepagebtn'               => 'ប្ដូរទីតាំង',
 'pagemovedsub'              => 'ប្ដូរទីតាំងដោយជោគជ័យ',
-'movepage-moved'            => '<big>\'\'\'"$1"ត្រូវបានប្តូរទីតាំងទៅ"$2"\'\'\'ហើយ</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1"ត្រូវបានប្តូរទីតាំងទៅ"$2"\'\'\'ហើយ</big>',
 'articleexists'             => 'ទំព័រដែលមានឈ្មោះបែបនេះមានរួចហើយ ឬ ឈ្មោះដែលអ្នកបានជ្រើសរើសមិនត្រឹមត្រូវ។
 សូមជ្រើសរើសឈ្មោះមួយផ្សេងទៀត។',
 'cantmove-titleprotected'   => 'អ្នកមិនអាច​ប្តូទីតាំង ទំព័រ​ ទៅទីតាំងនេះ, ព្រោះ ចំណងជើងថ្មី បានត្រូវការពារ ចំពោះការបង្កើតវា',
@@ -2238,7 +2241,7 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 # Attribution
 'anonymous'        => '{{PLURAL:$1|user|អ្នកប្រើប្រាស់}}អនាមិកនៃ {{SITENAME}}',
 'siteuser'         => 'អ្នកប្រើប្រាស់$1នៃ{{SITENAME}}',
-'lastmodifiedatby' => 'ទំព័រនេះត្រូវបានប្តូរចុងក្រោយដោយ$3នៅវេលា$2,$1។', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'ទំព័រនេះត្រូវបានប្តូរចុងក្រោយដោយ$3នៅវេលា$2,$1។',
 'othercontribs'    => 'ផ្អែកលើការងាររបស់$1។',
 'others'           => 'ផ្សេងៗទៀត',
 'siteusers'        => '{{PLURAL:$2|user|អ្នកប្រើប្រាស់}} $1 នៃ {{SITENAME}}',
@@ -2343,7 +2346,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'ទទឹង',
@@ -2395,10 +2398,10 @@ $1',
 
 'exif-unknowndate' => 'មិនដឹងកាលបរិច្ឆេទ',
 
-'exif-orientation-1' => 'ធម្មតា', # 0th row: top; 0th column: left
-'exif-orientation-3' => 'ត្រូវបាន​បង្វិល 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-6' => 'បានបង្វិល 90° តាមទិសទ្រនិចនាឡិកា', # 0th row: right; 0th column: top
-'exif-orientation-8' => 'បានបង្វិល 90° ច្រាស់ទិសទ្រនិចនាឡិកា', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'ធម្មតា',
+'exif-orientation-3' => 'ត្រូវបាន​បង្វិល 180°',
+'exif-orientation-6' => 'បានបង្វិល 90° តាមទិសទ្រនិចនាឡិកា',
+'exif-orientation-8' => 'បានបង្វិល 90° ច្រាស់ទិសទ្រនិចនាឡិកា',
 
 'exif-componentsconfiguration-0' => 'មិនមាន',
 
@@ -2587,7 +2590,7 @@ $5
 'unknown_extension_tag' => 'ប្លាកនៃផ្នែកបន្ថែម "$1" មិនស្គាល់',
 
 # Special:Version
-'version'                          => 'កំណែ', # Not used as normal message but as header for the special page itself
+'version'                          => 'កំណែ',
 'version-extensions'               => 'ផ្នែកបន្ថែមដែលបានដំឡើង',
 'version-specialpages'             => 'ទំព័រពិសេសៗ',
 'version-variables'                => 'អថេរ',

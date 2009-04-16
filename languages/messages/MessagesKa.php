@@ -1,6 +1,9 @@
 <?php
 /** Georgian (ქართული)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -201,7 +204,7 @@ $messages = array(
 'category-media-header'         => 'მედია კატეგორიაში "$1"',
 'category-empty'                => "''ეს კატეგორია ამჟამად გვერდებს ან მედიას არ შეიცავს.''",
 'hidden-categories'             => 'დამალული {{PLURAL:$1|კატეგორია|კატეგორიები}}',
-'hidden-category-category'      => 'დამალული კატეგორიები', # Name of the category where hidden categories will be listed
+'hidden-category-category'      => 'დამალული კატეგორიები',
 'category-subcat-count'         => '{{PLURAL:$2|ეს კატეგორია შეიცავს მხოლოდ შემდეგ ქვეკატეგორიას.|ამ კატეგორიაში მოცემულია $1 ქვეკატეგორია $2-დან.}}',
 'category-subcat-count-limited' => 'ეს კატეგორია მოიცავს შემდეგ $1 ქვეკატეგორიას.',
 'category-file-count-limited'   => 'შემდეგი {{PLURAL:$1|ფაილი|$1 ფაილები}} ამ კატეგორიაშია.',
@@ -286,7 +289,7 @@ $messages = array(
 'otherlanguages'    => 'სხვა ენებზე',
 'redirectedfrom'    => '(გადმომისამართდა $1-დან)',
 'redirectpagesub'   => 'გადამისამართება გვერდზე',
-'lastmodifiedat'    => 'ეს გვერდი ბოლოს განახლდა $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'ეს გვერდი ბოლოს განახლდა $2, $1.',
 'viewcount'         => 'ეს გვერდი შემოწმდა {{PLURAL:$1|ერთხელ|$1-ჯერ}}.',
 'protectedpage'     => 'დაბლოკილი გვერდი',
 'jumpto'            => 'გადასვლა:',
@@ -701,7 +704,7 @@ $1 საათში.',
 'nohistory'              => 'ამ გვერდს განხილვის გვერდი ცარიელი აქვს.',
 'currentrev'             => 'მიმდინარე შესწორება',
 'revisionasof'           => '$1-ის ვერსია',
-'revision-info'          => '$1-ის ვერსია, შეტანილი $2-ის მიერ', # Additionally available: $3: revision id
+'revision-info'          => '$1-ის ვერსია, შეტანილი $2-ის მიერ',
 'previousrevision'       => '←წინა ვერსია',
 'nextrevision'           => 'შემდეგი ვერსია→',
 'currentrevisionlink'    => 'მიმდინარე ვერსია',
@@ -723,7 +726,7 @@ $1 საათში.',
 # Revision feed
 'history-feed-title'          => 'რედაქტირების ისტორია',
 'history-feed-description'    => 'ამ გვერდის შესწორებათა ისტორია ვიკიში',
-'history-feed-item-nocomment' => '$1  $2-ზე', # user at time
+'history-feed-item-nocomment' => '$1  $2-ზე',
 'history-feed-empty'          => 'თქვენს მიერ მოძიებული გვერდი არ არსებობს.
 შესაძლოა იგი წაშლილ იქნა ვიკიდან, ან მისი სათაური შეიცვალა.
 სცადეთ [[Special:Search|searching on the wiki]] მსგავსი გვერდების სანახავად.',
@@ -874,7 +877,7 @@ $1 საათში.',
 'files'                     => 'ფაილები',
 
 # User rights
-'userrights'                  => 'მომხმარებელთა უფლებების მართვა', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'მომხმარებელთა უფლებების მართვა',
 'userrights-lookup-user'      => 'მომხმარებელთა ჯგუფების მართვა',
 'userrights-user-editname'    => 'მომხმარებლის სახელის შეტანა:',
 'editusergroup'               => 'მომხმარებელთა ჯგუფების რედაქტირება',
@@ -1388,8 +1391,8 @@ $NEWPAGE
 'rollbacklink'   => 'გაუქმება',
 'cantrollback'   => 'შეუძლებელია უწინდელი რედაქციის აღდგენა; ის, ვინც უკანასკნელი ცვლილებები შეიტანა, ამ სტატიის ერთადერთი ავტორია.',
 'alreadyrolled'  => '[[:$1]]-ს უკანასკნელი რედაქტირების უკუქცევა შეუძლებელია [[User:$2|$2]] ([[User talk:$2|Talk]]); ვიღაცამ უკვე დაარედაქტირა ან უკუაქცია გვერდი. უკანასკნელი რედაქტორი [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'    => "რედაქტირება განმარტებული იყო შემდეგნაირად: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => '[[Special:Contributions/$2|$2]]-ის რედაქტირება გაუქმდა; აღდგა ბოლოს [[User:$1|$1]]-ის მიერ რედაქტირებული ვერსია', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "რედაქტირება განმარტებული იყო შემდეგნაირად: \"''\$1''\".",
+'revertpage'     => '[[Special:Contributions/$2|$2]]-ის რედაქტირება გაუქმდა; აღდგა ბოლოს [[User:$1|$1]]-ის მიერ რედაქტირებული ვერსია',
 'sessionfailure' => 'ჩანს, რომ პრობლემაა თქვენი რეგისტრაციის სესიისათვის;
 ეს მოქმედება შეჩერდა თქვენი სესიაში შემოჭრის თავიდან ასაცილებლად.
 გთხოვთ, დააწკაპუნოთ ღილაკს "უკან" და თავიდან ჩართოთ გვერდი, რომლიდანაც შემოხვედით და სცადოთ განმეორებით.',
@@ -1421,7 +1424,7 @@ $NEWPAGE
 'protect-expiry-indefinite'   => 'განუსაზღვრელი',
 'protect-cascade'             => 'ამ გვერდში ჩართული გვერდების დაცვა (იერარქიული დაცვა)',
 'protect-cantedit'            => 'თქვენ არ შეგიძლიათ ამ გვერდის დაცვის დონის შეცვლა, ვინაიდან არ გაქვთ მისი რედაქტირების ნებართვა.',
-'protect-expiry-options'      => '1 საათი:1 hour,1 დღე:1 day,1 კვირა:1 week,2 კვირა:2 weeks,1 თვე:1 month,3 თვე:3 months,6 თვე:6 months,1 წელი:1 year,განუსაზღვრელი ვადით:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 საათი:1 hour,1 დღე:1 day,1 კვირა:1 week,2 კვირა:2 weeks,1 თვე:1 month,3 თვე:3 months,6 თვე:6 months,1 წელი:1 year,განუსაზღვრელი ვადით:infinite',
 'restriction-type'            => 'უფლება',
 'restriction-level'           => 'შეზღუდვის დონე:',
 'minimum-size'                => 'მინ ზომა',
@@ -1478,7 +1481,7 @@ $NEWPAGE
 'contributions-title' => 'მომხმარებლის წვლილი $1',
 'mycontris'           => 'ჩემი წვლილი',
 'contribsub2'         => '$1 ($2) თვის',
-'nocontribs'          => 'ძებნისას მითითებული პარამეტრების შესაბამისი არც ერთი ცვლილება ნაპოვნი არ არის', # Optional parameter: $1 is the user name
+'nocontribs'          => 'ძებნისას მითითებული პარამეტრების შესაბამისი არც ერთი ცვლილება ნაპოვნი არ არის',
 'uctop'               => '(თავი)',
 'month'               => 'თვე:',
 'year'                => 'წელი:',
@@ -1525,7 +1528,7 @@ $NEWPAGE
 'ipbcreateaccount'         => 'ანგარიშის შექმნის აკრძალვა',
 'ipbsubmit'                => 'მომხმარებლის დაბლოკვა',
 'ipbother'                 => 'სხვა დრო',
-'ipboptions'               => '2 საათი:2 hours,1 დღე:1 day,3 დღე:3 days,1 კვირა:1 week,2 კვირა:2 weeks,1 თვე:1 month,3 თვე:3 months,6 თვე:6 months,1 წელი:1 year,განუსაზღვრელი ვადით:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 საათი:2 hours,1 დღე:1 day,3 დღე:3 days,1 კვირა:1 week,2 კვირა:2 weeks,1 თვე:1 month,3 თვე:3 months,6 თვე:6 months,1 წელი:1 year,განუსაზღვრელი ვადით:infinite',
 'ipbotheroption'           => 'სხვა',
 'ipbotherreason'           => 'სხვა/დამატებითი მიზეზი:',
 'badipaddress'             => 'არასწორი IP მისამართი',
@@ -1603,7 +1606,7 @@ $NEWPAGE
 'move-watch'              => 'ამ გვერდის კონტროლი',
 'movepagebtn'             => 'გვერდის გადატანა',
 'pagemovedsub'            => 'გადატანა შესრულებულია',
-'movepage-moved'          => '<big>\'\'\'"$1" გადატანილ იქნა "$2"-ზე\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" გადატანილ იქნა "$2"-ზე\'\'\'</big>',
 'articleexists'           => 'ამ დასახელების გვერდი უკვე არსებობს, ან თქვენს მიერ მითითებული დასახელება არასწორია. თუ შეიძლება, მიუთითეთ სხვა სახელი.',
 'talkexists'              => "'''თვით გვერდი წარმატებით გადავიდა, ხოლო განხილვის გვერდი ვერ გადავიდა, ვინაიდან ის უკვე არსებობს ახალი სათაურით. გთხოვთ მანუალურად განაცალკევოთ ისინი.'''",
 'movedto'                 => 'გადატანილია',
@@ -1732,7 +1735,7 @@ $NEWPAGE
 # Attribution
 'anonymous'        => '{{SITENAME}}-ის ანონიმური {{PLURAL:$1|მომხმარებელი|მომხმარებლები}}',
 'siteuser'         => '{{SITENAME}} მომხმარებელი $1',
-'lastmodifiedatby' => 'ეს გვერდი ბოლოს შეიცვალა $2, $1  $3-ით.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'ეს გვერდი ბოლოს შეიცვალა $2, $1  $3-ით.',
 'othercontribs'    => '$1-ს ნამუშევრის მიხედვით.',
 'others'           => 'სხვები',
 'siteusers'        => '{{SITENAME}}-ის {{PLURAL:$2|მომხმარებელი|მომხმარებლები|}} $1',
@@ -1813,7 +1816,7 @@ $NEWPAGE
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                => 'სიგანე',
@@ -1871,7 +1874,7 @@ $NEWPAGE
 
 'exif-unknowndate' => 'უცნობი თარიღი',
 
-'exif-orientation-1' => 'ნორმალური', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'ნორმალური',
 
 'exif-componentsconfiguration-0' => 'არ არსებობს',
 
@@ -2046,7 +2049,7 @@ $1',
 'watchlisttools-raw'  => 'კონტროლის სიის რედაქტირება ტექსტის ფორმატში',
 
 # Special:Version
-'version'                  => 'ვერსია', # Not used as normal message but as header for the special page itself
+'version'                  => 'ვერსია',
 'version-specialpages'     => 'სპეციალური გვერდები',
 'version-other'            => 'სხვა',
 'version-version'          => 'ვერსია',

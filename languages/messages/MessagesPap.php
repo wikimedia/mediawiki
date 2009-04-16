@@ -1,6 +1,9 @@
 <?php
 /** Papiamento (Papiamentu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -93,7 +96,7 @@ $messages = array(
 'otherlanguages'    => 'Na otro idioma',
 'redirectedfrom'    => '(Bo a yega akinan pa via di e página $1)',
 'redirectpagesub'   => 'Página ku ta sirbi komo portal',
-'lastmodifiedat'    => 'E páginá aki a wòrdu kambiá ultimo biaha riba $1, ora $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'E páginá aki a wòrdu kambiá ultimo biaha riba $1, ora $2.',
 'viewcount'         => 'E paginá aki a wòrdu mirá {{PLURAL:$1|biaha|$1 biaha}}.',
 'protectedpage'     => 'Página Protehá',
 'jumpto'            => 'Bai na:',

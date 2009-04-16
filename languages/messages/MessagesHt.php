@@ -1,6 +1,9 @@
 <?php
 /** Haitian (Kreyòl ayisyen)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -226,7 +229,7 @@ $messages = array(
 'category-media-header'          => 'Fichye miltimedya nan kategori « $1 »',
 'category-empty'                 => "''Kategori sa a pa genyen atik andedan li, ni sou-kategori, ni menm yon fichye miltimedya.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategori sere|Kategori sere yo}}',
-'hidden-category-category'       => 'Kategori ki kache yo', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Kategori ki kache yo',
 'category-subcat-count'          => '{{PLURAL:$2|Kategori sa gen sèlman subkategori swivan.|Kategori sa gen swivan {{PLURAL:$1|subkategori|$1 subkategori sa yo}}, sou $2 total.}}',
 'category-subcat-count-limited'  => 'Kategori sa gen swivan {{PLURAL:$1|subkategori|$1 subkategori sa yo}}.',
 'category-article-count'         => '{{PLURAL:$2|Kategori sa gen sèlman paj swivan.|Swivan {{PLURAL:$1|paj sa|$1 paj sa yo}} nan kategori sa, sou $2 total.}}',
@@ -313,7 +316,7 @@ $messages = array(
 'otherlanguages'    => 'Nan lòt langaj yo',
 'redirectedfrom'    => '(Redirije depi $1)',
 'redirectpagesub'   => 'Paj pou redireksyon',
-'lastmodifiedat'    => 'Paj sa te modifye pou dènye fwa $1 à $2.<br />', # $1 date, $2 time
+'lastmodifiedat'    => 'Paj sa te modifye pou dènye fwa $1 à $2.<br />',
 'viewcount'         => 'Paj sa te konsilte {{PLURAL:$1|yon fwa|$1 fwa}}.',
 'protectedpage'     => 'Paj pwoteje',
 'jumpto'            => 'Ale nan:',
@@ -723,7 +726,7 @@ Sistèm an ap montre, anba paj sa, jounal tout vèsyon paj an ki efase pou sèvi
 'currentrev'             => 'Vèsyon kounye a',
 'currentrev-asof'        => 'Vèsyon kounye a ki date de $1',
 'revisionasof'           => 'Vèsyon jou $1',
-'revision-info'          => 'Vèsyon pou $1 pa $2', # Additionally available: $3: revision id
+'revision-info'          => 'Vèsyon pou $1 pa $2',
 'previousrevision'       => '← Vèsyon presedan',
 'nextrevision'           => 'Vèsyon swivan →',
 'currentrevisionlink'    => 'Vèsyon kounye a',
@@ -743,7 +746,7 @@ Sistèm an ap montre, anba paj sa, jounal tout vèsyon paj an ki efase pou sèvi
 # Revision feed
 'history-feed-title'          => 'Istorik vèsyon yo',
 'history-feed-description'    => 'Istorik pou paj sa anlè wiki a',
-'history-feed-item-nocomment' => '$1, lè li te ye $2', # user at time
+'history-feed-item-nocomment' => '$1, lè li te ye $2',
 
 # Revision deletion
 'rev-deleted-comment'       => '(komantè efase)',
@@ -1059,7 +1062,7 @@ Men reglaj pou paj '''$1''' an kounye a:",
 'protect-expiring'            => 'ap ekspire $1',
 'protect-cascade'             => 'Pwoteksyon enbrike - ap pwoteje tout paj ki andidan paj sa a.',
 'protect-cantedit'            => 'Ou pa kapab modifye nivo pwoteksyon paj sa a paske ou pa gen dwa pou edite li.',
-'protect-expiry-options'      => '2 zè:2 hours,1 jou:1 day,3 jou:3 days,1 semèn:1 week,2 semèn:2 weeks,1 mwa:1 month,3 mwa:3 months,6 mwa:6 months,1 lane:1 year,ki pap janm fini:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 zè:2 hours,1 jou:1 day,3 jou:3 days,1 semèn:1 week,2 semèn:2 weeks,1 mwa:1 month,3 mwa:3 months,6 mwa:6 months,1 lane:1 year,ki pap janm fini:infinite',
 'restriction-type'            => 'Pèmisyon:',
 'restriction-level'           => 'Nivo kontrent, restriksyon:',
 
@@ -1109,7 +1112,7 @@ Men reglaj pou paj '''$1''' an kounye a:",
 
 # Block/unblock
 'blockip'                  => 'Bloke yon adrès IP oubyen yon itilizatè',
-'ipboptions'               => '2 zè:2 hours,1 jou:1 day,3 jou:3 days,1 semèn:1 week,2 semèn:2 weeks,1 mwa:1 month,3 mwa:3 months,6 mwa:6 months,1 lane:1 year,ki pap janm fini:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 zè:2 hours,1 jou:1 day,3 jou:3 days,1 semèn:1 week,2 semèn:2 weeks,1 mwa:1 month,3 mwa:3 months,6 mwa:6 months,1 lane:1 year,ki pap janm fini:infinite',
 'ipblocklist'              => 'Lis IP itilizatè yo ki bloke',
 'blocklink'                => 'Bloke',
 'unblocklink'              => 'Debloke',
@@ -1143,7 +1146,7 @@ Nan pozisyon sa a, ou ke dwèt renonmen oubyen fizyone ou menm menm paj an si ou
 'move-watch'       => 'Swiv paj sa a',
 'movepagebtn'      => 'Deplase paj an',
 'pagemovedsub'     => 'Deplasman an fèt',
-'movepage-moved'   => '<big>\'\'\'"$1" deplase nan "$2" alè kile\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" deplase nan "$2" alè kile\'\'\'</big>',
 'articleexists'    => 'Nou ja genyen yon atik ak non sa a oubyen non ke ou chwazi an pa valab ankò. Chwazi yon lòt.',
 'talkexists'       => 'Paj an men byen deplase. Mè paj diskisyon an pa deplase paske li te ja egziste yonn anlè nouvo paj an. Souple, fizyone de diskisyon sa yo, mete yo ansanmm anlè nouvo paj an.',
 'movedto'          => 'deplase nan',
@@ -1253,7 +1256,7 @@ Nenpòt lòt lyen nan menm lign nan konsidere kòm yon eksèpsyon, i.e. paj kote
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Modifye fichye sa a epi yon aplikasyon pa ou (ki pa nan sistèm an, sou machin ou pa egzanp).',
@@ -1270,7 +1273,7 @@ Nenpòt lòt lyen nan menm lign nan konsidere kòm yon eksèpsyon, i.e. paj kote
 'watchlisttools-raw'  => 'Modifye lis swivi (mòd bazik)',
 
 # Special:Version
-'version' => 'Vèsyon', # Not used as normal message but as header for the special page itself
+'version' => 'Vèsyon',
 
 # Special:SpecialPages
 'specialpages' => 'Paj espesyal yo',

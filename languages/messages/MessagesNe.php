@@ -1,6 +1,9 @@
 <?php
 /** Nepali (नेपाली)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -102,7 +105,7 @@ $messages = array(
 'imagepage'        => 'चित्रको पृष्ठ हेर्नुहोस्',
 'otherlanguages'   => 'अरु भाषामा',
 'redirectedfrom'   => '($1 बाट पठाईएको)',
-'lastmodifiedat'   => 'यो पृष्ठलाई अन्तिमपटक $2, $1 मा परिवर्तन गरिएको थियो।', # $1 date, $2 time
+'lastmodifiedat'   => 'यो पृष्ठलाई अन्तिमपटक $2, $1 मा परिवर्तन गरिएको थियो।',
 'protectedpage'    => 'सुरक्षित गरिएका पृष्ठहरू',
 'jumptonavigation' => 'अन्वेषण',
 
@@ -502,7 +505,7 @@ $messages = array(
 'tooltip-watch'           => 'यो पृष्ठलाई तपाईँको अवलोकनसूचीमा थप्नुहोस्',
 
 # Attribution
-'lastmodifiedatby' => 'यो पृष्ठ अन्तिमपटक $3द्वारा $2, $1 मा परिवर्तन गरिएको थियो।', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'यो पृष्ठ अन्तिमपटक $3द्वारा $2, $1 मा परिवर्तन गरिएको थियो।',
 'othercontribs'    => '$1 को कामको आधारमा',
 'others'           => 'अन्य',
 
@@ -548,8 +551,8 @@ $messages = array(
 'exif-gpsstatus'                 => 'रिसिभर अवस्था',
 'exif-gpstrack'                  => 'चलेको दिशा',
 
-'exif-orientation-1' => 'सामान्य', # 0th row: top; 0th column: left
-'exif-orientation-6' => '90° CW घुमाइएको', # 0th row: right; 0th column: top
+'exif-orientation-1' => 'सामान्य',
+'exif-orientation-6' => '90° CW घुमाइएको',
 
 'exif-subjectdistance-value' => '$1 मिटर',
 

@@ -1,6 +1,9 @@
 <?php
 /** Nahuatl (Nāhuatl)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -163,7 +166,7 @@ $messages = array(
 'category-media-header'          => 'Media "$1" neneuhcāyōc',
 'category-empty'                 => "''Cah ahtlein inīn neneuhcāyōc.''",
 'hidden-categories'              => 'Neneuhcāyōtl {{PLURAL:$1|ōmotlāti|ōmotlātih}}',
-'hidden-category-category'       => 'Neneuhcāyōtl ōmotlāti', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Neneuhcāyōtl ōmotlāti',
 'category-subcat-count'          => '{{PLURAL:$2|Inīn neneuhcāyōtl zan quipiya|Inīn neneuhcāyōtl quimpiya {{PLURAL:$1|inīn neneuhcāyōtzintli|inīn $1 neneuhcāyōtzintli}}, īhuīcpa $2.}}',
 'category-subcat-count-limited'  => 'Inīn {{PLURAL:$1|neneuhcāyōtzintli cah|$1 neneuhcāyōtzintli cateh}} inīn neneuhcāyōc.',
 'category-article-count'         => '{{PLURAL:$2|Inīn neneuhcāyōtl zan quipiya|Inīn neneuhcāyōtl quimpiya {{PLURAL:$1|inīn zāzanilli|inīn $1 zāzanilli}}, īhuīcpa $2.}}',
@@ -243,7 +246,7 @@ $messages = array(
 'otherlanguages'    => 'Occequīntīn tlahtōlcopa',
 'redirectedfrom'    => '(Ōmotlacuep īhuīcpa $1)',
 'redirectpagesub'   => 'Ōmotlacuep zāzanilli',
-'lastmodifiedat'    => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1.',
 'viewcount'         => 'Inīn zāzanilli quintlapōhua {{PLURAL:$1|cē tlahpololiztli|$1 tlahpololiztli}}.',
 'protectedpage'     => 'Ōmoquīxtix zāzanilli',
 'jumpto'            => 'Yāuh īhuīc:',
@@ -519,7 +522,7 @@ Ye ia.',
 'currentrev'             => 'Āxcān tlapatlaliztli',
 'currentrev-asof'        => 'Āxcān tlachiyaliztli īpan $1',
 'revisionasof'           => 'Tlachiyaliztli īpan $1',
-'revision-info'          => 'Tlachiyaliztli īpan $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Tlachiyaliztli īpan $1; $2',
 'previousrevision'       => '← Huēhueh tlapatlaliztli',
 'nextrevision'           => 'Yancuīc tlapatlaliztli →',
 'currentrevisionlink'    => 'Āxcān tlapatlaliztli',
@@ -538,7 +541,7 @@ Ye ia.',
 # Revision feed
 'history-feed-title'          => 'Tlachiyaliztli tlahcuilōlloh',
 'history-feed-description'    => 'Tlachiyaliztli tlahcuilōlloh inīn zāzaniltechcopa huiquipan',
-'history-feed-item-nocomment' => '$1 īpan $2', # user at time
+'history-feed-item-nocomment' => '$1 īpan $2',
 'history-feed-empty'          => 'In zāzanilli tiquiēlēhuia ahmo ia.
 Hueliz ōmopolo huiqui nozo ōmozacac.
 [[Special:Search|Xitēmoa huiquipan]] yancuīc huēyi zāzaniltin.',
@@ -1060,7 +1063,7 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'protect-fallback'            => 'Tiquihuīquilia tlahuelītiliztli "$1"',
 'protect-level-autoconfirmed' => 'Tiquinquīxtīz tlatequitiltilīlli tlein ahmo ōmocalac',
 'protect-expiring'            => 'motlamīz $1 (UTC)',
-'protect-expiry-options'      => '2 yēmpōhualminutl:2 hours,1 tōnalli:1 day,2 tōnaltin:2 days,3 tōnaltin:3 days,1 mētztli:1 month,3 mētztli:3 months,6 mētztli:6 months,1 xihuitl:1 year,Mochipa:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 yēmpōhualminutl:2 hours,1 tōnalli:1 day,2 tōnaltin:2 days,3 tōnaltin:3 days,1 mētztli:1 month,3 mētztli:3 months,6 mētztli:6 months,1 xihuitl:1 year,Mochipa:infinite',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Ticpatlāz',
@@ -1128,7 +1131,7 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'ipbreasonotherlist' => 'Occē īxtlamatiliztli',
 'ipbsubmit'          => 'Tiquitzacuilīz inīn tlatequitiltilīlli',
 'ipbother'           => 'Occē cāuhpan:',
-'ipboptions'         => '2 yēmpōhualminutl:2 hours,1 tōnalli:1 day,3 tōnaltin:3 days,7 tōnaltin:1 week,14 tōnaltin:2 weeks,1 mētztli:1 month,3 mētztli:3 months,6 mētztli:6 months,1 xihuitl:1 year,Mochipa:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '2 yēmpōhualminutl:2 hours,1 tōnalli:1 day,3 tōnaltin:3 days,7 tōnaltin:1 week,14 tōnaltin:2 weeks,1 mētztli:1 month,3 mētztli:3 months,6 mētztli:6 months,1 xihuitl:1 year,Mochipa:infinite',
 'ipbotheroption'     => 'occē',
 'ipbotherreason'     => 'Occē īxtlamatiliztli:',
 'ipbwatchuser'       => 'Tiquinchiyāz inīn tlatequitiltilīlli in ītlatequitiltilīlzāzanil auh in ītēixnāmiquiliz',
@@ -1170,7 +1173,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'move-watch'                => 'Tictlachiyāz inīn zāzanilli',
 'movepagebtn'               => 'Ticzacāz zāzanilli',
 'pagemovedsub'              => 'Cualli ōmozacac',
-'movepage-moved'            => '<big>\'\'\'"$1" ōmotlacuep īhuīc "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1" ōmotlacuep īhuīc "$2".\'\'\'</big>',
 'movedto'                   => 'ōmozacac īhuīc',
 'movetalk'                  => 'Ticzacāz nō tēixnāmiquiliztli tlahcuilōltechcopa.',
 'movepage-page-moved'       => 'Zāzanilli $1 ōmozacac īhuīc $2.',
@@ -1273,7 +1276,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 # Attribution
 'anonymous'        => 'Ahtōcāitl {{PLURAL:$1|tlatequitiltilīlli|tlatequitiltilīlli}} īpan {{SITENAME}}',
 'siteuser'         => '$1 tlatequitiltilīlli īpan {{SITENAME}}',
-'lastmodifiedatby' => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1 īpal $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1 īpal $3.',
 'others'           => 'occequīntīn',
 'siteusers'        => '$1 {{PLURAL:$2|tlatequitiltilīlli|tlatequitiltilīlli}} īpan {{SITENAME}}',
 
@@ -1324,7 +1327,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'exif-flashenergy'               => 'Flax chicāhualiztli',
 'exif-gpstimestamp'              => 'GPS cāhuitl (atomic tepozcāhuitl)',
 
-'exif-orientation-1' => 'Yēctli', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Yēctli',
 
 'exif-meteringmode-255' => 'Occē',
 
@@ -1430,7 +1433,7 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 'watchlisttools-edit' => 'Tiquittāz auh ticpatlāz motlachiyaliz',
 
 # Special:Version
-'version'                  => 'Machiyōtzin', # Not used as normal message but as header for the special page itself
+'version'                  => 'Machiyōtzin',
 'version-specialpages'     => 'Nōncuahquīzqui āmatl',
 'version-other'            => 'Occē',
 'version-version'          => 'Machiyōtzin',

@@ -1,6 +1,9 @@
 <?php
 /** Japanese (日本語)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -380,7 +383,7 @@ $messages = array(
 'category-media-header'          => 'カテゴリ “$1” にあるメディア',
 'category-empty'                 => "''このカテゴリにはページまたはメディアがひとつもありません。''",
 'hidden-categories'              => '隠しカテゴリ',
-'hidden-category-category'       => '隠しカテゴリ', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => '隠しカテゴリ',
 'category-subcat-count'          => '{{PLURAL:$2|このカテゴリへは次の1サブカテゴリしか属していません。|以下にこのカテゴリへ属しているサブカテゴリ $2 個中 $1 個を表示しています。}}',
 'category-subcat-count-limited'  => 'このカテゴリへは以下のサブカテゴリ $1 個が属しています。',
 'category-article-count'         => '{{PLURAL:$2|このカテゴリへは次の1ページしか属していません。|以下にこのカテゴリへ属しているページ $2 件中 $1 件を表示しています。}}',
@@ -467,7 +470,7 @@ $messages = array(
 'otherlanguages'    => '他の言語',
 'redirectedfrom'    => '($1 から転送)',
 'redirectpagesub'   => 'リダイレクトページ',
-'lastmodifiedat'    => '最終更新 $1 $2', # $1 date, $2 time
+'lastmodifiedat'    => '最終更新 $1 $2',
 'viewcount'         => 'このページは $1 回アクセスされました。',
 'protectedpage'     => '保護されたページ',
 'jumpto'            => '移動:',
@@ -936,7 +939,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'currentrev'             => '最新版',
 'currentrev-asof'        => '$1 時点における最新版',
 'revisionasof'           => '$1時点における版',
-'revision-info'          => '$1時点における $2 による版', # Additionally available: $3: revision id
+'revision-info'          => '$1時点における $2 による版',
 'previousrevision'       => '←前の版',
 'nextrevision'           => '次の版→',
 'currentrevisionlink'    => '最新版を表示',
@@ -957,7 +960,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 # Revision feed
 'history-feed-title'          => '変更履歴',
 'history-feed-description'    => 'このウィキのこのページに関する変更履歴',
-'history-feed-item-nocomment' => '$2 における $1 による編集', # user at time
+'history-feed-item-nocomment' => '$2 における $1 による編集',
 'history-feed-empty'          => '要求したページは存在しません。既に削除されたか移動された可能性があります。 [[Special:Search|このウィキの検索]]で関連する新しいページを探してみてください。',
 
 # Revision deletion
@@ -1262,7 +1265,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'prefs-custom-js'           => 'ユーザーJS',
 
 # User rights
-'userrights'                  => '利用者権限の管理', # Not used as normal message but as header for the special page itself
+'userrights'                  => '利用者権限の管理',
 'userrights-lookup-user'      => '利用者グループを管理',
 'userrights-user-editname'    => '利用者名:',
 'editusergroup'               => '利用者グループを編集',
@@ -1595,8 +1598,8 @@ PICT # misc.
 'noimage'                   => '同名のファイルは存在しません。「$1」リンクをクリックしてください。',
 'noimage-linktext'          => 'このファイル名でアップロードする',
 'uploadnewversion-linktext' => 'このファイルの新しいバージョンをアップロードする',
-'shared-repo-from'          => '$1より', # $1 is the repository name
-'shared-repo'               => '共有リポジトリ', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => '$1より',
+'shared-repo'               => '共有リポジトリ',
 
 # File reversion
 'filerevert'                => '$1 を差し戻す',
@@ -1972,8 +1975,8 @@ $NEWPAGE
 'alreadyrolled'    => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
 
 このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。',
-'editcomment'      => "編集内容の要約: \"''\$1''\"", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による版へ差し戻し', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "編集内容の要約: \"''\$1''\"",
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による版へ差し戻し',
 'rollback-success' => '$1 による編集を取り消して $2 による直前の版へ差し戻しました。',
 'sessionfailure'   => 'ログイン・セッションに問題が発生しました。セッションハイジャックを防ぐために操作は取り消されました。ブラウザの「戻る」を押して直前のページを再度読み込んだ後に、もう一度操作を行ってください。',
 
@@ -2017,7 +2020,7 @@ $NEWPAGE
 ** 編集合戦
 ** 高負荷ページ',
 'protect-edit-reasonlist'     => '保護理由を編集する',
-'protect-expiry-options'      => '1時間:1 hour,1日:1 day,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1時間:1 hour,1日:1 day,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite',
 'restriction-type'            => '制限:',
 'restriction-level'           => '保護レベル:',
 'minimum-size'                => '最小サイズ',
@@ -2089,7 +2092,7 @@ $NEWPAGE
 'contributions-title' => '$1 の投稿記録',
 'mycontris'           => '自分の投稿記録',
 'contribsub2'         => '利用者名: $1 ($2)',
-'nocontribs'          => '利用者の投稿記録は見つかりませんでした。', # Optional parameter: $1 is the user name
+'nocontribs'          => '利用者の投稿記録は見つかりませんでした。',
 'uctop'               => '(最新)',
 'month'               => '月:',
 'year'                => '年:',
@@ -2148,7 +2151,7 @@ $NEWPAGE
 'ipbenableautoblock'              => 'この利用者が最後に使用したIPアドレスを自動的にブロック（ブロック後に使用したIPアドレスも含む）',
 'ipbsubmit'                       => 'この利用者をブロック',
 'ipbother'                        => '期間 (その他のとき)',
-'ipboptions'                      => '2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1か月:1 month,3か月:3 months,6か月:6 months,1年:1 year,無期限:infinite',
 'ipbotheroption'                  => 'その他',
 'ipbotherreason'                  => '理由（その他/追加）',
 'ipbhidename'                     => '利用者名やIPアドレスを編集履歴や各種一覧に載せない',
@@ -2275,7 +2278,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'move-watch'                   => '移動するページをウォッチ',
 'movepagebtn'                  => 'ページを移動',
 'pagemovedsub'                 => '無事移動しました。',
-'movepage-moved'               => "<big>'''「$1」は「$2」へ移動されました'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''「$1」は「$2」へ移動されました'''</big>",
 'movepage-moved-redirect'      => 'リダイレクトが作成されました。',
 'movepage-moved-noredirect'    => 'リダイレクトは作成されませんでした。',
 'articleexists'                => '指定された移動先には既にページが存在するか、名前が不適切です。',
@@ -2492,7 +2495,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 # Attribution
 'anonymous'        => '{{SITENAME}}の匿名利用者',
 'siteuser'         => '{{SITENAME}}の利用者$1',
-'lastmodifiedatby' => 'このページの最終更新は$1$2に$3によって行われました。', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'このページの最終更新は$1$2に$3によって行われました。',
 'othercontribs'    => '本ページの内容は$1が編集しました。',
 'others'           => 'その他の利用者',
 'siteusers'        => '{{SITENAME}}の利用者$1',
@@ -2623,7 +2626,7 @@ Variants for Chinese language
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => '画像の幅',
@@ -2751,14 +2754,14 @@ Variants for Chinese language
 
 'exif-unknowndate' => '不明な日付',
 
-'exif-orientation-1' => '通常', # 0th row: top; 0th column: left
-'exif-orientation-2' => '左右反転', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180°回転', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => '上下反転', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '反時計回りに90°回転 上下反転', # 0th row: left; 0th column: top
-'exif-orientation-6' => '時計回りに90°回転', # 0th row: right; 0th column: top
-'exif-orientation-7' => '時計回りに90°回転 上下反転', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '反時計回りに90°回転', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => '通常',
+'exif-orientation-2' => '左右反転',
+'exif-orientation-3' => '180°回転',
+'exif-orientation-4' => '上下反転',
+'exif-orientation-5' => '反時計回りに90°回転 上下反転',
+'exif-orientation-6' => '時計回りに90°回転',
+'exif-orientation-7' => '時計回りに90°回転 上下反転',
+'exif-orientation-8' => '反時計回りに90°回転',
 
 'exif-planarconfiguration-1' => '点順次フォーマット',
 'exif-planarconfiguration-2' => '面順次フォーマット',
@@ -3092,7 +3095,7 @@ $1',
 'duplicate-defaultsort' => '警告：デフォルトソートキー「$2」がその前に書かれているデフォルトソートキー「$1」を無効にしています。',
 
 # Special:Version
-'version'                          => 'バージョン情報', # Not used as normal message but as header for the special page itself
+'version'                          => 'バージョン情報',
 'version-extensions'               => 'インストール済み拡張機能',
 'version-specialpages'             => '特別ページ',
 'version-parserhooks'              => 'パーサーフック',

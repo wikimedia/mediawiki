@@ -1,6 +1,9 @@
 <?php
 /** Corsican (Corsu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -105,7 +108,7 @@ $messages = array(
 'toolbox'          => 'Stuvigli',
 'userpage'         => 'Vede a pagina di utilizatore',
 'otherlanguages'   => 'In altri lingui',
-'lastmodifiedat'   => 'Ultima mudifica di ista pagina u $1 à e $2.', # $1 date, $2 time
+'lastmodifiedat'   => 'Ultima mudifica di ista pagina u $1 à e $2.',
 'protectedpage'    => 'Pagina prutetta',
 'jumptonavigation' => 'navigazione',
 'jumptosearch'     => 'ricerca',
@@ -478,7 +481,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'exif-artist'           => 'Autore',
 'exif-usercomment'      => "Cummenti di l'utilizatore",
 
-'exif-orientation-1' => 'Nurmale', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Nurmale',
 
 'exif-componentsconfiguration-0' => 'ùn esiste micca',
 
@@ -512,7 +515,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'watchlistedit-raw-titles' => 'Pagine:',
 
 # Special:Version
-'version' => 'Versione', # Not used as normal message but as header for the special page itself
+'version' => 'Versione',
 
 # Special:FilePath
 'filepath-page' => 'Schedariu:',

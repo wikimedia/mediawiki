@@ -1,6 +1,9 @@
 <?php
 /** Punjabi (ਪੰਜਾਬੀ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -187,7 +190,7 @@ $messages = array(
 'otherlanguages'    => 'ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ',
 'redirectedfrom'    => '($1 ਤੋਂ ਰੀ-ਡਿਰੈਕਟ)',
 'redirectpagesub'   => 'ਰੀ-ਡਿਰੈਕਟ ਪੇਜ',
-'lastmodifiedat'    => 'ਇਹ ਪੇਜ ਆਖਰੀ ਵਾਰ $2, $1 ਨੂੰ ਸੋਧਿਆ ਗਿਆ ਸੀ।', # $1 date, $2 time
+'lastmodifiedat'    => 'ਇਹ ਪੇਜ ਆਖਰੀ ਵਾਰ $2, $1 ਨੂੰ ਸੋਧਿਆ ਗਿਆ ਸੀ।',
 'viewcount'         => 'ਇਹ ਪੇਜ ਅਸੈੱਸ ਕੀਤਾ ਗਿਆ {{PLURAL:$1|ਇੱਕਵਾਰ|$1 ਵਾਰ}}.',
 'protectedpage'     => 'ਸੁਰੱਖਿਅਤ ਪੇਜ',
 'jumpto'            => 'ਜੰਪ ਕਰੋ:',
@@ -1018,7 +1021,7 @@ to upload files.',
 'watchlistedit-raw-removed' => '{{PLURAL:$1|1 title was|$1 titles were}} ਹਟਾਓ:',
 
 # Special:Version
-'version' => 'ਵਰਜਨ', # Not used as normal message but as header for the special page itself
+'version' => 'ਵਰਜਨ',
 
 # Special:SpecialPages
 'specialpages'             => 'ਖਾਸ ਪੇਜ',

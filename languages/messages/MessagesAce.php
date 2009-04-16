@@ -1,6 +1,9 @@
 <?php
 /** Achinese (Acèh)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -100,7 +103,7 @@ $messages = array(
 'otherlanguages'   => 'Bahsa la’én',
 'redirectedfrom'   => '(Geupeupinah nibak $1)',
 'redirectpagesub'  => 'Ôn peupinah',
-'lastmodifiedat'   => 'Ôn nyoë keuneulheuëh geu’ubah bak $2, $1.', # $1 date, $2 time
+'lastmodifiedat'   => 'Ôn nyoë keuneulheuëh geu’ubah bak $2, $1.',
 'jumpto'           => 'Langsông u:',
 'jumptonavigation' => 'navigasi',
 'jumptosearch'     => 'mita',
@@ -263,7 +266,7 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'viewpagelogs'           => 'Eu log ôn nyoë',
 'currentrev'             => 'Geunantoë jinoë',
 'revisionasof'           => 'Gantoë tiëp $1',
-'revision-info'          => 'Geunantoë tiëp $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Geunantoë tiëp $1; $2',
 'previousrevision'       => '←Geunantoë sigohlomjih',
 'nextrevision'           => 'Geunantoë lheuëh nyan→',
 'currentrevisionlink'    => 'Geunantoë jinoë',
@@ -277,7 +280,7 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'histlast'               => 'Paléng barô',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 bak $2', # user at time
+'history-feed-item-nocomment' => '$1 bak $2',
 
 # Revision deletion
 'rev-delundel'   => 'peuleumah/peusom',
@@ -509,7 +512,7 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'protect-expiring'            => 'maté tanggay $1 (UTC)',
 'protect-cascade'             => 'Peulindông ban mandum ôn nyang rôh lam ôn nyoë (lindông meuturôt).',
 'protect-cantedit'            => 'Droëneuh h‘an jeuët neu’ubah tingkat lindông ôn nyoë kareuna Droëneuh hana hak keu neupeulaku nyan.',
-'protect-expiry-options'      => '2 jeum:2 hours,1 uroë:1 day,3 uroë:3 days,1 minggu:1 week,2 minggu:2 weeks,1 buleuën:1 month,3 buleuën:3 months,6 buleuën:6 months,1 thôn:1 year,sabé:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 jeum:2 hours,1 uroë:1 day,3 uroë:3 days,1 minggu:1 week,2 minggu:2 weeks,1 buleuën:1 month,3 buleuën:3 months,6 buleuën:6 months,1 thôn:1 year,sabé:infinite',
 'restriction-type'            => 'Lindông:',
 'restriction-level'           => 'Tingkat:',
 
@@ -550,7 +553,7 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 
 # Block/unblock
 'blockip'          => 'Theun nyang nguy',
-'ipboptions'       => '2 jeum:2 hours,1 uroë:1 day,3 uroë:3 days,1 minggu:1 week,2 minggu:2 weeks,1 buleuën:1 month,3 buleuën:3 months,6 buleuën:6 months,1 thôn:1 year,sabé:infinite', # display1:time1,display2:time2,...
+'ipboptions'       => '2 jeum:2 hours,1 uroë:1 day,3 uroë:3 days,1 minggu:1 week,2 minggu:2 weeks,1 buleuën:1 month,3 buleuën:3 months,6 buleuën:6 months,1 thôn:1 year,sabé:infinite',
 'ipblocklist'      => 'Dapeuta neutheun',
 'blocklink'        => 'theun',
 'unblocklink'      => 'peugadöh theun',
@@ -576,7 +579,7 @@ Lam masalah nyoë, meunyo neuhawa, Droëneuh jeuët neupeupinah atawa neupeugab�
 'move-watch'       => 'Kalön ôn nyoë',
 'movepagebtn'      => 'Peupinah ôn',
 'pagemovedsub'     => 'Peupinah meuhasé',
-'movepage-moved'   => '<big>\'\'\'"$1" ka geupeupinah u "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" ka geupeupinah u "$2".\'\'\'</big>',
 'articleexists'    => 'Ôn ngön nan nyan ka na atawa nan nyang neupiléh hana sah. Neupiléh nan la’én.',
 'talkexists'       => 'Ôn nyan ka geupeupinah, tapi ôn peugah haba bak ôn nyan h‘an jeuët geupeupinah kareuna ka na ôn peugah haba bak nan barô. Neupeusapat mantöng ôn ôn peugah haba nyan keudroë.',
 'movedto'          => 'geupeupinah u',
@@ -682,7 +685,7 @@ Hubông-hubông lheuëh nyan bak baréh nyang saban geukira sibagoë keucuali, n
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Andam beureukah nyoë ngön aplikasi luwa',
@@ -699,7 +702,7 @@ Hubông-hubông lheuëh nyan bak baréh nyang saban geukira sibagoë keucuali, n
 'watchlisttools-raw'  => 'Andam dapeuta keunalön meuntah',
 
 # Special:Version
-'version' => 'Curak', # Not used as normal message but as header for the special page itself
+'version' => 'Curak',
 
 # Special:SpecialPages
 'specialpages' => 'Ôn husôh',

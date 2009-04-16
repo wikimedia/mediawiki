@@ -1,6 +1,9 @@
 <?php
 /** Romani (Romani)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -112,7 +115,7 @@ $messages = array(
 'userpage'         => 'Dikh i jeneski patrin',
 'viewtalkpage'     => 'Dikh i diskucia',
 'otherlanguages'   => 'Avre ćhibande',
-'lastmodifiedat'   => 'O palutno paruvipen $2, $1.', # $1 date, $2 time
+'lastmodifiedat'   => 'O palutno paruvipen $2, $1.',
 'viewcount'        => 'Kadaya patrin dikhlilyas {{PLURAL:$1|one time|$1var}}.',
 'jumpto'           => 'Ja kai:',
 'jumptonavigation' => 'phiripen',
@@ -518,7 +521,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 # Attribution
 'anonymous'        => 'Bijangle labyarne kai {{SITENAME}}',
 'siteuser'         => 'Jeno kai {{SITENAME}} $1',
-'lastmodifiedatby' => 'Kadaya patrin sas paruvdi agoreste $2, $1 katar $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Kadaya patrin sas paruvdi agoreste $2, $1 katar $3.',
 'others'           => 'aver',
 'siteusers'        => 'Jeno/e kai {{SITENAME}} $1',
 
@@ -549,7 +552,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'confirm_purge_button' => 'Va',
 
 # Special:Version
-'version' => 'Versiya', # Not used as normal message but as header for the special page itself
+'version' => 'Versiya',
 
 # Special:SpecialPages
 'specialpages' => 'Uzalutne patrya',

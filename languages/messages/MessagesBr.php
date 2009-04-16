@@ -1,6 +1,9 @@
 <?php
 /** Breton (Brezhoneg)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -198,7 +201,7 @@ $messages = array(
 'category-media-header'          => 'Restroù liesvedia er rummad "$1"',
 'category-empty'                 => "''N'eus na pajenn na media ebet er rummad-mañ evit ar mare.''",
 'hidden-categories'              => '{{PLURAL:$1|Rummad kuzhet|Rummad kuzhet}}',
-'hidden-category-category'       => 'Rummadoù kuzhet', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Rummadoù kuzhet',
 'category-subcat-count'          => "{{PLURAL:$2|N'eus er rummad-mañ nemet an isrummad da-heul.|{{PLURAL:$1|isrummad|$1 isrummad}} zo d'ar rummad-mañ diwar un hollad a $2.}}",
 'category-subcat-count-limited'  => 'Er rummad-mañ e kaver an {{PLURAL:$1|isrummad-se|$1 isrummadoù-se}}.',
 'category-article-count'         => "{{PLURAL:$2|N'eus er rummad-mañ nemet ar bajenn da-heul.|Emañ ar {{PLURAL:$1|bajenn da-heul|$1 pajenn da-heul}} er rummad-mañ, war un hollad a $2.}}",
@@ -285,7 +288,7 @@ $messages = array(
 'otherlanguages'    => 'Yezhoù all',
 'redirectedfrom'    => '(Adkaset eus $1)',
 'redirectpagesub'   => 'Pajenn adkas',
-'lastmodifiedat'    => "Kemmoù diwezhañ degaset d'ar bajenn-mañ : $2, $1.", # $1 date, $2 time
+'lastmodifiedat'    => "Kemmoù diwezhañ degaset d'ar bajenn-mañ : $2, $1.",
 'viewcount'         => 'Sellet euz eus bet {{PLURAL:$1|$1 wech|$1 (g)wech}} ouzh ar bajenn-mañ.',
 'protectedpage'     => 'Pajenn warezet',
 'jumpto'            => 'Mont da :',
@@ -763,7 +766,7 @@ An abeg roet gant $3 zo ''$2''",
 'currentrev'             => 'Stumm a-vremañ pe stumm red',
 'currentrev-asof'        => 'Stumm red eus an $1',
 'revisionasof'           => 'Stumm eus an $1',
-'revision-info'          => 'Stumm eus an $1 gant $2', # Additionally available: $3: revision id
+'revision-info'          => 'Stumm eus an $1 gant $2',
 'previousrevision'       => '← Stumm kent',
 'nextrevision'           => "Stumm war-lerc'h →",
 'currentrevisionlink'    => 'Gwelet ar stumm red',
@@ -785,7 +788,7 @@ Alc'hwez : (red) = diforc'hioù gant ar stumm a-vremañ,
 # Revision feed
 'history-feed-title'          => "Istor ar c'hemmoù",
 'history-feed-description'    => "Istor ar c'hemmoù degaset war ar bajenn-mañ eus ar wiki",
-'history-feed-item-nocomment' => "$1 d'an $2", # user at time
+'history-feed-item-nocomment' => "$1 d'an $2",
 'history-feed-empty'          => "Ar bajenn goulennet n'eus ket anezhi.
 Marteze eo bet diverket eus ar wiki, pe adanvet.
 Implijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe klotañ.",
@@ -1093,7 +1096,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'prefs-custom-js'           => 'JS personelaet',
 
 # User rights
-'userrights'                  => 'Merañ statud an implijerien', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Merañ statud an implijerien',
 'userrights-lookup-user'      => 'Merañ strolladoù an implijer',
 'userrights-user-editname'    => 'Lakait un anv implijer :',
 'editusergroup'               => 'Kemmañ ar strolladoù implijerien',
@@ -1440,8 +1443,8 @@ Ur [[Special:WhatLinksHere/$2|roll klok]] a c'haller da gaout.",
 'noimage'                   => "N'eus pajenn ebet anvet evel-se c'hoazh, gallout a rit $1.",
 'noimage-linktext'          => 'enporzhiañ unan',
 'uploadnewversion-linktext' => 'Kargañ ur stumm nevez eus ar restr-mañ',
-'shared-repo-from'          => 'eus $1', # $1 is the repository name
-'shared-repo'               => 'ur sanailh rannet', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'eus $1',
+'shared-repo'               => 'ur sanailh rannet',
 
 # File reversion
 'filerevert'                => 'Disteuler $1',
@@ -1825,8 +1828,8 @@ taolit evezh bras.",
 kemmet pe distaolet eo bet c'hoazh gant unan bennak all.
 
 Ar c'hemm diwezhañ d'ar bajenn-mañ a oa bet graet gant [[User:$3|$3]] ([[User talk:$3|Kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "Diverradenn ar c'hemm a oa : \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Diverradenn ar c'hemm a oa : \"''\$1''\".",
+'revertpage'       => "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]",
 'rollback-success' => 'Disteuler kemmoù $1; distreiñ da stumm diwezhañ $2.',
 'sessionfailure'   => 'Evit doare ez eus ur gudenn gant ho talc\'h;
 Nullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ.
@@ -1874,7 +1877,7 @@ Setu an doare a-vremañ evit ar bajenn-mañ '''$1''':",
 ** Tabutoù toull war kemmoù zo
 ** Pajenn kemmet alies-tre',
 'protect-edit-reasonlist'     => 'Kemmañ abegoù ar gwareziñ',
-'protect-expiry-options'      => '1 eurvezh:1 hour,1 deiz:1 day,1 sizhun:1 week,2 sizhun:2 weeks,1 miz:1 month,3 miz:3 months,6 miz:6 months,1 bloaz:1 year,da viken:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 eurvezh:1 hour,1 deiz:1 day,1 sizhun:1 week,2 sizhun:2 weeks,1 miz:1 month,3 miz:3 months,6 miz:6 months,1 bloaz:1 year,da viken:infinite',
 'restriction-type'            => 'Aotre',
 'restriction-level'           => 'Live strishaat :',
 'minimum-size'                => 'Ment vihanañ',
@@ -1951,7 +1954,7 @@ $1',
 'contributions-title' => 'Degasadennoù an implijer evit $1',
 'mycontris'           => 'Ma degasadennnoù',
 'contribsub2'         => 'Evit $1 ($2)',
-'nocontribs'          => "N'eus bet kavet kemm ebet o klotañ gant an dezverkoù-se.", # Optional parameter: $1 is the user name
+'nocontribs'          => "N'eus bet kavet kemm ebet o klotañ gant an dezverkoù-se.",
 'uctop'               => ' (diwezhañ)',
 'month'               => 'Abaoe miz (hag a-raok) :',
 'year'                => 'Abaoe bloaz (hag a-raok) :',
@@ -2012,7 +2015,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipbenableautoblock'              => "Stankañ war-eeun ar chomlec'h IP diwezhañ implijet gant an den-mañ hag an holl chomlec'hioù en deus klasket degas kemmoù drezo war-lerc'h",
 'ipbsubmit'                       => "Stankañ ouzh ar chomlec'h-mañ",
 'ipbother'                        => 'Prantad all',
-'ipboptions'                      => '2 eurvezh:2 hours,1 devezh:1 day,3 devezh:3 days,1 sizhunvezh:1 week,2 sizhunvezh:2 weeks,1 mizvezh:1 month,3 mizvezh:3 months,6 mizvezh:6 months,1 bloaz:1 year,da viken:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 eurvezh:2 hours,1 devezh:1 day,3 devezh:3 days,1 sizhunvezh:1 week,2 sizhunvezh:2 weeks,1 mizvezh:1 month,3 mizvezh:3 months,6 mizvezh:6 months,1 bloaz:1 year,da viken:infinite',
 'ipbotheroption'                  => 'prantad all',
 'ipbotherreason'                  => 'Abeg all/ouzhpenn',
 'ipbhidename'                     => "Kuzhat anv an implijer er rolloù hag er c'hemmoù",
@@ -2139,7 +2142,7 @@ En degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c'hwi hoc'h-unan ma kari
 'move-watch'                   => 'Evezhiañ ar bajenn-mañ',
 'movepagebtn'                  => 'Adenvel ar pennad',
 'pagemovedsub'                 => "Dilec'hiadenn kaset da benn vat",
-'movepage-moved'               => '<big>\'\'\'Adkaset eo bet "$1" war-du "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'Adkaset eo bet "$1" war-du "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Krouet ez eus bet un adkas.',
 'movepage-moved-noredirect'    => 'Nullet eo bet krouidigezeh un adkas adal an anv kozh.',
 'articleexists'                => "Ur pennad gantañ an anv-se zo dija pe n'eo ket reizh an titl hoc'h eus dibabet.
@@ -2349,7 +2352,7 @@ Talvezout a ra da ouzhpennañ un displegadenn er c\'hombod diverrañ.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|implijer|implijer}} dianv eus {{SITENAME}}',
 'siteuser'         => 'Implijer(ez) $1 eus {{SITENAME}}',
-'lastmodifiedatby' => "Kemmet eo bet ar bajenn-mañ da ziwezhañ d'an/ar $2, $1 gant $3", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Kemmet eo bet ar bajenn-mañ da ziwezhañ d'an/ar $2, $1 gant $3",
 'othercontribs'    => 'Diazezet war labour $1.',
 'others'           => 're all',
 'siteusers'        => '$1 {{PLURAL:$2|implijer|implijer}} eus {{SITENAME}}',
@@ -2469,7 +2472,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Led',
@@ -2596,14 +2599,14 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 
 'exif-unknowndate' => 'Deiziad dianav',
 
-'exif-orientation-1' => 'Boutin', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Eilpennet a-hed', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Troet eus 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Eilpennet a-serzh', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Troet eus 90° a-gleiz hag eilpennet a-serzh', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Troet eus 90° a-zehou', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Troet eus 90° a-zehou hag eilpennet a-serzh', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Troet eus 90° a-gleiz', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Boutin',
+'exif-orientation-2' => 'Eilpennet a-hed',
+'exif-orientation-3' => 'Troet eus 180°',
+'exif-orientation-4' => 'Eilpennet a-serzh',
+'exif-orientation-5' => 'Troet eus 90° a-gleiz hag eilpennet a-serzh',
+'exif-orientation-6' => 'Troet eus 90° a-zehou',
+'exif-orientation-7' => 'Troet eus 90° a-zehou hag eilpennet a-serzh',
+'exif-orientation-8' => 'Troet eus 90° a-gleiz',
 
 'exif-planarconfiguration-1' => 'Roadennoù kenstok',
 'exif-planarconfiguration-2' => 'Roadennoù distag',
@@ -2890,7 +2893,7 @@ Klaskit rakwelet er mod boutin.',
 'duplicate-defaultsort' => 'Diwallit : Frikañ a ra an alc\'hwez dre ziouer "$2" an hini a oa a-raok "$1".',
 
 # Special:Version
-'version'                          => 'Stumm', # Not used as normal message but as header for the special page itself
+'version'                          => 'Stumm',
 'version-extensions'               => 'Astennoù staliet',
 'version-specialpages'             => 'Pajennoù dibar',
 'version-parserhooks'              => 'Galvoù dielfennañ',

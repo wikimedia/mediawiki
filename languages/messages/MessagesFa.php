@@ -1,6 +1,9 @@
 <?php
 /** Persian (فارسی)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -497,7 +500,7 @@ $messages = array(
 'category-media-header'          => 'پرونده‌های ردهٔ «$1»',
 'category-empty'                 => 'این رده شامل هیچ صفحه یا پرونده‌ای نمی‌شود.',
 'hidden-categories'              => '{{PLURAL:$1|ردهٔ پنهان|رده‌های پنهان}}',
-'hidden-category-category'       => 'رده‌های پنهان', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'رده‌های پنهان',
 'category-subcat-count'          => '{{PLURAL:$2|این رده تنها حاوی زیرردهٔ زیر است.|{{PLURAL:$1|این زیررده|این $1 زیررده}} در این رده قرار {{PLURAL:$1|دارد|دارند}}؛ این رده در کل حاوی $2 زیررده است.}}',
 'category-subcat-count-limited'  => 'این رده شامل {{PLURAL:$1|یک زیررده|$1 زیررده}} زیر می‌باشد.',
 'category-article-count'         => '{{PLURAL:$2|این رده تنها حاوی صفحهٔ زیر است.|{{PLURAL:$1|این صفحه|این $1 صفحه}} در این رده قرار {{PLURAL:$1|دارد|دارند}}؛ این رده در کل حاوی $2 صفحه است.}}',
@@ -585,7 +588,7 @@ $messages = array(
 'otherlanguages'    => 'زبان‌های دیگر',
 'redirectedfrom'    => '(تغییر مسیر از $1)',
 'redirectpagesub'   => 'صفحهٔ تغییر مسیر',
-'lastmodifiedat'    => 'این صفحه آخرین بار در $2، $1 تغییر یافته‌است.', # $1 date, $2 time
+'lastmodifiedat'    => 'این صفحه آخرین بار در $2، $1 تغییر یافته‌است.',
 'viewcount'         => 'این صفحه {{PLURAL:$1|یک|$1}} بار دیده شده است.',
 'protectedpage'     => 'صفحهٔ محافظت‌شده',
 'jumpto'            => 'پرش به:',
@@ -1087,7 +1090,7 @@ $2',
 'currentrev'             => 'نسخهٔ فعلی',
 'currentrev-asof'        => 'نسخهٔ کنونی تا $1',
 'revisionasof'           => 'نسخهٔ $1',
-'revision-info'          => 'ُویرایش در تاریخ $1 توسط $2', # Additionally available: $3: revision id
+'revision-info'          => 'ُویرایش در تاریخ $1 توسط $2',
 'previousrevision'       => '→ نسخهٔ قدیمی‌تر',
 'nextrevision'           => 'نسخهٔ جدیدتر←',
 'currentrevisionlink'    => 'نمایش نسخهٔ فعلی',
@@ -1108,7 +1111,7 @@ $2',
 # Revision feed
 'history-feed-title'          => 'تاریخچهٔ ویرایش‌ها',
 'history-feed-description'    => 'تاریخچهٔ ویرایشهای صفحه در ویکی',
-'history-feed-item-nocomment' => '$1 در $2', # user at time
+'history-feed-item-nocomment' => '$1 در $2',
 'history-feed-empty'          => 'صفحهٔ درخواسته وجود ندارد. ممکن است که از ویکی حذف  یا اینکه نامش تغییر داده شده باشد. 
 [[Special:Search|جستجوی]] صفحه‌های جدید مرتبطِ موجود در این ویکی را هم بیازمایید. شاید افاقه کرد.',
 
@@ -1427,7 +1430,7 @@ $2',
 'prefs-custom-js'           => 'جاوااسکریپت شخصی',
 
 # User rights
-'userrights'                  => 'مدیریت اختیارات کاربر', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'مدیریت اختیارات کاربر',
 'userrights-lookup-user'      => 'مدیریت گروه‌های کاربری',
 'userrights-user-editname'    => 'یک نام کاربری وارد کنید:',
 'editusergroup'               => 'ویرایش گروه‌های کاربری',
@@ -1763,8 +1766,8 @@ $2',
 'noimage'                   => 'هیچ پرونده‌ای با این نام موجود نیست، اما شما می‌توانید $1',
 'noimage-linktext'          => 'آن را بار کنید',
 'uploadnewversion-linktext' => 'بارکردن نسخهٔ جدیدی از پرونده',
-'shared-repo-from'          => 'از $1', # $1 is the repository name
-'shared-repo'               => 'یک مخزن مشترک', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'از $1',
+'shared-repo'               => 'یک مخزن مشترک',
 
 # File reversion
 'filerevert'                => 'واگردانی $1',
@@ -2159,8 +2162,8 @@ $NEWPAGE
 پیش از این شخص دیگری مقاله را ویرایش یا واگردانی کرده‌است.
 
 آخرین ویرایش توسط [[User:$3|$3]] ([[User talk:$3|بحث]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) انجام شده‌است.',
-'editcomment'      => "خلاصهٔ ویرایش این بود: «''$1''».", # only shown if there is an edit comment
-'revertpage'       => 'ویرایش $2 واگردانده شد به آخرین تغییری که  $1 انجام داده بود', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "خلاصهٔ ویرایش این بود: «''$1''».",
+'revertpage'       => 'ویرایش $2 واگردانده شد به آخرین تغییری که  $1 انجام داده بود',
 'rollback-success' => 'ویرایش‌های $1 واگردانی شد؛ صفحه به ویرایش $2 برگردانده شد.',
 'sessionfailure'   => 'بنظر می‌رسد مشکلی در مورد نشست کاربری شما وجود دارد؛ عمل درخواست شده بعنوان اقدام پیشگیرانه در برابر ربوده‌شدن اطلاعات نشست کاربری، لغو شد. لطفاً دکمهٔ «بازگشت» را در مرورگر خود بفشارید و صفحه‌ای که از آن به اینجا رسیده‌اید را مجدداً فراخوانی کنید، سپس مجدداً سعی کنید.',
 
@@ -2207,7 +2210,7 @@ $NEWPAGE
 ** جنگ ویرایشی غیر سازنده
 ** صفحهٔ پر بازدید',
 'protect-edit-reasonlist'     => 'ویرایش دلایل محافظت',
-'protect-expiry-options'      => '۱ ساعت:1 hour,۱ روز:1 day,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '۱ ساعت:1 hour,۱ روز:1 day,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite',
 'restriction-type'            => 'دسترسی',
 'restriction-level'           => 'سطح محدودیت',
 'minimum-size'                => 'حداقل اندازه',
@@ -2284,7 +2287,7 @@ $1',
 'contributions-title' => 'مشارکت‌های کاربری $1',
 'mycontris'           => 'مشارکت‌های من',
 'contribsub2'         => 'برای $1 ($2)',
-'nocontribs'          => 'هیچ تغییری با این مشخصات یافت نشد.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'هیچ تغییری با این مشخصات یافت نشد.',
 'uctop'               => ' (بالا)',
 'month'               => 'در این ماه (و قبل از آن)',
 'year'                => 'در این سال (و قبل از آن)',
@@ -2343,7 +2346,7 @@ $1',
 'ipbenableautoblock'              => 'بستن  خودکار آخرین نشانی آی‌پی استفاده شده توسط کاربر و نشانی‌های دیگری که از آن‌ها برای ویرایش تلاش می‌کند',
 'ipbsubmit'                       => 'این کاربر بسته شود',
 'ipbother'                        => 'زمانی دیگر',
-'ipboptions'                      => '۲ ساعت:2 hours,۱ روز:1 day,۳ روز:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '۲ ساعت:2 hours,۱ روز:1 day,۳ روز:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایان:infinite',
 'ipbotheroption'                  => 'دیگر',
 'ipbotherreason'                  => 'دلیل دیگر/اضافی:',
 'ipbhidename'                     => 'نهفتن نام کاربری از ویرایش‌ها و فهرست‌ها',
@@ -2475,7 +2478,7 @@ $1',
 'move-watch'                   => 'پی‌گیری این صفحه',
 'movepagebtn'                  => 'صفحه منتقل شود',
 'pagemovedsub'                 => 'انتقال با موفقیت انجام شد',
-'movepage-moved'               => "<big>'''«$1» به «$2» منتقل شد'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''«$1» به «$2» منتقل شد'''</big>",
 'movepage-moved-redirect'      => 'یک تغییر مسیر ایجاد شد.',
 'movepage-moved-noredirect'    => 'از ایجاد تغییر مسیر ممانعت شد.',
 'articleexists'                => 'صفحه‌ای با این نام از قبل وجود دارد، یا نامی که انتخاب کرده‌اید معتبر نیست.
@@ -2678,7 +2681,7 @@ $1',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|کاربر|کاربران}} گمنام {{SITENAME}}',
 'siteuser'         => '$1، کاربر {{SITENAME}}',
-'lastmodifiedatby' => 'این صفحه آخرین بار در $2، $1 به دست $3 تغییر یافته‌است.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'این صفحه آخرین بار در $2، $1 به دست $3 تغییر یافته‌است.',
 'othercontribs'    => 'بر اساس اثری از $1',
 'others'           => 'دیگران',
 'siteusers'        => '$1، {{PLURAL:$2|کاربر|کاربران}} {{SITENAME}}',
@@ -2799,7 +2802,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'عرض',
@@ -2927,14 +2930,14 @@ $1',
 
 'exif-unknowndate' => 'تاریخ نامعلوم',
 
-'exif-orientation-1' => 'عادی', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'افقی پشت و روشده', # 0th row: top; 0th column: right
-'exif-orientation-3' => '۱۸۰ درجه چرخیده', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'عمودی پشت و روشده', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '۹۰° پادساعتگرد چرخیده و عمودی پشت و رو شده', # 0th row: left; 0th column: top
-'exif-orientation-6' => '۹۰° ساعتگرد چرخیده', # 0th row: right; 0th column: top
-'exif-orientation-7' => '۹۰° ساعتگرد چرخیده و عمودی پشت و رو شده', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '۹۰° پادساعتگرد چرخیده', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'عادی',
+'exif-orientation-2' => 'افقی پشت و روشده',
+'exif-orientation-3' => '۱۸۰ درجه چرخیده',
+'exif-orientation-4' => 'عمودی پشت و روشده',
+'exif-orientation-5' => '۹۰° پادساعتگرد چرخیده و عمودی پشت و رو شده',
+'exif-orientation-6' => '۹۰° ساعتگرد چرخیده',
+'exif-orientation-7' => '۹۰° ساعتگرد چرخیده و عمودی پشت و رو شده',
+'exif-orientation-8' => '۹۰° پادساعتگرد چرخیده',
 
 'exif-planarconfiguration-1' => 'قالب فربه',
 'exif-planarconfiguration-2' => 'قالب دووجهی',
@@ -3273,7 +3276,7 @@ $1',
 'duplicate-defaultsort' => 'هشدار: ترتیب پیش فرض «$2» ترتیب پیش فرض قبلی «$1» را باطل می‌سازد.',
 
 # Special:Version
-'version'                          => 'نسخه', # Not used as normal message but as header for the special page itself
+'version'                          => 'نسخه',
 'version-extensions'               => 'افزونه‌های نصب شده',
 'version-specialpages'             => 'صفحه‌های ویژه',
 'version-parserhooks'              => 'قلاب‌های تجزیه‌گر',

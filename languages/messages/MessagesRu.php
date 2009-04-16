@@ -1,6 +1,9 @@
 <?php
 /** Russian (Русский)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -351,7 +354,7 @@ $messages = array(
 'category-media-header'          => 'Файлы в категории «$1»',
 'category-empty'                 => "''Эта категория в данный момент пуста.''",
 'hidden-categories'              => '{{PLURAL:$1|Скрытая категория|Скрытые категории}}',
-'hidden-category-category'       => 'Скрытые категории', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Скрытые категории',
 'category-subcat-count'          => '{{PLURAL:$2|Данная категория содержит только следующую подкатегорию.|{{PLURAL:$1|Показана $1 подкатегория|Показано $1 подкатегории|Показано $1 подкатегорий}} из $2.}}',
 'category-subcat-count-limited'  => 'В этой категории {{PLURAL:$1|$1 подкатегория|$1 подкатегории|$1 подкатегорий}}.',
 'category-article-count'         => '{{PLURAL:$2|Эта категория содержит только одну страницу.|{{PLURAL:$1|Показана $1 страница|Показано $1 страницы|Показано $1 страниц}} этой категории из $2.}}',
@@ -437,7 +440,7 @@ $messages = array(
 'otherlanguages'    => 'На других языках',
 'redirectedfrom'    => '(Перенаправлено с $1)',
 'redirectpagesub'   => 'Страница-перенаправление',
-'lastmodifiedat'    => 'Последнее изменение этой страницы: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Последнее изменение этой страницы: $2, $1.',
 'viewcount'         => 'К этой странице обращались $1 {{PLURAL:$1|раз|раза|раз}}.',
 'protectedpage'     => 'Защищённая страница',
 'jumpto'            => 'Перейти к:',
@@ -934,7 +937,7 @@ $3 указал следующую причину: ''$2''",
 'currentrev'             => 'Текущая версия',
 'currentrev-asof'        => 'Текущая версия на $1',
 'revisionasof'           => 'Версия $1',
-'revision-info'          => 'Версия от $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Версия от $1; $2',
 'previousrevision'       => '← Предыдущая',
 'nextrevision'           => 'Следующая →',
 'currentrevisionlink'    => 'Текущая версия',
@@ -954,7 +957,7 @@ $3 указал следующую причину: ''$2''",
 # Revision feed
 'history-feed-title'          => 'История изменений',
 'history-feed-description'    => 'История изменений этой страницы в вики',
-'history-feed-item-nocomment' => '$1 в $2', # user at time
+'history-feed-item-nocomment' => '$1 в $2',
 'history-feed-empty'          => 'Запрашиваемой страницы не существует.
 Она могла быть удалена или переименована.
 Попробуйте [[Special:Search|найти в вики]] похожие страницы.',
@@ -1271,7 +1274,7 @@ $3 указал следующую причину: ''$2''",
 'prefs-custom-js'           => 'Собственный JS',
 
 # User rights
-'userrights'                  => 'Управление правами участника', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Управление правами участника',
 'userrights-lookup-user'      => 'Управление группами участников',
 'userrights-user-editname'    => 'Введите имя участника:',
 'editusergroup'               => 'Изменить группы участника',
@@ -1619,8 +1622,8 @@ PICT # различные
 'noimage'                   => 'Файла с таким именем не существует, но вы можете $1.',
 'noimage-linktext'          => 'загрузить его',
 'uploadnewversion-linktext' => 'Загрузить новую версию этого файла',
-'shared-repo-from'          => 'из $1', # $1 is the repository name
-'shared-repo'               => 'общего хранилища', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'из $1',
+'shared-repo'               => 'общего хранилища',
 
 # File reversion
 'filerevert'                => 'Возврат к старой версии $1',
@@ -2002,8 +2005,8 @@ $NEWPAGE
 кто-то другой уже отредактировал или откатил эту страницу.
 
 Последние изменения внёс [[User:$3|$3]] ([[User talk:$3|Обсуждение]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Изменение было пояснено как ''«$1»''.", # only shown if there is an edit comment
-'revertpage'       => 'Правки [[Special:Contributions/$2|$2]] ([[User talk:$2|обсуждение]]) откачены к версии [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Изменение было пояснено как ''«$1»''.",
+'revertpage'       => 'Правки [[Special:Contributions/$2|$2]] ([[User talk:$2|обсуждение]]) откачены к версии [[User:$1|$1]]',
 'rollback-success' => 'Откачены правки $1; возврат к версии $2.',
 'sessionfailure'   => 'Похоже, возникли проблемы с текущим сеансом работы;
 это действие было отменено в целях предотвращения «захвата сеанса».
@@ -2051,7 +2054,7 @@ $NEWPAGE
 ** непродуктивная война правок
 ** популярная страница',
 'protect-edit-reasonlist'     => 'Править список причин',
-'protect-expiry-options'      => '1 час:1 hour,1 день:1 day,1 неделя:1 week,2 недели:2 weeks,1 месяц:1 month,3 месяца:3 months,6 месяцев:6 months,1 год:1 year,бессрочно:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 час:1 hour,1 день:1 day,1 неделя:1 week,2 недели:2 weeks,1 месяц:1 month,3 месяца:3 months,6 месяцев:6 months,1 год:1 year,бессрочно:infinite',
 'restriction-type'            => 'Права:',
 'restriction-level'           => 'Уровень доступа:',
 'minimum-size'                => 'Минимальный размер',
@@ -2128,7 +2131,7 @@ $1',
 'contributions-title' => 'Вклад участника $1',
 'mycontris'           => 'Мой вклад',
 'contribsub2'         => 'Вклад $1 ($2)',
-'nocontribs'          => 'Изменений, соответствующих заданным условиям, найдено не было.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Изменений, соответствующих заданным условиям, найдено не было.',
 'uctop'               => ' (последняя)',
 'month'               => 'С месяца (и ранее):',
 'year'                => 'С года (и ранее):',
@@ -2190,7 +2193,7 @@ $1',
 'ipbenableautoblock'              => 'Автоматически блокировать используемые участником IP-адреса',
 'ipbsubmit'                       => 'Заблокировать этот адрес/участника',
 'ipbother'                        => 'Другое время:',
-'ipboptions'                      => '2 часа:2 hours,1 день:1 day,3 дня:3 days,1 неделя:1 week,2 недели:2 weeks,1 месяц:1 month,3 месяца:3 months,6 месяцев:6 months,1 год:1 year,бессрочно:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 часа:2 hours,1 день:1 day,3 дня:3 days,1 неделя:1 week,2 недели:2 weeks,1 месяц:1 month,3 месяца:3 months,6 месяцев:6 months,1 год:1 year,бессрочно:infinite',
 'ipbotheroption'                  => 'другое',
 'ipbotherreason'                  => 'Другая причина/дополнение:',
 'ipbhidename'                     => 'Скрыть имя участника из правок и списков',
@@ -2325,7 +2328,7 @@ $1',
 'move-watch'                   => 'Включить эту страницу в список наблюдения',
 'movepagebtn'                  => 'Переименовать страницу',
 'pagemovedsub'                 => 'Страница переименована',
-'movepage-moved'               => "<big>'''Страница «$1» переименована в «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''Страница «$1» переименована в «$2»'''</big>",
 'movepage-moved-redirect'      => 'Было создано перенаправление.',
 'movepage-moved-noredirect'    => 'Создание перенаправления было запрещено.',
 'articleexists'                => 'Страница с таким именем уже существует или указанное вами название недопустимо.
@@ -2532,7 +2535,7 @@ The wiki server can't provide data in a format your client can read.",
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Анонимный участник|Анонимные участники}} {{grammar:genitive|{{SITENAME}}}}',
 'siteuser'         => 'Участник {{grammar:genitive|{{SITENAME}}}} $1',
-'lastmodifiedatby' => 'Эта страница последний раз была изменена $2, $1 участником $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Эта страница последний раз была изменена $2, $1 участником $3.',
 'othercontribs'    => 'Основано на работе $1.',
 'others'           => 'другие',
 'siteusers'        => '{{PLURAL:$2|Участник|Участники}} {{grammar:genitive|{{SITENAME}}}} $1',
@@ -2659,7 +2662,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ширина',
@@ -2787,14 +2790,14 @@ $1',
 
 'exif-unknowndate' => 'Неизвестная дата',
 
-'exif-orientation-1' => 'Нормальная', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Отражено по горизонтали', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Повёрнуто на 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Отражено по вертикали', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Повёрнуто на 90° против часовой стрелки и отражено по вертикали', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Повёрнуто на 90° по часовой стрелке', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Повёрнуто на 90° по часовой стрелке и отражено по вертикали', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Повёрнуто на 90° против часовой стрелки', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Нормальная',
+'exif-orientation-2' => 'Отражено по горизонтали',
+'exif-orientation-3' => 'Повёрнуто на 180°',
+'exif-orientation-4' => 'Отражено по вертикали',
+'exif-orientation-5' => 'Повёрнуто на 90° против часовой стрелки и отражено по вертикали',
+'exif-orientation-6' => 'Повёрнуто на 90° по часовой стрелке',
+'exif-orientation-7' => 'Повёрнуто на 90° по часовой стрелке и отражено по вертикали',
+'exif-orientation-8' => 'Повёрнуто на 90° против часовой стрелки',
 
 'exif-planarconfiguration-1' => 'формат «chunky»',
 'exif-planarconfiguration-2' => 'формат «planar»',
@@ -3122,7 +3125,7 @@ $1',
 'duplicate-defaultsort' => 'Внимание. Ключ сортировки по умолчанию «$2» переопределяет прежний ключ сортировки по умолчанию «$1».',
 
 # Special:Version
-'version'                          => 'Версия MediaWiki', # Not used as normal message but as header for the special page itself
+'version'                          => 'Версия MediaWiki',
 'version-extensions'               => 'Установленные расширения',
 'version-specialpages'             => 'Служебные страницы',
 'version-parserhooks'              => 'Перехватчики синтаксического анализатора',

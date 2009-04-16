@@ -1,6 +1,9 @@
 <?php
 /** Bishnupria Manipuri (ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -150,7 +153,7 @@ $messages = array(
 'category-media-header'    => '"$1" থাকর মিডিয়া',
 'category-empty'           => "''এরে থাক এহাত এবাকা কোন পাতা বা মিডিয়া নেই''",
 'hidden-categories'        => '{{PLURAL:$1|গুরিসি থাকহান|গুরিসি থাকহানি}}',
-'hidden-category-category' => 'আরুম করিসি থাকহানি', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'আরুম করিসি থাকহানি',
 'listingcontinuesabbrev'   => 'চলতই',
 
 'mainpagetext'      => "<big>'''মিডিয়াউইকি হবাবালা ইয়া ইন্সটল ইল.'''</big>",
@@ -231,7 +234,7 @@ $messages = array(
 'otherlanguages'    => 'আরআর ঠারে',
 'redirectedfrom'    => '($1 -ত্ত পাকদিয়া আহিল)',
 'redirectpagesub'   => 'কুইপা পাতা',
-'lastmodifiedat'    => 'পাতা এহানর লমিলগা পতানিহান $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'পাতা এহানর লমিলগা পতানিহান $2, $1.',
 'viewcount'         => 'পাতা এহান $1 মাউ চানা ইল।',
 'protectedpage'     => 'লুকরা পাতা',
 'jumpto'            => 'চঙদে:',
@@ -444,7 +447,7 @@ $messages = array(
 'viewpagelogs'        => 'পাতাহানর লগ চা',
 'currentrev'          => 'হাদিএহানর পতানি',
 'revisionasof'        => 'রিভিসনহান $1 পেয়া',
-'revision-info'       => '$1 পেয়া  $2-এ পতাসেতা', # Additionally available: $3: revision id
+'revision-info'       => '$1 পেয়া  $2-এ পতাসেতা',
 'previousrevision'    => '←পুরানা পতানিহান',
 'nextrevision'        => 'নুৱা ভার্সনহান→',
 'currentrevisionlink' => 'হাদি এহানর পতানি',
@@ -458,7 +461,7 @@ $messages = array(
 'histlast'            => 'হাব্বিত্ত নুৱা',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 খেন্তাম $2 ত', # user at time
+'history-feed-item-nocomment' => '$1 খেন্তাম $2 ত',
 
 # Diffs
 'history-title'           => '"$1"-র রিভিসন ইতিহাসহান',
@@ -698,7 +701,7 @@ $messages = array(
 'protect-expiring'            => '$1 (আমাস) খেন্তামে মিয়াদহান লালুইতই',
 'protect-cascade'             => 'এরে পাতাত মিহিসে পাতাহানি তালাবি করানি অক (আগপাতাকরেকুরা তালাবি)',
 'protect-cantedit'            => 'লুকরিসি পাতাহানরে তি সিলকরে নারবে, কিদিয়া বুল্লে তরতা পতানির য়্যাথাঙ নেই।',
-'protect-expiry-options'      => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,হাপ্তা আহান:1 week,হাপ্তা দুহান:2 weeks,মাহা আহান:1 month,৩ মাহা:3 months,৬ মাহা:6 months,বসর আহান:1 year,লম নেই সময়:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,হাপ্তা আহান:1 week,হাপ্তা দুহান:2 weeks,মাহা আহান:1 month,৩ মাহা:3 months,৬ মাহা:6 months,বসর আহান:1 year,লম নেই সময়:infinite',
 'restriction-type'            => 'য়্যাথাঙ:',
 'restriction-level'           => 'লুকরানির থাক:',
 
@@ -738,7 +741,7 @@ $messages = array(
 
 # Block/unblock
 'blockip'            => 'আতাকুরাগরে থেপকর',
-'ipboptions'         => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,হাপ্তা আহান:1 week,হাপ্তা দুহান:2 weeks,মাহা আহান:1 month,৩ মাহা:3 months,৬ মাহা:6 months,বসর আহান:1 year,লম নেই সময়:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,হাপ্তা আহান:1 week,হাপ্তা দুহান:2 weeks,মাহা আহান:1 month,৩ মাহা:3 months,৬ মাহা:6 months,বসর আহান:1 year,লম নেই সময়:infinite',
 'badipaddress'       => 'আইপি ঠিকানাহান গ্রহনযোগ্যনাইসে',
 'blockipsuccesssub'  => 'থেপকরানিহান চুমিল',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] রে থেপকরিয়া থসি <br />থেপকরানিহান খাল করানি থকিলে,[[Special:IPBlockList| থেপকরিয়া থসি আইপি ঠিকানার তালিকাহান]] চা।',
@@ -770,7 +773,7 @@ $messages = array(
 'move-watch'              => 'পাতা এহান খিয়াল কর',
 'movepagebtn'             => 'পাতা থেইকর',
 'pagemovedsub'            => 'গুসানিহান হবা বালাই লমিল',
-'movepage-moved'          => '<big>\'\'\'"$1" থেইককরানি ইল "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" থেইককরানি ইল "$2"\'\'\'</big>',
 'articleexists'           => 'ইতে পারে এরে শিরোনাঙর নিবন্ধহান হঙপরসেগা, নাইলে তি দিয়াসত শিরোনাং এহান দেনার য়্যাথাং নেই। কৃপা করিয়া আরাক শিরোনাং আহান দেনার হৎনা কর।',
 'talkexists'              => "'''পাতাহান হবা বালাই গুসিল কিন্তু অরে নাঙর য়্যারির পাতা আহান আগেত্তর থানাই না গুসিল।
 দয়া করিয়া তি নিজর আতহান্ন তিলকরগা।'''",
@@ -883,7 +886,7 @@ $messages = array(
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'এর ফাইল এগ পতানির কা বারেদের এপ্লিকেশন আতা',
@@ -916,7 +919,7 @@ $messages = array(
 'watchlisttools-raw'  => 'পেরকা তালাবির পাতা পতা',
 
 # Special:Version
-'version' => 'সংস্করন', # Not used as normal message but as header for the special page itself
+'version' => 'সংস্করন',
 
 # Special:SpecialPages
 'specialpages' => 'বিশেষ পাতাহানি',

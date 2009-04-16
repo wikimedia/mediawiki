@@ -1,6 +1,9 @@
 <?php
 /** Bosnian (Bosanski)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -357,7 +360,7 @@ $messages = array(
 'category-media-header'          => 'Mediji u kategoriji "$1"',
 'category-empty'                 => "''Ova kategorija trenutno ne sadrži članke ni medije.''",
 'hidden-categories'              => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}}',
-'hidden-category-category'       => 'Sakrivene kategorije', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Sakrivene kategorije',
 'category-subcat-count'          => '{{PLURAL:$2|Ova kategorija ima sljedeću $1 podkategoriju.|Ova kategorija ima {{PLURAL:$1|sljedeće podkategorije|sljedećih $1 podkategorija}}, od $2 ukupno.}}',
 'category-subcat-count-limited'  => 'Ova kategorija sadrži {{PLURAL:$1|slijedeću $1 podkategoriju|slijedeće $1 podkategorije|slijedećih $1 podkategorija}}.',
 'category-article-count'         => '{{PLURAL:$2|U ovoj kategoriji se nalazi $1 članak.|{{PLURAL:$1|Prikazan je $1 članak|Prikazana su $1 članka|Prikazano je $1 članaka}} od ukupno $2 u ovoj kategoriji.}}',
@@ -443,7 +446,7 @@ $messages = array(
 'otherlanguages'    => 'Ostali jezici',
 'redirectedfrom'    => '(Preusmjereno sa $1)',
 'redirectpagesub'   => 'Preusmjeri stranicu',
-'lastmodifiedat'    => 'Ova stranica je posljednji put izmijenjena $2, $1', # $1 date, $2 time
+'lastmodifiedat'    => 'Ova stranica je posljednji put izmijenjena $2, $1',
 'viewcount'         => 'Ovoj stranici je pristupljeno {{PLURAL:$1|$1 put|$1 puta}}.',
 'protectedpage'     => 'Zaštićena stranica',
 'jumpto'            => 'Idi na:',
@@ -965,7 +968,7 @@ Razlog koji je naveo $3 je ''$2''",
 'currentrev'             => 'Trenutna revizija',
 'currentrev-asof'        => 'Trenutna revizija na dan $1',
 'revisionasof'           => 'Revizija od $1',
-'revision-info'          => 'Izmjena od $1 korisnika $2', # Additionally available: $3: revision id
+'revision-info'          => 'Izmjena od $1 korisnika $2',
 'previousrevision'       => '←Starije izmjene',
 'nextrevision'           => 'Novija izmjena →',
 'currentrevisionlink'    => 'Trenutna verzija',
@@ -987,7 +990,7 @@ Objašnjenje: '''(tren)''' = razlika sa trenutnom verzijom,
 # Revision feed
 'history-feed-title'          => 'Historija izmjena',
 'history-feed-description'    => 'Historija promjena ove stranice na wikiju',
-'history-feed-item-nocomment' => '$1 u $2', # user at time
+'history-feed-item-nocomment' => '$1 u $2',
 'history-feed-empty'          => 'Tražena stranica ne postoji.
 Moguće da je izbrisana sa wikija, ili preimenovana.
 Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
@@ -1307,7 +1310,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-custom-js'           => 'Prilagođeni JS',
 
 # User rights
-'userrights'                  => 'Postavke korisničkih prava', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Postavke korisničkih prava',
 'userrights-lookup-user'      => 'Menadžment korisničkih grupa',
 'userrights-user-editname'    => 'Unesi korisničko ime:',
 'editusergroup'               => 'Uredi korisničke grupe',
@@ -1667,8 +1670,8 @@ Opis sa njene [$2 stranici opisa datoteke] je prikan ispod.',
 'noimage'                   => 'Slika sa ovim imenom ne postoji, ali je možete $1.',
 'noimage-linktext'          => 'postaviti',
 'uploadnewversion-linktext' => 'Postavite noviju verziju ove datoteke',
-'shared-repo-from'          => 'iz $1', # $1 is the repository name
-'shared-repo'               => 'dijeljeni repozitorijum', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'iz $1',
+'shared-repo'               => 'dijeljeni repozitorijum',
 
 # File reversion
 'filerevert'                => 'Vrati $1',
@@ -2059,8 +2062,8 @@ nastavite s oprezom.',
 'alreadyrolled'    => 'Ne može se vratiti posljednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); neko drugi je već izmjenio ili vratio članak.
 
 Posljednja izmjena je bila od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Sažetak izmjene je bio: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Vraćene izmjene $2 na poslednju izmjenu korisnika $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Sažetak izmjene je bio: \"''\$1''\".",
+'revertpage'       => 'Vraćene izmjene $2 na poslednju izmjenu korisnika $1',
 'rollback-success' => 'Poništene izmjene korisnika $1;
 vraćeno na posljednju verziju koju je sačuvao $2.',
 'sessionfailure'   => "Izgleda da postoji problem sa vašom sesijom; ova akcija je otkazana kao prevencija protiv napadanja sesija. Kliknite \"back\" (''nazad'') i osvježite stranicu sa koje ste došli, i opet pokušajte.",
@@ -2109,7 +2112,7 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 ** Ne produktivni rat izmjena
 ** Stranica velikog prometa',
 'protect-edit-reasonlist'     => 'Uredi razloge zaštićavanja',
-'protect-expiry-options'      => '1 sat:1 hour,1 dan:1 day,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 sat:1 hour,1 dan:1 day,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite',
 'restriction-type'            => 'Dopuštenje:',
 'restriction-level'           => 'Stepen ograničenja:',
 'minimum-size'                => 'Najmanja veličina',
@@ -2189,7 +2192,7 @@ $1',
 'contributions-title' => 'Doprinosi korisnika $1',
 'mycontris'           => 'Moj doprinos',
 'contribsub2'         => 'Za $1 ($2)',
-'nocontribs'          => 'Nisu nađene promjene koje zadovoljavaju ove uslove.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Nisu nađene promjene koje zadovoljavaju ove uslove.',
 'uctop'               => ' (vrh)',
 'month'               => 'Od mjeseca (i ranije):',
 'year'                => 'Od godine (i ranije):',
@@ -2248,7 +2251,7 @@ $1',
 'ipbenableautoblock'              => 'Automatski blokiraj zadnju IP adresu koju je koristio ovaj korisnik i sve druge IP adrese s kojih je on pokušao uređivati',
 'ipbsubmit'                       => 'Blokirajte ovog korisnika',
 'ipbother'                        => 'Ostali period:',
-'ipboptions'                      => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite',
 'ipbotheroption'                  => 'ostalo',
 'ipbotherreason'                  => 'Ostali/dodatni razlozi:',
 'ipbhidename'                     => 'Sakrij korisničko ime iz uređivanja i spiskova',
@@ -2391,7 +2394,7 @@ U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.
 'move-watch'                   => 'Prati ovu stranicu',
 'movepagebtn'                  => 'premjestite stranicu',
 'pagemovedsub'                 => 'Premještanje uspjelo',
-'movepage-moved'               => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Preusmjerenje je napravljeno.',
 'movepage-moved-noredirect'    => 'Pravljenje preusmjerenja je onemogućeno.',
 'articleexists'                => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
@@ -2617,7 +2620,7 @@ Dopušta unos razloga u sažetak.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonimni korisnik|$1 anonimna korisnika|$1 anonimnih korisnika}} projekta {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} korisnik $1',
-'lastmodifiedatby' => 'Ovu stranicu je posljednji put promjenio $3, u $2, $1', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ovu stranicu je posljednji put promjenio $3, u $2, $1',
 'othercontribs'    => 'Bazirano na radu od strane korisnika $1.',
 'others'           => 'ostali',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|korisnik|korisnika}} $1',
@@ -2739,7 +2742,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2866,14 +2869,14 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 
 'exif-unknowndate' => 'Nepoznat datum',
 
-'exif-orientation-1' => 'Normalna', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Horizontalno preokrenuto', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotirano 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Vertikalno preokrenuto', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotirano 90° suprotno kazaljke i vertikalno obrnuto', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotirano 90° u smijeru kazaljke', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotirano 90° u smijeru kazaljke i preokrenuto vertikalno', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotirano 90° suprotno kazaljke', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normalna',
+'exif-orientation-2' => 'Horizontalno preokrenuto',
+'exif-orientation-3' => 'Rotirano 180°',
+'exif-orientation-4' => 'Vertikalno preokrenuto',
+'exif-orientation-5' => 'Rotirano 90° suprotno kazaljke i vertikalno obrnuto',
+'exif-orientation-6' => 'Rotirano 90° u smijeru kazaljke',
+'exif-orientation-7' => 'Rotirano 90° u smijeru kazaljke i preokrenuto vertikalno',
+'exif-orientation-8' => 'Rotirano 90° suprotno kazaljke',
 
 'exif-planarconfiguration-1' => 'grubi format',
 'exif-planarconfiguration-2' => 'format u ravni',
@@ -3212,7 +3215,7 @@ Također možete [[Special:Watchlist/edit|koristiti standardni uređivač]].',
 'duplicate-defaultsort' => 'Upozorenje: Postavljeni ključ sortiranja "$2" zamjenjuje raniji ključ "$1".',
 
 # Special:Version
-'version'                          => 'Verzija', # Not used as normal message but as header for the special page itself
+'version'                          => 'Verzija',
 'version-extensions'               => 'Instalirana proširenja (ekstenzije)',
 'version-specialpages'             => 'Posebne stranice',
 'version-parserhooks'              => 'Kuke parsera',

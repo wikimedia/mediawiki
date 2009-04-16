@@ -1,6 +1,9 @@
 <?php
 /** Bashkir (Башҡорт)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -130,7 +133,7 @@ $messages = array(
 'talk'             => 'Фекер алышыу',
 'toolbox'          => 'Ярҙамсы йүнәлештәр',
 'otherlanguages'   => 'Башҡа телдәрҙә',
-'lastmodifiedat'   => 'Был биттең һуңғы тапҡыр үҙгәртелеү ваҡыты: $2, $1 .', # $1 date, $2 time
+'lastmodifiedat'   => 'Был биттең һуңғы тапҡыр үҙгәртелеү ваҡыты: $2, $1 .',
 'jumpto'           => 'Унда күсергә:',
 'jumptosearch'     => 'эҙләү',
 

@@ -1,6 +1,9 @@
 <?php
 /** Wolof (Wolof)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -184,7 +187,7 @@ $messages = array(
 'category-media-header'          => 'Jukki yi ci wàll wi « $1 »',
 'category-empty'                 => "''Nii-nii wàll wii ëmbul tus, dub ron-wàll, dub jukki, dub dencukaay. ''",
 'hidden-categories'              => '{{PLURAL:$1|wàll bi nëbbu|wàll yi nëbbu}}',
-'hidden-category-category'       => 'Wàll yi nëbbu', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Wàll yi nëbbu',
 'category-subcat-count'          => '{{PLURAL:$2|bii wàll benn ron-wàll rekk la am, di biy toftal.|Bii wàll am na {{PLURAL:$1|ron-wàll|$1 ciy ron-wàll}}, ci lim bu tollook $2.}}',
 'category-subcat-count-limited'  => 'Bii wàll am na {{PLURAL:$1|ron-wàll|$1 ciy ron-wàll}}.',
 'category-article-count'         => '{{PLURAL:$2|Bii wàll wenn xët rekk la am, di wiy toftal.| Bii wàll {{PLURAL:$1|xët wiy toftal|$1 xët yiy toftal}} la ëmb, ci lim bu tollook $2.}}',
@@ -271,7 +274,7 @@ $messages = array(
 'otherlanguages'    => 'Yeneeni làkk',
 'redirectedfrom'    => '(Yoonalaat gu jóge $1)',
 'redirectpagesub'   => 'Xëtu yoonalaat',
-'lastmodifiedat'    => 'Coppite bu mujj bu xët wii $1 ci $2.<br />', # $1 date, $2 time
+'lastmodifiedat'    => 'Coppite bu mujj bu xët wii $1 ci $2.<br />',
 'viewcount'         => 'Xët wii nemmeeku nañ ko {{PLURAL:$1|$1 yoon|$1 yoon}}.',
 'protectedpage'     => 'Xët wi dañ koo aar',
 'jumpto'            => 'Dem :',
@@ -710,7 +713,7 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 'currentrev'             => 'Sumb bi teew',
 'currentrev-asof'        => 'Sumb bi teew bu $1',
 'revisionasof'           => 'Sumb bu $1',
-'revision-info'          => 'Sumb bu $1, bu: $2', # Additionally available: $3: revision id
+'revision-info'          => 'Sumb bu $1, bu: $2',
 'previousrevision'       => '← Sumb bi jiitu',
 'nextrevision'           => 'Sumb bi toftal →',
 'currentrevisionlink'    => 'Sumb bi teew',
@@ -732,7 +735,7 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 # Revision feed
 'history-feed-title'          => 'Jaar-jaaru sumb yi',
 'history-feed-description'    => 'Jaar-jaaru xët wi ci bii wiki',
-'history-feed-item-nocomment' => '$1 ci $2', # user at time
+'history-feed-item-nocomment' => '$1 ci $2',
 'history-feed-empty'          => 'Xët wi nga laaj amul. Xej-na dañ koo dindi ci dal bi walla ñu tuddewaat ko. Man nga jéem a [[Special:Search|seet ci wiki bi]] ndax ay xët yu bees am nañ fi.',
 
 # Revision deletion
@@ -1185,8 +1188,8 @@ Faramfacce gi ci [$2 xëtu faramfaccewaayu xët wi] lañuy wone ci suuf .',
 'noimage'                   => 'Amul wenn ŋara wu ni tudd wu am, waaye man ngaa $1.',
 'noimage-linktext'          => 'yeb benn',
 'uploadnewversion-linktext' => 'Yeb sumb bu bees bu wii ŋara',
-'shared-repo-from'          => '$1', # $1 is the repository name
-'shared-repo'               => 'ab dencu bu ñu bokk', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => '$1',
+'shared-repo'               => 'ab dencu bu ñu bokk',
 
 # File reversion
 'filerevert'                => 'Loppanti $1',
@@ -1491,8 +1494,8 @@ Ki def coppite gi mooy Kenn ki masa cëru ci xët wii.',
 am na keneen ku jota soppi walla loppanti xët wi.
 
 Ki mujje soppi xët wi mooy [[User:$3|$3]] ([[User talk:$3|Waxtaan]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Tënkug coppite gi mooy: « ''$1'' ».", # only shown if there is an edit comment
-'revertpage'       => 'Loppantig coppite gu [[Special:Contributions/$2|$2]] ([[User talk:$2|Waxtaan]]) dello ko ci sumb mu [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Tënkug coppite gi mooy: « ''$1'' ».",
+'revertpage'       => 'Loppantig coppite gu [[Special:Contributions/$2|$2]] ([[User talk:$2|Waxtaan]]) dello ko ci sumb mu [[User:$1|$1]]',
 'rollback-success' => 'Ki loppanti mooy $1 ;
 Ki ko dello ci sumb mu mujj mi mooy $2.',
 'sessionfailure'   => 'Dafa mel ne sa dugg gi am na ay tolof-tolof ;
@@ -1584,7 +1587,7 @@ Xéj-na keeneen loppanti na ko ba noppi',
 'contributions'       => 'Li jëfëndikookat bii indi',
 'contributions-title' => 'Cëru yu jëfandikukat bii di $1',
 'mycontris'           => 'Samay cëru',
-'nocontribs'          => 'Amul benn coppite bu melokaanoo nii bu ñu gis.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Amul benn coppite bu melokaanoo nii bu ñu gis.',
 'uctop'               => '(bi mujj)',
 'month'               => 'Tambali ci weeru (ak yi jiitu) :',
 'year'                => 'Tambali ci atum (ak yi jiitu) :',
@@ -1639,7 +1642,7 @@ Xéj-na keeneen loppanti na ko ba noppi',
 'ipbenableautoblock'          => 'Téye ci saa si màkkaanu IP bi mu mujje jëfandikoo, ak yeneen yi muy jëfandikoo-ji ngir amali coppite',
 'ipbsubmit'                   => 'Téye bii jëfandikukat',
 'ipbother'                    => 'Beneen diir:',
-'ipboptions'                  => '2 waxtu:2 hours,1 fan:1 day,3 fan:3 day,1 ayubés:1 week,2 ayubés:2 weeks,1 weer:1 month,3 weer:3 months,6 weer:6 months,1 at:1 year,ba-faaw:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 waxtu:2 hours,1 fan:1 day,3 fan:3 day,1 ayubés:1 week,2 ayubés:2 weeks,1 weer:1 month,3 weer:3 months,6 weer:6 months,1 at:1 year,ba-faaw:infinite',
 'ipbotheroption'              => 'beneen',
 'ipbotherreason'              => 'Yeneeni ngirte/faramfacce:',
 'ipblocklist'                 => 'Téye nañu màkkaanu IP bi ak jëfandikukat bi',
@@ -1695,7 +1698,7 @@ Xéj-na keeneen loppanti na ko ba noppi',
 'move-watch'                   => 'Topp xët wii',
 'movepagebtn'                  => 'Tuddewaat xët wi',
 'pagemovedsub'                 => 'Tuddewaat gi antu na',
-'movepage-moved'               => "<big>'''« $1 »''' lañu tuddewaat '''« $2 »'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''« $1 »''' lañu tuddewaat '''« $2 »'''</big>",
 'articleexists'                => 'Am na ba noppi ab jukki bu am bii koj, walla koj bi nga tànn baaxul. tànnal bennen.',
 'cantmove-titleprotected'      => 'Toppale xët wi du man a nekk ndax tur wu bees wi dañu koo aar njëkk ngir bañ ag sosoom.',
 'talkexists'                   => "'''Toppaleb xët wi antu na, waaye xëtu waxtaanuwaay wi mu andaloon toppalewu ko, ndax nekk na fi ak weneen koj wu bees. Faaw nga boole leen ak sa loxo'''",
@@ -1826,7 +1829,7 @@ Manoo tudewaat aw xët ci wenn tur wi.',
 # Attribution
 'anonymous'        => 'Benn walla ay jëfandikukat yu binduwul yu {{SITENAME}}',
 'siteuser'         => '$1, Jëfandikukatu {{SITENAME}}',
-'lastmodifiedatby' => '$3 moo mujje soppi xët wi ci $1, ci $2.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => '$3 moo mujje soppi xët wi ci $1, ci $2.',
 'othercontribs'    => 'Mi ngi dàttu ci liggéeyu $1.',
 'others'           => 'yeneen',
 'siteusers'        => '$1, Jëfandikukat yu {{SITENAME}}',
@@ -1868,7 +1871,7 @@ Manoo tudewaat aw xët ci wenn tur wi.',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'  => 'Yaatuwaay',

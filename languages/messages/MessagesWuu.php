@@ -1,6 +1,9 @@
 <?php
 /** Wu (吴语)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -99,7 +102,7 @@ $messages = array(
 'category-media-header'         => '"$1"分类中个媒体',
 'category-empty'                => "''该个分类中尚未包含任何文章或媒体。''",
 'hidden-categories'             => '$1隐藏分类',
-'hidden-category-category'      => '囥脱分类', # Name of the category where hidden categories will be listed
+'hidden-category-category'      => '囥脱分类',
 'category-subcat-count-limited' => '该个分类中有个亚类。',
 
 'mainpagetext'      => "<big>'''已成功安装MediaWiki！'''</big>",
@@ -622,7 +625,7 @@ $messages = array(
 'rollback_short' => '恢复',
 'rollbacklink'   => '恢复',
 'rollbackfailed' => '恢复失败',
-'revertpage'     => '恢复[[Special:Contributions/$2|$2]] ([[User talk:$2|讲张]])个改动；恢复到[[User:$1|$1]]个上一版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => '恢复[[Special:Contributions/$2|$2]] ([[User talk:$2|讲张]])个改动；恢复到[[User:$1|$1]]个上一版本',
 
 # Protect
 'protectlogpage'  => '保护日志',
@@ -844,7 +847,7 @@ Variants for Chinese language
 'watchlistedit-normal-title' => '编辑监控列表',
 
 # Special:Version
-'version' => '版本', # Not used as normal message but as header for the special page itself
+'version' => '版本',
 
 # Special:FilePath
 'filepath'        => '文件路径',

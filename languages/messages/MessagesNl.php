@@ -1,6 +1,9 @@
 <?php
 /** Dutch (Nederlands)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -408,7 +411,7 @@ $messages = array(
 'category-media-header'          => 'Media in categorie “$1”',
 'category-empty'                 => "''Deze categorie bevat geen pagina’s of media.''",
 'hidden-categories'              => 'Verborgen {{PLURAL:$1|categorie|categorieën}}',
-'hidden-category-category'       => 'Verborgen categorieën', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Verborgen categorieën',
 'category-subcat-count'          => '{{PLURAL:$2|Deze categorie bevat de volgende ondercategorie.|Deze categorie bevat de volgende {{PLURAL:$1|ondercategorie|$1 ondercategorieën}}, van een totaal van $2.}}',
 'category-subcat-count-limited'  => 'Deze categorie bevat de volgende {{PLURAL:$1|ondercategorie|$1 ondercategorieën}}.',
 'category-article-count'         => '{{PLURAL:$2|Deze categorie bevat de volgende pagina.|Deze categorie bevat de volgende {{PLURAL:$1|pagina|$1 pagina’s}}, van in totaal $2.}}',
@@ -495,7 +498,7 @@ $messages = array(
 'otherlanguages'    => 'Andere talen',
 'redirectedfrom'    => '(Doorverwezen vanaf $1)',
 'redirectpagesub'   => 'Doorverwijspagina',
-'lastmodifiedat'    => 'Deze pagina is het laatst bewerkt op $1 om $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Deze pagina is het laatst bewerkt op $1 om $2.',
 'viewcount'         => 'Deze pagina is {{PLURAL:$1|1 maal|$1 maal}} bekeken.',
 'protectedpage'     => 'Beveiligde pagina',
 'jumpto'            => 'Ga naar:',
@@ -1036,7 +1039,7 @@ De door $3 opgegeven reden is ''$2''",
 'currentrev'             => 'Huidige versie',
 'currentrev-asof'        => 'Huidige versie per $1',
 'revisionasof'           => 'Versie op $1',
-'revision-info'          => 'Versie op $1 van $2', # Additionally available: $3: revision id
+'revision-info'          => 'Versie op $1 van $2',
 'previousrevision'       => '←Oudere versie',
 'nextrevision'           => 'Nieuwere versie→',
 'currentrevisionlink'    => 'Huidige versie',
@@ -1057,7 +1060,7 @@ Verklaring afkortingen: (huidig) = verschil met huidige versie, (vorige) = versc
 # Revision feed
 'history-feed-title'          => 'Bewerkingsoverzicht',
 'history-feed-description'    => 'Bewerkingsoverzicht voor deze pagina op de wiki',
-'history-feed-item-nocomment' => '$1 op $2', # user at time
+'history-feed-item-nocomment' => '$1 op $2',
 'history-feed-empty'          => "De gevraagde pagina bestaat niet.
 Wellicht is die verwijderd of hernoemd.
 [[Special:Search|Doorzoek de wiki]] voor relevante pagina's.",
@@ -1380,7 +1383,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'prefs-custom-js'           => 'Persoonlijke JS',
 
 # User rights
-'userrights'                  => 'Gebruikersrechtenbeheer', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Gebruikersrechtenbeheer',
 'userrights-lookup-user'      => 'Gebruikersgroepen beheren',
 'userrights-user-editname'    => 'Voer een gebruikersnaam in:',
 'editusergroup'               => 'Gebruikersgroepen wijzigen',
@@ -1752,8 +1755,8 @@ De [$2 pagina met de bestandsbeschrijving] wordt hieronder weergegeven.',
 'noimage'                   => 'Er bestaat geen bestand met deze naam, maar u kunt het $1.',
 'noimage-linktext'          => 'uploaden',
 'uploadnewversion-linktext' => 'Een nieuwe versie van dit bestand uploaden',
-'shared-repo-from'          => 'van $1', # $1 is the repository name
-'shared-repo'               => 'een gedeelde bestandenbank', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'van $1',
+'shared-repo'               => 'een gedeelde bestandenbank',
 
 # File reversion
 'filerevert'                => '$1 terugdraaien',
@@ -2143,8 +2146,8 @@ Wees voorzichtig.',
 Iemand anders heeft deze pagina al bewerkt of hersteld naar een eerdere versie.
 
 De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|bijdragen]]).',
-'editcomment'      => "De bewerkingssamenvatting was: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "De bewerkingssamenvatting was: \"''\$1''\".",
+'revertpage'       => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]',
 'rollback-success' => 'Wijzigingen door $1 teruggedraaid; laatste versie van $2 hersteld.',
 'sessionfailure'   => 'Er lijkt een probleem te zijn met uw aanmeldsessie.
 Uw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke "hijacking" van deze sessie).
@@ -2195,7 +2198,7 @@ Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 ** Bewerkingsoorlog
 ** Preventieve beveiliging veelbezochte pagina',
 'protect-edit-reasonlist'     => 'Redenen voor beveiliging bewerken',
-'protect-expiry-options'      => '1 uur:1 hour,1 dag:1 day,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbeperkt:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 uur:1 hour,1 dag:1 day,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbeperkt:infinite',
 'restriction-type'            => 'Rechten:',
 'restriction-level'           => 'Beperkingsniveau:',
 'minimum-size'                => 'Min. grootte',
@@ -2276,7 +2279,7 @@ $1',
 'contributions-title' => 'Bijdragen van $1',
 'mycontris'           => 'Mijn bijdragen',
 'contribsub2'         => 'Voor $1 ($2)',
-'nocontribs'          => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.',
 'uctop'               => '(laatste wijziging)',
 'month'               => 'Van maand (en eerder):',
 'year'                => 'Van jaar (en eerder):',
@@ -2337,7 +2340,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipbenableautoblock'              => 'Automatisch de IP-adressen van deze gebruiker blokkeren',
 'ipbsubmit'                       => 'Deze gebruiker blokkeren',
 'ipbother'                        => 'Andere duur:',
-'ipboptions'                      => '2 uur:2 hours,1 dag:1 day,3 dagen:3 days,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbepaald:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 uur:2 hours,1 dag:1 day,3 dagen:3 days,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbepaald:infinite',
 'ipbotheroption'                  => 'ander verval',
 'ipbotherreason'                  => 'Andere/extra reden:',
 'ipbhidename'                     => 'Gebruiker in bewerkingen en lijsten verbergen',
@@ -2472,7 +2475,7 @@ Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
 'move-watch'                   => 'Deze pagina volgen',
 'movepagebtn'                  => 'Pagina hernoemen',
 'pagemovedsub'                 => 'De pagina is hernoemd',
-'movepage-moved'               => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Er is een doorverwijzing aangemaakt.',
 'movepage-moved-noredirect'    => 'Er is geen doorverwijzing aangemaakt.',
 'articleexists'                => 'De pagina bestaat al of de paginanaam is ongeldig.
@@ -2707,7 +2710,7 @@ U kunt in de bewerkingssamenvatting een reden opgeven.',
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-gebruiker $1',
-'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $2, $1 door $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $2, $1 door $3.',
 'othercontribs'    => 'Gebaseerd op werk van $1.',
 'others'           => 'anderen',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruiker|gebruikers}} $1',
@@ -2834,7 +2837,7 @@ Andere velden worden verborgen.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breedte',
@@ -2961,14 +2964,14 @@ Andere velden worden verborgen.
 
 'exif-unknowndate' => 'Datum onbekend',
 
-'exif-orientation-1' => 'Normaal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Horizontaal gespiegeld', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° gedraaid', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Verticaal gespiegeld', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Gespiegeld om as linksboven-rechtsonder', # 0th row: left; 0th column: top
-'exif-orientation-6' => '90° rechtsom gedraaid', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Gespiegeld om as linksonder-rechtsboven', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '90° linksom gedraaid', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normaal',
+'exif-orientation-2' => 'Horizontaal gespiegeld',
+'exif-orientation-3' => '180° gedraaid',
+'exif-orientation-4' => 'Verticaal gespiegeld',
+'exif-orientation-5' => 'Gespiegeld om as linksboven-rechtsonder',
+'exif-orientation-6' => '90° rechtsom gedraaid',
+'exif-orientation-7' => 'Gespiegeld om as linksonder-rechtsboven',
+'exif-orientation-8' => '90° linksom gedraaid',
 
 'exif-planarconfiguration-1' => 'chunky gegevensformaat',
 'exif-planarconfiguration-2' => 'planar gegevensformaat',
@@ -3260,7 +3263,7 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 'duplicate-defaultsort' => 'Waarschuwing: De standaardsortering "$2" krijgt voorrang voor de sortering "$1".',
 
 # Special:Version
-'version'                          => 'Softwareversie', # Not used as normal message but as header for the special page itself
+'version'                          => 'Softwareversie',
 'version-extensions'               => 'Geïnstalleerde uitbreidingen',
 'version-specialpages'             => "Speciale pagina's",
 'version-parserhooks'              => 'Parserhooks',

@@ -1,6 +1,9 @@
 <?php
 /** Piedmontese (Piemontèis)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -141,7 +144,7 @@ dj'artìcol ancó pa scrit",
 'category-media-header'          => 'Archivi ant la categorìa "$1"',
 'category-empty'                 => "''Al dì d'ancheuj la categorìa a l'ha pa andrinta nì 'd pàgine, nì d'archivi multimojen.''",
 'hidden-categories'              => '{{PLURAL:$1|Categorìa stërmà|Categorìe stërmà}}',
-'hidden-category-category'       => 'Categorìe stërmà', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categorìe stërmà',
 'category-subcat-count'          => "{{PLURAL:$2|Sta categorìa-sì a l'ha mach na sot-categorìa, listà ambelessì sota.|Sta categorìa-sì a l'ha {{PLURAL:$1|na sot-categorìa|$1 sot-categorìe}}, ëd $2 ch'a-i në j'é an total.}}",
 'category-subcat-count-limited'  => "Sta categorìa-sì a l'ha {{PLURAL:$1|la sot-categorìa|le $1 la sot-categorìe}} lista ambelessì sota.",
 'category-article-count'         => "{{PLURAL:$2|Sta categorìa-sì a l'ha mach sta pàgina.|Ant sta categorìa-sì a-i {{PLURAL:$1|intra mach sta pàgina|intro $1 pàgine}} ëd $2 ch'a-i në j'é an total.}}",
@@ -228,7 +231,7 @@ dj'artìcol ancó pa scrit",
 'otherlanguages'    => 'Àutre lenghe',
 'redirectedfrom'    => '(Ridiression da $1)',
 'redirectpagesub'   => 'Pàgina ëd ridiression',
-'lastmodifiedat'    => "Modificà l'ùltima vira al $2, $1.", # $1 date, $2 time
+'lastmodifiedat'    => "Modificà l'ùltima vira al $2, $1.",
 'viewcount'         => "St'artìcol-sì a l'é stait lesù {{PLURAL:$1|na vira|$1 vire}}.",
 'protectedpage'     => 'Pàgina proteta',
 'jumpto'            => 'Va a:',
@@ -634,7 +637,7 @@ La rason butà da $3 për ël blocagi a l'é staita: ''$2''",
 'nohistory'           => "La stòria dle version dë sta pàgina-sì a l'é pa trovasse.",
 'currentrev'          => "Versione dël dì d'ancheuj",
 'revisionasof'        => 'Revision $1',
-'revision-info'       => 'Revision al $1; $2', # Additionally available: $3: revision id
+'revision-info'       => 'Revision al $1; $2',
 'previousrevision'    => '←Version pì veja',
 'nextrevision'        => 'Revision pì neuve→',
 'currentrevisionlink' => 'vardé la version corenta',
@@ -655,7 +658,7 @@ Legenda: (cor) = diferense con la version corenta,
 # Revision feed
 'history-feed-title'          => 'Stòria',
 'history-feed-description'    => 'Stòria dla pàgina ansima a sto sit-sì',
-'history-feed-item-nocomment' => '$1 al $2', # user at time
+'history-feed-item-nocomment' => '$1 al $2',
 'history-feed-empty'          => "La pàgina che a l'ha ciamà a-i é pa; a podrìa esse staita scancelà da 'nt ël sit, ò pura tramudà a n'àutr nòm.
 
 Che a verìfica con la [[Special:Search|pàgina d'arserca]] se a-i fusso mai dj'àutre pàgine che a podèisso andeje bin.",
@@ -823,7 +826,7 @@ për podej specifiché ij sò gust.',
 'files'                    => 'Archivi',
 
 # User rights
-'userrights'               => "Gestion dij drit dj'utent", # Not used as normal message but as header for the special page itself
+'userrights'               => "Gestion dij drit dj'utent",
 'userrights-lookup-user'   => "Gestion dle partìe d'utent",
 'userrights-user-editname' => 'Che a buta në stranòm:',
 'editusergroup'            => "Modifiché le partìe d'Utent",
@@ -1379,8 +1382,8 @@ Ij temp a son conforma a l'ora dël server.",
 faite da [[User:$2|$2]] ([[User talk:$2|Talk]]); Cheidun d'àutr a l'ha già modificà ò pura anulà le modìfiche a sta pàgina-sì.
 
 L'ùltima modìfica a l'é staita faita da [[User:$3|$3]] ([[User talk:$3|Talk]]).",
-'editcomment'      => "Ël coment dla modìfica a l'era: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => "Gavà via le modìfiche dl'utent [[Special:Contributions/$2|$2]] ([[User_talk:$2|Talk]]); ël contnù a l'é stait tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Ël coment dla modìfica a l'era: \"''\$1''\".",
+'revertpage'       => "Gavà via le modìfiche dl'utent [[Special:Contributions/$2|$2]] ([[User_talk:$2|Talk]]); ël contnù a l'é stait tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]",
 'rollback-success' => "Modìfiche anulà da $1; tirà andré a l'ùltima version da $2.",
 'sessionfailure'   => "A-i son ëstaje dle gran-e con la session che a identìfica sò acess; ël sistema a l'ha nen eseguì l'ordin che a l'ha daje për precaussion. Che a torna andaré a la pàgina prima con ël boton \"andaré\" ëd sò programa ëd navigassion (browser), peuj che as carìa n'àutra vira costa pàgina-sì e che a preuva torna a fé lòn che vorìa fé.",
 
@@ -1484,7 +1487,7 @@ $1",
 'contributions' => "Contribussion dë st'Utent-sì",
 'mycontris'     => 'Mie contribussion',
 'contribsub2'   => 'Për $1 ($2)',
-'nocontribs'    => "A l'é pa trovasse gnun-a modìfica che a fussa conforma a costi criteri-sì", # Optional parameter: $1 is the user name
+'nocontribs'    => "A l'é pa trovasse gnun-a modìfica che a fussa conforma a costi criteri-sì",
 'uctop'         => ' (ùltima dla pàgina)',
 'month'         => 'Mèis:',
 'year'          => 'Ann:',
@@ -1538,7 +1541,7 @@ Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà
 'ipbenableautoblock'          => "Blòca an automàtich la dariera adrëssa IP dovrà da l'utent e tute cole dont peuj cheidun as preuva a fé dle modìfiche",
 'ipbsubmit'                   => "Bloca st'adrëssa IP-sì",
 'ipbother'                    => "N'àutra durà",
-'ipboptions'                  => "2 ore:2 ore,1 dì:1 dì,3 dì:3 dì,na sman-a:na sman-a,2 sman-e:2 sman-e,1 mèis:1 mèis,3 mèis:3 mèis,6 mèis:6 mèis,n'ann:n'ann,për sempe:për sempe", # display1:time1,display2:time2,...
+'ipboptions'                  => "2 ore:2 ore,1 dì:1 dì,3 dì:3 dì,na sman-a:na sman-a,2 sman-e:2 sman-e,1 mèis:1 mèis,3 mèis:3 mèis,6 mèis:6 mèis,n'ann:n'ann,për sempe:për sempe",
 'ipbotheroption'              => "d'àutr",
 'ipbotherreason'              => 'Àotri motiv/spiegon',
 'ipbhidename'                 => "Stërma lë stranòm da 'nt ël registr dij blòch, da col dij blòch ativ e da 'nt la lista dj'utent",
@@ -1825,7 +1828,7 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 # Attribution
 'anonymous'        => 'Utent anònim ëd la {{SITENAME}}',
 'siteuser'         => '$1, utent ëd {{SITENAME}}',
-'lastmodifiedatby' => "Sta pàgina-sì a l'é staita modificà l'ùltima vira al $2, $1 da $3.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Sta pàgina-sì a l'é staita modificà l'ùltima vira al $2, $1 da $3.",
 'othercontribs'    => 'Basà ant sëj travaj ëd $1.',
 'others'           => 'àutri',
 'siteusers'        => '$1, utent ëd {{SITENAME}}',
@@ -1928,7 +1931,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghëssa',
@@ -2055,14 +2058,14 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 
 'exif-unknowndate' => 'Data nen conossùa',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Specolar', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Arvirà ëd 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Arvirà dzorsuta', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Arvirà dzorsota e ëd 90° contramostra', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Arvirà ëd 90° ant ël sens dla mostra', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Arvirà dzorsota e ëd 90° ant ël sens dla mostra', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Arvirà ëd 90° contramostra', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Specolar',
+'exif-orientation-3' => 'Arvirà ëd 180°',
+'exif-orientation-4' => 'Arvirà dzorsuta',
+'exif-orientation-5' => 'Arvirà dzorsota e ëd 90° contramostra',
+'exif-orientation-6' => 'Arvirà ëd 90° ant ël sens dla mostra',
+'exif-orientation-7' => 'Arvirà dzorsota e ëd 90° ant ël sens dla mostra',
+'exif-orientation-8' => 'Arvirà ëd 90° contramostra',
 
 'exif-planarconfiguration-1' => 'për blòch (chunky)',
 'exif-planarconfiguration-2' => 'an planar',
@@ -2348,7 +2351,7 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'unknown_extension_tag' => 'Tacolèt d\'estension "$1" pa conossù',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Estension anstalà',
 'version-specialpages'             => 'Pàgine speciaj',
 'version-parserhooks'              => 'Gancio dlë scompositor',

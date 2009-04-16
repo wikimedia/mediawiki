@@ -1,6 +1,9 @@
 <?php
 /** Church Slavic (Словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -182,7 +185,7 @@ $messages = array(
 'otherlanguages'   => 'ДРОУГꙐ́ ѨꙀꙐКꙐ́',
 'redirectedfrom'   => '(прѣнаправлѥ́ниѥ о́тъ ⁖ $1 ⁖)',
 'redirectpagesub'  => 'прѣнаправлѥ́ниѥ',
-'lastmodifiedat'   => 'страни́цѧ послѣ́дьнꙗ мѣ́на сътворѥна́ $2 · $1 бѣ ⁙', # $1 date, $2 time
+'lastmodifiedat'   => 'страни́цѧ послѣ́дьнꙗ мѣ́на сътворѥна́ $2 · $1 бѣ ⁙',
 'jumptonavigation' => 'пла́ваниѥ',
 'jumptosearch'     => 'иска́ниѥ',
 
@@ -278,7 +281,7 @@ $messages = array(
 
 # Revision feed
 'history-feed-title'          => 'мѣ́нъ їсторі́ꙗ',
-'history-feed-item-nocomment' => '$1 при $2', # user at time
+'history-feed-item-nocomment' => '$1 при $2',
 
 # Revision deletion
 'revdelete-uname' => 'по́льꙃєватєлꙗ и́мѧ',
@@ -521,7 +524,7 @@ $messages = array(
 'move-watch'       => 'си страни́цѧ блюдє́ниѥ',
 'movepagebtn'      => 'прѣимєнова́ниѥ',
 'pagemovedsub'     => 'прѣимєнова́ниѥ сътворѥно́ ѥ́стъ',
-'movepage-moved'   => "<big>'''⁖ $1 ⁖ нарєчє́нъ ⁖ $2⁖ ѥ́стъ'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => "<big>'''⁖ $1 ⁖ нарєчє́нъ ⁖ $2⁖ ѥ́стъ'''</big>",
 'movetalk'         => 'си страни́цѧ бєсѣ́дꙑ прѣимєнова́ниѥ',
 '1movedto2'        => '⁖ [[$1]] ⁖ нарєчє́нъ ⁖ [[$2]] ⁖ ѥ́стъ',
 '1movedto2_redir'  => '[[$1]] нарєчє́нъ [[$2]] врьхоу́ прѣнаправлѥ́ниꙗ ѥ́стъ.',
@@ -577,7 +580,7 @@ $messages = array(
 'size-bytes' => '$1 Б҃',
 
 # Special:Version
-'version'                  => 'MediaWiki о́браꙁъ', # Not used as normal message but as header for the special page itself
+'version'                  => 'MediaWiki о́браꙁъ',
 'version-version'          => 'о́браꙁъ',
 'version-license'          => 'прощє́ниѥ',
 'version-software-version' => 'о́браꙁъ',

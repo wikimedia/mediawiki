@@ -1,6 +1,9 @@
 <?php
 /** Iloko (Ilokano)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -114,7 +117,7 @@ $messages = array(
 'category-media-header'          => 'Media iti categoria "$1"',
 'category-empty'                 => "''Daytoy a categoria ket awanan pampanid wenno media iti agdama.''",
 'hidden-categories'              => '{{PLURAL:$1|Nakalemmeng a categoria|Nakalemmeng a categorias}}',
-'hidden-category-category'       => 'Nailemmeng a categorias', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Nailemmeng a categorias',
 'category-subcat-count'          => '{{PLURAL:$2|Daytoy a categoria ket addaan laeng iti sumaganad a subcategoria.|Daytoy a categoria ket addaan iti sumaganad a {{PLURAL:$1|subcategoria|$1 subcategorias}}, manipud iti dagup a $2.}}',
 'category-subcat-count-limited'  => 'Daytoy a categoria ket addaan kadagiti sumaganad a {{PLURAL:$1|subcategoria|$1 subcategorias}}.',
 'category-article-count'         => '{{PLURAL:$2|Daytoy a categoria ket addaan laeng iti sumaganad a panid.|Ti sumaganad a {{PLURAL:$1|panid|$1 pampanid}} iti daytoy a categoria, manipud iti total a $2.}}',
@@ -194,7 +197,7 @@ $messages = array(
 'otherlanguages'    => 'iti sabali a pagsasao',
 'redirectedfrom'    => '(Naibaw-ing manipud iti $1)',
 'redirectpagesub'   => 'Ibaw-ing ti panid',
-'lastmodifiedat'    => 'Naudi a nabaliwan daytoy a panid idi $2, $1', # $1 date, $2 time
+'lastmodifiedat'    => 'Naudi a nabaliwan daytoy a panid idi $2, $1',
 'viewcount'         => 'Naaksesen daytoy a panid iti {{PLURAL:$1|naminsan|$1 a daras}}.',
 'protectedpage'     => 'Nasaluadan a panid',
 'jumpto'            => 'Mapan iti:',
@@ -549,7 +552,7 @@ Ti inted a rason ni $3 ket ''$2''",
 'nohistory'              => 'Awan ti pakasaritaan ti panangbaliw iti daytoy a panid.',
 'currentrev'             => 'Agdama a revision',
 'revisionasof'           => 'Panangbalbaliw sipud $1',
-'revision-info'          => 'Panangbaliw ni $2 sipud idi $1', # Additionally available: $3: revision id
+'revision-info'          => 'Panangbaliw ni $2 sipud idi $1',
 'previousrevision'       => '←Nadadaan a panangbalbaliw',
 'nextrevision'           => 'Nabarbaro a panangbalbaliw→',
 'currentrevisionlink'    => 'kitaen ti agdama a revision',
@@ -570,7 +573,7 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 
 # Revision feed
 'history-feed-title'          => 'Pakasaritaan ti panamalbaliw',
-'history-feed-item-nocomment' => '$1 iti $2', # user at time
+'history-feed-item-nocomment' => '$1 iti $2',
 
 # Revision deletion
 'rev-deleted-comment'     => '(naikkat ti komento)',
@@ -1133,8 +1136,8 @@ Kitaen ti $2 para iti record dagiti naudi a naikkat.',
 'rollback_short'   => 'Isubli',
 'rollbacklink'     => 'isubli',
 'rollbackfailed'   => 'Napaay ti panangisubli',
-'editcomment'      => "Ti komento ti panangedit ket: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Ti komento ti panangedit ket: \"''\$1''\".",
+'revertpage'       => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]',
 'rollback-success' => 'Naibabawi dagiti panagedit ni $1;
 naisubli manen iti naudi a version ni $2.',
 
@@ -1164,7 +1167,7 @@ Mabalinmo a sukatan ti level ti saluad daytoy a panid, ngem saanna nga apektaran
 'protect-expiring'            => 'agpaso inton $1 (UTC)',
 'protect-cascade'             => 'Saluadan dagiti pampanid a nairaman iti daytoy a panid (babaen ti cascading a saluad)',
 'protect-cantedit'            => 'Saanmo a masuktan ti level ti saluad daytoy a panid, ta awananka iti pammalubos a mangbalbaliw..',
-'protect-expiry-options'      => '2 nga oras:2 hours,1 nga aldaw:1 day,3 nga aldaw:3 days,1 a lawas:1 week,2 a lawas:2 weeks,1 a bulan:1 month,3 a bulan:3 months,6 a bulan:6 months,1 a tawen:1 year,awan inggana:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 nga oras:2 hours,1 nga aldaw:1 day,3 nga aldaw:3 days,1 a lawas:1 week,2 a lawas:2 weeks,1 a bulan:1 month,3 a bulan:3 months,6 a bulan:6 months,1 a tawen:1 year,awan inggana:infinite',
 'restriction-type'            => 'Pammalubos:',
 'restriction-level'           => 'Level ti pannakaiparit:',
 'minimum-size'                => 'Min a size',
@@ -1257,7 +1260,7 @@ Binsiren ti [[Special:Log/delete|log ti naik-ikkat]] para iti rekord dagiti naud
 'ipbemailban'                 => 'Lappedan ti agar-aramar nga agipatulod iti email',
 'ipbsubmit'                   => 'Serraan daytoy nga agar-aramat',
 'ipbother'                    => 'Sabali nga oras:',
-'ipboptions'                  => '2 nga oras:2 hours,1 nga aldaw:1 day,3 nga aldaw:3 days,1 a lawas:1 week,2 a lawas:2 weeks,1 a bulan:1 month,3 a bulan:3 months,6 a bulan:6 months,1 a tawen:1 year,awan inggana:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 nga oras:2 hours,1 nga aldaw:1 day,3 nga aldaw:3 days,1 a lawas:1 week,2 a lawas:2 weeks,1 a bulan:1 month,3 a bulan:3 months,6 a bulan:6 months,1 a tawen:1 year,awan inggana:infinite',
 'ipbotheroption'              => 'sabali',
 'ipbotherreason'              => 'Sabali/nayon a rason:',
 'ipbwatchuser'                => 'Bantayan ti panid-agar-ramat ken panid-tungtongan daytoy nga agar-aramat',
@@ -1338,7 +1341,7 @@ Kadagitoy a kaso, masapul nga iyakar wenno itiponmo a manual ti panid no kayatmo
 'move-watch'              => 'Bantayan daytoy a panid',
 'movepagebtn'             => 'Iyakar ti panid',
 'pagemovedsub'            => 'Balligi ti panangiyakar',
-'movepage-moved'          => '<big>Naiyakar ti \'\'\'"$1" iti "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>Naiyakar ti \'\'\'"$1" iti "$2"\'\'\'</big>',
 'articleexists'           => 'Addan panid nga addaan iti kasta a nagan, wenno ti nagan a pinilim ket saan a mabalin.
 Pangngaasim ta mangpilika iti sabali a nagan.',
 'talkexists'              => "'''Sibaballigi a naiyakar ti panid, nupay kasta saan a maiyakar ti panid ti tungtongan gapu ta addan panid-tungtongan iti baro a titulo.
@@ -1453,7 +1456,7 @@ Pangngaasim ta i-manualmo lattan a pagtiponem ida.'''",
 # Attribution
 'anonymous'        => 'Di am-ammo nga agar-aramat iti {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} nga agar-aramat $1',
-'lastmodifiedatby' => 'Daytoy a panid ket naudi a binalbaliwan idi $2, $1 ni $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Daytoy a panid ket naudi a binalbaliwan idi $2, $1 ni $3.',
 'othercontribs'    => 'Naibasar iti obra ni $1.',
 'others'           => 'dadduma pay',
 'siteusers'        => '{{SITENAME}} nga agar-aramat $1',
@@ -1526,7 +1529,7 @@ ODagiti dadduma ket sigud a nakalemmeng.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Kaakaba',
@@ -1639,14 +1642,14 @@ ODagiti dadduma ket sigud a nakalemmeng.
 
 'exif-unknowndate' => 'Di ammo a petsa',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Flipped horizontally', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotated 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Flipped vertically', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotated 90° CCW ken flipped vertically', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotated 90° CW', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotated 90° CW ken flipped vertically', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotated 90° CCW', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Flipped horizontally',
+'exif-orientation-3' => 'Rotated 180°',
+'exif-orientation-4' => 'Flipped vertically',
+'exif-orientation-5' => 'Rotated 90° CCW ken flipped vertically',
+'exif-orientation-6' => 'Rotated 90° CW',
+'exif-orientation-7' => 'Rotated 90° CW ken flipped vertically',
+'exif-orientation-8' => 'Rotated 90° CCW',
 
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',
@@ -1861,7 +1864,7 @@ $1',
 'unknown_extension_tag' => 'Di ammo nga extension tag "$1"',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Naikapet nga extensions',
 'version-specialpages'             => 'Naiduma a pampanid',
 'version-parserhooks'              => 'Parser hooks',

@@ -1,6 +1,9 @@
 <?php
 /** Rhaeto-Romance (Rumantsch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -100,7 +103,7 @@ $messages = array(
 'subcategories'            => 'sutcategorias',
 'category-media-header'    => 'Datotecas en la categoria "$1"',
 'category-empty'           => "''Questa categoria cuntegna actualmain naigns artitgels ed naginas datotecas.''",
-'hidden-category-category' => 'Zuppa categorias', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Zuppa categorias',
 'listingcontinuesabbrev'   => 'cuntinuaziun',
 
 'about'          => 'Surda',
@@ -172,7 +175,7 @@ $messages = array(
 'otherlanguages'    => 'En auteras linguas',
 'redirectedfrom'    => '(renvià da $1)',
 'redirectpagesub'   => "questa pagina renviescha tar in'auter artitgel",
-'lastmodifiedat'    => "L'ultima modificaziun da questa pagina: ils $1 a las $2.", # $1 date, $2 time
+'lastmodifiedat'    => "L'ultima modificaziun da questa pagina: ils $1 a las $2.",
 'viewcount'         => 'Questa pagina è vegnida guardada {{PLURAL:$1|ina giada|$1 giadas}}.',
 'protectedpage'     => 'Pagina protegida',
 'jumpto'            => 'Midar tar:',
@@ -453,7 +456,7 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'viewpagelogs'           => 'Guardar ils logs da questa pagina',
 'currentrev'             => 'Versiun actuala',
 'revisionasof'           => 'Versiun dals $1',
-'revision-info'          => "Quai è ina versiun veglia. Temp da la midada ''$1'' da ''$2''", # Additionally available: $3: revision id
+'revision-info'          => "Quai è ina versiun veglia. Temp da la midada ''$1'' da ''$2''",
 'previousrevision'       => '← versiun pli veglia',
 'nextrevision'           => 'versiun pli nova →',
 'currentrevisionlink'    => 'Guardar la versiun actuala',
@@ -473,7 +476,7 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'historyempty'           => '(vid)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 las $2', # user at time
+'history-feed-item-nocomment' => '$1 las $2',
 
 # Revision deletion
 'rev-deleted-comment' => '(eliminà commentari)',
@@ -868,7 +871,7 @@ Ti pos midar il livel da protecziun da quest\'artitgel, quai na vegn dentant bet
 
 # Block/unblock
 'blockip'            => 'Bloccar utilisader',
-'ipboptions'         => '2 uras:2 hours,1 di:1 day,3 dis:3 days,1 emna:1 week,2 emnas:2 weeks,1 mais:1 month,3 mais:3 months,6 mais:6 months,1 onn:1 year,infinit:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '2 uras:2 hours,1 di:1 day,3 dis:3 days,1 emna:1 week,2 emnas:2 weeks,1 mais:1 month,3 mais:3 months,6 mais:6 months,1 onn:1 year,infinit:infinite',
 'badipaddress'       => "l'adressa-IP è nunvalida",
 'ipblocklist'        => "Glista da las adressas da'IP e dals nums d'utilisader bloccads",
 'ipblocklist-submit' => 'Tschertgar',
@@ -905,7 +908,7 @@ En quests cas as ti da spustar u colliar manualmain las paginas, sche giavischà
 'move-watch'              => 'Observar questa pagina',
 'movepagebtn'             => 'Spustar la pagina',
 'pagemovedsub'            => 'Spustà cun success',
-'movepage-moved'          => '<big>\'\'\'"$1" è vegnì spustà a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" è vegnì spustà a "$2"\'\'\'</big>',
 'articleexists'           => 'I exista gia in artitgel cun quai num. Tscherni per plaschair in auter.',
 'talkexists'              => "'''L'artitgel è vegnì spustà cun success. Dentant exista sut il nov num gia ina pagina da discussiun, perquai è la pagina da discussiun betg vegnida spustada. Fa quai p. pl. a maun.'''",
 'movedto'                 => 'spustà a',
@@ -1067,7 +1070,7 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Editar questa datoteca cun in program extern',
@@ -1120,7 +1123,7 @@ Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 'watchlisttools-raw'  => 'Editar il format da la glista (import/export)',
 
 # Special:Version
-'version' => 'Versiun', # Not used as normal message but as header for the special page itself
+'version' => 'Versiun',
 
 # Special:SpecialPages
 'specialpages' => 'Paginas spezialas',

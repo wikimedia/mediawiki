@@ -1,6 +1,9 @@
 <?php
 /** Bikol Central (Bikol Central)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -195,7 +198,7 @@ $messages = array(
 'category-media-header'          => 'Media sa kategoryang "$1"',
 'category-empty'                 => "''Mayò nin laog an kategoryang ini sa ngonyan.''",
 'hidden-categories'              => '{{PLURAL:$1|Nakatagong kategorya|Mga nakatagong kategorya}}',
-'hidden-category-category'       => 'Mga nakatagong kategorya', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Mga nakatagong kategorya',
 'category-subcat-count-limited'  => 'Igwa nin {{PLURAL:$1|sub-kategorya|$1 mga sub-kategorya}} an artikulong ini.',
 'category-article-count'         => '{{PLURAL:$2|An mga minasunod na pahina sana an laog kan kategoryang ini|An mga minasunod na {{PLURAL:$1|pahina|$1 pahina}} an yaon sa kategoryang ini, sa $2 gabos.}}',
 'category-article-count-limited' => 'Yaon sa presenteng kategorya an mga minasunod na {{PLURAL:$1|pahina|$1 pahina}}.',
@@ -279,7 +282,7 @@ $messages = array(
 'otherlanguages'    => 'Sa ibang mga tataramon',
 'redirectedfrom'    => '(Piglikay halì sa $1)',
 'redirectpagesub'   => 'Ilikáy an pahina',
-'lastmodifiedat'    => 'Huring pigmodipikar an pahinang kan ini $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Huring pigmodipikar an pahinang kan ini $2, $1.',
 'viewcount'         => 'Binukasán ining pahina nin {{PLURAL:$1|sarong beses|nin $1 beses}}.',
 'protectedpage'     => 'Protektadong pahina',
 'jumpto'            => 'Lukso sa:',
@@ -697,7 +700,7 @@ Igwa na kaini.',
 'nohistory'              => 'Mayong paghirá nin uusipón sa pahinang ini.',
 'currentrev'             => 'Sa ngonyan na pagpakarháy',
 'revisionasof'           => 'Pagpakarháy sa $1',
-'revision-info'          => 'An pagpakarháy sa $1 ni $2', # Additionally available: $3: revision id
+'revision-info'          => 'An pagpakarháy sa $1 ni $2',
 'previousrevision'       => '←Mas lumang pagpakarhay',
 'nextrevision'           => 'Mas bàgong pagpakarháy→',
 'currentrevisionlink'    => 'Sa ngonyan na pagpakarháy',
@@ -719,7 +722,7 @@ Legend: (ngonyan) = kaibhán sa ngonyan na bersyon,
 # Revision feed
 'history-feed-title'          => 'Uusipón kan pagpakaraháy',
 'history-feed-description'    => 'Uusipón kan pagpakaraháy para sa pahinang ini sa wiki',
-'history-feed-item-nocomment' => '$1 sa $2', # user at time
+'history-feed-item-nocomment' => '$1 sa $2',
 'history-feed-empty'          => 'Mayò man an hinágad na pahina.
 Pwedeng pigparà na ini sa wiki, o tinàwan nin bàgong pangaran.
 Probaran tabì an [[Special:Search|pighahanap sa wiki]] para sa mga pahinang dapít.',
@@ -858,7 +861,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'files'                    => 'Mga dokumento',
 
 # User rights
-'userrights'               => 'Pagmaneho kan mga derecho nin paragamit', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Pagmaneho kan mga derecho nin paragamit',
 'userrights-lookup-user'   => 'Magmaného kan mga grupo nin parágamit',
 'userrights-user-editname' => 'Ilaog an pangaran kan parágamit:',
 'editusergroup'            => 'Hirahón an mga Grupo kan Parágamit',
@@ -1340,8 +1343,8 @@ Hilingón tabì an $2 para mahiling an lista nin mga kaaagi pa sanang pagparà.'
 ni [[User:$2|$2]] ([[User talk:$2|Olay]]); may ibang parágamit na naghirá na o nagbalik na kaini.
 
 Huring hirá ni [[User:$3|$3]] ([[User talk:$3|Olay]]).',
-'editcomment'      => "Ini an nakakaag na komentaryo sa paghirá: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Binawî na mga paghirá kan [[Special:Contributions/$2|$2]] ([[User talk:$2|Magtaram]]); pigbalik sa dating bersyón ni [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Ini an nakakaag na komentaryo sa paghirá: \"''\$1''\".",
+'revertpage'       => 'Binawî na mga paghirá kan [[Special:Contributions/$2|$2]] ([[User talk:$2|Magtaram]]); pigbalik sa dating bersyón ni [[User:$1|$1]]',
 'rollback-success' => 'Binawî na mga paghirá ni $1; pigbalik sa dating bersyón ni $2.',
 'sessionfailure'   => "Garo may problema sa paglaog mo;
 kinanselár ining aksyón bilang sarong paglikay kontra sa ''session hijacking''.
@@ -1376,7 +1379,7 @@ Uya an ngonyan na mga pwesto kan pahinang '''$1''':",
 'protect-expiring'            => 'mápasó sa $1 (UTC)',
 'protect-cascade'             => 'Protektarán an mga pahinang nakaiba sa pahinang ini (proteksyon katarata)',
 'protect-cantedit'            => 'Dai mo mariribayan an mga tanggá kan proteksyon kaining pahina huli ta mayò ka nin permiso na ligwatón ini.',
-'protect-expiry-options'      => '2ng oras:2 hours,1ng aldaw:1 day,3ng aldaw:3 days,1ng semana:1 week,2ng semana:2 weeks,1ng bulan:1 month,3ng bulan:3 months,6 na bulan:6 months,1ng taon:1 year,daing kasagkoran:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2ng oras:2 hours,1ng aldaw:1 day,3ng aldaw:3 days,1ng semana:1 week,2ng semana:2 weeks,1ng bulan:1 month,3ng bulan:3 months,6 na bulan:6 months,1ng taon:1 year,daing kasagkoran:infinite',
 'restriction-type'            => 'Permiso:',
 'restriction-level'           => 'Tanggá nin restriksyon:',
 'minimum-size'                => 'Pinaka sadit na sukol',
@@ -1444,7 +1447,7 @@ $1",
 'contributions' => 'Mga kontribusyon kan parágamit',
 'mycontris'     => 'Mga kontribusyon ko',
 'contribsub2'   => 'Para sa $1 ($2)',
-'nocontribs'    => 'Mayong mga pagbabago na nahanap na kapadis sa ining mga criteria.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Mayong mga pagbabago na nahanap na kapadis sa ining mga criteria.',
 'uctop'         => '(alituktok)',
 'month'         => 'Poon bulan (asin mas amay):',
 'year'          => 'Poon taon (asin mas amay):',
@@ -1496,7 +1499,7 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'ipbenableautoblock'          => 'Enseguidang bagaton an huring direccion nin  IP na ginamit kaining paragamit, asin kon ano pang ibang IP na proprobaran nindang gamiton',
 'ipbsubmit'                   => 'Bagáton ining parágamit',
 'ipbother'                    => 'Ibang oras:',
-'ipboptions'                  => '2ng oras:2 hours,1ng aldaw:1 day,3ng aldaw:3 days,1ng semana:1 week,2ng semana:2 weeks,1ng bulan:1 month,3ng bulan:3 months,6 na bulan:6 months,1ng taon:1 year,daing kasagkoran:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2ng oras:2 hours,1ng aldaw:1 day,3ng aldaw:3 days,1ng semana:1 week,2ng semana:2 weeks,1ng bulan:1 month,3ng bulan:3 months,6 na bulan:6 months,1ng taon:1 year,daing kasagkoran:infinite',
 'ipbotheroption'              => 'iba',
 'ipbotherreason'              => 'Iba/dugang na rasón:',
 'ipbhidename'                 => 'Itago an ngaran in paragamit para dai mahiling sa historial nin pagbagat, nakaandar na lista nin binagat asin lista nin paragamit',
@@ -1592,7 +1595,7 @@ Sa mga kasong iyan, kaipuhan mong ibalyo o isalak an páhina nin mano-mano kun b
 'move-watch'              => 'Bantayán ining pahina',
 'movepagebtn'             => 'Ibalyó an pahina',
 'pagemovedsub'            => 'Naibalyó na',
-'movepage-moved'          => '<big>\'\'\'Naihubò na an "$1" sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'Naihubò na an "$1" sa "$2"\'\'\'</big>',
 'articleexists'           => 'Igwa nang pahina sa parehong pangaran, o dai pwede an pangaran na pigpilì mo.
 Magpilì tabì nin ibang pangaran.',
 'talkexists'              => "'''Ibinalyo na an mismong pahina, alagad dai naibalyo an pahina nin orolay ta igwa na kaini sa bàgong titulo. Pagsaroon tabì ining duwa nin mano-mano.'''",
@@ -1749,7 +1752,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Attribution
 'anonymous'        => '(Mga)paragamit na anónimo kan {{SITENAME}}',
 'siteuser'         => 'Paragamit kan {{SITENAME}} na si $1',
-'lastmodifiedatby' => 'Ining páhina huring binago sa $2, $1 ni $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ining páhina huring binago sa $2, $1 ni $3.',
 'othercontribs'    => 'Binase ini sa trabaho ni $1.',
 'others'           => 'iba pa',
 'siteusers'        => '(Mga)paragamit kan {{SITENAME}} na si $1',
@@ -2019,7 +2022,7 @@ Pwede mo man [[Special:Watchlist/edit|gamiton an standard editor]].',
 'watchlisttools-raw'  => 'Hirahón an bàgong pigbabantayan',
 
 # Special:Version
-'version' => 'Bersyon', # Not used as normal message but as header for the special page itself
+'version' => 'Bersyon',
 
 # Special:SpecialPages
 'specialpages'               => 'Mga espesyal na pahina',

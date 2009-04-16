@@ -1,6 +1,9 @@
 <?php
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -141,7 +144,7 @@ $messages = array(
 'category-media-header'          => 'Μέσα ἐν κατηγορίᾳ "$1"',
 'category-empty'                 => "''Αὕτη ἡ κατηγορία οὐ περιλαμβάνει δέλτους τινὰς τῷ παρόντι.''",
 'hidden-categories'              => '{{PLURAL:$1|Κεκρυμμένη Κατηγορία|Κεκρυμμέναι Κατηγορίαι}}',
-'hidden-category-category'       => 'Κεκρυμμέναι κατηγορίαι', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Κεκρυμμέναι κατηγορίαι',
 'category-subcat-count'          => '{{PLURAL:$2|Ἥδε ἡ κατηγορία περιέχει μόνον τὴν ἐξῆς ὑποκατηγορίαν.|Ἥδε ἡ κατηγορία περιέχει {{PLURAL:$1|τὴν ἐξῆς|τὰς ἐξῆς}} {{PLURAL:$1|ὑποκατηγορίαν|$1 ὑποκατηγορίας}}, ἐκ συνόλου $2.}}',
 'category-subcat-count-limited'  => 'Ἥδε ἡ κατηγορία περιέχει {{PLURAL:$1|τὴν ἐξῆς|τὰς ἐξῆς}} {{PLURAL:$1|ὑποκατηγορίαν|$1 ὑποκατηγορίας}}.',
 'category-article-count'         => '{{PLURAL:$2|Ἥδε ἡ κατηγορία περιέχει μόνον τὴν ἐξῆς δέλτον.|Αἱ ἐξῆς {{PLURAL:$1|δέλτος ἐστὶν|$1 δέλτοι εἰσὶν}} ἐν τῇδε τῇ κατηγορίᾳ, ἐκ συνόλου $2.}}',
@@ -227,7 +230,7 @@ $messages = array(
 'otherlanguages'    => 'Ἀλλογλωσσιστί',
 'redirectedfrom'    => '(Ἀποσταλτὸν ἀπὸ $1)',
 'redirectpagesub'   => 'Ἐπανάγειν δέλτον',
-'lastmodifiedat'    => 'Ἥδε ἡ δέλτος ὕστατον μετεβλήθη $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ἥδε ἡ δέλτος ὕστατον μετεβλήθη $2, $1.',
 'viewcount'         => 'Ἥδε ἡ δέλτος προσεπελάσθη {{PLURAL:$1|ἅπαξ|$1-(άκ)ις}}.',
 'protectedpage'     => 'Πεφυλαγμένη δέλτος',
 'jumpto'            => 'Ἅλμα πρὸς:',
@@ -627,7 +630,7 @@ $1',
 'currentrev'             => 'Τὸ νῦν',
 'currentrev-asof'        => 'Τρέχουσα ἀναθεώρησις μέχρι $1',
 'revisionasof'           => 'Τὰ ἐπὶ $1',
-'revision-info'          => 'Τὸ ἐπὶ $1 ὑπὸ $2', # Additionally available: $3: revision id
+'revision-info'          => 'Τὸ ἐπὶ $1 ὑπὸ $2',
 'previousrevision'       => '←Παλαιοτέρα ἀναθεώρησις',
 'nextrevision'           => 'Νεωτέρα ἀναθεώρησις→',
 'currentrevisionlink'    => 'Τὰ νῦν',
@@ -649,7 +652,7 @@ $1',
 # Revision feed
 'history-feed-title'          => 'Ἱστορία ἀναθεωρήσεων',
 'history-feed-description'    => 'Ἱστορία ἀναθεωρήσεων τῆσδε δέλτου ἐν τῷ ϝίκι',
-'history-feed-item-nocomment' => '$1 ἐπὶ $2', # user at time
+'history-feed-item-nocomment' => '$1 ἐπὶ $2',
 
 # Revision deletion
 'rev-deleted-comment'            => '(σχόλιον ἀφελόμενον)',
@@ -929,7 +932,7 @@ $1',
 'prefs-custom-js'           => 'JS παραγγελτόν',
 
 # User rights
-'userrights'                  => 'Διαχείρισις δικαιωμάτων χρωμένου', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Διαχείρισις δικαιωμάτων χρωμένου',
 'userrights-lookup-user'      => 'Χειρίζεσθαι ὁμάδας χρωμένου',
 'userrights-user-editname'    => 'Εἰσάγειν ὄνομἀ τι χρωμένου:',
 'editusergroup'               => 'Μεταγράφειν ὁμάδας χρωμένου',
@@ -1194,8 +1197,8 @@ $1',
 'noimage'                   => 'Οὐδέν ἐστι ἀρχεῖον οὕτως ὀνομαστόν, ἀλλὰ ἔξεστί σοι $1.',
 'noimage-linktext'          => 'Ἐντιθέναι τι',
 'uploadnewversion-linktext' => 'Ἐπιφορτίζειν νέαν ἐκδοσίν τινα τοῦδε τοῦ ἀρχείου',
-'shared-repo-from'          => 'ἀπὸ $1', # $1 is the repository name
-'shared-repo'               => 'διαμεμοιρασμένον ἀποθηκευτήριόν τι', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'ἀπὸ $1',
+'shared-repo'               => 'διαμεμοιρασμένον ἀποθηκευτήριόν τι',
 
 # File reversion
 'filerevert'                => 'Ἐπαναφέρειν  $1',
@@ -1530,8 +1533,8 @@ $NEWPAGE
 'rollbackfailed'   => 'Ἀναστροφὴ μὴ ἐπιτυχής',
 'cantrollback'     => 'Μὴ δυνατὴ ἡ ἀναστροφὴ·
 ὁ ὕστατος ἐρανιστὴς ἐστὶ μόνον δημιουργὸς τῆσδε τῆς δέλτου.',
-'editcomment'      => "Ἡ σύνοψις τῆς μεταγραφῆς ἦν: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Ἐπαναφέρειν μεταγραφὰς ὑπὸ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) εἰς τὴν ἐσχάτην ἔκδοσιν ὑπὸ [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Ἡ σύνοψις τῆς μεταγραφῆς ἦν: \"''\$1''\".",
+'revertpage'       => 'Ἐπαναφέρειν μεταγραφὰς ὑπὸ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) εἰς τὴν ἐσχάτην ἔκδοσιν ὑπὸ [[User:$1|$1]]',
 'rollback-success' => 'Ἀναστρέφειν μεταγραφὰς ὑπὸ $1;
 ἐπαναφορὰ εἰς τὴν προτέραν ἔκδοσιν ὑπὸ $2.',
 
@@ -1573,7 +1576,7 @@ $NEWPAGE
 ** Ἀντιπαραγωγικοὶ πόλεμοι μεταγραφῶν
 ** Δἐλτος ὑψηλῆς κυκλοφορίας',
 'protect-edit-reasonlist'     => 'Μεταγράφειν τὰς αἰτίας προστασίας',
-'protect-expiry-options'      => '1 ὥρα:1 hour,1 ἡμέρα:1 day,1 ἑβδομάς:1 week,2 ἑβδομάδες:2 weeks,1 μήν:1 month,3 μῆνες:3 months,6 μῆνες:6 months,1 ἔτος:1 year,ἐπἄπειρον:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ὥρα:1 hour,1 ἡμέρα:1 day,1 ἑβδομάς:1 week,2 ἑβδομάδες:2 weeks,1 μήν:1 month,3 μῆνες:3 months,6 μῆνες:6 months,1 ἔτος:1 year,ἐπἄπειρον:infinite',
 'restriction-type'            => 'Ἐξουσία:',
 'restriction-level'           => 'Κλῖμαξ περιορισμοῦ:',
 'minimum-size'                => 'Ἐλάχιστον μέγεθος',
@@ -1630,7 +1633,7 @@ $1',
 'contributions-title' => 'Ἔρανοι χρωμένου διὰ τὸ $1',
 'mycontris'           => 'Οἱ ἔρανοί μου',
 'contribsub2'         => 'Πρὸς $1 ($2)',
-'nocontribs'          => 'Οὐδεμία ἀλλαγὴ ηὑρέθη προσήκουσα εἰς τάδε τὰ κριτήρια.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Οὐδεμία ἀλλαγὴ ηὑρέθη προσήκουσα εἰς τάδε τὰ κριτήρια.',
 'uctop'               => '(ἄκρον)',
 'month'               => 'Μήν:',
 'year'                => 'Ἔτος:',
@@ -1687,7 +1690,7 @@ $1',
 'ipbemailban'                     => 'Ἀποτρέπειν τὴν ἀποστολὴν ἠλ-ἀγγελίας ἐκ τοῦ χρωμένου',
 'ipbsubmit'                       => 'Φράττειν τόνδε τὸν χρώμενον',
 'ipbother'                        => 'Ἄλλη ὥρα:',
-'ipboptions'                      => '2 ὥραι:2 hours,1 ἡμέρα:1 day,3 ἡμέραι:3 days,1 ἑβδομάς:1 week,2 ἑβδομάδες:2 weeks,1 μήν:1 month,3 μῆνες:3 months,6 μῆνες:6 months,1 ἔτος:1 year,ἐπἄπειρον:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 ὥραι:2 hours,1 ἡμέρα:1 day,3 ἡμέραι:3 days,1 ἑβδομάς:1 week,2 ἑβδομάδες:2 weeks,1 μήν:1 month,3 μῆνες:3 months,6 μῆνες:6 months,1 ἔτος:1 year,ἐπἄπειρον:infinite',
 'ipbotheroption'                  => 'ἄλλη',
 'ipbotherreason'                  => 'Πρόσθετος/ἄλλη αἰτία:',
 'ipbwatchuser'                    => 'Ἐφορᾶν τοῦδε τοῦ χρωμένου τὰς δέλτους χρωμένου καὶ διαλέξεως',
@@ -1785,7 +1788,7 @@ $1',
 'move-watch'                   => 'Ἑφορᾶν τήνδε τὴν δέλτον',
 'movepagebtn'                  => 'Κινεῖν τὴν δέλτον',
 'pagemovedsub'                 => 'Κεκίνηται ἡ δέλτος',
-'movepage-moved'               => '<big>\'\'\'"$1" κεκίνηται πρὸς "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" κεκίνηται πρὸς "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Ἁναδιεύθυνσίς τις ἐποιήθη.',
 'articleexists'                => 'Εἶτε ἢ ἐστὶ δέλτος τις οὕτως ὀνομαστὴ ἢ ἄκυρον ἐστι τὸ ἐπειλεγμένον ὄνομα.
 Ἄλλως τὴν δέλτον ὀνόμασον.',
@@ -1954,7 +1957,7 @@ $1',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Ἀνώνυμος χρώμενος|Ἀνώνυμοι χρώμενοι}} τῷ {{SITENAME}}',
 'siteuser'         => 'Χρώμενος τῷ {{SITENAME}} $1',
-'lastmodifiedatby' => 'Ἥδε ἡ δἐλτος ἠλλάχθη ὑστάτως $2, $1 ἐκ τοῦ $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ἥδε ἡ δἐλτος ἠλλάχθη ὑστάτως $2, $1 ἐκ τοῦ $3.',
 'othercontribs'    => 'Βεβασισμένον τῷ ἔργῳ τοῦ/τῶν $1.',
 'others'           => 'ἄλλοι',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|χρωμένου|χρωμένων}} τῷ $1',
@@ -2048,7 +2051,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Πλάτος',
@@ -2174,14 +2177,14 @@ $1',
 
 'exif-unknowndate' => 'Ἄγνωτος χρονολογία',
 
-'exif-orientation-1' => 'Κανονικόν', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Ἀντεστραμμένη ὁριζοντίως', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Περιεστραμμένη κατὰ 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Ἀντεστραμμένη καθέτως', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Περιεστραμμένη 90° ἀνθωρολογιακῶς καὶ ἀντεστραμμένη καθέτως', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Περιεστραμμένη 90° ὡρολογιακώς', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Περιεστραμμένη 90° ὡρολογιακῶς καὶ ἀντεστραμμένη καθέτως', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Περιεστραμμένη 90° ἀνθωρολογιακώς', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Κανονικόν',
+'exif-orientation-2' => 'Ἀντεστραμμένη ὁριζοντίως',
+'exif-orientation-3' => 'Περιεστραμμένη κατὰ 180°',
+'exif-orientation-4' => 'Ἀντεστραμμένη καθέτως',
+'exif-orientation-5' => 'Περιεστραμμένη 90° ἀνθωρολογιακῶς καὶ ἀντεστραμμένη καθέτως',
+'exif-orientation-6' => 'Περιεστραμμένη 90° ὡρολογιακώς',
+'exif-orientation-7' => 'Περιεστραμμένη 90° ὡρολογιακῶς καὶ ἀντεστραμμένη καθέτως',
+'exif-orientation-8' => 'Περιεστραμμένη 90° ἀνθωρολογιακώς',
 
 'exif-planarconfiguration-1' => 'πεπλατυσμένη μορφοποιία',
 'exif-planarconfiguration-2' => 'ἐπίπεδος μορφοποιία',
@@ -2427,7 +2430,7 @@ $1',
 'duplicate-defaultsort' => 'Eἴδησις: Ἡ προκαθωρισμένη κλεὶς ταξινομήσεως "$2" ὑπερκαλύπτει προηγουμένην προκαθωρισμένην κλεῖδα ταξινομήσεως "$1".',
 
 # Special:Version
-'version'                          => 'Ἐπανόρθωμα', # Not used as normal message but as header for the special page itself
+'version'                          => 'Ἐπανόρθωμα',
 'version-extensions'               => 'Ἐγκατεστημέναι ἐπεκτάσεις',
 'version-specialpages'             => 'Εἰδικαὶ δέλτοι',
 'version-parserhooks'              => 'Ἀγγύλαι λεξιαναλυτικοῦ προγράμματος',

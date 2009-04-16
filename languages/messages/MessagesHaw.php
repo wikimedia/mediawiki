@@ -1,6 +1,9 @@
 <?php
 /** Hawaiian (Hawai`i)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -170,7 +173,7 @@ $messages = array(
 'category-media-header'    => 'Nā pāpaho maloko o ka mahele "$1"',
 'category-empty'           => "''‘A‘ohe mau mo‘olelo o kēia mahele.''",
 'hidden-categories'        => '{{PLURAL:$1|Mahele hūnā|Nā mahele hūnā}}',
-'hidden-category-category' => 'Nā mahele hūnā', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Nā mahele hūnā',
 'listingcontinuesabbrev'   => '(ho‘omau ‘ia)',
 
 'mainpagetext' => "<big>'''Pono ka ho‘ouka ‘ana o MediaWiki.'''</big>",
@@ -429,7 +432,7 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'historyempty'        => '(‘ole)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 ma $2', # user at time
+'history-feed-item-nocomment' => '$1 ma $2',
 
 # Revision deletion
 'rev-delundel' => 'hō‘ike/hūnā',
@@ -464,7 +467,7 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'default'           => 'paʻamau',
 
 # User rights
-'userrights' => 'Ho‘oponopono ‘ana o nā kuleana', # Not used as normal message but as header for the special page itself
+'userrights' => 'Ho‘oponopono ‘ana o nā kuleana',
 
 # Groups
 'group-sysop'      => 'Nā kahu',
@@ -605,7 +608,7 @@ E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
 'prot_1movedto2'         => 'Ua hoʻoneʻe ʻo [[$1]] iā [[$2]]',
 'protect-default'        => '(paʻamau)',
 'protect-cantedit'       => 'ʻAʻole ʻoe hoʻololi i nā pae malu o kēia ʻaoʻao no ka mea ʻaʻohe ʻae āu o ka hoʻopololei ʻana o kēia ʻaoʻao.',
-'protect-expiry-options' => '2 hola:2 hours,1 lā:1 day,3 lā:3 days,1 pule:1 week,2 pule:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 makahiki:1 year,palena ʻole:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => '2 hola:2 hours,1 lā:1 day,3 lā:3 days,1 pule:1 week,2 pule:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 makahiki:1 year,palena ʻole:infinite',
 
 # Restrictions (nouns)
 'restriction-edit' => 'E ho‘opololei',
@@ -647,7 +650,7 @@ E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
 'ipbreason'          => 'Kumu:',
 'ipbsubmit'          => 'E ke‘a i kēia mea ho‘ohana',
 'ipbother'           => 'ʻĒ aʻe manawa:',
-'ipboptions'         => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 'badipaddress'       => 'Mana ‘ole ka wahi noho IP',
 'ipblocklist-submit' => 'Huli',
 'anononlyblock'      => '‘A‘ohe i hō‘ike‘ia ka inoa wale nō',
@@ -662,7 +665,7 @@ E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
 'move-watch'              => 'E nānā pono i kēia mea',
 'movepagebtn'             => "E ho'ololi",
 'pagemovedsub'            => 'Kūleʻa ka neʻe ʻana',
-'movepage-moved'          => '<big>\'\'\'Ua hoʻoneʻe ʻo "$1" iā "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'Ua hoʻoneʻe ʻo "$1" iā "$2"\'\'\'</big>',
 '1movedto2'               => 'Ua hoʻoneʻe ʻo [[$1]] iā [[$2]]',
 'movereason'              => 'Kumu:',
 'delete_and_move'         => 'E kāpae a e ho‘ololi i ka inoa',

@@ -1,6 +1,9 @@
 <?php
 /** Yiddish (ייִדיש)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -249,7 +252,7 @@ $messages = array(
 'category-media-header'          => 'מעדיע אין קאטעגאריע "$1"',
 'category-empty'                 => "'''די קאטעגאריע האט נישט קיין בלעטער אדער מעדיע.'''",
 'hidden-categories'              => '{{PLURAL:$1|באהאלטענע קאטעגאריע|באהאלטענע קאטעגאריעס}}',
-'hidden-category-category'       => 'באהאלטענע קאטעגאריעס', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'באהאלטענע קאטעגאריעס',
 'category-subcat-count'          => '{{PLURAL:$2|די קאטעגאריע האט נאר די פֿאלגנדע אונטער-קאטעגאריע|די קאטעגאריע האט די פֿאלגנדע {{PLURAL:$1|אונטער-קאטעגאריע|$1 אונטער-קאטעגאריעס}}, פֿון $2 קאטעגאריעס אינגאנצן}}.',
 'category-subcat-count-limited'  => 'די קאטעגאריע האט די פאלגנדע {{PLURAL:$1|אונטערקאטעגאריע|$1 אונטערקאטעגאריעס}}.',
 'category-article-count'         => '{{PLURAL:$2|די קאטעגאריע האט נאר דעם פֿאלגנדן בלאט|די קאטעגאריע האט {{PLURAL:$1| דעם פֿאלגנדן בלאט|די פֿאלגנדע $1 בלעטער}}, פֿון $2 אינגאנצן}}.',
@@ -335,7 +338,7 @@ $messages = array(
 'otherlanguages'    => 'אין אַנדערע שפראַכן',
 'redirectedfrom'    => '(אַריבערגעפֿירט פון $1)',
 'redirectpagesub'   => 'ווייטערפירן בלאט',
-'lastmodifiedat'    => 'דער בלאט איז לעצט געווארן מאדיפיצירט $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'דער בלאט איז לעצט געווארן מאדיפיצירט $2, $1.',
 'viewcount'         => 'דער בלאט איז געווארן געליינט {{PLURAL:$1|איין מאל|$1 מאל}}.',
 'protectedpage'     => 'באשיצטער בלאט',
 'jumpto'            => 'שפרינג צו:',
@@ -829,7 +832,7 @@ $2',
 'currentrev'             => 'איצטיגע ווערסיע',
 'currentrev-asof'        => 'לויפיקע רעוויזיע פון $1',
 'revisionasof'           => 'רעוויזיע ביי $1',
-'revision-info'          => 'רעוויזיע ביי $1 פון $2', # Additionally available: $3: revision id
+'revision-info'          => 'רעוויזיע ביי $1 פון $2',
 'previousrevision'       => '→ עלטערער ווערסיע',
 'nextrevision'           => 'נייע ווערסיע ←',
 'currentrevisionlink'    => 'איצטיגע ווערסיע',
@@ -850,7 +853,7 @@ $2',
 # Revision feed
 'history-feed-title'          => 'ווערסיע היסטאריע',
 'history-feed-description'    => 'ווערסיע היסטאריע פאר דעם בלאט אויפן וויקי',
-'history-feed-item-nocomment' => '$1 אין $2', # user at time
+'history-feed-item-nocomment' => '$1 אין $2',
 'history-feed-empty'          => 'דער געבעטענער בלאט עקזעסטירט נישט.
 עס איז מעגליך אויסגעמעקט געווארן פון די וויקי, אדער די נאמען געטוישט.
 פרובירט [[Special:Search|צו זיכן אין וויקי]] נאך רעלאווענטע נייע בלעטער.',
@@ -1562,8 +1565,8 @@ $NEWPAGE
 אן אנדערער האט שוין געענדערט אדער צוריקגעדרייט דעם בלאט.
 
 די לעצטע ענדערונג צום בלאַט איז געווען פון [[User:$3|$3]] ([[User talk:$3|רעדן]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "קורץ ווארט איז געווען: \"'''\$1'''\".", # only shown if there is an edit comment
-'revertpage'       => 'רעדאַקטירונגען פֿון  [[Special:Contributions/$2|$2]] צוריקגענומען ([[User talk:$2|רעדן]])  צו דער לעצטער ווערסיע פֿון [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "קורץ ווארט איז געווען: \"'''\$1'''\".",
+'revertpage'       => 'רעדאַקטירונגען פֿון  [[Special:Contributions/$2|$2]] צוריקגענומען ([[User talk:$2|רעדן]])  צו דער לעצטער ווערסיע פֿון [[User:$1|$1]]',
 'rollback-success' => 'צוריקגעדרייט רעדאַקטירונגען פֿון $1 צו דער לעצטע ווערסיע פֿון $2',
 'sessionfailure'   => "ווײַזט אויס אז ס'איז דא א פראבלעם מיט אייער ארײַנלאגירן; די פעולה איז איז געווארן אנולירט צו פֿאַרהיטן קעגן פֿאַרשטעלן אייער סעסיע. זייט אזוי גוט און גייט צוריק צום פֿריערדיקן בלאט, און פרובירט נאכאַמאָל.",
 
@@ -1597,7 +1600,7 @@ $NEWPAGE
 'protect-othertime'           => 'אנדער צייט:',
 'protect-othertime-op'        => 'אנדער צײַט',
 'protect-edit-reasonlist'     => 'רעדאַקטירן שיצן סיבות',
-'protect-expiry-options'      => 'שעה:1 hour,טאג:1 day,וואך:1 week,וואכן:2 weeks,חודש:1 month,דריי חדשים:3 months,זעקס חדשים:6 months,יאר:1 year,אייביג:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'שעה:1 hour,טאג:1 day,וואך:1 week,וואכן:2 weeks,חודש:1 month,דריי חדשים:3 months,זעקס חדשים:6 months,יאר:1 year,אייביג:infinite',
 'restriction-type'            => 'ערלויבניש:',
 'restriction-level'           => 'באַשיצונג ניווא:',
 'minimum-size'                => 'מינימום גרייס',
@@ -1700,7 +1703,7 @@ $NEWPAGE
 3 מאָנאַטן:3 months,
 6 מאָנאַטן:6 months,
 1 יאָר:1 year,
-אויף אייביק:infinite', # display1:time1,display2:time2,...
+אויף אייביק:infinite',
 'ipbotheroption'                  => 'אַנדער',
 'badipaddress'                    => 'נישט קיין גוטע אייפי אדרעס.',
 'blockipsuccesssub'               => 'בלאק איז דורכגפירט מיט דערפֿאלג',
@@ -1781,7 +1784,7 @@ $NEWPAGE
 'move-watch'                => 'אויפֿפאַסן אויף דעם בלאַט',
 'movepagebtn'               => 'באוועגן',
 'pagemovedsub'              => 'באַוועגט מיט הצלחה',
-'movepage-moved'            => '<big>דער בלאט "$1" איז אריבערגעפֿירט געווארן צו "$2".</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>דער בלאט "$1" איז אריבערגעפֿירט געווארן צו "$2".</big>',
 'movepage-moved-redirect'   => 'ווײַטערפֿירונג  געשאַפֿן.',
 'movepage-moved-noredirect' => 'שאַפֿן  א ווײַטערפֿירונג פֿאַרשטיקט.',
 'articleexists'             => 'א בלאט מיט דעם נאמען עקזיסטירט שוין, אדער די נאמען וואס איר האט אויסגעוועילט איז נישט געזעצליך.
@@ -1959,7 +1962,7 @@ $NEWPAGE
 # Attribution
 'anonymous'        => '{{PLURAL:$1|אַנאנימער באַניצער| אַנאנימע באַניצערס}} פֿון {{SITENAME}}',
 'siteuser'         => 'באַניצער {{SITENAME}} $1',
-'lastmodifiedatby' => 'די לעצטע ענדערונג פון דעם בלאט איז געווען $2, $1 דורך $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'די לעצטע ענדערונג פון דעם בלאט איז געווען $2, $1 דורך $3.',
 'othercontribs'    => 'באזירט אויף ארבעט פון $1.',
 'others'           => 'אנדערע',
 'siteusers'        => '{{PLURAL:$2|באַניצער| באַניצערס}} {{SITENAME}} $1',
@@ -2039,7 +2042,7 @@ $NEWPAGE
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'               => 'ברייט',
@@ -2262,7 +2265,7 @@ $5
 'hebrew-calendar-m12-gen' => 'אלול',
 
 # Special:Version
-'version'              => 'ווערסיע', # Not used as normal message but as header for the special page itself
+'version'              => 'ווערסיע',
 'version-specialpages' => 'ספעציעלע בלעטער',
 'version-version'      => 'ווערסיע',
 

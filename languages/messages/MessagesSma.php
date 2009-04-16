@@ -1,6 +1,9 @@
 <?php
 /** Southern Sami (Åarjelsaemien)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -305,7 +308,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'viewpagelogs'        => 'Vuesehte loggeh ihke dïhte bielie',
 'currentrev'          => 'Daaletje gïehtjedamme',
 'revisionasof'        => 'Gïehtjedamme ihke $1',
-'revision-info'       => 'Gïehtjedamme raejeste dïhte $1; $2', # Additionally available: $3: revision id
+'revision-info'       => 'Gïehtjedamme raejeste dïhte $1; $2',
 'previousrevision'    => '←Båarasåabpoe gïehtjedamme',
 'nextrevision'        => 'Minngebe gïehtjedamme→',
 'currentrevisionlink' => 'Daaletje gïehtjedamme',
@@ -320,7 +323,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 
 # Revision feed
 'history-feed-title'          => 'Gïehtjedamme histovrije',
-'history-feed-item-nocomment' => '$1 dïhte $2', # user at time
+'history-feed-item-nocomment' => '$1 dïhte $2',
 
 # History merging
 'mergehistory-from' => 'Gaaltjie bielie:',
@@ -602,7 +605,7 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie '''$1''' lea:",
 'protect-expiring'            => 'boarasnuvve $1 (UTC)',
 'protect-cascade'             => 'Vaarjelidh bielieh guosket sïjse dïhte bielie (viidit suodjaluse)',
 'protect-cantedit'            => 'Datne dorje ijje värrhtoedimmie vaarjelidhdaltese ihke dïhte bielie, ihke datne ijja åtna luhpie ahte värrhtoedimmie dïhte.',
-'protect-expiry-options'      => '2 täjmoe:2 hours,1 biejjie:1 day,3 biejjie:3 days,1 våhkoe:1 week,2 våhkoe:2 weeks,1 aske:1 month,3 aske:3 months,6 aske:6 months,1 jaepie:1 year,gietjieloeves:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 täjmoe:2 hours,1 biejjie:1 day,3 biejjie:3 days,1 våhkoe:1 week,2 våhkoe:2 weeks,1 aske:1 month,3 aske:3 months,6 aske:6 months,1 jaepie:1 year,gietjieloeves:infinite',
 'restriction-type'            => 'Permisjovne:',
 'restriction-level'           => 'Restriksjovne daltese:',
 
@@ -655,7 +658,7 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie '''$1''' lea:",
 'ipaddress'            => 'IP Tjaalesijjie:',
 'ipadressorusername'   => 'IP Tjaalesijjie jallh nuhtjiennomme:',
 'ipbother'             => 'Jeatjebh tïjje:',
-'ipboptions'           => '2 täjmoe:2 hours,1 biejjie:1 day,3 biejjie:3 days,1 våhkoe:1 week,2 våhkoe:2 weeks,1 aske:1 month,3 aske:3 months,6 aske:6 months,1 jaepie:1 year,gietjieloeves:infinite', # display1:time1,display2:time2,...
+'ipboptions'           => '2 täjmoe:2 hours,1 biejjie:1 day,3 biejjie:3 days,1 våhkoe:1 week,2 våhkoe:2 weeks,1 aske:1 month,3 aske:3 months,6 aske:6 months,1 jaepie:1 year,gietjieloeves:infinite',
 'ipbotheroption'       => 'jeatjebh',
 'ipblocklist'          => 'Lästoe bijjelen tjöödtjehtidh IP tjaalesijjieh jih nuhtjiennommeh',
 'ipblocklist-username' => 'Nuhtjiennomme jallh IP tjaalesijjie:',
@@ -799,7 +802,7 @@ Jeatjebh dajveh lea gaptjedh goh sïejhme, bine vuesehte gåessie taabelle stoer
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'         => 'Gamte',
@@ -881,7 +884,7 @@ Jeatjebh dajveh lea gaptjedh goh sïejhme, bine vuesehte gåessie taabelle stoer
 'unknown_extension_tag' => 'Ammes ekshtensjovne lissie "$1"',
 
 # Special:Version
-'version' => 'Låhkoe', # Not used as normal message but as header for the special page itself
+'version' => 'Låhkoe',
 
 # Special:SpecialPages
 'specialpages' => 'Joekoen bielieh',

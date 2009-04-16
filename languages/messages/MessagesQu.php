@@ -1,6 +1,9 @@
 <?php
 /** Quechua (Runa Simi)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -368,7 +371,7 @@ $messages = array(
 'category-media-header'          => '"$1" sutiyuq katiguriyapi multimidya willañiqikuna',
 'category-empty'                 => "''Kay katiguriyaqa ch'usaqmi.''",
 'hidden-categories'              => '{{PLURAL:$1|Pakasqa katiguriya|Pakasqa katiguriyakuna}}',
-'hidden-category-category'       => 'Pakasqa katiguriyakuna', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Pakasqa katiguriyakuna',
 'category-subcat-count'          => '{{PLURAL:$2|Kay katiguriyapiqa kay qatiq huklla urin katiguriyam.|Kay katiguriyapiqa kay qatiq {{PLURAL:$1|urin katiguriyam|$1 urin katiguriyakunam}}, $2-pura.}}',
 'category-subcat-count-limited'  => 'Kay katiguriyapiqa kay qatiq {{PLURAL:$1|urin katiguriyam|$1 urin katiguriyakunam}}.',
 'category-article-count'         => "{{PLURAL:$2|Kay katiguriyapiqa kay qatiq huklla p'anqam.|Kay katiguriyapiqa kay qatiq {{PLURAL:$1|p'anqam|$1 p'anqakunam}}, $2-pura.}}",
@@ -455,7 +458,7 @@ $messages = array(
 'otherlanguages'    => 'Huk simikunapi',
 'redirectedfrom'    => '($1-manta pusampusqa)',
 'redirectpagesub'   => "Pusampusqa p'anqa",
-'lastmodifiedat'    => "Kay p'anqaqa $2, $1 qhipaq kutitam hukchasqa karqan.", # $1 date, $2 time
+'lastmodifiedat'    => "Kay p'anqaqa $2, $1 qhipaq kutitam hukchasqa karqan.",
 'viewcount'         => "Kay p'anqaqa {{PLURAL:$1|huk kuti|$1 kuti}} watukusqañam.",
 'protectedpage'     => "Amachasqa p'anqa",
 'jumpto'            => 'Kayman riy:',
@@ -919,7 +922,7 @@ $3-qa nirqan kayraykum: ''$2''",
 'currentrev'             => 'Kunan hukchasqa',
 'currentrev-asof'        => 'Kunan musuqchasqa, $1 pacha',
 'revisionasof'           => "$1-pa llamk'apusqan",
-'revision-info'          => "Kayqa p'anqap mawk'a llamk'apusqa kasqanmi, $1 p'unchawpi $2-pa rurasqan", # Additionally available: $3: revision id
+'revision-info'          => "Kayqa p'anqap mawk'a llamk'apusqa kasqanmi, $1 p'unchawpi $2-pa rurasqan",
 'previousrevision'       => '← ñawpaq hukchasqa',
 'nextrevision'           => 'Qatiq hukchasqa →',
 'currentrevisionlink'    => 'Kunan hukchasqata qhaway',
@@ -940,7 +943,7 @@ $3-qa nirqan kayraykum: ''$2''",
 # Revision feed
 'history-feed-title'          => 'Hukchasqakunap wiñay kawsaynin',
 'history-feed-description'    => "Kay p'anqata hukchasqakunap wiñay kawsaynin",
-'history-feed-item-nocomment' => '$1, $2-pi', # user at time
+'history-feed-item-nocomment' => '$1, $2-pi',
 'history-feed-empty'          => "Mañakusqayki p'anqaqa manam kanchu.
 Wikimanta qullusqachá icha astasqachá.
 Musuq chaniyuq p'anqakunata [[Special:Search|wikipi maskaykachay]].",
@@ -1254,7 +1257,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'prefs-custom-js'           => 'Munakusqa JS',
 
 # User rights
-'userrights'                  => 'Ruraqkunata saqillanap allinkachinan', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Ruraqkunata saqillanap allinkachinan',
 'userrights-lookup-user'      => 'Ruraqkunap huñunkunata allinkachiy',
 'userrights-user-editname'    => 'Ruraqpa sutinta qillqamuy:',
 'editusergroup'               => 'Ruraqkunap huñunkunata hukchay',
@@ -1587,8 +1590,8 @@ Ama hina kaspa, [$2 willañiqi ch'uyanchana p'anqata] qhaway astawan willachikun
 'noimage'                   => 'Manam kanchu kay sutiyuq willañiqi, ichataq $1ta atinki.',
 'noimage-linktext'          => 'hukta churkuy',
 'uploadnewversion-linktext' => 'Kay willañiqi ñaqha musuqchasqata churkuy',
-'shared-repo-from'          => '$1-manta', # $1 is the repository name
-'shared-repo'               => 'rakinakusqa qullqa', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => '$1-manta',
+'shared-repo'               => 'rakinakusqa qullqa',
 
 # File reversion
 'filerevert'                => '$1-ta kutichiy',
@@ -1961,8 +1964,8 @@ $2 nisqa p\'anqata qhaway ñaqha qullusqakunata rikunaykipaq.',
 'alreadyrolled'    => "Manam atinichu [[User:$2|$2]]-pa ([[User talk:$2|rimanakuy]]) [[$1]] nisqa qhipaq llamk'apusqanta kutichiyta; pipas kay p'anqataqa llamk'apurqunñam icha kutichirqunñam.
 
 Qhipaq kaq llamk'apusqaqa [[User:$3|$3]]-pa ([[User talk:$3|rimanakuy]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) rurasqanmi.",
-'editcomment'      => "Llamk'apusqakunamanta pisichasqaqa kay hinam: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|rimachina]]) sutiyuq ruraqpa hukchasqankunaqa kutichisqam [[User:$1|$1]]-pa ñawpaq hukchasqanman', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Llamk'apusqakunamanta pisichasqaqa kay hinam: \"''\$1''\".",
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|rimachina]]) sutiyuq ruraqpa hukchasqankunaqa kutichisqam [[User:$1|$1]]-pa ñawpaq hukchasqanman',
 'rollback-success' => "$1-pa hukchasqankunaqa kutichisqañam $2-pa ñawpaq llamk'apusqanta paqarichispa.",
 'sessionfailure'   => "Lamk'apuy tiyayniykiwanqa sasachakuymi rikch'akun;
 kay rurayqa t'ipisqam karqan millay runap llullaspa yaykunanta hark'anapaq.
@@ -2010,7 +2013,7 @@ Kay qatiqpiqa '''$1''' sutiyuq p'anqap kunan allinkachinankunatam rikunki:",
 ** Mana ruruchiq llamk'apuy awqanakuy
 ** Ancha qhawasqa p'anqa",
 'protect-edit-reasonlist'     => 'Kayrayku amachasqa nisqata hukchay',
-'protect-expiry-options'      => "1 ura:1 hour,1 p'unchaw:1 day,1 simana:1 week,2 simana:2 weeks,1 killa:1 month,3 killa:3 months,6 killa:6 months,1 wata:1 year,wiñaypaq:infinite", # display1:time1,display2:time2,...
+'protect-expiry-options'      => "1 ura:1 hour,1 p'unchaw:1 day,1 simana:1 week,2 simana:2 weeks,1 killa:1 month,3 killa:3 months,6 killa:6 months,1 wata:1 year,wiñaypaq:infinite",
 'restriction-type'            => 'Saqillay:',
 'restriction-level'           => 'Amachay hanan kay:',
 'minimum-size'                => 'Kaymanta aswan hatun',
@@ -2084,7 +2087,7 @@ $1',
 'contributions-title' => "$1 sutiyuq ruraqpa llamk'apusqankuna",
 'mycontris'           => "Llamk'apusqaykuna",
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'Manam kay hina hukchasqakuna kanchu.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Manam kay hina hukchasqakuna kanchu.',
 'uctop'               => ' (qhipaq hukchasqa)',
 'month'               => 'Kay killamanta (ñawpaqmantapas):',
 'year'                => 'Kay watamanta (ñawpaqmantapas):',
@@ -2145,7 +2148,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipbenableautoblock'              => "Kay ruraqpa llamk'achisqan IP huchhata kikinmanta hark'ay, hinallataq ima qatiqlla llamk'achisqan IP huchhatapas",
 'ipbsubmit'                       => "Kay ruraqta hark'ay",
 'ipbother'                        => 'Huk puchukana pacha:',
-'ipboptions'                      => "2 ura:2 hours,1 p'unchaw:1 day,3 p'unchaw:3 days,1 simana:1 week,2 simana:2 weeks,1 killa:1 month,3 killa:3 months,6 killa:6 months,1 wata:1 year,Wiña-wiñaypaq:infinite", # display1:time1,display2:time2,...
+'ipboptions'                      => "2 ura:2 hours,1 p'unchaw:1 day,3 p'unchaw:3 days,1 simana:1 week,2 simana:2 weeks,1 killa:1 month,3 killa:3 months,6 killa:6 months,1 wata:1 year,Wiña-wiñaypaq:infinite",
 'ipbotheroption'                  => 'huk',
 'ipbotherreason'                  => 'Huk imarayku:',
 'ipbhidename'                     => "Ruraqpa sutinta llamk'apusqakunamanta, sutisuyukunamantapas pakay",
@@ -2268,7 +2271,7 @@ Hinaptinqa, kay rimachina p'anqap samiqninta makiykiwan astanaykim tiyanqa.",
 'move-watch'                   => "Kay p'anqata watiqay",
 'movepagebtn'                  => "P'anqata astay",
 'pagemovedsub'                 => "P'anqaqa astasqañam",
-'movepage-moved'               => "<big>'''\"\$1\" sutiyuq p'anqaqa kaymanmi astasqa: \"\$2\".'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''\"\$1\" sutiyuq p'anqaqa kaymanmi astasqa: \"\$2\".'''</big>",
 'movepage-moved-redirect'      => 'Pusapunam kamarisqaña.',
 'movepage-moved-noredirect'    => "Pusapuna kamariyqa hark'asqam.",
 'articleexists'                => "Kay sutiyuq p'anqaqa kachkanñam icha akllasqayki sutiqa manam allinchu. Ama hina kaspa, huk sutita akllay.",
@@ -2489,7 +2492,7 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 # Attribution
 'anonymous'        => '{{SITENAME}}pi sutinnaq {{PLURAL:$1|ruraq|ruraqkuna}}',
 'siteuser'         => '{{SITENAME}}-pa $1 sutiyuq ruraqnin',
-'lastmodifiedatby' => "Kay p'anqaqa $2, $1 qhipaq kutitam $3-pa hukchasqan karqan.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Kay p'anqaqa $2, $1 qhipaq kutitam $3-pa hukchasqan karqan.",
 'othercontribs'    => '$1-pa rurasqanmanta paqariq.',
 'others'           => 'hukkuna',
 'siteusers'        => '{{SITENAME}}-pa $1 sutiyuq {{PLURAL:$2|ruraqnin|ruraqninkuna}}',
@@ -2598,7 +2601,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Suni kay',
@@ -2725,14 +2728,14 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 
 'exif-unknowndate' => "Mana riqsisqa p'unchaw",
 
-'exif-orientation-1' => 'Sapsi', # 0th row: top; 0th column: left
-'exif-orientation-2' => "Siriqlla t'ikrasqa", # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° muyusqa', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => "Sayaqlla t'ikrasqa", # 0th row: bottom; 0th column: left
-'exif-orientation-5' => "90° pacha tupunaman hayu muyusqa, sayaqlla t'ikrasqa", # 0th row: left; 0th column: top
-'exif-orientation-6' => '90° pacha tupunawan muyusqa', # 0th row: right; 0th column: top
-'exif-orientation-7' => "90° pacha tupunawan muyusqa, sayaqlla t'ikrasqa", # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '90° pacha tupunaman hayu muyusqa', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Sapsi',
+'exif-orientation-2' => "Siriqlla t'ikrasqa",
+'exif-orientation-3' => '180° muyusqa',
+'exif-orientation-4' => "Sayaqlla t'ikrasqa",
+'exif-orientation-5' => "90° pacha tupunaman hayu muyusqa, sayaqlla t'ikrasqa",
+'exif-orientation-6' => '90° pacha tupunawan muyusqa',
+'exif-orientation-7' => "90° pacha tupunawan muyusqa, sayaqlla t'ikrasqa",
+'exif-orientation-8' => '90° pacha tupunaman hayu muyusqa',
 
 'exif-planarconfiguration-1' => 'muyuqhawa chanta',
 'exif-planarconfiguration-2' => "p'allta chanta",
@@ -2992,7 +2995,7 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 'duplicate-defaultsort' => 'Paqtataq: Kikinmanta allinchana llawi «$2» ñawpaq kikinmanta allinchana llawitam «$1» huknachan.',
 
 # Special:Version
-'version'                          => 'Musuqchasqa', # Not used as normal message but as header for the special page itself
+'version'                          => 'Musuqchasqa',
 'version-extensions'               => "Tiyachisqa mast'arinakuna",
 'version-specialpages'             => "Sapaq p'anqakuna",
 'version-parserhooks'              => "T'ikrana ch'iwinakuna",

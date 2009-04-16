@@ -1,6 +1,9 @@
 <?php
 /** Zeeuws (Zeêuws)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -144,7 +147,7 @@ $messages = array(
 'category-media-header'          => 'Media in categorie "$1".',
 'category-empty'                 => "''Deêze categorie bevat hin pahina’s of media.''",
 'hidden-categories'              => 'Verborhen {{PLURAL:$1|categorie|categorieën}}',
-'hidden-category-category'       => 'Verborhen categorieën', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Verborhen categorieën',
 'category-subcat-count'          => '{{PLURAL:$2|Deêze categorie ei de volhende ondercategorie.|Deêze categorie ei de volhende {{PLURAL:$1|ondercategorie|$1 ondercategorieën}}, van een totaol van $2.}}',
 'category-subcat-count-limited'  => 'Deêze categorie ei de volhende {{PLURAL:$1|ondercategorie|$1 ondercategorieën}}.',
 'category-article-count'         => "{{PLURAL:$2|Deêze categorie bevat de volhende pahina.|Deêze categorie bevat de volhende {{PLURAL:$1|pahina|$1 pahina's}}, van in totaol $2.}}",
@@ -231,7 +234,7 @@ $messages = array(
 'otherlanguages'    => 'In aore taelen',
 'redirectedfrom'    => '(Deurverwezen vanaf $1)',
 'redirectpagesub'   => 'Deurverwiespagina',
-'lastmodifiedat'    => "Deêze bladzie is vò 't lèst bewerkt op $1 om $2.", # $1 date, $2 time
+'lastmodifiedat'    => "Deêze bladzie is vò 't lèst bewerkt op $1 om $2.",
 'viewcount'         => 'Deêze pagina is {{PLURAL:$1|1 keêr|$1 keêr}} bekeken.',
 'protectedpage'     => 'Beschermde bladzie',
 'jumpto'            => 'Hi nae:',
@@ -666,7 +669,7 @@ De deur $3 opeheven reeën is ''$2''",
 'nohistory'           => 'Deêze pagina is nie bewerkt.',
 'currentrev'          => 'Udihe versie',
 'revisionasof'        => 'Versie op $1',
-'revision-info'       => 'Versie op $1 van $2', # Additionally available: $3: revision id
+'revision-info'       => 'Versie op $1 van $2',
 'previousrevision'    => '←Ouwere versie',
 'nextrevision'        => 'Nieuwere versie→',
 'currentrevisionlink' => 'Udihe versie',
@@ -686,7 +689,7 @@ Verklaerieng afkortiengen: (udig) = verschil mie udihe versie, (vorihe) = versch
 # Revision feed
 'history-feed-title'          => 'Bewerkiengsgeschiedenisse',
 'history-feed-description'    => 'Bewerkiengsoverzicht voe deêze pagina op de wiki',
-'history-feed-item-nocomment' => '$1 op $2', # user at time
+'history-feed-item-nocomment' => '$1 op $2',
 'history-feed-empty'          => "De evrogen pagina besti nie.
 Misschien is een verwiederd of hernoemd.
 [[Special:Search|Deurzoek de wiki]] voe rillevante pagina's.",
@@ -869,7 +872,7 @@ De hehevens over {{SITENAME}} zien meuhlijk nie bie'ewerkt.",
 'files'                    => "Bestan'n",
 
 # User rights
-'userrights'                  => 'Gebrukersrechenbeheer', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Gebrukersrechenbeheer',
 'userrights-lookup-user'      => "Gebrukershroep'n beheern",
 'userrights-user-editname'    => 'Voer een gebrukersnaem in:',
 'editusergroup'               => "Gebrukershroep'n wiezigen",
@@ -1059,7 +1062,7 @@ A je de bladzie laeter weêr van je volglieste afaele wil, klik dan op \"nie me�
 # Rollback
 'alreadyrolled' => 'De lèste bewerkienge op [[$1]] deu [[User:$2|$2]] ([[User talk:$2|Overleggienge]]) kan nie vrommegedraoid ore; iemand aors eit de bladzie al bewerkt of ersteld.
 De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggienge]]).',
-'revertpage'    => 'Wiezigingen deur [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) teruggedraoid nae de lèste versie van [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'    => 'Wiezigingen deur [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) teruggedraoid nae de lèste versie van [[User:$1|$1]]',
 
 # Protect
 'protectlogpage' => 'Beschermlogboek',

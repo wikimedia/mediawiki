@@ -1,6 +1,9 @@
 <?php
 /** Lojban (Lojban)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -71,7 +74,7 @@ $messages = array(
 'talk'             => 'casnu',
 'toolbox'          => 'tutci',
 'otherlanguages'   => 'drata bangu',
-'lastmodifiedat'   => "le vi ckupau rore'u se galfi de'i li $2 $1", # $1 date, $2 time
+'lastmodifiedat'   => "le vi ckupau rore'u se galfi de'i li $2 $1",
 'jumptosearch'     => 'sisku',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

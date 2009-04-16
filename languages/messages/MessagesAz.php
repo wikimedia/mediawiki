@@ -1,6 +1,9 @@
 <?php
 /** Azerbaijani (Azərbaycan)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -128,7 +131,7 @@ $messages = array(
 'category-media-header'    => '"$1" kateqoriyasında mediya',
 'category-empty'           => "''Bu kateqoriyanın tərkibi hal-hazırda boşdur.''",
 'hidden-categories'        => '$1 Gizli kateqoriya',
-'hidden-category-category' => 'Gizli kateqoriyalar', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Gizli kateqoriyalar',
 'listingcontinuesabbrev'   => '(davam)',
 
 'about'          => 'İzah',
@@ -192,7 +195,7 @@ $messages = array(
 'otherlanguages'    => 'Başqa dillərdə',
 'redirectedfrom'    => '($1 səhifəsindən istiqamətləndirilmişdir)',
 'redirectpagesub'   => 'İstiqamətləndirmə səhifəsi',
-'lastmodifiedat'    => 'Bu səhifə sonuncu dəfə $2, $1 tarixində redaktə edilib.', # $1 date, $2 time
+'lastmodifiedat'    => 'Bu səhifə sonuncu dəfə $2, $1 tarixində redaktə edilib.',
 'protectedpage'     => 'Mühafizəli səhifə',
 'jumptonavigation'  => 'naviqasiya',
 'jumptosearch'      => 'axtar',
@@ -461,7 +464,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'files'                 => 'Fayllar',
 
 # User rights
-'userrights'               => 'İstifadəçi hüququ idarəsi', # Not used as normal message but as header for the special page itself
+'userrights'               => 'İstifadəçi hüququ idarəsi',
 'userrights-lookup-user'   => 'İstifadəçi qruplarını idarə et',
 'userrights-user-editname' => 'İstifadəçi adınızı yazın:',
 'editusergroup'            => 'Redaktə İstifadəçi Qrupları',
@@ -775,7 +778,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'rollback'         => 'Əvvəlki versiya',
 'rollbacklink'     => 'əvvəlki halına qaytar',
 'cantrollback'     => 'Redaktə geri qaytarıla bilməz; axırıncı redaktə səhifədə olan yeganə fəaliyyətdir.',
-'revertpage'       => '[[User:$2|$2]] tərəfindən edilmiş redaktələr geri qaytarılaraq [[User:$1|$1]] tərəfindən yaradılan sonuncu versiya bərpa olundu.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[User:$2|$2]] tərəfindən edilmiş redaktələr geri qaytarılaraq [[User:$1|$1]] tərəfindən yaradılan sonuncu versiya bərpa olundu.',
 'rollback-success' => '$1 tərəfindən edilmiş redaktələr geri qaytarıldı; $2 tərəfindən yaradılmış son versiya bərpa olundu.',
 
 # Protect
@@ -803,7 +806,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'protect-summary-cascade'     => 'kaskad mühafizə',
 'protect-expiring'            => '$1 (UTC)- tarixində vaxtı bitir',
 'protect-cascade'             => 'Kaskad mühafizəsi - bu səhifəyə daxil bütün səhifələri qoru',
-'protect-expiry-options'      => '15 dəqiqə:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 həftə:1 week,1 ay:1 month,qeyri-müəyyən:indefinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '15 dəqiqə:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 həftə:1 week,1 ay:1 month,qeyri-müəyyən:indefinite',
 'pagesize'                    => '(baytlar)',
 
 # Restrictions (nouns)
@@ -835,7 +838,7 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 # Contributions
 'contributions' => 'İstifadəçi köməkləri',
 'mycontris'     => 'Köməklərim',
-'nocontribs'    => 'Bu kriteriyaya uyğun redaktələr tapılmadı', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Bu kriteriyaya uyğun redaktələr tapılmadı',
 'uctop'         => '(son)',
 'month'         => 'Ay',
 'year'          => 'Axtarışa bu tarixdən etibarən başla:',
@@ -868,7 +871,7 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 'ipbcreateaccount'            => 'Hesab açmanı məhdudlaşdır',
 'ipbsubmit'                   => 'Bu istifadəçini blokla',
 'ipbother'                    => 'Başqa vaxt',
-'ipboptions'                  => '15 dəqiqə:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 həftə:1 week,1 ay:1 month,qeyri-müəyyən:indefinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '15 dəqiqə:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 həftə:1 week,1 ay:1 month,qeyri-müəyyən:indefinite',
 'ipbotheroption'              => 'başqa',
 'ipbotherreason'              => 'Başqa/əlavə səbəb:',
 'ipbwatchuser'                => 'Bu istifadəçinin müzakirə və istifadəçi səhifəsini izlə',
@@ -904,7 +907,7 @@ Bu yerdəyişmə tanınmış səhifələr üçün əsaslı və gözlənilməz ol
 'move-watch'              => 'Bu səhifəni izlə',
 'movepagebtn'             => 'Səhifənin adını dəyiş',
 'pagemovedsub'            => 'Yerdəyişmə edilmişdir',
-'movepage-moved'          => '<big>\'\'\'"$1" səhifəsi "$2" səhifəsinə yerləşdirilmişdir\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" səhifəsi "$2" səhifəsinə yerləşdirilmişdir\'\'\'</big>',
 'movedto'                 => 'dəyişdi',
 'movetalk'                => 'Bu səhifənin müzakirə səhifəsinin de adını dəyişdir.',
 '1movedto2'               => '[[$1]] adı dəyişildi. Yeni adı: [[$2]]',
@@ -1089,7 +1092,7 @@ $1',
 'watchlisttools-edit' => 'İzlədiyim səhifələri göstər və redaktə et',
 
 # Special:Version
-'version'                  => 'Versiya', # Not used as normal message but as header for the special page itself
+'version'                  => 'Versiya',
 'version-software-version' => 'Versiya',
 
 # Special:FilePath

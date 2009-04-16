@@ -1,6 +1,9 @@
 <?php
 /** Simplified Gan script (赣语(简体))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -129,7 +132,7 @@ $messages = array(
 'category-media-header'    => '“$1”分类里头𠮶媒体',
 'category-empty'           => '“个只分类有包到任何文章或媒体”',
 'hidden-categories'        => '{{PLURAL:$1|只隐藏分类|只隐藏分类}}',
-'hidden-category-category' => '弆到𠮶分类', # Name of the category where hidden categories will be listed
+'hidden-category-category' => '弆到𠮶分类',
 'listingcontinuesabbrev'   => '续',
 
 'mainpagetext'      => "<big>'''安装正MediaWiki喽。'''</big>",
@@ -208,7 +211,7 @@ $messages = array(
 'otherlanguages'    => '别𠮶话',
 'redirectedfrom'    => '(从$1跳过来)',
 'redirectpagesub'   => '跳转页',
-'lastmodifiedat'    => '个页最晏𠮶改动系：$1 $2。', # $1 date, $2 time
+'lastmodifiedat'    => '个页最晏𠮶改动系：$1 $2。',
 'viewcount'         => '个页拖人眵嘞$1回。',
 'protectedpage'     => '拖保护页',
 'jumpto'            => '跳到:',
@@ -592,7 +595,7 @@ $2',
 'nohistory'           => '个页冇修改历史。',
 'currentrev'          => '眼前𠮶修改版本',
 'revisionasof'        => '$1𠮶修改版本',
-'revision-info'       => '$2到$1扤𠮶修订版本', # Additionally available: $3: revision id
+'revision-info'       => '$2到$1扤𠮶修订版本',
 'previousrevision'    => '←之前𠮶修改',
 'nextrevision'        => '接到𠮶修改→',
 'currentrevisionlink' => '眼前𠮶修改',
@@ -612,7 +615,7 @@ $2',
 # Revision feed
 'history-feed-title'          => '修改历史',
 'history-feed-description'    => '本站个页𠮶修改历史',
-'history-feed-item-nocomment' => '$1到$2', # user at time
+'history-feed-item-nocomment' => '$1到$2',
 'history-feed-empty'          => '要求𠮶页面伓存在。佢可能拖删吥嘞或改嘞名。试吖[[Special:Search|到本站寻]]有关𠮶新页面内容。',
 
 # Revision deletion
@@ -756,7 +759,7 @@ $2',
 'files'                    => '档案',
 
 # User rights
-'userrights'               => '用户权限管理', # Not used as normal message but as header for the special page itself
+'userrights'               => '用户权限管理',
 'userrights-lookup-user'   => '管理用户群',
 'userrights-user-editname' => '输入用户名:',
 'editusergroup'            => '编辑用户群',
@@ -1215,8 +1218,8 @@ $NEWPAGE
 别𠮶人编辑过或系恢复嘞个页。
 
 最晏编辑人: [[User:$3|$3]] ([[User talk:$3|讨论]])。',
-'editcomment'      => "编辑介绍: \"''\$1''\"。", # only shown if there is an edit comment
-'revertpage'       => '返回由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])𠮶编辑；恢复到[[User:$1|$1]]𠮶最末一只版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "编辑介绍: \"''\$1''\"。",
+'revertpage'       => '返回由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])𠮶编辑；恢复到[[User:$1|$1]]𠮶最末一只版本',
 'rollback-success' => '返回由$1𠮶编辑；恢复到$2𠮶最末一只版本。',
 'sessionfailure'   => '倷𠮶登入好像有嚸问题，为到防范未然，个只动作拖取消嘞。
 
@@ -1251,7 +1254,7 @@ $NEWPAGE
 'protect-expiring'            => '$1 (UTC)到期',
 'protect-cascade'             => '保护个页含到𠮶页面 (连锁保护)',
 'protect-cantedit'            => '倷改伓正个页𠮶保护程度，因为倷冇搦到编辑授权。',
-'protect-expiry-options'      => '两个钟头:2 hours,一日:1 day,三日:3 days,一个礼拜:1 week,两个礼拜:2 weeks,一个月:1 month,三个月:3 months,六个月:6 months,一年:1 year,一世:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '两个钟头:2 hours,一日:1 day,三日:3 days,一个礼拜:1 week,两个礼拜:2 weeks,一个月:1 month,三个月:3 months,六个月:6 months,一年:1 year,一世:infinite',
 'restriction-type'            => '权限:',
 'restriction-level'           => '限制级别:',
 'minimum-size'                => '最细码子',
@@ -1314,7 +1317,7 @@ $NEWPAGE
 'contributions' => '用户贡献',
 'mycontris'     => '偶𠮶贡献',
 'contribsub2'   => '$1𠮶贡献 ($2)',
-'nocontribs'    => '冇寻到合到条件𠮶改动。', # Optional parameter: $1 is the user name
+'nocontribs'    => '冇寻到合到条件𠮶改动。',
 'uctop'         => '(头上)',
 'month'         => '从个月 (或更早):',
 'year'          => '从个年 (或更早):',
@@ -1363,7 +1366,7 @@ $NEWPAGE
 'ipbenableautoblock'          => '自动封锁个只用户最晏𠮶IP，同后来佢编写用过𠮶地址',
 'ipbsubmit'                   => '封锁个只地址',
 'ipbother'                    => '别𠮶时间:',
-'ipboptions'                  => '两个钟头:2 hours,一日:1 day,三日:3 days,一个礼拜:1 week,两个礼拜:2 weeks,一个月:1 month,三个月:3 months,六个月:6 months,一年:1 year,一世:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '两个钟头:2 hours,一日:1 day,三日:3 days,一个礼拜:1 week,两个礼拜:2 weeks,一个月:1 month,三个月:3 months,六个月:6 months,一年:1 year,一世:infinite',
 'ipbotheroption'              => '别𠮶',
 'ipbotherreason'              => '别𠮶／附加原因:',
 'ipbhidename'                 => '封锁日志、活跃封锁列表同用户列表里头弆到用户名',
@@ -1461,7 +1464,7 @@ $NEWPAGE
 'move-watch'              => '眏到个页',
 'movepagebtn'             => '换卟个页',
 'pagemovedsub'            => '移正嘞',
-'movepage-moved'          => "<big>'''“$1”拖移到“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''“$1”拖移到“$2”'''</big>",
 'articleexists'           => '已经有页面叫个只名字，要伓倷拣𠮶名字冇用。请拣过只名字。',
 'cantmove-titleprotected' => '倷移伓正一只页面到个只位置，个只新题目已经拖保护起来嘞，新建伓正。',
 'talkexists'              => '页面本身移动正嘞，但系新标题下底有嘞对话页，所以对话页移伓正。请手工合并两页。',
@@ -1629,7 +1632,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Attribution
 'anonymous'        => '{{SITENAME}}𠮶匿名用户',
 'siteuser'         => '{{SITENAME}}用户$1',
-'lastmodifiedatby' => '个页由$3对$1 $2最晏𠮶改动。', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => '个页由$3对$1 $2最晏𠮶改动。',
 'othercontribs'    => '以$1为基础。',
 'others'           => '别𠮶',
 'siteusers'        => '{{SITENAME}}用户$1',
@@ -1730,7 +1733,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => '阔',
@@ -1857,14 +1860,14 @@ $1',
 
 'exif-unknowndate' => '未知𠮶日期',
 
-'exif-orientation-1' => '标准', # 0th row: top; 0th column: left
-'exif-orientation-2' => '左右斢转', # 0th row: top; 0th column: right
-'exif-orientation-3' => '转动180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => '上下翻转', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '逆时针转90°接到上下翻转', # 0th row: left; 0th column: top
-'exif-orientation-6' => '顺时针转90°', # 0th row: right; 0th column: top
-'exif-orientation-7' => '顺时针转90°接到上下翻转', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '逆时针转90°', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => '标准',
+'exif-orientation-2' => '左右斢转',
+'exif-orientation-3' => '转动180°',
+'exif-orientation-4' => '上下翻转',
+'exif-orientation-5' => '逆时针转90°接到上下翻转',
+'exif-orientation-6' => '顺时针转90°',
+'exif-orientation-7' => '顺时针转90°接到上下翻转',
+'exif-orientation-8' => '逆时针转90°',
 
 'exif-planarconfiguration-1' => 'chunky格式',
 'exif-planarconfiguration-2' => 'planar格式',
@@ -2101,7 +2104,7 @@ $1',
 'unknown_extension_tag' => '伓认得𠮶扩展标签 "$1"',
 
 # Special:Version
-'version'                          => '版本', # Not used as normal message but as header for the special page itself
+'version'                          => '版本',
 'version-extensions'               => '装正𠮶插件',
 'version-specialpages'             => '特别𠮶页面',
 'version-parserhooks'              => '解析器钩子',

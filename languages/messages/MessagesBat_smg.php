@@ -1,6 +1,9 @@
 <?php
 /** Samogitian (Žemaitėška)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -161,7 +164,7 @@ $messages = array(
 'category-media-header'    => 'Abruozdielis kateguorėjuo „$1“',
 'category-empty'           => "''Šėta kateguorėjė nūnā netor nė vėina straipsnė a faila.''",
 'hidden-categories'        => '{{PLURAL:$1|Pakavuota kateguorėjė|Pakavuotas kateguorėjės}}',
-'hidden-category-category' => 'Pakavuotas kateguorėjės', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Pakavuotas kateguorėjės',
 'category-subcat-count'    => '{{PLURAL:$2|Tuo kateguorėjuo īr vėina subkateguorėjė.|{{PLURAL:$1|Ruodoma|Ruodomas|Ruodoma}} $1 {{PLURAL:$1|subkateguorėjė|subkateguorėjės|subkateguorėju}} (ėš vėsa īr $2 {{PLURAL:$2|subkateguorėjė|subkateguorėjės|subkateguorėju}}).}}',
 'category-article-count'   => '{{PLURAL:$2|Tuo kateguorėjuo īr vėins poslapis.|{{PLURAL:$1|Ruodoms|Ruodomė|Ruodoma}} $1 tuos kateguorėjės {{PLURAL:$1|poslapis|poslapē|poslapiu}} (ėš vėsa kateguorėjuo īr $2 {{PLURAL:$2|poslapis|poslapē|poslapiu}}).}}',
 'listingcontinuesabbrev'   => 'tes.',
@@ -234,7 +237,7 @@ $messages = array(
 'otherlanguages'    => 'Kėtuom kalbuom',
 'redirectedfrom'    => '(Nokreipta ėš $1)',
 'redirectpagesub'   => 'Nokreipėma poslapis',
-'lastmodifiedat'    => 'Šėts poslapis paskotini karta pakeists $1 $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Šėts poslapis paskotini karta pakeists $1 $2.',
 'viewcount'         => 'Tas poslapis bova atverts $1 {{PLURAL:$1|čiesa|čiesus|čiesu}}.',
 'protectedpage'     => 'Ožrakints poslapis',
 'jumpto'            => 'Paršuoktė i:',
@@ -623,7 +626,7 @@ $3 nuruodīta prīžastis īr ''$2''",
 'currentrev'             => 'Dabartėnė versėjė',
 'currentrev-asof'        => 'Dabartėnė $1 versėjė',
 'revisionasof'           => '$1 versėjė',
-'revision-info'          => '$1 versėjė nauduotuojė $2', # Additionally available: $3: revision id
+'revision-info'          => '$1 versėjė nauduotuojė $2',
 'previousrevision'       => '←Onkstesnė versėjė',
 'nextrevision'           => 'Paskesnė versėjė→',
 'currentrevisionlink'    => 'Dabartėnė versėjė',
@@ -644,7 +647,7 @@ $3 nuruodīta prīžastis īr ''$2''",
 
 # Revision feed
 'history-feed-title'          => 'Versėju istuorėjė',
-'history-feed-item-nocomment' => '$1 $2', # user at time
+'history-feed-item-nocomment' => '$1 $2',
 'history-feed-empty'          => 'Prašuoms poslapis nēgzėstuo.
 Ans galiejė būtė ėštrėnts ėš pruojekta, aba parvardėnts.
 Pamiegīkėt [[Special:Search|ėiškoutė pruojektė]] sosėjosiu naujū poslapiu.',
@@ -813,7 +816,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'files'                     => 'Failā',
 
 # User rights
-'userrights'               => 'Nauduotuoju teisiu valdīms', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Nauduotuoju teisiu valdīms',
 'userrights-lookup-user'   => 'Tvarkītė nauduotuojė gropės',
 'userrights-user-editname' => 'Iveskėt nauduotuojė varda:',
 'editusergroup'            => 'Redagoutė nauduotuojė gropes',
@@ -1294,8 +1297,8 @@ Paskotiniu pašalinėmu istuorėjė - $2.',
 kažkas jau pakeitė straipsnė arba sospiejė pėrmiesnis atmestė keitėma.
 
 Galėnis keitėms dėrbts nauduotuojė [[User:$3|$3]] ([[User talk:$3|Aptarėms]]).',
-'editcomment'      => "Redagavėma kuomentars bova: „''$1''“.", # only shown if there is an edit comment
-'revertpage'       => 'Atmests [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarėms]]) pakeitėms; sogrōžėnta nauduotuojė [[User:$1|$1]] versėjė', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Redagavėma kuomentars bova: „''$1''“.",
+'revertpage'       => 'Atmests [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarėms]]) pakeitėms; sogrōžėnta nauduotuojė [[User:$1|$1]] versėjė',
 'rollback-success' => 'Atmestė $1 keitėmā; grōžėnta i paskotėne $2 versėje.',
 'sessionfailure'   => 'Atruod kū īr biedū so Tamstas prėsėjongėma sesėjė; šėts veiksmos bova atšaukts kāp atsargoma prėimonė priš sesėjės vuogėma.
 Prašoum paspaustė „atgal“ ėr parkrautė poslapi ėš katruo atiejot, ė pamieginkėt vielē.',
@@ -1338,7 +1341,7 @@ Prašoum paspaustė „atgal“ ėr parkrautė poslapi ėš katruo atiejot, ė p
 ** Neproduktīvi redagavėma vaina
 ** Dėdlė svarboma poslapis',
 'protect-edit-reasonlist'     => 'Keistė ožrakinėma prīžastis',
-'protect-expiry-options'      => '1 adīna:1 hour,1 dėina:1 day,1 nedielė:1 week,2 nedielės:2 weeks,1 mienou:1 month,3 mieniesē:3 months,6 mieniesē:6 months,1 metā:1 year,par omžius:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 adīna:1 hour,1 dėina:1 day,1 nedielė:1 week,2 nedielės:2 weeks,1 mienou:1 month,3 mieniesē:3 months,6 mieniesē:6 months,1 metā:1 year,par omžius:infinite',
 'restriction-type'            => 'Laidėms:',
 'restriction-level'           => 'Aprėbuojėma līgis:',
 'minimum-size'                => 'Minėmalus dėdoms',
@@ -1464,7 +1467,7 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 'ipbenableautoblock'          => 'Autuomatėškā blokoutė tuo nauduotuojė paskiausē nauduota IP adresa, ė bikuokius paskesnius IP adresus, ėš katrū ons miegin redagoutė',
 'ipbsubmit'                   => 'Blokoutė šėta nauduotuoja',
 'ipbother'                    => 'Kėtuoks čiesos',
-'ipboptions'                  => '2 adīnas:2 hours,1 dėina:1 day,3 dėinas:3 days,1 nedielė:1 week,2 nedielės:2 weeks,1 mienou:1 month,3 mienesē:3 months,6 mienesē:6 months,1 metā:1 year,omžėms:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 adīnas:2 hours,1 dėina:1 day,3 dėinas:3 days,1 nedielė:1 week,2 nedielės:2 weeks,1 mienou:1 month,3 mienesē:3 months,6 mienesē:6 months,1 metā:1 year,omžėms:infinite',
 'ipbotheroption'              => 'kėta',
 'ipbotherreason'              => 'Kėta/papėlduoma prižastis',
 'ipbwatchuser'                => 'Keravuotė tuo nauduotuojė poslapi ėr anuo aptarėma poslapi',
@@ -1548,7 +1551,7 @@ kū soprantat vėsas pasiekmes.",
 'move-watch'              => 'Keravuotė šėta poslapi',
 'movepagebtn'             => 'Parvadintė poslapė',
 'pagemovedsub'            => 'Parvadinta siekmingā',
-'movepage-moved'          => '<big>\'\'\'"$1" bova parvadints i "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" bova parvadints i "$2"\'\'\'</big>',
 'articleexists'           => 'Straipsnis so tuokiu vardo jau īr
 a parinktāsis vards īr bluogs.
 Parinkat kėta varda.',
@@ -1663,7 +1666,7 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 # Attribution
 'anonymous'        => 'Neregėstrouts nauduotuos',
 'siteuser'         => '{{SITENAME}} nauduotuos $1',
-'lastmodifiedatby' => 'Šėta poslapi paskotini karta redagava $3 $2, $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Šėta poslapi paskotini karta redagava $3 $2, $1.',
 'others'           => 'kėtė',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|nauduotuos|nauduotuojē}} $1',
 'creditspage'      => 'Poslapė kūriejē',
@@ -1748,7 +1751,7 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'             => 'Platoms',
@@ -1771,7 +1774,7 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 'exif-flashenergy'            => 'Blėca energėjė',
 'exif-contrast'               => 'Kuontrasts',
 
-'exif-orientation-1' => 'Standartėšks', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Standartėšks',
 
 'exif-xyresolution-i' => '$1 puškē cuolī',
 'exif-xyresolution-c' => '$1 puškē centėmetrė',
@@ -1887,7 +1890,7 @@ Tamsta tēpuogi galėt [[Special:Watchlist/raw|redagoutė grīnaji keravuojamu s
 'watchlisttools-raw'  => 'Keistė nebėngta keravuojamu straipsniu sāraša',
 
 # Special:Version
-'version'         => 'Versėjė', # Not used as normal message but as header for the special page itself
+'version'         => 'Versėjė',
 'version-license' => 'Licenzėjė',
 
 # Special:FilePath

@@ -1,6 +1,9 @@
 <?php
 /** Swahili (Kiswahili)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -219,7 +222,7 @@ $messages = array(
 'category-media-header'          => 'Picha, video, na sauti katika jamii  "$1"',
 'category-empty'                 => "''Jamii hii haina ukurasa, picha, video, wala sauti yoyote.''",
 'hidden-categories'              => '{{PLURAL:$1|Jamii zilizofichwa|Jamii zilizofichwa}}',
-'hidden-category-category'       => 'Jamii zilizofichwa', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Jamii zilizofichwa',
 'category-subcat-count'          => '{{PLURAL:$2|Jamii hii ina kijamii hiki tu.|Jamii hii ina kijamii kifuatacho {{PLURAL:$1|kijamii|$1 vijamii}}, nje ya $2 jumla.}}',
 'category-subcat-count-limited'  => 'Jamii hii ina {{PLURAL:$1|kijamii|$1 vijamii}} vifuatavyo.',
 'category-article-count'         => '{{PLURAL:$2|Jamii hii ina makala zifuatazo tu.|Kurasa zifuatazo {{PLURAL:$1|ni|$1 kurasa za}} katika jamii hii, nje ya $2 jumla.}}',
@@ -287,7 +290,7 @@ $messages = array(
 'otherlanguages'    => 'Lugha nyingine',
 'redirectedfrom'    => '(Elekezwa kutoka $1)',
 'redirectpagesub'   => 'Elekeza ukurasa',
-'lastmodifiedat'    => 'Ukarasa huu umebadilisha mara iliyopita tarehe $1, saa $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ukarasa huu umebadilisha mara iliyopita tarehe $1, saa $2.',
 'protectedpage'     => 'Kurasa iliyolindwa',
 'jumpto'            => 'Rukia:',
 'jumptonavigation'  => 'urambazaji',
@@ -525,7 +528,7 @@ Kumbukumbu ya kufuta ukurasa huu linapatikana hapa kukusaidia:",
 'viewpagelogs'           => 'Tazama kumbukumbu kwa ukurasa huu',
 'currentrev'             => 'Kiungo cha daima',
 'revisionasof'           => 'Sahihisho kutoka $1',
-'revision-info'          => 'Sahihisho ya $1 aliyefanya $2', # Additionally available: $3: revision id
+'revision-info'          => 'Sahihisho ya $1 aliyefanya $2',
 'previousrevision'       => '←Sahihisho lililotangulia',
 'nextrevision'           => 'Sahihisho linalofuata →',
 'currentrevisionlink'    => 'Sahahisho ya sasa hivi',
@@ -540,7 +543,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'histlast'               => 'Mwishoni',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 kwenye $2', # user at time
+'history-feed-item-nocomment' => '$1 kwenye $2',
 
 # Revision deletion
 'rev-delundel' => 'onyesha/ficha',
@@ -863,7 +866,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-expiring'            => 'itakwisha $1 (UTC)',
 'protect-cascade'             => 'Linda kurasa zinazozingatiwa chini ya ukurasa huu',
 'protect-cantedit'            => 'Huwezi kubadilisha kiwango cha ulindaji wa ukurasa huu, kwa sababu huruhusiwi kuuhariri.',
-'protect-expiry-options'      => 'saa 1:1 hour,siku 1:1 day,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'saa 1:1 hour,siku 1:1 day,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
 'restriction-type'            => 'Ruhusa:',
 'restriction-level'           => 'Kiwango cha kizuio:',
 
@@ -912,7 +915,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 
 # Block/unblock
 'blockip'       => 'Zuia mtumiaji',
-'ipboptions'    => 'Masaa 2:2 hours,siku 1:1 day,siku 3:3 days,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite', # display1:time1,display2:time2,...
+'ipboptions'    => 'Masaa 2:2 hours,siku 1:1 day,siku 3:3 days,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
 'ipblocklist'   => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
 'blocklink'     => 'zuia',
 'unblocklink'   => 'acha kuzuia',
@@ -949,7 +952,7 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'move-watch'       => 'Fuatilia ukurasa huu',
 'movepagebtn'      => 'Sogeza ukurasa',
 'pagemovedsub'     => 'Umefaulu kusogeza ukurasa',
-'movepage-moved'   => '<big>\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'</big>',
 'articleexists'    => 'Tayari kuna ukurasa wenye jina hilo, au
 jina ulilochagua ni batilifu.
 Chagua jina lengine.',
@@ -1022,7 +1025,7 @@ Chagua jina lengine.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|mtumiaji bila jina|watumiaji bila majina}} wa {{SITENAME}}',
 'siteuser'         => 'mtumiaji $1 wa {{SITENAME}}',
-'lastmodifiedatby' => 'Ukurasa huu ulibadilishwa mwishoni saa $2, tarehe $1 na $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ukurasa huu ulibadilishwa mwishoni saa $2, tarehe $1 na $3.',
 'othercontribs'    => 'Ukurasa uliandikwa pia na $1.',
 'others'           => 'wengine',
 'siteusers'        => '{{PLURAL:$2|mtumiaji|watumiaji}} wa {{SITENAME}} $1',
@@ -1067,7 +1070,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-componentsconfiguration' => 'Maana ya kila kijenzi',
@@ -1128,7 +1131,7 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 'watchlisttools-raw'  => 'Hariri maangalizi ghafi',
 
 # Special:Version
-'version' => 'Toleo', # Not used as normal message but as header for the special page itself
+'version' => 'Toleo',
 
 # Special:SpecialPages
 'specialpages'               => 'Kurasa maalum',

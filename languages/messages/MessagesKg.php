@@ -1,6 +1,9 @@
 <?php
 /** Kongo (Kongo)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -135,7 +138,7 @@ $messages = array(
 'newtitle'       => 'Zina ya nkaka:',
 'movepagebtn'    => 'Nata lukaya',
 'pagemovedsub'   => 'Kunata me nunga',
-'movepage-moved' => '<big>\'\'\'"$1" me natama na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved' => '<big>\'\'\'"$1" me natama na "$2"\'\'\'</big>',
 'articleexists'  => 'Lukaya ya nkaka kele na zina yango, to zina yango kele ya mbote ve.
 Sola zina ya nkaka.',
 'movereason'     => 'Samu:',

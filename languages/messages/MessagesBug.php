@@ -1,6 +1,9 @@
 <?php
 /** Buginese (ᨅᨔ ᨕᨘᨁᨗ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -220,7 +223,7 @@ $messages = array(
 'historyempty'        => '(kapa)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 ri $2', # user at time
+'history-feed-item-nocomment' => '$1 ri $2',
 
 # Revision deletion
 'rev-deleted-comment'    => '(komentar ripeddé)',

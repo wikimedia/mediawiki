@@ -1,6 +1,9 @@
 <?php
 /** Ido (Ido)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -140,7 +143,7 @@ $messages = array(
 'subcategories'                  => 'Subkategorii',
 'category-empty'                 => "''Nuntempe existas nula pagini en ita kategorio.''",
 'hidden-categories'              => '{{PLURAL:$1|Celita kategorio|Celita kategorii}}',
-'hidden-category-category'       => 'Celita kategorii', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Celita kategorii',
 'category-subcat-count'          => 'Ica kategorio havas {{PLURAL:$2|nur la sequanta subkategorio.|la sequanta {{PLURAL:$1|subkategorio|$1 subkategorii}}, ek $2.}}',
 'category-subcat-count-limited'  => 'Ica kategorio havas la sequanta {{PLURAL:$1|subkategorio|$1 subkategorii}}.',
 'category-article-count'         => '{{PLURAL:$2|Ica kategorio havas nur la sequanta pagino.|La sequanta {{PLURAL:$1|pagino|$1 pagini}} es en ica kategorio, ek $2.}}',
@@ -219,7 +222,7 @@ $messages = array(
 'otherlanguages'    => 'En altra lingui',
 'redirectedfrom'    => '(Ridirektita de $1)',
 'redirectpagesub'   => 'Ridirektanta pagino',
-'lastmodifiedat'    => 'Ica pagino modifikesis ye $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ica pagino modifikesis ye $2, $1.',
 'viewcount'         => 'Ica pagino acesesis {{PLURAL:$1|1 foyo|$1 foyi}}.',
 'protectedpage'     => 'Protektita pagino',
 'jumpto'            => 'Irez ad:',
@@ -498,7 +501,7 @@ La efaco-registro dil pagino provizesar sequante pro refero.',
 'currentrev'          => 'Aktuala versiono',
 'currentrev-asof'     => 'Aktuala versiono ye $1',
 'revisionasof'        => 'Versiono ye $1',
-'revision-info'       => 'Versiono en $1 per $2', # Additionally available: $3: revision id
+'revision-info'       => 'Versiono en $1 per $2',
 'previousrevision'    => '←Plu anciena versiono',
 'nextrevision'        => 'Plu recenta versiono→',
 'currentrevisionlink' => 'Aktuala versiono',
@@ -515,7 +518,7 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'historyempty'        => '(vakua)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 ye $2', # user at time
+'history-feed-item-nocomment' => '$1 ye $2',
 
 # Revision deletion
 'rev-deleted-comment'    => '(komento forigita)',
@@ -754,7 +757,7 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'linkstoimage'              => 'La {{PLURAL:$1|pagino|$1 pagini}} infre ligas a ca arkivo:',
 'nolinkstoimage'            => 'Nula pagino ligas a ca pagino.',
 'uploadnewversion-linktext' => 'Adkargez nova versiono dil arkivo',
-'shared-repo-from'          => 'ek $1', # $1 is the repository name
+'shared-repo-from'          => 'ek $1',
 
 # File reversion
 'filerevert-comment' => 'Komento:',
@@ -954,8 +957,8 @@ Videz $2 por obtenar registro di recenta efaci.',
 ulu pluse ja editis o desfacis ica pagino.
 
 La lasta edito di la pagino esis da [[User:$3|$3]] ([[User talk:$3|Diskutez]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'    => "La rezumo di la edito esis: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => 'Desfacita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]) e rekuperita la lasta redakto da [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "La rezumo di la edito esis: \"''\$1''\".",
+'revertpage'     => 'Desfacita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]) e rekuperita la lasta redakto da [[User:$1|$1]]',
 
 # Protect
 'protectedarticle'       => 'protektita "[[$1]]"',
@@ -969,7 +972,7 @@ La lasta edito di la pagino esis da [[User:$3|$3]] ([[User talk:$3|Diskutez]]{{i
 'protect-othertime-op'   => 'altra tempo',
 'protect-otherreason'    => 'Altra/suplementala motivo:',
 'protect-otherreason-op' => 'altra/suplementala motivo',
-'protect-expiry-options' => '1 horo:1 hour,1 dio:1 day,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => '1 horo:1 hour,1 dio:1 day,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redaktar',
@@ -997,7 +1000,7 @@ La lasta edito di la pagino esis da [[User:$3|$3]] ([[User talk:$3|Diskutez]]{{i
 'contributions-title' => 'Uzanto-kontributadi di $1',
 'mycontris'           => 'Mea kontributadi',
 'contribsub2'         => 'Pro $1 ($2)',
-'nocontribs'          => 'Ne trovesis chanji qui fitez ita kriterii.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Ne trovesis chanji qui fitez ita kriterii.',
 'uctop'               => ' (lasta modifiko)',
 'month'               => 'De monato (e plu frue):',
 'year'                => 'De yaro (e plu frue):',
@@ -1039,7 +1042,7 @@ La lasta edito di la pagino esis da [[User:$3|$3]] ([[User talk:$3|Diskutez]]{{i
 'ipbcreateaccount'   => 'Preventez kreo di konti',
 'ipbsubmit'          => 'Blokusar ica uzanto',
 'ipbother'           => 'Altra tempo:',
-'ipboptions'         => '2 horo:2 hours,1 dio:1 day,3 dii:3 days,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '2 horo:2 hours,1 dio:1 day,3 dii:3 days,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite',
 'ipbotheroption'     => 'altra',
 'ipbotherreason'     => 'Altra/suplementala motivo:',
 'badipaddress'       => 'IP-adreso ne esas valida',
@@ -1100,7 +1103,7 @@ voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
 'move-watch'              => 'Surveyar ca pagino',
 'movepagebtn'             => 'Movar pagino',
 'pagemovedsub'            => 'Rinomizita sucese',
-'movepage-moved'          => '<big>\'\'\'"$1" esas movata ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" esas movata ad "$2"\'\'\'</big>',
 'articleexists'           => 'Pagino kun sama nomo ja existas od la nomo
 qua vu selektis ne esas valida.
 Voluntez selektar altra nomo.',
@@ -1193,7 +1196,7 @@ Voluntez selektar altra nomo.',
 # Attribution
 'anonymous'        => 'Anonima {{PLURAL:$1|uzanto|uzanti}} di {{SITENAME}}',
 'siteuser'         => 'Uzanto che {{SITENAME}} $1',
-'lastmodifiedatby' => 'Ica pagino modifikesis ye $2, $1 da $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ica pagino modifikesis ye $2, $1 da $3.',
 'othercontribs'    => 'Bazizita en la laboro da $1.',
 'others'           => 'altra',
 'siteusers'        => '{{PLURAL:$2|Uzanto|Uzanti}} che {{SITENAME}} $1',
@@ -1242,7 +1245,7 @@ Voluntez selektar altra nomo.',
 
 'exif-unknowndate' => 'Nesavata dato',
 
-'exif-orientation-1' => 'Normala', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Normala',
 
 'exif-exposureprogram-1' => 'Manuala',
 
@@ -1319,7 +1322,7 @@ Voluntez selektar altra nomo.',
 'watchlisttools-raw'  => 'Redaktar texto di surveyo-listo',
 
 # Special:Version
-'version'                  => 'Versiono', # Not used as normal message but as header for the special page itself
+'version'                  => 'Versiono',
 'version-specialpages'     => 'Specala pagini',
 'version-other'            => 'Altra',
 'version-version'          => 'Versiono',

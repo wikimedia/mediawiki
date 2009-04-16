@@ -1,6 +1,9 @@
 <?php
 /** Scots (Scots)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -210,7 +213,7 @@ $messages = array(
 'otherlanguages'    => 'In ither leids',
 'redirectedfrom'    => '(Reguidit frae $1)',
 'redirectpagesub'   => 'Redirect page',
-'lastmodifiedat'    => 'This page wis hindermaist chynged $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'This page wis hindermaist chynged $2, $1.',
 'viewcount'         => 'This page haes been accesst $1 {{PLURAL:$1|once|$1 times}}.',
 'protectedpage'     => 'Protectit page',
 'jumpto'            => 'Lowp tae:',
@@ -623,7 +626,7 @@ The grund for this, given by $3 is ''$2''",
 'nohistory'           => "The'r nae edit history for this page.",
 'currentrev'          => 'Current reveision',
 'revisionasof'        => 'Reveision as o $1',
-'revision-info'       => 'Revision as o $1 by $2', # Additionally available: $3: revision id
+'revision-info'       => 'Revision as o $1 by $2',
 'previousrevision'    => '← Aulder reveision',
 'nextrevision'        => 'Newer reveision →',
 'currentrevisionlink' => 'see current reveision',
@@ -642,7 +645,7 @@ The grund for this, given by $3 is ''$2''",
 # Revision feed
 'history-feed-title'          => 'Revision history',
 'history-feed-description'    => 'Revision history for this page on the wiki',
-'history-feed-item-nocomment' => '$1 at $2', # user at time
+'history-feed-item-nocomment' => '$1 at $2',
 'history-feed-empty'          => 'The requestit page disnae exist.
 It micht hae been deletit frae the wiki, or the name micht hae been chynged.
 Try [[Special:Search|rakin on the wiki]] for new pages ye micht be interestit in.',
@@ -916,8 +919,8 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'rollbackfailed' => 'Rowback failed',
 'cantrollback'   => 'Canna revert edit; last contreibutor is the ae author o this page.',
 'alreadyrolled'  => 'Canna rowback last edit o [[$1]] bi [[User:$2|$2]] ([[User talk:$2|Talk]]); some ither bodie haes editit or rowed back the page aareadies. Last edit wis bi [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'    => "The edit comment wis: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "The edit comment wis: \"''\$1''\".",
+'revertpage'     => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]',
 
 # Protect
 'protectlogtext'         => 'Ablo is a leet o page locks/unlocks. See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
@@ -928,7 +931,7 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'protectcomment'         => 'Raeson for protectin',
 'protect-text'           => "Ye can see an chynge the protection level here for the page '''<nowiki>$1</nowiki>'''.",
 'protect-level-sysop'    => 'Juist administrators',
-'protect-expiry-options' => '2 oor:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => '2 oor:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 
 # Undelete
 'undelete'               => 'Restore delete page',
@@ -948,7 +951,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 # Contributions
 'contributions' => 'Uiser contreibutions',
 'mycontris'     => 'Ma contreibutions',
-'nocontribs'    => 'Nae chynges wis funnd matchin thae criteria.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Nae chynges wis funnd matchin thae criteria.',
 'uctop'         => ' (tap)',
 'month'         => 'Frae month (an afore):',
 'year'          => 'Frae year (an afore):',
@@ -969,7 +972,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'ipbreason'                   => 'Raeson',
 'ipbsubmit'                   => 'Block this uiser',
 'ipbother'                    => 'Ither time',
-'ipboptions'                  => '2 oor:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 oor:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 'ipbotheroption'              => 'ither',
 'badipaddress'                => 'That IP address is nae guid',
 'blockipsuccesssub'           => 'Block succeedit',

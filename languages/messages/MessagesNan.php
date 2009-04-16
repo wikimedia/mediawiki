@@ -1,6 +1,9 @@
 <?php
 /** Min Nan Chinese (Bân-lâm-gú)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -649,7 +652,7 @@ Template:Khu-pia̍t-ia̍h',
 'rollbackfailed' => 'Ká bē tńg khì',
 'cantrollback'   => 'Bô-hoat-tō· kā siu-kái ká-tńg--khì; téng ūi kòng-hiàn-chiá sī chit ia̍h î-it ê chok-chiá.',
 'alreadyrolled'  => 'Bô-hoat-tō· kā [[User:$2|$2]] ([[User talk:$2|Thó-lūn]]) tùi [[:$1]] ê siu-kái ká-tńg-khì; í-keng ū lâng siu-kái a̍h-sī ká-tńg chit ia̍h. Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|Thó-lūn]]).',
-'editcomment'    => "Siu-kái phêng-lūn sī: \"''\$1''\".", # only shown if there is an edit comment
+'editcomment'    => "Siu-kái phêng-lūn sī: \"''\$1''\".",
 
 # Protect
 'protectedarticle' => 'pó-hō͘ "[[$1]]"',
@@ -675,7 +678,7 @@ Template:Khu-pia̍t-ia̍h',
 # Contributions
 'contributions' => 'Iōng-chiá ê kòng-hiàn',
 'mycontris'     => 'Góa ê kòng-hiàn',
-'nocontribs'    => 'Chhōe bô tiâu-kiāⁿ ū-tùi ê hāng-bo̍k.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Chhōe bô tiâu-kiāⁿ ū-tùi ê hāng-bo̍k.',
 'uctop'         => '(siōng téng ê)',
 'month'         => 'Kàu tó 1 kó͘ goe̍h ûi-chí:',
 'year'          => 'Kàu tó 1 nî ûi-chí:',
@@ -857,7 +860,7 @@ Nā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe 
 'watchlistedit-normal-done'   => 'Í-keng ū $1 ia̍h ùi lí ê kám-sī-toaⁿ soá cháu:',
 
 # Special:Version
-'version' => 'Pán-pún', # Not used as normal message but as header for the special page itself
+'version' => 'Pán-pún',
 
 # Special:FilePath
 'filepath' => 'Tóng-àn ê soàⁿ-lō·',

@@ -1,6 +1,9 @@
 <?php
 /** Western Punjabi (پنجابی)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -89,7 +92,7 @@ $messages = array(
 'category-media-header'    => 'اس "$1" کیٹاگری وچ میڈيا',
 'category-empty'           => "''اس کیٹاگری وچ کوئی صفحہ یا میڈیا موجود نہیں۔''",
 'hidden-categories'        => '{{PLURAL:$1|چھپی گٹھ|چھپی گٹھیاں}}',
-'hidden-category-category' => 'لکائیاں ٹولیاں', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'لکائیاں ٹولیاں',
 'category-subcat-count'    => '{{PLURAL:$2|اس گٹھ دی صرف اکو تھلے آلی نکی گٹھ اے|اس گٹھ دیاں $2 چوں   {{PLURAL:$1|نکی گٹھ|$1 نکی گٹھیاں}}}} نیں۔',
 'category-article-count'   => '{{PLURAL:$2|اس گٹھ چ اکو تھلے آلا صفحہ اے۔|تھلے {{PLURAL:$1|آلا صفحہ|آلے صفحے}} $2 چوں اس گٹھ دے صفحے نیں۔}}',
 'listingcontinuesabbrev'   => 'جاری',
@@ -161,7 +164,7 @@ $messages = array(
 'redirectedfrom'    => '(لیایا گیا $1)',
 'redirectpagesub'   => 'صفحہ ریڈائریکٹ کرو',
 'lastmodifiedat'    => 'This page was last modified on $1, at $2.
-اس صفحے نوں آخری آری $1 تریخ نوں $2 وجے بدلیا گیا۔', # $1 date, $2 time
+اس صفحے نوں آخری آری $1 تریخ نوں $2 وجے بدلیا گیا۔',
 'protectedpage'     => 'بجایا صفحہ',
 'jumpto'            => 'جاو:',
 'jumptonavigation'  => 'مدد',
@@ -410,7 +413,7 @@ $messages = array(
 'currentrev'             => 'ہن آلی تبدیلی',
 'currentrev-asof'        => '$1 ویلے دا صفحہ',
 'revisionasof'           => 'دی تبدیلیاں $1',
-'revision-info'          => '$2 نے $1 تے اے لکھیا', # Additionally available: $3: revision id
+'revision-info'          => '$2 نے $1 تے اے لکھیا',
 'previousrevision'       => '← اوس توں پچھلا کم',
 'nextrevision'           => 'نویں تبدیلی →',
 'currentrevisionlink'    => 'موجودہ حالت',
@@ -429,7 +432,7 @@ $messages = array(
 'historyempty'           => '(خالی)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$2 نوں $1', # user at time
+'history-feed-item-nocomment' => '$2 نوں $1',
 
 # Revision deletion
 'rev-deleted-comment'    => '(صلاع مٹ گئی)',
@@ -981,7 +984,7 @@ $messages = array(
 'ipbemailban'              => 'ورتن آلے نوں ای میل پیجن توں روکو',
 'ipbsubmit'                => 'اس ورتن آلے نوں روکو',
 'ipbother'                 => 'دوجے ویلے:',
-'ipboptions'               => 'دو کینٹے:2 hours,1 دن:1 day,3 دن:3 days,1 ہفتہ:1 week,2 ہفتے:2 weeks,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year,بے انت:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => 'دو کینٹے:2 hours,1 دن:1 day,3 دن:3 days,1 ہفتہ:1 week,2 ہفتے:2 weeks,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year,بے انت:infinite',
 'ipbotheroption'           => 'دوجا',
 'ipbotherreason'           => 'دوجیاں ہور وجہ:',
 'badipaddress'             => 'آئی پی پتہ ٹھیک نئیں',
@@ -1042,7 +1045,7 @@ $messages = array(
 'move-watch'              => 'صفحے اکھ تھلے رکھو',
 'movepagebtn'             => 'صفحہ لے جاؤ',
 'pagemovedsub'            => 'لے جانا کامیاب ریا',
-'movepage-moved'          => '<big>\'\'\'"$1" نوں "$2" لے جایا گیا اے\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" نوں "$2" لے جایا گیا اے\'\'\'</big>',
 'articleexists'           => 'اس ناں دا صفحہ یا تے پہلاں توں ہی موجود اے یا فیر جیڑا ناں تسی چنیا اے درست نہیں۔<br />
 کوئی دوجا ناں چنو۔',
 'talkexists'              => "'''اے صفحہ کامیابی دے نال ے جایا گیا مگر ایدا گلاں باتاں آلا صفحہ رنہیں لے جایا جا سکدا کیونکہ اک نیا اسی ناں نال موجود اے۔ ایناں نوں ہتھ نال ملا دیو۔'''",
@@ -1192,7 +1195,7 @@ $messages = array(
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'        => 'چوڑائی',
@@ -1221,7 +1224,7 @@ $messages = array(
 
 'exif-unknowndate' => 'انجان تاریخ',
 
-'exif-orientation-1' => 'عام', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'عام',
 
 'exif-exposureprogram-0' => 'بیان نئیں کیتا گیا',
 'exif-exposureprogram-1' => 'طریقہ',
@@ -1315,7 +1318,7 @@ $messages = array(
 'watchlisttools-raw'  => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
 
 # Special:Version
-'version' => 'ورژن', # Not used as normal message but as header for the special page itself
+'version' => 'ورژن',
 
 # Special:SpecialPages
 'specialpages' => 'خاص صفحے',
