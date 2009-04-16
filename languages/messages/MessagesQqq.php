@@ -191,7 +191,7 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'category_header'                => 'In category description page',
 'category-media-header'          => 'In category description page',
 'category-empty'                 => 'The text displayed in category page when that category is empty',
-'hidden-category-category'       => 'Name of the category where hidden categories will be listed.', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Name of the category where hidden categories will be listed.',
 'category-subcat-count'          => 'This message is displayed at the top of a category page showing the number of pages in the category.
 
 * $1: number of subcategories shown
@@ -308,7 +308,7 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 * $1: date
 * $2: time
 
-See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].', # $1 date, $2 time
+See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 'jumpto'           => '"Jump to" navigation links. Hidden by default in monobook skin. The format is: {{int:jumpto}} [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].',
 'jumptonavigation' => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] {{int:jumptonavigation}}, [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].
 
@@ -725,7 +725,7 @@ Please report at [[Support]] if you are unable to properly translate this messag
 
 * $1 indicates the time of that revision and 
 * $2 the author of the revision
-* (optional) $3 is the revision ID', # Additionally available: $3: revision id
+* (optional) $3 is the revision ID',
 'currentrevisionlink'    => '{{Identical|Current revision}}',
 'cur'                    => 'Link in page history',
 'next'                   => 'Link in page history
@@ -754,7 +754,7 @@ Please report at [[Support]] if you are unable to properly translate this messag
 
 '''$1''' - user name
 
-'''$2''' - date/time", # user at time
+'''$2''' - date/time",
 
 # Revision deletion
 'rev-delundel'              => 'Link in page history for oversight',
@@ -993,7 +993,7 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'prefs-custom-css'          => 'visible on [[Special:Preferences]] -[Skins].',
 
 # User rights
-'userrights'                     => 'Page title of [[Special:UserRights]].', # Not used as normal message but as header for the special page itself
+'userrights'                     => 'Page title of [[Special:UserRights]].',
 'userrights-lookup-user'         => 'Button text when managing user rights',
 'userrights-user-editname'       => 'Displayed on [[Special:UserRights]].',
 'editusergroup'                  => '{{Identical|Edit user groups}}',
@@ -1359,10 +1359,10 @@ Example: [[:Image:Addon-icn.png]]',
 
 Example: http://test.wikipedia.org/wiki/File:Wiki.png#filelinks
 
-$1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shared-repo-name-shared}}. The default value for $1 is {{msg-mw|shared-repo}}.', # $1 is the repository name
+$1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shared-repo-name-shared}}. The default value for $1 is {{msg-mw|shared-repo}}.',
 'shared-repo'             => 'This message can be used as parameter $1 in the following messages:
 * {{msg-mw|shared-repo-from}}
-* {{msg-mw|sharedupload}}, {{msg-mw|sharedupload-desc-here}}, {{msg-mw|sharedupload-desc-there}}', # used when shared-repo-NAME does not exist
+* {{msg-mw|sharedupload}}, {{msg-mw|sharedupload-desc-here}}, {{msg-mw|sharedupload-desc-there}}',
 
 # File reversion
 'filerevert'                => '{{Identical|Revert}}',
@@ -1763,7 +1763,13 @@ $1 = the name of the page',
 * $3: the editor that cause collision
 
 {{Identical|Rollback}}",
-'revertpage'       => '{{Identical|Revert}}', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => 'Only shown if there is an edit comment',
+'revertpage'       => '{{Identical|Revert}}
+Additionally available:
+* $3: revid of the revision reverted to,
+* $4: timestamp of the revision reverted to,
+* $5: revid of the revision reverted from,
+* $6: timestamp of the revision reverted from',
 'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.
 {{Identical|Revert}}
 {{Identical|Rollback}}',
@@ -1815,7 +1821,7 @@ $3 = time.
 * <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English. 
 * Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.
 
-{{Identical|Infinite}}", # display1:time1,display2:time2,...
+{{Identical|Infinite}}",
 'restriction-type'          => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See [[mw:Manual:Administrators|MediaWiki Manual]] for more information on protection.',
 'restriction-level'         => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.',
 'minimum-size'              => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Maximum-size]]. There is an input box to specify the minimum bites of the projected pages listed.',
@@ -1881,7 +1887,7 @@ $3 = time.
 'contributions'       => "Display name for the 'User contributions', shown in the sidebar menu of all user pages and user talk pages. Also the page name of the target page. The target page shows an overview of the most recent contributions by a user.",
 'contributions-title' => 'The page title in your browser bar, but not the page title. See also {{msg|contributions}}. Parameter $1 is the username.',
 'mycontris'           => 'In the personal urls page section - right upper corner.',
-'nocontribs'          => 'Optional parameter: $1 is the user name', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Optional parameter: $1 is the user name',
 'uctop'               => 'This message is used in [[Special:Contributions]]. It is used to show that a particular edit was the last made to a page. Example: 09:57, 11 February 2008 (hist) (diff) Pagename‎ (edit summary) (top)',
 'month'               => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg|year}}.',
 'year'                => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a inputbox to select a specific year to view the edits made in that year, and the earlier years. See also {{msg|month}}.',
@@ -1951,7 +1957,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 * <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English. 
 * Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.
 
-{{Identical|Infinite}}", # display1:time1,display2:time2,...
+{{Identical|Infinite}}",
 'ipbotheroption'               => '{{Identical|Other}}',
 'ipbotherreason'               => '{{Identical|Other/additional reason}}',
 'ipbhidename'                  => 'This is the label for a checkbox in the user block form on [[Special:Block]].',
@@ -2061,7 +2067,7 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 * $1 is the source page as a link with display name
 * $2 is the target page as a link with display name
 * $3 (optional) is the source page name without a link
-* $4 (optional) is the target page name without a link', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+* $4 (optional) is the target page name without a link',
 'movetalk'                => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
 'move-subpages'           => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
 'move-talk-subpages'      => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the talk page to a new title.',
@@ -2220,7 +2226,7 @@ This message is the variable $3 in the message [[Mediawiki:lastmodifiedatby/{{SU
 * $2: time
 * $3: if the user has entered his 'real name' in his preferences then this variable is his 'real name'. If the user has not entered his 'real name' in his preferences then this variable is the message [[Mediawiki:siteuser/{{SUBPAGENAME}}]], which includes his username.
 
-See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].", # $1 date, $2 time, $3 user
+See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].",
 'othercontribs'    => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
 * $1: the list of author(s) of the revisions preceding the current revision. It appears after the message [[Mediawiki:lastmodifiedatby/{{SUBPAGENAME}}]]. If there are no previous authors this message does not appear at all. If needed the messages [[Mediawiki:siteusers/{{SUBPAGENAME}}]], [[Mediawiki:anonymous/{{SUBPAGENAME}}]] and [[Mediawiki:and/{{SUBPAGENAME}}]] are part of the list of names.',
 'others'           => 'The following explanation is guesswork. This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar). 
@@ -2388,7 +2394,7 @@ Variant option for wikis with variants conversion enabled.',
 {{Identical|Metadata}}',
 'metadata-expand'   => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on this link, you can see more data and information. For the link to hide back the less important data, see "[[MediaWiki:Metadata-collapse/{{SUBPAGENAME}}|{{int:metadata-collapse}}]]".',
 'metadata-collapse' => 'On an image description page, there is mostly a table containing data (metadata) about the image. The most important data are shown, but if you click on the link "[[MediaWiki:Metadata-expand/{{SUBPAGENAME}}|{{int:metadata-expand}}]]", you can see more data and information. This message is for the link to hide back the less important data.',
-'metadata-fields'   => "'''Warning:''' Do not translate list items, only translate the text! So leave \"<tt>* make</tt>\" and the other items exactly as they are.", # Do not translate list items
+'metadata-fields'   => "'''Warning:''' Do not translate list items, only translate the text! So leave \"<tt>* make</tt>\" and the other items exactly as they are.",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
@@ -2525,7 +2531,15 @@ Indicates the number of pixels in the image width (X) direction per FocalPlaneRe
 
 'exif-photometricinterpretation-2' => '{{optional}}',
 
-'exif-orientation-1' => '{{Identical|Normal}}', # 0th row: top; 0th column: left
+'exif-orientation-1' => '{{Identical|Normal}}
+0th row: top; 0th column: left',
+'exif-orientation-2' => '0th row: top; 0th column: right',
+'exif-orientation-3' => '0th row: bottom; 0th column: right',
+'exif-orientation-4' => '0th row: bottom; 0th column: left',
+'exif-orientation-5' => '0th row: left; 0th column: top',
+'exif-orientation-6' => '0th row: right; 0th column: top',
+'exif-orientation-7' => '0th row: right; 0th column: bottom',
+'exif-orientation-8' => '0th row: left; 0th column: bottom',
 
 'exif-componentsconfiguration-1' => '{{optional}}',
 'exif-componentsconfiguration-2' => '{{optional}}',
@@ -2781,7 +2795,7 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 # Special:Version
 'version'                          => 'Name of special page displayed in [[Special:SpecialPages]]
 
-{{Identical|Version}}', # Not used as normal message but as header for the special page itself
+{{Identical|Version}}',
 'version-extensions'               => 'Header on [[Special:Version]].',
 'version-specialpages'             => 'Part of [[Special:Version]].
 

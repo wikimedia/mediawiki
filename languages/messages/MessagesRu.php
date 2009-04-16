@@ -2409,6 +2409,9 @@ $1',
 'djvu_no_xml'              => 'Невозможно получить XML для DjVu',
 'thumbnail_invalid_params' => 'Ошибочный параметр миниатюры',
 'thumbnail_dest_directory' => 'Невозможно создать целевую директорию',
+'thumbnail_image-type'     => 'Данный тип изображения не поддерживается',
+'thumbnail_gd-library'     => 'Неполная конфигурация библиотеки GD, отсутствует функция $1',
+'thumbnail_image-missing'  => 'По видимому, отсутствует файл $1',
 
 # Special:Import
 'import'                     => 'Импортирование страниц',

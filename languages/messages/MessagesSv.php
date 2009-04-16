@@ -2429,6 +2429,7 @@ Besök [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller
 'djvu_no_xml'              => 'Kan inte hämta DjVu-filens XML',
 'thumbnail_invalid_params' => 'Ogiltiga parametrar för miniatyrbilden',
 'thumbnail_dest_directory' => 'Kan inte skapa målkatalogen',
+'thumbnail_image-missing'  => 'Fil verkar saknas: $1',
 
 # Special:Import
 'import'                     => 'Importera sidor',

@@ -2357,6 +2357,9 @@ Silakan kunjungi [http://www.mediawiki.org/wiki/Localisation Pelokalan MediaWiki
 'djvu_no_xml'              => 'XML untuk berkas DjVu tak dapat diperoleh',
 'thumbnail_invalid_params' => 'Kesalahan parameter miniatur',
 'thumbnail_dest_directory' => 'Direktori tujuan tak dapat dibuat',
+'thumbnail_image-type'     => 'Tipe gambar tidak didukung',
+'thumbnail_gd-library'     => 'Konfigurasi pustaka GD tak lengkap: tak ada fungsi $1',
+'thumbnail_image-missing'  => 'Berkas yang tampaknya hilang: $1',
 
 # Special:Import
 'import'                     => 'Impor halaman',

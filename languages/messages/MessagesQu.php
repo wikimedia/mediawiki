@@ -2351,6 +2351,9 @@ Ama hina kaspa, [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisati
 'djvu_no_xml'              => 'Manam atinichu XML-ta apamuy DjVu willañiqipaq',
 'thumbnail_invalid_params' => 'Rikchachap kuskanachina tupunkunaqa manam allinchu',
 'thumbnail_dest_directory' => 'Manam atinichu taripana willañiqi churanata kamayta',
+'thumbnail_image-type'     => "Rikch'a layaqa manam llamk'achikusqachu",
+'thumbnail_gd-library'     => 'Mana tukuchisqa GD churana allinchana: $1 nisqa ruranaqa manam kanchu',
+'thumbnail_image-missing'  => 'Willañiqiqa manachá kanchu: $1',
 
 # Special:Import
 'import'                     => "P'anqakunata hawamanta chaskiy",

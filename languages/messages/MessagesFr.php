@@ -2499,6 +2499,9 @@ Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation de 
 'djvu_no_xml'              => 'Impossible de récupérer le XML pour le fichier DjVu',
 'thumbnail_invalid_params' => 'Paramètres de la miniature incorrects',
 'thumbnail_dest_directory' => 'Impossible de créer le répertoire de destination',
+'thumbnail_image-type'     => 'Type d’image non supporté',
+'thumbnail_gd-library'     => 'Configuration incomplète de la bibliothèque GD : fonction $1 introuvable',
+'thumbnail_image-missing'  => 'Le fichier suivant est introuvable : $1',
 
 # Special:Import
 'import'                     => 'Importer des pages',

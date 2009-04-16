@@ -2312,6 +2312,9 @@ Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [http:/
 'djvu_no_xml'              => 'DjVu dosyası için XML alınamıyor',
 'thumbnail_invalid_params' => 'Geçersiz küçük resim parametreleri',
 'thumbnail_dest_directory' => 'Hedef dizini oluşturulamıyor',
+'thumbnail_image-type'     => 'Görüntü türü desteklenmiyor',
+'thumbnail_gd-library'     => 'Eksik GD kütüphanesi yapılandırması: kayıp fonksiyon $1',
+'thumbnail_image-missing'  => 'Dosya kayıp gibi görünüyor: $1',
 
 # Special:Import
 'import'                     => 'Sayfaları aktar',

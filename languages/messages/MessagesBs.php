@@ -2475,6 +2475,9 @@ Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MedijaViki lokaliza
 'djvu_no_xml'              => 'Za XML-datoteku se ne može pozvati DjVu datoteka',
 'thumbnail_invalid_params' => 'Pogrešne postavke smanjenog prikaza',
 'thumbnail_dest_directory' => 'Ne može se napraviti odredišni folder',
+'thumbnail_image-type'     => 'Tip slike nije podržan',
+'thumbnail_gd-library'     => 'Nekompletna konfiguracija GD biblioteke: nedostaje funkcija $1',
+'thumbnail_image-missing'  => 'Datoteka ne dostaje: $1',
 
 # Special:Import
 'import'                     => 'Ivoz stranica',

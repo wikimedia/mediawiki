@@ -28,6 +28,7 @@
  * @author Remember the dot
  * @author S.Örvarr.S
  * @author SabineCretella
+ * @author Stefano-c
  * @author Tonyfroio
  * @author Xpensive
  * @author לערי ריינהארט
@@ -2326,6 +2327,9 @@ Visitare [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [
 'djvu_no_xml'              => "Impossibile ottenere l'XML per il file DjVu",
 'thumbnail_invalid_params' => 'Parametri anteprima non corretti',
 'thumbnail_dest_directory' => 'Impossibile creare la directory di destinazione',
+'thumbnail_image-type'     => 'Tipo di immagine non supportato',
+'thumbnail_gd-library'     => 'Configurazione incompleta della libreria GD: funzione $1 mancante',
+'thumbnail_image-missing'  => 'Sembra essere mancante il file: $1',
 
 # Special:Import
 'import'                     => 'Importa pagine',

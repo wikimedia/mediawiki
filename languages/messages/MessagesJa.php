@@ -2356,6 +2356,9 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'djvu_no_xml'              => 'DjVuファイルのXMLデータを取得できません',
 'thumbnail_invalid_params' => 'サムネイルの指定パラメータが無効です',
 'thumbnail_dest_directory' => '出力ディレクトリを作成できません',
+'thumbnail_image-type'     => '対応していない画像形式です',
+'thumbnail_gd-library'     => 'GDライブラリの構成が不完全です: 関数 $1 が不足',
+'thumbnail_image-missing'  => 'ファイルが見つかりません: $1',
 
 # Special:Import
 'import'                     => 'ページデータの取り込み',

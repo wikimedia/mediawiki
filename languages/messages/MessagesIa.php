@@ -2387,6 +2387,9 @@ Per favor visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisat
 'djvu_no_xml'              => 'Impossibile obtener XML pro file DjVu',
 'thumbnail_invalid_params' => 'Parametros de miniatura invalide',
 'thumbnail_dest_directory' => 'Impossibile crear directorio de destination',
+'thumbnail_image-type'     => 'typo de imagine non supportate',
+'thumbnail_gd-library'     => 'le configuration del bibliotheca GD es incomplete: manca le function $1',
+'thumbnail_image-missing'  => 'le file pare mancar: $1',
 
 # Special:Import
 'import'                     => 'Importar paginas',
