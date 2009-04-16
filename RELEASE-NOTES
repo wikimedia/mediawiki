@@ -346,6 +346,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18441) rebuildrecentchanges.inc no longer ignores $wgLogRestrictions
 * (bug 18317) Bolded selections in 1 | 3 | etc days on RecentChanges now use
   <strong> instead of hardcoded styles
+* (bug 18449) Fixed items number per column on category pages when the total is
+  divisible by 3
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
