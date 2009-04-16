@@ -1,6 +1,9 @@
 <?php
 /** Neapolitan (Nnapulitano)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -170,7 +173,7 @@ $messages = array(
 'imagepage'         => 'Paggena fiùra',
 'otherlanguages'    => 'Ate léngue',
 'redirectedfrom'    => "(Redirect 'a $1)",
-'lastmodifiedat'    => "Urdema cagnamiénto pe' a paggena: $2, $1.", # $1 date, $2 time
+'lastmodifiedat'    => "Urdema cagnamiénto pe' a paggena: $2, $1.",
 'viewcount'         => 'Chesta paggena è stata lètta {{PLURAL:$1|una vòta|$1 vòte}}.',
 'jumpto'            => 'Vaje a:',
 'jumptonavigation'  => 'navigazione',
@@ -379,11 +382,11 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 
 # Rollback
 'rollback'   => "Ausa na revizione 'e primma",
-'revertpage' => "Cangiaje 'e cagnamiénte 'e [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), cu â verzione 'e pprimma 'e  [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage' => "Cangiaje 'e cagnamiénte 'e [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), cu â verzione 'e pprimma 'e  [[User:$1|$1]]",
 
 # Protect
 'prot_1movedto2'         => 'ha spustato [[$1]] a [[$2]]',
-'protect-expiry-options' => '2 ore:2 hours,1 juorno:1 day,3 juorne:3 days,1 semmana:1 week,2 semmane:2 weeks,1 mise:1 month,3 mese:3 months,6 mese:6 months,1 anno:1 year,infinito:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => '2 ore:2 hours,1 juorno:1 day,3 juorne:3 days,1 semmana:1 week,2 semmane:2 weeks,1 mise:1 month,3 mese:3 months,6 mese:6 months,1 anno:1 year,infinito:infinite',
 
 # Undelete
 'viewdeletedpage' => "Vìre 'e ppàggine scancellate",
@@ -405,7 +408,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 # Block/unblock
 'blockip'            => 'Ferma utelizzatóre',
 'ipadressorusername' => 'Nnerizzo IP o nomme utente',
-'ipboptions'         => '2 ore:2 hours,1 juorno:1 day,3 juorne:3 days,1 semmana:1 week,2 semmane:2 weeks,1 mise:1 month,3 mese:3 months,6 mese:6 months,1 anno:1 year,infinito:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '2 ore:2 hours,1 juorno:1 day,3 juorne:3 days,1 semmana:1 week,2 semmane:2 weeks,1 mise:1 month,3 mese:3 months,6 mese:6 months,1 anno:1 year,infinito:infinite',
 'blockipsuccesssub'  => 'Blocco aseguito',
 'blocklistline'      => '$1, $2 ha fermato $3 ($4)',
 'blocklink'          => 'ferma',

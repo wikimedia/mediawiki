@@ -1,6 +1,9 @@
 <?php
 /** Low German (Plattdüütsch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -319,7 +322,7 @@ $messages = array(
 'category-media-header'          => 'Mediendatein in de Kategorie „$1“',
 'category-empty'                 => "''In disse Kategorie sünd aktuell kene Sieden.''",
 'hidden-categories'              => '{{PLURAL:$1|Verstekene Kategorie|Verstekene Kategorien}}',
-'hidden-category-category'       => 'Verstekene Kategorien', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Verstekene Kategorien',
 'category-subcat-count'          => '{{PLURAL:$2|De Kategorie hett disse Ünnerkategorie:|De Kategorie hett disse Ünnerkategorie{{PLURAL:$1||n}}, vun $2 Ünnerkategorien alltohoop:}}',
 'category-subcat-count-limited'  => 'De Kategorie hett disse {{PLURAL:$1|Ünnerkategorie|$1 Ünnerkategorien}}:',
 'category-article-count'         => '{{PLURAL:$2|De Kategorie bargt disse Siet:|De Kategorie bargt disse {{PLURAL:$1|Siet|Sieden}}, vun $2 Sieden alltohoop:}}',
@@ -401,7 +404,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'otherlanguages'    => 'Annere Spraken',
 'redirectedfrom'    => '(wiederwiest vun $1)',
 'redirectpagesub'   => 'Redirectsiet',
-'lastmodifiedat'    => 'Disse Siet is toletzt üm $2, $1 ännert worrn.', # $1 date, $2 time
+'lastmodifiedat'    => 'Disse Siet is toletzt üm $2, $1 ännert worrn.',
 'viewcount'         => 'Disse Siet is {{PLURAL:$1|een|$1}} Maal opropen worrn.',
 'protectedpage'     => 'Schuulte Sieden',
 'jumpto'            => 'Wesseln na:',
@@ -876,7 +879,7 @@ De Grund weer: ''$2''",
 'revisionasof'           => 'Version vun’n $1',
 'revision-info'          => '<div id="viewingold-warning" style="background: #ffbdbd; border: 1px solid #BB7979; font-weight: bold; padding: .5em 1em;">
 Dit is en ole Version vun disse Siet, so as $2 de $1 ännert hett. De Version kann temlich stark vun de <a href="{{FULLURL:{{FULLPAGENAME}}}}" title="{{FULLPAGENAME}}">aktuelle Version</a> afwieken.
-</div>', # Additionally available: $3: revision id
+</div>',
 'previousrevision'       => 'Nächstöllere Version→',
 'nextrevision'           => 'Ne’ere Version →',
 'currentrevisionlink'    => 'aktuelle Version',
@@ -901,7 +904,7 @@ L = Lütte Ännern",
 # Revision feed
 'history-feed-title'          => 'Versionsgeschicht',
 'history-feed-description'    => 'Versionsgeschicht för disse Siet',
-'history-feed-item-nocomment' => '$1 üm $2', # user at time
+'history-feed-item-nocomment' => '$1 üm $2',
 'history-feed-empty'          => 'De angevene Siet gifft dat nich.
 Villicht is se löscht worrn oder hett en annern Naam kregen.
 Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
@@ -1217,7 +1220,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'prefs-custom-js'           => 'Anpasst JS',
 
 # User rights
-'userrights'                  => 'Brukerrechten inrichten', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Brukerrechten inrichten',
 'userrights-lookup-user'      => 'Brukergruppen verwalten',
 'userrights-user-editname'    => 'Brukernaam ingeven:',
 'editusergroup'               => 'Brukergruppen ännern',
@@ -1544,8 +1547,8 @@ De [$2 Bildsied vun dor] warrt ünnen wiest.',
 'noimage'                   => 'Ene Datei mit dissen Naam gifft dat nich, du kannst ehr $1.',
 'noimage-linktext'          => 'hoochladen',
 'uploadnewversion-linktext' => 'Ne’e Version vun disse Datei hoochladen',
-'shared-repo-from'          => 'ut $1', # $1 is the repository name
-'shared-repo'               => 'en tohoop bruukt Medienarchiv', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'ut $1',
+'shared-repo'               => 'en tohoop bruukt Medienarchiv',
 
 # File reversion
 'filerevert'                => '„$1“ Trüchsetten',
@@ -1919,8 +1922,8 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 'alreadyrolled'    => 'Dat Trüchnehmen vun de Ännern an de Siet [[:$1]] vun [[User:$2|$2]] ([[User talk:$2|Diskuschoonssiet]]{{int:pipe-separator}}[[Special:Contributions/$2|Bidrääg]]) is nich mööglich, vun wegen dat dor en annere Ännern oder Trüchnahm wesen is.
 
 De letzte Ännern is vun [[User:$3|$3]] ([[User talk:$3|Diskuschoon]]{{int:pipe-separator}}[[Special:Contributions/$3|Bidrääg]]).',
-'editcomment'      => "De Ännerkommentar weer: „''$1''“.", # only shown if there is an edit comment
-'revertpage'       => 'Ännern vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) rut un de Version vun [[User:$1]] wedderhaalt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "De Ännerkommentar weer: „''$1''“.",
+'revertpage'       => 'Ännern vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) rut un de Version vun [[User:$1]] wedderhaalt',
 'rollback-success' => 'Ännern vun $1 trüchsett op letzte Version vun $2.',
 'sessionfailure'   => 'Dor weer en Problem mit diene Brukersitzung.
 Disse Akschoon is nu ut Sekerheitsgrünn afbraken, dat de Ännern nich verkehrt en annern Bruker toornt warrt.
@@ -1967,7 +1970,7 @@ Gah een Sied trüch un versöök dat noch wedder.',
 ** veel bruukt Vörlaag
 ** Sied mit temlich veel Besökers',
 'protect-edit-reasonlist'     => 'Grünn för de Sperr ännern',
-'protect-expiry-options'      => '1 Stünn:1 hour,1 Dag:1 day,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,6 Maand:6 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Stünn:1 hour,1 Dag:1 day,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,6 Maand:6 months,1 Johr:1 year,ahn Enn:infinite',
 'restriction-type'            => 'Schuulstatus',
 'restriction-level'           => 'Schuulhööchd',
 'minimum-size'                => 'Minimumgrött',
@@ -2046,7 +2049,7 @@ $1',
 'contributions-title' => 'Brukerbidrääg vun „$1“',
 'mycontris'           => 'Mien Arbeid',
 'contribsub2'         => 'För $1 ($2)',
-'nocontribs'          => 'Kene Ännern för disse Kriterien funnen.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Kene Ännern för disse Kriterien funnen.',
 'uctop'               => ' (aktuell)',
 'month'               => 'bet Maand:',
 'year'                => 'Bet Johr:',
@@ -2105,7 +2108,7 @@ Ok den Grund för dat Blocken indregen.',
 'ipbenableautoblock'              => 'Sperr de aktuell vun dissen Bruker bruukte IP-Adress un automaatsch all de annern, vun de ut he Sieden ännern oder Brukers anleggen will',
 'ipbsubmit'                       => 'Adress blocken',
 'ipbother'                        => 'Annere Tiet:',
-'ipboptions'                      => '2 Stünnen:2 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,6 Maand:6 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 Stünnen:2 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,6 Maand:6 months,1 Johr:1 year,ahn Enn:infinite',
 'ipbotheroption'                  => 'Annere Duer',
 'ipbotherreason'                  => 'Annern Grund:',
 'ipbhidename'                     => 'Brukernaam narms mehr wiesen',
@@ -2236,7 +2239,7 @@ In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
 'move-watch'                   => 'Op disse Siet oppassen',
 'movepagebtn'                  => 'Siet schuven',
 'pagemovedsub'                 => 'Schuven hett Spood',
-'movepage-moved'               => "<big>'''De Sied „$1“ is na „$2“ schaven worrn.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''De Sied „$1“ is na „$2“ schaven worrn.'''</big>",
 'movepage-moved-redirect'      => 'Redirect opstellt.',
 'movepage-moved-noredirect'    => 'Dat Opstellen vun en Redirect is ünnerdrückt worrn.',
 'articleexists'                => 'Ünner dissen Naam gifft dat al ene Siet.
@@ -2439,7 +2442,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonym Bruker|Anonyme Brukers}} vun {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Bruker $1',
-'lastmodifiedatby' => 'Disse Siet weer dat letzte Maal $2, $1 vun $3 ännert.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Disse Siet weer dat letzte Maal $2, $1 vun $3 ännert.',
 'othercontribs'    => 'Grünnt op Arbeid vun $1.',
 'others'           => 'annere',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Bruker|Brukers}} $1',
@@ -2554,7 +2557,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breed',
@@ -2681,14 +2684,14 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 
 'exif-unknowndate' => 'Unbekannt Datum',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'waagrecht kippt', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° dreiht', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Vertikal kippt', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '90° gegen de Klock dreiht un vertikal kippt', # 0th row: left; 0th column: top
-'exif-orientation-6' => '90° mit de Klock dreiht', # 0th row: right; 0th column: top
-'exif-orientation-7' => '90° mit de Klock dreiht un vertikal kippt', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '90° gegen de Klock dreiht', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'waagrecht kippt',
+'exif-orientation-3' => '180° dreiht',
+'exif-orientation-4' => 'Vertikal kippt',
+'exif-orientation-5' => '90° gegen de Klock dreiht un vertikal kippt',
+'exif-orientation-6' => '90° mit de Klock dreiht',
+'exif-orientation-7' => '90° mit de Klock dreiht un vertikal kippt',
+'exif-orientation-8' => '90° gegen de Klock dreiht',
 
 'exif-planarconfiguration-1' => 'Groffformat',
 'exif-planarconfiguration-2' => 'Planarformat',
@@ -2949,7 +2952,7 @@ Du kannst ok de [[Special:Watchlist/edit|normale Sied to’n Ännern]] bruken.',
 'duplicate-defaultsort' => 'Wohrschau: De DEFAULTSORTKEY „$2“ överschrifft den vörher bruukten Slötel „$1“.',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Installeerte Extensions',
 'version-specialpages'             => 'Spezialsieden',
 'version-parserhooks'              => 'Parser-Hooks',

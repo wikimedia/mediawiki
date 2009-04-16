@@ -1,6 +1,9 @@
 <?php
 /** Kurdish (Latin) (Kurdî / كوردی (Latin))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -139,7 +142,7 @@ $messages = array(
 'category-media-header'          => 'Medya di kategorîya "$1" da',
 'category-empty'                 => "''Di vê kategorîyê da niha gotar ya medya tune ne.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategorîya veşartî|Kategorîyên veşartî}}',
-'hidden-category-category'       => 'Kategorîyên veşartî', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Kategorîyên veşartî',
 'category-subcat-count'          => '{{PLURAL:$2|Di vê kategorîyê da bes ev binkategorîya heye:|Di vê kategorîyê da {{PLURAL:$2|binkategorîyek heye|$2 binkategorî hene}}. Jêr {{PLURAL:$1|binkategorîyek tê|$1 binkategorî tên}} nîşandan.}}',
 'category-subcat-count-limited'  => 'Di vê kategorîyê da ev {{PLURAL:$1|binkategorîya heye|$1 binkategorî hene}}.',
 'category-article-count'         => '{{PLURAL:$2|Di vê kategorîyê da bes ev rûpela heye:|Di vê kategorîyê da {{PLURAL:$2|rûpelek heye|$2 rûpel hene}}. Jêr {{PLURAL:$1|rûpelek tê|$1 rûpel tên}} nîşandan.}}',
@@ -226,7 +229,7 @@ $messages = array(
 'otherlanguages'    => 'Zimanên din',
 'redirectedfrom'    => '(Hat ragihandin ji $1)',
 'redirectpagesub'   => 'Rûpelê redirect',
-'lastmodifiedat'    => 'Ev rûpel carî dawî di $2, $1 de hat guherandin.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ev rûpel carî dawî di $2, $1 de hat guherandin.',
 'viewcount'         => 'Ev rûpel {{PLURAL:$1|carekê|caran}} tê xwestin.',
 'protectedpage'     => 'Rûpela parastî',
 'jumpto'            => 'Here cem:',
@@ -630,7 +633,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 
 # Revision feed
 'history-feed-title'          => 'Dîroka versyona',
-'history-feed-item-nocomment' => '$1 li $2', # user at time
+'history-feed-item-nocomment' => '$1 li $2',
 'history-feed-empty'          => 'Rûpelê xastî tune ye. Belkî ew rûpela hatîye jêbirin ya sernava xwe hatîye guherandin. [[Special:Search|Di wîkîyê da li rûpelên nêzîkî wê bigere]].',
 
 # Revision deletion
@@ -740,7 +743,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'files'               => 'Dosya',
 
 # User rights
-'userrights'                  => 'Îdarekirina mafên bikarhêneran', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Îdarekirina mafên bikarhêneran',
 'userrights-lookup-user'      => 'Îdarekirina grûpan',
 'userrights-user-editname'    => 'Navî bikarhênerê têke:',
 'editusergroup'               => 'Grûpên bikarhêneran biguherîne',
@@ -1189,8 +1192,8 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 bi [[User:$2|$2]] ([[User talk:$2|guftûgo]]) venizivre; keseke din wê rûpelê zivrandiye an guherandiye.
 
 Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
-'editcomment'      => "Kurtenivîsê guherandinê ev bû: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Kurtenivîsê guherandinê ev bû: \"''\$1''\".",
+'revertpage'       => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1',
 'rollback-success' => 'Guherandina $1 şondakir; dîsa guharte verzyona $2.',
 
 # Protect
@@ -1209,7 +1212,7 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'protect-level-autoconfirmed' => 'Bikarhênerên neqeydkirî astengbike',
 'protect-level-sysop'         => 'Bes koordînatoran (admînan)',
 'protect-expiring'            => 'heta rojê $1 (UTC)',
-'protect-expiry-options'      => '1 seet:1 hour,2 seet:2 hours,6 seet:6 hours,1 roj:1 day,3 roj:3 days,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,1 sal:1 year,ji her demê ra:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 seet:1 hour,2 seet:2 hours,6 seet:6 hours,1 roj:1 day,3 roj:3 days,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,1 sal:1 year,ji her demê ra:infinite',
 'restriction-type'            => 'Destûr:',
 
 # Restrictions (nouns)
@@ -1313,7 +1316,7 @@ Sedemekê binivîse!',
 'ipbenableautoblock'          => "Otomatîk IP'yên niha û yên nuh yê vê bikarhênerê astengbike.",
 'ipbsubmit'                   => 'Vê bikarhêner asteng bike',
 'ipbother'                    => 'demekî din',
-'ipboptions'                  => '1 seet:1 hour,2 seet:2 hours,6 seet:6 hours,1 roj:1 day,3 roj:3 days,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,1 sal:1 year,ji her demê ra:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '1 seet:1 hour,2 seet:2 hours,6 seet:6 hours,1 roj:1 day,3 roj:3 days,1 hefte:1 week,2 hefte:2 weeks,1 mihe:1 month,3 mihe:3 months,1 sal:1 year,ji her demê ra:infinite',
 'ipbotheroption'              => 'yên din',
 'ipbotherreason'              => 'Sedemekî din',
 'ipbhidename'                 => 'Navî bikarhêner / adresê IP ji "pirtûkê" astengkirinê, lîsteya astengkirinên nuh û lîsteya bikarhêneran veşêre',
@@ -1391,7 +1394,7 @@ da bikarî navê wê rûpelê biguherînî.',
 'move-watch'                => 'Vê rûpelê bişopîne',
 'movepagebtn'               => 'Vê rûpelê bigerîne',
 'pagemovedsub'              => 'Gerandin serkeftî',
-'movepage-moved'            => '<big>\'\'\'"$1" çû cihê "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1" çû cihê "$2"\'\'\'</big>',
 'movepage-moved-noredirect' => "Redirect'ek nehate çêkirin",
 'articleexists'             => 'Rûpela bi vî navî heye, an navê ku te hilbijart derbas nabe. Navekî din hilbijêre.',
 'cantmove-titleprotected'   => 'Tu nikanê vê rûpelê bervê vê cihê bigerînê ji ber ku sernava nuh tê parastin ji bo çêkirinê',
@@ -1687,7 +1690,7 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'watchlisttools-edit' => 'Lîsteya şopandinê bibîne û biguherîne',
 
 # Special:Version
-'version'       => 'Verzîyon', # Not used as normal message but as header for the special page itself
+'version'       => 'Verzîyon',
 'version-other' => 'yên din',
 
 # Special:FilePath

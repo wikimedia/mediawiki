@@ -1,6 +1,9 @@
 <?php
 /** Assamese (অসমীয়া)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -192,7 +195,7 @@ $messages = array(
 'category-media-header'         => '"$1" শ্রেণীৰ মেডিয়া',
 'category-empty'                => "''এই শ্রেণীত বর্তমান কোনো লিখনী বা মাধ্যম নাই''",
 'hidden-categories'             => '{{PLURAL:$1|গোপন শ্রেণী|গোপন শ্রেণী}}',
-'hidden-category-category'      => 'গোপন শ্রেণী সমুহ', # Name of the category where hidden categories will be listed
+'hidden-category-category'      => 'গোপন শ্রেণী সমুহ',
 'category-subcat-count'         => '{{PLURAL:$2|এই শ্রেণীত নিম্নলিখিত উপশ্রেণী আছে| এই শ্রেণীত নিম্নলিখিত {{PLURAL:$1|উপশ্রেণীটো|$1 উপশ্রেণীসমুহ}} আছে, মুঠতে $2  তা উপশ্রেণী।}}',
 'category-subcat-count-limited' => 'এই শ্রেণীত নিম্নলিখিত {{PLURAL:$1|উপশ্রেণী আছে|$1 উপশ্রেণী আছে}}.',
 'category-article-count'        => '{{PLURAL:$2|এই শ্রেণীটোত কেবল তলত দিয়া লিখনীটোহে আছে।|এই শ্রেণীটোত তলৰ  {{PLURAL:$1|এটা লিখনী আছে|$1 টা লিখনী আছে}}, মুঠ লিখনী $2 টা।}}',
@@ -267,7 +270,7 @@ $messages = array(
 'otherlanguages'    => 'আন ভাষাত',
 'redirectedfrom'    => '($1 ৰ পৰা)',
 'redirectpagesub'   => 'পূণঃনির্দেশিত পৃষ্ঠা',
-'lastmodifiedat'    => 'এই পৃষ্ঠাটো শেষবাৰৰ কাৰণে $1 তাৰিখে $2 বজাত সলনি কৰা হৈছিল', # $1 date, $2 time
+'lastmodifiedat'    => 'এই পৃষ্ঠাটো শেষবাৰৰ কাৰণে $1 তাৰিখে $2 বজাত সলনি কৰা হৈছিল',
 'viewcount'         => 'এই পৃষ্ঠাটো {{PLURAL:$1|এবাৰ|$1}} বাৰ চোৱা হৈছে',
 'protectedpage'     => 'সুৰক্ষিত পৃষ্ঠা',
 'jumpto'            => 'গম্যাৰ্থে',
@@ -732,7 +735,7 @@ $1',
 'files'                    => 'ফাইলসমুহ',
 
 # User rights
-'userrights'               => 'সদস্যৰ অধিকাৰ ব্যৱস্থাপনা', # Not used as normal message but as header for the special page itself
+'userrights'               => 'সদস্যৰ অধিকাৰ ব্যৱস্থাপনা',
 'userrights-lookup-user'   => 'সদস্য গোটবোৰ ব্যৱস্থাপনা কৰক',
 'userrights-user-editname' => 'সদস্যনাম দিয়ক:',
 'editusergroup'            => 'সদস্য গোটবোৰ সম্পাদনা কৰক',
@@ -912,7 +915,7 @@ $1',
 'protect-expiring'            => ' $1 (UTC) ত সময় শেষ হব',
 'protect-cascade'             => 'এই পৃষ্ঠাটোৰ লগত জৰিত সকলো পৃষ্ঠা সুৰক্ষিত কৰক (সুৰক্ষা জখলা)',
 'protect-cantedit'            => 'আপুনি এই পৃষ্ঠাটোৰ সুৰক্ষা-স্তৰ সলনি কৰিব নোৱৰে, কাৰণ আপোনাক সেই অনুমতি দিয়া হোৱা নাই।',
-'protect-expiry-options'      => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite',
 'restriction-type'            => 'অনুমতি:',
 'restriction-level'           => 'সুৰক্ষা-স্তৰ:',
 
@@ -954,7 +957,7 @@ $1',
 'blockip'            => 'সদস্য বাৰণ কৰক',
 'ipbreason'          => 'কাৰণ',
 'ipbreasonotherlist' => 'অন্য কাৰণ',
-'ipboptions'         => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite',
 'ipblocklist'        => 'বাৰণ কৰা সদস্য আৰু IP ঠিকনাৰ তালিকা',
 'blocklink'          => 'সদস্যভুক্তি ৰদ',
 'contribslink'       => 'অবদান',
@@ -976,7 +979,7 @@ $1',
 'move-watch'     => 'এই পৃষ্ঠাটো লক্ষ্য কৰক',
 'movepagebtn'    => 'পৃষ্ঠাটো স্থানান্তৰ কৰক',
 'pagemovedsub'   => 'স্থানান্তৰ সফল হল',
-'movepage-moved' => "<big>'''“$1” ক “$2” লৈ স্থানান্তৰ কৰা হৈছে'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved' => "<big>'''“$1” ক “$2” লৈ স্থানান্তৰ কৰা হৈছে'''</big>",
 'articleexists'  => 'সেই নামৰ পৃষ্ঠা এটা আগৰ পৰাই আছে, বা সেই নামতো অযোগ্য।
 বেলেগ নাম এটা বাছি লওক।',
 'talkexists'     => "'''পৃষ্ঠাটো স্থানান্তৰ কৰা হৈছে, কিন্তু ইয়াৰ লগত জৰিত বার্তা পৃষ্ঠাটো স্থানান্তৰ কৰা নহল, কাৰণ নতুন ঠাইত বার্তা পৃষ্ঠা এটা আগৰ পৰাই আছে।
@@ -1069,7 +1072,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'বাহিৰা আহিলা ব্যৱহাৰ কৰি এই ফাইলটো সম্পাদনা কৰক|',

@@ -1,6 +1,9 @@
 <?php
 /** Erzya (Эрзянь)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -270,7 +273,7 @@ $messages = array(
 'category-media-header'          => '"$1" категориясонть медиясь',
 'category-empty'                 => "''Те категориясонть арасть лопат-медият.''",
 'hidden-categories'              => '{{PLURAL:$1|Кекшень категория|Кекшень категорият}}',
-'hidden-category-category'       => 'Кекшень категорият', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Кекшень категорият',
 'category-subcat-count'          => '{{PLURAL:$2|Те категориясонть вейкине явкс категория.|Те категориясонть  {{PLURAL:$1|явкс категория|$1 явкс категорият}}, $2 -тнень эйстэ.}}',
 'category-subcat-count-limited'  => 'Те категориясонть {{PLURAL:$1|алкс категория|$1 алкс категорият}}.',
 'category-article-count'         => '{{PLURAL:$2|Те категориясонть вейкине лопась вана косо.|{{PLURAL:$1|Те лопась кандови|$1 Не лопатне кандовить}} те категориянтень, категориясонть лопатнеде весемезэ $2.}}',
@@ -350,7 +353,7 @@ $messages = array(
 'otherlanguages'    => 'Лия кельсэ',
 'redirectedfrom'    => '(Ютавтозь $1 вельде)',
 'redirectpagesub'   => 'Лиясто ютавтозь лопа',
-'lastmodifiedat'    => 'Те лопанть меельседе витнезь-петнезь $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Те лопанть меельседе витнезь-петнезь $2, $1.',
 'viewcount'         => 'Те лопантень совасть {{PLURAL:$1|весть|$1-ксть}}.',
 'protectedpage'     => 'Те лопась ванстомасо',
 'jumpto'            => 'Тёкадемс тей:',
@@ -669,7 +672,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'currentrev'             => 'Тевате лиякстомтома',
 'currentrev-asof'        => 'Неень верзиясь истямо шкань $1',
 'revisionasof'           => '$1-це версиясь',
-'revision-info'          => '$1 -нь лиякстомтома, конань теизе $2', # Additionally available: $3: revision id
+'revision-info'          => '$1 -нь лиякстомтома, конань теизе $2',
 'previousrevision'       => '←Седе икелень лиякстомтома',
 'nextrevision'           => 'Седе од вановкс→',
 'currentrevisionlink'    => 'Тевате лиякстомтома',
@@ -690,7 +693,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 # Revision feed
 'history-feed-title'          => 'Лиякстомтомань тевде',
 'history-feed-description'    => 'Викинь тевате лопанть лиякстомтомань тевдензэ',
-'history-feed-item-nocomment' => '$1 $2-зэ', # user at time
+'history-feed-item-nocomment' => '$1 $2-зэ',
 
 # Revision deletion
 'rev-deleted-comment'    => '(арсемась-мелесь нардазь)',
@@ -1334,7 +1337,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'protect-expiring'            => 'прядови $1 (UTC)',
 'protect-cascade'             => 'Ванстомс лопатьнень, конат совавтозь те лопаньте(каскадонь ванстома)',
 'protect-cantedit'            => 'Тынь алиякставсынк ванстомань уровнянть те лопанть, тынк арасть видечинк сонзэ лиякстоманьте.',
-'protect-expiry-options'      => '1 час:1 hour,1 чи:1 day,1 тарго:1 week,2 таргот:2 weeks,1 ков:1 month,3 ковт:3 months,6 ковт:6 months,1 ие:1 year,певтеме:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 час:1 hour,1 чи:1 day,1 тарго:1 week,2 таргот:2 weeks,1 ков:1 month,3 ковт:3 months,6 ковт:6 months,1 ие:1 year,певтеме:infinite',
 'restriction-type'            => 'Нолдамо:',
 'restriction-level'           => 'Нолдавксонь покшизэ:',
 'minimum-size'                => 'Минимум кувалмозо',
@@ -1416,7 +1419,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'ipbreasonotherlist'       => 'Лия тувтал',
 'ipbsubmit'                => 'Озавтомс те теицянть саймес',
 'ipbother'                 => 'Лия шка:',
-'ipboptions'               => '2 част:2 hours,1 чи:1 day,3 чить:3 days,1 тарго:1 week,2 таргот:2 weeks,1 ков:1 month,3 ковт:3 months,6 ковт:6 months,1 ие:1 year,певтеме:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 част:2 hours,1 чи:1 day,3 чить:3 days,1 тарго:1 week,2 таргот:2 weeks,1 ков:1 month,3 ковт:3 months,6 ковт:6 months,1 ие:1 year,певтеме:infinite',
 'ipbotheroption'           => 'лия',
 'ipbotherreason'           => 'Лия/поладкс тувтал:',
 'badipaddress'             => 'Амаштовикс IP адрес',
@@ -1480,7 +1483,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'move-watch'              => 'Ваномс лопанть',
 'movepagebtn'             => 'Печтевтемс лопанть',
 'pagemovedsub'            => 'Лопась печтевтевсь',
-'movepage-moved'          => "<big>'''«$1»-сь печтевтезь «$2»-с'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''«$1»-сь печтевтезь «$2»-с'''</big>",
 'articleexists'           => 'Лопась истямо лем марто ули али невтезь тынк эйсэ лемесь анолдавиксев.<br />Инескеть, кочкадо лия лем.',
 'talkexists'              => "'''Сонсь лопась печтевтевсь, ансяк кортамонь лопась кодаяк эзь печтевтеве, вана мекс,  истямо лем марто лопась ули. Инеськеть, пурныть сынст вейтьс кедьсэ.'''",
 'movedto'                 => 'печтевтезь',
@@ -1658,7 +1661,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'       => 'Келе',
@@ -1691,8 +1694,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 'exif-unknowndate' => 'Апак содань чи',
 
-'exif-orientation-1' => 'Свалшкань', # 0th row: top; 0th column: left
-'exif-orientation-3' => 'Велявтомс 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-1' => 'Свалшкань',
+'exif-orientation-3' => 'Велявтомс 180°',
 
 'exif-componentsconfiguration-0' => 'арась',
 
@@ -1842,7 +1845,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'watchlisttools-raw'  => 'Витнеме-петнеме верек ваномалопанть',
 
 # Special:Version
-'version'                  => 'Версия', # Not used as normal message but as header for the special page itself
+'version'                  => 'Версия',
 'version-specialpages'     => 'Башка тевень лопат',
 'version-other'            => 'Лия',
 'version-hooks'            => 'Кечказт',

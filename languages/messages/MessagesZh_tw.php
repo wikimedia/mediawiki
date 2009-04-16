@@ -1,6 +1,9 @@
 <?php
 /** Chinese (Taiwan) (‪中文(台灣)‬)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -57,7 +60,7 @@ $messages = array(
 'subcategories'                 => '子分類',
 'category-media-header'         => '"$1"分類中的媒體',
 'category-empty'                => "''這個分類中尚未包含任何頁面或媒體。''",
-'hidden-category-category'      => '隱藏分類', # Name of the category where hidden categories will be listed
+'hidden-category-category'      => '隱藏分類',
 'category-subcat-count'         => '{{PLURAL:$2|這個分類中只有以下的附分類。|這個分類中有以下的$1個附分類，共有$2個附分類。}}',
 'category-subcat-count-limited' => '這個分類下有$1個子分類。',
 'category-article-count'        => '{{PLURAL:$2|這個分類中只有以下的頁面。|這個分類中有以下的$1個頁面，共有$2個頁面。}}',
@@ -139,7 +142,7 @@ $messages = array(
 'otherlanguages'    => '其它語言',
 'redirectedfrom'    => '(重定向自$1)',
 'redirectpagesub'   => '重定向頁面',
-'lastmodifiedat'    => '本頁最後更動時間在 $1 $2。', # $1 date, $2 time
+'lastmodifiedat'    => '本頁最後更動時間在 $1 $2。',
 'viewcount'         => '本頁面已經被瀏覽$1次。',
 'protectedpage'     => '被保護頁',
 'jumpto'            => '跳轉到:',
@@ -498,7 +501,7 @@ $2',
 'nohistory'           => '沒有本頁的修訂記錄。',
 'currentrev'          => '當前修訂版本',
 'revisionasof'        => '在$1所做的修訂版本',
-'revision-info'       => '在$1由$2所做的修訂版本', # Additionally available: $3: revision id
+'revision-info'       => '在$1由$2所做的修訂版本',
 'previousrevision'    => '←上一修訂',
 'nextrevision'        => '下一修訂→',
 'currentrevisionlink' => '當前修訂',
@@ -518,7 +521,7 @@ $2',
 # Revision feed
 'history-feed-title'          => '修訂沿革',
 'history-feed-description'    => '本站上此頁的修訂沿革',
-'history-feed-item-nocomment' => '$1在$2', # user at time
+'history-feed-item-nocomment' => '$1在$2',
 'history-feed-empty'          => '所請求的頁面不存在。它可能已被刪除或重新命名。
 嘗試[[Special:Search|搜尋本站]]獲得相關的新建頁面。',
 
@@ -666,7 +669,7 @@ $2',
 'files'                    => '檔案',
 
 # User rights
-'userrights'               => '使用者權限管理', # Not used as normal message but as header for the special page itself
+'userrights'               => '使用者權限管理',
 'userrights-lookup-user'   => '管理使用者群組',
 'userrights-user-editname' => '輸入使用者帳號:',
 'editusergroup'            => '編輯使用者群組',
@@ -1136,8 +1139,8 @@ $NEWPAGE
 其他人已經編輯或是復原了該頁。
 
 最後編輯者: [[User:$3|$3]] ([[User talk:$3|討論]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])。',
-'editcomment'      => "編輯說明: \"''\$1''\"。", # only shown if there is an edit comment
-'revertpage'       => '復原由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "編輯說明: \"''\$1''\"。",
+'revertpage'       => '復原由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本',
 'rollback-success' => '復原由$1的編輯；更改回$2的最後一個版本。',
 'sessionfailure'   => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 
@@ -1169,7 +1172,7 @@ $NEWPAGE
 'protect-summary-cascade'     => '連鎖',
 'protect-expiring'            => '終止於 $1 (UTC)',
 'protect-cascade'             => '保護本頁中包含的頁面 (連鎖保護)',
-'protect-expiry-options'      => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite',
 'restriction-type'            => '權限:',
 'restriction-level'           => '限制級別:',
 'minimum-size'                => '最小大小',
@@ -1232,7 +1235,7 @@ $1',
 'contributions' => '使用者編修記錄',
 'mycontris'     => '我的編修記錄',
 'contribsub2'   => '$1的編修記錄 ($2)',
-'nocontribs'    => '沒有找到符合特徵的更改。', # Optional parameter: $1 is the user name
+'nocontribs'    => '沒有找到符合特徵的更改。',
 'uctop'         => ' (最新修改)',
 'month'         => '從該月份 (或更早):',
 'year'          => '從該年份 (或更早):',
@@ -1284,7 +1287,7 @@ $1',
 'ipbenableautoblock'          => '自動封鎖此使用者最後所用的IP位址，以及後來試圖編輯所用的所有位址',
 'ipbsubmit'                   => '封鎖該地址',
 'ipbother'                    => '其它時間:',
-'ipboptions'                  => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite',
 'ipbotheroption'              => '其它',
 'ipbotherreason'              => '其它／附帶原因:',
 'ipbhidename'                 => '在封鎖日誌、活躍封鎖列表以及使用者列表中隱藏使用者名／IP',
@@ -1391,7 +1394,7 @@ $1',
 'move-watch'               => '監視此頁',
 'movepagebtn'              => '移動頁面',
 'pagemovedsub'             => '移動成功',
-'movepage-moved'           => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'           => "<big>'''「$1」已經移動到「$2」'''</big>",
 'articleexists'            => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',
 'talkexists'               => '頁面本身移動成功，
 但是由於新標題下已經有對話頁存在，所以對話頁無法移動。請手工合併兩個頁面。',
@@ -1557,7 +1560,7 @@ $1',
 # Attribution
 'anonymous'        => '{{SITENAME}}的匿名{{PLURAL:$1|使用者|使用者}}',
 'siteuser'         => '{{SITENAME}}使用者$1',
-'lastmodifiedatby' => '此頁由$3於$1 $2的最後更改。', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => '此頁由$3於$1 $2的最後更改。',
 'othercontribs'    => '在$1的工作基礎上。',
 'others'           => '其他',
 'siteusers'        => '{{SITENAME}}{{PLURAL:$2|使用者|使用者}}$1',
@@ -1676,7 +1679,7 @@ Variants for Chinese language
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => '寬度',
@@ -1803,14 +1806,14 @@ Variants for Chinese language
 
 'exif-unknowndate' => '未知的日期',
 
-'exif-orientation-1' => '標準', # 0th row: top; 0th column: left
-'exif-orientation-2' => '水準翻轉', # 0th row: top; 0th column: right
-'exif-orientation-3' => '旋轉180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => '垂直翻轉', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '旋轉90° 逆時針並垂直翻轉', # 0th row: left; 0th column: top
-'exif-orientation-6' => '旋轉90° 順時針', # 0th row: right; 0th column: top
-'exif-orientation-7' => '旋轉90° 順時針並垂直翻轉', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '旋轉90° 逆時針', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => '標準',
+'exif-orientation-2' => '水準翻轉',
+'exif-orientation-3' => '旋轉180°',
+'exif-orientation-4' => '垂直翻轉',
+'exif-orientation-5' => '旋轉90° 逆時針並垂直翻轉',
+'exif-orientation-6' => '旋轉90° 順時針',
+'exif-orientation-7' => '旋轉90° 順時針並垂直翻轉',
+'exif-orientation-8' => '旋轉90° 逆時針',
 
 'exif-planarconfiguration-1' => '矮胖格式',
 'exif-planarconfiguration-2' => '平面格式',
@@ -2040,7 +2043,7 @@ $1',
 'watchlisttools-raw'  => '編輯原始監視列表',
 
 # Special:Version
-'version'                       => '版本', # Not used as normal message but as header for the special page itself
+'version'                       => '版本',
 'version-parserhooks'           => '語法鉤',
 'version-hooks'                 => '鉤',
 'version-parser-function-hooks' => '語法函數鉤',

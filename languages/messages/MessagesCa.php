@@ -1,6 +1,9 @@
 <?php
 /** Catalan (Català)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -283,7 +286,7 @@ $messages = array(
 'category-media-header'          => 'Contingut multimèdia en la categoria «$1»',
 'category-empty'                 => "''Aquesta categoria no té cap pàgina ni fitxer.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria oculta|Categories ocultes}}',
-'hidden-category-category'       => 'Categories ocultes', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categories ocultes',
 'category-subcat-count'          => "{{PLURAL:$2|Aquesta categoria només té la següent subcategoria.|Aquesta categoria conté {{PLURAL:$1|la següent subcategoria|les següents $1 subcategories}}, d'un total de $2.}}",
 'category-subcat-count-limited'  => 'Aquesta categoria conté {{PLURAL:$1|la següent subcategoria|les següents $1 subcategories}}.',
 'category-article-count'         => "{{PLURAL:$2|Aquesta categoria només té la següent pàgina.|{{PLURAL:$1|La següent pàgina és|Les següents $1 pàgines són}} dins d'aquesta categoria, d'un total de $2.}}",
@@ -370,7 +373,7 @@ $messages = array(
 'otherlanguages'    => 'En altres llengües',
 'redirectedfrom'    => "(S'ha redirigit des de: $1)",
 'redirectpagesub'   => 'Pàgina de redirecció',
-'lastmodifiedat'    => 'Darrera modificació de la pàgina: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Darrera modificació de la pàgina: $2, $1.',
 'viewcount'         => 'Aquesta pàgina ha estat visitada {{PLURAL:$1|una vegada|$1 vegades}}.',
 'protectedpage'     => 'Pàgina protegida',
 'jumpto'            => 'Dreceres ràpides:',
@@ -857,7 +860,7 @@ El motiu donat per $3 és ''$2''",
 'currentrev'             => 'Revisió actual',
 'currentrev-asof'        => 'Revisió de $1',
 'revisionasof'           => 'Revisió de $1',
-'revision-info'          => 'Revisió de $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Revisió de $1; $2',
 'previousrevision'       => '←Versió més antiga',
 'nextrevision'           => 'Versió més nova→',
 'currentrevisionlink'    => 'Versió actual',
@@ -878,7 +881,7 @@ El motiu donat per $3 és ''$2''",
 # Revision feed
 'history-feed-title'          => 'Historial de revisió',
 'history-feed-description'    => 'Historial de revisió per a aquesta pàgina del wiki',
-'history-feed-item-nocomment' => '$1 a $2', # user at time
+'history-feed-item-nocomment' => '$1 a $2',
 'history-feed-empty'          => 'La pàgina demanada no existeix.
 Potser ha estat esborrada o reanomenada.
 Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevants.',
@@ -1194,7 +1197,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-custom-js'           => 'JS personalitzat',
 
 # User rights
-'userrights'                  => "Gestió dels permisos d'usuari", # Not used as normal message but as header for the special page itself
+'userrights'                  => "Gestió dels permisos d'usuari",
 'userrights-lookup-user'      => "Gestiona els grups d'usuari",
 'userrights-user-editname'    => "Introduïu un nom d'usuari:",
 'editusergroup'               => "Edita els grups d'usuaris",
@@ -1526,8 +1529,8 @@ La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.'
 'noimage'                   => 'No existeix cap fitxer amb aquest nom, però podeu $1.',
 'noimage-linktext'          => "Carrega'n una",
 'uploadnewversion-linktext' => "Carrega una nova versió d'aquest fitxer",
-'shared-repo-from'          => 'des de $1', # $1 is the repository name
-'shared-repo'               => 'un repositori compartit', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'des de $1',
+'shared-repo'               => 'un repositori compartit',
 
 # File reversion
 'filerevert'                => 'Reverteix $1',
@@ -1914,8 +1917,8 @@ Vegeu $2 per a un registre dels esborrats més recents.',
 de l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]). Algú altre ja ha editat o revertit la pàgina.
 
 La darrera edició ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "El resum d'edició ha estat: «$1».", # only shown if there is an edit comment
-'revertpage'       => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]). S'ha recuperat la darrera versió de l'usuari [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "El resum d'edició ha estat: «$1».",
+'revertpage'       => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]). S'ha recuperat la darrera versió de l'usuari [[User:$1|$1]]",
 'rollback-success' => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
 'sessionfailure'   => "Sembla que hi ha problema amb la vostra sessió. Aquesta acció ha estat anuŀlada en prevenció de pirateig de sessió. Si us plau, pitgeu «Torna», i recarregueu la pàgina des d'on veniu, després intenteu-ho de nou.",
 
@@ -1962,7 +1965,7 @@ Ací es troben els paràmetres actuals de la pàgina '''$1''':",
 ** Guerra d'edicions improductiva
 ** Pàgina amb alt trànsit",
 'protect-edit-reasonlist'     => 'Edita motius de protecció',
-'protect-expiry-options'      => '1 hora:1 hour,1 dia:1 day,1 setmana:1 week,2 setmanes:2 weeks,1 mes:1 month,3 mesos:3 months,6 mesos:6 months,1 any:1 year,infinit:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 dia:1 day,1 setmana:1 week,2 setmanes:2 weeks,1 mes:1 month,3 mesos:3 months,6 mesos:6 months,1 any:1 year,infinit:infinite',
 'restriction-type'            => 'Permís:',
 'restriction-level'           => 'Nivell de restricció:',
 'minimum-size'                => 'Mida mínima',
@@ -2043,7 +2046,7 @@ $1",
 'contributions-title' => "Contribucions de l'usuari $1",
 'mycontris'           => 'Contribucions',
 'contribsub2'         => 'Per $1 ($2)',
-'nocontribs'          => "No s'ha trobat canvis que encaixessin amb aquests criteris.", # Optional parameter: $1 is the user name
+'nocontribs'          => "No s'ha trobat canvis que encaixessin amb aquests criteris.",
 'uctop'               => '(actual)',
 'month'               => 'Mes (i anteriors):',
 'year'                => 'Any (i anteriors):',
@@ -2107,7 +2110,7 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipbenableautoblock'              => "Bloca l'adreça IP d'aquest usuari, i totes les subseqüents adreces des de les quals intenti registrar-se",
 'ipbsubmit'                       => 'Bloqueja aquesta adreça',
 'ipbother'                        => 'Un altre termini',
-'ipboptions'                      => '2 hores:2 hours,1 dia:1 day,3 dies:3 days,1 setmana:1 week,2 setmanes:2 weeks,1 mes:1 month,3 mesos:3 months,6 mesos:6 months,1 any:1 year,infinit:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 hores:2 hours,1 dia:1 day,3 dies:3 days,1 setmana:1 week,2 setmanes:2 weeks,1 mes:1 month,3 mesos:3 months,6 mesos:6 months,1 any:1 year,infinit:infinite',
 'ipbotheroption'                  => 'un altre',
 'ipbotherreason'                  => 'Altres motius o addicionals:',
 'ipbhidename'                     => "Amaga el nom d'usuari de les edicions i llistes",
@@ -2241,7 +2244,7 @@ per reanomenar una pàgina.",
 'move-watch'                   => 'Vigila aquesta pàgina',
 'movepagebtn'                  => 'Reanomena la pàgina',
 'pagemovedsub'                 => 'Reanomenament amb èxit',
-'movepage-moved'               => "<big>'''«$1» s'ha mogut a «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''«$1» s'ha mogut a «$2»'''</big>",
 'movepage-moved-redirect'      => "S'ha creat una redirecció.",
 'movepage-moved-noredirect'    => "La creació d'una redirecció s'ha suprimit.",
 'articleexists'                => 'Ja existeix una pàgina amb aquest nom, o el nom que heu triat no és vàlid.
@@ -2449,7 +2452,7 @@ Permet afegir un motiu al resum.',
 # Attribution
 'anonymous'        => 'Usuari{{PLURAL:$1| anònim|s anònims}} del projecte {{SITENAME}}',
 'siteuser'         => 'Usuari $1 del projecte {{SITENAME}}',
-'lastmodifiedatby' => 'Va modificar-se la pàgina per darrera vegada el $2, $1 per $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Va modificar-se la pàgina per darrera vegada el $2, $1 per $3.',
 'othercontribs'    => 'Basat en les contribucions de $1.',
 'others'           => 'altres',
 'siteusers'        => 'Usuari{{PLURAL:$2||s}} $1 de {{SITENAME}}',
@@ -2567,7 +2570,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Amplada',
@@ -2694,14 +2697,14 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 
 'exif-unknowndate' => 'Data desconeguda',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Invertit horitzontalment', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Girat 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Invertit verticalment', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotat 90° en sentit antihorari i invertit verticalment', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotat 90° en sentit horari', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotat 90° en sentit horari i invertit verticalment', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotat 90° en sentit antihorari', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Invertit horitzontalment',
+'exif-orientation-3' => 'Girat 180°',
+'exif-orientation-4' => 'Invertit verticalment',
+'exif-orientation-5' => 'Rotat 90° en sentit antihorari i invertit verticalment',
+'exif-orientation-6' => 'Rotat 90° en sentit horari',
+'exif-orientation-7' => 'Rotat 90° en sentit horari i invertit verticalment',
+'exif-orientation-8' => 'Rotat 90° en sentit antihorari',
 
 'exif-planarconfiguration-1' => 'a blocs densos (chunky)',
 'exif-planarconfiguration-2' => 'format pla',
@@ -2976,7 +2979,7 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'duplicate-defaultsort' => 'Atenció: La clau d\'ordenació per defecte "$2" invalida l\'anterior clau "$1".',
 
 # Special:Version
-'version'                          => 'Versió', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versió',
 'version-extensions'               => 'Extensions instaŀlades',
 'version-specialpages'             => 'Pàgines especials',
 'version-parserhooks'              => "Extensions de l'analitzador",

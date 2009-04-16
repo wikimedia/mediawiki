@@ -1,6 +1,9 @@
 <?php
 /** Tamil (தமிழ்)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -150,7 +153,7 @@ $messages = array(
 'category-media-header'          => '"$1" பகுப்பில் உள்ள ஊடகங்கள்',
 'category-empty'                 => 'இப்பகுப்பில் தற்போது ஊடகங்கள் யாதும் இல்லை.',
 'hidden-categories'              => '{{PLURAL:$1|மறைக்கப்பட்ட பகுப்பு|மறைக்கப்பட்ட பகுப்புகள்}}',
-'hidden-category-category'       => 'மறைக்கப்பட்ட பகுப்புகள்', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'மறைக்கப்பட்ட பகுப்புகள்',
 'category-subcat-count'          => '{{PLURAL:$2|இந்தப் பகுப்பின் கீழ் பினவரும் ஒரு துணைப் பகுப்பு மட்டுமே உள்ளது.|இந்தப்பகுப்பின் கீழ் உள்ள $2 துணைப் பகுப்புகளில் பின்வரும் {{PLURAL:$1|துணைப்பகுப்பும் உள்ளது.|$1 துணைப்பகுப்புகளும் உள்ளன.}}}}',
 'category-subcat-count-limited'  => 'இந்தப் பகுப்பின் கீழ் பினவரும் {{PLURAL:$1|ஒரு துணைப் பகுப்பு மட்டுமே உள்ளது.|$1 துணைப் பகுப்புகள் உள்ளன.}}',
 'category-article-count'         => '{{PLURAL:$2|இந்தப் பகுப்பின் கீழ் பினவரும் பக்கம் மட்டுமே உள்ளது.|இந்தப்பகுப்பின் கீழ் உள்ள $2 பக்கங்களில் பின்வரும் {{PLURAL:$1|பக்கமும் உள்ளது.|$1 பக்கங்களும் உள்ளன.}}}}',
@@ -237,7 +240,7 @@ $messages = array(
 'otherlanguages'    => 'ஏனைய மொழிகள்',
 'redirectedfrom'    => '($1 இலிருந்து மீள் வழிப்படுத்தப்பட்டது)',
 'redirectpagesub'   => 'பக்கவழிமாற்றுப் பக்கம்',
-'lastmodifiedat'    => 'இப்பக்கத்தை கடைசியாக $1, $2 மணிக்குத் திருத்தினோம்.', # $1 date, $2 time
+'lastmodifiedat'    => 'இப்பக்கத்தை கடைசியாக $1, $2 மணிக்குத் திருத்தினோம்.',
 'viewcount'         => 'இப்பக்கம் {{PLURAL:$1|ஒரு முறை|$1 முறைகள்}} அணுகப்பட்டது.',
 'protectedpage'     => 'பாதுகாக்கப்பட்ட பக்கம்',
 'jumpto'            => 'தாவிச் செல்லவும்:',
@@ -673,7 +676,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'nohistory'              => 'இப் பக்கத்துக்குத் தொகுப்பு வரலாறு இல்லை.',
 'currentrev'             => 'நடைமுறையிலுள்ள திருத்தம்',
 'revisionasof'           => '$1 இல் நிலவும் திருத்தம்',
-'revision-info'          => '$2 பயனரால் செய்யப்பட்ட $1 அன்றிருந்தவாரான திருத்தம்', # Additionally available: $3: revision id
+'revision-info'          => '$2 பயனரால் செய்யப்பட்ட $1 அன்றிருந்தவாரான திருத்தம்',
 'previousrevision'       => '←முந்தைய தொகுப்பு',
 'nextrevision'           => 'புதிய தொகுப்பு→',
 'currentrevisionlink'    => 'நடப்பிலுள்ள திருத்தம்',
@@ -695,7 +698,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 # Revision feed
 'history-feed-title'          => 'திருத்த வரலாறு',
 'history-feed-description'    => 'விக்கியில் இப்பக்கத்துக்கான திருத்த வரலாறு',
-'history-feed-item-nocomment' => '$2 இல் $1', # user at time
+'history-feed-item-nocomment' => '$2 இல் $1',
 'history-feed-empty'          => 'நீங்கள் கோரியப் பக்கம் இல்லை.
 இப்பக்கம் விக்கியில் நீக்கப்பட்டோ நகர்த்தப்பட்டோ இருக்கலாம்.
 பொருத்தமான புதியப் பக்கங்களைத் [[Special:Search|இந்த விக்கியில் தேடவும்]].',
@@ -931,7 +934,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'files'                     => 'கோப்புகள்',
 
 # User rights
-'userrights'                  => 'பயனர் அனுமதி முகாமைத்துவம்', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'பயனர் அனுமதி முகாமைத்துவம்',
 'userrights-lookup-user'      => 'பயனர்க் குழுக்களை நிர்வாகி',
 'userrights-user-editname'    => 'பயனர் பெயரொன்றை இடுக:',
 'editusergroup'               => 'பயனர் குழுக்களை தொகு',
@@ -1502,8 +1505,8 @@ $NEWPAGE
 'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) பயனரால் செய்யப்பட்ட [[:$1]] இன் கடைசித் தொகுப்பை முன்நிலையாக்க முடியாது; வேறு யாரோ இப்பக்கத்தை ஏற்கெனவே தொகுத்தோ அல்லது முன்நிலையாக்கியோ உள்ளார்.
 
 இப்பக்கத்தை கடைசியாகத் தொகுத்தவர் [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "தொகுப்புக்குரிய கருத்துரை: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|பேச்சு]]) செய்தத் தொகுப்புகள் நீக்கப்பட்டு [[User:$1|$1]] இன் பதிப்புக்கு முன்நிலையாக்கப்பட்டது', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "தொகுப்புக்குரிய கருத்துரை: \"''\$1''\".",
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|பேச்சு]]) செய்தத் தொகுப்புகள் நீக்கப்பட்டு [[User:$1|$1]] இன் பதிப்புக்கு முன்நிலையாக்கப்பட்டது',
 'rollback-success' => '$1 செய்தத் தொகுப்புகள் நீக்கப்பட்டு $2 இன் பதிப்புக்கு முன்நிலையாக்கப்பட்டது.',
 'sessionfailure'   => 'உங்கள் புகுபதிகை அமர்வில் பிரச்சினை உள்ளது போல தோன்றுகிறது. செல்வழி திருட்டுக் கெதிரான முன்னெச்செரிக்கையாக இந்த நடவடிக்கை இரத்துச் செய்யப்பட்டது. உங்கள் உலாவியின் பின் செல்வதற்கான பொத்தானைச் செருகி மீண்டும் முயலவும்.',
 
@@ -1536,7 +1539,7 @@ $NEWPAGE
 'protect-expiring'            => '$1 (UTC) மணிக்கு காலாவதியாகிறது',
 'protect-cascade'             => 'இப்பக்கத்தில் இணைக்கப்பட்ட பக்கங்களைக் காப்புச் செய் (படிநிலைக் காப்பு)',
 'protect-cantedit'            => 'இப்பக்கத்தின் காப்பு நிலையை நீங்கள் மாற்ற முடியாது. உங்களுக்கு காப்பு நிலையை தொகுப்பதற்கான அனுமதி கிடையாது.',
-'protect-expiry-options'      => '2 மணித்தியாலங்கள்:2 hours,1 நாள்:1 day,3 நாட்கள்:3 days,1 வாரம்:1 week,2 வாரங்கள்:2 weeks,1 மாதம்:1 month,3 மாதங்கள்:3 months,6 மாதங்கள்:6 months,1 ஆண்டு:1 year,முடிவிலி:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 மணித்தியாலங்கள்:2 hours,1 நாள்:1 day,3 நாட்கள்:3 days,1 வாரம்:1 week,2 வாரங்கள்:2 weeks,1 மாதம்:1 month,3 மாதங்கள்:3 months,6 மாதங்கள்:6 months,1 ஆண்டு:1 year,முடிவிலி:infinite',
 'restriction-type'            => 'அனுமதி:',
 'restriction-level'           => 'தடை அளவு:',
 'minimum-size'                => 'குறைந்த அளவு',
@@ -1608,7 +1611,7 @@ $1',
 'contributions' => 'பயனர் பங்களிப்புக்கள்',
 'mycontris'     => 'என் பங்களிப்புக்கள்',
 'contribsub2'   => '$1 பயனரின் ($2)',
-'nocontribs'    => 'இந்த நிபந்தனையுடன் ஒத்துப்போகும் வகையில் மாற்றங்களெதுவும் காணப்படவில்லை.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'இந்த நிபந்தனையுடன் ஒத்துப்போகும் வகையில் மாற்றங்களெதுவும் காணப்படவில்லை.',
 'uctop'         => '(மேல்)',
 'month'         => 'மாதம் உட்பட முந்தைய:',
 'year'          => 'ஆண்டு உட்பட முந்தைய:',
@@ -1663,7 +1666,7 @@ $1',
 'ipbenableautoblock'          => 'தானியக்கமாக இப்பயனர் கடசியாகப் பயன்படுத்திய ஐ.பி. முகவரியையும் பங்களிக்க முயலும் ஐ.பி. முகவரிகளயும் தடைச் செய்',
 'ipbsubmit'                   => 'இப் பயனரைத் தடு',
 'ipbother'                    => 'வேறு நேரம்:',
-'ipboptions'                  => '2 மணித்தியாலங்கள்:2 hours,1 நாள்:1 day,3 நாட்கள்:3 days,1 வாரம்:1 week,2 வாரங்கள்:2 weeks,1 மாதம்:1 month,3 மாதங்கள்:3 months,6 மாதங்கள்:6 months,1 ஆண்டு:1 year,முடிவிலி:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 மணித்தியாலங்கள்:2 hours,1 நாள்:1 day,3 நாட்கள்:3 days,1 வாரம்:1 week,2 வாரங்கள்:2 weeks,1 மாதம்:1 month,3 மாதங்கள்:3 months,6 மாதங்கள்:6 months,1 ஆண்டு:1 year,முடிவிலி:infinite',
 'ipbotheroption'              => 'வேறு',
 'ipbotherreason'              => 'வேறு மேலதிக காரணம்:',
 'ipbhidename'                 => 'தடைப் பதிகை, தற்போதைய தடுப்புகளின் பட்டியல், பயனர் பட்டியல் என்பவற்றிலிருந்து பயனர் பெயரை மறைக்கவும்',
@@ -1760,7 +1763,7 @@ $1',
 'move-watch'                => 'இப்பக்கத்தைக் கவனி',
 'movepagebtn'               => 'பக்கத்தை நகர்த்து',
 'pagemovedsub'              => 'நகர்த்தல் வெற்றி',
-'movepage-moved'            => '<big>\'\'\'"$1", "$2" என்ற தலைப்புக்கு நகர்த்தப் பட்டுள்ளது\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1", "$2" என்ற தலைப்புக்கு நகர்த்தப் பட்டுள்ளது\'\'\'</big>',
 'articleexists'             => 'அந்தப் பெயரையுடைய பக்கம் ஏற்கெனவே உள்ளது அல்லது நீங்கள் தெரிவு செய்த பெயர் செல்லுபடியாகாது. தயவுசெய்து வேறு பெயரைத் தெரியவும்.',
 'cantmove-titleprotected'   => 'நீர் பக்கத்க்தை நகர்த்த எத்தனித்த தலைப்பு உருவாக்கப்படுவது தடை செய்யப்பட்டுமையால் அத்தலைப்புக்கு நகர்த்த முடியாது',
 'talkexists'                => 'பக்கம் வெற்றிகரமாக நகர்த்தப்பட்டது, ஆனால் பேச்சுப் பக்கத்தை நகர்த்த முடியவில்லை ஏனெனில் புதிய தலைப்பில் இன்னொன்று உள்ளது. தயவுசெய்து கையால் ஒன்றுகலக்கவும்.',
@@ -1927,7 +1930,7 @@ $1',
 # Attribution
 'anonymous'        => '{{SITENAME}} தளத்தின் அடையாளம் காட்டாத {{PLURAL:$1|பயனர்|பயனர்கள்}}',
 'siteuser'         => '{{SITENAME}} தளத்தின் பயனர் $1',
-'lastmodifiedatby' => 'இப்பக்கம் கடைசியாக $2, $1 அன்று $3 என்றப் பயனரால் தொகுக்கப்பட்டது.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'இப்பக்கம் கடைசியாக $2, $1 அன்று $3 என்றப் பயனரால் தொகுக்கப்பட்டது.',
 'othercontribs'    => '$1 உடைய ஆக்கத்தை அடிப்படையாகக் கொண்டது.',
 'others'           => 'ஏனைய',
 'siteusers'        => '{{SITENAME}} தளத்தின் {{PLURAL:$2|பயனர்|பயனர்கள்}} $1',
@@ -2032,7 +2035,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'அகலம்',
@@ -2133,10 +2136,10 @@ $1',
 
 'exif-unknowndate' => 'நாள் தெரியாது',
 
-'exif-orientation-1' => 'வழமையான', # 0th row: top; 0th column: left
-'exif-orientation-3' => '180° சுழற்றப்பட்டது', # 0th row: bottom; 0th column: right
-'exif-orientation-6' => '90° வலஞ்சுழியாக சுழற்றப்பட்டது', # 0th row: right; 0th column: top
-'exif-orientation-8' => '90° இடஞ்சுழியாக சுழற்றப்பட்டது', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'வழமையான',
+'exif-orientation-3' => '180° சுழற்றப்பட்டது',
+'exif-orientation-6' => '90° வலஞ்சுழியாக சுழற்றப்பட்டது',
+'exif-orientation-8' => '90° இடஞ்சுழியாக சுழற்றப்பட்டது',
 
 'exif-componentsconfiguration-0' => 'இல்லை',
 
@@ -2360,7 +2363,7 @@ $5
 'unknown_extension_tag' => 'அறியப்படாத நீட்சி வகை "$1"',
 
 # Special:Version
-'version'                          => 'பதிப்பு', # Not used as normal message but as header for the special page itself
+'version'                          => 'பதிப்பு',
 'version-extensions'               => 'நிறுவப்பட்ட நீட்சிகள்',
 'version-specialpages'             => 'சிறப்புப் பக்கங்கள்',
 'version-parserhooks'              => 'இலக்கணப் பாகுபடுத்தி கொக்கிகள்',

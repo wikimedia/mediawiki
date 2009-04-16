@@ -1,6 +1,9 @@
 <?php
 /** Old English (Anglo-Saxon)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -99,7 +102,7 @@ $messages = array(
 'category-media-header'    => 'Ġemynda in flocce "$1"',
 'category-empty'           => "''Þes flocc hæfþ nū nān ġewritu oþþe ġemynda in.''",
 'hidden-categories'        => '{{PLURAL:$1|Gehȳded flocc|Gehȳdede floccas}}',
-'hidden-category-category' => 'Gehȳdede floccas', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Gehȳdede floccas',
 
 'mainpagedocfooter' => 'Þeahtian [http://meta.wikimedia.org/wiki/Help:Contents Brūcendlǣdend] for helpe on bryce þǣre wiki software.
 
@@ -507,14 +510,14 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'rollback_short' => 'Edhwierfan',
 'rollbacklink'   => 'Edhwierfan',
 'rollbackfailed' => 'Edhwierft misfangen',
-'editcomment'    => "Sēo ādihtungymbsprǣc wæs: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => 'Ācierde ādihtunga fram [[Special:Contributions/$2|$2]] ([[User talk:$2|Gesprec]]); wendede on bæc tō ǣrran fadunge fram [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "Sēo ādihtungymbsprǣc wæs: \"''\$1''\".",
+'revertpage'     => 'Ācierde ādihtunga fram [[Special:Contributions/$2|$2]] ([[User talk:$2|Gesprec]]); wendede on bæc tō ǣrran fadunge fram [[User:$1|$1]]',
 
 # Protect
 'unprotectedarticle'     => 'unweardod "[[$1]]"',
 'protect-title'          => 'Weardiende "$1"',
 'prot_1movedto2'         => '[[$1]] gefered tō [[$2]]',
-'protect-expiry-options' => '1 stund:1 hour, 2 stunda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wuca:2 weeks,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => '1 stund:1 hour, 2 stunda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wuca:2 weeks,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite',
 'restriction-type'       => 'Gelēafnes:',
 
 # Restrictions (nouns)
@@ -559,7 +562,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 ** Uncwēme brūcendnama',
 'ipbsubmit'          => 'Gǣlan þisne brūcend',
 'ipbother'           => 'Ōðeru tīd',
-'ipboptions'         => '1 stund:1 hour, 2 stunda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wuca:2 weeks,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '1 stund:1 hour, 2 stunda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wuca:2 weeks,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite',
 'ipbotheroption'     => 'ōðer',
 'ipbotherreason'     => 'Ōðeru/geīecendlicu racu:',
 'ipblocklist-submit' => 'Sēcan',
@@ -714,7 +717,7 @@ $5
 'autosumm-new' => 'Nīwe tramet: $1',
 
 # Special:Version
-'version'       => 'Fadung', # Not used as normal message but as header for the special page itself
+'version'       => 'Fadung',
 'version-other' => 'Ōðer',
 
 # Special:SpecialPages

@@ -1,6 +1,9 @@
 <?php
 /** Swiss German (Alemannisch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -223,7 +226,7 @@ $messages = array(
 'category-media-header'          => 'Medie in dr Kategori „$1“',
 'category-empty'                 => "''Die Kategori het im Momänt kaini Syte oder Medie.''",
 'hidden-categories'              => '{{PLURAL:$1|Versteckti Kategori|Versteckti Kategorie}}',
-'hidden-category-category'       => 'Versteckti Kategorie', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Versteckti Kategorie',
 'category-subcat-count'          => '{{PLURAL:$2|Die Kategori het die Unterkategorie:|{{PLURAL:$1|Die Unterkategori isch eini vu insgsamt $2 Unterkategorie in däre Kategori:|S wäre $1 vu insgsamt $2 Unterkategorie in däre Kategori aazeigt:}}}}',
 'category-subcat-count-limited'  => 'Die Kategorie het die {{PLURAL:$1|Unterkategori|$1 Unterkategorie}}:',
 'category-article-count'         => '{{PLURAL:$2|In däre Kategorie het s die Syte:|{{PLURAL:$1|Die Syte isch eini vu insgsamt $2 Syte in däre Kategori:|S wäre $1 vu insgsamt $2 Syte in däre Kategori aazeigt:}}}}',
@@ -304,7 +307,7 @@ $messages = array(
 'otherlanguages'    => 'Anderi Sproche',
 'redirectedfrom'    => '(Witergleitet vun $1)',
 'redirectpagesub'   => 'Umgleiteti Syte',
-'lastmodifiedat'    => 'Letschti Änderig vo dere Syte: $2, $1<br />', # $1 date, $2 time
+'lastmodifiedat'    => 'Letschti Änderig vo dere Syte: $2, $1<br />',
 'viewcount'         => 'Die Syte isch {{PLURAL:$1|eimol|$1 Mol}} bsuecht wore.',
 'protectedpage'     => 'Gschützti Syte',
 'jumpto'            => 'Gump zue:',
@@ -799,7 +802,7 @@ Grund vu dr Sperri: ''$2''",
 'currentrev'             => 'Itzigi Version',
 'currentrev-asof'        => 'Aktuälli Version vu $1',
 'revisionasof'           => 'Version vo $1',
-'revision-info'          => 'Alti Bearbeitig vom $1 dür $2', # Additionally available: $3: revision id
+'revision-info'          => 'Alti Bearbeitig vom $1 dür $2',
 'previousrevision'       => '← Vorderi Version',
 'nextrevision'           => 'Nächschti Version →',
 'currentrevisionlink'    => 'Itzigi Version',
@@ -821,7 +824,7 @@ Erklärig: (aktuell) = Underschid zu jetz,
 # Revision feed
 'history-feed-title'          => 'Versionsgschicht',
 'history-feed-description'    => 'Versionsgschicht fir die Syte in {{SITENAME}}',
-'history-feed-item-nocomment' => '$1 um $2', # user at time
+'history-feed-item-nocomment' => '$1 um $2',
 'history-feed-empty'          => 'Di aagforderet Syte git s nid. Villicht isch si glescht oder verschobe wore. [[Special:Search|Suech]] {{SITENAME}} fir neji Syte, wu passe.',
 
 # Revision deletion
@@ -1138,7 +1141,7 @@ prief di korrekt Installation vu latex, dvips, gs un convert',
 'prefs-custom-js'           => 'Benutzerdefiniert JS',
 
 # User rights
-'userrights'                  => 'Benutzerrächtsverwaltig', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Benutzerrächtsverwaltig',
 'userrights-lookup-user'      => 'Verwalt d Gruppezuegherigkeit',
 'userrights-user-editname'    => 'Benutzername:',
 'editusergroup'               => 'Ändere vo Benutzerrächt',
@@ -1468,8 +1471,8 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 'noimage'                   => 'Es git kei Datei mit däm Name, aber du chasch se $1.',
 'noimage-linktext'          => 'ufelade',
 'uploadnewversion-linktext' => 'E nöui Version vo dere Datei ufelade',
-'shared-repo-from'          => 'vu $1', # $1 is the repository name
-'shared-repo'               => 'eme gmeinsame Repositorium', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'vu $1',
+'shared-repo'               => 'eme gmeinsame Repositorium',
 
 # File reversion
 'filerevert'                => 'Zrucksetze vu „$1“',
@@ -1843,8 +1846,8 @@ Im $2 het s e Lischt vu dr letschte Leschige.',
 'alreadyrolled'    => 'Cha d Änderig uf [[:$1]] wu vu [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) gmacht wore sin, zruckneh, wel e andere Benutzer in dr Zwischenzyt s scho zruckgsetzt het oder suscht ebis an däre Syte gänderet het.
 
 Di letscht Änderig het [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) gmacht.',
-'editcomment'      => "D Änderigszämmefassig isch: „''$1''“.", # only shown if there is an edit comment
-'revertpage'       => 'Ruckgängig gmacht zue dr letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte Version vo [[User:$1|$1]] widerhergstellt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "D Änderigszämmefassig isch: „''$1''“.",
+'revertpage'       => 'Ruckgängig gmacht zue dr letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte Version vo [[User:$1|$1]] widerhergstellt',
 'rollback-success' => 'D Änderige vu $1 sin ruckgängig gmacht wore un di letscht Version vu $2 isch widerhärgstellt wore.',
 'sessionfailure'   => 'S het e Probläm mit em Ibertrage vu Dyyne Benutzerdate gee.
 Die Aktion isch wäge däm us Sicherheitsgrind abbroche wore go ne falschi Zueornig vu Dyyne Änderige zuen eme andere Benutzer verhindere.
@@ -1892,7 +1895,7 @@ Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d 
 ** Vylmol yybundeni Vorlag
 ** Syte mit ere hoche Bsuecherzahl',
 'protect-edit-reasonlist'     => 'Schutzgrind bearbeite',
-'protect-expiry-options'      => '1 Stund:1 hour,1 Tag:1 day,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Stund:1 hour,1 Tag:1 day,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite',
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöchi:',
 'minimum-size'                => 'Mindeschtgressi',
@@ -1968,7 +1971,7 @@ $1',
 'contributions-title' => 'Benutzerbyytreg vu „$1“',
 'mycontris'           => 'Myyni Byyträg',
 'contribsub2'         => 'Für $1 ($2)',
-'nocontribs'          => 'S sin keini Benutzerbyytreg mit däne Kriterie gfunde wore.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'S sin keini Benutzerbyytreg mit däne Kriterie gfunde wore.',
 'uctop'               => '(aktuell)',
 'month'               => 'u Monet:',
 'year'                => 'bis Jahr:',
@@ -2030,7 +2033,7 @@ Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr 
 'ipbenableautoblock'              => 'Sperr di aktuäll vu däm Benutzer brucht IP-Adräss un automatisch alli wytere, wun er nimmt go Syte bearbeite oder Benutzerchonte aalege',
 'ipbsubmit'                       => 'Adräss blockiere',
 'ipbother'                        => 'Anderi Duur (englisch):',
-'ipboptions'                      => '2 Stunde:2 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 Stunde:2 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite',
 'ipbotheroption'                  => 'Anderi Duur',
 'ipbotherreason'                  => 'Anderi/zuesätzligi Begrindig:',
 'ipbhidename'                     => 'Benutzername in dr Lischt vu aktive Sperrine un im Benutzerverzeichnis verstecke.',
@@ -2144,7 +2147,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'move-watch'                   => 'Die Syte beobachte',
 'movepagebtn'                  => 'Artikel verschiebe',
 'pagemovedsub'                 => 'Verschiebig erfolgrych',
-'movepage-moved'               => '<big>\'\'\'"$1" isch verschobe wore uf "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" isch verschobe wore uf "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'E Wyterleitig isch aagleit wore.',
 'movepage-moved-noredirect'    => 'D Erstellig vonere Wyterleitig isch unterdruggt worde.',
 'articleexists'                => 'E Syte mit däm Name git s scho oder de Name isch nid giltig. Bitte nimm en andere.',
@@ -2338,7 +2341,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonyme Benutzer|Anonymi Benutzer}} uff {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutzer $1',
-'lastmodifiedatby' => 'Diese Seite wurde zuletzt geändert um $2, $1 von $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Diese Seite wurde zuletzt geändert um $2, $1 von $3.',
 'othercontribs'    => 'Basiert auf der Arbeit von $1.',
 'others'           => 'anderi',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
@@ -2450,7 +2453,7 @@ Anderi Metadate sy standardmäßig versteckt.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breiti',
@@ -2577,14 +2580,14 @@ Anderi Metadate sy standardmäßig versteckt.
 
 'exif-unknowndate' => 'Nit bekannt Datum',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Horizontal gspieglet', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Um 180° drillt', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Vertikal gspieglet', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Gege dr Uhrzeigersinn um 90° drillt un derno vertikal gspieglet', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Um 90° im Uhrzeigersinn drillt', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Um 90° im Uhrzeigersinn drillt un derno vertikal gspieglet', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Um 90° gege dr Uhrzeigersinn drillt', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Horizontal gspieglet',
+'exif-orientation-3' => 'Um 180° drillt',
+'exif-orientation-4' => 'Vertikal gspieglet',
+'exif-orientation-5' => 'Gege dr Uhrzeigersinn um 90° drillt un derno vertikal gspieglet',
+'exif-orientation-6' => 'Um 90° im Uhrzeigersinn drillt',
+'exif-orientation-7' => 'Um 90° im Uhrzeigersinn drillt un derno vertikal gspieglet',
+'exif-orientation-8' => 'Um 90° gege dr Uhrzeigersinn drillt',
 
 'exif-planarconfiguration-1' => 'Grobformat',
 'exif-planarconfiguration-2' => 'Planarformat',
@@ -2849,7 +2852,7 @@ Du chasch au d [[Special:Watchlist/edit|Standard-Bearbeitigssyte]] bruuche.',
 'duplicate-defaultsort' => 'Obacht: Dr Sortierigsschlüssel „$2“ iberschrybt dr vorig brucht Schlüssel „$1“.',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Installierti Erwyterige',
 'version-specialpages'             => 'Spezialsyte',
 'version-parserhooks'              => 'Parser-Schnittstelle',

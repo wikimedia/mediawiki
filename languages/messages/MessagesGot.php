@@ -1,6 +1,9 @@
 <?php
 /** Gothic (Gothic)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -217,7 +220,7 @@ $messages = array(
 # History pages
 'currentrev'          => 'Nu máideins',
 'revisionasof'        => 'Gamelido us $1',
-'revision-info'       => 'Máideins fram $1 bi $2', # Additionally available: $3: revision id
+'revision-info'       => 'Máideins fram $1 bi $2',
 'previousrevision'    => '←Áiris Máideins',
 'nextrevision'        => 'Iftuma máideins→',
 'currentrevisionlink' => 'Numáideins',
@@ -230,7 +233,7 @@ $messages = array(
 'histlast'            => 'Spedumists',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 at $2', # user at time
+'history-feed-item-nocomment' => '$1 at $2',
 
 # Diffs
 'history-title' => 'Árismáideins af "$1"',

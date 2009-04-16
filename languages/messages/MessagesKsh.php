@@ -1,6 +1,9 @@
 <?php
 /** Ripoarisch (Ripoarisch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -301,7 +304,7 @@ $messages = array(
 'category-media-header'          => 'Dateie en de Saachjrupp "$1"',
 'category-empty'                 => "''En dä Saachjrupp hee sin kein Sigge un kein Dateie.''",
 'hidden-categories'              => 'Verstoche Saachjrupp{{PLURAL:$1||e|e}}',
-'hidden-category-category'       => 'Verstoche Saachjruppe', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Verstoche Saachjruppe',
 'category-subcat-count'          => 'En dä Saachrupp hee {{PLURAL:$2|es ein Ungerjrupp dren:|sin $2 Ungerjruppe dren, {{PLURAL:$1|un dovun weed hee nur ein|un dovun weede $1 hee|ävver dovun weed hee keine}} aanjezeich:|sin kein Ungerjruppe dren.}}',
 'category-subcat-count-limited'  => 'En dä Saachrupp hee {{PLURAL:$1|es ein Ungerjrupp dren:|sin $1 Ungerjruppe dren:|sin kein Ungerjruppe dren.}}',
 'category-article-count'         => 'En dä Saachrupp hee {{PLURAL:$2|es ein Sigg dren:|sin $2 Sigge dren, {{PLURAL:$1|un dovun weed hee nur ein|un dovun weede $1 hee|ävver dovun weed hee keine}} aanjezeich:|sin kein Sigge dren.}}',
@@ -391,7 +394,7 @@ Em Appachtemang <span class="plainlinks">[{{fullurl:Special:AllPages|namespace={
 'otherlanguages'    => 'En ander Sproche',
 'redirectedfrom'    => '(Ömjeleit vun $1)',
 'redirectpagesub'   => 'Ömleitungssigg',
-'lastmodifiedat'    => 'Die Sigg hee wood et letz jeändert aam $1 öm $2 Uhr.', # $1 date, $2 time
+'lastmodifiedat'    => 'Die Sigg hee wood et letz jeändert aam $1 öm $2 Uhr.',
 'viewcount'         => 'De Sigg es bes jetz {{PLURAL:$1|eimol|$1 Mol|keijmol}} avjerofe woode.',
 'protectedpage'     => 'Jeschötzte Sigg',
 'jumpto'            => 'Jangk noh:',
@@ -993,7 +996,7 @@ Als Jrund för et Sperre es enjedraare: ''$2''",
 'currentrev'             => 'Neuste Version',
 'currentrev-asof'        => 'De neuste Version fum $1',
 'revisionasof'           => 'Version vum $1',
-'revision-info'          => 'Dat es de Version vum $1 vum $2.', # Additionally available: $3: revision id
+'revision-info'          => 'Dat es de Version vum $1 vum $2.',
 'previousrevision'       => '← De Version dovör zeije',
 'nextrevision'           => 'De Version donoh zeije →',
 'currentrevisionlink'    => 'De neuste Version',
@@ -1022,7 +1025,7 @@ Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 # Revision feed
 'history-feed-title'          => 'De Versione',
 'history-feed-description'    => 'Ählere Versione vun dä Sigg en de {{SITENAME}}',
-'history-feed-item-nocomment' => '$1 öm $2', # user at time
+'history-feed-item-nocomment' => '$1 öm $2',
 'history-feed-empty'          => 'De aanjefrochte Sigg jitt et nit. Künnt sin, dat se enzwesche fottjeschmesse udder ömjenannt woode es. Kanns jo ens [[Special:Search|em Wiki söke looße]], öm de zopass, neu Sigge ze finge.',
 
 # Revision deletion
@@ -1349,7 +1352,7 @@ de Versione uß de Fojangeheit, un de Logbööcher — als Standad:',
 'prefs-custom-js'           => 'Selfsjemaat JavaSkipp',
 
 # User rights
-'userrights'                  => 'Metmaacher ehr Räächde verwalte', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Metmaacher ehr Räächde verwalte',
 'userrights-lookup-user'      => 'Metmaacher Jruppe verwalte',
 'userrights-user-editname'    => 'Metmaacher Name:',
 'editusergroup'               => 'Däm Metmaacher sing Jruppe Räächde bearbeide',
@@ -1735,8 +1738,8 @@ Dat sellve shteiht hee dronger.',
 'noimage'                   => 'Mer han kein Datei met däm Name, kanns De ävver $1.',
 'noimage-linktext'          => 'huhlade!',
 'uploadnewversion-linktext' => 'Dun en neu Version vun dä Datei huhlade',
-'shared-repo-from'          => 'uß $1', # $1 is the repository name
-'shared-repo'               => 'ene jemeinsame Beshtand', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'uß $1',
+'shared-repo'               => 'ene jemeinsame Beshtand',
 
 # File reversion
 'filerevert'                => '„$1“ zerök holle',
@@ -2157,8 +2160,8 @@ Do kanns hee noh Hölp luure:
 'alreadyrolled'    => 'Mer künne de letzte Änderunge vun dä Sigg „[[:$1]]“ vum Metmaacher „[[User:$2|$2]]“ ([[User talk:$2|Klaaf]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) nimieh zeröcknemme, dat hät ene Andere enzwesche ald jedon, udder de Sigg ömjeändert.
 
 De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]“ ([[User talk:$3|Klaaf]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Bei dä Änderung stundt: „''$1''“.", # only shown if there is an edit comment
-'revertpage'       => 'Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmesse, un doför de letzte Version vum „[[User:$1|$1]]“ widder zeröckjehollt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Bei dä Änderung stundt: „''$1''“.",
+'revertpage'       => 'Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmesse, un doför de letzte Version vum „[[User:$1|$1]]“ widder zeröckjehollt',
 'rollback-success' => 'De Änderungen vum $1 zeröckjenumme, un dobei de letzte Version vum $2 widder jehollt.',
 'sessionfailure'   => "Et jov wall e technisch Problem met Dingem Login. Dröm ha'mer dat us Vörsich jetz nit jemaht, domet mer nit villeich Ding Änderung däm verkihrte Metmaacher ungerjubele. Jangk zeröck un versök et noch ens.",
 
@@ -2204,7 +2207,7 @@ Di Sigg '''„$1“:''' es jetz jrad:",
 ** Hen- un her-Änderei, woh mer süht, dat nix mieh joods erus kumme weed
 ** janz weschtejje Sigg, met ußerjewöhnlesch fill Afroofe',
 'protect-edit-reasonlist'     => 'Don de Grönd för t Schöze beärrbeide',
-'protect-expiry-options'      => '1 Stund:1 hour,2 Stund:2 hours,3 Stund:3 hours,6 Stund:6 hours,12 Stund:12 hours,1 Dach:1 day,3 Däch:3 days,1 Woch:1 week,2 Woche:2 weeks,3 Woche:3 weeks,1 Mond:1 month,3 Mond:3 months,6 Mond:6 months,9 Mond:9 months,1 Johr:1 year,2 Johre:2 years,3 Johre:3 years,Unbejrenz:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Stund:1 hour,2 Stund:2 hours,3 Stund:3 hours,6 Stund:6 hours,12 Stund:12 hours,1 Dach:1 day,3 Däch:3 days,1 Woch:1 week,2 Woche:2 weeks,3 Woche:3 weeks,1 Mond:1 month,3 Mond:3 months,6 Mond:6 months,9 Mond:9 months,1 Johr:1 year,2 Johre:2 years,3 Johre:3 years,Unbejrenz:infinite',
 'restriction-type'            => 'jespecht es:',
 'restriction-level'           => 'ändere darf:',
 'minimum-size'                => 'met mieh wie',
@@ -2283,7 +2286,7 @@ $1',
 'contributions-title' => 'Beidräsch fum  $1',
 'mycontris'           => 'ming Beidräch',
 'contribsub2'         => 'För dä Metmaacher: $1 ($2)',
-'nocontribs'          => 'Mer han kein Änderunge jefonge, en de Logböcher, die do passe däte.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Mer han kein Änderunge jefonge, en de Logböcher, die do passe däte.',
 'uctop'               => ' (Neuste)',
 'month'               => 'un Moohnt:',
 'year'                => 'Beß Johr:',
@@ -2347,7 +2350,7 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'ipbenableautoblock'              => 'Dun automatisch de letzte IP-Adress sperre, die dä Metmaacher jehatt hät, un och all die IP-Adresse, vun wo dä versök, jet ze ändere.',
 'ipbsubmit'                       => 'Dun dä Metmaacher sperre',
 'ipbother'                        => 'För en ander Duur:',
-'ipboptions'                      => '1 Stund:1 hour,2 Stund:2 hours,3 Stund:3 hours,6 Stund:6 hours,12 Stund:12 hours,1 Dach:1 day,3 Däch:3 days,1 Woch:1 week,2 Woche:2 weeks,3 Woche:3 weeks,1 Mond:1 month,3 Mond:3 months,6 Mond:6 months,9 Mond:9 months,1 Johr:1 year,2 Johre:2 years,3 Johre:3 years,Unbejrenz:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '1 Stund:1 hour,2 Stund:2 hours,3 Stund:3 hours,6 Stund:6 hours,12 Stund:12 hours,1 Dach:1 day,3 Däch:3 days,1 Woch:1 week,2 Woche:2 weeks,3 Woche:3 weeks,1 Mond:1 month,3 Mond:3 months,6 Mond:6 months,9 Mond:9 months,1 Johr:1 year,2 Johre:2 years,3 Johre:3 years,Unbejrenz:infinite',
 'ipbotheroption'                  => 'Söns wie lang',
 'ipbotherreason'                  => 'Ander Jrund oder Zosätzlich:',
 'ipbhidename'                     => 'Don däm Metmaacher singe Name versteiche, en de Leste un däm sing Änderunge.',
@@ -2481,7 +2484,7 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'move-watch'                   => 'Op die Sigg hee oppasse',
 'movepagebtn'                  => 'Ömnenne',
 'pagemovedsub'                 => 'Dat Ömnenne hät jeflupp',
-'movepage-moved'               => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>",
 'movepage-moved-redirect'      => 'En Ömleidung es aanjelaat woode.',
 'movepage-moved-noredirect'    => 'Kein Ömleidung woodt aanjelaat.',
 'articleexists'                => "De Sigg met däm Name jitt et ald, oder dä Name ka'mer oder darf mer nit bruche.<br />Do muss Der ene andere Name ussöke.",
@@ -2714,7 +2717,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 # Attribution
 'anonymous'        => 'Namelose {{PLURAL:$1|Metmaacher|Metmaacher|Metmaacher}} vun de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-{{GENDER:$1|Metmaacher|Metmaacheren|Metmaacher|Metmaacher|Metmaacheren}} $1',
-'lastmodifiedatby' => 'Die Sigg hee wood et letz am $1 öm $2 Uhr vum $3 jeändert.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Die Sigg hee wood et letz am $1 öm $2 Uhr vum $3 jeändert.',
 'othercontribs'    => 'Baut op de Arbeid vun „<strong>$1</strong>“ op.',
 'others'           => 'ander',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Metmaacher|Metmaacher|Metmaacher}}: $1',
@@ -2838,7 +2841,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breejd',
@@ -2968,14 +2971,14 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 
 'exif-unknowndate' => 'Dattum onbikannt',
 
-'exif-orientation-1' => 'Nommaal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Op der Kopp jespeejelt', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Op der Kopp jedrieht', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Links-Räähß jespeejelt', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'En Veedelsdriejong mem Uhrzeijer un dann links-räähß jespeejelt', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'En Veedelsdriejong mem Uhrzeijer', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'En Veedelsdriejong jääje der Uhrzeijer un dann links-räähß jespeejelt', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'En Veedelsdriejong jääje der Uhrzeijer', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Nommaal',
+'exif-orientation-2' => 'Op der Kopp jespeejelt',
+'exif-orientation-3' => 'Op der Kopp jedrieht',
+'exif-orientation-4' => 'Links-Räähß jespeejelt',
+'exif-orientation-5' => 'En Veedelsdriejong mem Uhrzeijer un dann links-räähß jespeejelt',
+'exif-orientation-6' => 'En Veedelsdriejong mem Uhrzeijer',
+'exif-orientation-7' => 'En Veedelsdriejong jääje der Uhrzeijer un dann links-räähß jespeejelt',
+'exif-orientation-8' => 'En Veedelsdriejong jääje der Uhrzeijer',
 
 'exif-planarconfiguration-1' => 'Dat Fomaat es en Stöckscher',
 'exif-planarconfiguration-2' => 'Dat Fomaat es flaach',
@@ -3312,7 +3315,7 @@ De könnts Ding Oppassliss ävver och [[Special:Watchlist/edit|övver e Fomulaa 
 Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlößel „$2“.",
 
 # Special:Version
-'version'                          => 'Version vun de Wiki Soffwär zeije', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version vun de Wiki Soffwär zeije',
 'version-extensions'               => 'Installeete Erjänzunge un Zohsätz',
 'version-specialpages'             => 'Sondersigge',
 'version-parserhooks'              => 'De Parser-Hooke',

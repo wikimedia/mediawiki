@@ -1,6 +1,9 @@
 <?php
 /** Upper Sorbian (Hornjoserbsce)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -238,7 +241,7 @@ $messages = array(
 'category-media-header'          => 'Dataje w kategoriji „$1”',
 'category-empty'                 => "''Tuta kategorija tuchwilu žane nastawki abo medije njewobsahuje.''",
 'hidden-categories'              => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowanych kategorijow}}',
-'hidden-category-category'       => 'Schowane kategorije', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Schowane kategorije',
 'category-subcat-count'          => '{{PLURAL:$2|Tuta kategorija ma jenož slědowacu podkategoriju.|Tuta kategorija ma {{PLURAL:$1|slědowacu podkategoriju|$1 slědowacej podkategoriji|$1 slědowace podkategorije|$1 slědowacych podkategorijow}} z dohromady $2.}}',
 'category-subcat-count-limited'  => 'Tuta kategorija ma {{PLURAL:$1|slědowacu podkategoriju|slědowacej $1 podkategoriji|slědowace $1 podkategorije|slědowacych $1 podkategorijow}}:',
 'category-article-count'         => '{{PLURAL:$2|Tuta kategorija wobsahuje jenož slědowacu stronu.|{{PLURAL:$1|Slědowaca strona je|Slědowacej $1 stronje stej|Slědowace $1 strony su|Slědowacych $1 stronow je}} w tutej kategoriji z dohromady $2.}}',
@@ -325,7 +328,7 @@ $messages = array(
 'otherlanguages'    => 'W druhich rěčach',
 'redirectedfrom'    => '(ze strony „$1” sposrědkowane)',
 'redirectpagesub'   => 'Daleposrědkowanje',
-'lastmodifiedat'    => 'Strona bu posledni raz dnja $1 w $2 hodź. změnjena.', # $1 date, $2 time
+'lastmodifiedat'    => 'Strona bu posledni raz dnja $1 w $2 hodź. změnjena.',
 'viewcount'         => 'Strona bu {{PLURAL:$1|jónu|dwójce|$1 razy|$1 razow}} wopytana.',
 'protectedpage'     => 'Škitana strona',
 'jumpto'            => 'Dźi do:',
@@ -791,7 +794,7 @@ Přičina za blokowanje, podata wot $3, je: ''$2''",
 'currentrev'             => 'Aktualna wersija',
 'currentrev-asof'        => 'Aktualna wersija wot $1',
 'revisionasof'           => 'Wersija z $1',
-'revision-info'          => 'Wersija z $1 wužiwarja $2', # Additionally available: $3: revision id
+'revision-info'          => 'Wersija z $1 wužiwarja $2',
 'previousrevision'       => '←starša wersija',
 'nextrevision'           => 'nowša wersija→',
 'currentrevisionlink'    => 'Aktualnu wersiju pokazać',
@@ -813,7 +816,7 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 # Revision feed
 'history-feed-title'          => 'Stawizny wersijow',
 'history-feed-description'    => 'Stawizny wersijow za tutu stronu w {{GRAMMAR:lokatiw|{{SITENAME}}}}',
-'history-feed-item-nocomment' => '$1 w $2 hodź.', # user at time
+'history-feed-item-nocomment' => '$1 w $2 hodź.',
 'history-feed-empty'          => 'Strona, kotruž sy požadał, njeeksistuje. Bu snano z wikija wotstronjena abo přesunjena. Móžeš tu [[Special:Search|w {{SITENAME}}]] za stronami z podobnym titulom pytać.',
 
 # Revision deletion
@@ -1127,7 +1130,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'prefs-custom-js'           => 'Swójski JS',
 
 # User rights
-'userrights'                  => 'Zrjadowanje wužiwarskich prawow', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Zrjadowanje wužiwarskich prawow',
 'userrights-lookup-user'      => 'Wužiwarske skupiny zrjadować',
 'userrights-user-editname'    => 'Wužiwarske mjeno:',
 'editusergroup'               => 'Wužiwarske skupiny wobdźěłać',
@@ -1472,8 +1475,8 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'noimage'                   => 'Dataja z tutym mjenom njeeksistuje, ale móžeš $1.',
 'noimage-linktext'          => 'nahrać',
 'uploadnewversion-linktext' => 'nowu wersiju tuteje dataje nahrać',
-'shared-repo-from'          => 'z $1', # $1 is the repository name
-'shared-repo'               => 'zhromadny repozitorij', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'z $1',
+'shared-repo'               => 'zhromadny repozitorij',
 
 # File reversion
 'filerevert'                => 'Wersiju $1 cofnyć',
@@ -1847,8 +1850,8 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 'alreadyrolled'    => 'Njemóžno poslednu změnu [[:$1]] přez wužiwarja [[User:$2|$2]] ([[User talk:$2|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) cofnyć; něchtó druhi je stronu wobdźěłał abo změnu hižo cofnył.
 
 Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Zjeće wobdźěłanja bě: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Zjeće wobdźěłanja bě: \"''\$1''\".",
+'revertpage'       => 'Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]',
 'rollback-success' => 'Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.',
 'sessionfailure'   => 'Zda so, zo je problem z twojim přizjewjenjom; tuta akcija bu wěstosće dla přećiwo zadobywanju do posedźenja znjemóžniła. Prošu klikń na "Wróćo" a začitaj stronu, z kotrejež přińdźeš, znowa; potom spytaj hišće raz.',
 
@@ -1893,7 +1896,7 @@ Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych str
 ** Wobdźěłanska wójna
 ** Strona z jara wjele změnami',
 'protect-edit-reasonlist'     => 'Škitowe přičiny wobdźěłać',
-'protect-expiry-options'      => '1 hodźinu:1 hour,1 dźeń:1 day,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hodźinu:1 hour,1 dźeń:1 day,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:infinite',
 'restriction-type'            => 'Škitowy status',
 'restriction-level'           => 'Runina škita:',
 'minimum-size'                => 'Minimalna wulkosć:',
@@ -1968,7 +1971,7 @@ $1',
 'contributions-title' => 'Wužiwarske přinoški wot „$1“',
 'mycontris'           => 'Moje přinoški',
 'contribsub2'         => 'za wužiwarja $1 ($2)',
-'nocontribs'          => 'Žane změny, kotrež podatym kriterijam wotpowěduja.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Žane změny, kotrež podatym kriterijam wotpowěduja.',
 'uctop'               => '(aktualnje)',
 'month'               => 'wot měsaca (a do toho):',
 'year'                => 'wot lěta (a do toho):',
@@ -2028,7 +2031,7 @@ $1',
 'ipbenableautoblock'              => 'IP-adresy blokować kiž buchu přez tutoho wužiwarja hižo wužiwane kaž tež naslědne adresy, z kotrychž so wobdźěłanje pospytuje',
 'ipbsubmit'                       => 'Wužiwarja zablokować',
 'ipbother'                        => 'Druha doba',
-'ipboptions'                      => '2 hodźinje:2 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 hodźinje:2 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:infinite',
 'ipbotheroption'                  => 'druha doba (jendźelsce)',
 'ipbotherreason'                  => 'Druha/přidatna přičina:',
 'ipbhidename'                     => 'Wužiwarske mjeno stawiznach a lisćinach schować',
@@ -2147,7 +2150,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'move-watch'                   => 'Stronu wobkedźbować',
 'movepagebtn'                  => 'Stronu přesunyć',
 'pagemovedsub'                 => 'Přesunjenje wuspěšne',
-'movepage-moved'               => '<big>\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'</big>',
 'movepage-moved-redirect'      => 'Daleposrědkowanje je so wutworiło.',
 'movepage-moved-noredirect'    => 'Wutworjenje daleposrědkowanja bu potłóčene.',
 'articleexists'                => 'Strona z tutym mjenom hižo eksistuje abo mjeno, kotrež sy wuzwolił, płaćiwe njeje. Prošu wuzwol druhe mjeno.',
@@ -2352,7 +2355,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymny wužiwar|Anonymnaj wužiwarjej|Anonymni wužiwarjo|Anonymni wužiwarjo}} we {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'siteuser'         => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}} $1',
-'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot wužiwarja $3 změnjena.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot wužiwarja $3 změnjena.',
 'othercontribs'    => 'Na zakładźe dźěła wužiwarja $1.',
 'others'           => 'druhich',
 'siteusers'        => '{{SITENAME}}  {{PLURAL:$2|wužiwar|wužiwarjej|wužiwarjo|wužiwarjow}} $1',
@@ -2472,7 +2475,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šěrokosć',
@@ -2599,14 +2602,14 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 
 'exif-unknowndate' => 'Njeznaty datum',
 
-'exif-orientation-1' => 'Normalnje', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Wodorunje wobroćeny', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° zwjertnjeny', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Padorunje wobroćeny', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '90° přećiwo směrej časnika zwjertneny a padorunje wobroćeny', # 0th row: left; 0th column: top
-'exif-orientation-6' => '90° w směrje časnika zwjertnjeny', # 0th row: right; 0th column: top
-'exif-orientation-7' => '90° w směrje časnika zwjertnjeny a padorunje wobroćeny', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '90° přećiwo směrej časnika zwjertnjeny', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normalnje',
+'exif-orientation-2' => 'Wodorunje wobroćeny',
+'exif-orientation-3' => '180° zwjertnjeny',
+'exif-orientation-4' => 'Padorunje wobroćeny',
+'exif-orientation-5' => '90° přećiwo směrej časnika zwjertneny a padorunje wobroćeny',
+'exif-orientation-6' => '90° w směrje časnika zwjertnjeny',
+'exif-orientation-7' => '90° w směrje časnika zwjertnjeny a padorunje wobroćeny',
+'exif-orientation-8' => '90° přećiwo směrej časnika zwjertnjeny',
 
 'exif-planarconfiguration-1' => 'Škropawy format',
 'exif-planarconfiguration-2' => 'Płony format',
@@ -2874,7 +2877,7 @@ Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wu�
 'duplicate-defaultsort' => 'Warnowanje: Standardny sortěrowonski kluč (DEFAULTSORTKEY) "$2" přepisa prjedawšu sortěrowanski kluč "$1".',
 
 # Special:Version
-'version'                          => 'Wersija', # Not used as normal message but as header for the special page itself
+'version'                          => 'Wersija',
 'version-extensions'               => 'Instalowane rozšěrjenja',
 'version-specialpages'             => 'Specialne strony',
 'version-parserhooks'              => 'Parserowe hoki',

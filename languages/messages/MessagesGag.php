@@ -1,6 +1,9 @@
 <?php
 /** Gagauz (Gagauz)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -190,7 +193,7 @@ $messages = array(
 'otherlanguages'    => 'Übür diller',
 'redirectedfrom'    => '($1 sayfasınnan yönnendirildi)',
 'redirectpagesub'   => 'Yönnendirme sayfası',
-'lastmodifiedat'    => 'Bu sayfa bitki kerä $2, $1 datasında enilendi.', # $1 date, $2 time
+'lastmodifiedat'    => 'Bu sayfa bitki kerä $2, $1 datasında enilendi.',
 'viewcount'         => 'Bu sayfaya $1 kerä girildi.',
 'protectedpage'     => 'Korunmaklı sayfa',
 'jumpto'            => 'Git hem:',
@@ -449,7 +452,7 @@ Sayfanın silmää jurnalı raatlık için yazılêr burada:",
 'viewpagelogs'        => 'Bu yaprak için jurnalları göster',
 'currentrev'          => 'Şindiki versiya',
 'revisionasof'        => 'Sayfanın $1 datasındaki hali',
-'revision-info'       => '$1; $2 datalı versiya', # Additionally available: $3: revision id
+'revision-info'       => '$1; $2 datalı versiya',
 'previousrevision'    => '← İlerki hali',
 'nextrevision'        => 'Geerki hali →',
 'currentrevisionlink' => 'en bitki halini göster',
@@ -469,7 +472,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 
 # Revision feed
 'history-feed-title'          => 'Diişmäk istoriyası',
-'history-feed-item-nocomment' => ' $2de $1', # user at time
+'history-feed-item-nocomment' => ' $2de $1',
 
 # Revision deletion
 'rev-deleted-comment' => '(yorum silindi)',
@@ -709,7 +712,7 @@ Burada bitki seçimner '''$1''' yazı diiştirmää deyni:",
 'protect-expiring'            => 'bitmää datası $1 (UTC)',
 'protect-cascade'             => 'Bu sayfaya girän sayfaları koru (kaskad korunmaa)',
 'protect-cantedit'            => 'Siz bu yazının korunmak düzeyin bilmärsiniz diiştirmää, neçin ki sizin onu düzmää izniniz yok.',
-'protect-expiry-options'      => '15 minut:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 afta:1 week,1 ay:1 month,zamansız:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '15 minut:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 afta:1 week,1 ay:1 month,zamansız:infinite',
 'restriction-type'            => 'İzin:',
 'restriction-level'           => 'Yasaklama düzeyi:',
 
@@ -746,7 +749,7 @@ Burada bitki seçimner '''$1''' yazı diiştirmää deyni:",
 
 # Block/unblock
 'blockip'       => 'Bu kullanıcıya köstek ol',
-'ipboptions'    => '15 minut:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 afta:1 week,1 ay:1 month,zamansız:infinite', # display1:time1,display2:time2,...
+'ipboptions'    => '15 minut:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 afta:1 week,1 ay:1 month,zamansız:infinite',
 'ipblocklist'   => 'Köstekli kullanıcılar hem IP adresleri listası',
 'blocklink'     => 'köstek ol',
 'unblocklink'   => 'köstek kaldır',
@@ -876,7 +879,7 @@ Sadä listadaki êlementlarä (* nışannan çekedän liniyalar) bakılacêk. Li
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Kompyuterinizdäki uygulamaklarlan faylı düz',
@@ -893,7 +896,7 @@ Sadä listadaki êlementlarä (* nışannan çekedän liniyalar) bakılacêk. Li
 'watchlisttools-raw'  => 'Ham siir listasını düz',
 
 # Special:Version
-'version' => 'Versiya', # Not used as normal message but as header for the special page itself
+'version' => 'Versiya',
 
 # Special:SpecialPages
 'specialpages' => 'Maasus sayfalar',

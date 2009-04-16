@@ -1,6 +1,9 @@
 <?php
 /** Sanskrit (संस्कृत)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -389,7 +392,7 @@ $messages = array(
 'page_last'           => 'अन्तिम',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 उप $2', # user at time
+'history-feed-item-nocomment' => '$1 उप $2',
 
 # Diffs
 'lineno'   => 'रेखा $1:',
@@ -523,7 +526,7 @@ $messages = array(
 'autosumm-new' => 'नवीन पृष्ठं: $1',
 
 # Special:Version
-'version' => 'आवृत्ति', # Not used as normal message but as header for the special page itself
+'version' => 'आवृत्ति',
 
 # Special:SpecialPages
 'specialpages' => 'विशेष पृष्ठ',

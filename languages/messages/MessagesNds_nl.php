@@ -1,6 +1,9 @@
 <?php
 /** Nedersaksisch (Nedersaksisch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -389,7 +392,7 @@ $messages = array(
 'category-media-header'          => 'Media in kattegerie "$1"',
 'category-empty'                 => "''Disse kattegerie bevat op 't mement nog gien artikels of media.''",
 'hidden-categories'              => 'Verbörgen {{PLURAL:$1|kattegerie|kattegerieën}}',
-'hidden-category-category'       => 'Verbörgen kattegerieën', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Verbörgen kattegerieën',
 'category-subcat-count'          => '{{PLURAL:$2|Disse kattegerie hef de volgende subkattegerie.|Disse kattegerie hef de volgende {{PLURAL:$1|subkattegerie|$1 subkattegerieën}}, van een totaal van $2.}}',
 'category-subcat-count-limited'  => 'Disse kattegerie hef de volgende {{PLURAL:$1|subkattegerie|$1 subkattegerieën}}.',
 'category-article-count'         => "{{PLURAL:$2|Disse kattegerie bevat de volgende pagina.|Disse kattegerie bevat de volgende {{PLURAL:$1|pagina|$1 pagina's}}, van in totaal $2.}}",
@@ -475,7 +478,7 @@ $messages = array(
 'otherlanguages'    => "Interwiki's",
 'redirectedfrom'    => '(deur-estuurd vanof "$1")',
 'redirectpagesub'   => 'Deurstuurpagina',
-'lastmodifiedat'    => "Disse pagina is 't les ewiezig op $1 um $2.", # $1 date, $2 time
+'lastmodifiedat'    => "Disse pagina is 't les ewiezig op $1 um $2.",
 'viewcount'         => 'Disse pagina is $1 {{PLURAL:$1|keer|keer}} bekeken.',
 'protectedpage'     => 'Beveiligen pagina',
 'jumpto'            => 'Gao naor:',
@@ -960,7 +963,7 @@ De deur $3 op-egeven rejen is ''$2''",
 'currentrev'             => 'Leste versie',
 'currentrev-asof'        => 'Leste versie van $1',
 'revisionasof'           => 'Versie op $1',
-'revision-info'          => 'Versie op $1 van $2', # Additionally available: $3: revision id
+'revision-info'          => 'Versie op $1 van $2',
 'previousrevision'       => '&larr; eerdere versie',
 'nextrevision'           => 'niejere versie &rarr;',
 'currentrevisionlink'    => "versie zoas 't noen is",
@@ -980,7 +983,7 @@ De deur $3 op-egeven rejen is ''$2''",
 # Revision feed
 'history-feed-title'          => 'Wiezigingsoverzichte',
 'history-feed-description'    => 'Wiezigingsoverzichte veur disse pagina op de wiki',
-'history-feed-item-nocomment' => '$1 op $2', # user at time
+'history-feed-item-nocomment' => '$1 op $2',
 'history-feed-empty'          => "De op-evreugen pagina besteet neet. 't Is meugelijk dat disse pagina vort-edaon is of dat 't herneumd is. Prebeer te [[Special:Search|zeuken]] veur relevante nieje pagina's.",
 
 # Revision deletion
@@ -1289,7 +1292,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'prefs-custom-js'           => 'Persoonlijke JS',
 
 # User rights
-'userrights'                  => 'Gebrukersrechenbeheer', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Gebrukersrechenbeheer',
 'userrights-lookup-user'      => 'Beheer gebrukersgroepen',
 'userrights-user-editname'    => 'Vul een gebrukersnaam in:',
 'editusergroup'               => 'Bewark gebrukersgroepen',
@@ -1625,8 +1628,8 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'noimage'                   => "Der besteet gien bestand mit disse naam, je kunnen 't $1.",
 'noimage-linktext'          => 'toevoegen',
 'uploadnewversion-linktext' => 'Een niejere versie van dit bestand toevoegen.',
-'shared-repo-from'          => 'uut $1', # $1 is the repository name
-'shared-repo'               => 'een edelen mediadatabanke', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'uut $1',
+'shared-repo'               => 'een edelen mediadatabanke',
 
 # File reversion
 'filerevert'                => '$1 weerummedreien',
@@ -2008,8 +2011,8 @@ Wees veurzichtig",
 Een aander hef disse pagina al bewark of hersteld naor een eerdere versie.
 
 De leste bewarking op disse pagina is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "De bewarkingssamenvatting was: ''$1''.", # only shown if there is an edit comment
-'revertpage'       => 'Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "De bewarkingssamenvatting was: ''$1''.",
+'revertpage'       => 'Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur $1',
 'rollback-success' => 'Wiezigingen van $1; weerummedreid naor de leste versie van $2.',
 'sessionfailure'   => 'Der is een prebleem mit joew anmeldsessie. De actie is stop-ezet uut veurzörg tegen een beveiligingsrisico (dat besteet uut \'t meugelijke "kraken" van disse sessie). Gao een pagina weerumme, laot disse pagina opniej en prebeer \'t nog es.',
 
@@ -2055,7 +2058,7 @@ Hier staon de instellingen zoas ze noen bin veur de pagina '''$1''':",
 ** Bewarkingsoorlog
 ** Preventieve beveiliging veulbezochen pagina',
 'protect-edit-reasonlist'     => 'Rejens veur beveiliging bewarken',
-'protect-expiry-options'      => '1 uur:1 hour,1 dag:1 day,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbepark:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 uur:1 hour,1 dag:1 day,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbepark:infinite',
 'restriction-type'            => 'Toegang',
 'restriction-level'           => 'Beveiligingsnivo',
 'minimum-size'                => 'Minimumgrootte (bytes)',
@@ -2133,7 +2136,7 @@ $1",
 'contributions-title' => 'Biedragen van $1',
 'mycontris'           => 'Mien biedragen',
 'contribsub2'         => 'Veur $1 ($2)',
-'nocontribs'          => 'Gien wiezigingen evunnen dee an de estelde criteria voldoon.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Gien wiezigingen evunnen dee an de estelde criteria voldoon.',
 'uctop'               => ' (leste wieziging)',
 'month'               => 'Maond:',
 'year'                => 'Jaor:',
@@ -2192,7 +2195,7 @@ $1",
 'ipbenableautoblock'              => 'De IP-adressen van disse gebruker vanzelf blokkeren',
 'ipbsubmit'                       => 'adres blokkeren',
 'ipbother'                        => 'Aandere tied',
-'ipboptions'                      => '2 uren:2 hours,1 dag:1 day,3 dagen:3 days,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbepark:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 uren:2 hours,1 dag:1 day,3 dagen:3 days,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbepark:infinite',
 'ipbotheroption'                  => 'aanders',
 'ipbotherreason'                  => 'Aandere/extra rejen:',
 'ipbhidename'                     => 'Verbarg de gebrukersnaam in bewarkingen en liesten',
@@ -2309,7 +2312,7 @@ Vergeet neet de [[Special:UnlockDB|databanke vrie te geven]] a-j klaor bin mit '
 'move-watch'                   => 'volg disse pagina',
 'movepagebtn'                  => 'Herneum',
 'pagemovedsub'                 => 'Naamwieziging succesvol',
-'movepage-moved'               => '<big>\'\'\'"$1" is ewiezig naor "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" is ewiezig naor "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Der is een deurverwiezing an-emaak.',
 'movepage-moved-noredirect'    => 'Der is gien deurverwiezing an-emaak.',
 'articleexists'                => 'Onder disse naam besteet al een pagina. Kies een aandere naam.',
@@ -2510,7 +2513,7 @@ Je kunnen in de bewarkingssamenvatting een rejen opgeven.',
 # Attribution
 'anonymous'        => 'Annenieme {{PLURAL:$1|gebruker|gebrukers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-gebruker $1',
-'lastmodifiedatby' => "Disse pagina is 't les ewiezig op $2, $1 deur $3.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Disse pagina is 't les ewiezig op $2, $1 deur $3.",
 'othercontribs'    => 'Ebaseerd op wark van $1.',
 'others'           => 'aandere',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruker|gebrukers}}  $1',
@@ -2631,7 +2634,7 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Wiedte',
@@ -2758,14 +2761,14 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 
 'exif-unknowndate' => 'Onbekende daotum',
 
-'exif-orientation-1' => 'Normaal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'horizontaal espegeld', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° edreid', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'verticaal edreid', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'espegeld um as linksboven-rechsonder', # 0th row: left; 0th column: top
-'exif-orientation-6' => '90° rechsummedreid', # 0th row: right; 0th column: top
-'exif-orientation-7' => '90° linksummedreid', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '90° linksummedreid', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normaal',
+'exif-orientation-2' => 'horizontaal espegeld',
+'exif-orientation-3' => '180° edreid',
+'exif-orientation-4' => 'verticaal edreid',
+'exif-orientation-5' => 'espegeld um as linksboven-rechsonder',
+'exif-orientation-6' => '90° rechsummedreid',
+'exif-orientation-7' => '90° linksummedreid',
+'exif-orientation-8' => '90° linksummedreid',
 
 'exif-planarconfiguration-1' => 'Grof gegevensformaot',
 'exif-planarconfiguration-2' => 'planar gegevensformaot',
@@ -3028,7 +3031,7 @@ Je kunnen oek [[Special:Watchlist/edit|'t standard bewarkingsscharm gebruken]]."
 'duplicate-defaultsort' => 'Waorschuwing: De standardsortering "$2" krieg veurrang veur de sortering "$1".',
 
 # Special:Version
-'version'                          => 'Versie', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versie',
 'version-extensions'               => 'Eïnstalleren uutbreidingen',
 'version-specialpages'             => "Speciale pagina's",
 'version-parserhooks'              => 'Parserhooks',

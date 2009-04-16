@@ -1,6 +1,9 @@
 <?php
 /** Literary Chinese (文言)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -173,7 +176,7 @@ $messages = array(
 'category-media-header'          => '「$1」中之媒',
 'category-empty'                 => "''無頁或媒也。''",
 'hidden-categories'              => '$1隱類',
-'hidden-category-category'       => '隱類', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => '隱類',
 'category-subcat-count'          => '{{PLURAL:$2|門有戶壹。|門有戶$1，有$2戶也。}}',
 'category-subcat-count-limited'  => '門有戶$1。',
 'category-article-count'         => '{{PLURAL:$2|門有頁壹。|門有頁$1，有$2頁也。}}',
@@ -260,7 +263,7 @@ $messages = array(
 'otherlanguages'    => '他山',
 'redirectedfrom'    => '（渡自$1）',
 'redirectpagesub'   => '渡',
-'lastmodifiedat'    => '此頁於$1$2方易。', # $1 date, $2 time
+'lastmodifiedat'    => '此頁於$1$2方易。',
 'viewcount'         => '此頁$1閱矣',
 'protectedpage'     => '此頁錮矣',
 'jumpto'            => '往：',
@@ -671,7 +674,7 @@ $2',
 'currentrev'             => '今審',
 'currentrev-asof'        => '$1之今審',
 'revisionasof'           => '$1審',
-'revision-info'          => '本版日期︰$1；作者︰$2', # Additionally available: $3: revision id
+'revision-info'          => '本版日期︰$1；作者︰$2',
 'previousrevision'       => '←舊',
 'nextrevision'           => '新→',
 'currentrevisionlink'    => '今審',
@@ -692,7 +695,7 @@ $2',
 # Revision feed
 'history-feed-title'          => '誌審',
 'history-feed-description'    => '維基誌審',
-'history-feed-item-nocomment' => '$1於$2', # user at time
+'history-feed-item-nocomment' => '$1於$2',
 'history-feed-empty'          => '此頁不存，或刪、或更。類由此[[Special:Search|尋]]',
 
 # Revision deletion
@@ -986,7 +989,7 @@ $2',
 'prefs-custom-js'           => '定之JS',
 
 # User rights
-'userrights'                     => '秉治權任', # Not used as normal message but as header for the special page itself
+'userrights'                     => '秉治權任',
 'userrights-lookup-user'         => '司社',
 'userrights-user-editname'       => '簿名：',
 'editusergroup'                  => '治社',
@@ -1630,8 +1633,8 @@ $NEWPAGE
 'rollbackfailed'   => '未能反正',
 'cantrollback'     => '獨一作者，無以反正。',
 'alreadyrolled'    => '[[User:$2|$2]]（[[User talk:$2|議]] | [[Special:Contributions/$2|{{int:contribslink}}]]）作[[:$1]]，退不成也。有易或已退焉。新纂者為[[User:$3|$3]]（[[User talk:$3|議]] | [[Special:Contributions/$3|{{int:contribslink}}]]）',
-'editcomment'      => "贊曰\"''\$1''\"", # only shown if there is an edit comment
-'revertpage'       => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]）為[[User:$1|$1]]之本耳', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "贊曰\"''\$1''\"",
+'revertpage'       => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]）為[[User:$1|$1]]之本耳',
 'rollback-success' => '去$1之作，復為$2之本耳。',
 'sessionfailure'   => '登簿有變。為防盜簿，返前重取再為之。',
 
@@ -1675,7 +1678,7 @@ $NEWPAGE
 ** 反產之戰纂
 ** 高量之頁',
 'protect-edit-reasonlist'     => '纂護之理',
-'protect-expiry-options'      => '半時:1 hour,一日:1 day,一週:1 week,兩週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永久:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '半時:1 hour,一日:1 day,一週:1 week,兩週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永久:infinite',
 'restriction-type'            => '准',
 'restriction-level'           => '緘捆',
 'minimum-size'                => '幅越',
@@ -1747,7 +1750,7 @@ $1',
 'contributions-title' => '$1之功績',
 'mycontris'           => '吾績',
 'contribsub2'         => '$1勛（$2）',
-'nocontribs'          => '無勛及也。', # Optional parameter: $1 is the user name
+'nocontribs'          => '無勛及也。',
 'uctop'               => '(至頂)',
 'month'               => '且不越',
 'year'                => '年不越',
@@ -1807,7 +1810,7 @@ $1',
 'ipbenableautoblock'              => '屢禁此簿，新IP址、後繼亦如也。',
 'ipbsubmit'                       => '禁簿',
 'ipbother'                        => '別期',
-'ipboptions'                      => '二時:2 hours,一日:1 day,三日:3 days,一週:1 week,二週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永如:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '二時:2 hours,一日:1 day,三日:3 days,一週:1 week,二週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永如:infinite',
 'ipbotheroption'                  => '它',
 'ipbotherreason'                  => '補證、加證曰',
 'ipbhidename'                     => '簿名隱乎纂與表',
@@ -1914,7 +1917,7 @@ $1已被禁矣。爾是否改此置？',
 'move-watch'                   => '派哨',
 'movepagebtn'                  => '遷文',
 'pagemovedsub'                 => '遷成矣',
-'movepage-moved'               => "<big>'''「$1」已遷至「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''「$1」已遷至「$2」'''</big>",
 'movepage-moved-redirect'      => '一渡已建。',
 'movepage-moved-noredirect'    => '建渡已押。',
 'articleexists'                => '此題早存，或名謬焉；請更之。',
@@ -2121,7 +2124,7 @@ $1已被禁矣。爾是否改此置？',
 # Attribution
 'anonymous'        => '{{SITENAME}}無{{PLURAL:$1|簿|簿}}者',
 'siteuser'         => '{{SITENAME}}有簿者$1',
-'lastmodifiedatby' => '$1$2，$3新易此頁。', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => '$1$2，$3新易此頁。',
 'othercontribs'    => '$1主撰',
 'others'           => '他',
 'siteusers'        => '{{SITENAME}}有{{PLURAL:$2|簿|簿}}者$1',
@@ -2241,7 +2244,7 @@ $1已被禁矣。爾是否改此置？',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                => '寬',
@@ -2400,7 +2403,7 @@ $1',
 'duplicate-defaultsort' => '警：預之排鍵「$2」蓋前之排鍵「$1」。',
 
 # Special:Version
-'version'                          => '版', # Not used as normal message but as header for the special page itself
+'version'                          => '版',
 'version-extensions'               => '裝展',
 'version-specialpages'             => '奇頁',
 'version-parserhooks'              => '語鈎',

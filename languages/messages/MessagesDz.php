@@ -1,6 +1,9 @@
 <?php
 /** Dzongkha (ཇོང་ཁ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -279,7 +282,7 @@ $messages = array(
 'viewpagelogs'        => 'ཤོག་ལེབ་འདི་གི་ལོགསི་སྟོན།',
 'currentrev'          => 'ད་ལྟོའི་བསྐྱར་ཞིབ།',
 'revisionasof'        => '$1 གི་བསྐྱར་ཞིབ།',
-'revision-info'       => '$2 གིས་ $1 ཚུན་གྱི་བསྐྱར་ཞིབ།', # Additionally available: $3: revision id
+'revision-info'       => '$2 གིས་ $1 ཚུན་གྱི་བསྐྱར་ཞིབ།',
 'previousrevision'    => '←བསྐྱར་ཞིབ་རྙིངམ།',
 'nextrevision'        => 'བསྐྱར་ཞིབ་གསརཔ་→',
 'currentrevisionlink' => 'ད་ལྟོའི་བསྐྱར་ཞིབ།',
@@ -294,7 +297,7 @@ $messages = array(
 'histlast'            => 'གསར་ཤོས།',
 
 # Revision feed
-'history-feed-item-nocomment' => '$༢ ལུ་ $༡', # user at time
+'history-feed-item-nocomment' => '$༢ ལུ་ $༡',
 
 # Diffs
 'history-title'           => '"$1" གི་བསྐྱར་ཞིབ་སྤྱོད་ཤུལ།',
@@ -517,7 +520,7 @@ $messages = array(
 'protect-expiring'            => '$1 (UTC) དུས་ཡོལཝ་ཨིན།',
 'protect-cascade'             => 'ཤོག་ལེབ་(ཀེསི་ཀེ་ཌིང་ཉེན་སྐྱོབ་) ཀྱི་གྲངས་སུ་ཚུད་མི་ཉེན་སྐྱོབ་ཤོག་ལེབ།',
 'protect-cantedit'            => 'ཁྱོད་ལུ་ ཞུན་དག་གི་གནང་བ་མེདཔ་ལས་ ཤོག་ལེབ་འདི་གི་ཉེན་སྐྱོབ་གནས་རིམ་བསྒྱུར་མི་ཚུགས།',
-'protect-expiry-options'      => 'ཆུ་ཚོད་ ༢:2 hours,ཉིནམ་ ༡:1 day,ཉིནམ་ ༣:3 days,བདུན་ཕྲག་ ༡:1 week,བདུན་ཕྲག་ ༢:2 weeks,ཟླཝ་ ༡:1 month,ཟླཝ་ ༣:3 months,ཟླཝ་ ༦:6 months,ལོ་ ༡:1 year,ཚད་ལས་འདས་པ་:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'ཆུ་ཚོད་ ༢:2 hours,ཉིནམ་ ༡:1 day,ཉིནམ་ ༣:3 days,བདུན་ཕྲག་ ༡:1 week,བདུན་ཕྲག་ ༢:2 weeks,ཟླཝ་ ༡:1 month,ཟླཝ་ ༣:3 months,ཟླཝ་ ༦:6 months,ལོ་ ༡:1 year,ཚད་ལས་འདས་པ་:infinite',
 'restriction-type'            => 'གནང་བ:',
 'restriction-level'           => 'མི་ཆོག་པའི་གནས་རིམ:',
 
@@ -554,7 +557,7 @@ $messages = array(
 
 # Block/unblock
 'blockip'       => 'ལག་ལེན་པ་བཀག',
-'ipboptions'    => 'ཆུ་ཚོད་ ༢:2 hours,ཉིནམ་ ༡:1 day,ཉིནམ་ ༣:3 days,བདུན་ཕྲག་ ༡:1 week,བདུན་ཕྲག་ ༢:2 weeks,ཟླཝ་ ༡:1 month,ཟླཝ་ ༣:3 months,ཟླཝ་ ༦:6 months,ལོ་ ༡:1 year,ཚད་ལས་འདས་པ་:infinite', # display1:time1,display2:time2,...
+'ipboptions'    => 'ཆུ་ཚོད་ ༢:2 hours,ཉིནམ་ ༡:1 day,ཉིནམ་ ༣:3 days,བདུན་ཕྲག་ ༡:1 week,བདུན་ཕྲག་ ༢:2 weeks,ཟླཝ་ ༡:1 month,ཟླཝ་ ༣:3 months,ཟླཝ་ ༦:6 months,ལོ་ ༡:1 year,ཚད་ལས་འདས་པ་:infinite',
 'ipblocklist'   => 'བཀག་ཆ་ཅན་གྱི་ ཨའི་པི་ཁ་བྱང་དང་ལག་ལེན་པའི་མིང།',
 'blocklink'     => 'བཀག།',
 'unblocklink'   => 'བཀག་བཤོལ་',
@@ -582,7 +585,7 @@ $messages = array(
 'move-watch'       => 'ཤོག་ལེབ་འདི་ལྟ།',
 'movepagebtn'      => 'ཤོག་ལེབ་སྤོ་བཤུད་འབད།',
 'pagemovedsub'     => 'སྤོ་བཤུད་མཐར་འཁྱོལ་བྱུང་ཡོདཔ།',
-'movepage-moved'   => '<big>\'\'\'"$1" འདི་ "$2"\'\'\'</big> ལུ་ སྤོ་བཤུད་འབད་ནུག།', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" འདི་ "$2"\'\'\'</big> ལུ་ སྤོ་བཤུད་འབད་ནུག།',
 'articleexists'    => 'ཤོག་ལེབ་མིང་འདི་ཧེ་མ་ལས་ཡོདཔ་ཨིནམ་དང་ ཡང་ན་ ཁྱོད་ཀྱིས་གདམ་ཁ་བརྐྱབས་མི་མིང་འདི་ ནུས་མེད་ཨིན་པས།
 མིང་གཞན་ཅིག་ གདམ་ཁ་རྐྱབས།',
 'talkexists'       => "'''ཤོག་ལེབ་འདི་ལེགས་ཤོམ་པས་སྤོ་བཤུད་འབད་ཡོད་རུང་ གཅིག་ཧེ་མ་ལས་ར་ མགོ་མིང་གསརཔ་གུ་ཡོདཔ་ལས་ བློ་ཤོག་འདི་སྤོ་བཤུད་འབད་མ་ཚུགས།
@@ -683,7 +686,7 @@ $messages = array(
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'ཕྱིའི་གློག་རིམ་ལག་ལེན་འཐབ་ཐོག་ལས་ ཡིག་སྣོད་འདི་ཞུན་དག་འབད།',
@@ -700,7 +703,7 @@ $messages = array(
 'watchlisttools-raw'  => 'རགས་ཙམ་གྱི་བལྟ་ཞིབ་ཐོ་ཡིག་ ཞུན་དག་འབད་',
 
 # Special:Version
-'version' => 'ཐོན་རིམ།', # Not used as normal message but as header for the special page itself
+'version' => 'ཐོན་རིམ།',
 
 # Special:SpecialPages
 'specialpages' => 'དམིགས་བསལ་ཤོག་ལེབ།',

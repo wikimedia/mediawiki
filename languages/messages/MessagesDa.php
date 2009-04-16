@@ -1,6 +1,9 @@
 <?php
 /** Danish (Dansk)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -268,7 +271,7 @@ $messages = array(
 'category-media-header'          => 'Medier i kategorien „$1“',
 'category-empty'                 => "''Denne kategori indeholder for øjeblikket hverken sider eller medie-filer.''",
 'hidden-categories'              => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}}',
-'hidden-category-category'       => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Skjulte kategorier',
 'category-subcat-count'          => '{{PLURAL:$2|Denne kategori har en underkategori.|Denne kategori indeholder nedenstående {{PLURAL:$1|underkategori|$1 underkategorier}}, af i alt $2.}}',
 'category-subcat-count-limited'  => 'Denne kategori indeholder {{PLURAL:$1|underkategori|$1 underkategorier}}.',
 'category-article-count'         => 'Denne kategori indeholder {{PLURAL:$2|kun den nedenstående side|{{PLURAL:$1|den nedenstående side|de nedenstående $1 sider}} af i alt $2.}}',
@@ -349,7 +352,7 @@ $messages = array(
 'otherlanguages'    => 'Andre sprog',
 'redirectedfrom'    => '(Omdirigeret fra $1)',
 'redirectpagesub'   => 'Omdirigering',
-'lastmodifiedat'    => 'Denne side blev senest ændret $1 $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Denne side blev senest ændret $1 $2.',
 'viewcount'         => 'Siden er vist i alt $1 {{PLURAL:$1|gang|gange}}.',
 'protectedpage'     => 'Beskyttet side',
 'jumpto'            => 'Skift til:',
@@ -832,7 +835,7 @@ Kontroller venligst sammenligningen herunder for at bekræfte at det er hvad du 
 'currentrev'             => 'Nuværende version',
 'currentrev-asof'        => 'Nuværende version fra $1',
 'revisionasof'           => 'Versionen fra $1',
-'revision-info'          => 'Version fra $1 af $2', # Additionally available: $3: revision id
+'revision-info'          => 'Version fra $1 af $2',
 'previousrevision'       => '←Ældre version',
 'nextrevision'           => 'Nyere version→',
 'currentrevisionlink'    => 'se nuværende version',
@@ -853,7 +856,7 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 # Revision feed
 'history-feed-title'          => 'Versionshistorie',
 'history-feed-description'    => 'Versionshistorie for denne side i {{SITENAME}}',
-'history-feed-item-nocomment' => '$1 med $2', # user at time
+'history-feed-item-nocomment' => '$1 med $2',
 'history-feed-empty'          => 'Den ønskede side findes ikke. Måske er den slettet eller flyttet. [[Special:Search|Gennesøg]] {{SITENAME}} efter passende nye sider.',
 
 # Revision deletion
@@ -1167,7 +1170,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-custom-js'           => 'Personlig JavaScript',
 
 # User rights
-'userrights'                  => 'Håndtering af brugerrettigheder', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Håndtering af brugerrettigheder',
 'userrights-lookup-user'      => 'Administrér brugergrupper',
 'userrights-user-editname'    => 'Skriv et brugernavn:',
 'editusergroup'               => 'Redigér brugergrupper',
@@ -1497,8 +1500,8 @@ Indholdet på dens [$2 filbeskrivelsesside] er vist herunder.',
 'noimage'                   => 'Der findes ingen fil med dette navn, men du kan $1.',
 'noimage-linktext'          => 'lægge en op',
 'uploadnewversion-linktext' => 'Læg en ny version af denne fil op',
-'shared-repo-from'          => 'fra $1', # $1 is the repository name
-'shared-repo'               => 'et delt filarkiv', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'fra $1',
+'shared-repo'               => 'et delt filarkiv',
 
 # File reversion
 'filerevert'                => 'Gendan $1',
@@ -1873,8 +1876,8 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 en anden har allerede redigeret siden eller fjernet redigeringen.
 
 Den seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Redigeringsbeskrivelsen var: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Gendannelse til seneste version ved $1, fjerner ændringer fra $2', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Redigeringsbeskrivelsen var: \"''\$1''\".",
+'revertpage'       => 'Gendannelse til seneste version ved $1, fjerner ændringer fra $2',
 'rollback-success' => 'Ændringerne fra $1 er fjernet,
 og den seneste version af $2 er gendannet.',
 'sessionfailure'   => 'Der lader til at være et problem med din loginsession; denne handling blev annulleret som en sikkerhedsforanstaltning mod kapring af sessionen. Tryk på "tilbage"-knappen og genindlæs den side du kom fra, og prøv dernæst igen.',
@@ -1919,7 +1922,7 @@ og den seneste version af $2 er gendannet.',
 ** Redigeringskrig
 ** Side med mange besøgende',
 'protect-edit-reasonlist'     => 'Rediger beskyttelsesårsager',
-'protect-expiry-options'      => '1 time:1 hour,1 dag:1 day,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,ubegrænset:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 time:1 hour,1 dag:1 day,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,ubegrænset:infinite',
 'restriction-type'            => 'Beskyttelsesstatus',
 'restriction-level'           => 'Beskyttelsesniveau:',
 'minimum-size'                => 'Mindste størrelse',
@@ -1999,7 +2002,7 @@ $1',
 'contributions-title' => 'Brugerbidrag for $1',
 'mycontris'           => 'Mine bidrag',
 'contribsub2'         => 'For $1 ($2)',
-'nocontribs'          => 'Ingen ændringer er fundet som opfylder disse kriterier.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Ingen ændringer er fundet som opfylder disse kriterier.',
 'uctop'               => ' (seneste)',
 'month'               => 'Måned:',
 'year'                => 'År:',
@@ -2063,7 +2066,7 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'ipbenableautoblock'              => 'Spærre den IP-adresse, der bruges af denne bruger samt automatisk alle følgende, hvorfra han foretager ændringer eller forsøger at anlægge brugerkonti',
 'ipbsubmit'                       => 'Bloker denne bruger',
 'ipbother'                        => 'Anden varighed (engelsk)',
-'ipboptions'                      => '2 timer:2 hours,1 dag:1 day,3 dage:3 days,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,ubegrænset:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 timer:2 hours,1 dag:1 day,3 dage:3 days,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,ubegrænset:infinite',
 'ipbotheroption'                  => 'Anden varighed',
 'ipbotherreason'                  => 'Anden/uddybende begrundelse',
 'ipbhidename'                     => 'Skjul brugernavnet i redigeringer og lister',
@@ -2176,7 +2179,7 @@ I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 'move-watch'                   => 'Overvåg siden',
 'movepagebtn'                  => 'Flyt side',
 'pagemovedsub'                 => 'Flytning gennemført',
-'movepage-moved'               => '<big>Siden \'\'\'"$1" er flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>Siden \'\'\'"$1" er flyttet til "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'En omdirigering er oprettet.',
 'movepage-moved-noredirect'    => 'Der oprettedes ikke en omdirigering.',
 'articleexists'                => 'En side med det navn eksisterer allerede, eller det
@@ -2383,7 +2386,7 @@ Det giver mulighed for at tilføje en begrundelse i beskrivelsen.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonym bruger|Anonyme brugere}} på {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} bruger $1',
-'lastmodifiedatby' => 'Denne side blev senest ændret $2, $1 af $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Denne side blev senest ændret $2, $1 af $3.',
 'othercontribs'    => 'Baseret på arbejde af $1.',
 'others'           => 'andre',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|bruger|brugere}} $1',
@@ -2505,7 +2508,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Bredde',
@@ -2632,14 +2635,14 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 'exif-unknowndate' => 'Ukendt dato',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Horisontalt spejlet', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Drejet 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Vertikalt spejlet', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Drejet 90° mod uret og spejlet vertikalt', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Drejet 90° med uret', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Drejet 90° med uret og spejlet vertikalt', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Drejet 90° mod uret', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Horisontalt spejlet',
+'exif-orientation-3' => 'Drejet 180°',
+'exif-orientation-4' => 'Vertikalt spejlet',
+'exif-orientation-5' => 'Drejet 90° mod uret og spejlet vertikalt',
+'exif-orientation-6' => 'Drejet 90° med uret',
+'exif-orientation-7' => 'Drejet 90° med uret og spejlet vertikalt',
+'exif-orientation-8' => 'Drejet 90° mod uret',
 
 'exif-planarconfiguration-1' => 'Grovformat',
 'exif-planarconfiguration-2' => 'Planformat',
@@ -2901,7 +2904,7 @@ Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]].'
 'duplicate-defaultsort' => 'Advarsel: Standardsorteringsnøglen "$2" tilsidesætter den tidligere sorteringsnøgle "$1".',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Installerede udvidelser',
 'version-specialpages'             => 'Specialsider',
 'version-parserhooks'              => 'Oversætter-funktioner',

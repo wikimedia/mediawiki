@@ -1,6 +1,9 @@
 <?php
 /** Yoruba (Yorùbá)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -118,7 +121,7 @@ $messages = array(
 'category-media-header'    => 'Amóunmáwòrán nínú ẹ̀ka "$1"',
 'category-empty'           => "''Lọ́wọ́lọ́wọ́ ẹ̀ka yìí kò ní ojúewé tàbí amóhùnmáwòrán kankan.''",
 'hidden-categories'        => '{{PLURAL:$1|Ẹ̀ka àbòmọ́lẹ̀|Áwọn ẹ̀ka àbòmọ́lẹ̀}}',
-'hidden-category-category' => 'Àwọn ẹ̀ka àbòmọ́lẹ̀', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Àwọn ẹ̀ka àbòmọ́lẹ̀',
 'category-article-count'   => '{{PLURAL:$2|Ẹ̀ka yìí ní ojúewé kan péré.|{{PLURAL:$1|Ojúewé kan yìí nìkan|Àwọn ojúewé $1 yìí}} lówà nínú èka yìí, nínú àpapọ̀ $2.}}',
 'listingcontinuesabbrev'   => 'tẹ̀síwájú',
 
@@ -187,7 +190,7 @@ $messages = array(
 'otherlanguages'    => 'Àwọn èdè míràn',
 'redirectedfrom'    => '(Àtúnjúwe láti $1)',
 'redirectpagesub'   => 'Ojúewé àtúnjúwe',
-'lastmodifiedat'    => 'Ọjọ́ tí a ṣe àtunṣe ojúewé yi gbẹ̀yìn ni $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ọjọ́ tí a ṣe àtunṣe ojúewé yi gbẹ̀yìn ni $2, $1.',
 'viewcount'         => 'A ti wo ojúewé yi ni {{PLURAL:$1|ẹ̀kan péré|iye ìgbà $1}}.',
 'protectedpage'     => 'Ojúewé aláàbò',
 'jumpto'            => 'Fò sí:',
@@ -459,7 +462,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'viewpagelogs'           => 'Ẹ wo àkọsílẹ̀ fún ojúewé yìí',
 'currentrev'             => 'Àtúnyẹ̀wò ìsinsìnyí',
 'revisionasof'           => 'Àtúnyẹ̀wò ní $1',
-'revision-info'          => "Àtúnyẹ̀wò ní $1 l'átọwọ́ $2", # Additionally available: $3: revision id
+'revision-info'          => "Àtúnyẹ̀wò ní $1 l'átọwọ́ $2",
 'previousrevision'       => '← Àtúnyẹ̀wò tópẹ́ju',
 'nextrevision'           => 'Àtúnyẹ̀wò tótuntunju →',
 'currentrevisionlink'    => 'Àtúnyẹ̀wò ìsinsìnyí',
@@ -477,7 +480,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 # Revision feed
 'history-feed-title'          => 'Ìtàn àtúnyẹ̀wò',
 'history-feed-description'    => 'Ìtàn àtúnyẹ̀wò fún ojúewé yìí ní orí wiki',
-'history-feed-item-nocomment' => '$1 ní $2', # user at time
+'history-feed-item-nocomment' => '$1 ní $2',
 
 # Revision deletion
 'rev-delundel'      => 'fihàn/bòmọ́lẹ̀',
@@ -778,7 +781,7 @@ Bí a ṣe to ojúewé '''$1''' nì yí:",
 'protect-level-sysop'         => 'Alámùójútó nìkan',
 'protect-expiring'            => 'parí ní $1 (UTC)',
 'protect-cantedit'            => "Ẹ kò le è ṣe àyípadà ibi àbò ojúewé yìí, nítorípé a kò yọ̀nda yín láti ṣ'àtúnṣe rẹ̀.",
-'protect-expiry-options'      => 'wákàtí 2:2 hours,ọjọ́ 1:1 day,ọjọ́ 3:3 days,ọ̀ṣẹ̀ 1:1 week,ọ̀ṣẹ̀ 2:2 weeks,osù 1:1 month,osù 3:3 months,osù 6:6 months,ọdún 1:1 year,láìlópin:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'wákàtí 2:2 hours,ọjọ́ 1:1 day,ọjọ́ 3:3 days,ọ̀ṣẹ̀ 1:1 week,ọ̀ṣẹ̀ 2:2 weeks,osù 1:1 month,osù 3:3 months,osù 6:6 months,ọdún 1:1 year,láìlópin:infinite',
 'restriction-type'            => 'Ìyọ̀nda:',
 'restriction-level'           => 'Ibi ìpàlà:',
 
@@ -820,7 +823,7 @@ Bí a ṣe to ojúewé '''$1''' nì yí:",
 # Block/unblock
 'blockip'       => 'Dínà oníṣe',
 'ipbsubmit'     => 'Dènà oníṣe yìí',
-'ipboptions'    => '2 wákàtí:2 hours,1 ọjọ́:1 day,3 ọjọ́:3 days,1 ọ̀ṣẹ̀:1 week,2 ọ̀ṣẹ̀:2 weeks,1 osù:1 month,3 osù:3 months,6 osù:6 months,1 ọdún:1 year,láìlópin:infinite', # display1:time1,display2:time2,...
+'ipboptions'    => '2 wákàtí:2 hours,1 ọjọ́:1 day,3 ọjọ́:3 days,1 ọ̀ṣẹ̀:1 week,2 ọ̀ṣẹ̀:2 weeks,1 osù:1 month,3 osù:3 months,6 osù:6 months,1 ọdún:1 year,láìlópin:infinite',
 'ipblocklist'   => 'Àwọn ojúọ̀nà IP àti orúkọ ọníṣe tí a dínà',
 'blocklink'     => 'dínà',
 'unblocklink'   => 'jáwọ́ ìdínà',
@@ -841,7 +844,7 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 'move-watch'       => 'Mójútó ojúewé yìí',
 'movepagebtn'      => 'Yípò ojúewé',
 'pagemovedsub'     => 'Ìyípò ti já sí rere',
-'movepage-moved'   => '<big>\'\'\'"$1" ti yípò sí "$2"\'\'\'</big>.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" ti yípò sí "$2"\'\'\'</big>.',
 'articleexists'    => 'Ojúewé pẹ̀lú orúkọ un wà tẹ́lẹ̀, tàbí kójẹ́pé orúkọ tí ẹ yàn kò ní ìbámu.
 Ẹ jọ̀wọ́ ẹ yan orúkọ mìíràn.',
 'movedto'          => 'tiyípò sí',
@@ -912,7 +915,7 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 
 # Attribution
 'siteuser'         => '$1 oníṣe lórí {{SITENAME}}',
-'lastmodifiedatby' => 'Igba ti a se atunse si ojuewe yi gbeyin ni $2, $1 by $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Igba ti a se atunse si ojuewe yi gbeyin ni $2, $1 by $3.',
 
 # Browsing diffs
 'previousdiff' => '← Àtúnṣe tópẹ́jù',
@@ -957,7 +960,7 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 'watchlisttools-raw'  => "Ẹ ṣ'àtúnṣe àkójọ ìmójútó látìbẹ̀rẹ̀",
 
 # Special:Version
-'version' => 'Àtúnṣe', # Not used as normal message but as header for the special page itself
+'version' => 'Àtúnṣe',
 
 # Special:SpecialPages
 'specialpages'                   => 'Àwọn ojúewé pàtàkì',

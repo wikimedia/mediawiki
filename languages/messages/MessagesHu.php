@@ -1,6 +1,9 @@
 <?php
 /** Hungarian (Magyar)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -388,7 +391,7 @@ $messages = array(
 'category-media-header'          => 'A(z) „$1” kategóriába tartozó médiafájlok',
 'category-empty'                 => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
 'hidden-categories'              => '{{PLURAL:$1|Rejtett kategória|Rejtett kategóriák}}',
-'hidden-category-category'       => 'Rejtett kategóriák', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Rejtett kategóriák',
 'category-subcat-count'          => '{{PLURAL:$2|Csak a következő alkategória található ebben a kategóriában.|Az összesen $2 alkategóriából a következő $1 található ebben a kategóriában.}}',
 'category-subcat-count-limited'  => 'Ebben a kategóriában {{PLURAL:$1|egy|$1}} alkategória található.',
 'category-article-count'         => '{{PLURAL:$2|Csak a következő lap található ebben a kategóriában.|Az összesen $2 lapból a következő $1 található ebben a kategóriában.}}',
@@ -474,7 +477,7 @@ $messages = array(
 'otherlanguages'    => 'Más nyelveken',
 'redirectedfrom'    => '($1 szócikkből átirányítva)',
 'redirectpagesub'   => 'Átirányító lap',
-'lastmodifiedat'    => 'A lap utolsó módosítása: $1, $2', # $1 date, $2 time
+'lastmodifiedat'    => 'A lap utolsó módosítása: $1, $2',
 'viewcount'         => 'Ezt a lapot {{PLURAL:$1|egy|$1}} alkalommal keresték fel.',
 'protectedpage'     => 'Védett lap',
 'jumpto'            => 'Ugrás:',
@@ -978,7 +981,7 @@ Néhány sablon nem fog megjelenni.',
 'currentrev'             => 'Aktuális változat',
 'currentrev-asof'        => 'A lap jelenlegi, $1-kori változata',
 'revisionasof'           => 'A lap $1-kori változata',
-'revision-info'          => 'A lap korábbi változatát látod, amilyen $2 $1-kor történt szerkesztése után volt.', # Additionally available: $3: revision id
+'revision-info'          => 'A lap korábbi változatát látod, amilyen $2 $1-kor történt szerkesztése után volt.',
 'previousrevision'       => '←Régebbi változat',
 'nextrevision'           => 'Újabb változat→',
 'currentrevisionlink'    => 'Aktuális változat',
@@ -999,7 +1002,7 @@ Jelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltér
 # Revision feed
 'history-feed-title'          => 'Laptörténet',
 'history-feed-description'    => 'Az oldal laptörténete a wikiben',
-'history-feed-item-nocomment' => '$1, $2-n', # user at time
+'history-feed-item-nocomment' => '$1, $2-n',
 'history-feed-empty'          => 'A kért oldal nem létezik.
 Lehet, hogy törölték a wikiből, vagy átnevezték.
 Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].',
@@ -1315,7 +1318,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'prefs-custom-js'           => 'saját JS',
 
 # User rights
-'userrights'                  => 'Szerkesztői jogok beállítása', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Szerkesztői jogok beállítása',
 'userrights-lookup-user'      => 'Szerkesztőcsoportok beállítása',
 'userrights-user-editname'    => 'Add meg a szerkesztő nevét:',
 'editusergroup'               => 'Szerkesztőcsoportok módosítása',
@@ -1662,8 +1665,8 @@ A [$2 fájl leírólapján] található leírás alább látható.',
 'noimage'                   => 'Nem létezik ilyen nevű fájl, de $1 egyet.',
 'noimage-linktext'          => 'feltölthetsz',
 'uploadnewversion-linktext' => 'Új változat feltöltése',
-'shared-repo-from'          => 'a(z) $1 megosztott tárhelyről', # $1 is the repository name
-'shared-repo'               => 'megosztott tárhely', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'a(z) $1 megosztott tárhelyről',
+'shared-repo'               => 'megosztott tárhely',
 
 # File reversion
 'filerevert'                => '$1 visszaállítása',
@@ -2045,8 +2048,8 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 időközben valaki már visszavonta, vagy szerkesztette a lapot.
 
 Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) végezte.',
-'editcomment'      => "A szerkesztési összefoglaló „''$1''” volt.", # only shown if there is an edit comment
-'revertpage'       => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]]  ([[User talk:$2|vita]]) szerkesztéséről [[User:$1|$1]] szerkesztésére', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "A szerkesztési összefoglaló „''$1''” volt.",
+'revertpage'       => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]]  ([[User talk:$2|vita]]) szerkesztéséről [[User:$1|$1]] szerkesztésére',
 'rollback-success' => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',
 'sessionfailure'   => 'Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;
 ez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.
@@ -2096,7 +2099,7 @@ Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszk
 ** Gyakori spamelés
 ** Nagyforgalmú lap',
 'protect-edit-reasonlist'     => 'Lapvédelem oka',
-'protect-expiry-options'      => '1 óra:1 hour,1 nap:1 day,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 óra:1 hour,1 nap:1 day,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite',
 'restriction-type'            => 'Engedély:',
 'restriction-level'           => 'Korlátozási szint:',
 'minimum-size'                => 'Legkisebb méret',
@@ -2178,7 +2181,7 @@ $1',
 'contributions-title' => '$1 közreműködései',
 'mycontris'           => 'Közreműködéseim',
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'Nem található a feltételeknek megfelelő változtatás.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Nem található a feltételeknek megfelelő változtatás.',
 'uctop'               => ' (utolsó)',
 'month'               => 'E hónap végéig:',
 'year'                => 'Eddig az évig:',
@@ -2237,7 +2240,7 @@ $1',
 'ipbenableautoblock'              => 'A szerkesztő által használt IP-címek automatikus blokkolása',
 'ipbsubmit'                       => 'Blokkolás',
 'ipbother'                        => 'Más időtartam:',
-'ipboptions'                      => '2 óra:2 hours,1 nap:1 day,3 nap:3 days,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 óra:2 hours,1 nap:1 day,3 nap:3 days,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite',
 'ipbotheroption'                  => 'Más időtartam',
 'ipbotherreason'                  => 'Más/további ok:',
 'ipbhidename'                     => 'A felhasználónév ne jelenjen meg a szerkesztéseknél és a listákban',
@@ -2369,7 +2372,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'move-watch'                   => 'Figyeld a lapot',
 'movepagebtn'                  => 'Lap átnevezése',
 'pagemovedsub'                 => 'Átnevezés sikeres',
-'movepage-moved'               => "<big>'''„$1” átnevezve „$2” névre'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''„$1” átnevezve „$2” névre'''</big>",
 'movepage-moved-redirect'      => 'Átirányítás létrehozva.',
 'movepage-moved-noredirect'    => 'A régi címről nem sikerült átirányítást készíteni.',
 'articleexists'                => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
@@ -2579,7 +2582,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 # Attribution
 'anonymous'        => 'Névtelen {{SITENAME}}-{{PLURAL:$1|szerkesztő|szerkesztők}}',
 'siteuser'         => '$1 {{SITENAME}}-felhasználó',
-'lastmodifiedatby' => 'Ezt a lapot utoljára $3 módosította $2, $1 időpontban.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ezt a lapot utoljára $3 módosította $2, $1 időpontban.',
 'othercontribs'    => '$1 munkája alapján.',
 'others'           => 'mások',
 'siteusers'        => '$1 {{SITENAME}}-{{PLURAL:$2|szerkesztő|szerkesztők}}',
@@ -2701,7 +2704,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Szélesség',
@@ -2828,14 +2831,14 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 
 'exif-unknowndate' => 'Ismeretlen dátum',
 
-'exif-orientation-1' => 'Normál', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Vízszintesen tükrözött', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Elforgatott 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Függőlegesen tükrözött', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Elforgatott 90° ÓE és függőlegesen tükrözött', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Elforgatott 90° ÓSZ', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Elforgatott 90° ÓSZ és függőlegesen tükrözött', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Elforgatott 90° ÓE', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normál',
+'exif-orientation-2' => 'Vízszintesen tükrözött',
+'exif-orientation-3' => 'Elforgatott 180°',
+'exif-orientation-4' => 'Függőlegesen tükrözött',
+'exif-orientation-5' => 'Elforgatott 90° ÓE és függőlegesen tükrözött',
+'exif-orientation-6' => 'Elforgatott 90° ÓSZ',
+'exif-orientation-7' => 'Elforgatott 90° ÓSZ és függőlegesen tükrözött',
+'exif-orientation-8' => 'Elforgatott 90° ÓE',
 
 'exif-planarconfiguration-1' => 'Egyben',
 'exif-planarconfiguration-2' => 'sík formátum',
@@ -3102,7 +3105,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'duplicate-defaultsort' => 'Figyelem: a(z) „$2” rendezőkulcs felülírja a korábbit („$1”).',
 
 # Special:Version
-'version'                          => 'Névjegy', # Not used as normal message but as header for the special page itself
+'version'                          => 'Névjegy',
 'version-extensions'               => 'Telepített kiterjesztések',
 'version-specialpages'             => 'Speciális lapok',
 'version-parserhooks'              => 'Értelmező hookok',

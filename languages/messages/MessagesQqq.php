@@ -1,6 +1,8 @@
 <?php
 /** Message documentation (Message documentation)
  *
+ * To improve a documentation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *

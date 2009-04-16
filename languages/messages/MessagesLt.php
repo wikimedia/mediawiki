@@ -1,6 +1,9 @@
 <?php
 /** Lithuanian (Lietuvių)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -272,7 +275,7 @@ $messages = array(
 'category-media-header'          => 'Daugialypės terpės failai kategorijoje „$1“',
 'category-empty'                 => "''Šiuo metu ši kategorija neturi jokių puslapių ar failų.''",
 'hidden-categories'              => '{{PLURAL:$1|Paslėpta kategorija|Paslėptos kategorijos}}',
-'hidden-category-category'       => 'Paslėptos kategorijos', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Paslėptos kategorijos',
 'category-subcat-count'          => '{{PLURAL:$2|Šioje kategorijoje yra viena subkategorija.|{{PLURAL:$1|Rodoma|Rodomos|Rodoma}} $1 {{PLURAL:$1|subkategorija|subkategorijos|subkategorijų}} (iš viso yra $2 {{PLURAL:$2|subkategorija|subkategorijos|subkategorijų}}).}}',
 'category-subcat-count-limited'  => 'Šioje kategorijoje yra $1 {{PLURAL:$1|subkategorija|subkategorijos|subkategorijų}}.',
 'category-article-count'         => '{{PLURAL:$2|Šioje kategorijoje yra vienas puslapis.|{{PLURAL:$1|Rodomas|Rodomi|Rodoma}} $1 šios kategorijos {{PLURAL:$1|puslapis|puslapiai|puslapių}} (iš viso kategorijoje yra $2 {{PLURAL:$2|puslapis|puslapiai|puslapių}}).}}',
@@ -359,7 +362,7 @@ $messages = array(
 'otherlanguages'    => 'Kitomis kalbomis',
 'redirectedfrom'    => '(Nukreipta iš $1)',
 'redirectpagesub'   => 'Nukreipimo puslapis',
-'lastmodifiedat'    => 'Šis puslapis paskutinį kartą keistas $1 $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Šis puslapis paskutinį kartą keistas $1 $2.',
 'viewcount'         => 'Šis puslapis buvo atvertas $1 {{PLURAL:$1|kartą|kartus|kartų}}.',
 'protectedpage'     => 'Užrakintas puslapis',
 'jumpto'            => 'Peršokti į:',
@@ -859,7 +862,7 @@ $3 nurodyta priežastis yra ''$2''",
 'currentrev'             => 'Dabartinė versija',
 'currentrev-asof'        => 'Dabartinė $1 versija',
 'revisionasof'           => '$1 versija',
-'revision-info'          => '$1 versija naudotojo $2', # Additionally available: $3: revision id
+'revision-info'          => '$1 versija naudotojo $2',
 'previousrevision'       => '←Ankstesnė versija',
 'nextrevision'           => 'Vėlesnė versija→',
 'currentrevisionlink'    => 'Dabartinė versija',
@@ -881,7 +884,7 @@ $3 nurodyta priežastis yra ''$2''",
 # Revision feed
 'history-feed-title'          => 'Versijų istorija',
 'history-feed-description'    => 'Šio puslapio versijų istorija projekte',
-'history-feed-item-nocomment' => '$1 $2', # user at time
+'history-feed-item-nocomment' => '$1 $2',
 'history-feed-empty'          => 'Prašomas puslapis neegzistuoja.
 Jis galėjo būti ištrintas iš projekto, arba pervardintas.
 Pamėginkite [[Special:Search|ieškoti projekte]] susijusių naujų puslapių.',
@@ -1172,7 +1175,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'files'                     => 'Failai',
 
 # User rights
-'userrights'                  => 'Naudotojų teisių valdymas', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Naudotojų teisių valdymas',
 'userrights-lookup-user'      => 'Tvarkyti naudotojo grupes',
 'userrights-user-editname'    => 'Įveskite naudotojo vardą:',
 'editusergroup'               => 'Redaguoti naudotojo grupes',
@@ -1496,7 +1499,7 @@ Pilnas sąrašas pasiekiamas [[Special:WhatLinksHere/$2|čia]].',
 'noimage'                   => 'Failas tokiu pavadinimu neegzistuoja. Jūs galite $1',
 'noimage-linktext'          => 'įkelti jį',
 'uploadnewversion-linktext' => 'Įkelti naują failo versiją',
-'shared-repo-from'          => 'iš $1', # $1 is the repository name
+'shared-repo-from'          => 'iš $1',
 
 # File reversion
 'filerevert'                => 'Sugrąžinti $1',
@@ -1875,8 +1878,8 @@ Paskutinių šalinimų istorija - $2.',
 kažkas jau pakeitė puslapį arba suspėjo pirmas atmesti keitimą.
 
 Paskutimas keitimas darytas naudotojo [[User:$3|$3]] ([[User talk:$3|Aptarimas]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Redagavimo komentaras: „''$1''“.", # only shown if there is an edit comment
-'revertpage'       => 'Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta naudotojo [[User:$1|$1]] versija', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Redagavimo komentaras: „''$1''“.",
+'revertpage'       => 'Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta naudotojo [[User:$1|$1]] versija',
 'rollback-success' => 'Atmesti $1 keitimai; grąžinta į paskutinę $2 versiją.',
 'sessionfailure'   => 'Atrodo yra problemų su jūsų prisijungimo sesija; šis veiksmas buvo atšauktas kaip atsargumo priemonė prieš sesijos vogimą.
 Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pamėginkite vėl.',
@@ -1925,7 +1928,7 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 ** Neproduktyvus redagavimo karas
 ** Didelės svarbos puslapis',
 'protect-edit-reasonlist'     => 'Keisti užrakinimo priežastis',
-'protect-expiry-options'      => '1 valanda:1 hour,1 diena:1 day,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnuo:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 valanda:1 hour,1 diena:1 day,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnuo:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite',
 'restriction-type'            => 'Leidimas:',
 'restriction-level'           => 'Apribojimo lygis:',
 'minimum-size'                => 'Min. dydis',
@@ -2002,7 +2005,7 @@ $1',
 'contributions-title' => 'Naudotojo $1 indėlis',
 'mycontris'           => 'Mano įnašas',
 'contribsub2'         => 'Naudotojo $1 ($2)',
-'nocontribs'          => 'Jokie keitimai neatitiko šių kriterijų.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Jokie keitimai neatitiko šių kriterijų.',
 'uctop'               => ' (paskutinis)',
 'month'               => 'Nuo mėnesio (ir anksčiau):',
 'year'                => 'Nuo metų (ir anksčiau):',
@@ -2063,7 +2066,7 @@ $1',
 'ipbenableautoblock'              => 'Automatiškai blokuoti šio naudotojo paskiausiai naudotą IP adresą, bei bet kokius vėlesnius IP adresus, iš kurių jie mėgina redaguoti',
 'ipbsubmit'                       => 'Blokuoti šį naudotoją',
 'ipbother'                        => 'Kitoks laikas',
-'ipboptions'                      => '2 valandos:2 hours,1 diena:1 day,3 dienos:3 days,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnesis:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 valandos:2 hours,1 diena:1 day,3 dienos:3 days,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnesis:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite',
 'ipbotheroption'                  => 'kita',
 'ipbotherreason'                  => 'Kita/papildoma priežastis',
 'ipbhidename'                     => 'Slėpti naudotojo vardą adresą iš blokavimų istorijos, aktyvių blokavimų sąrašo ir naudotojų sąrašo',
@@ -2202,7 +2205,7 @@ kad suprantate visas pasekmes.",
 'move-watch'                   => 'Stebėti šį puslapį',
 'movepagebtn'                  => 'Pervadinti puslapį',
 'pagemovedsub'                 => 'Pervadinta sėkmingai',
-'movepage-moved'               => '<big>\'\'\'"$1" buvo pervadintas į "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" buvo pervadintas į "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Nukreipimas sukurtas.',
 'movepage-moved-noredirect'    => 'Nukreipimo sukūrimas buvo atšauktas.',
 'articleexists'                => 'Puslapis tokiu pavadinimu jau egzistuoja
@@ -2408,7 +2411,7 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 # Attribution
 'anonymous'        => 'Neregistruotų {{SITENAME}} naudotojų',
 'siteuser'         => '{{SITENAME}} naudotojas $1',
-'lastmodifiedatby' => 'Šį puslapį paskutinį kartą redagavo $3 $2, $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Šį puslapį paskutinį kartą redagavo $3 $2, $1.',
 'othercontribs'    => 'Paremta $1 darbu.',
 'others'           => 'kiti',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|naudotojas|naudotojai}} $1',
@@ -2527,7 +2530,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Plotis',
@@ -2654,14 +2657,14 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 
 'exif-unknowndate' => 'Nežinoma data',
 
-'exif-orientation-1' => 'Standartinis', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Apversta horizontaliai', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Pasukta 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Apversta vertikaliai', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Pasukta 90° prieš laikrodžio rodyklę ir apversta vertikaliai', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Pasukta 90° laikrodžio rodyklės kryptimi', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Pasukta 90° laikrodžio rodyklės kryptimi ir apversta vertikaliai', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Pasukta 90° prieš laikrodžio rodyklę', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Standartinis',
+'exif-orientation-2' => 'Apversta horizontaliai',
+'exif-orientation-3' => 'Pasukta 180°',
+'exif-orientation-4' => 'Apversta vertikaliai',
+'exif-orientation-5' => 'Pasukta 90° prieš laikrodžio rodyklę ir apversta vertikaliai',
+'exif-orientation-6' => 'Pasukta 90° laikrodžio rodyklės kryptimi',
+'exif-orientation-7' => 'Pasukta 90° laikrodžio rodyklės kryptimi ir apversta vertikaliai',
+'exif-orientation-8' => 'Pasukta 90° prieš laikrodžio rodyklę',
 
 'exif-planarconfiguration-1' => 'stambusis formatas',
 'exif-planarconfiguration-2' => 'plokštuminis formatas',
@@ -2935,7 +2938,7 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 'duplicate-defaultsort' => 'Įspėjimas: Numatytasis rikiavimo raktas „$2“ pakeičia ankstesnį numatytąjį rikiavimo raktą „$1“.',
 
 # Special:Version
-'version'                          => 'Versija', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versija',
 'version-extensions'               => 'Įdiegti priedai',
 'version-specialpages'             => 'Specialieji puslapiai',
 'version-parserhooks'              => 'Analizatoriaus gaudliai',

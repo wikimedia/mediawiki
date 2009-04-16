@@ -1,6 +1,9 @@
 <?php
 /** Latin (Latina)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -255,7 +258,7 @@ $messages = array(
 'category-media-header'          => 'Media in categoria "$1"',
 'category-empty'                 => "''Huic categoriae non sunt paginae vel fasciculi.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria celata|Categoriae celatae}}',
-'hidden-category-category'       => 'Categoriae celatae', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categoriae celatae',
 'category-subcat-count'          => '{{PLURAL:$2|Huic categoriae est solum una subcategoria.|Huic categoriae {{PLURAL:$1|est haec subcategoria|sunt hae $1 subcategoriae}} ex omnino $2 subcategoriis.}}',
 'category-subcat-count-limited'  => 'Huic categoriae {{PLURAL:$1|est haec subcategoria|sunt hae $1 subcategoriae}}.',
 'category-article-count'         => '{{PLURAL:$2|Huic categoriae est solum una pagina.|Huic categoriae {{PLURAL:$1|est haec pagina|sunt hae $1 paginae}} ex omnino $2 paginis.}}',
@@ -332,7 +335,7 @@ $messages = array(
 'otherlanguages'    => 'Linguis aliis',
 'redirectedfrom'    => '(Redirectum de $1)',
 'redirectpagesub'   => 'Pagina redirectionis',
-'lastmodifiedat'    => 'Ultima mutatio: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ultima mutatio: $2, $1.',
 'viewcount'         => 'Haec pagina iam vista est {{PLURAL:$1|semel|$1 vices}}.',
 'protectedpage'     => 'Pagina protecta',
 'jumpto'            => 'Salire ad:',
@@ -724,7 +727,7 @@ Ille hanc causam dedit: ''$2''",
 'currentrev'             => 'Emendatio recentissima',
 'currentrev-asof'        => 'Emendatio recentissima ex $1',
 'revisionasof'           => 'Emendatio ex $1',
-'revision-info'          => 'Emendatio ex $1 ab $2', # Additionally available: $3: revision id
+'revision-info'          => 'Emendatio ex $1 ab $2',
 'previousrevision'       => '← Emendatio senior',
 'nextrevision'           => 'Emendatio novior →',
 'currentrevisionlink'    => 'Emendatio currens',
@@ -745,7 +748,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 
 # Revision feed
 'history-feed-title'          => 'Historia',
-'history-feed-item-nocomment' => '$1 ad $2', # user at time
+'history-feed-item-nocomment' => '$1 ad $2',
 
 # Revision deletion
 'rev-deleted-comment'            => '(summarium celatum)',
@@ -983,7 +986,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'prefs-custom-js'           => 'JS proprium',
 
 # User rights
-'userrights'                  => 'Usorum potestates', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Usorum potestates',
 'userrights-user-editname'    => 'Nomen usoris inscribe:',
 'editusergroup'               => 'Greges usorum recensere',
 'editinguser'                 => "Modificare potestates usoris '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -1224,8 +1227,8 @@ Contenta [$2 paginae descriptionis fasciculi] subter monstrantur.',
 'noimage'                   => 'Fasciculus huius nominis non est, sed $1 potes.',
 'noimage-linktext'          => 'fasciculum imponere',
 'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi imponere',
-'shared-repo-from'          => 'apud {{grammar:accusative|$1}}', # $1 is the repository name
-'shared-repo'               => 'repositorium commune', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'apud {{grammar:accusative|$1}}',
+'shared-repo'               => 'repositorium commune',
 
 # File reversion
 'filerevert'                => 'Revertere $1',
@@ -1564,8 +1567,8 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 'alreadyrolled'    => 'Ad emendationem proximam paginae [[:$1]] ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) reverti non potest; alius paginam iam recensuit vel revertit.
 
 Emendatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) effecta est.',
-'editcomment'      => "Summarium erat: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad emendationem proximam ab [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Summarium erat: \"''\$1''\".",
+'revertpage'       => 'Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad emendationem proximam ab [[User:$1|$1]]',
 'rollback-success' => 'Reverti recensiones ab usore $1
 ad emendationem proximam ab $2.',
 
@@ -1602,7 +1605,7 @@ Ecce protectiones paginae '''$1''':",
 'protect-otherreason'         => 'Causa alia vel explicatio:',
 'protect-otherreason-op'      => 'causa alia',
 'protect-edit-reasonlist'     => 'Causas protectionum recensere',
-'protect-expiry-options'      => '1 horam:1 hour,1 diem:1 day,1 hebdomadem:1 week,2 hebdomades:2 weeks,1 mensem:1 month,3 menses:3 months,6 menses:6 months,1 annum:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 horam:1 hour,1 diem:1 day,1 hebdomadem:1 week,2 hebdomades:2 weeks,1 mensem:1 month,3 menses:3 months,6 menses:6 months,1 annum:1 year,infinite:infinite',
 'restriction-type'            => 'Permissus:',
 'restriction-level'           => 'Gradus cohibitionis:',
 'minimum-size'                => 'Magnitudo minima',
@@ -1659,7 +1662,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'contributions-title' => 'Conlationes usoris $1',
 'mycontris'           => 'Conlationes meae',
 'contribsub2'         => 'Pro $1 ($2)',
-'nocontribs'          => 'Nullae mutationes inventae sunt ex his indiciis.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Nullae mutationes inventae sunt ex his indiciis.',
 'uctop'               => ' (vertex)',
 'month'               => 'Ab mense (et prior):',
 'year'                => 'Ab anno (et prior):',
@@ -1708,7 +1711,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipbemailban'                  => 'Litteras electronicas vetare',
 'ipbsubmit'                    => 'Obstruere hunc locum',
 'ipbother'                     => 'Exitus alius:',
-'ipboptions'                   => '2 horas:2 hours,1 diem:1 day,3 dies:3 days,1 hebdomadem:1 week,2 hebdomades:2 weeks,1 mensem:1 month,3 menses:3 months,6 menses:6 months,1 annum:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipboptions'                   => '2 horas:2 hours,1 diem:1 day,3 dies:3 days,1 hebdomadem:1 week,2 hebdomades:2 weeks,1 mensem:1 month,3 menses:3 months,6 menses:6 months,1 annum:1 year,infinite:infinite',
 'ipbotheroption'               => 'alius',
 'ipbotherreason'               => 'Causa alia vel explicatio:',
 'ipbwatchuser'                 => 'Paginam usoris disputationisque huius usoris custodire',
@@ -1819,7 +1822,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'move-watch'                => 'Hanc paginam custodire',
 'movepagebtn'               => 'Paginam movere',
 'pagemovedsub'              => 'Pagina mota est',
-'movepage-moved'            => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>',
 'movepage-moved-redirect'   => 'Redirectio creata est.',
 'movepage-moved-noredirect' => 'Redirectio non creata est.',
 'articleexists'             => 'Pagina huius tituli iam est, aut invalidum est nomen electum.
@@ -1964,7 +1967,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usor ignotus|Usores ignoti}} {{grammar:genitive|{{SITENAME}}}}',
 'siteuser'         => '{{SITENAME}} usor $1',
-'lastmodifiedatby' => 'Ultima mutatio: $2, $1 ab $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ultima mutatio: $2, $1 ab $3.',
 'others'           => 'alii',
 'siteusers'        => '{{PLURAL:$2|usor|usores}} {{grammar:genitive|{{SITENAME}}}} $1',
 'creditspage'      => 'Auctores paginae',
@@ -2106,8 +2109,8 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 
 'exif-unknowndate' => 'Dies ignota',
 
-'exif-orientation-1' => 'Normalis', # 0th row: top; 0th column: left
-'exif-orientation-3' => 'Converta 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-1' => 'Normalis',
+'exif-orientation-3' => 'Converta 180°',
 
 'exif-planarconfiguration-1' => 'formatio dilatata',
 'exif-planarconfiguration-2' => 'formatio planaris',
@@ -2298,7 +2301,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'watchlisttools-raw'  => 'Indicem paginarum custoditarum quasi textum recensere',
 
 # Special:Version
-'version'                          => 'Versio', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versio',
 'version-specialpages'             => 'Paginae speciales',
 'version-parserhooks'              => 'Extensiones programmatis analysis lexicalis',
 'version-variables'                => 'Variabilia',

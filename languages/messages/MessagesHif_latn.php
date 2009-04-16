@@ -1,6 +1,9 @@
 <?php
 /** Fiji Hindi (Latin) (Fiji Hindi (Latin))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -120,7 +123,7 @@ $messages = array(
 'category-media-header'          => 'Vibhag "$1" me media',
 'category-empty'                 => "''Ii vibhag me koi panna yah media nai hai.''",
 'hidden-categories'              => '{{PLURAL:$1|Lukawal vibhag|Lukawal vibhag}}',
-'hidden-category-category'       => 'Lukawal vibhag', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Lukawal vibhag',
 'category-subcat-count'          => '{{PLURAL:$2|Ii vibhag me khali etna chhota vibhag hai.|Ii vibhag me etna {{PLURAL:$1|chhota vibhag|$1 chhota vibhag}}, kul jorr $2 me se.}}',
 'category-subcat-count-limited'  => 'Ii vibhag me etna {{PLURAL:$1|chhota vibhag|$1 chhota vibhag}} hai.',
 'category-article-count'         => '{{PLURAL:$2|Ii vibhag me khali etna panna hai.|Kul jorr $2 me se etna {{PLURAL:$1|panna|$1 panna}} ii vibhag me hai.}}',
@@ -206,7 +209,7 @@ $messages = array(
 'otherlanguages'    => 'Duusra bhasa me',
 'redirectedfrom'    => '($1 se bheja gais)',
 'redirectpagesub'   => 'Panna ke redirect karo',
-'lastmodifiedat'    => 'Ii panna ke $1, ke $2 pichhla time badla gais rahaa.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ii panna ke $1, ke $2 pichhla time badla gais rahaa.',
 'viewcount'         => 'Ii panna ke {{PLURAL:$1|ek dafe|$1 dafe}} dekha gais hai.',
 'protectedpage'     => 'Bachawal panna',
 'jumpto'            => 'Hian jao:',
@@ -722,7 +725,7 @@ Iske kaaran, jon ki $3 diis hai, ''$2'' hai",
 'currentrev'             => 'Abhi ke sansodhan',
 'currentrev-asof'        => 'Abhi ke badlao ii tarik tak $1',
 'revisionasof'           => '$1 ke badlao',
-'revision-info'          => '$2 ke badlao $1 tak', # Additionally available: $3: revision id
+'revision-info'          => '$2 ke badlao $1 tak',
 'previousrevision'       => '← Purana badlao',
 'nextrevision'           => 'Nawaa badlao→',
 'currentrevisionlink'    => 'Abhi ke badlao',
@@ -745,7 +748,7 @@ Legend: (abhi) = abhi ke version se farka,
 # Revision feed
 'history-feed-title'          => 'Badlao ke itihass',
 'history-feed-description'    => 'Ii panaa ke wiki me badlao ke itihaas',
-'history-feed-item-nocomment' => '$1 pe $2', # user at time
+'history-feed-item-nocomment' => '$1 pe $2',
 'history-feed-empty'          => 'Aap jon panna mangta hai uu abhi tak banaa nai hai.
 Saait iske wiki me se mitae dewa gae hoi, nai to iske naam badal dewa gae hoi.
 Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
@@ -1066,7 +1069,7 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'prefs-custom-js'           => 'Custom JS',
 
 # User rights
-'userrights'                  => 'Sadasya ke adhikaar ke chalao', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Sadasya ke adhikaar ke chalao',
 'userrights-lookup-user'      => 'Sadasya ke group ke manage karo',
 'userrights-user-editname'    => 'Ek Username ke enter karo:',
 'editusergroup'               => 'User groups ke badlo',
@@ -1414,8 +1417,8 @@ Iske baare me aur jaankari [$2 file description page] ke niche dekhawa jaae hai.
 'noimage'                   => 'Ii naam ke koi file nai hai, lekin aap sakta hai $1.',
 'noimage-linktext'          => 'ek ke upload karo',
 'uploadnewversion-linktext' => 'Ii file ke nawaa version ke upload karo',
-'shared-repo-from'          => '$1 se', # $1 is the repository name
-'shared-repo'               => 'ek shared repository', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => '$1 se',
+'shared-repo'               => 'ek shared repository',
 
 # File reversion
 'filerevert'                => '$1 ke pahile jaise karo',
@@ -1801,8 +1804,8 @@ isse pahile waala sadasya ii panna ke khaali yogdaan de waala hai.',
 aur koi ii panna ke badal nai to pahile jaise kar diis hai.
 
 Ii panna ke pichla badla [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) se rahaa',
-'editcomment'      => "Badlao ke summary rahaa: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ke badlao ke [[User:$1|$1]] ke aakhri badlao ke jaise kar dewa gais hai.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Badlao ke summary rahaa: \"''\$1''\".",
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ke badlao ke [[User:$1|$1]] ke aakhri badlao ke jaise kar dewa gais hai.',
 'rollback-success' => '$1 ke badlao ke pahile jaise kar dewa gais hai;
 badal ke $2 ke aakhri version kar dewa gais hai.',
 'sessionfailure'   => 'Aap ke login session me kuch karrbarr hai.
@@ -1856,7 +1859,7 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 ** Counter-productive edit warring
 ** Jaada traffic waala panna',
 'protect-edit-reasonlist'     => 'Badlao se bachae ke kaaran',
-'protect-expiry-options'      => '1 ghanta:1 hour,1 din:1 day, 1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,sab time ke khatir:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ghanta:1 hour,1 din:1 day, 1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,sab time ke khatir:infinite',
 'restriction-type'            => 'Ijaajat:',
 'restriction-level'           => 'Roke ke niyam:',
 'minimum-size'                => 'Kamti se kamti size',
@@ -1938,7 +1941,7 @@ $1',
 'contributions-title' => '$1 ke yogdaan',
 'mycontris'           => 'Hamaar yogdaan',
 'contribsub2'         => '$1 ($2) ke khatir',
-'nocontribs'          => 'Ii critera ke rakam ke koi badlao nai pawa gais hai.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Ii critera ke rakam ke koi badlao nai pawa gais hai.',
 'uctop'               => '(uppar)',
 'month'               => 'Mahina se (aur pahile):',
 'year'                => 'Saal se (aur pahile):',
@@ -1999,7 +2002,7 @@ Niche ek khaas kaaran likho (jaise ki, citing particular pages that were vandali
 'ipbenableautoblock'              => 'Apne se sadasya ke kaam me lawa gais last IP address ke roko, aur iske saathe aur koi IPs jisme se baad me badlao kare ke kosis karaa jaae ke bhi roko.',
 'ipbsubmit'                       => 'Ii sadasya ke roko',
 'ipbother'                        => 'Duusra time:',
-'ipboptions'                      => '2 ghanta:2 hours,1 din:1 day,3 din:3 daya,1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,pura:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 ghanta:2 hours,1 din:1 day,3 din:3 daya,1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,pura:infinite',
 'ipbotheroption'                  => 'duusra',
 'ipbotherreason'                  => 'Duusra/aur kaaran:',
 'ipbhidename'                     => 'Badlao aur suchi se username ke hatao',
@@ -2134,7 +2137,7 @@ Ii prastithi me, aap ke manually move yah merge kare ke parri.",
 'move-watch'                => 'Ii panna pe dhyan rakho',
 'movepagebtn'               => 'Panna ke naam badlo',
 'pagemovedsub'              => 'Panna ke naam badle me safalta',
-'movepage-moved'            => '<big>\'\'\'"$1" ke naam badal ke "$2" kar dewa gais hai\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1" ke naam badal ke "$2" kar dewa gais hai\'\'\'</big>',
 'movepage-moved-redirect'   => 'Ek redirect ke banae dewa gais hai.',
 'movepage-moved-noredirect' => 'Ek redirect ke banae pe rukawat lagae dewa gais hai.',
 'articleexists'             => 'Uu naam ke panna abhi hai, nai to jon naam aap choose karaa hai valid nai hai.
@@ -2234,7 +2237,7 @@ Wahii line pe aur koi link exception consider karaa jai i.e. jahan par panna sak
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Edit this file using an external application',
@@ -2251,7 +2254,7 @@ Wahii line pe aur koi link exception consider karaa jai i.e. jahan par panna sak
 'watchlisttools-raw'  => 'Dhyan suchi ke apne sampadan karo',
 
 # Special:Version
-'version' => 'Version', # Not used as normal message but as header for the special page itself
+'version' => 'Version',
 
 # Special:SpecialPages
 'specialpages' => 'Khaas panna',

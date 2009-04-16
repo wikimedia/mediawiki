@@ -1,6 +1,9 @@
 <?php
 /** Maltese (Malti)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -357,7 +360,7 @@ $messages = array(
 'category-media-header'          => 'Medja fil-kategorija "$1"',
 'category-empty'                 => "''Din il-kategorija bħalissa m'għandiex paġni jew medja.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategorija moħbija|Kategoriji moħbijin}}',
-'hidden-category-category'       => 'Kategoriji moħbija', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Kategoriji moħbija',
 'category-subcat-count'          => "{{PLURAL:$2|Din il-kategorija għanda biss din is-subkategorija.|Din il-kategorija għanda biss din {{PLURAL:$1|subkategorija|$1 subkategoriji}}, minn total ta' $2.}}",
 'category-subcat-count-limited'  => 'Din il-kategorija għandha {{PLURAL:$1|sottokategorija|$1 sottokategoriji}}.',
 'category-article-count'         => "{{PLURAL:$2|Din il-kategorija għandha biss din il-paġna, kif indikat.| Din il-kategorija għandha {{PLURAL:$1|l-paġna indikata|l-$1 paġni indikati}}, minn total ta' $2.}}",
@@ -444,7 +447,7 @@ $messages = array(
 'otherlanguages'    => "F'lingwi oħrajn",
 'redirectedfrom'    => '(Rindirizzat minn $1)',
 'redirectpagesub'   => 'Paġna li tidderieġi',
-'lastmodifiedat'    => 'Din il-paġna kienet modifikata l-aħħar: $2, $1 .', # $1 date, $2 time
+'lastmodifiedat'    => 'Din il-paġna kienet modifikata l-aħħar: $2, $1 .',
 'viewcount'         => 'Din il-paġna ġiet moqrija {{PLURAL:$1|darba|$1 drabi}}.',
 'protectedpage'     => 'Paġna protetta',
 'jumpto'            => 'Aqbeż għal:',
@@ -932,7 +935,7 @@ Ir-raġuni li ġiet mogħtija mingħand $3 kienet ''$2''",
 'currentrev'             => 'Reviżjoni kurrenti',
 'currentrev-asof'        => "Reviżjoni kurrenti ta' $1",
 'revisionasof'           => "Reviżjoni ta' $1",
-'revision-info'          => "Reviżjoni ta' $1 minn $2", # Additionally available: $3: revision id
+'revision-info'          => "Reviżjoni ta' $1 minn $2",
 'previousrevision'       => '←Reviżjoni eqdem',
 'nextrevision'           => 'Reviżjoni iġded→',
 'currentrevisionlink'    => 'Reviżjoni kurrenti',
@@ -954,7 +957,7 @@ Leġġenda: (kur) = differenzi bil-verżjoni kurrenti,
 # Revision feed
 'history-feed-title'          => 'Kronoloġija',
 'history-feed-description'    => 'Kronoloġija għal din il-paġna fuq dan il-wiki',
-'history-feed-item-nocomment' => '$1 fil- $2', # user at time
+'history-feed-item-nocomment' => '$1 fil- $2',
 'history-feed-empty'          => "Il-Paġna rikjesta qas teżisti.
 Jista' jkun li ġiet imħassra mill-wiki, jew imsemmija mill-ġdid.
 Prova [[Special:Search|fittex fuq il-wiki]] għal paġni relevanti ġodda.",
@@ -1200,7 +1203,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'files'                     => 'Fajls',
 
 # User rights
-'userrights'                  => "Treġija tal-permessi relativi 'l utenti", # Not used as normal message but as header for the special page itself
+'userrights'                  => "Treġija tal-permessi relativi 'l utenti",
 'userrights-lookup-user'      => 'Immaniġġja l-gruppi tal-utenti',
 'userrights-user-editname'    => 'Daħħal isem l-utent:',
 'editusergroup'               => "Modifika l-gruppijiet ta' l-utenti",
@@ -1868,8 +1871,8 @@ Tħassara tista' toħloq problema ta' funżjoni fid-database ta' {{SITENAME}}; m
 'alreadyrolled'    => "Mhuwiex possibbli li tneħħi l-modifiki ta' [[User:$2|$2]] ([[User talk:$2|diskussjoni]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) fil-paġna [[:$1]]; utent ieħor diġà immodifika din il-paġna jew inkella reġġa' lura.
 
 L-iktar modifika riċenti fuq dil-paġna saret minn [[User:$3|$3]] ([[User talk:$3|diskussjoni]]).",
-'editcomment'      => "It-taqsira tal-modifika kienet: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => "Modifiki mneħħa minn [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) għall-aħħar verżjoni ta' [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "It-taqsira tal-modifika kienet: \"''\$1''\".",
+'revertpage'       => "Modifiki mneħħa minn [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) għall-aħħar verżjoni ta' [[User:$1|$1]]",
 'rollback-success' => "Modifiki mneħħa ta' $1;
 Modifikata lura għall-aħħar verżjoni ta' $2.",
 'sessionfailure'   => "Ġie verifikat problema fis-sessjoni tal-aċċess; din l-azzjoni ġiet imħassra bħalha prekawzjoni. Mur lura fil-paġna preċedenti bl-użu tal-buttuna 'Lura' tal-browser, niżżel il-paġna mill-ġdid u erġa' prova.",
@@ -1903,7 +1906,7 @@ Il-Preferenzi kurrenti ta' din il-paġni huma '''$1''':",
 'protect-expiring'            => 'jiskadi $1 (UTC)',
 'protect-cascade'             => "Protezzjoni rikorsiva (testendi l-protezzjoni 'l paġni kollha inklużi f'din il-paġna).",
 'protect-cantedit'            => "Ma tistax timodifika l-livelli ta' protezzjoni ta' din il-paġna, għax int m'għandhekx il-permessi neċessarji.",
-'protect-expiry-options'      => 'siegħa:1 hour,ġurnata:1 day,ġimgħa:1 week,ġimgħatejn:2 weeks,xahar:1 month,3 xhur:3 months,6 xhur:6 months,sena:1 year,infinita:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'siegħa:1 hour,ġurnata:1 day,ġimgħa:1 week,ġimgħatejn:2 weeks,xahar:1 month,3 xhur:3 months,6 xhur:6 months,sena:1 year,infinita:infinite',
 'restriction-type'            => 'Permess:',
 'restriction-level'           => "Livell ta' limitazzjoni:",
 'minimum-size'                => 'Daqs minimu',
@@ -1980,7 +1983,7 @@ $1',
 'contributions-title' => 'Kontribuzzjonijiet tal-utent għal $1',
 'mycontris'           => 'Il-Kontribuzzjonijiet tiegħi',
 'contribsub2'         => 'Għal $1 ($2)',
-'nocontribs'          => 'L-Ebda modifiki li jisodisfa l-kriterji tat-tfittxija.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'L-Ebda modifiki li jisodisfa l-kriterji tat-tfittxija.',
 'uctop'               => '(l-aħħar għal paġna)',
 'month'               => 'Mix-xahar (u qabel):',
 'year'                => 'Mis-sena (u qabel):',
@@ -2039,7 +2042,7 @@ Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempj
 'ipbenableautoblock'              => 'Awtomatikament blokka l-aħħar indirizz tal-IP użat minn dan l-utent, u IP suċċessivi li jipprovaw jagħmlu modifiki',
 'ipbsubmit'                       => 'Ibblokja dan l-utent',
 'ipbother'                        => 'Ħin ieħor:',
-'ipboptions'                      => 'sagħtejn:2 hours,ġurnata 1:1 day,3 ġranet:3 days,ġimgħa 1:1 week,ġimgħatejn:2 weeks,xahar 1:1 month,3 xhur:3 months,6 xhur:6 months,sena 1:1 year,infinita:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => 'sagħtejn:2 hours,ġurnata 1:1 day,3 ġranet:3 days,ġimgħa 1:1 week,ġimgħatejn:2 weeks,xahar 1:1 month,3 xhur:3 months,6 xhur:6 months,sena 1:1 year,infinita:infinite',
 'ipbotheroption'                  => 'ieħor',
 'ipbotherreason'                  => 'Raġuni oħrajn:',
 'ipbhidename'                     => "Aħbi isem l-utent mir-reġistru tal-blokki, mil-lista ta' blokki attivi u mil-lista tal-utenti.",
@@ -2148,7 +2151,7 @@ F'dawn il-każi, inti trid iċaqlaq jew tagħqad il-paġna manwalment jekk dan h
 'move-watch'              => 'Segwi din il-paġna',
 'movepagebtn'             => 'Ċaqlaq il-paġna',
 'pagemovedsub'            => 'Ċaqlieq irnexxa',
-'movepage-moved'          => '<big>\'\'\'"$1" ġie mċaqlaq għal "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" ġie mċaqlaq għal "$2"\'\'\'</big>',
 'articleexists'           => "Diġà teżisti paġna b'dak l-isem, jew inkella l-isem li għażilt mhux validu.
 Jekk jogħġbok, agħżel isem ieħor.",
 'cantmove-titleprotected' => 'Ma tistax iċċaqlaq paġna hemmhekk, minħabba li t-titlu l-ġdid ġie protett milli jiġi maħluq.',
@@ -2356,7 +2359,7 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 # Attribution
 'anonymous'        => "{{PLURAL:$1|Utent anonimu|Utenti anonimi}} ta' {{SITENAME}}",
 'siteuser'         => '$1, utent tal-{{SITENAME}}',
-'lastmodifiedatby' => 'Din il-paġna ġiet modifikata l-aħħar fil-$2, $1 minn $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Din il-paġna ġiet modifikata l-aħħar fil-$2, $1 minn $3.',
 'othercontribs'    => "Dan it-test ibbażat fuq ix-xogħol ta' $1.",
 'others'           => 'oħrajn',
 'siteusers'        => "$1, {{PLURAL:$2|utent|utenti}} ta' {{SITENAME}}",
@@ -2475,7 +2478,7 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => "Wisa'",
@@ -2602,14 +2605,14 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 
 'exif-unknowndate' => 'Data mhux magħrufa',
 
-'exif-orientation-1' => 'Normali', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Maqlub oriżżontali', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Imdawwar 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Maqlub vertikali', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Imdawwar 90° fis-sens kontra l-arloġġ u maqlub vertikali', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Imdawwar 90° fis-sens tal-arloġġ', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Imdawwar 90° fis-sens tal-arloġġ u maqlub vertikalment', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Imdawwar 90° fis-sens kontra l-arloġġ', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normali',
+'exif-orientation-2' => 'Maqlub oriżżontali',
+'exif-orientation-3' => 'Imdawwar 180°',
+'exif-orientation-4' => 'Maqlub vertikali',
+'exif-orientation-5' => 'Imdawwar 90° fis-sens kontra l-arloġġ u maqlub vertikali',
+'exif-orientation-6' => 'Imdawwar 90° fis-sens tal-arloġġ',
+'exif-orientation-7' => 'Imdawwar 90° fis-sens tal-arloġġ u maqlub vertikalment',
+'exif-orientation-8' => 'Imdawwar 90° fis-sens kontra l-arloġġ',
 
 'exif-planarconfiguration-1' => 'format imbaċċaċ',
 'exif-planarconfiguration-2' => 'format tal-ippjanar',
@@ -2891,7 +2894,7 @@ Int tista' ukoll tuża l-[[Special:Watchlist/edit|modifikatur standard]].",
 'unknown_extension_tag' => 'Estensjoni tat-tag mhux magħrufa "$1"',
 
 # Special:Version
-'version'                          => 'Verżjoni', # Not used as normal message but as header for the special page itself
+'version'                          => 'Verżjoni',
 'version-extensions'               => 'Estensjonijiet installati',
 'version-specialpages'             => 'Paġni speċjali',
 'version-parserhooks'              => 'Hook tal-parser',

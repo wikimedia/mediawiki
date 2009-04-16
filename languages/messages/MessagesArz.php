@@ -1,6 +1,9 @@
 <?php
 /** Egyptian Spoken Arabic (مصرى)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -393,7 +396,7 @@ $messages = array(
 'category-media-header'          => 'ملفات الميديا فى التصنيف "$1"',
 'category-empty'                 => "''التصنيف ده مافيهوش حاليا مقالات او ملفات ميديا.''",
 'hidden-categories'              => '{{PLURAL:$1|تصنيف مستخبي|تصنيفات مستخبية}}',
-'hidden-category-category'       => 'تصنيفات مستخبية', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'تصنيفات مستخبية',
 'category-subcat-count'          => '{{PLURAL:$2| التصنيف دا فيه  التصنيف الفرعى الجاى بس.|التصنيف دا فيه {{PLURAL:$1|تصنيف فرعى|$1 تصنيف فرعى}}، من إجمالى $2.}}',
 'category-subcat-count-limited'  => ' التصنيف دا فيه {{PLURAL:$1|تصنيف فرعي|$1 تصنيف فرعي}} كدا.',
 'category-article-count'         => '{{PLURAL:$2| التصنيف دا فيه  الصفحة دى بس.|تحت {{PLURAL:$1|ملف|$1 ملف}} فى  التصنيف دا ، من إجمالى $2.}}',
@@ -480,7 +483,7 @@ $messages = array(
 'otherlanguages'    => 'بلغات تانيه',
 'redirectedfrom'    => '(تحويل من $1)',
 'redirectpagesub'   => 'صفحة تحويل',
-'lastmodifiedat'    => 'الصفحة دى اتعدلت اخر مرة فى $2، $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'الصفحة دى اتعدلت اخر مرة فى $2، $1.',
 'viewcount'         => 'الصفحة دى اتدخل عليها{{PLURAL:$1|مرة واحدة|مرتين|$1 مرات|$1 مرة}}.',
 'protectedpage'     => 'صفحه محميه',
 'jumpto'            => 'روح على:',
@@ -984,7 +987,7 @@ $2',
 'currentrev'             => 'النسخه دلوقتى',
 'currentrev-asof'        => 'المراجعة الحالية بتاريخ $1',
 'revisionasof'           => 'تعديلات من $1',
-'revision-info'          => 'نسخه $1 بواسطة $2', # Additionally available: $3: revision id
+'revision-info'          => 'نسخه $1 بواسطة $2',
 'previousrevision'       => '←نسخه اقدم',
 'nextrevision'           => 'نسخه احدث→',
 'currentrevisionlink'    => 'النسخه دلوقتى',
@@ -1006,7 +1009,7 @@ $2',
 # Revision feed
 'history-feed-title'          => 'تاريخ المراجعة',
 'history-feed-description'    => 'تاريخ التعديل بتاع الصفحة دى على الويكي',
-'history-feed-item-nocomment' => '$1 فى $2', # user at time
+'history-feed-item-nocomment' => '$1 فى $2',
 'history-feed-empty'          => 'الصفحة المطلوبة مش موجودة.
 من المحتمل تكون الصفحة أتمسحت أو أتنقلت.
 حاول [[Special:Search|التدوير فى الويكى]] عن صفحات جديدة ليها صلة.',
@@ -1313,7 +1316,7 @@ $2',
 'prefs-custom-js'           => 'مخصص JS',
 
 # User rights
-'userrights'                  => 'إدارة الحقوق بتاعة اليوزر', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'إدارة الحقوق بتاعة اليوزر',
 'userrights-lookup-user'      => 'إدارة مجموعات اليوزر',
 'userrights-user-editname'    => 'دخل اسم يوزر:',
 'editusergroup'               => 'تعديل مجموعات اليوزر',
@@ -1671,8 +1674,8 @@ PICT # misc.
 'noimage'                   => 'مافيش  ملف بالاسم ده، لكن ممكن انك  تـ$1.',
 'noimage-linktext'          => 'حمل واحد',
 'uploadnewversion-linktext' => 'حمل نسخه جديده من الملف ده',
-'shared-repo-from'          => 'من $1', # $1 is the repository name
-'shared-repo'               => 'مخزن مشترك', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'من $1',
+'shared-repo'               => 'مخزن مشترك',
 
 # File reversion
 'filerevert'                => 'استرجع $1',
@@ -2056,8 +2059,8 @@ $NEWPAGE
 فى واحد تانى عدل الصفحه او عمل استرجاع قبل كده.
 
 اخر تعديل للصفحه دى عمله [[User:$3|$3]] ([[User talk:$3|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "ملخص التعديل كان: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'استرجع التعديلات بتاعة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بتاعة [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "ملخص التعديل كان: \"''\$1''\".",
+'revertpage'       => 'استرجع التعديلات بتاعة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بتاعة [[User:$1|$1]]',
 'rollback-success' => 'استرجع تعديلات $1؛
 استرجع لآخر نسخة بواسطة $2.',
 'sessionfailure'   => 'الظاهر انه فى مشكلة فى جلسة دخولك دى ؛
@@ -2109,7 +2112,7 @@ $NEWPAGE
 ** حرب تحرير بتعطل العمل المنتج
 ** صفحة زوارها كتير',
 'protect-edit-reasonlist'     => 'عدل أسباب الحماية',
-'protect-expiry-options'      => '1 ساعة:1 hour,1 يوم:1 day,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائى:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ساعة:1 hour,1 يوم:1 day,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائى:infinite',
 'restriction-type'            => 'سماح:',
 'restriction-level'           => 'مستوى القيود :',
 'minimum-size'                => 'أقل حجم',
@@ -2192,7 +2195,7 @@ $1',
 'contributions-title' => 'مساهمات اليوزر ل$1',
 'mycontris'           => 'تعديلاتى',
 'contribsub2'         => 'لليوزر $1 ($2)',
-'nocontribs'          => 'مالقيناش   تغييرات تطابق المحددات دي.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'مالقيناش   تغييرات تطابق المحددات دي.',
 'uctop'               => '(فوق)',
 'month'               => 'من شهر (واللى قبل كده):',
 'year'                => 'من سنة (واللى قبل كده):',
@@ -2253,7 +2256,7 @@ $1',
 'ipbenableautoblock'              => ' امنع آخر عنوان أيبى استخدمه اليوزر دا اوتوماتيكي، وأى عناوين أيبى تانية يحاول التحرير منها',
 'ipbsubmit'                       => 'منع اليوزر دا',
 'ipbother'                        => 'وقت تاني:',
-'ipboptions'                      => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,تلات-ت-أيام:3 days,أسبوع:1 week,أسبوعين:2 weeks,شهر:1 month,تلات شهور:3 months,ست-ت- شهور:6 months,سنة واحدة:1 year,على طول:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,تلات-ت-أيام:3 days,أسبوع:1 week,أسبوعين:2 weeks,شهر:1 month,تلات شهور:3 months,ست-ت- شهور:6 months,سنة واحدة:1 year,على طول:infinite',
 'ipbotheroption'                  => 'كمان',
 'ipbotherreason'                  => 'سبب تاني:',
 'ipbhidename'                     => 'خبى اسم اليوزر من سجل المنع، لستة المنع النشطة ولستة اليوزرز',
@@ -2384,7 +2387,7 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'move-watch'                   => 'راقب الصفحه دى',
 'movepagebtn'                  => 'نقل الصفحه',
 'pagemovedsub'                 => 'تم  النقل بنجاح',
-'movepage-moved'               => '<big>\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'فى تحويله اتعملت.',
 'movepage-moved-noredirect'    => 'التحويله ما اتعملتش.',
 'articleexists'                => 'يا اما فيه صفحه  بالاسم ده، او ان الاسم اللى  تم اختياره مش صالح.
@@ -2612,7 +2615,7 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|يوزر مجهول|يوزرز مجهولين}} ل {{SITENAME}}',
 'siteuser'         => 'يوزر {{SITENAME}} $1',
-'lastmodifiedatby' => 'آخر تعديل  للصفحة دى كان فى $2، $1 عن طريق $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'آخر تعديل  للصفحة دى كان فى $2، $1 عن طريق $3.',
 'othercontribs'    => 'بناء على عمل $1.',
 'others'           => 'تانيين',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|يوزر|يوزرز}} $1',
@@ -2740,7 +2743,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'العرض',
@@ -2873,14 +2876,14 @@ $1',
 
 'exif-unknowndate' => 'تاريخ مش معروف',
 
-'exif-orientation-1' => 'عادي', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'دار بالعرض', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'دار 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'دار بالطول', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'اتلفت 90° CW 90° CW و اتقلب على جنبه', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'اتلفت 90° CW', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'اتلفت 90° CW 90° CW و اتقلب على راسه', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'اتلفت 90° عكس عقارب الساعة', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'عادي',
+'exif-orientation-2' => 'دار بالعرض',
+'exif-orientation-3' => 'دار 180°',
+'exif-orientation-4' => 'دار بالطول',
+'exif-orientation-5' => 'اتلفت 90° CW 90° CW و اتقلب على جنبه',
+'exif-orientation-6' => 'اتلفت 90° CW',
+'exif-orientation-7' => 'اتلفت 90° CW 90° CW و اتقلب على راسه',
+'exif-orientation-8' => 'اتلفت 90° عكس عقارب الساعة',
 
 'exif-planarconfiguration-1' => 'صيغه تخينه',
 'exif-planarconfiguration-2' => 'الصيغه المستويه',
@@ -3234,7 +3237,7 @@ $1',
 'duplicate-defaultsort' => 'تحزير: زرار الترتيب الاوتوماتيكي"$2" بيوقف زرار الترتيب الاوتوماتيكي"$1" القديم.',
 
 # Special:Version
-'version'                          => 'نسخه', # Not used as normal message but as header for the special page itself
+'version'                          => 'نسخه',
 'version-extensions'               => 'الامتدادات المتثبتة',
 'version-specialpages'             => 'صفحات مخصوصة',
 'version-parserhooks'              => 'خطاطيف البريزر',

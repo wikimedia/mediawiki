@@ -1,6 +1,9 @@
 <?php
 /** Min Dong Chinese (Mìng-dĕ̤ng-ngṳ̄)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -135,7 +138,7 @@ $messages = array(
 'otherlanguages'   => 'Gì-tă gì ngṳ̄-ngiòng',
 'redirectedfrom'   => '(Iù $1 dêng-hióng lì gì)',
 'redirectpagesub'  => 'Dṳ̀ng-sĭng dêng-hióng hiĕk',
-'lastmodifiedat'   => 'Ciā hiĕk-miêng sê diŏh $2, $1 có̤i-hâiu siŭ-gāi gì.', # $1 date, $2 time
+'lastmodifiedat'   => 'Ciā hiĕk-miêng sê diŏh $2, $1 có̤i-hâiu siŭ-gāi gì.',
 'protectedpage'    => 'Bō̤-hô hiĕk',
 'jumpto'           => 'Tiéu gáu:',
 'jumptonavigation' => 'īng-dô̤',
@@ -634,8 +637,8 @@ Iŏk-sṳ̄ nṳ̄ buóh-siōng téng nṳ̄ gáng-sê-dăng gà̤-dēng dṳ̀ 
 'alreadyrolled'  => 'Mò̤ nièng-ngài huòi-tó̤i [[User:$2|$2]] ([[User talk:$2|Tō̤-lâung]]) có̤i âu sū có̤ gì [[$1]] siŭ-gāi; bĕk-nè̤ng ī-gĭng siū-gái hĕ̤k-ciā huòi-tó̤i ciā hiĕk-miêng go̤ lāu.
 
 Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū có̤ gì.',
-'editcomment'    => "Siŭ-gāi pàng-lâung sê: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) sū có̤ gì siŭ-gāi duōng kó̤ [[User:$1|$1]] gì sèng 1 bĭk bēng-buōng', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "Siŭ-gāi pàng-lâung sê: \"''\$1''\".",
+'revertpage'     => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) sū có̤ gì siŭ-gāi duōng kó̤ [[User:$1|$1]] gì sèng 1 bĭk bēng-buōng',
 
 # Protect
 'protectlogpage'              => 'Bō̤-hô nĭk-cé',
@@ -645,7 +648,7 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 'protectcomment'              => 'Bō̤-hô gì nguòng-ĭng',
 'protect-level-autoconfirmed' => 'Hŭng-sō̤ mò̤ cé̤ṳ-cháh ê̤ṳng-hô̤',
 'protect-level-sysop'         => 'Nâ guāng-lī-uòng',
-'protect-expiry-options'      => '2 dēng-cṳ̆ng:2 hours,1 gĕ̤ng:1 day,3 gĕ̤ng:3 days,1 lā̤-buái:1 week,2 lā̤-buái:2 weeks,1 month:1 nguŏk-nĭk,3 nguŏk-nĭk:3 months,6 nguŏk-nĭk:6 months,1 nièng:1 year,īng-uōng:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 dēng-cṳ̆ng:2 hours,1 gĕ̤ng:1 day,3 gĕ̤ng:3 days,1 lā̤-buái:1 week,2 lā̤-buái:2 weeks,1 month:1 nguŏk-nĭk,3 nguŏk-nĭk:3 months,6 nguŏk-nĭk:6 months,1 nièng:1 year,īng-uōng:infinite',
 'restriction-type'            => 'Guòng-âing:',
 'restriction-level'           => 'Âing-cié dēng-gék:',
 'minimum-size'                => 'Có̤i nâung chióh-cháung',
@@ -724,7 +727,7 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 'ipbenableautoblock'       => 'Cê̤ṳ-dông hŭng-sō̤ ciā ê̤ṳng-hô siā-ê̤ṳng gì IP dê-cī',
 'ipbsubmit'                => 'Hŭng-sō̤ ciā ê̤ṳng-hô',
 'ipbother'                 => 'Gì-tă sì-găng',
-'ipboptions'               => '2 dēng-cṳ̆ng:2 hours,1 gĕ̤ng:1 day,3 gĕ̤ng:3 days,1 lā̤-buái:1 week,2 lā̤-buái:2 weeks,1 nguŏk-nĭk:1 month,3 nguŏk-nĭk:3 months,6 nguŏk-nĭk:6 months,1 nièng:1 year,īng-uōng:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 dēng-cṳ̆ng:2 hours,1 gĕ̤ng:1 day,3 gĕ̤ng:3 days,1 lā̤-buái:1 week,2 lā̤-buái:2 weeks,1 nguŏk-nĭk:1 month,3 nguŏk-nĭk:3 months,6 nguŏk-nĭk:6 months,1 nièng:1 year,īng-uōng:infinite',
 'ipbotheroption'           => 'gì-tă',
 'ipbotherreason'           => 'Gì-tă nguòng-ĭng:',
 'blockipsuccesssub'        => 'Hŭng-sō̤ sìng-gŭng',
@@ -810,7 +813,7 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 
 # Attribution
 'anonymous'        => '{{SITENAME}} gì mò̤ miàng ê̤ṳng-hô.',
-'lastmodifiedatby' => 'Ciā hiĕk-miêng sê diŏh $2, $1, iù  $3 có̤i-hâiu siŭ-gāi gì.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ciā hiĕk-miêng sê diŏh $2, $1, iù  $3 có̤i-hâiu siŭ-gāi gì.',
 
 # Image deletion
 'deletedrevision' => 'Ī-gĭng chēng lâi gì bēng-buōng $1.',

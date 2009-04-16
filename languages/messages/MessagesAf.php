@@ -1,6 +1,9 @@
 <?php
 /** Afrikaans (Afrikaans)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -232,7 +235,7 @@ $messages = array(
 'category-media-header'          => 'Media in kategorie "$1"',
 'category-empty'                 => "''Hierdie kategorie bevat geen bladsye of media nie.''",
 'hidden-categories'              => '{{PLURAL:$1|Versteekte kategorie|Versteekte kategorië}}',
-'hidden-category-category'       => 'Versteekte kategorieë', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Versteekte kategorieë',
 'category-subcat-count'          => "{{PLURAL:$2|Hierdie kategorie het slegs die volgende subkategorie.|Hierdie kategorie het die volgende {{PLURAL:$1|subkategorie|$1 subkategorië}}, uit 'n totaal van $2.}}",
 'category-subcat-count-limited'  => 'Hierdie kategorie het die volgende {{PLURAL:$1|subkategorie|$1 subkategorië}}.',
 'category-article-count'         => "{{PLURAL:$2|Hierdie kategorie bevat slegs die volgende bladsy.|Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} is in hierdie kategorie, uit 'n totaal van $2.}}",
@@ -318,7 +321,7 @@ $messages = array(
 'otherlanguages'    => 'Ander tale',
 'redirectedfrom'    => '(Aangestuur vanaf $1)',
 'redirectpagesub'   => 'Aanstuurblad',
-'lastmodifiedat'    => 'Laaste wysiging op $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Laaste wysiging op $2, $1.',
 'viewcount'         => 'Hierdie bladsy is al {{PLURAL:$1|keer|$1 kere}} aangevra.',
 'protectedpage'     => 'Beskermde bladsy',
 'jumpto'            => 'Spring na:',
@@ -782,7 +785,7 @@ Die rede verskaf deur $3 is ''$2''",
 'currentrev'             => 'Huidige wysiging',
 'currentrev-asof'        => 'Huidige wysiging per $1',
 'revisionasof'           => 'Wysiging soos op $1',
-'revision-info'          => 'Weergawe soos op $1 deur $2', # Additionally available: $3: revision id
+'revision-info'          => 'Weergawe soos op $1 deur $2',
 'previousrevision'       => '← Ouer weergawe',
 'nextrevision'           => 'Nuwer weergawe →',
 'currentrevisionlink'    => 'bekyk huidige weergawe',
@@ -803,7 +806,7 @@ Die rede verskaf deur $3 is ''$2''",
 # Revision feed
 'history-feed-title'          => 'Weergawegeskiedenis',
 'history-feed-description'    => 'Wysigingsgeskiedenis vir die bladsy op die wiki',
-'history-feed-item-nocomment' => '$1 by $2', # user at time
+'history-feed-item-nocomment' => '$1 by $2',
 
 # Revision deletion
 'rev-deleted-comment'       => '(opsomming geskrap)',
@@ -1035,7 +1038,7 @@ bevat, word gewys).",
 'files'                    => 'Lêers',
 
 # User rights
-'userrights'                  => 'Bestuur gebruikersregte', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Bestuur gebruikersregte',
 'userrights-lookup-user'      => 'Beheer gebruikersgroepe',
 'userrights-user-editname'    => 'Voer gebruikersnaam in:',
 'editusergroup'               => 'Wysig gebruikersgroepe',
@@ -1635,8 +1638,8 @@ Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te vo
 'rollbacklink'     => 'Rol terug',
 'rollbackfailed'   => 'Terugrol onsuksesvol',
 'cantrollback'     => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
-'editcomment'      => "Die wysigopsomming was: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Die wysigopsomming was: \"''\$1''\".",
+'revertpage'       => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1',
 'rollback-success' => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
 
 # Protect
@@ -1664,7 +1667,7 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 'protect-expiring'            => 'verval $1 (UTC)',
 'protect-cascade'             => 'Beveilig bladsye insluitend die bladsy (kaskade effek)',
 'protect-cantedit'            => 'U kan nie die veiligheidsvlak van die blad verander nie, want u het nie regte om dit te wysig nie.',
-'protect-expiry-options'      => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite',
 'restriction-type'            => 'Regte:',
 'restriction-level'           => 'Beperkingsvlak:',
 'minimum-size'                => 'Minimum grootte',
@@ -1721,7 +1724,7 @@ Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
 'contributions-title' => '$1 se bydraes',
 'mycontris'           => 'My bydraes',
 'contribsub2'         => 'Vir $1 ($2)',
-'nocontribs'          => 'Geen veranderinge wat by hierdie kriteria pas, is gevind nie.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Geen veranderinge wat by hierdie kriteria pas, is gevind nie.',
 'uctop'               => ' (boontoe)',
 'month'               => 'Vanaf maand (en vroeër):',
 'year'                => 'Vanaf jaar (en vroeër):',
@@ -1779,7 +1782,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipbemailban'              => 'Verbied gebruiker om e-pos te stuur',
 'ipbsubmit'                => 'Versper hierdie adres',
 'ipbother'                 => 'Ander tydperk:',
-'ipboptions'               => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite',
 'ipbotheroption'           => 'ander',
 'ipbotherreason'           => 'Ander/ekstra rede:',
 'ipbwatchuser'             => 'Hou die gebruiker se bladsy en besprekingsbladsy dop.',
@@ -1874,7 +1877,7 @@ wees om 'n bladsy te skuif.",
 'move-watch'              => 'Hou hierdie bladsy dop',
 'movepagebtn'             => 'Skuif bladsy',
 'pagemovedsub'            => 'Verskuiwing het geslaag',
-'movepage-moved'          => '<big>\'\'\'"$1" is geskuif na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" is geskuif na "$2"\'\'\'</big>',
 'articleexists'           => "'n Bladsy met daardie naam bestaan reeds, of die naam wat u gekies het, is nie geldig nie.
 Kies asseblief 'n ander naam.",
 'cantmove-titleprotected' => "U kan nie 'n bladsy na die titel skuif nie, omdat die nuwe titel beskerm is teen die skep daarvan.",
@@ -2027,7 +2030,7 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} gebruiker $1',
-'lastmodifiedatby' => 'Hierdie bladsy is laaste gewysig $2, $1 deur $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Hierdie bladsy is laaste gewysig $2, $1 deur $3.',
 'othercontribs'    => 'Gebaseer op werk van $1.',
 'others'           => 'ander',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruikers|gebruikers}} $1',
@@ -2125,7 +2128,7 @@ Ander velde sal versteek wees.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'          => 'Wydte',
@@ -2199,10 +2202,10 @@ Ander velde sal versteek wees.
 
 'exif-unknowndate' => 'Datum onbekend',
 
-'exif-orientation-1' => 'Normaal', # 0th row: top; 0th column: left
-'exif-orientation-3' => '180° gedraai', # 0th row: bottom; 0th column: right
-'exif-orientation-6' => '90° regs gedraai', # 0th row: right; 0th column: top
-'exif-orientation-8' => '90° links gedraai', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normaal',
+'exif-orientation-3' => '180° gedraai',
+'exif-orientation-6' => '90° regs gedraai',
+'exif-orientation-8' => '90° links gedraai',
 
 'exif-componentsconfiguration-0' => 'bestaan nie',
 
@@ -2413,7 +2416,7 @@ U kan ook die [[Special:Watchlist/edit|standaard opdaterigskerm gebruik]].",
 'unknown_extension_tag' => 'Onbekende etiket "$1"',
 
 # Special:Version
-'version'                       => 'Weergawe', # Not used as normal message but as header for the special page itself
+'version'                       => 'Weergawe',
 'version-extensions'            => 'Uitbreidings geïnstalleer',
 'version-specialpages'          => 'Spesiale bladsye',
 'version-parserhooks'           => 'Ontlederhoeke',

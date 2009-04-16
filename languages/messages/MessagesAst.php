@@ -1,6 +1,9 @@
 <?php
 /** Asturian (Asturianu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -156,7 +159,7 @@ $messages = array(
 'category-media-header'          => 'Archivos multimedia na categoría "$1"',
 'category-empty'                 => "''Esta categoría nun tien anguaño nengún artículu o ficheru multimedia.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoría oculta|Categoríes ocultes}}',
-'hidden-category-category'       => 'Categoríes ocultes', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categoríes ocultes',
 'category-subcat-count'          => "{{PLURAL:$2|Esta categoría namái tien la subcategoría siguiente.|Esta categoría tien {{PLURAL:$1|la siguiente subcategoría|les siguientes $1 subcategoríes}}, d'un total de $2.}}",
 'category-subcat-count-limited'  => 'Esta categoría tien {{PLURAL:$1|la siguiente subcategoría|les siguientes $1 subcategoríes}}.',
 'category-article-count'         => "{{PLURAL:$2|Esta categoría contién namái la páxina siguiente.|{{PLURAL:$1|La siguiente páxina ta|Les $1 páxines siguientes tán}} nesta categoría, d'un total de $2.}}",
@@ -243,7 +246,7 @@ $messages = array(
 'otherlanguages'    => 'Otres llingües',
 'redirectedfrom'    => '(Redirixío dende $1)',
 'redirectpagesub'   => 'Páxina de redireición',
-'lastmodifiedat'    => "Esta páxina foi modificada per postrer vegada'l $1 a les $2.", # $1 date, $2 time
+'lastmodifiedat'    => "Esta páxina foi modificada per postrer vegada'l $1 a les $2.",
 'viewcount'         => 'Esta páxina foi vista {{PLURAL:$1|una vegada|$1 vegaes}}.',
 'protectedpage'     => 'Páxina protexida',
 'jumpto'            => 'Saltar a:',
@@ -732,7 +735,7 @@ El motivu dau por $3 ye ''$2''",
 'currentrev'             => 'Revisión actual',
 'currentrev-asof'        => 'Revisión actual a fecha de $1',
 'revisionasof'           => 'Revisión a fecha de $1',
-'revision-info'          => 'Revisión a fecha de $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Revisión a fecha de $1; $2',
 'previousrevision'       => '←Revisión anterior',
 'nextrevision'           => 'Revisión siguiente→',
 'currentrevisionlink'    => 'Revisión actual',
@@ -754,7 +757,7 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 # Revision feed
 'history-feed-title'          => 'Historial de revisiones',
 'history-feed-description'    => "Historial de revisiones d'esta páxina na wiki",
-'history-feed-item-nocomment' => '$1 en $2', # user at time
+'history-feed-item-nocomment' => '$1 en $2',
 'history-feed-empty'          => 'La páxina solicitada nun esiste.
 Seique fuera esborrada o renomada na wiki.
 Prueba a [[Special:Search|buscar na wiki]] otres páxines nueves.',
@@ -1047,7 +1050,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-custom-js'           => 'JS personalizada',
 
 # User rights
-'userrights'                  => "Remanamientu de derechos d'usuariu", # Not used as normal message but as header for the special page itself
+'userrights'                  => "Remanamientu de derechos d'usuariu",
 'userrights-lookup-user'      => "Remanamientu de grupos d'usuariu",
 'userrights-user-editname'    => "Escribi un nome d'usuariu:",
 'editusergroup'               => "Modificar grupos d'usuariu",
@@ -1752,8 +1755,8 @@ obra con precaución.",
 daquién más yá editó o revirtió la páxina.
 
 La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "El resume de la edición yera: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "El resume de la edición yera: \"''\$1''\".",
+'revertpage'       => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]',
 'rollback-success' => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
 'sessionfailure'   => 'Paez qu\'hai un problema cola to sesión; por precaución
 cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del
@@ -1802,7 +1805,7 @@ Esta ye la configuración actual pa la páxina '''$1''':",
 ** Guerra d'ediciones contraproducente
 ** Páxina de tráficu altu",
 'protect-edit-reasonlist'     => 'Editar los motivos de proteición',
-'protect-expiry-options'      => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite',
 'restriction-type'            => 'Permisu:',
 'restriction-level'           => 'Nivel de restricción:',
 'minimum-size'                => 'Tamañu mínimu',
@@ -1881,7 +1884,7 @@ $1",
 'contributions-title' => "Contribuciones d'usuariu pa $1",
 'mycontris'           => 'Les mios contribuciones',
 'contribsub2'         => 'De $1 ($2)',
-'nocontribs'          => "Nun s'atoparon cambeos que coincidan con esi criteriu.", # Optional parameter: $1 is the user name
+'nocontribs'          => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
 'uctop'               => '(últimu cambéu)',
 'month'               => "Dende'l mes (y anteriores):",
 'year'                => "Dende l'añu (y anteriores):",
@@ -1938,7 +1941,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'ipbenableautoblock'              => "Bloquiar automáticamente la cabera direición IP usada por esti usuariu y toles IP posteriores dende les qu'intente editar",
 'ipbsubmit'                       => 'Bloquiar esti usuariu',
 'ipbother'                        => 'Otru periodu:',
-'ipboptions'                      => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite',
 'ipbotheroption'                  => 'otru',
 'ipbotherreason'                  => 'Otru motivu/motivu adicional:',
 'ipbhidename'                     => "Ocultar el nome d'usuariu del rexistru de bloqueos, de la llista de bloqueos activos y de la llista d'usuarios",
@@ -2070,7 +2073,7 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'move-watch'                   => 'Vixilar esta páxina',
 'movepagebtn'                  => 'Treslladar la páxina',
 'pagemovedsub'                 => 'Treslláu correctu',
-'movepage-moved'               => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Creóse una redireición.',
 'movepage-moved-noredirect'    => "Desaniciose la creación d'una redireición.",
 'articleexists'                => "Yá hai una páxina con esi nome, o'l nome qu'escoyisti nun ye válidu. Por favor, escueyi otru nome.",
@@ -2266,7 +2269,7 @@ Guárdalu nel to ordenador y xúbilu equí.",
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Usuariu anónimu|Usuarios anónimos}} de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuariu $1',
-'lastmodifiedatby' => "Esta páxina foi modificada per postrer vegada'l $1 a les $2 por $3.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Esta páxina foi modificada per postrer vegada'l $1 a les $2 por $3.",
 'othercontribs'    => 'Basao nel trabayu fechu por $1.',
 'others'           => 'otros',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|usuariu|usuarios}} $1',
@@ -2377,7 +2380,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Anchor',
@@ -2504,14 +2507,14 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 
 'exif-unknowndate' => 'Fecha desconocida',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Voltiada horizontalmente', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotada 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Voltiada verticalmente', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotada 90° a manzorga y voltiada verticalmente', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotada 90° a mandrecha', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotada 90° a mandrecha y voltiada verticalmente', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotada 90° a manzorga', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Voltiada horizontalmente',
+'exif-orientation-3' => 'Rotada 180°',
+'exif-orientation-4' => 'Voltiada verticalmente',
+'exif-orientation-5' => 'Rotada 90° a manzorga y voltiada verticalmente',
+'exif-orientation-6' => 'Rotada 90° a mandrecha',
+'exif-orientation-7' => 'Rotada 90° a mandrecha y voltiada verticalmente',
+'exif-orientation-8' => 'Rotada 90° a manzorga',
 
 'exif-planarconfiguration-1' => 'formatu irregular',
 'exif-planarconfiguration-2' => 'formatu planu',
@@ -2780,7 +2783,7 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'duplicate-defaultsort' => 'Avisu: L\'atayu "$2" va trocar l\'atayu "$1".',
 
 # Special:Version
-'version'                          => 'Versión', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versión',
 'version-extensions'               => 'Estensiones instalaes',
 'version-specialpages'             => 'Páxines especiales',
 'version-parserhooks'              => "Hooks d'análisis sintáuticu",

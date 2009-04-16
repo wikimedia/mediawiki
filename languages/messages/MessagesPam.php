@@ -1,6 +1,9 @@
 <?php
 /** Pampanga (Kapampangan)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -115,7 +118,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'category-media-header'          => 'Media king kategoriyang "$1"',
 'category-empty'                 => "''Ala yang bulung o media ngening salukuyan ining kategoriya.''",
 'hidden-categories'              => '{{PLURAL:$1|Makasalikut a kategoriya|Makasalikut a kategoriya}}',
-'hidden-category-category'       => 'Pakasalikut a categoria', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Pakasalikut a categoria',
 'category-subcat-count'          => '{{PLURAL:$2|Bukud mung ing makatuking subkategoriya ing atyu kaniting kategoriya.|Deng makatuking subkategoriya ing kayabe kaniting kategoriya {{PLURAL:$1|subkategoriya|$1 subkategoriya}}, ibat king $2 kabilugan.}}',
 'category-subcat-count-limited'  => 'Ining kategoriya bibilugan de reng makatuking {{PLURAL:$1|subkategoriya|$1 subkategoriya}}.',
 'category-article-count'         => '{{PLURAL:$2|Bukud mung ing makatuking bulung ing kayabe king kategoriyang iti.| {{PLURAL:$1|bulung ing kayabe|$1 bulung ding kayabe}} king kategoriyang iti, ibat king $2 pangkabilugan.}}',
@@ -198,7 +201,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'otherlanguages'    => 'Kareng aliwang amanu',
 'redirectedfrom'    => '(Miyalis direksiun manibat king $1)',
 'redirectpagesub'   => 'Bulung ning pamanaliling direksiun (redirect)',
-'lastmodifiedat'    => 'Tauli yang miyalilan ining bulung anyang $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Tauli yang miyalilan ining bulung anyang $2, $1.',
 'viewcount'         => 'Ining bulung linawe da neng {{PLURAL:$1|misan|$1 besis/ukdu}}.',
 'protectedpage'     => 'Bulung a protektadu/makakambil',
 'jumpto'            => 'Lundag ka king:',
@@ -643,7 +646,7 @@ Ini ing sangkan a binie nang $3: ''$2''",
 'nohistory'           => 'Alang amlat ning pamag-edit (edit history) para king bulung a ini.',
 'currentrev'          => 'Kasalungsungan a pangayalili',
 'revisionasof'        => 'Ing mibayu aniang $1',
-'revision-info'       => 'Deng miyalilan aniang $1 ibat kang $2', # Additionally available: $3: revision id
+'revision-info'       => 'Deng miyalilan aniang $1 ibat kang $2',
 'previousrevision'    => '←Minunang pamagbayu',
 'nextrevision'        => 'Mas tauling pamagbayu→',
 'currentrevisionlink' => 'Kasalungsungan a pamagbayu',
@@ -664,7 +667,7 @@ Kabaldugan: (ngeni)=pamiyaliwa king salukuyan a bersion (bersion ngeni),
 # Revision feed
 'history-feed-title'          => 'Amlat ning pamanalili',
 'history-feed-description'    => 'Amlat ning pamagbayu/pamanalili ning bulu a ini king wiki',
-'history-feed-item-nocomment' => '$1 king $2', # user at time
+'history-feed-item-nocomment' => '$1 king $2',
 'history-feed-empty'          => 'Ala yu ing bulung a paintunan mu.
 Malyaring mebura ya king wiki, o miyalilan ya lagyu.
 Subukan me ing [[Special:Search|searching on the wiki]] para kareng bayung bulung a kawangis na niti.',
@@ -859,7 +862,7 @@ pakilawe me ing math/README ba meng i-configure.',
 'files'                    => 'Simpan (files)',
 
 # User rights
-'userrights'                  => 'Pamanibala king katuliran da reng talagamit (user rights management)', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Pamanibala king katuliran da reng talagamit (user rights management)',
 'userrights-lookup-user'      => 'Panibalan la reng grupung talagamit',
 'userrights-user-editname'    => 'Mangibili kang lagyungtalagamit (username):',
 'editusergroup'               => 'I-edit ya ing Grupung Talagamit',
@@ -1461,9 +1464,9 @@ pakakalale ka.',
 a gewa nang [[User:$2|$2]] ([[User talk:$2|Talk]]); atin nang aliwang menalili o minyubli ketang bulung.
 
 I [[User:$3|$3]] ([[User talk:$3|Talk]]) ing tawling menalili.',
-'editcomment'      => "Ini ing komentu king edit: \"''\$1''\".", # only shown if there is an edit comment
+'editcomment'      => "Ini ing komentu king edit: \"''\$1''\".",
 'revertpage'       => 'Miurung la reng in-edit nang [[Special:Contributions/$2|$2]] ([[User talk:$2|Pamisabi-sabi]]);
-binalik neng [[User:$1|$1]] king tauling bersion', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+binalik neng [[User:$1|$1]] king tauling bersion',
 'rollback-success' => 'Deng edit nang $1 a miurung;
 binalik nong $2 king sadiang bersion.',
 'sessionfailure'   => 'Balamu ating prublema king kekang login session;
@@ -1500,7 +1503,7 @@ Deni reng kasalungsungan a setting para king bulung '''$1''':",
 'protect-expiring'            => 'mayari ya keng $1 (UTC)',
 'protect-cascade'             => 'Protektan/kambilan la reng bulung a kayabe kening bulung a ini (tuki-tuking proteksiun o cascading protection)',
 'protect-cantedit'            => 'E mo malyaring alilan deng sikan ning proteksiun (protection levels) king bulung a ini, uling ala kang paintulut a i-edit ya.',
-'protect-expiry-options'      => '2 oras:2 hours,metung a yaldo:1 day,3ng aldo:3 days,paruminggu:1 week,2ng duminggu:2 weeks,pabulan:1 month,3ng bulan:3 months,6 a bulan:6 months,pabanua:1 year,alang kapupusan:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 oras:2 hours,metung a yaldo:1 day,3ng aldo:3 days,paruminggu:1 week,2ng duminggu:2 weeks,pabulan:1 month,3ng bulan:3 months,6 a bulan:6 months,pabanua:1 year,alang kapupusan:infinite',
 'restriction-type'            => 'Paintulut:',
 'restriction-level'           => 'Lebel ning pamag-limita:',
 'minimum-size'                => 'Pekamalati',
@@ -1575,7 +1578,7 @@ $1',
 'contributions' => 'Ambag da reng gagamit',
 'mycontris'     => 'Deng kakung ambag',
 'contribsub2'   => 'Para $1 ($2)',
-'nocontribs'    => 'Alang pamagbayung pareu/tutud kareng kundisiung deti.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Alang pamagbayung pareu/tutud kareng kundisiung deti.',
 'uctop'         => '(babo)',
 'month'         => 'Manibat king bulan a (at minuna pa):',
 'year'          => 'Manibat banuang (at minuna pa):',
@@ -1635,7 +1638,7 @@ mu nung sanu retang bulung a sinira da).',
 'ipbenableautoblock'          => 'Tambing yang sabatan ing tauling IP address a ginamit ning talagamit a ini, at deng IP nung nu na pa subukang mag-edit',
 'ipbsubmit'                   => 'Sabatan ya ing talagamit a ini',
 'ipbother'                    => 'Keng tutuki',
-'ipboptions'                  => '2 oras:2 hours,metung a yaldo:1 day,3ng aldo:3 days,paruminggu:1 week,2ng duminggu:2 weeks,pabulan:1 month,3ng bulan:3 months,6 a bulan:6 months,pabanua:1 year,alang kapupusan:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 oras:2 hours,metung a yaldo:1 day,3ng aldo:3 days,paruminggu:1 week,2ng duminggu:2 weeks,pabulan:1 month,3ng bulan:3 months,6 a bulan:6 months,pabanua:1 year,alang kapupusan:infinite',
 'ipbotheroption'              => 'aliwa',
 'ipbotherreason'              => 'Karagdagang/aliuang sangkan:',
 'ipbhidename'                 => 'Isalikut ya ing lagyungtalagamit (username) king tala ring mesabat (block log), tala ring makasabat (active block list), ampong tala ring talagamit (user list)',
@@ -1745,7 +1748,7 @@ Nung makanyan pin ing milyari, kailangan meng iyalis o isanib (merge) ing bulung
 'move-watch'              => 'Banten ya ing bulung a ini',
 'movepagebtn'             => 'Iyalis ya ing bulung',
 'pagemovedsub'            => 'Merapat ing pamanalis',
-'movepage-moved'          => '<big>\'\'\'Ing "$1" miyalis ya king "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'Ing "$1" miyalis ya king "$2"\'\'\'</big>',
 'articleexists'           => 'Ing bulung a yan atinang miki lagyu, okaya
 ing lagyu ginamit mu e malyari.
 Gumamit na kang aliwang lagyu.',
@@ -1921,7 +1924,7 @@ Maka-login la reng eganaganang pamaglub a transwiki (transwiki import actions) k
 # Attribution
 'anonymous'        => 'Ing/Deng gagamit king {{SITENAME}} a e pepakilala.',
 'siteuser'         => 'talagamit ning {{SITENAME}} $1',
-'lastmodifiedatby' => 'Ining bulung tauli neng elilan $3 aniang $2, $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ining bulung tauli neng elilan $3 aniang $2, $1.',
 'othercontribs'    => 'Agpang basi king obra nang $1.',
 'others'           => 'aliwa',
 'siteusers'        => '{{SITENAME}} user(s) $1
@@ -2026,7 +2029,7 @@ Detang aliwa tambing (by default) lang makasalikut.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lapad',
@@ -2121,14 +2124,14 @@ Detang aliwa tambing (by default) lang makasalikut.
 
 'exif-unknowndate' => 'E makabili ing petsa',
 
-'exif-orientation-1' => 'Karaniwan', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Mitumbalik yang pakera (horizontally)', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Pepadurut yang 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Mitumbalik yang patikdo (vertically)', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Dinurut yang 90° pa-kaili at mitumbalik yang patikdo (vertically)', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Pepadurut yang 90° a pa-wanan', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Dinurut yang 90° pa-wanan at mitumbalik patikdo (vertically)', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Pepadurut yang 90° a pa-kaili', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Karaniwan',
+'exif-orientation-2' => 'Mitumbalik yang pakera (horizontally)',
+'exif-orientation-3' => 'Pepadurut yang 180°',
+'exif-orientation-4' => 'Mitumbalik yang patikdo (vertically)',
+'exif-orientation-5' => 'Dinurut yang 90° pa-kaili at mitumbalik yang patikdo (vertically)',
+'exif-orientation-6' => 'Pepadurut yang 90° a pa-wanan',
+'exif-orientation-7' => 'Dinurut yang 90° pa-wanan at mitumbalik patikdo (vertically)',
+'exif-orientation-8' => 'Pepadurut yang 90° a pa-kaili',
 
 'exif-planarconfiguration-1' => 'ayus a bikual-bikual (chunky format)',
 'exif-planarconfiguration-2' => 'ayus a patag (planar format)',
@@ -2325,7 +2328,7 @@ Mayari/mapasu ya ining confirmation code keng $4.',
 'watchlisttools-raw'  => 'I-edit ya ing e pa metagin a tala ding babanten (raw watchlist)',
 
 # Special:Version
-'version'                  => 'Bersion', # Not used as normal message but as header for the special page itself
+'version'                  => 'Bersion',
 'version-specialpages'     => 'Bulung a makabukud',
 'version-other'            => 'Aliwa',
 'version-version'          => 'Bersion',

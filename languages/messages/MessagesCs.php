@@ -1,6 +1,9 @@
 <?php
 /** Czech (Česky)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -416,7 +419,7 @@ $messages = array(
 'category-media-header'          => 'Soubory v kategorii „$1“',
 'category-empty'                 => "''Tato kategorie neobsahuje žádné stránky či soubory.''",
 'hidden-categories'              => '{{PLURAL:$1|Skrytá kategorie|Skryté kategorie|Skryté kategorie}}',
-'hidden-category-category'       => 'Skryté kategorie', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Skryté kategorie',
 'category-subcat-count'          => '{{PLURAL:$2|V této kategorii je pouze následující podkategorie.|{{PLURAL:$1|Zobrazuje se jedna podkategorie|Zobrazují se $1 podkategorie|Zobrazuje se $1 podkategorií}} z celkového počtu $2 podkategorií v této kategorii.|{{PLURAL:$1|Zobrazuje se jedna podkategorie|Zobrazují se $1 podkategorie|Zobrazuje se $1 podkategorií}} z celkového počtu $2 podkategorií v této kategorii.}}',
 'category-subcat-count-limited'  => 'Tato kategorie obsahuje {{PLURAL:$1|následující podkategorii|následující $1 podkategorie|následujících $1 podkategorií}}.',
 'category-article-count'         => '{{PLURAL:$2|V této kategorii je pouze následující stránka.|{{PLURAL:$1|Zobrazuje se jedna stránka|Zobrazují se $1 stránky|Zobrazuje se  $1 stránek}} z celkového počtu $2 stránek v této kategorii.|{{PLURAL:$1|Zobrazuje se jedna stránka|Zobrazují se $1 stránky|Zobrazuje se $1 stránek}} z celkového počtu $2 stránek v této kategorii.}}',
@@ -503,7 +506,7 @@ $messages = array(
 'otherlanguages'    => 'V jiných jazycích',
 'redirectedfrom'    => '(Přesměrováno z $1)',
 'redirectpagesub'   => 'Přesměrování',
-'lastmodifiedat'    => 'Stránka byla naposledy editována $1 v $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Stránka byla naposledy editována $1 v $2.',
 'viewcount'         => 'Stránka byla zobrazena {{PLURAL:$1|jedenkrát|$1krát|$1krát}}.',
 'protectedpage'     => 'Zamčená stránka',
 'jumpto'            => 'Přejít na:',
@@ -980,7 +983,7 @@ $3 uvádí toto zdůvodnění: ''$2''",
 'currentrev'             => 'Aktuální verze',
 'currentrev-asof'        => 'Aktuální verze z $1',
 'revisionasof'           => 'Verze z $1',
-'revision-info'          => 'Verze z $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Verze z $1; $2',
 'previousrevision'       => '← Starší verze',
 'nextrevision'           => 'Novější verze →',
 'currentrevisionlink'    => 'zobrazit aktuální verzi',
@@ -1000,7 +1003,7 @@ $3 uvádí toto zdůvodnění: ''$2''",
 # Revision feed
 'history-feed-title'          => 'Historie editací',
 'history-feed-description'    => 'Historie editací této stránky',
-'history-feed-item-nocomment' => '$1 v $2', # user at time
+'history-feed-item-nocomment' => '$1 v $2',
 'history-feed-empty'          => 'Požadovaná stránka neexistuje.
 Mohla být smazána či přejmenována.
 Zkuste [[Special:Search|hledání]].',
@@ -1314,7 +1317,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-custom-js'           => 'Vlastní JS',
 
 # User rights
-'userrights'                  => 'Správa uživatelských skupin', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Správa uživatelských skupin',
 'userrights-lookup-user'      => 'Spravovat uživatelské skupiny',
 'userrights-user-editname'    => 'Zadejte uživatelské jméno:',
 'editusergroup'               => 'Upravit uživatelské skupiny',
@@ -1657,8 +1660,8 @@ Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s 
 'noimage'                   => 'Soubor s tímto jménem neexistuje, můžete ho $1',
 'noimage-linktext'          => 'načíst',
 'uploadnewversion-linktext' => 'Načíst novou verzi tohoto souboru',
-'shared-repo-from'          => 'z {{grammar:2sg|$1}}', # $1 is the repository name
-'shared-repo'               => 'sdílené úložiště', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'z {{grammar:2sg|$1}}',
+'shared-repo'               => 'sdílené úložiště',
 
 # File reversion
 'filerevert'                => 'Vrátit zpět $1',
@@ -2031,8 +2034,8 @@ Rady a kontakt:
 'alreadyrolled'    => 'Nelze vrátit zpět poslední editaci [[:$1]] od uživatele [[User:$2|$2]] ([[User talk:$2|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět.
 
 Poslední editaci této stránky provedl(a) [[User:$3|$3]] ([[User talk:$3|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Shrnutí editace bylo: ''„$1“''.", # only shown if there is an edit comment
-'revertpage'       => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Shrnutí editace bylo: ''„$1“''.",
+'revertpage'       => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.',
 'rollback-success' => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
 'sessionfailure'   => 'Zřejmě je nějaký problém s vaším přihlášením;
 vámi požadovaná činnost byla stornována jako prevence před neoprávněným přístupem.
@@ -2080,7 +2083,7 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 ** Editační válka
 ** Často používaná stránka',
 'protect-edit-reasonlist'     => 'Editace seznamu důvodů zamčení',
-'protect-expiry-options'      => '1 hodina:1 hour,1 den:1 day,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hodina:1 hour,1 den:1 day,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite',
 'restriction-type'            => 'Omezení:',
 'restriction-level'           => 'Úroveň omezení:',
 'minimum-size'                => 'Min. velikost',
@@ -2153,7 +2156,7 @@ $1',
 'contributions-title' => 'Příspěvky uživatele $1',
 'mycontris'           => 'Mé příspěvky',
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'Nenalezeny žádné změny vyhovující kritériím.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Nenalezeny žádné změny vyhovující kritériím.',
 'uctop'               => ' (aktuální)',
 'month'               => 'Do měsíce:',
 'year'                => 'Do roku:',
@@ -2214,7 +2217,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipbenableautoblock'              => 'Automaticky blokovat IP adresy používané tímto uživatelem',
 'ipbsubmit'                       => 'Zablokovat',
 'ipbother'                        => 'Jiný čas vypršení:',
-'ipboptions'                      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite',
 'ipbotheroption'                  => 'jiný',
 'ipbotherreason'                  => 'Jiný nebo další důvod:',
 'ipbhidename'                     => 'Skrýt uživatelské jméno u editací a v seznamech',
@@ -2328,7 +2331,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-watch'                   => 'Sledovat tuto stránku',
 'movepagebtn'                  => 'Přesunout stránku',
 'pagemovedsub'                 => 'Úspěšně přesunuto',
-'movepage-moved'               => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>",
 'movepage-moved-redirect'      => 'Bylo vytvořeno přesměrování.',
 'movepage-moved-noredirect'    => 'Přesměrování nebylo vytvořeno.',
 'articleexists'                => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
@@ -2547,7 +2550,7 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 # Attribution
 'anonymous'        => 'anonymní {{PLURAL:$1|uživatel|uživatelé|uživatelé}} {{GRAMMAR:2sg|{{SITENAME}}}}',
 'siteuser'         => 'uživatel {{grammar:2sg|{{SITENAME}}}} $1',
-'lastmodifiedatby' => 'Tuto stránku naposledy měnil $3 v $2, $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Tuto stránku naposledy měnil $3 v $2, $1.',
 'othercontribs'    => 'Do textu přispěli $1.',
 'others'           => 'ostatní',
 'siteusers'        => '{{PLURAL:$2|uživatel|uživatelé|uživatelé}} {{grammar:2sg|{{SITENAME}}}} $1',
@@ -2664,7 +2667,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šířka',
@@ -2791,14 +2794,14 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 
 'exif-unknowndate' => 'neznámé datum',
 
-'exif-orientation-1' => 'Normální', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Vodorovně převráceno', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Otočeno o 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Svisle převráceno', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Otočeno o 90° proti směru hodinových ručiček a svisle převráceno', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Otočeno o 90° ve směru hodinových ručiček', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Otočeno o 90° ve směru hodinových ručiček a svisle převráceno', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Otočeno o 90° proti směru hodinových ručiček', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normální',
+'exif-orientation-2' => 'Vodorovně převráceno',
+'exif-orientation-3' => 'Otočeno o 180°',
+'exif-orientation-4' => 'Svisle převráceno',
+'exif-orientation-5' => 'Otočeno o 90° proti směru hodinových ručiček a svisle převráceno',
+'exif-orientation-6' => 'Otočeno o 90° ve směru hodinových ručiček',
+'exif-orientation-7' => 'Otočeno o 90° ve směru hodinových ručiček a svisle převráceno',
+'exif-orientation-8' => 'Otočeno o 90° proti směru hodinových ručiček',
 
 'exif-planarconfiguration-1' => 'chunky',
 'exif-planarconfiguration-2' => 'planar',
@@ -3103,7 +3106,7 @@ Opravdu si přejete znovu tuto stránku založit?',
 'duplicate-defaultsort' => 'Upozornění: Implicitní klíč řazení (DEFAULTSORTKEY) „$2“ přepisuje dříve nastavenou hodnotu „$1“.',
 
 # Special:Version
-'version'                          => 'Verze', # Not used as normal message but as header for the special page itself
+'version'                          => 'Verze',
 'version-extensions'               => 'Nainstalovaná rozšíření',
 'version-specialpages'             => 'Speciální stránky',
 'version-parserhooks'              => 'Přípojné body parseru',

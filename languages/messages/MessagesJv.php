@@ -1,6 +1,9 @@
 <?php
 /** Javanese (Basa Jawa)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -152,7 +155,7 @@ $messages = array(
 'category-media-header'          => 'Média ing kategori "$1"',
 'category-empty'                 => "''Kategori iki saiki ora ngandhut artikel utawa média.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategori sing didelikaké|Kategori sing didelikaké}}',
-'hidden-category-category'       => 'Kategori sing didelikaké', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Kategori sing didelikaké',
 'category-subcat-count'          => '{{PLURAL:$2|Kategori iki namung nduwé subkategori ing ngisor ikit.|Dituduhaké {{PLURAL:$1|subkategori|$1 subkategori}} sing kalebu ing kategori iki saka total $2.}}',
 'category-subcat-count-limited'  => "Kategori iki ora duwé {{PLURAL:$1|subkategori|$1 subkategori}} ''berikut''.",
 'category-article-count'         => '{{PLURAL:$2|Kategori iki namung ndarbèni kaca iki.|Dituduhaké {{PLURAL:$1|kaca|$1 kaca-kaca}} sing kalebu ing kategori iki saka gunggungé $2.}}',
@@ -237,7 +240,7 @@ $messages = array(
 'otherlanguages'    => 'Basa liya',
 'redirectedfrom'    => '(Dialihkan dari $1)',
 'redirectpagesub'   => 'Kaca pangalihan',
-'lastmodifiedat'    => 'Kaca iki diowahi pungkasané nalika $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Kaca iki diowahi pungkasané nalika $2, $1.',
 'viewcount'         => 'Kaca iki wis tau diaksès cacahé ping {{PLURAL:$1|siji|$1}}.',
 'protectedpage'     => 'Kaca sing direksa',
 'jumpto'            => 'Langsung menyang:',
@@ -675,7 +678,7 @@ Alesané miturut $3 yaiku ''$2''",
 'currentrev'             => 'Revisi saiki',
 'currentrev-asof'        => 'Révisi anyar dhéwé ing tanggal $1',
 'revisionasof'           => 'Revisi per $1',
-'revision-info'          => 'Revisi per $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Revisi per $1; $2',
 'previousrevision'       => '←Revisi sadurungé',
 'nextrevision'           => 'Revisi sabanjuré→',
 'currentrevisionlink'    => 'Revisi saiki',
@@ -695,7 +698,7 @@ Alesané miturut $3 yaiku ''$2''",
 # Revision feed
 'history-feed-title'          => 'Riwayat revisi',
 'history-feed-description'    => 'Riwayat revisi kaca iki ing wiki',
-'history-feed-item-nocomment' => '$1 ing $2', # user at time
+'history-feed-item-nocomment' => '$1 ing $2',
 'history-feed-empty'          => 'Kaca sing disuwun ora ditemokaké. Mbokmenawa wis dibusak saka wiki, utawa diwènèhi jeneng anyar. Coba [[Special:Search|golèka ing wiki]] kanggo kaca anyar sing rélevan.',
 
 # Revision deletion
@@ -968,7 +971,7 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'files'                     => 'Berkas',
 
 # User rights
-'userrights'                  => 'Manajemen hak panganggo', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Manajemen hak panganggo',
 'userrights-lookup-user'      => 'Ngatur kelompok panganggo',
 'userrights-user-editname'    => 'Lebokna jeneng panganggo:',
 'editusergroup'               => 'Sunting kelompok panganggo',
@@ -1663,8 +1666,8 @@ kudu ngati-ati.',
 'alreadyrolled'    => 'Ora bisa mbalèkaké suntingan pungkasan [[:$1]] déning [[User:$2|$2]] ([[User talk:$2|Wicara]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); wong liya wis nyunting utawa mbalèkaké kaca artikel iku. 
 
 Suntingan pungkasan dilakoni déning [[User:$3|$3]] ([[User talk:$3|Wicara]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'Komentar panyuntingané yaiku: "<em>$1</em>".', # only shown if there is an edit comment
-'revertpage'       => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => 'Komentar panyuntingané yaiku: "<em>$1</em>".',
+'revertpage'       => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[User:$1|$1]]',
 'rollback-success' => 'Suntingan dibalèkaké déning $1;
 diowahi bali menyang vèrsi pungkasan déning $2.',
 'sessionfailure'   => 'Katoné ana masalah karo sèsi log panjenengan; log panjenengan wis dibatalaké kanggo nyegah pambajakan. Mangga mencèt tombol "back" lan unggahaké manèh kaca sadurungé mlebu log, lan coba manèh.',
@@ -1712,7 +1715,7 @@ Ing ngisor iki kapacak konfigurasi kanggo kaca '''$1''':",
 ** Perang suntingan
 ** Kaca kerep disunting',
 'protect-edit-reasonlist'     => 'Nyunting alesan reksan',
-'protect-expiry-options'      => '2 jam:2 hours,1 dina:1 day,3 dina:3 days,1 minggu:1 week,2 minggu:2 weeks,1 sasi:1 month,3 sasi:3 months,6 sasi:6 months,1 taun:1 year,tanpa wates:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 jam:2 hours,1 dina:1 day,3 dina:3 days,1 minggu:1 week,2 minggu:2 weeks,1 sasi:1 month,3 sasi:3 months,6 sasi:6 months,1 taun:1 year,tanpa wates:infinite',
 'restriction-type'            => 'Pangreksan:',
 'restriction-level'           => 'Tingkatan pambatesan:',
 'minimum-size'                => 'Ukuran minimum',
@@ -1794,7 +1797,7 @@ $1',
 'contributions-title' => 'Kontribusi panganggo kanggo $1',
 'mycontris'           => 'Kontribusiku',
 'contribsub2'         => 'Kanggo $1 ($2)',
-'nocontribs'          => 'Ora ditemokaké owah-owahan sing cocog karo kritéria kasebut iku.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Ora ditemokaké owah-owahan sing cocog karo kritéria kasebut iku.',
 'uctop'               => ' (dhuwur)',
 'month'               => 'Wiwit sasi (lan sadurungé):',
 'year'                => 'Wiwit taun (lan sadurungé):',
@@ -1854,7 +1857,7 @@ Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis t
 'ipbenableautoblock'              => 'Blokir alamat IP pungkasan sing dienggo déning pengguna iki sacara otomatis, lan kabèh alamat sabanjuré sing dicoba arep dienggo nyunting.',
 'ipbsubmit'                       => 'Kirimna',
 'ipbother'                        => 'Wektu liya',
-'ipboptions'                      => '2 jam:2 hours,1 dina:1 day,3 dina:3 days,1 minggu:1 week,2 minggu:2 weeks,1 sasi:1 month,3 sasi:3 months,6 sasi:6 months,1 taun:1 year,tanpa wates:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 jam:2 hours,1 dina:1 day,3 dina:3 days,1 minggu:1 week,2 minggu:2 weeks,1 sasi:1 month,3 sasi:3 months,6 sasi:6 months,1 taun:1 year,tanpa wates:infinite',
 'ipbotheroption'                  => 'liyané',
 'ipbotherreason'                  => 'Alesan liya/tambahan',
 'ipbhidename'                     => 'Delikna jeneng panganggo utawa alamat IP saka log pamblokiran, daftar blokir aktif, sarta daftar panganggo',
@@ -1975,7 +1978,7 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 'move-watch'                => 'Awasna kaca iki',
 'movepagebtn'               => 'Pindhahna kaca',
 'pagemovedsub'              => 'Bisa kasil dipindhahaké',
-'movepage-moved'            => '<big>\'\'\'"$1" dipindhahaké menyang "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1" dipindhahaké menyang "$2".\'\'\'</big>',
 'articleexists'             => 'Satunggalipun kaca kanthi asma punika sampun wonten, utawi asma ingkang panjenengan pendhet mboten leres. Sumangga nyobi asma sanèsipun.',
 'cantmove-titleprotected'   => 'Panjenengan ora bisa mindhahaké kaca iki menyang lokasi iki, amerga irah-irahan tujuan lagi direksa; ora olèh digawé',
 'talkexists'                => 'Kaca iku kasil dipindhahaké, nanging kaca dhiskusi saka kaca iku ora bisa dipindhahaké amerga wis ana kaca dhiskusi ing irah-irahan (judhul) sing anyar. Mangga kaca-kaca dhiskusi wau digabung sacara manual.',
@@ -2160,7 +2163,7 @@ Simpenen ing cakram padhet (''harddisk'') panjenengan lan unggahna ing kéné.",
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Panganggo|panganggo}} anon ing {{SITENAME}}.',
 'siteuser'         => 'Panganggo {{SITENAME}} $1',
-'lastmodifiedatby' => 'Kaca iki pungkasan diowahi  $2, $1 déning $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Kaca iki pungkasan diowahi  $2, $1 déning $3.',
 'othercontribs'    => 'Adhedhasar karyané $1.',
 'others'           => 'liya-liyané',
 'siteusers'        => '{{PLURAL:$2|Panganggo|Panganggo-panganggo}} {{SITENAME}} $1',
@@ -2266,7 +2269,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 * model
 * datetimeoriginal
 * exposuretime
-* fnumber', # Do not translate list items
+* fnumber',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Jembar',
@@ -2393,14 +2396,14 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 
 'exif-unknowndate' => 'Tanggal ora dingertèni',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Baliken sacara horisontal', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Diputer 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Baliken sacara vèrtikal', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Diputer 90° nglawan arah dom jam dan dibalik sacara vèrtikal', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Diputer 90° miturut arah dom jam', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Diputer 90° miturut arah dom jam lan diwalik sacara vèrtikal', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Diputer 90° miturut lawan arah dom jam', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Baliken sacara horisontal',
+'exif-orientation-3' => 'Diputer 180°',
+'exif-orientation-4' => 'Baliken sacara vèrtikal',
+'exif-orientation-5' => 'Diputer 90° nglawan arah dom jam dan dibalik sacara vèrtikal',
+'exif-orientation-6' => 'Diputer 90° miturut arah dom jam',
+'exif-orientation-7' => 'Diputer 90° miturut arah dom jam lan diwalik sacara vèrtikal',
+'exif-orientation-8' => 'Diputer 90° miturut lawan arah dom jam',
 
 'exif-planarconfiguration-1' => "format ''chunky'' (kumothak)",
 'exif-planarconfiguration-2' => 'format planar',
@@ -2666,7 +2669,7 @@ Panjenengan uga bisa [[Special:Watchlist/edit|nganggo éditor standar panjenenga
 'duplicate-defaultsort' => 'Pènget: Kunci pilih asal (\'\'Default sort key\'\') "$2" nggantèkaké kunci pilih asal sadurungé "$1".',
 
 # Special:Version
-'version'                          => 'Versi', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versi',
 'version-extensions'               => 'Èkstènsi sing wis diinstalasi',
 'version-specialpages'             => 'Kaca astaméwa (kaca kusus)',
 'version-parserhooks'              => 'Canthèlan parser',

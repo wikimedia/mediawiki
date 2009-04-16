@@ -1,6 +1,9 @@
 <?php
 /** Chuvash (Чăвашла)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -141,7 +144,7 @@ $messages = array(
 'category-media-header'          => '«$1» категорири файлсем',
 'category-empty'                 => "''Хальхи вăхăтра ку категори пушă.''",
 'hidden-categories'              => '{{PLURAL:$1|Пытарнă категори|Пытарнă категорисем}}',
-'hidden-category-category'       => 'Пытарнă категорисем', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Пытарнă категорисем',
 'category-subcat-count'          => '{{PLURAL:$2|Ку категоринче çак айри категори пур.|$2-ран(-рен,-тан,-тен) {{PLURAL:$1|$1 айри категорине кăтартнă|$1 айри категорине кăтартнă|$1 айри категорине кăтартнă}}.}}',
 'category-subcat-count-limited'  => 'Ку категоринче {{PLURAL:$1|$1 айри категори|$1 айри категори|$1 айри категори}}.',
 'category-article-count'         => '{{PLURAL:$2|Ку категоринче пĕр страница кăна.|Ку категорири $2 страницăран $1 кăтартнă.}}',
@@ -228,7 +231,7 @@ $messages = array(
 'otherlanguages'    => 'Урăх чěлхесем',
 'redirectedfrom'    => '($1 çинчен куçарнă)',
 'redirectpagesub'   => 'Куçаракан страница',
-'lastmodifiedat'    => 'Ку страницăна юлашки улăштарнă вăхăт: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ку страницăна юлашки улăштарнă вăхăт: $2, $1.',
 'viewcount'         => 'Ку страницăна $1 хут пăхнă.',
 'protectedpage'     => 'Хӳтĕленĕ статья',
 'jumpto'            => 'Куçас:',
@@ -549,7 +552,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'nohistory'           => 'Ку страницăн улшăнусен журналĕ çук.',
 'currentrev'          => 'Хальхи верси',
 'revisionasof'        => '$1 верси',
-'revision-info'       => '$1 версийĕ; $2', # Additionally available: $3: revision id
+'revision-info'       => '$1 версийĕ; $2',
 'previousrevision'    => '&larr;Малтанхи верси',
 'nextrevision'        => 'Çěнěрех верси→',
 'currentrevisionlink' => 'хальхи верси çине куç',
@@ -633,7 +636,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'files'              => 'Файлсем',
 
 # User rights
-'userrights'               => 'Хутшăнакансен прависемпе ĕçлесси', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Хутшăнакансен прависемпе ĕçлесси',
 'userrights-lookup-user'   => 'Хутшăнакансен ушкăнĕсемпе ĕçлесси',
 'userrights-user-editname' => 'Хутшăнакан ятне кăтартăр:',
 'editinguser'              => "тӳрлетни '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -1078,7 +1081,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 
 # Attribution
 'anonymous'        => '{{GRAMMAR:genitive|{{SITENAME}}}} анонимлă хутшăнакансем',
-'lastmodifiedatby' => 'Ку страницăна юлашки хут $2, $1 вăхăтра $3 хутшăнакан улăштарнă.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ку страницăна юлашки хут $2, $1 вăхăтра $3 хутшăнакан улăштарнă.',
 'othercontribs'    => '$1 ĕçĕ çинче никĕсленнĕ.',
 'others'           => 'ыттисем',
 'creditspage'      => 'Пархатарлăх',
@@ -1192,7 +1195,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'watchlisttools-view' => 'Ку тӳрлетӳпе çыхăннăскерсем',
 
 # Special:Version
-'version' => 'MediaWiki версийĕ', # Not used as normal message but as header for the special page itself
+'version' => 'MediaWiki версийĕ',
 
 # Special:FilePath
 'filepath'        => 'Файл çулĕ',

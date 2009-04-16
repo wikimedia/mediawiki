@@ -1,6 +1,9 @@
 <?php
 /** Volapük (Volapük)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -216,7 +219,7 @@ $messages = array(
 'category-media-header'          => 'Ragivs in klad: „$1“',
 'category-empty'                 => "''Klad at anu ninädon padis e ragivis nonikis.''",
 'hidden-categories'              => '{{PLURAL:$1|Klad|Klads}} peklänedöl',
-'hidden-category-category'       => 'Klads peklänedöl', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Klads peklänedöl',
 'category-subcat-count'          => '{{PLURAL:$2|Klad at labon te donakladi sököl.|Klad at labon {{PLURAL:$1|donakladi sököl|donakladis sököl $1}}, se $2.}}',
 'category-subcat-count-limited'  => 'Klad at labon {{PLURAL:$1|donakladi|donakladis}} sököl.',
 'category-article-count'         => '{{PLURAL:$2|Klad at labon te padi sököl.|{{PLURAL:$1|Pad sököl binon|Pads sököl $1 binons}} in klad at, se $2.}}',
@@ -303,7 +306,7 @@ $messages = array(
 'otherlanguages'    => 'In püks votik',
 'redirectedfrom'    => '(Pelüodükon de pad: $1)',
 'redirectpagesub'   => 'Lüodükömapad',
-'lastmodifiedat'    => 'Pad at pävotükon lätiküno tü düp $2, ün $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Pad at pävotükon lätiküno tü düp $2, ün $1.',
 'viewcount'         => 'Pad at pelogon {{PLURAL:$1|balna|$1na}}.',
 'protectedpage'     => 'Pad pejelöl',
 'jumpto'            => 'Bunön lü:',
@@ -776,7 +779,7 @@ Kod blokama fa el $3 pegivöl binon ''$2''",
 'currentrev'             => 'Fomam anuik',
 'currentrev-asof'        => 'Fomam nuik tü $1',
 'revisionasof'           => 'Fomam dätü $1',
-'revision-info'          => 'Fomam timü $1 fa el $2', # Additionally available: $3: revision id
+'revision-info'          => 'Fomam timü $1 fa el $2',
 'previousrevision'       => '←Fomam vönedikum',
 'nextrevision'           => 'Fomam nulikum→',
 'currentrevisionlink'    => 'Fomam anuik',
@@ -798,7 +801,7 @@ Plän: (anuik) = dif tefü fomam anuik,
 # Revision feed
 'history-feed-title'          => 'Revidajenotem',
 'history-feed-description'    => 'Revidajenotem pada at in vük',
-'history-feed-item-nocomment' => '$1 ün $2', # user at time
+'history-feed-item-nocomment' => '$1 ün $2',
 'history-feed-empty'          => 'Pad pevipöl no dabinon.
 Ba pemoükon se ragivs, u ba pevotanemon.
 Kanol [[Special:Search|sukön]] padis nulik tefik.',
@@ -1090,7 +1093,7 @@ logolös eli math/README ad givulön parametemi.',
 'files'                     => 'Ragivs',
 
 # User rights
-'userrights'                  => 'Guvam gebanagitätas', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Guvam gebanagitätas',
 'userrights-lookup-user'      => 'Guvön gebanagrupis',
 'userrights-user-editname'    => 'Penolös gebananemi:',
 'editusergroup'               => 'Redakön Gebanagrupis',
@@ -1418,7 +1421,7 @@ Lised dono jonon {{PLURAL:$1|padayümi balid|padayümis balid $1}} te lü ragiv 
 'noimage'                   => 'Ragiv labü nem at no dabinon, ab kanol $1.',
 'noimage-linktext'          => 'löpükön bali',
 'uploadnewversion-linktext' => 'Löpükön fomami nulik ragiva at',
-'shared-repo-from'          => 'se $1', # $1 is the repository name
+'shared-repo-from'          => 'se $1',
 
 # File reversion
 'filerevert'                => 'Geükön padi: $1',
@@ -1794,8 +1797,8 @@ Prudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.',
 'alreadyrolled'    => 'No eplöpos ad sädunön redakami lätik pada: [[:$1]] fa geban: [[User:$2|$2]] ([[User talk:$2|Bespikapad]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); ek ya eredakon oni ud esädunon redakami ona.
 
 Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Redakamaplän äbinon: „''$1''“.", # only shown if there is an edit comment
-'revertpage'       => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons ad fomam ma redakam lätik gebana: [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Redakamaplän äbinon: „''$1''“.",
+'revertpage'       => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons ad fomam ma redakam lätik gebana: [[User:$1|$1]]',
 'rollback-success' => 'Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.',
 'sessionfailure'   => 'Jiniko ädabinon säkäd seimik pö nunädam olik. 
 Dun at no pelasumon ad vitön mögi, das votükams olik pogivulons gebane votik.
@@ -1843,7 +1846,7 @@ Ekö! parametem anuik pada: '''$1''':",
 ** Redakamakrigs tupöl
 ** Pad labü dakosäd tuik',
 'protect-edit-reasonlist'     => 'Redakön jelakodis',
-'protect-expiry-options'      => 'düp 1:1 hour,del 1:1 day,vig 1:1 week,vigs 2:2 weeks,mul 1:1 month,muls 3:3 months,muls 6:6 months,yel 1:1 year,laidüp:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'düp 1:1 hour,del 1:1 day,vig 1:1 week,vigs 2:2 weeks,mul 1:1 month,muls 3:3 months,muls 6:6 months,yel 1:1 year,laidüp:infinite',
 'restriction-type'            => 'Däl:',
 'restriction-level'           => 'Miedükamanivod:',
 'minimum-size'                => 'Gretot smalikün',
@@ -1921,7 +1924,7 @@ $1',
 'contributions-title' => 'Gebanakeblünots pro $1',
 'mycontris'           => 'Keblünots obik',
 'contribsub2'         => 'Tefü $1 ($2)',
-'nocontribs'          => 'Votükams nonik petuvons me paramets at.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Votükams nonik petuvons me paramets at.',
 'uctop'               => '(lätik)',
 'month'               => 'De mul (e büiks):',
 'year'                => 'De yel (e büiks):',
@@ -1978,7 +1981,7 @@ $1',
 'ipbenableautoblock'              => 'Blokön itjäfidiko ladeti-IP lätik fa geban at pegeböli, äsi ladetis-IP fovik valik, yufü kels osteifülon ad redakön',
 'ipbsubmit'                       => 'Blokön gebani at',
 'ipbother'                        => 'Dul votik',
-'ipboptions'                      => 'düps 2:2 hours,del 1:1 day,dels 3:3 days,vig 1:1 week,vigs 2:2 weeks,mul 1:1 month,muls 3:3 months,muls 6:6 months,yel 1:1 year,laidüp:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => 'düps 2:2 hours,del 1:1 day,dels 3:3 days,vig 1:1 week,vigs 2:2 weeks,mul 1:1 month,muls 3:3 months,muls 6:6 months,yel 1:1 year,laidüp:infinite',
 'ipbotheroption'                  => 'dul votik',
 'ipbotherreason'                  => 'Kod(s) votik',
 'ipbhidename'                     => 'Klänedön gebani u ladeti-IP se jenotalised blokamas, blokamalised anuik e gebanalised',
@@ -2100,7 +2103,7 @@ Votükam at kanon binön mu staböfik ä no paspetöl pö pad pöpedik. Suemolö
 'move-watch'                   => 'Pladolöd padi at ini galädalised',
 'movepagebtn'                  => 'Topätükolöd padi',
 'pagemovedsub'                 => 'Topätükam eplöpon',
-'movepage-moved'               => '<big>\'\'\'"$1" petopätükon lü "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" petopätükon lü "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Lüodüköm pejafon.',
 'movepage-moved-noredirect'    => 'Lüoküköm ye no pejafon.',
 'articleexists'                => 'Pad labü nem at ya dabinon, u nem fa ol pevälöl no lonöfon.
@@ -2301,7 +2304,7 @@ Dälon läükami koda.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Geban|Gebans}} nennemik ela {{SITENAME}}',
 'siteuser'         => 'Geban ela {{SITENAME}}: $1',
-'lastmodifiedatby' => 'Pad at pävotükon lätiküno tü dÜp $1, ün $2, fa el $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Pad at pävotükon lätiküno tü dÜp $1, ün $2, fa el $3.',
 'othercontribs'    => 'Stabü vob gebana: $1.',
 'others'           => 'votiks',
 'siteusers'        => '{{PLURAL:$2|Geban|Gebans}} ela {{SITENAME}}: $1',
@@ -2410,7 +2413,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Vidot',
@@ -2531,10 +2534,10 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 
 'exif-unknowndate' => 'Dät nesevädik',
 
-'exif-orientation-1' => 'Nomik', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Petülöl horitäto', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Mö 180° pefleköl', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Petülöl pendito', # 0th row: bottom; 0th column: left
+'exif-orientation-1' => 'Nomik',
+'exif-orientation-2' => 'Petülöl horitäto',
+'exif-orientation-3' => 'Mö 180° pefleköl',
+'exif-orientation-4' => 'Petülöl pendito',
 
 'exif-planarconfiguration-1' => 'fomät grobik',
 
@@ -2769,7 +2772,7 @@ Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
 'duplicate-defaultsort' => 'Nüned: Leodükamakik kösömik: „$2“ buon bu leodükamakik kösömik büik: „$1“.',
 
 # Special:Version
-'version'                   => 'Fomam', # Not used as normal message but as header for the special page itself
+'version'                   => 'Fomam',
 'version-extensions'        => 'Veitükumams pestitöl',
 'version-specialpages'      => 'Pads patik',
 'version-other'             => 'Votik',

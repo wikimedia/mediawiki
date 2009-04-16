@@ -1,6 +1,9 @@
 <?php
 /** Silesian (Ślůnski)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -124,7 +127,7 @@ $messages = array(
 'category-media-header'          => 'Pliki w katygoryji "$1"',
 'category-empty'                 => "''Terozki w tyj katygoryji sům żodne artikle a pliki''",
 'hidden-categories'              => '{{PLURAL:$1|Schowano katygoryjo|Schowane katygoryje|Schowanych katygoryji}}',
-'hidden-category-category'       => 'Schowane katygoryje', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Schowane katygoryje',
 'category-subcat-count'          => '{{PLURAL:$2|Ta katygoryjo mo jyno jydno podkatygoryjo.|Ta katygoryjo mo {{PLURAL:$1|tako podkatygoryjo|$1 podkatygoryje|$1 podkatygoryji}} s liczby wszyjskich katygoryji: $2.}}',
 'category-subcat-count-limited'  => 'Ta katygoryjo mo {{PLURAL:$1|tako podkatygoryjo|$1 podkatygoryje|$1 podkatygoryji}}.',
 'category-article-count'         => '{{PLURAL:$2|W tyj katygoryji je jyno jydno zajta.|W katygoryji {{PLURAL:$1|je pokazano $1 zajta|sům pokozane $1 zajty|je pokozanych $1 zajtůw}} s cołkyj liczby $2 zajtůw.}}',
@@ -210,7 +213,7 @@ $messages = array(
 'otherlanguages'    => 'We inkszych godkach',
 'redirectedfrom'    => '(Překerowano s $1)',
 'redirectpagesub'   => 'Zajta překerowujůnco',
-'lastmodifiedat'    => 'Ta zajta uostatńo sprowjano $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ta zajta uostatńo sprowjano $2, $1.',
 'viewcount'         => 'W ta zajta filowano {{PLURAL:$1|tylko roz|$1 rozůw}}.',
 'protectedpage'     => 'Zajta zawarto',
 'jumpto'            => 'Przyńdź do:',
@@ -652,7 +655,7 @@ Skuli: ''$2''",
 'currentrev'             => 'Aktualno wersyjo',
 'currentrev-asof'        => 'Aktualno wersyjo na dźyń $1',
 'revisionasof'           => 'Wersyjo s dńa $1',
-'revision-info'          => 'Wersyjo s dńa $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Wersyjo s dńa $1; $2',
 'previousrevision'       => '← starszo wersyjo',
 'nextrevision'           => 'Nastympno wersyjo→',
 'currentrevisionlink'    => 'Aktualno wersyjo',
@@ -673,7 +676,7 @@ Legynda: (bjež.) - růžńice s wersyjům bježůncům, (popř.) - růžńice s
 # Revision feed
 'history-feed-title'          => 'Gyszichta wersyjůw',
 'history-feed-description'    => 'Historyjo wersyje tyj zajty wiki',
-'history-feed-item-nocomment' => '$1 uo $2', # user at time
+'history-feed-item-nocomment' => '$1 uo $2',
 'history-feed-empty'          => 'Wybrano zajta ńy istńije.
 Můgua zostać wyćepano abo přećepano pod inkše mjano.
 Možeš tyž [[Special:Search|šnupać]] za tům zajtům.',
@@ -951,7 +954,7 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 'files'                     => 'Pliki',
 
 # User rights
-'userrights'                  => 'Zařůndzańy prowami užytkowńikůw', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Zařůndzańy prowami užytkowńikůw',
 'userrights-lookup-user'      => 'Zařůndzej prowami užytkownika',
 'userrights-user-editname'    => 'Wklepej sam nazwa užytkowńika:',
 'editusergroup'               => 'Sprowjej grupy užytkowńika',
@@ -1639,9 +1642,9 @@ Dej pozůr, bo jei wyćepańe może spowodować zakłůcyńo w pracy {{GRAMMAR:D
 Kto inkszy zdůnżůł już to zrobić abo wprowadźił własne poprowki do treśći zajty.
 
 Autorym ostatńygo pomjyńyńo je terozki [[User:$3|$3]] ([[User talk:$3|godka]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Sprowjyńe uopisano: „''$1''”.", # only shown if there is an edit comment
+'editcomment'      => "Sprowjyńe uopisano: „''$1''”.",
 'revertpage'       => 'Wycofano sprowjyńe użytkowńika [[Special:Contributions/$2|$2]] ([[User talk:$2|godka]]).
-Autor prziwrůcůnej wersyji to [[User:$1|$1]].', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+Autor prziwrůcůnej wersyji to [[User:$1|$1]].',
 'rollback-success' => 'Wycofano sprowjyńa užytkowńika $1.
 Přiwrůcůno uostatńo wersyja autorstwa  $2.',
 'sessionfailure'   => 'Feler weryfikacyji zalůgowańo.
@@ -1690,7 +1693,7 @@ Coby přejřeć lista uobecńy zawartych zajtůw, přeńdź na zajta wykazu [[Sp
 ** Wojna edycyjno
 ** Wygupy',
 'protect-edit-reasonlist'     => 'Sprowjej powody zawarćo uod sprowjyń',
-'protect-expiry-options'      => '2 godźiny:2 hours,1 dźyń:1 day,3 dńi:3 days,1 tydźyń:1 week,2 tygodńy:2 weeks,1 mjeśůnc:1 month,3 mjeśůnce:3 months,6 mjeśency:6 months,1 rok:1 year,ńyskůńčůny:infińite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 godźiny:2 hours,1 dźyń:1 day,3 dńi:3 days,1 tydźyń:1 week,2 tygodńy:2 weeks,1 mjeśůnc:1 month,3 mjeśůnce:3 months,6 mjeśency:6 months,1 rok:1 year,ńyskůńčůny:infińite',
 'restriction-type'            => 'Pozwolyńy:',
 'restriction-level'           => 'Poźům:',
 'minimum-size'                => 'Min. wjelgość',
@@ -1771,7 +1774,7 @@ $1',
 'contributions-title' => 'Wkłod użytkowńika $1',
 'mycontris'           => 'Uody mje sprowjane',
 'contribsub2'         => 'Do užytkowńika $1 ($2)',
-'nocontribs'          => 'Brak pomjyńań uodpowjadajůncych tym kryterjům.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Brak pomjyńań uodpowjadajůncych tym kryterjům.',
 'uctop'               => '(uostatnio)',
 'month'               => 'Uod mjeśůnca (i downiyjše):',
 'year'                => 'Uod roku (i dowńijše):',
@@ -1833,7 +1836,7 @@ Podej powůd (np. umješčajůnc mjana zajtůw, na kerych dopuščůno śe wanda
 'ipbenableautoblock'              => 'Zawřij uostatńi adres IP tygo užytkowńika i autůmatyčńy wšyjstke kolejne, s kerych bydźe průbowou sprowjać zajty',
 'ipbsubmit'                       => 'Zawřij uod sprowjyń tygo užytkowńika',
 'ipbother'                        => 'Ikšy čas',
-'ipboptions'                      => '2 godźiny:2 hours,1 dźyń:1 day,3 dńi:3 days,1 tydźyń:1 week,2 tygodńy:2 weeks,1 mjeśůnc:1 month,3 mjeśůnce:3 months,6 mjeśency:6 months,1 rok:1 year,ńyskůńčůny:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 godźiny:2 hours,1 dźyń:1 day,3 dńi:3 days,1 tydźyń:1 week,2 tygodńy:2 weeks,1 mjeśůnc:1 month,3 mjeśůnce:3 months,6 mjeśency:6 months,1 rok:1 year,ńyskůńčůny:infinite',
 'ipbotheroption'                  => 'inkšy',
 'ipbotherreason'                  => 'Inkšy powůd:',
 'ipbhidename'                     => 'Schrůń mjano užytkowńika/adres IP w rejeře zawarć, na liśće aktywnych zawarć i liśće užytkowńikůw',
@@ -1962,7 +1965,7 @@ W takiych razach tekst godki třa přećepać, a jak třeba to i pouůnčyć z t
 'move-watch'                   => 'Dej pozůr',
 'movepagebtn'                  => 'Přećiś artikel',
 'pagemovedsub'                 => 'Přećiśńjyńće gotowe',
-'movepage-moved'               => '<big>\'\'\'"$1" přećiśńjynto ku "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" přećiśńjynto ku "$2"\'\'\'</big>',
 'articleexists'                => 'Artikel s takym mjanym juž je, abo mjano je zue.
 Wybjer inkše mjano.',
 'cantmove-titleprotected'      => 'Ńy možeš přećepnůńć zajty, bez tůž co jei nowe mjano je ńydozwolůne s kuli zabezpječyńo před utwořyńym',
@@ -2153,7 +2156,7 @@ Dozwalo na naszkryflańy powodu we uopiśe půmjyńań.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anůńimowy użytkowńik|Anůńimowe użytkowńiki}} {{SITENAME}}',
 'siteuser'         => 'Užytkowńik {{GRAMMAR:D.lp|{{SITENAME}}}} – $1',
-'lastmodifiedatby' => 'Uostatńy sprowjyńy tej zajty: $2, $1 (autor půmjyńań: $3)', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Uostatńy sprowjyńy tej zajty: $2, $1 (autor půmjyńań: $3)',
 'othercontribs'    => 'Inkše autory: $1.',
 'others'           => 'inkśi',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|użytkowńik|użytkowńiki}} $1',
@@ -2263,7 +2266,7 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Šyrokość',
@@ -2390,14 +2393,14 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 
 'exif-unknowndate' => 'ńyznano data',
 
-'exif-orientation-1' => 'normalno', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'odbiće we źřadle w poźůmje', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'uobroz uobrůcůny uo 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'uodbiće we źřadle w pjůńy', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'uobroz uobrůcůny uo 90° přećiwńy do ruchu wskazůwek zygora i uodbiće we źřadle w pjůńy', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'uobroz uobrůcůny uo 90° zgodńy s ruchym wskazůwek zygora', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'uobrůt uo 90° zgodńy ze wskazůwkůma zygora i uodbiće we źřadle w pjůńy', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'uobrůt uo 90° přećiwńy do wskazůwek zygora', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'normalno',
+'exif-orientation-2' => 'odbiće we źřadle w poźůmje',
+'exif-orientation-3' => 'uobroz uobrůcůny uo 180°',
+'exif-orientation-4' => 'uodbiće we źřadle w pjůńy',
+'exif-orientation-5' => 'uobroz uobrůcůny uo 90° přećiwńy do ruchu wskazůwek zygora i uodbiće we źřadle w pjůńy',
+'exif-orientation-6' => 'uobroz uobrůcůny uo 90° zgodńy s ruchym wskazůwek zygora',
+'exif-orientation-7' => 'uobrůt uo 90° zgodńy ze wskazůwkůma zygora i uodbiće we źřadle w pjůńy',
+'exif-orientation-8' => 'uobrůt uo 90° přećiwńy do wskazůwek zygora',
 
 'exif-planarconfiguration-1' => 'format masywny',
 'exif-planarconfiguration-2' => 'format powjeřchńowy',
@@ -2667,7 +2670,7 @@ Možeš tyž [[Special:Watchlist/edit|užyć standardowygo edytora]].',
 'duplicate-defaultsort' => 'Pozůr: Domyślnym kluczym sortowańo bydźe "$2" a zastůmpi uůn wcześńij wystympujůncy klucz "$1".',
 
 # Special:Version
-'version'                          => 'Wersjo', # Not used as normal message but as header for the special page itself
+'version'                          => 'Wersjo',
 'version-extensions'               => 'Zainstalowane rozšeřyńa',
 'version-specialpages'             => 'Szpecjalne zajty',
 'version-parserhooks'              => 'Haki analizatora skuadńi (ang. parser hooks)',

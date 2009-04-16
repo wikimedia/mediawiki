@@ -1,6 +1,9 @@
 <?php
 /** ‫كوردي (عەرەبی)‬ (‫كوردي (عەرەبی)‬)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -132,7 +135,7 @@ $messages = array(
 'category-media-header'    => 'میدیا له‌ هاوپۆلی "$1" دا',
 'category-empty'           => "''ئه‌م هاوپۆله‌ هه‌نووكه‌ هیچ له‌خۆ ناگرێت - به‌تاڵه‌''",
 'hidden-categories'        => '{{PLURAL:$1|ھاوپۆلی شاراوە|ھاوپۆلی شاراوە}}',
-'hidden-category-category' => 'هاوپۆلە شاردراوەکان', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'هاوپۆلە شاردراوەکان',
 'category-subcat-count'    => '{{PLURAL:$2|ئەم ھاوپۆلە تەنھا ژێرھاوپۆلی خوارەوەی تێدایە.| ئەم ھاوپۆلییە ئەم 
 {{PLURAL:$1|ژێرھاوپۆلەی|$1 ژێرھاوپۆلانەی}} , تێدایە لە کۆی $2 دا.}}',
 'category-article-count'   => '{{PLURAL:$2|ئەم ھاوپۆلییە تەنھا پەڕەی خوارەوەی تێدایە.|{{PLURAL:$1| پەڕەی خوارەوە لەم ھاوپۆلییەدایە|$1 پەڕەی خوارەوە لەم ھاوپۆلییەدان}}، لە کۆی $2 پەڕە دا.}}',
@@ -216,7 +219,7 @@ $messages = array(
 'otherlanguages'    => 'به‌ زمانه‌كانی دیكه‌',
 'redirectedfrom'    => '(ڕه‌وانه‌كراوه‌ له‌ $1)',
 'redirectpagesub'   => 'په‌ڕه‌ ڕه‌وانه‌بكه‌',
-'lastmodifiedat'    => 'ئه‌م په‌ڕه‌یه‌ دواجار نوێكراوه‌ته‌وه‌ له‌ $2, $1', # $1 date, $2 time
+'lastmodifiedat'    => 'ئه‌م په‌ڕه‌یه‌ دواجار نوێكراوه‌ته‌وه‌ له‌ $2, $1',
 'viewcount'         => 'ئه‌م په‌ڕه‌یه‌ ده‌ستكاریی كراوه‌ {{PLURAL:$1|یه‌كجار|$1 جار}}',
 'protectedpage'     => 'په‌ڕه‌یه‌كی پارێزراو',
 'jumpto'            => 'باز بدە بۆ:',
@@ -522,7 +525,7 @@ $2',
 # Revision feed
 'history-feed-title'          => 'مێژووی پیاچوونەوە',
 'history-feed-description'    => 'مێژووی پیاچوونەوە بۆ ئەم پەڕە لە ویکییەکە',
-'history-feed-item-nocomment' => '$1 لە $2', # user at time
+'history-feed-item-nocomment' => '$1 لە $2',
 
 # Revision deletion
 'rev-delundel'   => 'پیشاندان/شاردنەوە',
@@ -955,7 +958,7 @@ for directly linking to the file without displaying the file",
 
 # Block/unblock
 'blockip'                  => 'بەکارھێنەر ئاستەنگ بکە',
-'ipboptions'               => '2 کاتژمێر:2 hours,1 ڕۆژ:1 day,3 ڕۆژ:3 days,1 ھەفتە:1 week,2 ھەفتە:2 weeks,1 مانگ:1 month,3 مانگ:3 months,6 مانگ:6 months,1 ساڵ:1 year,بێ سنوور:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 کاتژمێر:2 hours,1 ڕۆژ:1 day,3 ڕۆژ:3 days,1 ھەفتە:1 week,2 ھەفتە:2 weeks,1 مانگ:1 month,3 مانگ:3 months,6 مانگ:6 months,1 ساڵ:1 year,بێ سنوور:infinite',
 'ipbotheroption'           => 'دیکە',
 'ipblocklist'              => 'لیستی بەکارھێنەر و IP ئەدرەسە بەربەستراوەکان',
 'blocklink'                => 'بەربەستن',
@@ -991,7 +994,7 @@ for directly linking to the file without displaying the file",
 'move-watch'            => 'ئەم پەڕە چاودێری بکە',
 'movepagebtn'           => 'ئەم پەڕە بگوازەوە',
 'pagemovedsub'          => 'گواستنەوە بە سەرکەوتوویی جێبەجێ کرا',
-'movepage-moved'        => '<big>\'\'\'"$1" گوازراوەتەوە بۆ "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'        => '<big>\'\'\'"$1" گوازراوەتەوە بۆ "$2"\'\'\'</big>',
 'articleexists'         => 'لاپەڕەیەک بەم ناوە ھەیە، یان ئەو ناوەی تۆ ھەڵتبژاردووە بایەخدار نیە.
 تکایە ناوێکی دیکە ھەڵبژێرە',
 'talkexists'            => "'''خودی پەڕەکە گۆزرایەوە بەڵام پەڕەی ووتووێژەکەی ناگۆزرێتەوە چونکو بەو ناوەوە یەکێک ھەیە 
@@ -1134,7 +1137,7 @@ for directly linking to the file without displaying the file",
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'دەستکاری ئەم پەڕەیە بکە بە بەکارهێنانی پڕۆگرامێکی دەرەکی',
@@ -1173,7 +1176,7 @@ for directly linking to the file without displaying the file",
 'iranian-calendar-m6' => 'خەرمانان',
 
 # Special:Version
-'version' => 'وەشان', # Not used as normal message but as header for the special page itself
+'version' => 'وەشان',
 
 # Special:FilePath
 'filepath'        => 'ڕێڕەوی پەڕگە',

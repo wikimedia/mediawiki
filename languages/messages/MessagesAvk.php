@@ -1,6 +1,9 @@
 <?php
 /** Kotava (Kotava)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -197,7 +200,7 @@ $messages = array(
 'category-media-header'          => 'Ewavaf iyeltakeem koe "$1" loma',
 'category-empty'                 => "''Bata loma va bu ok ewava noelton me ruldar''.",
 'hidden-categories'              => '{{PLURAL:$1|Palsena loma|Palsena loma}}',
-'hidden-category-category'       => 'Palsen lomeem', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Palsen lomeem',
 'category-subcat-count'          => '{{PLURAL:$2|Bata loma va bata volveyloma anton digir.|Bata loma va bata volveyloma anton digir {{PLURAL:$1|volveyloma|$1 volveyloma}}, anton digir, ke $2 kotron.}}',
 'category-subcat-count-limited'  => 'Bata loma va {{PLURAL:$1|bata volveyloma|$1 batyona volveyloma}} digir.',
 'category-article-count'         => '{{PLURAL:$2|Bata loma va batu bu anton digir.|Batu bu {{PLURAL:$1|tir|$1 tid}} koe bata loma, ke $2 varon.}}',
@@ -277,7 +280,7 @@ $messages = array(
 'otherlanguages'    => 'Ara ava se',
 'redirectedfrom'    => '(Graskan mal $1)',
 'redirectpagesub'   => 'Bugraskara',
-'lastmodifiedat'    => 'Ironakafa betara va bu tir ba $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ironakafa betara va bu tir ba $2, $1.',
 'viewcount'         => 'Batu bu {{PLURAL:$1|1-on|$1 -on}} al zo ruper.',
 'protectedpage'     => 'Nendanu bu',
 'jumpto'            => 'Grablé kal',
@@ -668,7 +671,7 @@ Bazeyena lazava ke $3 tir ''$2''.",
 'currentrev'             => 'Noelaf siatos',
 'currentrev-asof'        => 'Noeltaf betaks va $1',
 'revisionasof'           => 'Siatos ba $1',
-'revision-info'          => 'Dimplekura va $1 gan $2', # Additionally available: $3: revision id
+'revision-info'          => 'Dimplekura va $1 gan $2',
 'previousrevision'       => '← Abdif siatos',
 'nextrevision'           => 'Radimif siatos →',
 'currentrevisionlink'    => 'Wira va noelaf siatos',
@@ -689,7 +692,7 @@ Bazeyena lazava ke $3 tir ''$2''.",
 # Revision feed
 'history-feed-title'          => 'Betarizvot',
 'history-feed-description'    => 'Betarizvot va batu wikibu',
-'history-feed-item-nocomment' => '$1 koe $2', # user at time
+'history-feed-item-nocomment' => '$1 koe $2',
 'history-feed-empty'          => 'Erunu bu me tir.
 Ont zo sulayar ont zo yoltayar.
 Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
@@ -884,7 +887,7 @@ Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce
 'files'                     => 'Iyeltak se',
 
 # User rights
-'userrights'                  => 'Pofera va favesikrokeem', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Pofera va favesikrokeem',
 'userrights-lookup-user'      => 'Pofera va favesikeem',
 'userrights-user-editname'    => 'Va favesikyolt bazel',
 'editusergroup'               => 'Betara va favesikeem lospa',
@@ -1500,8 +1503,8 @@ Bazen bartiv tir tel ke zanisiko.',
 'alreadyrolled'    => 'Dimplekura va ironokafa betara va "$1" teliz gan [[User:$2|$2]] ([[User talk:$2|Prilara]]) me zo roskur; artan va teliz ixam al betar oke al dimplekur.
 
 Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
-'editcomment'      => "Betaravildeks tiyir : ''« $1 »''.", # only shown if there is an edit comment
-'revertpage'       => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Betaravildeks tiyir : ''« $1 »''.",
+'revertpage'       => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]',
 'rollback-success' => 'Dimplekun betaks yo gan $1; dimpira ko ironokaf siatos ke $2.',
 
 # Protect
@@ -1530,7 +1533,7 @@ Noeltaf plekukseem ke '''$1''' bu batlize tid :",
 'protect-expiring'            => 'edjatena ba $1 (UTC)',
 'protect-cascade'             => 'Nendan bueem dene batu bu (stoyakorafa nendara)',
 'protect-cantedit'            => 'Va nendarekeem va batu bu me robetal kire va betararoka me deraykal.',
-'protect-expiry-options'      => '2 bartiv:2 hours,1 viel:1 day,3 viel:3 days,1 perka:1 week,2 perka:2 weeks,1 aksat:1 month,3 aksat:3 months,6 aksat:6 months,1 tanda:1 year,kotabon:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 bartiv:2 hours,1 viel:1 day,3 viel:3 days,1 perka:1 week,2 perka:2 weeks,1 aksat:1 month,3 aksat:3 months,6 aksat:6 months,1 tanda:1 year,kotabon:infinite',
 'restriction-type'            => 'Rictara :',
 'restriction-level'           => 'Irutareka :',
 'minimum-size'                => 'Volcugaf lum',
@@ -1591,7 +1594,7 @@ $1',
 'contributions-title' => 'Favesikwebekseem icde $1',
 'mycontris'           => 'Jinaf webekseem',
 'contribsub2'         => 'Tori $1 ($2)',
-'nocontribs'          => 'Meka betara vadjesa va bata luda se al zo trasir.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Meka betara vadjesa va bata luda se al zo trasir.',
 'uctop'               => ' (ironokaf)',
 'month'               => 'Mali aksat (is logaveon) :',
 'year'                => 'Mali ilana (is logaveon) :',
@@ -1641,7 +1644,7 @@ Va lazavanha (tulon ozwason va cidayanu bu se) vlevon bazel !',
 'ipbemailban'              => 'Djira va favesik icde "email" staksera',
 'ipbsubmit'                => 'Elekara va bate mane',
 'ipbother'                 => 'Arviele :',
-'ipboptions'               => '2 bartiv:2 hours,1 viel:1 day,3 viel:3 days,1 perka:1 week,2 perka:2 weeks,1 aksat:1 month,3 aksat:3 months,6 aksat:6 months,1 tanda:1 year,kotabon:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 bartiv:2 hours,1 viel:1 day,3 viel:3 days,1 perka:1 week,2 perka:2 weeks,1 aksat:1 month,3 aksat:3 months,6 aksat:6 months,1 tanda:1 year,kotabon:infinite',
 'ipbotheroption'           => 'ar',
 'ipbotherreason'           => 'Ardume/lodume :',
 'badipaddress'             => 'IP mane tir mewadafe.',
@@ -1740,7 +1743,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'move-watch'              => 'Busuzdara',
 'movepagebtn'             => 'Tolyoltara va teliz',
 'pagemovedsub'            => 'Tolyoltanhara',
-'movepage-moved'          => '<big>\'\'\'"$1" zo arrundayar kal "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" zo arrundayar kal "$2"\'\'\'</big>',
 'articleexists'           => 'Milvergumveltaf teliz ixam krulder, oke kiblayan vergumvelt tir meenaf. Va ar kiblal !',
 'cantmove-titleprotected' => 'Va bu me milinde rotarrundal kire warzaf vergumvelt icde redura zo nendar',
 'talkexists'              => "La page elle-même a été déplacée avec succès, mais la page de discussion n'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
@@ -1901,7 +1904,7 @@ Ise va bazera va lazava ko vildeks nover.',
 # Attribution
 'anonymous'        => 'Yoltiskaf {{PLURAL:$1|favesik|favesik}} va {{SITENAME}}',
 'siteuser'         => '$1 favesik va {{SITENAME}}',
-'lastmodifiedatby' => 'Batu bu ironokon zo betayar ba $2, $1 gan $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Batu bu ironokon zo betayar ba $2, $1 gan $3.',
 'othercontribs'    => 'Omavaf gu kobara ke $1.',
 'others'           => 'ar',
 'siteusers'        => '{{PLURAL:$2|favesik|favesik}} $1',
@@ -2001,7 +2004,7 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Mantuca',
@@ -2086,14 +2089,14 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 
 'exif-unknowndate' => 'Megrupena evla',
 
-'exif-orientation-1' => 'Preksafa', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Inversée horizontalement', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Tournée de 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Inversée verticalement', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Tournée de 90° à gauche et inversée verticalement', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Tournée de 90° à droite', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Tournée de 90° à droite et inversée verticalement', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Tournée de 90° à gauche', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Preksafa',
+'exif-orientation-2' => 'Inversée horizontalement',
+'exif-orientation-3' => 'Tournée de 180°',
+'exif-orientation-4' => 'Inversée verticalement',
+'exif-orientation-5' => 'Tournée de 90° à gauche et inversée verticalement',
+'exif-orientation-6' => 'Tournée de 90° à droite',
+'exif-orientation-7' => 'Tournée de 90° à droite et inversée verticalement',
+'exif-orientation-8' => 'Tournée de 90° à gauche',
 
 'exif-componentsconfiguration-0' => "n'existe pas",
 
@@ -2299,7 +2302,7 @@ This confirmation code will expire at $4.',
 'unknown_extension_tag' => '"$1" megrupena divatcenafa tcala',
 
 # Special:Version
-'version'                          => 'Siatos', # Not used as normal message but as header for the special page itself
+'version'                          => 'Siatos',
 'version-extensions'               => 'Inkeyeni divatcesiki se',
 'version-specialpages'             => 'Aptaf bueem',
 'version-parserhooks'              => 'Exulerademi',

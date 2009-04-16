@@ -1,6 +1,9 @@
 <?php
 /** Southern Balochi (بلوچی مکرانی)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -245,7 +248,7 @@ $messages = array(
 'category-media-header'          => 'مدیا ته دسته "$1"',
 'category-empty'                 => "''ای دسته ی هچ صفحه یا مدیا نیست''",
 'hidden-categories'              => '{{PLURAL:$1|پناهین دسته|پناهین دسته جات}}',
-'hidden-category-category'       => 'پناهین دسته جات', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'پناهین دسته جات',
 'category-subcat-count'          => '{{PLURAL:$2|ای دسته فقط جهلیگین زیر دسته ای هست..|ای دسته  جهلیگین {{PLURAL:$1|subcategory|$1 زیردسته}}, چه $2 کل.}}',
 'category-subcat-count-limited'  => 'ای دسته جهلیگی  {{PLURAL:$1|زیردسته|$1 زیر دسته جات}}.',
 'category-article-count'         => '{{PLURAL:$2|ای دسته فقط شامل جهلیگین صفحه انت.|جهلیگین {{PLURAL:$1|صفحه است|$1 صفحات انت}}ته ای دسته , چه $2 کل.}}',
@@ -331,7 +334,7 @@ $messages = array(
 'otherlanguages'    => 'ته دگر زبان',
 'redirectedfrom'    => '(غیر مستقیم بوتگ چه $1)',
 'redirectpagesub'   => 'صفحه غیر مستقیم',
-'lastmodifiedat'    => '  $2, $1.ای صفحه اهری تغییر دهگ بیته', # $1 date, $2 time
+'lastmodifiedat'    => '  $2, $1.ای صفحه اهری تغییر دهگ بیته',
 'viewcount'         => 'ای صفحه دسترسی بیتگ {{PLURAL:$1|بار|$1رند}}.',
 'protectedpage'     => 'صفحه محافظتی',
 'jumpto'            => 'کپ به:',
@@ -841,7 +844,7 @@ $2',
 'currentrev'             => 'هنوکین بازبینی',
 'currentrev-asof'        => 'هنوکین بازبینی چه $1',
 'revisionasof'           => 'بازبینی په عنوان $1',
-'revision-info'          => 'بازبینی په داب $1 توسط $2', # Additionally available: $3: revision id
+'revision-info'          => 'بازبینی په داب $1 توسط $2',
 'previousrevision'       => '←پیش ترین نسخه',
 'nextrevision'           => 'نوکین بازبینی→',
 'currentrevisionlink'    => 'هنوکین بازبینی',
@@ -863,7 +866,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 # Revision feed
 'history-feed-title'          => 'تاریح بازبینی',
 'history-feed-description'    => 'تاریح بازبینی په ای صفحه ته ویکی',
-'history-feed-item-nocomment' => '$1 ته $2', # user at time
+'history-feed-item-nocomment' => '$1 ته $2',
 'history-feed-empty'          => 'لوٹتگین صفحه موجود نهنت.
 شاید آی چه ویکی حذف بوتت یا نامی بدل بوتت.
 آزمایش کن[[Special:Search|گردگ ته ویکی]] په مربطین نوکین صفحات.',
@@ -1178,7 +1181,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'prefs-custom-js'           => 'رسمی جی‌اس',
 
 # User rights
-'userrights'                  => 'مدیریت حقوق کاربر', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'مدیریت حقوق کاربر',
 'userrights-lookup-user'      => 'مدیریت گروه کاربر',
 'userrights-user-editname'    => 'یک نام کاربری وارد کن',
 'editusergroup'               => 'اصلاح گروه کاربر',
@@ -1534,8 +1537,8 @@ PICT # misc.
 'noimage'                   => 'چوشین فایل گون ای نام نیست، بله شما تونیت $1',
 'noimage-linktext'          => 'یکیء آپلود کن',
 'uploadnewversion-linktext' => 'یک نوکین نسخه ای چه ای فایل آپلود کن',
-'shared-repo-from'          => 'چه $1', # $1 is the repository name
-'shared-repo'               => 'هورین مخزن', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'چه $1',
+'shared-repo'               => 'هورین مخزن',
 
 # File reversion
 'filerevert'                => 'ترین $1',
@@ -1921,8 +1924,8 @@ $NEWPAGE
 یکی دگه پیش تر صفحهء اصلاح کتت یا بری گردینت.
 
 آهری اصلاح توسط [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "خلاصه اصلاح ات:\"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'ترینت اصلاحات توسط  [[Special:Contributions/$2|$2]] ([[User talk:$2|گپ کن]])په آهری بازبینی گون [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "خلاصه اصلاح ات:\"''\$1''\".",
+'revertpage'       => 'ترینت اصلاحات توسط  [[Special:Contributions/$2|$2]] ([[User talk:$2|گپ کن]])په آهری بازبینی گون [[User:$1|$1]]',
 'rollback-success' => 'اصلاحات ترینگ بوتت گون $1;
 په آهری نسخه ترینگ بوتنت گون $2.',
 'sessionfailure'   => 'چوش جاه کیت که گون شمی نند  وارد بییگ مشکلی هست;
@@ -1974,7 +1977,7 @@ $NEWPAGE
 ** اخطار هرابین اصلاح
 ** مزنین ترافیکی صفحه',
 'protect-edit-reasonlist'     => 'اصلاح دلایل حفاظت',
-'protect-expiry-options'      => '1 ساعت: 2 ساعت، 1 روچ: 1 روچ، 3 روچ: 3 روچ، 1 هفته: 1 هفته، 2 هفته: 2هفته، 1 ماه: 1 ماه: 2ماه، 3 ماه: 3 ماه، 6 ماه, 6 ماه، 1 سال: 1 سال، بی حد: بی حد', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ساعت: 2 ساعت، 1 روچ: 1 روچ، 3 روچ: 3 روچ، 1 هفته: 1 هفته، 2 هفته: 2هفته، 1 ماه: 1 ماه: 2ماه، 3 ماه: 3 ماه، 6 ماه, 6 ماه، 1 سال: 1 سال، بی حد: بی حد',
 'restriction-type'            => 'اجازت',
 'restriction-level'           => 'سطح محدود',
 'minimum-size'                => 'هوردی اندازه',
@@ -2055,7 +2058,7 @@ $1',
 'contributions-title' => 'مشارکتان کاربر په $1',
 'mycontris'           => 'می مشارکتان',
 'contribsub2'         => 'په $1 ($2)',
-'nocontribs'          => 'هچ تغییر هم دپ گون ای معیار در نه بوت.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'هچ تغییر هم دپ گون ای معیار در نه بوت.',
 'uctop'               => '(بالا)',
 'month'               => 'چه ماه(و پیش تر):',
 'year'                => 'چه سال(و پیشتر)',
@@ -2116,7 +2119,7 @@ $1',
 'ipbenableautoblock'              => 'اتوماتیکی اهری آدرس آی پی که گون ای کاربر استفاده بوتت محدود کن، و هر چی زیر آی پی هست که سعی کننت اصلاح کننت',
 'ipbsubmit'                       => 'ای کاربرء محدود کن',
 'ipbother'                        => 'دگر وهد:',
-'ipboptions'                      => '۲ ساعت:2 hours,۱ روچ:1 day,۳ روچ:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌‌حد:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '۲ ساعت:2 hours,۱ روچ:1 day,۳ روچ:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌‌حد:infinite',
 'ipbotheroption'                  => 'دگر',
 'ipbotherreason'                  => 'دگر/اضافی ان دلیل:',
 'ipbhidename'                     => 'پناه کن نام کاربری چه اصلاحات و لیستان',
@@ -2248,7 +2251,7 @@ $1',
 'move-watch'                   => 'این صفحه یا بچار',
 'movepagebtn'                  => 'جاه په جاه کن صفحه',
 'pagemovedsub'                 => 'جاه په جاهی موفقیت بود',
-'movepage-moved'               => '<big>\'\'\'"$1" جاه په اجه بوت په"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" جاه په اجه بوت په"$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'یک غیر مستقیمی شر بوت',
 'movepage-moved-noredirect'    => 'شرکتن غیر مستقیم بند بوتگ.',
 'articleexists'                => 'صفحه گون آن نام پیش تر هستت، یا نامی که شما زورتت نامعتبرنت.
@@ -2457,7 +2460,7 @@ $1',
 # Attribution
 'anonymous'        => 'ناشناسین {{PLURAL:$1|کاربر|کاربران}} چه {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} کاربر $1',
-'lastmodifiedatby' => 'ای صفحه اهری رندی که تغییر دهگ بیته $2, $1گون $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'ای صفحه اهری رندی که تغییر دهگ بیته $2, $1گون $3.',
 'othercontribs'    => 'براساس کار توسط $1.',
 'others'           => 'دگران',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|کاربر|کاربران}} $1',
@@ -2623,7 +2626,7 @@ Variants for Chinese language
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'پهنات',
@@ -2756,14 +2759,14 @@ Variants for Chinese language
 
 'exif-unknowndate' => 'ناشناس تاریح',
 
-'exif-orientation-1' => 'نرمال', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'چپ بیگ افقی', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'گردگ 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'چپ بیگ عمودی', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'چرحتن 90° ضد ساعت گرد و چپ بیگ عمودی', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'چرحتن 90° ساعت گرد', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'چرحتن 90° ساعت گرد و چپ بیگ عمودی', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'چرتن 90°ساعت گرد', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'نرمال',
+'exif-orientation-2' => 'چپ بیگ افقی',
+'exif-orientation-3' => 'گردگ 180°',
+'exif-orientation-4' => 'چپ بیگ عمودی',
+'exif-orientation-5' => 'چرحتن 90° ضد ساعت گرد و چپ بیگ عمودی',
+'exif-orientation-6' => 'چرحتن 90° ساعت گرد',
+'exif-orientation-7' => 'چرحتن 90° ساعت گرد و چپ بیگ عمودی',
+'exif-orientation-8' => 'چرتن 90°ساعت گرد',
 
 'exif-planarconfiguration-1' => 'فرمتی چنکی',
 'exif-planarconfiguration-2' => 'فرمت سطحی',
@@ -3110,7 +3113,7 @@ $1',
 'duplicate-defaultsort' => 'هژاری: ترتیب پیش فرض «$2» ترتیب پیش فرض پیشگین «$1» را باطل کنت.',
 
 # Special:Version
-'version'                          => 'نسخه', # Not used as normal message but as header for the special page itself
+'version'                          => 'نسخه',
 'version-extensions'               => 'نصب بوتگیت الحاق آن',
 'version-specialpages'             => 'حاصین صفحات',
 'version-parserhooks'              => 'تجزیه کنوک گیر کت',

@@ -1,6 +1,9 @@
 <?php
 /** Kashubian (Kaszëbsczi)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -208,7 +211,7 @@ $messages = array(
 'otherlanguages'    => 'W jinëch jãzëkach',
 'redirectedfrom'    => '(Przeczerowóné z $1)',
 'redirectpagesub'   => 'Przeczerëjë starnã',
-'lastmodifiedat'    => 'Na starna bëła slédno editowónô ò $2, $1;', # $1 date, $2 time
+'lastmodifiedat'    => 'Na starna bëła slédno editowónô ò $2, $1;',
 'viewcount'         => 'Na starna je òbzéranô ju {{PLURAL:$1|jeden rôz|$1 razy}}',
 'protectedpage'     => 'Starna je zazychrowónô',
 'jumpto'            => 'Skòczë do:',
@@ -477,7 +480,7 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'histlast'               => 'Nowszé',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 ò $2', # user at time
+'history-feed-item-nocomment' => '$1 ò $2',
 
 # Revision deletion
 'rev-delundel'   => 'pòkażë/zatacë',
@@ -867,7 +870,7 @@ Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbacz�
 'move-watch'              => 'Ùzérôj tã starnã',
 'movepagebtn'             => 'Przeniesë starnã',
 'pagemovedsub'            => 'Przeniesenié darzëło sã',
-'movepage-moved'          => '<big>\'\'\'"$1" òsta przeniosłô do "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" òsta przeniosłô do "$2"\'\'\'</big>',
 'articleexists'           => 'Starna ò taczim mionie ju je abò nie je òno bezzmiłkòwé. Wëbierzë nowé miono.',
 'movedto'                 => 'przeniesłô do',
 'movetalk'                => 'Przeniesë téż starnã <i>Diskùsëje</i>, jeżle je to mòżlëwé.',
@@ -950,7 +953,7 @@ Mòżesz òbaczëc ji zdrój.',
 # Attribution
 'anonymous'        => 'Anonimòwi {{PLURAL:$1|brëkòwnik|brëkòwnicë}} na {{SITENAME}}',
 'siteuser'         => 'Brëkòwnik {{SITENAME}} $1',
-'lastmodifiedatby' => 'Na starna bëła slédno editowónô $2, $1 przez $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Na starna bëła slédno editowónô $2, $1 przez $3.',
 'othercontribs'    => 'Òpiarté na prôcë $1.',
 'others'           => 'jiné',
 
@@ -1016,7 +1019,7 @@ Nôslédné lënczi w réżce bãdą ùwzglãdniwóné jakno wëjimczi – są t
 'watchlisttools-raw'  => 'Editëjë sërą lëstã',
 
 # Special:Version
-'version' => 'Wersëjô', # Not used as normal message but as header for the special page itself
+'version' => 'Wersëjô',
 
 # Special:SpecialPages
 'specialpages' => 'Specjalné starnë',

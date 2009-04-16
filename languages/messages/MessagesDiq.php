@@ -1,6 +1,9 @@
 <?php
 /** Zazaki (Zazaki)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -120,7 +123,7 @@ $messages = array(
 'category-media-header'    => 'Medyawa ke kategoriya "$1" dera',
 'category-empty'           => "''Ena kategoriye de hewna qet nuştey ya ki medyay çıniyê.''",
 'hidden-categories'        => '{{PLURAL:$1|Kategoriya nımıtiye|Kategoriyê nımıtey}}',
-'hidden-category-category' => 'Kategoriyê nımıtey', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Kategoriyê nımıtey',
 'category-subcat-count'    => '{{PLURAL:$2|Ena kategori dı teyna ena kategoriyan-bıni esta.|Ena kategori dı {{PLURAL:$1|kategoriyan-bın|$1 kategoriyan-bıni}}, pyero-pia $2 yekun.}}',
 'category-article-count'   => '{{PLURAL:$2|Ena kategori dı teyna ena pelayan esta.|The following {{PLURAL:$1|pela|$1 pelayan}} ena kategori dı, miyan $2 pyero-piya.}}',
 'listingcontinuesabbrev'   => 'dewam',
@@ -199,7 +202,7 @@ $messages = array(
 'otherlanguages'    => 'zıwananê binan de',
 'redirectedfrom'    => '($1 ra neqıl bi)',
 'redirectpagesub'   => 'Pela redireksiyon',
-'lastmodifiedat'    => 'Ena pele tewr peyên roca $2, $1 de biya rocaniye.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ena pele tewr peyên roca $2, $1 de biya rocaniye.',
 'viewcount'         => 'Ena perre {{PLURAL:$1|rae|$1 rey}} vêniya.',
 'protectedpage'     => 'Perra kılitkerdiye',
 'jumpto'            => 'Şo be:',
@@ -695,7 +698,7 @@ Ser pela '''$1''', itiya dı enformasyon esta:",
 
 # Block/unblock
 'blockip'                  => 'Karberi kılit ke',
-'ipboptions'               => '2 seat:2 hours,1 roc:1 day,3 roc:3 days,1 hefte:1 week,2 hefte:2 weeks,1 aşm:1 month,3 aşm:3 months,6 aşm:6 months,1 aşm:1 year,ebedi:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 seat:2 hours,1 roc:1 day,3 roc:3 days,1 hefte:1 week,2 hefte:2 weeks,1 aşm:1 month,3 aşm:3 months,6 aşm:6 months,1 aşm:1 year,ebedi:infinite',
 'ipblocklist'              => 'IP adresan u name karberan ke blok biyê',
 'blocklink'                => 'kılit ke',
 'unblocklink'              => 'ake',
@@ -714,7 +717,7 @@ Sebebê kılit-biyayışê $1\'i: "$2"o',
 'move-watch'      => 'Ena pele seyr ke',
 'movepagebtn'     => 'Pele bere',
 'pagemovedsub'    => 'Berdışi kerd temam',
-'movepage-moved'  => '<big>\'\'\'"$1" berd "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'  => '<big>\'\'\'"$1" berd "$2"\'\'\'</big>',
 'articleexists'   => 'Ena nameyê pela database ma dı esta ya zi tı raşt nınuşt. .
 Yewna name bınus.',
 'movedto'         => 'berd be',
@@ -789,7 +792,7 @@ Kerem ke, qeyd-kerdış ra ver gozega verqayti bıxebıtne.',
 Tı eşkeno yew sebeb bınus.',
 
 # Attribution
-'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye',
 
 # Browsing diffs
 'previousdiff' => '← Vurnayışê kıhanyer',

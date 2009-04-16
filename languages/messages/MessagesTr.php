@@ -1,6 +1,9 @@
 <?php
 /** Turkish (Türkçe)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -257,7 +260,7 @@ $messages = array(
 'category-media-header'          => '"$1" kategorisindeki medya',
 'category-empty'                 => "''Bu kategoride henüz herhangi bir madde ya da medya bulunmamaktadır.''",
 'hidden-categories'              => '{{PLURAL:$1|Gizli kategori|Gizli kategoriler}}',
-'hidden-category-category'       => 'Gizli kategoriler', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Gizli kategoriler',
 'category-subcat-count'          => '{{PLURAL:$2|Bu kategori sadece aşağıdaki alt kategoriyi içermektedir.|Bu kategori toplam $2 kategoriden {{PLURAL:$1|alt kategori|$1 alt kategori}}ye sahiptir}}',
 'category-subcat-count-limited'  => 'Bu kategori aşağıdaki {{PLURAL:$1|alt kategoriye|$1 alt kategoriye}} sahiptir.',
 'category-article-count'         => '{{PLURAL:$2|Bu kategori sadece aşağıdaki sayfayı içermektedir.|Toplam $2 den, aşağıdaki {{PLURAL:$1|sayfa|$1 sayfa}} bu kategoridedir.}}',
@@ -343,7 +346,7 @@ $messages = array(
 'otherlanguages'    => 'Diğer diller',
 'redirectedfrom'    => '($1 sayfasından yönlendirildi)',
 'redirectpagesub'   => 'Yönlendirme sayfası',
-'lastmodifiedat'    => 'Bu sayfa son olarak $2, $1 tarihinde güncellenmiştir.', # $1 date, $2 time
+'lastmodifiedat'    => 'Bu sayfa son olarak $2, $1 tarihinde güncellenmiştir.',
 'viewcount'         => 'Bu sayfaya {{PLURAL:$1|bir|$1 }} defa erişilmiş.',
 'protectedpage'     => 'Korumalı sayfa',
 'jumpto'            => 'Git ve:',
@@ -829,7 +832,7 @@ $3 tarafından verilen sebep ''$2''",
 'currentrev'             => 'Güncel sürüm',
 'currentrev-asof'        => '$1 itibarı ile sayfanın şu anki hâli.',
 'revisionasof'           => 'Sayfanın $1 tarihindeki hâli',
-'revision-info'          => '$2 tarafından oluşturulmuş $1 tarihli sürüm', # Additionally available: $3: revision id
+'revision-info'          => '$2 tarafından oluşturulmuş $1 tarihli sürüm',
 'previousrevision'       => '← Önceki hali',
 'nextrevision'           => 'Sonraki hali →',
 'currentrevisionlink'    => 'en güncel halini göster',
@@ -851,7 +854,7 @@ Tanımlar: (güncel) = güncel sürümle aradaki fark,
 # Revision feed
 'history-feed-title'          => 'Değişiklik geçmişis',
 'history-feed-description'    => 'Viki üzerindeki bu sayfanın değişiklik geçmişi.',
-'history-feed-item-nocomment' => "$1, $2'de", # user at time
+'history-feed-item-nocomment' => "$1, $2'de",
 'history-feed-empty'          => 'İstediğiniz sayfa bulunmamaktadır.
 Sayfa vikiden silinmiş ya da ismi değiştirilmiş olabilir.
 Konu ile alakalı diğer sayfaları bulmak için [[Special:Search|vikide arama yapmayı]] deneyin.',
@@ -1170,7 +1173,7 @@ ayarlamak için math/README'ye bakın.",
 'prefs-custom-js'           => 'Özel JS',
 
 # User rights
-'userrights'                  => 'Kullanıcı hakları yönetimi', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Kullanıcı hakları yönetimi',
 'userrights-lookup-user'      => 'Kullanıcı gruplarını düzenle',
 'userrights-user-editname'    => 'Kullanıcı adı giriniz:',
 'editusergroup'               => 'Kullanıcı grupları düzenle',
@@ -1526,8 +1529,8 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'noimage'                   => 'Bu isimde dosya yok. Siz $1.',
 'noimage-linktext'          => 'yükleyebilirsiniz',
 'uploadnewversion-linktext' => 'Dosyanın yenisini yükleyin',
-'shared-repo-from'          => "$1'dan", # $1 is the repository name
-'shared-repo'               => 'ortak bir havuz', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => "$1'dan",
+'shared-repo'               => 'ortak bir havuz',
 
 # File reversion
 'filerevert'                => '$1 dosyasını eski haline döndür',
@@ -1910,8 +1913,8 @@ dikkatle devam edin.',
 başka biri sayfada değişiklik yaptı ya da sayfayı geriye aldı.
 
 Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Değişiklik özeti: \"''\$1''\" idi.", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Değişiklik özeti: \"''\$1''\" idi.",
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.',
 'rollback-success' => '$1 tarafından yapılan değişiklikler geri alınarak;
 $2 tarafından değiştirilmiş önceki sürüme geri dönüldü.',
 'sessionfailure'   => 'Giriş oturumunuzla ilgili bir sorun var gibi görünüyor;
@@ -1963,7 +1966,7 @@ Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya
 ** Değişiklik savaşı
 ** Yüksek trafiğe sahip sayfa',
 'protect-edit-reasonlist'     => 'Koruma nedenlerini değiştir',
-'protect-expiry-options'      => '1 saat:1 hour,1 gün:1 day,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 saat:1 hour,1 gün:1 day,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite',
 'restriction-type'            => 'İzin:',
 'restriction-level'           => 'Kısıtlama düzeyi:',
 'minimum-size'                => 'Minumum boyutu',
@@ -2040,7 +2043,7 @@ $1',
 'contributions-title' => '$1 için kullanıcı katkıları',
 'mycontris'           => 'katkılarım',
 'contribsub2'         => '$1 ($2)',
-'nocontribs'          => 'Bu kriterlere uyan değişiklik bulunamadı', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Bu kriterlere uyan değişiklik bulunamadı',
 'uctop'               => '(son)',
 'month'               => 'Ay:',
 'year'                => 'Yıl:',
@@ -2099,7 +2102,7 @@ $1',
 'ipbenableautoblock'              => 'Bu kullanıcı tarafından kullanılan son IP adresini ve değişişiklik yapmaya çalıştıkları mütakip IPleri otomatik olarak engelle',
 'ipbsubmit'                       => 'Bu kullanıcıyı engelle',
 'ipbother'                        => 'Farklı zaman',
-'ipboptions'                      => '2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 hafta:1 week,2 hafta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,Süresiz:infinite',
 'ipbotheroption'                  => 'farklı',
 'ipbotherreason'                  => 'Başka/ek sebepler:',
 'ipbhidename'                     => 'Kullanıcı adını katkılarda ve listelerde gizle',
@@ -2227,7 +2230,7 @@ Bu durumlarda sayfayı kendiniz aktarmalısınız.",
 'move-watch'                   => 'Bu sayfayı izle',
 'movepagebtn'                  => 'İsmi değiştir',
 'pagemovedsub'                 => 'İsim değişikliği tamamlandı.',
-'movepage-moved'               => '<big>\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'</big>',
 'movepage-moved-redirect'      => 'Bir yönlendirme oluşturuldu.',
 'movepage-moved-noredirect'    => 'Bir yönlendirme oluşturulması bastırıldı.',
 'articleexists'                => 'Bu isimde bir sayfa bulunmakta veya seçmiş olduğunuz isim geçersizdir.
@@ -2438,7 +2441,7 @@ Geçici dosya kayıp.',
 # Attribution
 'anonymous'        => '{{SITENAME}} sitesinin anonim {{PLURAL:$1|kullanıcısı|kullanıcıları}}',
 'siteuser'         => '{{SITENAME}} kullanıcı $1',
-'lastmodifiedatby' => 'Sayfa en son $3 tarafından $2, $1 tarihinde değiştirildi.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Sayfa en son $3 tarafından $2, $1 tarihinde değiştirildi.',
 'othercontribs'    => '$1 tarafından yapılan çalışma baz alınmıştır.',
 'others'           => 'diğerleri',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|kullanıcı|kullanıcılar}} $1',
@@ -2564,7 +2567,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Genişlik',
@@ -2697,14 +2700,14 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 
 'exif-unknowndate' => 'Bilinmeyen zaman',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Yatay çevirme', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° döndürülmüş', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Dikey çevirme', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '90° döndürülmüş (sola doğru) ve dikey çevirme', # 0th row: left; 0th column: top
-'exif-orientation-6' => '90° döndürülmüş (saat yönünde)', # 0th row: right; 0th column: top
-'exif-orientation-7' => '90° döndürülmüş (saat yönünde) ve dikey çevirme', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '90° döndürülmüş (sola doğru)', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Yatay çevirme',
+'exif-orientation-3' => '180° döndürülmüş',
+'exif-orientation-4' => 'Dikey çevirme',
+'exif-orientation-5' => '90° döndürülmüş (sola doğru) ve dikey çevirme',
+'exif-orientation-6' => '90° döndürülmüş (saat yönünde)',
+'exif-orientation-7' => '90° döndürülmüş (saat yönünde) ve dikey çevirme',
+'exif-orientation-8' => '90° döndürülmüş (sola doğru)',
 
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'Düzlemsel biçim',
@@ -2995,7 +2998,7 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'duplicate-defaultsort' => 'Uyarı: Varsayılan "$2" sınıflandırma anahtarı, önceki "$1" sınıflandırma anahtarını geçersiz kılıyor.',
 
 # Special:Version
-'version'                          => 'Sürüm', # Not used as normal message but as header for the special page itself
+'version'                          => 'Sürüm',
 'version-extensions'               => 'Yüklü ekler',
 'version-specialpages'             => 'Özel sayfalar',
 'version-parserhooks'              => 'Derleyici çengelleri',

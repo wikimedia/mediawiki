@@ -1,6 +1,9 @@
 <?php
 /** Franco-Provençal (Arpetan)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -161,7 +164,7 @@ $messages = array(
 'category-media-header'          => 'Fichiérs multimèdia dens la catègorie « $1 »',
 'category-empty'                 => "''Ceta catègorie contint gins d’articllo, de sot-catègorie ou de fichiér multimèdia.''",
 'hidden-categories'              => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
-'hidden-category-category'       => 'Catègories cachiês', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Catègories cachiês',
 'category-subcat-count'          => '{{PLURAL:$2|Ceta catègorie at ren que de la sot-catègorie siuventa.|Ceta catègorie at de {{PLURAL:$1|sot-catègorie|$1 sot-catègories}}, sur una soma de $2.}}',
 'category-subcat-count-limited'  => 'Ceta catègorie at {{PLURAL:$1|de yona sot-catègorie|de $1 sot-catègories}}.',
 'category-article-count'         => '{{PLURAL:$2|Ceta catègorie contint ren que la pâge siuventa.|{{PLURAL:$1|La pâge siuventa figure|Les $1 pâges siuventes figuront}} dens ceta catègorie, sur una soma de $2.}}',
@@ -248,7 +251,7 @@ $messages = array(
 'otherlanguages'    => 'Ôtres lengoues',
 'redirectedfrom'    => '(Redirigiê dês $1)',
 'redirectpagesub'   => 'Pâge de redirèccion',
-'lastmodifiedat'    => 'Dèrriére modificacion de ceta pâge lo $1 a $2.<br />', # $1 date, $2 time
+'lastmodifiedat'    => 'Dèrriére modificacion de ceta pâge lo $1 a $2.<br />',
 'viewcount'         => 'Ceta pâge at étâ consultâ {{PLURAL:$1|yon côp|$1 côps}}.',
 'protectedpage'     => 'Pâge protègiê',
 'jumpto'            => 'Alar a :',
@@ -660,7 +663,7 @@ La rêson balyê per $3 ére ''$2''.",
 'currentrev'             => 'Vèrsion d’ora',
 'currentrev-asof'        => 'Vèrsion d’ora en dâta du $1',
 'revisionasof'           => 'Vèrsion du $1',
-'revision-info'          => 'Vèrsion du $1 per $2', # Additionally available: $3: revision id
+'revision-info'          => 'Vèrsion du $1 per $2',
 'previousrevision'       => '← Vèrsion prècèdenta',
 'nextrevision'           => 'Vèrsion siuventa →',
 'currentrevisionlink'    => 'vêde la vèrsion corenta',
@@ -681,7 +684,7 @@ La rêson balyê per $3 ére ''$2''.",
 # Revision feed
 'history-feed-title'          => 'Historico de les vèrsions',
 'history-feed-description'    => 'Historico por ceta pâge sur lo vouiqui',
-'history-feed-item-nocomment' => '$1 lo $2', # user at time
+'history-feed-item-nocomment' => '$1 lo $2',
 'history-feed-empty'          => 'La pâge demandâ ègziste pas.
 El at pôt-étre étâ suprimâ du vouiqui ou renomâ.
 Vos pouede tâchiér de [[Special:Search|rechèrchiér dens lo vouiqui]] des novèles pâges que vont avouéc.',
@@ -857,7 +860,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'files'                    => 'Fichiérs',
 
 # User rights
-'userrights'               => 'Maneyance des drêts d’utilisator', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Maneyance des drêts d’utilisator',
 'userrights-lookup-user'   => 'Maneyance des drêts d’utilisator',
 'userrights-user-editname' => 'Entrâd un nom d’utilisator :',
 'editusergroup'            => 'Modificacion de les tropes d’utilisators',
@@ -1402,8 +1405,8 @@ L’hora endicâ est cela du sèrvior.',
 'alreadyrolled'    => 'Empossiblo de rèvocar la dèrriére modificacion de l’articllo « [[$1]] » fêta per [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quârqu’un d’ôtro at ja modifiâ ou rèvocâ l’articllo.
 
 La dèrriére modificacion at étâ fêta per [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
-'editcomment'      => "Lo rèsumâ de la modificacion ére : ''« $1 »''.", # only shown if there is an edit comment
-'revertpage'       => 'Rèvocacion de les modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) (retôrn a la vèrsion prècèdenta de [[User:$1|$1]])', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Lo rèsumâ de la modificacion ére : ''« $1 »''.",
+'revertpage'       => 'Rèvocacion de les modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) (retôrn a la vèrsion prècèdenta de [[User:$1|$1]])',
 'rollback-success' => 'Rèvocacion de les modificacions de $1 ; retôrn a la vèrsion de $2.',
 'sessionfailure'   => 'Voutra sèssion de conèccion semble avêr des problèmos ;
 cela accion at étâ anulâ en prèvencion d’un piratâjo de sèssion.
@@ -1439,7 +1442,7 @@ Vê-que los règllâjos d’ora de la pâge '''$1''' :",
 'protect-expiring'            => 'èxpire lo $1 (UTC)',
 'protect-cascade'             => 'Protèccion en cascâda - Protège totes les pâges encllues dens ceta.',
 'protect-cantedit'            => 'Vos pouede pas modifiar los nivôs de protèccion de cela pâge perce que vos avéd pas la pèrmission de l’èditar.',
-'protect-expiry-options'      => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite',
 'restriction-type'            => 'Pèrmission :',
 'restriction-level'           => 'Nivô de rèstriccion :',
 'minimum-size'                => 'Talye la ples petiôta',
@@ -1510,7 +1513,7 @@ $1',
 'contributions-title' => 'Lista de les contribucions de l’utilisator $1',
 'mycontris'           => 'Contribucions',
 'contribsub2'         => 'Lista de les contribucions de $1 ($2). Les pâges qu’ont étâ èfaciês sont pas afichiês.',
-'nocontribs'          => 'Niona modificacion corrèspondent a cetos critèros at étâ trovâ.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Niona modificacion corrèspondent a cetos critèros at étâ trovâ.',
 'uctop'               => '(dèrriére)',
 'month'               => 'Dês lo mês (et prècèdents) :',
 'year'                => 'Dês l’an (et prècèdents) :',
@@ -1570,7 +1573,7 @@ Balyéd ce-desot una rêson cllâra (per ègzemplo en endiquent les pâges qu’
 'ipbenableautoblock'          => 'Blocar ôtomaticament les adrèces IP utilisâs per ceti utilisator',
 'ipbsubmit'                   => 'Blocar ceti utilisator',
 'ipbother'                    => 'Ôtra durâ :',
-'ipboptions'                  => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite',
 'ipbotheroption'              => 'ôtra',
 'ipbotherreason'              => 'Rêson difèrenta ou suplèmentèra :',
 'ipbhidename'                 => 'Mâscar lo nom d’utilisator de l’historico des blocâjos, de la lista des blocâjos actifs et de la lista des utilisators',
@@ -1680,7 +1683,7 @@ Dens cél câs, vos devréd renomar ou fusionar la pâge manuèlament se vos lo 
 'move-watch'              => 'Siuvre ceta pâge',
 'movepagebtn'             => 'Renomar l’articllo',
 'pagemovedsub'            => 'Renomâjo reussi',
-'movepage-moved'          => "<big>'''« $1 » at étâ renomâ en « $2 »'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''« $1 » at étâ renomâ en « $2 »'''</big>",
 'articleexists'           => 'Ègziste ja un articllo portent cél titro, ou ben lo titro
 que vos éd chouèsi/cièrdu est envalido.
 Volyéd nen chouèsir/cièrdre un ôtro.',
@@ -1857,7 +1860,7 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 # Attribution
 'anonymous'        => 'Utilisator(s) pas enregistrâ(s) de {{SITENAME}}',
 'siteuser'         => 'Utilisator $1 de {{SITENAME}}',
-'lastmodifiedatby' => 'Ceta pâge at étâ modifiâ por lo dèrriér côp lo $1 a $2 per $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ceta pâge at étâ modifiâ por lo dèrriér côp lo $1 a $2 per $3.',
 'othercontribs'    => 'Basâ sur l’ôvra de $1.',
 'others'           => 'ôtros',
 'siteusers'        => 'Utilisator(s) $1 de {{SITENAME}}',
@@ -1966,7 +1969,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largior',
@@ -2093,14 +2096,14 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 
 'exif-unknowndate' => 'Dâta encognua',
 
-'exif-orientation-1' => 'Normala', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Envèrsâ d’aplan', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Veriê de 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Envèrsâ d’aplomb', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Veriê de 90° a gôche et envèrsâ d’aplomb', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Veriê de 90° a drêta', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Veriê de 90° a drêta et envèrsâ d’aplomb', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Veriê de 90° a gôche', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normala',
+'exif-orientation-2' => 'Envèrsâ d’aplan',
+'exif-orientation-3' => 'Veriê de 180°',
+'exif-orientation-4' => 'Envèrsâ d’aplomb',
+'exif-orientation-5' => 'Veriê de 90° a gôche et envèrsâ d’aplomb',
+'exif-orientation-6' => 'Veriê de 90° a drêta',
+'exif-orientation-7' => 'Veriê de 90° a drêta et envèrsâ d’aplomb',
+'exif-orientation-8' => 'Veriê de 90° a gôche',
 
 'exif-planarconfiguration-1' => 'Balyês ategnentes',
 'exif-planarconfiguration-2' => 'Balyês sèparâs',
@@ -2392,7 +2395,7 @@ Volyéd confirmar que vos dèsirâd recrèar ceti articllo.",
 'unknown_extension_tag' => 'Balisa d’èxtension « $1 » encognua',
 
 # Special:Version
-'version'                          => 'Vèrsion', # Not used as normal message but as header for the special page itself
+'version'                          => 'Vèrsion',
 'version-extensions'               => 'Vèrsions enstalâs',
 'version-specialpages'             => 'Pâges spèciâles',
 'version-parserhooks'              => 'Apèls d’analises',

@@ -1,6 +1,9 @@
 <?php
 /** Newari (नेपाल भाषा)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -148,7 +151,7 @@ $messages = array(
 'category-media-header'          => 'पुचः "$1"य् दुगु मिडिया',
 'category-empty'                 => "''थ्व पुचले आःईले पौ वा मिदिया मदु।''",
 'hidden-categories'              => '{{PLURAL:$1|गुप्त पुचः|गुप्त पुचःतः}}',
-'hidden-category-category'       => 'गुप्त पुचःतः', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'गुप्त पुचःतः',
 'category-subcat-count'          => '{{PLURAL:$2|थ्व पुचले बियातःगु उपपुचः जक्क दु।|थ्व पुचले $2 सकलय् बियातःगु {{PLURAL:$1|उपपुचः|$1 उपपुचःतः}} दु।}}',
 'category-subcat-count-limited'  => 'थ्व पुचले बियातःगु {{PLURAL:$1|उपपुचः|$1 उपपुचःत}} दु।',
 'category-article-count'         => '{{PLURAL:$2|थ्व पुचले क्वे बियातःगु पौ दु।|$2 सकलय् थ्व बियातःगु {{PLURAL:$1|पौ|$1 पौस}} थ्व पुचले दु।}}',

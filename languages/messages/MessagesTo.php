@@ -1,6 +1,9 @@
 <?php
 /** Tonga (lea faka-Tonga)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -93,7 +96,7 @@ $messages = array(
 'subcategories'            => 'Ngaahi faʻahinga siʻi',
 'category-empty'           => "''Ko e faʻahinga ʻeni ʻoku ʻikai ʻi ai haʻane kupu pe ʻata.''",
 'hidden-categories'        => 'Faʻahinga toi',
-'hidden-category-category' => 'Ngaahi faʻahinga toi', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Ngaahi faʻahinga toi',
 'listingcontinuesabbrev'   => ' hoko',
 
 'about'          => 'Kau ki',
@@ -412,7 +415,7 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'nohistory'           => 'ʻOku ʻikai ʻi ai ha hisitōlia fatu maʻa e kupú ni.',
 'currentrev'          => 'Paaki taka',
 'revisionasof'        => 'Paaki he ko $1',
-'revision-info'       => 'Paaki he ko $1 fai ʻe $2', # Additionally available: $3: revision id
+'revision-info'       => 'Paaki he ko $1 fai ʻe $2',
 'previousrevision'    => '←Paaki motuʻa ange',
 'nextrevision'        => 'Paaki foʻou ange→',
 'currentrevisionlink' => 'Paaki taka',
@@ -829,7 +832,7 @@ Vakai ki he $2 maʻa e fakamatala ʻo e ngaahi toki tāmateʻi.',
 'alreadyrolled'  => 'ʻOku ʻikai lava teka hifo ʻa e fatu fakamuimui ʻo e [[:$1]] ʻe [[User:$2|$2]] ([[User talk:$2|Alea]]); ko e tokotaha ʻe taha naʻe fatu pe fatu teka hifo ʻa e peesi.
 
 Ko e fatu fakamuimui naʻe fatu ʻe [[User:$3|$3]] ([[User talk:$3|Alea]]).',
-'editcomment'    => "Ko e fakamatala fatu naʻe \"''\$1''\" ia.", # only shown if there is an edit comment
+'editcomment'    => "Ko e fakamatala fatu naʻe \"''\$1''\" ia.",
 
 # Protect
 'protectlogpage'      => 'Tohinoa ʻo e maluʻi',
@@ -1266,7 +1269,7 @@ Kātaki fakapapauʻi te ke fie toe fatu ʻa e kupu ni.",
 'watchlisttools-raw'  => 'Fatu ʻa e hokohoko leʻo taʻengaohi',
 
 # Special:Version
-'version' => 'Paaki', # Not used as normal message but as header for the special page itself
+'version' => 'Paaki',
 
 # Special:FilePath
 'filepath'        => 'Hala ki he faile',

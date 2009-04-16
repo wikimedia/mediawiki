@@ -1,6 +1,9 @@
 <?php
 /** Hakka (Hak-kâ-fa)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -191,7 +194,7 @@ $messages = array(
 'otherlanguages'    => 'Khì-thâ ngî-ngièn',
 'redirectedfrom'    => '(Chhùng-thin-hiong chhṳ $1)',
 'redirectpagesub'   => 'Chhùng-thin-hiong hong-mien',
-'lastmodifiedat'    => 'Liá-chông ke chui-heu siû-thin chhai $1 $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Liá-chông ke chui-heu siû-thin chhai $1 $2.',
 'viewcount'         => 'Pún-chông yí-kîn pûn-ngìn khon-kien $1-chhṳ.',
 'protectedpage'     => 'Pûn pó-fu ke vùn-chông',
 'jumpto'            => 'Thiàu-chón to:',
@@ -533,7 +536,7 @@ Tông-tsûng pûn $3 fûng-só ke ngièn-yîn he ''$2''",
 'currentrev'          => 'Tông-chhièn siû-thin pán-pún',
 'currentrev-asof'     => 'Chhai $1-ke tông-sṳ̀   siù-tsho pán-pún.',
 'revisionasof'        => 'Chhai $1 só-cho ke siû-thin pán-pún',
-'revision-info'       => 'Chhai $1 yù $2 só-cho ke siû-thin pán-pún', # Additionally available: $3: revision id
+'revision-info'       => 'Chhai $1 yù $2 só-cho ke siû-thin pán-pún',
 'previousrevision'    => '←Sông yit siû-thin',
 'nextrevision'        => 'Hâ-yit-ke siû-cháng →',
 'currentrevisionlink' => 'Tông-chhièn siû-thin pán-pún',
@@ -552,7 +555,7 @@ Tông-tsûng pûn $3 fûng-só ke ngièn-yîn he ''$2''",
 # Revision feed
 'history-feed-title'          => 'Siû-thin li̍t-sṳ́',
 'history-feed-description'    => 'Pún-chham song chhṳ́-chông ke siû-thin li̍t-sṳ́',
-'history-feed-item-nocomment' => '$1 chhai-yî $2', # user at time
+'history-feed-item-nocomment' => '$1 chhai-yî $2',
 'history-feed-empty'          => 'Só chhiáng-khiù ke vùn-chông put-chhùn-chhai. Khó-nèn yí-kîn pûn-ngìn chhù-thet fe̍t-chá chhùng-sîn min-miàng. Sòng-chhṳ [[Special:Search|Sêu-chhà pún-chham]] siong-kôan ke sîn-kien vùn-chông.',
 
 # Revision deletion
@@ -699,7 +702,7 @@ Tông-tsûng pûn $3 fûng-só ke ngièn-yîn he ''$2''",
 'files'                    => 'Tóng-on',
 
 # User rights
-'userrights'               => 'Yung-fu khièn-han kón-lî', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Yung-fu khièn-han kón-lî',
 'userrights-lookup-user'   => 'Kón-lî yung-fu khiùn-chung',
 'userrights-user-editname' => 'Sû-ngi̍p yung-fu-miàng:',
 'editusergroup'            => 'Phiên-cho yung-fu khiùn-chû',
@@ -1082,8 +1085,8 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 'rollbackfailed' => 'Mò-fap fî-fu̍k',
 'cantrollback'   => 'Vù-fap fî-fu̍k phiên-cho; chui-heu ke kung-hien-chá he pún vùn-chông ke vì-thu̍k chok-chá.',
 'alreadyrolled'  => 'Mò-fap fî-fu̍k yù [[User:$2|$2]] ([[User talk:$2|thó-lun]]) chin-hàng ke [[$1]] ke chui-heu phiên-si̍p; khì-thâ ngìn yí-kîn phiên-siá fe̍t-he fî-fu̍k liáu ke-hong. Chui-heu phiên-si̍p-chá: [[User:$3|$3]] ([[User talk:$3|Thó-lun]])。',
-'editcomment'    => "Phiên-siá sot-mìn he: \"''\$1''\"。", # only shown if there is an edit comment
-'revertpage'     => 'Fî-fu̍k yù [[Special:Contributions/$2|$2]] ([[User talk:$2|tui-fa]]) ke phiên-cho; kiên-kói fì-fu̍k [[User:$1|$1]] ke chui-heu yit-ke pán-pún', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "Phiên-siá sot-mìn he: \"''\$1''\"。",
+'revertpage'     => 'Fî-fu̍k yù [[Special:Contributions/$2|$2]] ([[User talk:$2|tui-fa]]) ke phiên-cho; kiên-kói fì-fu̍k [[User:$1|$1]] ke chui-heu yit-ke pán-pún',
 'sessionfailure' => 'Ngì-ke tên-ngi̍p sṳ-fû yû mun-thì, vi-liáu fòng-chṳ́ sêu-sit pûn làn-chiet, pún-chhṳ chhâu-chok yí-kîn chhí-sêu, chhiáng-on "song-yit-chông" chhùng-sîn chai-ngi̍p.',
 
 # Protect
@@ -1111,7 +1114,7 @@ Yî-ha he '''$1''' hien-sṳ̀ ke pó-fu khi̍p-phe̍t:",
 'protect-summary-cascade'     => 'Lièn-só',
 'protect-expiring'            => 'Chûng-chṳ́ chhai-yî $1 (UTC)',
 'protect-cascade'             => 'Lièn-só pó-fu - pún-chông pâu-hàm ke só-yû hong-mien kiûn yit-phîn pó-fu.',
-'protect-expiry-options'      => '2 séu-sṳ̀:2 séu-sṳ̀, 1 thiên:1 thiên, 3 thiên:3 thiên, 1 chû:1 chû, 2 chû:2 chû, 1-ke ngie̍t:1-ke ngie̍t, 3-ke ngie̍t:3-ke ngie̍t, 6-ke ngie̍t:6-ke ngie̍t, 1-ngièn:1-ngièn, yún-kiú :yún-kiú', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 séu-sṳ̀:2 séu-sṳ̀, 1 thiên:1 thiên, 3 thiên:3 thiên, 1 chû:1 chû, 2 chû:2 chû, 1-ke ngie̍t:1-ke ngie̍t, 3-ke ngie̍t:3-ke ngie̍t, 6-ke ngie̍t:6-ke ngie̍t, 1-ngièn:1-ngièn, yún-kiú :yún-kiú',
 'restriction-type'            => 'Khièn-han:',
 'restriction-level'           => 'Han-chṳ khi̍p-phe̍t:',
 'minimum-size'                => 'Chui-séu thai-séu',
@@ -1167,7 +1170,7 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'contributions' => 'Yung-fu kung-hien',
 'mycontris'     => 'Ngô-ke kung-hien',
 'contribsub2'   => '$1 ($2) ke kung-hien',
-'nocontribs'    => 'Mò-yû chhìm-cháu to fù-ha̍p thi̍t-chṳ̂n ke kiên-kói.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Mò-yû chhìm-cháu to fù-ha̍p thi̍t-chṳ̂n ke kiên-kói.',
 'uctop'         => '(Chui-sîn siû-thin)',
 
 'sp-contributions-newbies'     => 'Chak hién-sṳ sîn kien-li̍p chṳ̂ yung-fu ke kung-hien',
@@ -1210,7 +1213,7 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'ipbenableautoblock'          => 'Chhṳ-thung chhà-fûng ke-yung-fu sṳ́-yung-ko ke IP thi-tiám',
 'ipbsubmit'                   => 'Chhà-fûng ke-yung-fu',
 'ipbother'                    => 'Khì-thâ sṳ̀-kiên:',
-'ipboptions'                  => '2 séu-sṳ̀:2 séu-sṳ̀, 1 thiên:1 thiên, 3 thiên:3 thiên, 1 chû:1 chû, 2 chû:2 chû, 1-ke ngie̍t:1-ke ngie̍t, 3-ke ngie̍t:3-ke ngie̍t, 6-ke ngie̍t:6-ke ngie̍t, 1-ngièn:1-ngièn, yún-kiú :yún-kiú', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 séu-sṳ̀:2 séu-sṳ̀, 1 thiên:1 thiên, 3 thiên:3 thiên, 1 chû:1 chû, 2 chû:2 chû, 1-ke ngie̍t:1-ke ngie̍t, 3-ke ngie̍t:3-ke ngie̍t, 6-ke ngie̍t:6-ke ngie̍t, 1-ngièn:1-ngièn, yún-kiú :yún-kiú',
 'ipbotheroption'              => 'khì-thâ',
 'ipbotherreason'              => 'Khì-thâ lî-yù:',
 'ipbhidename'                 => 'Chhai chhà-fûng ngit-ki, fa̍t-chhiok chhà-fûng lie̍t-péu yî-khi̍p yung-fu lie̍t-péu chûng yún-chhòng yung-fu-miàng.',
@@ -1459,7 +1462,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Attribution
 'anonymous'        => '{{SITENAME}} ke ngia̍k-miàng yung-fu',
 'siteuser'         => '{{SITENAME}} Yung-fu-chá $1',
-'lastmodifiedatby' => 'Chhṳ́-chông yù $3 yî $1 $2 ke chui-heu kiên-kói.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Chhṳ́-chông yù $3 yî $1 $2 ke chui-heu kiên-kói.',
 'othercontribs'    => 'Chhai $1-ke kûng-chok kî-chhú song.',
 'others'           => 'khì-thâ',
 'siteusers'        => '{{SITENAME}} Yung-fu-chá $1',
@@ -1543,7 +1546,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Yung ngoi-phu chhàng-sṳt phiên-siá chhṳ́ tóng-on',
@@ -1640,7 +1643,7 @@ Sòn-chhṳ phêu-chún yi-liau.',
 'lag-warn-high'   => 'Yù-yî chṳ̂-liau-khu ke ko-thu yèn-chhṳ̀, tô-yî $1-méu ke kiên-kói khó-nèn put-voi chhai liá-ke chhîn-tân chûng hién-sṳ.',
 
 # Special:Version
-'version' => 'Pán-pún', # Not used as normal message but as header for the special page itself
+'version' => 'Pán-pún',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Chhìm-cháu',

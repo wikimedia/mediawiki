@@ -1,6 +1,9 @@
 <?php
 /** Sranan Tongo (Sranantongo)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -252,7 +255,7 @@ $messages = array(
 'category-media-header'          => 'Media ini grupu “$1”',
 'category-empty'                 => "''A grupu disi no abi papira noso media nownowde.''",
 'hidden-categories'              => "{{PLURAL:$1|a grupu|den grupu}} d'e kibri",
-'hidden-category-category'       => "Grupu d'e kibri", # Name of the category where hidden categories will be listed
+'hidden-category-category'       => "Grupu d'e kibri",
 'category-subcat-count'          => '{{PLURAL:$2|A grupu disi abi den ondro-grupu disi.|A grupu disi abi {{PLURAL:$1|a ondro-grupu|$1 den ondro-grupu}} disi, fu $2 teri na makandra.}}',
 'category-subcat-count-limited'  => 'A grupu disi abi {{PLURAL:$1|a ondro-grupu|$1 den ondro-grupu}} disi.',
 'category-article-count'         => '{{PLURAL:$2|A grupu disi abi a papira disi.|A grupu disi abi {{PLURAL:$1|a papira|$1 den papira}} disi, fu $2 teri na makandra.}}',
@@ -339,7 +342,7 @@ $messages = array(
 'otherlanguages'    => 'Ini tra tongo',
 'redirectedfrom'    => '(Seni komopo fu $1)',
 'redirectpagesub'   => 'Seni doro papira',
-'lastmodifiedat'    => 'A papira disi ben kenki leki laste na tapu $1 na $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'A papira disi ben kenki leki laste na tapu $1 na $2.',
 'viewcount'         => 'A papira disi opo {{PLURAL:$1|wan leisi|$1 leisi}}.',
 'protectedpage'     => 'A papira disi sroto',
 'jumpto'            => 'Go na:',
@@ -625,7 +628,7 @@ Denki fosi efu na wan bun sani fu meki a papira disi baka. A log buku fu puru so
 'viewpagelogs'        => 'Luku a log buku fu a papira disi',
 'currentrev'          => 'A versi disi',
 'revisionasof'        => 'Versi tapu $1',
-'revision-info'       => 'Versi na $1 fu $2', # Additionally available: $3: revision id
+'revision-info'       => 'Versi na $1 fu $2',
 'previousrevision'    => '←Moro owru versi',
 'nextrevision'        => 'Moro nyun versi→',
 'currentrevisionlink' => 'A versi disi',
@@ -645,7 +648,7 @@ Den syatu: (disi) = a difrenti nanga a versi disi, (a wan n'en fesi) = a difrent
 # Revision feed
 'history-feed-title'          => 'Kenkistori',
 'history-feed-description'    => 'Kenkistori du disi papira opo {{SITENAME}}',
-'history-feed-item-nocomment' => '$1 tapu $2', # user at time
+'history-feed-item-nocomment' => '$1 tapu $2',
 'history-feed-empty'          => 'A aksa papira ben no da.
 A kan ben trowe efu dribi.
 [[Special:Search|Suku {{SITENAME}}]] fu rilivante peprewoysi.',
@@ -1043,7 +1046,7 @@ Disi ben a tapunivo fu a papira '''[[$1]]''' now:",
 'protect-expiring'            => 'lasi opo $1',
 'protect-cascade'             => 'Kaskadetapu - tapu ala peprewoysi nanga ankra dy ini disi papira teki ben (atessi; disi kan gran folo abi).',
 'protect-cantedit'            => 'Yu kan a tapunivo fu disi papira no kenki, sins yu no lesi abi tu kenki a.',
-'protect-expiry-options'      => '15 min:15 min,1 yuru:1 hour,2 yuru:2 hours,6 yuru:6 hours,12 yuru:12 hours,1 dey:1 day,3 dey:3 days,1 wiki:1 week,2 wiki:2 weeks,1 mun:1 month,3 mun:3 months,6 mun:6 months,1 yari:1 year,fu têgo:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '15 min:15 min,1 yuru:1 hour,2 yuru:2 hours,6 yuru:6 hours,12 yuru:12 hours,1 dey:1 day,3 dey:3 days,1 wiki:1 week,2 wiki:2 weeks,1 mun:1 month,3 mun:3 months,6 mun:6 months,1 yari:1 year,fu têgo:infinite',
 'restriction-type'            => 'Den leti:',
 'restriction-level'           => 'Pelkinivo:',
 
@@ -1083,7 +1086,7 @@ Disi ben a tapunivo fu a papira '''[[$1]]''' now:",
 
 # Block/unblock
 'blockip'            => 'Tapu pasi gi kebroikiman',
-'ipboptions'         => '15 min:15 min,1 yuru:1 hour,2 yuru:2 hours,6 yuru:6 hours,12 yuru:12 hours,1 dey:1 day,3 dey:3 days,1 wiki:1 week,2 wiki:2 weeks,1 mun:1 month,3 mun:3 months,6 mun:6 months,1 yari:1 year,fu têgo:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '15 min:15 min,1 yuru:1 hour,2 yuru:2 hours,6 yuru:6 hours,12 yuru:12 hours,1 dey:1 day,3 dey:3 days,1 wiki:1 week,2 wiki:2 weeks,1 mun:1 month,3 mun:3 months,6 mun:6 months,1 yari:1 year,fu têgo:infinite',
 'ipblocklist'        => 'Réy fu tapu pasi gi kebroikiman nen nanga IP',
 'ipblocklist-submit' => 'Suku',
 'blocklink'          => 'tapu pasi',
@@ -1233,7 +1236,7 @@ Trawan o kibri.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'Kenki a file disi ini wan dorosey wrokosani.',
@@ -1266,7 +1269,7 @@ Trawan o kibri.
 'watchlisttools-raw'  => 'Kenki a lala Tan Luku réy',
 
 # Special:Version
-'version' => 'Versi', # Not used as normal message but as header for the special page itself
+'version' => 'Versi',
 
 # Special:SpecialPages
 'specialpages' => 'Spesrutu papira',

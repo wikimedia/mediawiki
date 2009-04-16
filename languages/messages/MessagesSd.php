@@ -1,6 +1,9 @@
 <?php
 /** Sindhi (سنڌي)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -228,7 +231,7 @@ $messages = array(
 'subcategories'            => 'ذيلي زمرا',
 'category-media-header'    => ' "$1" زمري اندر ذريعات',
 'category-empty'           => "''في الوقت هن زمري ۾ ڪي به صفحا يا ذريعات شامل ناهن.''",
-'hidden-category-category' => 'لڪل زمرا', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'لڪل زمرا',
 'listingcontinuesabbrev'   => 'جاري..',
 
 'about'          => 'بابت',
@@ -292,7 +295,7 @@ $messages = array(
 'otherlanguages'    => 'ٻين ٻولين ۾',
 'redirectedfrom'    => '($1 کان چوريل)',
 'redirectpagesub'   => 'چوريل صفحو',
-'lastmodifiedat'    => 'هيءُ صفحو آخري ڀيرو $2، $1ع تي ترميميو ويو هو.', # $1 date, $2 time
+'lastmodifiedat'    => 'هيءُ صفحو آخري ڀيرو $2، $1ع تي ترميميو ويو هو.',
 'viewcount'         => 'هيءُ صفحو {{PLURAL:$1|دفعو|$1 دفعا}} ڏسجي چڪو آهي.',
 'protectedpage'     => 'تحفظيل صفحو',
 'jumptosearch'      => 'ڳولا',
@@ -488,7 +491,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'viewpagelogs'        => 'هن صفحي جا لاگ ڏسو',
 'currentrev'          => 'هاڻوڪو مسودو',
 'revisionasof'        => '$1 وارو پرت',
-'revision-info'       => '$1 تي $2 جي ترميم بعد مسودو', # Additionally available: $3: revision id
+'revision-info'       => '$1 تي $2 جي ترميم بعد مسودو',
 'previousrevision'    => '←اڃا پراڻو پرت',
 'nextrevision'        => 'اڃا نئون پرت→',
 'currentrevisionlink' => 'هاڻوڪو پرت',
@@ -501,7 +504,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'historyempty'        => '(خالي)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$2 تي $1', # user at time
+'history-feed-item-nocomment' => '$2 تي $1',
 
 # Revision deletion
 'pagehist' => 'صفحي جي سوانح',
@@ -745,7 +748,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'protect-summary-cascade'     => 'تحفظ در تحفظ',
 'protect-cascade'             => 'هن صفحي ۾ شامل صفحن کي تحفظيو (تحفظ در تحفظ)',
 'protect-cantedit'            => 'توهان هن صفحي جي تحفظاتي سطح نٿا بدلائي سگھو، ڇاڪاڻ ته توهان ان کي سنوارڻ جي اجازت نٿا رکو.',
-'protect-expiry-options'      => '2 ڪلاڪ:2 hours،1 ڏينهن:1 day،3 ڏينهن:3 days،1 هفتو:1 week،2 هفتا:2 weeks،1 مهينو:1 month،3 مهينا:3 months،6 مهينا:6 months،1 سال:1 year،لامحدود:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 ڪلاڪ:2 hours،1 ڏينهن:1 day،3 ڏينهن:3 days،1 هفتو:1 week،2 هفتا:2 weeks،1 مهينو:1 month،3 مهينا:3 months،6 مهينا:6 months،1 سال:1 year،لامحدود:infinite',
 'restriction-type'            => 'اجازتنامو:',
 'restriction-level'           => 'روڪ سطح:',
 'pagesize'                    => '(ٻاٽڻيون)',
@@ -784,7 +787,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 
 # Block/unblock
 'blockip'                  => 'يُوزر کي روڪيو',
-'ipboptions'               => '2 ڪلاڪ:2 hours،1 ڏينهن:1 day،3 ڏينهن:3 days،1 هفتو:1 week،2 هفتا:2 weeks،1 مهينو:1 month،3 مهينا:3 months،6 مهينا:6 months،1 سال:1 year،لامحدود:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 ڪلاڪ:2 hours،1 ڏينهن:1 day،3 ڏينهن:3 days،1 هفتو:1 week،2 هفتا:2 weeks،1 مهينو:1 month،3 مهينا:3 months،6 مهينا:6 months،1 سال:1 year،لامحدود:infinite',
 'badipaddress'             => 'ناقابلڪار آءِ پي پتو',
 'ipblocklist'              => 'بندشيل يوزرنانءُ ۽ آءِ پي پتا',
 'infiniteblock'            => 'لامحدود',
@@ -816,7 +819,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'move-watch'              => 'هيءُ صفحو ٽيٽيو',
 'movepagebtn'             => 'صفحو چوريو',
 'pagemovedsub'            => 'چورڻ جو عمل ڪامياب ٿيو',
-'movepage-moved'          => '<big>\'\'\'"$1" کي چوري "$2" تي رکيو ويو آهي\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" کي چوري "$2" تي رکيو ويو آهي\'\'\'</big>',
 'articleexists'           => 'ان نالي سان صفحو اڳي ئي وجود رکي ٿو، يا ته توهان جو ڏنل نالو ناقابلڪار آهي.',
 'talkexists'              => "
 '''موادي صفحو پاڻ ته ڪاميابيءَ سان چُري ويو، پر لاڳاپيل مباحثي صفحو چُري نه سگھيو ڇاڪاڻ ته نئين عنوان تي اڳي ئي هڪ مباحثي صفحو موجود آهي. براءِ مهرباني انهن ٻنهي هٿ سان ضمائيندا.",
@@ -929,7 +932,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 
 'exif-unknowndate' => 'نامعلوم تاريخ',
 
-'exif-orientation-3' => '180° موڙيل', # 0th row: bottom; 0th column: right
+'exif-orientation-3' => '180° موڙيل',
 
 'exif-componentsconfiguration-0' => 'وجود نه ٿو رکي',
 
@@ -980,7 +983,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'watchlisttools-raw'  => 'ڪچي ٽيٽ فهرست سنواريو',
 
 # Special:Version
-'version' => 'ورزن', # Not used as normal message but as header for the special page itself
+'version' => 'ورزن',
 
 # Special:SpecialPages
 'specialpages'             => 'خاص صفحا',

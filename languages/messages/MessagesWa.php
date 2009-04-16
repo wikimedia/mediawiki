@@ -1,6 +1,9 @@
 <?php
 /** Walloon (Walon)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -239,7 +242,7 @@ $messages = array(
 'otherlanguages'    => 'Ôtes lingaedjes',
 'redirectedfrom'    => '(Redjiblé di $1)',
 'redirectpagesub'   => 'Pådje di redjiblaedje',
-'lastmodifiedat'    => 'Cisse pådje a stî candjeye pol dierin côp li $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Cisse pådje a stî candjeye pol dierin côp li $2, $1.',
 'viewcount'         => 'Cisse pådje la a stî léjhowe {{PLURAL:$1|on côp|$1 côps}}.',
 'protectedpage'     => 'Pådje protedjeye',
 'jumpto'            => 'Potchî a:',
@@ -573,7 +576,7 @@ Ledjinde: (ast.) = diferince avou l' modêye d' asteure,
 'historyempty'        => '(vude)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 li $2', # user at time
+'history-feed-item-nocomment' => '$1 li $2',
 
 # Revision deletion
 'rev-deleted-comment'         => '(comintaire oisté)',
@@ -681,7 +684,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'files'                    => 'Fitchîs',
 
 # User rights
-'userrights'               => 'Manaedjî les liveas des uzeus', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Manaedjî les liveas des uzeus',
 'userrights-lookup-user'   => "Manaedjî les groupes d' èn uzeu",
 'userrights-user-editname' => "Tapez on no d' uzeu:",
 'editusergroup'            => "Candjî les groupes di l' uzeu",
@@ -1060,8 +1063,8 @@ djivêye des dierins disfaçaedjes.',
 ene sakî d' ôte a ddja candjî l' årtike ou ddja rmetou l' modêye di dvant.
 
 Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
-'editcomment'   => "Li comintaire do candjmint esteut: «''$1''».", # only shown if there is an edit comment
-'revertpage'    => 'Disfwait li candjmint da [[Special:Contributions/$2|$2]] ([[User talk:$2|copene]]); li dierin candjmint est asteure da [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'   => "Li comintaire do candjmint esteut: «''$1''».",
+'revertpage'    => 'Disfwait li candjmint da [[Special:Contributions/$2|$2]] ([[User talk:$2|copene]]); li dierin candjmint est asteure da [[User:$1|$1]]',
 
 # Protect
 'protectlogpage'              => 'Djournå des protedjaedjes',
@@ -1077,7 +1080,7 @@ Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
 'protect-default'             => '(prémetou)',
 'protect-level-autoconfirmed' => 'Bloker les uzeus nén eredjîstrés',
 'protect-level-sysop'         => 'Seulmint les manaedjeus',
-'protect-expiry-options'      => '2 eures:2 hours,1 djoû:1 day,3 djoûs:3 days,1 samwinne:1 week,2 samwinnes:2 weeks,1 moes:1 month,3 moes:3 months,6 moes:6 months,1 anêye:1 year,po todi:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 eures:2 hours,1 djoû:1 day,3 djoûs:3 days,1 samwinne:1 week,2 samwinnes:2 weeks,1 moes:1 month,3 moes:3 months,6 moes:6 months,1 anêye:1 year,po todi:infinite',
 'pagesize'                    => '(octets)',
 
 # Restrictions (nouns)
@@ -1123,7 +1126,7 @@ Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des
 'contributions' => "Ovraedjes di l' uzeu",
 'mycontris'     => 'Mi ovraedje',
 'contribsub2'   => "Po l' uzeu $1 ($2)",
-'nocontribs'    => "Nou candjmint di trové ki corespondreut a ç' critere la.", # Optional parameter: $1 is the user name
+'nocontribs'    => "Nou candjmint di trové ki corespondreut a ç' critere la.",
 
 'sp-contributions-talk'       => 'Copiner',
 'sp-contributions-userrights' => 'Manaedjî les liveas des uzeus',
@@ -1150,7 +1153,7 @@ stî vandalijheyes).",
 'ipbreason'                   => 'Råjhon',
 'ipbsubmit'                   => 'Bloker cist uzeu',
 'ipbother'                    => 'Ôte termene',
-'ipboptions'                  => '2 eures:2 hours,1 djoû:1 day,3 djoûs:3 days,1 samwinne:1 week,2 samwinnes:2 weeks,1 moes:1 month,3 moes:3 months,6 moes:6 months,1 anêye:1 year,po todi:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 eures:2 hours,1 djoû:1 day,3 djoûs:3 days,1 samwinne:1 week,2 samwinnes:2 weeks,1 moes:1 month,3 moes:3 months,6 moes:6 months,1 anêye:1 year,po todi:infinite',
 'ipbotheroption'              => 'ôte',
 'badipaddress'                => "Nol uzeu avou ç' no la, ou adresse IP nén valide",
 'blockipsuccesssub'           => 'Li blocaedje a stî comifåt',
@@ -1343,7 +1346,7 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 # Attribution
 'anonymous'        => 'Uzeu(s) anonime(s) di {{SITENAME}}',
 'siteuser'         => "Uzeu d' {{SITENAME}} «$1»",
-'lastmodifiedatby' => 'Cisse pådje a stî candjeye pol dierin côp li $2, $1 pa $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Cisse pådje a stî candjeye pol dierin côp li $2, $1 pa $3.',
 'othercontribs'    => "Båzé so l' ovraedje da $1.",
 'others'           => 'des ôtes',
 'siteusers'        => "Uzeu(s) d' {{SITENAME}} «$1»",
@@ -1400,7 +1403,7 @@ est raptiti. Les ôtes seront catchîs.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                => 'Lårdjeur',
@@ -1446,8 +1449,8 @@ est raptiti. Les ôtes seront catchîs.
 'exif-gpsdatestamp'              => 'Date do GPS',
 'exif-gpsdifferential'           => 'Coridjaedje diferenciel do GPS',
 
-'exif-orientation-1' => 'Normå', # 0th row: top; 0th column: left
-'exif-orientation-3' => 'Tourné di 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-1' => 'Normå',
+'exif-orientation-3' => 'Tourné di 180°',
 
 'exif-componentsconfiguration-0' => "n' egzistêye nén",
 
@@ -1590,7 +1593,7 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'watchlistedit-raw-titles' => 'Tites:',
 
 # Special:Version
-'version' => 'Modêye des programes', # Not used as normal message but as header for the special page itself
+'version' => 'Modêye des programes',
 
 # Special:SpecialPages
 'specialpages' => 'Pådjes sipeciåles',

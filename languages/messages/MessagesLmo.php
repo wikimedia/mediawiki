@@ -1,6 +1,9 @@
 <?php
 /** Lumbaart (Lumbaart)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -526,7 +529,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'newtitle'        => 'Titul növ:',
 'move-watch'      => "Gionta quela pagina chì ai paginn che te tegn d'ögg.",
 'pagemovedsub'    => "San Martin l'è bele fat!",
-'movepage-moved'  => "<big>'''\"\$1\" l'è staa muvüü a \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'  => "<big>'''\"\$1\" l'è staa muvüü a \"\$2\"'''</big>",
 'movedto'         => 'spustaa vers:',
 '1movedto2'       => '[[$1]] spustaa in [[$2]]',
 '1movedto2_redir' => '[[$1]] spustaa in [[$2]] atravèerz re-indirizzameent',
@@ -607,7 +610,7 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 'autosumm-blank' => 'Pagina svujada',
 
 # Special:Version
-'version' => 'Versiun', # Not used as normal message but as header for the special page itself
+'version' => 'Versiun',
 
 # Special:FilePath
 'filepath' => 'Percuurz daj archivi',

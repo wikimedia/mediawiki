@@ -1,6 +1,9 @@
 <?php
 /** Latvian (Latviešu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -145,7 +148,7 @@ $messages = array(
 'category-media-header'          => 'Faili kategorijā "$1"',
 'category-empty'                 => "''Šī kategorija šobrīd nesatur ne lapas, ne failus''",
 'hidden-categories'              => '{{PLURAL:$1|Slēpta kategorija|Slēptas kategorijas}}',
-'hidden-category-category'       => 'Slēptās kategorijas', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Slēptās kategorijas',
 'category-subcat-count'          => '{{PLURAL:$2|Šajai kategorijai ir tikai viena apakškategorija.|Šajai kategorijai ir $2 apakškategorijas, no kurām ir {{PLURAL:$1|redzama viena|redzamas $1}}.}}',
 'category-subcat-count-limited'  => 'Šai kategorijai ir {{PLURAL:$1|viena apakškategorija|$1 apakškategorijas}}.',
 'category-article-count'         => '{{PLURAL:$2|Šī kategorija satur tikai šo vienu lapu.|Šajā kategorijā kopā ir $2 lapas, šobrīd ir {{PLURAL:$1|redzama viena no tām|redzamas $1 no tām}}.}}',
@@ -228,7 +231,7 @@ $messages = array(
 'otherlanguages'    => 'Citās valodās',
 'redirectedfrom'    => '(Pāradresēts no $1)',
 'redirectpagesub'   => 'Pāradresācijas lapa',
-'lastmodifiedat'    => 'Šajā lapā pēdējās izmaiņas izdarītas $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Šajā lapā pēdējās izmaiņas izdarītas $2, $1.',
 'viewcount'         => 'Šī lapa ir tikusi apskatīta $1 {{PLURAL:$1|reizi|reizes}}.',
 'protectedpage'     => 'Aizsargāta lapa',
 'jumpto'            => 'Pārlēkt uz:',
@@ -632,7 +635,7 @@ $3 norādītais iemesls ir ''$2''",
 'currentrev'             => 'Pašreizējā versija',
 'currentrev-asof'        => 'Pašreizējā versija, $1',
 'revisionasof'           => 'Versija, kas saglabāta $1',
-'revision-info'          => 'Versija $1 laikā, kādu to atstāja $2', # Additionally available: $3: revision id
+'revision-info'          => 'Versija $1 laikā, kādu to atstāja $2',
 'previousrevision'       => '←Senāka versija',
 'nextrevision'           => 'Jaunāka versija→',
 'currentrevisionlink'    => 'skatīt pašreizējo versiju',
@@ -656,7 +659,7 @@ m = maznozīmīgs labojums.',
 # Revision feed
 'history-feed-title'          => 'Versiju hronoloģija',
 'history-feed-description'    => 'Šīs wiki lapas versiju hronoloģija',
-'history-feed-item-nocomment' => '$1 : $2', # user at time
+'history-feed-item-nocomment' => '$1 : $2',
 'history-feed-empty'          => 'Pieprasītā lapa nepastāv.
 Iespējams, tā ir izdzēsta vai pārdēvēta.
 Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
@@ -757,7 +760,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'files'                 => 'Attēli',
 
 # User rights
-'userrights'                  => 'Lietotāju tiesību pārvaldība', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Lietotāju tiesību pārvaldība',
 'userrights-lookup-user'      => 'Pārvaldīt lietotāja grupas',
 'userrights-user-editname'    => 'Ievadi lietotājvārdu:',
 'editusergroup'               => 'Izmainīt lietotāja grupas',
@@ -1278,8 +1281,8 @@ Papildus informācija:
 'alreadyrolled'    => 'Nav iespējams novērst pēdējās izmaiņas, ko lapā [[:$1]] saglabāja [[User:$2|$2]] ([[User talk:$2|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]). Kāds cits jau ir rediģējis šo lapu vai novērsis izmaiņas.
 
 Pēdējās izmaiņas saglabāja [[User:$3|$3]] ([[User talk:$3|diskusija]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Attiecīgās izmaiņas kopsavilkums bija: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Novērsu izmaiņas, ko izdarīja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]), atjaunoju versiju, ko saglabāja [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Attiecīgās izmaiņas kopsavilkums bija: \"''\$1''\".",
+'revertpage'       => 'Novērsu izmaiņas, ko izdarīja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]), atjaunoju versiju, ko saglabāja [[User:$1|$1]]',
 'rollback-success' => 'Tika novērstas $1 izdarītās izmaiņas;
 un tika atjaunota iepriekšējā versija, kuru bija izveidojis $2.',
 'sessionfailure'   => "Ir radusies problēma ar sesijas autentifikāciju;
@@ -1306,7 +1309,7 @@ Pašreizējie lapas '''$1''' iestatījumi ir:",
 'protect-level-sysop'         => 'Tikai adminiem',
 'protect-cascade'             => "Aizsargāt šajā lapā iekļautās lapas (veidnes) ''(cascading protection)''",
 'protect-cantedit'            => 'Tu nevari izmainīt šīs lapas aizsardzības līmeņus, tāpēc, ka tur nevari izmainīt šo lapu.',
-'protect-expiry-options'      => '1 stunda:1 hour,1 diena:1 day,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 stunda:1 hour,1 diena:1 day,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite',
 'restriction-type'            => 'Atļauja:',
 'restriction-level'           => 'Aizsardzības līmenis:',
 
@@ -1364,7 +1367,7 @@ kāds cits iespējams to ir atjaunojis ātrāk.',
 'contributions-title' => 'Lietotāja $1 devums',
 'mycontris'           => 'Mans devums',
 'contribsub2'         => 'Lietotājs: $1 ($2)',
-'nocontribs'          => 'Netika atrastas izmaiņas, kas atbilstu šiem kritērijiem.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Netika atrastas izmaiņas, kas atbilstu šiem kritērijiem.',
 'uctop'               => '(pēdējā izmaiņa)',
 'month'               => 'No mēneša (un senāki):',
 'year'                => 'No gada (un senāki):',
@@ -1416,7 +1419,7 @@ Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 'ipbenableautoblock'       => 'Automātiski bloķēt lietotāja pēdējo IP adresi un jebkuru IP adresi, no kuras šis lietotājs piekļūst šim wiki',
 'ipbsubmit'                => 'Bloķēt šo lietotāju',
 'ipbother'                 => 'Cits laiks',
-'ipboptions'               => '2 stundas:2 hours,1 diena:1 day,3 dienas:3 days,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 stundas:2 hours,1 diena:1 day,3 dienas:3 days,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite',
 'ipbotheroption'           => 'cits',
 'ipbotherreason'           => 'Cits/papildu iemesls:',
 'ipbwatchuser'             => 'Uzraudzīt šī lietotāja lietotāja un lietotāja diskusijas lapas',
@@ -1483,7 +1486,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'move-watch'              => 'Uzraudzīt šo lapu',
 'movepagebtn'             => 'Pārvietot lapu',
 'pagemovedsub'            => 'Pārvietošana notikusi veiksmīgi',
-'movepage-moved'          => '<big>\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" tika pārvietots uz "$2"\'\'\'</big>',
 'articleexists'           => 'Lapa ar tādu nosaukumu jau pastāv vai arī tevis izvēlētais nosaukums ir nederīgs. Lūdzu, izvēlies citu nosaukumu.',
 'cantmove-titleprotected' => 'Tu nevari pārvietot lapu uz šo nosaukumu, tāpēc, ka jaunais nosaukums (lapa) ir aizsargāta pret izveidošanu',
 'talkexists'              => "'''Šī lapa pati tika pārvietota veiksmīgi, bet tās diskusiju lapu nevarēja pārvietot, tapēc, ka jaunā nosaukuma lapai jau ir diskusiju lapa. Lūdzu apvieno šīs diskusiju lapas manuāli.'''",
@@ -1613,7 +1616,7 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonīmais {{grammar:ģenitīvs|{{SITENAME}}}} lietotājs|Anonīmie {{grammar:ģenitīvs|{{SITENAME}}}} lietotāji}}',
 'siteuser'         => '{{grammar:ģenitīvs|{{SITENAME}}}} lietotājs $1',
-'lastmodifiedatby' => 'Šo lapu pēdējoreiz izmainīja $3, $2, $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Šo lapu pēdējoreiz izmainīja $3, $2, $1.',
 
 # Spam protection
 'spamprotectiontitle' => 'Spama filtrs',
@@ -1673,7 +1676,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'       => 'platums',
@@ -1834,7 +1837,7 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 'watchlisttools-raw'  => 'Izmainīt uzraugāmo rakstu saraksta kodu',
 
 # Special:Version
-'version'                  => 'Versija', # Not used as normal message but as header for the special page itself
+'version'                  => 'Versija',
 'version-extensions'       => 'Ieinstalētie paplašinājumi',
 'version-specialpages'     => 'Īpašās lapas',
 'version-version'          => 'Versija',

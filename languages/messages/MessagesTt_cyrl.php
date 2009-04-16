@@ -1,6 +1,9 @@
 <?php
 /** Tatar (Cyrillic) (Tatarça/Татарча (Cyrillic))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -116,7 +119,7 @@ $messages = array(
 'category-media-header'          => '«$1» төркемендәге файллар',
 'category-empty'                 => "''Бу төркем әле буш.''",
 'hidden-categories'              => '{{PLURAL:$1|Яшерен төркем|Яшерен төркемнәр}}',
-'hidden-category-category'       => 'Яшерен төркемнәр', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Яшерен төркемнәр',
 'category-subcat-count'          => '{{PLURAL:$2|Бу төркемдә киләчәк төркемчә генә бар|$2 төркемчәдән {{PLURAL:$1|$1 төркемчә күрсәтелгән}}.}}',
 'category-subcat-count-limited'  => 'Бу төркемдә {{PLURAL:$1|$1 төркемчә}} бар.',
 'category-article-count'         => '{{PLURAL:$2|Бу төркемдә бер бит кенә бар.|Бу төркемнең $2 төркеменнән {{PLURAL:$1|$1 бите күрсәтелгән}}.}}',
@@ -202,7 +205,7 @@ $messages = array(
 'otherlanguages'    => 'Башка телләрендә',
 'redirectedfrom'    => '($1 битеннән юнәлгән)',
 'redirectpagesub'   => 'Юнәлеш бите',
-'lastmodifiedat'    => 'Бу битне соңгы үзгәртмә: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Бу битне соңгы үзгәртмә: $2, $1.',
 'viewcount'         => 'Бу биткә $1 {{PLURAL:$1|тапкыр}} мөрәҗәгать ителгән.',
 'protectedpage'     => 'Якланган бит',
 'jumpto'            => 'Күчү:',
@@ -534,7 +537,7 @@ $2',
 'viewpagelogs'           => 'Бу бит өчен журналларны карарга',
 'currentrev'             => 'Агымдагы юрама',
 'revisionasof'           => 'Юрама $1',
-'revision-info'          => 'Юрама: $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Юрама: $1; $2',
 'previousrevision'       => '← Алдагы төзәтмәләр',
 'nextrevision'           => 'Чираттагы төзәтмәләр →',
 'currentrevisionlink'    => 'Агымдагы юрама',
@@ -853,7 +856,7 @@ $2',
 'protect-expiring'            => '$1 үтә (UTC)',
 'protect-cascade'             => 'Бу биткә кергән битләрне якларга (каскадлы яклау)',
 'protect-cantedit'            => 'Сез бу битнең яклау дәрәҗәсене үзгәрә алмыйсыз, чөнки сездә аны үзгәртергә рөхсәтегез юк.',
-'protect-expiry-options'      => '15 минут:15 minutes,2 сәгать:2 hours,6 сәгать:6 hours,12 сәгать:12 hours,1 көн:1 day,3 көн:3 days,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 ел:1 year,вакытсыз:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '15 минут:15 minutes,2 сәгать:2 hours,6 сәгать:6 hours,12 сәгать:12 hours,1 көн:1 day,3 көн:3 days,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 ел:1 year,вакытсыз:infinite',
 'restriction-type'            => 'Рөхсәт:',
 'restriction-level'           => 'Мөмкинлек дәрәҗәсе:',
 'minimum-size'                => 'Иң кечкенә зурлык',
@@ -912,7 +915,7 @@ $2',
 
 # Block/unblock
 'blockip'      => 'Кулланучыны кысарга',
-'ipboptions'   => '15 минут:15 minutes,2 сәгать:2 hours,6 сәгать:6 hours,12 сәгать:12 hours,1 көн:1 day,3 көн:3 days,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 ел:1 year,вакытсыз:infinite', # display1:time1,display2:time2,...
+'ipboptions'   => '15 минут:15 minutes,2 сәгать:2 hours,6 сәгать:6 hours,12 сәгать:12 hours,1 көн:1 day,3 көн:3 days,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 ел:1 year,вакытсыз:infinite',
 'ipblocklist'  => 'Кысылган IP-адреслар һәм кулланучы исемләр исемлеге',
 'blocklink'    => 'кысарга',
 'unblocklink'  => 'кысмаска',
@@ -925,7 +928,7 @@ $2',
 'move-watch'     => 'Бу битне күзәтергә',
 'movepagebtn'    => 'Битне күчерергә',
 'pagemovedsub'   => 'Бит күчерергән',
-'movepage-moved' => "<big>'''«$1» бит «$2» биткә күчкән'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved' => "<big>'''«$1» бит «$2» биткә күчкән'''</big>",
 'movedto'        => 'күчерергән:',
 'movetalk'       => 'Бәйләнешле фикер алышу битне күчерергә',
 '1movedto2'      => '«[[$1]]» бите «[[$2]]» биткә күчерергән',
@@ -1027,7 +1030,7 @@ $2',
 'watchlisttools-edit' => 'Күзәтү исемлегене карау һәм үзгәртү',
 
 # Special:Version
-'version' => 'Юрама', # Not used as normal message but as header for the special page itself
+'version' => 'Юрама',
 
 # Special:SpecialPages
 'specialpages' => 'Махсус битләр',

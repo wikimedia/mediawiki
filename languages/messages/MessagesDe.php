@@ -1,6 +1,9 @@
 <?php
 /** German (Deutsch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -431,7 +434,7 @@ $messages = array(
 'category-media-header'          => 'Medien in der Kategorie „$1“',
 'category-empty'                 => "''Diese Kategorie enthält zur Zeit keine Seiten oder Medien.''",
 'hidden-categories'              => '{{PLURAL:$1|Versteckte Kategorie|Versteckte Kategorien}}',
-'hidden-category-category'       => 'Versteckte Kategorie', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Versteckte Kategorie',
 'category-subcat-count'          => '{{PLURAL:$2|Diese Kategorie enthält folgende Unterkategorie:|{{PLURAL:$1|Folgende Unterkategorie ist eine von insgesamt $2 Unterkategorien in dieser Kategorie:|Es werden $1 von insgesamt $2 Unterkategorien in dieser Kategorie angezeigt:}}}}',
 'category-subcat-count-limited'  => 'Diese Kategorie enthält folgende {{PLURAL:$1|Unterkategorie|$1 Unterkategorien}}:',
 'category-article-count'         => '{{PLURAL:$2|Diese Kategorie enthält folgende Seite:|{{PLURAL:$1|Folgende Seite ist eine von insgesamt $2 Seiten in dieser Kategorie:|Es werden $1 von insgesamt $2 Seiten in dieser Kategorie angezeigt:}}}}',
@@ -518,7 +521,7 @@ $messages = array(
 'otherlanguages'    => 'Andere Sprachen',
 'redirectedfrom'    => '(Weitergeleitet von $1)',
 'redirectpagesub'   => 'Weiterleitung',
-'lastmodifiedat'    => 'Diese Seite wurde zuletzt am $1 um $2 Uhr geändert.', # $1 date, $2 time
+'lastmodifiedat'    => 'Diese Seite wurde zuletzt am $1 um $2 Uhr geändert.',
 'viewcount'         => 'Diese Seite wurde bisher {{PLURAL:$1|einmal|$1-mal}} abgerufen.',
 'protectedpage'     => 'Geschützte Seite',
 'jumpto'            => 'Wechseln zu:',
@@ -1013,7 +1016,7 @@ Grund der Sperre: ''$2''",
 'currentrev'             => 'Aktuelle Version',
 'currentrev-asof'        => 'Aktuelle Version vom $1',
 'revisionasof'           => 'Version vom $1',
-'revision-info'          => 'Dies ist eine alte Version. Zeitpunkt der Bearbeitung: $1 durch $2.', # Additionally available: $3: revision id
+'revision-info'          => 'Dies ist eine alte Version. Zeitpunkt der Bearbeitung: $1 durch $2.',
 'previousrevision'       => '← Nächstältere Version',
 'nextrevision'           => 'Nächstjüngere Version →',
 'currentrevisionlink'    => 'Aktuelle Version',
@@ -1035,7 +1038,7 @@ Grund der Sperre: ''$2''",
 # Revision feed
 'history-feed-title'          => 'Versionsgeschichte',
 'history-feed-description'    => 'Versionsgeschichte für diese Seite in {{SITENAME}}',
-'history-feed-item-nocomment' => '$1 um $2', # user at time
+'history-feed-item-nocomment' => '$1 um $2',
 'history-feed-empty'          => 'Die angeforderte Seite existiert nicht. Vielleicht wurde sie gelöscht oder verschoben. [[Special:Search|Durchsuche]] {{SITENAME}} für passende neue Seiten.',
 
 # Revision deletion
@@ -1348,7 +1351,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'prefs-custom-js'           => 'Benutzerdefiniertes JS',
 
 # User rights
-'userrights'                  => 'Benutzerrechteverwaltung', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Benutzerrechteverwaltung',
 'userrights-lookup-user'      => 'Verwalte Gruppenzugehörigkeit',
 'userrights-user-editname'    => 'Benutzername:',
 'editusergroup'               => 'Benutzerrechte bearbeiten',
@@ -1701,8 +1704,8 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'noimage'                   => 'Eine Datei mit diesem Namen existiert nicht, du kannst sie jedoch $1.',
 'noimage-linktext'          => 'hochladen',
 'uploadnewversion-linktext' => 'Eine neue Version dieser Datei hochladen',
-'shared-repo-from'          => 'aus $1', # $1 is the repository name
-'shared-repo'               => 'einem gemeinsam genutzten Medienarchiv', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'aus $1',
+'shared-repo'               => 'einem gemeinsam genutzten Medienarchiv',
 
 # File reversion
 'filerevert'                => 'Zurücksetzen von „$1“',
@@ -2080,8 +2083,8 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'alreadyrolled'    => 'Das Zurücksetzen der Änderungen von [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) an [[:$1]] ist gescheitert, da in der Zwischenzeit ein anderer Benutzer die Seite geändert hat.
 
 Die letzte Änderung stammt von [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Die Änderungszusammenfassung lautet: ''„$1“''.", # only shown if there is an edit comment
-'revertpage'       => 'Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Die Änderungszusammenfassung lautet: ''„$1“''.",
+'revertpage'       => 'Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt',
 'rollback-success' => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
 'sessionfailure'   => 'Es gab ein Problem mit der Übertragung deiner Benutzerdaten.
 Diese Aktion wurde daher sicherheitshalber abgebrochen, um eine falsche Zuordnung deiner Änderungen zu einem anderen Benutzer zu verhindern.
@@ -2128,7 +2131,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 ** Häufig eingebundene Vorlage
 ** Seite mit hoher Besucherzahl',
 'protect-edit-reasonlist'     => 'Schutzgründe bearbeiten',
-'protect-expiry-options'      => '1 Stunde:1 hour,1 Tag:1 day,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unbeschränkt:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Stunde:1 hour,1 Tag:1 day,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unbeschränkt:infinite',
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöhe',
 'minimum-size'                => 'Mindestgröße',
@@ -2206,7 +2209,7 @@ $1',
 'contributions-title' => 'Benutzerbeiträge von „$1“',
 'mycontris'           => 'Eigene Beiträge',
 'contribsub2'         => 'Für $1 ($2)',
-'nocontribs'          => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
 'uctop'               => '(aktuell)',
 'month'               => 'und Monat:',
 'year'                => 'bis Jahr:',
@@ -2270,7 +2273,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipbenableautoblock'              => 'Sperre die aktuell von diesem Benutzer genutzte IP-Adresse sowie automatisch alle folgenden, von denen aus er Bearbeitungen oder das Anlegen von Benutzeraccounts versucht',
 'ipbsubmit'                       => 'IP-Adresse/Benutzer sperren',
 'ipbother'                        => 'Andere Dauer (englisch):',
-'ipboptions'                      => '2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unbeschränkt:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 Stunden:2 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Jahr:1 year,Unbeschränkt:infinite',
 'ipbotheroption'                  => 'Andere Dauer',
 'ipbotherreason'                  => 'Andere/ergänzende Begründung:',
 'ipbhidename'                     => 'Benutzername in Bearbeitungen und Listen verstecken',
@@ -2397,7 +2400,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'move-watch'                   => 'Diese Seite beobachten',
 'movepagebtn'                  => 'Seite verschieben',
 'pagemovedsub'                 => 'Verschiebung erfolgreich',
-'movepage-moved'               => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>",
 'movepage-moved-redirect'      => 'Es wurde eine Weiterleitung erstellt.',
 'movepage-moved-noredirect'    => 'Die Erstellung einer Weiterleitung wurde unterdrückt.',
 'articleexists'                => 'Unter diesem Namen existiert bereits eine Seite. Bitte wähle einen anderen Namen.',
@@ -2628,7 +2631,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymer Benutzer|Anonyme Benutzer}} auf {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutzer $1',
-'lastmodifiedatby' => 'Diese Seite wurde zuletzt am $1 um $2 Uhr von $3 geändert.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Diese Seite wurde zuletzt am $1 um $2 Uhr von $3 geändert.',
 'othercontribs'    => 'Basiert auf der Arbeit von $1',
 'others'           => 'andere',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
@@ -2747,7 +2750,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breite',
@@ -2874,14 +2877,14 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 
 'exif-unknowndate' => 'Unbekanntes Datum',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Horizontal gespiegelt', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Um 180° gedreht', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Vertikal gespiegelt', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Entgegen dem Uhrzeigersinn um 90° gedreht und vertikal gespiegelt', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Um 90° im Uhrzeigersinn gedreht', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Um 90° im Uhrzeigersinn gedreht und vertikal gespiegelt', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Um 90° entgegen dem Uhrzeigersinn gedreht', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Horizontal gespiegelt',
+'exif-orientation-3' => 'Um 180° gedreht',
+'exif-orientation-4' => 'Vertikal gespiegelt',
+'exif-orientation-5' => 'Entgegen dem Uhrzeigersinn um 90° gedreht und vertikal gespiegelt',
+'exif-orientation-6' => 'Um 90° im Uhrzeigersinn gedreht',
+'exif-orientation-7' => 'Um 90° im Uhrzeigersinn gedreht und vertikal gespiegelt',
+'exif-orientation-8' => 'Um 90° entgegen dem Uhrzeigersinn gedreht',
 
 'exif-planarconfiguration-1' => 'Grobformat',
 'exif-planarconfiguration-2' => 'Planarformat',
@@ -3156,7 +3159,7 @@ Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutze
 'duplicate-defaultsort' => 'Achtung: Der Sortierungsschlüssel „$2“ überschreibt den vorher verwendeten Schlüssel „$1“.',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Installierte Erweiterungen',
 'version-specialpages'             => 'Spezialseiten',
 'version-parserhooks'              => 'Parser-Hooks',

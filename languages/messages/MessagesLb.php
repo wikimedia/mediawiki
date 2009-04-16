@@ -1,6 +1,9 @@
 <?php
 /** Luxembourgish (Lëtzebuergesch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -237,7 +240,7 @@ $messages = array(
 'category-media-header'          => 'Medien an der Kategorie "$1"',
 'category-empty'                 => "''Dës Kategorie ass fir den Ament eidel''",
 'hidden-categories'              => '{{PLURAL:$1|Verstoppte Kategorie|Verstoppte Kategorien}}',
-'hidden-category-category'       => 'Verstoppte Kategorien', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Verstoppte Kategorien',
 'category-subcat-count'          => 'Dës Kategorie huet {{PLURAL:$2|nëmmen dës Ënnerkategorie.|dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}, vun $2 am Ganzen.}}',
 'category-subcat-count-limited'  => 'Dës Kategorie huet dës {{PLURAL:$1|Ënnerkategorie|$1 Ënnerkategorien}}.',
 'category-article-count'         => 'An dëser Kategorie {{PLURAL:$2|ass just dës Säit.|{{PLURAL:$1|ass just dës Säit|si(nn) $1 Säiten}}, vu(n) $2 am Ganzen.}}',
@@ -323,7 +326,7 @@ $messages = array(
 'otherlanguages'    => 'Aner Sproochen',
 'redirectedfrom'    => '(Virugeleet vun $1)',
 'redirectpagesub'   => 'Viruleedungssäit',
-'lastmodifiedat'    => "Dës Säit gouf den $1 ëm $2 Auer fir d'lescht geännert.", # $1 date, $2 time
+'lastmodifiedat'    => "Dës Säit gouf den $1 ëm $2 Auer fir d'lescht geännert.",
 'viewcount'         => 'Dës Säit gouf bis elo {{PLURAL:$1|emol|$1-mol}} ofgefrot.',
 'protectedpage'     => 'Gespaarte Säit',
 'jumpto'            => 'Wiesselen op:',
@@ -800,7 +803,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'currentrev'             => 'Aktuell Versioun',
 'currentrev-asof'        => 'Aktuell Versioun vum $1',
 'revisionasof'           => 'Versioun vum $1',
-'revision-info'          => 'Versioun vum $1 vum $2.', # Additionally available: $3: revision id
+'revision-info'          => 'Versioun vum $1 vum $2.',
 'previousrevision'       => '← Méi al Versioun',
 'nextrevision'           => 'Méi rezent Ännerung→',
 'currentrevisionlink'    => 'Aktuell Versioun',
@@ -823,7 +826,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 # Revision feed
 'history-feed-title'          => 'Historique vun de Versiounen',
 'history-feed-description'    => 'Versiounshistorique fir dës Säit op {{SITENAME}}',
-'history-feed-item-nocomment' => '$1 ëm $2', # user at time
+'history-feed-item-nocomment' => '$1 ëm $2',
 'history-feed-empty'          => 'Déi ugefrote Säit gëtt et net.
 Vläicht gouf se geläscht oder geréckelt.
 [[Special:Search|Sich op]] {{SITENAME}} no passenden neie Säiten.',
@@ -1128,7 +1131,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'prefs-custom-js'           => 'Benotzerdefinéierte JS',
 
 # User rights
-'userrights'                  => 'Benotzerrechterverwaltung', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Benotzerrechterverwaltung',
 'userrights-lookup-user'      => 'Benotzergrupp verwalten',
 'userrights-user-editname'    => 'Benotzernumm uginn:',
 'editusergroup'               => 'Benotzergruppen änneren',
@@ -1462,8 +1465,8 @@ D'Beschreiwung op senger [$2 Beschreiwungssäit] steet hei ënnedrënner.",
 'noimage'                   => 'Ee Fichier mat dësem Numm gëtt et net, Dir kënnt awer $1.',
 'noimage-linktext'          => 'eent eroplueden',
 'uploadnewversion-linktext' => 'Eng nei Versioun vun dësem Fichier eroplueden',
-'shared-repo-from'          => 'vu(n) $1', # $1 is the repository name
-'shared-repo'               => 'e gemeinsam genotzte Medienarchiv', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'vu(n) $1',
+'shared-repo'               => 'e gemeinsam genotzte Medienarchiv',
 
 # File reversion
 'filerevert'                => '"$1" zrécksetzen',
@@ -1843,8 +1846,8 @@ dës Aktioun soll mat Vierssiicht gemaach ginn.",
 een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen.
 
 Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "De Resumé vun der Ännerung war: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "De Resumé vun der Ännerung war: \"''\$1''\".",
+'revertpage'       => 'Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]',
 'rollback-success' => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 'sessionfailure'   => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
 Dës Aktioun gouf aus Sécherheetsgrënn ofgebrach, fir ze verhënneren datt är Séance piratéiert ka ginn.
@@ -1893,7 +1896,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 ** Dacks benotzte Schablounen
 ** Säit déi dacks besicht gëtt',
 'protect-edit-reasonlist'     => 'Grënn vun der Protectioun änneren',
-'protect-expiry-options'      => '1 Stonn:1 hour,1 Dag:1 day,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Stonn:1 hour,1 Dag:1 day,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite',
 'restriction-type'            => 'Berechtigung:',
 'restriction-level'           => 'NIveau vun de Limitatiounen:',
 'minimum-size'                => 'Mindestgréisst',
@@ -1967,7 +1970,7 @@ $1',
 'contributions-title' => 'Kontributioune vum $1',
 'mycontris'           => 'Meng Kontributiounen',
 'contribsub2'         => 'Fir $1 ($2)',
-'nocontribs'          => 'Et goufe keng Ännerunge fonnt, déi dëse Kritèren entspriechen.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Et goufe keng Ännerunge fonnt, déi dëse Kritèren entspriechen.',
 'uctop'               => '(aktuell)',
 'month'               => 'Vum Mount (a virdrun):',
 'year'                => 'Vum Joer (a virdrun):',
@@ -2026,7 +2029,7 @@ $1',
 'ipbenableautoblock'              => 'Automatesch déi lescht IP-Adress spären déi vun dësem Benotzer benotzt gouf, an all IP-Adresse vun denen dëse Benotzer versicht Ännerunge virzehuelen',
 'ipbsubmit'                       => 'Dës IP-Adress resp dëse Benotzer spären',
 'ipbother'                        => 'Aner Dauer:',
-'ipboptions'                      => '2 Stonen:2 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 Stonen:2 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite',
 'ipbotheroption'                  => 'Aner Dauer',
 'ipbotherreason'                  => 'Aneren oder zousätzleche Grond:',
 'ipbhidename'                     => 'Benotzernumm op Lëschten a bäi Ännerunge verstoppen',
@@ -2158,7 +2161,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-watch'                   => 'Dës Säit iwwerwaachen',
 'movepagebtn'                  => 'Säit réckelen',
 'pagemovedsub'                 => 'Gouf geréckelt',
-'movepage-moved'               => "<big>'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''</big>",
 'movepage-moved-redirect'      => 'Et gouf eng Viruleedung ugeluecht.',
 'movepage-moved-noredirect'    => "D'Uleeë vun enger Viruleedung gouf ënnerdréckt.",
 'articleexists'                => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',
@@ -2366,7 +2369,7 @@ Erlaabt et e Grond an de Resumé derbäizesetzen.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonyme Benotzer|Anonym Benotzer}} op {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benotzer $1',
-'lastmodifiedatby' => "Dës Säit gouf den $1 ëm $2 Auer voum $3 fir d'lescht geännert.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Dës Säit gouf den $1 ëm $2 Auer voum $3 fir d'lescht geännert.",
 'othercontribs'    => 'Op der Basis vun der Aarbecht vum $1',
 'others'           => 'anerer',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|Benotzer|Benotzer}} $1',
@@ -2482,7 +2485,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breet',
@@ -2601,14 +2604,14 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 'exif-unknowndate' => 'Onbekannten Datum',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Horizontal gedréit', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Ëm 180° gedréit', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Vertikal gedréit', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => "90° géint d'Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint", # 0th row: left; 0th column: top
-'exif-orientation-6' => "Ëm 90° an d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: right; 0th column: top
-'exif-orientation-7' => '90° an der Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => "Ëm 90° géint d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Horizontal gedréit',
+'exif-orientation-3' => 'Ëm 180° gedréit',
+'exif-orientation-4' => 'Vertikal gedréit',
+'exif-orientation-5' => "90° géint d'Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint",
+'exif-orientation-6' => "Ëm 90° an d'Richtung vun den Zäre vun der Auer gedréint",
+'exif-orientation-7' => '90° an der Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint',
+'exif-orientation-8' => "Ëm 90° géint d'Richtung vun den Zäre vun der Auer gedréint",
 
 'exif-componentsconfiguration-0' => 'Gëtt et net',
 
@@ -2851,7 +2854,7 @@ Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslësc
 'duplicate-defaultsort' => 'Opgepasst: De Sortéierschlëssel "$2" iwwerschreiwt de virege Sortéierschlëssel "$1".',
 
 # Special:Version
-'version'                          => 'Versioun', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versioun',
 'version-extensions'               => 'Installéiert Erweiderungen',
 'version-specialpages'             => 'Spezialsäiten',
 'version-parserhooks'              => 'Parser-Erweiderungen',

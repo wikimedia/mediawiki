@@ -1,6 +1,9 @@
 <?php
 /** Cmique Itom (Cmique Itom)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -185,7 +188,7 @@ $messages = array(
 'otherlanguages'    => 'Itóm pacehuatl iti',
 'redirectedfrom'    => '(Meniitomöxde $1)',
 'redirectpagesub'   => 'Meniitomöx páhina',
-'lastmodifiedat'    => "Jan páhina coccebjöx ticpatlöx iti'ab $2, $1.", # $1 date, $2 time
+'lastmodifiedat'    => "Jan páhina coccebjöx ticpatlöx iti'ab $2, $1.",
 'viewcount'         => '{{PLURAL:$1|1 ctam|$1 ctám}} coccebj cohuatlöx jan páhina.',
 'protectedpage'     => 'Páhina protecta',
 'jumpto'            => 'Jumpöx:',
@@ -558,7 +561,7 @@ Rae' zo xuniim $3 mii coccebj ''$2''",
 'nohistory'           => 'Jan páhina necoccebj históriade ticpatlöx.',
 'currentrev'          => 'Revicion cmaa',
 'revisionasof'        => 'Revicionde $1',
-'revision-info'       => "Revicionde $1 'de $2", # Additionally available: $3: revision id
+'revision-info'       => "Revicionde $1 'de $2",
 'previousrevision'    => '←Janrevicion',
 'nextrevision'        => 'Hunrevicion→',
 'currentrevisionlink' => 'Revicion currentuanon',
@@ -579,7 +582,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 # Revision feed
 'history-feed-title'          => 'Históriade revicion',
 'history-feed-description'    => 'Históriade revicion jande páhina wiki zo iti',
-'history-feed-item-nocomment' => '$1 öl $2 mii', # user at time
+'history-feed-item-nocomment' => '$1 öl $2 mii',
 
 # Revision deletion
 'rev-deleted-comment'     => '(delatom commentua)',
@@ -1093,7 +1096,7 @@ iitom e-iitomde diijömde caitóm.',
 'autosumm-new' => 'Hunpáhina: $1',
 
 # Special:Version
-'version' => 'Vercion', # Not used as normal message but as header for the special page itself
+'version' => 'Vercion',
 
 # Special:SpecialPages
 'specialpages' => 'Páhinám extravám',

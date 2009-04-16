@@ -1,6 +1,9 @@
 <?php
 /** Kara-Kalpak (Qaraqalpaqsha)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -254,7 +257,7 @@ $messages = array(
 'category-media-header'          => '"$1" kategoriyasindag\'ı media',
 'category-empty'                 => "''Bul kategoriyada ha'zir hesh bet yamasa media joq''",
 'hidden-categories'              => '{{PLURAL:$1|Jasırın kategoriya|Jasırın kategoriyalar}}',
-'hidden-category-category'       => 'Jasırın kategoriyalar', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Jasırın kategoriyalar',
 'category-subcat-count'          => "{{PLURAL:$2|Bul kategoriyada tek to'mendegi podkategoriya bar.|Bul kategoriyada $1 podkategoriya bar (barlıg'ı $2).}}",
 'category-subcat-count-limited'  => "Bul kategoriyada to'mendegi {{PLURAL:$1|podkategoriya|$1 podkategoriyalar}} bar.",
 'category-article-count'         => "{{PLURAL:$2|Bul kategoriyada tek to'mendegi bet bar.|Bul kategoriyada to'mendegi $1 bet bar (barlıg'ı $2).}}",
@@ -341,7 +344,7 @@ $messages = array(
 'otherlanguages'    => 'Basqa tillerde',
 'redirectedfrom'    => "($1 degennen burılg'an)",
 'redirectpagesub'   => 'Burıwshı bet',
-'lastmodifiedat'    => "Bul bettin' aqırg'ı ma'rte o'zgertilgen waqtı: $2, $1.", # $1 date, $2 time
+'lastmodifiedat'    => "Bul bettin' aqırg'ı ma'rte o'zgertilgen waqtı: $2, $1.",
 'viewcount'         => "Bul bet {{PLURAL:$1|bir ma'rte|$1 ma'rte}} ko'rip shıg'ılg'an.",
 'protectedpage'     => "Qorg'alg'an bet",
 'jumpto'            => "Bug'an o'tiw:",
@@ -750,7 +753,7 @@ $3 keltirilgen sebebi: ''$2''",
 'currentrev'             => "Ha'zirgi nusqa",
 'currentrev-asof'        => "Bul nusqanın' waqtı: $1",
 'revisionasof'           => '$1 waqtındagı nusqası',
-'revision-info'          => "$1 waqtındag'ı $2 istegen nusqası", # Additionally available: $3: revision id
+'revision-info'          => "$1 waqtındag'ı $2 istegen nusqası",
 'previousrevision'       => '←Eskilew nusqası',
 'nextrevision'           => "Jan'alaw nusqası→",
 'currentrevisionlink'    => "Ha'zirgi nusqa",
@@ -772,7 +775,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 # Revision feed
 'history-feed-title'          => 'Nusqa tariyxı',
 'history-feed-description'    => "Usı bettin' wikidegi nusqa tariyxı",
-'history-feed-item-nocomment' => "$2 waqtındag'ı $1", # user at time
+'history-feed-item-nocomment' => "$2 waqtındag'ı $1",
 
 # Revision deletion
 'rev-deleted-comment'       => "(kommentariy o'shirildi)",
@@ -1020,7 +1023,7 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'files'                     => 'Fayllar',
 
 # User rights
-'userrights'                  => 'Paydalanıwshı huqıqların basqarıw', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Paydalanıwshı huqıqların basqarıw',
 'userrights-lookup-user'      => 'Paydalanıwshı toparların basqarıw',
 'userrights-user-editname'    => "Paydalanıwshı atın kiritin':",
 'editusergroup'               => "Paydalanıwshı Toparların O'zgertiw",
@@ -1553,7 +1556,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'rollback_short' => 'Biykar etiw',
 'rollbacklink'   => 'qaytarıw',
 'rollbackfailed' => "Biykar etiw sa'tsiz tamamlandı",
-'editcomment'    => "O'zgertiwdin' bolg'an kommentariyi: \"''\$1''\".", # only shown if there is an edit comment
+'editcomment'    => "O'zgertiwdin' bolg'an kommentariyi: \"''\$1''\".",
 
 # Protect
 'protectlogpage'              => "Qorg'aw jurnalı",
@@ -1584,7 +1587,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'protect-otherreason'         => 'Basqa/qosımsha sebep:',
 'protect-otherreason-op'      => 'basqa/qosımsha sebep',
 'protect-edit-reasonlist'     => "Qorg'aw sebeplerin o'zgertiw",
-'protect-expiry-options'      => "1 saat:1 hours,1 ku'n:1 day,1 ha'pte:1 week,2 ha'pte:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 jıl:1 year,ma'ngi:infinite", # display1:time1,display2:time2,...
+'protect-expiry-options'      => "1 saat:1 hours,1 ku'n:1 day,1 ha'pte:1 week,2 ha'pte:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 jıl:1 year,ma'ngi:infinite",
 'restriction-type'            => 'Ruxsatnama:',
 'restriction-level'           => "Sheklew da'rejesi:",
 'minimum-size'                => "En' az o'lshemi",
@@ -1673,7 +1676,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'ipbemailban'                 => "Paydalanıwshını e-mail jiberiwden qadag'alaw",
 'ipbsubmit'                   => 'Bul paydalanıwshını bloklaw',
 'ipbother'                    => 'Basqa waqıt:',
-'ipboptions'                  => "2 saat:2 hours,1 ku'n:1 day,3 ku'n:3 days,1 ha'pte:1 week,2 h'apte:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 jil:1 year,sheksiz:infinite", # display1:time1,display2:time2,...
+'ipboptions'                  => "2 saat:2 hours,1 ku'n:1 day,3 ku'n:3 days,1 ha'pte:1 week,2 h'apte:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 jil:1 year,sheksiz:infinite",
 'ipbotheroption'              => 'basqa',
 'ipbotherreason'              => 'Basqa/qosımsha sebep:',
 'badipaddress'                => 'Jaramsız IP adres',
@@ -1752,7 +1755,7 @@ Bul jag'daylarda eger qa'lesen'iz betti qoldan ko'shiriwin'iz yamasa qosıwın'i
 'move-watch'              => 'Bul betti baqlaw',
 'movepagebtn'             => "Betti ko'shir",
 'pagemovedsub'            => "Tabıslı ko'shirildi",
-'movepage-moved'          => "<big>'''\"\$1\" beti \"\$2\" betine ko'shirildi'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''\"\$1\" beti \"\$2\" betine ko'shirildi'''</big>",
 'articleexists'           => "Bunday atamalı bet bar yamasa natuwrı atama sayladın'ız.
 Basqa atama saylan'",
 'talkexists'              => "'''Bettin' o'zi a'wmetli ko'shirildi, biraq sa'wbet beti ko'shirilmedi sebebi jan'a atamanın' sa'wbet beti bar eken. Olardı o'zin'iz qoldan qosın'.'''",
@@ -1870,7 +1873,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Attribution
 'anonymous'        => "{{SITENAME}} saytının' anonim {{PLURAL:$1|paydalanıwshısı|paydalanıwshıları}}",
 'siteuser'         => '{{SITENAME}} paydalanıwshısı $1',
-'lastmodifiedatby' => "Bul bettin' aqırg'ı ma'rte $3 o'zgertken waqtı: $2, $1.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Bul bettin' aqırg'ı ma'rte $3 o'zgertken waqtı: $2, $1.",
 'others'           => 'basqalar',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|paydalanıwshı|paydalanıwshıları}} $1',
 'creditspage'      => 'Bet avtorları',
@@ -1937,7 +1940,7 @@ Eger fayl jaratılg'anınan keyin o'zgertilgen bolsa, geybir parametrleri o'zger
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'       => 'Yeni:',
@@ -2044,7 +2047,7 @@ Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
 'watchlisttools-raw'  => '"Shiyki" baqlaw dizimin o\'zgertiw',
 
 # Special:Version
-'version' => "MediaWikidin' nusqası", # Not used as normal message but as header for the special page itself
+'version' => "MediaWikidin' nusqası",
 
 # Special:FilePath
 'filepath' => 'Fayl jolı',

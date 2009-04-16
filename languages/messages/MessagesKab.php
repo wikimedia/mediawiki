@@ -1,6 +1,9 @@
 <?php
 /** Kabyle (Taqbaylit)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -206,7 +209,7 @@ $messages = array(
 'otherlanguages'    => 'S tutlayin tiyaḍ',
 'redirectedfrom'    => '(Yettusmimeḍ seg $1)',
 'redirectpagesub'   => 'Asebter usemmimeḍ',
-'lastmodifiedat'    => 'Tikkelt taneggarut i yettubeddel asebter-agi $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Tikkelt taneggarut i yettubeddel asebter-agi $2, $1.',
 'viewcount'         => 'Asebter-agi yettwakcem {{PLURAL:$1|yiwet tikelt|$1 tikwal}}.',
 'protectedpage'     => 'Asebter yettwaḥerzen',
 'jumpto'            => 'Neggez ar:',
@@ -552,7 +555,7 @@ Tzemreḍ a d-uɣaleḍ u tbeddleḍ asebter i yellan, neɣ ad [[Special:UserLog
 'nohistory'           => 'Ulac amezruy n yibeddlen i usebter-agi.',
 'currentrev'          => 'Tasiwelt n tura',
 'revisionasof'        => 'Tasiwelt n wass $1',
-'revision-info'       => 'Tasiwelt n wass $1 sɣur $2', # Additionally available: $3: revision id
+'revision-info'       => 'Tasiwelt n wass $1 sɣur $2',
 'previousrevision'    => '←Tasiwelt taqdimt',
 'nextrevision'        => 'Tasiwelt tamaynut→',
 'currentrevisionlink' => 'Tasiwelt n tura',
@@ -573,7 +576,7 @@ Tabadut: (tura) = amgirred akk d tasiwelt n tura,
 # Revision feed
 'history-feed-title'          => 'Amezruy n tsiwelt',
 'history-feed-description'    => 'Amezruy n tsiwelt n usebter-agi deg wiki',
-'history-feed-item-nocomment' => '$1 deg $2', # user at time
+'history-feed-item-nocomment' => '$1 deg $2',
 'history-feed-empty'          => 'Asebter i tebɣiḍ ulac-it.
 Ahat yettumḥa neɣ yettbeddel isem-is.
 Ɛreḍ [[Special:Search|ad tnadiḍ deg wiki]] ɣef isebtar imaynuten.',
@@ -700,7 +703,7 @@ i yesɛan akk awalen i banen-d).",
 'files'                    => 'Ifayluwen',
 
 # User rights
-'userrights'               => 'Laɛej iserfan n wemseqdac', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Laɛej iserfan n wemseqdac',
 'userrights-lookup-user'   => 'Laɛej iderman n yimseqdacen',
 'userrights-user-editname' => 'Ssekcem isem n wemseqdac:',
 'editusergroup'            => 'Beddel iderman n yimseqdacen',
@@ -1090,8 +1093,8 @@ Tadhelt:
 
 # Rollback
 'cantrollback'   => 'Ur yezmir ara ad yessuɣal; yella yiwen kan amseqdac iwumi ibeddel/yexleq asebter-agi.',
-'editcomment'    => "Agzul n ubeddel yella: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => 'Yessuɣal ibeddlen n [[Special:Contributions/$2|$2]] ([[User talk:$2|Meslay]]); yettubeddel ɣer tasiwelt taneggarut n [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "Agzul n ubeddel yella: \"''\$1''\".",
+'revertpage'     => 'Yessuɣal ibeddlen n [[Special:Contributions/$2|$2]] ([[User talk:$2|Meslay]]); yettubeddel ɣer tasiwelt taneggarut n [[User:$1|$1]]',
 'sessionfailure' => 'Yella ugul akk d takmect inek;
 Axdam-agi yebṭel axaṭer waqila yella wemdan nniḍen i yeddem isem n wemseqdac inek.
 G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, umbeɛd wekki ɣef "Actualiser/reload" akk ad tɛerḍeḍ tikelt nniḍen.',
@@ -1131,7 +1134,7 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 'contributions' => 'Tikkin n wemseqdac',
 'mycontris'     => 'Tikkin inu',
 'contribsub2'   => 'n $1 ($2)',
-'nocontribs'    => 'Ur yufi ara abddel i tebɣiḍ.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Ur yufi ara abddel i tebɣiḍ.',
 'uctop'         => '(taneggarut)',
 
 'sp-contributions-newbies'     => 'Ssken tikkin n yimseqdacen imaynuten kan',
@@ -1326,7 +1329,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Attribution
 'anonymous'        => 'Amseqdac udrig (Imseqdacen udrigen) n {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} amseqdac $1',
-'lastmodifiedatby' => 'Tikkelt taneggarut asmi yettubeddel asebter-agi $2, $1 sɣur $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Tikkelt taneggarut asmi yettubeddel asebter-agi $2, $1 sɣur $3.',
 'othercontribs'    => 'Tikkin n wemseqdac-agi.',
 'others'           => 'wiyaḍ',
 'siteusers'        => '{{SITENAME}} amseqdac(imseqdacen) $1',
@@ -1532,7 +1535,7 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'watchlisttools-raw'  => 'Beddel umuɣ n uɛessi (raw)',
 
 # Special:Version
-'version' => 'Tasiwelt', # Not used as normal message but as header for the special page itself
+'version' => 'Tasiwelt',
 
 # Special:SpecialPages
 'specialpages' => 'isebtar usligen',

@@ -1,6 +1,9 @@
 <?php
 /** Tajik (Cyrillic) (Тоҷикӣ (Cyrillic))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -173,7 +176,7 @@ $messages = array(
 'category-media-header'          => 'Парвандаҳои гурӯҳ "$1"',
 'category-empty'                 => "''Дар ҳоли ҳозир ин гурӯҳ дорои мақола ё парвандаҳо нест.''",
 'hidden-categories'              => '{{PLURAL:$1|Гурӯҳи пинҳон|Гурӯҳҳои пинҳон}}',
-'hidden-category-category'       => 'Гурӯҳҳои пинҳон', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Гурӯҳҳои пинҳон',
 'category-subcat-count'          => '{{PLURAL:$2|Ин гурӯҳ фақат зергурӯҳҳои зеринро дорад.|Ин гурӯҳ дар кул аз $2, {{PLURAL:$1|зергурӯҳ|$1 зергурӯҳҳо}} дорад.}}',
 'category-subcat-count-limited'  => 'Ин гурӯҳ шомили {{PLURAL:$1|як зергурӯҳ|$1 зергурӯҳҳо}} мебошад.',
 'category-article-count'         => '{{PLURAL:$2|Ин гурӯҳ шомили фақат саҳифаи зерин аст.|{{PLURAL:$1|саҳифаи|$1 саҳифаҳои}} зерин дар ин гурӯҳ, кули ҳавои $2 саҳифа аст.}}',
@@ -260,7 +263,7 @@ $messages = array(
 'otherlanguages'    => 'бо забонҳои дигар',
 'redirectedfrom'    => '(Тағйири масир аз $1)',
 'redirectpagesub'   => 'Саҳифаи равонакунӣ',
-'lastmodifiedat'    => 'Ин саҳифа бори охир $2, $1 дигаргун карда шудааст.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ин саҳифа бори охир $2, $1 дигаргун карда шудааст.',
 'viewcount'         => 'Ин саҳифа {{PLURAL:$1|бор|$1 бор}} дида шудааст.',
 'protectedpage'     => 'Саҳифаи муҳофизатшуда',
 'jumpto'            => 'Ҷаҳиш ба:',
@@ -678,7 +681,7 @@ $1',
 'nohistory'              => 'Таърихи вироиш барои ин саҳифа вуҷуд надорад.',
 'currentrev'             => 'Вироишоти кунунӣ',
 'revisionasof'           => 'Нусха $1',
-'revision-info'          => 'Нусхаи вироиш $2 дар таърихи $1', # Additionally available: $3: revision id
+'revision-info'          => 'Нусхаи вироиш $2 дар таърихи $1',
 'previousrevision'       => '←Нусхаи кӯҳнатар',
 'nextrevision'           => 'Нусхаи навтарин→',
 'currentrevisionlink'    => 'Намоиши нусхаи феълӣ',
@@ -700,7 +703,7 @@ $1',
 # Revision feed
 'history-feed-title'          => 'Таърихи вироишҳо',
 'history-feed-description'    => 'Таърихи вироишҳои ин саҳифа дар вики',
-'history-feed-item-nocomment' => '$1 дар $2', # user at time
+'history-feed-item-nocomment' => '$1 дар $2',
 'history-feed-empty'          => 'Саҳифаи дархостшуда вуҷуд надорад. Мумкин аст, ки аз вики ҳазф ё номаш тағйир дода шуда бошад.
 Саҳифаҳои ҷадидӣ алоқамандро метавонед [[Special:Search|дар вики]] ҷустуҷӯ кунед.',
 
@@ -918,7 +921,7 @@ $1',
 'files'                    => 'Файлҳо',
 
 # User rights
-'userrights'                  => 'Мудирияти ихтиёроти корбарӣ', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Мудирияти ихтиёроти корбарӣ',
 'userrights-lookup-user'      => 'Мудирияти гурӯҳҳои корбарӣ',
 'userrights-user-editname'    => 'Номи корбарро дохил кунед:',
 'editusergroup'               => 'Гуруҳҳои корбарро вироиш кунед',
@@ -1511,8 +1514,8 @@ $NEWPAGE
 'alreadyrolled'    => 'Охирин вироиши [[:$1]] аз тарафи [[User:$2|$2]] ([[User talk:$2|Баҳс]]) наметавон вогардонӣ кард; пеш аз ин шахси дигаре мақоларо вироиш ё вогардонӣ кардааст.
 
 Охирин вироиш аз тарафи [[User:$3|$3]] ([[User talk:$3|Баҳс]]) буд.',
-'editcomment'      => "Тавзеҳи вироиш ин буд: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Вироиши [[Special:Contributions/$2|$2]] ([[User talk:$2|Баҳс]]) вогардонида шуд ба охирин тағйире, ки [[User:$1|$1]] анҷом дода буд', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Тавзеҳи вироиш ин буд: \"''\$1''\".",
+'revertpage'       => 'Вироиши [[Special:Contributions/$2|$2]] ([[User talk:$2|Баҳс]]) вогардонида шуд ба охирин тағйире, ки [[User:$1|$1]] анҷом дода буд',
 'rollback-success' => 'Вироишҳои $1 вогардонӣ шуд; саҳифа ба вироиши $2 баргардонида шуд.',
 'sessionfailure'   => 'Ба назар мерасад, мушкилие дар мавриди нишасти корбарии шумо вуҷуд дорад; амали дархостшуда ба унвони иқдоми пешгирона дар баробари рабуда шудани иттилооти нишасти корбарӣ, лағв шуд. Лутфан тугмаи "бозгашт"-ро дар мурургари худ пахш кунед ва саҳифае, ки аз он инҷо расидаед муҷаддадан фарохонӣ кунед, сипас муҷаддадан боз саъй кунед.',
 
@@ -1546,7 +1549,7 @@ $NEWPAGE
 'protect-expiry-indefinite'   => 'номуайян',
 'protect-cascade'             => 'Муҳофизати обшорӣ - Аз ҳама саҳифаҳое, ки дар ин саҳифа омадаанд муҳофизат мешаванд',
 'protect-cantedit'            => 'Шумо вазъияти ҳифзи ин саҳифаро тағйир дода наметавонед, чун иҷозати вироиши онро надоред.',
-'protect-expiry-options'      => '2 соат:2 hours,1 рӯз:1 day,3 рӯз:3 days,1 ҳафта:1 week,2 ҳафта:2 weeks,1 моҳ:1 month,3 моҳ:3 months,6 моҳ:6 months,1 сол:1 year,беохир:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 соат:2 hours,1 рӯз:1 day,3 рӯз:3 days,1 ҳафта:1 week,2 ҳафта:2 weeks,1 моҳ:1 month,3 моҳ:3 months,6 моҳ:6 months,1 сол:1 year,беохир:infinite',
 'restriction-type'            => 'Дастраси:',
 'restriction-level'           => 'Сатҳи маҳдудият:',
 'minimum-size'                => 'Ҳадди ақали андоза',
@@ -1613,7 +1616,7 @@ $1',
 'contributions' => 'Ҳиссагузории корбар',
 'mycontris'     => 'Хиссагузории ман',
 'contribsub2'   => 'Барои $1 ($2)',
-'nocontribs'    => 'Ҳеҷ тағйире бо ин мушаххасот пайдо нашуд.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Ҳеҷ тағйире бо ин мушаххасот пайдо нашуд.',
 'uctop'         => '(боло)',
 'month'         => 'Дар ин моҳ (ва қабл аз он):',
 'year'          => 'Дар ин сол (ва қабл аз он):',
@@ -1668,7 +1671,7 @@ $1',
 'ipbenableautoblock'          => 'Нишонаи охире ки аз он ин корбар истифода мекунад, ба сурати худкор бубанд, ва дигар нишонаҳои IP-ҳои баъдина, ки аз онҳо метавонад вироиш кунанд',
 'ipbsubmit'                   => 'Бастани ин корбар',
 'ipbother'                    => 'Дигар вақт:',
-'ipboptions'                  => '2 соат:2 hours,1 рӯз:1 day,3 рӯз:3 days,1 ҳафта:1 week,2 ҳафта:2 weeks,1 моҳ:1 month,3 моҳ:3 months,6 моҳ:6 months,1 сол:1 year,беохир:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 соат:2 hours,1 рӯз:1 day,3 рӯз:3 days,1 ҳафта:1 week,2 ҳафта:2 weeks,1 моҳ:1 month,3 моҳ:3 months,6 моҳ:6 months,1 сол:1 year,беохир:infinite',
 'ipbotheroption'              => 'дигар',
 'ipbotherreason'              => 'Далелҳои дигар/изофӣ:',
 'ipbhidename'                 => 'Пинҳон кардани номи корбарӣ аз гузориши баста шудан, феҳристи фаъоли бастан ва феҳристи корбарон',
@@ -1775,7 +1778,7 @@ $1',
 'move-watch'              => 'Назар кардани ин саҳифа',
 'movepagebtn'             => 'Кӯчонидани саҳифа',
 'pagemovedsub'            => 'Кӯчониш бомуваффақият анҷом ёфт',
-'movepage-moved'          => '<big>\'\'\'"$1" ба "$2" кӯчонида шуд\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" ба "$2" кӯчонида шуд\'\'\'</big>',
 'articleexists'           => 'Саҳифае бо ин ном вуҷуд надорад, ё номе, ки интихоб кардаед мӯътабар нест.
 Лутфан номи дигареро интихоб намоед.',
 'cantmove-titleprotected' => 'Шумо наметавонед ин саҳифаро ба ин нишона кӯчонед, барои он, ки унвони ҷадид аз эҷод кардан муҳофизат шудааст',
@@ -1943,7 +1946,7 @@ $1',
 # Attribution
 'anonymous'        => 'Корбари (они) гумномӣ {{SITENAME}}',
 'siteuser'         => 'Википедиа user $1',
-'lastmodifiedatby' => 'Ин саҳифа охирин маротиба дар $2, $1 аз тарафи $3 тағйир дода шудааст.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ин саҳифа охирин маротиба дар $2, $1 аз тарафи $3 тағйир дода шудааст.',
 'othercontribs'    => 'Дар асоси коре аз тарафи $1.',
 'others'           => 'дигарон',
 'siteusers'        => 'Википедиа user(s) $1',
@@ -2048,7 +2051,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Васеъӣ',
@@ -2175,14 +2178,14 @@ $1',
 
 'exif-unknowndate' => 'Таърихи номаълум',
 
-'exif-orientation-1' => 'Оддӣ', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Уфуқӣ пуштурӯ шуда', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° дараҷа чархида', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Амудӣ пуштурӯ шуда', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '90° бо ақрабаки соат чархида ва амудӣ пуштурӯ шуда', # 0th row: left; 0th column: top
-'exif-orientation-6' => '90° ақрабаки соат чархида', # 0th row: right; 0th column: top
-'exif-orientation-7' => '90° ақрабаки соат чархида ва амудӣ пуштурӯ шуда', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '90° бо ақрабаки соат чархида', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Оддӣ',
+'exif-orientation-2' => 'Уфуқӣ пуштурӯ шуда',
+'exif-orientation-3' => '180° дараҷа чархида',
+'exif-orientation-4' => 'Амудӣ пуштурӯ шуда',
+'exif-orientation-5' => '90° бо ақрабаки соат чархида ва амудӣ пуштурӯ шуда',
+'exif-orientation-6' => '90° ақрабаки соат чархида',
+'exif-orientation-7' => '90° ақрабаки соат чархида ва амудӣ пуштурӯ шуда',
+'exif-orientation-8' => '90° бо ақрабаки соат чархида',
 
 'exif-planarconfiguration-1' => 'Қолаби фарбеҳ',
 'exif-planarconfiguration-2' => 'қолаби сатҳӣ',
@@ -2459,7 +2462,7 @@ $1',
 'unknown_extension_tag' => 'Бачасби ношиноси афзунаи "$1"',
 
 # Special:Version
-'version'                          => 'Нусхаи Медиавики', # Not used as normal message but as header for the special page itself
+'version'                          => 'Нусхаи Медиавики',
 'version-extensions'               => 'Афзунаҳои насбшуда',
 'version-specialpages'             => 'Саҳифаҳои вижа',
 'version-parserhooks'              => 'Қолабҳои таҷзеҳгар',

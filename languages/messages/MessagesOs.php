@@ -1,6 +1,9 @@
 <?php
 /** Ossetic (Иронау)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -134,7 +137,7 @@ $messages = array(
 'category-media-header'          => 'Категори «$1»-ы файлтæ',
 'category-empty'                 => "''Ацы категори афтид ма у.''",
 'hidden-categories'              => 'Æмбæхст {{PLURAL:$1|категори|категоритæ}}',
-'hidden-category-category'       => 'Æмбæхст категоритæ', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Æмбæхст категоритæ',
 'category-subcat-count'          => '{{PLURAL:$2|Ацы категорийы мидæг æрмæст иу дæлкатегори и.|{{PLURAL:$1|$1 дæлкатегори æвдыст у|$1 дæлкатегорийы æвдыст сты}}, æдæппæт $2.}}',
 'category-subcat-count-limited'  => 'Ацы категорийы мидæг ис {{PLURAL:$1|$1 дæлкатегори|$1 дæлкатегорийы}}.',
 'category-article-count-limited' => 'Ацы категорийы мидæг {{PLURAL:$1|$1 фарс|$1 фарсы}} ис.',
@@ -207,7 +210,7 @@ $messages = array(
 'otherlanguages'    => 'Æндæр æвзæгтыл',
 'redirectedfrom'    => '(Рарвыстæуыд ацы статьяйæ: «$1»)',
 'redirectpagesub'   => 'Рарвысты фарс',
-'lastmodifiedat'    => 'Ацы фарс фæстаг хатт ивд æрцыд: $1, $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ацы фарс фæстаг хатт ивд æрцыд: $1, $2.',
 'protectedpage'     => 'Æхгæд фарс',
 'jumpto'            => 'Тагъд æрвитæнтæ:',
 'jumptonavigation'  => 'навигаци',
@@ -399,7 +402,7 @@ $messages = array(
 
 # Revision feed
 'history-feed-title'          => 'Ивддзинæдты истори',
-'history-feed-item-nocomment' => '$1 $2', # user at time
+'history-feed-item-nocomment' => '$1 $2',
 
 # Revision deletion
 'rev-deleted-comment' => '(комментарий аппæрст у)',
@@ -871,7 +874,7 @@ $3',
 'watchlisttools-edit' => 'Номхыгъд фен/баив',
 
 # Special:Version
-'version'                  => 'MediaWiki-йы верси', # Not used as normal message but as header for the special page itself
+'version'                  => 'MediaWiki-йы верси',
 'version-version'          => 'Верси',
 'version-software-version' => 'Верси',
 

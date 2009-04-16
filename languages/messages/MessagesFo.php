@@ -1,6 +1,9 @@
 <?php
 /** Faroese (Føroyskt)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -266,7 +269,7 @@ $messages = array(
 'otherlanguages'    => 'Onnur mál',
 'redirectedfrom'    => '(Ávíst frá $1)',
 'redirectpagesub'   => 'Ávísingarsíða',
-'lastmodifiedat'    => 'Hendan síðan var seinast broytt $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Hendan síðan var seinast broytt $2, $1.',
 'protectedpage'     => 'Friðað síða',
 'jumpto'            => 'Far til:',
 'jumptonavigation'  => 'navigatión',
@@ -1142,7 +1145,7 @@ fer úr gildi tann $4.',
 'watchlisttools-raw'  => 'Rætta rátt eftirlit',
 
 # Special:Version
-'version'                  => 'Útgáva', # Not used as normal message but as header for the special page itself
+'version'                  => 'Útgáva',
 'version-hooks'            => 'Krókur',
 'version-hook-name'        => 'Krókurnavn',
 'version-version'          => 'Útgáva',

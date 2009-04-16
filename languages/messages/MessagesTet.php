@@ -1,6 +1,9 @@
 <?php
 /** Tetum (Tetun)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -202,7 +205,7 @@ $messages = array(
 'categorypage'      => 'Haree pájina kategoría nian',
 'viewtalkpage'      => 'Haree diskusaun',
 'otherlanguages'    => 'Iha lian seluk',
-'lastmodifiedat'    => "Ema ruma filak ikus pájina ne'e iha $1, $2.", # $1 date, $2 time
+'lastmodifiedat'    => "Ema ruma filak ikus pájina ne'e iha $1, $2.",
 'protectedpage'     => 'Pájina maka ema ruma proteje tiha',
 'jumpto'            => 'Bá:',
 'jumptonavigation'  => 'hatudu-dalan',
@@ -364,7 +367,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'historyempty'        => '(mamuk)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 iha $2', # user at time
+'history-feed-item-nocomment' => '$1 iha $2',
 
 # Revision deletion
 'rev-delundel'        => 'hatudu/subar',
@@ -394,7 +397,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'searchresultshead' => 'Buka',
 
 # User rights
-'userrights'               => "Filak priviléjiu uza-na'in sira", # Not used as normal message but as header for the special page itself
+'userrights'               => "Filak priviléjiu uza-na'in sira",
 'userrights-lookup-user'   => "Filak lubu uza-na'in",
 'userrights-user-editname' => "Hakerek naran uza-na'in ida-nian:",
 'editusergroup'            => "Filak lubu uza-na'in",
@@ -631,7 +634,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'protect-otherreason'         => 'Motivu seluk/ida tan:',
 'protect-otherreason-op'      => 'motivu seluk/ida tan',
 'protect-edit-reasonlist'     => 'Edita lista motivu nian',
-'protect-expiry-options'      => '1 hour:1 hours,1 loron:1 day,1 semana:1 week,2 semana:2 weeks,1 fulan:1 month,3 fulan:3 months,6 fulan:6 months,1 tinan:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hour:1 hours,1 loron:1 day,1 semana:1 week,2 semana:2 weeks,1 fulan:1 month,3 fulan:3 months,6 fulan:6 months,1 tinan:1 year,infinite:infinite',
 'restriction-type'            => 'Permisaun:',
 
 # Restrictions (nouns)
@@ -683,7 +686,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'ipbreasonotherlist'      => 'Motivu seluk',
 'ipbsubmit'               => "Blokeiu uza-na'in ne'e",
 'ipbother'                => 'Tempu seluk:',
-'ipboptions'              => '2 hours:2 hours,1 loron:1 day,3 Loron:3 days,1 semana:1 week,2 semana:2 weeks,1 fulan:1 month,3 fulan:3 months,6 fulan:6 months,1 tinan:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipboptions'              => '2 hours:2 hours,1 loron:1 day,3 Loron:3 days,1 semana:1 week,2 semana:2 weeks,1 fulan:1 month,3 fulan:3 months,6 fulan:6 months,1 tinan:1 year,infinite:infinite',
 'ipbotheroption'          => 'seluk',
 'ipblocklist'             => 'Ema anónimu no rejista maka la bele edita',
 'ipblocklist-username'    => "Naran uza-na'in ka IP:",
@@ -760,7 +763,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'tooltip-watch'             => "Tau tan pájina ne'e ba ó-nia lista hateke",
 
 # Attribution
-'lastmodifiedatby' => "$3 filak ikus pájina ne'e iha $1, $2.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "$3 filak ikus pájina ne'e iha $1, $2.",
 
 # Skin names
 'skinname-standard'    => 'Klásiku',
@@ -821,7 +824,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'watchlisttools-edit' => 'Haree no edita lista hateke',
 
 # Special:Version
-'version'                  => 'Versaun', # Not used as normal message but as header for the special page itself
+'version'                  => 'Versaun',
 'version-specialpages'     => 'Pájina espesiál',
 'version-other'            => 'Seluk',
 'version-version'          => 'Versaun',

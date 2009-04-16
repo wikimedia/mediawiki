@@ -1,6 +1,9 @@
 <?php
 /** Bengali (বাংলা)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -156,7 +159,7 @@ $messages = array(
 'category-media-header'         => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত মিডিয়া ফাইলগুলি',
 'category-empty'                => "''এই বিষয়শ্রণীতে বর্তমানে কোন পাতা বা মিডিয়া ফাইল নেই।''",
 'hidden-categories'             => '{{PLURAL:$1|লুকায়িত বিষয়শ্রেণী|লুকায়িত বিষয়শ্রেণীসমূহ}}',
-'hidden-category-category'      => 'লুকায়িত বিষয়শ্রেণীসমূহ', # Name of the category where hidden categories will be listed
+'hidden-category-category'      => 'লুকায়িত বিষয়শ্রেণীসমূহ',
 'category-subcat-count'         => '{{PLURAL:$2|এই বিষয়শ্রেণীতে কেবলমাত্র নিচের উপবিষয়শ্রেণীটি আছে।|এই বিষয়শ্রেণীতে অন্তর্ভুক্ত মোট $2টি উপবিষয়শ্রেণীর মধ্যে{{PLURAL:$1|টি উপবিষয়শ্রেণী|$1টি উপবিষয়শ্রেণী}} নিচে দেখানো হয়েছে।}}',
 'category-subcat-count-limited' => 'এই বিষয়শ্রেণীতে নিচের {{PLURAL:$1|টি উপবিষয়শ্রেণী|$1টি উপবিষয়শ্রেণী আছে}}।',
 'category-article-count'        => '{{PLURAL:$2|এই বিষয়শ্রেণীতে কেবল নিচের পাতাটি আছে।|এই বিষয়শ্রেণীতে অন্তর্ভুক্ত মোট $2টি পাতার মধ্যে {{PLURAL:$1|টি পাতা|$1টি পাতা}} নিচে দেখানো হল।}}',
@@ -240,7 +243,7 @@ $messages = array(
 'otherlanguages'    => 'অন্যান্য ভাষাসমূহ',
 'redirectedfrom'    => '($1 থেকে ঘুরে এসেছে)',
 'redirectpagesub'   => 'পুনর্নির্দেশ পাতা',
-'lastmodifiedat'    => 'এ পাতায় শেষ পরিবর্তন হয়েছিল $2টার সময়, $1 তারিখে।', # $1 date, $2 time
+'lastmodifiedat'    => 'এ পাতায় শেষ পরিবর্তন হয়েছিল $2টার সময়, $1 তারিখে।',
 'viewcount'         => 'এ পাতাটি $1 বার দেখা হয়েছে।',
 'protectedpage'     => 'সুরক্ষিত পাতা',
 'jumpto'            => 'ঝাঁপ দাও:',
@@ -657,7 +660,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'nohistory'              => 'এই পাতার কোন সম্পাদনার ইতিহাস নাই।',
 'currentrev'             => 'বর্তমান সংশোধন',
 'revisionasof'           => '$1 তারিখের সংশোধন',
-'revision-info'          => '$1-এ $2-এর করা সংশোধন', # Additionally available: $3: revision id
+'revision-info'          => '$1-এ $2-এর করা সংশোধন',
 'previousrevision'       => '←পুর্বের সংস্করণ',
 'nextrevision'           => 'পরবর্তী সংস্করণ→',
 'currentrevisionlink'    => 'বর্তমান সংশোধন',
@@ -678,7 +681,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 # Revision feed
 'history-feed-title'          => 'সংশোধন ইতিহাস',
 'history-feed-description'    => 'এ উইকিতে এই পাতার সংশোধনের ইতিহাস',
-'history-feed-item-nocomment' => '$2-এ $1', # user at time
+'history-feed-item-nocomment' => '$2-এ $1',
 'history-feed-empty'          => 'অনুরোধকৃত পাতাটির কোন অস্তিত্ব নেই।
 হয়ত পাতাটি উইকি থেকে মুছে ফেলা হয়েছে, কিংবা নতুন নামকরণ করা হয়েছে।
 প্রাসঙ্গিক নতুন পাতাগুলির জন্য [[Special:Search|উইকি অনুসন্ধানের]] চেষ্টা করুন।',
@@ -865,7 +868,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'files'                    => 'ফাইল',
 
 # User rights
-'userrights'               => 'ব্যবহারকারী অধিকার ব্যবস্থাপনা', # Not used as normal message but as header for the special page itself
+'userrights'               => 'ব্যবহারকারী অধিকার ব্যবস্থাপনা',
 'userrights-lookup-user'   => 'ব্যবহারকারী দল ব্যবস্থাপনা করুন',
 'userrights-user-editname' => 'ব্যবহারকারীর নাম লিখুন:',
 'editusergroup'            => 'ব্যবহারকারীর দল সম্পাদনা করো',
@@ -1386,8 +1389,8 @@ $NEWPAGE
 'alreadyrolled'    => '[[:$1]] পাতায় [[User:$2|$2]] ([[User talk:$2|আলাপ]])-এর করা শেষ সম্পাদনাটি রোলব্যাক করা যায়নি; অন্য কেউ ইতিমধ্যে পাতাটি সম্পাদনা বা রোলব্যাক করেছেন।
 
 শেষ সম্পাদনা করেছেন [[User:$3|$3]] ([[User talk:$3|আলাপ]])।',
-'editcomment'      => "সম্পাদনা মন্তব্যটি ছিল: \"''\$1''\"।", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|আলাপ]]) এর সম্পাদিত সংস্করণ হতে [[User:$1|$1]] এর সম্পাদিত সর্বশেষ সংস্করণে ফেরত যাওয়া হয়েছে।', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "সম্পাদনা মন্তব্যটি ছিল: \"''\$1''\"।",
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|আলাপ]]) এর সম্পাদিত সংস্করণ হতে [[User:$1|$1]] এর সম্পাদিত সর্বশেষ সংস্করণে ফেরত যাওয়া হয়েছে।',
 'rollback-success' => '$1-এর সম্পাদনাগুলি পূর্বাবস্থায় ফিরিয়ে নেওয়া হয়েছে; $2-এর করা শেষ সংস্করণে পাতাটি ফেরত নেওয়া হয়েছে।',
 'sessionfailure'   => 'আপনার লগ ইন সেশনে একটি সমস্যা হয়েছে বলে মনে হচ্ছে;
 সেশন হাইজ্যাক প্রতিরোধের উপায় হিসেবে এই কাজটি বাতিল করা হয়েছে।
@@ -1422,7 +1425,7 @@ $NEWPAGE
 'protect-expiring'            => '$1 (UTC) সময়ে মেয়াদোত্তীর্ণ',
 'protect-cascade'             => 'এই পাতায় অন্তর্ভুক্ত পাতাগুলিও সুরক্ষিত করা হোক (প্রপাতাকার সুরক্ষা)',
 'protect-cantedit'            => 'আপনি এই পাতার সুরক্ষার স্তর পরিবর্তন করতে পারবেন না, কারণ আপনার তা সম্পাদনা করার অনুমতি নেই।',
-'protect-expiry-options'      => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাস:1 month,৩ মাস:3 months,৬ মাস:6 months,১ বছর:1 year,অসীম:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাস:1 month,৩ মাস:3 months,৬ মাস:6 months,১ বছর:1 year,অসীম:infinite',
 'restriction-type'            => 'অনুমতি:',
 'restriction-level'           => 'বাধার স্তর:',
 'minimum-size'                => 'ন্যূনতম আকার',
@@ -1488,7 +1491,7 @@ $1',
 'contributions' => 'ব্যবহারকারীর অবদান',
 'mycontris'     => 'আমার অবদান',
 'contribsub2'   => '$1 ($2)-এর জন্য',
-'nocontribs'    => 'এই শর্তগুলির সাথে মিলে যায়, এমন কোন পরিবর্তন খুঁজে পাওয়া যায়নি।', # Optional parameter: $1 is the user name
+'nocontribs'    => 'এই শর্তগুলির সাথে মিলে যায়, এমন কোন পরিবর্তন খুঁজে পাওয়া যায়নি।',
 'uctop'         => '(শীর্ষ)',
 'month'         => 'এই মাস (বা তার আগে) থেকে:',
 'year'          => 'এই বছর (এবং তার আগে) থেকে:',
@@ -1541,7 +1544,7 @@ $1',
 'ipbenableautoblock'          => 'এই ব্যবহারকারীর ব্যবহার করা সর্বশেষ আইপি ঠিকানা, এবং পরবর্তী যেসব আইপি ঠিকানা থেকে সম্পাদনার চেষ্টা করা হবে, সেগুলিকেও স্বয়ংক্রিয়ভাবে বাধা দেয়া হোক।',
 'ipbsubmit'                   => 'এই ব্যবহারকারীকে বাধা দেয়া হোক',
 'ipbother'                    => 'অন্য সময়:',
-'ipboptions'                  => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাস:1 month,৩ মাস:3 months,৬ মাস:6 months,১ বছর:1 year,অসীম:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাস:1 month,৩ মাস:3 months,৬ মাস:6 months,১ বছর:1 year,অসীম:infinite',
 'ipbotheroption'              => 'অন্যান্য',
 'ipbotherreason'              => 'অন্য/আরও কারণ:',
 'ipbhidename'                 => 'বাধাদানের লগ, সক্রিয় বাধাদানের তালিকা, এবং ব্যবহারকারী তালিকা থেকে ব্যবহারকারী নাম/আইপি ঠিকানা লুকিয়ে রাখা হোক',
@@ -1645,7 +1648,7 @@ $1',
 'move-watch'              => 'এই পাতাটি নজরে রাখুন',
 'movepagebtn'             => 'পাতা সরান',
 'pagemovedsub'            => 'সরিয়ে নেওয়া হয়েছে',
-'movepage-moved'          => '<big>\'\'\'"$1"-কে "$2" শিরোনামে স্থানান্তর করা হয়েছে\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1"-কে "$2" শিরোনামে স্থানান্তর করা হয়েছে\'\'\'</big>',
 'articleexists'           => 'হয় এই শিরোনামের একটি নিবন্ধ ইতোমধ্যে সৃষ্টি হযে গেছে, অথবা আপনি যে শিরোনামটি পছন্দ করেছেন তা গ্রহণযোগ্য নয়। দয়া করে অন্য একটি শিরোনাম দিয়ে চেষ্টা করুন।',
 'cantmove-titleprotected' => 'আপনি এই অবস্থানে পাতাটিকে স্থানান্তর করতে পারেন না, কারণ এই নতুন শিরোনামটি সৃষ্টি করা থেকে সুরক্ষিত।',
 'talkexists'              => "'''পাতাটি সফলভাবে সরানো গেলেও আলোচনা পাতাটিকে সরানো যায়নি, কারণ নতুন শিরোনামের অধীনে ইতিমধ্যেই একটি আলোচনা পাতা বিদ্যমান। অনুগ্রহ নিজের হাতে এগুলিকে একত্র করুন।'''",
@@ -1804,7 +1807,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Attribution
 'anonymous'        => '{{SITENAME}} এর বেনামী ব্যবহারকারীবৃন্দ',
 'siteuser'         => '{{SITENAME}} ব্যবহারকারী $1',
-'lastmodifiedatby' => 'এই পাতাটিতে শেষ পরিবর্তন হয়েছিল $2, $1 by $3।', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'এই পাতাটিতে শেষ পরিবর্তন হয়েছিল $2, $1 by $3।',
 'othercontribs'    => '$1-এর কাজের উপর ভিত্তি করে।',
 'others'           => 'অন্যান্য',
 'siteusers'        => '{{SITENAME}} ব্যবহারকারী $1',
@@ -1904,7 +1907,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'চওড়া',
@@ -2031,14 +2034,14 @@ $1',
 
 'exif-unknowndate' => 'অজানা তারিখ',
 
-'exif-orientation-1' => 'সাধারণ', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'অনুভূমিকভাবে উল্টানো', # 0th row: top; 0th column: right
-'exif-orientation-3' => '১৮০° ঘোরানো', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'উল্লম্বভাবে উল্টানো', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'ঘড়ির কাঁটার বিপরীতে ৯০° ঘোরানো এবং উল্লম্বভাবে উল্টানো', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'ঘড়ির কাঁটার দিকে ৯০° ঘোরানো', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'ঘড়ির কাঁটার দিকে ৯০° ঘোরানো এবং উল্লম্বভাবে উল্টানো', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'ঘড়ির কাঁটার বিপরীত দিকে ৯০° ঘোরানো', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'সাধারণ',
+'exif-orientation-2' => 'অনুভূমিকভাবে উল্টানো',
+'exif-orientation-3' => '১৮০° ঘোরানো',
+'exif-orientation-4' => 'উল্লম্বভাবে উল্টানো',
+'exif-orientation-5' => 'ঘড়ির কাঁটার বিপরীতে ৯০° ঘোরানো এবং উল্লম্বভাবে উল্টানো',
+'exif-orientation-6' => 'ঘড়ির কাঁটার দিকে ৯০° ঘোরানো',
+'exif-orientation-7' => 'ঘড়ির কাঁটার দিকে ৯০° ঘোরানো এবং উল্লম্বভাবে উল্টানো',
+'exif-orientation-8' => 'ঘড়ির কাঁটার বিপরীত দিকে ৯০° ঘোরানো',
 
 'exif-planarconfiguration-1' => 'খণ্ড ফরম্যাট',
 'exif-planarconfiguration-2' => 'সমতলীয় ফরম্যাট',
@@ -2279,7 +2282,7 @@ $1',
 'unknown_extension_tag' => 'অজানা এক্সটেনশন ট্যাগ "$1"',
 
 # Special:Version
-'version'                  => 'সংস্করণ', # Not used as normal message but as header for the special page itself
+'version'                  => 'সংস্করণ',
 'version-software-product' => 'পণ্য',
 'version-software-version' => 'সংস্করণ',
 

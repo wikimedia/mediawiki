@@ -1,6 +1,9 @@
 <?php
 /** Sardinian (Sardu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -127,7 +130,7 @@ $messages = array(
 'category-media-header'         => 'Mèdius in sa categoria "$1"',
 'category-empty'                => "''In custa categoria non bi est peruna pàgina o mèdiu.''",
 'hidden-categories'             => '{{PLURAL:$1|Categoria cuada|Categorias cuadas}}',
-'hidden-category-category'      => 'Categorias cuadas', # Name of the category where hidden categories will be listed
+'hidden-category-category'      => 'Categorias cuadas',
 'category-subcat-count'         => "{{PLURAL:$2|Custa categoria cuntenet un'ùnica subcategoria. Amostada a suta.|Custa categoria cuntenet {{PLURAL:$1|sa subcategoria indicada|$1 subcategorias indicadas}} a suta, de $2 totales.}}",
 'category-subcat-count-limited' => 'Custa categoria tenet {{PLURAL:$1|una subcategoria, amostada|$1 subcategorias, amostadas}} a suta.',
 'category-article-count'        => '{{PLURAL:$2|Custa categoria cuntènnit isceti sa pàgina chi sighit.|Custa categoria cuntènnit {{PLURAL:$1|sa pàgina indicada|is $1 pàginas indicadas}} a suta, dae unu totale de $2.}}',
@@ -197,7 +200,7 @@ $messages = array(
 'otherlanguages'    => 'Àteras limbas',
 'redirectedfrom'    => '(Reindiritzadu dae $1)',
 'redirectpagesub'   => 'Pàgina de reindiritzadura',
-'lastmodifiedat'    => 'Ùrtimu acontzu su $1, a is $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ùrtimu acontzu su $1, a is $2.',
 'viewcount'         => 'Custu artìculu est istadu lìgiu {{PLURAL:$1|borta|$1 bortas}}.',
 'protectedpage'     => 'Pàgina amparada',
 'jumpto'            => 'Bae a:',
@@ -473,7 +476,7 @@ Legenda: '''({{int:cur}})''' = diferèntzias cun sa versioni currenti, '''({{int
 'histlast'               => 'Ùrtima',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 su $2', # user at time
+'history-feed-item-nocomment' => '$1 su $2',
 
 # Revision deletion
 'rev-delundel'   => 'mosta/cua',
@@ -686,7 +689,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 'nolinkstoimage'            => 'Peruna pàgina ligat cun custu file.',
 'sharedupload'              => 'Custu file benit dae $1 e podet èssere impreau in àteros progetos.',
 'uploadnewversion-linktext' => 'Carriga una versione noa de custu file',
-'shared-repo-from'          => 'dae $1', # $1 is the repository name
+'shared-repo-from'          => 'dae $1',
 
 # File reversion
 'filerevert-backlink' => '← $1',
@@ -850,7 +853,7 @@ Tutti i tempi sono in ora del server.',
 'rollbacklink' => 'rollback',
 'cantrollback' => "Non si podet furriai s'acontzu;
 s'ùrtimu contribudori est s'ùnicu autori de custa pàgina.",
-'revertpage'   => 'Burradas is mudàntzias de [[Special:Contributions/$2|$2]] ([[User talk:$2|cuntierras]]), torrada a sa versione cabudiana de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'   => 'Burradas is mudàntzias de [[Special:Contributions/$2|$2]] ([[User talk:$2|cuntierras]]), torrada a sa versione cabudiana de [[User:$1|$1]]',
 
 # Protect
 'protectlogpage'              => 'Amparaduras',
@@ -904,7 +907,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 'contributions-title' => "Contributzione de s'usuàriu pro $1",
 'mycontris'           => 'Contributziones meas',
 'contribsub2'         => 'Pro $1 ($2)',
-'nocontribs'          => 'Nessuna modifica trovata conformemente a questi criteri.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Nessuna modifica trovata conformemente a questi criteri.',
 'uctop'               => '(ùrtimu de sa pàgina)',
 'month'               => 'Dae su mese (e innantis):',
 'year'                => "Dae s'annu (e innantis):",
@@ -943,7 +946,7 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 'ipbreason'                => 'Motivu:',
 'ipbreasonotherlist'       => 'Àteru motivu',
 'ipbsubmit'                => 'Blocca custu usuàriu',
-'ipboptions'               => '2 oras:2 hours,1 die:1 day,3 dies:3 days,1 chida:1 week,2 chidas:2 weeks,1 mese:1 month,3 meses:3 months,6 meses:6 months,1 annu:1 year,infinidu:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 oras:2 hours,1 die:1 day,3 dies:3 days,1 chida:1 week,2 chidas:2 weeks,1 mese:1 month,3 meses:3 months,6 meses:6 months,1 annu:1 year,infinidu:infinite',
 'badipaddress'             => "L'indirizzo IP indicato non è corretto.",
 'blockipsuccesssub'        => 'Blocco eseguito',
 'blockipsuccesstext'       => ' L\'indirizzo IP "$1" è stato bloccato.
@@ -1011,7 +1014,7 @@ In custus casos, chi boles, depis mòvere a manu su cuntentu de sa pàgina.",
 'move-watch'         => 'Pone ogru a custa pàgina',
 'movepagebtn'        => 'Movi sa pàgina',
 'pagemovedsub'       => 'Movimentu andau beni',
-'movepage-moved'     => '<big>\'\'\'"$1" est istada mòvida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'     => '<big>\'\'\'"$1" est istada mòvida a "$2"\'\'\'</big>',
 'articleexists'      => 'Una pàgina cun custu nòmene esistit giai, o su nòmene chi as sceberau no est bàlidu.
 Pro pregheri scebera un àteru nòmene.',
 'talkexists'         => "'''Su movimentu de sa pàgina est andau beni, ma no est istadu possibile moviri sa pàgina de cuntierras proite ndi esistit giai un àtera cun su stessu tìtulu. Pro preghere aciungi tue su cuntestu de sa pàgina becia.'''",
@@ -1128,7 +1131,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-exposuretime-format' => '$1 s ($2)',
@@ -1208,7 +1211,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'timezone-utc' => 'UTC',
 
 # Special:Version
-'version'                  => 'Versioni', # Not used as normal message but as header for the special page itself
+'version'                  => 'Versioni',
 'version-version'          => 'Versioni',
 'version-software-version' => 'Versioni',
 

@@ -1,6 +1,9 @@
 <?php
 /** Slovenian (Slovenščina)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -238,7 +241,7 @@ $messages = array(
 'category-media-header'          => 'Predstavnostno gradivo v kategoriji »$1«',
 'category-empty'                 => "''Ta kategorija trenutno ne vsebuje člankov ali drugega gradiva.''",
 'hidden-categories'              => '{{PLURAL:$1|Skrita kategorija|Skrite kategorije}}',
-'hidden-category-category'       => 'Skrite kategorije', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Skrite kategorije',
 'category-subcat-count'          => 'Ta del kategorije ima {{PLURAL:$1|$1 sledečo podkategorijo|$1 sledeči podkategoriji|$1 sledeče podkategorije|$1 sledečih podkategorij|$1 sledečih podkategorij}}{{PLURAL:$2||, od skupno $2}}.',
 'category-subcat-count-limited'  => 'Ta kategorija ima {{PLURAL:$1|$1 sledečo podkategorijo|$1 sledeči podkategoriji|$1 sledeče podkategorije|$1 sledečih podkategorij|$1 sledečih podkategorij}}.',
 'category-article-count'         => 'Ta del kategorije vsebuje {{PLURAL:$1|$1 sledečo stran|$1 sledeči strani|$1 sledeče strani|$1 sledečih strani|$1 sledečih strani}}{{PLURAL:$2||, od skupno $2}}.',
@@ -317,7 +320,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'otherlanguages'    => 'V drugih jezikih',
 'redirectedfrom'    => '(Preusmerjeno z $1)',
 'redirectpagesub'   => 'Preusmeritvena stran',
-'lastmodifiedat'    => 'Čas zadnje spremembe: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Čas zadnje spremembe: $2, $1.',
 'viewcount'         => 'Stran je bila naložena {{PLURAL:$1|enkrat|dvakrat|$1-krat|$1-krat|$1-krat}}.',
 'protectedpage'     => 'Zaščitena stran',
 'jumpto'            => 'Skoči na:',
@@ -715,7 +718,7 @@ Razlog, ki ga je podal $3, je ''$2''.",
 'currentrev'             => 'Trenutna redakcija',
 'currentrev-asof'        => 'Trenutna redakcija s časom $1',
 'revisionasof'           => 'Redakcija: $1',
-'revision-info'          => 'Redakcija iz $1 od $2', # Additionally available: $3: revision id
+'revision-info'          => 'Redakcija iz $1 od $2',
 'previousrevision'       => '← Starejša redakcija',
 'nextrevision'           => 'Novejša redakcija →',
 'currentrevisionlink'    => 'poglejte trenutno redakcijo',
@@ -737,7 +740,7 @@ Napotek: (tren) = primerjava s trenutno redakcijo,
 # Revision feed
 'history-feed-title'          => 'Zgodovina strani',
 'history-feed-description'    => 'Zgodovina navedene strani {{GRAMMAR:rodilnik|{{SITENAME}}}}',
-'history-feed-item-nocomment' => '$1 ob $2', # user at time
+'history-feed-item-nocomment' => '$1 ob $2',
 'history-feed-empty'          => 'Želena stran ne obstaja. Morda je bila iz {{GRAMMAR:rodilnik|{{SITENAME}}}} izbrisana ali pa jo je kdo preimenoval. Prosimo, poskusite v {{GRAMMAR:dajalnik|{{SITENAME}}}} [[Special:Search|poiskati]] ustrezajoče nove strani.',
 
 # Revision deletion
@@ -891,7 +894,7 @@ Prosimo, potrdite, da ste s tem seznanjeni, da razumete posledice dejanja in da 
 'prefs-custom-js'           => 'JS po meri',
 
 # User rights
-'userrights'               => 'Upravljanje s pravicami uporabnikov', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Upravljanje s pravicami uporabnikov',
 'userrights-lookup-user'   => 'Upravljanje z uporabniškimi skupinami',
 'userrights-user-editname' => 'Vpišite uporabniško ime:',
 'editusergroup'            => 'Uredi uporabniške skupine',
@@ -1125,7 +1128,7 @@ PICT # mešano
 'noimage'                   => 'Datoteka s tem imenom ne obstaja; lahko jo $1.',
 'noimage-linktext'          => 'naložite',
 'uploadnewversion-linktext' => 'Naložite novo različico datoteke',
-'shared-repo-from'          => 'iz $1', # $1 is the repository name
+'shared-repo-from'          => 'iz $1',
 
 # File reversion
 'filerevert'                => 'Vrni $1',
@@ -1453,8 +1456,8 @@ Za zapise nedavnih brisanj glej $2.",
 'alreadyrolled'    => 'Ne morem vrniti zadnje spremembe [[:$1]] uporabnika [[User:$2|$2]] ([[User talk:$2|Pogovor]]); nekdo drug je že spremenil ali vrnil članek.
 
 Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
-'editcomment'      => "Pripomba k spremembi: »''$1''«.", # only shown if there is an edit comment
-'revertpage'       => 'vrnitev sprememb uporabnika »[[Special:Contributions/$2|$2]]« ([[User talk:$2|pogovor]]) na zadnje urejanje uporabnika »$1«', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Pripomba k spremembi: »''$1''«.",
+'revertpage'       => 'vrnitev sprememb uporabnika »[[Special:Contributions/$2|$2]]« ([[User talk:$2|pogovor]]) na zadnje urejanje uporabnika »$1«',
 'rollback-success' => 'Razveljavljene spremembe uporabnika $1; vrnjeno na urejanje uporabnika $2.',
 'sessionfailure'   => 'Vaša prijava ni uspela; da bi preprečili ugrabitev seje, je bilo dejanje preklicano. Prosimo, izberite »Nazaj« in ponovno naložite stran, s katere prihajate, nato poskusite znova.',
 
@@ -1488,7 +1491,7 @@ Trenutne nastavitve za stran '''$1''' so:",
 ** Vztrajno dodajanje reklamnih povezav
 ** Neproduktivne urejevalske vojne
 ** Zelo obiskana stran',
-'protect-expiry-options'      => 'nedoločen čas:infinite,15 minut:15 minutes,1 uro:1 hour,3 ure:3 hours,1 dan:1 day,2 dni:2 days,3 dni:3 days,1 teden:1 week,2 tedna:2 weeks,1 mesec:1 month,3 mesece:3 months,6 mesecev:6 months,1 leto:1 year,neomejeno dolgo:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'nedoločen čas:infinite,15 minut:15 minutes,1 uro:1 hour,3 ure:3 hours,1 dan:1 day,2 dni:2 days,3 dni:3 days,1 teden:1 week,2 tedna:2 weeks,1 mesec:1 month,3 mesece:3 months,6 mesecev:6 months,1 leto:1 year,neomejeno dolgo:infinite',
 'restriction-type'            => 'Dovoljenje:',
 'restriction-level'           => 'Stopnja zaščite:',
 'minimum-size'                => 'Min. velikost',
@@ -1543,7 +1546,7 @@ Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]
 'contributions-title' => 'Prispevki uporabnika $1',
 'mycontris'           => 'Prispevki',
 'contribsub2'         => 'Uporabnik: $1 ($2)',
-'nocontribs'          => 'Ne najdem nobene merilom ustrezajoče spremembe.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Ne najdem nobene merilom ustrezajoče spremembe.',
 'uctop'               => ' (vrh)',
 'month'               => 'Od meseca (in prej):',
 'year'                => 'Od leta (in prej):',
@@ -1598,7 +1601,7 @@ Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]
 'ipbenableautoblock'          => 'Avtomatično blokiraj zadnji IP naslov tega uporabnika in vse naslednje naslove, ki jih bodo hoteli uporabiti',
 'ipbsubmit'                   => 'Blokiraj naslov',
 'ipbother'                    => 'Drugačen čas',
-'ipboptions'                  => 'nedoločen čas:infinite,15 minut:15 minutes,1 uro:1 hour,3 ure:3 hours,1 dan:1 day,2 dni:2 days,3 dni:3 days,1 teden:1 week,2 tedna:2 weeks,1 mesec:1 month,3 mesece:3 months,6 mesecev:6 months,1 leto:1 year,neomejeno dolgo:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => 'nedoločen čas:infinite,15 minut:15 minutes,1 uro:1 hour,3 ure:3 hours,1 dan:1 day,2 dni:2 days,3 dni:3 days,1 teden:1 week,2 tedna:2 weeks,1 mesec:1 month,3 mesece:3 months,6 mesecev:6 months,1 leto:1 year,neomejeno dolgo:infinite',
 'ipbotheroption'              => 'drugo',
 'ipbotherreason'              => 'Drug/dodaten razlog:',
 'badipaddress'                => 'Neveljaven IP-naslov ali uporabniško ime.',
@@ -1684,7 +1687,7 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'move-watch'              => 'Opazuj to stran',
 'movepagebtn'             => 'Prestavi stran',
 'pagemovedsub'            => 'Uspešno prestavljeno',
-'movepage-moved'          => "<big>Stran '''»$1«''' je prestavljena na naslov '''»$2«'''.</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>Stran '''»$1«''' je prestavljena na naslov '''»$2«'''.</big>",
 'articleexists'           => 'Izbrano ime je že zasedeno ali pa ni veljavno. 
 Prosimo izberite drugo ciljno ime.',
 'cantmove-titleprotected' => 'Strani ne morete premakniti na slednjo lokacijo, saj je nov naslov zaščiten pred ustvarjanjem',
@@ -1826,7 +1829,7 @@ Za lokalizacijo in prevajanje obiščite [http://www.mediawiki.org/wiki/Localisa
 # Attribution
 'anonymous'        => 'Brezimni {{PLURAL:$1|uporabniki|uporabnika|uporabniki|uporabniki|uporabniki}} {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'siteuser'         => 'Uporabnik $1',
-'lastmodifiedatby' => 'Stran je zadnjič urejal(a) $3 (čas spremembe: $2, $1).', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Stran je zadnjič urejal(a) $3 (čas spremembe: $2, $1).',
 'othercontribs'    => '<!--Temelji na delu $1. Ne deluje pravilno-->Prispevki uporabnika.',
 'others'           => 'drugi',
 'siteusers'        => '{{PLURAL:$2|Uporabnik|Uporabnika|Uporabniki|Uporabniki|Uporabniki|Uporabniki}} {{GRAMMAR:rodilnik|{{SITENAME}}}} $1',
@@ -1923,7 +1926,7 @@ $1',
 * datetimeoriginal
 * exposuretime 
 * fnumber 
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Širina',
@@ -2048,14 +2051,14 @@ $1',
 # EXIF attributes
 'exif-compression-1' => 'Nestisnjeno',
 
-'exif-orientation-1' => 'Navadna', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Vodoravno zrcaljeno', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Zasukano za 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Navpično zrcaljeno', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Zasukano za 90° v levo in navpično zrcaljeno', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Zasukano za 90° v desno', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Zasukano za 90° v desno in navpično zrcaljeno', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Zasukano za 90° v levo', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Navadna',
+'exif-orientation-2' => 'Vodoravno zrcaljeno',
+'exif-orientation-3' => 'Zasukano za 180°',
+'exif-orientation-4' => 'Navpično zrcaljeno',
+'exif-orientation-5' => 'Zasukano za 90° v levo in navpično zrcaljeno',
+'exif-orientation-6' => 'Zasukano za 90° v desno',
+'exif-orientation-7' => 'Zasukano za 90° v desno in navpično zrcaljeno',
+'exif-orientation-8' => 'Zasukano za 90° v levo',
 
 'exif-planarconfiguration-1' => 'grudast format',
 'exif-planarconfiguration-2' => 'ravninski format',
@@ -2288,7 +2291,7 @@ Lahko tudi [[Special:Watchlist/raw|uredite gol spisek]].',
 'watchlisttools-raw'  => 'Uredi gol spisek nadzorov',
 
 # Special:Version
-'version'                  => 'Različica', # Not used as normal message but as header for the special page itself
+'version'                  => 'Različica',
 'version-specialpages'     => 'Posebne strani',
 'version-variables'        => 'Spremenljivke',
 'version-other'            => 'Ostalo',

@@ -1,6 +1,9 @@
 <?php
 /** Scottish Gaelic (Gàidhlig)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -362,8 +365,8 @@ $1",
 'delete-edit-reasonlist' => 'Deasaich adhbharan dubhadh às',
 
 # Rollback
-'editcomment' => "Bha mìneachadh an deasaicheidh: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'  => 'Tillte deasachadh aig [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]]) ais ri lethbhreac mu dheireadh le [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment' => "Bha mìneachadh an deasaicheidh: \"''\$1''\".",
+'revertpage'  => 'Tillte deasachadh aig [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]]) ais ri lethbhreac mu dheireadh le [[User:$1|$1]]',
 
 # Protect
 'protectedarticle'   => 'dìonta [[$1]]',
@@ -463,7 +466,7 @@ $1",
 'watchlistedit-raw-submit'   => 'Ùraich Clàr-faire',
 
 # Special:Version
-'version' => 'Tionndadh', # Not used as normal message but as header for the special page itself
+'version' => 'Tionndadh',
 
 # Special:SpecialPages
 'specialpages' => 'Duilleagan àraidh',

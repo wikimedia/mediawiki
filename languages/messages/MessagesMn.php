@@ -1,6 +1,9 @@
 <?php
 /** Mongolian (Монгол)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -137,7 +140,7 @@ $messages = array(
 'category-media-header'          => '"$1" ангилал дахь медиа файлууд',
 'category-empty'                 => "''Одоогийн байдлаар энэ ангилалд хуудас, медиа файл байхгүй байна.''",
 'hidden-categories'              => '{{PLURAL:$1|Нуугдсан ангилал|Нуугдсан ангиллууд}}',
-'hidden-category-category'       => 'Нуугдсан ангиллууд', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Нуугдсан ангиллууд',
 'category-subcat-count'          => '{{PLURAL:$2|Энэ ангилалд дараах дэд ангилал л байна.|Энэ ангилалд нийт $2-с $1 дэд ангилал байна.}}',
 'category-subcat-count-limited'  => 'Энэ ангилалд {{PLURAL:$1| дэд ангилал|$1-н дэд ангилалууд}} байна.',
 'category-article-count'         => '{{PLURAL:$2|Энэ ангилалд дараах хуудас л байна.|Энэ ангилалд нийт $2-с дараах $1 хуудас байна.}}',
@@ -223,7 +226,7 @@ $messages = array(
 'otherlanguages'    => 'Өөр хэлээр',
 'redirectedfrom'    => '($1-с шууд холбогдсон)',
 'redirectpagesub'   => 'Хуудсыг шууд холбох',
-'lastmodifiedat'    => 'Энэ хуудсыг хамгийн сүүлд өөрчилсөн нь $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Энэ хуудсыг хамгийн сүүлд өөрчилсөн нь $2, $1.',
 'viewcount'         => 'Энэ хуудсанд {{PLURAL:$1|ганцхан удаа|$1 удаа}} хандсан байна.',
 'protectedpage'     => 'Хамгаалагдсан хуудас',
 'jumpto'            => 'Шууд очих:',
@@ -673,7 +676,7 @@ $3-н тодорхойлсон шалтгаан нь ''$2''",
 'nohistory'              => 'Хуудсанд засвар хийсэн түүх байхгүй байна.',
 'currentrev'             => 'Одоогийн засвар',
 'revisionasof'           => '$1-ий байдлаарх засвар',
-'revision-info'          => '$1-ий байдлаарх $2 хэрэглэгчийн хийсэн засвар', # Additionally available: $3: revision id
+'revision-info'          => '$1-ий байдлаарх $2 хэрэглэгчийн хийсэн засвар',
 'previousrevision'       => '←Хуучны засвар',
 'nextrevision'           => 'Дараагийн засвар→',
 'currentrevisionlink'    => 'Одоогийн засвар',
@@ -695,7 +698,7 @@ $3-н тодорхойлсон шалтгаан нь ''$2''",
 # Revision feed
 'history-feed-title'          => 'Засварын түүх',
 'history-feed-description'    => 'Вики дэх энэ хуудасны засварын түүх',
-'history-feed-item-nocomment' => '$2 дээрх $1', # user at time
+'history-feed-item-nocomment' => '$2 дээрх $1',
 'history-feed-empty'          => 'Таны үзэх гэсэн хуудас байхгүй байна.
 Викигээс устгагдсан юмуу нэр нь өөрчлөгдсөн байж магадгүй.
 [[Special:Search|Викид хайлт хийж]] үзнэ үү.',
@@ -890,7 +893,7 @@ math/README-г уншиж тохируулна уу.',
 'files'                    => 'Файлууд',
 
 # User rights
-'userrights'                  => 'Хэрэглэгчдийн эрхийн удирдлага', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Хэрэглэгчдийн эрхийн удирдлага',
 'userrights-lookup-user'      => 'Хэрэглэгчдийн бүлгүүдийг удирдах',
 'userrights-user-editname'    => 'Хэрэглэгчийн нэрээ оруулна уу:',
 'editusergroup'               => 'Хэрэглэгчийн бүлгийг засварлах',
@@ -1435,9 +1438,9 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'rollbackfailed'   => 'Буцааж чадсангүй',
 'cantrollback'     => 'Засварласан хэсгийг буцааж чадсангүй. Сүүлчийн засварыг хийгч нь энэ хуудасны цорын ганц бичигч юм.',
 'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Яриа]])-ын хийсэн [[$1]] дэх сүүлчийн засварыг буцааж чадахгүй байна; хэн нэг нь аль хэдийн уг хуудсыг засварласан буюу буцаасан байж болзошгүй. Сүүлчийн засварыг [[User:$3|$3]] ([[User talk:$3|Яриа]]) хийсэн.',
-'editcomment'      => "Засварлаж байгаа санал хүсэлт нь: \"''\$1''\".", # only shown if there is an edit comment
+'editcomment'      => "Засварлаж байгаа санал хүсэлт нь: \"''\$1''\".",
 'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Яриа]]) хэрэглэгчийн засваруудыг;
-[[User:$1|$1]] хэрэглэгчийн үйлдсэн хамгийн сүүлийн хувилбар руу буцаалаа', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+[[User:$1|$1]] хэрэглэгчийн үйлдсэн хамгийн сүүлийн хувилбар руу буцаалаа',
 'rollback-success' => '$1-н өөрчлөлтүүдийг $2-н үйлдсэн сүүлийн хувилбар руу буцаалаа.',
 'sessionfailure'   => 'Таны нэвтрэлд алдаа гарсан бололтой;
 компьютерийн систем дэх мэдээллийг хууль бусаар авах явдлаас хамгаалах гэж үйлдэл цуцлагдсан байна
@@ -1474,7 +1477,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'protect-expiring'            => 'Дуусах хугацаа: $1 (UTC)',
 'protect-cascade'             => 'Энэ хуудсанд орсон хуудсуудыг хамгаалах (давхар хамгаалалт)',
 'protect-cantedit'            => 'Таньд энэ хуудсыг засварлах эрх байхгүй тул хамгаалалтын түвшинг өөрчилж болохгүй.',
-'protect-expiry-options'      => '15 минут:15 minutes,30 минут:30 minutes,2 цаг:2 hours,1 өдөр:1 өдөр,3 days:3 өдөр,1 долоо хоног:1 week,2 долоо хоног:2 weeks,1 сар:1 month,3 сар:3 months,6 сар:6 months,1 жил:1 year,хугацаагүй:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '15 минут:15 minutes,30 минут:30 minutes,2 цаг:2 hours,1 өдөр:1 өдөр,3 days:3 өдөр,1 долоо хоног:1 week,2 долоо хоног:2 weeks,1 сар:1 month,3 сар:3 months,6 сар:6 months,1 жил:1 year,хугацаагүй:infinite',
 'restriction-type'            => 'Зөвшөөрөл:',
 'restriction-level'           => 'Хамгаалалтын түвшин:',
 'minimum-size'                => 'Доод хэмжээ',
@@ -1543,7 +1546,7 @@ $1',
 'contributions' => 'Хэрэглэгчийн хувь нэмэр',
 'mycontris'     => 'Миний оруулсан хувь нэмэр',
 'contribsub2'   => 'Хэрэглэгчийн нэр: $1 ($2)',
-'nocontribs'    => 'Энэ шалгуурт тохирох өөрчилсөн зүйлүүд олдсонгүй.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Энэ шалгуурт тохирох өөрчилсөн зүйлүүд олдсонгүй.',
 'uctop'         => '(дээд)',
 'month'         => 'Дараах сараас (өмнөх засварууд нь ч орно):',
 'year'          => 'Дараах жилээс (өмнөх засварууд нь ч орно):',
@@ -1597,7 +1600,7 @@ $1',
 'ipbenableautoblock'          => 'Энэ хэрэглэгчийн сүүлийн IP хаягийг түгж. Дээр нь дахин оролдого хийж болох хаягуудыг ч мөн түгжих.',
 'ipbsubmit'                   => 'Энэ хэрэглэгчийг түгжих',
 'ipbother'                    => 'Өөр хугацаа',
-'ipboptions'                  => '15 минут:15 minutes,30 минут:30 minutes,2 цаг:2 hours,1 өдөр:1 өдөр,3 days:3 өдөр,1 долоо хоног:1 week,2 долоо хоног:2 weeks,1 сар:1 month,3 сар:3 months,6 сар:6 months,1 жил:1 year,хугацаагүй:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '15 минут:15 minutes,30 минут:30 minutes,2 цаг:2 hours,1 өдөр:1 өдөр,3 days:3 өдөр,1 долоо хоног:1 week,2 долоо хоног:2 weeks,1 сар:1 month,3 сар:3 months,6 сар:6 months,1 жил:1 year,хугацаагүй:infinite',
 'ipbotheroption'              => 'бусад',
 'ipbotherreason'              => 'Өөр/нэмэлт шалтгаан:',
 'ipbhidename'                 => 'Хэрэглэгчийн нэрийг түгжээний лог, одоо хэрэгжиж буй түгжээний жагсаалт болон хэрэглэгчийн жагсаалтаас нууцлах',
@@ -1702,7 +1705,7 @@ $1',
 'move-watch'              => 'Энэ хуудсыг хянах',
 'movepagebtn'             => 'Хуудсыг зөөх',
 'pagemovedsub'            => 'Амжилттай зөөгдлөө',
-'movepage-moved'          => '<big>\'\'\'"$1" нь "$2" руу зөөгдлөө\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" нь "$2" руу зөөгдлөө\'\'\'</big>',
 'articleexists'           => 'Ийм нэртэй хуудсыг өмнө нь үүсгэсэн, эсвэл сонгосон нэр тань хүчингүй байна.
 Өөр нэр сонгоно уу.',
 'cantmove-titleprotected' => 'Шинэ гарчигтай хуудас нь үүсгэгдэхээс хамгаалагдсан тул та ийшээ хуудсыг зөөх боломжгүй.',
@@ -1855,7 +1858,7 @@ $1',
 # Attribution
 'anonymous'        => '{{SITENAME}} нэргүй хэрэглэгч(ид)',
 'siteuser'         => '{{SITENAME}}-н хэрэглэгч $1',
-'lastmodifiedatby' => 'Энэ хуудсыг  $3 нь хамгийн сүүлд өөрчилсөн ба өөрчилсөн нь $2, $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Энэ хуудсыг  $3 нь хамгийн сүүлд өөрчилсөн ба өөрчилсөн нь $2, $1.',
 'othercontribs'    => '$1-ий бүтээл дээр тулгуурласан.',
 'others'           => 'Бусад',
 'siteusers'        => '{{SITENAME}}-н {{PLURAL:$2|хэрэглэгч|хэрэглэгчид}} $1',
@@ -1961,7 +1964,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'өргөн',
@@ -2024,14 +2027,14 @@ $1',
 
 'exif-unknowndate' => 'Мэдэгдэхгүй огноо',
 
-'exif-orientation-1' => 'энгийн', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Хөндлөнгөөр эргүүлэх', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° эргүүллээ', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Босоогоор эргүүлэх', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Цагийн зүүний эсрэгээр 90° эргүүлж босоогоор эргүүллээ', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Цагийн зүүний дагуу 90° эргүүллээ', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Цагийн зүүний дагуу 90° эргүүлж босоогоор эргүүллээ', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Цагийн зүүний эсрэгээр 90° эргүүллээ', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'энгийн',
+'exif-orientation-2' => 'Хөндлөнгөөр эргүүлэх',
+'exif-orientation-3' => '180° эргүүллээ',
+'exif-orientation-4' => 'Босоогоор эргүүлэх',
+'exif-orientation-5' => 'Цагийн зүүний эсрэгээр 90° эргүүлж босоогоор эргүүллээ',
+'exif-orientation-6' => 'Цагийн зүүний дагуу 90° эргүүллээ',
+'exif-orientation-7' => 'Цагийн зүүний дагуу 90° эргүүлж босоогоор эргүүллээ',
+'exif-orientation-8' => 'Цагийн зүүний эсрэгээр 90° эргүүллээ',
 
 'exif-componentsconfiguration-0' => 'байхгүй байна',
 
@@ -2179,7 +2182,7 @@ $5
 'watchlisttools-raw'  => 'Хянаж буй хуудсуудын жагсаалтаа текстээр засварлах',
 
 # Special:Version
-'version'                  => 'Хувилбар', # Not used as normal message but as header for the special page itself
+'version'                  => 'Хувилбар',
 'version-software'         => 'Суулгасан программ',
 'version-software-version' => 'Хувилбар',
 

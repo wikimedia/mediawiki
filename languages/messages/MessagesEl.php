@@ -1,6 +1,9 @@
 <?php
 /** Greek (Ελληνικά)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -444,7 +447,7 @@ $messages = array(
 'category-media-header'          => 'Πολυμέσα στην κατηγορία «$1»',
 'category-empty'                 => "''Αυτή η κατηγορία δεν περιέχει άρθρα ή εικόνες.''",
 'hidden-categories'              => '{{PLURAL:$1|Κρυμμένη κατηγορία|Κρυμμένες κατηγορίες}}',
-'hidden-category-category'       => 'Κρυμμένες κατηγορίες', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Κρυμμένες κατηγορίες',
 'category-subcat-count'          => '{{PLURAL:$2|Αυτή η κατηγορία έχει μόνο την ακόλουθη υποκατηγορία.|Αυτή η κατηγορία έχει {{PLURAL:$1|την ακόλουθη υποκατηγορία|τις ακόλουθες $1 υποκατηγορίες}} , από $2 συνολικά.}}',
 'category-subcat-count-limited'  => 'Αυτή η κατηγορία περιέχει {{PLURAL:$1|την ακόλουθη υποκατηγορία|$1 τις ακόλουθες υποκατηγορίες}}.',
 'category-article-count'         => '{{PLURAL:$2|Αυτή η κατηγορία περιέχει μόνο την ακόλουθη σελίδα.|{{PLURAL:$1|Η ακόλουθη σελίδα είναι|Οι ακόλουθες $1 σελίδες είναι}} σε αυτή την κατηγορία, από $2 συνολικά.}}',
@@ -525,7 +528,7 @@ $messages = array(
 'otherlanguages'    => 'Άλλες γλώσσες',
 'redirectedfrom'    => '(Ανακατεύθυνση από $1)',
 'redirectpagesub'   => 'Σελίδα ανακατεύθυνσης',
-'lastmodifiedat'    => 'Η σελίδα αυτή τροποποιήθηκε τελευταία φορά στις $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Η σελίδα αυτή τροποποιήθηκε τελευταία φορά στις $2, $1.',
 'viewcount'         => 'Αυτή η σελίδα έχει προσπελαστεί {{PLURAL:$1|μια φορά|$1 φορές}}.',
 'protectedpage'     => 'Κλειδωμένη σελίδα',
 'jumpto'            => 'Μετάβαση σε:',
@@ -994,7 +997,7 @@ $2',
 'currentrev'             => 'Τρέχουσα αναθεώρηση',
 'currentrev-asof'        => 'Παρούσα αναθεώρηση της $1',
 'revisionasof'           => 'Αναθεώρηση της $1',
-'revision-info'          => 'Έκδοση στις $1 υπό τον/την $2', # Additionally available: $3: revision id
+'revision-info'          => 'Έκδοση στις $1 υπό τον/την $2',
 'previousrevision'       => '&larr;Παλιότερη αναθεώρηση',
 'nextrevision'           => 'Νεώτερη αναθεώρηση&rarr;',
 'currentrevisionlink'    => 'εμφάνιση της τρέχουσας αναθεώρησης',
@@ -1016,7 +1019,7 @@ $2',
 # Revision feed
 'history-feed-title'          => 'Ιστορικό εκδόσεων',
 'history-feed-description'    => 'Ιστορικό αναθεωρήσεων για αυτή τη σελίδα στο wiki',
-'history-feed-item-nocomment' => '$1 στο $2', # user at time
+'history-feed-item-nocomment' => '$1 στο $2',
 'history-feed-empty'          => 'Η ζητούμενη σελίδα δεν υπάρχει.
 Μπορεί να έχει διαγραφεί από το wiki, ή να μετονομάστηκε.
 Δοκιμάστε [[Special:Search|να αναζητήσετε στο wiki]] για σχετικές νέες σελίδες.',
@@ -1331,7 +1334,7 @@ $2',
 'prefs-custom-js'           => 'Προκαθορισμένη JS',
 
 # User rights
-'userrights'                  => 'Διαχείριση δικαιωμάτων χρηστών', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Διαχείριση δικαιωμάτων χρηστών',
 'userrights-lookup-user'      => 'Διαχείριση ομάδων χρηστών',
 'userrights-user-editname'    => 'Δηλώστε όνομα χρήστη:',
 'editusergroup'               => 'Επεξεργασία ομάδων χρηστών',
@@ -1679,8 +1682,8 @@ PICT # διάφορα
 'noimage'                   => 'Δεν υπάρχει αρχείο με αυτό το όνομα, αλλά μπορείτε να $1.',
 'noimage-linktext'          => 'επιφορτώστε ένα',
 'uploadnewversion-linktext' => 'Φορτώστε μια νέα έκδοση αυτού του αρχείου',
-'shared-repo-from'          => 'από το $1', # $1 is the repository name
-'shared-repo'               => 'ένα κοινό εναποθετήριο', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'από το $1',
+'shared-repo'               => 'ένα κοινό εναποθετήριο',
 
 # File reversion
 'filerevert'                => 'Επαναφορά $1',
@@ -2060,8 +2063,8 @@ Tο σύστημα ειδοποίησης του εγχειρήματος {{SITE
 'alreadyrolled'    => 'Αδύνατον να αναιρεθεί η τελευταία αλλαγή της σελίδας [[:$1]] από το χρήστη ([[User:$2|$2]] ([[User talk:$2|Συζήτηση]]){{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), διότι κάποιος έχει ήδη αναιρέσει την αλλαγή ή έχει αλλάξει εκ νέου τη σελίδα.
 
 Τελευταία αλλαγή από το χρήστη ([[User:$3|$3]] ([[User talk:$3|Συζήτηση]]){{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Το σχόλιο της επεξεργασίας ήταν: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Ανάκληση των αλλαγών $2 (επιστροφή στην προηγούμενη αναθεώρηση $1)', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Το σχόλιο της επεξεργασίας ήταν: \"''\$1''\".",
+'revertpage'       => 'Ανάκληση των αλλαγών $2 (επιστροφή στην προηγούμενη αναθεώρηση $1)',
 'rollback-success' => 'Ανεστραμμένες εκδόσεις από $1, αλλάχθηκαν στην προηγούμενη έκδοση από $2.',
 'sessionfailure'   => 'Υπάρχει πρόβλημα με τη σύνδεσή σας -η ενέργεια αυτή ακυρώθηκε προληπτικά για την αντιμετώπιση τυχόν πειρατείας συνόδου (session hijacking). Παρακαλoύμε πατήστε "Επιστροφή", ξαναφορτώστε τη σελίδα από την οποία φθάσατε εδώ και προσπαθήστε ξανά.',
 
@@ -2109,7 +2112,7 @@ Tο σύστημα ειδοποίησης του εγχειρήματος {{SITE
 ** Αντιπαραγωγική μάχη επεξεργασιών
 ** Σελίδα μεγάλης κίνησης',
 'protect-edit-reasonlist'     => 'Επεξεργασία λόγων προστασίας',
-'protect-expiry-options'      => '1 ώρα:1 hour,1 ημέρα:1 day,1 εβδομάδα:1 week,2 εβδομάδες:2 weeks,1 μήνα:1 month,3 μήνες:3 months,6 μήνες:6 months,1 χρόνο:1 year,αόριστα:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ώρα:1 hour,1 ημέρα:1 day,1 εβδομάδα:1 week,2 εβδομάδες:2 weeks,1 μήνα:1 month,3 μήνες:3 months,6 μήνες:6 months,1 χρόνο:1 year,αόριστα:infinite',
 'restriction-type'            => 'Δικαίωμα:',
 'restriction-level'           => 'Επίπεδο περιορισμού:',
 'minimum-size'                => 'Ελάχιστο μέγεθος',
@@ -2189,7 +2192,7 @@ $1',
 'contributions-title' => 'Συνεισφορές του χρήστη $1',
 'mycontris'           => 'Οι συνεισφορές μου',
 'contribsub2'         => 'Για τον/την $1 ($2)',
-'nocontribs'          => 'Δεν βρέθηκαν αλλαγές με αυτά τα κριτήρια.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Δεν βρέθηκαν αλλαγές με αυτά τα κριτήρια.',
 'uctop'               => '(τελευταία)',
 'month'               => 'Από τον μήνα (και νωρίτερα):',
 'year'                => 'Από τη χρονιά (και νωρίτερα):',
@@ -2250,7 +2253,7 @@ $1',
 'ipbenableautoblock'              => 'Φράξε αυτόματατα την τελευταία διεύθυνση IP που χρησιμοποιήθηκε από αυτό τον χρήστη, και όποιες ακόλουθες IP από τις οποίες δοκιμάζει να επεξεργαστεί',
 'ipbsubmit'                       => 'Φραγή σε αυτό το χρήστη',
 'ipbother'                        => 'Άλλη ώρα',
-'ipboptions'                      => '2 ώρες:2 hours,1 ημέρα:1 day,3 ημέρες:3 days,1 εβδομάδα:1 week,2 εβδομάδες:2 weeks,1 μήνα:1 month,3 μήνες:3 months,6 μήνες:6 months,1 χρόνο:1 year,αόριστα:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 ώρες:2 hours,1 ημέρα:1 day,3 ημέρες:3 days,1 εβδομάδα:1 week,2 εβδομάδες:2 weeks,1 μήνα:1 month,3 μήνες:3 months,6 μήνες:6 months,1 χρόνο:1 year,αόριστα:infinite',
 'ipbotheroption'                  => 'άλλη',
 'ipbotherreason'                  => 'Άλλος/επιπλέον λόγος:',
 'ipbhidename'                     => 'Απόκρυψη ονόματος χρήστη από επεξεργασίες και καταλόγους',
@@ -2378,7 +2381,7 @@ $1 είναι ήδη αποκλεισμένη. Θέλετε να αλλάξετ�
 'move-watch'                   => 'Παρακολούθησε αυτή τη σελίδα',
 'movepagebtn'                  => 'Μετακίνηση σελίδας',
 'pagemovedsub'                 => 'Η μετακίνηση ήταν επιτυχής',
-'movepage-moved'               => '<big>\'\'\'"$1" μεταφέρθηκε στο "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" μεταφέρθηκε στο "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Δημιουργήθηκε μια ανακατεύθυνση.',
 'movepage-moved-noredirect'    => 'Η δημιουργία ανακατεύθυνσης παρεμποδίστηκε.',
 'articleexists'                => 'Υπάρχει ήδη σελίδα με αυτό το όνομα. Παρακαλούμε δώστε άλλο όνομα στη σελίδα.',
@@ -2600,7 +2603,7 @@ $1 είναι ήδη αποκλεισμένη. Θέλετε να αλλάξετ�
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Ανώνυμος χρήστης|Ανώνυμοι χρήστες}} του {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} χρήστης $1',
-'lastmodifiedatby' => 'Η σελίδα αυτή τροποποιήθηκε τελευταία φορά στις  $2, $1 από το χρήστη $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Η σελίδα αυτή τροποποιήθηκε τελευταία φορά στις  $2, $1 από το χρήστη $3.',
 'othercontribs'    => 'Βασισμένο στη δουλειά του/των $1',
 'others'           => 'άλλοι',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|χρηστή|χρηστών}} του ιστοχώρου $1',
@@ -2720,7 +2723,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Πλάτος',
@@ -2847,14 +2850,14 @@ $1',
 
 'exif-unknowndate' => 'Άγνωστη ημερομηνία',
 
-'exif-orientation-1' => 'Φυσικός', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Έχει αντιστραφεί οριζόντια.', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Έχει περιστραφεί κατά 180° μοίρες.', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Έχει αντιστραφεί κατακόρυφα.', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Έχει περιστραφεί κατά 90° μοίρες με φορά αντίθετα προς τη φορά των δεικτών του ρολογιού και έχει αντιστραφεί κατακόρυφα.', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Έχει περιστραφεί κατά 90° μοίρες κατά τη φορά των δεικτών του ρολογιού.', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Έχει περιστραφεί κατά 90° μοίρες κατά τη φορά των δεικτών του ρολογιού και έχει αντιστραφεί κατακόρυφα.', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Έχει περιστραφή κατά 90° μοίρες αντίθετα προς τη φορά των δεικτών του ρολογιού.', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Φυσικός',
+'exif-orientation-2' => 'Έχει αντιστραφεί οριζόντια.',
+'exif-orientation-3' => 'Έχει περιστραφεί κατά 180° μοίρες.',
+'exif-orientation-4' => 'Έχει αντιστραφεί κατακόρυφα.',
+'exif-orientation-5' => 'Έχει περιστραφεί κατά 90° μοίρες με φορά αντίθετα προς τη φορά των δεικτών του ρολογιού και έχει αντιστραφεί κατακόρυφα.',
+'exif-orientation-6' => 'Έχει περιστραφεί κατά 90° μοίρες κατά τη φορά των δεικτών του ρολογιού.',
+'exif-orientation-7' => 'Έχει περιστραφεί κατά 90° μοίρες κατά τη φορά των δεικτών του ρολογιού και έχει αντιστραφεί κατακόρυφα.',
+'exif-orientation-8' => 'Έχει περιστραφή κατά 90° μοίρες αντίθετα προς τη φορά των δεικτών του ρολογιού.',
 
 'exif-planarconfiguration-1' => 'πεπλατυσμένος σχηματισμός',
 'exif-planarconfiguration-2' => 'επίπεδος σχηματισμός',
@@ -3119,7 +3122,7 @@ $1',
 'duplicate-defaultsort' => 'Προσοχή: Το προκαθορισμένο κλειδί ταξινόμησης "$2" υπερκαλύπτει το προηγούμενο "$1".',
 
 # Special:Version
-'version'                          => 'Έκδοση', # Not used as normal message but as header for the special page itself
+'version'                          => 'Έκδοση',
 'version-extensions'               => 'Εγκαταστημένες επεκτάσεις',
 'version-specialpages'             => 'Ειδικές σελίδες',
 'version-parserhooks'              => 'Άγκιστρα του συντακτικού αναλυτή',

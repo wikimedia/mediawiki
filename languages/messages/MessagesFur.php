@@ -1,6 +1,9 @@
 <?php
 /** Friulian (Furlan)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -209,7 +212,7 @@ $messages = array(
 'category-media-header'          => 'Files inte categorie "$1"',
 'category-empty'                 => "''Par cumò la categorie no conten ni pagjinis ni files multimediâi.''",
 'hidden-categories'              => '{{PLURAL:$1|Categorie platade|Categoriis platadis}}',
-'hidden-category-category'       => 'Categoriis platadis', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categoriis platadis',
 'category-subcat-count'          => '{{PLURAL:$2|Cheste categorie e conten une sot categorie, mostrade ca sot.|Cheste categorie e conten {{PLURAL:$1|la sot categorie|lis $1 sot categoriis}} ca sot suntun totâl di $2.}}',
 'category-subcat-count-limited'  => 'Cheste categorie e conten {{PLURAL:$1|une sot categorie, mostrade|$1 sot categoriis, mostradis}} sot.',
 'category-article-count'         => '{{PLURAL:$2|Cheste categorie e conten dome une pagjine mostrade ca sot.|Cheste categorie e conten {{PLURAL:$1|la pagjine indicade|lis $1 pagjinis indicadis}} di seguit, suntun totâl di $2.}}',
@@ -286,7 +289,7 @@ $messages = array(
 'otherlanguages'    => 'Altris lenghis',
 'redirectedfrom'    => '(Inviât ca di $1)',
 'redirectpagesub'   => 'Pagjine di redirezion',
-'lastmodifiedat'    => "Cambiât par l'ultime volte ai $2, $1", # $1 date, $2 time
+'lastmodifiedat'    => "Cambiât par l'ultime volte ai $2, $1",
 'viewcount'         => 'Cheste pagjine e je stade lete {{PLURAL:$1|une volte|$1 voltis}}.',
 'protectedpage'     => 'Pagjine protezude',
 'jumpto'            => 'Va a:',
@@ -565,7 +568,7 @@ Il regjistri di eliminazion pe pagjine al ven mostrât ca sot par informazion.',
 'currentrev'             => 'Version atuâl',
 'currentrev-asof'        => 'Revision atuâl dai $1',
 'revisionasof'           => 'Version dai $1',
-'revision-info'          => 'Version dal $1, autôr: $2', # Additionally available: $3: revision id
+'revision-info'          => 'Version dal $1, autôr: $2',
 'previousrevision'       => '← Version plui vecje',
 'nextrevision'           => 'Version plui gnove →',
 'currentrevisionlink'    => 'Version atuâl',
@@ -587,7 +590,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 # Revision feed
 'history-feed-title'          => 'Storic des revisions',
 'history-feed-description'    => 'Storic des revisions de pagjine su cheste wiki',
-'history-feed-item-nocomment' => '$1 ai $2', # user at time
+'history-feed-item-nocomment' => '$1 ai $2',
 
 # Revision deletion
 'rev-delundel' => 'mostre/plate',
@@ -1101,7 +1104,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'protect-expiring'            => 'e scjât: $1 (UTC)',
 'protect-cascade'             => 'Protezion ricorsive (estendude a dutis lis pagjinis includudis in cheste).',
 'protect-cantedit'            => 'No tu puedis cambiâ i nivei di protezion par cheste pagjine, parcè che no tu âs i permès par modificâle.',
-'protect-expiry-options'      => '2 oris:2 hours,1 zornade:1 day,3 zornadis:3 days,1 setemane:1 week,2 setemanis:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,infinît:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 oris:2 hours,1 zornade:1 day,3 zornadis:3 days,1 setemane:1 week,2 setemanis:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,infinît:infinite',
 'restriction-type'            => 'Permès:',
 'restriction-level'           => 'Nivel di restrizion:',
 'pagesize'                    => '(bytes)',
@@ -1128,7 +1131,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'contributions-title' => 'Contribûts di $1',
 'mycontris'           => 'Miei contribûts',
 'contribsub2'         => 'Par $1 ($2)',
-'nocontribs'          => 'Nissun cambiament che al rispiete chescj criteris cjatât.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Nissun cambiament che al rispiete chescj criteris cjatât.',
 'uctop'               => ' (su)',
 'month'               => 'Scomençant dal mês (e prime):',
 'year'                => 'Scomençant dal an (e prime):',
@@ -1167,7 +1170,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'ipbexpiry'                => 'Scjadence dal bloc:',
 'ipbreason'                => 'Reson dal bloc:',
 'ipbsubmit'                => 'Bloche chest utent',
-'ipboptions'               => '2 oris:2 hours,1 zornade:1 day,3 zornadis:3 days,1 setemane:1 week,2 setemanis:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,infinît:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 oris:2 hours,1 zornade:1 day,3 zornadis:3 days,1 setemane:1 week,2 setemanis:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,infinît:infinite',
 'ipblocklist'              => 'Utents e direzions IP blocadis',
 'blocklink'                => 'bloche',
 'unblocklink'              => 'sbloche',
@@ -1209,7 +1212,7 @@ In chescj câs, tu varâs di movi o unî a man lis informazions contignudis te p
 'move-watch'       => 'Ten di voli cheste pagjine',
 'movepagebtn'      => 'Môf pagjine',
 'pagemovedsub'     => 'Movude cun sucès',
-'movepage-moved'   => '<big>\'\'\'"$1" e je stade movude al titul "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" e je stade movude al titul "$2"\'\'\'</big>',
 'articleexists'    => 'Une pagjine cun chest non e esist za, o il non sielt nol è valit.
 Sielç par plasê un altri non.',
 'talkexists'       => "'''La pagjine e je stade movude cun sucès, ma no si à podût movi la pagjine di discussion parcè che e esist za tal gnûf titul. Trasferìs il contignût a man par plasê.'''",
@@ -1313,7 +1316,7 @@ Sielç par plasê un altri non.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utent anonim|Utents anonims}} di {{SITENAME}}',
 'siteuser'         => 'Utent $1 di {{SITENAME}}',
-'lastmodifiedatby' => 'Cheste pagjine e je stade cambiade pe ultime volte a lis $2, $1 di $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Cheste pagjine e je stade cambiade pe ultime volte a lis $2, $1 di $3.',
 'othercontribs'    => 'Basât sul lavôr di $1.',
 'others'           => 'altris',
 'siteusers'        => '$1, {{PLURAL:$2|utent|utents}} di {{SITENAME}}',
@@ -1382,7 +1385,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'       => 'Largjece',
@@ -1406,7 +1409,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 'exif-unknowndate' => 'Date no cognossude',
 
-'exif-orientation-1' => 'Normâl', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Normâl',
 
 # External editor support
 'edit-externally'      => 'Modifiche chest file cuntune aplicazion esterne',
@@ -1479,7 +1482,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'watchlisttools-raw'  => 'Modifiche la liste des pagjinis tignudis di voli in formât testuâl',
 
 # Special:Version
-'version'                  => 'Version', # Not used as normal message but as header for the special page itself
+'version'                  => 'Version',
 'version-version'          => 'Version',
 'version-software-version' => 'Version',
 

@@ -1,6 +1,9 @@
 <?php
 /** Mazanderani (مَزِروني)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -39,7 +42,7 @@ $messages = array(
 'viewtalkpage'     => 'گپ ئون ره نشون هدائن',
 'otherlanguages'   => 'دیگه زیوون ئون',
 'lastmodifiedat'   => 'ای ولگ ره پایانی جور هکاردن ره بنه وخت ره وند بونه:
-$2، $1', # $1 date, $2 time
+$2، $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'mainpage' => 'گت ولگ',
@@ -144,7 +147,7 @@ $2، $1', # $1 date, $2 time
 'contribslink' => 'جور هکارده ئون',
 
 # Move page
-'movepage-moved'          => "<big>'''ای «$1» ولگ، «$2» ره بورده.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''ای «$1» ولگ، «$2» ره بورده.'''</big>",
 'movetalk'                => '«گپ» ولگ هم، اگه بونه، بوره.',
 'delete_and_move_confirm' => 'اره، پاک هاکن وه ره',
 

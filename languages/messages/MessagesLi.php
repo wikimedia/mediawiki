@@ -1,6 +1,9 @@
 <?php
 /** Limburgish (Limburgs)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -254,7 +257,7 @@ $messages = array(
 'category-media-header'          => 'Media in de categorie "$1"',
 'category-empty'                 => "''Dees categorie bevat op 't memènt gein artikele of media.''",
 'hidden-categories'              => 'Verbórge {{PLURAL:$1|categorie|categorië}}',
-'hidden-category-category'       => 'Verbórge categorië', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Verbórge categorië',
 'category-subcat-count'          => "{{PLURAL:$2|Dees categorie haet de volgende óngercategorie.|Dees categorie haet de volgende {{PLURAL:$1|óngercategorie|$1 óngercategorië}}, van 'n totaal van $2.}}",
 'category-subcat-count-limited'  => 'Dees categorie haet de volgende {{PLURAL:$1|óngercategorie|$1 óngercategorië}}.',
 'category-article-count'         => "{{PLURAL:$2|Dees categorie bevat de volgende pazjena.|Dees categorie bevat de volgende {{PLURAL:$1|pazjena|$1 pazjena's}}, van in totaal $2.}}",
@@ -341,7 +344,7 @@ $messages = array(
 'otherlanguages'    => 'Anger tale',
 'redirectedfrom'    => '(Doorverweze van $1)',
 'redirectpagesub'   => 'Doorverwiespazjena',
-'lastmodifiedat'    => "Dees pagina is 't lèts verangert op $2, $1.", # $1 date, $2 time
+'lastmodifiedat'    => "Dees pagina is 't lèts verangert op $2, $1.",
 'viewcount'         => 'Dees pazjena is {{PLURAL:$1|1 kier|$1 kier}} bekeke.',
 'protectedpage'     => 'Beveiligde pazjena',
 'jumpto'            => 'Gank nao:',
@@ -808,7 +811,7 @@ De door $3 opgegaeve reje is ''$2''",
 'currentrev'             => 'Hujige versie',
 'currentrev-asof'        => 'Hujige versie per $1',
 'revisionasof'           => 'Versie op $1',
-'revision-info'          => 'Versie op $1 door $2', # Additionally available: $3: revision id
+'revision-info'          => 'Versie op $1 door $2',
 'previousrevision'       => '← Awwer versie',
 'nextrevision'           => 'Nuujere versie→',
 'currentrevisionlink'    => 'zuug hujige versie',
@@ -828,7 +831,7 @@ De door $3 opgegaeve reje is ''$2''",
 # Revision feed
 'history-feed-title'          => 'Bewerkingseuverzich',
 'history-feed-description'    => 'Bewerkingseuverzich veur dees pazjena op de wiki',
-'history-feed-item-nocomment' => '$1 op $2', # user at time
+'history-feed-item-nocomment' => '$1 op $2',
 'history-feed-empty'          => "De gevraogde pazjena bestuit neet.
 Wellich is d'r gewis of vernäömp.
 [[Special:Search|Doorzeuk de wiki]] veur relevante pazjena's.",
@@ -1146,7 +1149,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'prefs-custom-js'           => 'Persoonlijke JS',
 
 # User rights
-'userrights'                  => 'Gebroekersrechtebeheer', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Gebroekersrechtebeheer',
 'userrights-lookup-user'      => 'Beheer gebroekersgróppe',
 'userrights-user-editname'    => "Veur 'ne gebroekersnaam in:",
 'editusergroup'               => 'Bewirk gebroekersgróppe',
@@ -1481,8 +1484,8 @@ De [$2 pagina mit de bestandjsbesjrieving] wurt hie ónger weergegaeve.',
 'noimage'                   => "D'r besjteit gein besjtandj mit deze naam, mer doe kèns 't $1.",
 'noimage-linktext'          => 'uploade',
 'uploadnewversion-linktext' => "Upload 'n nuuje versie van dit bestand",
-'shared-repo-from'          => 'ven $1', # $1 is the repository name
-'shared-repo'               => 'n gedeilde bestanjebank', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'ven $1',
+'shared-repo'               => 'n gedeilde bestanjebank',
 
 # File reversion
 'filerevert'                => '$1 trökdrèjje',
@@ -1861,8 +1864,8 @@ Commentaar en wiejer assistentie:
 Emes angers haet de pazjena al hersjtèld of haet 'n anger bewèrking gedaon.
 
 De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "'t Bewirkingscommentair waor: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "'t Bewirkingscommentair waor: \"''\$1''\".",
+'revertpage'       => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]',
 'rollback-success' => 'Wieziginge door $1 trökgedrèjd; letste versie van $2 hersteld.',
 'sessionfailure'   => "d'r Liek 'n probleem te zeen mit dien aanmelsessie. Diene hanjeling is gestop oet veurzorg taenge 'n beveiligingsrisico (det bestuit oet meugelik \"hijacking\"(euverkape) van deze sessie). Gao 'n pazjena trök, laaj die pazjena opnuuj en probeer 't nog ins.",
 
@@ -1910,7 +1913,7 @@ Dit zeen de hujige instellinge veur de pazjena '''[[$1]]''':",
 ** Bewèrkingskrieg
 ** Preventieve beveiliging väölbezóchde paasj',
 'protect-edit-reasonlist'     => 'Reeje veur beveiliging bewèrke',
-'protect-expiry-options'      => '1 oer:1 hour,1 daag:1 day,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 oer:1 hour,1 daag:1 day,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite',
 'restriction-type'            => 'Rech:',
 'restriction-level'           => 'Bepèrkingsniveau:',
 'minimum-size'                => 'Min. gruutde',
@@ -1985,7 +1988,7 @@ $1",
 'contributions-title' => 'Biedrage van $1',
 'mycontris'           => 'Mien biedrages',
 'contribsub2'         => 'Veur $1 ($2)',
-'nocontribs'          => 'Gein wijzigingen gevonden die aan de gestelde criteria voldoen.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Gein wijzigingen gevonden die aan de gestelde criteria voldoen.',
 'uctop'               => '(lèste verangering)',
 'month'               => 'Van maond (en ierder):',
 'year'                => 'Van jaor (en ierder):',
@@ -2044,7 +2047,7 @@ $1",
 'ipbenableautoblock'              => 'Automatisch de IP-adresse van deze gebroeker blokkere',
 'ipbsubmit'                       => 'Blokkeer dit IP-adres',
 'ipbother'                        => 'Anger verloup',
-'ipboptions'                      => '2 oer:2 hours,1 daag:1 day,3 daag:3 days,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 oer:2 hours,1 daag:1 day,3 daag:3 days,1 waek:1 week,2 waek:2 weeks,1 maondj:1 month,3 maondj:3 months,6 maondj:6 months,1 jaor:1 year,veur iwweg:infinite',
 'ipbotheroption'                  => 'anger verloup',
 'ipbotherreason'                  => 'Angere/eventuele rejer:',
 'ipbhidename'                     => 'Verberg gebroekersnaam van liester èn bewèrkinger',
@@ -2158,7 +2161,7 @@ Vergaet neet de database opnuuj te [[Special:UnlockDB|deblokkere]] wens te klaor
 'move-watch'                   => 'Volg deze pazjena',
 'movepagebtn'                  => 'Verplaats pazjena',
 'pagemovedsub'                 => 'De verplaatsing is gelök',
-'movepage-moved'               => '<big>\'\'\'"$1" is verplaats nao "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" is verplaats nao "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => "d'r Is 'n doorverwiezing aongemaak.",
 'movepage-moved-noredirect'    => "d'r Is gein doorverwiezing aongemaak.",
 'articleexists'                => "Dao is al 'n pazjena mit dees titel of de titel is óngeljig. <br />Kees estebleef 'n anger titel.",
@@ -2356,7 +2359,7 @@ Doe kens in de bewirkingssamevatting \'n reej opgaeve.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonieme gebroeker|Anoniem gebroekers}} ven {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} gebroeker $1',
-'lastmodifiedatby' => "Dees pazjena is 't litst verangert op $2, $1 doer $3.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Dees pazjena is 't litst verangert op $2, $1 doer $3.",
 'othercontribs'    => 'Gebaseerd op wèrk van $1.',
 'others'           => 'angere',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|gebroeker|gebroekers}} $1',
@@ -2471,7 +2474,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Breidte',
@@ -2598,14 +2601,14 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 
 'exif-unknowndate' => 'Datum ónbekindj',
 
-'exif-orientation-1' => 'Normaal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Horizontaal gespegeldj', # 0th row: top; 0th column: right
-'exif-orientation-3' => '180° gedrejd', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Verticaal gespegeldj', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Gespegeldj om as linksbaove-rechsonger', # 0th row: left; 0th column: top
-'exif-orientation-6' => '90° rechsom gedrejd', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Gespegeldj om as linksonger-rechsbaove', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '90° linksom gedrejd', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normaal',
+'exif-orientation-2' => 'Horizontaal gespegeldj',
+'exif-orientation-3' => '180° gedrejd',
+'exif-orientation-4' => 'Verticaal gespegeldj',
+'exif-orientation-5' => 'Gespegeldj om as linksbaove-rechsonger',
+'exif-orientation-6' => '90° rechsom gedrejd',
+'exif-orientation-7' => 'Gespegeldj om as linksonger-rechsbaove',
+'exif-orientation-8' => '90° linksom gedrejd',
 
 'exif-planarconfiguration-1' => 'chunky gegaevesformaat',
 'exif-planarconfiguration-2' => 'planar gegaevesformaat',
@@ -2874,7 +2877,7 @@ De kèns ouch [[Special:Watchlist/edit|'t sjtanderd bewirkingssjirm gebroeke]]."
 'duplicate-defaultsort' => 'Waarsjuwing: De standaardsortering "$2" krieg veurrang veur de sortering "$1".',
 
 # Special:Version
-'version'                          => 'Versie', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versie',
 'version-extensions'               => 'Geïnstalleerde oetbreijinge',
 'version-specialpages'             => "Speciaal pazjena's",
 'version-parserhooks'              => 'Parserheuk',

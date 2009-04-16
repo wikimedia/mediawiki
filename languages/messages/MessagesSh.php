@@ -1,6 +1,9 @@
 <?php
 /** Serbo-Croatian (Srpskohrvatski / Српскохрватски)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -80,7 +83,7 @@ $messages = array(
 'otherlanguages'   => 'Na drugim jezicima',
 'redirectedfrom'   => '(Preusmjereno sa $1)',
 'redirectpagesub'  => 'Preusmjeri stranicu',
-'lastmodifiedat'   => 'Ova stranica je posljednji put izmijenjena $1, $2.', # $1 date, $2 time
+'lastmodifiedat'   => 'Ova stranica je posljednji put izmijenjena $1, $2.',
 'jumpto'           => 'Skoči na:',
 'jumptonavigation' => 'navigacija',
 'jumptosearch'     => 'pretraga',
@@ -481,7 +484,7 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 # Block/unblock
 'blockip'                  => 'Blokiraj korisnika',
 'ipbreasonotherlist'       => 'Ostali razlog/zi',
-'ipboptions'               => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite',
 'ipbotherreason'           => 'Ostali/dodatni razlog/zi:',
 'ipblocklist'              => 'Blokirane IP adrese i korisnička imena',
 'blocklink'                => 'blokirajte',
@@ -516,7 +519,7 @@ U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.
 'move-watch'       => 'Prati ovu stranicu',
 'movepagebtn'      => 'premjestite stranicu',
 'pagemovedsub'     => 'Premještanje uspjelo',
-'movepage-moved'   => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>',
 'articleexists'    => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  
 Molimo Vas da izaberete drugo ime.',
 'talkexists'       => "'''Sama stranica je uspješno premještena, ali stranica za razgovor nije mogla biti premještena jer takva već postoji na novom naslovu.  Molimo Vas da ih spojite ručno.'''",
@@ -623,7 +626,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # External editor support
 'edit-externally'      => 'Izmijeni ovu datoteku/fajl koristeći eksternu aplikaciju',

@@ -1,6 +1,9 @@
 <?php
 /** Ladino (Ladino)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -90,7 +93,7 @@ $messages = array(
 'subcategories'            => 'Subkategorías',
 'category-media-header'    => 'Archivos multimedia en la kategoría "$1"',
 'category-empty'           => "''La kategoría no kontiene aktualmente ningún artikolo o archivo multimedia''",
-'hidden-category-category' => 'Kategorías eskondidas', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Kategorías eskondidas',
 'listingcontinuesabbrev'   => 'kont.',
 
 'about'          => 'Encima de',
@@ -434,7 +437,7 @@ El resto de los linkes del mismo satir se juzgan como eccepciones (por enxemplo,
 'autosumm-new'     => 'Pajina mueva: $1',
 
 # Special:Version
-'version'                  => 'Versión', # Not used as normal message but as header for the special page itself
+'version'                  => 'Versión',
 'version-specialpages'     => 'Pajinas espesiales',
 'version-other'            => 'Otros',
 'version-version'          => 'Versión',

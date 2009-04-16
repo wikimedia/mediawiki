@@ -1,6 +1,9 @@
 <?php
 /** Tulu (ತುಳು)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -116,7 +119,7 @@ $messages = array(
 'category-media-header'          => '"$1" ವರ್ಗಡುಪ್ಪುನಂಚಿನ ಚಿತ್ರ/ಶಬ್ಧ ಫೈಲ್’ಲು',
 'category-empty'                 => "''ಈ ವರ್ಗೊಡು ಸದ್ಯಗ್ ಓವುಲ ಪುಟೊಲಾವಡ್ ಅತ್ತ್’ನ್ಡ ಚಿತ್ರೊಲಾವಡ್ ಇಜ್ಜಿ.''",
 'hidden-categories'              => '{{PLURAL:$1|ದೆಂಗಾದ್ ದೀತಿನ ವರ್ಗ|ದೆಂಗಾದ್ ದೀತಿನ ವರ್ಗೊಲು}}',
-'hidden-category-category'       => 'ದೆಂಗಾದ್ ದೀತಿನ ವರ್ಗೊಲು', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'ದೆಂಗಾದ್ ದೀತಿನ ವರ್ಗೊಲು',
 'category-subcat-count'          => '{{PLURAL:$2|ಈ ವರ್ಗೊಡು ಈ ತಿರ್ತ್’ದ ಉಪವರ್ಗ ಉಂಡು.|ಈ ವರ್ಗೊಡು ಈ ತಿರ್ತ್’ದ {{PLURAL:$1|ಉಪವರ್ಗೊನು|$1 ಉಪವರ್ಗೊಲೆನ್}} ಸೇರಾದ್, ಒಟ್ಟಿಗೆ $2 ಉಂಡು.}}',
 'category-subcat-count-limited'  => 'ಈ ವರ್ಗೊಡು ತಿರ್ತ್ ತೊಜ್ಪಾದಿನ {{PLURAL:$1|ಉಪವರ್ಗ|$1 ಉಪವರ್ಗೊಲು}} ಉಂಡು.',
 'category-article-count'         => '{{PLURAL:$2|ಈ ವರ್ಗೊಡು ಈ ತಿರ್ತ್’ದ ಖಾಲಿ ಒಂಜಿ ಪುಟ ಉಂಡು.|ಈ ವರ್ಗೊಡು ಈ ತಿರ್ತ್’ದ {{PLURAL:$1|ಪುಟೊನು|$1 ಪುಟೊಲೆನ್}} ಸೇರ್ಪಾದ್, ಒಟ್ಟಿಗೆ $2 ಪುಟೊಲು ಉಂಡು.}}',
@@ -203,7 +206,7 @@ $messages = array(
 'otherlanguages'    => 'ಬೇತೆ ಭಾಷೆಲೆಡ್',
 'redirectedfrom'    => '($1 ರ್ದ್ ಪುನರ್ನಿರ್ದೇಶಿತ)',
 'redirectpagesub'   => 'ಪುನರ್ನಿರ್ದೇಶನ ಪುಟ',
-'lastmodifiedat'    => 'ಈ ಪುಟ ಇಂದೆತ ದುಂಬು $2, $1 ಕ್ ಬದಲಾತ್’ನ್ಡ್.', # $1 date, $2 time
+'lastmodifiedat'    => 'ಈ ಪುಟ ಇಂದೆತ ದುಂಬು $2, $1 ಕ್ ಬದಲಾತ್’ನ್ಡ್.',
 'viewcount'         => 'ಈ ಪುಟೊನು {{PLURAL:$1|1 ಸರಿ|$1 ಸರಿ}} ತೂತೆರ್.',
 'protectedpage'     => 'ಸಂರಕ್ಷಿತ ಪುಟ',
 'jumpto'            => 'ಇಡೆ ಪೋಲೆ:',
@@ -625,7 +628,7 @@ $1',
 
 # Block/unblock
 'blockip'                  => 'ಈ ಸದಸ್ಯೆರೆನ್ ಬ್ಲಾಕ್ ಮಲ್ಪುಲೆ',
-'ipboptions'               => '2 ಗಂಟೆಲು:2 hours,1 ದಿನ:1 day,3 ದಿನೊಲು:3 days,1 ವಾರ:1 week,2 ವಾರೊಲು:2 weeks,1 ತಿಂಗೊಲು:1 month,3 ತಿಂಗೊಲು:3 months,6 ತಿಂಗೊಲು:6 months,1 ವರ್ಷ:1 year,ಅನಿರ್ಧಿಷ್ಟ:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 ಗಂಟೆಲು:2 hours,1 ದಿನ:1 day,3 ದಿನೊಲು:3 days,1 ವಾರ:1 week,2 ವಾರೊಲು:2 weeks,1 ತಿಂಗೊಲು:1 month,3 ತಿಂಗೊಲು:3 months,6 ತಿಂಗೊಲು:6 months,1 ವರ್ಷ:1 year,ಅನಿರ್ಧಿಷ್ಟ:infinite',
 'ipblocklist'              => 'ತಡೆಪತ್ತ್’ದಿನ ಐ.ಪಿ ವಿಳಾಸೊಲು ಅಂಚೆನೆ ಬಳಕೆದ ಪುದರ್’ಲು',
 'blocklink'                => 'ಅಡ್ಡ ಪತ್ತ್’ಲೆ',
 'unblocklink'              => 'ಅಡ್ಡನ್ ದೆಪ್ಪುಲೆ',
@@ -734,7 +737,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => 'ಬಾಹ್ಯ(ಪಿದಯಿದ) ತಂತ್ರಾಶೊನು ಉಪಯೋಗ ಮಲ್ತ್’ದ್ ಇಂದೆನ್ ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',

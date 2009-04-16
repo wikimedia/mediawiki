@@ -1,6 +1,9 @@
 <?php
 /** Belarusian (Беларуская)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -166,7 +169,7 @@ $messages = array(
 'category-media-header'          => 'Мультымедыя ў катэгорыі "$1"',
 'category-empty'                 => "''Зараз у катэгорыі няма аніводнай старонкі або мультымедыйнага файла.''",
 'hidden-categories'              => '{{PLURAL:$1|Схаваная катэгорыя|Схаваныя катэгорыі}}',
-'hidden-category-category'       => 'Схаваныя катэгорыі', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Схаваныя катэгорыі',
 'category-subcat-count'          => 'У гэтай катэгорыі ёсць {{PLURAL:$2|наступная падкатэгорыя|наступныя {{PLURAL:$1|наступная падкатэгорыя|наступныя $1 падкатэгорый}} з агульнага ліку $2.}}',
 'category-subcat-count-limited'  => 'У гэтай катэгорыі ёсць {{PLURAL:$1|наступная падкатэгорыя|наступныя $1 падкатэгорый}}.',
 'category-article-count'         => '{{PLURAL:$2|У гэтай катэгорыі ёсць толькі наступная старонка.|У гэтай катэгорыі ёсць {{PLURAL:$1|1 старонка|$1 старонак}} з агульнага ліку $2.}}',
@@ -253,7 +256,7 @@ $messages = array(
 'otherlanguages'    => 'На іншых мовах',
 'redirectedfrom'    => '(Пасля перасылкі з $1)',
 'redirectpagesub'   => 'Старонка-перасылка',
-'lastmodifiedat'    => 'Апошняе змяненне старонкі адбылося $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Апошняе змяненне старонкі адбылося $2, $1.',
 'viewcount'         => 'Гэту старонку адкрывалі {{PLURAL:$1|адзін раз|$1 разоў}}.',
 'protectedpage'     => 'Старонка пад аховай',
 'jumpto'            => 'Перайсці да:',
@@ -721,7 +724,7 @@ $2',
 'currentrev'             => 'Актуальная версія',
 'currentrev-asof'        => 'Актуальная версія на $1',
 'revisionasof'           => 'Версія ад $1',
-'revision-info'          => 'Версія ад $1, аўтар $2', # Additionally available: $3: revision id
+'revision-info'          => 'Версія ад $1, аўтар $2',
 'previousrevision'       => '← Папярэдн. версія',
 'nextrevision'           => 'Навейшая версія →',
 'currentrevisionlink'    => 'Актуальная версія',
@@ -741,7 +744,7 @@ $2',
 # Revision feed
 'history-feed-title'          => 'Гісторыя версій',
 'history-feed-description'    => 'Гісторыя версій гэтай старонкі',
-'history-feed-item-nocomment' => '$1 на $2', # user at time
+'history-feed-item-nocomment' => '$1 на $2',
 'history-feed-empty'          => 'Не знойдзена такая старонка.
 Магчыма, яна была сцёртая або названая іначай.
 Паспрабуйце [[Special:Search|пашукаць яе на гэтай Вікі]] сярод новых старонак.',
@@ -1040,7 +1043,7 @@ $2',
 'prefs-custom-js'           => 'Уласны JS',
 
 # User rights
-'userrights'                  => 'Распараджэнне правамі ўдзельніка', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Распараджэнне правамі ўдзельніка',
 'userrights-lookup-user'      => 'Распараджацца групамі ўдзельнікаў',
 'userrights-user-editname'    => 'Увядзіце імя ўдзельніка:',
 'editusergroup'               => 'Правіць групы ўдзельнікаў',
@@ -1739,8 +1742,8 @@ $NEWPAGE
 з таго часу нехта іншы правіў або адкатваў гэтую старонку.
 
 Апошняя праўка старонкі была аўтарства [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Тлумачэнне праўкі было: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Праўкі аўтарства [[Special:Contributions/$2|$2]] ([[User talk:$2|размова]]) адкочаныя; вернута апошняя версія аўтарства [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Тлумачэнне праўкі было: \"''\$1''\".",
+'revertpage'       => 'Праўкі аўтарства [[Special:Contributions/$2|$2]] ([[User talk:$2|размова]]) адкочаныя; вернута апошняя версія аўтарства [[User:$1|$1]]',
 'rollback-success' => 'Адкочаны праўкі $1; вернута апошняя версія $2.',
 'sessionfailure'   => 'Магчыма, ёсць праблемы з вашым сеансам працы ў сістэме. Таму вам было адмоўлена ў выкананні дзеяння, каб засцерагчыся ад захопу сеанса. Націсніце "Назад", і перачытайце старонку, з якой вы сюды прыйшлі, тады паспрабуйце нанова.',
 
@@ -1786,7 +1789,7 @@ $NEWPAGE
 ** Шкодная вайна правак
 ** Старонка з высокай наведвальнасцю',
 'protect-edit-reasonlist'     => 'Правіць прычыну аховы',
-'protect-expiry-options'      => '2 гадзіны:2 hours,1 дзень:1 day,3 дні:3 days,1 тыдзень:1 week,2 тыдні:2 weeks,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months,1 год:1 year,назаўсёды:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 гадзіны:2 hours,1 дзень:1 day,3 дні:3 days,1 тыдзень:1 week,2 тыдні:2 weeks,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months,1 год:1 year,назаўсёды:infinite',
 'restriction-type'            => 'Дазвол:',
 'restriction-level'           => 'Абмежаванне на ўзроўні:',
 'minimum-size'                => "Мін. аб'ём",
@@ -1860,7 +1863,7 @@ $1',
 'contributions-title' => 'Уклад удзельніка $1',
 'mycontris'           => 'Уклад',
 'contribsub2'         => 'Для $1 ($2)',
-'nocontribs'          => 'Не знойдзена менаў, адпаведных зададзеным параметрам.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Не знойдзена менаў, адпаведных зададзеным параметрам.',
 'uctop'               => '(апошн.)',
 'month'               => 'Ад месяцу (і раней):',
 'year'                => 'Ад году (і раней):',
@@ -1920,7 +1923,7 @@ $1',
 'ipbenableautoblock'              => 'Аўтаматычна блакаваць адрас IP, якім удзельнік карыстаўся апошнім разам, і ўсе наступныя адрасы IP, з-пад якіх ён паспрабуе рабіць праўкі',
 'ipbsubmit'                       => 'Заблакаваць удзельніка',
 'ipbother'                        => 'Іншы час',
-'ipboptions'                      => '2 гадзіны:2 hours,1 дзень:1 day,3 дні:3 days,1 тыдзень:1 week,2 тыдні:2 weeks,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months,1 год:1 year,назаўсёды:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 гадзіны:2 hours,1 дзень:1 day,3 дні:3 days,1 тыдзень:1 week,2 тыдні:2 weeks,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months,1 год:1 year,назаўсёды:infinite',
 'ipbotheroption'                  => 'іншае',
 'ipbotherreason'                  => 'Іншая/дадатковая прычына:',
 'ipbhidename'                     => 'Не паказваць імя ўдзельніка ў журнале блокаў, пераліку актыўных блокаў і ў спісе ўдзельнікаў',
@@ -2046,7 +2049,7 @@ $1 ужо знаходзіцца пад блокам. Ці жадаеце змя
 'move-watch'                   => 'Назіраць за старонкай',
 'movepagebtn'                  => 'Перанесці старонку',
 'pagemovedsub'                 => 'Паспяховы перанос',
-'movepage-moved'               => '<big>\'\'\'"$1" перанесена ў "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" перанесена ў "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Была створаная перасылка.',
 'movepage-moved-noredirect'    => 'Не была створаная перасылка.',
 'articleexists'                => 'Старонка з такой назвай ужо існуе, або
@@ -2247,7 +2250,7 @@ $1 ужо знаходзіцца пад блокам. Ці жадаеце змя
 # Attribution
 'anonymous'        => 'Ананімны{{PLURAL:$1| ўдзельнік|я ўдзельнікі}} на пляцоўцы {{SITENAME}}',
 'siteuser'         => 'удзельнік $1 з {{SITENAME}}',
-'lastmodifiedatby' => 'Апошняе змяненне старонкі адбылося $2, $1 аўтарства $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Апошняе змяненне старонкі адбылося $2, $1 аўтарства $3.',
 'othercontribs'    => 'На аснове працы $1.',
 'others'           => 'іншае',
 'siteusers'        => '{{PLURAL:$2|удзельнік|удзельнікі}} з пляцоўкі {{SITENAME}} - $1',
@@ -2366,7 +2369,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Шырыня',
@@ -2483,14 +2486,14 @@ $1',
 
 'exif-unknowndate' => 'Невядомая дата',
 
-'exif-orientation-1' => 'Звычайна', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Адлюстравана злева ўправа', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Павернута на 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Адлюстравана зверху ўніз', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Павернута на 90° супраць гадзінніка і адлюстравана зверху ўніз', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Павернута на 90° па гадзінніку', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Павернута на 90° па гадзінніку і адлюстравана зверху ўніз', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Павернута на 90° супраць гадзінніка', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Звычайна',
+'exif-orientation-2' => 'Адлюстравана злева ўправа',
+'exif-orientation-3' => 'Павернута на 180°',
+'exif-orientation-4' => 'Адлюстравана зверху ўніз',
+'exif-orientation-5' => 'Павернута на 90° супраць гадзінніка і адлюстравана зверху ўніз',
+'exif-orientation-6' => 'Павернута на 90° па гадзінніку',
+'exif-orientation-7' => 'Павернута на 90° па гадзінніку і адлюстравана зверху ўніз',
+'exif-orientation-8' => 'Павернута на 90° супраць гадзінніка',
 
 'exif-planarconfiguration-1' => 'чанкавы фармат',
 'exif-planarconfiguration-2' => 'планарны фармат',
@@ -2744,7 +2747,7 @@ $1',
 'duplicate-defaultsort' => 'Увага: прадвызначаная клавіша ўпарадкавання "$2" замяніла ранейшую такую клавішу "$1".',
 
 # Special:Version
-'version'                          => 'Версія', # Not used as normal message but as header for the special page itself
+'version'                          => 'Версія',
 'version-extensions'               => 'Устаноўленыя прыстаўкі',
 'version-specialpages'             => 'Адмысловыя старонкі',
 'version-parserhooks'              => 'Хукі парсера',

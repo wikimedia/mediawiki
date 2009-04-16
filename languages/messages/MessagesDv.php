@@ -1,6 +1,9 @@
 <?php
 /** Divehi (ދިވެހިބަސް)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -150,7 +153,7 @@ $messages = array(
 'otherlanguages'    => 'އެހެން ބަސްބަހުން',
 'redirectedfrom'    => '(މިސްރާބުކުރެވުނީ $1 އިން)',
 'redirectpagesub'   => 'ޞަފްޙާގެ މިސްރާބު އައުކުރައްވާ',
-'lastmodifiedat'    => 'މި ޞަފްހާ އަށް އެންމެ ފަހުން ބަދަލެއް ގެނެވިފައިވަނީ $1، $2 ގައެވެ.', # $1 date, $2 time
+'lastmodifiedat'    => 'މި ޞަފްހާ އަށް އެންމެ ފަހުން ބަދަލެއް ގެނެވިފައިވަނީ $1، $2 ގައެވެ.',
 'protectedpage'     => 'ދިފާއުކުރެވިފައިވާ ޞަފްޙާ',
 'jumptosearch'      => 'ހޯއްދަވާ',
 
@@ -285,7 +288,7 @@ $messages = array(
 'files'          => 'ފައިލުތައް',
 
 # User rights
-'userrights'               => 'މެންބަރުގެ ހައްގުތަކުގެ އިންތިޒާމް', # Not used as normal message but as header for the special page itself
+'userrights'               => 'މެންބަރުގެ ހައްގުތަކުގެ އިންތިޒާމް',
 'userrights-user-editname' => 'މެންބަރުނަން ލިޔުއްވާ:',
 
 # Recent changes
@@ -461,7 +464,7 @@ $messages = array(
 'confirm_purge_button' => 'ރަނގަޅު',
 
 # Special:Version
-'version' => 'ނުސްހާ ނަމްބަރު', # Not used as normal message but as header for the special page itself
+'version' => 'ނުސްހާ ނަމްބަރު',
 
 # Special:SpecialPages
 'specialpages' => 'ހާއްސަ ޞަފްޙާތައް',

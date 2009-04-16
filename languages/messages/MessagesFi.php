@@ -1,6 +1,9 @@
 <?php
 /** Finnish (Suomi)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -383,7 +386,7 @@ $messages = array(
 'category-media-header'          => 'Luokan ”$1” sisältämät tiedostot',
 'category-empty'                 => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
 'hidden-categories'              => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
-'hidden-category-category'       => 'Piilotetut luokat', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Piilotetut luokat',
 'category-subcat-count'          => '{{PLURAL:$2|Tässä luokassa on vain seuraava alaluokka.|{{PLURAL:$1|Seuraava alaluokka kuuluu|Seuraavat $1 alaluokkaa kuuluvat}} tähän luokkaan. Alaluokkien kokonaismäärä luokassa on $2.}}',
 'category-subcat-count-limited'  => 'Tässä luokassa on {{PLURAL:$1|yksi alaluokka|$1 alaluokkaa}}.',
 'category-article-count'         => '{{PLURAL:$2|Tässä luokassa on vain seuraava sivu.|{{PLURAL:$1|Seuraava sivu kuuluu|Seuraavat $1 sivua kuuluvat}} tähän luokkaan. Sivujen kokonaismäärä luokassa on $2.}}',
@@ -480,7 +483,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'otherlanguages'    => 'Muilla kielillä',
 'redirectedfrom'    => 'Ohjattu sivulta $1',
 'redirectpagesub'   => 'Ohjaussivu',
-'lastmodifiedat'    => 'Sivua on viimeksi muutettu $1 kello $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Sivua on viimeksi muutettu $1 kello $2.',
 'viewcount'         => 'Tämä sivu on näytetty {{PLURAL:$1|yhden kerran|$1 kertaa}}.',
 'protectedpage'     => 'Suojattu sivu',
 'jumpto'            => 'Loikkaa:',
@@ -928,7 +931,7 @@ Käyttäjän $3 antama syy on ''$2''",
 'currentrev'             => 'Nykyinen versio',
 'currentrev-asof'        => 'Nykyinen versio $1',
 'revisionasof'           => 'Versio $1',
-'revision-info'          => 'Versio hetkellä $1 – tehnyt $2', # Additionally available: $3: revision id
+'revision-info'          => 'Versio hetkellä $1 – tehnyt $2',
 'previousrevision'       => '← Vanhempi versio',
 'nextrevision'           => 'Uudempi versio →',
 'currentrevisionlink'    => 'Nykyinen versio',
@@ -948,7 +951,7 @@ Käyttäjän $3 antama syy on ''$2''",
 # Revision feed
 'history-feed-title'          => 'Muutoshistoria',
 'history-feed-description'    => 'Tämän sivun muutoshistoria',
-'history-feed-item-nocomment' => '$1 ($2)', # user at time
+'history-feed-item-nocomment' => '$1 ($2)',
 'history-feed-empty'          => 'Pyydettyä sivua ei ole olemassa.
 Se on saatettu poistaa wikistä tai nimetä uudelleen.
 Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
@@ -1257,7 +1260,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-custom-js'           => 'Käyttäjäkohtainen JavaScript-sivu',
 
 # User rights
-'userrights'                  => 'Käyttöoikeuksien hallinta', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Käyttöoikeuksien hallinta',
 'userrights-lookup-user'      => 'Käyttöoikeuksien hallinta',
 'userrights-user-editname'    => 'Käyttäjätunnus',
 'editusergroup'               => 'Muokkaa käyttäjän ryhmiä',
@@ -1578,8 +1581,8 @@ Tiedot [$2 tiedoston kuvaussivulta] näkyvät alla.',
 'noimage'                   => 'Tämän nimistä tiedostoa ei ole olemassa, mutta voit $1.',
 'noimage-linktext'          => 'tallentaa sen',
 'uploadnewversion-linktext' => 'Tallenna uusi versio tästä tiedostosta',
-'shared-repo-from'          => 'kohteesta $1', # $1 is the repository name
-'shared-repo'               => 'jaettu mediavarasto', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'kohteesta $1',
+'shared-repo'               => 'jaettu mediavarasto',
 
 # File reversion
 'filerevert'                => 'Tiedoston $1 palautus',
@@ -1952,8 +1955,8 @@ Sivulla $2 on lista viimeaikaisista poistoista.',
 'alreadyrolled'    => 'Käyttäjän [[User:$2|$2]] ([[User talk:$2|keskustelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tekemiä muutoksia sivuun [[:$1]] ei voi kumota, koska joku muu on muuttanut sivua.
 
 Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|keskustelu]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Muokkauksen yhteenveto oli: ''$1''.", # only shown if there is an edit comment
-'revertpage'       => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Muokkauksen yhteenveto oli: ''$1''.",
+'revertpage'       => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.',
 'rollback-success' => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja artikkeli palautettiin käyttäjän $2 versioon.',
 'sessionfailure'   => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
 
@@ -1997,7 +2000,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 ** Muokkaussota
 ** Suuri näkyvyys',
 'protect-edit-reasonlist'     => 'Muokkaa suojaussyitä',
-'protect-expiry-options'      => '1 tunti:1 hour,1 päivä:1 day,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 tunti:1 hour,1 päivä:1 day,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite',
 'restriction-type'            => 'Rajoitus',
 'restriction-level'           => 'Suojaus',
 'minimum-size'                => 'Vähimmäiskoko',
@@ -2069,7 +2072,7 @@ $1',
 'contributions-title' => 'Käyttäjän $1 muokkaukset',
 'mycontris'           => 'Omat muokkaukset',
 'contribsub2'         => 'Käyttäjän $1 ($2) muokkaukset',
-'nocontribs'          => 'Näihin ehtoihin sopivia muokkauksia ei löytynyt.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Näihin ehtoihin sopivia muokkauksia ei löytynyt.',
 'uctop'               => ' (uusin)',
 'month'               => 'Kuukausi',
 'year'                => 'Vuosi',
@@ -2129,7 +2132,7 @@ $1',
 'ipbenableautoblock'              => 'Estä viimeisin IP-osoite, josta käyttäjä on muokannut, sekä ne osoitteet, joista hän jatkossa yrittää muokata.',
 'ipbsubmit'                       => 'Estä',
 'ipbother'                        => 'Vapaamuotoinen kesto',
-'ipboptions'                      => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite',
 'ipbotheroption'                  => 'Muu kesto',
 'ipbotherreason'                  => 'Muu syy tai tarkennus',
 'ipbhidename'                     => 'Piilota tunnus muokkauksista ja listauksista',
@@ -2252,7 +2255,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'move-watch'                   => 'Tarkkaile tätä sivua',
 'movepagebtn'                  => 'Siirrä sivu',
 'pagemovedsub'                 => 'Siirto onnistui',
-'movepage-moved'               => "<big>'''$1 on siirretty nimelle $2'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''$1 on siirretty nimelle $2'''</big>",
 'movepage-moved-redirect'      => 'Ohjaus luotiin.',
 'movepage-moved-noredirect'    => 'Ohjausta ei luotu.',
 'articleexists'                => 'Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.',
@@ -2460,7 +2463,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 # Attribution
 'anonymous'        => '{{GRAMMAR:genitive|{{SITENAME}}}} {{PLURAL:$1|anonyymi käyttäjä|anonyymit käyttäjät}}',
 'siteuser'         => '{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $1',
-'lastmodifiedatby' => 'Tätä sivua muokkasi viimeksi ”$3” $2 kello $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Tätä sivua muokkasi viimeksi ”$3” $2 kello $1.',
 'othercontribs'    => 'Perustuu työlle, jonka teki $1.',
 'others'           => 'muut',
 'siteusers'        => '{{GRAMMAR:genitive|{{SITENAME}}}} {{PLURAL:$2|käyttäjä|käyttäjät}} $1',
@@ -2578,7 +2581,7 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Leveys',
@@ -2705,14 +2708,14 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 
 'exif-unknowndate' => 'Tuntematon päiväys',
 
-'exif-orientation-1' => 'Normaali', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Käännetty vaakasuunnassa', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Käännetty 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Käännetty pystysuunnassa', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Käännetty 90° vastapäivään ja pystysuunnassa', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Käännetty 90° myötäpäivään', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Käännetty 90° myötäpäivään ja pystysuunnassa', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Käännetty 90° vastapäivään', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normaali',
+'exif-orientation-2' => 'Käännetty vaakasuunnassa',
+'exif-orientation-3' => 'Käännetty 180°',
+'exif-orientation-4' => 'Käännetty pystysuunnassa',
+'exif-orientation-5' => 'Käännetty 90° vastapäivään ja pystysuunnassa',
+'exif-orientation-6' => 'Käännetty 90° myötäpäivään',
+'exif-orientation-7' => 'Käännetty 90° myötäpäivään ja pystysuunnassa',
+'exif-orientation-8' => 'Käännetty 90° vastapäivään',
 
 'exif-planarconfiguration-1' => 'kokkaremuoto',
 'exif-planarconfiguration-2' => 'litteämuoto',
@@ -2981,7 +2984,7 @@ Yritä normaalia esikatselua.',
 'duplicate-defaultsort' => 'Varoitus: Oletuslajitteluavain ”$2” korvaa aiemman oletuslajitteluavaimen ”$1”.',
 
 # Special:Version
-'version'                          => 'Versio', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versio',
 'version-extensions'               => 'Asennetut laajennukset',
 'version-specialpages'             => 'Toimintosivut',
 'version-parserhooks'              => 'Jäsenninkytkökset',

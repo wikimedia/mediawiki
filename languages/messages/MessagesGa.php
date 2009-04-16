@@ -1,6 +1,9 @@
 <?php
 /** Irish (Gaeilge)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -193,7 +196,7 @@ $messages = array(
 'category-media-header'          => 'Meáin sa chatagóir "$1"',
 'category-empty'                 => "''Níl aon leathanaigh ná méid sa chatagóir ar an am seo.''",
 'hidden-categories'              => '{{PLURAL:$1|Catagóir folaithe|Catagóirí folaithe}}',
-'hidden-category-category'       => 'Catagóirí folaithe', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Catagóirí folaithe',
 'category-subcat-count'          => '{{PLURAL:$2| Níl ach an fo-chatagóir seo a leanas ag an gcatagóir seo.|Tá {{PLURAL:$1|fo-chatagóir|fo-chatagóirí}} ag an gcatagóir seo, as $2 san iomlán.}}',
 'category-subcat-count-limited'  => 'Is {{PLURAL:$1|é an líon fochatagóir|$1 iad na líon fochatagóirí}} atá ag an gcatagóir seo ná: $1.',
 'category-article-count'         => '{{PLURAL:$2|Níl sa chatagóir seo ach an leathanach seo a leanas.|Tá {{PLURAL:$1|$1 leathanach|$1 leathanaigh}} sa chatagóir seo, as iomlán de $2.}}',
@@ -275,7 +278,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'otherlanguages'    => 'I dteangacha eile',
 'redirectedfrom'    => '(Athsheolta ó $1)',
 'redirectpagesub'   => 'Lch athdhírithe',
-'lastmodifiedat'    => 'Athraíodh an leathanach seo ag $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Athraíodh an leathanach seo ag $2, $1.',
 'viewcount'         => 'Rochtainíodh an leathanach seo {{PLURAL:$1|uair amháin|$1 uaire}}.',
 'protectedpage'     => 'Leathanach glasáilte',
 'jumpto'            => 'Léim go:',
@@ -695,7 +698,7 @@ Tá an log scriosta ar fáil anseo mar áis:",
 'currentrev'             => 'Leagan reatha',
 'currentrev-asof'        => 'Leagan reatha ó $1',
 'revisionasof'           => 'Leagan ó $1',
-'revision-info'          => 'Leagan ó $1 le $2', # Additionally available: $3: revision id
+'revision-info'          => 'Leagan ó $1 le $2',
 'previousrevision'       => '← An leasú roimhe seo',
 'nextrevision'           => 'An chéad leasú eile →',
 'currentrevisionlink'    => 'Leagan reatha',
@@ -716,7 +719,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 # Revision feed
 'history-feed-title'          => 'Stáir leasú',
 'history-feed-description'    => 'Stair leasú an leathanach seo ar an vicí',
-'history-feed-item-nocomment' => '$1 ag $2', # user at time
+'history-feed-item-nocomment' => '$1 ag $2',
 
 # Revision deletion
 'rev-deleted-user'      => '(ainm úsáideora dealaithe)',
@@ -851,7 +854,7 @@ den am an freastalaí (UTC).',
 'files'                     => 'Comhaid',
 
 # User rights
-'userrights'               => 'Bainistíocht cearta úsáideora', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Bainistíocht cearta úsáideora',
 'userrights-user-editname' => 'Iontráil ainm úsáideora:',
 'editusergroup'            => 'Cuir Grúpái Úsáideoirí In Eagar',
 'editinguser'              => "Ag athrú ceart don úsáideoir '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -1012,7 +1015,7 @@ uaslódáil é arís, le do thoil.',
 'noimage'                   => 'Níl aon chomhad ann leis an ainm seo, ba féidir leat $1',
 'noimage-linktext'          => 'uaslódaigh ceann',
 'uploadnewversion-linktext' => 'Uaslódáil leagan nua den comhad seo',
-'shared-repo'               => 'comhstóráil', # used when shared-repo-NAME does not exist
+'shared-repo'               => 'comhstóráil',
 
 # File reversion
 'filerevert'                => 'Fill $1 ar ais',
@@ -1306,8 +1309,8 @@ Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
 'alreadyrolled'  => "Ní féidir eagrán níos luaí an leathanaigh [[:$1]] le [[User:$2|$2]] ([[User talk:$2|Plé]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) a athúsáid; d'athraigh duine eile é cheana fein, nó d'athúsáid duine eile eagrán níos luaí cheana féin.
 
 [[User:$3|$3]] ([[User talk:$3|Plé]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) an té a rinne an athrú is déanaí.",
-'editcomment'    => "Seo a raibh an achoimre eagarthóireacht: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'     => "Filleadh eagarthóireachtaí le [[Special:Contributions/$2|$2]] ([[User talk:$2|Plé]]); d'athúsáideadh an athrú seo caite le [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "Seo a raibh an achoimre eagarthóireacht: \"''\$1''\".",
+'revertpage'     => "Filleadh eagarthóireachtaí le [[Special:Contributions/$2|$2]] ([[User talk:$2|Plé]]); d'athúsáideadh an athrú seo caite le [[User:$1|$1]]",
 
 # Protect
 'protectlogpage'              => 'Log cosanta',
@@ -1339,7 +1342,7 @@ Is féidir an leibhéal glasála a athrú, ach ní féidir cur isteach ar an ghl
 'protect-cantedit'            => 'Ní féidir leat na leibhéil cosanta a athrú faoin leathanach seo, mar níl cead agat é a cur in eagar.',
 'protect-othertime'           => 'Am eile:',
 'protect-othertime-op'        => 'am eile',
-'protect-expiry-options'      => 'uair amháin:1 hour,1 lá amháin:1 day,seachtain amháin:1 week,2 sheachtain:2 weeks,mí amháin:1 month,3 mhí:3 months,6 mhí:6 months,bliain amháin:1 year,gan teora:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => 'uair amháin:1 hour,1 lá amháin:1 day,seachtain amháin:1 week,2 sheachtain:2 weeks,mí amháin:1 month,3 mhí:3 months,6 mhí:6 months,bliain amháin:1 year,gan teora:infinite',
 'restriction-type'            => 'Ceadúnas:',
 'restriction-level'           => 'Leibhéal srianadh:',
 'pagesize'                    => '(bearta)',
@@ -1387,7 +1390,7 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'contributions-title' => 'Dréachtaí úsáideora do $1',
 'mycontris'           => 'Mo chuid dréachtaí',
 'contribsub2'         => 'Do $1 ($2)',
-'nocontribs'          => 'Níor bhfuarthas aon athrú a raibh cosúil le na crítéir seo.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Níor bhfuarthas aon athrú a raibh cosúil le na crítéir seo.',
 'uctop'               => ' (barr)',
 'month'               => 'Ón mhí seo (agus níos luaithe):',
 'year'                => 'Ón bhliain seo (agus níos luaithe):',
@@ -1445,7 +1448,7 @@ leathanaigh áirithe a rinne an duine damáiste ar).',
 ** Seachfhreastalaí Oscailte',
 'ipbsubmit'               => 'Coisc an úsáideoir seo',
 'ipbother'                => 'Méid eile ama',
-'ipboptions'              => '2 uair:2 hours,1 lá amháin:1 day,3 lá:3 days,1 sheachtain amháin:1 week,2 sheachtain:2 weeks,1 mhí amháin:1 month,3 mhí:3 months,6 mhí:6 months,1 bhliain amháin:1 year,gan teorainn:infinite', # display1:time1,display2:time2,...
+'ipboptions'              => '2 uair:2 hours,1 lá amháin:1 day,3 lá:3 days,1 sheachtain amháin:1 week,2 sheachtain:2 weeks,1 mhí amháin:1 month,3 mhí:3 months,6 mhí:6 months,1 bhliain amháin:1 year,gan teorainn:infinite',
 'ipbotheroption'          => 'eile',
 'badipaddress'            => 'Níl aon úsáideoir ann leis an ainm seo.',
 'blockipsuccesssub'       => "D'éirigh leis an cosc",
@@ -1542,7 +1545,7 @@ Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lám
 'move-watch'              => 'Déan faire an leathanach seo',
 'movepagebtn'             => 'Athainmnigh an leathanach',
 'pagemovedsub'            => "D'éirigh leis an athainmniú",
-'movepage-moved'          => '<big>\'\'\'Athainmníodh "$1" mar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'Athainmníodh "$1" mar "$2"\'\'\'</big>',
 'articleexists'           => 'Tá leathanach leis an teideal seo ann cheana féin, nó níl an teideal a roghnaigh tú ina theideal bailí. Roghnaigh teideal eile le do thoil.',
 'talkexists'              => "'''D’athainmníodh an leathanach é féin go rathúil, ach ní raibh sé ar a chumas an leathanach phlé a hathainmniú dá bharr go bhfuil ceann ann cheana féin ag an teideal nua.'''<br />
 '''Báigh tusa féin iad.'''",
@@ -1673,7 +1676,7 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Úsáideoir|Úsáideoirí}} gan ainm ar {{SITENAME}}',
 'siteuser'         => 'Úsáideoir $1 ag {{SITENAME}}',
-'lastmodifiedatby' => 'Leasaigh $3 an leathanach seo go déanaí ag $2, $1.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Leasaigh $3 an leathanach seo go déanaí ag $2, $1.',
 'othercontribs'    => 'Bunaithe ar saothair le $1.',
 'others'           => 'daoine eile',
 'siteusers'        => '{{PLURAL:$2|Úsáideoirí|Úsáideoir}} ag {{SITENAME}} $1',
@@ -1774,7 +1777,7 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Leithead',
@@ -1901,14 +1904,14 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 
 'exif-unknowndate' => 'Dáta anaithnid',
 
-'exif-orientation-1' => 'Gnáth', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Iompaithe go cothrománach', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rothlaithe trí 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Iompaithe go hingearach', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rothlaithe trí 90° CCW agus iompaithe go hingearach', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rothlaithe trí 90° CW', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rothlaithe trí 90° CW agus iompaithe go hingearach', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rothlaithe trí 90° CCW', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Gnáth',
+'exif-orientation-2' => 'Iompaithe go cothrománach',
+'exif-orientation-3' => 'Rothlaithe trí 180°',
+'exif-orientation-4' => 'Iompaithe go hingearach',
+'exif-orientation-5' => 'Rothlaithe trí 90° CCW agus iompaithe go hingearach',
+'exif-orientation-6' => 'Rothlaithe trí 90° CW',
+'exif-orientation-7' => 'Rothlaithe trí 90° CW agus iompaithe go hingearach',
+'exif-orientation-8' => 'Rothlaithe trí 90° CCW',
 
 'exif-planarconfiguration-1' => 'Formáid shmutánach',
 'exif-planarconfiguration-2' => 'Formáid phlánach',
@@ -2123,7 +2126,7 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 'watchlisttools-raw'  => 'Cuir do amhliosta faire in eagar',
 
 # Special:Version
-'version'                  => 'Leagan', # Not used as normal message but as header for the special page itself
+'version'                  => 'Leagan',
 'version-other'            => 'Eile',
 'version-version'          => 'Leagan',
 'version-license'          => 'Ceadúnas',

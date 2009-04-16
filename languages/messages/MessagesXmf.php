@@ -1,6 +1,9 @@
 <?php
 /** Mingrelian (მარგალური)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -279,7 +282,7 @@ $messages = array(
 'viewpagelogs'        => 'თე ხასილაშა სარეგისტრაციე ჟურნალეფიშ ძირაფა',
 'currentrev'          => 'მიმალ გიშანწყუალა',
 'revisionasof'        => '$1-იშ ვერსია',
-'revision-info'       => '$1-იშ ვერსია, $2-იშ მიშაღალირ', # Additionally available: $3: revision id
+'revision-info'       => '$1-იშ ვერსია, $2-იშ მიშაღალირ',
 'previousrevision'    => '←ჯვეშ ვერსია',
 'nextrevision'        => 'უკულ ვერსია→',
 'currentrevisionlink' => 'მიმალ ვერსია',
@@ -298,7 +301,7 @@ $messages = array(
 # Revision feed
 'history-feed-title'          => 'რედაქტირებიშ ისტორია',
 'history-feed-description'    => 'თენა გვერდიშ რედაქტირებეფიშ ისტორია ვიკის',
-'history-feed-item-nocomment' => '$1  $2-ს', # user at time
+'history-feed-item-nocomment' => '$1  $2-ს',
 
 # Diffs
 'history-title'           => '"$1" თირაფეფიშ ისტორია',
@@ -466,7 +469,7 @@ $messages = array(
 'protect-level-autoconfirmed' => 'ვარეგისტრირებულ მახვარებელეფიშ დაბლოკვა',
 'protect-level-sysop'         => 'ხვალე ადმინისტრატორეფ',
 'protect-summary-cascade'     => 'იერარქიულ',
-'protect-expiry-options'      => '2 საათი:2 hours,1 დღა:1 დღა,3 დღა:3 დღალეფ,1 მარა:1 week,2 მარა:2 weeks,1 თუთა:1 month,3 თუთა:3 months,6 თუთა:6 months,1 წანა:1 year,განუსაზღვრელი ვადით:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 საათი:2 hours,1 დღა:1 დღა,3 დღა:3 დღალეფ,1 მარა:1 week,2 მარა:2 weeks,1 თუთა:1 month,3 თუთა:3 months,6 თუთა:6 months,1 წანა:1 year,განუსაზღვრელი ვადით:infinite',
 'restriction-type'            => 'ულაფა',
 
 # Undelete
@@ -504,7 +507,7 @@ $messages = array(
 
 # Block/unblock
 'blockip'            => 'მახვარებელიშ ვარა IP მისამართიშ ბლოკირება',
-'ipboptions'         => '2 საათი:2 hours,1 დღა:1 დღა,3 დღა:3 დღალეფ,1 მარა:1 week,2 მარა:2 weeks,1 თუთა:1 month,3 თუთა:3 months,6 თუთა:6 months,1 წანა:1 year,განუსაზღვრელი ვადით:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '2 საათი:2 hours,1 დღა:1 დღა,3 დღა:3 დღალეფ,1 მარა:1 week,2 მარა:2 weeks,1 თუთა:1 month,3 თუთა:3 months,6 თუთა:6 months,1 წანა:1 year,განუსაზღვრელი ვადით:infinite',
 'ipbotheroption'     => 'შხვა',
 'ipblocklist-submit' => 'გორუა',
 'blocklink'          => 'ბლოკირაფა',
@@ -520,7 +523,7 @@ $messages = array(
 'move-watch'       => 'თე ხასილაშ კონტროლ',
 'movepagebtn'      => 'ხასილაშ გინოღალა',
 'pagemovedsub'     => 'გინოღალა რსულებულ რე',
-'movepage-moved'   => '<big>\'\'\'"$1" გინოღალულ რე "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'"$1" გინოღალულ რე "$2"\'\'\'</big>',
 'movedto'          => 'გინაღალულ რე',
 'movetalk'         => 'აკოხვალამირ სხუნუაშ გინოღალა',
 '1movedto2'        => '[[$1]] გინოღალირიე ხასილაშა [[$2]]',
@@ -625,7 +628,7 @@ $messages = array(
 'watchlisttools-raw'  => 'კონტროლიშ ერკებულიშ რედაქტირაფა ტექსტიშ ფორმატის',
 
 # Special:Version
-'version' => 'ვერსია', # Not used as normal message but as header for the special page itself
+'version' => 'ვერსია',
 
 # Special:SpecialPages
 'specialpages' => 'სპეციალურ ხასილეფ',

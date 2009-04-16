@@ -1,6 +1,9 @@
 <?php
 /** Tarandíne (Tarandíne)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -128,7 +131,7 @@ $messages = array(
 'category-media-header'          => 'Media jndr\'à categorie "$1"',
 'category-empty'                 => "''Sta categorije pe mò non ge tène manghe 'na pàgene e manghe 'nu media.''",
 'hidden-categories'              => '{{PLURAL:$1|categorije scunnute|categorije scunnute}}',
-'hidden-category-category'       => 'Categorije scunnute', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Categorije scunnute',
 'category-subcat-count'          => "{{PLURAL:$2|Sta categorije tène sulamende 'na sottecategorije.|Sta categorije tène {{PLURAL:$1|'na sottecategorije|$1 sottecategorije}}, sus a 'nu totele de $2.}}",
 'category-subcat-count-limited'  => 'Sta categorije tène {{PLURAL:$1|sottecategorije|le seguende $1 sottecategorije}}.',
 'category-article-count'         => "{{PLURAL:$2|Sta categorije condiene sulamende 'a seguenda pàgene.|{{PLURAL:$1|'A seguende pàgene jè|le seguende $1 pàggene sonde }} condenute jndr'à sta categorije, sus a $2 totele.}}",
@@ -214,7 +217,7 @@ $messages = array(
 'otherlanguages'    => "Jndr'à l'otre lènghe",
 'redirectedfrom'    => '(Riderette da $1)',
 'redirectpagesub'   => 'Pàgene de redirezione',
-'lastmodifiedat'    => "Sta pàgene a state cangete l'urtema vote da $1, alle $2.", # $1 date, $2 time
+'lastmodifiedat'    => "Sta pàgene a state cangete l'urtema vote da $1, alle $2.",
 'viewcount'         => "Sta pàggene ha state viste {{PLURAL:$1|'na vote|$1 vote}}.",
 'protectedpage'     => 'Pàgene prutette',
 'jumpto'            => 'Zumbe a:',
@@ -740,7 +743,7 @@ Pe piacere verifichesce 'u combronde sotte pe condrollà ca quiste ca tu vuè cc
 'currentrev'             => 'Versione de osce a die',
 'currentrev-asof'        => 'Revisiona corrende de $1',
 'revisionasof'           => 'Versione de $1',
-'revision-info'          => "Versione scritte jndr'à $1 da $2", # Additionally available: $3: revision id
+'revision-info'          => "Versione scritte jndr'à $1 da $2",
 'previousrevision'       => '← Versione Vecchje',
 'nextrevision'           => 'Versione cchiù nova →',
 'currentrevisionlink'    => 'Versione de mò',
@@ -762,7 +765,7 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 # Revision feed
 'history-feed-title'          => 'Storie de le revisiune',
 'history-feed-description'    => "Storie de le revisiune oe sta pàgene sus 'a le Uicchipèdie",
-'history-feed-item-nocomment' => '$1 a $2', # user at time
+'history-feed-item-nocomment' => '$1 a $2',
 'history-feed-empty'          => "'A vosce ca è cerchete non g'esiste.
 Pò essere ca ha state scangellete da Uicchi o ha state renomenate..
 Pruève a [[Special:Search|cercò sus a Uicchi]] 'mbrà le vosce cchiù rilevande.",
@@ -1063,7 +1066,7 @@ pe piacere vide math/README pe configurà.',
 'prefs-custom-js'           => 'JS Personalizzete',
 
 # User rights
-'userrights'                     => 'Gestione de le deritte utende', # Not used as normal message but as header for the special page itself
+'userrights'                     => 'Gestione de le deritte utende',
 'userrights-lookup-user'         => "Gestisce le gruppe de l'utinde",
 'userrights-user-editname'       => "Mitte 'nu nome utende:",
 'editusergroup'                  => 'Cange le gruppe utinde',
@@ -1354,8 +1357,8 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'noimage'                   => "Non g'esiste nisciune fail cu stu nome, ma tu puè $1.",
 'noimage-linktext'          => 'carechene une',
 'uploadnewversion-linktext' => "Careche 'na versiona nove de stu fail",
-'shared-repo-from'          => 'da $1', # $1 is the repository name
-'shared-repo'               => "'nu condenitore de cose condivise", # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'da $1',
+'shared-repo'               => "'nu condenitore de cose condivise",
 
 # File reversion
 'filerevert'                => "'Nvirte $1",
@@ -1719,8 +1722,8 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'rollbackfailed'   => 'Annullamende fallite',
 'cantrollback'     => "Non ge se pò annullà stu cangiamende;
 l'urteme condrebbutore jè sulamende l'autore de sta pàgene.",
-'editcomment'      => "'U riepileghe d'u cangiamende ere: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => "Cangiaminde annullate da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) a l'urtema versione da [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "'U riepileghe d'u cangiamende ere: \"''\$1''\".",
+'revertpage'       => "Cangiaminde annullate da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) a l'urtema versione da [[User:$1|$1]]",
 'rollback-success' => "Cangiaminde annullate da $1;
 turnate rete a l'urtema versione da $2.",
 'sessionfailure'   => "Pare ca stonne probbleme cu 'a sessiona toje de collegamende;
@@ -1766,7 +1769,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'protect-otherreason'         => 'Otre mutive:',
 'protect-otherreason-op'      => 'otre mutive',
 'protect-edit-reasonlist'     => "Cange le mutive d'a protezione",
-'protect-expiry-options'      => '1 ore:1 hour,1 giurne:1 day,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ore:1 hour,1 giurne:1 day,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite',
 'restriction-type'            => 'Permesse:',
 'restriction-level'           => 'Levèlle de restrizione:',
 'minimum-size'                => 'Dimenzione minime:',
@@ -1894,7 +1897,7 @@ Mitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene a
 'ipbenableautoblock'           => "Automaticamende blocche l'urteme indirizze IP ausate da stu utende e tutte le sottosequenze de le IP ca onne state ausate pe cangià",
 'ipbsubmit'                    => "Blocche st'utende",
 'ipbother'                     => 'Otre orarie:',
-'ipboptions'                   => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipboptions'                   => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite',
 'ipbotheroption'               => 'otre',
 'ipbotherreason'               => 'Otre mutive:',
 'ipbhidename'                  => 'Scunne le nome utinde da le cangiaminde e da le liste',
@@ -2010,7 +2013,7 @@ Jndr'à ste case, 'a pàgene non g'avène spustete e pò t'a cupià a màne 'u c
 'move-watch'                => 'condrolle sta pàgene',
 'movepagebtn'               => "Spueste 'a pàgene",
 'pagemovedsub'              => 'Spustaminde eseguite',
-'movepage-moved'            => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>",
 'articleexists'             => "'Na pàgene cu stu nome già esiste, o 'u nome ca tu è scacchiete non g'è valide.
 Pe piacere scacchie n'otre nome.",
 'cantmove-titleprotected'   => "Tu non ge puè spustà 'na pògene jndr'à sta locazzione purcè 'u titele nuève ha state protette da 'a ccrejazione",
@@ -2250,7 +2253,7 @@ Otre avènene scunnute pe defolt.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Larghezze',
@@ -2284,8 +2287,8 @@ Otre avènene scunnute pe defolt.
 
 'exif-unknowndate' => 'Data scanusciute',
 
-'exif-orientation-1' => 'Normale', # 0th row: top; 0th column: left
-'exif-orientation-3' => 'Ruete de 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-1' => 'Normale',
+'exif-orientation-3' => 'Ruete de 180°',
 
 'exif-componentsconfiguration-0' => "non g'esiste",
 
@@ -2450,7 +2453,7 @@ Prueve l\'andeprima normele.',
 'unknown_extension_tag' => 'Estenzione d\'u tag scanuscite "$1"',
 
 # Special:Version
-'version'                          => 'Versione', # Not used as normal message but as header for the special page itself
+'version'                          => 'Versione',
 'version-extensions'               => 'Estenziune installete',
 'version-specialpages'             => 'Pàggene speciele',
 'version-parserhooks'              => 'Hook analizzature',

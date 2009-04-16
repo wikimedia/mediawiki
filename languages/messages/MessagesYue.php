@@ -1,6 +1,9 @@
 <?php
 /** Cantonese (粵語/廣東話)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -249,7 +252,7 @@ $messages = array(
 'category-media-header'          => ' "$1" 類嘅媒體',
 'category-empty'                 => "''呢類無任何版或媒體檔。''",
 'hidden-categories'              => '屬於$1隱類',
-'hidden-category-category'       => '隱藏類', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => '隱藏類',
 'category-subcat-count'          => '{{PLURAL:$2|呢類淨係有下面嘅細類。|呢類有下面嘅$1個細類，總共有$2類。}}',
 'category-subcat-count-limited'  => '呢個類別入邊有$1個細類別。',
 'category-article-count'         => '{{PLURAL:$2|呢類淨係有下面嘅版。|呢類有下面嘅$1版，總共有$2版。}}',
@@ -335,7 +338,7 @@ $messages = array(
 'otherlanguages'    => '第啲語言',
 'redirectedfrom'    => '(由$1跳轉過來)',
 'redirectpagesub'   => '跳轉頁',
-'lastmodifiedat'    => '呢一頁嘅最後修改係響$1 $2。', # $1 date, $2 time
+'lastmodifiedat'    => '呢一頁嘅最後修改係響$1 $2。',
 'viewcount'         => '呢一頁已經有$1人次睇過。',
 'protectedpage'     => '受保護頁',
 'jumpto'            => '跳去:',
@@ -821,7 +824,7 @@ $1',
 'currentrev'             => '家下嘅修訂',
 'currentrev-asof'        => '響 $1 嘅家下修訂',
 'revisionasof'           => '喺$1嘅修訂',
-'revision-info'          => '喺$1嘅修訂；修訂自$2', # Additionally available: $3: revision id
+'revision-info'          => '喺$1嘅修訂；修訂自$2',
 'previousrevision'       => '←之前嘅修訂',
 'nextrevision'           => '新啲嘅修訂→',
 'currentrevisionlink'    => '家下嘅修訂版本',
@@ -842,7 +845,7 @@ $1',
 # Revision feed
 'history-feed-title'          => '修訂歷史',
 'history-feed-description'    => '響哩個wiki嘅哩一頁嘅修訂歷史',
-'history-feed-item-nocomment' => '$1 響 $2', # user at time
+'history-feed-item-nocomment' => '$1 響 $2',
 'history-feed-empty'          => '要求嘅頁面並唔存在。
 佢可能響哩個 wiki 度刪除咗或者改咗名。
 試吓[[Special:Search|響哩個wiki度搵]]有關新頁面嘅資料。',
@@ -1157,7 +1160,7 @@ $1',
 'prefs-custom-js'           => '自定 JS',
 
 # User rights
-'userrights'                  => '用戶權限管理', # Not used as normal message but as header for the special page itself
+'userrights'                  => '用戶權限管理',
 'userrights-lookup-user'      => '管理用戶組',
 'userrights-user-editname'    => '輸入一個用戶名：',
 'editusergroup'               => '編輯用戶組',
@@ -1492,8 +1495,8 @@ $1',
 'noimage'                   => '冇同名嘅檔案存在，你可以$1。',
 'noimage-linktext'          => '上載一個',
 'uploadnewversion-linktext' => '上載呢個檔案嘅一個新版本',
-'shared-repo-from'          => '出自 $1', # $1 is the repository name
-'shared-repo'               => '一個共用檔案庫', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => '出自 $1',
+'shared-repo'               => '一個共用檔案庫',
 
 # File reversion
 'filerevert'                => '回復$1',
@@ -1869,8 +1872,8 @@ wiki: $PAGEEDITOR_WIKI
 'alreadyrolled'    => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
 
 上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。',
-'editcomment'      => "編輯摘要係：\"''\$1''\"。", # only shown if there is an edit comment
-'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後版本。', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "編輯摘要係：\"''\$1''\"。",
+'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後版本。',
 'rollback-success' => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
 'sessionfailure'   => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 
@@ -1917,7 +1920,7 @@ wiki: $PAGEEDITOR_WIKI
 ** 反生產性編輯戰
 ** 高流量頁',
 'protect-edit-reasonlist'     => '編輯保護原因',
-'protect-expiry-options'      => '一個鐘頭:1 hour,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '一個鐘頭:1 hour,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite',
 'restriction-type'            => '許可:',
 'restriction-level'           => '限制等級:',
 'minimum-size'                => '最小大細',
@@ -1991,7 +1994,7 @@ $1',
 'contributions-title' => '$1嘅用戶貢獻',
 'mycontris'           => '我嘅貢獻',
 'contribsub2'         => '$1嘅貢獻 ($2)',
-'nocontribs'          => '搵唔到符合呢啲條件嘅修改。', # Optional parameter: $1 is the user name
+'nocontribs'          => '搵唔到符合呢啲條件嘅修改。',
 'uctop'               => '(最頂)',
 'month'               => '由呢個月 (同更早):',
 'year'                => '由呢一年 (同更早):',
@@ -2053,7 +2056,7 @@ $1',
 'ipbenableautoblock'              => '自動封鎖呢個用戶上次用過嘅IP地址，同埋佢地做過編輯嘅IP地址',
 'ipbsubmit'                       => '封鎖呢位用戶',
 'ipbother'                        => '其它時間:',
-'ipboptions'                      => '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite',
 'ipbotheroption'                  => '其它',
 'ipbotherreason'                  => '其它／附加嘅原因:',
 'ipbhidename'                     => '響編輯同名單度隱藏用戶名',
@@ -2178,7 +2181,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'move-watch'                   => '睇實呢一版',
 'movepagebtn'                  => '搬頁',
 'pagemovedsub'                 => '搬頁成功',
-'movepage-moved'               => '<big>\'\'\'"$1"已經搬到去"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1"已經搬到去"$2"\'\'\'</big>',
 'movepage-moved-redirect'      => '一個跳轉已經開咗。',
 'movepage-moved-noredirect'    => '已經壓制開個跳轉。',
 'articleexists'                => '已經有頁面叫嗰個名，或者你揀嘅名唔合法。請揀過第二個名。',
@@ -2403,7 +2406,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 # Attribution
 'anonymous'        => '{{SITENAME}}嘅匿名{{PLURAL:$1|用戶|用戶}}',
 'siteuser'         => '{{SITENAME}}嘅用戶$1',
-'lastmodifiedatby' => '呢一頁最後響 $1 $2 畀 $3 修改。', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => '呢一頁最後響 $1 $2 畀 $3 修改。',
 'othercontribs'    => '以$1嘅作品為基礎。',
 'others'           => '其他',
 'siteusers'        => '{{SITENAME}}嘅{{PLURAL:$2|用戶|用戶}}$1',
@@ -2552,7 +2555,7 @@ Variants for Chinese language
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => '闊',
@@ -2680,14 +2683,14 @@ Variants for Chinese language
 
 'exif-unknowndate' => '未知日期',
 
-'exif-orientation-1' => '正常', # 0th row: top; 0th column: left
-'exif-orientation-2' => '左右倒轉', # 0th row: top; 0th column: right
-'exif-orientation-3' => '轉一百八十度', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => '上下倒轉', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => '逆時針轉九十度，再上下倒轉', # 0th row: left; 0th column: top
-'exif-orientation-6' => '順時針轉九十度', # 0th row: right; 0th column: top
-'exif-orientation-7' => '順時針轉九十度，再上下倒轉', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => '逆時針轉九十度', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => '正常',
+'exif-orientation-2' => '左右倒轉',
+'exif-orientation-3' => '轉一百八十度',
+'exif-orientation-4' => '上下倒轉',
+'exif-orientation-5' => '逆時針轉九十度，再上下倒轉',
+'exif-orientation-6' => '順時針轉九十度',
+'exif-orientation-7' => '順時針轉九十度，再上下倒轉',
+'exif-orientation-8' => '逆時針轉九十度',
 
 'exif-planarconfiguration-1' => 'chunky 格式',
 'exif-planarconfiguration-2' => 'planar 格式',
@@ -2946,7 +2949,7 @@ $1',
 'duplicate-defaultsort' => '警告: 預設嘅排序鍵 "$2" 覆蓋之前嘅預設排序鍵 "$1"。',
 
 # Special:Version
-'version'                          => '版本', # Not used as normal message but as header for the special page itself
+'version'                          => '版本',
 'version-extensions'               => '裝咗嘅擴展',
 'version-specialpages'             => '特別頁',
 'version-parserhooks'              => '語法鈎',

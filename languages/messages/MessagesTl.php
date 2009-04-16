@@ -1,6 +1,9 @@
 <?php
 /** Tagalog (Tagalog)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -240,7 +243,7 @@ $messages = array(
 'category-media-header'          => 'Mga midya sa kategoryang "$1"',
 'category-empty'                 => "''Kasalukuyang walang artikulo o midya ang kategoryang ito.''",
 'hidden-categories'              => '{{PLURAL:$1|Nakatagong kategorya|Mga nakatagong kategorya}}',
-'hidden-category-category'       => 'Mga nakatagong kategorya', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Mga nakatagong kategorya',
 'category-subcat-count'          => '{{PLURAL:$2|Ang kauriang ito ay mayroon lamang na sumusunod na subkaurian.|Ang kauriang ito ay mayroong sumusunod na {{PLURAL:$1|subkaurian|$1 mga subkaurian}}, mula sa $2 kabuoan.}}',
 'category-subcat-count-limited'  => 'Ang kauriang ito ay mayroong sumusunod na {{PLURAL:$1|subkaurian|$1 mga subkaurian}}.',
 'category-article-count'         => '{{PLURAL:$2|Ang kauriang ito ay naglalaman lamang ng sumusunod na pahina.|Ang sumusunod na following {{PLURAL:$1|pahina ay|$1 mga pahina ay}} nasa kauriang ito, mula sa $2 kabuoan.}}',
@@ -327,7 +330,7 @@ $messages = array(
 'otherlanguages'    => 'Sa ibang wika',
 'redirectedfrom'    => '(Ikinarga mula sa $1)',
 'redirectpagesub'   => 'Pahina ng pagkarga',
-'lastmodifiedat'    => 'Huling binago ang pahinang ito noong $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Huling binago ang pahinang ito noong $2, $1.',
 'viewcount'         => 'Namataan na pahinang ito nang {{PLURAL:$1|isang|$1}} ulit.',
 'protectedpage'     => 'Pahinang nakasanggalang',
 'jumpto'            => 'Tumalon sa:',
@@ -853,7 +856,7 @@ Ang dahilang ibinigay ni $3 ay ''$2''",
 'currentrev'             => 'Pangkasalukuyang pagbabago',
 'currentrev-asof'        => 'Pangkasalukuyang pagbabago mula noong $1',
 'revisionasof'           => 'Pagbabago mula noong $1',
-'revision-info'          => 'Pagbabago mula noong $1 ni $2', # Additionally available: $3: revision id
+'revision-info'          => 'Pagbabago mula noong $1 ni $2',
 'previousrevision'       => '← Lumang pagbabago',
 'nextrevision'           => 'Bagong pagbabago →',
 'currentrevisionlink'    => 'Pangkasalukuyang pagbabago',
@@ -875,7 +878,7 @@ Mga daglat: (kas) = pagkakaiba sa kasalukuyang bersyon,
 # Revision feed
 'history-feed-title'          => 'Kasaysayan ng pagbabago',
 'history-feed-description'    => 'Kasaysayan ng pagbabago para sa pahinang ito dito sa wiki',
-'history-feed-item-nocomment' => '$1 sa $2', # user at time
+'history-feed-item-nocomment' => '$1 sa $2',
 'history-feed-empty'          => 'Wala ang hiniling na pahina.
 Nabura ito mula sa wiki, o napalitan ng pangalan.
 Subukang [[Special:Search|hanapin sa wiki]] para sa mga kaugnay na mga bagong pahina.',
@@ -1194,7 +1197,7 @@ pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 'prefs-custom-js'           => 'Pasadyang JS',
 
 # User rights
-'userrights'                  => 'Pamamahala ng mga karapatan ng tagagamit', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Pamamahala ng mga karapatan ng tagagamit',
 'userrights-lookup-user'      => 'Pamahalaan ang mga pangkat ng tagagamit',
 'userrights-user-editname'    => 'Magpasok ng isang pangalan ng tagagamit:',
 'editusergroup'               => 'Baguhin ang mga pangkat ng tagagamit',
@@ -1535,8 +1538,8 @@ Ang paglalarawang nasa ibabaw ng [$2 pahina ng paglalarawan ng talaksan] nito do
 'noimage'                   => 'Walang talaksan na may ganitong pangalan, subalit maaari kang $1.',
 'noimage-linktext'          => 'magkarga ng isa',
 'uploadnewversion-linktext' => 'Magkarga ng isang bagong bersyon ng talaksang ito',
-'shared-repo-from'          => 'mula sa $1', # $1 is the repository name
-'shared-repo'               => 'isang pinagsasaluhang repositoryo', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'mula sa $1',
+'shared-repo'               => 'isang pinagsasaluhang repositoryo',
 
 # File reversion
 'filerevert'                => 'Ibalik sa dati ang $1',
@@ -1922,8 +1925,8 @@ magpatuloy na may pagiingat.',
 mayroon nang ibang taong nagbago o nagpagulong pabalik sa dati ng pahina.
 
 Ang huling pagbabago sa pahina ay ginawa ni [[User:$3|$3]] ([[User talk:$3|Usapan]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Ang buod ng pagbabago ay: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Ibinalik ang mga pagbabagong ginawa ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Usapan]]) patungo sa huling bersyon ni [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Ang buod ng pagbabago ay: \"''\$1''\".",
+'revertpage'       => 'Ibinalik ang mga pagbabagong ginawa ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Usapan]]) patungo sa huling bersyon ni [[User:$1|$1]]',
 'rollback-success' => 'Ibinalik ang mga pagbabago ni $1; ibinalik sa huling bersyon ni $2.',
 'sessionfailure'   => "Tila mayroong suliraning may kaugnayan sa iyong sesyon/panahon ng pagkakalagda;
 Kinansela ang galaw/gawaing ito bilang pagiingat laban sa pagnanakaw (panghahaydyak) ng sesyon/panahon.
@@ -1975,7 +1978,7 @@ Maaari mong baguhin ang antas ng panananggalang ng pahina, ngunit hindi ito maka
 ** Hindi kapakipakinabang na alitan hinggil sa pagbabago
 ** Pahinang may mataas na antas ng daloy (matrapik)",
 'protect-edit-reasonlist'     => 'Mga dahilan ng panananggalang laban sa pagbabago',
-'protect-expiry-options'      => '1 oras:1 hour,1 araw:1 day,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 oras:1 hour,1 araw:1 day,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
 'restriction-type'            => 'Pahintulot:',
 'restriction-level'           => 'Antas ng kabawalan:',
 'minimum-size'                => 'Pinakamaliit na sukat',
@@ -2051,7 +2054,7 @@ $1',
 'contributions-title' => 'Mga ambag ng tagagamit na si $1',
 'mycontris'           => 'Aking mga ginawa',
 'contribsub2'         => 'Para kay $1 ($2)',
-'nocontribs'          => 'Walang pagbabagong nakita sa binigay na kondisyon.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'Walang pagbabagong nakita sa binigay na kondisyon.',
 'uctop'               => ' (itaas)',
 'month'               => 'Mula sa buwan (at nauna):',
 'year'                => 'Mula sa taon (at nauna):',
@@ -2112,7 +2115,7 @@ Punan ang espesipikong dahilan sa ibaba (halimbawa, magbanggit ng partikular na 
 'ipbenableautoblock'              => 'Kusang harangin/hadlangan ang huling adres ng IP na ginamit ng tagagamit na ito, at anumang susunod pang mga IP na susubukan nilang gamitin para makapagbago/mamatnugot',
 'ipbsubmit'                       => 'Harangin/hadlangan ang tagagamit na ito',
 'ipbother'                        => 'Ibang oras:',
-'ipboptions'                      => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite',
 'ipbotheroption'                  => 'iba',
 'ipbotherreason'                  => 'Iba/karagdagang dahilan:',
 'ipbhidename'                     => 'Itago ang pangalan ng tagagamit mula sa pagbabago at mga talaan',
@@ -2243,7 +2246,7 @@ Sa mga kasong ganoon, kailangan mong ilipat o pagsamahin/pagsanibin ang pahina s
 'move-watch'                   => 'Bantayan ang pahinang ito',
 'movepagebtn'                  => 'Ilipat ang pahina',
 'pagemovedsub'                 => 'Matagumpay ang paglipat',
-'movepage-moved'               => '<big>\'\'\'Inilipat ang "$1" patungo sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'Inilipat ang "$1" patungo sa "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'Nalikha ang isang panturo patungo sa ibang pahina.',
 'movepage-moved-noredirect'    => 'Pinigilan ang paglikha ng isang panturo.',
 'articleexists'                => 'May umiiral nang pahinang may ganyang pangalan, o ang
@@ -2466,7 +2469,7 @@ Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwikin
 # Attribution
 'anonymous'        => 'Hindi kilalang {{PLURAL:$1|tagagamit|mga tagagamit}} ng {{SITENAME}}',
 'siteuser'         => 'Tagagamit $1 ng {{SITENAME}}',
-'lastmodifiedatby' => 'Huling binago ang pahinang ito noong $2, $1 ni $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Huling binago ang pahinang ito noong $2, $1 ni $3.',
 'othercontribs'    => 'Batay sa gawa ni/nina $1.',
 'others'           => 'iba pa',
 'siteusers'        => '{{PLURAL:$2|tagagamit|mga tagagamit}} $1 ng {{SITENAME}}',
@@ -2592,7 +2595,7 @@ Nakatakdang itago ang iba pa.
 * petsaorasorihinal
 * lantadoras
 * pbilang
-* pokalhaba', # Do not translate list items
+* pokalhaba',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lapad',
@@ -2719,14 +2722,14 @@ Nakatakdang itago ang iba pa.
 
 'exif-unknowndate' => 'Hindi alam na araw',
 
-'exif-orientation-1' => 'Karaniwan', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Pinihit ng pahiga', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Pinaikot ng 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Pinihit ng patayo', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Pinaikot ng 90° CCW at pinihit ng patayo', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Pinaikot ng 90° CW', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Pinaikot ng 90° CW at pinihit ng patayo', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Pinaikot ng 90° CCW', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Karaniwan',
+'exif-orientation-2' => 'Pinihit ng pahiga',
+'exif-orientation-3' => 'Pinaikot ng 180°',
+'exif-orientation-4' => 'Pinihit ng patayo',
+'exif-orientation-5' => 'Pinaikot ng 90° CCW at pinihit ng patayo',
+'exif-orientation-6' => 'Pinaikot ng 90° CW',
+'exif-orientation-7' => 'Pinaikot ng 90° CW at pinihit ng patayo',
+'exif-orientation-8' => 'Pinaikot ng 90° CCW',
 
 'exif-planarconfiguration-1' => 'pagkaayos sa malalaking bahagi (chunky)',
 'exif-planarconfiguration-2' => 'planar na pagkaayos',
@@ -3044,7 +3047,7 @@ Maaari mo ring [[Special:Watchlist/edit|gamitin ang pangkaraniwang pampatnugot]]
 'duplicate-defaultsort' => 'Babala: Madadaig ng susi ng pagtatakdang "$2" ang mas naunang susi ng pagtatakdang "$1".',
 
 # Special:Version
-'version'                          => 'Bersyon', # Not used as normal message but as header for the special page itself
+'version'                          => 'Bersyon',
 'version-extensions'               => 'Nakaluklok/Nakainstalang mga karugtong',
 'version-specialpages'             => 'Natatanging mga pahina',
 'version-parserhooks'              => "Mga pangkawit ng banghay (''parser'')",

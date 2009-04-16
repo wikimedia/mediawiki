@@ -1,6 +1,9 @@
 <?php
 /** Bavarian (Boarisch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -58,7 +61,7 @@ $messages = array(
 'category-media-header'          => 'Medien in da Kategorie „$1“',
 'category-empty'                 => "''De Kategorie enthåit momentan kane Seitn und kane Medien ned.''",
 'hidden-categories'              => '{{PLURAL:$1|Vasteckte Kategorie|Vasteckte Kategorien}}',
-'hidden-category-category'       => 'Vasteckte Kategorie', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Vasteckte Kategorie',
 'category-subcat-count'          => "{{PLURAL:$2|De Kategorie enthåit netta de foignde Untakategorie:|{{PLURAL:$1|D'foignde Untakategorie is ane vu insgsamt $2 Untakategorien in dea Kategorie:|Vu insgsamt $2 Untakategorien in dea Kategorie wean $1 ãzoagt:}}}}",
 'category-subcat-count-limited'  => 'In de Kategorie {{PLURAL:$1|is de foignde Untakategorie|san de foigndn Untakategorien}} eisoatiad:',
 'category-article-count-limited' => 'De {{PLURAL:$1|foignde Seitn is|foigndn $1 Seitn san}} in dea Kategorie enthåitn:',
@@ -112,7 +115,7 @@ $messages = array(
 'categorypage'      => 'Kategorieseitn ozoang',
 'otherlanguages'    => 'Åndane Språchn',
 'redirectedfrom'    => '(vu $1 weida gschickt)',
-'lastmodifiedat'    => 'De Seitn is zletzt am $1 um $2 gändert worn.', # $1 date, $2 time
+'lastmodifiedat'    => 'De Seitn is zletzt am $1 um $2 gändert worn.',
 'jumpto'            => 'Wechseln zua:',
 'jumptosearch'      => 'Suach',
 
@@ -632,7 +635,7 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 'tooltip-recreate'                => 'Seitn nei erstelln, obwoi sie glöscht worn is.',
 
 # Attribution
-'lastmodifiedatby' => 'De Seitn is zletzt am $1 um $2 vo $3 gändert worn.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'De Seitn is zletzt am $1 um $2 vo $3 gändert worn.',
 'othercontribs'    => 'Basiert auf da Arbat vo $1',
 'creditspage'      => 'Seitninformationa',
 

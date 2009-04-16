@@ -1,6 +1,9 @@
 <?php
 /** Northern Sami (Sámegiella)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -175,7 +178,7 @@ $messages = array(
 'otherlanguages'    => 'Eará gielaide',
 'redirectedfrom'    => 'Ođđasitstivrejuvvon siiddus $1',
 'redirectpagesub'   => 'Ođđasitstivrensiidu',
-'lastmodifiedat'    => 'Siidu lea maŋimustá rievdaduvvon $1 diimu $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Siidu lea maŋimustá rievdaduvvon $1 diimu $2.',
 'viewcount'         => 'Dát siidu lea čájehuvvon {{PLURAL:$1|oktii|$1 geardde}}.',
 'protectedpage'     => 'Suodjáluvvon siidu',
 'jumpto'            => 'Njuike:',
@@ -419,7 +422,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'nohistory'           => 'Dán siiddus ii leat rievdadanhistorjá.',
 'currentrev'          => 'Dálá veršuvdna',
 'revisionasof'        => 'Veršuvdna $1',
-'revision-info'       => 'Dálá veršuvdna $1 – ráhkadan $2', # Additionally available: $3: revision id
+'revision-info'       => 'Dálá veršuvdna $1 – ráhkadan $2',
 'previousrevision'    => '← Boarrásut veršuvdna',
 'nextrevision'        => 'Ođđasut veršuvdna →',
 'currentrevisionlink' => 'Dálá veršuvdna',
@@ -437,7 +440,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 # Revision feed
 'history-feed-title'          => 'Rievdadushistorjá',
 'history-feed-description'    => 'Dán siiddu rievdadushistorjá',
-'history-feed-item-nocomment' => '$1 ($2)', # user at time
+'history-feed-item-nocomment' => '$1 ($2)',
 
 # Revision deletion
 'rev-deleted-comment'     => '(kommeanta sihkojuvvon)',
@@ -535,7 +538,7 @@ $1 | $2',
 'files'                    => 'Fiillat',
 
 # User rights
-'userrights'               => 'Geavaheaddjirivttiid stivren', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Geavaheaddjirivttiid stivren',
 'userrights-lookup-user'   => 'Geavaheaddjirivttiid stivren',
 'userrights-user-editname' => 'Geavaheaddjidovddaldat',
 'editusergroup'            => 'Rievdat geavaheaddjijoavkkuid',
@@ -903,8 +906,8 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'rollbackfailed'   => 'Máhccan ii lihkosmuvvan',
 'cantrollback'     => 'Máhcaheapmi ovddit veršuvdnii ii leat vejolaš, daningo maŋimuš čálli lea siiddu aidna dahkki.',
 'alreadyrolled'    => 'Rievdadusat, maid geavaheaddji [[User:$2|$2]] ([[User talk:$2|ságastallan]]) lea dahkan, siidui $1 ii sáhte sihkkut, daningo geavaheaddji [[User:$3|$3]] ([[User talk:$3|ságastallan]]) lea dahkan ođđa rievdadusaid.',
-'editcomment'      => "Rievdadusa čoahkkáigeassu lei: ''$1''.", # only shown if there is an edit comment
-'revertpage'       => 'Geavaheaddji [[Special:Contributions/$2|$2]] ([[User_talk:$2|ságastallan]]) rievdadusat sihkkojuvvui ja siidu máhcahuvvui veršuvdnii, man geavaheaddji [[User:$1|$1]] lei dahkan.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Rievdadusa čoahkkáigeassu lei: ''$1''.",
+'revertpage'       => 'Geavaheaddji [[Special:Contributions/$2|$2]] ([[User_talk:$2|ságastallan]]) rievdadusat sihkkojuvvui ja siidu máhcahuvvui veršuvdnii, man geavaheaddji [[User:$1|$1]] lei dahkan.',
 'rollback-success' => 'Rievdadusat, maid geavaheaddji ”$1” lei dahkan, sihkojuvvui ja artihkal máhcaduvvui veršuvdnii, man geavaheaddji $2 lei dahkan.',
 
 # Protect
@@ -926,7 +929,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'protect-summary-cascade'     => 'viididuvvon',
 'protect-expiring'            => 'boarásnuvvá $1',
 'protect-cascade'             => 'Viidit suodjálusa guoskat buot siidduit, mat gullet dán siidui',
-'protect-expiry-options'      => '2 diimma:2 hours,1 beaivi:1 day,3 beaivve:3 days,1 vahkku:1 week,2 vahkku:2 weeks,1 mánotbádji:1 month,3 mánotbaji:3 months,6 mánotbaji:6 months,1 jahki:1 year,bissovaš:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 diimma:2 hours,1 beaivi:1 day,3 beaivve:3 days,1 vahkku:1 week,2 vahkku:2 weeks,1 mánotbádji:1 month,3 mánotbaji:3 months,6 mánotbaji:6 months,1 jahki:1 year,bissovaš:infinite',
 'restriction-type'            => 'Rádjehus',
 'restriction-level'           => 'Suodjálus',
 'minimum-size'                => 'Min. sturrodat',
@@ -1011,7 +1014,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'ipbenableautoblock'   => 'Eastte maŋimus IP-čujuhus, mas geavaheaddji lea ráhkadan rievdadusaid, ja maid daid čujuhusaid, main son vel iska rievdadit.',
 'ipbsubmit'            => 'Eastte',
 'ipbother'             => 'Eará áigi',
-'ipboptions'           => '2 diimma:2 hours,1 beaivi:1 day,3 beaivve:3 days,1 vahkku:1 week,2 vahkku:2 weeks,1 mánotbádji:1 month,3 mánotbaji:3 months,6 mánotbaji:6 months,1 jahki:1 year,bissovaš:infinite', # display1:time1,display2:time2,...
+'ipboptions'           => '2 diimma:2 hours,1 beaivi:1 day,3 beaivve:3 days,1 vahkku:1 week,2 vahkku:2 weeks,1 mánotbádji:1 month,3 mánotbaji:3 months,6 mánotbaji:6 months,1 jahki:1 year,bissovaš:infinite',
 'ipbotheroption'       => 'Eará',
 'ipbotherreason'       => 'Eará sivva',
 'badipaddress'         => 'IP-čujuhus lea boastut.',
@@ -1184,7 +1187,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 
 'exif-unknowndate' => 'Dovdameahttun beaivemearri',
 
-'exif-orientation-1' => 'Normála', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Normála',
 
 'exif-componentsconfiguration-0' => 'ii leat',
 
@@ -1287,7 +1290,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'watchlisttools-edit' => 'Ođasmahte listtu',
 
 # Special:Version
-'version' => 'Veršuvdna', # Not used as normal message but as header for the special page itself
+'version' => 'Veršuvdna',
 
 # Special:SpecialPages
 'specialpages' => 'Erenomáš siiddut',

@@ -1,6 +1,9 @@
 <?php
 /** Ganda (Luganda)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -109,7 +112,7 @@ $messages = array(
 'toolbox'          => 'Ebikozesebwa',
 'otherlanguages'   => 'Mu nnimi endala',
 'redirectedfrom'   => '(Oleetedwa wano okuva ku $1)',
-'lastmodifiedat'   => 'Luno olupapula lwasemba okukyuusibwamu ku $2, $1.', # $1 date, $2 time
+'lastmodifiedat'   => 'Luno olupapula lwasemba okukyuusibwamu ku $2, $1.',
 'viewcount'        => 'Luno olupapula lwakasomebwa {{PLURAL:$1|omurundi gumu|emirundi $1}}.',
 'protectedpage'    => 'Luno olupapula terukyusibwamu',
 'jumpto'           => 'Genda ku:',
@@ -420,7 +423,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'dellogpage'     => 'Ebigyidwawo',
 
 # Protect
-'protect-expiry-options' => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Kyuusa',
@@ -453,7 +456,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 
 # Block/unblock
 'blockip'           => 'Gaana memba okuwandiika',
-'ipboptions'        => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite', # display1:time1,display2:time2,...
+'ipboptions'        => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite',
 'blockipsuccesssub' => 'Memba agaaniddwa okuwandika',
 'blocklink'         => 'Ono agaanibwe okuwandiika',
 'contribslink'      => 'byawaddeyo',
@@ -551,7 +554,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # External editor support
 'edit-externally'      => 'Fayiro eno gikolereko mu pulogulamu endala',

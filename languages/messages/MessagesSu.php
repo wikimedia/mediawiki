@@ -1,6 +1,9 @@
 <?php
 /** Sundanese (Basa Sunda)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -231,7 +234,7 @@ $messages = array(
 'category-media-header'          => 'Média dina kategori "$1"',
 'category-empty'                 => "''Kategori ieu, ayeuna teu ngabogaan artikel atawa gambar.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategori nyumput|Kategori nyumput}}',
-'hidden-category-category'       => 'Kategori nu nyarumput', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Kategori nu nyarumput',
 'category-subcat-count'          => '{{PLURAL:$2|Ieu kategori ngan boga subkategori di handap.|Kategori ieu ngawengku {{PLURAL:$1|subkategori|$1 subkategori}} ti $2.}}',
 'category-subcat-count-limited'  => 'Ieu kategori ngawengku {{PLURAL:$1|subkategori|$1 subkategori}}.',
 'category-article-count'         => '{{PLURAL:$2|Ieu kategori ngan ngawengku nu di handap.|{{PLURAL:$1|kaca|$1 kaca}} ti $2 di handap asup kana ieu kategori.}}',
@@ -312,7 +315,7 @@ $messages = array(
 'otherlanguages'    => 'Basa séjén',
 'redirectedfrom'    => '(Dialihkeun ti $1)',
 'redirectpagesub'   => 'Kaca alihan',
-'lastmodifiedat'    => 'Kaca ieu panungtungan dirobah $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Kaca ieu panungtungan dirobah $2, $1.',
 'viewcount'         => 'Kaca ieu geus dibuka {{PLURAL:$1|sakali|$1 kali}}.<br />',
 'protectedpage'     => 'Kaca nu dikonci',
 'jumpto'            => 'Luncat ka:',
@@ -747,7 +750,7 @@ Alesanana $3 cenah ''$2''.",
 'nohistory'              => 'Teu aya jujutan édit pikeun kaca ieu.',
 'currentrev'             => 'Révisi kiwari',
 'revisionasof'           => 'Révisi nurutkeun $1',
-'revision-info'          => 'Révisi per $1; $2', # Additionally available: $3: revision id
+'revision-info'          => 'Révisi per $1; $2',
 'previousrevision'       => '← Révisi leuwih heubeul',
 'nextrevision'           => 'Révisi nu leuwih anyar →',
 'currentrevisionlink'    => 'Témbongkeun révisi kiwari',
@@ -769,7 +772,7 @@ Katerangan: (kiw) = bédana jeung vérsi kiwari,
 # Revision feed
 'history-feed-title'          => 'Sajarah révisi',
 'history-feed-description'    => 'Sajarah révisi kaca ieu di wiki',
-'history-feed-item-nocomment' => '$1 dina $2', # user at time
+'history-feed-item-nocomment' => '$1 dina $2',
 'history-feed-empty'          => 'Kaca nu dipundut teu kapanggih.
 Bisa jadi geus dihapus ti wiki atawa diganti ngaranna.
 Cobaan [[Special:Search|sungsi di wiki]] pikeun kaca-kaca nu sarimbag.',
@@ -959,7 +962,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'files'                    => 'Koropak',
 
 # User rights
-'userrights'                  => 'Manajemén hak pamaké', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Manajemén hak pamaké',
 'userrights-lookup-user'      => 'Atur gorombolan pamaké',
 'userrights-user-editname'    => 'Asupkeun landihan:',
 'editusergroup'               => 'Édit Golongan Pamaké',
@@ -1532,8 +1535,8 @@ Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
 'alreadyrolled'    => 'Teu bisa mulangkeun édit ahir [[$1]] ku [[User:$2|$2]] ([[User talk:$2|Obrolan]]); geus aya nu ngédit atawa mulangkeun kacana.
 
 Édit ahir ku [[User:$3|$3]] ([[User talk:$3|Obrolan]]).',
-'editcomment'      => "Komentar ngéditna: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Malikkeun éditan $2, diganti deui ka vérsi ahir ku $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Komentar ngéditna: \"''\$1''\".",
+'revertpage'       => 'Malikkeun éditan $2, diganti deui ka vérsi ahir ku $1',
 'rollback-success' => 'Mulangkeun éditan $1; balik deui ka vérsi panungtung ku $2.',
 'sessionfailure'   => 'Sigana aya masalah jeung termin log anjeun; peta ieu geus dibolaykeun salaku pépéling pikeun ngalawan ayana pangbajak. Mangga pencét "back" jeung muat ulang ti kaca asal anjeun, lajeng cobaan deui.',
 
@@ -1563,7 +1566,7 @@ Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
 'protect-expiring'            => 'kadaluwarsa $1',
 'protect-cascade'             => 'Konci kaca nu kawengku dina ieu kaca (pangonci ngaruntuy).',
 'protect-cantedit'            => 'Anjeung teu wenang ngarobah hambalan ngonci ieu kaca.',
-'protect-expiry-options'      => '2 jam:2 hours,sapoé:1 day,3 poé:3 days,saminggu:1 week,2 minggu:2 weeks,sabulan:1 month,3 bulan:3 months,6 bulan:6 months,sataun:1 year,tanpa wates:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 jam:2 hours,sapoé:1 day,3 poé:3 days,saminggu:1 week,2 minggu:2 weeks,sabulan:1 month,3 bulan:3 months,6 bulan:6 months,sataun:1 year,tanpa wates:infinite',
 'restriction-type'            => 'Ngonci:',
 'restriction-level'           => 'Hambalan ngonci:',
 'minimum-size'                => 'Ukuran minimum',
@@ -1629,7 +1632,7 @@ $1',
 'contributions' => 'Tulisan pamaké',
 'mycontris'     => 'Tulisan kuring',
 'contribsub2'   => 'Pikeun $1 ($2)',
-'nocontribs'    => 'Taya robahan nu kapanggih cocog jeung patokan ieu.', # Optional parameter: $1 is the user name
+'nocontribs'    => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
 'uctop'         => ' (tempo)',
 'month'         => 'Ti bulan (jeung saméméhna):',
 'year'          => 'Ti taun (jeung saméméhna):',
@@ -1677,7 +1680,7 @@ $1',
 'ipbenableautoblock'          => 'Peungpeuk sacara otomatis alamat IP anu panungtungan dipaké ku pamaké sarta sakabéh alamat IP anu kungsi dipaké.',
 'ipbsubmit'                   => 'Peungpeuk pamaké ieu',
 'ipbother'                    => 'Waktu séjén',
-'ipboptions'                  => '2 jam:2 hours,sapoé:1 day,3 poé:3 days,saminggu:1 week,2 minggu:2 weeks,sabulan:1 month,3 bulan:3 months,6 bulan:6 months,sataun:1 year,tanpa wates:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 jam:2 hours,sapoé:1 day,3 poé:3 days,saminggu:1 week,2 minggu:2 weeks,sabulan:1 month,3 bulan:3 months,6 bulan:6 months,sataun:1 year,tanpa wates:infinite',
 'ipbotheroption'              => 'séjénna',
 'ipbotherreason'              => 'Alesan séjén/tambahan',
 'ipbhidename'                 => 'Sumputkeun landihan pamaké tina log peungpeuk, daptar peungpeuk aktif, jeung daptar pamaké',
@@ -1781,7 +1784,7 @@ Dina kajadian kitu, mun hayang (jeung perlu) anjeun kudu mindahkeun atawa ngagab
 'move-watch'              => 'Awaskeuneun kaca ieu',
 'movepagebtn'             => 'Pindahkeun kaca',
 'pagemovedsub'            => 'Mindahkeun geus hasil!',
-'movepage-moved'          => '<big>\'\'\'"$1" geus dipindahkeun ka "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" geus dipindahkeun ka "$2"\'\'\'</big>',
 'articleexists'           => 'Kaca nu ngaranna kitu geus aya, atawa ngaran nu dipilih ku anjeun teu sah. Mangga pilih ngaran séjén.',
 'cantmove-titleprotected' => 'Anjeun teu bisa mindahkeun kaca ka dieu, sabab éta judul dikonci',
 'talkexists'              => 'Kacana geus hasil dipindahkeun, ngan kaca obrolanana teu bisa dipindahkeun sabab geus aya nu anyar na judul anyar. Mangga gabungkeun sacara manual.',
@@ -1955,7 +1958,7 @@ Sadaya aktivitas impor transwiki baris kacatet dina [[Special:Log/import|log imp
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Pamaké|Pamaké-pamaké}} anonim di {{SITENAME}}',
 'siteuser'         => 'Pamaké $1 {{SITENAME}}',
-'lastmodifiedatby' => 'Kaca ieu panungtungan dirobah $2, $1 ku $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Kaca ieu panungtungan dirobah $2, $1 ku $3.',
 'othercontribs'    => 'Dumasar karya $1.',
 'others'           => 'Séjénna',
 'siteusers'        => '{{PLURAL:$2|Pamaké|Pamaké-pamaké}} {{SITENAME}} $1',
@@ -2051,7 +2054,7 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lega',
@@ -2119,14 +2122,14 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'exif-gpsdatestamp'                => 'Titimangsa GPS',
 'exif-gpsdifferential'             => 'Koréksi diferensial GPS',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Dibalikkeun horizontal', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Diputer 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Dibalikkeun vértikal', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Diputer 90° CCW jeung dibalikkeun vértikal', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Diputer 90° CW', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Diputer 90° CW jeung dibalikkeun vértikal', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Diputer 90° CCW', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Dibalikkeun horizontal',
+'exif-orientation-3' => 'Diputer 180°',
+'exif-orientation-4' => 'Dibalikkeun vértikal',
+'exif-orientation-5' => 'Diputer 90° CCW jeung dibalikkeun vértikal',
+'exif-orientation-6' => 'Diputer 90° CW',
+'exif-orientation-7' => 'Diputer 90° CW jeung dibalikkeun vértikal',
+'exif-orientation-8' => 'Diputer 90° CCW',
 
 'exif-planarconfiguration-2' => 'format datar',
 
@@ -2339,7 +2342,7 @@ Coba ku sawangan normal.',
 'unknown_extension_tag' => 'Tag éksténsi "$1" teu dipikawanoh',
 
 # Special:Version
-'version'                          => 'Vérsi', # Not used as normal message but as header for the special page itself
+'version'                          => 'Vérsi',
 'version-extensions'               => 'Éksténsi nu diinstal',
 'version-specialpages'             => 'Kaca husus',
 'version-parserhooks'              => 'Kait parser',

@@ -1,6 +1,9 @@
 <?php
 /** Tatar (Latin) (Tatarça/Татарча (Latin))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -176,7 +179,7 @@ $messages = array(
 'viewtalkpage'      => 'Bäxäsen qaraw',
 'otherlanguages'    => 'Başqa tellärdä',
 'redirectedfrom'    => '(«$1» bitennän yünältelde)',
-'lastmodifiedat'    => 'Betniñ soñğı özgerişi $2, $1 bolğan.', # $1 date, $2 time
+'lastmodifiedat'    => 'Betniñ soñğı özgerişi $2, $1 bolğan.',
 'protectedpage'     => 'Yaqlanğan bit',
 'jumpto'            => 'Küç:',
 'jumptosearch'      => 'ezläw',
@@ -557,7 +560,7 @@ Soñğı beterülär $2 bitendä terkälenä.',
 ** Bozıp yöriwçi işi',
 
 # Rollback
-'editcomment' => "Bu üzgärtü taswírı: \"''\$1''\".", # only shown if there is an edit comment
+'editcomment' => "Bu üzgärtü taswírı: \"''\$1''\".",
 
 # Protect
 'protectlogpage'     => 'Yaqlaw_köndälege',
@@ -724,7 +727,7 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'autosumm-new' => 'Yeni bet: $1',
 
 # Special:Version
-'version' => 'Yurama', # Not used as normal message but as header for the special page itself
+'version' => 'Yurama',
 
 # Special:SpecialPages
 'specialpages' => 'Maxsus bitlär',

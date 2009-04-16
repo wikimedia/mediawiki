@@ -1,6 +1,9 @@
 <?php
 /** Manx (Gaelg)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -104,7 +107,7 @@ $messages = array(
 'category-media-header'    => 'Meanyn ayns ronney "$1"',
 'category-empty'           => "''Cha nel duillagyn ny meanyn ayns y ronney shoh ec y traa t'ayn.''",
 'hidden-categories'        => '{{PLURAL:$1|Ronney follit|Ronnaghyn follit}}',
-'hidden-category-category' => 'Ronnaghyn follit', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Ronnaghyn follit',
 'listingcontinuesabbrev'   => 'tooil.',
 
 'mainpagetext' => "<big>'''Ta MediaWiki currit stiagh nish.'''</big>",
@@ -176,7 +179,7 @@ $messages = array(
 'otherlanguages'    => 'Ayns çhengaghyn elley',
 'redirectedfrom'    => '(Aa-enmyssit ass $1)',
 'redirectpagesub'   => 'Duillag aa-enmys',
-'lastmodifiedat'    => "Va'n duillag shoh ceaghlit er $1, ec $2.", # $1 date, $2 time
+'lastmodifiedat'    => "Va'n duillag shoh ceaghlit er $1, ec $2.",
 'protectedpage'     => 'Duillag choadit',
 'jumpto'            => 'Gow gys:',
 'jumptonavigation'  => 'stiureydys',
@@ -395,7 +398,7 @@ Ta lioar ny scryssaghyn magh kiarit ayns shoh rere dty chaays hene:",
 'viewpagelogs'        => 'Jeeagh er lioaryn chooishyn ny duillag shoh',
 'currentrev'          => 'Aavriwnys immeeaght',
 'revisionasof'        => 'Aavriwnys veih $1',
-'revision-info'       => 'Aavriwnys veih $1 ec $2', # Additionally available: $3: revision id
+'revision-info'       => 'Aavriwnys veih $1 ec $2',
 'previousrevision'    => '←Aavriwnys ny shinney',
 'nextrevision'        => 'Aavriwnys ny saa→',
 'currentrevisionlink' => 'Jeeagh er yn aavriwnys immeeaght',
@@ -415,7 +418,7 @@ Ogher: '''({{int:cur}})''' = anchaslyssyn rish y lhieggan t'ayn nish,
 # Revision feed
 'history-feed-title'          => 'Shennaghys yn aavriwnys',
 'history-feed-description'    => 'Shennaghys aavriwnys y duillag shoh er yn wiki',
-'history-feed-item-nocomment' => '$1 ec $2', # user at time
+'history-feed-item-nocomment' => '$1 ec $2',
 
 # Revision deletion
 'rev-deleted-comment'  => '(cohaggloo scughit)',
@@ -489,7 +492,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'files'                => 'Coadanyn',
 
 # User rights
-'userrights'               => 'Reireydys kiartyn ymmydeyr', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Reireydys kiartyn ymmydeyr',
 'userrights-lookup-user'   => 'Possanyn ymmydeyr y stiurey',
 'userrights-user-editname' => 'Screeu stiagh ennym ymmydeyr:',
 'editusergroup'            => 'Possanyn ymmydeyr y reaghey',
@@ -827,7 +830,7 @@ Jeeagh er $2 son recortys ny scryssaghyn magh jeianagh.',
 # Rollback
 'rollback_short' => 'Aaymmyd',
 'rollbacklink'   => 'aaymmyd',
-'editcomment'    => "V'eh \"''\$1''\" giare-choontys y reaghey.", # only shown if there is an edit comment
+'editcomment'    => "V'eh \"''\$1''\" giare-choontys y reaghey.",
 
 # Protect
 'protectlogpage'              => 'Lioar coadee',
@@ -846,7 +849,7 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'protect-expiring'            => 'jerrey jeant ec $1 (UTC)',
 'protect-cascade'             => "Cur fo ghlass ny duillagyn t'ayns y duillag shoh (coadee spooytal)",
 'protect-cantedit'            => 'Cha nod oo caghlaa keim choadey ny duillag shoh.  Cha nel kied ayd ee y reaghey.',
-'protect-expiry-options'      => '2 oor:2 hours,1 laa:1 day,3 laaghyn:3 days,1 hiaghtin:1 week,2 hiaghtin:2 weeks,1 vee:1 month,3 meeghyn:3 months,6 meeghyn:6 months,1 vlein:1 year,neuyerrinagh:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 oor:2 hours,1 laa:1 day,3 laaghyn:3 days,1 hiaghtin:1 week,2 hiaghtin:2 weeks,1 vee:1 month,3 meeghyn:3 months,6 meeghyn:6 months,1 vlein:1 year,neuyerrinagh:infinite',
 'restriction-type'            => 'Kied:',
 'restriction-level'           => 'Rea teorey:',
 
@@ -929,7 +932,7 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'ipbcreateaccount'         => 'Crooaght coontys y chumrail',
 'ipbsubmit'                => 'Yn ymmydeyr shoh y ghlassey magh',
 'ipbother'                 => 'Mooad elley am:',
-'ipboptions'               => '2 oor:2 hours,1 laa:1 day,3 laaghyn:3 days,1 hiaghtin:1 week,2 hiaghtin:2 weeks,1 vee:1 month,3 meeghyn:3 months,6 meeghyn:6 months,1 vlein:1 year,neuyerrinagh:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 oor:2 hours,1 laa:1 day,3 laaghyn:3 days,1 hiaghtin:1 week,2 hiaghtin:2 weeks,1 vee:1 month,3 meeghyn:3 months,6 meeghyn:6 months,1 vlein:1 year,neuyerrinagh:infinite',
 'ipbotheroption'           => 'elley',
 'ipbotherreason'           => 'Fa elley/tooilley:',
 'badipaddress'             => 'Enmys IP gyn vree',
@@ -954,7 +957,7 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'move-watch'              => 'Freill arrey er y duillag shoh',
 'movepagebtn'             => 'Yn duillag y scughey',
 'pagemovedsub'            => "Va'n scughey rahoil",
-'movepage-moved'          => '<big>Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'</big>',
 'articleexists'           => 'Ta duillag ayn lesh yn ennym shen, ny ta ennym mee-chiart reiht ayd.<br />
 Reih ennym elley, my sailliu.',
 'talkexists'              => "'''Va'n duillag hene scughit, agh cha nod y duillag resoonaght y scughey er yn oyr dy row fer ec yn enmys shen hannah.<br />
@@ -1175,7 +1178,7 @@ My vel y coadan ceaghlit veih'n chummey bunneydagh, foddee nagh beagh mynphoynty
 'watchlisttools-raw'  => 'Reaghey aw-rolley arrey',
 
 # Special:Version
-'version'                  => 'Lhieggan', # Not used as normal message but as header for the special page itself
+'version'                  => 'Lhieggan',
 'version-specialpages'     => 'Duillagyn er lheh',
 'version-other'            => 'Elley',
 'version-version'          => 'Lhieggan',

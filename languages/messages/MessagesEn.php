@@ -8,6 +8,8 @@
  * You can make your customizations on the wiki.
  * While logged in as administrator, go to [[Special:Allmessages]]
  * and edit the MediaWiki:* pages listed there.
+ *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
  */
 
 /**
@@ -605,7 +607,7 @@ XHTML id names.
 'category-media-header'          => 'Media in category "$1"',
 'category-empty'                 => "''This category currently contains no pages or media.''",
 'hidden-categories'              => '{{PLURAL:$1|Hidden category|Hidden categories}}',
-'hidden-category-category'       => 'Hidden categories', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Hidden categories',
 'category-subcat-count'          => '{{PLURAL:$2|This category has only the following subcategory.|This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}, out of $2 total.}}',
 'category-subcat-count-limited'  => 'This category has the following {{PLURAL:$1|subcategory|$1 subcategories}}.',
 'category-article-count'         => '{{PLURAL:$2|This category contains only the following page.|The following {{PLURAL:$1|page is|$1 pages are}} in this category, out of $2 total.}}',
@@ -694,7 +696,7 @@ XHTML id names.
 'redirectedfrom'    => '(Redirected from $1)',
 'redirectpagesub'   => 'Redirect page',
 'talkpageheader'    => '-', # do not translate or duplicate this message to other languages
-'lastmodifiedat'    => 'This page was last modified on $1, at $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'This page was last modified on $1, at $2.',
 'viewcount'         => 'This page has been accessed {{PLURAL:$1|once|$1 times}}.',
 'protectedpage'     => 'Protected page',
 'jumpto'            => 'Jump to:',
@@ -765,7 +767,7 @@ See [[Special:Version|version page]].',
 'page-atom-feed'               => '"$1" Atom Feed',
 'feed-atom'                    => 'Atom', # only translate this message to other languages if you have to change it
 'feed-rss'                     => 'RSS', # only translate this message to other languages if you have to change it
-'sitenotice'                   => '-', # the equivalent to wgSiteNotice; do not translate or duplicate this message to other languages
+'sitenotice'                   => '-', # do not translate or duplicate this message to other languages
 'anonnotice'                   => '-', # do not translate or duplicate this message to other languages
 'newsectionheaderdefaultlevel' => '== $1 ==', # do not translate or duplicate this message to other languages
 'red-link-title'               => '$1 (page does not exist)',
@@ -1260,8 +1262,8 @@ The reason given by $3 is ''$2''",
 'currentrev'             => 'Current revision',
 'currentrev-asof'        => 'Current revision as of $1',
 'revisionasof'           => 'Revision as of $1',
-'revision-info'          => 'Revision as of $1 by $2', # Additionally available: $3: revision id
-'revision-info-current'  => '-', # Available parameters: $1: timestamp; $2: userlinks; $3: revision id; do not translate or duplicate this message to other languages
+'revision-info'          => 'Revision as of $1 by $2',
+'revision-info-current'  => '-', # do not translate or duplicate this message to other languages
 'revision-nav'           => '($1) $2{{int:pipe-separator}}$3 ($4){{int:pipe-separator}}$5 ($6)', # do not translate or duplicate this message to other languages
 'previousrevision'       => '← Older revision',
 'nextrevision'           => 'Newer revision →',
@@ -1285,7 +1287,7 @@ Legend: '''({{int:cur}})''' = difference with current version,
 # Revision feed
 'history-feed-title'          => 'Revision history',
 'history-feed-description'    => 'Revision history for this page on the wiki',
-'history-feed-item-nocomment' => '$1 at $2', # user at time
+'history-feed-item-nocomment' => '$1 at $2',
 'history-feed-empty'          => 'The requested page does not exist.
 It may have been deleted from the wiki, or renamed.
 Try [[Special:Search|searching on the wiki]] for relevant new pages.',
@@ -1628,7 +1630,7 @@ please see math/README to configure.',
 'prefs-custom-js'           => 'Custom JS',
 
 # User rights
-'userrights'                     => 'User rights management', # Not used as normal message but as header for the special page itself
+'userrights'                     => 'User rights management',
 'userrights-summary'             => '', # do not translate or duplicate this message to other languages
 'userrights-lookup-user'         => 'Manage user groups',
 'userrights-user-editname'       => 'Enter a username:',
@@ -2004,8 +2006,8 @@ The description on its [$2 file description page] there is shown below.',
 'noimage'                   => 'No file by this name exists, but you can $1.',
 'noimage-linktext'          => 'upload one',
 'uploadnewversion-linktext' => 'Upload a new version of this file',
-'shared-repo-from'          => 'from $1', # $1 is the repository name
-'shared-repo'               => 'a shared repository', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => 'from $1',
+'shared-repo'               => 'a shared repository',
 
 # File reversion
 'filerevert'                => 'Revert $1',
@@ -2441,8 +2443,8 @@ last contributor is only author of this page.',
 someone else has edited or rolled back the page already.
 
 The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "The edit summary was: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last version by [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "The edit summary was: \"''\$1''\".",
+'revertpage'       => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last version by [[User:$1|$1]]',
 'rollback-success' => 'Reverted edits by $1;
 changed back to last version by $2.',
 'sessionfailure'   => 'There seems to be a problem with your login session;
@@ -2495,7 +2497,7 @@ You can change this page's protection level, but it will not affect the cascadin
 ** Counter-productive edit warring
 ** High traffic page',
 'protect-edit-reasonlist'     => 'Edit protection reasons',
-'protect-expiry-options'      => '1 hour:1 hour,1 day:1 day,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hour:1 hour,1 day:1 day,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Restriction level:',
 'minimum-size'                => 'Min size',
@@ -2577,7 +2579,7 @@ $1',
 'contributions-title' => 'User contributions for $1',
 'mycontris'           => 'My contributions',
 'contribsub2'         => 'For $1 ($2)',
-'nocontribs'          => 'No changes were found matching these criteria.', # Optional parameter: $1 is the user name
+'nocontribs'          => 'No changes were found matching these criteria.',
 'uctop'               => '(top)',
 'month'               => 'From month (and earlier):',
 'year'                => 'From year (and earlier):',
@@ -2643,7 +2645,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbenableautoblock'              => 'Automatically block the last IP address used by this user, and any subsequent IPs they try to edit from',
 'ipbsubmit'                       => 'Block this user',
 'ipbother'                        => 'Other time:',
-'ipboptions'                      => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 'ipbotheroption'                  => 'other',
 'ipbotherreason'                  => 'Other/additional reason:',
 'ipbhidename'                     => 'Hide username from edits and lists',
@@ -2782,7 +2784,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 'move-watch'                   => 'Watch this page',
 'movepagebtn'                  => 'Move page',
 'pagemovedsub'                 => 'Move succeeded',
-'movepage-moved'               => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>',
 'movepage-moved-redirect'      => 'A redirect has been created.',
 'movepage-moved-noredirect'    => 'The creation of a redirect has been suppressed.',
 'articleexists'                => 'A page of that name already exists, or the name you have chosen is not valid.
@@ -3079,7 +3081,7 @@ It allows adding a reason in the summary.',
 # Attribution
 'anonymous'        => 'Anonymous {{PLURAL:$1|user|users}} of {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} user $1',
-'lastmodifiedatby' => 'This page was last modified $2, $1 by $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'This page was last modified $2, $1 by $3.',
 'othercontribs'    => 'Based on work by $1.',
 'others'           => 'others',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|user|users}} $1',
@@ -3255,7 +3257,7 @@ Others will be hidden by default.
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Width',
@@ -3393,14 +3395,14 @@ Others will be hidden by default.
 
 'exif-unknowndate' => 'Unknown date',
 
-'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
-'exif-orientation-2' => 'Flipped horizontally', # 0th row: top; 0th column: right
-'exif-orientation-3' => 'Rotated 180°', # 0th row: bottom; 0th column: right
-'exif-orientation-4' => 'Flipped vertically', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Rotated 90° CW', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Rotated 90° CW and flipped vertically', # 0th row: right; 0th column: bottom
-'exif-orientation-8' => 'Rotated 90° CCW', # 0th row: left; 0th column: bottom
+'exif-orientation-1' => 'Normal',
+'exif-orientation-2' => 'Flipped horizontally',
+'exif-orientation-3' => 'Rotated 180°',
+'exif-orientation-4' => 'Flipped vertically',
+'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically',
+'exif-orientation-6' => 'Rotated 90° CW',
+'exif-orientation-7' => 'Rotated 90° CW and flipped vertically',
+'exif-orientation-8' => 'Rotated 90° CCW',
 
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',
@@ -3800,7 +3802,7 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'duplicate-defaultsort' => 'Warning: Default sort key "$2" overrides earlier default sort key "$1".',
 
 # Special:Version
-'version'                          => 'Version', # Not used as normal message but as header for the special page itself
+'version'                          => 'Version',
 'version-extensions'               => 'Installed extensions',
 'version-specialpages'             => 'Special pages',
 'version-parserhooks'              => 'Parser hooks',

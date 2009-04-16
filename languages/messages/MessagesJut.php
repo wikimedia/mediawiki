@@ -1,6 +1,9 @@
 <?php
 /** Jutish (Jysk)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -116,7 +119,7 @@ $messages = array(
 'category-media-header'    => "Medier i'n klynge „$1“",
 'category-empty'           => "''Denne klynge endeholter før øjeblikket æ verke sider æller medie-gøret.''",
 'hidden-categories'        => '{{PLURAL:$1|Skjult klynge|Skjulte klynger}}',
-'hidden-category-category' => 'Skjulte klynger', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Skjulte klynger',
 'listingcontinuesabbrev'   => 'førtgøte',
 
 'mainpagetext'      => "<big>'''MediaWiki er nu installeret.'''</big>",
@@ -191,7 +194,7 @@ $messages = array(
 'otherlanguages'    => 'Andre språĝ',
 'redirectedfrom'    => '(Åmstyret frå $1)',
 'redirectpagesub'   => 'Åmstyrenge',
-'lastmodifiedat'    => 'Denne side blev senest ændret den $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Denne side blev senest ændret den $2, $1.',
 'viewcount'         => 'Æ side er vest i alt $1 {{PLURAL:$1|geng|genger}}.',
 'protectedpage'     => 'Beskyttet side',
 'jumpto'            => 'Skeft til:',
@@ -430,7 +433,7 @@ denne side er vest nedenfør:",
 'viewpagelogs'        => 'Ves loglister før denne side',
 'currentrev'          => 'Nuværende hersenenge',
 'revisionasof'        => 'Hersenenger frå $1',
-'revision-info'       => 'Hersenenge frå $1 til $2', # Additionally available: $3: revision id
+'revision-info'       => 'Hersenenge frå $1 til $2',
 'previousrevision'    => '←Ældre hersenenge',
 'nextrevision'        => 'Nyere hersenenge→',
 'currentrevisionlink' => 'se nuværende hersenenge',
@@ -444,7 +447,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'histlast'            => 'Nyeste',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 ve $2', # user at time
+'history-feed-item-nocomment' => '$1 ve $2',
 
 # Diffs
 'history-title'           => 'Hersengsskigte før "$1"',
@@ -684,7 +687,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'protect-expiring'            => 'til $1 (UTC)',
 'protect-cascade'             => 'Nedarvende spærrenge – ål skabelåner, søm er endbundet i denne side spærres også.',
 'protect-cantedit'            => 'Du kenst ekke ændre beskyttelsesnivå før denne side, da du ekke kenst redigære føden.',
-'protect-expiry-options'      => '1 tême:1 hour,2 têmer:2 hours,6 têmer:6 hours,1 dåĝ:1 day,3 dåĝ:3 days,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,1 år:1 year,ubegrænset:indefinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 tême:1 hour,2 têmer:2 hours,6 têmer:6 hours,1 dåĝ:1 day,3 dåĝ:3 days,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,1 år:1 year,ubegrænset:indefinite',
 'restriction-type'            => 'Beskyttelsesståt',
 'restriction-level'           => 'Beskyttelseshøjde',
 
@@ -722,7 +725,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 
 # Block/unblock
 'blockip'       => 'Bloker bruger',
-'ipboptions'    => '1 tême:1 hour,2 têmer:2 hours,6 têmer:6 hours,1 dåĝ:1 day,3 dåĝ:3 days,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,1 år:1 year,ubegrænset:indefinite', # display1:time1,display2:time2,...
+'ipboptions'    => '1 tême:1 hour,2 têmer:2 hours,6 têmer:6 hours,1 dåĝ:1 day,3 dåĝ:3 days,1 uge:1 week,2 uger:2 weeks,1 måned:1 month,3 måneder:3 months,1 år:1 year,ubegrænset:indefinite',
 'ipblocklist'   => 'Blokerede IP-adresser og brugernave',
 'blocklink'     => 'blåker',
 'unblocklink'   => 'åphæv blokerenge',
@@ -753,7 +756,7 @@ I disse tilfælde er du nødt til at flytte æller sammenflette'n side manuelt."
 'move-watch'       => 'Denne side åvervåges',
 'movepagebtn'      => 'Flyt side',
 'pagemovedsub'     => 'Flytnenge gennemført',
-'movepage-moved'   => '<big>Æ side \'\'\'"$1" er flyttet til "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>Æ side \'\'\'"$1" er flyttet til "$2"\'\'\'</big>',
 'articleexists'    => 'En side ve det navn eksisterer ålrede, æller det
 navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
 'talkexists'       => 'Æ side blev flyttet korrekt, men den tilhørende diskusjeside ken ekke flyttes, førdi der ålrede eksisterer en ve den nye titel. Du erst nødt til at flette dem sammen manuelt.',
@@ -849,7 +852,7 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # External editor support
 'edit-externally'      => "Redigær denne gøret ve'n utsende redigærstøme",
@@ -866,7 +869,7 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 'watchlisttools-raw'  => 'Redigær rå åvervågnengsliste',
 
 # Special:Version
-'version' => "Informasje MediaWiki'm", # Not used as normal message but as header for the special page itself
+'version' => "Informasje MediaWiki'm",
 
 # Special:SpecialPages
 'specialpages' => 'Sonst sider',

@@ -1,6 +1,9 @@
 <?php
 /** Cornish (Kernewek)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -74,7 +77,7 @@ $messages = array(
 'pagecategories'           => '{{PLURAL:$1|Klasyans|Klasyansow}}',
 'category_header'          => 'Folennow yn klasyans "$1"',
 'hidden-categories'        => '{{PLURAL:$1|Klasyans kudh|Klasyansow kudh}}',
-'hidden-category-category' => 'Klasyansow kudh', # Name of the category where hidden categories will be listed
+'hidden-category-category' => 'Klasyansow kudh',
 'listingcontinuesabbrev'   => 'pes.',
 
 'about'          => 'A-dro dhe',
@@ -504,7 +507,7 @@ $messages = array(
 'table_pager_limit_submit' => 'Ke',
 
 # Special:Version
-'version'         => 'Versyon', # Not used as normal message but as header for the special page itself
+'version'         => 'Versyon',
 'version-other'   => 'Aral',
 'version-version' => 'Versyon',
 

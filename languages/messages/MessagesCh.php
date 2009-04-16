@@ -1,6 +1,9 @@
 <?php
 /** Chamorro (Chamoru)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -117,7 +120,7 @@ $messages = array(
 'category-media-header'          => 'Media siha gi katigoria "$1"',
 'category-empty'                 => "''Taya' na påhina pat media siha gi halom este na katigoria.''",
 'hidden-categories'              => '{{PLURAL:$1|Hinemme na katigoria|Manhinemme na kategoria siha}}',
-'hidden-category-category'       => 'Manhinemme na katigoria siha', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Manhinemme na katigoria siha',
 'category-subcat-count'          => '{{PLURAL:$2|Guåha i sigiente na dibision kategoria gi halom este na kategoria.|Guåha i sigiente {{PLURAL:$1|na dibision kategoria|$1 na dibision kategoria siha}}, ginen $2.}}',
 'category-subcat-count-limited'  => 'Guåha i sigiente {{PLURAL:$1|dibision katigoria|$1 dibision katigoria siha}} gi halom este na katigoria.',
 'category-article-count'         => "{{PLURAL:$2|I sigiente na påhina ha' gi este na katigoria.|Guåha {{PLURAL:$1|ha' na påhina|$1 na påhina siha}} ginen $2 gi este na katigoria.}}",
@@ -195,7 +198,7 @@ $messages = array(
 'otherlanguages'    => 'Gi otru na lengguahe siha',
 'redirectedfrom'    => '(Madirihi ginen $1)',
 'redirectpagesub'   => "Na'dirihi i påhina",
-'lastmodifiedat'    => "Må'pos na tinilaikan påhina gi $2, $1.", # $1 date, $2 time
+'lastmodifiedat'    => "Må'pos na tinilaikan påhina gi $2, $1.",
 'viewcount'         => "Ma'usa este na påhina {{PLURAL:$1|un biahi|$1 na biahi}}.",
 'protectedpage'     => 'Maprotehi i påhina',
 'jumpto'            => "Ta'yuki guatu:",
@@ -544,7 +547,7 @@ Nina'i i rasion ''$2'' as $3",
 'nohistory'           => "Tåya' historian tinilaika este na påhina.",
 'currentrev'          => 'Tinilaika modetnu',
 'revisionasof'        => 'Maribisa ginen $1',
-'revision-info'       => 'Tinilaika ginen $1 as $2', # Additionally available: $3: revision id
+'revision-info'       => 'Tinilaika ginen $1 as $2',
 'previousrevision'    => "←Ribision mas amko'",
 'nextrevision'        => 'Mas nuebu na tinilaika→',
 'currentrevisionlink' => 'I mas nuebu na tinilaika',
@@ -565,7 +568,7 @@ Leyendu: (på'go) = i diferensia yan i rebision på'go,
 # Revision feed
 'history-feed-title'          => 'Historian tinilaika',
 'history-feed-description'    => 'Historian tinilaika gi este na påhina gi wiki',
-'history-feed-item-nocomment' => '$1 gi $2', # user at time
+'history-feed-item-nocomment' => '$1 gi $2',
 'history-feed-empty'          => "Tåya' na påhina ni finaisen-mu.
 Buente mana'suha gi wiki, pat matulaika nå'an-ña.
 Chagi fan [[Special:Search|manaligao gi wiki]] para i mannuebu na påhina siha ni manaplikao.",
@@ -741,7 +744,7 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'files'                    => 'Atkibu siha',
 
 # User rights
-'userrights'               => "Inenkåtgan i direchun muna'sesetbi", # Not used as normal message but as header for the special page itself
+'userrights'               => "Inenkåtgan i direchun muna'sesetbi",
 'userrights-lookup-user'   => "Maneha i grupun muna'sesetbi",
 'userrights-user-editname' => "Po'lo nå'an muna'sesetbi:",
 'editusergroup'            => "Tulaika grupun muna'sesetbi",
@@ -994,7 +997,7 @@ Estague taiguini i nibet i påhina '''$1''':",
 
 # Block/unblock
 'blockip'            => "Chomma' i muna'sesetbi",
-'ipboptions'         => "2 oras:2 hours,1 diha:1 day,3 na diha siha:3 days,1 simana:1 week,2 na simana siha:2 weeks,1 mes:1 month,3 na mes siha:3 months,6 na mes siha:6 months,1 sakkan:1 year,taifinakpo':infinite", # display1:time1,display2:time2,...
+'ipboptions'         => "2 oras:2 hours,1 diha:1 day,3 na diha siha:3 days,1 simana:1 week,2 na simana siha:2 weeks,1 mes:1 month,3 na mes siha:3 months,6 na mes siha:6 months,1 sakkan:1 year,taifinakpo':infinite",
 'ipblocklist'        => "IP yan na'an muna'sesetbi ni manmachomma' siha",
 'ipblocklist-submit' => 'Aligao',
 'blocklink'          => "chomma'",
@@ -1026,7 +1029,7 @@ Pot sienkasu i hilo', nesesario ha' na un kånya pat un na'daña i påhina yangg
 'move-watch'       => 'Pulan este na påhina',
 'movepagebtn'      => 'Kånya i påhina',
 'pagemovedsub'     => 'Munhåyan i siniha',
-'movepage-moved'   => '<big>\'\'\'Makånya "$1" para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => '<big>\'\'\'Makånya "$1" para "$2"\'\'\'</big>',
 'articleexists'    => "Esta guåha un påhina mafa'na'an enao, pat ti masedi ni inayek-mu.
 Ayek fan otru nå'an-ña.",
 'talkexists'       => "'''Munhåyan i siniha i påhina mismo, lao ti siña ha kånya i påhinan kombetsasion sa' guåha esta otru ni titulon nuebu.'''",
@@ -1141,7 +1144,7 @@ Ti mantattiyi i areklo ni sigienten ina'chetton siha gi mismo liña, i.e. i påh
 'watchlisttools-raw'  => "Tulaika i listan pinilan ti mana'finu",
 
 # Special:Version
-'version'              => 'Tinilaika', # Not used as normal message but as header for the special page itself
+'version'              => 'Tinilaika',
 'version-specialpages' => 'Manespesiat na påhina',
 
 # Special:FileDuplicateSearch

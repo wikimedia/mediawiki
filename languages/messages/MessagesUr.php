@@ -1,6 +1,9 @@
 <?php
 /** Urdu (اردو)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -143,7 +146,7 @@ $messages = array(
 'otherlanguages'    => 'دیگر زبانوں میں',
 'redirectedfrom'    => '($1 سے پلٹایا گیا)',
 'redirectpagesub'   => 'لوٹایا گیا صفحہ',
-'lastmodifiedat'    => 'آخری بار تدوین $2, $1 کو کی گئی۔', # $1 date, $2 time
+'lastmodifiedat'    => 'آخری بار تدوین $2, $1 کو کی گئی۔',
 'viewcount'         => 'اِس صفحہ تک {{PLURAL:$1|ایک‌بار|$1 مرتبہ}} رسائی کی گئی',
 'protectedpage'     => 'محفوظ شدہ صفحہ',
 'jumpto'            => ':چھلانگ بطرف',
@@ -551,7 +554,7 @@ latex، dvips، gs کی صحیح تنصیب کی جانچ کرنے کے بعد �
 'prefs-custom-js'           => 'خودساختہ JS',
 
 # User rights
-'userrights'               => 'حقوقِ صارف کی نظامت', # Not used as normal message but as header for the special page itself
+'userrights'               => 'حقوقِ صارف کی نظامت',
 'userrights-lookup-user'   => 'گروہائے صارف کا انتظام',
 'userrights-user-editname' => 'کوئی اسم‌صارف داخل کیجئے:',
 'editinguser'              => "تبدیلئ حقوق برائے صارف '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -891,7 +894,7 @@ latex، dvips، gs کی صحیح تنصیب کی جانچ کرنے کے بعد �
 'autosumm-new'     => 'نیا صفحہ: $1',
 
 # Special:Version
-'version' => 'ورژن', # Not used as normal message but as header for the special page itself
+'version' => 'ورژن',
 
 # Special:SpecialPages
 'specialpages' => 'خصوصی صفحات',

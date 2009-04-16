@@ -1,6 +1,9 @@
 <?php
 /** Pontic (Ποντιακά)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -116,7 +119,7 @@ $messages = array(
 'category-media-header'          => 'Τα μέσα σην κατηγορίαν "$1" απές',
 'category-empty'                 => "''Αβούτη κατηγορίαν πα 'κ εχ' νέ σελίδας νέ μέσα.''",
 'hidden-categories'              => '{{PLURAL:$1|Κρυμμένον κατηγορίαν|Κρυμμένα κατηγορίας}}',
-'hidden-category-category'       => 'Κρυμμέν κατηγορίας', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Κρυμμέν κατηγορίας',
 'category-subcat-count'          => "{{PLURAL:$2|Αβούτη κατηγορίαν έχ' τ' αφκά την υποκατηγορίαν μαναχόν.|Αβούτη κατηγορίαν έχ' απές τ' αφκά {{PLURAL:$1|την υποκατηγορίαν|$1 τα υποκατηγορίας}}. Ούλ εντάμαν είν $2.}}",
 'category-subcat-count-limited'  => "Η κατηγορίαν ατή έχ' αφκά καικά {{PLURAL:$1|την υποκατηγορίαν|$1 τα υποκατηγορίας}}.",
 'category-article-count'         => "{{PLURAL:$2|Αβούτη κατηγορίαν έχ' τ' αφκά τη σελίδαν μαναχόν.|Τ' αφκά {{PLURAL:$1|η σελίδαν εν|$1 τα σελίδας είν}} απές σ' αβούτην την κατηγορίαν. Ούλ εντάμαν είν $2.}}",
@@ -192,7 +195,7 @@ $messages = array(
 'otherlanguages'    => "Σ' άλλα γλώσσας",
 'redirectedfrom'    => '(Έρτεν ασό $1)',
 'redirectpagesub'   => 'Σελίδαν διπλού σύνδεσμονος',
-'lastmodifiedat'    => 'Αούτη σελίδα επεξεράστεν σα $1, $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Αούτη σελίδα επεξεράστεν σα $1, $2.',
 'protectedpage'     => 'Ασπαλιζμένον σελίδαν',
 'jumpto'            => 'Δέβα σο:',
 'jumptonavigation'  => 'Πορπάτεμαν',
@@ -504,7 +507,7 @@ $messages = array(
 'currentrev'             => 'Ατωριζνόν μορφήν',
 'currentrev-asof'        => 'Ατωριζνόν μορφήν τη $1',
 'revisionasof'           => 'Μορφήν τη $1',
-'revision-info'          => 'Έκδοση σα $1 ασόν/ασήν $2', # Additionally available: $3: revision id
+'revision-info'          => 'Έκδοση σα $1 ασόν/ασήν $2',
 'previousrevision'       => '←Παλαιόν μορφήν',
 'nextrevision'           => 'Κι άλλο καινούρεον μορφήν→',
 'currentrevisionlink'    => 'Ατωριζνόν μορφήν',
@@ -523,7 +526,7 @@ $messages = array(
 'historyempty'           => '(εύκαιρον)',
 
 # Revision feed
-'history-feed-item-nocomment' => '$1 σο $2', # user at time
+'history-feed-item-nocomment' => '$1 σο $2',
 
 # Revision deletion
 'rev-delundel'      => 'δείξον/κρύψον',
@@ -926,7 +929,7 @@ $messages = array(
 'protect-expiring'            => 'λήγει στις $1 (UTC)',
 'protect-cascade'             => "Ασπάλιγμαν σελιδίων ντ' είν απές σ' αβούτεν σελίδαν (διαδοχικόν προστασίαν)",
 'protect-cantedit'            => "'Κι έχετε δικαίωμαν ν' αλλάζετε τ' επίπεδον ασπάλιγματι τ' ατεινές σελίδας.",
-'protect-expiry-options'      => '2 ώραν:2 hour,1 ημέραν:1 day,1 εβδομάδαν:1 week,2 εβδομάδας:2 weeks,1 μήναν:1 month,3 μήνας:3 months,6 μήνας:6 months,1 χρόνον:1 year,αόριστα:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 ώραν:2 hour,1 ημέραν:1 day,1 εβδομάδαν:1 week,2 εβδομάδας:2 weeks,1 μήναν:1 month,3 μήνας:3 months,6 μήνας:6 months,1 χρόνον:1 year,αόριστα:infinite',
 'restriction-type'            => 'Δικαίωμαν:',
 'restriction-level'           => 'Επίπεδον περιορισμού:',
 
@@ -989,7 +992,7 @@ $messages = array(
 'ipbanononly'              => "Ασπάλισον τ'ανώνυμους τη χρήστες μαναχόν",
 'ipbsubmit'                => 'Ασπάλισον τον χρήστεν',
 'ipbother'                 => 'Άλλον ώρα:',
-'ipboptions'               => '2 ώρας:2 hours,1 ημέρα:1 day,3 ημέρας:3 days,1 εβδομάδα:1 week,2 εβδομάδας:2 weeks,1 μήνα:1 month,3 μήνας:3 months,6 μήνας:6 months,1 χρόνο:1 year,αόριστα:infinite', # display1:time1,display2:time2,...
+'ipboptions'               => '2 ώρας:2 hours,1 ημέρα:1 day,3 ημέρας:3 days,1 εβδομάδα:1 week,2 εβδομάδας:2 weeks,1 μήνα:1 month,3 μήνας:3 months,6 μήνας:6 months,1 χρόνο:1 year,αόριστα:infinite',
 'ipbotheroption'           => "άλλ'",
 'ipbotherreason'           => 'Άλλον/κιάλλον αιτία:',
 'badipaddress'             => 'Άχρηστον IP',
@@ -1045,7 +1048,7 @@ $messages = array(
 'move-watch'              => 'Ωρίαγμαν τη σελίδας',
 'movepagebtn'             => 'Ετεροχλάεμαν σελίδας',
 'pagemovedsub'            => 'Ετερχλαεύτεν',
-'movepage-moved'          => '<big>\'\'\'"$1" επήγεν σο "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" επήγεν σο "$2"\'\'\'</big>',
 'articleexists'           => 'Σελίδαν με αΐκον όνεμαν υπάρχει.
 Βαλέστεν άλλο όνεμαν.',
 'cantmove-titleprotected' => "'Κ επορείτε ν' εφτάτε σελίδαν με τ' αβούτον τ' όνεμαν επειδή εσπάλισανατο.",
@@ -1187,7 +1190,7 @@ $messages = array(
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength", # Do not translate list items
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Πλάτος',
@@ -1266,7 +1269,7 @@ $messages = array(
 'watchlisttools-raw'  => 'Επεξεργαστείτε την πρωτογενή τη λίσταν ωριαγματί',
 
 # Special:Version
-'version'                  => 'Έκδοση', # Not used as normal message but as header for the special page itself
+'version'                  => 'Έκδοση',
 'version-specialpages'     => 'Ειδικά σελίδας',
 'version-other'            => 'Αλλέτερα',
 'version-hooks'            => 'Αγκιστρία',

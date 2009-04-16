@@ -1,6 +1,9 @@
 <?php
 /** Guarani (Avañe'ẽ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -133,7 +136,7 @@ $messages = array(
 'viewtalkpage'     => 'Hecha myangekõi',
 'otherlanguages'   => "Ambue ñe'ẽ",
 'redirectedfrom'   => '(Oñembohapejeýva $1)',
-'lastmodifiedat'   => 'Ko kuatiarogue oñemoambuejeýkuri: $2, $1.', # $1 date, $2 time
+'lastmodifiedat'   => 'Ko kuatiarogue oñemoambuejeýkuri: $2, $1.',
 'viewcount'        => 'Esta página ha sido visitada $1 veces.',
 'jumpto'           => 'Kundaharãme jeho',
 'jumptonavigation' => 'kundaharã',
@@ -541,7 +544,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'watchlistedit-raw-removed'   => '$1 páginas han sido borradas:',
 
 # Special:Version
-'version' => "Mba'ereko", # Not used as normal message but as header for the special page itself
+'version' => "Mba'ereko",
 
 # Special:FilePath
 'filepath'        => 'Ruta de archivo',

@@ -3167,32 +3167,8 @@ Variants for Chinese language",
 	'db-error-messages'     => 'Database error messages',
 );
 
-/** Short comments for standalone messages */
+/** Short comments for standalone messages
+ * deprecated - explanations in MessagesQqq.php now.
+ */
 $wgMessageComments = array(
-	'hidden-category-category'    => 'Name of the category where hidden categories will be listed',
-	'lastmodifiedat'              => '$1 date, $2 time',
-	'sitenotice'                  => 'the equivalent to wgSiteNotice',
-	'history-feed-item-nocomment' => 'user at time',
-	'shared-repo-from'            => '$1 is the repository name',
-	'shared-repo'                 => 'used when shared-repo-NAME does not exist',
-	'editcomment'                 => 'only shown if there is an edit comment',
-	'revertpage'                  => 'Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from',
-	'lastmodifiedatby'            => '$1 date, $2 time, $3 user',
-	'exif-orientation-1'          => '0th row: top; 0th column: left',
-	'exif-orientation-2'          => '0th row: top; 0th column: right',
-	'exif-orientation-3'          => '0th row: bottom; 0th column: right',
-	'exif-orientation-4'          => '0th row: bottom; 0th column: left',
-	'exif-orientation-5'          => '0th row: left; 0th column: top',
-	'exif-orientation-6'          => '0th row: right; 0th column: top',
-	'exif-orientation-7'          => '0th row: right; 0th column: bottom',
-	'exif-orientation-8'          => '0th row: left; 0th column: bottom',
-	'movepage-moved'              => 'The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.',
-	'ipboptions'                  => 'display1:time1,display2:time2,...',
-	'protect-expiry-options'      => 'display1:time1,display2:time2,...',
-	'metadata-fields'             => 'Do not translate list items',
-	'version'                     => 'Not used as normal message but as header for the special page itself',
-	'userrights'                  => 'Not used as normal message but as header for the special page itself',
-	'revision-info'               => 'Additionally available: $3: revision id',
-	'revision-info-current'       => 'Available parameters: $1: timestamp; $2: userlinks; $3: revision id',
-	'nocontribs'                  => 'Optional parameter: $1 is the user name',
 );

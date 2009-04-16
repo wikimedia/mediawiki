@@ -1,6 +1,9 @@
 <?php
 /** Veps (Vepsan kel')
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -189,7 +192,7 @@ $messages = array(
 'category-media-header'          => 'Mediafailad "$1"-kategorijas',
 'category-empty'                 => "''Nece kategorii om nügüd' pall'az.''",
 'hidden-categories'              => '{{PLURAL:$1|Peittud kategorii|Peittud kategorijad}}',
-'hidden-category-category'       => 'Peittud kategorijad', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Peittud kategorijad',
 'category-subcat-count'          => "{{PLURAL:$2|Neciš kategorijas om vaiše üks' alakategorii.|Neciš kategorijas om {{PLURAL:$1|üks' alakategorii|$1 alakategorijad}}; om kaiked $2 alakategorijad.}}",
 'category-subcat-count-limited'  => 'Neciš kategorijas om {{PLURAL:$1|mugoi üks alakategorii| mugomad $1 alakategorijad}}.',
 'category-article-count'         => "{{PLURAL:$2|Neciš kategorijas om vaiše üks' ozutadud lehtpol'.| Täs om ozutadud necen kategorijan {{PLURAL:$1|üks' lehtpol'|$1 lehtpol't}}; om kaiked $2.}}",
@@ -275,7 +278,7 @@ $messages = array(
 'otherlanguages'    => 'Toižil kelil',
 'redirectedfrom'    => '(Oigetud lehtpolelpäi $1)',
 'redirectpagesub'   => "Oigendai lehtpol'",
-'lastmodifiedat'    => "Nece lehtpol' toižetadihe $1, aigal $2.", # $1 date, $2 time
+'lastmodifiedat'    => "Nece lehtpol' toižetadihe $1, aigal $2.",
 'viewcount'         => "Nece lehtpol' kaceltihe {{PLURAL:$1|kerdal|$1 kerdad}}.",
 'protectedpage'     => "Saubatud lehtpol'",
 'jumpto'            => 'Hüpähtada:',
@@ -716,7 +719,7 @@ Ei voi mülütada erasid šablonoid.',
 'currentrev'             => 'Nügüdläine versii',
 'currentrev-asof'        => 'Nügüdläine versii $1',
 'revisionasof'           => 'Versii $1',
-'revision-info'          => 'Tehtud $1 $2-kävutajan versii', # Additionally available: $3: revision id
+'revision-info'          => 'Tehtud $1 $2-kävutajan versii',
 'previousrevision'       => '← Enzne versii',
 'nextrevision'           => 'Udemb versii →',
 'currentrevisionlink'    => 'Nügüdläine versii',
@@ -737,7 +740,7 @@ Znamoičendad: '''({{int:cur}})''' = erod nügüdläižes versijaspäi, '''({{in
 # Revision feed
 'history-feed-title'          => 'Toižetusiden istorii',
 'history-feed-description'    => 'Necen lehtpolen toižetusen istorii',
-'history-feed-item-nocomment' => '$1 aigal $2', # user at time
+'history-feed-item-nocomment' => '$1 aigal $2',
 'history-feed-empty'          => "Ectud lehtpol't ei ole.
 Sidä voiži čuta wikispäi vai nimitada udes.
 Naprigat [[Special:Search|ectä wikišpäi]] sättujid lehtpolid.",
@@ -1038,7 +1041,7 @@ kc. math/README järgendamižen täht.',
 'prefs-custom-js'           => 'Ičeze JS',
 
 # User rights
-'userrights'                     => 'Kävutajiden oiktusiden ohjandamine', # Not used as normal message but as header for the special page itself
+'userrights'                     => 'Kävutajiden oiktusiden ohjandamine',
 'userrights-lookup-user'         => 'Kävutajiden gruppiden ohjendamine',
 'userrights-user-editname'       => 'Kävutajan nimi:',
 'editusergroup'                  => 'Redaktiruida kävutajiden gruppad',
@@ -1318,8 +1321,8 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 'noimage'                   => 'Ei ole failad mugoižen nimenke, no tö voit $1.',
 'noimage-linktext'          => 'jügutoitta se',
 'uploadnewversion-linktext' => "Jügutoitta necen failan uz' versii",
-'shared-repo-from'          => '$1-projektaspäi', # $1 is the repository name
-'shared-repo'               => 'ühthine mediavaraait', # used when shared-repo-NAME does not exist
+'shared-repo-from'          => '$1-projektaspäi',
+'shared-repo'               => 'ühthine mediavaraait',
 
 # File reversion
 'filerevert'                => '$1n endištand vanhemban versijannoks',
@@ -1679,8 +1682,8 @@ Jäl'gmäine toižetai om üksjäižen lehtpolen avtoran.",
 'alreadyrolled'    => "Ei voi endištada jäl'gmäšt [[:$1]]-lehtpolen redakcijad (avtor: [[User:$2|$2]]). ([[User talk:$2|Lodud]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); ken-se toine om jo redaktiruinu vai endištanu sen.
 
 Jäl'gmäižed toižetused om tehnu [[User:$3|$3]] ([[User talk:$3|Lodud]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "Redaktiruindan ümbrikacund oli: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Kävutajan [[Special:Contributions/$2|$2]] ([[User talk:$2|Lodud]]) tožetused oma endištadud edeližhe versijahasai (avtor: [[User:$1|$1]])', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "Redaktiruindan ümbrikacund oli: \"''\$1''\".",
+'revertpage'       => 'Kävutajan [[Special:Contributions/$2|$2]] ([[User talk:$2|Lodud]]) tožetused oma endištadud edeližhe versijahasai (avtor: [[User:$1|$1]])',
 'rollback-success' => '$1-kävutajan toižetused oma endištadud $2-kävutajan versijahasai.',
 'sessionfailure'   => 'Om problemoid nügüdläižes radseansas; nece tegend om kel\'tud, miše kaita "seansan anastusespäi".
 Olgat hüväd, paingat "tagaze"-kingitimele i jügutoitkat lehtpol\' udes, sid\' naprigat toštta tegend völ kerdan.',
@@ -1731,7 +1734,7 @@ Sab toižetada necen lehtpolen kaičendpind, no se ei voi toižetada kaskadkaič
 ** Satusitoi redakcijoiden soda
 ** Luja lehtpolen populärižuz',
 'protect-edit-reasonlist'     => 'Redaktiruida kaičendan süd',
-'protect-expiry-options'      => "1 čas:1 hour,1 päiv:1 day,1 nedal':1 week,2 nedalid:2 weeks,1 ku:1 month,3 kud:3 months,6 kud:6 months,1 voz':1 year,strokuta:infinite", # display1:time1,display2:time2,...
+'protect-expiry-options'      => "1 čas:1 hour,1 päiv:1 day,1 nedal':1 week,2 nedalid:2 weeks,1 ku:1 month,3 kud:3 months,6 kud:6 months,1 voz':1 year,strokuta:infinite",
 'restriction-type'            => 'Oiktused:',
 'restriction-level'           => 'Tulendan laskendpind:',
 'minimum-size'                => 'Minimaline suruz',
@@ -1850,7 +1853,7 @@ Kirjutagat sü alemba.',
 'ipbenableautoblock'              => 'Blokiruida avtomatižešti kävutajal kävutadud IP-adresad',
 'ipbsubmit'                       => 'Blokiruida nece kävutai',
 'ipbother'                        => 'Toine aig:',
-'ipboptions'                      => "2 časud:2 hours,1 päiv:1 day,3 päiväd:3 days,1 nedal':1 week,2 nedalid:2 weeks,1 ku:1 month,3 kud:3 months,6 kud:6 months,1 voz':1 year,strokuta:infinite", # display1:time1,display2:time2,...
+'ipboptions'                      => "2 časud:2 hours,1 päiv:1 day,3 päiväd:3 days,1 nedal':1 week,2 nedalid:2 weeks,1 ku:1 month,3 kud:3 months,6 kud:6 months,1 voz':1 year,strokuta:infinite",
 'ipbotheroption'                  => 'toine',
 'ipbotherreason'                  => 'Toine sü/Ližasü:',
 'ipbhidename'                     => 'Peitta kävutajan nimi redakcijoišpäi da nimikirjutesišpäi',
@@ -1967,7 +1970,7 @@ Nenil statjoil tegese sirta vai ühtenzoitta lehtpoled ičeksaz.",
 'move-watch'              => "Kacelta necidä lehtpol't",
 'movepagebtn'             => "Udesnimitada lehtpol'",
 'pagemovedsub'            => "Lehtpol' om nimitadud udes",
-'movepage-moved'          => "<big>'''\"\$1\" om nimitadud udes; uz' nimi om \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''\"\$1\" om nimitadud udes; uz' nimi om \"\$2\"'''</big>",
 'movepage-moved-redirect' => 'Läbikosketuz om tehtud.',
 'articleexists'           => "Lehtpol' mugoižen nimenke om jo wikiš, vai valitud nimi ei sättu. Olgat hüväd, valikat toine nimi.",
 'talkexists'              => "'''Iče lehtpol' om nimitadud udes jügedusita, no lodulehtpol't ei voi udesnimitada, sikš miše wikiš om jo lodulehtpol' mugoižen nimenke. Pidab erigoitta niid ičeksaz.'''",
@@ -2119,7 +2122,7 @@ Sab lugeda sen augotižkod da kopiruida se.",
 
 # Attribution
 'siteuser'         => '{{SITENAME}}-saitan kävutai $1',
-'lastmodifiedatby' => "Necidä lehtpol't toižeti jäl'gmäižen kerdan $2, $1 časul $3.", # $1 date, $2 time, $3 user
+'lastmodifiedatby' => "Necidä lehtpol't toižeti jäl'gmäižen kerdan $2, $1 časul $3.",
 'othercontribs'    => 'Aluz - tö, kudamban tegi $1.',
 'others'           => 'toižed',
 'siteusers'        => '{{SITENAME}}-saitan {{PLURAL:$2|kävutai|kävutajad}} $1',
@@ -2235,7 +2238,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagewidth'                => 'Leveduz’',
@@ -2326,7 +2329,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 
 'exif-unknowndate' => 'Tundmatoi dat',
 
-'exif-orientation-1' => 'Normaline', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Normaline',
 
 'exif-componentsconfiguration-0' => 'ei ole',
 
@@ -2576,7 +2579,7 @@ Kävutagat normaline ezikacund.',
 'hijri-calendar-m3' => 'Rabi al-aual',
 
 # Special:Version
-'version'                       => 'Versii', # Not used as normal message but as header for the special page itself
+'version'                       => 'Versii',
 'version-extensions'            => 'Seižutadud ližad',
 'version-specialpages'          => 'Specialižed lehtpoled',
 'version-parserhooks'           => 'Sintaksižen analizatoran sabustajad',

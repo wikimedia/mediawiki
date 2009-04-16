@@ -1,6 +1,9 @@
 <?php
 /** Lozi (Silozi)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -174,7 +177,7 @@ $messages = array(
 'otherlanguages'    => 'Silozi kibuzi',
 'redirectedfrom'    => '(Petulo abezi di $1)',
 'redirectpagesub'   => 'Petulo abezi',
-'lastmodifiedat'    => 'Bye petulo sa petuhisize di lila kwa $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'Bye petulo sa petuhisize di lila kwa $2, $1.',
 'viewcount'         => 'Bye petulo sa akusi {{PLURAL:$1|1×|$1×}}.',
 'protectedpage'     => 'Petulo bukelezi',
 'jumpto'            => 'Yezi:',
@@ -431,7 +434,7 @@ Desu dafi kulobala di petulo sa gi di informasi:",
 'viewpagelogs'        => 'Kamukile desu di petulo',
 'currentrev'          => 'Selt nca',
 'revisionasof'        => 'Selt di $1',
-'revision-info'       => 'Selt di $1 di $2', # Additionally available: $3: revision id
+'revision-info'       => 'Selt di $1 di $2',
 'previousrevision'    => '←Kona selt',
 'nextrevision'        => 'Lila selt→',
 'currentrevisionlink' => 'Selt nca',
@@ -449,7 +452,7 @@ Informasi: (bye) = petuho a nca selt,
 # Revision feed
 'history-feed-title'          => 'Bundau di selt',
 'history-feed-description'    => 'Bundau di selt di petulo di wiki.',
-'history-feed-item-nocomment' => '$1 di $2', # user at time
+'history-feed-item-nocomment' => '$1 di $2',
 
 # Revision deletion
 'rev-deleted-comment' => '(lyangutukezi sa afi kulobala)',
@@ -803,7 +806,7 @@ Petohoni di petulo '''$1''' sa:",
 'protect-expiring'            => 'simpekile $1 (UTC)',
 'protect-cascade'             => 'Bukelezi petulo kwa bye petulo (kaskedi)',
 'protect-cantedit'            => "A ni ku hloli a bukelezi di bye petulo, a ni sa tumelelo di hloli ye ng'i.",
-'protect-expiry-options'      => '2 ora:2 hours,1 dia:1 day,3 dia:3 days,1 wiki:1 week,2 wiki:2 weeks,1 muna:1 month,3 muna:3 months,6 muna:6 months,1 anu:1 year,di simuluzi:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '2 ora:2 hours,1 dia:1 day,3 dia:3 days,1 wiki:1 week,2 wiki:2 weeks,1 muna:1 month,3 muna:3 months,6 muna:6 months,1 anu:1 year,di simuluzi:infinite',
 'restriction-type'            => 'Tumelelo:',
 'restriction-level'           => 'Bolok tumelelo:',
 
@@ -865,7 +868,7 @@ Petohoni di petulo '''$1''' sa:",
 'blockip'            => 'Bolok sebelu',
 'ipaddress'          => 'IP:',
 'ipadressorusername' => 'IP/sebelu:',
-'ipboptions'         => '2 ora:2 hours,1 dia:1 day,3 dia:3 days,1 wiki:1 week,2 wiki:2 weeks,1 muna:1 month,3 muna:3 months,6 muna:6 months,1 anu:1 year,di simuluzi:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '2 ora:2 hours,1 dia:1 day,3 dia:3 days,1 wiki:1 week,2 wiki:2 weeks,1 muna:1 month,3 muna:3 months,6 muna:6 months,1 anu:1 year,di simuluzi:infinite',
 'badipaddress'       => 'IP ni sa',
 'ipblocklist'        => 'Mukoloko di IP e sebelu bye sa bolok',
 'ipblocklist-submit' => 'Fatukile',
@@ -1041,7 +1044,7 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 * datetimeoriginal
 * exposuretime
 * fnumber
-* focallength', # Do not translate list items
+* focallength',
 
 # EXIF tags
 'exif-imagedescription' => 'Sebu di imegi',
@@ -1103,7 +1106,7 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 'watchlisttools-raw'  => "Hloli ye ng'i ro mukoloko di kentezi",
 
 # Special:Version
-'version' => 'Pane', # Not used as normal message but as header for the special page itself
+'version' => 'Pane',
 
 # Special:SpecialPages
 'specialpages' => 'Petulo zwenti',
