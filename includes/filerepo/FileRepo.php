@@ -599,4 +599,9 @@ abstract class FileRepo {
 	function getMasterDB() {
 		return wfGetDB( DB_MASTER );
 	}
+
+	function getMemcKey( $key ) {
+		return wfWikiID( $this->getSlaveDB() ) . ":{$key}";
+	}
+
 }
