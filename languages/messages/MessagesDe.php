@@ -2481,6 +2481,9 @@ Besuche die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalis
 'djvu_no_xml'              => 'XML-Daten können für die DjVu-Datei nicht abgerufen werden',
 'thumbnail_invalid_params' => 'Ungültige Thumbnail-Parameter',
 'thumbnail_dest_directory' => 'Zielverzeichnis kann nicht erstellt werden.',
+'thumbnail_image-type'     => 'Bildtyp nicht unterstützt',
+'thumbnail_gd-library'     => 'Unvollständige Konfiguration der GD-Bibliothek: Fehlende Funktion $1',
+'thumbnail_image-missing'  => 'Datei scheint fehlend zu sein: $1',
 
 # Special:Import
 'import'                     => 'Seiten importieren',

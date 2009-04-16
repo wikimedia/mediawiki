@@ -2384,11 +2384,14 @@ Por favor, visite a [http://www.mediawiki.org/wiki/Localisation localización Me
 # Thumbnails
 'thumbnail-more'           => 'Agrandado',
 'filemissing'              => 'O ficheiro non se dá atopado',
-'thumbnail_error'          => 'Erro ao crear a imaxe en miniatura: $1',
+'thumbnail_error'          => 'Erro ao crear a miniatura: $1',
 'djvu_page_error'          => 'Páxina DjVu fóra de rango',
 'djvu_no_xml'              => 'Foi imposíbel obter o XML para o ficheiro DjVu',
 'thumbnail_invalid_params' => 'Parámetros de miniatura non válidos',
 'thumbnail_dest_directory' => 'Foi imposíbel crear un directorio de destino',
+'thumbnail_image-type'     => 'Tipo de imaxe non soportado',
+'thumbnail_gd-library'     => 'Configuración da libraría GD incompleta: falta a función $1',
+'thumbnail_image-missing'  => 'Parece que falta o ficheiro: $1',
 
 # Special:Import
 'import'                     => 'Importar páxinas',

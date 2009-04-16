@@ -36,7 +36,7 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ὑπογραμμίζειν συνδέσμους:',
-'tog-highlightbroken'         => 'Μορφοῦν ἀπωλομένους συνδέσμους <a href="" class="new">οὐτωσὶ</a> (ἄλλως: οὐτωσὶ <a href="" class="internal">;</a>).',
+'tog-highlightbroken'         => 'Μορφοῦν ἀπωλομένους συνδέσμους <a href="" class="new">οὐτωσί</a> (ἄλλως: οὐτωσί <a href="" class="internal">;</a>).',
 'tog-justify'                 => 'Στοιχίζειν παραγράφους',
 'tog-hideminor'               => 'Κρύπτειν ἥττονας μεταγραφὰς ἐν προσφάτοις ἀλλαγαῖς',
 'tog-hidepatrolled'           => 'Κρύπτειν τὰς περιπολουμένας μεταγραφὰς ἐν ταῖς προσφάτοις ἀλλαγαῖς',

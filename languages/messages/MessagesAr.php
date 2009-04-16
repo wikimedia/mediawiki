@@ -2636,6 +2636,9 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'djvu_no_xml'              => 'لا يمكن جلب XML لملف DjVu',
 'thumbnail_invalid_params' => 'محددات التصغير غير صحيحة',
 'thumbnail_dest_directory' => 'غير قادر على إنشاء المجلد الهدف',
+'thumbnail_image-type'     => 'نوع الصورة غير مدعوم',
+'thumbnail_gd-library'     => 'ضبط مكتبة GD غير مكتمل: دالة مفقودة $1',
+'thumbnail_image-missing'  => 'الملف يبدو أنه مفقود: $1',
 
 # Special:Import
 'import'                     => 'استيراد صفحات',

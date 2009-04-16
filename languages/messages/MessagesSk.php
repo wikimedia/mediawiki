@@ -2364,6 +2364,9 @@ Prosím, navštívte [http://www.mediawiki.org/wiki/Localisation MediaWiki Local
 'djvu_no_xml'              => 'Nebolo možné priniesť XML DjVu súboru',
 'thumbnail_invalid_params' => 'Neplatné parametre náhľadu',
 'thumbnail_dest_directory' => 'Nebolo možné vytvoriť cieľový adresár',
+'thumbnail_image-type'     => 'Nepodporovaný typ obrázka',
+'thumbnail_gd-library'     => 'Neúplná konfigurácia knižnice GD: chýba funkcia $1',
+'thumbnail_image-missing'  => 'Zdá sa, že súbor chýba: $1',
 
 # Special:Import
 'import'                     => 'Import stránok',

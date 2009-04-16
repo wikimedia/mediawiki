@@ -762,7 +762,7 @@ Den Administrateur den D'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'nocreate-loggedin'                => 'Dir hutt keng Berechtigung fir nei Säiten unzeleeën.',
 'permissionserrors'                => 'Berechtigungs-Feeler',
 'permissionserrorstext'            => 'Dir hutt net genuch Rechter fir déi Aktioun auszeféieren. {{PLURAL:$1|Grond|Grënn}}:',
-'permissionserrorstext-withaction' => 'Dir sidd net berechtegt $2 aus {{PLURAL:$1|dësem Grond|dëse Grënn}}:',
+'permissionserrorstext-withaction' => 'Dir sidd, aus {{PLURAL:$1|dësem Grond|dëse Grënn}}, net berechtegt $2 :',
 'recreate-deleted-warn'            => "'''Opgepasst: Dës Säit gouf schonns eng Kéier geläscht.'''
 
 Frot iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.

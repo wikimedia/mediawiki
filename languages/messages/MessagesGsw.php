@@ -2224,6 +2224,9 @@ Lueg au uf [http://www.mediawiki.org/wiki/Localisation MediaWiki Lokalisierig] u
 'djvu_no_xml'              => 'XML-Date chönne für d DjVu-Datei nüt abgruefe werde',
 'thumbnail_invalid_params' => 'Ungültigs Thumbnail-Parameter',
 'thumbnail_dest_directory' => 'S Ziilverzeichnis cha nüt erstellt werde',
+'thumbnail_image-type'     => 'Bildtyp wird nit unterstitzt',
+'thumbnail_gd-library'     => 'Uuvollständigi GD-Library-Konfiguration: Funktion $1 fählt',
+'thumbnail_image-missing'  => 'Datei fählt schyns: $1',
 
 # Special:Import
 'import'                     => 'Sytene importiere',
