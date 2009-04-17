@@ -427,6 +427,7 @@ changes to languages because of MediaZilla reports.
 * (bug 16909) 'histlegend' now reuses messages instead of copying them
 * Traditional/Simplified Gan Chinese conversion support
 * (bug 18474) Sorani (ckb - Central Kurdish) (renamed from ku-arab)
+* Add PLURAL function for Scots Gaelic (gd)
 
 == Compatibility ==
 
