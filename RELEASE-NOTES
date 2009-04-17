@@ -404,6 +404,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added usprop=gender to list=users
 * (bug 18311) action=purge now works for images too
 * Add parentid to prop=revisions output
+* (bug 17832) action=delete returns 'unknownerror' instead of 'permissiondenied'
+  when the user is blocked
 
 === Languages updated in 1.15 ===
 
@@ -423,9 +425,8 @@ changes to languages because of MediaZilla reports.
 * (bug 17288) Messages improved for default language (English)
 * (bug 12937) Update native name for Afar
 * (bug 16909) 'histlegend' now reuses messages instead of copying them
-* (bug 17832) action=delete returns 'unknownerror' instead of 'permissiondenied'
-  when the user is blocked
 * Traditional/Simplified Gan Chinese conversion support
+* (bug 18474) Sorani (ckb - Central Kurdish) (renamed from ku-arab)
 
 == Compatibility ==
 

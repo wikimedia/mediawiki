@@ -1,5 +1,5 @@
 <?php
-/** ‫كوردي (عەرەبی)‬ (‫كوردي (عەرەبی)‬)
+/** ‫Sorani (Arabic script)‬ (‫کوردی (عەرەبی)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -12,9 +12,6 @@
  * @author Asoxor
  * @author Cyrus abdi
  */
-
-$fallback = 'ku-latn';
-
 
 $digitTransformTable = array(
 	'0' => '٠', # &#x0660;
