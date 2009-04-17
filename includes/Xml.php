@@ -692,9 +692,9 @@ class Xml {
 	
 	/**
 	 * Build a table of data
-	 * @param array $rows An array of arrays of strings, each to be a row in a table
-	 * @param array $attribs Attributes to apply to the table tag [optional]
-	 * @param array $headers An array of strings to use as table headers [optional]
+	 * @param $rows An array of arrays of strings, each to be a row in a table
+	 * @param $attribs An array of attributes to apply to the table tag [optional]
+	 * @param $headers An array of strings to use as table headers [optional]
 	 * @return string
 	 */
 	public static function buildTable( $rows, $attribs = array(), $headers = null ) {
@@ -717,7 +717,7 @@ class Xml {
 	
 	/**
 	 * Build a row for a table
-	 * @param array $cells An array of strings to put in <td>
+	 * @param $cells An array of strings to put in <td>
 	 * @return string
 	 */
 	public static function buildTableRow( $attribs, $cells ) {
