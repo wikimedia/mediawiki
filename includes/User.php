@@ -2145,7 +2145,7 @@ class User {
 
 	/**
 	 * Get the current skin, loading it if required, and setting a title
-	 * @param Title $t The title to use in the skin
+	 * @param $t Title: the title to use in the skin
 	 * @return Skin The current skin
 	 * @todo FIXME : need to check the old failback system [AV]
 	 */
