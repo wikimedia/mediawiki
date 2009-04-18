@@ -3463,11 +3463,6 @@ $wgAjaxLicensePreview = true;
 $wgAllowDisplayTitle = true;
 
 /**
- * for consistency, restrict DISPLAYTITLE to titles that normalize to the same canonical DB key
- */
-$wgRestrictDisplayTitle = true;
-
-/**
  * Array of usernames which may not be registered or logged in from
  * Maintenance scripts can still use these
  */
