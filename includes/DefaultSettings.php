@@ -2444,7 +2444,6 @@ $wgDefaultUserOptions = array(
 	'rclimit'                 => 50,
 	'wllimit'                 => 250,
 	'hideminor'               => 0,
-	'rc_hidebots'             => 1,
 	'hidepatrolled'           => 0,
 	'newpageshidepatrolled'   => 0,
 	'highlightbroken'         => 1,
