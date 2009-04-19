@@ -236,13 +236,25 @@ class CoreParserFunctions {
 	 * @param string $text Desired title text
 	 * @return string
 	 */
-	static function displaytitle( $parser, $displayTitle = '' ) {
+	static function displaytitle( $parser, $text = '' ) {
+		global $wgRestrictDisplayTitle;
+		
+		#list of disallowed tags for DISPLAYTITLE
+		#these will be escaped even though they are allowed in normal wiki text
+		$bad = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'blockquote', 'ol', 'ul', 'li',
+			'table', 'tr', 'th', 'td', 'dl', 'dd', 'caption', 'p', 'ruby', 'rb', 'rt', 'rp' );
+		
 		#only requested titles that normalize to the actual title are allowed through
 		#mimic the escaping process that occurs in OutputPage::setPageTitle
-		$title = Title::newFromText( Sanitizer::stripAllTags( Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $displayTitle ) ) ) );
+		$text = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $text, null, array(), array(), $bad ) );
+		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
 
-		if ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
-			$parser->mOutput->setDisplayTitle( $displayTitle );
+		if( !$wgRestrictDisplayTitle ) {
+			$parser->mOutput->setDisplayTitle( $text );
+		} else {
+			if ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
+				$parser->mOutput->setDisplayTitle( $text );
+			}
 		}
 
 		return '';

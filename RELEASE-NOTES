@@ -26,15 +26,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgNoFollowDomainExceptions to allow exempting particular domain names
   from rel="nofollow" on external links
 * (bug 12970) Brought back $wgUseImageResize.
-* Added $wgRedirectOnLogin to allow specifying a page to redirect users to upon
-  logging in (for example, "Main Page")
+* Added $wgRedirectOnLogin to allow specifying a specifc page to redirect users
+  to upon logging in (ex: "Main Page")
 * Add $wgExportFromNamespaces for enabling/disabling the "export all from 
   namespace" option (disabled by default)
 * (bug 18222) $wgMinimalPasswordLength default is now 1
 * $wgSessionHandler can be used to configure session.save_handler
-* Removed $wgRestrictDisplayTitle, in effect permanently setting it to true.
-  Without this variable, the DISPLAYTITLE magic word will only accept titles
-  that are equivalent to the actual page title.
 
 === New features in 1.15 ===
 
