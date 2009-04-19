@@ -170,8 +170,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:AllPages: Move hardcoded styles from code to CSS
 * (bug 6092) Add parser function equivalents of {{REVISIONID}},
   {{REVISIONTIMESTAMP}}  (and friends) and {{REVISIONUSER}} magic words
-* (bug 7039) Show/hide bots/own edits from Recentchanges via preferences
-* Show/hide bots/own edits from Newpage via preferences
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
