@@ -1460,7 +1460,7 @@ class Parser
 		if ( !$tc ) { 
 			$tc = Title::legalChars() . '#%';
 			# Match a link having the form [[namespace:link|alternate]]trail
-			$e1 = "/^([{$tc}]+)(?:\\|(.+?))?]](.*)\$/sD";
+			$e1 = "/^([{$tc}]+?)(?:\\|(.+?))?]](.*)\$/sD";
 			# Match cases where there is no "]]", which might still be images
 			$e1_img = "/^([{$tc}]+)\\|(.*)\$/sD";
 		}
