@@ -854,6 +854,9 @@ class Title {
 	 * there's a fragment but the prefixed text is empty, we just return a link
 	 * to the fragment.
 	 *
+	 * The result obviously should not be URL-escaped, but does need to be
+	 * HTML-escaped if it's being output in HTML.
+	 *
 	 * @param $query \type{\arrayof{\string}} An associative array of key => value pairs for the
 	 *   query string.  Keys and values will be escaped.
 	 * @param $variant \type{\string} Language variant of URL (for sr, zh..).  Ignored
