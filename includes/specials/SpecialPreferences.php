@@ -1162,10 +1162,14 @@ class PreferencesForm {
 		);
 
 		$toggles[] = 'hideminor';
+		$toggles[] = 'rc_hidebots';
+		$toggles[] = 'newpageshidebots';
 		if( $wgUseRCPatrol ) {
 			$toggles[] = 'hidepatrolled';
 			$toggles[] = 'newpageshidepatrolled';
 		}
+		$toggles[] = 'rc_hideown';
+		$toggles[] = 'newpageshideown';
 		if( $wgRCShowWatchingUsers ) $toggles[] = 'shownumberswatching';
 		$toggles[] = 'usenewrc';
 

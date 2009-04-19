@@ -25,7 +25,8 @@ class SpecialNewpages extends SpecialPage {
 		$this->opts = $opts; // bind
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', $wgUser->getBoolOption( 'newpageshidepatrolled' ) );
-		$opts->add( 'hidebots', false );
+		$opts->add( 'hidebots', $wgUser->getBoolOption( 'newpageshidebots' ) );
+		$opts->add( 'hideown', $wgUser->getBoolOption( 'newpageshideown' ) );
 		$opts->add( 'hideredirs', true );
 		$opts->add( 'limit', (int)$wgUser->getOption( 'rclimit' ) );
 		$opts->add( 'offset', '' );
@@ -60,6 +61,8 @@ class SpecialNewpages extends SpecialPage {
 				$this->opts->setValue( 'hidepatrolled', true );
 			if ( 'hidebots' == $bit )
 				$this->opts->setValue( 'hidebots', true );
+			if ( 'hideown' == $bit )
+				$this->opts->setValue( 'hideown', true );
 			if ( 'showredirs' == $bit )
 				$this->opts->setValue( 'hideredirs', false );
 			if ( is_numeric( $bit ) )
@@ -132,6 +135,7 @@ class SpecialNewpages extends SpecialPage {
 			'hideliu' => 'rcshowhideliu',
 			'hidepatrolled' => 'rcshowhidepatr',
 			'hidebots' => 'rcshowhidebots',
+			'hideown' => 'rcshowhidemine',
 			'hideredirs' => 'whatlinkshere-hideredirs'
 		);
 
@@ -387,6 +391,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 	function getQueryInfo() {
 		global $wgEnableNewpagesUserFilter, $wgGroupPermissions, $wgUser;
+		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
 		$conds['rc_new'] = 1;
 
@@ -418,7 +423,13 @@ class NewPagesPager extends ReverseChronologicalPager {
 		if( $this->opts->getValue( 'hidebots' ) ) {
 			$conds['rc_bot'] = 0;
 		}
-
+		if( $this->opts->getValue( 'hideown' ) ) {
+			if( $wgUser->getId() ) {
+				$conds[] = 'rc_user != ' . $dbr->addQuotes( $wgUser->getId() );
+			} else {
+				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $wgUser->getName() );
+			}
+		}
 		if ( $this->opts->getValue( 'hideredirs' ) ) {
 			$conds['page_is_redirect'] = 0;
 		}
