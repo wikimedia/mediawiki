@@ -338,9 +338,11 @@ class Sanitizer {
 	 * @param string $text
 	 * @param callback $processCallback to do any variable or parameter replacements in HTML attribute values
 	 * @param array $args for the processing callback
+	 * @param array $extratags for any extra tags to include
+	 * @param array $removetags for any tags (default or extra) to exclude
 	 * @return string
 	 */
-	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array() ) {
+	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array(), $removetags = array() ) {
 		global $wgUseTidy;
 
 		static $htmlpairs, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
@@ -377,8 +379,10 @@ class Sanitizer {
 				'li',
 			);
 
-			$htmlsingleallowed = array_merge( $htmlsingle, $tabletags );
-			$htmlelements = array_merge( $htmlsingle, $htmlpairs, $htmlnest );
+			$htmlsingleallowed = array_unique( array_merge( $htmlsingle, $tabletags ) );
+			# Only allow elements that aren't specified in $removetags
+			# Doing it here since this is the top-level check
+			$htmlelements = array_diff( array_unique( array_merge( $htmlsingle, $htmlpairs, $htmlnest ) ), $removetags );
 
 			# Convert them all to hashtables for faster lookup
 			$vars = array( 'htmlpairs', 'htmlsingle', 'htmlsingleonly', 'htmlnest', 'tabletags',
