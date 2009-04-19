@@ -578,13 +578,13 @@ class EnhancedChangesList extends ChangesList {
 			if ( $rc_type != RC_NEW ) {
 				$curLink = $this->message['cur'];
 			} else {
-				$curUrl = wfUrlencode( $rc->getTitle()->getLinkUrl( $querycur ) );
+				$curUrl = htmlspecialchars( $rc->getTitle()->getLinkUrl( $querycur ) );
 				$curLink = "<a href=\"$curUrl\" tabindex=\"{$baseRC->counter}\">{$this->message['cur']}</a>";
 			}
 			$diffLink = $this->message['diff'];
 		} else {
-			$diffUrl = wfUrlencode( $rc->getTitle()->getLinkUrl( $querydiff ) );
-			$curUrl = wfUrlencode( $rc->getTitle()->getLinkUrl( $querycur ) );
+			$diffUrl = htmlspecialchars( $rc->getTitle()->getLinkUrl( $querydiff ) );
+			$curUrl = htmlspecialchars( $rc->getTitle()->getLinkUrl( $querycur ) );
 			$diffLink = "<a href=\"$diffUrl\" tabindex=\"{$baseRC->counter}\">{$this->message['diff']}</a>";
 			$curLink = "<a href=\"$curUrl\" tabindex=\"{$baseRC->counter}\">{$this->message['cur']}</a>";
 		}
