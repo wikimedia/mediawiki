@@ -15,7 +15,6 @@ class MessageWriter {
 
 	static $messageStructure;
 	static $blockComments;
-	static $messageComments;
 	static $ignoredMessages;
 	static $optionalMessages;
 
@@ -79,12 +78,10 @@ class MessageWriter {
 		require( $dir . '/messages.inc' );
 		self::$messageStructure = $wgMessageStructure;
 		self::$blockComments = $wgBlockComments;
-		self::$messageComments = $wgMessageComments;
 
 		require( $dir . '/messageTypes.inc' );
 		self::$ignoredMessages = $wgIgnoredMessages;
 		self::$optionalMessages = $wgOptionalMessages;
-
 
 		# Sort messages to blocks
 		$sortedMessages['unknown'] = $messages;
@@ -113,7 +110,7 @@ class MessageWriter {
 				$ignored = array();
 				$optional = array();
 			}
-			$comments = self::makeComments( array_keys($messages), self::$messageComments, $ignored, $optional );
+			$comments = self::makeComments( array_keys( $messages ), $ignored, $optional );
 
 			# Write the block
 			$messagesText .= self::writeMessagesBlock( self::$blockComments[$block], $messages, $comments );
@@ -134,33 +131,19 @@ class MessageWriter {
 	 * Generates an array of comments for messages.
 	 *
 	 * @param $messages Key of messages.
-	 * @param $comments Comments for messages, indexed by key.
 	 * @param $ignored List of ingored message keys.
 	 * @param $optional List of optional message keys.
 	 */
-	public static function makeComments( $messages, $comments, $ignored, $optional ) {
+	public static function makeComments( $messages, $ignored, $optional ) {
 		# Comment collector
 		$commentArray = array();
 
 		# List of keys only
 		foreach( $messages as $key ) {
-			$commentsForKey = array();
-
-			# Add descriptive comment for this message if there is one
-			if( array_key_exists( $key, $comments ) ) {
-				$commentsForKey[] = $comments[$key];
-			}
-
-			# For translator information only
 			if( in_array( $key, $ignored ) ) {
-				$commentsForKey[] = self::$ignoredComment;
+				$commentArray[$key] = ' # ' . self::$ignoredComment;
 			} elseif( in_array( $key, $optional ) ) {
-				$commentsForKey[] = self::$optionalComment;
-			}
-
-			# Format one or more comments nicely and store in array
-			if( count( $commentsForKey ) ) {
-				$commentArray[$key] = ' # ' . implode( '; ', $commentsForKey );
+				$commentArray[$key] = ' # ' . self::$optionalComment;
 			}
 		}
 

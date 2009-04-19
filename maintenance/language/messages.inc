@@ -3170,9 +3170,3 @@ Variants for Chinese language",
 	'special-tags'          => 'Special:Tags',
 	'db-error-messages'     => 'Database error messages',
 );
-
-/** Short comments for standalone messages
- * deprecated - explanations in MessagesQqq.php now.
- */
-$wgMessageComments = array(
-);
