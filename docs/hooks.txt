@@ -335,6 +335,15 @@ associated RecentChange object. In the hook, just add your callback to the
 $tokenFunctions array and return true (returning false makes no sense)
 $tokenFunctions: array(action => callback)
 
+'APIQueryUsersTokens': use this hook to add custom token to list=users.
+Every token has an action, which will be used in the ustoken parameter
+and in the output (actiontoken="..."), and a callback function which
+should return the token, or false if the user isn't allowed to obtain
+it. The prototype of the callback function is func($user) where $user
+is the User object. In the hook, just add your callback to the
+$tokenFunctions array and return true (returning false makes no sense)
+$tokenFunctions: array(action => callback)
+
 'ArticleAfterFetchContent': after fetching content of an article from the database
 $article: the article (object) being loaded from the database
 $content: the content (string) of the article
@@ -1478,6 +1487,12 @@ $article: article object to be watched
 'WatchArticleComplete': after a watch is added to an article
 $user: user that watched
 $article: article object watched
+
+'WikiExporter::dumpStableQuery': Get the SELECT query for "stable" revisions dumps
+One, and only one hook should set this, and return false.
+&$tables: Database tables to use in the SELECT query
+&$opts: Options to use for the query
+&$join: Join conditions
 
 'wgQueryPages': called when initialising $wgQueryPages, use this to add new query pages to be updated with maintenance/updateSpecialPages.php
 $query: $wgQueryPages itself
