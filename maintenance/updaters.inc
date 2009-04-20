@@ -176,7 +176,8 @@ $wgUpdates = array(
 # $wgDBtype should be checked to specifiy the proper file
 $wgExtNewTables = array(); // table, dir
 $wgExtNewFields = array(); // table, column, dir
-$wgExtPGNewFields = array(); // table, column attributes; for PostgreSQL
+$wgExtPGNewFields = array(); // table, column, column attributes; for PostgreSQL
+$wgExtPGAlteredFields = array(); // table, column, new type, conversion method; for PostgreSQL
 $wgExtNewIndexes = array(); // table, index, dir
 
 # Helper function: check if the given key is present in the updatelog table.
@@ -1807,7 +1808,7 @@ function do_postgres_updates() {
 		dbsource(archive('patch-ipb_address_unique.sql'));
 	}
 
-	global $wgExtNewTables, $wgExtPGNewFields, $wgExtNewIndexes;
+	global $wgExtNewTables, $wgExtPGNewFields, $wgExtPGAlteredFields, $wgExtNewIndexes;
 	# Add missing extension tables
 	foreach ( $wgExtNewTables as $nt ) {
 		if ($wgDatabase->tableExists($nt[0])) {
@@ -1826,6 +1827,26 @@ function do_postgres_updates() {
 		}
 		wfOut( "Adding column \"$nc[0].$nc[1]\"\n" );
 		$wgDatabase->query( "ALTER TABLE $nc[0] ADD $nc[1] $nc[2]" );
+	}
+	# Change altered columns
+	foreach ( $wgExtPGAlteredFields as $nc ) {
+		$fi = $wgDatabase->fieldInfo($nc[0], $nc[1]);
+		if (is_null($fi)) {
+			wfOut( "WARNING! Column \"$nc[0].$nc[1]\" does not exist but had an alter request! Please report this.\n" );
+			continue;
+		}
+		$oldtype = $fi->type();
+		$newtype = strtolower( $nc[2] );
+		if ($oldtype === $newtype) {
+			wfOut( "... column \"$nc[0].$nc[1]\" has correct type of \"$newtype\"\n" );
+			continue;
+		}
+		$command = "ALTER TABLE $nc[0] ALTER $nc[1] TYPE $nc[2]";
+		if ( isset( $nc[3] ) ) {
+			$command .= " USING $nc[3]";
+		}
+		wfOut( "Altering column \"$nc[0].$nc[1]\" from type \"$oldtype\" to \"$newtype\"\n" );
+		$wgDatabase->query( $command );
 	}
 	# Add missing extension indexes
 	foreach ( $wgExtNewIndexes as $ni ) {

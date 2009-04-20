@@ -169,6 +169,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   {{REVISIONTIMESTAMP}}  (and friends) and {{REVISIONUSER}} magic words
 * (bug 18529) New hook: SoftwareInfo for adding information about the software
   to Special:Version
+* Added $wgExtPGAlteredFields to allow extensions to easily alter the data 
+  type of columns when using the Postgres backend.
+
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
