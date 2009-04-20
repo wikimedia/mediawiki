@@ -1963,7 +1963,8 @@ function wfGetCachedNotice( $name ) {
 	}
 
 	wfProfileOut( $fname );
-	return $notice;
+	global $wgContLang;
+	return $wgContLang->convert( $notice );
 }
 
 function wfGetNamespaceNotice() {
