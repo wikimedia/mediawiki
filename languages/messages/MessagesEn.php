@@ -3536,16 +3536,25 @@ Others will be hidden by default.
 'exif-gpslongitude-e' => 'East longitude',
 'exif-gpslongitude-w' => 'West longitude',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metres above sea level',
+'exif-gpsaltitude-1' => 'Metres below sea level',
+
 'exif-gpsstatus-a' => 'Measurement in progress',
 'exif-gpsstatus-v' => 'Measurement interoperability',
 
 'exif-gpsmeasuremode-2' => '2-dimensional measurement',
 'exif-gpsmeasuremode-3' => '3-dimensional measurement',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometres per hour',
 'exif-gpsspeed-m' => 'Miles per hour',
 'exif-gpsspeed-n' => 'Knots',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometres',
+'exif-gpsdestdistance-m' => 'Miles',
+'exif-gpsdestdistance-n' => 'Nautical miles',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'True direction',
