@@ -1109,7 +1109,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 
 # Search results
 'searchresults'                    => 'Søkjeresultat',
-'searchresults-title'              => 'Søkjeresultat for "$1"',
+'searchresults-title'              => 'Søkjeresultat for «$1»',
 'searchresulttext'                 => 'For meir info om søkjefunksjonen i {{SITENAME}}, sjå [[{{MediaWiki:Helppage}}|Hjelp]].',
 'searchsubtitle'                   => 'Du søkte etter «[[:$1]]» ([[Special:Prefixindex/$1|alle sider som byrjar med «$1»]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle sider som lenkjer til «$1»]])',
 'searchsubtitleinvalid'            => 'Du søkte etter «$1»',
@@ -2353,6 +2353,8 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'djvu_no_xml'              => 'Klarte ikkje hente inn XML for DjVu-fila',
 'thumbnail_invalid_params' => 'Ugyldige miniatyrparameterar',
 'thumbnail_dest_directory' => 'Klarte ikkje å opprette målmappe',
+'thumbnail_image-type'     => 'Typen bilete er ikkje stønad for',
+'thumbnail_image-missing'  => 'Fila ser ut til å saknast: $1',
 
 # Special:Import
 'import'                     => 'Importer sider',

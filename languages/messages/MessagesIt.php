@@ -397,7 +397,7 @@ I seguenti collegamenti sono in lingua inglese:
 'unprotectthispage' => 'Togli la protezione a questa pagina',
 'newpage'           => 'Nuova pagina',
 'talkpage'          => 'Pagina di discussione',
-'talkpagelinktext'  => 'discussione',
+'talkpagelinktext'  => 'Discussione',
 'specialpage'       => 'Pagina speciale',
 'personaltools'     => 'Strumenti personali',
 'postcomment'       => 'Nuova sezione',

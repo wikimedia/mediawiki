@@ -857,6 +857,9 @@ Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 
 Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.
 Confirméiert w.eg. datt Dir dëst maache wellt, datt dir d'Konsequenzen dovu verstitt an datt Dir dëst am Aklang matt de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
+'revdelete-suppress-text'        => "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:
+* Net ubruechte perséinlechen Informatiounen
+*: ''Adressen, Telefonsnummeren, Sozialversécherungsnummeren asw.''",
 'revdelete-legend'               => "Limitatioune fir d'Sichtbarkeet festleeën",
 'revdelete-hide-text'            => 'Text vun der Versioun verstoppen',
 'revdelete-hide-name'            => 'Logbuch-Aktioun verstoppen',

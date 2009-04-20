@@ -2326,6 +2326,9 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 'djvu_no_xml'              => "No s'ha pogut recollir l'XML per al fitxer DjVu",
 'thumbnail_invalid_params' => 'Els paràmetres de les miniatures no són vàlids',
 'thumbnail_dest_directory' => "No s'ha pogut crear el directori de destinació",
+'thumbnail_image-type'     => "Tipus d'imatge no contemplat",
+'thumbnail_gd-library'     => 'Configuració de la biblioteca GD incompleta: falta la funció $1',
+'thumbnail_image-missing'  => 'Sembla que falta el fitxer: $1',
 
 # Special:Import
 'import'                     => 'Importa les pàgines',

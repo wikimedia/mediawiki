@@ -2330,6 +2330,9 @@ Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [ht
 'djvu_no_xml'              => 'Não foi possível acessar o XML do arquivo DjVU',
 'thumbnail_invalid_params' => 'Parâmetros de miniatura inválidos',
 'thumbnail_dest_directory' => 'Não foi possível criar o diretório de destino',
+'thumbnail_image-type'     => 'Tipo de imagem não suportado',
+'thumbnail_gd-library'     => 'Configuração da biblioteca GD incompleta: função $1 não encontrada',
+'thumbnail_image-missing'  => 'Arquivo aparentemente inexistente: $1',
 
 # Special:Import
 'import'                     => 'Importar páginas',

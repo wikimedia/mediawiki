@@ -1,7 +1,8 @@
 <?php
 /** Message documentation (Message documentation)
  *
- * To improve a documentation please visit http://translatewiki.net
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
  *
  * @ingroup Language
  * @file
@@ -2138,7 +2139,6 @@ Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki 
 Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 
 # Import log
-'importlogpage'          => '{{Identical|Import log}}',
 'importlogpagetext'      => 'This text appears at the top of the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=import&user=&page=&year=&month=-1 import log] special page.',
 'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
 * $1 is the name of the imported file',

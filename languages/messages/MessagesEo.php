@@ -2335,6 +2335,8 @@ se vi volus kontribui al la komuna MediaWiki-asimilado.',
 'djvu_no_xml'              => 'Ne eblas akiri XML por DjVu dosiero',
 'thumbnail_invalid_params' => 'Nevalidaj bildetaj parametroj',
 'thumbnail_dest_directory' => 'Ne eblas krei destinan dosierujon',
+'thumbnail_image-type'     => 'Tia bildo ne subtenata',
+'thumbnail_image-missing'  => 'Dosiero verŝajne estas foriga: $1',
 
 # Special:Import
 'import'                     => 'Importitaj paĝoj',

@@ -372,7 +372,7 @@ Si puede ser, que use el botón de previsualización antes de registrarla.',
 'tooltip-diff'            => 'Mostra los trocamientos que él/ella hizo en el texhto.',
 
 # Attribution
-'anonymous' => 'Uzuario(s) anonimo(s) de {{SITENAME}}',
+'anonymous' => '{{PLURAL:$1|Uzuario anonimo|Uzuarios anonimos}} de {{SITENAME}}',
 
 # Bad image list
 'bad_image_list' => 'El formato es ansina:

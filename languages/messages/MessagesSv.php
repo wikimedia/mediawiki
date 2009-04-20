@@ -17,6 +17,7 @@
  * @author Lokal Profil
  * @author M.M.S.
  * @author Micke
+ * @author NH
  * @author Najami
  * @author Petter Strandmark
  * @author S.Örvarr.S
@@ -2165,7 +2166,7 @@ $1',
 'sp-contributions-newbies-title' => 'Bidrag från nya konton',
 'sp-contributions-blocklog'      => 'Blockeringslogg',
 'sp-contributions-deleted'       => 'raderade användarbidrag',
-'sp-contributions-logs'          => 'loggar',
+'sp-contributions-logs'          => 'Loggar',
 'sp-contributions-talk'          => 'diskussion',
 'sp-contributions-userrights'    => 'hantering av användarrättigheter',
 'sp-contributions-search'        => 'Sök efter användarbidrag',
@@ -2429,6 +2430,8 @@ Besök [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller
 'djvu_no_xml'              => 'Kan inte hämta DjVu-filens XML',
 'thumbnail_invalid_params' => 'Ogiltiga parametrar för miniatyrbilden',
 'thumbnail_dest_directory' => 'Kan inte skapa målkatalogen',
+'thumbnail_image-type'     => 'Bildtypen stöds inte',
+'thumbnail_gd-library'     => 'Inkomplett GD library konfigurering: saknar funktionen $1',
 'thumbnail_image-missing'  => 'Fil verkar saknas: $1',
 
 # Special:Import
