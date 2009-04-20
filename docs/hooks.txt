@@ -1224,6 +1224,9 @@ $content_actions: array of tabs
 'SkinTemplateToolboxEnd': Called by SkinTemplate skins after toolbox links have been rendered (useful for adding more)
 $tools: array of tools
 
+'SoftwareInfo': Called by Special:Version for returning information about the software
+$software: The array of software in format 'name' => 'version'. See SpecialVersion::softwareInformation()
+
 'SpecialContributionsBeforeMainOutput': Before the form on Special:Contributions
 $id: User identifier
 
