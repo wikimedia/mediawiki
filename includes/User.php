@@ -3516,5 +3516,4 @@ class User {
 		$log->addEntry( 'autocreate', $this->getUserPage(), '', array( $this->getId() ) );
 		return true;
 	}
-
 }
