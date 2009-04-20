@@ -1751,9 +1751,9 @@ $2',
 'filehist-comment'          => 'توضیح',
 'imagelinks'                => 'پیوندهای پرونده',
 'linkstoimage'              => '{{PLURAL:$1|صفحهٔ|صفحه‌های}} زیر به این تصویر پیوند {{PLURAL:$1|دارد|دارند}}:',
-'linkstoimage-more'         => 'بیش از صفحه به این پرونده پیوند {{PLURAL:$1|می‌دهد|می‌دهند}}.
+'linkstoimage-more'         => 'بیش از $1 صفحه به این پرونده پیوند {{PLURAL:$1|می‌دهد|می‌دهند}}.
 فهرست زیر تنها {{PLURAL:$1|اولین پیوند|اولین $1 پیوند}} به این صفحه را نشان می‌دهد.
-[[Special:WhatLinksHere/$2|قهرست کامل]] نیز موجود است.',
+[[Special:WhatLinksHere/$2|فهرست کامل]] نیز موجود است.',
 'nolinkstoimage'            => 'هیچ صفحه‌ای به این تصویر پیوند ندارد.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|پیوندهای دیگر]] به این پرونده را ببینید.',
 'redirectstofile'           => '{{PLURAL:$1|پروندهٔ|پرونده‌های}} زیر به این صفحه تغییر مسیر {{PLURAL:$1|می‌دهد|می‌دهند}}:',
@@ -2562,6 +2562,9 @@ $1',
 'djvu_no_xml'              => 'امکان پیدا کردن پروندهٔ XML برای استفادهٔ DjVu وجود نداشت.',
 'thumbnail_invalid_params' => 'پارامترهای غیر مجاز در تصویر انگشتدانه‌ای (thumbnail)',
 'thumbnail_dest_directory' => 'اشکال در ایجاد پوشهٔ مقصد',
+'thumbnail_image-type'     => 'تصویر از نوع پشتیبانی نشده',
+'thumbnail_gd-library'     => 'تنظیمات ناقص کتابخانهٔ gd: عملکرد $1 وجود ندارد',
+'thumbnail_image-missing'  => 'پرونده به نظر گم شده‌است: $1',
 
 # Special:Import
 'import'                     => 'درون‌ریزی صفحه‌ها',

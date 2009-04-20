@@ -2108,9 +2108,9 @@ Database ke khole nai to band kare ke khatir, this needs to be writable by the w
 'databasenotlocked'   => 'Database band nai hai.',
 
 # Move page
-'move-page'                 => '$1 ke naam badlo',
-'move-page-legend'          => 'Panna ke naam badlo',
-'movepagetext'              => "Niche ke form kaam me laae se panna ke naam badal jaai aur iske itihass nawaa naam ke niche hoe jaai.
+'move-page'                    => '$1 ke naam badlo',
+'move-page-legend'             => 'Panna ke naam badlo',
+'movepagetext'                 => "Niche ke form kaam me laae se panna ke naam badal jaai aur iske itihass nawaa naam ke niche hoe jaai.
 Puraana title nawaa title pe redirect hoe jaai.
 Aap uu redirect, jon ki pahile waala title pe jawe hai, ke update kare sakta hai.
 Agar aap ii nai kare mangta hai, tab [[Special:DoubleRedirects|double]] nai to [[Special:BrokenRedirects|broken redirects]] ke check karna.
@@ -2122,74 +2122,99 @@ Iske matlab ii hai ki aap ek panna ke naam badal ke wahi naam rakh de sakta hai 
 '''CHETAWANI''' 
 Ii ek lokpriye panna ke galti se badal de sake hai; 
 meharbaani kar ke aap aapan karya ke natiija ke baare me socho aage kuch kare se pahile.",
-'movepagetalktext'          => "Saathe ke talk panna ke automatically move kar dewa jai ii panna ke saathe '''agar jo:'''
+'movepagetalktext'             => "Saathe ke talk panna ke automatically move kar dewa jai ii panna ke saathe '''agar jo:'''
 * khali nahi talk page nawaa naam ke already hai, yah
 * Aap nivhe waala box ke uncheck karo
 Ii prastithi me, aap ke manually move yah merge kare ke parri.",
-'movearticle'               => 'Panna ke naam badli karo:',
-'movenologin'               => 'Logged in nai hai',
-'movenologintext'           => 'Panna ke naam badle ke khatir aap ke ek registered sadasya rahe ke parri aur  [[Special:UserLogin|logged in]].',
-'movenotallowed'            => 'Aap ke panna ke naam badle ke ijajat nai hai.',
-'movenotallowedfile'        => 'Aap ke file ke naam badle ke ijajat nai hai.',
-'cant-move-user-page'       => 'Aap ke sadasya ke panna ke namm badle ke ijajat nai hai (subpages ke chhorr ke).',
-'cant-move-to-user-page'    => 'Aap ke koi panna ke hatae ke sadasya ke panna pe kare ke ijajat nai hai (sadasya ke subpage ke chhorr ke).',
-'newtitle'                  => 'Nawaa title pe:',
-'move-watch'                => 'Ii panna pe dhyan rakho',
-'movepagebtn'               => 'Panna ke naam badlo',
-'pagemovedsub'              => 'Panna ke naam badle me safalta',
-'movepage-moved'            => '<big>\'\'\'"$1" ke naam badal ke "$2" kar dewa gais hai\'\'\'</big>',
-'movepage-moved-redirect'   => 'Ek redirect ke banae dewa gais hai.',
-'movepage-moved-noredirect' => 'Ek redirect ke banae pe rukawat lagae dewa gais hai.',
-'articleexists'             => 'Uu naam ke panna abhi hai, nai to jon naam aap choose karaa hai valid nai hai.
+'movearticle'                  => 'Panna ke naam badli karo:',
+'movenologin'                  => 'Logged in nai hai',
+'movenologintext'              => 'Panna ke naam badle ke khatir aap ke ek registered sadasya rahe ke parri aur  [[Special:UserLogin|logged in]].',
+'movenotallowed'               => 'Aap ke panna ke naam badle ke ijajat nai hai.',
+'movenotallowedfile'           => 'Aap ke file ke naam badle ke ijajat nai hai.',
+'cant-move-user-page'          => 'Aap ke sadasya ke panna ke namm badle ke ijajat nai hai (subpages ke chhorr ke).',
+'cant-move-to-user-page'       => 'Aap ke koi panna ke hatae ke sadasya ke panna pe kare ke ijajat nai hai (sadasya ke subpage ke chhorr ke).',
+'newtitle'                     => 'Nawaa title pe:',
+'move-watch'                   => 'Ii panna pe dhyan rakho',
+'movepagebtn'                  => 'Panna ke naam badlo',
+'pagemovedsub'                 => 'Panna ke naam badle me safalta',
+'movepage-moved'               => '<big>\'\'\'"$1" ke naam badal ke "$2" kar dewa gais hai\'\'\'</big>',
+'movepage-moved-redirect'      => 'Ek redirect ke banae dewa gais hai.',
+'movepage-moved-noredirect'    => 'Ek redirect ke banae pe rukawat lagae dewa gais hai.',
+'articleexists'                => 'Uu naam ke panna abhi hai, nai to jon naam aap choose karaa hai valid nai hai.
 Meharbani kar ke duusra naam choose karo.',
-'cantmove-titleprotected'   => 'Aap panna ke hatae ke ii jagah pe nai kare saktaa hai kahe ki nawaa title ke banae pe rukawat hai',
-'talkexists'                => "'''Panna ke naam badle me safalta hoe gais hai, lekin talk page ke naam nai badle sakaa hai kaheki uu naam ke talk page already hai. Iske manually merge karo.'''",
-'movedto'                   => 'naam badal ke',
-'movetalk'                  => 'Saathe ke baat waala panna ke bhi naam badlo',
-'move-subpages'             => 'Subpages ke naam badlo ($1 talak)',
-'move-talk-subpages'        => 'Subpages ke hatae ke baat waala panna pe kar do ($1 talak)',
-'movepage-page-exists'      => 'Panna $1 abhi hai aur iske uppar se nai likha jaawe sake hai.',
-'movepage-page-moved'       => 'Panna $1 ke naam badal ke $2 kar dewa gais hai.',
-'movepage-page-unmoved'     => 'Panna $1 ke naam badal ke $2 nai kare sakaa hai.',
-'movepage-max-pages'        => 'Jaada se jaada $1 {{PLURAL:$1|panna|panna}} ke hatae dewa gais hai, aur jaada ke ab nai hatawa jaai.',
-'1movedto2'                 => '[[$1]] ke naam badal ke [[$2]] kar dewa gae hai',
-'1movedto2_redir'           => 'Redirect ke uppar se [[$1]] ke badal ke  [[$2]] kar dewa gais hai',
-'move-redirect-suppressed'  => 'redirect ke rok dewa gais hai',
-'movelogpage'               => 'Suchi ke jagah badlo',
-'movelogpagetext'           => 'Niche sab panna, jiske naam badla gais hai, ke suchi hai.',
-'movesubpage'               => '{{PLURAL:$1|Subpage|Subpages}}',
-'movesubpagetext'           => 'Ii panna me $1 {{PLURAL:$1|subpage|subpages}} hai jiske niche dekhawa gais hai.',
-'movenosubpage'             => 'Ii panna me koi subpages nai hai.',
-'movereason'                => 'Kaaran:',
-'revertmove'                => 'purana copy pe lae jao',
-'delete_and_move'           => 'Mitao aur hatao',
-'delete_and_move_confirm'   => 'Haan, panna ke mitao',
-'delete_and_move_reason'    => 'Naam badle ke khatir mitao',
-'immobile-source-namespace' => 'Namespace "$1" me panna ke naam nai badle sakta hai',
-'immobile-target-namespace' => 'Panna ke naam badal ke namespace "$1" me nai kare sakta hai',
-'immobile-source-page'      => 'Ii panna ke naam nai badla jaawe sake hai.',
-'immobile-target-page'      => 'Uu jagah pe nai move kare sakta hai.',
+'cantmove-titleprotected'      => 'Aap panna ke hatae ke ii jagah pe nai kare saktaa hai kahe ki nawaa title ke banae pe rukawat hai',
+'talkexists'                   => "'''Panna ke naam badle me safalta hoe gais hai, lekin talk page ke naam nai badle sakaa hai kaheki uu naam ke talk page already hai. Iske manually merge karo.'''",
+'movedto'                      => 'naam badal ke',
+'movetalk'                     => 'Saathe ke baat waala panna ke bhi naam badlo',
+'move-subpages'                => 'Subpages ke naam badlo ($1 talak)',
+'move-talk-subpages'           => 'Subpages ke hatae ke baat waala panna pe kar do ($1 talak)',
+'movepage-page-exists'         => 'Panna $1 abhi hai aur iske uppar se nai likha jaawe sake hai.',
+'movepage-page-moved'          => 'Panna $1 ke naam badal ke $2 kar dewa gais hai.',
+'movepage-page-unmoved'        => 'Panna $1 ke naam badal ke $2 nai kare sakaa hai.',
+'movepage-max-pages'           => 'Jaada se jaada $1 {{PLURAL:$1|panna|panna}} ke hatae dewa gais hai, aur jaada ke ab nai hatawa jaai.',
+'1movedto2'                    => '[[$1]] ke naam badal ke [[$2]] kar dewa gae hai',
+'1movedto2_redir'              => 'Redirect ke uppar se [[$1]] ke badal ke  [[$2]] kar dewa gais hai',
+'move-redirect-suppressed'     => 'redirect ke rok dewa gais hai',
+'movelogpage'                  => 'Suchi ke jagah badlo',
+'movelogpagetext'              => 'Niche sab panna, jiske naam badla gais hai, ke suchi hai.',
+'movesubpage'                  => '{{PLURAL:$1|Subpage|Subpages}}',
+'movesubpagetext'              => 'Ii panna me $1 {{PLURAL:$1|subpage|subpages}} hai jiske niche dekhawa gais hai.',
+'movenosubpage'                => 'Ii panna me koi subpages nai hai.',
+'movereason'                   => 'Kaaran:',
+'revertmove'                   => 'purana copy pe lae jao',
+'delete_and_move'              => 'Mitao aur hatao',
+'delete_and_move_text'         => '== Mitae ke jaruri hai ==
+Destination panna "[[:$1]]" abhi hai.
+Ka aap mangta hai ki iske mitae dewa jaae, jisse ki ii naam se duusra paana ke save karaa jaae sake?',
+'delete_and_move_confirm'      => 'Haan, panna ke mitao',
+'delete_and_move_reason'       => 'Naam badle ke khatir mitao',
+'selfmove'                     => 'Source aur destination title ke naam ekke hai;
+panna ke wahi ke uppar nai save karaa jaae sake hai.',
+'immobile-source-namespace'    => 'Namespace "$1" me panna ke naam nai badle sakta hai',
+'immobile-target-namespace'    => 'Panna ke naam badal ke namespace "$1" me nai kare sakta hai',
+'immobile-target-namespace-iw' => 'Interwiki link panna ke hatae ke valid target nai hai.',
+'immobile-source-page'         => 'Ii panna ke naam nai badla jaawe sake hai.',
+'immobile-target-page'         => 'Uu jagah pe nai move kare sakta hai.',
+'imagenocrossnamespace'        => 'File ke non-file namespace me hatae ke nai kare sakta hai',
+'imagetypemismatch'            => 'Nawaa file extension uske type se nai match kare hai.',
+'imageinvalidfilename'         => 'Jon naam pe aap badle mangtaa hai valid nai hai',
 
 # Export
 'export'            => 'Panna niryat karo',
+'exporttext'        => 'Aap ek khaas panna, nai to dher panna jon ki XML me bandha hai, ke text aur balao ke itihass ke export kare saktaa hai.
+Iske duusra wiki me MediaWiki [[Special:Import|import panna]] se import karaa jaawe sake hai.
+
+Panna ke export kare ke khatir titles ke niche ke text box me likho, ek line pe ek title, aur ii select karo ki aap abhi ke version ke saathe purana version mangtaa hai, panna ke itihaas ke saathe, nai to abhi ke version jisme last badlao ke jankari hai.
+
+Duusra case me aap ek link ke bhi use kare saktaa hai, jaise ki [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] panna ke khatir "[[{{MediaWiki:Mainpage}}]]".',
+'exportnohistory'   => "----
+'''Note:''' Ii form se panna ke puura itihass ke export kare pe rok lagae dewa gais hai due to performance reasons.",
 'export-submit'     => 'Export karo',
 'export-addcattext' => 'Ii vibhag me se panna jorro:',
 'export-addcat'     => 'Jorro',
 'export-addns'      => 'Jorro',
 
 # Namespace 8 related
-'allmessages'         => 'System sandesh',
-'allmessagesname'     => 'Naam',
-'allmessagesmodified' => 'Khaali badlawa gae ke dekhao',
+'allmessages'               => 'System sandesh',
+'allmessagesname'           => 'Naam',
+'allmessagestext'           => 'Ii ek system sandes ke suchi hai jon ki MediaWiki namespace me pawa jaae sake hai.
+Agar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani kar ke [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] aur [http://translatewiki.net translatewiki.net]  pe jao.',
+'allmessagesnotsupportedDB' => "Ii panna ke kaam me nai lawa jaae sake hai kahe ki '''\$wgUseDatabaseMessages''' ke band kar dewa gais hai.",
+'allmessagesmodified'       => 'Khaali badlawa gae ke dekhao',
 
 # Thumbnails
 'thumbnail-more'  => 'Barraa karo',
 'thumbnail_error' => 'Thumbnail banae me galti hoe gais: $1',
 
 # Special:Import
-'import'           => 'Panna ke import karo',
-'importsuccess'    => 'Import khalaas hoe gais hai!',
-'import-noarticle' => 'Koi panna import kare ke nai hai!',
+'import'                => 'Panna ke import karo',
+'import-interwiki-text' => 'Ek wiki aur panna ke title ke select karo.
+Badalo ke tarik aur badle waala sadasya ke naam wahii rakam rahii.
+Sab transwiki import actions ke [[Special:Log/import|import log]] pe log karaa jaawe hai.',
+'importtext'            => 'Meharbani kar ke file ke [[Special:Export|export utility]] use kar ke source wiki me se export karo.
+Aapan computer me save kar ke  hian pe upload karo.',
+'importsuccess'         => 'Import khalaas hoe gais hai!',
+'import-noarticle'      => 'Koi panna import kare ke nai hai!',
 
 # Import log
 'importlogpage' => 'Suchi ke import karo',
@@ -2235,6 +2260,8 @@ Meharbani kar ke duusra naam choose karo.',
 'tooltip-diff'                    => 'Dekhao aap kon chij badlaa hai.',
 'tooltip-compareselectedversions' => 'Ii panna ke chuna gae version ke antar dekho.',
 'tooltip-watch'                   => 'Ii panna ke aapan dhyan suchi me jorro',
+'tooltip-undo'                    => '"Undo" ii badlao ke pahile jaise kar de hai aur edit form ke preview mode me khole hai.
+Ii summary me ek kaaran jorre ke ijajat de hai.',
 
 # Browsing diffs
 'previousdiff' => '← Purana badlao',
@@ -2269,6 +2296,9 @@ Wahii line pe aur koi link exception consider karaa jai i.e. jahan par panna sak
 * exposuretime
 * fnumber
 * focallength',
+
+# EXIF tags
+'exif-aperturevalue' => 'Aperture',
 
 # External editor support
 'edit-externally'      => 'Edit this file using an external application',
