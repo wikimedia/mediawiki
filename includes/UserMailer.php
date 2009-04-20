@@ -310,6 +310,8 @@ class EmailNotification {
 					array( /* SET */
 						'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
 					), array( /* WHERE */
+						'wl_title' => $title->getDBkey(),
+						'wl_namespace' => $title->getNamespace(),
 						'wl_user' => $watchers
 					), __METHOD__
 				);
