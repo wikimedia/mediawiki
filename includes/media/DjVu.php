@@ -52,6 +52,8 @@ class DjVuHandler extends ImageHandler {
 		$m = false;
 		if ( preg_match( '/^page(\d+)-(\d+)px$/', $str, $m ) ) {
 			return array( 'width' => $m[2], 'page' => $m[1] );
+		} else if ( preg_match( '/^page(\d+)-djvutxt$/', $str, $m ) ) {
+			return array( 'djvutxt' => 1, 'page' => $m[1] );
 		} else {
 			return false;
 		}
@@ -64,8 +66,22 @@ class DjVuHandler extends ImageHandler {
 		);
 	}
 
+
+	function normaliseParams( $image, &$params ) {
+		global $wgDjvuTxt;
+		if( $params['djvutxt'] && $wgDjvuTxt) {
+			if ( !isset( $params['page'] ) ) {
+				$params['page'] = 1;
+			}
+			$params['width'] = 0;
+			$params['height'] = 0;
+			return true;
+		} 
+		else return parent::normaliseParams( $image, $params );
+	}
+
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
-		global $wgDjvuRenderer, $wgDjvuPostProcessor;
+		global $wgDjvuRenderer, $wgDjvuPostProcessor, $wgDjvuTxt, $wgSed;
 
 		// Fetch XML and check it, to give a more informative error message than the one which
 		// normaliseParams will inevitably give.
@@ -96,12 +112,22 @@ class DjVuHandler extends ImageHandler {
 
 		# Use a subshell (brackets) to aggregate stderr from both pipeline commands
 		# before redirecting it to the overall stdout. This works in both Linux and Windows XP.
-		$cmd = '(' . wfEscapeShellArg( $wgDjvuRenderer ) . " -format=ppm -page={$page} -size={$width}x{$height} " .
-			wfEscapeShellArg( $srcPath );
-		if ( $wgDjvuPostProcessor ) {
-			$cmd .= " | {$wgDjvuPostProcessor}";
+
+		if( $params['djvutxt'] && $wgDjvuTxt && $wgSed ) {
+			#Read text from djvu
+			$cmd = '(' . wfEscapeShellArg( $wgDjvuTxt ) . " --page={$page} " . wfEscapeShellArg( $srcPath );
+			#Escape < > & characters 
+			$cmd .= ' | ' . wfEscapeShellArg( $wgSed ) . ' "s/\&/\&amp;/g ; s/</\&lt;/g ; s/>/\&gt;/g ; s/\"/\&quot;/g "';
+			$cmd .= ' > ' . wfEscapeShellArg($dstPath) . ') 2>&1';
 		}
-		$cmd .= ' > ' . wfEscapeShellArg($dstPath) . ') 2>&1';
+		else {
+			$cmd = '(' . wfEscapeShellArg( $wgDjvuRenderer ) . " -format=ppm -page={$page} -size={$width}x{$height} " .
+				wfEscapeShellArg( $srcPath );
+			if ( $wgDjvuPostProcessor ) {
+				$cmd .= " | {$wgDjvuPostProcessor}";
+			}
+			$cmd .= ' > ' . wfEscapeShellArg($dstPath) . ') 2>&1';
+		}
 		wfProfileIn( 'ddjvu' );
 		wfDebug( __METHOD__.": $cmd\n" );
 		$err = wfShellExec( $cmd, $retval );

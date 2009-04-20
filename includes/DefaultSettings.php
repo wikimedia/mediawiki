@@ -1898,6 +1898,11 @@ $wgDiff3 = '/usr/bin/diff3';
 $wgDiff = '/usr/bin/diff';
 
 /**
+ * Path to the GNU sed utility.
+ */
+$wgSed = '/bin/sed';
+
+/**
  * We can also compress text stored in the 'text' table. If this is set on, new
  * revisions will be compressed on page save if zlib support is available. Any
  * compressed revisions will be decompressed on load regardless of this setting
@@ -3531,6 +3536,13 @@ $wgDjvuDump = null;
  */
 # $wgDjvuRenderer = 'ddjvu';
 $wgDjvuRenderer = null;
+
+/**
+ * Path of the djvutxt DJVU text extraction utility
+ * Enable this and $wgDjvuDump to enable text layer extraction from djvu files
+ */
+# $wgDjvuTxt = 'djvutxt';
+$wgDjvuTxt = null;
 
 /**
  * Path of the djvutoxml executable
