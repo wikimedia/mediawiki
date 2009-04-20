@@ -80,25 +80,30 @@ class SpecialVersion extends SpecialPage {
 	static function softwareInformation() {
 		$dbr = wfGetDB( DB_SLAVE );
 
-		return Xml::element( 'h2', array( 'id' => 'mw-version-software' ), wfMsg( 'version-software' ) ) .
-			Xml::openElement( 'table', array( 'id' => 'sv-software' ) ) .
+		// Put the software in an array of form 'name' => 'version'. All messages should
+		// be loaded here, so feel free to use wfMsg*() in the 'name'. Raw HTML or wikimarkup
+		// can be used
+		$software = array();
+		$software['[http://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
+		$software['[http://www.php.net/ PHP]'] = phpversion() . " (" . php_sapi_name() . ")";
+		$software[$dbr->getSoftwareLink()] = $dbr->getServerVersion();
+
+		// Allow a hook to add/remove items
+		wfRunHooks( 'SoftwareInfo', array( &$software ) );
+
+		$out = Xml::element( 'h2', array( 'id' => 'mw-version-software' ), wfMsg( 'version-software' ) ) .
+			   Xml::openElement( 'table', array( 'id' => 'sv-software' ) ) .
 				"<tr>
 					<th>" . wfMsg( 'version-software-product' ) . "</th>
 					<th>" . wfMsg( 'version-software-version' ) . "</th>
-				</tr>\n
-				<tr>
-					<td>[http://www.mediawiki.org/ MediaWiki]</td>
-					<td>" . self::getVersionLinked() . "</td>
-				</tr>\n
-				<tr>
-					<td>[http://www.php.net/ PHP]</td>
-					<td>" . phpversion() . " (" . php_sapi_name() . ")</td>
-				</tr>\n
-				<tr>
-					<td>" . $dbr->getSoftwareLink() . "</td>
-					<td>" . $dbr->getServerVersion() . "</td>
-				</tr>\n" .
-			Xml::closeElement( 'table' );
+				</tr>\n";
+		foreach( $software as $name => $version ) {
+			$out .= "<tr>
+					<td>" . $name . "</td>
+					<td>" . $version . "</td>
+				</tr>\n";
+		}		
+		return $out . Xml::closeElement( 'table' );
 	}
 
 	/**
