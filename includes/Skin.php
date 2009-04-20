@@ -24,7 +24,8 @@ class Skin extends Linker {
 	/**#@-*/
 	protected $mRevisionId; // The revision ID we're looking at, null if not applicable.
 	protected $skinname = 'standard';
-	protected $mTitle = null;
+	// @fixme Should be protected :-\
+	var $mTitle = null;
 
 	/** Constructor, call parent constructor */
 	function Skin() { parent::__construct(); }
