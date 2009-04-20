@@ -24,6 +24,7 @@ class Skin extends Linker {
 	/**#@-*/
 	protected $mRevisionId; // The revision ID we're looking at, null if not applicable.
 	protected $skinname = 'standard';
+	protected $mTitle = null;
 
 	/** Constructor, call parent constructor */
 	function Skin() { parent::__construct(); }
@@ -282,6 +283,11 @@ class Skin extends Linker {
 	 */
 	public function setTitle( $t ) {
 		$this->mTitle = $t;
+	}
+	
+	/** Get the title */
+	public function getTitle() {
+		return $this->mTitle;
 	}
 
 	function outputPage( OutputPage $out ) {

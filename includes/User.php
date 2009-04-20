@@ -2166,11 +2166,13 @@ class User {
 			$this->mSkin =& Skin::newFromKey( $userSkin );
 			wfProfileOut( __METHOD__ );
 		}
-		if ( !$t ) {
-			global $wgOut;
-			$t = $wgOut->getTitle();
+		if( $t || !$this->mSkin->getTitle() ) {
+			if ( !$t ) {
+				global $wgOut;
+				$t = $wgOut->getTitle();
+			}
+			$this->mSkin->setTitle( $t );
 		}
-		$this->mSkin->setTitle( $t );
 		return $this->mSkin;
 	}
 
