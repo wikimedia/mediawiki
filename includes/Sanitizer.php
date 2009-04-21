@@ -345,20 +345,20 @@ class Sanitizer {
 	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array(), $removetags = array() ) {
 		global $wgUseTidy;
 
-		static $htmlpairs, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
-			$htmllist, $listtags, $htmlsingleallowed, $htmlelements, $staticInitialised;
+		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
+			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic, $staticInitialised;
 
 		wfProfileIn( __METHOD__ );
 
 		if ( !$staticInitialised ) {
 
-			$htmlpairs = array_merge( $extratags, array( # Tags that must be closed
+			$htmlpairsStatic = array( # Tags that must be closed
 				'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
 				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'u'
-			) );
+			);
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
 			);
@@ -380,18 +380,21 @@ class Sanitizer {
 			);
 
 			$htmlsingleallowed = array_unique( array_merge( $htmlsingle, $tabletags ) );
-			# Only allow elements that aren't specified in $removetags
-			# Doing it here since this is the top-level check
-			$htmlelements = array_diff( array_unique( array_merge( $htmlsingle, $htmlpairs, $htmlnest ) ), $removetags );
+			$htmlelementsStatic = array_unique( array_merge( $htmlsingle, $htmlpairsStatic, $htmlnest ) );
 
 			# Convert them all to hashtables for faster lookup
-			$vars = array( 'htmlpairs', 'htmlsingle', 'htmlsingleonly', 'htmlnest', 'tabletags',
-				'htmllist', 'listtags', 'htmlsingleallowed', 'htmlelements' );
+			$vars = array( 'htmlpairsStatic', 'htmlsingle', 'htmlsingleonly', 'htmlnest', 'tabletags',
+				'htmllist', 'listtags', 'htmlsingleallowed', 'htmlelementsStatic' );
 			foreach ( $vars as $var ) {
 				$$var = array_flip( $$var );
 			}
 			$staticInitialised = true;
 		}
+		# Populate $htmlpairs and $htmlelements with the $extratags and $removetags arrays
+		$extratags = array_flip( $extratags );
+		$removetags = array_flip( $removetags );
+		$htmlpairs = array_merge( $extratags, $htmlpairsStatic );
+		$htmlelements = array_diff( array_unique( array_merge( $extratags, $htmlelementsStatic ) ), $removetags );
 
 		# Remove HTML comments
 		$text = Sanitizer::removeHTMLcomments( $text );
