@@ -559,6 +559,8 @@ $wgEXIFMessages = array(
 	'exif-gpslatitude-s',
 	'exif-gpslongitude-e',
 	'exif-gpslongitude-w',
+	'exif-gpsaltitude-0',
+	'exif-gpsaltitude-1',
 	'exif-gpsstatus-a',
 	'exif-gpsstatus-v',
 	'exif-gpsmeasuremode-2',
@@ -566,6 +568,9 @@ $wgEXIFMessages = array(
 	'exif-gpsspeed-k',
 	'exif-gpsspeed-m',
 	'exif-gpsspeed-n',
+	'exif-gpsdestdistance-k',
+	'exif-gpsdestdistance-m',
+	'exif-gpsdestdistance-n',
 	'exif-gpsdirection-t',
 	'exif-gpsdirection-m',
 );
