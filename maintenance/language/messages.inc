@@ -2669,8 +2669,8 @@ $wgMessageStructure = array(
 		'exif-gpslongitude-w',
 	),
 	'exif-altituderef' => array(
-		'exif-exif-gpsaltitude-0',
-		'exif-exif-gpsaltitude-1',
+		'exif-gpsaltitude-0',
+		'exif-gpsaltitude-1',
 	),
 	'exif-gpsstatus' => array(
 		'exif-gpsstatus-a',
