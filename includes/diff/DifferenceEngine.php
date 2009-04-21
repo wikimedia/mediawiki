@@ -43,7 +43,9 @@ class DifferenceEngine {
 	 * @param $htmldiff boolean If set, output using HTMLDiff instead of raw wikicode diff
 	 * @param $unhide boolean If set, allow viewing deleted revs
 	 */
-	function __construct( $titleObj = null, $old = 0, $new = 0, $rcid = 0, $refreshCache = false , $htmldiff = false, $unhide = false ) {
+	function __construct( $titleObj = null, $old = 0, $new = 0, $rcid = 0,
+		$refreshCache = false, $htmldiff = false, $unhide = false )
+	{
 		$this->mTitle = $titleObj;
 		wfDebug("DifferenceEngine old '$old' new '$new' rcid '$rcid'\n");
 
@@ -192,12 +194,12 @@ CONTROL;
 				$db = wfGetDB( DB_SLAVE );
 				$change = RecentChange::newFromConds(
 					array(
-					// Add redundant user,timestamp condition so we can use the existing index
-							'rc_user_text'  => $this->mNewRev->getRawUserText(),
-							'rc_timestamp'  => $db->timestamp( $this->mNewRev->getTimestamp() ),
-							'rc_this_oldid' => $this->mNewid,
-							'rc_last_oldid' => $this->mOldid,
-							'rc_patrolled'  => 0
+					// Redundant user,timestamp condition so we can use the existing index
+						'rc_user_text'  => $this->mNewRev->getRawUserText(),
+						'rc_timestamp'  => $db->timestamp( $this->mNewRev->getTimestamp() ),
+						'rc_this_oldid' => $this->mNewid,
+						'rc_last_oldid' => $this->mOldid,
+						'rc_patrolled'  => 0
 					),
 					__METHOD__
 				);
@@ -755,17 +757,21 @@ CONTROL;
 	 * Add the header to a diff body
 	 */
 	static function addHeader( $diff, $otitle, $ntitle, $multi = '' ) {
-		$header = "
-		<table class='diff'>
-		<col class='diff-marker' />
-		<col class='diff-content' />
-		<col class='diff-marker' />
-		<col class='diff-content' />
+		$colspan = 1;
+		$header = "<table class='diff'>";
+		if( $diff ) { // Safari/Chrome show broken output if cols not used
+			$header .= "
+			<col class='diff-marker' />
+			<col class='diff-content' />
+			<col class='diff-marker' />
+			<col class='diff-content' />";
+			$colspan = 2;
+		}
+		$header .= "
 		<tr valign='top'>
-		<td colspan='2' class='diff-otitle'>{$otitle}</td>
-		<td colspan='2' class='diff-ntitle'>{$ntitle}</td>
-		</tr>
-		";
+		<td colspan='$colspan' class='diff-otitle'>{$otitle}</td>
+		<td colspan='$colspan' class='diff-ntitle'>{$ntitle}</td>
+		</tr>";
 
 		if ( $multi != '' )
 		$header .= "<tr><td colspan='4' align='center' class='diff-multi'>{$multi}</td></tr>";
@@ -825,7 +831,6 @@ CONTROL;
 
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 			$this->mNewtitle .= " (<a href='$newEdit'>" . wfMsgHtml( $editable ? 'editold' : 'viewsourceold' ) . "</a>)";
-
 		} else {
 			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mNewid );
@@ -834,10 +839,10 @@ CONTROL;
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 			$this->mNewtitle .= " (<a href='$newEdit'>" . wfMsgHtml( $editable ? 'editold' : 'viewsourceold' ) . "</a>)";
 		}
-		if ( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
 			$this->mNewtitle = "<span class='history-deleted'>{$this->mPagetitle}</span>";
 		} else if ( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
-			$this->mNewtitle = '<span class="history-deleted">'.$this->mNewtitle.'</span>';
+			$this->mNewtitle = "<span class='history-deleted'>{$this->mNewtitle}</span>";
 		}
 
 		// Load the old revision object
