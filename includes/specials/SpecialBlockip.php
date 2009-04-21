@@ -445,7 +445,7 @@ class IPBlockForm {
 					$log_action = 'reblock';
 					# Unset _deleted fields if requested
 					if( $currentBlock->mHideName && !$this->BlockHideName ) {
-						$this->unsuppressUserName( $this->BlockAddress, $userId );
+						self::unsuppressUserName( $this->BlockAddress, $userId );
 					}
 				}
 			} else {
@@ -455,7 +455,7 @@ class IPBlockForm {
 
 			# Set *_deleted fields if requested
 			if( $this->BlockHideName ) {
-				$this->suppressUserName( $this->BlockAddress, $userId );
+				self::suppressUserName( $this->BlockAddress, $userId );
 			}
 
 			if ( $this->BlockWatchUser &&
@@ -486,17 +486,17 @@ class IPBlockForm {
 		}
 	}
 	
-	private function suppressUserName( $name, $userId ) {
+	public static function suppressUserName( $name, $userId ) {
 		$op = '|'; // bitwise OR
-		return $this->setUsernameBitfields( $name, $userId, $op );
+		return self::setUsernameBitfields( $name, $userId, $op );
 	}
 	
-	private function unsuppressUserName( $name, $userId ) {
+	public static function unsuppressUserName( $name, $userId ) {
 		$op = '&'; // bitwise AND
-		return $this->setUsernameBitfields( $name, $userId, $op );
+		return self::setUsernameBitfields( $name, $userId, $op );
 	}
 	
-	private function setUsernameBitfields( $name, $userId, $op ) {
+	private static function setUsernameBitfields( $name, $userId, $op ) {
 		if( $op !== '|' && $op !== '&' ) return false; // sanity check
 		$dbw = wfGetDB( DB_MASTER );
 		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
@@ -509,8 +509,10 @@ class IPBlockForm {
 		# current bitfields with the inverse of Revision::DELETED_USER. The
 		# username bit is made to 0 (x & 0 = 0), while others are unchanged (x & 1 = x).
 		# The same goes for the sysop-restricted *_deleted bit.
-		if( $op == '&' ) $delUser = "~{$delUser}";
-		if( $op == '&' ) $delAction = "~{$delAction}";
+		if( $op == '&' ) {
+			$delUser = "~{$delUser}";
+			$delAction = "~{$delAction}";
+		}
 		# Hide name from live edits
 		$dbw->update( 'revision', array("rev_deleted = rev_deleted $op $delUser"),
 			array('rev_user' => $userId), __METHOD__ );
