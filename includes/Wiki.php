@@ -335,14 +335,16 @@ class MediaWiki {
 	}
 
 	/**
-	 * Cleaning up by doing deferred updates, calling LBFactory and doing the output
+	 * Cleaning up request by doing:
+	 ** deferred updates, DB transaction, and the output
 	 *
 	 * @param $deferredUpdates array of updates to do
 	 * @param $output OutputPage
 	 */
 	function finalCleanup( &$deferredUpdates, &$output ) {
 		wfProfileIn( __METHOD__ );
-		# Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
+		# Now commit any transactions, so that unreported errors after
+		# output() don't roll back the whole DB transaction
 		$factory = wfGetLBFactory();
 		$factory->commitMasterChanges();
 		# Output everything!
@@ -350,8 +352,6 @@ class MediaWiki {
 		# Do any deferred jobs
 		$this->doUpdates( $deferredUpdates );
 		$this->doJobs();
-		# Commit and close up!
-		$factory->shutdown();
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -422,6 +422,10 @@ class MediaWiki {
 	 */
 	function restInPeace() {
 		wfLogProfilingData();
+		# Commit and close up!
+		$factory = wfGetLBFactory();
+		$factory->commitMasterChanges();
+		$factory->shutdown();
 		wfDebug( "Request ended normally\n" );
 	}
 
