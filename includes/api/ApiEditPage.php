@@ -268,6 +268,8 @@ class ApiEditPage extends ApiBase {
 				{
 					$r['oldrevid'] = intval($oldRevId);
 					$r['newrevid'] = intval($newRevId);
+					$r['newtimestamp'] = wfTimestamp(TS_ISO_8601,
+						$newArticle->getTimestamp());
 				}
 				break;
 			default:
