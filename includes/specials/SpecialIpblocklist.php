@@ -162,7 +162,7 @@ class IPUnblockForm {
 	 * @return array array(message key, parameters) on failure, empty array on success
 	 */
 
-	static function doUnblock(&$id, &$ip, &$reason, &$range = null) {
+	static function doUnblock(&$id, &$ip, &$reason, &$range = null, $blocker=null) {
 		if ( $id ) {
 			$block = Block::newFromID( $id );
 			if ( !$block ) {
@@ -184,8 +184,7 @@ class IPUnblockForm {
 				if ( !$block ) {
 					return array('ipb_cant_unblock', htmlspecialchars($id));
 				}
-				if( $block->mRangeStart != $block->mRangeEnd
-						&& !strstr( $ip, "/" ) ) {
+				if( $block->mRangeStart != $block->mRangeEnd && !strstr( $ip, "/" ) ) {
 					/* If the specified IP is a single address, and the block is
 					 * a range block, don't unblock the range. */
 					 $range = $block->mAddress;
@@ -195,10 +194,21 @@ class IPUnblockForm {
 		}
 		// Yes, this is really necessary
 		$id = $block->mId;
+		
+		# If the name was hidden and the blocking user cannot hide
+		# names, then don't allow any block removals...
+		if( $blocker && $block->mHideName && !$blocker->isAllowed('hideuser') ) {
+			return array('ipb_cant_unblock', htmlspecialchars($id));
+		}
 
 		# Delete block
 		if ( !$block->delete() ) {
 			return array('ipb_cant_unblock', htmlspecialchars($id));
+		}
+		
+		# Unset _deleted fields as needed
+		if( $block->mHideName ) {
+			IPBlockForm::unsuppressUserName( $block->mAddress, $block->mUser );
 		}
 
 		# Make log entry
@@ -208,10 +218,9 @@ class IPUnblockForm {
 	}
 
 	function doSubmit() {
-		global $wgOut;
-		$retval = self::doUnblock($this->id, $this->ip, $this->reason, $range);
-		if(!empty($retval))
-		{
+		global $wgOut, $wgUser;
+		$retval = self::doUnblock($this->id, $this->ip, $this->reason, $range, $wgUser);
+		if( !empty($retval) ) {
 			$key = array_shift($retval);
 			$this->showForm(wfMsgReal($key, $retval));
 			return;
