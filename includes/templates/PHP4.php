@@ -70,8 +70,7 @@ if ( $baseUrl ) {
 	if( function_exists( 'file_get_contents' ) ) {
 		$errorLevel = error_reporting();
 		error_reporting( $errorLevel & !E_WARNING );
-		
-		ini_set( 'allow_url_fopen', '1' );
+
 		$s = file_get_contents( $testUrl );
 		
 		error_reporting( $errorLevel );
