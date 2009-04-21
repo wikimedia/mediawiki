@@ -2,7 +2,6 @@
 /** Hebrew (עברית)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
- * To improve a translation please visit http://translatewiki.net
  *
  * @ingroup Language
  * @file
@@ -3023,16 +3022,25 @@ $1',
 'exif-gpslongitude-e' => 'קו־אורך מזרחי',
 'exif-gpslongitude-w' => 'קו־אורך מערבי',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'מטרים מעל גובה פני הים',
+'exif-gpsaltitude-1' => 'מטרים מתחת לגובה פני הים',
+
 'exif-gpsstatus-a' => 'מדידה בתהליך',
 'exif-gpsstatus-v' => 'מדידה בו־זמנית',
 
 'exif-gpsmeasuremode-2' => 'מדידה בשני ממדים',
 'exif-gpsmeasuremode-3' => 'מדידה בשלושה ממדים',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'קילומטרים בשעה',
 'exif-gpsspeed-m' => 'מיילים בשעה',
 'exif-gpsspeed-n' => 'מיילים ימיים בשעה',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'קילומטרים',
+'exif-gpsdestdistance-m' => 'מיילים',
+'exif-gpsdestdistance-n' => 'מיילים ימיים',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'כיוון אמיתי',
