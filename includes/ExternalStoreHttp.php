@@ -6,8 +6,8 @@
  */
 class ExternalStoreHttp {
 	/* Fetch data from given URL */
-	function fetchFromURL($url) {
-		$ret = file_get_contents( $url );
+	function fetchFromURL( $url ) {
+		$ret = Http::get( $url );
 		return $ret;
 	}
 
