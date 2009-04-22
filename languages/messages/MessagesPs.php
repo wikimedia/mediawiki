@@ -1432,7 +1432,7 @@ $messages = array(
 
 'exif-subjectdistancerange-0' => 'ناجوت',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'کيلومتره په يوه ساعت کې',
 
 # External editor support

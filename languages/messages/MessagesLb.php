@@ -1597,7 +1597,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'mostcategories'          => 'Säite mat de meeschte Kategorien',
 'mostimages'              => 'Dacks benotzte Biller',
 'mostrevisions'           => 'Säite mat de meeschte Versiounen',
-'prefixindex'             => 'All Säiten matt Prefix',
+'prefixindex'             => 'All Säite matt Prefix',
 'shortpages'              => 'Kuerz Säiten',
 'longpages'               => 'Laang Säiten',
 'deadendpages'            => 'Sakgaasse-Säiten',
@@ -2714,16 +2714,25 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gpslongitude-e' => 'ëstlech Längt',
 'exif-gpslongitude-w' => 'westlech Längt',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Meter iwwert dem Mier',
+'exif-gpsaltitude-1' => 'Meter ënnert dem Mier',
+
 'exif-gpsstatus-a' => 'Miessung am gaang',
 'exif-gpsstatus-v' => 'Interoperabilitéit vu der Miessung',
 
 'exif-gpsmeasuremode-2' => '2-dimensional Miessung',
 'exif-gpsmeasuremode-3' => '3-dimensional Miessung',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometer pro Stonn',
 'exif-gpsspeed-m' => 'Meile pro Stonn',
 'exif-gpsspeed-n' => 'Kniet',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Meilen',
+'exif-gpsdestdistance-n' => 'Nautesch Meilen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächlech Richtung',
@@ -2947,8 +2956,8 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'dberr-problems'    => 'Pardon! Dëse Site huet technesch Schwieregkeeten.',
 'dberr-again'       => 'Versicht e puer Minutten ze waarden an dann nei ze lueden.',
 'dberr-info'        => '(Den Databank-Server kann net erreecht ginn: $1)',
-'dberr-usegoogle'   => 'An der Tëschezäit kënnt Dir probéieren mam Google ze sichen.',
-'dberr-outofdate'   => 'Denkt drunn, datt de Sichindex vun eisen Inhalten méiglecherweis net aktuell ass.',
+'dberr-usegoogle'   => 'An der Tëschezäit kënnt Dir probéiere mam Google ze sichen.',
+'dberr-outofdate'   => 'Denkt drunn, datt de Sichindex vun eisen Inhalte méiglecherweis net aktuell ass.',
 'dberr-cachederror' => 'Dëst ass eng tëschegespäichert Kopie vun der gefroter Säit, a si kann eventuell net aktuell sinn.',
 
 );

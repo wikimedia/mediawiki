@@ -2860,7 +2860,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-gpsmeasuremode-2' => 'Iskaynintin chhikanyachiy tupuy',
 'exif-gpsmeasuremode-3' => 'Kimsantin chhikanyachiy tupuy',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilumitru uraman',
 'exif-gpsspeed-m' => 'Milla uraman',
 'exif-gpsspeed-n' => 'Muqukuna',

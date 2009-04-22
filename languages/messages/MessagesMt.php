@@ -2726,7 +2726,7 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-gpsmeasuremode-2' => 'Qisien bidimensjonali',
 'exif-gpsmeasuremode-3' => 'Qisien tridimensjonali',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometru fis-siegħa',
 'exif-gpsspeed-m' => 'Mili fis-siegħa',
 'exif-gpsspeed-n' => 'Nodi',

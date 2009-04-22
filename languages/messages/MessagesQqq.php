@@ -59,6 +59,7 @@
  * @author Sanbec
  * @author Sborsody
  * @author Seb35
+ * @author Sherbrooke
  * @author Shushruth
  * @author Siebrand
  * @author Singularity
@@ -1899,6 +1900,7 @@ $3 = time.
 'sp-contributions-blocklog'      => 'Used as a display name for a link to the block log on for example [[Special:Contributions/Mediawiki default]]
 
 {{Identical|Block log}}',
+'sp-contributions-username'      => 'This message appears whenever someone requests [[Special:Contributions]].',
 'sp-contributions-submit'        => '{{Identical|Search}}',
 
 # What links here
@@ -2611,7 +2613,7 @@ Indicates the number of pixels in the image width (X) direction per FocalPlaneRe
 * {{msg|Exif-subjectdistancerange-2}}
 * {{msg|Exif-subjectdistancerange-3}}',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-n' => "Knots: ''Knot'' is a unit of speed on water used for ships, etc., equal to one nautical mile per hour.",
 
 # External editor support

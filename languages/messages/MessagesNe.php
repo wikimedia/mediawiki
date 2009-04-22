@@ -578,7 +578,7 @@ $messages = array(
 'exif-gpslongitude-e' => 'पूर्व देशान्तर',
 'exif-gpslongitude-w' => 'पश्चिम देशान्तर',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'किलोमिटर प्रति घण्टा',
 'exif-gpsspeed-m' => 'माइल प्रति घण्टा',
 

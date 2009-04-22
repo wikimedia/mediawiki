@@ -3042,7 +3042,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode-2' => 'Дводимензионално мерење',
 'exif-gpsmeasuremode-3' => 'Тродимензионално мерење',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Километри на час',
 'exif-gpsspeed-m' => 'Милји на час',
 'exif-gpsspeed-n' => 'Јазли',

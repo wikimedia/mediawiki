@@ -317,7 +317,7 @@ $messages = array(
 'create-this-page'  => 'Dees pazjena aanmake',
 'delete'            => 'Wisse',
 'deletethispage'    => 'Wisse',
-'undelete_short'    => '$1 {{PLURAL:$1|bewèrking|bewèrkinge}} trökplaatse',
+'undelete_short'    => '$1 {{PLURAL:$1|bewirking|bewirkinge}} trökzètte',
 'protect'           => 'Besjirm',
 'protect_change'    => 'beveiligingssjtatus verangere',
 'protectthispage'   => 'Beveilige',
@@ -421,63 +421,64 @@ $messages = array(
 'nstab-category'  => 'Categorie',
 
 # Main script and global functions
-'nosuchaction'      => 'Gevräögde hanjeling besjteit neet',
-'nosuchactiontext'  => 'De opdrach in de URL is ongeldig.
-Mogelijk heef se een typefout gemaak in de URL, of een onjuiste verwiejzing gevolg.
-t kan ouk wiezen op n fout in de software van {{SITENAME}}.',
+'nosuchaction'      => 'Gevraogde hanjeling besjteit neet',
+'nosuchactiontext'  => "De opdrach in de URL is ongeldig.
+Mäögelik höbs te 'n typefout gemaak in de URL, of 'n verkierde verwiezing gevolg.
+'t Kan ouch wieze op 'n fout in de software van {{SITENAME}}.",
 'nosuchspecialpage' => "D'r besjteit gein speciaal pazjena mit deze naam",
 'nospecialpagetext' => "<big>'''Doe höbs 'n neet bestaonde speciaal pazjena aongevraog.'''</big>
 
-'n Lies mit besjtaonde speciaal pazjena's sjtuit op [[Special:SpecialPages|speciaal pazjena’s]].",
+'n Lies mit besjtaonde speciaal pazjena's sjteit op [[Special:SpecialPages|speciaal pazjena’s]].",
 
 # General errors
 'error'                => 'Fout',
 'databaseerror'        => 'Databasefout',
-'dberrortext'          => 'Bie \'t zeuke is \'n syntaxfout in de database opgetreje.
-Dit kint zien veroorzaak door \'n fout in de software.
-De lètste zeukpoeging in de database waor:
+'dberrortext'          => 'Bie \'t zeuke is \'n syntaxfout in de database opgetraoje.
+Dit kan zien veroorzaak door \'n fout in de software.
+De lètste zeukpoging in de database waor:
 <blockquote><tt>$1</tt></blockquote>
 vanoet de functie "<tt>$2</tt>".
-MySQL gaof de foutmèlling "<tt>$3: $4</tt>".',
+MySQL gaof de foutmelding "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Dao is \'n syntaxfout opgetreje bie \'t zeuke in de database.
 De lèste opgevraogde zeukactie waor:
 "$1"
 vanoet de functie "$2".
 MySQL brach fout "$3" nao veure: "$4"',
-'noconnect'            => 'De wiki óngervènjt technische meujelikhede en kan de database neet bereike.<br />
+'noconnect'            => 'De wiki óngervundj technische meujelikhede en kan de database neet bereike.<br />
 $1',
-'nodb'                 => 'Selectie van database $1 neet mogelijk',
+'nodb'                 => 'Selectie van database $1 neet mäögelik',
 'cachederror'          => "Dit is 'n gearsjiveerde kopie van de gevraogde pazjena, en is mesjien neet gans actueel.",
 'laggedslavemode'      => 'Waorsjuwing: De pazjena kin veraajerd zeen.',
 'readonly'             => 'Database geblokkeerd',
 'enterlockreason'      => "Gaef 'n rae veur de blokkering en wie lank 't dinkelik zal dore. De ingegaeve rae zal aan de gebroekers getuind waere.",
-'readonlytext'         => 'De database van {{SITENAME}} is momenteel gesloten voor nieuwe bewerkingen en wijzigingen, waarschijnlijk voor bestandsonderhoud.
-De verantwoordelijke systeembeheerder gaf hiervoor volgende reden op:
+'readonlytext'         => 'De database van {{SITENAME}} is geblokkeerd veur bewirkinge, waorsjienelik veur besjtandsongerhaud. Nao aafloup waert de functionaliteit weer hersteld.
+
+De verantwoordelike systeembeheerder gaof de volgende rae op:
 <p>$1',
-'missing-article'      => "In de database is gein inhauwd aongetroffe veur de pazjena \"\$1\" die d'r wel zou mote zien (\$2).
+'missing-article'      => "In de database is gein inhaud aangetróffe veur de pazjena \"\$1\" die d'r wel zou mote zien (\$2).
 
-Dit kin veurkómme as g'r 'n verauwerde verwiezing nao 't versjil tösje twee versies van ein pazjena volg of 'n versie opvraog die is eweggesjaf.
+Dit kan veurkómme as doe 'n verauwerde verwiezing nao 't versjil tösje twee versies van ein pazjena volgs of 'n versie opvreugs die is eweggesjaf.
 
-Es dit neet 't geval is, hebt g'r wellich 'n fout in de software gevónje.
+Es dit neet 't geval is, höbs doe wellich 'n fout in de software gevónje.
 Maak hievan melding bie 'ne systeembeheerder van {{SITENAME}} en vermeld daobie de URL van dees pazjena.",
 'missingarticle-rev'   => '(versienummer: $1)',
 'missingarticle-diff'  => '(Wijziging: $1, $2)',
-'readonly_lag'         => 'De database is automatisch vergrendeld wiele de slave databaseservers synchronisere mèt de master.',
+'readonly_lag'         => 'De database is autematis vergrendeld terwiel de ongergesjikte databaseservers synchronisere mit de huidserver.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
-'filecopyerror'        => 'Besjtand "$1" nao "$2" kopiëre neet mugelik.',
-'filerenameerror'      => 'Verangere van de titel van \'t besjtand "$1" in "$2" neet meugelik.',
-'filedeleteerror'      => 'Kos bestjand "$1" neet weghaole.',
-'directorycreateerror' => 'Map "$1" kòs neet aangemaak waere.',
-'filenotfound'         => 'Kos bestjand "$1" neet vinge.',
-'fileexistserror'      => 'Sjrijve nao bestandj "$1" woor neet meugelik: \'t bestandj besjteit al',
-'unexpected'           => 'Onverwachte waarde: "$1"="$2".',
-'formerror'            => 'Fout: kos formeleer neet verzende',
-'badarticleerror'      => 'Dees hanjeling kint neet weure oetgeveurd op dees pazjena.',
-'cannotdelete'         => 'Kós de pazjena of aafbeilding neet wisse.',
+'filecopyerror'        => 'Besjtand "$1" kós neet nao "$2" gekopieerd waere.',
+'filerenameerror'      => 'Verangere van de titel van \'t besjtand "$1" in "$2" neet mäögelik.',
+'filedeleteerror'      => 'Kós bestjand "$1" neet ewegsjaffe.',
+'directorycreateerror' => 'Map "$1" kós neet aangemaak waere.',
+'filenotfound'         => 'Kós bestjand "$1" neet vènje.',
+'fileexistserror'      => 'Sjrieve nao bestandj "$1" waor neet mäögelik: \'t bestandj besjteit al',
+'unexpected'           => 'Ónverwachte waerd: "$1"="$2".',
+'formerror'            => 'Fout: kós formeleer neet versjikke',
+'badarticleerror'      => 'Dees hanjeling kan neet waere oetgeveurd op dees pazjena.',
+'cannotdelete'         => "Kós de pazjena of 't besjtand neet ewegsjaffe.",
 'badtitle'             => 'Óngeljige pazjenatitel',
 'badtitletext'         => 'De opgevraogde pazjena is neet besjikbaar of laeg.',
-'perfcached'           => 'De volgende data is gecachet en is mesjien neet gans up to date:',
+'perfcached'           => "De gegaeves koume oet 'n cache en zeen mäögelik neet actueel:",
 'perfcachedts'         => "De getuunde gegaeves komme oet 'n cache en zeen veur 't letst biejgewèrk op $1.",
 'querypage-no-updates' => "Deze pazjena kin op 't memènt neet biejgewèrk waere. Deze gegaeves waere neet vervèrs.",
 'wrong_wfQuery_params' => 'Verkeerde paramaeters veur wfQuery()<br />
@@ -1276,7 +1277,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'action-deleterevision'       => 'dees versie eweg te sjaffe',
 'action-deletedhistory'       => 'de eweggesjafte versies van dees pazjena te betrachte',
 'action-browsearchive'        => "eweggesjafte pazjena's te zeuke",
-'action-undelete'             => 'dees pagina trökplaatse',
+'action-undelete'             => 'dees pagina trökzètte',
 'action-suppressrevision'     => 'dees verborge versie betrachte en trök plaatse',
 'action-suppressionlog'       => 'dit besjirmp logbook betrachte',
 'action-block'                => "deze gebroeker 'n bewirkingsblokkaad op lèkge",
@@ -1938,21 +1939,21 @@ Dit zeen de hujige instellinge veur de pazjena '''[[$1]]''':",
 'viewdeletedpage'              => "Betrach eweggesjafde pagina's",
 'undeletepagetext'             => "De ongersjtaande {{PLURAL:$1|paasj is|pazjena's zint}} verwiederd, meh {{PLURAL:$1|bevindj|bevinge}} zich nog sjteeds in 't archief, en {{PLURAL:$1|kin|kinne}} weure truukgeplaatsj.",
 'undelete-fieldset-title'      => 'Versies trukplaatse',
-'undeleteextrahelp'            => "Om de algehele pazjena inclusief alle irdere versies trök te plaatse: laot alle hökskes onafgevink en klik op '''''Trökplaatse'''''. 
-Om slechs bepaalde versies trök te zètte: vink de trök te plaatse versies aan en klik op '''''Trökplaatse'''''. 
-Esse op '''''Reset''''' kliks wörd 't toelichtingsveld laeggemaak en waere alle versies gedeselecteerd.",
+'undeleteextrahelp'            => "Om de algehele pagina inclusief alle ierder versies trök te zètte: laot alle hökskes ónaafgevink en klik op '''''Trökzètte'''''. 
+Om slechs bepaalde versies trök te zètte: vink de trök te plaatse versies aan en klik op '''''Trökzètte'''''. 
+Es te op '''''Reset''''' kliks weurt 't toelichtingsveld laeggemaak en waere alle versies gedeselecteerd.",
 'undeleterevisions'            => "$1 {{PLURAL:$1|versie|versies}} in 't archief",
-'undeletehistory'              => "Es se 'n pazjena trökplaats, waere alle versies es aaj versies trökgeplaats. 
-Es d'r al 'ne nuuje pazjena mit dezelfde naam is aangemaak sinse wösj, zulle deze versies es aaj versies waere trökgeplaats, mer de hujige versie neet gewiezig waere.",
+'undeletehistory'              => "Es te 'n pagina trökzèts, waere alle versies es auw versies trökgezat. 
+Es d'r 'ne nuuj pagina mit dezelfde naam is aangemaak sins de pagina is eweggesjaf, waere de eweggesjafde versies es auw versies trökgezat en blief de hujige versie intact.",
 'undeleterevdel'               => 'Hersjtelle is neet meugelik es dao door de meist recènte versie van de pagina gedeiltelik eweggesjaf waert. Sjaf in die gevalle de meist recènt eweggesjafde versies oet de selectie eweg.',
 'undeletehistorynoadmin'       => 'Deze pazjena is gewis. De reje hiej veur stuit hiej onger, same mit de details van de gebroekers die deze pazjena höbbe bewerk véur de verwiedering. De verwiederde inhoud van de pazjena is allein zichbaar veur beheerders.',
 'undelete-revision'            => 'Verwiederde versie van $1 (per $4 óm $5) door $3:',
 'undeleterevision-missing'     => "Ongeldige of missende versie. Meugelik höbse 'n verkeerde verwiezing of is de versie hersteld of verwiederd oet 't archief.",
 'undelete-nodiff'              => 'Gein eerdere versie gevonje.',
-'undeletebtn'                  => 'Trökzètte!',
-'undeletelink'                 => 'zeen/trökplaatse',
-'undeletereset'                => 'Resette',
-'undeleteinvert'               => 'Ómgedrejdje seleksje',
+'undeletebtn'                  => 'Trökzètte',
+'undeletelink'                 => 'betrachte/trökzètte',
+'undeletereset'                => 'Reset',
+'undeleteinvert'               => 'Ómgedriejde selectie',
 'undeletecomment'              => 'Infermasie:',
 'undeletedarticle'             => '"$1" is truukgeplaatsj.',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} truukgeplaatsj',
@@ -2733,7 +2734,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 'exif-gpsmeasuremode-2' => '2-dimensionale maeting',
 'exif-gpsmeasuremode-3' => '3-dimensionale maeting',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilomaeter per oer',
 'exif-gpsspeed-m' => 'Miel per oer',
 'exif-gpsspeed-n' => 'Knuip',

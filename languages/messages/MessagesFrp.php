@@ -444,7 +444,7 @@ Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus 
 'logout'                     => 'Sè dèbranchiér',
 'userlogout'                 => 'Dèbranchement',
 'notloggedin'                => 'Pas branchiê',
-'nologin'                    => 'Vos éte p’oncor enregistrâ ? $1.',
+'nologin'                    => 'Vos avéd pas un compto ? $1.',
 'nologinlink'                => 'Féte un compto',
 'createaccount'              => 'Fâre un compto',
 'gotaccount'                 => 'Vos avéd ja un compto ? $1.',
@@ -539,8 +539,8 @@ Volyéd atendre devant que tornar èprovar.',
 
 # Password reset dialog
 'resetpass'                 => 'Changiér lo mot de pâssa',
-'resetpass_announce'        => 'Vos vos éte enregistrâ avouéc un mot de pâssa temporèro emmandâ per mèl.
-Por chavonar l’enregistrament, vos dête buchiér un novél mot de pâssa ique :',
+'resetpass_announce'        => 'Vos vos éte branchiê avouéc un mot de pâssa temporèro emmandâ per mèl.
+Por chavonar lo branchement, vos dête buchiér un novél mot de pâssa ique :',
 'resetpass_text'            => '<!-- Apond de tèxte ique -->',
 'resetpass_header'          => 'Changiér lo mot de pâssa du compto',
 'oldpassword'               => 'Viely mot de pâssa :',
@@ -603,17 +603,21 @@ Se vos tornâd clicar dessus « Sôvar ceta pâge », voutron changement serat s
 'summary-preview'                  => 'Prèvisualisacion du rèsumâ :',
 'subject-preview'                  => 'Prèvisualisacion du sujèt / titro :',
 'blockedtitle'                     => 'L’utilisator est blocâ.',
-'blockedtext'                      => "<big>'''Voutron compto utilisator ou voutra adrèce IP at étâ blocâ.'''</big>
+'blockedtext'                      => "<big>'''Voutron compto utilisator ou ben voutra adrèce IP at étâ blocâ.'''</big>
 
-Lo blocâjo at étâ fêt per $1 por la rêson siuventa : ''$2''.
+Lo blocâjo at étâ fêt per $1.
+La rêson balyê est ceta : ''$2''.
 
 * Comencement du blocâjo : $8
 * Èxpiracion du blocâjo : $6
 * Compto blocâ : $7
 
-Vos pouede vos veriér vers $1 ou yon des ôtros [[{{MediaWiki:Grouppage-sysop}}|administrators]] por nen discutar. Vos pouede utilisar la fonccion « Emmandar un mèssâjo a ceti utilisator » ren que s’una adrèce de mèl valida est spècefiâ dens voutres [[Special:Preferences|prèferences]]. Voutra adrèce IP d’ora est $3 et voutron identifiant de blocâjo est #$5. Volyéd los spècefiar dens tota requéta.",
+Vos pouede vos veriér vers $1 ou ben yon des ôtros [[{{MediaWiki:Grouppage-sysop}}|administrators]] por nen discutar.
+Vos pouede pas utilisar la fonccionalitât « Emmandar un mèssâjo a ceti utilisator » a muens que vos èyâd una adrèce de mèl valida enregistrâ dens voutres [[Special:Preferences|prèferences]] et que la fonccionalitât èye pas étâ dèsactivâ.
+Voutra adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
+Volyéd spècefiar cetes endicacions dens totes les requétes que vos faréd.",
 'autoblockedtext'                  => "Voutra adrèce IP at étâ blocâ ôtomaticament perce qu’el at étâ utilisâ per un ôtro utilisator, lui-mémo blocâ per $1.
-La rêson balyê est :
+La rêson balyê est ceta :
 
 :''$2''
 
@@ -621,74 +625,101 @@ La rêson balyê est :
 * Èxpiracion du blocâjo : $6
 * Compto blocâ : $7
 
-Vos pouede vos veriér vers $1 ou ben yon des ôtros [[{{MediaWiki:Grouppage-sysop}}|administrators]] por discutar de cél blocâjo.
+Vos pouede vos veriér vers $1 ou ben yon des ôtros [[{{MediaWiki:Grouppage-sysop}}|administrators]] por nen discutar.
 
 Notâd que vos porréd pas utilisar la fonccionalitât « Emmandar un mèssâjo a ceti utilisator » a muens que vos èyâd una adrèce de mèl valida enregistrâ dens voutres [[Special:Preferences|prèferences]] et que la fonccionalitât èye pas étâ dèsactivâ.
 
 Voutra adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
 Volyéd spècefiar cetes endicacions dens totes les requétes que vos faréd.",
-'blockednoreason'                  => 'Niona rêson balyê',
+'blockednoreason'                  => 'niona rêson balyê',
 'blockedoriginalsource'            => "Lo code sôrsa de '''$1''' est endicâ ce-desot :",
-'blockededitsource'                => "Lo contegnu de '''voutres modificacions''' aplicâs a '''$1''' est endicâ ce-desot :",
-'whitelistedittitle'               => 'Enregistrament nècèssèro por modifiar lo contegnu',
-'whitelistedittext'                => 'Vos dête étre $1 por avêr la pèrmission de modifiar lo contegnu.',
-'confirmedittitle'                 => 'Validacion de l’adrèce de mèl nècèssèra por modifiar lo contegnu',
-'confirmedittext'                  => 'Vos dête confirmar voutra adrèce de mèl devant que modifiar {{SITENAME}}. Volyéd entrar et validar voutra adrèce èlèctronica avouéc la pâge [[Special:Preferences|prèferences]].',
+'blockededitsource'                => "Lo contegnu de '''voutros changements''' aplicâs a '''$1''' est endicâ ce-desot :",
+'whitelistedittitle'               => 'Branchement nècèssèro por changiér lo contegnu',
+'whitelistedittext'                => 'Vos dête étre $1 por avêr la pèrmission de changiér lo contegnu.',
+'confirmedittitle'                 => 'Validacion de l’adrèce de mèl nècèssèra por changiér lo contegnu',
+'confirmedittext'                  => 'Vos dête confirmar voutra adrèce de mèl devant que changiér les pâges.
+Volyéd buchiér et validar voutra adrèce de mèl dens voutres [[Special:Preferences|prèferences]].',
 'nosuchsectiontitle'               => 'Sèccion manquenta',
-'nosuchsectiontext'                => 'Vos éd tâchiê de modifiar una sèccion qu’ègziste pas. Puésqu’y at pas de sèccion $1, y at pas d’endrêt yô que sôvar voutres modificacions.',
-'loginreqtitle'                    => 'Enregistrament nècèssèro',
-'loginreqlink'                     => 'conèctar',
+'nosuchsectiontext'                => 'Vos éd tâchiê de changiér una sèccion qu’ègziste pas.
+Puésqu’y at pas de sèccion $1, y at pas d’endrêt yô que sôvar voutros changements.',
+'loginreqtitle'                    => 'Branchement nècèssèro',
+'loginreqlink'                     => 'branchiér',
 'loginreqpagetext'                 => 'Vos dête vos $1 por vêre les ôtres pâges.',
 'accmailtitle'                     => 'Mot de pâssa emmandâ.',
-'accmailtext'                      => 'Lo mot de pâssa de « $1 » at étâ emmandâ a l’adrèce $2.',
+'accmailtext'                      => "Un mot de pâssa fêt per hasârd por [[User talk:$1|$1]] at étâ emmandâ a $2.
+
+Lo mot de pâssa por cél novél compto pôt étre changiê sur la pâge de ''[[Special:ChangePassword|changement de mot de pâssa]]'' aprés s’étre branchiê.",
 'newarticle'                       => '(Novél)',
-'newarticletext'                   => "Vos éd siuvu un lim vers una pâge qu’ègziste p’oncor. Por crèar cela pâge, entrâd voutron tèxte dens la bouèta ce-desot (vos pouede consultar la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacion). Se vos éte arrevâ ice per èrror, clicâd sur lo boton '''retôrn''' de voutron navigator.",
-'anontalkpagetext'                 => "---- ''Vos éte sur la pâge de discussion d’un utilisator pas enregistrâ qu’at p’oncor crèâ un compto ou que l’utilise pas. Por cela rêson, nos devens utilisar son adrèce IP por l’identifiar. Una adrèce IP pôt étre partagiê per plusiors utilisators. Se vos éte un utilisator pas enregistrâ et se vos constatâd que des comentèros que vos regârdont pas vos ont étâ adrèciês, vos pouede vos [[Special:UserLogin|conèctar ou crèar un compto]] por èvitar tota confusion futura avouéc d’ôtros contributors pas enregistrâs.''",
+'newarticletext'                   => "Vos éd siuvu un lim vers una pâge qu’ègziste p’oncor ou ben qu’at étâ [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} èfaciê].
+Por fâre cela pâge, buchiéd voutron tèxte dens la bouèta ce-desot (vos pouede consultar la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacions).
+Se vos éte arrevâ ice per èrror, clicâd sur lo boton '''retôrn''' de voutron navigator.",
+'anontalkpagetext'                 => "---- ''Vos éte sur la pâge de discussion d’un utilisator pas enregistrâ qu’at p’oncor fêt un compto ou ben que nen utilise pas.
+Por celes rêsons, nos devens utilisar son adrèce IP por l’identifiar.
+Una adrèce IP pôt étre partagiê per plusiors utilisators.
+Se vos éte un utilisator pas enregistrâ et se vos constatâd que des comentèros que vos regârdont pas vos ont étâ adrèciês, vos pouede [[Special:UserLogin/signup|fâre un compto]] ou ben [[Special:UserLogin|vos branchiér]] por èvitar tota confusion futura avouéc d’ôtros contributors pas enregistrâs.''",
 'noarticletext'                    => 'Y at por lo moment gins de tèxte sur ceta pâge.
 Vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche de ceti titro de pâge]] dens les ôtres pâges,
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} rechèrchiér dens les opèracions liyês]
-ou ben [{{fullurl:{{FULLPAGENAME}}|action=edit}} crèar cela pâge]</span>.',
-'userpage-userdoesnotexist'        => 'Lo compto utilisator « $1 » est pas enregistrâ. Endicâd se vos voléd crèar ou ben èditar cela pâge.',
-'clearyourcache'                   => "'''Nota :''' aprés avêr sôvâ, vos dête forciér lo rechargement de la pâge por vêre los changements : '''Mozilla / Firefox :''' ''Shift-Ctrl-R'' (''Shift-Cmd-R'' en '''Apple Mac'''), '''IE :''' ''Ctrl-F5'', '''Opera :''' ''F5'', '''Safari :''' ''⌘-R'', '''Konqueror :''' ''Ctrl-R''.",
-'usercssjsyoucanpreview'           => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra novèla fôlye CSS/JS devant que l’enregistrar.",
-'usercsspreview'                   => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye CSS et qu’el at p’oncor étâ enregistrâ !'''",
-'userjspreview'                    => "'''Rapelâd-vos que vos éte aprés visualisar ou èprovar voutron code JavaScript et qu’il at p’oncor étâ enregistrâ !'''",
-'userinvalidcssjstitle'            => "'''Atencion :''' ègziste pas d’entèrface « $1 ». Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres aprés lo nom d’utilisator et la bârra de fraccion /.<br />D’ense, {{ns:user}}:Foo/monobook.css est valido, pendent que {{ns:user}}:Foo/Monobook.css serat una fôlye de stilo envalida.",
+ou ben [{{fullurl:{{FULLPAGENAME}}|action=edit}} fâre cela pâge]</span>.',
+'userpage-userdoesnotexist'        => 'Lo compto utilisator « $1 » est pas enregistrâ.
+Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
+'clearyourcache'                   => "'''Nota :''' aprés avêr enregistrâ voutres prèferences, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
+'''Mozilla / Firefox / Konqueror / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Actualisar'' (''Reload'') ou ben prèssâd ''Maj-Ctrl-R'' (''Maj-Cmd-R'' dessus Apple Mac) ;
+'''Internet Explorer / Opera :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Actualisar'' ou ben prèssâd ''Ctrl-F5''.",
+'usercssjsyoucanpreview'           => "'''Combina :''' utilisâd lo boton « Prèvisualisacion » por èprovar voutra novèla fôlye CSS / JS devant que la sôvar.",
+'usercsspreview'                   => "'''Rapelâd-vos que vos éte aprés prèvisualisar voutra prôpra fôlye CSS.'''
+'''El at p’oncor étâ sôvâ !'''",
+'userjspreview'                    => "'''Rapelâd-vos que vos éte aprés prèvisualisar ou ben èprovar voutron code JavaScript.'''
+'''Il at p’oncor étâ sôvâ !'''",
+'userinvalidcssjstitle'            => "'''Atencion :''' ègziste pas d’entèrface « $1 ».
+Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres, per ègzemplo {{ns:user}}:Foo/monobook.css et pas {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Betâ a jorn)',
 'note'                             => "'''Nota :'''",
-'previewnote'                      => "'''Atencion, ceti tèxte est ren qu’una prèvisualisacion et at p’oncor étâ sôvâ !'''",
-'previewconflict'                  => 'Ceta prèvisualisacion montre lo tèxte de la bouèta d’èdicion de d’amont tâl qu’aparètrat se vos chouèsésséd/cièrde de lo sôvar.',
-'session_fail_preview'             => "'''Dèsolâ ! Nos povens pas enregistrar voutra modificacion a côsa d’una pèrta d’enformacions regardent voutra sèssion. Volyéd tornar èprovar. Se cen tôrne pas reussir, volyéd vos dèconèctar, et pués vos tornar conèctar.'''",
-'session_fail_preview_html'        => "'''Dèsolâ ! Nos povens pas enregistrar voutra modificacion a côsa d’una pèrta d’enformacions regardent voutra sèssion.'''
+'previewnote'                      => "'''Rapelâd-vos que ceti tèxte est ren qu’una prèvisualisacion.'''
+'''Il at p’oncor étâ sôvâ !'''",
+'previewconflict'                  => 'Ceta prèvisualisacion montre lo tèxte de la bouèta d’èdicion de d’amont tâl qu’aparètrat se vos chouèsésséd de lo sôvar.',
+'session_fail_preview'             => "'''Dèsolâ ! Nos povens pas enregistrar voutron changement a côsa d’una pèrta d’enformacions regardent voutra sèssion.'''
+Volyéd tornar èprovar.
+Se cen tôrne pas reussir, volyéd [[Special:UserLogout|vos dèbranchiér]], et pués vos tornar branchiér.",
+'session_fail_preview_html'        => "'''Dèsolâ ! Nos povens pas enregistrar voutron changement a côsa d’una pèrta d’enformacions regardent voutra sèssion.'''
 
-''L’HTML bruto étent activâ dessus {{SITENAME}}, la prèvisualisacion at étâ mâscâ por prèvegnir una ataca per JavaScript.''
+''Perce que {{SITENAME}} at activâ l’HTML bruto, la prèvisualisacion at étâ cachiê por prèvegnir les ataques per JavaScript.''
 
-'''Se la tentativa de modificacion ére lèg·itima, volyéd tornar èprovar. Se cen tôrne pas reussir, volyéd vos dèconèctar, et pués vos tornar conèctar.'''",
-'token_suffix_mismatch'            => "'''Voutra èdicion at pas étâ accèptâ perce que voutron navigator at mècllâ los caractèros de ponctuacion dens l’identifiant d’èdicion. L’èdicion at étâ refusâ por empachiér la corrupcion du tèxte de l’articllo. Ceti problèmo arreve quand vos utilisâd un proxy anonimo avouéc problèmo.'''",
-'editing'                          => 'Modificacion de $1',
-'editingsection'                   => 'Modificacion de $1 (sèccion)',
-'editingcomment'                   => 'Modificacion de $1 (comentèro)',
-'editconflict'                     => 'Conflit de modificacion : $1',
-'explainconflict'                  => "Ceta pâge at étâ sôvâ aprés que vos èyâd comenciê a la modifiar.
+'''Se la tentativa de changement ére lèg·itima, volyéd tornar èprovar.'''
+Se cen tôrne pas reussir, volyéd [[Special:UserLogout|vos dèbranchiér]], et pués vos tornar branchiér.",
+'token_suffix_mismatch'            => "'''Voutron changement at pas étâ accèptâ perce que voutron navigator at mècllâ los caractèros de ponctuacion dens l’identifiant de changement.'''
+Lo changement at étâ refusâ por empachiér la corrupcion du tèxte de la pâge.
+Ceti problèmo arreve quand vos utilisâd un sèrvior mandatèro (''proxy'') anonimo qu’est pas de sûr.",
+'editing'                          => 'Changement de $1',
+'editingsection'                   => 'Changement de $1 (sèccion)',
+'editingcomment'                   => 'Changement de $1 (novèla sèccion)',
+'editconflict'                     => 'Conflit de changement : $1',
+'explainconflict'                  => "Ceta pâge at étâ sôvâ aprés que vos èyâd comenciê a la changiér.
 La zona d’èdicion de d’amont contint lo tèxte tâl qu’il est enregistrâ ora dens la bâsa de balyês.
-Voutres modificacions aparèssont dens la zona d’èdicion de desot.
-Vos voléd devêr aduire voutres modificacions u tèxte ègzistent.
-'''Solèt''' lo tèxte de la zona de d’amont serat sôvâ.",
+Voutros changements aparèssont dens la zona d’èdicion de desot.
+Vos voléd devêr fusionar voutros changements dens lo tèxte ègzistent.
+'''Solament''' lo tèxte de la zona de d’amont serat sôvâ quand vos cliqueréd dessus « Sôvar ceta pâge ».",
 'yourtext'                         => 'Voutron tèxte',
 'storedversion'                    => 'Vèrsion enregistrâ',
-'nonunicodebrowser'                => "'''ATENCION : voutron navigator supôrte pas l’unicode. Una solucion temporèra at étâ trovâ por vos pèrmetre de modifiar en tota suretât un articllo : los caractèros nan-ASCII aparètront dens voutra bouèta d’èdicion a titro de codes hèxadècimâls. Vos devriâd utilisar un navigator ples novél.'''",
-'editingold'                       => "'''ATENCION : vos éte aprés modifiar una vielye vèrsion de ceta pâge. Se vos sôvâd, totes les modificacions fêtes dês ceta vèrsion seront pèrdues.'''",
+'nonunicodebrowser'                => "'''ATENCION : voutron navigator supôrte pas l’Unicode.'''
+Una solucion de rechanjo at étâ trovâ por vos pèrmetre de changiér en tota suretât una pâge : los caractèros nan-ASCII aparètront dens voutra bouèta d’èdicion coment codes hèxadècimâls.
+Vos devriâd utilisar un navigator ples novél.",
+'editingold'                       => "'''ATENCION : vos éte aprés changiér una vielye vèrsion de cela pâge.'''
+Se vos la sôvâd, tôs los changements fêts dês ceta vèrsion seront pèrdues.",
 'yourdiff'                         => 'Difèrences',
-'copyrightwarning'                 => "Totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys). Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou d’una ressôrsa abada.<br />
+'copyrightwarning'                 => "Totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys).
+Se vos dèsirâd pas que voutros ècrits seyont changiês et distribuâs a volontât, marci de pas los sometre ique.<br />
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada.<br />
 '''UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !'''",
-'copyrightwarning2'                => "Totes les contribucions a {{SITENAME}} pôvont étre modifiâs ou suprimâs per d’ôtros utilisators. Se vos dèsirâd pas que voutros ècrits seyont modifiâs et distribuâs a volontât, marci de pas los sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou d’una ressôrsa abada (vêde $1 por més de dètalys).<br />
+'copyrightwarning2'                => "Totes les contribucions a {{SITENAME}} pôvont étre changiês ou ben suprimâs per d’ôtros utilisators.
+Se vos dèsirâd pas que voutros ècrits seyont changiês et distribuâs a volontât, marci de pas los sometre ique.<br />
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada (vêde $1 por més de dètalys).<br />
 '''UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !'''",
-'longpagewarning'                  => "'''ATENCION : ceta pâge at una longior de $1 ko ;
-cèrtins navigators g·èront mâl la modificacion de les pâges aprochient ou dèpassent 32 ko.
-Pôt-étre devriâd-vos divisar la pâge en sèccions ples petiôtes.'''",
-'longpageerror'                    => "'''ÈRROR : lo tèxte que vos éd somês fât $1 ko, cen que dèpâsse la limita fixâ a $2 ko. Lo tèxte pôt pas étre sôvâ.'''",
+'longpagewarning'                  => "'''ATENCION :''' ceta pâge at una longior de $1 ko ;
+cèrtins navigators g·èront mâl lo changement de les pâges aprochient ou ben dèpassent 32 ko.
+Pôt-étre devriâd-vos divisar la pâge en sèccions ples petiôtes.",
+'longpageerror'                    => "'''ÈRROR : lo tèxte que vos éd somês fât $1 ko, cen que dèpâsse la limita fixâ a $2 ko.'''
+Lo tèxte pôt pas étre sôvâ.",
 'readonlywarning'                  => "'''ATENCION : la bâsa de balyês at étâ vèrrolyê por mantegnence, vos porréd vêr pas sôvar voutros changements d’abôrd.'''
 Vos pouede copiyér lo tèxte dens un fichiér tèxte et pués lo sôvar por ples târd.
 
@@ -1964,10 +1995,13 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 
 # Skin names
 'skinname-standard'    => 'Estandârd',
-'skinname-nostalgia'   => 'Encrêt',
-'skinname-cologneblue' => 'Cologne Blu',
+'skinname-nostalgia'   => 'Cafârd',
+'skinname-cologneblue' => 'Blu de Cologne',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
 'skinname-chick'       => 'Pugin',
 'skinname-simple'      => 'Simplo',
+'skinname-modern'      => 'Modèrno',
 
 # Math options
 'mw_math_png'    => 'Tojorn fâre una émâge PNG',
@@ -2296,7 +2330,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 'exif-gpsmeasuremode-2' => 'Mesera a 2 dimensions',
 'exif-gpsmeasuremode-3' => 'Mesera a 3 dimensions',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilomètre per hora',
 'exif-gpsspeed-m' => 'Mile per hora',
 'exif-gpsspeed-n' => 'Nuod',

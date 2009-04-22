@@ -2211,7 +2211,7 @@ Detang aliwa tambing (by default) lang makasalikut.
 'exif-gpsmeasuremode-2' => 'Pamaniukad a 2-dimensional',
 'exif-gpsmeasuremode-3' => 'Pamaniukad a 3-dimensional',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometru balang oras',
 'exif-gpsspeed-m' => 'Milla balang oras',
 

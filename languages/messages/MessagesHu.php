@@ -2964,7 +2964,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsmeasuremode-2' => '2-dimenziós méret',
 'exif-gpsmeasuremode-3' => '3-dimenziós méret',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilométer óránként',
 'exif-gpsspeed-m' => 'Márföld óránként',
 'exif-gpsspeed-n' => 'Csomó',

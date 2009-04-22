@@ -2642,7 +2642,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-gpsmeasuremode-2' => 'Misurazzioni bidiminziunali',
 'exif-gpsmeasuremode-3' => 'Misurazzioni tridiminziunali',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Chilòmitri orari',
 'exif-gpsspeed-m' => 'Migghia orari',
 'exif-gpsspeed-n' => 'Gruppa',

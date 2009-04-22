@@ -2306,7 +2306,7 @@ $1',
 'exif-gpsmeasuremode-2' => '2-διάστατος μέτρησις',
 'exif-gpsmeasuremode-3' => '3-διάστατος μέτρησις',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Χιλιόμετρα ἀνὰ ὥρα',
 'exif-gpsspeed-m' => 'Μίλια ἀνὰ ὥρα',
 'exif-gpsspeed-n' => 'Κόμβοι',

@@ -1755,7 +1755,7 @@ ODagiti dadduma ket sigud a nakalemmeng.
 'exif-gpsmeasuremode-2' => '2-dimensional a measurement',
 'exif-gpsmeasuremode-3' => '3-dimensional a measurement',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometros kada oras',
 'exif-gpsspeed-m' => 'Milia kada oras',
 'exif-gpsspeed-n' => 'Knots',

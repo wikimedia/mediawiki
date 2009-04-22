@@ -2754,7 +2754,7 @@ Altele vor fi ascunse implicit.
 'exif-gpsmeasuremode-2' => 'măsurătoare bidimensională',
 'exif-gpsmeasuremode-3' => 'măsurătoare tridimensională',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometri pe oră',
 'exif-gpsspeed-m' => 'Mile pe oră',
 'exif-gpsspeed-n' => 'Noduri',

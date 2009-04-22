@@ -2904,7 +2904,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpsmeasuremode-2' => 'Đo 2 chiều',
 'exif-gpsmeasuremode-3' => 'Đo 3 chiều',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilômét một giờ',
 'exif-gpsspeed-m' => 'Dặm một giờ',
 'exif-gpsspeed-n' => 'Hải lý một giờ',

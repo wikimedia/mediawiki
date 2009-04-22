@@ -845,7 +845,7 @@ Per aquesta rason, devèm utilizar son adreça IP per l'identificar. Una adreça
 'previewconflict'                  => 'Aquesta previsualizacion mòstra lo tèxte de la bóstia de modificacion superiora coma apareisserà se causissètz de lo salvar.',
 'session_fail_preview'             => "'''Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra sesilha. 
 Ensajatz tornarmai.
-S'aquò fracassa encara, desconnectatz-vos, puèi [[Special:UserLogout|connectatz-vos]] tornamai.'''",
+S'aquò fracassa encara, [[Special:UserLogout|desconnectatz-vos]], puèi connectatz-vos tornamai.'''",
 'session_fail_preview_html'        => "'''Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions que concernís vòstra sesilha.'''
 
 ''Perque {{SITENAME}} a activat l’HTML brut, la previsualizacion es estada amagada per prevenir un atac per JavaScript.''
@@ -907,7 +907,7 @@ Cap d'explicacion pas balhada.",
 'edit-gone-missing'                => 'A pas pogut metre a jorn la pagina.
 Sembla que siá estada suprimida.',
 'edit-conflict'                    => 'Modificar lo conflicte.',
-'edit-no-change'                   => 'Vòstrq modificacion es estada ignorada perque cap de cambiament es pas estat fach dins lo tèxt.',
+'edit-no-change'                   => 'Vòstra modificacion es estada ignorada perque cap de cambiament es pas estat fach dins lo tèxte.',
 'edit-already-exists'              => 'A pas pogut crea una pagina novèla.
 Existís ja.',
 
@@ -1510,7 +1510,7 @@ Vejatz la [[Special:NewFiles|galariá dels imatges novèls]] per una presentacio
 'largefileserver'             => "La talha d'aqueste fichièr es superiora al maximum autorizat.",
 'emptyfile'                   => 'Lo fichièr que volètz importar sembla void. Aquò pòt èsser degut a una error dins lo nom del fichièr. Verificatz que desiratz vertadièrament copiar aqueste fichièr.',
 'fileexists'                  => "Un fichièr amb aqueste nom existís ja. Mercé de verificar '''<tt>$1</tt>'''. Sètz segur de voler modificar aqueste fichièr ?",
-'filepageexists'              => "La pagina de descripcion per aqueste fichièr ja es estada creada aicí '''<tt>$1</tt>''', mas cap de fichièr d'aqueste nom existís pas actualament. Lo resumit qu'anatz escriure remplaçarà pas lo tèxte precedent ; per aquò far, deuretz editar manualament la pagina.",
+'filepageexists'              => "La pagina de descripcion per aqueste fichièr ja es estada creada aicí '''<tt>$1</tt>''', mas cap de fichièr d'aqueste nom existís pas actualament. Lo resumit qu'anatz escriure remplaçarà pas lo tèxte precedent ; per aquò far, vos caldrà editar la pagina manualament.",
 'fileexists-extension'        => "Un fichièr amb un nom similar existís ja :<br />
 Nom del fichièr d'importar : '''<tt>$1</tt>'''<br />
 Nom del fichièr existent : '''<tt>$2</tt>'''<br />
@@ -2371,9 +2371,9 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 
 # Export
 'export'            => 'Exportar de paginas',
-'exporttext'        => "Podètz exportar en XML lo tèxt e l’istoric d’una pagina o d’un ensemble de paginas; lo resultat pòt alara èsser importat dins un autre wiki foncionant amb lo logicial MediaWiki.
+'exporttext'        => "Podètz exportar en XML lo tèxte e l’istoric d’una pagina o d’un ensemble de paginas; lo resultat pòt alara èsser importat dins un autre wiki que fonciona amb lo logicial MediaWiki.
 
-Per exportar de paginas, entratz lors títols dins la bóstia de tèxt çaijós, un títol per linha, e seleccionatz s'o desiratz o pas la version actuala amb totas las versions ancianas, amb la pagina d’istoric, o simplament la pagina actuala amb d'informacions sus la darrièra modificacion.
+Per exportar de paginas, entratz lors títols dins la bóstia de tèxte çaijós, un títol per linha, e seleccionatz s'o desiratz o pas la version actuala amb totas las versions ancianas, amb la pagina d’istoric, o simplament la pagina actuala amb d'informacions sus la darrièra modificacion.
 
 Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] per la pagina [[{{MediaWiki:Mainpage}}]].",
 'exportcuronly'     => 'Exportar unicament la version correnta sens l’istoric complet',
@@ -2917,16 +2917,25 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-gpslongitude-e' => 'Longitud Èst',
 'exif-gpslongitude-w' => 'Longitud Oèst',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Mètres en dessús del nivèl de la mar',
+'exif-gpsaltitude-1' => 'Mètres en dejós del nivèl de la mar',
+
 'exif-gpsstatus-a' => 'Mesura en cors',
 'exif-gpsstatus-v' => 'Interoperabilitat de la mesura',
 
 'exif-gpsmeasuremode-2' => 'Mesura de 2 dimensions',
 'exif-gpsmeasuremode-3' => 'Mesura de 3 dimensions',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Quilomètres per ora',
 'exif-gpsspeed-m' => 'Miles per ora',
 'exif-gpsspeed-n' => 'Noses',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Quilomètres',
+'exif-gpsdestdistance-m' => 'Milas anglesas',
+'exif-gpsdestdistance-n' => 'Milas nauticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direccion vertadièra',

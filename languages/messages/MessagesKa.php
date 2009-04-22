@@ -1933,7 +1933,7 @@ $NEWPAGE
 
 'exif-gpsmeasuremode-3' => '3-განზომილებიანი გაზომვა',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'კილომეტრი საათში',
 'exif-gpsspeed-m' => 'მილი საათში',
 'exif-gpsspeed-n' => 'კვანძები',

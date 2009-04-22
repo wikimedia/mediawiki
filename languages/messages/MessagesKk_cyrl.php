@@ -2737,7 +2737,7 @@ $1',
 'exif-gpsmeasuremode-2' => '2-бағыттық өлшем',
 'exif-gpsmeasuremode-3' => '3-бағыттық өлшем',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mil/h',
 'exif-gpsspeed-n' => 'knot',

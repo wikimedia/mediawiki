@@ -2957,16 +2957,25 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-gpslongitude-e' => 'wschodnia',
 'exif-gpslongitude-w' => 'zachodnia',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metrów nad poziomem morza',
+'exif-gpsaltitude-1' => 'Metrów poniżej poziomu morza',
+
 'exif-gpsstatus-a' => 'pomiar w trakcie',
 'exif-gpsstatus-v' => 'wyniki pomiaru dostępne na bieżąco',
 
 'exif-gpsmeasuremode-2' => 'dwuwymiarowy',
 'exif-gpsmeasuremode-3' => 'trójwymiarowy',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'kilometrów na godzinę',
 'exif-gpsspeed-m' => 'mil na godzinę',
 'exif-gpsspeed-n' => 'węzłów',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometrów',
+'exif-gpsdestdistance-m' => 'Mil',
+'exif-gpsdestdistance-n' => 'Mil morskich',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'kierunek geograficzny',

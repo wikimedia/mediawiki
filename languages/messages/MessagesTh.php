@@ -2737,7 +2737,7 @@ $1',
 'exif-gpsmeasuremode-2' => 'การวัดสองมิติ',
 'exif-gpsmeasuremode-3' => 'การวัดสามมิติ',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'กิโลเมตรต่อชั่วโมง',
 'exif-gpsspeed-m' => 'ไมล์ต่อชั่วโมง',
 'exif-gpsspeed-n' => 'นอตส์',

@@ -81,7 +81,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Celez mikra redaktaji de la surveyaji',
 'tog-ccmeonemails'            => 'Sendez a me exemplero di e-posti quin me sendos ad altra uzanti',
 'tog-showhiddencats'          => 'Montrar celita kategorii',
-'tog-norollbackdiff'          => 'Omisar difero-komparo pos dop-rulo',
+'tog-norollbackdiff'          => 'Omisar difero-komparo pos retrorulo',
 
 'underline-always' => 'Sempre',
 'underline-never'  => 'Nulatempe',
@@ -681,7 +681,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'right-movefile'      => 'Movar arkivi',
 'right-delete'        => 'Efacar pagini',
 'right-browsearchive' => 'Serchar pagini efacita',
-'right-rollback'      => 'Rapide dop-rulez la redakti da la lasta uzanto qua redaktis specigita pagino',
+'right-rollback'      => 'Rapide retrorulez la redakti da la lasta uzanto qua redaktis specigita pagino',
 
 # User rights log
 'rightsnone' => '(nula)',
@@ -977,13 +977,13 @@ Videz $2 por obtenar registro di recenta efaci.',
 'deletereasonotherlist' => 'Altra motivo',
 
 # Rollback
-'rollback'         => 'Dop-rulez redakti',
-'rollback_short'   => 'Dop-rular',
-'rollbacklink'     => 'dop-rulez',
-'rollbackfailed'   => 'Dop-rular ne sucesis',
-'cantrollback'     => 'Ne esas posibla dop-rular. La lasta kontributanto esas la nura autoro di ica pagino.',
-'alreadyrolled'    => 'Vu ne povas dop-rular la lasta chanjo di [[:$1]] da [[User:$2|$2]] ([[User talk:$2|Diskutez]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
-ulu pluse ja editis o dop-rulis ica pagino.
+'rollback'         => 'Retrorulez redakti',
+'rollback_short'   => 'Retrorular',
+'rollbacklink'     => 'retrorulez',
+'rollbackfailed'   => 'Retrorular ne sucesis',
+'cantrollback'     => 'Ne esas posibla retrorular. La lasta kontributanto esas la nura autoro di ica pagino.',
+'alreadyrolled'    => 'Vu ne povas retrorular la lasta chanjo di [[:$1]] da [[User:$2|$2]] ([[User talk:$2|Diskutez]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+ulu pluse ja editis o retrorulis ica pagino.
 
 La lasta edito di la pagino esis da [[User:$3|$3]] ([[User talk:$3|Diskutez]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "La rezumo di la edito esis: \"''\$1''\".",
@@ -1223,7 +1223,7 @@ Voluntez selektar altra nomo.',
 'tooltip-watch'                   => 'Adjuntar ica pagino a vua listo di surveyaji',
 'tooltip-recreate'                => 'Rekrear pagino malgre ol efacesis',
 'tooltip-upload'                  => 'Adkargar imaji od altra arkivi',
-'tooltip-rollback'                => '"Dop-rular" desfacas omna chanji ad ca pagino da la lasta kontributanto per un kliko',
+'tooltip-rollback'                => '"Retrorular" desfacas omna chanji ad ca pagino da la lasta kontributanto per un kliko',
 'tooltip-undo'                    => '"Desfacez" nuligas ca versiono e apertas la redakto-pagino en prevido-modo.
 Vu darfos adjuntar kauso en la rezumo.',
 
@@ -1301,7 +1301,7 @@ Vu darfos adjuntar kauso en la rezumo.',
 
 'exif-sharpness-0' => 'Normala',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometri per horo',
 'exif-gpsspeed-m' => 'Milii per horo',
 

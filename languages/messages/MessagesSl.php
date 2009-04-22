@@ -2171,7 +2171,7 @@ $1',
 'exif-gpsmeasuremode-2' => 'Dvorazsežnostno merjenje',
 'exif-gpsmeasuremode-3' => 'Trirazsežnostno merjenje',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometri na uro',
 'exif-gpsspeed-m' => 'Milje na uro',
 'exif-gpsspeed-n' => 'Vozli',

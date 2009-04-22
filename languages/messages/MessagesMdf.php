@@ -2686,7 +2686,7 @@ $1',
 'exif-gpsmeasuremode-2' => '2-кърдань ункстама',
 'exif-gpsmeasuremode-3' => '3-кърдань ункстама',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Вайгяльбет ойс',
 'exif-gpsspeed-m' => 'Милят ойс',
 'exif-gpsspeed-n' => 'Сюлмот',

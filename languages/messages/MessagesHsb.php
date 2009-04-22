@@ -2725,16 +2725,25 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpslongitude-e' => 'Wuchodna dołhosć',
 'exif-gpslongitude-w' => 'Zapadna dołhosć',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metry nad mórskej hładźinu',
+'exif-gpsaltitude-1' => 'Metry pod mórskej hładźinu',
+
 'exif-gpsstatus-a' => 'Měrjenje běži',
 'exif-gpsstatus-v' => 'Interoperabilita měrjenja',
 
 'exif-gpsmeasuremode-2' => 'dwudimensionalne měrjenje',
 'exif-gpsmeasuremode-3' => 'třidimensionalne měrjenje',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mila/h',
 'exif-gpsspeed-n' => 'Suki',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometry',
+'exif-gpsdestdistance-m' => 'Mile',
+'exif-gpsdestdistance-n' => 'Mórske mile',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Woprawdźity směr',

@@ -2748,7 +2748,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-gpsmeasuremode-2' => '2 dimentsioko neurketa',
 'exif-gpsmeasuremode-3' => '3 dimentsioko neurketa',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometro orduko',
 'exif-gpsspeed-m' => 'Milia orduko',
 'exif-gpsspeed-n' => 'Lotailuak',

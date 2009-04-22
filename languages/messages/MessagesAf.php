@@ -2283,7 +2283,7 @@ Ander velde sal versteek wees.
 'exif-gpsmeasuremode-2' => '2-dimensionele meting',
 'exif-gpsmeasuremode-3' => '3-dimensionele meting',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometer per huur',
 'exif-gpsspeed-m' => 'Myl per huur',
 'exif-gpsspeed-n' => 'Knope',

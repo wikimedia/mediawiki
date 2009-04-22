@@ -1977,7 +1977,7 @@ $1',
 'exif-gpsmeasuremode-2' => '二维测量',
 'exif-gpsmeasuremode-3' => '三维测量',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => '公里每小时',
 'exif-gpsspeed-m' => '英里每小时',
 'exif-gpsspeed-n' => '海浬每小时(节)',

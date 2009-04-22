@@ -2715,7 +2715,7 @@ $1',
 'exif-gpsmeasuremode-2' => '2 координаатаны кээмэйдээһин',
 'exif-gpsmeasuremode-3' => '3 координаатаны кээмэйдээһин',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'км/чаас',
 'exif-gpsspeed-m' => 'Миляны чааска',
 'exif-gpsspeed-n' => 'Узел',

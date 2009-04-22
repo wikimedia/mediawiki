@@ -2175,7 +2175,7 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 'exif-gpsmeasuremode-2' => '2-lumafa sabera',
 'exif-gpsmeasuremode-3' => '3-lumafa sabera',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Bartivon decitmetrolk se',
 'exif-gpsspeed-m' => "Bartivon 'mile'",
 'exif-gpsspeed-n' => 'Webokeem',

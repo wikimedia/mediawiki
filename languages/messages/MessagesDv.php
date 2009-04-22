@@ -449,7 +449,7 @@ $messages = array(
 'exif-artist'           => 'މުސައްނިފު',
 'exif-filesource'       => 'ފައިލުގެ މަސްދަރު',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-n' => 'ތަސްވީރުގެ ސުރުހީ',
 
 # 'all' in various places, this might be different for inflected languages

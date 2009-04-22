@@ -2772,7 +2772,7 @@ $1',
 'exif-gpsmeasuremode-2' => 'Двуизмерно измерване',
 'exif-gpsmeasuremode-3' => 'Триизмерно измерване',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'км/час',
 'exif-gpsspeed-m' => 'мили/час',
 'exif-gpsspeed-n' => 'възли',

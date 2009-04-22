@@ -1791,7 +1791,7 @@ $1',
 'exif-gpsmeasuremode-2' => '೨-ಆಯಾಮಗಳಲ್ಲಿ ಅಳತೆ',
 'exif-gpsmeasuremode-3' => '೩-ಆಯಾಮಗಳಲ್ಲಿ ಅಳತೆ',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'ಪ್ರತಿ ಗಂಟೆಗೆ ಕಿಲೊಮೀಟರ್‍ಗಳು',
 'exif-gpsspeed-m' => 'ಪ್ರತಿ ಗಂಟೆಗೆ ಮೈಲಿಗಳು',
 'exif-gpsspeed-n' => 'ಕ್ನಾಟ್‍ಗಳು',

@@ -2342,7 +2342,7 @@ Otre avènene scunnute pe defolt.
 'exif-gpsmeasuremode-2' => 'mesurazzione a doje dimenziune',
 'exif-gpsmeasuremode-3' => 'mesurazzione a ttre dimenziune',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => "Chilometre a l'ore",
 'exif-gpsspeed-m' => 'Miglie pe ore',
 'exif-gpsspeed-n' => 'Knots',

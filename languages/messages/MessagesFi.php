@@ -2841,7 +2841,7 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 'exif-gpsmeasuremode-2' => '2-ulotteinen mittaus',
 'exif-gpsmeasuremode-3' => '3-ulotteinen mittaus',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mailia tunnissa',
 'exif-gpsspeed-n' => 'solmua',

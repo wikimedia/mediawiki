@@ -1088,14 +1088,14 @@ Confirmez que ceci est bien ce que vous avez l’intention de faire, que vous en
 'logdelete-success'              => "'''Visibilité du journal paramétrée avec succès.'''",
 'revdel-restore'                 => 'Modifier la visibilité',
 'pagehist'                       => 'Historique de la page',
-'deletedhist'                    => 'Historique des suppressions',
+'deletedhist'                    => 'Historique supprimé',
 'revdelete-content'              => 'contenu',
 'revdelete-summary'              => 'résumé de modification',
 'revdelete-uname'                => 'nom d’utilisateur',
-'revdelete-restricted'           => 'appliquer les restrictions aux administrateurs',
+'revdelete-restricted'           => 'a appliqué les restrictions aux administrateurs',
 'revdelete-unrestricted'         => 'restrictions retirées pour les administrateurs',
-'revdelete-hid'                  => 'cacher $1',
-'revdelete-unhid'                => 'afficher $1',
+'revdelete-hid'                  => 'a caché $1',
+'revdelete-unhid'                => 'a démasqué $1',
 'revdelete-log-message'          => '$1 pour $2 {{PLURAL:$2|version|versions}}',
 'logdelete-log-message'          => '$1 sur $2 {{PLURAL:$2|évènement|évènements}}',
 
@@ -1345,7 +1345,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-custom-js'           => 'JavaScript personnalisé',
 
 # User rights
-'userrights'                  => 'Gestion des droits utilisateur',
+'userrights'                  => 'gestion des droits utilisateur',
 'userrights-lookup-user'      => 'Gestion des droits utilisateur',
 'userrights-user-editname'    => 'Entrez un nom d’utilisateur :',
 'editusergroup'               => 'Modification des groupes utilisateurs',
@@ -3025,16 +3025,25 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpslongitude-e' => 'Est',
 'exif-gpslongitude-w' => 'Ouest',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Mètres au dessus du niveau de la mer',
+'exif-gpsaltitude-1' => 'Mètres en dessous du niveau de la mer',
+
 'exif-gpsstatus-a' => 'Mesure en cours',
 'exif-gpsstatus-v' => 'Interopérabilité de la mesure',
 
 'exif-gpsmeasuremode-2' => 'Mesure à 2 dimensions',
 'exif-gpsmeasuremode-3' => 'Mesure à 3 dimensions',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilomètre par heure',
 'exif-gpsspeed-m' => 'Mile par heure',
 'exif-gpsspeed-n' => 'Nœud',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilomètres',
+'exif-gpsdestdistance-m' => 'Milles',
+'exif-gpsdestdistance-n' => 'Milles marins',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Vrai Nord',

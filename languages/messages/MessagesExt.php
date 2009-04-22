@@ -2100,7 +2100,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 'exif-gpsmeasuremode-2' => 'Miia bidimensional',
 'exif-gpsmeasuremode-3' => 'Miia tridimensional',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Quilómetrus pol ora',
 'exif-gpsspeed-m' => 'Millas pol ora',
 'exif-gpsspeed-n' => 'Ñus',

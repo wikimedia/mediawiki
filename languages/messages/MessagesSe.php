@@ -1221,7 +1221,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 
 'exif-subjectdistancerange-0' => 'Dovdameahttun',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'miilla diimmus',
 'exif-gpsspeed-n' => 'čuolmma',

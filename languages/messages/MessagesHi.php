@@ -2380,7 +2380,7 @@ $1',
 'exif-gpsmeasuremode-2' => '२-बाजूओंवाली मेज़रमेंट',
 'exif-gpsmeasuremode-3' => '३-बाजूओंवाली मेज़रमेंट',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'कि.मी. प्रति घंटा',
 'exif-gpsspeed-m' => 'मील प्रति घंटा',
 'exif-gpsspeed-n' => 'गांठ',

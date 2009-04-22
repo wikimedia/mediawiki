@@ -2878,7 +2878,7 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 
 'exif-subjectdistancerange-0' => 'Onbekend',
 'exif-subjectdistancerange-1' => 'Macro',
-'exif-subjectdistancerange-2' => 'Dichtebie',
+'exif-subjectdistancerange-2' => 'Kortbie',
 'exif-subjectdistancerange-3' => 'Veerof',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
@@ -2889,16 +2889,25 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-gpslongitude-e' => 'Oosterlengte',
 'exif-gpslongitude-w' => 'Westerlengte',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Meter boven zeenivo',
+'exif-gpsaltitude-1' => 'Meter onder zeenivo',
+
 'exif-gpsstatus-a' => 'Bezig mit meten',
 'exif-gpsstatus-v' => 'Meetinteroperebiliteit',
 
 'exif-gpsmeasuremode-2' => '2-dimensionale meting',
 'exif-gpsmeasuremode-3' => '3-dimensionale meting',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilemeter per uur',
 'exif-gpsspeed-m' => 'Miel per ure',
 'exif-gpsspeed-n' => 'Knopen',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilemeter',
+'exif-gpsdestdistance-m' => 'Miel',
+'exif-gpsdestdistance-n' => 'Zeemielen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Waore richting',

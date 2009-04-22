@@ -2926,10 +2926,15 @@ $1',
 'exif-gpsmeasuremode-2' => 'Вимірювання 2-х координат',
 'exif-gpsmeasuremode-3' => 'Вимірювання 3-х координат',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'км/год',
 'exif-gpsspeed-m' => 'миль/год',
 'exif-gpsspeed-n' => 'вузлів',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Кілометри',
+'exif-gpsdestdistance-m' => 'Милі',
+'exif-gpsdestdistance-n' => 'Навігаційні милі',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'справжній',

@@ -2867,7 +2867,7 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpsmeasuremode-2' => '2-rozmerné meranie',
 'exif-gpsmeasuremode-3' => '3-rozmerné meranie',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometrov za hodinu',
 'exif-gpsspeed-m' => 'Míľ za hodinu',
 'exif-gpsspeed-n' => 'Uzlov',

@@ -2636,7 +2636,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-gpsmeasuremode-2' => 'Midición bidimensional',
 'exif-gpsmeasuremode-3' => 'Midición tridimensional',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Quilómetros per hora',
 'exif-gpsspeed-m' => 'Milles per hora',
 'exif-gpsspeed-n' => 'Nueyos',

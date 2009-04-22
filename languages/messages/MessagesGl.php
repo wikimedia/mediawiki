@@ -2883,16 +2883,25 @@ Outros agocharanse por omisión.
 'exif-gpslongitude-e' => 'Lonxitude leste',
 'exif-gpslongitude-w' => 'Lonxitude oeste',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metros por riba do nivel do mar',
+'exif-gpsaltitude-1' => 'Metros por debaixo do nivel do mar',
+
 'exif-gpsstatus-a' => 'Medida en progreso',
 'exif-gpsstatus-v' => 'Interoperabilidade da medida',
 
 'exif-gpsmeasuremode-2' => 'Medida bidimensional',
 'exif-gpsmeasuremode-3' => 'Medida tridimensional',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Millas por hora',
 'exif-gpsspeed-n' => 'Nós',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Quilómetros',
+'exif-gpsdestdistance-m' => 'Millas',
+'exif-gpsdestdistance-n' => 'Millas náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Dirección verdadeira',

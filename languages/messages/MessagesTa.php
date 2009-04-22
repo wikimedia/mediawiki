@@ -2227,7 +2227,7 @@ $1',
 'exif-gpsmeasuremode-2' => 'இருபரிமாண அளவீடு',
 'exif-gpsmeasuremode-3' => 'முப்பரிமாண அளவீடு',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'மணிக்கு கிலோமீட்டர்',
 'exif-gpsspeed-m' => 'மணித்தியாலத்துக்கு மைல்கள்',
 'exif-gpsspeed-n' => 'கடல் மைல்/மணி',

@@ -2771,7 +2771,7 @@ $1',
 'exif-gpsmeasuremode-2' => '2-باعىتتىق ولشەم',
 'exif-gpsmeasuremode-3' => '3-باعىتتىق ولشەم',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mil/h',
 'exif-gpsspeed-n' => 'knot',

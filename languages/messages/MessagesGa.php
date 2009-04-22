@@ -2023,7 +2023,7 @@ cúlra i bhfócas)',
 'exif-gpsmeasuremode-2' => 'Tomhas déthoiseach',
 'exif-gpsmeasuremode-3' => 'Tomhas tríthoiseach',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Ciliméadair san uair',
 'exif-gpsspeed-m' => 'Mílte san uair',
 'exif-gpsspeed-n' => 'Muirmhílte',

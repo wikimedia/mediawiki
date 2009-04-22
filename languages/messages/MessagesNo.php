@@ -2776,7 +2776,7 @@ Rotert 90° mot klokka og vridd vertikalt',
 'exif-gpsmeasuremode-2' => 'todimensjonell måling',
 'exif-gpsmeasuremode-3' => 'tredimensjonell måling',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometer per time',
 'exif-gpsspeed-m' => 'Miles per time',
 'exif-gpsspeed-n' => 'Knop',

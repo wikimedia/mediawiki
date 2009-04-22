@@ -2782,7 +2782,7 @@ Ruangan lain akan disembunyikan.
 'exif-gpsmeasuremode-2' => 'Pengukuran dua dimensi',
 'exif-gpsmeasuremode-3' => 'Pengukuran tiga dimensi',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometer sejam',
 'exif-gpsspeed-m' => 'Batu sejam',
 'exif-gpsspeed-n' => 'Knot',
