@@ -518,7 +518,7 @@ class IPBlockForm {
 			array('rev_user' => $userId), __METHOD__ );
 		# Hide name from deleted edits
 		$dbw->update( 'archive', array("ar_deleted = ar_deleted $op $delUser"),
-			array('ar_user_text' => $userId), __METHOD__ );
+			array('ar_user_text' => $name), __METHOD__ );
 		# Hide name from logs
 		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delUser"),
 			array('log_user' => $userId, "log_type != 'suppress'"), __METHOD__ );
