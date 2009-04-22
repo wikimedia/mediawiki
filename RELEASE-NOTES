@@ -415,6 +415,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17832) action=delete returns 'unknownerror' instead of 'permissiondenied'
   when the user is blocked
 * (bug 18546) Added timestamp of new revision to action=edit output
+* (bug 18554) Also list hidden revisions in list=usercontribs for privileged
+  users
 
 === Languages updated in 1.15 ===
 

@@ -141,6 +141,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// We're after the revision table, and the corresponding page
 		// row for anything we retrieve. We may also need the
 		// recentchanges row.
+		global $wgUser;
 		$tables = array('page', 'revision'); // Order may change
 		$this->addWhere('page_id=rev_page');
 
@@ -159,7 +160,8 @@ class ApiQueryContributions extends ApiQueryBase {
 					"rev_timestamp $op= '$encTS')");
 		}
 
-		$this->addWhereFld('rev_deleted', 0);
+		if(!$wgUser->isAllowed('hideuser'))
+			$this->addWhereFld('rev_deleted & ' . Revision::DELETED_USER . ' = 0');
 		// We only want pages by the specified users.
 		if($this->prefixMode)
 			$this->addWhere("rev_user_text LIKE '" . $this->getDB()->escapeLike($this->userprefix) . "%'");
@@ -197,6 +199,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			'page_namespace',
 			'page_title',
 			'rev_user_text',
+			'rev_deleted'
 		));
 		
 		if(isset($show['patrolled']) || isset($show['!patrolled']) ||
@@ -250,6 +253,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		$vals = array();
 
 		$vals['user'] = $row->rev_user_text;
+		if ($row->rev_deleted & Revision::DELETED_USER)
+			$vals['userhidden'] = '';
 		if ($this->fld_ids) {
 			$vals['pageid'] = intval($row->rev_page);
 			$vals['revid'] = intval($row->rev_id);
@@ -272,8 +277,12 @@ class ApiQueryContributions extends ApiQueryBase {
 				$vals['top'] = '';
 		}
 
-		if ($this->fld_comment && isset($row->rev_comment))
-			$vals['comment'] = $row->rev_comment;
+		if ($this->fld_comment && isset($row->rev_comment)) {
+			if ($row->rev_deleted & Revision::DELETED_COMMENT)
+				$vals['commenthidden'] = '';
+			else
+				$vals['comment'] = $row->rev_comment;
+		}
 
 		if ($this->fld_patrolled && $row->rc_patrolled)
 			$vals['patrolled'] = '';
