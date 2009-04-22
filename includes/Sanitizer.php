@@ -335,11 +335,11 @@ class Sanitizer {
 	 * Cleans up HTML, removes dangerous tags and attributes, and
 	 * removes HTML comments
 	 * @private
-	 * @param string $text
-	 * @param callback $processCallback to do any variable or parameter replacements in HTML attribute values
-	 * @param array $args for the processing callback
-	 * @param array $extratags for any extra tags to include
-	 * @param array $removetags for any tags (default or extra) to exclude
+	 * @param $text String
+	 * @param $processCallback Callback to do any variable or parameter replacements in HTML attribute values
+	 * @param $args Array for the processing callback
+	 * @param $extratags Array for any extra tags to include
+	 * @param $removetags Array for any tags (default or extra) to exclude
 	 * @return string
 	 */
 	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array(), $removetags = array() ) {
@@ -530,7 +530,7 @@ class Sanitizer {
 	 * trailing spaces and one of the newlines.
 	 *
 	 * @private
-	 * @param string $text
+	 * @param $text String
 	 * @return string
 	 */
 	static function removeHTMLcomments( $text ) {
@@ -576,9 +576,9 @@ class Sanitizer {
 	 * - Unsafe style attributes are discarded
 	 * - Invalid id attributes are reencoded
 	 *
-	 * @param array $attribs
-	 * @param string $element
-	 * @return array
+	 * @param $attribs Array
+	 * @param $element String
+	 * @return Array
 	 *
 	 * @todo Check for legal values where the DTD limits things.
 	 * @todo Check for unique id attribute :P
@@ -596,9 +596,9 @@ class Sanitizer {
 	 * - Unsafe style attributes are discarded
 	 * - Invalid id attributes are reencoded
 	 *
-	 * @param array $attribs
-	 * @param array $whitelist list of allowed attribute names
-	 * @return array
+	 * @param $attribs Array
+	 * @param $whitelist Array: list of allowed attribute names
+	 * @return Array
 	 *
 	 * @todo Check for legal values where the DTD limits things.
 	 * @todo Check for unique id attribute :P
@@ -639,8 +639,8 @@ class Sanitizer {
 	 * will be combined (if they're both strings).
 	 *
 	 * @todo implement merging for other attributes such as style
-	 * @param array $a
-	 * @param array $b
+	 * @param $a Array
+	 * @param $b Array
 	 * @return array
 	 */
 	static function mergeAttributes( $a, $b ) {
@@ -661,8 +661,8 @@ class Sanitizer {
 	 *
 	 * Currently URL references, 'expression', 'tps' are forbidden.
 	 *
-	 * @param string $value
-	 * @return mixed
+	 * @param $value String
+	 * @return Mixed
 	 */
 	static function checkCss( $value ) {
 		$stripped = Sanitizer::decodeCharReferences( $value );
@@ -700,9 +700,9 @@ class Sanitizer {
 	 * - Unsafe style attributes are discarded
 	 * - Prepends space if there are attributes.
 	 *
-	 * @param string $text
-	 * @param string $element
-	 * @return string
+	 * @param $text String
+	 * @param $element String
+	 * @return String
 	 */
 	static function fixTagAttributes( $text, $element ) {
 		if( trim( $text ) == '' ) {
@@ -724,7 +724,7 @@ class Sanitizer {
 
 	/**
 	 * Encode an attribute value for HTML output.
-	 * @param $text
+	 * @param $text String
 	 * @return HTML-encoded text fragment
 	 */
 	static function encodeAttribute( $text ) {
@@ -745,7 +745,7 @@ class Sanitizer {
 	/**
 	 * Encode an attribute value for HTML tags, with extra armoring
 	 * against further wiki processing.
-	 * @param $text
+	 * @param $text String
 	 * @return HTML-encoded text fragment
 	 */
 	static function safeEncodeAttribute( $text ) {
@@ -784,8 +784,8 @@ class Sanitizer {
 	 *                                                          name attributes
 	 * @see http://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with the id attribute
 	 *
-	 * @param string $id      Id to validate
-	 * @param mixed  $options String or array of strings (default is array()):
+	 * @param $id String: id to validate
+	 * @param $options Mixed: string or array of strings (default is array()):
 	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
 	 *       so don't pay attention if the first character isn't valid at the
 	 *       beginning of an id.
@@ -794,7 +794,7 @@ class Sanitizer {
 	 *       Therefore, it also completely changes the type of escaping: instead
 	 *       of weird dot-encoding, runs of invalid characters (mostly
 	 *       whitespace) are just compressed into a single underscore.
-	 * @return string
+	 * @return String
 	 */
 	static function escapeId( $id, $options = array() ) {
 		$options = (array)$options;
@@ -844,8 +844,8 @@ class Sanitizer {
 	 *
 	 * @see http://www.w3.org/TR/CSS21/syndata.html Valid characters/format
 	 *
-	 * @param string $class
-	 * @return string
+	 * @param $class String
+	 * @return String
 	 */
 	static function escapeClass( $class ) {
 		// Convert ugly stuff to underscores and kill underscores in ugly places
@@ -859,8 +859,8 @@ class Sanitizer {
 	 * Given HTML input, escape with htmlspecialchars but un-escape entites.
 	 * This allows (generally harmless) entities like &nbsp; to survive.
 	 *
-	 * @param  string $html String to escape
-	 * @return string Escaped input
+	 * @param $html String to escape
+	 * @return String: escaped input
 	 */
 	static function escapeHtmlAllowEntities( $html ) {
 		# It seems wise to escape ' as well as ", as a matter of course.  Can't
@@ -873,9 +873,8 @@ class Sanitizer {
 
 	/**
 	 * Regex replace callback for armoring links against further processing.
-	 * @param array $matches
+	 * @param $matches Array
 	 * @return string
-	 * @private
 	 */
 	private static function armorLinksCallback( $matches ) {
 		return str_replace( ':', '&#58;', $matches[1] );
@@ -886,8 +885,8 @@ class Sanitizer {
 	 * a partial tag string. Attribute names are forces to lowercase,
 	 * character references are decoded to UTF-8 text.
 	 *
-	 * @param string
-	 * @return array
+	 * @param $text String
+	 * @return Array
 	 */
 	public static function decodeTagAttributes( $text ) {
 		$attribs = array();
@@ -923,9 +922,8 @@ class Sanitizer {
 	 * Pick the appropriate attribute value from a match set from the
 	 * MW_ATTRIBS_REGEX matches.
 	 *
-	 * @param array $set
-	 * @return string
-	 * @private
+	 * @param $set Array
+	 * @return String
 	 */
 	private static function getTagAttributeCallback( $set ) {
 		if( isset( $set[6] ) ) {
@@ -957,9 +955,8 @@ class Sanitizer {
 	 * but note that we're not returning the value, but are returning
 	 * XML source fragments that will be slapped into output.
 	 *
-	 * @param string $text
-	 * @return string
-	 * @private
+	 * @param $text String
+	 * @return String
 	 */
 	private static function normalizeAttributeValue( $text ) {
 		return str_replace( '"', '&quot;',
@@ -984,8 +981,8 @@ class Sanitizer {
 	 * c. use &#x, not &#X
 	 * d. fix or reject non-valid attributes
 	 *
-	 * @param string $text
-	 * @return string
+	 * @param $text String
+	 * @return String
 	 * @private
 	 */
 	static function normalizeCharReferences( $text ) {
@@ -995,8 +992,8 @@ class Sanitizer {
 			$text );
 	}
 	/**
-	 * @param string $matches
-	 * @return string
+	 * @param $matches String
+	 * @return String
 	 */
 	static function normalizeCharReferencesCallback( $matches ) {
 		$ret = null;
@@ -1022,9 +1019,8 @@ class Sanitizer {
 	 * MediaWiki-specific alias, returns the HTML equivalent. Otherwise,
 	 * returns HTML-escaped text of pseudo-entity source (eg &amp;foo;)
 	 *
-	 * @param string $name
-	 * @return string
-	 * @static
+	 * @param $name String
+	 * @return String
 	 */
 	static function normalizeEntity( $name ) {
 		global $wgHtmlEntities, $wgHtmlEntityAliases;
@@ -1057,8 +1053,8 @@ class Sanitizer {
 
 	/**
 	 * Returns true if a given Unicode codepoint is a valid character in XML.
-	 * @param int $codepoint
-	 * @return bool
+	 * @param $codepoint Integer
+	 * @return Boolean
 	 */
 	private static function validateCodepoint( $codepoint ) {
 		return ($codepoint ==    0x09)
@@ -1073,10 +1069,8 @@ class Sanitizer {
 	 * Decode any character references, numeric or named entities,
 	 * in the text and return a UTF-8 string.
 	 *
-	 * @param string $text
-	 * @return string
-	 * @public
-	 * @static
+	 * @param $text String
+	 * @return String
 	 */
 	public static function decodeCharReferences( $text ) {
 		return preg_replace_callback(
@@ -1086,8 +1080,8 @@ class Sanitizer {
 	}
 
 	/**
-	 * @param string $matches
-	 * @return string
+	 * @param $matches String
+	 * @return String
 	 */
 	static function decodeCharReferencesCallback( $matches ) {
 		if( $matches[1] != '' ) {
@@ -1106,8 +1100,8 @@ class Sanitizer {
 	/**
 	 * Return UTF-8 string for a codepoint if that is a valid
 	 * character reference, otherwise U+FFFD REPLACEMENT CHARACTER.
-	 * @param int $codepoint
-	 * @return string
+	 * @param $codepoint Integer
+	 * @return String
 	 * @private
 	 */
 	static function decodeChar( $codepoint ) {
@@ -1123,8 +1117,8 @@ class Sanitizer {
 	 * return the UTF-8 encoding of that character. Otherwise, returns
 	 * pseudo-entity source (eg &foo;)
 	 *
-	 * @param string $name
-	 * @return string
+	 * @param $name Strings
+	 * @return String
 	 */
 	static function decodeEntity( $name ) {
 		global $wgHtmlEntities, $wgHtmlEntityAliases;
@@ -1139,11 +1133,10 @@ class Sanitizer {
 	}
 
 	/**
-	 * Fetch the whitelist of acceptable attributes for a given
-	 * element name.
+	 * Fetch the whitelist of acceptable attributes for a given element name.
 	 *
-	 * @param string $element
-	 * @return array
+	 * @param $element String
+	 * @return Array
 	 */
 	static function attributeWhitelist( $element ) {
 		static $list;
@@ -1158,7 +1151,7 @@ class Sanitizer {
 	/**
 	 * Foreach array key (an allowed HTML element), return an array
 	 * of allowed attributes
-	 * @return array
+	 * @return Array
 	 */
 	static function setupAttributeWhitelist() {
 		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style' );
@@ -1313,8 +1306,8 @@ class Sanitizer {
 	 * Warning: this return value must be further escaped for literal
 	 * inclusion in HTML output as of 1.10!
 	 *
-	 * @param string $text HTML fragment
-	 * @return string
+	 * @param $text String: HTML fragment
+	 * @return String
 	 */
 	static function stripAllTags( $text ) {
 		# Actual <tags>
@@ -1334,8 +1327,7 @@ class Sanitizer {
 	 *
 	 * Use for passing XHTML fragments to PHP's XML parsing functions
 	 *
-	 * @return string
-	 * @static
+	 * @return String
 	 */
 	static function hackDocType() {
 		global $wgHtmlEntities;
