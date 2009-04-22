@@ -2454,7 +2454,7 @@ $1',
 'exif-gpslongitude-e' => 'ខាងកើត',
 'exif-gpslongitude-w' => 'ខាងលិច',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'គីឡូម៉ែត្រក្នុងមួយម៉ោង',
 'exif-gpsspeed-m' => 'ម៉ាយល៍ក្នុងមួយម៉ោង',
 

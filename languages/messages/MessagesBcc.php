@@ -2908,7 +2908,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode-2' => 'اندازه گرگ 2-بعدی',
 'exif-gpsmeasuremode-3' => 'اندازه گرگ 3-بعدی',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'کیلومتر ته ساعت',
 'exif-gpsspeed-m' => 'مایل ته ساعت',
 'exif-gpsspeed-n' => 'گرهنان',

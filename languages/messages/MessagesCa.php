@@ -2832,7 +2832,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpsmeasuremode-2' => 'Mesura bidimensional',
 'exif-gpsmeasuremode-3' => 'Mesura tridimensional',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Quilòmetres per hora',
 'exif-gpsspeed-m' => 'Milles per hora',
 'exif-gpsspeed-n' => 'Nusos',

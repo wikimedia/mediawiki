@@ -1,5 +1,5 @@
 <?php
-/** ‫Sorani (Arabic script)‬ (‫کوردی (عەرەبی)‬)
+/** Sorani (Arabic script) (‫کوردی (عەرەبی)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -854,6 +854,29 @@ for directly linking to the file without displaying the file",
 'unwatching' => 'لابردنی چاودێڕی...',
 
 'enotif_reset' => 'ھەمووی پەڕەکان وەک بینراو دیاری بکە',
+'enotif_body'  => '
+بەڕێز $WATCHINGUSERNAME،
+پەڕەی $PAGETITLE لە {{SITENAME}} دا لە ڕێکەوتی $PAGEEDITDATE بە دەستی $PAGEEDITOR $CHANGEDORCREATED کراوە، سەردانی $PAGETITLE_URL بکە بۆ وەشانی ھەنووکەی ئەو پەڕە.
+
+$NEWPAGE
+
+پوختەی دەستکارییەکەی: $PAGESUMMARY $PAGEMINOREDIT
+
+پەیوەندی لەگەڵ دەستکاریکەر: 
+نامە: $PAGEEDITOR_EMAIL
+ویکی: $PAGEEDITOR_WIKI
+
+تا سەردانی ئەو پەڕە نەکەی، ئەگەر گۆڕانکارییەکی تری تێدا ڕووی دا خەبەر پێ نادرێ.
+You could also reset the notification flags for all your watched pages on your watchlist.
+
+
+             بە سوپاسەوە، سیستەمی ڕاگەیاندنی {{SITENAME}}
+--
+بۆ گۆڕینی تەنزیماتی لیستی چاودێڕییەکانت، سەربدە لە
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+رێنوێنیی زۆرتر و دەربڕینی بیروڕا:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'پەڕە بسڕەوەو',
@@ -1072,7 +1095,7 @@ for directly linking to the file without displaying the file",
 'tooltip-t-upload'                => 'پەڕگەیەک (فایل) بار بکە',
 'tooltip-t-specialpages'          => 'لیستی ھەموو پەڕە تایبەتەکان',
 'tooltip-t-print'                 => 'وەشانی چاپی ئەم پەڕەیە',
-'tooltip-t-permalink'             => 'گرێدەری ھەمیشەیی بۆ ئەم وەشنەی ئەم پەڕەیە',
+'tooltip-t-permalink'             => 'گرێدەری ھەمیشەیی بۆ ئەم وەشانەی ئەم پەڕەیە',
 'tooltip-ca-nstab-main'           => 'بینینی پەڕەی ناوەڕۆک',
 'tooltip-ca-nstab-user'           => 'پەڕەی بەکارھێنەر تەماشا بکە',
 'tooltip-ca-nstab-media'          => 'پەڕەی میدیا چاو لێ بکە',

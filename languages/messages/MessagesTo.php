@@ -1189,7 +1189,7 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 'exif-gpslongitude-e' => 'Longitute hahake',
 'exif-gpslongitude-w' => 'Longitute hihifo',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilomita ki he houa',
 'exif-gpsspeed-m' => 'Maile he houa',
 

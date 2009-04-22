@@ -2870,7 +2870,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-gpsmeasuremode-2' => 'Medición bidimensional',
 'exif-gpsmeasuremode-3' => 'Medición tridimensional',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilómetros por hora',
 'exif-gpsspeed-m' => 'Millas por hora',
 'exif-gpsspeed-n' => 'Nudos',

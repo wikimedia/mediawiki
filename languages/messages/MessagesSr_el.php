@@ -1932,7 +1932,7 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 'exif-gpsmeasuremode-2' => 'Dvodimenzionalno merenje',
 'exif-gpsmeasuremode-3' => 'Trodimenzionalno merenje',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometri na čas',
 'exif-gpsspeed-m' => 'Milje na čas',
 'exif-gpsspeed-n' => 'Čvorovi',

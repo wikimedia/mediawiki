@@ -391,7 +391,7 @@ El resto de los linkes del mismo satir se juzgan como eccepciones (por enxemplo,
 'exif-lightsource-9'  => 'Bueno tiémpo',
 'exif-lightsource-10' => 'Tiémpo nuvlozo',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometros por óra',
 
 # External editor support

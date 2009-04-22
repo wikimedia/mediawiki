@@ -1224,7 +1224,7 @@ $messages = array(
 
 'exif-gpsstatus-v' => 'Διαλειτουργικότητα μετρησίων',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-m' => 'Μίλιαν την ώραν',
 'exif-gpsspeed-n' => 'Κορδίλαι',
 

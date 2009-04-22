@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Asoxor
  * @author Behdarvandyani
  * @author Huji
  * @author Ladsgroup
@@ -3059,16 +3060,25 @@ $1',
 'exif-gpslongitude-e' => 'طول جغرافیایی شرقی',
 'exif-gpslongitude-w' => 'طول جغرافیایی غربی',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'متر بالای سطح دریا',
+'exif-gpsaltitude-1' => 'متر زیر سطح دریا',
+
 'exif-gpsstatus-a' => 'در حال اندازه‌گیری',
 'exif-gpsstatus-v' => 'مقایسه‌پذیری اندازه‌گیری',
 
 'exif-gpsmeasuremode-2' => 'اندازه‌گیری دوبعدی',
 'exif-gpsmeasuremode-3' => 'اندازه‌گیری سه‌بعدی',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'کیلومتر بر ساعت',
 'exif-gpsspeed-m' => 'مایل بر ساعت',
 'exif-gpsspeed-n' => 'گره',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'کیلومتر',
+'exif-gpsdestdistance-m' => 'مایل',
+'exif-gpsdestdistance-n' => 'مایل دریایی',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'جهت درست',

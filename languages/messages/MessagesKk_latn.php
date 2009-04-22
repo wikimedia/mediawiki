@@ -2735,7 +2735,7 @@ Basqaları ädepkiden jasırıladı.
 'exif-gpsmeasuremode-2' => '2-bağıttıq ölşem',
 'exif-gpsmeasuremode-3' => '3-bağıttıq ölşem',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mil/h',
 'exif-gpsspeed-n' => 'knot',

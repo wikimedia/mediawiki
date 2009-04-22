@@ -1902,7 +1902,7 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 
 'exif-subjectdistancerange-0' => 'Ischuniscidda',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-n' => 'Nodi',
 
 # External editor support

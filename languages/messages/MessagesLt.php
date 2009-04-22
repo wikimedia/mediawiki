@@ -2789,7 +2789,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpsmeasuremode-2' => 'Dvimatis matavimas',
 'exif-gpsmeasuremode-3' => 'Trimatis matavimas',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometrai per valandą',
 'exif-gpsspeed-m' => 'Mylios per valandą',
 'exif-gpsspeed-n' => 'Mazgai',

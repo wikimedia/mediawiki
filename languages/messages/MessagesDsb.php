@@ -2751,16 +2751,25 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpslongitude-e' => 'Pódzajtšna dliń',
 'exif-gpslongitude-w' => 'Pódwjacorna dliń',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metry nad mórskeju głaźinu',
+'exif-gpsaltitude-1' => 'Metry pód mórskeju głaźinu',
+
 'exif-gpsstatus-a' => 'Měrjenje w běgu',
 'exif-gpsstatus-v' => 'kompatibelnosć měry',
 
 'exif-gpsmeasuremode-2' => '2-dimensionalne měrjenje',
 'exif-gpsmeasuremode-3' => '3-dimensionalne měrjenje',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometry na góźinu',
 'exif-gpsspeed-m' => 'Mile na góźinu',
 'exif-gpsspeed-n' => 'Suki',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometry',
+'exif-gpsdestdistance-m' => 'Mile',
+'exif-gpsdestdistance-n' => 'Mórske mile',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wopšawdny směr',

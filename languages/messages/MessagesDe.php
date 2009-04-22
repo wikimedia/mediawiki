@@ -3003,16 +3003,25 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpslongitude-e' => 'östl. Länge',
 'exif-gpslongitude-w' => 'westl. Länge',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Meter über dem Meeresspiegel',
+'exif-gpsaltitude-1' => 'Meter unter dem Meeresspiegel',
+
 'exif-gpsstatus-a' => 'Messung läuft',
 'exif-gpsstatus-v' => 'Interoperabilität von Messungen',
 
 'exif-gpsmeasuremode-2' => '2-dimensionale Messung',
 'exif-gpsmeasuremode-3' => '3-dimensionale Messung',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Knoten',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Meilen',
+'exif-gpsdestdistance-n' => 'Nautische Meilen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächliche Richtung',
@@ -3250,7 +3259,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 # Database error messages
 'dberr-header'      => 'Dieses Wiki hat ein Problem',
 'dberr-problems'    => 'Entschuldigung. Diese Seite hat momentan technische Schwierigkeiten.',
-'dberr-again'       => 'Versuche einige Minuten zu warten und dann neu zuladen.',
+'dberr-again'       => 'Warte einige Minuten und versuche dann neu zuladen.',
 'dberr-info'        => '(Kann keine Verbindung zum Datenbank-Server herstellen: $1)',
 'dberr-usegoogle'   => 'Du könntest in der Zwischenzeit mit Google suchen.',
 'dberr-outofdate'   => 'Beachte, dass der Suchindex unserer Inhalte veraltet sein kann.',

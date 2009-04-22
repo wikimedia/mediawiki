@@ -1520,7 +1520,7 @@ est raptiti. Les ôtes seront catchîs.
 'exif-gpslongitude-e' => 'Londjitude Ess',
 'exif-gpslongitude-w' => 'Londjitude Ouwess',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'miles/h',
 'exif-gpsspeed-n' => 'nuks',

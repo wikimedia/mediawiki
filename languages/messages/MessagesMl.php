@@ -2235,7 +2235,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-gpsmeasuremode-2' => 'ദ്വിമാന അളവ്',
 'exif-gpsmeasuremode-3' => 'ത്രിമാന അളവ്',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometres per hour',
 'exif-gpsspeed-m' => 'Miles per hour',
 

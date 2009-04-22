@@ -1130,7 +1130,7 @@ My vel y coadan ceaghlit veih'n chummey bunneydagh, foddee nagh beagh mynphoynty
 'exif-sharpness-1' => 'Bog',
 'exif-sharpness-2' => 'Creoi',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => "Kilometeryn 'syn oor",
 'exif-gpsspeed-m' => "Meeillaghyn 'syn oor",
 

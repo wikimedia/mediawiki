@@ -3011,7 +3011,7 @@ $1',
 'exif-gpsmeasuremode-2' => 'قياس ببعدين',
 'exif-gpsmeasuremode-3' => 'قياس  تلاتى الابعاد',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'كيلومتر فى الساعة',
 'exif-gpsspeed-m' => 'ميل فى الساعة',
 'exif-gpsspeed-n' => 'عقد',

@@ -2745,16 +2745,25 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 'exif-gpslongitude-e' => 'Longitudine Est',
 'exif-gpslongitude-w' => 'Longitudine Ovest',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metri sul livèl del mar',
+'exif-gpsaltitude-1' => 'Metri soto el livèl del mar',
+
 'exif-gpsstatus-a' => 'Mixurassion in corso',
 'exif-gpsstatus-v' => 'Mixurassion interoperabiłe',
 
 'exif-gpsmeasuremode-2' => 'Misurassion bidimensionałe',
 'exif-gpsmeasuremode-3' => 'Misurassion tridimensionałe',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Chiłometri orari',
 'exif-gpsspeed-m' => 'Miglia orarie',
 'exif-gpsspeed-n' => 'Nodi',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Chilometri',
+'exif-gpsdestdistance-m' => 'Mija',
+'exif-gpsdestdistance-n' => 'Mija nàutiche',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Diression reałe',

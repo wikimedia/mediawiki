@@ -2461,7 +2461,7 @@ $1',
 'exif-gpsmeasuremode-2' => 'द्वि-दिश मापन',
 'exif-gpsmeasuremode-3' => 'त्रि-दिश मोजमाप',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'प्रतिताशी किलोमीटर',
 'exif-gpsspeed-m' => 'प्रतिताशी मैल',
 'exif-gpsspeed-n' => 'गाठी',

@@ -2643,7 +2643,7 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 'exif-gpsmeasuremode-2' => '2-dimensionoale Meetenge',
 'exif-gpsmeasuremode-3' => '3-dimensionoale Meetenge',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Knätte',

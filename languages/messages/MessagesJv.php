@@ -2525,7 +2525,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'exif-gpsmeasuremode-2' => 'Pangukuran 2-dimènsi',
 'exif-gpsmeasuremode-3' => 'Pangukuran 3-dimènsi',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilométer per jam',
 'exif-gpsspeed-m' => 'Mil per jam',
 'exif-gpsspeed-n' => 'Knot',

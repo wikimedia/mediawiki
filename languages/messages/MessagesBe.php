@@ -2609,7 +2609,7 @@ $1',
 'exif-gpsmeasuremode-2' => '2-вымернае вымярэнне',
 'exif-gpsmeasuremode-3' => '3-вымернае вымярэнне',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'кіламетраў за гадзіну',
 'exif-gpsspeed-m' => 'міляў за гадзіну',
 'exif-gpsspeed-n' => 'вузлоў',

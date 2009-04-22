@@ -2681,7 +2681,7 @@ Ymateb yr amledd gofodol',
 'exif-gpsmeasuremode-2' => 'mesuriad 2 ddimensiwn',
 'exif-gpsmeasuremode-3' => 'mesuriad 3 dimensiwn',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Cilomedr yr awr',
 'exif-gpsspeed-m' => 'Milltir yr awr',
 'exif-gpsspeed-n' => 'Notiau',

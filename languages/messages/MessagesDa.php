@@ -2765,7 +2765,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsmeasuremode-2' => '2-dimensional måling',
 'exif-gpsmeasuremode-3' => '3-dimensional måling',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Knob',

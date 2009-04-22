@@ -2884,7 +2884,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode-2' => '2차원 측정',
 'exif-gpsmeasuremode-3' => '3차원 측정',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => '킬로미터 매 시간',
 'exif-gpsspeed-m' => '마일 매 시간',
 'exif-gpsspeed-n' => '노트',

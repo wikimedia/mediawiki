@@ -2927,7 +2927,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode-2' => 'ද්වීමාන මිනුම',
 'exif-gpsmeasuremode-3' => 'ත්‍රිමාන මිනුම',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'පැයට කිලෝමීටර',
 'exif-gpsspeed-m' => 'පැයට සැතපුම්',
 'exif-gpsspeed-n' => 'නාවික සැතපුම්',

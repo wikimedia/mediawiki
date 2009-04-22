@@ -2295,7 +2295,7 @@ $1',
 'exif-gpsmeasuremode-2' => 'Андозагирии 2-баъдӣ',
 'exif-gpsmeasuremode-3' => 'Андозагирии 3-баъдӣ',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Километр бар соат',
 'exif-gpsspeed-m' => 'Мил бар соат',
 'exif-gpsspeed-n' => 'Гиреҳ',

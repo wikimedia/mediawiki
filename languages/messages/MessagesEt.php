@@ -1790,7 +1790,7 @@ Kui faili on muudetud mõne tarkvara programmiga, siis võivad osad andmed olla 
 
 'exif-lightsource-10' => 'Pilvine ilm',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilomeetrit tunnis',
 'exif-gpsspeed-m' => 'Miili tunnis',
 'exif-gpsspeed-n' => 'Sõlme',

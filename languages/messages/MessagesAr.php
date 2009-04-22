@@ -3194,7 +3194,7 @@ $1',
 'exif-gpsmeasuremode-2' => 'عملية قياس ثنائية الأبعاد',
 'exif-gpsmeasuremode-3' => 'عملية قياس ثلاثية الأبعاد',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'كيلومتر في الساعة',
 'exif-gpsspeed-m' => 'ميل في الساعة',
 'exif-gpsspeed-n' => 'عقد',

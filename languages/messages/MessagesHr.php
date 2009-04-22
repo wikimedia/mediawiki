@@ -2921,7 +2921,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-gpsmeasuremode-2' => 'Dvodimenzionalno mjerenje',
 'exif-gpsmeasuremode-3' => 'Trodimenzionalno mjerenje',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'kmh',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'čv',

@@ -2637,7 +2637,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-gpsmeasuremode-2' => 'mafam 2-mafotik',
 'exif-gpsmeasuremode-3' => 'mafam 3-mafotik',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Milmets a düp',
 'exif-gpsspeed-m' => 'Liöls a düp',
 'exif-gpsspeed-n' => 'Snobs',

@@ -2706,16 +2706,25 @@ Anderi Metadate sy standardmäßig versteckt.
 'exif-gpslongitude-e' => 'eschtl. Längi',
 'exif-gpslongitude-w' => 'weschtl. Längi',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Meter iber NN',
+'exif-gpsaltitude-1' => 'Meter unter NN',
+
 'exif-gpsstatus-a' => 'Mässig lauft',
 'exif-gpsstatus-v' => 'Interoperabilität vu Mässige',
 
 'exif-gpsmeasuremode-2' => '2-dimensionali Mässig',
 'exif-gpsmeasuremode-3' => '3-dimensionali Mässig',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Chnote',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Myle',
+'exif-gpsdestdistance-n' => 'Seemyle',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächligi Richtig',

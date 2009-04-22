@@ -2884,16 +2884,25 @@ Variants for Chinese language
 'exif-gpslongitude-e' => '東経',
 'exif-gpslongitude-w' => '西経',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => '海面からの高さ（メートル）',
+'exif-gpsaltitude-1' => '海面からの深さ（メートル）',
+
 'exif-gpsstatus-a' => '測位中',
 'exif-gpsstatus-v' => '未測位',
 
 'exif-gpsmeasuremode-2' => '2次元測位',
 'exif-gpsmeasuremode-3' => '3次元測位',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'キロメートル毎時',
 'exif-gpsspeed-m' => 'マイル毎時',
 'exif-gpsspeed-n' => 'ノット',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'キロメートル',
+'exif-gpsdestdistance-m' => 'マイル',
+'exif-gpsdestdistance-n' => '海里',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真方位',

@@ -2222,7 +2222,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-scenecapturetype-2' => 'Skammsnið',
 'exif-scenecapturetype-3' => 'Næturvettvangur',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kílómetrar á klukkustund',
 'exif-gpsspeed-m' => 'Mílur á klukkustund',
 'exif-gpsspeed-n' => 'Hnútar',

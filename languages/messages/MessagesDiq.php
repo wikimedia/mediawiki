@@ -365,10 +365,20 @@ It must have at least $1 characters and be different from your username.',
 'summary-preview'                  => 'Verqeydê qıssa:',
 'loginreqlink'                     => 'Cıkewe',
 'newarticle'                       => '(Newe)',
+'newarticletext'                   => "Ena pele, database ma dı hona çino.
+Eq tı wazen yew bıvırazi, bınê eno nuşte dı yew quti esto u uca dı bınusi (bıvinin [[{{MediaWiki:Helppage}}|help page]] qe informasyonê zafyeri.  
+Eg tı itiya semed yew heta ra amey, ser gocekê '''back'''i klik bıkin.",
+'noarticletext'                    => 'Ena pele dı hona çık çino.    
+Tı eşkeno zerre pelanê binan dı [[Special:Search/{{PAGENAME}}|ser ena name cıgeyro]],
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} ser logan cıgeyro],
+ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurno]</span>.',
 'previewnote'                      => "'''Teme! ena teyna verqeyda.'''
 Vurnayışê tu hama qeyd nıbiyo!",
 'editing'                          => 'Vurnayeno $1',
 'editingsection'                   => 'Vurneno $1 (qısım)',
+'copyrightwarning'                 => "'''Teme''': Ena {{SITENAME}} dı iştirakanê hemi bınê \$2 (qe informasyonê zafyeri: \$1) vêrenê. Eg tı nıwazen ser nuşteyan tı karberan bıhewit ya zi bıcebiri/bıvurni, itiya dı nınusi.<br />
+Tı ma ri soz dano ki tı nuşte xo oricinali nuşt, ya zi tı yew dokumantê umumi ra kopya keno.
+'''İTİYA DI METARİYALÊ \"COPYRIGHT\"İ NINUSİ!.'''",
 'templatesused'                    => 'Templateyan ena pele dı ca genê:',
 'templatesusedpreview'             => 'Nımuneyê ke na verqayt de xebetnayê:',
 'template-protected'               => '(kılit biyo)',
@@ -433,6 +443,8 @@ Tı şeno/eşkeno [[:\$1|ena name dı nuşte bınusi]].",
 'search-mwsuggest-enabled'  => 'be teklifan',
 'search-mwsuggest-disabled' => 'teklifi çıniyê',
 'showingresultstotal'       => "mucneno bın  {{PLURAL:$4|netice '''$1''' of '''$3'''|neticeyan '''$1 - $2''' of '''$3'''}}",
+'nonefound'                 => "'''Teme''': Teyna tay namecayan cıgeyro beno. 
+Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mınaqeşe, templatenan, ucb.) ya zi cıgeyro ser namecay ki tı wazeni.",
 'powersearch'               => 'Cıgeyrayışo hera',
 'powersearch-legend'        => 'Cıgeyrayışo hera',
 'powersearch-ns'            => 'Cayanê nameyan de cıgeyrayış:',
@@ -488,10 +500,11 @@ Tı şeno/eşkeno [[:\$1|ena name dı nuşte bınusi]].",
 'rc-enhanced-hide'               => 'bınımn detayan',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Ney sero vurnayışi',
-'recentchangeslinked-title' => 'vurnayışan ser "$1"',
-'recentchangeslinked-page'  => 'Nameyê pele:',
-'recentchangeslinked-to'    => 'Pelayan ke ena pela ri gire bi, ser ayi vurnayışi bımoc',
+'recentchangeslinked'         => 'Ney sero vurnayışi',
+'recentchangeslinked-title'   => 'vurnayışan ser "$1"',
+'recentchangeslinked-summary' => 'Ena liste dı vurnayışê peniyan ser peleyan esta ki ena peleyan gırediyaya yew specifik pele (ya zi yew specifik kategori). Peleyan ki zerre [[Special:Watchlist|your watchlist]] dı qalın herf dı nusiyeyo.',
+'recentchangeslinked-page'    => 'Nameyê pele:',
+'recentchangeslinked-to'      => 'Pelayan ke ena pela ri gire bi, ser ayi vurnayışi bımoc',
 
 # Upload
 'upload'        => 'Dosya bar ke',
@@ -602,6 +615,8 @@ Tı şeno/eşkeno [[:\$1|ena name dı nuşte bınusi]].",
 'mywatchlist'       => 'Lista mına seyr-kerdışi',
 'watchlistfor'      => "(semedê '''$1''')",
 'addedwatch'        => 'Kerd be lista seyrkerdışi ser',
+'addedwatchtext'    => 'Ma pele "[[:$1]]" zerri [[Special:Watchlist|watchlist]]ê tı kerd de. 
+Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni. Hem zi çı dem ma tu ri heber dun, zerri [[Special:RecentChanges|list of recent changes]] name pele beno qalın. Tı ri beno qolay çıta vurnaye biyo.',
 'removedwatch'      => 'Lista seyrkerdışi ra vet',
 'removedwatchtext'  => 'Ena pela "[[:$1]]" biya wedariya [[Special:Watchlist|listeyê seyr-kerdışi şıma]].',
 'watch'             => 'bıgê seyr-kerdış',
@@ -617,6 +632,8 @@ Tı şeno/eşkeno [[:\$1|ena name dı nuşte bınusi]].",
 
 # Delete
 'deletepage'            => 'Pele bıestere',
+'confirmdeletetext'     => 'Tı ho yew pele u tarixê pele wederneno. 
+Tı ra rica keno, tı zani tı ho sekeno, tı zani neticeyanê eno wedarnayışi u tı zani tı ser [[{{MediaWiki:Policy-url}}|poliçe]] kar keno.',
 'actioncomplete'        => 'Aksiyon temam biyo',
 'deletedtext'           => '"<nowiki>$1</nowiki>" biya wedariya.
 Qe qeydê wedarnayışi, $2 bevinin.',
@@ -641,6 +658,8 @@ Qe qeydê wedarnayışi, $2 bevinin.',
 'protect-text'                => "Tı eşkeno bıvin u seviyê kılit-kerdışi bıvin '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Hesabê tu nıeşken seviyeyê kılit-kerdışi bıvurn. 
 Ser pela '''$1''', itiya dı enformasyon esta:",
+'protect-cascadeon'           => 'Ena pele nıka kılit biya. Çınki ena pele zerre listeyê {{PLURAL:$1|pele, ki|peleyan, which li}} bınê "cascading protection"iyo. 
+Tı eşkeno seviyeye kılit kerdışi bıvurno, feqat tı nıeşken "cascading protection"i bıvurno.',
 'protect-default'             => 'Destur bıde karberan pêrune',
 'protect-fallback'            => 'Desturê "$1" lazımo',
 'protect-level-autoconfirmed' => 'Karberanê neweyan u qeyd-nêbiyaoğan kılit ke',
@@ -712,21 +731,39 @@ Sebebê kılit-biyayışê $1\'i: "$2"o',
 'block-log-flags-nocreate' => 'akerdışê hesabi qapan bi',
 
 # Move page
-'movearticle'     => 'Pele bere:',
-'newtitle'        => 'Nameyê newi:',
-'move-watch'      => 'Ena pele seyr ke',
-'movepagebtn'     => 'Pele bere',
-'pagemovedsub'    => 'Berdışi kerd temam',
-'movepage-moved'  => '<big>\'\'\'"$1" berd "$2"\'\'\'</big>',
-'articleexists'   => 'Ena nameyê pela database ma dı esta ya zi tı raşt nınuşt. .
+'movepagetext'     => "Pe form ki ho bın dı, tı eşkeno name yew pele bıvurni u tarixê pele hemi (pyeran) beri.
+Ma nameyê kıhanyeri keno pele redireksiyoni ser nameyê newe.
+Tı eşkeno pele redireksiyoni (ki şıno nameyê originali) bıvurni.
+Eg tı nıwazeno, ma tı ra rica keni tı [[Special:DoubleRedirects|double]] ya zi [[Special:BrokenRedirects|broken redirects]] qontrol bıki.
+Tı gani qontrol bıki eg gıreyan şıno peleyanê raşti.
+
+Teme: eg ser yew name dı yew nuşte esti, sistemê ma nıeşkeno nuşte tı beri. (eq ser ena name dı yew pele vengi esti, sistemê ma eşkeno nuşte tı beri.
+Tı nıeşkeni name yew pele reyna bıvurni.
+   
+'''TEME!'''
+Ena transfer ser peleyanê populari zaf muhumo;
+Ma tu ra rica keni, tı en verni dı qontrol bıki u bışıravi.",
+'movepagetalktext' => "Ma peleyê mınaqeşeyê ena pele otomatik beno, '''ma nıeşken ber, eg:'''
+*Yew peleyê mınaqeşeyê ser ena name rona esto, ya zi
+*Tı quti check nıkerd.
+
+Oturse, tı gani peleyê mınaqeşeyê manually beri.",
+'movearticle'      => 'Pele bere:',
+'newtitle'         => 'Nameyê newi:',
+'move-watch'       => 'Ena pele seyr ke',
+'movepagebtn'      => 'Pele bere',
+'pagemovedsub'     => 'Berdışi kerd temam',
+'movepage-moved'   => '<big>\'\'\'"$1" berd "$2"\'\'\'</big>',
+'articleexists'    => 'Ena nameyê pela database ma dı esta ya zi tı raşt nınuşt. .
 Yewna name bınus.',
-'movedto'         => 'berd be',
-'movetalk'        => 'Pela werênayışiê elaqedare bere',
-'1movedto2'       => '[[$1]] berd be [[$2]]',
-'1movedto2_redir' => 'berd [[$1]] ri [[$2]] ser redireksiyon',
-'movelogpage'     => 'Logê berdışi',
-'movereason'      => 'Sebeb:',
-'revertmove'      => 'peyser bia',
+'talkexists'       => "'''Ma ena pele berd. Feqet pele mıneqeşe dı yew problem esto. Çınki ser name newe dı yew pele rona esto. Eq tı eşkeno, pele mıneqeşe manually beri.'''",
+'movedto'          => 'berd be',
+'movetalk'         => 'Pela werênayışiê elaqedare bere',
+'1movedto2'        => '[[$1]] berd be [[$2]]',
+'1movedto2_redir'  => 'berd [[$1]] ri [[$2]] ser redireksiyon',
+'movelogpage'      => 'Logê berdışi',
+'movereason'       => 'Sebeb:',
+'revertmove'       => 'peyser bia',
 
 # Export
 'export' => 'Pelan export bık',
@@ -817,8 +854,18 @@ Na rêze de her gırêyo bin zey istisna vêniyeno, yanê pelê ke dosya beno ke
 
 # Metadata
 'metadata'          => 'Metadata',
+'metadata-help'     => 'Ena dosya dı zafyer informasyoni esto. Belki ena dosya yew kamareyo dijital ya zi skaner ra vıraziyo.
+Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.',
 'metadata-expand'   => 'Extended detayan bımoc',
 'metadata-collapse' => 'extended details bınım',
+'metadata-fields'   => 'Ke tabloyê metadatayi nıeseno, ma EXIF metadata (eno mesaj dı) zerri pele resimi ri ken de. 
+Ma aya bini numnen.
+*kar
+*model
+*seatzemanoricinal
+*demoexposuri
+*famar
+*focaldergi',
 
 'exif-gaincontrol-0' => 'çino',
 

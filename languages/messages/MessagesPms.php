@@ -2184,7 +2184,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'exif-gpsmeasuremode-2' => 'amzura bidimensional',
 'exif-gpsmeasuremode-3' => 'amzura tridimensional',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Km/h',
 'exif-gpsspeed-m' => 'mija/h',
 'exif-gpsspeed-n' => 'Grop (marin)',

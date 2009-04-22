@@ -2031,7 +2031,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'exif-gpsmeasuremode-2' => 'Katõmõõtmõlinõ mõõtminõ',
 'exif-gpsmeasuremode-3' => 'Kolmõmõõtmõlinõ mõõtminõ',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'kilomiitrit tunnin',
 'exif-gpsspeed-m' => 'miili tunnin',
 'exif-gpsspeed-n' => 'sõlmõ',

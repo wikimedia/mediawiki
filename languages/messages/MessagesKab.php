@@ -1405,7 +1405,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 'exif-meteringmode-255' => 'Nniḍen',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometr deg ssaɛa',
 
 # External editor support

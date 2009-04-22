@@ -1904,7 +1904,7 @@ PICT # διάφορα
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Αρχείο δημιουργίας χρηστών',
-'newuserlogpagetext'          => 'Αυτό είναι το αρχείο δημιουργίας χρηστών.',
+'newuserlogpagetext'          => 'Αυτή είναι μια καταγραφή δημιουργίας χρηστών.',
 'newuserlog-byemail'          => 'ο κωδικός έχει σταλεί μέσω ηλεκτρονικού μηνύματος',
 'newuserlog-create-entry'     => 'Νέος χρήστης',
 'newuserlog-create2-entry'    => 'δημιουργία νέου λογαριασμού: $1',
@@ -2035,7 +2035,7 @@ Tο σύστημα ειδοποίησης του εγχειρήματος {{SITE
 'actioncomplete'         => 'Η ενέργεια ολοκληρώθηκε.',
 'deletedtext'            => 'Η "<nowiki>$1</nowiki>" έχει διαγραφεί.
 Για το ιστορικό των πρόσφατων διαγραφών ανατρέξτε στο σύνδεσμο $2',
-'deletedarticle'         => 'Η $1 διαγράφτηκε.',
+'deletedarticle'         => 'Η $1 διαγράφηκε.',
 'suppressedarticle'      => 'απόκρυψη του "[[$1]]"',
 'dellogpage'             => 'Καταγραφές διαγραφών',
 'dellogpagetext'         => 'Λίστα των πιο πρόσφατων διαγραφών',
@@ -2982,7 +2982,7 @@ $1',
 'exif-gpsmeasuremode-2' => 'μέτρηση δύο διαστάσεων',
 'exif-gpsmeasuremode-3' => 'μέτρηση τριών διαστάσεων',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Χιλιόμετρα/ώρα',
 'exif-gpsspeed-m' => 'Μίλια/ώρα',
 'exif-gpsspeed-n' => 'Κόμβοι',

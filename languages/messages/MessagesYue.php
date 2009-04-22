@@ -2812,7 +2812,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode-2' => '二維量度',
 'exif-gpsmeasuremode-3' => '三維量度',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => '千米/小時',
 'exif-gpsspeed-m' => '英里/小時',
 'exif-gpsspeed-n' => '浬',

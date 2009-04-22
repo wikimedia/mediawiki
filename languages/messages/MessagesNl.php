@@ -1138,7 +1138,7 @@ In de [[Special:IPBlockList|IP-blokkeerlijst]] zijn de huidige blokkades te beki
 # History merging
 'mergehistory'                     => "Geschiedenis van pagina's samenvoegen",
 'mergehistory-header'              => 'Via deze pagina kunt u versies van de geschiedenis van een bronpagina naar een nieuwere pagina samenvoegen.
-Zorg dat u deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
+Zorg dat deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
 'mergehistory-box'                 => "Versies van twee pagina's samenvoegen:",
 'mergehistory-from'                => 'Bronpagina:',
 'mergehistory-into'                => 'Bestemmingspagina:',
@@ -3089,16 +3089,25 @@ Andere velden worden verborgen.
 'exif-gpslongitude-e' => 'Oosterlengte',
 'exif-gpslongitude-w' => 'Westerlengte',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Meter boven zeeniveau',
+'exif-gpsaltitude-1' => 'Meter onder zeeniveau',
+
 'exif-gpsstatus-a' => 'Bezig met meten',
 'exif-gpsstatus-v' => 'Meetinteroperabiliteit',
 
 'exif-gpsmeasuremode-2' => '2-dimensionale meting',
 'exif-gpsmeasuremode-3' => '3-dimensionale meting',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometer per uur',
 'exif-gpsspeed-m' => 'Mijl per uur',
 'exif-gpsspeed-n' => 'Knopen',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometers',
+'exif-gpsdestdistance-m' => 'Mijlen',
+'exif-gpsdestdistance-n' => 'Zeemijlen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Eigenlijke richting',

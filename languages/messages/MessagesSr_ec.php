@@ -2754,7 +2754,7 @@ $1',
 'exif-gpsmeasuremode-2' => 'Дводимензионално мерење',
 'exif-gpsmeasuremode-3' => 'Тродимензионално мерење',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Километри на час',
 'exif-gpsspeed-m' => 'Миље на час',
 'exif-gpsspeed-n' => 'Чворови',

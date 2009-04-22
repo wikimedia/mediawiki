@@ -2093,7 +2093,7 @@ $1',
 'exif-gpsstatus-a' => 'Явцын хэмжүүр',
 'exif-gpsstatus-v' => 'Хамтарсан үйлдлийн хэмжүүр',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'километр/цаг',
 'exif-gpsspeed-m' => 'Миль/цаг',
 

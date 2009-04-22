@@ -890,8 +890,8 @@ Ukoliko ne želite da vaši članci budu podložni izmjenama i slobodnom rastura
 nemojte ih slati ovdje. Takođe, slanje članka podrazumijeva i vašu izjavu da ste ga napisali sami, ili da ste ga kopirali iz izvora u javnom domenu ili sličnog slobodnog izvora.
 
 '''NEMOJTE SLATI RAD ZAŠTIĆEN AUTORSKIM PRAVIMA BEZ DOZVOLE AUTORA!'''",
-'copyrightwarning2'                => "Zapamtite da svaki doprinos na stranici {{SITENAME}} može biti izmijenjen, promijenjen ili uklonjen od strane ostalih korisnika. Ako ne želite da ovo desi sa Vašim tekstom, onda ga nemojte slati ovdje.<br />
-Takođe nam garantujete da ste ovo Vi napisali, ili da ste ga kopirali iz javne domene ili sličnog slobodnog izvora informacija (pogledajte $1 za više detalja).
+'copyrightwarning2'                => "Zapamtite da svi doprinosi na stranici {{SITENAME}} može biti izmijenjen, promijenjen ili uklonjen od strane ostalih korisnika. Ako ne želite da ovo desi sa Vašim tekstom, onda ga nemojte slati ovdje.<br />
+Također nam garantujete da ste ovo Vi napisali, ili da ste ga kopirali iz javne domene ili sličnog slobodnog izvora informacija (pogledajte $1 za više detalja).
 '''NE ŠALJITE AUTORSKIM PRAVOM ZAŠTIĆENE TEKSTOVE BEZ DOZVOLE!'''",
 'longpagewarning'                  => "'''PAŽNJA''': Ova stranica ima $1 kilobajta; 
 neki preglednici mogu imati problema kad uređujete stranice skoro ili veće od 32 kilobajta.
@@ -3001,16 +3001,25 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpslongitude-e' => 'Istočna dužina',
 'exif-gpslongitude-w' => 'Zapadna dužina',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metara nadmorske visine',
+'exif-gpsaltitude-1' => 'Metara ispod nivoa mora',
+
 'exif-gpsstatus-a' => 'Mjerenje u toku',
 'exif-gpsstatus-v' => 'Mjerenje van funkcije',
 
 'exif-gpsmeasuremode-2' => 'dvodimenzionalno mjerenje',
 'exif-gpsmeasuremode-3' => 'trodimenzionalno mjerenje',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometara na sat',
 'exif-gpsspeed-m' => 'Milja na sat',
 'exif-gpsspeed-n' => 'Čvorova',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometara',
+'exif-gpsdestdistance-m' => 'Milja',
+'exif-gpsdestdistance-n' => 'Nautičkih milja',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Stvarni pravac',

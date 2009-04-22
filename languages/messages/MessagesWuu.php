@@ -794,7 +794,7 @@ Variants for Chinese language
 
 'exif-contrast-2' => '高',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => '公里每小时',
 'exif-gpsspeed-m' => '英里每小时',
 

@@ -2850,7 +2850,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-gpsmeasuremode-2' => '2-boyutlu ölçüm',
 'exif-gpsmeasuremode-3' => '3-boyutlu ölçüm',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'km/s',
 'exif-gpsspeed-m' => 'Mil/saat',
 'exif-gpsspeed-n' => 'Deniz mili',

@@ -1893,7 +1893,7 @@ Ano man na takod sa parehong linyang ini pigkokonsiderar na eksepsyon, i.e. mga 
 'exif-scenecapturetype-2' => 'Retrato',
 'exif-scenecapturetype-3' => 'Eksenang banggi',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometros kada oras',
 'exif-gpsspeed-m' => 'Milya kada oras',
 

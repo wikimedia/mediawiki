@@ -2137,7 +2137,7 @@ $1',
 'exif-gpsmeasuremode-2' => '2 አቅጣቻ ያለው መለኪያ',
 'exif-gpsmeasuremode-3' => '3 አቅጣቻ ያለው መለኪያ',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'ኪሎሜትር በየሰዓቱ',
 'exif-gpsspeed-m' => 'ማይል (mile) በየሰዓቱ',
 'exif-gpsspeed-n' => 'Knot (የመርከብ ፍጥነት መለኪያ)',

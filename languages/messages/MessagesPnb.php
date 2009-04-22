@@ -1272,7 +1272,7 @@ $messages = array(
 'exif-subjectdistancerange-2' => 'نیڑے دا منظر',
 'exif-subjectdistancerange-3' => 'دور دا منظر',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'کلومیٹر فی کینٹہ',
 'exif-gpsspeed-m' => 'میل فی کینٹہ',
 'exif-gpsspeed-n' => 'ناٹ',

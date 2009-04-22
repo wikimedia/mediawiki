@@ -2830,7 +2830,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpsmeasuremode-2' => '2-dimensia mezuro',
 'exif-gpsmeasuremode-3' => '3-dimensia mezuro',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometroj por horo',
 'exif-gpsspeed-m' => 'Mejloj por horo',
 'exif-gpsspeed-n' => 'Knotoj',

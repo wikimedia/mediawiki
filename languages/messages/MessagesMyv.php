@@ -1787,7 +1787,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-gpsmeasuremode-2' => 'келес-кувалмс онкстамо',
 'exif-gpsmeasuremode-3' => 'келес-кувалмс-сэрьс онкстамо',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Вайгельпеть цясозонзо',
 'exif-gpsspeed-m' => 'Милат цясозонзо',
 'exif-gpsspeed-n' => 'Сюлмот цясозонзо',

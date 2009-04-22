@@ -2835,7 +2835,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpsmeasuremode-2' => 'Medição bidimensional',
 'exif-gpsmeasuremode-3' => 'Medição tridimensional',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Milhas por hora',
 'exif-gpsspeed-n' => 'Nós',

@@ -2728,7 +2728,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpsmeasuremode-2' => 'Muzuliañ divventek',
 'exif-gpsmeasuremode-3' => 'Muzuliañ teirventek',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometr dre eur',
 'exif-gpsspeed-m' => 'Miltir dre eur',
 'exif-gpsspeed-n' => 'Skoulm',

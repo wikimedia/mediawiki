@@ -2909,7 +2909,7 @@ Le alteres essera initialmente celate.
 'exif-gpsmeasuremode-2' => 'Mesura bidimensional',
 'exif-gpsmeasuremode-3' => 'Mesura tridimensional',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometros per hora',
 'exif-gpsspeed-m' => 'Millias per hora',
 'exif-gpsspeed-n' => 'Nodos',

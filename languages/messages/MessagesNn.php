@@ -2353,7 +2353,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'djvu_no_xml'              => 'Klarte ikkje hente inn XML for DjVu-fila',
 'thumbnail_invalid_params' => 'Ugyldige miniatyrparameterar',
 'thumbnail_dest_directory' => 'Klarte ikkje å opprette målmappe',
-'thumbnail_image-type'     => 'Typen bilete er ikkje stønad for',
+'thumbnail_image-type'     => 'Bilettypen er ikkje stødd',
 'thumbnail_image-missing'  => 'Fila ser ut til å saknast: $1',
 
 # Special:Import
@@ -2866,16 +2866,24 @@ Dei andre felta er gøymde som standard.
 'exif-gpslongitude-e' => 'Austleg lengdegrad',
 'exif-gpslongitude-w' => 'Vestleg lengdegrad',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Meter over havnivå',
+'exif-gpsaltitude-1' => 'Meter under havnivå',
+
 'exif-gpsstatus-a' => 'Måling pågår',
 'exif-gpsstatus-v' => 'Målingsinteroperabilitet',
 
 'exif-gpsmeasuremode-2' => 'todimensjonalt målt',
 'exif-gpsmeasuremode-3' => 'tredimensjonalt målt',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometer per time',
 'exif-gpsspeed-m' => 'Engelsk mil per time',
 'exif-gpsspeed-n' => 'Knop',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-n' => 'Nautiske mil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Verkeleg retning',

@@ -2522,7 +2522,7 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 'exif-gpsmeasuremode-2' => 'dwuwymjarowy',
 'exif-gpsmeasuremode-3' => 'trůjwymjarowy',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'kilometrůw na godzina',
 'exif-gpsspeed-m' => 'mil na godzina',
 'exif-gpsspeed-n' => 'wynzuůw',

@@ -2454,7 +2454,7 @@ Të tjerat do të fshihen.
 'exif-gpsmeasuremode-2' => 'matje në 2 madhësi',
 'exif-gpsmeasuremode-3' => 'matje në 3 madhësi',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometra në orë',
 'exif-gpsspeed-m' => 'Milje në orë',
 'exif-gpsspeed-n' => 'Nyje',

@@ -1731,7 +1731,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-gpslongitude-e' => 'Austrumu garums',
 'exif-gpslongitude-w' => 'Rietumu garums',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometri stundā',
 'exif-gpsspeed-m' => 'Jūdzes stundā',
 

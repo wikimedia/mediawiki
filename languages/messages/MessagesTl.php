@@ -2855,7 +2855,7 @@ Nakatakdang itago ang iba pa.
 'exif-gpsmeasuremode-2' => 'Sukat na may 2 dimensyon',
 'exif-gpsmeasuremode-3' => 'Sukat na may 3 dimensyon',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Mga kilometro bawat oras',
 'exif-gpsspeed-m' => 'Mga milya bawat oras',
 'exif-gpsspeed-n' => "Mga ''knot''",

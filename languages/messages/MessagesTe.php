@@ -790,6 +790,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'revdelete-nooldid-text'         => 'ఈ పని ఏ కూర్పు లేదా కూర్పుల మీద చెయ్యాలో మీరు సూచించలేదు, లేదా మీరు సూచించిన కూర్పు లేదు, లేదా ప్రస్తుత కూర్పునే దాచాలని ప్రయత్నిస్తున్నారు.',
 'revdelete-nologtype-title'      => 'చిట్టా రకం ఇవ్వలేదు',
 'revdelete-toomanytargets-title' => 'చాలా లక్ష్యాలున్నాయి',
+'revdelete-nologid-title'        => 'తప్పుడు చిట్టా పద్దు',
 'revdelete-selected'             => "'''[[:$1]] యొక్క {{PLURAL:$2|ఎంచుకున్న కూర్పు|ఎంచుకున్న కూర్పులు}}:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|ఎంచుకున్న చిట్టా ఘటన|ఎంచుకున్న చిట్టా ఘటనలు}}:'''",
 'revdelete-text'                 => "'''తొలగించిన కూర్పులు, ఘటనలూ పేజీ చరితం లోనూ, చిట్టాలలోనూ కనిపిస్తాయి, కానీ వాటిలో కొన్ని భాగాలు సార్వజనికంగా అందుబాటులో ఉండవు.'''
@@ -2593,16 +2594,25 @@ $1',
 'exif-gpslongitude-e' => 'తూర్పు రేఖాంశం',
 'exif-gpslongitude-w' => 'పశ్చిమ రేఖాంశం',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'సముద్రమట్టానికి మీటర్ల ఎగువన',
+'exif-gpsaltitude-1' => 'సముద్రమట్టానికి మీటర్ల దిగువున',
+
 'exif-gpsstatus-a' => 'కొలత జరుగుతూంది',
 'exif-gpsstatus-v' => 'కొలత ఇంటర్‌ఆపరేటబిలిటీ',
 
 'exif-gpsmeasuremode-2' => 'ద్వైమానిక కొలమానం',
 'exif-gpsmeasuremode-3' => 'త్రిదిశాత్మక కొలమానం',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'గంటకి కిలోమీటర్లు',
 'exif-gpsspeed-m' => 'గంటకి మైళ్ళు',
 'exif-gpsspeed-n' => 'ముడులు',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'కిలోమీటర్లు',
+'exif-gpsdestdistance-m' => 'మైళ్ళు',
+'exif-gpsdestdistance-n' => 'నాటికల్ మైళ్ళు',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'వాస్తవ దిశ',

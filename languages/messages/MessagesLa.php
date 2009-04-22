@@ -2187,7 +2187,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'exif-gpsmeasuremode-2' => 'Mensura 2-dimensionalis',
 'exif-gpsmeasuremode-3' => 'Mensura 3-dimensionalis',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Chiliometra per horam',
 'exif-gpsspeed-m' => 'Milia per horam',
 'exif-gpsspeed-n' => 'Nodi',
@@ -2274,7 +2274,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'autosumm-blank'   => 'Paginam vacuavit',
 'autosumm-replace' => "multa contenta ex pagina removit, contenta nova: '$1'",
 'autoredircomment' => 'Redirigens ad [[$1]]',
-'autosumm-new'     => "Creavit paginam scribendo '$1'",
+'autosumm-new'     => "Paginam instituit, scribens '$1'",
 
 # Size units
 'size-bytes'     => '$1 octeti',

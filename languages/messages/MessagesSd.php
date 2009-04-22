@@ -955,7 +955,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'exif-gpsmeasuremode-2' => '2-رخي ماپ',
 'exif-gpsmeasuremode-3' => '3-رخي ماپ',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'ڪلوميٽر في ڪلاڪ',
 'exif-gpsspeed-m' => 'ميل في ڪلاڪ',
 'exif-gpsspeed-n' => 'ڳنڍيون',

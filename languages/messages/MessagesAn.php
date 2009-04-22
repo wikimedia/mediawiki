@@ -2666,7 +2666,7 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 'exif-gpsmeasuremode-2' => 'Mesura bidimensional',
 'exif-gpsmeasuremode-3' => 'Mesura tridimensional',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Quilometros por ora',
 'exif-gpsspeed-m' => 'Millas por ora',
 'exif-gpsspeed-n' => 'Nugos',

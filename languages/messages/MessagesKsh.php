@@ -3102,16 +3102,25 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-gpslongitude-e' => 'Läng ößlesch noh_m GPS',
 'exif-gpslongitude-w' => 'Läng weßlesch noh_m GPS',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Meeter övver Nomaalnull',
+'exif-gpsaltitude-1' => 'Meeter unger Nomaalnull',
+
 'exif-gpsstatus-a' => 'De Messung fum GPS es aam Loufe',
 'exif-gpsstatus-v' => 'Engeropperabilität fun Messunge noh_m GPS',
 
 'exif-gpsmeasuremode-2' => 'Zweidimensjonal Mohß fum GPS',
 'exif-gpsmeasuremode-3' => 'Dreidimensjonal Mohß fum GPS',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Killomeeter en de Shtondt noh_m GPS',
 'exif-gpsspeed-m' => 'Miehle en de Shtondt noh_m GPS',
 'exif-gpsspeed-n' => 'Knote noh_m GPS',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Killometer',
+'exif-gpsdestdistance-m' => 'Meile',
+'exif-gpsdestdistance-n' => 'Seemeile',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wohre Rechtung noh_m GPS',

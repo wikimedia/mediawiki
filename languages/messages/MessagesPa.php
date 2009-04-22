@@ -961,7 +961,7 @@ to upload files.',
 'exif-subjectdistancerange-1' => 'ਮਾਈਕਰੋ',
 'exif-subjectdistancerange-2' => 'ਝਲਕ ਬੰਦ ਕਰੋ',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'ਕਿਲੋਮੀਟਰ ਪ੍ਰਤੀ ਘੰਟਾ',
 'exif-gpsspeed-m' => 'ਮੀਲ ਪ੍ਰਤੀ ਘੰਟਾ',
 
