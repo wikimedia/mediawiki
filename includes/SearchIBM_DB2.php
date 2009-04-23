@@ -34,9 +34,8 @@ class SearchIBM_DB2 extends SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @param string $term - Raw search term
+	 * @param $term String: raw search term
 	 * @return IBM_DB2SearchResultSet
-	 * @access public
 	 */
 	function searchText( $term ) {
 		$resultSet = $this->db->resultObject($this->db->query($this->getQuery($this->filter($term), true)));
@@ -46,9 +45,8 @@ class SearchIBM_DB2 extends SearchEngine {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @param string $term - Raw search term
+	 * @param $term String: taw search term
 	 * @return IBM_DB2SearchResultSet
-	 * @access public
 	 */
 	function searchTitle($term) {
 		$resultSet = $this->db->resultObject($this->db->query($this->getQuery($this->filter($term), false)));
@@ -58,8 +56,7 @@ class SearchIBM_DB2 extends SearchEngine {
 
 	/**
 	 * Return a partial WHERE clause to exclude redirects, if so set
-	 * @return string
-	 * @private
+	 * @return String
 	 */
 	function queryRedirect() {
 		if ($this->showRedirects) {
@@ -71,8 +68,7 @@ class SearchIBM_DB2 extends SearchEngine {
 
 	/**
 	 * Return a partial WHERE clause to limit the search to the given namespaces
-	 * @return string
-	 * @private
+	 * @return String
 	 */
 	function queryNamespaces() {
 		if( is_null($this->namespaces) )
@@ -86,8 +82,7 @@ class SearchIBM_DB2 extends SearchEngine {
 
 	/**
 	 * Return a LIMIT clause to limit results on the query.
-	 * @return string
-	 * @private
+	 * @return String
 	 */
 	function queryLimit($sql) {
 		return $this->db->limitResult($sql, $this->limit, $this->offset);
@@ -96,8 +91,7 @@ class SearchIBM_DB2 extends SearchEngine {
 	/**
 	 * Does not do anything for generic search engine
 	 * subclasses may define this though
-	 * @return string
-	 * @private
+	 * @return String
 	 */
 	function queryRanking($filteredTerm, $fulltext) {
 		// requires Net Search Extender or equivalent
@@ -108,9 +102,8 @@ class SearchIBM_DB2 extends SearchEngine {
 	/**
 	 * Construct the full SQL query to do the search.
 	 * The guts shoulds be constructed in queryMain()
-	 * @param string $filteredTerm
-	 * @param bool $fulltext
-	 * @private
+	 * @param string $filteredTerm String
+	 * @param bool $fulltext Boolean
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryLimit($this->queryMain($filteredTerm, $fulltext) . ' ' .
@@ -122,8 +115,8 @@ class SearchIBM_DB2 extends SearchEngine {
 
 	/**
 	 * Picks which field to index on, depending on what type of query.
-	 * @param bool $fulltext
-	 * @return string
+	 * @param $fulltext Boolean
+	 * @return String
 	 */
 	function getIndexField($fulltext) {
 		return $fulltext ? 'si_text' : 'si_title';
@@ -132,10 +125,9 @@ class SearchIBM_DB2 extends SearchEngine {
 	/**
 	 * Get the base part of the search query.
 	 *
-	 * @param string $filteredTerm
-	 * @param bool $fulltext
-	 * @return string
-	 * @private
+	 * @param string $filteredTerm String
+	 * @param bool $fulltext Boolean
+	 * @return String
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery($filteredTerm, $fulltext);
@@ -185,9 +177,9 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.
 	 *
-	 * @param int $id
-	 * @param string $title
-	 * @param string $text
+	 * @param $id Integer
+	 * @param $title String
+	 * @param $text String
 	 */
 	function update($id, $title, $text) {
 		$dbw = wfGetDB(DB_MASTER);
@@ -207,8 +199,8 @@ class SearchIBM_DB2 extends SearchEngine {
 	 * Update a search index record's title only.
 	 * Title should be pre-processed.
 	 *
-	 * @param int $id
-	 * @param string $title
+	 * @param $id Integer
+	 * @param $title String
 	 */
 	function updateTitle($id, $title) {
 		$dbw = wfGetDB(DB_MASTER);

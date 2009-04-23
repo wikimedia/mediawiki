@@ -21,11 +21,10 @@ class SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
 	 * If title searches are not supported or disabled, return null.
+	 * STUB
 	 *
-	 * @param string $term - Raw search term
+	 * @param $term String: raw search term
 	 * @return SearchResultSet
-	 * @access public
-	 * @abstract
 	 */
 	function searchText( $term ) {
 		return null;
@@ -34,11 +33,10 @@ class SearchEngine {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 * If title searches are not supported or disabled, return null.
+	 * STUB
 	 *
-	 * @param string $term - Raw search term
+	 * @param $term String: raw search term
 	 * @return SearchResultSet
-	 * @access public
-	 * @abstract
 	 */
 	function searchTitle( $term ) {
 		return null;
@@ -61,7 +59,7 @@ class SearchEngine {
 	 * If an exact title match can be find, or a very slightly close match,
 	 * return the title. If no match, returns NULL.
 	 *
-	 * @param string $term
+	 * @param $searchterm String
 	 * @return Title
 	 */
 	public static function getNearMatch( $searchterm ) {
@@ -171,9 +169,8 @@ class SearchEngine {
 	 * Set the maximum number of results to return
 	 * and how many to skip before returning the first.
 	 *
-	 * @param int $limit
-	 * @param int $offset
-	 * @access public
+	 * @param $limit Integer
+	 * @param $offset Integer
 	 */
 	function setLimitOffset( $limit, $offset = 0 ) {
 		$this->limit = intval( $limit );
@@ -184,8 +181,7 @@ class SearchEngine {
 	 * Set which namespaces the search should include.
 	 * Give an array of namespace index numbers.
 	 *
-	 * @param array $namespaces
-	 * @access public
+	 * @param $namespaces Array
 	 */
 	function setNamespaces( $namespaces ) {
 		$this->namespaces = $namespaces;
@@ -195,7 +191,7 @@ class SearchEngine {
 	 * Parse some common prefixes: all (search everything)
 	 * or namespace names
 	 *
-	 * @param string $query
+	 * @param $query String
 	 */
 	function replacePrefixes( $query ){
 		global $wgContLang;
@@ -224,7 +220,7 @@ class SearchEngine {
 
 	/**
 	 * Make a list of searchable namespaces and their canonical names.
-	 * @return array
+	 * @return Array
 	 */
 	public static function searchableNamespaces() {
 		global $wgContLang;
@@ -241,9 +237,8 @@ class SearchEngine {
 	 * Extract default namespaces to search from the given user's
 	 * settings, returning a list of index numbers.
 	 *
-	 * @param User $user
-	 * @return array
-	 * @static 
+	 * @param $user User
+	 * @return Array
 	 */
 	public static function userNamespaces( &$user ) {
 		$arr = array();
@@ -258,9 +253,8 @@ class SearchEngine {
 	/**
 	 * Find snippet highlight settings for a given user
 	 *
-	 * @param User $user
-	 * @return array contextlines, contextchars 
-	 * @static
+	 * @param $user User
+	 * @return Array contextlines, contextchars 
 	 */
 	public static function userHighlightPrefs( &$user ){
 		//$contextlines = $user->getOption( 'contextlines',  5 );
@@ -273,8 +267,7 @@ class SearchEngine {
 	/**
 	 * An array of namespaces indexes to be searched by default
 	 * 
-	 * @return array 
-	 * @static
+	 * @return Array 
 	 */
 	public static function defaultNamespaces(){
 		global $wgNamespacesToBeSearchedDefault;
@@ -286,7 +279,7 @@ class SearchEngine {
 	 * Get a list of namespace names useful for showing in tooltips
 	 * and preferences
 	 *
-	 * @param unknown_type $namespaces
+	 * @param $namespaces Array
 	 */
 	public static function namespacesAsText( $namespaces ){
 		global $wgContLang;
@@ -303,8 +296,7 @@ class SearchEngine {
 	 * An array of "project" namespaces indexes typically searched
 	 * by logged-in users
 	 * 
-	 * @return array 
-	 * @static
+	 * @return Array 
 	 */
 	public static function projectNamespaces() {
 		global $wgNamespacesToBeSearchedDefault, $wgNamespacesToBeSearchedProject;
@@ -316,8 +308,7 @@ class SearchEngine {
 	 * An array of "project" namespaces indexes typically searched
 	 * by logged-in users in addition to the default namespaces
 	 * 
-	 * @return array 
-	 * @static
+	 * @return Array
 	 */
 	public static function defaultAndProjectNamespaces() {
 		global $wgNamespacesToBeSearchedDefault, $wgNamespacesToBeSearchedProject;
@@ -329,8 +320,8 @@ class SearchEngine {
 	/**
 	 * Return a 'cleaned up' search string
 	 *
-	 * @return string
-	 * @access public
+	 * @param $text String
+	 * @return String
 	 */
 	function filter( $text ) {
 		$lc = $this->legalSearchChars();
@@ -358,11 +349,11 @@ class SearchEngine {
 	/**
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.
+	 * STUB
 	 *
-	 * @param int $id
-	 * @param string $title
-	 * @param string $text
-	 * @abstract
+	 * @param $id Integer
+	 * @param $title String
+	 * @param $text String
 	 */
 	function update( $id, $title, $text ) {
 		// no-op
@@ -371,10 +362,10 @@ class SearchEngine {
 	/**
 	 * Update a search index record's title only.
 	 * Title should be pre-processed.
+	 * STUB
 	 *
-	 * @param int $id
-	 * @param string $title
-	 * @abstract
+	 * @param $id Integer
+	 * @param $title String
 	 */
 	function updateTitle( $id, $title ) {
 		// no-op
@@ -383,8 +374,7 @@ class SearchEngine {
 	/**
 	 * Get OpenSearch suggestion template
 	 * 
-	 * @return string
-	 * @static 
+	 * @return String
 	 */
 	public static function getOpenSearchTemplate() {
 		global $wgOpenSearchTemplate, $wgServer, $wgScriptPath;
@@ -400,8 +390,7 @@ class SearchEngine {
 	/**
 	 * Get internal MediaWiki Suggest template 
 	 * 
-	 * @return string
-	 * @static
+	 * @return String
 	 */
 	public static function getMWSuggestTemplate() {
 		global $wgMWSuggestTemplate, $wgServer, $wgScriptPath;
@@ -419,10 +408,9 @@ class SearchResultSet {
 	/**
 	 * Fetch an array of regular expression fragments for matching
 	 * the search terms as parsed by this engine in a text extract.
+	 * STUB
 	 *
-	 * @return array
-	 * @access public
-	 * @abstract
+	 * @return Array
 	 */
 	function termMatches() {
 		return array();
@@ -434,8 +422,9 @@ class SearchResultSet {
 
 	/**
 	 * Return true if results are included in this result set.
-	 * @return bool
-	 * @abstract
+	 * STUB
+	 *
+	 * @return Boolean
 	 */
 	function hasResults() {
 		return false;
@@ -449,8 +438,7 @@ class SearchResultSet {
 	 *
 	 * Return null if no total hits number is supported.
 	 *
-	 * @return int
-	 * @access public
+	 * @return Integer
 	 */
 	function getTotalHits() {
 		return null;
@@ -460,22 +448,21 @@ class SearchResultSet {
 	 * Some search modes return a suggested alternate term if there are
 	 * no exact hits. Returns true if there is one on this set.
 	 *
-	 * @return bool
-	 * @access public
+	 * @return Boolean
 	 */
 	function hasSuggestion() {
 		return false;
 	}
 
 	/**
-	 * @return string suggested query, null if none
+	 * @return String: suggested query, null if none
 	 */
 	function getSuggestionQuery(){
 		return null;
 	}
 
 	/**
-	 * @return string HTML highlighted suggested query, '' if none
+	 * @return String: HTML highlighted suggested query, '' if none
 	 */
 	function getSuggestionSnippet(){
 		return '';
@@ -485,7 +472,7 @@ class SearchResultSet {
 	 * Return information about how and from where the results were fetched,
 	 * should be useful for diagnostics and debugging 
 	 *
-	 * @return string
+	 * @return String
 	 */
 	function getInfo() {
 		return null;
@@ -503,7 +490,7 @@ class SearchResultSet {
 	/**
 	 * Check if there are results on other wikis
 	 *
-	 * @return boolean
+	 * @return Boolean
 	 */
 	function hasInterwikiResults() {
 		return $this->getInterwikiResults() != null;
@@ -512,9 +499,9 @@ class SearchResultSet {
 
 	/**
 	 * Fetches next search result, or false.
+	 * STUB
+	 *
 	 * @return SearchResult
-	 * @access public
-	 * @abstract
 	 */
 	function next() {
 		return false;
@@ -522,7 +509,6 @@ class SearchResultSet {
 
 	/**
 	 * Frees the result set, if applicable.
-	 * @ access public
 	 */
 	function free() {
 		// ...
@@ -539,9 +525,9 @@ class SearchResultTooMany {
 
 
 /**
- * @fixme This class is horribly factored. It would probably be better to have
- * a useful base class to which you pass some standard information, then let
- * the fancy self-highlighters extend that.
+ * @todo Fixme: This class is horribly factored. It would probably be better to
+ * have a useful base class to which you pass some standard information, then
+ * let the fancy self-highlighters extend that.
  * @ingroup Search
  */
 class SearchResult {
@@ -560,8 +546,7 @@ class SearchResult {
 	/**
 	 * Check if this is result points to an invalid title
 	 *
-	 * @return boolean
-	 * @access public
+	 * @return Boolean
 	 */
 	function isBrokenTitle(){
 		if( is_null($this->mTitle) )
@@ -572,8 +557,7 @@ class SearchResult {
 	/**
 	 * Check if target page is missing, happens when index is out of date
 	 * 
-	 * @return boolean
-	 * @access public
+	 * @return Boolean
 	 */
 	function isMissingRevision(){
 		return !$this->mRevision && !$this->mImage;
@@ -581,14 +565,13 @@ class SearchResult {
 
 	/**
 	 * @return Title
-	 * @access public
 	 */
 	function getTitle() {
 		return $this->mTitle;
 	}
 
 	/**
-	 * @return double or null if not supported
+	 * @return Double or null if not supported
 	 */
 	function getScore() {
 		return null;
@@ -608,8 +591,8 @@ class SearchResult {
 	}
 	
 	/**
-	 * @param array $terms terms to highlight
-	 * @return string highlighted text snippet, null (and not '') if not supported 
+	 * @param $terms Array: terms to highlight
+	 * @return String: highlighted text snippet, null (and not '') if not supported 
 	 */
 	function getTextSnippet($terms){
 		global $wgUser, $wgAdvancedSearchHighlighting;
@@ -623,16 +606,16 @@ class SearchResult {
 	}
 	
 	/**
-	 * @param array $terms terms to highlight
-	 * @return string highlighted title, '' if not supported
+	 * @param $terms Array: terms to highlight
+	 * @return String: highlighted title, '' if not supported
 	 */
 	function getTitleSnippet($terms){
 		return '';
 	}
 
 	/**
-	 * @param array $terms terms to highlight
-	 * @return string highlighted redirect name (redirect to this page), '' if none or not supported
+	 * @param $terms Array: terms to highlight
+	 * @return String: highlighted redirect name (redirect to this page), '' if none or not supported
 	 */
 	function getRedirectSnippet($terms){
 		return '';
@@ -660,7 +643,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @return string timestamp
+	 * @return String: timestamp
 	 */
 	function getTimestamp(){
 		if( $this->mRevision )
@@ -671,7 +654,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @return int number of words
+	 * @return Integer: number of words
 	 */
 	function getWordCount(){
 		$this->initText();
@@ -679,7 +662,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @return int size in bytes
+	 * @return Integer: size in bytes
 	 */
 	function getByteSize(){
 		$this->initText();
@@ -687,14 +670,14 @@ class SearchResult {
 	}
 	
 	/**
-	 * @return boolean if hit has related articles
+	 * @return Boolean if hit has related articles
 	 */
 	function hasRelated(){
 		return false;
 	}
 	
 	/**
-	 * @return interwiki prefix of the title (return iw even if title is broken)
+	 * @return String: interwiki prefix of the title (return iw even if title is broken)
 	 */
 	function getInterwikiPrefix(){
 		return '';
@@ -716,11 +699,11 @@ class SearchHighlighter {
 	/**
 	 * Default implementation of wikitext highlighting
 	 *
-	 * @param string $text
-	 * @param array $terms Terms to highlight (unescaped)
-	 * @param int $contextlines
-	 * @param int $contextchars
-	 * @return string
+	 * @param $text String
+	 * @param $terms Array: terms to highlight (unescaped)
+	 * @param $contextlines Integer
+	 * @param $contextchars Integer
+	 * @return String
 	 */
 	public function highlightText( $text, $terms, $contextlines, $contextchars ) {
 		global $wgLang, $wgContLang;
@@ -958,9 +941,9 @@ class SearchHighlighter {
 	/**
 	 * Split text into lines and add it to extracts array
 	 *
-	 * @param array $extracts index -> $line
-	 * @param int $count
-	 * @param string $text
+	 * @param $extracts Array: index -> $line
+	 * @param $count Integer
+	 * @param $text String
 	 */
 	function splitAndAdd(&$extracts, &$count, $text){
 		$split = explode( "\n", $this->mCleanWikitext? $this->removeWiki($text) : $text );
@@ -974,7 +957,7 @@ class SearchHighlighter {
 	/**
 	 * Do manual case conversion for non-ascii chars
 	 *
-	 * @param unknown_type $matches
+	 * @param $matches Array
 	 */
 	function caseCallback($matches){
 		global $wgContLang;
@@ -987,12 +970,12 @@ class SearchHighlighter {
 	/**
 	 * Extract part of the text from start to end, but by
 	 * not chopping up words
-	 * @param string $text
-	 * @param int $start
-	 * @param int $end
-	 * @param int $posStart (out) actual start position
-	 * @param int $posEnd (out) actual end position
-	 * @return string  
+	 * @param $text String
+	 * @param $start Integer
+	 * @param $end Integer
+	 * @param $posStart Integer: (out) actual start position
+	 * @param $posEnd Integer: (out) actual end position
+	 * @return String  
 	 */
 	function extract($text, $start, $end, &$posStart = null, &$posEnd = null ){
 		global $wgContLang;		
@@ -1018,10 +1001,10 @@ class SearchHighlighter {
 	/**
 	 * Find a nonletter near a point (index) in the text
 	 *
-	 * @param string $text
-	 * @param int $point
-	 * @param int $offset to found index
-	 * @return int nearest nonletter index, or beginning of utf8 char if none
+	 * @param $text String
+	 * @param $point Integer
+	 * @param $offset Integer: offset to found index
+	 * @return Integer: nearest nonletter index, or beginning of utf8 char if none
 	 */
 	function position($text, $point, $offset=0 ){
 		$tolerance = 10;
@@ -1048,12 +1031,12 @@ class SearchHighlighter {
 	/**
 	 * Search extracts for a pattern, and return snippets
 	 *
-	 * @param string $pattern regexp for matching lines
-	 * @param array $extracts extracts to search   
-	 * @param int $linesleft number of extracts to make
-	 * @param int $contextchars length of snippet
-	 * @param array $out map for highlighted snippets
-	 * @param array $offsets map of starting points of snippets
+	 * @param $pattern String: regexp for matching lines
+	 * @param $extracts Array: extracts to search   
+	 * @param $linesleft Integer: number of extracts to make
+	 * @param $contextchars Integer: length of snippet
+	 * @param $out Array: map for highlighted snippets
+	 * @param $offsets Array: map of starting points of snippets
 	 * @protected
 	 */
 	function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ){
@@ -1120,7 +1103,7 @@ class SearchHighlighter {
 	 * callback to replace [[target|caption]] kind of links, if
 	 * the target is category or image, leave it
 	 *
-	 * @param array $matches
+	 * @param $matches Array
 	 */
 	function linkReplace($matches){
 		$colon = strpos( $matches[1], ':' ); 
@@ -1140,11 +1123,11 @@ class SearchHighlighter {
      * Simple & fast snippet extraction, but gives completely unrelevant
      * snippets
      *
-     * @param string $text
-     * @param array $terms
-     * @param int $contextlines
-     * @param int $contextchars
-     * @return string
+     * @param $text String
+     * @param $terms Array
+     * @param $contextlines Integer
+     * @param $contextchars Integer
+     * @return String
      */
     public function highlightSimple( $text, $terms, $contextlines, $contextchars ) {
         global $wgLang, $wgContLang;
@@ -1196,7 +1179,7 @@ class SearchHighlighter {
 
 /**
  * Dummy class to be used when non-supported Database engine is present.
- * @fixme Dummy class should probably try something at least mildly useful,
+ * @todo Fixme: dummy class should probably try something at least mildly useful,
  * such as a LIKE search through titles.
  * @ingroup Search
  */

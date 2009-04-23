@@ -37,9 +37,8 @@ class SearchPostgres extends SearchEngine {
 	 * Currently searches a page's current title (page.page_title) and
 	 * latest revision article text (pagecontent.old_text)
 	 *
-	 * @param string $term - Raw search term
+	 * @param $term String: raw search term
 	 * @return PostgresSearchResultSet
-	 * @access public
 	 */
 	function searchTitle( $term ) {
 		$q = $this->searchQuery( $term , 'titlevector', 'page_title' );
@@ -130,9 +129,8 @@ class SearchPostgres extends SearchEngine {
 
 	/**
 	 * Construct the full SQL query to do the search.
-	 * @param string $filteredTerm
-	 * @param string $fulltext
-	 * @private
+	 * @param $filteredTerm String
+	 * @param $fulltext String
 	 */
 	function searchQuery( $term, $fulltext, $colname ) {
 		global $wgDBversion;
