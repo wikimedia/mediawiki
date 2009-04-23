@@ -85,15 +85,16 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->showImages();
 		} else if( $this->deleteKey == 'logid' ) {
 			$this->showLogItems();
+			return; // no logs for now
 		}
-		$qc = $this->getLogQueryCond();
+		list($qc,$lim) = $this->getLogQueryCond();
 		# Show relevant lines from the deletion log
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
-		LogEventsList::showLogExtract( $wgOut, 'delete', $this->page->getPrefixedText(), '', 25, $qc );
+		LogEventsList::showLogExtract( $wgOut, 'delete', $this->page->getPrefixedText(), '', $lim, $qc );
 		# Show relevant lines from the suppression log
 		if( $wgUser->isAllowed( 'suppressionlog' ) ) {
 			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
-			LogEventsList::showLogExtract( $wgOut, 'suppress', $this->page->getPrefixedText(), '', 25, $qc );
+			LogEventsList::showLogExtract( $wgOut, 'suppress', $this->page->getPrefixedText(), '', $lim, $qc );
 		}
 	}
 	
@@ -120,7 +121,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	}
 	
 	private function getLogQueryCond() {
-		$logAction = 'revision';
+		$ids = $safeIds = array();
+		$limit = 25; // default
+		$conds = array( 'log_action' => 'revision' ); // revision delete logs
 		switch( $this->deleteKey ) {
 			case 'oldid':
 				$ids = $this->oldids;
@@ -134,19 +137,25 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			case 'fileid':
 				$ids = $this->fileids;
 				break;
-			case 'logid':
-				$ids = $this->logids;
-				$logAction = 'event';
-				break;
 			default: // bad type?
-				return array();
+				return array($conds,$limit);
 		}
-		// Revision delete logs for these item
-		$conds = array( 'log_action' => $logAction );
-		$conds['ls_field'] = RevisionDeleter::getRelationType( $this->deleteKey );
-		$conds['ls_value'] = $ids;
-		$conds[] = 'log_id = ls_log_id';
-		return $conds;
+		// Just get the whole log if there are a lot if items
+		if( count($ids) > $limit )
+			return array($conds,$limit);
+		// Digit chars only
+		foreach( $ids as $id ) {
+			if( preg_match( '/^\d+$/', $id, $m ) ) {
+				$safeIds[] = $m[0];
+			}
+		}
+		// Format is <id1,id2,i3...>
+		if( count($safeIds) ) {
+			$conds[] = "log_params RLIKE '^{$this->deleteKey}.*(^|\n|,)(".implode('|',$safeIds).")(,|\n|$)'";
+		} else {
+			$conds = array('1=0');
+		}
+		return array($conds,$limit);
 	}
 
 	private function secureOperation() {
@@ -1532,41 +1541,18 @@ class RevisionDeleter {
 		$param, $items = array() )
 	{
 		// Put things hidden from sysops in the oversight log
-		$logType = ( ($nbitfield | $obitfield) & Revision::DELETED_RESTRICTED ) ?
+		$logtype = ( ($nbitfield | $obitfield) & Revision::DELETED_RESTRICTED ) ?
 			'suppress' : 'delete';
-		// Log deletions show with a difference action message
-		$logAction = ( $param == 'logid' ) ? 'event' : 'revision';
-		// Track what items changed here
+		$log = new LogPage( $logtype );
 		$itemCSV = implode(',',$items);
-		// Add params for effected page and ids
+
 		if( $param == 'logid' ) {
 			$params = array( $itemCSV, "ofield={$obitfield}", "nfield={$nbitfield}" );
+			$log->addEntry( 'event', $title, $comment, $params );
 		} else {
+			// Add params for effected page and ids
 			$params = array( $param, $itemCSV, "ofield={$obitfield}", "nfield={$nbitfield}" );
+			$log->addEntry( 'revision', $title, $comment, $params );
 		}
-		// Actually add the deletion log entry
-		$log = new LogPage( $logType );
-		$logid = $log->addEntry( $logAction, $title, $comment, $params );
-		// Allow for easy searching of deletion log items for revision/log items
-		$log->addRelations( self::getRelationType($param), $items, $logid );
-	}
-	
-	// Get DB field name for URL param...
-	// Future code for other things may also track
-	// other types of revision-specific changes.
-	public static function getRelationType( $param ) {
-		switch( $param ) {
-			case 'oldid':
-				return 'rev_id';
-			case 'artimestamp':
-				return 'rev_timestamp';
-			case 'oldimage':
-				return 'oi_timestamp';
-			case 'fileid':
-				return 'file_id';
-			case 'logid':
-				return 'log_id';
-		}
-		throw new MWException( "Bad log URL param type!" );
 	}
 }
