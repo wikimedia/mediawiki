@@ -450,13 +450,12 @@ class IPBlockForm {
 
 			# Set *_deleted fields if requested
 			if( $this->BlockHideName ) {
-				self::suppressUserName( $this->BlockAddress, $userId );
+				self::suppressUserName( $this->BlockAddress, $userId, $reasonstr );
 			}
 
-			if( $this->BlockWatchUser &&
-				# Only show watch link when this is no range block
-				$block->mRangeStart == $block->mRangeEnd) {
-				$wgUser->addWatch ( Title::makeTitle( NS_USER, $this->BlockAddress ) );
+			# Only show watch link when this is no range block
+			if( $this->BlockWatchUser && $block->mRangeStart == $block->mRangeEnd ) {
+				$wgUser->addWatch( Title::makeTitle( NS_USER, $this->BlockAddress ) );
 			}
 			
 			# Block constructor sanitizes certain block options on insert
@@ -481,7 +480,20 @@ class IPBlockForm {
 		}
 	}
 	
-	public static function suppressUserName( $name, $userId ) {
+	public static function suppressUserName( $name, $userId, $reason = '' ) {
+		$user = User::newFromName( $name, false );
+		# Delete the user pages that exists
+		$title = $user->getUserPage();
+		if( ($id = $title->getArticleID(GAID_FOR_UPDATE)) ) {
+			$article = new Article( $title );
+			$article->doDeleteArticle( $reason, true /*suppress*/, $id );
+		}
+		# Delete the user talk pages that exists
+		$title = $user->getTalkPage();
+		if( $id = $title->getArticleID(GAID_FOR_UPDATE) ) {
+			$article = new Article( $title );
+			$article->doDeleteArticle( $reason, true /*suppress*/, $id );
+		}
 		$op = '|'; // bitwise OR
 		return self::setUsernameBitfields( $name, $userId, $op );
 	}
