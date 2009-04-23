@@ -2822,6 +2822,10 @@ Variants for Chinese language
 'exif-gpslongitude-e' => '東經',
 'exif-gpslongitude-w' => '西經',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => '海拔以上米數',
+'exif-gpsaltitude-1' => '海拔以下米數',
+
 'exif-gpsstatus-a' => '測量過程',
 'exif-gpsstatus-v' => '互動測量',
 
@@ -2832,6 +2836,11 @@ Variants for Chinese language
 'exif-gpsspeed-k' => '公里每小時',
 'exif-gpsspeed-m' => '英里每小時',
 'exif-gpsspeed-n' => '海里每小時(節)',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => '公里',
+'exif-gpsdestdistance-m' => '英里',
+'exif-gpsdestdistance-n' => '海里',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真方位',
