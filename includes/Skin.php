@@ -1013,10 +1013,13 @@ END;
 	}
 
 	function getUndeleteLink() {
-		global $wgUser, $wgContLang, $wgLang, $action;
-		if(	$wgUser->isAllowed( 'deletedhistory' ) &&
-			( ( $this->mTitle->getArticleId() == 0 ) || ( $action == 'history' ) ) &&
-			( $n = $this->mTitle->isDeleted() ) ){
+		global $wgUser, $wgContLang, $wgLang, $wgRequest;
+
+		$action = $wgRequest->getVal( 'action', 'view' );
+
+		if ( $wgUser->isAllowed( 'deletedhistory' ) &&
+			( $this->mTitle->getArticleId() == 0 || $action == 'history' ) &&
+			$n = $this->mTitle->isDeleted() ) {
 			if ( $wgUser->isAllowed( 'undelete' ) ) {
 				$msg = 'thisisdeleted';
 			} else {
