@@ -86,9 +86,8 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @param string $term - Raw search term
+	 * @param $term String: raw search term
 	 * @return MySQLSearchResultSet
-	 * @access public
 	 */
 	function searchText( $term ) {
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), true ) ) );
@@ -98,9 +97,8 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @param string $term - Raw search term
+	 * @param $term String: raw search term
 	 * @return MySQLSearchResultSet
-	 * @access public
 	 */
 	function searchTitle( $term ) {
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
@@ -110,8 +108,7 @@ class SearchMySQL extends SearchEngine {
 
 	/**
 	 * Return a partial WHERE clause to exclude redirects, if so set
-	 * @return string
-	 * @private
+	 * @return String
 	 */
 	function queryRedirect() {
 		if( $this->showRedirects ) {
@@ -123,8 +120,7 @@ class SearchMySQL extends SearchEngine {
 
 	/**
 	 * Return a partial WHERE clause to limit the search to the given namespaces
-	 * @return string
-	 * @private
+	 * @return String
 	 */
 	function queryNamespaces() {
 		if( is_null($this->namespaces) )
@@ -139,8 +135,7 @@ class SearchMySQL extends SearchEngine {
 
 	/**
 	 * Return a LIMIT clause to limit results on the query.
-	 * @return string
-	 * @private
+	 * @return String
 	 */
 	function queryLimit() {
 		return $this->db->limitResult( '', $this->limit, $this->offset );
@@ -149,8 +144,7 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Does not do anything for generic search engine
 	 * subclasses may define this though
-	 * @return string
-	 * @private
+	 * @return String
 	 */
 	function queryRanking( $filteredTerm, $fulltext ) {
 		return '';
@@ -159,9 +153,8 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Construct the full SQL query to do the search.
 	 * The guts shoulds be constructed in queryMain()
-	 * @param string $filteredTerm
-	 * @param bool $fulltext
-	 * @private
+	 * @param $filteredTerm String
+	 * @param $fulltext Boolean
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->queryMain( $filteredTerm, $fulltext ) . ' ' .
@@ -174,8 +167,8 @@ class SearchMySQL extends SearchEngine {
 
 	/**
 	 * Picks which field to index on, depending on what type of query.
-	 * @param bool $fulltext
-	 * @return string
+	 * @param $fulltext Boolean
+	 * @return String
 	 */
 	function getIndexField( $fulltext ) {
 		return $fulltext ? 'si_text' : 'si_title';
@@ -187,10 +180,9 @@ class SearchMySQL extends SearchEngine {
 	 * version; MySQL 3 and MySQL 4 have different capabilities
 	 * in their fulltext search indexes.
 	 *
-	 * @param string $filteredTerm
-	 * @param bool $fulltext
-	 * @return string
-	 * @private
+	 * @param $filteredTerm String
+	 * @param $fulltext Boolean
+	 * @return String
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
@@ -205,9 +197,9 @@ class SearchMySQL extends SearchEngine {
 	 * Create or update the search index record for the given page.
 	 * Title and text should be pre-processed.
 	 *
-	 * @param int $id
-	 * @param string $title
-	 * @param string $text
+	 * @param $id Integer
+	 * @param $title String
+	 * @param $text String
 	 */
 	function update( $id, $title, $text ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -224,8 +216,8 @@ class SearchMySQL extends SearchEngine {
 	 * Update a search index record's title only.
 	 * Title should be pre-processed.
 	 *
-	 * @param int $id
-	 * @param string $title
+	 * @param $id Integer
+	 * @param $title String
 	 */
     function updateTitle( $id, $title ) {
 		$dbw = wfGetDB( DB_MASTER );
