@@ -2287,6 +2287,15 @@ $1已被禁矣。爾是否改此置？',
 
 'exif-gaincontrol-0' => '無',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => '海上米',
+'exif-gpsaltitude-1' => '海下米',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => '千米',
+'exif-gpsdestdistance-m' => '哩',
+'exif-gpsdestdistance-n' => '浬',
+
 # External editor support
 'edit-externally'      => '以外部程式修此文',
 'edit-externally-help' => '（請閱[http://www.mediawiki.org/wiki/Manual:External_editors 安裝指引]以知詳情）',
