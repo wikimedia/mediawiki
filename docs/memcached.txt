@@ -56,7 +56,7 @@ To start the daemon manually, use something like:
   memcached -d -l 127.0.0.1 -p 11211 -m 64
 
 (to run in daemon mode, accessible only via loopback interface,
-on port 11000, using up to 64MB of memory)
+on port 11211, using up to 64MB of memory)
 
 In your LocalSettings.php file, set:
 
@@ -71,8 +71,8 @@ it has twice the memory of the others and you want to spread
 usage evenly), make its entry a subarray:
 
   $wgMemCachedServers = array(
-    "127.0.0.1:11000", # one gig on this box
-    array("192.168.0.1:11000", 2 ) # two gigs on the other box
+    "127.0.0.1:11211", # one gig on this box
+    array("192.168.0.1:11211", 2 ) # two gigs on the other box
   );
 
 == PHP client for memcached ==
