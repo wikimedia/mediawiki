@@ -1898,9 +1898,10 @@ $wgDiff3 = '/usr/bin/diff3';
 $wgDiff = '/usr/bin/diff';
 
 /**
- * Path to the GNU sed utility.
+ * Path to the GNU sed utility. Required by $wgDjvuTxt.
  */
-$wgSed = '/bin/sed';
+#$wgSed = '/bin/sed';
+$wgSed = null;
 
 /**
  * We can also compress text stored in the 'text' table. If this is set on, new
@@ -3540,7 +3541,7 @@ $wgDjvuRenderer = null;
 
 /**
  * Path of the djvutxt DJVU text extraction utility
- * Enable this and $wgDjvuDump to enable text layer extraction from djvu files
+ * Enable this and $wgSed, $wgDjvuDump to enable text layer extraction from djvu files
  */
 # $wgDjvuTxt = 'djvutxt';
 $wgDjvuTxt = null;
