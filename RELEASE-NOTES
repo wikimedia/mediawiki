@@ -171,6 +171,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to Special:Version
 * Added $wgExtPGAlteredFields to allow extensions to easily alter the data 
   type of columns when using the Postgres backend.
+* (bug 16950) Show move log when viewing/creating a deleted page
 
 
 === Bug fixes in 1.15 ===

@@ -541,24 +541,28 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * Set the log reader to return only entries of the given type.
 	 * Type restrictions enforced here
-	 * @param $type String: A log type ('upload', 'delete', etc)
+	 * @param $type String or array: Log types ('upload', 'delete', etc)
 	 */
-	private function limitType( $type ) {
+	private function limitType( $types ) {
 		global $wgLogRestrictions, $wgUser;
+		// If $types is not an array, make it an array
+		$types = (array)$types;
 		// Don't even show header for private logs; don't recognize it...
-		if( isset($wgLogRestrictions[$type]) && !$wgUser->isAllowed($wgLogRestrictions[$type]) ) {
-			$type = '';
+		foreach ( $types as $type ) {
+			if( isset( $wgLogRestrictions[$type] ) && !$wgUser->isAllowed($wgLogRestrictions[$type]) ) {
+				$types = array_diff( $types, array( $type ) );
+			}
 		}
-		// Don't show private logs to unpriviledged users.
+		// Don't show private logs to unprivileged users.
 		// Also, only show them upon specific request to avoid suprises.
-		$audience = $type ? 'user' : 'public';
+		$audience = $types ? 'user' : 'public';
 		$hideLogs = LogEventsList::getExcludeClause( $this->mDb, $audience );
 		if( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
 		}
-		if( $type ) {
-			$this->type = $type;
-			$this->mConds['log_type'] = $type;
+		if( $types ) {
+			$this->type = $types;
+			$this->mConds['log_type'] = $types;
 		}
 	}
 
