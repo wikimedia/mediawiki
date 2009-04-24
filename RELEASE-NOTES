@@ -425,6 +425,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18546) Added timestamp of new revision to action=edit output
 * (bug 18554) Also list hidden revisions in list=usercontribs for privileged
   users
+* (bug 13049) "API must be accessed from the primary script entry point" error 
 
 === Languages updated in 1.15 ===
 
