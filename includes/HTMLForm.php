@@ -591,7 +591,8 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 	
 		$valInSelect = false;
 		if ($value !== false)
-			$valInSelect = array_key_exists( $value, $this->mParams['options'] );
+			$valInSelect = in_array( $value,
+							HTMLFormField::flattenOptions($this->mParams['options']) );
 		
 		$selected = $valInSelect ? $value : 'other';
 		
