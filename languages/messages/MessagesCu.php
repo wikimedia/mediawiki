@@ -305,7 +305,7 @@ $messages = array(
 'prefs-watchlist'     => 'блюдє́ниꙗ',
 'searchresultshead'   => 'иска́ниѥ',
 'prefs-searchoptions' => 'иска́ниꙗ строи́',
-'files'               => 'дѣла́',
+'prefs-files'               => 'дѣла́',
 
 # Groups
 'group-user'       => 'по́льꙃєватєлє',

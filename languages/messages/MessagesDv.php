@@ -285,7 +285,7 @@ $messages = array(
 'mypreferences'  => 'މަގޭ ތަރުޖީހުތައް',
 'changepassword' => 'ސިއްރުބަސް ބަދަލުކުރައްވާ',
 'columns'        => 'ކޮލަންތައް:',
-'files'          => 'ފައިލުތައް',
+'prefs-files'          => 'ފައިލުތައް',
 
 # User rights
 'userrights'               => 'މެންބަރުގެ ހައްގުތަކުގެ އިންތިޒާމް',

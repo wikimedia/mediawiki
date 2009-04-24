@@ -427,7 +427,7 @@ $messages = array(
 'preferences'       => 'પસંદ',
 'mypreferences'     => 'મારી પસંદ',
 'skin-preview'      => 'ફેરફાર બતાવો',
-'datetime'          => 'તારીખ અને સમય',
+'prefs-datetime'          => 'તારીખ અને સમય',
 'prefs-watchlist'   => 'ધ્યાનસૂચિ',
 'searchresultshead' => 'શોધો',
 

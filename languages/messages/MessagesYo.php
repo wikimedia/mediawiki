@@ -525,10 +525,10 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'prefsnologin'         => 'Ẹ kò tíì wọlé',
 'prefsnologintext'     => 'Ẹ gbọ́dọ̀ <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} wọlé]</span> láti to àwọn ìfẹ́ràn oníṣe.',
 'changepassword'       => 'Ìyípadà ọ̀rọ̀ìpamọ́',
-'skin'                 => 'Skin (Àwọ̀)',
+'prefs-skin'                 => 'Skin (Àwọ̀)',
 'dateformat'           => 'Ìṣájúètò ọjọ́',
 'datedefault'          => 'Kò sí ìfẹ́ràn',
-'datetime'             => 'Ọjọ́ àti àkókò',
+'prefs-datetime'             => 'Ọjọ́ àti àkókò',
 'prefs-personal'       => 'Ọ̀rọ̀ nípa oníṣe',
 'prefs-rc'             => 'Àwọn àtúnṣe tuntun',
 'prefs-watchlist'      => 'Ìmójútó',
@@ -540,7 +540,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'localtime'            => 'Àkókò ìbílẹ̀:',
 'prefs-searchoptions'  => 'Àwọn ìyàn àwáàrí',
 'prefs-namespaces'     => 'Àwọn orúkọàyè',
-'files'                => 'Àwọn faili',
+'prefs-files'                => 'Àwọn faili',
 
 # Groups
 'group'               => 'Àkójọpọ̀:',

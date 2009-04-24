@@ -598,11 +598,11 @@ $messages = array(
 'preferences'             => 'Αγαπεμένα',
 'mypreferences'           => "Τ' εμά τ' αγαπεμένα",
 'changepassword'          => 'Άλλαξον σημάδιν',
-'skin'                    => 'Όψην',
+'prefs-skin'                    => 'Όψην',
 'skin-preview'            => 'Πρώτον τέρεμαν',
 'math'                    => 'Απόδοσην μαθηματικίων',
 'dateformat'              => 'Μορφή ημερομηνίας',
-'datetime'                => 'Ημερομηνίαν και ώραν',
+'prefs-datetime'                => 'Ημερομηνίαν και ώραν',
 'math_unknown_function'   => 'άγνωρος συνάρτησην',
 'math_lexing_error'       => 'σφάλμαν λεξικής ανάλυσης',
 'math_syntax_error'       => 'σφάλμαν σύνταξης',
@@ -614,7 +614,7 @@ $messages = array(
 'localtime'               => 'Τοπικόν χρόνον:',
 'timezoneregion-atlantic' => 'Ατλαντικόν Ωκεανός',
 'timezoneregion-pacific'  => 'Ειρηνικόν Ωκεανός',
-'files'                   => 'Αρχεία',
+'prefs-files'                   => 'Αρχεία',
 
 # User rights
 'userrights-groupsmember' => 'Μέλος τη:',

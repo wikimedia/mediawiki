@@ -86,6 +86,7 @@ CREATE TABLE /*_*/user (
   
   -- Newline-separated list of name=value defining the user
   -- preferences
+  -- Now obsolete in favour of user_properties table.
   user_options blob NOT NULL,
   
   -- This is a timestamp which is updated when a user
@@ -1268,5 +1269,13 @@ CREATE TABLE /*_*/valid_tag (
   vt_tag varchar(255) NOT NULL PRIMARY KEY
 ) /*$wgDBTableOptions*/;
 
+CREATE TABLE /*_*/user_properties(
+  up_user int not null,
+  up_property varbinary(32) not null,
+  up_value blob
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/user_properties_user_property on user_properties (up_user,up_property);
+CREATE INDEX /*i*/user_properties_property on user_properties (up_property);
 
 -- vim: sw=2 sts=2 et

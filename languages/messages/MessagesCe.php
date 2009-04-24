@@ -196,7 +196,7 @@ $messages = array(
 'mypreferences'   => 'сан настройки',
 'changepassword'  => 'Тешаман дош хийцар хьам',
 'prefs-watchlist' => 'тергалдеш таптарш',
-'textboxsize'     => 'Xийца',
+'prefs-editing'     => 'Xийца',
 
 # User rights
 'editinguser' => "Хийца юзер '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",

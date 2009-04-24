@@ -250,7 +250,7 @@ $messages = array(
 # Preferences page
 'preferences'       => 'Meinos brukjamaideineis',
 'mypreferences'     => '𐌼𐌴𐌹𐌽𐍉𐍃 𐌱𐍂𐌿𐌺𐌾𐌰',
-'skin'              => 'Seidofill',
+'prefs-skin'              => 'Seidofill',
 'skin-preview'      => 'Faúrsaiƕa',
 'saveprefs'         => 'Melja',
 'searchresultshead' => 'Sokeiþ',

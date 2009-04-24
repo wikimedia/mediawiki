@@ -393,7 +393,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'dateformat'        => 'Formatu tempu nian',
 'prefs-rc'          => 'Mudansa foufoun sira',
 'prefs-watchlist'   => 'Lista hateke',
-'textboxsize'       => 'Edita',
+'prefs-editing'       => 'Edita',
 'searchresultshead' => 'Buka',
 
 # User rights

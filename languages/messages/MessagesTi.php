@@ -103,7 +103,7 @@ $messages = array(
 'saveprefs'         => 'ኣቐምጥ',
 'searchresultshead' => 'ድሉይ',
 'savedprefs'        => 'ዘቕረብኩሞ መርኣይ ብትክክል ተቀሚጡ ኣሎ።',
-'files'             => 'ምስልታት',
+'prefs-files'             => 'ምስልታት',
 
 # Groups
 'group'       => 'ብሓበር:',

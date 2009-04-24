@@ -153,7 +153,7 @@ $messages = array(
 # Preferences page
 'preferences'       => 'zmaselnei',
 'mypreferences'     => 'zmaselnei liste',
-'textboxsize'       => 'ca galfi',
+'prefs-editing'       => 'ca galfi',
 'searchresultshead' => "tu'a le se sisku",
 'savedprefs'        => 'le do zmaselnei pu vreji',
 

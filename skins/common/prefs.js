@@ -90,11 +90,15 @@ function checkTimezone(tz, msg) {
 	}
 }
 
-function unhidetzbutton() {
-	var tzb = document.getElementById('guesstimezonebutton');
-	if (tzb) {
-		tzb.style.display = 'inline';
+function timezoneSetup() {
+	var tzSelect = document.getElementById( 'mw-input-timecorrection' );
+	var tzTextbox = document.getElementById( 'mw-input-timecorrection-other' );
+	
+	if (tzSelect && tzTextbox) {
+		addHandler( tzSelect, 'change', function(e) { updateTimezoneSelection(false); } );
+		addHandler( tzTextbox, 'blur', function(e) { updateTimezoneSelection(true); } );
 	}
+	
 	updateTimezoneSelection(false);
 }
 
@@ -112,53 +116,79 @@ function fetchTimezone() {
 	return tzString;
 }
 
-function guessTimezone(box) {
-	document.getElementsByName("wpHourDiff")[0].value = fetchTimezone();
+function guessTimezone() {
+	var textbox = document.getElementById("mw-input-timecorrection-other");
+	var selector = document.getElementById( 'mw-input-timecorrection' );
+	
+	selector.value = 'other';
+	textbox.value = fetchTimezone();
+	textbox.disabled = false; // The changed handler doesn't trip, obviously.
 	updateTimezoneSelection(true);
 }
 
 function updateTimezoneSelection(force_offset) {
-	var wpTimeZone = document.getElementsByName("wpTimeZone")[0];
-	var wpHourDiff = document.getElementsByName("wpHourDiff")[0];
-	var wpLocalTime = document.getElementById("wpLocalTime");
-	var wpServerTime = document.getElementsByName("wpServerTime")[0];
+	var selector = document.getElementById("mw-input-timecorrection");
+	
+	if (selector.value == 'guess') {
+		return guessTimezone();
+	}
+	
+	var textbox = document.getElementById( 'mw-input-timecorrection-other' );
+	var localtimeHolder = document.getElementById("wpLocalTime");
+	var servertime = document.getElementsByName("wpServerTime")[0].value;
 	var minDiff = 0;
+	
+	// Compatibility code.
+	if (!selector.value) selector.value = selector.options[selector.selectedIndex].value;
 
-	if (force_offset) wpTimeZone.selectedIndex = 1;
-	if (wpTimeZone.selectedIndex == 1) {
-		wpHourDiff.disabled = false;
-		var diffArr = wpHourDiff.value.split(':');
+	// Handle force_offset
+	if (force_offset) selector.value = 'other';
+	
+	// Get min_diff
+	if (selector.value == 'other') {
+		// Grab data from the textbox, parse it.
+		var diffArr = textbox.value.split(':');
 		if (diffArr.length == 1) {
+			// Specification is of the form [-]XX
 			minDiff = parseInt(diffArr[0], 10) * 60;
 		} else {
+			// Specification is of the form [-]XX:XX
 			minDiff = Math.abs(parseInt(diffArr[0], 10))*60 + parseInt(diffArr[1], 10);
 			if (parseInt(diffArr[0], 10) < 0) minDiff = -minDiff;
 		}
 	} else {
-		wpHourDiff.disabled = true;
-		var diffArr = wpTimeZone.options[wpTimeZone.selectedIndex].value.split('|');
+		// Grab data from the selector value
+		var diffArr = selector.value.split('|');
 		minDiff = parseInt(diffArr[1], 10);
 	}
+	
+	// Gracefully handle non-numbers.
 	if (isNaN(minDiff)) minDiff = 0;
-	var localTime = parseInt(wpServerTime.value, 10) + minDiff;
+	
+	// Determine local time from server time and minutes difference, for display.
+	var localTime = parseInt(servertime, 10) + minDiff;
+	
+	// Bring time within the [0,1440) range.
 	while (localTime < 0) localTime += 1440;
 	while (localTime >= 1440) localTime -= 1440;
 
+	// Split to hour and minute
 	var hour = String(Math.floor(localTime/60));
 	if (hour.length<2) hour = '0'+hour;
 	var min = String(localTime%60);
 	if (min.length<2) min = '0'+min;
-	changeText(wpLocalTime, hour+':'+min);
+	changeText(localtimeHolder, hour+':'+min);
 
-	if (wpTimeZone.selectedIndex != 1) {
+	// If the user selected from the drop-down, fill the offset field.
+	if (selector.value != 'other') {
 		hour = String(Math.abs(Math.floor(minDiff/60)));
 		if (hour.length<2) hour = '0'+hour;
 		if (minDiff < 0) hour = '-'+hour;
 		min = String(minDiff%60);
 		if (min.length<2) min = '0'+min;
-		wpHourDiff.value = hour+':'+min;
+		textbox.value = hour+':'+min;
 	}
 }
 
-hookEvent("load", unhidetzbutton);
-hookEvent("load", tabbedprefs);
+addOnloadHook(timezoneSetup);
+addOnloadHook(tabbedprefs);

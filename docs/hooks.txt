@@ -719,6 +719,10 @@ $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getLocalURL()
 
+'GetPreferences': modify user preferences
+$user: User whose preferences are being modified.
+&$preferences: Preferences description array, to be fed to an HTMLForm object
+
 'getUserPermissionsErrors': Add a permissions error when permissions errors are
 	checked for.  Use instead of userCan for most cases. Return false if the
 	user can't do it, and populate $result with the reason in the form of
@@ -1409,6 +1413,9 @@ $user: User to get rights for
 $ip: User's IP address
 &$blocked: Whether the user is blocked, to be modified by the hook
 
+'UserLoadAfterLoadFromSession': called to authenticate users on external/environmental means; occurs after session is loaded
+$user: user object being loaded
+
 'UserLoadDefaults': called when loading a default user
 $user: user object
 $name: user name
@@ -1421,8 +1428,9 @@ $user: user object
 $user: user object being loaded
 &$result: set this to a boolean value to abort the normal authentification process
 
-'UserLoadAfterLoadFromSession': called to authenticate users on external/environmental means; occurs after session is loaded
-$user: user object being loaded
+'UserLoadOptions': when user options/preferences are being loaded from the database.
+$user: User object
+&$options: Options, can be modified.
 
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
@@ -1462,6 +1470,10 @@ $talks: array of new talks page(s)
 
 'UserSaveSettings': called when saving user settings
 $user: User object
+
+'UserSaveOptions': Called just before saving user preferences/options.
+$user: User object
+&$options: Options, modifiable
 
 'UserSetCookies': called when setting user cookies
 $user: User object

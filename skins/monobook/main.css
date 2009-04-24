@@ -1015,10 +1015,6 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
 	cursor: default;
 	text-decoration: none;
 }
-#prefcontrol {
-	padding-top: 2em;
-	clear: both;
-}
 #preferences {
 	margin: 0;
 	border: 1px solid #aaa;
@@ -1045,15 +1041,16 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
 .mainLegend {
 	display: none;
 }
-div.prefsectiontip {
+td.htmlform-tip {
 	font-size: x-small;
 	padding: .2em 2em;
 	color: #666;
 }
-.btnSavePrefs {
+.mw-htmlform-submit {
 	font-weight: bold;
 	padding-left: .3em;
 	padding-right: .3em;
+	margin-right: 2em;
 }
 
 .preferences-login {

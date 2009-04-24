@@ -1477,7 +1477,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '212';
+$wgStyleVersion = '213';
 
 
 # Server-side caching:
@@ -2497,6 +2497,7 @@ $wgDefaultUserOptions = array(
 	'watchdeletion'           => 0,
 	'noconvertlink'           => 0,
 	'gender'                  => 'unknown',
+	'ccmeonemails'            => 0,
 );
 
 /** Whether or not to allow and use real name fields. Defaults to true. */
