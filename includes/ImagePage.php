@@ -697,7 +697,10 @@ EOT
 			$this->img->upgradeRow();
 			$this->img->purgeCache();
 		} else {
-			wfDebug( "ImagePage::doPurge no image\n" );
+			wfDebug( "ImagePage::doPurge no image for " . $this->img->getName() . "; limiting purge to cache only\n" );
+			// even if the file supposedly doesn't exist, force any cached information
+			// to be updated (in case the cached information is wrong)
+			$this->img->purgeCache();
 		}
 		parent::doPurge();
 	}
