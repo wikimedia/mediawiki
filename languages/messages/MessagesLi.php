@@ -765,12 +765,11 @@ De kèns al besjtaonde pazjena's verangere, of de kèns [[Special:UserLogin|dich
 'permissionserrors'                => 'Foute inne rèchter',
 'permissionserrorstext'            => 'Doe höbs gein rèchter om det te daon om de volgende {{PLURAL:$1|reje|rejer}}:',
 'permissionserrorstext-withaction' => 'Geer höb gein rech óm $2 óm de volgende {{PLURAL:$1|raej|raej}}:',
-'recreate-deleted-warn'            => "'''Waorsjuwing: Doe bis bezig mit 't aanmake van 'n pazjena die in 't verleje gewis is.'''
+'recreate-moveddeleted-warn'       => "'''Waorsjuwing: Doe bis bezig mit 't aanmake van 'n pazjena die in 't verleje gewis is.'''
 
 Euverwaeg of 't terech is dets te wiejer wèrks aan dees pazjena. Veur dien gemaak stuit hiejónger 't logbook eweggesjafde pazjena's veur dees pazjena:",
-'deleted-notice'                   => "Dees pazjena is eweggesjaf.
+'moveddeleted-notice'              => "Dees pazjena is eweggesjaf.
 Ter informatie weurt 't verwijderingslogbook van dees pazjena hiejónger weergegeve.",
-'deletelog-fulllog'                => 'Gans logbook betrachte',
 'edit-hook-aborted'                => "De bewèrking is aafgebroke door 'ne 'hook'.
 D'r is gein toelichting besjikbaar.",
 'edit-gone-missing'                => 'De pazjena is neet biegewirk.
@@ -1081,12 +1080,12 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'qbsettings-floatingleft'   => 'Links zjwevend',
 'qbsettings-floatingright'  => 'Rechs zjwevend',
 'changepassword'            => 'Wachwaord verangere',
-'prefs-skin'                      => '{{SITENAME}}-uterlik',
+'prefs-skin'                => '{{SITENAME}}-uterlik',
 'skin-preview'              => 'Veurbesjouwing',
-'prefs-math'                      => 'Mattemetik rendere',
+'prefs-math'                => 'Mattemetik rendere',
 'dateformat'                => 'Datumformaat',
 'datedefault'               => 'Gein veurkäör',
-'prefs-datetime'                  => 'Datum en tied',
+'prefs-datetime'            => 'Datum en tied',
 'math_failure'              => 'Parse misluk',
 'math_unknown_error'        => 'onbekènde fout',
 'math_unknown_function'     => 'onbekènde functie',
@@ -1108,7 +1107,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'saveprefs'                 => 'Veurkäöre opsjlaon',
 'resetprefs'                => 'Sjtandaardveurkäöre hersjtèlle',
 'restoreprefs'              => 'Terug nao standaardinstellinge',
-'prefs-editing'               => 'Aafmeitinge tèksveld',
+'prefs-editing'             => 'Aafmeitinge tèksveld',
 'prefs-edit-boxsize'        => "Aafmetinge van 't bewirkingsvinster.",
 'rows'                      => 'Regels',
 'columns'                   => 'Kolomme',
@@ -1145,7 +1144,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'prefs-namespaces'          => 'Naamruimte',
 'defaultns'                 => 'Zeuk sjtandaard in dees naomruumdes:',
 'default'                   => 'sjtandaard',
-'prefs-files'                     => 'Bestenj',
+'prefs-files'               => 'Bestenj',
 'prefs-custom-css'          => 'Persoonlijke CSS',
 'prefs-custom-js'           => 'Persoonlijke JS',
 

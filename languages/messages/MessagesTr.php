@@ -157,7 +157,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Son değişikliklerde gözlenmiş değişiklikleri gizle',
 'tog-newpageshidepatrolled'   => 'Denetlenmiş sayfaları yeni sayfalar listesinde gizle',
 'tog-extendwatchlist'         => 'İzleme listesini, sadece son değil, tüm değişiklikleri görmek için genişlet',
-'tog-usenewrc'                => 'Gelişmiş son değişiklikler (JavaScript)',
+'tog-usenewrc'                => 'Gelişmiş son değişiklikleri kullan (JavaScript gerekir)',
 'tog-numberheadings'          => 'Başlıkları otomatik numaralandır',
 'tog-showtoolbar'             => 'Değişiklik yaparken araç çubuğunu göster (JavaScript)',
 'tog-editondblclick'          => 'Sayfayı çift tıklayarak değiştirmeye başla (JavaScript)',
@@ -165,7 +165,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bölümleri bölüm başlığına sağ tıklayarak değiştirebilme olanağı ver (JavaScript)',
 'tog-showtoc'                 => 'İçindekiler tablosunu göster (3 taneden fazla başlığı olan sayfalar için)',
 'tog-rememberpassword'        => 'Parolayı hatırla',
-'tog-editwidth'               => 'Yazma alanı tam genişlikte olsun',
+'tog-editwidth'               => 'Yazma alanını tüm ekranı dolduracak şekilde genişlet',
 'tog-watchcreations'          => 'Yaratmış olduğum sayfaları izleme listeme ekle',
 'tog-watchdefault'            => 'Değişiklik yapılan sayfayı izleme listesine ekle',
 'tog-watchmoves'              => 'Taşıdığım sayfaları izleme listeme ekle',
@@ -539,6 +539,7 @@ Hesabınız açıldı.
 'username'                   => 'Kullanıcı adı:',
 'uid'                        => 'Kayıt numarası:',
 'prefs-memberingroups'       => '{{PLURAL:$1|grup|grup}} üyesi:',
+'prefs-registration'         => 'Kayıt zamanı:',
 'yourrealname'               => 'Gerçek isminiz:',
 'yourlanguage'               => 'Arayüz dili',
 'yourvariant'                => 'Sizce:',
@@ -784,13 +785,13 @@ Geri giderek varolan sayfayı değiştirebilirsiniz ya da kayıtlı iseniz [[Spe
 'permissionserrors'                => 'İzin hataları',
 'permissionserrorstext'            => 'Aşağıdaki {{PLURAL:$1|sebep|sebepler}}den dolayı, bunu yapmaya yetkiniz yok:',
 'permissionserrorstext-withaction' => 'Aşağıdaki {{PLURAL:$1|neden|nedenler}}den dolayı $2 yetkiniz yok:',
-'recreate-deleted-warn'            => "'''Uyarı: Daha önceden silinmiş bir sayfayı yeniden oluşturuyorsunuz.'''
+'recreate-moveddeleted-warn'       => "'''Uyarı: Daha önceden silinmiş bir sayfayı tekrar oluşturuyorsunuz.'''
 
-Bu sayfayı düzenlemeye devam ederken bunun uygun olup olmadığını düşünmelisiniz.
-Kolaylık olması açısından bu sayfanın silme kayıtları burada belirtilmiştir:",
-'deleted-notice'                   => 'Bu sayfa silindi.
-Bu sayfanın silinme kaydı aşağıda bulunmaktadır.',
-'deletelog-fulllog'                => 'Tüm kayıtları göster',
+Sayfayı değiştirmeye devam etmenin uygun olup olmadığını düşünmelisiniz.
+Sayfanın silme ve taşıma günlüğü uygunluk için burada verilmiştir:",
+'moveddeleted-notice'              => 'Bu sayfa silinmiş.
+Sayfanın silme ve taşıma günlüğü referans için aşağıda verilmiştir.',
+'log-fulllog'                      => 'Tam günlüğü gör',
 'edit-hook-aborted'                => 'Değişiklik çengelle durduruldu.
 Bir açıklama verilmedi.',
 'edit-gone-missing'                => 'Sayfa güncellenemiyor.
@@ -1103,12 +1104,12 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'qbsettings-floatingleft'   => 'Sola yaslanıyor',
 'qbsettings-floatingright'  => 'Sağa yaslanıyor',
 'changepassword'            => 'Parola değiştir',
-'prefs-skin'                      => 'Motif',
+'prefs-skin'                => 'Motif',
 'skin-preview'              => 'Ön izleme',
-'prefs-math'                      => 'Matematiksel semboller',
+'prefs-math'                => 'Matematiksel semboller',
 'dateformat'                => 'Tarih gösterimi',
 'datedefault'               => 'Tercih yok',
-'prefs-datetime'                  => 'Tarih ve saat',
+'prefs-datetime'            => 'Tarih ve saat',
 'math_failure'              => 'Ayrıştırılamadı',
 'math_unknown_error'        => 'bilinmeyen hata',
 'math_unknown_function'     => 'bilinmeyen fonksiyon',
@@ -1128,10 +1129,12 @@ ayarlamak için math/README'ye bakın.",
 'prefs-watchlist-edits-max' => '(maksimum sayı: 1000)',
 'prefs-misc'                => 'Diğer ayarlar',
 'prefs-resetpass'           => 'Parolayı değiştir',
+'prefs-email'               => 'Eposta seçenekleri',
+'prefs-rendering'           => 'Sayfa Oluşturulması',
 'saveprefs'                 => 'Değişiklikleri kaydet',
 'resetprefs'                => 'Ayarları ilk durumuna getir',
 'restoreprefs'              => 'Tüm varsayılan ayarları geri yükle',
-'prefs-editing'               => 'Sayfa yazma alanı',
+'prefs-editing'             => 'Sayfa yazma alanı',
 'prefs-edit-boxsize'        => 'Değiştirme penceresinin boyutu.',
 'rows'                      => 'Satır',
 'columns'                   => 'Sütun',
@@ -1168,9 +1171,10 @@ ayarlamak için math/README'ye bakın.",
 'prefs-namespaces'          => 'Alan adları',
 'defaultns'                 => 'Aramayı aşağıdaki seçili alanlarda yap.',
 'default'                   => 'orijinal',
-'prefs-files'                     => 'Dosyalar',
+'prefs-files'               => 'Dosyalar',
 'prefs-custom-css'          => 'Özel CSS',
 'prefs-custom-js'           => 'Özel JS',
+'prefs-reset-intro'         => 'Bu sayfayı tercihlerinizi site varsayılanına döndürmek için kullanabilirsiniz. Bu geri alınamaz.',
 
 # User rights
 'userrights'                  => 'Kullanıcı hakları yönetimi',
@@ -2521,7 +2525,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Uyarı!''': Bu dosya kötü niyetli kodlar içerebilir ve işletim sisteminize zarar verebilir.<hr />",
-'imagemaxsize'         => 'Resim açıklamalar sayfalarındaki resmin en büyük boyutu:',
+'imagemaxsize'         => "Resim boyutu sınırı:<br/>''(dosya açıklama sayfaları için)''",
 'thumbsize'            => 'Küçük boyut:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',
 'file-info'            => '(dosya boyutu: $1, MIME tipi: $2)',
@@ -2844,6 +2848,10 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-gpslongitude-e' => 'Doğu boylamı',
 'exif-gpslongitude-w' => 'Batı boylamı',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metre deniz seviyesinden yüksekte',
+'exif-gpsaltitude-1' => 'Metre deniz seviyesinin altında',
+
 'exif-gpsstatus-a' => 'Ölçüm devam ediyor',
 'exif-gpsstatus-v' => 'Ölçüm işlerliği',
 
@@ -2854,6 +2862,11 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-gpsspeed-k' => 'km/s',
 'exif-gpsspeed-m' => 'Mil/saat',
 'exif-gpsspeed-n' => 'Deniz mili',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometre',
+'exif-gpsdestdistance-m' => 'Mil',
+'exif-gpsdestdistance-n' => 'Deniz mili',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Gerçek yönü',
@@ -3095,5 +3108,15 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'dberr-usegoogle'   => 'Bu zaman zarfında Google ile aramayı deneyebilirsiniz.',
 'dberr-outofdate'   => 'İçeriğimizin onların dizinlerinde güncel olmayabileceğini dikkate alın.',
 'dberr-cachederror' => 'Aşağıdaki istenen sayfanın önbellekteki bir kopyasıdır, ve güncel olmayabilir.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Girdinizin bir kısmıyla ilgili sorunlar var',
+'htmlform-select-badoption'    => 'Belirttiğiniz değer geçerli bir seçenek değil.',
+'htmlform-int-invalid'         => 'Belirttiğiniz değer bir tamsayı değil.',
+'htmlform-int-toolow'          => "Belirttiğiniz değer asgari $1'in altında",
+'htmlform-int-toohigh'         => "Belirttiğiniz değer azami $1'in üstünde",
+'htmlform-submit'              => 'Gönder',
+'htmlform-reset'               => 'Değişiklikleri geri al',
+'htmlform-selectorother-other' => 'Diğer',
 
 );

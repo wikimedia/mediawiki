@@ -666,13 +666,12 @@ Te võite pöörduda tagasi ja toimetada olemasolevat lehekülge või [[Special:
 'permissionserrors'                => 'Viga õigustes',
 'permissionserrorstext'            => 'Teil ei ole õigust seda teha {{PLURAL:$1|järgmisel põhjusel|järgmistel põhjustel}}:',
 'permissionserrorstext-withaction' => 'Sul pole piisavalt õigusi selleks, et $2, {{PLURAL:$1|järgneval põhjusel|järgnevatel põhjustel}}:',
-'recreate-deleted-warn'            => "'''Hoiatus: Te loote uuesti lehte, mis on varem kustutatud.'''
+'recreate-moveddeleted-warn'       => "'''Hoiatus: Te loote uuesti lehte, mis on varem kustutatud.'''
 
 Kaaluge, kas lehe uuesti loomine on kohane.
 Lehe eelnevad kustutamised:",
-'deleted-notice'                   => 'See lehekülg on kustutatud.
+'moveddeleted-notice'              => 'See lehekülg on kustutatud.
 Allpool on esitatud lehekülje kustutamislogi.',
-'deletelog-fulllog'                => 'Vaata täielikku logi',
 'edit-gone-missing'                => 'Polnud võimalik lehekülge uuendada.
 Tundub, et see on kustutatud.',
 'edit-conflict'                    => 'Redigeerimiskonflikt.',
@@ -859,12 +858,12 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'qbsettings-floatingleft'   => 'Ujuvalt vasakul',
 'qbsettings-floatingright'  => 'Ujuvalt paremal',
 'changepassword'            => 'Muuda parool',
-'prefs-skin'                      => 'Kujundus',
+'prefs-skin'                => 'Kujundus',
 'skin-preview'              => 'Eelvaade',
-'prefs-math'                      => 'Valemite näitamine',
+'prefs-math'                => 'Valemite näitamine',
 'dateformat'                => 'Kuupäeva formaat',
 'datedefault'               => 'Eelistus puudub',
-'prefs-datetime'                  => 'Kuupäev ja kellaaeg',
+'prefs-datetime'            => 'Kuupäev ja kellaaeg',
 'math_failure'              => 'Arusaamatu süntaks',
 'math_unknown_error'        => 'Tundmatu viga',
 'math_unknown_function'     => 'Tundmatu funktsioon',
@@ -881,7 +880,7 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'prefs-resetpass'           => 'Muuda parooli',
 'saveprefs'                 => 'Salvesta eelistused',
 'resetprefs'                => 'Lähtesta eelistused',
-'prefs-editing'               => 'Redigeerimisseaded',
+'prefs-editing'             => 'Redigeerimisseaded',
 'prefs-edit-boxsize'        => 'Toimetamise akna suurus.',
 'rows'                      => 'Redaktoriakna ridade arv:',
 'columns'                   => 'Veergude arv',
@@ -914,7 +913,7 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'prefs-namespaces'          => 'Nimeruumid',
 'defaultns'                 => 'Vaikimisi otsi järgmistest nimeruumidest:',
 'default'                   => 'vaikeväärtus',
-'prefs-files'                     => 'Failid',
+'prefs-files'               => 'Failid',
 
 # User rights
 'userrights'               => 'Kasutaja õiguste muutmine',

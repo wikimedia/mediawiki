@@ -173,15 +173,15 @@ $messages = array(
 'preferences'        => 'Түзөө',
 'changepassword'     => 'Сырсөздү өзгөртүү',
 'dateformat'         => 'Датанын форматы',
-'prefs-datetime'           => 'Дата жана убакыт',
+'prefs-datetime'     => 'Дата жана убакыт',
 'math_unknown_error' => 'белгисиз ката',
 'prefs-rc'           => 'Соңку өзгөрүүлөр',
 'prefs-watchlist'    => 'Байкоо тизме',
 'saveprefs'          => 'Сактап кой',
-'prefs-editing'        => 'Оңдоо',
+'prefs-editing'      => 'Оңдоо',
 'searchresultshead'  => 'Издөө',
 'localtime'          => 'Жергиликтүү убакыт',
-'prefs-files'              => 'Файлдар',
+'prefs-files'        => 'Файлдар',
 
 # Groups
 'group'            => 'Топ:',

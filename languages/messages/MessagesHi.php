@@ -663,7 +663,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'permissionserrors'                => 'अधिकारोंमें गलती',
 'permissionserrorstext'            => 'निम्नलिखित {{PLURAL:$1|कारण|कारणोंसे}} आपको ऐसा करने की अनुमति नहीं हैं:',
 'permissionserrorstext-withaction' => 'आपको $2 की अनुमति नहीं हैं, निम्नलिखित {{PLURAL:$1|कारण के लिये|कारणोंके लिये}}:',
-'recreate-deleted-warn'            => "'''चेतावनी: आप एक पहले से मिटाये गये पृष्ठ को पुनर्निर्मित कर रहे हैं।'''
+'recreate-moveddeleted-warn'       => "'''चेतावनी: आप एक पहले से मिटाये गये पृष्ठ को पुनर्निर्मित कर रहे हैं।'''
 
 आप को विचार करना चाहिये क्या इस पृष्ठ का संपादन चालू रखना उचित होगा।
 इस पृष्ट को मिटाने का अभिलेख/प्रचालेख सुविधा के लिये उपलब्ध कराया गया है:",
@@ -867,12 +867,12 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'qbsettings-floatingleft'  => 'अस्थिर बाईं तरफ़',
 'qbsettings-floatingright' => 'अस्थिर दाहिनी तरफ़',
 'changepassword'           => 'कूटशब्द बदलें',
-'prefs-skin'                     => 'त्वचा',
+'prefs-skin'               => 'त्वचा',
 'skin-preview'             => 'झलक',
-'prefs-math'                     => 'गणित',
+'prefs-math'               => 'गणित',
 'dateformat'               => 'दिनांक प्रारूप',
 'datedefault'              => 'खा़स पसंद नहीं',
-'prefs-datetime'                 => 'दिनांक तथा समय',
+'prefs-datetime'           => 'दिनांक तथा समय',
 'math_failure'             => 'पार्स नहीं कर पायें',
 'math_unknown_error'       => 'अपरिचीत समस्या',
 'math_unknown_function'    => 'अज्ञात कार्य',
@@ -892,7 +892,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'prefs-misc'               => 'अन्य',
 'saveprefs'                => 'संजोयें',
 'resetprefs'               => 'ना संजोये गये बदलाव रद्द करें',
-'prefs-editing'              => 'संपादन',
+'prefs-editing'            => 'संपादन',
 'rows'                     => 'कतारें:',
 'columns'                  => 'कॉलम:',
 'searchresultshead'        => 'खोज',
@@ -914,7 +914,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'prefs-namespaces'         => 'नामस्थान',
 'defaultns'                => 'इन नामस्थानोंमें हमेशा खोजें:',
 'default'                  => 'अविचल',
-'prefs-files'                    => 'फ़ाईलें',
+'prefs-files'              => 'फ़ाईलें',
 
 # User rights
 'userrights'                  => 'सदस्य अधिकार व्यवस्थापन',

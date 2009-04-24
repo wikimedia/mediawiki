@@ -753,13 +753,12 @@ Blokeatu zuen administratzaileak honako azalpena eman zuen: $1'''",
 'permissionserrors'                => 'Baimen erroreak',
 'permissionserrorstext'            => 'Ez duzu hori egiteko baimenik, hurrengo {{PLURAL:$1|arrazoia dela eta|arrazoiak direla eta}}:',
 'permissionserrorstext-withaction' => 'Ez duzu $2 egiteko eskumenik, honako {{PLURAL:$1|arrazoia dela eta:|arrazoiak direla eta:}}',
-'recreate-deleted-warn'            => "'''Oharra: Lehenago ezabatutako orrialdea birsortzen ari zara.'''
+'recreate-moveddeleted-warn'       => "'''Oharra: Lehenago ezabatutako orrialdea birsortzen ari zara.'''
 
 Pentsatu ea orrialde hau editatzen jarraitzeak zentzurik baduen.
 Hemen duzu orrialde honen ezabaketa erregistroa badaezpada ere:",
-'deleted-notice'                   => 'Orrialde hau ezabatu da.
+'moveddeleted-notice'              => 'Orrialde hau ezabatu da.
 Orrialdearen ezabatze loga behean agertzen da erreferentzia gisa.',
-'deletelog-fulllog'                => 'Log osoa ikusi',
 'edit-hook-aborted'                => 'Gehigarriak aldaketa ezeztatu du.
 Ez du azalpenik eman.',
 'edit-gone-missing'                => 'Ezin da orria eguneratu. Ezabatu omen dute.',
@@ -1062,12 +1061,12 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'qbsettings-floatingleft'   => 'Ezkerrean mugikor',
 'qbsettings-floatingright'  => 'Eskubian flotatzen',
 'changepassword'            => 'Pasahitza aldatu',
-'prefs-skin'                      => 'Itxura',
+'prefs-skin'                => 'Itxura',
 'skin-preview'              => 'Aurrebista',
-'prefs-math'                      => 'Formulak',
+'prefs-math'                => 'Formulak',
 'dateformat'                => 'Data formatua',
 'datedefault'               => 'Hobespenik ez',
-'prefs-datetime'                  => 'Data eta ordua',
+'prefs-datetime'            => 'Data eta ordua',
 'math_failure'              => 'Interpretazio errorea',
 'math_unknown_error'        => 'errore ezezaguna',
 'math_unknown_function'     => 'funtzio ezezaguna',
@@ -1089,7 +1088,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'saveprefs'                 => 'Gorde',
 'resetprefs'                => 'Hasieratu',
 'restoreprefs'              => 'Konfigurazio lehenetsi guztiak berrezarri',
-'prefs-editing'               => 'Aldatzen',
+'prefs-editing'             => 'Aldatzen',
 'prefs-edit-boxsize'        => 'Edizio lehioaren tamaina.',
 'rows'                      => 'Lerroak:',
 'columns'                   => 'Zutabeak:',
@@ -1126,7 +1125,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'prefs-namespaces'          => 'Izen-tarteak',
 'defaultns'                 => 'Izen-tarte hauetan bilatu lehenetsitzat:',
 'default'                   => 'lehenetsia',
-'prefs-files'                     => 'Fitxategiak',
+'prefs-files'               => 'Fitxategiak',
 'prefs-custom-css'          => 'CSS pertsonalizatua',
 'prefs-custom-js'           => 'JS pertsonalizatua',
 

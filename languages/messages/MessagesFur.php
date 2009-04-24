@@ -554,11 +554,11 @@ L'aministradôr che al à blocât la base di dâts al à ufiert chest spiegazion
 'nocreate-loggedin'                => 'No tu âs i permès che a coventin par creâ gnovis pagjinis.',
 'permissionserrors'                => 'Erôr tai permès',
 'permissionserrorstext-withaction' => 'No tu âs i permès che a coventin par $2, {{PLURAL:$1|par il motîf|pai motîfs}} ca sot:',
-'recreate-deleted-warn'            => "'''Atenzion: tu stâs par tornâ a creâ une pagjine che e je stade eliminade timp fa.'''
+'recreate-moveddeleted-warn'       => "'''Atenzion: tu stâs par tornâ a creâ une pagjine che e je stade eliminade timp fa.'''
 
 Siguriti che sedi pardabon oportun lâ indevant cun la modifiche di cheste pagjine.
 Ve ca par comoditât l'elenc des eliminazions precedentis par cheste pagjine:",
-'deleted-notice'                   => 'Cheste pagjine e je stade eliminade.
+'moveddeleted-notice'              => 'Cheste pagjine e je stade eliminade.
 Il regjistri di eliminazion pe pagjine al ven mostrât ca sot par informazion.',
 'edit-no-change'                   => 'Il cambiament al è stât ignorât parcè che no tu âs cambiât nuie tal test.',
 
@@ -671,12 +671,12 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'qbsettings-floatingleft'   => 'Flutuant a çampe',
 'qbsettings-floatingright'  => 'Flutuant a diestre',
 'changepassword'            => 'Gambie peraule clâf',
-'prefs-skin'                      => 'Mascare',
+'prefs-skin'                => 'Mascare',
 'skin-preview'              => 'Anteprime',
-'prefs-math'                      => 'Matematiche',
+'prefs-math'                => 'Matematiche',
 'dateformat'                => 'Formât de date',
 'datedefault'               => 'Nissune preference',
-'prefs-datetime'                  => 'Date e ore',
+'prefs-datetime'            => 'Date e ore',
 'prefs-personal'            => 'Dâts utents',
 'prefs-rc'                  => 'Ultins cambiaments & stubs',
 'prefs-watchlist'           => 'Tignudis di voli',
@@ -689,7 +689,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'saveprefs'                 => 'Salve lis preferencis',
 'resetprefs'                => 'Predeterminât',
 'restoreprefs'              => 'Torne a lis impostazions predeterminadis',
-'prefs-editing'               => 'Cambiament',
+'prefs-editing'             => 'Cambiament',
 'prefs-edit-boxsize'        => 'Dimensions dal barcon pai cambiaments.',
 'rows'                      => 'Riis',
 'columns'                   => 'Colonis:',
@@ -716,7 +716,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'prefs-namespaces'          => 'Spazis dai nons',
 'defaultns'                 => 'Cîr in chescj spazis dai nons se no specifichi nuialtri:',
 'default'                   => 'predeterminât',
-'prefs-files'                     => 'Files',
+'prefs-files'               => 'Files',
 
 # User rights
 'editinguser'             => "Cambiament dai dirits par l'utent '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",

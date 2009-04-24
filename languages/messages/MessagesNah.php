@@ -501,9 +501,8 @@ Occeppa xicalaqui niman ticmatīz.',
 'permissionserrors'                => 'Huelītiliztechcopa ahcuallōtl',
 'permissionserrorstext'            => 'Ahmo tihuelīti quichīhua inōn, inīn {{PLURAL:$1|īxtlamatilizpampa|īxtlamatilizpampa}}:',
 'permissionserrorstext-withaction' => 'Ahmo tiquihuelīti $2 inīn {{PLURAL:$1|īxtlamatilizpampa|īxtlamatilizpampa}}:',
-'deleted-notice'                   => 'Inīn zāzanilli ōmopolo.
+'moveddeleted-notice'              => 'Inīn zāzanilli ōmopolo.
 Tlapololiztli tlahcuilōlloh cah tlani.',
-'deletelog-fulllog'                => 'Xiquittāz mochi',
 'edit-gone-missing'                => 'Ahmo huelīti yancuīya zāzanilli.
 Hueliz ōmopolo.',
 'edit-conflict'                    => 'Tlapatlaliztli yāōyōtōn',
@@ -643,10 +642,10 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'qbsettings-none'       => 'Ahtlein',
 'changepassword'        => 'Ticpatlāz motlahtōlichtacāyo',
 'skin-preview'          => 'Xiquitta quemeh yez',
-'prefs-math'                  => 'Tlapōhualmatiliztli',
+'prefs-math'            => 'Tlapōhualmatiliztli',
 'dateformat'            => 'Cāuhtiliztli iuhcāyōtl',
 'datedefault'           => 'Ayāc tlanequiliztli',
-'prefs-datetime'              => 'Cāuhtiliztli īhuān cāhuitl',
+'prefs-datetime'        => 'Cāuhtiliztli īhuān cāhuitl',
 'prefs-personal'        => 'Motlācatlanōnōtzaliz',
 'prefs-rc'              => 'Yancuīc tlapatlaliztli',
 'prefs-watchlist'       => 'Tlachiyaliztli',
@@ -655,7 +654,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'prefs-misc'            => 'Zāzo',
 'prefs-resetpass'       => 'Ticpatlāz motlahtōlichtacāyo',
 'saveprefs'             => 'Ticpiyāz',
-'prefs-editing'           => 'Tlapatlaliztli',
+'prefs-editing'         => 'Tlapatlaliztli',
 'rows'                  => 'Pāntli:',
 'searchresultshead'     => 'Tlatēmoliztli',
 'contextlines'          => 'Pāntli tlahtōltechcopa:',
@@ -666,7 +665,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'prefs-namespaces'      => 'Tōcātzin',
 'defaultns'             => 'Tlatēmōz inīn tōcātzimpan ic default:',
 'default'               => 'ic default',
-'prefs-files'                 => 'Tlahcuilōlli',
+'prefs-files'           => 'Tlahcuilōlli',
 
 # User rights
 'userrights-user-editname' => 'Xihcuiloa cē tlatequitiltilīltōcāitl:',

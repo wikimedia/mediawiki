@@ -385,7 +385,7 @@ Tı ma ri soz dano ki tı nuşte xo oricinali nuşt, ya zi tı yew dokumantê um
 'template-semiprotected'           => '(nimey ena pele kılit biya)',
 'hiddencategories'                 => 'Ena pela bınê {{PLURAL:$1|1 hidden category|$1 categoriyan nımne}}:',
 'permissionserrorstext-withaction' => 'Desturê to be $2 çıniyo, semedê {{PLURAL:$1|ena sebebi|enê sebeban}} ra:',
-'deleted-notice'                   => 'Ma ena pele wederna.
+'moveddeleted-notice'              => 'Ma ena pele wederna.
 Qe referansi, logê wedernayışi bın dı mocnayiya.',
 
 # History pages
@@ -462,7 +462,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefs-watchlist' => 'Lista seyr-kerdışi',
 'saveprefs'       => 'Qeyd ke',
 'timezonelegend'  => 'Warey saete',
-'prefs-files'           => 'Dosyey',
+'prefs-files'     => 'Dosyey',
 
 # Groups
 'group-sysop' => 'İdarekaran',

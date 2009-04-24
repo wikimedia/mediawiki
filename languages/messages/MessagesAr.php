@@ -1074,12 +1074,11 @@ $2',
 'permissionserrors'                => 'أخطاء السماحات',
 'permissionserrorstext'            => 'لا تمتلك الصلاحية لفعل هذا، {{PLURAL:$1|للسبب التالي|للأسباب التالية}}:',
 'permissionserrorstext-withaction' => 'أنت لا تملك الصلاحيات ل$2، لل{{PLURAL:$1|سبب|أسباب}} التالية:',
-'recreate-deleted-warn'            => "'''تحذير: أنت تقوم بإعادة إنشاء صفحة سبق حذفها.'''
+'recreate-moveddeleted-warn'       => "'''تحذير: أنت تقوم بإعادة إنشاء صفحة سبق حذفها.'''
 
 يجب عليك التيقن من أن الاستمرار بتحرير هذه الصفحة ملائم.
 سجل الحذف لهذه الصفحة معروض هنا:",
-'deleted-notice'                   => 'هذه الصفحة تم حذفها. سجل الحذف للصفحة معروض بالأسفل كمرجع.',
-'deletelog-fulllog'                => 'عرض السجل الكامل',
+'moveddeleted-notice'              => 'هذه الصفحة تم حذفها. سجل الحذف للصفحة معروض بالأسفل كمرجع.',
 'edit-hook-aborted'                => 'التعديل تم تركه بواسطة الخطاف.
 لم يعط تفسيرا.',
 'edit-gone-missing'                => 'لم يمكن تحديث الصفحة.
@@ -1396,12 +1395,12 @@ $2',
 'qbsettings-floatingleft'   => 'حر لليسار',
 'qbsettings-floatingright'  => 'حر لليمين',
 'changepassword'            => 'غير كلمة السر',
-'prefs-skin'                      => 'واجهة',
+'prefs-skin'                => 'واجهة',
 'skin-preview'              => 'عرض',
-'prefs-math'                      => 'رياضيات',
+'prefs-math'                => 'رياضيات',
 'dateformat'                => 'صيغة التاريخ',
 'datedefault'               => 'لا تفضيل',
-'prefs-datetime'                  => 'وقت وتاريخ',
+'prefs-datetime'            => 'وقت وتاريخ',
 'math_failure'              => 'خطأ رياضيات',
 'math_unknown_error'        => 'خطأ غير معروف',
 'math_unknown_function'     => 'وظيفة غير معروفة',
@@ -1425,7 +1424,7 @@ $2',
 'saveprefs'                 => 'حفظ',
 'resetprefs'                => 'إزالة التغييرات غير المحفوظة',
 'restoreprefs'              => 'استرجاع كل الإعدادات الافتراضية',
-'prefs-editing'               => 'أبعاد صندوق النصوص',
+'prefs-editing'             => 'أبعاد صندوق النصوص',
 'prefs-edit-boxsize'        => 'حجم نافذة التحرير.',
 'rows'                      => 'صفوف:',
 'columns'                   => 'أعمدة:',
@@ -1462,7 +1461,7 @@ $2',
 'prefs-namespaces'          => 'أسماء النطاقات',
 'defaultns'                 => 'ابحث في هذه النطاقات افتراضيا:',
 'default'                   => 'افتراضي',
-'prefs-files'                     => 'ملفات',
+'prefs-files'               => 'ملفات',
 'prefs-custom-css'          => 'CSS مخصص',
 'prefs-custom-js'           => 'جافاسكريبت مخصص',
 
@@ -3188,6 +3187,10 @@ $1',
 'exif-gpslongitude-e' => 'خط الطول الشرقي',
 'exif-gpslongitude-w' => 'خط الطول الغربي',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'متر فوق سطح البحر',
+'exif-gpsaltitude-1' => 'متر تحت سطح البحر',
+
 'exif-gpsstatus-a' => 'عملية القياس الحالية',
 'exif-gpsstatus-v' => 'شمول القياس',
 
@@ -3198,6 +3201,11 @@ $1',
 'exif-gpsspeed-k' => 'كيلومتر في الساعة',
 'exif-gpsspeed-m' => 'ميل في الساعة',
 'exif-gpsspeed-n' => 'عقد',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'كيلومتر',
+'exif-gpsdestdistance-m' => 'ميل',
+'exif-gpsdestdistance-n' => 'ميل بحري',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'الاتجاه الحقيقي',

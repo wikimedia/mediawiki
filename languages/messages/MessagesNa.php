@@ -77,7 +77,7 @@ $messages = array(
 'powersearch'    => 'Anani ko',
 
 # Preferences page
-'prefs-skin'              => 'Witsin',
+'prefs-skin'        => 'Witsin',
 'searchresultshead' => 'Anani ko',
 
 # Recent changes

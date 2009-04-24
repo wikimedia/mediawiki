@@ -707,12 +707,11 @@ Sèl itilizatè yo ki genyen estati administratè kapab modifye l.'''",
 'permissionserrors'                => 'Erè nan pèmisyon yo',
 'permissionserrorstext'            => 'Ou pa gen otorizasyon pou fè operasyon ke ou mande a pou {{PLURAL:$1|rezon sa|rezon sa yo}} :',
 'permissionserrorstext-withaction' => 'Ou pa otorize pou $2, pou {{PLURAL:$1|rezon sa|rezon sa yo}} :',
-'recreate-deleted-warn'            => "'''Atansyon : ou ap kreye yon pak ki te efase deja.'''
+'recreate-moveddeleted-warn'       => "'''Atansyon : ou ap kreye yon pak ki te efase deja.'''
 
 Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou konnene poukisa efasman yo te fèt anba) :s :",
-'deleted-notice'                   => 'Paj sa efase.
+'moveddeleted-notice'              => 'Paj sa efase.
 Sistèm an ap montre, anba paj sa, jounal tout vèsyon paj an ki efase pou sèvi tankou referans.',
-'deletelog-fulllog'                => 'Wè istorik, jounal konplè pou paj sa',
 
 # Parser/template warnings
 'post-expand-template-inclusion-category' => 'Paj yo ki genyen twop modèl anndan yo',

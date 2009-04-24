@@ -262,42 +262,42 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō [[Special:UserLogi
 'sig_tip'         => 'Þín namansegn mid tídstempunge',
 
 # Edit pages
-'summary'                => 'Scortnes:',
-'minoredit'              => 'Þēos is lȳtlu ādihtung',
-'savearticle'            => 'Sparian tramet',
-'preview'                => 'Forescēawian',
-'showpreview'            => 'Forescēawian',
-'whitelistedittitle'     => 'Inmeldunge behófod tó ádihtenne',
-'whitelistedittext'      => 'Þu scealt $1 tó ádihtenne trametas.',
-'loginreqlink'           => 'inmeldian',
-'loginreqpagetext'       => 'Þū scealt $1 tō scēawienne view ōðre trametas.',
-'accmailtitle'           => 'Gelēafnesword gesended.',
-'accmailtext'            => "Þæt Gelēafnesword for '$1' wearþ gesend tō $2.",
-'newarticle'             => '(Nīwe)',
-'newarticletext'         => "Þu hæfst bende tō tramete gefolgod þe nū gīet ne stendeþ.
+'summary'                    => 'Scortnes:',
+'minoredit'                  => 'Þēos is lȳtlu ādihtung',
+'savearticle'                => 'Sparian tramet',
+'preview'                    => 'Forescēawian',
+'showpreview'                => 'Forescēawian',
+'whitelistedittitle'         => 'Inmeldunge behófod tó ádihtenne',
+'whitelistedittext'          => 'Þu scealt $1 tó ádihtenne trametas.',
+'loginreqlink'               => 'inmeldian',
+'loginreqpagetext'           => 'Þū scealt $1 tō scēawienne view ōðre trametas.',
+'accmailtitle'               => 'Gelēafnesword gesended.',
+'accmailtext'                => "Þæt Gelēafnesword for '$1' wearþ gesend tō $2.",
+'newarticle'                 => '(Nīwe)',
+'newarticletext'             => "Þu hæfst bende tō tramete gefolgod þe nū gīet ne stendeþ.
 Tō scieppene þone tramet, onginn þyddan in þǣre boxe under (sēo þone [[{{MediaWiki:Helppage}}|helptramet]] for mā gefrǣge).
 Gif þu hider misfōn cōme, cnoca þā þīnne webbscēaweres '''on bæc''' cnæpp.",
-'usercssjsyoucanpreview' => "'''Rǣd:''' Brūc þone 'Forescēawian' cnæpp tō āfandienne þīne nīwe css/js beforan sparunge.",
-'updated'                => '(Ednīwod)',
-'editingcomment'         => 'Ādihtung $1 (ymbsprǣc)',
-'yourtext'               => 'Þīn traht',
-'editingold'             => "'''WARNUNG: Þu ādihtest ealde fadunge þisses trametes.
+'usercssjsyoucanpreview'     => "'''Rǣd:''' Brūc þone 'Forescēawian' cnæpp tō āfandienne þīne nīwe css/js beforan sparunge.",
+'updated'                    => '(Ednīwod)',
+'editingcomment'             => 'Ādihtung $1 (ymbsprǣc)',
+'yourtext'                   => 'Þīn traht',
+'editingold'                 => "'''WARNUNG: Þu ādihtest ealde fadunge þisses trametes.
 Gif þu hine sparie, ǣniga onwendunga gemacod siþþan þisse fadunge bēoþ sōðes forloren.'''",
-'yourdiff'               => 'Tōdǣlednessa',
-'copyrightwarning2'      => "Bidde macie nōt þæt ealla forðunga tō {{SITENAME}}
+'yourdiff'                   => 'Tōdǣlednessa',
+'copyrightwarning2'          => "Bidde macie nōt þæt ealla forðunga tō {{SITENAME}}
 mæg bēon ādihted, gewended, oþþe āfyrðed fram ōðrum forðerum.
 Gif þu nelt þīne wrītunge tō bēonne ādihtod unmildheortlīce, þonne ne þafie hīe hēr.<br />
 Þu behǣtst ēac þæt þu selfa write þis, oþþe efenlǣhtest of sumre
 gemǣnscipes āgnunge oþþe gelīcum frēom horde (sēo $1 for āscungum).
 '''NE ÞAFIE EFENLǢHTSCIELDED WEORC BŪTAN GELĪEFNESSE!'''",
-'longpagewarning'        => 'WARNUNG: Þes tramet is $1 kilobyta lang; sume
+'longpagewarning'            => 'WARNUNG: Þes tramet is $1 kilobyta lang; sume
 webbscēaweras hæbben earfoðu mid þȳ þe hīe ādihtaþ trametas nēa oþþe lengran þonne 32kb.
 Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
-'templatesused'          => 'Ongelīcnessa gebrȳcda on þissum tramete:',
-'template-protected'     => '(geborgen)',
-'template-semiprotected' => '(sāmborgen)',
-'nocreatetitle'          => 'Gewrit nā gefunden',
-'recreate-deleted-warn'  => "'''Warnung: Þu edsciepst tramet þe wæs ǣr āfeorsod.'''
+'templatesused'              => 'Ongelīcnessa gebrȳcda on þissum tramete:',
+'template-protected'         => '(geborgen)',
+'template-semiprotected'     => '(sāmborgen)',
+'nocreatetitle'              => 'Gewrit nā gefunden',
+'recreate-moveddeleted-warn' => "'''Warnung: Þu edsciepst tramet þe wæs ǣr āfeorsod.'''
 
 Þu sceoldest smēagan, hwæðer hit gerādlic sīe, forþ tō gānne mid ādihtunge þisses trametes.
 Þæt āfeorsungbred þisses trametes is hēr geīeht for behēfnesse:",
@@ -332,10 +332,10 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'preferences'        => 'Foreberunga',
 'mypreferences'      => 'Mīna foreberunga',
 'prefsnologin'       => 'Ne ingemeldod',
-'prefs-skin'               => 'Scynn',
+'prefs-skin'         => 'Scynn',
 'skin-preview'       => 'Forescēawian',
 'dateformat'         => 'Tælmearcwīse',
-'prefs-datetime'           => 'Tælmearc and tīd',
+'prefs-datetime'     => 'Tælmearc and tīd',
 'math_unknown_error' => 'ungewiss gemearr',
 'prefs-rc'           => 'Nīwlica hweorfunga',
 'prefs-watchlist'    => 'Behealdnestalu',

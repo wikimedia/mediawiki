@@ -896,12 +896,11 @@ Podètz tonar en rèire e modificar una pagina existenta, [[Special:UserLogin|vo
 'permissionserrors'                => 'Error de permissions',
 'permissionserrorstext'            => 'Avètz pas la permission d’efectuar l’operacion demandada per {{PLURAL:$1|la rason seguenta|las rasons seguentas}} :',
 'permissionserrorstext-withaction' => 'Sètz pas autorizat(ada) a $2, per {{PLURAL:$1|la rason seguenta|las rasons seguentas}} :',
-'recreate-deleted-warn'            => "'''Atencion : sètz a tornar crear una pagina qu'es estada suprimida precedentament.'''
+'recreate-moveddeleted-warn'       => "'''Atencion : sètz a tornar crear una pagina qu'es estada suprimida precedentament.'''
 
 Demandatz-vos se es vertadièrament apropriat de la tornar crear en vos referissent al jornal de las supressions afichat çaijós :",
-'deleted-notice'                   => "Aquesta pagina es estat suprimida.
+'moveddeleted-notice'              => "Aquesta pagina es estat suprimida.
 L'istoric de las supressions es afichat çaijós coma referéncia.",
-'deletelog-fulllog'                => "Veire l'istoric complet",
 'edit-hook-aborted'                => "Modificacion fracassada per croquet.
 Cap d'explicacion pas balhada.",
 'edit-gone-missing'                => 'A pas pogut metre a jorn la pagina.
@@ -1212,12 +1211,12 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'qbsettings-floatingleft'   => 'Flotanta a esquèrra',
 'qbsettings-floatingright'  => 'Flotanta a drecha',
 'changepassword'            => 'Modificacion del senhal',
-'prefs-skin'                      => 'Aparéncia',
+'prefs-skin'                => 'Aparéncia',
 'skin-preview'              => 'Previsualizar',
-'prefs-math'                      => 'Rendut de las matas',
+'prefs-math'                => 'Rendut de las matas',
 'dateformat'                => 'Format de data',
 'datedefault'               => 'Cap de preferéncia',
-'prefs-datetime'                  => 'Data e ora',
+'prefs-datetime'            => 'Data e ora',
 'math_failure'              => 'Error matas',
 'math_unknown_error'        => 'error indeterminada',
 'math_unknown_function'     => 'foncion desconeguda',
@@ -1239,7 +1238,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'saveprefs'                 => 'Enregistrar las preferéncias',
 'resetprefs'                => 'Restablir las preferéncias',
 'restoreprefs'              => 'Restablir totas las valors per defaut',
-'prefs-editing'               => 'Fenèstra de modificacion',
+'prefs-editing'             => 'Fenèstra de modificacion',
 'prefs-edit-boxsize'        => 'Talha de la fenèstra de modificacion.',
 'rows'                      => 'Rengadas :',
 'columns'                   => 'Colomnas :',
@@ -1276,7 +1275,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'prefs-namespaces'          => 'Noms d’espacis',
 'defaultns'                 => 'Per defaut, recercar dins aquestes espacis :',
 'default'                   => 'defaut',
-'prefs-files'                     => 'Fichièrs',
+'prefs-files'               => 'Fichièrs',
 'prefs-custom-css'          => 'CSS personalizat',
 'prefs-custom-js'           => 'JS personalizat',
 

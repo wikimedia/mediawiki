@@ -729,13 +729,12 @@ Arqag'a qaytıp bar betti o'zgertiwin'izge yamasa [[Special:UserLogin|kiriwin'iz
 'nocreate-loggedin'                => "Taza betler jaratıwın'ızg'a ruxsatın'ız joq.",
 'permissionserrors'                => 'Ruxsatnamalar Qatelikleri',
 'permissionserrorstext-withaction' => "$2 ha'reketine ruxsatın'ız joq, to'mendegi {{PLURAL:$1|sebep|sebepler}} boyınsha:",
-'recreate-deleted-warn'            => "'''Esletpe: Aldın o'shirilgen betti qayta jaratajaqsız.'''
+'recreate-moveddeleted-warn'       => "'''Esletpe: Aldın o'shirilgen betti qayta jaratajaqsız.'''
 
 Usi betti qaytadan jaratıw tuwrılıg'ın oylap ko'rin'.
 Qolaylıq ushın to'mende o'shiriw jurnalı keltirilgen:",
-'deleted-notice'                   => "Bul bet o'shirilgen.
+'moveddeleted-notice'              => "Bul bet o'shirilgen.
 To'mende mag'lıwmat ushın bettin' o'shiriw jurnalı ko'rsetilgen.",
-'deletelog-fulllog'                => 'Tolıq jurnaldı qaraw',
 'edit-conflict'                    => "O'zgerislerdegi konflikt.",
 
 # Parser/template warnings
@@ -976,12 +975,12 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'qbsettings-floatingleft'   => 'Shepte jıljıwshı',
 'qbsettings-floatingright'  => "On'da jıljıwshı",
 'changepassword'            => "Paroldi o'zgertiw",
-'prefs-skin'                      => "Sırtqı ko'rinis",
+'prefs-skin'                => "Sırtqı ko'rinis",
 'skin-preview'              => 'Korip al',
-'prefs-math'                      => 'Formulalar',
+'prefs-math'                => 'Formulalar',
 'dateformat'                => "Sa'ne formatı",
 'datedefault'               => 'Hesh sazlawlarsız',
-'prefs-datetime'                  => "Sa'ne ha'm waqıt",
+'prefs-datetime'            => "Sa'ne ha'm waqıt",
 'math_unknown_error'        => "belgisiz qa'telik",
 'math_unknown_function'     => 'belgisiz funktsiya',
 'math_lexing_error'         => "leksikalıq qa'telik",
@@ -997,7 +996,7 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'prefs-resetpass'           => "Paroldi o'zgertiw",
 'saveprefs'                 => 'Saqla',
 'resetprefs'                => "Saqlanbag'an o'zgerislerdi o'shir",
-'prefs-editing'               => "O'zgertiw",
+'prefs-editing'             => "O'zgertiw",
 'prefs-edit-boxsize'        => "O'zgertiw aynasının' o'lshemi.",
 'rows'                      => 'Qatarlar:',
 'columns'                   => "Bag'analar:",
@@ -1020,7 +1019,7 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'prefs-namespaces'          => "İsimler ko'plikleri",
 'defaultns'                 => "Usı isimler ko'pliklerinen defolt boyınsha izdew:",
 'default'                   => 'defolt',
-'prefs-files'                     => 'Fayllar',
+'prefs-files'               => 'Fayllar',
 
 # User rights
 'userrights'                  => 'Paydalanıwshı huqıqların basqarıw',

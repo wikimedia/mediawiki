@@ -992,7 +992,7 @@ Keri qaýtıp bar betti öñdewiñizge boladı, nemese [[{{#special:Userlogin}}|
 'permissionserrors'                => 'Ruqsattar qateleri',
 'permissionserrorstext'            => 'Bunı istewge ruqsatıñız joq, kelesi {{PLURAL:$1|sebep|sebepter}} boýınşa:',
 'permissionserrorstext-withaction' => '$2 degenge ruqsatıñız joq, kelesi {{PLURAL:$1|sebep|sebepter}} boýınşa:',
-'recreate-deleted-warn'            => "'''Qulaqtandırw: Aldında joýılğan betti qaýta bastaýın dep tursız.'''
+'recreate-moveddeleted-warn'       => "'''Qulaqtandırw: Aldında joýılğan betti qaýta bastaýın dep tursız.'''
 
 Mına bet öñdewin jalğastırw üşin jarastığın tekserip şığwıñız jön.
 Qolaýlı bolwı üşin bul bettiñ joyw jwrnalı keltirilgen:",
@@ -1200,12 +1200,12 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'qbsettings-floatingleft'  => 'Solğa qalqığan',
 'qbsettings-floatingright' => 'Oñğa qalqığan',
 'changepassword'           => 'Qupïya sözdi özgertw',
-'prefs-skin'                     => 'Mänerler',
+'prefs-skin'               => 'Mänerler',
 'skin-preview'             => 'Qarap şığw',
-'prefs-math'                     => 'Örnekter',
+'prefs-math'               => 'Örnekter',
 'dateformat'               => 'Kün-aý pişimi',
 'datedefault'              => 'Eş qalawsız',
-'prefs-datetime'                 => 'Waqıt',
+'prefs-datetime'           => 'Waqıt',
 'math_failure'             => 'Qurılımın taldatwı sätsiz bitti',
 'math_unknown_error'       => 'belgisiz qate',
 'math_unknown_function'    => 'belgisiz jete',
@@ -1225,7 +1225,7 @@ baptaw üşin math/README qujatın qarañız.',
 'prefs-misc'               => 'Ärqïlı',
 'saveprefs'                => 'Saqta',
 'resetprefs'               => 'Saqtalmağan özgeristerdi tazart',
-'prefs-editing'              => 'Öñdew',
+'prefs-editing'            => 'Öñdew',
 'rows'                     => 'Joldar:',
 'columns'                  => 'Bağandar:',
 'searchresultshead'        => 'İzdew',
@@ -1247,7 +1247,7 @@ baptaw üşin math/README qujatın qarañız.',
 'prefs-namespaces'         => 'Esim ayaları',
 'defaultns'                => 'Mına esim ayalarda ädepkiden izdew:',
 'default'                  => 'ädepki',
-'prefs-files'                    => 'Faýldar',
+'prefs-files'              => 'Faýldar',
 
 # User rights
 'userrights'                  => 'Qatıswşı quqıqtarın rettew',

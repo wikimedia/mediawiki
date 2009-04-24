@@ -920,12 +920,11 @@ Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLo
 'permissionserrors'                => 'Greške pri odobrenju',
 'permissionserrorstext'            => 'Nemate dopuštenje da to uradite, iz {{PLURAL:$1|slijedećeg razloga|slijedećih razloga}}:',
 'permissionserrorstext-withaction' => 'Nemate dopuštenje da $2, iz {{PLURAL:$1|slijedećeg|slijedećih}} razloga:',
-'recreate-deleted-warn'            => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.'''
+'recreate-moveddeleted-warn'       => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.'''
 
 Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima. Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno brisanje:",
-'deleted-notice'                   => 'Ova stranica je obrisana.
+'moveddeleted-notice'              => 'Ova stranica je obrisana.
 Zapis brisanja stranice je prikazan ispod kao referenca.',
-'deletelog-fulllog'                => 'Vidi potpuni zapis',
 'edit-hook-aborted'                => 'Izmjena je poništena putem interfejsa.
 Nije ponuđeno nikakvo objašnjenje.',
 'edit-gone-missing'                => 'Stranica se nije mogla osvježiti.
@@ -1241,12 +1240,12 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'qbsettings-floatingleft'   => 'Plutajuća lijevo',
 'qbsettings-floatingright'  => 'Plutajući desno',
 'changepassword'            => 'Promjeni šifru',
-'prefs-skin'                      => 'Koža',
+'prefs-skin'                => 'Koža',
 'skin-preview'              => 'Pregled',
-'prefs-math'                      => 'Prikazivanje matematike',
+'prefs-math'                => 'Prikazivanje matematike',
 'dateformat'                => 'Format datuma',
 'datedefault'               => 'Nije bitno',
-'prefs-datetime'                  => 'Datum i vrijeme',
+'prefs-datetime'            => 'Datum i vrijeme',
 'math_failure'              => 'Neuspjeh pri parsiranju',
 'math_unknown_error'        => 'nepoznata greška',
 'math_unknown_function'     => 'nepoznata funkcija',
@@ -1268,7 +1267,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'saveprefs'                 => 'Sačuvajte podešavanja',
 'resetprefs'                => 'Vrati podešavanja',
 'restoreprefs'              => 'Vrati sve pretpostavljene postavke',
-'prefs-editing'               => 'Veličine tekstualnog polja',
+'prefs-editing'             => 'Veličine tekstualnog polja',
 'prefs-edit-boxsize'        => 'Veličina prozora za uređivanje.',
 'rows'                      => 'Redova',
 'columns'                   => 'Kolona',
@@ -1305,7 +1304,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-namespaces'          => 'Imenski prostori',
 'defaultns'                 => 'Uobičajeno tražite u ovim imenskim prostorima:',
 'default'                   => 'standardno',
-'prefs-files'                     => 'Datoteke',
+'prefs-files'               => 'Datoteke',
 'prefs-custom-css'          => 'Prilagođeni CSS',
 'prefs-custom-js'           => 'Prilagođeni JS',
 

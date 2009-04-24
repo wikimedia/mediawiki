@@ -701,8 +701,6 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 * $2 is one of the action-* messages (for example {{msg|action-edit}}).
 
 Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
-'recreate-deleted-warn'            => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
-'deleted-notice'                   => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
@@ -950,12 +948,12 @@ $1 is the relevance of this result in per cent.
 'qbsettings'                => 'The title of the section in [[Special:Preferences]], only shown when using the skins "Standard/Classic" or "Cologne Blue". The quicbar is the same as the sidebar.',
 'qbsettings-none'           => '{{Identical|None}}',
 'changepassword'            => "Section heading on [[Special:Preferences]], tab 'User profile'.",
-'prefs-skin'                      => 'Used in user preferences.',
+'prefs-skin'                => 'Used in user preferences.',
 'skin-preview'              => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
 
 {{Identical|Preview}}',
-'prefs-math'                      => 'Used in user preferences.',
-'prefs-datetime'                  => '{{Identical|Date}}',
+'prefs-math'                => 'Used in user preferences.',
+'prefs-datetime'            => '{{Identical|Date}}',
 'math_syntax_error'         => '{{Identical|Syntax error}}',
 'prefs-personal'            => 'Title of a tab in [[Special:Preferences]].',
 'prefs-rc'                  => 'Used in user preferences.
@@ -973,7 +971,7 @@ $1 is the relevance of this result in per cent.
 {{Identical|Save}}',
 'resetprefs'                => 'Button for resetting changes in the preferences page.',
 'restoreprefs'              => 'Used in [[Special:Preferences]]',
-'prefs-editing'               => 'Title of a tab in [[Special:Preferences]].',
+'prefs-editing'             => 'Title of a tab in [[Special:Preferences]].',
 'searchresultshead'         => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
 
 {{Identical|Search}}',
@@ -991,7 +989,7 @@ $1 is the relevance of this result in per cent.
 Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]",
 'defaultns'                 => 'Used in [[Special:Preferences]], tab "Search".',
 'default'                   => '{{Identical|Default}}',
-'prefs-files'                     => 'Title of a tab in [[Special:Preferences]].',
+'prefs-files'               => 'Title of a tab in [[Special:Preferences]].',
 'prefs-custom-css'          => 'visible on [[Special:Preferences]] -[Skins].',
 
 # User rights

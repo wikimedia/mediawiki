@@ -492,11 +492,11 @@ $messages = array(
 'nocreatetext'                     => "Σο {{SITENAME}} περιορίσκουτον το ποίσεμα σελιδίων.
 'Πορείτε να κλώσκεστε οπίς και ν' αλλάζετε έναν παλαιόν σελίδαν ή να [[Special:UserLogin|εμπάτε ή να εφτάτε λογαρίαν]].",
 'permissionserrorstext-withaction' => "'Κ έχετε την άδειαν για $2, για {{PLURAL:$1|τ'αφκά το λόγον|τ'αφκά τοι λόγους}}:",
-'recreate-deleted-warn'            => "'''Ωρία: Εφτάτε αξάν μίαν σελίδαν ντο νεβζινέθεν οψεκές.'''
+'recreate-moveddeleted-warn'       => "'''Ωρία: Εφτάτε αξάν μίαν σελίδαν ντο νεβζινέθεν οψεκές.'''
 
 Ίσως εν καλλίον να μην εφτάτε τη σελίδαν.
 Τερέστεν για βοήθειαν και σ' αρχείον την αιτίαν για το σβήσιμον:",
-'deleted-notice'                   => 'Αούτο η σελίδαν εβζινέθεν. 
+'moveddeleted-notice'              => 'Αούτο η σελίδαν εβζινέθεν. 
 Αφκά ευρίεται έναν γράψιμον ασο αρχείον για το σβήσεμαν τη σελίδας.',
 
 # Account creation failure
@@ -598,11 +598,11 @@ $messages = array(
 'preferences'             => 'Αγαπεμένα',
 'mypreferences'           => "Τ' εμά τ' αγαπεμένα",
 'changepassword'          => 'Άλλαξον σημάδιν',
-'prefs-skin'                    => 'Όψην',
+'prefs-skin'              => 'Όψην',
 'skin-preview'            => 'Πρώτον τέρεμαν',
-'prefs-math'                    => 'Απόδοσην μαθηματικίων',
+'prefs-math'              => 'Απόδοσην μαθηματικίων',
 'dateformat'              => 'Μορφή ημερομηνίας',
-'prefs-datetime'                => 'Ημερομηνίαν και ώραν',
+'prefs-datetime'          => 'Ημερομηνίαν και ώραν',
 'math_unknown_function'   => 'άγνωρος συνάρτησην',
 'math_lexing_error'       => 'σφάλμαν λεξικής ανάλυσης',
 'math_syntax_error'       => 'σφάλμαν σύνταξης',
@@ -614,7 +614,7 @@ $messages = array(
 'localtime'               => 'Τοπικόν χρόνον:',
 'timezoneregion-atlantic' => 'Ατλαντικόν Ωκεανός',
 'timezoneregion-pacific'  => 'Ειρηνικόν Ωκεανός',
-'prefs-files'                   => 'Αρχεία',
+'prefs-files'             => 'Αρχεία',
 
 # User rights
 'userrights-groupsmember' => 'Μέλος τη:',

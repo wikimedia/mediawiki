@@ -321,7 +321,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Masquer les modifications surveillées des modifications récentes',
 'tog-newpageshidepatrolled'   => 'Masquer les pages surveillées de la liste des nouvelles pages',
 'tog-extendwatchlist'         => 'Étendre la liste de suivi pour afficher toutes les modification et non seulement les plus récentes',
-'tog-usenewrc'                => 'Utiliser les modifications récentes améliorées (JavaScript)',
+'tog-usenewrc'                => 'Utiliser les modifications récentes améliorées (nécessite JavaScript)',
 'tog-numberheadings'          => 'Numéroter automatiquement les titres de section',
 'tog-showtoolbar'             => 'Montrer la barre de menu de modification (JavaScript doit être activé)',
 'tog-editondblclick'          => 'Double-cliquer permet de modifier une page (JavaScript doit être activé)',
@@ -710,6 +710,7 @@ Veuillez en choisir un autre.',
 'username'                   => 'Nom d’utilisateur :',
 'uid'                        => 'Numéro d’utilisateur :',
 'prefs-memberingroups'       => 'Membre {{PLURAL:$1|du groupe|des groupes}} :',
+'prefs-registration'         => 'Date de création du compte :',
 'yourrealname'               => 'Nom réel',
 'yourlanguage'               => 'Langue de l’interface :',
 'yourvariant'                => 'Variante :',
@@ -965,12 +966,13 @@ Vous pouvez revenir en arrière et modifier une page existante, ou bien [[Specia
 'permissionserrors'                => 'Erreur de permissions',
 'permissionserrorstext'            => 'Vous n’avez pas la permission d’effectuer l’opération demandée pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
 'permissionserrorstext-withaction' => 'Vous n’êtes pas autorisé{{GENDER:||e|(e)}} à $2, pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
-'recreate-deleted-warn'            => "'''Attention : vous êtes en train de recréer une page qui a été précédemment supprimée.'''
+'recreate-moveddeleted-warn'       => "'''Attention : vous êtes en train de recréer une page qui a été précédemment supprimée.'''
 
-Demandez-vous s’il est réellement approprié de la recréer en vous référant à l’historique des suppressions affiché ci-dessous :",
-'deleted-notice'                   => 'Cette page a été supprimée.
-L’historique des suppressions est affiché ci-dessous pour référence.',
-'deletelog-fulllog'                => 'Voir l’historique complet',
+Demandez-vous s’il est réellement approprié continuer à l’éditer. 
+L’historique des suppressions et des renommages est affiché ci-dessous :",
+'moveddeleted-notice'              => 'Cette page a été supprimée.
+L’historique des suppressions et des renommages est affiché ci-dessous pour référence.',
+'log-fulllog'                      => 'Voir le journal complet',
 'edit-hook-aborted'                => 'Échec de la modification par une extension.
 Cause inconnue',
 'edit-gone-missing'                => 'N’a pas pu mettre à jour la page.
@@ -1276,12 +1278,12 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'qbsettings-floatingleft'   => 'Flottante à gauche',
 'qbsettings-floatingright'  => 'Flottante à droite',
 'changepassword'            => 'Modification du mot de passe',
-'prefs-skin'                      => 'Habillage',
+'prefs-skin'                => 'Habillage',
 'skin-preview'              => 'Prévisualiser',
-'prefs-math'                      => 'Rendu des maths',
+'prefs-math'                => 'Rendu des maths',
 'dateformat'                => 'Format de date',
 'datedefault'               => 'Aucune préférence',
-'prefs-datetime'                  => 'Date et heure',
+'prefs-datetime'            => 'Date et heure',
 'math_failure'              => 'Erreur math',
 'math_unknown_error'        => 'erreur indéterminée',
 'math_unknown_function'     => 'fonction inconnue',
@@ -1300,10 +1302,12 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-watchlist-edits-max' => '(nombre maximum : 1000)',
 'prefs-misc'                => 'Préférences diverses',
 'prefs-resetpass'           => 'Modifier le mot de passe',
+'prefs-email'               => 'Options du couriel',
+'prefs-rendering'           => 'Rendu des pages',
 'saveprefs'                 => 'Enregistrer les préférences',
 'resetprefs'                => 'Rétablir les préférences',
 'restoreprefs'              => 'Restaurer toutes les valeurs par défaut',
-'prefs-editing'               => 'Fenêtre de modification',
+'prefs-editing'             => 'Fenêtre de modification',
 'prefs-edit-boxsize'        => 'Taille de la fenêtre de modification.',
 'rows'                      => 'Rangées :',
 'columns'                   => 'Colonnes :',
@@ -1340,9 +1344,10 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-namespaces'          => 'Espaces de noms',
 'defaultns'                 => 'Rechercher par défaut dans ces espaces de noms',
 'default'                   => 'défaut',
-'prefs-files'                     => 'Fichiers',
+'prefs-files'               => 'Fichiers',
 'prefs-custom-css'          => 'CSS personnalisé',
 'prefs-custom-js'           => 'JavaScript personnalisé',
+'prefs-reset-intro'         => 'Vous pouvez utiliser cette page pour restaurer vos préférences aux valeurs par défaut du site. Ceci ne peut pas être défait.',
 
 # User rights
 'userrights'                  => 'gestion des droits utilisateur',
@@ -2731,7 +2736,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attention :''' ce fichier pourrait contenir du code malveillant, votre système pouvant être compromis lors de son exécution.<hr />",
-'imagemaxsize'         => 'Format maximal pour les images dans les pages de description d’images :',
+'imagemaxsize'         => "Format maximal des images :<br />''(pour les pages de description d’images)''",
 'thumbsize'            => 'Taille de la miniature :',
 'widthheightpage'      => '$1 × $2, $3 page{{PLURAL:$3||s}}',
 'file-info'            => 'Taille du fichier : $1, type MIME : $2',
@@ -3307,5 +3312,15 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'dberr-usegoogle'   => 'Vous pouvez essayer de chercher avec Google pendant ce temps.',
 'dberr-outofdate'   => 'Notez que leurs index de notre contenu peuvent être dépassés.',
 'dberr-cachederror' => 'Ceci est une copie cachée de la page demandée et peut être dépassée.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Des problèmes sont survenus avec certaines valeurs',
+'htmlform-select-badoption'    => "La valeur que vous avez spécifiée n'est pas une option valide.",
+'htmlform-int-invalid'         => "La valeur que vous avec spécifiée n'est pas un entier.",
+'htmlform-int-toolow'          => 'La valeur que vous avez spécifié est en dessous du minimum de $1',
+'htmlform-int-toohigh'         => 'La valeur que vous avez spécifié est au dessus du maximum $1',
+'htmlform-submit'              => 'Soumettre',
+'htmlform-reset'               => 'Défaire les modifications',
+'htmlform-selectorother-other' => 'Autre',
 
 );

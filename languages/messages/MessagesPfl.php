@@ -232,7 +232,7 @@ du gebbscht do au zu, dass Du des selwerscht gschriwwe hoscht orrer vun ere effe
 'template-semiprotected'           => '(halb-gschitzt)',
 'hiddencategories'                 => 'Die Said ghert zu {{PLURAL:$1|1 versteckelte Kategorie|$1 versteckelte Kategorie}}:',
 'permissionserrorstext-withaction' => 'Du därfscht nid $2, aus {{PLURAL:$1|dem Grund|denne Grind}}:',
-'deleted-notice'                   => 'Die Said isch glescht worre.
+'moveddeleted-notice'              => 'Die Said isch glescht worre.
 De Leschaidrach fer die Said isch do unne aagewwe als Quell.',
 
 # History pages

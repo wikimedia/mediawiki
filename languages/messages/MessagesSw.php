@@ -472,17 +472,17 @@ Unaweza kupuuza ujumbe huu, endapo akaunti hii ilianzishwa kimakosa.',
 'hr_tip'          => 'Mstari wa mlalo (usitumie ovyo)',
 
 # Edit pages
-'summary'                => 'Muhtasari:',
-'subject'                => 'Kuhusu/kichwa cha habari:',
-'minoredit'              => 'Haya ni mabadiliko madogo',
-'watchthis'              => 'Fuatilia ukurasa huu',
-'savearticle'            => 'Hifadhi ukurasa',
-'preview'                => 'Hakikisha',
-'showpreview'            => 'Onyesha hakikisho la mabadiliko',
-'showdiff'               => 'Onyesha mabadiliko',
-'anoneditwarning'        => "'''Ilani:''' Wewe hujaingia rasmi kwenye tovuti. Anwani ya IP ya tarakilishi yako itahifadhiwa katika historia ya uhariri wa ukurasa huu.",
-'summary-preview'        => 'Hakikisho la muhtasari:',
-'blockedtext'            => "<big>'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''</big>
+'summary'                    => 'Muhtasari:',
+'subject'                    => 'Kuhusu/kichwa cha habari:',
+'minoredit'                  => 'Haya ni mabadiliko madogo',
+'watchthis'                  => 'Fuatilia ukurasa huu',
+'savearticle'                => 'Hifadhi ukurasa',
+'preview'                    => 'Hakikisha',
+'showpreview'                => 'Onyesha hakikisho la mabadiliko',
+'showdiff'                   => 'Onyesha mabadiliko',
+'anoneditwarning'            => "'''Ilani:''' Wewe hujaingia rasmi kwenye tovuti. Anwani ya IP ya tarakilishi yako itahifadhiwa katika historia ya uhariri wa ukurasa huu.",
+'summary-preview'            => 'Hakikisho la muhtasari:',
+'blockedtext'                => "<big>'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''</big>
 
 Umezuiwa na $1. 
 Sababu aliyetambua ni ''$2''
@@ -495,31 +495,31 @@ Unaweza kuwasiliana na $1 au [[{{MediaWiki:Grouppage-sysop}}|mkabidhi]] kuzungum
 Huwezi kutumia kipengele 'kumtuma mtumiaji barua pepe' isipopatikana anwani halisi ya barua pepe katika
 [[Special:Preferences|mapendekezo ya akaunti]] yako, na usipozuiwa kuitumia.
 Anwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi ukitaka kuwasiliana kuhusu uzuio huu.",
-'loginreqtitle'          => 'Unatakiwa kuingia au kujisajili',
-'accmailtitle'           => 'Neno la siri limeshakutumia.',
-'accmailtext'            => "Neno la siri la '$1' limeshatumwa kwa $2.",
-'newarticle'             => '(Mpya)',
-'newarticletext'         => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [[{{MediaWiki:Helppage}}|Mwongozo]] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
-'noarticletext'          => 'Ukurasa huu haujaandikwa bado. [[Special:Search/{{PAGENAME}}|tafutia jina hili]] katika kurasa nyingine, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} tafuta kumbukumbu zinazohusika], au [{{fullurl:{{FULLPAGENAME}}|action=edit}} hariri ukurasa huu]</span>.',
-'previewnote'            => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",
-'editing'                => 'Kuhariri $1',
-'editingsection'         => 'Unahariri $1 (kipande)',
-'yourtext'               => 'Maandishi yako',
-'editingold'             => "'''ANGALIA: Unakuwa unahariri nakala ya zamani ya ukurasa huu.
+'loginreqtitle'              => 'Unatakiwa kuingia au kujisajili',
+'accmailtitle'               => 'Neno la siri limeshakutumia.',
+'accmailtext'                => "Neno la siri la '$1' limeshatumwa kwa $2.",
+'newarticle'                 => '(Mpya)',
+'newarticletext'             => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [[{{MediaWiki:Helppage}}|Mwongozo]] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
+'noarticletext'              => 'Ukurasa huu haujaandikwa bado. [[Special:Search/{{PAGENAME}}|tafutia jina hili]] katika kurasa nyingine, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} tafuta kumbukumbu zinazohusika], au [{{fullurl:{{FULLPAGENAME}}|action=edit}} hariri ukurasa huu]</span>.',
+'previewnote'                => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",
+'editing'                    => 'Kuhariri $1',
+'editingsection'             => 'Unahariri $1 (kipande)',
+'yourtext'                   => 'Maandishi yako',
+'editingold'                 => "'''ANGALIA: Unakuwa unahariri nakala ya zamani ya ukurasa huu.
 Ukiendelea kuihariri, mabadilisho yote yaliyofanywa tangu pale yatapotezwa.'''",
-'copyrightwarning'       => "Tafadhali zingatia kwamba makala yote ya {{SITENAME}} unayoyaandika yanafuata $2 (tazama $1 kwa maelezo zaidi).
+'copyrightwarning'           => "Tafadhali zingatia kwamba makala yote ya {{SITENAME}} unayoyaandika yanafuata $2 (tazama $1 kwa maelezo zaidi).
 Usipotaka maandishi yako yaweze kuharirishwa bure na kutolewa wakati wowote, basi usiyaandike hapa.<br />
 Unakuwa unaahidi kwamba maandishi unayoyaingia ni yako tu, au uliyapata kutoka bure au ni mali ya watu wote. '''USITOLEE MAKALA YALIYOHIFADHIWA HAKI ZAO ZA KUTUMIWA BILA KUPATA RUHUSA HALALI!'''",
-'longpagewarning'        => "'''ILANI: Urefu wa ukurasa huu ni kilobaiti $1; vivinjari kadhaa vinaweza kuwa na matatizo ukihariri ukurasa wenye urefu zaidi ya kb 32 hivi.
+'longpagewarning'            => "'''ILANI: Urefu wa ukurasa huu ni kilobaiti $1; vivinjari kadhaa vinaweza kuwa na matatizo ukihariri ukurasa wenye urefu zaidi ya kb 32 hivi.
 Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.'''",
-'protectedpagewarning'   => "'''ANGALIA: Ukurasa huu unakingwa kwa hiyo watumiaji wenye haki za wasimamizi tu wanaweza kuuhariri. Hakikisha kwamba unakuwa unafuata mwongozo wa kuhariri kurasa zinazokingwa.'''",
-'templatesused'          => 'Vigezo vinavyotumiwa kwenye ukurasa huu:',
-'templatesusedpreview'   => 'Vigezo vinavyotumiwa katika mandhari haya:',
-'template-protected'     => '(kulindwa)',
-'template-semiprotected' => '(ulindaji kwa kiasi)',
-'nocreatetext'           => '{{SITENAME}} imebana uwezekano kutengeneza kurasa mpya. Unaweza kurudia na kuhariri kurasa zilizomo, au [[Special:UserLogin|ingia au anza akaunti]].',
-'nocreate-loggedin'      => 'Huna ruhusa ya kuazisha kurasa mpya.',
-'recreate-deleted-warn'  => "'''Ilani: Unatengeneza tena ukurasa uliofutwa tayari.'''
+'protectedpagewarning'       => "'''ANGALIA: Ukurasa huu unakingwa kwa hiyo watumiaji wenye haki za wasimamizi tu wanaweza kuuhariri. Hakikisha kwamba unakuwa unafuata mwongozo wa kuhariri kurasa zinazokingwa.'''",
+'templatesused'              => 'Vigezo vinavyotumiwa kwenye ukurasa huu:',
+'templatesusedpreview'       => 'Vigezo vinavyotumiwa katika mandhari haya:',
+'template-protected'         => '(kulindwa)',
+'template-semiprotected'     => '(ulindaji kwa kiasi)',
+'nocreatetext'               => '{{SITENAME}} imebana uwezekano kutengeneza kurasa mpya. Unaweza kurudia na kuhariri kurasa zilizomo, au [[Special:UserLogin|ingia au anza akaunti]].',
+'nocreate-loggedin'          => 'Huna ruhusa ya kuazisha kurasa mpya.',
+'recreate-moveddeleted-warn' => "'''Ilani: Unatengeneza tena ukurasa uliofutwa tayari.'''
 
 Fikiria kama inafaa kuendelea kuhariri ukurasa huu.
 Kumbukumbu ya kufuta ukurasa huu linapatikana hapa kukusaidia:",
@@ -591,7 +591,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'preferences'               => 'Mapendekezo',
 'mypreferences'             => 'Mapendekezo yangu',
 'changepassword'            => 'Badilisha neno la siri',
-'prefs-skin'                      => 'Sura',
+'prefs-skin'                => 'Sura',
 'prefs-watchlist'           => 'Maangalizi',
 'saveprefs'                 => 'Hifadhi',
 'rows'                      => 'Mistari:',
@@ -610,7 +610,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'timezoneregion-indian'     => 'Bahari ya Hindi',
 'timezoneregion-pacific'    => 'Bahari ya Pasifiki',
 'prefs-searchoptions'       => 'Hitiari za kutafuta',
-'prefs-files'                     => 'Mafaili',
+'prefs-files'               => 'Mafaili',
 
 # Groups
 'group'       => 'Kundi:',

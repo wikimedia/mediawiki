@@ -718,7 +718,7 @@ Mangga édit artikel nu geus aya, atawa [[Special:UserLogin|asup log/daptar heul
 'permissionserrors'                => 'Kasalahan Hak Aksés',
 'permissionserrorstext'            => 'Anjeung teu boga kawenangan pikeun peta kitu, kalawan {{PLURAL:$1|alesan|alesan}} di handap ieu:',
 'permissionserrorstext-withaction' => 'Anjeun teu ngabogaan hak keur $2, kusabab {{PLURAL:$1|alesan|alesan}} katut:',
-'recreate-deleted-warn'            => "'''Awas: Anjeun keur nyieun deui kaca nu geus kungsi dihapus.'''
+'recreate-moveddeleted-warn'       => "'''Awas: Anjeun keur nyieun deui kaca nu geus kungsi dihapus.'''
 
 Mangga émutan deui perlu/henteuna nyieun deui ieu artikel.
 Pikeun leuwih écés, di handap dibéréndélkeun log hapusanana:",
@@ -915,12 +915,12 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'qbsettings-floatingleft'  => 'Ngambang ka kenca',
 'qbsettings-floatingright' => 'Ngambang ka katuhu',
 'changepassword'           => 'Robah sandi',
-'prefs-skin'                     => 'Kulit',
+'prefs-skin'               => 'Kulit',
 'skin-preview'             => 'Pramidang',
-'prefs-math'                     => 'Maté',
+'prefs-math'               => 'Maté',
 'dateformat'               => 'Format titimangsa',
 'datedefault'              => 'Tanpa préferénsi',
-'prefs-datetime'                 => 'Titimangsa jeung wanci',
+'prefs-datetime'           => 'Titimangsa jeung wanci',
 'math_failure'             => "Peta ''parse'' gagal",
 'math_unknown_error'       => 'Kasalahan teu kanyahoan',
 'math_unknown_function'    => 'fungsi teu kanyahoan',
@@ -937,7 +937,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'prefs-misc'               => 'Pangaturan rupa-rupa',
 'saveprefs'                => 'Simpen préferénsi',
 'resetprefs'               => 'Sét ulang préferénsi',
-'prefs-editing'              => 'Ukuran kotak téks',
+'prefs-editing'            => 'Ukuran kotak téks',
 'rows'                     => 'Baris',
 'columns'                  => 'Kolom',
 'searchresultshead'        => 'Aturan hasil néang',
@@ -959,7 +959,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'prefs-namespaces'         => 'Ngaranspasi',
 'defaultns'                => 'Téang ti antara spasingaran ieu luyu jeung ti dituna:',
 'default'                  => 'ti dituna',
-'prefs-files'                    => 'Koropak',
+'prefs-files'              => 'Koropak',
 
 # User rights
 'userrights'                  => 'Manajemén hak pamaké',

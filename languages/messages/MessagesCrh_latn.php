@@ -705,10 +705,10 @@ Keri qaytıp mevcut olğan saifeni deñiştire, [[Special:UserLogin|oturım aça
 'permissionserrors'                => 'İrişim aqlarınıñ hataları',
 'permissionserrorstext'            => 'Bunı yapmağa iziniñiz yoqtır. {{PLURAL:$1|Sebep|Sebepler}}:',
 'permissionserrorstext-withaction' => 'Aşağıdaki {{PLURAL:$1|sebepten|sebeplerden}} $2 işlemini yapmağa yetkiñiz yoq:',
-'recreate-deleted-warn'            => "'''Diqqat: evelce yoq etilgen saifeni yañıdan yaratmağa tırışasıñız.'''
+'recreate-moveddeleted-warn'       => "'''Diqqat: evelce yoq etilgen saifeni yañıdan yaratmağa tırışasıñız.'''
 
 Bu saifeni kerçekten de yañıdan yaratmağa isteysiñizmi? Aşağıda yoq etilüv jurnalı buluna.",
-'deleted-notice'                   => 'Bu saife yoq etildi.
+'moveddeleted-notice'              => 'Bu saife yoq etildi.
 Yoq etüv jurnalından qaydları aşağıda kösterile.',
 'edit-gone-missing'                => 'Saifeniñ yañaruvı mümkün degil.
 Ola bile ki, o yoq etilgendir.',
@@ -825,12 +825,12 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'prefsreset'            => 'Sazlamalar ilk alına ketirildi.',
 'qbsettings'            => 'Vızlı irişim sutun sazlamaları',
 'changepassword'        => 'Parol deñiştir',
-'prefs-skin'                  => 'Resimleme',
+'prefs-skin'            => 'Resimleme',
 'skin-preview'          => 'Baqıp çıquv',
-'prefs-math'                  => 'Riyaziy (matematik) işaretler',
+'prefs-math'            => 'Riyaziy (matematik) işaretler',
 'dateformat'            => 'Tarih kösterimi',
 'datedefault'           => 'Standart',
-'prefs-datetime'              => 'Tarih ve saat',
+'prefs-datetime'        => 'Tarih ve saat',
 'math_unknown_error'    => 'bilinmegen hata',
 'math_unknown_function' => 'belgisiz funktsiya',
 'math_lexing_error'     => 'leksik hata',
@@ -843,7 +843,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'prefs-misc'            => 'Diger sazlamalar',
 'saveprefs'             => 'Deñişikliklerni saqla',
 'resetprefs'            => 'Saqlanmağan sazlamalarnı ilk alına ketir',
-'prefs-editing'           => 'Saife yazuv penceresi',
+'prefs-editing'         => 'Saife yazuv penceresi',
 'rows'                  => 'Satır',
 'columns'               => 'Sutun',
 'searchresultshead'     => 'Qıdıruv',
@@ -864,7 +864,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'prefs-namespaces'      => 'İsim fezaları',
 'defaultns'             => 'Qıdıruvnı aşağıda saylanğan isim fezalarında yap.',
 'default'               => 'original',
-'prefs-files'                 => 'Fayllar',
+'prefs-files'           => 'Fayllar',
 
 # User rights
 'userrights'               => 'Qullanıcı aqlarını idare etüv',

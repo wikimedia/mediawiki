@@ -875,12 +875,11 @@ Hark'aq kamachiqqa kaytam nirqan: $1, kayraykum nispa.",
 'permissionserrors'                => 'Saqillay pantasqakuna',
 'permissionserrorstext'            => 'Manam saqillasunkichu, {{PLURAL:$1|kayraykum|kayraykum}}:',
 'permissionserrorstext-withaction' => 'Manam saqillasunkichu $2-ta, {{PLURAL:$1|kayraykum|kayraykum}}:',
-'recreate-deleted-warn'            => "'''Paqtataq: Ñawpaqta qullusqaña p'anqatam musuqmanta kamarichkanki.'''
+'recreate-moveddeleted-warn'       => "'''Paqtataq: Ñawpaqta qullusqaña p'anqatam musuqmanta kamarichkanki.'''
 
 Hamut'arillay, chayaqillachu manallachu kay p'anqata kamariy.
 Kaymi kay p'anqamanta qulluy hallch'a:",
-'deleted-notice'                   => "Kay p'anqaqa qullusqam. Kay qatiq qulluy hallch'apim qullusqamanta rikunki.",
-'deletelog-fulllog'                => "Hunt'a hallch'asqata qhaway",
+'moveddeleted-notice'              => "Kay p'anqaqa qullusqam. Kay qatiq qulluy hallch'apim qullusqamanta rikunki.",
 'edit-hook-aborted'                => "Ch'iwinam llamk'apuyta t'ipirqan.
 Manam nirqanchu imarayku.",
 'edit-gone-missing'                => "Manam atirqanichu p'anqata musuqchayta.
@@ -1188,12 +1187,12 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'qbsettings-floatingleft'   => "Lluq'iman tuytuy",
 'qbsettings-floatingright'  => 'Pañaman tuytuy',
 'changepassword'            => 'Yaykuna rimata hukchay',
-'prefs-skin'                      => 'Qara',
+'prefs-skin'                => 'Qara',
 'skin-preview'              => 'Ñawpaqta qhaway',
-'prefs-math'                      => 'Minuywa',
+'prefs-math'                => 'Minuywa',
 'dateformat'                => "P'unchaw pacha chanta",
 'datedefault'               => 'Kikinmanta allinkachina',
-'prefs-datetime'                  => "P'unchaw, pacha",
+'prefs-datetime'            => "P'unchaw, pacha",
 'math_failure'              => "Manam hap'inichu",
 'math_unknown_error'        => 'mana riqsisqa pantasqa',
 'math_unknown_function'     => 'mana riqsisqa rurana',
@@ -1215,7 +1214,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'saveprefs'                 => 'Allinkachinakunata waqaychay',
 'resetprefs'                => 'Mana waqaychasqa hukchasqakunaman ama niy',
 'restoreprefs'              => 'Tukuy kikinmanta allinkachinakunata kutichimuy',
-'prefs-editing'               => "Llamk'apusqa",
+'prefs-editing'             => "Llamk'apusqa",
 'prefs-edit-boxsize'        => "Llamk'apuna wintanap chhikan.",
 'rows'                      => 'Sinrukuna:',
 'columns'                   => 'Wachukuna:',
@@ -1252,7 +1251,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'prefs-namespaces'          => "Suti k'itikuna",
 'defaultns'                 => "Kay suti k'itikunapi kikinmanta maskay:",
 'default'                   => 'kikinmanta',
-'prefs-files'                     => 'Willañiqikuna',
+'prefs-files'               => 'Willañiqikuna',
 'prefs-custom-css'          => 'Munakusqa CSS',
 'prefs-custom-js'           => 'Munakusqa JS',
 

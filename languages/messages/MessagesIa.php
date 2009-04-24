@@ -811,13 +811,12 @@ Tu pote retornar e modificar un pagina existente, o [[Special:UserLogin|identifi
 'permissionserrors'                => 'Errores de permissiones',
 'permissionserrorstext'            => 'Tu non ha le permission de facer isto, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
 'permissionserrorstext-withaction' => 'Tu non ha le permission de $2, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
-'recreate-deleted-warn'            => "'''Attention: Tu va recrear un pagina que esseva anteriormente delite.'''
+'recreate-moveddeleted-warn'       => "'''Attention: Tu va recrear un pagina que esseva anteriormente delite.'''
 
 Tu deberea considerar si il es appropriate crear iste pagina de novo.
 Le registro de deletiones pro iste pagina se trova infra pro major commoditate:",
-'deleted-notice'                   => 'Iste pagina ha essite delite.
+'moveddeleted-notice'              => 'Iste pagina ha essite delite.
 In basso se revela le registro de deletiones del pagina pro ulterior informationes.',
-'deletelog-fulllog'                => 'Vider registro complete',
 'edit-hook-aborted'                => 'Modification abortate per uncino.
 Illo non dava un explication.',
 'edit-gone-missing'                => 'Impossibile actualisar le pagina.
@@ -1134,12 +1133,12 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'qbsettings-floatingleft'   => 'Flottante a sinistra',
 'qbsettings-floatingright'  => 'Flottante a derecta',
 'changepassword'            => 'Cambiar contrasigno',
-'prefs-skin'                      => 'Stilo',
+'prefs-skin'                => 'Stilo',
 'skin-preview'              => 'Previsualisation',
-'prefs-math'                      => 'Mathematica',
+'prefs-math'                => 'Mathematica',
 'dateformat'                => 'Formato de datas',
 'datedefault'               => 'Nulle preferentia',
-'prefs-datetime'                  => 'Data e hora',
+'prefs-datetime'            => 'Data e hora',
 'math_failure'              => 'Error durante le analyse del syntaxe',
 'math_unknown_error'        => 'error incognite',
 'math_unknown_function'     => 'function incognite',
@@ -1163,7 +1162,7 @@ per favor vide math/README pro configurar lo.",
 'saveprefs'                 => 'Confirmar',
 'resetprefs'                => 'Reverter cambios',
 'restoreprefs'              => 'Restaurar tote le configurationes predefinite',
-'prefs-editing'               => 'Modification',
+'prefs-editing'             => 'Modification',
 'prefs-edit-boxsize'        => 'Dimensiones del fenestra de modification.',
 'rows'                      => 'Lineas:',
 'columns'                   => 'Columnas:',
@@ -1200,7 +1199,7 @@ per favor vide math/README pro configurar lo.",
 'prefs-namespaces'          => 'Spatios de nomines',
 'defaultns'                 => 'Cercar initialmente in iste spatios de nomines:',
 'default'                   => 'predefinition',
-'prefs-files'                     => 'Files',
+'prefs-files'               => 'Files',
 'prefs-custom-css'          => 'CSS personalisate',
 'prefs-custom-js'           => 'JS personalisate',
 
@@ -2903,6 +2902,10 @@ Le alteres essera initialmente celate.
 'exif-gpslongitude-e' => 'Longitude est',
 'exif-gpslongitude-w' => 'Longitude west',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metros super le nivello del mar',
+'exif-gpsaltitude-1' => 'Metros sub le nivello del mar',
+
 'exif-gpsstatus-a' => 'Mesura in curso',
 'exif-gpsstatus-v' => 'Interoperabilitate del mesura',
 
@@ -2913,6 +2916,11 @@ Le alteres essera initialmente celate.
 'exif-gpsspeed-k' => 'Kilometros per hora',
 'exif-gpsspeed-m' => 'Millias per hora',
 'exif-gpsspeed-n' => 'Nodos',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometros',
+'exif-gpsdestdistance-m' => 'Millias',
+'exif-gpsdestdistance-n' => 'Millias nautic',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direction real',

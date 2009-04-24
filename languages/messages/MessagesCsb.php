@@ -10,6 +10,7 @@
  * @author Kaszeba
  * @author Leinad
  * @author MinuteElectron
+ * @author RobertL
  * @author Warszk
  * @author לערי ריינהארט
  */
@@ -525,12 +526,12 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'prefsnologin'          => 'Felënk logòwóniô',
 'qbsettings'            => 'Sztrépk chùtczégò przistãpù',
 'changepassword'        => 'Zmiana parolë',
-'prefs-skin'                  => 'Wëzdrzatk',
+'prefs-skin'            => 'Wëzdrzatk',
 'skin-preview'          => 'Pòdzérk',
-'prefs-math'                  => 'Matematika',
+'prefs-math'            => 'Matematika',
 'dateformat'            => 'Fòrmat datumù',
 'datedefault'           => 'Felëje preferencëji',
-'prefs-datetime'              => 'Datum ë czas',
+'prefs-datetime'        => 'Datum ë czas',
 'math_failure'          => 'Parser nie rozmiôł rozpòznac',
 'prefs-personal'        => 'Pòdôwczi brëkòwnika',
 'prefs-rc'              => 'Slédné edicëje',
@@ -540,7 +541,7 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'prefs-misc'            => 'Jine',
 'saveprefs'             => 'Zapiszë',
 'resetprefs'            => 'Wëczëszczë niezapisóné zmianë',
-'prefs-editing'           => 'Edicëjô',
+'prefs-editing'         => 'Edicëjô',
 'rows'                  => 'Régów:',
 'columns'               => 'Kòlumnów:',
 'searchresultshead'     => 'Szëkba',
@@ -559,7 +560,7 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'guesstimezone'         => 'Wezmi z przezérnika',
 'allowemail'            => 'Włączë mòżlewòtã sélaniô e-mailów òd jinëch brëkòwników',
 'defaultns'             => 'Domëslno przeszëkùjë nôslédné rëmnotë mionów:',
-'prefs-files'                 => 'Lopczi',
+'prefs-files'           => 'Lopczi',
 
 # User rights
 'editinguser' => "Zmiana praw brëkòwnika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",

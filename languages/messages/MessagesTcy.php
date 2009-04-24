@@ -389,7 +389,7 @@ $1',
 'template-semiprotected'           => '(ಅರೆ-ಸಂರಕ್ಷಿತ)',
 'hiddencategories'                 => 'ಈ ಪುಟ {{PLURAL:$1|೧ ಗುಪ್ತ ವರ್ಗಗ್|$1 ಗುಪ್ತ ವರ್ಗೊಲೆಗ್}} ಸೇರ್ದ್’ನ್ಡ್:',
 'permissionserrorstext-withaction' => '$2 ಗ್ ಇರೆಗ್ ಅನುಮತಿ ಇಜ್ಜಿ, ಐಕ್ {{PLURAL:$1|ಕಾರಣ|ಕಾರಣೊಲು}}:',
-'deleted-notice'                   => 'ಈ ಪೇಜ್ ಅಸ್ತಿತ್ವಡ್ ಇಜ್ಜಿ.
+'moveddeleted-notice'              => 'ಈ ಪೇಜ್ ಅಸ್ತಿತ್ವಡ್ ಇಜ್ಜಿ.
 ಪೂಟೊತ ಡಿಲೀಶನ್ ಲಾಗ್’ನ್ ತಿರ್ತ್ ಕೊರ್ತುಂಡು.',
 
 # History pages

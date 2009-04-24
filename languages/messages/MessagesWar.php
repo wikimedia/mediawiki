@@ -33,19 +33,35 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'           => 'Bagisa ha ilarom an mga sumpay:',
-'tog-hideminor'           => 'Tago-a an mga gagmay nga pagliwat ha mga bag-o pa la nga mga kabag-ohan',
-'tog-extendwatchlist'     => 'Igpadako an angay timan-an nga makita an ngatanan nga mga nahanunungod nga mga kabag-ohan',
-'tog-watchcreations'      => 'Igdugang in mga pakli nga akon ginhimo ngadto han akon angay timan-an',
-'tog-watchdefault'        => 'Igdugang in mga pakli nga akon ginliwat ngadto han akon angay timan-an',
-'tog-watchmoves'          => 'Igdugang in mga pakli nga akon ginpamalhin ngadto han akon angay timan-an',
-'tog-watchdeletion'       => 'Igdugang in mga pakli nga akon ginpamara ngadto han akon angay timan-an',
-'tog-shownumberswatching' => 'Igpakita an ihap han mga nangingita nga mga nagamit',
-'tog-watchlisthideown'    => 'Tago-a an akon mga ginliwat tikang han angay timan-an',
-'tog-watchlisthidebots'   => 'Tago-a an ginliwat hin bot tikang han angay timan-an',
-'tog-watchlisthideminor'  => 'Tago-a an mga gagmay nga pagliwat tikang han angay timan-an',
-'tog-ccmeonemails'        => 'Padad-i ak hin mga kopya hin mga email nga akon ginpapadara ha iba nga mga nágámit',
-'tog-showhiddencats'      => 'Igpakita an mga tinago nga mga kategorya',
+'tog-underline'               => 'Bagisa ha ilarom an mga sumpay:',
+'tog-highlightbroken'         => 'Ig-format in gubâ nga mga sumpay <a href="" class="new">hin sugad hini</a> (alternatibo: hin sugad hini<a href="" class="internal">?</a>)',
+'tog-justify'                 => 'Ig-justify an mga parrapho',
+'tog-hideminor'               => 'Tago-a an mga gagmay nga pagliwat ha mga bag-o pa la nga mga kabag-ohan',
+'tog-hidepatrolled'           => 'Tago-a in mga gin-patrol o binantayan nga mga pagliwat ha mga dipala naiha nga mga kabag-ohan',
+'tog-newpageshidepatrolled'   => 'Tago-a an mga gin-patrol o binantayan nga mga pakli tikang han talaan hin bag-o nga pakli',
+'tog-extendwatchlist'         => 'Padako-a an angay timan-an agod makita an tanan nga kabag-ohan, diri la an gibag-ohi',
+'tog-usenewrc'                => 'Mga gin-enhans o gindugngan nga gibag-ohi nga kabag-ohan (nakinahanglan hin JavaScript)',
+'tog-numberheadings'          => 'Auto-nga-ihap nga mga pagngaran',
+'tog-showtoolbar'             => 'Igpakita an edit toolbar (nakinahanglan hin JavaScript)',
+'tog-editondblclick'          => 'Igliwat in mga pakli ha doble nga klik (nakinahanglan hin JavaScript)',
+'tog-editsection'             => 'Tugoti in seksyon nga pagliwat pinaagi hin [igliwat] nga mga sumpay',
+'tog-editsectiononrightclick' => 'Tugoti in pagliwat hin seksyon ha pag klik-ha-tuo dida hin mga ngaran o titulo hin seksyon (nakinahanglan hin JavaScript)',
+'tog-showtoc'                 => 'Igpakita in tabla hin sulod (para hin mga pakli nga sobra hin 3 ka titulo o pagngaran)',
+'tog-rememberpassword'        => 'Hinumdomi an akon pan-sakob dinhi nga komputadora',
+'tog-editwidth'               => 'An pagliwat nga kahon mayda bug-os nga kahaluag',
+'tog-watchcreations'          => 'Igdugang in mga pakli nga akon ginhimo ngadto han akon angay timan-an',
+'tog-watchdefault'            => 'Igdugang in mga pakli nga akon ginliwat ngadto han akon angay timan-an',
+'tog-watchmoves'              => 'Igdugang in mga pakli nga akon ginpamalhin ngadto han akon angay timan-an',
+'tog-watchdeletion'           => 'Igdugang in mga pakli nga akon ginpamara ngadto han akon angay timan-an',
+'tog-minordefault'            => 'Tigamni an ngatanan nga mga pagliwat nga gudti hin default',
+'tog-previewontop'            => 'Igpakita in prevista o pan-ugsa-nga-lantaw ugsa hiton pagliwat nga kahon',
+'tog-previewonfirst'          => 'Igpakita in prevista o pan-ugsa-nga-lantaw ha syahan nga pagliwat',
+'tog-shownumberswatching'     => 'Igpakita an ihap han mga nangingita nga mga nagamit',
+'tog-watchlisthideown'        => 'Tago-a an akon mga ginliwat tikang han angay timan-an',
+'tog-watchlisthidebots'       => 'Tago-a an ginliwat hin bot tikang han angay timan-an',
+'tog-watchlisthideminor'      => 'Tago-a an mga gagmay nga pagliwat tikang han angay timan-an',
+'tog-ccmeonemails'            => 'Padad-i ak hin mga kopya hin mga email nga akon ginpapadara ha iba nga mga nágámit',
+'tog-showhiddencats'          => 'Igpakita an mga tinago nga mga kategorya',
 
 # Dates
 'sunday'        => 'Dominggo',
@@ -181,6 +197,12 @@ $messages = array(
 'nstab-help'      => 'Pakli hin bulig',
 'nstab-category'  => 'Kategorya',
 
+# Main script and global functions
+'nosuchaction'     => 'Waray sugad nga buhat',
+'nosuchactiontext' => 'An buhat nga gin-ispisipikar han URL diri puyde.
+Bangin la, nagsayop ka pagmakinilya han URL, o sinmunod hin sayop nga sumpay.
+Bangin liwat ini usa nga bug dida han software nga ginagamit han {{SITENAME}}.',
+
 # Login and logout pages
 'login'              => 'Sakob',
 'userlogin'          => 'Sakob/Pagrehistro',
@@ -205,7 +227,7 @@ $messages = array(
 # Preferences page
 'preferences'       => 'Mga karuyag',
 'mypreferences'     => 'Akon mga karuyag',
-'prefs-datetime'          => 'Pitsa ngan oras',
+'prefs-datetime'    => 'Pitsa ngan oras',
 'searchresultshead' => 'Bilnga',
 'timezonelegend'    => 'Zona hin oras',
 'localtime'         => 'Oras nga lokal',

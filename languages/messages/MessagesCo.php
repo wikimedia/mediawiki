@@ -223,7 +223,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Preferences page
 'preferences'       => 'Preferenze',
 'mypreferences'     => 'Preferenze',
-'prefs-math'              => 'Matematica',
+'prefs-math'        => 'Matematica',
 'math_syntax_error' => 'errore di sintassa',
 'prefs-rc'          => 'Ultimi cambiamenti',
 'prefs-watchlist'   => 'Articuli seguitati',
@@ -231,7 +231,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'searchresultshead' => 'Ricerca',
 'localtime'         => 'Ora lucale',
 'allowemail'        => 'Abilità a ricezzione di e-mail da altri utilizatori',
-'prefs-files'             => 'Schedarii',
+'prefs-files'       => 'Schedarii',
 
 # User rights
 'editinguser'             => "Mudifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",

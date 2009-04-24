@@ -687,13 +687,12 @@ Pues volver atrás y editar una páxina esistente, o bien [[Special:UserLogin|id
 'permissionserrors'                => 'Errores de Permisos',
 'permissionserrorstext'            => 'Nun tienes permisu pa facer eso {{PLURAL:$1|pol siguiente motivu|polos siguientes motivos}}:',
 'permissionserrorstext-withaction' => 'Nun tienes permisu pa $2 {{PLURAL:$1|pol siguiente motivu|polos siguientes motivos}}:',
-'recreate-deleted-warn'            => "'''Avisu: Tas volviendo a crear una páxina que foi esborrada anteriormente.'''
+'recreate-moveddeleted-warn'       => "'''Avisu: Tas volviendo a crear una páxina que foi esborrada anteriormente.'''
 
 Habríes considerar si ye afechisco siguir editando esta páxina.
 Equí tienes el rexistru d'esborraos d'esta páxina:",
-'deleted-notice'                   => "Esta páxina foi eliminada.
+'moveddeleted-notice'              => "Esta páxina foi eliminada.
 Como referencia, embaxo amuésase'l rexistru d'esborráu de la páxina.",
-'deletelog-fulllog'                => 'Ver el rexistru completu',
 'edit-hook-aborted'                => 'Edición albortada pol hook.
 Nun conseñó esplicación.',
 'edit-gone-missing'                => 'Nun se pudo actualizar la páxina.
@@ -982,12 +981,12 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'qbsettings-floatingleft'   => 'Flotante a manzorga',
 'qbsettings-floatingright'  => 'Flotante a mandrecha',
 'changepassword'            => 'Camudar clave',
-'prefs-skin'                      => 'Apariencia',
+'prefs-skin'                => 'Apariencia',
 'skin-preview'              => 'Previsualizar',
-'prefs-math'                      => 'Fórmules matemátiques',
+'prefs-math'                => 'Fórmules matemátiques',
 'dateformat'                => 'Formatu de fecha',
 'datedefault'               => 'Ensin preferencia',
-'prefs-datetime'                  => 'Fecha y hora',
+'prefs-datetime'            => 'Fecha y hora',
 'math_failure'              => 'Fallu al revisar la fórmula',
 'math_unknown_error'        => 'error desconocíu',
 'math_unknown_function'     => 'función desconocida',
@@ -1008,7 +1007,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-resetpass'           => 'Camudar clave',
 'saveprefs'                 => 'Guardar preferencies',
 'resetprefs'                => 'Volver a les preferencies por defeutu',
-'prefs-editing'               => 'Edición',
+'prefs-editing'             => 'Edición',
 'prefs-edit-boxsize'        => "Tamañu de la ventana d'edición.",
 'rows'                      => 'Files:',
 'columns'                   => 'Columnes:',
@@ -1045,7 +1044,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-namespaces'          => 'Espacios de nome',
 'defaultns'                 => 'Buscar por defeutu nestos espacios de nome:',
 'default'                   => 'por defeutu',
-'prefs-files'                     => 'Archivos',
+'prefs-files'               => 'Archivos',
 'prefs-custom-css'          => 'CSS personalizada',
 'prefs-custom-js'           => 'JS personalizada',
 

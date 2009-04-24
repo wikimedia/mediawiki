@@ -605,7 +605,7 @@ $messages = array(
 تاسو بېرته پر شا تللای شی او په شته مخونو کې سمونې ترسره کولای شی، او يا هم [[Special:UserLogin|غونډال ته ننوتلای او يو کارن-حساب جوړولای شی]].',
 'nocreate-loggedin'                => 'تاسو د نوو مخونو د جوړولو اجازه نه لری.',
 'permissionserrorstext-withaction' => 'تاسو د $2 اجازه نه لری، دا د دغو {{PLURAL:$1|سبب|سببونو}} پخاطر:',
-'recreate-deleted-warn'            => "'''ګواښنه: تاسو د يو داسې مخ بياجوړونه کوی کوم چې يو ځل پخوا ړنګ شوی وو.'''
+'recreate-moveddeleted-warn'       => "'''ګواښنه: تاسو د يو داسې مخ بياجوړونه کوی کوم چې يو ځل پخوا ړنګ شوی وو.'''
 
 پکار ده چې تاسو په دې ځان پوه کړی چې ايا دا تاسو ته وړ ده چې د همدې مخ سمونه په پرله پسې توګه وکړی.
 ستاسو د اسانتياوو لپاره د همدې مخ د ړنګېدلو يادښت هم ورکړ شوی:",
@@ -688,12 +688,12 @@ $messages = array(
 'prefsnologintext'      => 'د دې لپاره چې خپل غوره توبونه مو وټاکی، نو پکار ده چې لومړی تاسو غونډال کې <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ننوځی]</span>.',
 'qbsettings-none'       => 'هېڅ',
 'changepassword'        => 'پټنوم بدلول',
-'prefs-skin'                  => 'بڼه',
+'prefs-skin'            => 'بڼه',
 'skin-preview'          => 'مخکتنه',
-'prefs-math'                  => 'شمېرپوهنه',
+'prefs-math'            => 'شمېرپوهنه',
 'dateformat'            => 'د نېټې بڼه',
 'datedefault'           => 'هېڅ نه ټاکل',
-'prefs-datetime'              => 'نېټه او وخت',
+'prefs-datetime'        => 'نېټه او وخت',
 'math_unknown_error'    => 'ناجوته ستونزه',
 'math_unknown_function' => 'ناجوته کړنه',
 'prefs-personal'        => 'د کارونکي پېژنليک',
@@ -704,7 +704,7 @@ $messages = array(
 'prefs-resetpass'       => 'پټنوم بدلول',
 'saveprefs'             => 'خوندي کول',
 'resetprefs'            => 'بيا سمول',
-'prefs-editing'           => 'سمادېدنه',
+'prefs-editing'         => 'سمادېدنه',
 'searchresultshead'     => 'پلټل',
 'recentchangesdays'     => 'د هغو ورځو شمېر وټاکی چې په وروستي بدلونو کې يې ليدل غواړی:',
 'recentchangescount'    => 'د هغو سمادونو شمېر چې په وروستي بدلونو کې يې ليدل غواړی:',
@@ -717,7 +717,7 @@ $messages = array(
 'prefs-namespaces'      => 'نوم-تشيالونه',
 'defaultns'             => 'په دغو نوم-تشيالونو کې د ټاکل شوو سمونونو له مخې لټون وکړی:',
 'default'               => 'تلواليز',
-'prefs-files'                 => 'دوتنې',
+'prefs-files'           => 'دوتنې',
 
 # User rights
 'userrights-user-editname' => 'يو کارن نوم وليکۍ:',

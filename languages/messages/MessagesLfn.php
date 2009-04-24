@@ -368,19 +368,19 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'hr_tip'          => 'Linia orizonal (usa nonfrecuente)',
 
 # Edit pages
-'summary'                => 'Soma:',
-'subject'                => 'Sujeto/titulo:',
-'minoredit'              => 'Esta es un cambia minor',
-'watchthis'              => 'Oserva esta paje',
-'savearticle'            => 'Fisa paje',
-'preview'                => 'Previde',
-'showpreview'            => 'Mostra previde',
-'showdiff'               => 'Mostra diferes',
-'anoneditwarning'        => "'''Avisa:''' Tu no ia sinia per entra.
+'summary'                    => 'Soma:',
+'subject'                    => 'Sujeto/titulo:',
+'minoredit'                  => 'Esta es un cambia minor',
+'watchthis'                  => 'Oserva esta paje',
+'savearticle'                => 'Fisa paje',
+'preview'                    => 'Previde',
+'showpreview'                => 'Mostra previde',
+'showdiff'                   => 'Mostra diferes',
+'anoneditwarning'            => "'''Avisa:''' Tu no ia sinia per entra.
 Tu adirije de IP va es memorada en la istoria de revisas de esta paje.",
-'summary-preview'        => 'Previde soma:',
-'blockedtitle'           => 'Usor es impedida',
-'blockedtext'            => "<big>'''Tu nom de usor o adirije de IP ia es impedida.'''</big>
+'summary-preview'            => 'Previde soma:',
+'blockedtitle'               => 'Usor es impedida',
+'blockedtext'                => "<big>'''Tu nom de usor o adirije de IP ia es impedida.'''</big>
 
 La impedi ia es fada par $1.
 La razon donada es ''$2''.
@@ -394,32 +394,32 @@ Tu no pote usa la 'envia un eposta a esta usor' sin un adirije de eposta legal e
 [[Special:Preferences|preferis de conta]] e tu no es impedida de usa el.
 Tu adirije de IP es aora $3, e la identia de la impedi es #$5.
 Per favore inclui tota esta detales en tu demandas.",
-'newarticle'             => '(Nova)',
-'newarticletext'         => "Tu ia segue un lia a un paje ce no esista ja.
+'newarticle'                 => '(Nova)',
+'newarticletext'             => "Tu ia segue un lia a un paje ce no esista ja.
 Per crea la paje, comensa scrive en la caxa a su
 (vide la [[{{MediaWiki:Helppage}}|paje de aida]] per plu).
 Si tu es asi par era, clica a la boton '''retro''' de tu surfador.",
-'noarticletext'          => 'Es aora no testo a esta paje.
+'noarticletext'              => 'Es aora no testo a esta paje.
 Tu pote [[Special:Search/{{PAGENAME}}|xerca per la titulo de esta paje]] en otra pajes,
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} xerca la arcivos relatada],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita esta paje].',
-'previewnote'            => "'''Esta sola un previde; cambias no es fisada ja'''",
-'editing'                => 'En la prosede de edita $1',
-'editingsection'         => 'Edita $1 (sesion)',
-'editingcomment'         => 'Edita $1 (sesion nova)',
-'yourdiff'               => 'Diferes',
-'copyrightwarning'       => "Per favore nota ce tota labora a {{SITENAME}} es judida ce el es relasada su la $2 (vide $1 per detalias). Si tu no desira ce tu scrives ta es editada sin compati e redistribui sin tu permite, no sumita el asi!<br />
+'previewnote'                => "'''Esta sola un previde; cambias no es fisada ja'''",
+'editing'                    => 'En la prosede de edita $1',
+'editingsection'             => 'Edita $1 (sesion)',
+'editingcomment'             => 'Edita $1 (sesion nova)',
+'yourdiff'                   => 'Diferes',
+'copyrightwarning'           => "Per favore nota ce tota labora a {{SITENAME}} es judida ce el es relasada su la $2 (vide $1 per detalias). Si tu no desira ce tu scrives ta es editada sin compati e redistribui sin tu permite, no sumita el asi!<br />
 Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un domina publica o otra orijin libre.
 '''NO SUMITA LABORA SU DIRETOS DE AUTOR SIN PERMITE!!'''",
-'longpagewarning'        => "'''AVISA: Esta paje usa $1 kilotetas; alga surfadores pote ave problemes con la edita de pajes plu grande ce 32 ko.
+'longpagewarning'            => "'''AVISA: Esta paje usa $1 kilotetas; alga surfadores pote ave problemes con la edita de pajes plu grande ce 32 ko.
 Per favore, considera parti la paje en pesos plu poca.'''",
-'templatesused'          => 'Modeles usada a esta paje:',
-'templatesusedpreview'   => 'Modeles usada en esta previde:',
-'template-protected'     => '(protejeda)',
-'template-semiprotected' => '(proteje en parte)',
-'nocreatetext'           => '{{SITENAME}} ave un restringe a la capas per crea pajes nova.
+'templatesused'              => 'Modeles usada a esta paje:',
+'templatesusedpreview'       => 'Modeles usada en esta previde:',
+'template-protected'         => '(protejeda)',
+'template-semiprotected'     => '(proteje en parte)',
+'nocreatetext'               => '{{SITENAME}} ave un restringe a la capas per crea pajes nova.
 Tu pote vade a retro e edita un paje esistente, o  [[Special:UserLogin|sinia per entra o crea un conta]].',
-'recreate-deleted-warn'  => "'''Avisa: Tu es recrea un paje ce ia es sutraed en la pasada.'''
+'recreate-moveddeleted-warn' => "'''Avisa: Tu es recrea un paje ce ia es sutraed en la pasada.'''
 Tu debe pensa ce es bon continua edita esta paje.
 La arcivo de sutraes per esta paje es asi per conveni:",
 
@@ -483,7 +483,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'preferences'               => 'Preferis',
 'mypreferences'             => 'Me preferis',
 'skin-preview'              => 'Previde',
-'prefs-math'                      => 'Matematica',
+'prefs-math'                => 'Matematica',
 'saveprefs'                 => 'Fisa',
 'rows'                      => 'Linias:',
 'columns'                   => 'Colonas:',
@@ -499,7 +499,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'timezoneregion-europe'     => 'Europa',
 'timezoneregion-indian'     => 'Mar Indian',
 'timezoneregion-pacific'    => 'Mar Pasifica',
-'prefs-files'                     => 'Fixes',
+'prefs-files'               => 'Fixes',
 
 # User rights
 'userrights'     => 'Dirije de la diretos de usores',

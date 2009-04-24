@@ -273,11 +273,11 @@ Alamat IP Droëneuh nakeuh $3, ngön ID neutheun nakeuh $5. Tulông peuseureuta 
 'hiddencategories'                 => 'Ôn nyoë nakeuh anggèëta nibak {{PLURAL:$1|1 kawan teusom |$1 kawan teusom}}:',
 'nocreatetext'                     => '{{SITENAME}} ka jikot bak peugöt ôn barô. Ji Droëneuh   jeuët neuriwang teuma ngön neu’andam ôn nyang ka na, atawa [[Special:UserLogin|neutamong atawa neudapeuta]].',
 'permissionserrorstext-withaction' => 'Droëneuh hana hak tamöng keu $2, muroë {{PLURAL:$1|choë|choë}} nyoë:',
-'recreate-deleted-warn'            => "'''Ingat: Droëneuh  teungoh neupeugöt ulang saboh ôn nyang ka tom geusampôh. ''',
+'recreate-moveddeleted-warn'       => "'''Ingat: Droëneuh  teungoh neupeugöt ulang saboh ôn nyang ka tom geusampôh. ''',
 
 Neutimang-timang dilèë peuë ék patôt neupeulanjut atra nyang teungoh neu’andam.
 Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
-'deleted-notice'                   => 'Ôn nyoë ka geusampôh. Meunyo peureulèë, nyoë pat nakeuh log seunampôh ôn nyoë.',
+'moveddeleted-notice'              => 'Ôn nyoë ka geusampôh. Meunyo peureulèë, nyoë pat nakeuh log seunampôh ôn nyoë.',
 
 # History pages
 'viewpagelogs'           => 'Eu log ôn nyoë',

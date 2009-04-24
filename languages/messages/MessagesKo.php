@@ -867,13 +867,12 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'permissionserrors'                => '권한 오류',
 'permissionserrorstext'            => '해당 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
 'permissionserrorstext-withaction' => '$2 권한이 없습니다. 다음의 이유를 확인해주세요:',
-'recreate-deleted-warn'            => "'''주의: 과거에 삭제된 문서를 다시 만들고 있습니다.'''
+'recreate-moveddeleted-warn'       => "'''주의: 과거에 삭제된 문서를 다시 만들고 있습니다.'''
 
 이 문서를 계속 편집하는 것이 적합한 것인지 확인해주세요.
 과거 삭제 기록은 다음과 같습니다:",
-'deleted-notice'                   => '이 문서는 삭제되어 있습니다.
+'moveddeleted-notice'              => '이 문서는 삭제되어 있습니다.
 이 문서의 삭제 기록은 다음과 같습니다.',
-'deletelog-fulllog'                => '전체 기록 보기',
 'edit-hook-aborted'                => '훅에 의해 편집이 중단되었습니다.
 아무런 설명도 주어지지 않았습니다.',
 'edit-gone-missing'                => '문서를 저장하지 못했습니다.
@@ -1183,12 +1182,12 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'qbsettings-floatingleft'   => '왼쪽 유동',
 'qbsettings-floatingright'  => '오른쪽 유동',
 'changepassword'            => '비밀번호 바꾸기',
-'prefs-skin'                      => '스킨',
+'prefs-skin'                => '스킨',
 'skin-preview'              => '미리 보기',
-'prefs-math'                      => '수식',
+'prefs-math'                => '수식',
 'dateformat'                => '날짜 형식',
 'datedefault'               => '기본값',
-'prefs-datetime'                  => '날짜와 시각',
+'prefs-datetime'            => '날짜와 시각',
 'math_failure'              => '해석 실패',
 'math_unknown_error'        => '알 수 없는 오류',
 'math_unknown_function'     => '알 수 없는 함수',
@@ -1210,7 +1209,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'saveprefs'                 => '저장',
 'resetprefs'                => '저장하지 않은 설정 되돌리기',
 'restoreprefs'              => '기본값을 복구',
-'prefs-editing'               => '편집상자 크기',
+'prefs-editing'             => '편집상자 크기',
 'prefs-edit-boxsize'        => '편집 창의 크기',
 'rows'                      => '줄 수:',
 'columns'                   => '열:',
@@ -1247,7 +1246,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'prefs-namespaces'          => '이름공간',
 'defaultns'                 => '기본으로 다음의 이름공간에서 찾기:',
 'default'                   => '기본값',
-'prefs-files'                     => '파일',
+'prefs-files'               => '파일',
 'prefs-custom-css'          => '사용자 CSS',
 'prefs-custom-js'           => '사용자 자바스크립트',
 
@@ -2878,6 +2877,10 @@ Variants for Chinese language
 'exif-gpslongitude-e' => '동경',
 'exif-gpslongitude-w' => '서경',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => '해발',
+'exif-gpsaltitude-1' => '수심',
+
 'exif-gpsstatus-a' => '측정 중',
 'exif-gpsstatus-v' => '인터랙티브 측정',
 
@@ -2888,6 +2891,11 @@ Variants for Chinese language
 'exif-gpsspeed-k' => '킬로미터 매 시간',
 'exif-gpsspeed-m' => '마일 매 시간',
 'exif-gpsspeed-n' => '노트',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => '킬로미터',
+'exif-gpsdestdistance-m' => '마일',
+'exif-gpsdestdistance-n' => '해리',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '실제 방위',

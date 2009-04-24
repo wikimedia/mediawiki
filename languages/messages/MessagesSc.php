@@ -450,7 +450,7 @@ Cun s'imbiu de custu iscritu ses garantende, a responsabilidade tua, chi s'iscri
 'template-semiprotected'           => '(semi-amparau)',
 'hiddencategories'                 => 'Custa pàgina faghet parti de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:',
 'permissionserrorstext-withaction' => 'Non tenes su permissu de $2, pro {{PLURAL:$1|custu motivu|custus motivus}}:',
-'deleted-notice'                   => "Custa pàgina est istada fuliada. 
+'moveddeleted-notice'              => "Custa pàgina est istada fuliada. 
 S'arregistru de is fuliaduras est amostau pro informatzione.",
 
 # History pages
@@ -552,11 +552,11 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'qbsettings-floatingleft'  => 'Fluttuante a sinistra',
 'qbsettings-floatingright' => 'Fluttuante a destra',
 'changepassword'           => 'Cambia password',
-'prefs-skin'                     => 'Aspetto',
+'prefs-skin'               => 'Aspetto',
 'prefs-watchlist'          => 'Watchlist',
 'saveprefs'                => 'Sarva preferèntzias',
 'resetprefs'               => 'Resetta preferenze',
-'prefs-editing'              => 'Box de acontzadura',
+'prefs-editing'            => 'Box de acontzadura',
 'rows'                     => 'Lìnias:',
 'columns'                  => 'Colunnas:',
 'searchresultshead'        => 'Settaggio delle preferenze per la ricerca',

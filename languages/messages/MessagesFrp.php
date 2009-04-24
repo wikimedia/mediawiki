@@ -743,10 +743,10 @@ Vos pouede tornar arriér et pués modifiar una pâge ègzistenta, ou ben vos [[
 'permissionserrors'                => 'Èrror de pèrmissions',
 'permissionserrorstext'            => 'Vos avéd pas la pèrmission de fâre l’opèracion demandâ por {{PLURAL:$1|la rêson siuventa|les rêsons siuventes}} :',
 'permissionserrorstext-withaction' => 'Vos éte pas ôtorisâ a $2, por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
-'recreate-deleted-warn'            => "'''Atencion : vos éte aprés recrèar una pâge qu’at étâ prècèdament suprimâ.'''
+'recreate-moveddeleted-warn'       => "'''Atencion : vos éte aprés recrèar una pâge qu’at étâ prècèdament suprimâ.'''
 
 Demandâd-vos s’o est verément convegnâblo de la recrèar en vos refèrent u jornal de les suprèssions afichiê ce-desot :",
-'deleted-notice'                   => 'Ceta pâge at étâ suprimâ.
+'moveddeleted-notice'              => 'Ceta pâge at étâ suprimâ.
 L’historico de les suprèssions est montrâ ce-desot por refèrence.',
 
 # "Undo" feature
@@ -917,12 +917,12 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'qbsettings-floatingleft'  => 'Fllotenta a gôche',
 'qbsettings-floatingright' => 'Fllotenta a drêta',
 'changepassword'           => 'Modificacion du mot de pâssa',
-'prefs-skin'                     => 'Entèrface',
+'prefs-skin'               => 'Entèrface',
 'skin-preview'             => 'Prèvisualisar',
-'prefs-math'                     => 'Rendu de les formules matèmatiques',
+'prefs-math'               => 'Rendu de les formules matèmatiques',
 'dateformat'               => 'Format de dâta',
 'datedefault'              => 'Niona prèference',
-'prefs-datetime'                 => 'Dâta et hora',
+'prefs-datetime'           => 'Dâta et hora',
 'math_failure'             => 'Èrror d’analisa sintaxica',
 'math_unknown_error'       => 'èrror endètèrmenâ',
 'math_unknown_function'    => 'fonccion encognua',
@@ -940,7 +940,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'prefs-misc'               => 'Prèferences de totes sôrtes',
 'saveprefs'                => 'Enregistrar les prèferences',
 'resetprefs'               => 'Rètablir les prèferences',
-'prefs-editing'              => 'Fenétra d’èdicion',
+'prefs-editing'            => 'Fenétra d’èdicion',
 'rows'                     => 'Renchiês :',
 'columns'                  => 'Colones :',
 'searchresultshead'        => 'Rechèrche',
@@ -960,7 +960,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'allowemail'               => 'Ôtorisar l’èxpèdicion de mèl vegnent d’ôtros utilisators',
 'defaultns'                => 'Rechèrchiér per dèfôt dens cetos èspâços de nom :',
 'default'                  => 'dèfôt',
-'prefs-files'                    => 'Fichiérs',
+'prefs-files'              => 'Fichiérs',
 
 # User rights
 'userrights'               => 'Maneyance des drêts d’utilisator',

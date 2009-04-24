@@ -120,8 +120,8 @@ $messages = array(
 'powersearch' => 'Roromā’imi',
 
 # Preferences page
-'prefs-rc' => 'Te mau fa’ahuru-’ē-ra’a ’āpī',
-'prefs-files'    => 'Te mau putu’ite',
+'prefs-rc'    => 'Te mau fa’ahuru-’ē-ra’a ’āpī',
+'prefs-files' => 'Te mau putu’ite',
 
 # Recent changes
 'recentchanges' => 'Te mau fa’ahuru-’ē-ra’a ’āpī',

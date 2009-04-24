@@ -839,12 +839,11 @@ Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Spec
 'permissionserrors'                => 'Chyba povolení',
 'permissionserrorstext'            => 'Na to nemáte povolenie z {{PLURAL:$1|nasledujúceho dôvodu|nasledujúcich dôvodov}}:',
 'permissionserrorstext-withaction' => 'Nemáte oprávnenie $2 z {{PLURAL:$1|nasledovného dôvodu|nasledovných dôvodov}}:',
-'recreate-deleted-warn'            => "'''Upozornenie: Opätovne vytvárate stránku, ktorá bola predtým zmazaná.'''
+'recreate-moveddeleted-warn'       => "'''Upozornenie: Opätovne vytvárate stránku, ktorá bola predtým zmazaná.'''
 
 Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
 Odkaz na záznam zmazaní:",
-'deleted-notice'                   => 'Táto stránka bola zmazaná. Dolu je uvedený záznam zmazaní.',
-'deletelog-fulllog'                => 'Zobraziť úplný záznam',
+'moveddeleted-notice'              => 'Táto stránka bola zmazaná. Dolu je uvedený záznam zmazaní.',
 'edit-hook-aborted'                => 'Úpravu zrušila prídavná funkcia (prípojný bod syntaktického analyzátora).
 Neudala vysvetlenie.',
 'edit-gone-missing'                => 'Nebolo možné aktualizovať stránku.
@@ -1154,12 +1153,12 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'qbsettings-floatingleft'   => 'Plávajúce vľavo',
 'qbsettings-floatingright'  => 'Plávajúce vpravo',
 'changepassword'            => 'Zmeniť heslo',
-'prefs-skin'                      => 'Vzhľad',
+'prefs-skin'                => 'Vzhľad',
 'skin-preview'              => 'Náhľad',
-'prefs-math'                      => 'Vykreslenie matematiky',
+'prefs-math'                => 'Vykreslenie matematiky',
 'dateformat'                => 'Formát dátumu',
 'datedefault'               => 'štandardný',
-'prefs-datetime'                  => 'Dátum a čas',
+'prefs-datetime'            => 'Dátum a čas',
 'math_failure'              => 'Syntaktická analýza (parsing) neúspešná',
 'math_unknown_error'        => 'neznáma chyba',
 'math_unknown_function'     => 'neznáma funkcia',
@@ -1181,7 +1180,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'saveprefs'                 => 'Uložiť nastavenia',
 'resetprefs'                => 'Obnoviť pôvodné nastavenia',
 'restoreprefs'              => 'Obnoviť všetky nastavenia na štandardné hodnoty',
-'prefs-editing'               => 'Úpravy',
+'prefs-editing'             => 'Úpravy',
 'prefs-edit-boxsize'        => 'Veľkosť okna na úpravy.',
 'rows'                      => 'Riadky:',
 'columns'                   => 'Stĺpce:',
@@ -1218,7 +1217,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'prefs-namespaces'          => 'Menné priestory',
 'defaultns'                 => 'Štandardne vyhľadávať v týchto menných priestoroch:',
 'default'                   => 'predvolený',
-'prefs-files'                     => 'Súbory',
+'prefs-files'               => 'Súbory',
 'prefs-custom-css'          => 'Vlastný CSS',
 'prefs-custom-js'           => 'Vlastný JS',
 
@@ -2861,6 +2860,10 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpslongitude-e' => 'Východná dĺžka',
 'exif-gpslongitude-w' => 'Západná dĺžka',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metrov nad hladinou mora',
+'exif-gpsaltitude-1' => 'Metrov pod hladinou mora',
+
 'exif-gpsstatus-a' => 'Prebieha meranie',
 'exif-gpsstatus-v' => 'Interoperabilita merania',
 
@@ -2871,6 +2874,11 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpsspeed-k' => 'Kilometrov za hodinu',
 'exif-gpsspeed-m' => 'Míľ za hodinu',
 'exif-gpsspeed-n' => 'Uzlov',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometrov',
+'exif-gpsdestdistance-m' => 'Míľ',
+'exif-gpsdestdistance-n' => 'Námorných míľ',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Skutočný smer',

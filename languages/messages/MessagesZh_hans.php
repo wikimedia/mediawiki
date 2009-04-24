@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -818,13 +818,12 @@ $2',
 'permissionserrors'                => '权限错误',
 'permissionserrorstext'            => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做以下的动作：',
 'permissionserrorstext-withaction' => '根据以下的{{PLURAL:$1|原因|原因}}，您无权限进行$2操作：',
-'recreate-deleted-warn'            => "'''警告：你现在重新创建一个先前曾经删除过的页面。'''
+'recreate-moveddeleted-warn'       => "'''警告: 你现在重新创建一个先前曾经删除过的页面。'''
 
 你应该要考虑一下继续编辑这一个页面是否合适。
-为方便起见，这一个页面的删除记录已经在下面提供：",
-'deleted-notice'                   => '这个页面已经删除。
+为方便起见，这一个页面的删除记录已经在下面提供:",
+'moveddeleted-notice'              => '这个页面已经删除。
 这个页面的删除日志已在下面提供以便参考。',
-'deletelog-fulllog'                => '查看整个日志',
 'edit-hook-aborted'                => '编辑被钩取消。
 它并无给出解释。',
 'edit-gone-missing'                => '不能更新页面。
@@ -1442,9 +1441,9 @@ $2',
 请选择一个不同的名字。',
 'fileexists-thumb'            => "<center>'''已经存在的文件'''</center>",
 'fileexists-thumbnail-yes'    => "此文件可能是另一幅图像的缩小版本''（缩略图）''。请仔细检查该文件'''<tt>$1</tt>'''。<br />
-如果被检查文件与原始大小的图像是同一幅图像，您无需上传多余的缩略图。",	
+如果被检查文件与原始大小的图像是同一幅图像，您无需上传多余的缩略图。",
 'file-thumbnail-no'           => "文件名以'''<tt>$1</tt>'''开头。它可能是另一幅图像的缩小版本''（缩略图）''。
-如果你有该图像完整分辨率的版本，请上传该完整版本。否则请修改文件名。",	
+如果你有该图像完整分辨率的版本，请上传该完整版本。否则请修改文件名。",
 'fileexists-forbidden'        => '已存在相同名称的文件，且不能覆盖；请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件。
 如果你仍然想去上传它的话，请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',

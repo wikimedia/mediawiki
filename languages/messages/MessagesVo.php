@@ -731,13 +731,12 @@ Kanol redakön padi dabinöl, u [[Special:UserLogin|nunädön oli u jafön kali]
 'permissionserrors'                => 'Dälapöls',
 'permissionserrorstext'            => 'No dalol dunön atosi sekü {{PLURAL:$1|kod|kods}} sököl:',
 'permissionserrorstext-withaction' => 'No dalol $2, sekü {{PLURAL:$1|kod|kods}} sököl:',
-'recreate-deleted-warn'            => "'''NUNED: Dönujafol padi pemoüköl.'''
+'recreate-moveddeleted-warn'       => "'''NUNED: Dönujafol padi pemoüköl.'''
 
 Vätälolös, va binos pötik ad lairedakön padi at.
 Jenotalised moükama pada at pajonon is as yuf.",
-'deleted-notice'                   => 'Pad at pemoükon.
+'moveddeleted-notice'              => 'Pad at pemoükon.
 Moükamajenotem pada at palisedon dono.',
-'deletelog-fulllog'                => 'Logön jenotemalisedi lölik',
 'edit-hook-aborted'                => 'Redakam pestöpädon fa huköm.
 No enunon kodi.',
 'edit-gone-missing'                => 'No eplöpos ad votükön padi.
@@ -1026,12 +1025,12 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'qbsettings-floatingleft'   => 'nedeto (vebölo)',
 'qbsettings-floatingright'  => 'deto (vebölo)',
 'changepassword'            => 'Votükön letavödi',
-'prefs-skin'                      => 'Fomät',
+'prefs-skin'                => 'Fomät',
 'skin-preview'              => 'Büologed',
-'prefs-math'                      => 'Logot formülas',
+'prefs-math'                => 'Logot formülas',
 'dateformat'                => 'Dätafomät',
 'datedefault'               => 'Buükam nonik',
-'prefs-datetime'                  => 'Dät e Tim',
+'prefs-datetime'            => 'Dät e Tim',
 'math_failure'              => 'Diletam fomüla no eplöpon',
 'math_unknown_error'        => 'pök nesevädik',
 'math_unknown_function'     => 'dun nesevädik',
@@ -1055,7 +1054,7 @@ logolös eli math/README ad givulön parametemi.',
 'saveprefs'                 => 'Dakipolöd',
 'resetprefs'                => 'Buükams rigik',
 'restoreprefs'              => 'Geikön lü paramets kösömik valik',
-'prefs-editing'               => 'Redakam',
+'prefs-editing'             => 'Redakam',
 'prefs-edit-boxsize'        => 'Gretot redakamafenäta.',
 'rows'                      => 'Kedets:',
 'columns'                   => 'Padüls:',
@@ -1090,7 +1089,7 @@ logolös eli math/README ad givulön parametemi.',
 'prefs-namespaces'          => 'Nemaspads',
 'defaultns'                 => 'Sukolös nomiko in nemaspads at:',
 'default'                   => 'stad kösömik',
-'prefs-files'                     => 'Ragivs',
+'prefs-files'               => 'Ragivs',
 
 # User rights
 'userrights'                  => 'Guvam gebanagitätas',

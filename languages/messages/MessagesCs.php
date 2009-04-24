@@ -937,13 +937,12 @@ Můžete se vrátit a editovat již existující stránku, nebo [[Special:UserLo
 'permissionserrors'                => 'Chyba povolení',
 'permissionserrorstext'            => 'Nemáte povoleno toto provést z {{PLURAL:$1|následujícího důvodu|následujících důvodů|následujících důvodů}}:',
 'permissionserrorstext-withaction' => 'Nemáte oprávnění „$2“. {{PLURAL:$1|Důvod:|Důvody:}}',
-'recreate-deleted-warn'            => "'''Pozor: Pokoušíte se založit stránku, která již byla smazána.'''
+'recreate-moveddeleted-warn'       => "'''Pozor: Pokoušíte se založit stránku, která již byla smazána.'''
 
 Ujistěte se, že je vhodné pokračovat v editaci stránky.
 Níže vidíte výpis z knihy smazaných stránek pro tuto stránku:",
-'deleted-notice'                   => 'Tato stránka byla smazána.
+'moveddeleted-notice'              => 'Tato stránka byla smazána.
 Podrobnosti lze zjistit z níže uvedeného výpisu knihy smazaných stránek.',
-'deletelog-fulllog'                => 'Celá kniha smazaných stránek',
 'edit-hook-aborted'                => 'Editace byla zrušena přípojným bodem bez bližšího vysvětlení.',
 'edit-gone-missing'                => 'Stránku se nepodařilo aktualizovat.
 Zřejmě byla smazána.',
@@ -1249,12 +1248,12 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'qbsettings-floatingleft'   => 'Plovoucí vlevo',
 'qbsettings-floatingright'  => 'Plovoucí vpravo',
 'changepassword'            => 'Změna hesla',
-'prefs-skin'                      => 'Vzhled',
+'prefs-skin'                => 'Vzhled',
 'skin-preview'              => 'Náhled',
-'prefs-math'                      => 'Matematika',
+'prefs-math'                => 'Matematika',
 'dateformat'                => 'Formát data',
 'datedefault'               => 'Implicitní',
-'prefs-datetime'                  => 'Datum a čas',
+'prefs-datetime'            => 'Datum a čas',
 'math_failure'              => 'Nelze pochopit',
 'math_unknown_error'        => 'neznámá chyba',
 'math_unknown_function'     => 'neznámá funkce',
@@ -1276,7 +1275,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'saveprefs'                 => 'Uložit nastavení',
 'resetprefs'                => 'Vrátit původní nastavení',
 'restoreprefs'              => 'Obnovit všechna výchozí nastavení',
-'prefs-editing'               => 'Editace',
+'prefs-editing'             => 'Editace',
 'prefs-edit-boxsize'        => 'Velikost editačního okna:',
 'rows'                      => 'Řádky',
 'columns'                   => 'Sloupce',
@@ -1313,7 +1312,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-namespaces'          => 'Jmenné prostory',
 'defaultns'                 => 'Implicitně hledat v těchto jmenných prostorech:',
 'default'                   => 'implicitní',
-'prefs-files'                     => 'Soubory',
+'prefs-files'               => 'Soubory',
 'prefs-custom-css'          => 'Vlastní CSS',
 'prefs-custom-js'           => 'Vlastní JS',
 
@@ -2554,7 +2553,7 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 # Attribution
 'anonymous'        => 'anonymní {{PLURAL:$1|uživatel|uživatelé|uživatelé}} {{GRAMMAR:2sg|{{SITENAME}}}}',
 'siteuser'         => 'uživatel {{grammar:2sg|{{SITENAME}}}} $1',
-'lastmodifiedatby' => 'Tuto stránku naposledy měnil $3 v $2, $1.',
+'lastmodifiedatby' => 'Tuto stránku naposledy změnil $3 v $2, $1.',
 'othercontribs'    => 'Do textu přispěli $1.',
 'others'           => 'ostatní',
 'siteusers'        => '{{PLURAL:$2|uživatel|uživatelé|uživatelé}} {{grammar:2sg|{{SITENAME}}}} $1',

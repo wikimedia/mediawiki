@@ -173,7 +173,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'prefsnologin'      => 'Awungenile',
 'qbsettings'        => 'Imeniyu',
 'changepassword'    => 'Guqula izwi elingenangozi',
-'prefs-math'              => 'Izibalo',
+'prefs-math'        => 'Izibalo',
 'saveprefs'         => 'Saveprefs',
 'searchresultshead' => 'Sesha',
 'timezonelegend'    => 'Isifunda sasikhathi',

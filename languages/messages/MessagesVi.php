@@ -857,13 +857,12 @@ Bạn có thể quay trở lại và sửa đổi các trang đã có, hoặc [[
 'permissionserrors'                => 'Không có quyền thực hiện',
 'permissionserrorstext'            => 'Bạn không có quyền thực hiện thao tác đó, vì {{PLURAL:$1|lý do|lý do}}:',
 'permissionserrorstext-withaction' => 'Bạn không quyền $2, với {{PLURAL:$1|lý do|lý do}} sau:',
-'recreate-deleted-warn'            => "'''Cảnh báo: Bạn vừa tạo lại một trang từng bị xóa trước đây.'''
+'recreate-moveddeleted-warn'       => "'''Cảnh báo: Bạn vừa tạo lại một trang từng bị xóa trước đây.'''
 
 Bạn nên cân nhắc trong việc tiếp tục soạn thảo trang này.
 Nhật trình xóa của trang được đưa ra dưới đây để tiện theo dõi:",
-'deleted-notice'                   => 'Trang này đã bị xóa.
+'moveddeleted-notice'              => 'Trang này đã bị xóa.
 Nhật trình xóa trang được ghi dưới đây để tiện theo dõi.',
-'deletelog-fulllog'                => 'Xem nhật trình đầy đủ',
 'edit-hook-aborted'                => 'Một phần bổ trợ phần mềm đã bỏ qua sửa đổi này.
 Không có lý do nào được đưa ra.',
 'edit-gone-missing'                => 'Không thể cập nhật trang.
@@ -1172,12 +1171,12 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'qbsettings-floatingleft'   => 'Nổi bên trái',
 'qbsettings-floatingright'  => 'Nổi bên phải',
 'changepassword'            => 'Đổi mật khẩu',
-'prefs-skin'                      => 'Hình dạng',
+'prefs-skin'                => 'Hình dạng',
 'skin-preview'              => 'Xem thử',
-'prefs-math'                      => 'Công thức toán',
+'prefs-math'                => 'Công thức toán',
 'dateformat'                => 'Kiểu ngày tháng',
 'datedefault'               => 'Không lựa chọn',
-'prefs-datetime'                  => 'Ngày tháng',
+'prefs-datetime'            => 'Ngày tháng',
 'math_failure'              => 'Không thể phân tích cú pháp',
 'math_unknown_error'        => 'lỗi lạ',
 'math_unknown_function'     => 'hàm lạ',
@@ -1199,7 +1198,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'saveprefs'                 => 'Lưu tùy chọn',
 'resetprefs'                => 'Mặc định lại lựa chọn',
 'restoreprefs'              => 'Mặc định lại toàn bộ tùy chọn',
-'prefs-editing'               => 'Sửa đổi',
+'prefs-editing'             => 'Sửa đổi',
 'prefs-edit-boxsize'        => 'Kích thước cửa sổ soạn thảo.',
 'rows'                      => 'Số hàng:',
 'columns'                   => 'Số cột:',
@@ -1236,7 +1235,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'prefs-namespaces'          => 'Không gian tên',
 'defaultns'                 => 'Mặc định tìm kiếm trong không gian tên:',
 'default'                   => 'mặc định',
-'prefs-files'                     => 'Tập tin',
+'prefs-files'               => 'Tập tin',
 'prefs-custom-css'          => 'sửa CSS',
 'prefs-custom-js'           => 'sửa JS',
 
@@ -2377,6 +2376,9 @@ Mời vào [http://www.mediawiki.org/wiki/Localisation Địa phương hóa Medi
 'djvu_no_xml'              => 'Không thể truy xuất XML cho tập tin DjVu',
 'thumbnail_invalid_params' => 'Tham số hình thu nhỏ không hợp lệ',
 'thumbnail_dest_directory' => 'Không thể tạo thư mục đích',
+'thumbnail_image-type'     => 'Không hỗ trợ kiểu hình này',
+'thumbnail_gd-library'     => 'Cấu hình thư viện GD chưa hoàn thành: thiếu hàm $1',
+'thumbnail_image-missing'  => 'Hình như tập tin mất tích: $1',
 
 # Special:Import
 'import'                     => 'Nhập các trang',
@@ -2898,6 +2900,10 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpslongitude-e' => 'Kinh độ đông',
 'exif-gpslongitude-w' => 'Kinh độ tây',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Mét trên mực nước biển',
+'exif-gpsaltitude-1' => 'Mét dưới mực nước biển',
+
 'exif-gpsstatus-a' => 'Đang đo',
 'exif-gpsstatus-v' => 'Mức độ khả năng liên điều hành',
 
@@ -2908,6 +2914,11 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpsspeed-k' => 'Kilômét một giờ',
 'exif-gpsspeed-m' => 'Dặm một giờ',
 'exif-gpsspeed-n' => 'Hải lý một giờ',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilômét',
+'exif-gpsdestdistance-m' => 'Dặm Anh',
+'exif-gpsdestdistance-n' => 'Hải lý',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Hướng thật',

@@ -973,12 +973,11 @@ Grund für die Sperre: $1",
 'permissionserrorstext'            => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'permissionserrorstext-withaction' => 'Du bist nicht berechtigt, $2.
 {{PLURAL:$1|Grund|Gründe}}:',
-'recreate-deleted-warn'            => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
+'recreate-moveddeleted-warn'       => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
-'deleted-notice'                   => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch-Logbuch für diese Seite.',
-'deletelog-fulllog'                => 'Vollständiges Lösch-Logbuch',
+'moveddeleted-notice'              => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch-Logbuch für diese Seite.',
 'edit-hook-aborted'                => 'Die Bearbeitung wurde ohne Erklärung durch eine Schnittstelle abgebrochen.',
 'edit-gone-missing'                => 'Die Seite konnt nicht aktualisiert werden.
 Sie wurde anscheinend gelöscht.',
@@ -1282,12 +1281,12 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'qbsettings-floatingleft'   => 'Links, schwebend',
 'qbsettings-floatingright'  => 'Rechts, schwebend',
 'changepassword'            => 'Passwort ändern',
-'prefs-skin'                      => 'Skin',
+'prefs-skin'                => 'Skin',
 'skin-preview'              => 'Vorschau',
-'prefs-math'                      => 'TeX',
+'prefs-math'                => 'TeX',
 'dateformat'                => 'Datumsformat',
 'datedefault'               => 'Standard',
-'prefs-datetime'                  => 'Datum und Zeit',
+'prefs-datetime'            => 'Datum und Zeit',
 'math_failure'              => 'Parser-Fehler',
 'math_unknown_error'        => 'Unbekannter Fehler',
 'math_unknown_function'     => 'Unbekannte Funktion ',
@@ -1309,7 +1308,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'saveprefs'                 => 'Einstellungen speichern',
 'resetprefs'                => 'Eingaben verwerfen',
 'restoreprefs'              => 'Alle Standardeinstellungen wiederherstellen',
-'prefs-editing'               => 'Bearbeiten',
+'prefs-editing'             => 'Bearbeiten',
 'prefs-edit-boxsize'        => 'Größe des Bearbeitungsfensters:',
 'rows'                      => 'Zeilen',
 'columns'                   => 'Spalten',
@@ -1346,7 +1345,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'prefs-namespaces'          => 'Namensräume',
 'defaultns'                 => 'In diesen Namensräumen soll standardmäßig gesucht werden:',
 'default'                   => 'Voreinstellung',
-'prefs-files'                     => 'Dateien',
+'prefs-files'               => 'Dateien',
 'prefs-custom-css'          => 'Benutzerdefinierte CSS',
 'prefs-custom-js'           => 'Benutzerdefiniertes JS',
 

@@ -557,7 +557,7 @@ Mundan hem başga, siz bu ýere goşant goşmak bilen bu goşandyň özüňiz ta
 'template-semiprotected'           => '(ýarym goragly)',
 'hiddencategories'                 => 'Bu sahypa {{PLURAL:$1|1 gizlin kategoriýa|$1 gizlin kategoriýa}} degişlidir:',
 'permissionserrorstext-withaction' => 'Aşakdaky {{PLURAL:$1|sebäp|sebäpler}} zerarly $2 ygtyýaryňyz ýok:',
-'deleted-notice'                   => 'Bu sahypa öçürildi.
+'moveddeleted-notice'              => 'Bu sahypa öçürildi.
 Bu sahypanyň öçürme gündeligi aşakda görkezilendir.',
 
 # History pages

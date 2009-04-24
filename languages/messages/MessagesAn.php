@@ -735,13 +735,12 @@ A esplicazión ufierta por l'almenistrador que bloqueyó a base de datos ye ista
 'permissionserrors'                => 'Errors de premisos',
 'permissionserrorstext'            => 'No tiene premisos ta fer-lo, por {{PLURAL:$1|ista razón|istas razons}}:',
 'permissionserrorstext-withaction' => 'No tiene premisos ta $2, por {{PLURAL:$1|ista razón|istas razons}}:',
-'recreate-deleted-warn'            => "'''Pare cuenta: ye creyando una pachina que ya ha estato borrata denantes.'''
+'recreate-moveddeleted-warn'       => "'''Pare cuenta: ye creyando una pachina que ya ha estato borrata denantes.'''
 
 Abría de considerar si ye reyalment nezesario continar editando ista pachina.
 Puede consultar o rechistro de borraus que s'amuestra a continuazión:",
-'deleted-notice'                   => "Ista pachina ye borrata.
+'moveddeleted-notice'              => "Ista pachina ye borrata.
 Contino s'amuestra o rechistro de borrau como referenzia.",
-'deletelog-fulllog'                => 'Beyer o rechistro completo',
 'edit-hook-aborted'                => 'Edizión albortada por o grifio (hook). 
 No dio garra esplicazión.',
 'edit-gone-missing'                => "No s'ha puesto esbiellar a pachina.
@@ -1030,12 +1029,12 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'qbsettings-floatingleft'   => 'Flotant á la zurda',
 'qbsettings-floatingright'  => 'Flotant á la dreita',
 'changepassword'            => 'Cambiar a palabra de paso',
-'prefs-skin'                      => 'Aparenzia',
+'prefs-skin'                => 'Aparenzia',
 'skin-preview'              => 'Fer una prebatina',
-'prefs-math'                      => 'Esprisions matematicas',
+'prefs-math'                => 'Esprisions matematicas',
 'dateformat'                => 'Formato de calendata',
 'datedefault'               => 'Sin de preferenzias',
-'prefs-datetime'                  => 'Calendata y ora',
+'prefs-datetime'            => 'Calendata y ora',
 'math_failure'              => 'Error en o codigo',
 'math_unknown_error'        => 'error esconoxita',
 'math_unknown_function'     => 'funzión esconoxita',
@@ -1057,7 +1056,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'saveprefs'                 => 'Alzar preferenzias',
 'resetprefs'                => "Tornar t'as preferenzias por defeuto",
 'restoreprefs'              => 'Restaure todas as confegurazions por defeuto',
-'prefs-editing'               => 'Edizión',
+'prefs-editing'             => 'Edizión',
 'prefs-edit-boxsize'        => "Grandaria d'a finestra d'edizión.",
 'rows'                      => 'Ringleras:',
 'columns'                   => 'Colunnas:',
@@ -1084,7 +1083,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'prefs-namespaces'          => 'Espazios de nombres',
 'defaultns'                 => 'Mirar por defeuto en istos espazios de nombres:',
 'default'                   => 'por defeuto',
-'prefs-files'                     => 'Archibos',
+'prefs-files'               => 'Archibos',
 'prefs-custom-css'          => 'CSS presonalizato',
 'prefs-custom-js'           => 'JS presonalizato',
 

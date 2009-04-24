@@ -383,17 +383,17 @@ Før en e-mail ken modtages åf andre brugere åf æ {{SITENAME}}-mailfunksje, s
 'hr_tip'          => 'Plat lenje (brug den sparsåmt)',
 
 # Edit pages
-'summary'                => 'Beskrevelse:',
-'subject'                => 'Emne/åverskreft:',
-'minoredit'              => "Dette'r en mendre æller lile ændrenge.",
-'watchthis'              => 'Åvervåg denne ertikel',
-'savearticle'            => 'Gem side',
-'preview'                => 'Førhåndsvesnenge',
-'showpreview'            => 'Førhåndsvesnenge',
-'showdiff'               => 'Ves ændrenger',
-'anoneditwarning'        => "Du arbejder uden at være loĝget på. Estedet før brugernav veses så'n IP-adresse i'n hersenengerskigt.",
-'summary-preview'        => 'Førhåndsvesnenge åf beskrevelselejne:',
-'blockedtext'            => "<big>'''Dit brugernav æller din IP-adresse er blevet blokeret.'''</big>
+'summary'                    => 'Beskrevelse:',
+'subject'                    => 'Emne/åverskreft:',
+'minoredit'                  => "Dette'r en mendre æller lile ændrenge.",
+'watchthis'                  => 'Åvervåg denne ertikel',
+'savearticle'                => 'Gem side',
+'preview'                    => 'Førhåndsvesnenge',
+'showpreview'                => 'Førhåndsvesnenge',
+'showdiff'                   => 'Ves ændrenger',
+'anoneditwarning'            => "Du arbejder uden at være loĝget på. Estedet før brugernav veses så'n IP-adresse i'n hersenengerskigt.",
+'summary-preview'            => 'Førhåndsvesnenge åf beskrevelselejne:',
+'blockedtext'                => "<big>'''Dit brugernav æller din IP-adresse er blevet blokeret.'''</big>
 
 Æ blokerenge er lavet åf $1. Æ begrundelse er ''$2''.
 
@@ -404,27 +404,27 @@ Før en e-mail ken modtages åf andre brugere åf æ {{SITENAME}}-mailfunksje, s
 Du ken kåle $1 æller en åf de andre [[{{MediaWiki:Grouppage-sysop}}|administratårer]] før at diskutere æ blokerenge.
 Du ken ekke bruge æ funksje 'e-mail til denne bruger' vemendre der er ångevet en gyldig email-addresse i dine
 [[Special:Preferences|kontoendstellenger]]. Din nuværende IP-addresse er $3, og blokerengs-ID er #$5. Ångev venlegst en æller begge i åle henvendelser.",
-'newarticle'             => '(Ny)',
-'newarticletext'         => "'''{{SITENAME}} har endnu ekke nogen {{NAMESPACE}}-side ve nav {{PAGENAME}}.'''<br /> Du ken begynde en side ve at skreve i'n boks herunder. (se'n [[{{MediaWiki:Helppage}}|hjælp]] før yderligere åplysnenger).<br /> Æller du ken [[Special:Search/{{PAGENAME}}|søĝe æfter {{PAGENAME}} i {{SITENAME}}]].<br /> Ves det ekke var din meneng, så tryk på æ '''Tilbage'''- æller æ '''Back'''-knåp.",
-'noarticletext'          => "'''{{SITENAME}} har ekke nogen side ve prånt dette nav.''' 
+'newarticle'                 => '(Ny)',
+'newarticletext'             => "'''{{SITENAME}} har endnu ekke nogen {{NAMESPACE}}-side ve nav {{PAGENAME}}.'''<br /> Du ken begynde en side ve at skreve i'n boks herunder. (se'n [[{{MediaWiki:Helppage}}|hjælp]] før yderligere åplysnenger).<br /> Æller du ken [[Special:Search/{{PAGENAME}}|søĝe æfter {{PAGENAME}} i {{SITENAME}}]].<br /> Ves det ekke var din meneng, så tryk på æ '''Tilbage'''- æller æ '''Back'''-knåp.",
+'noarticletext'              => "'''{{SITENAME}} har ekke nogen side ve prånt dette nav.''' 
 * Du ken '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} starte æ side {{PAGENAME}}]''' 
 * Æller [[Special:Search/{{PAGENAME}}|søĝe æfter {{PAGENAME}}]] i andre ertikler 
 ---- 
 * Ves du har åprettet denne ertikel endenfør de sedste få minutter, så ken de skyldes at der er ledt førsenkelse i'n åpdaterenge åf {{SITENAME}}s cache. Vent venligst og tjek igen senere'n ertikel'm dukker åp, enden du førsøĝer at åprette'n ertikel igen.",
-'previewnote'            => "'''Husk at dette er kun en førhåndsvesnenge, æ side er ekke gemt endnu!'''",
-'editing'                => 'Redigærer $1',
-'editingsection'         => 'Redigærer $1 (åfsnet)',
-'copyrightwarning'       => "'''Husk: <big>åpskrev engen websider</big>, søm ekke tilhører dig selv, brug <big>engen åphavsretsligt beskyttede værker</big> uden tilladelse frå'n ejer!'''<br />
+'previewnote'                => "'''Husk at dette er kun en førhåndsvesnenge, æ side er ekke gemt endnu!'''",
+'editing'                    => 'Redigærer $1',
+'editingsection'             => 'Redigærer $1 (åfsnet)',
+'copyrightwarning'           => "'''Husk: <big>åpskrev engen websider</big>, søm ekke tilhører dig selv, brug <big>engen åphavsretsligt beskyttede værker</big> uden tilladelse frå'n ejer!'''<br />
 Du lover os hermed, at du selv '''har skrevet skrevselenger''', at skrevselenger tilhører ålmenheden, er ('''åpværer hus'''), æller at æ '''åphavsrets-endehaver''' har gevet sen '''tilladelse'''. Ves denne skrevselenger ålerede er åfentliggkort andre steder, skrev det venligst på æ diskusjesside.
 <i>Bemærk venligst, at ål {{SITENAME}}-ertikler åtomatisk står under „$2“ (se $1 før lileskrevselenger). Ves du ekke vel, at dit arbejde her ændres og udbredes åf andre, så tryk ekke på „Gem“.</i>",
-'longpagewarning'        => "'''ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere ken have pårblæmer ve at redigære sider der nærmer sig æller er større end 32 kb. 
+'longpagewarning'            => "'''ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere ken have pårblæmer ve at redigære sider der nærmer sig æller er større end 32 kb. 
 Åvervej æ side'm ken åpdeles i mendre dæle.'''",
-'templatesused'          => 'Skablåner der er brugt på denne side:',
-'templatesusedpreview'   => 'Følgende skablåner bruges åf denne ertikelførhåndsvesnenge:',
-'template-protected'     => '(skrevebeskyttet)',
-'template-semiprotected' => '(skrevebeskyttet før ekke ånmeldte og nye brugere)',
-'nocreatetext'           => "Æ'n åpdiin har begrænset åprettelse åf nye sider. Bestående sider ken ændres æller [[Special:UserLogin|loĝge på]].",
-'recreate-deleted-warn'  => "'''Advarsel: Du er ve at genskabe en tidligere slettet side.'''
+'templatesused'              => 'Skablåner der er brugt på denne side:',
+'templatesusedpreview'       => 'Følgende skablåner bruges åf denne ertikelførhåndsvesnenge:',
+'template-protected'         => '(skrevebeskyttet)',
+'template-semiprotected'     => '(skrevebeskyttet før ekke ånmeldte og nye brugere)',
+'nocreatetext'               => "Æ'n åpdiin har begrænset åprettelse åf nye sider. Bestående sider ken ændres æller [[Special:UserLogin|loĝge på]].",
+'recreate-moveddeleted-warn' => "'''Advarsel: Du er ve at genskabe en tidligere slettet side.'''
  
 Åvervej det'm er passende at genåprette'n side. De slettede hersenenger før 
 denne side er vest nedenfør:",

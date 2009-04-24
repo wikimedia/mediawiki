@@ -792,13 +792,12 @@ Systemadministratoren som låste databasen, gav denne forklaring: $1",
 'permissionserrors'                => 'Rettighedskonflikt',
 'permissionserrorstext'            => 'Du har ikke rettigheder til at gennemføre denne handling, {{PLURAL:$1|årsagen|årsagerne}} er:',
 'permissionserrorstext-withaction' => 'Du har ikke rettigheder til at $2 af følgende {{PLURAL:$1|grund|grunde}}:',
-'recreate-deleted-warn'            => "'''Advarsel: Du er ved at genskabe en tidligere slettet side.'''
+'recreate-moveddeleted-warn'       => "'''Advarsel: Du er ved at genskabe en tidligere slettet side.'''
  
 Overvej om det er passende at genoprette siden. De slettede versioner for 
 denne side er vist nedenfor:",
-'deleted-notice'                   => 'Denne side er blevet slettet.
+'moveddeleted-notice'              => 'Denne side er blevet slettet.
 Sletningsloggen for siden er vist nedenfor.',
-'deletelog-fulllog'                => 'Se hele loggen',
 'edit-hook-aborted'                => 'Redigering afbrudt af en programfunktion. Ingen tilknyttet forklaring.',
 'edit-gone-missing'                => 'Kunne ikke opdatere siden. 
 Den ser du til at være slettet.',
@@ -1103,12 +1102,12 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'qbsettings-floatingleft'   => 'Flydende venstre',
 'qbsettings-floatingright'  => 'Flydende højre',
 'changepassword'            => 'Skift adgangskode',
-'prefs-skin'                      => 'Udseende',
+'prefs-skin'                => 'Udseende',
 'skin-preview'              => 'Forhåndsvisning',
-'prefs-math'                      => 'Matematiske formler',
+'prefs-math'                => 'Matematiske formler',
 'dateformat'                => 'Datoformat',
 'datedefault'               => 'Ingen præference',
-'prefs-datetime'                  => 'Dato og klokkeslæt',
+'prefs-datetime'            => 'Dato og klokkeslæt',
 'math_failure'              => 'Fejl i matematikken',
 'math_unknown_error'        => 'ukendt fejl',
 'math_unknown_function'     => 'ukendt funktion',
@@ -1130,7 +1129,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'saveprefs'                 => 'Gem indstillinger',
 'resetprefs'                => 'Gendan indstillinger',
 'restoreprefs'              => 'Gendan alle standardindstillinger',
-'prefs-editing'               => 'Redigering',
+'prefs-editing'             => 'Redigering',
 'prefs-edit-boxsize'        => 'Størrelse på redigeringsvinduet.',
 'rows'                      => 'Rækker',
 'columns'                   => 'Kolonner',
@@ -1167,7 +1166,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-namespaces'          => 'Navnerum',
 'defaultns'                 => 'Søg som standard i disse navnerum:',
 'default'                   => 'standard',
-'prefs-files'                     => 'Filer',
+'prefs-files'               => 'Filer',
 'prefs-custom-css'          => 'Personlig CSS',
 'prefs-custom-js'           => 'Personlig JavaScript',
 

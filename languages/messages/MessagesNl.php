@@ -16,6 +16,7 @@
  * @author GerardM
  * @author Hamaryns
  * @author McDutchie
+ * @author Mwpnl
  * @author Niels
  * @author SPQRobin
  * @author Servien
@@ -315,7 +316,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bewerken van deelpagina’s mogelijk maken met een rechtermuisklik op een tussenkop (vereist JavaScript)',
 'tog-showtoc'                 => 'Inhoudsopgave weergeven (voor pagina’s met minstens 3 tussenkoppen)',
 'tog-rememberpassword'        => 'Wachtwoord onthouden',
-'tog-editwidth'               => 'Bewerkingsveld over volle breedte',
+'tog-editwidth'               => 'Bewerkingsveld over volle breedte van het scherm weergeven',
 'tog-watchcreations'          => 'Pagina’s die ik aanmaak automatisch volgen',
 'tog-watchdefault'            => 'Pagina’s die ik bewerk automatisch volgen',
 'tog-watchmoves'              => 'Pagina’s die ik hernoem automatisch volgen',
@@ -703,6 +704,7 @@ Kies een andere naam.',
 'username'                   => 'Gebruikersnaam:',
 'uid'                        => 'Gebruikersnummer:',
 'prefs-memberingroups'       => 'Lid van {{PLURAL:$1|groep|groepen}}:',
+'prefs-registration'         => 'Registratiedatum:',
 'yourrealname'               => 'Uw echte naam:',
 'yourlanguage'               => 'Taal:',
 'yourvariant'                => 'Taalvariant:',
@@ -990,13 +992,13 @@ U kunt reeds bestaande pagina's wijzigen, of u kunt [[Special:UserLogin|zich aan
 'permissionserrors'                => 'Fouten in rechten',
 'permissionserrorstext'            => 'U hebt geen rechten om dit te doen wegens de volgende {{PLURAL:$1|reden|redenen}}:',
 'permissionserrorstext-withaction' => 'U hebt geen rechten om $2 om de volgende {{PLURAL:$1|reden|redenen}}:',
-'recreate-deleted-warn'            => "'''Waarschuwing: u bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''
+'recreate-moveddeleted-warn'       => "'''Waarschuwing: u bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''
 
 Overweeg of het terecht is dat u verder werkt aan deze pagina.
-Voor uw gemak staat hieronder het verwijderingslogboek voor deze pagina:",
-'deleted-notice'                   => 'Deze pagina is verwijderd.
-Ter informatie wordt het verwijderingslogboek van deze pagina hieronder weergegeven.',
-'deletelog-fulllog'                => 'Volledige logboek bekijken',
+Voor uw gemak staan hieronder het verwijderingslogboek en het hernoemingslogboek voor deze pagina:",
+'moveddeleted-notice'              => 'Deze pagina is verwijderd.
+Ter informatie worden het verwijderingslogboek en het hernoemingslogboek van deze pagina hieronder weergegeven.',
+'log-fulllog'                      => 'Het volledige logboek bekijken',
 'edit-hook-aborted'                => 'De bewerking is afgebroken door een hook.
 Er is geen toelichting beschikbaar.',
 'edit-gone-missing'                => 'De pagina is niet bijgewerkt.
@@ -1313,12 +1315,12 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'qbsettings-floatingleft'   => 'Links zwevend',
 'qbsettings-floatingright'  => 'Rechts zwevend',
 'changepassword'            => 'Wachtwoord wijzigen',
-'prefs-skin'                      => 'Vormgeving',
+'prefs-skin'                => 'Vormgeving',
 'skin-preview'              => 'Voorbeeld',
-'prefs-math'                      => 'Formules',
+'prefs-math'                => 'Formules',
 'dateformat'                => 'Datumopmaak',
 'datedefault'               => 'Geen voorkeur',
-'prefs-datetime'                  => 'Datum en tijd',
+'prefs-datetime'            => 'Datum en tijd',
 'math_failure'              => 'Parsen mislukt',
 'math_unknown_error'        => 'onbekende fout',
 'math_unknown_function'     => 'onbekende functie',
@@ -1338,10 +1340,12 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'prefs-watchlist-edits-max' => '(maximale aantal: 1000)',
 'prefs-misc'                => 'Diversen',
 'prefs-resetpass'           => 'Wachtwoord wijzigen',
+'prefs-email'               => 'E-mail',
+'prefs-rendering'           => 'Paginaweergave',
 'saveprefs'                 => 'Opslaan',
 'resetprefs'                => 'Niet opgeslagen wijzigingen herstellen',
-'restoreprefs'              => 'Terug naar standaardinstellingen',
-'prefs-editing'               => 'Bewerken',
+'restoreprefs'              => 'Herstel voorkeuren',
+'prefs-editing'             => 'Bewerken',
 'prefs-edit-boxsize'        => 'Afmetingen van het bewerkingsvenster.',
 'rows'                      => 'Regels:',
 'columns'                   => 'Kolommen:',
@@ -1378,9 +1382,11 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'prefs-namespaces'          => 'Naamruimten',
 'defaultns'                 => 'Standaard in deze naamruimten zoeken:',
 'default'                   => 'standaard',
-'prefs-files'                     => 'Bestanden',
+'prefs-files'               => 'Bestanden',
 'prefs-custom-css'          => 'Persoonlijke CSS',
 'prefs-custom-js'           => 'Persoonlijke JS',
+'prefs-reset-intro'         => 'Gebruik deze functie om uw voorkeuren te herstellen naar de standaardinstellingen.<br /><br />
+Deze actie kan niet ongedaan worden gemaakt.',
 
 # User rights
 'userrights'                  => 'Gebruikersrechtenbeheer',
@@ -2791,7 +2797,8 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Waarschuwing''': dit bestand bevat mogelijk programmacode die uw systeem schade kan berokkenen.<hr />",
-'imagemaxsize'         => 'Maximale grootte van afbeeldingen op de beschrijvingspagina:',
+'imagemaxsize'         => "Maximale afmetingen van afbeeldingen:<br />
+''(voor op de beschrijvingspagina)''",
 'thumbsize'            => 'Grootte miniatuurafbeelding:',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
@@ -3107,7 +3114,7 @@ Andere velden worden verborgen.
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => 'Kilometers',
 'exif-gpsdestdistance-m' => 'Mijlen',
-'exif-gpsdestdistance-n' => 'Zeemijlen',
+'exif-gpsdestdistance-n' => 'Knopen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Eigenlijke richting',
@@ -3367,5 +3374,15 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'dberr-usegoogle'   => 'Wellicht kunt u in de tussentijd zoeken via Google.',
 'dberr-outofdate'   => "Let op: hun indexen van onze pagina's zijn wellicht niet recent.",
 'dberr-cachederror' => 'Deze pagina is een kopie uit de cache en is wellicht niet de meest recente versie.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Er zijn problemen met enkele ingegeven waarden',
+'htmlform-select-badoption'    => 'De ingegeven waarde is ongeldig.',
+'htmlform-int-invalid'         => 'De ingegeven waarde is geen geheel getal.',
+'htmlform-int-toolow'          => 'De ingegeven waarde ligt onder de minimumwaarde van $1',
+'htmlform-int-toohigh'         => 'De ingegeven waarde ligt boven de maximumwaarde van $1',
+'htmlform-submit'              => 'Opslaan',
+'htmlform-reset'               => 'Wijzigingen ongedaan maken',
+'htmlform-selectorother-other' => 'Anders',
 
 );

@@ -205,13 +205,12 @@ So dehm go sev yu IP address na di pej-im chenj istri",
 If yu pres Sev bak, dehm go sev yu chenj lehk so.",
 'missingcommenttext'               => 'Rait yu opinyohn ohnda yah.',
 'permissionserrorstext-withaction' => 'Yu noh go ebul fo $2, bicoh {{PLURAL:$1|reason|reasons}}:',
-'recreate-deleted-warn'            => "'''Ebo!!: Yu de mek bak wan pej we dehm bin dohn ires.'''
+'recreate-moveddeleted-warn'       => "'''Ebo!!: Yu de mek bak wan pej we dehm bin dohn ires.'''
 
 Yu sabi if yu foh wok pan dis pej-ya.
 Di log we dehm kip foh dis pej-in dilishohn de ya:",
-'deleted-notice'                   => 'Dehm dohn ires dis pej-ya.
+'moveddeleted-notice'              => 'Dehm dohn ires dis pej-ya.
 Di log we dehm kip foh dis pej-in dilishohn de ya:',
-'deletelog-fulllog'                => 'Luk di wan-ol lohg',
 'edit-hook-aborted'                => 'Wan Hook dohn pul wetin yu chenj.
 I noh eksplen wetin-mek.',
 'edit-gone-missing'                => 'Wi noh ebul updet dis pej-ya.

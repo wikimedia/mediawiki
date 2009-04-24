@@ -380,19 +380,19 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'hr_tip'          => 'Lingia orizontala (betg utilisar savens!)',
 
 # Edit pages
-'summary'                => 'Resumaziun:',
-'subject'                => 'Pertutga:',
-'minoredit'              => 'Midà be bagatellas',
-'watchthis'              => 'observar quest artitgel',
-'savearticle'            => "memorisar l'artitgel",
-'preview'                => 'prevista',
-'showpreview'            => 'mussar prevista',
-'showlivepreview'        => 'prevista directa',
-'showdiff'               => 'mussar midadas',
-'anoneditwarning'        => "Vus essas betg annunziads. Empè dal num d'utilisader vign l'adressa dad IP registrada en la historia da las versiuns.",
-'summary-preview'        => 'prevista da la resumaziun:',
-'blockedtitle'           => 'Utilisader è bloccà',
-'blockedtext'            => "<big>'''Tes num d'utilisader u tia adressa d'IP è vegnida bloccada.'''</big>
+'summary'                    => 'Resumaziun:',
+'subject'                    => 'Pertutga:',
+'minoredit'                  => 'Midà be bagatellas',
+'watchthis'                  => 'observar quest artitgel',
+'savearticle'                => "memorisar l'artitgel",
+'preview'                    => 'prevista',
+'showpreview'                => 'mussar prevista',
+'showlivepreview'            => 'prevista directa',
+'showdiff'                   => 'mussar midadas',
+'anoneditwarning'            => "Vus essas betg annunziads. Empè dal num d'utilisader vign l'adressa dad IP registrada en la historia da las versiuns.",
+'summary-preview'            => 'prevista da la resumaziun:',
+'blockedtitle'               => 'Utilisader è bloccà',
+'blockedtext'                => "<big>'''Tes num d'utilisader u tia adressa d'IP è vegnida bloccada.'''</big>
 
 ''$1'' ha bloccà tai.
 Il motiv inditgà è: ''$2''.
@@ -406,45 +406,45 @@ Ti na pos betg utilisar la funcziun 'Trametter in email a quest utilisader' senz
 Ti'adressa d'IP actuala è $3, ed la block ID è #$5.
 
 Integrescha per plaschair tut las indicaziuns survart sche ti contacteschas insatgi.",
-'whitelistedittitle'     => "t'annunzia per editar",
-'confirmedittitle'       => 'Per editar è la confermaziun da la adressa dad email necessaria',
-'confirmedittext'        => 'Ti stos confermar tia adressa dad email avant che editar paginas. Inditgescha e conferma per plaschair tia adressa dad email en tias [[Special:Preferences|preferenzas]].',
-'loginreqtitle'          => 'Annunzia necessari',
-'loginreqlink'           => "s'annunziar",
-'loginreqpagetext'       => 'Ti stos $1 per vesair autras paginas.',
-'accmailtitle'           => 'Il pled-clav è vegnì tramess.',
-'accmailtext'            => 'Il pled-clav da "$1" è vegnì tramess a $2.',
-'newarticle'             => '(Nov)',
-'newarticletext'         => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per s'infurmar).",
-'anontalkpagetext'       => "---- ''Questa pagina serva a l'intenziun da laschar anavos ina novitad per in utilisader betg annunzià. Sche ti na pos entschaiver nagut cun ils commentaris sin questa pagina èn ellas probabalamain drizzadas ad in possesur precedent da tia adressa dad IP e ti pos ignorar ellas.''",
-'noarticletext'          => "Quest artitgel cuntegna actualmain nagin text. Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in'autra pagina, u [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear questa pagina].",
-'clearyourcache'         => "'''Remartga''' Svida il chache da tes browser suenter avair memorisà, per vesair las midadas.
+'whitelistedittitle'         => "t'annunzia per editar",
+'confirmedittitle'           => 'Per editar è la confermaziun da la adressa dad email necessaria',
+'confirmedittext'            => 'Ti stos confermar tia adressa dad email avant che editar paginas. Inditgescha e conferma per plaschair tia adressa dad email en tias [[Special:Preferences|preferenzas]].',
+'loginreqtitle'              => 'Annunzia necessari',
+'loginreqlink'               => "s'annunziar",
+'loginreqpagetext'           => 'Ti stos $1 per vesair autras paginas.',
+'accmailtitle'               => 'Il pled-clav è vegnì tramess.',
+'accmailtext'                => 'Il pled-clav da "$1" è vegnì tramess a $2.',
+'newarticle'                 => '(Nov)',
+'newarticletext'             => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per s'infurmar).",
+'anontalkpagetext'           => "---- ''Questa pagina serva a l'intenziun da laschar anavos ina novitad per in utilisader betg annunzià. Sche ti na pos entschaiver nagut cun ils commentaris sin questa pagina èn ellas probabalamain drizzadas ad in possesur precedent da tia adressa dad IP e ti pos ignorar ellas.''",
+'noarticletext'              => "Quest artitgel cuntegna actualmain nagin text. Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in'autra pagina, u [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear questa pagina].",
+'clearyourcache'             => "'''Remartga''' Svida il chache da tes browser suenter avair memorisà, per vesair las midadas.
 '''Mozilla / Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Macintosh);
 '''Konqueror: '''clicca ''Reload'' u smatga ''F5'';
 '''Opera:''' stidar il cache sut ''Tools → Preferences'';
 '''Internet Explorer:''' tegna ''Ctrl'' durant cliccar ''Refresh,'' u smatga ''Ctrl-F5''.",
-'note'                   => "'''Remartga:'''",
-'previewnote'            => "'''Quai è be ina prevista; midadas n'èn anc betg vegnidas memorisadas!'''",
-'editing'                => 'Editar $1',
-'editingsection'         => 'Editar $1 (secziun)',
-'yourtext'               => 'Voss text',
-'yourdiff'               => 'Differenzas',
-'copyrightwarning'       => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
+'note'                       => "'''Remartga:'''",
+'previewnote'                => "'''Quai è be ina prevista; midadas n'èn anc betg vegnidas memorisadas!'''",
+'editing'                    => 'Editar $1',
+'editingsection'             => 'Editar $1 (secziun)',
+'yourtext'                   => 'Voss text',
+'yourdiff'                   => 'Differenzas',
+'copyrightwarning'           => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
 '''DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!'''",
-'longpagewarning'        => "'''ADATG: Questa artitgel è $1 kilobytes gronda. Insaquants browsers 
+'longpagewarning'            => "'''ADATG: Questa artitgel è $1 kilobytes gronda. Insaquants browsers 
 han forsa problems cun editar artitgels da la grondezza 32 kb u pli grond. 
 Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. '''",
-'longpageerror'          => "'''SBAGL: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir memorisà. '''",
-'protectedpagewarning'   => "'''ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. '''",
-'templatesused'          => 'Templates utilisads sin questa pagina:',
-'templatesusedpreview'   => 'Templates utilisads en questa prevista:',
-'template-protected'     => '(protegì)',
-'template-semiprotected' => '(mez protegidas)',
-'edittools'              => '<!-- Text here will be shown below edit and upload forms. -->',
-'nocreatetext'           => "{{SITENAME}} ha restrinschì las pussaivladas da crear novas paginas. 
+'longpageerror'              => "'''SBAGL: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir memorisà. '''",
+'protectedpagewarning'       => "'''ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. '''",
+'templatesused'              => 'Templates utilisads sin questa pagina:',
+'templatesusedpreview'       => 'Templates utilisads en questa prevista:',
+'template-protected'         => '(protegì)',
+'template-semiprotected'     => '(mez protegidas)',
+'edittools'                  => '<!-- Text here will be shown below edit and upload forms. -->',
+'nocreatetext'               => "{{SITENAME}} ha restrinschì las pussaivladas da crear novas paginas. 
 Ti pos ir anavos ed editar ina pagina existenta, u [[Special:UserLogin|s'annunziar u crear in nov conto]].",
-'recreate-deleted-warn'  => "'''Attenziun: Ti recreeschas in artitgel ch'è vegni stidà pli baud.'''
+'recreate-moveddeleted-warn' => "'''Attenziun: Ti recreeschas in artitgel ch'è vegni stidà pli baud.'''
 
 Esi propi adattà da puspè crear questa pagina? 
 En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida stidada.",
@@ -518,7 +518,7 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'skin-preview'          => 'Prevista',
 'dateformat'            => 'format da las datas',
 'datedefault'           => 'Nagina preferenza',
-'prefs-datetime'              => 'Data e temp',
+'prefs-datetime'        => 'Data e temp',
 'prefs-personal'        => 'datas dal utilisader',
 'prefs-rc'              => 'Mussar ultimas midadas',
 'prefs-watchlist'       => "glista d'observaziun",

@@ -274,7 +274,7 @@ $messages = array(
 'prefs-watchlist'   => 'Watchlist',
 'prefs-misc'        => 'Misc',
 'saveprefs'         => 'Taro',
-'prefs-editing'       => 'Mapadécéŋ',
+'prefs-editing'     => 'Mapadécéŋ',
 'searchresultshead' => 'Masappa',
 
 # Groups

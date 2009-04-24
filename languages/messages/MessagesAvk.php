@@ -639,11 +639,11 @@ Rodimal aze va tisu bu robetal oke [[Special:UserLogin|va int rodogluyal oke rop
 'permissionserrors'                => 'Rictajaks',
 'permissionserrorstext'            => 'Ta mana askira me zo rictal, golde {{PLURAL:$1|lazava|lazava se}}:',
 'permissionserrorstext-withaction' => 'Rin icde $2 me zo rictal, {{PLURAL:$1|yoke|yoke}} :',
-'recreate-deleted-warn'            => "'''Obral: Rin va sulayanu bu djutolredul.'''
+'recreate-moveddeleted-warn'       => "'''Obral: Rin va sulayanu bu djutolredul.'''
 
 Gokrafial ede tolredura va batu bu tir vodanhaf.
 Sulara \"log\" va batu bu krafiason batlize zo nedir :",
-'deleted-notice'                   => 'Sulayanu bu.
+'moveddeleted-notice'              => 'Sulayanu bu.
 "Log" sulara va batu bu vleveon vuesteson zo nedir.',
 'edit-conflict'                    => 'Rupera va koboda.',
 'edit-already-exists'              => 'Buredura tir merotisa.
@@ -834,12 +834,12 @@ Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce
 'qbsettings-floatingleft'   => 'Roneon ezas',
 'qbsettings-floatingright'  => 'Talteon ezas',
 'changepassword'            => 'Betara va remravlem',
-'prefs-skin'                      => 'Laviuca',
+'prefs-skin'                => 'Laviuca',
 'skin-preview'              => 'Abdiwira',
-'prefs-math'                      => 'Rendu des maths',
+'prefs-math'                => 'Rendu des maths',
 'dateformat'                => 'Evlabreviz',
 'datedefault'               => 'Megelukon',
-'prefs-datetime'                  => 'Evla is bartiv',
+'prefs-datetime'            => 'Evla is bartiv',
 'math_failure'              => 'Erreur math',
 'math_unknown_error'        => 'erreur indéterminée',
 'math_unknown_function'     => 'megrupen fliok',
@@ -860,7 +860,7 @@ Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce
 'prefs-resetpass'           => 'Betara va remravlem',
 'saveprefs'                 => 'Va lodamaceem tuená',
 'resetprefs'                => 'Va lodamceem dimplekú',
-'prefs-editing'               => 'Sutelaxo',
+'prefs-editing'             => 'Sutelaxo',
 'prefs-edit-boxsize'        => 'Lum ke betaradilk.',
 'rows'                      => 'Emacekeem',
 'columns'                   => 'Brizeem',
@@ -884,7 +884,7 @@ Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce
 'prefs-namespaces'          => 'Yoltxo',
 'defaultns'                 => 'Omavon, aneyara ko bato yoltxo se :',
 'default'                   => 'omava',
-'prefs-files'                     => 'Iyeltak se',
+'prefs-files'               => 'Iyeltak se',
 
 # User rights
 'userrights'                  => 'Pofera va favesikrokeem',

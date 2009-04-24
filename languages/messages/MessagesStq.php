@@ -669,12 +669,11 @@ Gruund foar ju Speere: $1",
 'permissionserrors'                => 'Begjuchtigengs-Failere',
 'permissionserrorstext'            => 'Du bäst nit begjuchtiged, ju Aktion uuttoufieren. {{PLURAL:$1|Gruund|Gruunde}}:',
 'permissionserrorstext-withaction' => 'Du bäst nit begjuchtiged, ju Aktion „$2“ uuttoufieren, {{PLURAL:$1|Gruund|Gruunde}}:',
-'recreate-deleted-warn'            => "'''Oachtenge: Du moakest ne Siede, ju der al fröier läsked wuude.'''
+'recreate-moveddeleted-warn'       => "'''Oachtenge: Du moakest ne Siede, ju der al fröier läsked wuude.'''
 
 Pröif mäd Suurge, of dät näi Moakjen fon ju Siede do Gjuchtlienjen äntspräkt.
 Tou Dien Information foulget dät Läsk-Logbouk mäd ju Begründenge foar ju fröiere Läskenge:",
-'deleted-notice'                   => 'Disse Siede wuud läsked. Der foulget n Uutsuch uut dät Läsk-Logbouk foar disse Siede.',
-'deletelog-fulllog'                => 'Fulständich Läsk-Logbouk',
+'moveddeleted-notice'              => 'Disse Siede wuud läsked. Der foulget n Uutsuch uut dät Läsk-Logbouk foar disse Siede.',
 'edit-hook-aborted'                => 'Ju Beoarbaidenge wuud sunner Ärkläärenge truch ne Snitsteede oubreeken.',
 'edit-gone-missing'                => 'Ju Siede kuud nit aktualisierd wäide.
 Ju wuud anschienend läsked.',
@@ -971,12 +970,12 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'qbsettings-floatingleft'   => 'Links, swieuwjend',
 'qbsettings-floatingright'  => 'Gjuchts, swieuwjend',
 'changepassword'            => 'Paaswoud annerje',
-'prefs-skin'                      => 'Skin',
+'prefs-skin'                => 'Skin',
 'skin-preview'              => 'Foarschau',
-'prefs-math'                      => 'TeX',
+'prefs-math'                => 'TeX',
 'dateformat'                => 'Doatumsformoat',
 'datedefault'               => 'Neen Preferenz',
-'prefs-datetime'                  => 'Doatum un Tied',
+'prefs-datetime'            => 'Doatum un Tied',
 'math_failure'              => 'Parser-Failer',
 'math_unknown_error'        => 'Uunbekoande Failer',
 'math_unknown_function'     => 'Uunbekoande Funktion',
@@ -998,7 +997,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'saveprefs'                 => 'Ienstaalengen spiekerje',
 'resetprefs'                => 'Nit spiekerde Annerengen fersmiete',
 'restoreprefs'              => 'Aal Standoard-Ienstaalengen wier häärstaale',
-'prefs-editing'               => 'Beoarbaidje',
+'prefs-editing'             => 'Beoarbaidje',
 'prefs-edit-boxsize'        => 'Grööte fon dät Beoarbaidengsfinster:',
 'rows'                      => 'Riegen',
 'columns'                   => 'Spalten',
@@ -1035,7 +1034,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'prefs-namespaces'          => 'Noomensruume',
 'defaultns'                 => 'In disse Noomensruume schäl standoardmäitich soacht wäide:',
 'default'                   => 'Standoardienstaalenge',
-'prefs-files'                     => 'Doatäie',
+'prefs-files'               => 'Doatäie',
 'prefs-custom-css'          => 'Benutserdefinierde CSS',
 'prefs-custom-js'           => 'Benutserdefinierd JS',
 

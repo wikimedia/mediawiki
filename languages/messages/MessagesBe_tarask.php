@@ -893,12 +893,11 @@ $2',
 'permissionserrors'                => 'Памылкі дазволаў',
 'permissionserrorstext'            => 'Вы ня маеце дазволу на гэтае дзеяньне па {{PLURAL:$1|наступнай прычыне|наступных прычынах}}:',
 'permissionserrorstext-withaction' => 'Вы ня маеце дазволу на $2 па {{PLURAL:$1|наступнай прычыне|наступных прычынах}}:',
-'recreate-deleted-warn'            => "'''ПАПЯРЭДЖАНЬНЕ: Вы ствараеце старонку, якая раней была выдаленая.'''
+'recreate-moveddeleted-warn'       => "'''ПАПЯРЭДЖАНЬНЕ: Вы ствараеце старонку, якая раней была выдаленая.'''
 
 Упэўніцеся, што стварэньне гэтай старонкі неабходнае.
 Ніжэй знаходзіцца журнал выдаленьняў гэтай старонкі:",
-'deleted-notice'                   => 'Гэта старонка была выдаленая. Журнал выдаленьняў для гэтай старонкі пададзены ніжэй.',
-'deletelog-fulllog'                => 'Паказаць журнал цалкам',
+'moveddeleted-notice'              => 'Гэта старонка была выдаленая. Журнал выдаленьняў для гэтай старонкі пададзены ніжэй.',
 'edit-hook-aborted'                => 'Рэдагаваньне скасаванае працэдурай-перахопнікам.
 Тлумачэньняў не было.',
 'edit-gone-missing'                => 'Немагчыма абнавіць старонку.
@@ -1210,12 +1209,12 @@ $2',
 'qbsettings-floatingleft'   => 'Рухомая зьлева',
 'qbsettings-floatingright'  => 'Плавае справа',
 'changepassword'            => 'Зьмяніць пароль',
-'prefs-skin'                      => 'Афармленьне',
+'prefs-skin'                => 'Афармленьне',
 'skin-preview'              => 'Папярэдні прагляд',
-'prefs-math'                      => 'Матэматыка',
+'prefs-math'                => 'Матэматыка',
 'dateformat'                => 'Фармат даты',
 'datedefault'               => 'Па змоўчаньні',
-'prefs-datetime'                  => 'Дата і час',
+'prefs-datetime'            => 'Дата і час',
 'math_failure'              => 'Не атрымалася разабраць',
 'math_unknown_error'        => 'невядомая памылка',
 'math_unknown_function'     => 'невядомая функцыя',
@@ -1239,7 +1238,7 @@ $2',
 'saveprefs'                 => 'Захаваць',
 'resetprefs'                => 'Скінуць',
 'restoreprefs'              => 'Вярнуць усе настройкі па змоўчваньні',
-'prefs-editing'               => 'Рэдагаваньне',
+'prefs-editing'             => 'Рэдагаваньне',
 'prefs-edit-boxsize'        => 'Памер акна рэдагаваньня.',
 'rows'                      => 'Радкоў:',
 'columns'                   => 'Слупкоў:',
@@ -1276,7 +1275,7 @@ $2',
 'prefs-namespaces'          => 'Прасторы назваў',
 'defaultns'                 => 'Па змоўчаньні, шукаць у наступных прасторах назваў:',
 'default'                   => 'па змоўчваньні',
-'prefs-files'                     => 'Файлы',
+'prefs-files'               => 'Файлы',
 'prefs-custom-css'          => 'Індывідуальны CSS',
 'prefs-custom-js'           => 'Індывідуальны JS',
 
@@ -2913,6 +2912,10 @@ $1',
 'exif-gpslongitude-e' => 'усходняй даўгаты',
 'exif-gpslongitude-w' => 'заходняй даўгаты',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Мэтраў над узроўнем мора',
+'exif-gpsaltitude-1' => 'Мэтраў ніжэй узроўню мора',
+
 'exif-gpsstatus-a' => 'Адбываецца вымярэньне',
 'exif-gpsstatus-v' => 'Ацэнка магчымасьці ўзаемадзеяньня сетак',
 
@@ -2923,6 +2926,11 @@ $1',
 'exif-gpsspeed-k' => 'Кілямэтраў за гадзіну',
 'exif-gpsspeed-m' => 'міляў за гадзіну',
 'exif-gpsspeed-n' => 'вузлоў',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Кілямэтраў',
+'exif-gpsdestdistance-m' => 'Міляў',
+'exif-gpsdestdistance-n' => 'Марскіх міляў',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Сапраўдны накірунак',

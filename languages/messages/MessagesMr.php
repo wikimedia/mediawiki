@@ -785,11 +785,11 @@ $2',
 'permissionserrors'                => 'परवानगीतील त्रूटी',
 'permissionserrorstext'            => 'खालील{{PLURAL:$1|कारणामुळे|कारणांमुळे}} तुम्हाला तसे करण्याची परवानगी नाही:',
 'permissionserrorstext-withaction' => 'तुम्हाला $2 ची परवानगी नाही, खालील {{PLURAL:$1|कारणासाठी|कारणांसाठी}}:',
-'recreate-deleted-warn'            => "'''सूचना: पूर्वी वगळलेला लेख तुम्ही पुन्हा संपादित आहात.'''
+'recreate-moveddeleted-warn'       => "'''सूचना: पूर्वी वगळलेला लेख तुम्ही पुन्हा संपादित आहात.'''
 
 कृपया तुम्ही करत असलेले संपादन योग्य असल्याची खात्री करा.
 या लेखाची वगळल्याची नोंद तुमच्या संदर्भाकरीता पुढीलप्रमाणे:",
-'deleted-notice'                   => 'हे पान वगळण्यात आलेले आहे.
+'moveddeleted-notice'              => 'हे पान वगळण्यात आलेले आहे.
 खाली संदर्भासाठी वगळण्याची सूची दिलेली आहे.',
 
 # Parser/template warnings
@@ -993,12 +993,12 @@ $3ने ''$2'' कारण दिले आहे.",
 'qbsettings-floatingleft'  => 'तरंगते डावे',
 'qbsettings-floatingright' => 'तरंगते ऊजवे',
 'changepassword'           => 'परवलीचा शब्द बदला',
-'prefs-skin'                     => 'त्वचा',
+'prefs-skin'               => 'त्वचा',
 'skin-preview'             => 'झलक',
-'prefs-math'                     => 'गणित',
+'prefs-math'               => 'गणित',
 'dateformat'               => 'दिनांक लेखनशैली',
 'datedefault'              => 'प्राथमिकता नाही',
-'prefs-datetime'                 => 'दिनांक आणि वेळ',
+'prefs-datetime'           => 'दिनांक आणि वेळ',
 'math_failure'             => 'पृथक्करणात अयशस्वी',
 'math_unknown_error'       => 'अपरिचित त्रूटी',
 'math_unknown_function'    => 'अज्ञात कार्य',
@@ -1016,7 +1016,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'prefs-misc'               => 'इतर',
 'saveprefs'                => 'जतन करा',
 'resetprefs'               => 'न जतन केलेले बदल रद्द करा',
-'prefs-editing'              => 'संपादन',
+'prefs-editing'            => 'संपादन',
 'rows'                     => 'ओळी:',
 'columns'                  => 'स्तंभ:',
 'searchresultshead'        => 'शोध',
@@ -1038,7 +1038,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'prefs-namespaces'         => 'नामविश्वे',
 'defaultns'                => 'या नामविश्वातील अविचल शोध :',
 'default'                  => 'अविचल',
-'prefs-files'                    => 'संचिका',
+'prefs-files'              => 'संचिका',
 
 # User rights
 'userrights'                  => 'सदस्य अधिकार व्यवस्थापन',
