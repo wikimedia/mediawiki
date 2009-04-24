@@ -365,7 +365,7 @@ div.printfooter {
 #preftoc a:active {
     display: block;
 }
-div.prefsectiontip {
+div.htmlform-tip {
     font-size: 95%;
     margin-top: 1em;
 }
