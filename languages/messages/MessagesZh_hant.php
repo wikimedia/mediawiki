@@ -20,6 +20,8 @@
 
 $fallback = 'zh-hans';
 
+$fallback8bitEncoding = 'windows-950';
+
 $namespaceNames = array(
 	NS_MEDIA            => '媒體',
 	NS_SPECIAL          => '特殊',

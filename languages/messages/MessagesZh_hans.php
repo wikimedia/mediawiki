@@ -17,6 +17,8 @@
  * @author Wong128hk
  */
 
+$fallback8bitEncoding = 'windows-936';
+
 $namespaceNames = array(
 	NS_MEDIA            => '媒体',
 	NS_SPECIAL          => '特殊',
