@@ -289,7 +289,6 @@ class Preferences {
 							array_flip( array_map( 'wfMsg', $wgLang->getMathNames() ) ),
 						'label' => '&nbsp;',
 						'section' => 'math',
-						'label-message' => 'math',
 					);
 		}
 		
