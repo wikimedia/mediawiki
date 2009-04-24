@@ -300,6 +300,7 @@ class TrackBlobs {
 			// Traverse the orphan list
 			$insertBatch = array();
 			$id = 0;
+			$numOrphans = 0;
 			while ( true ) {
 				$id = gmp_scan1( $orphans, $id );
 				if ( $id == -1 ) {
@@ -309,12 +310,18 @@ class TrackBlobs {
 					'bo_cluster' => $cluster,
 					'bo_blob_id' => $id
 				);
-				++$id;
-			}
+				if ( count( $insertBatch ) > $this->batchSize ) {
+					$dbw->insert( 'blob_orphans', $insertBatch, __METHOD__ );
+					$insertBatch = array();
+				}
 
-			// Insert the batch
-			echo "Found " . count( $insertBatch ) . " orphan(s) in $cluster\n";
-			$dbw->insert( 'blob_orphans', $insertBatch, __METHOD__ );
+				++$id;
+				++$numOrphans;
+			}
+			if ( $insertBatch ) {
+				$dbw->insert( 'blob_orphans', $insertBatch, __METHOD__ );
+			}
+			echo "Found $numOrphans orphan(s) in $cluster\n";
 		}
 	}
 }
