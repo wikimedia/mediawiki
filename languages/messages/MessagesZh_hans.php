@@ -898,9 +898,9 @@ $2',
 'rev-deleted-text-view'          => "该页面修订已经被'''删除'''。作为管理员，您可以查看它；
 在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。",
 'rev-deleted-no-diff'            => "因为其中一次修订'''删除'''，您不可以查看这个差异。
-在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的资料。",
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的信息。",
 'rev-deleted-unhide-diff'        => "该页面的其中一次修订已经被'''删除'''。
-在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的资料。
+在[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可能有更多的信息。
 作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
 'rev-delundel'                   => '显示/隐藏',
 'revisiondelete'                 => '删除/恢复删除修订',
@@ -918,19 +918,19 @@ $2',
 'revdelete-text'                 => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
 在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。
 请确认您肯定去做的话，您就要明白到后果，以及这个程序符合[[{{MediaWiki:Policy-url}}|政策]]。",
-'revdelete-suppress-text'        => "压制'''只'''应在以下的情况下进行:
-* 不合适的个人资料
-*: ''住家地址、电话号码、社群保安号码等。''",
+'revdelete-suppress-text'        => "'''只有'''出现以下的情况下才应阻止访问：
+* 不合适的个人信息
+*: ''家庭地址、电话号码、身份证号码等。''",
 'revdelete-legend'               => '设置可见性之限制',
 'revdelete-hide-text'            => '隐藏修订文本',
 'revdelete-hide-name'            => '隐藏动作和目标',
 'revdelete-hide-comment'         => '隐藏编辑说明',
 'revdelete-hide-user'            => '隐藏编辑者的用户名/IP',
-'revdelete-hide-restricted'      => '同时废止由操作员以及其他用户的资料',
-'revdelete-suppress'             => '同时废止由操作员以及其他用户的资料',
+'revdelete-hide-restricted'      => '同时阻止操作员与其他用户查看数据',
+'revdelete-suppress'             => '同时阻止操作员与其他用户查看数据',
 'revdelete-hide-image'           => '隐藏文件内容',
 'revdelete-unsuppress'           => '在已恢复的修订中移除限制',
-'revdelete-log'                  => '日志注释:',
+'revdelete-log'                  => '日志注释：',
 'revdelete-submit'               => '应用于选中的修订',
 'revdelete-logentry'             => '[[$1]]的修订可见性已更改',
 'logdelete-logentry'             => '[[$1]]的事件可见性已更改',
@@ -1941,7 +1941,7 @@ $NEWPAGE
 'protect-text'                => '你可以在这里浏览和修改对页面<strong><nowiki>$1</nowiki></strong>的保护级别。',
 'protect-locked-blocked'      => '您不能在被查封时更改保护级别。
 以下是<strong>$1</strong>现时的保护级别:',
-'protect-locked-dblock'       => '在资料库锁定时无法更改保护级别。
+'protect-locked-dblock'       => '在数据库被锁定时无法更改保护级别。
 以下是<strong>$1</strong>现时的保护级别:',
 'protect-locked-access'       => '您的帐户权限不能修改保护级别。
 以下是<strong>$1</strong>现时的保护级别:',
@@ -2079,21 +2079,21 @@ $1',
 # Block/unblock
 'blockip'                         => '查封用户',
 'blockip-legend'                  => '查封用户',
-'blockiptext'                     => '用下面的表单来禁止来自某一特定IP地址的修改权限。
-只有在为防止破坏，及符合[[{{MediaWiki:Policy-url}}|守则]]的情况下才可采取此行动。
+'blockiptext'                     => '使用下方的表单来禁止来自特定IP地址或用户名的写访问。
+只有在为了防止破坏，并符合[[{{MediaWiki:Policy-url}}|方针]]的情况下才可采取此行动。
 请在下面输入一个具体的理由（例如引述一个被破坏的页面）。',
-'ipaddress'                       => 'IP地址:',
-'ipadressorusername'              => 'IP地址或用户名:',
-'ipbexpiry'                       => '期限:',
-'ipbreason'                       => '原因:',
+'ipaddress'                       => 'IP地址：',
+'ipadressorusername'              => 'IP地址或用户名：',
+'ipbexpiry'                       => '期限：',
+'ipbreason'                       => '原因：',
 'ipbreasonotherlist'              => '其它原因',
 'ipbreason-dropdown'              => '
 *一般的封禁理由
-** 屡次增加不实资料
+** 增加不实资料
 ** 删除页面内容
-** 外部连结广告
+** 添加外部垃圾链接
 ** 在页面中增加无意义文字
-** 无礼的行为、攻击／骚扰别人
+** 胁迫行为／骚扰他人
 ** 滥用多个帐号
 ** 不能接受的用户名',
 'ipbanononly'                     => '仅阻止匿名用户',
@@ -2353,9 +2353,9 @@ $1已经被封锁。您是否想更改这个设置？',
 'import-parse-failure'       => 'XML导入语法失败',
 'import-noarticle'           => '没有页面作导入！',
 'import-nonewrevisions'      => '所有的修订已经在先前导入。',
-'xml-error-string'           => '$1 於行$2，列$3 ($4字节): $5',
-'import-upload'              => '上传XML资料',
-'import-token-mismatch'      => '小节资料遗失。请再尝试。',
+'xml-error-string'           => '$1于行$2，列$3（$4字节）：$5',
+'import-upload'              => '上传XML数据',
+'import-token-mismatch'      => '会话数据遗失。请重试。',
 'import-invalid-interwiki'   => '不能在指定的wiki导入。',
 
 # Import log
@@ -2394,7 +2394,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-p-logo'                  => '访问首页',
 'tooltip-n-mainpage'              => '访问首页',
 'tooltip-n-portal'                => '关于本计划, 您可以做什么, 应该如何做',
-'tooltip-n-currentevents'         => '提供当前事件的背景资料',
+'tooltip-n-currentevents'         => '查找当前事件的背景信息',
 'tooltip-n-recentchanges'         => '列出该网站的最近修改',
 'tooltip-n-randompage'            => '随机载入一个页面',
 'tooltip-n-help'                  => '寻求帮助',
@@ -3055,13 +3055,13 @@ $1',
 'specialpages-group-highuse'     => '高度使用页面',
 'specialpages-group-pages'       => '页面列表',
 'specialpages-group-pagetools'   => '页面工具',
-'specialpages-group-wiki'        => 'Wiki资料和工具',
+'specialpages-group-wiki'        => 'Wiki数据和工具',
 'specialpages-group-redirects'   => '重定向特殊页面',
 'specialpages-group-spam'        => '反垃圾工具',
 
 # Special:BlankPage
 'blankpage'              => '空白页面',
-'intentionallyblankpage' => '这个页面是为空白',
+'intentionallyblankpage' => '这个页面被故意留为空白',
 
 # External image whitelist
 'external_image_whitelist' => ' #留下这行一样的文字<pre>
@@ -3069,16 +3069,16 @@ $1',
 #这些将会跟外部（已超连结的）图像配合
 #那些配合到出来的会显示成图像，否则就只会显示成连结
 #有 # 开头的行会当成注解
-#大小写并无区分
+#大小写不敏感
 
 #在这行上面输入所有的regex。留下这行一样的文字</pre>',
 
 # Special:Tags
 'tags'                    => '有效更改过的标签',
-'tag-filter'              => '[[Special:Tags|标签]]过滤器:',
+'tag-filter'              => '[[Special:Tags|标签]]过滤器：',
 'tag-filter-submit'       => '过滤器',
 'tags-title'              => '标签',
-'tags-intro'              => '这个页面列示出在软件中已标示的编辑，以及它们的解释。',
+'tags-intro'              => '这个页面列出了在软件中已标示的编辑，以及它们的解释。',
 'tags-tag'                => '内部标签名称',
 'tags-display-header'     => '在更改列表中的出现方式',
 'tags-description-header' => '解释完整描述',
@@ -3087,12 +3087,12 @@ $1',
 'tags-hitcount'           => '$1次更改',
 
 # Database error messages
-'dberr-header'      => '这个 wiki 出现了问题',
-'dberr-problems'    => '抱歉！这个网站出现了一些技术上的问题。',
-'dberr-again'       => '尝试等候数分钟后，然后再试。',
-'dberr-info'        => '(无法连系到资料库服务器: $1)',
-'dberr-usegoogle'   => '在现阶段您可以尝试通过 Google 搜寻。',
-'dberr-outofdate'   => '留意他们索引出来之内容可能不是最新的。',
-'dberr-cachederror' => '这个是所要求出来的缓存复本，可能不是最新的。',
+'dberr-header'      => '此 wiki 出现了问题',
+'dberr-problems'    => '抱歉！这个网站出现了一些技术问题。',
+'dberr-again'       => '请尝试等待数分钟后，然后再试。',
+'dberr-info'        => '（无法连接到数据库服务器：$1）',
+'dberr-usegoogle'   => '在此时您可以尝试通过 Google 搜索。',
+'dberr-outofdate'   => '须注意他们索引出来的内容可能不是最新的。',
+'dberr-cachederror' => '这是所请求页面的缓存副本，可能不是最新的。',
 
 );
