@@ -3545,7 +3545,8 @@ class User {
 			return;
 		
 		foreach( $saveOptions as $key => $value ) {
-			if ( is_null(self::getDefaultOption($key)) ||
+			if ( ( is_null(self::getDefaultOption($key)) &&
+					!( $value === false || is_null($value) ) ) ||
 					$value != self::getDefaultOption( $key ) ) {
 				$insert_rows[] = array(
 						'up_user' => $this->getId(),
