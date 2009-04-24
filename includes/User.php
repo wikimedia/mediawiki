@@ -120,6 +120,7 @@ class User {
 		'mGroups',
 		// user_properties table
 		'mOptions',
+		'mOptionsLoaded',
 	);
 
 	/**
