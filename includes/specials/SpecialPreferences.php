@@ -8,9 +8,9 @@ class SpecialPreferences extends SpecialPage {
 	function execute( $par ) {
 		global $wgOut, $wgUser, $wgRequest;
 		
-		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
-		$wgOut->setArticleRelated( false );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		$this->setHeaders();
+		$this->outputHeader();
+
 		$wgOut->addScriptFile( 'prefs.js' );
 
 		$wgOut->disallowUserJs();  # Prevent hijacked user scripts from sniffing passwords etc.
@@ -24,7 +24,7 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 		
-		if ($par == 'reset') {
+		if ( $par == 'reset' ) {
 			$this->showResetForm();
 			return;
 		}
@@ -60,7 +60,7 @@ class SpecialPreferences extends SpecialPage {
 		global $wgUser, $wgOut;
 		$wgUser->resetOptions();
 		
-		$url = SpecialPage::getTitleFor( 'Preferences')->getFullURL( 'success' );
+		$url = SpecialPage::getTitleFor( 'Preferences' )->getFullURL( 'success' );
 		
 		$wgOut->redirect( $url );
 		
