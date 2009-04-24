@@ -997,7 +997,7 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'changepassword'            => "Cange 'a password",
 'prefs-skin'                      => 'Skin',
 'skin-preview'              => 'Andeprime',
-'math'                      => 'Math',
+'prefs-math'                      => 'Math',
 'dateformat'                => "Formete d'a date",
 'datedefault'               => 'Nisciuna preferenze',
 'prefs-datetime'                  => 'Date e ore',

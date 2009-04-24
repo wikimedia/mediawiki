@@ -1195,7 +1195,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'changepassword'            => 'Ganti kata sandi',
 'prefs-skin'                      => 'Kulit',
 'skin-preview'              => 'Pratayang',
-'math'                      => 'Matematika',
+'prefs-math'                      => 'Matematika',
 'dateformat'                => 'Format tanggal',
 'datedefault'               => 'Tak ada preferensi',
 'prefs-datetime'                  => 'Tanggal dan waktu',

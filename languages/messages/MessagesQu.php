@@ -1190,7 +1190,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'changepassword'            => 'Yaykuna rimata hukchay',
 'prefs-skin'                      => 'Qara',
 'skin-preview'              => 'Ñawpaqta qhaway',
-'math'                      => 'Minuywa',
+'prefs-math'                      => 'Minuywa',
 'dateformat'                => "P'unchaw pacha chanta",
 'datedefault'               => 'Kikinmanta allinkachina',
 'prefs-datetime'                  => "P'unchaw, pacha",

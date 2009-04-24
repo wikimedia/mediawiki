@@ -1284,7 +1284,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'changepassword'            => 'Passwort ändern',
 'prefs-skin'                      => 'Skin',
 'skin-preview'              => 'Vorschau',
-'math'                      => 'TeX',
+'prefs-math'                      => 'TeX',
 'dateformat'                => 'Datumsformat',
 'datedefault'               => 'Standard',
 'prefs-datetime'                  => 'Datum und Zeit',

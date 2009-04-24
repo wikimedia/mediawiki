@@ -1227,7 +1227,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'changepassword'            => 'Wachwoord wiezigen',
 'prefs-skin'                      => '{{SITENAME}}-uterlijk',
 'skin-preview'              => 'bekieken',
-'math'                      => 'Wiskundige formules',
+'prefs-math'                      => 'Wiskundige formules',
 'dateformat'                => 'Daotumweergave',
 'datedefault'               => 'Gien veurkeur',
 'prefs-datetime'                  => 'Daotum en tied',

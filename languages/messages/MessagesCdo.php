@@ -380,7 +380,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'prefs-edits'           => 'Siŭ-gāi ché̤ṳ-só:',
 'changepassword'        => 'Gāi-biéng mĭk-mā',
 'prefs-skin'                  => 'Puòi-hŭ',
-'math'                  => 'Só-hŏk',
+'prefs-math'                  => 'Só-hŏk',
 'dateformat'            => 'Nĭk-gĭ gáh-sék',
 'datedefault'           => 'Mò̤ siék-diâng',
 'prefs-datetime'              => 'Nĭk-gĭ gâe̤ng sì-găng',

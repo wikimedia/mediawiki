@@ -1136,7 +1136,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'changepassword'            => 'Ŝanĝi pasvorton',
 'prefs-skin'                      => 'Etoso',
 'skin-preview'              => 'Antaŭrigardo',
-'math'                      => 'Matematikaĵoj',
+'prefs-math'                      => 'Matematikaĵoj',
 'dateformat'                => 'Datformato',
 'datedefault'               => 'Nenia prefero',
 'prefs-datetime'                  => 'Dato kaj horo',

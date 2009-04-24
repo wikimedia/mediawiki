@@ -964,7 +964,7 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'changepassword'           => 'Coppiteg baatujàll bi',
 'prefs-skin'                     => 'Melokaan',
 'skin-preview'             => 'Wonendil',
-'math'                     => 'Xayma',
+'prefs-math'                     => 'Xayma',
 'dateformat'               => 'Dayoob taariix bi',
 'datedefault'              => 'Benn tànneef',
 'prefs-datetime'                 => 'Taariix ak waxtu',

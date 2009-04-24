@@ -335,7 +335,7 @@ $1',
 # Preferences page
 'mypreferences'  => 'जिगु प्राथमिकता',
 'changepassword' => 'पासवर्द हिलादिसँ',
-'math'           => 'गणित',
+'prefs-math'           => 'गणित',
 'prefs-datetime'       => 'दिं व ई',
 'prefs-personal' => 'छ्य्‌लामि प्रोफाइल',
 'prefs-rc'       => 'न्हुगु हिलेज्या',

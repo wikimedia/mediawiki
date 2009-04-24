@@ -1195,7 +1195,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'changepassword'            => 'Salasanan vaihto',
 'prefs-skin'                      => 'Ulkonäkö',
 'skin-preview'              => 'esikatselu',
-'math'                      => 'Matematiikka',
+'prefs-math'                      => 'Matematiikka',
 'dateformat'                => 'Päiväyksen muoto',
 'datedefault'               => 'Ei valintaa',
 'prefs-datetime'                  => 'Aika ja päiväys',

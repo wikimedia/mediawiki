@@ -978,7 +978,7 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'changepassword'            => "Paroldi o'zgertiw",
 'prefs-skin'                      => "Sırtqı ko'rinis",
 'skin-preview'              => 'Korip al',
-'math'                      => 'Formulalar',
+'prefs-math'                      => 'Formulalar',
 'dateformat'                => "Sa'ne formatı",
 'datedefault'               => 'Hesh sazlawlarsız',
 'prefs-datetime'                  => "Sa'ne ha'm waqıt",

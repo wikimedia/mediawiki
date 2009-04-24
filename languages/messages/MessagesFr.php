@@ -1278,7 +1278,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'changepassword'            => 'Modification du mot de passe',
 'prefs-skin'                      => 'Habillage',
 'skin-preview'              => 'Prévisualiser',
-'math'                      => 'Rendu des maths',
+'prefs-math'                      => 'Rendu des maths',
 'dateformat'                => 'Format de date',
 'datedefault'               => 'Aucune préférence',
 'prefs-datetime'                  => 'Date et heure',

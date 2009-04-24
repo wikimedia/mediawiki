@@ -954,7 +954,7 @@ $1 is the relevance of this result in per cent.
 'skin-preview'              => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
 
 {{Identical|Preview}}',
-'math'                      => 'Used in user preferences.',
+'prefs-math'                      => 'Used in user preferences.',
 'prefs-datetime'                  => '{{Identical|Date}}',
 'math_syntax_error'         => '{{Identical|Syntax error}}',
 'prefs-personal'            => 'Title of a tab in [[Special:Preferences]].',

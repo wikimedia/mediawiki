@@ -643,7 +643,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'qbsettings-none'       => 'Ahtlein',
 'changepassword'        => 'Ticpatlāz motlahtōlichtacāyo',
 'skin-preview'          => 'Xiquitta quemeh yez',
-'math'                  => 'Tlapōhualmatiliztli',
+'prefs-math'                  => 'Tlapōhualmatiliztli',
 'dateformat'            => 'Cāuhtiliztli iuhcāyōtl',
 'datedefault'           => 'Ayāc tlanequiliztli',
 'prefs-datetime'              => 'Cāuhtiliztli īhuān cāhuitl',

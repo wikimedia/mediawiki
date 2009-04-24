@@ -920,7 +920,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'changepassword'            => 'Ganti tembung sandi',
 'prefs-skin'                      => 'Kulit',
 'skin-preview'              => 'Pratilik',
-'math'                      => 'Matématika',
+'prefs-math'                      => 'Matématika',
 'dateformat'                => 'Format tanggal',
 'datedefault'               => 'Ora ana préferènsi',
 'prefs-datetime'                  => 'Tanggal lan wektu',

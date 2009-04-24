@@ -1198,7 +1198,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'changepassword'            => 'パスワード変更',
 'prefs-skin'                      => '外装',
 'skin-preview'              => 'プレビュー',
-'math'                      => '数式',
+'prefs-math'                      => '数式',
 'dateformat'                => '日付の書式',
 'datedefault'               => '選択なし',
 'prefs-datetime'                  => '日付と時刻',

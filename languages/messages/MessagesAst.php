@@ -984,7 +984,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'changepassword'            => 'Camudar clave',
 'prefs-skin'                      => 'Apariencia',
 'skin-preview'              => 'Previsualizar',
-'math'                      => 'Fórmules matemátiques',
+'prefs-math'                      => 'Fórmules matemátiques',
 'dateformat'                => 'Formatu de fecha',
 'datedefault'               => 'Ensin preferencia',
 'prefs-datetime'                  => 'Fecha y hora',

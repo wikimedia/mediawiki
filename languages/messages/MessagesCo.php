@@ -223,7 +223,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Preferences page
 'preferences'       => 'Preferenze',
 'mypreferences'     => 'Preferenze',
-'math'              => 'Matematica',
+'prefs-math'              => 'Matematica',
 'math_syntax_error' => 'errore di sintassa',
 'prefs-rc'          => 'Ultimi cambiamenti',
 'prefs-watchlist'   => 'Articuli seguitati',

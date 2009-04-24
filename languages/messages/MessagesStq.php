@@ -973,7 +973,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'changepassword'            => 'Paaswoud annerje',
 'prefs-skin'                      => 'Skin',
 'skin-preview'              => 'Foarschau',
-'math'                      => 'TeX',
+'prefs-math'                      => 'TeX',
 'dateformat'                => 'Doatumsformoat',
 'datedefault'               => 'Neen Preferenz',
 'prefs-datetime'                  => 'Doatum un Tied',

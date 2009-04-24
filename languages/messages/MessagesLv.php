@@ -731,7 +731,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'changepassword'        => 'Mainīt paroli',
 'prefs-skin'                  => 'Apdare',
 'skin-preview'          => 'Priekšskats',
-'math'                  => 'Formulas',
+'prefs-math'                  => 'Formulas',
 'dateformat'            => 'Datuma formāts',
 'datedefault'           => 'Vienalga',
 'prefs-datetime'              => 'Datums un laiks',

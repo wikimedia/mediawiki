@@ -1185,7 +1185,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'changepassword'            => '비밀번호 바꾸기',
 'prefs-skin'                      => '스킨',
 'skin-preview'              => '미리 보기',
-'math'                      => '수식',
+'prefs-math'                      => '수식',
 'dateformat'                => '날짜 형식',
 'datedefault'               => '기본값',
 'prefs-datetime'                  => '날짜와 시각',

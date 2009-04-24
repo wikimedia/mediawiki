@@ -876,7 +876,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'changepassword'            => 'கடவுச்சொல்லை மாற்று',
 'prefs-skin'                      => 'தோல்',
 'skin-preview'              => 'முன்தோற்றம்',
-'math'                      => 'கணிதம்',
+'prefs-math'                      => 'கணிதம்',
 'dateformat'                => 'நாள் வடிவம்',
 'datedefault'               => 'விருப்பத்தேர்வுகள் இல்லை',
 'prefs-datetime'                  => 'நாள் நேரம்',

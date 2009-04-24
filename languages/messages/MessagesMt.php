@@ -1139,7 +1139,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'changepassword'            => 'Ibdel il-password',
 'prefs-skin'                      => 'Aspett grafiku (skin)',
 'skin-preview'              => 'Previżjoni',
-'math'                      => 'Formuli matematiċi',
+'prefs-math'                      => 'Formuli matematiċi',
 'dateformat'                => 'Format tad-data',
 'datedefault'               => 'L-ebda preferenza',
 'prefs-datetime'                  => 'Data u ħin',

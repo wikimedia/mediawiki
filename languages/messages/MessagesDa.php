@@ -1105,7 +1105,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'changepassword'            => 'Skift adgangskode',
 'prefs-skin'                      => 'Udseende',
 'skin-preview'              => 'Forhåndsvisning',
-'math'                      => 'Matematiske formler',
+'prefs-math'                      => 'Matematiske formler',
 'dateformat'                => 'Datoformat',
 'datedefault'               => 'Ingen præference',
 'prefs-datetime'                  => 'Dato og klokkeslæt',

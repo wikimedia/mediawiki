@@ -1002,7 +1002,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'changepassword'            => 'Киирии тылы уларытарга',
 'prefs-skin'                      => 'Тас көстүү',
 'skin-preview'              => 'Хайдах буолара',
-'math'                      => 'Фуормулалар',
+'prefs-math'                      => 'Фуормулалар',
 'dateformat'                => 'Дьыл-хонук формаата',
 'datedefault'               => 'Көннөрү көстүүтэ',
 'prefs-datetime'                  => 'Күнэ-дьыла уонна кэмэ',

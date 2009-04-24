@@ -917,7 +917,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'changepassword'           => 'Robah sandi',
 'prefs-skin'                     => 'Kulit',
 'skin-preview'             => 'Pramidang',
-'math'                     => 'Maté',
+'prefs-math'                     => 'Maté',
 'dateformat'               => 'Format titimangsa',
 'datedefault'              => 'Tanpa préferénsi',
 'prefs-datetime'                 => 'Titimangsa jeung wanci',

@@ -607,7 +607,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'changepassword'            => 'Chanjar pasovorto',
 'prefs-skin'                      => 'Pelo',
 'skin-preview'              => 'Pre-videz',
-'math'                      => 'Quale montrar la formuli',
+'prefs-math'                      => 'Quale montrar la formuli',
 'dateformat'                => 'Formo di dato',
 'datedefault'               => 'Sen prefero',
 'prefs-datetime'                  => 'Dato e tempo',

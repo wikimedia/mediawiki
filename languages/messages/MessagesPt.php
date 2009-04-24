@@ -1132,7 +1132,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'changepassword'            => 'Alterar palavra-chave',
 'prefs-skin'                      => 'Tema',
 'skin-preview'              => 'Pré-visualizar',
-'math'                      => 'Matemática',
+'prefs-math'                      => 'Matemática',
 'dateformat'                => 'Formato da data',
 'datedefault'               => 'Sem preferência',
 'prefs-datetime'                  => 'Data e hora',

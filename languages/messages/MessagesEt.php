@@ -861,7 +861,7 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'changepassword'            => 'Muuda parool',
 'prefs-skin'                      => 'Kujundus',
 'skin-preview'              => 'Eelvaade',
-'math'                      => 'Valemite näitamine',
+'prefs-math'                      => 'Valemite näitamine',
 'dateformat'                => 'Kuupäeva formaat',
 'datedefault'               => 'Eelistus puudub',
 'prefs-datetime'                  => 'Kuupäev ja kellaaeg',

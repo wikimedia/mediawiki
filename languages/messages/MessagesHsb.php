@@ -1063,7 +1063,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'changepassword'            => 'Hesło změnić',
 'prefs-skin'                      => 'Šat',
 'skin-preview'              => 'Přehlad',
-'math'                      => 'Math',
+'prefs-math'                      => 'Math',
 'dateformat'                => 'Format datuma',
 'datedefault'               => 'Žane nastajenje',
 'prefs-datetime'                  => 'Datum a čas',
