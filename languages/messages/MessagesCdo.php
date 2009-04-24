@@ -379,11 +379,11 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'mypreferences'         => 'Nguāi gì siék-diâng',
 'prefs-edits'           => 'Siŭ-gāi ché̤ṳ-só:',
 'changepassword'        => 'Gāi-biéng mĭk-mā',
-'skin'                  => 'Puòi-hŭ',
+'prefs-skin'                  => 'Puòi-hŭ',
 'math'                  => 'Só-hŏk',
 'dateformat'            => 'Nĭk-gĭ gáh-sék',
 'datedefault'           => 'Mò̤ siék-diâng',
-'datetime'              => 'Nĭk-gĭ gâe̤ng sì-găng',
+'prefs-datetime'              => 'Nĭk-gĭ gâe̤ng sì-găng',
 'math_unknown_error'    => 'muôi báik gì dâng',
 'math_unknown_function' => 'muôi báik hàng-só',
 'prefs-personal'        => 'Ê̤ṳng-hô cṳ̆-lâiu',
@@ -402,7 +402,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'timezoneoffset'        => 'Sì-chă¹',
 'servertime'            => 'Hŭk-ô-ké sì-găng',
 'allowemail'            => 'Â̤ kīng bĕk-nè̤ng huák diêng-piĕ ké̤ṳk nṳ̄',
-'files'                 => 'Ùng-giông',
+'prefs-files'                 => 'Ùng-giông',
 
 # User rights
 'editusergroup' => 'Siŭ-gāi Ê̤ṳng-hô Cū',

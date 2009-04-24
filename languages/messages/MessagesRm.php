@@ -518,7 +518,7 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'skin-preview'          => 'Prevista',
 'dateformat'            => 'format da las datas',
 'datedefault'           => 'Nagina preferenza',
-'datetime'              => 'Data e temp',
+'prefs-datetime'              => 'Data e temp',
 'prefs-personal'        => 'datas dal utilisader',
 'prefs-rc'              => 'Mussar ultimas midadas',
 'prefs-watchlist'       => "glista d'observaziun",

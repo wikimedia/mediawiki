@@ -276,11 +276,11 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'mypreferences'   => 'Minhlawulo ya mina',
 'prefs-edits'     => 'Ntsengo wa mindzulamiso:',
 'skin-preview'    => 'Ndzinganiso',
-'datetime'        => 'Siku na nkarhi',
+'prefs-datetime'        => 'Siku na nkarhi',
 'prefs-watchlist' => 'Nxaxamelo wa Leswivoniwaka',
 'saveprefs'       => 'Hlayisa',
 'resetprefs'      => 'sula kucinca lokungahlayisiwangiki',
-'textboxsize'     => 'Kululamisa',
+'prefs-editing'     => 'Kululamisa',
 
 # Rights
 'right-read'       => 'Matluka yo Hlaya',

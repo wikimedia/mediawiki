@@ -164,11 +164,11 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 'qbsettings-none'    => 'Anggapo',
 'changepassword'     => 'Salatan so password',
 'datedefault'        => 'Anggapoy preference',
-'datetime'           => 'Bilang na agew san oras',
+'prefs-datetime'           => 'Bilang na agew san oras',
 'math_unknown_error' => 'aga-antan error',
 'prefs-rc'           => 'Sampot ran binalo',
 'prefs-watchlist'    => 'Listaan na babantayan',
-'textboxsize'        => 'Babaloen',
+'prefs-editing'        => 'Babaloen',
 'searchresultshead'  => 'Anapen',
 
 # User rights

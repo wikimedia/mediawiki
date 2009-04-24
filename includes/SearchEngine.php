@@ -240,13 +240,12 @@ class SearchEngine {
 	 * @param $user User
 	 * @return Array
 	 */
-	public static function userNamespaces( &$user ) {
-		$arr = array();
-		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
-			if( $user->getOption( 'searchNs' . $ns ) ) {
-				$arr[] = $ns;
-			}
-		}
+	public static function userNamespaces( $user ) {
+		$arr = Preferences::loadOldSearchNs( $user );
+		$searchableNamespaces = SearchEngine::searchableNamespaces();
+		
+		$arr = array_intersect( $arr, array_keys($searchableNamespaces) ); // Filter
+		
 		return $arr;
 	}
 	

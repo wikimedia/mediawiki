@@ -205,7 +205,7 @@ $messages = array(
 # Preferences page
 'preferences'       => 'Mga karuyag',
 'mypreferences'     => 'Akon mga karuyag',
-'datetime'          => 'Pitsa ngan oras',
+'prefs-datetime'          => 'Pitsa ngan oras',
 'searchresultshead' => 'Bilnga',
 'timezonelegend'    => 'Zona hin oras',
 'localtime'         => 'Oras nga lokal',

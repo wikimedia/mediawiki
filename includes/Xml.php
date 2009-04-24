@@ -756,6 +756,30 @@ class XmlSelect {
 		$value = ($value !== false) ? $value : $name;
 		$this->options[] = Xml::option( $name, $value, $value === $this->default );
 	}
+	
+	// This accepts an array of form
+	// label => value
+	// label => ( label => value, label => value )
+	public function addOptions( $options ) {
+		$this->options[] = trim(self::formatOptions( $options, $this->default ));
+	}
+
+	// This accepts an array of form
+	// label => value
+	// label => ( label => value, label => value )	
+	static function formatOptions( $options, $default = false ) {
+		$data = '';
+		foreach( $options as $label => $value ) {
+			if ( is_array( $value ) ) {
+				$contents = self::formatOptions( $value, $default );
+				$data .= Xml::tags( 'optgroup', array( 'label' => $label ), $contents ) . "\n";
+			} else {
+				$data .= Xml::option( $label, $value, $value === $default ) . "\n";
+			}
+		}
+		
+		return $data;
+	}
 
 	public function getHTML() {
 		return Xml::tags( 'select', $this->attributes, implode( "\n", $this->options ) );

@@ -365,11 +365,6 @@ div.printfooter {
 #preftoc a:active {
     display: block;
 }
-#prefcontrol {
-    clear: both;
-    float: left;
-    margin-top: 1em;
-}
 div.prefsectiontip {
     font-size: 95%;
     margin-top: 1em;

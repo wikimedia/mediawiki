@@ -559,14 +559,14 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'changepassword'    => 'Cangiâ a pòula segretta',
 'skin-preview'      => 'Anteprimma',
 'dateformat'        => 'Formato da a data',
-'datetime'          => 'Data e oùa',
+'prefs-datetime'          => 'Data e oùa',
 'saveprefs'         => 'Sarva',
-'textboxsize'       => 'Cangia',
+'prefs-editing'       => 'Cangia',
 'searchresultshead' => 'Çerca',
 'timezonelegend'    => 'Oùa',
 'allowemail'        => 'Permitti a posta elettronega da ätri utenti',
 'default'           => 'Predefinïo',
-'files'             => 'Papê',
+'prefs-files'             => 'Papê',
 
 # Groups
 'group-user' => 'Ûtenti',

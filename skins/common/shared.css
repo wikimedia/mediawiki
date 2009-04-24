@@ -74,7 +74,7 @@ body.rtl td.mw-label { text-align: left; }
 body.rtl td.mw-input { text-align: right; }
 body.rtl td.mw-submit { text-align: right; }
 
-td.mw-label { vertical-align: top; }
+td.mw-label { vertical-align: top; width: 20%; }
 td.mw-submit { white-space: nowrap; }
 
 /**

@@ -533,7 +533,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'changepassword' => 'ڳجھو لفظ تبديل ڪريو',
 'skin-preview'   => 'پيش نگاهه',
 'datedefault'    => 'بلا ترجيحا',
-'datetime'       => 'تاريخ ۽ وقت',
+'prefs-datetime'       => 'تاريخ ۽ وقت',
 'allowemail'     => 'ٻين يُوزرس کان ايندڙ برق ٽپال بحال ڪريو',
 
 # User rights

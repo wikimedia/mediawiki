@@ -646,7 +646,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'math'                  => 'Tlapōhualmatiliztli',
 'dateformat'            => 'Cāuhtiliztli iuhcāyōtl',
 'datedefault'           => 'Ayāc tlanequiliztli',
-'datetime'              => 'Cāuhtiliztli īhuān cāhuitl',
+'prefs-datetime'              => 'Cāuhtiliztli īhuān cāhuitl',
 'prefs-personal'        => 'Motlācatlanōnōtzaliz',
 'prefs-rc'              => 'Yancuīc tlapatlaliztli',
 'prefs-watchlist'       => 'Tlachiyaliztli',
@@ -655,7 +655,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'prefs-misc'            => 'Zāzo',
 'prefs-resetpass'       => 'Ticpatlāz motlahtōlichtacāyo',
 'saveprefs'             => 'Ticpiyāz',
-'textboxsize'           => 'Tlapatlaliztli',
+'prefs-editing'           => 'Tlapatlaliztli',
 'rows'                  => 'Pāntli:',
 'searchresultshead'     => 'Tlatēmoliztli',
 'contextlines'          => 'Pāntli tlahtōltechcopa:',
@@ -666,7 +666,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'prefs-namespaces'      => 'Tōcātzin',
 'defaultns'             => 'Tlatēmōz inīn tōcātzimpan ic default:',
 'default'               => 'ic default',
-'files'                 => 'Tlahcuilōlli',
+'prefs-files'                 => 'Tlahcuilōlli',
 
 # User rights
 'userrights-user-editname' => 'Xihcuiloa cē tlatequitiltilīltōcāitl:',

@@ -358,6 +358,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18121) maintenance/deleteArchivedRevisions.php no longer deletes
   revisions when --delete is not passed
 * (bug 13172) GPS coordinates in image Exif data are now actually displayed
+* Overhaul of preferences system, includes the following bug fixes:
+ * (bug 5363) Changes to default preferences now impact registered users.
+ * (bug 14806) Hook to enable putting preferences in existing tabs.
+ * (bug 17191) Registration date now listed on preferences page.
+ * Note that this change will break some extensions which have not been adapted
+   for it.
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

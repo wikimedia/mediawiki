@@ -462,7 +462,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefs-watchlist' => 'Lista seyr-kerdışi',
 'saveprefs'       => 'Qeyd ke',
 'timezonelegend'  => 'Warey saete',
-'files'           => 'Dosyey',
+'prefs-files'           => 'Dosyey',
 
 # Groups
 'group-sysop' => 'İdarekaran',

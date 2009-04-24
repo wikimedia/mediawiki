@@ -499,7 +499,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'timezoneregion-europe'     => 'Europa',
 'timezoneregion-indian'     => 'Mar Indian',
 'timezoneregion-pacific'    => 'Mar Pasifica',
-'files'                     => 'Fixes',
+'prefs-files'                     => 'Fixes',
 
 # User rights
 'userrights'     => 'Dirije de la diretos de usores',

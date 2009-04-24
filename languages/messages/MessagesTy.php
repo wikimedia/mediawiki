@@ -121,7 +121,7 @@ $messages = array(
 
 # Preferences page
 'prefs-rc' => 'Te mau fa’ahuru-’ē-ra’a ’āpī',
-'files'    => 'Te mau putu’ite',
+'prefs-files'    => 'Te mau putu’ite',
 
 # Recent changes
 'recentchanges' => 'Te mau fa’ahuru-’ē-ra’a ’āpī',

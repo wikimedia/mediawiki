@@ -121,7 +121,7 @@ class SpecialPage
 		'Ipblocklist'               => array( 'SpecialPage', 'Ipblocklist' ),
 		'Resetpass'                 => 'SpecialResetpass',
 		'DeletedContributions'      => 'DeletedContributionsPage',
-		'Preferences'               => array( 'SpecialPage', 'Preferences' ),	
+		'Preferences'               => 'SpecialPreferences',	
 		'Contributions'             => 'SpecialContributions',	
 		'Listgrouprights'           => 'SpecialListGroupRights',
 		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),	

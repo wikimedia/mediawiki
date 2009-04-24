@@ -212,7 +212,7 @@ $messages = array(
 'changepassword'    => 'ဝှက်​စ​ကား​လုံးကိုပြောင်းပါ',
 'skin-preview'      => 'နမူနာ',
 'math'              => 'သင်္ချာ',
-'datetime'          => 'နေ့စွဲနှင့် အချိန်',
+'prefs-datetime'          => 'နေ့စွဲနှင့် အချိန်',
 'searchresultshead' => 'ရှာ​ဖွေ​ရန်​',
 
 # Groups
