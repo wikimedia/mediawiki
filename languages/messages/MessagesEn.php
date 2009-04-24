@@ -1631,7 +1631,8 @@ please see math/README to configure.',
 'prefs-files'               => 'Files',
 'prefs-custom-css'          => 'Custom CSS',
 'prefs-custom-js'           => 'Custom JS',
-'prefs-reset-intro'         => 'You can use this page to reset your preferences to the site defaults. This cannot be undone.',
+'prefs-reset-intro'         => 'You can use this page to reset your preferences to the site defaults.
+This cannot be undone.',
 
 # User rights
 'userrights'                     => 'User rights management',
@@ -3167,7 +3168,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.<hr />",
-'imagemaxsize'         => "Image size limit:<br/>''(for file description pages)''",
+'imagemaxsize'         => "Image size limit:<br />''(for file description pages)''",
 'thumbsize'            => 'Thumbnail size:',
 'widthheight'          => '$1×$2', # only translate this message to other languages if you have to change it
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|page|pages}}',
