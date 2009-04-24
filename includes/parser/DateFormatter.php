@@ -48,10 +48,10 @@ class DateFormatter
 		$this->prxISO2 = '\[\[(-?\d{4})-(\d{2})-(\d{2})\]\]';
 
 		# Real regular expressions
-		$this->regexes[self::DMY] = "/{$this->prxDM} *,? *{$this->prxY}{$this->regexTrail}";
-		$this->regexes[self::YDM] = "/{$this->prxY} *,? *{$this->prxDM}{$this->regexTrail}";
-		$this->regexes[self::MDY] = "/{$this->prxMD} *,? *{$this->prxY}{$this->regexTrail}";
-		$this->regexes[self::YMD] = "/{$this->prxY} *,? *{$this->prxMD}{$this->regexTrail}";
+		$this->regexes[self::DMY] = "/{$this->prxDM}( *, *| +){$this->prxY}{$this->regexTrail}";
+		$this->regexes[self::YDM] = "/{$this->prxY}( *, *| +){$this->prxDM}{$this->regexTrail}";
+		$this->regexes[self::MDY] = "/{$this->prxMD}( *, *| +){$this->prxY}{$this->regexTrail}";
+		$this->regexes[self::YMD] = "/{$this->prxY}( *, *| +){$this->prxMD}{$this->regexTrail}";
 		$this->regexes[self::DM] = "/{$this->prxDM}{$this->regexTrail}";
 		$this->regexes[self::MD] = "/{$this->prxMD}{$this->regexTrail}";
 		$this->regexes[self::ISO1] = "/{$this->prxISO1}{$this->regexTrail}";

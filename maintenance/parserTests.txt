@@ -7289,7 +7289,16 @@ wgUseDynamicDates=false
 !! result
 <p><a href="/index.php?title=2009-03-24&amp;action=edit&amp;redlink=1" class="new" title="2009-03-24 (page does not exist)">2009-03-24</a>
 </p>
-!!end
+!! end
+
+!! test
+Spacing of numbers in formatted dates
+!! input
+{{#formatdate:January 15}}
+!! result
+<p><span class="mw-formatted-date" title="01-15">January 15</span>
+</p>
+!! end
 
 #
 #
