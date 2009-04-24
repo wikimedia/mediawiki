@@ -707,9 +707,9 @@ class EditPage {
 				$wgOut->wrapWikiMsg( '<div class="mw-newarticletextanon">$1</div>', 'newarticletextanon' );
 			}
 		}
-		# Give a notice if the user is editing a deleted page...
+		# Give a notice if the user is editing a deleted/moved page...
 		if ( !$this->mTitle->exists() ) {
-			$this->showDeletionLog( $wgOut );
+			$this->showLogs( $wgOut );
 		}
 	}
 
@@ -2435,20 +2435,20 @@ END
 	}
 
 	/**
-	 * If there are rows in the deletion log for this page, show them,
+	 * If there are rows in the deletion/move log for this page, show them,
 	 * along with a nice little note for the user
 	 *
 	 * @param OutputPage $out
 	 */
-	protected function showDeletionLog( $out ) {
+	protected function showLogs( $out ) {
 		global $wgUser;
 		$loglist = new LogEventsList( $wgUser->getSkin(), $out );
-		$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
+		$pager = new LogPager( $loglist, array('move', 'delete'), false, $this->mTitle->getPrefixedText() );
 		$count = $pager->getNumRows();
 		if ( $count > 0 ) {
 			$pager->mLimit = 10;
 			$out->addHTML( '<div class="mw-warning-with-logexcerpt">' );
-			$out->addWikiMsg( 'recreate-deleted-warn' );
+			$out->addWikiMsg( 'recreate-moveddeleted-warn' );
 			$out->addHTML(
 				$loglist->beginLogEventsList() .
 				$pager->getBody() .
@@ -2457,11 +2457,9 @@ END
 			if($count > 10){
 				$out->addHTML( $wgUser->getSkin()->link(
 					SpecialPage::getTitleFor( 'Log' ),
-					wfMsgHtml( 'deletelog-fulllog' ),
+					wfMsgHtml( 'log-fulllog' ),
 					array(),
-					array(
-						'type' => 'delete',
-						'page' => $this->mTitle->getPrefixedText() ) ) );
+					array( 'page' => $this->mTitle->getPrefixedText() ) ) );
 			}
 			$out->addHTML( '</div>' );
 			return true;

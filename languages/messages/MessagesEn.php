@@ -1213,13 +1213,13 @@ You can go back and edit an existing page, or [[Special:UserLogin|log in or crea
 'permissionserrors'                => 'Permissions Errors',
 'permissionserrorstext'            => 'You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:',
 'permissionserrorstext-withaction' => 'You do not have permission to $2, for the following {{PLURAL:$1|reason|reasons}}:',
-'recreate-deleted-warn'            => "'''Warning: You are recreating a page that was previously deleted.'''
+'recreate-moveddeleted-warn'       => "'''Warning: You are recreating a page that was previously deleted.'''
 
 You should consider whether it is appropriate to continue editing this page.
-The deletion log for this page is provided here for convenience:",
-'deleted-notice'                   => 'This page has been deleted.
-The deletion log for the page is provided below for reference.',
-'deletelog-fulllog'                => 'View full log',
+The deletion and move log for this page are provided here for convenience:",
+'moveddeleted-notice'              => 'This page has been deleted.
+The deletion and move log for the page are provided below for reference.',
+'log-fulllog'                      => 'View full log',
 'edit-hook-aborted'                => 'Edit aborted by hook.
 It gave no explanation.',
 'edit-gone-missing'                => 'Could not update the page.

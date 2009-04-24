@@ -883,9 +883,9 @@ class Article {
 		}
 		# Fetch content and check for errors
 		if( !$outputDone ) {
-			# If the article does not exist and was deleted, show the log
+			# If the article does not exist and was deleted/moved, show the log
 			if( $this->getID() == 0 ) {
-				$this->showDeletionLog();
+				$this->showLogs();
 			}
 			$text = $this->getContent();
 			// For now, check also for ID until getContent actually returns
@@ -1062,14 +1062,14 @@ class Article {
 		wfProfileOut( __METHOD__ );
 	}
 	
-	protected function showDeletionLog() {
+	protected function showLogs() {
 		global $wgUser, $wgOut;
 		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
-		$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
+		$pager = new LogPager( $loglist, array('move', 'delete'), false, $this->mTitle->getPrefixedText() );
 		if( $pager->getNumRows() > 0 ) {
 			$pager->mLimit = 10;
 			$wgOut->addHTML( '<div class="mw-warning-with-logexcerpt">' );
-			$wgOut->addWikiMsg( 'deleted-notice' );
+			$wgOut->addWikiMsg( 'moveddeleted-notice' );
 			$wgOut->addHTML(
 				$loglist->beginLogEventsList() .
 				$pager->getBody() .
@@ -1078,9 +1078,9 @@ class Article {
 			if( $pager->getNumRows() > 10 ) {
 				$wgOut->addHTML( $wgUser->getSkin()->link(
 					SpecialPage::getTitleFor( 'Log' ),
-					wfMsgHtml( 'deletelog-fulllog' ),
+					wfMsgHtml( 'log-fulllog' ),
 					array(),
-					array( 'type' => 'delete', 'page' => $this->mTitle->getPrefixedText() ) 
+					array( 'page' => $this->mTitle->getPrefixedText() ) 
 				) );
 			}
 			$wgOut->addHTML( '</div>' );
