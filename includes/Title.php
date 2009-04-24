@@ -2776,7 +2776,7 @@ class Title {
 
 			# @bug 17860: old article can be deleted, if this the case,
 			# delete it from message cache
-			if ( $this->getArticleID === 0 ) {
+			if ( $this->getArticleID() === 0 ) {
 				$wgMessageCache->replace( $this->getDBkey(), false );
 			} else {
 				$oldarticle = new Article( $this );
