@@ -365,6 +365,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
  * (bug 17191) Registration date now listed on preferences page.
  * Note that this change will break some extensions which have not been adapted
    for it.
+* (bug 17020) Adding fallback encodings for Traditional and Simplified Chinese languages while the the text is typed as URLs.
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

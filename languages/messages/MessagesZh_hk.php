@@ -13,6 +13,8 @@
 
 $fallback = 'zh-hant';
 
+$fallback8bitEncoding = 'Big5-HKSCS';
+
 $messages = array(
 # User preference toggles
 'tog-watchlisthidebots' => '監視列表中隱藏機械人的編輯',
