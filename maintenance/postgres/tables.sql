@@ -580,6 +580,14 @@ CREATE TABLE valid_tag (
   vt_tag TEXT NOT NULL PRIMARY KEY
 );
 
+CREATE TABLE user_properties(
+  up_user BIGINT NOT NULL,
+  up_property TEXT NOT NULL,
+  up_value TEXT
+);
+CREATE UNIQUE INDEX user_properties_user_property on user_properties (up_user,up_property);
+CREATE INDEX user_properties_property on user_properties (up_property);
+
 CREATE TABLE mediawiki_version (
   type         TEXT         NOT NULL,
   mw_version   TEXT         NOT NULL,

@@ -1503,8 +1503,9 @@ function do_postgres_updates() {
 		array("redirect",          "patch-redirect.sql"),
 		array("updatelog",         "patch-updatelog.sql"),
 		array('change_tag',        'patch-change_tag.sql'),
-		array('tag_summary',        'patch-change_tag.sql'),
-		array('valid_tag',        'patch-change_tag.sql'),
+		array('tag_summary',       'patch-change_tag.sql'),
+		array('valid_tag',         'patch-change_tag.sql'),
+		array('user_properties',   'patch-user_properties.sql'),
 	);
 
 	$newcols = array(
