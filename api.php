@@ -51,10 +51,10 @@ wfProfileIn('api.php');
 //
 // Ensure that all access is through the canonical entry point...
 //
-if( isset( $_SERVER['SCRIPT_URL'] ) ) {
-	$url = $_SERVER['SCRIPT_URL'];
+if( isset( $_SERVER['SCRIPT_NAME'] ) ) {
+	$url = $_SERVER['SCRIPT_NAME'];
 } else {
-	$url = $_SERVER['PHP_SELF'];
+	$url = $_SERVER['URL'];
 }
 if( strcmp( "$wgScriptPath/api$wgScriptExtension", $url ) ) {
 	wfHttpError( 403, 'Forbidden',
