@@ -14,7 +14,7 @@ define( 'USER_TOKEN_LENGTH', 32 );
  * \int Serialized record version.
  * @ingroup Constants
  */
-define( 'MW_USER_VERSION', 6 );
+define( 'MW_USER_VERSION', 7 );
 
 /**
  * \string Some punctuation to prevent editing from broken text-mangling proxies.
