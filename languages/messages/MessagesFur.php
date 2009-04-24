@@ -673,7 +673,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'changepassword'            => 'Gambie peraule clâf',
 'prefs-skin'                      => 'Mascare',
 'skin-preview'              => 'Anteprime',
-'math'                      => 'Matematiche',
+'prefs-math'                      => 'Matematiche',
 'dateformat'                => 'Formât de date',
 'datedefault'               => 'Nissune preference',
 'prefs-datetime'                  => 'Date e ore',

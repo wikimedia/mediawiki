@@ -1213,7 +1213,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'changepassword'            => 'Zmiana hasła',
 'prefs-skin'                      => 'Skórka',
 'skin-preview'              => 'podgląd',
-'math'                      => 'Wzory',
+'prefs-math'                      => 'Wzory',
 'dateformat'                => 'Format daty',
 'datedefault'               => 'Domyślny',
 'prefs-datetime'                  => 'Data i czas',

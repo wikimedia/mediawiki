@@ -1251,7 +1251,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'changepassword'            => 'Změna hesla',
 'prefs-skin'                      => 'Vzhled',
 'skin-preview'              => 'Náhled',
-'math'                      => 'Matematika',
+'prefs-math'                      => 'Matematika',
 'dateformat'                => 'Formát data',
 'datedefault'               => 'Implicitní',
 'prefs-datetime'                  => 'Datum a čas',

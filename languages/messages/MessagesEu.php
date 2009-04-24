@@ -1064,7 +1064,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'changepassword'            => 'Pasahitza aldatu',
 'prefs-skin'                      => 'Itxura',
 'skin-preview'              => 'Aurrebista',
-'math'                      => 'Formulak',
+'prefs-math'                      => 'Formulak',
 'dateformat'                => 'Data formatua',
 'datedefault'               => 'Hobespenik ez',
 'prefs-datetime'                  => 'Data eta ordua',

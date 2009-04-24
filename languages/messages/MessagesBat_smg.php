@@ -758,7 +758,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'changepassword'            => 'Pakeistė slaptažuodė',
 'prefs-skin'                      => 'Ėšruoda',
 'skin-preview'              => 'Parveiza',
-'math'                      => 'Matematėka',
+'prefs-math'                      => 'Matematėka',
 'dateformat'                => 'Datuos fuormats',
 'datedefault'               => 'Juokė pasėrėnkėma',
 'prefs-datetime'                  => 'Data ė čiesos',

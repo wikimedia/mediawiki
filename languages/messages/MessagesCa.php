@@ -1130,7 +1130,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'changepassword'            => 'Canvia la contrasenya',
 'prefs-skin'                      => 'Aparença',
 'skin-preview'              => 'prova',
-'math'                      => 'Com es mostren les fórmules',
+'prefs-math'                      => 'Com es mostren les fórmules',
 'dateformat'                => 'Format de la data',
 'datedefault'               => 'Cap preferència',
 'prefs-datetime'                  => 'Data i hora',

@@ -1105,7 +1105,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'changepassword'            => 'Parola değiştir',
 'prefs-skin'                      => 'Motif',
 'skin-preview'              => 'Ön izleme',
-'math'                      => 'Matematiksel semboller',
+'prefs-math'                      => 'Matematiksel semboller',
 'dateformat'                => 'Tarih gösterimi',
 'datedefault'               => 'Tercih yok',
 'prefs-datetime'                  => 'Tarih ve saat',

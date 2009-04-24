@@ -837,7 +837,7 @@ Prosimo, potrdite, da ste s tem seznanjeni, da razumete posledice dejanja in da 
 'changepassword'            => 'Zamenjava gesla',
 'prefs-skin'                      => 'Koža',
 'skin-preview'              => 'Predogled',
-'math'                      => 'Prikaz matematičnega besedila',
+'prefs-math'                      => 'Prikaz matematičnega besedila',
 'dateformat'                => 'Zapis datuma',
 'datedefault'               => 'Kakor koli',
 'prefs-datetime'                  => 'Datum in čas',

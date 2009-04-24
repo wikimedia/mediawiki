@@ -808,7 +808,7 @@ taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí c
 'changepassword'            => "Athraigh d'fhocal faire",
 'prefs-skin'                      => 'Craiceann',
 'skin-preview'              => 'Réamhamharc',
-'math'                      => 'Matamaitice',
+'prefs-math'                      => 'Matamaitice',
 'dateformat'                => 'Formáid dáta',
 'datedefault'               => 'Is cuma liom',
 'prefs-datetime'                  => 'Dáta agus am',

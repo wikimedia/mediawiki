@@ -211,7 +211,7 @@ $messages = array(
 'prefsnologin'      => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
 'changepassword'    => 'ဝှက်​စ​ကား​လုံးကိုပြောင်းပါ',
 'skin-preview'      => 'နမူနာ',
-'math'              => 'သင်္ချာ',
+'prefs-math'              => 'သင်္ချာ',
 'prefs-datetime'          => 'နေ့စွဲနှင့် အချိန်',
 'searchresultshead' => 'ရှာ​ဖွေ​ရန်​',
 

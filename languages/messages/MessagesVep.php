@@ -981,7 +981,7 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'changepassword'            => 'Peitsanan toižetuz',
 'prefs-skin'                      => 'Irdnägu',
 'skin-preview'              => 'Ezikaclend',
-'math'                      => 'Matematik',
+'prefs-math'                      => 'Matematik',
 'dateformat'                => 'Datan format',
 'datedefault'               => 'Augotižjärgendused',
 'prefs-datetime'                  => 'Dat da aig',

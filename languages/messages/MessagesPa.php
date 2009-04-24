@@ -493,7 +493,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'changepassword'        => 'ਪਾਸਵਰਡ ਬਦਲੋ',
 'prefs-skin'                  => 'ਸਕਿਨ',
 'skin-preview'          => 'ਝਲਕ',
-'math'                  => 'ਗਣਿਤ',
+'prefs-math'                  => 'ਗਣਿਤ',
 'dateformat'            => 'ਮਿਤੀ ਫਾਰਮੈਟ',
 'datedefault'           => 'ਕੋਈ ਪਸੰਦ ਨਹੀਂ',
 'prefs-datetime'              => 'ਮਿਤੀ ਅਤੇ ਸਮਾਂ',

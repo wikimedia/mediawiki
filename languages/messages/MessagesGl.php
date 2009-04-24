@@ -1181,7 +1181,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'changepassword'            => 'Cambiar o meu contrasinal',
 'prefs-skin'                      => 'Aparencia',
 'skin-preview'              => 'Vista previa',
-'math'                      => 'Fórmulas matemáticas',
+'prefs-math'                      => 'Fórmulas matemáticas',
 'dateformat'                => 'Formato da data',
 'datedefault'               => 'Ningunha preferencia',
 'prefs-datetime'                  => 'Data e hora',

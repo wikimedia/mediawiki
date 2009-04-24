@@ -1202,7 +1202,7 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'changepassword'           => 'Qupïya sözdi özgertw',
 'prefs-skin'                     => 'Mänerler',
 'skin-preview'             => 'Qarap şığw',
-'math'                     => 'Örnekter',
+'prefs-math'                     => 'Örnekter',
 'dateformat'               => 'Kün-aý pişimi',
 'datedefault'              => 'Eş qalawsız',
 'prefs-datetime'                 => 'Waqıt',

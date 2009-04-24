@@ -784,7 +784,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'changepassword'           => 'Muudaq salasõnna',
 'prefs-skin'                     => 'Vällänägemine',
 'skin-preview'             => 'Kaeminõ',
-'math'                     => 'Valõmidõ näütämine',
+'prefs-math'                     => 'Valõmidõ näütämine',
 'dateformat'               => 'Kuupäävä muud',
 'datedefault'              => 'Ütskõik',
 'prefs-datetime'                 => 'Kuupäiv ja kelläaig',

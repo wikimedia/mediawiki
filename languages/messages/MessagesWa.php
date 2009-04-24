@@ -648,7 +648,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'changepassword'           => "Candjî l' sicret",
 'prefs-skin'                     => 'Pea',
 'skin-preview'             => 'vey divant',
-'math'                     => 'Formules matematikes',
+'prefs-math'                     => 'Formules matematikes',
 'dateformat'               => 'Cogne del date',
 'datedefault'              => 'Nole preferince',
 'prefs-datetime'                 => 'Cogne del date',

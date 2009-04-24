@@ -1128,7 +1128,7 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'changepassword'            => 'Baguhin ang hudyat',
 'prefs-skin'                      => 'Pabalat',
 'skin-preview'              => 'Unang tingin',
-'math'                      => 'Matematika',
+'prefs-math'                      => 'Matematika',
 'dateformat'                => 'Anyo ng petsa',
 'datedefault'               => 'Walang kagustuhan',
 'prefs-datetime'                  => 'Petsa at oras',

@@ -1110,7 +1110,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'changepassword'            => 'Pakeisti slaptažodį',
 'prefs-skin'                      => 'Išvaizda',
 'skin-preview'              => 'Peržiūra',
-'math'                      => 'Matematika',
+'prefs-math'                      => 'Matematika',
 'dateformat'                => 'Datos formatas',
 'datedefault'               => 'Jokio pasirinkimo',
 'prefs-datetime'                  => 'Data ir laikas',

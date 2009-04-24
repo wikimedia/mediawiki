@@ -801,7 +801,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'changepassword'            => 'መግቢያ ቃልዎን ለመቀየር',
 'prefs-skin'                      => 'የድህረ-ገጽ መልክ',
 'skin-preview'              => 'ቅድመ-ዕይታ',
-'math'                      => 'የሂሳብ መልክ',
+'prefs-math'                      => 'የሂሳብ መልክ',
 'dateformat'                => 'ያውሮፓ አቆጣጠር ዘመን ሥርዓት',
 'datedefault'               => 'ግድ የለኝም',
 'prefs-datetime'                  => 'ዘመንና ሰዓት',

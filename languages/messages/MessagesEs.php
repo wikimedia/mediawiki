@@ -1175,7 +1175,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'changepassword'            => 'Cambiar la contraseña',
 'prefs-skin'                      => 'Apariencia',
 'skin-preview'              => 'Ver cómo queda',
-'math'                      => 'Fórmulas',
+'prefs-math'                      => 'Fórmulas',
 'dateformat'                => 'Formato de fecha',
 'datedefault'               => 'Sin preferencia',
 'prefs-datetime'                  => 'Fecha y hora',

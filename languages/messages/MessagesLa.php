@@ -929,7 +929,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'changepassword'            => 'Tesseram mutare',
 'prefs-skin'                      => 'Aspectum',
 'skin-preview'              => 'Praevisum',
-'math'                      => 'Interpretatio artis mathematicae',
+'prefs-math'                      => 'Interpretatio artis mathematicae',
 'dateformat'                => 'Forma diei',
 'datedefault'               => 'Nullum praeferentiae',
 'prefs-datetime'                  => 'Dies et tempus',

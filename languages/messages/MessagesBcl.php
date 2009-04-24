@@ -818,7 +818,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'changepassword'           => 'Ribayan an sekretong panlaog',
 'prefs-skin'                     => "''Skin''",
 'skin-preview'             => 'Tânawon',
-'math'                     => 'Mat',
+'prefs-math'                     => 'Mat',
 'dateformat'               => "''Format'' kan petsa",
 'datedefault'              => 'Mayong kabôtan',
 'prefs-datetime'                 => 'Petsa asin oras',

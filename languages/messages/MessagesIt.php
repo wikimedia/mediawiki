@@ -1158,7 +1158,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'changepassword'            => 'Cambia password',
 'prefs-skin'                      => 'Aspetto grafico (skin)',
 'skin-preview'              => 'anteprima',
-'math'                      => 'Formule matematiche',
+'prefs-math'                      => 'Formule matematiche',
 'dateformat'                => 'Formato della data',
 'datedefault'               => 'Nessuna preferenza',
 'prefs-datetime'                  => 'Data e ora',

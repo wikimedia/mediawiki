@@ -836,7 +836,7 @@ Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce
 'changepassword'            => 'Betara va remravlem',
 'prefs-skin'                      => 'Laviuca',
 'skin-preview'              => 'Abdiwira',
-'math'                      => 'Rendu des maths',
+'prefs-math'                      => 'Rendu des maths',
 'dateformat'                => 'Evlabreviz',
 'datedefault'               => 'Megelukon',
 'prefs-datetime'                  => 'Evla is bartiv',

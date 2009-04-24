@@ -1103,7 +1103,7 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'changepassword'            => 'Tukar kata laluan',
 'prefs-skin'                      => 'Rupa',
 'skin-preview'              => 'Pratonton',
-'math'                      => 'Matematik',
+'prefs-math'                      => 'Matematik',
 'dateformat'                => 'Format tarikh',
 'datedefault'               => 'Tiada keutamaan',
 'prefs-datetime'                  => 'Tarikh dan waktu',

@@ -1243,7 +1243,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'changepassword'            => 'Promjeni šifru',
 'prefs-skin'                      => 'Koža',
 'skin-preview'              => 'Pregled',
-'math'                      => 'Prikazivanje matematike',
+'prefs-math'                      => 'Prikazivanje matematike',
 'dateformat'                => 'Format datuma',
 'datedefault'               => 'Nije bitno',
 'prefs-datetime'                  => 'Datum i vrijeme',
