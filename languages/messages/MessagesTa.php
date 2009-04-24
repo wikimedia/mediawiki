@@ -641,11 +641,10 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'permissionserrors'                => 'அனுமதி தவறுகள்',
 'permissionserrorstext'            => 'பின்வரும் {{PLURAL:$1|காரணத்துக்காக|காரணங்களுக்காக}} நீங்கள் அதைச் செய்ய முடியாது:',
 'permissionserrorstext-withaction' => 'பின்வரும் {{PLURAL:$1|காரணம்|காரணங்களுக்காக}} $2 க்கு உங்களுக்கு அநுமதி கிடையாது:',
-'recreate-deleted-warn'            => "'''எச்சரிக்கை: ஏற்கனவே நீக்கப்பட்ட பக்கமொன்றை மீண்டும் தொடங்க விழைகிறீர்கள்.'''
+'recreate-moveddeleted-warn'       => "'''எச்சரிக்கை: ஏற்கனவே நீக்கப்பட்ட பக்கமொன்றை மீண்டும் தொடங்க விழைகிறீர்கள்.'''
 
 இப்பக்கத்தை தொடர்ந்து தொகுப்பது தகுமா என்பதை கருத்திற் கொள்ளவும்.
 உங்கள் வசதிக்காக முன்பிருந்த பக்கத்துக்கான நீக்கல் பதிவு இங்கே தரப்பட்டுள்ளது:",
-'deletelog-fulllog'                => 'முழு பதிவையும் காண்க',
 'edit-gone-missing'                => 'இப்பக்கத்தை நிகழ்நிலைப் படுத்தமுடியவில்லை.
 இது நீக்கப்பட்டதாக இருக்கலாம்.',
 'edit-conflict'                    => 'முரண்பாடுகளைத் தொகுக்கவும்.',
@@ -874,12 +873,12 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'qbsettings-floatingleft'   => 'மிதப்பு இடது',
 'qbsettings-floatingright'  => 'மிதப்பு வலது',
 'changepassword'            => 'கடவுச்சொல்லை மாற்று',
-'prefs-skin'                      => 'தோல்',
+'prefs-skin'                => 'தோல்',
 'skin-preview'              => 'முன்தோற்றம்',
-'prefs-math'                      => 'கணிதம்',
+'prefs-math'                => 'கணிதம்',
 'dateformat'                => 'நாள் வடிவம்',
 'datedefault'               => 'விருப்பத்தேர்வுகள் இல்லை',
-'prefs-datetime'                  => 'நாள் நேரம்',
+'prefs-datetime'            => 'நாள் நேரம்',
 'math_failure'              => 'பாகுபடுத்தல் தோல்வி',
 'math_unknown_error'        => 'அறியப்படாத தவறு',
 'math_unknown_function'     => 'அறியப்படாத செயற்பாடு',
@@ -898,7 +897,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'prefs-resetpass'           => 'கடவுச்சொல்லை மாற்றுக',
 'saveprefs'                 => 'சேமி',
 'resetprefs'                => 'சேமிக்காத மாற்றங்கள் நீக்குக',
-'prefs-editing'               => 'தொகுத்தல்',
+'prefs-editing'             => 'தொகுத்தல்',
 'rows'                      => 'நிரைகள்:',
 'columns'                   => 'நிரல்கள்',
 'searchresultshead'         => 'தேடுக',
@@ -931,7 +930,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'prefs-namespaces'          => 'பெயர்வெளிகள்',
 'defaultns'                 => 'இயல்பிருப்பாக இந்தப் பெயர்வெளிகளில் தேடவும்:',
 'default'                   => 'இயல்பிருப்பு',
-'prefs-files'                     => 'கோப்புகள்',
+'prefs-files'               => 'கோப்புகள்',
 
 # User rights
 'userrights'                  => 'பயனர் அனுமதி முகாமைத்துவம்',

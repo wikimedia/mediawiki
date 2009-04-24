@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -777,13 +777,12 @@ $1',
 'permissionserrors'                => '權限錯誤',
 'permissionserrorstext'            => '根據下面嘅{{PLURAL:$1|原因|原因}}，你並無權限去做呢樣嘢:',
 'permissionserrorstext-withaction' => '根據下面嘅{{PLURAL:$1|原因|原因}}，你並無權限去做$2:',
-'recreate-deleted-warn'            => "'''警告: 你而家重開一版係先前曾經刪除過嘅。'''
+'recreate-moveddeleted-warn'       => "'''警告: 你而家重開一版係先前曾經刪除過嘅。'''
 
 你應該要考慮吓繼續編輯呢一版係唔係適合嘅。
 為咗方便起見，呢一版嘅刪除記錄已經響下面提供:",
-'deleted-notice'                   => '呢一版已經刪除咗。
+'moveddeleted-notice'              => '呢一版已經刪除咗。
 呢版嘅刪除日誌響下面提供咗以便參考。',
-'deletelog-fulllog'                => '去睇成個日誌',
 'edit-hook-aborted'                => '編輯由鈎取消咗。
 佢無畀到解釋。',
 'edit-gone-missing'                => '唔能夠更新頁。

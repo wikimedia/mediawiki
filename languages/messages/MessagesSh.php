@@ -197,7 +197,7 @@ Također obećavate kako ste ga napisali sami ili kopirali iz izvora u javnoj do
 'template-semiprotected'           => '(polu-zaštićeno)',
 'hiddencategories'                 => 'Ova stranica pripada {{PLURAL:$1|1 skrivenoj kategoriji|$1 skrivenim kategorijama}}:',
 'permissionserrorstext-withaction' => 'Nemate dozvolu za $2, zbog {{PLURAL:$1|sljedećeg|sljedećih}} razloga:',
-'deleted-notice'                   => 'Ova stranica je obrisana.
+'moveddeleted-notice'              => 'Ova stranica je obrisana.
 Registar brisanja za stranicu je dolje naveden radi referenci.',
 
 # History pages

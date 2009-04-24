@@ -693,11 +693,11 @@ Lahko se vrnete nazaj in urejate že obstoječe strani, ali pa se [[Special:User
 'permissionserrors'                => 'Napake dovoljenj',
 'permissionserrorstext'            => 'Nimate dovoljenja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov}}:',
 'permissionserrorstext-withaction' => 'Nimate dovoljenja za $2, zaradi {{PLURAL:$1|naslednjega razloga|naslednjih $1 razlogov|naslednjih $1 razlogov|naslednjih $1 razlogov}}:',
-'recreate-deleted-warn'            => "'''Opozorilo: Pišete stran, ki je bila nekoč že izbrisana.'''
+'recreate-moveddeleted-warn'       => "'''Opozorilo: Pišete stran, ki je bila nekoč že izbrisana.'''
 
 Premislite preden nadaljujete s pisanjem, morda bo stran zaradi istih razlogov ponovno odstranjena.
 Spodaj je prikazan dnevnik brisanja z razlogi za brisanje:",
-'deleted-notice'                   => 'Ta stran je bila izbrisana.
+'moveddeleted-notice'              => 'Ta stran je bila izbrisana.
 Dnevnik brisanja za stran je na voljo spodaj.',
 'edit-conflict'                    => 'Navzkrižje urejanj.',
 
@@ -835,12 +835,12 @@ Prosimo, potrdite, da ste s tem seznanjeni, da razumete posledice dejanja in da 
 'qbsettings-floatingleft'   => 'Levo leteče',
 'qbsettings-floatingright'  => 'Desno leteče',
 'changepassword'            => 'Zamenjava gesla',
-'prefs-skin'                      => 'Koža',
+'prefs-skin'                => 'Koža',
 'skin-preview'              => 'Predogled',
-'prefs-math'                      => 'Prikaz matematičnega besedila',
+'prefs-math'                => 'Prikaz matematičnega besedila',
 'dateformat'                => 'Zapis datuma',
 'datedefault'               => 'Kakor koli',
-'prefs-datetime'                  => 'Datum in čas',
+'prefs-datetime'            => 'Datum in čas',
 'math_failure'              => 'Ni mi uspelo razčleniti',
 'math_unknown_error'        => 'neznana napaka',
 'math_unknown_function'     => 'neznana funkcija',
@@ -859,7 +859,7 @@ Prosimo, potrdite, da ste s tem seznanjeni, da razumete posledice dejanja in da 
 'prefs-resetpass'           => 'Spremeni geslo',
 'saveprefs'                 => 'Shrani',
 'resetprefs'                => 'Ponastavi',
-'prefs-editing'               => 'Urejanje',
+'prefs-editing'             => 'Urejanje',
 'rows'                      => 'Razsežnosti urejevalnega polja: vrstic:',
 'columns'                   => 'stolpcev:',
 'searchresultshead'         => 'Nastavitve poizvedovanja',
@@ -889,7 +889,7 @@ Prosimo, potrdite, da ste s tem seznanjeni, da razumete posledice dejanja in da 
 'allowemail'                => 'Drugim uporabnikom omogoči pošiljanje e-pošte',
 'defaultns'                 => 'Navadno išči v naslednjih imenskih prostorih:',
 'default'                   => 'privzeto',
-'prefs-files'                     => 'Datoteke',
+'prefs-files'               => 'Datoteke',
 'prefs-custom-css'          => 'CSS po meri',
 'prefs-custom-js'           => 'JS po meri',
 

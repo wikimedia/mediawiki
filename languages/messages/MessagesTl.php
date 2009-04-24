@@ -808,13 +808,12 @@ Maaari kang bumalik at magbago ng isang umiiral na pahina, o kaya [[Special:User
 'permissionserrors'                => 'Mga Kamalian sa Mga Pagpapahintulot',
 'permissionserrorstext'            => 'Wala kang pahintulot na gawin iyan, dahil sa sumusunod na {{PLURAL:$1|dahilan|mga dahilan}}:',
 'permissionserrorstext-withaction' => 'Wala kang pahintulot na $2, dahil sa sumusunod na {{PLURAL:$1|dahilan|mga dahilan}}:',
-'recreate-deleted-warn'            => "'''Babala: Muli mong nililikha ang isang pahinang binura na dati.'''
+'recreate-moveddeleted-warn'       => "'''Babala: Muli mong nililikha ang isang pahinang binura na dati.'''
 
 Dapat mong isaalang-alang kung nararapat bang ipagpatuloy ang pagbago sa pahinang ito.
 Ibinigay dito ang tala ng pagbubura para sa pahinang ito para sa kaginhawahan mo:",
-'deleted-notice'                   => 'Nabura na dati ang pahinang ito.
+'moveddeleted-notice'              => 'Nabura na dati ang pahinang ito.
 Ibinigay sa ibaba ang tala ng pagbubura para sa pahinang ito bilang sanggunian.',
-'deletelog-fulllog'                => 'Tingnan ang buong tala',
 'edit-hook-aborted'                => 'Pinigil ng sungkit ang pagbabago.
 Walang ibinigay na paliwanag.',
 'edit-gone-missing'                => 'Hindi maisapanahon ang pahina.
@@ -1126,12 +1125,12 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'qbsettings-floatingleft'   => 'Kaliwa lumulutang',
 'qbsettings-floatingright'  => 'Kanan lumulutang',
 'changepassword'            => 'Baguhin ang hudyat',
-'prefs-skin'                      => 'Pabalat',
+'prefs-skin'                => 'Pabalat',
 'skin-preview'              => 'Unang tingin',
-'prefs-math'                      => 'Matematika',
+'prefs-math'                => 'Matematika',
 'dateformat'                => 'Anyo ng petsa',
 'datedefault'               => 'Walang kagustuhan',
-'prefs-datetime'                  => 'Petsa at oras',
+'prefs-datetime'            => 'Petsa at oras',
 'math_failure'              => 'Nabigo sa pagbanghay',
 'math_unknown_error'        => 'hindi nalalamang kamalian',
 'math_unknown_function'     => 'hindi nalalamang tungkulin',
@@ -1155,7 +1154,7 @@ pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 'saveprefs'                 => 'Sagip',
 'resetprefs'                => 'Hawanin ang hindi nasagip na mga pagbabago',
 'restoreprefs'              => 'Ibalik ang lahat ng likas na mga pagtatakda',
-'prefs-editing'               => 'May binabago',
+'prefs-editing'             => 'May binabago',
 'prefs-edit-boxsize'        => 'Sukat ng dungawan ng ginagawang pagbabago.',
 'rows'                      => 'Mga pahalang na hanay:',
 'columns'                   => 'Mga pahabang hanay:',
@@ -1192,7 +1191,7 @@ pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 'prefs-namespaces'          => 'Mga espasyo ng pangalan',
 'defaultns'                 => 'Maghanap sa mga pangalan ng espasyong ito ayon sa likas na pagtatakda:',
 'default'                   => 'Likas na pagtatakda',
-'prefs-files'                     => 'Mga talaksan',
+'prefs-files'               => 'Mga talaksan',
 'prefs-custom-css'          => 'Pasadyang CSS',
 'prefs-custom-js'           => 'Pasadyang JS',
 

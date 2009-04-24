@@ -15,6 +15,9 @@
  */
 
 $messages = array(
+# User preference toggles
+'tog-rememberpassword' => 'Cuimhnichear air a’ choimpiutair seo gu bheil mi logged a-stigh',
+
 # Dates
 'sunday'        => 'Didòmhnaich',
 'monday'        => 'Diluain',
@@ -134,7 +137,7 @@ $messages = array(
 'nstab-main'      => 'Aiste',
 'nstab-user'      => 'Duilleag cleachdair',
 'nstab-media'     => 'Meadhanan',
-'nstab-special'   => 'Àraidh',
+'nstab-special'   => 'Duilleag àraidh',
 'nstab-image'     => 'Ìomhaigh',
 'nstab-mediawiki' => 'Teachdaireachd',
 'nstab-template'  => 'Cumadair',
@@ -244,7 +247,7 @@ $1",
 'preferences'        => 'Roghainnean',
 'mypreferences'      => 'Mo roghainnean',
 'changepassword'     => 'Atharraich facal-faire',
-'prefs-skin'               => 'Bian',
+'prefs-skin'         => 'Bian',
 'dateformat'         => 'Cruth nan ceann-latha',
 'math_unknown_error' => 'mearachd neo-aithnichte',
 'prefs-personal'     => "Dàta a' chleachdair",
@@ -296,7 +299,7 @@ $1",
 # Random page
 'randompage' => 'Duilleag thuairmeach',
 
-'doubleredirects' => 'Ath-stiùreidhean dùbailte',
+'doubleredirects' => 'Ath-stiùireidhean dùbailte',
 
 'brokenredirects' => 'Ath-stiùireidhean briste',
 
@@ -334,16 +337,16 @@ $1",
 # Watchlist
 'watchlist'          => 'Clàr-faire',
 'mywatchlist'        => 'Mo chlàr-faire',
-'nowatchlist'        => 'Chan eil altan air ur faire.',
+'nowatchlist'        => "Chan eil altan air d' fhaire.",
 'addedwatch'         => 'Cuirte ri coimheadlìosta',
 'addedwatchtext'     => "Tha an duilleag \"[[:\$1]]\" cuirte ri [[Special:Watchlist|ur faire]] agaibh.  Ri teachd, bith chuir an àireamh an-sin mùthadhan na duilleag sin agus a'dhuilleag \"Talk\", agus bith a'dhuilleag '''tromte''' anns an [[Special:RecentChanges|lìosta nan mùthadhan ùra]] a dh'fhurasdaich i a sheall.
 
 <p> Ma bu toil leibh a dhubh a\\'dhuilleag as ur faire agaibh nas fadalache, cnap air \"Caisg a\\' coimhead\" air an taobh-colbh.",
 'watch'              => 'Faire',
 'watchthispage'      => 'Cùm sùil air an duilleag seo',
-'watchnochange'      => "Cha deach na duilleagan air ur faire a dheasachadh anns a'chuairt ùine taisbeanta.",
-'watchmethod-recent' => "A'sgrùdadh deasachaidhean ùra airson duilleagan air ur faire",
-'watchmethod-list'   => "A'sgrùdadh duilleagan air ur faire airson deasachaidhean ùra",
+'watchnochange'      => "Cha deach na duilleagan air d' fhaire a dheasachadh anns a' chuairt ùine taisbeanta.",
+'watchmethod-recent' => "A' sgrùdadh deasachaidhean ùra airson duilleagan air d' fhaire",
+'watchmethod-list'   => "A' sgrùdadh duilleagan air d' fhaire airson deasachaidhean ùra",
 'watchlistcontains'  => 'Tha $1 duilleagan air do chlàr-faire.',
 'wlnote'             => 'Seo na $1 mùthaidhean mu dheireadh anns na <b>$2</b> uairean mu dheireadh.',
 'wlshowlast'         => 'Nochd $1 uairean $2 laithean mu dheireadh $3',
@@ -355,7 +358,7 @@ $1",
 # Delete
 'deletepage'             => 'Dubh às duilleag',
 'confirm'                => 'Daingnich',
-'excontent'              => "stuth a bh'ann: '$1'",
+'excontent'              => "stuth a bh' ann: '$1'",
 'exblank'                => 'bha duilleag falamh',
 'delete-confirm'         => 'Dubh às "$1"',
 'delete-legend'          => 'Dubh às',
@@ -371,7 +374,7 @@ $1",
 # Protect
 'protectedarticle'   => 'dìonta [[$1]]',
 'unprotectedarticle' => '"[[$1]]" neo-dhìonta',
-'protect-title'      => 'A\'dìonadh "$1"',
+'protect-title'      => 'A\' dìonadh "$1"',
 'prot_1movedto2'     => '[[$1]] gluaiste ri [[$2]]',
 'protect-legend'     => 'Daingnich dìonadh',
 'protectcomment'     => 'Aobhar airson dìonaidh',
@@ -397,7 +400,7 @@ $1",
 'ipaddress'          => 'IP Seòladh/ainm-cleachdair',
 'ipbreason'          => 'Aobhar',
 'ipbsubmit'          => 'Bac an cleachdair seo',
-'badipaddress'       => "Chan eil an seòladh IP aig a'cleachdair seo iomchaidh",
+'badipaddress'       => "Chan eil an seòladh IP aig a' cleachdair seo iomchaidh",
 'blockipsuccesssub'  => 'Shoirbhich bacadh',
 'blockipsuccesstext' => "Tha [[Special:Contributions/$1|$1]] air a bhacadh.
 <br />Faic [[Special:IPBlockList|Liosta nan IP baicte]] na bacaidhean a dh'ath-sgrùdadh.",
@@ -413,14 +416,14 @@ $1",
 'proxyblocksuccess'  => 'Dèanta.',
 
 # Developer tools
-'lockdb'           => 'Glais stor-dàta',
-'lockconfirm'      => 'Seadh, is ann a tha mi ag iarraidh an stor-dàta a ghlasadh.',
+'lockdb'           => 'Glais stòr-dàta',
+'lockconfirm'      => 'Seadh, is ann a tha mi ag iarraidh an stòr-dàta a ghlasadh.',
 'lockbtn'          => 'Glais stor-dàta',
 'lockdbsuccesssub' => 'Shoirbhich glasadh an stor-dàta',
 
 # Move page
 'move-page-legend'        => 'Gluais duilleag',
-'movearticle'             => 'Gluais duilleag',
+'movearticle'             => 'Gluais duilleag:',
 'movepagebtn'             => 'Gluais duilleag',
 'pagemovedsub'            => 'Gluasad soirbheachail',
 'movedto'                 => 'air gluasad gu',
@@ -442,12 +445,12 @@ $1",
 
 # Tooltip help for the actions
 'tooltip-pt-logout'   => 'Log a-mach',
-'tooltip-n-mainpage'  => "Tadhail air a' phrìomh dhuilleag",
+'tooltip-n-mainpage'  => "Tadhail air a' Phrìomh-Dhuilleig",
 'tooltip-n-portal'    => "Mun phròiseact, na 's urrainn dhuit dhèanamh, far an lorgar nithean",
 'tooltip-t-emailuser' => 'Cuir p-d dhan neach-cleachdaidh seo',
 'tooltip-minoredit'   => 'Comharraich seo mar meanbh-dheasachadh',
-'tooltip-save'        => 'Sàbhail na mùthaidhean agaibh',
-'tooltip-preview'     => 'Roi-sheallaibh na mùthaidhean agaibh; cleachdaibh seo mas sàbhail sibh iad!',
+'tooltip-save'        => 'Sàbhail na mùthaidhean agad',
+'tooltip-preview'     => 'Roi-sheallaibh na mùthaidhean agad; cleachd seo mas sàbhail thu iad!',
 
 # Attribution
 'othercontribs' => 'Stèidhichte air obair le $1.',

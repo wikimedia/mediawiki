@@ -718,13 +718,12 @@ Gallout a rit mont war-gil ha degas kemmoù en ur bajenn zo anezhi dija, pe [[Sp
 'permissionserrors'                => 'Fazioù Aotre',
 'permissionserrorstext'            => "N'oc'h ket aotreet d'ober kement-mañ evit {{PLURAL:$1|an abeg-mañ|an abegoù-mañ}} :",
 'permissionserrorstext-withaction' => "N'oc'h ket aotreet da $2, evit an {{PLURAL:$1|abeg-mañ|abeg-mañ}} :",
-'recreate-deleted-warn'            => "'''Diwallit : Emaoc'h o krouiñ ur bajenn zo bet diverket c'hoazh.'''
+'recreate-moveddeleted-warn'       => "'''Diwallit : Emaoc'h o krouiñ ur bajenn zo bet diverket c'hoazh.'''
 
 En em soñjit ervat ha talvoudus eo kenderc'hel krouiñ ar bajenn.
 Deoc'h da c'houzout, aze emañ marilh an diverkadenn :",
-'deleted-notice'                   => 'Diverket eo bet ar bajenn-mañ.
+'moveddeleted-notice'              => 'Diverket eo bet ar bajenn-mañ.
 Dindan emañ merket dave istor an diverkadennoù.',
-'deletelog-fulllog'                => 'Gwelet ar marilh klok',
 'edit-hook-aborted'                => "C'hwitet ar c'hemmañ gant un astenn.
 Abeg dianav.",
 'edit-gone-missing'                => 'Dibosupl hizivaat ar bajenn.
@@ -1027,12 +1026,12 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'qbsettings-floatingleft'   => 'War-neuñv a-gleiz',
 'qbsettings-floatingright'  => 'War-neuñv a-zehou',
 'changepassword'            => 'Kemmañ ar ger-tremen',
-'prefs-skin'                      => 'Gwiskadur',
+'prefs-skin'                => 'Gwiskadur',
 'skin-preview'              => 'Rakwelet',
-'prefs-math'                      => 'Tres jedoniel',
+'prefs-math'                => 'Tres jedoniel',
 'dateformat'                => 'Stumm an deiziad',
 'datedefault'               => 'Dre ziouer',
-'prefs-datetime'                  => 'Deiziad hag eur',
+'prefs-datetime'            => 'Deiziad hag eur',
 'math_failure'              => 'Fazi jedoniezh',
 'math_unknown_error'        => 'fazi dianav',
 'math_unknown_function'     => 'kevreizhenn jedoniel dianav',
@@ -1054,7 +1053,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'saveprefs'                 => 'Enrollañ ar penndibaboù',
 'resetprefs'                => 'Adlakaat ar penndibaboù kent',
 'restoreprefs'              => 'Adlakaat an holl arventennoù dre ziouer',
-'prefs-editing'               => 'Prenestr skridaozañ',
+'prefs-editing'             => 'Prenestr skridaozañ',
 'prefs-edit-boxsize'        => 'Ment ar prenestr skridaozañ.',
 'rows'                      => 'Linennoù :',
 'columns'                   => 'Bannoù',
@@ -1091,7 +1090,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'prefs-namespaces'          => 'Esaouennoù',
 'defaultns'                 => 'Klask en esaouennoù-mañ dre ziouer :',
 'default'                   => 'dre ziouer',
-'prefs-files'                     => 'Restroù',
+'prefs-files'               => 'Restroù',
 'prefs-custom-css'          => 'CSS personelaet',
 'prefs-custom-js'           => 'JS personelaet',
 

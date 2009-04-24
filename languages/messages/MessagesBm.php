@@ -85,7 +85,7 @@ $messages = array(
 
 # Preferences page
 'preferences' => 'Fisayali',
-'prefs-skin'        => 'Apparence',
+'prefs-skin'  => 'Apparence',
 
 # Recent changes
 'hide' => 'dogo',

@@ -128,6 +128,7 @@ $messages = array(
 'talk'             => 'Dadhelva',
 'toolbox'          => 'Boks toulys',
 'otherlanguages'   => 'Tavosow erel',
+'jumpto'           => 'Lamma dhe:',
 'jumptonavigation' => 'lewyans',
 'jumptosearch'     => 'hwilas',
 
@@ -197,15 +198,19 @@ $messages = array(
 'newpassword' => 'Ger-tremena nowyth:',
 
 # Edit page toolbar
-'link_tip'  => 'Kevren bervedhel',
-'image_tip' => 'Restren neythys',
-'media_tip' => 'Kevren restren',
+'bold_sample'   => 'Tekst tew',
+'italic_sample' => 'Tekst italek',
+'italic_tip'    => 'Tekst italek',
+'link_tip'      => 'Kevren bervedhel',
+'image_tip'     => 'Restren neythys',
+'media_tip'     => 'Kevren restren',
 
 # Edit pages
 'minoredit'    => 'Hemm yw chanj bian',
 'watchthis'    => 'Golyas an folen ma',
 'savearticle'  => 'Gwitha',
 'preview'      => 'Ragwel',
+'showpreview'  => 'Diskwedhes ragwel',
 'showdiff'     => 'Diskwedhes chanjyow',
 'loginreqlink' => 'omgelmi',
 'newarticle'   => '(Nowyth)',
@@ -254,7 +259,7 @@ $messages = array(
 # Preferences page
 'preferences'              => 'Teythi ow akont',
 'mypreferences'            => 'Teythi ow akont',
-'prefs-skin'                     => 'Krohen',
+'prefs-skin'               => 'Krohen',
 'prefs-watchlist'          => 'Rol golyas',
 'saveprefs'                => 'Gwitha',
 'searchresultshead'        => 'Hwilas',
@@ -263,7 +268,7 @@ $messages = array(
 'timezoneregion-asia'      => 'Asi',
 'timezoneregion-australia' => 'Ostrali',
 'timezoneregion-europe'    => 'Europa',
-'prefs-files'                    => 'Restrennow',
+'prefs-files'              => 'Restrennow',
 
 # Groups
 'group-user'  => 'Devnydhyow',
@@ -452,7 +457,9 @@ $messages = array(
 'import-upload-filename'  => 'Hanow-restren:',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'    => 'Dha folen devnydhyer',
 'tooltip-pt-preferences' => 'Teythi ow akont',
+'tooltip-pt-mycontris'   => 'Rol a dha hevrohow',
 'tooltip-pt-logout'      => 'Omdenna',
 'tooltip-ca-addsection'  => 'Dalleth tregh nowyth',
 'tooltip-ca-protect'     => 'Difres an folen ma',
@@ -464,6 +471,7 @@ $messages = array(
 'tooltip-t-upload'       => 'Ughkarga restrennow',
 'tooltip-t-specialpages' => 'Rol a bub folenn arbennik',
 'tooltip-t-print'        => 'Versyon pryntyadow an folen ma',
+'tooltip-save'           => 'Gwitha dha janjyow',
 
 # Attribution
 'siteuser'  => 'devnydhyer {{SITENAME}} $1',

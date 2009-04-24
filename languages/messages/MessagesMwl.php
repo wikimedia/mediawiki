@@ -487,11 +487,11 @@ Por fabor, pensa an scachar la páigina an cachos mais pequeinhos.'''",
 'nocreatetext'                     => '{{SITENAME}} tem restringida la possibilidade de criar nuobas páginas.
 Pode boltar atrás i editar unha página yá eisistente, o [[Special:UserLogin|autenticar-se o criar unha cuonta]].',
 'permissionserrorstext-withaction' => 'Tu nun tenes premisson pa $2, {{PLURAL:$1|pula seguinte rezon|pulas seguintes rezones}}:',
-'recreate-deleted-warn'            => "'''Abiso: Tu stás a criar ua páigina que yá fui d'atrás botada fuora.'''
+'recreate-moveddeleted-warn'       => "'''Abiso: Tu stás a criar ua páigina que yá fui d'atrás botada fuora.'''
 
 Bei bien se ye aprópiado cuntinar a eiditar esta páigina.
 L registro de quando esta páigina fui botada fuora ye amostrado a seguir, por quemodidade:",
-'deleted-notice'                   => 'Esta páigina fui apagada. 
+'moveddeleted-notice'              => 'Esta páigina fui apagada. 
 Ambaixo stá l registro de las eileminaçones pa refréncia.',
 
 # History pages
@@ -585,15 +585,15 @@ Tu puodes [[:\$1|criar esta páigina]].",
 # Preferences page
 'preferences'               => 'Perfréncias',
 'mypreferences'             => 'Las mies perfréncias',
-'prefs-skin'                      => 'Maçcarilha',
+'prefs-skin'                => 'Maçcarilha',
 'skin-preview'              => 'Amostrar',
-'prefs-math'                      => 'Matemática',
+'prefs-math'                => 'Matemática',
 'dateformat'                => 'Formato de la data',
-'prefs-datetime'                  => 'Data i hora',
+'prefs-datetime'            => 'Data i hora',
 'prefs-personal'            => 'Calantriç',
 'prefs-rc'                  => 'Redadeiras alteraçones',
 'saveprefs'                 => 'Grabar',
-'prefs-editing'               => 'Oupçones de eidiçon',
+'prefs-editing'             => 'Oupçones de eidiçon',
 'rows'                      => 'Lhinhas:',
 'timezoneregion-africa'     => 'África',
 'timezoneregion-america'    => 'América',
@@ -605,7 +605,7 @@ Tu puodes [[:\$1|criar esta páigina]].",
 'timezoneregion-europe'     => 'Ouropa',
 'timezoneregion-indian'     => 'Ouceano Índico',
 'timezoneregion-pacific'    => 'Ouceano Pacífico',
-'prefs-files'                     => 'Fexeiros',
+'prefs-files'               => 'Fexeiros',
 
 # User rights
 'userrights-groupsmember' => 'Nembro de:',

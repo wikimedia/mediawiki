@@ -814,12 +814,11 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|au
 'permissionserrors'                => 'Erros de permissões',
 'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
-'recreate-deleted-warn'            => "'''Atenção: Você está criando novamente uma página já eliminada em outra ocasião.'''
+'recreate-moveddeleted-warn'       => "'''Atenção: Você está criando novamente uma página já eliminada em outra ocasião.'''
 
 Certifique-se de que seja adequado prosseguir editando esta página.
 O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
-'deleted-notice'                   => 'Esta página foi eliminada. Disponibiliza-se abaixo o registo de eliminações para esta página, para referência.',
-'deletelog-fulllog'                => 'Ver registo completo',
+'moveddeleted-notice'              => 'Esta página foi eliminada. Disponibiliza-se abaixo o registo de eliminações para esta página, para referência.',
 'edit-hook-aborted'                => 'Edição abortada por hook.
 Ele não deu nenhuma explicação.',
 'edit-gone-missing'                => 'Não foi possível atualizar a página.
@@ -1130,12 +1129,12 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'qbsettings-floatingleft'   => 'Flutuando à esquerda',
 'qbsettings-floatingright'  => 'Flutuando à direita',
 'changepassword'            => 'Alterar palavra-chave',
-'prefs-skin'                      => 'Tema',
+'prefs-skin'                => 'Tema',
 'skin-preview'              => 'Pré-visualizar',
-'prefs-math'                      => 'Matemática',
+'prefs-math'                => 'Matemática',
 'dateformat'                => 'Formato da data',
 'datedefault'               => 'Sem preferência',
-'prefs-datetime'                  => 'Data e hora',
+'prefs-datetime'            => 'Data e hora',
 'math_failure'              => 'Falhou ao verificar gramática',
 'math_unknown_error'        => 'Erro desconhecido',
 'math_unknown_function'     => 'Função desconhecida',
@@ -1157,7 +1156,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'saveprefs'                 => 'Salvar',
 'resetprefs'                => 'Eliminar as alterações não-salvas',
 'restoreprefs'              => 'Restaurar todas as configurações padrão',
-'prefs-editing'               => 'Opções de edição',
+'prefs-editing'             => 'Opções de edição',
 'prefs-edit-boxsize'        => 'Tamanho da janela de edição.',
 'rows'                      => 'Linhas:',
 'columns'                   => 'Colunas:',
@@ -1194,7 +1193,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-namespaces'          => 'Espaços nominais',
 'defaultns'                 => 'Pesquisar por defeito nestes espaços nominais:',
 'default'                   => 'padrão',
-'prefs-files'                     => 'Ficheiros',
+'prefs-files'               => 'Ficheiros',
 'prefs-custom-css'          => 'CSS personalizada',
 'prefs-custom-js'           => 'JS personalizado',
 

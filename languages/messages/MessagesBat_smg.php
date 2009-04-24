@@ -603,11 +603,11 @@ Tamsta galėt grīžtė ė redagoutė nūnā esonti poslapi, a [[Special:UserLog
 'permissionserrors'                => 'Teisiu klaida',
 'permissionserrorstext'            => 'Tamsta netorėt teisiu šėta darītė diel {{PLURAL:$1|tuos prīžastėis|tū prīžastiū}}:',
 'permissionserrorstext-withaction' => 'Tamsta netorėt leidėma $2 dielē {{PLURAL:$1|tos prīžastėis|tū prīžastiu}}:',
-'recreate-deleted-warn'            => "'''Diemesė: Tomsta atkoriat poslapi, katros onkstiau bova ėštrints.'''
+'recreate-moveddeleted-warn'       => "'''Diemesė: Tomsta atkoriat poslapi, katros onkstiau bova ėštrints.'''
 
 Tomsta torėt nosprēst, a pritėnk tuoliau redagoutė šėta poslapi.
 Šėta poslapė šalėnėmu istuorėjė īr pateikta patuogoma vardan:",
-'deleted-notice'                   => 'Tas poslapis bova ėštrėnts.
+'moveddeleted-notice'              => 'Tas poslapis bova ėštrėnts.
 Ėštrėnta poslapė versėju sārašos īr pateikts paveiziejėmō žemiau.',
 
 # "Undo" feature
@@ -756,12 +756,12 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'qbsettings'                => 'Greitasā pasėrėnkėms',
 'qbsettings-none'           => 'Neruodītė',
 'changepassword'            => 'Pakeistė slaptažuodė',
-'prefs-skin'                      => 'Ėšruoda',
+'prefs-skin'                => 'Ėšruoda',
 'skin-preview'              => 'Parveiza',
-'prefs-math'                      => 'Matematėka',
+'prefs-math'                => 'Matematėka',
 'dateformat'                => 'Datuos fuormats',
 'datedefault'               => 'Juokė pasėrėnkėma',
-'prefs-datetime'                  => 'Data ė čiesos',
+'prefs-datetime'            => 'Data ė čiesos',
 'math_failure'              => 'Nepavīka apdoruotė',
 'math_unknown_error'        => 'nežinuoma klaida',
 'math_unknown_function'     => 'nežinuoma funkcėjė',
@@ -777,7 +777,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'saveprefs'                 => 'Ėšsauguotė',
 'resetprefs'                => 'Atstatītė nostatīmos',
 'restoreprefs'              => 'Atstatītė vėsus numatītūsius nustatīmus',
-'prefs-editing'               => 'Redagavėms',
+'prefs-editing'             => 'Redagavėms',
 'prefs-edit-boxsize'        => 'Redagavėma longa dėdoms.',
 'rows'                      => 'Eilotės:',
 'columns'                   => 'Štolpalē:',
@@ -813,7 +813,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'prefs-namespaces'          => 'Vardū srėtīs',
 'defaultns'                 => 'Palē nutīliejėma ėiškuotė šėtuosė vardū srėtīsė:',
 'default'                   => 'palē nūtīliejėma',
-'prefs-files'                     => 'Failā',
+'prefs-files'               => 'Failā',
 
 # User rights
 'userrights'               => 'Nauduotuoju teisiu valdīms',

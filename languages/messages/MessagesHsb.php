@@ -138,7 +138,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Dohladawane změny w aktualnych změnach schować',
 'tog-newpageshidepatrolled'   => 'Dohladowane strony z lisćiny nowych stronow schować',
 'tog-extendwatchlist'         => 'Lisćinu wobkedźbowankow wočinić, zo by wšě změny widźał, nic jenož najnowše',
-'tog-usenewrc'                => 'Rozšěrjena lisćina aktualnych změnow (trjeba JavaScript)',
+'tog-usenewrc'                => 'Rozšěrjenu lisćinu aktualnych změnow (trjeba JavaScript) wužiwać',
 'tog-numberheadings'          => 'Nadpisma awtomatisce čisłować',
 'tog-showtoolbar'             => 'Gratowu lajstu pokazać (JavaScript)',
 'tog-editondblclick'          => 'Strony z dwójnym kliknjenjom wobdźěłować (JavaScript)',
@@ -146,7 +146,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Wobdźěłowanje jednotliwych wotrězkow přez kliknjenje z prawej tastu<br />na nadpisma wotrězkow zmóžnić (JavaScript)',
 'tog-showtoc'                 => 'Zapis wobsaha pokazać (za strony z wjace hač 3 nadpismami)',
 'tog-rememberpassword'        => 'Hesło na tutym ličaku składować',
-'tog-editwidth'               => 'Wobdźěłanske polo ma połnu šěrokosć',
+'tog-editwidth'               => 'Wobdźěłowanske polo wušěrić, zo by so cyła wobrazowka pjelniła',
 'tog-watchcreations'          => 'Strony, kotrež wutworjam, swojim wobkedźbowankam přidać',
 'tog-watchdefault'            => 'Strony, kotrež wobdźěłuju, swojim wobkedźbowankam přidać',
 'tog-watchmoves'              => 'Sam přesunjene strony wobkedźbowankam přidać',
@@ -522,6 +522,7 @@ Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|
 'username'                   => 'Wužiwarske mjeno:',
 'uid'                        => 'ID wužiwarja:',
 'prefs-memberingroups'       => 'Čłon {{PLURAL:$1|wužiwarskeje skupiny|wužiwarskeju skupinow|wužiwarskich skupinow|wužiwarskich skupinow}}:',
+'prefs-registration'         => 'Čas registracije:',
 'yourrealname'               => 'Woprawdźite mjeno *',
 'yourlanguage'               => 'Rěč:',
 'yourvariant'                => 'Warianta:',
@@ -749,12 +750,12 @@ Administrator, kiž je ju zawrjena, je tutu přičinu podał: $1",
 'permissionserrors'                => 'Woprawnjenske zmylki',
 'permissionserrorstext'            => 'Nimaš prawo, zo by tutu akciju wuwjedł. {{PLURAL:$1|Přičina|Přičiny}}:',
 'permissionserrorstext-withaction' => 'Nimaš dowolnosć za $2 ze {{PLURAL:$1|slědowaceje přičiny|slědowaceju přičinow|slědowacych přičinow|slědowacych přičinow}}:',
-'recreate-deleted-warn'            => "'''Kedźbu: Wutworiš stronu, kiž bu prjedy wušmórnjena.'''
+'recreate-moveddeleted-warn'       => "'''Kedźbu: Wutworiš stronu, kiž bu prjedy wušmórnjena.'''
 
-Prošu přepruwuj, hač je znowawutworjenje woprawnjena a wotpowěduje prawidłam projekta.
-Tu slěduje wujimk z protokola wušmórnjenjow z přičinu za předawše wušmórnjenje:",
-'deleted-notice'                   => 'Tuta strona bu wušmórnjena. Protokol wušmórnjenjow za tutu stronu so deleka jako referenca podawa.',
-'deletelog-fulllog'                => 'Dospołny protokol wobhladać',
+Prošu přepruwuj, hač je přihódne z wobdźěłowanjom tuteje strony pokročować.
+Protokol wušmórnjenjow a přesunjenjow za tutu stronu su tu za informaciju:",
+'moveddeleted-notice'              => 'Tuta strona bu wušmórnjena. Protokol wušmórnjenjow a přesunjenjow za  stronu so deleka jako referenca podawa.',
+'log-fulllog'                      => 'Dospołny protokol sej wobhladać',
 'edit-hook-aborted'                => 'Wobdźěłanje přez hoku přetorhnjene.
 Njeje žane wujasnjenje podała.',
 'edit-gone-missing'                => 'Strona njeje so aktualizować dała.
@@ -1061,12 +1062,12 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'qbsettings-floatingleft'   => 'Wisa nalěwo',
 'qbsettings-floatingright'  => 'Wisa naprawo',
 'changepassword'            => 'Hesło změnić',
-'prefs-skin'                      => 'Šat',
+'prefs-skin'                => 'Šat',
 'skin-preview'              => 'Přehlad',
-'prefs-math'                      => 'Math',
+'prefs-math'                => 'Math',
 'dateformat'                => 'Format datuma',
 'datedefault'               => 'Žane nastajenje',
-'prefs-datetime'                  => 'Datum a čas',
+'prefs-datetime'            => 'Datum a čas',
 'math_failure'              => 'Analyza njeje so poradźiła',
 'math_unknown_error'        => 'njeznaty zmylk',
 'math_unknown_function'     => 'njeznata funkcija',
@@ -1085,10 +1086,12 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'prefs-watchlist-edits-max' => '(maksimalna ličba: 1000)',
 'prefs-misc'                => 'Wšelake nastajenja',
 'prefs-resetpass'           => 'Hesło změnić',
+'prefs-email'               => 'E-mejlowe opcije',
+'prefs-rendering'           => 'Rysowanje strony',
 'saveprefs'                 => 'Składować',
 'resetprefs'                => 'Njeskładowane změny zaćisnyć',
 'restoreprefs'              => 'Wšě standardne nastajenja wobnowić',
-'prefs-editing'               => 'Wobdźěłowanje',
+'prefs-editing'             => 'Wobdźěłowanje',
 'prefs-edit-boxsize'        => 'Wulkosć wobdźěłowanskeho wokna.',
 'rows'                      => 'Rjadki:',
 'columns'                   => 'Stołpiki:',
@@ -1125,9 +1128,11 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'prefs-namespaces'          => 'Mjenowe rumy',
 'defaultns'                 => 'W tutych mjenowych rumach awtomatisce pytać:',
 'default'                   => 'standard',
-'prefs-files'                     => 'Dataje',
+'prefs-files'               => 'Dataje',
 'prefs-custom-css'          => 'Swójski CSS',
 'prefs-custom-js'           => 'Swójski JS',
+'prefs-reset-intro'         => 'You can use this page to reset your preferences to the site defaults. This cannot be undone.
+Móžeš tutu stronu wužiwać, zo by swoje nastajenja na standardne hódnoty sydła wróćo stajić. To njeda so anulować.',
 
 # User rights
 'userrights'                  => 'Zrjadowanje wužiwarskich prawow',
@@ -2435,7 +2440,7 @@ $1',
 
 # Media information
 'mediawarning'         => '<b>KEDŹBU:</b> Dataja móhła złowólny kod wobsahować, kotrehož wuwjedźenje móhło twój system wobškodźić.<hr />',
-'imagemaxsize'         => 'Wobrazy na stronach wobrazoweho wopisanja wobmjezować na:',
+'imagemaxsize'         => "Maksimalna wobrazowa wulkosć:<br />''(za strony datajoweho wopisanja)''",
 'thumbsize'            => 'Wulkosć miniaturkow (thumbnails):',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strona|stronje|strony|stronow}}',
@@ -2979,5 +2984,15 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'dberr-usegoogle'   => 'Mjeztym móžeš z pomocu Google pytać.',
 'dberr-outofdate'   => 'Wobkedźbuj, zo jich indeksy našeho wobsaha móhli zestarjene być.',
 'dberr-cachederror' => 'Slědowaca je pufrowana kopija požadaneje strony a móhła zestarjena być.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Su problemy z twojim zapodaćom',
+'htmlform-select-badoption'    => 'Hódnota, kotruž sy zapodał, płaćiwa opcija njeje.',
+'htmlform-int-invalid'         => 'Hódnota, kotruž sy zapodał, cyła ličba njeje.',
+'htmlform-int-toolow'          => 'Hódnota, kotruž sy zapodał, je mjeńša hač minimum $1.',
+'htmlform-int-toohigh'         => 'Hódnota, kotruž sy zapodał, je wjetša hač maksimum $1.',
+'htmlform-submit'              => 'Wotpósłać',
+'htmlform-reset'               => 'Změny cofnyć',
+'htmlform-selectorother-other' => 'Druhe',
 
 );

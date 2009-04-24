@@ -989,7 +989,7 @@ IP мекенжайыңыз бұл беттің түзету тарихында 
 'permissionserrors'                => 'Рұқсаттар қателері',
 'permissionserrorstext'            => 'Бұны істеуге рұқсатыңыз жоқ, келесі {{PLURAL:$1|себеп|себептер}} бойынша:',
 'permissionserrorstext-withaction' => '$2 дегенге рұқсатыңыз жоқ, келесі {{PLURAL:$1|себеп|себептер}} бойынша:',
-'recreate-deleted-warn'            => "'''Құлақтандыру: Алдында жойылған бетті қайта бастайын деп тұрсыз.'''
+'recreate-moveddeleted-warn'       => "'''Құлақтандыру: Алдында жойылған бетті қайта бастайын деп тұрсыз.'''
 
 Мына бет өңдеуін жалғастыру үшін жарастығын тексеріп шығуыңыз жөн.
 Қолайлы болуы үшін бұл беттің жою журналы келтірілген:",
@@ -1199,12 +1199,12 @@ $3 келтірілген себебі: ''$2''",
 'qbsettings-floatingleft'  => 'Солға қалқыған',
 'qbsettings-floatingright' => 'Оңға қалқыған',
 'changepassword'           => 'Құпия сөзді өзгерту',
-'prefs-skin'                     => 'Мәнерлер',
+'prefs-skin'               => 'Мәнерлер',
 'skin-preview'             => 'Қарап шығу',
-'prefs-math'                     => 'Өрнектер',
+'prefs-math'               => 'Өрнектер',
 'dateformat'               => 'Күн-ай пішімі',
 'datedefault'              => 'Еш қалаусыз',
-'prefs-datetime'                 => 'Уақыт',
+'prefs-datetime'           => 'Уақыт',
 'math_failure'             => 'Құрылымын талдатуы сәтсіз бітті',
 'math_unknown_error'       => 'белгісіз қате',
 'math_unknown_function'    => 'белгісіз жете',
@@ -1224,7 +1224,7 @@ latex, dvips, gs және convert бағдарламаларының дұрыс 
 'prefs-misc'               => 'Әрқилы',
 'saveprefs'                => 'Сақта',
 'resetprefs'               => 'Сақталмаған өзгерістерді тазарт',
-'prefs-editing'              => 'Өңдеу',
+'prefs-editing'            => 'Өңдеу',
 'rows'                     => 'Жолдар:',
 'columns'                  => 'Бағандар:',
 'searchresultshead'        => 'Іздеу',
@@ -1246,7 +1246,7 @@ latex, dvips, gs және convert бағдарламаларының дұрыс 
 'prefs-namespaces'         => 'Есім аялары',
 'defaultns'                => 'Мына есім аяларда әдепкіден іздеу:',
 'default'                  => 'әдепкі',
-'prefs-files'                    => 'Файлдар',
+'prefs-files'              => 'Файлдар',
 
 # User rights
 'userrights'                  => 'Қатысушы құқықтарын реттеу',

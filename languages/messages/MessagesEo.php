@@ -818,12 +818,11 @@ La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1",
 'permissionserrors'                => 'Eraroj pri rajtoj',
 'permissionserrorstext'            => 'Vi ne rajtas fari tion pro la {{PLURAL:$1|sekva kialo|sekvaj kialoj}}:',
 'permissionserrorstext-withaction' => 'Vi ne rajtas $2, pro la {{PLURAL:$1|jena kialo|jenaj kialoj}}:',
-'recreate-deleted-warn'            => "'''Averto: Vi rekreas paĝon tiu estis antaŭe forigita.'''
+'recreate-moveddeleted-warn'       => "'''Averto: Vi rekreas paĝon tiu estis antaŭe forigita.'''
 
 Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
 Jen la protokolo de forigoj por via oportuno:",
-'deleted-notice'                   => 'Ĉi tiu paĝo estis forigita. La linio el la protokolo pri forigado estas montrata sube por via referenco.',
-'deletelog-fulllog'                => 'Vidi plenan protokolon',
+'moveddeleted-notice'              => 'Ĉi tiu paĝo estis forigita. La linio el la protokolo pri forigado estas montrata sube por via referenco.',
 'edit-hook-aborted'                => 'Redakto ĉesigis per hoko.
 Ĝi ne donis eksplikon.',
 'edit-gone-missing'                => 'Ne eblis ĝisdatigi la paĝon.
@@ -1134,12 +1133,12 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'qbsettings-floatingleft'   => 'Ŝvebas maldekstre',
 'qbsettings-floatingright'  => 'Ŝvebas dekstre',
 'changepassword'            => 'Ŝanĝi pasvorton',
-'prefs-skin'                      => 'Etoso',
+'prefs-skin'                => 'Etoso',
 'skin-preview'              => 'Antaŭrigardo',
-'prefs-math'                      => 'Matematikaĵoj',
+'prefs-math'                => 'Matematikaĵoj',
 'dateformat'                => 'Datformato',
 'datedefault'               => 'Nenia prefero',
-'prefs-datetime'                  => 'Dato kaj horo',
+'prefs-datetime'            => 'Dato kaj horo',
 'math_failure'              => 'malsukcesis analizi formulon',
 'math_unknown_error'        => 'nekonata eraro',
 'math_unknown_function'     => 'nekonata funkcio',
@@ -1161,7 +1160,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'saveprefs'                 => 'Konservi preferojn',
 'resetprefs'                => 'Forviŝi nekonservitajn ŝanĝojn',
 'restoreprefs'              => 'Restarigi ĉiujn defaŭltajn preferojn',
-'prefs-editing'               => 'Grandeco de redakta tekstujo',
+'prefs-editing'             => 'Grandeco de redakta tekstujo',
 'prefs-edit-boxsize'        => 'Grandeco de la redakto-kesko.',
 'rows'                      => 'Linioj:',
 'columns'                   => 'Kolumnoj:',
@@ -1200,7 +1199,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'prefs-namespaces'          => 'Nomspacoj',
 'defaultns'                 => 'Traserĉi la jenajn nomspacojn:',
 'default'                   => 'defaŭlte',
-'prefs-files'                     => 'Dosieroj',
+'prefs-files'               => 'Dosieroj',
 'prefs-custom-css'          => 'Propra CSS',
 'prefs-custom-js'           => 'Propra JS',
 

@@ -329,22 +329,22 @@ Cha nod oo ny smoo y chroo.',
 'hr_tip'          => 'Linney cochruinnagh (ymmyd dy spaarailagh)',
 
 # Edit pages
-'summary'                => 'Giare-choontey:',
-'subject'                => 'Cooish/kione-linney:',
-'minoredit'              => 'She myn-arraghey eh shoh',
-'watchthis'              => 'Freill arrey er y duillag shoh',
-'savearticle'            => 'Sauail y duillag',
-'preview'                => 'Roie-haishbynys',
-'showpreview'            => 'Taishbyney roie-haishbynys',
-'showlivepreview'        => 'Roie-haishbynys bio',
-'showdiff'               => 'Taishbyney caghlaaghyn',
-'anoneditwarning'        => "'''Raaue:''' Cha nel ou loggit stiagh.
+'summary'                    => 'Giare-choontey:',
+'subject'                    => 'Cooish/kione-linney:',
+'minoredit'                  => 'She myn-arraghey eh shoh',
+'watchthis'                  => 'Freill arrey er y duillag shoh',
+'savearticle'                => 'Sauail y duillag',
+'preview'                    => 'Roie-haishbynys',
+'showpreview'                => 'Taishbyney roie-haishbynys',
+'showlivepreview'            => 'Roie-haishbynys bio',
+'showdiff'                   => 'Taishbyney caghlaaghyn',
+'anoneditwarning'            => "'''Raaue:''' Cha nel ou loggit stiagh.
 Bee dt'enmys IP recortyssit ayns shennaghys reaghey yn duillag shoh.",
-'missingcommenttext'     => 'Taggloo er heese, my sailt.',
-'summary-preview'        => 'Roie-haishbynys y ghiare-choontey:',
-'subject-preview'        => 'Roie-haishbynys cooish/kione-linney:',
-'blockedtitle'           => "Ta'n ymmydeyr glast magh",
-'blockedtext'            => "<big>'''Ta dt'ennym ymmydeyr ny dt'enmys IP currit fo ghlass.'''</big>
+'missingcommenttext'         => 'Taggloo er heese, my sailt.',
+'summary-preview'            => 'Roie-haishbynys y ghiare-choontey:',
+'subject-preview'            => 'Roie-haishbynys cooish/kione-linney:',
+'blockedtitle'               => "Ta'n ymmydeyr glast magh",
+'blockedtext'                => "<big>'''Ta dt'ennym ymmydeyr ny dt'enmys IP currit fo ghlass.'''</big>
 
 V'ou glassit magh ec $1. T'eh yn oyr na ''$2''.
 
@@ -355,38 +355,38 @@ V'ou glassit magh ec $1. T'eh yn oyr na ''$2''.
 Foddee oo cur fys er $1 ny [[{{MediaWiki:Grouppage-sysop}}|reireyder]] elley dy resooney magh y ghlass.
 Cha nod oo jannoo ymmyd jeh'n chummey 'cur post-L da'n ymmydeyr shoh' mannagh vel eh sonrit ayns dty [[Special:Preferences|choontys tosheeaghtyn]] as mannagh vel ou glasst magh.<br />
 She $3 dt'enmys IP roie, as she dt'enney ghlass na #$5. Cur ad lesh dagh ooilley eysht.",
-'blockednoreason'        => 'cha nel fa currit',
-'loginreqlink'           => 'Log stiagh',
-'loginreqpagetext'       => 'Shegin dhyt $1 dys jeeagh er duillagyn elley.',
-'accmailtitle'           => 'Fockle yn arrey currit.',
-'accmailtext'            => 'Ta fockle yn arrey da "$1" currit dy $2.',
-'newarticle'             => '(Noa)',
-'newarticletext'         => 'T’ou er jeet trooid kiangley dys duillag nagh vel ayn foast.  
+'blockednoreason'            => 'cha nel fa currit',
+'loginreqlink'               => 'Log stiagh',
+'loginreqpagetext'           => 'Shegin dhyt $1 dys jeeagh er duillagyn elley.',
+'accmailtitle'               => 'Fockle yn arrey currit.',
+'accmailtext'                => 'Ta fockle yn arrey da "$1" currit dy $2.',
+'newarticle'                 => '(Noa)',
+'newarticletext'             => 'T’ou er jeet trooid kiangley dys duillag nagh vel ayn foast.  
 Son dy chroo y duillag, gow toshiaght screeuyn ‘sy chishtey çheu heese jeh shoh (jeeagh er [[{{MediaWiki:Helppage}}|duillag y chooney]] son ny smoo fys).  
 My haink oo dys shoh trooid marranys, crig er cramman ‘erash’ yn jeeagheyder ayd.',
-'noarticletext'          => 'Cha nel teks ayns y ghuillag shoh, foddee-shiu [[Special:Search/{{PAGENAME}}|ronsaghey yn enmys duillag shoh]] ayns duillagyn elley ny [{{fullurl:{{FULLPAGENAME}}|action=edit}} reaghey yn duillag shoh].',
-'note'                   => "'''Note:'''",
-'previewnote'            => "'''T'eh shoh ny roie-haishbynys;
+'noarticletext'              => 'Cha nel teks ayns y ghuillag shoh, foddee-shiu [[Special:Search/{{PAGENAME}}|ronsaghey yn enmys duillag shoh]] ayns duillagyn elley ny [{{fullurl:{{FULLPAGENAME}}|action=edit}} reaghey yn duillag shoh].',
+'note'                       => "'''Note:'''",
+'previewnote'                => "'''T'eh shoh ny roie-haishbynys;
 cha nel ny caghlaaghyn sauailt foast!'''",
-'editing'                => 'Reaghey $1',
-'editingsection'         => 'Reaghey $1 (rheynn)',
-'editingcomment'         => 'Reaghey $1 (cohaggloo)',
-'yourtext'               => 'Dty heks',
-'storedversion'          => 'Lhieggan stoyrit',
-'yourdiff'               => 'Anchaslyssyn',
-'copyrightwarning'       => "Cur tastey my saillt: my t’ou cur red erbee da {{SITENAME}}, t’eh toiggit dy vel oo cur magh eh rere yn $2 (jeeagh er $1 son ny smoo fys).  Mannagh by vie lhiat dy beagh sleih elley reaghey dty obbyr gyn myghin as skeaylley eh dy seyr, ny chur roish eh ayns shoh.
+'editing'                    => 'Reaghey $1',
+'editingsection'             => 'Reaghey $1 (rheynn)',
+'editingcomment'             => 'Reaghey $1 (cohaggloo)',
+'yourtext'                   => 'Dty heks',
+'storedversion'              => 'Lhieggan stoyrit',
+'yourdiff'                   => 'Anchaslyssyn',
+'copyrightwarning'           => "Cur tastey my saillt: my t’ou cur red erbee da {{SITENAME}}, t’eh toiggit dy vel oo cur magh eh rere yn $2 (jeeagh er $1 son ny smoo fys).  Mannagh by vie lhiat dy beagh sleih elley reaghey dty obbyr gyn myghin as skeaylley eh dy seyr, ny chur roish eh ayns shoh.
 <br />
 Chammah as shen, t’ou gialdyn dooin dy screeu oo hene eh, ny ren oo coip jeh ny ta fo çhiarnys y theay, ny ry-gheddyn dy seyr.
 '''NY CHUR ROISH GYN KIED OBBYR TA FO COIP-CHIART! '''",
-'templatesused'          => 'Clowanyn ymmydit er y duillag shoh:',
-'templatesusedpreview'   => "Clowanyn ymmydit 'sy roie-haishbynys shoh:",
-'template-protected'     => '(glast)',
-'template-semiprotected' => '(lieh-ghlast)',
-'nocreatetitle'          => 'Crooaght duillag jeorit',
-'nocreatetext'           => "Ta ablid duillagyn noa y chroo lhiettalit ec {{SITENAME}}.<br />
+'templatesused'              => 'Clowanyn ymmydit er y duillag shoh:',
+'templatesusedpreview'       => "Clowanyn ymmydit 'sy roie-haishbynys shoh:",
+'template-protected'         => '(glast)',
+'template-semiprotected'     => '(lieh-ghlast)',
+'nocreatetitle'              => 'Crooaght duillag jeorit',
+'nocreatetext'               => "Ta ablid duillagyn noa y chroo lhiettalit ec {{SITENAME}}.<br />
 Foddee shiu goll er ash as reaghey duillag t'ayn nish, ny [[Special:UserLogin|loggal stiagh ny croo coontys]].",
-'nocreate-loggedin'      => 'Cha nel kied ayd duillagyn noa y chroo er {{SITENAME}}.',
-'recreate-deleted-warn'  => "'''Raaue: Ta shiu aachroo duillag as eh er ve scrysst roie.'''
+'nocreate-loggedin'          => 'Cha nel kied ayd duillagyn noa y chroo er {{SITENAME}}.',
+'recreate-moveddeleted-warn' => "'''Raaue: Ta shiu aachroo duillag as eh er ve scrysst roie.'''
 
 By chair dhyt smooinagh vel eh kiart goll er oai lesh reaghey yn duillag shoh.<br />
 Ta lioar ny scryssaghyn magh kiarit ayns shoh rere dty chaays hene:",
@@ -470,17 +470,17 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'prefsnologin'         => 'Cha nel oo loggit stiagh',
 'qbsettings-none'      => 'Veg',
 'changepassword'       => 'Fockle yn arrey y cheaghley',
-'prefs-skin'                 => 'Crackan',
+'prefs-skin'           => 'Crackan',
 'skin-preview'         => 'Roie-haishbynys',
 'dateformat'           => 'Kiaddey yn date',
-'prefs-datetime'             => 'Date as am',
+'prefs-datetime'       => 'Date as am',
 'math_syntax_error'    => 'Co-ordrail marranagh',
 'prefs-personal'       => 'Gruaie yn ymmydeyr',
 'prefs-rc'             => "Caghlaaghyn s'noa",
 'prefs-watchlist'      => 'Rolley arrey',
 'prefs-watchlist-days' => 'Laaghyn y haishbyney ayns rolley arrey:',
 'saveprefs'            => 'Sauail',
-'prefs-editing'          => 'Reaghey',
+'prefs-editing'        => 'Reaghey',
 'columns'              => 'Collooyn:',
 'searchresultshead'    => 'Ronsaghey',
 'recentchangesdays'    => "Laaghyn y haishbyney ayns caghlaaghyn s'noa:",
@@ -489,7 +489,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'localtime'            => 'Traa ynnydagh',
 'timezoneoffset'       => 'Ashchlou¹',
 'default'              => 'loght',
-'prefs-files'                => 'Coadanyn',
+'prefs-files'          => 'Coadanyn',
 
 # User rights
 'userrights'               => 'Reireydys kiartyn ymmydeyr',

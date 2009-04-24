@@ -382,20 +382,20 @@ O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk 
 'hr_tip'          => 'Gorizontal liniya (çok sık kullanmayın)',
 
 # Edit pages
-'summary'                => 'Kısaca:',
-'subject'                => 'Konu/başlık:',
-'minoredit'              => 'Küçük diişilmäkler',
-'watchthis'              => 'Bak bu sayfaa',
-'savearticle'            => 'Sayfayı registrat et',
-'preview'                => 'Ön siir',
-'showpreview'            => 'Ön siiri göster',
-'showlivepreview'        => 'Cannı ön siir',
-'showdiff'               => 'Diişilmäkleri göster',
-'anoneditwarning'        => 'Sessiya açmadınız deyni yazının diişmäk istoriyasına diil nik, IP adresiniz registrat olunacêk.',
-'summary-preview'        => 'Ön siir özeti:',
-'subject-preview'        => 'Konu/başlık ön siiri:',
-'blockedtitle'           => 'Kullanıcı kösteklendi.',
-'blockedtext'            => '<big>Kullanıcı adınız yaki parolunuz $1 tarafından kösteklendi.</big>
+'summary'                    => 'Kısaca:',
+'subject'                    => 'Konu/başlık:',
+'minoredit'                  => 'Küçük diişilmäkler',
+'watchthis'                  => 'Bak bu sayfaa',
+'savearticle'                => 'Sayfayı registrat et',
+'preview'                    => 'Ön siir',
+'showpreview'                => 'Ön siiri göster',
+'showlivepreview'            => 'Cannı ön siir',
+'showdiff'                   => 'Diişilmäkleri göster',
+'anoneditwarning'            => 'Sessiya açmadınız deyni yazının diişmäk istoriyasına diil nik, IP adresiniz registrat olunacêk.',
+'summary-preview'            => 'Ön siir özeti:',
+'subject-preview'            => 'Konu/başlık ön siiri:',
+'blockedtitle'               => 'Kullanıcı kösteklendi.',
+'blockedtext'                => '<big>Kullanıcı adınız yaki parolunuz $1 tarafından kösteklendi.</big>
 
 Sizi köstek edän önderci: $1. Köstek sebebi: \'\'$2\'\'.
 
@@ -404,43 +404,43 @@ Eer düşünürsünüz ani köstek diil dooru o sebeptän angısı belirtildi, v
 Herliim girmediniz [[Special:Preferences|seçimner]] bölümünde geçerli bir e-mail adresi, yok nicä kullanmaa "Kullanıcıya e-mail gönder" seçimini.
 
 Şindi IP adresiniz $3. Yalvarêrêz bu adresi belirtmää her angı bir sorgu yapar kana.',
-'blockednoreason'        => 'hiç bir sebep belirtilmedi',
-'blockedoriginalsource'  => "'''$1''' sayfasın kaynak teksti aşaada:",
-'whitelistedittitle'     => 'Lääzım açmaa sessiya diişmäk yapmaa deyni',
-'whitelistedittext'      => 'Diişmäk yapmaa için $1.',
-'nosuchsectiontitle'     => 'Bölä bölüm yok',
-'loginreqtitle'          => 'Lääazım sessiya açmaa',
-'loginreqlink'           => 'sessiya aç',
-'loginreqpagetext'       => 'Lääzım $1 görmää übür sayfaları.',
-'accmailtitle'           => 'Parol gönderildi.',
-'accmailtext'            => "'$1' kullanıcısın parolu $2 adresine gönderildi.",
-'newarticle'             => '(Eni)',
-'newarticletext'         => "Henez var olmayan bir sayfaya konulmuş baalantıya tuşladınız. Bu sayfayı yaratmaa deyni aşaadaki tekst kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Herliim buraya yannış geldiniz, läazım tuşlamaa programınızın '''Geeri''' tuşuna.",
-'noarticletext'          => 'Bu sayfa boş. Bu başlıı [[Special:Search/{{PAGENAME}}|var nicä aramaa]] übür sayfalarda yaki bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} var nicä yazmaa].',
-'updated'                => '(Enilendi)',
-'previewnote'            => "'''Bu saadä bir ön siir, hem diişmäkler henez korunmadı!'''",
-'editing'                => '"$1" sayfasın diiştirersiniz',
-'editingsection'         => '"$1" sayfasında bölüm diiştirersiniz',
-'editingcomment'         => '$1 sayfasına yorum ekleersiniz.',
-'editconflict'           => 'Diişmäk konflikti: $1',
-'yourtext'               => 'Sizin tekstiniz',
-'storedversion'          => 'Saklanmış tekst',
-'yourdiff'               => 'Farklar',
-'copyrightwarning'       => "'''Bakınız:''' {{SITENAME}} saytına yapılan hepsi eklemäkler hem diişmäkler läazım olsun  <i>$2</i>
+'blockednoreason'            => 'hiç bir sebep belirtilmedi',
+'blockedoriginalsource'      => "'''$1''' sayfasın kaynak teksti aşaada:",
+'whitelistedittitle'         => 'Lääzım açmaa sessiya diişmäk yapmaa deyni',
+'whitelistedittext'          => 'Diişmäk yapmaa için $1.',
+'nosuchsectiontitle'         => 'Bölä bölüm yok',
+'loginreqtitle'              => 'Lääazım sessiya açmaa',
+'loginreqlink'               => 'sessiya aç',
+'loginreqpagetext'           => 'Lääzım $1 görmää übür sayfaları.',
+'accmailtitle'               => 'Parol gönderildi.',
+'accmailtext'                => "'$1' kullanıcısın parolu $2 adresine gönderildi.",
+'newarticle'                 => '(Eni)',
+'newarticletext'             => "Henez var olmayan bir sayfaya konulmuş baalantıya tuşladınız. Bu sayfayı yaratmaa deyni aşaadaki tekst kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Herliim buraya yannış geldiniz, läazım tuşlamaa programınızın '''Geeri''' tuşuna.",
+'noarticletext'              => 'Bu sayfa boş. Bu başlıı [[Special:Search/{{PAGENAME}}|var nicä aramaa]] übür sayfalarda yaki bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} var nicä yazmaa].',
+'updated'                    => '(Enilendi)',
+'previewnote'                => "'''Bu saadä bir ön siir, hem diişmäkler henez korunmadı!'''",
+'editing'                    => '"$1" sayfasın diiştirersiniz',
+'editingsection'             => '"$1" sayfasında bölüm diiştirersiniz',
+'editingcomment'             => '$1 sayfasına yorum ekleersiniz.',
+'editconflict'               => 'Diişmäk konflikti: $1',
+'yourtext'                   => 'Sizin tekstiniz',
+'storedversion'              => 'Saklanmış tekst',
+'yourdiff'                   => 'Farklar',
+'copyrightwarning'           => "'''Bakınız:''' {{SITENAME}} saytına yapılan hepsi eklemäkler hem diişmäkler läazım olsun  <i>$2</i>
 lițenziyası şartları içindä (detallar için $1'a bakınız).
 Herliim istemeersiniz ani sizin tekstlär serbest yayılsın hem diiştirilsin übür kullanıcılar tarafınnan, onnarı erleştirmeyniz buraya.<br />
 Hem siz garantiyada bulunêrsiniz ani eklemäklerin avtorusunuz, yaki onnarı kopiya ettiniz kaynaktan angısı izin verer teksti serbest yaymaa hem diiştirmää.<br />
 '''<center>AVTORLUK KORUNMAK HAKKILAN KORUNMAYAN MATERİALLAR EKLEMEYNİZ!</center>'''",
-'longpagewarning'        => "'''BAK: Bu sayfanın ölçüsü $1 kilobayt; ölçüsü 32 kb-a yakın yaki onnan çok sayfalar bir takım brauzerlärdä var nicä yannış görünsün. Savaşênız onu bölümnerä ayırmaa.'''",
-'templatesused'          => 'Bu sayfada kullanılan şablonlar:',
-'templatesusedpreview'   => 'Şablonnar ani bu ön siirdä kullanıldı:',
-'templatesusedsection'   => 'Bu bölümde kullanılan şablonlar:',
-'template-protected'     => '(korumaa)',
-'template-semiprotected' => '(yarı-korunmaa)',
-'nocreatetext'           => '{{SITENAME}} eni yazılar yaratmaa yasaklandı.
+'longpagewarning'            => "'''BAK: Bu sayfanın ölçüsü $1 kilobayt; ölçüsü 32 kb-a yakın yaki onnan çok sayfalar bir takım brauzerlärdä var nicä yannış görünsün. Savaşênız onu bölümnerä ayırmaa.'''",
+'templatesused'              => 'Bu sayfada kullanılan şablonlar:',
+'templatesusedpreview'       => 'Şablonnar ani bu ön siirdä kullanıldı:',
+'templatesusedsection'       => 'Bu bölümde kullanılan şablonlar:',
+'template-protected'         => '(korumaa)',
+'template-semiprotected'     => '(yarı-korunmaa)',
+'nocreatetext'               => '{{SITENAME}} eni yazılar yaratmaa yasaklandı.
 Sizä yakışêr geeri dönmää hem düzmää var olan yapraa, yaki [[Special:UserLogin|sessiya açmaa yaki esap yaratmaa]].',
-'permissionserrors'      => 'İzin yannışları',
-'recreate-deleted-warn'  => "'''Bak: Siz yarattınız o sayfayı angısı ilerdän silindi.'''
+'permissionserrors'          => 'İzin yannışları',
+'recreate-moveddeleted-warn' => "'''Bak: Siz yarattınız o sayfayı angısı ilerdän silindi.'''
 
 Läazım düşünmää bu sayfayı redaktat etmää devam etmää deyni.
 Sayfanın silmää jurnalı raatlık için yazılêr burada:",

@@ -493,7 +493,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'hiddencategories'                 => 'Ca pagino esas membro di {{PLURAL:$1|1 celita kategorio|$1 celita kategorii}}:',
 'nocreatetitle'                    => 'Kreado di pagini limitita',
 'permissionserrorstext-withaction' => 'Vu ne darfas $2, pro la {{PLURAL:$1|kauzo|kauzi}} sequanta:',
-'deleted-notice'                   => 'Ca pagino efacesabas.
+'moveddeleted-notice'              => 'Ca pagino efacesabas.
 La efaco-registro dil pagino provizesar sequante pro refero.',
 'edit-conflict'                    => 'Konflikto di editi.',
 
@@ -605,12 +605,12 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'qbsettings'                => 'Preferaji pri "Quickbar"',
 'qbsettings-none'           => 'Nula',
 'changepassword'            => 'Chanjar pasovorto',
-'prefs-skin'                      => 'Pelo',
+'prefs-skin'                => 'Pelo',
 'skin-preview'              => 'Pre-videz',
-'prefs-math'                      => 'Quale montrar la formuli',
+'prefs-math'                => 'Quale montrar la formuli',
 'dateformat'                => 'Formo di dato',
 'datedefault'               => 'Sen prefero',
-'prefs-datetime'                  => 'Dato e tempo',
+'prefs-datetime'            => 'Dato e tempo',
 'math_unknown_error'        => 'nekonocata eroro',
 'math_bad_tmpdir'           => 'Onu ne povas skribar o krear la tempala matematikala arkivaro',
 'math_bad_output'           => 'Onu ne povas skribar o krear la arkivaro por la matematiko',
@@ -624,7 +624,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'prefs-resetpass'           => 'Chanjar pasovorto',
 'saveprefs'                 => 'Registragar',
 'resetprefs'                => 'Riestablisar preferaji',
-'prefs-editing'               => 'Grandeso dil areo por texto',
+'prefs-editing'             => 'Grandeso dil areo por texto',
 'rows'                      => 'Linei:',
 'columns'                   => 'Kolumni:',
 'searchresultshead'         => 'Preferaji di la rezultaji dil sercho',
@@ -650,7 +650,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'allowemail'                => 'Permisez e-posti de altra uzanti',
 'prefs-namespaces'          => 'Nomari',
 'defaultns'                 => 'Serchar en la spaco-nomi omise:',
-'prefs-files'                     => 'Arkivi',
+'prefs-files'               => 'Arkivi',
 
 # User rights
 'userrights-user-editname' => 'Skribez uzantonomo:',

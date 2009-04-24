@@ -256,15 +256,15 @@ $messages = array(
 'sig_tip'         => 'Imzoingiz va sana',
 
 # Edit pages
-'summary'                => 'Qisqa izoh:',
-'minoredit'              => 'Bu kichik tahrir',
-'watchthis'              => 'Sahifani kuzatish',
-'savearticle'            => 'Saqlash',
-'preview'                => "Ko'rib chiqish",
-'showpreview'            => "Ko'rib chiqish",
-'showdiff'               => "O'zgarishlarni ko'rsatish",
-'anoneditwarning'        => "'''Diqqat:''' Siz tizimga kirmagansiz. Ushbu sahifa tarixida Sizning IP manzilingiz yozib qolinadi.",
-'blockedtext'            => "<big>'''Siz (foydalanuvchi ismingiz yoki IP manzilingiz) tahrir qilishdan chetlashtirildingiz.'''</big>
+'summary'                    => 'Qisqa izoh:',
+'minoredit'                  => 'Bu kichik tahrir',
+'watchthis'                  => 'Sahifani kuzatish',
+'savearticle'                => 'Saqlash',
+'preview'                    => "Ko'rib chiqish",
+'showpreview'                => "Ko'rib chiqish",
+'showdiff'                   => "O'zgarishlarni ko'rsatish",
+'anoneditwarning'            => "'''Diqqat:''' Siz tizimga kirmagansiz. Ushbu sahifa tarixida Sizning IP manzilingiz yozib qolinadi.",
+'blockedtext'                => "<big>'''Siz (foydalanuvchi ismingiz yoki IP manzilingiz) tahrir qilishdan chetlashtirildingiz.'''</big>
 
 Sizni $1 chetlashtirdi. Bunga sabab: ''$2''.
 
@@ -273,31 +273,31 @@ Sizni $1 chetlashtirdi. Bunga sabab: ''$2''.
 
 Siz $1 yoki boshqa [[{{MediaWiki:Grouppage-sysop}}|administrator]] bilan bogʻlanib, arz qilishingiz mumkin.
 Sizning hozirgi IP manzilingiz - $3, chetlashtirish raqamingiz - #$5. Arizaga bularni ilova qilishingiz mumkin.",
-'newarticle'             => '(Yangi)',
-'newarticletext'         => "Bu sahifa hali mavjud emas.
+'newarticle'                 => '(Yangi)',
+'newarticletext'             => "Bu sahifa hali mavjud emas.
 Sahifani yaratish uchun quyida matn kiritishingiz mumkin (qo'shimcha axborot uchun [[{{MediaWiki:Helppage}}|yordam sahifasini]] ko'ring).
 Agar bu sahifaga xatolik sabab kelgan bo'lsangiz brauzeringizning '''orqaga''' tugmasini bosing.",
-'noarticletext'          => 'Bu sahifada hozircha hech qanday matn yoʻq. Siz bu sarlavhani boshqa sahifalardan [[Special:Search/{{PAGENAME}}|qidirishingiz]], <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} tegishli loglarga qarashingiz] yoki bu sahifani [{{fullurl:{{FULLPAGENAME}}|action=edit}} tahrirlashingiz]</span> mumkin.',
-'clearyourcache'         => "'''Etibor bering:''' O'zgartirishlaringiz ko'rish uchun, yangi moslamalaringizning saqlashdan keyin, brauser keshini tozalash kerak:<br />
+'noarticletext'              => 'Bu sahifada hozircha hech qanday matn yoʻq. Siz bu sarlavhani boshqa sahifalardan [[Special:Search/{{PAGENAME}}|qidirishingiz]], <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} tegishli loglarga qarashingiz] yoki bu sahifani [{{fullurl:{{FULLPAGENAME}}|action=edit}} tahrirlashingiz]</span> mumkin.',
+'clearyourcache'             => "'''Etibor bering:''' O'zgartirishlaringiz ko'rish uchun, yangi moslamalaringizning saqlashdan keyin, brauser keshini tozalash kerak:<br />
 '''Mozilla / Firefox:''' ''Ctrl+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Safari:''' ''Cmd+Shift+R'', '''Konqueror:''' ''F5'', '''Opera:''' ''Tools → Preferences'' orqali keshni tozalang.",
-'previewnote'            => "'''Bu shunchaki ko'rib chiqish. O'zgarishlar hali saqlangani yo'q!'''",
-'editing'                => '$1 tahrirlanmoqda',
-'editingsection'         => '$1 (boʻlim) tahrirlanmoqda',
-'copyrightwarning'       => "Iltimos, {{SITENAME}}ga yuklangan har qanday axborot $2 ostida tarqatilishiga diqqat qiling (batafsil ma'lumot uchun $1ni ko'ring).
+'previewnote'                => "'''Bu shunchaki ko'rib chiqish. O'zgarishlar hali saqlangani yo'q!'''",
+'editing'                    => '$1 tahrirlanmoqda',
+'editingsection'             => '$1 (boʻlim) tahrirlanmoqda',
+'copyrightwarning'           => "Iltimos, {{SITENAME}}ga yuklangan har qanday axborot $2 ostida tarqatilishiga diqqat qiling (batafsil ma'lumot uchun $1ni ko'ring).
 Agar yozganlaringiz keyinchalik tahrir qilinishi va qayta tarqatilishiga rozi bo'lmasangiz, u holda bu yerga yozmang.<br />
 Siz shuningdek bu yozganlaringiz sizniki yoki erkin litsenziya ostida ekanligini va'da qilmoqdasiz.
 '''MUALLIFLIK HUQUQLARI BILAN HIMOYALANGAN ISHLARNI ZINHOR BERUXSAT YUBORMANG!'''",
-'copyrightwarning2'      => "Iltimos, shuni esda tutingki, {{SITENAME}} sahifalaridagi barcha matnlar boshqa foydalanuvchilar tomonidan tahrirlanishi, almashtirilishi yoki o'chirilishi mumkin. Agar siz yozgan ma'lumotlaringizni bunday tartibda tahrirlanishiga rozi bo'lmasangiz, unda uni bu yerga joylashtirmang.<br />
+'copyrightwarning2'          => "Iltimos, shuni esda tutingki, {{SITENAME}} sahifalaridagi barcha matnlar boshqa foydalanuvchilar tomonidan tahrirlanishi, almashtirilishi yoki o'chirilishi mumkin. Agar siz yozgan ma'lumotlaringizni bunday tartibda tahrirlanishiga rozi bo'lmasangiz, unda uni bu yerga joylashtirmang.<br />
 Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsat berilgan internet manzilidan yoki shu kabi erkin resursdan nusxa olgan bo'lishingiz lozim (Qo'shimcha ma'lumotlar ushun $1 sahifasiga murojaat qiling).
 '''MUALLIFLIK HUQUQI QO'YILGAN ISHLARNI RUXSATSIZ BU YERGA JOYLASHTIRMANG!'''",
-'longpagewarning'        => "'''DIQQAT: Ushbu sahifa hajmi $1 kilobaytdir; ayrim browser'lar 32 kb dan oshiq hajmli sahifalarni tahrirlashda muammolarga duch kelishi mumkin.
+'longpagewarning'            => "'''DIQQAT: Ushbu sahifa hajmi $1 kilobaytdir; ayrim browser'lar 32 kb dan oshiq hajmli sahifalarni tahrirlashda muammolarga duch kelishi mumkin.
 Agar sizda shunday muammolar yuzaga kelsa, iltimos, sahifani butunlay emas, qismlab tahrirlang.'''",
-'templatesused'          => 'Ushbu sahifada ishlatilgan andozalar:',
-'template-protected'     => '(himoyalangan)',
-'template-semiprotected' => '(yarim-himoyalangan)',
-'nocreatetext'           => 'Ushbu sayt yangi sahifa yaratishni taqiqlagan.
+'templatesused'              => 'Ushbu sahifada ishlatilgan andozalar:',
+'template-protected'         => '(himoyalangan)',
+'template-semiprotected'     => '(yarim-himoyalangan)',
+'nocreatetext'               => 'Ushbu sayt yangi sahifa yaratishni taqiqlagan.
 Ortga qaytib, mavjud sahifani tahrirlashingiz yoki [[Special:UserLogin|tizimga kirishingiz]] mumkin.',
-'recreate-deleted-warn'  => "'''Diqqat: Siz avval yoʻqotilgan sahifani yana yaratmoqchisiz.'''
+'recreate-moveddeleted-warn' => "'''Diqqat: Siz avval yoʻqotilgan sahifani yana yaratmoqchisiz.'''
 
 Bu sahifani yaratishda davom etishdan avval uning nega avval yoʻqotilgani bilan qiziqib koʻring.
 Qulaylik uchun quyida yoʻqotilish qaydlari keltirilgan:",
@@ -358,18 +358,18 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 # Preferences page
 'preferences'       => 'Moslamalar',
 'mypreferences'     => 'Moslamalarim',
-'prefs-skin'              => "Tashqi ko'rinish",
-'prefs-math'              => 'Formulalar',
-'prefs-datetime'          => 'Sana va vaqt',
+'prefs-skin'        => "Tashqi ko'rinish",
+'prefs-math'        => 'Formulalar',
+'prefs-datetime'    => 'Sana va vaqt',
 'prefs-personal'    => "Shaxsiy ma'lumotlar",
 'prefs-rc'          => "Yangi o'zgartirishlar",
 'prefs-watchlist'   => "Kuzatuv ro'yxati",
 'prefs-misc'        => 'Boshqa moslamalar',
 'saveprefs'         => 'Saqlash',
 'resetprefs'        => 'Bekor qilish',
-'prefs-editing'       => 'Tahrirlash',
+'prefs-editing'     => 'Tahrirlash',
 'searchresultshead' => 'Qidiruv natijalari',
-'prefs-files'             => 'Fayllar',
+'prefs-files'       => 'Fayllar',
 
 # Groups
 'group-sysop' => 'Administratorlar',

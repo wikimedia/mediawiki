@@ -222,7 +222,7 @@ Grund für die Sperre: $1",
 'permissionserrorstext'            => 'Sie sind nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'permissionserrorstext-withaction' => 'Sie sind nicht berechtigt, $2.
 {{PLURAL:$1|Grund|Gründe}}:',
-'recreate-deleted-warn'            => "'''Achtung: Sie erstellen eine Seite, die bereits früher gelöscht wurde.'''
+'recreate-moveddeleted-warn'       => "'''Achtung: Sie erstellen eine Seite, die bereits früher gelöscht wurde.'''
 
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",

@@ -703,12 +703,11 @@ Tu puè turnà rrete e cangià 'na pàgene ca già esiste, oppure puè [[Special
 'permissionserrors'                => 'Errore de permesse',
 'permissionserrorstext'            => "Tu non ge tine 'u permesse pe fà ste cose, pe {{PLURAL:$1|stu mutive|ste mutive}}:",
 'permissionserrorstext-withaction' => "Tu non ge tine 'u permesse pe $2, pe {{PLURAL:$1|stu mutive|ste mutive}}:",
-'recreate-deleted-warn'            => "'''Fa Attenziò: Ste ccreje 'na pàgene ca avère state scangillete apprime.'''
+'recreate-moveddeleted-warn'       => "'''Fa Attenziò: Ste ccreje 'na pàgene ca avère state scangillete apprime.'''
 
 Vide bbuene ce l'ha ccrejà sta pàgene, ce non ge sinde sicure vide l'archivie de le scangellaziune:",
-'deleted-notice'                   => "Sta pàgene ha state scangellete.
+'moveddeleted-notice'              => "Sta pàgene ha state scangellete.
 L'archivije de le scangellaminde pe sta pàgene 'u puè vedè aqquà sotte pe riferimende.",
-'deletelog-fulllog'                => "Vide l'archivie comblete",
 'edit-hook-aborted'                => "Cangiamende annullete da  'nu ''hook''.
 Non g'à date nisciune mutive.",
 'edit-gone-missing'                => "Non ge puè cangià sta pàgene.
@@ -995,12 +994,12 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'qbsettings-floatingleft'   => 'Volanne a sinistre (Floating left)',
 'qbsettings-floatingright'  => 'Volanne a destre (Floating right)',
 'changepassword'            => "Cange 'a password",
-'prefs-skin'                      => 'Skin',
+'prefs-skin'                => 'Skin',
 'skin-preview'              => 'Andeprime',
-'prefs-math'                      => 'Math',
+'prefs-math'                => 'Math',
 'dateformat'                => "Formete d'a date",
 'datedefault'               => 'Nisciuna preferenze',
-'prefs-datetime'                  => 'Date e ore',
+'prefs-datetime'            => 'Date e ore',
 'math_failure'              => 'Analisi fallite',
 'math_unknown_error'        => 'errore scanusciute',
 'math_unknown_function'     => 'funziona scanusciute',
@@ -1024,7 +1023,7 @@ pe piacere vide math/README pe configurà.',
 'saveprefs'                 => 'Reggistre',
 'resetprefs'                => "Pulizze le cangiaminde ca non g'è reggistrete",
 'restoreprefs'              => "Repristene tutte le 'mbostaziune origginale",
-'prefs-editing'               => 'Cangiaminde...',
+'prefs-editing'             => 'Cangiaminde...',
 'prefs-edit-boxsize'        => "Dimenzione d'a pàgene de cangiamende.",
 'rows'                      => 'Righe:',
 'columns'                   => 'Culonne:',
@@ -1061,7 +1060,7 @@ pe piacere vide math/README pe configurà.',
 'prefs-namespaces'          => 'Namespaces',
 'defaultns'                 => "Cirche jndr'à chiste namespace pe default:",
 'default'                   => 'defolt',
-'prefs-files'                     => 'Fails',
+'prefs-files'               => 'Fails',
 'prefs-custom-css'          => 'CSS Personalizzete',
 'prefs-custom-js'           => 'JS Personalizzete',
 

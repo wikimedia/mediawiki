@@ -880,12 +880,11 @@ Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[Special
 'permissionserrors'                => 'Kesalahan Hak Akses',
 'permissionserrorstext'            => 'Anda tak memiliki hak untuk melakukan hal itu karena {{PLURAL:$1|alasan|alasan-alasan}} berikut:',
 'permissionserrorstext-withaction' => 'Anda tidak memiliki hak akses untuk $2, karena {{PLURAL:$1|alasan|alasan}} berikut:',
-'recreate-deleted-warn'            => "'''Peringatan: Anda membuat ulang suatu halaman yang sudah pernah dihapus.'''
+'recreate-moveddeleted-warn'       => "'''Peringatan: Anda membuat ulang suatu halaman yang sudah pernah dihapus.'''
 
 Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda.
 Berikut adalah log penghapusan dari halaman ini:",
-'deleted-notice'                   => 'Halaman ini telah dihapus. Sebagai referensi, berikut adalah log penghapusan halaman ini.',
-'deletelog-fulllog'                => 'Menampilkan seluruh log',
+'moveddeleted-notice'              => 'Halaman ini telah dihapus. Sebagai referensi, berikut adalah log penghapusan halaman ini.',
 'edit-hook-aborted'                => 'Suntingan dibatalkan oleh kait parser
 tanpa ada keterangan.',
 'edit-gone-missing'                => 'Tidak dapat memperbaharui halaman.
@@ -1193,12 +1192,12 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'qbsettings-floatingleft'   => 'Mengambang sebelah kiri',
 'qbsettings-floatingright'  => 'Mengambang sebelah kanan',
 'changepassword'            => 'Ganti kata sandi',
-'prefs-skin'                      => 'Kulit',
+'prefs-skin'                => 'Kulit',
 'skin-preview'              => 'Pratayang',
-'prefs-math'                      => 'Matematika',
+'prefs-math'                => 'Matematika',
 'dateformat'                => 'Format tanggal',
 'datedefault'               => 'Tak ada preferensi',
-'prefs-datetime'                  => 'Tanggal dan waktu',
+'prefs-datetime'            => 'Tanggal dan waktu',
 'math_failure'              => 'Gagal memparse',
 'math_unknown_error'        => 'Kesalahan yang tidak diketahui',
 'math_unknown_function'     => 'fungsi yang tidak diketahui',
@@ -1220,7 +1219,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'saveprefs'                 => 'Simpan',
 'resetprefs'                => 'Batalkan perubahan',
 'restoreprefs'              => 'Kembalikan semua setelan baku',
-'prefs-editing'               => 'Penyuntingan',
+'prefs-editing'             => 'Penyuntingan',
 'prefs-edit-boxsize'        => 'Ukuran kotak penyuntingan.',
 'rows'                      => 'Baris:',
 'columns'                   => 'Kolom:',
@@ -1257,7 +1256,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-namespaces'          => 'Ruang nama',
 'defaultns'                 => 'Cari dalam ruang nama berikut ini secara baku:',
 'default'                   => 'baku',
-'prefs-files'                     => 'Berkas',
+'prefs-files'               => 'Berkas',
 'prefs-custom-css'          => 'CSS Buatan',
 'prefs-custom-js'           => 'JS Buatan',
 

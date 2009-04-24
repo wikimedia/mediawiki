@@ -681,12 +681,11 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'permissionserrors'                => 'Көҥүллээһин моһуогурда',
 'permissionserrorstext'            => 'Маны оҥорор кыаҕыҥ суох, {{PLURAL:$1|төрүтэ|төрүттэрэ}}:',
 'permissionserrorstext-withaction' => 'Бу дьайыыны ($2) оҥорор кыаҕыҥ суох.  {{PLURAL:$1|Биричиинэтэ|Биричиинэлэрэ}}:',
-'recreate-deleted-warn'            => "'''Болҕой: сотулубут сирэйи төттөрү оҥорон эрэҕин.'''
+'recreate-moveddeleted-warn'       => "'''Болҕой: сотулубут сирэйи төттөрү оҥорон эрэҕин.'''
 
 Толкуйдаан баран оҥор. Аллара сотуулар сурунааллара көрдөрүлүннэ.",
-'deleted-notice'                   => 'Бу сирэй сотуллубут.
+'moveddeleted-notice'              => 'Бу сирэй сотуллубут.
 Аллара сотуу сурунаалыгар онно сыһыаннаах туох суруллубута көстөр.',
-'deletelog-fulllog'                => 'Сурунаалы бүтүннүү көрөргө',
 'edit-hook-aborted'                => 'Көннөрүү төттөрү көннөрүллүбүт.
 Эбии туох да быһаарыллыбатах.',
 'edit-gone-missing'                => 'Сирэйи саҥардар кыах суох.
@@ -1000,12 +999,12 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'qbsettings-floatingleft'   => 'Хаҥас өттө устаҥныыр',
 'qbsettings-floatingright'  => 'Уҥа өттө устаҥныыр',
 'changepassword'            => 'Киирии тылы уларытарга',
-'prefs-skin'                      => 'Тас көстүү',
+'prefs-skin'                => 'Тас көстүү',
 'skin-preview'              => 'Хайдах буолара',
-'prefs-math'                      => 'Фуормулалар',
+'prefs-math'                => 'Фуормулалар',
 'dateformat'                => 'Дьыл-хонук формаата',
 'datedefault'               => 'Көннөрү көстүүтэ',
-'prefs-datetime'                  => 'Күнэ-дьыла уонна кэмэ',
+'prefs-datetime'            => 'Күнэ-дьыла уонна кэмэ',
 'math_failure'              => 'Сатаан ааҕыллыбата',
 'math_unknown_error'        => 'биллибэт алҕас',
 'math_unknown_function'     => 'биллибэт дьайыы (функция)',
@@ -1027,7 +1026,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'saveprefs'                 => 'Бигэргэт',
 'resetprefs'                => 'Бигэргэтиллибэтэх уларыйыылары сот',
 'restoreprefs'              => 'Туруоруулары саҥаттан',
-'prefs-editing'               => 'Уларытыы',
+'prefs-editing'             => 'Уларытыы',
 'prefs-edit-boxsize'        => 'Эрэдээксийэлиир түннүк улахана.',
 'rows'                      => 'Строкаалара:',
 'columns'                   => 'Колонкалара:',
@@ -1064,7 +1063,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'prefs-namespaces'          => 'Аат дала',
 'defaultns'                 => 'Чопчу ыйыллыбатаҕына бу ааттар быыстарыгар көрдүүргэ:',
 'default'                   => 'чопчу ыйыллыбатаҕына маннык',
-'prefs-files'                     => 'Билэлэр',
+'prefs-files'               => 'Билэлэр',
 'prefs-custom-css'          => 'Бэйэ CSS',
 'prefs-custom-js'           => 'Бэйэ JS',
 

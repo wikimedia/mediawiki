@@ -746,13 +746,12 @@ U kan slegs bestaande bladsye wysig, of u kan [[Special:UserLogin|aanteken of re
 'permissionserrors'                => 'Toestemmings Foute',
 'permissionserrorstext'            => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
 'permissionserrorstext-withaction' => 'U het geen regte om $2, vir die volgende {{PLURAL:$1|rede|redes}}:',
-'recreate-deleted-warn'            => "'''Waarskuwing: U skep 'n bladsy wat vantevore verwyder was.'''
+'recreate-moveddeleted-warn'       => "'''Waarskuwing: U skep 'n bladsy wat vantevore verwyder was.'''
 
 U moet besluit of dit wys is om voort te gaan en aan die bladsy te werk. 
 Die verwyderingslogboek vir die blad word hier onder vertoon vir u gerief:",
-'deleted-notice'                   => 'Hierdie bladsy is verwyder.
+'moveddeleted-notice'              => 'Hierdie bladsy is verwyder.
 Die skraplogboek word hieronder ter inligting weergegee.',
-'deletelog-fulllog'                => 'Wys volledige logboek',
 'edit-gone-missing'                => 'Die bladsy is nie gewysig nie.
 Dit lyk of dit verwyder is.',
 'edit-conflict'                    => 'Wysigingskonflik',
@@ -993,12 +992,12 @@ bevat, word gewys).",
 'qbsettings-floatingleft'  => 'Dryf links.',
 'qbsettings-floatingright' => 'Dryf regs.',
 'changepassword'           => 'Verander wagwoord',
-'prefs-skin'                     => 'Omslag',
+'prefs-skin'               => 'Omslag',
 'skin-preview'             => 'Voorskou',
-'prefs-math'                     => 'Wiskunde',
+'prefs-math'               => 'Wiskunde',
 'dateformat'               => 'Datumformaat',
 'datedefault'              => 'Geen voorkeur',
-'prefs-datetime'                 => 'Datum en tyd',
+'prefs-datetime'           => 'Datum en tyd',
 'math_failure'             => 'Kon nie verbeeld nie',
 'math_unknown_error'       => 'onbekende fout',
 'math_unknown_function'    => 'onbekende funksie',
@@ -1013,7 +1012,7 @@ bevat, word gewys).",
 'prefs-resetpass'          => 'Verander wagwoord',
 'saveprefs'                => 'Stoor voorkeure',
 'resetprefs'               => 'Herstel voorkeure',
-'prefs-editing'              => 'Wysiging',
+'prefs-editing'            => 'Wysiging',
 'rows'                     => 'Rye',
 'columns'                  => 'Kolomme',
 'searchresultshead'        => 'Soekresultate',
@@ -1035,7 +1034,7 @@ bevat, word gewys).",
 'prefs-namespaces'         => 'Naamruimtes',
 'defaultns'                => 'Verstek naamruimtes vir soektog:',
 'default'                  => 'verstek',
-'prefs-files'                    => 'Lêers',
+'prefs-files'              => 'Lêers',
 
 # User rights
 'userrights'                  => 'Bestuur gebruikersregte',

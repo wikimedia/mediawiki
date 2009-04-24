@@ -814,13 +814,12 @@ Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:UserLogin
 'permissionserrors'                => 'Teisių klaida',
 'permissionserrorstext'            => 'Jūs neturite teisių tai daryti dėl {{PLURAL:$1|šios priežasties|šių priežasčių}}:',
 'permissionserrorstext-withaction' => 'Jūs neturite leidimo $2 dėl {{PLURAL:$1|šios priežasties|šių priežasčių}}:',
-'recreate-deleted-warn'            => "'''Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo ištrintas.'''
+'recreate-moveddeleted-warn'       => "'''Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo ištrintas.'''
 
 Jūs turite nuspręsti, ar tinka toliau redaguoti šį puslapį.
 Dėl patogumo čia pateikta šio puslapio šalinimų istorija:",
-'deleted-notice'                   => 'Šis puslapis buvo panaikintas.
+'moveddeleted-notice'              => 'Šis puslapis buvo panaikintas.
 Panaikinto puslapio versijų sąrašas pateiktas žemiau peržiūrėjimui.',
-'deletelog-fulllog'                => 'Peržiūrėti visą protokolą',
 'edit-hook-aborted'                => 'Keitimas nutrauktas užlūžimo.
 Tam nėra paaiškinimo.',
 'edit-gone-missing'                => 'Negalima atnaujinti puslapio.
@@ -1108,12 +1107,12 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'qbsettings-floatingleft'   => 'Plaukiojantis kairėje',
 'qbsettings-floatingright'  => 'Plaukiojantis dešinėje',
 'changepassword'            => 'Pakeisti slaptažodį',
-'prefs-skin'                      => 'Išvaizda',
+'prefs-skin'                => 'Išvaizda',
 'skin-preview'              => 'Peržiūra',
-'prefs-math'                      => 'Matematika',
+'prefs-math'                => 'Matematika',
 'dateformat'                => 'Datos formatas',
 'datedefault'               => 'Jokio pasirinkimo',
-'prefs-datetime'                  => 'Data ir laikas',
+'prefs-datetime'            => 'Data ir laikas',
 'math_failure'              => 'Nepavyko apdoroti',
 'math_unknown_error'        => 'nežinoma klaida',
 'math_unknown_function'     => 'nežinoma funkcija',
@@ -1135,7 +1134,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'saveprefs'                 => 'Išsaugoti',
 'resetprefs'                => 'Išvalyti neišsaugotus pakeitimus',
 'restoreprefs'              => 'Atstatyti visus numatytuosius nustatymus',
-'prefs-editing'               => 'Redagavimas',
+'prefs-editing'             => 'Redagavimas',
 'prefs-edit-boxsize'        => 'Redagavimo lango dydis.',
 'rows'                      => 'Eilutės:',
 'columns'                   => 'Stulpeliai:',
@@ -1172,7 +1171,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'prefs-namespaces'          => 'Vardų sritys',
 'defaultns'                 => 'Pagal nutylėjimą ieškoti šiose vardų srityse:',
 'default'                   => 'pagal nutylėjimą',
-'prefs-files'                     => 'Failai',
+'prefs-files'               => 'Failai',
 
 # User rights
 'userrights'                  => 'Naudotojų teisių valdymas',

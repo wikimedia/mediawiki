@@ -811,13 +811,12 @@ Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:UserLogin|
 'permissionserrors'                => 'Erori de permisiune',
 'permissionserrorstext'            => 'Nu aveţi permisiune pentru a face acest lucru, din următoarele {{PLURAL:$1|motiv|motive}}:',
 'permissionserrorstext-withaction' => 'Nu ai permisiunea să $2, din {{PLURAL:$1|următorul motivul|următoarele motive}}:',
-'recreate-deleted-warn'            => "'''Atenţie: Recreaţi o pagină care a fost ştearsă anterior.'''
+'recreate-moveddeleted-warn'       => "'''Atenţie: Recreaţi o pagină care a fost ştearsă anterior.'''
 
 
 Pentru a verifica dacă recrearea paginii este într-adevăr oportună, iată aici jurnalul ştergerilor:",
-'deleted-notice'                   => 'Această pagină a fost ştearsă.
+'moveddeleted-notice'              => 'Această pagină a fost ştearsă.
 Pentru detalii puteţi vedea jurnalul ştergerilor de mai jos.',
-'deletelog-fulllog'                => 'Vizualizează întreg jurnalul',
 'edit-gone-missing'                => 'Pagina nu s-a putut actualiza.
 Se pare că a fost ştearsă.',
 'edit-conflict'                    => 'Conflict de modificare.',
@@ -1107,12 +1106,12 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'qbsettings-floatingleft'   => 'Liberă',
 'qbsettings-floatingright'  => 'Plutire la dreapta',
 'changepassword'            => 'Schimbă parola',
-'prefs-skin'                      => 'Aspect',
+'prefs-skin'                => 'Aspect',
 'skin-preview'              => 'Previzualizare',
-'prefs-math'                      => 'Aspect formule',
+'prefs-math'                => 'Aspect formule',
 'dateformat'                => 'Formatul datelor',
 'datedefault'               => 'Nici o preferinţă',
-'prefs-datetime'                  => 'Data şi ora',
+'prefs-datetime'            => 'Data şi ora',
 'math_failure'              => 'Nu s-a putut interpreta',
 'math_unknown_error'        => 'eroare necunoscută',
 'math_unknown_function'     => 'funcţie necunoscută',
@@ -1133,7 +1132,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prefs-resetpass'           => 'Modifică parola',
 'saveprefs'                 => 'Salvează preferinţele',
 'resetprefs'                => 'Resetează preferinţele',
-'prefs-editing'               => 'Dimensiunile casetei de text',
+'prefs-editing'             => 'Dimensiunile casetei de text',
 'prefs-edit-boxsize'        => 'Mărimea ferestrei de modificare.',
 'rows'                      => 'Rânduri:',
 'columns'                   => 'Coloane',
@@ -1170,7 +1169,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prefs-namespaces'          => 'Spaţii de nume',
 'defaultns'                 => 'Caută în aceste secţiuni implicit:',
 'default'                   => 'standard',
-'prefs-files'                     => 'Fişiere',
+'prefs-files'               => 'Fişiere',
 
 # User rights
 'userrights'                  => 'Administrarea permisiunilor de utilizator',

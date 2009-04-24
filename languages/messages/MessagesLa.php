@@ -157,7 +157,7 @@ $messages = array(
 'tog-justify'                 => 'Iustificare paragrapha',
 'tog-hideminor'               => 'Celare recensiones minores in indice nuper mutatorum',
 'tog-extendwatchlist'         => 'Extendere indicem paginarum custoditarum ut omnes emendationes monstrentur, non solum emendationes recentissimae',
-'tog-usenewrc'                => 'Index nuper mutatorum amplificatus (JavaScript)',
+'tog-usenewrc'                => 'Indice nuper mutatorum amplificato uti (JavaScript necesse est)',
 'tog-numberheadings'          => 'Numerare semper indices',
 'tog-showtoolbar'             => 'Monstrare instrumenta ad paginas recensendas (JavaScript)',
 'tog-editondblclick'          => 'Premere bis ad paginam recensendam (JavaScript)',
@@ -165,7 +165,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Sinere paginarum partes recenseri cum dexter muris buto premitur in titulis partum (JavaScript)',
 'tog-showtoc'                 => 'Indicem contenta monstrare (paginis in quibus sunt plus quam 3 partes)',
 'tog-rememberpassword'        => 'Memorare tesserae meae inter conventa (utere cookies)',
-'tog-editwidth'               => 'Capsa recensitorum totam latitudinem habet',
+'tog-editwidth'               => 'Capsam recensionis amplificare ut totam latitudinem habet',
 'tog-watchcreations'          => 'Paginas quas creo in paginarum custoditarum indicem addere',
 'tog-watchdefault'            => 'Paginas quas recenseo in paginarum custoditarum indicem addere',
 'tog-watchmoves'              => 'Paginas quas moveo in paginarum custoditarum indicem addere',
@@ -499,6 +499,7 @@ Nomen usoris alium selige.',
 'youremail'                  => 'Inscriptio tua electronica:',
 'username'                   => 'Nomen usoris:',
 'uid'                        => 'ID usoris:',
+'prefs-registration'         => 'Dies creationis rationis:',
 'yourrealname'               => 'Nomen tuum verum:',
 'yourlanguage'               => 'Lingua tua:',
 'yourvariant'                => 'Differentia:',
@@ -694,11 +695,12 @@ Considera paginam in partes minores frangere.',
 'nocreate-loggedin'                => 'Tibi non licet paginas novas creare.',
 'permissionserrors'                => 'Errores permissionis',
 'permissionserrorstext-withaction' => 'Tibi non licet $2, ex {{PLURAL:$1|ratione|rationibus}}:',
-'recreate-deleted-warn'            => "'''Cave: paginam qui antea iam deleta est creas.'''
+'recreate-moveddeleted-warn'       => "'''Cave: paginam qui antea iam deleta est creas.'''
 
-Tibi oportet meditari utrum hanc paginam creare tamen convenit. Commodule notatio paginarum deletarum hic datur:",
-'deleted-notice'                   => 'Haec pagina deleta est. Commodule notatio paginarum deletarum subter datur.',
-'deletelog-fulllog'                => 'Inspicere acta plenissima',
+Tibi oportet meditari utrum hanc paginam creare tamen convenit. Commodule notatio paginarum deletarum motarumque hic datur:",
+'moveddeleted-notice'              => 'Haec pagina deleta est.
+Commodule notatio paginarum deletarum motarumque huius paginae subter datur.',
+'log-fulllog'                      => 'Inspicere acta plenissima',
 'edit-hook-aborted'                => 'Recensio a hamo abrogata est.
 Hamus nullam causam dedit.',
 'edit-gone-missing'                => 'Non potui paginam modificare.
@@ -927,12 +929,12 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'qbsettings-floatingleft'   => 'Innens a sinistra',
 'qbsettings-floatingright'  => 'Innens a dextra',
 'changepassword'            => 'Tesseram mutare',
-'prefs-skin'                      => 'Aspectum',
+'prefs-skin'                => 'Aspectum',
 'skin-preview'              => 'Praevisum',
-'prefs-math'                      => 'Interpretatio artis mathematicae',
+'prefs-math'                => 'Interpretatio artis mathematicae',
 'dateformat'                => 'Forma diei',
 'datedefault'               => 'Nullum praeferentiae',
-'prefs-datetime'                  => 'Dies et tempus',
+'prefs-datetime'            => 'Dies et tempus',
 'math_failure'              => 'Excutare non potest',
 'math_unknown_error'        => 'error ignotus',
 'math_unknown_function'     => 'functio ignota',
@@ -948,7 +950,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'prefs-resetpass'           => 'Tesseram mutare',
 'saveprefs'                 => 'Servare praeferentias',
 'resetprefs'                => 'Reddere praeferentias',
-'prefs-editing'               => 'Mensura capsae verbi',
+'prefs-editing'             => 'Mensura capsae verbi',
 'prefs-edit-boxsize'        => 'Magnitudo capsae recensionis.',
 'rows'                      => 'Lineae:',
 'columns'                   => 'Columnae:',
@@ -981,7 +983,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'prefs-namespaces'          => 'Spatia nominalia',
 'defaultns'                 => 'Quaerere per haec spatia nominalia a defalta:',
 'default'                   => 'praedeterminatum',
-'prefs-files'                     => 'Fasciculi',
+'prefs-files'               => 'Fasciculi',
 'prefs-custom-css'          => 'CSS proprium',
 'prefs-custom-js'           => 'JS proprium',
 
@@ -2007,7 +2009,8 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'visual-comparison' => 'Comparatio visualis',
 
 # Media information
-'imagemaxsize'         => 'Terminare imagines in paginis imaginum ad:',
+'imagemaxsize'         => "Magnitudo maxima fasciculorum:<br />
+''(in pagina descriptionis fasciculi)''",
 'thumbsize'            => 'Magnitudo pollicisunguis:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
 'file-info'            => '(magnitudo fasciculi: $1, typus MIME: $2)',
@@ -2191,6 +2194,11 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'exif-gpsspeed-k' => 'Chiliometra per horam',
 'exif-gpsspeed-m' => 'Milia per horam',
 'exif-gpsspeed-n' => 'Nodi',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometra',
+'exif-gpsdestdistance-m' => 'Milia',
+'exif-gpsdestdistance-n' => 'Milia nautica',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Directio vera',

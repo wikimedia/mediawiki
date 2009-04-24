@@ -893,11 +893,11 @@ Tista' tmur lura u tagħmel modifiki ta' paġni eżistenti, inkella [[Special:Us
 'permissionserrors'                => 'Problemi bil-permessi',
 'permissionserrorstext'            => "Inti m'għandhekx dritt li tagħmel hekk, għar-{{PLURAL:$1|raġuni|raġunijiet}} segwenti:",
 'permissionserrorstext-withaction' => "Inti m'għandekx permess għal $2, għar-{{PLURAL:$1|raġuni|raġunijiet}} segwenti:",
-'recreate-deleted-warn'            => "'''Twissija: Inti qiegħed toħloq paġna li kienet imħassra.'''
+'recreate-moveddeleted-warn'       => "'''Twissija: Inti qiegħed toħloq paġna li kienet imħassra.'''
 
 Aċċerta ruħek jekk mhux opportun li tkompli timodifika din il-paġna.
 Il-Link għar-reġistru ta' tħassir għal din il-paġna hija provduta għal konvenjenza:",
-'deleted-notice'                   => "Din il-paġna ġiet imħassra. Il-log tat-tħassir ta' din il-paġna huwa pprovdut hawn taħt għal referenza.",
+'moveddeleted-notice'              => "Din il-paġna ġiet imħassra. Il-log tat-tħassir ta' din il-paġna huwa pprovdut hawn taħt għal referenza.",
 'edit-gone-missing'                => 'Il-paġna ma tistax tiġi aġġornata.<br />
 Din tidher li ġiet imħassra.',
 'edit-conflict'                    => 'Kunflitt tal-editjar.',
@@ -1137,12 +1137,12 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'qbsettings-floatingleft'   => "''Floating'' lejn ix-xellug",
 'qbsettings-floatingright'  => "''Floating'' lejn il-lemin",
 'changepassword'            => 'Ibdel il-password',
-'prefs-skin'                      => 'Aspett grafiku (skin)',
+'prefs-skin'                => 'Aspett grafiku (skin)',
 'skin-preview'              => 'Previżjoni',
-'prefs-math'                      => 'Formuli matematiċi',
+'prefs-math'                => 'Formuli matematiċi',
 'dateformat'                => 'Format tad-data',
 'datedefault'               => 'L-ebda preferenza',
-'prefs-datetime'                  => 'Data u ħin',
+'prefs-datetime'            => 'Data u ħin',
 'math_failure'              => "Problema fil-''parser''",
 'math_unknown_error'        => 'Problema mhux magħrufa',
 'math_unknown_function'     => 'funżjoni mhux magħrufa',
@@ -1163,7 +1163,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-resetpass'           => 'Biddel il-password',
 'saveprefs'                 => 'Żomm il-preferenzi',
 'resetprefs'                => 'Neħħi modifiki mhux salvati',
-'prefs-editing'               => 'Modifika',
+'prefs-editing'             => 'Modifika',
 'prefs-edit-boxsize'        => 'Daqs tat-tieqa tal-immodifikar.',
 'rows'                      => 'Filieri:',
 'columns'                   => 'Kolonni:',
@@ -1200,7 +1200,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-namespaces'          => 'Namespace',
 'defaultns'                 => 'Namespace predefinit għat-tfittxija:',
 'default'                   => 'predefinit',
-'prefs-files'                     => 'Fajls',
+'prefs-files'               => 'Fajls',
 
 # User rights
 'userrights'                  => "Treġija tal-permessi relativi 'l utenti",

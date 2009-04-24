@@ -397,11 +397,11 @@ $messages = array(
 'nocreate-loggedin'                => 'توانوں نواں صفحہ بنانے دی اجازت نئیں۔',
 'permissionserrors'                => 'توانوں اجازت چ کوئی مسئلا اے',
 'permissionserrorstext-withaction' => 'تواڈے کول $2 کرن دی اجازت نئیں اے۔ اس دی {{PLURAL:$1|وجہ|وجوہات}} نیں۔',
-'recreate-deleted-warn'            => "'''خبردار: تسی اک پہلاں توں مٹایا ہویا صفحہ دوبارا لکھ رہے او۔'''
+'recreate-moveddeleted-warn'       => "'''خبردار: تسی اک پہلاں توں مٹایا ہویا صفحہ دوبارا لکھ رہے او۔'''
 
 توانوں اے گل سوچنی چائیدی اے کہ اینو لکھنا کوئی عقلمنداں دا کم اے۔<div/>
 تواڈی سہولت آسطے مٹان دا لاگ ایتھے موجود اے۔",
-'deleted-notice'                   => 'اس صفحے نوں مٹا دتا گیا اے۔
+'moveddeleted-notice'              => 'اس صفحے نوں مٹا دتا گیا اے۔
 مٹان دا لاگ تھلے دتا گیا اے۔',
 
 # Account creation failure
@@ -510,23 +510,23 @@ $messages = array(
 'prefsnologin'          => 'لاگ ان نئیں او',
 'qbsettings-none'       => 'کوئی نئیں',
 'changepassword'        => 'کنجی بدلو',
-'prefs-skin'                  => 'کھل',
-'prefs-math'                  => 'حساب کتاب',
-'prefs-datetime'              => 'تاریخ تے ویلہ',
+'prefs-skin'            => 'کھل',
+'prefs-math'            => 'حساب کتاب',
+'prefs-datetime'        => 'تاریخ تے ویلہ',
 'math_unknown_error'    => 'انجان مسئلہ',
 'math_unknown_function' => 'انجان کم',
 'prefs-personal'        => 'ورتن آلے دا پروفائل',
 'prefs-rc'              => 'نویاں تبدیلیاں',
 'prefs-watchlist'       => 'نظر تھلے صفحے',
 'saveprefs'             => 'بچاؤ',
-'prefs-editing'           => 'لکھائی',
+'prefs-editing'         => 'لکھائی',
 'rows'                  => 'قطار:',
 'columns'               => 'کالم:',
 'searchresultshead'     => 'کھوج',
 'timezonelegend'        => 'ویلے دا علاقہ',
 'localtime'             => 'مقامی ویلا:',
 'timezoneselect'        => 'ویلیاں دے علاقے:',
-'prefs-files'                 => 'فائلاں',
+'prefs-files'           => 'فائلاں',
 
 # User rights
 'userrights-groupsmember' => 'سنگی اے:',

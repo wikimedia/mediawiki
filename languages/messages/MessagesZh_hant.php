@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -793,13 +793,12 @@ $2',
 'permissionserrors'                => '權限錯誤',
 'permissionserrorstext'            => '根據以下的{{PLURAL:$1|原因|原因}}，您並無權限去做以下的動作:',
 'permissionserrorstext-withaction' => '根據以下的{{PLURAL:$1|原因|原因}}，您並無權限去做$2:',
-'recreate-deleted-warn'            => "'''警告: 你現在重新創建一個先前曾經刪除過的頁面。'''
+'recreate-moveddeleted-warn'       => "'''警告: 你現在重新創建一個先前曾經刪除過的頁面。'''
 
 你應該要考慮一下繼續編輯這一個頁面是否合適。
 為方便起見，這一個頁面的刪除記錄已經在下面提供:",
-'deleted-notice'                   => '這個頁面已經刪除。
+'moveddeleted-notice'              => '這個頁面已經刪除。
 這個頁面的刪除日誌已在下面提供以便參考。',
-'deletelog-fulllog'                => '查看整個日誌',
 'edit-hook-aborted'                => '編輯被鈎取消。
 它並無給出解釋。',
 'edit-gone-missing'                => '不能更新頁面。

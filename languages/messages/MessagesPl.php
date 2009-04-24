@@ -890,12 +890,11 @@ Możesz edytować istniejące strony bądź też [[Special:UserLogin|zalogować 
 'permissionserrors'                => 'Błędy uprawnień',
 'permissionserrorstext'            => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
 'permissionserrorstext-withaction' => 'Nie masz uprawnień do $2, z {{PLURAL:$1|następującego powodu|następujących powodów}}:',
-'recreate-deleted-warn'            => "'''Uwaga! Zamierzasz utworzyć stronę, która została wcześniej usunięta.'''
+'recreate-moveddeleted-warn'       => "'''Uwaga! Zamierzasz utworzyć stronę, która została wcześniej usunięta.'''
 
 Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
 Poniżej znajduje się rejestr usunięć tej strony:",
-'deleted-notice'                   => 'Ta strona została usunięta. Rejestr usunięć tej strony jest pokazany poniżej.',
-'deletelog-fulllog'                => 'Zobacz cały rejestr',
+'moveddeleted-notice'              => 'Ta strona została usunięta. Rejestr usunięć tej strony jest pokazany poniżej.',
 'edit-hook-aborted'                => 'Edycja zatrzymana z powodu haka.
 Wystąpił z nieokreślonej przyczyny.',
 'edit-gone-missing'                => 'Nie udało się zaktualizować strony.
@@ -1211,12 +1210,12 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'qbsettings-floatingleft'   => 'Unoszący się, z lewej',
 'qbsettings-floatingright'  => 'Unoszący się, z prawej',
 'changepassword'            => 'Zmiana hasła',
-'prefs-skin'                      => 'Skórka',
+'prefs-skin'                => 'Skórka',
 'skin-preview'              => 'podgląd',
-'prefs-math'                      => 'Wzory',
+'prefs-math'                => 'Wzory',
 'dateformat'                => 'Format daty',
 'datedefault'               => 'Domyślny',
-'prefs-datetime'                  => 'Data i czas',
+'prefs-datetime'            => 'Data i czas',
 'math_failure'              => 'Parser nie mógł rozpoznać',
 'math_unknown_error'        => 'nieznany błąd',
 'math_unknown_function'     => 'nieznana funkcja',
@@ -1240,7 +1239,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'saveprefs'                 => 'Zapisz',
 'resetprefs'                => 'Cofnij niezapisane zmiany',
 'restoreprefs'              => 'Przywróć wszystkie domyślne preferencje',
-'prefs-editing'               => 'Edytowanie',
+'prefs-editing'             => 'Edytowanie',
 'prefs-edit-boxsize'        => 'Rozmiar okna edycji.',
 'rows'                      => 'Wiersze',
 'columns'                   => 'Kolumny',
@@ -1277,7 +1276,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'prefs-namespaces'          => 'Przestrzenie nazw',
 'defaultns'                 => 'Domyślnie przeszukuj przestrzenie nazw',
 'default'                   => 'domyślnie',
-'prefs-files'                     => 'Pliki',
+'prefs-files'               => 'Pliki',
 'prefs-custom-css'          => 'własny CSS',
 'prefs-custom-js'           => 'własny JavaScript',
 

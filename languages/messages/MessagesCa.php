@@ -812,13 +812,12 @@ Podeu editar les planes ja existents o bé [[Special:UserLogin|entrar en un comp
 'permissionserrors'                => 'Error de permisos',
 'permissionserrorstext'            => 'No teniu permisos per a fer-ho, {{PLURAL:$1|pel següent motiu|pels següents motius}}:',
 'permissionserrorstext-withaction' => 'No teniu permís per a $2, {{PLURAL:$1|pel motiu següent|pels motius següents}}:',
-'recreate-deleted-warn'            => "'''Avís: Esteu desant una pàgina que ha estat prèviament esborrada.'''
+'recreate-moveddeleted-warn'       => "'''Avís: Esteu desant una pàgina que ha estat prèviament esborrada.'''
 
 Hauríeu de considerar si és realment necessari continuar editant aquesta pàgina.
 A continuació s'ofereix el registre d'esborraments de la pàgina:",
-'deleted-notice'                   => "Aquesta pàgina ha estat esborrada.
+'moveddeleted-notice'              => "Aquesta pàgina ha estat esborrada.
 A continuació us mostrem com a referència el registre d'esborraments de la pàgina.",
-'deletelog-fulllog'                => 'Veure tot el registre',
 'edit-hook-aborted'                => "Edició avortada pel hook.
 No s'ha donat cap explicació.",
 'edit-gone-missing'                => "No s'ha pogut actualitzar la pàgina.
@@ -1128,12 +1127,12 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'qbsettings-floatingleft'   => "Surant a l'esquerra",
 'qbsettings-floatingright'  => 'Surant a la dreta',
 'changepassword'            => 'Canvia la contrasenya',
-'prefs-skin'                      => 'Aparença',
+'prefs-skin'                => 'Aparença',
 'skin-preview'              => 'prova',
-'prefs-math'                      => 'Com es mostren les fórmules',
+'prefs-math'                => 'Com es mostren les fórmules',
 'dateformat'                => 'Format de la data',
 'datedefault'               => 'Cap preferència',
-'prefs-datetime'                  => 'Data i hora',
+'prefs-datetime'            => 'Data i hora',
 'math_failure'              => "No s'ha pogut entendre",
 'math_unknown_error'        => 'error desconegut',
 'math_unknown_function'     => 'funció desconeguda',
@@ -1155,7 +1154,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'saveprefs'                 => 'Desa les preferències',
 'resetprefs'                => 'Esborra els canvis no guardats',
 'restoreprefs'              => 'Restaura les preferències per defecte',
-'prefs-editing'               => "Caixa d'edició",
+'prefs-editing'             => "Caixa d'edició",
 'prefs-edit-boxsize'        => "Mida de la finestra d'edició.",
 'rows'                      => 'Files',
 'columns'                   => 'Columnes',
@@ -1192,7 +1191,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-namespaces'          => 'Espais de noms',
 'defaultns'                 => 'Busca per defecte en els següents espais de noms:',
 'default'                   => 'per defecte',
-'prefs-files'                     => 'Fitxers',
+'prefs-files'               => 'Fitxers',
 'prefs-custom-css'          => 'CSS personalitzat',
 'prefs-custom-js'           => 'JS personalitzat',
 

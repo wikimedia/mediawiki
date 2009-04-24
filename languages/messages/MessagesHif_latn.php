@@ -677,13 +677,12 @@ Aap pichhe jae ke ek panna jon hai ke sampadan kare sakta hai, nai to  [[Special
 'permissionserrors'                => 'Permissions Errors',
 'permissionserrorstext'            => 'Aap ke uu chij kare ke ijajat nai hai, ii {{PLURAL:$1|kaaran|kaaran}} khatir:',
 'permissionserrorstext-withaction' => 'Aap ke lage $2 kare khatir ijajat nai hai, ii {{PLURAL:$1|kaaran|kaaran}} se:',
-'recreate-deleted-warn'            => "'''Chetawani: Jon panna ke pahile hatae dewa gae rahaa ke aap fir se banata hai.'''
+'recreate-moveddeleted-warn'       => "'''Chetawani: Jon panna ke pahile hatae dewa gae rahaa ke aap fir se banata hai.'''
 
 Aap soco ki ii pann ake sampadan aap ke karte rahe ke chaahi ki nai.
 Aap ke aaram khatir hatae waala suchi hian pe dewa jae hai:",
-'deleted-notice'                   => 'Ii panna ke mitae dewa gais hai.
+'moveddeleted-notice'              => 'Ii panna ke mitae dewa gais hai.
 Ii panna ke mitae waala log aap ke dekhe khatir niche dewa gais hai.',
-'deletelog-fulllog'                => 'Puura log ke dekho.',
 'edit-hook-aborted'                => 'Badalo ke hook rok diis hai.
 Ii koi kaaran nai diis hai.',
 'edit-gone-missing'                => 'Panna ke badle nai sakaa.
@@ -998,12 +997,12 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'qbsettings-floatingleft'   => 'Floating left',
 'qbsettings-floatingright'  => 'Floating right',
 'changepassword'            => 'Pasword ke badlo',
-'prefs-skin'                      => 'Skin',
+'prefs-skin'                => 'Skin',
 'skin-preview'              => 'Jhalak',
-'prefs-math'                      => 'Math',
+'prefs-math'                => 'Math',
 'dateformat'                => 'Date ke format',
 'datedefault'               => 'Koi pasand nai',
-'prefs-datetime'                  => 'Tarik aur time',
+'prefs-datetime'            => 'Tarik aur time',
 'math_failure'              => 'Parse nai kare sakaa',
 'math_unknown_error'        => 'galti ke nai samajhta',
 'math_unknown_function'     => 'nai samajhta ki ii kon chij khatir hai',
@@ -1027,7 +1026,7 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'saveprefs'                 => 'Save karo',
 'resetprefs'                => 'Binaa bachawa gias badlao ke mitao',
 'restoreprefs'              => 'Sab default settings ke pahile jaise karo',
-'prefs-editing'               => 'Badaltaa hai',
+'prefs-editing'             => 'Badaltaa hai',
 'prefs-edit-boxsize'        => 'Edit window ke size.',
 'rows'                      => 'Rows:',
 'columns'                   => 'Columns:',
@@ -1064,7 +1063,7 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'prefs-namespaces'          => 'Namespaces',
 'defaultns'                 => 'Default se ii namespacesme khojo:',
 'default'                   => 'default',
-'prefs-files'                     => 'Files',
+'prefs-files'               => 'Files',
 'prefs-custom-css'          => 'Custom CSS',
 'prefs-custom-js'           => 'Custom JS',
 

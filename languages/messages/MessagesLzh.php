@@ -631,11 +631,10 @@ $2',
 'permissionserrors'                => '權未逮也',
 'permissionserrorstext'            => '子權未逮，有{{PLURAL:$1|因|因}}如下：',
 'permissionserrorstext-withaction' => '子權未逮，有{{PLURAL:$1|因|因}}如$2：',
-'recreate-deleted-warn'            => "'''留意：刪文復造，惠慎纂。'''
+'recreate-moveddeleted-warn'       => "'''留意：刪文復造，惠慎纂。'''
 誌刪如下：",
-'deleted-notice'                   => '此頁刪矣。
+'moveddeleted-notice'              => '此頁刪矣。
 此頁之誌參留之。',
-'deletelog-fulllog'                => '察整誌',
 'edit-hook-aborted'                => '鈎纂消矣。
 無解也。',
 'edit-gone-missing'                => '無更頁。

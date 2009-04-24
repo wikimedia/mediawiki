@@ -595,14 +595,13 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'permissionserrors'                => 'የፈቃድ ስሕተቶች',
 'permissionserrorstext'            => 'ያ አድራጎት አይቻልም - {{PLURAL:$1|ምክንያቱም|ምክንያቶቹም}}፦',
 'permissionserrorstext-withaction' => '$2 አልተፈቀዱም፤ {{PLURAL:$1|ምክንያቱም|ምክንያቱም}}:',
-'recreate-deleted-warn'            => ":<strong><big>'''ማስጠንቀቂያ፦ ይኸው አርእስት ከዚህ በፊት የጠፋ ገጽ ነው!'''</big></strong>
+'recreate-moveddeleted-warn'       => ":<strong><big>'''ማስጠንቀቂያ፦ ይኸው አርእስት ከዚህ በፊት የጠፋ ገጽ ነው!'''</big></strong>
 
 *እባክዎ፥ ገጹ እንደገና እንዲፈጠር የሚገባ መሆኑን ያረጋግጡ።
 
 *የገጹ መጥፋት ዝርዝር ከዚህ ታች ይታያል።",
-'deleted-notice'                   => 'ይኸው ገጽ ከዚህ በፊት የጠፋ ነው።
+'moveddeleted-notice'              => 'ይኸው ገጽ ከዚህ በፊት የጠፋ ነው።
 የገጹ መጥፋት ዝርዝር ከዚህ ታች ይታያል።',
-'deletelog-fulllog'                => 'ሙሉ መዝገብ ለማየት',
 'edit-hook-aborted'                => 'ለውጡ በሜንጦ ተቋረጠ።  
 ምንም ምክንያት አልሰጠም።',
 'edit-gone-missing'                => 'ገጹን ማሳደስ አልተቻለም።  እንደ ጠፋ ይመስላል።',
@@ -799,12 +798,12 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'qbsettings-floatingleft'   => 'በግራ ተንሳፋፊ',
 'qbsettings-floatingright'  => 'በቀኝ ተንሳፋፊ',
 'changepassword'            => 'መግቢያ ቃልዎን ለመቀየር',
-'prefs-skin'                      => 'የድህረ-ገጽ መልክ',
+'prefs-skin'                => 'የድህረ-ገጽ መልክ',
 'skin-preview'              => 'ቅድመ-ዕይታ',
-'prefs-math'                      => 'የሂሳብ መልክ',
+'prefs-math'                => 'የሂሳብ መልክ',
 'dateformat'                => 'ያውሮፓ አቆጣጠር ዘመን ሥርዓት',
 'datedefault'               => 'ግድ የለኝም',
-'prefs-datetime'                  => 'ዘመንና ሰዓት',
+'prefs-datetime'            => 'ዘመንና ሰዓት',
 'math_failure'              => 'ዘርዛሪው ተሳነው',
 'math_unknown_error'        => 'የማይታወቅ ስኅተት',
 'math_unknown_function'     => 'የማይታወቅ ተግባር',
@@ -822,7 +821,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'prefs-resetpass'           => 'መግቢያ ቃል ለመቀየር',
 'saveprefs'                 => 'ይቆጠብ',
 'resetprefs'                => 'እንደ በፊቱ ይታደስ',
-'prefs-editing'               => 'የማዘጋጀት ምርጫዎች',
+'prefs-editing'             => 'የማዘጋጀት ምርጫዎች',
 'prefs-edit-boxsize'        => 'ይህ የማዘጋጀት ሳጥን ስፋት ለመወሰን ነው።',
 'rows'                      => 'በማዘጋጀቱ ሰንጠረዥ ስንት ተርታዎች?',
 'columns'                   => 'ስንት ዓምዶችስ?',
@@ -849,7 +848,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'prefs-namespaces'          => 'ክፍለ-ዊኪዎች',
 'defaultns'                 => 'በመጀመርያው ፍለጋዎ በነዚህ ክፍለ-ዊኪዎች ብቻ ይደረግ:',
 'default'                   => 'ቀዳሚ',
-'prefs-files'                     => 'የስዕሎች መጠን',
+'prefs-files'               => 'የስዕሎች መጠን',
 
 # User rights
 'userrights'                  => 'የአባል መብቶች ለማስተዳደር',

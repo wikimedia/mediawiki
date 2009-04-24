@@ -577,21 +577,21 @@ B'fhéidir gur athraigh tú d'fhocal faire roimhe seo, nó gur iarr tú ar ceann
 'hr_tip'          => 'Líne cothrománach (inúsáidte go coigilteach)',
 
 # Edit pages
-'summary'                => 'Achoimriú:',
-'subject'                => 'Ábhar/ceannlíne:',
-'minoredit'              => 'Mionathrú é seo',
-'watchthis'              => 'Déan faire ar an lch seo',
-'savearticle'            => 'Sábháil an lch',
-'preview'                => 'Réamhamharc',
-'showpreview'            => 'Taispeáin réamhamharc',
-'showlivepreview'        => 'Réamhamharc beo',
-'showdiff'               => 'Taispeáin athruithe',
-'anoneditwarning'        => "'''Rabhadh:''' Níl tú logáilte isteach. Cuirfear do sheoladh IP i stair eagarthóireachta an leathanaigh seo.",
-'missingsummary'         => "'''Cuimhneachán:''' Níor thug tú achoimriú don athrú. Má chliceáileann tú Sábháil arís, sábhálfar an t-athrú gan é a hachoimriú.",
-'missingcommenttext'     => 'Cuir nóta tráchta isteach faoi seo, le do thoil.',
-'summary-preview'        => 'Réamhamharc an achoimriú:',
-'blockedtitle'           => 'Tá an úsáideoir seo faoi chosc',
-'blockedtext'            => "<big>'''Chuir \$1 cosc ar d’ainm úsáideora nó ar do sheoladh IP.'''</big>
+'summary'                    => 'Achoimriú:',
+'subject'                    => 'Ábhar/ceannlíne:',
+'minoredit'                  => 'Mionathrú é seo',
+'watchthis'                  => 'Déan faire ar an lch seo',
+'savearticle'                => 'Sábháil an lch',
+'preview'                    => 'Réamhamharc',
+'showpreview'                => 'Taispeáin réamhamharc',
+'showlivepreview'            => 'Réamhamharc beo',
+'showdiff'                   => 'Taispeáin athruithe',
+'anoneditwarning'            => "'''Rabhadh:''' Níl tú logáilte isteach. Cuirfear do sheoladh IP i stair eagarthóireachta an leathanaigh seo.",
+'missingsummary'             => "'''Cuimhneachán:''' Níor thug tú achoimriú don athrú. Má chliceáileann tú Sábháil arís, sábhálfar an t-athrú gan é a hachoimriú.",
+'missingcommenttext'         => 'Cuir nóta tráchta isteach faoi seo, le do thoil.',
+'summary-preview'            => 'Réamhamharc an achoimriú:',
+'blockedtitle'               => 'Tá an úsáideoir seo faoi chosc',
+'blockedtext'                => "<big>'''Chuir \$1 cosc ar d’ainm úsáideora nó ar do sheoladh IP.'''</big>
 
 Is í seo an chúis a thugadh:<br />''\$2''.<p>Is féidir leat teagmháil a dhéanamh le \$1 nó le duine eile de na [[{{MediaWiki:Grouppage-sysop}}|riarthóirí]] chun an cosc a phléigh.
 
@@ -608,86 +608,85 @@ De bhrí ghníomhartha leanúnacha creachadóireachta a dhéanann aon úsáideoi
 go leor úsáídeoirí AOL an friothálaí céanna a úsáid, agus mar sin is minic a coiscaítear úsáideoirí AOL neamhchiontacha. Gabh ár leithscéal d'aon trioblóid. 
 
 Dá dtarlódh an scéal seo duit, cuir ríomhphost chuig riarthóir le seoladh ríomhphoist AOL. Bheith cinnte tagairt a dhéanamh leis an seoladh IP seo thuas.",
-'blockednoreason'        => 'níl chúis a thugadh',
-'blockedoriginalsource'  => "Tá an foinse '''$1''' le feiceáil a leanas:",
-'whitelistedittitle'     => 'Logáil isteach chun athrú a dhéanamh',
-'whitelistedittext'      => 'Ní mór duit $1 chun ailt a athrú.',
-'loginreqtitle'          => 'Tá logáil isteach de dhíth ort',
-'loginreqlink'           => 'logáil isteach',
-'loginreqpagetext'       => 'Caithfidh tú $1 chun leathanaigh a amharc.',
-'accmailtitle'           => 'Seoladh an focal faire.',
-'accmailtext'            => "Seoladh focal faire don úsáideoir '$1' go dtí '$2'.",
-'newarticle'             => '(Nua)',
-'newarticletext'         => "Lean tú nasc chuig leathanach nach bhfuil ann fós.
+'blockednoreason'            => 'níl chúis a thugadh',
+'blockedoriginalsource'      => "Tá an foinse '''$1''' le feiceáil a leanas:",
+'whitelistedittitle'         => 'Logáil isteach chun athrú a dhéanamh',
+'whitelistedittext'          => 'Ní mór duit $1 chun ailt a athrú.',
+'loginreqtitle'              => 'Tá logáil isteach de dhíth ort',
+'loginreqlink'               => 'logáil isteach',
+'loginreqpagetext'           => 'Caithfidh tú $1 chun leathanaigh a amharc.',
+'accmailtitle'               => 'Seoladh an focal faire.',
+'accmailtext'                => "Seoladh focal faire don úsáideoir '$1' go dtí '$2'.",
+'newarticle'                 => '(Nua)',
+'newarticletext'             => "Lean tú nasc chuig leathanach nach bhfuil ann fós.
 Chun an leathanach a chruthú, tosaigh ag clóscríobh sa bhosca thíos
 (féach ar an [[{{MediaWiki:Helppage}}|leathanach cabhrach]] chun a thuilleadh eolais a fháil).
 Má tháinig tú anseo as dearmad, brúigh ar cnaipe '''ar ais''' ar do bhrabhsálaí.",
-'anontalkpagetext'       => "---- ''Leathanach plé é seo a bhaineann le húsáideoir gan ainm nár chruthaigh cuntas fós, nó nach bhfuil ag úsáid an cuntas aige. Dá bhrí sin, caithfimid an seoladh IP a úsáid chun é/í a hionannú. Is féidir le níos mó ná úsáideoir amháin an seoladh IP céanna a úsáid. Má tá tú i d'úsáideoir gan ainm agus má tá sé do thuairim go rinneadh léiriuithe neamhfheidhmeacha fút, [[Special:UserLogin|cruthaigh cuntas]] nó [[Special:UserLogin|logáil isteach]] chun mearbhall le húsáideoirí eile gan ainmneacha a héalú amach anseo.''",
-'noarticletext'          => 'Níl aon téacs ar an leathanach seo faoi láthair.
+'anontalkpagetext'           => "---- ''Leathanach plé é seo a bhaineann le húsáideoir gan ainm nár chruthaigh cuntas fós, nó nach bhfuil ag úsáid an cuntas aige. Dá bhrí sin, caithfimid an seoladh IP a úsáid chun é/í a hionannú. Is féidir le níos mó ná úsáideoir amháin an seoladh IP céanna a úsáid. Má tá tú i d'úsáideoir gan ainm agus má tá sé do thuairim go rinneadh léiriuithe neamhfheidhmeacha fút, [[Special:UserLogin|cruthaigh cuntas]] nó [[Special:UserLogin|logáil isteach]] chun mearbhall le húsáideoirí eile gan ainmneacha a héalú amach anseo.''",
+'noarticletext'              => 'Níl aon téacs ar an leathanach seo faoi láthair.
 Is féidir [[Special:Search/{{PAGENAME}}|cuardach a dhéanamh le haghaidh an teidil seo]] i leathanaigh eile, nó <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} cuardach a dhéanamh sna logaí gaolmhar],
 nó [{{fullurl:{{FULLPAGENAME}}|action=edit}} cur an leathanach seo in eagar].</span>',
-'clearyourcache'         => "'''Tugtar faoi deara:''' Tar éis duit athruithe a shábháil, caithfear gabháil thar thaisce do bhrabhsálaí chun iad a fheiceáil. '''Internet Explorer:''' cliceáil ar an gcnaipe ''Athnuaigh'' nó ''Athlódáil'', agus an eochair ''Ctrl'' á bhrú agat. '''Firefox:''' cliceáil ar ''Athlódáil'', agus an eochair ''Iomlaoid'' á bhrú agat (nó brúigh ''Ctrl-Iomlaoid-R''). '''Opera:''' caithfear d'úsáideoirí a dtaiscí a ghlanadh trí ''Uirlisí→Sainroghanna''. Ní mór d'úsáideoirí '''Konqueror''' nó '''Safari''' ach cliceáil ar an gcnaipe ''Athlódáil''.",
-'usercssjsyoucanpreview' => "'''Leid:''' Sula sábhálaím tú, úsáid an cnaipe
+'clearyourcache'             => "'''Tugtar faoi deara:''' Tar éis duit athruithe a shábháil, caithfear gabháil thar thaisce do bhrabhsálaí chun iad a fheiceáil. '''Internet Explorer:''' cliceáil ar an gcnaipe ''Athnuaigh'' nó ''Athlódáil'', agus an eochair ''Ctrl'' á bhrú agat. '''Firefox:''' cliceáil ar ''Athlódáil'', agus an eochair ''Iomlaoid'' á bhrú agat (nó brúigh ''Ctrl-Iomlaoid-R''). '''Opera:''' caithfear d'úsáideoirí a dtaiscí a ghlanadh trí ''Uirlisí→Sainroghanna''. Ní mór d'úsáideoirí '''Konqueror''' nó '''Safari''' ach cliceáil ar an gcnaipe ''Athlódáil''.",
+'usercssjsyoucanpreview'     => "'''Leid:''' Sula sábhálaím tú, úsáid an cnaipe
 'Réamhamharc' chun do CSS/JS nua a tástáil.",
-'usercsspreview'         => "'''Cuimhnigh nach bhfuil seo ach réamhamharc do CSS úsáideora -
+'usercsspreview'             => "'''Cuimhnigh nach bhfuil seo ach réamhamharc do CSS úsáideora -
 níor sábháladh é go fóill!'''",
-'userjspreview'          => "'''Cuimhnigh nach bhfuil seo ach réamhamharc do JavaScript úsáideora
+'userjspreview'              => "'''Cuimhnigh nach bhfuil seo ach réamhamharc do JavaScript úsáideora
 - níor sábháladh é go fóill!'''",
-'userinvalidcssjstitle'  => "'''AIRE:''' Níl craiceann ar bith darbh ainm \"\$1\".
+'userinvalidcssjstitle'      => "'''AIRE:''' Níl craiceann ar bith darbh ainm \"\$1\".
 Cuimhnigh go úsáideann leathanaigh saincheaptha .css agus .js teideal i gcás íochtar, m.sh. úsaidtear {{ns:user}}:Foo/monobook.css in ann {{ns:user}}:Foo/Monobook.css.",
-'updated'                => '(Leasaithe)',
-'note'                   => "'''Tabhair faoi deara:'''",
-'previewnote'            => "'''Cuimhnigh nach bhfuil ach réamhamharc sa leathanach seo, agus nach sábháladh fós é!'''",
-'previewconflict'        => 'San réamhamharc seo, feachann tú an téacs dé réir an eagarbhosca
+'updated'                    => '(Leasaithe)',
+'note'                       => "'''Tabhair faoi deara:'''",
+'previewnote'                => "'''Cuimhnigh nach bhfuil ach réamhamharc sa leathanach seo, agus nach sábháladh fós é!'''",
+'previewconflict'            => 'San réamhamharc seo, feachann tú an téacs dé réir an eagarbhosca
 thuas mar a taispeáinfear é má sábháilfear é.',
-'editing'                => 'Ag athrú $1',
-'editingsection'         => 'Ag athrú $1 (mir)',
-'editingcomment'         => 'Ag athrú $1 (tuairisc nua)',
-'editconflict'           => 'Coimhlint athraithe: $1',
-'explainconflict'        => 'D\'athraigh duine eile an leathanach seo ó shin a thosaigh tú ag athrú é.
+'editing'                    => 'Ag athrú $1',
+'editingsection'             => 'Ag athrú $1 (mir)',
+'editingcomment'             => 'Ag athrú $1 (tuairisc nua)',
+'editconflict'               => 'Coimhlint athraithe: $1',
+'explainconflict'            => 'D\'athraigh duine eile an leathanach seo ó shin a thosaigh tú ag athrú é.
 Sa bhosca seo thuas feiceann tú téacs an leathanaigh mar atá sé faoi láthair.
 Tá do chuid athruithe sa bhosca thíos.
 Caithfidh tú do chuid athruithe a chumasadh leis an leagan láithreach.
 Nuair a brúann tú ar an cnaipe "Sábháil an leathanach", ní shábhálfar aon rud <b>ach
 amháin</b> an téacs sa bhosca thuas.',
-'yourtext'               => 'Do chuid téacs',
-'storedversion'          => 'Eagrán sábháilte',
-'editingold'             => "'''AIRE: Tá tú ag athrú eagrán an leathanaigh atá as dáta.
+'yourtext'                   => 'Do chuid téacs',
+'storedversion'              => 'Eagrán sábháilte',
+'editingold'                 => "'''AIRE: Tá tú ag athrú eagrán an leathanaigh atá as dáta.
 Dá shábhálfá é, caillfear aon athrú a rinneadh ó shin an eagrán seo.'''",
-'yourdiff'               => 'Difríochtaí',
-'copyrightwarning'       => "Tabhair faoi deara go dtuigtear go bhfuil gach dréacht do {{SITENAME}} eisithe faoi $2 (féach ar $1 le haghaidh tuilleadh eolais). 
+'yourdiff'                   => 'Difríochtaí',
+'copyrightwarning'           => "Tabhair faoi deara go dtuigtear go bhfuil gach dréacht do {{SITENAME}} eisithe faoi $2 (féach ar $1 le haghaidh tuilleadh eolais). 
 Murar mian leat go gcuirfí do chuid scríbhinne in eagar go héadrócaireach agus go n-athdálfaí gan teorainn í, ná cuir isteach anseo í.<br /> 
 Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse san fhearann poiblí nó acmhainn eile saor ó chóipcheart (féach ar $1 le haghaidh tuilleadh eolais). 
 '''NÁ CUIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!'''",
-'copyrightwarning2'      => "Tabhair faoi deara gur féidir le heagarthóirí eile gach dréacht do {{SITENAME}} a chur in eagar, a athrú agus a scriosadh. 
+'copyrightwarning2'          => "Tabhair faoi deara gur féidir le heagarthóirí eile gach dréacht do {{SITENAME}} a chur in eagar, a athrú agus a scriosadh. 
 Murar mian leat go gcuirfí do chuid scríbhinne in eagar go héadrócaireach, ná cuir isteach anseo í.<br /> 
 Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse san fhearann poiblí nó acmhainn eile saor ó chóipcheart (féach ar $1 le haghaidh tuilleadh eolais). 
 '''NÁ CUIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!'''",
-'longpagewarning'        => "'''AIRE: Tá an leathanach seo $1 cilibheart i bhfad;
+'longpagewarning'            => "'''AIRE: Tá an leathanach seo $1 cilibheart i bhfad;
 ní féidir le roinnt brabhsálaithe leathanaigh a athrú má tá siad breis agus 32 KiB, nó níos fada ná sin.
 Más féidir, giotaigh an leathanach i gcodanna níos bige.'''",
-'longpageerror'          => "'''EARRÁID: Tá an téacs a chuir isteach $1 cilibheart ar fad, sin níos faide ná $2 cilibheart, an uasmhéid.
+'longpageerror'              => "'''EARRÁID: Tá an téacs a chuir isteach $1 cilibheart ar fad, sin níos faide ná $2 cilibheart, an uasmhéid.
 Ní féidir é a shábháil.'''",
-'readonlywarning'        => "'''AIRE: Glasáladh an bunachar sonraí, agus mar sin ní féidir leat do chuid athruithe a shábháil díreach anois.
+'readonlywarning'            => "'''AIRE: Glasáladh an bunachar sonraí, agus mar sin ní féidir leat do chuid athruithe a shábháil díreach anois.
 B'fhéidir gur mhaith leat an téacs a ghearr is ghreamú i gcomhad téacs agus é a úsáid níos déanaí.'''
 
 An fáth a thabhairt an riarthóir a ghlasadh nach: $1",
-'protectedpagewarning'   => "'''AIRE: Glasáladh an leathanach seo, agus ní féidir le duine ar bith é a athrú ach amhaín na húsáideoirí le pribhléidí oibreora córais. Bí cinnte go leanann tú na treoirlínte do leathanaigh glasáilte.'''",
-'templatesused'          => 'Teimpléid atá á úsáid ar an lch seo:',
-'templatesusedpreview'   => 'Teimpléid in úsáid sa réamhamharc alt seo:',
-'templatesusedsection'   => 'Teimpléid in úsáid san alt seo:',
-'template-protected'     => '(ghlasáil)',
-'template-semiprotected' => '(leath-ghlasáil)',
-'edittools'              => '<!-- Taispeánfar an téacs seo faoi foirmeacha eagarthóireachta agus uaslódála. -->',
-'nocreatetext'           => 'Tá srianadh ar {{SITENAME}} faoin leathanaigh nua a cruthaidh.
+'protectedpagewarning'       => "'''AIRE: Glasáladh an leathanach seo, agus ní féidir le duine ar bith é a athrú ach amhaín na húsáideoirí le pribhléidí oibreora córais. Bí cinnte go leanann tú na treoirlínte do leathanaigh glasáilte.'''",
+'templatesused'              => 'Teimpléid atá á úsáid ar an lch seo:',
+'templatesusedpreview'       => 'Teimpléid in úsáid sa réamhamharc alt seo:',
+'templatesusedsection'       => 'Teimpléid in úsáid san alt seo:',
+'template-protected'         => '(ghlasáil)',
+'template-semiprotected'     => '(leath-ghlasáil)',
+'edittools'                  => '<!-- Taispeánfar an téacs seo faoi foirmeacha eagarthóireachta agus uaslódála. -->',
+'nocreatetext'               => 'Tá srianadh ar {{SITENAME}} faoin leathanaigh nua a cruthaidh.
 Is féidir leat dul ar ais chun leathanach láithreach a athrú, nó [[Special:UserLogin|log isteach nó cruthaigh cuntas nua]].',
-'nocreate-loggedin'      => 'Níl cead agat leathanaigh nua a chruthú.',
-'permissionserrors'      => 'Cead rochtana earráidí',
-'recreate-deleted-warn'  => "'''Rabhadh: Tá tú ag athchruthú leathanach ina bhfuil scriostha roimhe.'''
+'nocreate-loggedin'          => 'Níl cead agat leathanaigh nua a chruthú.',
+'permissionserrors'          => 'Cead rochtana earráidí',
+'recreate-moveddeleted-warn' => "'''Rabhadh: Tá tú ag athchruthú leathanach ina bhfuil scriostha roimhe.'''
 
 Bhreithneoidh tú cibé go bhfuil sé oiriúnach chun lean an leathanach seo a cur in eagar.<br />
 Tá an log scriosta ar fáil anseo mar áis:",
-'deletelog-fulllog'      => 'Feach ar log lán',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ní féidir cuntas a chruthú',
@@ -806,12 +805,12 @@ taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí c
 'qbsettings-floatingleft'   => 'Ag faoileáil ar chlé',
 'qbsettings-floatingright'  => 'Ag faoileáil ar dheis',
 'changepassword'            => "Athraigh d'fhocal faire",
-'prefs-skin'                      => 'Craiceann',
+'prefs-skin'                => 'Craiceann',
 'skin-preview'              => 'Réamhamharc',
-'prefs-math'                      => 'Matamaitice',
+'prefs-math'                => 'Matamaitice',
 'dateformat'                => 'Formáid dáta',
 'datedefault'               => 'Is cuma liom',
-'prefs-datetime'                  => 'Dáta agus am',
+'prefs-datetime'            => 'Dáta agus am',
 'math_failure'              => 'Theip ó anailís na foirmle',
 'math_unknown_error'        => 'earráid anaithnid',
 'math_unknown_function'     => 'foirmle anaithnid',
@@ -831,7 +830,7 @@ taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí c
 'prefs-resetpass'           => 'Athraigh focal faire',
 'saveprefs'                 => 'Sábháil',
 'resetprefs'                => 'Athshocraigh sainroghanna',
-'prefs-editing'               => 'Eagarthóireacht',
+'prefs-editing'             => 'Eagarthóireacht',
 'rows'                      => 'Sraitheanna',
 'columns'                   => 'Colúin',
 'searchresultshead'         => 'Cuardaigh',
@@ -851,7 +850,7 @@ den am an freastalaí (UTC).',
 'prefs-namespaces'          => 'Ainmspáis',
 'defaultns'                 => 'Cuardaigh sna ranna seo a los éagmaise:',
 'default'                   => 'réamhshocrú',
-'prefs-files'                     => 'Comhaid',
+'prefs-files'               => 'Comhaid',
 
 # User rights
 'userrights'               => 'Bainistíocht cearta úsáideora',

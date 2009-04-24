@@ -949,13 +949,12 @@ $2',
 'permissionserrors'                => 'Σφάλματα άδειας.',
 'permissionserrorstext'            => 'Δεν έχετε άδεια να το κάνετε αυτό, για {{PLURAL:$1|τον εξής λόγο|τους εξής λόγους}}:',
 'permissionserrorstext-withaction' => 'Δεν έχετε άδεια για $2, για {{PLURAL:$1|τον ακόλουθο λόγο|τους ακόλουθους λόγους}}:',
-'recreate-deleted-warn'            => "'''Προειδοποίηση: Ξαναδημιουργείτε μια σελίδα που είχε προηγουμένως διαγραφεί.'''
+'recreate-moveddeleted-warn'       => "'''Προειδοποίηση: Ξαναδημιουργείτε μια σελίδα που είχε προηγουμένως διαγραφεί.'''
 
 Θα πρέπει να σκεφτείτε αν θα έπρεπε να συνεχίσετε να επεξεργάζεστε αυτή τη σελίδα.
 Το αρχείο διαγραφής δίνεται εδώ για διευκόλυνση:",
-'deleted-notice'                   => 'Αυτή η σελίδα έχει διαγραφεί.
+'moveddeleted-notice'              => 'Αυτή η σελίδα έχει διαγραφεί.
 Το αρχείο διαγραφών της σελίδας παρέχεται παρακάτω για παραπομπή.',
-'deletelog-fulllog'                => 'Δείτε το πλήρες αρχείο',
 'edit-hook-aborted'                => 'Η επεξεργασία ματαιώθηκε από το hook.
 Δεν έδωσε εξήγηση.',
 'edit-gone-missing'                => 'Δεν ήταν εφικτό να ενημερωθεί η σελίδα.
@@ -1165,7 +1164,7 @@ $2',
 'diff-th'                  => "μια '''επικεφαλίδα'''",
 'diff-br'                  => "ένα '''κενό'''",
 'diff-hr'                  => "μια '''οριζόντια γραμμή'''",
-'diff-code'                => "ένας '''αποκλεισμός υπολογιστικού κώδικα'''",
+'diff-code'                => "ένα '''κομμάτι υπολογιστικού κώδικα'''",
 'diff-dl'                  => "μια '''λίστα ορισμών'''",
 'diff-dt'                  => "ένας '''όρος ορισμού'''",
 'diff-dd'                  => "ένας '''ορισμός'''",
@@ -1265,12 +1264,12 @@ $2',
 'qbsettings-floatingleft'   => 'Πλανώμενα αριστερά',
 'qbsettings-floatingright'  => 'Πλανώμενα δεξιά',
 'changepassword'            => 'Αλλαγή κωδικού',
-'prefs-skin'                      => 'Οπτική οργάνωση (skin)',
+'prefs-skin'                => 'Οπτική οργάνωση (skin)',
 'skin-preview'              => 'Προεπισκόπηση',
-'prefs-math'                      => 'Απόδοση μαθηματικών',
+'prefs-math'                => 'Απόδοση μαθηματικών',
 'dateformat'                => 'Μορφή ημερομηνίας',
 'datedefault'               => 'Χωρίς προτίμηση',
-'prefs-datetime'                  => 'Ημερομηνία και ώρα',
+'prefs-datetime'            => 'Ημερομηνία και ώρα',
 'math_failure'              => 'Δεν μπόρεσε να γίνει ανάλυση του όρου.',
 'math_unknown_error'        => 'άγνωστο σφάλμα',
 'math_unknown_function'     => 'άγνωστη συνάρτηση',
@@ -1292,7 +1291,7 @@ $2',
 'saveprefs'                 => 'Αποθήκευση',
 'resetprefs'                => 'Επαναφορά προτιμήσεων',
 'restoreprefs'              => 'Επαναφορά όλων των προεπιλεγμένων ρυθμίσεων',
-'prefs-editing'               => 'Επεξεργασία',
+'prefs-editing'             => 'Επεξεργασία',
 'prefs-edit-boxsize'        => 'Μέγεθος του παραθύρου επεξεργασίας.',
 'rows'                      => 'Σειρές',
 'columns'                   => 'Στήλες',
@@ -1329,7 +1328,7 @@ $2',
 'prefs-namespaces'          => 'Περιοχές ονομάτων',
 'defaultns'                 => 'Αναζήτηση σε αυτές τις περιοχές ονομάτων από προεπιλογή:',
 'default'                   => 'Προκαθορισμένο',
-'prefs-files'                     => 'Αρχεία',
+'prefs-files'               => 'Αρχεία',
 'prefs-custom-css'          => 'Προκαθορισμένη CSS',
 'prefs-custom-js'           => 'Προκαθορισμένη JS',
 
@@ -2976,6 +2975,10 @@ $1',
 'exif-gpslongitude-e' => 'Ανατολικό γεωγραφικό μήκος',
 'exif-gpslongitude-w' => 'Δυτικό γεωγραφικό μήκος',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Μέτρα επάνω από το επίπεδο της θάλασσας',
+'exif-gpsaltitude-1' => 'Μέτρα κάτω από το επίπεδο της θάλασσας',
+
 'exif-gpsstatus-a' => 'Μέτρηση εν εξελίξει',
 'exif-gpsstatus-v' => 'Διαλειτουργικότητα μετρήσεων',
 
@@ -2986,6 +2989,11 @@ $1',
 'exif-gpsspeed-k' => 'Χιλιόμετρα/ώρα',
 'exif-gpsspeed-m' => 'Μίλια/ώρα',
 'exif-gpsspeed-n' => 'Κόμβοι',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Χιλιόμετρα',
+'exif-gpsdestdistance-m' => 'Μίλια',
+'exif-gpsdestdistance-n' => 'Ναυτικά μίλια',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Πραγματική κατεύθυνση',

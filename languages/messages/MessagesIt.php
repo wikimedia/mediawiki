@@ -846,12 +846,11 @@ L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
 'permissionserrors'                => 'Errore nei permessi',
 'permissionserrorstext'            => "Non si dispone dei permessi necessari ad eseguire l'azione richiesta, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:",
 'permissionserrorstext-withaction' => 'Non si dispone dei permessi necessari per $2, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:',
-'recreate-deleted-warn'            => "'''Attenzione: si sta per ricreare una pagina già cancellata in passato.'''
+'recreate-moveddeleted-warn'       => "'''Attenzione: si sta per ricreare una pagina già cancellata in passato.'''
 
 Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
 L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
-'deleted-notice'                   => "Questa pagina è stata cancellata. L'elenco delle relative cancellazioni viene riportato di seguito per informazione.",
-'deletelog-fulllog'                => 'Visualizza registro completo',
+'moveddeleted-notice'              => "Questa pagina è stata cancellata. L'elenco delle relative cancellazioni viene riportato di seguito per informazione.",
 'edit-hook-aborted'                => "La modifica è stata annullata dall'hook.
 Non è stata restituita alcuna spiegazione.",
 'edit-gone-missing'                => 'Impossibile aggiornare la pagina.
@@ -1156,12 +1155,12 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'qbsettings-floatingleft'   => 'Fluttuante a sinistra',
 'qbsettings-floatingright'  => 'Fluttuante a destra',
 'changepassword'            => 'Cambia password',
-'prefs-skin'                      => 'Aspetto grafico (skin)',
+'prefs-skin'                => 'Aspetto grafico (skin)',
 'skin-preview'              => 'anteprima',
-'prefs-math'                      => 'Formule matematiche',
+'prefs-math'                => 'Formule matematiche',
 'dateformat'                => 'Formato della data',
 'datedefault'               => 'Nessuna preferenza',
-'prefs-datetime'                  => 'Data e ora',
+'prefs-datetime'            => 'Data e ora',
 'math_failure'              => 'Errore del parser',
 'math_unknown_error'        => 'errore sconosciuto',
 'math_unknown_function'     => 'funzione sconosciuta',
@@ -1183,7 +1182,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'saveprefs'                 => 'Salva le preferenze',
 'resetprefs'                => 'Reimposta le preferenze',
 'restoreprefs'              => 'Ripristina le impostazioni di default',
-'prefs-editing'               => 'Casella di modifica',
+'prefs-editing'             => 'Casella di modifica',
 'prefs-edit-boxsize'        => 'Dimensioni della finestra di modifica.',
 'rows'                      => 'Righe:',
 'columns'                   => 'Colonne:',
@@ -1220,7 +1219,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'prefs-namespaces'          => 'Namespace',
 'defaultns'                 => 'Cerca in questi namespace se non diversamente specificato:',
 'default'                   => 'predefinito',
-'prefs-files'                     => 'File',
+'prefs-files'               => 'File',
 'prefs-custom-css'          => 'CSS personalizzato',
 'prefs-custom-js'           => 'JS personalizzato',
 
@@ -2838,6 +2837,10 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpslongitude-e' => 'Longitudine est',
 'exif-gpslongitude-w' => 'Longitudine ovest',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metri sopra il livello del mare',
+'exif-gpsaltitude-1' => 'Metri sotto il livello del mare',
+
 'exif-gpsstatus-a' => 'Misurazione in corso',
 'exif-gpsstatus-v' => 'Misurazione interoperabile',
 
@@ -2848,6 +2851,11 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsspeed-k' => 'Chilometri orari',
 'exif-gpsspeed-m' => 'Miglia orarie',
 'exif-gpsspeed-n' => 'Nodi',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Chilometri',
+'exif-gpsdestdistance-m' => 'Miglia',
+'exif-gpsdestdistance-n' => 'Miglia nautiche',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direzione reale',
@@ -3081,5 +3089,8 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 'dberr-usegoogle'   => 'Puoi provare a cercare su Google nel frattempo.',
 'dberr-outofdate'   => 'Nota che la loro indicizzazione dei nostri contenuti potrebbe non essere aggiornata.',
 'dberr-cachederror' => 'Quella che segue è una copia cache della pagina richiesta, e potrebbe non essere aggiornata.',
+
+# HTML forms
+'htmlform-reset' => 'Annulla modifiche',
 
 );

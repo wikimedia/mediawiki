@@ -852,13 +852,12 @@ El administrador que la bloqueó dio esta explicación: $1",
 'permissionserrors'                => 'Errores de permisos',
 'permissionserrorstext'            => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
 'permissionserrorstext-withaction' => 'No tienes permiso para $2, por las siguientes {{PLURAL:$1|razón|razones}}:',
-'recreate-deleted-warn'            => "'''Atención: está creando una página que ha sido borrada previamente.'''
+'recreate-moveddeleted-warn'       => "'''Atención: está creando una página que ha sido borrada previamente.'''
 
 Debería considerar si es apropiado continuar editando esta página.
 Consulte a continuación el registro de borrados:",
-'deleted-notice'                   => 'Esta página ha sido borrada.
+'moveddeleted-notice'              => 'Esta página ha sido borrada.
 A continuación se muestra el registro de su borrado como referencia.',
-'deletelog-fulllog'                => 'Ver el registro completo',
 'edit-hook-aborted'                => 'Edición abortada por la extensión.
 No dió explicaciones.',
 'edit-gone-missing'                => 'No se pudo actualizar la página.
@@ -1173,12 +1172,12 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'qbsettings-floatingleft'   => 'Flotante a la izquierda',
 'qbsettings-floatingright'  => 'Flotante a la derecha',
 'changepassword'            => 'Cambiar la contraseña',
-'prefs-skin'                      => 'Apariencia',
+'prefs-skin'                => 'Apariencia',
 'skin-preview'              => 'Ver cómo queda',
-'prefs-math'                      => 'Fórmulas',
+'prefs-math'                => 'Fórmulas',
 'dateformat'                => 'Formato de fecha',
 'datedefault'               => 'Sin preferencia',
-'prefs-datetime'                  => 'Fecha y hora',
+'prefs-datetime'            => 'Fecha y hora',
 'math_failure'              => 'No se pudo entender',
 'math_unknown_error'        => 'error desconocido',
 'math_unknown_function'     => 'función desconocida',
@@ -1200,7 +1199,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'saveprefs'                 => 'Guardar',
 'resetprefs'                => 'Restaurar preferencias por defecto',
 'restoreprefs'              => 'Restaure todos las configuraciones por defecto',
-'prefs-editing'               => 'Edición',
+'prefs-editing'             => 'Edición',
 'prefs-edit-boxsize'        => 'Tamaño de la ventana de edición.',
 'rows'                      => 'Filas:',
 'columns'                   => 'Columnas:',
@@ -1237,7 +1236,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'prefs-namespaces'          => 'Espacios de nombres',
 'defaultns'                 => 'Buscar en estos espacios de nombres por defecto:',
 'default'                   => 'por defecto',
-'prefs-files'                     => 'Archivos',
+'prefs-files'               => 'Archivos',
 'prefs-custom-css'          => 'CSS preferido',
 'prefs-custom-js'           => 'JS preferido',
 
@@ -2864,6 +2863,10 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-gpslongitude-e' => 'Longitud este',
 'exif-gpslongitude-w' => 'Longitud oeste',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metros sobre el nivel del mar',
+'exif-gpsaltitude-1' => 'Metros debajo del nivel del mar',
+
 'exif-gpsstatus-a' => 'Medida en progreso',
 'exif-gpsstatus-v' => 'Interoperabilidad de medida',
 
@@ -2874,6 +2877,11 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-gpsspeed-k' => 'Kilómetros por hora',
 'exif-gpsspeed-m' => 'Millas por hora',
 'exif-gpsspeed-n' => 'Nudos',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilómetros',
+'exif-gpsdestdistance-m' => 'Millas',
+'exif-gpsdestdistance-n' => 'Millas náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Dirección real',

@@ -430,18 +430,18 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'hr_tip'          => 'Linnia orissontâ',
 
 # Edit pages
-'summary'                => 'Oggetto:',
-'subject'                => 'Argomento (tittolo):',
-'minoredit'              => 'Cangiamento minô (m)',
-'watchthis'              => 'Azzonze a-i osservæ speçiâli',
-'savearticle'            => 'Sârva a pagina',
-'preview'                => 'Anteprimma',
-'showpreview'            => "Veddi l'anteprimma",
-'showdiff'               => 'Veddi i cangiamenti',
-'anoneditwarning'        => "'''Attension:''' No ti t'hæ registròu. O têu indirisso IP o sajà misso inta stöja di cangiamenti da paggina.",
-'summary-preview'        => 'Anteprimma oggetto:',
-'blockedtitle'           => "L'utente o l'é bloccòu",
-'blockedtext'            => "<big>''''Sto nomme d'ûtente ou indirisso IP o l'è stæto bloccòu.'''</big>
+'summary'                    => 'Oggetto:',
+'subject'                    => 'Argomento (tittolo):',
+'minoredit'                  => 'Cangiamento minô (m)',
+'watchthis'                  => 'Azzonze a-i osservæ speçiâli',
+'savearticle'                => 'Sârva a pagina',
+'preview'                    => 'Anteprimma',
+'showpreview'                => "Veddi l'anteprimma",
+'showdiff'                   => 'Veddi i cangiamenti',
+'anoneditwarning'            => "'''Attension:''' No ti t'hæ registròu. O têu indirisso IP o sajà misso inta stöja di cangiamenti da paggina.",
+'summary-preview'            => 'Anteprimma oggetto:',
+'blockedtitle'               => "L'utente o l'é bloccòu",
+'blockedtext'                => "<big>''''Sto nomme d'ûtente ou indirisso IP o l'è stæto bloccòu.'''</big>
 
 O blòcco o l'è stæto fæto da \$1. A raxon dæta a l'è ''\$2''.
 
@@ -453,7 +453,7 @@ O l'è poscibbile contattâ \$1 o 'n âtro [[{{MediaWiki:Grouppage-sysop}}|ammin
 O no se pêu ûsâ o comando \"Inviâ 'na léttia elettronega a quest'ûtente\" se ti no ti g'hæ 'n indirisso e-mail registròu inte têu [[Special:Preferences|preferense]] e se o no l'è stæto bloccòu ascì.
 O têu indirisso IP o l'è \$3, e o têu blòcco ID o l'è #\$5.
 Pe piaxei mettighe ûn di doî in tûtte e domande che ti fæ.",
-'autoblockedtext'        => "O têu indirisso IP o l'è stæto bloccòu outomaticamente perché o l'ea za ûsòu da 'n âtro ûtente, bloccòu da \$1.
+'autoblockedtext'            => "O têu indirisso IP o l'è stæto bloccòu outomaticamente perché o l'ea za ûsòu da 'n âtro ûtente, bloccòu da \$1.
 A raxon dæta a l'è stæta:
 
 :''\$2''
@@ -467,39 +467,39 @@ Ti pêu contattâ \$1 ou 'n âtro
 Dagghe a mente a che no ti pêu ûsâ o comando \"manda na littia elettronega a sto utente\" se non ti g'hæ 'n indirisso de posta elettronega registroö in te têu [[Special:Preferences|preferense]] e se o no l'è stæto bloccòu ascì.
 
 O têu blòcco ID o l'è \$5. Pe piaxei metti 'sto ID in tûtte e domande che ti fæ.",
-'blockedoriginalsource'  => "A fònte de '''$1''' a l'è chi sotta:",
-'blockededitsource'      => "O testo de i '''teu cangiamenti''' a '''$1''' o l'è chi sotta:",
-'whitelistedittitle'     => "Bezêugna registrâse pe modificâ 'na pagina.",
-'whitelistedittext'      => 'Pe cangia sta pagina devvi $1.',
-'loginreqtitle'          => "Besêugna registrâse primma de modificâ 'sta paggina.",
-'accmailtitle'           => 'Pòula segretta spedïa',
-'accmailtext'            => 'A pòula segretta pe-o utente "$1" a l\'è stæta spedïa a o indirisso $2.',
-'newarticle'             => '(Nêuvo)',
-'newarticletext'         => "'Sto collegamento o corisponde a 'na paggina che ancon a no l'esciste.
+'blockedoriginalsource'      => "A fònte de '''$1''' a l'è chi sotta:",
+'blockededitsource'          => "O testo de i '''teu cangiamenti''' a '''$1''' o l'è chi sotta:",
+'whitelistedittitle'         => "Bezêugna registrâse pe modificâ 'na pagina.",
+'whitelistedittext'          => 'Pe cangia sta pagina devvi $1.',
+'loginreqtitle'              => "Besêugna registrâse primma de modificâ 'sta paggina.",
+'accmailtitle'               => 'Pòula segretta spedïa',
+'accmailtext'                => 'A pòula segretta pe-o utente "$1" a l\'è stæta spedïa a o indirisso $2.',
+'newarticle'                 => '(Nêuvo)',
+'newarticletext'             => "'Sto collegamento o corisponde a 'na paggina che ancon a no l'esciste.
 
 Se o se vêu creâ a paggina òua, o se pêu comensâ a scrive o testo into spassio vêuo chì sotta.
 (fâ riferimento a-e [[{{MediaWiki:Helppage}}|paggine d'agiûtto]] pe ciû informassion).
 
 Se o s'ha intròu inte 'sto collegamento pe sbàllio, o basta sciaccâ '''Inderrê''' (Indietro) into navigatô.",
-'noarticletext'          => "Inte 'sto momento a paggina çercâa a l'è vêua. O l'è poscibbile [[Special:Search/{{PAGENAME}}|çercâ 'sto tittolo]] inte âtre paggine do scîto oppûre [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificâ a paggina òua].",
-'previewnote'            => "'''Questa chì a l'è solo 'n'anteprimma; i cangiamenti no son ancon stæti sarvæ!'''",
-'editing'                => 'Modiffica de $1',
-'editingsection'         => 'Modiffica de $1 (session)',
-'yourtext'               => 'O teu testo',
-'yourdiff'               => 'Differense',
-'copyrightwarning'       => "Nota: Tùtte e contribuçioìn a {{SITENAME}} van conscideræ comme rilasciæ drento a-i termini da licensa d'ûso $2 (veddi $1 pe savéine de ciù).
+'noarticletext'              => "Inte 'sto momento a paggina çercâa a l'è vêua. O l'è poscibbile [[Special:Search/{{PAGENAME}}|çercâ 'sto tittolo]] inte âtre paggine do scîto oppûre [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificâ a paggina òua].",
+'previewnote'                => "'''Questa chì a l'è solo 'n'anteprimma; i cangiamenti no son ancon stæti sarvæ!'''",
+'editing'                    => 'Modiffica de $1',
+'editingsection'             => 'Modiffica de $1 (session)',
+'yourtext'                   => 'O teu testo',
+'yourdiff'                   => 'Differense',
+'copyrightwarning'           => "Nota: Tùtte e contribuçioìn a {{SITENAME}} van conscideræ comme rilasciæ drento a-i termini da licensa d'ûso $2 (veddi $1 pe savéine de ciù).
 Se no ti veu che i testi teu pêuan esse modificæ da quarchedùn sensa limitaçioìn, no mandâli a {{SITENAME}}.<br />
 Inviando o testo ti diciâri, sott'a teu responsabilitæ, ch'o l'é stæto scrîto da ti personalmente oppure ch'o l'é stæto piggiòu da 'na fonte de pùbrico domìnio òu anàlogamente lìbea.<br />
 '''NO INVIÂ MATERIÂLE COVERTO DA DRÎTI D'AUTÔ SENSA OUTORIZAÇION!'''",
-'longpagewarning'        => "'''ATTENSION: 'Sta paggina chì a g'ha $1 kilobyte; çerti browser porieivan avei di problemmi inta modiffica de-e paggine che s'avvixinn-an o che ecceddan i 32 kB.
+'longpagewarning'            => "'''ATTENSION: 'Sta paggina chì a g'ha $1 kilobyte; çerti browser porieivan avei di problemmi inta modiffica de-e paggine che s'avvixinn-an o che ecceddan i 32 kB.
 Pe piaxei conscidera l'opportûnitæ de soddividde a paggina in sessioîn ciû piccinn-e.'''",
-'templatesused'          => "Template dêuviæ inte 'sta paggina:",
-'templatesusedpreview'   => "Template dêuviæ inte 'st'anteprimma:",
-'template-protected'     => '(protezûo)',
-'template-semiprotected' => '(semiprotezûo)',
-'nocreatetext'           => "A poscibilitæ de creâ nêuve paggine insce {{SITENAME}} a l'è stæta limitâ solo a-i ûtenti registræ.
+'templatesused'              => "Template dêuviæ inte 'sta paggina:",
+'templatesusedpreview'       => "Template dêuviæ inte 'st'anteprimma:",
+'template-protected'         => '(protezûo)',
+'template-semiprotected'     => '(semiprotezûo)',
+'nocreatetext'               => "A poscibilitæ de creâ nêuve paggine insce {{SITENAME}} a l'è stæta limitâ solo a-i ûtenti registræ.
 O se pêu tornâ inderê e modificâ 'na paggina escistente, oppûre [[Special:UserLogin|intrâ ò creâ 'n accesso nêuvo]].",
-'recreate-deleted-warn'  => "'''Attension: o se sta pe ricreâ 'na paggina zà scassâa into passòu.'''
+'recreate-moveddeleted-warn' => "'''Attension: o se sta pe ricreâ 'na paggina zà scassâa into passòu.'''
 
 O se deive consciderâ se o l'è davvei corretto continuâ avanti a modificâ 'sta paggina.
 E relative cancellassioîn son pûbricæ chì sotta:",
@@ -559,14 +559,14 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'changepassword'    => 'Cangiâ a pòula segretta',
 'skin-preview'      => 'Anteprimma',
 'dateformat'        => 'Formato da a data',
-'prefs-datetime'          => 'Data e oùa',
+'prefs-datetime'    => 'Data e oùa',
 'saveprefs'         => 'Sarva',
-'prefs-editing'       => 'Cangia',
+'prefs-editing'     => 'Cangia',
 'searchresultshead' => 'Çerca',
 'timezonelegend'    => 'Oùa',
 'allowemail'        => 'Permitti a posta elettronega da ätri utenti',
 'default'           => 'Predefinïo',
-'prefs-files'             => 'Papê',
+'prefs-files'       => 'Papê',
 
 # Groups
 'group-user' => 'Ûtenti',

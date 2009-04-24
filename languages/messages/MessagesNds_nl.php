@@ -916,13 +916,12 @@ As grund is angeven: $1",
 'permissionserrors'                => 'Fouten mit de rechen',
 'permissionserrorstext'            => 'Je maggen of kunnen dit neet doon. De {{PLURAL:$1|rejen|rejens}} daoveur {{PLURAL:$1|is|bin}}:',
 'permissionserrorstext-withaction' => 'Je hemmen gien rech um $2, mit de volgende {{PLURAL:$1|rejen|rejens}}:',
-'recreate-deleted-warn'            => "'''Waorschuwing: je maken een pagina an dee eerder al vort-edaon is.'''
+'recreate-moveddeleted-warn'       => "'''Waorschuwing: je maken een pagina an dee eerder al vort-edaon is.'''
 
 Bedenk eers of 't neudig is um disse pagina veerder te bewarken.
 't Logboek mit de rejen(s) waorumme as disse pagina vort-edaon is, wonnen veur de dudelijkheid eteund:",
-'deleted-notice'                   => "Disse pagina is vort-edaon.
+'moveddeleted-notice'              => "Disse pagina is vort-edaon.
 Hieronder steet de infermasie uut 't logboek vort-edaone pagina's.",
-'deletelog-fulllog'                => "'t Hele logboek bekieken",
 'edit-hook-aborted'                => 'De bewarking is of-ebreuken deur een hook.
 Der is gien rejen op-egeven.',
 'edit-gone-missing'                => "De pagina kon neet bie-ewark wonnen.
@@ -1225,12 +1224,12 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'qbsettings-floatingleft'   => 'Links, zweven',
 'qbsettings-floatingright'  => 'Rechs, zweven',
 'changepassword'            => 'Wachwoord wiezigen',
-'prefs-skin'                      => '{{SITENAME}}-uterlijk',
+'prefs-skin'                => '{{SITENAME}}-uterlijk',
 'skin-preview'              => 'bekieken',
-'prefs-math'                      => 'Wiskundige formules',
+'prefs-math'                => 'Wiskundige formules',
 'dateformat'                => 'Daotumweergave',
 'datedefault'               => 'Gien veurkeur',
-'prefs-datetime'                  => 'Daotum en tied',
+'prefs-datetime'            => 'Daotum en tied',
 'math_failure'              => 'Wiskundige formule neet begriepelijk',
 'math_unknown_error'        => 'Onbekende fout in formule',
 'math_unknown_function'     => 'Onbekende functie in formule',
@@ -1252,7 +1251,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'saveprefs'                 => 'Veurkeuren opslaon',
 'resetprefs'                => 'Standardveurkeuren herstellen',
 'restoreprefs'              => 'Alle standardinstellingen weerummezetten',
-'prefs-editing'               => 'Bewarkingsveld',
+'prefs-editing'             => 'Bewarkingsveld',
 'prefs-edit-boxsize'        => "Ofmetingen van 't bewarkingsvienster.",
 'rows'                      => 'Regels',
 'columns'                   => 'Kolommen',
@@ -1289,7 +1288,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'prefs-namespaces'          => 'Naamruumtes',
 'defaultns'                 => 'Naamruumtes um in te zeuken:',
 'default'                   => 'standard',
-'prefs-files'                     => 'Bestanden',
+'prefs-files'               => 'Bestanden',
 'prefs-custom-css'          => 'Persoonlijke CSS',
 'prefs-custom-js'           => 'Persoonlijke JS',
 

@@ -527,7 +527,7 @@ Mabalinmo ti agsubli ken agedit iti adda a panid, wenno [[Special:UserLogin|sumr
 'permissionserrors'                => 'Bidbiddut iti Pammalubos',
 'permissionserrorstext'            => 'Awananka iti pammalubos a mangaramid iti dayta, gapu iti sumaganad a {{PLURAL:$1|rason|rasrason}}:',
 'permissionserrorstext-withaction' => 'Awananka iti pammalubos nga $2, gapu iti sumaganad a {{PLURAL:$1|rason|rasrason}}:',
-'recreate-deleted-warn'            => "'''Ballaag: Mangar-aramidka iti panid a naikkaten iti kallabes.'''
+'recreate-moveddeleted-warn'       => "'''Ballaag: Mangar-aramidka iti panid a naikkaten iti kallabes.'''
 
 Nasken a siguraduem no maikanatad nga ituloymo a parnuayen manen wenno editen daytoy a panid.
 Adda ti log ti pannakaikkat daytoy a panid ditoy kas pangkitaan:",
@@ -683,12 +683,12 @@ Mabalinmo a [[:\$1|partuaten daytoy a panid]].",
 'qbsettings-floatingleft'  => 'Floating left',
 'qbsettings-floatingright' => 'Floating right',
 'changepassword'           => 'Baliwan ti password',
-'prefs-skin'                     => 'Kudil',
+'prefs-skin'               => 'Kudil',
 'skin-preview'             => 'I-preview',
-'prefs-math'                     => 'Math',
+'prefs-math'               => 'Math',
 'dateformat'               => 'Format ti petsa',
 'datedefault'              => 'Awanan preferencia',
-'prefs-datetime'                 => 'Petsa ken oras',
+'prefs-datetime'           => 'Petsa ken oras',
 'math_failure'             => 'Napaay nga ag-parse',
 'math_unknown_error'       => 'di ammo a biddut',
 'math_unknown_function'    => 'di ammo a function',
@@ -713,7 +713,7 @@ itsek ti husto a panangikapet iti latex, dvips, gs, samo i-convert',
 'timezoneoffset'           => 'Offset¹',
 'servertime'               => 'Oras ti server',
 'default'                  => 'naisigud',
-'prefs-files'                    => 'Dagiti files',
+'prefs-files'              => 'Dagiti files',
 
 # User rights
 'userrights-user-editname'    => 'Mangiserrek iti nagan-agar-aramat:',

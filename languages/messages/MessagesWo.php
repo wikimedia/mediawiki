@@ -675,12 +675,11 @@ Jëfandikukat yi nekk yorkat rekk a ko man a soppi.'''",
 'permissionserrors'                => 'Njuumte ci sañ-sañ yi',
 'permissionserrorstext'            => 'Amuloo sañ-sañu àggali jëf ji nga tambali, ngax {{PLURAL:$1|lii toftal|yii toftal}} :',
 'permissionserrorstext-withaction' => 'Amoo sañ-sañu $2, ngir {{PLURAL:$1|lii di toftal |yii di toftal}} :',
-'recreate-deleted-warn'            => "'''Moytul: yaa ngi nekk di sosaat aw xët wu ñu faroon.'''
+'recreate-moveddeleted-warn'       => "'''Moytul: yaa ngi nekk di sosaat aw xët wu ñu faroon.'''
 
 Wóorluwul bu baax ndax sosaat xët wi di na doon li gën. Xoolal yéenekaayu far gi ci suuf.",
-'deleted-notice'                   => 'Xët wii dañu koo far.
+'moveddeleted-notice'              => 'Xët wii dañu koo far.
 Jaar-jaaru far bi moo ngi ci suuf ngir yeneen xibaar.',
-'deletelog-fulllog'                => 'Wone jaar-jaar yépp',
 'edit-gone-missing'                => 'Yeesalug xët wi antuwul.
 Mel na ne dañu koo far.',
 'edit-conflict'                    => 'Jàppante cig coppite.',
@@ -962,12 +961,12 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'qbsettings-floatingleft'  => 'Ci cammooñ',
 'qbsettings-floatingright' => 'Ci ndayjoor',
 'changepassword'           => 'Coppiteg baatujàll bi',
-'prefs-skin'                     => 'Melokaan',
+'prefs-skin'               => 'Melokaan',
 'skin-preview'             => 'Wonendil',
-'prefs-math'                     => 'Xayma',
+'prefs-math'               => 'Xayma',
 'dateformat'               => 'Dayoob taariix bi',
 'datedefault'              => 'Benn tànneef',
-'prefs-datetime'                 => 'Taariix ak waxtu',
+'prefs-datetime'           => 'Taariix ak waxtu',
 'math_failure'             => 'Njuumte ci xayma',
 'math_unknown_error'       => 'Njuumte li xamuñ ko',
 'math_unknown_function'    => 'Solo si xamuñ ko',
@@ -980,7 +979,7 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'prefs-resetpass'          => 'Soppi baatujàll bi',
 'saveprefs'                => 'Denc tànneef yi',
 'resetprefs'               => 'Loppanti tànneef yi',
-'prefs-editing'              => 'Boyotu coppite',
+'prefs-editing'            => 'Boyotu coppite',
 'prefs-edit-boxsize'       => 'Dayoo palanteeru coppite bi.',
 'rows'                     => 'Rëdd:',
 'columns'                  => 'Kenu :',

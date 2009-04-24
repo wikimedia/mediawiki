@@ -455,99 +455,99 @@ Divant d' poleur evoyî èn ôte emile a ci conte la, vos dvroz shure les instru
 'hr_tip'          => "Roye di coûtchî (a n' nén eployî d' trop)",
 
 # Edit pages
-'summary'                   => 'Rascourti:',
-'subject'                   => 'Sudjet/tiestire:',
-'minoredit'                 => "Ci n' est k' ene tchitcheye",
-'watchthis'                 => 'Shuve cist årtike',
-'savearticle'               => "Schaper l' pådje",
-'preview'                   => 'Vey divant',
-'showpreview'               => 'Vey divant',
-'showlivepreview'           => 'Vey divant',
-'showdiff'                  => 'Vey les candjmints',
-'anoneditwarning'           => "'''Asteme:''' Vos n' estoz nén elodjî. Voste adresse IP serè rashiowe dins l' istwere di cisse pådje ci.",
-'missingsummary'            => "'''Asteme:''' Vos n' avoz nén dné on tecse di rascourti po vosse candjmint. Si vos rclitchîz sol boton «Schaper», li candjmint da vosse serè schapé sins nou tecse di rascourti po l' istwere del pådje.",
-'missingcommenttext'        => "Tapez on comintaire chal pa dzo s' i vs plait.",
-'blockedtitle'              => "L' uzeu est bloké",
-'blockedtext'               => "Vosse no d' uzeu ou voste adresse IP a stî blokêye pa $1.
+'summary'                    => 'Rascourti:',
+'subject'                    => 'Sudjet/tiestire:',
+'minoredit'                  => "Ci n' est k' ene tchitcheye",
+'watchthis'                  => 'Shuve cist årtike',
+'savearticle'                => "Schaper l' pådje",
+'preview'                    => 'Vey divant',
+'showpreview'                => 'Vey divant',
+'showlivepreview'            => 'Vey divant',
+'showdiff'                   => 'Vey les candjmints',
+'anoneditwarning'            => "'''Asteme:''' Vos n' estoz nén elodjî. Voste adresse IP serè rashiowe dins l' istwere di cisse pådje ci.",
+'missingsummary'             => "'''Asteme:''' Vos n' avoz nén dné on tecse di rascourti po vosse candjmint. Si vos rclitchîz sol boton «Schaper», li candjmint da vosse serè schapé sins nou tecse di rascourti po l' istwere del pådje.",
+'missingcommenttext'         => "Tapez on comintaire chal pa dzo s' i vs plait.",
+'blockedtitle'               => "L' uzeu est bloké",
+'blockedtext'                => "Vosse no d' uzeu ou voste adresse IP a stî blokêye pa $1.
 Li råjhon dnêye est:<br />''$2''<p>Vos ploz contacter $1 oudonbén onk des
 [[{{MediaWiki:Grouppage-sysop}}|manaedjeus]] po discuter do blocaedje.
 
 Notez ki vos n' poloz nén eployî l' fonccion «emiler a l' uzeu» a moens ki vos åyîz ene adresse emile valide dins vos [[Special:Preferences|preferinces]].
 
 Voste adresse IP est $3. S' i vs plait racsegnoz ciste adresse IP la dins les dmandes ki vos frîz.",
-'blockedoriginalsource'     => "Li sourdant di '''$1''' est håyné chal pa dzo:",
-'blockededitsource'         => "Li tecse des '''candjmints da vosse''' di '''$1''' est håyné chal pa dzo:",
-'whitelistedittitle'        => "S' elodjî po candjî",
-'whitelistedittext'         => 'I vs fåt $1 po pleur candjî les årtikes.',
-'confirmedittitle'          => 'Acertiner vost emile po candjî',
-'confirmedittext'           => "I vs fåt acertiner vost emile po pleur candjî les årtikes. Dinez èn emile eyet l' acertiner dins vos [[Special:Preferences|preferinces d' uzeu]].",
-'loginreqtitle'             => 'I vs fåt esse elodjî',
-'loginreqlink'              => 'elodjî',
-'loginreqpagetext'          => 'Vos vs divoz $1 po vey des ôtès pådjes.',
-'accmailtitle'              => 'Li scret a stî evoyî.',
-'accmailtext'               => 'Li scret po «$1» a stî evoyî a $2.',
-'newarticle'                => '(Novea)',
-'newarticletext'            => "Vos avoz clitchî so on loyén viè ene pådje ki n' egzistêye nén co.
+'blockedoriginalsource'      => "Li sourdant di '''$1''' est håyné chal pa dzo:",
+'blockededitsource'          => "Li tecse des '''candjmints da vosse''' di '''$1''' est håyné chal pa dzo:",
+'whitelistedittitle'         => "S' elodjî po candjî",
+'whitelistedittext'          => 'I vs fåt $1 po pleur candjî les årtikes.',
+'confirmedittitle'           => 'Acertiner vost emile po candjî',
+'confirmedittext'            => "I vs fåt acertiner vost emile po pleur candjî les årtikes. Dinez èn emile eyet l' acertiner dins vos [[Special:Preferences|preferinces d' uzeu]].",
+'loginreqtitle'              => 'I vs fåt esse elodjî',
+'loginreqlink'               => 'elodjî',
+'loginreqpagetext'           => 'Vos vs divoz $1 po vey des ôtès pådjes.',
+'accmailtitle'               => 'Li scret a stî evoyî.',
+'accmailtext'                => 'Li scret po «$1» a stî evoyî a $2.',
+'newarticle'                 => '(Novea)',
+'newarticletext'             => "Vos avoz clitchî so on loyén viè ene pådje ki n' egzistêye nén co.
 Mins '''vos''' l' poloz askepyî! Po çoula, vos n' avoz k' a cmincî a taper vosse tecse dins l' boesse di tecse chal pa dzo (alez vey li [[{{MediaWiki:Helppage}}|pådje d' aidance]] po pus d' infôrmåcion).
 Si vos n' voloz nén scrire cisse pådje chal, clitchîz simplumint sol boton '''En erî''' di vosse betchteu waibe po rivni al pådje di dvant.",
-'anontalkpagetext'          => "---- ''Çouchal, c' est li pådje di copene po èn uzeu anonime ki n' a nén (co) fwait on conte por lu s' elodjî, ou ki n' l' eploye nén. Ça fwait k' on doet eployî si adresse IP limerike po l' idintifyî. Come ene sifwaite adresse IP pout esse eployeye pa pus d' èn uzeu, i s' pout ki vos voeyoz chal des rmåkes et des messaedjes ki n' sont nén por vos. Loukîz s' i vs plait po [[Special:UserLogin|fé on novea conte ou s' elodjî]] po n' pus aveur d' ecramiaedje avou des ôtes uzeus anonimes.''",
-'noarticletext'             => "I gn a pol moumint nou tecse e cisse pådje chal, vos ploz [[Special:Search/{{PAGENAME}}|cweri après l' tite di cisse pådje ci]] dins des ôtès pådjes, oudonbén [{{fullurl:{{FULLPAGENAME}}|action=edit}} ahiver l' pådje].",
-'clearyourcache'            => "'''Note:''' après aveur schapé l' pådje, vos l' divoz rafrister, po pleur vey les candjmints dins vosse betchteu waibe: '''Mozilla / Firefox / Safari:''' tchôkîz so ''Shift'' to clitchant so ''Rafrister'', ou co fjhoz ''Ctrl-Shift-R'' (''Cmd-Shift-R'' so on Macintosh); '''IE:''' tchôkîz so ''Ctrl'' tot clitchant so ''Rafrister'', ou co fjhoz ''Ctrl-F5''; '''Konqueror:''' simplumint clitchîz so ''Rafrister'' ou l' tape ''F5''; les uzeus d' '''Opera''' dvront motoit netyî pår leu muchete, dins ''Usteyes→Preferinces''.",
-'usercssjsyoucanpreview'    => "'''Racsegne:''' eployîz l' boton «Vey divant» po sayî vosse novea CSS/JS divant del schaper.",
-'usercsspreview'            => "'''Èn rovyîz nén ki c' est djusse on prévoeyaedje di vosse stîle CSS d' uzeu, i n' a nén co stî schapé!'''",
-'userjspreview'             => "'''Èn rovyîz nén ki c' est djusse on prévoeyaedje/saye di vosse JavaScript d' uzeu, i n' a nén co stî schapé!'''",
-'userinvalidcssjstitle'     => "'''Asteme:''' I n' a pont d' pea lomêye «$1». Tuzez ki les pådjes .css eyet .js des uzeus eployèt des tite e ptitès letes, metans {{ns:user}}:Toto/monobook.css et nén {{ns:user}}:Toto/Monobook.css.",
-'updated'                   => '(Ramidré)',
-'previewnote'               => "'''Èn rovyîz nén ki c' est djusse on prévoeyaedje, li pådje n' est nén co schapêye!'''",
-'previewconflict'           => 'Ci prévoeyaedje ci mostere kimint kel tecse del boesse di tecse do dzeu sereut håyné si vos decidez di clitchî so «schaper».',
-'session_fail_preview'      => "'''Mande escuzes! Mins dji n' a nén polou traitî vosse candjmint paski les dnêyes del session ont stî pierdowes.
+'anontalkpagetext'           => "---- ''Çouchal, c' est li pådje di copene po èn uzeu anonime ki n' a nén (co) fwait on conte por lu s' elodjî, ou ki n' l' eploye nén. Ça fwait k' on doet eployî si adresse IP limerike po l' idintifyî. Come ene sifwaite adresse IP pout esse eployeye pa pus d' èn uzeu, i s' pout ki vos voeyoz chal des rmåkes et des messaedjes ki n' sont nén por vos. Loukîz s' i vs plait po [[Special:UserLogin|fé on novea conte ou s' elodjî]] po n' pus aveur d' ecramiaedje avou des ôtes uzeus anonimes.''",
+'noarticletext'              => "I gn a pol moumint nou tecse e cisse pådje chal, vos ploz [[Special:Search/{{PAGENAME}}|cweri après l' tite di cisse pådje ci]] dins des ôtès pådjes, oudonbén [{{fullurl:{{FULLPAGENAME}}|action=edit}} ahiver l' pådje].",
+'clearyourcache'             => "'''Note:''' après aveur schapé l' pådje, vos l' divoz rafrister, po pleur vey les candjmints dins vosse betchteu waibe: '''Mozilla / Firefox / Safari:''' tchôkîz so ''Shift'' to clitchant so ''Rafrister'', ou co fjhoz ''Ctrl-Shift-R'' (''Cmd-Shift-R'' so on Macintosh); '''IE:''' tchôkîz so ''Ctrl'' tot clitchant so ''Rafrister'', ou co fjhoz ''Ctrl-F5''; '''Konqueror:''' simplumint clitchîz so ''Rafrister'' ou l' tape ''F5''; les uzeus d' '''Opera''' dvront motoit netyî pår leu muchete, dins ''Usteyes→Preferinces''.",
+'usercssjsyoucanpreview'     => "'''Racsegne:''' eployîz l' boton «Vey divant» po sayî vosse novea CSS/JS divant del schaper.",
+'usercsspreview'             => "'''Èn rovyîz nén ki c' est djusse on prévoeyaedje di vosse stîle CSS d' uzeu, i n' a nén co stî schapé!'''",
+'userjspreview'              => "'''Èn rovyîz nén ki c' est djusse on prévoeyaedje/saye di vosse JavaScript d' uzeu, i n' a nén co stî schapé!'''",
+'userinvalidcssjstitle'      => "'''Asteme:''' I n' a pont d' pea lomêye «$1». Tuzez ki les pådjes .css eyet .js des uzeus eployèt des tite e ptitès letes, metans {{ns:user}}:Toto/monobook.css et nén {{ns:user}}:Toto/Monobook.css.",
+'updated'                    => '(Ramidré)',
+'previewnote'                => "'''Èn rovyîz nén ki c' est djusse on prévoeyaedje, li pådje n' est nén co schapêye!'''",
+'previewconflict'            => 'Ci prévoeyaedje ci mostere kimint kel tecse del boesse di tecse do dzeu sereut håyné si vos decidez di clitchî so «schaper».',
+'session_fail_preview'       => "'''Mande escuzes! Mins dji n' a nén polou traitî vosse candjmint paski les dnêyes del session ont stî pierdowes.
 Rissayîz s' i vs plait. Si çoula n' va todi nén, sayîz di vs dislodjî eyet di vs relodjî.'''",
-'session_fail_preview_html' => "'''Mande escuzes! Mins dji n' a nén polou traitî vosse candjmint paski les dnêyes del session ont stî pierdowes.'''
+'session_fail_preview_html'  => "'''Mande escuzes! Mins dji n' a nén polou traitî vosse candjmint paski les dnêyes del session ont stî pierdowes.'''
 
 ''Come ci wiki chal a-st en alaedje li HTML brut, li prévoeyaedje est catchî, come proteccion siconte des atakes JavaScript.''
 
 '''Si c' est ene saye oniesse di candjî l' pådje, rissayîz s' i vs plait. Si çoula n' va todi nén, sayîz di vs dislodjî eyet di vs relodjî.'''",
-'editing'                   => 'Candjant $1',
-'editingsection'            => 'Candjant $1 (seccion)',
-'editingcomment'            => 'Candjant $1 (comintaire)',
-'editconflict'              => 'Conflit inte deus candjmints: $1',
-'explainconflict'           => "Ene sakî a candjî l' pådje do tins ki vos estîz a scrire.
+'editing'                    => 'Candjant $1',
+'editingsection'             => 'Candjant $1 (seccion)',
+'editingcomment'             => 'Candjant $1 (comintaire)',
+'editconflict'               => 'Conflit inte deus candjmints: $1',
+'explainconflict'            => "Ene sakî a candjî l' pådje do tins ki vos estîz a scrire.
 Li boesse di tecse do dzeur mostere li tecse del pådje come il est
 pol moumint sol sierveu. Li tecse da vosse est sol boesse di tecse do dzo.
 Les diferinces sont håynêyes å mitan. Vos dvoz mete vos candjmints dins
 l' tecse d' asteure (å dzeur) si vos lez vloz co evoyî.
 <b>Seulmint</b> li tecse do dzeur serè candjî cwand vos clitchroz sol
 boton «Schaper l' pådje».<br />",
-'yourtext'                  => 'Li tecse da vosse',
-'storedversion'             => 'Modêye sol sierveu',
-'nonunicodebrowser'         => "'''ASTEME: li betchteu waibe da vosse ni sopoite nén l' ecôdaedje unicôde, cåze di çoula les caracteres nén-ASCII vont aparexhe dins l' boesse di tecse come des côdes hecsadecimås, insi vos pôroz tot l' minme candjî l' pådje.'''",
-'editingold'                => "'''ASTEME: Vos estoz ki candje ene viye modêye del pådje.
+'yourtext'                   => 'Li tecse da vosse',
+'storedversion'              => 'Modêye sol sierveu',
+'nonunicodebrowser'          => "'''ASTEME: li betchteu waibe da vosse ni sopoite nén l' ecôdaedje unicôde, cåze di çoula les caracteres nén-ASCII vont aparexhe dins l' boesse di tecse come des côdes hecsadecimås, insi vos pôroz tot l' minme candjî l' pådje.'''",
+'editingold'                 => "'''ASTEME: Vos estoz ki candje ene viye modêye del pådje.
 Si vos l' schapez, tos les candjmints k' ont stî fwaits
 dispoy adon si vont piede.'''",
-'yourdiff'                  => 'Diferinces',
-'copyrightwarning'          => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}} dvèt esse dizo l' licince $2 (loukîz $1 po pus di racsegnes).
+'yourdiff'                   => 'Diferinces',
+'copyrightwarning'           => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}} dvèt esse dizo l' licince $2 (loukîz $1 po pus di racsegnes).
 Si vos n' voloz nén ki vosse tecse poye esse candjî eyet spårdou pa tot l' minme kî, adon nel evoyîz nén chal.<br />
 Vos nos acertinez eto ki vos avoz scrît l' tecse vos-minme, oudonbén l' avoz copyî d' on sourdant libe (dominne publik ou on sourdant pareymint libe).
 '''N' EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION!'''",
-'copyrightwarning2'         => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}} polèt esse esse candjîs ou disfacés pa des ôtes contribouweus.
+'copyrightwarning2'          => "Notez ki tos les contribouwaedjes fwaits po {{SITENAME}} polèt esse esse candjîs ou disfacés pa des ôtes contribouweus.
 Si vos n' voloz nén scrire des årtikes ki polèt esse candjîs pa des ôtes, adon nels evoyîz nén chal.<br />
 Vos nos acertinez eto ki vos avoz scrît l' tecse vos-minme, oudonbén l' avoz copyî d' on sourdant libe (voeyoz $1 po pus di racsegnes).
 '''N' EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION!'''",
-'longpagewarning'           => "'''ASTEME: Cisse pådje fwait $1 kilo-octets; des
+'longpagewarning'            => "'''ASTEME: Cisse pådje fwait $1 kilo-octets; des
 betchteus waibes k' i gn a polèt aveut des rujhes po-z aspougnî
 des pådjes k' aprepièt ou di pus di 32 ko.
 Vos dvrîz tuzer a pårti l' pådje e pus ptits bokets.'''",
-'longpageerror'             => "'''AROKE: Li tecse ki vos avoz evoyî fwait di pus d' $1 kilo-octets, çou k' est pus ki l' macsimom di $2 kilo-octets. C' est nén possible del schaper sol sierveu.'''",
-'readonlywarning'           => "'''ASTEME: On-z overe sol båze di dnêyes pol moumint, ey elle a stî metowe e mode seulmint-lére.
+'longpageerror'              => "'''AROKE: Li tecse ki vos avoz evoyî fwait di pus d' $1 kilo-octets, çou k' est pus ki l' macsimom di $2 kilo-octets. C' est nén possible del schaper sol sierveu.'''",
+'readonlywarning'            => "'''ASTEME: On-z overe sol båze di dnêyes pol moumint, ey elle a stî metowe e mode seulmint-lére.
 Do côp, vos n' såroz schaper vos candjmints asteure; motoit vos dvrîz copyî et aclaper l' tecse dins on fitchî da vosse pol poleur rimete pus tård.'''",
-'protectedpagewarning'      => "'''ASTEME: Cisse pådje chal a stî protedjeye siconte des candjmints, seulmint les uzeus avou èn accès di manaedjeu el polèt candjî.'''",
-'semiprotectedpagewarning'  => "'''Note:''' cisse pådje ci a stî protedjeye po k' seulmint les uzeus edjîstrés el polexhe candjî.",
-'templatesused'             => 'Modeles eployîs e cisse pådje ci:',
-'template-protected'        => '(protedjî)',
-'template-semiprotected'    => '(dimey-protedjî)',
-'nocreatetitle'             => 'Ahivaedje di pådjes limité',
-'nocreatetext'              => "Cisse waibe ci a limité l' possibilité d' ahiver des novelès pådjes. Vos ploz rivni en erî eyet candjî ene pådje k' egzistêye dedja, oudonbén, [[Special:UserLogin|vos elodjî ou ahiver on conte d' uzeu]].",
-'recreate-deleted-warn'     => "'''Asteme : vous estoz ki rahive ene pådje k' a stî dsfacêye davance.'''
+'protectedpagewarning'       => "'''ASTEME: Cisse pådje chal a stî protedjeye siconte des candjmints, seulmint les uzeus avou èn accès di manaedjeu el polèt candjî.'''",
+'semiprotectedpagewarning'   => "'''Note:''' cisse pådje ci a stî protedjeye po k' seulmint les uzeus edjîstrés el polexhe candjî.",
+'templatesused'              => 'Modeles eployîs e cisse pådje ci:',
+'template-protected'         => '(protedjî)',
+'template-semiprotected'     => '(dimey-protedjî)',
+'nocreatetitle'              => 'Ahivaedje di pådjes limité',
+'nocreatetext'               => "Cisse waibe ci a limité l' possibilité d' ahiver des novelès pådjes. Vos ploz rivni en erî eyet candjî ene pådje k' egzistêye dedja, oudonbén, [[Special:UserLogin|vos elodjî ou ahiver on conte d' uzeu]].",
+'recreate-moveddeleted-warn' => "'''Asteme : vous estoz ki rahive ene pådje k' a stî dsfacêye davance.'''
 
 Tuzez bén s' el fåt vormint rahiver, tot tapant èn ouy so l' istwere del pådje :",
 
@@ -646,12 +646,12 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'qbsettings-floatingleft'  => 'Flotante a hintche',
 'qbsettings-floatingright' => 'Flotante a droete',
 'changepassword'           => "Candjî l' sicret",
-'prefs-skin'                     => 'Pea',
+'prefs-skin'               => 'Pea',
 'skin-preview'             => 'vey divant',
-'prefs-math'                     => 'Formules matematikes',
+'prefs-math'               => 'Formules matematikes',
 'dateformat'               => 'Cogne del date',
 'datedefault'              => 'Nole preferince',
-'prefs-datetime'                 => 'Cogne del date',
+'prefs-datetime'           => 'Cogne del date',
 'math_unknown_error'       => 'aroke nén cnoxhowe',
 'math_unknown_function'    => 'fonccion nén cnoxhowe',
 'math_syntax_error'        => 'aroke di sintacse',
@@ -667,7 +667,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'prefs-misc'               => 'Totes sôres',
 'saveprefs'                => 'Schaper les preferinces',
 'resetprefs'               => 'Rimete les prémetowès valixhances',
-'prefs-editing'              => 'Grandeu del boesse di tecse',
+'prefs-editing'            => 'Grandeu del boesse di tecse',
 'rows'                     => 'Royes',
 'columns'                  => 'Colones',
 'searchresultshead'        => 'Håynaedje des rzultats di cweraedje',
@@ -686,7 +686,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'allowemail'               => "Permete di rçure des emiles d' ôtes uzeus",
 'defaultns'                => 'Prémetous spåces di nos pol cweraedje:',
 'default'                  => 'prémetou',
-'prefs-files'                    => 'Fitchîs',
+'prefs-files'              => 'Fitchîs',
 
 # User rights
 'userrights'               => 'Manaedjî les liveas des uzeus',

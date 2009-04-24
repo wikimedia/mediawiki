@@ -242,7 +242,7 @@ $messages = array(
 'jumptosearch'     => 'huli',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'E pili ana iā {{SITENAME}}',
+'aboutsite'            => 'No {{SITENAME}}',
 'aboutpage'            => 'Project:E pili ana',
 'copyrightpagename'    => '{{SITENAME}} palapala ho‘okuleana',
 'copyrightpage'        => '{{ns:project}}:Palapala ho‘okuleana',
@@ -253,7 +253,7 @@ $messages = array(
 'edithelp'             => 'Kōkua me ka ho‘ololi ‘ana',
 'edithelppage'         => 'Help:Ho‘ololi',
 'helppage'             => 'Help:Papa kuhikuhi',
-'mainpage'             => 'Ka papa kinohi',
+'mainpage'             => 'Papa kinohi',
 'mainpage-description' => 'Ka papa kinohi',
 'policy-url'           => 'Project:Palapala',
 'portal'               => 'Ka hui kaiaulu',
@@ -446,15 +446,16 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'searchresults-title'       => 'Nā hualoaʻa no "$1"',
 'searchsubtitleinvalid'     => "Ua huli ʻoe iā '''$1'''",
 'noexactmatch'              => "'''‘A‘ohe mo‘olelo me ka inoa \"\$1\".''' Hiki iā‘oe ke [[:\$1|hana i keia ‘ao‘ao]].",
-'prevn'                     => 'mua $1',
-'nextn'                     => 'hope $1',
+'prevn'                     => '$1 ma mua',
+'nextn'                     => '$1 ma hope',
 'viewprevnext'              => 'Nānā i nā ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:Papa kuhikuhi',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 huaʻōlelo|$2 mau huaʻōlelo}})',
 'search-mwsuggest-enabled'  => 'me nā manaʻo hoʻolale',
 'search-mwsuggest-disabled' => 'ʻaʻohe manaʻo hoʻohale',
 'searchall'                 => 'apau',
-'powersearch'               => 'Huli',
+'powersearch'               => 'Hulina kūlana kiʻekiʻe',
+'powersearch-legend'        => 'Hulina kūlana kiʻekiʻe',
 
 # Preferences page
 'preferences'       => "Ka'u makemake",
@@ -580,12 +581,12 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'watchlistfor'      => "(no '''$1''')",
 'watch'             => 'E kia‘i',
 'watchthispage'     => 'E nānā pono i kēia mea',
-'unwatch'           => 'E wehe kia‘i',
+'unwatch'           => 'E wehe ke kia‘i',
 'watchlist-details' => '{{PLURAL:$1|$1|$1}} a kāu papa nānā pono ʻaoʻao, me ke koe ʻana o nā ʻaoʻao kūkākūkā.',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ke kia‘i nei...',
-'unwatching' => 'Ke wehe-kia‘i nei...',
+'unwatching' => 'Ke wehe nei i ke kiaʻi...',
 
 'changed' => 'ua loli ‘ia',
 
@@ -622,7 +623,7 @@ E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
 
 # Contributions
 'contributions' => 'Nā ha‘awina o kēia mea ho‘ohana',
-'mycontris'     => "He aha ka'u i lūlū ai",
+'mycontris'     => 'Koʻu mau haʻawina',
 'contribsub2'   => 'No $1 ($2)',
 'uctop'         => '(wēkiu)',
 'month'         => 'Mai mahina (ame mamua):',
@@ -701,6 +702,7 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 'tooltip-search'           => 'Huli iā {{SITENAME}}',
 'tooltip-search-go'        => 'Hele i ka ʻaoʻao me kēia inoa inā kū',
 'tooltip-search-fulltext'  => 'Huli i nā ʻaoʻao no kēia kikokikona',
+'tooltip-p-logo'           => 'Kele i ka papa kinohi',
 'tooltip-n-mainpage'       => 'Kele i ka papa kinohi',
 'tooltip-n-portal'         => 'E pili ana i ka pāhana, he aha kāu hana, nā wahi no ka loaʻa ʻana',
 'tooltip-n-currentevents'  => 'ʻIke i nā nū hou',

@@ -308,7 +308,7 @@ $messages = array(
 'template-semiprotected'           => '(верын аралыме)',
 'hiddencategories'                 => 'Тиде лаштык $1 {{PLURAL:$1|шылтыме категорийыш|шылтыме категорийыш}} лектеш:',
 'permissionserrorstext-withaction' => "Тыйын '''$2''' кертмешет шагал. Амалже:",
-'deleted-notice'                   => 'Тиде лаштык шӧрымӧ лийын.
+'moveddeleted-notice'              => 'Тиде лаштык шӧрымӧ лийын.
 Тиде лаштыклан шӧрымӧ нерген журнал ӱлнӧ ончыктымо.',
 
 # History pages
@@ -378,9 +378,9 @@ $messages = array(
 'mypreferences'         => 'Настройке-влак',
 'prefs-edits'           => 'Мыняр тӧрлатымашым ыштен?:',
 'changepassword'        => 'Шолыпмутым вашталташ',
-'prefs-skin'                  => 'Сӧрастарыме йӧн',
+'prefs-skin'            => 'Сӧрастарыме йӧн',
 'skin-preview'          => 'Ончылгоч ончымаш',
-'prefs-math'                  => 'Формуло-влак',
+'prefs-math'            => 'Формуло-влак',
 'prefs-personal'        => 'Пайдаланышын профильже',
 'prefs-rc'              => 'Шукертсе огыл тӧрлымаш-влак',
 'prefs-watchlist'       => 'Эскерымаш лӱмер',

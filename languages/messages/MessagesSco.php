@@ -601,7 +601,7 @@ Ye can go back an eik tae an existing page, or [[Special:UserLogin|log in or mak
 'permissionserrors'                => 'Richts Errors',
 'permissionserrorstext'            => 'Ye dinnae hae the richts tae dae that, acause o the followin {{PLURAL:$1|grund|grunds}}:',
 'permissionserrorstext-withaction' => 'Ye dinna hae the richts tae $2, for the follaein {{PLURAL:$1|reason|reasons}}:',
-'recreate-deleted-warn'            => "'''Warnin: Ye are makkin a page that haes been deletit.'''
+'recreate-moveddeleted-warn'       => "'''Warnin: Ye are makkin a page that haes been deletit.'''
 
 Ye shuld check that it is guid tae keep editin this page.
 The deletion log for this page is providit here:",
@@ -695,14 +695,14 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'prefsreset'         => 'Preferences haes been reset frae storage.',
 'changepassword'     => 'Chynge password',
 'skin-preview'       => 'First Leuk',
-'prefs-math'               => 'Renderin math',
+'prefs-math'         => 'Renderin math',
 'datedefault'        => 'Nae preference',
-'prefs-datetime'           => 'Date an time',
+'prefs-datetime'     => 'Date an time',
 'prefs-personal'     => 'Uiser data',
 'prefs-rc'           => 'Recent chynges an shawin stubs',
 'prefs-misc'         => 'Antrin settins',
 'saveprefs'          => 'Hain preferences',
-'prefs-editing'        => 'Editin',
+'prefs-editing'      => 'Editin',
 'searchresultshead'  => 'Rake result settins',
 'resultsperpage'     => 'Hits tae shaw per page',
 'contextlines'       => 'Lines tae shaw per hit',
