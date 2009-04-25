@@ -155,6 +155,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( '外部リンク検索' ),
 	'DeletedContributions'      => array( '削除された投稿記録', '削除された投稿履歴', '削除歴' ),
 	'Tags'                      => array( 'タグ一覧' ),
+	'Createpage'                => array( 'ページ作成' ),
 );
 
 $magicWords = array(

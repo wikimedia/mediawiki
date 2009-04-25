@@ -154,6 +154,8 @@ $wgIgnoredMessages = array(
 	'upload-summary',
 	'newuserlogentry',
 	'wantedtemplates-summary',
+	'createpage-summary',
+	'createpage-url',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */

@@ -157,6 +157,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Weblink-Suche' ),
 	'DeletedContributions'      => array( 'Gelöschte Beiträge' ),
 	'Tags'                      => array( 'Markierungen' ),
+	'Createpage'                => array( 'Seite erstellen' ),
 );
 
 $datePreferences = array(

@@ -162,6 +162,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'BlanquearPágina', 'Blanquear página' ),
 	'LinkSearch'                => array( 'BúsquedaDeEnlaces', 'Búsqueda de enlaces' ),
 	'DeletedContributions'      => array( 'ContribucionesBorradas', 'Contribuciones Borradas' ),
+	'Createpage'                => array( 'Crear_página' ),
 );
 
 $magicWords = array(

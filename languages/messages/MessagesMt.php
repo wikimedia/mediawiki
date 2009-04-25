@@ -131,6 +131,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'PaġnaVojta' ),
 	'LinkSearch'                => array( 'FittexĦolqa' ),
 	'DeletedContributions'      => array( 'KontribuzzjonijietImħassra' ),
+	'Createpage'                => array( 'OħloqPaġna' ),
 );
 
 $magicWords = array(
