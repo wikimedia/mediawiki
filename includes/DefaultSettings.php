@@ -3099,7 +3099,7 @@ $wgSpecialPageGroups = array(
 	'Export'                    => 'pagetools',
 	'Import'                    => 'pagetools',
 	'Whatlinkshere'             => 'pagetools',
-	'Createpage'                => 'pagetools',
+	'CreatePage'                => 'pagetools',
 
 	'Statistics'                => 'wiki',
 	'Version'                   => 'wiki',
