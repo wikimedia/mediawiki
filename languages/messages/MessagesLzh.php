@@ -2501,4 +2501,15 @@ $1',
 'htmlform-reset'               => '復',
 'htmlform-selectorother-other' => '他',
 
+# Special:CreatePage
+'createpage'              => '建新頁',
+'createpage-submitbutton' => '呈',
+'createpage-instructions' => '入建之題：',
+'createpage-entertitle'   => '請入題之。',
+'createpage-titleexists'  => '[[$1]]之題正存也。
+纂有之乎？',
+'createpage-tryagain'     => '非。異題建之。',
+'createpage-editexisting' => '可。貢有之。',
+'createpage-badtitle'     => '「$1」無頁題用也',
+
 );

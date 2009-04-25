@@ -153,6 +153,8 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( '不可識別的電郵地址' ),
 	'Blankpage'                 => array( '空白頁面' ),
 	'DeletedContributions'      => array( '已刪除的用戶貢獻' ),
+	'Tags'                      => array( '標籤' ),
+	'Createpage'                => array( '創建頁面' ),
 );
 
 $bookstoreList = array(
@@ -3088,5 +3090,16 @@ $1',
 'htmlform-submit'              => '遞交',
 'htmlform-reset'               => '復原更改',
 'htmlform-selectorother-other' => '其它',
+
+# Special:CreatePage
+'createpage'              => '創建一個新頁面',
+'createpage-submitbutton' => '遞交',
+'createpage-instructions' => '輸入您想去創建頁面的標題：',
+'createpage-entertitle'   => '請輸入您的頁面標題。',
+'createpage-titleexists'  => '以標題[[$1]]之頁面已經存在。
+您是否想去編輯現有之頁面？',
+'createpage-tryagain'     => '否。我想用一個不同的標題創建一個新頁面。',
+'createpage-editexisting' => '是。我想去貢獻現有之頁面。',
+'createpage-badtitle'     => '「$1」不可以用作頁面標題',
 
 );

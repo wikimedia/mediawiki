@@ -161,6 +161,8 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( '空白页面' ),
 	'LinkSearch'                => array( '搜索网页链接' ),
 	'DeletedContributions'      => array( '已删除的用户贡献' ),
+	'Tags'                      => array( '标签' ),
+	'Createpage'                => array( '创建页面' ),
 );
 
 $extraUserToggles = array(
@@ -3112,5 +3114,16 @@ $1',
 'htmlform-submit'              => '提交',
 'htmlform-reset'               => '复原更改',
 'htmlform-selectorother-other' => '其它',
+
+# Special:CreatePage
+'createpage'              => '创建一个新页面',
+'createpage-submitbutton' => '递交',
+'createpage-instructions' => '输入您想去创建页面的标题：',
+'createpage-entertitle'   => '请输入您的页面标题。',
+'createpage-titleexists'  => '以标题[[$1]]之页面已经存在。
+您是否想去编辑现有之页面？',
+'createpage-tryagain'     => '否。我想用一个不同的标题创建一个新页面。',
+'createpage-editexisting' => '是。我想去贡献现有之页面。',
+'createpage-badtitle'     => '“$1”可以用作页面标题',
 
 );
