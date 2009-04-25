@@ -1584,7 +1584,7 @@ $2',
 'enotif_anon_editor'           => '過客$1',
 'enotif_body'                  => '$WATCHINGUSERNAME鈞鑑
 
-{$PAGEEDITDATE}{{SITENAME}}簿{$PAGEEDITOR}{$CHANGEDORCREATED}{$PAGETITLE}，閱之見{$PAGETITLE_URL}。
+{$PAGEEDITDATE}{{SITENAME}}簿{$PAGEEDITOR}{$CHANGEDORCREATED}{$PAGETITLE}，閱審之見{$PAGETITLE_URL}。
 
 $NEWPAGE
 
@@ -1610,6 +1610,7 @@ $NEWPAGE
 'historywarning'         => '警示，此頁有誌：',
 'confirmdeletetext'      => '欲刪此物與誌，知後果、合[[{{MediaWiki:Policy-url}}]]後再為之。',
 'actioncomplete'         => '成矣',
+'actionfailed'           => '敗矣',
 'deletedtext'            => '"<nowiki>$1</nowiki>"刪矣，見誌刪於$2。',
 'deletedarticle'         => '刪焉「[[$1]]」',
 'suppressedarticle'      => '廢焉「[[$1]]」',

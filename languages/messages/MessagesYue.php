@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -741,7 +741,7 @@ $1',
 你需要合併你嘅更改到原有嘅文字。
 喺你撳「儲存頁面」之後，'''只有'''喺上面嘅文字區會被儲存。",
 'yourtext'                         => '你嘅文字',
-'storedversion'                    => '已經儲存咗嘅版本',
+'storedversion'                    => '已經儲存咗嘅修訂',
 'nonunicodebrowser'                => "'''警告：你嘅瀏覽器係唔係用緊 Unicode 。'''而家暫時有個解決方法，方便你可以安全咁編輯呢版：唔係 ASCII 嘅字元會喺編輯框裏面用十六進位編碼顯示。",
 'editingold'                       => "'''警告：你而家係編輯緊喺呢一頁嘅過時版本。'''如果你儲存佢，喺呢個版本嘅任何更改都會被遺失。",
 'yourdiff'                         => '差異',
@@ -833,8 +833,8 @@ $1',
 'last'                   => '之前',
 'page_first'             => '最頭',
 'page_last'              => '最尾',
-'histlegend'             => "選擇唔同版本：響兩個唔同版本嘅圓框分別撳一下，再撳最底的「比較被選版本」掣以作比較。<br />
-說明：'''（{{int:cur}}）'''= 同現時修訂版本嘅差別，'''（{{int:last}}）'''= 與前一個修訂版本嘅差別，'''{{int:minoreditletter}}''' = 小修改。",
+'histlegend'             => "選擇唔同版本：響兩個唔同版本嘅圓框分別撳一下，再撳最底的「比較被選修訂」掣以作比較。<br />
+說明：'''（{{int:cur}}）'''= 同現時修訂版本嘅差別，'''（{{int:last}}）'''= 同前一個修訂版本嘅差別，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '瀏覽歷史',
 'deletedrev'             => '[刪除咗]',
 'histfirst'              => '最早',
@@ -953,8 +953,8 @@ $1',
 'history-title'            => '"$1"嘅修訂歷史',
 'difference'               => '（修訂之間嘅差異）',
 'lineno'                   => '第$1行：',
-'compareselectedversions'  => '比較被選嘅版本',
-'showhideselectedversions' => '顯示／隱藏揀咗嘅版本',
+'compareselectedversions'  => '比較被選嘅修訂',
+'showhideselectedversions' => '顯示／隱藏揀咗嘅修訂',
 'visualcomparison'         => '可見比較',
 'wikicodecomparison'       => 'Wikitext比較',
 'editundo'                 => '復原',
@@ -1812,9 +1812,7 @@ Template:搞清楚',
 'enotif_anon_editor'           => '匿名用戶$1',
 'enotif_body'                  => '$WATCHINGUSERNAME先生／小姐你好,
 
-{{SITENAME}}嘅頁面$PAGETITLE已經由$PAGEEDITOR喺$PAGEEDITDATE$CHANGEDORCREATED，現時版本請睇$PAGETITLE_URL。
-
-The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
+{{SITENAME}}嘅頁面$PAGETITLE已經由$PAGEEDITOR喺$PAGEEDITDATE$CHANGEDORCREATED，現時修訂請睇$PAGETITLE_URL。
 
 $NEWPAGE
 
@@ -1847,6 +1845,7 @@ wiki: $PAGEEDITOR_WIKI
 'confirmdeletetext'      => '你準備刪除一個頁面或者圖像，包括佢嘅所有歷史版本。
 請確認你打算噉做，而且你知道後果係點，加上確認你噉做冇違反到[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'         => '操作完成',
+'actionfailed'           => '操作失敗',
 'deletedtext'            => '"<nowiki>$1</nowiki>"已經刪除。最近嘅刪除記錄請睇$2。',
 'deletedarticle'         => '已經刪除"[[$1]]"',
 'suppressedarticle'      => '已經廢止"[[$1]]"',
@@ -1876,8 +1875,8 @@ wiki: $PAGEEDITOR_WIKI
 
 上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。',
 'editcomment'      => "編輯摘要係：\"''\$1''\"。",
-'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後版本。',
-'rollback-success' => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
+'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後修訂。',
+'rollback-success' => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後修訂。',
 'sessionfailure'   => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 
 # Protect
@@ -2230,7 +2229,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'export'            => '倒出/導出/匯出（Export）頁面',
 'exporttext'        => '你可以倒出文字、編輯某個頁面、編輯封裝（wrap）喺一啲XML度嘅一組頁面。呢啲嘢可以用MediaWiki透過[[Special:Import|倒入]]頁倒入去其他wiki度。
 
-要倒出頁面嘅話，就喺下面嘅文字框度打標題名，一行一個標題，然後揀你係要現時版本加上所有嘅舊版本同歷史，定係淨係要現時版本同最後編輯嘅相關資訊。
+要倒出頁面嘅話，就喺下面嘅文字框度打標題名，一行一個標題，然後揀你係要現時修訂加上所有嘅舊修訂同歷史，定係淨係要現時修訂同最後編輯嘅相關資訊。
 
 喺後面嗰種情況下，你亦都可以用一個連結，例如[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]對頁面"[[{{MediaWiki:Mainpage}}]]"。',
 'exportcuronly'     => '淨係包括而家嘅修訂版本，唔包括完整歷史',
@@ -2275,7 +2274,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 修訂日期同編輯者會被保存落嚟。
 所有 transwiki 嘅倒入動作會響[[Special:Log/import|倒入日誌]]度記錄落嚟。',
 'import-interwiki-source'    => '來源 wiki／頁:',
-'import-interwiki-history'   => '複製呢一頁所有嘅歷史版本',
+'import-interwiki-history'   => '複製呢一頁所有嘅歷史修訂',
 'import-interwiki-templates' => '包含全部嘅模',
 'import-interwiki-submit'    => '倒入',
 'import-interwiki-namespace' => '目的空間名：',
@@ -2329,7 +2328,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'tooltip-ca-edit'                 => '你可以編輯呢一頁。請在儲存之前先預覽一吓。',
 'tooltip-ca-addsection'           => '開始新嘅小節',
 'tooltip-ca-viewsource'           => '呢一頁已經被保護。你可以睇吓呢一頁呢原始碼。',
-'tooltip-ca-history'              => '呢一頁之前嘅版本',
+'tooltip-ca-history'              => '呢一頁之前嘅修訂',
 'tooltip-ca-protect'              => '保護呢一頁',
 'tooltip-ca-delete'               => '刪除呢一頁',
 'tooltip-ca-undelete'             => '將呢個頁面還原到被刪除之前嘅狀態',
@@ -2355,7 +2354,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'tooltip-t-upload'                => '上載檔案',
 'tooltip-t-specialpages'          => '所有特別頁嘅一覽',
 'tooltip-t-print'                 => '呢一版嘅可打印版本',
-'tooltip-t-permalink'             => '呢一版嘅哩個版本嘅永久連結',
+'tooltip-t-permalink'             => '呢一版嘅哩個修訂嘅永久連結',
 'tooltip-ca-nstab-main'           => '睇吓內容頁',
 'tooltip-ca-nstab-user'           => '睇吓用戶頁',
 'tooltip-ca-nstab-media'          => '睇吓媒體頁',
@@ -2370,7 +2369,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'tooltip-save'                    => '保存你嘅更改',
 'tooltip-preview'                 => '預覽你嘅修改，請喺保存之前先預覽一次先',
 'tooltip-diff'                    => '顯示你對頁面所作嘅修改',
-'tooltip-compareselectedversions' => '顯示該頁面兩個所選版本嘅唔同之處。',
+'tooltip-compareselectedversions' => '顯示該頁面兩個所選修訂嘅唔同之處。',
 'tooltip-watch'                   => '將呢頁加到去你嘅監視清單度',
 'tooltip-recreate'                => '即使已經刪除過都要重新整過呢頁',
 'tooltip-upload'                  => '開始上載',
@@ -2422,7 +2421,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 噉可能係由指去外部網站嘅連結引起。',
 'spamprotectionmatch' => '以下係觸發我哋嘅反垃圾過濾器嘅文字：$1',
 'spambot_username'    => 'MediaWiki垃圾清除',
-'spam_reverting'      => '恢復返去最後一個唔包含指去$1嘅連結嘅嗰個版本。',
+'spam_reverting'      => '恢復返去最後一個唔包含指去$1嘅連結嘅嗰個修訂。',
 'spam_blanking'       => '全部版本都含有指去$1嘅連結，留空',
 
 # Info page
@@ -2899,7 +2898,7 @@ $1',
 # action=purge
 'confirm_purge_button' => '肯定',
 'confirm-purge-top'    => '肯定要洗咗呢版個快取版本？',
-'confirm-purge-bottom' => '清理一版係會清除快取同埋強迫顯示最現時嘅版本。',
+'confirm-purge-bottom' => '清理一版係會清除快取同埋強迫顯示最現時嘅修訂。',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一版',
