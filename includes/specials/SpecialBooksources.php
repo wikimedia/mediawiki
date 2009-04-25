@@ -6,7 +6,7 @@
  *
  * @author Rob Church <robchur@gmail.com>
  * @todo Validate ISBNs using the standard check-digit method
- * @ingroup SpecialPages
+ * @ingroup SpecialPage
  */
 class SpecialBookSources extends SpecialPage {
 
