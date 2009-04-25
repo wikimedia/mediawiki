@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -781,7 +781,7 @@ $2',
 你应当将你所做的修改加入现有的内容中。
 <b>只有</b>在上面文字框中的内容会在你点击"保存页面"后被保存。<br />',
 'yourtext'                         => '您的文字',
-'storedversion'                    => '已保存版本',
+'storedversion'                    => '已保存修订版本',
 'nonunicodebrowser'                => "'''警告：您的浏览器不兼容Unicode编码。'''这里有一个工作区将使您能安全地编辑页面：非ASCII字符将以十六进制编码方式出现在编辑框中。",
 'editingold'                       => "'''警告：你正在编辑的是本页的旧版本。'''
 如果你保存它的话，在本版本之后的任何修改都会丢失。",
@@ -874,8 +874,8 @@ $2',
 'last'                   => '先前',
 'page_first'             => '最前',
 'page_last'              => '最后',
-'histlegend'             => "差异选择：标记要比较版本的单选按钮并点击底部的按钮进行比较。<br />
-说明：'''(当前)''' 指与当前版本比较，'''(先前)''' 指与前一个修订版本比较，'''小''' = 小修改。",
+'histlegend'             => "差异选择：标记要比较修订版本的单选按钮并点击底部的按钮进行比较。<br />
+说明：'''({{int:cur}})''' 指与当前修订版本比较，'''({{int:last}})''' 指与前一个修订版本比较，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '浏览历史',
 'deletedrev'             => '[已删除]',
 'histfirst'              => '最早版本',
@@ -992,8 +992,8 @@ $2',
 'history-title'            => '“$1”的修订历史',
 'difference'               => '(修订版本间差异)',
 'lineno'                   => '第$1行：',
-'compareselectedversions'  => '比较选定的版本',
-'showhideselectedversions' => '显示／隐藏选定的版本',
+'compareselectedversions'  => '比较选定的修订版本',
+'showhideselectedversions' => '显示／隐藏选定的修订版本',
 'visualcomparison'         => '可见比较',
 'wikicodecomparison'       => 'Wikitext比较',
 'editundo'                 => '撤销',
@@ -1860,7 +1860,7 @@ Template:消除歧義',
 'enotif_anon_editor'           => '匿名用户$1',
 'enotif_body'                  => '亲爱的 $WATCHINGUSERNAME,
 
-$PAGEEDITOR已经在$PAGEEDITDATE$CHANGEDORCREATED{{SITENAME}}的$PAGETITLE页面，请到$PAGETITLE_URL查看当前版本。
+$PAGEEDITOR已经在$PAGEEDITDATE$CHANGEDORCREATED{{SITENAME}}的$PAGETITLE页面，请到$PAGETITLE_URL查看当前修订版本。
 
 $NEWPAGE
 
@@ -1896,6 +1896,7 @@ $NEWPAGE
 'confirmdeletetext'      => '您即将删除一个页面或图像以及其历史。
 请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{MediaWiki:Policy-url}}]]。',
 'actioncomplete'         => '操作完成',
+'actionfailed'           => '操作失败',
 'deletedtext'            => '"<nowiki>$1</nowiki>"已经被删除。最近删除的纪录请参见$2。',
 'deletedarticle'         => '已删除"[[$1]]"',
 'suppressedarticle'      => '已废止"[[$1]]"',
@@ -1926,8 +1927,8 @@ $NEWPAGE
 
 最后对页面编辑的编辑者：[[User:$3|$3]] ([[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]])。',
 'editcomment'      => '编辑摘要："<i>$1</i>"。',
-'revertpage'       => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个版本',
-'rollback-success' => '恢复由$1的编辑；更改回$2的最后一个版本。',
+'revertpage'       => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个修订版本',
+'rollback-success' => '恢复由$1的编辑；更改回$2的最后一个修订版本。',
 'sessionfailure'   => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 
 # Protect
@@ -2288,8 +2289,8 @@ $1已经被封锁。您是否想更改这个设置？',
 'exporttext'        => '您可以将特定页面或一组页面的文本以及编辑历史以 XML 格式导出；这样可以将有关页面通过“[[Special:Import|导入页面]]”页面导入到另一个运行 MediaWiki 的网站。
 
 要导出页面，请在下面的文本框中输入页面标题，每行一个标题，
-并选择你是否需要导出带有页面历史的以前的版本，
-或是只选择导出带有最后一次编辑信息的当前版本。
+并选择你是否需要导出带有页面历史的以前的修订本，
+或是只选择导出带有最后一次编辑信息的当前修订版本。
 
 此外你还可以利用链接导出文件，例如你可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]导出“[[{{MediaWiki:Mainpage}}]]”页面。',
 'exportcuronly'     => '仅包含当前的修订，而不是全部的历史。',
@@ -2334,7 +2335,7 @@ $1已经被封锁。您是否想更改这个设置？',
 修订日期和编辑者名字将同时被保存。
 所有的跨 wiki 导入操作被记录在[[Special:Log/import|导入日志]]。',
 'import-interwiki-source'    => '来源维基／页面：',
-'import-interwiki-history'   => '复制此页的所有历史版本',
+'import-interwiki-history'   => '复制此页的所有历史修订版本',
 'import-interwiki-templates' => '包含所有模板',
 'import-interwiki-submit'    => '导入',
 'import-interwiki-namespace' => '目标名字空间：',
@@ -2388,7 +2389,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-ca-edit'                 => '你可编辑此页，请在保存前先预览一下。',
 'tooltip-ca-addsection'           => '开始一个新小节',
 'tooltip-ca-viewsource'           => '该页面已被保护。你可以查看该页源码。',
-'tooltip-ca-history'              => '此页面的早前版本',
+'tooltip-ca-history'              => '此页面的早前修订版本',
 'tooltip-ca-protect'              => '保护此页',
 'tooltip-ca-delete'               => '删除此页',
 'tooltip-ca-undelete'             => '将这个页面恢复到被删除以前的状态',
@@ -2414,7 +2415,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-t-upload'                => '上传文件',
 'tooltip-t-specialpages'          => '所有特殊页面列表',
 'tooltip-t-print'                 => '这个页面的可打印版本',
-'tooltip-t-permalink'             => '这个页面版本的永久链接',
+'tooltip-t-permalink'             => '这个页面修订版本的永久链接',
 'tooltip-ca-nstab-main'           => '查看页面内容',
 'tooltip-ca-nstab-user'           => '查看用户页面',
 'tooltip-ca-nstab-media'          => '查看媒体页面',
@@ -2429,7 +2430,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-save'                    => '保存您的更改',
 'tooltip-preview'                 => '预览您的更改，请在保存前使用此功能！',
 'tooltip-diff'                    => '显示您对该文字所做的更改',
-'tooltip-compareselectedversions' => '查看此页面两个选定的版本间的差异。',
+'tooltip-compareselectedversions' => '查看此页面两个选定的修订版本间的差异。',
 'tooltip-watch'                   => '将该页面加到您的监视列表',
 'tooltip-recreate'                => '重建该页面，无论是否被删除。',
 'tooltip-upload'                  => '开始上传',
@@ -2481,7 +2482,7 @@ $1已经被封锁。您是否想更改这个设置？',
 这可能是由于一个到外部站点的链接引起的。',
 'spamprotectionmatch' => '以下是触发广告过滤器的文本：$1',
 'spambot_username'    => 'MediaWiki广告清理器',
-'spam_reverting'      => '恢复到不包含链接至$1的最近版本',
+'spam_reverting'      => '恢复到不包含链接至$1的最近修订版本',
 'spam_blanking'       => '所有包含链接至$1的修订，消隐',
 
 # Info page
@@ -2943,7 +2944,7 @@ $1',
 # action=purge
 'confirm_purge_button' => '确定',
 'confirm-purge-top'    => '要清除此页面的缓存吗?',
-'confirm-purge-bottom' => '清理一页将会清除快取以及强迫显示最现时之版本。',
+'confirm-purge-bottom' => '清理一页将会清除快取以及强迫显示最现时之修订版本。',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',
