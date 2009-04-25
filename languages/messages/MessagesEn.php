@@ -1172,7 +1172,7 @@ Your changes are shown in the lower text area.
 You will have to merge your changes into the existing text.
 '''Only''' the text in the upper text area will be saved when you press \"Save page\".",
 'yourtext'                         => 'Your text',
-'storedversion'                    => 'Stored version',
+'storedversion'                    => 'Stored revision',
 'nonunicodebrowser'                => "'''WARNING: Your browser is not unicode compliant.'''
 A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.",
 'editingold'                       => "'''WARNING: You are editing an out-of-date revision of this page.'''
@@ -1274,9 +1274,9 @@ The reason given by $3 is ''$2''",
 'last'                   => 'prev',
 'page_first'             => 'first',
 'page_last'              => 'last',
-'histlegend'             => "Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
-Legend: '''({{int:cur}})''' = difference with current version,
-'''({{int:last}})''' = difference with preceding version, '''{{int:minoreditletter}}''' = minor edit.",
+'histlegend'             => "Diff selection: mark the radio boxes of the revisions to compare and hit enter or the button at the bottom.<br />
+Legend: '''({{int:cur}})''' = difference with current revision,
+'''({{int:last}})''' = difference with preceding revision, '''{{int:minoreditletter}}''' = minor edit.",
 'history-fieldset-title' => 'Browse history',
 'history_copyright'      => '-', # do not translate or duplicate this message to other languages
 'deletedrev'             => '[deleted]',
@@ -1398,8 +1398,8 @@ Note that using the navigation links will reset this column.',
 'history-title'            => 'Revision history of "$1"',
 'difference'               => '(Difference between revisions)',
 'lineno'                   => 'Line $1:',
-'compareselectedversions'  => 'Compare selected versions',
-'showhideselectedversions' => 'Show/hide selected versions',
+'compareselectedversions'  => 'Compare selected revisions',
+'showhideselectedversions' => 'Show/hide selected revisions',
 'visualcomparison'         => 'Visual comparison',
 'wikicodecomparison'       => 'Wikitext comparison',
 'editundo'                 => 'undo',
@@ -2379,7 +2379,7 @@ Future changes to this page and its associated talk page will be listed there, a
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
 
-The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
+The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current revision.
 
 $NEWPAGE
 
@@ -2449,9 +2449,9 @@ someone else has edited or rolled back the page already.
 
 The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "The edit summary was: \"''\$1''\".",
-'revertpage'       => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last version by [[User:$1|$1]]',
+'revertpage'       => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last revision by [[User:$1|$1]]',
 'rollback-success' => 'Reverted edits by $1;
-changed back to last version by $2.',
+changed back to last revision by $2.',
 'sessionfailure'   => 'There seems to be a problem with your login session;
 this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
@@ -2839,7 +2839,7 @@ cannot move a page over itself.',
 'exporttext'        => 'You can export the text and editing history of a particular page or set of pages wrapped in some XML.
 This can be imported into another wiki using MediaWiki via the [[Special:Import|import page]].
 
-To export pages, enter the titles in the text box below, one title per line, and select whether you want the current version as well as all old versions, with the page history lines, or the current version with the info about the last edit.
+To export pages, enter the titles in the text box below, one title per line, and select whether you want the current revision as well as all old revisions, with the page history lines, or the current revision with the info about the last edit.
 
 In the latter case you can also use a link, for example [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] for the page "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Include only the current revision, not the full history',
@@ -2884,7 +2884,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 Revision dates and editors' names will be preserved.
 All transwiki import actions are logged at the [[Special:Log/import|import log]].",
 'import-interwiki-source'    => 'Source wiki/page:',
-'import-interwiki-history'   => 'Copy all history versions for this page',
+'import-interwiki-history'   => 'Copy all history revisions for this page',
 'import-interwiki-templates' => 'Include all templates',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Destination namespace:',
@@ -3005,7 +3005,7 @@ Please use the preview button before saving',
 'tooltip-ca-addsection'           => 'Start a new section',
 'tooltip-ca-viewsource'           => 'This page is protected.
 You can view its source',
-'tooltip-ca-history'              => 'Past versions of this page',
+'tooltip-ca-history'              => 'Past revsions of this page',
 'tooltip-ca-protect'              => 'Protect this page',
 'tooltip-ca-delete'               => 'Delete this page',
 'tooltip-ca-undelete'             => 'Restore the edits done to this page before it was deleted',
@@ -3031,7 +3031,7 @@ You can view its source',
 'tooltip-t-upload'                => 'Upload files',
 'tooltip-t-specialpages'          => 'List of all special pages',
 'tooltip-t-print'                 => 'Printable version of this page',
-'tooltip-t-permalink'             => 'Permanent link to this version of the page',
+'tooltip-t-permalink'             => 'Permanent link to this revision of the page',
 'tooltip-ca-nstab-main'           => 'View the content page',
 'tooltip-ca-nstab-user'           => 'View the user page',
 'tooltip-ca-nstab-media'          => 'View the media page',
@@ -3046,7 +3046,7 @@ You can view its source',
 'tooltip-save'                    => 'Save your changes',
 'tooltip-preview'                 => 'Preview your changes, please use this before saving!',
 'tooltip-diff'                    => 'Show which changes you made to the text',
-'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page',
+'tooltip-compareselectedversions' => 'See the differences between the two selected revisions of this page',
 'tooltip-watch'                   => 'Add this page to your watchlist',
 'tooltip-recreate'                => 'Recreate the page even though it has been deleted',
 'tooltip-upload'                  => 'Start upload',
@@ -3099,7 +3099,7 @@ It allows adding a reason in the summary.',
 This is probably caused by a link to a blacklisted external site.',
 'spamprotectionmatch' => 'The following text is what triggered our spam filter: $1',
 'spambot_username'    => 'MediaWiki spam cleanup',
-'spam_reverting'      => 'Reverting to last version not containing links to $1',
+'spam_reverting'      => 'Reverting to last revision not containing links to $1',
 'spam_blanking'       => 'All revisions contained links to $1, blanking',
 
 # Info page
@@ -3644,7 +3644,7 @@ Please confirm that you really want to recreate this page.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Clear the cache of this page?',
-'confirm-purge-bottom' => 'Purging a page clears the cache and forces the most current version to appear.',
+'confirm-purge-bottom' => 'Purging a page clears the cache and forces the most current revision to appear.',
 
 # Separators for various lists, etc.
 'catseparator'        => '|', # only translate this message to other languages if you have to change it
