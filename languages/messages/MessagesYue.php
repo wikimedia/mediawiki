@@ -3064,4 +3064,15 @@ $1',
 'htmlform-reset'               => '復原更改',
 'htmlform-selectorother-other' => '其它',
 
+# Special:CreatePage
+'createpage'              => '開新版',
+'createpage-submitbutton' => '遞交',
+'createpage-instructions' => '輸入你想去開版嘅標題:',
+'createpage-entertitle'   => '請輸入你嗰一版嘅標題。',
+'createpage-titleexists'  => '嗰版以標題[[$1]]嘅版已經存在。
+你想唔想去編輯現有嘅版？',
+'createpage-tryagain'     => '唔好。我想用一個唔同嘅標題開一頁新版。',
+'createpage-editexisting' => '好。我想去貢獻現有嘅版。',
+'createpage-badtitle'     => '『$1』唔可以用做頁標題',
+
 );
