@@ -777,10 +777,6 @@ $ignoreRedirect: boolean to skip redirect check
 $target: Title/string of redirect target
 $article: Article object
 
-'InitPreferencesForm': called at the end of PreferencesForm's constructor
-$form: the PreferencesForm
-$request: the web request to initialized from
-
 'InternalParseBeforeLinks': during Parser's internalParse method before links but
 after noinclude/includeonly/onlyinclude and other processing.
 &$this: Parser object
@@ -1085,10 +1081,6 @@ $action : Action being performed
 Change $result and return false to give a definitive answer, otherwise
 the built-in rate limiting checks are used, if enabled.
 
-'PreferencesUserInformationPanel': Add HTML bits to user information list in preferences form
-$form : PreferencesForm object
-&$html : HTML to append to
-
 'PrefixSearchBackend': Override the title prefix search used for OpenSearch and
 AJAX search suggestions. Put results into &$results outparam and return false.
 $ns : array of int namespace keys to search in
@@ -1113,14 +1105,6 @@ $error: error (string) 'badretype', 'wrongpassword', 'error' or 'success'
 'RecentChange_save': called at the end of RecenChange::save()
 $recentChange: RecentChange object
 
-'RenderPreferencesForm': called at the end of PreferencesForm::mainPrefsForm
-$form: the PreferencesForm
-$out: output page to render to, probably $wgOut
-
-'ResetPreferences': called at the end of PreferencesForm::resetPrefs
-$form: the PreferencesForm
-$user: the User object to load preferences from
-
 'RevisionInsertComplete': called after a revision is inserted into the DB
 &$revision: the Revision
 $data: the data stored in old_text.  The meaning depends on $flags: if external
@@ -1129,13 +1113,6 @@ $data: the data stored in old_text.  The meaning depends on $flags: if external
   text is gzipped.
 $flags: a comma-delimited list of strings representing the options used.  May
   include: utf8 (this will always be set for new revisions); gzip; external.
-
-'SavePreferences': called at the end of PreferencesForm::savePreferences; 
-                   returning false prevents the preferences from being saved.
-$form: the PreferencesForm
-$user: the User object to save preferences to
-$message: change this to set an error message (ignored if the hook does not return false)
-$old: old preferences of the user
 
 'SearchUpdate': Prior to search update completion
 $id : Page id
