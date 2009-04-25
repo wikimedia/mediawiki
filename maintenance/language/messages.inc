@@ -1635,6 +1635,7 @@ $wgMessageStructure = array(
 		'historywarning',
 		'confirmdeletetext',
 		'actioncomplete',
+		'actionfailed',
 		'deletedtext',
 		'deletedarticle',
 		'suppressedarticle',

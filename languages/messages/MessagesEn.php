@@ -2415,6 +2415,7 @@ Feedback and further assistance:
 'confirmdeletetext'      => 'You are about to delete a page along with all of its history.
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
 'actioncomplete'         => 'Action complete',
+'actionfailed'           => 'Action failed',
 'deletedtext'            => '"<nowiki>$1</nowiki>" has been deleted.
 See $2 for a record of recent deletions.',
 'deletedarticle'         => 'deleted "[[$1]]"',
