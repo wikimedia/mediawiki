@@ -179,6 +179,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Websigge Söke' ),
 	'DeletedContributions'      => array( 'Fotjeschmeße' ),
 	'Tags'                      => array( 'Makeerunge' ),
+	'Createpage'                => array( 'Sigge_aanlääje', 'Sigg_aanlääje' ),
 );
 
 $magicWords = array(

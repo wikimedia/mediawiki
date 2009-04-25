@@ -127,6 +127,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Wotkazowe pytanje' ),
 	'DeletedContributions'      => array( 'Zničene přinoški' ),
 	'Tags'                      => array( 'Taflički' ),
+	'Createpage'                => array( 'Stronu wutworić' ),
 );
 
 $messages = array(

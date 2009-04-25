@@ -123,6 +123,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'SurelekTeuKaci' ),
 	'Blankpage'                 => array( 'KacaKosong' ),
 	'Tags'                      => array( 'Tag' ),
+	'Createpage'                => array( 'JieunKaca' ),
 );
 
 $messages = array(

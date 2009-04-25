@@ -295,6 +295,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'VerwijzingenZoeken', 'LinksZoeken' ),
 	'DeletedContributions'      => array( 'VerwijderdeBijdragen' ),
 	'Tags'                      => array( 'Labels' ),
+	'Createpage'                => array( 'PaginaAanmaken' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';

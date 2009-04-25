@@ -145,6 +145,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Pytanje wótkazow' ),
 	'DeletedContributions'      => array( 'Wulašowane pśinoski' ),
 	'Tags'                      => array( 'Toflicki' ),
+	'Createpage'                => array( 'Bok napóraś' ),
 );
 
 $messages = array(

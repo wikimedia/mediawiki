@@ -109,6 +109,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Läärsyte' ),
 	'LinkSearch'                => array( 'Suech no Gleicher' ),
 	'DeletedContributions'      => array( 'Gleschti Byytreeg' ),
+	'Createpage'                => array( 'Syte aalege' ),
 );
 
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';

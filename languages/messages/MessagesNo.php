@@ -164,6 +164,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Lenkesøk' ),
 	'DeletedContributions'      => array( 'Slettede bidrag' ),
 	'Tags'                      => array( 'Tagger' ),
+	'Createpage'                => array( 'Opprett side' ),
 );
 
 $messages = array(
