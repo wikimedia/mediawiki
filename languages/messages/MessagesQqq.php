@@ -2225,6 +2225,7 @@ This message is the variable $3 in the message [[Mediawiki:lastmodifiedatby/{{SU
 * $1: date
 * $2: time
 * $3: if the user has entered his 'real name' in his preferences then this variable is his 'real name'. If the user has not entered his 'real name' in his preferences then this variable is the message [[Mediawiki:siteuser/{{SUBPAGENAME}}]], which includes his username.
+* $4: username in plain text. Can be used for GENDER
 
 See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].",
 'othercontribs'    => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).

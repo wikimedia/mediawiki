@@ -87,7 +87,7 @@ class Credits {
 			$d = '';
 			$t = '';
 		}
-		return wfMsg( 'lastmodifiedatby', $d, $t, self::userLink( $user ) );
+		return wfMsgExt( 'lastmodifiedatby', 'parsemag', $d, $t, self::userLink( $user ), $user->getName() );
 	}
 
 	/**
