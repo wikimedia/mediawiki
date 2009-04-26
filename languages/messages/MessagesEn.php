@@ -1556,17 +1556,6 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'dateformat'                => 'Date format',
 'datedefault'               => 'No preference',
 'prefs-datetime'            => 'Date and time',
-'math_failure'              => 'Failed to parse',
-'math_unknown_error'        => 'unknown error',
-'math_unknown_function'     => 'unknown function',
-'math_lexing_error'         => 'lexing error',
-'math_syntax_error'         => 'syntax error',
-'math_image_error'          => 'PNG conversion failed;
-check for correct installation of latex, dvips, gs, and convert',
-'math_bad_tmpdir'           => 'Cannot write to or create math temp directory',
-'math_bad_output'           => 'Cannot write to or create math output directory',
-'math_notexvc'              => 'Missing texvc executable;
-please see math/README to configure.',
 'prefs-personal'            => 'User profile',
 'prefs-rc'                  => 'Recent changes',
 'prefs-watchlist'           => 'Watchlist',
@@ -3117,6 +3106,19 @@ This is probably caused by a link to a blacklisted external site.',
 'mw_math_source' => 'Leave it as TeX (for text browsers)',
 'mw_math_modern' => 'Recommended for modern browsers',
 'mw_math_mathml' => 'MathML if possible (experimental)',
+
+# Math errors
+'math_failure'          => 'Failed to parse',
+'math_unknown_error'    => 'unknown error',
+'math_unknown_function' => 'unknown function',
+'math_lexing_error'     => 'lexing error',
+'math_syntax_error'     => 'syntax error',
+'math_image_error'      => 'PNG conversion failed;
+check for correct installation of latex, dvips, gs, and convert',
+'math_bad_tmpdir'       => 'Cannot write to or create math temp directory',
+'math_bad_output'       => 'Cannot write to or create math output directory',
+'math_notexvc'          => 'Missing texvc executable;
+please see math/README to configure.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Mark as patrolled',
