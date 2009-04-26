@@ -627,10 +627,18 @@ XHTML id names.
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
-'about'          => 'About',
-'article'        => 'Content page',
-'newwindow'      => '(opens in new window)',
-'cancel'         => 'Cancel',
+'about'         => 'About',
+'article'       => 'Content page',
+'newwindow'     => '(opens in new window)',
+'cancel'        => 'Cancel',
+'moredotdotdot' => 'More…',
+'mypage'        => 'My page',
+'mytalk'        => 'My talk',
+'anontalk'      => 'Talk for this IP',
+'navigation'    => 'Navigation',
+'and'           => '&#32;and',
+
+# Cologne Blue skin
 'qbfind'         => 'Find',
 'qbbrowse'       => 'Browse',
 'qbedit'         => 'Edit',
@@ -638,12 +646,6 @@ XHTML id names.
 'qbpageinfo'     => 'Context',
 'qbmyoptions'    => 'My pages',
 'qbspecialpages' => 'Special pages',
-'moredotdotdot'  => 'More…',
-'mypage'         => 'My page',
-'mytalk'         => 'My talk',
-'anontalk'       => 'Talk for this IP',
-'navigation'     => 'Navigation',
-'and'            => '&#32;and',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -1547,6 +1549,14 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 # OpenSearch description
 'opensearch-desc' => '{{SITENAME}} ({{CONTENTLANGUAGE}})', # do not translate or duplicate this message to other languages
 
+# Quickbar
+'qbsettings'               => 'Quickbar',
+'qbsettings-none'          => 'None',
+'qbsettings-fixedleft'     => 'Fixed left',
+'qbsettings-fixedright'    => 'Fixed right',
+'qbsettings-floatingleft'  => 'Floating left',
+'qbsettings-floatingright' => 'Floating right',
+
 # Preferences page
 'preferences'               => 'Preferences',
 'preferences-summary'       => '', # do not translate or duplicate this message to other languages
@@ -1555,12 +1565,6 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'prefsnologin'              => 'Not logged in',
 'prefsnologintext'          => 'You must be <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logged in]</span> to set user preferences.',
 'prefsreset'                => 'Preferences have been reset from storage.',
-'qbsettings'                => 'Quickbar',
-'qbsettings-none'           => 'None',
-'qbsettings-fixedleft'      => 'Fixed left',
-'qbsettings-fixedright'     => 'Fixed right',
-'qbsettings-floatingleft'   => 'Floating left',
-'qbsettings-floatingright'  => 'Floating right',
 'changepassword'            => 'Change password',
 'prefs-skin'                => 'Skin',
 'skin-preview'              => 'Preview',
