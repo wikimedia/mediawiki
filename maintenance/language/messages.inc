@@ -161,6 +161,8 @@ $wgMessageStructure = array(
 		'qbspecialpages',
 		'faq',
 		'faqpage',
+		'sitetitle',
+		'sitesubtitle',
 	),
 	'metadata_help' => array(
 		'metadata_help',
@@ -256,10 +258,8 @@ $wgMessageStructure = array(
 	),
 	'miscellaneous3' => array(
 		'ok',
-		'sitetitle',
 		'pagetitle',
 		'pagetitle-view-mainpage',
-		'sitesubtitle',
 		'retrievedfrom',
 		'youhavenewmessages',
 		'newmessageslink',

@@ -648,6 +648,8 @@ XHTML id names.
 'qbspecialpages' => 'Special pages',
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
+'sitetitle'      => '{{SITENAME}}', # do not translate or duplicate this message to other languages
+'sitesubtitle'   => '', # do not translate or duplicate this message to other languages
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -739,10 +741,8 @@ XHTML id names.
 See [[Special:Version|version page]].',
 
 'ok'                           => 'OK',
-'sitetitle'                    => '{{SITENAME}}', # do not translate or duplicate this message to other languages
 'pagetitle'                    => '$1 - {{SITENAME}}', # only translate this message to other languages if you have to change it
 'pagetitle-view-mainpage'      => '{{SITENAME}}', # only translate this message to other languages if you have to change it
-'sitesubtitle'                 => '', # do not translate or duplicate this message to other languages
 'retrievedfrom'                => 'Retrieved from "$1"',
 'youhavenewmessages'           => 'You have $1 ($2).',
 'newmessageslink'              => 'new messages',
