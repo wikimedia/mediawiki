@@ -3093,9 +3093,9 @@ $1',
 'htmlform-selectorother-other' => '其它',
 
 # Special:CreatePage
-'createpage'              => '創建一個新頁面',
+'createpage'              => '創建新頁面',
 'createpage-submitbutton' => '遞交',
-'createpage-instructions' => '輸入您想去創建頁面的標題：',
+'createpage-instructions' => '請輸入您想創建頁面的標題：',
 'createpage-entertitle'   => '請輸入您的頁面標題。',
 'createpage-titleexists'  => '以標題[[$1]]之頁面已經存在。
 您是否想去編輯現有之頁面？',

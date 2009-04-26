@@ -3107,24 +3107,24 @@ $1',
 'dberr-cachederror' => '这是所请求页面的缓存副本，可能不是最新的。',
 
 # HTML forms
-'htmlform-invalid-input'       => '在您的输入中出现了一些问题',
-'htmlform-select-badoption'    => '您所指定的值不是一个有效的选项。',
-'htmlform-int-invalid'         => '您所指定的值不是一个整数。',
+'htmlform-invalid-input'       => '您输入的内容存在问题',
+'htmlform-select-badoption'    => '您所指定的值不是有效的选项。',
+'htmlform-int-invalid'         => '您所指定的值不是整数。',
 'htmlform-int-toolow'          => '您所指定的值低于最小值$1',
 'htmlform-int-toohigh'         => '您所指定的值高于最大值$1',
 'htmlform-submit'              => '提交',
-'htmlform-reset'               => '复原更改',
-'htmlform-selectorother-other' => '其它',
+'htmlform-reset'               => '撤销更改',
+'htmlform-selectorother-other' => '其他',
 
 # Special:CreatePage
-'createpage'              => '创建一个新页面',
-'createpage-submitbutton' => '递交',
-'createpage-instructions' => '输入您想去创建页面的标题：',
-'createpage-entertitle'   => '请输入您的页面标题。',
-'createpage-titleexists'  => '以标题[[$1]]之页面已经存在。
-您是否想去编辑现有之页面？',
-'createpage-tryagain'     => '否。我想用一个不同的标题创建一个新页面。',
-'createpage-editexisting' => '是。我想去贡献现有之页面。',
-'createpage-badtitle'     => '“$1”可以用作页面标题',
+'createpage'              => '创建新页面',
+'createpage-submitbutton' => '提交',
+'createpage-instructions' => '请输入您想创建页面的标题：',
+'createpage-entertitle'   => '请为您的页面输入标题。',
+'createpage-titleexists'  => '标题为[[$1]]的页面已经存在。
+您是否需要编辑现有页面？',
+'createpage-tryagain'     => '否，我想用别的标题来创建新页面。',
+'createpage-editexisting' => '是，我想编辑现有页面。',
+'createpage-badtitle'     => '“$1”无法用作页面标题',
 
 );
