@@ -78,12 +78,14 @@ $messages = array(
 # Categories related messages
 'subcategories' => 'རིགས་ཕལ་བ།',
 
-'about'          => 'ཨཱབོཨུཏ་',
-'cancel'         => 'དོར་བ།',
+'about'      => 'ཨཱབོཨུཏ་',
+'cancel'     => 'དོར་བ།',
+'mytalk'     => 'ངའི་གླེང་མོལ།',
+'navigation' => 'དཀར་ཆག',
+
+# Cologne Blue skin
 'qbedit'         => 'རྩོམ་སྒྲིག',
 'qbspecialpages' => 'དམིཊ་བསལ་གྱི་བཟོ་བཅོས།',
-'mytalk'         => 'ངའི་གླེང་མོལ།',
-'navigation'     => 'དཀར་ཆག',
 
 'help'             => 'རོགས་རམ།',
 'search'           => 'འཚོལ།',

@@ -31,13 +31,15 @@ $messages = array(
 # Categories related messages
 'category_header' => 'Nyɛw cogoya kɔnɔ: "$1"',
 
-'article'        => 'Nyɛ',
+'article' => 'Nyɛ',
+'mypage'  => "N'ka nyɛ",
+'mytalk'  => "N'ka baronyɛ",
+'and'     => '&#32;ani',
+
+# Cologne Blue skin
 'qbfind'         => 'Nyini',
 'qbedit'         => 'Yɛlɛma',
 'qbspecialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
-'mypage'         => "N'ka nyɛ",
-'mytalk'         => "N'ka baronyɛ",
-'and'            => '&#32;ani',
 
 'help'           => 'Dɛmɛ',
 'search'         => 'Nyini',

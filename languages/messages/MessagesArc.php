@@ -81,19 +81,21 @@ $messages = array(
 # Categories related messages
 'listingcontinuesabbrev' => '(ܫܘܠܡܐ)',
 
-'article'        => 'ܡܓܠܬܐ',
-'newwindow'      => '(ܦܬܚ ܒܟܘܬܐ ܚܕܬܐ)',
-'cancel'         => 'ܒܛܘܠ',
+'article'       => 'ܡܓܠܬܐ',
+'newwindow'     => '(ܦܬܚ ܒܟܘܬܐ ܚܕܬܐ)',
+'cancel'        => 'ܒܛܘܠ',
+'moredotdotdot' => '...ܝܬܝܪ̈ܐ',
+'mypage'        => 'ܦܐܬܝ',
+'mytalk'        => 'ܕܘܪܫܝ',
+'anontalk'      => 'ܡܡܠܠܐ ܠܗܢܐ IP',
+'navigation'    => 'ܐܠܦܪܘܬܐ',
+'and'           => '&#32;ܘ',
+
+# Cologne Blue skin
 'qbedit'         => 'ܫܚܠܦ',
 'qbpageoptions'  => 'ܗܕܐ ܦܐܬܐ',
 'qbmyoptions'    => 'ܓܒܝܘ̈ܬܝ',
 'qbspecialpages' => 'ܦܐܬܘܬܐ ܪܫܝܬܐ',
-'moredotdotdot'  => '...ܝܬܝܪ̈ܐ',
-'mypage'         => 'ܦܐܬܝ',
-'mytalk'         => 'ܕܘܪܫܝ',
-'anontalk'       => 'ܡܡܠܠܐ ܠܗܢܐ IP',
-'navigation'     => 'ܐܠܦܪܘܬܐ',
-'and'            => '&#32;ܘ',
 
 'errorpagetitle'    => 'ܦܘܕܐ',
 'returnto'          => 'ܕܥܘܪ ܠ $1.',

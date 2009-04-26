@@ -70,10 +70,12 @@ $messages = array(
 'article'   => 'таптар',
 'newwindow' => '(керла кор)',
 'cancel'    => 'Cаца',
-'qbfind'    => 'Лахар',
 'mytalk'    => 'Сан цІера дийцар',
 'anontalk'  => 'ХІар IP-адреси дийцар',
 'and'       => '&#32;а',
+
+# Cologne Blue skin
+'qbfind' => 'Лахар',
 
 'errorpagetitle'    => 'ГІалат',
 'help'              => 'ГIo',
@@ -137,7 +139,6 @@ $messages = array(
 'error' => 'ГІалат',
 
 # Login and logout pages
-'loginpagetitle'     => 'Чу валар',
 'yourname'           => 'Хьан цIе',
 'yourpassword'       => 'Хьан тешаман дош',
 'yourpasswordagain'  => 'Юха язде тешаман дош:',

@@ -70,18 +70,20 @@ $messages = array(
 'category_header' => 'Articuli in a categuria "$1"',
 'subcategories'   => 'Sottucategurie',
 
-'about'          => 'À prupositu',
-'article'        => 'Articulu',
-'cancel'         => 'Annullà',
+'about'      => 'À prupositu',
+'article'    => 'Articulu',
+'cancel'     => 'Annullà',
+'mypage'     => 'A mo pagina',
+'mytalk'     => 'E mo discussioni',
+'anontalk'   => 'Discussione per istu indirizzu IP',
+'navigation' => 'Navigazione',
+'and'        => '&#32;è',
+
+# Cologne Blue skin
 'qbpageoptions'  => 'Issa pagina',
 'qbpageinfo'     => 'Cuntestu',
 'qbmyoptions'    => 'E mo pagine',
 'qbspecialpages' => 'Pagine spiciale',
-'mypage'         => 'A mo pagina',
-'mytalk'         => 'E mo discussioni',
-'anontalk'       => 'Discussione per istu indirizzu IP',
-'navigation'     => 'Navigazione',
-'and'            => '&#32;è',
 
 'errorpagetitle'   => 'Errore',
 'returnto'         => 'Vultà à $1.',
@@ -224,7 +226,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'preferences'       => 'Preferenze',
 'mypreferences'     => 'Preferenze',
 'prefs-math'        => 'Matematica',
-'math_syntax_error' => 'errore di sintassa',
 'prefs-rc'          => 'Ultimi cambiamenti',
 'prefs-watchlist'   => 'Articuli seguitati',
 'columns'           => 'Culonne:',
@@ -465,6 +466,9 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Attribution
 'anonymous' => 'Utilizatore(/i) anonimu(/i) di {{SITENAME}}',
 'others'    => 'altri',
+
+# Math errors
+'math_syntax_error' => 'errore di sintassa',
 
 # Media information
 'show-big-image' => 'Imagine in alta resoluzione',

@@ -75,16 +75,18 @@ $messages = array(
 'nov'           => 'Ade',
 'dec'           => 'Dzom',
 
-'about'          => 'Ŋutinya',
-'newwindow'      => '(eʋua fesre yeye)',
-'cancel'         => 'Dzudzɔ etɔtrɔ',
+'about'      => 'Ŋutinya',
+'newwindow'  => '(eʋua fesre yeye)',
+'cancel'     => 'Dzudzɔ etɔtrɔ',
+'mypage'     => 'Axa nye',
+'navigation' => 'Mɔtabiala',
+'and'        => '&#32;kpakple',
+
+# Cologne Blue skin
 'qbedit'         => 'Trɔ asi le eŋu',
 'qbpageoptions'  => 'Axa sia',
 'qbmyoptions'    => 'Nyeƒe axawo',
 'qbspecialpages' => 'Axa tɔxewo',
-'mypage'         => 'Axa nye',
-'navigation'     => 'Mɔtabiala',
-'and'            => '&#32;kpakple',
 
 'errorpagetitle'   => 'Vodada',
 'returnto'         => 'Gbugbɔ yi $1.',

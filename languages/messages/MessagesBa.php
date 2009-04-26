@@ -99,17 +99,19 @@ $messages = array(
 'nov'           => 'Ноябрь (Ҡырпағай)',
 'dec'           => 'Декабрь (Аҡъюлай)',
 
-'about'          => 'Тасуирлау',
-'article'        => 'Мәҡәлә',
-'newwindow'      => '(яңы биттә)',
-'cancel'         => 'Бөтөрөргә',
+'about'      => 'Тасуирлау',
+'article'    => 'Мәҡәлә',
+'newwindow'  => '(яңы биттә)',
+'cancel'     => 'Бөтөрөргә',
+'mypage'     => 'Шәхси бит',
+'mytalk'     => 'Минең менән фекер алышыу',
+'navigation' => 'Төп йүнәлештәр',
+'and'        => '&#32;һәм',
+
+# Cologne Blue skin
 'qbfind'         => 'Эҙләү',
 'qbmyoptions'    => 'Көйләү',
 'qbspecialpages' => 'Махсус биттәр',
-'mypage'         => 'Шәхси бит',
-'mytalk'         => 'Минең менән фекер алышыу',
-'navigation'     => 'Төп йүнәлештәр',
-'and'            => '&#32;һәм',
 
 'errorpagetitle'   => 'Хата',
 'returnto'         => '$1 битенә ҡайтыу.',
@@ -169,7 +171,6 @@ $messages = array(
 'badtitle'        => 'Ярамаған исем',
 
 # Login and logout pages
-'loginpagetitle'          => 'Танышыу йәки теркәлеү',
 'yourname'                => 'Ҡатнашыусы исеме',
 'yourpassword'            => 'Һеҙҙең пароль',
 'yourpasswordagain'       => 'Парольде ҡабаттан яҙыу',

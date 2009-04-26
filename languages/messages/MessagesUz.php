@@ -119,15 +119,17 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki haqida ko'p so'raladigan savollar]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki yangi versiyasi chiqqanda xabar berish ro'yxati]",
 
-'about'          => 'Haqida',
-'newwindow'      => '(yangi oynada ochiladi)',
-'cancel'         => 'Voz kechish',
+'about'      => 'Haqida',
+'newwindow'  => '(yangi oynada ochiladi)',
+'cancel'     => 'Voz kechish',
+'mytalk'     => 'Suhbatim',
+'anontalk'   => 'Bu IP uchun suhbat',
+'navigation' => 'Saytda harakatlanish',
+'and'        => '&#32;va',
+
+# Cologne Blue skin
 'qbedit'         => 'Tahrirlash',
 'qbspecialpages' => 'Maxsus sahifalar',
-'mytalk'         => 'Suhbatim',
-'anontalk'       => 'Bu IP uchun suhbat',
-'navigation'     => 'Saytda harakatlanish',
-'and'            => '&#32;va',
 
 'errorpagetitle'   => 'Xato',
 'returnto'         => '$1 sahifasiga qaytish.',

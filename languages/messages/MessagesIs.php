@@ -340,10 +340,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Algengar spurningar MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Póstlisti MediaWiki-útgáfa]',
 
-'about'          => 'Um',
-'article'        => 'Efnissíða',
-'newwindow'      => '(opnast í nýjum glugga)',
-'cancel'         => 'Hætta við',
+'about'         => 'Um',
+'article'       => 'Efnissíða',
+'newwindow'     => '(opnast í nýjum glugga)',
+'cancel'        => 'Hætta við',
+'moredotdotdot' => 'Meira...',
+'mypage'        => 'Mín síða',
+'mytalk'        => 'Spjall',
+'anontalk'      => 'Spjallsíða þessa vistfangs.',
+'navigation'    => 'Flakk',
+'and'           => '&#32;og',
+
+# Cologne Blue skin
 'qbfind'         => 'Finna',
 'qbbrowse'       => 'Flakka',
 'qbedit'         => 'Breyta',
@@ -351,12 +359,8 @@ $messages = array(
 'qbpageinfo'     => 'Samhengi',
 'qbmyoptions'    => 'Mínar síður',
 'qbspecialpages' => 'Kerfissíður',
-'moredotdotdot'  => 'Meira...',
-'mypage'         => 'Mín síða',
-'mytalk'         => 'Spjall',
-'anontalk'       => 'Spjallsíða þessa vistfangs.',
-'navigation'     => 'Flakk',
-'and'            => '&#32;og',
+'faq'            => 'Algengar spurningar',
+'faqpage'        => 'Project:Algengar spurningar',
 
 # Metadata in edit box
 'metadata_help' => 'Lýsigögn:',
@@ -428,8 +432,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Almennur fyrirvari',
 'edithelp'             => 'Breytingarhjálp',
 'edithelppage'         => 'Help:Breyta',
-'faq'                  => 'Algengar spurningar',
-'faqpage'              => 'Project:Algengar spurningar',
 'helppage'             => 'Help:Efnisyfirlit',
 'mainpage'             => 'Forsíða',
 'mainpage-description' => 'Forsíða',
@@ -506,10 +508,6 @@ Síðasta gagnagrunnsfyrirspurnin var:
 „$1“
 úr aðgerðinni: „$2“.
 MySQL skilar villuboðanum „$3: $4“',
-'noconnect'            => 'Því miður! Þessi wiki á við tæknilega örðugleika að stríða, og nær ekki sambandi við gagnagrunnsvefþjóninn. <br />
-$1',
-'nodb'                 => 'Gat ekki valið gagnagrunn $1',
-'cachederror'          => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar:',
 'laggedslavemode'      => 'Viðvörun: Síðan inniheldur ekki nýjustu uppfærslur.',
 'readonly'             => 'Gagnagrunnur læstur',
 'enterlockreason'      => 'Gefðu fram ástæðu fyrir læsingunni, og einnig áætlun
@@ -578,7 +576,6 @@ Athugaðu að sumar síður kunna að birtast líkt og þú sért ennþá skrá�
 'welcomecreation'            => '== Velkomin(n), $1! ==
 Aðgangurinn þinn hefur verið búinn til.
 Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}}-stillingunum]] þínum.',
-'loginpagetitle'             => 'Innskráning notanda',
 'yourname'                   => 'Notandanafn:',
 'yourpassword'               => 'Lykilorð:',
 'yourpasswordagain'          => 'Endurrita lykilorð:',
@@ -686,8 +683,6 @@ Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hé
 'retypenew'                 => 'Endurtaktu nýja lykilorðið:',
 'resetpass_submit'          => 'Skrifaðu aðgangsorðið og skráðu þig inn',
 'resetpass_success'         => 'Aðgangsorðinu þínu hefur verið breytt! Skráir þig inn...',
-'resetpass_bad_temporary'   => 'Ógilt tímabundið lykilorð.
-Það kann að vera að þér hafi nú þegar tekist að breyta lykilorðinu þínu eða fengið nýtt tímabundið lykilorð.',
 'resetpass_forbidden'       => 'Ekki er hægt að breyta lykilorðum',
 'resetpass-submit-loggedin' => 'Breyta lykilorði',
 'resetpass-temp-password'   => 'Tímabundið lykilorð:',
@@ -766,7 +761,6 @@ Vinsamlegast tilgreindu allt að ofanverðu í fyrirspurnum þínum.",
 'blockededitsource'                => "Texti '''þinna breytinga''' á '''$1''' eru sýndar að neðan:",
 'whitelistedittitle'               => 'Innskráningar er þörf til að breyta',
 'whitelistedittext'                => 'Þú þarft að $1 til að breyta síðum.',
-'confirmedittitle'                 => 'Netfang þarf að staðfesta til að breyta',
 'confirmedittext'                  => 'Þú verður að staðfesta netfangið þitt áður en þú getur breytt síðum. Vinsamlegast stilltu og staðfestu netfangið þitt í gegnum [[Special:Preferences|stillingarnar]].',
 'nosuchsectiontitle'               => 'Hluti ekki til',
 'nosuchsectiontext'                => 'Það hefur komið upp villa. Þú hefur reynt að breyta hluta $1 á síðunni, en hann er ekki til. Vinsamlegast farðu til baka og reyndu að breyta síðunni í heild.',
@@ -1012,7 +1006,6 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'searchhelp-url'                   => 'Help:Efnisyfirlit',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Leita að síðum með þessu forskeyti]]',
 'searchprofile-articles'           => 'Efnissíður',
-'searchprofile-articles-and-proj'  => 'Efnis- og verkefnasíður',
 'searchprofile-project'            => 'Verkefnasíður',
 'searchprofile-images'             => 'Skrár',
 'searchprofile-articles-tooltip'   => 'Leita í $1',
@@ -1048,19 +1041,20 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 Þú getur leitað í genum Google á meðan.
 Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 
+# Quickbar
+'qbsettings'               => 'Valblað',
+'qbsettings-none'          => 'Sleppa',
+'qbsettings-fixedleft'     => 'Fast vinstra megin',
+'qbsettings-fixedright'    => 'Fast hægra megin',
+'qbsettings-floatingleft'  => 'Fljótandi til vinstri',
+'qbsettings-floatingright' => 'Fljótandi til hægri',
+
 # Preferences page
 'preferences'               => 'Stillingar',
 'mypreferences'             => 'Stillingar',
 'prefs-edits'               => 'Fjöldi breytinga:',
 'prefsnologin'              => 'Ekki innskráður',
 'prefsnologintext'          => 'Þú verður að vera <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} skráð(ur) inn]</span> til að breyta notandastillingum.',
-'prefsreset'                => 'Stillingum hefur verið breytt yfir í þær stillingar sem eru í minni.',
-'qbsettings'                => 'Valblað',
-'qbsettings-none'           => 'Sleppa',
-'qbsettings-fixedleft'      => 'Fast vinstra megin',
-'qbsettings-fixedright'     => 'Fast hægra megin',
-'qbsettings-floatingleft'   => 'Fljótandi til vinstri',
-'qbsettings-floatingright'  => 'Fljótandi til hægri',
 'changepassword'            => 'Breyta lykilorði',
 'prefs-skin'                => 'Þema',
 'skin-preview'              => 'Forskoða',
@@ -1068,11 +1062,6 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'dateformat'                => 'Tímasnið',
 'datedefault'               => 'Sjálfgefið',
 'prefs-datetime'            => 'Tímasnið og tímabelti',
-'math_failure'              => 'Þáttun mistókst',
-'math_unknown_error'        => 'óþekkt villa',
-'math_unknown_function'     => 'óþekkt virkni',
-'math_lexing_error'         => 'lestrarvilla',
-'math_syntax_error'         => 'málfræðivilla',
 'prefs-personal'            => 'Notandaupplýsingar',
 'prefs-rc'                  => 'Nýlegar breytingar',
 'prefs-watchlist'           => 'Vaktlistinn',
@@ -1098,7 +1087,6 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'recentchangescount'        => 'Fjöldi síðna á „nýlegum breytingum“',
 'savedprefs'                => 'Stillingarnar þínar hafa verið vistaðar.',
 'timezonelegend'            => 'Tímabelti',
-'timezonetext'              => 'Hliðrun staðartíma frá UTC+0.',
 'localtime'                 => 'Staðartími',
 'timezoneoffset'            => 'Hliðrun',
 'servertime'                => 'Tími netþjóns',
@@ -2102,6 +2090,13 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'mw_math_source' => 'Sýna TeX jöfnu (fyrir textavafra)',
 'mw_math_modern' => 'Mælt með fyrir nýja vafra',
 'mw_math_mathml' => 'MathML ef mögulegt (tilraun)',
+
+# Math errors
+'math_failure'          => 'Þáttun mistókst',
+'math_unknown_error'    => 'óþekkt villa',
+'math_unknown_function' => 'óþekkt virkni',
+'math_lexing_error'     => 'lestrarvilla',
+'math_syntax_error'     => 'málfræðivilla',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merkja sem yfirfarið',

@@ -138,10 +138,17 @@ $messages = array(
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
-'about'          => 'A propòsitu de',
-'article'        => 'Artìculu',
-'newwindow'      => "(aberit in d'una fentana noa)",
-'cancel'         => 'Burra',
+'about'      => 'A propòsitu de',
+'article'    => 'Artìculu',
+'newwindow'  => "(aberit in d'una fentana noa)",
+'cancel'     => 'Burra',
+'mypage'     => 'Sa pàgina mea',
+'mytalk'     => 'Cuntierras meas',
+'anontalk'   => 'Cuntierras pro custu IP',
+'navigation' => 'Navigadura',
+'and'        => '&#32;e',
+
+# Cologne Blue skin
 'qbfind'         => 'Agata',
 'qbbrowse'       => 'Nàviga',
 'qbedit'         => 'Acontza',
@@ -149,11 +156,6 @@ $messages = array(
 'qbpageinfo'     => 'Cuntestu de sa pàgina',
 'qbmyoptions'    => 'Is preferèntzias meas',
 'qbspecialpages' => 'Pàginas ispetziales',
-'mypage'         => 'Sa pàgina mea',
-'mytalk'         => 'Cuntierras meas',
-'anontalk'       => 'Cuntierras pro custu IP',
-'navigation'     => 'Navigadura',
-'and'            => '&#32;e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
@@ -280,9 +282,6 @@ S\'ùrtima consulta chi as tentadu fiat:
 <blockquote><tt>$1</tt></blockquote>
 aintru de sa funtzione "<tt>$2</tt>".
 MySQL at torradu custa faddina "<tt>$3: $4</tt>".',
-'noconnect'          => 'Connessione a su database faddia pro unu problema tennicu de su giassu.<br />
-$1',
-'nodb'               => 'Seletzione de su database $1 no arrenèxia',
 'readonly'           => 'Database bloccadu',
 'enterlockreason'    => 'Inserta su motivu de su bloccu, ispetzifichende su momentu probabile chi su bloccu at a acabai',
 'readonlytext'       => "In custu momentu su database est bloccadu dae aciunturas e àteras modificas, probabilmente pro ordinaria manutentzione a su database, a pustis de custas at a èssere normale torra.
@@ -313,7 +312,6 @@ Pro praxeri signala s\'acuntèssiu a unu [[Special:ListUsers/sysop|aministradore
 'logouttext'              => 'Logout effettuato.
 Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indirizzo IP resterà riconoscibile), oppure puoi nuovamente richiedere il login con il precedente username, oppure come uno diverso.',
 'welcomecreation'         => '<h2>Benvenuto, $1!</h2><p>Il tuo account è stato creato con successo.<br />Grazie per aver scelto di far crescere {{SITENAME}} con il tuo aiuto.<br />Per rendere {{SITENAME}} più tua, e per usarla più scorrevolmente, non dimenticare di personalizzare le tue preferenze.',
-'loginpagetitle'          => 'Login usuàriu',
 'yourname'                => 'Nòmene usuàriu',
 'yourpassword'            => 'Password:',
 'yourpasswordagain'       => 'Arripiti sa password',
@@ -539,38 +537,38 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'powersearch-redir'         => 'Lista re-indiritzamentos',
 'powersearch-field'         => 'Chirca',
 
-# Preferences page
-'preferences'              => 'Preferèntzias',
-'mypreferences'            => 'Preferèntzias meas',
-'prefsnologin'             => 'Non ses intrau',
-'prefsnologintext'         => 'Depis èssere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} intrau]</span> pro scioberai is preferèntzias.',
-'prefsreset'               => 'Le tue Preferenze sono state ripescate dalla memoria di sistema del potente server di {{SITENAME}}.',
+# Quickbar
 'qbsettings'               => 'Settaggio della barra menu',
 'qbsettings-none'          => 'Nessuno',
 'qbsettings-fixedleft'     => 'Fisso a sinistra',
 'qbsettings-fixedright'    => 'Fisso a destra',
 'qbsettings-floatingleft'  => 'Fluttuante a sinistra',
 'qbsettings-floatingright' => 'Fluttuante a destra',
-'changepassword'           => 'Cambia password',
-'prefs-skin'               => 'Aspetto',
-'prefs-watchlist'          => 'Watchlist',
-'saveprefs'                => 'Sarva preferèntzias',
-'resetprefs'               => 'Resetta preferenze',
-'prefs-editing'            => 'Box de acontzadura',
-'rows'                     => 'Lìnias:',
-'columns'                  => 'Colunnas:',
-'searchresultshead'        => 'Settaggio delle preferenze per la ricerca',
-'resultsperpage'           => 'Risultati da visualizzare per pagina',
-'contextlines'             => 'Righe di testo da mostrare per ciascun risultato',
-'contextchars'             => 'Caratteri per linea',
-'recentchangescount'       => 'Numero di titoli nelle "modifiche recenti"',
-'savedprefs'               => 'Le tue preferenze sono state salvate.',
-'timezonetext'             => 'Immetti il numero di ore di differenza fra la tua ora locale e la ora del server (UTC).',
-'localtime'                => 'Ora locale:',
-'timezoneoffset'           => 'Offset',
-'timezoneregion-africa'    => 'Àfrica',
-'timezoneregion-asia'      => 'Àsia',
-'timezoneregion-europe'    => 'Europa',
+
+# Preferences page
+'preferences'           => 'Preferèntzias',
+'mypreferences'         => 'Preferèntzias meas',
+'prefsnologin'          => 'Non ses intrau',
+'prefsnologintext'      => 'Depis èssere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} intrau]</span> pro scioberai is preferèntzias.',
+'changepassword'        => 'Cambia password',
+'prefs-skin'            => 'Aspetto',
+'prefs-watchlist'       => 'Watchlist',
+'saveprefs'             => 'Sarva preferèntzias',
+'resetprefs'            => 'Resetta preferenze',
+'prefs-editing'         => 'Box de acontzadura',
+'rows'                  => 'Lìnias:',
+'columns'               => 'Colunnas:',
+'searchresultshead'     => 'Settaggio delle preferenze per la ricerca',
+'resultsperpage'        => 'Risultati da visualizzare per pagina',
+'contextlines'          => 'Righe di testo da mostrare per ciascun risultato',
+'contextchars'          => 'Caratteri per linea',
+'recentchangescount'    => 'Numero di titoli nelle "modifiche recenti"',
+'savedprefs'            => 'Le tue preferenze sono state salvate.',
+'localtime'             => 'Ora locale:',
+'timezoneoffset'        => 'Offset',
+'timezoneregion-africa' => 'Àfrica',
+'timezoneregion-asia'   => 'Àsia',
+'timezoneregion-europe' => 'Europa',
 
 # User rights
 'editinguser'                    => "Modifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",

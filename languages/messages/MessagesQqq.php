@@ -223,25 +223,30 @@ See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for
 'mainpagedocfooter' => 'Along with {{msg|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.
 This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for an example. For languages having grammatical distinctions and not having an appropriate <nowiki>{{GRAMMAR:}}</nowiki> software available, a suggestion to check and possibly amend the messages having <nowiki>{{SITENAME}}</nowiki> may be valuable. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/ksh]] for an example.',
 
-'about'          => '{{Identical|About}}',
-'article'        => '{{Identical|Content page}}',
-'newwindow'      => 'Below the edit form, next to "[[MediaWiki:Edithelp/{{SUBPAGENAME}}|Editing help]]".',
-'cancel'         => 'Message shown below the edit form, and if you click on it, you stop with editing the page and go back to the normal page view.
+'about'         => '{{Identical|About}}',
+'article'       => '{{Identical|Content page}}',
+'newwindow'     => 'Below the edit form, next to "[[MediaWiki:Edithelp/{{SUBPAGENAME}}|Editing help]]".',
+'cancel'        => 'Message shown below the edit form, and if you click on it, you stop with editing the page and go back to the normal page view.
 
 {{Identical|Cancel}}',
-'qbfind'         => 'Alternative for "search" as used in Cologne Blue skin.',
-'qbedit'         => '{{Identical|Edit}}',
-'qbmyoptions'    => '{{Identical|My pages}}',
-'qbspecialpages' => '{{Identical|Special pages}}',
-'moredotdotdot'  => '{{Identical|More...}}',
-'mytalk'         => 'In the personal urls page section - right upper corner.',
-'anontalk'       => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
-'navigation'     => '{{Identical|Navigation}}',
-'and'            => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it at the beginning without a gap between it and the "&". <nowiki>&#32;</nowiki> is a blank space, one character long. Please leave it as it is.
+'moredotdotdot' => '{{Identical|More...}}',
+'mytalk'        => 'In the personal urls page section - right upper corner.',
+'anontalk'      => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
+'navigation'    => '{{Identical|Navigation}}',
+'and'           => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it at the beginning without a gap between it and the "&". <nowiki>&#32;</nowiki> is a blank space, one character long. Please leave it as it is.
 
 This can also appear in the credits page if the credits feature is enabled,for example [http://translatewiki.net/wiki/Support&action=credits the credits of the support page]. (To view any credits page type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar.)
 
 {{Identical|And}}',
+
+# Cologne Blue skin
+'qbfind'         => 'Alternative for "search" as used in Cologne Blue skin.',
+'qbedit'         => '{{Identical|Edit}}',
+'qbmyoptions'    => '{{Identical|My pages}}',
+'qbspecialpages' => '{{Identical|Special pages}}',
+'faqpage'        => "FAQ is short for ''frequently asked questions''. This page is only linked on some of the old skins, not in Monobook or Modern.
+
+{{doc-important|Do not translate <tt>Project:</tt> part.}}",
 
 # Metadata in edit box
 'metadata_help' => '{{Identical|Metadata}}',
@@ -341,9 +346,6 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 'edithelp'             => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
 'edithelppage'         => 'The help page displayed when a user clicks on editing help link which is present on the right of Show changes button. 
 {{doc-important|Do not change <tt>Help:</tt> part.}}',
-'faqpage'              => "FAQ is short for ''frequently asked questions''. This page is only linked on some of the old skins, not in Monobook or Modern.
-
-{{doc-important|Do not translate <tt>Project:</tt> part.}}",
 'helppage'             => 'The link destination used by default in the sidebar, and in {{msg|noarticletext}}. 
 {{doc-important|Do not change <tt>Help:</tt> part.}}
 {{Identical|HelpContent}}',
@@ -593,8 +595,6 @@ $1 is the minimum number of characters in the password.',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.',
 'resetpass-wrong-oldpass'   => 'Error message shown on [[Special:Resetpass]] when the old password is not valid.',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
-'resetpass-logentry'        => 'Log entry.
-* $1 is a link to a user page.',
 
 # Edit page toolbar
 'bold_sample'     => 'This is the sample text that you get when you press the first button on the left on the edit toolbar.
@@ -868,85 +868,86 @@ Used in the final position of a {{msg-mw|comma-separator}} separated list headed
 'diff-height'             => '{{Identical|Height}}',
 
 # Search results
-'searchresults-title'             => 'Appears as page title in the html header of the search result special page.',
-'noexactmatch'                    => 'This is the message that you get if you follow a link to a page or article that does not exist.',
-'notitlematches'                  => 'Header of results page after a search for a title for which no page exists',
-'textmatches'                     => 'When displaying search results',
-'notextmatches'                   => 'Error message when there are no results',
-'prevn'                           => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the '[[Special:Categories]]' page), where it is used as the first argument of {{msg-mw|Viewprevnext}}.
+'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',
+'noexactmatch'                   => 'This is the message that you get if you follow a link to a page or article that does not exist.',
+'notitlematches'                 => 'Header of results page after a search for a title for which no page exists',
+'textmatches'                    => 'When displaying search results',
+'notextmatches'                  => 'Error message when there are no results',
+'prevn'                          => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the '[[Special:Categories]]' page), where it is used as the first argument of {{msg-mw|Viewprevnext}}.
 It is also used by Category pages (which do ''not'' use {{msg-mw|Viewprevnext}}).
 $1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
 [[Special:WhatLinksHere|Whatlinkshere]] pages use {{msg-mw|Whatlinkshere-prev}} instead (still as an argument to {{msg-mw|Viewprevnext}}).
 
 {{Identical|Previous}}",
-'nextn'                           => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the '[[Special:Categories]]' page), where it is used as the second argument of {{msg-mw|Viewprevnext}}.
+'nextn'                          => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the '[[Special:Categories]]' page), where it is used as the second argument of {{msg-mw|Viewprevnext}}.
 It is also used by Category pages (which do ''not'' use {{msg-mw|Viewprevnext}}).
 $1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
 [[Special:WhatLinksHere|Whatlinkshere]] pages use {{msg-mw|Whatlinkshere-next}} instead (still as an argument to {{msg-mw|Viewprevnext}}).
 
 {{Identical|Next $1}}",
-'viewprevnext'                    => 'This is part of the navigation message on the top and bottom of Special pages which are lists of things, e.g. the User\'s contributions page (in date order) or the list of all categories (in alphabetical order). ($1) and ($2) are either {{msg-mw|Pager-older-n}} and {{msg-mw|Pager-newer-n}} (for date order) or {{msg-mw|Prevn}} and {{msg-mw|Nextn}} (for alphabetical order).
+'viewprevnext'                   => 'This is part of the navigation message on the top and bottom of Special pages which are lists of things, e.g. the User\'s contributions page (in date order) or the list of all categories (in alphabetical order). ($1) and ($2) are either {{msg-mw|Pager-older-n}} and {{msg-mw|Pager-newer-n}} (for date order) or {{msg-mw|Prevn}} and {{msg-mw|Nextn}} (for alphabetical order).
 It is also used by [[Special:WhatLinksHere|Whatlinkshere]] pages, where ($1) and ($2) are {{msg-mw|Whatlinkshere-prev}} and {{msg-mw|Whatlinkshere-next}}.
 ($3) is made up in all cases of the various proposed numbers of results per page, e.g. "(20 | 50 | 100 | 250 | 500)".
 For Special pages, the navigation bar is prefixed by "({{msg-mw|Page_first}} | {{msg-mw|Page_last}})" (alphabetical order) or "({{msg-mw|Histfirst}} | {{msg-mw|Histlast}})" (date order).
 Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|Showingresultsnum}} message (for Special pages) or by the {{msg-mw|Linkshere}} message (for Whatlinkshere pages).',
-'searchmenu-legend'               => '{{Identical|Search options}}',
-'searchmenu-exists'               => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).',
-'searchmenu-new'                  => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).',
-'searchhelp-url'                  => '{{Identical|HelpContent}}
+'searchmenu-legend'              => '{{Identical|Search options}}',
+'searchmenu-exists'              => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).',
+'searchmenu-new'                 => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).',
+'searchhelp-url'                 => '{{Identical|HelpContent}}
 Description: The URL of the search help page.
 {{doc-important|Do not change "Help:" part.}}',
-'searchprofile-articles'          => 'A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.
+'searchprofile-articles'         => 'A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.
 
 {{Identical|Content page}}',
-'searchprofile-articles-and-proj' => '{{Identical|Content page}}',
-'searchprofile-project'           => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
-'searchprofile-images'            => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
-'searchprofile-everything'        => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
-'searchprofile-advanced'          => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
-'searchprofile-articles-tooltip'  => '{{Identical|Search in $1}}',
-'searchprofile-project-tooltip'   => '{{Identical|Search in $1}}',
-'search-result-size'              => 'Shown per line of a [[Special:Search|search result]]
+'searchprofile-project'          => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
+'searchprofile-images'           => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
+'searchprofile-everything'       => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
+'searchprofile-advanced'         => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
+'searchprofile-articles-tooltip' => '{{Identical|Search in $1}}',
+'searchprofile-project-tooltip'  => '{{Identical|Search in $1}}',
+'search-result-size'             => 'Shown per line of a [[Special:Search|search result]]
 * $1 is the size of the page in bytes, but no need to add "byte" or similar as the unit is added by special function.
 * $2 is the sum of all words in this page.',
-'search-result-score'             => 'Shown per line of a [[Special:Search|search result]].
+'search-result-score'            => 'Shown per line of a [[Special:Search|search result]].
 
 $1 is the relevance of this result in per cent.
 
 {{Identical|Relevance: $1%}}',
-'search-redirect'                 => "$1 is a link to the redirect to the page (so, $1 is the page that the search result is redirected '''from''').",
-'search-interwiki-default'        => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
-'search-relatedarticle'           => '{{Identical|Related}}',
-'searchrelated'                   => '{{Identical|Related}}',
-'searchall'                       => '{{Identical|All}}',
-'showingresults'                  => "This message is used on some special pages such as 'Wanted categories'. $1 is the total number of results in the batch shown and $2 is the number of the first item listed.",
-'showingresultsnum'               => '$3 is the number of results on the page and $2 is the first number in the batch of results.',
-'showingresultstotal'             => 'Text above list of search results on special page of search results. 
+'search-redirect'                => "$1 is a link to the redirect to the page (so, $1 is the page that the search result is redirected '''from''').",
+'search-interwiki-default'       => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
+'search-relatedarticle'          => '{{Identical|Related}}',
+'searchrelated'                  => '{{Identical|Related}}',
+'searchall'                      => '{{Identical|All}}',
+'showingresults'                 => "This message is used on some special pages such as 'Wanted categories'. $1 is the total number of results in the batch shown and $2 is the number of the first item listed.",
+'showingresultsnum'              => '$3 is the number of results on the page and $2 is the first number in the batch of results.',
+'showingresultstotal'            => 'Text above list of search results on special page of search results. 
 * $1–$2 is the range of results shown on the page
 * $3 is the total number of results from the search
 * $4 is the number of results shown on the page (equal to the size of the $1–$2 interval)',
-'nonefound'                       => 'This message appears on the search results page if no results are found.
+'nonefound'                      => 'This message appears on the search results page if no results are found.
 {{doc-important|Do not translate "all:".}}',
-'search-nonefound'                => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
-'powersearch'                     => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
+'search-nonefound'               => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
+'powersearch'                    => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
 
 {{Identical|Advanced search}}',
-'powersearch-legend'              => 'Advanced search
+'powersearch-legend'             => 'Advanced search
 
 {{Identical|Advanced search}}',
-'powersearch-ns'                  => 'Used in the extended search form at [[Special:Search]]',
-'powersearch-redir'               => 'Used in the extended search form at [[Special:Search]]',
-'powersearch-field'               => 'Used in the extended search form at [[Special:Search]]',
-'search-external'                 => 'Legend of the fieldset for the input form when the internal search is disabled. Inside the fieldset [[MediaWiki:Searchdisabled]] and [[MediaWiki:Googlesearch]] is shown.',
-'searchdisabled'                  => 'Shown on [[Special:Search]] when the internal search is disabled.',
+'powersearch-ns'                 => 'Used in the extended search form at [[Special:Search]]',
+'powersearch-redir'              => 'Used in the extended search form at [[Special:Search]]',
+'powersearch-field'              => 'Used in the extended search form at [[Special:Search]]',
+'search-external'                => 'Legend of the fieldset for the input form when the internal search is disabled. Inside the fieldset [[MediaWiki:Searchdisabled]] and [[MediaWiki:Googlesearch]] is shown.',
+'searchdisabled'                 => 'Shown on [[Special:Search]] when the internal search is disabled.',
+
+# Quickbar
+'qbsettings'      => 'The title of the section in [[Special:Preferences]], only shown when using the skins "Standard/Classic" or "Cologne Blue". The quicbar is the same as the sidebar.',
+'qbsettings-none' => '{{Identical|None}}',
 
 # Preferences page
 'preferences'               => '{{Identical|Preferences}}',
 'mypreferences'             => '{{Identical|My preferences}}',
 'prefs-edits'               => 'In user preferences.',
 'prefsnologin'              => '{{Identical|Not logged in}}',
-'qbsettings'                => 'The title of the section in [[Special:Preferences]], only shown when using the skins "Standard/Classic" or "Cologne Blue". The quicbar is the same as the sidebar.',
-'qbsettings-none'           => '{{Identical|None}}',
 'changepassword'            => "Section heading on [[Special:Preferences]], tab 'User profile'.",
 'prefs-skin'                => 'Used in user preferences.',
 'skin-preview'              => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
@@ -954,7 +955,6 @@ $1 is the relevance of this result in per cent.
 {{Identical|Preview}}',
 'prefs-math'                => 'Used in user preferences.',
 'prefs-datetime'            => '{{Identical|Date}}',
-'math_syntax_error'         => '{{Identical|Syntax error}}',
 'prefs-personal'            => 'Title of a tab in [[Special:Preferences]].',
 'prefs-rc'                  => 'Used in user preferences.
 
@@ -981,7 +981,6 @@ $1 is the relevance of this result in per cent.
 'recentchangesdays-max'     => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
 'recentchangescount'        => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'savedprefs'                => 'This message appears after saving changes to your user preferences.',
-'timezonetext'              => "Additional explanation given in [[Special:Preferences]], tab 'date and time' with the preference in message ''timezoneoffset''",
 'timezoneoffset'            => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
 'allowemail'                => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions'       => '{{Identical|Search options}}',
@@ -2263,6 +2262,9 @@ If there is more than one user in the list then the message [[Mediawiki:and/{{SU
 'mw_math_source' => 'In user preferences (math)',
 'mw_math_modern' => 'In user preferences (math)',
 'mw_math_mathml' => 'In user preferences.',
+
+# Math errors
+'math_syntax_error' => '{{Identical|Syntax error}}',
 
 # Patrol log
 'patrol-log-page'      => 'Name of log.',

@@ -68,17 +68,19 @@ $messages = array(
 'article'       => 'मुख्य-लेख पृष्ठ',
 'newwindow'     => '(नयाँ विन्डोमा खुल्छ)',
 'cancel'        => 'रद्द',
-'qbfind'        => 'पत्ता लगाउनु',
-'qbbrowse'      => 'खोज',
-'qbedit'        => 'परिवर्तन्',
-'qbpageoptions' => 'यो पेज',
-'qbmyoptions'   => 'मेरो पेज',
 'moredotdotdot' => 'थप...',
 'mypage'        => 'मेरो पृष्ठ',
 'mytalk'        => 'मेरो कुरा',
 'anontalk'      => 'यस् IP को वारेमा वार्तालाप गर्नुहोस्',
 'navigation'    => 'अन्वेषण',
 'and'           => '&#32;र',
+
+# Cologne Blue skin
+'qbfind'        => 'पत्ता लगाउनु',
+'qbbrowse'      => 'खोज',
+'qbedit'        => 'परिवर्तन्',
+'qbpageoptions' => 'यो पेज',
+'qbmyoptions'   => 'मेरो पेज',
 
 'help'             => 'सहयोग',
 'search'           => 'खोज',
@@ -161,7 +163,6 @@ $messages = array(
 # Login and logout pages
 'welcomecreation'            => '== तपाँईलाई स्वागत छ $1! ==
 तपाँईको खाता खोलिएको छ। {{SITENAME}}का आफ्ना अभिरुचिहरू परिवर्तन गर्न नबिर्सिनुहोला।',
-'loginpagetitle'             => 'प्रयोगकर्ता प्रवेश',
 'yourname'                   => 'प्रयोगकर्ता-नाम',
 'yourpassword'               => 'पासवर्ड',
 'yourpasswordagain'          => 'पासवर्ड फेरी टाईप गर्नुहोस्',
@@ -221,7 +222,6 @@ $messages = array(
 'blockedoriginalsource'  => "'''$1''' को स्रोत तल देखाइएको छ:",
 'whitelistedittitle'     => 'सम्पादन गर्नको लागि प्रवेश (लग इन) आवश्यक छ',
 'whitelistedittext'      => 'पाना सम्पादन गर्न तपाँईले $1 गर्नु पर्दछ।',
-'confirmedittitle'       => 'सम्पादन गर्न इमेल पुष्टि गर्नु आवस्यक छ',
 'loginreqlink'           => 'प्रवेश (लग ईन)',
 'accmailtitle'           => 'पासवर्ड पठाइयो',
 'accmailtext'            => '"$1" को पासवर्ड $2मा पठाइएको छ ।',
@@ -264,8 +264,6 @@ $messages = array(
 'skin-preview'          => 'पूर्वालोकन',
 'prefs-math'            => 'गणित',
 'prefs-datetime'        => 'मिति र समय',
-'math_unknown_error'    => 'अज्ञात समस्या',
-'math_unknown_function' => 'अज्ञात निर्देशन',
 'prefs-personal'        => 'प्रयोगकर्ताको विवरण',
 'prefs-rc'              => 'नयाँ परिवर्तनहरु',
 'prefs-watchlist'       => 'अवलोकन पृष्ठ',
@@ -516,6 +514,10 @@ $messages = array(
 'numwatchers'    => 'अवलोकन संख्या: $1',
 'numauthors'     => 'प्रष्ट लेखकहरुको संख्या (लेख): $1',
 'numtalkauthors' => 'लेखकहरूको संख्या (छलफल पृष्ठ): $1',
+
+# Math errors
+'math_unknown_error'    => 'अज्ञात समस्या',
+'math_unknown_function' => 'अज्ञात निर्देशन',
 
 # Patrol log
 'patrol-log-auto' => '(स्वचालित)',

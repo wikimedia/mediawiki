@@ -45,12 +45,14 @@ $messages = array(
 'november-gen'  => 'Brumar',
 'december-gen'  => 'Andreulu',
 
-'article'        => 'Articlu',
-'cancel'         => 'Alasã',
+'article'    => 'Articlu',
+'cancel'     => 'Alasã',
+'mytalk'     => 'Zburare-a mea',
+'navigation' => 'Navigatsia',
+
+# Cologne Blue skin
 'qbedit'         => 'Alãxiri',
 'qbspecialpages' => 'Frãndzã spetsiale',
-'mytalk'         => 'Zburare-a mea',
-'navigation'     => 'Navigatsia',
 
 'help'             => 'Agiutor',
 'search'           => 'Caftã',

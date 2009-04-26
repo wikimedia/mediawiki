@@ -137,10 +137,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
-'about'          => 'Heqa',
-'article'        => 'Pela tedeesteyan',
-'newwindow'      => '(zerrey pençereyê de newey de beno a)',
-'cancel'         => 'Bıtexelne',
+'about'         => 'Heqa',
+'article'       => 'Pela tedeesteyan',
+'newwindow'     => '(zerrey pençereyê de newey de beno a)',
+'cancel'        => 'Bıtexelne',
+'moredotdotdot' => 'Vêşêri (zêdêri)...',
+'mypage'        => 'Perra mı',
+'mytalk'        => 'Perra mına werênayışi',
+'anontalk'      => 'Perra werênayışê nê IPy',
+'navigation'    => 'pusula',
+'and'           => '&#32;u',
+
+# Cologne Blue skin
 'qbfind'         => 'Bıvêne',
 'qbbrowse'       => 'Çım ra bıviyarne',
 'qbedit'         => 'Bıvurne',
@@ -148,12 +156,6 @@ $messages = array(
 'qbpageinfo'     => 'Melumatê perre',
 'qbmyoptions'    => 'Perrê mı',
 'qbspecialpages' => 'Perrê xasi',
-'moredotdotdot'  => 'Vêşêri (zêdêri)...',
-'mypage'         => 'Perra mı',
-'mytalk'         => 'Perra mına werênayışi',
-'anontalk'       => 'Perra werênayışê nê IPy',
-'navigation'     => 'pusula',
-'and'            => '&#32;u',
 
 'errorpagetitle'    => 'Xeta',
 'returnto'          => 'Peyser şo $1.',
@@ -294,7 +296,6 @@ Ena bı namê ''URL''i yew [[Special:ListUsers/sysop|karber]]i ra vaci.",
 'ns-specialprotected' => 'Pelê xasi nênê vurnayış.',
 
 # Login and logout pages
-'loginpagetitle'            => 'Cıkewtena karberi',
 'yourname'                  => 'Namey karberi',
 'yourpassword'              => 'Parola',
 'yourpasswordagain'         => 'Parola reyna bınusne:',
@@ -452,10 +453,12 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'powersearch-field'         => 'Cıgeyre',
 'search-external'           => 'Cıgeyrayışê teberi',
 
+# Quickbar
+'qbsettings-none' => 'çino',
+
 # Preferences page
 'preferences'     => 'Tercihi',
 'mypreferences'   => 'tercihê mı',
-'qbsettings-none' => 'çino',
 'skin-preview'    => 'Verqayt',
 'prefs-personal'  => 'Pela karberi',
 'prefs-rc'        => 'Vurnayışê peyêni',

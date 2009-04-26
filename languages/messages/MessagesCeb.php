@@ -162,20 +162,22 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ sa MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce  Mailing list sa mga release sa MediaWiki]',
 
-'about'          => 'Mahitungod',
-'newwindow'      => "(maabli sa laing ''window'')",
-'cancel'         => 'I-way bili',
+'about'         => 'Mahitungod',
+'newwindow'     => "(maabli sa laing ''window'')",
+'cancel'        => 'I-way bili',
+'moredotdotdot' => 'Dugang pa...',
+'mypage'        => 'Akong panid',
+'mytalk'        => 'Akong hisgot',
+'anontalk'      => 'Panghisgot-hisgot alang niining IP',
+'navigation'    => 'Tabok-tabok',
+'and'           => '&#32;ug',
+
+# Cologne Blue skin
 'qbfind'         => 'Pangitaa',
 'qbedit'         => 'Usba',
 'qbpageoptions'  => 'Kini nga panid',
 'qbmyoptions'    => 'Akong mga panid',
 'qbspecialpages' => 'Mga espesyal nga panid',
-'moredotdotdot'  => 'Dugang pa...',
-'mypage'         => 'Akong panid',
-'mytalk'         => 'Akong hisgot',
-'anontalk'       => 'Panghisgot-hisgot alang niining IP',
-'navigation'     => 'Tabok-tabok',
-'and'            => '&#32;ug',
 
 'returnto'          => 'Balik sa $1.',
 'tagline'           => 'Gikan sa {{SITENAME}}',
@@ -290,9 +292,6 @@ Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:SpecialPage
 
 # General errors
 'error'               => 'Sayop',
-'noconnect'           => "Pasayloa, adunay problemang teknikal sa karon ang kini nga wiki, ug dili makakontak sa serber sa ''database''.<br />
-$1",
-'cachederror'         => "Ang mosunod usa ka gi-''cache'' nga kopya sa gihangyong panid, ug mahimong karaan na.",
 'laggedslavemode'     => 'Pahibalo: Mahimong dili mahiapil sa panid ang mga bag-ong kausaban.',
 'readonly'            => 'Gitrangkahan ang database',
 'internalerror'       => 'Internal nga sayop',
@@ -311,7 +310,6 @@ Basin aduna kini usa o daghan pang mga karakter nga dili magamit isip titulo.',
 'welcomecreation'         => '== Maayong pag-abot, $1! ==
 Nahimo na ang imong akawnt.
 Ayaw kalimot sa pag-usab sa imong [[Special:Preferences|{{SITENAME}} mga preperensiya]].',
-'loginpagetitle'          => 'Pagdayon sa tiggamit',
 'yourname'                => 'Ngalan sa tiggamit:',
 'remembermypassword'      => 'Hinumdomi ako niini nga kompyuter',
 'login'                   => 'Sulod',

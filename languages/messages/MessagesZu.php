@@ -36,15 +36,17 @@ $messages = array(
 'may'       => 'uMeyi',
 
 'cancel'        => 'Nqamula',
+'moredotdotdot' => 'Amanye...',
+'mypage'        => 'Ikhasi lami',
+'mytalk'        => 'Ingxoxo yami',
+'navigation'    => 'Ukuqondiswa kwemikhumbi',
+
+# Cologne Blue skin
 'qbfind'        => 'Thola',
 'qbbrowse'      => 'Cinga',
 'qbedit'        => 'Ukuhlela',
 'qbpageoptions' => 'Leli khasi',
 'qbmyoptions'   => 'Amakhasi ami',
-'moredotdotdot' => 'Amanye...',
-'mypage'        => 'Ikhasi lami',
-'mytalk'        => 'Ingxoxo yami',
-'navigation'    => 'Ukuqondiswa kwemikhumbi',
 
 'errorpagetitle'   => 'Icala',
 'help'             => 'Usizo',
@@ -167,11 +169,13 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'searchhelp-url' => 'Help:Isiqikili',
 'powersearch'    => 'Sesha',
 
+# Quickbar
+'qbsettings' => 'Imeniyu',
+
 # Preferences page
 'preferences'       => 'Amakhethelo',
 'mypreferences'     => 'Amakhethelo ami',
 'prefsnologin'      => 'Awungenile',
-'qbsettings'        => 'Imeniyu',
 'changepassword'    => 'Guqula izwi elingenangozi',
 'prefs-math'        => 'Izibalo',
 'saveprefs'         => 'Saveprefs',

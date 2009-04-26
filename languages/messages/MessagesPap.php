@@ -63,6 +63,10 @@ $messages = array(
 'navigation'    => 'Nabegashon',
 'and'           => '&#32;i',
 
+# Cologne Blue skin
+'faq'     => 'Preguntanan mas Puntrá',
+'faqpage' => 'Project:Preguntanan mas Puntrá',
+
 'errorpagetitle'    => 'Eror',
 'returnto'          => 'Bai bèk $1.',
 'tagline'           => 'Di {{SITENAME}}',
@@ -115,8 +119,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Deklarashon di Liberashon for di Responsabilidat General',
 'edithelp'             => 'Ayudo ku editamentu',
 'edithelppage'         => 'Help:Kon pa editá artíkulo',
-'faq'                  => 'Preguntanan mas Puntrá',
-'faqpage'              => 'Project:Preguntanan mas Puntrá',
 'helppage'             => 'Help:Kontenido',
 'mainpage'             => 'Página Prinsipal',
 'mainpage-description' => 'Página Prinsipal',
@@ -197,7 +199,6 @@ No lubidá di kambia bo [[Special:Preferences|{{SITENAME}} preferensianan]].',
 Bo por kambia página libremente, pero tene kuenta ku lo nota bo IP adrès den e historia di kambionan hasí na e página aki.',
 'blockedtitle'       => 'Uzadó ta blokiá',
 'whitelistedittitle' => 'Mester outentiká promé pa editá',
-'confirmedittitle'   => 'Konfirmashon di e-mail eksigí pa editá',
 'confirmedittext'    => 'Bo mester konfirmá bo e-mail adrès promé ku bo editá página. Por fabor duna i validá bo e-mail adrès via bo [[Special:Preferences|preferensianan]].',
 'accmailtitle'       => 'Kontraseña mandá.',
 'accmailtext'        => "E kontraseña pa '$1' tabata mandá pa $2.",

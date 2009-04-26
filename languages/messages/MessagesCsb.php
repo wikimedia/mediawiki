@@ -144,10 +144,18 @@ $messages = array(
 
 'mainpagetext' => "<big>'''MediaWiki òsta zainstalowónô.'''</big>",
 
-'about'          => 'Ò serwise',
-'article'        => 'Artikel',
-'newwindow'      => '(òtmëkô sã w nowim òczenkù)',
-'cancel'         => 'Anulujë',
+'about'         => 'Ò serwise',
+'article'       => 'Artikel',
+'newwindow'     => '(òtmëkô sã w nowim òczenkù)',
+'cancel'        => 'Anulujë',
+'moredotdotdot' => 'Wicy...',
+'mypage'        => 'Mòja starna',
+'mytalk'        => 'Diskùsëjô',
+'anontalk'      => 'Diskùsëjô dlô ti IP-adresë',
+'navigation'    => 'Nawigacëjô',
+'and'           => '&#32;ë',
+
+# Cologne Blue skin
 'qbfind'         => 'Nalézë',
 'qbbrowse'       => 'Przezeranié',
 'qbedit'         => 'Edicëjô',
@@ -155,12 +163,6 @@ $messages = array(
 'qbpageinfo'     => 'Ò starnie',
 'qbmyoptions'    => 'Mòje òptacëje',
 'qbspecialpages' => 'Specjalné starnë',
-'moredotdotdot'  => 'Wicy...',
-'mypage'         => 'Mòja starna',
-'mytalk'         => 'Diskùsëjô',
-'anontalk'       => 'Diskùsëjô dlô ti IP-adresë',
-'navigation'     => 'Nawigacëjô',
-'and'            => '&#32;ë',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -306,7 +308,6 @@ Przemëszlë dolmaczënié na [http://translatewiki.net/wiki/Main_Page?setlang=c
 
 # Login and logout pages
 'logouttext'                 => 'Të jes ju wëlogòwóny. Mòżesz prôcowac z {{SITENAME}} jakno anonimòwi brëkòwnik abò wlogòwac sã jakno zaregistrowóny brëkòwnik.',
-'loginpagetitle'             => 'Logòwanié brëkòwnika',
 'yourname'                   => 'Miono brëkòwnika',
 'yourpassword'               => 'Twòja parola',
 'yourpasswordagain'          => 'Pòwtórzë parolã',
@@ -519,12 +520,14 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'powersearch-redir'         => 'Lësta przeczerowaniów',
 'powersearch-field'         => 'Szëkba za',
 
+# Quickbar
+'qbsettings' => 'Sztrépk chùtczégò przistãpù',
+
 # Preferences page
 'preferences'           => 'Preferencëje',
 'mypreferences'         => 'Mòje nastôwë',
 'prefs-edits'           => 'Lëczba edicëjów:',
 'prefsnologin'          => 'Felënk logòwóniô',
-'qbsettings'            => 'Sztrépk chùtczégò przistãpù',
 'changepassword'        => 'Zmiana parolë',
 'prefs-skin'            => 'Wëzdrzatk',
 'skin-preview'          => 'Pòdzérk',
@@ -532,7 +535,6 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'dateformat'            => 'Fòrmat datumù',
 'datedefault'           => 'Felëje preferencëji',
 'prefs-datetime'        => 'Datum ë czas',
-'math_failure'          => 'Parser nie rozmiôł rozpòznac',
 'prefs-personal'        => 'Pòdôwczi brëkòwnika',
 'prefs-rc'              => 'Slédné edicëje',
 'prefs-watchlist'       => 'Lësta ùzérónëch artiklów',
@@ -553,7 +555,6 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'recentchangescount'    => 'Wielëna pòzycëji na lësce slédnëch edicëji',
 'savedprefs'            => 'Twòjé nastôwë òstałë zapisóné.',
 'timezonelegend'        => 'Czasowô cona',
-'timezonetext'          => '¹Lëczba gòdzënów różnicë midze twòjim môlowim czasã a czasã na serwerze (UTC).',
 'localtime'             => 'Môlowi czas:',
 'timezoneoffset'        => 'Różnica¹:',
 'servertime'            => 'Czas serwera:',
@@ -968,6 +969,9 @@ Mòżesz òbaczëc ji zdrój.',
 'mw_math_source' => 'Òstawi jakno TeX (dlô tekstowich przezérników)',
 'mw_math_modern' => 'Zalécóné dlô nowoczasnëch przezérników',
 'mw_math_mathml' => 'Wëskrzëniwôj jakno MathML jeżlë mòżlëwé (eksperimentalné)',
+
+# Math errors
+'math_failure' => 'Parser nie rozmiôł rozpòznac',
 
 # Browsing diffs
 'previousdiff' => '← Pòprzédnô edicëjô',

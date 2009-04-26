@@ -160,14 +160,18 @@ $messages = array(
 
 'about'         => 'विषयक',
 'article'       => 'कण्टेण्ट पौ',
-'qbfind'        => 'मालादिसँ',
-'qbedit'        => 'सम्पादन',
 'moredotdotdot' => 'अप्व॰॰॰',
 'mypage'        => 'जिगु पौ',
 'mytalk'        => 'जिगु खं',
 'anontalk'      => 'थ्व IPया निंतिं खँल्हाबल्हा',
 'navigation'    => 'परिवहन',
 'and'           => '&#32;व',
+
+# Cologne Blue skin
+'qbfind'  => 'मालादिसँ',
+'qbedit'  => 'सम्पादन',
+'faq'     => 'आपालं न्यनिगु न्ह्यसः (FAQ)',
+'faqpage' => 'Project:आपालं न्यनिगु न्ह्यसःत (FAQ)',
 
 # Metadata in edit box
 'metadata_help' => 'मेटाडेटा:',
@@ -210,8 +214,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:साधारण डिस्क्लेमर्स',
 'edithelp'             => 'सम्पादन ग्वहालि',
 'edithelppage'         => 'Help:सम्पादन',
-'faq'                  => 'आपालं न्यनिगु न्ह्यसः (FAQ)',
-'faqpage'              => 'Project:आपालं न्यनिगु न्ह्यसःत (FAQ)',
 'helppage'             => 'Help:धलःपौ',
 'mainpage'             => 'मू पौ',
 'mainpage-description' => 'मू पौ',
@@ -266,10 +268,6 @@ $messages = array(
 "<tt>$2</tt>" फंक्सनया 
 <blockquote><tt>$1</tt></blockquote> ख। 
 MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
-'noconnect'       => 'माफ यानादिसँ! थ्व विकिइ छुं प्राविधिक कठिनाइ वयाच्वँगु दु व डेटाबेस सर्भरयात स्वापू तये मफयाच्वँगु दु।<br />
-$1',
-'nodb'            => 'डेटाबेस $1यात ल्यये मफुत।',
-'cachederror'     => 'थ्व पौ अनुरोधित पौया क्यासे कपि ख व अप-टु-डेट मजुइफु।',
 'laggedslavemode' => 'चेतावनी: पतिइ न्हुगु अपदेत मदेफु ।',
 'readonly'        => 'देताबेस संरक्षित',
 'enterlockreason' => 'पौ कुनातयेगुया निंतिं कारण बियादिसँ, नापं पौ गब्ले चायेकिगु जुइफु उकिया अनुमान नं बियादिसँ',
@@ -283,7 +281,6 @@ $1',
 'welcomecreation'         => '== लसकुस, $1! ==
 छिगु खाता चायेके धुंकल।
 छिगु [[Special:Preferences|{{SITENAME}} प्राथमिकता]] हिलिगु लुमंकादिसँ।',
-'loginpagetitle'          => 'छ्य्‌लामि दुहां झासँ',
 'yourname'                => 'छ्य्‌लामि नां:',
 'yourpassword'            => 'दुथखँग्वः (पासवर्द):',
 'yourpasswordagain'       => 'दुथखँग्वः हानं तियादिसँ:',

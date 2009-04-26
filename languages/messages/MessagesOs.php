@@ -146,10 +146,18 @@ $messages = array(
 
 'mainpagetext' => "<big>'''Вики-скрипт «MediaWiki» æнтыстджынæй æвæрд æрцыд.'''</big>",
 
-'about'          => 'Афыст',
-'article'        => 'Статья',
-'newwindow'      => '(ног рудзынджы)',
-'cancel'         => 'Фæстæмæ',
+'about'         => 'Афыст',
+'article'       => 'Статья',
+'newwindow'     => '(ног рудзынджы)',
+'cancel'        => 'Фæстæмæ',
+'moredotdotdot' => 'Фылдæр…',
+'mypage'        => 'Дæхи фарс',
+'mytalk'        => 'Дæумæ цы дзурынц',
+'anontalk'      => 'Ацы IP-адрисы дискусси',
+'navigation'    => 'хъæугæ æрвитæнтæ',
+'and'           => '&#32;æмæ',
+
+# Cologne Blue skin
 'qbfind'         => 'Агур',
 'qbbrowse'       => 'Фен',
 'qbedit'         => 'Баив æй',
@@ -157,12 +165,6 @@ $messages = array(
 'qbpageinfo'     => 'Фарсы контекст',
 'qbmyoptions'    => 'Мæ фæрстæ',
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
-'moredotdotdot'  => 'Фылдæр…',
-'mypage'         => 'Дæхи фарс',
-'mytalk'         => 'Дæумæ цы дзурынц',
-'anontalk'       => 'Ацы IP-адрисы дискусси',
-'navigation'     => 'хъæугæ æрвитæнтæ',
-'and'            => '&#32;æмæ',
 
 'errorpagetitle'    => 'Рæдыд',
 'returnto'          => '$1 фарсмæ раздæх.',
@@ -275,7 +277,6 @@ $messages = array(
 # General errors
 'error'                => 'Рæдыд',
 'databaseerror'        => 'Бæрæггæнæнты базæйы рæдыд',
-'nodb'                 => 'Бæрæггæнæнты базæ $1 равзæрын нæ фæрæстмæ',
 'readonly'             => 'Бæрæггæнæнты базæ фыссынæн æхгæд у',
 'missingarticle-rev'   => '(верси № $1)',
 'missingarticle-diff'  => '(хъауджы: $1, $2)',
@@ -300,7 +301,6 @@ $messages = array(
 
 # Login and logout pages
 'welcomecreation'           => '<h2>Æгас цу, $1!</h2><p>Регистрацигонд æрцыдтæ.',
-'loginpagetitle'            => 'Дæхи бацамон системæйæн',
 'yourname'                  => 'Архайæджы ном:',
 'yourpassword'              => 'Пароль:',
 'yourpasswordagain'         => 'Дæ пароль иу хатт ма:',
@@ -342,8 +342,6 @@ $messages = array(
 'resetpass_forbidden'       => 'Пароль баивæн нæй',
 'resetpass-submit-loggedin' => 'Пароль баив',
 'resetpass-temp-password'   => 'Рæстæгмæ пароль:',
-'resetpass-log'             => 'Парольтæ аппарыны лог',
-'resetpass-comment'         => 'Пароль аппарын цæмæн бахъуыд:',
 
 # Edit page toolbar
 'bold_sample'     => 'Ацы текст бæзджын суыдзæн',
@@ -448,14 +446,16 @@ $messages = array(
 'powersearch-legend'        => 'Сæрмагонд агуырд',
 'powersearch-redir'         => 'Рарвыстытæ дæр æвдис',
 
+# Quickbar
+'qbsettings'              => 'Навигацион таг',
+'qbsettings-none'         => 'Ма равдис',
+'qbsettings-fixedleft'    => 'Галиуырдыгæй',
+'qbsettings-fixedright'   => 'Рахизырдыгæй',
+'qbsettings-floatingleft' => 'Рахизырдыгæй ленккæнгæ',
+
 # Preferences page
 'mypreferences'             => 'Æрмадз',
 'prefsnologin'              => 'Системæйæн дæхи нæ бацамыдтай',
-'qbsettings'                => 'Навигацион таг',
-'qbsettings-none'           => 'Ма равдис',
-'qbsettings-fixedleft'      => 'Галиуырдыгæй',
-'qbsettings-fixedright'     => 'Рахизырдыгæй',
-'qbsettings-floatingleft'   => 'Рахизырдыгæй ленккæнгæ',
 'changepassword'            => 'Пароль баив',
 'skin-preview'              => 'Разæркаст',
 'prefs-datetime'            => 'Датæ æмæ рæстæг',

@@ -124,17 +124,19 @@ $messages = array(
 'hidden-categories'        => '{{PLURAL:$1|Tinago nga kategorya|Tinago nga mga kategorya}}',
 'hidden-category-category' => 'Tinago nga mga kategorya',
 
+'mypage'     => 'Akon pakli',
+'mytalk'     => 'Akon paghingay',
+'anontalk'   => 'Paghingay para hini nga IP',
+'navigation' => 'Paglayag',
+'and'        => '&#32;ngan',
+
+# Cologne Blue skin
 'qbfind'         => 'Bilnga',
 'qbbrowse'       => 'Igdalikyat',
 'qbedit'         => 'Igliwat',
 'qbpageoptions'  => 'Ini nga pakli',
 'qbmyoptions'    => 'Akon mga pakli',
 'qbspecialpages' => 'Mga ispisyal nga pakli',
-'mypage'         => 'Akon pakli',
-'mytalk'         => 'Akon paghingay',
-'anontalk'       => 'Paghingay para hini nga IP',
-'navigation'     => 'Paglayag',
-'and'            => '&#32;ngan',
 
 'errorpagetitle'   => 'Sayop',
 'returnto'         => 'Balik ngadto ha $1.',

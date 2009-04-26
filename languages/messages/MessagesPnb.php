@@ -97,10 +97,17 @@ $messages = array(
 'category-article-count'   => '{{PLURAL:$2|اس گٹھ چ اکو تھلے آلا صفحہ اے۔|تھلے {{PLURAL:$1|آلا صفحہ|آلے صفحے}} $2 چوں اس گٹھ دے صفحے نیں۔}}',
 'listingcontinuesabbrev'   => 'جاری',
 
-'about'          => 'بارے چ',
-'article'        => 'مضمون آلا صفحہ',
-'newwindow'      => '(نئی ونڈو چ کھولو)',
-'cancel'         => 'ختم',
+'about'         => 'بارے چ',
+'article'       => 'مضمون آلا صفحہ',
+'newwindow'     => '(نئی ونڈو چ کھولو)',
+'cancel'        => 'ختم',
+'moredotdotdot' => 'مزید۔۔۔۔',
+'mypage'        => 'میرا صفحہ',
+'mytalk'        => 'میریاں گلاں',
+'anontalk'      => 'اس آئی پی آسطے گل کرو',
+'navigation'    => 'تلاش',
+
+# Cologne Blue skin
 'qbfind'         => 'کھوج',
 'qbbrowse'       => 'لبو',
 'qbedit'         => 'لکھو',
@@ -108,11 +115,6 @@ $messages = array(
 'qbpageinfo'     => 'ماحول',
 'qbmyoptions'    => 'میرے صفحے',
 'qbspecialpages' => 'خاص صفحے',
-'moredotdotdot'  => 'مزید۔۔۔۔',
-'mypage'         => 'میرا صفحہ',
-'mytalk'         => 'میریاں گلاں',
-'anontalk'       => 'اس آئی پی آسطے گل کرو',
-'navigation'     => 'تلاش',
 
 # Metadata in edit box
 'metadata_help' => 'میٹا ڈیٹا:',
@@ -249,7 +251,6 @@ $messages = array(
 'virus-unknownscanner' => 'اندیکھا اینٹیوائرس:',
 
 # Login and logout pages
-'loginpagetitle'            => 'لاگن ان',
 'yourname'                  => 'ورتن والہ:',
 'yourpassword'              => 'کنجی:',
 'yourpasswordagain'         => 'کنجی دوبارہ لکھو:',
@@ -503,30 +504,30 @@ $messages = array(
 'powersearch-field'         => 'لئی کھوج',
 'search-external'           => 'باہر دی کھوج',
 
+# Quickbar
+'qbsettings-none' => 'کوئی نئیں',
+
 # Preferences page
-'preferences'           => 'تانگاں',
-'mypreferences'         => 'میریاں تانگاں',
-'prefs-edits'           => 'تبدیلیاں دی گنتی:',
-'prefsnologin'          => 'لاگ ان نئیں او',
-'qbsettings-none'       => 'کوئی نئیں',
-'changepassword'        => 'کنجی بدلو',
-'prefs-skin'            => 'کھل',
-'prefs-math'            => 'حساب کتاب',
-'prefs-datetime'        => 'تاریخ تے ویلہ',
-'math_unknown_error'    => 'انجان مسئلہ',
-'math_unknown_function' => 'انجان کم',
-'prefs-personal'        => 'ورتن آلے دا پروفائل',
-'prefs-rc'              => 'نویاں تبدیلیاں',
-'prefs-watchlist'       => 'نظر تھلے صفحے',
-'saveprefs'             => 'بچاؤ',
-'prefs-editing'         => 'لکھائی',
-'rows'                  => 'قطار:',
-'columns'               => 'کالم:',
-'searchresultshead'     => 'کھوج',
-'timezonelegend'        => 'ویلے دا علاقہ',
-'localtime'             => 'مقامی ویلا:',
-'timezoneselect'        => 'ویلیاں دے علاقے:',
-'prefs-files'           => 'فائلاں',
+'preferences'       => 'تانگاں',
+'mypreferences'     => 'میریاں تانگاں',
+'prefs-edits'       => 'تبدیلیاں دی گنتی:',
+'prefsnologin'      => 'لاگ ان نئیں او',
+'changepassword'    => 'کنجی بدلو',
+'prefs-skin'        => 'کھل',
+'prefs-math'        => 'حساب کتاب',
+'prefs-datetime'    => 'تاریخ تے ویلہ',
+'prefs-personal'    => 'ورتن آلے دا پروفائل',
+'prefs-rc'          => 'نویاں تبدیلیاں',
+'prefs-watchlist'   => 'نظر تھلے صفحے',
+'saveprefs'         => 'بچاؤ',
+'prefs-editing'     => 'لکھائی',
+'rows'              => 'قطار:',
+'columns'           => 'کالم:',
+'searchresultshead' => 'کھوج',
+'timezonelegend'    => 'ویلے دا علاقہ',
+'localtime'         => 'مقامی ویلا:',
+'timezoneselect'    => 'ویلیاں دے علاقے:',
+'prefs-files'       => 'فائلاں',
 
 # User rights
 'userrights-groupsmember' => 'سنگی اے:',
@@ -1160,6 +1161,10 @@ $messages = array(
 'infosubtitle' => 'صفحے آسطے معلومات',
 'numedits'     => 'لکھائی دی گنتی (صفحہ): $1',
 'numwatchers'  => 'ویکھنے آلیاں دی گنتی: $1',
+
+# Math errors
+'math_unknown_error'    => 'انجان مسئلہ',
+'math_unknown_function' => 'انجان کم',
 
 # Browsing diffs
 'previousdiff' => '← پرانی لکھائی',

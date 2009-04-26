@@ -170,10 +170,18 @@ $messages = array(
 'category-article-count'   => '{{PLURAL:$2|Esta catadorie solo ten la seguinte páigina.|Hai, nesta catadorie, {{PLURAL:$1|la seguinte páigina|las seguintes $1 páiginas}}, dentre $2.}}',
 'listingcontinuesabbrev'   => 'cunt.',
 
-'about'          => 'Subre',
-'article'        => 'Páigina de cuntenido',
-'newwindow'      => '(abre nua nuoba jinela)',
-'cancel'         => 'Çfazer',
+'about'         => 'Subre',
+'article'       => 'Páigina de cuntenido',
+'newwindow'     => '(abre nua nuoba jinela)',
+'cancel'        => 'Çfazer',
+'moredotdotdot' => 'Mais...',
+'mypage'        => 'Mie páigina',
+'mytalk'        => 'Mie cumbersa',
+'anontalk'      => 'Çcusson pa este IP',
+'navigation'    => 'Nabegaçon',
+'and'           => '&#32;i',
+
+# Cologne Blue skin
 'qbfind'         => 'Percurar',
 'qbbrowse'       => 'Nabegar',
 'qbedit'         => 'Eiditar',
@@ -181,12 +189,8 @@ $messages = array(
 'qbpageinfo'     => 'Cuntesto',
 'qbmyoptions'    => 'Mies páiginas',
 'qbspecialpages' => 'Páiginas speciales',
-'moredotdotdot'  => 'Mais...',
-'mypage'         => 'Mie páigina',
-'mytalk'         => 'Mie cumbersa',
-'anontalk'       => 'Çcusson pa este IP',
-'navigation'     => 'Nabegaçon',
-'and'            => '&#32;i',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 # Metadata in edit box
 'metadata_help' => 'Metadados:',
@@ -253,8 +257,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Abiso giral',
 'edithelp'             => 'Ajuda de eidiçon',
 'edithelppage'         => 'Help:Eiditar',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Cuntenidos',
 'mainpage'             => 'Páigina Percipal',
 'mainpage-description' => 'Páigina Percipal',
@@ -312,7 +314,6 @@ $messages = array(
 # General errors
 'error'                => 'Erro',
 'databaseerror'        => 'Erro na base de dados',
-'nodb'                 => 'Nun fui possible scolher la base de dados $1',
 'laggedslavemode'      => 'Abiso: La páigina poderá nun cuntener las redadeiras atualizaçones.',
 'readonly'             => 'Base de dados bloquiada',
 'missing-article'      => 'La base de dados nun achou l testo dua páigina que deberie tener achado, cul nome "$1" $2.
@@ -347,7 +348,6 @@ Puode tener un ó mais carateres que nun puoden ser outelizados an títalos.',
 'virus-unknownscanner' => 'antibírus çcoincido:',
 
 # Login and logout pages
-'loginpagetitle'          => 'Outenticaçon de outelizador',
 'yourname'                => 'Nome de Outelizador',
 'yourpassword'            => 'Palabra chabe',
 'yourpasswordagain'       => 'Repite la tue palabra-chabe',

@@ -73,19 +73,21 @@ $messages = array(
 
 'mainpagetext' => "<big>'''Software del wiki installat con successe.'''</big>",
 
-'about'          => 'Apropó',
-'article'        => 'Articul',
-'newwindow'      => '(aperte un nov fenestre)',
-'cancel'         => 'Anullar',
+'about'         => 'Apropó',
+'article'       => 'Articul',
+'newwindow'     => '(aperte un nov fenestre)',
+'cancel'        => 'Anullar',
+'moredotdotdot' => 'Plu mult...',
+'mytalk'        => 'Mi discussion',
+'anontalk'      => 'Discussion por ti ci IP',
+'and'           => '&#32;e',
+
+# Cologne Blue skin
 'qbfind'         => 'Serchar',
 'qbedit'         => 'Modificar',
 'qbpageoptions'  => 'Págine de optiones',
 'qbpageinfo'     => 'Págine de information',
 'qbspecialpages' => 'Special págines',
-'moredotdotdot'  => 'Plu mult...',
-'mytalk'         => 'Mi discussion',
-'anontalk'       => 'Discussion por ti ci IP',
-'and'            => '&#32;e',
 
 'errorpagetitle'   => 'Errore',
 'returnto'         => 'Retornar a $1.',
@@ -161,7 +163,6 @@ $messages = array(
 # Login and logout pages
 'logouttext'                 => 'Vu ha terminat vor session.
 Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session denov quam li sam usator o quam un diferent usator.',
-'loginpagetitle'             => 'Registrar se/Intrar',
 'yourname'                   => 'Vor nómine usatori:',
 'yourpassword'               => 'Vor passa-parol:',
 'yourpasswordagain'          => 'Tippa denov vor passa-parol',
@@ -214,11 +215,13 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'viewprevnext'   => 'Vider ($1) ($2) ($3)',
 'searchhelp-url' => 'Help:Auxilie',
 
+# Quickbar
+'qbsettings' => 'Personalisation del barre de utensiles',
+
 # Preferences page
 'preferences'    => 'Preferenties',
 'mypreferences'  => 'Mi preferenties',
 'prefsnologin'   => 'Vu ne ha intrat',
-'qbsettings'     => 'Personalisation del barre de utensiles',
 'changepassword' => 'Modificar passa-parol',
 'saveprefs'      => 'Conservar preferenties',
 

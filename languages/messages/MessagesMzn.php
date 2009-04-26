@@ -24,10 +24,12 @@ $defaultUserOptionOverrides = array(
 $fallback = 'fa';
 
 $messages = array(
+'mypage' => 'مه ولگ',
+'mytalk' => 'مه گپ',
+
+# Cologne Blue skin
 'qbedit'         => 'دچی ین',
 'qbspecialpages' => 'شا ولگ ئون',
-'mypage'         => 'مه ولگ',
-'mytalk'         => 'مه گپ',
 
 'search'           => 'چرخه تو',
 'searcharticle'    => 'بور',

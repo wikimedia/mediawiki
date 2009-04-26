@@ -262,10 +262,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ Mga malimit itanong sa MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Tala ng mga pinadadalhan ng liham ng MediaWiki]",
 
-'about'          => 'Patungkol',
-'article'        => 'Pahina ng nilalaman',
-'newwindow'      => '(magbubukas sa bagong bintana)',
-'cancel'         => 'Ikansela',
+'about'         => 'Patungkol',
+'article'       => 'Pahina ng nilalaman',
+'newwindow'     => '(magbubukas sa bagong bintana)',
+'cancel'        => 'Ikansela',
+'moredotdotdot' => 'Damihan pa...',
+'mypage'        => 'Pahina ko',
+'mytalk'        => 'Usapan ko',
+'anontalk'      => 'Usapan para sa IP na ito',
+'navigation'    => 'Paglilibot (nabigasyon)',
+'and'           => ',&#32;at',
+
+# Cologne Blue skin
 'qbfind'         => 'Hanapin',
 'qbbrowse'       => 'Basa-basahin',
 'qbedit'         => 'Baguhin',
@@ -273,12 +281,8 @@ $messages = array(
 'qbpageinfo'     => 'Konteksto',
 'qbmyoptions'    => 'Mga pahina ko',
 'qbspecialpages' => 'Mga natatanging pahina',
-'moredotdotdot'  => 'Damihan pa...',
-'mypage'         => 'Pahina ko',
-'mytalk'         => 'Usapan ko',
-'anontalk'       => 'Usapan para sa IP na ito',
-'navigation'     => 'Paglilibot (nabigasyon)',
-'and'            => ',&#32;at',
+'faq'            => "Mga malimit itanong (''FAQ'')",
+'faqpage'        => "Project:Mga malimit itanong (''FAQ'')",
 
 # Metadata in edit box
 'metadata_help' => 'Metadata ("mga datong nasa likuran"):',
@@ -350,8 +354,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Pangkalahatang pagtatanggi',
 'edithelp'             => 'Tulong sa pagbabago',
 'edithelppage'         => 'Help:Pagbabago',
-'faq'                  => "Mga malimit itanong (''FAQ'')",
-'faqpage'              => "Project:Mga malimit itanong (''FAQ'')",
 'helppage'             => 'Help:Mga nilalaman',
 'mainpage'             => 'Unang Pahina',
 'mainpage-description' => 'Unang Pahina',
@@ -431,10 +433,6 @@ Ang huling sinubukang paguusisa sa kalipunan ng datos ay:
 "$1"
 mula sa gawaing "$2".
 Nagbalik ng pagkakamaling "$3: $4" ang MySQL.',
-'noconnect'            => 'Paumanhin! Dumaranas ang wiki ng ilang kahirapang teknikal, at hindi magawang makipagugnayan sa serbidor ng kalipunan ng datos. <br />
-$1',
-'nodb'                 => 'Hindi mapili ang kalipunan ng datos na $1',
-'cachederror'          => 'Ang sumusunod ay isang iniligpit o itinagong kopya ng hinihiling na pahina, at maaaring hindi ito bago.',
 'laggedslavemode'      => 'Babala: Maaaring hindi naglalaman ang pahina ng mga huling dagdag.',
 'readonly'             => 'Nakakandado ang kalipunan ng datos',
 'enterlockreason'      => 'Maglagay ng dahilan sa pagkakandado, kasama ang taya
@@ -507,7 +505,6 @@ Tandaan na may ilang pahinang maaaring magpatuloy na nagpapakitang parang nakala
 'welcomecreation'            => '== Maligayang pagdating, $1! ==
 Nalikha na ang iyong kwenta o patnugutan.
 Huwag kalimutang baguhin ang [[Special:Preferences|mga kagustuhan mo sa {{SITENAME}}]].',
-'loginpagetitle'             => 'Paglagda ng tagagamit',
 'yourname'                   => 'Bansag:',
 'yourpassword'               => 'Hudyat:',
 'yourpasswordagain'          => 'Hudyat mo uli:',
@@ -625,18 +622,12 @@ Para tapusin ang paglagda, dapat kang magtakda ng isang bagong hudyat dito:',
 'retypenew'                 => 'Ipasok muli ang bagong hudyat:',
 'resetpass_submit'          => 'Itakda ang hudyat at lumagda',
 'resetpass_success'         => 'Matagumpay na nabago ang iyong hudyat!  Inilalagda ka na ngayon...',
-'resetpass_bad_temporary'   => 'Hindi tanggap na pansamantalang hudyat.
-Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
 'resetpass_forbidden'       => 'Hindi mababago ang mga hudyat',
 'resetpass-no-info'         => 'Nakalagda ka dapat para tuwirang mapuntahan ang pahina ito.',
 'resetpass-submit-loggedin' => 'Baguhin ang hudyat',
 'resetpass-wrong-oldpass'   => 'Hindi tanggap na pansamantala o pangkasalukuyang hudyat.
 Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
 'resetpass-temp-password'   => 'Pansamantalang hudyat:',
-'resetpass-log'             => 'Muling itinatakda ng hudyat ang talaan',
-'resetpass-logtext'         => 'Nasa ibaba ang isang talaan ng mga tagagamit na muling nagsipagtakda ng kanilang mga hudyat sa pamamagitan ng isang tagapangasiwa.',
-'resetpass-logentry'        => 'binago ang hudyat para kay $1',
-'resetpass-comment'         => 'Dahilan ng muling pagtatakda ng hudyat:',
 
 # Edit page toolbar
 'bold_sample'     => 'Makapal na panitik',
@@ -712,7 +703,6 @@ Pakisama ang lahat ng mga detalyeng nasa itaas sa anumang pagtatanong na gagawin
 'blockededitsource'                => "Ang teksto ng '''mga pagbabago mo''' sa '''$1''' ay ipinapakita sa ibaba:",
 'whitelistedittitle'               => 'Paglagda kailangan para makapagbago',
 'whitelistedittext'                => 'Kailangan mong $1 para makapagbago ng mga pahina.',
-'confirmedittitle'                 => 'Kailangan ang kompirmasyon ng e-liham para makapagbago',
 'confirmedittext'                  => 'Kailangang kumpirmahin mo muna ang adres ng iyong e-liham bago makapagbago ng mga pahina.
 Pakihanda at patotohanan ang adres ng e-liham sa pamamagitan ng iyong [[Special:Preferences|kagustuhan ng tagagamit]].',
 'nosuchsectiontitle'               => 'Walang ganyang seksyon',
@@ -1072,7 +1062,6 @@ Maaari mong [[:\$1|likhain ang pahinang ito]].",
 'searchhelp-url'                   => 'Help:Nilalaman',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Tingnan-tingnan ang mga pahinang may ganitong unahan/unlapi]]',
 'searchprofile-articles'           => 'Mga pahina ng nilalaman',
-'searchprofile-articles-and-proj'  => 'Mga pahina ng nilalaman at proyekto',
 'searchprofile-project'            => 'Mga pahina ng proyekto',
 'searchprofile-images'             => 'Mga talaksan',
 'searchprofile-everything'         => 'Lahat ng bagay',
@@ -1082,8 +1071,6 @@ Maaari mong [[:\$1|likhain ang pahinang ito]].",
 'searchprofile-images-tooltip'     => 'Maghanap ng mga talaksan',
 'searchprofile-everything-tooltip' => 'Hanapin ang lahat ng nilalaman (kabilang ang mga pahina ng usapan)',
 'searchprofile-advanced-tooltip'   => 'Hanapin sa pinasadyang mga espasyo ng pangalan',
-'prefs-search-nsdefault'           => 'Hanapin ayon sa likas na pagkakatakda:',
-'prefs-search-nscustom'            => 'Hanapin ang pinasadyang mga espasyo ng pangalan:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 salita|$2 mga salita}})',
 'search-result-score'              => 'Kaugnayan: $1%',
 'search-redirect'                  => '(ipanuto/ituro ang $1)',
@@ -1112,19 +1099,20 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'search-external'                  => 'Panlabas na paghahanap',
 'searchdisabled'                   => 'Nakapatay ang paghahanap sa {{SITENAME}}. Maaari kang pansamantalang maghanap sa pamamagitan ng Google. Tandaan na maaaring luma na ang kanilang mga indeks sa nilalaman ng {{SITENAME}}.',
 
+# Quickbar
+'qbsettings'               => 'Quickbar',
+'qbsettings-none'          => 'Wala',
+'qbsettings-fixedleft'     => 'Inayos ang kaliwa',
+'qbsettings-fixedright'    => 'Inayos ang kanan',
+'qbsettings-floatingleft'  => 'Kaliwa lumulutang',
+'qbsettings-floatingright' => 'Kanan lumulutang',
+
 # Preferences page
 'preferences'               => 'Mga kagustuhan',
 'mypreferences'             => 'Aking mga kagustuhan',
 'prefs-edits'               => 'Bilang ng mga pagbabago:',
 'prefsnologin'              => 'Hindi nakalagda/nakatala',
 'prefsnologintext'          => 'Kailangan mong <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} lumagda/tumala]</span> para makapagtakda ng mga kagustuhang ng tagagamit.',
-'prefsreset'                => 'Muling itinakda ang mga kagustuhan mula sa taguan.',
-'qbsettings'                => 'Quickbar',
-'qbsettings-none'           => 'Wala',
-'qbsettings-fixedleft'      => 'Inayos ang kaliwa',
-'qbsettings-fixedright'     => 'Inayos ang kanan',
-'qbsettings-floatingleft'   => 'Kaliwa lumulutang',
-'qbsettings-floatingright'  => 'Kanan lumulutang',
 'changepassword'            => 'Baguhin ang hudyat',
 'prefs-skin'                => 'Pabalat',
 'skin-preview'              => 'Unang tingin',
@@ -1132,17 +1120,6 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'dateformat'                => 'Anyo ng petsa',
 'datedefault'               => 'Walang kagustuhan',
 'prefs-datetime'            => 'Petsa at oras',
-'math_failure'              => 'Nabigo sa pagbanghay',
-'math_unknown_error'        => 'hindi nalalamang kamalian',
-'math_unknown_function'     => 'hindi nalalamang tungkulin',
-'math_lexing_error'         => 'kamalian sa pagbabatas',
-'math_syntax_error'         => 'kamalian sa palaugnayan',
-'math_image_error'          => 'Nabigo ang pagpapalit patungong PNG;
-pakisuri kung tama ang pagiinstala ng latex, dvips, gs, at palitan',
-'math_bad_tmpdir'           => 'Hindi maisulat sa o makalikha ng pansamantalang direktoryong pangmatematika',
-'math_bad_output'           => 'Hindi maisulat sa o makalikha ng direktoryo ng produktong pangmatematika',
-'math_notexvc'              => 'Nawawala ang maisasakatuparang texvc;
-pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 'prefs-personal'            => 'Sanligang pangkatangian ng tagagamit',
 'prefs-rc'                  => 'Kamakailan lamang na mga pagbabago',
 'prefs-watchlist'           => 'Talaan ng mga binabantayan',
@@ -1169,7 +1146,6 @@ pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 'recentchangescount'        => 'Bilang ng mga pagbabagong ipapakita sa loob ng kamakailang mga pagbabago, mga kasaysayan ng pahina at sa loob ng mga tala, bilang likas na katakdaan:',
 'savedprefs'                => 'Nasagip na ang mga kagustuhan mo.',
 'timezonelegend'            => 'Sona ng oras',
-'timezonetext'              => '¹Ang bilang ng pagkakaiba ng katutubong oras mo mula sa oras ng serbidor (UTC).',
 'localtime'                 => 'Katutubong oras:',
 'timezoneselect'            => 'Sona ng oras:',
 'timezoneuseserverdefault'  => 'Gamitin ang itinakda ng serbidor',
@@ -2510,6 +2486,19 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'mw_math_source' => "Iwanan bilang TeX (para sa mga panghanap na pangteksto o ''text browser'')",
 'mw_math_modern' => 'Irekomenda para sa makabagong mga panghanap',
 'mw_math_mathml' => 'MathML kung maaari (sinusubok pa)',
+
+# Math errors
+'math_failure'          => 'Nabigo sa pagbanghay',
+'math_unknown_error'    => 'hindi nalalamang kamalian',
+'math_unknown_function' => 'hindi nalalamang tungkulin',
+'math_lexing_error'     => 'kamalian sa pagbabatas',
+'math_syntax_error'     => 'kamalian sa palaugnayan',
+'math_image_error'      => 'Nabigo ang pagpapalit patungong PNG;
+pakisuri kung tama ang pagiinstala ng latex, dvips, gs, at palitan',
+'math_bad_tmpdir'       => 'Hindi maisulat sa o makalikha ng pansamantalang direktoryong pangmatematika',
+'math_bad_output'       => 'Hindi maisulat sa o makalikha ng direktoryo ng produktong pangmatematika',
+'math_notexvc'          => 'Nawawala ang maisasakatuparang texvc;
+pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Tatakan bilang napatrolya na',

@@ -74,14 +74,16 @@ $messages = array(
 'subcategories'   => 'Ndéngé-bǎna',
 'category-empty'  => "''Loléngé loye ezalí na ekakola tɛ̂, loléngé-mwǎna tɛ̂ tǒ nkásá mitímediá tɛ̂.''",
 
-'about'          => 'elɔ́kɔ elobámí',
-'article'        => 'ekakoli',
-'cancel'         => 'Kozóngela',
+'about'      => 'elɔ́kɔ elobámí',
+'article'    => 'ekakoli',
+'cancel'     => 'Kozóngela',
+'mytalk'     => 'Ntembe na ngáí',
+'navigation' => 'Botamboli',
+'and'        => '&#32;mpé',
+
+# Cologne Blue skin
 'qbedit'         => 'kobalusa',
 'qbspecialpages' => 'Nkásá ya ndéngé isúsu',
-'mytalk'         => 'Ntembe na ngáí',
-'navigation'     => 'Botamboli',
-'and'            => '&#32;mpé',
 
 'errorpagetitle'   => 'Mbéba',
 'tagline'          => 'Artíclɛ ya {{SITENAME}}.',

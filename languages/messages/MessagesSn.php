@@ -44,11 +44,13 @@ $messages = array(
 'november-gen'  => 'Mbudzi',
 'december-gen'  => 'Zvita',
 
-'cancel'         => 'Kanzura',
+'cancel'     => 'Kanzura',
+'mytalk'     => 'Hurukuro dzangu',
+'navigation' => 'Banguranyika',
+
+# Cologne Blue skin
 'qbedit'         => 'Chinja',
 'qbspecialpages' => 'Mapeji akakosha',
-'mytalk'         => 'Hurukuro dzangu',
-'navigation'     => 'Banguranyika',
 
 'help'             => 'Rubatsiro',
 'search'           => 'Tsvaga',

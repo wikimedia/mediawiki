@@ -136,10 +136,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWiki-t]
 * [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]',
 
-'about'          => 'Rreth',
-'article'        => 'Artikulli',
-'newwindow'      => '(çelet në një dritare të re)',
-'cancel'         => 'Harroji',
+'about'         => 'Rreth',
+'article'       => 'Artikulli',
+'newwindow'     => '(çelet në një dritare të re)',
+'cancel'        => 'Harroji',
+'moredotdotdot' => 'Ma shumë...',
+'mypage'        => 'Fáqja jémé',
+'mytalk'        => 'Diskutimet e mia',
+'anontalk'      => 'Diskutimet për këtë IP',
+'navigation'    => 'Shfleto',
+'and'           => '&#32;dhe',
+
+# Cologne Blue skin
 'qbfind'         => 'Kërko',
 'qbbrowse'       => 'Shfletoni',
 'qbedit'         => 'Redaktoni',
@@ -147,12 +155,8 @@ $messages = array(
 'qbpageinfo'     => 'Informacion mbi faqen',
 'qbmyoptions'    => 'Opsionet e mia',
 'qbspecialpages' => 'Fáqet speciále',
-'moredotdotdot'  => 'Ma shumë...',
-'mypage'         => 'Fáqja jémé',
-'mytalk'         => 'Diskutimet e mia',
-'anontalk'       => 'Diskutimet për këtë IP',
-'navigation'     => 'Shfleto',
-'and'            => '&#32;dhe',
+'faq'            => 'Pyetje e Përgjegjje',
+'faqpage'        => 'Project:Pyetje e Përgjegjje',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -222,8 +226,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Shfajësimet e përgjithshme',
 'edithelp'             => 'Ndihmë për redaktim',
 'edithelppage'         => 'Help:Si me redaktue një faqe',
-'faq'                  => 'Pyetje e Përgjegjje',
-'faqpage'              => 'Project:Pyetje e Përgjegjje',
 'helppage'             => 'Help:Ndihmë',
 'mainpage'             => 'Faqja Kryesore',
 'mainpage-description' => 'Faqja Kryesore',
@@ -296,10 +298,6 @@ MySQL kthehu gabimin "<tt>$3: $4</tt>".',
 "$1"
 nga funksioni "$2".
 MySQL kthehu gabimin "$3: $4".',
-'noconnect'            => 'Ju kërkojmë të falme! Defekt teknik, rifillojmë së shpejti.<br />
-$1',
-'nodb'                 => 'Nuk mujta me zgjidh regjistrin $1',
-'cachederror'          => 'Kjo asht një kopje e faqes së kërkueme dhe munet me kánë e vjetër.',
 'laggedslavemode'      => 'Kujdes: Kjo faqe munet mos me kánë e përtërime nga shërbyesi kryesor dhe munet me pas informacion të vjetër',
 'readonly'             => 'Regjistri i bllokuem',
 'enterlockreason'      => 'Futni një arsye për bllokimin, gjithashtu futni edhe kohën se kur pritet të çbllokohet',

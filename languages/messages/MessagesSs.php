@@ -45,6 +45,7 @@ $messages = array(
 'november-gen'  => 'Lídvúba',
 'december-gen'  => 'íNgongóni',
 
+# Cologne Blue skin
 'qbfind'         => 'Kúkhándza',
 'qbedit'         => 'Kúhlela',
 'qbspecialpages' => 'Emakhasi labalulekile',

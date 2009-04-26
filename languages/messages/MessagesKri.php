@@ -71,8 +71,12 @@ $messages = array(
 'category-empty'        => "''Dis katigori-ya noh geht noh pej o midya foh naw.''",
 'hidden-categories'     => '{{PLURAL:$1|Katigori we dehm dohn ayd|Katigori-dehm we dehm dohn ayd}}',
 
-'qbedit' => 'Chenj',
 'mytalk' => 'Mi Tohk',
+
+# Cologne Blue skin
+'qbedit'  => 'Chenj',
+'faq'     => 'Kweshtyohn-dehm we ohlman de aks',
+'faqpage' => 'Project:Kwehstyohn-dehm we ohlman de aks',
 
 'returnto'         => 'Go bak tu $1.',
 'tagline'          => 'Dis kòmòt {{SITENAME}}',
@@ -117,8 +121,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Disklema fò òltin',
 'edithelp'             => 'Advais foh we yu wan ehdit',
 'edithelppage'         => 'Help:Ehditin',
-'faq'                  => 'Kweshtyohn-dehm we ohlman de aks',
-'faqpage'              => 'Project:Kwehstyohn-dehm we ohlman de aks',
 'helppage'             => 'Help:Kohntehnt-dehm',
 'mainpage'             => 'Men Pej',
 'mainpage-description' => 'Men Pej',

@@ -110,10 +110,18 @@ $messages = array(
 'category-empty'         => "''Wo kattegori cwale fumile ishi petulo nji media.''",
 'listingcontinuesabbrev' => 'kepoli',
 
-'about'          => "Ngesi ye ng'i atulile",
-'article'        => 'Petulo',
-'newwindow'      => '(apuzi kwa nca windo)',
-'cancel'         => 'Ngambu',
+'about'         => "Ngesi ye ng'i atulile",
+'article'       => 'Petulo',
+'newwindow'     => '(apuzi kwa nca windo)',
+'cancel'        => 'Ngambu',
+'moredotdotdot' => 'Ye plus...',
+'mypage'        => 'Zwa petulo',
+'mytalk'        => 'Zwa bulelezi',
+'anontalk'      => 'Bulelezi di bye IP',
+'navigation'    => 'Muya',
+'and'           => '&#32;e',
+
+# Cologne Blue skin
 'qbfind'         => 'Fatukile',
 'qbbrowse'       => 'Nepile',
 'qbedit'         => "Hloli ye ng'i",
@@ -121,12 +129,8 @@ $messages = array(
 'qbpageinfo'     => 'Petulo tuto',
 'qbmyoptions'    => 'Zwa petulona',
 'qbspecialpages' => 'Petulo zwenti',
-'moredotdotdot'  => 'Ye plus...',
-'mypage'         => 'Zwa petulo',
-'mytalk'         => 'Zwa bulelezi',
-'anontalk'       => 'Bulelezi di bye IP',
-'navigation'     => 'Muya',
-'and'            => '&#32;e',
+'faq'            => 'Alabile',
+'faqpage'        => 'Project:Alabile',
 
 # Metadata in edit box
 'metadata_help' => 'Meta ngesi:',
@@ -196,8 +200,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Dikulemi generali',
 'edithelp'             => "Hloli ye ng'i",
 'edithelppage'         => "Help:Hloli ye ng'i",
-'faq'                  => 'Alabile',
-'faqpage'              => 'Project:Alabile',
 'helppage'             => 'Help:Buinaneli di petulo',
 'mainpage'             => 'Petulo yem efro',
 'mainpage-description' => 'Petulo yem efro',
@@ -255,7 +257,6 @@ $messages = array(
 # General errors
 'error'                => 'Bufosi',
 'databaseerror'        => 'Bufosi di database',
-'nodb'                 => 'Ni sa selektisize databesi $1',
 'readonly'             => 'Databesi sa loko',
 'internalerror'        => 'Interni bufosi',
 'internalerror_info'   => 'Interni bufosi: $1',
@@ -278,7 +279,6 @@ Query: $2",
 'sqlhidden'            => '(SQL query sa cwankekile)',
 
 # Login and logout pages
-'loginpagetitle'            => 'Sebelu menuhile',
 'yourname'                  => 'Sebelu:',
 'yourpassword'              => 'Sebu dafi:',
 'yourpasswordagain'         => 'Ritapi sebu dafi:',
@@ -489,12 +489,14 @@ Informasi: (bye) = petuho a nca selt,
 'showingresultsnum'     => "Kamukile {{PLURAL:$3|'''1''' ekali|'''$3''' ekalina}} di #'''$2'''.",
 'powersearch'           => 'Fatukile',
 
+# Quickbar
+'qbsettings-none' => 'Ni',
+
 # Preferences page
 'preferences'       => 'Petohoni di sebelu',
 'mypreferences'     => 'Zwa petohoni di sebelu',
 'prefs-edits'       => "Hloli ye ng'inabi:",
 'prefsnologin'      => 'Ni menuhile',
-'qbsettings-none'   => 'Ni',
 'prefs-skin'        => 'PendiBe',
 'skin-preview'      => 'PendiBe',
 'prefs-math'        => 'Mat',

@@ -247,10 +247,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manyèl:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis diskisyon pou chak ki parèt sou MediaWiki]',
 
-'about'          => 'Apwopo',
-'article'        => 'Atik',
-'newwindow'      => '(Ouvè nan yon lòt fenèt)',
-'cancel'         => 'Anile',
+'about'         => 'Apwopo',
+'article'       => 'Atik',
+'newwindow'     => '(Ouvè nan yon lòt fenèt)',
+'cancel'        => 'Anile',
+'moredotdotdot' => 'Pi plis …',
+'mypage'        => 'Paj mwen',
+'mytalk'        => 'Paj diskisyon mwen an',
+'anontalk'      => 'Diskite avèk adrès IP sa',
+'navigation'    => 'Navigasyon',
+'and'           => '&#32;epi',
+
+# Cologne Blue skin
 'qbfind'         => 'Chache',
 'qbbrowse'       => 'Bouske',
 'qbedit'         => 'Modifye',
@@ -258,12 +266,8 @@ $messages = array(
 'qbpageinfo'     => 'Kontèks',
 'qbmyoptions'    => 'Paj mwen yo',
 'qbspecialpages' => 'Paj espesyal',
-'moredotdotdot'  => 'Pi plis …',
-'mypage'         => 'Paj mwen',
-'mytalk'         => 'Paj diskisyon mwen an',
-'anontalk'       => 'Diskite avèk adrès IP sa',
-'navigation'     => 'Navigasyon',
-'and'            => '&#32;epi',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -335,8 +339,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Avètisman jeneral yo',
 'edithelp'             => 'Edite paj èd la',
 'edithelppage'         => 'Help:kòman ou ka modifye yon paj',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Èd',
 'mainpage'             => 'Paj prensipal',
 'mainpage-description' => 'Paj prensipal',
@@ -412,10 +414,6 @@ depi fonksyon sa « <tt>$2</tt> ».
 MySQL ritounen erè sa « <tt>$3 : $4</tt> ».',
 'dberrortextcl'        => 'Yon demann nan baz done a bay yon erè.
 Dènye esè nan baz done a te: « $1 » fèt pa fonksyon sa « $2 ». MySQL ritounen mesaj sa « $3 : $4 ».',
-'noconnect'            => 'Souple, eskize nou. Wiki a ap konnen kounye a yon erè, kèk pwoblèm teknik; li pa kapab jwenn sèvè a pou voye enfòmasyon ou mande a. <br />
-$1',
-'nodb'                 => 'Nou pa kapab seleksyone baz done $1',
-'cachederror'          => 'Paj sa a se yon paj ki te anrejistre deja, li pa kapab mete l a jou.',
 'laggedslavemode'      => 'Pòte atansyon, paj sa a pa kapab anrejistre modifikasyon ki fèk fèt yo.',
 'readonly'             => 'Baz done a fème toutbon.',
 'enterlockreason'      => 'Bay yon rezon pou fème baz done a epitou yon estimasyon pou tan sa ap pran w pou l ouvri ankò',
@@ -481,7 +479,6 @@ Ou mèt kontinye itilize {{SITENAME}} san ou pa bezwen konekte w, oubyen si ou [
 'welcomecreation'            => '== Byenvini, $1 ! ==
 
 Kont ou an kreye. Pa bliye pèsonalize l nan  [[Special:Preferences|preferans ou an sou paj sa {{SITENAME}}]].',
-'loginpagetitle'             => 'Koneksyon itilizatè',
 'yourname'                   => 'Non itilizatè ou an :',
 'yourpassword'               => 'Mopas ou an :',
 'yourpasswordagain'          => 'Mete mopas ou an ankò :',
@@ -567,7 +564,6 @@ Pa pòte atansyon pou mesaj sa si kont sa kreye pa erè.',
 'retypenew'                 => 'Konfime nouvo mopas an :',
 'resetpass_submit'          => 'Chanje mopas epitou anrejistre',
 'resetpass_success'         => 'Nou chanje mopas ou an ak siksè ! Nap anrejistre ou kounye a...',
-'resetpass_bad_temporary'   => 'Mopas tanporè sa pa bon ditou. Li sanble ou deja chanje mopas ou an oubyen ou mande yon lòt mopas tanporè.',
 'resetpass_forbidden'       => 'Nou pa kapab chanje mopas yo nan sistèm sa',
 'resetpass-no-info'         => 'Ou dwèt konekte pou ou kapab vini nan paj sa.',
 'resetpass-submit-loggedin' => 'Modifye mopas sa',
@@ -645,7 +641,6 @@ Adrès IP ou an kounye a se $3. Idantifyan, non ou an nan kilès ou bloke a se $
 'blockededitsource'                => "Kontni '''modifikasyon ou yo''' nan '''$1''' ekri pli ba :",
 'whitelistedittitle'               => 'Ou dwèt konekte w pou ou kapab edite epi modifye tèks sa, kontni sa',
 'whitelistedittext'                => 'Ou dwèt gen fonksyon sa $1 pou ou kapab genyen dwa pou modifye kontni sa.',
-'confirmedittitle'                 => 'Adrès imèl ou an dwèt valide pou ou kapab modifye kontni sa',
 'confirmedittext'                  => 'Ou dwèt konfime adrès imèl ou an anvan ou modifye paj {{SITENAME}} sa. Antre epi valide adrès elektwonik ou an ak èd ou kapab twouve nan paj sa [[Special:Preferences|preferans]].',
 'nosuchsectiontitle'               => 'Seksyon sa pa gen anyen sou li',
 'nosuchsectiontext'                => 'Ou eseye modifye yon seksyon ki pa egziste nan sitèm an.

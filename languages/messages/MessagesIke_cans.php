@@ -62,17 +62,19 @@ $messages = array(
 'nov'           => 'ᓄᕕ',
 'dec'           => 'ᑎᓯᒻ',
 
-'about'          => 'ᒥᒃᓵᓂ',
-'article'        => 'ᐃᓗᓕᒃ ᒪᑉᐱᑕᖅ',
-'newwindow'      => '(ᐅᐃᑦᑐᖅ ᖃᕋᓴᐅᔭᖅ ᐃᑭᐊᖅ ᐱᒋᕗᖅ ᐃᒐᓛᖅ)',
-'cancel'         => 'ᐃᓂᖅᑎᐹ',
+'about'         => 'ᒥᒃᓵᓂ',
+'article'       => 'ᐃᓗᓕᒃ ᒪᑉᐱᑕᖅ',
+'newwindow'     => '(ᐅᐃᑦᑐᖅ ᖃᕋᓴᐅᔭᖅ ᐃᑭᐊᖅ ᐱᒋᕗᖅ ᐃᒐᓛᖅ)',
+'cancel'        => 'ᐃᓂᖅᑎᐹ',
+'moredotdotdot' => 'ᐱᓪᓗᐊᕆᕚ...',
+'mypage'        => 'ᐊᒥ ᒪᑉᐱᑕᖅ',
+'mytalk'        => 'ᐊᓪᓚᖁᑎᒃᑲ',
+'navigation'    => 'ᒥᐊᓂᕆᕚ',
+'and'           => '&#32;ᐊᒻᒪ',
+
+# Cologne Blue skin
 'qbedit'         => 'ᓱᖁᓯᖅᐹ',
 'qbspecialpages' => 'ᐱᔨ ᒪᑉᐱᑕᖅ',
-'moredotdotdot'  => 'ᐱᓪᓗᐊᕆᕚ...',
-'mypage'         => 'ᐊᒥ ᒪᑉᐱᑕᖅ',
-'mytalk'         => 'ᐊᓪᓚᖁᑎᒃᑲ',
-'navigation'     => 'ᒥᐊᓂᕆᕚ',
-'and'            => '&#32;ᐊᒻᒪ',
 
 'errorpagetitle'    => 'ᑕᒻᒪᓇᖅᑐᖅ',
 'help'              => 'ᖃᔭᓕᑉᐹ',
@@ -207,11 +209,9 @@ $messages = array(
 'powersearch' => 'ᕿᓐᓇᕆᒃᓴᕐᓂᖅ',
 
 # Preferences page
-'mypreferences'         => 'ᐊᒥ ᐱᒃᑯᒪᓂᖅᐹᖅ',
-'math_unknown_error'    => 'ᑐᓴᐅᒪᔭᐅᙱᑐᖅ ᑕᒻᒪᓇᖅᑐᖅ',
-'math_unknown_function' => 'ᑐᓴᐅᒪᔭᐅᙱᑐᖅ ᐃᓕᐅᕐᓂᖅ',
-'prefs-rc'              => 'ᐱᒋᕗᖅ ᐊᓯᐊᙳᑐᖅ',
-'searchresultshead'     => 'ᐃᕚᖅᐳᖅ',
+'mypreferences'     => 'ᐊᒥ ᐱᒃᑯᒪᓂᖅᐹᖅ',
+'prefs-rc'          => 'ᐱᒋᕗᖅ ᐊᓯᐊᙳᑐᖅ',
+'searchresultshead' => 'ᐃᕚᖅᐳᖅ',
 
 # User rights
 'editinguser' => "ᓱᖁᓯᖅᐹ ᖃᑕᙳᑎ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -360,6 +360,10 @@ $messages = array(
 
 # Attribution
 'anonymous' => 'ᐃᓕᓴᕐᓇᙱᑎᑦᑐᖅ ᖃᑕᙳᑎ ᓇᑭᑦ {{SITENAME}}',
+
+# Math errors
+'math_unknown_error'    => 'ᑐᓴᐅᒪᔭᐅᙱᑐᖅ ᑕᒻᒪᓇᖅᑐᖅ',
+'math_unknown_function' => 'ᑐᓴᐅᒪᔭᐅᙱᑐᖅ ᐃᓕᐅᕐᓂᖅ',
 
 # Image deletion
 'deletedrevision' => 'ᓂᐸᖅ ᐅᑐᖃᖅ ᑎᑎᕋᖅᑕᐅᒋᐊᕐᖓᕈᑦ $1',

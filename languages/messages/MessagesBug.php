@@ -57,9 +57,16 @@ $messages = array(
 'category_header' => 'Leppa rilaleŋ kategori "$1"',
 'subcategories'   => 'Subkategori',
 
-'about'          => 'Atajangeng',
-'article'        => 'Lontara',
-'cancel'         => 'Rusa',
+'about'      => 'Atajangeng',
+'article'    => 'Lontara',
+'cancel'     => 'Rusa',
+'mypage'     => "Leppana iya'",
+'mytalk'     => 'Bicarana iyya',
+'anontalk'   => 'Bicarana IP édé',
+'navigation' => 'Navigasi',
+'and'        => '&#32;na',
+
+# Cologne Blue skin
 'qbfind'         => 'Assapparang',
 'qbbrowse'       => 'Berowoso',
 'qbedit'         => 'Padécéŋ',
@@ -67,11 +74,8 @@ $messages = array(
 'qbpageinfo'     => 'Konteks',
 'qbmyoptions'    => "Leppana iya'",
 'qbspecialpages' => 'Leppa spésiala',
-'mypage'         => "Leppana iya'",
-'mytalk'         => 'Bicarana iyya',
-'anontalk'       => 'Bicarana IP édé',
-'navigation'     => 'Navigasi',
-'and'            => '&#32;na',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -126,8 +130,6 @@ $messages = array(
 'disclaimers'          => 'Diseklaima',
 'edithelp'             => 'Paŋinriŋ mapadécéŋ',
 'edithelppage'         => 'Help:Mapadécéŋ',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Lise',
 'mainpage'             => 'Leppa Indoë',
 'mainpage-description' => 'Leppa Indoë',
@@ -170,7 +172,6 @@ $messages = array(
 'virus-unknownscanner' => "Antivirus dé' riisseŋ:",
 
 # Login and logout pages
-'loginpagetitle'          => 'Log mattama papaké',
 'yourname'                => 'Aseŋ papaké:',
 'yourpassword'            => 'Pasewodo:',
 'login'                   => 'log attama',
@@ -267,10 +268,12 @@ $messages = array(
 'searchhelp-url'        => 'Help:Lise',
 'search-redirect'       => '(redirect $1)',
 
+# Quickbar
+'qbsettings-none' => 'Dégaga',
+
 # Preferences page
 'mypreferences'     => 'Bérékkeŋeŋna iyya',
 'prefsnologin'      => "Déppa ma'log attama'",
-'qbsettings-none'   => 'Dégaga',
 'prefs-watchlist'   => 'Watchlist',
 'prefs-misc'        => 'Misc',
 'saveprefs'         => 'Taro',

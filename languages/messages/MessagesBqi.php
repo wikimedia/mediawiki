@@ -133,9 +133,13 @@ $messages = array(
 'about'     => 'درباره',
 'newwindow' => '(پنجره تازه واز کن)',
 'cancel'    => 'لغو',
-'qbfind'    => 'پیدا کردن',
-'qbedit'    => 'اصلاح',
 'mytalk'    => 'صحبت مو',
+
+# Cologne Blue skin
+'qbfind'  => 'پیدا کردن',
+'qbedit'  => 'اصلاح',
+'faq'     => 'اف ای کیو',
+'faqpage' => 'Project:اف ای کیو',
 
 'errorpagetitle'   => 'خطا',
 'returnto'         => 'بازگشت به $1.',
@@ -194,8 +198,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:انکار کاربران',
 'edithelp'             => 'کمک برای اصلاح',
 'edithelppage'         => 'Help:اصلاح',
-'faq'                  => 'اف ای کیو',
-'faqpage'              => 'Project:اف ای کیو',
 'helppage'             => 'Help:محتوا',
 'mainpage'             => 'صفحه اصلی',
 'mainpage-description' => 'صفحه اصلی',

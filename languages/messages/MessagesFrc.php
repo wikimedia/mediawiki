@@ -128,10 +128,16 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki: Questions Souvent Posées]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki Liste à Malle]',
 
-'about'          => 'Info',
-'article'        => 'Page des matières',
-'newwindow'      => '(va ouverre une nouvelle fenêtre)',
-'cancel'         => 'Arrêter',
+'about'         => 'Info',
+'article'       => 'Page des matières',
+'newwindow'     => '(va ouverre une nouvelle fenêtre)',
+'cancel'        => 'Arrêter',
+'moredotdotdot' => 'Plus...',
+'mypage'        => 'Ma page',
+'mytalk'        => 'Ma page de discussion',
+'anontalk'      => 'Discussion avec cette adresse IP',
+
+# Cologne Blue skin
 'qbfind'         => 'Charcher',
 'qbbrowse'       => 'Regarder',
 'qbedit'         => 'Changer',
@@ -139,10 +145,8 @@ $messages = array(
 'qbpageinfo'     => "Page d'information",
 'qbmyoptions'    => 'Mes options',
 'qbspecialpages' => 'Pages espéciales',
-'moredotdotdot'  => 'Plus...',
-'mypage'         => 'Ma page',
-'mytalk'         => 'Ma page de discussion',
-'anontalk'       => 'Discussion avec cette adresse IP',
+'faq'            => 'Questions Communes',
+'faqpage'        => 'Project:Questions Communes',
 
 # Metadata in edit box
 'metadata_help' => 'Meta-information:',
@@ -209,8 +213,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Avertissements ordinaires',
 'edithelp'             => 'Aide',
 'edithelppage'         => 'Help:Comment changer une page',
-'faq'                  => 'Questions Communes',
-'faqpage'              => 'Project:Questions Communes',
 'helppage'             => 'Help:Aide',
 'mainpage'             => 'Page Principale',
 'mainpage-description' => 'Page Principale',
@@ -276,10 +278,6 @@ La dernière demande faite dans la base d\'information était:
 "$1"
 dedans la fonction "$2".
 MySQL a retourné l\'erreur "$3: $4".',
-'noconnect'            => "Ça nous fait de la peine!  Le wiki est après avoir des problèmes et peut pas contacter la base d'information. <br />
-$1",
-'nodb'                 => "Impossible de choisir la base d'information $1",
-'cachederror'          => "Ça ici, c'est une copie en cache de la page demandée qu'est peut-être pas courante.",
 'laggedslavemode'      => 'Avertissement: La page est peut-être pas renouvelée.',
 'readonly'             => "La base d'information est barrée.",
 'enterlockreason'      => "Écrire une raison pour le barrage avec un temps estimé
@@ -325,7 +323,6 @@ Demande: $2',
 'welcomecreation'            => '== Bonjour, $1! ==
 
 Votre compte a été créé.  Oubliez pas de changer votre réglage sus {{SITENAME}}.',
-'loginpagetitle'             => 'Connecter',
 'yourname'                   => "Nom d'useur:",
 'yourpassword'               => 'Mot de passe:',
 'yourpasswordagain'          => 'Mot de passe encore:',
@@ -391,14 +388,13 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'loginlanguagelabel'         => 'Langue: $1',
 
 # Password reset dialog
-'resetpass'               => 'Rétablir le mot de passe du compte',
-'resetpass_announce'      => "Pour le moment, vous êtes connecté avec un mot de passe qu'a été envoyé par e-mail.  Pour finir de vous connecter, il faut créer un nouveau mot de passe ici:",
-'resetpass_text'          => '<!-- Mettez du texte ici -->',
-'resetpass_header'        => 'Rétablir le mot de passe',
-'resetpass_submit'        => 'Créer le mot de passe et connecter',
-'resetpass_success'       => 'Vous avez bien changé votre mot de passe!  On est après vous connecter...',
-'resetpass_bad_temporary' => 'Mauvais mot de passe de peu de durée.  Il est possible que vous avez déjà changé votre mot de passe ou demandé un nouveau mot de passe de peu de durée.',
-'resetpass_forbidden'     => 'Vous pouvez pas changer votre mot de passe sus ce wiki ici.',
+'resetpass'           => 'Rétablir le mot de passe du compte',
+'resetpass_announce'  => "Pour le moment, vous êtes connecté avec un mot de passe qu'a été envoyé par e-mail.  Pour finir de vous connecter, il faut créer un nouveau mot de passe ici:",
+'resetpass_text'      => '<!-- Mettez du texte ici -->',
+'resetpass_header'    => 'Rétablir le mot de passe',
+'resetpass_submit'    => 'Créer le mot de passe et connecter',
+'resetpass_success'   => 'Vous avez bien changé votre mot de passe!  On est après vous connecter...',
+'resetpass_forbidden' => 'Vous pouvez pas changer votre mot de passe sus ce wiki ici.',
 
 # Edit page toolbar
 'bold_sample'     => 'Gras',
@@ -464,7 +460,6 @@ Votre numéro de blocage est #$5.  Mettez donc cette information dans toutes vos
 'blockededitsource'          => "Le texte de '''votres changements''' à '''$1''' est montré en bas.",
 'whitelistedittitle'         => 'Il faut connecter pour faire des changements.',
 'whitelistedittext'          => 'Il faut $1 pour faire des changements.',
-'confirmedittitle'           => 'Il faut confirmer votre adresse e-mail pour faire des changements.',
 'confirmedittext'            => "Il faut confirmer votre adresse e-mail pour faire des changements.  Mettez et confirmez un adresse e-mail dans votre [[Special:Preferences|réglage de compte]], s'il vous plaît.",
 'nosuchsectiontitle'         => 'Aucune section pareille',
 'nosuchsectiontext'          => "Vous avez assayé de faire des changements dans une section qu'existe pas.  Le système peut pas sauver des changements dans une section qu'existe pas.",

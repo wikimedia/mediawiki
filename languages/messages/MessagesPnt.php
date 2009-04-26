@@ -128,9 +128,17 @@ $messages = array(
 'category-file-count-limited'    => "{{PLURAL:$1|Τ' αρχείον|$1 Τ' αρχεία}} αφκά καικά είν' σην κατηγορίαν.",
 'listingcontinuesabbrev'         => 'συνεχίζεται...',
 
-'about'          => 'Περί',
-'newwindow'      => "(ανοίγ' σ' άλλον παραθύρ)",
-'cancel'         => 'Χάτεμαν',
+'about'         => 'Περί',
+'newwindow'     => "(ανοίγ' σ' άλλον παραθύρ)",
+'cancel'        => 'Χάτεμαν',
+'moredotdotdot' => 'Πλέα...',
+'mypage'        => "Τ' εμόν η σελίδαν",
+'mytalk'        => "Τ' εμόν το καλάτσεμαν",
+'anontalk'      => "Καλάτσεμα για τ'ατό το IP",
+'navigation'    => 'Πορπάτεμαν',
+'and'           => '&#32;και',
+
+# Cologne Blue skin
 'qbfind'         => 'Εύρον',
 'qbbrowse'       => 'Πλοήγησην',
 'qbedit'         => 'Άλλαξον',
@@ -138,12 +146,8 @@ $messages = array(
 'qbpageinfo'     => 'Συμφραζόμενα',
 'qbmyoptions'    => "Τ' εμά τα σελίδας",
 'qbspecialpages' => 'Ειδικά σελίδας',
-'moredotdotdot'  => 'Πλέα...',
-'mypage'         => "Τ' εμόν η σελίδαν",
-'mytalk'         => "Τ' εμόν το καλάτσεμαν",
-'anontalk'       => "Καλάτσεμα για τ'ατό το IP",
-'navigation'     => 'Πορπάτεμαν',
-'and'            => '&#32;και',
+'faq'            => 'Πολλά ερωτήσεις (FAQ)',
+'faqpage'        => 'Project:Πολλά ερωτήσεις (FAQ)',
 
 # Metadata in edit box
 'metadata_help' => 'Μεταδογμένα:',
@@ -213,8 +217,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Ιμπρέσουμ',
 'edithelp'             => "Βοήθεια για τ' αλλαγμαν",
 'edithelppage'         => 'Help:Άλλαγμαν',
-'faq'                  => 'Πολλά ερωτήσεις (FAQ)',
-'faqpage'              => 'Project:Πολλά ερωτήσεις (FAQ)',
 'helppage'             => 'Help:Περιεχόμενα',
 'mainpage'             => 'Αρχικόν σελίδα',
 'mainpage-description' => 'Αρχικόν σελίδα',
@@ -310,7 +312,6 @@ $messages = array(
 'welcomecreation'            => "== Καλώς έρθετεν, $1! ==
 Η λογαρίαν εσουν εγέντον.
 Τ' άλλαγμαν τη [[Special:Preferences|{{SITENAME}} προτιμησίων]] εσουν μη νεσπάλετε.",
-'loginpagetitle'             => 'Εσέβεμαν χρήστε',
 'yourname'                   => 'Όνεμαν χρήστε:',
 'yourpassword'               => 'Σημάδι:',
 'yourpasswordagain'          => "Ξαν' γράψτεν το σημάδι:",
@@ -603,9 +604,6 @@ $messages = array(
 'prefs-math'              => 'Απόδοσην μαθηματικίων',
 'dateformat'              => 'Μορφή ημερομηνίας',
 'prefs-datetime'          => 'Ημερομηνίαν και ώραν',
-'math_unknown_function'   => 'άγνωρος συνάρτησην',
-'math_lexing_error'       => 'σφάλμαν λεξικής ανάλυσης',
-'math_syntax_error'       => 'σφάλμαν σύνταξης',
 'prefs-rc'                => 'Υστερνά αλλαγάς',
 'prefs-misc'              => 'Διαφ',
 'saveprefs'               => 'Αποθήκεμαν',
@@ -1148,6 +1146,11 @@ $messages = array(
 
 # Spam protection
 'spamprotectiontitle' => 'Φίλτρον προστασίας ασό σπαμ',
+
+# Math errors
+'math_unknown_function' => 'άγνωρος συνάρτησην',
+'math_lexing_error'     => 'σφάλμαν λεξικής ανάλυσης',
+'math_syntax_error'     => 'σφάλμαν σύνταξης',
 
 # Patrol log
 'patrol-log-auto' => '(αυτόματον)',

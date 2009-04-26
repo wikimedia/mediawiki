@@ -72,18 +72,20 @@ $messages = array(
 'subcategories'         => 'Dalaþkunjos',
 'category-media-header' => 'Medja inn kunja "$1"',
 
-'about'          => 'Iubair',
-'article'        => 'saþssiedo',
-'newwindow'      => '(andhuljiþ inn niuja áugadaúro)',
-'cancel'         => 'Halts',
+'about'         => 'Iubair',
+'article'       => 'saþssiedo',
+'newwindow'     => '(andhuljiþ inn niuja áugadaúro)',
+'cancel'        => 'Halts',
+'moredotdotdot' => 'Máis...',
+'mypage'        => '𐌼𐌴𐌹𐌽 𐍃𐌴𐌹𐌳𐍉',
+'mytalk'        => '𐌼𐌴𐌹𐌽𐌰 𐌼𐌰𐌸𐌻𐌴𐌹',
+'and'           => '&#32;jah',
+
+# Cologne Blue skin
 'qbfind'         => 'Sokeiþ',
 'qbedit'         => 'Máidjan',
 'qbmyoptions'    => 'Meina seidos',
 'qbspecialpages' => '𐌿𐍃𐍃𐌹𐌽𐌳𐍃𐌴𐌹𐌳𐍉𐍃',
-'moredotdotdot'  => 'Máis...',
-'mypage'         => '𐌼𐌴𐌹𐌽 𐍃𐌴𐌹𐌳𐍉',
-'mytalk'         => '𐌼𐌴𐌹𐌽𐌰 𐌼𐌰𐌸𐌻𐌴𐌹',
-'and'            => '&#32;jah',
 
 # Metadata in edit box
 'metadata_help' => 'Ufardata:',

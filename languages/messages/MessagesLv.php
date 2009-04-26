@@ -165,10 +165,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki J&A]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]',
 
-'about'          => 'Par',
-'article'        => 'Raksts',
-'newwindow'      => '(atveras jaunā logā)',
-'cancel'         => 'Atcelt',
+'about'         => 'Par',
+'article'       => 'Raksts',
+'newwindow'     => '(atveras jaunā logā)',
+'cancel'        => 'Atcelt',
+'moredotdotdot' => 'Vairāk...',
+'mypage'        => 'Mana lapa',
+'mytalk'        => 'Mana diskusija',
+'anontalk'      => 'Šīs IP adreses diskusija',
+'navigation'    => 'Navigācija',
+'and'           => '&#32;un',
+
+# Cologne Blue skin
 'qbfind'         => 'Meklēšana',
 'qbbrowse'       => 'Navigācija',
 'qbedit'         => 'Izmainīšana',
@@ -176,12 +184,8 @@ $messages = array(
 'qbpageinfo'     => 'Konteksts',
 'qbmyoptions'    => 'Manas lapas',
 'qbspecialpages' => 'Īpašās lapas',
-'moredotdotdot'  => 'Vairāk...',
-'mypage'         => 'Mana lapa',
-'mytalk'         => 'Mana diskusija',
-'anontalk'       => 'Šīs IP adreses diskusija',
-'navigation'     => 'Navigācija',
-'and'            => '&#32;un',
+'faq'            => 'BUJ',
+'faqpage'        => 'Project:BUJ',
 
 # Metadata in edit box
 'metadata_help' => 'Metadati:',
@@ -250,8 +254,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Saistību atrunas',
 'edithelp'             => 'Palīdzība izmaiņām',
 'edithelppage'         => 'Help:Rediģēšana',
-'faq'                  => 'BUJ',
-'faqpage'              => 'Project:BUJ',
 'helppage'             => 'Help:Saturs',
 'mainpage'             => 'Sākumlapa',
 'mainpage-description' => 'Sākumlapa',
@@ -319,10 +321,6 @@ Pēdējais priekšraksts:
 "$1"
 palaists funkcijā "$2".
 Izdotā MySQL kļūda: "$3: $4"',
-'noconnect'            => 'Šajā wiki ir radušās tehniskas grūtības un nav iespējams savienoties ar datubāžu serveri. <br />
-$1',
-'nodb'                 => 'Kļūda, pieslēdzoties datubāzei $1',
-'cachederror'          => 'Šī ir lapas saglabātā versija, iespējams, ka tā nav atjaunināta.',
 'laggedslavemode'      => 'Uzmanību: Iespējams, šajā lapā nav redzami nesen izdarītie papildinājumi.',
 'readonly'             => 'Datubāze bloķēta',
 'readonlytext'         => 'Datubāze šobrīd ir bloķēta pret jauniem ierakstiem un citām izmaiņām. Visdrīzāk iemesls ir parasts datubāzes uzturēšanas pasākums, pēc kura tā tiks atjaunota normālā stāvoklī. Administrators, kurš nobloķēja datubāzi, norādīja šādu iemeslu:
@@ -374,7 +372,6 @@ Vari turpināt to izmantot anonīmi, vari [[Special:UserLogin|atgriezties]] kā 
 'welcomecreation'            => '== Laipni lūdzam, $1! ==
 
 Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Special:Preferences|{{grammar:ģenitīvs|{{SITENAME}}}} izmantošanas izvēles]].',
-'loginpagetitle'             => 'Lietotāja ieiešana',
 'yourname'                   => 'Tavs lietotājvārds',
 'yourpassword'               => 'Tava parole',
 'yourpasswordagain'          => 'Atkārto paroli',
@@ -719,14 +716,15 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 Ņem vērā, ka meklētāju indeksētais {{grammar:ģenitīvs|{{SITENAME}}}} saturs var būt novecojis.',
 
+# Quickbar
+'qbsettings' => 'Rīku joslas stāvoklis',
+
 # Preferences page
 'preferences'           => 'Izvēles',
 'mypreferences'         => 'manas izvēles',
 'prefs-edits'           => 'Izmaiņu skaits:',
 'prefsnologin'          => 'Neesi iegājis',
 'prefsnologintext'      => 'Tev jābūt <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} iegājušam], lai mainītu lietotāja izvēles.',
-'prefsreset'            => 'Sākotnējās izvēles ir atjaunotas.',
-'qbsettings'            => 'Rīku joslas stāvoklis',
 'changepassword'        => 'Mainīt paroli',
 'prefs-skin'            => 'Apdare',
 'skin-preview'          => 'Priekšskats',
@@ -734,9 +732,6 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'dateformat'            => 'Datuma formāts',
 'datedefault'           => 'Vienalga',
 'prefs-datetime'        => 'Datums un laiks',
-'math_unknown_error'    => 'nezināma kļūda',
-'math_unknown_function' => 'nezināma funkcija',
-'math_syntax_error'     => 'sintakses kļūda',
 'prefs-personal'        => 'Lietotāja dati',
 'prefs-rc'              => 'Pēdējās izmaiņas',
 'prefs-watchlist'       => 'Uzraugāmie raksti',
@@ -756,7 +751,6 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'recentchangescount'    => 'Virsrakstu skaits pēdējo izmaiņu, hronoloģiju un reģistru lapās, pēc noklusējuma:',
 'savedprefs'            => 'Tavas izvēles ir saglabātas.',
 'timezonelegend'        => 'Laika josla',
-'timezonetext'          => '¹Ieraksti, par cik stundām tavs vietējais laiks atšķiras no servera laika (UTC).',
 'localtime'             => 'Attēlotais vietējais laiks',
 'timezoneoffset'        => 'Starpība¹',
 'servertime'            => 'Servera laiks šobrīd',
@@ -1654,6 +1648,11 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'mw_math_source' => 'Saglabāt kā TeX (teksta pārlūkiem)',
 'mw_math_modern' => 'Moderniem pārlūkiem ieteiktais variants',
 'mw_math_mathml' => 'MathML, ja iespējams (eksperimentāla iespēja)',
+
+# Math errors
+'math_unknown_error'    => 'nezināma kļūda',
+'math_unknown_function' => 'nezināma funkcija',
+'math_syntax_error'     => 'sintakses kļūda',
 
 # Browsing diffs
 'previousdiff' => '← Vecāka versija',

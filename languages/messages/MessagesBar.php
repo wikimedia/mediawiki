@@ -95,17 +95,19 @@ $messages = array(
 'mainpagedocfooter' => 'A Huif zua Benutzung und Konfiguration vo da Wiki-Software findst im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
 
-'about'          => 'Üba',
-'article'        => 'Artikl',
-'newwindow'      => '(wiad in am neichn Fensta aufgmåcht)',
-'cancel'         => 'Åbbrecha',
+'about'         => 'Üba',
+'article'       => 'Artikl',
+'newwindow'     => '(wiad in am neichn Fensta aufgmåcht)',
+'cancel'        => 'Åbbrecha',
+'moredotdotdot' => 'Mehra …',
+'mypage'        => 'Eigne Seitn',
+'mytalk'        => 'Eigne Diskussion',
+'anontalk'      => 'Diskussionsseitn vo dera IP',
+'and'           => '&#32;und',
+
+# Cologne Blue skin
 'qbmyoptions'    => 'Meine Seitn',
 'qbspecialpages' => 'Spezialseitn',
-'moredotdotdot'  => 'Mehra …',
-'mypage'         => 'Eigne Seitn',
-'mytalk'         => 'Eigne Diskussion',
-'anontalk'       => 'Diskussionsseitn vo dera IP',
-'and'            => '&#32;und',
 
 'returnto'          => 'Zruck zur Seitn $1.',
 'tagline'           => 'Aus {{SITENAME}}',
@@ -179,7 +181,6 @@ $messages = array(
 # General errors
 'error'               => 'Fehla',
 'databaseerror'       => 'Fehla in da Datenbank',
-'noconnect'           => 'Konn koa Verbindung zur Datenbank auf $1 herstelln',
 'filedeleteerror'     => 'De Datei „$1“ håt net glöscht wern kinna.',
 'filenotfound'        => 'De Datei „$1“ is net gfundn worn.',
 'badarticleerror'     => 'De Aktion kann net auf de Seitn ogwendt wern.',
@@ -242,7 +243,6 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'blockedtitle'               => 'Benutzer is gesperrt',
 'whitelistedittitle'         => 'Zum Bearbatn miaßn Sie si oomeidn',
 'whitelistedittext'          => 'Sie miaßn si $1, um Seiten bearbatn zum kinna.',
-'confirmedittitle'           => 'Zum Bearbatn is a E-Mail-Bestätigung erforderlich.',
 'loginreqtitle'              => 'Es braucht a Oomeidung',
 'loginreqlink'               => 'oomeidn',
 'loginreqpagetext'           => 'Sie miaßn si $1, um Seitn lesen zum kinna.',
@@ -342,13 +342,12 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'powersearch-field'     => 'Suach nåch:',
 
 # Preferences page
-'mypreferences'         => 'Eistellunga',
-'changepassword'        => 'Passwort ändan',
-'math_unknown_function' => 'Unbekannte Funktion',
-'prefs-editing'         => 'Bearbatn',
-'searchresultshead'     => 'Suachn',
-'guesstimezone'         => 'Vom Browser übanehma',
-'allowemail'            => 'E-Mail-Empfang vo andere Benutzer möglich macha.',
+'mypreferences'     => 'Eistellunga',
+'changepassword'    => 'Passwort ändan',
+'prefs-editing'     => 'Bearbatn',
+'searchresultshead' => 'Suachn',
+'guesstimezone'     => 'Vom Browser übanehma',
+'allowemail'        => 'E-Mail-Empfang vo andere Benutzer möglich macha.',
 
 # User rights
 'userrights-groupsmember' => 'Mitglied vo:',
@@ -662,6 +661,9 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 'lastmodifiedatby' => 'De Seitn is zletzt am $1 um $2 vo $3 gändert worn.',
 'othercontribs'    => 'Basiert auf da Arbat vo $1',
 'creditspage'      => 'Seitninformationa',
+
+# Math errors
+'math_unknown_function' => 'Unbekannte Funktion',
 
 # Patrolling
 'markedaspatrollederrortext' => 'Sie miaßn a Seitnänderung auswähln.',

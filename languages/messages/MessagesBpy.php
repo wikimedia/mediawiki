@@ -165,10 +165,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ মিডিয়া উইকি আঙলাক]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়া উইকির ফঙপার বারে মেইলর তালিকাহান]',
 
-'about'          => 'বারে',
-'article'        => 'মেথেলর পাতা',
-'newwindow'      => '(নুৱা উইন্ডত নিকুলতই)',
-'cancel'         => 'বাতিল করেদে',
+'about'         => 'বারে',
+'article'       => 'মেথেলর পাতা',
+'newwindow'     => '(নুৱা উইন্ডত নিকুলতই)',
+'cancel'        => 'বাতিল করেদে',
+'moredotdotdot' => 'আরাকউ...',
+'mypage'        => 'মর পাতাহান',
+'mytalk'        => 'মর য়্যারি-পরি',
+'anontalk'      => 'অচিনা এগর য়্যারির পাতা',
+'navigation'    => 'দিশা-ধরুনী',
+'and'           => '&#32;বারো',
+
+# Cologne Blue skin
 'qbfind'         => 'বিসারিয়া চা',
 'qbbrowse'       => 'বুলিয়া চা',
 'qbedit'         => 'পতানি',
@@ -176,12 +184,8 @@ $messages = array(
 'qbpageinfo'     => 'পাতা এহানর পৌ',
 'qbmyoptions'    => 'মর পছন',
 'qbspecialpages' => 'বিশেষ পাতাহানি',
-'moredotdotdot'  => 'আরাকউ...',
-'mypage'         => 'মর পাতাহান',
-'mytalk'         => 'মর য়্যারি-পরি',
-'anontalk'       => 'অচিনা এগর য়্যারির পাতা',
-'navigation'     => 'দিশা-ধরুনী',
-'and'            => '&#32;বারো',
+'faq'            => 'আঙলাক',
+'faqpage'        => 'Project:আঙলাক',
 
 # Metadata in edit box
 'metadata_help' => 'মেটাডাটা:',
@@ -253,8 +257,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:ইজ্জু দাবি বেলানি',
 'edithelp'             => 'পতানি পাংলাক',
 'edithelppage'         => 'Help:কিসাদে_পাতা_আহান_পতানি',
-'faq'                  => 'আঙলাক',
-'faqpage'              => 'Project:আঙলাক',
 'helppage'             => 'Help:পাংলাক',
 'mainpage'             => 'পয়লা পাতা',
 'mainpage-description' => 'পয়লা পাতা',
@@ -297,7 +299,6 @@ $messages = array(
 
 # General errors
 'error'              => 'লালুইসে',
-'cachederror'        => 'এরে পাতা এহান বা লাতলগ পুছানি নাকরল। (নিঙকরুরিতাঃ আগেদে কুঙগ আগই পুছে বেলাসিসাত)',
 'badarticleerror'    => 'এরে পাতা এহান কাম এহান করানি সম্ভব নেই।',
 'badtitle'           => 'চিঙনাঙহান চুমনাইসে নাইসে।',
 'badtitletext'       => 'হেইচা করিসত পাতাহানর চিঙনাঙহান চুম নাইসে, খালি বা আর ঠার বা আন্তঃউইকি চিঙনাঙ মিলাপ অসিল। হয়ত এহানত আক বারো গজে কোন আখর মিহিসে, যেতা চিঙনাঙে বরানি লালুইসে।',
@@ -310,7 +311,6 @@ $messages = array(
 'welcomecreation'            => '== সম্ভাষা, $1! ==
 
 তর একাউন্টহান মুকিল। তর {{SITENAME}} পছনহান পতানি না পাহুরিস।',
-'loginpagetitle'             => 'আতাকুরার হমানি',
 'yourname'                   => 'আতাকুরার নাংহান (Username)',
 'yourpassword'               => 'খন্তাচাবিগ (password)',
 'yourpasswordagain'          => 'খন্তাচাবিগ (password) আরাকমু ইকর',
@@ -411,7 +411,6 @@ $messages = array(
 
 তি $1 নাইলেউ [[{{MediaWiki:Grouppage-sysop}}|প্রশাসকর]] মা যে কোন আগর লগে বিষয় এহান্ন য়্যারি পরি দে পারর। বিশেষ মাতিলতাঃ তর ই-মেইল ঠিকানাহান যদি [[Special:Preferences|তর পছন তালিকাত]] বরিয়া নাথার, অতা ইলে তি উইকিপিডিয়াত হের আতাকুরারে ই-মেইল করানি নুৱারবে। তর আইপি ঠিকানাহান ইলতাই $3 বারো থেপকরিসি আইপিগ ইলতাই #$5। 
 কৃপা করিয়া যে কোন যোগাযোগর সময়ত এরে আইপি ঠিকানাহানি যেসাদেউ বরিস।",
-'confirmedittitle'           => 'সম্পাদনা করানির কা ই-মেইল লেপকানি থকিতই',
 'confirmedittext'            => 'যেহানউ সম্পাদনা করানির আগে তর ই-মেইল ঠিকানাহন যেসাদেউ লেপকরানি লাগতই। কৃপাকরিয়া তর ই-মেইল ঠিকানাহান [[Special:Preferences|আতাকুরার পছনতালিকা]]ত চুমকরে বরা।',
 'loginreqtitle'              => 'লগইন দরকার ইসে',
 'accmailtitle'               => 'খন্তাচাবি(password) দিয়াপেঠৱা দিলাং।',

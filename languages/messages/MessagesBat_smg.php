@@ -169,10 +169,18 @@ $messages = array(
 'category-article-count'   => '{{PLURAL:$2|Tuo kateguorėjuo īr vėins poslapis.|{{PLURAL:$1|Ruodoms|Ruodomė|Ruodoma}} $1 tuos kateguorėjės {{PLURAL:$1|poslapis|poslapē|poslapiu}} (ėš vėsa kateguorėjuo īr $2 {{PLURAL:$2|poslapis|poslapē|poslapiu}}).}}',
 'listingcontinuesabbrev'   => 'tes.',
 
-'about'          => 'Aple',
-'article'        => 'Straipsnis',
-'newwindow'      => '(īr atverams naujam longė)',
-'cancel'         => 'Nutrauktė',
+'about'         => 'Aple',
+'article'       => 'Straipsnis',
+'newwindow'     => '(īr atverams naujam longė)',
+'cancel'        => 'Nutrauktė',
+'moredotdotdot' => 'Daugiau...',
+'mypage'        => 'Mona poslapis',
+'mytalk'        => 'Mona aptarėms',
+'anontalk'      => 'Šėta IP aptarėms',
+'navigation'    => 'Navigacėjė',
+'and'           => '&#32;ėr',
+
+# Cologne Blue skin
 'qbfind'         => 'Ėiškuotė',
 'qbbrowse'       => 'Naršītė',
 'qbedit'         => 'Taisītė',
@@ -180,12 +188,8 @@ $messages = array(
 'qbpageinfo'     => 'Konteksts',
 'qbmyoptions'    => 'Mona poslapē',
 'qbspecialpages' => 'Specēlė̅jė poslapē',
-'moredotdotdot'  => 'Daugiau...',
-'mypage'         => 'Mona poslapis',
-'mytalk'         => 'Mona aptarėms',
-'anontalk'       => 'Šėta IP aptarėms',
-'navigation'     => 'Navigacėjė',
-'and'            => '&#32;ėr',
+'faq'            => 'DOK',
+'faqpage'        => 'Project:DOK',
 
 # Metadata in edit box
 'metadata_help' => 'Metadoumenīs:',
@@ -256,8 +260,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Atsakuomībės aprėbuojims',
 'edithelp'             => 'Kāp redagoutė',
 'edithelppage'         => 'Help:Redagavėms',
-'faq'                  => 'DOK',
-'faqpage'              => 'Project:DOK',
 'helppage'             => 'Help:Torėnīs',
 'mainpage'             => 'Pėrms poslapis',
 'mainpage-description' => 'Pėrms poslapis',
@@ -315,8 +317,6 @@ $messages = array(
 # General errors
 'error'                => 'Klaida',
 'databaseerror'        => 'Doumenū bazės klaida',
-'noconnect'            => 'Atsėprašuom, ale pruojėkts tor teknėniu biedu ė negal prisėjongtė pri doumenū bazės. <br />
-$1',
 'laggedslavemode'      => 'Diemesė: Poslapī gal nesmatītė naujausiu pakeitėmu.',
 'readonly'             => 'Doumenū bazė ožrakėnta',
 'enterlockreason'      => 'Iveskėt ožrakėnėma prižasti, tēpuogi kumet daugmaž bus atrokėnta',
@@ -366,7 +366,6 @@ Pastebiejims: katruos nekatruos poslapiuos ė tuoliau gal ruodītė būktā būt
 'welcomecreation'            => '== Svēkė, $1! ==
 
 Tamstas paskīra bova sokorta. Neožmėrškėt pakeistė sava {{SITENAME}} nustatīmu.',
-'loginpagetitle'             => 'Prisėjongėms',
 'yourname'                   => 'Nauduotuojė vards:',
 'yourpassword'               => 'Slaptažuodis:',
 'yourpasswordagain'          => 'Pakartuoket slaptažuodė:',
@@ -528,7 +527,6 @@ Prašuom nuruodītė šėtūs doumenis visūmet, kumet kreipiatės diel bluokav�
 'blockededitsource'                => "''Tamstas keitimu'' teksts poslapiui '''$1''' īr ruodoms žemiau:",
 'whitelistedittitle'               => 'Nuorėnt redagoutė rēk prisėjongtė',
 'whitelistedittext'                => 'Tamsta torėt $1, kū keistomėt poslapius.',
-'confirmedittitle'                 => 'Kū galietomiet redagoutė, rēkalėngs el. pašta patvirtinėms',
 'nosuchsectiontitle'               => 'Nier tuokė skīrė',
 'loginreqlink'                     => 'prisėjongtė',
 'accmailtitle'                     => 'Slaptažuodis ėšsiūsts īr.',
@@ -711,7 +709,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'searchhelp-url'                   => 'Help:Torėnīs',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ėiškuotė poslapiu so šėtuom prīšdielio]]',
 'searchprofile-articles'           => 'Torėnė poslapē',
-'searchprofile-articles-and-proj'  => 'Torėnīs ė pruojėkta poslapē',
 'searchprofile-project'            => 'Pruojėkta poslapē',
 'searchprofile-images'             => 'Failā',
 'searchprofile-everything'         => 'Vėsks',
@@ -746,15 +743,16 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'powersearch-field'                => 'Ėiškoutė',
 'search-external'                  => 'Ėšuorėnė paėiška',
 
+# Quickbar
+'qbsettings'      => 'Greitasā pasėrėnkėms',
+'qbsettings-none' => 'Neruodītė',
+
 # Preferences page
 'preferences'               => 'Nustatīmā',
 'mypreferences'             => 'Mona nustatīmā',
 'prefs-edits'               => 'Keitėmu skaitlius:',
 'prefsnologin'              => 'Naprisėjongis',
 'prefsnologintext'          => 'Tamstā rēk būtė <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} prisėjongosam]</span>, kū galietomiet keistė sava nustatīmus.',
-'prefsreset'                => 'Nustatīmā buva atstatītė ėš saugīklas.',
-'qbsettings'                => 'Greitasā pasėrėnkėms',
-'qbsettings-none'           => 'Neruodītė',
 'changepassword'            => 'Pakeistė slaptažuodė',
 'prefs-skin'                => 'Ėšruoda',
 'skin-preview'              => 'Parveiza',
@@ -762,9 +760,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'dateformat'                => 'Datuos fuormats',
 'datedefault'               => 'Juokė pasėrėnkėma',
 'prefs-datetime'            => 'Data ė čiesos',
-'math_failure'              => 'Nepavīka apdoruotė',
-'math_unknown_error'        => 'nežinuoma klaida',
-'math_unknown_function'     => 'nežinuoma funkcėjė',
 'prefs-personal'            => 'Nauduotuojė pruopilis',
 'prefs-rc'                  => 'Vielībė̅jė pakeitėmā',
 'prefs-watchlist'           => 'Keravuojamu sārašos',
@@ -791,7 +786,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'recentchangescount'        => 'Numatītasā keitėmu skaitlius, ruodoms vielībūju keitėmu, poslapiu istuorėjėsė ė notėkėmu sarašūsė:',
 'savedprefs'                => 'Nostatīmā siekmėngā ėšsauguotė.',
 'timezonelegend'            => 'Čiesa zuona',
-'timezonetext'              => '¹Iveskitė kėik adīnu Tamstas vėitins čiesos skėrės nu serverė čiesa (UTC).',
 'localtime'                 => 'Vėitinis čiesos:',
 'timezoneselect'            => 'Čiesa jousta:',
 'timezoneuseserverdefault'  => 'Nauduotė palē nutīliejėma ėš serverė',
@@ -1691,6 +1685,11 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 'mw_math_source' => 'Paliktė TeX fuormata (tekstinems naršīklems)',
 'mw_math_modern' => 'Rekomendounama muodernioms naršīklems',
 'mw_math_mathml' => 'MathML jēgo imanuoma (ekspermentinis)',
+
+# Math errors
+'math_failure'          => 'Nepavīka apdoruotė',
+'math_unknown_error'    => 'nežinuoma klaida',
+'math_unknown_function' => 'nežinuoma funkcėjė',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Žīmietė, kū patikrėnta',

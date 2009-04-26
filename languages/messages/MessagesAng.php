@@ -111,18 +111,20 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 
-'about'          => 'Ymbe',
-'article'        => 'Innungtramet',
-'newwindow'      => '(openaþ in nīwum ēagþyrele)',
+'about'     => 'Ymbe',
+'article'   => 'Innungtramet',
+'newwindow' => '(openaþ in nīwum ēagþyrele)',
+'mypage'    => 'Mīn tramet',
+'mytalk'    => 'Mīn sprǣc',
+'anontalk'  => 'Mōtung for þissum IP',
+
+# Cologne Blue skin
 'qbfind'         => 'Findan',
 'qbedit'         => 'Ādihtan',
 'qbpageoptions'  => 'Þes tramet',
 'qbpageinfo'     => 'Gewef',
 'qbmyoptions'    => 'Mīne trametas',
 'qbspecialpages' => 'Syndrige trametas',
-'mypage'         => 'Mīn tramet',
-'mytalk'         => 'Mīn sprǣc',
-'anontalk'       => 'Mōtung for þissum IP',
 
 'errorpagetitle'    => 'Gemearr',
 'tagline'           => 'Fram {{SITENAME}}n',
@@ -212,7 +214,6 @@ $messages = array(
 'welcomecreation'            => '== Wilcume, $1! ==
 
 Þín hordcleofa wearþ geseted.  Ne forgiet tó hwierfenne þína {{SITENAME}} foreberunga.',
-'loginpagetitle'             => 'Brūcendinmeldung',
 'yourname'                   => 'Þīn brūcendnama',
 'yourpassword'               => 'Þīn gelēafnesword',
 'yourpasswordagain'          => 'Edwrītan gelēafnesword',
@@ -336,7 +337,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'skin-preview'       => 'Forescēawian',
 'dateformat'         => 'Tælmearcwīse',
 'prefs-datetime'     => 'Tælmearc and tīd',
-'math_unknown_error' => 'ungewiss gemearr',
 'prefs-rc'           => 'Nīwlica hweorfunga',
 'prefs-watchlist'    => 'Behealdnestalu',
 'saveprefs'          => 'Sparian',
@@ -618,6 +618,9 @@ Bidde cēos ōðerne naman.',
 'numedits'     => 'Ádihtunga tæl (gewrit): $1',
 'numtalkedits' => 'Rīm ādihtunga (mōtungtramet): $1',
 'numwatchers'  => 'Scēawera tæl: $1',
+
+# Math errors
+'math_unknown_error' => 'ungewiss gemearr',
 
 # Media information
 'imagemaxsize' => 'Settan biliðu on biliþgemearcungtrametum tō:',

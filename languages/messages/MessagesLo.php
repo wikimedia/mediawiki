@@ -206,21 +206,23 @@ $messages = array(
 
 'mainpagetext' => "<big>'''ຕິດຕັ້ງມີເດຍວິກິນີ້ສຳເລັດແລ້ວ.'''</big>",
 
-'about'          => 'ກ່ຽວກັບ',
-'article'        => 'ບົດຄວາມ',
-'newwindow'      => '(ເປີດເປັນ ປ່ອງຢ້ຽມ(ວິນໂດ)ໃໝ່ )',
-'cancel'         => 'ລົບລ້າງ',
+'about'         => 'ກ່ຽວກັບ',
+'article'       => 'ບົດຄວາມ',
+'newwindow'     => '(ເປີດເປັນ ປ່ອງຢ້ຽມ(ວິນໂດ)ໃໝ່ )',
+'cancel'        => 'ລົບລ້າງ',
+'moredotdotdot' => 'ຕື່ມ...',
+'mypage'        => 'ໜ້າຂ້ອຍ',
+'mytalk'        => 'ສົນທະນາ',
+'anontalk'      => 'ສົນທະນາ ສຳຫຼັບ IP ນີ້',
+'navigation'    => 'ນຳທິດ',
+'and'           => '&#32;ແລະ',
+
+# Cologne Blue skin
 'qbfind'         => 'ຊອກຫາ',
 'qbedit'         => 'ດັດແກ້',
 'qbpageoptions'  => 'ໜ້ານີ້',
 'qbmyoptions'    => 'ໝ້າຂ້ອຍ',
 'qbspecialpages' => 'ໜ້າພິເສດ',
-'moredotdotdot'  => 'ຕື່ມ...',
-'mypage'         => 'ໜ້າຂ້ອຍ',
-'mytalk'         => 'ສົນທະນາ',
-'anontalk'       => 'ສົນທະນາ ສຳຫຼັບ IP ນີ້',
-'navigation'     => 'ນຳທິດ',
-'and'            => '&#32;ແລະ',
 
 'errorpagetitle'   => 'ຜິດພາດ',
 'returnto'         => 'ກັບໄປ  $1.',
@@ -332,9 +334,6 @@ $messages = array(
 
 # General errors
 'databaseerror'       => 'ມີຄວາມຜິດພາດ ດ້ານ ຖານຂໍ້ມູນ',
-'noconnect'           => 'ຂໍອະໄພ! ວິກີ ພວມປະສົບບັນຫາ ທາງດ້ານເຕັກນິກ ແລະ ບໍ່ສາມາດເຂົ້າຫາ ຖານຂໍ້ມູນ.<br />$1',
-'nodb'                => 'ບໍ່ສາມາດເລືອກຖານຂໍ້ມູນ $1',
-'cachederror'         => 'ທາງລຸ່ມນີ້ ແມ່ນ ບັນທຶກຂໍ້ມູນ ຂອງ ໜ້າທີ່ທ່ານຊອກຫາ ເຊິ່ງອາດຈະບໍ່ແມ່ນສະບັບຫຼ້າສຸດ.',
 'readonly'            => 'ຖານຂໍ້ມູນຖືກລອັກ',
 'enterlockreason'     => 'ກະລຸນາຂຽນເຫດຜົນໃນການລອັກ, ລວມທັງ ປະມານເວລາທີ່ຈະປົດລອັກ',
 'missingarticle-diff' => '(ສ່ວນຕ່າງ: $1, $2)',
@@ -355,7 +354,6 @@ $messages = array(
 'welcomecreation'            => '== ຍິນດີຕ້ອນຮັບ, $1! ==
 
 ບັນຊີ ຂອງທ່ານ ຖືກສ້າງຂຶ້ນແລ້ວ. ຢ່າລືມ ຕັ້ງຄ່າ ທ່ານ ຢູ່ {{SITENAME}}.',
-'loginpagetitle'             => 'ຜູ້ໃຊ້ ເຊັນເຂົ້າ',
 'yourname'                   => 'ຊື່ຜູ້ໃຊ້',
 'yourpassword'               => 'ລະຫັດຜ່ານ',
 'yourpasswordagain'          => 'ພິມລະຫັດຜ່ານອີກ',
@@ -430,7 +428,6 @@ $messages = array(
 'blockededitsource'        => "ເນື້ອໃນ ຂອງ '''ການດັດແປງໂດຍທ່ານ '''ຕໍ່ກັບ '''$1''' ມີດັ່ງລຸ່ມນີ້:",
 'whitelistedittitle'       => 'ຕ້ອງເຊັນເຂົ້າ ຈຶ່ງຈະສາມາດດັດແກ້ໄດ້',
 'whitelistedittext'        => 'ທ່ານ ຈະຕ້ອງ  $1 ເພື່ອ ຈະດັດແກ້.',
-'confirmedittitle'         => 'ຕ້ອງຢືນຢັນ ທີ່ຢູ່ ອີເມລ ຈຶ່ງຈະສາມາດ ດັດແກ້',
 'loginreqtitle'            => 'ຈຳເປັນຕ້ອງ ເຊັນເຂົ້າ',
 'loginreqlink'             => 'ເຊັນເຂົ້າ',
 'accmailtitle'             => 'ໄດ້ສົ່ງ ລະຫັດຜ່ານ ໄປແລ້ວ.',
@@ -530,7 +527,6 @@ $messages = array(
 'dateformat'            => 'ແບບວັນເດືອນປີ',
 'datedefault'           => 'ແນວໃດກໍ່ໄດ້',
 'prefs-datetime'        => 'ວັນ ແລະ ເວລາ',
-'math_syntax_error'     => 'ຜິດຫຼັກໄວຍະກອນ',
 'prefs-personal'        => 'ຂໍ້ມູນຫຼັກຜູ້ໃຊ້',
 'prefs-rc'              => 'ການດັດແກ້ຫຼ້າສຸດ',
 'prefs-watchlist'       => 'ລາຍການຕິດຕາມ',
@@ -549,7 +545,6 @@ $messages = array(
 'recentchangescount'    => 'ຈຳນວນການດັດແກ້ສະແດງໃນການປ່ຽນແປງຫຼ້າສຸດ:',
 'savedprefs'            => 'ການຕັ້ງຄ່າຂອງທ່ານໄດ້ຖືກບັນທຶກແລ້ວ.',
 'timezonelegend'        => 'ເຂດເວລາ',
-'timezonetext'          => 'ຈຳນວນຊົ່ວໂມງແຕກຕ່າງ ລະຫວ່າງເວລາທ້ອງຖິ່ນ ແລະ ເວລາ ຂອງ ເຊີບເວີ (UTC).',
 'localtime'             => 'ເວລາທ້ອງຖິ່ນ',
 'timezoneoffset'        => 'ຫ່າງກັນ¹',
 'servertime'            => 'ເວລາເຊີເວີ',
@@ -916,6 +911,9 @@ $messages = array(
 
 # Info page
 'numedits' => 'ຈຳນວນດັດແກ້ (ໜ້າ): $1',
+
+# Math errors
+'math_syntax_error' => 'ຜິດຫຼັກໄວຍະກອນ',
 
 # Browsing diffs
 'previousdiff' => 'ສ່ວນຕ່າງກ່ອນ',

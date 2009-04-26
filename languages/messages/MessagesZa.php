@@ -37,10 +37,12 @@ $messages = array(
 'september-gen' => 'Nin Gouj',
 'sep'           => 'Nin Gouj',
 
-'cancel'         => 'Fwtqfex',
+'cancel'     => 'Fwtqfex',
+'mytalk'     => 'Gaeq gou gangj',
+'navigation' => 'Dazzaeuh',
+
+# Cologne Blue skin
 'qbspecialpages' => 'Doenghmae daegxsei',
-'mytalk'         => 'Gaeq gou gangj',
-'navigation'     => 'Dazzaeuh',
 
 'help'             => 'Caeuq',
 'search'           => 'Cwmh',

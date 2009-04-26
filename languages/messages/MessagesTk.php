@@ -142,10 +142,18 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçta sanawy]',
 
-'about'          => 'Hakynda',
-'article'        => 'Makala',
-'newwindow'      => '(täze penjirede açylýar)',
-'cancel'         => 'Goýbolsun et',
+'about'         => 'Hakynda',
+'article'       => 'Makala',
+'newwindow'     => '(täze penjirede açylýar)',
+'cancel'        => 'Goýbolsun et',
+'moredotdotdot' => 'Has köp...',
+'mypage'        => 'Sahypam',
+'mytalk'        => 'Pikir alyşma sahypam',
+'anontalk'      => 'Bu IP-niň habarlaşyklary',
+'navigation'    => 'Saýtda ugur kesgitleme',
+'and'           => '&#32;we',
+
+# Cologne Blue skin
 'qbfind'         => 'Tap',
 'qbbrowse'       => 'Göz aýla',
 'qbedit'         => 'Redaktirle',
@@ -153,12 +161,8 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'qbpageinfo'     => 'Kontekst',
 'qbmyoptions'    => 'Meniň sahypalarym',
 'qbspecialpages' => 'Ýörite sahypalar',
-'moredotdotdot'  => 'Has köp...',
-'mypage'         => 'Sahypam',
-'mytalk'         => 'Pikir alyşma sahypam',
-'anontalk'       => 'Bu IP-niň habarlaşyklary',
-'navigation'     => 'Saýtda ugur kesgitleme',
-'and'            => '&#32;we',
+'faq'            => 'KSS',
+'faqpage'        => 'Project:KSS',
 
 # Metadata in edit box
 'metadata_help' => 'Meta-maglumat:',
@@ -230,8 +234,6 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'disclaimerpage'       => 'Project:Umumy jogapkärçilikden boýun gaçyrma',
 'edithelp'             => 'Nähili redaktirlenýär?',
 'edithelppage'         => 'Help:Redaktirleme',
-'faq'                  => 'KSS',
-'faqpage'              => 'Project:KSS',
 'helppage'             => 'Help:Içindäkiler',
 'mainpage'             => 'Baş Sahypa',
 'mainpage-description' => 'Baş Sahypa',
@@ -313,10 +315,6 @@ MySQL-iň goýberen säwligi "<tt>$3: $4</tt>".',
 "$1"
 
 MySQL-iň goýberen säwligi "$3: $4"',
-'noconnect'            => 'Bagyşlaň! Wiki käbir tehniki kynçylyklary başdan geçirýär we maglumat bazasynyň serweri bilen gatnaşygy ýola goýup bilenok.<br />
-$1',
-'nodb'                 => '$1 maglumat bazasyny saýlap bolmady',
-'cachederror'          => 'Aşakdaky, talap eden sahypaňyzyň keşirlenen nusgasydyr we könelişen bolmagy ahmal.',
 'laggedslavemode'      => 'Duýduryş: Sahypada soňky täzelemeler ýok bolmagy ahmal.',
 'readonly'             => 'Maglumat bazasy gulplandy',
 'enterlockreason'      => 'Gulplamak üçin bir sebäp görkeziň. Gulpuň haçan açyljakdygy barada takmynan bir sene ýazyň.',
@@ -384,7 +382,6 @@ Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir
 
 Hasabyňyz açyldy.  
 [[Special:Preferences|{{SITENAME}} saýtyndaky sazlamalaryňyzy]] üýtgetmegi ýatdan çykarmaň.',
-'loginpagetitle'             => 'Sessiýa aç',
 'yourname'                   => 'Ulanyjy adyňyz:',
 'yourpassword'               => 'Parolyňyz:',
 'yourpasswordagain'          => 'Paroly gaýtadan ýaz:',
@@ -491,7 +488,6 @@ Sessiýa açmaklygy tamamlamak üçin, bu ýere täze parol ýazyň:',
 'retypenew'                 => 'Täze paroly gaýtadan ýaz:',
 'resetpass_submit'          => 'Paroly sazlaň we sessiýa açyň',
 'resetpass_success'         => 'Parolyňyz şowlulyk bilen üýtgedildi! Häzir sessiýaňyz açylýar...',
-'resetpass_bad_temporary'   => 'Nädogry wagtlaýyn parol. Eýýäm şowlulyk bilen parolyňyzy üýtgeden ýa-da täze wagtlaýyn parol talap eden bolmagyňyz mümkin.',
 'resetpass_forbidden'       => 'Parollary üýtgedip bolmaýar',
 'resetpass-submit-loggedin' => 'Paroly üýtget',
 'resetpass-wrong-oldpass'   => 'Nädogry wagtlaýyn ýa-da häzirki parol.

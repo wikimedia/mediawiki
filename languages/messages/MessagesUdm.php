@@ -41,9 +41,11 @@ $separatorTransformTable = array(',' => ' ', '.' => ',' );
 $messages = array(
 'linkprefix' => '/^(.*?)(„|«)$/sDu',
 
-'article'        => 'Статья',
+'article' => 'Статья',
+'mytalk'  => 'викиавтор сярысь вераськон',
+
+# Cologne Blue skin
 'qbspecialpages' => 'Панельёс',
-'mytalk'         => 'викиавтор сярысь вераськон',
 
 'help'             => 'Валэктонъёс',
 'history'          => 'Бамлэн историез',
