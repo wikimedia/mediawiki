@@ -177,6 +177,8 @@ The following extensions are migrated into MediaWiki 1.15:
 * Added $wgExtPGAlteredFields to allow extensions to easily alter the data 
   type of columns when using the Postgres backend.
 * (bug 16950) Show move log when viewing/creating a deleted page
+* (bug 18242) Show the Subversion revision number per extensions in 
+  Special:Version
 
 
 === Bug fixes in 1.15 ===

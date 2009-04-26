@@ -114,7 +114,7 @@ class SpecialVersion extends SpecialPage {
 	public static function getVersion() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
-		$svn = self::getSvnRevision( $IP );
+		$svn = self::getSvnRevision( $IP, false );
 		$version = $svn ? "$wgVersion (r$svn)" : $wgVersion;
 		wfProfileOut( __METHOD__ );
 		return $version;
@@ -129,7 +129,7 @@ class SpecialVersion extends SpecialPage {
 	public static function getVersionLinked() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
-		$svn = self::getSvnRevision( $IP );
+		$svn = self::getSvnRevision( $IP, false );
 		$viewvc = 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/?pathrev=';
 		$version = $svn ? "$wgVersion ([{$viewvc}{$svn} r$svn])" : $wgVersion;
 		wfProfileOut( __METHOD__ );
@@ -163,7 +163,9 @@ class SpecialVersion extends SpecialPage {
 
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
 					$version = null;
-					$subVersion = '';
+					$subVersion = null;
+					if (isset($extension['path']))
+						$subVersion = self::getSvnRevision(dirname($extension['path']), true);
 					if ( isset( $extension['version'] ) ) {
 						$version = $extension['version'];
 					}
@@ -171,6 +173,7 @@ class SpecialVersion extends SpecialPage {
 					$out .= $this->formatCredits(
 						isset ( $extension['name'] )           ? $extension['name']        : '',
 						$version,
+						$subVersion,
 						isset ( $extension['author'] )         ? $extension['author']      : '',
 						isset ( $extension['url'] )            ? $extension['url']         : null,
 						isset ( $extension['description'] )    ? $extension['description'] : '',
@@ -217,9 +220,10 @@ class SpecialVersion extends SpecialPage {
 		}
 	}
 
-	function formatCredits( $name, $version = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
+	function formatCredits( $name, $version = null, $subVersion = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
 		$extension = isset( $url ) ? "[$url $name]" : $name;
-		$version = isset( $version ) ? "(" . wfMsg( 'version-version' ) . " $version)" : '';
+		$version = isset( $version ) ? "(" . wfMsg( 'version-version' ) . " $version)" : '';		
+		$subVersion = isset( $subVersion ) ? "(" . wfMsg( 'version-revision' ) . " r$subVersion)" : '';
 
 		# Look for a localized description
 		if( isset( $descriptionMsg ) ) {
@@ -230,7 +234,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		return "<tr>
-				<td><em>$extension $version</em></td>
+				<td><em>$extension $version $subVersion</em></td>
 				<td>$description</td>
 				<td>" . $this->listToText( (array)$author ) . "</td>
 			</tr>\n";
@@ -337,7 +341,7 @@ class SpecialVersion extends SpecialPage {
 	 * @param string $dir
 	 * @return mixed revision number as int, or false if not a SVN checkout
 	 */
-	public static function getSvnRevision( $dir ) {
+	public static function getSvnRevision( $dir , $extension = false) {
 		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
 		$entries = $dir . '/.svn/entries';
 
@@ -372,8 +376,13 @@ class SpecialVersion extends SpecialPage {
 			}
 			return false;
 		} else {
-			// subversion is release 1.4
-			return intval( $content[3] );
+			// subversion is release 1.4 or above
+			if ($extension)
+				// get the last file revsion number
+				return intval( $content[10]) ;
+			else
+				// get the directory revsion number
+				return intval( $content[3] );
 		}
 	}
 
