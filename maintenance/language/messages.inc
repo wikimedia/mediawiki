@@ -814,8 +814,6 @@ $wgMessageStructure = array(
 		'searchprofile-images-tooltip',
 		'searchprofile-everything-tooltip',
 		'searchprofile-advanced-tooltip',
-		'prefs-search-nsdefault',
-		'prefs-search-nscustom',
 		'search-result-size',
 		'search-result-score',
 		'search-redirect',
