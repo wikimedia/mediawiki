@@ -306,6 +306,9 @@ abstract class File {
 	 * or if it is an SVG image and SVG conversion is enabled.
 	 */
 	function canRender() {
+		if( $this->isMissing() ) {
+			return false;
+		}
 		if ( !isset( $this->canRender ) ) {
 			$this->canRender = $this->getHandler() && $this->handler->canRender( $this );
 		}
@@ -1258,6 +1261,10 @@ abstract class File {
 
 	function redirectedFrom( $from ) {
 		$this->redirected = $from;
+	}
+
+	function isMissing() {
+		return false;
 	}
 }
 /**

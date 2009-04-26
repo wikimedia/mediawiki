@@ -438,12 +438,15 @@ class ImagePage extends Article {
 
 			if($showLink) {
 				$filename = wfEscapeWikiText( $this->displayImg->getName() );
+				$medialink = $this->displayImg->isMissing() ?
+					"'''$filename'''" :
+					"[[Media:$filename|$filename]]";
 
 				if( !$this->displayImg->isSafeFile() ) {
 					$warning = wfMsgNoTrans( 'mediawarning' );
 					$wgOut->addWikiText( <<<EOT
 <div class="fullMedia">
-<span class="dangerousLink">[[Media:$filename|$filename]]</span>$dirmark
+<span class="dangerousLink">{$medialink}</span>$dirmark
 <span class="fileInfo">$longDesc</span>
 </div>
 <div class="mediaWarning">$warning</div>
@@ -452,7 +455,7 @@ EOT
 				} else {
 					$wgOut->addWikiText( <<<EOT
 <div class="fullMedia">
-[[Media:$filename|$filename]]$dirmark
+{$medialink}{$dirmark}
 <span class="fileInfo">$longDesc</span>
 </div>
 EOT
@@ -852,19 +855,24 @@ class ImageHistoryList {
 		if( !$file->userCan(File::DELETED_FILE) ) {
 			# Don't link to unviewable files
 			$row .= '<span class="history-deleted">' . $wgLang->timeAndDate( $timestamp, true ) . '</span>';
-		} else if( $file->isDeleted(File::DELETED_FILE) ) {
+		} elseif( $file->isDeleted(File::DELETED_FILE) ) {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			# Make a link to review the image
 			$url = $this->skin->makeKnownLinkObj( $revdel, $wgLang->timeAndDate( $timestamp, true ),
 				"target=".$wgTitle->getPrefixedText()."&file=$sha1.".$this->current->getExtension() );
 			$row .= '<span class="history-deleted">'.$url.'</span>';
+		} elseif( $file->isMissing() ) {
+			# Don't link to missing files
+			$row .= $wgLang->timeAndDate( $timestamp, true );
 		} else {
 			$url = $iscur ? $this->current->getUrl() : $this->current->getArchiveUrl( $img );
 			$row .= Xml::element( 'a', array( 'href' => $url ), $wgLang->timeAndDate( $timestamp, true ) );
 		}
 
 		// Thumbnail
-		if( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE ) && !$file->isDeleted( File::DELETED_FILE ) ) {
+		if( $file->isMissing() ) {
+			$row .= '</td><td><strong class="error">' . wfMsgHtml( 'filehist-missing' ) . '</strong>';
+		} elseif( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE ) && !$file->isDeleted( File::DELETED_FILE ) ) {
 			$params = array(
 				'width' => '120',
 				'height' => '120',
