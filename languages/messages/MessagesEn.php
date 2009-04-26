@@ -1096,7 +1096,6 @@ Please include all above details in any queries you make.',
 'blockededitsource'                => "The text of '''your edits''' to '''$1''' is shown below:",
 'whitelistedittitle'               => 'Login required to edit',
 'whitelistedittext'                => 'You have to $1 to edit pages.',
-'confirmedittitle'                 => 'E-mail confirmation required to edit',
 'confirmedittext'                  => 'You must confirm your e-mail address before editing pages.
 Please set and validate your e-mail address through your [[Special:Preferences|user preferences]].',
 'nosuchsectiontitle'               => 'No such section',
