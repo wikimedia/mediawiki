@@ -915,7 +915,6 @@ $wgMessageStructure = array(
 		'recentchangescount',
 		'savedprefs',
 		'timezonelegend',
-		'timezonetext',
 		'localtime',
 		'timezoneselect',
 		'timezoneuseserverdefault',
