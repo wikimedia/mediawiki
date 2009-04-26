@@ -316,7 +316,6 @@ $wgMessageStructure = array(
 		'databaseerror',
 		'dberrortext',
 		'dberrortextcl',
-		'cachederror',
 		'laggedslavemode',
 		'readonly',
 		'enterlockreason',
@@ -366,7 +365,6 @@ $wgMessageStructure = array(
 	'login' => array(
 		'logouttext',
 		'welcomecreation',
-		'loginpagetitle',
 		'yourname',
 		'yourpassword',
 		'yourpasswordagain',
