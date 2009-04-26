@@ -861,7 +861,6 @@ $wgMessageStructure = array(
 		'prefs-edits',
 		'prefsnologin',
 		'prefsnologintext',
-		'prefsreset',
 		'changepassword',
 		'prefs-skin',
 		'skin-preview',
