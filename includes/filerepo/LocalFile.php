@@ -49,6 +49,7 @@ class LocalFile extends File
 		$dataLoaded,       # Whether or not all this has been loaded from the database (loadFromXxx)
 		$upgraded,         # Whether the row was upgraded on load
 		$locked,           # True if the image row is locked
+		$missing,          # True if file is not present in file system. Not to be cached in memcached
 		$deleted;       # Bitfield akin to rev_deleted
 
 	/**#@-*/
@@ -393,6 +394,14 @@ class LocalFile extends File
 	/** getViewURL inherited */
 	/** getPath inherited */
 	/** isVisible inhereted */
+
+	function isMissing() {
+		if( $this->missing === null ) {
+			list( $fileExists ) = $this->repo->fileExistsBatch( array( $this->getVirtualUrl() ), FileRepo::FILES_ONLY );
+			$this->missing = !$fileExists;
+		}
+		return $this->missing;
+	}
 
 	/**
 	 * Return the width of the image
@@ -1432,6 +1441,9 @@ class LocalFileDeleteBatch {
 		// them in a separate transaction, then run the file ops, then update the fa_name fields.
 		$this->doDBInserts();
 
+		// Removes non-existent file from the batch, so we don't get errors.
+		$this->deletionBatch = $this->removeNonexistentFiles( $this->deletionBatch );
+
 		// Execute the file deletion batch
 		$status = $this->file->repo->deleteBatch( $this->deletionBatch );
 		if ( !$status->isGood() ) {
@@ -1464,6 +1476,22 @@ class LocalFileDeleteBatch {
 		$this->file->unlock();
 		wfProfileOut( __METHOD__ );
 		return $this->status;
+	}
+
+	/**
+	 * Removes non-existent files from a deletion batch.
+	 */
+	function removeNonexistentFiles( $batch ) {
+		$files = $newBatch = array();
+		foreach( $batch as $batchItem ) {
+			list( $src, $dest ) = $batchItem;
+			$files[$src] = $this->file->repo->getVirtualUrl( 'public' ) . '/' . rawurlencode( $src );
+		}
+		$result = $this->file->repo->fileExistsBatch( $files, FSRepo::FILES_ONLY );
+		foreach( $batch as $batchItem )
+			if( $result[$batchItem[0]] )
+				$newBatch[] = $batchItem;
+		return $newBatch;
 	}
 }
 
@@ -1657,6 +1685,9 @@ class LocalFileRestoreBatch {
 			$status->error( 'undelete-missing-filearchive', $id );
 		}
 
+		// Remove missing files from batch, so we don't get errors when undeleting them
+		$storeBatch = $this->removeNonexistentFiles( $storeBatch );
+
 		// Run the store batch
 		// Use the OVERWRITE_SAME flag to smooth over a common error
 		$storeStatus = $this->file->repo->storeBatch( $storeBatch, FileRepo::OVERWRITE_SAME );
@@ -1687,7 +1718,7 @@ class LocalFileRestoreBatch {
 				__METHOD__ );
 		}
 
-		if( $status->successCount > 0 ) {
+		if( $status->successCount > 0 || !$storeBatch ) {	// If store batch is empty (all files are missing), deletion is to be considered successful
 			if( !$exists ) {
 				wfDebug( __METHOD__." restored {$status->successCount} items, creating a new current\n" );
 
@@ -1707,6 +1738,38 @@ class LocalFileRestoreBatch {
 	}
 
 	/**
+	 * Removes non-existent files from a store batch.
+	 */
+	function removeNonexistentFiles( $triplets ) {
+		$files = $filteredTriplets = array();
+		foreach( $triplets as $file )
+			$files[$file[0]] = $file[0];
+		$result = $this->file->repo->fileExistsBatch( $files, FSRepo::FILES_ONLY );
+		foreach( $triplets as $file )
+			if( $result[$file[0]] )
+				$filteredTriplets[] = $file;
+		return $filteredTriplets;
+	}
+
+	/**
+	 * Removes non-existent files from a cleanup batch.
+	 */
+	function removeNonexistentFromCleanup( $batch ) {
+		$files = $newBatch = array();
+		$repo = $this->file->repo;
+		foreach( $batch as $file ) {
+			$files[$file] = $repo->getVirtualUrl( 'deleted' ) . '/' .
+				rawurlencode( $repo->getDeletedHashPath( $file ) . $file );
+		}
+
+		$result = $repo->fileExistsBatch( $files, FSRepo::FILES_ONLY );
+		foreach( $batch as $file )
+			if( $result[$file] )
+				$newBatch[] = $file;
+		return $newBatch;
+	}
+
+	/**
 	 * Delete unused files in the deleted zone.
 	 * This should be called from outside the transaction in which execute() was called.
 	 */
@@ -1714,6 +1777,7 @@ class LocalFileRestoreBatch {
 		if ( !$this->cleanupBatch ) {
 			return $this->file->repo->newGood();
 		}
+		$this->cleanupBatch = $this->removeNonexistentFromCleanup( $this->cleanupBatch );
 		$status = $this->file->repo->cleanupDeletedBatch( $this->cleanupBatch );
 		return $status;
 	}
@@ -1793,11 +1857,7 @@ class LocalFileMoveBatch {
 		$status = $repo->newGood();
 		$triplets = $this->getMoveTriplets();
 
-		$statusPreCheck = $this->checkFileExistence( 0 );
-		if( !$statusPreCheck->isOk() ) {
-			wfDebugLog( 'imagemove', "Move of {$this->file->name} aborted due to pre-move file existence check failure" );
-			return $statusPreCheck;
-		}
+		$triplets = $this->removeNonexistentFiles( $triplets );
 		$statusDb = $this->doDBUpdates();
 		wfDebugLog( 'imagemove', "Renamed {$this->file->name} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
 		$statusMove = $repo->storeBatch( $triplets, FSRepo::DELETE_SOURCE );
@@ -1805,12 +1865,6 @@ class LocalFileMoveBatch {
 		if( !$statusMove->isOk() ) {
 			wfDebugLog( 'imagemove', "Error in moving files: " . $statusMove->getWikiText() );
 			$this->db->rollback();
-		} else {
-			$statusPostCheck = $this->checkFileExistence( 1 );
-			if( !$statusPostCheck->isOk() ) {
-				// This clearly mustn't have happend. FSRepo::storeBatch should have given out an error in that case.
-				wfDebugLog( 'imagemove', "ATTENTION! Move of {$this->file->name} has some files missing, while storeBatch() reported success" );
-			}
 		}
 
 		$status->merge( $statusDb );
@@ -1874,21 +1928,20 @@ class LocalFileMoveBatch {
 	}
 
 	/*
-	 * Checks file existence.
-	 * Set $key = 0 for source files check
-	 * and $key = 1 for destination files check.
+	 * Removes non-existent files from move batch.
 	 */ 
-	function checkFileExistence( $key = 0 ) {
+	function removeNonexistentFiles( $triplets ) {
 		$files = array();
-		foreach( array_merge( array( $this->cur ), $this->olds ) as $file )
-			$files[$file[$key]] = $this->file->repo->getVirtualUrl() . '/public/' . rawurlencode( $file[$key] );
+		foreach( $triplets as $file )
+			$files[$file[0]] = $file[0];
 		$result = $this->file->repo->fileExistsBatch( $files, FSRepo::FILES_ONLY );
-		$status = $this->file->repo->newGood();
-		foreach( $result as $filename => $exists )
-			if( !$exists ) {
-				wfDebugLog( 'imagemove', "File {$filename} does not exist" );
-				$status->fatal( 'filenotfound', $filename );
+		$filteredTriplets = array();
+		foreach( $triplets as $file )
+			if( $result[$file[0]] ) {
+				$filteredTriplets[] = $file;
+			} else {
+				wfDebugLog( 'imagemove', "File {$file[0]} does not exist" );
 			}
-		return $status;
+		return $filteredTriplets;
 	}
 }

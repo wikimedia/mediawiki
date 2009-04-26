@@ -149,7 +149,7 @@ The following extensions are migrated into MediaWiki 1.15:
 * (bug 17714) Limited TIFF upload support now built in if 'tif' extension is
   enabled. Image width and height are now recognized, and when using
   ImageMagick, optional flattening to PNG or JPEG for inline display can be
-  enabled by setting $wgTiffThumbnailType
+  enabled by setting $wgTiffThumbnailTypezz
 * Renamed two input IDs on Special:Log from 'page' and 'user' to 'mw-log-page'
   and 'mw-log-user', respectively
 * Added $wgInvalidUsernameCharacters to disallow certain characters in
@@ -179,7 +179,7 @@ The following extensions are migrated into MediaWiki 1.15:
 * (bug 16950) Show move log when viewing/creating a deleted page
 * (bug 18242) Show the Subversion revision number per extensions in 
   Special:Version
-
+* (bug 18420) Missing file revisions are handled gracefully now
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
