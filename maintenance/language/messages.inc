@@ -506,7 +506,6 @@ $wgMessageStructure = array(
 		'blockededitsource',
 		'whitelistedittitle',
 		'whitelistedittext',
-		'confirmedittitle',
 		'confirmedittext',
 		'nosuchsectiontitle',
 		'nosuchsectiontext',
