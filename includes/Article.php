@@ -1680,7 +1680,6 @@ class Article {
 					$dbw->rollback();
 				} else {
 					global $wgUseRCPatrol;
-					wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, $baseRevId, $user) );
 					# Update recentchanges
 					if( !( $flags & EDIT_SUPPRESS_RC ) ) {
 						# Mark as patrolled if the user can do so
@@ -1695,6 +1694,8 @@ class Article {
 							PatrolLog::record( $rc, true );
 						}
 					}
+					# Notify extensions of a new edit
+					wfRunHooks( 'NewRevisionFromEditComplete', array(&$this, $revision, $baseRevId, $user) );
 					$user->incEditCount();
 					$dbw->commit();
 				}
@@ -1761,7 +1762,6 @@ class Article {
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
 
-			wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false, $user) );
 			# Update recentchanges
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
 				global $wgUseRCPatrol, $wgUseNPPatrol;
@@ -1775,6 +1775,8 @@ class Article {
 					PatrolLog::record( $rc, true );
 				}
 			}
+			# Notify extensions of a new page edit
+			wfRunHooks( 'NewRevisionFromEditComplete', array(&$this, $revision, false, $user) );
 			$user->incEditCount();
 			$dbw->commit();
 
