@@ -291,6 +291,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
 	'DeletedContributions'      => array( 'תרומות_מחוקות' ),
 	'Tags'                      => array( 'תגיות' ),
+	'Createpage'                => array( 'יצירת_דף' ),
 );
 
 $namespaceNames = array(
@@ -327,7 +328,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'הסתרת שינויים בדוקים ברשימת השינויים האחרונים',
 'tog-newpageshidepatrolled'   => 'הסתרת דפים בדוקים ברשימת הדפים החדשים',
 'tog-extendwatchlist'         => 'הרחבת רשימת המעקב כך שתציג את כל השינויים, לא רק את השינויים האחרונים בכל דף',
-'tog-usenewrc'                => 'רשימת שינויים אחרונים משופרת (דרוש JavaScript)',
+'tog-usenewrc'                => 'שימוש ברשימת שינויים אחרונים משופרת (דרוש JavaScript)',
 'tog-numberheadings'          => 'מספור כותרות אוטומטי',
 'tog-showtoolbar'             => 'הצגת סרגל העריכה (דרוש JavaScript)',
 'tog-editondblclick'          => 'עריכת דפים בלחיצה כפולה (דרוש JavaScript)',
@@ -335,7 +336,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'עריכת פסקאות על ידי לחיצה ימנית על כותרות הפסקאות (דרוש JavaScript)',
 'tog-showtoc'                 => 'הצגת תוכן עניינים (עבור דפים עם יותר מ־3 כותרות)',
 'tog-rememberpassword'        => 'זכירת הכניסה שלי במחשב זה',
-'tog-editwidth'               => 'תיבת העריכה ברוחב מלא',
+'tog-editwidth'               => 'הרחבת תיבת העריכה כך שתמלא את החלון כולו',
 'tog-watchcreations'          => 'מעקב אחרי דפים שיצרתי',
 'tog-watchdefault'            => 'מעקב אחרי דפים שערכתי',
 'tog-watchmoves'              => 'מעקב אחרי דפים שהעברתי',
@@ -736,6 +737,7 @@ $2',
 'username'                   => 'שם משתמש:',
 'uid'                        => 'מספר סידורי:',
 'prefs-memberingroups'       => 'חבר ב{{PLURAL:$1|קבוצה|קבוצות}}:',
+'prefs-registration'         => 'זמן ההרשמה:',
 'yourrealname'               => 'שם אמיתי:',
 'yourlanguage'               => 'שפת הממשק:',
 'yourvariant'                => 'גרסה:',
@@ -986,9 +988,10 @@ $2',
 'recreate-moveddeleted-warn'       => "'''אזהרה: הנכם יוצרים דף חדש שנמחק בעבר.'''
 
 אנא שיקלו אם יהיה זה נכון להמשיך לערוך את הדף.
-יומן המחיקות של הדף מוצג להלן:",
+יומני המחיקות וההעברות של הדף מוצגים להלן:",
 'moveddeleted-notice'              => 'דף זה נמחק.
-יומן המחיקות של הדף מוצג להלן.',
+יומני המחיקות וההעברות של הדף מוצגים להלן.',
+'log-fulllog'                      => 'הצגת היומן המלא',
 'edit-hook-aborted'                => 'העריכה בוטלה על־ידי Hook.
 לא ניתן הסבר לביטול.',
 'edit-gone-missing'                => 'לא ניתן לעדכן את הדף.
@@ -1321,6 +1324,8 @@ $2',
 'prefs-watchlist-edits-max' => '(לכל היותר 1000)',
 'prefs-misc'                => 'שונות',
 'prefs-resetpass'           => 'שינוי סיסמה',
+'prefs-email'               => 'אפשרויות דוא"ל',
+'prefs-rendering'           => 'פענוח דפים',
 'saveprefs'                 => 'שמירת העדפות',
 'resetprefs'                => 'מחיקת שינויים שלא נשמרו',
 'restoreprefs'              => 'חזרה להגדרות ברירת המחדל',
@@ -1364,6 +1369,8 @@ $2',
 'prefs-files'               => 'קבצים',
 'prefs-custom-css'          => 'קובץ CSS מותאם אישית',
 'prefs-custom-js'           => 'קובץ JS מותאם אישית',
+'prefs-reset-intro'         => 'באפשרותכם להשתמש בדף זה כדי להחזיר את ההעדפות שלכם להגדרות ברירת המחדל של האתר.
+לא ניתן לבטל פעולה זו.',
 
 # User rights
 'userrights'                  => 'ניהול הרשאות משתמש',
@@ -2073,6 +2080,7 @@ $NEWPAGE
 
 אנא אשרו שזה אכן מה שאתם מתכוונים לעשות, שאתם מבינים את התוצאות של מעשה כזה, ושהמעשה מבוצע בהתאם ל[[{{MediaWiki:Policy-url}}|נהלי האתר]].',
 'actioncomplete'         => 'הפעולה בוצעה',
+'actionfailed'           => 'הפעולה נכשלה',
 'deletedtext'            => '<strong><nowiki>$1</nowiki></strong> נמחק. ראו $2 לרשימת המחיקות האחרונות.',
 'deletedarticle'         => 'מחק את [[$1]]',
 'suppressedarticle'      => 'הסתיר את [[$1]]',
@@ -2731,7 +2739,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''אזהרה:''' קובץ זה עלול להכיל קוד זדוני, שהרצתו עלולה לסכן את המערכת שלכם.<hr />",
-'imagemaxsize'         => 'הגבלת תמונות בדפי תיאור הקובץ ל:',
+'imagemaxsize'         => 'גודל תמונה מירבי:<br />(לדפי תיאור קובץ)',
 'thumbsize'            => 'הקטן לגודל של:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|דף אחד|$3 דפים}}',
 'file-info'            => '(גודל הקובץ: $1, סוג MIME: $2)',
@@ -3253,6 +3261,7 @@ $1',
 'version-hook-name'                => 'שם ה־Hook',
 'version-hook-subscribedby'        => 'הפונקציה הרושמת',
 'version-version'                  => 'גרסה',
+'version-revision'                 => 'גרסה',
 'version-license'                  => 'רישיון',
 'version-software'                 => 'תוכנות מותקנות',
 'version-software-product'         => 'תוכנה',
@@ -3332,5 +3341,26 @@ $1',
 'dberr-usegoogle'   => 'באפשרותכם לנסות לחפש דרך גוגל בינתיים.',
 'dberr-outofdate'   => 'שימו לב שהתוכן שלנו ששמר בזיכרון המטמון עשוי שלא להיות מעודכן.',
 'dberr-cachederror' => 'זהו עותק שמור של המידע, והוא עשוי שלא להיות מעודכן.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'יש בעיות עם חלק מהקלט שהכנסתם',
+'htmlform-select-badoption'    => 'הערך שציינתם אינו אפשרות תקינה.',
+'htmlform-int-invalid'         => 'הערך שציינתם אינו מספר שלם.',
+'htmlform-int-toolow'          => 'הערך שציינתם הוא מתחת למינימום, $1',
+'htmlform-int-toohigh'         => 'הערך שציינתם הוא מעל למקסימום, $1',
+'htmlform-submit'              => 'שליחה',
+'htmlform-reset'               => 'ביטול השינויים',
+'htmlform-selectorother-other' => 'אחר',
+
+# Special:CreatePage
+'createpage'              => 'יצירת דף',
+'createpage-submitbutton' => 'שליחה',
+'createpage-instructions' => 'הקלידו את כותרת הדף שברצונכם ליצור:',
+'createpage-entertitle'   => 'הקלידו כותרת לדף שלכם.',
+'createpage-titleexists'  => 'דף בשם [[$1]] כבר קיים.
+האם ברצונכם לערוך את הדף הקיים?',
+'createpage-tryagain'     => 'לא. ברצוני ליצור דף חדש עם כותרת אחרת.',
+'createpage-editexisting' => 'כן. ברצוני לתרום לדף הקיים.',
+'createpage-badtitle'     => '"$1" אינו כותרת תקינה לדף',
 
 );
