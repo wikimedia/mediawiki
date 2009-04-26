@@ -168,7 +168,8 @@ class Preferences {
 
 			$options = array();
 			foreach( $variantArray as $code => $name ) {
-				$options[$code] = "$code - $name";
+				$display = "$code - $name";
+				$options[$display] = $code;
 			}
 
 			if(count($variantArray) > 1) {
@@ -182,7 +183,7 @@ class Preferences {
 			}
 		}
 		
-		if(count($variantArray) > 1 && !$wgDisableLangConversion && !$wgDisableTitleConversion) {
+		if( count($variantArray) > 1 && !$wgDisableLangConversion && !$wgDisableTitleConversion ) {
 			$defaultPreferences['noconvertlink'] =
 					array(
 						'type' => 'toggle',
