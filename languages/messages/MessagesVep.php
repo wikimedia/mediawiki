@@ -2655,4 +2655,8 @@ Kävutagat normaline ezikacund.',
 'dberr-outofdate'   => "Google'an indeks voib olda vanhtunuden.",
 'dberr-cachederror' => 'Naku om ectud lehtpolen keširuidud versii. Voib olda, siš ei ole tantoižid toižetusid.',
 
+# Special:CreatePage
+'createpage'              => "Säta lehtpol'",
+'createpage-submitbutton' => 'Oigeta',
+
 );

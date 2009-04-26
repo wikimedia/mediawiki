@@ -277,7 +277,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Dölj patrullerade redigeringar i senaste ändringar',
 'tog-newpageshidepatrolled'   => 'Göm patrullerade sidor från listan över nya sidor',
 'tog-extendwatchlist'         => 'Utöka bevakningslistan till att visa alla ändringar, inte bara den senaste',
-'tog-usenewrc'                => 'Avancerad Senaste ändringar (Javascript)',
+'tog-usenewrc'                => 'Använd avancerad senaste ändringar (kräver JavaScript)',
 'tog-numberheadings'          => 'Numrerade rubriker',
 'tog-showtoolbar'             => 'Visa verktygsrad (Javascript)',
 'tog-editondblclick'          => 'Redigera sidor med dubbelklick (Javascript)',
@@ -285,7 +285,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Aktivera redigering av avsnitt genom högerklick på underrubriker (Javascript)',
 'tog-showtoc'                 => 'Visa innehållsförteckning (för sidor som har minst fyra rubriker)',
 'tog-rememberpassword'        => 'Kom ihåg lösenordet till nästa besök',
-'tog-editwidth'               => 'Full bredd på redigeringsrutan',
+'tog-editwidth'               => 'Utvidga redigeringsrutan till att fylla hela skärmen',
 'tog-watchcreations'          => 'Lägg till sidor jag skapar i min bevakningslista',
 'tog-watchdefault'            => 'Lägg till sidor jag redigerar i min bevakningslista',
 'tog-watchmoves'              => 'Lägg till sidor jag flyttar i min bevakningslista',
@@ -657,6 +657,7 @@ Välj ett annat namn.',
 'username'                   => 'Användarnamn:',
 'uid'                        => 'Användar-ID:',
 'prefs-memberingroups'       => 'Medlem av {{PLURAL:$1|gruppen|grupperna}}:',
+'prefs-registration'         => 'Registreringstid:',
 'yourrealname'               => 'Riktigt namn:',
 'yourlanguage'               => 'Språk:',
 'yournick'                   => 'Signatur:',
@@ -905,11 +906,13 @@ Du kan redigera existerande sidor, eller [[Special:UserLogin|logga in eller skap
 'permissionserrors'                => 'Behörighetsfel',
 'permissionserrorstext'            => 'Du har inte behörighet att göra det du försöker göra, av följande {{PLURAL:$1|anledning|anledningar}}:',
 'permissionserrorstext-withaction' => 'Du har inte behörighet att $2, av följande {{PLURAL:$1|anledning|anledningar}}:',
-'recreate-moveddeleted-warn'       => "'''Varning: Den sida du skapar har tidigare raderats.'''
+'recreate-moveddeleted-warn'       => "'''Varning: Du återskapar en sida som tidigare raderats.'''
 
-Du bör överväga om det är lämpligt att fortsätta redigera sidan.
-Raderingsloggen för sidan innehåller följande:",
-'moveddeleted-notice'              => 'Denna sida har blivit raderad. Som referens visas nedan raderingsloggen för sidan.',
+Du bör överväga om det är lämpligt att fortsätta redigera den här sidan.
+Raderings- och sidflyttningsloggen för den här sidan visas här som hjälp:",
+'moveddeleted-notice'              => 'Den här sidan har raderats.
+Raderings- och sidflyttningsloggen för sidan visas nedan som referens.',
+'log-fulllog'                      => 'Visa fullständig logg',
 'edit-hook-aborted'                => 'Redigering avbruten av hook.
 Den gav ingen förklaring.',
 'edit-gone-missing'                => 'Kunde inte uppdatera sidan.
@@ -1235,6 +1238,8 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-watchlist-edits-max' => '(maximalt antal: 1 000)',
 'prefs-misc'                => 'Diverse',
 'prefs-resetpass'           => 'Ändra lösenord',
+'prefs-email'               => 'Alternativ för e-post',
+'prefs-rendering'           => 'Återgivning av sida',
 'saveprefs'                 => 'Spara',
 'resetprefs'                => 'Återställ osparade ändringar',
 'restoreprefs'              => 'Återställ alla standardinställningar',
@@ -1277,6 +1282,8 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-files'               => 'Filer',
 'prefs-custom-css'          => 'Personlig CSS',
 'prefs-custom-js'           => 'Personlig JavaScript',
+'prefs-reset-intro'         => 'Du kan använda den här sidan till att återställa dina inställningar till webbplatsens standardinställningar.
+Detta kan inte återställas.',
 
 # User rights
 'userrights'                  => 'Hantering av användarrättigheter',
@@ -1980,6 +1987,7 @@ Feedback och hjälp:
 'confirmdeletetext'      => 'Du håller på att ta bort en sida med hela dess historik.
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta leder till, och att du följer [[{{MediaWiki:Policy-url}}|riktlinjerna]].',
 'actioncomplete'         => 'Genomfört',
+'actionfailed'           => 'Handlingen misslyckades',
 'deletedtext'            => '"<nowiki>$1</nowiki>" har tagits bort.
 Se $2 för noteringar om de senaste raderingarna.',
 'deletedarticle'         => 'raderade "[[$1]]"',
@@ -2645,7 +2653,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Varning:''': Denna fil kan innehålla programkod som, om den körs, kan skada din dator.",
-'imagemaxsize'         => 'Begränsa bilders storlek på filbeskrivningssidor till:',
+'imagemaxsize'         => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
 'file-info'            => '(filstorlek: $1, MIME-typ: $2)',
@@ -3119,6 +3127,7 @@ Du kan också [[Special:Watchlist/edit|använda standardeditorn]].',
 'version-hook-name'                => 'Namn',
 'version-hook-subscribedby'        => 'Används av',
 'version-version'                  => 'Version',
+'version-revision'                 => 'Version',
 'version-license'                  => 'Licens',
 'version-software'                 => 'Installerad programvara',
 'version-software-product'         => 'Produkt',
@@ -3197,5 +3206,24 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'dberr-usegoogle'   => 'Du kan pröva att söka med Google under tiden.',
 'dberr-outofdate'   => 'Observera att deras index av vårt innehåll kan vara föråldrat.',
 'dberr-cachederror' => 'Följande är en cachad kopia av den efterfrågade sidan, och kan vara föråldrad.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Det finns problem med din inmatning',
+'htmlform-select-badoption'    => 'Värdet du valde är inte ett giltigt alternativ.',
+'htmlform-int-invalid'         => 'Värdet du valde är inte ett heltal.',
+'htmlform-submit'              => 'Spara',
+'htmlform-reset'               => 'Ogör ändringar',
+'htmlform-selectorother-other' => 'Andra',
+
+# Special:CreatePage
+'createpage'              => 'Skapa en sida',
+'createpage-submitbutton' => 'OK',
+'createpage-instructions' => 'Skriv in titeln till sidan som du vill skapa:',
+'createpage-entertitle'   => 'Var god skriv in en titel för din sida.',
+'createpage-titleexists'  => 'En sida med titeln [[$1]] finns redan.
+Vill du redigera den här sidan?',
+'createpage-tryagain'     => 'Nej, jag vill skapa en ny sida med ett annat namn.',
+'createpage-editexisting' => 'Ja. Jag vill bidra till den existerande sidan.',
+'createpage-badtitle'     => '"$1" kan inte användas som sidtitel',
 
 );

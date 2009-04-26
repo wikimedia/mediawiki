@@ -2866,4 +2866,15 @@ Ju Iengoawe mout sunner dän Tousats „{{ns:file}}:“ geböäre.',
 'dberr-outofdate'   => 'Beoachtje, dät die Säikindex fon uus Inhoolde ferallerd weese kon.',
 'dberr-cachederror' => 'Dät Foulgjende is ne Kopie fon dän Cache fon ju anfoarderde Siede un kon ferallerd weese.',
 
+# Special:CreatePage
+'createpage'              => 'Näie Sieden moakje',
+'createpage-submitbutton' => 'Seende',
+'createpage-instructions' => 'Reek dän Noome fon dän tou moakjene Siede ien:',
+'createpage-entertitle'   => 'Tittel foar dien Siede',
+'createpage-titleexists'  => 'Ne Siede mäd dän Noome [[$1]] bestoant al.
+Moatest Du ju bestoundene Siede beoarbaidje?',
+'createpage-tryagain'     => 'Noa - Iek moate ne näie Siede mäd n uur Tittel anlääse.',
+'createpage-editexisting' => 'Jee - Iek moate ju bestoundene Siede beoarbaidje.',
+'createpage-badtitle'     => '"$1" kon nit as Siedentittel bruukt wäide',
+
 );

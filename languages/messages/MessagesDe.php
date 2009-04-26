@@ -331,7 +331,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-newpageshidepatrolled'   => 'Kontrollierte Seiten auf der Liste „Neue Seiten“ verbergen',
 'tog-extendwatchlist'         => 'Erweiterte Beobachtungsliste zur Anzeige aller Änderungen',
-'tog-usenewrc'                => 'Erweiterte Darstellung (benötigt JavaScript)',
+'tog-usenewrc'                => 'Erweiterte Darstellung von den „Letzten Änderungen“ (benötigt JavaScript)',
 'tog-numberheadings'          => 'Überschriften automatisch nummerieren',
 'tog-showtoolbar'             => 'Bearbeiten-Werkzeugleiste anzeigen',
 'tog-editondblclick'          => 'Seiten mit Doppelklick bearbeiten (benötigt JavaScript)',
@@ -339,7 +339,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Einzelne Abschnitte per Rechtsklick bearbeiten (benötigt JavaScript)',
 'tog-showtoc'                 => 'Anzeigen eines Inhaltsverzeichnisses bei Seiten mit mehr als drei Überschriften',
 'tog-rememberpassword'        => 'Benutzer soll auf diesem Computer dauerhaft angemeldet bleiben',
-'tog-editwidth'               => 'Text-Eingabefeld mit voller Breite',
+'tog-editwidth'               => 'Eingabefeld erweitern, um den ganzen Bildschirm auszufüllen',
 'tog-watchcreations'          => 'Selbst erstellte Seiten automatisch beobachten',
 'tog-watchdefault'            => 'Selbst geänderte und neu erstellte Seiten automatisch beobachten',
 'tog-watchmoves'              => 'Selbst verschobene Seiten automatisch beobachten',
@@ -712,6 +712,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'username'                   => 'Benutzername:',
 'uid'                        => 'Benutzer-ID:',
 'prefs-memberingroups'       => 'Mitglied der {{PLURAL:$1|Benutzergruppe|Benutzergruppen}}:',
+'prefs-registration'         => 'Anmeldezeitpunkt:',
 'yourrealname'               => 'Echter Name:',
 'yourlanguage'               => 'Sprache der Benutzeroberfläche:',
 'yourvariant'                => 'Variante',
@@ -968,8 +969,9 @@ Grund für die Sperre: $1",
 'recreate-moveddeleted-warn'       => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
-Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
-'moveddeleted-notice'              => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch-Logbuch für diese Seite.',
+Zu deiner Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begründung für die vorhergehende Löschung:",
+'moveddeleted-notice'              => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch- und Verschiebungs-Logbuch für diese Seite.',
+'log-fulllog'                      => 'Volles Logbuch ansehen',
 'edit-hook-aborted'                => 'Die Bearbeitung wurde ohne Erklärung durch eine Schnittstelle abgebrochen.',
 'edit-gone-missing'                => 'Die Seite konnt nicht aktualisiert werden.
 Sie wurde anscheinend gelöscht.',
@@ -1286,6 +1288,8 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'prefs-watchlist-edits-max' => '(Maximale Anzahl: 1000)',
 'prefs-misc'                => 'Verschiedenes',
 'prefs-resetpass'           => 'Passwort ändern',
+'prefs-email'               => 'E-Mail-Optionen',
+'prefs-rendering'           => 'Seitendarstellung',
 'saveprefs'                 => 'Einstellungen speichern',
 'resetprefs'                => 'Eingaben verwerfen',
 'restoreprefs'              => 'Alle Standardeinstellungen wiederherstellen',
@@ -1328,6 +1332,8 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'prefs-files'               => 'Dateien',
 'prefs-custom-css'          => 'Benutzerdefinierte CSS',
 'prefs-custom-js'           => 'Benutzerdefiniertes JS',
+'prefs-reset-intro'         => 'Du kannst diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.
+Dies kann nicht mehr rückgängig gemacht werden.',
 
 # User rights
 'userrights'                  => 'Benutzerrechteverwaltung',
@@ -2034,6 +2040,7 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'historywarning'         => 'Achtung, die Seite, die du löschen möchtest, hat eine Versionsgeschichte:',
 'confirmdeletetext'      => 'Du bist dabei, eine Seite mit allen zugehörigen älteren Versionen zu löschen. Bitte bestätige dazu, dass du dir der Konsequenzen bewusst bist, und dass du in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] handelst.',
 'actioncomplete'         => 'Aktion beendet',
+'actionfailed'           => 'Aktion fehlgeschlagen',
 'deletedtext'            => '„<nowiki>$1</nowiki>“ wurde gelöscht. Im $2 findest du eine Liste der letzten Löschungen.',
 'deletedarticle'         => 'hat „[[$1]]“ gelöscht',
 'suppressedarticle'      => 'veränderte die Sichtbarkeit von „[[$1]]“',
@@ -2704,7 +2711,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warnung:''' Diese Art von Datei kann böswilligen Programmcode enthalten. Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt werden.<hr />",
-'imagemaxsize'         => 'Maximale Bildgröße auf Bildbeschreibungsseiten:',
+'imagemaxsize'         => "Maximale Bildgröße:<br />''(für Dateibeschreibungsseiten)''",
 'thumbsize'            => 'Standardgröße der Vorschaubilder (thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Seite|$3 Seiten}}',
 'file-info'            => '(Dateigröße: $1, MIME-Typ: $2)',
@@ -3176,6 +3183,7 @@ Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutze
 'version-hook-name'                => 'Schnittstellenname',
 'version-hook-subscribedby'        => 'Aufruf von',
 'version-version'                  => 'Version',
+'version-revision'                 => 'Revision',
 'version-license'                  => 'Lizenz',
 'version-software'                 => 'Installierte Software',
 'version-software-product'         => 'Produkt',
@@ -3254,5 +3262,26 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'dberr-usegoogle'   => 'Du könntest in der Zwischenzeit mit Google suchen.',
 'dberr-outofdate'   => 'Beachte, dass der Suchindex unserer Inhalte veraltet sein kann.',
 'dberr-cachederror' => 'Folgendes ist ein Kopie des Caches der angeforderten Seite und kann veraltet sein.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Mit einigen Eingaben gibt es Probleme',
+'htmlform-select-badoption'    => 'Der angegebene Wert ist keine gültige Option.',
+'htmlform-int-invalid'         => 'Der angegebene Wert ist keine Ganzzahl.',
+'htmlform-int-toolow'          => 'Der angegebene Wert ist unter dem Minimum von $1',
+'htmlform-int-toohigh'         => 'Der angegebene Wert ist über dem Maximum von $1',
+'htmlform-submit'              => 'Übertragen',
+'htmlform-reset'               => 'Änderungen rückgängig machen',
+'htmlform-selectorother-other' => 'Andere',
+
+# Special:CreatePage
+'createpage'              => 'Neue Seite erstellen',
+'createpage-submitbutton' => 'Senden',
+'createpage-instructions' => 'Gib den Namen der neu zu erstellenden Seite ein:',
+'createpage-entertitle'   => 'Titel für deine Seite.',
+'createpage-titleexists'  => 'Eine Seite mit dem Namen [[$1]] existiert bereits.
+Möchtest Du die existierende Seite bearbeiten?',
+'createpage-tryagain'     => 'Nein - Ich möchte eine neue Seite mit einem anderen Titel anlegen.',
+'createpage-editexisting' => 'Ja - Ich möchte die existierende Seite bearbeiten.',
+'createpage-badtitle'     => '„$1“ kann nicht als Seitentitel genutzt werden',
 
 );

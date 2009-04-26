@@ -276,7 +276,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Sembunyikan suntingan terpatroli di perubahan terbaru',
 'tog-newpageshidepatrolled'   => 'Sembunyikan halaman terpatroli dari daftar halaman baru',
 'tog-extendwatchlist'         => 'Kembangkan daftar pantauan untuk menunjukkan semua perubahan, tidak hanya yang terbaru',
-'tog-usenewrc'                => 'Tampilan perubahan terbaru alternatif (JavaScript)',
+'tog-usenewrc'                => 'Gunakan tampilan perubahan terbaru tingkat lanjut (memerlukan JavaScript)',
 'tog-numberheadings'          => 'Beri nomor judul secara otomatis',
 'tog-showtoolbar'             => 'Perlihatkan <em>toolbar</em> (batang alat) penyuntingan',
 'tog-editondblclick'          => 'Sunting halaman dengan klik ganda (JavaScript)',
@@ -284,7 +284,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Fungsikan penyuntingan sub-bagian dengan klik-kanan pada judul bagian (JavaScript)',
 'tog-showtoc'                 => 'Perlihatkan daftar isi (untuk halaman yang mempunyai lebih dari 3 sub-bagian)',
 'tog-rememberpassword'        => 'Ingat kata sandi pada setiap sesi',
-'tog-editwidth'               => 'Kotak sunting berukuran maksimum',
+'tog-editwidth'               => 'Perlebar kotak suntingan hingga seluruh layar',
 'tog-watchcreations'          => 'Tambahkan halaman yang saya buat ke daftar pantauan',
 'tog-watchdefault'            => 'Tambahkan halaman yang saya sunting ke daftar pantauan',
 'tog-watchmoves'              => 'Tambahkan halaman yang saya pindahkan ke daftar pantauan',
@@ -641,6 +641,7 @@ Silakan pilih nama yang lain.',
 'username'                   => 'Nama pengguna:',
 'uid'                        => 'ID pengguna:',
 'prefs-memberingroups'       => 'Anggota {{PLURAL:$1|kelompok|kelompok}}:',
+'prefs-registration'         => 'Waktu pendaftaran:',
 'yourrealname'               => 'Nama asli:',
 'yourlanguage'               => 'Bahasa antarmuka:',
 'yourvariant'                => 'Varian bahasa',
@@ -874,8 +875,10 @@ Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[Special
 'recreate-moveddeleted-warn'       => "'''Peringatan: Anda membuat ulang suatu halaman yang sudah pernah dihapus.'''
 
 Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda.
-Berikut adalah log penghapusan dari halaman ini:",
-'moveddeleted-notice'              => 'Halaman ini telah dihapus. Sebagai referensi, berikut adalah log penghapusan halaman ini.',
+Berikut adalah log penghapusan dan pemindahan dari halaman ini:",
+'moveddeleted-notice'              => 'Halaman ini telah dihapus.
+Sebagai referensi, berikut adalah log penghapusan dan pemindahan halaman ini.',
+'log-fulllog'                      => 'Lihat seluruh log',
 'edit-hook-aborted'                => 'Suntingan dibatalkan oleh kait parser
 tanpa ada keterangan.',
 'edit-gone-missing'                => 'Tidak dapat memperbaharui halaman.
@@ -981,7 +984,7 @@ Harap konfirmasikan bahwa Anda memang ingin melakukan tindakan ini, bahwa Anda m
 'revdelete-hide-name'            => 'Sembunyikan tindakan dan target',
 'revdelete-hide-comment'         => 'Tampilkan/sembunyikan ringkasan suntingan',
 'revdelete-hide-user'            => 'Sembunyikan nama pengguna/IP penyunting',
-'revdelete-hide-restricted'      => 'Opsi bagi pengawas.',
+'revdelete-hide-restricted'      => 'Sembunyikan data dari opsis juga',
 'revdelete-suppress'             => 'Sembunyikan juga dari pengurus',
 'revdelete-hide-image'           => 'Sembunyikan isi berkas',
 'revdelete-unsuppress'           => 'Hapus batasan pada revisi yang dikembalikan',
@@ -1196,6 +1199,8 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-watchlist-edits-max' => '(nilai maksimum: 1000)',
 'prefs-misc'                => 'Lain-lain',
 'prefs-resetpass'           => 'Ganti kata sandi',
+'prefs-email'               => 'Opsi surat-e',
+'prefs-rendering'           => 'Penampilan halaman',
 'saveprefs'                 => 'Simpan',
 'resetprefs'                => 'Batalkan perubahan',
 'restoreprefs'              => 'Kembalikan semua setelan baku',
@@ -1238,6 +1243,8 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-files'               => 'Berkas',
 'prefs-custom-css'          => 'CSS Buatan',
 'prefs-custom-js'           => 'JS Buatan',
+'prefs-reset-intro'         => 'Anda dapat menggunakan halaman ini untuk mengembalikan preferensi Anda ke setelan baku situs.
+Pengembalian preferensi tidak dapat dibatalkan.',
 
 # User rights
 'userrights'                  => 'Manajemen hak pengguna',
@@ -2270,7 +2277,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'movepage-max-pages'           => 'Sejumlah maksimum $1 {{PLURAL:$1|halaman|halaman}} telah dipindahkan dan tidak ada lagi yang akan dipindahkan secara otomatis.',
 '1movedto2'                    => 'memindahkan [[$1]] ke [[$2]]',
 '1movedto2_redir'              => 'memindahkan [[$1]] ke [[$2]] melalui peralihan',
-'move-redirect-suppressed'     => 'pengalihan ditahan',
+'move-redirect-suppressed'     => 'pengalihan tidak dibuat',
 'movelogpage'                  => 'Log pemindahan',
 'movelogpagetext'              => 'Di bawah ini adalah log pemindahan halaman.',
 'movesubpage'                  => '{{PLURAL:$1|Subhalaman|Subhalaman}}',
@@ -2548,7 +2555,7 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 
 # Media information
 'mediawarning'         => "'''Peringatan:''' Berkas ini mungkin mengandung kode berbahaya yang jika dijalankan dapat mempengaruhi sistem Anda.<hr />",
-'imagemaxsize'         => 'Batasi ukuran gambar dalam halaman deskripsi berkas sampai:',
+'imagemaxsize'         => "Batas ukuran gambar:<br />''(untuk halaman deskripsi berkas)''",
 'thumbsize'            => 'Ukuran miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|halaman|halaman}}',
 'file-info'            => '(ukuran berkas: $1, tipe MIME: $2)',
@@ -2837,6 +2844,10 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-gpslongitude-e' => 'Bujur timur',
 'exif-gpslongitude-w' => 'Bujur barat',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Meter di atas ketinggian air laut',
+'exif-gpsaltitude-1' => 'Meter di bawah ketinggian air laut',
+
 'exif-gpsstatus-a' => 'Pengukuran sedang berlangsung',
 'exif-gpsstatus-v' => 'Interoperabilitas pengukuran',
 
@@ -2847,6 +2858,11 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-gpsspeed-k' => 'Kilometer per jam',
 'exif-gpsspeed-m' => 'Mil per jam',
 'exif-gpsspeed-n' => 'Knot',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Mil',
+'exif-gpsdestdistance-n' => 'Mil laut',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Arah sejati',
@@ -3078,5 +3094,15 @@ Keterangan tampilan:
 'dberr-usegoogle'   => 'Anda dapat mencoba pencarian melalui Google untuk sementara waktu.',
 'dberr-outofdate'   => 'Harap diperhatikan bahwa indeks mereka terhadap isi kami mungkin sudah kadaluwarsa.',
 'dberr-cachederror' => 'Berikut adalah salinan tersimpan halaman yang diminta, dan mungkin bukan yang terbaru.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Ada kesalahan dalam beberapa input Anda',
+'htmlform-select-badoption'    => 'Nilai yang Anda masukkan tidak sah',
+'htmlform-int-invalid'         => 'Nilai yang Anda masukkan bukan integer.',
+'htmlform-int-toolow'          => 'Nilai yang Anda masukkan terlalu rendah di bawah nilai minimum $1',
+'htmlform-int-toohigh'         => 'Nilai yang Anda masukkan melebihi nilai maksimum $1',
+'htmlform-submit'              => 'Kirim',
+'htmlform-reset'               => 'Batalkan perubahan',
+'htmlform-selectorother-other' => 'Lainnya',
 
 );

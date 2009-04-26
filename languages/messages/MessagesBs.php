@@ -3310,4 +3310,15 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'dberr-outofdate'   => 'Zapamtite da njihovi indeksi našeg sadržaja ne moraju uvijek biti ažurni.',
 'dberr-cachederror' => 'Slijedeći tekst je keširana kopija zahtjevane stranice i možda nije potpuno ažurirana.',
 
+# Special:CreatePage
+'createpage'              => 'Napravi stranicu',
+'createpage-submitbutton' => 'Pošalji',
+'createpage-instructions' => 'Unesite naslov stranice koju želite napraviti:',
+'createpage-entertitle'   => 'Molimo unesite naslov za Vašu stranicu',
+'createpage-titleexists'  => 'Stranica sa naslovom [[$1]] već postoji.
+Da li želite uređivati postojeću stranicu?',
+'createpage-tryagain'     => 'Ne. Želim napraviti novu stranicu sa različitim naslovom.',
+'createpage-editexisting' => 'Da. Želim doprinositi na postojećoj stranici.',
+'createpage-badtitle'     => '"$1" se ne može koristiti kao naslov stranice',
+
 );

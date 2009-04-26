@@ -3053,4 +3053,15 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'dberr-outofdate'   => 'Notu ke iliaj indeksoj de nia enhavo eble ne estas ĝisdatigaj.',
 'dberr-cachederror' => 'Jen kaŝmemorigita kopio de la petita paĝo, kaj eble ne estas ĝisdatigita.',
 
+# Special:CreatePage
+'createpage'              => 'Krei paĝon',
+'createpage-submitbutton' => 'Enmeti',
+'createpage-instructions' => 'Enigu la titolon de la paĝo kiun vi volas krei:',
+'createpage-entertitle'   => 'Bonvolu enigi titolon por via paĝo.',
+'createpage-titleexists'  => 'Paĝo kun la titolo [[$1]] jam ekzistas.
+Ĉu vi volus redakti la ekzistantan paĝon?',
+'createpage-tryagain'     => 'Ne. Mi volas krei novan paĝon kun distinga titolo.',
+'createpage-editexisting' => 'Jes. Mi volas kontribui al la ekzistanta paĝo.',
+'createpage-badtitle'     => '"$1" ne povas esti uzata kiel paĝa titolo',
+
 );

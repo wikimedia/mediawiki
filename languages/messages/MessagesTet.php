@@ -74,7 +74,7 @@ $messages = array(
 'tog-highlightbroken'    => 'Formatu ligasaun sira-ne\'ebé bá pájina maka wiki la iha: <a href="" class="new">ne\'e</a> ka <a href="" class="internal">ne\'e</a>).',
 'tog-justify'            => 'Justifika parágrafu sira',
 'tog-hideminor'          => "Lá'os hatudu osan-rahun sira iha mudansa foufoun sira",
-'tog-usenewrc'           => 'Lista "Mudansa foufoun sira" di\'ak liu (JavaScript)',
+'tog-usenewrc'           => 'Uza lista "Mudansa foufoun sira" di\'ak liu (JavaScript)',
 'tog-showtoolbar'        => 'Hatudu kaixa edita (JavaScript)',
 'tog-watchcreations'     => "Hateke pájina sira-ne'ebé ha'u kria",
 'tog-watchdefault'       => "Hateke pájina sira-ne'ebé ha'u edita",

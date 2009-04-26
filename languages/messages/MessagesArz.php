@@ -10,6 +10,7 @@
  * @author Alnokta
  * @author Ghaly
  * @author Meno25
+ * @author Ouda
  * @author Ramsis II
  */
 
@@ -3323,5 +3324,16 @@ $1',
 'dberr-usegoogle'   => 'ممكن تحاول تدور باستعمال جوجل دلوقتى.',
 'dberr-outofdate'   => 'خد بالك فهارس المحتوى بتاعنا اللى عندهم ممكن تكون مش متحدثه.',
 'dberr-cachederror' => 'دى نسخه متخزنه من الصفحه المطلوبه، و ممكن ما تكونش متحدثه.',
+
+# Special:CreatePage
+'createpage'              => 'أنشئ صفحة',
+'createpage-submitbutton' => 'تنفيذ',
+'createpage-instructions' => 'أدخل عنوان الصفحة التى تريد إنشاءها',
+'createpage-entertitle'   => 'من فضلك أدخل عنوان لصفحتك',
+'createpage-titleexists'  => 'فى صفحه موجوده بالفعل بالعنوان[[$1]] .
+عايز تعدل الصفحه الموجوده؟',
+'createpage-tryagain'     => 'لا. أريد إنشاء صفحة جديدة بعنوان مميز.',
+'createpage-editexisting' => 'نعم. أريد المساهمة للصفحة الموجودة',
+'createpage-badtitle'     => 'لا بمكن إستخدامه كعنوان للصفحة "$1"',
 
 );

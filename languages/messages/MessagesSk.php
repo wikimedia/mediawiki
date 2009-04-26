@@ -191,7 +191,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Skryť strážené úpravy v Posledných úpravách',
 'tog-newpageshidepatrolled'   => 'Skryť strážené stránky zo zoznamu nových stránok',
 'tog-extendwatchlist'         => 'Rozšíriť zoznam sledovaných, aby zobrazoval všetky zmeny, nie len posledné',
-'tog-usenewrc'                => 'Rozšírené zobrazenie posledných úprav (vyžaduje JavaScript)',
+'tog-usenewrc'                => 'Použiť rozšírené zobrazenie posledných úprav (vyžaduje JavaScript)',
 'tog-numberheadings'          => 'Automaticky číslovať nadpisy',
 'tog-showtoolbar'             => 'Zobraziť panel nástrojov úprav',
 'tog-editondblclick'          => 'Upravovať stránky po dvojitom kliknutí (JavaScript)',
@@ -199,7 +199,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Umožniť upravovať sekcie po kliknutí pravým tlačidlom na nadpisy sekcií (JavaScript)',
 'tog-showtoc'                 => 'Zobrazovať obsah (pre stránky s viac ako 3 nadpismi)',
 'tog-rememberpassword'        => 'Zapamätať si heslo na tomto počítači',
-'tog-editwidth'               => 'Maximálna šírka textového poľa úprav',
+'tog-editwidth'               => 'Rozšíriť textové pole na úpravy na celú obrazovku',
 'tog-watchcreations'          => 'Pridávať stránky, ktoré vytvorím, automaticky medzi sledované',
 'tog-watchdefault'            => 'Pridávať stránky, ktoré upravujem, automaticky medzi sledované',
 'tog-watchmoves'              => 'Pridávať stránky, ktoré presuniem, do môjho zoznamu sledovaných',
@@ -576,6 +576,7 @@ Zadajte iné meno.',
 'username'                   => 'Používateľské meno:',
 'uid'                        => 'ID používateľa:',
 'prefs-memberingroups'       => 'Člen {{PLURAL:$1|skupiny|skupín}}:',
+'prefs-registration'         => 'Čas registrácie:',
 'yourrealname'               => 'Skutočné meno *:',
 'yourlanguage'               => 'Jazyk:',
 'yourvariant'                => 'Variant jazyka:',
@@ -833,8 +834,10 @@ Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Spec
 'recreate-moveddeleted-warn'       => "'''Upozornenie: Opätovne vytvárate stránku, ktorá bola predtým zmazaná.'''
 
 Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
-Odkaz na záznam zmazaní:",
-'moveddeleted-notice'              => 'Táto stránka bola zmazaná. Dolu je uvedený záznam zmazaní.',
+Ďalšie informácie si môžete pozrieť v zázname zmazaní a presunutí:",
+'moveddeleted-notice'              => 'Táto stránka bola zmazaná.
+Ďalšie informácie si môžete pozrieť v zázname zmazaní a presunutí.',
+'log-fulllog'                      => 'Zobraziť úplný záznam',
 'edit-hook-aborted'                => 'Úpravu zrušila prídavná funkcia (prípojný bod syntaktického analyzátora).
 Neudala vysvetlenie.',
 'edit-gone-missing'                => 'Nebolo možné aktualizovať stránku.
@@ -1157,6 +1160,8 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'prefs-watchlist-edits-max' => '(maximum: 1000)',
 'prefs-misc'                => 'Rôzne',
 'prefs-resetpass'           => 'Zmeniť heslo',
+'prefs-email'               => 'Možnosti emailu',
+'prefs-rendering'           => 'Vykresľovanie stránky',
 'saveprefs'                 => 'Uložiť nastavenia',
 'resetprefs'                => 'Obnoviť pôvodné nastavenia',
 'restoreprefs'              => 'Obnoviť všetky nastavenia na štandardné hodnoty',
@@ -1199,6 +1204,8 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'prefs-files'               => 'Súbory',
 'prefs-custom-css'          => 'Vlastný CSS',
 'prefs-custom-js'           => 'Vlastný JS',
+'prefs-reset-intro'         => 'Túto stránku môžete použiť na vrátenie predvolených hodnôt vašich nastavení.
+Túto operáciu nemožno vrátiť.',
 
 # User rights
 'userrights'                  => 'Spravovanie používateľských práv',
@@ -1900,6 +1907,7 @@ Návrhy a ďalšia pomoc:
 'historywarning'         => 'UPOZORNENIE: Stránka, ktorú chcete zmazať má históriu:',
 'confirmdeletetext'      => 'Chystáte sa trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
 'actioncomplete'         => 'Úloha bola dokončená',
+'actionfailed'           => 'Operácia sa nepodarila',
 'deletedtext'            => '"<nowiki>$1</nowiki>" bol zmazaný.
 Na $2 nájdete zoznam posledných zmazaní.',
 'deletedarticle'         => '„[[$1]]“ zmazaná',
@@ -2561,7 +2569,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód, po spustení ktorého by bol váš systém kompromitovaný.
 <hr />",
-'imagemaxsize'         => 'Obmedziť obrázky na popisnej stránke súboru na:',
+'imagemaxsize'         => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
 'thumbsize'            => 'Veľkosť náhľadu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',
 'file-info'            => '(veľkosť súboru: $1, MIME typ: $2)',
@@ -3031,6 +3039,7 @@ Skúste obyčajný náhľad.',
 'version-hook-name'                => 'Názov prípojného bodu',
 'version-hook-subscribedby'        => 'Pripojené',
 'version-version'                  => 'Verzia',
+'version-revision'                 => 'Revízia',
 'version-license'                  => 'Licencia',
 'version-software'                 => 'Nainštalovaný softvér',
 'version-software-product'         => 'Produkt',
@@ -3110,5 +3119,26 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'dberr-usegoogle'   => 'Zatiaľ môžete skúsiť hľadať pomocou Google.',
 'dberr-outofdate'   => 'Pamätajte, že ich indexy nemusia byť aktuálne.',
 'dberr-cachederror' => 'Toto je kópia požadovanej ztránky z vyrovnávacej pamäte a nemusí byť aktuálna.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Niekotrý z údajov, ktoré ste zadali je problematický',
+'htmlform-select-badoption'    => 'Hodnota, ktorú ste uviedli nie je platná.',
+'htmlform-int-invalid'         => 'Hodnota, ktorú ste uviedli nie je celé číslo.',
+'htmlform-int-toolow'          => 'Hodnota, ktorú ste zadali je menšia ako minimálna hodnota $1',
+'htmlform-int-toohigh'         => 'Hodnota, ktorú ste zadali je väčšia ako maximálna hodnota $1',
+'htmlform-submit'              => 'Odoslať',
+'htmlform-reset'               => 'Vrátiť zmeny',
+'htmlform-selectorother-other' => 'Iné',
+
+# Special:CreatePage
+'createpage'              => 'Vytvoriť stránku',
+'createpage-submitbutton' => 'Poslať',
+'createpage-instructions' => 'Zadajte názov stránky, ktorú si želáte vytvoriť:',
+'createpage-entertitle'   => 'Prosím, zadajte názov vašej stránky.',
+'createpage-titleexists'  => 'Stránka s názvom [[$1]] už existuje.
+Želáte si upraviť existujúcu stránku?',
+'createpage-tryagain'     => 'Nie, chcem vytvoriť novú stránku s iným názovm.',
+'createpage-editexisting' => 'Áno, chcem prispieť k existujúcej stránke.',
+'createpage-badtitle'     => '„$1“ nemožno použiť ako názov stránky',
 
 );

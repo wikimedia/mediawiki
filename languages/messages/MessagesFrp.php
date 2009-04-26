@@ -365,7 +365,7 @@ MySQL at retornâ l’èrror « $3 : $4 ».',
 'laggedslavemode'      => 'Atencion : cela pâge pôt pas contegnir tôs los dèrriérs changements fêts.',
 'readonly'             => 'Bâsa de balyês vèrrolyê',
 'enterlockreason'      => 'Endicâd la rêson du vèrrolyâjo et pués una èstimacion de sa durâ',
-'readonlytext'         => 'Les aponses et mises a jorn de la bâsa de balyês sont ora blocâs, probâblament por pèrmetre la mantegnence de la bâsa, aprés què, tot rentrerat dedens l’ôrdre.
+'readonlytext'         => 'Les aponses et les mises a jorn de la bâsa de balyês sont ora blocâs, probâblament por pèrmetre la mantegnence de la bâsa, aprés què, tot rentrerat dedens l’ôrdre.
 
 L’administrator qu’at vèrrolyê la bâsa de balyês at balyê ceta èxplicacion : $1',
 'missing-article'      => 'La bâsa de balyês at pas trovâ lo tèxte d’una pâge qu’el arêt diu trovar, avouéc lo titro « $1 » $2.
@@ -391,7 +391,7 @@ Volyéd la signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 'cannotdelete'         => 'Empossiblo de suprimar la pâge ou lo fichiér endicâ.
 La suprèssion at pôt-étre ja étâ fêta per quârqu’un d’ôtro.',
 'badtitle'             => 'Crouyo titro',
-'badtitletext'         => 'Lo titro de la pâge demandâ est envalido, vouedo, ou ben o est quèstion d’un titro entèrlengoua ou entèrprojèt mâl-liyê. Contint pôt-étre yon ou plusiors caractèros que pôvont pas étre utilisâs dens los titros.',
+'badtitletext'         => 'Lo titro de la pâge demandâ est envalido, vouedo, ou ben o est un titro entèrlengoua ou entèrprojèt mâl-liyê. Contint pôt-étre yon ou plusiors caractèros que pôvont pas étre utilisâs dens los titros.',
 'perfcached'           => 'Cetes balyês sont en cache et pôvont pas étre a jorn.',
 'perfcachedts'         => 'Cetes balyês sont en cache, sont vêr pas forciêment a jorn. La dèrriére actualisacion dâte du $1.',
 'querypage-no-updates' => 'Les mises a jorn por ceta pâge sont ora dèsactivâs. Les balyês ce-desot sont pas betâs a jorn.',
@@ -407,7 +407,7 @@ Volyéd tornar èprovar dens doux-três menutes.',
 'viewsourcetext'       => 'Vos pouede vêre et copiyér lo contegnu de la pâge :',
 'protectedinterface'   => 'Ceta pâge fornét du tèxte d’entèrface por la programeria et est protègiê por èvitar los abus.',
 'editinginterface'     => "'''Atencion :''' vos éte aprés èditar una pâge utilisâ por fâre lo tèxte de l’entèrface de la programeria.
-Los changements sè cognetront, d’aprés lo contèxte, sur totes ou ben cèrtênes pâges visibles per los ôtros utilisators.
+Los changements sè cognetront, d’aprés lo contèxte, sur totes ou ben quârques pâges visibles per los ôtros utilisators.
 Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.net/wiki/Main_Page?setlang=frp translatewiki.net], lo projèt d’entèrnacionalisacion des mèssâjos de MediaWiki.",
 'sqlhidden'            => '(Requéta SQL cachiê)',
 'cascadeprotected'     => 'Ceta pâge est ora protègiê perce qu’el est encllua dens {{PLURAL:$1|ceta pâge|cetes pâges}}, {{PLURAL:$1|qu’at étâ protègiê|qu’ont étâ protègiês}} avouéc lo chouèx « protèccion en cascâda » activâ :
@@ -426,7 +426,7 @@ La rêson avanciê est « ''$2'' ».",
 # Login and logout pages
 'logouttext'                 => "'''Orendrêt, vos éte dèbranchiê.'''<br />
 Vos pouede continuar a utilisar {{SITENAME}} de façon anonima, ou ben [[Special:UserLogin|vos tornar branchiér]] desot lo mémo nom ou ben un ôtro.
-Notâd que cèrtênes pâges pôvont étre adés montrâs coment se vos érâd tojorn branchiê, tant que vos èfaciéd lo cache de voutron navigator.",
+Notâd que quârques pâges pôvont étre adés montrâs coment se vos érâd tojorn branchiê, tant que vos èfaciéd lo cache de voutron navigator.",
 'welcomecreation'            => '== Benvegnua, $1 ! ==
 
 Voutron compto utilisator at étâ fêt.
@@ -457,6 +457,7 @@ Volyéd nen chouèsir un ôtro.',
 'username'                   => 'Nom d’utilisator :',
 'uid'                        => 'Numerô d’utilisator :',
 'prefs-memberingroups'       => 'Membro de {{PLURAL:$1|la tropa|les tropes}} :',
+'prefs-registration'         => 'Dâta de crèacion du compto :',
 'yourrealname'               => 'Veré nom :',
 'yourlanguage'               => 'Lengoua de l’entèrface :',
 'yourvariant'                => 'Varianta :',
@@ -709,7 +710,7 @@ Se vos dèsirâd pas que voutros ècrits seyont changiês et distribuâs a volon
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada (vêde $1 por més de dètalys).<br />
 '''UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !'''",
 'longpagewarning'                  => "'''ATENCION :''' ceta pâge at una longior de $1 ko ;
-cèrtins navigators g·èront mâl lo changement de les pâges aprochient ou ben dèpassent 32 ko.
+quârques navigators g·èront mâl lo changement de les pâges aprochient ou ben dèpassent 32 ko.
 Pôt-étre devriâd-vos divisar la pâge en sèccions ples petiôtes.",
 'longpageerror'                    => "'''ÈRROR : lo tèxte que vos éd somês fât $1 ko, cen que dèpâsse la limita fixâ a $2 ko.'''
 Lo tèxte pôt pas étre sôvâ.",
@@ -717,11 +718,12 @@ Lo tèxte pôt pas étre sôvâ.",
 Vos pouede copiyér lo tèxte dens un fichiér tèxte et pués lo sôvar por ples târd.
 
 L’administrator qu’at vèrrolyê la bâsa de balyês at balyê ceta èxplicacion : $1",
-'protectedpagewarning'             => "'''ATENCION : ceta pâge est protègiê.
-Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.'''",
-'semiprotectedpagewarning'         => "'''Nota :''' ceta pâge at étâ protègiê de façon que solèts los contributors enregistrâs pouessont la modifiar.",
-'cascadeprotectedwarning'          => "'''ATENCION :''' ceta pâge at étâ protègiê por cen que solèts los administrators pouessont l’èditar. Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$1|una pâge protègiê|des pâges protègiês}} avouéc la « protèccion en cascâda » activâ.",
-'titleprotectedwarning'            => "'''ATENCION : ceta pâge at étâ protègiê de façon que solèts cèrtins utilisators pouessont la crèar.'''",
+'protectedpagewarning'             => "'''ATENCION : ceta pâge est protègiê.'''
+'''Solament los utilisators qu’ont lo statut d’administrator pôvont la changiér.'''",
+'semiprotectedpagewarning'         => "'''Nota :''' ceta pâge at étâ protègiê de façon que solament los contributors enregistrâs pouessont la changiér.",
+'cascadeprotectedwarning'          => "'''ATENCION :''' ceta pâge at étâ protègiê por cen que solament los administrators pouessont la changiér.
+Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$1|ceta pâge protègiê|cetes pâges protègiês}} avouéc la « protèccion en cascâda » activâ :",
+'titleprotectedwarning'            => "'''ATENCION : ceta pâge at étâ protègiê de façon que des [[Special:ListGroupRights|drêts spèceficos]] sont requis por la povêr fâre.'''",
 'templatesused'                    => 'Modèlos utilisâs sur ceta pâge :',
 'templatesusedpreview'             => 'Modèlos utilisâs dens ceta prèvisualisacion :',
 'templatesusedsection'             => 'Modèlos utilisâs dens ceta sèccion :',
@@ -730,50 +732,76 @@ Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.'
 'hiddencategories'                 => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}} que ceta pâge est avouéc :',
 'edittools'                        => '<!-- Tot tèxte entrâ ique serat afichiê desot les bouètes d’èdicion ou d’impôrt de fichiér. -->',
 'nocreatetitle'                    => 'Crèacion de pâge limitâ',
-'nocreatetext'                     => '{{SITENAME}} at rètrent la possibilitât de crèar de novèles pâges.
-Vos pouede tornar arriér et pués modifiar una pâge ègzistenta, ou ben vos [[Special:UserLogin|conèctar ou crèar un compto]].',
-'nocreate-loggedin'                => 'Vos avéd pas la pèrmission de crèar de novèles pâges dessus {{SITENAME}}.',
+'nocreatetext'                     => '{{SITENAME}} at rètrent la possibilitât de fâre de novèles pâges.
+Vos pouede tornar arriér et pués changiér una pâge ègzistenta, ou ben [[Special:UserLogin|vos branchiér ou fâre un compto]].',
+'nocreate-loggedin'                => 'Vos avéd pas la pèrmission de fâre de novèles pâges.',
 'permissionserrors'                => 'Èrror de pèrmissions',
-'permissionserrorstext'            => 'Vos avéd pas la pèrmission de fâre l’opèracion demandâ por {{PLURAL:$1|la rêson siuventa|les rêsons siuventes}} :',
+'permissionserrorstext'            => 'Vos avéd pas la pèrmission de fâre l’opèracion demandâ por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
 'permissionserrorstext-withaction' => 'Vos éte pas ôtorisâ a $2, por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
-'recreate-moveddeleted-warn'       => "'''Atencion : vos éte aprés recrèar una pâge qu’at étâ prècèdament suprimâ.'''
+'recreate-moveddeleted-warn'       => "'''Atencion : vos éte aprés refâre una pâge qu’at étâ suprimâ dês devant.'''
 
-Demandâd-vos s’o est verément convegnâblo de la recrèar en vos refèrent u jornal de les suprèssions afichiê ce-desot :",
+Demandâd-vos s’o est verément convegnâblo de continuar a l’èditar.
+Los jornals de les suprèssions et des changements de nom sont montrâs ce-desot :",
 'moveddeleted-notice'              => 'Ceta pâge at étâ suprimâ.
-L’historico de les suprèssions est montrâ ce-desot por refèrence.',
+Los jornals de les suprèssions et des changements de nom sont montrâs ce-desot coment refèrence.',
+'log-fulllog'                      => 'Vêre lo jornal complèt',
+'edit-hook-aborted'                => 'Falyita du changement per una èxtension.
+Niona rêson balyê.',
+'edit-gone-missing'                => 'La pâge at pas possu étre betâ a jorn.
+Semble qu’el èye étâ suprimâ.',
+'edit-conflict'                    => 'Conflit de changement.',
+'edit-no-change'                   => 'Voutron changement at étâ ignorâ perce que nion changement at étâ fêt u tèxte.',
+'edit-already-exists'              => 'La novèla pâge at pas possu étre fêta.
+Ègziste ja.',
+
+# Parser/template warnings
+'expensive-parserfunction-warning'        => 'Atencion : ceta pâge contint trop d’apèls que revegnont chiers de fonccions du parsor.
+
+Devrêt y avêr muens de $2 apèl{{PLURAL:$2||s}}, pendent qu’y en at ora $1.',
+'expensive-parserfunction-category'       => 'Pâges avouéc trop d’apèls que revegnont chiers de fonccions du parsor',
+'post-expand-template-inclusion-warning'  => 'Atencion : ceta pâge contint trop d’encllusions de modèlos.
+Quârques encllusions seront pas fêtes.',
+'post-expand-template-inclusion-category' => 'Pâges que contegnont trop d’encllusions de modèlos',
+'post-expand-template-argument-warning'   => 'Atencion : ceta pâge contint u muens yon paramètre de modèlo que l’encllusion est rendua empossibla.
+Aprés èxtension, ceti arêt balyê un rèsultat trop long, il at vêr pas étâ encllu.',
+'post-expand-template-argument-category'  => 'Pâges que contegnont u muens yon paramètre de modèlo pas encllu',
+'parser-template-loop-warning'            => 'Modèlo en boclla dècelâ : [[$1]]',
+'parser-template-recursion-depth-warning' => 'Limita de provondior des apèls de modèlos dèpassâ ($1)',
 
 # "Undo" feature
-'undo-success' => 'Cela modificacion vôt étre dèfêta. Volyéd confirmar los changements (visiblos d’avâl de ceta pâge), et pués sôvar se vos éte d’acôrd. Marci d’èxplicar l’anulacion dens la bouèta de rèsumâ.',
-'undo-failure' => 'Cela modificacion pôt pas étre dèfêta : cen rentrerêt en conflit avouéc les modificacions entèrmèdières.',
-'undo-summary' => 'Anulacion de les modificacions $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]])',
+'undo-success' => 'Ceti changement vôt étre dèfêt.
+Volyéd controlar los changements ce-desot, et pués sôvar s’o est franc cen que vos voléd fâre.',
+'undo-failure' => 'Cél changement pôt pas étre dèfêt : cen rentrerêt en conflit avouéc los changements entèrmèdièros.',
+'undo-norev'   => 'Lo changement at pas possu étre dèfêt perce qu’il est pas ègzistent ou ben qu’il at étâ suprimâ.',
+'undo-summary' => 'Anulacion des changements $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Vos pouede pas crèar un compto.',
+'cantcreateaccounttitle' => 'Vos pouede pas fâre un compto.',
 'cantcreateaccount-text' => "La crèacion de compto dês ceta adrèce IP ('''$1''') at étâ blocâ per [[User:$3|$3]].
 
 La rêson balyê per $3 ére ''$2''.",
 
 # History pages
-'viewpagelogs'           => 'Vêde lo jornal de ceta pâge',
+'viewpagelogs'           => 'Vêde los jornals de ceta pâge',
 'nohistory'              => 'Ègziste pas d’historico por ceta pâge.',
 'currentrev'             => 'Vèrsion d’ora',
 'currentrev-asof'        => 'Vèrsion d’ora en dâta du $1',
 'revisionasof'           => 'Vèrsion du $1',
 'revision-info'          => 'Vèrsion du $1 per $2',
-'previousrevision'       => '← Vèrsion prècèdenta',
-'nextrevision'           => 'Vèrsion siuventa →',
-'currentrevisionlink'    => 'vêde la vèrsion corenta',
+'previousrevision'       => '← Vèrsion devant',
+'nextrevision'           => 'Vèrsion aprés →',
+'currentrevisionlink'    => 'vêde la vèrsion d’ora',
 'cur'                    => 'ora',
-'next'                   => 'siuv',
+'next'                   => 'aprés',
 'last'                   => 'dif',
-'page_first'             => 'prem',
-'page_last'              => 'dèrr',
-'histlegend'             => 'Lègenda : (ora) = difèrence avouéc la vèrsion d’ora,
-(dif) = difèrence avouéc la vèrsion prècèdenta, <b>m</b> = modificacion minora.',
+'page_first'             => 'premiére',
+'page_last'              => 'dèrriére',
+'histlegend'             => "Lègenda : '''({{int:cur}})''' = difèrence avouéc la vèrsion d’ora,
+'''({{int:last}})''' = difèrence avouéc la vèrsion devant, '''{{int:minoreditletter}}''' = petiôt changement.",
 'history-fieldset-title' => 'Navegar dens l’historico',
 'deletedrev'             => '[suprimâ]',
-'histfirst'              => 'Premiéres contribucions',
-'histlast'               => 'Dèrriéres contribucions',
+'histfirst'              => 'Tota premiére',
+'histlast'               => 'Tota dèrriére',
 'historysize'            => '({{PLURAL:$1|1 octèt|$1 octèts}})',
 'historyempty'           => '(vouedo)',
 
@@ -782,78 +810,175 @@ La rêson balyê per $3 ére ''$2''.",
 'history-feed-description'    => 'Historico por ceta pâge sur lo vouiqui',
 'history-feed-item-nocomment' => '$1 lo $2',
 'history-feed-empty'          => 'La pâge demandâ ègziste pas.
-El at pôt-étre étâ suprimâ du vouiqui ou renomâ.
-Vos pouede tâchiér de [[Special:Search|rechèrchiér dens lo vouiqui]] des novèles pâges que vont avouéc.',
+El at pôt-étre étâ èfaciê ou ben renomâ.
+Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des novèles pâges que vont avouéc.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(comentèro suprimâ)',
-'rev-deleted-user'            => '(nom d’utilisator suprimâ)',
-'rev-deleted-event'           => '(entrâ suprimâ)',
-'rev-deleted-text-permission' => 'Ceta vèrsion de la pâge at étâ enlevâ des arch·ives publiques.
-Pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].',
-'rev-deleted-text-view'       => 'Ceta vèrsion de la pâge at étâ enlevâ des arch·ives publiques.
-A titro d’administrator de ceti seto, vos pouede la visualisar ;
-pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].',
-'rev-delundel'                => 'afichiér/mâscar',
-'revisiondelete'              => 'Suprimar/rèstorar des vèrsions',
-'revdelete-nooldid-title'     => 'Pas de ciba por la vèrsion',
-'revdelete-nooldid-text'      => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes por utilisar cela fonccion.',
-'revdelete-selected'          => "'''{{PLURAL:$2|Vèrsion sèlèccionâ|Vèrsions sèlèccionâs}} de '''$1''' :'''",
-'logdelete-selected'          => "'''{{PLURAL:$1|Èvènement de jornal sèlèccionâ|Èvènements de jornal sèlèccionâs}}:'''",
-'revdelete-text'              => "'''Les vèrsions et los èvènements suprimâs aparètront adés dens l’historico de l’articllo et los jornals,
-mas lor contegnu tèxtuèl serat pas accèssiblo u publico.'''
+'rev-deleted-comment'            => '(comentèro suprimâ)',
+'rev-deleted-user'               => '(nom d’utilisator suprimâ)',
+'rev-deleted-event'              => '(entrâ suprimâ)',
+'rev-deleted-text-permission'    => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
+Pôt y avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-deleted-text-unhide'        => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
+Pôt y avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+Coment administrator, vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
+'rev-deleted-text-view'          => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
+Coment administrator, vos pouede la visualisar ;
+pôt y avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-deleted-no-diff'            => "Vos pouede pas vêre ceti dif perce qu’yona de les vèrsions at étâ '''suprimâ'''.
+Pôt y avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-deleted-unhide-diff'        => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
+Pôt y avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
+'rev-delundel'                   => 'fâre vêre / cachiér',
+'revisiondelete'                 => 'Suprimar / refâre des vèrsions',
+'revdelete-nooldid-title'        => 'Vèrsion ciba envalida',
+'revdelete-nooldid-text'         => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes de cela fonccion,
+la vèrsion ciba ègziste pas, ou ben o est la vèrsion d’ora.',
+'revdelete-nologtype-title'      => 'Nion tipo de jornal spècefiâ',
+'revdelete-nologtype-text'       => 'Vos éd pas spècefiâ un tipo de jornal sur loquint cela accion dêt étre rèalisâ.',
+'revdelete-toomanytargets-title' => 'Trop de cibes',
+'revdelete-toomanytargets-text'  => 'Vos éd spècefiâ trop de tipos de cibes difèrentes sur lesquintes cela accion dêt étre rèalisâ.',
+'revdelete-nologid-title'        => 'Entrâ du jornal envalida',
+'revdelete-nologid-text'         => 'Ou ben vos éd pas spècefiâ una entrâ du jornal sur laquinta cela accion dêt étre rèalisâ, ou ben l’entrâ ègziste pas.',
+'revdelete-selected'             => "'''{{PLURAL:$2|Vèrsion chouèsia|Vèrsions chouèsies}} de [[:$1]] :'''",
+'logdelete-selected'             => "'''{{PLURAL:$1|Entrâ du jornal chouèsia|Entrâs du jornal chouèsies}} :'''",
+'revdelete-text'                 => "'''Les vèrsions et les entrâs suprimâs aparètront adés dens l’historico de la pâge et dens los jornals, mas lor contegnu tèxtuèl serat pas accèssiblo u publico.'''
 
-D’ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo tornar rèstorar
-a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèra seye betâ en place per los opèrators du seto.",
-'revdelete-legend'            => 'Betar en place des rèstriccions de vèrsion',
-'revdelete-hide-text'         => 'Mâscar lo tèxte de la vèrsion',
-'revdelete-hide-name'         => 'Mâscar l’accion et la ciba',
-'revdelete-hide-comment'      => 'Mâscar lo comentèro de modificacion',
-'revdelete-hide-user'         => 'Mâscar lo psudô ou l’adrèce IP du contributor.',
-'revdelete-hide-restricted'   => 'Aplicar cetes rèstriccions ux administrators et pués ux ôtros utilisators',
-'revdelete-suppress'          => 'Suprimar les balyês des administrators et des ôtros',
-'revdelete-hide-image'        => 'Mâscar lo contegnu du fichiér',
-'revdelete-unsuppress'        => 'Enlevar les rèstriccions sur les vèrsions rèstorâs',
-'revdelete-log'               => 'Comentèro por lo jornal :',
-'revdelete-submit'            => 'Aplicar a la vèrsion sèlèccionâ',
-'revdelete-logentry'          => 'La visibilitât de la vèrsion at étâ modifiâ por [[$1]]',
-'logdelete-logentry'          => 'La visibilitât de l’èvènement at étâ modifiâ por [[$1]]',
-'revdelete-success'           => "'''Visibilitât de les vèrsions changiê avouéc reusséta.'''",
-'logdelete-success'           => "'''Visibilitât des èvènements changiê avouéc reusséta.'''",
-'revdel-restore'              => 'Changiér la visibilitât',
+Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo refâre per cela méma entèrface, a muens que des rèstriccions de ples seyont betâs en place.
+
+Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].",
+'revdelete-suppress-text'        => "La suprèssion dêt étre utilisâ '''ren que''' dens cetos câs :
+* Enformacions a sè que vont pas avouéc
+*: ''adrèce, numerô de tèlèfone, numerô de sècuritât sociâla, ...''",
+'revdelete-legend'               => 'Betar en place des rèstriccions de visibilitât :',
+'revdelete-hide-text'            => 'Cachiér lo tèxte de la vèrsion',
+'revdelete-hide-name'            => 'Cachiér l’accion et la ciba',
+'revdelete-hide-comment'         => 'Cachiér lo comentèro de changement',
+'revdelete-hide-user'            => 'Cachiér lo nom ou l’adrèce IP du contributor.',
+'revdelete-hide-restricted'      => 'Suprimar les balyês ux administrators et pués ux ôtros',
+'revdelete-suppress'             => 'Suprimar les balyês des administrators et pués des ôtros',
+'revdelete-hide-image'           => 'Cachiér lo contegnu du fichiér',
+'revdelete-unsuppress'           => 'Enlevar les rèstriccions sur les vèrsions refêtes',
+'revdelete-log'                  => 'Comentèro por lo jornal :',
+'revdelete-submit'               => 'Aplicar a la vèrsion chouèsia',
+'revdelete-logentry'             => 'at changiê la visibilitât de la vèrsion de [[$1]]',
+'logdelete-logentry'             => 'at changiê la visibilitât de l’entrâ de [[$1]]',
+'revdelete-success'              => "'''Visibilitât de la vèrsion changiê avouéc reusséta.'''",
+'revdelete-failure'              => "'''La visibilitât de la vèrsion at pas possu étre dèfenia.'''",
+'logdelete-success'              => "'''Visibilitât du jornal paramètrâ avouéc reusséta.'''",
+'revdel-restore'                 => 'Changiér la visibilitât',
+'pagehist'                       => 'Historico de la pâge',
+'deletedhist'                    => 'Historico suprimâ',
+'revdelete-content'              => 'contegnu',
+'revdelete-summary'              => 'rèsumâ de changement',
+'revdelete-uname'                => 'nom d’utilisator',
+'revdelete-restricted'           => 'at aplicâ les rèstriccions ux administrators',
+'revdelete-unrestricted'         => 'rèstriccions enlevâs por los administrators',
+'revdelete-hid'                  => 'at cachiê $1',
+'revdelete-unhid'                => 'at montrâ $1',
+'revdelete-log-message'          => '$1 por $2 {{PLURAL:$2|vèrsion|vèrsions}}',
+'logdelete-log-message'          => '$1 sur $2 {{PLURAL:$2|entrâ|entrâs}}',
+
+# Suppression log
+'suppressionlog'     => 'Jornal de les suprèssions',
+'suppressionlogtext' => 'Vê-que la lista de les suprèssions et des blocâjos qu’ont de contegnu cachiê ux administrators.
+Vêde la [[Special:IPBlockList|lista des utilisators et de les adrèces IP blocâs]] por la lista des ègzils et des blocâjos opèracionèls.',
 
 # History merging
-'mergehistory'                     => 'Fusion des historicos d’una pâge',
-'mergehistory-header'              => 'Ceta pâge vos pèrmèt de fusionar les vèrsions de l’historico d’una pâge d’origina vers una novèla.
-Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’historico.',
+'mergehistory'                     => 'Fusionar los historicos de les pâges',
+'mergehistory-header'              => 'Ceta pâge vos pèrmèt de fusionar des vèrsions de l’historico d’una pâge d’origina vers una novèla pâge.
+Assurâd-vos que cela opèracion consèrverat la continuitât de l’historico de la pâge.',
 'mergehistory-box'                 => 'Fusionar les vèrsions de doves pâges :',
 'mergehistory-from'                => 'Pâge d’origina :',
 'mergehistory-into'                => 'Pâge de dèstinacion :',
-'mergehistory-list'                => 'Èdicion des historicos fusionâblos',
-'mergehistory-merge'               => 'Les vèrsions siuventes de [[:$1]] pôvont étre fusionâs avouéc [[:$2]]. Utilisâd lo boton de chouèx de la colona por fusionar ren que les vèrsions crèâs du comencement tant qu’a la dâta endicâ. Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar la colona.',
-'mergehistory-go'                  => 'Vêre les èdicions fusionâbles',
+'mergehistory-list'                => 'Historico de les vèrsions fusionâbles',
+'mergehistory-merge'               => 'Cetes vèrsions de [[:$1]] pôvont étre fusionâs dedens [[:$2]].
+Utilisâd la colona de botons de chouèx por fusionar ren que les vèrsions fêtes du comencement tant qu’a la dâta endicâ.
+Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colona.',
+'mergehistory-go'                  => 'Vêre les vèrsions fusionâbles',
 'mergehistory-submit'              => 'Fusionar les vèrsions',
 'mergehistory-empty'               => 'Niona vèrsion pôt étre fusionâ.',
-'mergehistory-success'             => '$3 {{PLURAL:$3|vèrsion|vèrsions}} de [[:$1]] {{PLURAL:$3|fusionâ|fusionâs}} avouéc reusséta avouéc [[:$2]].',
-'mergehistory-fail'                => 'Empossiblo de fâre la fusion des historicos. Tornâd sèlèccionar la pâge et pués los paramètres de dâta.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|vèrsion|vèrsions}} de [[:$1]] {{PLURAL:$3|fusionâ|fusionâs}} avouéc reusséta dedens [[:$2]].',
+'mergehistory-fail'                => 'Empossiblo de fâre la fusion des historicos. Tornâd chouèsir la pâge et los paramètres de dâta.',
 'mergehistory-no-source'           => 'La pâge d’origina $1 ègziste pas.',
 'mergehistory-no-destination'      => 'La pâge de dèstinacion $1 ègziste pas.',
 'mergehistory-invalid-source'      => 'La pâge d’origina dêt avêr un titro valido.',
 'mergehistory-invalid-destination' => 'La pâge de dèstinacion dêt avêr un titro valido.',
+'mergehistory-autocomment'         => '[[:$1]] fusionâ dedens [[:$2]]',
+'mergehistory-comment'             => '[[:$1]] fusionâ dedens [[:$2]] : $3',
+'mergehistory-same-destination'    => 'Les pâges d’origina et de dèstinacion pôvont pas étre la méma',
+'mergehistory-reason'              => 'Rêson :',
 
 # Merge log
 'mergelog'           => 'Jornal de les fusions',
-'pagemerge-logentry' => '[[$1]] fusionâ avouéc [[$2]] (vèrsions tant qu’u $3)',
+'pagemerge-logentry' => '[[$1]] fusionâ dedens [[$2]] (vèrsions tant qu’u $3)',
 'revertmerge'        => 'Sèparar',
-'mergelogpagetext'   => 'Vê-que, ce-desot, la lista de les fusions les ples novèles de l’historico d’una pâge avouéc una ôtra.',
+'mergelogpagetext'   => 'Vê-que, ce-desot, la lista de les fusions les ples novèles de l’historico d’una pâge dedens celi d’una ôtra.',
 
 # Diffs
-'history-title'           => 'Historico de les vèrsions de « $1 »',
-'difference'              => '(Difèrences entre les vèrsions)',
-'lineno'                  => 'Legne $1 :',
-'compareselectedversions' => 'Comparar les vèrsions sèlèccionâs',
-'editundo'                => 'dèfâre',
-'diff-multi'              => '({{PLURAL:$1|Yona vèrsion entèrmèdièra mâscâ|$1 vèrsions entèrmèdières mâscâs}}.)',
+'history-title'            => 'Historico de les vèrsions de « $1 »',
+'difference'               => '(Difèrences entre les vèrsions)',
+'lineno'                   => 'Legne $1 :',
+'compareselectedversions'  => 'Comparar les vèrsions chouèsies',
+'showhideselectedversions' => 'Fâre vêre / cachiér les vèrsions chouèsies',
+'visualcomparison'         => 'Comparèson visuèla',
+'wikicodecomparison'       => 'Comparèson du vouiquitèxte',
+'editundo'                 => 'dèfâre',
+'diff-multi'               => '({{PLURAL:$1|Yona vèrsion entèrmèdièra cachiê|$1 vèrsions entèrmèdières cachiês}}.)',
+'diff-movedto'             => 'dèplaciê vers $1',
+'diff-styleadded'          => 'stilo $1 apondu',
+'diff-added'               => '$1 apondu',
+'diff-changedto'           => 'changiê vers $1',
+'diff-movedoutof'          => 'dèplaciê en defôr de $1',
+'diff-styleremoved'        => 'stilo $1 enlevâ',
+'diff-removed'             => '$1 enlevâ',
+'diff-changedfrom'         => 'changiê dês $1',
+'diff-src'                 => 'sôrsa',
+'diff-withdestination'     => 'avouéc la dèstinacion $1',
+'diff-with'                => '&#32;avouéc $1 $2',
+'diff-with-final'          => '&#32;et $1 $2',
+'diff-width'               => 'largior',
+'diff-height'              => 'hôtior',
+'diff-p'                   => "un '''paragrafo'''",
+'diff-blockquote'          => "una '''citacion'''",
+'diff-h1'                  => "un '''en-téta (nivél 1)'''",
+'diff-h2'                  => "un '''en-téta (nivél 2)'''",
+'diff-h3'                  => "un '''en-téta (nivél 3)'''",
+'diff-h4'                  => "un '''en-téta (nivél 4)'''",
+'diff-h5'                  => "un '''en-téta (nivél 5)'''",
+'diff-pre'                 => "un '''bloco prèformatâ'''",
+'diff-div'                 => "una '''division'''",
+'diff-ul'                  => "una '''lista pas ordonâ'''",
+'diff-ol'                  => "una '''lista ordonâ'''",
+'diff-li'                  => "un '''èlèment de lista'''",
+'diff-table'               => "un '''tablô'''",
+'diff-tbody'               => "lo '''contegnu d’un tablô'''",
+'diff-tr'                  => "una '''legne'''",
+'diff-td'                  => "una '''cèlula'''",
+'diff-th'                  => "un '''en-téta'''",
+'diff-br'                  => "una '''cassura'''",
+'diff-hr'                  => "una '''règlla plana'''",
+'diff-code'                => "un '''bloco de code d’ordenator'''",
+'diff-dl'                  => "una '''lista de dèfinicion'''",
+'diff-dt'                  => "un '''tèrmo de dèfinicion'''",
+'diff-dd'                  => "una '''dèfinicion'''",
+'diff-input'               => "una '''entrâ'''",
+'diff-form'                => "un '''formulèro'''",
+'diff-img'                 => "una '''émâge'''",
+'diff-span'                => "una '''portâ'''",
+'diff-a'                   => "un '''lim'''",
+'diff-i'                   => "'''étalico'''",
+'diff-b'                   => "'''grâs'''",
+'diff-strong'              => "'''fôrt'''",
+'diff-em'                  => "'''emfâsa'''",
+'diff-font'                => "'''police'''",
+'diff-big'                 => "'''grant'''",
+'diff-del'                 => "'''suprimâ'''",
+'diff-tt'                  => "'''largior fixâ'''",
+'diff-sub'                 => "'''sot-script'''",
+'diff-sup'                 => "'''sur-script'''",
+'diff-strike'              => "'''barrâ'''",
 
 # Search results
 'searchresults'             => 'Rèsultats de la rechèrche',
@@ -1008,7 +1133,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'hist'                              => 'hist',
 'hide'                              => 'mâscar',
 'show'                              => 'afichiér',
-'minoreditletter'                   => 'm',
+'minoreditletter'                   => 'p',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|utilisator siuvent|utilisators siuvents}}]',

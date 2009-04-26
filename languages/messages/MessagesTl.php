@@ -3129,4 +3129,15 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 'dberr-outofdate'   => 'Pakiunawang maaaring wala na sa panahon ang kanilang mga talatuntunan ng aming mga nilalaman.',
 'dberr-cachederror' => 'Ang sumusunod ay isang nakatagong sipi ng hiniling na pahina, at maaaring wala na sa panahon.',
 
+# Special:CreatePage
+'createpage'              => 'Lumikha ng isang pahina',
+'createpage-submitbutton' => 'Ipasa',
+'createpage-instructions' => 'Ilagay ang pamagat ng pahinang naisa mong likhain:',
+'createpage-entertitle'   => 'Pakipasok lamang ang isang pamagat para sa iyong pahina.',
+'createpage-titleexists'  => 'Umiiral ang isang pahinang may pamagat na [[$1]].
+Nais mo bang baguhin ang umiiral na pahina?',
+'createpage-tryagain'     => 'Hindi.  Nais kong lumikha ng isang bagong pahinang may isang bukod na pamagat.',
+'createpage-editexisting' => 'Oo. Ibig kong magambag sa umiiral na pahina.',
+'createpage-badtitle'     => 'Hindi magagamit ang "$1" bilang pamagat ng isang pahina',
+
 );

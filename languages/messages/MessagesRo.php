@@ -2962,4 +2962,15 @@ Introdu numele fişierului fără prefixul "{{ns:file}}:".',
 'dberr-outofdate'   => 'De reţinut ca indexarea conţinutului nostru de către ei poate să nu fie actualizată.',
 'dberr-cachederror' => 'Următoarea pagină este o copie în cache a paginii cerute, s-ar putea să nu fie actualizată.',
 
+# Special:CreatePage
+'createpage'              => 'Creează o pagină',
+'createpage-submitbutton' => 'Trimite',
+'createpage-instructions' => 'Introduceţi titlul paginii pe care doriţi să o creaţi:',
+'createpage-entertitle'   => 'Vă rugăm să introduceţi un titlu pentru pagina dumneavoastră.',
+'createpage-titleexists'  => 'O pagină cu titlul [[$1]] deja există.
+Doriţi să modificaţi pagina existentă?',
+'createpage-tryagain'     => 'Nu. Doresc să creez o pagină nouă cu un titlu diferit.',
+'createpage-editexisting' => 'Da. Doresc să contribui la pagina existentă.',
+'createpage-badtitle'     => '"$1" nu poate fi folosit drept titlu',
+
 );

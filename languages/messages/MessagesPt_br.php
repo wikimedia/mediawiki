@@ -193,7 +193,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled'   => 'Esconder páginas patrulhadas da lista de páginas novas',
 'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis, não apenas as mais recentes',
-'tog-usenewrc'                => 'Mudanças recentes melhoradas (JavaScript)',
+'tog-usenewrc'                => 'Utilizar mudanças recentes melhoradas (requer JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick'          => 'Editar páginas quando houver clique duplo (JavaScript)',
@@ -201,7 +201,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Habilitar edição de seção por clique com o botão direito no título da seção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Lembrar senha entre sessões',
-'tog-editwidth'               => 'Caixa de edição com largura completa',
+'tog-editwidth'               => 'Alargar a caixa de edição para preecher a tela inteira',
 'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de vigiados',
 'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de vigiados',
 'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de vigiados',
@@ -575,6 +575,7 @@ Por favor, escolha um nome diferente.',
 'username'                   => 'Nome de usuário:',
 'uid'                        => 'Número de identificação:',
 'prefs-memberingroups'       => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
+'prefs-registration'         => 'Hora de registro:',
 'yourrealname'               => 'Nome verdadeiro:',
 'yourlanguage'               => 'Idioma:',
 'yourvariant'                => 'Variante',
@@ -820,10 +821,10 @@ Volte à tela anterior e edite uma página já existente, ou [[Special:UserLogin
 'permissionserrors'                => 'Erros de permissões',
 'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos motivos a seguir}}:',
-'recreate-moveddeleted-warn'       => "'''Atenção: Você está recriando uma página já eliminada em outra ocasião.'''
+'recreate-moveddeleted-warn'       => "Atenção: Você está recriando uma página já eliminada em outra ocasião.'''
 
-Certifique-se de que seja adequado prosseguir editando esta página.
-O registro de eliminação desta página é exibido a seguir, para sua comodidade:",
+Você deve considerar se é realmente adequado continuar editando esta página.
+Os registros de eliminação e de movimentação desta página são exibidos a seguir, para sua comodidade:",
 'moveddeleted-notice'              => 'Esta página foi eliminada. O registro de eliminações para esta página é disponibilizado abaixo, para referência.',
 'edit-hook-aborted'                => "Edição abortada por ''hook''.
 Ele não deu nenhuma explicação.",
@@ -2528,7 +2529,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Aviso''': Este arquivo pode conter código malicioso. Ao executar, o seu sistema poderá estar comprometido.<hr />",
-'imagemaxsize'         => 'Limitar imagens nas páginas de descrição a:',
+'imagemaxsize'         => "Limite de tamanho de imagem:<br />''(para páginas de descrição de arquivos)''",
 'thumbsize'            => 'Tamanho de miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'            => '(tamanho: $1, tipo MIME: $2)',
@@ -3063,5 +3064,15 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'dberr-usegoogle'   => 'Você pode tentar pesquisar no Google entretanto.',
 'dberr-outofdate'   => 'Note que os seus índices relativos ao nosso conteúdo podem estar desatualizados.',
 'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não ser atual.',
+
+# Special:CreatePage
+'createpage'              => 'Criar uma página',
+'createpage-submitbutton' => 'Criar',
+'createpage-instructions' => 'Digite o título da página que você gostaria de criar:',
+'createpage-entertitle'   => 'Digite um título para sua página.',
+'createpage-titleexists'  => 'Uma página com o título, [[$1]], já existe. Você gostaria de editar a página existente?',
+'createpage-tryagain'     => 'Não - Eu quero criar uma nova página com outro título.',
+'createpage-editexisting' => 'Sim - Eu quero editar a página existente.',
+'createpage-badtitle'     => '"$1" não pode ser usado como título de página',
 
 );

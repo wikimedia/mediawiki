@@ -1818,6 +1818,7 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 'historywarning'         => 'Glědaj! Bok, kótaryž coš wulašowaś, ma stawizny:',
 'confirmdeletetext'      => 'Coš bok abo dataju ze wšyknymi pśisłušnymi wersijami na pśecej wulašowaś. Pšosym wobkšuś, až sy se wědobny, kake konsekwency móžo to měś, a až jadnaš pó [[{{MediaWiki:Policy-url}}|směrnicach]].',
 'actioncomplete'         => 'Akcija jo se wugbała.',
+'actionfailed'           => 'Akcija jo se njeraźiła',
 'deletedtext'            => '„<nowiki>$1</nowiki>“ jo se wulašował(a/o). W $2 namakajoš lisćinu slědnych wulašowanjow.',
 'deletedarticle'         => 'wulašowane "[[$1]]"',
 'suppressedarticle'      => '"[[$1]]" pódtłocony',
@@ -2928,6 +2929,7 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 'version-hook-name'                => 'Mě kokule',
 'version-hook-subscribedby'        => 'Aboněrowany wót',
 'version-version'                  => 'Wersija',
+'version-revision'                 => 'Wersija',
 'version-license'                  => 'Licenca',
 'version-software'                 => 'Instalěrowana software',
 'version-software-product'         => 'Produkt',
@@ -3016,5 +3018,16 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'htmlform-submit'              => 'Wótpósłaś',
 'htmlform-reset'               => 'Změny anulěrowaś',
 'htmlform-selectorother-other' => 'Druge',
+
+# Special:CreatePage
+'createpage'              => 'Bok napóraś',
+'createpage-submitbutton' => 'Pósłaś',
+'createpage-instructions' => 'Zapódaj titel boka, kótaryž coš napóraś:',
+'createpage-entertitle'   => 'Pšosym zapódaj titel za swój bok.',
+'createpage-titleexists'  => 'Bok z titelom [[$1]] južo eksistěrujo.
+By ty rady eksistěrujucy bok wobźěłaś?',
+'createpage-tryagain'     => 'Ně. Ja by rad nowy bok z drugim titelom napórał.',
+'createpage-editexisting' => 'Jo. Ja by rad eksistěrujucy bok wobźěłał.',
+'createpage-badtitle'     => '"$1" njedajo se ako titel boka wužywaś.',
 
 );

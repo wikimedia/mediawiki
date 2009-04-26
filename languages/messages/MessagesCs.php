@@ -3202,4 +3202,15 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'dberr-outofdate'   => 'Uvědomte si, že jejich vyhledávací index našeho obsahu může být zastaralý.',
 'dberr-cachederror' => 'Následující stránka je kopie z cache a nemusí být aktuální.',
 
+# Special:CreatePage
+'createpage'              => 'Vytvořit stránku',
+'createpage-submitbutton' => 'Poslat',
+'createpage-instructions' => 'Zadejte název stránky, kterou si přejete vytvořit:',
+'createpage-entertitle'   => 'Prosím, zadejte název vaší stánky.',
+'createpage-titleexists'  => 'Stránka s názve [[$1]] už existuje.
+Přejete si upravit existující stránku?',
+'createpage-tryagain'     => 'Ne, chci vytvořit novou stránku s jiným názvem.',
+'createpage-editexisting' => 'Ano, chci přispět k existující stránce.',
+'createpage-badtitle'     => '„$1“ nelze použít jako název stránky',
+
 );

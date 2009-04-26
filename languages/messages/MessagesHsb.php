@@ -1808,6 +1808,7 @@ Wospjetne prašenja a dalša pomoc:
 'confirmdeletetext'      => 'Sy so rozsudźił stronu ze jeje stawiznami wušmórnić.
 Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam tutoho wikija]] činiš.',
 'actioncomplete'         => 'Dokónčene',
+'actionfailed'           => 'Akcija je so njeporadźiła',
 'deletedtext'            => 'Strona „<nowiki>$1</nowiki>” bu wušmórnjena. Hlej $2 za lisćinu aktualnych wušmórnjenjow.',
 'deletedarticle'         => 'je stronu [[$1]] wušmórnył.',
 'suppressedarticle'      => '"[[$1]]" potłóčeny',
@@ -2897,6 +2898,7 @@ Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wu�
 'version-hook-name'                => 'Mjeno hoki',
 'version-hook-subscribedby'        => 'Abonowany wot',
 'version-version'                  => 'Wersija',
+'version-revision'                 => 'Wersija',
 'version-license'                  => 'Licenca',
 'version-software'                 => 'Instalowana software',
 'version-software-product'         => 'Produkt',
@@ -2985,5 +2987,16 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'htmlform-submit'              => 'Wotpósłać',
 'htmlform-reset'               => 'Změny cofnyć',
 'htmlform-selectorother-other' => 'Druhe',
+
+# Special:CreatePage
+'createpage'              => 'Stronu wutworić',
+'createpage-submitbutton' => 'Pósłać',
+'createpage-instructions' => 'Zapodaj titul strony, kotruž chceš wutworić:',
+'createpage-entertitle'   => 'Prošu zapodaj titul za swoju stronu.',
+'createpage-titleexists'  => 'Strona z titulom [[$1]] hižo eksistuje.
+By rady eksistowacu stronu wobdźěłał?',
+'createpage-tryagain'     => 'Ně. Bych rady nowu stronu z druhim titulom wutworił.',
+'createpage-editexisting' => 'Haj. Bych rady eksistowacu stronu wobďzěłał.',
+'createpage-badtitle'     => '"$1" njeda so jako titul strony wužiwać.',
 
 );

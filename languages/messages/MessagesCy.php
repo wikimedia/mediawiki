@@ -749,6 +749,7 @@ Ystyriwch a fyddai'n dda o beth i barhau i olygu'r dudalen hon.
 Dyma'r logiau dileu a symud ar gyfer y dudalen, er gwybodaeth:",
 'moveddeleted-notice'              => 'Dilëwyd y dudalen hon.
 Dangosir y logiau dileu a symud ar gyfer y dudalen isod.',
+'log-fulllog'                      => 'Gweld y lòg cyflawn',
 'edit-gone-missing'                => "Ni ellid diweddaru'r dudalen.
 Ymddengys iddi gael ei dileu.",
 'edit-conflict'                    => 'Cyd-ddigwyddiad golygu.',
@@ -1135,6 +1136,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'right-upload'               => 'Uwchlwytho ffeiliau',
 'right-reupload'             => 'Trosysgrifo ffeil sydd eisoes yn bod',
 'right-reupload-own'         => "Trosysgrifo ffeil sydd eisoes yn bod ac wedi ei uwchlwytho gennych chi'ch hunan",
+'right-reupload-shared'      => "Uwchlwytho ffeil ar wici lleol, gyda'r un teitl â ffeil ar y storfa cyfrannol",
 'right-upload_by_url'        => 'Uwchlwytho ffeil oddi ar gyfeiriad URL',
 'right-autoconfirmed'        => 'Golygu tudalennau sydd wedi eu lled-ddiogelu',
 'right-bot'                  => 'Cael ei drin fel proses awtomataidd',
@@ -1148,6 +1150,8 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'right-block'                => 'Atal defnyddwyr eraill rhag golygu',
 'right-blockemail'           => 'Atal defnyddiwr rhag anfon e-bost',
 'right-hideuser'             => "Atal enw defnyddiwr rhag i'r cyhoedd ei weld",
+'right-ipblock-exempt'       => 'Mynd heibio i flociau IP, blociau awtomatig a blociau amrediad',
+'right-proxyunbannable'      => 'Mynd heibio i flociau awtomatig gan weinyddion dirprwyol',
 'right-protect'              => 'Newid lefelau diogelu a golygu tudalennau wedi eu diogelu',
 'right-editinterface'        => "Golygu'r rhyngwyneb",
 'right-editusercssjs'        => 'Golygu ffeiliau CSS a JS yn perthyn i ddefnyddwyr eraill',
@@ -1181,6 +1185,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'action-movefile'             => 'symud y ffeil hon',
 'action-upload'               => "uwchlwytho'r ffeil",
 'action-reupload'             => 'trosysgrifo ffeil sydd eisoes ar gael',
+'action-reupload-shared'      => "Uwchlwytho ffeil ar wici lleol, gyda'r un teitl â ffeil ar y storfa cyfrannol",
 'action-upload_by_url'        => "uuchlwytho'r ffeil o gyfeiriad URL",
 'action-delete'               => "dileu'r dudalen",
 'action-deleterevision'       => "dileu'r golygiad",
@@ -2604,9 +2609,10 @@ Ymateb yr amledd gofodol',
 'exif-lightsource-255' => "Tarddiad arall i'r goleuni",
 
 # Flash modes
-'exif-flash-fired-0' => 'Ni daniodd y fflach',
-'exif-flash-fired-1' => 'Taniodd y fflach',
-'exif-flash-mode-3'  => 'modd awtomatig',
+'exif-flash-fired-0'  => 'Ni daniodd y fflach',
+'exif-flash-fired-1'  => 'Taniodd y fflach',
+'exif-flash-mode-3'   => 'modd awtomatig',
+'exif-flash-redeye-1' => 'modd lleddfu llygaid cochion',
 
 'exif-focalplaneresolutionunit-2' => 'modfeddi',
 
@@ -2910,5 +2916,16 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 # HTML forms
 'htmlform-reset'               => 'Datod y newidiadau',
 'htmlform-selectorother-other' => 'Arall',
+
+# Special:CreatePage
+'createpage'              => 'Dechrau tudalen',
+'createpage-submitbutton' => 'Gosod',
+'createpage-instructions' => 'Teipiwch deitl y dudalen yr ydych am ei dechrau:',
+'createpage-entertitle'   => 'Teipiwch deitl ar gyfer y dudalen, o gwelwch yn dda.',
+'createpage-titleexists'  => "Mae tudalen gyda'r teitl [[$1]] eisoes ar gael.
+Ydych chi am olygu'r tudalen sydd ar gael yn barod?",
+'createpage-tryagain'     => 'Nacydw. Hoffwn ddechrau tudalen newydd gyda theitl arall.',
+'createpage-editexisting' => 'Ydw. Hoffwn gyfrannu at y dudalen sydd eisoes ar gael.',
+'createpage-badtitle'     => 'Ni ellir defnyddio "$1" fel teitl',
 
 );

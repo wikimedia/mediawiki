@@ -226,7 +226,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Ocultar ediciones patrulladas en los cambios recientes',
 'tog-newpageshidepatrolled'   => 'ocultar páginas vigiladas de la nueva lista de páginas',
 'tog-extendwatchlist'         => 'Expandir la lista de seguimiento a todos los cambios, no solo a los más recientes.',
-'tog-usenewrc'                => 'Cambios recientes realzados (no funciona en todos los navegadores)',
+'tog-usenewrc'                => 'Cambios recientes realzados (requiere JavaScript)',
 'tog-numberheadings'          => 'Numerar automáticamente los encabezados',
 'tog-showtoolbar'             => 'Mostrar la barra de edición',
 'tog-editondblclick'          => 'Editar páginas con doble click (JavaScript)',
@@ -234,7 +234,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha<br /> en los títulos de secciones (JavaScript)',
 'tog-showtoc'                 => 'Mostrar el índice (para páginas con más de 3 encabezados)',
 'tog-rememberpassword'        => 'Recordar la contraseña entre sesiones',
-'tog-editwidth'               => 'La caja de edición tiene el ancho máximo',
+'tog-editwidth'               => 'Ampliar el cuadro de edición para llenar toda la pantalla',
 'tog-watchcreations'          => 'Vigilar las páginas que yo cree.',
 'tog-watchdefault'            => 'Vigilar las páginas que yo modifique',
 'tog-watchmoves'              => 'Vigilar las páginas que renombre',
@@ -609,6 +609,7 @@ Por favor, indique un nombre diferente.',
 'username'                   => 'Nombre de usuario:',
 'uid'                        => 'ID de usuario:',
 'prefs-memberingroups'       => 'Miembro {{PLURAL:$1|del grupo|de los grupos}}:',
+'prefs-registration'         => 'Tiempo de registro:',
 'yourrealname'               => 'Tu nombre real:',
 'yourlanguage'               => 'Idioma:',
 'yourvariant'                => 'Variante lingüística',
@@ -617,7 +618,7 @@ Por favor, indique un nombre diferente.',
 'badsiglength'               => 'Su firma es demasiado largo.
 Debe ser de menos de $1 {{PLURAL:$1|carácter|caracteres}}.',
 'yourgender'                 => 'Género:',
-'gender-unknown'             => 'Si especificar',
+'gender-unknown'             => 'Sin especificar',
 'gender-male'                => 'Masculino',
 'gender-female'              => 'Femenino',
 'prefs-help-gender'          => 'Opcional: Usada para tarea de corrección de género por el software. Esta información será pública.',
@@ -844,12 +845,13 @@ El administrador que la bloqueó dio esta explicación: $1",
 'permissionserrors'                => 'Errores de permisos',
 'permissionserrorstext'            => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
 'permissionserrorstext-withaction' => 'No tienes permiso para $2, por las siguientes {{PLURAL:$1|razón|razones}}:',
-'recreate-moveddeleted-warn'       => "'''Atención: está creando una página que ha sido borrada previamente.'''
+'recreate-moveddeleted-warn'       => "'''Atención: estás volviendo a crear una página que ha sido borrada previamente.'''
 
-Debería considerar si es apropiado continuar editando esta página.
-Consulte a continuación el registro de borrados:",
+Deberías considerar si es apropiado continuar editando esta página.
+El registro de borrado y traslados para esta página están proveídos aquí por conveniencia:",
 'moveddeleted-notice'              => 'Esta página ha sido borrada.
-A continuación se muestra el registro de su borrado como referencia.',
+El registro de borrado y traslados para la página estás proveídos abajo para referencia.',
+'log-fulllog'                      => 'Ver todo el registro',
 'edit-hook-aborted'                => 'Edición abortada por la extensión.
 No dió explicaciones.',
 'edit-gone-missing'                => 'No se pudo actualizar la página.
@@ -1177,6 +1179,8 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'prefs-watchlist-edits-max' => '(máximo: 1000)',
 'prefs-misc'                => 'Miscelánea',
 'prefs-resetpass'           => 'Cambiar contraseña',
+'prefs-email'               => 'Opciones de correo electrónico',
+'prefs-rendering'           => 'Representación de página',
 'saveprefs'                 => 'Guardar',
 'resetprefs'                => 'Restaurar preferencias por defecto',
 'restoreprefs'              => 'Restaure todos las configuraciones por defecto',
@@ -1219,6 +1223,8 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'prefs-files'               => 'Archivos',
 'prefs-custom-css'          => 'CSS preferido',
 'prefs-custom-js'           => 'JS preferido',
+'prefs-reset-intro'         => 'Puedes usar esta página para restaurar tus preferencias a los por defecto del sitio.
+Esto no puede ser deshecho.',
 
 # User rights
 'userrights'                  => 'Configuración de permisos de usuarios',
@@ -1915,6 +1921,7 @@ así como todo su historial, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las
 consecuencias, y que lo estás haciendo de acuerdo con [[{{MediaWiki:Policy-url}}|Políticas]].',
 'actioncomplete'         => 'Acción realizada',
+'actionfailed'           => 'Acción fracasó',
 'deletedtext'            => '"<nowiki>$1</nowiki>" ha sido borrado.
 Véase $2 para un registro de los borrados recientes.',
 'deletedarticle'         => '«[[$1]]» borrado',
@@ -2563,7 +2570,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Atención''': Este fichero puede contener código malicioso, ejecutarlo podría comprometer la seguridad de tu equipo.<hr />",
-'imagemaxsize'         => 'Limitar imágenes en las páginas de descripción a:',
+'imagemaxsize'         => "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
 'thumbsize'            => 'Tamaño de las vistas en miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:|página|páginas}}',
 'file-info'            => '(tamaño de archivo: $1; tipo MIME: $2)',
@@ -3106,5 +3113,25 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'dberr-usegoogle'   => 'Puede intentar buscar a través de Google, mientras tanto.',
 'dberr-outofdate'   => 'Note que los índices de nuestro contenido pueden estar desactualizados.',
 'dberr-cachederror' => 'La siguiente es una página guardada de la página solicitada, y puede no estar actualizada.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Hay problemas con alguno de tus ingresos',
+'htmlform-select-badoption'    => 'El valor que especificaste no es una opción válida.',
+'htmlform-int-invalid'         => 'El valor que especificaste no es un entero.',
+'htmlform-int-toolow'          => 'El valor que especificaste está debajo del mínimo de $1',
+'htmlform-int-toohigh'         => 'El valor que especificaste está arriba del máximo de $1',
+'htmlform-submit'              => 'Enviar',
+'htmlform-reset'               => 'Deshacer cambios',
+'htmlform-selectorother-other' => 'Otro',
+
+# Special:CreatePage
+'createpage'              => 'Crear una página',
+'createpage-submitbutton' => 'Enviar',
+'createpage-instructions' => 'Ingresa el título de la página que deseas crear:',
+'createpage-entertitle'   => 'Ingresa un título para tu página.',
+'createpage-titleexists'  => 'Ya existe una página con el título [[$1]]. ¿Quieres editar la página que ya existe?',
+'createpage-tryagain'     => 'No – quiero crear una página nueva con un título diferente.',
+'createpage-editexisting' => 'Sí – quiero contribuir a la página que ya existe.',
+'createpage-badtitle'     => '"$1" no puede ser usada como un título de página',
 
 );

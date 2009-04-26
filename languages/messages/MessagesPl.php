@@ -230,7 +230,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Ukryj sprawdzone edycje w ostatnich zmianach',
 'tog-newpageshidepatrolled'   => 'Ukryj sprawdzone strony z listy nowych stron',
 'tog-extendwatchlist'         => 'Pokaż na liście obserwowanych wszystkie a nie tylko ostatnie zmiany',
-'tog-usenewrc'                => 'Rozszerzenie ostatnich zmian (JavaScript)',
+'tog-usenewrc'                => 'Używaj rozszerzenia ostatnich zmian (JavaScript)',
 'tog-numberheadings'          => 'Automatyczna numeracja nagłówków',
 'tog-showtoolbar'             => 'Pokaż pasek narzędzi (JavaScript)',
 'tog-editondblclick'          => 'Podwójne kliknięcie rozpoczyna edycję (JavaScript)',
@@ -238,7 +238,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Kliknięcie prawym klawiszem myszy na tytule sekcji rozpoczyna jej edycję (JavaScript)',
 'tog-showtoc'                 => 'Pokaż spis treści (na stronach o więcej niż 3 nagłówkach)',
 'tog-rememberpassword'        => 'Pamiętaj hasło między sesjami na tym komputerze',
-'tog-editwidth'               => 'Obszar edycji o pełnej szerokości',
+'tog-editwidth'               => 'Rozszerz obszar edycji do wielkości ekranu',
 'tog-watchcreations'          => 'Dodaj do obserwowanych strony tworzone przeze mnie',
 'tog-watchdefault'            => 'Dodaj do obserwowanych strony, które edytuję',
 'tog-watchmoves'              => 'Dodaj do obserwowanych strony, które przenoszę',
@@ -616,6 +616,7 @@ Wybierz inną nazwę użytkownika.',
 'username'                   => 'Nazwa użytkownika',
 'uid'                        => 'ID użytkownika',
 'prefs-memberingroups'       => 'Należy do {{PLURAL:$1|grupy|grup:}}',
+'prefs-registration'         => 'Moment rejestracji',
 'yourrealname'               => 'Imię i nazwisko',
 'yourlanguage'               => 'Język interfejsu',
 'yourvariant'                => 'Wariant',
@@ -883,8 +884,10 @@ Możesz edytować istniejące strony bądź też [[Special:UserLogin|zalogować 
 'recreate-moveddeleted-warn'       => "'''Uwaga! Zamierzasz utworzyć stronę, która została wcześniej usunięta.'''
 
 Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
-Poniżej znajduje się rejestr usunięć tej strony:",
-'moveddeleted-notice'              => 'Ta strona została usunięta. Rejestr usunięć tej strony jest pokazany poniżej.',
+Poniżej znajduje się rejestr usunięć i zmian nazwy tej strony:",
+'moveddeleted-notice'              => 'Ta strona została usunięta.
+Rejestr usunięć i zmian nazwy tej strony jest pokazany poniżej.',
+'log-fulllog'                      => 'Pokaż cały rejestr',
 'edit-hook-aborted'                => 'Edycja zatrzymana z powodu haka.
 Wystąpił z nieokreślonej przyczyny.',
 'edit-gone-missing'                => 'Nie udało się zaktualizować strony.
@@ -1213,6 +1216,8 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-watchlist-edits-max' => '(maksymalna liczba: 1000)',
 'prefs-misc'                => 'Ustawienia różne',
 'prefs-resetpass'           => 'Zmień hasło',
+'prefs-email'               => 'E-mail',
+'prefs-rendering'           => 'Generowanie strony',
 'saveprefs'                 => 'Zapisz',
 'resetprefs'                => 'Cofnij niezapisane zmiany',
 'restoreprefs'              => 'Przywróć wszystkie domyślne preferencje',
@@ -1255,6 +1260,8 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-files'               => 'Pliki',
 'prefs-custom-css'          => 'własny CSS',
 'prefs-custom-js'           => 'własny JavaScript',
+'prefs-reset-intro'         => 'Na tej stronie można przywrócić domyślne ustawienia preferencji dla tej witryny.
+Tej operacji nie można później cofnąć.',
 
 # User rights
 'userrights'                  => 'Zarządzaj uprawnieniami użytkowników',
@@ -1968,6 +1975,7 @@ Pomoc:
 'confirmdeletetext'      => 'Zamierzasz usunąć stronę razem z całą dotyczącą jej historią.
 Upewnij się, czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
 'actioncomplete'         => 'Operacja wykonana',
+'actionfailed'           => 'Działanie nie powiodło się',
 'deletedtext'            => 'Usunięto „<nowiki>$1</nowiki>”.
 Zobacz na stronie $2 rejestr ostatnio wykonanych usunięć.',
 'deletedarticle'         => 'usunął [[$1]]',
@@ -2650,7 +2658,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Uwaga!''' Plik może zawierać złośliwy kod. Jeśli go otworzysz, możesz zarazić swój system.<hr />",
-'imagemaxsize'         => 'Na stronach opisu plików ogranicz rozmiar obrazków do',
+'imagemaxsize'         => "Ograniczenie wielkości obrazków<br />''(na stronach opisu plików)''",
 'thumbsize'            => 'Rozmiar miniaturki',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strona|strony|stron}}',
 'file-info'            => '(rozmiar pliku: $1, typ MIME: $2)',
@@ -3166,6 +3174,7 @@ Możesz również [[Special:Watchlist/edit|użyć standardowego edytora]].',
 'version-hook-name'                => 'Nazwa haka (ang. hook name)',
 'version-hook-subscribedby'        => 'Zapotrzebowany przez',
 'version-version'                  => 'Wersja',
+'version-revision'                 => 'Wersja',
 'version-license'                  => 'Licencja',
 'version-software'                 => 'Zainstalowane oprogramowanie',
 'version-software-product'         => 'Nazwa',
@@ -3245,5 +3254,26 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 'dberr-usegoogle'   => 'Możesz spróbować wyszukać w międzyczasie za pomocą Google.',
 'dberr-outofdate'   => 'Uwaga – indeksy zawartości serwisu mogą być nieaktualne.',
 'dberr-cachederror' => 'Strona została pobrana z pamięci podręcznej i może być nieaktualna.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Wystąpił problem z wprowadzonymi danymi',
+'htmlform-select-badoption'    => 'Podano nieprawidłową wartość.',
+'htmlform-int-invalid'         => 'Podano wartość, która nie jest liczbą całkowitą.',
+'htmlform-int-toolow'          => 'Podana wartość jest poniżej dopuszczalnego minimum $1',
+'htmlform-int-toohigh'         => 'Podana wartość jest powyżej dopuszczalnego maximum $1',
+'htmlform-submit'              => 'Zapisz',
+'htmlform-reset'               => 'Cofnij zmiany',
+'htmlform-selectorother-other' => 'Inne',
+
+# Special:CreatePage
+'createpage'              => 'Utwórz stronę',
+'createpage-submitbutton' => 'OK',
+'createpage-instructions' => 'Podaj tytuł strony, którą chcesz utworzyć:',
+'createpage-entertitle'   => 'Proszę podać tytuł dla swojej strony',
+'createpage-titleexists'  => 'Strona o tytule [[$1]] już istnieje. 
+Czy chcesz edytować istniejącą stronę?',
+'createpage-tryagain'     => 'Nie, chcę utworzyć nową stronę z odmiennym tytułem.',
+'createpage-editexisting' => 'Tak, chcę edytować istniejącą stronę.',
+'createpage-badtitle'     => '„$1” nie może być tytułem strony',
 
 );

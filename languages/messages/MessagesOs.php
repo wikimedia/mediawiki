@@ -881,4 +881,7 @@ $3',
 # Special:SpecialPages
 'specialpages' => 'Сæрмагонд фæрстæ',
 
+# Special:CreatePage
+'createpage-submitbutton' => 'Афтæ уæд',
+
 );

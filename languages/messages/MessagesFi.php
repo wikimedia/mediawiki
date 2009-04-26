@@ -1912,6 +1912,7 @@ Palaute ja lisäapu osoitteessa:
 'historywarning'         => 'Sivua, jonka aiot poistaa on muokattu useammin kuin kerran:',
 'confirmdeletetext'      => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
 'actioncomplete'         => 'Toiminto suoritettu',
+'actionfailed'           => 'Toiminto epäonnistui',
 'deletedtext'            => '”<nowiki>$1</nowiki>” on poistettu.
 Sivulla $2 on lista viimeaikaisista poistoista.',
 'deletedarticle'         => 'poisti sivun $1',
@@ -2997,6 +2998,7 @@ Yritä normaalia esikatselua.',
 'version-hook-name'                => 'Kytköspisteen nimi',
 'version-hook-subscribedby'        => 'Kytkökset',
 'version-version'                  => 'Versio',
+'version-revision'                 => 'Versio',
 'version-license'                  => 'Lisenssi',
 'version-software'                 => 'Asennettu ohjelmisto',
 'version-software-product'         => 'Tuote',
@@ -3075,9 +3077,22 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'dberr-cachederror' => 'Alla on välimuistissa oleva sivun versio, joka ei välttämättä ole ajan tasalla.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'Antamassasi syötteessä on ongelmia',
 'htmlform-select-badoption'    => 'Antamasi arvo ei ole kelvollinen.',
 'htmlform-int-invalid'         => 'Antamasi arvo ei ole kokonaisluku.',
+'htmlform-submit'              => 'Lähetä',
 'htmlform-reset'               => 'Kumoa muutokset',
 'htmlform-selectorother-other' => 'Muu',
+
+# Special:CreatePage
+'createpage'              => 'Luo sivu',
+'createpage-submitbutton' => 'Luo sivu',
+'createpage-instructions' => 'Kirjoita sivun nimi, jonka haluat luoda:',
+'createpage-entertitle'   => 'Kirjoita sivun nimi.',
+'createpage-titleexists'  => 'Sivu nimeltä [[$1]] on jo olemassa.
+Haluatko muokata kyseistä sivua?',
+'createpage-tryagain'     => 'Ei. Haluan luoda uuden sivun eri nimellä.',
+'createpage-editexisting' => 'Kyllä. Haluan muokata olemassa olevaa sivua.',
+'createpage-badtitle'     => 'Nimeä ”$1” ei voi käyttää sivun nimenä.',
 
 );

@@ -148,7 +148,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Modifega de łe sezion tramite clic destro sul titoło (ghe vol JavaScript)',
 'tog-showtoc'                 => "Mostra l'indexe par łe pàxene con pì de 3 sezion",
 'tog-rememberpassword'        => 'Ricorda la password (no limitar a una session - ghe vol i cookies)',
-'tog-editwidth'               => 'Casela de edizion slargà a la massima largheza',
+'tog-editwidth'               => 'Slarga la casèla de modifica fin a inpenir tuto el schermo',
 'tog-watchcreations'          => 'Xonta łe pàxene creàe a i osservati speciałi',
 'tog-watchdefault'            => 'Xonta łe pàxene modifegàe a i osservati speciałi',
 'tog-watchmoves'              => 'Xonta łe pàxene spostà ai oservai speciałi',
@@ -521,6 +521,7 @@ Inserissi un nome difarente.",
 'username'                   => 'Nome utente',
 'uid'                        => 'ID utente:',
 'prefs-memberingroups'       => 'Menbro {{PLURAL:$1|del grupo|dei grupi}}:',
+'prefs-registration'         => 'Data de registrassion:',
 'yourrealname'               => 'El to vero nome:',
 'yourlanguage'               => 'Lengua:',
 'yourvariant'                => 'Variante de linguaggio:',
@@ -765,8 +766,10 @@ L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $
 'recreate-moveddeleted-warn'       => "'''Ocio: te stè par ricrear na pagina zà scancelà precedentemente.'''
 
 Par piaser assicùrete che sia dal bon el caso de 'ndar vanti a modificar sta pagina.
-L'elenco de le relative scancelazion el vien riportà qua de seguito par comodità:",
-'moveddeleted-notice'              => "Sta pàxena la xe stà scancelà. L'elenco de le relative scancelassion el vien riportà de sèvito par informassion.",
+L'elenco de i relativi spostamenti e scancelazion el vien riportà qua de seguito par comodità:",
+'moveddeleted-notice'              => "Sta pàxena la xe stà scancelà.
+L'elenco dei relativi spostamenti e scancelassion el vien riportà qua soto par informassion.",
+'log-fulllog'                      => 'Varda registro conpleto',
 'edit-hook-aborted'                => "Modifica abortìa da parte de l'hook.
 No xe stà dà nissuna spiegazion in merito.",
 'edit-gone-missing'                => 'No se riesse a agiornar la pàxena.
@@ -1088,6 +1091,8 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'prefs-watchlist-edits-max' => '(nùmaro massimo: 1000)',
 'prefs-misc'                => 'Preferense varie',
 'prefs-resetpass'           => 'Cànbia password',
+'prefs-email'               => 'Preferense e-mail',
+'prefs-rendering'           => 'Rendering de la pagina',
 'saveprefs'                 => 'Salva le preferense',
 'resetprefs'                => 'Reinposta le preferense',
 'restoreprefs'              => 'Ripristina le inpostassion predefinìe',
@@ -1130,6 +1135,8 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'prefs-files'               => 'Imagini',
 'prefs-custom-css'          => 'CSS personalixà',
 'prefs-custom-js'           => 'JS personalixà',
+'prefs-reset-intro'         => 'Te pol doparar sta pagina par riportar le to preferense a quele predefinìe.
+Sta operassion no la pol èssar anulà.',
 
 # User rights
 'userrights'                  => 'Gestion dei parmessi relativi ai utenti',
@@ -1818,6 +1825,7 @@ Par riscontri e ulteriore assistensa:
 Par piaser, conferma che l'è to intenzion proçedere a tałe scancełazion, conferma che te ghè piena consapevołeza de łe conseguense de la to azion, e conferma che la to azion l'è pienamente otenperante a łe regołe stabilíe in
 [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Azión conpletà',
+'actionfailed'           => 'Azion mia riussìa',
 'deletedtext'            => 'La pàxena "<nowiki>$1</nowiki>" l\'è stà scancełà. Varda $2 par un ełenco de łe pàxene scancełae de reçente.',
 'deletedarticle'         => 'gà scancełà "[[$1]]"',
 'suppressedarticle'      => 'sconto "[[$1]]"',
@@ -2438,7 +2446,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Ocio''': Sto file qua el podarìa contegner codice maligno; la so esecuzion la podarìa danegiar el proprio sistema informatico.<hr />",
-'imagemaxsize'         => 'Dimension massima de le imagini su le relative pagine de descrizion:',
+'imagemaxsize'         => "Dimension massima de le imagini:<br />''(su le relative pagine de descrizion)''",
 'thumbsize'            => 'Grandeza de le miniature:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'            => 'Dimensioni: $1, tipo MIME: $2',
@@ -2909,6 +2917,7 @@ Doparar l\'anteprima standard.',
 'version-hook-name'                => "Nome de l'hook",
 'version-hook-subscribedby'        => 'Sotoscrizioni',
 'version-version'                  => 'Version',
+'version-revision'                 => 'Revision',
 'version-license'                  => 'Licensa',
 'version-software'                 => 'Software instalà',
 'version-software-product'         => 'Prodoto',
@@ -2987,5 +2996,26 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'dberr-usegoogle'   => 'Fin che te speti, te podi proar a sercar su Google.',
 'dberr-outofdate'   => 'Tien presente che la so indicixassion dei nostri contenuti la podarìa no èssar ajornà.',
 'dberr-cachederror' => 'Quela che segue la xe na copia cache de la pàxena richiesta, e la podarìa no èssar mia ajornà.',
+
+# HTML forms
+'htmlform-invalid-input'       => "Ghe xe problemi con l'input che te ghè inserìo",
+'htmlform-select-badoption'    => "El valor che te ghè indicà no'l xe mia valido.",
+'htmlform-int-invalid'         => "El valor che te ghè indicà no'l xe un nùmaro intero.",
+'htmlform-int-toolow'          => 'El valor che te ghè indicà el xe soto al minimo, che xe $1',
+'htmlform-int-toohigh'         => 'El valor che te ghè indicà el xe sora al màssimo, che xe $1',
+'htmlform-submit'              => 'Manda',
+'htmlform-reset'               => 'Scancèla modifiche',
+'htmlform-selectorother-other' => 'Altro',
+
+# Special:CreatePage
+'createpage'              => 'Crèa na pagina',
+'createpage-submitbutton' => 'Manda',
+'createpage-instructions' => 'Innserissi el titolo de la pagina che te vol crear:',
+'createpage-entertitle'   => 'Par piaser inserissi un titolo par la to pagina.',
+'createpage-titleexists'  => 'Na pagina intitolà [[$1]] la esiste de zà.
+Vuto modificarla?',
+'createpage-tryagain'     => "No. Vói crear na pagina nova co' un titolo difarente.",
+'createpage-editexisting' => 'Sì. Vói contribuir a la pagina che zà esiste.',
+'createpage-badtitle'     => 'No se pol doparar "$1" come titolo de pagina',
 
 );

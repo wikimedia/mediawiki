@@ -243,7 +243,7 @@ $messages = array(
 'editlink'                => 'acontza',
 'viewsourcelink'          => 'càstia mitza',
 'editsectionhint'         => 'Acontza sa setzione: $1',
-'toc'                     => 'Cuntènnidus',
+'toc'                     => 'Cuntènnidu',
 'showtoc'                 => 'amosta',
 'hidetoc'                 => 'cua',
 'viewdeleted'             => 'Bisi $1?',
@@ -449,7 +449,7 @@ Cun s'imbiu de custu iscritu ses garantende, a responsabilidade tua, chi s'iscri
 'hiddencategories'                 => 'Custa pàgina faghet parti de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:',
 'permissionserrorstext-withaction' => 'Non tenes su permissu de $2, pro {{PLURAL:$1|custu motivu|custus motivus}}:',
 'moveddeleted-notice'              => "Custa pàgina est istada fuliada. 
-S'arregistru de is fuliaduras est amostau pro informatzione.",
+S'arregistru de is fuliaduras e moviduras de sa pàgina est amostau pro informatzione.",
 
 # History pages
 'viewpagelogs'           => 'Castia sos registros de custa pàgina',
@@ -551,7 +551,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'prefsnologin'          => 'Non ses intrau',
 'prefsnologintext'      => 'Depis èssere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} intrau]</span> pro scioberai is preferèntzias.',
 'changepassword'        => 'Cambia password',
-'prefs-skin'            => 'Aspetto',
+'prefs-skin'            => 'Bisura',
 'prefs-watchlist'       => 'Watchlist',
 'saveprefs'             => 'Sarva preferèntzias',
 'resetprefs'            => 'Resetta preferenze',

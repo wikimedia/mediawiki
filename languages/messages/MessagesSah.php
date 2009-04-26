@@ -418,6 +418,7 @@ $2',
 'username'                   => 'Бэлиэтэммит аатыҥ:',
 'uid'                        => 'Кыттааччы ID-та:',
 'prefs-memberingroups'       => 'Бу {{PLURAL:$1|бөлөххө|бөлөхтөргө}} киирэр:',
+'prefs-registration'         => 'Бэлиэтэнии кэмэ:',
 'yourrealname'               => 'Докумуонунан аатыҥ:',
 'yourlanguage'               => 'Омугуҥ тыла:',
 'yourvariant'                => 'Барыйаан:',
@@ -673,9 +674,10 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'permissionserrorstext-withaction' => 'Бу дьайыыны ($2) оҥорор кыаҕыҥ суох.  {{PLURAL:$1|Биричиинэтэ|Биричиинэлэрэ}}:',
 'recreate-moveddeleted-warn'       => "'''Болҕой: сотулубут сирэйи төттөрү оҥорон эрэҕин.'''
 
-Толкуйдаан баран оҥор. Аллара сотуулар сурунааллара көрдөрүлүннэ.",
+Толкуйдаан көр, кырдьык бу сирэйи оҥорор туһалаах дуо. Аллара сотуулар сурунааллара көрдөрүлүннэ.",
 'moveddeleted-notice'              => 'Бу сирэй сотуллубут.
 Аллара сотуу сурунаалыгар онно сыһыаннаах туох суруллубута көстөр.',
+'log-fulllog'                      => 'Сурунаалы барытын көрүү',
 'edit-hook-aborted'                => 'Көннөрүү төттөрү көннөрүллүбүт.
 Эбии туох да быһаарыллыбатах.',
 'edit-gone-missing'                => 'Сирэйи саҥардар кыах суох.
@@ -1002,6 +1004,8 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'prefs-watchlist-edits-max' => '(улааппыта: 1000)',
 'prefs-misc'                => 'Атын туруоруулар',
 'prefs-resetpass'           => 'Кирии тылы уларытыы',
+'prefs-email'               => 'Email туруоруулара',
+'prefs-rendering'           => 'Сирэй отрисовката',
 'saveprefs'                 => 'Бигэргэт',
 'resetprefs'                => 'Бигэргэтиллибэтэх уларыйыылары сот',
 'restoreprefs'              => 'Туруоруулары саҥаттан',
@@ -1044,6 +1048,8 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'prefs-files'               => 'Билэлэр',
 'prefs-custom-css'          => 'Бэйэ CSS',
 'prefs-custom-js'           => 'Бэйэ JS',
+'prefs-reset-intro'         => 'Бу сирэй көмөтүнэн туруорууларгын саҥаттан туруорар турукка төннөрүөххүн сөп.
+Маны бигэргэттэххинэ билигин баар туруоруулары дэбигис сөргүппэккин.',
 
 # User rights
 'userrights'                  => 'Кыттааччылар бырааптарын салайыы',
@@ -1747,6 +1753,7 @@ $NEWPAGE
 бу дьайыы туох содуллаах буоларын толору билэргин
 уонна [[{{MediaWiki:Policy-url}}]] сиэрин кэспэккин бигэргэт.',
 'actioncomplete'         => 'Дьайыы оҥоһулунна',
+'actionfailed'           => 'Дьайыы оҥоһуллубата',
 'deletedtext'            => '«<nowiki>$1</nowiki>» сотуллубут.
 Бүтэһик сотуулар испииһэктэрин манна: $2 көр.',
 'deletedarticle'         => '"[[$1]]" сотуллубут',
@@ -2708,6 +2715,11 @@ $1',
 'exif-gpsspeed-m' => 'Миляны чааска',
 'exif-gpsspeed-n' => 'Узел',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Километр',
+'exif-gpsdestdistance-m' => 'Миилэ',
+'exif-gpsdestdistance-n' => 'Байҕал миилэтэ',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Дьиҥнээх',
 'exif-gpsdirection-m' => 'Магнитнай',
@@ -2862,6 +2874,7 @@ $1',
 'version-hook-name'                => 'Перехватчик аата',
 'version-hook-subscribedby'        => 'Суруттарыыта:',
 'version-version'                  => 'Торум',
+'version-revision'                 => 'Барыл',
 'version-license'                  => 'Лиссиэнзийэ',
 'version-software'                 => 'Туруоруллубут бырагырааммалар',
 'version-software-product'         => 'Бородуукта',
@@ -2940,5 +2953,23 @@ $1',
 'dberr-usegoogle'   => 'Онуоха-маныаха дылы Google көмөтүнэн көрдүөххүн сөп.',
 'dberr-outofdate'   => 'Индэксэ эргэрбит буолуон сөбүн умнума.',
 'dberr-cachederror' => 'Сирэй кээштэммит барыла көстөр, баҕар эргэрбит буолуон сөп.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Киллэрбит сибидиэнньэҥ сорҕото алҕаһы таһаарда',
+'htmlform-select-badoption'    => 'Ыйбыт туруоруугун манна ыйар сатаммат.',
+'htmlform-submit'              => 'Ыыт',
+'htmlform-reset'               => 'Уларытыыны төннөр',
+'htmlform-selectorother-other' => 'Атын',
+
+# Special:CreatePage
+'createpage'              => 'Сирэйи ай',
+'createpage-submitbutton' => 'Ыыт',
+'createpage-instructions' => 'Суруйаары гынар сирэйиҥ аатын киллэр:',
+'createpage-entertitle'   => 'Бука диэн сирэйиҥ аатын киллэр.',
+'createpage-titleexists'  => 'Маннык [[$1]] ааттаах сирэй баар эбит.
+Ол сирэйи көннөрүөххүн баҕараҕын дуо?',
+'createpage-tryagain'     => 'Суох. Мин саҥа сирэйи атын ааттаан оҥоруохпун баҕарабын.',
+'createpage-editexisting' => 'Сөп. Мин баар сирэйи тупсарыахпын баҕарабын.',
+'createpage-badtitle'     => '"$1" ааты сирэй аатын быһыытынан туттар сатаммат',
 
 );

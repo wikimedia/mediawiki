@@ -206,7 +206,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Agochar as edicións patrulladas nos cambios recentes',
 'tog-newpageshidepatrolled'   => 'Agochar as páxinas revisadas da lista de páxinas novas',
 'tog-extendwatchlist'         => 'Expandir a lista de vixilancia para mostrar todos os cambios e non só os máis recentes',
-'tog-usenewrc'                => 'Cambios recentes avanzados (JavaScript)',
+'tog-usenewrc'                => 'Usar os cambios recentes avanzados (require JavaScript)',
 'tog-numberheadings'          => 'Numerar automaticamente as cabeceiras',
 'tog-showtoolbar'             => 'Mostrar a caixa de ferramentas de edición (JavaScript)',
 'tog-editondblclick'          => 'Editar as páxinas logo de facer dobre clic (JavaScript)',
@@ -214,7 +214,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Permitir a edición de seccións premendo co botón dereito <br /> nos títulos das seccións (JavaScript)',
 'tog-showtoc'                 => 'Mostrar o índice (para páxinas con máis de tres cabeceiras)',
 'tog-rememberpassword'        => 'Lembrar o meu contrasinal neste ordenador',
-'tog-editwidth'               => 'A caixa de edición ten largo total',
+'tog-editwidth'               => 'Alargar a caixa de edición para encher toda a pantalla',
 'tog-watchcreations'          => 'Engadir as páxinas creadas por min á miña lista de artigos vixiados',
 'tog-watchdefault'            => 'Engadir as páxinas que edite á miña lista de vixilancia',
 'tog-watchmoves'              => 'Engadir as páxinas que mova á miña lista de vixilancia',
@@ -592,6 +592,7 @@ Escolla un nome diferente.',
 'username'                   => 'Nome de usuario:',
 'uid'                        => 'ID do usuario:',
 'prefs-memberingroups'       => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
+'prefs-registration'         => 'Data e hora de rexistro:',
 'yourrealname'               => 'Nome real:',
 'yourlanguage'               => 'Lingua da interface:',
 'yourvariant'                => 'Variante de lingua:',
@@ -851,11 +852,13 @@ Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|
 'permissionserrors'                => 'Erros de permisos',
 'permissionserrorstext'            => 'Non dispón de permiso para facelo por {{PLURAL:$1|esta razón|estas razóns}}:',
 'permissionserrorstext-withaction' => 'Non ten os permisos necesarios para $2, {{PLURAL:$1|pola seguinte razón|polas seguintes razóns}}:',
-'recreate-moveddeleted-warn'       => "'''Atención: vai volver crear unha páxina que xa foi eliminada anteriormente.
+'recreate-moveddeleted-warn'       => "'''Atención: vai volver crear unha páxina que xa foi eliminada anteriormente.'''
 
 Debería considerar se é apropiado continuar a editar esta páxina.
-Velaquí está o rexistro de borrado desta páxina, por se quere consultalo:",
-'moveddeleted-notice'              => 'Esta páxina foi borrada. Embaixo pódese ver o rexistro de borrados desta páxina, por se o quere consultar.',
+Velaquí están o rexistro de borrados e traslados desta páxina, por se quere consultalos:",
+'moveddeleted-notice'              => 'Esta páxina foi borrada.
+A continuación pódese ver o rexistro de borrados e traslados desta páxina, por se os quere consultar.',
+'log-fulllog'                      => 'Ver o rexistro completo',
 'edit-hook-aborted'                => "A edición foi abortada polo ''hook''.
 Este non deu ningunha explicación.",
 'edit-gone-missing'                => 'Non se pode actualizar a páxina.
@@ -1183,6 +1186,8 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-watchlist-edits-max' => '(número máximo: 1000)',
 'prefs-misc'                => 'Preferencias varias',
 'prefs-resetpass'           => 'Cambiar o contrasinal',
+'prefs-email'               => 'Opcións de correo electrónico',
+'prefs-rendering'           => 'Renderizado de páxinas',
 'saveprefs'                 => 'Gardar as preferencias',
 'resetprefs'                => 'Eliminar os cambios non gardados',
 'restoreprefs'              => 'Restaurar todas as preferencias por defecto',
@@ -1225,6 +1230,8 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-files'               => 'Ficheiros',
 'prefs-custom-css'          => 'CSS personalizado',
 'prefs-custom-js'           => 'JS personalizado',
+'prefs-reset-intro'         => 'Pode usar esta páxina para restablecer as súas preferencias ás que veñen dadas por defecto.
+Este cambio non se poderá desfacer.',
 
 # User rights
 'userrights'                  => 'Xestión dos dereitos de usuario',
@@ -1932,6 +1939,7 @@ Axuda:
 'confirmdeletetext'      => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos.
 Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras [[{{MediaWiki:Policy-url}}|da política e normas]].',
 'actioncomplete'         => 'A acción foi completada',
+'actionfailed'           => 'Fallou a acción',
 'deletedtext'            => 'A páxina "<nowiki>$1</nowiki>" foi borrada.
 No $2 pode ver unha lista dos borrados máis recentes.',
 'deletedarticle'         => 'borrou "[[$1]]"',
@@ -2579,7 +2587,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Aviso''': este ficheiro pode conter código malicioso; o seu sistema pode quedar comprometido se chega a executalo.<hr />",
-'imagemaxsize'         => 'Limitar as imaxes nas páxinas de descrición de ficheiros a:',
+'imagemaxsize'         => "Límite de tamaño das imaxes:<br />''(nas páxinas de descrición de ficheiros)''",
 'thumbsize'            => 'Tamaño da miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|páxina|páxinas}}',
 'file-info'            => 'Tamaño do ficheiro: $1, tipo MIME: $2',
@@ -3053,6 +3061,7 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'version-hook-name'                => 'Nome do hook',
 'version-hook-subscribedby'        => 'Subscrito por',
 'version-version'                  => 'Versión',
+'version-revision'                 => 'Revisión',
 'version-license'                  => 'Licenza',
 'version-software'                 => 'Software instalado',
 'version-software-product'         => 'Produto',
@@ -3132,5 +3141,26 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 'dberr-usegoogle'   => 'Mentres tanto, pode probar a buscar co Google.',
 'dberr-outofdate'   => 'Teña en conta que os índices de Google do noso contido poden non estar actualizados.',
 'dberr-cachederror' => 'O seguinte contido é unha copia da memoria caché da páxina solicitada, polo que pode non estar actualizada.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Hai algún problema con partes do texto que inseriu',
+'htmlform-select-badoption'    => 'O valor que especificou non é unha opción válida.',
+'htmlform-int-invalid'         => 'O valor que especificou non é un número enteiro.',
+'htmlform-int-toolow'          => 'O valor que especificou está por baixo do mínimo de $1',
+'htmlform-int-toohigh'         => 'O valor que especificou está por riba do máximo de $1',
+'htmlform-submit'              => 'Enviar',
+'htmlform-reset'               => 'Desfacer os cambios',
+'htmlform-selectorother-other' => 'Outra',
+
+# Special:CreatePage
+'createpage'              => 'Crear unha páxina',
+'createpage-submitbutton' => 'Enviar',
+'createpage-instructions' => 'Insira o título da páxina que queira crear:',
+'createpage-entertitle'   => 'Por favor, insira un título para a páxina.',
+'createpage-titleexists'  => 'Xa existe unha páxina titulada "[[$1]]".
+Quere editar esa páxina?',
+'createpage-tryagain'     => 'Non. Quero crear unha páxina nova cun título distinto.',
+'createpage-editexisting' => 'Si. Quero contribuír na páxina existente.',
+'createpage-badtitle'     => '"$1" non pode ser usado como o título dunha páxina',
 
 );

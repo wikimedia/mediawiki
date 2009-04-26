@@ -1323,7 +1323,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'prefs-rendering'           => 'Paginaweergave',
 'saveprefs'                 => 'Opslaan',
 'resetprefs'                => 'Niet opgeslagen wijzigingen herstellen',
-'restoreprefs'              => 'Herstel voorkeuren',
+'restoreprefs'              => 'Voorkeuren herstellen',
 'prefs-editing'             => 'Bewerken',
 'prefs-edit-boxsize'        => 'Afmetingen van het bewerkingsvenster.',
 'rows'                      => 'Regels:',
@@ -2098,6 +2098,7 @@ Feedback en andere assistentie:
 'confirmdeletetext'      => 'U staat op het punt een pagina te verwijderen, inclusief de geschiedenis.
 Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt en dat de verwijdering overeenstemt met het [[{{MediaWiki:Policy-url}}|beleid]].',
 'actioncomplete'         => 'Handeling voltooid',
+'actionfailed'           => 'De handeling is mislukt.',
 'deletedtext'            => '"<nowiki>$1</nowiki>" is verwijderd.
 Zie het $2 voor een overzicht van recente verwijderingen.',
 'deletedarticle'         => 'verwijderde "[[$1]]"',
@@ -2694,7 +2695,7 @@ U kunt in de bewerkingssamenvatting een reden opgeven.',
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-gebruiker $1',
-'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $2, $1 door $3.',
+'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $1 om $2 door $3.',
 'othercontribs'    => 'Gebaseerd op werk van $1.',
 'others'           => 'anderen',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruiker|gebruikers}} $1',
@@ -3284,6 +3285,7 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 'version-hook-name'                => 'Hooknaam',
 'version-hook-subscribedby'        => 'Geabonneerd door',
 'version-version'                  => 'Versie',
+'version-revision'                 => 'Versie',
 'version-license'                  => 'Licentie',
 'version-software'                 => 'Geïnstalleerde software',
 'version-software-product'         => 'Product',
@@ -3374,5 +3376,16 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'htmlform-submit'              => 'Opslaan',
 'htmlform-reset'               => 'Wijzigingen ongedaan maken',
 'htmlform-selectorother-other' => 'Anders',
+
+# Special:CreatePage
+'createpage'              => 'Pagina aanmaken',
+'createpage-submitbutton' => 'OK',
+'createpage-instructions' => 'Voer de naam in van de pagina die u wilt aanmaken:',
+'createpage-entertitle'   => 'Geef een naam voor uw pagina op.',
+'createpage-titleexists'  => 'De pagina [[$1]] bestaat al.
+Wilt u de bestaande pagina bewerken?',
+'createpage-tryagain'     => 'Nee. Ik wil een nieuwe pagina aanmaken met een nieuwe naam.',
+'createpage-editexisting' => 'Ja. Ik wil bijdragen aan de bestaande pagina.',
+'createpage-badtitle'     => '"$1" kan niet gebruikt worden als paginanaam',
 
 );

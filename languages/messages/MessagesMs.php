@@ -9,6 +9,7 @@
  *
  * @author Aurora
  * @author Aviator
+ * @author Diagramma Della Verita
  * @author Izzudin
  * @author Kurniasan
  * @author Meno25
@@ -157,7 +158,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Sorokkan suntingan yang telah dironda daripada senarai perubahan terkini',
 'tog-newpageshidepatrolled'   => 'Sorokkan laman yang telah dironda daripada senarai laman baru',
 'tog-extendwatchlist'         => 'Kembangkan senarai pantau untuk memaparkan semua perubahan, bukan hanya yang terkini',
-'tog-usenewrc'                => 'Pertingkatkan laman perubahan terkini (JavaScript)',
+'tog-usenewrc'                => 'Peningkatkan laman perubahan terkini (JavaScript)',
 'tog-numberheadings'          => 'Nomborkan tajuk secara automatik',
 'tog-showtoolbar'             => 'Tunjukkan bar sunting (JavaScript)',
 'tog-editondblclick'          => 'Sunting laman ketika dwiklik (JavaScript)',
@@ -1105,6 +1106,7 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'prefs-watchlist-edits-max' => '(had: 1000)',
 'prefs-misc'                => 'Pelbagai',
 'prefs-resetpass'           => 'Tukar kata laluan',
+'prefs-email'               => 'Pilihan email',
 'saveprefs'                 => 'Simpan',
 'resetprefs'                => 'Set semula',
 'restoreprefs'              => 'Pulihkan semua tetapan lalai',

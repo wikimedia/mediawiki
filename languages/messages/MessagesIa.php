@@ -139,7 +139,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Celar le modificationes patruliate in le modificationes recente',
 'tog-newpageshidepatrolled'   => 'Celar le paginas patruliate del lista de nove paginas',
 'tog-extendwatchlist'         => 'Expander le observatorio pro monstrar tote le modificationes, non solmente les plus recente',
-'tog-usenewrc'                => 'Modificationes recente meliorate (JavaScript)',
+'tog-usenewrc'                => 'Usar le modificationes recente meliorate (require JavaScript)',
 'tog-numberheadings'          => 'Numerar titulos automaticamente',
 'tog-showtoolbar'             => 'Monstrar barra de instrumentos pro modification (JavaScript)',
 'tog-editondblclick'          => 'Duple clic pro modificar un pagina (JavaScript)',
@@ -147,7 +147,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Activar modification de sectiones con clic-a-derecta super lor titulos (JavaScript)',
 'tog-showtoc'                 => 'Monstrar tabula de contento (in paginas con plus de 3 sectiones)',
 'tog-rememberpassword'        => 'Memorar mi contrasigno in iste computator',
-'tog-editwidth'               => 'Le quadro de modification occupa tote le latitude del fenestra',
+'tog-editwidth'               => 'Allargar le quadro de modification pro plenar le schermo integre',
 'tog-watchcreations'          => 'Adder le paginas que io crea a mi observatorio',
 'tog-watchdefault'            => 'Adder le paginas que io modifica a mi observatorio',
 'tog-watchmoves'              => 'Adder le paginas que io renomina a mi observatorio',
@@ -528,6 +528,7 @@ Selige un altere nomine.',
 'username'                   => 'Nomine de usator:',
 'uid'                        => 'ID del usator:',
 'prefs-memberingroups'       => 'Membro de {{PLURAL:$1|gruppo|gruppos}}:',
+'prefs-registration'         => 'Data de registration:',
 'yourrealname'               => 'Nomine real:',
 'yourlanguage'               => 'Lingua:',
 'yourvariant'                => 'Variante:',
@@ -535,7 +536,7 @@ Selige un altere nomine.',
 'badsig'                     => 'Signatura crude invalide; verificar le etiquettas HTML.',
 'badsiglength'               => 'Tu signatura es troppo longe.
 Illo debe haber minus de $1 {{PLURAL:$1|character|characteres}}.',
-'yourgender'                 => 'Genere:',
+'yourgender'                 => 'Sexo:',
 'gender-unknown'             => 'Non specificate',
 'gender-male'                => 'Masculin',
 'gender-female'              => 'Feminin',
@@ -802,12 +803,13 @@ Tu pote retornar e modificar un pagina existente, o [[Special:UserLogin|identifi
 'permissionserrors'                => 'Errores de permissiones',
 'permissionserrorstext'            => 'Tu non ha le permission de facer isto, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
 'permissionserrorstext-withaction' => 'Tu non ha le permission de $2, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
-'recreate-moveddeleted-warn'       => "'''Attention: Tu va recrear un pagina que esseva anteriormente delite.'''
+'recreate-moveddeleted-warn'       => "'''Attention: Tu es super le puncto de recrear un pagina que esseva anteriormente delite.'''
 
-Tu deberea considerar si il es appropriate crear iste pagina de novo.
-Le registro de deletiones pro iste pagina se trova infra pro major commoditate:",
+Tu deberea considerar si il es appropriate continuar a modificar iste pagina.
+Le registro de deletiones e de renominationes pro iste pagina se trova infra pro major commoditate:",
 'moveddeleted-notice'              => 'Iste pagina ha essite delite.
-In basso se revela le registro de deletiones del pagina pro ulterior informationes.',
+In basso se revela le registro de deletiones e de modificationes del pagina pro ulterior informationes.',
+'log-fulllog'                      => 'Vider le registro complete',
 'edit-hook-aborted'                => 'Modification abortate per uncino.
 Illo non dava un explication.',
 'edit-gone-missing'                => 'Impossibile actualisar le pagina.
@@ -1137,6 +1139,8 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefs-watchlist-edits-max' => '(numero maxime: 1000)',
 'prefs-misc'                => 'Misc',
 'prefs-resetpass'           => 'Cambiar contrasigno',
+'prefs-email'               => 'Optiones de e-mail',
+'prefs-rendering'           => 'Rendition de paginas',
 'saveprefs'                 => 'Confirmar',
 'resetprefs'                => 'Reverter cambios',
 'restoreprefs'              => 'Restaurar tote le configurationes predefinite',
@@ -1175,10 +1179,12 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefs-searchoptions'       => 'Optiones de recerca',
 'prefs-namespaces'          => 'Spatios de nomines',
 'defaultns'                 => 'Cercar initialmente in iste spatios de nomines:',
-'default'                   => 'predefinition',
+'default'                   => 'predefinite',
 'prefs-files'               => 'Files',
 'prefs-custom-css'          => 'CSS personalisate',
 'prefs-custom-js'           => 'JS personalisate',
+'prefs-reset-intro'         => 'Iste pagina es pro reinitialisar tu preferentias al valores predefinite del sito.
+Le operation non pote esser disfacite.',
 
 # User rights
 'userrights'                  => 'Gestion de derectos de usator',
@@ -1905,6 +1911,7 @@ Reactiones e ulterior assistentia:
 'confirmdeletetext'      => 'Tu va deler un pagina con tote su historia.
 Per favor confirma que tu intende facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politicas]].',
 'actioncomplete'         => 'Action complete',
+'actionfailed'           => 'Action fallite',
 'deletedtext'            => '"<nowiki>$1</nowiki>" ha essite delite.
 Vide $2 pro un registro de deletiones recente.',
 'deletedarticle'         => 'deleva "[[$1]]"',
@@ -2600,7 +2607,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attention''': Iste file pote continer codice maligne. Si tu lo executa, tu systema pote esser compromittite.<hr />",
-'imagemaxsize'         => 'Limitar le imagines in paginas de description de files a:',
+'imagemaxsize'         => "Dimension maxime de imagines:<br />''(pro paginas de description de files)''",
 'thumbsize'            => 'Grandor del miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => '(grandor del file: $1, typo MIME: $2)',
@@ -3073,6 +3080,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'version-hook-name'                => 'Nomine del uncino',
 'version-hook-subscribedby'        => 'Subscribite per',
 'version-version'                  => 'Version',
+'version-revision'                 => 'Version',
 'version-license'                  => 'Licentia',
 'version-software'                 => 'Software installate',
 'version-software-product'         => 'Producto',
@@ -3152,5 +3160,26 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'dberr-usegoogle'   => 'Tu pote probar cercar con Google intertanto.',
 'dberr-outofdate'   => 'Nota que lor indices de nostre contento pote esser obsolete.',
 'dberr-cachederror' => 'Lo sequente es un copia del cache del pagina requestate, e pote esser obsolete.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Il ha problemas con alique que tu entrava',
+'htmlform-select-badoption'    => 'Le valor que tu specificava non es un option valide.',
+'htmlform-int-invalid'         => 'Le valor que tu specificava non es un numero integre.',
+'htmlform-int-toolow'          => 'Le valor que tu specificava es sub le minimo de $1',
+'htmlform-int-toohigh'         => 'Le valor que tu specificava es super le maximo de $1',
+'htmlform-submit'              => 'Submitter',
+'htmlform-reset'               => 'Disfacer modificationes',
+'htmlform-selectorother-other' => 'Altere',
+
+# Special:CreatePage
+'createpage'              => 'Crear un pagina',
+'createpage-submitbutton' => 'Submitter',
+'createpage-instructions' => 'Entra le titulo del pagina que tu vole crear:',
+'createpage-entertitle'   => 'Per favor entra un titulo pro tu pagina.',
+'createpage-titleexists'  => 'Un pagina con le titulo [[$1]] existe ja.
+Vole tu modificar le pagina existente?',
+'createpage-tryagain'     => 'No. Io vole crear un nove pagina con un titulo distincte.',
+'createpage-editexisting' => 'Si. Io vole contribuer al pagina existente.',
+'createpage-badtitle'     => '"$1" non pote esser usate qua titulo de pagina',
 
 );

@@ -267,7 +267,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Amagar las modificacions susvelhadas dels darrièrs cambiaments',
 'tog-newpageshidepatrolled'   => 'Amagar las paginas susvelhadas de la lista de las paginas novèlas',
 'tog-extendwatchlist'         => 'Espandir la lista de seguit per afichar totas las modificacions e non pas solament las mai recentas',
-'tog-usenewrc'                => 'Utilizar los darrièrs cambiaments melhorats (JavaScript)',
+'tog-usenewrc'                => 'Utilizar los darrièrs cambiaments melhorats (necessita JavaScript)',
 'tog-numberheadings'          => 'Numerotar automaticament los títols',
 'tog-showtoolbar'             => 'Mostrar la barra de menut de modificacion (JavaScript)',
 'tog-editondblclick'          => 'Modificar una pagina amb un clic doble (JavaScript)',
@@ -275,7 +275,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Modificar una seccion en fasent un clic drech sus son títol (JavaScript)',
 'tog-showtoc'                 => "Afichar l'ensenhador (per las paginas de mai de 3 seccions)",
 'tog-rememberpassword'        => 'Se remembrar de mon senhal sus aqueste ordenador (cookie)',
-'tog-editwidth'               => "Afichar la fenèstra d'edicion en plena largor",
+'tog-editwidth'               => 'Afichar la fenèstra de modificacion en largor plena',
 'tog-watchcreations'          => 'Apondre las paginas que creï a ma lista de seguit',
 'tog-watchdefault'            => 'Apondre las paginas que modifiqui a ma lista de seguit',
 'tog-watchmoves'              => 'Apondre las paginas que tòrni nomenar a ma lista de seguit',
@@ -649,6 +649,7 @@ Causissètz-ne un autre.",
 'username'                   => "Nom de l'utilizaire :",
 'uid'                        => 'Numèro de l’utilizaire :',
 'prefs-memberingroups'       => 'Membre {{PLURAL:$1|del grop|dels gropes}} :',
+'prefs-registration'         => 'Data de creacion del compte :',
 'yourrealname'               => 'Nom vertadièr :',
 'yourlanguage'               => "Lenga de l'interfàcia :",
 'yourvariant'                => 'Varianta lingüistica :',
@@ -889,9 +890,11 @@ Podètz tonar en rèire e modificar una pagina existenta, [[Special:UserLogin|vo
 'permissionserrorstext-withaction' => 'Sètz pas autorizat(ada) a $2, per {{PLURAL:$1|la rason seguenta|las rasons seguentas}} :',
 'recreate-moveddeleted-warn'       => "'''Atencion : sètz a tornar crear una pagina qu'es estada suprimida precedentament.'''
 
-Demandatz-vos se es vertadièrament apropriat de la tornar crear en vos referissent al jornal de las supressions afichat çaijós :",
+Demandatz-vos s'es vertadièrament apropriat de contunhar de l’editar. 
+L’istoric de las supressions e dels cambiaments de nom es afichat çaijós :",
 'moveddeleted-notice'              => "Aquesta pagina es estat suprimida.
-L'istoric de las supressions es afichat çaijós coma referéncia.",
+L'istoric de las supressions e dels cambiaments de nom es afichat çaijós coma referéncia.",
+'log-fulllog'                      => 'Veire lo jornal complet',
 'edit-hook-aborted'                => "Modificacion fracassada per croquet.
 Cap d'explicacion pas balhada.",
 'edit-gone-missing'                => 'A pas pogut metre a jorn la pagina.
@@ -1215,6 +1218,8 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'prefs-watchlist-edits-max' => '(nombre maximum : 1000)',
 'prefs-misc'                => 'Preferéncias divèrsas',
 'prefs-resetpass'           => 'Modificar lo senhal',
+'prefs-email'               => 'Opcions del corrièr electronic',
+'prefs-rendering'           => 'Rendut de las paginas',
 'saveprefs'                 => 'Enregistrar las preferéncias',
 'resetprefs'                => 'Restablir las preferéncias',
 'restoreprefs'              => 'Restablir totas las valors per defaut',
@@ -1257,6 +1262,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'prefs-files'               => 'Fichièrs',
 'prefs-custom-css'          => 'CSS personalizat',
 'prefs-custom-js'           => 'JS personalizat',
+'prefs-reset-intro'         => 'Podètz utilizar aquesta pagina per restablir vòstras preferéncias a las valors per defaut del sit. Aquò pòt pas èsser desfach.',
 
 # User rights
 'userrights'                  => "Gestion dels dreches d'utilizaire",
@@ -2612,7 +2618,7 @@ $1",
 
 # Media information
 'mediawarning'         => '<b>Atencion</b>: Aqueste fichièr pòt conténer de còde malvolent, vòstre sistèma pòt èsser mes en dangièr per son execucion. <hr />',
-'imagemaxsize'         => 'Format maximal pels imatges dins las paginas de descripcion d’imatges :',
+'imagemaxsize'         => "Format maximal dels imatges :<br />''(per las paginas de descripcion d’imatges)''",
 'thumbsize'            => 'Talha de la miniatura :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => 'Talha del fichièr: $1, tipe MIME: $2',
@@ -3165,5 +3171,26 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'dberr-usegoogle'   => 'Podètz ensajar de cercar amb Google pendent aqueste temps.',
 'dberr-outofdate'   => 'Notatz que lors indèxes de nòstre contengut pòdon èsser despassats.',
 'dberr-cachederror' => 'Aquò es una còpia amagada de la pagina demandada e pòt èsser despassada.',
+
+# HTML forms
+'htmlform-invalid-input'       => "De problèmas son arribats amb d'unas valors",
+'htmlform-select-badoption'    => "La valor qu'avètz especificada es pas una opcion valida.",
+'htmlform-int-invalid'         => "La valor qu'avètz especificada es pas un nombre entièr.",
+'htmlform-int-toolow'          => "La valor qu'avètz especificada es en dejós del minimum de $1",
+'htmlform-int-toohigh'         => "La valor qu'avètz especificada es en dessús del minimum de $1",
+'htmlform-submit'              => 'Sometre',
+'htmlform-reset'               => 'Desfar las modificacions',
+'htmlform-selectorother-other' => 'Autre',
+
+# Special:CreatePage
+'createpage'              => 'Crear una pagina',
+'createpage-submitbutton' => 'Sometre',
+'createpage-instructions' => 'Picar lo títol de la pagina que volètz crear :',
+'createpage-entertitle'   => 'Picatz un títol per vòstra pagina.',
+'createpage-titleexists'  => "Una pagina qu'a per títol [[$1]] existís ja.
+La volètz modificar ?",
+'createpage-tryagain'     => 'Non, vòli crear una pagina novèla amb un títol diferent.',
+'createpage-editexisting' => 'Òc, vòli contribuir dins aquesta pagina existenta.',
+'createpage-badtitle'     => '« $1 » pòt pas èsser utilizat coma nom de pagina',
 
 );
