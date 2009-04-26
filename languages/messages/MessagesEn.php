@@ -812,7 +812,6 @@ The last attempted database query was:
 "$1"
 from within function "$2".
 MySQL returned error "$3: $4"',
-'cachederror'          => 'The following is a cached copy of the requested page, and may not be up to date.',
 'laggedslavemode'      => 'Warning: Page may not contain recent updates.',
 'readonly'             => 'Database locked',
 'enterlockreason'      => 'Enter a reason for the lock, including an estimate of when the lock will be released',
@@ -884,7 +883,6 @@ Note that some pages may continue to be displayed as if you were still logged in
 'welcomecreation'            => '== Welcome, $1! ==
 Your account has been created.
 Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
-'loginpagetitle'             => 'User login',
 'yourname'                   => 'Username:',
 'yourpassword'               => 'Password:',
 'yourpasswordagain'          => 'Retype password:',
