@@ -40,7 +40,7 @@ class SpecialCreatePage extends SpecialPage {
 		// check for no title
 		if ( $wgRequest->wasPosted() && $target === '' ) {
 			$this->error( wfMsg( 'createpage-entertitle' ) );
-		} elseif ( $target !== '' ) {
+		} elseif ( $target !== null ) {
 			if ( !$title instanceof Title ) {
 				// check for invalid title
 				$this->error( wfMsg( 'createpage-badtitle', $target ) );
