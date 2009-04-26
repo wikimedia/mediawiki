@@ -159,6 +159,8 @@ $wgMessageStructure = array(
 		'qbpageinfo',
 		'qbmyoptions',
 		'qbspecialpages',
+		'faq',
+		'faqpage',
 	),
 	'metadata_help' => array(
 		'metadata_help',
@@ -233,8 +235,6 @@ $wgMessageStructure = array(
 		'disclaimerpage',
 		'edithelp',
 		'edithelppage',
-		'faq',
-		'faqpage',
 		'help',
 		'helppage',
 		'mainpage',
