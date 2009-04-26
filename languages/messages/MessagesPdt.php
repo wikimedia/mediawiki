@@ -90,20 +90,22 @@ $messages = array(
 'hidden-categories'        => "{{PLURAL:$1|Fe'stoakne Kategorie|Fe'stoakne Kategorien}}",
 'hidden-category-category' => "Fe'stoakne Kategorien",
 
-'about'          => 'Äwa',
-'newwindow'      => '(got in en nie Fensta op)',
-'cancel'         => 'Aufbräakje',
+'about'         => 'Äwa',
+'newwindow'     => '(got in en nie Fensta op)',
+'cancel'        => 'Aufbräakje',
+'moredotdotdot' => 'Mea...',
+'mypage'        => 'Miene Sied',
+'mytalk'        => 'Miene Beredsied',
+'anontalk'      => 'Beredsied fe dise IP',
+'navigation'    => 'Navigatioon',
+'and'           => '&#32;onn',
+
+# Cologne Blue skin
 'qbfind'         => 'finje',
 'qbedit'         => 'Endre',
 'qbpageoptions'  => 'Dise Sied',
 'qbmyoptions'    => 'Miene Siede',
 'qbspecialpages' => "Opp'poate Siede",
-'moredotdotdot'  => 'Mea...',
-'mypage'         => 'Miene Sied',
-'mytalk'         => 'Miene Beredsied',
-'anontalk'       => 'Beredsied fe dise IP',
-'navigation'     => 'Navigatioon',
-'and'            => '&#32;onn',
 
 'errorpagetitle'   => 'Fäla',
 'returnto'         => 'Trigj no $1.',
@@ -227,10 +229,6 @@ Daut latzte Opproope vonne Dotebank we:
 <blockquote><tt>$1</tt></blockquote>
 ute Funktioon "<tt>$2</tt>".
 MySQL mald dem Fehla "<tt>$3: $4</tt>".',
-'noconnect'       => 'Sorry! Daut jefft technische Schwierichtjeite, tjeen Kontakt es meajlich mette Dotebank opp <br />
-$1',
-'nodb'            => 'Kunn Dotebank $1 nich utwehle',
-'cachederror'     => 'Waut hia tjemmt es eene Kopie utem Cache en es vleicht nich meea aktuell.',
 'laggedslavemode' => 'Oppjepausst: Dee jewesne Sied es nich onbedinjt dee latzte Versioon.',
 'readonly'        => 'Dotebank es jeschlote',
 'enterlockreason' => 'Nan bitte een Grunt doafea, wurom dee Dotebank jeschlote saul en saj, woolang daut onjefea diere saul',

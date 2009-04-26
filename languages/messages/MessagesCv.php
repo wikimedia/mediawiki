@@ -162,10 +162,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki тăрăх час-часах ыйтакан ыйтусемпе хуравсем];
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki çĕнĕ верси тухнине пĕлтерекен рассылка].',
 
-'about'          => 'Ăнлантаркăч',
-'article'        => 'Статья',
-'newwindow'      => '(çĕнĕ чӳречере)',
-'cancel'         => 'Пăрахăçла',
+'about'         => 'Ăнлантаркăч',
+'article'       => 'Статья',
+'newwindow'     => '(çĕнĕ чӳречере)',
+'cancel'        => 'Пăрахăçла',
+'moredotdotdot' => 'Малалла…',
+'mypage'        => 'Ман страница',
+'mytalk'        => 'Ман канашлу страници',
+'anontalk'      => 'Çак IP-адреса сӳтсе явни',
+'navigation'    => 'Меню',
+'and'           => '&#32;тата',
+
+# Cologne Blue skin
 'qbfind'         => 'Шырав',
 'qbbrowse'       => 'Курăм',
 'qbedit'         => 'Тӳрлет',
@@ -173,12 +181,8 @@ $messages = array(
 'qbpageinfo'     => 'Страница çинчен',
 'qbmyoptions'    => 'Сирĕн ĕнĕрлевсем',
 'qbspecialpages' => 'Ятарлӑ страницӑсем',
-'moredotdotdot'  => 'Малалла…',
-'mypage'         => 'Ман страница',
-'mytalk'         => 'Ман канашлу страници',
-'anontalk'       => 'Çак IP-адреса сӳтсе явни',
-'navigation'     => 'Меню',
-'and'            => '&#32;тата',
+'faq'            => 'ЫйХу',
+'faqpage'        => 'Project:ЫйХу',
 
 # Metadata in edit box
 'metadata_help' => 'Метаданнăйсем:',
@@ -250,8 +254,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Яваплăха тивĕçтерменни',
 'edithelp'             => 'Улшăнусене кĕртме пулăшакан пулăшу',
 'edithelppage'         => 'Help:Улшăнусене кĕртме пулăшакан пулăшу',
-'faq'                  => 'ЫйХу',
-'faqpage'              => 'Project:ЫйХу',
 'helppage'             => 'Help:Пулăшу',
 'mainpage'             => 'Тĕп страницă',
 'mainpage-description' => 'Тĕп страницă',
@@ -324,10 +326,6 @@ MySQL çак йăнăша тавăрнă <tt>«$3: $4»</tt>.',
 «$1»
 «$2» функци ыйтнă.
 MySQL çак йăнăша тавăрнă «$3: $4».',
-'noconnect'            => 'Каçарăр та, хальхи вăхăтра техника йăнăшне пула пĕлĕм пуххин серверĕпе çыханаймастпăр.<br />
-$1',
-'nodb'                 => '$1 пĕлĕм пуххине усă курма май çук',
-'cachederror'          => 'Аяларах эсир ыйтнă страницăн кэшри копине куратăр; вăл кивелме те пултарнă.',
 'laggedslavemode'      => 'Асăрхăр! Страница çинче юлашки улшăнусене кăтартмасăр пултарнă.',
 'readonly'             => 'Пĕлĕм пуххине çырассине чарса хунă',
 'enterlockreason'      => 'Чарнин сăлтавне тата палăртнă вăхăта кăтартăр.',
@@ -386,7 +384,6 @@ $1',
 'welcomecreation'            => '== Ырă сунса кĕтетпĕр, $1! ==
 Эсир пирĕн патăмăрта çырăнтăр.
 [[Special:Preferences|Сайт ĕнĕрлевĕсене хăвсамăра кирлĕ пек]] лартма ан манса кайăр.',
-'loginpagetitle'             => 'Сайта кĕр',
 'yourname'                   => 'Сирĕн ят',
 'yourpassword'               => 'Вăрттăн сăмах:',
 'yourpasswordagain'          => 'Вăрттăн сăмах тепре çырăр:',
@@ -607,18 +604,19 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'powersearch'        => 'Анлă шырав',
 'powersearch-legend' => 'Анлă шырав',
 
+# Quickbar
+'qbsettings' => 'Навигаци хăми',
+
 # Preferences page
 'preferences'        => 'Ĕнерлевсем',
 'mypreferences'      => 'Ман ĕнерлевсем',
 'prefs-edits'        => 'Тӳрлетӳсен шучĕ:',
 'prefsnologin'       => 'Эсир сайта кĕмен',
-'qbsettings'         => 'Навигаци хăми',
 'changepassword'     => 'Пароле улăштар',
 'prefs-skin'         => 'Ерешленӳ',
 'skin-preview'       => 'Малтанхи курăну',
 'dateformat'         => 'Дата формачĕ',
 'datedefault'        => 'Палăртман чухнехи',
-'math_syntax_error'  => 'синтаксис йăнăшĕ',
 'prefs-rc'           => 'Юлашки улшăнусен страници',
 'prefs-watchlist'    => 'Сăнав списокĕ',
 'prefs-misc'         => 'Ытти ĕнерлевсем',
@@ -1101,6 +1099,9 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'mw_math_simple' => 'Ахаль чухне HTML, урăхла чухне PNG',
 'mw_math_html'   => 'май пулсан HTML, май çук пулсан — PNG',
 'mw_math_modern' => 'Хальхи браузерсемпе усă курмашкăн сĕннĕ пек',
+
+# Math errors
+'math_syntax_error' => 'синтаксис йăнăшĕ',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Тĕрĕсленĕ тесе палăрт',

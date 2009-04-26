@@ -18,11 +18,13 @@ $messages = array(
 'april'    => 'ᏥᎶᏂ',
 'june'     => 'DᎡᎭᎷᏱ',
 
-'about'          => 'ᎬᏩᏚᏫᏛ',
-'article'        => 'ᎤᏓᏡᎬ',
+'about'      => 'ᎬᏩᏚᏫᏛ',
+'article'    => 'ᎤᏓᏡᎬ',
+'navigation' => 'ᎠᏂᎩᏍᏗ ᏥᏳ',
+
+# Cologne Blue skin
 'qbpageinfo'     => 'ᎦᎷᎯᏍᏗ',
 'qbspecialpages' => 'ᎤᏤᎵᏛ',
-'navigation'     => 'ᎠᏂᎩᏍᏗ ᏥᏳ',
 
 'help'             => 'ᎠᎵᏍᏕᎸᏗ',
 'search'           => 'ᎠᏯᏍᏗ',

@@ -112,10 +112,18 @@ $messages = array(
 
 'mainpagetext' => "<big>'''Ta MediaWiki currit stiagh nish.'''</big>",
 
-'about'          => 'Mychione',
-'article'        => 'Duillag chummal',
-'newwindow'      => '(foshlit ayns uinnag elley eh)',
-'cancel'         => 'Dolley magh',
+'about'         => 'Mychione',
+'article'       => 'Duillag chummal',
+'newwindow'     => '(foshlit ayns uinnag elley eh)',
+'cancel'        => 'Dolley magh',
+'moredotdotdot' => 'Tooilley...',
+'mypage'        => 'My ghuillag',
+'mytalk'        => 'My resoonaght',
+'anontalk'      => "Cur loayrtys da'n IP shoh",
+'navigation'    => 'Stiureydys',
+'and'           => '&#32;as',
+
+# Cologne Blue skin
 'qbfind'         => 'Fow',
 'qbbrowse'       => 'Ronsaghey',
 'qbedit'         => 'Reaghey',
@@ -123,12 +131,8 @@ $messages = array(
 'qbpageinfo'     => 'Co-hecks',
 'qbmyoptions'    => 'My ghuillagyn',
 'qbspecialpages' => 'Duillagyn er lheh',
-'moredotdotdot'  => 'Tooilley...',
-'mypage'         => 'My ghuillag',
-'mytalk'         => 'My resoonaght',
-'anontalk'       => "Cur loayrtys da'n IP shoh",
-'navigation'     => 'Stiureydys',
-'and'            => '&#32;as',
+'faq'            => 'FC',
+'faqpage'        => 'Project:FC',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -196,8 +200,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Obbalys cadjin',
 'edithelp'             => 'Cooney y reaghey',
 'edithelppage'         => 'Help:Reaghey',
-'faq'                  => 'FC',
-'faqpage'              => 'Project:FC',
 'helppage'             => 'Help:Cummal',
 'mainpage'             => 'Ard-ghuillag',
 'mainpage-description' => 'Ard-ghuillag',
@@ -252,7 +254,6 @@ $messages = array(
 'welcomecreation'            => '== Failt ort, $1! ==
 Ta dty choontys chrooit nish.<br />
 Ny jean jarrood dty [[Special:Preferences|{{SITENAME}} hosheeaghtyn]] y arraghey.',
-'loginpagetitle'             => 'Log stiagh yn ymmydeyr',
 'yourname'                   => "Dt'ennym ymmydeyr",
 'yourpassword'               => 'Fockle yn arrey:',
 'yourpasswordagain'          => "Aascreeu d'ockle arrey:",
@@ -464,17 +465,18 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'powersearch-legend'       => 'Ard-ronsaghey',
 'search-external'          => 'Ronsaghey mooie',
 
+# Quickbar
+'qbsettings-none' => 'Veg',
+
 # Preferences page
 'preferences'          => 'Tosheeaghtyn',
 'mypreferences'        => 'My hosheeaghtyn',
 'prefsnologin'         => 'Cha nel oo loggit stiagh',
-'qbsettings-none'      => 'Veg',
 'changepassword'       => 'Fockle yn arrey y cheaghley',
 'prefs-skin'           => 'Crackan',
 'skin-preview'         => 'Roie-haishbynys',
 'dateformat'           => 'Kiaddey yn date',
 'prefs-datetime'       => 'Date as am',
-'math_syntax_error'    => 'Co-ordrail marranagh',
 'prefs-personal'       => 'Gruaie yn ymmydeyr',
 'prefs-rc'             => "Caghlaaghyn s'noa",
 'prefs-watchlist'      => 'Rolley arrey',
@@ -1051,6 +1053,9 @@ Jean covestey eddyr oc er laueyn, my sailliu.'''",
 
 # Math options
 'mw_math_png' => 'Jean PNG dagh ooilley hraa',
+
+# Math errors
+'math_syntax_error' => 'Co-ordrail marranagh',
 
 # Patrol log
 'patrol-log-auto' => '(seyr-obbragh)',

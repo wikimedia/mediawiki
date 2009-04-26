@@ -102,18 +102,20 @@ $messages = array(
 'category-article-count' => '{{PLURAL:$2|Тиде категорийыш ик лаштык гына пура.|{{PLURAL:$1|Тыгай $1 лаштык|Тыгане $1 лаштык-влак}} тиде категорийыште, чыла $2.}}',
 'listingcontinuesabbrev' => '(умбакыжым)',
 
-'about'          => 'Нерген',
-'newwindow'      => '(у окнаште почылтеш)',
-'cancel'         => 'Чараш',
+'about'      => 'Нерген',
+'newwindow'  => '(у окнаште почылтеш)',
+'cancel'     => 'Чараш',
+'mypage'     => 'Мыйын лаштык',
+'mytalk'     => 'Мыйын каҥашымаш',
+'anontalk'   => 'Каҥашымаш тиде IP нерген',
+'navigation' => 'Навигаций',
+
+# Cologne Blue skin
 'qbfind'         => 'Муаш',
 'qbedit'         => 'Тӧрлаташ',
 'qbpageoptions'  => 'Тиде лаштык',
 'qbmyoptions'    => 'Мыйын лаштык-влак',
 'qbspecialpages' => 'Лӱмын ыштыме лаштык-влак',
-'mypage'         => 'Мыйын лаштык',
-'mytalk'         => 'Мыйын каҥашымаш',
-'anontalk'       => 'Каҥашымаш тиде IP нерген',
-'navigation'     => 'Навигаций',
 
 'errorpagetitle'   => 'Йоҥылыш',
 'returnto'         => '$1 деке пӧртылаш.',

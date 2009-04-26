@@ -145,10 +145,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ Demandas comun de MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista per receta anunsias de novas supra MediaWiki]',
 
-'about'          => 'Supra',
-'article'        => 'Paje de contenis',
-'newwindow'      => '(va abri en fenetra nova)',
-'cancel'         => 'Cansela',
+'about'         => 'Supra',
+'article'       => 'Paje de contenis',
+'newwindow'     => '(va abri en fenetra nova)',
+'cancel'        => 'Cansela',
+'moredotdotdot' => 'Plu...',
+'mypage'        => 'Me paje',
+'mytalk'        => 'Me discutes',
+'anontalk'      => 'Discutes per esta IP',
+'navigation'    => 'Naviga',
+'and'           => '&#32;e',
+
+# Cologne Blue skin
 'qbfind'         => 'Trova',
 'qbbrowse'       => 'Surfa',
 'qbedit'         => 'Edita',
@@ -156,12 +164,6 @@ $messages = array(
 'qbpageinfo'     => 'Situa',
 'qbmyoptions'    => 'Me pajes',
 'qbspecialpages' => 'Pajes spesial',
-'moredotdotdot'  => 'Plu...',
-'mypage'         => 'Me paje',
-'mytalk'         => 'Me discutes',
-'anontalk'       => 'Discutes per esta IP',
-'navigation'     => 'Naviga',
-'and'            => '&#32;e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

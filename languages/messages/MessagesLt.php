@@ -293,10 +293,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki DUK]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]',
 
-'about'          => 'Apie',
-'article'        => 'Turinys',
-'newwindow'      => '(atsidaro naujame lange)',
-'cancel'         => 'Atšaukti',
+'about'         => 'Apie',
+'article'       => 'Turinys',
+'newwindow'     => '(atsidaro naujame lange)',
+'cancel'        => 'Atšaukti',
+'moredotdotdot' => 'Daugiau...',
+'mypage'        => 'Mano puslapis',
+'mytalk'        => 'Mano aptarimas',
+'anontalk'      => 'Šio IP aptarimas',
+'navigation'    => 'Naršymas',
+'and'           => '&#32;ir',
+
+# Cologne Blue skin
 'qbfind'         => 'Paieška',
 'qbbrowse'       => 'Naršymas',
 'qbedit'         => 'Taisyti',
@@ -304,12 +312,8 @@ $messages = array(
 'qbpageinfo'     => 'Kontekstas',
 'qbmyoptions'    => 'Mano puslapiai',
 'qbspecialpages' => 'Specialieji puslapiai',
-'moredotdotdot'  => 'Daugiau...',
-'mypage'         => 'Mano puslapis',
-'mytalk'         => 'Mano aptarimas',
-'anontalk'       => 'Šio IP aptarimas',
-'navigation'     => 'Naršymas',
-'and'            => '&#32;ir',
+'faq'            => 'DUK',
+'faqpage'        => 'Project:DUK',
 
 # Metadata in edit box
 'metadata_help' => 'Metaduomenys:',
@@ -381,8 +385,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Atsakomybės apribojimas',
 'edithelp'             => 'Kaip redaguoti',
 'edithelppage'         => 'Help:Redagavimas',
-'faq'                  => 'DUK',
-'faqpage'              => 'Project:DUK',
 'helppage'             => 'Help:Turinys',
 'mainpage'             => 'Pagrindinis puslapis',
 'mainpage-description' => 'Pagrindinis puslapis',
@@ -462,10 +464,6 @@ Paskutinė mėginta duomenų bazės užklausa buvo:
 „$1“
 iš funkcijos: „$2“.
 MySQL grąžino klaidą „$3: $4“.',
-'noconnect'            => 'Atsiprašome, bet projektas turi techninių nesklandumų, ir negali prisijungti prie duomenų bazės. <br />
-$1',
-'nodb'                 => 'Nepavyksta pasirinkti duomenų bazės $1',
-'cachederror'          => 'Pateiktas išsaugota prašomo puslapio kopija, ji gali būti pasenusi.',
 'laggedslavemode'      => 'Dėmesio: Puslapyje gali nesimatyti naujausių pakeitimų.',
 'readonly'             => 'Duomenų bazė užrakinta',
 'enterlockreason'      => 'Įveskite užrakinimo priežastį, taip pat datą, kada bus atrakinta',
@@ -534,7 +532,6 @@ Pastaba: kai kuriuose puslapiuose ir toliau gali rodyti, kad esate prisijungęs 
 'welcomecreation'            => '== Sveiki, $1! ==
 
 Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų.',
-'loginpagetitle'             => 'Prisijungimas',
 'yourname'                   => 'Naudotojo vardas:',
 'yourpassword'               => 'Slaptažodis:',
 'yourpasswordagain'          => 'Pakartokite slaptažodį:',
@@ -640,17 +637,12 @@ Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per kla
 'retypenew'                 => 'Pakartokite naują slaptažodį:',
 'resetpass_submit'          => 'Nustatyti slaptažodį ir prisijungti',
 'resetpass_success'         => 'Jūsų slaptažodis pakeistas sėkmingai! Dabar prisijungiama...',
-'resetpass_bad_temporary'   => 'Neteisingas laikinasis slaptažodis. Galbūt jūs jau sėkmingai pakeitėte savo slaptažodį arba paprašėte naujo laikino slaptažodžio.',
 'resetpass_forbidden'       => 'Slaptažodžiai negali būti pakeisti',
 'resetpass-no-info'         => 'Jūs turite būti prisijugęs, kad pasiektumėte puslapį tiesiogiai.',
 'resetpass-submit-loggedin' => 'Keisti slaptažodį',
 'resetpass-wrong-oldpass'   => 'Klaidingas laikinas ar esamas slaptažodis.
 Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikiną slaptažodį.',
 'resetpass-temp-password'   => 'Laikinas slaptažodis:',
-'resetpass-log'             => 'Slaptažodžio atstatymų sąrašas',
-'resetpass-logtext'         => 'Čia pateikiamas sąrašas naudotojų, kurių slaptažodis buvo atstatytas administratoriaus.',
-'resetpass-logentry'        => 'pakeistas $1 slaptažodis',
-'resetpass-comment'         => 'Slaptažodžio atstatymo priežastis:',
 
 # Edit page toolbar
 'bold_sample'     => 'Paryškintas tekstas',
@@ -723,7 +715,6 @@ Prašome nurodyti šiuos duomenis visais atvejais, kai kreipiatės dėl blokavim
 'blockededitsource'                => "''Jūsų keitimų'' tekstas puslapiui '''$1''' yra rodomas žemiau:",
 'whitelistedittitle'               => 'Norint redaguoti reikia prisijungti',
 'whitelistedittext'                => 'Jūs turite $1, kad redaguotumėte puslapius.',
-'confirmedittitle'                 => 'Kad galėtumėte redaguoti, reikalingas el. pašto patvirtinimas',
 'confirmedittext'                  => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius.
 Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[Special:Preferences|naudotojo nustatymus]].',
 'nosuchsectiontitle'               => 'Nėra tokio skyriaus',
@@ -1054,7 +1045,6 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'searchhelp-url'                   => 'Help:Turinys',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ieškoti puslapių su šiuo priešdėliu]]',
 'searchprofile-articles'           => 'Turinio puslapiai',
-'searchprofile-articles-and-proj'  => 'Turinys ir projekto puslapiai',
 'searchprofile-project'            => 'Projekto puslapiai',
 'searchprofile-images'             => 'Failai',
 'searchprofile-everything'         => 'Viskas',
@@ -1064,8 +1054,6 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'searchprofile-images-tooltip'     => 'Ieškoti failų',
 'searchprofile-everything-tooltip' => 'Ieškoti viso turinio (tame tarpe aptarimų puslapių)',
 'searchprofile-advanced-tooltip'   => 'Ieškoti skirtingose vardų srityse',
-'prefs-search-nsdefault'           => 'Ieškoti naudojantis išankstiniais nustatymais:',
-'prefs-search-nscustom'            => 'Ieškoti įprastų vardų sričių:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 žodis|$2 žodžiai|$2 žodžių}})',
 'search-result-score'              => 'Tinkamumas: $1%',
 'search-redirect'                  => '(peradresavimas $1)',
@@ -1093,19 +1081,20 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'search-external'                  => 'Išorinė paieška',
 'searchdisabled'                   => 'Projekto {{SITENAME}} paieška yra uždrausta. Galite pamėginti ieškoti Google paieškos sistemoje. Paieškos sistemoje projekto {{SITENAME}} duomenys gali būti pasenę.',
 
+# Quickbar
+'qbsettings'               => 'Greitasis pasirinkimas',
+'qbsettings-none'          => 'Nerodyti',
+'qbsettings-fixedleft'     => 'Fiksuoti kairėje',
+'qbsettings-fixedright'    => 'Fiksuoti dešinėje',
+'qbsettings-floatingleft'  => 'Plaukiojantis kairėje',
+'qbsettings-floatingright' => 'Plaukiojantis dešinėje',
+
 # Preferences page
 'preferences'               => 'Nustatymai',
 'mypreferences'             => 'Mano nustatymai',
 'prefs-edits'               => 'Keitimų skaičius:',
 'prefsnologin'              => 'Neprisijungęs',
 'prefsnologintext'          => 'Jums reikia būti <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} prisijungusiam]</span>, kad galėtumėte keisti savo nustatymus.',
-'prefsreset'                => 'Nustatymai buvo atstatyti iš saugyklos.',
-'qbsettings'                => 'Greitasis pasirinkimas',
-'qbsettings-none'           => 'Nerodyti',
-'qbsettings-fixedleft'      => 'Fiksuoti kairėje',
-'qbsettings-fixedright'     => 'Fiksuoti dešinėje',
-'qbsettings-floatingleft'   => 'Plaukiojantis kairėje',
-'qbsettings-floatingright'  => 'Plaukiojantis dešinėje',
 'changepassword'            => 'Pakeisti slaptažodį',
 'prefs-skin'                => 'Išvaizda',
 'skin-preview'              => 'Peržiūra',
@@ -1113,15 +1102,6 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'dateformat'                => 'Datos formatas',
 'datedefault'               => 'Jokio pasirinkimo',
 'prefs-datetime'            => 'Data ir laikas',
-'math_failure'              => 'Nepavyko apdoroti',
-'math_unknown_error'        => 'nežinoma klaida',
-'math_unknown_function'     => 'nežinoma funkcija',
-'math_lexing_error'         => 'leksikos klaida',
-'math_syntax_error'         => 'sintaksės klaida',
-'math_image_error'          => 'PNG konvertavimas nepavyko; patikrinkite, ar teisingai įdiegta latex, dvips, gs, ir convert',
-'math_bad_tmpdir'           => 'Nepavyksta sukurti arba rašyti į matematikos laikinąjį aplanką',
-'math_bad_output'           => 'Nepavyksta sukurti arba rašyti į matematikos išvesties aplanką',
-'math_notexvc'              => 'Trūksta texvc vykdomojo failo; pažiūrėkite math/README kaip konfigūruoti.',
 'prefs-personal'            => 'Naudotojo profilis',
 'prefs-rc'                  => 'Paskutiniai keitimai',
 'prefs-watchlist'           => 'Stebimų sąrašas',
@@ -1148,7 +1128,6 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'recentchangescount'        => 'Numatytasis keitimų skaičius, rodomas naujausių keitimų, puslapių istorijose ir įvykių sąrašuose:',
 'savedprefs'                => 'Nustatymai sėkmingai išsaugoti.',
 'timezonelegend'            => 'Laiko juosta',
-'timezonetext'              => '¹Įveskite, kiek valandų jūsų vietinis laikas skiriasi nuo serverio laiko (UTC).',
 'localtime'                 => 'Vietinis laikas:',
 'timezoneselect'            => 'Laiko juosta:',
 'timezoneuseserverdefault'  => 'Naudoti pagal nutylėjimą iš serverio',
@@ -2449,6 +2428,17 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'mw_math_source' => 'Palikti TeX formatą (tekstinėms naršyklėms)',
 'mw_math_modern' => 'Rekomenduojama modernioms naršyklėms',
 'mw_math_mathml' => 'MathML jei įmanoma (eksperimentinis)',
+
+# Math errors
+'math_failure'          => 'Nepavyko apdoroti',
+'math_unknown_error'    => 'nežinoma klaida',
+'math_unknown_function' => 'nežinoma funkcija',
+'math_lexing_error'     => 'leksikos klaida',
+'math_syntax_error'     => 'sintaksės klaida',
+'math_image_error'      => 'PNG konvertavimas nepavyko; patikrinkite, ar teisingai įdiegta latex, dvips, gs, ir convert',
+'math_bad_tmpdir'       => 'Nepavyksta sukurti arba rašyti į matematikos laikinąjį aplanką',
+'math_bad_output'       => 'Nepavyksta sukurti arba rašyti į matematikos išvesties aplanką',
+'math_notexvc'          => 'Trūksta texvc vykdomojo failo; pažiūrėkite math/README kaip konfigūruoti.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Žymėti, kad patikrinta',

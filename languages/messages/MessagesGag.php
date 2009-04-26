@@ -126,10 +126,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
-'about'          => 'Uurunda',
-'article'        => 'Yazı',
-'newwindow'      => '(eni bir pencerädä açılêr)',
-'cancel'         => 'Ret',
+'about'         => 'Uurunda',
+'article'       => 'Yazı',
+'newwindow'     => '(eni bir pencerädä açılêr)',
+'cancel'        => 'Ret',
+'moredotdotdot' => 'Taa...',
+'mypage'        => 'Benim sayfam',
+'mytalk'        => 'Sözleşmäk sayfam',
+'anontalk'      => 'Bu IP-nin konuşmaları',
+'navigation'    => 'Saytda yol bulmaa',
+'and'           => '&#32;hem',
+
+# Cologne Blue skin
 'qbfind'         => 'Bul',
 'qbbrowse'       => 'Taramaa',
 'qbedit'         => 'Diiştir',
@@ -137,12 +145,8 @@ $messages = array(
 'qbpageinfo'     => 'Kontekst',
 'qbmyoptions'    => 'Sayfalarım',
 'qbspecialpages' => 'Maasus sayfalar',
-'moredotdotdot'  => 'Taa...',
-'mypage'         => 'Benim sayfam',
-'mytalk'         => 'Sözleşmäk sayfam',
-'anontalk'       => 'Bu IP-nin konuşmaları',
-'navigation'     => 'Saytda yol bulmaa',
-'and'            => '&#32;hem',
+'faq'            => 'SSS',
+'faqpage'        => 'Project:SSS',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -212,8 +216,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Genel cuvapçılık reti',
 'edithelp'             => 'Nesoy var nicä diiştirmää?',
 'edithelppage'         => 'Help:Nesoy var nicä sayfa diiştirmää',
-'faq'                  => 'SSS',
-'faqpage'              => 'Project:SSS',
 'helppage'             => 'Help:İçindekilär',
 'mainpage'             => 'Baş yaprak',
 'mainpage-description' => 'Baş yaprak',
@@ -272,7 +274,6 @@ $messages = array(
 # General errors
 'error'              => 'Kusurluk',
 'databaseerror'      => 'Data bazası kusurluu',
-'nodb'               => '$1 data bazasını yok nicä seçsin',
 'readonly'           => 'Data bazası kilitlendi',
 'internalerror'      => 'İç yannış',
 'internalerror_info' => 'İç yannış: $1',
@@ -293,7 +294,6 @@ $messages = array(
 'welcomecreation'            => '== Hoş geldiniz $1! ==
 
 Esapınız açıldı. Unutmayın {{SITENAME}} seçimnerin diiştirmää.',
-'loginpagetitle'             => 'Sessiya aç',
 'yourname'                   => 'Kullanıcı adınız',
 'yourpassword'               => 'Parol',
 'yourpasswordagain'          => 'Parolu enidän yaz',

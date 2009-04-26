@@ -145,15 +145,17 @@ $messages = array(
 
 'linkprefix' => '/^(.*?)(„|«)$/sD',
 
-'about'          => 'опьса́ниѥ',
+'about'      => 'опьса́ниѥ',
+'mypage'     => 'моꙗ́ страни́ца',
+'mytalk'     => 'моꙗ́ бєсѣ́да',
+'navigation' => 'пла́ваниѥ',
+'and'        => '&#32;и',
+
+# Cologne Blue skin
 'qbedit'         => 'испра́ви',
 'qbpageoptions'  => 'си страни́ца',
 'qbmyoptions'    => 'моꙗ́ страни́цѧ',
 'qbspecialpages' => 'наро́чьнꙑ страни́цѧ',
-'mypage'         => 'моꙗ́ страни́ца',
-'mytalk'         => 'моꙗ́ бєсѣ́да',
-'navigation'     => 'пла́ваниѥ',
-'and'            => '&#32;и',
 
 'errorpagetitle'   => 'блаꙁна',
 'tagline'          => '{{grammar:genitive|{{SITENAME}}}} страни́ца',
@@ -230,7 +232,6 @@ $messages = array(
 'viewsourcefor' => 'бо $1',
 
 # Login and logout pages
-'loginpagetitle'          => 'Въходъ',
 'yourname'                => 'твоѥ́ и́мѧ',
 'yourpassword'            => 'Таино слово напиши',
 'yourpasswordagain'       => 'Опакы таиноѥ слово напиши',

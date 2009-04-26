@@ -148,10 +148,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste d'a poste de MediaWiki]",
 
-'about'          => 'Sus a',
-'article'        => 'Pàgene de le condenute',
-'newwindow'      => "(iapre jndr'à 'na fenestra nova)",
-'cancel'         => 'Scangìlle',
+'about'         => 'Sus a',
+'article'       => 'Pàgene de le condenute',
+'newwindow'     => "(iapre jndr'à 'na fenestra nova)",
+'cancel'        => 'Scangìlle',
+'moredotdotdot' => 'De cchiù...',
+'mypage'        => "'A pàgene meje",
+'mytalk'        => 'Ngazzaminde mie',
+'anontalk'      => "'Ngazzaminde pe quiste IP",
+'navigation'    => 'Naveghesce',
+'and'           => '&#32;e',
+
+# Cologne Blue skin
 'qbfind'         => 'Cirche',
 'qbbrowse'       => 'Sfoglie',
 'qbedit'         => 'Cange',
@@ -159,12 +167,8 @@ $messages = array(
 'qbpageinfo'     => 'Condeste',
 'qbmyoptions'    => 'Pàggene mije',
 'qbspecialpages' => 'Pàggene speciale',
-'moredotdotdot'  => 'De cchiù...',
-'mypage'         => "'A pàgene meje",
-'mytalk'         => 'Ngazzaminde mie',
-'anontalk'       => "'Ngazzaminde pe quiste IP",
-'navigation'     => 'Naveghesce',
-'and'            => '&#32;e',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -236,8 +240,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Scareca uarrile',
 'edithelp'             => "Cangianne l'ajute",
 'edithelppage'         => 'Help:Cangiaminde',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Condenute',
 'mainpage'             => 'Pàgene Prengepàle',
 'mainpage-description' => 'Pàgene Prengepàle',
@@ -321,10 +323,6 @@ L\'urteme tendative de inderrogazione sus a \'u database ha state:
 "$1"
 ausanne \'a funzione "$2".
 MySQL ha returnete l\'errore "$3: $4"',
-'noconnect'            => "Sime dispiaciute! Sus 'a Uicchipedie stè quacche probbleme tecniche e non ge putime condattà 'u server d'u database.<br />
-$1",
-'nodb'                 => "Non ge pozze scacchià l'archivie $1",
-'cachederror'          => "Quedda ca ste vide jè 'na copie presende in memorie d'a pàgene ca è richieste, vo ccu dice ca non g'à puè cangià.",
 'laggedslavemode'      => "Attenzione: 'A pàgene no ge tène cangiaminde recente.",
 'readonly'             => 'Archivie blocchete',
 'enterlockreason'      => "Mitte 'na raggione p'u blocche, 'ncludenne 'na stime de quanne 'u blocche avène luate.",
@@ -396,7 +394,6 @@ Note Bbuene ca certe pàggene ponne condinuà a essere viste cumme ce tu ste ang
 'welcomecreation'            => "== Bovegne, $1! ==
 'U cunde tue ha state ccrejete.
 No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze tue]].",
-'loginpagetitle'             => "Nome de l'utende",
 'yourname'                   => 'Nome utende:',
 'yourpassword'               => 'Passuord:',
 'yourpasswordagain'          => "Scrive 'a passuord notra vote:",
@@ -514,18 +511,12 @@ Pe spiccià 'a procedure de collegamende, tu a 'mbostà 'na password nove aqquà
 'retypenew'                 => "Scrive n'otra vota 'a passuord nova:",
 'resetpass_submit'          => "'Mboste 'a passuord e colleghete",
 'resetpass_success'         => "'A password toje ha state cangete cu successe! Mò te puè collegà...",
-'resetpass_bad_temporary'   => "'A password temboranea jè invalide.
-Pò essere ca tu è già chieste 'na password temboranea nove oppure è già cangete 'a password cu quedda definitive.",
 'resetpass_forbidden'       => 'Le Password non ge ponne cangià',
 'resetpass-no-info'         => 'Tu a essere colleghete pe accedere a sta pàgene direttamende.',
 'resetpass-submit-loggedin' => "Cange 'a password",
 'resetpass-wrong-oldpass'   => "'A password temboranea o quedda corrende jè invalide.
 Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea nove.",
 'resetpass-temp-password'   => 'Password temboranea:',
-'resetpass-log'             => 'Archivije de le azzeraminde de le password',
-'resetpass-logtext'         => "Sotte stè 'n'archivije de utinde ca onne avute 'a password lore azzerate da 'n'amministratore.",
-'resetpass-logentry'        => "cangete 'a password pe $1",
-'resetpass-comment'         => "Mutive pe l'azzeramende d'a password:",
 
 # Edit page toolbar
 'bold_sample'     => 'Teste grascette',
@@ -603,7 +594,6 @@ Pe piacere mitte tutte le dettaglie ca ponne essere utile pe le richieste tue.",
 'blockededitsource'                => "'U teste de le '''cangiaminde tue''' sus a '''$1''' ìu stè vide aqquà sotte:",
 'whitelistedittitle'               => "Pe fa le cangiaminde t'a collegà",
 'whitelistedittext'                => 'Tu ha $1 pàggene da cangià.',
-'confirmedittitle'                 => "Ce vuè cu fece le cangiaminde a confermà cu l'email",
 'confirmedittext'                  => "Tu a confermà l'indirizze e-mail tue apprime de cangià le pàggene.
 Pe piacere mitte e validesce l'indirizze e-mail tue ausanne le [[Special:Preferences|preferenze de l'utende]].",
 'nosuchsectiontitle'               => 'Non ge stonne seziune',
@@ -938,7 +928,6 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'searchhelp-url'                   => 'Help:Condenute',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Sfogghije le pàggene cu stu prefisse]]',
 'searchprofile-articles'           => 'Pàggene de condenute',
-'searchprofile-articles-and-proj'  => 'Pàggene de condenute & de pruggette',
 'searchprofile-project'            => "Pàggene d'u pruggette",
 'searchprofile-images'             => 'Le fail',
 'searchprofile-everything'         => 'Tutte',
@@ -948,8 +937,6 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'searchprofile-images-tooltip'     => 'Cirche pe le fail',
 'searchprofile-everything-tooltip' => "Cirche jndr'à tutte le vosce (combrese le vosce de le 'ngazzaminde)",
 'searchprofile-advanced-tooltip'   => "Cirche jndr'à le namespace personalizzete",
-'prefs-search-nsdefault'           => 'Cirche ausanne le default:',
-'prefs-search-nscustom'            => 'Cirche le namespace personalizzete:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 parole|$2 parole}})',
 'search-result-score'              => "'Mbortanze: $1%",
 'search-redirect'                  => '(Redirette $1)',
@@ -980,19 +967,20 @@ Prueve mettènne nnande a l'inderrogaziona toje 'u prefisse '''all:''' pe cercà
 Tu puè cercà ausanne Google.
 Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàggene ca non ge sonde aggiornate.",
 
+# Quickbar
+'qbsettings'               => 'Barra veloce',
+'qbsettings-none'          => 'Ninde',
+'qbsettings-fixedleft'     => 'Fissete a sinistre (Fixed left)',
+'qbsettings-fixedright'    => 'Fissete a destre (Fixed right)',
+'qbsettings-floatingleft'  => 'Volanne a sinistre (Floating left)',
+'qbsettings-floatingright' => 'Volanne a destre (Floating right)',
+
 # Preferences page
 'preferences'               => 'Me piece accussì',
 'mypreferences'             => 'Me piece accussì',
 'prefs-edits'               => 'Numere de cangiaminde:',
 'prefsnologin'              => 'Non ge sinde colleghete',
 'prefsnologintext'          => 'Tu a essere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} colleghete]</span> pe \'mbostà le preferenze de l\'utinde.',
-'prefsreset'                => "Le preferenze onne state azzerate da 'u stipamende.",
-'qbsettings'                => 'Barra veloce',
-'qbsettings-none'           => 'Ninde',
-'qbsettings-fixedleft'      => 'Fissete a sinistre (Fixed left)',
-'qbsettings-fixedright'     => 'Fissete a destre (Fixed right)',
-'qbsettings-floatingleft'   => 'Volanne a sinistre (Floating left)',
-'qbsettings-floatingright'  => 'Volanne a destre (Floating right)',
 'changepassword'            => "Cange 'a password",
 'prefs-skin'                => 'Skin',
 'skin-preview'              => 'Andeprime',
@@ -1000,17 +988,6 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'dateformat'                => "Formete d'a date",
 'datedefault'               => 'Nisciuna preferenze',
 'prefs-datetime'            => 'Date e ore',
-'math_failure'              => 'Analisi fallite',
-'math_unknown_error'        => 'errore scanusciute',
-'math_unknown_function'     => 'funziona scanusciute',
-'math_lexing_error'         => 'errore de lessiche',
-'math_syntax_error'         => 'errore de sintassi',
-'math_image_error'          => "'A conversione d'u PNG ha fallite;
-condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
-'math_bad_tmpdir'           => "Non ge puè scrivere o ccrejà 'na cartelle temboranea de math",
-'math_bad_output'           => "Non ge puè scrivere o ccrejà 'na cartelle de destinazzione de math",
-'math_notexvc'              => 'texvc eseguibbele perdute;
-pe piacere vide math/README pe configurà.',
 'prefs-personal'            => "Profile de l'utende",
 'prefs-rc'                  => 'Cangiaminde recende',
 'prefs-watchlist'           => 'Pàggene condrollete',
@@ -1037,7 +1014,6 @@ pe piacere vide math/README pe configurà.',
 'recentchangescount'        => "Numere de cangiaminde da fà vedè jndr'à le urteme cangiaminde, storie de le pàggene e jndr'à l'archivije, pe default:",
 'savedprefs'                => 'Le preferenze tue onne state aggiornete.',
 'timezonelegend'            => "Orarie d'a zone",
-'timezonetext'              => "¹'U numere de le ore de l'orarie locale tue è differende da quidde d'u server (UTC).",
 'localtime'                 => 'Orarie lochele:',
 'timezoneselect'            => "Orarie de l'area:",
 'timezoneuseserverdefault'  => "Ause 'u valore de default d'u server",
@@ -2194,6 +2170,19 @@ Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 'mw_math_simple' => 'HTML ce jè avveramende facile oppure PNG',
 'mw_math_html'   => 'HTML ce jè possibbile oppure PNG',
 'mw_math_mathml' => 'MathML ce possibbile (sperimendele)',
+
+# Math errors
+'math_failure'          => 'Analisi fallite',
+'math_unknown_error'    => 'errore scanusciute',
+'math_unknown_function' => 'funziona scanusciute',
+'math_lexing_error'     => 'errore de lessiche',
+'math_syntax_error'     => 'errore de sintassi',
+'math_image_error'      => "'A conversione d'u PNG ha fallite;
+condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
+'math_bad_tmpdir'       => "Non ge puè scrivere o ccrejà 'na cartelle temboranea de math",
+'math_bad_output'       => "Non ge puè scrivere o ccrejà 'na cartelle de destinazzione de math",
+'math_notexvc'          => 'texvc eseguibbele perdute;
+pe piacere vide math/README pe configurà.',
 
 # Patrol log
 'patrol-log-auto' => '(automatiche)',

@@ -65,14 +65,16 @@ $messages = array(
 'category-empty'         => "''Taggayt a war dags bu ca n Tasna niɣ ca n umedia.''",
 'listingcontinuesabbrev' => 'Amesedfar.',
 
-'about'          => 'Xef',
-'newwindow'      => '(Areẓm di tburjet d-tamaynut)',
-'cancel'         => 'ur tegg ca',
+'about'      => 'Xef',
+'newwindow'  => '(Areẓm di tburjet d-tamaynut)',
+'cancel'     => 'ur tegg ca',
+'mytalk'     => 'Asiwl inu',
+'navigation' => 'Asari',
+
+# Cologne Blue skin
 'qbfind'         => 'Aff',
 'qbedit'         => 'Ẓṛeg',
 'qbspecialpages' => 'Tudmawin Special',
-'mytalk'         => 'Asiwl inu',
-'navigation'     => 'Asari',
 
 'errorpagetitle'   => 'Anezri',
 'returnto'         => 'Dwal ɣar $1.',

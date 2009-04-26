@@ -71,21 +71,23 @@ $messages = array(
 'category_header' => 'Artikles in kategorie "$1"',
 'subcategories'   => 'Subkategories',
 
-'about'          => 'Pri',
-'article'        => 'Pagine de kontenaje',
-'newwindow'      => '(aperta in novi fenestre)',
-'cancel'         => 'Nihilisa',
+'about'         => 'Pri',
+'article'       => 'Pagine de kontenaje',
+'newwindow'     => '(aperta in novi fenestre)',
+'cancel'        => 'Nihilisa',
+'moredotdotdot' => 'Plu...',
+'mypage'        => 'Men pagine',
+'mytalk'        => 'Men parla-pagine',
+'anontalk'      => 'Parlo por disi IP',
+'navigation'    => 'Navigatione',
+'and'           => '&#32;e',
+
+# Cologne Blue skin
 'qbfind'         => 'Trova',
 'qbedit'         => 'Modifika',
 'qbpageoptions'  => 'Disi pagine',
 'qbmyoptions'    => 'Men pagines',
 'qbspecialpages' => 'Spesial pagines',
-'moredotdotdot'  => 'Plu...',
-'mypage'         => 'Men pagine',
-'mytalk'         => 'Men parla-pagine',
-'anontalk'       => 'Parlo por disi IP',
-'navigation'     => 'Navigatione',
-'and'            => '&#32;e',
 
 'returnto'         => 'Rivada a $1.',
 'tagline'          => 'Fro {{SITENAME}}',
@@ -164,7 +166,6 @@ $messages = array(
 'logouttext'                 => "'''Vu es nun eksignatat.'''<br />
 Vu pove kontinua usa {{SITENAME}} anonimim, o vu pove riensignata
 kom li sami o altri usere.",
-'loginpagetitle'             => 'Useren ensignato',
 'yourname'                   => 'Usere-nome:',
 'yourpassword'               => 'Pasa-vorde:',
 'remembermypassword'         => 'Memora men pasa-vorde (kun kuke)',

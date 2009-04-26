@@ -65,12 +65,14 @@ $messages = array(
 'nov'           => 'nō novema',
 'dec'           => 'nō tītema',
 
-'about'          => 'Nō',
-'article'        => 'Parau pāpa’i',
+'about'      => 'Nō',
+'article'    => 'Parau pāpa’i',
+'navigation' => 'Arata’i',
+
+# Cologne Blue skin
 'qbedit'         => 'Fa’ahuru ’ē',
 'qbmyoptions'    => 'ta’u ’api',
 'qbspecialpages' => 'Te mau ’api ta’a ’ē',
-'navigation'     => 'Arata’i',
 
 'help'             => 'Tauturu',
 'search'           => 'Roromā’imi',

@@ -128,19 +128,21 @@ $messages = array(
 'category_header' => 'Paggene rìnt\'a categurìa "$1"',
 'subcategories'   => 'Categurìe secunnarie',
 
-'about'          => 'Nfromma',
-'article'        => 'Articulo',
-'newwindow'      => "(s'arape n'ata fenèsta)",
-'cancel'         => 'Scancèlla',
+'about'     => 'Nfromma',
+'article'   => 'Articulo',
+'newwindow' => "(s'arape n'ata fenèsta)",
+'cancel'    => 'Scancèlla',
+'mypage'    => "'A paggena mia",
+'mytalk'    => "'E mmie chiacchieriàte",
+'anontalk'  => 'Chiacchierate pe chisto IP',
+
+# Cologne Blue skin
 'qbfind'         => 'Truòva',
 'qbedit'         => 'Càgna',
 'qbpageoptions'  => 'Chesta paggena',
 'qbpageinfo'     => "Nfrummazzione ncopp'â paggena",
 'qbmyoptions'    => "'E ppaggene mie",
 'qbspecialpages' => 'Pàggene speciàle',
-'mypage'         => "'A paggena mia",
-'mytalk'         => "'E mmie chiacchieriàte",
-'anontalk'       => 'Chiacchierate pe chisto IP',
 
 # Metadata in edit box
 'metadata_help' => 'Metadate:',

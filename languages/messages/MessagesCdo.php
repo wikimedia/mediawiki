@@ -92,17 +92,19 @@ $messages = array(
 'category-empty'         => "''Ciā lôi-biék â-dā̤ hiêng-câi mò̤ ùng-ciŏng iâ mò̤ muòi-tā̤ ùng-giông.''",
 'listingcontinuesabbrev' => '(gié-sṳ̆k sèng-dāu)',
 
-'about'          => 'Guăng-ṳ̀',
-'article'        => 'Ùng-ciŏng',
-'newwindow'      => '(găk sĭng chŏng-tā̤ tāu kŭi)',
-'cancel'         => 'Chṳ̄-siĕu',
+'about'         => 'Guăng-ṳ̀',
+'article'       => 'Ùng-ciŏng',
+'newwindow'     => '(găk sĭng chŏng-tā̤ tāu kŭi)',
+'cancel'        => 'Chṳ̄-siĕu',
+'moredotdotdot' => 'Gáing sâ̤...',
+'mypage'        => 'Nguāi gì hiĕk-miêng',
+'mytalk'        => 'Nguāi gì tō̤-lâung',
+'anontalk'      => 'Cī ciáh IP gì tō̤-lâung-hiĕk',
+'navigation'    => 'Īng-dô̤',
+'and'           => '&#32;gâe̤ng',
+
+# Cologne Blue skin
 'qbspecialpages' => 'Dĕk-sṳ̀ hiĕk',
-'moredotdotdot'  => 'Gáing sâ̤...',
-'mypage'         => 'Nguāi gì hiĕk-miêng',
-'mytalk'         => 'Nguāi gì tō̤-lâung',
-'anontalk'       => 'Cī ciáh IP gì tō̤-lâung-hiĕk',
-'navigation'     => 'Īng-dô̤',
-'and'            => '&#32;gâe̤ng',
 
 'returnto'         => 'Duōng kó̤ $1.',
 'tagline'          => 'Lài-nguòng: {{SITENAME}}',
@@ -196,8 +198,6 @@ $messages = array(
 
 # General errors
 'databaseerror'        => 'Só-gé̤ṳ-kó ô dâng',
-'noconnect'            => 'Dó̤i-bók-cê̤ṳ! Wiki huák-sĕng gié-sŭk kòng-nàng, mò̤ nièng-ngài lièng gáu só-gé̤ṳ-kó hŭk-ô-ké. <br />
-$1',
 'readonly'             => 'Só-gé̤ṳ-kó ké̤ṳk sō̤ kī',
 'readonlytext'         => 'Só-gé̤ṳ-kó cī-buàng ké̤ṳk nè̤ng sō̤ kī lāu, mâ̤-sāi siā sĭng dèu-mĕ̤k hĕ̤k có̤ siŭ-gāi, ô kō̤-nèng sê ôi-lāu nĭk-siòng mì-hô, cĭ-hâiu cêu â̤ ciáng-siòng.
 
@@ -218,7 +218,6 @@ Nṳ̄ â̤-sāi sāi mò̤-miàng huŏng-sék gié-sṳ̆k găk {{SITENAME}} g�
 'welcomecreation'            => '== Huăng-ngìng guŏng-lìng, $1! ==
 
 Nṳ̄ gì dióng-hô̤ ī-gĭng kŭi hō̤ lāu. Dāng nṳ̄ â̤-sāi siŭ-gāi nṳ̄ găk {{SITENAME}} gì siék-diâng.',
-'loginpagetitle'             => 'Ê̤ṳng-hô láuk-diē',
 'yourname'                   => 'Ê̤ṳng-hô-miàng',
 'yourpassword'               => 'Mĭk-mā',
 'yourpasswordagain'          => 'Dṳ̀ng-sĭng páh diē mĭk-mā',
@@ -375,34 +374,31 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'showingresultsnum'     => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$3|'''1'''|'''$3'''}} bĭk giék-guō.",
 
 # Preferences page
-'preferences'           => 'Siék-diâng',
-'mypreferences'         => 'Nguāi gì siék-diâng',
-'prefs-edits'           => 'Siŭ-gāi ché̤ṳ-só:',
-'changepassword'        => 'Gāi-biéng mĭk-mā',
-'prefs-skin'            => 'Puòi-hŭ',
-'prefs-math'            => 'Só-hŏk',
-'dateformat'            => 'Nĭk-gĭ gáh-sék',
-'datedefault'           => 'Mò̤ siék-diâng',
-'prefs-datetime'        => 'Nĭk-gĭ gâe̤ng sì-găng',
-'math_unknown_error'    => 'muôi báik gì dâng',
-'math_unknown_function' => 'muôi báik hàng-só',
-'prefs-personal'        => 'Ê̤ṳng-hô cṳ̆-lâiu',
-'prefs-rc'              => 'Cī-bŏng gì gāi-biéng',
-'prefs-watchlist'       => 'Gáng-sê-dăng',
-'prefs-misc'            => 'Gì-tă',
-'saveprefs'             => 'Bō̤-còng',
-'resetprefs'            => 'Dṳ̀ng-sĭng siék-diâng',
-'searchresultshead'     => 'Sìng-tō̤',
-'resultsperpage'        => 'Mūi hiĕk huōng-ông-liông:',
-'recentchangescount'    => 'Cī-bŏng gāi-biéng gì dà̤-mĕ̤k:',
-'savedprefs'            => 'Nṳ̄ gì siék-diâng ī-gĭng ké̤ṳk bō̤-còng hō̤ lāu.',
-'timezonelegend'        => 'Sì-kṳ̆',
-'timezonetext'          => 'Nṳ̄ buōng-dê sì-găng gâe̤ng hŭk-ô-ké sì-găng (UTC) siŏng-chă gì dēng-cṳ̆ng.',
-'localtime'             => 'Buōng-dê sì-găng',
-'timezoneoffset'        => 'Sì-chă¹',
-'servertime'            => 'Hŭk-ô-ké sì-găng',
-'allowemail'            => 'Â̤ kīng bĕk-nè̤ng huák diêng-piĕ ké̤ṳk nṳ̄',
-'prefs-files'           => 'Ùng-giông',
+'preferences'        => 'Siék-diâng',
+'mypreferences'      => 'Nguāi gì siék-diâng',
+'prefs-edits'        => 'Siŭ-gāi ché̤ṳ-só:',
+'changepassword'     => 'Gāi-biéng mĭk-mā',
+'prefs-skin'         => 'Puòi-hŭ',
+'prefs-math'         => 'Só-hŏk',
+'dateformat'         => 'Nĭk-gĭ gáh-sék',
+'datedefault'        => 'Mò̤ siék-diâng',
+'prefs-datetime'     => 'Nĭk-gĭ gâe̤ng sì-găng',
+'prefs-personal'     => 'Ê̤ṳng-hô cṳ̆-lâiu',
+'prefs-rc'           => 'Cī-bŏng gì gāi-biéng',
+'prefs-watchlist'    => 'Gáng-sê-dăng',
+'prefs-misc'         => 'Gì-tă',
+'saveprefs'          => 'Bō̤-còng',
+'resetprefs'         => 'Dṳ̀ng-sĭng siék-diâng',
+'searchresultshead'  => 'Sìng-tō̤',
+'resultsperpage'     => 'Mūi hiĕk huōng-ông-liông:',
+'recentchangescount' => 'Cī-bŏng gāi-biéng gì dà̤-mĕ̤k:',
+'savedprefs'         => 'Nṳ̄ gì siék-diâng ī-gĭng ké̤ṳk bō̤-còng hō̤ lāu.',
+'timezonelegend'     => 'Sì-kṳ̆',
+'localtime'          => 'Buōng-dê sì-găng',
+'timezoneoffset'     => 'Sì-chă¹',
+'servertime'         => 'Hŭk-ô-ké sì-găng',
+'allowemail'         => 'Â̤ kīng bĕk-nè̤ng huák diêng-piĕ ké̤ṳk nṳ̄',
+'prefs-files'        => 'Ùng-giông',
 
 # User rights
 'editusergroup' => 'Siŭ-gāi Ê̤ṳng-hô Cū',
@@ -814,6 +810,10 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 # Attribution
 'anonymous'        => '{{SITENAME}} gì mò̤ miàng ê̤ṳng-hô.',
 'lastmodifiedatby' => 'Ciā hiĕk-miêng sê diŏh $2, $1, iù  $3 có̤i-hâiu siŭ-gāi gì.',
+
+# Math errors
+'math_unknown_error'    => 'muôi báik gì dâng',
+'math_unknown_function' => 'muôi báik hàng-só',
 
 # Image deletion
 'deletedrevision' => 'Ī-gĭng chēng lâi gì bēng-buōng $1.',

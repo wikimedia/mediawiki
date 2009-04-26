@@ -32,10 +32,12 @@ $messages = array(
 'november'  => 'Whiringa-ā-rangi',
 'december'  => 'Hakihea',
 
-'cancel'         => 'Whakakore',
+'cancel'     => 'Whakakore',
+'mytalk'     => 'Karere mōku',
+'navigation' => 'Huarahi',
+
+# Cologne Blue skin
 'qbspecialpages' => 'Whārangi motuhake',
-'mytalk'         => 'Karere mōku',
-'navigation'     => 'Huarahi',
 
 'help'             => 'Whakamārama',
 'search'           => 'Rapua',

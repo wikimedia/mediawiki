@@ -269,10 +269,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ אפֿט געפֿרעגטע שאלות]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce מעדיעוויקי באפֿרײַאונג פאסטליסטע]",
 
-'about'          => 'וועגן',
-'article'        => 'אינהאלט בלאט',
-'newwindow'      => '(עפֿנט זיך אין א נײַעם פענסטער)',
-'cancel'         => 'זיי מבטל',
+'about'         => 'וועגן',
+'article'       => 'אינהאלט בלאט',
+'newwindow'     => '(עפֿנט זיך אין א נײַעם פענסטער)',
+'cancel'        => 'זיי מבטל',
+'moredotdotdot' => 'נאך…',
+'mypage'        => 'מײַן בלאט',
+'mytalk'        => 'מײַן שמועס',
+'anontalk'      => 'דאס רעדן פון דעם IP',
+'navigation'    => 'נאַװיגאַציע',
+'and'           => '&#32;און',
+
+# Cologne Blue skin
 'qbfind'         => 'טרעף',
 'qbbrowse'       => 'בלעטערט',
 'qbedit'         => 'ענדערן',
@@ -280,12 +288,8 @@ $messages = array(
 'qbpageinfo'     => 'קאנטעקסט',
 'qbmyoptions'    => 'מיינע בלעטער',
 'qbspecialpages' => 'ספעציעלע בלעטער',
-'moredotdotdot'  => 'נאך…',
-'mypage'         => 'מײַן בלאט',
-'mytalk'         => 'מײַן שמועס',
-'anontalk'       => 'דאס רעדן פון דעם IP',
-'navigation'     => 'נאַװיגאַציע',
-'and'            => '&#32;און',
+'faq'            => 'מערסטע געפרעגטע פראגעס',
+'faqpage'        => 'Project:מערסטע געפרעגט פראגעס',
 
 # Metadata in edit box
 'metadata_help' => 'מעטא־דאטן:',
@@ -357,8 +361,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:געזעצליכע אויפקלערונג',
 'edithelp'             => 'הילף וויאזוי צו ענדערן',
 'edithelppage'         => 'Help:ענדערן',
-'faq'                  => 'מערסטע געפרעגטע פראגעס',
-'faqpage'              => 'Project:מערסטע געפרעגט פראגעס',
 'helppage'             => 'Help:אינהאַלט',
 'mainpage'             => 'הויפט זייט',
 'mainpage-description' => 'הויפט זייט',
@@ -464,9 +466,6 @@ $messages = array(
 <td style="direction: ltr;">$3: $4</td>
 </tr>
 </table>',
-'noconnect'            => 'אנטשולדיגט! די וויקי גייט דורך איצט טעכנישע פראבלעמען און קען זיך נישט באהעפטן צו דער דאטנבאזע.<br />$1',
-'nodb'                 => 'קען נישט אויסוויילן דאטעבאזע $1',
-'cachederror'          => 'ווײַטער איז א געקאַשטע קאפיע פונעם געבעטענעם בלאט, וואס איז אפשר נאך נישט דערהײַנטיגט.',
 'laggedslavemode'      => 'ווארענונג: בלאט טוט מעגליך נישט אנטהאלטן לעצטיגע דערהײַנטיגונגען.',
 'readonly'             => 'דאטעבאזע פארשפארט',
 'enterlockreason'      => 'שטעלט א סיבה פארן אפשפאר, אריינגערעכנט א געשאצטער צייט אויף ווען דאס וועט זיך צוריקעפענען די פארשפארונג.',
@@ -530,7 +529,6 @@ $2',
 'logouttext'                 => "'''האָסט זיך ארויסלאָגירט מיט הצלחה.'''",
 'welcomecreation'            => '== ברוך הבא, $1! ==
 אייער קאנטע איז באשאפן געווארן. נישט פארגעסן צו ענדערן אייערע [[Special:Preferences|{{SITENAME}} פרעפֿערענצן]].',
-'loginpagetitle'             => 'באנוצער לאגירן',
 'yourname'                   => 'באַנוצער־נאָמען',
 'yourpassword'               => 'פאסווארט',
 'yourpasswordagain'          => 'ווידער אריינקלאפן פאסווארט',
@@ -633,14 +631,12 @@ $2',
 'retypenew'                 => 'ווידער שרײַבן פאַסווארט:',
 'resetpass_submit'          => 'שטעלן פאסווארט און אריינלאגירן',
 'resetpass_success'         => 'אייער פאַסווארט איז געטוישט געווארן מיט דערפֿאלג! איצט טוט מען אייך אריינלאגירן…',
-'resetpass_bad_temporary'   => 'אומריכטיג צייטווייליג פאַסווארט. איר האט מעגליך שוין מצליח געווען צו טוישן אייער פאַסווארט אדער געבעטן א ניי צייטווייליג פאַסווארט.',
 'resetpass_forbidden'       => 'פאסווערטער קענען נישט ווערן געטוישט',
 'resetpass-no-info'         => 'איר דארפֿט זיין אריינלאגירט צוצוקומען גלייך צו דעם דאזיגן בלאט.',
 'resetpass-submit-loggedin' => 'טוישן פאסווארט',
 'resetpass-wrong-oldpass'   => 'אומגילטיג צײַטווײַליק אדער לויפֿיק פאַסווארט.
 איר האט מעגלעך שוין געטוישט אייער פאַסווארט מיט הצלחה אדער געבעטן א נײַ  צײַטווײַליק פאַסווארט.',
 'resetpass-temp-password'   => 'צײַטווייליק פאַסווארט:',
-'resetpass-logentry'        => 'געטוישט דאס פאַסווארט פֿאַר $1',
 
 # Edit page toolbar
 'bold_sample'     => 'טייפּט דאָ אַריין די טעקסט זאל זיין דיק',
@@ -714,7 +710,6 @@ $2',
 'blockededitsource'                => "די טעקסט פון '''אייערע ענדערונגן''' צו '''$1''' ווערט געוויזן אונטן:",
 'whitelistedittitle'               => 'אַריינלאגירן פֿאַרלאַנגט צו ענדערן',
 'whitelistedittext'                => 'איר ברויכט צו $1 צו ענדערן בלעטער.',
-'confirmedittitle'                 => 'איר דארפט באשטעטיגן אייער בליצפאסט אדרעס כדי צו רעדאקטירן',
 'confirmedittext'                  => 'אויף אייך ליגט קודם די פליכט צו באשטעטיגן און אריינשטעלן אייער ריכטיגע אימעיל אדרעס באפארן ענדערן בלעטער. ביטע שרייבט און באשטעטיגט אייער אימעיל אדרעס דורך אייערע [[Special:Preferences|באנוצער פרעפערענצן]] .',
 'nosuchsectiontitle'               => 'נישטא אזא אפטיילונג',
 'nosuchsectiontext'                => 'איר האט פרובירט ענדערן א אפטיילונג וואס עקזעסטירט נישט. וויבאלד עס איז נישט פארהאן אן אפטיילונג וואס הייסט $1, איז נישטא קיין פלאץ ווי צו אפהיטן אייער ענדערונג.',
@@ -1008,15 +1003,17 @@ $2',
 'powersearch-field'              => 'זוך',
 'search-external'                => 'דרויסנדיק זוכן',
 
+# Quickbar
+'qbsettings-none'       => 'גארנישט',
+'qbsettings-fixedleft'  => 'קבוע לינקס',
+'qbsettings-fixedright' => 'קבוע רעכטס',
+
 # Preferences page
 'preferences'              => 'פרעפערענצן',
 'mypreferences'            => 'מיינע פרעפערענצן',
 'prefs-edits'              => 'צאָל ענדערונגען:',
 'prefsnologin'             => 'נישט אריינלאגירט',
 'prefsnologintext'         => 'איר דארפט זיין  <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} אריינלאגירט]</span> כדי צו ענדערן באניצער פרעפֿערענצן.',
-'qbsettings-none'          => 'גארנישט',
-'qbsettings-fixedleft'     => 'קבוע לינקס',
-'qbsettings-fixedright'    => 'קבוע רעכטס',
 'changepassword'           => 'טוישן פאַסווארט',
 'prefs-skin'               => 'סקין',
 'skin-preview'             => 'פארויסדיגע ווייזונג',
@@ -1024,9 +1021,6 @@ $2',
 'dateformat'               => 'דאטום פארמאט',
 'datedefault'              => 'נישטא קיין פרעפערענץ',
 'prefs-datetime'           => 'דאטום און צייט',
-'math_unknown_error'       => 'אומבאקאנטער פעילער',
-'math_unknown_function'    => 'אומבאקאנטער פונקציע',
-'math_syntax_error'        => 'סינטאקס גרייז',
 'prefs-personal'           => 'באַנוצער פראָפֿיל',
 'prefs-rc'                 => 'לעצטע ענדערונגען',
 'prefs-watchlist'          => 'אויפפאסונג ליסטע',
@@ -1970,6 +1964,11 @@ $NEWPAGE
 # Info page
 'infosubtitle' => 'אינפארמאציע וועגן בלאט',
 'numedits'     => 'צאל פון רעדאקציעס (בלאט): $1',
+
+# Math errors
+'math_unknown_error'    => 'אומבאקאנטער פעילער',
+'math_unknown_function' => 'אומבאקאנטער פונקציע',
+'math_syntax_error'     => 'סינטאקס גרייז',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'באצייכנען אלס פאטראלירט',

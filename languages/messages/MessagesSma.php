@@ -80,21 +80,25 @@ $messages = array(
 'category-empty'         => "''Dïhte kategorije sisvege ijje bielieh jallh baalkah.''",
 'listingcontinuesabbrev' => 'jåar.',
 
-'about'          => 'Bïjre',
-'article'        => 'Sisvege bielie',
-'newwindow'      => '(geehpehtidh sïjse orre klaase)',
-'cancel'         => 'Orrijidh',
+'about'         => 'Bïjre',
+'article'       => 'Sisvege bielie',
+'newwindow'     => '(geehpehtidh sïjse orre klaase)',
+'cancel'        => 'Orrijidh',
+'moredotdotdot' => 'Jienebe...',
+'mypage'        => 'Mov bielie',
+'mytalk'        => 'Mov dïjveldidh',
+'anontalk'      => 'Dïjveldidh ihke dïhte IP',
+'navigation'    => 'Navigasjovne',
+'and'           => '&#32;jih',
+
+# Cologne Blue skin
 'qbfind'         => 'Gaavnedh',
 'qbedit'         => 'Värrhtoedimmie',
 'qbpageoptions'  => 'Dïhte bielie',
 'qbmyoptions'    => 'Mov bielieh',
 'qbspecialpages' => 'Joekoelaakan bielieh',
-'moredotdotdot'  => 'Jienebe...',
-'mypage'         => 'Mov bielie',
-'mytalk'         => 'Mov dïjveldidh',
-'anontalk'       => 'Dïjveldidh ihke dïhte IP',
-'navigation'     => 'Navigasjovne',
-'and'            => '&#32;jih',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 'errorpagetitle'   => 'Båajhtode',
 'returnto'         => 'Bååstide gåajkoe $1.',
@@ -149,8 +153,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Bäjjesereaktah',
 'edithelp'             => 'Sjiehtedimmie viehkie',
 'edithelppage'         => 'Help:Sjiehtedimmie',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Sisvege',
 'mainpage'             => 'Aalkoebielie',
 'mainpage-description' => 'Aalkoebielie',
@@ -348,15 +350,14 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'powersearch'      => 'Ohtsedh',
 
 # Preferences page
-'preferences'        => 'Sïjsestäälningeh',
-'mypreferences'      => 'Mov sïjsesäälningeh',
-'changepassword'     => 'Värrhtoedimmie loevesbaakoe',
-'skin-preview'       => 'Åvte-vuesiehtidh',
-'math_unknown_error' => 'ammes båajhtede',
-'saveprefs'          => 'Spååredh',
-'searchresultshead'  => 'Ohtsedh',
-'timezonelegend'     => 'Tïjjedajve',
-'localtime'          => 'Byjrehks tïjje',
+'preferences'       => 'Sïjsestäälningeh',
+'mypreferences'     => 'Mov sïjsesäälningeh',
+'changepassword'    => 'Värrhtoedimmie loevesbaakoe',
+'skin-preview'      => 'Åvte-vuesiehtidh',
+'saveprefs'         => 'Spååredh',
+'searchresultshead' => 'Ohtsedh',
+'timezonelegend'    => 'Tïjjedajve',
+'localtime'         => 'Byjrehks tïjje',
 
 # User rights
 'editinguser' => "Värrhtoedimmie nuhtjien '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -771,6 +772,9 @@ Gïemhpes veeljeme jeatjebh nomme.',
 'infosubtitle' => 'Bïevnesh ihke bielie',
 'numedits'     => 'Låhkoe värrhtoedimmieh (bielie): $1',
 'numtalkedits' => 'Låhkoe värrhtoedimmieh (dïjvaldidh bielie): $1',
+
+# Math errors
+'math_unknown_error' => 'ammes båajhtede',
 
 # Patrol log
 'patrol-log-auto' => '(jïjtsistie)',

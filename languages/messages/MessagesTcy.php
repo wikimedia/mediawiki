@@ -137,10 +137,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 
-'about'          => 'ಎಂಕ್ಲೆನ ಬಗ್ಗೆ',
-'article'        => 'ಲೇಖನ ಪುಟ',
-'newwindow'      => '(ಪೊಸ ಕಂಡಿನ್ ಓಪನ್ ಮಲ್ಪುಂಡು)',
-'cancel'         => 'ವಜಾ ಮನ್ಪುಲೆ',
+'about'         => 'ಎಂಕ್ಲೆನ ಬಗ್ಗೆ',
+'article'       => 'ಲೇಖನ ಪುಟ',
+'newwindow'     => '(ಪೊಸ ಕಂಡಿನ್ ಓಪನ್ ಮಲ್ಪುಂಡು)',
+'cancel'        => 'ವಜಾ ಮನ್ಪುಲೆ',
+'moredotdotdot' => 'ನನಲ...',
+'mypage'        => 'ಎನ್ನ ಪುಟ',
+'mytalk'        => 'ಎನ್ನ ಚರ್ಚೆ',
+'anontalk'      => 'ಈ ಐ.ಪಿ ಗ್ ಪಾತೆರ್’ಲೆ',
+'navigation'    => 'ಸಂಚಾರ',
+'and'           => '&#32;ಬೊಕ್ಕ',
+
+# Cologne Blue skin
 'qbfind'         => 'ನಾಡ್’ಲೆ',
 'qbbrowse'       => 'ಬ್ರೌಸ್',
 'qbedit'         => 'ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',
@@ -148,12 +156,8 @@ $messages = array(
 'qbpageinfo'     => 'ಸನ್ನಿವೇಶ',
 'qbmyoptions'    => 'ಎನ್ನ ಪುಟೊಲು',
 'qbspecialpages' => 'ವಿಶೇಷ ಪುಟೊಲು',
-'moredotdotdot'  => 'ನನಲ...',
-'mypage'         => 'ಎನ್ನ ಪುಟ',
-'mytalk'         => 'ಎನ್ನ ಚರ್ಚೆ',
-'anontalk'       => 'ಈ ಐ.ಪಿ ಗ್ ಪಾತೆರ್’ಲೆ',
-'navigation'     => 'ಸಂಚಾರ',
-'and'            => '&#32;ಬೊಕ್ಕ',
+'faq'            => 'ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
+'faqpage'        => 'Project:ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
 
 # Metadata in edit box
 'metadata_help' => 'ಮೂಲಮಾಹಿತಿ:',
@@ -225,8 +229,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:ಸಾಮಾನ್ಯ ಅಬಾಧ್ಯತೆಲು',
 'edithelp'             => 'ಸಂಪಾದನೆ(ಎಡಿಟ್) ಮಲ್ಪೆರೆ ಸಹಾಯ',
 'edithelppage'         => 'Help:ಸಂಪಾದನೆ',
-'faq'                  => 'ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
-'faqpage'              => 'Project:ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
 'helppage'             => 'Help:ಪರಿವಿಡಿ',
 'mainpage'             => 'ಮುಖ್ಯ ಪುಟ',
 'mainpage-description' => 'ಮುಖ್ಯ ಪುಟ',
@@ -297,9 +299,6 @@ $messages = array(
 # General errors
 'error'                => 'ದೋಷ',
 'databaseerror'        => 'ಡೇಟಾಬೇಸ್ ದೋಷ',
-'noconnect'            => 'ವಿಕಿ ಡ್ ಕೆಲವು ತಾ೦ತ್ರಿಕ ದೋಶೊಲು ತೋಜೊ೦ದು೦ಡು ಬುಕ ಡಾಟಾಬೇಸ್ ಸರ್ವರ್ ನ್ ಸ೦ಪರ್ಕ ಮಲ್ಪೆರ್ ಆವೊ೦ದಿಜ್ಜಿ.<br />
-$1',
-'nodb'                 => 'ಡಾಟಾಬೇಸ್ $1 ನ್ ಆಯ್ಕೆ ಮಲ್ತೊನೆರೆ ಆಯಿಜಿ',
 'readonly'             => 'ಡಾಟಾಬೇಸ್ ಲಾಕ್ ಆತ್೦ಡ್',
 'missing-article'      => '"$1" $2 ಪುದರ್’ದ ಪುಟ ದೇಟಬೇಸ್’ಡ್ ಇಜ್ಜಿ.
 

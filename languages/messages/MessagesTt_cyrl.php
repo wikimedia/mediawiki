@@ -136,10 +136,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki турында еш бирелгән сораулар һәм җаваплар];
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'нең яңа версияләре турында хәбәрләр җибәреп чыгу].",
 
-'about'          => 'Тасвир',
-'article'        => 'Эчтәлек бите',
-'newwindow'      => '(яңа тәрәзәдә ачыла)',
-'cancel'         => 'Үткәрмәү',
+'about'         => 'Тасвир',
+'article'       => 'Эчтәлек бите',
+'newwindow'     => '(яңа тәрәзәдә ачыла)',
+'cancel'        => 'Үткәрмәү',
+'moredotdotdot' => 'Дәвам…',
+'mypage'        => 'Минем битем',
+'mytalk'        => 'Фикер алышу битем',
+'anontalk'      => 'Бу IP-адрес өчен фикер алышу',
+'navigation'    => 'Навигация',
+'and'           => '&#32;һәм',
+
+# Cologne Blue skin
 'qbfind'         => 'Эзләү',
 'qbbrowse'       => 'Күзәтү',
 'qbedit'         => 'Үзгәртү',
@@ -147,12 +155,8 @@ $messages = array(
 'qbpageinfo'     => 'Бит турындагы мәгълүматлар',
 'qbmyoptions'    => 'Битләрем',
 'qbspecialpages' => 'Махсус битләр',
-'moredotdotdot'  => 'Дәвам…',
-'mypage'         => 'Минем битем',
-'mytalk'         => 'Фикер алышу битем',
-'anontalk'       => 'Бу IP-адрес өчен фикер алышу',
-'navigation'     => 'Навигация',
-'and'            => '&#32;һәм',
+'faq'            => 'ЕБС (FAQ)',
+'faqpage'        => 'Project:ЕБС',
 
 # Metadata in edit box
 'metadata_help' => 'Мета-мәгълүматлар:',
@@ -224,8 +228,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Җаваплылыктан баш тарту',
 'edithelp'             => 'Үзгәртү ярдәме',
 'edithelppage'         => 'Help:Үзгәртү',
-'faq'                  => 'ЕБС (FAQ)',
-'faqpage'              => 'Project:ЕБС',
 'helppage'             => 'Help:Эчтәлек',
 'mainpage'             => 'Төп бит',
 'mainpage-description' => 'Төп бит',
@@ -300,10 +302,6 @@ MySQL <tt>«$3: $4»</tt> хатаны күрсәткән.',
 <blockquote><tt>$1</tt></blockquote>
 <tt>«$2»</tt> функциядән.
 MySQL <tt>«$3: $4»</tt> хатаны күрсәткән.',
-'noconnect'            => 'Гафу итегез, хәзер викинең техник авырлыклары бар һәм мәгълүматлар базасының серверы белән тоташып булмый.<br />
-$1',
-'nodb'                 => '$1 мәгълүмат базасын сайлап булмый.',
-'cachederror'          => 'Аста соралган битнең кештә сакланган копиясе күрсәтелгән; бәлки, ул искергән.',
 'laggedslavemode'      => 'Игътибар: бәлки, биттә соңгы яңартмалары юк.',
 'readonly'             => 'Мәгълүматлар базасына язу йомылган',
 'enterlockreason'      => 'Йому сәбәбен һәм мөддәтен күрсәтегез.',
@@ -364,7 +362,6 @@ $2',
 'welcomecreation'            => '== Рәхим итегез, $1! ==
 Сез теркәлгәнсез.
 Сайт персональ көйләргә онытмагыз.',
-'loginpagetitle'             => 'Кулланучының теркәү исеме',
 'yourname'                   => 'Кулланучы исеме:',
 'yourpassword'               => 'Серсүз:',
 'yourpasswordagain'          => 'Серсүзне кабат кертү:',
@@ -441,16 +438,15 @@ $2',
 'loginlanguagelabel'         => 'Тел: $1',
 
 # Password reset dialog
-'resetpass'               => 'Хисап язмасының серсүзе бетерү',
-'resetpass_announce'      => 'Сез электрон почта белән вакытлы бирелгән серсүз белән кергәнсез. Системага керү төгәлләп, сез яңа серсүз төзергә тиеш.',
-'resetpass_text'          => '<!-- Монда текст өстәгез -->',
-'resetpass_header'        => 'Серсүзне ташлатырга',
-'oldpassword'             => 'Иске серсүз:',
-'newpassword'             => 'Яңа серсүз:',
-'retypenew'               => 'Яңа серсүзне кабатлагыз:',
-'resetpass_submit'        => 'Серсүз төзү дә керү',
-'resetpass_bad_temporary' => 'Вакытлы серсүз дөрес түгел. Бәлки, сез инде серсүзне алмаштырган идегез, яки тагын бер тапкыр вакытлы серсүз сорарга сынагыз.',
-'resetpass_forbidden'     => 'Бу вики-системада серсүзләрне алмаштырып булмый.',
+'resetpass'           => 'Хисап язмасының серсүзе бетерү',
+'resetpass_announce'  => 'Сез электрон почта белән вакытлы бирелгән серсүз белән кергәнсез. Системага керү төгәлләп, сез яңа серсүз төзергә тиеш.',
+'resetpass_text'      => '<!-- Монда текст өстәгез -->',
+'resetpass_header'    => 'Серсүзне ташлатырга',
+'oldpassword'         => 'Иске серсүз:',
+'newpassword'         => 'Яңа серсүз:',
+'retypenew'           => 'Яңа серсүзне кабатлагыз:',
+'resetpass_submit'    => 'Серсүз төзү дә керү',
+'resetpass_forbidden' => 'Бу вики-системада серсүзләрне алмаштырып булмый.',
 
 # Edit page toolbar
 'bold_sample'     => 'Калын язылышы',
@@ -578,14 +574,16 @@ $2',
 'powersearch'         => 'Өстәмә эзләү',
 'powersearch-legend'  => 'Өстәмә эзләү',
 
+# Quickbar
+'qbsettings'      => 'Күчешләр аслыгы',
+'qbsettings-none' => 'Күрсәтмәскә',
+
 # Preferences page
 'preferences'           => 'Көйләнмәләр',
 'mypreferences'         => 'Көйләнмәләрем',
 'prefs-edits'           => 'Үзгәртүләр исәбе:',
 'prefsnologin'          => 'Кермәгәнсез',
 'prefsnologintext'      => 'Кулланучы көйләнмәләрене үзгәртү өчен, сез [[Special:UserLogin|керергә]] тиешсез.',
-'qbsettings'            => 'Күчешләр аслыгы',
-'qbsettings-none'       => 'Күрсәтмәскә',
 'changepassword'        => 'Серсүзне алыштырырга',
 'prefs-skin'            => 'Күренеш',
 'skin-preview'          => 'Алдан карау',

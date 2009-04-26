@@ -160,10 +160,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lîsteya e-nameyên versyonên nuh yê MediaWiki]',
 
-'about'          => 'Der barê',
-'article'        => 'Gotar',
-'newwindow'      => '(di rûpelekî din da yê were nîşandan)',
-'cancel'         => 'Betal',
+'about'         => 'Der barê',
+'article'       => 'Gotar',
+'newwindow'     => '(di rûpelekî din da yê were nîşandan)',
+'cancel'        => 'Betal',
+'moredotdotdot' => 'Zêde...',
+'mypage'        => 'Rûpela min',
+'mytalk'        => 'Rûpela guftûgo ya min',
+'anontalk'      => 'Guftûgo ji bo vê IPê',
+'navigation'    => 'Navîgasyon',
+'and'           => '&#32;û',
+
+# Cologne Blue skin
 'qbfind'         => 'Bibîne',
 'qbbrowse'       => 'Bigere',
 'qbedit'         => 'Biguherîne',
@@ -171,12 +179,8 @@ $messages = array(
 'qbpageinfo'     => "Data'yên rûpelê",
 'qbmyoptions'    => 'Rûpelên min',
 'qbspecialpages' => 'Rûpelên taybet',
-'moredotdotdot'  => 'Zêde...',
-'mypage'         => 'Rûpela min',
-'mytalk'         => 'Rûpela guftûgo ya min',
-'anontalk'       => 'Guftûgo ji bo vê IPê',
-'navigation'     => 'Navîgasyon',
-'and'            => '&#32;û',
+'faq'            => 'Pirs û Bersîv (FAQ)',
+'faqpage'        => 'Project:Pirs û Bersîv',
 
 # Metadata in edit box
 'metadata_help' => "Data'yên meta:",
@@ -248,8 +252,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Ferexetname',
 'edithelp'             => 'Alîkarî ji bo guherandin',
 'edithelppage'         => 'Help:Rûpeleke çawa biguherînim',
-'faq'                  => 'Pirs û Bersîv (FAQ)',
-'faqpage'              => 'Project:Pirs û Bersîv',
 'helppage'             => 'Help:Alîkarî',
 'mainpage'             => 'Destpêk',
 'mainpage-description' => 'Destpêk',
@@ -321,10 +323,6 @@ ji fonksyonê "<tt>$2</tt>" yê
 MySQL ev şaşbûna hate dîtin: "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Li cem sekirina database "$1 ji fonksyonê "<tt>$2</tt>" yê
 MySQL ev şaşbûna hate dîtin: "<tt>$3: $4</tt>".',
-'noconnect'            => 'Bibexşîne! Çend pirsgrêkên teknîkî heye, girêdan ji pêşkêşvanê (suxrekirê, server) re niha ne gengaz e. <br />
-$1',
-'nodb'                 => 'Database $1 nikanî hatiba sekirin. Xêra xwe derengtir dîsa bicerbîne.',
-'cachederror'          => "Evê jêr bes kopîyek ji cache'ê ye û belkî ne yê niha ye.",
 'laggedslavemode'      => 'Zanibe: Ev rûpela belkî guherandinên yê ne niha nîşandide.',
 'readonly'             => 'Database hatîye girtin',
 'enterlockreason'      => 'Hoyek ji bo bestin binav bike, herweha zemaneke mezende kirî ji bo helgirtina bestinê!',
@@ -378,7 +376,6 @@ Tu dikarî {{SITENAME}} niha weke bikarhênerekî nediyarkirî bikarbînî, yan 
 'welcomecreation'            => '== Bi xêr hatî, $1! ==
 
 Hesaba te hat afirandin. Tu dikarî niha [[Special:Preferences|tercîhên xwe di {{SITENAME}}]] da eyar bikî.',
-'loginpagetitle'             => 'Qeyda bikarhêner (User login)',
 'yourname'                   => 'Navê te wek bikarhêner (user name)',
 'yourpassword'               => 'Şîfreya te (password)',
 'yourpasswordagain'          => 'Şîfreya xwe careke din binîvîse',
@@ -453,17 +450,16 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'loginlanguagelabel'         => 'Ziman: $1',
 
 # Password reset dialog
-'resetpass'               => "Şîfreya account'î bikarhêneran şondabibe",
-'resetpass_announce'      => 'Te xwe bi şîfreyekê qeydkir, yê bi e-nameyekê ji te ra hate şandin. Ji bo xelaskirinê qeydkirinê, tu niha gireke şîfreyeka nuh binivisînê.',
-'resetpass_text'          => '<!-- Nivîsê xwe li vir binivisîne -->',
-'resetpass_header'        => 'Şîfreya xwe betalbike',
-'oldpassword'             => 'Şîfreya kevn',
-'newpassword'             => 'Şîfreya nû',
-'retypenew'               => 'Şîfreya nû careke din binîvîse',
-'resetpass_submit'        => 'Şîfrê bişîne û xwe qedybike',
-'resetpass_success'       => 'Şîfreya te hate guherandin! Niha tu tê qeydkirin...',
-'resetpass_bad_temporary' => 'Şîfreya te niha netê qebûlkirin. Te berê şîfreyekî nuh tomarkir ya şîfreyekî nuh xast.',
-'resetpass_forbidden'     => 'Şîfre nikanin werin guhartin',
+'resetpass'           => "Şîfreya account'î bikarhêneran şondabibe",
+'resetpass_announce'  => 'Te xwe bi şîfreyekê qeydkir, yê bi e-nameyekê ji te ra hate şandin. Ji bo xelaskirinê qeydkirinê, tu niha gireke şîfreyeka nuh binivisînê.',
+'resetpass_text'      => '<!-- Nivîsê xwe li vir binivisîne -->',
+'resetpass_header'    => 'Şîfreya xwe betalbike',
+'oldpassword'         => 'Şîfreya kevn',
+'newpassword'         => 'Şîfreya nû',
+'retypenew'           => 'Şîfreya nû careke din binîvîse',
+'resetpass_submit'    => 'Şîfrê bişîne û xwe qedybike',
+'resetpass_success'   => 'Şîfreya te hate guherandin! Niha tu tê qeydkirin...',
+'resetpass_forbidden' => 'Şîfre nikanin werin guhartin',
 
 # Edit page toolbar
 'bold_sample'     => 'Nivîsa estûr',
@@ -537,7 +533,6 @@ Zanibe ku tu nikanê e-nameya bişînê heta tu di [[Special:Preferences|tercih�
 'blockededitsource'                => "Nivîsarên '''guherandinên te''' di '''$1''' da tê wêşandan:",
 'whitelistedittitle'               => 'Ji bo guherandinê vê gotarê tu gireke xwe qeydbikê.',
 'whitelistedittext'                => 'Ji bo guherandina rûpelan, $1 pêwîst e.',
-'confirmedittitle'                 => 'Ji bo guherandinê, naskirina e-nameya te tê xastin.',
 'confirmedittext'                  => 'Tu gireke adrêsa e-nameya xwe nasbikê berî tu rûpelan diguherînê. Xêra xwe adrêsa e-nameya ya xwe di [[Special:Preferences|tercihên xwe]] da binivisîne û nasbike.',
 'nosuchsectiontitle'               => 'Beşekî wisa tune ye',
 'nosuchsectiontext'                => 'Te dixast beşekê biguherînê yê tune ye. Ji ber ku beşa $1 tune ye, guherandinên te jî nikanin werin tomarkirin.',
@@ -701,14 +696,15 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'searchdisabled'                 => '<p>Tu dikarî li {{SITENAME}} bi Google an Yahoo! bigere. Têbînî: Dibe ku encamen lêgerîne ne yên herî nû ne.
 </p>',
 
+# Quickbar
+'qbsettings-none' => 'Tune',
+
 # Preferences page
 'preferences'         => 'Tercîhên min',
 'mypreferences'       => 'Tercihên min',
 'prefs-edits'         => 'Hejmarê guherandinan:',
 'prefsnologin'        => 'Xwe qeyd nekir',
 'prefsnologintext'    => 'Tu gireke xwe <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} qeydbikê]</span> ji bo guherandina tercihên bikarhêneran.',
-'prefsreset'          => 'Tercih hatin şondakirin.',
-'qbsettings-none'     => 'Tune',
 'changepassword'      => 'Şîfre biguherîne',
 'prefs-skin'          => 'Pêste',
 'skin-preview'        => 'Pêşdîtin',
@@ -716,8 +712,6 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'dateformat'          => 'Formata rojê',
 'datedefault'         => 'Tercih tune ne',
 'prefs-datetime'      => 'Dem û rêkewt',
-'math_unknown_error'  => 'şaşbûnekî nezanîn',
-'math_image_error'    => 'Wêşandana PNG nemeşî',
 'prefs-personal'      => 'Agahiyên bikarhênerê/î',
 'prefs-rc'            => 'Guherandinên dawî',
 'prefs-watchlist'     => 'Lîsteya şopandinê',
@@ -731,7 +725,6 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'searchresultshead'   => 'Eyarên encamên lêgerinê',
 'savedprefs'          => 'Tercîhên te qeyd kirî ne.',
 'timezonelegend'      => 'Navçeya demê',
-'timezonetext'        => '¹Hejmara saetan têkê, yê navbera navçeya demê te û UTC da ne.',
 'localtime'           => 'Demê vê cihê',
 'timezoneoffset'      => 'Cudahî¹:',
 'servertime'          => "Dema server'ê:",
@@ -1557,6 +1550,10 @@ if (wgUserLanguage == "ku-arab")
 'mw_math_source' => "Wek TeX bêle (ji browser'ên gotaran ra)",
 'mw_math_modern' => "Baştir e ji browser'ên nuhtir",
 'mw_math_mathml' => 'MathML eger bibe (ceribandin)',
+
+# Math errors
+'math_unknown_error' => 'şaşbûnekî nezanîn',
+'math_image_error'   => 'Wêşandana PNG nemeşî',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Wek serrastkirî nîşanbide',

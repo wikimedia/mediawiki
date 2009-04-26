@@ -60,13 +60,15 @@ $messages = array(
 'oct'           => 'Okt',
 'dec'           => 'Des',
 
+'mypage' => 'Pej blong mi',
+'mytalk' => 'Tingting blong mi',
+'and'    => '&#32;mo',
+
+# Cologne Blue skin
 'qbedit'         => 'Jenisim hem',
 'qbpageoptions'  => 'Pej ia',
 'qbmyoptions'    => 'Ol pej blong mi',
 'qbspecialpages' => 'Ol spesel pej',
-'mypage'         => 'Pej blong mi',
-'mytalk'         => 'Tingting blong mi',
-'and'            => '&#32;mo',
 
 'edit'             => 'Jenisim hem',
 'newpage'          => 'Mekem niu pej',

@@ -113,21 +113,23 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常见问题解答]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]',
 
-'about'          => '关于',
-'article'        => '文章',
-'newwindow'      => '(在新窗口中打开)',
-'cancel'         => '取消',
+'about'         => '关于',
+'article'       => '文章',
+'newwindow'     => '(在新窗口中打开)',
+'cancel'        => '取消',
+'moredotdotdot' => '还有...',
+'mypage'        => '我个页面',
+'mytalk'        => '我个讲张',
+'anontalk'      => '该IP个讲张',
+'navigation'    => '导航',
+'and'           => '&#32;搭仔',
+
+# Cologne Blue skin
 'qbfind'         => '查找',
 'qbedit'         => '编辑',
 'qbpageoptions'  => '页面选项',
 'qbmyoptions'    => '我个选项',
 'qbspecialpages' => '特殊页面',
-'moredotdotdot'  => '还有...',
-'mypage'         => '我个页面',
-'mytalk'         => '我个讲张',
-'anontalk'       => '该IP个讲张',
-'navigation'     => '导航',
-'and'            => '&#32;搭仔',
 
 'errorpagetitle'    => '错误',
 'returnto'          => '返回到$1。',
@@ -248,7 +250,6 @@ $messages = array(
 'welcomecreation'            => '== 欢迎， $1！ ==
 
 倷个户头已经建立哉。覅忘记脱改动倷个{{SITENAME}}偏好噢。',
-'loginpagetitle'             => '用户登录',
 'yourname'                   => '用户名:',
 'yourpassword'               => '密码:',
 'yourpasswordagain'          => '再打一遍密码:',
@@ -375,11 +376,13 @@ $messages = array(
 'search-mwsuggest-disabled' => ' 没有建议',
 'powersearch'               => '高级搜索',
 
+# Quickbar
+'qbsettings-none' => '呒',
+
 # Preferences page
 'preferences'           => '偏好',
 'mypreferences'         => '我个所欢喜',
 'prefsnologin'          => '朆登录',
-'qbsettings-none'       => '呒',
 'changepassword'        => '改密码',
 'prefs-skin'            => '皮肤',
 'skin-preview'          => '预览',

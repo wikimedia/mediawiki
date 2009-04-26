@@ -125,21 +125,23 @@ $messages = array(
 'category-article-count'   => '{{PLURAL:$2|Ẹ̀ka yìí ní ojúewé kan péré.|{{PLURAL:$1|Ojúewé kan yìí nìkan|Àwọn ojúewé $1 yìí}} lówà nínú èka yìí, nínú àpapọ̀ $2.}}',
 'listingcontinuesabbrev'   => 'tẹ̀síwájú',
 
-'about'          => 'Nípa',
-'newwindow'      => '(yíò sí nínú fèrèsè tuntun)',
-'cancel'         => "Fa'gilé",
+'about'         => 'Nípa',
+'newwindow'     => '(yíò sí nínú fèrèsè tuntun)',
+'cancel'        => "Fa'gilé",
+'moredotdotdot' => 'Ẹ̀kúnrẹ́rẹ́...',
+'mypage'        => 'Ojúewé mi',
+'mytalk'        => 'Ọ̀rọ̀ mi',
+'anontalk'      => 'Ọ̀rọ̀ fún IP yí',
+'navigation'    => 'Atọ́ka',
+'and'           => '&#32;àti',
+
+# Cologne Blue skin
 'qbfind'         => 'Wá rí',
 'qbbrowse'       => 'Ìṣíwò',
 'qbedit'         => 'Àtúnṣe',
 'qbpageoptions'  => 'Ojúewé yi',
 'qbmyoptions'    => 'Àwọn ojúewé mi',
 'qbspecialpages' => 'Àwọn ojúewé pàtàkì',
-'moredotdotdot'  => 'Ẹ̀kúnrẹ́rẹ́...',
-'mypage'         => 'Ojúewé mi',
-'mytalk'         => 'Ọ̀rọ̀ mi',
-'anontalk'       => 'Ọ̀rọ̀ fún IP yí',
-'navigation'     => 'Atọ́ka',
-'and'            => '&#32;àti',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -292,7 +294,6 @@ $messages = array(
 'welcomecreation'           => "== Ẹ kú àbọ̀, $1! ==
 
 A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọn ìfẹ́ràn {{SITENAME}} yín.",
-'loginpagetitle'            => 'Ìwọlé oníṣe',
 'yourname'                  => 'Orúkọ oníṣe (username):',
 'yourpassword'              => 'Ọ̀rọ̀ìpamọ́:',
 'yourpasswordagain'         => 'Tẹkíkọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
@@ -416,7 +417,6 @@ Ojúọ̀nà IP yín lọ́wọ́lọ́wọ́ ni $3, bẹ́ ẹ̀ sì ni ID fún
 Ẹ jọ̀wọ́ ẹ fi gbogbo ẹ̀kúnrẹ́rẹ́ òkè yìí kún ìbérè tí ẹ bá ṣe.",
 'whitelistedittitle'         => "Ìwọlé ṣe dandan láti ṣ'àtúnṣe",
 'whitelistedittext'          => "Ẹ gbọ́dọ̀ $1 láti ṣ'àtúnṣe àwọn ojúewé.",
-'confirmedittitle'           => "Ìmúdájú E-mail ṣe dandan láti ṣ'àtúnṣe",
 'nosuchsectiontitle'         => 'Kò sí irú abala báun',
 'loginreqtitle'              => "Ẹ gbọ́dọ̀ kọ́kọ́ w'ọlé ná",
 'loginreqlink'               => 'ìwọlé',

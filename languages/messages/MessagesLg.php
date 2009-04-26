@@ -74,16 +74,20 @@ $messages = array(
 'category-media-header' => 'Mediya eziri mu ttuluba lya "$1"',
 'category-empty'        => "''Ettuluba lino temuli mpapula oba mediya.''",
 
-'about'          => 'Okutangaaza',
-'newwindow'      => '(bijjira mu kadirisa kapya)',
-'cancel'         => 'Biveeko',
+'about'      => 'Okutangaaza',
+'newwindow'  => '(bijjira mu kadirisa kapya)',
+'cancel'     => 'Biveeko',
+'mypage'     => 'Enfo yange',
+'mytalk'     => 'Yogera nange',
+'navigation' => 'Endagiriro',
+
+# Cologne Blue skin
 'qbfind'         => 'Noonya',
 'qbbrowse'       => 'Lambula',
 'qbedit'         => 'Kyuusa',
 'qbspecialpages' => 'Emiko emyawule',
-'mypage'         => 'Enfo yange',
-'mytalk'         => 'Yogera nange',
-'navigation'     => 'Endagiriro',
+'faq'            => 'Ebitera okubuuzibwa',
+'faqpage'        => 'Project:Ebitera okubuuzibwa ku',
 
 'returnto'         => 'Dda ku $1.',
 'tagline'          => 'Bisangiddwa ku {{SITENAME}}',
@@ -131,8 +135,6 @@ $messages = array(
 'disclaimerpage'       => "Project:Okutangaaza ku kkomo ery'obuvunaaniro bwaffe obw'omu mateeka",
 'edithelp'             => 'Funa obuyambi',
 'edithelppage'         => "Help:Obuyambi ku by'okukyusakyusa",
-'faq'                  => 'Ebitera okubuuzibwa',
-'faqpage'              => 'Project:Ebitera okubuuzibwa ku',
 'helppage'             => 'Help:Endagiriro',
 'mainpage'             => 'Olupapula Olusooka',
 'mainpage-description' => 'Olupapula Olusooka',
@@ -178,7 +180,6 @@ n'okuddamu okuyingira nga bw'obadde oba nga okozesezza ery'obwa memba
 eddala. Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe
 zibadde nga oyingidde - okutuusa lw'okunkumula eggwanika ezzibizi erya
 kalambula-neti yo.",
-'loginpagetitle'             => 'Kuyingira - memba',
 'yourname'                   => "Ery'obwa memba",
 'yourpassword'               => 'Ekigambo ekikuumi',
 'yourpasswordagain'          => 'Ddamu ekigambo ekikuumi',

@@ -60,9 +60,11 @@ $messages = array(
 'dec'           => 'Tiseba',
 
 'cancel'     => 'Sasamaki',
-'qbedit'     => 'Veisautaki',
 'mytalk'     => 'Noqu vosa',
 'navigation' => 'Vakatasosoko',
+
+# Cologne Blue skin
+'qbedit' => 'Veisautaki',
 
 'help'             => 'Veivuke',
 'search'           => 'Vaqaqara',

@@ -58,19 +58,23 @@ $messages = array(
 'november'  => 'Hukuri',
 'december'  => "N'wendzamhala",
 
-'newwindow'      => '(Yi pfula e ndhzawini yintswa)',
-'cancel'         => 'Thsika',
+'newwindow'     => '(Yi pfula e ndhzawini yintswa)',
+'cancel'        => 'Thsika',
+'moredotdotdot' => "Swin'wana...",
+'mypage'        => 'Tluka ramina',
+'mytalk'        => 'Mbulavulo namina',
+'anontalk'      => 'Vulavula na IP leyi',
+'and'           => '&#32;nakambe',
+
+# Cologne Blue skin
 'qbfind'         => 'Kuma',
 'qbedit'         => 'Lulamisa',
 'qbpageoptions'  => 'Tluka leri',
 'qbpageinfo'     => 'mongo',
 'qbmyoptions'    => 'Matluka ya mina',
 'qbspecialpages' => 'Matluka yohlawuleka',
-'moredotdotdot'  => "Swin'wana...",
-'mypage'         => 'Tluka ramina',
-'mytalk'         => 'Mbulavulo namina',
-'anontalk'       => 'Vulavula na IP leyi',
-'and'            => '&#32;nakambe',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 'errorpagetitle'   => 'Xihoxo',
 'returnto'         => 'Thlelela e $1.',
@@ -104,8 +108,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Swithsuxa nadzu hikuangara',
 'edithelp'             => 'Mpfuno hi ta mindzulamiso',
 'edithelppage'         => 'Help:Mindzulamiso',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Leswinga ndzeni',
 'mainpage'             => 'Tlukankulu',
 'mainpage-description' => 'Tluka-Nkulu',
@@ -182,10 +184,6 @@ The last attempted database query was:
 "$1"
 from within function "$2".
 MySQL returned error "$3: $4"',
-'noconnect'            => 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server.<br />
-$1',
-'nodb'                 => 'Could not select database $1',
-'cachederror'          => 'The following is a cached copy of the requested page, and may not be up to date.',
 'laggedslavemode'      => 'Warning: Page may not contain recent updates.',
 'readonly'             => 'Database locked',
 'enterlockreason'      => 'Enter a reason for the lock, including an estimate of when the lock will be released',

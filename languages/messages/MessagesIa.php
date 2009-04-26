@@ -260,10 +260,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ a proposito de MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]',
 
-'about'          => 'A proposito',
-'article'        => 'Pagina de contento',
-'newwindow'      => '(se aperi in un nove fenestra)',
-'cancel'         => 'Cancellar',
+'about'         => 'A proposito',
+'article'       => 'Pagina de contento',
+'newwindow'     => '(se aperi in un nove fenestra)',
+'cancel'        => 'Cancellar',
+'moredotdotdot' => 'Plus...',
+'mypage'        => 'Mi pagina',
+'mytalk'        => 'Mi discussion',
+'anontalk'      => 'Discussion pro iste adresse IP',
+'navigation'    => 'Navigation',
+'and'           => '&#32;e',
+
+# Cologne Blue skin
 'qbfind'         => 'Cercar',
 'qbbrowse'       => 'Foliar',
 'qbedit'         => 'Modificar',
@@ -271,12 +279,8 @@ $messages = array(
 'qbpageinfo'     => 'Contexto',
 'qbmyoptions'    => 'Mi paginas',
 'qbspecialpages' => 'Paginas special',
-'moredotdotdot'  => 'Plus...',
-'mypage'         => 'Mi pagina',
-'mytalk'         => 'Mi discussion',
-'anontalk'       => 'Discussion pro iste adresse IP',
-'navigation'     => 'Navigation',
-'and'            => '&#32;e',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
@@ -348,8 +352,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Declaration general de non-responsabilitate',
 'edithelp'             => 'Adjuta de modification',
 'edithelppage'         => 'Help:Modification',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Contento',
 'mainpage'             => 'Pagina principal',
 'mainpage-description' => 'Pagina principal',
@@ -429,10 +431,6 @@ Le ultime consulta que se tentava es:
 "$1"
 effectuate per le function "$2".
 MySQL retornava le error "$3: $4"',
-'noconnect'            => 'Le wiki ha difficultates technic al momento, e non pote contactar le servitor del base de datos.<br />
-$1',
-'nodb'                 => 'Non poteva seliger le base de datos $1',
-'cachederror'          => 'Le sequente copia del pagina se recuperava del cache, e possibilemente non es actual.',
 'laggedslavemode'      => 'Attention: Es possibile que le pagina non contine actualisationes recente.',
 'readonly'             => 'Base de datos blocate',
 'enterlockreason'      => 'Describe le motivo del blocada, includente un estimation
@@ -504,7 +502,6 @@ Nota que alcun paginas pote continuar a monstrar se como si le session esserea a
 'welcomecreation'            => '== Benvenite, $1! ==
 Tu conto ha essite create.
 Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].',
-'loginpagetitle'             => 'Aperir session',
 'yourname'                   => 'Nomine de usator:',
 'yourpassword'               => 'Contrasigno:',
 'yourpasswordagain'          => 'Repete contrasigno:',
@@ -620,18 +617,12 @@ Pro completar le session, tu debe definir un nove contrasigno hic:',
 'retypenew'                 => 'Repete le nove contrasigno:',
 'resetpass_submit'          => 'Definir contrasigno e aperir un session',
 'resetpass_success'         => 'Tu contrasigno ha essite cambiate! Ora se aperi tu session...',
-'resetpass_bad_temporary'   => 'Contrasigno temporari invalide.
-Es possibile que tu ha ja cambiate tu contrasigno o ha requestate un nove contrasigno temporari.',
 'resetpass_forbidden'       => 'Le contrasignos non pote esser cambiate',
 'resetpass-no-info'         => 'Tu debe aperir un session pro poter acceder directemente a iste pagina.',
 'resetpass-submit-loggedin' => 'Cambiar contrasigno',
 'resetpass-wrong-oldpass'   => 'Le contrasigno temporari o actual es invalide. 
 Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasigno temporari.',
 'resetpass-temp-password'   => 'Contrasigno temporari:',
-'resetpass-log'             => 'Registro de redefinitiones de contrasigno',
-'resetpass-logtext'         => 'Infra es un registro de usatores cuje contrasigno ha essite redefinite per un administrator.',
-'resetpass-logentry'        => 'cambiava le contrasigno de $1',
-'resetpass-comment'         => 'Motivo pro le redefinition del contrasigno:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto grasse',
@@ -709,7 +700,6 @@ Per favor include tote le detalios supra specificate in omne correspondentia.',
 'blockededitsource'                => "Le texto de '''tu modificationes''' in '''$1''' se monstra infra:",
 'whitelistedittitle'               => 'Identification requirite pro modificar',
 'whitelistedittext'                => 'Tu debe $1 pro poter modificar paginas.',
-'confirmedittitle'                 => 'Confirmation del adresse de e-mail es requirite pro poter modificar',
 'confirmedittext'                  => 'Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.
 Per favor defini e valida tu adresse de e-mail per medio de tu [[Special:Preferences|preferentias de usator]].',
 'nosuchsectiontitle'               => 'Non existe tal section',
@@ -1079,7 +1069,6 @@ Tu pote [[:\$1|crear iste pagina]].",
 'searchhelp-url'                   => 'Help:Contento',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navigar per le paginas con iste prefixo]]',
 'searchprofile-articles'           => 'Paginas de contento',
-'searchprofile-articles-and-proj'  => 'Paginas de contento e de projecto',
 'searchprofile-project'            => 'Paginas de projecto',
 'searchprofile-images'             => 'Files',
 'searchprofile-everything'         => 'Toto',
@@ -1089,8 +1078,6 @@ Tu pote [[:\$1|crear iste pagina]].",
 'searchprofile-images-tooltip'     => 'Cercar files',
 'searchprofile-everything-tooltip' => 'Cercar in tote le contento (includente le paginas de discussion)',
 'searchprofile-advanced-tooltip'   => 'Cercar in spatios de nomines personalisate',
-'prefs-search-nsdefault'           => 'Cercar usante valores predefinite:',
-'prefs-search-nscustom'            => 'Cercar in le spatios de nomines personalisate:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 parola|$2 parolas}})',
 'search-result-score'              => 'Relevantia: $1%',
 'search-redirect'                  => '(redirection ab $1)',
@@ -1120,19 +1107,20 @@ Tu pote [[:\$1|crear iste pagina]].",
 Tu pote cercar via Google in le interim.
 Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 
+# Quickbar
+'qbsettings'               => 'Barra rapide',
+'qbsettings-none'          => 'Necun',
+'qbsettings-fixedleft'     => 'Fixe a sinistra',
+'qbsettings-fixedright'    => 'Fixe a derecta',
+'qbsettings-floatingleft'  => 'Flottante a sinistra',
+'qbsettings-floatingright' => 'Flottante a derecta',
+
 # Preferences page
 'preferences'               => 'Preferentias',
 'mypreferences'             => 'Mi preferentias',
 'prefs-edits'               => 'Numero de modificationes:',
 'prefsnologin'              => 'Tu non te ha identificate',
 'prefsnologintext'          => 'Tu debe <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} aperir un session] pro poter configurar tu preferentias.',
-'prefsreset'                => 'Tu preferentias anterior ha essite restaurate.',
-'qbsettings'                => 'Barra rapide',
-'qbsettings-none'           => 'Necun',
-'qbsettings-fixedleft'      => 'Fixe a sinistra',
-'qbsettings-fixedright'     => 'Fixe a derecta',
-'qbsettings-floatingleft'   => 'Flottante a sinistra',
-'qbsettings-floatingright'  => 'Flottante a derecta',
 'changepassword'            => 'Cambiar contrasigno',
 'prefs-skin'                => 'Stilo',
 'skin-preview'              => 'Previsualisation',
@@ -1140,17 +1128,6 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'dateformat'                => 'Formato de datas',
 'datedefault'               => 'Nulle preferentia',
 'prefs-datetime'            => 'Data e hora',
-'math_failure'              => 'Error durante le analyse del syntaxe',
-'math_unknown_error'        => 'error incognite',
-'math_unknown_function'     => 'function incognite',
-'math_lexing_error'         => 'error lexic',
-'math_syntax_error'         => 'error de syntaxe',
-'math_image_error'          => "Le conversion in PNG ha fallite;
-verifica que le installation sia correcte del programmas ''latex, dvips, gs,'' e ''convert''.",
-'math_bad_tmpdir'           => 'Non pote scriber in o crear le directorio temporari "math".',
-'math_bad_output'           => 'Non pote scriber in o crear le directorio de output "math".',
-'math_notexvc'              => "Le executabile ''texvc'' manca;
-per favor vide math/README pro configurar lo.",
 'prefs-personal'            => 'Profilo del usator',
 'prefs-rc'                  => 'Modificationes recente',
 'prefs-watchlist'           => 'Observatorio',
@@ -1177,7 +1154,6 @@ per favor vide math/README pro configurar lo.",
 'recentchangescount'        => 'Numero de modificationes a monstrar in le modificationes recente, in historias de paginas e in registros, per predefinition:',
 'savedprefs'                => 'Tu preferentias ha essite confirmate.',
 'timezonelegend'            => 'Fuso horari',
-'timezonetext'              => '¹Le numero de horas inter tu hora local e le hora del servitor (UTC).',
 'localtime'                 => 'Hora local:',
 'timezoneselect'            => 'Fuso horari:',
 'timezoneuseserverdefault'  => 'Usar le hora del servitor',
@@ -2571,6 +2547,19 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'mw_math_source' => 'Lassa lo como TeX (pro navigatores in modo texto)',
 'mw_math_modern' => 'Recommendate pro navigatores moderne',
 'mw_math_mathml' => 'MathML',
+
+# Math errors
+'math_failure'          => 'Error durante le analyse del syntaxe',
+'math_unknown_error'    => 'error incognite',
+'math_unknown_function' => 'function incognite',
+'math_lexing_error'     => 'error lexic',
+'math_syntax_error'     => 'error de syntaxe',
+'math_image_error'      => "Le conversion in PNG ha fallite;
+verifica que le installation sia correcte del programmas ''latex, dvips, gs,'' e ''convert''.",
+'math_bad_tmpdir'       => 'Non pote scriber in o crear le directorio temporari "math".',
+'math_bad_output'       => 'Non pote scriber in o crear le directorio de output "math".',
+'math_notexvc'          => "Le executabile ''texvc'' manca;
+per favor vide math/README pro configurar lo.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como patruliate',

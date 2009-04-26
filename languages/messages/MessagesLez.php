@@ -57,7 +57,9 @@ $messages = array(
 'nov'           => 'ЦӀе',
 'dec'           => 'Фaн',
 
-'about'  => 'Хакъиндай',
+'about' => 'Хакъиндай',
+
+# Cologne Blue skin
 'qbfind' => 'Жугъун',
 'qbedit' => 'Дегишарун',
 

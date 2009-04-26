@@ -147,13 +147,15 @@ $messages = array(
 'about'         => 'વિષે',
 'newwindow'     => '(નવા પાનામાં ખુલશે)',
 'cancel'        => 'રદ કરો',
-'qbfind'        => 'શોધો',
-'qbedit'        => 'ફેરફાર કરો',
 'moredotdotdot' => 'વધારે...',
 'mypage'        => 'મારું પાનું',
 'mytalk'        => 'મારી ચર્ચા',
 'navigation'    => 'ભ્રમણ',
 'and'           => '&#32;અને',
+
+# Cologne Blue skin
+'qbfind' => 'શોધો',
+'qbedit' => 'ફેરફાર કરો',
 
 'errorpagetitle'   => 'ત્રુટિ',
 'returnto'         => '$1 પર પાછા જાઓ.',

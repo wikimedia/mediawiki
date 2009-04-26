@@ -58,10 +58,12 @@ $messages = array(
 'dec'       => 'Dis.',
 
 'about'      => 'Iwwer',
-'qbedit'     => 'Ennere',
 'mytalk'     => 'Mei Gschwetz-Blatt',
 'navigation' => 'Faahre-Gnepp',
 'and'        => '&#32;unn',
+
+# Cologne Blue skin
+'qbedit' => 'Ennere',
 
 'tagline'          => 'Vun {{SITENAME}}',
 'help'             => 'Hilf',

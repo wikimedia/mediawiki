@@ -140,10 +140,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
-'about'          => 'Baare me',
-'article'        => 'Content waala panna',
-'newwindow'      => '(Nawaa window me khule hai)',
-'cancel'         => 'Kaat do',
+'about'         => 'Baare me',
+'article'       => 'Content waala panna',
+'newwindow'     => '(Nawaa window me khule hai)',
+'cancel'        => 'Kaat do',
+'moredotdotdot' => 'Aur...',
+'mypage'        => 'Hamaar panna',
+'mytalk'        => 'Hamaar bichar',
+'anontalk'      => 'Ii IP khatir bichar',
+'navigation'    => 'Navigation',
+'and'           => '&#32;aur',
+
+# Cologne Blue skin
 'qbfind'         => 'Khojo',
 'qbbrowse'       => 'Browse karo',
 'qbedit'         => 'Badlo',
@@ -151,12 +159,8 @@ $messages = array(
 'qbpageinfo'     => 'Vishay',
 'qbmyoptions'    => 'Hamar panna',
 'qbspecialpages' => 'Khaas panna',
-'moredotdotdot'  => 'Aur...',
-'mypage'         => 'Hamaar panna',
-'mytalk'         => 'Hamaar bichar',
-'anontalk'       => 'Ii IP khatir bichar',
-'navigation'     => 'Navigation',
-'and'            => '&#32;aur',
+'faq'            => 'Sab time puchhe waala sawal',
+'faqpage'        => 'Project:Sab time puchhe waala sawal',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -228,8 +232,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Saadharan adhikaar tyaagna',
 'edithelp'             => 'Badlao pe madat',
 'edithelppage'         => 'Help:Badle me',
-'faq'                  => 'Sab time puchhe waala sawal',
-'faqpage'              => 'Project:Sab time puchhe waala sawal',
 'helppage'             => 'Help:Madat',
 'mainpage'             => 'Pahila Panna',
 'mainpage-description' => 'Pahila Panna',
@@ -309,10 +311,6 @@ Pahile waala database ke khoj ke kosis rahaa:
 "$1"
 "$2" function ke bhitar se.
 MySQL ke galti sandes rahaa "$3: $4"',
-'noconnect'            => 'Maaf karna! Wiki me abhi technical samasya hai, aur abhi database server ke contact nai kare sake hai.<br />
-$1',
-'nodb'                 => 'Database $1 ke nai chhate saka hai',
-'cachederror'          => 'Niche waala panna, maange waala panna ke cached nakal hai aur sait purana hoi.',
 'laggedslavemode'      => 'Chetawni: Panna me nawaa badlao sait nai hoi.',
 'readonly'             => 'Database band hai',
 'enterlockreason'      => 'Band kare ke kaaran likho, aur ii bhi likho ki kab khola jaai.',
@@ -383,7 +381,6 @@ Yaad rakhna ki kuch panna wahi rakam se dekhai jaise ki aap log in bhaya hai, ja
 'welcomecreation'            => '== Swagat, $1! ==
 Aap ke account banae dewa gais hai.
 Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
-'loginpagetitle'             => 'Sadasya login',
 'yourname'                   => 'Username:',
 'yourpassword'               => 'Password:',
 'yourpasswordagain'          => 'Password fir se type karo:',
@@ -492,18 +489,12 @@ Login khatam kare khatir, aap ke nawaa password set kare ke parri hian:',
 'retypenew'                 => 'Password fir se type karo:',
 'resetpass_submit'          => 'Password ke set kar ke login karo',
 'resetpass_success'         => 'Aap ke password ke safalta se badal dewa gais hai! Aap ke ab login karaa jaae hai...',
-'resetpass_bad_temporary'   => 'Temporary password achchha nai hai.
-Aap sait pahile password ke badal diya hoi nai to nawaa temporary password ke maang karaa hoga.',
 'resetpass_forbidden'       => 'Password nai badlaa jaae sake hai',
 'resetpass-no-info'         => 'Ii panna ke sidha access kare ke khatir aap ke logged in rahe ke parri.',
 'resetpass-submit-loggedin' => 'Password ke badlo',
 'resetpass-wrong-oldpass'   => 'Temporary nai to abhi ke password valid nai hai. 
 Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password ke maang karaa hoga.',
 'resetpass-temp-password'   => 'Kachcha password:',
-'resetpass-log'             => 'Password resets ke log',
-'resetpass-logtext'         => 'Niche uu sadasya ke log hai jiske password ke koi administrator reset kar diis hai.',
-'resetpass-logentry'        => '$1 ke password ke badal dia hai',
-'resetpass-comment'         => 'Password ke badle ke kaaran:',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold text',
@@ -578,7 +569,6 @@ Meharbani kar ke chahe ek nai to duno ke aapan sawaal me rakho.",
 'blockededitsource'                => "Aap ke '''$1 ke badlao''' ke akchhar niche likha hai:",
 'whitelistedittitle'               => 'Badle khatir login kare ke jaruri hai',
 'whitelistedittext'                => 'Aap ke panna badle khatir $1 kare ke parri.',
-'confirmedittitle'                 => 'Badle khatir E-mail confirmation ke jaruri hai',
 'confirmedittext'                  => 'Panna ke badle se pahile aap ke aapan e-mail ke confirm kare ke parri.
 Meharbani kar ke aap aapan e-mail ke aapan [[Special:Preferences|user preferences]] se validate karna.',
 'nosuchsectiontitle'               => 'Aisan koi section nai hai',
@@ -941,7 +931,6 @@ Note that using the navigation links will reset this column.',
 'searchhelp-url'                   => 'Help:Madat',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ii prefix ke panna ke browse karo]]',
 'searchprofile-articles'           => 'Vishay suchi ke panna',
-'searchprofile-articles-and-proj'  => 'Vishay suchi aur project panna',
 'searchprofile-project'            => 'Project panna',
 'searchprofile-images'             => 'Files',
 'searchprofile-everything'         => 'Sab chij',
@@ -951,8 +940,6 @@ Note that using the navigation links will reset this column.',
 'searchprofile-images-tooltip'     => 'File ke khojo',
 'searchprofile-everything-tooltip' => 'Sab content me khojo (baat waala panna bhi)',
 'searchprofile-advanced-tooltip'   => 'Custom namespaces me khojo',
-'prefs-search-nsdefault'           => 'Defaults use kar ke khojo:',
-'prefs-search-nscustom'            => 'ustom namespaces me khojo:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 sabd|$2 sabd}})',
 'search-result-score'              => 'Len den: $1%',
 'search-redirect'                  => '(redirect $1)',
@@ -983,19 +970,20 @@ Aapan query ke ''all:'' se suruu kar ke visay suchi me khojo (including talk pag
 Aap tab tak Google se khoje sakta hai.
 Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 
+# Quickbar
+'qbsettings'               => 'Quickbar',
+'qbsettings-none'          => 'Koi nai',
+'qbsettings-fixedleft'     => 'Left me fixed hai',
+'qbsettings-fixedright'    => 'Right me fixed hai',
+'qbsettings-floatingleft'  => 'Floating left',
+'qbsettings-floatingright' => 'Floating right',
+
 # Preferences page
 'preferences'               => 'Pasand',
 'mypreferences'             => 'Hamaar preferences',
 'prefs-edits'               => 'Badlao ke number:',
 'prefsnologin'              => 'Aap abhi logged in nai hai',
 'prefsnologintext'          => 'Aaap ke <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logged in]</span> chaahi rahe ke user preferences ke badle ke khatir.',
-'prefsreset'                => 'Preferences ke godaam se reset kar dewa gais hai.',
-'qbsettings'                => 'Quickbar',
-'qbsettings-none'           => 'Koi nai',
-'qbsettings-fixedleft'      => 'Left me fixed hai',
-'qbsettings-fixedright'     => 'Right me fixed hai',
-'qbsettings-floatingleft'   => 'Floating left',
-'qbsettings-floatingright'  => 'Floating right',
 'changepassword'            => 'Pasword ke badlo',
 'prefs-skin'                => 'Skin',
 'skin-preview'              => 'Jhalak',
@@ -1003,17 +991,6 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'dateformat'                => 'Date ke format',
 'datedefault'               => 'Koi pasand nai',
 'prefs-datetime'            => 'Tarik aur time',
-'math_failure'              => 'Parse nai kare sakaa',
-'math_unknown_error'        => 'galti ke nai samajhta',
-'math_unknown_function'     => 'nai samajhta ki ii kon chij khatir hai',
-'math_lexing_error'         => 'lexing error',
-'math_syntax_error'         => 'syntax error',
-'math_image_error'          => 'PNG conversion fail hoe gais;
-latex, dvips aur gs ke correct installation ke check kar ke convert convert karo',
-'math_bad_tmpdir'           => 'Math temporary directory nai banae sakta hai',
-'math_bad_output'           => 'Math output directory me likhe nai to banae nai sakta hai',
-'math_notexvc'              => 'Texvc executable nai hai;
-Configure kare khatir meharbani kar ke math/README ke dekho.',
 'prefs-personal'            => 'Sadasya ke profile',
 'prefs-rc'                  => 'Nawaa badlao',
 'prefs-watchlist'           => 'Dhyan suchi',
@@ -1040,7 +1017,6 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'recentchangescount'        => 'Nawaa badlao me ketna badlao ke dekhae ke chaahi, panna ke itihaas, aur log me, default se:',
 'savedprefs'                => 'Aap ke pasand ke save kar lewa gais hai.',
 'timezonelegend'            => 'Time ke zone',
-'timezonetext'              => '¹ Aap ke local time aur server time (UTC) me ketna farka hai.',
 'localtime'                 => 'Sthaniye samay:',
 'timezoneselect'            => 'Time ke zone:',
 'timezoneuseserverdefault'  => 'Server default ke use karo',
@@ -2261,6 +2237,19 @@ Aapan computer me save kar ke  hian pe upload karo.',
 'tooltip-watch'                   => 'Ii panna ke aapan dhyan suchi me jorro',
 'tooltip-undo'                    => '"Undo" ii badlao ke pahile jaise kar de hai aur edit form ke preview mode me khole hai.
 Ii summary me ek kaaran jorre ke ijajat de hai.',
+
+# Math errors
+'math_failure'          => 'Parse nai kare sakaa',
+'math_unknown_error'    => 'galti ke nai samajhta',
+'math_unknown_function' => 'nai samajhta ki ii kon chij khatir hai',
+'math_lexing_error'     => 'lexing error',
+'math_syntax_error'     => 'syntax error',
+'math_image_error'      => 'PNG conversion fail hoe gais;
+latex, dvips aur gs ke correct installation ke check kar ke convert convert karo',
+'math_bad_tmpdir'       => 'Math temporary directory nai banae sakta hai',
+'math_bad_output'       => 'Math output directory me likhe nai to banae nai sakta hai',
+'math_notexvc'          => 'Texvc executable nai hai;
+Configure kare khatir meharbani kar ke math/README ke dekho.',
 
 # Browsing diffs
 'previousdiff' => '← Purana badlao',

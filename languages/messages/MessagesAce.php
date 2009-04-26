@@ -74,10 +74,12 @@ $messages = array(
 'about'      => 'Bhah',
 'newwindow'  => '(peuhah bak tingkap barô)',
 'cancel'     => 'Peubateuë',
-'qbfind'     => 'Mita',
-'qbedit'     => 'Andam',
 'mytalk'     => 'Peugah haba lôn',
 'navigation' => 'Navigasi',
+
+# Cologne Blue skin
+'qbfind' => 'Mita',
+'qbedit' => 'Andam',
 
 'errorpagetitle'   => 'Seunalah',
 'returnto'         => 'Gisa u $1.',

@@ -209,10 +209,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce počtnimikirjutez]',
 
-'about'          => 'Andmused',
-'article'        => "Südäimištlehtpol'",
-'newwindow'      => '(avaidase udes iknas)',
-'cancel'         => 'Heitta pätand',
+'about'         => 'Andmused',
+'article'       => "Südäimištlehtpol'",
+'newwindow'     => '(avaidase udes iknas)',
+'cancel'        => 'Heitta pätand',
+'moredotdotdot' => 'Edeleze...',
+'mypage'        => "Minun lehtpol'",
+'mytalk'        => 'Minun lodud',
+'anontalk'      => 'Lodud neciš IP-adresas',
+'navigation'    => 'Navigacii',
+'and'           => '&#32;da',
+
+# Cologne Blue skin
 'qbfind'         => 'Ectä',
 'qbbrowse'       => 'Kacelta',
 'qbedit'         => 'Redaktiruida',
@@ -220,12 +228,8 @@ $messages = array(
 'qbpageinfo'     => 'Andmused lehtpoles',
 'qbmyoptions'    => 'Minun järgendused',
 'qbspecialpages' => 'Specialižed lehtpoled',
-'moredotdotdot'  => 'Edeleze...',
-'mypage'         => "Minun lehtpol'",
-'mytalk'         => 'Minun lodud',
-'anontalk'       => 'Lodud neciš IP-adresas',
-'navigation'     => 'Navigacii',
-'and'            => '&#32;da',
+'faq'            => 'PPK',
+'faqpage'        => 'Project:PPK',
 
 # Metadata in edit box
 'metadata_help' => 'Metaandmused:',
@@ -297,8 +301,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Pučind vastusenpidandaspäi',
 'edithelp'             => 'Abu redaktiruindas',
 'edithelppage'         => 'Help:Abu redaktiruindas',
-'faq'                  => 'PPK',
-'faqpage'              => 'Project:PPK',
 'helppage'             => 'Help:Südäimišt',
 'mainpage'             => 'Pälehtpol’',
 'mainpage-description' => 'Pälehtpol’',
@@ -373,10 +375,6 @@ Jäl\'gmäine ecind andmusiden bazas oli:
 "$1"
 funkcijaspäi "$2".
 MySQL pördi petusen "$3: $4"',
-'noconnect'            => 'Pakičem armahtust! Wikil om tehnižid jügedusid, i se ei voi säta sidod andmusiden bazanke.<br />
-$1',
-'nodb'                 => 'Ei voi valita andmusiden bazad $1',
-'cachederror'          => 'Naku om ectud lehtpolen keširuidud kopii; voib olda, se om jo vanhtunu',
 'laggedslavemode'      => "Varutuz: voib olda, lehtpolen versijal ei ole jäl'gmäižid ližadusid.",
 'readonly'             => 'Andmusiden baz om luklostadud',
 'enterlockreason'      => 'Kirjutagat sü da pandud blokiruindan strok',
@@ -441,7 +439,6 @@ Otkat sil'mnägubale, miše erasid lehtpolid ozutaškatas mugažo, kut i edel te
 'welcomecreation'           => '== Tulgat tervhen, $1! ==
 Teiden registracii om loptud.
 Algat unohtagoi [[Special:Preferences|järgeta personaližikš]] sait.',
-'loginpagetitle'            => 'Tulda sistemha',
 'yourname'                  => 'Kävutajan nimi:',
 'yourpassword'              => 'Peitsana:',
 'yourpasswordagain'         => 'Kirjutagat peitsana udes:',
@@ -536,18 +533,12 @@ Miše tulda sistemha lopuližikš, teile pidab säta uz' peitsana naku:",
 'retypenew'                 => "Toštkat uz' peitsana:",
 'resetpass_submit'          => 'Säta peitsana da kirjutadas sistemha',
 'resetpass_success'         => 'Teiden peisana om vajehtadud jügedusita! Tulend sistemha...',
-'resetpass_bad_temporary'   => 'Hond pordaigaline peitsana.
-Voib olda, tö olet jo vajehtanuded teiden peitsana vai olet pakinuded sistemalpäi uden pordaigaližen peitsanan.',
 'resetpass_forbidden'       => 'Ei voi vajehtada peitsanad',
 'resetpass-no-info'         => 'Miše kirjutada necil lehtpolel, teile pidab kirjutadas sistemha.',
 'resetpass-submit-loggedin' => 'Vajehtada peitsana',
 'resetpass-wrong-oldpass'   => 'Vär pordaigaine vai nügüdläine peitsana.
 Voib olda, tö olet jo toižetanuded peitsanan vai pakinuded uden peitsanan.',
 'resetpass-temp-password'   => 'Pordaigaline peitsana:',
-'resetpass-log'             => 'Peitsanoiden heitmižen aigkirj',
-'resetpass-logtext'         => 'Alemba om niiden kävutajiden nimikirjutez, kudambiden peitsanad oma heittud administratoril.',
-'resetpass-logentry'        => 'om vajehtanu $1-kävutajan peitsanan',
-'resetpass-comment'         => 'Peitsanan vajehtusen sü:',
 
 # Edit page toolbar
 'bold_sample'     => 'Lihavoitud tekst',
@@ -621,7 +612,6 @@ Olgat hüväd, kirjutagat nened andmused kaikiš kirjeižiš administratorile.",
 'blockededitsource'                => "'''Teiden $1-lehtpolen toižetusiden''' tekst:",
 'whitelistedittitle'               => 'Kirjutagatoiš sistemha, miše redaktiruida',
 'whitelistedittext'                => 'Teile pidab $1, miše redaktiruida lehtpolid.',
-'confirmedittitle'                 => 'Vahvištoitkat teiden e-počtan adres',
 'confirmedittext'                  => 'Tarbiž vahvištoitta e-počtan adres, miše redaktiruida lehtpolid.
 Olgat hüväd, kirjutagat da vahvištoitkat teiden e-počtan adres [[Special:Preferences|järgendusiden lehtpolel]].',
 'nosuchsectiontitle'               => 'Ei ole mugošt jagust',
@@ -922,7 +912,6 @@ Tö voit [[:\$1|säta mugoi lehtpol']].",
 'searchhelp-url'                   => 'Help:Südäimišt',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ozutada kaik lehtpoled necen prefiksanke]]',
 'searchprofile-articles'           => 'Südäimištlehtpoled',
-'searchprofile-articles-and-proj'  => 'Südäimištlehtpoled da projektan lehtpoled',
 'searchprofile-project'            => 'Projektan lehtpoled',
 'searchprofile-images'             => 'Failad',
 'searchprofile-everything'         => 'Kaikjal',
@@ -932,8 +921,6 @@ Tö voit [[:\$1|säta mugoi lehtpol']].",
 'searchprofile-images-tooltip'     => 'Failoiden ecind',
 'searchprofile-everything-tooltip' => 'Ectä kaikil lehtpolil (lodulehtpolid mülütaden)',
 'searchprofile-advanced-tooltip'   => 'Ectä märitud nimiavarusiš',
-'prefs-search-nsdefault'           => 'Ectä augotižjärgendusid kävutaden:',
-'prefs-search-nscustom'            => 'Ectä märitadud nimiavarusiš:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 sana|$2 sanad}})',
 'search-result-score'              => 'Relevantižuz: $1%',
 'search-redirect'                  => '(oigenduz $1)',
@@ -964,19 +951,20 @@ Kävutagat prefiks ''all:'', miše ectä kaikes südäimištospäi (lodulehtpoli
 Tö voit nügüd' ectä Google'n turbiš.
 Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda vanhtunuden.",
 
+# Quickbar
+'qbsettings'               => "Navigacijan panel'",
+'qbsettings-none'          => 'Ala ozuta',
+'qbsettings-fixedleft'     => 'Likumatoi huralpäi',
+'qbsettings-fixedright'    => 'Likumatoi oiktalpäi',
+'qbsettings-floatingleft'  => 'Ujui huralpäi',
+'qbsettings-floatingright' => 'Ujui oiktalpäi',
+
 # Preferences page
 'preferences'               => 'Järgendused',
 'mypreferences'             => 'Minun järgendused',
 'prefs-edits'               => 'Redaktiruindoiden lugu:',
 'prefsnologin'              => 'Tö et olgoi kirjutanus sistemha.',
 'prefsnologintext'          => 'Teile pidab <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} kirjutadas sistemha]</span>, miše toižetada järgendusid.',
-'prefsreset'                => 'Augoižjärgendused oma endištadud.',
-'qbsettings'                => "Navigacijan panel'",
-'qbsettings-none'           => 'Ala ozuta',
-'qbsettings-fixedleft'      => 'Likumatoi huralpäi',
-'qbsettings-fixedright'     => 'Likumatoi oiktalpäi',
-'qbsettings-floatingleft'   => 'Ujui huralpäi',
-'qbsettings-floatingright'  => 'Ujui oiktalpäi',
 'changepassword'            => 'Peitsanan toižetuz',
 'prefs-skin'                => 'Irdnägu',
 'skin-preview'              => 'Ezikaclend',
@@ -984,17 +972,6 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'dateformat'                => 'Datan format',
 'datedefault'               => 'Augotižjärgendused',
 'prefs-datetime'            => 'Dat da aig',
-'math_failure'              => 'Ei voi palastada',
-'math_unknown_error'        => 'tundmatoi petuz',
-'math_unknown_function'     => 'tundmatoi funkcii',
-'math_lexing_error'         => 'leksine petuz',
-'math_syntax_error'         => 'sintaksine petuz',
-'math_image_error'          => 'PNG-ks kändmižes ozaižihe petuz;
-kodvgat, oiged-ik oma järgetud: latex, dvips, gs da convert.',
-'math_bad_tmpdir'           => 'Ei voi säta pordaigaline matematine katalog vai ei voi kirjutada sinnä',
-'math_bad_output'           => 'Ei voi säta matematine lähtmižkatalog vai ei voi kirjutada sinnä',
-'math_notexvc'              => 'En voi löuta texvc-töfailad;
-kc. math/README järgendamižen täht.',
 'prefs-personal'            => "Kävutajan profil'",
 'prefs-rc'                  => 'Tantoižed toižetused',
 'prefs-watchlist'           => 'Kaclendnimikirjutez',
@@ -2168,6 +2145,19 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 'mw_math_png'    => 'Kaiken generiruida PNG',
 'mw_math_simple' => 'Ozutada HTML koveritomil statjoil, ika ozutada PNG',
 'mw_math_html'   => 'Ozutada, ku voib, HTML, ika ozutada PNG',
+
+# Math errors
+'math_failure'          => 'Ei voi palastada',
+'math_unknown_error'    => 'tundmatoi petuz',
+'math_unknown_function' => 'tundmatoi funkcii',
+'math_lexing_error'     => 'leksine petuz',
+'math_syntax_error'     => 'sintaksine petuz',
+'math_image_error'      => 'PNG-ks kändmižes ozaižihe petuz;
+kodvgat, oiged-ik oma järgetud: latex, dvips, gs da convert.',
+'math_bad_tmpdir'       => 'Ei voi säta pordaigaline matematine katalog vai ei voi kirjutada sinnä',
+'math_bad_output'       => 'Ei voi säta matematine lähtmižkatalog vai ei voi kirjutada sinnä',
+'math_notexvc'          => 'En voi löuta texvc-töfailad;
+kc. math/README järgendamižen täht.',
 
 # Patrolling
 'markaspatrolleddiff'    => 'Znamoita kut patruliruidud',

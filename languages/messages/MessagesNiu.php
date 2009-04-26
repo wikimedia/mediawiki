@@ -47,12 +47,14 @@ $messages = array(
 'december-gen'  => 'Tesemo',
 'may'           => 'Me',
 
-'article'        => 'Tohi Tala',
-'cancel'         => 'Tiaki',
+'article'    => 'Tohi Tala',
+'cancel'     => 'Tiaki',
+'mytalk'     => 'Haaku tutala',
+'navigation' => 'Navikati',
+
+# Cologne Blue skin
 'qbedit'         => 'Fakahakohako',
 'qbspecialpages' => 'Tau Lau Mahuiga',
-'mytalk'         => 'Haaku tutala',
-'navigation'     => 'Navikati',
 
 'help'             => 'Lagomatai',
 'search'           => 'Kumi',

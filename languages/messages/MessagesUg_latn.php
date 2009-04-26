@@ -33,9 +33,11 @@ $messages = array(
 'december'  => 'Dékabr',
 'may'       => 'May',
 
-'qbedit'     => 'Uzgartish',
 'mypage'     => 'Mening beti',
 'navigation' => 'Körüsh',
+
+# Cologne Blue skin
+'qbedit' => 'Uzgartish',
 
 'search'           => 'Izdash',
 'searchbutton'     => 'Izdash',

@@ -106,10 +106,18 @@ $messages = array(
 'hidden-category-category' => 'Zuppa categorias',
 'listingcontinuesabbrev'   => 'cuntinuaziun',
 
-'about'          => 'Surda',
-'article'        => 'artitgel',
-'newwindow'      => '(avra ina nova fanestra)',
-'cancel'         => 'refusar las midadas',
+'about'         => 'Surda',
+'article'       => 'artitgel',
+'newwindow'     => '(avra ina nova fanestra)',
+'cancel'        => 'refusar las midadas',
+'moredotdotdot' => 'Dapli...',
+'mypage'        => 'mia pagina',
+'mytalk'        => 'Mia pagina da discussiun',
+'anontalk'      => 'Pagina da discussiun da questa IP',
+'navigation'    => 'Navigaziun',
+'and'           => '&#32;e',
+
+# Cologne Blue skin
 'qbfind'         => 'Chattar',
 'qbbrowse'       => 'Sfegliar',
 'qbedit'         => 'Editar',
@@ -117,12 +125,8 @@ $messages = array(
 'qbpageinfo'     => 'Context',
 'qbmyoptions'    => 'Mia pagina',
 'qbspecialpages' => 'paginas spezialas',
-'moredotdotdot'  => 'Dapli...',
-'mypage'         => 'mia pagina',
-'mytalk'         => 'Mia pagina da discussiun',
-'anontalk'       => 'Pagina da discussiun da questa IP',
-'navigation'     => 'Navigaziun',
-'and'            => '&#32;e',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 # Metadata in edit box
 'metadata_help' => 'Datas da meta:',
@@ -194,8 +198,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Impressum',
 'edithelp'             => 'agid per editar',
 'edithelppage'         => 'Help:Prims pass',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Cuntegn',
 'mainpage'             => 'Pagina principala',
 'mainpage-description' => 'Pagina principala',
@@ -292,7 +294,6 @@ Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos [[Special:U
 'welcomecreation'            => '==Chau, $1! ==
 
 Tes conto è vegni creà. Betg emblida da midar tias preferenzas da {{SITENAME}}.',
-'loginpagetitle'             => 'Log-in per utilisaders',
 'yourname'                   => "Num d'utilisader",
 'yourpassword'               => 'pled-clav',
 'yourpasswordagain'          => 'repeter pled-clav',
@@ -407,7 +408,6 @@ Ti'adressa d'IP actuala è $3, ed la block ID è #$5.
 
 Integrescha per plaschair tut las indicaziuns survart sche ti contacteschas insatgi.",
 'whitelistedittitle'         => "t'annunzia per editar",
-'confirmedittitle'           => 'Per editar è la confermaziun da la adressa dad email necessaria',
 'confirmedittext'            => 'Ti stos confermar tia adressa dad email avant che editar paginas. Inditgescha e conferma per plaschair tia adressa dad email en tias [[Special:Preferences|preferenzas]].',
 'loginreqtitle'              => 'Annunzia necessari',
 'loginreqlink'               => "s'annunziar",
@@ -513,7 +513,6 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'mypreferences'         => 'Mias preferenzas',
 'prefsnologin'          => 'betg annunzià',
 'prefsnologintext'      => 'Ti stos esser <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} annunzià]</span> per midar tias preferenzas.',
-'prefsreset'            => 'Preferenzas da standard ein vegnì reconstruidas.',
 'changepassword'        => 'Midar pled-clav',
 'skin-preview'          => 'Prevista',
 'dateformat'            => 'format da las datas',
@@ -533,7 +532,6 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'contextchars'          => 'Segns per lingia:',
 'savedprefs'            => 'Tias preferenzas èn vegnidas memorisadas.',
 'timezonelegend'        => "Zona d'urari (Zeitzone)",
-'timezonetext'          => 'Inditgescha la differenza tranter voss temp local e quel dal server (UTC).',
 'localtime'             => 'temp local',
 'timezoneoffset'        => 'Differenza¹',
 'servertime'            => 'temp dal server',

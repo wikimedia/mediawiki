@@ -48,9 +48,11 @@ $messages = array(
 'december-gen'  => 'ӧшым',
 
 'cancel' => 'Дугӧдны',
+'mytalk' => 'Сёрнитӧм лист бокӧй',
+
+# Cologne Blue skin
 'qbfind' => 'Корсьысьӧм',
 'qbedit' => 'Веськӧдны',
-'mytalk' => 'Сёрнитӧм лист бокӧй',
 
 'search'           => 'Корсьысьӧм',
 'searchbutton'     => 'Аддзыны',

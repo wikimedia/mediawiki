@@ -48,16 +48,18 @@ $messages = array(
 'aug'          => 'augu',
 'nov'          => 'nuvi',
 
-'about'          => 'miksaani',
-'article'        => 'ilulik mappitaq',
-'newwindow'      => '(uittuq qarasaujaq ikiaq pigivuq igalaaq)',
-'cancel'         => 'iniqtipaa',
+'about'         => 'miksaani',
+'article'       => 'ilulik mappitaq',
+'newwindow'     => '(uittuq qarasaujaq ikiaq pigivuq igalaaq)',
+'cancel'        => 'iniqtipaa',
+'moredotdotdot' => 'pilluarivaa...',
+'mypage'        => 'ami mappitaq',
+'mytalk'        => 'atlarqutikka',
+'navigation'    => 'mianirivaa',
+'and'           => '&#32;amma',
+
+# Cologne Blue skin
 'qbspecialpages' => 'piji mappitaq',
-'moredotdotdot'  => 'pilluarivaa...',
-'mypage'         => 'ami mappitaq',
-'mytalk'         => 'atlarqutikka',
-'navigation'     => 'mianirivaa',
-'and'            => '&#32;amma',
 
 'help'              => 'qajalippaa',
 'search'            => 'ivaaqpuq',
@@ -184,11 +186,9 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'powersearch' => 'ivaaqpuq',
 
 # Preferences page
-'mypreferences'         => 'mi pikkumaniqpaaq',
-'math_unknown_error'    => 'tusaumajaunngituq tammanaqtuq',
-'math_unknown_function' => 'tusaumajaunngituq iliurniq',
-'prefs-rc'              => 'pigivuq asianngutuq',
-'searchresultshead'     => 'ivaaqpuq',
+'mypreferences'     => 'mi pikkumaniqpaaq',
+'prefs-rc'          => 'pigivuq asianngutuq',
+'searchresultshead' => 'ivaaqpuq',
 
 # User rights
 'editinguser' => "suqusiqpaa qatannguti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -326,6 +326,10 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 
 # Attribution
 'anonymous' => 'ilisarnanngitittuq qatannguti nakit {{SITENAME}}',
+
+# Math errors
+'math_unknown_error'    => 'tusaumajaunngituq tammanaqtuq',
+'math_unknown_function' => 'tusaumajaunngituq iliurniq',
 
 # Image deletion
 'deletedrevision' => 'nipaq utuqaq titiraqtaugiarngarut $1',

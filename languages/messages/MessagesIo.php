@@ -155,22 +155,24 @@ $messages = array(
 
 'mainpagetext' => "<big>'''MediaWiki instalesis sucese.'''</big>",
 
-'about'          => 'Pri',
-'article'        => 'artiklo',
-'newwindow'      => '(aparos en nova panelo)',
-'cancel'         => 'Anular',
+'about'         => 'Pri',
+'article'       => 'artiklo',
+'newwindow'     => '(aparos en nova panelo)',
+'cancel'        => 'Anular',
+'moredotdotdot' => 'Plus...',
+'mypage'        => 'Mea pagino',
+'mytalk'        => 'Mea diskuti',
+'anontalk'      => 'Diskuto relatant ad ica IP',
+'navigation'    => 'Navigado',
+'and'           => '&#32;ed',
+
+# Cologne Blue skin
 'qbfind'         => 'Trovez',
 'qbedit'         => 'Editar',
 'qbpageoptions'  => 'Ica pagino',
 'qbpageinfo'     => 'Kuntexto',
 'qbmyoptions'    => 'Mea pagini',
 'qbspecialpages' => 'Specala pagini',
-'moredotdotdot'  => 'Plus...',
-'mypage'         => 'Mea pagino',
-'mytalk'         => 'Mea diskuti',
-'anontalk'       => 'Diskuto relatant ad ica IP',
-'navigation'     => 'Navigado',
-'and'            => '&#32;ed',
 
 # Metadata in edit box
 'metadata_help' => 'Metadonaji:',
@@ -298,10 +300,6 @@ On povas trovar listo di valida specala pagini en [[Special:SpecialPages|{{int:s
 # General errors
 'error'               => 'Eroro',
 'databaseerror'       => 'Datumarala eroro',
-'noconnect'           => 'Pardonez! La wiki havas ula teknikala desfacilaji ed ne povas konektar kun la datumaro.<br />
-$1',
-'nodb'                => 'Onu ne povas selektar datumaro $1',
-'cachederror'         => "Co esas kopiuro registragita ye la ''cache'' di la solicitita pagino, ed ol povus ne esar aktuala.",
 'readonly'            => 'Datumaro esas blokusita',
 'enterlockreason'     => 'Explikez la motivo por la blokusado, inkluzante 
 evaluo pri kande eventos la desblokuso',
@@ -331,7 +329,6 @@ nekorekta interlinguale od interwikale ligilo.',
 Vu povas durar uzante {{SITENAME}} anonimale, o vu povas enirar altrafoye kom la sama o diferenta uzanto.",
 'welcomecreation'            => '<h2>Bonveno, $1!</h2><p>Vua konto kreesis.
 Voluntez, ne obliviez chanjor vua preferaji.',
-'loginpagetitle'             => 'Registragar / Enirar',
 'yourname'                   => 'Vua uzantonomo:',
 'yourpassword'               => 'Vua kontrolajo:',
 'yourpasswordagain'          => 'Riskribez la pasovorto:',
@@ -405,7 +402,6 @@ Voluntez enirar altrafoye pos recevar ol.',
 'resetpass_success'         => 'Vua chanjo di pasovorto sucesis! Nun, vu eniras...',
 'resetpass-submit-loggedin' => 'Chanjar pasovorto',
 'resetpass-temp-password'   => 'Provizora pasovorto:',
-'resetpass-logentry'        => 'chanjis la pasovorto di $1',
 
 # Edit page toolbar
 'bold_sample'     => 'Dika literi',
@@ -448,7 +444,6 @@ Vua IP-adreso registragesos en la versionaro di ca pagino.",
 'blockededitsource'                => "La texto di '''vua redaktaji''' di '''$1''' es montrata infre:",
 'whitelistedittitle'               => 'On mustas enskribar por redaktar',
 'whitelistedittext'                => 'Vu mustas $1 por redaktar pagini.',
-'confirmedittitle'                 => 'Konfirmado de vua e-posto es bezonata por redaktar',
 'nosuchsectiontitle'               => 'Ica seciono ne existas',
 'loginreqtitle'                    => 'Eniro esas postulata',
 'loginreqlink'                     => 'enirar',
@@ -595,15 +590,16 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'search-external'           => 'Extera sercho',
 'searchdisabled'            => 'La sercho en la kompleta texto desaktivigesis temporale pro superkargo dil servanto. Ni esperas riaktivigar ol pos facar ula proxima aktualigi. Dum ica tempo, vu povas serchar per Google.',
 
+# Quickbar
+'qbsettings'      => 'Preferaji pri "Quickbar"',
+'qbsettings-none' => 'Nula',
+
 # Preferences page
 'preferences'               => 'Preferaji',
 'mypreferences'             => 'Mea preferaji',
 'prefs-edits'               => 'Nombro di redaktaji:',
 'prefsnologin'              => 'Vu ne eniris',
 'prefsnologintext'          => 'Vu mustas <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} enirir] por establisar la preferaji.',
-'prefsreset'                => 'La preferaji riestablisesis da la depozeyo.',
-'qbsettings'                => 'Preferaji pri "Quickbar"',
-'qbsettings-none'           => 'Nula',
 'changepassword'            => 'Chanjar pasovorto',
 'prefs-skin'                => 'Pelo',
 'skin-preview'              => 'Pre-videz',
@@ -611,9 +607,6 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'dateformat'                => 'Formo di dato',
 'datedefault'               => 'Sen prefero',
 'prefs-datetime'            => 'Dato e tempo',
-'math_unknown_error'        => 'nekonocata eroro',
-'math_bad_tmpdir'           => 'Onu ne povas skribar o krear la tempala matematikala arkivaro',
-'math_bad_output'           => 'Onu ne povas skribar o krear la arkivaro por la matematiko',
 'prefs-personal'            => 'Personala informo',
 'prefs-rc'                  => 'Recenta chanji',
 'prefs-watchlist'           => 'Surveyo-listo',
@@ -634,7 +627,6 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'recentchangescount'        => 'Quanto de redakti montrota kustume en la recenta chanji, pagino-versionari e registri:',
 'savedprefs'                => 'Vua preferaji registragesis.',
 'timezonelegend'            => 'Tempala zono',
-'timezonetext'              => 'Vua lokala tempo diferas de tempo dil servanto (UTC).',
 'localtime'                 => 'Lokala tempo:',
 'timezoneselect'            => 'Tempala zono:',
 'timezoneoffset'            => 'Difero¹:',
@@ -1245,6 +1237,11 @@ Vu darfos adjuntar kauso en la rezumo.',
 'numedits'    => 'Quanto di redakti (pagino): $1',
 'numwatchers' => 'Quanto di vizitanti: $1',
 'numauthors'  => 'Quanto di aparta autori (pagino): $1',
+
+# Math errors
+'math_unknown_error' => 'nekonocata eroro',
+'math_bad_tmpdir'    => 'Onu ne povas skribar o krear la tempala matematikala arkivaro',
+'math_bad_output'    => 'Onu ne povas skribar o krear la arkivaro por la matematiko',
 
 # Patrol log
 'patrol-log-auto' => '(automata)',

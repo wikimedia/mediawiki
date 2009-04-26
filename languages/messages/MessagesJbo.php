@@ -54,9 +54,13 @@ $messages = array(
 'category_header' => 'fe le kibypapri cu klesi "$1"',
 'subcategories'   => "le'a ti",
 
+'mytalk' => 'casnu mi',
+
+# Cologne Blue skin
 'qbedit'        => 'stika',
 'qbpageoptions' => 'ti ckupau',
-'mytalk'        => 'casnu mi',
+'faq'           => 'FAQ',
+'faqpage'       => 'Project:FAQ',
 
 'errorpagetitle'   => 'fliba',
 'help'             => 'sidju ckupau',
@@ -89,8 +93,6 @@ $messages = array(
 'disclaimerpage'       => "Project:kampu nunxusra be lo za'i na fuzme",
 'edithelp'             => 'stika nunsidju',
 'edithelppage'         => 'Help:Editing',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'mainpage'             => 'ralju ckupau',
 'mainpage-description' => 'ralju ckupau',
 'portal'               => 'bende ckupau',

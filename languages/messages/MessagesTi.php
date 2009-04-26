@@ -50,10 +50,12 @@ $messages = array(
 'may'       => 'ሜይ',
 'jun'       => 'ጁን',
 
-'about'         => 'ብዛዕባ ብጠቅላላ',
+'about'  => 'ብዛዕባ ብጠቅላላ',
+'mypage' => 'ፅሑፈይ',
+
+# Cologne Blue skin
 'qbpageoptions' => 'ፅሑፍዚ',
 'qbmyoptions'   => 'ፅሑፋተይ',
-'mypage'        => 'ፅሑፈይ',
 
 'help'          => 'ፍንጪ',
 'search'        => 'ድሉይ',

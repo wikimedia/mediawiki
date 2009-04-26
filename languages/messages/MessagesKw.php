@@ -80,19 +80,21 @@ $messages = array(
 'hidden-category-category' => 'Klasyansow kudh',
 'listingcontinuesabbrev'   => 'pes.',
 
-'about'          => 'A-dro dhe',
-'cancel'         => 'Hedhi',
+'about'         => 'A-dro dhe',
+'cancel'        => 'Hedhi',
+'moredotdotdot' => 'Moy...',
+'mypage'        => 'Ow folen',
+'mytalk'        => 'Ow hewsel',
+'navigation'    => 'Lewyans',
+'and'           => '&#32;ha(g)',
+
+# Cologne Blue skin
 'qbfind'         => 'Kavos',
 'qbbrowse'       => 'Peuri',
 'qbedit'         => 'Chanjya',
 'qbpageoptions'  => 'An folen ma',
 'qbmyoptions'    => 'Ow folennow',
 'qbspecialpages' => 'Folennow arbennek',
-'moredotdotdot'  => 'Moy...',
-'mypage'         => 'Ow folen',
-'mytalk'         => 'Ow hewsel',
-'navigation'     => 'Lewyans',
-'and'            => '&#32;ha(g)',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

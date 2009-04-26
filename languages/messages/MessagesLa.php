@@ -267,10 +267,18 @@ $messages = array(
 'category-file-count-limited'    => 'Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}}.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'about'          => 'De hoc',
-'article'        => 'Pagina contenta continens',
-'newwindow'      => '(in fenestra nova aperietur)',
-'cancel'         => 'Abrogare',
+'about'         => 'De hoc',
+'article'       => 'Pagina contenta continens',
+'newwindow'     => '(in fenestra nova aperietur)',
+'cancel'        => 'Abrogare',
+'moredotdotdot' => 'Plus...',
+'mypage'        => 'Pagina mea',
+'mytalk'        => 'Disputatio mea',
+'anontalk'      => 'Disputatio huius IP',
+'navigation'    => 'Navigatio',
+'and'           => '&#32;et',
+
+# Cologne Blue skin
 'qbfind'         => 'Invenire',
 'qbbrowse'       => 'Perspicere',
 'qbedit'         => 'Recensere',
@@ -278,12 +286,8 @@ $messages = array(
 'qbpageinfo'     => 'Contextus',
 'qbmyoptions'    => 'Paginae meae',
 'qbspecialpages' => 'Paginae speciales',
-'moredotdotdot'  => 'Plus...',
-'mypage'         => 'Pagina mea',
-'mytalk'         => 'Disputatio mea',
-'anontalk'       => 'Disputatio huius IP',
-'navigation'     => 'Navigatio',
-'and'            => '&#32;et',
+'faq'            => 'Quaestiones frequentes',
+'faqpage'        => 'Project:Quaestiones frequentes',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -354,8 +358,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Repudiationes',
 'edithelp'             => 'Opes recensendi',
 'edithelppage'         => 'Help:De recensendo',
-'faq'                  => 'Quaestiones frequentes',
-'faqpage'              => 'Project:Quaestiones frequentes',
 'helppage'             => 'Help:Adiutatum',
 'mainpage'             => 'Pagina prima',
 'mainpage-description' => 'Pagina prima',
@@ -428,9 +430,6 @@ Inquisitio basis datorum ultime apparata erat:
 "$1"
 ex functionis "$2".
 MySQL erratum reddidit "$3: $4"',
-'noconnect'            => '{{SITENAME}} per aerumnas technicas agit, et server basis datorum invenire non potest.<br />
-$1',
-'cachederror'          => 'Quae sequuntur sunt ex exemplo conditivo paginae quaesitae, fortasse non recente.',
 'readonly'             => 'Basis datorum obstructa',
 'missingarticle-rev'   => '(numerus emendationis: $1)',
 'missingarticle-diff'  => '(Diss: $1, $2)',
@@ -474,7 +473,6 @@ Nota bene paginas fortasse videantur quasi tuum conventum esset apertum, priusqu
 'welcomecreation'            => '== Salve, $1! ==
 Ratio tua iam creata est.
 Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusative|{{SITENAME}}}} mutare.',
-'loginpagetitle'             => 'Conventum aperire',
 'yourname'                   => 'Nomen tuum usoris:',
 'yourpassword'               => 'Tessera tua:',
 'yourpasswordagain'          => 'Tesseram tuam adfirmare:',
@@ -564,7 +562,6 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'resetpass-no-info'         => 'Necesse est conventum aperire ad hanc paginam adhibendum.',
 'resetpass-submit-loggedin' => 'Tesseram mutare',
 'resetpass-temp-password'   => 'Tessera temporaria:',
-'resetpass-comment'         => 'Causa reperscriptationis tesserae:',
 
 # Edit page toolbar
 'bold_sample'     => 'Litterae pingues',
@@ -633,7 +630,6 @@ Locus IP tuus temporarius $3 est et numerus obstructionis tuus est #$5. Quaesumu
 'blockededitsource'                => "Textus '''tuarum emendationum''' in '''$1''' subter monstratur:",
 'whitelistedittitle'               => 'Conventum aperiendum ut recenseas',
 'whitelistedittext'                => 'Necesse est tibi $1 priusquam paginas recenseas.',
-'confirmedittitle'                 => 'Adfirmanda est inscriptio tua electronica prisuquam recenseas',
 'confirmedittext'                  => 'Tua inscriptio electronica est adfirmanda priusquam paginas recenseas. Quaesumus eam selige et adfirma per tuas [[Special:Preferences|praeferentias]].',
 'nosuchsectiontitle'               => 'Haec pars non est',
 'nosuchsectiontext'                => 'Partem inexistentem recensere conaris. Quia pars $1 non est, recensio tua servari non potest.',
@@ -915,19 +911,20 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'search-external'                => 'Inquisitio externalis',
 'searchdisabled'                 => 'Per {{grammar:accusative|{{SITENAME}}}} ad tempus non potes quaerere. Interea per [http://www.google.com Googlem] quaeras. Nota indices {{grammar:genitive|{{SITENAME}}}} contentorum apud Googlem fortasse antiquiores esse.',
 
+# Quickbar
+'qbsettings'               => 'Figuratio claustri celeris',
+'qbsettings-none'          => 'Nullus',
+'qbsettings-fixedleft'     => 'Constituere a sinistra',
+'qbsettings-fixedright'    => 'Constituere a dextra',
+'qbsettings-floatingleft'  => 'Innens a sinistra',
+'qbsettings-floatingright' => 'Innens a dextra',
+
 # Preferences page
 'preferences'               => 'Praeferentiae',
 'mypreferences'             => 'Praeferentiae meae',
 'prefs-edits'               => 'Numerus recensionum:',
 'prefsnologin'              => 'Conventum non apertum',
 'prefsnologintext'          => '<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} Conventum aperire]</span> debes ad praeferentias tuas modificandum.',
-'prefsreset'                => 'Praeferentiae tuae reperscriptae sunt.',
-'qbsettings'                => 'Figuratio claustri celeris',
-'qbsettings-none'           => 'Nullus',
-'qbsettings-fixedleft'      => 'Constituere a sinistra',
-'qbsettings-fixedright'     => 'Constituere a dextra',
-'qbsettings-floatingleft'   => 'Innens a sinistra',
-'qbsettings-floatingright'  => 'Innens a dextra',
 'changepassword'            => 'Tesseram mutare',
 'prefs-skin'                => 'Aspectum',
 'skin-preview'              => 'Praevisum',
@@ -935,11 +932,6 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'dateformat'                => 'Forma diei',
 'datedefault'               => 'Nullum praeferentiae',
 'prefs-datetime'            => 'Dies et tempus',
-'math_failure'              => 'Excutare non potest',
-'math_unknown_error'        => 'error ignotus',
-'math_unknown_function'     => 'functio ignota',
-'math_lexing_error'         => 'erratum lexicale',
-'math_syntax_error'         => 'erratum syntaxis',
 'prefs-personal'            => 'Minutiae rationis',
 'prefs-rc'                  => 'Nuper mutata',
 'prefs-watchlist'           => 'Paginae custoditae',
@@ -962,7 +954,6 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'recentchangescount'        => 'Quantum rerum in nuper mutatis, historiis et actis:',
 'savedprefs'                => 'Praeferentiae tuae servatae sunt.',
 'timezonelegend'            => 'Zona temporis',
-'timezonetext'              => '¹Numerus horarum inter horam tuam et illam moderatri (UTC).',
 'localtime'                 => 'Hora indigena:',
 'timezoneselect'            => 'Zona temporis:',
 'timezoneuseoffset'         => 'Alia (da dissimilitudinem cinguli horae)',
@@ -1991,6 +1982,13 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'mw_math_source' => 'Stet ut TeX (pro navigatri texti)',
 'mw_math_modern' => 'Commendatum pro navigatri recentes',
 'mw_math_mathml' => 'MathML',
+
+# Math errors
+'math_failure'          => 'Excutare non potest',
+'math_unknown_error'    => 'error ignotus',
+'math_unknown_function' => 'functio ignota',
+'math_lexing_error'     => 'erratum lexicale',
+'math_syntax_error'     => 'erratum syntaxis',
 
 # Patrol log
 'patrol-log-page'      => 'Acta emendationum circumitarum',

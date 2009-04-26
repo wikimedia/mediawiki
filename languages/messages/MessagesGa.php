@@ -209,10 +209,18 @@ $messages = array(
 'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
 agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil.',
 
-'about'          => 'Maidir leis',
-'article'        => 'Leathanach ábhair',
-'newwindow'      => '(a osclófar i bhfuinneog nua)',
-'cancel'         => 'Cealaigh',
+'about'         => 'Maidir leis',
+'article'       => 'Leathanach ábhair',
+'newwindow'     => '(a osclófar i bhfuinneog nua)',
+'cancel'        => 'Cealaigh',
+'moredotdotdot' => 'Tuilleadh...',
+'mypage'        => 'Mo leathanach',
+'mytalk'        => 'Mo chuid phlé',
+'anontalk'      => 'Plé don seoladh IP seo',
+'navigation'    => 'Nascleanúint',
+'and'           => '&#32;agus',
+
+# Cologne Blue skin
 'qbfind'         => 'Aimsigh',
 'qbbrowse'       => 'Brabhsáil',
 'qbedit'         => 'Cuir in eagar',
@@ -220,12 +228,8 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'qbpageinfo'     => 'Comhthéacs',
 'qbmyoptions'    => 'Mo chuid leathanaigh',
 'qbspecialpages' => 'Leathanaigh speisialta',
-'moredotdotdot'  => 'Tuilleadh...',
-'mypage'         => 'Mo leathanach',
-'mytalk'         => 'Mo chuid phlé',
-'anontalk'       => 'Plé don seoladh IP seo',
-'navigation'     => 'Nascleanúint',
-'and'            => '&#32;agus',
+'faq'            => 'Ceisteanna Coiteanta',
+'faqpage'        => 'Project:Ceisteanna_Coiteanta',
 
 # Metadata in edit box
 'metadata_help' => 'Meiteasonraí:',
@@ -297,8 +301,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'disclaimerpage'       => 'Project:Séanadh_ginearálta',
 'edithelp'             => 'Cabhair eagarthóireachta',
 'edithelppage'         => 'Help:Eagarthóireacht',
-'faq'                  => 'Ceisteanna Coiteanta',
-'faqpage'              => 'Project:Ceisteanna_Coiteanta',
 'helppage'             => 'Help:Clár_ábhair',
 'mainpage'             => 'Príomhleathanach',
 'mainpage-description' => 'Príomhleathanach',
@@ -377,10 +379,6 @@ sonraí.
 "$1", ón suim "$2",
 ab ea an iarratas fiosraithe deireanach chuig an bhunachar sonrai,
 Chuir MySQL an earráid seo ar ais: "$3: $4".',
-'noconnect'            => 'Tá brón orainn! Tá roinnt deacrachtaí teicniúla ag an vicí faoi láthair, agus ní féidir leis teagmháil a dhéanamh leis an mbunachar sonraí. <br />
-$1',
-'nodb'                 => 'Theip rogha an bhunachair sonraí $1',
-'cachederror'          => 'Seo í cóip athscríofa den leathanach a raibh tú ag lorg (is dócha nach bhfuil sí bord ar bhord leis an leagan reatha).',
 'laggedslavemode'      => "Rabhadh: B'fhéidir nach bhfuil na nuashonrúcháin is déanaí le feiceáil ar an leathanach seo.",
 'readonly'             => 'Bunachar sonraí faoi ghlas',
 'enterlockreason'      => 'Iontráil cúis don glasáil, agus meastachán
@@ -442,7 +440,6 @@ Tabhair faoi deara go taispeáinfear roinnt leathanaigh mar atá tú logáilte i
 'welcomecreation'            => '== Tá fáilte romhat, $1! ==
 
 Cruthaíodh do chuntas. Ná déan dearmad athrú a dhéanamh ar do chuid [[Special:Preferences|sainroghanna {{GRAMMAR:genitive|{{SITENAME}}}}]].',
-'loginpagetitle'             => 'Logáil isteach',
 'yourname'                   => "D'ainm úsáideora",
 'yourpassword'               => "D'fhocal faire",
 'yourpasswordagain'          => "Athiontráil d'fhocal faire",
@@ -547,8 +544,6 @@ Chun d'iarratas logáil isteach a chríochnú, caithfidh tú focal faire nua a r
 'newpassword'               => 'Focal faire nua:',
 'retypenew'                 => 'Athiontráil an focal nua faire:',
 'resetpass_submit'          => 'Roghnaigh focal faire agus logáil isteach',
-'resetpass_bad_temporary'   => "Níl an focal faire sealadach bailí.
-B'fhéidir gur athraigh tú d'fhocal faire roimhe seo, nó gur iarr tú ar ceann nua.",
 'resetpass_forbidden'       => 'Ní féidir focail faire a athrú',
 'resetpass-no-info'         => 'Caithfidh tú bheith logáilte istigh chun teacht ar an leathanach seo go díreach.',
 'resetpass-submit-loggedin' => "Athraigh d'fhocal faire",
@@ -792,18 +787,19 @@ taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí c
 'powersearch-field'              => 'Cuardaigh le',
 'searchdisabled'                 => "Tá brón orainn! Mhíchumasaíodh an cuardach téacs iomlán go sealadach chun luas an tsuímh a chosaint. Idir an dá linn, is féidir leat an cuardach Google anseo thíos a úsáid - b'fhéidir go bhfuil sé as dáta.",
 
+# Quickbar
+'qbsettings'               => 'Sainroghanna an bosca uirlisí',
+'qbsettings-none'          => 'Faic',
+'qbsettings-fixedleft'     => 'Greamaithe ar chlé',
+'qbsettings-fixedright'    => 'Greamaithe ar dheis',
+'qbsettings-floatingleft'  => 'Ag faoileáil ar chlé',
+'qbsettings-floatingright' => 'Ag faoileáil ar dheis',
+
 # Preferences page
 'preferences'               => 'Sainroghanna',
 'mypreferences'             => 'Mo shainroghanna',
 'prefsnologin'              => 'Níl tú logáilte isteach',
 'prefsnologintext'          => 'Ní mór duit <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logáil isteach]</span> chun do chuid sainroghanna phearsanta a shocrú.',
-'prefsreset'                => "D'athraíodh do chuid sainroghanna ar ais chuig an leagan bunúsach ón stóras.",
-'qbsettings'                => 'Sainroghanna an bosca uirlisí',
-'qbsettings-none'           => 'Faic',
-'qbsettings-fixedleft'      => 'Greamaithe ar chlé',
-'qbsettings-fixedright'     => 'Greamaithe ar dheis',
-'qbsettings-floatingleft'   => 'Ag faoileáil ar chlé',
-'qbsettings-floatingright'  => 'Ag faoileáil ar dheis',
 'changepassword'            => "Athraigh d'fhocal faire",
 'prefs-skin'                => 'Craiceann',
 'skin-preview'              => 'Réamhamharc',
@@ -811,15 +807,6 @@ taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí c
 'dateformat'                => 'Formáid dáta',
 'datedefault'               => 'Is cuma liom',
 'prefs-datetime'            => 'Dáta agus am',
-'math_failure'              => 'Theip ó anailís na foirmle',
-'math_unknown_error'        => 'earráid anaithnid',
-'math_unknown_function'     => 'foirmle anaithnid',
-'math_lexing_error'         => 'Theip ó anailís an fhoclóra',
-'math_syntax_error'         => 'earráid comhréire',
-'math_image_error'          => 'Theip ó aistriú an PNG; tástáil má tá na ríomh-oidis latex, dvips, gs, agus convert i suite go maith.',
-'math_bad_tmpdir'           => 'Ní féidir scríobh chuig an fillteán mata sealadach, nó é a chruthú',
-'math_bad_output'           => 'Ní féidir scríobh chuig an fillteán mata aschomhaid, nó é a chruthú',
-'math_notexvc'              => 'Níl an ríomhchlár texvc ann; féach ar mata/EOLAIS chun é a sainathrú.',
 'prefs-personal'            => 'Sonraí úsáideora',
 'prefs-rc'                  => 'Athruithe is déanaí',
 'prefs-watchlist'           => 'Liosta faire',
@@ -840,8 +827,6 @@ taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí c
 'recentchangescount'        => 'Méid teideal sna hathruithe is déanaí',
 'savedprefs'                => 'Sábháladh do chuid sainroghanna.',
 'timezonelegend'            => 'Crios ama',
-'timezonetext'              => 'Iontráil an méid uaireanta a difríonn do am áitiúil
-den am an freastalaí (UTC).',
 'localtime'                 => 'An t-am áitiúil:',
 'timezoneoffset'            => 'Difear¹:',
 'servertime'                => 'Am an freastalaí:',
@@ -1712,6 +1697,17 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'mw_math_source' => 'Fág mar cló TeX (do teacsleitheoirí)',
 'mw_math_modern' => 'Inmholta do bhrabhsálaithe nua',
 'mw_math_mathml' => 'MathML más féidir (turgnamhach)',
+
+# Math errors
+'math_failure'          => 'Theip ó anailís na foirmle',
+'math_unknown_error'    => 'earráid anaithnid',
+'math_unknown_function' => 'foirmle anaithnid',
+'math_lexing_error'     => 'Theip ó anailís an fhoclóra',
+'math_syntax_error'     => 'earráid comhréire',
+'math_image_error'      => 'Theip ó aistriú an PNG; tástáil má tá na ríomh-oidis latex, dvips, gs, agus convert i suite go maith.',
+'math_bad_tmpdir'       => 'Ní féidir scríobh chuig an fillteán mata sealadach, nó é a chruthú',
+'math_bad_output'       => 'Ní féidir scríobh chuig an fillteán mata aschomhaid, nó é a chruthú',
+'math_notexvc'          => 'Níl an ríomhchlár texvc ann; féach ar mata/EOLAIS chun é a sainathrú.',
 
 # Patrolling
 'markaspatrolleddiff'   => 'Comharthaigh mar patrólta.',

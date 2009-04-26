@@ -36,8 +36,10 @@ $messages = array(
 'december'  => 'Dzèmber',
 'may'       => 'Mâz',
 
+'mytalk' => 'I mê discussiòun',
+
+# Cologne Blue skin
 'qbspecialpages' => 'Pagini specièli',
-'mytalk'         => 'I mê discussiòun',
 
 'returnto'         => 'Tórna a $1.',
 'help'             => 'Per quî rivê da pôch',

@@ -351,10 +351,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]',
 
-'about'          => 'O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
-'article'        => 'artykuł',
-'newwindow'      => '(otwiera się w nowym oknie)',
-'cancel'         => 'Anuluj',
+'about'         => 'O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
+'article'       => 'artykuł',
+'newwindow'     => '(otwiera się w nowym oknie)',
+'cancel'        => 'Anuluj',
+'moredotdotdot' => 'Więcej...',
+'mypage'        => 'Moja strona',
+'mytalk'        => 'Moja dyskusja',
+'anontalk'      => 'Dyskusja tego IP',
+'navigation'    => 'Nawigacja',
+'and'           => '&#32;oraz',
+
+# Cologne Blue skin
 'qbfind'         => 'Znajdź',
 'qbbrowse'       => 'Przeglądanie',
 'qbedit'         => 'Edycja',
@@ -362,12 +370,8 @@ $messages = array(
 'qbpageinfo'     => 'Kontekst',
 'qbmyoptions'    => 'Moje strony',
 'qbspecialpages' => 'strony specjalne',
-'moredotdotdot'  => 'Więcej...',
-'mypage'         => 'Moja strona',
-'mytalk'         => 'Moja dyskusja',
-'anontalk'       => 'Dyskusja tego IP',
-'navigation'     => 'Nawigacja',
-'and'            => '&#32;oraz',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 # Metadata in edit box
 'metadata_help' => 'Metadane:',
@@ -439,8 +443,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Informacje prawne',
 'edithelp'             => 'Pomoc w edycji',
 'edithelppage'         => 'Help:Jak edytować stronę',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Spis treści',
 'mainpage'             => 'Strona główna',
 'mainpage-description' => 'Strona główna',
@@ -520,10 +522,6 @@ Ostatnie, nieudane zapytanie to:
 „$1”
 wywołane zostało przez funkcję „$2”.
 MySQL zgłosił błąd „$3: $4”',
-'noconnect'            => 'UWAGA! Projekt {{SITENAME}} ma chwilowe problemy techniczne. Brak połączenia z serwerem bazy danych.<br />
-$1',
-'nodb'                 => 'Nie można odnaleźć bazy danych $1',
-'cachederror'          => 'Poniższy tekst strony jest kopią znajdującą się w pamięci podręcznej i może być już nieaktualny.',
 'laggedslavemode'      => 'Uwaga! Ta strona może nie zawierać najnowszych aktualizacji.',
 'readonly'             => 'Baza danych jest zablokowana',
 'enterlockreason'      => 'Podaj powód zablokowania bazy oraz szacunkowy termin jej odblokowania',
@@ -592,7 +590,6 @@ Zauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektó
 'welcomecreation'            => '== Witaj, $1! ==
 Twoje konto zostało utworzone.
 Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{SITENAME}}}}]].',
-'loginpagetitle'             => 'Logowanie',
 'yourname'                   => 'Nazwa {{GENDER:|użytkownika|użytkowniczki}}',
 'yourpassword'               => 'Hasło',
 'yourpasswordagain'          => 'Powtórz hasło',
@@ -705,18 +702,12 @@ Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'retypenew'                 => 'Powtórz nowe hasło',
 'resetpass_submit'          => 'Ustaw hasło i zaloguj się',
 'resetpass_success'         => 'Twoje hasło zostało pomyślnie zmienione! Trwa logowanie...',
-'resetpass_bad_temporary'   => 'Nieprawidłowe hasło tymczasowe.
-Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe hasło tymczasowe.',
 'resetpass_forbidden'       => 'Hasła nie mogą zostać zmienione',
 'resetpass-no-info'         => 'Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.',
 'resetpass-submit-loggedin' => 'Zmień hasło',
 'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło. 
 Być może właśnie zmieniłeś swoje hasło lub poprosiłeś o nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
-'resetpass-log'             => 'Rejestr zerowania haseł',
-'resetpass-logtext'         => 'Rejestr użytkowników których hasła zerowali administratorzy.',
-'resetpass-logentry'        => 'zmienił hasło $1',
-'resetpass-comment'         => 'Powód wyzerowania hasła',
 
 # Edit page toolbar
 'bold_sample'     => 'Tekst tłustą czcionką',
@@ -793,7 +784,6 @@ Prosimy o podanie obu tych numerów przy wyjaśnianiu blokady.",
 'blockededitsource'                => "Tekst '''Twoich edycji''' na '''$1''' został pokazany poniżej:",
 'whitelistedittitle'               => 'Przed edycją musisz się zalogować',
 'whitelistedittext'                => 'Musisz $1, by edytować strony.',
-'confirmedittitle'                 => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e‐mail',
 'confirmedittext'                  => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e‐mail.
 Podaj adres e‐mail i potwierdź go w swoich [[Special:Preferences|ustawieniach użytkownika]].',
 'nosuchsectiontitle'               => 'Sekcja nie istnieje',
@@ -1155,7 +1145,6 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'searchhelp-url'                   => 'Help:Spis treści',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Przeglądaj strony zaczynające się od tego przedrostka]]',
 'searchprofile-articles'           => 'Strony',
-'searchprofile-articles-and-proj'  => 'Wszystkie strony projektu',
 'searchprofile-project'            => 'Strony spoza głównej przestrzeni nazw',
 'searchprofile-images'             => 'Pliki',
 'searchprofile-everything'         => 'Wszystko',
@@ -1165,8 +1154,6 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'searchprofile-images-tooltip'     => 'Szukanie plików',
 'searchprofile-everything-tooltip' => 'Szukanie w całej zawartości (także strony dyskusji)',
 'searchprofile-advanced-tooltip'   => 'Szukanie w wybranych przestrzeniach nazw',
-'prefs-search-nsdefault'           => 'Domyślnie przeszukuj w przestrzeniach nazw:',
-'prefs-search-nscustom'            => 'Przeszukuj w wybranych przestrzeniach nazw:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 słowo|$2 słowa|$2 słów}})',
 'search-result-score'              => 'Trafność: $1%',
 'search-redirect'                  => '(przekierowanie $1)',
@@ -1196,19 +1183,20 @@ Możesz [[:$1|utworzyć tę stronę]].",
 W międzyczasie możesz skorzystać z wyszukiwania Google.
 Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google nieaktualne.',
 
+# Quickbar
+'qbsettings'               => 'Pasek szybkiego dostępu',
+'qbsettings-none'          => 'Brak',
+'qbsettings-fixedleft'     => 'Stały, z lewej',
+'qbsettings-fixedright'    => 'Stały, z prawej',
+'qbsettings-floatingleft'  => 'Unoszący się, z lewej',
+'qbsettings-floatingright' => 'Unoszący się, z prawej',
+
 # Preferences page
 'preferences'               => 'Preferencje',
 'mypreferences'             => 'Preferencje',
 'prefs-edits'               => 'Liczba edycji',
 'prefsnologin'              => 'Nie jesteś zalogowany',
 'prefsnologintext'          => 'Musisz się <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} zalogować]</span> przed zmianą swoich preferencji.',
-'prefsreset'                => 'Preferencje domyślne zostały odtworzone.',
-'qbsettings'                => 'Pasek szybkiego dostępu',
-'qbsettings-none'           => 'Brak',
-'qbsettings-fixedleft'      => 'Stały, z lewej',
-'qbsettings-fixedright'     => 'Stały, z prawej',
-'qbsettings-floatingleft'   => 'Unoszący się, z lewej',
-'qbsettings-floatingright'  => 'Unoszący się, z prawej',
 'changepassword'            => 'Zmiana hasła',
 'prefs-skin'                => 'Skórka',
 'skin-preview'              => 'podgląd',
@@ -1216,17 +1204,6 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'dateformat'                => 'Format daty',
 'datedefault'               => 'Domyślny',
 'prefs-datetime'            => 'Data i czas',
-'math_failure'              => 'Parser nie mógł rozpoznać',
-'math_unknown_error'        => 'nieznany błąd',
-'math_unknown_function'     => 'nieznana funkcja',
-'math_lexing_error'         => 'błędna nazwa',
-'math_syntax_error'         => 'błąd składni',
-'math_image_error'          => 'Konwersja do formatu PNG nie powiodła się.
-Sprawdź, czy poprawnie zainstalowane są latex, dvips, gs i convert.',
-'math_bad_tmpdir'           => 'Nie można utworzyć lub zapisywać w tymczasowym katalogu dla wzorów matematycznych',
-'math_bad_output'           => 'Nie można utworzyć lub zapisywać w wyjściowym katalogu dla wzorów matematycznych',
-'math_notexvc'              => 'Brak programu texvc.
-Zapoznaj się z math/README w celu konfiguracji.',
 'prefs-personal'            => 'Dane użytkownika',
 'prefs-rc'                  => 'Ostatnie zmiany',
 'prefs-watchlist'           => 'Obserwowane',
@@ -1253,7 +1230,6 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'recentchangescount'        => 'Domyślna liczba pozycji do wyświetlenia na liście ostatnich zmian, w historii stron i na stronach rejestrów',
 'savedprefs'                => 'Twoje preferencje zostały zapisane.',
 'timezonelegend'            => 'Strefa czasowa',
-'timezonetext'              => '¹Liczba godzin różnicy między Twoim czasem lokalnym, a czasem uniwersalnym (UTC).',
 'localtime'                 => 'Czas lokalny',
 'timezoneselect'            => 'Strefa czasowa',
 'timezoneuseserverdefault'  => 'Użyj domyślnego czasu serwera',
@@ -2621,6 +2597,19 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'mw_math_source' => 'Pozostaw w TeXu (dla przeglądarek tekstowych)',
 'mw_math_modern' => 'HTML – zalecane dla nowych przeglądarek',
 'mw_math_mathml' => 'MathML jeśli dostępny (eksperymentalne)',
+
+# Math errors
+'math_failure'          => 'Parser nie mógł rozpoznać',
+'math_unknown_error'    => 'nieznany błąd',
+'math_unknown_function' => 'nieznana funkcja',
+'math_lexing_error'     => 'błędna nazwa',
+'math_syntax_error'     => 'błąd składni',
+'math_image_error'      => 'Konwersja do formatu PNG nie powiodła się.
+Sprawdź, czy poprawnie zainstalowane są latex, dvips, gs i convert.',
+'math_bad_tmpdir'       => 'Nie można utworzyć lub zapisywać w tymczasowym katalogu dla wzorów matematycznych',
+'math_bad_output'       => 'Nie można utworzyć lub zapisywać w wyjściowym katalogu dla wzorów matematycznych',
+'math_notexvc'          => 'Brak programu texvc.
+Zapoznaj się z math/README w celu konfiguracji.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'oznacz edycję jako „sprawdzoną”',

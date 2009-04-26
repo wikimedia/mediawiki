@@ -63,18 +63,20 @@ $messages = array(
 'category_header' => 'Altan sa ghnè "$1"',
 'subcategories'   => 'Fo-ghnethan',
 
-'about'          => 'Mu',
-'newwindow'      => '(a’ fosgladh ann an uinneag ùr)',
+'about'         => 'Mu',
+'newwindow'     => '(a’ fosgladh ann an uinneag ùr)',
+'moredotdotdot' => 'Barrachd...',
+'mypage'        => 'Mo dhuilleag',
+'mytalk'        => 'Mo chonaltradh',
+'anontalk'      => 'Labhairt air an IP seo',
+'and'           => '&#32;agus',
+
+# Cologne Blue skin
 'qbfind'         => 'Lorg',
 'qbedit'         => 'Deasaich',
 'qbpageoptions'  => 'An duilleag seo',
 'qbmyoptions'    => 'Na duilleagan agam',
 'qbspecialpages' => 'Duilleagan àraidh',
-'moredotdotdot'  => 'Barrachd...',
-'mypage'         => 'Mo dhuilleag',
-'mytalk'         => 'Mo chonaltradh',
-'anontalk'       => 'Labhairt air an IP seo',
-'and'            => '&#32;agus',
 
 'errorpagetitle'    => 'Mearachd',
 'returnto'          => 'Till gu $1.',
@@ -150,16 +152,11 @@ $messages = array(
 # General errors
 'error'           => 'Mearachd',
 'databaseerror'   => 'Mearachd an stor-dàta',
-'noconnect'       => "Tha sinn duilich! Tha trioblaidean teicneòlais aig a' wiki an dràsda, is cha gabh fios a chur gu frithealaiche an stòr-dàta. <br />
-$1",
-'nodb'            => 'Cha do thaghadh stòr-dàta $1',
-'cachederror'     => "Is e lethbhreac taisgte na duilleig a dh'iarr thu a leanas, agus dh'fhaoite nach eil e nuadh-aimsireil.",
 'readonly'        => 'Stor-dàta glaiste',
 'badarticleerror' => 'Cha ghabh an gnìomh seo a dhèanamh air an duilleig seo.',
 'badtitle'        => 'Droch thiotal',
 
 # Login and logout pages
-'loginpagetitle'             => 'Log a-steach an neach-cleachdaidh',
 'yourname'                   => "D' ainm-cleachdaidh",
 'yourpassword'               => 'Am facal-faire agad',
 'yourpasswordagain'          => 'Ath-sgrìobh facal-faire',
@@ -244,19 +241,18 @@ $1",
 'powersearch'           => 'Rannsaich',
 
 # Preferences page
-'preferences'        => 'Roghainnean',
-'mypreferences'      => 'Mo roghainnean',
-'changepassword'     => 'Atharraich facal-faire',
-'prefs-skin'         => 'Bian',
-'dateformat'         => 'Cruth nan ceann-latha',
-'math_unknown_error' => 'mearachd neo-aithnichte',
-'prefs-personal'     => "Dàta a' chleachdair",
-'saveprefs'          => 'Sàbhail roghainnean',
-'resetprefs'         => 'Ath-shuidhich taghaidhean',
-'rows'               => 'Sreathan',
-'columns'            => 'Colbhan',
-'savedprefs'         => 'Tha na roghainnean agad air an sàbhaladh.',
-'default'            => 'Gnàth',
+'preferences'    => 'Roghainnean',
+'mypreferences'  => 'Mo roghainnean',
+'changepassword' => 'Atharraich facal-faire',
+'prefs-skin'     => 'Bian',
+'dateformat'     => 'Cruth nan ceann-latha',
+'prefs-personal' => "Dàta a' chleachdair",
+'saveprefs'      => 'Sàbhail roghainnean',
+'resetprefs'     => 'Ath-shuidhich taghaidhean',
+'rows'           => 'Sreathan',
+'columns'        => 'Colbhan',
+'savedprefs'     => 'Tha na roghainnean agad air an sàbhaladh.',
+'default'        => 'Gnàth',
 
 # User rights
 'userrights-changeable-col' => "Buidhnean a dh' atharraicheas tu",
@@ -459,6 +455,9 @@ $1",
 # Info page
 'infosubtitle' => 'Fiosrachadh air duilleig',
 'numwatchers'  => 'Aireamh luchd-faire: $1',
+
+# Math errors
+'math_unknown_error' => 'mearachd neo-aithnichte',
 
 # Special:NewFiles
 'ilsubmit' => 'Rannsaich',

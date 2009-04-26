@@ -101,16 +101,18 @@ $messages = array(
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Ñemohenda|Ñemohendakuéra}}',
 
-'about'          => 'Rehegua',
-'article'        => 'Kuatiahai',
-'newwindow'      => "(Ojepe'a peteĩ ovetã pyahu)",
-'cancel'         => 'Mbotove',
+'about'      => 'Rehegua',
+'article'    => 'Kuatiahai',
+'newwindow'  => "(Ojepe'a peteĩ ovetã pyahu)",
+'cancel'     => 'Mbotove',
+'mypage'     => 'Che kuatiarogue',
+'mytalk'     => 'Che myangekõi',
+'navigation' => 'Kundaharã',
+
+# Cologne Blue skin
 'qbfind'         => 'Heka',
 'qbedit'         => 'Jehaijey',
 'qbspecialpages' => 'Kuatiarogue hekochĩchĩva',
-'mypage'         => 'Che kuatiarogue',
-'mytalk'         => 'Che myangekõi',
-'navigation'     => 'Kundaharã',
 
 'tagline'          => '{{SITENAME}}megua',
 'help'             => 'Pytyvõhára',
@@ -187,7 +189,6 @@ $messages = array(
 'ns-specialprotected' => 'Las páginas en el espacio de nombres Especial no se pueden editar.',
 
 # Login and logout pages
-'loginpagetitle'          => 'Terañemboguapy/Ke',
 'yourname'                => 'Hero',
 'yourpassword'            => 'Ne remiñemi',
 'yourpasswordagain'       => 'Repita ne remiñemi',

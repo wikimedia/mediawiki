@@ -45,10 +45,12 @@ $messages = array(
 'december-gen'  => 'Eyo Mnga',
 'may'           => 'EkaCanzibe',
 
-'article'        => 'Inqaku',
+'article' => 'Inqaku',
+'mypage'  => 'Inqaku yam',
+'mytalk'  => 'Inthetho yam',
+
+# Cologne Blue skin
 'qbspecialpages' => 'Amaphepha Abalulekileyo',
-'mypage'         => 'Inqaku yam',
-'mytalk'         => 'Inthetho yam',
 
 'help'             => 'Uncedo',
 'search'           => 'Khangela',

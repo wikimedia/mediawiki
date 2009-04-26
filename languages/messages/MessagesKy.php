@@ -49,16 +49,18 @@ $messages = array(
 'nov'       => 'Ноя',
 'dec'       => 'Дек',
 
-'about'         => 'Тууралуу',
-'cancel'        => 'Жокко чыгаруу',
+'about'      => 'Тууралуу',
+'cancel'     => 'Жокко чыгаруу',
+'mypage'     => 'Барагым',
+'mytalk'     => 'Маегим',
+'navigation' => 'Багыттоо',
+'and'        => '&#32;жана',
+
+# Cologne Blue skin
 'qbedit'        => 'Оңдоо',
 'qbpageoptions' => 'Бул барак',
 'qbpageinfo'    => 'Контекст',
 'qbmyoptions'   => 'Барактарым',
-'mypage'        => 'Барагым',
-'mytalk'        => 'Маегим',
-'navigation'    => 'Багыттоо',
-'and'           => '&#32;жана',
 
 'errorpagetitle'   => 'Жаңылыш',
 'tagline'          => '{{SITENAME}} дан',
@@ -170,18 +172,17 @@ $messages = array(
 'powersearch' => 'Издөө',
 
 # Preferences page
-'preferences'        => 'Түзөө',
-'changepassword'     => 'Сырсөздү өзгөртүү',
-'dateformat'         => 'Датанын форматы',
-'prefs-datetime'     => 'Дата жана убакыт',
-'math_unknown_error' => 'белгисиз ката',
-'prefs-rc'           => 'Соңку өзгөрүүлөр',
-'prefs-watchlist'    => 'Байкоо тизме',
-'saveprefs'          => 'Сактап кой',
-'prefs-editing'      => 'Оңдоо',
-'searchresultshead'  => 'Издөө',
-'localtime'          => 'Жергиликтүү убакыт',
-'prefs-files'        => 'Файлдар',
+'preferences'       => 'Түзөө',
+'changepassword'    => 'Сырсөздү өзгөртүү',
+'dateformat'        => 'Датанын форматы',
+'prefs-datetime'    => 'Дата жана убакыт',
+'prefs-rc'          => 'Соңку өзгөрүүлөр',
+'prefs-watchlist'   => 'Байкоо тизме',
+'saveprefs'         => 'Сактап кой',
+'prefs-editing'     => 'Оңдоо',
+'searchresultshead' => 'Издөө',
+'localtime'         => 'Жергиликтүү убакыт',
+'prefs-files'       => 'Файлдар',
 
 # Groups
 'group'            => 'Топ:',
@@ -303,6 +304,9 @@ $messages = array(
 
 # Attribution
 'others' => 'башкалар',
+
+# Math errors
+'math_unknown_error' => 'белгисиз ката',
 
 # Browsing diffs
 'nextdiff' => 'Кийинки айырма →',

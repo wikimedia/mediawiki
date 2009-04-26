@@ -178,20 +178,22 @@ $messages = array(
 
 'mainpagetext' => "<big>'''Pono ka ho‘ouka ‘ana o MediaWiki.'''</big>",
 
-'about'          => 'E pili ana',
-'cancel'         => 'Ho‘ōki',
+'about'         => 'E pili ana',
+'cancel'        => 'Ho‘ōki',
+'moredotdotdot' => 'Hou...',
+'mypage'        => 'Ko‘u ‘ao‘ao',
+'mytalk'        => 'Ka‘u ‘ōlelo',
+'anontalk'      => 'Ke kūkākūkā no kēia IP',
+'navigation'    => 'Ka hoʻokele ʻana',
+'and'           => '&#32;a me',
+
+# Cologne Blue skin
 'qbfind'         => 'Loa‘a',
 'qbedit'         => 'E ho‘opololei',
 'qbpageoptions'  => 'Keia ‘ao‘ao',
 'qbpageinfo'     => 'Pō‘aiapili',
 'qbmyoptions'    => 'Ka‘u mau ‘ao‘ao',
 'qbspecialpages' => 'Nā ‘ao‘ao kūikawā',
-'moredotdotdot'  => 'Hou...',
-'mypage'         => 'Ko‘u ‘ao‘ao',
-'mytalk'         => 'Ka‘u ‘ōlelo',
-'anontalk'       => 'Ke kūkākūkā no kēia IP',
-'navigation'     => 'Ka hoʻokele ʻana',
-'and'            => '&#32;a me',
 
 'errorpagetitle'   => 'Hewa',
 'returnto'         => 'Ho‘i iā $1.',
@@ -315,7 +317,6 @@ $2',
 'welcomecreation'           => '== E komo mai, $1! ==
 Hoʻokumu ʻia i kou waihona.
 Mai poina e loli kāu makemake ma {{SITENAME}}.',
-'loginpagetitle'            => 'ʻEʻe mea hoʻohana',
 'yourname'                  => "Inoa mea ho'ohana",
 'yourpassword'              => 'ʻŌlelo hūnā:',
 'yourpasswordagain'         => "Hua'ōlelo huna hou",

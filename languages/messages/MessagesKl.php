@@ -60,6 +60,8 @@ $messages = array(
 
 'about'  => 'Pillugu',
 'cancel' => 'Unitsitsivoq',
+
+# Cologne Blue skin
 'qbedit' => 'Aaqqissuutiguk',
 
 'errorpagetitle'   => 'Kukkuneq',

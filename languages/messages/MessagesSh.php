@@ -52,9 +52,11 @@ $messages = array(
 
 'newwindow'  => '(otvara se u novom prozoru)',
 'cancel'     => 'Poništi',
-'qbfind'     => 'Pronađite',
 'mytalk'     => 'Moj razgovor',
 'navigation' => 'Navigacija',
+
+# Cologne Blue skin
+'qbfind' => 'Pronađite',
 
 'errorpagetitle'   => 'Greška',
 'returnto'         => 'Povratak na $1.',

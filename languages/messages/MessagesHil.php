@@ -70,15 +70,17 @@ $messages = array(
 'nov'           => 'Nob',
 'dec'           => 'Dis',
 
-'about'          => 'Nahanungod',
-'cancel'         => 'Kanselahon',
+'about'      => 'Nahanungod',
+'cancel'     => 'Kanselahon',
+'mytalk'     => 'Akon paghisayranay',
+'navigation' => 'Nabigayson',
+'and'        => '&#32;kag',
+
+# Cologne Blue skin
 'qbfind'         => 'Pangita',
 'qbedit'         => 'Ilisan',
 'qbpageoptions'  => 'Ining panid',
 'qbspecialpages' => 'Pinasahi nga mga panid',
-'mytalk'         => 'Akon paghisayranay',
-'navigation'     => 'Nabigayson',
-'and'            => '&#32;kag',
 
 'tagline'          => 'Halin sa {{SITENAME}}',
 'help'             => 'Bulig',

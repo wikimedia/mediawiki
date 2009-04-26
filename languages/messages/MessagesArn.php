@@ -77,15 +77,19 @@ $messages = array(
 # Categories related messages
 'listingcontinuesabbrev' => 'ramt.',
 
+'moredotdotdot' => 'Doy...',
+'mypage'        => 'tañi nütramkawe',
+'mytalk'        => 'Tañi nütramkawe',
+'anontalk'      => 'Tüfachi IP ñi nütramkawe',
+'and'           => '&#32;ka',
+
+# Cologne Blue skin
 'qbfind'         => 'Kintun',
 'qbedit'         => 'Wirin',
 'qbmyoptions'    => 'tañi nütramkawe',
 'qbspecialpages' => 'Kangelu',
-'moredotdotdot'  => 'Doy...',
-'mypage'         => 'tañi nütramkawe',
-'mytalk'         => 'Tañi nütramkawe',
-'anontalk'       => 'Tüfachi IP ñi nütramkawe',
-'and'            => '&#32;ka',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 'returnto'         => 'Amutun $1 püle.',
 'tagline'          => '{{SITENAME}} mew',
@@ -128,8 +132,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'edithelp'             => 'Kellü wirin',
 'edithelppage'         => 'Help:Chum wiringekey pakina',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Kellu',
 'mainpage'             => 'Wüne pakina',
 'mainpage-description' => 'Wüne pakina',
@@ -159,7 +161,6 @@ $messages = array(
 'badtitle'        => 'Nornongey ta üy',
 
 # Login and logout pages
-'loginpagetitle'          => 'Konün',
 'yourname'                => 'Tami üy',
 'yourpassword'            => 'Tami kondungu',
 'login'                   => 'Konün',

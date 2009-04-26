@@ -66,9 +66,11 @@ $messages = array(
 'about'      => 'Iwwer',
 'newwindow'  => '(werd im e naie Fenschter uffgmacht)',
 'cancel'     => 'Abbreche',
-'qbfind'     => 'Finne',
 'mytalk'     => 'Gebabbel mit dir.',
 'navigation' => 'Navigation',
+
+# Cologne Blue skin
+'qbfind' => 'Finne',
 
 'errorpagetitle'   => 'Fehler',
 'returnto'         => 'Zrick zu $1.',

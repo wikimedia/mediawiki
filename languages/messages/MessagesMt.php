@@ -379,10 +379,18 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ ta'MedjaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki oħroġ lista ta' posta]",
 
-'about'          => 'Dwar',
-'article'        => 'artiklu',
-'newwindow'      => "(tinfetaħ f'tieqa ġdida)",
-'cancel'         => 'Annulla',
+'about'         => 'Dwar',
+'article'       => 'artiklu',
+'newwindow'     => "(tinfetaħ f'tieqa ġdida)",
+'cancel'        => 'Annulla',
+'moredotdotdot' => 'Aktar...',
+'mypage'        => 'Il-paġna tiegħi',
+'mytalk'        => 'Id-Diskussjonijiet tiegħi',
+'anontalk'      => 'Diskussjoni għal dan l-IP',
+'navigation'    => 'Navigazzjoni',
+'and'           => '&#32;u',
+
+# Cologne Blue skin
 'qbfind'         => 'Fittex',
 'qbbrowse'       => 'Qalleb',
 'qbedit'         => 'Immodifika',
@@ -390,12 +398,8 @@ $messages = array(
 'qbpageinfo'     => 'Kuntest',
 'qbmyoptions'    => 'Il-paġni tiegħi',
 'qbspecialpages' => 'Paġni speċjali',
-'moredotdotdot'  => 'Aktar...',
-'mypage'         => 'Il-paġna tiegħi',
-'mytalk'         => 'Id-Diskussjonijiet tiegħi',
-'anontalk'       => 'Diskussjoni għal dan l-IP',
-'navigation'     => 'Navigazzjoni',
-'and'            => '&#32;u',
+'faq'            => 'Mistoqsijiet komuni',
+'faqpage'        => 'Project:FAQ',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -467,8 +471,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Ċaħda ġenerali',
 'edithelp'             => 'Għajnuna bil-modifika',
 'edithelppage'         => 'Help:Kif Timmodifika',
-'faq'                  => 'Mistoqsijiet komuni',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Kontenut',
 'mainpage'             => 'Il-Paġna prinċipali',
 'mainpage-description' => 'Il-Paġna prinċipali',
@@ -548,10 +550,6 @@ L-Aħħar attentat tar-rikjesta tad-database kienet:
 "$1"
 mill-funżjoni "$2".
 MySQL ta problema ta\'  "$3: $4"',
-'noconnect'            => 'Skużana! Il-wiki bħalissa għandha xi problemi tekniċi, u ma tistax tagħmel kuntatt mad-database tas-server.<br />
-$1',
-'nodb'                 => 'Ma tistax tagħżel id-database $1',
-'cachederror'          => "Din hija kopja ''cache'' tal-paġna rikjesta, u jista' jkun li ma tkunx aġġornata għaldaqstant.",
 'laggedslavemode'      => "Twissija: Il-Paġna jista' ma jkollhiex l-affarijiet aġġornati.",
 'readonly'             => 'Database magħluq',
 'enterlockreason'      => "Daħħal raġuni għala qiegħed tagħlqu, inkludi l-istima ta' meta l-għeluq se tieħu effett",
@@ -619,7 +617,6 @@ Tista' tkompli tuża' {{SITENAME}} bħala utent anonimu, jew tista' terġa tidħ
 'welcomecreation'            => "== Merħba, $1! ==
 Il-kont tiegħek ġie maħluq.<br />
 Tinsiex tippersonalizza l-[[Special:Preferences|preferenzi]] ta' {{SITENAME}}.",
-'loginpagetitle'             => 'Idħol utent',
 'yourname'                   => 'Isem l-utent:',
 'yourpassword'               => 'Password:',
 'yourpasswordagain'          => "Erġa' ikteb il-password:",
@@ -722,8 +719,6 @@ Jekk trid tista\' ma tagħtix każ dan il-messaġġ, jekk dan il-kont ġie maħl
 'retypenew'               => "Erġa' ikteb il-password il-ġdida:",
 'resetpass_submit'        => 'Issettja l-password u idħol fis-sit',
 'resetpass_success'       => 'Il-password ġie modifikat. Aċċess fil-proċess...',
-'resetpass_bad_temporary' => "Password temporanja invalidu.
-Jista jkun li diġa b'suċċess bidilt il-password jew għamilt rikjesta għal password temporanju ġdid.",
 'resetpass_forbidden'     => 'Mhuwiex possibbli li timmodifika l-passwords',
 'resetpass-temp-password' => 'Password temporanja:',
 
@@ -802,7 +797,6 @@ Jekk jogħġbok inkludi mqar wieħed minn dawn it-tnejn f'kwalunkwe rikjesta.",
 'blockededitsource'                => "It-test tal-'''modifiki tiegħek''' f' '''$1''' jinstab hawn taħt:",
 'whitelistedittitle'               => "Trid tidħol sabiex tkun tista' timmodifika l-paġna",
 'whitelistedittext'                => "Int trid $1 biex tkun tista' timodifika l-paġni.",
-'confirmedittitle'                 => "Tinħtieġ il-konferma b'e-mail qabel tkun tista' teditja l-paġni",
 'confirmedittext'                  => "Jinħtieġ li tikkonferma l-indirizz tal-e-mail tiegħek sabiex tkun tista' timmodifika l-paġni.
 Jekk jogħġbok, issettja u kkonferma l-indirizz tal-e-mail tiegħek mill-[[Special:Preferences|preferenzi tal-utent]].",
 'nosuchsectiontitle'               => 'L-Ebda sezzjoni',
@@ -1093,7 +1087,6 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'searchprofile-articles-tooltip' => "Fittex f'$1",
 'searchprofile-project-tooltip'  => "Fittex f'$1",
 'searchprofile-images-tooltip'   => 'Fittex għal fajls',
-'prefs-search-nscustom'          => 'Fittex fl-ispazji tal-isem personalizzati:',
 'search-result-size'             => '$1 ({{PLURAL:$2|1 word|$2 kliem}})',
 'search-result-score'            => 'Relevanza: $1%',
 'search-redirect'                => '(rindirizza $1)',
@@ -1124,19 +1117,20 @@ Ipprova għamel prefiss għall-inkjesta tiegħek ma' ''all:'' sabiex tfittex il-
 Sadanittant, tista' tipprova tfittex bil-Google.
 Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu ma jkunux aġġornati.",
 
+# Quickbar
+'qbsettings'               => "''Quickbar''",
+'qbsettings-none'          => 'Xejn',
+'qbsettings-fixedleft'     => 'Mehmuż fix-xellug',
+'qbsettings-fixedright'    => 'Mehmuż fil-lemin',
+'qbsettings-floatingleft'  => "''Floating'' lejn ix-xellug",
+'qbsettings-floatingright' => "''Floating'' lejn il-lemin",
+
 # Preferences page
 'preferences'               => 'Preferenzi',
 'mypreferences'             => 'Il-Preferenzi tiegħi',
 'prefs-edits'               => "Numru ta' modifiki:",
 'prefsnologin'              => 'Għadek ma dħaltx ġewwa',
 'prefsnologintext'          => 'Sabiex tkun tista\' tippersonalizza l-preferenzi huwa neċessarju li tidħol fil-<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} kont]</span>.',
-'prefsreset'                => 'Il-preferenzi ġew irrisettjati għall-valuri predefiniti.',
-'qbsettings'                => "''Quickbar''",
-'qbsettings-none'           => 'Xejn',
-'qbsettings-fixedleft'      => 'Mehmuż fix-xellug',
-'qbsettings-fixedright'     => 'Mehmuż fil-lemin',
-'qbsettings-floatingleft'   => "''Floating'' lejn ix-xellug",
-'qbsettings-floatingright'  => "''Floating'' lejn il-lemin",
 'changepassword'            => 'Ibdel il-password',
 'prefs-skin'                => 'Aspett grafiku (skin)',
 'skin-preview'              => 'Previżjoni',
@@ -1144,15 +1138,6 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'dateformat'                => 'Format tad-data',
 'datedefault'               => 'L-ebda preferenza',
 'prefs-datetime'            => 'Data u ħin',
-'math_failure'              => "Problema fil-''parser''",
-'math_unknown_error'        => 'Problema mhux magħrufa',
-'math_unknown_function'     => 'funżjoni mhux magħrufa',
-'math_lexing_error'         => 'żball lessikali',
-'math_syntax_error'         => 'żball fis-sintassi',
-'math_image_error'          => "Konverżjoni għal PNG bla suċċess; verifika li huma installati tajjeb il-programmi segwenti: ''latex, dvips, gs, u convert''",
-'math_bad_tmpdir'           => "Impossibli tikteb jew toħloq direttorju temporanju għal ''math''",
-'math_bad_output'           => "Impossibli tikteb jew toħloq direttorju tal-''output'' tal-''math''",
-'math_notexvc'              => "Esekuzzjoni ''texvc'' nieqes; jekk jogħġbok konsultà ''math/README'' għal konfigurazzjoni.",
 'prefs-personal'            => 'Profil tal-utent',
 'prefs-rc'                  => 'Modifiki riċenti',
 'prefs-watchlist'           => 'Osservazzjoni speċjali',
@@ -1178,7 +1163,6 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'recentchangescount'        => "Numru ta' fillieri fit-tibdil riċenti, kronoloġiji, u fir-reġistri:",
 'savedprefs'                => 'Il-Preferenzi tiegħek ġew salvati.',
 'timezonelegend'            => 'Żona tal-ħin',
-'timezonetext'              => "¹Numru ta' siegħat li hemm differenza bejn il-ħin lokali u il-ħin tas-server (UTC).",
 'localtime'                 => 'Ħin lokali:',
 'timezoneselect'            => 'Żona tal-ħin:',
 'timezoneuseserverdefault'  => 'Uża l-ħin tas-server',
@@ -2400,6 +2384,17 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'mw_math_source' => "Ħallija bħala TeX (għal browsers ta' test)",
 'mw_math_modern' => 'Rakkomandat għal browsers moderni',
 'mw_math_mathml' => 'MathML jekk possibli (esperimentali)',
+
+# Math errors
+'math_failure'          => "Problema fil-''parser''",
+'math_unknown_error'    => 'Problema mhux magħrufa',
+'math_unknown_function' => 'funżjoni mhux magħrufa',
+'math_lexing_error'     => 'żball lessikali',
+'math_syntax_error'     => 'żball fis-sintassi',
+'math_image_error'      => "Konverżjoni għal PNG bla suċċess; verifika li huma installati tajjeb il-programmi segwenti: ''latex, dvips, gs, u convert''",
+'math_bad_tmpdir'       => "Impossibli tikteb jew toħloq direttorju temporanju għal ''math''",
+'math_bad_output'       => "Impossibli tikteb jew toħloq direttorju tal-''output'' tal-''math''",
+'math_notexvc'          => "Esekuzzjoni ''texvc'' nieqes; jekk jogħġbok konsultà ''math/README'' għal konfigurazzjoni.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marka l-modifiki bħalha verifikati',

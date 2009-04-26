@@ -118,12 +118,14 @@ $messages = array(
 'about'      => 'Koan-hē',
 'newwindow'  => '(ē khui sin thang-á hián-sī)',
 'cancel'     => 'Chhú-siau',
-'qbedit'     => 'Siu-kái',
 'mypage'     => 'Góa ê ia̍h',
 'mytalk'     => 'Góa ê thó-lūn',
 'anontalk'   => 'Chit ê IP ê thó-lūn-ia̍h',
 'navigation' => 'Se̍h chām',
 'and'        => '&#32;kap',
+
+# Cologne Blue skin
+'qbedit' => 'Siu-kái',
 
 'errorpagetitle'    => 'Chhò-gō·',
 'returnto'          => 'Tò-tńg khì $1.',
@@ -205,8 +207,6 @@ $messages = array(
 # General errors
 'error'              => 'Chhò-gō·',
 'databaseerror'      => 'Chu-liāu-khò· chhò-gō·',
-'noconnect'          => 'háiⁿ-sè! Hiān-chhú-sî tú-tio̍h ki-su̍t būn-tê, bô-hoat-tō· lian-lo̍k chu-liāu-khò· ê sù-hû-chhí.<br />$1',
-'cachederror'        => 'Í-hā sī beh ti̍h ê ia̍h ê cache khó·-pih, ū khó-lêng m̄-sī siōng sin ê.',
 'readonly'           => 'Chu-liāu-khò· só tiâu leh',
 'readonlytext'       => 'Chu-liāu-khò· hiān-chú-sî só tiâu leh, bô khai-hòng hō· lâng siu-kái. Che tāi-khài sī in-ūi teh pān î-siu khang-khòe, oân-sêng liáu-āu èng-tong tō ē hôe-ho̍k chèng-siông. Hū-chek ê hêng-chèng jîn-oân lâu chit-ê soat-bêng: $1',
 'filecopyerror'      => 'Bô-hoat-tō· kā tóng-àn "$1" khó·-pih khì "$2".',
@@ -304,7 +304,6 @@ $messages = array(
 'subject-preview'            => 'Ū-lám tê-bo̍k/piau-tê:',
 'whitelistedittitle'         => 'Su-iàu teng-ji̍p chiah ē-sái siu-kái',
 'whitelistedittext'          => 'Lí ài $1 chiah ē-sái siu-kái.',
-'confirmedittitle'           => 'Su-iàu khak-jīn e-mail chū-chí chiah ē-tit pian-chi̍p',
 'loginreqtitle'              => 'Su-iàu Teng-ji̍p',
 'accmailtitle'               => 'Bi̍t-bé kià chhut khì ah.',
 'accmailtext'                => '$1 ê bi̍t-bé í-keng kìa khì $2.',
@@ -379,13 +378,14 @@ $messages = array(
 'showingresultsnum' => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
 'powersearch'       => 'Kiám-sek',
 
+# Quickbar
+'qbsettings' => 'Quickbar ê siat-tēng',
+
 # Preferences page
 'preferences'           => 'Siat-tēng',
 'mypreferences'         => 'Góa ê siat-tēng',
 'prefsnologin'          => 'Bô teng-ji̍p',
 'prefsnologintext'      => 'Lí it-tēng ài [[Special:UserLogin|teng-ji̍p]] chiah ē-tàng chhiâu iōng-chiá ê siat-tēng.',
-'prefsreset'            => 'Iōng-chiá siat-tēng í-keng chiàu goân siat-tēng têng-siat.',
-'qbsettings'            => 'Quickbar ê siat-tēng',
 'changepassword'        => 'Oāⁿ bi̍t-bé',
 'prefs-skin'            => 'Phôe',
 'skin-preview'          => 'Chhì khoàⁿ',
@@ -412,7 +412,6 @@ $messages = array(
 'recentchangescount'    => 'Hián-sī kúi tiâu chòe-kīn ê kái-piàn:',
 'savedprefs'            => 'Lí ê iōng-chiá siat-tēng í-keng pó-chûn khí lâi ah.',
 'timezonelegend'        => 'Sî-khu',
-'timezonetext'          => 'Su-ji̍p lí chāi-tē sî-kan kap server sî-kan (UTC) chha kúi tiám-cheng.',
 'localtime'             => 'Chāi-tē sî-kan sī',
 'timezoneoffset'        => 'Sî-chha¹',
 'servertime'            => 'Server sî-kan hiān-chāi sī',

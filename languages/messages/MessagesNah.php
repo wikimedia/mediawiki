@@ -177,10 +177,18 @@ $messages = array(
 
 'mainpagetext' => "<big>'''MediaHuiqui cualli ōmotlahtlāli.'''</big>",
 
-'about'          => 'Ītechcopa',
-'article'        => 'tlahcuilōlli',
-'newwindow'      => '(Motlapoāz cē yancuīc tlanexillōtl)',
-'cancel'         => 'Ticcuepāz',
+'about'         => 'Ītechcopa',
+'article'       => 'tlahcuilōlli',
+'newwindow'     => '(Motlapoāz cē yancuīc tlanexillōtl)',
+'cancel'        => 'Ticcuepāz',
+'moredotdotdot' => 'Huehca ōmpa...',
+'mypage'        => 'Nozāzanil',
+'mytalk'        => 'Notēixnāmiquiliz',
+'anontalk'      => 'Inīn IP ītēixnāmiquiliz',
+'navigation'    => 'Ācalpapanōliztli',
+'and'           => '&#32;īhuān',
+
+# Cologne Blue skin
 'qbfind'         => 'Tlatēmōz',
 'qbbrowse'       => 'Titlatēmōz',
 'qbedit'         => 'Ticpatlāz',
@@ -188,12 +196,8 @@ $messages = array(
 'qbpageinfo'     => 'Tlahcuilōltechcopa',
 'qbmyoptions'    => 'Nozāzanil',
 'qbspecialpages' => 'Nōncuahquīzqui āmatl',
-'moredotdotdot'  => 'Huehca ōmpa...',
-'mypage'         => 'Nozāzanil',
-'mytalk'         => 'Notēixnāmiquiliz',
-'anontalk'       => 'Inīn IP ītēixnāmiquiliz',
-'navigation'     => 'Ācalpapanōliztli',
-'and'            => '&#32;īhuān',
+'faq'            => 'FAQ',
+'faqpage'        => 'Project:FAQ',
 
 # Metadata in edit box
 'metadata_help' => 'Metatlahcuilōlli:',
@@ -264,8 +268,6 @@ $messages = array(
 'disclaimers'          => 'Nahuatīllahtōl',
 'edithelp'             => 'Tlapatlaliztechcopa tēpalēhuiliztli',
 'edithelppage'         => 'Help:¿Quēn motlahcuiloa cē zāzanilli?',
-'faq'                  => 'FAQ',
-'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Tlapiyaliztli',
 'mainpage'             => 'Calīxatl',
 'mainpage-description' => 'Calīxatl',
@@ -360,7 +362,6 @@ Hueliz quimpiya tlahtōl tlein ahmo mohuelītih motequitiltia tōcāpan.',
 Mocuentah ōmochīuh. 
 
 Ye tihuelīti titēchihtoa [[Special:Preferences|motlaēlēhuiliz]].',
-'loginpagetitle'            => 'Ximomachiyōmaca/Ximocalaqui',
 'yourname'                  => 'Motlatequitiltilīltōca:',
 'yourpassword'              => 'Motlahtōlichtacāyo',
 'yourpasswordagain'         => 'Motlahtōlichtacāyo occeppa',
@@ -464,7 +465,6 @@ Occeppa xicalaqui niman ticmatīz.',
 'blockededitsource'                => "'''Mopatlaliz''' ītlahtōl īpan '''$1''' motta nicān:",
 'whitelistedittitle'               => 'Tihuīquilia timocalaqui ic patla',
 'whitelistedittext'                => 'Tihuīquilia $1 ic ticpatla zāzaniltin.',
-'confirmedittitle'                 => 'E-mail chicāhualiztli moēlēhuia ic ticpatla',
 'nosuchsectiontitle'               => 'Ahmo ia inōn tlahtōltzintli',
 'loginreqtitle'                    => 'Ximocalaqui',
 'loginreqlink'                     => 'ximocalaqui',
@@ -634,12 +634,14 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'powersearch-field'                => 'Tlatēmōz',
 'search-external'                  => 'Tlatēmotiliztli calāmpa',
 
+# Quickbar
+'qbsettings-none' => 'Ahtlein',
+
 # Preferences page
 'preferences'           => 'Tlaēlēhuiliztli',
 'mypreferences'         => 'Notlaēlēhuiliz',
 'prefs-edits'           => 'Tlapatlaliztli tlapōhualli:',
 'prefsnologin'          => 'Ahmo ōtimocalac',
-'qbsettings-none'       => 'Ahtlein',
 'changepassword'        => 'Ticpatlāz motlahtōlichtacāyo',
 'skin-preview'          => 'Xiquitta quemeh yez',
 'prefs-math'            => 'Tlapōhualmatiliztli',

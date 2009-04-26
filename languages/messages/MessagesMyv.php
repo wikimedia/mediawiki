@@ -284,10 +284,18 @@ $messages = array(
 
 'mainpagetext' => "<big>'''МедияВикинь тевс аравтомазо парсте лиссь.'''</big>",
 
-'about'          => 'Эстедензэ',
-'article'        => 'Потмокслопа',
-'newwindow'      => '(панжови од вальмасо)',
-'cancel'         => 'Саемс мекев',
+'about'         => 'Эстедензэ',
+'article'       => 'Потмокслопа',
+'newwindow'     => '(панжови од вальмасо)',
+'cancel'        => 'Саемс мекев',
+'moredotdotdot' => 'Седе ламо...',
+'mypage'        => 'Монь лопам',
+'mytalk'        => 'Монь кортамом',
+'anontalk'      => 'Кортамс те IP-нть марто',
+'navigation'    => 'Навигация',
+'and'           => '&#32;ды',
+
+# Cologne Blue skin
 'qbfind'         => 'Мук',
 'qbbrowse'       => 'Ваномо-тееме',
 'qbedit'         => 'Витнеме-петнеме',
@@ -295,12 +303,8 @@ $messages = array(
 'qbpageinfo'     => 'Косо-зярдо',
 'qbmyoptions'    => 'Монь лопан',
 'qbspecialpages' => 'Башка тевень лопат',
-'moredotdotdot'  => 'Седе ламо...',
-'mypage'         => 'Монь лопам',
-'mytalk'         => 'Монь кортамом',
-'anontalk'       => 'Кортамс те IP-нть марто',
-'navigation'     => 'Навигация',
-'and'            => '&#32;ды',
+'faq'            => 'Сеедьстэ кепедень кевкстемат',
+'faqpage'        => 'Project:Сеедьстэ кепедень кевкстемат',
 
 # Metadata in edit box
 'metadata_help' => 'Метадата:',
@@ -372,8 +376,6 @@ $messages = array(
 'disclaimerpage'       => 'Project:Видечинь прякс кортнема',
 'edithelp'             => 'Витнемань-петнемань лезкс',
 'edithelppage'         => 'Help:Витнема-петнема',
-'faq'                  => 'Сеедьстэ кепедень кевкстемат',
-'faqpage'              => 'Project:Сеедьстэ кепедень кевкстемат',
 'helppage'             => 'Help:Лопась мезе кирди',
 'mainpage'             => 'Прякслопа',
 'mainpage-description' => 'Прякслопа',
@@ -435,7 +437,6 @@ $messages = array(
 # General errors
 'error'                => 'Ильведькс',
 'databaseerror'        => 'Датабазань ильведькс',
-'nodb'                 => '$1 датабазась эзь кочкаво',
 'laggedslavemode'      => 'Ванок: Кизды, лопасонть материалось таштомсь.',
 'readonly'             => 'Датабазась панжома экшсэ',
 'enterlockreason'      => 'Сёрмадт мейс сёлгамс эряви, ды ёвтак, зярдо таго арьсят панжови',
@@ -472,7 +473,6 @@ $messages = array(
 'welcomecreation'            => '== Совак, инеськеть, $1! ==
 Совамотаркат теезь.
 Иля стувто полавтнемс эсеть [[Special:Preferences|{{SITENAME}} ладсематнень]].',
-'loginpagetitle'             => 'Теицянь совамо',
 'yourname'                   => 'Теицянь лем:',
 'yourpassword'               => 'Совамо валот:',
 'yourpasswordagain'          => 'Омбоцеде сёрмадык кирдицянь леметь:',
@@ -552,7 +552,6 @@ $messages = array(
 'resetpass_forbidden'       => 'Совамо валтнэ а полавтовить',
 'resetpass-submit-loggedin' => 'Полавтомс совамо валот',
 'resetpass-temp-password'   => 'А куватень совамо валось:',
-'resetpass-log'             => 'Совамо валонь полавтомадо конёв',
 
 # Edit page toolbar
 'bold_sample'     => 'Эчке текст',
@@ -607,7 +606,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'blockedoriginalsource'            => "'''$1''' -нть лисьмапрясь ало неяви:",
 'whitelistedittitle'               => 'Витнемань-петнемань теемга эряви совамо лем',
 'whitelistedittext'                => 'Лопанть витнемс - петнемс эряви $1.',
-'confirmedittitle'                 => 'Витнемга-петнемга эряви е-сёрма паргонь кемекстамо',
 'nosuchsectiontitle'               => 'Истямо явкс арась',
 'loginreqtitle'                    => 'Совамс эряви',
 'loginreqlink'                     => 'совамс',
@@ -844,17 +842,19 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'powersearch-field'              => 'Вешнемс',
 'search-external'                => 'Ушо йондонь вешнема',
 
+# Quickbar
+'qbsettings'               => 'Навигациянь лазнэ',
+'qbsettings-none'          => 'Арась мезе невтемс',
+'qbsettings-fixedleft'     => 'Керш ёндо кирдезь',
+'qbsettings-fixedright'    => 'Вить ёндо кирдезь',
+'qbsettings-floatingleft'  => 'Керш ёнга уи',
+'qbsettings-floatingright' => 'Вить ёнга уи',
+
 # Preferences page
 'preferences'               => 'Лия ютксто явома',
 'mypreferences'             => 'Мейсэ явован лиятнень эйстэ',
 'prefs-edits'               => 'Зяроксть витнезь-петнезь:',
 'prefsnologin'              => 'Эзить сова',
-'qbsettings'                => 'Навигациянь лазнэ',
-'qbsettings-none'           => 'Арась мезе невтемс',
-'qbsettings-fixedleft'      => 'Керш ёндо кирдезь',
-'qbsettings-fixedright'     => 'Вить ёндо кирдезь',
-'qbsettings-floatingleft'   => 'Керш ёнга уи',
-'qbsettings-floatingright'  => 'Вить ёнга уи',
 'changepassword'            => 'Салавань валонь полавтома',
 'prefs-skin'                => 'Неемань ладсема',
 'skin-preview'              => 'Васнянь неевтезэ',
@@ -862,11 +862,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'dateformat'                => 'Чынь хвормат',
 'datedefault'               => 'Икелькс вешема арась',
 'prefs-datetime'            => 'Чи ды шка',
-'math_failure'              => 'А ловнови',
-'math_unknown_error'        => 'апак содань ильведькс',
-'math_unknown_function'     => 'апак содань функция',
-'math_lexing_error'         => 'лексиконь манявкс',
-'math_syntax_error'         => 'синтаксонь ильведевкс',
 'prefs-personal'            => 'Теицядо',
 'prefs-rc'                  => 'Чиень полавтнемат',
 'prefs-watchlist'           => 'Ванома лемрисьме',
@@ -1625,6 +1620,13 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'skinname-myskin'    => 'ЭсьМелемКоряс',
 'skinname-simple'    => 'Шожда',
 'skinname-modern'    => 'НееньШкань',
+
+# Math errors
+'math_failure'          => 'А ловнови',
+'math_unknown_error'    => 'апак содань ильведькс',
+'math_unknown_function' => 'апак содань функция',
+'math_lexing_error'     => 'лексиконь манявкс',
+'math_syntax_error'     => 'синтаксонь ильведевкс',
 
 # Patrol log
 'patrol-log-auto' => '(сонсь теи)',
