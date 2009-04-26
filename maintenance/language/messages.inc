@@ -316,8 +316,6 @@ $wgMessageStructure = array(
 		'databaseerror',
 		'dberrortext',
 		'dberrortextcl',
-		'noconnect',
-		'nodb',
 		'cachederror',
 		'laggedslavemode',
 		'readonly',

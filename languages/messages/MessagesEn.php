@@ -812,9 +812,6 @@ The last attempted database query was:
 "$1"
 from within function "$2".
 MySQL returned error "$3: $4"',
-'noconnect'            => 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server.<br />
-$1',
-'nodb'                 => 'Could not select database $1',
 'cachederror'          => 'The following is a cached copy of the requested page, and may not be up to date.',
 'laggedslavemode'      => 'Warning: Page may not contain recent updates.',
 'readonly'             => 'Database locked',
