@@ -708,8 +708,8 @@ Veuillez en choisir un autre.',
 'username'                   => 'Nom d’utilisateur :',
 'uid'                        => 'Numéro d’utilisateur :',
 'prefs-memberingroups'       => 'Membre {{PLURAL:$1|du groupe|des groupes}} :',
-'prefs-registration'         => 'Date de création du compte :',
-'yourrealname'               => 'Nom réel',
+'prefs-registration'         => 'Date d’inscription :',
+'yourrealname'               => 'Nom réel :',
 'yourlanguage'               => 'Langue de l’interface :',
 'yourvariant'                => 'Variante :',
 'yournick'                   => 'Signature pour les discussions :',
@@ -960,10 +960,10 @@ Vous pouvez revenir en arrière et modifier une page existante, ou bien [[Specia
 'permissionserrorstext-withaction' => 'Vous n’êtes pas autorisé{{GENDER:||e|(e)}} à $2, pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
 'recreate-moveddeleted-warn'       => "'''Attention : vous êtes en train de recréer une page qui a été précédemment supprimée.'''
 
-Demandez-vous s’il est réellement approprié continuer à l’éditer. 
-L’historique des suppressions et des renommages est affiché ci-dessous :",
+Assurez-vous qu’il est pertinent de poursuivre les modifications sur cette page. 
+Le journal des suppressions et des renommages est affiché ci-dessous :",
 'moveddeleted-notice'              => 'Cette page a été supprimée.
-L’historique des suppressions et des renommages est affiché ci-dessous pour référence.',
+Le journal des suppressions et des renommages est affiché ci-dessous pour référence.',
 'log-fulllog'                      => 'Voir le journal complet',
 'edit-hook-aborted'                => 'Échec de la modification par une extension.
 Cause inconnue',
@@ -1078,7 +1078,7 @@ Confirmez que ceci est bien ce que vous avez l’intention de faire, que vous en
 'revdelete-logentry'             => 'a modifié la visibilité de la version de [[$1]]',
 'logdelete-logentry'             => 'a modifié la visibilité de l’événement de [[$1]]',
 'revdelete-success'              => "'''Visibilité des versions changée avec succès.'''",
-'revdelete-failure'              => "'''La visibilité de la révision n'a pas pu être définie.'''",
+'revdelete-failure'              => "'''La visibilité de la révision n’a pas pu être définie.'''",
 'logdelete-success'              => "'''Visibilité du journal paramétrée avec succès.'''",
 'revdel-restore'                 => 'Modifier la visibilité',
 'pagehist'                       => 'Historique de la page',
@@ -1164,7 +1164,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'diff-ol'                  => "une '''liste ordonnée'''",
 'diff-li'                  => "un '''élément de liste'''",
 'diff-table'               => "un '''tableau'''",
-'diff-tbody'               => "le '''contenu d'un tableau'''",
+'diff-tbody'               => "le '''contenu d’un tableau'''",
 'diff-tr'                  => "une '''ligne'''",
 'diff-td'                  => "une '''cellule'''",
 'diff-th'                  => "un '''en-tête'''",
@@ -1283,7 +1283,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-watchlist-edits-max' => '(nombre maximum : 1000)',
 'prefs-misc'                => 'Préférences diverses',
 'prefs-resetpass'           => 'Modifier le mot de passe',
-'prefs-email'               => 'Options du couriel',
+'prefs-email'               => 'Options des courriels',
 'prefs-rendering'           => 'Rendu des pages',
 'saveprefs'                 => 'Enregistrer les préférences',
 'resetprefs'                => 'Rétablir les préférences',
@@ -2036,6 +2036,7 @@ Retour et assistance :
 'confirmdeletetext'      => 'Vous êtes sur le point de supprimer une page ou un fichier, ainsi que toutes ses versions antérieures historisées.
 Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faîtes ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'actioncomplete'         => 'Action effectuée',
+'actionfailed'           => 'L’action a échoué',
 'deletedtext'            => '« <nowiki>$1</nowiki> » a été supprimé.
 Voir $2 pour une liste des suppressions récentes.',
 'deletedarticle'         => 'a supprimé « [[$1]] »',
@@ -3224,6 +3225,7 @@ Vous pouvez aussi [[Special:Watchlist/edit|utiliser l’éditeur normal]].',
 'version-hook-name'                => 'Nom du greffon',
 'version-hook-subscribedby'        => 'Souscrit par',
 'version-version'                  => 'Version',
+'version-revision'                 => 'Version',
 'version-license'                  => 'Licence',
 'version-software'                 => 'Logiciels installés',
 'version-software-product'         => 'Produit',
@@ -3306,12 +3308,23 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 
 # HTML forms
 'htmlform-invalid-input'       => 'Des problèmes sont survenus avec certaines valeurs',
-'htmlform-select-badoption'    => "La valeur que vous avez spécifiée n'est pas une option valide.",
-'htmlform-int-invalid'         => "La valeur que vous avec spécifiée n'est pas un entier.",
+'htmlform-select-badoption'    => 'La valeur que vous avez spécifiée n’est pas une option valide.',
+'htmlform-int-invalid'         => 'La valeur que vous avec spécifiée n’est pas un entier.',
 'htmlform-int-toolow'          => 'La valeur que vous avez spécifié est en dessous du minimum de $1',
 'htmlform-int-toohigh'         => 'La valeur que vous avez spécifié est au dessus du maximum $1',
 'htmlform-submit'              => 'Soumettre',
 'htmlform-reset'               => 'Défaire les modifications',
 'htmlform-selectorother-other' => 'Autre',
+
+# Special:CreatePage
+'createpage'              => 'Créer une page',
+'createpage-submitbutton' => 'Soumettre',
+'createpage-instructions' => 'Entrez le titre de la page que vous souhaitez créer :',
+'createpage-entertitle'   => 'Veuillez entrer un titre pour votre page.',
+'createpage-titleexists'  => 'Une page existe déjà sous le nom [[$1]].
+Désirez-vous modifier la page existante ?',
+'createpage-tryagain'     => 'Non, je désire créer une nouvelle page avec un titre distinct.',
+'createpage-editexisting' => 'Oui, je désire contribuer à la page existante.',
+'createpage-badtitle'     => '« $1 » ne peut pas être utilisé comme nom de page',
 
 );

@@ -280,7 +280,7 @@ $messages = array(
 'tog-hidepatrolled'           => '最近更新したページにパトロール済みの編集を表示しない',
 'tog-newpageshidepatrolled'   => 'パトロール済みのページを新着ページ一覧から隠す',
 'tog-extendwatchlist'         => 'ウォッチリストを拡張し、最新のものだけではなくすべての変更を表示する',
-'tog-usenewrc'                => '最近更新したページを拡張する (JavaScript)',
+'tog-usenewrc'                => '最近更新したページを拡張する(JavaScriptが必要)',
 'tog-numberheadings'          => '見出しに番号を振る',
 'tog-showtoolbar'             => '編集ボタンを表示する (JavaScript)',
 'tog-editondblclick'          => 'ダブルクリックで編集する (JavaScript)',
@@ -288,7 +288,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'セクションタイトルの右クリックでセクション編集を行えるようにする (JavaScript)',
 'tog-showtoc'                 => '目次を表示する (4つ以上の見出しがあるページ)',
 'tog-rememberpassword'        => 'セッションを越えてパスワードを記憶する',
-'tog-editwidth'               => 'テキストボックスを横幅いっぱいに表示する',
+'tog-editwidth'               => '編集ボックスをウィンドウの幅いっぱいに表示する',
 'tog-watchcreations'          => '自分が作成したページをウォッチリストに追加する',
 'tog-watchdefault'            => '自分が編集したページをウォッチリストに追加する',
 'tog-watchmoves'              => '自分が移動したページをウォッチリストに追加する',
@@ -663,6 +663,7 @@ $2',
 'username'                   => '利用者名:',
 'uid'                        => '利用者ID:',
 'prefs-memberingroups'       => '所属するグループ:',
+'prefs-registration'         => '登録時間:',
 'yourrealname'               => '本名:',
 'yourlanguage'               => '使用言語:',
 'yourvariant'                => '言語変種:',
@@ -891,9 +892,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'permissionserrorstext-withaction' => '以下に示された理由により、$2を行うことができません:',
 'recreate-moveddeleted-warn'       => "'''警告: あなたは以前に削除されたページを再作成しようとしています。'''
 
-このページを編集し続けることが適切であるかどうか確認してください。参考として以下にこのページの削除記録を表示しています:",
+このページを編集し続けることが適切であるかどうか確認してください。参考として以下にこのページの削除と移動の記録を表示します:",
 'moveddeleted-notice'              => 'このページは削除されています。
-参考のため、このページの削除ログが以下に表示されています。',
+参考のため、このページの削除と移動の記録を以下に表示します。',
+'log-fulllog'                      => '完全なログを見る',
 'edit-hook-aborted'                => 'フックによって編集が破棄されました。理由は不明です。',
 'edit-gone-missing'                => 'ページをアップデートできませんでした。既に削除されているようです。',
 'edit-conflict'                    => '編集競合。',
@@ -1201,6 +1203,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'prefs-watchlist-edits-max' => '(最大数: 1000)',
 'prefs-misc'                => 'その他',
 'prefs-resetpass'           => 'パスワードの変更',
+'prefs-email'               => 'メールオプション',
+'prefs-rendering'           => 'ページのレンダリング',
 'saveprefs'                 => '設定を保存',
 'resetprefs'                => '変更を破棄',
 'restoreprefs'              => '初期設定に戻す',
@@ -1243,6 +1247,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'prefs-files'               => 'ファイル',
 'prefs-custom-css'          => 'ユーザーCSS',
 'prefs-custom-js'           => 'ユーザーJS',
+'prefs-reset-intro'         => 'このページを使うと、あなたの個人設定をこのサイトの既定のものに再設定することができます。この操作は取り消しができません。',
 
 # User rights
 'userrights'                  => '利用者権限の管理',
@@ -1928,6 +1933,7 @@ $NEWPAGE
 'confirmdeletetext'      => '指定したページをその全変更履歴とともに削除しようとしています。
 あなたが削除を望んでおり、それがもたらす帰結を理解しており、かつあなたのしようとしていることが[[{{MediaWiki:Policy-url}}|方針]]に即したものであることを確認してください。',
 'actioncomplete'         => '完了しました',
+'actionfailed'           => '操作失敗',
 'deletedtext'            => '「<nowiki>$1</nowiki>」は削除されました。最近の削除に関しては、$2を参照してください。',
 'deletedarticle'         => '"$1" を削除しました。',
 'suppressedarticle'      => '"[[$1]]"の秘匿を実施',
@@ -2568,7 +2574,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 # Media information
 'mediawarning'         => "'''警告:''' このファイルは悪意のあるコードを含んでいる可能性があり、実行するとコンピューターが危害を被る場合があります。
 ----",
-'imagemaxsize'         => 'ファイルページで表示する画像の最大サイズ:',
+'imagemaxsize'         => "画像の最大サイズ:<br />''(ファイルページに適用)''",
 'thumbsize'            => 'サムネイルの大きさ:',
 'widthheightpage'      => '$1×$2, $3 ページ',
 'file-info'            => '(ファイルサイズ: $1, MIMEタイプ: $2)',
@@ -3191,5 +3197,25 @@ $1',
 'dberr-usegoogle'   => '当面の間は、Google を利用して検索することができます。',
 'dberr-outofdate'   => 'このサイトに関する外部のインデックスは最新ではない場合があることに注意してください。',
 'dberr-cachederror' => '次は要求されたページをキャッシュした複製であり、最新の内容ではないかもしれません。',
+
+# HTML forms
+'htmlform-invalid-input'       => '入力になんらかの問題があります',
+'htmlform-select-badoption'    => '指定された値が有効なものではありません。',
+'htmlform-int-invalid'         => '指定された値が整数ではありません。',
+'htmlform-int-toolow'          => '指定された値が$1の最小値未満です',
+'htmlform-int-toohigh'         => '指定された値が$1の最大値を超えています',
+'htmlform-submit'              => '送信',
+'htmlform-reset'               => '変更を取り消す',
+'htmlform-selectorother-other' => 'その他',
+
+# Special:CreatePage
+'createpage'              => 'ページ作成',
+'createpage-submitbutton' => '送信',
+'createpage-instructions' => '作成したいページの名前を入力:',
+'createpage-entertitle'   => 'ページの名前を入力してください。',
+'createpage-titleexists'  => '[[$1]] という名前のページは既に存在します。既存のページを編集しますか？',
+'createpage-tryagain'     => 'いいえ。別の名前でページを新規作成します。',
+'createpage-editexisting' => 'はい。既存のページへ投稿します。',
+'createpage-badtitle'     => '「$1」はページ名に使えません。',
 
 );

@@ -195,7 +195,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Siųsti man laišką, kai puslapio keitimas yra smulkus',
 'tog-enotifrevealaddr'        => 'Rodyti mano el. pašto adresą priminimo laiškuose',
 'tog-shownumberswatching'     => 'Rodyti stebinčių naudotojų skaičių',
-'tog-fancysig'                => 'Parašas be automatinių nuorodų',
+'tog-fancysig'                => 'Laikyti parašą wikitekstu (be automatinių nuorodų)',
 'tog-externaleditor'          => 'Pagal nutylėjimą naudoti išorinį redaktorių',
 'tog-externaldiff'            => 'Pagal nutylėjimą naudoti išorinę skirtumų rodymo programą',
 'tog-showjumplinks'           => 'Įjungti „peršokti į“ pasiekiamumo nuorodas',
@@ -558,6 +558,7 @@ Prašome pasirinkti kitą vardą.',
 'username'                   => 'Naudotojo vardas:',
 'uid'                        => 'Naudotojo ID:',
 'prefs-memberingroups'       => '{{PLURAL:$1|Grupės|Grupių}} narys:',
+'prefs-registration'         => 'Registravimosi laikas:',
 'yourrealname'               => 'Tikrasis vardas:',
 'yourlanguage'               => 'Sąsajos kalba:',
 'yourvariant'                => 'Variantas:',
@@ -569,6 +570,8 @@ Jį turi sudaryti ne daugiau kaip $1 {{PLURAL:$1|simbolis|simboliai|simbolių}}.
 'gender-unknown'             => 'Nenurodyta',
 'gender-male'                => 'Vyras',
 'gender-female'              => 'Moteris',
+'prefs-help-gender'          => 'Pasirinktinai: naudojama teisingam sistemos kreipimuisi į jus.
+Ši informacija yra vieša.',
 'email'                      => 'El. paštas',
 'prefs-help-realname'        => 'Tikrasis vardas yra neprivalomas.
 Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
@@ -1111,6 +1114,8 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'prefs-watchlist-edits-max' => '(didžiausias skaičius: 1000)',
 'prefs-misc'                => 'Įvairūs nustatymai',
 'prefs-resetpass'           => 'Keisti slaptažodį',
+'prefs-email'               => 'El. pašto nustatymai',
+'prefs-rendering'           => 'Puslapių vaizdavimas',
 'saveprefs'                 => 'Išsaugoti',
 'resetprefs'                => 'Išvalyti neišsaugotus pakeitimus',
 'restoreprefs'              => 'Atstatyti visus numatytuosius nustatymus',
@@ -1151,6 +1156,10 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'defaultns'                 => 'Pagal nutylėjimą ieškoti šiose vardų srityse:',
 'default'                   => 'pagal nutylėjimą',
 'prefs-files'               => 'Failai',
+'prefs-custom-css'          => 'Asmeninis CSS',
+'prefs-custom-js'           => 'Asmeninis JavaSript',
+'prefs-reset-intro'         => 'Jūs galite pasinaudoti šiuo puslapiu atstatyti jūsų nustatymus į svetainės numatytuosius.
+Tai nebeatšaukiama.',
 
 # User rights
 'userrights'                  => 'Naudotojų teisių valdymas',
@@ -2994,6 +3003,7 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 #Įrašykite standartinių išraiškų fragmentus (tik dalį tarp //)
 #Juos bus bandoma sutapdinti su išorinių paveikslėlių adresais
 #Tie, kurie sutaps, bus rodomi kaip paveikslėliai, o kiti bus rodomi tik kaip nuorodos
+#Raidžių dydis nėra svarbus
 #Eilutės, prasidedančios # yra komentarai
 
 #Įterpkite visus standartinių išraiškų fragmentus prieš šią eilutę. Palikite šią eilutę, tokią kokia yra </pre>',
@@ -3007,5 +3017,10 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 # Database error messages
 'dberr-problems' => 'Atsiprašome! Svetainei iškilo techninių problemų.',
 'dberr-again'    => 'Palaukite kelias minutes ir perkraukite puslapį.',
+
+# HTML forms
+'htmlform-submit'              => 'Siųsti',
+'htmlform-reset'               => 'Atšaukti pakeitimus',
+'htmlform-selectorother-other' => 'Kita',
 
 );

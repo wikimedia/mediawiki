@@ -129,7 +129,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Izkutatu patruilatutako aldaketa azken aldaketetan',
 'tog-newpageshidepatrolled'   => 'Izkutatu patruilatutako orriak, orri-zerrenda berritik',
 'tog-extendwatchlist'         => 'Jarraipen-zerrenda zabaldu aldaketa guztiak ikusteko, ez bakarrik azken aldaketak',
-'tog-usenewrc'                => 'Hobetutako azken aldaketak (JavaScript)',
+'tog-usenewrc'                => 'Hobetutako azken aldaketak (JavaScript behar da)',
 'tog-numberheadings'          => 'Goiburukoak automatikoki zenbakitu',
 'tog-showtoolbar'             => 'Aldaketen tresna-barra erakutsi (JavaScript)',
 'tog-editondblclick'          => 'Klik bikoitzaren bitartez orrialdeak aldatu (JavaScript)',
@@ -137,7 +137,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Atalen izenburuetan klik eginez atala<br />aldatzea gaitu (JavaScript)',
 'tog-showtoc'                 => 'Edukien taula erakutsi (3 goiburukotik gorako orrialdeentzako)',
 'tog-rememberpassword'        => 'Nire saioa ordenagailu honetan gogoratu (gomendatua)',
-'tog-editwidth'               => 'Zabalera osoko aldaketa koadroa',
+'tog-editwidth'               => 'Testuaren taula zabaldu pantaila osoa bete dadin',
 'tog-watchcreations'          => 'Sortzen ditudan orrialdeak nire segimendu zerrendara gehitu',
 'tog-watchdefault'            => 'Aldatzen ditudan orrialdeak nire segimendu zerrendara gehitu',
 'tog-watchmoves'              => 'Izena aldatutako orrialdeak segimendu zerrendan erakutsi',
@@ -748,8 +748,8 @@ Blokeatu zuen administratzaileak honako azalpena eman zuen: $1'''",
 
 Pentsatu ea orrialde hau editatzen jarraitzeak zentzurik baduen.
 Hemen duzu orrialde honen ezabaketa erregistroa badaezpada ere:",
-'moveddeleted-notice'              => 'Orrialde hau ezabatu da.
-Orrialdearen ezabatze loga behean agertzen da erreferentzia gisa.',
+'moveddeleted-notice'              => 'Orrialde hau ezabatua izan da.
+Orrialdearen ezabatze erregistroa behean agertzen da erreferentzia gisa.',
 'edit-hook-aborted'                => 'Gehigarriak aldaketa ezeztatu du.
 Ez du azalpenik eman.',
 'edit-gone-missing'                => 'Ezin da orria eguneratu. Ezabatu omen dute.',
@@ -2128,8 +2128,8 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'talkexists'                   => "'''Orrialde hau arazorik gabe mugitu da, baina eztabaida orrialde ezin izan da mugitu izenburu berriarekin jada bat existitzen delako. Mesedez, eskuz batu itzazu biak.'''",
 'movedto'                      => 'hona mugitu da:',
 'movetalk'                     => 'Eztabaida orrialdea ere mugitu, ahal bada.',
-'move-subpages'                => 'Ahal izanez gero, azpiorrialde guztiak ($1-tik gora) ere mugitu',
-'move-talk-subpages'           => 'Ahal izanez gero, eztabaida orrialdearen azpiorrialde guztiak ($1-tik gora) ere mugitu',
+'move-subpages'                => 'Azpiorrialde guztiak ($1-tik gora) mugitu',
+'move-talk-subpages'           => 'Azpiorrialdeen eztabaida orrialde guztiak ($1-tik gora) mugitu',
 'movepage-page-exists'         => '$1 orrialdea jada badago eta ezin da automatikoki gainetik idatzi.',
 'movepage-page-moved'          => '$1 orrialdea $2(e)ra mugitu da.',
 'movepage-page-unmoved'        => '$1 orrialdea ezin da $2(e)ra mugitu.',
@@ -2413,7 +2413,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Oharra''': Fitxategi honek kode mingarria izan lezake; zure sisteman exekutatzea arriskutsua izan liteke.<hr />",
-'imagemaxsize'         => 'Irudiak deskribapen-orrialdetan hurrengo tamainara txikitu:',
+'imagemaxsize'         => "Irudiaren tamainaren muga:<br />''(fitxategi deskribapen-orrietarako)''",
 'thumbsize'            => 'Irudi txikiaren tamaina:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|orrialde|orrialde}}',
 'file-info'            => '(fitxategiaren tamaina: $1, MIME mota: $2)',
@@ -2742,6 +2742,11 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-gpsspeed-m' => 'Milia orduko',
 'exif-gpsspeed-n' => 'Lotailuak',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometro',
+'exif-gpsdestdistance-m' => 'Milia',
+'exif-gpsdestdistance-n' => 'Itsas milia',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Benetako norabidea',
 'exif-gpsdirection-m' => 'Norabide magnetikoa',
@@ -2970,5 +2975,16 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'dberr-usegoogle'   => 'Bitartean Google bidez bilatzen saiatu zintezke.',
 'dberr-outofdate'   => 'Eduki hauek aurkibideak eguneratu gabe egon daitezke.',
 'dberr-cachederror' => 'Ondorengoa eskatutako orriaren katxedun kopia da, eta eguneratu gabe egon daiteke.',
+
+# Special:CreatePage
+'createpage'              => 'Orri bat sortu',
+'createpage-submitbutton' => 'Bidali',
+'createpage-instructions' => 'Idatzi sortu nahi duzun orriaren izenburua:',
+'createpage-entertitle'   => 'Zure orrirako izenburu bat sartu mesedez.',
+'createpage-titleexists'  => '[[$1]] izenburua duen orria dagoeneko badago.
+Sortutako orria aldatu nahiko al zenuke?',
+'createpage-tryagain'     => 'Ez. Orrialde berri bat sortu nahi dut izenburu desberdinarekin.',
+'createpage-editexisting' => 'Bai. Sortutako orrian lagundu nahi dut.',
+'createpage-badtitle'     => '"$1" ezin da orrialdearen izenburua bezala erabili.',
 
 );

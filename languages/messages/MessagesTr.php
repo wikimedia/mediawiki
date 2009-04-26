@@ -1863,6 +1863,7 @@ Yardım ve öneriler için:
 'confirmdeletetext'      => 'Bu sayfayı veya dosyayı tüm geçmişi ile birlikte veritabanından kalıcı olarak silmek üzeresiniz.
 Bu işlemden kaynaklı doğabilecek sonuçların farkında iseniz ve işlemin [[{{MediaWiki:Policy-url}}|Silme kurallarına]] uygun olduğuna eminseniz, işlemi onaylayın.',
 'actioncomplete'         => 'İşlem tamamlandı.',
+'actionfailed'           => 'Eylem başarısız oldu',
 'deletedtext'            => '"<nowiki>$1</nowiki>" silindi.
 Yakın zamanda silinenleri görmek için: $2.',
 'deletedarticle'         => '"$1" silindi',
@@ -3019,6 +3020,7 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'version-hook-name'                => 'Çengel adı',
 'version-hook-subscribedby'        => 'Abone olan',
 'version-version'                  => 'Sürüm',
+'version-revision'                 => 'Revizyon',
 'version-license'                  => 'Lisans',
 'version-software'                 => 'Yüklü yazılım',
 'version-software-product'         => 'Ürün',
@@ -3108,5 +3110,16 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'htmlform-submit'              => 'Gönder',
 'htmlform-reset'               => 'Değişiklikleri geri al',
 'htmlform-selectorother-other' => 'Diğer',
+
+# Special:CreatePage
+'createpage'              => 'Bir sayfa oluştur',
+'createpage-submitbutton' => 'Gönder',
+'createpage-instructions' => 'Oluşturmak istediğiniz sayfanın başlığını girin:',
+'createpage-entertitle'   => 'Lütfen sayfanız için bir başlık girin.',
+'createpage-titleexists'  => '[[$1]] başlıklı bir sayfa zaten mevcut.
+Mevcut sayfayı değiştirmek ister misiniz?',
+'createpage-tryagain'     => 'Hayır. Farklı bir başlıkla yeni bir sayfa oluşturmak istiyorum.',
+'createpage-editexisting' => 'Evet. Mevcut sayfaya katkıda bulunmak istiyorum.',
+'createpage-badtitle'     => '"$1" bir sayfa başlığı olarak kullanılamaz',
 
 );

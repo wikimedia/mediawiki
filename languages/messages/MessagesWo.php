@@ -854,7 +854,8 @@ Soo jëfandikoo lëkkalekaayu joow yi day neenal boyot yi nga jotoon a fal.',
 'diff-table'              => "ab '''alliwa'''",
 'diff-tbody'              => "aw '''ëmbitu alliwa'''",
 'diff-tr'                 => "aw '''rëdd'''",
-'diff-th'                 => "ab '''bopp'''",
+'diff-td'                 => "ag  '''kër'''",
+'diff-th'                 => "ab '''kaw-xët'''",
 'diff-br'                 => "aw '''dog'''",
 'diff-hr'                 => "aw '''rëdd wu tëdd'''",
 'diff-code'               => "ab '''danku yoonu nosukaay'''",
@@ -939,9 +940,9 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'qbsettings'               => 'Banqaasu jumtukaay',
 'qbsettings-none'          => 'Kenn',
 'qbsettings-fixedleft'     => 'Cammooñ',
-'qbsettings-fixedright'    => 'Ndayjoor',
+'qbsettings-fixedright'    => 'Ndijoor',
 'qbsettings-floatingleft'  => 'Ci cammooñ',
-'qbsettings-floatingright' => 'Ci ndayjoor',
+'qbsettings-floatingright' => 'Ci ndijoor',
 
 # Preferences page
 'preferences'          => 'Tànneef',
@@ -971,8 +972,10 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'resultsperpage'       => 'Limu ngérte ci xët wu ne :',
 'contextlines'         => 'Limu rëdd ci tont wu ne :',
 'recentchangesdays'    => 'Limu bes yi nga koy wone ci coppite yu mujj yi :',
-'recentchangescount'   => 'Limu coppite yi ngay wone ci coppite yu mujj yi :',
-'savedprefs'           => 'Tànneey yi duggal nañ leen.',
+'recentchangescount'   => 'Limu coppite yi ngay wone ci coppite yu mujj yi, xëti jaar-jaar ak dencu yi, cig tëralnjëkk   :',
+'savedprefs'           => 'Say tànneef dencees nañu leen.',
+'timezonelegend'       => 'Waxtug barab',
+'localtime'            => 'Waxtug barab:',
 'allowemail'           => 'ndigëlël yeneeni jëfëndikookat mën laa yòonnee bataaxal',
 
 # User rights
@@ -1922,5 +1925,16 @@ Man nga tamit  [[Special:Watchlist/raw|soppi ko]].',
 
 # Special:SpecialPages
 'specialpages' => 'Xët yu solowu',
+
+# Special:CreatePage
+'createpage'              => 'Sos aw xët',
+'createpage-submitbutton' => 'Yónne',
+'createpage-instructions' => 'Dugalal koju xët wi nga bëgg a sos :',
+'createpage-entertitle'   => 'Di-sakku nga duggal ab koj ngir sa xët wi:',
+'createpage-titleexists'  => 'Aw xët wu tudd [[$1]] am na ba noppi.
+Danga bëgg a soppi xët wi fi nekk ?',
+'createpage-tryagain'     => 'Déet, Damaa bëgg a sos weneen xët ak been koj.',
+'createpage-editexisting' => 'Waaw, damaa bëgg a cëru ak xët wi fi nekk.',
+'createpage-badtitle'     => '« $1 » manoo koo jëfandikoo niki kojuw xët',
 
 );

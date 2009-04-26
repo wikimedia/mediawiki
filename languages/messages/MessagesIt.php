@@ -225,7 +225,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Nascondi le modifiche verificate nelle ultime modifiche',
 'tog-newpageshidepatrolled'   => "Nascondi le pagine verificate dall'elenco delle pagine più recenti",
 'tog-extendwatchlist'         => "Mostra tutte le modifiche agli osservati speciali, non solo l'ultima",
-'tog-usenewrc'                => 'Ultime modifiche avanzate (richiede JavaScript)',
+'tog-usenewrc'                => 'Utilizza le ultime modifiche avanzate (richiede JavaScript)',
 'tog-numberheadings'          => 'Numerazione automatica dei titoli di sezione',
 'tog-showtoolbar'             => 'Mostra barra degli strumenti di modifica (richiede JavaScript)',
 'tog-editondblclick'          => 'Modifica delle pagine tramite doppio clic (richiede JavaScript)',
@@ -611,6 +611,7 @@ Scegliere un nome utente diverso.',
 'username'                   => 'Nome utente:',
 'uid'                        => 'ID utente:',
 'prefs-memberingroups'       => 'Membro {{PLURAL:$1|del gruppo|dei gruppi}}:',
+'prefs-registration'         => 'Data di registrazione:',
 'yourrealname'               => 'Nome vero:',
 'yourlanguage'               => "Lingua dell'interfaccia:",
 'yourvariant'                => 'Variante:',
@@ -842,8 +843,9 @@ L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
 'recreate-moveddeleted-warn'       => "'''Attenzione: si sta per ricreare una pagina già cancellata in passato.'''
 
 Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
-L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
-'moveddeleted-notice'              => "Questa pagina è stata cancellata. L'elenco delle relative cancellazioni viene riportato di seguito per informazione.",
+L'elenco delle relative cancellazioni e degli spostamenti viene riportato di seguito per comodità:",
+'moveddeleted-notice'              => "Questa pagina è stata cancellata. L'elenco delle relative cancellazioni e degli spostamenti viene riportato di seguito per informazione.",
+'log-fulllog'                      => 'Visualizza log completo',
 'edit-hook-aborted'                => "La modifica è stata annullata dall'hook.
 Non è stata restituita alcuna spiegazione.",
 'edit-gone-missing'                => 'Impossibile aggiornare la pagina.
@@ -1161,6 +1163,8 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'prefs-watchlist-edits-max' => '(numero massimo: 1000)',
 'prefs-misc'                => 'Varie',
 'prefs-resetpass'           => 'Cambia password',
+'prefs-email'               => 'Opzioni email',
+'prefs-rendering'           => 'Renderizzazione della pagina',
 'saveprefs'                 => 'Salva le preferenze',
 'resetprefs'                => 'Reimposta le preferenze',
 'restoreprefs'              => 'Ripristina le impostazioni di default',
@@ -1203,6 +1207,8 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'prefs-files'               => 'File',
 'prefs-custom-css'          => 'CSS personalizzato',
 'prefs-custom-js'           => 'JS personalizzato',
+'prefs-reset-intro'         => "È possibile usare questa pagina per reimpostare le proprie preferenze a quelle predefinite del sito.
+L'operazione non può essere annullata.",
 
 # User rights
 'userrights'                  => 'Gestione dei permessi relativi agli utenti',
@@ -1893,6 +1899,7 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'historywarning'         => 'Attenzione! La pagina che si sta per cancellare ha una cronologia:',
 'confirmdeletetext'      => 'Stai per cancellare una pagina con tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Azione completata',
+'actionfailed'           => 'Azione fallita',
 'deletedtext'            => 'La pagina "<nowiki>$1</nowiki>" è stata cancellata. 
 Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 'deletedarticle'         => 'ha cancellato "[[$1]]"',
@@ -2531,7 +2538,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attenzione''': Questo file potrebbe contenere codice maligno, la sua esecuzione potrebbe danneggiare il tuo sistema.<hr />",
-'imagemaxsize'         => 'Dimensione massima delle immagini sulle relative pagine di discussione:',
+'imagemaxsize'         => "Dimensione massima delle immagini:<br />''(per le pagine di descrizione del file)''",
 'thumbsize'            => 'Grandezza delle miniature:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'            => '(dimensione del file: $1, tipo MIME: $2)',
@@ -3003,6 +3010,7 @@ Usare l\'anteprima standard.',
 'version-hook-name'                => "Nome dell'hook",
 'version-hook-subscribedby'        => 'Sottoscrizioni',
 'version-version'                  => 'Versione',
+'version-revision'                 => 'Versione',
 'version-license'                  => 'Licenza',
 'version-software'                 => 'Software installato',
 'version-software-product'         => 'Prodotto',
@@ -3083,6 +3091,24 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 'dberr-cachederror' => 'Quella che segue è una copia cache della pagina richiesta, e potrebbe non essere aggiornata.',
 
 # HTML forms
-'htmlform-reset' => 'Annulla modifiche',
+'htmlform-invalid-input'       => "Ci sono problemi con l'input inserito",
+'htmlform-select-badoption'    => "Il valore specificato non è un'opzione valida.",
+'htmlform-int-invalid'         => 'Il valore specificato non è un intero.',
+'htmlform-int-toolow'          => 'Il valore specificato è inferiore al minimo di $1',
+'htmlform-int-toohigh'         => 'Il valore specificato è superiore al massimo di $1',
+'htmlform-submit'              => 'Invia',
+'htmlform-reset'               => 'Annulla modifiche',
+'htmlform-selectorother-other' => 'Altro',
+
+# Special:CreatePage
+'createpage'              => 'Crea una pagina',
+'createpage-submitbutton' => 'Invia',
+'createpage-instructions' => 'Inserire il titolo della pagina che si desidera creare:',
+'createpage-entertitle'   => 'Inserire un titolo per la pagina.',
+'createpage-titleexists'  => 'Esiste già una pagina chiamata [[$1]].
+Si desidera modificare la pagina esistente?',
+'createpage-tryagain'     => 'No. Voglio creare una nuova pagina con un titolo differente.',
+'createpage-editexisting' => 'Sì. Voglio contribuire alla pagina esistente.',
+'createpage-badtitle'     => '"$1" non può essere usato come titolo di una pagina',
 
 );

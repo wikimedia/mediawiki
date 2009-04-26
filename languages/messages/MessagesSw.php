@@ -1143,4 +1143,13 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 # Special:Tags
 'tags-edit' => 'hariri',
 
+# Special:CreatePage
+'createpage'              => 'Anzisha ukurasa',
+'createpage-submitbutton' => 'Wasilisha',
+'createpage-instructions' => 'Andika jina la ukurasa unaotaka kuanzisha:',
+'createpage-entertitle'   => 'Andika jina la ukurasa wako.',
+'createpage-titleexists'  => 'Tayari kuna ukurasa kwenye jina [[$1]]. Je, unataka kuhariri ukurasa uliomo?',
+'createpage-tryagain'     => 'Hapana. Ninataka kuanzisha ukurasa mpya mwenye jina tofauti.',
+'createpage-editexisting' => 'Ndiyo. Ninataka kusaidia kuhariri ukurasa uliomo.',
+
 );

@@ -201,7 +201,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Dun de nohjeloorte Änderunge en de „{{int:recentchanges}}“ eez ens <strong>nit</strong> aanzeije',
 'tog-newpageshidepatrolled'   => 'Dun de nohjeloorte Änderunge en de Leß „{{int:newpages}}“ eez ens <strong>nit</strong> aanzeije',
 'tog-extendwatchlist'         => 'Verjrößer de Oppassliss för jede Aat vun müjjeliche Änderunge ze zeije, nit nor de neuste',
-'tog-usenewrc'                => 'Dun de opgemotzte Liss met „{{int:Recentchanges}}“ aanzeije (bruch Java_Skripp)',
+'tog-usenewrc'                => 'Don de opgemotzte „{{int:Recentchanges}}“ aanzeije (bruch Java_Skripp)',
 'tog-numberheadings'          => 'Dun de Üvverschrefte automatisch nummereere',
 'tog-showtoolbar'             => 'Zeich de Werkzüchliss zom Ändere aan (bruch Java_Skripp)',
 'tog-editondblclick'          => 'Sigge met Dubbel-Klicke ändere (bruch Java_Skripp)',
@@ -209,7 +209,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Avschnedde met Räächs-Klicke op de Üvverschrefte ändere (bruch Java_Skripp)',
 'tog-showtoc'                 => 'Zeich en Enhaldsüvversich bei Sigge met mieh wie drei Üvverschrefte dren',
 'tog-rememberpassword'        => 'Op Duur aanmelde',
-'tog-editwidth'               => 'Maach dat Feld zom Tex enjevve su breid wie et jeiht',
+'tog-editwidth'               => 'Maach dat Feld zom Tex enjävve esu breid wi et jeiht',
 'tog-watchcreations'          => 'Dun de Sigge, die ich neu aanläje, för ming Oppassliss vürschlage',
 'tog-watchdefault'            => 'Dun de Sigge för ming Oppassliss vürschlage, die ich aanpacken un änder',
 'tog-watchmoves'              => 'Dun ming selfs ömjenante Sigge automatisch för ming Oppassliss vürschlage',
@@ -238,7 +238,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Sprochevariante nit ömwandele',
 'tog-ccmeonemails'            => 'Scheck mer en Kopie, wann ich en E-mail an ene andere Metmaacher scheck',
 'tog-diffonly'                => 'Zeich beim Versione Verjliche nur de Ungerscheide aan (ävver pack nit noch de janze Sigg dodronger)',
-'tog-showhiddencats'          => 'Donn Verstoche Saachjroppe aanzeije',
+'tog-showhiddencats'          => 'Donn de verstoche Saachjroppe aanzeije',
 'tog-noconvertlink'           => 'Don de Tittele nit ümwandelle',
 'tog-norollbackdiff'          => 'Donn noh „{{int:Rollback}}“ de Ungerscheide nit aanzeije',
 
@@ -601,6 +601,7 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge hee op de {{SIT
 'username'                   => 'Metmaacher Name:',
 'uid'                        => 'Metmaacher Nommer:',
 'prefs-memberingroups'       => 'Bes en {{PLURAL:$1|de Metmaacherjrupp:|<strong>$1</strong> Metmaacherjruppe:|keijn Metmaacherjruppe.}}',
+'prefs-registration'         => 'Aanjemeldt aam/öm:',
 'yourrealname'               => 'Dinge richtije Name *',
 'yourlanguage'               => 'Die Sproch, die et Wiki kalle soll:',
 'yourvariant'                => 'Ding Variant',
@@ -946,10 +947,10 @@ Nävvebei, dä Datenbank-Köbes hät för et Sperre och ene Jrund aanjejovve: $1
 'permissionserrorstext-withaction' => 'Do häs nit dat Rääch för dä Opdraach „<code>action=$2</code>“,
 {{PLURAL:$1|dä Jrund es:|de Jründe sin:|oohne Jrund.}}',
 'recreate-moveddeleted-warn'       => "'''Opjepaß:''' Do bes om bäste Wääsh, en Sigg neu aanzelääje, di doför ald ens fottjeschmeße woode wohr.
-Bes förseschtesch un övverlääsch Der, of dat en joode Idee es, di Sigg widder opzemaache.
-Domet De Bescheid weiß, hee dä Endraach em Logboch vum Sigge-Fottschmieße mem Jrond,
-woröm di Sigg dohmohls fottjeschmesse woode es:",
-'moveddeleted-notice'              => 'Di Sigg es fottjeschmeße. He kütt e Shtöck uß däm Logbooch fum Sigge-Fotschmieße, för hee di Sigg.',
+
+Bes förseschtesch un övverlääsch Der, of dat en joode Idee es, di Sigg widder opzemaache. Domet De Bescheid weiß, hee de Endrääsh em Logboch vum Sigge-Ömnänne, un em Logboch vum Sigge-Fottschmieße mem Jrond, woröm di Sigg dohmohls fottjeschmesse woode es:",
+'moveddeleted-notice'              => 'Hee di Sigg es fottjeschmeße. E Shtöck uß dä Logböösher fum Sigge-Fottschmieße un fum Sigge-Ömnänne för di Sigg kütt jetz, en dä Hoffnung, dat dat Der hellef.',
+'log-fulllog'                      => 'Donn dat janze Logbooch aanloore',
 'edit-hook-aborted'                => 'Et Ändere wood affjebroche övver ene sujenannte „Hoke“ en de ßoffwäer.
 Ene Jrond weße mer nit.',
 'edit-gone-missing'                => 'Kunnt di Sigg nit änndere. Se schingk verschwunde un weed fottjeschemeße woode sin.',
@@ -1284,6 +1285,8 @@ dat dänne ihr Daate topaktuell sin,
 'prefs-watchlist-edits-max' => '(Nit mieh wie 1000)',
 'prefs-misc'                => 'Söns',
 'prefs-resetpass'           => 'Dat Passwood ändere',
+'prefs-email'               => '<i lang="en">e-mail</i>',
+'prefs-rendering'           => 'Sigge Aanzeije',
 'saveprefs'                 => 'Fasshalde',
 'resetprefs'                => 'Zeröck setze',
 'restoreprefs'              => 'Alles op der Shtandatt retuur stelle',
@@ -1327,6 +1330,7 @@ de Versione uß de Fojangeheit, un de Logbööcher — als Standad:',
 'prefs-files'               => 'Dateie',
 'prefs-custom-css'          => 'Selfsjemaat <i lang="en">Cascading Style Sheet</i>',
 'prefs-custom-js'           => 'Selfsjemaat JavaSkipp',
+'prefs-reset-intro'         => 'Op dä Sigg kanns De Ding Enstellunge op dämm Wiki singe Shandatt setze lohße. Ävver Opjepaß: Do jidd et keine „Retuur“-Knopp för!',
 
 # User rights
 'userrights'                  => 'Metmaacher ehr Räächde verwalte',
@@ -2108,6 +2112,7 @@ Do kanns hee noh Hölp luure:
 'confirmdeletetext'      => 'Do bes koot dovör, en Sigg för iwich fottzeschmieße. Dobei verschwind och de janze Verjangenheit vun dä Sigg us de Daatebank, met all ehr Änderunge un Metmaacher Name, un all dä Opwand, dä do dren stich. Do muss hee jetz bestätije, dat de versteihs, wat dat bedügg, un dat De weiß, wat Do do mähs.
 <strong>Dun et nor, wann dat met de [[{{MediaWiki:Policy-url}}|Rejelle]] wirklich zosamme jeiht!</strong>',
 'actioncomplete'         => 'Erledich',
+'actionfailed'           => 'Dat es donevve jejange',
 'deletedtext'            => 'De Sigg „<nowiki>$1</nowiki>“ es jetz fottjeschmesse woode. Luur Der „$2“ aan, do häs De en Liss met de Neuste fottjeschmesse Sigge.',
 'deletedarticle'         => 'hät fottjeschmesse: „[[$1]]“',
 'suppressedarticle'      => 'han „[[$1]]“ verstoche',
@@ -2787,7 +2792,7 @@ $1',
 
 # Media information
 'mediawarning'         => "<strong>Opjepass</strong>: En dä Datei künnt en <b>jefährlich Projrammstöck</b> dren stecke. Wa'mer et laufe looße dät, do künnt dä Sörver met för de Cracker opjemaht wääde. <hr />",
-'imagemaxsize'         => 'Belder op de Sigge, wo se beschrevve wääde, nit jrößer maache wie:',
+'imagemaxsize'         => 'Donn Belder op de Sigge, wo se beschrevve wääde, nit jrößer maache wie:',
 'thumbsize'            => 'Esu breid solle de klein Beldche (Thumbnails/Breefmarke) sin:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|eij Sigg|$3 Sigge|keij Sigge}}',
 'file-info'            => '(Dateiömfang: $1, MIME-Tüp: <code>$2</code>)',
@@ -3409,5 +3414,26 @@ Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 'dberr-outofdate'   => 'Müjjelesch, dat dat Verzeichnes vun uns Sigge do nit janß om neuste Shtannd es.',
 'dberr-cachederror' => 'Wat hee noh kütt es en Kopi vum Zwescheshpeisher vun dä Sigg,
 die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Mer han e Problems met jet wat De enjejovve häß',
+'htmlform-select-badoption'    => 'Dinge aanjejovve Wäät es kein müjjelesche Ußwahl.',
+'htmlform-int-invalid'         => 'Dinge aanjejovve Wäät eß kein janze Zahl.',
+'htmlform-int-toolow'          => 'Dinge aanjejovve Wäät litt onger dämm winnischßde, wat müjjelesch es, un dat es $1.',
+'htmlform-int-toohigh'         => 'Dinge aanjejovve Wäät litt övver dämm hühßte, wat jeiht, un dat es $1.',
+'htmlform-submit'              => 'Loß Jonn!',
+'htmlform-reset'               => 'Änderunge retuur nämme',
+'htmlform-selectorother-other' => 'Annder',
+
+# Special:CreatePage
+'createpage'              => 'En neu Sigg aanlääje',
+'createpage-submitbutton' => 'Loß Jonn!',
+'createpage-instructions' => 'Jif dä Tittel en, för di Sigg, di De aanlääje wells:',
+'createpage-entertitle'   => 'Jif ene Tittel för di Sigg en.',
+'createpage-titleexists'  => 'En Sigg met däm Tittel [[$1]] jit et ald.
+Wells De di Sigg ändere?',
+'createpage-tryagain'     => 'Nä — Esch well en neu Sigg aanlääje met enem ander Tittel.',
+'createpage-editexisting' => 'Jo — Esch well op dä Sigg jet beidraare, di et ald jitt.',
+'createpage-badtitle'     => '„$1“ es als ene Tittel för en Sigg nit ze bruche',
 
 );

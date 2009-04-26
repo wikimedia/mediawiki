@@ -2954,6 +2954,10 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpslongitude-e' => 'Keleti hosszúsági fok',
 'exif-gpslongitude-w' => 'Nyugati hosszúsági fok',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'méterrel a tenger szintje felett',
+'exif-gpsaltitude-1' => 'méterrel a tenger szintje alatt',
+
 'exif-gpsstatus-a' => 'Mérés folyamatban',
 'exif-gpsstatus-v' => 'Mérés közbeni működőképesség',
 
@@ -2964,6 +2968,11 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-gpsspeed-k' => 'Kilométer óránként',
 'exif-gpsspeed-m' => 'Márföld óránként',
 'exif-gpsspeed-n' => 'Csomó',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'kilométer',
+'exif-gpsdestdistance-m' => 'mérföld',
+'exif-gpsdestdistance-n' => 'tengeri mérföld',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Igazi irány',
@@ -3203,6 +3212,8 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'htmlform-invalid-input'       => 'Probléma van az általad megadott értékkel',
 'htmlform-select-badoption'    => 'A megadott érték nem érvényes.',
 'htmlform-int-invalid'         => 'A megadott érték nem szám.',
+'htmlform-int-toolow'          => 'A megadott érték a minimum, $1 alatt van',
+'htmlform-int-toohigh'         => 'A megadott érték a maximum, $1 felett van',
 'htmlform-submit'              => 'Elküldés',
 'htmlform-reset'               => 'Változtatások visszavonása',
 'htmlform-selectorother-other' => 'egyéb',

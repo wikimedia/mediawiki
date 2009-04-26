@@ -123,7 +123,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Vum Fäldhieter aagluegti Änderige in dr „Letschte Änderige“ usblände',
 'tog-newpageshidepatrolled'   => 'Aagluegti Syten uf dr Lischt „Neiji Syte“ verstecke',
 'tog-extendwatchlist'         => 'Beobachtungslischte erwytere go alli Änderige aazeige, nit numme di letschte',
-'tog-usenewrc'                => 'Erwytereti «letschti Änderige» (geit nid uf allne Browser)',
+'tog-usenewrc'                => 'Erwytereti «letschti Änderige» (brucht JavaScript)',
 'tog-numberheadings'          => 'Überschrifte outomatisch numeriere',
 'tog-showtoolbar'             => 'Editier-Wärchzüüg aazeige',
 'tog-editondblclick'          => 'Syte ändere mit Doppelklick i d Syte (JavaScript)',
@@ -131,7 +131,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Einzelni Absätz ändere mit Rächtsclick (Javascript)',
 'tog-showtoc'                 => 'Inhaltsverzeichnis aazeige bi Artikle mit meh als drei Überschrifte',
 'tog-rememberpassword'        => 'Passwort spychere (Cookie)',
-'tog-editwidth'               => 'Fäld zum Täkscht yygee het di voll Breiti',
+'tog-editwidth'               => 'Fäld zum Täkscht yygee mit dr volle Breiti',
 'tog-watchcreations'          => 'Sälber gmachti Sytene beobachte',
 'tog-watchdefault'            => 'Vo dir nöi gmachti oder verändereti Syte beobachte',
 'tog-watchmoves'              => 'Sälber verschobeni Sytene beobachte',
@@ -498,6 +498,7 @@ Bitte nimm e andere.',
 'username'                   => 'Benutzername:',
 'uid'                        => 'Benutzer-ID:',
 'prefs-memberingroups'       => 'Mitglid vu dr {{PLURAL:$1|Benutzergruppe|Benutzergruppe}}:',
+'prefs-registration'         => 'Aamäldzyt:',
 'yourrealname'               => 'Echte Name:',
 'yourlanguage'               => 'Sproch:',
 'yourvariant'                => 'Variante:',
@@ -751,11 +752,12 @@ Du chasch nur Syten ändere, wo's scho git, oder muesch di [[Special:UserLogin|a
 'permissionserrorstext'            => 'Du bisch nid berächtigt, die Aktion uszfiere. {{PLURAL:$1|Grund|Grind}}:',
 'permissionserrorstext-withaction' => 'Du bisch nit berächtigt, $2.
 {{PLURAL:$1|Grund|Grind}}:',
-'recreate-moveddeleted-warn'       => "'''Obacht: Du bisch e Syten am kreiere, wo scho einisch isch glösche worde.'''
+'recreate-moveddeleted-warn'       => "'''Obacht: Du bisch e Syten am aalege, wo scho emol glescht woren isch.'''
 
-Bitte überprüeff, öb s sinnvoll isch, mit em Bearbeite wyter z mache.
-Hie gsehsch ds Lösch-Logbuech vo dere Syte:",
+Bitte iberprief, eb s sinnvoll isch, mit em Bearbeite wyter z mache.
+Zue Dyyre Information sihsch do s Lesch-Logbuech vo däre Syte:",
 'moveddeleted-notice'              => 'Die Syte isch glescht wore. Do chunnt e Uuszuug us em Lesch-Logbuech fir die Syte.',
+'log-fulllog'                      => 'Voll Logbuech aaluege',
 'edit-hook-aborted'                => 'D Bearbeitig isch ohni Erchlärung dur e Schnittstell abbroche wore.',
 'edit-gone-missing'                => 'D Syte het nid chenne aktalisiert wäre.
 Si isch schyns glescht wore.',
@@ -1075,6 +1077,8 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'prefs-watchlist-edits-max' => '(Maximali Aazahl: 1000)',
 'prefs-misc'                => 'Verschidnigs',
 'prefs-resetpass'           => 'Passwort ändere',
+'prefs-email'               => 'E-Mail-Optione',
+'prefs-rendering'           => 'Sytedarstellig',
 'saveprefs'                 => 'Änderige spychere',
 'resetprefs'                => 'Änderige doch nid spychere',
 'restoreprefs'              => 'Alli Standardyystellige widerhärstelle',
@@ -1117,6 +1121,8 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'prefs-files'               => 'Bilder',
 'prefs-custom-css'          => 'Benutzerdefinierti CSS',
 'prefs-custom-js'           => 'Benutzerdefiniert JS',
+'prefs-reset-intro'         => 'Du chasch die Syte verwände go d Yystellige uf dr Standard zrucksetze.
+Des cha nimmi ruckgängig gmacht wäre.',
 
 # User rights
 'userrights'                  => 'Benutzerrächtsverwaltig',
@@ -1796,6 +1802,7 @@ Hilf zue de Benutzig gits uff {{fullurl:{{MediaWiki:Helppage}}}}',
 'confirmdeletetext'      => 'Du bisch dra, e Artikel oder e Bild mitsamt dr Versionsgschicht fir immer us der Datebank z lesche.
 Bitte bi Dir iber d Konsequänze bewusst, un bi sicher, dass Du Di an unsri [[{{MediaWiki:Policy-url}}|Leitlinie]] haltsch.',
 'actioncomplete'         => 'Uftrag usgfiert.',
+'actionfailed'           => 'Aktion fählgschlaa',
 'deletedtext'            => '«<nowiki>$1</nowiki>» isch glescht wore.
 Im $2 het s e Lischt vu dr letschte Leschige.',
 'deletedarticle'         => 'het „[[$1]]“ glescht',
@@ -2404,7 +2411,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Obacht:''' In däre Art Datei chend s e beswillige Programmcode din ha. Wänn du die Datei abeladsch oder effnesch, cha dr Computer bschädigt wäre.<hr />",
-'imagemaxsize'         => 'Maximali Gröössi vo de Bilder uf de Bildbeschrybigs-Sytene:',
+'imagemaxsize'         => "Maximali Gressi vu Bilder :<br />'' (uf Bildbschrybigs-Syte)''",
 'thumbsize'            => 'Bildvorschou-Gröössi:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Syte|$3 Syte}}',
 'file-info'            => '(Dateigressi: $1, MIME-Typ: $2)',
@@ -2869,6 +2876,7 @@ Du chasch au d [[Special:Watchlist/edit|Standard-Bearbeitigssyte]] bruuche.',
 'version-hook-name'                => 'Schnittstellename',
 'version-hook-subscribedby'        => 'Ufruef vu',
 'version-version'                  => 'Version',
+'version-revision'                 => 'Version',
 'version-license'                  => 'Lizänz',
 'version-software'                 => 'Installierti Software',
 'version-software-product'         => 'Produkt',
@@ -2947,5 +2955,26 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'dberr-usegoogle'   => 'Du chenntsch in dr Zwischezyt mit Google sueche.',
 'dberr-outofdate'   => 'Obacht: Dr Suechindex vu unsere Syte chennt veraltet syy.',
 'dberr-cachederror' => 'Des isch e Kopii vum Cache vu dr Syte, wu Du aagforderet hesch, un chennt veraltet syy.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Mit e Teil Yygabe git s Probläm',
+'htmlform-select-badoption'    => 'Dr Wärt, wu aagee hesch, isch kei giltigi Option.',
+'htmlform-int-invalid'         => 'Dr Wärt, wu aagee hesch, isch kei Ganzzahl.',
+'htmlform-int-toolow'          => 'Dr Wärt, wu aagee hesch, isch unter em Minimum vu $1',
+'htmlform-int-toohigh'         => 'Dr Wärt, wu aagee hesch, isch iber em Maximum vu $1',
+'htmlform-submit'              => 'Ibertrage',
+'htmlform-reset'               => 'Änderige ruckgängig mache',
+'htmlform-selectorother-other' => 'Anderi',
+
+# Special:CreatePage
+'createpage'              => 'Neji Syte aalege',
+'createpage-submitbutton' => 'Schicke',
+'createpage-instructions' => 'Gib dr Name vu dr Syte yy, wu Du witt nej aalege:',
+'createpage-entertitle'   => 'Titel fir Dyyni Syte.',
+'createpage-titleexists'  => 'E Syte mit em Name [[$1]] git s scho.
+Mechtsch die Syte, wu s scho het, bearbeite?',
+'createpage-tryagain'     => 'Nei - Ich will e neji Syte aalege mit eme andere Titel.',
+'createpage-editexisting' => 'Jo - Ich will die Syte, wu s scho het, bearbeite.',
+'createpage-badtitle'     => '„$1“ cha nit as Sytetitel bruucht wäre',
 
 );

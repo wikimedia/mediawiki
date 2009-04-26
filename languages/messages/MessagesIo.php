@@ -55,7 +55,7 @@ $messages = array(
 'tog-hideminor'               => 'Celez mikra redaktaji de recenta chanji',
 'tog-hidepatrolled'           => 'Celez patroliita redakti en recenta chanji',
 'tog-newpageshidepatrolled'   => 'Celez patroliita pagini en la listo di nova pagino',
-'tog-usenewrc'                => 'Recenta chanji augmentita (JavaScript bezonesas)',
+'tog-usenewrc'                => 'Usez augmentita Recenta chanji (JavaScript bezonesas)',
 'tog-numberheadings'          => 'Autonumerez tituli',
 'tog-showtoolbar'             => 'Montrez redaktilo (JavaScript bezonesas)',
 'tog-editondblclick'          => 'Redaktez pagini kande on klikus dufoye (JavaScript bezonesas)',
@@ -63,7 +63,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Kapabligez redakto di secioni kande on dextra-klikus tituli di secioni (JavaScript bezonesas)',
 'tog-showtoc'                 => 'Montrez indexo (por pagini havanta plu multa kam 3 tituli)',
 'tog-rememberpassword'        => 'Memorez mea pas-vorto en ica komputoro',
-'tog-editwidth'               => 'Redakto-spaco havas ampla larjeso',
+'tog-editwidth'               => 'Larjigez la redakto-buxo por ke ol okupas la tota skreno',
 'tog-watchcreations'          => 'Adjuntez pagini kreota da me ad mea surveyaji',
 'tog-watchdefault'            => 'Adjuntez pagini redaktota da me ad mea surveyaji',
 'tog-watchmoves'              => 'Adjuntez pagini movota da me ad mea surveyaji',
@@ -79,6 +79,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Celez mea redaktaji de la surveyaji',
 'tog-watchlisthidebots'       => 'Celez redaktaji da roboti de la surveyaji',
 'tog-watchlisthideminor'      => 'Celez mikra redaktaji de la surveyaji',
+'tog-watchlisthidepatrolled'  => 'Celez patroliita chanji en la surveyo-listo',
 'tog-ccmeonemails'            => 'Sendez a me exemplero di e-posti quin me sendos ad altra uzanti',
 'tog-showhiddencats'          => 'Montrar celita kategorii',
 'tog-norollbackdiff'          => 'Omisar difero-komparo pos retrorulo',
@@ -321,12 +322,15 @@ nekorekta interlinguale od interwikale ligilo.',
 'perfcached'          => 'La sequanta datumi esas kashizita* e li povus ne aktualigesar nuntempe.',
 'viewsource'          => 'Vidar font-kodo',
 'viewsourcefor'       => 'de $1',
+'protectedpagetext'   => 'Ica pagino esis protektita por preventar redaktar.',
 'viewsourcetext'      => 'Vu povas vidar ed kopiar la fonto-kodexo di ta pagino:',
 'ns-specialprotected' => 'On ne povas redaktar speciala pagini.',
 
 # Login and logout pages
-'logouttext'                 => "'''Vu esas nun ek {{SITENAME}}.'''<br />
-Vu povas durar uzante {{SITENAME}} anonimale, o vu povas enirar altrafoye kom la sama o diferenta uzanto.",
+'logouttext'                 => "'''Vu nun esas nun ek {{SITENAME}}.'''
+
+Vu povas durar uzante {{SITENAME}} anonimale, o vu povas [[Special:UserLogin|enirar itere]] kom la sama o diferenta uzanto.
+Atencez ke kelka pagini posible duras montresar semblante ke vu ne ekirus, til vu vakuigas la tempala-magazino di vua navigilo.",
 'welcomecreation'            => '<h2>Bonveno, $1!</h2><p>Vua konto kreesis.
 Voluntez, ne obliviez chanjor vua preferaji.',
 'yourname'                   => 'Vua uzantonomo:',
@@ -371,7 +375,8 @@ Ol mustas ne havar plu kam $1 {{PLURAL:$1|litero|literi}}.',
 'loginsuccesstitle'          => 'Eniro sucesoza',
 'loginsuccess'               => "'''Vu eniris a {{SITENAME}} kom \"\$1\".'''",
 'nosuchuser'                 => 'Ne existas uzero "$1".
-Kontrolez posibla erori od uzez la formularo infre por krear nova uzerokonto.',
+Uzanto-nomi esas mayu/minuskulo-distingenda.
+Kontrolez vua espelado, o [[Special:UserLogin/signup|krear nova konto]].',
 'nosuchusershort'            => 'Esas nula uzero "<nowiki>$1</nowiki>". Kontrolez la espelado.',
 'nouserspecified'            => 'Vu mustas specigar uzantonomo.',
 'wrongpassword'              => 'La skribita pasovorto esis nekorekta. Voluntez probar itere.',
@@ -449,22 +454,32 @@ Vua IP-adreso registragesos en la versionaro di ca pagino.",
 'loginreqlink'                     => 'enirar',
 'loginreqpagetext'                 => 'Vu mustas $1 por vidar altra pagini.',
 'accmailtitle'                     => 'Kontrolajo sendita.',
-'accmailtext'                      => 'La kontrolajo por "$1" sendesis a $2.',
+'accmailtext'                      => "Hazarde genitita pasovorto por [[User talk:$1|$1]] sendesis ad $2.
+
+La pasovorto por ica nova konto povas chanjesar che la ''[[Special:ChangePassword|chanjar pasovorto]]'' pagino pos on eniras.",
 'newarticle'                       => '(nova)',
-'newarticletext'                   => "Vu sequis ligilo a pagino qua ne existas ankore.
+'newarticletext'                   => 'Vu sequis ligilo a pagino qua ne existas ankore.
 Por krear ica pagino, voluntez startar skribar en la infra buxo.
 (regardez la [[{{MediaWiki:Helppage}}|helpo]] por plusa informo).
-Se vu esas hike erore, kliktez sur la butono por retrovenar en vua ''browser''.",
+Se vu esas hike erore, kliktez sur la butono por retrovenar en vua navigilo.',
 'noarticletext'                    => 'Prezente, ne esas texto en ica pagino.
 Vu povas [[Special:Search/{{PAGENAME}}|serchar ica titulo]] en altra pagini,
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} serchar en la relata registri],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktar ica pagino]</span>.',
+'clearyourcache'                   => "'''Atencez: Pos registragar, vu probable mustas renovigar la tempala-magazino di vua navigilo por vidar la chanji.'''
+'''Mozilla / Firefox / Safari:''' tenez ''Shift'' kliktante ''Reload'', o presez sive  ''Ctrl-F5'' sive ''Ctrl-R'' (''Command-R'' ye Macintosh);
+'''Konqueror''': kliktez ''Reload'' o presez ''F5'';
+'''Opera:''' vakuigez la tempala-magazino en ''Tools → Preferences'';
+'''Internet Explorer:''' tenez ''Ctrl'' kliktante ''Refresh,'' o presez ''Ctrl-F5''.",
 'usercsspreview'                   => "'''Memorez ke vu nur previdas vua uzanto-CSS.'''
 '''Ol ne registragesis ankore!'''",
 'userjspreview'                    => "'''Memorez ke vu nur previdas vua javascript di uzanto. Ol ne registragesis ankore!'''",
 'updated'                          => '(Aktualigita)',
 'note'                             => "'''Noto:'''",
 'previewnote'                      => "'''Atencez ke ico esas nur prevido ed ol ne registragesis ankore!'''",
+'session_fail_preview'             => "'''Pardonez! Ni ne povis traktar vua redakto pro perdo di sesiono donaji.'''
+Voluntez probar itere.
+Se ol ankore nefuncionas, probez [[Special:UserLogout|ekirar]] e pose enirar.",
 'editing'                          => 'Vu redaktas $1',
 'editingsection'                   => 'Vu redaktas $1 (seciono)',
 'editingcomment'                   => 'Vu redaktas $1 (nova seciono)',
@@ -472,6 +487,8 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktar ica pagino]</span>.',
 'explainconflict'                  => 'Ulu chanjis ica pagino depos vu editeskis ol. La supra texto-areo kontenas la texto dil pagino quale ol existas aktuale. Vua chanji montresas en la infra texto-areo. Vu devas atachar vua chanji en la existanta texto. <b>Nur</b> la texto en la supra texto-areo registragesos kande vu presez sur "Registragar".',
 'yourtext'                         => 'Vua texto',
 'storedversion'                    => 'Gardita versiono',
+'nonunicodebrowser'                => "'''EGARDEZ: Vua navigilo esas ne obediema ad ''unicode''.'''
+Solvo esas funcionanta qua posibligas redaktar pagini sekure por vu: ne-ASCII signi konvertesos en la redakto-buxo kom dekesisala kodi.",
 'editingold'                       => "'''EGARDEZ: Vu redaktas anciena versiono di ca pagino.
 Se vu gardus ol, la chanji facita pos ita revizo perdesos.'''",
 'yourdiff'                         => 'Diferi',
@@ -479,6 +496,9 @@ Se vu gardus ol, la chanji facita pos ita revizo perdesos.'''",
 Se vu ne deziras ke altri modifikez vua artikli od oli distributesez libere, lore voluntez ne skribar oli hike.<br />
 Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesis de libera fonto.
 '''NE SENDEZ ARTIKLI KUN ''COPYRIGHT'' SEN PERMISO!'''",
+'longpagewarning'                  => "'''EGARDEZ''': Ica pagino esas $1 kilobicoki longa;
+Ula navigili posible havas problemi redaktante pagini proximeskanta o plu longa kam 32kb.
+Voluntez konsideras separar la pagino aden plu mikra secioni.",
 'protectedpagewarning'             => "'''AVERTO: Ica pagino esas blokusita, do nur ''sysop''-i povas redaktar olu.'''",
 'templatesused'                    => 'Shabloni uzata en ica pagino:',
 'templatesusedpreview'             => 'Shabloni uzata en ica prevido:',
@@ -790,7 +810,7 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'unusedtemplateswlh' => 'altra ligili',
 
 # Random page
-'randompage' => 'Pagino hazarde',
+'randompage' => 'Hazarda pagino',
 
 # Random redirect
 'randomredirect' => 'Ridirektilo hazarde',
@@ -1189,7 +1209,7 @@ Voluntez selektar altra nomo.',
 'tooltip-n-portal'                => 'Pri la projeto, quon vu facus, ube trovus utilaji',
 'tooltip-n-currentevents'         => 'Trovez informeco pri aktuala eventi',
 'tooltip-n-recentchanges'         => 'Listo di recenta chanji en la wiki.',
-'tooltip-n-randompage'            => 'Adkargez pagino hazarde',
+'tooltip-n-randompage'            => 'Vizitez hazarda pagino',
 'tooltip-n-help'                  => 'La loko por trovar ulo.',
 'tooltip-t-whatlinkshere'         => 'Montrez omna wiki pagini qui ligas ad hike',
 'tooltip-t-recentchangeslinked'   => 'Recenta chanji di pagini ligita de ca pagino',

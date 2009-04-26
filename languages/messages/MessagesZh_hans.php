@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -10,6 +10,7 @@
  * @author Bencmq
  * @author Gaoxuewei
  * @author Gzdavidwong
+ * @author Liangent
  * @author O
  * @author Philip
  * @author Shinjiman
@@ -816,6 +817,7 @@ $2',
 为方便起见，这一个页面的删除记录已经在下面提供:",
 'moveddeleted-notice'              => '这个页面已经删除。
 这个页面的删除日志已在下面提供以便参考。',
+'log-fulllog'                      => '查看完整日志',
 'edit-hook-aborted'                => '编辑被钩取消。
 它并无给出解释。',
 'edit-gone-missing'                => '不能更新页面。

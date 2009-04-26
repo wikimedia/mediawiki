@@ -2832,4 +2832,15 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 'dberr-info'      => '(No eplöpos ad kosikön ko dünanünöm nünodema: $1)',
 'dberr-usegoogle' => 'Kanol sukön me el Google ün vütim.',
 
+# Special:CreatePage
+'createpage'              => 'Jafön padi',
+'createpage-submitbutton' => 'Sedön',
+'createpage-instructions' => 'Penolös tiädi pada, keli vilol jafön:',
+'createpage-entertitle'   => 'Penolös tiädi pro pad olik.',
+'createpage-titleexists'  => 'Pad labü tiäd: [[$1]] ya dabinon.
+Vilol-li redakön padi dabinöl at?',
+'createpage-tryagain'     => 'No. Vilol jafön padi nulik labü tiädi votik.',
+'createpage-editexisting' => 'Si. Vilol keblünön pade dabinöl.',
+'createpage-badtitle'     => '„$1“ no dalon pagebön as padatiäd',
+
 );

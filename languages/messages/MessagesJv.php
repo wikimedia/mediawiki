@@ -2735,4 +2735,14 @@ Katrangan tampilan:
 
 #Dèlèhen kabèh fragmèn èksprèsi regular sadhuwuré baris iki. Umbarna baris ini apa anané</pre>',
 
+# Special:CreatePage
+'createpage'              => 'Gawé kaca',
+'createpage-submitbutton' => 'Kirim',
+'createpage-instructions' => 'Isi irah-irahan (judhul) kaca sing arep digawé:',
+'createpage-entertitle'   => 'Supaya ngisi irah-irahan (judhul) kaca.',
+'createpage-titleexists'  => 'Kaca kanthi irah-irahan (judhul) [[$1]] wis ana.
+Apa panjenengan arep nyunting kaca iki?',
+'createpage-tryagain'     => 'Ora. Aku arep gawé kaca anyar kanthi judhul liya.',
+'createpage-editexisting' => 'Iya. Aku arep ngisi kaca sing ana iki.',
+
 );

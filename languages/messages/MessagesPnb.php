@@ -1328,4 +1328,7 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'خاص صفحے',
 
+# Special:CreatePage
+'createpage-submitbutton' => 'پیجو',
+
 );

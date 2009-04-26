@@ -633,6 +633,7 @@ $messages = array(
 'username'                   => '계정 이름:',
 'uid'                        => '사용자 ID:',
 'prefs-memberingroups'       => '가지고 있는 권한 목록:',
+'prefs-registration'         => '등록 일시:',
 'yourrealname'               => '실명:',
 'yourlanguage'               => '언어:',
 'yournick'                   => '서명:',
@@ -864,7 +865,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 이 문서를 계속 편집하는 것이 적합한 것인지 확인해주세요.
 과거 삭제 기록은 다음과 같습니다:",
 'moveddeleted-notice'              => '이 문서는 삭제되어 있습니다.
-이 문서의 삭제 기록은 다음과 같습니다.',
+이 문서의 삭제 기록과 이동 기록은 다음과 같습니다.',
 'edit-hook-aborted'                => '훅에 의해 편집이 중단되었습니다.
 아무런 설명도 주어지지 않았습니다.',
 'edit-gone-missing'                => '문서를 저장하지 못했습니다.
@@ -1187,6 +1188,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'prefs-watchlist-edits-max' => '(최대 1000개)',
 'prefs-misc'                => '기타',
 'prefs-resetpass'           => '비밀번호 바꾸기',
+'prefs-email'               => '이메일 설정',
 'saveprefs'                 => '저장',
 'resetprefs'                => '저장하지 않은 설정 되돌리기',
 'restoreprefs'              => '기본값을 복구',
@@ -2569,7 +2571,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<hr />",
-'imagemaxsize'         => '파일 설명 문서의 그림 크기를 제한하기:',
+'imagemaxsize'         => "그림 크기를 제한하기:<br />''(파일 설명 페이지)''",
 'thumbsize'            => '섬네일 크기:',
 'widthheightpage'      => '$1×$2, $3페이지',
 'file-info'            => '(파일 크기: $1, MIME 종류: $2)',
@@ -3115,5 +3117,8 @@ $1',
 'dberr-usegoogle'   => '그 동안 구글을 통해 검색할 수도 있습니다.',
 'dberr-outofdate'   => '참고로, 구글의 내용 개요는 오래된 것일 수도 있습니다.',
 'dberr-cachederror' => '다음은 요청한 문서의 캐시된 복사본이며, 최신이 아닐 수도 있습니다.',
+
+# HTML forms
+'htmlform-selectorother-other' => '기타',
 
 );

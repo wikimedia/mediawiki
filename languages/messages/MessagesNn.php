@@ -3107,4 +3107,15 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'dberr-outofdate'   => 'Merk at versjonane deira av innhaldet vårt kan vera forelda.',
 'dberr-cachederror' => 'Fylgjande er ein mellomlagra kopi av den etterspurde sida, og er, kan henda, ikkje den siste versjonen av ho.',
 
+# Special:CreatePage
+'createpage'              => 'Opprett ei sida',
+'createpage-submitbutton' => 'OK',
+'createpage-instructions' => 'Skriv inn tittelen til sida du ynskjer å oppretta:',
+'createpage-entertitle'   => 'Skriv inn ein tittel for sida di.',
+'createpage-titleexists'  => 'Ei sida med tittelen [[$1]] finst frå før.
+Vil du endra denne?',
+'createpage-tryagain'     => 'Nei. Eg vil oppretta ei ny sida med ein annan tittel.',
+'createpage-editexisting' => 'Ja. Eg vil bidra til sida som finst frå før.',
+'createpage-badtitle'     => '«$1» kan ikkje bli nytta som sidetittel',
+
 );

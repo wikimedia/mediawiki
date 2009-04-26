@@ -183,7 +183,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Amaga edicions patrullades als canvis recents',
 'tog-newpageshidepatrolled'   => 'Amaga pàgines patrullades de la llista de pàgines noves',
 'tog-extendwatchlist'         => 'Desplega la llista de seguiment per a mostrar tots els canvis afectats, no només els més recents',
-'tog-usenewrc'                => 'Presentació millorada dels canvis recents (cal JavaScript)',
+'tog-usenewrc'                => 'Usa la presentació millorada dels canvis recents (cal JavaScript)',
 'tog-numberheadings'          => 'Enumera automàticament els encapçalaments',
 'tog-showtoolbar'             => "Mostra la barra d'eines d'edició (cal JavaScript)",
 'tog-editondblclick'          => 'Edita les pàgines amb un doble clic (cal JavaScript)',
@@ -191,7 +191,7 @@ $messages = array(
 'tog-editsectiononrightclick' => "Habilita l'edició per seccions en clicar amb el botó dret sobre els títols de les seccions (cal JavaScript)",
 'tog-showtoc'                 => "Mostrar l'índex de continguts a les pàgines amb més de 3 seccions",
 'tog-rememberpassword'        => 'Recorda la contrasenya entre sessions',
-'tog-editwidth'               => "Amplia al màxim el quadre d'edició",
+'tog-editwidth'               => "Amplia el quadre d'edició per encabir tota la pantalla",
 'tog-watchcreations'          => 'Vigila les pàgines que he creat',
 'tog-watchdefault'            => 'Afegeix les pàgines que edito a la meua llista de seguiment',
 'tog-watchmoves'              => 'Afegeix les pàgines que reanomeni a la llista de seguiment',
@@ -563,6 +563,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'username'                   => "Nom d'usuari:",
 'uid'                        => "Identificador d'usuari:",
 'prefs-memberingroups'       => 'Membre dels {{PLURAL:$1|grup|grups}}:',
+'prefs-registration'         => 'Hora de registre:',
 'yourrealname'               => 'Nom real *',
 'yourlanguage'               => 'Llengua:',
 'yourvariant'                => 'Variant lingüística:',
@@ -803,12 +804,13 @@ Podeu editar les planes ja existents o bé [[Special:UserLogin|entrar en un comp
 'permissionserrors'                => 'Error de permisos',
 'permissionserrorstext'            => 'No teniu permisos per a fer-ho, {{PLURAL:$1|pel següent motiu|pels següents motius}}:',
 'permissionserrorstext-withaction' => 'No teniu permís per a $2, {{PLURAL:$1|pel motiu següent|pels motius següents}}:',
-'recreate-moveddeleted-warn'       => "'''Avís: Esteu desant una pàgina que ha estat prèviament esborrada.'''
+'recreate-moveddeleted-warn'       => "'''Avís: Esteu creant una pàgina que ha estat prèviament esborrada.'''
 
 Hauríeu de considerar si és realment necessari continuar editant aquesta pàgina.
-A continuació s'ofereix el registre d'esborraments de la pàgina:",
+A continuació s'ofereix el registre d'esborraments i de reanomenaments de la pàgina:",
 'moveddeleted-notice'              => "Aquesta pàgina ha estat esborrada.
-A continuació us mostrem com a referència el registre d'esborraments de la pàgina.",
+A continuació us mostrem com a referència el registre d'esborraments i reanomenaments de la pàgina.",
+'log-fulllog'                      => 'Veure tot el registre',
 'edit-hook-aborted'                => "Edició avortada pel hook.
 No s'ha donat cap explicació.",
 'edit-gone-missing'                => "No s'ha pogut actualitzar la pàgina.
@@ -1131,6 +1133,8 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-watchlist-edits-max' => '(nombre màxim: 1000)',
 'prefs-misc'                => 'Altres preferències',
 'prefs-resetpass'           => 'Canvia la contrasenya',
+'prefs-email'               => 'Opcions de correu electrònic',
+'prefs-rendering'           => 'Renderització de les pàgines',
 'saveprefs'                 => 'Desa les preferències',
 'resetprefs'                => 'Esborra els canvis no guardats',
 'restoreprefs'              => 'Restaura les preferències per defecte',
@@ -1173,6 +1177,8 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-files'               => 'Fitxers',
 'prefs-custom-css'          => 'CSS personalitzat',
 'prefs-custom-js'           => 'JS personalitzat',
+'prefs-reset-intro'         => 'Podeu usar aquesta pàgina per a restablir les vostres preferències als valors per defecte.
+No es podrà desfer el canvi.',
 
 # User rights
 'userrights'                  => "Gestió dels permisos d'usuari",
@@ -1863,6 +1869,7 @@ Suggeriments i ajuda:
 Confirmeu que realment ho voleu fer, que enteneu les
 conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Policy-url}}|política]] del projecte.",
 'actioncomplete'         => "S'ha realitzat l'acció de manera satisfactòria.",
+'actionfailed'           => "L'acció ha fallat",
 'deletedtext'            => '«<nowiki>$1</nowiki>» ha estat esborrat.
 Vegeu $2 per a un registre dels esborrats més recents.',
 'deletedarticle'         => 'eliminat «[[$1]]»',
@@ -2467,7 +2474,7 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'mw_math_simple' => 'HTML si és molt simple, si no PNG',
 'mw_math_html'   => 'HTML si és possible, si no PNG',
 'mw_math_source' => 'Deixa com a TeX (per a navegadors de text)',
-'mw_math_modern' => 'Recomanat per navegadors moderns',
+'mw_math_modern' => 'Recomanat per a navegadors moderns',
 'mw_math_mathml' => 'MathML si és possible (experimental)',
 
 # Math errors
@@ -2520,7 +2527,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Advertència''': Aquest fitxer podria contenir codi maliciós, si l'executeu podeu comprometre la seguretat del vostre sistema.<hr />",
-'imagemaxsize'         => "Limita les imatges de les pàgines de descripció d'imatges a:",
+'imagemaxsize'         => "Límit de mida d'imatges:<br />''(per a pàgines de descripció de fitxers)''",
 'thumbsize'            => 'Mida de la miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgines}}',
 'file-info'            => '(mida: $1, tipus MIME: $2)',
@@ -2815,6 +2822,10 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpslongitude-e' => 'Longitud est',
 'exif-gpslongitude-w' => 'Longitud oest',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metres sobre el nivell del mar',
+'exif-gpsaltitude-1' => 'Metres sota el nivell del mar',
+
 'exif-gpsstatus-a' => 'Mesura en curs',
 'exif-gpsstatus-v' => 'Interoperabilitat de mesura',
 
@@ -2825,6 +2836,11 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpsspeed-k' => 'Quilòmetres per hora',
 'exif-gpsspeed-m' => 'Milles per hora',
 'exif-gpsspeed-n' => 'Nusos',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Quilòmetres',
+'exif-gpsdestdistance-m' => 'Milles',
+'exif-gpsdestdistance-n' => 'Milles nàutiques',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcció real',
@@ -3065,5 +3081,15 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 'dberr-usegoogle'   => 'Podeu intentar fer la cerca via Google mentrestant.',
 'dberr-outofdate'   => 'Tingueu en compte que la seva indexació del nostre contingut pot no estar actualitzada.',
 'dberr-cachederror' => 'A continuació hi ha una còpia emmagatzemada de la pàgina demanada, que pot no estar actualitzada.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Hi ha problemes amb alguna de les seves entrades',
+'htmlform-select-badoption'    => 'El valor que heu especificat no és una opció vàlida.',
+'htmlform-int-invalid'         => 'El valor que heu especificat no és un nombre enter.',
+'htmlform-int-toolow'          => 'El valor que heu especifcat està per sota del mínim de $1',
+'htmlform-int-toohigh'         => 'El valor que heu especificat està per sobre del màxim de $1',
+'htmlform-submit'              => 'Tramet',
+'htmlform-reset'               => 'Desfés els canvis',
+'htmlform-selectorother-other' => 'Altres',
 
 );

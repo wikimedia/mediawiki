@@ -162,13 +162,13 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sublinhar hiperligações:',
-'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">assim</a> (alternativa: assim<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
 'tog-hidepatrolled'           => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled'   => 'Ocultar páginas patrulhadas da lista de páginas novas',
 'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações, e não apenas as mais recentes',
-'tog-usenewrc'                => 'Mudanças recentes melhoradas (JavaScript)',
+'tog-usenewrc'                => 'Usar a versão melhorada das mudanças recentes (requer JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick'          => 'Editar páginas quando houver clique duplo (JavaScript)',
@@ -176,7 +176,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Habilitar edição de secção por clique com o botão direito no título da secção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Lembrar palavra-chave entre sessões',
-'tog-editwidth'               => 'Caixa de edição com largura completa',
+'tog-editwidth'               => 'Aumentar a largura da caixa de edição para preencher todo o ecrã',
 'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de vigiados',
 'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de vigiados',
 'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de vigiados',
@@ -551,6 +551,7 @@ Escolha um nome diferente.',
 'username'                   => 'Nome de utilizador:',
 'uid'                        => 'Número de identificação:',
 'prefs-memberingroups'       => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
+'prefs-registration'         => 'Hora de registo:',
 'yourrealname'               => 'Nome verdadeiro:',
 'yourlanguage'               => 'Idioma:',
 'yourvariant'                => 'Variante',
@@ -805,11 +806,13 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|au
 'permissionserrors'                => 'Erros de permissões',
 'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
-'recreate-moveddeleted-warn'       => "'''Atenção: Você está criando novamente uma página já eliminada em outra ocasião.'''
+'recreate-moveddeleted-warn'       => "'''Atenção: Você está a recriar uma página que já foi anteriormente eliminada.'''
 
 Certifique-se de que seja adequado prosseguir editando esta página.
-O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
-'moveddeleted-notice'              => 'Esta página foi eliminada. Disponibiliza-se abaixo o registo de eliminações para esta página, para referência.',
+O registo de eliminação e de movimento desta página é exibido a seguir, para conveniência:",
+'moveddeleted-notice'              => 'Esta página foi eliminada.
+Disponibiliza-se abaixo o registo de eliminações e de movimento para esta página, para referência.',
+'log-fulllog'                      => 'Ver registo detalhado',
 'edit-hook-aborted'                => 'Edição abortada por hook.
 Ele não deu nenhuma explicação.',
 'edit-gone-missing'                => 'Não foi possível atualizar a página.
@@ -1133,6 +1136,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-watchlist-edits-max' => '(máximo: 1000)',
 'prefs-misc'                => 'Diversos',
 'prefs-resetpass'           => 'Alterar palavra-chave',
+'prefs-email'               => 'Opções de email',
+'prefs-rendering'           => 'Apresentação da Página',
 'saveprefs'                 => 'Salvar',
 'resetprefs'                => 'Eliminar as alterações não-salvas',
 'restoreprefs'              => 'Restaurar todas as configurações padrão',
@@ -1175,6 +1180,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-files'               => 'Ficheiros',
 'prefs-custom-css'          => 'CSS personalizada',
 'prefs-custom-js'           => 'JS personalizado',
+'prefs-reset-intro'         => 'Você pode usar esta página para restaurar as suas preferências para os valores predefinidos do sítio.
+Esta acção não pode ser desfeita.',
 
 # User rights
 'userrights'                  => 'Gestão de privilégios de utilizadores',
@@ -1876,6 +1883,7 @@ Contacto e assistência:
 'confirmdeletetext'      => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
 Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que encontra-se a fazer isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projecto.',
 'actioncomplete'         => 'Acção completada',
+'actionfailed'           => 'A ação falhou',
 'deletedtext'            => '"<nowiki>$1</nowiki>" foi eliminada.
 Consulte $2 para um registo de eliminações recentes.',
 'deletedarticle'         => 'eliminou "[[$1]]"',
@@ -2523,7 +2531,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Aviso''': Este ficheiro pode conter código malicioso. Ao executar, o seu sistema poderá estar comprometido.<hr />",
-'imagemaxsize'         => 'Limitar imagens nas páginas de descrição a:',
+'imagemaxsize'         => "Limite de tamanho de imagens:<br />''(para páginas de descrição)''",
 'thumbsize'            => 'Tamanho de miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'            => '(tamanho: $1, tipo MIME: $2)',
@@ -2813,6 +2821,10 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-gpslongitude-e' => 'Longitude Leste',
 'exif-gpslongitude-w' => 'Longitude Oeste',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metros acima do nível do mar',
+'exif-gpsaltitude-1' => 'Metros abaixo do nível do mar',
+
 'exif-gpsstatus-a' => 'Medição em progresso',
 'exif-gpsstatus-v' => 'Interoperabilidade de medição',
 
@@ -2823,6 +2835,11 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Milhas por hora',
 'exif-gpsspeed-n' => 'Nós',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Quilómetros',
+'exif-gpsdestdistance-m' => 'Milhas',
+'exif-gpsdestdistance-n' => 'Miles náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcção real',
@@ -2981,6 +2998,7 @@ Você também pode [[Special:Watchlist/edit|editar a lista da forma convencional
 'version-hook-name'                => 'Nome do hook',
 'version-hook-subscribedby'        => 'Subscrito por',
 'version-version'                  => 'Versão',
+'version-revision'                 => 'Revisão',
 'version-license'                  => 'Licença',
 'version-software'                 => 'Software instalado',
 'version-software-product'         => 'Produto',
@@ -3060,5 +3078,26 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'dberr-usegoogle'   => 'Pode tentar pesquisar no Google entretanto.',
 'dberr-outofdate'   => 'Note que os seus índices relativos ao nosso conteúdo podem estar desatualizados.',
 'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não estar atualizada.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Existem problemas com alguns do dados introduzidos',
+'htmlform-select-badoption'    => 'O valor que você especificou não é uma opção válida.',
+'htmlform-int-invalid'         => 'O valor que você especificou não é um inteiro.',
+'htmlform-int-toolow'          => 'O valor que você especificou está abaixo do mínimo de $1',
+'htmlform-int-toohigh'         => 'O valor que você especificou está acima do máximo de $1',
+'htmlform-submit'              => 'Enviar',
+'htmlform-reset'               => 'Desfazer alterações',
+'htmlform-selectorother-other' => 'Outros',
+
+# Special:CreatePage
+'createpage'              => 'Criar uma página',
+'createpage-submitbutton' => 'Submeter',
+'createpage-instructions' => 'Introduza o título da página que pretende criar:',
+'createpage-entertitle'   => 'Por favor, introduza um título para a sua página.',
+'createpage-titleexists'  => 'Um página com o título [[$1]] já existe.
+Deseja editar a página existente?',
+'createpage-tryagain'     => 'Não. Quero criar uma nova página com um título diferente.',
+'createpage-editexisting' => 'Sim. Quero contribuir para a página existente.',
+'createpage-badtitle'     => '"$1" não pode ser usado como título de página',
 
 );
