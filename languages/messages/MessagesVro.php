@@ -2141,7 +2141,7 @@ Prooviq harilikku kaehust.',
 
 # Special:Version
 'version'                  => 'Kujo',
-'version-version'          => 'Kujo',
+'version-version'          => '(Kujo $1)',
 'version-software-version' => 'Kujo',
 
 # Special:FilePath

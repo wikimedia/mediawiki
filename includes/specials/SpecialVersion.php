@@ -222,8 +222,8 @@ class SpecialVersion extends SpecialPage {
 
 	function formatCredits( $name, $version = null, $subVersion = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
 		$extension = isset( $url ) ? "[$url $name]" : $name;
-		$version = isset( $version ) ? "(" . wfMsg( 'version-version' ) . " $version)" : '';		
-		$subVersion = isset( $subVersion ) ? "(" . wfMsg( 'version-revision' ) . " r$subVersion)" : '';
+		$version = isset( $version ) ? wfMsg( 'version-version', $version ) : '';
+		$subVersion = isset( $subVersion ) ? wfMsg( 'version-svn-revision', $subVersion ) : '';
 
 		# Look for a localized description
 		if( isset( $descriptionMsg ) ) {

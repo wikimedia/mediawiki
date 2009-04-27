@@ -3050,7 +3050,7 @@ Maaari mo ring [[Special:Watchlist/edit|gamitin ang pangkaraniwang pampatnugot]]
 'version-skin-extension-functions' => 'Mga tungkulin ng karugtong na pabalat',
 'version-hook-name'                => 'Pangalan ng pangkawit',
 'version-hook-subscribedby'        => 'Sinuskribi ng/ni/nina',
-'version-version'                  => 'Bersyon',
+'version-version'                  => '(Bersyon $1)',
 'version-license'                  => 'Lisensiya',
 'version-software'                 => 'Inistalang software',
 'version-software-product'         => 'Produkto',

@@ -3049,7 +3049,7 @@ Je kunnen oek [[Special:Watchlist/edit|'t standard bewarkingsscharm gebruken]]."
 'version-skin-extension-functions' => 'Vormgevingsuutbreidingsfuncties',
 'version-hook-name'                => 'Hooknaam',
 'version-hook-subscribedby'        => 'Eabonneerd deur',
-'version-version'                  => 'Versie',
+'version-version'                  => '(Versie $1)',
 'version-license'                  => 'Licentie',
 'version-software'                 => 'Eïnstalleren pregrammetuur',
 'version-software-product'         => 'Preduk',

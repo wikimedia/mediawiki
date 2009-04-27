@@ -974,7 +974,7 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 
 # Special:Version
 'version'         => 'Varia',
-'version-version' => 'Varia',
+'version-version' => '(Varia $1)',
 
 # Special:FilePath
 'filepath-page' => 'Fix:',

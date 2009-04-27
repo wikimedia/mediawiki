@@ -1907,7 +1907,7 @@ $5
 'version'                  => 'ಆವೃತ್ತಿ',
 'version-specialpages'     => 'ವಿಶೇಷ ಪುಟಗಳು',
 'version-other'            => 'ಇತರ',
-'version-version'          => 'ಆವೃತ್ತಿ',
+'version-version'          => '(ಆವೃತ್ತಿ $1)',
 'version-software'         => 'ಸಂಸ್ಥಾಪಿಸಲಾಗಿರುವ ತಂತ್ರಾಂಶ',
 'version-software-version' => 'ಆವೃತ್ತಿ',
 

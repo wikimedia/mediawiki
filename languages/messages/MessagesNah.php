@@ -1437,7 +1437,7 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 'version'                  => 'Machiyōtzin',
 'version-specialpages'     => 'Nōncuahquīzqui āmatl',
 'version-other'            => 'Occē',
-'version-version'          => 'Machiyōtzin',
+'version-version'          => '(Machiyōtzin $1)',
 'version-software-version' => 'Machiyōtzin',
 
 # Special:FilePath

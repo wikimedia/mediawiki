@@ -875,7 +875,7 @@ $3',
 
 # Special:Version
 'version'                  => 'MediaWiki-йы верси',
-'version-version'          => 'Верси',
+'version-version'          => '(Верси $1)',
 'version-software-version' => 'Верси',
 
 # Special:SpecialPages

@@ -1150,7 +1150,7 @@ fer úr gildi tann $4.',
 'version'                  => 'Útgáva',
 'version-hooks'            => 'Krókur',
 'version-hook-name'        => 'Krókurnavn',
-'version-version'          => 'Útgáva',
+'version-version'          => '(Útgáva $1)',
 'version-software-version' => 'Útgáva',
 
 # Special:FilePath

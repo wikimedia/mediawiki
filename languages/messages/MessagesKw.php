@@ -519,7 +519,7 @@ $messages = array(
 # Special:Version
 'version'         => 'Versyon',
 'version-other'   => 'Aral',
-'version-version' => 'Versyon',
+'version-version' => '(Versyon $1)',
 
 # Special:FilePath
 'filepath-page' => 'Restren:',

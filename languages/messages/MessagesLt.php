@@ -2950,7 +2950,7 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 'version-skin-extension-functions' => 'Išvaizdos papildinių funkcijos',
 'version-hook-name'                => 'Gaudlio pavadinimas',
 'version-hook-subscribedby'        => 'Užsakyta',
-'version-version'                  => 'Versija',
+'version-version'                  => '(Versija $1)',
 'version-license'                  => 'Licencija',
 'version-software'                 => 'Įdiegta programinė įranga',
 'version-software-product'         => 'Produktas',

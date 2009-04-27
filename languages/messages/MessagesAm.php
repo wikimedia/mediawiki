@@ -2271,7 +2271,7 @@ $3
 'version-skin-extension-functions' => 'የመልክ ቅጥያ ተግባሮች',
 'version-hook-name'                => 'የሜንጦ ስም',
 'version-hook-subscribedby'        => 'የተጨመረበት',
-'version-version'                  => 'ዝርያ',
+'version-version'                  => '(ዝርያ $1)',
 'version-license'                  => 'ፈቃድ',
 'version-software'                 => 'የተሳካ ሶፍትዌር',
 'version-software-product'         => 'ሶፍትዌር',

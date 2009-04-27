@@ -442,7 +442,7 @@ El resto de los linkes del mismo satir se juzgan como eccepciones (por enxemplo,
 'version'                  => 'Versión',
 'version-specialpages'     => 'Pajinas espesiales',
 'version-other'            => 'Otros',
-'version-version'          => 'Versión',
+'version-version'          => '(Versión $1)',
 'version-software-version' => 'Versión',
 
 # Special:FileDuplicateSearch

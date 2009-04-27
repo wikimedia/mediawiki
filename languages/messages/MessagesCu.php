@@ -582,7 +582,7 @@ $messages = array(
 
 # Special:Version
 'version'                  => 'MediaWiki о́браꙁъ',
-'version-version'          => 'о́браꙁъ',
+'version-version'          => '(о́браꙁъ $1)',
 'version-license'          => 'прощє́ниѥ',
 'version-software-version' => 'о́браꙁъ',
 

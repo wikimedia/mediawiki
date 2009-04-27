@@ -1481,7 +1481,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # Special:Version
 'version'                  => 'Version',
-'version-version'          => 'Version',
+'version-version'          => '(Version $1)',
 'version-software-version' => 'Version',
 
 # Special:FilePath
