@@ -69,7 +69,7 @@ class DjVuHandler extends ImageHandler {
 
 	function normaliseParams( $image, &$params ) {
 		global $wgDjvuTxt;
-		if( $params['djvutxt'] && $wgDjvuTxt) {
+		if( $wgDjvuTxt && isset($params['djvutxt']) && $params['djvutxt']) {
 			if ( !isset( $params['page'] ) ) {
 				$params['page'] = 1;
 			}
