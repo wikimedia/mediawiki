@@ -271,6 +271,7 @@ class HTMLForm {
 	function displaySection( $fields ) {
 		$tableHtml = '';
 		$subsectionHtml = '';
+		$hasLeftColumn = false;
 		
 		foreach( $fields as $key => $value ) {
 			if ( is_object( $value ) ) {
@@ -278,6 +279,9 @@ class HTMLForm {
 							? $this->mFieldData[$key]
 							: $value->getDefault();
 				$tableHtml .= $value->getTableRow( $v );
+				
+				if ($value->getLabel() != '&nbsp;')
+					$hasLeftColumn = true;
 			} elseif ( is_array( $value ) ) {
 				$section = $this->displaySection( $value );
 				$legend = wfMsg( "{$this->mMessagePrefix}-$key" );
@@ -285,7 +289,12 @@ class HTMLForm {
 			}
 		}
 		
-		$tableHtml = "<table><tbody>\n$tableHtml\n</tbody></table>\n";
+		$classes = array();
+		if (!$hasLeftColumn) // Avoid strange spacing when no labels exist
+			$classes[] = 'mw-htmlform-nolabel';
+		$classes = implode( ' ', $classes );
+		
+		$tableHtml = "<table class='$classes'><tbody>\n$tableHtml\n</tbody></table>\n";
 		
 		return $subsectionHtml . "\n" . $tableHtml;
 	}

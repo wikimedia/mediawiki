@@ -77,6 +77,8 @@ body.rtl td.mw-submit { text-align: right; }
 td.mw-label { vertical-align: top; width: 20%; }
 td.mw-submit { white-space: nowrap; }
 
+table.mw-htmlform-nolabel td.mw-label { width: 0 !important; }
+
 /**
  * Image captions
  */
