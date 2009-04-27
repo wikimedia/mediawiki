@@ -221,10 +221,9 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	function formatCredits( $name, $version = null, $subVersion = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
-		$viewvc = 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/?pathrev=';
 		$extension = isset( $url ) ? "[$url $name]" : $name;
 		$version = isset( $version ) ? wfMsg( 'version-version', $version ) : '';
-		$subVersion = isset( $subVersion ) ? " [{$viewvc}{$subVersion} " . wfMsg( 'version-svn-revision', $subVersion ) . ']' : '';
+		$subVersion = isset( $subVersion ) ? wfMsg( 'version-svn-revision', $subVersion ) : '';
 
 		# Look for a localized description
 		if( isset( $descriptionMsg ) ) {
