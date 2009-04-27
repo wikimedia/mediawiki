@@ -284,6 +284,8 @@ class Preferences {
 	}
 	
 	static function emailPreferences( $user, &$defaultPreferences ) {
+		global $wgLang;
+		
 		## Email #######################################
 		## Email stuff
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
