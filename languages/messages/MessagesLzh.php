@@ -629,6 +629,7 @@ $2',
 誌刪如下：",
 'moveddeleted-notice'              => '此頁刪矣。
 此頁之誌參留之。',
+'log-fulllog'                      => '閱誌全',
 'edit-hook-aborted'                => '鈎纂消矣。
 無解也。',
 'edit-gone-missing'                => '無更頁。
@@ -976,6 +977,7 @@ $2',
 'prefs-custom-css'          => '定之CSS',
 'prefs-custom-js'           => '定之JS',
 'prefs-reset-intro'         => '爾用頁重設至預之設。無修之也。',
+'prefs-emailconfirm-label'  => '確郵：',
 
 # User rights
 'userrights'                     => '秉治權任',
