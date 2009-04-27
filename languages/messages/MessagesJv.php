@@ -2676,7 +2676,7 @@ Panjenengan uga bisa [[Special:Watchlist/edit|nganggo éditor standar panjenenga
 'version-skin-extension-functions' => 'Fungsi èkstènsi kulit',
 'version-hook-name'                => 'Jeneng canthèlan',
 'version-hook-subscribedby'        => 'Dilanggani déning',
-'version-version'                  => 'Vèrsi',
+'version-version'                  => '(Vèrsi $1)',
 'version-license'                  => 'Lisènsi',
 'version-software'                 => "''Software'' wis diinstalasi",
 'version-software-product'         => 'Prodhuk',

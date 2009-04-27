@@ -2943,7 +2943,7 @@ Tağı da [[{{#special:Watchlist}}/edit|qalıpalğan öñdewişti paýdalana]] a
 'version-skin-extension-functions' => 'Mäner keñeýtimderiniñ jeteleri',
 'version-hook-name'                => 'Tuzaq atawı',
 'version-hook-subscribedby'        => 'Tuzaq tartqıştarı',
-'version-version'                  => 'Nusqası:',
+'version-version'                  => '(Nusqası: $1)',
 'version-license'                  => 'Lïcenzïyası',
 'version-software'                 => 'Ornatılğan bağdarlamalıq jasaqtama',
 'version-software-product'         => 'Önim',

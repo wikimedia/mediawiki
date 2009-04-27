@@ -2123,7 +2123,7 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 # Special:Version
 'version'                  => 'Leagan',
 'version-other'            => 'Eile',
-'version-version'          => 'Leagan',
+'version-version'          => '(Leagan $1)',
 'version-license'          => 'Ceadúnas',
 'version-software'         => 'Bogearraí suiteáilte',
 'version-software-version' => 'Leagan',

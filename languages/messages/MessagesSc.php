@@ -1210,7 +1210,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # Special:Version
 'version'                  => 'Versioni',
-'version-version'          => 'Versioni',
+'version-version'          => '(Versioni $1)',
 'version-software-version' => 'Versioni',
 
 # Special:FilePath

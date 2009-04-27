@@ -3128,7 +3128,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-skin-extension-functions' => 'Felület kiterjeszések függvényei',
 'version-hook-name'                => 'Hook neve',
 'version-hook-subscribedby'        => 'Használja',
-'version-version'                  => 'verzió:',
+'version-version'                  => '(verzió: $1)',
 'version-license'                  => 'Licenc',
 'version-software'                 => 'Telepített szoftverek',
 'version-software-product'         => 'Termék',

@@ -2281,7 +2281,7 @@ $5
 # Special:Version
 'version'              => 'ווערסיע',
 'version-specialpages' => 'ספעציעלע בלעטער',
-'version-version'      => 'ווערסיע',
+'version-version'      => '(ווערסיע $1)',
 
 # Special:FilePath
 'filepath-page' => 'טעקע:',

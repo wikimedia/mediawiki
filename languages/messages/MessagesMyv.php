@@ -1866,7 +1866,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'version-specialpages'     => 'Башка тевень лопат',
 'version-other'            => 'Лия',
 'version-hooks'            => 'Кечказт',
-'version-version'          => 'Версия',
+'version-version'          => '(Версия $1)',
 'version-license'          => 'Лицензия',
 'version-software-product' => 'Шкавкс-нолдавкс',
 'version-software-version' => 'Верзия',

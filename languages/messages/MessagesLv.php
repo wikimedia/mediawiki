@@ -1856,7 +1856,7 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 'version'                  => 'Versija',
 'version-extensions'       => 'Ieinstalētie paplašinājumi',
 'version-specialpages'     => 'Īpašās lapas',
-'version-version'          => 'Versija',
+'version-version'          => '(Versija $1)',
 'version-software-version' => 'Versija',
 
 # Special:FilePath

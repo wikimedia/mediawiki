@@ -2370,7 +2370,7 @@ $5
 'version-skin-extension-functions' => 'தோல் நீட்சி செயல்பாடு',
 'version-hook-name'                => 'கொக்கியின் பெயர்',
 'version-hook-subscribedby'        => 'பயன்பாடு',
-'version-version'                  => 'பதிப்பு',
+'version-version'                  => '(பதிப்பு $1)',
 'version-license'                  => 'அனுமதி',
 'version-software'                 => 'நிறுவப்பட்ட மென்பொருள்',
 'version-software-product'         => 'உற்பத்திப்பொருள்',

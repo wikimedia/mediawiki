@@ -2360,7 +2360,7 @@ $5
 'version-specialpages'     => 'പ്രത്യേക താളുകള്‍',
 'version-variables'        => 'ചരങ്ങള്‍',
 'version-other'            => 'മറ്റുള്ളവ',
-'version-version'          => 'പതിപ്പ്',
+'version-version'          => '(പതിപ്പ് $1)',
 'version-license'          => 'ലൈസന്‍സ്',
 'version-software'         => 'ഇന്‍സ്റ്റാള്‍ ചെയ്ത സോഫ്റ്റ്‌വെയര്‍',
 'version-software-product' => 'സോഫ്റ്റ്‌വെയര്‍ പ്രൊഡക്ട്',

@@ -2909,7 +2909,7 @@ Du har også mulighed for at [[Special:Watchlist/raw|redigere listen direkte]].'
 'version-skin-extension-functions' => 'Ekstra funktioner til udseende',
 'version-hook-name'                => 'Navn',
 'version-hook-subscribedby'        => 'Brugt af',
-'version-version'                  => 'Version',
+'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licens',
 'version-software'                 => 'Installeret software',
 'version-software-product'         => 'Produkt',

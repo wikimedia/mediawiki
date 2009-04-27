@@ -1186,7 +1186,7 @@ My vel y coadan ceaghlit veih'n chummey bunneydagh, foddee nagh beagh mynphoynty
 'version'                  => 'Lhieggan',
 'version-specialpages'     => 'Duillagyn er lheh',
 'version-other'            => 'Elley',
-'version-version'          => 'Lhieggan',
+'version-version'          => '(Lhieggan $1)',
 'version-license'          => 'Kiedoonys',
 'version-software-version' => 'Lhieggan',
 

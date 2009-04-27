@@ -2589,7 +2589,7 @@ Ju gjithashtu mundeni ta redaktoni listën mbikëqyrëse [[Special:Watchlist/edi
 'version-variables'         => 'Variabël',
 'version-other'             => 'Të tjera',
 'version-hook-subscribedby' => 'Abonuar nga',
-'version-version'           => 'Versioni',
+'version-version'           => '(Versioni $1)',
 'version-license'           => 'Licensa',
 'version-software'          => 'Softuerët e instaluar',
 'version-software-product'  => 'Produkti',

@@ -2594,7 +2594,7 @@ $5
 'version-extension-functions'      => 'មុខងារផ្នែកបន្ថែម',
 'version-skin-extension-functions' => 'មុខងារផ្នែកបន្ថែមនៃសំបក',
 'version-hook-subscribedby'        => 'បានជាវ ជាប្រចាំ ដោយ',
-'version-version'                  => 'កំណែ',
+'version-version'                  => '(កំណែ $1)',
 'version-license'                  => 'អាជ្ញាប័ណ្ណ',
 'version-software'                 => 'ផ្នែកទន់​ដែល​បានដំឡើង',
 'version-software-product'         => 'ផលិតផល',
