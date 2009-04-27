@@ -3183,7 +3183,6 @@ Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutze
 'version-hook-name'                => 'Schnittstellenname',
 'version-hook-subscribedby'        => 'Aufruf von',
 'version-version'                  => '(Version $1)',
-'version-svn-revision'             => '(Revision r$1)',
 'version-license'                  => 'Lizenz',
 'version-software'                 => 'Installierte Software',
 'version-software-product'         => 'Produkt',

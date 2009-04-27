@@ -2998,7 +2998,6 @@ Você também pode [[Special:Watchlist/edit|editar a lista da forma convencional
 'version-hook-name'                => 'Nome do hook',
 'version-hook-subscribedby'        => 'Subscrito por',
 'version-version'                  => '(Versão $1)',
-'version-svn-revision'             => '(Revisão r$1)',
 'version-license'                  => 'Licença',
 'version-software'                 => 'Software instalado',
 'version-software-product'         => 'Produto',

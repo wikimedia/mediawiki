@@ -2876,7 +2876,6 @@ Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslësc
 'version-hook-name'                => 'Numm vun der Klamer',
 'version-hook-subscribedby'        => 'Opruff vum',
 'version-version'                  => '(Versioun $1)',
-'version-svn-revision'             => '(Versioun r$1)',
 'version-license'                  => 'Lizenz',
 'version-software'                 => 'Installéiert Software',
 'version-software-product'         => 'Produkt',
