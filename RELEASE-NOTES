@@ -376,6 +376,7 @@ The following extensions are migrated into MediaWiki 1.15:
   languages while the the text is typed as URLs.
 * (bug 18535) Search tab tool-tops are corrupted
 * (bug 17614) Prev / Next links not need on ImagePage file history if less than limit
+* (bug 18069) Fixed some CSS validation issues with colors
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
