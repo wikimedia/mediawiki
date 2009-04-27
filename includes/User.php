@@ -119,8 +119,7 @@ class User {
 		// user_group table
 		'mGroups',
 		// user_properties table
-		'mOptions',
-		'mOptionsLoaded',
+		'mOptionOverrides',
 	);
 
 	/**
@@ -189,8 +188,8 @@ class User {
 	/** @name Cache variables */
 	//@{
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
-		$mEmail, $mOptions, $mTouched, $mToken, $mEmailAuthenticated,
-		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mGroups;
+		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
+		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mGroups, $mOptionOverrides;
 	//@}
 
 	/**
@@ -213,7 +212,7 @@ class User {
 	//@{
 	var $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mSkin, $mRights,
 		$mBlockreason, $mBlock, $mEffectiveGroups, $mBlockedGlobally, 
-		$mLocked, $mHideName;
+		$mLocked, $mHideName, $mOptions;
 	//@}
 
 	/**
@@ -283,7 +282,7 @@ class User {
 		# Try cache
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 		$data = $wgMemc->get( $key );
-		if ( !is_array( $data ) || $data['mVersion'] < MW_USER_VERSION ) {
+		if ( !is_array( $data ) || $data['mVersion'] < 'MW_USER_VERSION' ) {
 			# Object is expired, load from DB
 			$data = false;
 		}
@@ -773,7 +772,8 @@ class User {
 		$this->mPassword = $this->mNewpassword = '';
 		$this->mNewpassTime = null;
 		$this->mEmail = '';
-		$this->mOptions = null; # Defer init
+		$this->mOptionOverrides = null;
+		$this->mOptionsLoaded = false;
 
 		if ( isset( $_COOKIE[$wgCookiePrefix.'LoggedOut'] ) ) {
 			$this->mTouched = wfTimestamp( TS_MW, $_COOKIE[$wgCookiePrefix.'LoggedOut'] );
@@ -972,6 +972,7 @@ class User {
 		$this->mSkin = null;
 		$this->mRights = null;
 		$this->mEffectiveGroups = null;
+		$this->mOptions = array();
 
 		if ( $reloadFrom ) {
 			$this->mDataLoaded = false;
@@ -2297,10 +2298,11 @@ class User {
 	 * @private
 	 */
 	function decodeOptions( $str ) {
-		if ($str)
-			$this->mOptionsLoaded = true;
-		else
+		if (!$str)
 			return;
+			
+		$this->mOptionsLoaded = true;
+		$this->mOptionOverrides = array();
 		
 		$this->mOptions = array();
 		$a = explode( "\n", $str );
@@ -2308,6 +2310,7 @@ class User {
 			$m = array();
 			if ( preg_match( "/^(.[^=]*)=(.*)$/", $s, $m ) ) {
 				$this->mOptions[$m[1]] = $m[2];
+				$this->mOptionOverrides[$m[1]] = $m[2];
 			}
 		}
 	}
@@ -3513,18 +3516,29 @@ class User {
 			return;
 	
 		$this->mOptions = self::getDefaultOptions();
+		
+		// Maybe load from the object
+		
+		if ( !is_null($this->mOptionOverrides) ) {
+			wfDebug( "Loading options for user ".$this->getId()." from override cache.\n" ); 
+			foreach( $this->mOptionOverrides as $key => $value ) {
+				$this->mOptions[$key] = $value;
+			}
+		} else {
+			wfDebug( "Loading options for user ".$this->getId()." from database.\n" );
+			// Load from database
+			$dbr = wfGetDB( DB_SLAVE );
 			
-		// Load from database
-		$dbr = wfGetDB( DB_SLAVE );
-		
-		$res = $dbr->select( 'user_properties',
-								'*',
-								array('up_user' => $this->getId()),
-								__METHOD__
-							);
-		
-		while( $row = $dbr->fetchObject( $res ) ) {
-			$this->mOptions[$row->up_property] = $row->up_value;
+			$res = $dbr->select( 'user_properties',
+									'*',
+									array('up_user' => $this->getId()),
+									__METHOD__
+								);
+			
+			while( $row = $dbr->fetchObject( $res ) ) {
+				$this->mOptionOverrides[$row->up_property] = $row->up_value;
+				$this->mOptions[$row->up_property] = $row->up_value;
+			}
 		}
 		
 		$this->mOptionsLoaded = true;
