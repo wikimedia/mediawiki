@@ -36,8 +36,9 @@ class RandomPage extends SpecialPage {
 	public function execute( $par ) {
 		global $wgOut, $wgContLang;
 
-		if ($par)
+		if ($par) {
 			$this->setNamespace( $wgContLang->getNsIndex( $par ) );
+		}
 
 		$title = $this->getRandomTitle();
 
@@ -78,8 +79,6 @@ class RandomPage extends SpecialPage {
 
 	private function selectRandomPageFromDB( $randstr ) {
 		global $wgExtraRandompageSQL;
-		$fname = 'RandomPage::selectRandomPageFromDB';
-
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$use_index = $dbr->useIndexClause( 'page_random' );
@@ -98,7 +97,7 @@ class RandomPage extends SpecialPage {
 			ORDER BY page_random";
 
 		$sql = $dbr->limitResult( $sql, 1, 0 );
-		$res = $dbr->query( $sql, $fname );
+		$res = $dbr->query( $sql, __METHOD__ );
 		return $dbr->fetchObject( $res );
 	}
 }
