@@ -1428,7 +1428,7 @@ div#searchTarget ul li {
 }
 
 div#searchTarget ul li:before {
-	color: orange;
+	color: #ffa500;
 	content: "\00BB \0020";
 }
 
