@@ -14,7 +14,72 @@ class Preferences {
 		global $wgLang, $wgRCMaxAge;
 		
 		$defaultPreferences = array();
+
+		self::profilePreferences( $user, $defaultPreferences );
+		self::emailPreferences( $user, $defaultPreferences );
+		self::skinPreferences( $user, $defaultPreferences );
+		self::mathPreferences( $user, $defaultPreferences );
+		self::filesPreferences( $user, $defaultPreferences );
+		self::datetimePreferences( $user, $defaultPreferences );
+		self::renderingPreferences( $user, $defaultPreferences );
+		self::editingPreferences( $user, $defaultPreferences );
+		self::rcPreferences( $user, $defaultPreferences );
+		self::watchlistPreferences( $user, $defaultPreferences );
+		self::searchPreferences( $user, $defaultPreferences );
+		self::miscPreferences( $user, $defaultPreferences );
+				
+		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ) );
+				
+		## Prod in defaults from the user
+		global $wgDefaultUserOptions;
+		foreach( $defaultPreferences as $name => &$info ) {
+			$prefFromUser = self::getOptionFromUser( $name, $info, $user );
+			$field = HTMLForm::loadInputFromParameters( $info ); // For validation
+			$globalDefault = isset($wgDefaultUserOptions[$name])
+								? $wgDefaultUserOptions[$name]
+								: null;
+			
+			// If it validates, set it as the default
+			if ( isset($info['default']) ) {
+				// Already set, no problem
+				continue;
+			} elseif ( !is_null( $prefFromUser ) && // Make sure we're not just pulling nothing
+					$field->validate( $prefFromUser, $user->mOptions ) ) {
+				$info['default'] = $prefFromUser;
+			} elseif( $field->validate( $globalDefault, $user->mOptions ) ) {
+				$info['default'] = $globalDefault;
+			}
+		}
 		
+		self::$defaultPreferences = $defaultPreferences;
+		
+		return $defaultPreferences;
+	}
+	
+	// Pull option from a user account. Handles stuff like array-type preferences.
+	static function getOptionFromUser( $name, $info, $user ) {
+		$val = $user->getOption( $name );
+		
+		// Handling for array-type preferences
+		if ( ( isset($info['type']) && $info['type'] == 'multiselect' ) ||
+				( isset($info['class']) && $info['class'] == 'HTMLMultiSelectField' ) ) {
+
+			$options = HTMLFormField::flattenOptions($info['options']);
+			$prefix = isset($info['prefix']) ? $info['prefix'] : $name;
+			$val = array();
+			
+			foreach( $options as $label => $value ) {
+				if ($user->getOption( "$prefix$value" ) ) {
+					$val[] = $value;
+				}
+			}
+		}
+	
+		return $val;
+	}
+	
+	static function profilePreferences( $user, &$defaultPreferences ) {
+		global $wgLang;
 		## User info #####################################
 		// Information panel
 		$defaultPreferences['username'] =
@@ -216,8 +281,9 @@ class Preferences {
 					'label-message' => 'tog-rememberpassword',
 					'section' => 'personal',
 				);
-
-
+	}
+	
+	static function emailPreferences( $user, &$defaultPreferences ) {
 		## Email #######################################
 		## Email stuff
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
@@ -235,6 +301,7 @@ class Preferences {
 					$disableEmailPrefs = false;
 				} else {
 					$disableEmailPrefs = true;
+					global $wgUser; // wgUser is okay here, it's for display
 					$skin = $wgUser->getSkin();
 					$emailauthenticated = wfMsg('emailnotauthenticated').'<br />' .
 						$skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Confirmemail' ),
@@ -297,7 +364,9 @@ class Preferences {
 						'label-message' => 'tog-enotifrevealaddr'
 					);
 		}
-		
+	}
+	
+	static function skinPreferences( $user, &$defaultPreferences ) {
 		## Skin #####################################
 		global $wgAllowUserSkin;
 		
@@ -323,7 +392,9 @@ class Preferences {
 					'label-message' => 'qbsettings',
 				);
 		}
-				
+	}
+	
+	static function mathPreferences( $user, &$defaultPreferences ) {
 		## Math #####################################
 		global $wgUseTeX;
 		if ($wgUseTeX) {
@@ -336,7 +407,9 @@ class Preferences {
 						'section' => 'math',
 					);
 		}
-		
+	}
+	
+	static function filesPreferences( $user, &$defaultPreferences ) {
 		## Files #####################################
 		$defaultPreferences['imagesize'] =
 				array(
@@ -352,6 +425,10 @@ class Preferences {
 					'label-message' => 'thumbsize',
 					'section' => 'files',
 				);
+	}
+	
+	static function datetimePreferences( $user, &$defaultPreferences ) {
+		global $wgLang;
 		
 		## Date and time #####################################
 		$dateOptions = self::getDateOptions();
@@ -407,7 +484,9 @@ class Preferences {
 					'default' => $tzSetting,
 					'section' => 'datetime',
 				);
-				
+	}
+	
+	static function renderingPreferences( $user, &$defaultPreferences ) {
 		## Page Rendering ##############################
 		$defaultPreferences['underline'] =
 				array(
@@ -476,7 +555,9 @@ class Preferences {
 					'section' => 'rendering',
 					'label-message' => 'tog-numberheadings',
 				);
-		
+	}
+	
+	static function editingPreferences( $user, &$defaultPreferences ) {
 		## Editing #####################################
 		$defaultPreferences['cols'] =
 				array(
@@ -566,7 +647,10 @@ class Preferences {
 					'section' => 'editing',
 					'label-message' => 'tog-uselivepreview',
 				);
-				
+	}
+	
+	static function rcPreferences( $user, &$defaultPreferences ) {
+		global $wgRCMaxAge, $wgUseRCPatrol;
 		## RecentChanges #####################################
 		$defaultPreferences['rcdays'] =
 				array(
@@ -620,7 +704,10 @@ class Preferences {
 						'label-message' => 'tog-shownumberswatching',
 					);
 		}
-				
+	}
+	
+	static function watchlistPreferences( $user, &$defaultPreferences ) {
+		global $wgUseRCPatrol;
 		## Watchlist #####################################
 		$defaultPreferences['wllimit'] =
 				array(
@@ -702,6 +789,10 @@ class Preferences {
 				);
 			}
 		}
+	}
+	
+	static function searchPreferences( $user, &$defaultPreferences ) {
+		global $wgContLang;
 		
 		## Search #####################################
 		$defaultPreferences['searchlimit'] =
@@ -757,7 +848,9 @@ class Preferences {
 						'section' => 'searchoptions',
 					);
 		}
-		
+	}
+	
+	static function miscPreferences( $user, &$defaultPreferences ) {
 		## Misc #####################################
 		$defaultPreferences['diffonly'] =
 				array(
@@ -771,55 +864,6 @@ class Preferences {
 					'section' => 'misc',
 					'label-message' => 'tog-norollbackdiff',
 				);
-				
-		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ) );
-				
-		## Prod in defaults from the user
-		global $wgDefaultUserOptions;
-		foreach( $defaultPreferences as $name => &$info ) {
-			$prefFromUser = self::getOptionFromUser( $name, $info, $user );
-			$field = HTMLForm::loadInputFromParameters( $info ); // For validation
-			$globalDefault = isset($wgDefaultUserOptions[$name])
-								? $wgDefaultUserOptions[$name]
-								: null;
-			
-			// If it validates, set it as the default
-			if ( isset($info['default']) ) {
-				// Already set, no problem
-				continue;
-			} elseif ( !is_null( $prefFromUser ) && // Make sure we're not just pulling nothing
-					$field->validate( $prefFromUser, $user->mOptions ) ) {
-				$info['default'] = $prefFromUser;
-			} elseif( $field->validate( $globalDefault, $user->mOptions ) ) {
-				$info['default'] = $globalDefault;
-			}
-		}
-		
-		self::$defaultPreferences = $defaultPreferences;
-		
-		return $defaultPreferences;
-	}
-	
-	// Pull option from a user account. Handles stuff like array-type preferences.
-	static function getOptionFromUser( $name, $info, $user ) {
-		$val = $user->getOption( $name );
-		
-		// Handling for array-type preferences
-		if ( ( isset($info['type']) && $info['type'] == 'multiselect' ) ||
-				( isset($info['class']) && $info['class'] == 'HTMLMultiSelectField' ) ) {
-
-			$options = HTMLFormField::flattenOptions($info['options']);
-			$prefix = isset($info['prefix']) ? $info['prefix'] : $name;
-			$val = array();
-			
-			foreach( $options as $label => $value ) {
-				if ($user->getOption( "$prefix$value" ) ) {
-					$val[] = $value;
-				}
-			}
-		}
-	
-		return $val;
 	}
 	
 	static function generateSkinOptions( $user ) {
