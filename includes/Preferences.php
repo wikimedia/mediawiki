@@ -365,7 +365,7 @@ class Preferences {
 	
 	static function skinPreferences( $user, &$defaultPreferences ) {
 		## Skin #####################################
-		global $wgAllowUserSkin;
+		global $wgAllowUserSkin, $wgLang;
 		
 		if ($wgAllowUserSkin) {
 			$defaultPreferences['skin'] =
