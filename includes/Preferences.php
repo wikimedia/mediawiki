@@ -311,7 +311,18 @@ class Preferences {
 					);
 		}
 		
-		## TODO QUICKBAR
+		$selectedSkin = $user->getOption( 'skin' );
+		if ( in_array( $selectedSkin, array( 'cologneblue', 'standard' ) ) ) {
+			$settings = array_flip($wgLang->getQuickbarSettings());
+			
+			$defaultPreferences['quickbar'] =
+				array(
+					'type' => 'radio',
+					'options' => $settings,
+					'section' => 'skin',
+					'label-message' => 'qbsettings',
+				);
+		}
 				
 		## Math #####################################
 		global $wgUseTeX;
