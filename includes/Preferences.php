@@ -16,7 +16,6 @@ class Preferences {
 		$defaultPreferences = array();
 
 		self::profilePreferences( $user, $defaultPreferences );
-		self::emailPreferences( $user, $defaultPreferences );
 		self::skinPreferences( $user, $defaultPreferences );
 		self::mathPreferences( $user, $defaultPreferences );
 		self::filesPreferences( $user, $defaultPreferences );
@@ -150,20 +149,6 @@ class Preferences {
 						'help-message' => 'prefs-help-realname',
 					);
 		}
-				
-		global $wgEmailConfirmToEdit;
-		
-		$defaultPreferences['emailaddress'] =
-				array(
-					'type' => 'text',
-					'default' => $user->getEmail(),
-					'section' => 'personal',
-					'label-message' => 'youremail',
-					'help-message' => $wgEmailConfirmToEdit
-										? 'prefs-help-email-required'
-										: 'prefs-help-email',
-					'validation-callback' => array( 'Preferences', 'validateEmail' ),
-				);
 		
 		global $wgAuth;
 		if ($wgAuth->allowPasswordChange()) {
@@ -281,13 +266,23 @@ class Preferences {
 					'label-message' => 'tog-rememberpassword',
 					'section' => 'personal',
 				);
-	}
-	
-	static function emailPreferences( $user, &$defaultPreferences ) {
-		global $wgLang;
-		
-		## Email #######################################
+				
 		## Email stuff
+		
+		global $wgEmailConfirmToEdit;
+		
+		$defaultPreferences['emailaddress'] =
+				array(
+					'type' => 'text',
+					'default' => $user->getEmail(),
+					'section' => 'personal',
+					'label-message' => 'youremail',
+					'help-message' => $wgEmailConfirmToEdit
+										? 'prefs-help-email-required'
+										: 'prefs-help-email',
+					'validation-callback' => array( 'Preferences', 'validateEmail' ),
+				);
+				
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
 		
 		if ( $wgEmailAuthentication ) {
@@ -317,7 +312,7 @@ class Preferences {
 					array(
 						'type' => 'info',
 						'raw' => true,
-						'section' => 'email',
+						'section' => 'personal',
 						'label-message' => 'prefs-emailconfirm-label',
 						'default' => $emailauthenticated,
 					);
@@ -330,13 +325,13 @@ class Preferences {
 						array(
 							'type' => 'toggle',
 							'invert' => true,
-							'section' => 'email',
+							'section' => 'personal',
 							'label-message' => 'allowemail',
 						);
 				$defaultPreferences['ccmeonemails'] =
 						array(
 							'type' => 'toggle',
-							'section' => 'email',
+							'section' => 'personal',
 							'label-message' => 'tog-ccmeonemails',
 						);
 			}
@@ -344,25 +339,25 @@ class Preferences {
 			$defaultPreferences['enotifwatchlistpages'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'email',
+						'section' => 'personal',
 						'label-message' => 'tog-enotifwatchlistpages',
 					);
 			$defaultPreferences['enotifusertalkpages'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'email',
+						'section' => 'personal',
 						'label-message' => 'tog-enotifusertalkpages',
 					);
 			$defaultPreferences['enotifminoredits'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'email',
+						'section' => 'personal',
 						'label-message' => 'tog-enotifminoredits',
 					);
 			$defaultPreferences['enotifrevealaddr'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'email',
+						'section' => 'personal',
 						'label-message' => 'tog-enotifrevealaddr'
 					);
 		}
@@ -1096,8 +1091,10 @@ class Preferences {
 		}
 	}
 	
-	static function tryFormSubmit( $formData ) {
+	static function tryFormSubmit( $formData, $entryPoint = 'internal' ) {
 		global $wgUser, $wgEmailAuthentication, $wgEnableEmail;
+		
+		$result = true;
 		
 		// Filter input
 		foreach( array_keys($formData) as $name ) {
@@ -1128,9 +1125,8 @@ class Preferences {
 					$result = $wgUser->sendConfirmationMail();
 					if( WikiError::isError( $result ) ) {
 						return wfMsg( 'mailerror', htmlspecialchars( $result->getMessage() ) );
-					} else {
-						// TODO return this somehow
-#						wfMsg( 'eauthentsent', $wgUser->getName() );
+					} elseif ($entryPoint == 'ui') {
+						$result = 'eauth';
 					}
 				}
 			} else {
@@ -1161,9 +1157,23 @@ class Preferences {
 		
 		$wgUser->saveSettings();
 		
-		// Done
-		global $wgOut;
-		$wgOut->redirect( SpecialPage::getTitleFor( 'Preferences' )->getFullURL( 'success' ) );
+		return $result;
+	}
+	
+	public static function tryUISubmit( $formData ) {
+		$res = self::tryFormSubmit( $formData, 'ui' );
+		
+		if ($res) {
+			$urlOptions = array( 'success' );
+			if ($res)
+				$urlOptions[] = 'eauth';
+			
+			$queryString = implode( '&', $urlOptions );
+			
+			$url = SpecialPage::getTitleFor( 'Preferences' )->getFullURL( $queryString );
+			global $wgOut;
+			$wgOut->redirect( $url );
+		}
 		
 		return true;
 	}
