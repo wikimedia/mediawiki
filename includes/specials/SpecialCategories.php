@@ -13,6 +13,7 @@ function wfSpecialCategories( $par=null ) {
 		$from = $par;
 	}
 	$cap = new CategoryPager( $from );
+	$cap->doQuery();
 	$wgOut->addHTML(
 		XML::openElement( 'div', array('class' => 'mw-spcontent') ) .
 		wfMsgExt( 'categoriespagetext', array( 'parse' ) ) .
@@ -74,9 +75,6 @@ class CategoryPager extends AlphabeticPager {
 
 	/* Override getBody to apply LinksBatch on resultset before actually outputting anything. */
 	public function getBody() {
-		if (!$this->mQueryDone) {
-			$this->doQuery();
-		}
 		$batch = new LinkBatch;
 
 		$this->mResult->rewind();
