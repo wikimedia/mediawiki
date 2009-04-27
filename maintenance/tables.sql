@@ -86,7 +86,8 @@ CREATE TABLE /*_*/user (
   
   -- Newline-separated list of name=value defining the user
   -- preferences
-  -- Now obsolete in favour of user_properties table.
+  -- Now obsolete in favour of user_properties table;
+  -- old values will be migrated from here transparently.
   user_options blob NOT NULL,
   
   -- This is a timestamp which is updated when a user
@@ -161,8 +162,10 @@ CREATE UNIQUE INDEX /*i*/ug_user_group ON /*_*/user_groups (ug_user,ug_group);
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups (ug_group);
 
 
+--
 -- Stores notifications of user talk page changes, for the display
 -- of the "you have new messages" box
+--
 CREATE TABLE /*_*/user_newtalk (
   -- Key to user.user_id
   user_id int NOT NULL default 0,
@@ -178,6 +181,29 @@ CREATE TABLE /*_*/user_newtalk (
 CREATE INDEX /*i*/un_user_id ON /*_*/user_newtalk (user_id);
 CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
 
+
+--
+-- User preferences and perhaps other fun stuff. :)
+-- Replaces the old user.user_options blob, with a couple nice properties:
+--
+-- 1) We only store non-default settings, so changes to the defauls
+--    are now reflected for everybody, not just new accounts.
+-- 2) We can more easily do bulk lookups, statistics, or modifications of
+--    saved options since it's a sane table structure.
+--
+CREATE TABLE /*_*/user_properties(
+  -- Foreign key to user.user_id
+  up_user int not null,
+  
+  -- Name of the option being saved. This is indexed for bulk lookup.
+  up_property varbinary(32) not null,
+  
+  -- Property value as a string.
+  up_value blob
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/user_properties_user_property on /*_*/user_properties (up_user,up_property);
+CREATE INDEX /*i*/user_properties_property on /*_*/user_properties (up_property);
 
 --
 -- Core of the wiki: each page has an entry here which identifies
@@ -1252,7 +1278,8 @@ CREATE UNIQUE INDEX /*i*/change_tag_rev_tag ON /*_*/change_tag (ct_rev_id,ct_tag
 CREATE INDEX /*i*/change_tag_tag_id ON /*_*/change_tag (ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
 
 
--- Rollup table to pull a LIST of tags simply without ugly GROUP_CONCAT that only works on MySQL 4.1+
+-- Rollup table to pull a LIST of tags simply without ugly GROUP_CONCAT
+-- that only works on MySQL 4.1+
 CREATE TABLE /*_*/tag_summary (
   ts_rc_id int NULL,
   ts_log_id int NULL,
@@ -1268,14 +1295,5 @@ CREATE UNIQUE INDEX /*i*/tag_summary_rev_id ON /*_*/tag_summary (ts_rev_id);
 CREATE TABLE /*_*/valid_tag (
   vt_tag varchar(255) NOT NULL PRIMARY KEY
 ) /*$wgDBTableOptions*/;
-
-CREATE TABLE /*_*/user_properties(
-  up_user int not null,
-  up_property varbinary(32) not null,
-  up_value blob
-) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/user_properties_user_property on /*_*/user_properties (up_user,up_property);
-CREATE INDEX /*i*/user_properties_property on /*_*/user_properties (up_property);
 
 -- vim: sw=2 sts=2 et
