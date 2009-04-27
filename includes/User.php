@@ -282,7 +282,7 @@ class User {
 		# Try cache
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 		$data = $wgMemc->get( $key );
-		if ( !is_array( $data ) || $data['mVersion'] < 'MW_USER_VERSION' ) {
+		if ( !is_array( $data ) || $data['mVersion'] < MW_USER_VERSION ) {
 			# Object is expired, load from DB
 			$data = false;
 		}
@@ -972,7 +972,7 @@ class User {
 		$this->mSkin = null;
 		$this->mRights = null;
 		$this->mEffectiveGroups = null;
-		$this->mOptions = array();
+		$this->mOptions = null;
 
 		if ( $reloadFrom ) {
 			$this->mDataLoaded = false;
