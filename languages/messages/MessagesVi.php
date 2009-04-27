@@ -3122,7 +3122,6 @@ Bạn cũng có thể [[Special:Watchlist/edit|dùng trình soạn thảo chuẩ
 'version-hook-name'                => 'Tên hook',
 'version-hook-subscribedby'        => 'Được theo dõi bởi',
 'version-version'                  => '(phiên bản $1)',
-'version-svn-revision'             => '(Phiên bản r$1)',
 'version-license'                  => 'Giấy phép bản quyền',
 'version-software'                 => 'Phần mềm được cài đặt',
 'version-software-product'         => 'Phần mềm',

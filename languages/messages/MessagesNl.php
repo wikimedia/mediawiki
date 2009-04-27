@@ -3285,7 +3285,6 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 'version-hook-name'                => 'Hooknaam',
 'version-hook-subscribedby'        => 'Geabonneerd door',
 'version-version'                  => '(Versie $1)',
-'version-svn-revision'             => '(Versie r$1)',
 'version-license'                  => 'Licentie',
 'version-software'                 => 'Geïnstalleerde software',
 'version-software-product'         => 'Product',

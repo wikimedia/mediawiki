@@ -3020,7 +3020,6 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'version-hook-name'                => 'Çengel adı',
 'version-hook-subscribedby'        => 'Abone olan',
 'version-version'                  => '(Sürüm $1)',
-'version-svn-revision'             => '(Revizyon r$1)',
 'version-license'                  => 'Lisans',
 'version-software'                 => 'Yüklü yazılım',
 'version-software-product'         => 'Ürün',

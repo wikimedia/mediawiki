@@ -2898,7 +2898,6 @@ Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wu�
 'version-hook-name'                => 'Mjeno hoki',
 'version-hook-subscribedby'        => 'Abonowany wot',
 'version-version'                  => '(Wersija $1)',
-'version-svn-revision'             => '(Wersija r$1)',
 'version-license'                  => 'Licenca',
 'version-software'                 => 'Instalowana software',
 'version-software-product'         => 'Produkt',
