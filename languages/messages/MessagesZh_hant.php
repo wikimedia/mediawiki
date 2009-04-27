@@ -791,6 +791,7 @@ $2',
 為方便起見，這一個頁面的刪除記錄已經在下面提供:",
 'moveddeleted-notice'              => '這個頁面已經刪除。
 這個頁面的刪除日誌已在下面提供以便參考。',
+'log-fulllog'                      => '查看完整日誌',
 'edit-hook-aborted'                => '編輯被鈎取消。
 它並無給出解釋。',
 'edit-gone-missing'                => '不能更新頁面。
@@ -1155,6 +1156,7 @@ $2',
 'prefs-custom-css'          => '自定CSS',
 'prefs-custom-js'           => '自定JS',
 'prefs-reset-intro'         => '您可以利用這個頁面去重設您的參數設置到網站預設值。這個動作無法復原。',
+'prefs-emailconfirm-label'  => '電子郵件確認：',
 
 # User rights
 'userrights'                  => '用戶權限管理',
@@ -1515,7 +1517,7 @@ $2',
 'filedelete-success'          => "'''$1'''已經刪除。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''於 $2 $3 的版本已經刪除。",
 'filedelete-nofile'           => "'''$1'''不存在。",
-'filedelete-nofile-old'       => "在已指定屬性的情況下，這裡沒有'''$1'''於 $2 $3 的版本。",
+'filedelete-nofile-old'       => "在已指定屬性的情況下，這裡沒有'''$1'''的保存版本。",
 'filedelete-otherreason'      => '其它／附加的理由:',
 'filedelete-reason-otherlist' => '其它理由',
 'filedelete-reason-dropdown'  => '

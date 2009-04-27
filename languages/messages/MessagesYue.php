@@ -773,6 +773,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 為咗方便起見，呢一版嘅刪除記錄已經響下面提供:",
 'moveddeleted-notice'              => '呢一版已經刪除咗。
 呢版嘅刪除日誌響下面提供咗以便參考。',
+'log-fulllog'                      => '睇成個日誌',
 'edit-hook-aborted'                => '編輯由鈎取消咗。
 佢無畀到解釋。',
 'edit-gone-missing'                => '唔能夠更新頁。
@@ -1139,6 +1140,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'prefs-custom-css'          => '自定 CSS',
 'prefs-custom-js'           => '自定 JS',
 'prefs-reset-intro'         => '你可以用呢版去重設你嘅喜好設定到網站預設值。呢個動作無得番轉頭。',
+'prefs-emailconfirm-label'  => '電郵確認:',
 
 # User rights
 'userrights'                  => '用戶權限管理',
@@ -1499,7 +1501,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'filedelete-success'          => "'''$1'''已經刪除咗。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''響 $2 $3 嘅版本已經刪除咗。",
 'filedelete-nofile'           => "'''$1'''唔存在。",
-'filedelete-nofile-old'       => "用指定嘅屬性，呢度係無'''$1'''響 $2 $3 嘅歸檔版本。",
+'filedelete-nofile-old'       => "用指定嘅屬性，呢度係無'''$1'''嘅歸檔版本。",
 'filedelete-otherreason'      => '其它／附加嘅原因:',
 'filedelete-reason-otherlist' => '其它原因',
 'filedelete-reason-dropdown'  => '
