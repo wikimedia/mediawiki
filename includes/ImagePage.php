@@ -958,7 +958,12 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		if( count($this->mHist) ) {
 			$list = new ImageHistoryList( $this->mImagePage );
 			# Generate prev/next links
-			$navLink = $this->getNavigationBar();
+			$navLink = '';
+
+			# Only add navigation links when needed
+			if ( !$this->mIsFirst && !$this->mIsLast ) {
+				$navLink = $this->getNavigationBar();
+			}
 			$s = $list->beginImageHistoryList($navLink);
 			// Skip rows there just for paging links
 			for( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
