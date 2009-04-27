@@ -517,6 +517,8 @@ abstract class AlphabeticPager extends IndexPager {
 	function getNavigationBar() {
 		global $wgLang;
 
+		if ( $this->mIsFirst && $this->mIsLast ) return '';
+
 		if( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
@@ -597,6 +599,8 @@ abstract class ReverseChronologicalPager extends IndexPager {
 
 	function getNavigationBar() {
 		global $wgLang;
+
+		if ( $this->mIsFirst && $this->mIsLast ) return '';
 
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
