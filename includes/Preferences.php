@@ -17,7 +17,6 @@ class Preferences {
 
 		self::profilePreferences( $user, $defaultPreferences );
 		self::skinPreferences( $user, $defaultPreferences );
-		self::mathPreferences( $user, $defaultPreferences );
 		self::filesPreferences( $user, $defaultPreferences );
 		self::datetimePreferences( $user, $defaultPreferences );
 		self::renderingPreferences( $user, $defaultPreferences );
@@ -391,21 +390,6 @@ class Preferences {
 		}
 	}
 	
-	static function mathPreferences( $user, &$defaultPreferences ) {
-		## Math #####################################
-		global $wgUseTeX, $wgLang;
-		if ($wgUseTeX) {
-			$defaultPreferences['math'] =
-					array(
-						'type' => 'radio',
-						'options' =>
-							array_flip( array_map( 'wfMsg', $wgLang->getMathNames() ) ),
-						'label' => '&nbsp;',
-						'section' => 'math',
-					);
-		}
-	}
-	
 	static function filesPreferences( $user, &$defaultPreferences ) {
 		## Files #####################################
 		$defaultPreferences['imagesize'] =
@@ -510,6 +494,20 @@ class Preferences {
 					'options' => $stubThresholdOptions,
 					'label' => wfMsg('stub-threshold'), // Raw HTML message. Yay?
 				);
+				
+		## Math
+		global $wgUseTeX, $wgLang;
+		if ($wgUseTeX) {
+			$defaultPreferences['math'] =
+					array(
+						'type' => 'radio',
+						'options' =>
+							array_flip( array_map( 'wfMsg', $wgLang->getMathNames() ) ),
+						'label' => '&nbsp;',
+						'section' => 'rendering',
+					);
+		}
+				
 		$defaultPreferences['highlightbroken'] =
 				array(
 					'type' => 'toggle',
