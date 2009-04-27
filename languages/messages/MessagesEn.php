@@ -1611,7 +1611,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'prefs-custom-js'           => 'Custom JS',
 'prefs-reset-intro'         => 'You can use this page to reset your preferences to the site defaults.
 This cannot be undone.',
-'prefs-emailconfirm-label'  => 'Email confirmation:',
+'prefs-emailconfirm-label'  => 'E-mail confirmation:',
 
 # User rights
 'userrights'                     => 'User rights management',

@@ -875,7 +875,7 @@ $wgMessageStructure = array(
 		'prefs-watchlist-days-max',
 		'prefs-watchlist-edits',
 		'prefs-watchlist-edits-max',
-		'prefs-misc',
+		'prefs-misc', // continue checking if used from here on (r49916)
 		'prefs-resetpass',
 		'prefs-email',
 		'prefs-rendering',
@@ -923,6 +923,7 @@ $wgMessageStructure = array(
 		'prefs-custom-css',
 		'prefs-custom-js',
 		'prefs-reset-intro',
+		'prefs-emailconfirm-label',
 	),
 	'userrights' => array(
 		'userrights',
