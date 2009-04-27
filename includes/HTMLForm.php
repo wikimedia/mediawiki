@@ -525,6 +525,9 @@ class HTMLIntField extends HTMLTextField {
 
 class HTMLCheckField extends HTMLFormField {
 	function getInputHTML( $value ) {
+		if ( !empty( $this->mParams['invert'] ) )
+			$value = !$value;
+		
 		return Xml::check( $this->mName, $value, array( 'id' => $this->mID ) ) . '&nbsp;' .
 				Xml::tags( 'label', array( 'for' => $this->mID ), $this->mLabel );
 	}
