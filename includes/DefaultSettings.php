@@ -2499,6 +2499,7 @@ $wgDefaultUserOptions = array(
 	'noconvertlink'           => 0,
 	'gender'                  => 'unknown',
 	'ccmeonemails'            => 0,
+	'disablemail'			  => 0,
 );
 
 /** Whether or not to allow and use real name fields. Defaults to true. */
