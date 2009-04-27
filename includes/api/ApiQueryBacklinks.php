@@ -206,6 +206,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$this->extractRowInfo($row);
 			else
 			{
+				$this->pageMap[$row->page_namespace][$row->page_title] = $row->page_id;
 				if($row->page_is_redirect)
 					$this->redirTitles[] = Title::makeTitle($row->page_namespace, $row->page_title);
 				$resultPageSet->processDbRow($row);
@@ -229,7 +230,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 						$parentID = $this->pageMap[$row->{$this->bl_ns}][$row->{$this->bl_title}];
 					else
 						$parentID = $this->pageMap[NS_IMAGE][$row->{$this->bl_title}];
-						$this->continueStr = $this->getContinueRedirStr($parentID, $row->page_id);
+					$this->continueStr = $this->getContinueRedirStr($parentID, $row->page_id);
 					break;
 				}
 
@@ -408,7 +409,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	public function getParamDescription() {
 		$retval = array (
-			'title' => 'Title to search. If null, titles= parameter will be used instead, but will be obsolete soon.',
+			'title' => 'Title to search.',
 			'continue' => 'When more results are available, use this to continue.',
 			'namespace' => 'The namespace to enumerate.',
 			'filterredir' => 'How to filter for redirects'
@@ -416,7 +417,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if($this->getModuleName() != 'embeddedin')
 			return array_merge($retval, array(
 				'redirect' => 'If linking page is a redirect, find all pages that link to that redirect as well. Maximum limit is halved.',
-				'limit' => "How many total pages to return. If {$this->bl_code}redirect is enabled, limit applies to each level separately."
+				'limit' => "How many total pages to return. If {$this->bl_code}redirect is enabled, limit applies to each level separately (which means you may get up to 2 * limit results)."
 			));
 		return array_merge($retval, array(
 			'limit' => "How many total pages to return."

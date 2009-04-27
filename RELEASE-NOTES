@@ -435,7 +435,8 @@ The following extensions are migrated into MediaWiki 1.15:
 * (bug 18546) Added timestamp of new revision to action=edit output
 * (bug 18554) Also list hidden revisions in list=usercontribs for privileged
   users
-* (bug 13049) "API must be accessed from the primary script entry point" error 
+* (bug 13049) "API must be accessed from the primary script entry point" error
+* (bug 18601) generator=backlinks returns invalid continue parameter
 
 === Languages updated in 1.15 ===
 
