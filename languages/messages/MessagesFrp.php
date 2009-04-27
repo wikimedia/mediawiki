@@ -13,6 +13,7 @@
 
 $fallback = 'fr';
 
+
 $bookstoreList = array(
     'Amazon.fr'    => 'http://www.amazon.fr/exec/obidos/ISBN=$1',
     'alapage.fr'   => 'http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&',
@@ -37,10 +38,6 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Discussion_Éde',
 	NS_CATEGORY         => 'Catègorie',
 	NS_CATEGORY_TALK    => 'Discussion_Catègorie',
-);
-
-$specialPageAliases = array(
-	'Createpage' => array( 'Fâre una pâge', 'FâreUnaPâge' ),
 );
 
 $linkTrail = '/^([a-zàâçéèêîœôû·’æäåāăëēïīòöōùü‘]+)(.*)$/sDu';

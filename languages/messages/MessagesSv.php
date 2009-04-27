@@ -141,7 +141,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Länksökning' ),
 	'DeletedContributions'      => array( 'Raderade bidrag' ),
 	'Tags'                      => array( 'Taggar' ),
-	'Createpage'                => array( 'Skapa sida' ),
 );
 
 $magicWords = array(

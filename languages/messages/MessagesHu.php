@@ -144,7 +144,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Hivatkozás keresés' ),
 	'DeletedContributions'      => array( 'Törölt szerkesztések' ),
 	'Tags'                      => array( 'Címkék' ),
-	'Createpage'                => array( 'Oldalkészítés', 'Oldal készítése' ),
 );
 
 $datePreferences = array(

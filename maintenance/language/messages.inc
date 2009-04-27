@@ -2983,18 +2983,6 @@ $wgMessageStructure = array(
 		'htmlform-reset',
 		'htmlform-selectorother-other',
 	),
-	'createpage' => array(
-		'createpage',
-		'createpage-url',
-		'createpage-summary',
-		'createpage-submitbutton',
-		'createpage-instructions',
-		'createpage-entertitle',
-		'createpage-titleexists',
-		'createpage-tryagain',
-		'createpage-editexisting',
-		'createpage-badtitle',
-	),
 );
 
 /** Comments for each block */
@@ -3200,5 +3188,4 @@ Variants for Chinese language",
 	'special-tags'          => 'Special:Tags',
 	'db-error-messages'     => 'Database error messages',
 	'html-forms'            => 'HTML forms',
-	'createpage'            => 'Special:CreatePage',
 );

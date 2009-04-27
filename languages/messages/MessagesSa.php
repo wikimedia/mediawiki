@@ -140,7 +140,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'रिक्तपृष्ठ' ),
 	'LinkSearch'                => array( 'सम्बन्धन्‌शोध' ),
 	'DeletedContributions'      => array( 'परित्यागितयोगदान' ),
-	'Createpage'                => array( 'पृष्ठस्यसृजन' ),
 );
 
 $magicWords = array(

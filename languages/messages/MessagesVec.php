@@ -128,7 +128,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'SercaLigamenti' ),
 	'DeletedContributions'      => array( 'ContributiScancelà' ),
 	'Tags'                      => array( 'Tag' ),
-	'Createpage'                => array( 'CreaPàxena' ),
 );
 
 $messages = array(

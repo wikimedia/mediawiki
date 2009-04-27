@@ -308,7 +308,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Recherche de lien', 'Recherche de liens' ),
 	'DeletedContributions'      => array( 'Contributions supprimées', 'ContributionsSupprimées', 'ContributionSupprimees' ),
 	'Tags'                      => array( 'Balises' ),
-	'Createpage'                => array( 'Créer page', 'CréerPage' ),
 );
 
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );

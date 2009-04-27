@@ -1,5 +1,4 @@
 <?php
-
 /* This code was adapted from CreatePage.php from: Travis Derouin <travis@wikihow.com> for the Uniwiki extension CreatePage
  * Originally licensed as: GNU GPL v2.0 or later
  *
@@ -13,15 +12,16 @@
  * @author Evan Wheeler
  * @author Adam Mckaig (at UNICEF)
  * @author Siebrand Mazeland (integrated into MediaWiki core)
- * @ingroup SpecialPage
+ * @addtogroup SpecialPage
  */
+
 class SpecialCreatePage extends SpecialPage {
 
 	function __construct() {
 		SpecialPage::SpecialPage( 'CreatePage', 'createpage' );
 	}
 
-	public function execute( $par ) {
+	public function execute( $params ) {
 		global $wgOut, $wgRequest, $wgUser;
 
 		$this->setHeaders();
@@ -31,34 +31,37 @@ class SpecialCreatePage extends SpecialPage {
 			return;
 		}
 
-		$this->outputHeader();
+		$wgOut->addWikiMsg( 'createpage-summary' );
 
 		// check to see if we are trying to create a page
-		$target = $wgRequest->getVal( 'target', $par );
-		$title = Title::newFromText( $target );
+		$target = $wgRequest->getVal ( 'target' );
+		$title = Title::newFromText ( $target );
 
 		// check for no title
 		if ( $wgRequest->wasPosted() && $target === '' ) {
 			$this->error( wfMsg( 'createpage-entertitle' ) );
-		} elseif ( $target !== null ) {
-			if ( !$title instanceof Title ) {
-				// check for invalid title
-				$this->error( wfMsg( 'createpage-badtitle', $target ) );
-			} else if ( $title->getArticleID() > 0 ) {
+		}
+		// check for invalid title
+		elseif ( $wgRequest->wasPosted() && is_null( $title ) ) {
+			$this->error( wfMsg( 'createpage-badtitle', $target ) );
+		}
+		elseif ( $target != null ) {
+			if ( $title->getArticleID() > 0 ) {
 				// if the title exists then let the user know and give other options
-				$wgOut->addWikiMsg( 'createpage-titleexists', $title->getFullText() );
-				$wgOut->addHTML( '<br />' );
+				$wgOut->addWikiText ( wfMsg ( 'createpage-titleexists', $title->getFullText() ) . "<br />" );
 				$skin = $wgUser->getSkin();
-				$editlink = $skin->makeLinkObj( $title, wfMsgHTML( 'createpage-editexisting' ), 'action=edit' );
-				$thislink = $skin->makeLinkObj( $this->getTitle(), wfMsgHTML( 'createpage-tryagain' ) );
-				$wgOut->addHTML( $editlink . '<br />' . $editlink );
+				$editlink = $skin->makeLinkObj( $title, wfMsg ( 'createpage-editexisting' ), 'action=edit' );
+				$thisPage = Title::newFromText ( 'CreatePage', NS_SPECIAL );
+				$wgOut->addHTML ( $editlink . '<br />'
+					. $skin->makeLinkObj ( $thisPage, wfMsg ( 'createpage-tryagain' ) )
+				);
 				return;
 			} else {
 				/* TODO - may want to search for closely named pages and give
 				 * other options here... */
 
 				// otherwise, redirect them to the edit page for their title
-				$wgOut->redirect( $title->getEditURL() );
+				$wgOut->redirect ( $title->getEditURL() );
 			}
 		}
 
@@ -76,17 +79,16 @@ class SpecialCreatePage extends SpecialPage {
 		}
 
 		// output the form
-		$wgOut->addHTML(
-			Xml::openElement( 'fieldset' ) .
+		$form = Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'createpage' ) ) . # This should really use a different message
 			wfMsgWikiHtml( 'createpage-instructions' ) .
-			Xml::openElement( 'form', array( 'method' => 'post', 'name' => 'createpageform', 'action' => $this->getTitle()->getLocalUrl() ) ) .
+			Xml::openElement( 'form', array( 'method' => 'post', 'name' => 'createpageform', 'action' => '' ) ) .
 			Xml::element( 'input', array( 'type' => 'text', 'name' => 'target', 'size' => 50, 'value' => $newTitle ) ) .
 			'<br />' .
-			Xml::element( 'input', array( 'type' => 'submit', 'value' => wfMsg( 'createpage-submitbutton' ) ) ) .
+			Xml::element( 'input', array( 'type' => 'submit', 'value' => wfMsgHtml( 'createpage-submitbutton' ) ) ) .
 			Xml::closeElement( 'form' ) .
-			Xml::closeElement( 'fieldset' )
-		);
+			Xml::closeElement( 'fieldset' );
+		$wgOut->addHTML( $form );
 	}
 	/*
 	 * Function to output an error message

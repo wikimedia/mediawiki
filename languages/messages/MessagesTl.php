@@ -128,7 +128,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Paghahanap ng kawing' ),
 	'DeletedContributions'      => array( 'Naburang mga ambag' ),
 	'Tags'                      => array( 'Mga tatak' ),
-	'Createpage'                => array( 'Likhain ang pahina', 'LikhaPahina' ),
 );
 
 $messages = array(
