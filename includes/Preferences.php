@@ -398,7 +398,7 @@ class Preferences {
 	
 	static function mathPreferences( $user, &$defaultPreferences ) {
 		## Math #####################################
-		global $wgUseTeX;
+		global $wgUseTeX, $wgLang;
 		if ($wgUseTeX) {
 			$defaultPreferences['math'] =
 					array(
