@@ -670,7 +670,7 @@ class HTMLMultiSelectField extends HTMLFormField {
 								array( 'id' => $this->mID."-$info", 'value' => $info ) );
 				$checkbox .= '&nbsp;' . Xml::tags( 'label', array( 'for' => $this->mID."-$info" ), $label );
 				
-				$html .= Xml::tags( 'p', null, $checkbox );
+				$html .= $checkbox . '<br />';
 			}
 		}
 		
