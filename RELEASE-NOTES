@@ -33,11 +33,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18222) $wgMinimalPasswordLength default is now 1
 * $wgSessionHandler can be used to configure session.save_handler
 
-=== Migrated extensions ===
-The following extensions are migrated into MediaWiki 1.15:
-
-* Special:CreatePage (was extension Uniwiki CreatePage)
-
 === New features in 1.15 ===
 
 * (bug 2242) Add an expiry time to temporary passwords

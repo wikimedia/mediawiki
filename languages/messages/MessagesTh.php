@@ -129,7 +129,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'ค้นหาเว็บลิงก์' ),
 	'DeletedContributions'      => array( 'การแก้ไขที่ถูกลบ' ),
 	'Tags'                      => array( 'ป้ายกำักับ' ),
-	'Createpage'                => array( 'สร้างหน้า' ),
 );
 
 $magicWords = array(

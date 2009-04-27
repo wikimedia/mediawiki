@@ -172,7 +172,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'ПребарајВрска' ),
 	'DeletedContributions'      => array( 'ИзбришаниПридонеси' ),
 	'Tags'                      => array( 'Приврзоци' ),
-	'Createpage'                => array( 'КреирајСтраница' ),
 );
 
 $magicWords = array(

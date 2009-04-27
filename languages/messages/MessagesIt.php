@@ -161,7 +161,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'PaginaVuota' ),
 	'LinkSearch'                => array( 'CercaCollegamenti' ),
 	'DeletedContributions'      => array( 'ContributiCancellati' ),
-	'Createpage'                => array( 'CreaPagina' ),
 );
 
 $magicWords = array(

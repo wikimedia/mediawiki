@@ -282,7 +282,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
 	'Tags'                      => array( 'وسوم' ),
-	'Createpage'                => array( 'إنشاء_صفحة' ),
 );
 
 $messages = array(

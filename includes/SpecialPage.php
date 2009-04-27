@@ -169,7 +169,6 @@ class SpecialPage
 		'Undelete'                  => array( 'SpecialPage', 'Undelete', 'deletedhistory' ),
 		'Whatlinkshere'             => 'SpecialWhatlinkshere',
 		'MergeHistory'              => array( 'SpecialPage', 'MergeHistory', 'mergehistory' ),	
-		'Createpage'                => 'SpecialCreatePage',
 		
 		# Other
 		'Booksources'               => 'SpecialBookSources',

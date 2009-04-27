@@ -174,7 +174,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'ទំព័រទទេ' ),
 	'LinkSearch'                => array( 'ស្វែងរកតំណភ្ជាប់' ),
 	'DeletedContributions'      => array( 'ការរួមចំណែកដែលត្រូវបានលុបចោល' ),
-	'Createpage'                => array( 'បង្កើត​ទំព័រ' ),
 );
 
 $magicWords = array(

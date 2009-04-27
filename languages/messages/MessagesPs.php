@@ -76,7 +76,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'تش مخ' ),
 	'LinkSearch'                => array( 'د تړنې پلټنه' ),
 	'DeletedContributions'      => array( 'ړنګې شوي ونډې' ),
-	'Createpage'                => array( 'مخ جوړول' ),
 );
 
 $magicWords = array(

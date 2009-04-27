@@ -39,6 +39,7 @@ $namespaceAliases = array(
 	'Bild_Diskussioun' => NS_FILE_TALK,
 );
 
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Duebel Viruleedungen' ),
 	'BrokenRedirects'           => array( 'Futtis Viruleedungen' ),
@@ -127,7 +128,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Weblink-Sich' ),
 	'DeletedContributions'      => array( 'Geläschte Kontributiounen' ),
 	'Tags'                      => array( 'Taggen' ),
-	'Createpage'                => array( 'Säiten uleeën' ),
 );
 
 $messages = array(

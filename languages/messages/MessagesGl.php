@@ -131,7 +131,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Buscar ligazóns web' ),
 	'DeletedContributions'      => array( 'Contribucións borradas' ),
 	'Tags'                      => array( 'Etiquetas' ),
-	'Createpage'                => array( 'Crear a páxina' ),
 );
 
 $magicWords = array(

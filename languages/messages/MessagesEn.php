@@ -440,7 +440,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'LinkSearch' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
 	'Tags'                      => array( 'Tags' ),
-	'Createpage'                => array( 'CreatePage' ),
 );
 
 /**
@@ -490,7 +489,6 @@ XHTML id names.
 ** currentevents-url|currentevents
 ** recentchanges-url|recentchanges
 ** randompage-url|randompage
-** createpage-url|createpage
 ** helppage|help
 * SEARCH
 * TOOLBOX
@@ -3915,18 +3913,5 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'htmlform-submit'              => 'Submit',
 'htmlform-reset'               => 'Undo changes',
 'htmlform-selectorother-other' => 'Other',
-
-# Special:CreatePage
-'createpage'              => 'Create a page',
-'createpage-url'          => 'Special:CreatePage', # do not translate or duplicate this message to other languages
-'createpage-summary'      => '', # do not translate or duplicate this message to other languages
-'createpage-submitbutton' => 'Submit',
-'createpage-instructions' => 'Enter the title of the page you wish to create:',
-'createpage-entertitle'   => 'Please enter a title for your page.',
-'createpage-titleexists'  => 'A page with the title [[$1]] already exists.
-Would you like to edit the existing page?',
-'createpage-tryagain'     => 'No. I want to create a new page with a distinct title.',
-'createpage-editexisting' => 'Yes. I want to contribute to the existing page.',
-'createpage-badtitle'     => '"$1" cannot be used as a page title',
 
 );
