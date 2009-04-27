@@ -35,8 +35,14 @@ class SpecialPreferences extends SpecialPage {
 				'savedprefs'
 			);
 		}
+		
+		if ( $wgRequest->getCheck( 'eauth' ) ) {
+			$wgOut->wrapWikiMsg( "<div class='error' style='clear: both;'>$1</div>",
+									'eauthentsent', $wgUser->getName() );
+		}
 
 		$htmlForm = Preferences::getFormObject( $wgUser );
+		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
 
 		$htmlForm->show();
 	}
