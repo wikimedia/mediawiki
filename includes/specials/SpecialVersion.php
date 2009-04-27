@@ -115,7 +115,7 @@ class SpecialVersion extends SpecialPage {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
 		$svn = self::getSvnRevision( $IP, false );
-		$version = $svn ? "$wgVersion (r$svn)" : $wgVersion;
+		$version = $svn ? $wgVersion . wfMsg( 'version-svn-revision', $svn ) : $wgVersion;
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
@@ -131,7 +131,7 @@ class SpecialVersion extends SpecialPage {
 		wfProfileIn( __METHOD__ );
 		$svn = self::getSvnRevision( $IP, false );
 		$viewvc = 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/?pathrev=';
-		$version = $svn ? "$wgVersion ([{$viewvc}{$svn} r$svn])" : $wgVersion;
+		$version = $svn ? $wgVersion . " [{$viewvc}{$svn} " . wfMsg( 'version-svn-revision', $svn ) . ']' : $wgVersion;
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
@@ -221,9 +221,10 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	function formatCredits( $name, $version = null, $subVersion = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
+		$viewvc = 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/?pathrev=';
 		$extension = isset( $url ) ? "[$url $name]" : $name;
 		$version = isset( $version ) ? wfMsg( 'version-version', $version ) : '';
-		$subVersion = isset( $subVersion ) ? wfMsg( 'version-svn-revision', $subVersion ) : '';
+		$subVersion = isset( $subVersion ) ? " [{$viewvc}{$subVersion} " . wfMsg( 'version-svn-revision', $subVersion ) . ']' : '';
 
 		# Look for a localized description
 		if( isset( $descriptionMsg ) ) {
