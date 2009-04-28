@@ -1165,7 +1165,7 @@ class Preferences {
 		
 		if ($res) {
 			$urlOptions = array( 'success' );
-			if ($res)
+			if ($res === 'eauth')
 				$urlOptions[] = 'eauth';
 			
 			$queryString = implode( '&', $urlOptions );
