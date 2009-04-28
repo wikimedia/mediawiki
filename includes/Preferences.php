@@ -17,8 +17,8 @@ class Preferences {
 
 		self::profilePreferences( $user, $defaultPreferences );
 		self::skinPreferences( $user, $defaultPreferences );
-		self::mathPreferences( $user, $defaultPreferences );
 		self::filesPreferences( $user, $defaultPreferences );
+		self::mathPreferences( $user, $defaultPreferences );
 		self::datetimePreferences( $user, $defaultPreferences );
 		self::renderingPreferences( $user, $defaultPreferences );
 		self::editingPreferences( $user, $defaultPreferences );
@@ -374,7 +374,7 @@ class Preferences {
 						'type' => 'radio',
 						'options' => self::generateSkinOptions( $user ),
 						'label' => '&nbsp;',
-						'section' => 'skin',
+						'section' => 'rendering/skin',
 					);
 		}
 		
