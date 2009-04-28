@@ -929,6 +929,11 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'prefs-help-email'           => 'E-mail address is optional, but allows a new password to be e-mailed to you if you forget your password.
 You can also choose to let others contact you through your user or talk page without needing to reveal your identity.',
 'prefs-help-email-required'  => 'E-mail address is required.',
+'prefs-info'  				 => 'Basic information',
+'prefs-i18n'				 => 'Internationalisation',
+'prefs-signature'			 => 'Signature',
+
+## User login
 'nocookiesnew'               => 'The user account was created, but you are not logged in.
 {{SITENAME}} uses cookies to log in users.
 You have cookies disabled.
@@ -1610,6 +1615,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'prefs-reset-intro'         => 'You can use this page to reset your preferences to the site defaults.
 This cannot be undone.',
 'prefs-emailconfirm-label'  => 'E-mail confirmation:',
+'prefs-textboxsize'			=> 'Size of editing window',
 
 # User rights
 'userrights'                     => 'User rights management',

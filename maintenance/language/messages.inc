@@ -443,6 +443,10 @@ $wgMessageStructure = array(
 		'login-throttled',
 		'loginlanguagelabel',
 		'loginlanguagelinks',
+		'prefs-info',
+		'prefs-i18n',
+		'prefs-signature',
+		'prefs-textboxsize',
 	),
 	'resetpass' => array(
 		'resetpass',

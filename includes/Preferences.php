@@ -86,7 +86,7 @@ class Preferences {
 					'type' => 'info',
 					'label-message' => 'username',
 					'default' => $user->getName(),
-					'section' => 'personal',
+					'section' => 'personal/info',
 				);
 		
 		$defaultPreferences['userid'] =
@@ -94,7 +94,7 @@ class Preferences {
 					'type' => 'info',
 					'label-message' => 'uid',
 					'default' => $user->getId(),
-					'section' => 'personal',
+					'section' => 'personal/info',
 				);
 		
 		# Get groups to which the user belongs
@@ -116,7 +116,7 @@ class Preferences {
 								count($userEffectiveGroupsArray) ),
 					'default' => $wgLang->commaList( $userEffectiveGroupsArray ),
 					'raw' => true,
-					'section' => 'personal',
+					'section' => 'personal/info',
 				);
 		
 		$defaultPreferences['editcount'] =
@@ -124,7 +124,7 @@ class Preferences {
 					'type' => 'info',
 					'label-message' => 'prefs-edits',
 					'default' => $user->getEditCount(),
-					'section' => 'personal',
+					'section' => 'personal/info',
 				);
 		
 		if ($user->getRegistration()) {
@@ -133,7 +133,7 @@ class Preferences {
 						'type' => 'info',
 						'label-message' => 'prefs-registration',
 						'default' => $wgLang->timeanddate( $user->getRegistration() ),
-						'section' => 'personal',
+						'section' => 'personal/info',
 					);
 		}
 				
@@ -144,7 +144,7 @@ class Preferences {
 					array(
 						'type' => 'text',
 						'default' => $user->getRealName(),
-						'section' => 'personal',
+						'section' => 'personal/info',
 						'label-message' => 'yourrealname',
 						'help-message' => 'prefs-help-realname',
 					);
@@ -163,14 +163,14 @@ class Preferences {
 						'raw' => true,
 						'default' => $link,
 						'label-message' => 'yourpassword',
-						'section' => 'personal',
+						'section' => 'personal/info',
 					);
 		}
 		
 		$defaultPreferences['gender'] =
 				array(
 					'type' => 'select',
-					'section' => 'personal',
+					'section' => 'personal/info',
 					'options' => array(
 						wfMsg('gender-male') => 'male',
 						wfMsg('gender-female') => 'female',
@@ -196,7 +196,7 @@ class Preferences {
 		$defaultPreferences['language'] =
 				array(
 					'type' => 'select',
-					'section' => 'personal',
+					'section' => 'personal/i18n',
 					'options' => $options,
 					'label-message' => 'yourlanguage',
 				);
@@ -228,7 +228,7 @@ class Preferences {
 						'label-message' => 'yourvariant',
 						'type' => 'select',
 						'options' => $options,
-						'section' => 'personal',
+						'section' => 'personal/i18n',
 					);
 			}
 		}
@@ -237,10 +237,17 @@ class Preferences {
 			$defaultPreferences['noconvertlink'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'misc',
+						'section' => 'personal/i18n',
 						'label-message' => 'tog-noconvertlink',
 					);
 		}
+		
+		$defaultPreferences['rememberpassword'] =
+				array(
+					'type' => 'toggle',
+					'label-message' => 'tog-rememberpassword',
+					'section' => 'personal/i18n',
+				);
 		
 		global $wgMaxSigChars;
 		$defaultPreferences['nickname'] =
@@ -250,21 +257,14 @@ class Preferences {
 					'label-message' => 'yournick',
 					'validation-callback' =>
 						array( 'Preferences', 'validateSignature' ),
-					'section' => 'personal',
+					'section' => 'personal/signature',
 					'filter-callback' => array( 'Preferences', 'cleanSignature' ),
 				);
 		$defaultPreferences['fancysig'] =
 				array(
 					'type' => 'toggle',
 					'label-message' => 'tog-fancysig',
-					'section' => 'personal'
-				);
-				
-		$defaultPreferences['rememberpassword'] =
-				array(
-					'type' => 'toggle',
-					'label-message' => 'tog-rememberpassword',
-					'section' => 'personal',
+					'section' => 'personal/signature'
 				);
 				
 		## Email stuff
@@ -275,7 +275,7 @@ class Preferences {
 				array(
 					'type' => 'text',
 					'default' => $user->getEmail(),
-					'section' => 'personal',
+					'section' => 'personal/email',
 					'label-message' => 'youremail',
 					'help-message' => $wgEmailConfirmToEdit
 										? 'prefs-help-email-required'
@@ -312,7 +312,7 @@ class Preferences {
 					array(
 						'type' => 'info',
 						'raw' => true,
-						'section' => 'personal',
+						'section' => 'personal/email',
 						'label-message' => 'prefs-emailconfirm-label',
 						'default' => $emailauthenticated,
 					);
@@ -325,13 +325,13 @@ class Preferences {
 						array(
 							'type' => 'toggle',
 							'invert' => true,
-							'section' => 'personal',
+							'section' => 'personal/email',
 							'label-message' => 'allowemail',
 						);
 				$defaultPreferences['ccmeonemails'] =
 						array(
 							'type' => 'toggle',
-							'section' => 'personal',
+							'section' => 'personal/email',
 							'label-message' => 'tog-ccmeonemails',
 						);
 			}
@@ -339,25 +339,25 @@ class Preferences {
 			$defaultPreferences['enotifwatchlistpages'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'personal',
+						'section' => 'personal/email',
 						'label-message' => 'tog-enotifwatchlistpages',
 					);
 			$defaultPreferences['enotifusertalkpages'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'personal',
+						'section' => 'personal/email',
 						'label-message' => 'tog-enotifusertalkpages',
 					);
 			$defaultPreferences['enotifminoredits'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'personal',
+						'section' => 'personal/email',
 						'label-message' => 'tog-enotifminoredits',
 					);
 			$defaultPreferences['enotifrevealaddr'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'personal',
+						'section' => 'personal/email',
 						'label-message' => 'tog-enotifrevealaddr'
 					);
 		}
@@ -401,7 +401,7 @@ class Preferences {
 						'options' =>
 							array_flip( array_map( 'wfMsg', $wgLang->getMathNames() ) ),
 						'label' => '&nbsp;',
-						'section' => 'math',
+						'section' => 'rendering/math',
 					);
 		}
 	}
@@ -413,14 +413,14 @@ class Preferences {
 					'type' => 'select',
 					'options' => self::getImageSizes(),
 					'label-message' => 'imagemaxsize',
-					'section' => 'files',
+					'section' => 'rendering/files',
 				);
 		$defaultPreferences['thumbsize'] =
 				array(
 					'type' => 'select',
 					'options' => self::getThumbSizes(),
 					'label-message' => 'thumbsize',
-					'section' => 'files',
+					'section' => 'rendering/files',
 				);
 	}
 	
@@ -560,7 +560,7 @@ class Preferences {
 				array(
 					'type' => 'int',
 					'label-message' => 'columns',
-					'section' => 'editing',
+					'section' => 'editing/textboxsize',
 					'min' => 4,
 					'max' => 1000,
 				);
@@ -568,7 +568,7 @@ class Preferences {
 				array(
 					'type' => 'int',
 					'label-message' => 'rows',
-					'section' => 'editing',
+					'section' => 'editing/textboxsize',
 					'min' => 4,
 					'max' => 1000,
 				);
