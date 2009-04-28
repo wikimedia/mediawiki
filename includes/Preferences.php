@@ -150,6 +150,20 @@ class Preferences {
 					);
 		}
 		
+		
+		$defaultPreferences['gender'] =
+				array(
+					'type' => 'select',
+					'section' => 'personal/info',
+					'options' => array(
+						wfMsg('gender-male') => 'male',
+						wfMsg('gender-female') => 'female',
+						wfMsg('gender-unknown') => 'unknown',
+					),
+					'label-message' => 'yourgender',
+					'help-message' => 'prefs-help-gender',
+				);
+
 		global $wgAuth;
 		if ($wgAuth->allowPasswordChange()) {
 			global $wgUser; // For skin.
@@ -167,17 +181,11 @@ class Preferences {
 					);
 		}
 		
-		$defaultPreferences['gender'] =
+		$defaultPreferences['rememberpassword'] =
 				array(
-					'type' => 'select',
+					'type' => 'toggle',
+					'label-message' => 'tog-rememberpassword',
 					'section' => 'personal/info',
-					'options' => array(
-						wfMsg('gender-male') => 'male',
-						wfMsg('gender-female') => 'female',
-						wfMsg('gender-unknown') => 'unknown',
-					),
-					'label-message' => 'yourgender',
-					'help-message' => 'prefs-help-gender',
 				);
 				
 		// Language
@@ -241,13 +249,6 @@ class Preferences {
 						'label-message' => 'tog-noconvertlink',
 					);
 		}
-		
-		$defaultPreferences['rememberpassword'] =
-				array(
-					'type' => 'toggle',
-					'label-message' => 'tog-rememberpassword',
-					'section' => 'personal/i18n',
-				);
 		
 		global $wgMaxSigChars;
 		$defaultPreferences['nickname'] =
