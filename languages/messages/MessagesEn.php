@@ -3431,7 +3431,7 @@ Others will be hidden by default.
 'exif-exposureprogram-7' => 'Portrait mode (for closeup photos with the background out of focus)',
 'exif-exposureprogram-8' => 'Landscape mode (for landscape photos with the background in focus)',
 
-'exif-subjectdistance-value' => '$1 metres',
+'exif-subjectdistance-value' => '$1 meters',
 
 'exif-meteringmode-0'   => 'Unknown',
 'exif-meteringmode-1'   => 'Average',
@@ -3537,8 +3537,8 @@ Others will be hidden by default.
 'exif-gpslongitude-w' => 'West longitude',
 
 # Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metres above sea level',
-'exif-gpsaltitude-1' => 'Metres below sea level',
+'exif-gpsaltitude-0' => 'Meters above sea level',
+'exif-gpsaltitude-1' => 'Meters below sea level',
 
 'exif-gpsstatus-a' => 'Measurement in progress',
 'exif-gpsstatus-v' => 'Measurement interoperability',
@@ -3547,12 +3547,12 @@ Others will be hidden by default.
 'exif-gpsmeasuremode-3' => '3-dimensional measurement',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => 'Kilometres per hour',
+'exif-gpsspeed-k' => 'Kilometers per hour',
 'exif-gpsspeed-m' => 'Miles per hour',
 'exif-gpsspeed-n' => 'Knots',
 
 # Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometres',
+'exif-gpsdestdistance-k' => 'Kilometers',
 'exif-gpsdestdistance-m' => 'Miles',
 'exif-gpsdestdistance-n' => 'Nautical miles',
 
