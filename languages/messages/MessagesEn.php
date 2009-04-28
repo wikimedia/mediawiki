@@ -903,37 +903,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'badretype'                  => 'The passwords you entered do not match.',
 'userexists'                 => 'Username entered already in use.
 Please choose a different name.',
-'youremail'                  => 'E-mail:',
-'username'                   => 'Username:',
-'uid'                        => 'User ID:',
-'prefs-memberingroups'       => 'Member of {{PLURAL:$1|group|groups}}:',
-'prefs-registration'         => 'Registration time:',
-'yourrealname'               => 'Real name:',
-'yourlanguage'               => 'Language:',
-'yourvariant'                => 'Variant:', # only translate this message to other languages if you have to change it
-'yournick'                   => 'Signature:',
-'badsig'                     => 'Invalid raw signature.
-Check HTML tags.',
-'badsiglength'               => 'Your signature is too long.
-It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
-'yourgender'                 => 'Gender:',
-'gender-unknown'             => 'Unspecified',
-'gender-male'                => 'Male',
-'gender-female'              => 'Female',
-'prefs-help-gender'          => 'Optional: used for gender-correct addressing by the software.
-This information will be public.',
-'email'                      => 'E-mail',
-'prefs-help-realname'        => 'Real name is optional.
-If you choose to provide it, this will be used for giving you attribution for your work.',
 'loginerror'                 => 'Login error',
-'prefs-help-email'           => 'E-mail address is optional, but allows a new password to be e-mailed to you if you forget your password.
-You can also choose to let others contact you through your user or talk page without needing to reveal your identity.',
-'prefs-help-email-required'  => 'E-mail address is required.',
-'prefs-info'  				 => 'Basic information',
-'prefs-i18n'				 => 'Internationalisation',
-'prefs-signature'			 => 'Signature',
-
-## User login
 'nocookiesnew'               => 'The user account was created, but you are not logged in.
 {{SITENAME}} uses cookies to log in users.
 You have cookies disabled.
@@ -1615,7 +1585,35 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'prefs-reset-intro'         => 'You can use this page to reset your preferences to the site defaults.
 This cannot be undone.',
 'prefs-emailconfirm-label'  => 'E-mail confirmation:',
-'prefs-textboxsize'			=> 'Size of editing window',
+'prefs-textboxsize'         => 'Size of editing window',
+'youremail'                 => 'E-mail:',
+'username'                  => 'Username:',
+'uid'                       => 'User ID:',
+'prefs-memberingroups'      => 'Member of {{PLURAL:$1|group|groups}}:',
+'prefs-registration'        => 'Registration time:',
+'yourrealname'              => 'Real name:',
+'yourlanguage'              => 'Language:',
+'yourvariant'               => 'Variant:', # only translate this message to other languages if you have to change it
+'yournick'                  => 'Signature:',
+'badsig'                    => 'Invalid raw signature.
+Check HTML tags.',
+'badsiglength'              => 'Your signature is too long.
+It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
+'yourgender'                => 'Gender:',
+'gender-unknown'            => 'Unspecified',
+'gender-male'               => 'Male',
+'gender-female'             => 'Female',
+'prefs-help-gender'         => 'Optional: used for gender-correct addressing by the software.
+This information will be public.',
+'email'                     => 'E-mail',
+'prefs-help-realname'       => 'Real name is optional.
+If you choose to provide it, this will be used for giving you attribution for your work.',
+'prefs-help-email'          => 'E-mail address is optional, but allows a new password to be e-mailed to you if you forget your password.
+You can also choose to let others contact you through your user or talk page without needing to reveal your identity.',
+'prefs-help-email-required' => 'E-mail address is required.',
+'prefs-info'                => 'Basic information',
+'prefs-i18n'                => 'Internationalisation',
+'prefs-signature'           => 'Signature',
 
 # User rights
 'userrights'                     => 'User rights management',
