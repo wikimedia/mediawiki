@@ -452,6 +452,11 @@ $2',
 'loginerror'                 => '登簿誤然',
 'prefs-help-email'           => '電郵地址，雖非必要，惟失符節之時，新者須寄於此。',
 'prefs-help-email-required'  => '郵須也。',
+'prefs-info'                 => '基',
+'prefs-i18n'                 => '萬國',
+'prefs-signature'            => '簽',
+
+## User login
 'nocookiesnew'               => '{{SITENAME}}簿增而未登，惠准cookies後再登之。',
 'nocookieslogin'             => '登簿{{SITENAME}}須cookies，惠准之後登。',
 'noname'                     => '缺簿名，或不格也。',
@@ -978,6 +983,7 @@ $2',
 'prefs-custom-js'           => '定之JS',
 'prefs-reset-intro'         => '爾用頁重設至預之設。無修之也。',
 'prefs-emailconfirm-label'  => '確郵：',
+'prefs-textboxsize'         => '纂框量',
 
 # User rights
 'userrights'                     => '秉治權任',
