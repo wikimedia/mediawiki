@@ -17,8 +17,8 @@
 
 class SpecialCreatePage extends SpecialPage {
 
-	function __construct() {
-		SpecialPage::SpecialPage( 'CreatePage', 'createpage' );
+	public function __construct() {
+		parent::__construct( 'CreatePage', 'createpage' );
 	}
 
 	public function execute( $params ) {
