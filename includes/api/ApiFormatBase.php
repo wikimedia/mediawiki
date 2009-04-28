@@ -100,6 +100,16 @@ abstract class ApiFormatBase extends ApiBase {
 	public function getIsHtml() {
 		return $this->mIsHtml;
 	}
+	
+	/**
+	 * Whether this formatter can format the help message in a nice way.
+	 * By default, this returns the same as getIsHtml().
+	 * When action=help is set explicitly, the help will always be shown 
+	 * @return bool
+	 */
+	public function getWantsHelp() {
+		return $this->getIsHtml();
+	}
 
 	/**
 	 * Initialize the printer function and prepare the output headers, etc.
