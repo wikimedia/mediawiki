@@ -51,6 +51,14 @@ If the file has been modified from its original state, some details may not full
 'exif-exposureprogram-5' => 'Creative programme (biased toward depth of field)',
 'exif-exposureprogram-6' => 'Action programme (biased toward fast shutter speed)',
 
+'exif-subjectdistance-value' => '$1 metres',
+
+'exif-gpsaltitude-0' => 'Metres above sea level',
+'exif-gpsaltitude-1' => 'Metres below sea level',
+
+'exif-gpsspeed-k' => 'Kilometres per hour',
+'exif-gpsdestdistance-k' => 'Kilometres',
+
 'exif-sensingmethod-2' => 'One-chip colour area sensor',
 'exif-sensingmethod-3' => 'Two-chip colour area sensor',
 'exif-sensingmethod-4' => 'Three-chip colour area sensor',
