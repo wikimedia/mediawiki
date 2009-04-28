@@ -172,7 +172,6 @@ $messages = array(
 'createaccount'              => 'Ŋlɔ ŋkɔ daɖi',
 'gotaccount'                 => 'Wò ŋlɔ ŋkɔ xoxoa? $1.',
 'gotaccountlink'             => 'Ge ɖe eme',
-'yourlanguage'               => 'Gbe:',
 'loginsuccesstitle'          => 'Wò ge ɖe eme azɔ̃.',
 'loginsuccess'               => "'''Wò le {{SITENAME}} me fifia abe \"\$1\" ene.'''",
 'acct_creation_throttle_hit' => 'Taflatse, wòŋlɔ {{PLURAL:$1|1 ŋkɔ|$1 ŋkɔwo}} xoxo.
@@ -243,6 +242,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'preferences'   => 'Didiwo',
 'mypreferences' => 'Nyeƒe didiwo',
 'skin-preview'  => 'Kpɔe do ŋgɔ',
+'yourlanguage'  => 'Gbe:',
 
 # Groups
 'group-sysop' => 'Dɔdzikpɔlawo',

@@ -365,65 +365,48 @@ Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [http://translatewiki.
 'sqlhidden'          => '(maulizo ya SQL yamefichwa)',
 
 # Login and logout pages
-'welcomecreation'           => '== Karibu, $1! ==
+'welcomecreation'         => '== Karibu, $1! ==
 Ushafunguliwa akaunti yako tayari.
 Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
-'yourname'                  => 'Jina la mtumiaji:',
-'yourpassword'              => 'Nywila',
-'yourpasswordagain'         => 'Andika tena neno la siri',
-'remembermypassword'        => 'Nikumbuke katika tarakilishi hii',
-'yourdomainname'            => 'Tovuti yako:',
-'externaldberror'           => 'Huenda kulikuwa na hitilafu ya database au labda hauruhusiwi kubadilisha akaunti yako ya nje.',
-'login'                     => 'Ingia',
-'nav-login-createaccount'   => 'Ingia/ sajili akaunti',
-'loginprompt'               => 'Lazima kompyuta yako ipokee kuki ili uweze kuingia kwenye {{SITENAME}}.',
-'userlogin'                 => 'Ingia/ sajili akaunti',
-'logout'                    => 'Toka',
-'userlogout'                => 'Toka',
-'notloggedin'               => 'Hujajiandikisha',
-'nologin'                   => 'Huna akaunti ya kuingilia? $1.',
-'nologinlink'               => 'Sajili akaunti',
-'createaccount'             => 'Sajili akaunti',
-'gotaccount'                => 'Unayo akaunti tayari? $1',
-'gotaccountlink'            => 'Ingia',
-'createaccountmail'         => 'Kwa barua pepe',
-'badretype'                 => 'Maneno uliyoyaandika ni tofauti.',
-'userexists'                => 'Jina la mtumiaji uliloingiza tayari linatumika.
+'yourname'                => 'Jina la mtumiaji:',
+'yourpassword'            => 'Nywila',
+'yourpasswordagain'       => 'Andika tena neno la siri',
+'remembermypassword'      => 'Nikumbuke katika tarakilishi hii',
+'yourdomainname'          => 'Tovuti yako:',
+'externaldberror'         => 'Huenda kulikuwa na hitilafu ya database au labda hauruhusiwi kubadilisha akaunti yako ya nje.',
+'login'                   => 'Ingia',
+'nav-login-createaccount' => 'Ingia/ sajili akaunti',
+'loginprompt'             => 'Lazima kompyuta yako ipokee kuki ili uweze kuingia kwenye {{SITENAME}}.',
+'userlogin'               => 'Ingia/ sajili akaunti',
+'logout'                  => 'Toka',
+'userlogout'              => 'Toka',
+'notloggedin'             => 'Hujajiandikisha',
+'nologin'                 => 'Huna akaunti ya kuingilia? $1.',
+'nologinlink'             => 'Sajili akaunti',
+'createaccount'           => 'Sajili akaunti',
+'gotaccount'              => 'Unayo akaunti tayari? $1',
+'gotaccountlink'          => 'Ingia',
+'createaccountmail'       => 'Kwa barua pepe',
+'badretype'               => 'Maneno uliyoyaandika ni tofauti.',
+'userexists'              => 'Jina la mtumiaji uliloingiza tayari linatumika.
 Tafadhali chagua jina lingine.',
-'youremail'                 => 'Barua pepe yako:',
-'username'                  => 'Jina la mtumiaji:',
-'uid'                       => 'Namba ya mtumiaji:',
-'prefs-memberingroups'      => 'Mwanachama wa {{PLURAL:$1|group|makundi}}:',
-'yourrealname'              => 'Jina lako halisi:',
-'yourlanguage'              => 'Lugha:',
-'yourvariant'               => 'Mbalimbali:',
-'yournick'                  => 'Sahihi:',
-'badsig'                    => 'Umeweka sahihi batili.
-Angalia mabano ya HTML.',
-'badsiglength'              => 'Sahihi uliyoweka ni ndefu mno.
-Haiwezi kuzidi {{PLURAL:$1|tarakimu|tarakimu}} $1.',
-'email'                     => 'Barua pepe',
-'prefs-help-realname'       => 'Jina la kweli si lazima. Ukichagua kutaja jina lako hapa, litatumiwa kuonyesha kwamba ndiyo ulifanya kazi unayochangia.',
-'loginerror'                => 'Kosa la kuingia',
-'prefs-help-email'          => 'Barua pepe sio lazima, lakini inawezesha kupokea nywila mpya kwa kupitia barua pepe yako endapo utakuwa umeisahau.
-Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukurasa wako wa mtumiaji au ule wa majadiliano bila ya kuonyesha jina la akaunti yako.',
-'prefs-help-email-required' => 'Barua pepe inahitajika.',
-'nocookiesnew'              => "Umesajiliwa, lakini bado hujaingizwa. {{SITENAME}} inatumia ''kuki'' ili watumiaji waingizwe. Kompyuta yako inazuia ''kuki''. Tafadhali, ondoa kizuizi hicho uingie kwa kutumia jina mpya na neno la siri.",
-'nocookieslogin'            => '{{SITENAME}} inatumia kuki ili watumiaji waweze kuingia.
+'loginerror'              => 'Kosa la kuingia',
+'nocookiesnew'            => "Umesajiliwa, lakini bado hujaingizwa. {{SITENAME}} inatumia ''kuki'' ili watumiaji waingizwe. Kompyuta yako inazuia ''kuki''. Tafadhali, ondoa kizuizi hicho uingie kwa kutumia jina mpya na neno la siri.",
+'nocookieslogin'          => '{{SITENAME}} inatumia kuki ili watumiaji waweze kuingia.
 Kompyuta yako inakataa kupokea kuki.
 Tafadhali, ondoa kizuizi hicho, baadaye jaribu tena.',
-'noname'                    => 'Hauja dhihilisha jina la mtumiaji.',
-'loginsuccesstitle'         => 'Umefaulu kuingia',
-'loginsuccess'              => "'''Umeingia {{SITENAME}} kama \"\$1\".'''",
-'nosuchuser'                => 'Hakuna mtumiaji mwenye jina "$1". Labda umeandika vibaya, au [[Special:UserLogin/signup|sajili akaunti mpya]].',
-'nosuchusershort'           => 'Hakuna mtumiaji mwenye jina "<nowiki>$1</nowiki>". Labda umeandika vibaya.',
-'nouserspecified'           => 'Lazima uandike jina la mtumiaji.',
-'wrongpassword'             => 'Umeingiza nywila ya makosa. Jaribu tena.',
-'wrongpasswordempty'        => 'Nywila ilikuwa tupu. Jaribu tena.',
-'passwordtooshort'          => 'Nywila yako haifai.  Ni lazima iwe na {{PLURAL:#1|herufi}} $1 au zaidi, na inabidi nywila na jina la mtumiaji ziwe tofauti.',
-'mailmypassword'            => 'Nitume nywila mpya kwa barua pepe',
-'passwordremindertitle'     => 'Nywila mpya ya muda kwa {{SITENAME}}',
-'passwordremindertext'      => 'Mtu mmoja (yamkini wewe, kutoka anwani ya IP $1)
+'noname'                  => 'Hauja dhihilisha jina la mtumiaji.',
+'loginsuccesstitle'       => 'Umefaulu kuingia',
+'loginsuccess'            => "'''Umeingia {{SITENAME}} kama \"\$1\".'''",
+'nosuchuser'              => 'Hakuna mtumiaji mwenye jina "$1". Labda umeandika vibaya, au [[Special:UserLogin/signup|sajili akaunti mpya]].',
+'nosuchusershort'         => 'Hakuna mtumiaji mwenye jina "<nowiki>$1</nowiki>". Labda umeandika vibaya.',
+'nouserspecified'         => 'Lazima uandike jina la mtumiaji.',
+'wrongpassword'           => 'Umeingiza nywila ya makosa. Jaribu tena.',
+'wrongpasswordempty'      => 'Nywila ilikuwa tupu. Jaribu tena.',
+'passwordtooshort'        => 'Nywila yako haifai.  Ni lazima iwe na {{PLURAL:#1|herufi}} $1 au zaidi, na inabidi nywila na jina la mtumiaji ziwe tofauti.',
+'mailmypassword'          => 'Nitume nywila mpya kwa barua pepe',
+'passwordremindertitle'   => 'Nywila mpya ya muda kwa {{SITENAME}}',
+'passwordremindertext'    => 'Mtu mmoja (yamkini wewe, kutoka anwani ya IP $1)
 ambaye ameulizia nywila mpya kwa {{SITENAME}} ($4).
 Nywila kwa mtumiaji "$2" sasa ni "$3".
 Inatakiwa uingie na ubadilishe nywila yako sasa.
@@ -431,21 +414,21 @@ Inatakiwa uingie na ubadilishe nywila yako sasa.
 Kama mtu mwingine ametoa ombi hili au kama umekumbuka nywila yako na
 umeamua kutoibadilisha, unaweza kupuuza ujumbe huu na
 endelea kutumia nywila yako ya awali.',
-'noemail'                   => 'Hatuna anwani ya barua pepe kwa mtumiaji  "$1".',
-'passwordsent'              => 'Neno mpya la siri limeshatumia kwenye anwani ya baruapepe ya "$1".
+'noemail'                 => 'Hatuna anwani ya barua pepe kwa mtumiaji  "$1".',
+'passwordsent'            => 'Neno mpya la siri limeshatumia kwenye anwani ya baruapepe ya "$1".
 Tafadhali, ingia baada ya kulipokea.',
-'blocked-mailpassword'      => 'Anwani yako ya IP imezuiwa kuhariri {{SITENAME}}, kwa maana hiyo hairuhusiiswi kuumba nywila mpya kwa lengo la kulinda uharibifu.',
-'eauthentsent'              => 'Tumekutuma barua pepe ili kuhakikisha anwani yako.
+'blocked-mailpassword'    => 'Anwani yako ya IP imezuiwa kuhariri {{SITENAME}}, kwa maana hiyo hairuhusiiswi kuumba nywila mpya kwa lengo la kulinda uharibifu.',
+'eauthentsent'            => 'Tumekutuma barua pepe ili kuhakikisha anwani yako.
 Kabla ya kutuma barua pepe nyingine kwenye akaunti hiyo, itabidi ufuate maelezo katika barua utakayopokea,
 kuthibitisha kwamba wewe ndiyo ni mwenye akaunti.',
-'throttled-mailpassword'    => 'Kikumbusho cha nywila tayari kimeshatumwa, ndani ya {{PLURAL:$1|hour|$1masaa}} kadhaa yaliyopita.
+'throttled-mailpassword'  => 'Kikumbusho cha nywila tayari kimeshatumwa, ndani ya {{PLURAL:$1|hour|$1masaa}} kadhaa yaliyopita.
 Ili kuzuiya uhuni, kiumbusho cha nywila kimoja pekee utakachotumiwa kwa {{PLURAL:$1|hour|$1 masaa}} kadhaa.',
-'createaccount-text'        => 'Kuna mtu amesajili akaunti kwa kutumia anwani ya barua pepe yako kwenye  {{SITENAME}} ($4) anaitwa "$2", yenye nywila "$3".
+'createaccount-text'      => 'Kuna mtu amesajili akaunti kwa kutumia anwani ya barua pepe yako kwenye  {{SITENAME}} ($4) anaitwa "$2", yenye nywila "$3".
 Inabidi uingie na kisha ubadilishe nywila yako sasa.
 
 Unaweza kupuuza ujumbe huu, endapo akaunti hii ilianzishwa kimakosa.',
-'login-throttled'           => 'Umefanya majaribio kadha wa kadha ya kutaka kuingiza nywila ya akaunti hii. Tafadhali subiri kwanza kabla ya kujaribu tena.',
-'loginlanguagelabel'        => 'Lugha: $1',
+'login-throttled'         => 'Umefanya majaribio kadha wa kadha ya kutaka kuingiza nywila ya akaunti hii. Tafadhali subiri kwanza kabla ya kujaribu tena.',
+'loginlanguagelabel'      => 'Lugha: $1',
 
 # Password reset dialog
 'oldpassword' => 'Neno la siri la zamani',
@@ -612,6 +595,23 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'timezoneregion-pacific'    => 'Bahari ya Pasifiki',
 'prefs-searchoptions'       => 'Hitiari za kutafuta',
 'prefs-files'               => 'Mafaili',
+'youremail'                 => 'Barua pepe yako:',
+'username'                  => 'Jina la mtumiaji:',
+'uid'                       => 'Namba ya mtumiaji:',
+'prefs-memberingroups'      => 'Mwanachama wa {{PLURAL:$1|group|makundi}}:',
+'yourrealname'              => 'Jina lako halisi:',
+'yourlanguage'              => 'Lugha:',
+'yourvariant'               => 'Mbalimbali:',
+'yournick'                  => 'Sahihi:',
+'badsig'                    => 'Umeweka sahihi batili.
+Angalia mabano ya HTML.',
+'badsiglength'              => 'Sahihi uliyoweka ni ndefu mno.
+Haiwezi kuzidi {{PLURAL:$1|tarakimu|tarakimu}} $1.',
+'email'                     => 'Barua pepe',
+'prefs-help-realname'       => 'Jina la kweli si lazima. Ukichagua kutaja jina lako hapa, litatumiwa kuonyesha kwamba ndiyo ulifanya kazi unayochangia.',
+'prefs-help-email'          => 'Barua pepe sio lazima, lakini inawezesha kupokea nywila mpya kwa kupitia barua pepe yako endapo utakuwa umeisahau.
+Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukurasa wako wa mtumiaji au ule wa majadiliano bila ya kuonyesha jina la akaunti yako.',
+'prefs-help-email-required' => 'Barua pepe inahitajika.',
 
 # Groups
 'group'       => 'Kundi:',
@@ -1141,14 +1141,5 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 
 # Special:Tags
 'tags-edit' => 'hariri',
-
-# Special:CreatePage
-'createpage'              => 'Anzisha ukurasa',
-'createpage-submitbutton' => 'Wasilisha',
-'createpage-instructions' => 'Andika jina la ukurasa unaotaka kuanzisha:',
-'createpage-entertitle'   => 'Andika jina la ukurasa wako.',
-'createpage-titleexists'  => 'Tayari kuna ukurasa kwenye jina [[$1]]. Je, unataka kuhariri ukurasa uliomo?',
-'createpage-tryagain'     => 'Hapana. Ninataka kuanzisha ukurasa mpya mwenye jina tofauti.',
-'createpage-editexisting' => 'Ndiyo. Ninataka kusaidia kuhariri ukurasa uliomo.',
 
 );

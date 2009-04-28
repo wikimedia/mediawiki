@@ -494,28 +494,7 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'badretype'                  => 'Tesserae quas scripsisti inter se non congruunt.',
 'userexists'                 => 'Nomen usoris quod selegisti iam est.
 Nomen usoris alium selige.',
-'youremail'                  => 'Inscriptio tua electronica:',
-'username'                   => 'Nomen usoris:',
-'uid'                        => 'ID usoris:',
-'prefs-registration'         => 'Dies creationis rationis:',
-'yourrealname'               => 'Nomen tuum verum:',
-'yourlanguage'               => 'Lingua tua:',
-'yourvariant'                => 'Differentia:',
-'yournick'                   => 'Subscriptio:',
-'badsig'                     => 'Subscriptio cruda non est valida; scrutina affixa HTML.',
-'badsiglength'               => 'Subscriptio tua nimis longa est.
-{{PLURAL:$1|Una littera est|$1 litterae sunt}} longitudo maxima.',
-'yourgender'                 => 'Sexus:',
-'gender-unknown'             => 'Indefinitus',
-'gender-male'                => 'Mas',
-'gender-female'              => 'Femina',
-'email'                      => 'Litterae electronicae',
-'prefs-help-realname'        => 'Nomen verum non necesse est.
-Si vis id dare, opera tua tibi ascribentur.',
 'loginerror'                 => 'Error factus est in aperiendo conventum',
-'prefs-help-email'           => 'Inscriptio electronica non necesse est, sed sinit tesseram novam tibi mitti si eae oblitus es.
-Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis, nisi te reveles.',
-'prefs-help-email-required'  => 'Inscriptio electronica necesse est.',
 'nocookiesnew'               => "Ratio usoris creata est, sed conventum non apertum est. {{SITENAME}} ''Cookies'' utitur in usorum conventa aperiendo. Cookies tua debiles sunt. Eis potestatem fac, tum conventum aperi cum nomine usoris tesseraque tua nova.",
 'nocookieslogin'             => "{{SITENAME}} ''Cookies'' utitur in usorum conventa aperiendo. Cookies tua debiles sunt. Eis potestatem fac, tum conare denuo.",
 'noname'                     => 'Nominem usoris ratum non designavisti.',
@@ -978,6 +957,28 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'prefs-files'               => 'Fasciculi',
 'prefs-custom-css'          => 'CSS proprium',
 'prefs-custom-js'           => 'JS proprium',
+'prefs-emailconfirm-label'  => 'Adfirmatio inscriptionis electronicae:',
+'youremail'                 => 'Inscriptio tua electronica:',
+'username'                  => 'Nomen usoris:',
+'uid'                       => 'ID usoris:',
+'prefs-registration'        => 'Dies creationis rationis:',
+'yourrealname'              => 'Nomen tuum verum:',
+'yourlanguage'              => 'Lingua tua:',
+'yourvariant'               => 'Differentia:',
+'yournick'                  => 'Subscriptio:',
+'badsig'                    => 'Subscriptio cruda non est valida; scrutina affixa HTML.',
+'badsiglength'              => 'Subscriptio tua nimis longa est.
+{{PLURAL:$1|Una littera est|$1 litterae sunt}} longitudo maxima.',
+'yourgender'                => 'Sexus:',
+'gender-unknown'            => 'Indefinitus',
+'gender-male'               => 'Mas',
+'gender-female'             => 'Femina',
+'email'                     => 'Litterae electronicae',
+'prefs-help-realname'       => 'Nomen verum non necesse est.
+Si vis id dare, opera tua tibi ascribentur.',
+'prefs-help-email'          => 'Inscriptio electronica non necesse est, sed sinit tesseram novam tibi mitti si eae oblitus es.
+Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis, nisi te reveles.',
+'prefs-help-email-required' => 'Inscriptio electronica necesse est.',
 
 # User rights
 'userrights'                  => 'Usorum potestates',
@@ -2355,8 +2356,5 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'tags-title'        => 'Affixa',
 'tags-edit'         => 'mutatum',
 'tags-hitcount'     => '$1 {{PLURAL:$1|mutatum|mutata}}',
-
-# Special:CreatePage
-'createpage' => 'Paginam creare',
 
 );

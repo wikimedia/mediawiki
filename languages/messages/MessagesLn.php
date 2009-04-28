@@ -162,11 +162,6 @@ $messages = array(
 'nologinlink'             => 'Míkomísá yɔ̌-mɛ́i',
 'gotaccount'              => 'Omíkomísí naíno ? $1.',
 'createaccountmail'       => 'na mokánda',
-'youremail'               => 'Mokandá (e-mail) *',
-'username'                => 'Nkómbó ya ekitoli :',
-'yourrealname'            => 'nkómbó ya sɔ̂lɔ́',
-'yourlanguage'            => 'Lokótá',
-'email'                   => 'Mokánda',
 
 # Edit page toolbar
 'bold_sample'     => 'Nkomá ya mbinga',
@@ -227,6 +222,11 @@ $messages = array(
 'saveprefs'         => 'kobómbisa',
 'searchresultshead' => 'Boluki',
 'allowemail'        => 'Enable mokánda from other users',
+'youremail'         => 'Mokandá (e-mail) *',
+'username'          => 'Nkómbó ya ekitoli :',
+'yourrealname'      => 'nkómbó ya sɔ̂lɔ́',
+'yourlanguage'      => 'Lokótá',
+'email'             => 'Mokánda',
 
 # Groups
 'group-sysop' => 'Bayángeli',

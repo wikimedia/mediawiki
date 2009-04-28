@@ -500,29 +500,7 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'createaccountmail'          => 'trwy e-bost',
 'badretype'                  => "Nid yw'r cyfrineiriau'n union yr un fath.",
 'userexists'                 => 'Mae rhywun arall wedi dewis yr enw defnyddiwr hwn. Dewiswch un arall os gwelwch yn dda.',
-'youremail'                  => 'Eich cyfeiriad e-bost',
-'username'                   => 'Enw defnyddiwr:',
-'uid'                        => 'ID Defnyddiwr:',
-'prefs-memberingroups'       => "Yn aelod o'r {{PLURAL:$1|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol:",
-'yourrealname'               => 'Eich enw cywir*',
-'yourlanguage'               => 'Iaith rhyngwyneb',
-'yourvariant'                => 'Amrywiad',
-'yournick'                   => 'Eich llysenw (fel llofnod):',
-'badsig'                     => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
-'badsiglength'               => "Mae'ch llysenw'n rhy hir. 
-Gall fod hyd at $1 {{PLURAL:$1|llythyren|lythyren|lythyren|llythyren|llythyren|llythyren}} o hyd.",
-'yourgender'                 => 'Rhyw:',
-'gender-unknown'             => 'Heb ei nodi',
-'gender-male'                => 'Gwryw',
-'gender-female'              => 'Benyw',
-'prefs-help-gender'          => "Heb rheidrwydd: mae'r meddalwedd yn defnyddio hwn i gyfeirio atoch ac i'ch cyfarch yn ôl eich rhyw.
-Mae'r wybodaeth hon ar gael i'r cyhoedd.",
-'email'                      => 'E-bost',
-'prefs-help-realname'        => '* Enw iawn (dewisol): Os ydych yn dewis ei roi, fe fydd yn cael ei ddefnyddio er mwyn rhoi cydnabyddiaeth i chi am eich gwaith.',
 'loginerror'                 => 'Problem mewngofnodi',
-'prefs-help-email'           => "Os ydych yn dewis gosod eich cyfeiriad e-bost yna gallwn anfon cyfrinair newydd atoch os aiff yr un gwreiddiol yn angof gennych.
-Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen defnyddiwr neu eich tudalen sgwrs, heb ddatguddio'ch manylion personol.",
-'prefs-help-email-required'  => 'Cyfeiriad e-bost yn angenrheidiol.',
 'nocookiesnew'               => "Mae'r cyfrif defnyddiwr wedi cael ei greu, ond nid ydych wedi mewngofnodi. Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Mewngofnodwch eto gyda'ch enw defnyddiwr a'ch cyfrinair newydd os gwelwch yn dda, ar ôl galluogi cwcis.",
 'nocookieslogin'             => 'Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Trïwch eto os gwelwch yn dda, ar ôl galluogi cwcis.',
 'noname'                     => 'Dydych chi ddim wedi cynnig enw defnyddiwr dilys.',
@@ -1075,6 +1053,28 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'prefs-files'               => 'Ffeiliau',
 'prefs-custom-css'          => 'CSS o hunan-ddewis',
 'prefs-custom-js'           => 'JS o hunan-ddewis',
+'youremail'                 => 'Eich cyfeiriad e-bost',
+'username'                  => 'Enw defnyddiwr:',
+'uid'                       => 'ID Defnyddiwr:',
+'prefs-memberingroups'      => "Yn aelod o'r {{PLURAL:$1|grŵp|grŵp|grwpiau|grwpiau|grwpiau|grwpiau}} canlynol:",
+'yourrealname'              => 'Eich enw cywir*',
+'yourlanguage'              => 'Iaith rhyngwyneb',
+'yourvariant'               => 'Amrywiad',
+'yournick'                  => 'Eich llysenw (fel llofnod):',
+'badsig'                    => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
+'badsiglength'              => "Mae'ch llysenw'n rhy hir. 
+Gall fod hyd at $1 {{PLURAL:$1|llythyren|lythyren|lythyren|llythyren|llythyren|llythyren}} o hyd.",
+'yourgender'                => 'Rhyw:',
+'gender-unknown'            => 'Heb ei nodi',
+'gender-male'               => 'Gwryw',
+'gender-female'             => 'Benyw',
+'prefs-help-gender'         => "Heb rheidrwydd: mae'r meddalwedd yn defnyddio hwn i gyfeirio atoch ac i'ch cyfarch yn ôl eich rhyw.
+Mae'r wybodaeth hon ar gael i'r cyhoedd.",
+'email'                     => 'E-bost',
+'prefs-help-realname'       => '* Enw iawn (dewisol): Os ydych yn dewis ei roi, fe fydd yn cael ei ddefnyddio er mwyn rhoi cydnabyddiaeth i chi am eich gwaith.',
+'prefs-help-email'          => "Os ydych yn dewis gosod eich cyfeiriad e-bost yna gallwn anfon cyfrinair newydd atoch os aiff yr un gwreiddiol yn angof gennych.
+Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen defnyddiwr neu eich tudalen sgwrs, heb ddatguddio'ch manylion personol.",
+'prefs-help-email-required' => 'Cyfeiriad e-bost yn angenrheidiol.',
 
 # User rights
 'userrights'                  => 'Rheoli galluoedd defnyddwyr',
@@ -2381,7 +2381,7 @@ $1",
 # Media information
 'mediawarning'         => "'''Rhybudd''': Gallasai'r ffeil hon gynnwys côd maleisus; os ydyw mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth lwytho'r ffeil.
 <hr />",
-'imagemaxsize'         => "Maint mwyaf y delweddau:<br/>''(ar y tudalennau disgrifiad)''",
+'imagemaxsize'         => "Maint mwyaf y delweddau:<br />''(ar y tudalennau disgrifiad)''",
 'thumbsize'            => 'Maint mân-lun :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
 'file-info'            => '(maint y ffeil: $1, ffurf MIME: $2)',
@@ -2916,16 +2916,5 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 # HTML forms
 'htmlform-reset'               => 'Datod y newidiadau',
 'htmlform-selectorother-other' => 'Arall',
-
-# Special:CreatePage
-'createpage'              => 'Dechrau tudalen',
-'createpage-submitbutton' => 'Gosod',
-'createpage-instructions' => 'Teipiwch deitl y dudalen yr ydych am ei dechrau:',
-'createpage-entertitle'   => 'Teipiwch deitl ar gyfer y dudalen, o gwelwch yn dda.',
-'createpage-titleexists'  => "Mae tudalen gyda'r teitl [[$1]] eisoes ar gael.
-Ydych chi am olygu'r tudalen sydd ar gael yn barod?",
-'createpage-tryagain'     => 'Nacydw. Hoffwn ddechrau tudalen newydd gyda theitl arall.',
-'createpage-editexisting' => 'Ydw. Hoffwn gyfrannu at y dudalen sydd eisoes ar gael.',
-'createpage-badtitle'     => 'Ni ellir defnyddio "$1" fel teitl',
 
 );

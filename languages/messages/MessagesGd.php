@@ -173,11 +173,6 @@ $messages = array(
 'logout'                     => 'Log a-mach',
 'userlogout'                 => 'Log a-mach',
 'createaccount'              => 'Cruthaich cunntas ùr',
-'youremail'                  => 'Post dealain:',
-'username'                   => 'Ainm-cleachdaidh:',
-'yourrealname'               => "An dearbh ainm a th' ort*",
-'yourlanguage'               => 'Cànan:',
-'yournick'                   => 'An leth-ainm agad (a chuirear ri teachdaireachdan)',
 'loginerror'                 => 'Mearachd log a-steach',
 'noname'                     => 'Chan eil thu air ainm-cleachdair iomchaidh a chomharrachadh.',
 'nosuchusershort'            => 'Chan eil cleachdair leis an ainm "$1" ann; sgrùd an litreachadh agad no cleachd am billeag gu h-ìseal gus cùnntas ùr a chrùthachadh.',
@@ -261,6 +256,11 @@ $messages = array(
 'columns'        => 'Colbhan',
 'savedprefs'     => 'Tha na roghainnean agad air an sàbhaladh.',
 'default'        => 'Gnàth',
+'youremail'      => 'Post dealain:',
+'username'       => 'Ainm-cleachdaidh:',
+'yourrealname'   => "An dearbh ainm a th' ort*",
+'yourlanguage'   => 'Cànan:',
+'yournick'       => 'An leth-ainm agad (a chuirear ri teachdaireachdan)',
 
 # User rights
 'userrights-changeable-col' => "Buidhnean a dh' atharraicheas tu",

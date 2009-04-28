@@ -111,9 +111,6 @@ $messages = array(
 # General errors
 'viewsource' => 'Къаларун булах',
 
-# Login and logout pages
-'yourrealname' => 'Xалис тIвар:',
-
 # Edit pages
 'minoredit'      => 'И гъвечIи дегишарун',
 'watchthis'      => 'Гелкъуьн и хъувун',
@@ -133,6 +130,9 @@ $messages = array(
 # Search results
 'viewprevnext' => 'Къаларун ($1) ($2) ($3)',
 'powersearch'  => 'Ахтармишун',
+
+# Preferences page
+'yourrealname' => 'Xалис тIвар:',
 
 # Recent changes
 'diff'            => 'тафават',

@@ -666,29 +666,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'badretype'                  => 'Az általad megadott jelszavak nem egyeznek.',
 'userexists'                 => 'A megadott szerkesztőnév már foglalt.
 Kérlek, válassz másikat!',
-'youremail'                  => 'Az e-mail címed:',
-'username'                   => 'Szerkesztőnév:',
-'uid'                        => 'Azonosító:',
-'prefs-memberingroups'       => '{{PLURAL:$1|Csoporttagság|Csoporttagságok}}:',
-'prefs-registration'         => 'Regisztráció ideje:',
-'yourrealname'               => 'Valódi neved:',
-'yourlanguage'               => 'A felület nyelve:',
-'yourvariant'                => 'Változó',
-'yournick'                   => 'Aláírás:',
-'badsig'                     => 'Érvénytelen aláírás; ellenőrizd a HTML-formázást.',
-'badsiglength'               => 'Az aláírásod túl hosszú.
-{{PLURAL:$1|Egy|$1}} karakternél rövidebbnek kell lennie.',
-'yourgender'                 => 'Nem:',
-'gender-unknown'             => 'Nincs megadva',
-'gender-male'                => 'Férfi',
-'gender-female'              => 'Nő',
-'prefs-help-gender'          => 'Nem kötelező: a szoftver használja a nemalapú üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
-'email'                      => 'E-mail',
-'prefs-help-realname'        => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
 'loginerror'                 => 'Hiba történt a bejelentkezés során',
-'prefs-help-email'           => 'Az e-mail cím megadása nem kötelező, de így kérhetsz új jelszót, ha elfelejtenéd a meglévőt.
-Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vagy vitalapodon keresztül, anélkül, hogy névtelenséged feladnád.',
-'prefs-help-email-required'  => 'Meg kell adnod az e-mail címedet.',
 'nocookiesnew'               => 'A felhasználói fiókod létrejött, de nem vagy bejelentkezve. A wiki sütiket („cookie”) használ a szerkesztők azonosítására. Nálad ezek le vannak tiltva. Kérlek, engedélyezd őket, majd lépj be az új azonosítóddal és jelszavaddal.',
 'nocookieslogin'             => 'A wiki sütiket („cookie”) használ a szerkesztők azonosításhoz.
 Nálad ezek le vannak tiltva.
@@ -1301,6 +1279,33 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'prefs-custom-js'           => 'saját JS',
 'prefs-reset-intro'         => 'Ezen a lapon állíthatod vissza a beállításaidat az oldal alapértelmezett értékeire.
 A műveletet nem lehet visszavonni.',
+'prefs-emailconfirm-label'  => 'E-mail cím megerősítése:',
+'prefs-textboxsize'         => 'A szerkesztőablak mérete',
+'youremail'                 => 'Az e-mail címed:',
+'username'                  => 'Szerkesztőnév:',
+'uid'                       => 'Azonosító:',
+'prefs-memberingroups'      => '{{PLURAL:$1|Csoporttagság|Csoporttagságok}}:',
+'prefs-registration'        => 'Regisztráció ideje:',
+'yourrealname'              => 'Valódi neved:',
+'yourlanguage'              => 'A felület nyelve:',
+'yourvariant'               => 'Változó',
+'yournick'                  => 'Aláírás:',
+'badsig'                    => 'Érvénytelen aláírás; ellenőrizd a HTML-formázást.',
+'badsiglength'              => 'Az aláírásod túl hosszú.
+{{PLURAL:$1|Egy|$1}} karakternél rövidebbnek kell lennie.',
+'yourgender'                => 'Nem:',
+'gender-unknown'            => 'Nincs megadva',
+'gender-male'               => 'Férfi',
+'gender-female'             => 'Nő',
+'prefs-help-gender'         => 'Nem kötelező: a szoftver használja a nemalapú üzenetek megjelenítéséhez. Az információ mindenki számára látható.',
+'email'                     => 'E-mail',
+'prefs-help-realname'       => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
+'prefs-help-email'          => 'Az e-mail cím megadása nem kötelező, de így kérhetsz új jelszót, ha elfelejtenéd a meglévőt.
+Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vagy vitalapodon keresztül, anélkül, hogy névtelenséged feladnád.',
+'prefs-help-email-required' => 'Meg kell adnod az e-mail címedet.',
+'prefs-info'                => 'Alapinformációk',
+'prefs-i18n'                => 'Nyelvi beállítások',
+'prefs-signature'           => 'Aláírás',
 
 # User rights
 'userrights'                  => 'Szerkesztői jogok beállítása',
@@ -2004,6 +2009,7 @@ Visszajelzés és további segítség:
 'confirmdeletetext'      => 'Egy lapot vagy fájlt készülsz törölni a teljes laptörténetével együtt.
 Kérjük, erősítsd meg, hogy valóban ezt szeretnéd tenni, átlátod a következményeit, és hogy a műveletet a [[{{MediaWiki:Policy-url}}|törlési irányelvekkel]] összhangban végzed.',
 'actioncomplete'         => 'Művelet végrehajtva',
+'actionfailed'           => 'A művelet nem sükerült',
 'deletedtext'            => 'A(z) „<nowiki>$1</nowiki>” lapot törölted.
 A legutóbbi törlések listájához lásd a $2 lapot.',
 'deletedarticle'         => '„$1” törölve',
@@ -2662,7 +2668,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Figyelmeztetés''': Ez a fájl kártékony kódot tartalmazhat, futtatása során kárt tehet a számítógépedben.<hr />",
-'imagemaxsize'         => "A képek mérete, legfeljebb:<br/>''(a leírólapokon)''",
+'imagemaxsize'         => "A képek mérete, legfeljebb:<br />''(a leírólapokon)''",
 'thumbsize'            => 'Bélyegkép mérete:',
 'widthheightpage'      => '$1×$2, $3 oldal',
 'file-info'            => '(fájlméret: $1, MIME-típus: $2)',
@@ -3200,7 +3206,7 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 
 # Database error messages
 'dberr-header'      => 'A wikivel problémák vannak',
-'dberr-problems'    => 'Sajnáljuk, de az oldalnak technikai problémái akadtak.',
+'dberr-problems'    => 'Sajnáljuk, de az oldallal technikai problémák vannak.',
 'dberr-again'       => 'Várj néhány percet, majd frissítsd az oldalt.',
 'dberr-info'        => '(Nem sikerült kapcsolatot létesíteni az adatbázisszerverrel: $1)',
 'dberr-usegoogle'   => 'A probléma elmúlásáig próbálhatsz keresni a Google-lel.',

@@ -137,9 +137,6 @@ $messages = array(
 'nologinlink'        => 'ཐོ་ཞིག་འགོད་པ།',
 'createaccount'      => 'ཐོ་འགོད།',
 'gotaccountlink'     => 'ནང་འཛུལ།',
-'youremail'          => 'དྲ་འཕྲིན། *:',
-'username'           => 'དྲ་མིང་།:',
-'email'              => 'དྲ་འཕྲིན།',
 
 # Edit pages
 'summary'      => 'བསྡུས་དོན།:',
@@ -163,6 +160,9 @@ $messages = array(
 'prefsnologin'      => 'ནང་འཛུལ་བྱས་མེད།',
 'prefs-rc'          => 'ཉེ་བའི་བཟོ་བཅོས།',
 'searchresultshead' => 'འཚོལ།',
+'youremail'         => 'དྲ་འཕྲིན། *:',
+'username'          => 'དྲ་མིང་།:',
+'email'             => 'དྲ་འཕྲིན།',
 
 # Recent changes
 'recentchanges'   => 'ཉེ་བའི་བཟོ་བཅོས།',

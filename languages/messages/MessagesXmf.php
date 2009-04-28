@@ -205,8 +205,6 @@ $messages = array(
 'nologinlink'             => 'გონწყით ანგარიშ',
 'gotaccount'              => 'უკვე რეგისტრირებულ რეთ? $1',
 'gotaccountlink'          => 'მინულა',
-'yourrealname'            => 'ნანდულ სახელ *',
-'yourlanguage'            => 'ნინა:',
 'loginsuccess'            => "'''ასე მიშულირ რეთ {{SITENAME}}-ს მუჭოთ \"\$1\".'''",
 'nouserspecified'         => 'საჭირო რე მახვარებელიშ სახელიშ მიშაჭარუა.',
 'mailmypassword'          => 'ახალ პაროლიშ მოჯღონა',
@@ -323,6 +321,8 @@ $messages = array(
 # Preferences page
 'preferences'   => 'კონფიგურაცია',
 'mypreferences' => 'ჩქიმ კონფიგურაცია',
+'yourrealname'  => 'ნანდულ სახელ *',
+'yourlanguage'  => 'ნინა:',
 
 'grouppage-sysop' => '{{ns:project}}:ადმინისტრატორეფ',
 

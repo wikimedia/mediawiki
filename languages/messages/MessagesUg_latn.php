@@ -81,10 +81,6 @@ $messages = array(
 'logout'             => 'Chiqish',
 'userlogout'         => 'Chikish',
 'gotaccountlink'     => 'Kirish',
-'youremail'          => 'Élxet:',
-'username'           => 'Ishletkuqi ismi:',
-'yourlanguage'       => 'Til:',
-'email'              => 'Élxet:',
 'loginlanguagelabel' => 'Til: $1',
 
 # Edit pages
@@ -106,6 +102,10 @@ $messages = array(
 'searchresultshead'     => 'Izdash',
 'timezoneregion-asia'   => 'Asiya',
 'timezoneregion-europe' => 'Yawropa',
+'youremail'             => 'Élxet:',
+'username'              => 'Ishletkuqi ismi:',
+'yourlanguage'          => 'Til:',
+'email'                 => 'Élxet:',
 
 # Recent changes
 'recentchanges' => 'Yengi Uzgurush',

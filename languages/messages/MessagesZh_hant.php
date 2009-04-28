@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -545,34 +545,7 @@ $2',
 'createaccountmail'          => '通過e-Mail',
 'badretype'                  => '您所輸入的密碼並不相同。',
 'userexists'                 => '您所輸入的用戶名稱已經存在，請另選一個名稱。',
-'youremail'                  => '電子郵件:',
-'username'                   => '用戶名:',
-'uid'                        => '用戶ID:',
-'prefs-memberingroups'       => '{{PLURAL:$1|一|多}}組的成員:',
-'prefs-registration'         => '註冊時間:',
-'yourrealname'               => '真實姓名:',
-'yourlanguage'               => '介面語言:',
-'yourvariant'                => '字體變換:',
-'yournick'                   => '簽名:',
-'badsig'                     => '錯誤的原始簽名。檢查一下HTML標籤。',
-'badsiglength'               => '您的簽名過長。
-它的長度不可超過$1個字元。',
-'yourgender'                 => '性別:',
-'gender-unknown'             => '未指定',
-'gender-male'                => '男',
-'gender-female'              => '女',
-'prefs-help-gender'          => '可選: 用以軟件中的性別指定。此項資料將會被公開。',
-'email'                      => '電子郵件',
-'prefs-help-realname'        => '真實姓名是可選的。
-如果您選擇提供它，那它便用以對您的貢獻署名。',
 'loginerror'                 => '登入錯誤',
-'prefs-help-email'           => '電子郵件是可選的，但當您忘記您的個密碼時可以將新密碼寄回給您。您亦可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
-'prefs-help-email-required'  => '需要電子郵件地址。',
-'prefs-info'                 => '基本資料',
-'prefs-i18n'                 => '國際化',
-'prefs-signature'            => '簽名',
-
-## User login
 'nocookiesnew'               => '已成功創建新賬戶！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin'             => '本站利用 Cookies 進行用戶登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
 'noname'                     => '你沒有輸入一個有效的用戶名。',
@@ -1163,6 +1136,31 @@ $2',
 'prefs-reset-intro'         => '您可以利用這個頁面去重設您的參數設置到網站預設值。這個動作無法復原。',
 'prefs-emailconfirm-label'  => '電子郵件確認：',
 'prefs-textboxsize'         => '編輯框大小',
+'youremail'                 => '電子郵件:',
+'username'                  => '用戶名:',
+'uid'                       => '用戶ID:',
+'prefs-memberingroups'      => '{{PLURAL:$1|一|多}}組的成員:',
+'prefs-registration'        => '註冊時間:',
+'yourrealname'              => '真實姓名:',
+'yourlanguage'              => '介面語言:',
+'yourvariant'               => '字體變換:',
+'yournick'                  => '簽名:',
+'badsig'                    => '錯誤的原始簽名。檢查一下HTML標籤。',
+'badsiglength'              => '您的簽名過長。
+它的長度不可超過$1個字元。',
+'yourgender'                => '性別:',
+'gender-unknown'            => '未指定',
+'gender-male'               => '男',
+'gender-female'             => '女',
+'prefs-help-gender'         => '可選: 用以軟件中的性別指定。此項資料將會被公開。',
+'email'                     => '電子郵件',
+'prefs-help-realname'       => '真實姓名是可選的。
+如果您選擇提供它，那它便用以對您的貢獻署名。',
+'prefs-help-email'          => '電子郵件是可選的，但當您忘記您的個密碼時可以將新密碼寄回給您。您亦可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
+'prefs-help-email-required' => '需要電子郵件地址。',
+'prefs-info'                => '基本資料',
+'prefs-i18n'                => '國際化',
+'prefs-signature'           => '簽名',
 
 # User rights
 'userrights'                  => '用戶權限管理',
@@ -3087,16 +3085,5 @@ $1',
 'htmlform-submit'              => '遞交',
 'htmlform-reset'               => '復原更改',
 'htmlform-selectorother-other' => '其它',
-
-# Special:CreatePage
-'createpage'              => '創建新頁面',
-'createpage-submitbutton' => '遞交',
-'createpage-instructions' => '請輸入您想創建頁面的標題：',
-'createpage-entertitle'   => '請輸入您的頁面標題。',
-'createpage-titleexists'  => '以標題[[$1]]之頁面已經存在。
-您是否想去編輯現有之頁面？',
-'createpage-tryagain'     => '否。我想用一個不同的標題創建一個新頁面。',
-'createpage-editexisting' => '是。我想去貢獻現有之頁面。',
-'createpage-badtitle'     => '「$1」不可以用作頁面標題',
 
 );

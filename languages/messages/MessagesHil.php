@@ -149,9 +149,6 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'nologinlink'             => 'Maghimo account',
 'createaccount'           => 'Maghimo Account',
 'gotaccountlink'          => 'Mag sulod',
-'youremail'               => 'E-mail:',
-'username'                => 'Ngalan sang Manog-gamit:',
-'email'                   => 'E-mail',
 
 # Edit pages
 'summary'            => 'Kabilogan:',
@@ -184,6 +181,9 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'skin-preview'      => 'Ipakita subong',
 'prefs-rc'          => 'Mga Bag-o nga Inislan',
 'searchresultshead' => 'Pangita-a',
+'youremail'         => 'E-mail:',
+'username'          => 'Ngalan sang Manog-gamit:',
+'email'             => 'E-mail',
 
 # Recent changes
 'recentchanges' => 'Mga Bag-o nga Inislan',

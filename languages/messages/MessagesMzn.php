@@ -71,9 +71,6 @@ $2، $1',
 'notloggedin'       => 'سیستم ره دله نی یه موئین',
 'createaccount'     => 'ترنه حساب وا هکاردن',
 'createaccountmail' => 'Email ره همرا',
-'youremail'         => 'شه مه Email *',
-'yourrealname'      => 'شیمه راستین ره نوم :',
-'yourlanguage'      => 'زیوون:',
 'nouserspecified'   => 'شما ونه اتا کارور نوم هادی.',
 
 # Edit pages
@@ -86,6 +83,9 @@ $2، $1',
 
 # Preferences page
 'prefsnologin' => 'سیستم ره ديله نی یه مویین',
+'youremail'    => 'شه مه Email *',
+'yourrealname' => 'شیمه راستین ره نوم :',
+'yourlanguage' => 'زیوون:',
 
 # User rights
 'userrights-user-editname' => 'کارور نوم ره بنویش هاکنین',

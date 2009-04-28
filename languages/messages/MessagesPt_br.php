@@ -571,28 +571,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'badretype'                  => 'As senhas que você digitou não são iguais.',
 'userexists'                 => 'O nome de usuário que você digitou já existe.
 Por favor, escolha um nome diferente.',
-'youremail'                  => 'Seu e-mail:',
-'username'                   => 'Nome de usuário:',
-'uid'                        => 'Número de identificação:',
-'prefs-memberingroups'       => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
-'prefs-registration'         => 'Hora de registro:',
-'yourrealname'               => 'Nome verdadeiro:',
-'yourlanguage'               => 'Idioma:',
-'yourvariant'                => 'Variante',
-'yournick'                   => 'Assinatura:',
-'badsig'                     => 'Assinatura inválida; verifique o código HTML utilizado.',
-'badsiglength'               => 'A sua assinatura é muito longa.
-Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
-'yourgender'                 => 'Sexo:',
-'gender-unknown'             => 'Não especificado',
-'gender-male'                => 'Masculino',
-'gender-female'              => 'Feminino',
-'prefs-help-gender'          => 'Opcional: usado para endereçamento correto pelo software baseado no sexo. Esta informação será pública.',
-'email'                      => 'E-mail',
-'prefs-help-realname'        => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'                 => 'Erro de autenticação',
-'prefs-help-email'           => "O fornecimento de um endereço de ''e-mail'' é opcional, mas permite que uma nova senha lhe seja enviada caso você esqueça sua senha. Você pode ainda preferir deixar que os usuários entrem em contato consigo através de sua página de usuário ou discussão sem ter de revelar sua identidade.",
-'prefs-help-email-required'  => 'O endereço de e-mail é requerido.',
 'nocookiesnew'               => "A conta do usuário foi criada, mas você não foi autenticado.
 {{SITENAME}} utiliza ''cookies'' para autenticar os usuários.
 Você tem os ''cookies'' desativados no seu navegador.
@@ -1190,6 +1169,27 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'prefs-files'               => 'Arquivos',
 'prefs-custom-css'          => 'CSS personalizada',
 'prefs-custom-js'           => 'JS personalizado',
+'youremail'                 => 'Seu e-mail:',
+'username'                  => 'Nome de usuário:',
+'uid'                       => 'Número de identificação:',
+'prefs-memberingroups'      => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
+'prefs-registration'        => 'Hora de registro:',
+'yourrealname'              => 'Nome verdadeiro:',
+'yourlanguage'              => 'Idioma:',
+'yourvariant'               => 'Variante',
+'yournick'                  => 'Assinatura:',
+'badsig'                    => 'Assinatura inválida; verifique o código HTML utilizado.',
+'badsiglength'              => 'A sua assinatura é muito longa.
+Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
+'yourgender'                => 'Sexo:',
+'gender-unknown'            => 'Não especificado',
+'gender-male'               => 'Masculino',
+'gender-female'             => 'Feminino',
+'prefs-help-gender'         => 'Opcional: usado para endereçamento correto pelo software baseado no sexo. Esta informação será pública.',
+'email'                     => 'E-mail',
+'prefs-help-realname'       => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
+'prefs-help-email'          => "O fornecimento de um endereço de ''e-mail'' é opcional, mas permite que uma nova senha lhe seja enviada caso você esqueça sua senha. Você pode ainda preferir deixar que os usuários entrem em contato consigo através de sua página de usuário ou discussão sem ter de revelar sua identidade.",
+'prefs-help-email-required' => 'O endereço de e-mail é requerido.',
 
 # User rights
 'userrights'                  => 'Gestão de privilégios de usuários',
@@ -3064,15 +3064,5 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'dberr-usegoogle'   => 'Você pode tentar pesquisar no Google entretanto.',
 'dberr-outofdate'   => 'Note que os seus índices relativos ao nosso conteúdo podem estar desatualizados.',
 'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não ser atual.',
-
-# Special:CreatePage
-'createpage'              => 'Criar uma página',
-'createpage-submitbutton' => 'Criar',
-'createpage-instructions' => 'Digite o título da página que você gostaria de criar:',
-'createpage-entertitle'   => 'Digite um título para sua página.',
-'createpage-titleexists'  => 'Uma página com o título, [[$1]], já existe. Você gostaria de editar a página existente?',
-'createpage-tryagain'     => 'Não - Eu quero criar uma nova página com outro título.',
-'createpage-editexisting' => 'Sim - Eu quero editar a página existente.',
-'createpage-badtitle'     => '"$1" não pode ser usado como título de página',
 
 );

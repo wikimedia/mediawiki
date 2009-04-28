@@ -101,8 +101,6 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 'userlogout'         => 'Tswala',
 'notloggedin'        => 'Ga o a ikwadisa',
 'createaccount'      => 'Ipulela tsebe',
-'youremail'          => 'E-mail:',
-'username'           => 'Leina la modirisi:',
 
 # Edit pages
 'summary'            => 'Tshoboko:',
@@ -119,6 +117,8 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 
 # Preferences page
 'mypreferences' => 'Dikgatlhegelo tsa me',
+'youremail'     => 'E-mail:',
+'username'      => 'Leina la modirisi:',
 
 # Recent changes
 'recentchanges' => 'Diphetogo tsa sešeng',

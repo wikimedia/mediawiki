@@ -432,95 +432,74 @@ Sü om "\'\'$2\'\'".',
 'virus-unknownscanner' => 'tundmatoi antivirus:',
 
 # Login and logout pages
-'logouttext'                => "'''Tö olet lähtnuded sistemaspäi.'''
+'logouttext'              => "'''Tö olet lähtnuded sistemaspäi.'''
 
 Sab jatkta rad {{SITENAME}}-saital anonimižikš, vai [[Special:UserLogin|kirjutagatoiš udes]] sil-žo vai toižel kävutajan nimel.
 Otkat sil'mnägubale, miše erasid lehtpolid ozutaškatas mugažo, kut i edel teiden lähtendad sistemaspäi. Miše vajehtada niiden nägu, puhtastagat teiden kaclimen keš.",
-'welcomecreation'           => '== Tulgat tervhen, $1! ==
+'welcomecreation'         => '== Tulgat tervhen, $1! ==
 Teiden registracii om loptud.
 Algat unohtagoi [[Special:Preferences|järgeta personaližikš]] sait.',
-'yourname'                  => 'Kävutajan nimi:',
-'yourpassword'              => 'Peitsana:',
-'yourpasswordagain'         => 'Kirjutagat peitsana udes:',
-'remembermypassword'        => 'Panda muštho minun tulendandmused neciš kompjuteras',
-'yourdomainname'            => 'Teiden domen:',
-'externaldberror'           => 'Ozaižihe petuz autentifikacijan, kudamb tehtihe andmusiden irdbazan turbiš, aigan, vai teile ei ulotu oiktusid toižetada ičetoi irdregistracijad.',
-'login'                     => 'Kirjutadas sistemha',
-'nav-login-createaccount'   => 'Kirjutadas / Sada registracii',
-'loginprompt'               => 'Pidab laskta sada "cookies", miše kirjutadas {{SITENAME}}he.',
-'userlogin'                 => 'Kirjutadas / Sada registracii',
-'logout'                    => 'Lähtta',
-'userlogout'                => 'Lähtta',
-'notloggedin'               => 'Tö et olgoi kirjutanus sistemha',
-'nologin'                   => 'Ku tö et völ olgoi sanuded registracijad, $1.',
-'nologinlink'               => 'Sada registracii',
-'createaccount'             => 'Sada registracii',
-'gotaccount'                => 'Ku teil om jo registracii, $1.',
-'gotaccountlink'            => 'Kirjutagatoiš sistemha',
-'createaccountmail'         => 'e-počtaiči',
-'badretype'                 => 'Teil kirjutadud peitsanad ei kožugoi toine toižhe.',
-'userexists'                => 'Kirjutadud kävutajan nimi om jo rezerviruidud.
+'yourname'                => 'Kävutajan nimi:',
+'yourpassword'            => 'Peitsana:',
+'yourpasswordagain'       => 'Kirjutagat peitsana udes:',
+'remembermypassword'      => 'Panda muštho minun tulendandmused neciš kompjuteras',
+'yourdomainname'          => 'Teiden domen:',
+'externaldberror'         => 'Ozaižihe petuz autentifikacijan, kudamb tehtihe andmusiden irdbazan turbiš, aigan, vai teile ei ulotu oiktusid toižetada ičetoi irdregistracijad.',
+'login'                   => 'Kirjutadas sistemha',
+'nav-login-createaccount' => 'Kirjutadas / Sada registracii',
+'loginprompt'             => 'Pidab laskta sada "cookies", miše kirjutadas {{SITENAME}}he.',
+'userlogin'               => 'Kirjutadas / Sada registracii',
+'logout'                  => 'Lähtta',
+'userlogout'              => 'Lähtta',
+'notloggedin'             => 'Tö et olgoi kirjutanus sistemha',
+'nologin'                 => 'Ku tö et völ olgoi sanuded registracijad, $1.',
+'nologinlink'             => 'Sada registracii',
+'createaccount'           => 'Sada registracii',
+'gotaccount'              => 'Ku teil om jo registracii, $1.',
+'gotaccountlink'          => 'Kirjutagatoiš sistemha',
+'createaccountmail'       => 'e-počtaiči',
+'badretype'               => 'Teil kirjutadud peitsanad ei kožugoi toine toižhe.',
+'userexists'              => 'Kirjutadud kävutajan nimi om jo rezerviruidud.
 Olgat hüväd, valikat toine kävutajan nimi.',
-'youremail'                 => 'E-počt:',
-'username'                  => 'Kävutajan nimi:',
-'uid'                       => 'Kävutajan nomer:',
-'prefs-memberingroups'      => '{{PLURAL:$1|Gruppan|Gruppiden}} ühtnii:',
-'yourrealname'              => 'Todesine nimi:',
-'yourlanguage'              => "Kel':",
-'yourvariant'               => 'Kelenvariant:',
-'yournick'                  => 'Allekirjutez:',
-'badsig'                    => 'Vär allekirjutez.
-Kodvgat HTML-tegad.',
-'badsiglength'              => "Pit'kähk allekirjutez.
-Pidab tehta se $1 {{PLURAL:$1|simvolaspäi|simvoloišpäi}}.",
-'yourgender'                => 'Sugu:',
-'gender-unknown'            => 'Ei ole ozutadud',
-'gender-male'               => 'Mez’',
-'gender-female'             => 'Naine',
-'prefs-help-gender'         => 'Opcionaline: kävutadas likutimen erasiš tedotusiš, miše ozutada kävutajan sugu oikti. Nece informacii om avoin.',
-'email'                     => 'E-počt',
-'prefs-help-realname'       => 'Todesine nimi om opcionaline.
-Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.',
-'loginerror'                => 'Sistemha tulendan peituz.',
-'prefs-help-email-required' => 'Pidab kirjutada teiden e-počtan adres.',
-'nocookieslogin'            => '{{SITENAME}}-sait kävutab "cookie"-failad, miše tundištada kävutajid.
+'loginerror'              => 'Sistemha tulendan peituz.',
+'nocookieslogin'          => '{{SITENAME}}-sait kävutab "cookie"-failad, miše tundištada kävutajid.
 Tö olet saupnuded "cookie"-failad.
 Otkat ned kävutamižhe i toštkat teiden tegend.',
-'noname'                    => 'Tö ei olgoi kirjutanuded lasktud kävutajan nimed.',
-'loginsuccesstitle'         => 'Tulend sistemha om lopnus satusekahas.',
-'loginsuccess'              => "'''Tö radat nügüd' {{SITENAME}}-saital kut \"\$1\".'''",
-'nosuchuser'                => 'Ei ole kävutajad "$1"-nimenke.
+'noname'                  => 'Tö ei olgoi kirjutanuded lasktud kävutajan nimed.',
+'loginsuccesstitle'       => 'Tulend sistemha om lopnus satusekahas.',
+'loginsuccess'            => "'''Tö radat nügüd' {{SITENAME}}-saital kut \"\$1\".'''",
+'nosuchuser'              => 'Ei ole kävutajad "$1"-nimenke.
 Kävutajan nimiden oigedkirjutamine rippub kirjamiden registraspäi.
 Kodvgat teiden oigedkirjutamine, vai [[Special:UserLogin/signup|säkat uz\' registracii]].',
-'nosuchusershort'           => 'Ei ole kävutajad "<nowiki>$1</nowiki>"-nimenke.
+'nosuchusershort'         => 'Ei ole kävutajad "<nowiki>$1</nowiki>"-nimenke.
 Kodvgat teiden oigedkirjutamine.',
-'nouserspecified'           => 'Pidab kirjutada kävutajan nimi.',
-'wrongpassword'             => 'Peitsana om vär.
+'nouserspecified'         => 'Pidab kirjutada kävutajan nimi.',
+'wrongpassword'           => 'Peitsana om vär.
 Kirjutagat se völ kerdan.',
-'wrongpasswordempty'        => "Nece peitsana om pall'az.
+'wrongpasswordempty'      => "Nece peitsana om pall'az.
 Kirjutagat toine peitsana.",
-'passwordtooshort'          => 'Teiden peitsana om vär vai lühüdahk.
+'passwordtooshort'        => 'Teiden peitsana om vär vai lühüdahk.
 Sille pidab mülütada {{PLURAL:$1|1 znam|$1 znamad}} i erineda teiden kävutajan nimelpäi.',
-'mailmypassword'            => "Oigeta minei uz' peitsana e-počtadme",
-'passwordremindertitle'     => "Uz' pordaigaline peitsana {{SITENAME}}-saitan täht",
-'noemail'                   => '"$1"-kävutai ei ole andnu ičeze e-počtan adresad.',
-'passwordsent'              => "Uz' peitsana om oigetud $1-kävutajan e-počtan adresale.
+'mailmypassword'          => "Oigeta minei uz' peitsana e-počtadme",
+'passwordremindertitle'   => "Uz' pordaigaline peitsana {{SITENAME}}-saitan täht",
+'noemail'                 => '"$1"-kävutai ei ole andnu ičeze e-počtan adresad.',
+'passwordsent'            => "Uz' peitsana om oigetud $1-kävutajan e-počtan adresale.
 Olgat hüväd, kirjutagatoiš sistemha, konz sat sen.",
-'blocked-mailpassword'      => "Redaktiruind teiden IP-adresalpäi om kel'tud, peitsanan udištandan funkcii om mugažo blokiruidud, miše kaitas abidoičendaspäi.",
-'eauthentsent'              => 'Vahvištoituzkirjeine om oigetud teiden adresale. Kirjeižes om mugažo kirjutadud, midä pidab tehta, miše vahvištoitta teiden registracijad.',
-'mailerror'                 => 'E-počtan oigendamižen petuz: $1',
-'emailauthenticated'        => 'Teiden e-počtan adres vahvištoittihe datal $2 aigal $3.',
-'emailnotauthenticated'     => 'Teiden e-počtan adres ei ole völ vahvištoittud.
+'blocked-mailpassword'    => "Redaktiruind teiden IP-adresalpäi om kel'tud, peitsanan udištandan funkcii om mugažo blokiruidud, miše kaitas abidoičendaspäi.",
+'eauthentsent'            => 'Vahvištoituzkirjeine om oigetud teiden adresale. Kirjeižes om mugažo kirjutadud, midä pidab tehta, miše vahvištoitta teiden registracijad.',
+'mailerror'               => 'E-počtan oigendamižen petuz: $1',
+'emailauthenticated'      => 'Teiden e-počtan adres vahvištoittihe datal $2 aigal $3.',
+'emailnotauthenticated'   => 'Teiden e-počtan adres ei ole völ vahvištoittud.
 Wiki-likutimen počtfunkcijad ei olgoi kävutamas.',
-'noemailprefs'              => 'Kirjutagat e-počtan adres teiden järgendusihe, miše se oliži kävutamas.',
-'emailconfirmlink'          => 'Vahvištoitkat teiden e-počtan adres',
-'invalidemailaddress'       => 'Ningomal e-počtan adresal om vär format. Olgat hüväd, kirjutagat e-počtan adres oiktas formatas vai puhtastagat e-počtan pöud.',
-'accountcreated'            => 'Registracii om OK',
-'accountcreatedtext'        => 'Registracii $1-kävutajan täht om sätud.',
-'createaccount-title'       => '{{SITENAME}}: registracijan sädand.',
-'login-throttled'           => 'Tö olet tehnu äjahkon naprindoid kirjutada peitsana necen kävutajan nimen täht.
+'noemailprefs'            => 'Kirjutagat e-počtan adres teiden järgendusihe, miše se oliži kävutamas.',
+'emailconfirmlink'        => 'Vahvištoitkat teiden e-počtan adres',
+'invalidemailaddress'     => 'Ningomal e-počtan adresal om vär format. Olgat hüväd, kirjutagat e-počtan adres oiktas formatas vai puhtastagat e-počtan pöud.',
+'accountcreated'          => 'Registracii om OK',
+'accountcreatedtext'      => 'Registracii $1-kävutajan täht om sätud.',
+'createaccount-title'     => '{{SITENAME}}: registracijan sädand.',
+'login-throttled'         => 'Tö olet tehnu äjahkon naprindoid kirjutada peitsana necen kävutajan nimen täht.
 Olgat hüväd, varastagat pordon aigad edel ut naprindad.',
-'loginlanguagelabel'        => 'Kel’: $1',
+'loginlanguagelabel'      => 'Kel’: $1',
 
 # Password reset dialog
 'resetpass'                 => 'Vajehtada peitsana',
@@ -1022,6 +1001,27 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'prefs-files'               => 'Failad',
 'prefs-custom-css'          => 'Ičeze CSS',
 'prefs-custom-js'           => 'Ičeze JS',
+'youremail'                 => 'E-počt:',
+'username'                  => 'Kävutajan nimi:',
+'uid'                       => 'Kävutajan nomer:',
+'prefs-memberingroups'      => '{{PLURAL:$1|Gruppan|Gruppiden}} ühtnii:',
+'yourrealname'              => 'Todesine nimi:',
+'yourlanguage'              => "Kel':",
+'yourvariant'               => 'Kelenvariant:',
+'yournick'                  => 'Allekirjutez:',
+'badsig'                    => 'Vär allekirjutez.
+Kodvgat HTML-tegad.',
+'badsiglength'              => "Pit'kähk allekirjutez.
+Pidab tehta se $1 {{PLURAL:$1|simvolaspäi|simvoloišpäi}}.",
+'yourgender'                => 'Sugu:',
+'gender-unknown'            => 'Ei ole ozutadud',
+'gender-male'               => 'Mez’',
+'gender-female'             => 'Naine',
+'prefs-help-gender'         => 'Opcionaline: kävutadas likutimen erasiš tedotusiš, miše ozutada kävutajan sugu oikti. Nece informacii om avoin.',
+'email'                     => 'E-počt',
+'prefs-help-realname'       => 'Todesine nimi om opcionaline.
+Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.',
+'prefs-help-email-required' => 'Pidab kirjutada teiden e-počtan adres.',
 
 # User rights
 'userrights'                     => 'Kävutajiden oiktusiden ohjandamine',
@@ -2654,9 +2654,5 @@ Kävutagat normaline ezikacund.',
 'dberr-usegoogle'   => "Täl aigal tö voit ectä Google'an abul.",
 'dberr-outofdate'   => "Google'an indeks voib olda vanhtunuden.",
 'dberr-cachederror' => 'Naku om ectud lehtpolen keširuidud versii. Voib olda, siš ei ole tantoižid toižetusid.',
-
-# Special:CreatePage
-'createpage'              => "Säta lehtpol'",
-'createpage-submitbutton' => 'Oigeta',
 
 );

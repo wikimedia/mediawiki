@@ -609,31 +609,7 @@ Tài khoản của bạn đã mở.
 'badretype'                  => 'Hai mật khẩu không khớp.',
 'userexists'                 => 'Tên người dùng này đã có người lấy.
 Hãy chọn một tên khác.',
-'youremail'                  => 'Thư điện tử:',
-'username'                   => 'Tên người dùng:',
-'uid'                        => 'Số thứ tự thành viên:',
-'prefs-memberingroups'       => 'Thành viên của {{PLURAL:$1|nhóm|nhóm}}:',
-'prefs-registration'         => 'Thời điểm đăng ký:',
-'yourrealname'               => 'Tên thật:',
-'yourlanguage'               => 'Ngôn ngữ:',
-'yourvariant'                => 'Ngôn ngữ địa phương:',
-'yournick'                   => 'Chữ ký:',
-'badsig'                     => 'Chữ ký không hợp lệ; hãy kiểm tra thẻ HTML.',
-'badsiglength'               => 'Chữ ký của bạn quá dài.
-Nó không được dài quá $1 {{PLURAL:$1|ký tự|ký tự}}.',
-'yourgender'                 => 'Giới tính:',
-'gender-unknown'             => 'Không chỉ rõ',
-'gender-male'                => 'Nam',
-'gender-female'              => 'Nữ',
-'prefs-help-gender'          => 'Tùy chọn: được phần mềm sử dụng để xác định đúng giới tính.
-Thông tin này là công khai.',
-'email'                      => 'Thư điện tử',
-'prefs-help-realname'        => 'Tên thật là không bắt buộc.
-Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao của bạn.',
 'loginerror'                 => 'Lỗi đăng nhập',
-'prefs-help-email'           => 'Địa chỉ thư điện tử là tùy chọn, nhưng nó giúp chúng tôi gửi cho bạn mật khẩu mới qua thư điện tử nếu bạn quên mật khẩu của mình.
-Bạn cũng có thể lựa chọn cho phép người khác liên lạc với bạn thông qua trang thành_viên hoặc thảo_luận_thành_viên mà không cần để lộ danh tính.',
-'prefs-help-email-required'  => 'Bắt buộc phải có địa chỉ e-mail.',
 'nocookiesnew'               => 'Tài khoản đã mở, nhưng bạn chưa đăng nhập. {{SITENAME}} sử dụng cookie để đăng nhập vào tài khoản. Bạn đã tắt cookie. Xin hãy kích hoạt nó, rồi đăng nhập lại với tên người dùng và mật khẩu mới.',
 'nocookieslogin'             => '{{SITENAME}} sử dụng cookie để đăng nhập thành viên. Bạn đã tắt cookie. Xin hãy kích hoạt rồi thử lại.',
 'noname'                     => 'Chưa nhập tên.',
@@ -1225,6 +1201,31 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'prefs-custom-js'           => 'sửa JS',
 'prefs-reset-intro'         => 'Có thể mặc định lại toàn bộ tùy chọn dùng trang này.
 Không có thể lùi lại tác động này.',
+'prefs-emailconfirm-label'  => 'Xác nhận thư điện tử:',
+'youremail'                 => 'Thư điện tử:',
+'username'                  => 'Tên người dùng:',
+'uid'                       => 'Số thứ tự thành viên:',
+'prefs-memberingroups'      => 'Thành viên của {{PLURAL:$1|nhóm|nhóm}}:',
+'prefs-registration'        => 'Thời điểm đăng ký:',
+'yourrealname'              => 'Tên thật:',
+'yourlanguage'              => 'Ngôn ngữ:',
+'yourvariant'               => 'Ngôn ngữ địa phương:',
+'yournick'                  => 'Chữ ký:',
+'badsig'                    => 'Chữ ký không hợp lệ; hãy kiểm tra thẻ HTML.',
+'badsiglength'              => 'Chữ ký của bạn quá dài.
+Nó không được dài quá $1 {{PLURAL:$1|ký tự|ký tự}}.',
+'yourgender'                => 'Giới tính:',
+'gender-unknown'            => 'Không chỉ rõ',
+'gender-male'               => 'Nam',
+'gender-female'             => 'Nữ',
+'prefs-help-gender'         => 'Tùy chọn: được phần mềm sử dụng để xác định đúng giới tính.
+Thông tin này là công khai.',
+'email'                     => 'Thư điện tử',
+'prefs-help-realname'       => 'Tên thật là không bắt buộc.
+Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao của bạn.',
+'prefs-help-email'          => 'Địa chỉ thư điện tử là tùy chọn, nhưng nó giúp chúng tôi gửi cho bạn mật khẩu mới qua thư điện tử nếu bạn quên mật khẩu của mình.
+Bạn cũng có thể lựa chọn cho phép người khác liên lạc với bạn thông qua trang thành_viên hoặc thảo_luận_thành_viên mà không cần để lộ danh tính.',
+'prefs-help-email-required' => 'Bắt buộc phải có địa chỉ e-mail.',
 
 # User rights
 'userrights'                  => 'Quản lý quyền thành viên',
@@ -3210,16 +3211,5 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
 'htmlform-submit'              => 'Đăng',
 'htmlform-reset'               => 'Hủy các thay đổi',
 'htmlform-selectorother-other' => 'Khác',
-
-# Special:CreatePage
-'createpage'              => 'Tạo trang',
-'createpage-submitbutton' => 'Lưu trang',
-'createpage-instructions' => 'Nhập vào tựa đề của trang bạn muốn tạo:',
-'createpage-entertitle'   => 'Xin nhập vào tựa đề cho trang.',
-'createpage-titleexists'  => 'Đã tồn tại một trang có tựa đề [[$1]].
-Bạn có muốn sửa đổi trang hiện có?',
-'createpage-tryagain'     => 'Không. Tôi muốn tạo một trang khác với tựa đề khác.',
-'createpage-editexisting' => 'Có. Tôi muốn đóng góp vào trang hiện tại.',
-'createpage-badtitle'     => 'Không được dùng “$1” làm tựa đề trang',
 
 );

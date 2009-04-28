@@ -244,11 +244,6 @@ $messages = array(
 'gotaccount'              => 'Мѣсто ти ѥстъ ли? $1.',
 'gotaccountlink'          => 'Въниди',
 'userexists'              => 'сѫщє по́льꙃєватєлꙗ и́мѧ пьса ⁙ ино иꙁобрѧщи',
-'username'                => 'по́льꙃєватєлꙗ и́мѧ :',
-'uid'                     => 'по́льꙃєватєлꙗ число́ :',
-'yourrealname'            => 'и́стиньно и́мѧ :',
-'yourlanguage'            => 'ѩꙁꙑ́къ :',
-'yournick'                => 'аѵто́графъ :',
 'loginerror'              => 'Въхода блазна',
 'accountcreated'          => 'мѣ́сто сътворєно́ ѥ́стъ',
 'loginlanguagelabel'      => 'ѩꙁꙑ́къ : $1',
@@ -307,6 +302,11 @@ $messages = array(
 'searchresultshead'   => 'иска́ниѥ',
 'prefs-searchoptions' => 'иска́ниꙗ строи́',
 'prefs-files'         => 'дѣла́',
+'username'            => 'по́льꙃєватєлꙗ и́мѧ :',
+'uid'                 => 'по́льꙃєватєлꙗ число́ :',
+'yourrealname'        => 'и́стиньно и́мѧ :',
+'yourlanguage'        => 'ѩꙁꙑ́къ :',
+'yournick'            => 'аѵто́графъ :',
 
 # Groups
 'group-user'       => 'по́льꙃєватєлє',

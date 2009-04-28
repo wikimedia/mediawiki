@@ -528,23 +528,7 @@ Akkauntın'ız jaratıldı.
 'createaccountmail'          => 'e-mail arqalı',
 'badretype'                  => 'Siz kiritken parol tuwra kelmedi.',
 'userexists'                 => "Kiritken paydalanıwshı atı ba'nt. Basqa at kiritin'.",
-'youremail'                  => 'E-mail:',
-'username'                   => 'Paydalanıwshı atı:',
-'uid'                        => 'Paydalanıwshı IDsı:',
-'prefs-memberingroups'       => "Kirgen {{PLURAL:$1|toparın'ız|toparların'ız}}:",
-'yourrealname'               => "Haqıyqıy isimin'iz:",
-'yourlanguage'               => 'Til:',
-'yourvariant'                => "Tu'ri",
-'yournick'                   => "Laqabın'ız:",
-'badsig'                     => "Shala imzalar nadurıs; HTML teglerin tekserip ko'rin'.",
-'badsiglength'               => "İmzan'ız dım uzın. 
-{{PLURAL:$1|simvoldan|simvoldan}} aspawı kerek.",
-'email'                      => 'E-mail',
-'prefs-help-realname'        => "Haqıyqıy atın'ız (ma'jbu'riy emes): eger onı ko'rsetsen'iz, bet kim ta'repinen o'zgertilgenin ko'rsetiwde qollanıladı.",
 'loginerror'                 => 'Kiriwde qatelik',
-'prefs-help-email'           => "E-mail adresin'izdi ko'rsetiw ma'jbu'riy emes, biraq bul eger siz parolin'izdi esten shig'arsan'iz usı e-mailge taza paroldi jiberiw mu'mkinshiligin jaratadı.
-Siz ja'ne de basqa paydalanıwshılarg'a siz benen (adresin'izdi bilmegen halda) paydalanıwshı yamasa paydalanıwshı_sa'wbeti betleri arqalı baylanısıw imkaniyatın jaratadı.",
-'prefs-help-email-required'  => 'E-mail adresi kerek.',
 'nocookiesnew'               => "Paydalanıwshı akkauntı jaratıldı, biraq ele kirmegensiz.
 Paydalanıwshılar kiriwi ushın {{SITENAME}} kukilerden paydalanadı.
 Sizde kukiler o'shirilgen.
@@ -1007,6 +991,22 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'defaultns'                 => "Usı isimler ko'pliklerinen defolt boyınsha izdew:",
 'default'                   => 'defolt',
 'prefs-files'               => 'Fayllar',
+'youremail'                 => 'E-mail:',
+'username'                  => 'Paydalanıwshı atı:',
+'uid'                       => 'Paydalanıwshı IDsı:',
+'prefs-memberingroups'      => "Kirgen {{PLURAL:$1|toparın'ız|toparların'ız}}:",
+'yourrealname'              => "Haqıyqıy isimin'iz:",
+'yourlanguage'              => 'Til:',
+'yourvariant'               => "Tu'ri",
+'yournick'                  => "Laqabın'ız:",
+'badsig'                    => "Shala imzalar nadurıs; HTML teglerin tekserip ko'rin'.",
+'badsiglength'              => "İmzan'ız dım uzın. 
+{{PLURAL:$1|simvoldan|simvoldan}} aspawı kerek.",
+'email'                     => 'E-mail',
+'prefs-help-realname'       => "Haqıyqıy atın'ız (ma'jbu'riy emes): eger onı ko'rsetsen'iz, bet kim ta'repinen o'zgertilgenin ko'rsetiwde qollanıladı.",
+'prefs-help-email'          => "E-mail adresin'izdi ko'rsetiw ma'jbu'riy emes, biraq bul eger siz parolin'izdi esten shig'arsan'iz usı e-mailge taza paroldi jiberiw mu'mkinshiligin jaratadı.
+Siz ja'ne de basqa paydalanıwshılarg'a siz benen (adresin'izdi bilmegen halda) paydalanıwshı yamasa paydalanıwshı_sa'wbeti betleri arqalı baylanısıw imkaniyatın jaratadı.",
+'prefs-help-email-required' => 'E-mail adresi kerek.',
 
 # User rights
 'userrights'                  => 'Paydalanıwshı huqıqların basqarıw',

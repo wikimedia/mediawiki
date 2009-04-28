@@ -91,7 +91,6 @@ $messages = array(
 # Login and logout pages
 'logout'             => 'Basika',
 'userlogout'         => 'Basika',
-'yourlanguage'       => 'Ndinga:',
 'loginlanguagelabel' => 'Ndinga: $1',
 
 # History pages
@@ -109,6 +108,7 @@ $messages = array(
 
 # Preferences page
 'mypreferences' => 'Konte ya munu',
+'yourlanguage'  => 'Ndinga:',
 
 # Recent changes
 'recentchanges' => 'Bampaluka ya mpa',

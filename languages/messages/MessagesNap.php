@@ -237,8 +237,6 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'createaccount'              => 'Cria nu cunto nuovo',
 'gotaccount'                 => 'Tiene già nu cunto? $1.',
 'gotaccountlink'             => 'Tràse',
-'username'                   => 'Nomme utente',
-'yourlanguage'               => 'Lengua:',
 'loginerror'                 => "Probblema 'e accièsso",
 'loginsuccesstitle'          => 'Acciesso affettuato',
 'nosuchusershort'            => 'Nun ce stanno utente cu o nòmme "<nowiki>$1</nowiki>". Cuntrolla si scrivìste buòno.',
@@ -294,6 +292,8 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'prefs-watchlist'       => 'Asservate speciale',
 'columns'               => 'Culonne:',
 'timezoneregion-africa' => 'Afreca',
+'username'              => 'Nomme utente',
+'yourlanguage'          => 'Lengua:',
 
 # User rights log
 'rightsnone' => '(nisciuno)',

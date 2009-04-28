@@ -188,11 +188,6 @@ $messages = array(
 'gotaccount'              => 'Eus akont dhys seulabrys? $1.',
 'gotaccountlink'          => 'Rag omgelmi',
 'createaccountmail'       => 'dre e-bost',
-'youremail'               => 'E-bost:',
-'username'                => 'Hanow-usyer:',
-'yourlanguage'            => 'Yeth:',
-'yourgender'              => 'Reyth:',
-'email'                   => 'E-bost',
 'loginlanguagelabel'      => 'Yeth: $1',
 
 # Password reset dialog
@@ -271,6 +266,11 @@ $messages = array(
 'timezoneregion-australia' => 'Ostrali',
 'timezoneregion-europe'    => 'Europa',
 'prefs-files'              => 'Restrennow',
+'youremail'                => 'E-bost:',
+'username'                 => 'Hanow-usyer:',
+'yourlanguage'             => 'Yeth:',
+'yourgender'               => 'Reyth:',
+'email'                    => 'E-bost',
 
 # Groups
 'group-user'  => 'Devnydhyow',

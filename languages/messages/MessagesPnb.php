@@ -251,61 +251,52 @@ $messages = array(
 'virus-unknownscanner' => 'اندیکھا اینٹیوائرس:',
 
 # Login and logout pages
-'yourname'                  => 'ورتن والہ:',
-'yourpassword'              => 'کنجی:',
-'yourpasswordagain'         => 'کنجی دوبارہ لکھو:',
-'remembermypassword'        => 'اس کمپیوٹر تے میرا لاگن یاد رکھو',
-'yourdomainname'            => 'تواڈا علاقہ:',
-'login'                     => 'اندر آؤ جی',
-'nav-login-createaccount'   => 'اندر آؤ / کھاتہ کھولو',
-'loginprompt'               => 'اندر آنے آستے تواڈیاں کوکیز آن ہونیاں چائیدیاں نے {{SITENAME}}.',
-'userlogin'                 => 'اندر آؤ / کھاتہ کھولو',
-'logout'                    => 'لاگ توں باہر',
-'userlogout'                => 'باہر آؤ',
-'notloggedin'               => 'لاگ ان نئیں ہوۓ او',
-'nologin'                   => 'تواڈا کھاتہ نہیں اے؟ $1۔',
-'nologinlink'               => 'کھاتہ بناؤ',
-'createaccount'             => 'کھاتہ بناؤ',
-'gotaccount'                => 'تواڈا پہلے توں کھاتہ ہے؟ $1',
-'gotaccountlink'            => 'اندر آؤ',
-'createaccountmail'         => 'ای میل دے نال',
-'badretype'                 => 'تواڈی کنجی صحیح نئیں۔',
-'youremail'                 => 'ای میل:',
-'username'                  => 'ورتن آلے دا ناں:',
-'yourrealname'              => 'اصلی ناں:',
-'yourlanguage'              => 'بولی:',
-'yournick'                  => 'دسخط:',
-'email'                     => 'ای میل',
-'prefs-help-realname'       => 'اصل ناں تواڈی مرزی تے اے۔<br />
-اگر تسی اینو دے دیو گۓ تے اے تواڈا کم اس ناں نال لکھیا جاۓ گا۔',
-'loginerror'                => 'لاگ ان چ مسئلا اے',
-'prefs-help-email-required' => 'ای میل پتہ چائیدا اے۔',
-'noname'                    => 'تسی کوئی پکا ورتن آلا ناں نئیں رکھ رۓ۔',
-'loginsuccesstitle'         => 'تسی لاگن ہوگۓ او',
-'loginsuccess'              => "'''ہن تسی {{SITENAME}} تے \"\$1\" دے ناں توں لاگ ان او'''",
-'nosuchuser'                => 'اس $1 ناں نال کوئی ورتن آلا نہیں۔
+'yourname'                => 'ورتن والہ:',
+'yourpassword'            => 'کنجی:',
+'yourpasswordagain'       => 'کنجی دوبارہ لکھو:',
+'remembermypassword'      => 'اس کمپیوٹر تے میرا لاگن یاد رکھو',
+'yourdomainname'          => 'تواڈا علاقہ:',
+'login'                   => 'اندر آؤ جی',
+'nav-login-createaccount' => 'اندر آؤ / کھاتہ کھولو',
+'loginprompt'             => 'اندر آنے آستے تواڈیاں کوکیز آن ہونیاں چائیدیاں نے {{SITENAME}}.',
+'userlogin'               => 'اندر آؤ / کھاتہ کھولو',
+'logout'                  => 'لاگ توں باہر',
+'userlogout'              => 'باہر آؤ',
+'notloggedin'             => 'لاگ ان نئیں ہوۓ او',
+'nologin'                 => 'تواڈا کھاتہ نہیں اے؟ $1۔',
+'nologinlink'             => 'کھاتہ بناؤ',
+'createaccount'           => 'کھاتہ بناؤ',
+'gotaccount'              => 'تواڈا پہلے توں کھاتہ ہے؟ $1',
+'gotaccountlink'          => 'اندر آؤ',
+'createaccountmail'       => 'ای میل دے نال',
+'badretype'               => 'تواڈی کنجی صحیح نئیں۔',
+'loginerror'              => 'لاگ ان چ مسئلا اے',
+'noname'                  => 'تسی کوئی پکا ورتن آلا ناں نئیں رکھ رۓ۔',
+'loginsuccesstitle'       => 'تسی لاگن ہوگۓ او',
+'loginsuccess'            => "'''ہن تسی {{SITENAME}} تے \"\$1\" دے ناں توں لاگ ان او'''",
+'nosuchuser'              => 'اس $1 ناں نال کوئی ورتن آلا نہیں۔
 اپنی لکھائی درست کرو یا نیا [[Special:UserLogin/signup|کھاتہ بناؤ]]۔',
-'nosuchusershort'           => 'اس "<nowiki>$1</nowiki>" ناں دا کوئی ورتن آلا نہيں اے۔ 
+'nosuchusershort'         => 'اس "<nowiki>$1</nowiki>" ناں دا کوئی ورتن آلا نہيں اے۔ 
 
 اپنی الف، بے چیک کرو۔',
-'nouserspecified'           => 'توانوں اپنا ورتن آلا ناں دسنا ہوۓ گا۔',
-'wrongpassword'             => 'تواڈی کنجی سہی نہیں۔<br />
+'nouserspecified'         => 'توانوں اپنا ورتن آلا ناں دسنا ہوۓ گا۔',
+'wrongpassword'           => 'تواڈی کنجی سہی نہیں۔<br />
 فیر سہی ٹرائی مارو۔',
-'wrongpasswordempty'        => 'تواڈی کنجی کم نہیں کر رہی۔<br />
+'wrongpasswordempty'      => 'تواڈی کنجی کم نہیں کر رہی۔<br />
 فیر ٹرائی مارو۔',
-'passwordtooshort'          => 'تواڈی کنجی ٹھیک نہیں یا بہت جھوٹی اے۔
+'passwordtooshort'        => 'تواڈی کنجی ٹھیک نہیں یا بہت جھوٹی اے۔
 ایدے چ کم از کم {{PLURAL:$1|$1|اک ھندسہ}} تے کنجی تواڈے ورتن آلے ناں تو مختلف ہونی چائیدی اے۔',
-'mailmypassword'            => 'نئی کنجی ای میل کرو',
-'passwordremindertitle'     => '{{SITENAME}} لئی نوی عارضی کنجی',
-'passwordremindertext'      => 'کسے نے (غالبن تسی $1 آئی پی پتے توں) نوی کنجی ($4){{SITENAME}} واسطے منگی۔ اک عارضی کنجی ورتن والے "$2" دے لئی بنائی گئی سی تے "$3" تے سیٹ کر دتی گئی سی۔ اگر اے تواڈا کم اے تے توانوں اندر آکے اک نوی $5 کنجی چننی پۓ گی۔
+'mailmypassword'          => 'نئی کنجی ای میل کرو',
+'passwordremindertitle'   => '{{SITENAME}} لئی نوی عارضی کنجی',
+'passwordremindertext'    => 'کسے نے (غالبن تسی $1 آئی پی پتے توں) نوی کنجی ($4){{SITENAME}} واسطے منگی۔ اک عارضی کنجی ورتن والے "$2" دے لئی بنائی گئی سی تے "$3" تے سیٹ کر دتی گئی سی۔ اگر اے تواڈا کم اے تے توانوں اندر آکے اک نوی $5 کنجی چننی پۓ گی۔
 
 اگر کسے ہور نے اے درخواست کیتی اے یا تسی اپنی پرانی کنجی لب لئی اے تے تسی اینوں بدلنا نئیں چاندے تے تسی اس سنعے نوں چھڈو تے پرانی کنجی استعمال کرو۔',
-'noemail'                   => 'اس ورتن والے "$1" دا کوئی ای میل پتہ نئیں ہے گا۔',
-'passwordsent'              => 'اک نوی کنجی اس ای میل "$1" تے پیجی جاچکی اے۔<br />
+'noemail'                 => 'اس ورتن والے "$1" دا کوئی ای میل پتہ نئیں ہے گا۔',
+'passwordsent'            => 'اک نوی کنجی اس ای میل "$1" تے پیجی جاچکی اے۔<br />
 جدوں توانوں اے ملے تسی دوبارہ لاگن ہو۔',
-'eauthentsent'              => 'اک کنفرمیشن ای میل دتے گۓ ای میل پتے تے پیج دتی گئی اے۔ اس توں پہلاں کہ کوئی دوجی ای میل کھاتے تے پیجی جاۓ، توانوں ای میل چ دتیاں ہدایات تے عمل کرنا ہوۓ گا، تا کے اے پکا ہو سکے کہ اے کھاتہ تواڈا ہی اے۔',
-'accountcreated'            => 'کھاتہ کھل گیا',
-'loginlanguagelabel'        => 'بولی: $1',
+'eauthentsent'            => 'اک کنفرمیشن ای میل دتے گۓ ای میل پتے تے پیج دتی گئی اے۔ اس توں پہلاں کہ کوئی دوجی ای میل کھاتے تے پیجی جاۓ، توانوں ای میل چ دتیاں ہدایات تے عمل کرنا ہوۓ گا، تا کے اے پکا ہو سکے کہ اے کھاتہ تواڈا ہی اے۔',
+'accountcreated'          => 'کھاتہ کھل گیا',
+'loginlanguagelabel'      => 'بولی: $1',
 
 # Password reset dialog
 'resetpass_header'    => 'کھاتے دی کنجی بدلو',
@@ -508,26 +499,35 @@ $messages = array(
 'qbsettings-none' => 'کوئی نئیں',
 
 # Preferences page
-'preferences'       => 'تانگاں',
-'mypreferences'     => 'میریاں تانگاں',
-'prefs-edits'       => 'تبدیلیاں دی گنتی:',
-'prefsnologin'      => 'لاگ ان نئیں او',
-'changepassword'    => 'کنجی بدلو',
-'prefs-skin'        => 'کھل',
-'prefs-math'        => 'حساب کتاب',
-'prefs-datetime'    => 'تاریخ تے ویلہ',
-'prefs-personal'    => 'ورتن آلے دا پروفائل',
-'prefs-rc'          => 'نویاں تبدیلیاں',
-'prefs-watchlist'   => 'نظر تھلے صفحے',
-'saveprefs'         => 'بچاؤ',
-'prefs-editing'     => 'لکھائی',
-'rows'              => 'قطار:',
-'columns'           => 'کالم:',
-'searchresultshead' => 'کھوج',
-'timezonelegend'    => 'ویلے دا علاقہ',
-'localtime'         => 'مقامی ویلا:',
-'timezoneselect'    => 'ویلیاں دے علاقے:',
-'prefs-files'       => 'فائلاں',
+'preferences'               => 'تانگاں',
+'mypreferences'             => 'میریاں تانگاں',
+'prefs-edits'               => 'تبدیلیاں دی گنتی:',
+'prefsnologin'              => 'لاگ ان نئیں او',
+'changepassword'            => 'کنجی بدلو',
+'prefs-skin'                => 'کھل',
+'prefs-math'                => 'حساب کتاب',
+'prefs-datetime'            => 'تاریخ تے ویلہ',
+'prefs-personal'            => 'ورتن آلے دا پروفائل',
+'prefs-rc'                  => 'نویاں تبدیلیاں',
+'prefs-watchlist'           => 'نظر تھلے صفحے',
+'saveprefs'                 => 'بچاؤ',
+'prefs-editing'             => 'لکھائی',
+'rows'                      => 'قطار:',
+'columns'                   => 'کالم:',
+'searchresultshead'         => 'کھوج',
+'timezonelegend'            => 'ویلے دا علاقہ',
+'localtime'                 => 'مقامی ویلا:',
+'timezoneselect'            => 'ویلیاں دے علاقے:',
+'prefs-files'               => 'فائلاں',
+'youremail'                 => 'ای میل:',
+'username'                  => 'ورتن آلے دا ناں:',
+'yourrealname'              => 'اصلی ناں:',
+'yourlanguage'              => 'بولی:',
+'yournick'                  => 'دسخط:',
+'email'                     => 'ای میل',
+'prefs-help-realname'       => 'اصل ناں تواڈی مرزی تے اے۔<br />
+اگر تسی اینو دے دیو گۓ تے اے تواڈا کم اس ناں نال لکھیا جاۓ گا۔',
+'prefs-help-email-required' => 'ای میل پتہ چائیدا اے۔',
 
 # User rights
 'userrights-groupsmember' => 'سنگی اے:',
@@ -1327,8 +1327,5 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => 'خاص صفحے',
-
-# Special:CreatePage
-'createpage-submitbutton' => 'پیجو',
 
 );

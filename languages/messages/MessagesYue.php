@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -523,34 +523,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'createaccountmail'          => '用電郵',
 'badretype'                  => '你所入嘅密碼唔一致。',
 'userexists'                 => '你入嘅用戶名已經有人用緊，請揀過另外一個名。',
-'youremail'                  => '電郵:',
-'username'                   => '用戶名:',
-'uid'                        => '用戶 ID:',
-'prefs-memberingroups'       => '{{PLURAL:$1|一|多}}組嘅成員:',
-'prefs-registration'         => '註冊時間:',
-'yourrealname'               => '真實姓名:',
-'yourlanguage'               => '語言:',
-'yourvariant'                => '字體變化:',
-'yournick'                   => '簽名:',
-'badsig'                     => '無效嘅程式碼簽名。檢查吓 HTML 有無錯。',
-'badsiglength'               => '你嘅簽名太長喇。
-佢嘅長度一定唔可以多過$1個字元。',
-'yourgender'                 => '性別:',
-'gender-unknown'             => '未指定',
-'gender-male'                => '男',
-'gender-female'              => '女',
-'prefs-help-gender'          => '可選: 用嚟整軟件性別指定。呢項資料將會被公開。',
-'email'                      => '電郵',
-'prefs-help-realname'        => '真名係可以選填嘅。
-如果你選擇提供佢，佢會用來喺有需要嘅時候標示你嘅作品。',
 'loginerror'                 => '登入錯誤',
-'prefs-help-email'           => '電郵地址係可以選填嘅，但當你唔記得咗你個密碼嗰陣可以將新密碼寄番畀你。你亦可以等人可以響唔知你電郵地址嘅情況之下都可以聯絡你。',
-'prefs-help-email-required'  => '需要電郵地址。',
-'prefs-info'                 => '基本資料',
-'prefs-i18n'                 => '國際化',
-'prefs-signature'            => '簽名',
-
-## User login
 'nocookiesnew'               => '已經建立咗戶口，但你未登入。 {{SITENAME}} 要用 cookies 嚟登入。你已經停咗用 cookies。麻煩啟用返先，然後再用你新嘅用戶名同密碼。',
 'nocookieslogin'             => '{{SITENAME}} 要用 cookies 嚟登入。你已經停用 cookies。請先啟用後再度試過喇。',
 'noname'                     => '你未指定一個有效嘅用戶名。',
@@ -1147,6 +1120,31 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'prefs-reset-intro'         => '你可以用呢版去重設你嘅喜好設定到網站預設值。呢個動作無得番轉頭。',
 'prefs-emailconfirm-label'  => '電郵確認:',
 'prefs-textboxsize'         => '編輯窗大細',
+'youremail'                 => '電郵:',
+'username'                  => '用戶名:',
+'uid'                       => '用戶 ID:',
+'prefs-memberingroups'      => '{{PLURAL:$1|一|多}}組嘅成員:',
+'prefs-registration'        => '註冊時間:',
+'yourrealname'              => '真實姓名:',
+'yourlanguage'              => '語言:',
+'yourvariant'               => '字體變化:',
+'yournick'                  => '簽名:',
+'badsig'                    => '無效嘅程式碼簽名。檢查吓 HTML 有無錯。',
+'badsiglength'              => '你嘅簽名太長喇。
+佢嘅長度一定唔可以多過$1個字元。',
+'yourgender'                => '性別:',
+'gender-unknown'            => '未指定',
+'gender-male'               => '男',
+'gender-female'             => '女',
+'prefs-help-gender'         => '可選: 用嚟整軟件性別指定。呢項資料將會被公開。',
+'email'                     => '電郵',
+'prefs-help-realname'       => '真名係可以選填嘅。
+如果你選擇提供佢，佢會用來喺有需要嘅時候標示你嘅作品。',
+'prefs-help-email'          => '電郵地址係可以選填嘅，但當你唔記得咗你個密碼嗰陣可以將新密碼寄番畀你。你亦可以等人可以響唔知你電郵地址嘅情況之下都可以聯絡你。',
+'prefs-help-email-required' => '需要電郵地址。',
+'prefs-info'                => '基本資料',
+'prefs-i18n'                => '國際化',
+'prefs-signature'           => '簽名',
 
 # User rights
 'userrights'                  => '用戶權限管理',
@@ -3060,16 +3058,5 @@ $1',
 'htmlform-submit'              => '遞交',
 'htmlform-reset'               => '復原更改',
 'htmlform-selectorother-other' => '其它',
-
-# Special:CreatePage
-'createpage'              => '開新版',
-'createpage-submitbutton' => '遞交',
-'createpage-instructions' => '輸入你想去開版嘅標題:',
-'createpage-entertitle'   => '請輸入你嗰一版嘅標題。',
-'createpage-titleexists'  => '嗰版以標題[[$1]]嘅版已經存在。
-你想唔想去編輯現有嘅版？',
-'createpage-tryagain'     => '唔好。我想用一個唔同嘅標題開一頁新版。',
-'createpage-editexisting' => '好。我想去貢獻現有嘅版。',
-'createpage-badtitle'     => '『$1』唔可以用做頁標題',
 
 );

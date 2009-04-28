@@ -526,30 +526,7 @@ Huwag kalimutang baguhin ang [[Special:Preferences|mga kagustuhan mo sa {{SITENA
 'badretype'                  => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
 'userexists'                 => 'May gumagamit na ng ganyang pangalang pantagagamit.
 Pumili lamang ng iba pang pangalan.',
-'youremail'                  => 'E-liham:',
-'username'                   => 'Bansag:',
-'uid'                        => 'ID ng tagagamit:',
-'prefs-memberingroups'       => 'Kasapi ng {{PLURAL:$1|na pangkat|na mga pangkat}}:',
-'yourrealname'               => 'Tunay na pangalan:',
-'yourlanguage'               => 'Wika:',
-'yourvariant'                => 'Naiiba pa:',
-'yournick'                   => 'Panglagda:',
-'badsig'                     => 'Hindi tamang hilaw na lagda.
-Pakisuri ang mga tatak ng HTML.',
-'badsiglength'               => 'Napakahaba ng iyong lagda.
-Dapat na mas mababa kaysa $1 {{PLURAL:$1|panitik|mga panitik}}.',
-'yourgender'                 => 'Kasarian:',
-'gender-unknown'             => 'Hindi tinukoy',
-'gender-male'                => 'Lalaki',
-'gender-female'              => 'Babae',
-'prefs-help-gender'          => 'Maaaring wala nito: ginagamit para sa pagbanggit ng tamang kasarian sa pamamagitan ng sopwer. Magging pangmadla ang kabatiran ito.',
-'email'                      => 'E-liham',
-'prefs-help-realname'        => "Opsyonal ('di-talaga kailangan) ang tunay na pangalan.
-Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para iyong mga ginawa.",
 'loginerror'                 => 'Kamalian sa paglagda',
-'prefs-help-email'           => 'Opsyonal (hindi talaga kailangan) ang adres ng e-liham, subalit makapagpapahintulot ito sa pagpapadala ng bagong hudyat mo kapag nakalimutan mo ang iyong lumang hudyat.
-Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamagitan ng iyong pahina ng tagagamit o pahina ng usapan na hindi na kailangan pang ipakilala ang iyong katauhan.',
-'prefs-help-email-required'  => 'Kailangan ang adres ng e-liham.',
 'nocookiesnew'               => 'Nilikha na ang kuwentang pantagagamit, ngunit hindi ka nakalagda.
 Gumagamit ang {{SITENAME}} ng mga "otap" (\'\'cookies\'\') para mailagda ang mga tagagamit.
 Hindi mo pinagagana ang mga "otap".
@@ -1170,6 +1147,29 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'prefs-files'               => 'Mga talaksan',
 'prefs-custom-css'          => 'Pasadyang CSS',
 'prefs-custom-js'           => 'Pasadyang JS',
+'youremail'                 => 'E-liham:',
+'username'                  => 'Bansag:',
+'uid'                       => 'ID ng tagagamit:',
+'prefs-memberingroups'      => 'Kasapi ng {{PLURAL:$1|na pangkat|na mga pangkat}}:',
+'yourrealname'              => 'Tunay na pangalan:',
+'yourlanguage'              => 'Wika:',
+'yourvariant'               => 'Naiiba pa:',
+'yournick'                  => 'Panglagda:',
+'badsig'                    => 'Hindi tamang hilaw na lagda.
+Pakisuri ang mga tatak ng HTML.',
+'badsiglength'              => 'Napakahaba ng iyong lagda.
+Dapat na mas mababa kaysa $1 {{PLURAL:$1|panitik|mga panitik}}.',
+'yourgender'                => 'Kasarian:',
+'gender-unknown'            => 'Hindi tinukoy',
+'gender-male'               => 'Lalaki',
+'gender-female'             => 'Babae',
+'prefs-help-gender'         => 'Maaaring wala nito: ginagamit para sa pagbanggit ng tamang kasarian sa pamamagitan ng sopwer. Magging pangmadla ang kabatiran ito.',
+'email'                     => 'E-liham',
+'prefs-help-realname'       => "Opsyonal ('di-talaga kailangan) ang tunay na pangalan.
+Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para iyong mga ginawa.",
+'prefs-help-email'          => 'Opsyonal (hindi talaga kailangan) ang adres ng e-liham, subalit makapagpapahintulot ito sa pagpapadala ng bagong hudyat mo kapag nakalimutan mo ang iyong lumang hudyat.
+Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamagitan ng iyong pahina ng tagagamit o pahina ng usapan na hindi na kailangan pang ipakilala ang iyong katauhan.',
+'prefs-help-email-required' => 'Kailangan ang adres ng e-liham.',
 
 # User rights
 'userrights'                  => 'Pamamahala ng mga karapatan ng tagagamit',
@@ -3127,16 +3127,5 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 'dberr-usegoogle'   => 'Pansamantalang maaaring subukin mong maghanap muna sa pamamagitan ng Google.',
 'dberr-outofdate'   => 'Pakiunawang maaaring wala na sa panahon ang kanilang mga talatuntunan ng aming mga nilalaman.',
 'dberr-cachederror' => 'Ang sumusunod ay isang nakatagong sipi ng hiniling na pahina, at maaaring wala na sa panahon.',
-
-# Special:CreatePage
-'createpage'              => 'Lumikha ng isang pahina',
-'createpage-submitbutton' => 'Ipasa',
-'createpage-instructions' => 'Ilagay ang pamagat ng pahinang naisa mong likhain:',
-'createpage-entertitle'   => 'Pakipasok lamang ang isang pamagat para sa iyong pahina.',
-'createpage-titleexists'  => 'Umiiral ang isang pahinang may pamagat na [[$1]].
-Nais mo bang baguhin ang umiiral na pahina?',
-'createpage-tryagain'     => 'Hindi.  Nais kong lumikha ng isang bagong pahinang may isang bukod na pamagat.',
-'createpage-editexisting' => 'Oo. Ibig kong magambag sa umiiral na pahina.',
-'createpage-badtitle'     => 'Hindi magagamit ang "$1" bilang pamagat ng isang pahina',
 
 );

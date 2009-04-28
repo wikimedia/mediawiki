@@ -73,7 +73,6 @@ $messages = array(
 # Login and logout pages
 'yourname'    => 'Ciu bouxdeiz:',
 'notloggedin' => 'Maengx laezhaej',
-'username'    => 'Ciu bouxdeiz:',
 
 # Edit pages
 'summary'            => 'Saegmangj:',
@@ -91,6 +90,7 @@ $messages = array(
 'mypreferences'     => 'Doenghgaeq gou hae',
 'prefsnologin'      => 'Maengx laezhaej',
 'searchresultshead' => 'Cwmh',
+'username'          => 'Ciu bouxdeiz:',
 
 # Recent changes
 'recentchanges' => 'Gaeqgaij suijnej',

@@ -177,7 +177,6 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'createaccount'              => 'Crear un nov conto',
 'gotaccountlink'             => 'Intrar',
 'badretype'                  => 'Li passa-paroles queles vu tippat ne es identic.',
-'youremail'                  => 'Vor ret-adresse:',
 'loginerror'                 => 'Erra in initiation del session',
 'nocookieslogin'             => '{{SITENAME}} utilisa cookies por far intrar usatores. Vu nu ne permisse cookies. Ples permisser les e provar denov.',
 'loginsuccesstitle'          => 'Apertion de session successosi',
@@ -224,6 +223,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'prefsnologin'   => 'Vu ne ha intrat',
 'changepassword' => 'Modificar passa-parol',
 'saveprefs'      => 'Conservar preferenties',
+'youremail'      => 'Vor ret-adresse:',
 
 # Groups
 'group-user' => 'Usatores',

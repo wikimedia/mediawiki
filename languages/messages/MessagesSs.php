@@ -79,8 +79,6 @@ $messages = array(
 'nstab-help' => 'Kúsíta',
 
 # Login and logout pages
-'uid'                => 'Umuntfu ID:',
-'yourlanguage'       => 'Lúlwîmi:',
 'loginlanguagelabel' => 'Lúlwîmi: $1',
 
 # Search results
@@ -88,6 +86,8 @@ $messages = array(
 
 # Preferences page
 'searchresultshead' => 'Kucálata',
+'uid'               => 'Umuntfu ID:',
+'yourlanguage'      => 'Lúlwîmi:',
 
 # Special:ListFiles
 'listfiles_date' => 'Lusuku',

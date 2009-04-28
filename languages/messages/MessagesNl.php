@@ -697,30 +697,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'badretype'                  => 'De ingevoerde wachtwoorden verschillen van elkaar.',
 'userexists'                 => 'De gekozen gebruikersnaam is al in gebruik.
 Kies een andere naam.',
-'youremail'                  => 'Uw e-mailadres:',
-'username'                   => 'Gebruikersnaam:',
-'uid'                        => 'Gebruikersnummer:',
-'prefs-memberingroups'       => 'Lid van {{PLURAL:$1|groep|groepen}}:',
-'prefs-registration'         => 'Registratiedatum:',
-'yourrealname'               => 'Uw echte naam:',
-'yourlanguage'               => 'Taal:',
-'yourvariant'                => 'Taalvariant:',
-'yournick'                   => 'Tekst voor ondertekening:',
-'badsig'                     => 'Ongeldige ondertekening; controleer de HTML-tags.',
-'badsiglength'               => 'Uw ondertekening is te lang.
-Deze moet minder dan $1 {{PLURAL:$1|karakters|karakters}} bevatten.',
-'yourgender'                 => 'Geslacht:',
-'gender-unknown'             => 'Niet aangegeven',
-'gender-male'                => 'Man',
-'gender-female'              => 'Vrouw',
-'prefs-help-gender'          => 'Optioneel: dit wordt gebruikt om gebruikers correct aan te spreken in de software.
-Deze informatie is zichtbaar voor andere gebruikers.',
-'email'                      => 'E-mail',
-'prefs-help-realname'        => 'Echte naam is optioneel, als u deze opgeeft kan deze naam gebruikt worden om u erkenning te geven voor uw werk.',
 'loginerror'                 => 'Aanmeldfout',
-'prefs-help-email'           => 'E-mailadres is optioneel, maar maakt het mogelijk om u uw wachtwoord te e-mailen als u het bent vergeten.
-U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een verwijzing op uw gebruikers- en overlegpagina zonder dat u uw identiteit prijsgeeft.',
-'prefs-help-email-required'  => 'Hiervoor is een e-mailadres nodig.',
 'nocookiesnew'               => 'De gebruiker is geregistreerd, maar niet aangemeld.
 {{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers.
 Schakel die in en meld daarna aan met uw nieuwe gebruikersnaam en wachtwoord.',
@@ -1364,6 +1341,34 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'prefs-custom-js'           => 'Persoonlijke JS',
 'prefs-reset-intro'         => 'Gebruik deze functie om uw voorkeuren te herstellen naar de standaardinstellingen.<br /><br />
 Deze actie kan niet ongedaan worden gemaakt.',
+'prefs-emailconfirm-label'  => 'E-mailbevestiging:',
+'prefs-textboxsize'         => 'Afmetingen bewerkingsscherm',
+'youremail'                 => 'Uw e-mailadres:',
+'username'                  => 'Gebruikersnaam:',
+'uid'                       => 'Gebruikersnummer:',
+'prefs-memberingroups'      => 'Lid van {{PLURAL:$1|groep|groepen}}:',
+'prefs-registration'        => 'Registratiedatum:',
+'yourrealname'              => 'Uw echte naam:',
+'yourlanguage'              => 'Taal:',
+'yourvariant'               => 'Taalvariant:',
+'yournick'                  => 'Tekst voor ondertekening:',
+'badsig'                    => 'Ongeldige ondertekening; controleer de HTML-tags.',
+'badsiglength'              => 'Uw ondertekening is te lang.
+Deze moet minder dan $1 {{PLURAL:$1|karakters|karakters}} bevatten.',
+'yourgender'                => 'Geslacht:',
+'gender-unknown'            => 'Niet aangegeven',
+'gender-male'               => 'Man',
+'gender-female'             => 'Vrouw',
+'prefs-help-gender'         => 'Optioneel: dit wordt gebruikt om gebruikers correct aan te spreken in de software.
+Deze informatie is zichtbaar voor andere gebruikers.',
+'email'                     => 'E-mail',
+'prefs-help-realname'       => 'Echte naam is optioneel, als u deze opgeeft kan deze naam gebruikt worden om u erkenning te geven voor uw werk.',
+'prefs-help-email'          => 'E-mailadres is optioneel, maar maakt het mogelijk om u uw wachtwoord te e-mailen als u het bent vergeten.
+U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een verwijzing op uw gebruikers- en overlegpagina zonder dat u uw identiteit prijsgeeft.',
+'prefs-help-email-required' => 'Hiervoor is een e-mailadres nodig.',
+'prefs-info'                => 'Basisinformatie',
+'prefs-i18n'                => 'Taalinstellingen',
+'prefs-signature'           => 'Ondertekening',
 
 # User rights
 'userrights'                  => 'Gebruikersrechtenbeheer',
@@ -3374,16 +3379,5 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'htmlform-submit'              => 'Opslaan',
 'htmlform-reset'               => 'Wijzigingen ongedaan maken',
 'htmlform-selectorother-other' => 'Anders',
-
-# Special:CreatePage
-'createpage'              => 'Pagina aanmaken',
-'createpage-submitbutton' => 'OK',
-'createpage-instructions' => 'Voer de naam in van de pagina die u wilt aanmaken:',
-'createpage-entertitle'   => 'Geef een naam voor uw pagina op.',
-'createpage-titleexists'  => 'De pagina [[$1]] bestaat al.
-Wilt u de bestaande pagina bewerken?',
-'createpage-tryagain'     => 'Nee. Ik wil een nieuwe pagina aanmaken met een nieuwe naam.',
-'createpage-editexisting' => 'Ja. Ik wil bijdragen aan de bestaande pagina.',
-'createpage-badtitle'     => '"$1" kan niet gebruikt worden als paginanaam',
 
 );

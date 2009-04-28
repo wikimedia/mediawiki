@@ -612,29 +612,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'badretype'                  => 'Wprowadzone hasła różnią się między sobą.',
 'userexists'                 => 'Wybrana przez Ciebie nazwa użytkownika jest już zajęta.
 Wybierz inną nazwę użytkownika.',
-'youremail'                  => 'Twój adres e‐mail',
-'username'                   => 'Nazwa użytkownika',
-'uid'                        => 'ID użytkownika',
-'prefs-memberingroups'       => 'Należy do {{PLURAL:$1|grupy|grup:}}',
-'prefs-registration'         => 'Moment rejestracji',
-'yourrealname'               => 'Imię i nazwisko',
-'yourlanguage'               => 'Język interfejsu',
-'yourvariant'                => 'Wariant',
-'yournick'                   => 'Twój podpis',
-'badsig'                     => 'Nieprawidłowy podpis, sprawdź znaczniki HTML.',
-'badsiglength'               => 'Twój podpis jest zbyt długi.
-Dopuszczalna długość to $1 {{PLURAL:$1|znak|znaki|znaków}}.',
-'yourgender'                 => 'Płeć',
-'gender-unknown'             => 'nie określono',
-'gender-male'                => 'mężczyzna',
-'gender-female'              => 'kobieta',
-'prefs-help-gender'          => 'Podanie płci nie jest obowiązkowe. Jeśli zdecydujesz się ją określić, oprogramowanie dostosuje do niej interfejs. Informacja o Twojej płci będzie widoczna dla wszystkich.',
-'email'                      => 'E‐mail',
-'prefs-help-realname'        => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
-Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
 'loginerror'                 => 'Błąd zalogowania',
-'prefs-help-email'           => "Podanie adresu e‐mail nie jest obowiązkowe, lecz pozwoli innym użytkownikom skontaktować się z Tobą poprzez odpowiedni formularz (bez ujawniania Twojego adresu). Będziesz także mógł poprosić o przysłanie Ci nowego hasła. '''Twój adres nie zostanie nikomu udostępniony.'''",
-'prefs-help-email-required'  => 'Wymagany jest adres e‐mail.',
 'nocookiesnew'               => 'Konto użytkownika zostało utworzone, ale nie jesteś zalogowany.
 Projekt {{SITENAME}} używa ciasteczek do przechowywania informacji o zalogowaniu się.
 Masz obecnie w przeglądarce wyłączoną obsługę ciasteczek. 
@@ -1262,6 +1240,29 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-custom-js'           => 'własny JavaScript',
 'prefs-reset-intro'         => 'Na tej stronie można przywrócić domyślne ustawienia preferencji dla tej witryny.
 Tej operacji nie można później cofnąć.',
+'prefs-emailconfirm-label'  => 'Potwierdzenie adresu e-mail',
+'youremail'                 => 'Twój adres e‐mail',
+'username'                  => 'Nazwa użytkownika',
+'uid'                       => 'ID użytkownika',
+'prefs-memberingroups'      => 'Należy do {{PLURAL:$1|grupy|grup:}}',
+'prefs-registration'        => 'Moment rejestracji',
+'yourrealname'              => 'Imię i nazwisko',
+'yourlanguage'              => 'Język interfejsu',
+'yourvariant'               => 'Wariant',
+'yournick'                  => 'Twój podpis',
+'badsig'                    => 'Nieprawidłowy podpis, sprawdź znaczniki HTML.',
+'badsiglength'              => 'Twój podpis jest zbyt długi.
+Dopuszczalna długość to $1 {{PLURAL:$1|znak|znaki|znaków}}.',
+'yourgender'                => 'Płeć',
+'gender-unknown'            => 'nie określono',
+'gender-male'               => 'mężczyzna',
+'gender-female'             => 'kobieta',
+'prefs-help-gender'         => 'Podanie płci nie jest obowiązkowe. Jeśli zdecydujesz się ją określić, oprogramowanie dostosuje do niej interfejs. Informacja o Twojej płci będzie widoczna dla wszystkich.',
+'email'                     => 'E‐mail',
+'prefs-help-realname'       => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
+Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
+'prefs-help-email'          => "Podanie adresu e‐mail nie jest obowiązkowe, lecz pozwoli innym użytkownikom skontaktować się z Tobą poprzez odpowiedni formularz (bez ujawniania Twojego adresu). Będziesz także mógł poprosić o przysłanie Ci nowego hasła. '''Twój adres nie zostanie nikomu udostępniony.'''",
+'prefs-help-email-required' => 'Wymagany jest adres e‐mail.',
 
 # User rights
 'userrights'                  => 'Zarządzaj uprawnieniami użytkowników',
@@ -3263,16 +3264,5 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 'htmlform-submit'              => 'Zapisz',
 'htmlform-reset'               => 'Cofnij zmiany',
 'htmlform-selectorother-other' => 'Inne',
-
-# Special:CreatePage
-'createpage'              => 'Utwórz stronę',
-'createpage-submitbutton' => 'OK',
-'createpage-instructions' => 'Podaj tytuł strony, którą chcesz utworzyć:',
-'createpage-entertitle'   => 'Proszę podać tytuł dla swojej strony',
-'createpage-titleexists'  => 'Strona o tytule [[$1]] już istnieje. 
-Czy chcesz edytować istniejącą stronę?',
-'createpage-tryagain'     => 'Nie, chcę utworzyć nową stronę z odmiennym tytułem.',
-'createpage-editexisting' => 'Tak, chcę edytować istniejącą stronę.',
-'createpage-badtitle'     => '„$1” nie może być tytułem strony',
 
 );

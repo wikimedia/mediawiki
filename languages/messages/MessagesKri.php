@@ -192,8 +192,6 @@ Luk [[Special:Version|version page]].',
 'badretype'               => 'Di tu paswohd-dehm noh mach.',
 'userexists'              => 'Ohda pohsin dohn tek da yuzanem de.
 Yu go geht foh pik ohda wan.',
-'youremail'               => 'E-mail:',
-'username'                => 'Yuzanem:',
 
 # Edit pages
 'watchthis'                        => 'Wach dis pej-ya',
@@ -258,6 +256,8 @@ Mehmba se sohmtehm dehm indeks-dehm noh ohp-tu-det {{SITENAME}}.',
 # Preferences page
 'prefsnologin'      => 'Yu noh kam insai di sait yet',
 'searchresultshead' => 'Luk foh am',
+'youremail'         => 'E-mail:',
+'username'          => 'Yuzanem:',
 
 # Upload
 'upload'          => 'Òplod fail',

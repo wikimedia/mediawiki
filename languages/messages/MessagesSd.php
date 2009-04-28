@@ -393,11 +393,6 @@ $messages = array(
 'gotaccount'                 => 'ڇا اڳي ئي کاتو رکو ٿا؟ $1.',
 'gotaccountlink'             => 'لاگ اِن',
 'createaccountmail'          => 'بذريعه برق ٽپال',
-'yourrealname'               => 'اصل نالو:',
-'badsiglength'               => 'اها صحيح تمام وڏي آهي.
-$1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
-'prefs-help-realname'        => 'اصل نالو اختياري آهي.
-جيڪڏهن توهان اصل نالو ڄاڻائڻ جو فيصلو ٿا ڪريو، ته اهو توهان کي مڃتا ڏيڻ لاءِ ڪم آندو ويندو.',
 'loginsuccesstitle'          => 'لاگ اِن ڪامياب',
 'loginsuccess'               => "'''هاڻي توهان {{SITENAME}} تي بطور \"\$1\" لاگ اِن ٿيل آهيو.'''",
 'nosuchuser'                 => '"$1" نالي سان ڪو به يوزر نه آهي. هِجي چڪاسيو، يا نئون کاتو کوليو.',
@@ -529,13 +524,18 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'powersearch-redir' => 'چورڻن جي فهرست ڏيکاريو',
 
 # Preferences page
-'preferences'    => 'ترجيحات',
-'mypreferences'  => 'منهنجون ترجيحات',
-'changepassword' => 'ڳجھو لفظ تبديل ڪريو',
-'skin-preview'   => 'پيش نگاهه',
-'datedefault'    => 'بلا ترجيحا',
-'prefs-datetime' => 'تاريخ ۽ وقت',
-'allowemail'     => 'ٻين يُوزرس کان ايندڙ برق ٽپال بحال ڪريو',
+'preferences'         => 'ترجيحات',
+'mypreferences'       => 'منهنجون ترجيحات',
+'changepassword'      => 'ڳجھو لفظ تبديل ڪريو',
+'skin-preview'        => 'پيش نگاهه',
+'datedefault'         => 'بلا ترجيحا',
+'prefs-datetime'      => 'تاريخ ۽ وقت',
+'allowemail'          => 'ٻين يُوزرس کان ايندڙ برق ٽپال بحال ڪريو',
+'yourrealname'        => 'اصل نالو:',
+'badsiglength'        => 'اها صحيح تمام وڏي آهي.
+$1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
+'prefs-help-realname' => 'اصل نالو اختياري آهي.
+جيڪڏهن توهان اصل نالو ڄاڻائڻ جو فيصلو ٿا ڪريو، ته اهو توهان کي مڃتا ڏيڻ لاءِ ڪم آندو ويندو.',
 
 # User rights
 'userrights-reason' => 'تبديليءَ جو سبب:',

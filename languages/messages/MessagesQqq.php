@@ -526,27 +526,6 @@ The title of the warning is the message {{msg-mw|nosuchspecialpage}}. <code><now
 'gotaccountlink'             => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
 
 {{Identical|Log in}}',
-'youremail'                  => '{{Identical|E-mail}}',
-'username'                   => '{{Identical|Username}}',
-'uid'                        => '{{Identical|User ID}}',
-'prefs-memberingroups'       => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon.',
-'prefs-registration'         => 'Used in [[Special:Preferences]].',
-'yourrealname'               => 'Used in [[Special:Preferences]], first tab.
-{{Identical|Real name}}',
-'yourlanguage'               => 'Used in [[Special:Preferences]], first tab.
-{{Identical|Language}}',
-'yourvariant'                => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.
-{{optional}}',
-'yournick'                   => 'Used in [[Special:Preferences]], first tab.',
-'badsig'                     => 'Error message displayed when entering invalid signature in user preferences',
-'badsiglength'               => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
-'yourgender'                 => 'Used in [[Special:Preferences]], first tab.',
-'gender-unknown'             => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, or cannot be determined, or matches none of the other choices preset in the select.',
-'gender-male'                => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.',
-'gender-female'              => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.',
-'email'                      => '{{Identical|E-mail}}',
-'prefs-help-realname'        => 'In user preferences.',
-'prefs-help-email'           => 'Shown as explanation text on [[Special:Preferences]].',
 'nocookiesnew'               => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
 'nocookieslogin'             => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'loginsuccesstitle'          => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
@@ -976,6 +955,8 @@ $1 is the relevance of this result in per cent.
 'resetprefs'                => 'Button for resetting changes in the preferences page.',
 'restoreprefs'              => 'Used in [[Special:Preferences]]',
 'prefs-editing'             => 'Title of a tab in [[Special:Preferences]].',
+'rows'                      => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
+'columns'                   => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
 'searchresultshead'         => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
 
 {{Identical|Search}}',
@@ -995,6 +976,28 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'prefs-files'               => 'Title of a tab in [[Special:Preferences]].',
 'prefs-custom-css'          => 'visible on [[Special:Preferences]] -[Skins].',
 'prefs-reset-intro'         => 'Used in [[Special:Preferences/reset]].',
+'prefs-emailconfirm-label'  => 'Used in [[Special:Preferences]].',
+'youremail'                 => '{{Identical|E-mail}}',
+'username'                  => '{{Identical|Username}}',
+'uid'                       => '{{Identical|User ID}}',
+'prefs-memberingroups'      => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon.',
+'prefs-registration'        => 'Used in [[Special:Preferences]].',
+'yourrealname'              => 'Used in [[Special:Preferences]], first tab.
+{{Identical|Real name}}',
+'yourlanguage'              => 'Used in [[Special:Preferences]], first tab.
+{{Identical|Language}}',
+'yourvariant'               => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.
+{{optional}}',
+'yournick'                  => 'Used in [[Special:Preferences]], first tab.',
+'badsig'                    => 'Error message displayed when entering invalid signature in user preferences',
+'badsiglength'              => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
+'yourgender'                => 'Used in [[Special:Preferences]], first tab.',
+'gender-unknown'            => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, or cannot be determined, or matches none of the other choices preset in the select.',
+'gender-male'               => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.',
+'gender-female'             => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.',
+'email'                     => '{{Identical|E-mail}}',
+'prefs-help-realname'       => 'In user preferences.',
+'prefs-help-email'          => 'Shown as explanation text on [[Special:Preferences]].',
 
 # User rights
 'userrights'                     => 'Page title of [[Special:UserRights]].',
@@ -2224,7 +2227,9 @@ This message appears at the very end of the list of names in the message [[Media
 * $1 is the number of anonymous users in the message',
 'siteuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki). 
 
-This message is the variable $3 in the message [[Mediawiki:lastmodifiedatby/{{SUBPAGENAME}}]]. This message only appears if the user has not entered his 'real name' in his preferences. The variable $1 in this message is a user name.",
+This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user has not entered his 'real name' in his preferences. The variable $1 in this message is a user name.
+
+See also {{msg-mw|Siteusers}}.",
 'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
 * $1: date
 * $2: time
@@ -2243,7 +2248,9 @@ It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|
 * $1 is a list of user names (example: "\'\'Jim, Janet, Jane, Joe\'\'") where the user has not put his \'real name\' in his preferences.
 * $2 is the number of user names in $1
 
-If there is more than one user in the list then the message [[Mediawiki:and/{{SUBPAGENAME}}]] appears before the last name. If $2 is NIL then this message does not appear at all.',
+If there is more than one user in the list then the message {{msg-mw|and}} appears before the last name. If $2 is NIL then this message does not appear at all.
+
+See also {{msg-mw|Siteuser}}.',
 'creditspage'      => "This message is the ''contentSub'' (the grey subtitle) shown when viewing credits of a page (example: {{fullurl:Betawiki:News|action=credits}}). Note that the credits action is disabled by default (currently enabled on Betawiki).",
 'nocredits'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on Betawiki).',
 
@@ -2844,6 +2851,9 @@ There are no such extensions here, so look at [[wikipedia:Special:Version]] for 
 'version-hook-name'                => 'Shown in [[Special:Version]]',
 'version-hook-subscribedby'        => 'Shown in [[Special:Version]]',
 'version-version'                  => '{{Identical|Version}}',
+'version-svn-revision'             => 'This is being used in [[Special:Version]], preceeding the subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345")
+
+{{Identical|Revision}}',
 'version-software-product'         => 'Shown in [[Special:Version]]',
 'version-software-version'         => '{{Identical|Version}}',
 
@@ -2929,15 +2939,5 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'htmlform-submit'              => '{{Identical|Submit}}',
 'htmlform-reset'               => '{{Identical|Undo}}',
 'htmlform-selectorother-other' => '{{Identical|Other}}',
-
-# Special:CreatePage
-'createpage'              => 'Name of special page [[Special:CreatePage]] in [[Special:SpecialPages]] and its title.',
-'createpage-submitbutton' => '{{Identical|Submit}}',
-'createpage-instructions' => 'Used in [[Special:CreatePage]].',
-'createpage-entertitle'   => 'Error message displayed in [[Special:CreatePage]] when no title is specified.',
-'createpage-titleexists'  => 'Show in CreatePage special page when is specified a title of an existing page. See for example [[Special:CreatePage/Main_Page]]',
-'createpage-tryagain'     => 'Used in CreatePage special page when is specified a title of an existing page. See for example [[Special:CreatePage/Main_Page]]',
-'createpage-editexisting' => 'Used in CreatePage special page when is specified a title of an existing page. See for example [[Special:CreatePage/Main_Page]]',
-'createpage-badtitle'     => 'Error message displayed in CreatePage special page when is specified an invalid title. See for example [[Special:CreatePage/]]',
 
 );

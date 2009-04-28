@@ -233,8 +233,6 @@ Query: $2',
 'userlogout'              => 'Pfala u famba',
 'nologinlink'             => 'Tumbuluxa akhawunti',
 'createaccount'           => 'Tumbuluxa akhawunti',
-'yourrealname'            => 'Vito ra ntiyiso:',
-'yourlanguage'            => 'Ririmi:',
 
 # Edit pages
 'summary'          => 'Nkomiso:',
@@ -279,6 +277,8 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'saveprefs'       => 'Hlayisa',
 'resetprefs'      => 'sula kucinca lokungahlayisiwangiki',
 'prefs-editing'   => 'Kululamisa',
+'yourrealname'    => 'Vito ra ntiyiso:',
+'yourlanguage'    => 'Ririmi:',
 
 # Rights
 'right-read'       => 'Matluka yo Hlaya',

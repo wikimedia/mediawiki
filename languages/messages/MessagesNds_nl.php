@@ -663,29 +663,7 @@ Je kunnen {{SITENAME}} noen anneniem gebruken of onder disse of een aandere gebr
 'badretype'                  => 'De wachwoorden dee-j in-etik hemmen bin neet liekeleens.',
 'userexists'                 => 'Disse gebrukersnaam is al gebruuk. 
 Kies een aandere naam.',
-'youremail'                  => 'E-mailadres (neet verplich) *',
-'username'                   => 'Gebrukersnaam:',
-'uid'                        => 'Gebrukersnummer:',
-'prefs-memberingroups'       => 'Lid van {{PLURAL:$1|groep|groepen}}:',
-'yourrealname'               => 'Echte naam (neet verplich)',
-'yourlanguage'               => 'Taal veur systeemteksen',
-'yourvariant'                => 'Gewunste taal:',
-'yournick'                   => 'Alias veur ondertekeningen',
-'badsig'                     => 'Ongeldige haandtekening; HTML naokieken.',
-'badsiglength'               => "Joew haandtekening is te lang.
-'t Mut minder as {{PLURAL:$1|letter|letters}} hemmen.",
-'yourgender'                 => 'Geslachte:',
-'gender-unknown'             => 'Neet an-egeven',
-'gender-male'                => 'Keel',
-'gender-female'              => 'Deerne',
-'prefs-help-gender'          => 'Optioneel: dit wonnen gebruuk um gebrukers op een juuste meniere an te spreken in de pregrammetuur.
-Disse infermasie is zichbaor veur aandere gebrukers.',
-'email'                      => 'Privéberichen',
-'prefs-help-realname'        => '* Echte naam (optioneel): a-j disse optie invullen zal joew echte naam gebruuk wonnen veur toekenningen veur joew warkzaamheen.',
 'loginerror'                 => 'Anmeldingsfout',
-'prefs-help-email'           => "E-mailadres is neet verplich, mar maak 't meugelijk um joew wachtwoord te e-mailen a-j 't vergeten bin.
-Je kunnen oek aanderen in staot stellen per e-mail kontak mit joe op te nemen via een verwiezing op joew gebrukers- en overlegpagina zonder da-j joew identiteit priesgeven.",
-'prefs-help-email-required'  => 'Hier he-w een e-mailadres veur neudig.',
 'nocookiesnew'               => "Je gebrukersnaam is an-emaak, mar 't anmelden is mislok. Dit kump deurdat je webblaojeraar gien cookies an hef staon. Je kunnen de instelling van je webblaojeraar wiezigen, en daornao mit je nieje gebrukersnaam en wachwoord anmelden.",
 'nocookieslogin'             => "'t Anmelden is mislok umdat je webblaojeraar gien cookies an hef staon. Prebeer 't accepteren van cookies an te zetten en daornao opniej an te melden.",
 'noname'                     => 'Je mutten een gebrukersnaam opgeven.',
@@ -1270,6 +1248,28 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'prefs-files'               => 'Bestanden',
 'prefs-custom-css'          => 'Persoonlijke CSS',
 'prefs-custom-js'           => 'Persoonlijke JS',
+'youremail'                 => 'E-mailadres (neet verplich) *',
+'username'                  => 'Gebrukersnaam:',
+'uid'                       => 'Gebrukersnummer:',
+'prefs-memberingroups'      => 'Lid van {{PLURAL:$1|groep|groepen}}:',
+'yourrealname'              => 'Echte naam (neet verplich)',
+'yourlanguage'              => 'Taal veur systeemteksen',
+'yourvariant'               => 'Gewunste taal:',
+'yournick'                  => 'Alias veur ondertekeningen',
+'badsig'                    => 'Ongeldige haandtekening; HTML naokieken.',
+'badsiglength'              => "Joew haandtekening is te lang.
+'t Mut minder as {{PLURAL:$1|letter|letters}} hemmen.",
+'yourgender'                => 'Geslachte:',
+'gender-unknown'            => 'Neet an-egeven',
+'gender-male'               => 'Keel',
+'gender-female'             => 'Deerne',
+'prefs-help-gender'         => 'Optioneel: dit wonnen gebruuk um gebrukers op een juuste meniere an te spreken in de pregrammetuur.
+Disse infermasie is zichbaor veur aandere gebrukers.',
+'email'                     => 'Privéberichen',
+'prefs-help-realname'       => '* Echte naam (optioneel): a-j disse optie invullen zal joew echte naam gebruuk wonnen veur toekenningen veur joew warkzaamheen.',
+'prefs-help-email'          => "E-mailadres is neet verplich, mar maak 't meugelijk um joew wachtwoord te e-mailen a-j 't vergeten bin.
+Je kunnen oek aanderen in staot stellen per e-mail kontak mit joe op te nemen via een verwiezing op joew gebrukers- en overlegpagina zonder da-j joew identiteit priesgeven.",
+'prefs-help-email-required' => 'Hier he-w een e-mailadres veur neudig.',
 
 # User rights
 'userrights'                  => 'Gebrukersrechenbeheer',

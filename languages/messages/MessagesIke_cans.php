@@ -157,11 +157,6 @@ $messages = array(
 'nologin'            => 'ᐊᔪᐃᓐᓈᖅ ᐃᓄᖁᑎ? $1.',
 'nologinlink'        => 'ᐱᕐᖄᐹ ᑮᓇᐅᔭᒃᑯᕕᖕᒥ ᑐᖅᑯᖅᓯᕕᒃ',
 'gotaccountlink'     => 'ᐊᑯᓐᓇᐳᖅ',
-'youremail'          => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ:',
-'username'           => 'ᐅᐃᑭᐱᑎᐊ ᐊᑎᖅ:',
-'yourrealname'       => 'ᐃᓄᓪᓚᕆᒃ ᐊᑎᖅ:',
-'email'              => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ',
-'prefs-help-email'   => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ (ᐱᒃᑲᓪᓚᕗᖅ) — ᖃᑯᒍ ᓇᓗᓇᙱᓚᖅ ᐃᓕᔅᓯ ᐱᔪᖕᓇᖅᑐᖅ ᐱᒋᕚ ᑲᙳᓇᖅᑐᖅ ᐋᔩᖃᑎᒋᖏᖅ',
 'mailmypassword'     => 'ᕿᓪᓗᑐᖅ ᐅᐃᑭᐱᑎᐊ ᐸᓚᙵᓴᐅᑎ ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ',
 
 # Edit page toolbar
@@ -212,6 +207,11 @@ $messages = array(
 'mypreferences'     => 'ᐊᒥ ᐱᒃᑯᒪᓂᖅᐹᖅ',
 'prefs-rc'          => 'ᐱᒋᕗᖅ ᐊᓯᐊᙳᑐᖅ',
 'searchresultshead' => 'ᐃᕚᖅᐳᖅ',
+'youremail'         => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ:',
+'username'          => 'ᐅᐃᑭᐱᑎᐊ ᐊᑎᖅ:',
+'yourrealname'      => 'ᐃᓄᓪᓚᕆᒃ ᐊᑎᖅ:',
+'email'             => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ',
+'prefs-help-email'  => 'ᑭᒍᑎᐅᑉ ᓯᑎᓂᖅᐹᖓ (ᐱᒃᑲᓪᓚᕗᖅ) — ᖃᑯᒍ ᓇᓗᓇᙱᓚᖅ ᐃᓕᔅᓯ ᐱᔪᖕᓇᖅᑐᖅ ᐱᒋᕚ ᑲᙳᓇᖅᑐᖅ ᐋᔩᖃᑎᒋᖏᖅ',
 
 # User rights
 'editinguser' => "ᓱᖁᓯᖅᐹ ᖃᑕᙳᑎ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",

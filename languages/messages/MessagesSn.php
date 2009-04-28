@@ -101,8 +101,6 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 'userlogout'         => 'Chibuda',
 'notloggedin'        => 'Hauna kugamuchirwa',
 'createaccount'      => 'Gadzira Akaunzi',
-'youremail'          => 'E-mail:',
-'username'           => 'Zita:',
 
 # Edit pages
 'summary'     => 'Muchidimbu:',
@@ -120,6 +118,8 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 'prefsnologin'      => 'Hauna kugamuchirwa',
 'prefs-rc'          => 'Zvaba Kuchinjwa',
 'searchresultshead' => 'Tsvaga',
+'youremail'         => 'E-mail:',
+'username'          => 'Zita:',
 
 # Recent changes
 'recentchanges' => 'Zvaba Kuchinjwa',

@@ -110,9 +110,6 @@ $messages = array(
 'nologinlink'        => 'Dolava nomu Akaude',
 'createaccount'      => 'Dolava nomu Akaude',
 'gotaccountlink'     => 'Curu mai',
-'youremail'          => 'I vola livaliva *:',
-'username'           => 'Yaca vakayagataki:',
-'email'              => 'I vola livaliva',
 
 # Edit pages
 'summary'      => 'Kena i Soqoni:',
@@ -128,6 +125,9 @@ $messages = array(
 # Preferences page
 'mypreferences'     => 'Ulutaga taleitaki',
 'searchresultshead' => 'Vaqaqara',
+'youremail'         => 'I vola livaliva *:',
+'username'          => 'Yaca vakayagataki:',
+'email'             => 'I vola livaliva',
 
 # Recent changes
 'recentchanges' => 'Veisau vovou',

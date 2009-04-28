@@ -330,9 +330,6 @@ Førespørgsel: $2',
 'createaccount'           => 'Åpret en ny konto',
 'gotaccount'              => 'Du har ålerede en brugerkonto? $1.',
 'gotaccountlink'          => 'Loĝ på',
-'youremail'               => 'E-mail:',
-'yourrealname'            => 'Dit rigtege navn*',
-'prefs-help-realname'     => '* <strong>Dit rigtege navn</strong> (valgfrit): Hves du vælger at åplyse dit navn hvil dette bleve brugt til at tilskreve dig dit arbejde.',
 'loginsuccesstitle'       => 'Du er nu loĝget på',
 'loginsuccess'            => 'Du er nu loĝget på {{SITENAME}} søm "$1".',
 'nosuchuser'              => 'Der er ig\'n bruger ve navnet "$1". Kontrollér æ stavemåde ig\'n, æller brug æ formulår herunder til at åprette en ny brugerkonto.',
@@ -466,9 +463,12 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'powersearch'    => 'Søĝ',
 
 # Preferences page
-'preferences'   => 'Endstellenger',
-'mypreferences' => 'Endstellenger',
-'skin-preview'  => 'Førhåndsvesnenge',
+'preferences'         => 'Endstellenger',
+'mypreferences'       => 'Endstellenger',
+'skin-preview'        => 'Førhåndsvesnenge',
+'youremail'           => 'E-mail:',
+'yourrealname'        => 'Dit rigtege navn*',
+'prefs-help-realname' => '* <strong>Dit rigtege navn</strong> (valgfrit): Hves du vælger at åplyse dit navn hvil dette bleve brugt til at tilskreve dig dit arbejde.',
 
 'grouppage-sysop' => '{{ns:project}}:Administråtorer',
 

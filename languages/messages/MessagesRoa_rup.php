@@ -107,8 +107,6 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'notloggedin'        => 'Nu hits ligats',
 'createaccount'      => 'Fãtsets Isape',
 'gotaccountlink'     => 'Ligats-vã',
-'youremail'          => 'E-mail:',
-'username'           => 'Numa di ufilizitor:',
 
 # Edit pages
 'summary'            => 'Rezime:',
@@ -128,6 +126,8 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'mypreferences'     => 'Alidzerle-a meale',
 'prefsnologin'      => 'Nu hits ligats',
 'searchresultshead' => 'Caftã',
+'youremail'         => 'E-mail:',
+'username'          => 'Numa di ufilizitor:',
 
 # Recent changes
 'recentchanges' => 'Alãxiri',

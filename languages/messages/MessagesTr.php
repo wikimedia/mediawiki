@@ -532,29 +532,7 @@ Hesabınız açıldı.
 'createaccountmail'          => 'e-posta ile',
 'badretype'                  => 'Girdiğiniz parolalar birbirini tutmuyor.',
 'userexists'                 => 'Girdiğiniz kullanıcı adı kullanımda. Lütfen farklı bir kullanıcı adı seçin.',
-'youremail'                  => 'E-posta adresiniz*',
-'username'                   => 'Kullanıcı adı:',
-'uid'                        => 'Kayıt numarası:',
-'prefs-memberingroups'       => '{{PLURAL:$1|grup|grup}} üyesi:',
-'prefs-registration'         => 'Kayıt zamanı:',
-'yourrealname'               => 'Gerçek isminiz:',
-'yourlanguage'               => 'Arayüz dili',
-'yourvariant'                => 'Sizce:',
-'yournick'                   => 'İmzalarda gözükmesini istediğiniz isim',
-'badsig'                     => 'Geçersiz ham imza; HTML etiketlerini kontorl edin.',
-'badsiglength'               => 'İmzanız çok uzun.
-$1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
-'yourgender'                 => 'Cinsiyet:',
-'gender-unknown'             => 'Belirtilmemiş',
-'gender-male'                => 'Erkek',
-'gender-female'              => 'Bayan',
-'prefs-help-gender'          => 'İsteğe bağlı: yazılım tarafından doğru cinsiyet adreslemesi için kullanılır. Bu bilgi umumi olacaktır.',
-'email'                      => 'E-posta',
-'prefs-help-realname'        => '* Gerçek isim (isteğe bağlı): eğer gerçek isminizi vermeyi seçerseniz, çalışmanızı size atfederken kullanılacaktır.',
 'loginerror'                 => 'Oturum açma hatası.',
-'prefs-help-email'           => 'E-posta adresi isteğe bağlıdır; ancak eğer parolanızı unutursanız e-posta adresinize yeni parola gönderilmesine olanak sağlar.
-Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalarınız üzerinden kimliğinizi bilmeksizin sizinle iletişim kurmalarına da olanak sağlar.',
-'prefs-help-email-required'  => 'E-posta adresi gerekmektedir.',
 'nocookiesnew'               => 'Kullanıcı hesabı yaratıldı ama oturum açamadınız.
 Oturum açmak için {{SITENAME}} çerezleri kullanır.
 Çerez kullanımı devredışı.
@@ -1153,6 +1131,33 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-custom-css'          => 'Özel CSS',
 'prefs-custom-js'           => 'Özel JS',
 'prefs-reset-intro'         => 'Bu sayfayı tercihlerinizi site varsayılanına döndürmek için kullanabilirsiniz. Bu geri alınamaz.',
+'prefs-emailconfirm-label'  => 'E-posta doğrulaması:',
+'prefs-textboxsize'         => 'Değiştirme penceresinin boyutu',
+'youremail'                 => 'E-posta adresiniz*',
+'username'                  => 'Kullanıcı adı:',
+'uid'                       => 'Kayıt numarası:',
+'prefs-memberingroups'      => '{{PLURAL:$1|grup|grup}} üyesi:',
+'prefs-registration'        => 'Kayıt zamanı:',
+'yourrealname'              => 'Gerçek isminiz:',
+'yourlanguage'              => 'Arayüz dili',
+'yourvariant'               => 'Sizce:',
+'yournick'                  => 'İmzalarda gözükmesini istediğiniz isim',
+'badsig'                    => 'Geçersiz ham imza; HTML etiketlerini kontorl edin.',
+'badsiglength'              => 'İmzanız çok uzun.
+$1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
+'yourgender'                => 'Cinsiyet:',
+'gender-unknown'            => 'Belirtilmemiş',
+'gender-male'               => 'Erkek',
+'gender-female'             => 'Bayan',
+'prefs-help-gender'         => 'İsteğe bağlı: yazılım tarafından doğru cinsiyet adreslemesi için kullanılır. Bu bilgi umumi olacaktır.',
+'email'                     => 'E-posta',
+'prefs-help-realname'       => '* Gerçek isim (isteğe bağlı): eğer gerçek isminizi vermeyi seçerseniz, çalışmanızı size atfederken kullanılacaktır.',
+'prefs-help-email'          => 'E-posta adresi isteğe bağlıdır; ancak eğer parolanızı unutursanız e-posta adresinize yeni parola gönderilmesine olanak sağlar.
+Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalarınız üzerinden kimliğinizi bilmeksizin sizinle iletişim kurmalarına da olanak sağlar.',
+'prefs-help-email-required' => 'E-posta adresi gerekmektedir.',
+'prefs-info'                => 'Temel bilgiler',
+'prefs-i18n'                => 'Uluslararasılaştırma',
+'prefs-signature'           => 'İmza',
 
 # User rights
 'userrights'                  => 'Kullanıcı hakları yönetimi',
@@ -2516,7 +2521,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Uyarı!''': Bu dosya kötü niyetli kodlar içerebilir ve işletim sisteminize zarar verebilir.<hr />",
-'imagemaxsize'         => "Resim boyutu sınırı:<br/>''(dosya açıklama sayfaları için)''",
+'imagemaxsize'         => "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
 'thumbsize'            => 'Küçük boyut:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',
 'file-info'            => '(dosya boyutu: $1, MIME tipi: $2)',
@@ -3109,16 +3114,5 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'htmlform-submit'              => 'Gönder',
 'htmlform-reset'               => 'Değişiklikleri geri al',
 'htmlform-selectorother-other' => 'Diğer',
-
-# Special:CreatePage
-'createpage'              => 'Bir sayfa oluştur',
-'createpage-submitbutton' => 'Gönder',
-'createpage-instructions' => 'Oluşturmak istediğiniz sayfanın başlığını girin:',
-'createpage-entertitle'   => 'Lütfen sayfanız için bir başlık girin.',
-'createpage-titleexists'  => '[[$1]] başlıklı bir sayfa zaten mevcut.
-Mevcut sayfayı değiştirmek ister misiniz?',
-'createpage-tryagain'     => 'Hayır. Farklı bir başlıkla yeni bir sayfa oluşturmak istiyorum.',
-'createpage-editexisting' => 'Evet. Mevcut sayfaya katkıda bulunmak istiyorum.',
-'createpage-badtitle'     => '"$1" bir sayfa başlığı olarak kullanılamaz',
 
 );

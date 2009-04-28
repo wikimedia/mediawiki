@@ -81,9 +81,6 @@ $messages = array(
 
 # Login and logout pages
 'yourname'           => 'ናይ ኣባል ሽም:',
-'youremail'          => 'ኢ-መይል:',
-'yourlanguage'       => 'ቋንቋ:',
-'email'              => 'ኢ-መይል',
 'loginlanguagelabel' => 'ቋንቋ: $1',
 
 # Edit pages
@@ -106,6 +103,9 @@ $messages = array(
 'searchresultshead' => 'ድሉይ',
 'savedprefs'        => 'ዘቕረብኩሞ መርኣይ ብትክክል ተቀሚጡ ኣሎ።',
 'prefs-files'       => 'ምስልታት',
+'youremail'         => 'ኢ-መይል:',
+'yourlanguage'      => 'ቋንቋ:',
+'email'             => 'ኢ-መይል',
 
 # Groups
 'group'       => 'ብሓበር:',

@@ -194,8 +194,6 @@ $messages = array(
 'userlogin'          => "Qillqt'ayasiña",
 'logout'             => 'Mistuña',
 'userlogout'         => 'Mistuña',
-'yourlanguage'       => 'Aru:',
-'email'              => 'Chaski jalayiri',
 'loginlanguagelabel' => 'Aru: $1',
 
 # Edit pages
@@ -206,6 +204,8 @@ $messages = array(
 # Preferences page
 'prefs-rc'       => 'Jichha kutikiptatanaka',
 'timezoneoffset' => 'Jalaqtata',
+'yourlanguage'   => 'Aru:',
+'email'          => 'Chaski jalayiri',
 
 # Recent changes
 'recentchanges' => 'Jichha kutikiptatanaka',

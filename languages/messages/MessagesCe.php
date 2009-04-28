@@ -153,11 +153,6 @@ $messages = array(
 'nologinlink'        => 'Керл аккаунт кхолла',
 'createaccount'      => 'Керл юзеран регистраци е',
 'gotaccount'         => 'Регистрации йолш вуй хьо? $1.',
-'youremail'          => 'И-пошта:',
-'yourrealname'       => 'Хьан бакъ цІе:',
-'yourlanguage'       => 'Хьан мотт:',
-'yourvariant'        => 'Кепара мотт',
-'prefs-help-email'   => 'И-пошта, сил чIoгI оьшург пункт яц, амма и хилч кхийч юзерашан аьтто хир ду шуц хабари вал.',
 'mailmypassword'     => 'Тешам дош хийца',
 'accountcreated'     => 'Аккаунт кхоллна',
 'accountcreatedtext' => '$1 юзер аккаунт кхоллна.',
@@ -194,10 +189,15 @@ $messages = array(
 'searchhelp-url' => 'Help:ГIo',
 
 # Preferences page
-'mypreferences'   => 'сан настройки',
-'changepassword'  => 'Тешаман дош хийцар хьам',
-'prefs-watchlist' => 'тергалдеш таптарш',
-'prefs-editing'   => 'Xийца',
+'mypreferences'    => 'сан настройки',
+'changepassword'   => 'Тешаман дош хийцар хьам',
+'prefs-watchlist'  => 'тергалдеш таптарш',
+'prefs-editing'    => 'Xийца',
+'youremail'        => 'И-пошта:',
+'yourrealname'     => 'Хьан бакъ цІе:',
+'yourlanguage'     => 'Хьан мотт:',
+'yourvariant'      => 'Кепара мотт',
+'prefs-help-email' => 'И-пошта, сил чIoгI оьшург пункт яц, амма и хилч кхийч юзерашан аьтто хир ду шуц хабари вал.',
 
 # User rights
 'editinguser' => "Хийца юзер '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",

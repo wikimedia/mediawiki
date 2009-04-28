@@ -136,11 +136,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'userlogout'         => 'anivvik',
 'nologin'            => 'ajuinnaaq inuquti? $1.',
 'nologinlink'        => 'pirqaapaa kiinaujakkuvingmi tuqkuqsivik',
-'youremail'          => 'kigutiup sitiniqpaanga:',
-'username'           => 'uikipitia atiq:',
-'yourrealname'       => 'inullarik atiq:',
-'email'              => 'kigutiup sitiniqpaanga',
-'prefs-help-email'   => 'kigutiup sitiniqpaanga (pikkallavuq) — qakugu nalunanngilaq ilissi pijungnaqtuq pigivaa kanngunaqtuq aajiiqatiginggiq',
 'mailmypassword'     => 'qillutuq uikipitia palanngasauti kigutiup sitiniqpaanga',
 
 # Edit page toolbar
@@ -189,6 +184,11 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'mypreferences'     => 'mi pikkumaniqpaaq',
 'prefs-rc'          => 'pigivuq asianngutuq',
 'searchresultshead' => 'ivaaqpuq',
+'youremail'         => 'kigutiup sitiniqpaanga:',
+'username'          => 'uikipitia atiq:',
+'yourrealname'      => 'inullarik atiq:',
+'email'             => 'kigutiup sitiniqpaanga',
+'prefs-help-email'  => 'kigutiup sitiniqpaanga (pikkallavuq) — qakugu nalunanngilaq ilissi pijungnaqtuq pigivaa kanngunaqtuq aajiiqatiginggiq',
 
 # User rights
 'editinguser' => "suqusiqpaa qatannguti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",

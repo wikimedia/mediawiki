@@ -16,6 +16,7 @@
  * @author Leo Johannes
  * @author Lokal Profil
  * @author M.M.S.
+ * @author MagnusA
  * @author Micke
  * @author NH
  * @author Najami
@@ -652,29 +653,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'badretype'                  => 'De lösenord du uppgett överenstämmer inte med varandra.',
 'userexists'                 => 'Det valda användarnamnet används redan.
 Välj ett annat namn.',
-'youremail'                  => 'E-post:',
-'username'                   => 'Användarnamn:',
-'uid'                        => 'Användar-ID:',
-'prefs-memberingroups'       => 'Medlem av {{PLURAL:$1|gruppen|grupperna}}:',
-'prefs-registration'         => 'Registreringstid:',
-'yourrealname'               => 'Riktigt namn:',
-'yourlanguage'               => 'Språk:',
-'yournick'                   => 'Signatur:',
-'badsig'                     => 'Det är något fel med råsignaturen, kontrollera HTML-koden.',
-'badsiglength'               => 'Din signatur är för lång.
-Den får inte vara längre än $1 {{PLURAL:$1|tecken|tecken}}.',
-'yourgender'                 => 'Kön:',
-'gender-unknown'             => 'Ospecificerat',
-'gender-male'                => 'Man',
-'gender-female'              => 'Kvinna',
-'prefs-help-gender'          => 'Valfri: används för att mjukvaran ska kunna adressera med rätt genus. Denna information kommer vara offentlig.',
-'email'                      => 'E-post',
-'prefs-help-realname'        => 'Riktigt namn behöver inte anges.
-Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'loginerror'                 => 'Inloggningsproblem',
-'prefs-help-email'           => 'Att ange e-postadress är valfritt, men gör det möjligt att få ditt lösenord mejlat till dig om du glömmer det.
-Du kan också välja att låta andra användare kontakta dig genom din användar- eller användardiskussionssida utan att du behöver avslöja din identitet.',
-'prefs-help-email-required'  => 'E-postadress måste anges.',
 'nocookiesnew'               => 'Användarkontot skapades, men du är inte inloggad.
 {{SITENAME}} använder cookies för att logga in användare.
 Du har cookies avaktiverade.
@@ -962,7 +941,7 @@ Anledningen till blockeringen var "$2".',
 'next'                   => 'nästa',
 'last'                   => 'föregående',
 'page_first'             => 'första',
-'page_last'              => 'sista',
+'page_last'              => 'senaste',
 'histlegend'             => "Val av diff: markera i klickrutorna för att jämföra versioner och tryck enter eller knappen längst ner.<br />
 Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
 'history-fieldset-title' => 'Bläddra i historiken',
@@ -1283,6 +1262,33 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-custom-js'           => 'Personlig JavaScript',
 'prefs-reset-intro'         => 'Du kan använda den här sidan till att återställa dina inställningar till webbplatsens standardinställningar.
 Detta kan inte återställas.',
+'prefs-emailconfirm-label'  => 'E-postbekräftelse:',
+'prefs-textboxsize'         => 'Storlek på redigeringsrutan',
+'youremail'                 => 'E-post:',
+'username'                  => 'Användarnamn:',
+'uid'                       => 'Användar-ID:',
+'prefs-memberingroups'      => 'Medlem av {{PLURAL:$1|gruppen|grupperna}}:',
+'prefs-registration'        => 'Registreringstid:',
+'yourrealname'              => 'Riktigt namn:',
+'yourlanguage'              => 'Språk:',
+'yournick'                  => 'Signatur:',
+'badsig'                    => 'Det är något fel med råsignaturen, kontrollera HTML-koden.',
+'badsiglength'              => 'Din signatur är för lång.
+Den får inte vara längre än $1 {{PLURAL:$1|tecken|tecken}}.',
+'yourgender'                => 'Kön:',
+'gender-unknown'            => 'Ospecificerat',
+'gender-male'               => 'Man',
+'gender-female'             => 'Kvinna',
+'prefs-help-gender'         => 'Valfri: används för att mjukvaran ska kunna adressera med rätt genus. Denna information kommer vara offentlig.',
+'email'                     => 'E-post',
+'prefs-help-realname'       => 'Riktigt namn behöver inte anges.
+Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
+'prefs-help-email'          => 'Att ange e-postadress är valfritt, men gör det möjligt att få ditt lösenord mejlat till dig om du glömmer det.
+Du kan också välja att låta andra användare kontakta dig genom din användar- eller användardiskussionssida utan att du behöver avslöja din identitet.',
+'prefs-help-email-required' => 'E-postadress måste anges.',
+'prefs-info'                => 'Grundläggande information',
+'prefs-i18n'                => 'Internationalisering',
+'prefs-signature'           => 'Signatur',
 
 # User rights
 'userrights'                  => 'Hantering av användarrättigheter',
@@ -2012,7 +2018,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 'rollbacklink'     => 'rulla tillbaka',
 'rollbackfailed'   => 'Tillbakarullning misslyckades',
 'cantrollback'     => 'Det gick inte att rulla tillbaka, då sidan endast redigerats av en användare.',
-'alreadyrolled'    => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
+'alreadyrolled'    => 'Det gick inte att rulla tillbaka den senaste redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
 
 Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
 'editcomment'      => "Redigeringskommentaren var: \"''\$1''\".",
@@ -3209,19 +3215,10 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'htmlform-invalid-input'       => 'Det finns problem med din inmatning',
 'htmlform-select-badoption'    => 'Värdet du valde är inte ett giltigt alternativ.',
 'htmlform-int-invalid'         => 'Värdet du valde är inte ett heltal.',
+'htmlform-int-toolow'          => 'Värdet du valde är under minimumet på $1',
+'htmlform-int-toohigh'         => 'Värdet du valde är över maximumet på $1',
 'htmlform-submit'              => 'Spara',
 'htmlform-reset'               => 'Ogör ändringar',
 'htmlform-selectorother-other' => 'Andra',
-
-# Special:CreatePage
-'createpage'              => 'Skapa en sida',
-'createpage-submitbutton' => 'OK',
-'createpage-instructions' => 'Skriv in titeln till sidan som du vill skapa:',
-'createpage-entertitle'   => 'Var god skriv in en titel för din sida.',
-'createpage-titleexists'  => 'En sida med titeln [[$1]] finns redan.
-Vill du redigera den här sidan?',
-'createpage-tryagain'     => 'Nej, jag vill skapa en ny sida med ett annat namn.',
-'createpage-editexisting' => 'Ja. Jag vill bidra till den existerande sidan.',
-'createpage-badtitle'     => '"$1" kan inte användas som sidtitel',
 
 );

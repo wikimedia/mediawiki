@@ -157,7 +157,6 @@ lcont nk ati styaqyad. ador tot atbadlt {{SITENAME}} lmЗlomat nk.',
 'nav-login-createaccount' => 'kchem / qiyd amskhdam amaynu',
 'userlogin'               => 'kchem / qiyd amskhdam amaynu',
 'userlogout'              => 'foɣ',
-'yourlanguage'            => 'tutlayt:',
 'loginlanguagelabel'      => 'tutlayt: $1',
 
 # Edit pages
@@ -172,8 +171,9 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'powersearch' => 'amsigl itqdmn',
 
 # Preferences page
-'localtime'  => 'loqt n ɣilli ɣtllit',
-'servertime' => 'loqt n serveur',
+'localtime'    => 'loqt n ɣilli ɣtllit',
+'servertime'   => 'loqt n serveur',
+'yourlanguage' => 'tutlayt:',
 
 # Upload
 'upload' => 'sΥlid afaylu',
