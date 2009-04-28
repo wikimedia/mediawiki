@@ -3569,7 +3569,7 @@ class Article {
 	 * @param $cache Boolean
 	 */
 	public function outputWikiText( $text, $cache = true ) {
-		global $wgParser, $wgUser, $wgOut, $wgEnableParserCache, $wgUseFileCache;
+		global $wgParser, $wgOut, $wgEnableParserCache, $wgUseFileCache;
 
 		$popts = $wgOut->parserOptions();
 		$popts->setTidy(true);

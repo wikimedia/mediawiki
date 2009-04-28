@@ -481,7 +481,7 @@ EOT
 	 * Show a notice that the file is from a shared repository
 	 */
 	protected function printSharedImageText() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$this->loadFile();
 

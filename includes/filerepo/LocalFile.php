@@ -1398,7 +1398,7 @@ class LocalFileDeleteBatch {
 	 * Run the transaction
 	 */
 	function execute() {
-		global $wgUser, $wgUseSquid;
+		global $wgUseSquid;
 		wfProfileIn( __METHOD__ );
 
 		$this->file->lock();
@@ -1540,7 +1540,7 @@ class LocalFileRestoreBatch {
 	 * So we save the batch and let the caller call cleanup()
 	 */
 	function execute() {
-		global $wgUser, $wgLang;
+		global $wgLang;
 		if ( !$this->all && !$this->ids ) {
 			// Do nothing
 			return $this->file->repo->newGood();

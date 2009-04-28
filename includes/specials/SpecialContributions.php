@@ -473,7 +473,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * @todo This would probably look a lot nicer in a table.
 	 */
 	function formatRow( $row ) {
-		global $wgLang, $wgUser, $wgContLang;
+		global $wgLang, $wgContLang;
 		wfProfileIn( __METHOD__ );
 
 		$sk = $this->getSkin();

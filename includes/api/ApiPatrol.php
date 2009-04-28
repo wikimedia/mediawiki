@@ -41,7 +41,7 @@ class ApiPatrol extends ApiBase {
 	 * Patrols the article or provides the reason the patrol failed.
 	 */
 	public function execute() {
-		global $wgUser, $wgUseRCPatrol, $wgUseNPPatrol;
+		global $wgUser;
 		$params = $this->extractRequestParams();
 		
 		if(!isset($params['token']))

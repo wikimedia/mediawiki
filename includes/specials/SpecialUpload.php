@@ -288,7 +288,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function processUpload(){
-		global $wgUser, $wgOut, $wgFileExtensions, $wgLang;
+		global $wgOut, $wgFileExtensions, $wgLang;
 	 	$details = null;
 	 	$value = null;
 	 	$value = $this->internalProcessUpload( $details );

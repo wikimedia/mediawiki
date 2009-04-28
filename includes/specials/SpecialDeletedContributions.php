@@ -108,7 +108,7 @@ class DeletedContribsPager extends IndexPager {
 	function formatRow( $row ) {
 		wfProfileIn( __METHOD__ );
 
-		global $wgLang, $wgUser;
+		global $wgLang;
 
 		$sk = $this->getSkin();
 
