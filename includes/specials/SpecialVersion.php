@@ -114,7 +114,7 @@ class SpecialVersion extends SpecialPage {
 	public static function getVersion() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
-		$svn = self::getSvnRevision( $IP, false );
+		$svn = self::getSvnRevision( $IP, false , false);
 		$version = $svn ? $wgVersion . wfMsg( 'version-svn-revision', $svn ) : $wgVersion;
 		wfProfileOut( __METHOD__ );
 		return $version;
@@ -129,8 +129,11 @@ class SpecialVersion extends SpecialPage {
 	public static function getVersionLinked() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
-		$svn = self::getSvnRevision( $IP, false );
-		$viewvc = 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/?pathrev=';
+		$svn = self::getSvnRevision( $IP, false, false );
+		$svnDir = self::getSvnRevision( $IP, false, true );
+		$viewvcStart = 'http://svn.wikimedia.org/viewvc/mediawiki/';
+		$viewvcEnd = '/?pathrev=';
+		$viewvc = $viewvcStart . $svnDir .  $viewvcEnd;
 		$version = $svn ? $wgVersion . " [{$viewvc}{$svn} " . wfMsg( 'version-svn-revision', $svn ) . ']' : $wgVersion;
 		wfProfileOut( __METHOD__ );
 		return $version;
@@ -164,8 +167,13 @@ class SpecialVersion extends SpecialPage {
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
 					$version = null;
 					$subVersion = null;
-					if (isset($extension['path']))
-						$subVersion = self::getSvnRevision(dirname($extension['path']), true);
+					$viewvc = null;
+					if ( isset( $extension['path'] ) ) {
+						$subVersion = self::getSvnRevision(dirname($extension['path']), true, false);
+						$subVersionDir = self::getSvnRevision(dirname($extension['path']), true, true);
+						if ($subVersionDir)
+							$viewvc = $subVersionDir . $subVersion;
+					}
 					if ( isset( $extension['version'] ) ) {
 						$version = $extension['version'];
 					}
@@ -174,6 +182,7 @@ class SpecialVersion extends SpecialPage {
 						isset ( $extension['name'] )           ? $extension['name']        : '',
 						$version,
 						$subVersion,
+						$viewvc,
 						isset ( $extension['author'] )         ? $extension['author']      : '',
 						isset ( $extension['url'] )            ? $extension['url']         : null,
 						isset ( $extension['description'] )    ? $extension['description'] : '',
@@ -220,10 +229,11 @@ class SpecialVersion extends SpecialPage {
 		}
 	}
 
-	function formatCredits( $name, $version = null, $subVersion = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
+	function formatCredits( $name, $version = null, $subVersion = null, $subVersionURL = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
 		$extension = isset( $url ) ? "[$url $name]" : $name;
 		$version = isset( $version ) ? wfMsg( 'version-version', $version ) : '';
 		$subVersion = isset( $subVersion ) ? wfMsg( 'version-svn-revision', $subVersion ) : '';
+		$subVersion = isset( $subVersionURL ) ? "[$subVersionURL $subVersion]" : $subVersion;
 
 		# Look for a localized description
 		if( isset( $descriptionMsg ) ) {
@@ -341,7 +351,7 @@ class SpecialVersion extends SpecialPage {
 	 * @param string $dir
 	 * @return mixed revision number as int, or false if not a SVN checkout
 	 */
-	public static function getSvnRevision( $dir , $extension = false) {
+	public static function getSvnRevision( $dir , $extension = false, $relPath = false) {
 		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
 		$entries = $dir . '/.svn/entries';
 
@@ -377,6 +387,31 @@ class SpecialVersion extends SpecialPage {
 			return false;
 		} else {
 			// subversion is release 1.4 or above
+			if ($relPath) {
+				$endPath = strstr( $content[4], 'tags' );
+				if (!$endPath) {
+					$endPath = strstr( $content[4], 'branches' );
+					if (!$endPath) {
+						$endPath = strstr( $content[4], 'trunk' );
+						if (!$endPath)
+							return false;
+					}
+				}
+				$endPath = trim ( $endPath );
+				if ($extension) {
+					$wmSvnPath = 'svn.wikimedia.org/svnroot/mediawiki';
+					$isWMSvn = strstr($content[5],$wmSvnPath);
+					if (!strcmp($isWMSvn,null)) {
+						return false;
+					} else {
+						$viewvcStart = 'http://svn.wikimedia.org/viewvc/mediawiki/';
+						$viewvcEnd = '/?pathrev=';
+						$viewvc = $viewvcStart . $endPath . $viewvcEnd;
+						return $viewvc;
+					}
+				}
+				return $endPath;
+			}
 			if ($extension)
 				// get the last file revsion number
 				return intval( $content[10]) ;
