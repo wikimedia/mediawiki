@@ -306,7 +306,11 @@ class HTMLForm {
 		
 		foreach( $this->mFlatFields as $fieldname => $field ) {
 			if ( !empty($field->mParams['nodata']) ) continue;
-			$fieldData[$fieldname] = $field->loadDataFromRequest( $wgRequest );
+			if ( !empty($field->mParams['disabled']) ) {
+				$fieldData[$fieldname] = $field->getDefault();
+			} else {
+				$fieldData[$fieldname] = $field->loadDataFromRequest( $wgRequest );
+			}
 		}
 		
 		// Filter data.
@@ -492,10 +496,14 @@ class HTMLTextField extends HTMLFormField {
 			$attribs['maxlength'] = $this->mParams['maxlength'];
 		}
 		
+		if (!empty($this->mParams['disabled'])) {
+			$attribs['disabled'] = 'disabled';
+		}
+		
 		return Xml::input( $this->mName,
 							$this->getSize(),
 							$value,
-							$attribs );
+							$attribs ) ;
 	}
 	
 }
@@ -537,7 +545,12 @@ class HTMLCheckField extends HTMLFormField {
 		if ( !empty( $this->mParams['invert'] ) )
 			$value = !$value;
 		
-		return Xml::check( $this->mName, $value, array( 'id' => $this->mID ) ) . '&nbsp;' .
+		$attr = array( 'id' => $this->mID );
+		if (!empty($this->mParams['disabled'])) {
+			$attr['disabled'] = 'disabled';
+		}
+		
+		return Xml::check( $this->mName, $value, $attr ) . '&nbsp;' .
 				Xml::tags( 'label', array( 'for' => $this->mID ), $this->mLabel );
 	}
 	
@@ -579,8 +592,12 @@ class HTMLSelectField extends HTMLFormField {
 			return wfMsgExt( 'htmlform-select-badoption', 'parseinline' );
 	}
 	
-	function getInputHTML( $value ) {
+	function getInputHTML( $value ) {		
 		$select = new XmlSelect( $this->mName, $this->mID, $value );
+		
+		if (!empty($this->mParams['disabled'])) {
+			$select->setAttribute( 'disabled', 'disabled' );
+		}
 		
 		$select->addOptions( $this->mParams['options'] );
 		
@@ -600,8 +617,8 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 	}
 	
 	function getInputHTML( $value ) {
-	
 		$valInSelect = false;
+		
 		if ($value !== false)
 			$valInSelect = in_array( $value,
 							HTMLFormField::flattenOptions($this->mParams['options']) );
@@ -613,9 +630,13 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		
 		$select->setAttribute( 'class', 'mw-htmlform-select-or-other' );
 		
-		$select = $select->getHTML();
-		
 		$tbAttribs = array( 'id' => $this->mID.'-other' );
+		if (!empty($this->mParams['disabled'])) {
+			$select->setAttribute( 'disabled', 'disabled' );
+			$tbAttribs['disabled'] = 'disabled';
+		}
+		
+		$select = $select->getHTML();
 		
 		if ( isset($this->mParams['maxlength']) ) {
 			$tbAttribs['maxlength'] = $this->mParams['maxlength'];
@@ -670,13 +691,21 @@ class HTMLMultiSelectField extends HTMLFormField {
 	
 	function formatOptions( $options, $value ) {
 		$html = '';
+		
+		$attribs = array();
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$attribs['disabled'] = 'disabled';
+		}
+		
 		foreach( $options as $label => $info ) {
 			if (is_array($info)) {
 				$html .= Xml::tags( 'h1', null, $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
+				$thisAttribs = array( 'id' => $this->mID."-$info", 'value' => $info );
+				
 				$checkbox = Xml::check( $this->mName.'[]', in_array( $info, $value ),
-								array( 'id' => $this->mID."-$info", 'value' => $info ) );
+								$attribs + $thisAttribs );
 				$checkbox .= '&nbsp;' . Xml::tags( 'label', array( 'for' => $this->mID."-$info" ), $label );
 				
 				$html .= $checkbox . '<br />';
@@ -733,13 +762,19 @@ class HTMLRadioField extends HTMLFormField {
 	
 	function formatOptions( $options, $value ) {
 		$html = '';
+		
+		$attribs = array();
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$attribs['disabled'] = 'disabled';
+		}
+		
 		foreach( $options as $label => $info ) {
 			if (is_array($info)) {
 				$html .= Xml::tags( 'h1', null, $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
 				$html .= Xml::radio( $this->mName, $info, $info == $value,
-										array( 'id' => $this->mID."-$info" ) );
+										$attribs + array( 'id' => $this->mID."-$info" ) );
 				$html .= '&nbsp;' .
 						Xml::tags( 'label', array( 'for' => $this->mID."-$info" ), $label );
 				
