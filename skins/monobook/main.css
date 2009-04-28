@@ -966,6 +966,13 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
 	height: 1%;
 }
 
+.mw-htmlform-submit {
+	font-weight: bold;
+	padding-left: .3em;
+	padding-right: .3em;
+	margin-right: 2em;
+}
+
 /* js pref toc */
 #preftoc {
 	margin: 0;
@@ -1027,11 +1034,7 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
 	padding: 0;
 	margin: 0;
 }
-.prefsection fieldset {
-	border: 1px solid #aaa;
-	float: left;
-	margin-right: 2em;
-}
+
 .prefsection legend {
 	font-weight: bold;   
 }
@@ -1045,12 +1048,6 @@ td.htmlform-tip {
 	font-size: x-small;
 	padding: .2em 2em;
 	color: #666;
-}
-.mw-htmlform-submit {
-	font-weight: bold;
-	padding-left: .3em;
-	padding-right: .3em;
-	margin-right: 2em;
 }
 
 .preferences-login {

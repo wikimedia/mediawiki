@@ -286,6 +286,8 @@ class Preferences {
 				
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
 		
+		$disableEmailPrefs = false;
+		
 		if ( $wgEmailAuthentication ) {
 			if ( $user->getEmail() ) {
 				if( $user->getEmailAuthenticationTimestamp() ) {
@@ -306,6 +308,7 @@ class Preferences {
 							wfMsg( 'emailconfirmlink' ) ) . '<br />';
 				}
 			} else {
+				$disableEmailPrefs = true;
 				$emailauthenticated = wfMsg( 'noemailprefs' );
 			}
 			
@@ -328,12 +331,14 @@ class Preferences {
 							'invert' => true,
 							'section' => 'personal/email',
 							'label-message' => 'allowemail',
+							'disabled' => $disableEmailPrefs,
 						);
 				$defaultPreferences['ccmeonemails'] =
 						array(
 							'type' => 'toggle',
 							'section' => 'personal/email',
 							'label-message' => 'tog-ccmeonemails',
+							'disabled' => $disableEmailPrefs,
 						);
 			}
 			
@@ -342,24 +347,28 @@ class Preferences {
 						'type' => 'toggle',
 						'section' => 'personal/email',
 						'label-message' => 'tog-enotifwatchlistpages',
+						'disabled' => $disableEmailPrefs,
 					);
 			$defaultPreferences['enotifusertalkpages'] =
 					array(
 						'type' => 'toggle',
 						'section' => 'personal/email',
 						'label-message' => 'tog-enotifusertalkpages',
+						'disabled' => $disableEmailPrefs,
 					);
 			$defaultPreferences['enotifminoredits'] =
 					array(
 						'type' => 'toggle',
 						'section' => 'personal/email',
 						'label-message' => 'tog-enotifminoredits',
+						'disabled' => $disableEmailPrefs,
 					);
 			$defaultPreferences['enotifrevealaddr'] =
 					array(
 						'type' => 'toggle',
 						'section' => 'personal/email',
-						'label-message' => 'tog-enotifrevealaddr'
+						'label-message' => 'tog-enotifrevealaddr',
+						'disabled' => $disableEmailPrefs,
 					);
 		}
 	}
