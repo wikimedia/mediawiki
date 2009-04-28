@@ -247,7 +247,7 @@ class SpecialNewpages extends SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( $result ) {
-		global $wgLang, $wgContLang, $wgUser;
+		global $wgLang, $wgContLang;
 
 		$classes = array();
 		

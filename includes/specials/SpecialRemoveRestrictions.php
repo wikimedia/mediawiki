@@ -46,7 +46,7 @@ function wfSpecialRemoveRestrictions() {
 }
 
 function wfSpecialRemoveRestrictionsProcess( $r ) {
-	global $wgUser, $wgRequest;
+	global $wgRequest;
 	$reason = $wgRequest->getVal( 'reason' );
 	$result = $r->delete();
 	$log = new LogPage( 'restrict' );

@@ -774,7 +774,6 @@ class LogViewer {
 	 *     LogEventsList::NO_ACTION_LINK   Don't show restore/unblock/block links
 	 */
 	function __construct( &$reader, $flags = 0 ) {
-		global $wgUser;
 		wfDeprecated(__METHOD__);
 		$this->reader =& $reader;
 		$this->reader->pager->mLogEventsList->flags = $flags;

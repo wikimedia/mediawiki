@@ -833,7 +833,7 @@ class UndeleteForm {
 	 * @return string HTML
 	 */
 	function showDiff( $previousRev, $currentRev ) {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$diffEngine = new DifferenceEngine();
 		$diffEngine->showDiffStyle();

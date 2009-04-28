@@ -67,7 +67,7 @@ class MergehistoryForm {
 	}
 
 	function execute() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$wgOut->setPagetitle( wfMsgHtml( "mergehistory" ) );
 
@@ -218,7 +218,7 @@ class MergehistoryForm {
 	}
 
 	function formatRevisionRow( $row ) {
-		global $wgUser, $wgLang;
+		global $wgLang;
 
 		$rev = new Revision( $row );
 
@@ -270,7 +270,7 @@ class MergehistoryForm {
 	}
 
 	function merge() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 		# Get the titles directly from the IDs, in case the target page params
 		# were spoofed. The queries are done based on the IDs, so it's best to
 		# keep it consistent...

@@ -2375,7 +2375,6 @@ class User {
 	 * Log this user out.
 	 */
 	function logout() {
-		global $wgUser;
 		if( wfRunHooks( 'UserLogout', array(&$this) ) ) {
 			$this->doLogout();
 		}

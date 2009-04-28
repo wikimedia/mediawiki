@@ -2996,7 +2996,7 @@ class Title {
 	 *  arrays (errors) as values, or an error array with numeric indices if no pages were moved
 	 */
 	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true ) {
-		global $wgUser, $wgMaximumMovedPages;
+		global $wgMaximumMovedPages;
 		// Check permissions
 		if( !$this->userCan( 'move-subpages' ) )
 			return array( 'cant-move-subpages' );

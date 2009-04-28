@@ -443,7 +443,6 @@ class Linker {
 	 * @param $prefix String: optional prefix. As trail, only before instead of after.
 	 */
 	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
-		global $wgUser;
 		wfProfileIn( __METHOD__ );
 
 		$query = wfCgiToArray( $query );

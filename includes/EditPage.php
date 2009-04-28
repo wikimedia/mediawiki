@@ -352,7 +352,7 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgUser, $wgRequest;
+		global $wgOut, $wgRequest;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !wfRunHooks( 'AlternateEdit', array( &$this ) ) ) {
 			return;

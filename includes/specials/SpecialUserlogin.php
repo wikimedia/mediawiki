@@ -948,8 +948,6 @@ class LoginForm {
 	 * @private
 	 */
 	function onCookieRedirectCheck( $type ) {
-		global $wgUser;
-
 		if ( !$this->hasSessionCookie() ) {
 			if ( $type == 'new' ) {
 				return $this->mainLoginForm( wfMsgExt( 'nocookiesnew', array( 'parseinline' ) ) );
