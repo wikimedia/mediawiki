@@ -434,6 +434,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13049) "API must be accessed from the primary script entry point" error
 * (bug 18601) generator=backlinks returns invalid continue parameter
 * (bug 18597) Internal error with empty generator= parameter
+* (bug 16422) Don't display help for format=jsonfm unless specifically requested
 
 === Languages updated in 1.15 ===
 
