@@ -599,6 +599,11 @@ $2',
 'loginerror'                 => '登录错误',
 'prefs-help-email'           => '电子邮件是可选的，但当您忘记您的个密码时可以将新密码寄回给您。您亦可以在您没有公开自己的用户身份时通过您的用户页或用户讨论页与您联系。',
 'prefs-help-email-required'  => '需要电子邮件地址。',
+'prefs-info'                 => '基本资料',
+'prefs-i18n'                 => '国际化',
+'prefs-signature'            => '签名',
+
+## User login
 'nocookiesnew'               => '已成功创建新账户！侦测到您已关闭Cookies，请开启它并登录。',
 'nocookieslogin'             => '本站利用Cookies进行用户登录，侦测到您已关闭Cookies，请开启它并重新登录。',
 'noname'                     => '你没有输入有效的用户名。',
@@ -1183,6 +1188,7 @@ $2',
 'prefs-custom-js'           => '自定义JS',
 'prefs-reset-intro'         => '您可以利用这个页面去重设您的参数设置到网站默认值。这个动作无法复原。',
 'prefs-emailconfirm-label'  => '电子邮件确认：',
+'prefs-textboxsize'         => '编辑框大小',
 
 # User rights
 'userrights'                  => '用户权限管理',

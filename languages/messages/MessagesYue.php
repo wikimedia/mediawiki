@@ -546,6 +546,11 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'loginerror'                 => '登入錯誤',
 'prefs-help-email'           => '電郵地址係可以選填嘅，但當你唔記得咗你個密碼嗰陣可以將新密碼寄番畀你。你亦可以等人可以響唔知你電郵地址嘅情況之下都可以聯絡你。',
 'prefs-help-email-required'  => '需要電郵地址。',
+'prefs-info'                 => '基本資料',
+'prefs-i18n'                 => '國際化',
+'prefs-signature'            => '簽名',
+
+## User login
 'nocookiesnew'               => '已經建立咗戶口，但你未登入。 {{SITENAME}} 要用 cookies 嚟登入。你已經停咗用 cookies。麻煩啟用返先，然後再用你新嘅用戶名同密碼。',
 'nocookieslogin'             => '{{SITENAME}} 要用 cookies 嚟登入。你已經停用 cookies。請先啟用後再度試過喇。',
 'noname'                     => '你未指定一個有效嘅用戶名。',
@@ -1141,6 +1146,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'prefs-custom-js'           => '自定 JS',
 'prefs-reset-intro'         => '你可以用呢版去重設你嘅喜好設定到網站預設值。呢個動作無得番轉頭。',
 'prefs-emailconfirm-label'  => '電郵確認:',
+'prefs-textboxsize'         => '編輯窗大細',
 
 # User rights
 'userrights'                  => '用戶權限管理',

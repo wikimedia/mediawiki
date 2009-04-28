@@ -568,6 +568,11 @@ $2',
 'loginerror'                 => '登入錯誤',
 'prefs-help-email'           => '電子郵件是可選的，但當您忘記您的個密碼時可以將新密碼寄回給您。您亦可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
 'prefs-help-email-required'  => '需要電子郵件地址。',
+'prefs-info'                 => '基本資料',
+'prefs-i18n'                 => '國際化',
+'prefs-signature'            => '簽名',
+
+## User login
 'nocookiesnew'               => '已成功創建新賬戶！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin'             => '本站利用 Cookies 進行用戶登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
 'noname'                     => '你沒有輸入一個有效的用戶名。',
@@ -1157,6 +1162,7 @@ $2',
 'prefs-custom-js'           => '自定JS',
 'prefs-reset-intro'         => '您可以利用這個頁面去重設您的參數設置到網站預設值。這個動作無法復原。',
 'prefs-emailconfirm-label'  => '電子郵件確認：',
+'prefs-textboxsize'         => '編輯框大小',
 
 # User rights
 'userrights'                  => '用戶權限管理',
