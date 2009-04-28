@@ -596,29 +596,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}}-stillingunum]] þínum
 'createaccountmail'          => 'með tölvupósti',
 'badretype'                  => 'Lykilorðin sem þú skrifaðir eru ekki eins.',
 'userexists'                 => 'Þetta notandanafn er þegar í notkun. Vinsamlegast veldu þér annað.',
-'youremail'                  => 'Netfang:',
-'username'                   => 'Notandanafn:',
-'uid'                        => 'Raðnúmer:',
-'prefs-memberingroups'       => 'Meðlimur {{PLURAL:$1|hóps|hópa}}:',
-'yourrealname'               => 'Fullt nafn:',
-'yourlanguage'               => 'Viðmótstungumál:',
-'yourvariant'                => 'Útgáfa:',
-'yournick'                   => 'Undirskrift:',
-'badsig'                     => 'Ógild hrá undirskrift. Athugaðu HTML-kóða.',
-'badsiglength'               => 'Undirskriftin er of löng.
-Hún þarf að vera færri en $1 {{PLURAL:$1|rittákn|rittákn}}.',
-'yourgender'                 => 'Kyn:',
-'gender-unknown'             => 'Óskilgreint',
-'gender-male'                => 'Karl',
-'gender-female'              => 'Kona',
-'prefs-help-gender'          => 'Valfrjálst: notað til að aðgreina kynin í meldingum hugbúnaðarins. Þessar upplýsingar verða aðgengilegar öllum.',
-'email'                      => 'Tölvupóstur',
-'prefs-help-realname'        => 'Alvöru nafn er valfrjálst.
-Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiður af verkum þínum.',
 'loginerror'                 => 'Innskráningarvilla',
-'prefs-help-email'           => 'Tölvupóstfang er valfrjálst, en gerir það kleift að fá nýtt lykilorð sent ef þú gleymir lykilorðinu þínu.
-Þú getur einnig leyft öðrum að hafa samband við þig á notanda- eða spjallsíðunni þinni án þess að opinbera þig.',
-'prefs-help-email-required'  => 'Þörf er á netfangi.',
 'nocookiesnew'               => 'Innskráningin var búin til, en þú ert ekki skráð(ur) inn.
 {{SITENAME}} notar vefkökur til að skrá inn notendur.
 Þú hefur lokað fyrir vefkökur.
@@ -1097,6 +1075,28 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'defaultns'                 => 'Leita í þessum nafnrýmum sjálfgefið:',
 'default'                   => 'sjálfgefið',
 'prefs-files'               => 'Skrár',
+'youremail'                 => 'Netfang:',
+'username'                  => 'Notandanafn:',
+'uid'                       => 'Raðnúmer:',
+'prefs-memberingroups'      => 'Meðlimur {{PLURAL:$1|hóps|hópa}}:',
+'yourrealname'              => 'Fullt nafn:',
+'yourlanguage'              => 'Viðmótstungumál:',
+'yourvariant'               => 'Útgáfa:',
+'yournick'                  => 'Undirskrift:',
+'badsig'                    => 'Ógild hrá undirskrift. Athugaðu HTML-kóða.',
+'badsiglength'              => 'Undirskriftin er of löng.
+Hún þarf að vera færri en $1 {{PLURAL:$1|rittákn|rittákn}}.',
+'yourgender'                => 'Kyn:',
+'gender-unknown'            => 'Óskilgreint',
+'gender-male'               => 'Karl',
+'gender-female'             => 'Kona',
+'prefs-help-gender'         => 'Valfrjálst: notað til að aðgreina kynin í meldingum hugbúnaðarins. Þessar upplýsingar verða aðgengilegar öllum.',
+'email'                     => 'Tölvupóstur',
+'prefs-help-realname'       => 'Alvöru nafn er valfrjálst.
+Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiður af verkum þínum.',
+'prefs-help-email'          => 'Tölvupóstfang er valfrjálst, en gerir það kleift að fá nýtt lykilorð sent ef þú gleymir lykilorðinu þínu.
+Þú getur einnig leyft öðrum að hafa samband við þig á notanda- eða spjallsíðunni þinni án þess að opinbera þig.',
+'prefs-help-email-required' => 'Þörf er á netfangi.',
 
 # User rights
 'userrights'                  => 'Breyta notandaréttindum',

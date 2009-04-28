@@ -506,28 +506,7 @@ Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hob
 'badretype'                  => 'Idatzitako pasahitzak ez dira berdinak.',
 'userexists'                 => 'Aukeratutako erabiltzaile izena hartuta dago.
 Mesedez, beste bat aukeratu.',
-'youremail'                  => 'E-posta:',
-'username'                   => 'Erabiltzaile izena:',
-'uid'                        => 'Erabiltzaile zenbakia:',
-'prefs-memberingroups'       => '{{PLURAL:$1|Taldeko|taldeetako}} kidea:',
-'yourrealname'               => 'Benetako izena:',
-'yourlanguage'               => 'Hizkuntza:',
-'yourvariant'                => 'Aldaera',
-'yournick'                   => 'Erabiltzaile izena:',
-'badsig'                     => 'Baliogabeko sinadura; egiaztatu HTML etiketak.',
-'badsiglength'               => 'Zure sinadura luzeegia da.
-$1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
-'yourgender'                 => 'Generoa:',
-'gender-unknown'             => 'Zehaztugabea',
-'gender-male'                => 'Gizona',
-'gender-female'              => 'Emakumea',
-'prefs-help-gender'          => 'Hautazkoa: softwareak generoa zehazteko erabilia. Informazio hau publikoa da.',
-'email'                      => 'E-posta',
-'prefs-help-realname'        => '* Benetako izena (aukerakoa): zehaztea erabakiz gero, zure lanarentzako atribuzio bezala balioko du.',
 'loginerror'                 => 'Errorea saioa hastean',
-'prefs-help-email'           => 'E-posta helbidea aukerakoa da, baina zure pasahitza ahaztekotan berriro zure e-postara bidaltzeko aukera ematen dizu.
-Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztabaid orrialdeak erabilita zure identitatea ezagutzera eman gabe.',
-'prefs-help-email-required'  => 'E-mail helbidea derrigorrezkoa da.',
 'nocookiesnew'               => 'Erabiltzaile kontua sortu da, baina ez da saioa hasi. {{SITENAME}}(e)k cookieak erabiltzen ditu saioekin eta ezgaituta dauzkazu. Gaitu itzazu mesedez, eta ondoren saiatu saioa hasten zure erabiltzaile izen eta pasahitz berriak erabiliz.',
 'nocookieslogin'             => '{{SITENAME}}(e)k cookieak erabiltzen ditu saioekin eta ezgaituta dauzkazu. Gaitu itzazu mesedez, eta saiatu berriz.',
 'noname'                     => 'Ez duzu baliozko erabiltzaile izen bat zehaztu.',
@@ -1107,6 +1086,27 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'prefs-files'               => 'Fitxategiak',
 'prefs-custom-css'          => 'CSS pertsonalizatua',
 'prefs-custom-js'           => 'JS pertsonalizatua',
+'youremail'                 => 'E-posta:',
+'username'                  => 'Erabiltzaile izena:',
+'uid'                       => 'Erabiltzaile zenbakia:',
+'prefs-memberingroups'      => '{{PLURAL:$1|Taldeko|taldeetako}} kidea:',
+'yourrealname'              => 'Benetako izena:',
+'yourlanguage'              => 'Hizkuntza:',
+'yourvariant'               => 'Aldaera',
+'yournick'                  => 'Erabiltzaile izena:',
+'badsig'                    => 'Baliogabeko sinadura; egiaztatu HTML etiketak.',
+'badsiglength'              => 'Zure sinadura luzeegia da.
+$1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
+'yourgender'                => 'Generoa:',
+'gender-unknown'            => 'Zehaztugabea',
+'gender-male'               => 'Gizona',
+'gender-female'             => 'Emakumea',
+'prefs-help-gender'         => 'Hautazkoa: softwareak generoa zehazteko erabilia. Informazio hau publikoa da.',
+'email'                     => 'E-posta',
+'prefs-help-realname'       => '* Benetako izena (aukerakoa): zehaztea erabakiz gero, zure lanarentzako atribuzio bezala balioko du.',
+'prefs-help-email'          => 'E-posta helbidea aukerakoa da, baina zure pasahitza ahaztekotan berriro zure e-postara bidaltzeko aukera ematen dizu.
+Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztabaid orrialdeak erabilita zure identitatea ezagutzera eman gabe.',
+'prefs-help-email-required' => 'E-mail helbidea derrigorrezkoa da.',
 
 # User rights
 'userrights'                  => 'Erabiltzaile baimenen kudeaketa',
@@ -2975,16 +2975,5 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'dberr-usegoogle'   => 'Bitartean Google bidez bilatzen saiatu zintezke.',
 'dberr-outofdate'   => 'Eduki hauek aurkibideak eguneratu gabe egon daitezke.',
 'dberr-cachederror' => 'Ondorengoa eskatutako orriaren katxedun kopia da, eta eguneratu gabe egon daiteke.',
-
-# Special:CreatePage
-'createpage'              => 'Orri bat sortu',
-'createpage-submitbutton' => 'Bidali',
-'createpage-instructions' => 'Idatzi sortu nahi duzun orriaren izenburua:',
-'createpage-entertitle'   => 'Zure orrirako izenburu bat sartu mesedez.',
-'createpage-titleexists'  => '[[$1]] izenburua duen orria dagoeneko badago.
-Sortutako orria aldatu nahiko al zenuke?',
-'createpage-tryagain'     => 'Ez. Orrialde berri bat sortu nahi dut izenburu desberdinarekin.',
-'createpage-editexisting' => 'Bai. Sortutako orrian lagundu nahi dut.',
-'createpage-badtitle'     => '"$1" ezin da orrialdearen izenburua bezala erabili.',
 
 );

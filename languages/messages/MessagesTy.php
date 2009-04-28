@@ -110,11 +110,6 @@ $messages = array(
 'nstab-help'      => 'Tauturu',
 'nstab-category'  => 'Huru',
 
-# Login and logout pages
-'youremail'    => 'Tā’u ’āfata rata uira',
-'yourlanguage' => 'Te reo:',
-'email'        => '’Imere',
-
 # Revision feed
 'history-feed-title' => 'Parau tuatāpapa',
 
@@ -122,8 +117,11 @@ $messages = array(
 'powersearch' => 'Roromā’imi',
 
 # Preferences page
-'prefs-rc'    => 'Te mau fa’ahuru-’ē-ra’a ’āpī',
-'prefs-files' => 'Te mau putu’ite',
+'prefs-rc'     => 'Te mau fa’ahuru-’ē-ra’a ’āpī',
+'prefs-files'  => 'Te mau putu’ite',
+'youremail'    => 'Tā’u ’āfata rata uira',
+'yourlanguage' => 'Te reo:',
+'email'        => '’Imere',
 
 # Recent changes
 'recentchanges' => 'Te mau fa’ahuru-’ē-ra’a ’āpī',

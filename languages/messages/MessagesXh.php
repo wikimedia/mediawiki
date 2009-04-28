@@ -90,7 +90,6 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 'yourpasswordagain'  => 'Faka kwakhona igama elifihlakeleyo:',
 'remembermypassword' => 'Khumbula igama lam elifihlakeleyo kule Khompyutha',
 'createaccount'      => 'Vula I Account',
-'username'           => 'Igama lelungu:',
 'loginlanguagelabel' => 'Ulwimi: $1',
 
 # Edit pages
@@ -107,6 +106,7 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 # Preferences page
 'mypreferences'     => 'Ezithandwa ndim',
 'searchresultshead' => 'Khangela',
+'username'          => 'Igama lelungu:',
 
 # Recent changes
 'recentchanges'   => 'Utshitsho olusandokwenziwa',

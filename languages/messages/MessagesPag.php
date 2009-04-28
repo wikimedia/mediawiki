@@ -105,8 +105,6 @@ $messages = array(
 'createaccount'              => 'Mangawa na account',
 'gotaccountlink'             => 'Onloob',
 'badretype'                  => 'Aga parehas so en-type mo ran password.',
-'yourrealname'               => 'Tuwan ngaran:',
-'badsiglength'               => 'Andukey ya maong so nickname. Say dukey to dapat mas daiset en say $1 ya character.',
 'acct_creation_throttle_hit' => 'Sorry, nangawala ka la na $1 account. Agka la makapangawa na account.',
 'accountcreated'             => 'Agawa so account',
 'accountcreatedtext'         => 'Agawa la so user account para $1.',
@@ -171,6 +169,8 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 'prefs-watchlist'   => 'Listaan na babantayan',
 'prefs-editing'     => 'Babaloen',
 'searchresultshead' => 'Anapen',
+'yourrealname'      => 'Tuwan ngaran:',
+'badsiglength'      => 'Andukey ya maong so nickname. Say dukey to dapat mas daiset en say $1 ya character.',
 
 # User rights
 'userrights-user-editname' => 'Isulat so username:',

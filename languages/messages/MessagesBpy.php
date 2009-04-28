@@ -328,13 +328,6 @@ $messages = array(
 'gotaccount'                 => 'মান্নাপা একাউন্ট আহান আগেত্তর আসে? $1।',
 'gotaccountlink'             => 'লগইন',
 'badretype'                  => 'খন্তাচাবি (password) দ্বিয়গি না মিলের।',
-'youremail'                  => 'ই-মেইল *:',
-'yourrealname'               => 'আৱৈপা নাংহান *:',
-'yourlanguage'               => 'ঠারহান:',
-'yournick'                   => 'দাহানির নাংহান:',
-'email'                      => 'ইমেইল',
-'prefs-help-realname'        => 'আয়ৌপা নাংহান নাদলেউ চলের।
-যদি তি দের অতাইলে তর কামর থাকাত দেনাত সুবিধা অইতই।',
 'loginerror'                 => 'লগইনে লালুইসে',
 'loginsuccesstitle'          => 'লগইনহান চুমিল',
 'loginsuccess'               => "'''এরে {{SITENAME}}ত তি \"\$1\" হিসাবে না হমাসত।'''",
@@ -480,13 +473,20 @@ $messages = array(
 'powersearch'    => 'এডভান্স বিসারানি',
 
 # Preferences page
-'preferences'    => 'পছনহানি',
-'mypreferences'  => 'মর পছন',
-'changepassword' => 'খন্তাচাবি(password) পতা',
-'skin-preview'   => 'আগচা',
-'saveprefs'      => 'ইতু',
-'columns'        => 'দুরগিঃ',
-'allowemail'     => 'আরতা(ব্যবহার করেকুরা)ই ইমেইল করানির য়্যাথাং দে।',
+'preferences'         => 'পছনহানি',
+'mypreferences'       => 'মর পছন',
+'changepassword'      => 'খন্তাচাবি(password) পতা',
+'skin-preview'        => 'আগচা',
+'saveprefs'           => 'ইতু',
+'columns'             => 'দুরগিঃ',
+'allowemail'          => 'আরতা(ব্যবহার করেকুরা)ই ইমেইল করানির য়্যাথাং দে।',
+'youremail'           => 'ই-মেইল *:',
+'yourrealname'        => 'আৱৈপা নাংহান *:',
+'yourlanguage'        => 'ঠারহান:',
+'yournick'            => 'দাহানির নাংহান:',
+'email'               => 'ইমেইল',
+'prefs-help-realname' => 'আয়ৌপা নাংহান নাদলেউ চলের।
+যদি তি দের অতাইলে তর কামর থাকাত দেনাত সুবিধা অইতই।',
 
 'grouppage-sysop' => '{{ns:project}}:প্রশাসকগি',
 

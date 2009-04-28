@@ -462,28 +462,7 @@ Cruthaíodh do chuntas. Ná déan dearmad athrú a dhéanamh ar do chuid [[Speci
 'badretype'                  => "D'iontráil tú dhá fhocal faire difriúla.",
 'userexists'                 => 'Tá an ainm úsáideora sin in úsáid cheana féin.<br />
 Roghnaigh ainm eile agus bain triail eile as.',
-'youremail'                  => 'Do ríomhsheoladh:',
-'username'                   => "D'ainm úsáideora:",
-'uid'                        => 'D’uimhir úsáideora:',
-'prefs-memberingroups'       => 'Comhalta {{PLURAL:$1|an ghrúpa|na ghrúpaí}}:',
-'yourrealname'               => "D'fhíorainm **",
-'yourlanguage'               => 'Teanga',
-'yourvariant'                => 'Difríocht teanga:',
-'yournick'                   => 'Do leasainm (mar a bheidh i sínithe)',
-'badsig'                     => 'Amhsíniú neamhbhailí; scrúdaigh na clibeanna HTML.',
-'badsiglength'               => 'Tá do shíniú ró-fhada.<br />
-Caithfidh sé bheith níos giorra ná {{PLURAL:$1|carachtar|carachtair}}.',
-'yourgender'                 => 'Inscne:',
-'gender-male'                => 'Fireann',
-'gender-female'              => 'Baineann',
-'prefs-help-gender'          => 'Roghnach: úsáidtear an rogha seo chun an t-inscne cheart a úsáid agus na bogearraí ag tagairt don úsaideoir.
-Beidh an t-eolas seo poiblí.',
-'email'                      => 'Ríomhphost',
-'prefs-help-realname'        => '* <strong>Fíorainm</strong> (roghnach): má toghaíonn tú é sin a chur ar fáil, úsáidfear é chun
-do chuid dreachtaí a chur i leith tusa.',
 'loginerror'                 => 'Earráid leis an logáil isteach',
-'prefs-help-email'           => '<strong>Ríomhphost</strong> (roghnach): Leis an tréith seo is féidir teagmháil a dhéanamh leat tríd do leathanach úsáideora nó leathanach phlé gan do sheoladh ríomhphost a thaispeáint.',
-'prefs-help-email-required'  => 'Ní foláir seoladh ríomhpoist a thabhairt.',
 'nocookiesnew'               => "Cruthaíodh an cuntas úsáideora, ach níl tú logáilte isteach.
 
 Úsáideann {{SITENAME}} fianáin chun úsáideoirí a logáil isteach. 
@@ -836,6 +815,27 @@ taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí c
 'defaultns'                 => 'Cuardaigh sna ranna seo a los éagmaise:',
 'default'                   => 'réamhshocrú',
 'prefs-files'               => 'Comhaid',
+'youremail'                 => 'Do ríomhsheoladh:',
+'username'                  => "D'ainm úsáideora:",
+'uid'                       => 'D’uimhir úsáideora:',
+'prefs-memberingroups'      => 'Comhalta {{PLURAL:$1|an ghrúpa|na ghrúpaí}}:',
+'yourrealname'              => "D'fhíorainm **",
+'yourlanguage'              => 'Teanga',
+'yourvariant'               => 'Difríocht teanga:',
+'yournick'                  => 'Do leasainm (mar a bheidh i sínithe)',
+'badsig'                    => 'Amhsíniú neamhbhailí; scrúdaigh na clibeanna HTML.',
+'badsiglength'              => 'Tá do shíniú ró-fhada.<br />
+Caithfidh sé bheith níos giorra ná {{PLURAL:$1|carachtar|carachtair}}.',
+'yourgender'                => 'Inscne:',
+'gender-male'               => 'Fireann',
+'gender-female'             => 'Baineann',
+'prefs-help-gender'         => 'Roghnach: úsáidtear an rogha seo chun an t-inscne cheart a úsáid agus na bogearraí ag tagairt don úsaideoir.
+Beidh an t-eolas seo poiblí.',
+'email'                     => 'Ríomhphost',
+'prefs-help-realname'       => '* <strong>Fíorainm</strong> (roghnach): má toghaíonn tú é sin a chur ar fáil, úsáidfear é chun
+do chuid dreachtaí a chur i leith tusa.',
+'prefs-help-email'          => '<strong>Ríomhphost</strong> (roghnach): Leis an tréith seo is féidir teagmháil a dhéanamh leat tríd do leathanach úsáideora nó leathanach phlé gan do sheoladh ríomhphost a thaispeáint.',
+'prefs-help-email-required' => 'Ní foláir seoladh ríomhpoist a thabhairt.',
 
 # User rights
 'userrights'               => 'Bainistíocht cearta úsáideora',

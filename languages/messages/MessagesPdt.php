@@ -253,12 +253,6 @@ MySQL mald dem Fehla "<tt>$3: $4</tt>".',
 'badretype'               => 'Dee beid Pauswed stemme nich ewaeen.',
 'userexists'              => 'Dem Bruckanome haft aul wea.
 Bitte nemm eenen aundren.',
-'youremail'               => 'Email:',
-'username'                => 'Bruckanome:',
-'uid'                     => 'Brucka-ID:',
-'prefs-memberingroups'    => 'Mettjliet von {{PLURAL:$1|group|groups}}:',
-'yourrealname'            => 'Ajchta Nome:',
-'yourlanguage'            => 'Sproak:',
 'loginlanguagelabel'      => 'Sproak: $1',
 
 # Edit page toolbar
@@ -304,8 +298,14 @@ Bitte nemm eenen aundren.',
 'powersearch'    => 'Bätre Sääk',
 
 # Preferences page
-'preferences'   => 'Ennstalinje',
-'mypreferences' => 'Miene Ennstalinje',
+'preferences'          => 'Ennstalinje',
+'mypreferences'        => 'Miene Ennstalinje',
+'youremail'            => 'Email:',
+'username'             => 'Bruckanome:',
+'uid'                  => 'Brucka-ID:',
+'prefs-memberingroups' => 'Mettjliet von {{PLURAL:$1|group|groups}}:',
+'yourrealname'         => 'Ajchta Nome:',
+'yourlanguage'         => 'Sproak:',
 
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|Endaniss|Endanisse}}',

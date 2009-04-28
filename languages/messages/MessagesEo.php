@@ -173,7 +173,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Kaŝi patrolitajn redaktojn en lastaj ŝanĝoj',
 'tog-newpageshidepatrolled'   => 'Kaŝi patrolitajn paĝojn de listo de novaj paĝoj',
 'tog-extendwatchlist'         => 'Etendi la atentaron por montri ĉiujn ŝanĝon, ne nur la plej lastaj',
-'tog-usenewrc'                => 'Novstila Lastaj Ŝanĝoj (bezonas JavaSkripton)',
+'tog-usenewrc'                => 'Uzi progresan "Lastaj Ŝanĝoj" (bezonas JavaSkripton)',
 'tog-numberheadings'          => 'Aŭtomate numerigi sekciojn',
 'tog-showtoolbar'             => 'Montri eldonilaron',
 'tog-editondblclick'          => 'Redakti per duobla alklako (JavaScript)',
@@ -181,7 +181,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
 'tog-showtoc'                 => 'Montri liston de enhavoj (por paĝojn kun pli ol 3 sekciojn)',
 'tog-rememberpassword'        => 'Rememori mian pasvorton',
-'tog-editwidth'               => 'Redaktilo estu plenlarĝa',
+'tog-editwidth'               => 'Plenekranigi la redaktilon',
 'tog-watchcreations'          => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
 'tog-watchdefault'            => 'Priatenti redaktintajn paĝojn de vi',
 'tog-watchmoves'              => 'Aldoni paĝojn, kiujn mi movas, al mia atentaro',
@@ -556,28 +556,7 @@ Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'badretype'                  => 'La pasvortojn kiujn vi tajpis ne egalas.',
 'userexists'                 => 'Salutnomo enigita jam estas uzata.
 Bonvolu elekti alian nomon.',
-'youremail'                  => 'Retadreso:',
-'username'                   => 'Salutnomo:',
-'uid'                        => 'Uzantnumero:',
-'prefs-memberingroups'       => 'Ano de {{PLURAL:$1|grupo|grupoj}}:',
-'yourrealname'               => 'Vera nomo:',
-'yourlanguage'               => 'Lingvo',
-'yourvariant'                => 'Varianto',
-'yournick'                   => 'Subskribo:',
-'badsig'                     => 'Via kaŝnomo (por subskriboj) malvalidas. Bv. kontroli la HTML-etikedojn!',
-'badsiglength'               => 'La subskribo estas tro longa.
-Ĝi devas esti sub $1 {{PLURAL:$1|signo|signoj}}.',
-'yourgender'                 => 'Sekso:',
-'gender-unknown'             => 'Nespecifita',
-'gender-male'                => 'Vira',
-'gender-female'              => 'Ina',
-'prefs-help-gender'          => 'Nedeviga: uzita por sekseca salutado de la programaro. Ĉi tiu informo estos publika.',
-'email'                      => 'Retadreso',
-'prefs-help-realname'        => '* Vera nomo (opcia): se vi elektas sciigi ĝin, ĝi estos uzita por aŭtorigi vin pri viaj kontribuoj.',
 'loginerror'                 => 'Ensaluta eraro',
-'prefs-help-email'           => 'Retadreso estas nedeviga, sed permesus por via pasvorto esti retpoŝtita al vi se vi forgesus ĝin.
-Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo aŭ diskuto-paĝo sen malkaŝante vian identeco.',
-'prefs-help-email-required'  => 'Ret-adreso estas bezonata.',
 'nocookiesnew'               => 'La uzantokonto estis kreita sed vi ne estas ensalutinta. *** E-igo lcfirst {{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj ensalutu per viaj novaj salutnomo kaj pasvorto.',
 'nocookieslogin'             => '{{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj provu denove.',
 'noname'                     => 'Vi ne tajpis validan salutnomon.',
@@ -814,6 +793,7 @@ La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1",
 Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
 Jen la protokolo de forigoj por via oportuno:",
 'moveddeleted-notice'              => 'Ĉi tiu paĝo estis forigita. La linio el la protokolo pri forigado estas montrata sube por via referenco.',
+'log-fulllog'                      => 'Vidi kompletan protokolon',
 'edit-hook-aborted'                => 'Redakto ĉesigis per hoko.
 Ĝi ne donis eksplikon.',
 'edit-gone-missing'                => 'Ne eblis ĝisdatigi la paĝon.
@@ -1137,6 +1117,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-watchlist-edits-max' => '(maksimuma nombro: 1000)',
 'prefs-misc'                => 'Miksitaĵoj',
 'prefs-resetpass'           => 'Ŝanĝi pasvorton',
+'prefs-email'               => 'Retpoŝtaj opcioj',
 'saveprefs'                 => 'Konservi preferojn',
 'resetprefs'                => 'Forviŝi nekonservitajn ŝanĝojn',
 'restoreprefs'              => 'Restarigi ĉiujn defaŭltajn preferojn',
@@ -1179,6 +1160,27 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-files'               => 'Dosieroj',
 'prefs-custom-css'          => 'Propra CSS',
 'prefs-custom-js'           => 'Propra JS',
+'youremail'                 => 'Retadreso:',
+'username'                  => 'Salutnomo:',
+'uid'                       => 'Uzantnumero:',
+'prefs-memberingroups'      => 'Ano de {{PLURAL:$1|grupo|grupoj}}:',
+'yourrealname'              => 'Vera nomo:',
+'yourlanguage'              => 'Lingvo',
+'yourvariant'               => 'Varianto',
+'yournick'                  => 'Subskribo:',
+'badsig'                    => 'Via kaŝnomo (por subskriboj) malvalidas. Bv. kontroli la HTML-etikedojn!',
+'badsiglength'              => 'La subskribo estas tro longa.
+Ĝi devas esti sub $1 {{PLURAL:$1|signo|signoj}}.',
+'yourgender'                => 'Sekso:',
+'gender-unknown'            => 'Nespecifita',
+'gender-male'               => 'Vira',
+'gender-female'             => 'Ina',
+'prefs-help-gender'         => 'Nedeviga: uzita por sekseca salutado de la programaro. Ĉi tiu informo estos publika.',
+'email'                     => 'Retadreso',
+'prefs-help-realname'       => '* Vera nomo (opcia): se vi elektas sciigi ĝin, ĝi estos uzita por aŭtorigi vin pri viaj kontribuoj.',
+'prefs-help-email'          => 'Retadreso estas nedeviga, sed permesus por via pasvorto esti retpoŝtita al vi se vi forgesus ĝin.
+Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo aŭ diskuto-paĝo sen malkaŝante vian identeco.',
+'prefs-help-email-required' => 'Ret-adreso estas bezonata.',
 
 # User rights
 'userrights'                  => 'Prizorgi rajtojn de uzantoj',
@@ -2520,7 +2522,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.
 <hr />",
-'imagemaxsize'         => 'Elmontri bildojn en bildpriskribaj paĝoj je maksimume:',
+'imagemaxsize'         => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'            => 'Grandeco de bildetoj:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
 'file-info'            => '(pezo de dosiero: $1, MIME-tipo: $2)',
@@ -2822,6 +2824,10 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpsspeed-m' => 'Mejloj por horo',
 'exif-gpsspeed-n' => 'Knotoj',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometroj',
+'exif-gpsdestdistance-m' => 'Mejloj',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Vera direkto',
 'exif-gpsdirection-m' => 'Magneta direkto',
@@ -3053,15 +3059,8 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'dberr-outofdate'   => 'Notu ke iliaj indeksoj de nia enhavo eble ne estas ĝisdatigaj.',
 'dberr-cachederror' => 'Jen kaŝmemorigita kopio de la petita paĝo, kaj eble ne estas ĝisdatigita.',
 
-# Special:CreatePage
-'createpage'              => 'Krei paĝon',
-'createpage-submitbutton' => 'Enmeti',
-'createpage-instructions' => 'Enigu la titolon de la paĝo kiun vi volas krei:',
-'createpage-entertitle'   => 'Bonvolu enigi titolon por via paĝo.',
-'createpage-titleexists'  => 'Paĝo kun la titolo [[$1]] jam ekzistas.
-Ĉu vi volus redakti la ekzistantan paĝon?',
-'createpage-tryagain'     => 'Ne. Mi volas krei novan paĝon kun distinga titolo.',
-'createpage-editexisting' => 'Jes. Mi volas kontribui al la ekzistanta paĝo.',
-'createpage-badtitle'     => '"$1" ne povas esti uzata kiel paĝa titolo',
+# HTML forms
+'htmlform-reset'               => 'Malfari ŝanĝojn',
+'htmlform-selectorother-other' => 'Alia',
 
 );

@@ -185,10 +185,6 @@ $messages = array(
 'createaccount'           => 'Ebbu akun',
 'gotaccount'              => 'Purani eŋka akun? $1.',
 'gotaccountlink'          => 'Log attama',
-'youremail'               => 'E-mail:',
-'username'                => 'Aseŋ papaké:',
-'uid'                     => 'ID papaké:',
-'email'                   => 'E-mail',
 'loginerror'              => 'Éro log attama',
 'mailmypassword'          => 'E-mail pasewodo baru',
 
@@ -279,6 +275,10 @@ $messages = array(
 'saveprefs'         => 'Taro',
 'prefs-editing'     => 'Mapadécéŋ',
 'searchresultshead' => 'Masappa',
+'youremail'         => 'E-mail:',
+'username'          => 'Aseŋ papaké:',
+'uid'               => 'ID papaké:',
+'email'             => 'E-mail',
 
 # Groups
 'group-sysop' => 'Puŋgawa',

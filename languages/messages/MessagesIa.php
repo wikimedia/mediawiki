@@ -523,29 +523,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'badretype'                  => 'Le duo contrasignos que tu scribeva non es identic.',
 'userexists'                 => 'Le nomine de usator que tu entrava es ja in uso.
 Selige un altere nomine.',
-'youremail'                  => 'E-mail:',
-'username'                   => 'Nomine de usator:',
-'uid'                        => 'ID del usator:',
-'prefs-memberingroups'       => 'Membro de {{PLURAL:$1|gruppo|gruppos}}:',
-'prefs-registration'         => 'Data de registration:',
-'yourrealname'               => 'Nomine real:',
-'yourlanguage'               => 'Lingua:',
-'yourvariant'                => 'Variante:',
-'yournick'                   => 'Signatura:',
-'badsig'                     => 'Signatura crude invalide; verificar le etiquettas HTML.',
-'badsiglength'               => 'Tu signatura es troppo longe.
-Illo debe haber minus de $1 {{PLURAL:$1|character|characteres}}.',
-'yourgender'                 => 'Sexo:',
-'gender-unknown'             => 'Non specificate',
-'gender-male'                => 'Masculin',
-'gender-female'              => 'Feminin',
-'prefs-help-gender'          => 'Optional: usate pro facer le software adressar te correctemente secundo tu sexo. Iste information es public.',
-'email'                      => 'E-mail',
-'prefs-help-realname'        => 'Le nomine real es optional.
-Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contributiones.',
 'loginerror'                 => 'Error in le apertura del session',
-'prefs-help-email'           => 'Le adresse de e-mail es optional, sed permitte facer inviar te tu contrasigno in caso que tu lo oblida. Tu pote etiam optar pro permitter que altere personas te contacta via tu pagina de usator o de discussion, sin necessitate de revelar tu identitate.',
-'prefs-help-email-required'  => 'Le adresse de e-mail es requirite.',
 'nocookiesnew'               => "Le conto de usator ha essite create, sed tu non ha aperite un session.
 {{SITENAME}} usa ''cookies'' pro mantener le sessiones del usatores.
 Tu ha disactivate le functionalitate del ''cookies''.
@@ -1184,6 +1162,29 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefs-custom-js'           => 'JS personalisate',
 'prefs-reset-intro'         => 'Iste pagina es pro reinitialisar tu preferentias al valores predefinite del sito.
 Le operation non pote esser disfacite.',
+'prefs-emailconfirm-label'  => 'Confirmation del e-mail:',
+'youremail'                 => 'E-mail:',
+'username'                  => 'Nomine de usator:',
+'uid'                       => 'ID del usator:',
+'prefs-memberingroups'      => 'Membro de {{PLURAL:$1|gruppo|gruppos}}:',
+'prefs-registration'        => 'Data de registration:',
+'yourrealname'              => 'Nomine real:',
+'yourlanguage'              => 'Lingua:',
+'yourvariant'               => 'Variante:',
+'yournick'                  => 'Signatura:',
+'badsig'                    => 'Signatura crude invalide; verificar le etiquettas HTML.',
+'badsiglength'              => 'Tu signatura es troppo longe.
+Illo debe haber minus de $1 {{PLURAL:$1|character|characteres}}.',
+'yourgender'                => 'Sexo:',
+'gender-unknown'            => 'Non specificate',
+'gender-male'               => 'Masculin',
+'gender-female'             => 'Feminin',
+'prefs-help-gender'         => 'Optional: usate pro facer le software adressar te correctemente secundo tu sexo. Iste information es public.',
+'email'                     => 'E-mail',
+'prefs-help-realname'       => 'Le nomine real es optional.
+Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contributiones.',
+'prefs-help-email'          => 'Le adresse de e-mail es optional, sed permitte facer inviar te tu contrasigno in caso que tu lo oblida. Tu pote etiam optar pro permitter que altere personas te contacta via tu pagina de usator o de discussion, sin necessitate de revelar tu identitate.',
+'prefs-help-email-required' => 'Le adresse de e-mail es requirite.',
 
 # User rights
 'userrights'                  => 'Gestion de derectos de usator',
@@ -3168,16 +3169,5 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'htmlform-submit'              => 'Submitter',
 'htmlform-reset'               => 'Disfacer modificationes',
 'htmlform-selectorother-other' => 'Altere',
-
-# Special:CreatePage
-'createpage'              => 'Crear un pagina',
-'createpage-submitbutton' => 'Submitter',
-'createpage-instructions' => 'Entra le titulo del pagina que tu vole crear:',
-'createpage-entertitle'   => 'Per favor entra un titulo pro tu pagina.',
-'createpage-titleexists'  => 'Un pagina con le titulo [[$1]] existe ja.
-Vole tu modificar le pagina existente?',
-'createpage-tryagain'     => 'No. Io vole crear un nove pagina con un titulo distincte.',
-'createpage-editexisting' => 'Si. Io vole contribuer al pagina existente.',
-'createpage-badtitle'     => '"$1" non pote esser usate qua titulo de pagina',
 
 );

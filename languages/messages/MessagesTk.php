@@ -404,27 +404,7 @@ Hasabyňyz açyldy.
 'badretype'                  => 'Girizen parollaryňyz biri-birine gabat gelmeýär.',
 'userexists'                 => 'Girizen ulanyjy adyňyz ulanylýar. 
 Başga bir at saýlamagyňyzy haýyş edýäris.',
-'youremail'                  => 'E-poçta:',
-'username'                   => 'Ulanyjy ady:',
-'uid'                        => 'Ulanyjy belgisi:',
-'prefs-memberingroups'       => '{{PLURAL:$1|toparyň|toparyň}} agzasy:',
-'yourrealname'               => 'Hakyky adyňyz:',
-'yourlanguage'               => 'Interfeýs dili:',
-'yournick'                   => 'Lakamyňyz (gol hökmünde):',
-'badsig'                     => 'Nädogry işlenmedik gol. HTML tegleri gözden geçiriň.',
-'badsiglength'               => 'Goluňyz çakdanaşa uzyn.
-$1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
-'yourgender'                 => 'Jyns:',
-'gender-unknown'             => 'Görkezilmedik',
-'gender-male'                => 'Erkek',
-'gender-female'              => 'Aýal-gyz',
-'prefs-help-gender'          => 'Hökmany däl: programma tarapyndan ulanyjynyň jynsyna görä ýüzlenmek üçin ulanylýar. Bu maglumat köpçülige açyk boljakdyr.',
-'email'                      => 'E-poçta',
-'prefs-help-realname'        => 'Hakyky at (hökmany däl): eger hakyky adyňyz berseňiz, onda eden işleriňiz görkezilende ulanyljakdyr.',
 'loginerror'                 => 'Sessiýa açyş säwligi',
-'prefs-help-email'           => 'E-poçta adresi hökmany däl; ýöne parolyňyz ýadyňyzdan çykan ýagdaýynda e-poçta adresiňize täze parol iberilmegine mümkinçilik berýär.
-Şeýle-de ol başga ulanyjylaryň ulanyjy we pikir alyşma sahypalaryňyzyň üsti bilen kimdigiňizi bilmezden siziň bilen habarlaşyp bilmeklerine şert döredýär.',
-'prefs-help-email-required'  => 'E-poçta adresi talap edilýär.',
 'nocookiesnew'               => 'Ulanyjy hasaby döredildi, ýöne sessiýa açmadyňyz.
 {{SITENAME}} sessiýa açmak üçin kukilerden peýdalanýar.
 Kukileriňiz togtadylgy dur.
@@ -624,8 +604,28 @@ Gözlegiňiziň başyna '''all:''' pristawkasyny goşup tutuş mazmuny (şol san
 'powersearch-field'         => 'Gözle',
 
 # Preferences page
-'preferences'   => 'Sazlamalar',
-'mypreferences' => 'Sazlamalarym',
+'preferences'               => 'Sazlamalar',
+'mypreferences'             => 'Sazlamalarym',
+'youremail'                 => 'E-poçta:',
+'username'                  => 'Ulanyjy ady:',
+'uid'                       => 'Ulanyjy belgisi:',
+'prefs-memberingroups'      => '{{PLURAL:$1|toparyň|toparyň}} agzasy:',
+'yourrealname'              => 'Hakyky adyňyz:',
+'yourlanguage'              => 'Interfeýs dili:',
+'yournick'                  => 'Lakamyňyz (gol hökmünde):',
+'badsig'                    => 'Nädogry işlenmedik gol. HTML tegleri gözden geçiriň.',
+'badsiglength'              => 'Goluňyz çakdanaşa uzyn.
+$1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
+'yourgender'                => 'Jyns:',
+'gender-unknown'            => 'Görkezilmedik',
+'gender-male'               => 'Erkek',
+'gender-female'             => 'Aýal-gyz',
+'prefs-help-gender'         => 'Hökmany däl: programma tarapyndan ulanyjynyň jynsyna görä ýüzlenmek üçin ulanylýar. Bu maglumat köpçülige açyk boljakdyr.',
+'email'                     => 'E-poçta',
+'prefs-help-realname'       => 'Hakyky at (hökmany däl): eger hakyky adyňyz berseňiz, onda eden işleriňiz görkezilende ulanyljakdyr.',
+'prefs-help-email'          => 'E-poçta adresi hökmany däl; ýöne parolyňyz ýadyňyzdan çykan ýagdaýynda e-poçta adresiňize täze parol iberilmegine mümkinçilik berýär.
+Şeýle-de ol başga ulanyjylaryň ulanyjy we pikir alyşma sahypalaryňyzyň üsti bilen kimdigiňizi bilmezden siziň bilen habarlaşyp bilmeklerine şert döredýär.',
+'prefs-help-email-required' => 'E-poçta adresi talap edilýär.',
 
 # Groups
 'group-sysop' => 'Administratorlar',

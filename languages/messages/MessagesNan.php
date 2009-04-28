@@ -248,10 +248,6 @@ $messages = array(
 'gotaccountlink'             => 'Teng-ji̍p',
 'badretype'                  => 'Lí su-ji̍p ê 2-cho· bi̍t-bé bô tùi.',
 'userexists'                 => 'Lí beh ti̍h ê iōng-chiá miâ-chheng í-keng ū lâng iōng. Chhiáⁿ kéng pa̍t-ê miâ.',
-'youremail'                  => 'Lí ê email:',
-'yourrealname'               => 'Lí ê chin miâ:',
-'yourlanguage'               => 'Kài-bīn gú-giân:',
-'yournick'                   => 'Lí ê sió-miâ (chhiam-miâ iōng):',
 'loginerror'                 => 'Teng-ji̍p chhò-gō·',
 'loginsuccesstitle'          => 'Teng-ji̍p sêng-kong',
 'loginsuccess'               => 'Lí hiān-chhú-sî í-keng teng-ji̍p {{SITENAME}} chò "$1".',
@@ -419,6 +415,10 @@ $messages = array(
 'allowemail'            => 'Ún-chún pa̍t-ê iōng-chiá kià email kòe-lâi',
 'defaultns'             => 'Tī chiah ê miâ-khong-kan chhiau-chhōe:',
 'prefs-files'           => 'Tóng-àn',
+'youremail'             => 'Lí ê email:',
+'yourrealname'          => 'Lí ê chin miâ:',
+'yourlanguage'          => 'Kài-bīn gú-giân:',
+'yournick'              => 'Lí ê sió-miâ (chhiam-miâ iōng):',
 
 'grouppage-sysop' => '{{ns:project}}:Hêng-chèng jîn-oân',
 

@@ -121,10 +121,6 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'nologinlink'        => 'Dala ikhawundi',
 'createaccount'      => 'Dala ikhawundi',
 'gotaccountlink'     => 'Ngena',
-'username'           => 'Isiga:',
-'yourrealname'       => 'Igama eliqinisileyo',
-'yourlanguage'       => 'Ulimi:',
-'email'              => 'Iposi likagesi',
 'loginsuccesstitle'  => 'Ubengena',
 'nosuchuser'         => 'Akukho umsebenzisi unegama "$1". Hlola umbhalo wakho, noma dala ikhawundi elisha.',
 'nosuchusershort'    => 'Akukho umsebenzisi unegama "<nowiki>$1</nowiki>". Hlola umbhalo wakho.',
@@ -182,6 +178,10 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'searchresultshead' => 'Sesha',
 'timezonelegend'    => 'Isifunda sasikhathi',
 'localtime'         => 'Isikhathi siyalapha',
+'username'          => 'Isiga:',
+'yourrealname'      => 'Igama eliqinisileyo',
+'yourlanguage'      => 'Ulimi:',
+'email'             => 'Iposi likagesi',
 
 # Recent changes
 'recentchanges' => 'Izinguquko ezimanje',

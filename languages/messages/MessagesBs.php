@@ -258,7 +258,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Sakrij patrolirane izmjene u nedavnim promjenama',
 'tog-newpageshidepatrolled'   => 'Sakrij patrolirane stranice sa spiska novih stranica',
 'tog-extendwatchlist'         => 'Proširi spisak praćenja za pogled svih izmjena, ne samo nedavnih',
-'tog-usenewrc'                => 'Poboljšan spisak nedavnih izmjena (JavaScript)',
+'tog-usenewrc'                => 'Korištenje poboljšanog spiska nedavnih izmjena (zahtijeva JavaScript)',
 'tog-numberheadings'          => 'Automatski numeriši podnaslove',
 'tog-showtoolbar'             => 'Prikaži dugmiće za izmjene (JavaScript)',
 'tog-editondblclick'          => 'Izmijeni stranice dvostrukim klikom (JavaScript)',
@@ -266,7 +266,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Uključite uređivanje odjeljka sa pritiskom na desno dugme miša u naslovu odjeljka (JavaScript)',
 'tog-showtoc'                 => 'Prikaži sadržaj (u svim stranicama sa više od tri podnaslova)',
 'tog-rememberpassword'        => 'Zapamti šifru za iduće posjete',
-'tog-editwidth'               => 'Kutija za uređivanje je dostigla najveću moguću širinu',
+'tog-editwidth'               => 'Proširi kutiju za uređivanje da ispuni cijeli ekran',
 'tog-watchcreations'          => 'Dodaj stranice koje ja napravim u moj spisak praćenih članaka',
 'tog-watchdefault'            => 'Dodaj stranice koje uređujem u moj spisak praćenih članaka',
 'tog-watchmoves'              => 'Stranice koje premjestim dodaj na spisak praćenja',
@@ -499,7 +499,7 @@ $messages = array(
 'viewsourcelink'          => 'pogledaj izvor',
 'editsectionhint'         => 'Uredi sekciju: $1',
 'toc'                     => 'Sadržaj',
-'showtoc'                 => 'prikaži',
+'showtoc'                 => 'pokaži',
 'hidetoc'                 => 'sakrij',
 'thisisdeleted'           => 'Pogledaj ili vrati $1?',
 'viewdeleted'             => 'Pogledaj $1?',
@@ -638,30 +638,7 @@ Ne zaboravite da prilagodite sebi svoja podešavanja.',
 'badretype'                  => 'Lozinke koje ste unijeli se ne poklapaju.',
 'userexists'                 => 'Korisničko ime koje ste unijeli je već u upotrebi.
 Molimo Vas da izaberete drugo ime.',
-'youremail'                  => 'E-pošta:',
-'username'                   => 'Korisničko ime:',
-'uid'                        => 'Korisnički ID:',
-'prefs-memberingroups'       => 'Član {{PLURAL:$1|grupe|grupa}}:',
-'yourrealname'               => 'Vaše pravo ime:',
-'yourlanguage'               => 'Jezik:',
-'yourvariant'                => 'Varijanta:',
-'yournick'                   => 'Nadimak (za potpise):',
-'badsig'                     => 'Loš sirovi potpis.
-Provjerite HTML tagove.',
-'badsiglength'               => 'Vaš potpis je predug.
-Mora biti manji od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
-'yourgender'                 => 'Spol:',
-'gender-unknown'             => 'neodređen',
-'gender-male'                => 'muški',
-'gender-female'              => 'žensko',
-'prefs-help-gender'          => 'Optionalno: koristi se za ispravke gramatičkog roda u porukama softvera. Ova informacija će biti javna.',
-'email'                      => 'E-mail',
-'prefs-help-realname'        => 'Pravo ime nije obavezno.
-Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'loginerror'                 => 'Greška pri prijavljivanju',
-'prefs-help-email'           => 'E-mail adresa je opcionalna, unesena adresa Vam omogućava da Vam se pošalje nova lozinka u slučaju da je izgubite ili zaboravite.
-Također omogućuje drugim korisnicima da vas kontaktiraju preko vaše korisničke stranice ili stranice za razgovor bez otkrivanja vašeg identiteta.',
-'prefs-help-email-required'  => 'Neophodno je navesti e-mail adresu.',
 'nocookiesnew'               => "Korisnički nalog je napravljen, ali niste prijavljeni.  {{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  Vi ste onemogućili kolačiće na Vašem kompjuteru.  molimo Vas da ih omogućite, a onda se prijavite sa svojim novim korisničkim imenom i lozinkom.",
 'nocookieslogin'             => "{{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  Vi ste onemogućili kolačiće na Vašem kompjuteru.  Molimo Vas da ih omogućite i da pokušate ponovo sa prijavom.",
 'noname'                     => 'Niste izabrali ispravno korisničko ime.',
@@ -912,9 +889,11 @@ Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLo
 'permissionserrorstext-withaction' => 'Nemate dopuštenje da $2, iz {{PLURAL:$1|slijedećeg|slijedećih}} razloga:',
 'recreate-moveddeleted-warn'       => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.'''
 
-Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima. Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno brisanje:",
+Razmotrite da li je nastavljanje uređivanja ove stranice u skladu s pravilima. 
+Ovdje je naveden zapisnik brisanja i premještanja s obrazloženjem:",
 'moveddeleted-notice'              => 'Ova stranica je obrisana.
-Zapis brisanja stranice je prikazan ispod kao referenca.',
+Zapis brisanja i premještanja stranice je prikazan ispod kao referenca.',
+'log-fulllog'                      => 'Vidi potpuni zapisnik',
 'edit-hook-aborted'                => 'Izmjena je poništena putem interfejsa.
 Nije ponuđeno nikakvo objašnjenje.',
 'edit-gone-missing'                => 'Stranica se nije mogla osvježiti.
@@ -1243,6 +1222,8 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-watchlist-edits-max' => '(najveći broj: 1000)',
 'prefs-misc'                => 'Ostala podešavanja',
 'prefs-resetpass'           => 'Promijeni šifru',
+'prefs-email'               => 'E-mail opcije',
+'prefs-rendering'           => 'Iscrtavanje stranice',
 'saveprefs'                 => 'Sačuvajte podešavanja',
 'resetprefs'                => 'Vrati podešavanja',
 'restoreprefs'              => 'Vrati sve pretpostavljene postavke',
@@ -1285,6 +1266,37 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-files'               => 'Datoteke',
 'prefs-custom-css'          => 'Prilagođeni CSS',
 'prefs-custom-js'           => 'Prilagođeni JS',
+'prefs-reset-intro'         => 'Možete koristiti ovu stranicu da poništite Vaše postavke na ovom sajtu na pretpostavljene vrijednosti.
+Ovo se ne može vratiti unazad.',
+'prefs-emailconfirm-label'  => 'E-mail potvrda:',
+'prefs-textboxsize'         => 'Veličina prozora za uređivanje',
+'youremail'                 => 'E-pošta:',
+'username'                  => 'Korisničko ime:',
+'uid'                       => 'Korisnički ID:',
+'prefs-memberingroups'      => 'Član {{PLURAL:$1|grupe|grupa}}:',
+'prefs-registration'        => 'Vrijeme registracije:',
+'yourrealname'              => 'Vaše pravo ime:',
+'yourlanguage'              => 'Jezik:',
+'yourvariant'               => 'Varijanta:',
+'yournick'                  => 'Nadimak (za potpise):',
+'badsig'                    => 'Loš sirovi potpis.
+Provjerite HTML tagove.',
+'badsiglength'              => 'Vaš potpis je predug.
+Mora biti manji od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
+'yourgender'                => 'Spol:',
+'gender-unknown'            => 'neodređen',
+'gender-male'               => 'muški',
+'gender-female'             => 'žensko',
+'prefs-help-gender'         => 'Optionalno: koristi se za ispravke gramatičkog roda u porukama softvera. Ova informacija će biti javna.',
+'email'                     => 'E-mail',
+'prefs-help-realname'       => 'Pravo ime nije obavezno.
+Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
+'prefs-help-email'          => 'E-mail adresa je opcionalna, unesena adresa Vam omogućava da Vam se pošalje nova lozinka u slučaju da je izgubite ili zaboravite.
+Također omogućuje drugim korisnicima da vas kontaktiraju preko vaše korisničke stranice ili stranice za razgovor bez otkrivanja vašeg identiteta.',
+'prefs-help-email-required' => 'Neophodno je navesti e-mail adresu.',
+'prefs-info'                => 'Osnovne informacije',
+'prefs-i18n'                => 'Internacionalizacije',
+'prefs-signature'           => 'Potpis',
 
 # User rights
 'userrights'                  => 'Postavke korisničkih prava',
@@ -2008,6 +2020,7 @@ Fidbek i dalja pomoć:
 'confirmdeletetext'      => 'Brisanjem ćete obrisati stranicu ili sliku zajedno sa historijom iz baze podataka, ali će se iste moći vratiti kasnije. 
 Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu sa [[{{MediaWiki:Policy-url}}|pravilima]].',
 'actioncomplete'         => 'Akcija završena',
+'actionfailed'           => 'Akcija nije uspjela',
 'deletedtext'            => 'Članak "<nowiki>$1</nowiki>" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'deletedarticle'         => 'obrisan "[[$1]]"',
@@ -2693,7 +2706,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ovaj fajl sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.
 <hr />",
-'imagemaxsize'         => 'Ograniči slike na stranicama opisa datoteke na:',
+'imagemaxsize'         => "Ograničenje veličine slike:<br />''(za stranice opisa datoteke)''",
 'thumbsize'            => 'Veličina umanjenog prikaza:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
 'file-info'            => '(veličina datoteke: $1, MIME tip: $2)',
@@ -3310,15 +3323,14 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'dberr-outofdate'   => 'Zapamtite da njihovi indeksi našeg sadržaja ne moraju uvijek biti ažurni.',
 'dberr-cachederror' => 'Slijedeći tekst je keširana kopija zahtjevane stranice i možda nije potpuno ažurirana.',
 
-# Special:CreatePage
-'createpage'              => 'Napravi stranicu',
-'createpage-submitbutton' => 'Pošalji',
-'createpage-instructions' => 'Unesite naslov stranice koju želite napraviti:',
-'createpage-entertitle'   => 'Molimo unesite naslov za Vašu stranicu',
-'createpage-titleexists'  => 'Stranica sa naslovom [[$1]] već postoji.
-Da li želite uređivati postojeću stranicu?',
-'createpage-tryagain'     => 'Ne. Želim napraviti novu stranicu sa različitim naslovom.',
-'createpage-editexisting' => 'Da. Želim doprinositi na postojećoj stranici.',
-'createpage-badtitle'     => '"$1" se ne može koristiti kao naslov stranice',
+# HTML forms
+'htmlform-invalid-input'       => 'Postoje određeni problemi s Vašim unosom',
+'htmlform-select-badoption'    => 'Vrijednost koju ste naveli nije valjana opcija.',
+'htmlform-int-invalid'         => 'Vrijednost koju ste naveli nije cijeli broj.',
+'htmlform-int-toolow'          => 'Vrijednost koju ste naveli je ispod minimuma od $1',
+'htmlform-int-toohigh'         => 'Vrijednost koju ste naveli je iznad maksimuma od $1',
+'htmlform-submit'              => 'Pošalji',
+'htmlform-reset'               => 'Vrati izmjene',
+'htmlform-selectorother-other' => 'Ostalo',
 
 );

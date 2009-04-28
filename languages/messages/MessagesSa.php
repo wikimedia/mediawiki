@@ -371,8 +371,6 @@ $messages = array(
 'userlogout'              => 'बहिर्गच्छति',
 'createaccount'           => 'सृज उपयोजकसंज्ञा',
 'gotaccountlink'          => 'प्रवेश करोसि',
-'yourlanguage'            => 'भाषा:',
-'email'                   => 'विद्युत्पत्रव्यवस्था',
 'loginsuccesstitle'       => 'सुस्वागतम्‌ प्रवेश यशस्वी अस्ति',
 
 # Edit page toolbar
@@ -403,6 +401,10 @@ $messages = array(
 # Search results
 'nextn'       => 'आगामि$1',
 'powersearch' => 'परिणत शोध',
+
+# Preferences page
+'yourlanguage' => 'भाषा:',
+'email'        => 'विद्युत्पत्रव्यवस्था',
 
 # Recent changes
 'recentchanges'   => 'नवीनतम परिवर्तन',

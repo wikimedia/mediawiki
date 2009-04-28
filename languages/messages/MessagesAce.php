@@ -189,9 +189,6 @@ Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam softwa
 'createaccount'           => 'Peudapeuta nan barô',
 'gotaccount'              => 'Ka lheuëh neudapeuta? $1.',
 'gotaccountlink'          => 'Tamong',
-'yourrealname'            => 'Nan aseuli:',
-'prefs-help-realname'     => '* Nan aseuli hana meucéh neupasoë.
-Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë nyang tuléh.',
 'loginsuccesstitle'       => 'Meuhasé tamong',
 'loginsuccess'            => "'''Droëneuh  jinoë ka neutamong di {{SITENAME}} sibagoë \"\$1\".'''",
 'nosuchuser'              => 'Hana nyang nguy ngön nan "$1". 
@@ -349,8 +346,11 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'powersearch-field'         => 'Mita',
 
 # Preferences page
-'preferences'   => 'Geunalak',
-'mypreferences' => 'Geunalak lôn',
+'preferences'         => 'Geunalak',
+'mypreferences'       => 'Geunalak lôn',
+'yourrealname'        => 'Nan aseuli:',
+'prefs-help-realname' => '* Nan aseuli hana meucéh neupasoë.
+Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë nyang tuléh.',
 
 # Groups
 'group-sysop' => 'Nyang urôh',

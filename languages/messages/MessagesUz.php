@@ -233,7 +233,6 @@ $messages = array(
 'createaccount'           => 'Hisob yaratish',
 'gotaccount'              => 'Hisobingiz bormi? $1.',
 'gotaccountlink'          => 'Kirish',
-'yourrealname'            => 'Haqiqiy ism *:',
 'loginsuccesstitle'       => 'Kirish muvaffaqiyatli amalga oshdi',
 'loginsuccess'            => "'''{{SITENAME}}ga \"\$1\" foydalanuvchi nomi bilan kirdingiz.'''",
 'wrongpassword'           => 'Kiritgan mahfiy soʻzingiz notoʻgʻri. Iltimos, qaytadan kiritib koʻring.',
@@ -372,6 +371,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'prefs-editing'     => 'Tahrirlash',
 'searchresultshead' => 'Qidiruv natijalari',
 'prefs-files'       => 'Fayllar',
+'yourrealname'      => 'Haqiqiy ism *:',
 
 # Groups
 'group-sysop' => 'Administratorlar',

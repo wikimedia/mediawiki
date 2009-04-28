@@ -287,79 +287,67 @@ $messages = array(
 'titleprotected'       => "This title has been protected from creation by [[User:$1|$1]]. The reason given is ''$2''.",
 
 # Login and logout pages
-'logouttext'                => "'''Ẹ ti bọ́sọ́de.'''
+'logouttext'              => "'''Ẹ ti bọ́sọ́de.'''
 
 Ẹ le tẹ̀síwájú sí ní lo {{SITENAME}} láìmorúkọ yín, tàbí kí ẹ [[Special:UserLogin|padà wọlé]] bí ẹnikanan tàbí ẹlòmíràn.
 Àkíyèsí wípé àwọn ojúewé kan le hàn b'ígbà tójẹ́pé ẹ sì wọlé títí tí ẹ ó fi jọ̀wọ́ àdìmú (cache) browser yín.",
-'welcomecreation'           => "== Ẹ kú àbọ̀, $1! ==
+'welcomecreation'         => "== Ẹ kú àbọ̀, $1! ==
 
 A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọn ìfẹ́ràn {{SITENAME}} yín.",
-'yourname'                  => 'Orúkọ oníṣe (username):',
-'yourpassword'              => 'Ọ̀rọ̀ìpamọ́:',
-'yourpasswordagain'         => 'Tẹkíkọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
-'remembermypassword'        => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi (cookies)",
-'yourdomainname'            => 'Domain yín:',
-'login'                     => 'Ìwọlé',
-'nav-login-createaccount'   => 'Ìwọlé / Ìforúkọ sílẹ̀',
-'loginprompt'               => 'Ẹ gbọ́dọ̀ jọ̀wọ́ cookies láti wọlé sí {{SITENAME}}.',
-'userlogin'                 => 'Ìwọlé / ìforúkọ sílẹ̀',
-'logout'                    => 'Ìbọ́sóde',
-'userlogout'                => 'Ìbọ́sóde',
-'notloggedin'               => "Ẹ kò tí w'ọlé",
-'nologin'                   => 'Ṣé ẹ fẹ́ wọlé? $1.',
-'nologinlink'               => 'Ẹ fi orúkọ sílẹ̀',
-'createaccount'             => 'Ẹ fi orúkọ sílẹ̀',
-'gotaccount'                => 'Ṣé ẹ ti ní àpamọ́ tẹ́lẹ̀? $1.',
-'gotaccountlink'            => "Ẹ w'ọlé",
-'createaccountmail'         => 'pẹ̀lú e-mail',
-'badretype'                 => 'Àwọn ọ̀rọ̀ìpamọ́ tí ẹ kọ kò jọ ra wọn.',
-'youremail'                 => 'E-mail:',
-'username'                  => 'Orúkọ oníṣe:',
-'uid'                       => 'Nọmba ìdámọ̀ fún ẹnitínṣe:',
-'yourrealname'              => 'Orúkọ ganangan:',
-'yourlanguage'              => 'Èdè:',
-'yournick'                  => 'Ìtọwọ́bọ̀:',
-'badsiglength'              => 'Ìtọwọ́bọ̀ yín ti gùnjù.
-Kò gbodọ̀ ju $1 {{PLURAL:$1|àmìlẹ́tà|àwọn àmìlẹ́tà}} lọ.',
-'email'                     => 'E-mail',
-'prefs-help-realname'       => 'Orúkọ gangan kò pọndandan.
-Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
-'loginerror'                => 'Àsìṣe ìwọlé',
-'prefs-help-email-required' => 'E-mail ṣe dandan.',
-'noname'                    => 'Ẹ kò tọ́kasí orúkọ oníṣe tó ní ìbámu.',
-'loginsuccesstitle'         => 'Ìwọlé ti yọrí sí rere',
-'loginsuccess'              => "'''Ẹ ti wọlé sínú {{SITENAME}} gẹ́gẹ́ bi \"\$1\".'''",
-'nosuchuser'                => 'Kò sí oníṣe kankan pẹ̀lú orúkọ "$1".
+'yourname'                => 'Orúkọ oníṣe (username):',
+'yourpassword'            => 'Ọ̀rọ̀ìpamọ́:',
+'yourpasswordagain'       => 'Tẹkíkọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
+'remembermypassword'      => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi (cookies)",
+'yourdomainname'          => 'Domain yín:',
+'login'                   => 'Ìwọlé',
+'nav-login-createaccount' => 'Ìwọlé / Ìforúkọ sílẹ̀',
+'loginprompt'             => 'Ẹ gbọ́dọ̀ jọ̀wọ́ cookies láti wọlé sí {{SITENAME}}.',
+'userlogin'               => 'Ìwọlé / ìforúkọ sílẹ̀',
+'logout'                  => 'Ìbọ́sóde',
+'userlogout'              => 'Ìbọ́sóde',
+'notloggedin'             => "Ẹ kò tí w'ọlé",
+'nologin'                 => 'Ṣé ẹ fẹ́ wọlé? $1.',
+'nologinlink'             => 'Ẹ fi orúkọ sílẹ̀',
+'createaccount'           => 'Ẹ fi orúkọ sílẹ̀',
+'gotaccount'              => 'Ṣé ẹ ti ní àpamọ́ tẹ́lẹ̀? $1.',
+'gotaccountlink'          => "Ẹ w'ọlé",
+'createaccountmail'       => 'pẹ̀lú e-mail',
+'badretype'               => 'Àwọn ọ̀rọ̀ìpamọ́ tí ẹ kọ kò jọ ra wọn.',
+'loginerror'              => 'Àsìṣe ìwọlé',
+'noname'                  => 'Ẹ kò tọ́kasí orúkọ oníṣe tó ní ìbámu.',
+'loginsuccesstitle'       => 'Ìwọlé ti yọrí sí rere',
+'loginsuccess'            => "'''Ẹ ti wọlé sínú {{SITENAME}} gẹ́gẹ́ bi \"\$1\".'''",
+'nosuchuser'              => 'Kò sí oníṣe kankan pẹ̀lú orúkọ "$1".
 Ẹ yẹ lẹ́tà yín wò, tàbí [[Special:UserLogin/signup|kí ẹ s\'èdá àpamọ́ tuntun]].',
-'nosuchusershort'           => "Kò sí oníṣe t'ón jẹ́ <nowiki>$1</nowiki>.
+'nosuchusershort'         => "Kò sí oníṣe t'ón jẹ́ <nowiki>$1</nowiki>.
 Ẹ wo spelling yín.",
-'nouserspecified'           => 'Ẹ gbọ́dọ̀ tọ́kasí orúkọ oníṣe kan.',
-'wrongpassword'             => 'Ọ̀rọ̀ìpamọ́ tí ẹ kìbọ́ kòtọ́.
+'nouserspecified'         => 'Ẹ gbọ́dọ̀ tọ́kasí orúkọ oníṣe kan.',
+'wrongpassword'           => 'Ọ̀rọ̀ìpamọ́ tí ẹ kìbọ́ kòtọ́.
 Ẹ jọ̀wọ́ ẹ gbìyànjú lẹ́ẹ̀kansí.',
-'wrongpasswordempty'        => 'Ọ̀ròìpamọ́ jẹ́ òfo.
+'wrongpasswordempty'      => 'Ọ̀ròìpamọ́ jẹ́ òfo.
 Ẹ gbìyànjú lẹ́ ẹ̀kan síi.',
-'passwordtooshort'          => 'Ọ̀rọ̀ìpamọ́ yín jẹ́ aláìtọ́ tàbí ó kúrú ju bóṣe yẹ lọ.
+'passwordtooshort'        => 'Ọ̀rọ̀ìpamọ́ yín jẹ́ aláìtọ́ tàbí ó kúrú ju bóṣe yẹ lọ.
 Kò gbọ́dọ̀ dín ju {{PLURAL:$1|àmìlẹ́tà kan|àmìlẹ́tà $1}} lọ, kí ó sì yàtọ̀ sí oríkọoníṣe yín.',
-'mailmypassword'            => 'Ọ̀rọ̀ìpamọ́ tuntun sí e-mail',
-'passwordremindertitle'     => 'Ọ̀rọ̀ìpamọ́ tuntun fún ìgbà díẹ̀ fún {{SITENAME}}',
-'passwordremindertext'      => 'Ẹnìkan (ó ṣe é ṣe kó jẹ́ ẹ̀yin gan, láti ojúọ̀ná IP $1) bèrè fún 
+'mailmypassword'          => 'Ọ̀rọ̀ìpamọ́ tuntun sí e-mail',
+'passwordremindertitle'   => 'Ọ̀rọ̀ìpamọ́ tuntun fún ìgbà díẹ̀ fún {{SITENAME}}',
+'passwordremindertext'    => 'Ẹnìkan (ó ṣe é ṣe kó jẹ́ ẹ̀yin gan, láti ojúọ̀ná IP $1) bèrè fún 
 ọ̀rọ̀ìpamọ́ tuntun fùn {{SITENAME}} ($4). A ti ṣ\'èdá ọ̀rọ̀ìpamọ́ ìgbádíẹ̀ fún
 oníṣe "$2" bẹ́ ẹ̀ sì ni a ti ṣ\'ètò rẹ̀ sí "$3". Tó bá jẹ́ pé èrò yín nuhun, ẹ gbúdọ̀ wọlé 
-kí ẹ yan ọ̀rọ̀ìpamọ́ tuntun ní ìsinsìnyí.
+kí ẹ yan ọ̀rọ̀ìpamọ́ tuntun ní ìsinsìnyí. Ọ̀rọ̀ìpamọ́ ìgbàdíẹ̀ yín yíò parí lẹ́yìn ọjọ́ {{PLURAL:$5|kan|$5}}. 
 
 Tó bá jẹ́ pé ẹlòmíràn ni ò ṣe ìtọrọ yìí, tábí pé ẹ ti rántí ọ̀rọ̀ìpamọ́ yín,
 tí ẹ kò sì fẹ́ yípadà mọ́, ẹ mọ́ kọbiara sí ìránṣẹ́ yìí.',
-'noemail'                   => 'Kò sí àkọsílẹ̀ ojúọ̀nà e-mail fún oníṣe "$1".',
-'passwordsent'              => 'A ti fi ọ̀rọ̀ìpamọ́ tuntun ránṣẹ́ sí ojúọ̀nà e-mail tí a fisílẹ̀ fún "$1".
+'noemail'                 => 'Kò sí àkọsílẹ̀ ojúọ̀nà e-mail fún oníṣe "$1".',
+'passwordsent'            => 'A ti fi ọ̀rọ̀ìpamọ́ tuntun ránṣẹ́ sí ojúọ̀nà e-mail tí a fisílẹ̀ fún "$1".
 Ẹ jọ̀wọ́ ẹ padà wọlé tí ẹ bá ti gbàá.',
-'eauthentsent'              => 'A ti fi e-mail ìmúdájú ránṣẹ́ sí ojúọ̀nà e-mail tí ẹ fi sílẹ̀.
+'eauthentsent'            => 'A ti fi e-mail ìmúdájú ránṣẹ́ sí ojúọ̀nà e-mail tí ẹ fi sílẹ̀.
 Kí á tó fi e-mail mìíràn ránṣẹ́ sí àpamọ́ yìí, ẹ gbọ́dọ̀ tẹ̀lé àwọn ìlànà inú e-mail ọ̀ún, láti fidájú pé àpamọ́ ọ̀ún jẹ́ ti yín lóòótọ́.',
-'emailauthenticated'        => 'Ojúọ̀nà e-mail yín fidájú ní ago $3 ọjọ́ $2.',
-'emailconfirmlink'          => 'Ẹ ṣe ìmúdájú ojúọ̀nà e-mail yín',
-'accountcreated'            => 'Ẹ ti fi orúkọ sílẹ̀',
-'accountcreatedtext'        => "A ti ṣ'èdá àpamọ́ oniṣe fún $1.",
-'createaccount-title'       => 'Ìforúkọ sílẹ̀ fún {{SITENAME}}',
-'loginlanguagelabel'        => 'Èdè: $1',
+'emailauthenticated'      => 'Ojúọ̀nà e-mail yín fidájú ní ago $3 ọjọ́ $2.',
+'emailconfirmlink'        => 'Ẹ ṣe ìmúdájú ojúọ̀nà e-mail yín',
+'accountcreated'          => 'Ẹ ti fi orúkọ sílẹ̀',
+'accountcreatedtext'      => "A ti ṣ'èdá àpamọ́ oniṣe fún $1.",
+'createaccount-title'     => 'Ìforúkọ sílẹ̀ fún {{SITENAME}}',
+'loginlanguagelabel'      => 'Èdè: $1',
 
 # Password reset dialog
 'resetpass'         => 'Àyípadà ọ̀rọ̀ìpamọ́',
@@ -427,7 +415,9 @@ Ojúọ̀nà IP yín lọ́wọ́lọ́wọ́ ni $3, bẹ́ ẹ̀ sì ni ID fún
 'newarticletext'             => "Ẹ ti tẹ̀lé ìjápọ̀ mọ́ ojúewé tí kò sí.
 Láti dá ojúewé yí ẹ bẹ̀rẹ̀ síní tẹ́kọ sí inú àpótí ìsàlẹ̀ yí (ẹ wo [[{{MediaWiki:Helppage}}|ojúewé ìrànlọ́wọ́ ]] fun ẹ̀kúnrẹ́rẹ́ ).
 T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́yìn.",
-'noarticletext'              => "Lọ́wọ́lọ́wọ́ kò sí ìkọ nínú ojúewé yìí, ẹ le [[Special:Search/{{PAGENAME}}|s'àwáarí fún àkọlé ojúewé yìí]] nínú àwọn ojúewé mìíràn tàbí [{{fullurl:{{FULLPAGENAME}}|action=edit}} kí ẹ ṣ'àtúnṣe ojúewé òún].",
+'noarticletext'              => "Lọ́wọ́lọ́wọ́ kò sí ìkọ nínú ojúewé yìí. 
+Ẹ le [[Special:Search/{{PAGENAME}}|s'àwáàrí fún àkọlé ojúewé yìí]] nínú àwọn ojúewé mìíràn,
+<span class=\"plainlinks\">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} s'àwáàrí àkọọ́lẹ̀ rẹ̀], tàbí [{{fullurl:{{FULLPAGENAME}}|action=edit}} kí ẹ ṣ'àtúnṣe ojúewé òún]</span>.",
 'note'                       => "'''Àkíyèsí:'''",
 'previewnote'                => "'''Àyẹ̀wò kan ni èyí;
 àwọn àtúnṣe kò tíì pamọ́!'''",
@@ -519,28 +509,40 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'powersearch-field'     => 'Àwáàrí fún',
 
 # Preferences page
-'preferences'          => 'Àwọn ìfẹ́ràn',
-'mypreferences'        => 'Àwọn ìfẹ́ràn mi',
-'prefs-edits'          => 'Iye àwọn àtúnṣe:',
-'prefsnologin'         => 'Ẹ kò tíì wọlé',
-'prefsnologintext'     => 'Ẹ gbọ́dọ̀ <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} wọlé]</span> láti to àwọn ìfẹ́ràn oníṣe.',
-'changepassword'       => 'Ìyípadà ọ̀rọ̀ìpamọ́',
-'prefs-skin'           => 'Skin (Àwọ̀)',
-'dateformat'           => 'Ìṣájúètò ọjọ́',
-'datedefault'          => 'Kò sí ìfẹ́ràn',
-'prefs-datetime'       => 'Ọjọ́ àti àkókò',
-'prefs-personal'       => 'Ọ̀rọ̀ nípa oníṣe',
-'prefs-rc'             => 'Àwọn àtúnṣe tuntun',
-'prefs-watchlist'      => 'Ìmójútó',
-'prefs-watchlist-days' => 'Ọjọ́ láti fihàn nínú ìmójútó:',
-'saveprefs'            => 'Ìfipamọ́',
-'resetprefs'           => 'Palẹ̀mọ́ àwọn àtúnṣe tí kò sì ní ìpamọ́',
-'searchresultshead'    => 'Àwáàrí',
-'savedprefs'           => 'Àwọn ìfẹ́ràn yín ti wà nípamọ́.',
-'localtime'            => 'Àkókò ìbílẹ̀:',
-'prefs-searchoptions'  => 'Àwọn ìyàn àwáàrí',
-'prefs-namespaces'     => 'Àwọn orúkọàyè',
-'prefs-files'          => 'Àwọn faili',
+'preferences'               => 'Àwọn ìfẹ́ràn',
+'mypreferences'             => 'Àwọn ìfẹ́ràn mi',
+'prefs-edits'               => 'Iye àwọn àtúnṣe:',
+'prefsnologin'              => 'Ẹ kò tíì wọlé',
+'prefsnologintext'          => 'Ẹ gbọ́dọ̀ <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} wọlé]</span> láti to àwọn ìfẹ́ràn oníṣe.',
+'changepassword'            => 'Ìyípadà ọ̀rọ̀ìpamọ́',
+'prefs-skin'                => 'Skin (Àwọ̀)',
+'dateformat'                => 'Ìṣájúètò ọjọ́',
+'datedefault'               => 'Kò sí ìfẹ́ràn',
+'prefs-datetime'            => 'Ọjọ́ àti àkókò',
+'prefs-personal'            => 'Ọ̀rọ̀ nípa oníṣe',
+'prefs-rc'                  => 'Àwọn àtúnṣe tuntun',
+'prefs-watchlist'           => 'Ìmójútó',
+'prefs-watchlist-days'      => 'Ọjọ́ láti fihàn nínú ìmójútó:',
+'saveprefs'                 => 'Ìfipamọ́',
+'resetprefs'                => 'Palẹ̀mọ́ àwọn àtúnṣe tí kò sì ní ìpamọ́',
+'searchresultshead'         => 'Àwáàrí',
+'savedprefs'                => 'Àwọn ìfẹ́ràn yín ti wà nípamọ́.',
+'localtime'                 => 'Àkókò ìbílẹ̀:',
+'prefs-searchoptions'       => 'Àwọn ìyàn àwáàrí',
+'prefs-namespaces'          => 'Àwọn orúkọàyè',
+'prefs-files'               => 'Àwọn faili',
+'youremail'                 => 'E-mail:',
+'username'                  => 'Orúkọ oníṣe:',
+'uid'                       => 'Nọmba ìdámọ̀ fún ẹnitínṣe:',
+'yourrealname'              => 'Orúkọ ganangan:',
+'yourlanguage'              => 'Èdè:',
+'yournick'                  => 'Ìtọwọ́bọ̀:',
+'badsiglength'              => 'Ìtọwọ́bọ̀ yín ti gùnjù.
+Kò gbodọ̀ ju $1 {{PLURAL:$1|àmìlẹ́tà|àwọn àmìlẹ́tà}} lọ.',
+'email'                     => 'E-mail',
+'prefs-help-realname'       => 'Orúkọ gangan kò pọndandan.
+Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
+'prefs-help-email-required' => 'E-mail ṣe dandan.',
 
 # Groups
 'group'               => 'Àkójọpọ̀:',
@@ -620,10 +622,10 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'filehist-dimensions'       => 'Ẹ̀gbẹ̀ẹ̀gbẹ́',
 'filehist-filesize'         => 'Ìtóbi faili',
 'filehist-comment'          => 'Àwísọ',
-'imagelinks'                => 'Àwọn ìjápọ̀',
+'imagelinks'                => 'Àwọn ìjápọ̀ faili',
 'linkstoimage'              => '{{PLURAL:$1|Ojúewé yí|$1 Àwọn ojúewé yí}} jápọ̀ mọ́ àpò yí:',
 'nolinkstoimage'            => 'Kò sí ojúewé tó jápọ̀ mọ́ faili yìí.',
-'sharedupload'              => 'Faili yìí jẹ́ ìrùsókè pínpín pẹ̀lú àwọn iṣẹ́owọ́ mìíràn tí wọ́n n lòó.',
+'sharedupload'              => 'Faili yìí jẹ́ ìrùsókè láti $1 à ṣì le pin pẹ̀lú àwọn iṣẹ́owọ́ mìíràn tí wọ́n n lòó.',
 'noimage'                   => 'Kò sí faili tí únjẹ́ báun, sùgbọ́n ẹ le ẹ̀ $1.',
 'noimage-linktext'          => 'Ìrùsókè ẹyọkan',
 'uploadnewversion-linktext' => 'Ẹ ṣe ìrùsókè àtúnṣe tuntun faili yìí',
@@ -681,7 +683,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'mostcategories'          => 'Àwọn ojúewé pẹ̀lú àwọn ẹ̀ka tópọ̀jùlọ',
 'mostimages'              => 'Àwọn faili tó ní ìjápọ̀mọ́ jùlọ',
 'mostrevisions'           => 'Àwọn ojúewé pẹ̀lu àwọn àtúnyẹ̀wò tópọ̀jùlọ',
-'prefixindex'             => 'Ìtọ́ka ìpele',
+'prefixindex'             => 'Gbogbo ojúewé tó ní ìtọ́ka ìpele',
 'shortpages'              => 'Àwọn ojúewé kúkúrú',
 'longpages'               => 'Ojúewé gúngùn',
 'deadendpages'            => 'Àwọn ojúewé aláìníjàápọ́',
@@ -775,9 +777,9 @@ A óò ṣ'àkójọ àwọn àtúnṣe ọjọ́wajú sí ojúewé yìí àti o
 'protect-text'                => "Ẹ lè wo, bẹ́ ẹ̀ sìni ẹ lè ṣ'àtúnṣe ibi àbò níbí fún ojúewé '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Àpamọ́ yín kò ní àyè láti ṣ'àtúnṣe àwọn ibi àbò.
 Bí a ṣe to ojúewé '''$1''' nì yí:",
-'protect-default'             => '(ìbáwá)',
+'protect-default'             => 'Ẹ gba gbogbo àwọn oníṣe láàyè',
 'protect-fallback'            => 'Ìyọ̀nda "$1" pọn dandan',
-'protect-level-autoconfirmed' => 'Dínà àwọn oníṣe tíkòforúkọ sílẹ́',
+'protect-level-autoconfirmed' => 'Dínà àwọn oníṣe tuntun àti tíkòforúkọ sílẹ́',
 'protect-level-sysop'         => 'Alámùójútó nìkan',
 'protect-expiring'            => 'parí ní $1 (UTC)',
 'protect-cantedit'            => "Ẹ kò le è ṣe àyípadà ibi àbò ojúewé yìí, nítorípé a kò yọ̀nda yín láti ṣ'àtúnṣe rẹ̀.",
@@ -868,18 +870,18 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 'importlogpage' => 'Ìgbéwọlé àkọọ́lẹ̀',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Ojúewé mi',
-'tooltip-pt-mytalk'               => 'Ojúewé ọ̀rọ̀ mi',
+'tooltip-pt-userpage'             => 'Ojúewé oníṣe yín',
+'tooltip-pt-mytalk'               => 'Ojúewé ọ̀rọ̀ yín',
 'tooltip-pt-preferences'          => 'Àwọn ìfẹ́ràn mi',
 'tooltip-pt-watchlist'            => 'Àkójọ àwọn ojúewé tí ẹ̀ ún mójútó bóyá wọ́nyí padà',
-'tooltip-pt-mycontris'            => 'Àkójọ àwọn àfikún mi',
+'tooltip-pt-mycontris'            => 'Àkójọ àwọn àfikún yín',
 'tooltip-pt-login'                => 'A gbà yín níyànjú kí ẹwọlé, bótilẹ̀jẹ́pẹ́ kò pọndandan.',
 'tooltip-pt-anonlogin'            => 'A gbàyín níyànjú láti wọlé, bótilẹ̀jẹ́pé kò ṣe dandan.',
 'tooltip-pt-logout'               => 'Ìbọ́sódé',
 'tooltip-ca-talk'                 => 'Ìfọ̀rọ̀wérọ̀ nípa ohun inú ojúewé yìí',
 'tooltip-ca-edit'                 => 'Ẹ le ṣe àtúnṣe sí ojúewé yìí.
 Ẹ jọ̀wọ́ ẹ lo bọtini àyẹ̀wò kí ẹ tó fipamọ́.',
-'tooltip-ca-addsection'           => "Ṣ'àríwí sínú ìfọ̀rọ̀wérọ̀.",
+'tooltip-ca-addsection'           => 'Ẹ bẹ̀rẹ̀ abẹlẹ tuntun',
 'tooltip-ca-viewsource'           => 'Àbò wà lórí ojúewé yìí.
 Ẹ le wo àmìọ̀rọ̀ rẹ̀.',
 'tooltip-ca-protect'              => 'Dáàbòbo ojúewé yìí',

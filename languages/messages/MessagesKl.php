@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Piivaat
  * @author לערי ריינהארט
  */
 
@@ -68,9 +69,9 @@ $messages = array(
 'tagline'          => 'Matumannga {{SITENAME}}',
 'help'             => 'Ikiortissamik',
 'search'           => 'Ujaarlerit',
-'searchbutton'     => 'Ujaarlerit',
+'searchbutton'     => 'Ujarlerit',
 'go'               => 'Ikunnarit',
-'searcharticle'    => 'Pisuppoq',
+'searcharticle'    => 'Tassunngarit',
 'history_short'    => 'Historiki',
 'edit'             => 'Aaqqissuutiguk',
 'protect'          => 'Illersorpaa',
@@ -112,7 +113,7 @@ $messages = array(
 'newarticle'   => '(Nuutaq)',
 
 # Search results
-'powersearch' => 'Ujaarlerit',
+'powersearch' => 'Ujarlerit',
 
 # Recent changes
 'recentchanges'   => 'Allannguutit kingulliit',
@@ -146,7 +147,7 @@ $messages = array(
 'specialloguserlabel' => 'Pineqartoq:',
 
 # Special:AllPages
-'allpagessubmit' => 'Pisuppoq',
+'allpagessubmit' => 'Tassungarit',
 
 # Watchlist
 'addedwatch'     => 'Nakkutilliinermi allattorsimaffimmut ilanngunneqarsimavoq',

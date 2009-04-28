@@ -216,8 +216,6 @@ Lantawa sa [[Special:Version|version kang page]].',
 'remembermypassword' => "Tandaan ang akun nga ''log-in'' sa dya nga ''computer''",
 'nologinlink'        => "Himo ka sangka ''account''",
 'createaccount'      => "Himo ka ''account''",
-'youremail'          => 'E-mail:',
-'email'              => 'E-mail',
 
 # Edit pages
 'preview' => 'Bilid',
@@ -225,6 +223,8 @@ Lantawa sa [[Special:Version|version kang page]].',
 # Preferences page
 'skin-preview'      => 'Bilid',
 'searchresultshead' => 'Sagap',
+'youremail'         => 'E-mail:',
+'email'             => 'E-mail',
 
 # Recent changes
 'hide' => 'Itago',

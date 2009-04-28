@@ -172,11 +172,6 @@ $messages = array(
 'nologin'                 => 'Nielaymi kiñe lludüwe? $1.',
 'nologinlink'             => 'Dewmafinge',
 'gotaccountlink'          => 'Konün',
-'username'                => 'Üy kellufe:',
-'yourrealname'            => 'Tami mupiñ üy *',
-'yourlanguage'            => 'Dungun:',
-'gender-male'             => 'Wentru',
-'gender-female'           => 'Domo',
 'loginlanguagelabel'      => 'Dungun: $1',
 
 # Edit pages
@@ -242,6 +237,11 @@ $messages = array(
 'timezoneregion-arctic'  => 'Artiku',
 'timezoneregion-asia'    => 'Asia',
 'timezoneregion-europe'  => 'Ewropa',
+'username'               => 'Üy kellufe:',
+'yourrealname'           => 'Tami mupiñ üy *',
+'yourlanguage'           => 'Dungun:',
+'gender-male'            => 'Wentru',
+'gender-female'          => 'Domo',
 
 # User rights
 'userrights-user-editname' => 'Wirin kiñe üy kellufe mew:',

@@ -356,15 +356,6 @@ Llogaria juej asht hap. Mos harroni me ndryshu parapëlqimet e {{SITENAME}}-s.',
 'gotaccountlink'          => 'Hyni',
 'createaccountmail'       => 'me email',
 'userexists'              => 'Nofka që përdorët asht në përdorim. Zgjidhni një nofkë tjetër.',
-'youremail'               => 'Adresa e email-it*',
-'username'                => 'Nofka e përdoruesit:',
-'uid'                     => 'Nr. i identifikimit:',
-'yourrealname'            => 'Emri juej i vërtetë*',
-'yourlanguage'            => 'Ndërfaqja gjuhësore',
-'yournick'                => 'Nofka :',
-'badsig'                  => 'Sintaksa e nënshkrimit asht e pavlefshme, kontrolloni HTML-n.',
-'badsiglength'            => 'Emri i zgjedhun asht shumë i gjatë; duhet me pas ma pak se $1 shkronja',
-'email'                   => 'Email',
 'nocookieslogin'          => '{{SITENAME}} përdor "biskota" për me futë brenda përdoruesit. Prandaj, duhet të pranoni "biskota" dhe të provoni prap.',
 
 # Edit page toolbar
@@ -427,6 +418,15 @@ Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet
 # Preferences page
 'mypreferences' => 'Parapëlqimet',
 'skin-preview'  => 'Parapamje',
+'youremail'     => 'Adresa e email-it*',
+'username'      => 'Nofka e përdoruesit:',
+'uid'           => 'Nr. i identifikimit:',
+'yourrealname'  => 'Emri juej i vërtetë*',
+'yourlanguage'  => 'Ndërfaqja gjuhësore',
+'yournick'      => 'Nofka :',
+'badsig'        => 'Sintaksa e nënshkrimit asht e pavlefshme, kontrolloni HTML-n.',
+'badsiglength'  => 'Emri i zgjedhun asht shumë i gjatë; duhet me pas ma pak se $1 shkronja',
+'email'         => 'Email',
 
 # Recent changes
 'recentchanges'   => 'Ndryshimet e fundit',

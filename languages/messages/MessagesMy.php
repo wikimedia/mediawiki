@@ -159,13 +159,6 @@ $messages = array(
 'nologinlink'             => 'မှတ်​ပုံ​တင်​ပြု​လုပ်​ပါ​',
 'createaccount'           => 'မှတ်​ပုံ​တင်​ပြု​လုပ်​ပါ​',
 'gotaccountlink'          => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ပါ​',
-'youremail'               => 'အီ​မေး:',
-'username'                => 'မှတ်​ပုံ​တင်​အ​မည်:',
-'uid'                     => 'မှတ်​ပုံ​တင်​ID:',
-'yourrealname'            => 'နာမည်ရင်း:',
-'yourlanguage'            => 'ဘာသာ:',
-'yournick'                => 'ဆိုင်း:',
-'email'                   => 'အီ​မေး​',
 'loginsuccesstitle'       => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ခြင်းအောင်မြင်သည်။',
 'loginlanguagelabel'      => 'ဘာသာ: $1',
 
@@ -216,6 +209,13 @@ $messages = array(
 'prefs-math'        => 'သင်္ချာ',
 'prefs-datetime'    => 'နေ့စွဲနှင့် အချိန်',
 'searchresultshead' => 'ရှာ​ဖွေ​ရန်​',
+'youremail'         => 'အီ​မေး:',
+'username'          => 'မှတ်​ပုံ​တင်​အ​မည်:',
+'uid'               => 'မှတ်​ပုံ​တင်​ID:',
+'yourrealname'      => 'နာမည်ရင်း:',
+'yourlanguage'      => 'ဘာသာ:',
+'yournick'          => 'ဆိုင်း:',
+'email'             => 'အီ​မေး​',
 
 # Groups
 'group-all' => '(အားလုံး)',

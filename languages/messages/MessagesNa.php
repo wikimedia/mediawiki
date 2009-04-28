@@ -58,10 +58,9 @@ $messages = array(
 'error' => 'Dairinaiya',
 
 # Login and logout pages
-'login'        => 'Metu',
-'logout'       => 'Meta',
-'userlogout'   => 'Meta',
-'yourlanguage' => 'Edorer',
+'login'      => 'Metu',
+'logout'     => 'Meta',
+'userlogout' => 'Meta',
 
 # Edit page toolbar
 'bold_sample'  => 'Eõ mangiyungiy',
@@ -81,6 +80,7 @@ $messages = array(
 # Preferences page
 'prefs-skin'        => 'Witsin',
 'searchresultshead' => 'Anani ko',
+'yourlanguage'      => 'Edorer',
 
 # Recent changes
 'recentchanges' => 'Iwiwidit tsimeduw',

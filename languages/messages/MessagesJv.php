@@ -408,22 +408,7 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'badretype'                  => 'Sandhi panjenengan ora gathuk',
 'userexists'                 => 'Asma panganggo sing panjenengan pilih wis kanggo.
 Mangga pilih asma liyané.',
-'youremail'                  => 'Layang élèktronik (E-mail):',
-'username'                   => 'Asma panganggo:',
-'uid'                        => 'ID panganggo:',
-'prefs-memberingroups'       => 'Anggota {{PLURAL:$1|klompok|klompok-klompok}}:',
-'yourrealname'               => 'Asma sajatiné :',
-'yourlanguage'               => 'Basa sing dianggo:',
-'yourvariant'                => 'Varian basa',
-'yournick'                   => 'Asma sesinglon/samaran (kagem tapak asta):',
-'badsig'                     => 'Tapak astanipun klèntu; cèk rambu HTML.',
-'badsiglength'               => 'Tapak tangané kedawan; kudu sangisoré $1 {{PLURAL:$1|karakter|karakter}}.',
-'email'                      => 'Layang élèktronik (E-mail)',
-'prefs-help-realname'        => '* <strong>Asma asli</strong> (ora wajib): menawa panjenengan maringi, asma asli panjenengan bakal digunakaké kanggo mènèhi akrédhitasi kanggo kasil karya tulis panjenengan.',
 'loginerror'                 => 'Kasalahan mlebu log',
-'prefs-help-email'           => 'Layang-e (ora wajib), nanging sawanci-wanci panjenengan lali tembung sandi, bisa dikirimi liwat layang-e kasebut.
-Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng panganggo utawa kaca wicara panjenengan tanpa perlu nuduhaké idhèntitas panjenengan.',
-'prefs-help-email-required'  => 'Alamat layang-e dibutuhaké.',
 'nocookiesnew'               => "Rékening utawa akun panganggo panjenengan wis digawé, nanging panjenengan durung mlebu log. {{SITENAME}} nggunakaké ''cookies'' kanggo  log panganggo. ''Cookies'' ing panjlajah wèb panjengengan dipatèni. Mangga diaktifaké lan mlebu log manèh mawa jeneng panganggo lan tembung sandhi panjenengan.",
 'nocookieslogin'             => "{{SITENAME}} nggunakaké ''cookies'' kanggo log panganggoné. ''Cookies'' ing panjlajah wèb panjenengan dipatèni. Mangga ngaktifaké manèh lan coba manèh.",
 'noname'                     => 'Asma panganggo sing panjenengan pilih ora sah.',
@@ -950,6 +935,21 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'defaultns'                 => "Golèk ing bilik jeneng (''namespace'') iki mawa baku:",
 'default'                   => 'baku',
 'prefs-files'               => 'Berkas',
+'youremail'                 => 'Layang élèktronik (E-mail):',
+'username'                  => 'Asma panganggo:',
+'uid'                       => 'ID panganggo:',
+'prefs-memberingroups'      => 'Anggota {{PLURAL:$1|klompok|klompok-klompok}}:',
+'yourrealname'              => 'Asma sajatiné :',
+'yourlanguage'              => 'Basa sing dianggo:',
+'yourvariant'               => 'Varian basa',
+'yournick'                  => 'Asma sesinglon/samaran (kagem tapak asta):',
+'badsig'                    => 'Tapak astanipun klèntu; cèk rambu HTML.',
+'badsiglength'              => 'Tapak tangané kedawan; kudu sangisoré $1 {{PLURAL:$1|karakter|karakter}}.',
+'email'                     => 'Layang élèktronik (E-mail)',
+'prefs-help-realname'       => '* <strong>Asma asli</strong> (ora wajib): menawa panjenengan maringi, asma asli panjenengan bakal digunakaké kanggo mènèhi akrédhitasi kanggo kasil karya tulis panjenengan.',
+'prefs-help-email'          => 'Layang-e (ora wajib), nanging sawanci-wanci panjenengan lali tembung sandi, bisa dikirimi liwat layang-e kasebut.
+Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng panganggo utawa kaca wicara panjenengan tanpa perlu nuduhaké idhèntitas panjenengan.',
+'prefs-help-email-required' => 'Alamat layang-e dibutuhaké.',
 
 # User rights
 'userrights'                  => 'Manajemen hak panganggo',
@@ -2734,15 +2734,5 @@ Katrangan tampilan:
 #Larikan sing diwiwiti nganggo # dianggep komentar
 
 #Dèlèhen kabèh fragmèn èksprèsi regular sadhuwuré baris iki. Umbarna baris ini apa anané</pre>',
-
-# Special:CreatePage
-'createpage'              => 'Gawé kaca',
-'createpage-submitbutton' => 'Kirim',
-'createpage-instructions' => 'Isi irah-irahan (judhul) kaca sing arep digawé:',
-'createpage-entertitle'   => 'Supaya ngisi irah-irahan (judhul) kaca.',
-'createpage-titleexists'  => 'Kaca kanthi irah-irahan (judhul) [[$1]] wis ana.
-Apa panjenengan arep nyunting kaca iki?',
-'createpage-tryagain'     => 'Ora. Aku arep gawé kaca anyar kanthi judhul liya.',
-'createpage-editexisting' => 'Iya. Aku arep ngisi kaca sing ana iki.',
 
 );

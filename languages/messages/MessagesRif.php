@@ -167,9 +167,6 @@ teqqad ad yilli days ca n usekkil war itwagg deg isem .',
 'createaccount'           => 'Egg amiḍan',
 'gotaccount'              => 'ɣark  amiḍan? $1.',
 'gotaccountlink'          => 'Adeff',
-'yourrealname'            => 'isem n deṣṣaḥ :',
-'prefs-help-realname'     => 'isem inec n deṣṣaḥ mala txesad waha .
-mala tucit-id, ataf Lxdant inec a tetwassan ila inec.',
 'loginsuccesstitle'       => 'Adaf icna',
 'loginsuccess'            => "'''Qac tudeffed di {{SITENAME}} s \"\$1\".'''",
 'nosuchuser'              => 'War illi ca n useqdac s isem a"$1".
@@ -310,9 +307,12 @@ tzemred ad [[:\$1|tarnid cek]].",
 'powersearch'  => 'Tarezzut cwa-cway',
 
 # Preferences page
-'preferences'       => 'Isemyifiyen',
-'mypreferences'     => 'Isemyifiyen inu',
-'searchresultshead' => 'Tarzzut',
+'preferences'         => 'Isemyifiyen',
+'mypreferences'       => 'Isemyifiyen inu',
+'searchresultshead'   => 'Tarzzut',
+'yourrealname'        => 'isem n deṣṣaḥ :',
+'prefs-help-realname' => 'isem inec n deṣṣaḥ mala txesad waha .
+mala tucit-id, ataf Lxdant inec a tetwassan ila inec.',
 
 # Groups
 'group-all' => '(maṛṛa)',

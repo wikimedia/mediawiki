@@ -416,29 +416,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'badretype'                  => 'Le passuord ca è scritte non ge sonde uguale.',
 'userexists'                 => "'U nome de l'utende ca è scritte jè già ausete.
 Mittene n'otre.",
-'youremail'                  => 'Poste:',
-'username'                   => "Nome de l'utende:",
-'uid'                        => 'ID Utende:',
-'prefs-memberingroups'       => "Membre {{PLURAL:$1|d'u gruppe|de le gruppe}}:",
-'yourrealname'               => 'Nome vere:',
-'yourlanguage'               => 'Lènga:',
-'yournick'                   => 'Firma toje:',
-'badsig'                     => "'A firme grezze jè sbagliete.
-Condrolle le tag HTML.",
-'badsiglength'               => "'A firme jè troppe longhe.
-Addà essere assaje assaje sotte a $1 {{PLURAL:$1|carattere|carattere}}.",
-'yourgender'                 => 'Sesso:',
-'gender-unknown'             => 'No specificate',
-'gender-male'                => 'Maschele',
-'gender-female'              => 'Femmene',
-'prefs-help-gender'          => "Opzionale: ausete pe l'indirizzamende corrette d'u sesse jndr'à 'u software. Sta 'mbormazione jè pubbliche.",
-'email'                      => 'Poste',
-'prefs-help-realname'        => "'U nome vere (quidde d'u munne reale) jè facoltative.
-Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'loginerror'                 => 'Errore de collegamende',
-'prefs-help-email'           => "L'indirizze e-mail jè facoltative ma te dè 'a possibbilità de mannarte 'na password nova nove ce tu te scuèrde quedde ca tenive.
-Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggene de le 'ngazzaminde senza ca abbesogne de fa canoscere l'idendità toje.",
-'prefs-help-email-required'  => "L'indirizze e-mail jè obbligatorie.",
 'nocookiesnew'               => "'U cunde utende ha state ccrejete ma angore non g'è trasute jndr'à {{SITENAME}}.
 
 {{SITENAME}} ause le cookie pe fà collegà l'utinde.
@@ -1039,6 +1017,28 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'prefs-files'               => 'Fails',
 'prefs-custom-css'          => 'CSS Personalizzete',
 'prefs-custom-js'           => 'JS Personalizzete',
+'youremail'                 => 'Poste:',
+'username'                  => "Nome de l'utende:",
+'uid'                       => 'ID Utende:',
+'prefs-memberingroups'      => "Membre {{PLURAL:$1|d'u gruppe|de le gruppe}}:",
+'yourrealname'              => 'Nome vere:',
+'yourlanguage'              => 'Lènga:',
+'yournick'                  => 'Firma toje:',
+'badsig'                    => "'A firme grezze jè sbagliete.
+Condrolle le tag HTML.",
+'badsiglength'              => "'A firme jè troppe longhe.
+Addà essere assaje assaje sotte a $1 {{PLURAL:$1|carattere|carattere}}.",
+'yourgender'                => 'Sesso:',
+'gender-unknown'            => 'No specificate',
+'gender-male'               => 'Maschele',
+'gender-female'             => 'Femmene',
+'prefs-help-gender'         => "Opzionale: ausete pe l'indirizzamende corrette d'u sesse jndr'à 'u software. Sta 'mbormazione jè pubbliche.",
+'email'                     => 'Poste',
+'prefs-help-realname'       => "'U nome vere (quidde d'u munne reale) jè facoltative.
+Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
+'prefs-help-email'          => "L'indirizze e-mail jè facoltative ma te dè 'a possibbilità de mannarte 'na password nova nove ce tu te scuèrde quedde ca tenive.
+Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggene de le 'ngazzaminde senza ca abbesogne de fa canoscere l'idendità toje.",
+'prefs-help-email-required' => "L'indirizze e-mail jè obbligatorie.",
 
 # User rights
 'userrights'                     => 'Gestione de le deritte utende',

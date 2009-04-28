@@ -195,11 +195,6 @@ kalambula-neti yo.",
 'createaccount'              => 'Kolawo akawunti',
 'gotaccount'                 => 'Akawunti wafuna? $1.',
 'gotaccountlink'             => 'Yingira',
-'username'                   => "Ery'obwa memba:",
-'yourlanguage'               => 'Lulimi lwo:',
-'yournick'                   => 'Empaako yo (ssi ya tteeka):',
-'prefs-help-email'           => "* E-mail (ssi kya tteeka): Bw'ogiwayo, basobola okukutuukirira nga bayitira ku enfo yo ey'obwa memba oba olupapula lwo
-olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'loginsuccesstitle'          => 'Oyingidde',
 'loginsuccess'               => "'''Kati oyingidde mu {{SITENAME}} nga okozesa erinnya \"\$1\".'''",
 'mailmypassword'             => 'Nsindikira ekigambo ekikuumi ekipya',
@@ -321,6 +316,11 @@ oba ku gano agali ku lupapula luno.<br />
 'searchresultshead' => 'Noonya',
 'savedprefs'        => 'Enteekateeka yo ekazidwa.',
 'allowemail'        => 'Kkiriza bamemba abalala okukusindikira e-mail',
+'username'          => "Ery'obwa memba:",
+'yourlanguage'      => 'Lulimi lwo:',
+'yournick'          => 'Empaako yo (ssi ya tteeka):',
+'prefs-help-email'  => "* E-mail (ssi kya tteeka): Bw'ogiwayo, basobola okukutuukirira nga bayitira ku enfo yo ey'obwa memba oba olupapula lwo
+olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 
 # User rights
 'editinguser' => "Kukyuusa ebya memba '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
