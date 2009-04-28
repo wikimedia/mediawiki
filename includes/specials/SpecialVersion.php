@@ -405,7 +405,11 @@ class SpecialVersion extends SpecialPage {
 						return false;
 					} else {
 						$viewvcStart = 'http://svn.wikimedia.org/viewvc/mediawiki/';
-						$viewvcEnd = '/?pathrev=';
+						if (strstr( $content[4], 'trunk' ))
+							$viewvcEnd = '/?pathrev=';
+						else
+							// Avoids 404 error using pathrev when it does not found
+							$viewvcEnd = '/?revision=';
 						$viewvc = $viewvcStart . $endPath . $viewvcEnd;
 						return $viewvc;
 					}
