@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1074,7 +1074,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'prefs-misc'                => '雜項',
 'prefs-resetpass'           => '改密碼',
 'prefs-email'               => '電郵選項',
-'prefs-rendering'           => '頁面生成',
+'prefs-rendering'           => '外觀',
 'saveprefs'                 => '儲存',
 'resetprefs'                => '清除未保存嘅更改',
 'restoreprefs'              => '恢復全部預設設定',

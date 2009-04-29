@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1090,7 +1090,7 @@ $2',
 'prefs-misc'                => '雜項',
 'prefs-resetpass'           => '更改密碼',
 'prefs-email'               => '電郵選項',
-'prefs-rendering'           => '頁面生成',
+'prefs-rendering'           => '外觀',
 'saveprefs'                 => '保存',
 'resetprefs'                => '清除未保存的更改',
 'restoreprefs'              => '恢復所有預設設定',
