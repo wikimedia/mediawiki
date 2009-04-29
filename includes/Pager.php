@@ -750,18 +750,16 @@ abstract class TablePager extends IndexPager {
 	}
 
 	function formatRow( $row ) {
-		$rowClass = htmlspecialchars( $this->getRowClass( $row ) );
-		$s = "<tr class=\"$rowClass\">\n";
+		$this->mCurrentRow = $row;  	# In case formatValue etc need to know
+		$s = Xml::openElement( 'tr', $this->getRowAttrs($row) );
 		$fieldNames = $this->getFieldNames();
-		$this->mCurrentRow = $row;  # In case formatValue needs to know
 		foreach ( $fieldNames as $field => $name ) {
 			$value = isset( $row->$field ) ? $row->$field : null;
 			$formatted = strval( $this->formatValue( $field, $value ) );
 			if ( $formatted == '' ) {
 				$formatted = '&nbsp;';
 			}
-			$class = 'TablePager_col_' . htmlspecialchars( $field );
-			$s .= "<td class=\"$class\">$formatted</td>\n";
+			$s .= Xml::tags( 'td', $this->getCellAttrs( $field, $value ), $formatted );
 		}
 		$s .= "</tr>\n";
 		return $s;
@@ -771,8 +769,29 @@ abstract class TablePager extends IndexPager {
 	 * Get a class name to be applied to the given row.
 	 * @param object $row The database result row
 	 */
-	function getRowClass($row) {
+	function getRowClass( $row ) {
 		return '';
+	}
+
+	/**
+	 * Get attributes to be applied to the given row.
+	 * @param object $row The database result row
+	 * @return associative array
+	 */
+	function getRowAttrs( $row ) {
+		return array( 'class' => $this->getRowClass( $row ) );
+	}
+
+	/**
+	 * Get any extra attributes to be applied to the given cell. Don't 
+	 * take this as an excuse to hardcode styles; use classes and 
+	 * CSS instead.  Row context is available in $this->mCurrentRow
+	 * @param $field The column
+	 * @param $value The cell contents
+	 * @return associative array
+	 */
+	function getCellAttrs( $field, $value ) {
+		return array( 'class' => 'TablePager_col_' . $field );
 	}
 
 	function getIndexField() {
