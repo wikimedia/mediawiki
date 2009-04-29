@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1116,7 +1116,7 @@ $2',
 'prefs-misc'                => '杂项',
 'prefs-resetpass'           => '更改密码',
 'prefs-email'               => '邮箱选项',
-'prefs-rendering'           => '页面生成',
+'prefs-rendering'           => '外观',
 'saveprefs'                 => '保存',
 'resetprefs'                => '清除未保存的更改',
 'restoreprefs'              => '恢复所有默认设置',
