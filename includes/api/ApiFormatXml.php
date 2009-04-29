@@ -89,6 +89,11 @@ class ApiFormatXml extends ApiFormatBase {
 					if ($this->mDoubleQuote)
 						$subElemContent = $this->doubleQuote($subElemContent);
 					unset ($elemValue['*']);
+					
+					// Add xml:space="preserve" to the
+					// element so XML parsers will leave
+					// whitespace in the content alone
+					$elemValue['xml:space'] = 'preserve';
 				} else {
 					$subElemContent = null;
 				}
