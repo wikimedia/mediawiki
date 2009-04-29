@@ -3535,6 +3535,13 @@ $wgDjvuDump = null;
 $wgDjvuRenderer = null;
 
 /**
+ * Path of the djvutxt DJVU text extraction utility
+ * Enable this and $wgDjvuDump to enable text layer extraction from djvu files
+ */
+# $wgDjvuTxt = 'djvutxt';
+$wgDjvuTxt = null;
+
+/**
  * Path of the djvutoxml executable
  * This works like djvudump except much, much slower as of version 3.5.
  *

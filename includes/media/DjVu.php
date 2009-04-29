@@ -52,6 +52,8 @@ class DjVuHandler extends ImageHandler {
 		$m = false;
 		if ( preg_match( '/^page(\d+)-(\d+)px$/', $str, $m ) ) {
 			return array( 'width' => $m[2], 'page' => $m[1] );
+		} else if ( preg_match( '/^page(\d+)-djvutxt$/', $str, $m ) ) {
+			return array( 'djvutxt' => 1, 'page' => $m[1] );
 		} else {
 			return false;
 		}
@@ -64,8 +66,21 @@ class DjVuHandler extends ImageHandler {
 		);
 	}
 
+	function normaliseParams( $image, &$params ) {
+		global $wgDjvuTxt;
+		if( $params['djvutxt'] && $wgDjvuTxt) {
+			if ( !isset( $params['page'] ) ) {
+				$params['page'] = 1;
+			}
+			$params['width'] = 0;
+			$params['height'] = 0;
+			return true;
+		} 
+		else return parent::normaliseParams( $image, $params );
+	}
+
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
-		global $wgDjvuRenderer, $wgDjvuPostProcessor;
+		global $wgDjvuRenderer, $wgDjvuPostProcessor, $wgDjvuTxt;
 
 		// Fetch XML and check it, to give a more informative error message than the one which
 		// normaliseParams will inevitably give.
@@ -94,18 +109,36 @@ class DjVuHandler extends ImageHandler {
 			return new MediaTransformError( 'thumbnail_error', $width, $height, wfMsg( 'thumbnail_dest_directory' ) );
 		}
 
-		# Use a subshell (brackets) to aggregate stderr from both pipeline commands
-		# before redirecting it to the overall stdout. This works in both Linux and Windows XP.
-		$cmd = '(' . wfEscapeShellArg( $wgDjvuRenderer ) . " -format=ppm -page={$page} -size={$width}x{$height} " .
-			wfEscapeShellArg( $srcPath );
-		if ( $wgDjvuPostProcessor ) {
-			$cmd .= " | {$wgDjvuPostProcessor}";
+		if( $params['djvutxt'] && $wgDjvuTxt ) {
+			# Extract djvu text
+			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . " --page={$page} " . wfEscapeShellArg( $srcPath ) ;
+			wfProfileIn( 'djvutxt' );
+			wfDebug( __METHOD__.": $cmd\n" );
+			$err = wfShellExec( $cmd, $retval );
+			wfProfileOut( 'djvutxt' );
+			# Escape html characters
+			$txt = htmlspecialchars( $err );
+			# Write result to file
+			if($retval == 0) {
+				$f = fopen($dstPath, 'w');
+				fwrite($f, $txt);
+				fclose($f);
+			}
 		}
-		$cmd .= ' > ' . wfEscapeShellArg($dstPath) . ') 2>&1';
-		wfProfileIn( 'ddjvu' );
-		wfDebug( __METHOD__.": $cmd\n" );
-		$err = wfShellExec( $cmd, $retval );
-		wfProfileOut( 'ddjvu' );
+		else {
+			# Use a subshell (brackets) to aggregate stderr from both pipeline commands
+			# before redirecting it to the overall stdout. This works in both Linux and Windows XP.
+			$cmd = '(' . wfEscapeShellArg( $wgDjvuRenderer ) . " -format=ppm -page={$page} -size={$width}x{$height} " .
+				wfEscapeShellArg( $srcPath );
+			if ( $wgDjvuPostProcessor ) {
+				$cmd .= " | {$wgDjvuPostProcessor}";
+			}
+			$cmd .= ' > ' . wfEscapeShellArg($dstPath) . ') 2>&1';
+			wfProfileIn( 'ddjvu' );
+			wfDebug( __METHOD__.": $cmd\n" );
+			$err = wfShellExec( $cmd, $retval );
+			wfProfileOut( 'ddjvu' );
+		}
 
 		$removed = $this->removeBadFile( $dstPath, $retval );
 		if ( $retval != 0 || $removed ) {
