@@ -822,7 +822,16 @@ class Preferences {
 					'label-message' => 'contextchars',
 					'section' => 'searchoptions',
 					'min' => 0,
-				);
+				);		
+		global $wgEnableMWSuggest;
+		if ($wgEnableMWSuggest) {
+			$defaultPreferences['disablesuggest'] =
+					array(
+						'type' => 'toggle',
+						'label-message' => 'mwsuggest-disable',
+						'section' => 'searchoptions',
+					);
+		}		
 		
 		// Searchable namespaces back-compat with old format
 		$searchableNamespaces = SearchEngine::searchableNamespaces();
@@ -845,16 +854,6 @@ class Preferences {
 					'section' => 'searchoptions',
 					'prefix' => 'searchNs',
 				);
-				
-		global $wgEnableMWSuggest;
-		if ($wgEnableMWSuggest) {
-			$defaultPreferences['disablesuggest'] =
-					array(
-						'type' => 'toggle',
-						'label-message' => 'mwsuggest-disable',
-						'section' => 'searchoptions',
-					);
-		}
 	}
 	
 	static function miscPreferences( $user, &$defaultPreferences ) {
@@ -1221,6 +1220,8 @@ class PreferencesForm extends HTMLForm {
 		$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
 		
 		$html .= "\n" . $sk->link( $t, wfMsg( 'restoreprefs' ) );
+		
+		$html = Xml::tags( 'div', array( 'class' => 'mw-prefs-buttons' ), $html );
 		
 		return $html;
 	}
