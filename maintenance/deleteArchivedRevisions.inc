@@ -14,13 +14,14 @@ function DeleteArchivedRevisions( $delete = false ) {
 
 	# Data should come off the master, wrapped in a transaction
 	$dbw = wfGetDB( DB_MASTER );
-	$dbw->begin();
-	
-	$tbl_arch = $dbw->tableName( 'archive' );
-	# Delete as appropriate
-	echo( "Deleting archived revisions... " );
 
 	if( $delete ) {
+		$dbw->begin();
+	
+		$tbl_arch = $dbw->tableName( 'archive' );
+
+		# Delete as appropriate
+		echo( "Deleting archived revisions... " );
 		$dbw->query( "TRUNCATE TABLE $tbl_arch" );
 	
 		$count = $dbw->affectedRows();
@@ -36,6 +37,7 @@ function DeleteArchivedRevisions( $delete = false ) {
 		}
 	} else {
 		$res = $dbw->selectRow( 'archive', 'COUNT(*) as count', array(), __FUNCTION__ );
-		echo( "done. {$res->count} revisions to delete.\n" );
+		echo( "Found {$res->count} revisions to delete.\n" );
+		echo( "Please run the script again with the --delete option to really delete the revisions.\n" );
 	}
 }
