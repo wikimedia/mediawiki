@@ -71,6 +71,7 @@ if( $wgUseAjax && $action == 'ajax' ) {
 	require_once( $IP . '/includes/AjaxDispatcher.php' );
 	$dispatcher = new AjaxDispatcher();
 	$dispatcher->performAction();
+	wfGetLBFactory()->commitMasterChanges();
 	$mediaWiki->restInPeace();
 	exit;
 }
