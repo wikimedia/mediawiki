@@ -1046,7 +1046,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'prefs-misc'                => 'Wšelake nastajenja',
 'prefs-resetpass'           => 'Hesło změnić',
 'prefs-email'               => 'E-mejlowe opcije',
-'prefs-rendering'           => 'Rysowanje strony',
+'prefs-rendering'           => 'Napohlad',
 'saveprefs'                 => 'Składować',
 'resetprefs'                => 'Njeskładowane změny zaćisnyć',
 'restoreprefs'              => 'Wšě standardne nastajenja wobnowić',

@@ -958,6 +958,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'prefs-custom-css'          => 'CSS proprium',
 'prefs-custom-js'           => 'JS proprium',
 'prefs-emailconfirm-label'  => 'Adfirmatio inscriptionis electronicae:',
+'prefs-textboxsize'         => 'Magnitudo capsae recensionis',
 'youremail'                 => 'Inscriptio tua electronica:',
 'username'                  => 'Nomen usoris:',
 'uid'                       => 'ID usoris:',
@@ -979,6 +980,8 @@ Si vis id dare, opera tua tibi ascribentur.',
 'prefs-help-email'          => 'Inscriptio electronica non necesse est, sed sinit tesseram novam tibi mitti si eae oblitus es.
 Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis, nisi te reveles.',
 'prefs-help-email-required' => 'Inscriptio electronica necesse est.',
+'prefs-i18n'                => 'Internationalizatio',
+'prefs-signature'           => 'Subscriptio',
 
 # User rights
 'userrights'                  => 'Usorum potestates',

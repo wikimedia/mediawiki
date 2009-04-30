@@ -1267,7 +1267,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'prefs-misc'                => 'Verschiedenes',
 'prefs-resetpass'           => 'Passwort ändern',
 'prefs-email'               => 'E-Mail-Optionen',
-'prefs-rendering'           => 'Seitendarstellung',
+'prefs-rendering'           => 'Aussehen',
 'saveprefs'                 => 'Einstellungen speichern',
 'resetprefs'                => 'Eingaben verwerfen',
 'restoreprefs'              => 'Alle Standardeinstellungen wiederherstellen',

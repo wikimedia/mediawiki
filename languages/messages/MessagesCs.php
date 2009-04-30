@@ -915,6 +915,7 @@ Zvažte, zda je vhodné v editaci této stránky pokračovat.
 Níže vidíte soupis přesunů a smazání této stránky:",
 'moveddeleted-notice'              => 'Tato stránka byla smazána.
 Podrobnosti si můžete prohlédnout v níže zobrazeném seznamu provedených přesunů a smazání této stránky.',
+'log-fulllog'                      => 'Zobrazit všechny záznamy',
 'edit-hook-aborted'                => 'Editace byla zrušena přípojným bodem bez bližšího vysvětlení.',
 'edit-gone-missing'                => 'Stránku se nepodařilo aktualizovat.
 Zřejmě byla smazána.',
@@ -1233,7 +1234,8 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-watchlist-edits-max' => '(maximum: 1000)',
 'prefs-misc'                => 'Různé',
 'prefs-resetpass'           => 'Změnit heslo',
-'prefs-rendering'           => 'Vykreslování stránek',
+'prefs-email'               => 'Nastavení e-mailu',
+'prefs-rendering'           => 'Vzhled',
 'saveprefs'                 => 'Uložit nastavení',
 'resetprefs'                => 'Vrátit původní nastavení',
 'restoreprefs'              => 'Obnovit všechna výchozí nastavení',
@@ -1279,6 +1281,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-reset-intro'         => 'Pomocí této stránky můžete všechna nastavení vrátit na implicitní hodnoty.
 Tuto operaci nelze vrátit zpět.',
 'prefs-emailconfirm-label'  => 'Ověření e-mailu:',
+'prefs-textboxsize'         => 'Velikost editačního okna',
 'youremail'                 => 'Vaše e-mailová adresa:',
 'username'                  => 'Uživatelské jméno:',
 'uid'                       => 'Uživatelské ID:',
@@ -1299,6 +1302,9 @@ Tuto operaci nelze vrátit zpět.',
 'prefs-help-realname'       => 'Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.',
 'prefs-help-email'          => 'E-mail (volitelný): Může vám být zasláno nové heslo v případě, že své heslo zapomenete. Také můžete dovolit ostatním uživatelům vás kontaktovat, aniž by tato adresa byla zobrazena.',
 'prefs-help-email-required' => 'Je vyžadována e-mailová adresa.',
+'prefs-info'                => 'Základní údaje',
+'prefs-i18n'                => 'Lokalizace',
+'prefs-signature'           => 'Podpis',
 
 # User rights
 'userrights'                  => 'Správa uživatelských skupin',
@@ -3215,6 +3221,7 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'htmlform-int-invalid'         => 'Uvedená hodnota není celé číslo.',
 'htmlform-int-toolow'          => 'Vámi zadaná hodnota je menší než dovolené minimum $1',
 'htmlform-int-toohigh'         => 'Vámi zadaná hodnota je větší než dovolené maximum $1',
+'htmlform-submit'              => 'Odeslat',
 'htmlform-reset'               => 'Vrátit změny',
 'htmlform-selectorother-other' => 'Jiná hodnota',
 

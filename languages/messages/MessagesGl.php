@@ -1164,7 +1164,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-misc'                => 'Preferencias varias',
 'prefs-resetpass'           => 'Cambiar o contrasinal',
 'prefs-email'               => 'Opcións de correo electrónico',
-'prefs-rendering'           => 'Renderizado de páxinas',
+'prefs-rendering'           => 'Apariencia',
 'saveprefs'                 => 'Gardar as preferencias',
 'resetprefs'                => 'Eliminar os cambios non gardados',
 'restoreprefs'              => 'Restaurar todas as preferencias por defecto',

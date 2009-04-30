@@ -1087,7 +1087,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-misc'                => 'Diğer ayarlar',
 'prefs-resetpass'           => 'Parolayı değiştir',
 'prefs-email'               => 'Eposta seçenekleri',
-'prefs-rendering'           => 'Sayfa Oluşturulması',
+'prefs-rendering'           => 'Görünüm',
 'saveprefs'                 => 'Değişiklikleri kaydet',
 'resetprefs'                => 'Ayarları ilk durumuna getir',
 'restoreprefs'              => 'Tüm varsayılan ayarları geri yükle',

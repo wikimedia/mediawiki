@@ -1115,7 +1115,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-misc'                => 'Diversos',
 'prefs-resetpass'           => 'Alterar palavra-chave',
 'prefs-email'               => 'Opções de email',
-'prefs-rendering'           => 'Apresentação da Página',
+'prefs-rendering'           => 'Aparência',
 'saveprefs'                 => 'Salvar',
 'resetprefs'                => 'Eliminar as alterações não-salvas',
 'restoreprefs'              => 'Restaurar todas as configurações padrão',
@@ -1160,6 +1160,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-custom-js'           => 'JS personalizado',
 'prefs-reset-intro'         => 'Você pode usar esta página para restaurar as suas preferências para os valores predefinidos do sítio.
 Esta acção não pode ser desfeita.',
+'prefs-emailconfirm-label'  => 'Confirmação do email:',
+'prefs-textboxsize'         => 'Tamanho da janela de edição',
 'youremail'                 => 'Endereço de email:',
 'username'                  => 'Nome de utilizador:',
 'uid'                       => 'Número de identificação:',
@@ -1182,6 +1184,9 @@ Não deverá ter mais de $1 {{PLURAL:$1|caráter|carateres}}.',
 'prefs-help-email'          => 'O endereço de e-mail é opcional, mas permite que uma nova palavra-chave lhe seja enviada em caso de esquecimento da mesma.
 Pode também escolher permitir que outros entrem em contacto consigo através da sua página de utilizador ou discussão sem que tenha de lhes revelar a sua identidade.',
 'prefs-help-email-required' => 'O endereço de correio electrónico é requerido.',
+'prefs-info'                => 'Informações básicas',
+'prefs-i18n'                => 'Internacionalização',
+'prefs-signature'           => 'Assinatura',
 
 # User rights
 'userrights'                  => 'Gestão de privilégios de utilizadores',

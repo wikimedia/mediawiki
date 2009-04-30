@@ -282,7 +282,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Endre avsnitt med å høgreklikke på avsnittsoverskrift (JavaScript)',
 'tog-showtoc'                 => 'Vis innhaldsliste (for sider med meir enn tre bolkar)',
 'tog-rememberpassword'        => 'Hugs passordet til neste gong',
-'tog-editwidth'               => 'Gjev endringsboksen full breidd',
+'tog-editwidth'               => 'Utvid endringsboksen til skjermen si fulle breidd',
 'tog-watchcreations'          => 'Legg til sidene eg opprettar på overvakingslista mi',
 'tog-watchdefault'            => 'Legg til sidene eg endrar på overvakingslista mi',
 'tog-watchmoves'              => 'Legg til sidene eg flyttar på overvakingslista mi',
@@ -851,11 +851,12 @@ Du kan gå attende og endre ei eksisterande side, [[Special:UserLogin|logge inn 
 'permissionserrors'                => 'Tilgangsfeil',
 'permissionserrorstext'            => 'Du har ikkje tilgang til å gjere dette, {{PLURAL:$1|grunnen|grunnane}} til det finn du her:',
 'permissionserrorstext-withaction' => 'Du har ikke løyve til å $2 {{PLURAL:$1|på grunn av|av desse grunnane}}:',
-'recreate-moveddeleted-warn'       => "'''Åtvaring: Du nyopprettar ei side som tidlegare har vorte sletta.'''
+'recreate-moveddeleted-warn'       => "'''Åtvaring: Du attopprettar ei side som tidlegare har vorte sletta.'''
 
-Du bør tenkje over om det er lurt å halde fram med å endre denne sida.
+Du bør tenkje over om det er høveleg å halde fram med å endre denne sida.
 Sletteloggen for sida finn du her:",
-'moveddeleted-notice'              => 'Denne sida har blitt sletta. Sletteloggen er vist nedanfor.',
+'moveddeleted-notice'              => 'Denne sida har blitt sletta. Sletteloggen og flytteloggen er vist nedanfor for referanse.',
+'log-fulllog'                      => 'Sjå full loggføring',
 'edit-hook-aborted'                => 'Endring avbroten av ein funksjon, utan forklaring.',
 'edit-gone-missing'                => 'Kunne ikkje oppdatere sida. 
 Det ser ut til at ho er sletta.',
@@ -1173,6 +1174,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-watchlist-edits-max' => '(høgst 1000)',
 'prefs-misc'                => 'Andre',
 'prefs-resetpass'           => 'Endra passord',
+'prefs-email'               => 'Val for e-post',
 'saveprefs'                 => 'Lagre',
 'resetprefs'                => 'Rull attende',
 'restoreprefs'              => 'Hent attende alle standardinnstillingane',
@@ -1215,10 +1217,13 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-files'               => 'Filer',
 'prefs-custom-css'          => 'Eigendefinert CSS',
 'prefs-custom-js'           => 'Eigendefinert JavaScript',
+'prefs-emailconfirm-label'  => 'Stadfesting av e-post:',
+'prefs-textboxsize'         => 'Storleiken til redigeringsvindauga',
 'youremail'                 => 'E-post:',
 'username'                  => 'Brukarnamn:',
 'uid'                       => 'Brukar-ID:',
 'prefs-memberingroups'      => 'Medlem av {{PLURAL:$1|denne gruppa|desse gruppene}}:',
+'prefs-registration'        => 'Registreringstid:',
 'yourrealname'              => 'Verkeleg namn:',
 'yourlanguage'              => 'Språk:',
 'yourvariant'               => 'Språkvariant',
@@ -1235,6 +1240,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-help-email'          => 'Å oppgje e-postadresse er valfritt, men lar deg ta i mot nytt passord om du gløymer det gamle. 
 Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di utan å røpe identiteten din.',
 'prefs-help-email-required' => 'E-postadresse må oppgjevast.',
+'prefs-signature'           => 'Signatur',
 
 # User rights
 'userrights'                  => 'Administrering av brukartilgang',
@@ -3106,5 +3112,8 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'dberr-usegoogle'   => 'Du kan prøva å søkja gjennom Google i mellomtida.',
 'dberr-outofdate'   => 'Merk at versjonane deira av innhaldet vårt kan vera forelda.',
 'dberr-cachederror' => 'Fylgjande er ein mellomlagra kopi av den etterspurde sida, og er, kan henda, ikkje den siste versjonen av ho.',
+
+# HTML forms
+'htmlform-selectorother-other' => 'Andre',
 
 );

@@ -1143,7 +1143,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'prefs-misc'                => 'Varie',
 'prefs-resetpass'           => 'Cambia password',
 'prefs-email'               => 'Opzioni email',
-'prefs-rendering'           => 'Renderizzazione della pagina',
+'prefs-rendering'           => 'Aspetto',
 'saveprefs'                 => 'Salva le preferenze',
 'resetprefs'                => 'Reimposta le preferenze',
 'restoreprefs'              => 'Ripristina le impostazioni di default',

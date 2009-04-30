@@ -1156,7 +1156,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'prefs-misc'                => 'Linh tinh',
 'prefs-resetpass'           => 'Thay đổi mật khẩu',
 'prefs-email'               => 'Tùy chọn thư điện tử',
-'prefs-rendering'           => 'Kết xuất trang',
+'prefs-rendering'           => 'Bề ngoài',
 'saveprefs'                 => 'Lưu tùy chọn',
 'resetprefs'                => 'Mặc định lại lựa chọn',
 'restoreprefs'              => 'Mặc định lại toàn bộ tùy chọn',
@@ -1202,6 +1202,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'prefs-reset-intro'         => 'Có thể mặc định lại toàn bộ tùy chọn dùng trang này.
 Không có thể lùi lại tác động này.',
 'prefs-emailconfirm-label'  => 'Xác nhận thư điện tử:',
+'prefs-textboxsize'         => 'Kích cỡ hộp sửa đổi',
 'youremail'                 => 'Thư điện tử:',
 'username'                  => 'Tên người dùng:',
 'uid'                       => 'Số thứ tự thành viên:',
@@ -1226,6 +1227,9 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'prefs-help-email'          => 'Địa chỉ thư điện tử là tùy chọn, nhưng nó giúp chúng tôi gửi cho bạn mật khẩu mới qua thư điện tử nếu bạn quên mật khẩu của mình.
 Bạn cũng có thể lựa chọn cho phép người khác liên lạc với bạn thông qua trang thành_viên hoặc thảo_luận_thành_viên mà không cần để lộ danh tính.',
 'prefs-help-email-required' => 'Bắt buộc phải có địa chỉ e-mail.',
+'prefs-info'                => 'Thông tin cơ bản',
+'prefs-i18n'                => 'Quốc tế hóa',
+'prefs-signature'           => 'Chữ ký',
 
 # User rights
 'userrights'                  => 'Quản lý quyền thành viên',

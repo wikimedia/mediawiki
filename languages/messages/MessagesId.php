@@ -1179,7 +1179,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-misc'                => 'Lain-lain',
 'prefs-resetpass'           => 'Ganti kata sandi',
 'prefs-email'               => 'Opsi surat-e',
-'prefs-rendering'           => 'Penampilan halaman',
+'prefs-rendering'           => 'Tampilan',
 'saveprefs'                 => 'Simpan',
 'resetprefs'                => 'Batalkan perubahan',
 'restoreprefs'              => 'Kembalikan semua setelan baku',
@@ -1225,6 +1225,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-reset-intro'         => 'Anda dapat menggunakan halaman ini untuk mengembalikan preferensi Anda ke setelan baku situs.
 Pengembalian preferensi tidak dapat dibatalkan.',
 'prefs-emailconfirm-label'  => 'Konfirmasi surat-e:',
+'prefs-textboxsize'         => 'Ukuran kotak suntingan',
 'youremail'                 => 'Surat elektronik:',
 'username'                  => 'Nama pengguna:',
 'uid'                       => 'ID pengguna:',
@@ -1246,6 +1247,9 @@ Pengembalian preferensi tidak dapat dibatalkan.',
 'prefs-help-email'          => 'Alamat surat-e bersifat opsional, namun bila sewaktu-waktu Anda lupa akan kata sandi Anda, kami dapat mengirimkannya melalui surat-e tersebut.
 Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui halaman pengguna atau halaman pembicaraan pengguna Anda tanpa perlu membuka identitas Anda.',
 'prefs-help-email-required' => 'Alamat surat-e dibutuhkan.',
+'prefs-info'                => 'Informasi dasar',
+'prefs-i18n'                => 'Internasionalisasi',
+'prefs-signature'           => 'Tanda tangan',
 
 # User rights
 'userrights'                  => 'Manajemen hak pengguna',

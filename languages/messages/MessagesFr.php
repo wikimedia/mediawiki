@@ -1260,7 +1260,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-misc'                => 'Préférences diverses',
 'prefs-resetpass'           => 'Modifier le mot de passe',
 'prefs-email'               => 'Options des courriels',
-'prefs-rendering'           => 'Rendu des pages',
+'prefs-rendering'           => 'Apparence',
 'saveprefs'                 => 'Enregistrer les préférences',
 'resetprefs'                => 'Rétablir les préférences',
 'restoreprefs'              => 'Restaurer toutes les valeurs par défaut',

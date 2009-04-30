@@ -1179,7 +1179,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-misc'                => 'Muut',
 'prefs-resetpass'           => 'Muuta salasana',
 'prefs-email'               => 'Sähköpostiasetukset',
-'prefs-rendering'           => 'Sivun tulkinta',
+'prefs-rendering'           => 'Ulkonäkö',
 'saveprefs'                 => 'Tallenna asetukset',
 'resetprefs'                => 'Palauta tallennetut asetukset',
 'restoreprefs'              => 'Palauta kaikki oletusasetuksiin',
@@ -1224,6 +1224,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-custom-js'           => 'Käyttäjäkohtainen JavaScript-sivu',
 'prefs-reset-intro'         => 'Voit käyttää tätä sivua palauttaaksesi kaikki asetuksesi sivuston oletusasetuksiin. Tätä ei voi kumota.',
 'prefs-emailconfirm-label'  => 'Sähköpostin varmistus',
+'prefs-textboxsize'         => 'Muokkauskentän koko',
 'youremail'                 => 'Sähköpostiosoite',
 'username'                  => 'Tunnus',
 'uid'                       => 'Numero',
@@ -1244,6 +1245,8 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-help-realname'       => 'Vapaaehtoinen. Nimesi näytetään käyttäjätunnuksesi sijasta sivun tekijäluettelossa.',
 'prefs-help-email'          => 'Vapaaehtoinen. Mahdollistaa uuden salasanan pyytämisen, jos unohdat salasanasi. Voit myös sallia muiden käyttäjien ottaa sinuun yhteyttä sähköpostilla ilman, että osoitteesi paljastuu.',
 'prefs-help-email-required' => 'Sähköpostiosoite on pakollinen.',
+'prefs-info'                => 'Perustiedot',
+'prefs-signature'           => 'Allekirjoitus',
 
 # User rights
 'userrights'                  => 'Käyttöoikeuksien hallinta',
@@ -2543,7 +2546,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Varoitus''': Tämä tiedosto saattaa sisältää vahingollista koodia, ja suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.<hr />",
-'imagemaxsize'         => 'Kuvien enimmäiskoko<br />kuvaussivuilla',
+'imagemaxsize'         => 'Kuvien enimmäiskoko kuvaussivuilla',
 'thumbsize'            => 'Pikkukuvien koko',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sivu|sivua}}',
 'file-info'            => '$1, MIME-tyyppi: $2',

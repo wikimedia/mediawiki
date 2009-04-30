@@ -98,7 +98,7 @@ $messages = array(
 'tog-hidepatrolled'           => "Kuzhat ar c'hemmoù evezhiet e-touez ar c'hemmoù diwezhañ",
 'tog-newpageshidepatrolled'   => 'Kuzhat ar pajennoù evezhiet diouzh roll ar pajennoù nevez',
 'tog-extendwatchlist'         => 'Astenn ar roll evezhiañ a-benn diskouez an holl gemmoù ha neket ar re ziwezhañ hepken.',
-'tog-usenewrc'                => 'Kemmoù nevez gwellaet<br /> (gant merdeerioù zo hepken)',
+'tog-usenewrc'                => "Ober gant ar c'hemmoù nevez gwellaet<br /> (rekis eo JavaScript)",
 'tog-numberheadings'          => 'Niverenniñ emgefre an titloù',
 'tog-showtoolbar'             => 'Diskouez ar varrenn gant ar meuzioù skridaozañ',
 'tog-editondblclick'          => 'Daouglikañ evit kemmañ ur bajenn (JavaScript)',
@@ -106,7 +106,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Kemmañ ur rann dre glikañ a-zehou<br /> war titl ar rann',
 'tog-showtoc'                 => 'Diskouez an daolenn<br /> (evit ar pennadoù zo ouzhpenn 3 rann enno)',
 'tog-rememberpassword'        => "Derc'hel soñj eus ma ger-tremen (toupin)",
-'tog-editwidth'               => 'Digeriñ ar prenestr skridaozañ en e led brasañ',
+'tog-editwidth'               => 'Digeriñ ar prenestr skridaozañ betek leuniañ ar skramm gantañ penn-da-benn',
 'tog-watchcreations'          => 'Evezhiañ ar pajennoù krouet ganin',
 'tog-watchdefault'            => 'Evezhiañ ar pennadoù savet pe kemmet ganin',
 'tog-watchmoves'              => "Ouzhpennañ da'm roll evezhiañ ar pajennoù adanvet ganin",
@@ -691,9 +691,10 @@ Gallout a rit mont war-gil ha degas kemmoù en ur bajenn zo anezhi dija, pe [[Sp
 'recreate-moveddeleted-warn'       => "'''Diwallit : Emaoc'h o krouiñ ur bajenn zo bet diverket c'hoazh.'''
 
 En em soñjit ervat ha talvoudus eo kenderc'hel krouiñ ar bajenn.
-Deoc'h da c'houzout, aze emañ marilh an diverkadenn :",
+Deoc'h da c'houzout, aze emañ ar marilhoù diverkañ hag adenvel :",
 'moveddeleted-notice'              => 'Diverket eo bet ar bajenn-mañ.
-Dindan emañ merket dave istor an diverkadennoù.',
+Dindan emañ ar marilh diverkañ hag adenvel.',
+'log-fulllog'                      => 'Gwelet ar marilh klok',
 'edit-hook-aborted'                => "C'hwitet ar c'hemmañ gant un astenn.
 Abeg dianav.",
 'edit-gone-missing'                => 'Dibosupl hizivaat ar bajenn.
@@ -1009,6 +1010,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'prefs-watchlist-edits-max' => '(niver brasañ : 1000)',
 'prefs-misc'                => 'Penndibaboù liesseurt',
 'prefs-resetpass'           => 'Kemmañ ger-tremen',
+'prefs-email'               => 'Dibarzhioù postel',
 'saveprefs'                 => 'Enrollañ ar penndibaboù',
 'resetprefs'                => 'Adlakaat ar penndibaboù kent',
 'restoreprefs'              => 'Adlakaat an holl arventennoù dre ziouer',
@@ -1072,6 +1074,7 @@ Dre ret e rank bezañ nebeutoc'h eget {{PLURAL:$1|arouezenn|arouezenn}} ennañ."
 'prefs-help-email'          => "Diret eo merkañ ur chomlec'h postel met ma lakait unan e vo tu da adkas ur ger-tremen nevez deoc'h ma tichañsfe deoc'h disoñjal ho hini.
 Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implijer ha kaozeal hep na vefe ret deoc'h diskuliañ piv oc'h ivez.",
 'prefs-help-email-required' => "Ezhomm zo eus ur chomlec'h postel.",
+'prefs-signature'           => 'Sinadur',
 
 # User rights
 'userrights'                  => 'Merañ statud an implijerien',
@@ -1775,6 +1778,7 @@ Evezhiadennoù ha skoazell pelloc\'h :
 'confirmdeletetext'      => "War-nes diverkañ da viken ur bajenn pe ur skeudenn eus ar bank roadennoù emaoc'h. Diverket e vo ivez an holl stummoù kozh stag outi.
 Kadarnait, mar plij, eo mat an dra-se hoc'h eus c'hoant da ober, e komprenit mat an heuliadoù, hag e rit se diouzh ar [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Diverkadenn kaset da benn',
+'actionfailed'           => "Ober c'hwitet",
 'deletedtext'            => '"Diverket eo bet <nowiki>$1</nowiki>".
 Sellet ouzh $2 evit roll an diverkadennoù diwezhañ.',
 'deletedarticle'         => 'diverket "$1"',
@@ -1943,7 +1947,7 @@ $1',
 'sp-contributions-blocklog'      => 'Roll ar stankadennoù',
 'sp-contributions-deleted'       => 'Degasadennoù diverket un implijer',
 'sp-contributions-logs'          => 'marilhoù',
-'sp-contributions-talk'          => 'Kaozeal',
+'sp-contributions-talk'          => 'kaozeal',
 'sp-contributions-userrights'    => 'Merañ statud an implijerien',
 'sp-contributions-search'        => 'Klask degasadennoù',
 'sp-contributions-username'      => "Anv implijer pe chomlec'h IP :",
@@ -2422,7 +2426,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Diwallit''': Kodoù siek a c'hall bezañ er restr-mañ; ma'z erounezit anezhi e c'hallje tagañ ho reizhiad.<hr />",
-'imagemaxsize'         => 'Ment vrasañ ar skeudennoù er pajennoù deskrivañ :',
+'imagemaxsize'         => "Bevenn ment ar skeudennoù vrasañ ar skeudennoù :<br />''(evit ar pajennoù deskrivañ)''",
 'thumbsize'            => 'Ment an alberz :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pajenn|pajenn}}',
 'file-info'            => '(ment ar restr : $1, seurt MIME : $2)',
@@ -2711,6 +2715,10 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpslongitude-e' => 'Hedred reter',
 'exif-gpslongitude-w' => 'Hedred kornôg',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metr a-us live ar mor',
+'exif-gpsaltitude-1' => 'Metr dindan live ar mor',
+
 'exif-gpsstatus-a' => 'O vuzuliañ',
 'exif-gpsstatus-v' => 'etreoberatadusted ar muzul',
 
@@ -2721,6 +2729,11 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpsspeed-k' => 'Kilometr dre eur',
 'exif-gpsspeed-m' => 'Miltir dre eur',
 'exif-gpsspeed-n' => 'Skoulm',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometr',
+'exif-gpsdestdistance-m' => 'Miltir',
+'exif-gpsdestdistance-n' => 'Miltir',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => "Durc'hadur gwir",
@@ -2975,5 +2988,15 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'dberr-usegoogle'   => "E-keit-se esaeit klask dre c'hGoogle.",
 'dberr-outofdate'   => "Notit mat e c'hall o menegerioù dezho bezañ dispredet e-keñver ar boued zo ganeomp.",
 'dberr-cachederror' => 'Un eilstumm memoret eus ar bajenn goulennet eo hemañ, gallout a ra bezañ dispredet.',
+
+# HTML forms
+'htmlform-invalid-input'       => "Kudennoù zo gant talvoudennoù zo merket ganeoc'h.",
+'htmlform-select-badoption'    => "Direizh eo an dalvoudenn skrivet ganeoc'h.",
+'htmlform-int-invalid'         => "N'eus ket un niver anterin eus an dalvoudenn skrivet ganeoc'h.",
+'htmlform-int-toolow'          => "Skrivet hoc'h eus un dalvoudenn zo dindan an niver bihanañ aotreet a $1",
+'htmlform-int-toohigh'         => "Skrivet hoc'h eus un dalvoudenn a ya dreist d'an niver uhelañ aotreet a $1",
+'htmlform-submit'              => 'Kas',
+'htmlform-reset'               => "Dizober ar c'hemmoù",
+'htmlform-selectorother-other' => 'Unan all',
 
 );

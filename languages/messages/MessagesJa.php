@@ -1182,7 +1182,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'prefs-misc'                => 'その他',
 'prefs-resetpass'           => 'パスワードの変更',
 'prefs-email'               => 'メールオプション',
-'prefs-rendering'           => 'ページのレンダリング',
+'prefs-rendering'           => '見栄え',
 'saveprefs'                 => '設定を保存',
 'resetprefs'                => '変更を破棄',
 'restoreprefs'              => '初期設定に戻す',
@@ -2523,7 +2523,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 # Math options
 'mw_math_png'    => '常にPNG',
-'mw_math_simple' => 'シンプルな数式はHTML、それ以外はPNG',
+'mw_math_simple' => '簡単な数式はHTML、それ以外はPNG',
 'mw_math_html'   => 'できる限りHTML、さもなければPNG',
 'mw_math_source' => 'TeXのままにする (テキストブラウザ向け)',
 'mw_math_modern' => '最近のブラウザで推奨',
