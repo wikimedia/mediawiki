@@ -80,9 +80,11 @@ class ForkController {
 					} elseif ( pcntl_wifexited( $status ) ) {
 						// Restart on non-zero exit status
 						$exitStatus = pcntl_wexitstatus( $status );
-						if ( $exitStatus > 0 ) {
+						if ( $exitStatus != 0 ) {
 							echo "Worker exited with status $exitStatus, restarting\n";
 							$this->procsToStart++;
+						} else {
+							echo "Worker exited normally\n";
 						}
 					}
 				}

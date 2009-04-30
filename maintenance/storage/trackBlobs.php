@@ -12,6 +12,7 @@ if ( count( $args ) < 1 ) {
 }
 $tracker = new TrackBlobs( $args );
 $tracker->run();
+echo "All done.\n";
 
 class TrackBlobs {
 	var $clusters, $textClause;
@@ -262,6 +263,10 @@ class TrackBlobs {
 			$table = $extDB->getLBInfo( 'blobs table' );
 			if ( is_null( $table ) ) {
 				$table = 'blobs';
+			}
+			if ( !$extDB->tableExists( $table ) ) {
+				echo "No blobs table on cluster $cluster\n";
+				continue;
 			}
 			$startId = 0;
 			$batchesDone = 0;

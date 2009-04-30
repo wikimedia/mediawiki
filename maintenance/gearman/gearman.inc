@@ -12,7 +12,7 @@ class MWGearmanJob extends Net_Gearman_Job_Common {
 		socket_close( $this->conn );
 
 		# Close some more sockets
-		wfGetLBFactory()->shutdown();
+		LBFactory::destroyInstance();
 		global $wgMemc;
 		$wgMemc->disconnect_all();
 
