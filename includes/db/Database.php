@@ -2135,7 +2135,7 @@ class Database {
 			wfDebug( "getLag: fake slave lagged {$this->mFakeSlaveLag} seconds\n" );
 			return $this->mFakeSlaveLag;
 		}
-		$res = $this->query( 'SHOW PROCESSLIST' );
+		$res = $this->query( 'SHOW PROCESSLIST', __METHOD__ );
 		# Find slave SQL thread
 		while ( $row = $this->fetchObject( $res ) ) {
 			/* This should work for most situations - when default db 
