@@ -99,37 +99,38 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendGeneralInfo( $property ) {
-		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText, $wgContLang;
-		global $wgLanguageCode, $IP, $wgEnableWriteAPI, $wgLang, $wgLocaltimezone, $wgLocalTZoffset;
+		global $wgContLang;
+		global $wgLang;
 
 		$data = array();
 		$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
 		$data['mainpage'] = $mainPage->getPrefixedText();
 		$data['base'] = $mainPage->getFullUrl();
-		$data['sitename'] = $wgSitename;
-		$data['generator'] = "MediaWiki $wgVersion";
+		$data['sitename'] = $GLOBALS['wgSitename'];
+		$data['generator'] = "MediaWiki {$GLOBALS['wgVersion']}";
 
-		$svn = SpecialVersion::getSvnRevision( $IP );
+		$svn = SpecialVersion::getSvnRevision( $GLOBALS['IP'] );
 		if( $svn )
 			$data['rev'] = $svn;
 
-		$data['case'] = $wgCapitalLinks ? 'first-letter' : 'case-sensitive'; // 'case-insensitive' option is reserved for future
+		// 'case-insensitive' option is reserved for future
+		$data['case'] = $GLOBALS['wgCapitalLinks'] ? 'first-letter' : 'case-sensitive'; 
 
-		if( isset( $wgRightsCode ) )
-			$data['rightscode'] = $wgRightsCode;
-		$data['rights'] = $wgRightsText;
-		$data['lang'] = $wgLanguageCode;
+		if( isset( $GLOBALS['wgRightsCode'] ) )
+			$data['rightscode'] = $GLOBALS['wgRightsCode'];
+		$data['rights'] = $GLOBALS['wgRightsText'];
+		$data['lang'] = $GLOBALS['wgLanguageCode'];
 		if( $wgContLang->isRTL() ) 
 			$data['rtl'] = '';
 		$data['fallback8bitEncoding'] = $wgLang->fallback8bitEncoding();
 		
 		if( wfReadOnly() )
 			$data['readonly'] = '';
-		if( $wgEnableWriteAPI )
+		if( $GLOBALS['wgEnableWriteAPI'] )
 			$data['writeapi'] = '';
 
-		$tz = $wgLocaltimezone;
-		$offset = $wgLocalTZoffset;
+		$tz = $GLOBALS['wgLocaltimezone'];
+		$offset = $GLOBALS['wgLocalTZoffset'];
 		if( is_null( $tz ) ) {
 			$tz = 'UTC';
 			$offset = 0;
@@ -138,6 +139,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 		$data['timezone'] = $tz;
 		$data['timeoffset'] = intval($offset);
+		$data['articlepath'] = $GLOBALS['wgArticlePath'];
+		$data['scriptpath'] = $GLOBALS['wgScriptPath'];
+		$data['script'] = $GLOBALS['wgScript'];
+		$data['variantarticlepath'] = $GLOBALS['wgVariantArticlePath'];
+		$data['server'] = $GLOBALS['wgServer'];
+		$data['wikiid'] = wfWikiID();
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
