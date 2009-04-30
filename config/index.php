@@ -982,7 +982,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 					print "<li>Couldn't create database <tt>" .
 						htmlspecialchars( $wgDBname ) .
 						"</tt>; try with root access or check your username/pass.</li>\n";
-					$errs["RootPW"] = "&lt;- Enter";
+					$errs["RootPW"] = "<- Enter";
 					continue;
 				}
 				print "<li>Created database <tt>" . htmlspecialchars( $wgDBname ) . "</tt></li>\n";
