@@ -84,6 +84,13 @@ class Status {
 		$this->ok = false;
 	}
 
+	/**
+	 * Sanitize the callback parameter on wakeup, to avoid arbitrary execution.
+	 */
+	function __wakeup() {
+		$this->cleanCallback = false;
+	}
+
 	protected function cleanParams( $params ) {
 		if ( !$this->cleanCallback ) {
 			return $params;
