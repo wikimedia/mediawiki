@@ -42,6 +42,8 @@ function wfSpecialBlockip( $par ) {
  */
 class IPBlockForm {
 	var $BlockAddress, $BlockExpiry, $BlockReason;
+	// The maximum number of edits a user can have and still be hidden
+	const HIDEUSER_CONTRIBLIMIT = 1000;
 
 	public function __construct( $par ) {
 		global $wgRequest, $wgUser, $wgBlockAllowsUTEdit;
@@ -397,7 +399,7 @@ class IPBlockForm {
 			} else if( $expiry !== 'infinity' ) {
 				// Bad expiry.
 				return array('ipb_expiry_temp');
-			} else if( User::edits($userId) > 3000 ) {
+			} else if( User::edits($userId) > self::HIDEUSER_CONTRIBLIMIT ) {
 				// Typically, the user should have a handful of edits.
 				// Disallow hiding users with many edits for performance.
 				return array('ipb_hide_invalid');
