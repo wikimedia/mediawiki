@@ -1153,7 +1153,9 @@ The name of the bureaucrat who did this task appears before this message.',
 'action-reupload'             => '{{Doc-action}}',
 'action-reupload-shared'      => '{{Doc-action}}',
 'action-upload_by_url'        => '{{Doc-action|upload by url}}',
-'action-writeapi'             => '{{Doc-action}}',
+'action-writeapi'             => '{{Doc-action}}
+
+API is an abbreviation for [http://en.wikipedia.org/wiki/API application programming interface].',
 'action-delete'               => '{{Doc-action}}',
 'action-deleterevision'       => '{{Doc-action}}',
 'action-deletedhistory'       => '{{Doc-action}}',
@@ -2269,7 +2271,7 @@ See also {{msg-mw|Siteuser}}.',
 
 # Math options
 'mw_math_png'    => 'In user preferences.',
-'mw_math_simple' => 'In user preferences.',
+'mw_math_simple' => 'In [[Special:Preferences|user preferences]].',
 'mw_math_html'   => 'In user preferences.',
 'mw_math_source' => 'In user preferences (math)',
 'mw_math_modern' => 'In user preferences (math)',

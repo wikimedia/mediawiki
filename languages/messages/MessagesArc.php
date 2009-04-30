@@ -388,7 +388,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'undelete-search-box' => 'ܒܨܝ ܦܐܬܘܬ̈ܐ ܫܝܦ̈ܐ',
 
 # Namespace form on various pages
-'invert'         => 'ܐܗܦܟ ܓܘܒܝܐ',
+'invert'         => 'ܐܗܦܟ ܠܓܘܒܝܐ',
 'blanknamespace' => '(ܪܫܝܬܐ)',
 
 # Contributions

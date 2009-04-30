@@ -1157,7 +1157,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'prefs-misc'                => 'Miscelánea',
 'prefs-resetpass'           => 'Cambiar contraseña',
 'prefs-email'               => 'Opciones de correo electrónico',
-'prefs-rendering'           => 'Representación de página',
+'prefs-rendering'           => 'Apariencia',
 'saveprefs'                 => 'Guardar',
 'resetprefs'                => 'Restaurar preferencias por defecto',
 'restoreprefs'              => 'Restaure todos las configuraciones por defecto',
@@ -1203,6 +1203,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'prefs-reset-intro'         => 'Puedes usar esta página para restaurar tus preferencias a los por defecto del sitio.
 Esto no puede ser deshecho.',
 'prefs-emailconfirm-label'  => 'Confirmación de correo electrónico:',
+'prefs-textboxsize'         => 'Tamaño de la página de edición',
 'youremail'                 => 'Su dirección de correo electrónico',
 'username'                  => 'Nombre de usuario:',
 'uid'                       => 'ID de usuario:',
@@ -1225,6 +1226,9 @@ Debe ser de menos de $1 {{PLURAL:$1|carácter|caracteres}}.',
 'prefs-help-email'          => 'La dirección de correo es opcional, pero permite enviar una nueva contraseña en caso de olvidarla.
 También puede permitir a otros usuarios que contacten con usted a través de su página de usuario o de su página de discusión sin necesidad de revelar su identidad.',
 'prefs-help-email-required' => 'Es necesario proporcionar una dirección de correo electrónico.',
+'prefs-info'                => 'Información básica',
+'prefs-i18n'                => 'Internacionalización',
+'prefs-signature'           => 'Firma',
 
 # User rights
 'userrights'                  => 'Configuración de permisos de usuarios',

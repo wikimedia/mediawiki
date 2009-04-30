@@ -288,7 +288,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Wiezigingen dee emarkeerd bin verbargen in leste wiezigingen',
 'tog-newpageshidepatrolled'   => "Pagina's dee emarkeerd bin verbargen in de lieste mit nieje artikels",
 'tog-extendwatchlist'         => 'Volglieste uutbreien zodat alle wiezigingen zichbaor bin, en neet allinnig de leste wieziging',
-'tog-usenewrc'                => 'Gebruuk de uut-ebreien pagina "leste wiezigingen" (hierveur he-j JavaScript neudig)',
+'tog-usenewrc'                => 'Gebruuk de uut-ebreien lestewiezigingenpagina (hierveur he-j JavaScript neudig)',
 'tog-numberheadings'          => 'Koppen vanzelf nummeren',
 'tog-showtoolbar'             => 'Warkbalke weergeven',
 'tog-editondblclick'          => 'Mit dubbelklik bewarken (JavaScript)',
@@ -308,7 +308,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'Stuur mien een berichjen over paginawiezigingen.',
 'tog-enotifusertalkpages'     => 'Stuur mien een berichjen as mien overlegpagina ewiezig is.',
 'tog-enotifminoredits'        => 'Stuur mien oek een berichjen bie kleine bewarkingen',
-'tog-enotifrevealaddr'        => 'Mien e-mailadres weergeven in e-mailmededelingen',
+'tog-enotifrevealaddr'        => 'Mien netposadres weergeven in netpostiejigen',
 'tog-shownumberswatching'     => 'Antal volgende gebrukers weergeven',
 'tog-fancysig'                => 'Ondertekening zien as wikitekse (zonder autematische verwiezing)',
 'tog-externaleditor'          => 'Gebruuk standard een externe teksbewarker',
@@ -659,7 +659,7 @@ Je kunnen {{SITENAME}} noen anneniem gebruken of onder disse of een aandere gebr
 'createaccount'              => 'Niej gebrukersprefiel anmaken',
 'gotaccount'                 => 'Stao-j al in-eschreven? $1.',
 'gotaccountlink'             => 'Anmelden',
-'createaccountmail'          => 'per e-mail',
+'createaccountmail'          => 'per netpos',
 'badretype'                  => 'De wachwoorden dee-j in-etik hemmen bin neet liekeleens.',
 'userexists'                 => 'Disse gebrukersnaam is al gebruuk. 
 Kies een aandere naam.',
@@ -689,19 +689,19 @@ Joew tiejelijke wachwoord zal verlopen over {{PLURAL:$5|één dag|$5 dagen}}.
 A-j dit verzeuk neet zelf edaon hemmen of a-j \'t wachwoord weer weten 
 en \'t neet meer wiezigen willen, negeer dit berich dan 
 en blief joew bestaonde wachwoord gebruken.',
-'noemail'                    => 'Gien e-mailadres eregistreerd veur "$1".',
-'passwordsent'               => 'Der is een niej wachwoord verstuurd naor \'t e-mailadres van gebruker "$1". Meld an, a-j \'t wachwoord ontvangen.',
+'noemail'                    => 'Gien netposadres eregistreerd veur "$1".',
+'passwordsent'               => 'Der is een niej wachwoord verstuurd naor \'t netposadres van gebruker "$1". Meld an, a-j \'t wachwoord ontvangen.',
 'blocked-mailpassword'       => 'Dit IP-adres is eblokkeerd. Dit betekent da-j neet bewarken kunnen en dat {{SITENAME}} joew wachwoord neet weerummehaolen kan, dit wonnen edaon um misbruuk tegen te gaon.',
-'eauthentsent'               => "Der is een bevestigingsberich naor 't op-egeven e-mailadres verstuurd. Veurdat der veerdere berichen naor dit e-mailadres verstuurd kunnen wonnen, mu-j de instructies volgen in 't toe-esturen berich, um te bevestigen da-j joe eigen daodwarkelijk an-emeld hemmen.",
+'eauthentsent'               => "Der is een bevestigingsberich naor 't op-egeven netposadres verstuurd. Veurdat der veerdere berichen naor dit netposadres verstuurd kunnen wonnen, mu-j de instructies volgen in 't toe-esturen berich, um te bevestigen da-j joe eigen daodwarkelijk an-emeld hemmen.",
 'throttled-mailpassword'     => 'In de leste {{PLURAL:$1|uur|$1 ure}} is der al een wachwoordherinnering estuurd.
 Um misbruuk te veurkoemen wonnen der mar één wachwoordherinnering per {{PLURAL:$1|uur|$1 ure}} verzunnen.',
 'mailerror'                  => "Fout bie 't versturen van berich: $1",
 'acct_creation_throttle_hit' => 'Onder dit IP-adres hemmen luui de veurbieje dag al {{PLURAL:$1|1 gebruker|$1 gebrukers}} an-emaak. Meer is neet toe-estaon in disse periode. Daorumme kunnen gebrukers mit dit IP-adres noen effen gien gebrukers meer anmaken.',
-'emailauthenticated'         => 'Joew e-mailadres is bevestig op $2 um $3.',
-'emailnotauthenticated'      => 'E-mailadres is <strong>nog neet bevestig</strong>. Je ontvangen gien berichen veur de onstaonde opties.',
-'noemailprefs'               => 'Gien e-mailadres in-evoerd, waordeur de onderstaonde functies neet warken.',
-'emailconfirmlink'           => 'Bevestig e-mailadres',
-'invalidemailaddress'        => "'t E-mailadres kon neet eaccepteerd wonnen umdat de opmaak ongeldig is. 
+'emailauthenticated'         => 'Joew netposadres is bevestig op $2 um $3.',
+'emailnotauthenticated'      => 'Netposadres is <strong>nog neet bevestig</strong>. Je kriegen gien berichen veur de onstaonde opties.',
+'noemailprefs'               => 'Gien netposadres in-evoerd, waodeur de onderstaonde functies neet warken.',
+'emailconfirmlink'           => 'Bevestig netposadres',
+'invalidemailaddress'        => "'t Netposadres kon neet eaccepteerd wonnen umdat de opmaak ongeldig is. 
 Voer de juuste opmaak van 't adres in of laot 't veld leeg.",
 'accountcreated'             => 'Gebrukersprefiel is an-emaak',
 'accountcreatedtext'         => 'De gebrukersnaam veur $1 is an-emaak.',
@@ -716,7 +716,7 @@ Je mutten effen wachen veurda-j 't opniej preberen kunnen.",
 
 # Password reset dialog
 'resetpass'                 => 'Wachwoord wiezigen',
-'resetpass_announce'        => "Je bin an-emeld mit een veurlopige code dee per e-mail toe-estuurd wonnen. Um 't anmelden te voltooien, mu-j een niej wachwoord invoeren:",
+'resetpass_announce'        => "Je bin an-emeld mit een veurlopige code dee mit de netpos toe-estuurd wonnen. Um 't anmelden te voltooien, mu-j een niej wachwoord invoeren:",
 'resetpass_text'            => '<!-- Tekse hier invoegen -->',
 'resetpass_header'          => 'Wachwoord wiezigen',
 'oldpassword'               => 'Wachwoord da-j noen hemmen',
@@ -781,7 +781,7 @@ De op-egeven rejen is: ''$2''.
 * Bedoeld um te blokkeren: $7
 
 Je kunnen kontak opnemen mit $1 of een aandere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] um de blokkering te bepraoten.
-Je kunnen gien gebruukmaken van de functie 'een berich sturen', behalven a-j een geldig e-mailadres op-egeven hemmen in joew [[Special:Preferences|veurkeuren]] en 't gebruuk van disse functie neet eblokkeerd is.
+Je kunnen gien gebruukmaken van de functie 'een berich sturen', behalven a-j een geldig netposadres op-egeven hemmen in joew [[Special:Preferences|veurkeuren]] en 't gebruuk van disse functie neet eblokkeerd is.
 't IP-adres da-j noen gebruken is $3 en 't blokkeringsnummer is #$5. 
 Vermeld 't allebeie a-j argens op disse blokkering reageren.",
 'autoblockedtext'                  => 'Joew IP-adres is autematisch eblokkeerd umdat \'t gebruuk wönnen deur een aandere gebruker, dee eblokkeerd wönnen deur $1.
@@ -796,7 +796,7 @@ De rejen hierveur was:
 Je kunnen kontak opnemen mit $1 of een van de aandere
 [[{{MediaWiki:Grouppage-sysop}}|beheerders]] um de blokkering te bepraoten.
 
-NB: je kunnen de optie "een berich sturen" neet gebruken, behalven a-j een geldig e-mailadres op-egeven hemmen in de [[Special:Preferences|gebrukersveurkeuren]] en je neet eblokkeerd bin.
+NB: je kunnen de optie "een berich sturen" neet gebruken, behalven a-j een geldig netposadres op-egeven hemmen in de [[Special:Preferences|gebrukersveurkeuren]] en je neet eblokkeerd bin.
 
 Joew IP-adres is $3 en joew blokkeernummer is $5. 
 Geef disse nummers deur a-j kontak mit ene opnemen over de blokkering.',
@@ -805,7 +805,7 @@ Geef disse nummers deur a-j kontak mit ene opnemen over de blokkering.',
 'blockededitsource'                => "De tekse van '''joew eigen bewarkingen''' an '''$1''' wonnen hieronder weer-egeven:",
 'whitelistedittitle'               => 'Um disse pagina te bewarken, mu-j je anmelden',
 'whitelistedittext'                => "Um pagina's te kunnen wiezigen, mu-j $1 ween",
-'confirmedittext'                  => "Je mutten je e-mailadres bevestigen veurda-j bewarken kunnen. Vul je adres in en bevestig 't via [[Special:Preferences|mien veurkeuren]].",
+'confirmedittext'                  => "Je mutten je posadres bevestigen veurda-j bewarken kunnen. Vul je adres in en bevestig 't via [[Special:Preferences|mien veurkeuren]].",
 'nosuchsectiontitle'               => 'Disse sectie besteet neet',
 'nosuchsectiontext'                => 'Je preberen een sectie te bewarken dat neet besteet. Umdat der gien sectie $1 is, is der gien plaos um joew bewarking op te slaon.',
 'loginreqtitle'                    => 'Anmelden verplich',
@@ -888,9 +888,10 @@ As grund is angeven: $1",
 'recreate-moveddeleted-warn'       => "'''Waorschuwing: je maken een pagina an dee eerder al vort-edaon is.'''
 
 Bedenk eers of 't neudig is um disse pagina veerder te bewarken.
-'t Logboek mit de rejen(s) waorumme as disse pagina vort-edaon is, wonnen veur de dudelijkheid eteund:",
+Hieronder wonnen veur de dudelijkheid infermasie uut 't logboek vort-edaone pagina's en titelwiezigingen eteund:",
 'moveddeleted-notice'              => "Disse pagina is vort-edaon.
-Hieronder steet de infermasie uut 't logboek vort-edaone pagina's.",
+Hieronder steet de infermasie uut 't logboek vort-edaone pagina's en titelwiezigingen.",
+'log-fulllog'                      => "'t Hele logboek bekieken",
 'edit-hook-aborted'                => 'De bewarking is of-ebreuken deur een hook.
 Der is gien rejen op-egeven.',
 'edit-gone-missing'                => "De pagina kon neet bie-ewark wonnen.
@@ -1206,6 +1207,8 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'prefs-watchlist-edits-max' => '(maximale antal: 1.000)',
 'prefs-misc'                => 'Overig',
 'prefs-resetpass'           => 'Wachwoord wiezigen',
+'prefs-email'               => 'Instellingen veur netpos',
+'prefs-rendering'           => 'Paginaweergave',
 'saveprefs'                 => 'Veurkeuren opslaon',
 'resetprefs'                => 'Standardveurkeuren herstellen',
 'restoreprefs'              => 'Alle standardinstellingen weerummezetten',
@@ -1248,10 +1251,15 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'prefs-files'               => 'Bestanden',
 'prefs-custom-css'          => 'Persoonlijke CSS',
 'prefs-custom-js'           => 'Persoonlijke JS',
-'youremail'                 => 'E-mailadres (neet verplich) *',
+'prefs-reset-intro'         => 'Je kunnen disse pagina gebruken um joew veurkeuren naor de standardinstellingen weerumme te zetten.
+Disse haandeling kan neet ongedaon-emaak wonnen.',
+'prefs-emailconfirm-label'  => 'Netposbevestiging:',
+'prefs-textboxsize'         => 'Ofmetingen bewarkingsscharm',
+'youremail'                 => 'Netposadres (neet verplich) *',
 'username'                  => 'Gebrukersnaam:',
 'uid'                       => 'Gebrukersnummer:',
 'prefs-memberingroups'      => 'Lid van {{PLURAL:$1|groep|groepen}}:',
+'prefs-registration'        => 'Registrasiedaotum:',
 'yourrealname'              => 'Echte naam (neet verplich)',
 'yourlanguage'              => 'Taal veur systeemteksen',
 'yourvariant'               => 'Gewunste taal:',
@@ -1267,9 +1275,12 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 Disse infermasie is zichbaor veur aandere gebrukers.',
 'email'                     => 'Privéberichen',
 'prefs-help-realname'       => '* Echte naam (optioneel): a-j disse optie invullen zal joew echte naam gebruuk wonnen veur toekenningen veur joew warkzaamheen.',
-'prefs-help-email'          => "E-mailadres is neet verplich, mar maak 't meugelijk um joew wachtwoord te e-mailen a-j 't vergeten bin.
-Je kunnen oek aanderen in staot stellen per e-mail kontak mit joe op te nemen via een verwiezing op joew gebrukers- en overlegpagina zonder da-j joew identiteit priesgeven.",
-'prefs-help-email-required' => 'Hier he-w een e-mailadres veur neudig.',
+'prefs-help-email'          => "Een netposadres is neet verplich, mar zo ku-w wè joew wachwoord toesturen veur a-j 't vergeten bin.
+Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te nemen via de verwiezing op joew gebrukers- en overlegpagina, zonder da-j joew identiteit priesgeven.",
+'prefs-help-email-required' => 'Hier he-w een netposadres veur neudig.',
+'prefs-info'                => 'Baosisinfermasie',
+'prefs-i18n'                => 'Taalinstellingen',
+'prefs-signature'           => 'Ondertekening',
 
 # User rights
 'userrights'                  => 'Gebrukersrechenbeheer',
@@ -1864,10 +1875,10 @@ Meer infermasie over de rechen ku-j [[{{MediaWiki:Listgrouprights-helppage}}|hie
 De ontvanger kan dus drek beantwoorden.",
 'usermailererror'  => "Foutmelding bie 't versturen:",
 'defemailsubject'  => 'Berich van {{SITENAME}}',
-'noemailtitle'     => 'Gebruker hef gien e-mailadres op-egeven',
+'noemailtitle'     => 'Gebruker hef gien netposadres op-egeven',
 'noemailtext'      => 'Disse gebruker hef gien geldig e-mailadres in-evoerd.',
-'nowikiemailtitle' => 'E-mails bin neet toe-estaon',
-'nowikiemailtext'  => 'Disse gebruker wil gien e-mails toe-estuurd kriegen van aandere gebrukers.',
+'nowikiemailtitle' => 'Netpos is neet toe-estaon',
+'nowikiemailtext'  => 'Disse gebruker wil gien netpos toe-estuurd kriegen van aandere gebrukers.',
 'email-legend'     => 'Een berich sturen naor een aandere gebruker van {{SITENAME}}',
 'emailfrom'        => 'Van:',
 'emailto'          => 'An:',
@@ -1901,7 +1912,7 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'notvisiblerev'        => 'Bewarking is vort-edaon',
 'watchnochange'        => "Gien van de pagina's op joew volglieste is in disse periode ewiezig.",
 'watchlist-details'    => "Der {{PLURAL:$1|steet één pagina|staon $1 pagina's}} op joew volglieste, zonder de overlegpagina's mee-erekend.",
-'wlheader-enotif'      => 'Je kriegen berich per e-mail',
+'wlheader-enotif'      => 'Je kriegen berich per netpos',
 'wlheader-showupdated' => "* Pagina's dee ewiezig sinds je ze 't veur 't les bie-ewark hemmen, wonnen '''vet''' weer-egeven.",
 'watchmethod-recent'   => "Bie de pagina's dee kortens ewiezig bin, ezoch naor pagina's dee evolg wonnen",
 'watchmethod-list'     => 'Kik joew nao volglieste veur de leste wiezigingen',
@@ -1934,7 +1945,7 @@ $NEWPAGE
 Samenvatting van de wieziging: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontakgevevens van de auteur:
-E-mail: $PAGEEDITOR_EMAIL
+Netpos: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
 Je kriegen veerder gien berichen, behalve a-j disse pagina bezeuken. Op joew volglieste ku-j veur alle pagina\'s dee-j volgen de waorschuwingsinstellingen derof haolen.
@@ -1960,6 +1971,7 @@ Opmarkingen en veerdere hulpe:
 'historywarning'         => 'Waorschuwing: disse pagina hef een veurgeschiedenisse. Kiek effen nao of je neet een ouwere versie van disse pagina herstellen kunnen.',
 'confirmdeletetext'      => 'Disse actie wis alle inhoud en geschiedenisse uut de databanke. Bevestig hieronder dat dit de bedoeling is en da-j de gevolgen dervan begriepen.',
 'actioncomplete'         => 'Uut-evoerd',
+'actionfailed'           => 'De haandeling is mislok.',
 'deletedtext'            => '\'t Artikel "$1" is vort-edaon. Zie de "$2" veur een lieste van pagina\'s dee as les vort-edaon bin.',
 'deletedarticle'         => '"$1" vort-edaon',
 'suppressedarticle'      => 'hef "[[$1]]" verbörgen',
@@ -2588,7 +2600,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Waorschuwing:''' dit bestand bevat meschien codering dee slich is veur 't systeem. <hr />",
-'imagemaxsize'         => 'Maximumgrootte van ofbeeldingen op de beschrievingspagina:',
+'imagemaxsize'         => 'Grootte van ofbeeldingen beteunen:',
 'thumbsize'            => "Grootte van 't ofbeeldingsoverzichte (thumbnail):",
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
 'file-info'            => 'Bestansgrootte: $1, MIME-type: $2',
@@ -2914,36 +2926,36 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'monthsall'        => 'alles',
 
 # E-mail address confirmation
-'confirmemail'             => 'Bevestig e-mailadres',
-'confirmemail_noemail'     => 'Je hemmen gien geldig e-mailadres in-evoerd in joew [[Special:Preferences|veurkeuren]].',
-'confirmemail_text'        => 'Bie disse wiki mu-j je e-mailadres bevestigen veurda-j de berichopties gebruken kunnen. Klik op de onderstaonde knoppe um een bevestigingsberich te ontvangen. Dit berich bevat een code mit een verwiezing; um je e-mailadres te bevestigen mu-j disse verwiezing los doon.',
+'confirmemail'             => 'Bevestig netposadres',
+'confirmemail_noemail'     => 'Je hemmen gien geldig netposadres in-evoerd in joew [[Special:Preferences|veurkeuren]].',
+'confirmemail_text'        => 'Bie disse wiki mu-j je netposadres bevestigen veurda-j de berichopties gebruken kunnen. Klik op de onderstaonde knoppe um een bevestigingsberich te ontvangen. Dit berich bevat een code mit een verwiezing; um je netposadres te bevestigen mu-j disse verwiezing los doon.',
 'confirmemail_pending'     => 'Der is al een bevestigingscode op-estuurd; a-j net een gebrukersnaam an-emaak hemmen, wach dan eers een paor menuten tot da-j dit berich ontvungen hemmen veurda-j een nieje code anvragen.',
 'confirmemail_send'        => 'Stuur een bevestigingscode',
 'confirmemail_sent'        => 'Bevestigingsberich verstuurd.',
-'confirmemail_oncreate'    => "Een bevestigingscode is naor joew e-mailadres verstuurd. Disse code is neet neudig um an te melden, mar je mutten 't wel bevestigen veurda-j de e-mailmeugelijkheen van disse wiki gebruken kunnen.",
-'confirmemail_sendfailed'  => "{{SITENAME}} kon joew gien bevestigingscode toesturen.
-Contreleer joew e-mailadres op ongeldige tekens.
+'confirmemail_oncreate'    => "Een bevestigingscode is naor joew netposadres verstuurd. Disse code is neet neudig um an te melden, mar je mutten 't wel bevestigen veurda-j de netposmeugelijkheen van disse wiki gebruken kunnen.",
+'confirmemail_sendfailed'  => "{{SITENAME}} kon joe gien bevestigingscode toesturen.
+Contreleer joew netposadres op ongeldige tekens.
 
 Fout bie 't versturen: $1",
 'confirmemail_invalid'     => 'Ongeldige bevestigingscode. De code kan verlopen ween.',
-'confirmemail_needlogin'   => 'Je mutten $1 um joew e-mailadres te bevestigen.',
-'confirmemail_success'     => 'Joew e-mailadres is bevestig. Je kunnen noen anmelden en {{SITENAME}} gebruken.',
-'confirmemail_loggedin'    => 'Joew e-mailadres is noen bevestig.',
+'confirmemail_needlogin'   => 'Je mutten $1 um joew netposadres te bevestigen.',
+'confirmemail_success'     => 'Joew netposadres is bevestig. Je kunnen noen anmelden en {{SITENAME}} gebruken.',
+'confirmemail_loggedin'    => 'Joew netposadres is noen bevestig.',
 'confirmemail_error'       => "Der is iets fout egaon bie 't opslaon van joew bevestiging.",
-'confirmemail_subject'     => 'Bevestiging e-mailadres veur {{SITENAME}}',
-'confirmemail_body'        => 'Ene mit IP-adres $1, werschienlijk jie zelf, hef zien eigen mit dit e-mailadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
+'confirmemail_subject'     => 'Bevestiging netposadres veur {{SITENAME}}',
+'confirmemail_body'        => 'Ene mit IP-adres $1, werschienlijk jie zelf, hef zien eigen mit dit netposadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
 
-Klik op de volgende verwiezing um te bevestigen da-jie disse gebruker bin en um de e-mailmeugelijkheen op {{SITENAME}} te activeren:
+Klik op de volgende verwiezing um te bevestigen da-jie disse gebruker bin en um de netposmeugelijkheen op {{SITENAME}} te activeren:
 
 $3
 
-A-j joe eigen *neet* an-emeld hemmen, klik dan neet op disse verwiezing um de bevestiging van joew e-mailadres of te breken:
+A-j joe eigen *neet* an-emeld hemmen, klik dan neet op disse verwiezing um de bevestiging van joew netposadres of te breken:
 
 $5
 
 De bevestigingscode zal verlopen op $4.',
-'confirmemail_invalidated' => 'De e-mailbevestiging is of-ebreuken',
-'invalidateemail'          => 'E-mailbevestiging ofbreken',
+'confirmemail_invalidated' => 'De netposbevestiging is of-ebreuken',
+'invalidateemail'          => 'Netposbevestiging ofbreken',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-intergrasie is edeactiveerd]',
@@ -3127,5 +3139,15 @@ Voer de bestansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'dberr-usegoogle'   => 'Meschien ku-j ondertussen zeuken via Google.',
 'dberr-outofdate'   => "Let op: indexen de zee hemmen van onze pagina's bin meschien neet actueel.",
 'dberr-cachederror' => 'Disse pagina is een kepie uut de kas en is meschien neet de leste versie.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Der bin preblemen mit een paor in-egeven weerden',
+'htmlform-select-badoption'    => 'De in-egeven weerde is ongeldig.',
+'htmlform-int-invalid'         => 'De in-egeven weerde is gien geheel getal.',
+'htmlform-int-toolow'          => 'De in-egeven weerde lig onder de minimumweerde van $1',
+'htmlform-int-toohigh'         => 'De in-egeven weerde lig boven de maximumweerde van $1',
+'htmlform-submit'              => 'Opslaon',
+'htmlform-reset'               => 'Wiezigingen ongedaonmaken',
+'htmlform-selectorother-other' => 'Aanders',
 
 );

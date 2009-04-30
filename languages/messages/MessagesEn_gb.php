@@ -53,17 +53,21 @@ If the file has been modified from its original state, some details may not full
 
 'exif-subjectdistance-value' => '$1 metres',
 
-'exif-gpsaltitude-0' => 'Metres above sea level',
-'exif-gpsaltitude-1' => 'Metres below sea level',
-
-'exif-gpsspeed-k' => 'Kilometres per hour',
-'exif-gpsdestdistance-k' => 'Kilometres',
-
 'exif-sensingmethod-2' => 'One-chip colour area sensor',
 'exif-sensingmethod-3' => 'Two-chip colour area sensor',
 'exif-sensingmethod-4' => 'Three-chip colour area sensor',
 'exif-sensingmethod-5' => 'Colour sequential area sensor',
 'exif-sensingmethod-8' => 'Colour sequential linear sensor',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metres above sea level',
+'exif-gpsaltitude-1' => 'Metres below sea level',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'Kilometres per hour',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometres',
 
 # E-mail address confirmation
 'confirmemail_invalidated' => 'E-mail address confirmation cancelled',

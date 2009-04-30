@@ -1223,7 +1223,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-misc'                => 'Ostala podešavanja',
 'prefs-resetpass'           => 'Promijeni šifru',
 'prefs-email'               => 'E-mail opcije',
-'prefs-rendering'           => 'Iscrtavanje stranice',
+'prefs-rendering'           => 'Izgled',
 'saveprefs'                 => 'Sačuvajte podešavanja',
 'resetprefs'                => 'Vrati podešavanja',
 'restoreprefs'              => 'Vrati sve pretpostavljene postavke',

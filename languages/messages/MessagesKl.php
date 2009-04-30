@@ -60,7 +60,7 @@ $messages = array(
 'dec'           => 'Dec',
 
 'about'  => 'Pillugu',
-'cancel' => 'Unitsitsivoq',
+'cancel' => 'Sussa',
 
 # Cologne Blue skin
 'qbedit' => 'Aaqqissuutiguk',
@@ -147,7 +147,7 @@ $messages = array(
 'specialloguserlabel' => 'Pineqartoq:',
 
 # Special:AllPages
-'allpagessubmit' => 'Tassungarit',
+'allpagessubmit' => 'Tassunngarit',
 
 # Watchlist
 'addedwatch'     => 'Nakkutilliinermi allattorsimaffimmut ilanngunneqarsimavoq',

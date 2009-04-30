@@ -1197,7 +1197,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'prefs-misc'                => 'Preferéncias divèrsas',
 'prefs-resetpass'           => 'Modificar lo senhal',
 'prefs-email'               => 'Opcions del corrièr electronic',
-'prefs-rendering'           => 'Rendut de las paginas',
+'prefs-rendering'           => 'Aparéncia',
 'saveprefs'                 => 'Enregistrar las preferéncias',
 'resetprefs'                => 'Restablir las preferéncias',
 'restoreprefs'              => 'Restablir totas las valors per defaut',
@@ -1242,6 +1242,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'prefs-custom-js'           => 'JS personalizat',
 'prefs-reset-intro'         => 'Podètz utilizar aquesta pagina per restablir vòstras preferéncias a las valors per defaut del sit. Aquò pòt pas èsser desfach.',
 'prefs-emailconfirm-label'  => 'Confirmacion del corrièr electronic :',
+'prefs-textboxsize'         => 'Talha de la fenèstra de modificacion',
 'youremail'                 => 'Adreça de corrièr electronic :',
 'username'                  => "Nom de l'utilizaire :",
 'uid'                       => 'Numèro de l’utilizaire :',
@@ -1264,6 +1265,7 @@ Deu aver, al maximum $1 caractèr{{PLURAL:$1||s}}.',
 'prefs-help-email'          => "L’adreça de corrièr electronic es facultativa mas permet de vos far adreçar vòstre senhal s'o doblidatz.
 Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de vòstra pagina d’utilizaire principala o la de discussion sens aver besonh de revelar vòstra idenditat.",
 'prefs-help-email-required' => 'Una adreça de corrièr electronic es requesa.',
+'prefs-info'                => 'Informacion de basa',
 'prefs-i18n'                => 'Internationalizacion',
 'prefs-signature'           => 'Signatura',
 
@@ -2813,7 +2815,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-exposureprogram-5' => 'Programa de creacion (preferéncia a la prigondor de camp)',
 'exif-exposureprogram-6' => "Programa d'accion (preferéncia a la velocitat d’obturacion)",
 'exif-exposureprogram-7' => 'Mòde retrach (per clichats de prèp amb rèire plan fosc)',
-'exif-exposureprogram-8' => 'Mòde paisatge (per de clichats de paisatges nets)',
+'exif-exposureprogram-8' => 'Mòde païsatge (per de clichats de païsatges nets)',
 
 'exif-subjectdistance-value' => '{{PLURAL:$1|$1 mètre|$1 mètres}}',
 
@@ -2881,7 +2883,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-whitebalance-1' => 'Balança dels blancs manuala',
 
 'exif-scenecapturetype-0' => 'Estandard',
-'exif-scenecapturetype-1' => 'Paisatge',
+'exif-scenecapturetype-1' => 'Païsatge',
 'exif-scenecapturetype-2' => 'Retrach',
 'exif-scenecapturetype-3' => 'Scèna nuechenca',
 

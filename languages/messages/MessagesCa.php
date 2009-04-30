@@ -8,6 +8,7 @@
  * @file
  *
  * @author Aleator
+ * @author Cedric31
  * @author Iradigalesc
  * @author Jordi Roqué
  * @author Juanpabl
@@ -1084,7 +1085,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 # Quickbar
 'qbsettings'               => 'Quickbar',
 'qbsettings-none'          => 'Cap',
-'qbsettings-fixedleft'     => 'Fixa a la esquerra',
+'qbsettings-fixedleft'     => "Fixa a l'esquerra",
 'qbsettings-fixedright'    => 'Fixa a la dreta',
 'qbsettings-floatingleft'  => "Surant a l'esquerra",
 'qbsettings-floatingright' => 'Surant a la dreta',

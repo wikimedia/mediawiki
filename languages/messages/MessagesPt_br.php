@@ -804,7 +804,9 @@ Volte à tela anterior e edite uma página já existente, ou [[Special:UserLogin
 
 Você deve considerar se é realmente adequado continuar editando esta página.
 Os registros de eliminação e de movimentação desta página são exibidos a seguir, para sua comodidade:",
-'moveddeleted-notice'              => 'Esta página foi eliminada. O registro de eliminações para esta página é disponibilizado abaixo, para referência.',
+'moveddeleted-notice'              => 'Esta página foi eliminada. 
+Os registros de eliminação e de movimentação para esta página estão disponibilizados abaixo, para referência.',
+'log-fulllog'                      => 'Ver registro detalhado',
 'edit-hook-aborted'                => "Edição abortada por ''hook''.
 Ele não deu nenhuma explicação.",
 'edit-gone-missing'                => 'Não foi possível atualizar a página.
@@ -1127,6 +1129,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'prefs-watchlist-edits-max' => '(número máximo: 1000)',
 'prefs-misc'                => 'Diversos',
 'prefs-resetpass'           => 'Alterar senha',
+'prefs-email'               => 'Opções de email',
+'prefs-rendering'           => 'Apresentação da Página',
 'saveprefs'                 => 'Salvar',
 'resetprefs'                => 'Eliminar as alterações não-salvas',
 'restoreprefs'              => 'Restaurar todas as configurações padrão',
@@ -1169,6 +1173,10 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'prefs-files'               => 'Arquivos',
 'prefs-custom-css'          => 'CSS personalizada',
 'prefs-custom-js'           => 'JS personalizado',
+'prefs-reset-intro'         => 'Você pode usar esta página para restaurar as suas preferências para os valores predefinidos do sítio.
+Esta ação não pode ser desfeita.',
+'prefs-emailconfirm-label'  => 'Confirmação do e-mail:',
+'prefs-textboxsize'         => 'Tamanho da janela de edição',
 'youremail'                 => 'Seu e-mail:',
 'username'                  => 'Nome de usuário:',
 'uid'                       => 'Número de identificação:',
@@ -1190,6 +1198,9 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'prefs-help-realname'       => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'prefs-help-email'          => "O fornecimento de um endereço de ''e-mail'' é opcional, mas permite que uma nova senha lhe seja enviada caso você esqueça sua senha. Você pode ainda preferir deixar que os usuários entrem em contato consigo através de sua página de usuário ou discussão sem ter de revelar sua identidade.",
 'prefs-help-email-required' => 'O endereço de e-mail é requerido.',
+'prefs-info'                => 'Informação básica',
+'prefs-i18n'                => 'Internacionalização',
+'prefs-signature'           => 'Assinatura',
 
 # User rights
 'userrights'                  => 'Gestão de privilégios de usuários',
@@ -1886,6 +1897,7 @@ Contato e assistência
 'confirmdeletetext'      => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
 Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que encontra-se a fazer isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projeto.',
 'actioncomplete'         => 'Ação completada',
+'actionfailed'           => 'A ação falhou',
 'deletedtext'            => '"<nowiki>$1</nowiki>" foi eliminada.
 Consulte $2 para um registro de eliminações recentes.',
 'deletedarticle'         => 'eliminada "[[$1]]"',
@@ -2819,6 +2831,10 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpslongitude-e' => 'Longitude Leste',
 'exif-gpslongitude-w' => 'Longitude Oeste',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metros acima do nível do mar',
+'exif-gpsaltitude-1' => 'Metros abaixo do nível do mar',
+
 'exif-gpsstatus-a' => 'Medição em progresso',
 'exif-gpsstatus-v' => 'Interoperabilidade de medição',
 
@@ -2829,6 +2845,11 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Milhas por hora',
 'exif-gpsspeed-n' => 'Nós',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Quilômetros',
+'exif-gpsdestdistance-m' => 'Milhas',
+'exif-gpsdestdistance-n' => 'Milhas náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direção real',
@@ -3064,5 +3085,15 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'dberr-usegoogle'   => 'Você pode tentar pesquisar no Google entretanto.',
 'dberr-outofdate'   => 'Note que os seus índices relativos ao nosso conteúdo podem estar desatualizados.',
 'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não ser atual.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Existem problemas com alguns dos dados introduzidos',
+'htmlform-select-badoption'    => 'O valor que você especificou não é uma opção válida.',
+'htmlform-int-invalid'         => 'O valor que você especificou não é um inteiro.',
+'htmlform-int-toolow'          => 'O valor que você especificou está abaixo do mínimo de $1',
+'htmlform-int-toohigh'         => 'O valor que você especificou está acima do máximo de $1',
+'htmlform-submit'              => 'Enviar',
+'htmlform-reset'               => 'Desfazer alterações',
+'htmlform-selectorother-other' => 'Outros',
 
 );

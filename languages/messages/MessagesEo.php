@@ -791,8 +791,9 @@ La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1",
 'recreate-moveddeleted-warn'       => "'''Averto: Vi rekreas paĝon tiu estis antaŭe forigita.'''
 
 Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
-Jen la protokolo de forigoj por via oportuno:",
-'moveddeleted-notice'              => 'Ĉi tiu paĝo estis forigita. La linio el la protokolo pri forigado estas montrata sube por via referenco.',
+Jen la protokolo de forigoj kaj alinomigado por via oportuno:",
+'moveddeleted-notice'              => 'Ĉi tiu paĝo estis forigita. 
+Jen la protokolo pri forigado kaj alinomigado por via referenco.',
 'log-fulllog'                      => 'Vidi kompletan protokolon',
 'edit-hook-aborted'                => 'Redakto ĉesigis per hoko.
 Ĝi ne donis eksplikon.',
@@ -1118,6 +1119,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-misc'                => 'Miksitaĵoj',
 'prefs-resetpass'           => 'Ŝanĝi pasvorton',
 'prefs-email'               => 'Retpoŝtaj opcioj',
+'prefs-rendering'           => 'Aspekto',
 'saveprefs'                 => 'Konservi preferojn',
 'resetprefs'                => 'Forviŝi nekonservitajn ŝanĝojn',
 'restoreprefs'              => 'Restarigi ĉiujn defaŭltajn preferojn',
@@ -1160,6 +1162,9 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-files'               => 'Dosieroj',
 'prefs-custom-css'          => 'Propra CSS',
 'prefs-custom-js'           => 'Propra JS',
+'prefs-reset-intro'         => 'Vi povas uzi ĉi tiun paĝon por restarigi viajn agordojn al la originalaj defaŭltoj.
+Ĉi tiel ne estus malfarebla.',
+'prefs-emailconfirm-label'  => 'Retpoŝta konfirmado:',
 'youremail'                 => 'Retadreso:',
 'username'                  => 'Salutnomo:',
 'uid'                       => 'Uzantnumero:',
@@ -1181,6 +1186,8 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-help-email'          => 'Retadreso estas nedeviga, sed permesus por via pasvorto esti retpoŝtita al vi se vi forgesus ĝin.
 Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo aŭ diskuto-paĝo sen malkaŝante vian identeco.',
 'prefs-help-email-required' => 'Ret-adreso estas bezonata.',
+'prefs-info'                => 'Baza informo',
+'prefs-signature'           => 'Subskribo',
 
 # User rights
 'userrights'                  => 'Prizorgi rajtojn de uzantoj',
@@ -1872,6 +1879,7 @@ Reagoj kaj plia helpo:
 'historywarning'         => 'Averto: la forigota paĝo havas historion:',
 'confirmdeletetext'      => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:Policy-url}}|regulojn pri forigado]].',
 'actioncomplete'         => 'Ago farita',
+'actionfailed'           => 'Ago malsukcesis',
 'deletedtext'            => '"<nowiki>$1</nowiki>" estas forigita.
 Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'deletedarticle'         => 'forigis "$1"',
@@ -2813,6 +2821,10 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpslongitude-e' => 'Orienta longitudo',
 'exif-gpslongitude-w' => 'Uesta longitudo',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metroj super marnivelo',
+'exif-gpsaltitude-1' => 'Metroj sub marnivelo',
+
 'exif-gpsstatus-a' => 'Mezurado estanta',
 'exif-gpsstatus-v' => 'Mezurada interoperaciado',
 
@@ -3060,6 +3072,7 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'dberr-cachederror' => 'Jen kaŝmemorigita kopio de la petita paĝo, kaj eble ne estas ĝisdatigita.',
 
 # HTML forms
+'htmlform-submit'              => 'Ek!',
 'htmlform-reset'               => 'Malfari ŝanĝojn',
 'htmlform-selectorother-other' => 'Alia',
 
