@@ -565,7 +565,8 @@ table.rimage {
 }
 
 /* correction for ltr wikis */
-.ltr #bodyContent a.external {
+.ltr #bodyContent a.external,
+.ltr #bodyContent a.extiw {
 	padding-left: 0;
 }
 
