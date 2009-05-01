@@ -137,7 +137,7 @@ class AuthPlugin {
 	 * @return bool
 	 */
 	public function allowRealNameChange() {
-		return false;
+		return true;
 	}
 
 	/**
@@ -146,7 +146,7 @@ class AuthPlugin {
 	 * @return bool
 	 */
 	public function allowEmailChange() {
-		return false;
+		return true;
 	}
 
 	/**
@@ -155,7 +155,7 @@ class AuthPlugin {
 	 * @return bool
 	 */
 	public function allowNickChange() {
-		return false;
+		return true;
 	}
 
 	/**
