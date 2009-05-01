@@ -108,6 +108,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18207) Strange spacing before [[irc:...]] links
 * Removed float from the user login form in RTL interface - caused display
   problems in FF2
+* (bug 15008) Redirect images are now subject to Bad image list rules
 
 == API changes in 1.16 ==
 
