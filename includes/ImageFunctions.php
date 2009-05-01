@@ -123,6 +123,12 @@ function wfIsBadImage( $name, $contextTitle = false ) {
 	static $badImages = false;
 	wfProfileIn( __METHOD__ );
 
+	# Handle redirects
+	$redirectTitle = RepoGroup::singleton()->checkRedirect( Title::makeTitle( NS_FILE, $name ) );
+	if( $redirectTitle ) {
+		$name = $redirectTitle->getDbKey();
+	}
+
 	# Run the extension hook
 	$bad = false;
 	if( !wfRunHooks( 'BadImage', array( $name, &$bad ) ) ) {
