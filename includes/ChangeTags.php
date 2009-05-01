@@ -14,7 +14,7 @@ class ChangeTags {
 		$displayTags = array();
 		foreach( $tags as $tag ) {
 			$displayTags[] = self::tagDescription( $tag );
-			$classes[] = "mw-tag-$tag";
+			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
 		}
 
 		return array( '(' . implode( ', ', $displayTags ) . ')', $classes );
