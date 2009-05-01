@@ -114,8 +114,9 @@ class SpecialVersion extends SpecialPage {
 	public static function getVersion() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
-		$svn = self::getSvnRevision( $IP, false , false);
-		$version = $svn ? $wgVersion . wfMsg( 'version-svn-revision', $svn ) : $wgVersion;
+		$svn = self::getSvnRevision( $IP, false, false , false);
+		$svnCo = self::getSvnRevision( $IP, true, false , false);
+		$version = $svn ? $wgVersion . wfMsg( 'version-svn-revision', $svn, $svnCo ) : $wgVersion;
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
@@ -129,12 +130,13 @@ class SpecialVersion extends SpecialPage {
 	public static function getVersionLinked() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
-		$svn = self::getSvnRevision( $IP, false, false );
-		$svnDir = self::getSvnRevision( $IP, false, true );
+		$svn = self::getSvnRevision( $IP, false, false, false );
+		$svnCo = self::getSvnRevision( $IP, true, false, false );
+		$svnDir = self::getSvnRevision( $IP, true, false, true );
 		$viewvcStart = 'http://svn.wikimedia.org/viewvc/mediawiki/';
 		$viewvcEnd = '/?pathrev=';
 		$viewvc = $viewvcStart . $svnDir .  $viewvcEnd;
-		$version = $svn ? $wgVersion . " [{$viewvc}{$svn} " . wfMsg( 'version-svn-revision', $svn ) . ']' : $wgVersion;
+		$version = $svn ? $wgVersion . " [{$viewvc}{$svnCo} " . wfMsg( 'version-svn-revision', $svn, $svnCo ) . ']' : $wgVersion;
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
@@ -167,10 +169,12 @@ class SpecialVersion extends SpecialPage {
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
 					$version = null;
 					$subVersion = null;
+					$subVersionCo = null;
 					$viewvc = null;
 					if ( isset( $extension['path'] ) ) {
-						$subVersion = self::getSvnRevision(dirname($extension['path']), true, false);
-						$subVersionDir = self::getSvnRevision(dirname($extension['path']), true, true);
+						$subVersion = self::getSvnRevision(dirname($extension['path']), false, true, false);
+						$subVersionCo = self::getSvnRevision(dirname($extension['path']), true, true, false);
+						$subVersionDir = self::getSvnRevision(dirname($extension['path']), false, true, true);
 						if ($subVersionDir)
 							$viewvc = $subVersionDir . $subVersion;
 					}
@@ -182,6 +186,7 @@ class SpecialVersion extends SpecialPage {
 						isset ( $extension['name'] )           ? $extension['name']        : '',
 						$version,
 						$subVersion,
+						$subVersionCo,
 						$viewvc,
 						isset ( $extension['author'] )         ? $extension['author']      : '',
 						isset ( $extension['url'] )            ? $extension['url']         : null,
@@ -229,10 +234,10 @@ class SpecialVersion extends SpecialPage {
 		}
 	}
 
-	function formatCredits( $name, $version = null, $subVersion = null, $subVersionURL = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
+	function formatCredits( $name, $version = null, $subVersion = null, $subVersionCo = null, $subVersionURL = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
 		$extension = isset( $url ) ? "[$url $name]" : $name;
 		$version = isset( $version ) ? wfMsg( 'version-version', $version ) : '';
-		$subVersion = isset( $subVersion ) ? wfMsg( 'version-svn-revision', $subVersion ) : '';
+		$subVersion = isset( $subVersion ) ? wfMsg( 'version-svn-revision', $subVersion, $subVersionCo ) : '';
 		$subVersion = isset( $subVersionURL ) ? "[$subVersionURL $subVersion]" : $subVersion;
 
 		# Look for a localized description
@@ -348,10 +353,16 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Retrieve the revision number of a Subversion working directory.
 	 *
-	 * @param string $dir
-	 * @return mixed revision number as int, or false if not a SVN checkout
+	 * @param String $dir Directory of the svn checkout
+	 * @param Boolean $coRev optional to return value whether is Last Modified
+	 *                or Checkout revision number
+	 * @param Boolean $extension optional to check the path whether is from
+	 *                Wikimedia SVN server or not
+	 * @param Boolean $relPath optional to get the end part of the checkout path
+	 * @return mixed revision number as int, end part of the checkout path, 
+	 *               or false if not a SVN checkout
 	 */
-	public static function getSvnRevision( $dir , $extension = false, $relPath = false) {
+	public static function getSvnRevision( $dir, $coRev = false, $extension = false, $relPath = false) {
 		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
 		$entries = $dir . '/.svn/entries';
 
@@ -416,12 +427,12 @@ class SpecialVersion extends SpecialPage {
 				}
 				return $endPath;
 			}
-			if ($extension)
-				// get the last file revsion number
-				return intval( $content[10]) ;
+			if ($coRev)
+				// get the directory checkout revsion number
+				return intval( $content[3]) ;
 			else
-				// get the directory revsion number
-				return intval( $content[3] );
+				// get the directory last modified revision number
+				return intval( $content[10] );
 		}
 	}
 
