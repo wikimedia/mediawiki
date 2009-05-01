@@ -199,24 +199,24 @@ class SpecialVersion extends SpecialPage {
 
 		if ( count( $wgExtensionFunctions ) ) {
 			$out .= $this->openExtType( wfMsg( 'version-extension-functions' ) );
-			$out .= '<tr><td colspan="3">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
+			$out .= '<tr><td colspan="4">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
 		}
 
 		if ( $cnt = count( $tags = $wgParser->getTags() ) ) {
 			for ( $i = 0; $i < $cnt; ++$i )
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
 			$out .= $this->openExtType( wfMsg( 'version-parser-extensiontags' ) );
-			$out .= '<tr><td colspan="3">' . $this->listToText( $tags ). "</td></tr>\n";
+			$out .= '<tr><td colspan="4">' . $this->listToText( $tags ). "</td></tr>\n";
 		}
 
 		if( $cnt = count( $fhooks = $wgParser->getFunctionHooks() ) ) {
 			$out .= $this->openExtType( wfMsg( 'version-parser-function-hooks' ) );
-			$out .= '<tr><td colspan="3">' . $this->listToText( $fhooks ) . "</td></tr>\n";
+			$out .= '<tr><td colspan="4">' . $this->listToText( $fhooks ) . "</td></tr>\n";
 		}
 
 		if ( count( $wgSkinExtensionFunctions ) ) {
 			$out .= $this->openExtType( wfMsg( 'version-skin-extension-functions' ) );
-			$out .= '<tr><td colspan="3">' . $this->listToText( $wgSkinExtensionFunctions ) . "</td></tr>\n";
+			$out .= '<tr><td colspan="4">' . $this->listToText( $wgSkinExtensionFunctions ) . "</td></tr>\n";
 		}
 		$out .= Xml::closeElement( 'table' );
 		return $out;
@@ -235,6 +235,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	function formatCredits( $name, $version = null, $subVersion = null, $subVersionCo = null, $subVersionURL = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
+		$haveSubversion = $subVersion;
 		$extension = isset( $url ) ? "[$url $name]" : $name;
 		$version = isset( $version ) ? wfMsg( 'version-version', $version ) : '';
 		$subVersion = isset( $subVersion ) ? wfMsg( 'version-svn-revision', $subVersion, $subVersionCo ) : '';
@@ -248,11 +249,19 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
-		return "<tr>
-				<td><em>$extension $version $subVersion</em></td>
-				<td>$description</td>
-				<td>" . $this->listToText( (array)$author ) . "</td>
-			</tr>\n";
+		if ( $haveSubversion ) {
+		$extNameVer = "<tr>
+				<td><em>$extension $version</em></td>
+				<td><em>$subVersion</em></td>";
+		} else {
+		$extNameVer = "<tr>
+				<td colspan=\"2\"><em>$extension $version</em></td>";
+		}
+		$extDescAuthor = "<td>$description</td>
+				  <td>" . $this->listToText( (array)$author ) . "</td>
+			    </tr>\n";
+		return $ret = $extNameVer . $extDescAuthor;
+		return $ret;
 	}
 
 	/**
@@ -285,7 +294,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	private function openExtType($text, $name = null) {
-		$opt = array( 'colspan' => 3 );
+		$opt = array( 'colspan' => 4 );
 		$out = '';
 
 		if(!$this->firstExtOpened) {
