@@ -105,6 +105,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18535) Search tab tool-tops are corrupted
 * (bug 17614) Prev / Next links not need on ImagePage file history if less than limit
 * (bug 18069) Fixed some CSS validation issues with colors
+* (bug 18207) Strange spacing before [[irc:...]] links
 
 == API changes in 1.16 ==
 
