@@ -286,7 +286,10 @@ class SpecialRecentChanges extends SpecialPage {
 			$join_conds['watchlist'] = array('LEFT JOIN',
 				"wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace");
 		}
-
+		if ($wgUser->isAllowed("rollback")) {
+			$tables[] = 'page';
+			$join_conds['page'] = array('LEFT JOIN', 'rc_cur_id=page_id');
+		}
 		// Tag stuff.
 		$fields = array();
 		// Fields are * in this case, so let the function modify an empty array to keep it happy.
