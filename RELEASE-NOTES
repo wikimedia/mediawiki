@@ -175,6 +175,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18242) Show the Subversion revision number per extensions in 
   Special:Version
 * (bug 18420) Missing file revisions are handled gracefully now
+* (bug 9219) Auth plugins can control editing RealName/Email/Nick preferences
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

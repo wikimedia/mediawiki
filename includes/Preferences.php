@@ -138,11 +138,11 @@ class Preferences {
 		}
 				
 		// Actually changeable stuff
-		global $wgAllowRealName;
+		global $wgAllowRealName, $wgAuth;
 		if ($wgAllowRealName) {
 			$defaultPreferences['realname'] =
 					array(
-						'type' => 'text',
+						'type' => $wgAuth->allowRealNameChange() ? 'text' : 'info',
 						'default' => $user->getRealName(),
 						'section' => 'personal/info',
 						'label-message' => 'yourrealname',
@@ -164,7 +164,6 @@ class Preferences {
 					'help-message' => 'prefs-help-gender',
 				);
 
-		global $wgAuth;
 		if ($wgAuth->allowPasswordChange()) {
 			global $wgUser; // For skin.
 			$link = $wgUser->getSkin()->link( SpecialPage::getTitleFor( 'ResetPass' ),
@@ -253,7 +252,7 @@ class Preferences {
 		global $wgMaxSigChars;
 		$defaultPreferences['nickname'] =
 				array(
-					'type' => 'text',
+					'type' => $wgAuth->allowNickChange() ? 'text' : 'info',
 					'maxlength' => $wgMaxSigChars,
 					'label-message' => 'yournick',
 					'validation-callback' =>
@@ -274,7 +273,7 @@ class Preferences {
 		
 		$defaultPreferences['emailaddress'] =
 				array(
-					'type' => 'text',
+					'type' => $wgAuth->allowEmailChange() ? 'text' : 'info',
 					'default' => $user->getEmail(),
 					'section' => 'personal/email',
 					'label-message' => 'youremail',

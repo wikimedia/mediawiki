@@ -130,6 +130,33 @@ class AuthPlugin {
 	public function allowPasswordChange() {
 		return true;
 	}
+	
+	/**
+	 * Can users change their Real Name?
+	 *
+	 * @return bool
+	 */
+	public function allowRealNameChange() {
+		return false;
+	}
+
+	/**
+	 * Can users change their email address?
+	 *
+	 * @return bool
+	 */
+	public function allowEmailChange() {
+		return false;
+	}
+
+	/**
+	 * Can users change their Nickname?
+	 *
+	 * @return bool
+	 */
+	public function allowNickChange() {
+		return false;
+	}
 
 	/**
 	 * Set the given password in the authentication database.
