@@ -2,6 +2,14 @@ Change notes from older releases. For current info see RELEASE-NOTES.
 
 == MediaWiki 1.14 ==
 
+=== Changes since 1.14.0rc1 ===
+
+* Fixed the performance of the backlinks API module
+* (bug 17420) Send the correct content type from action=raw when the HTML file 
+  cache is enabled.
+* (bug 17437) Fixed incorrect link to web-based installer
+* (bug 17527) Fixed missing MySQL-specific options in installer
+
 === Configuration changes in 1.14 ===
 
 * $wgExemptFromUserRobotsControl is an array of namespaces to be exempt from

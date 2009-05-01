@@ -3,9 +3,9 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.15 ==
+== MediaWiki 1.15.0rc1 ==
 
-THIS IS NOT A RELEASE YET
+This is a release candidate for the the 2009 Q2 branch of MediaWiki. 
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -116,7 +116,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special:ListUsers: Sort list of usergroups by alphabet
 * (bug 16762) Special:Movepage now shows a list of subpages when possible
 * (bug 17585) Hide legend on Special:Specialpages from non-privileged users
-
 * Added $wgUseTagFilter to control enabling of filter-by-change-tag
 * (bug 17291) MediaWiki:Nocontribs now has an optional $1 parameter for the
   username
