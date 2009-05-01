@@ -105,7 +105,7 @@ class UserrightsPage extends SpecialPage {
 					
 					global $wgOut;
 					
-					$url = $this->getTitle( $this->mTarget )->getFullURL();
+					$url = $this->getSuccessURL();
 					$wgOut->redirect( $url );
 					return;
 				}
@@ -116,6 +116,10 @@ class UserrightsPage extends SpecialPage {
 		if( $this->mTarget ) {
 			$this->editUserGroupsForm( $this->mTarget );
 		}
+	}
+	
+	function getSuccessURL() {
+		return $this->getTitle( $this->mTarget )->getFullURL();
 	}
 
 	/**
