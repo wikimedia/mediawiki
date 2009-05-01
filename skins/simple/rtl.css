@@ -148,7 +148,6 @@ input#wpSave, input#wpDiff {
 }
 
 #userlogin {
-	float: right;
 	margin: 0 0 1em 3em;
 }
 /* Convenience links to edit block, delete and protect reasons */
