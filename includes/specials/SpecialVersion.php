@@ -111,12 +111,18 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return mixed
 	 */
-	public static function getVersion() {
+	public static function getVersion( $flags = ''  ) {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
-		$svn = self::getSvnRevision( $IP, false, false , false);
-		$svnCo = self::getSvnRevision( $IP, true, false , false);
-		$version = $svn ? $wgVersion . wfMsg( 'version-svn-revision', $svn, $svnCo ) : $wgVersion;
+		$svn = self::getSvnRevision( $IP, false, false , false );
+		$svnCo = self::getSvnRevision( $IP, true, false , false );
+		if ( !$svn ) {
+			$version = $wgVersion;
+		} elseif( $flags === 'nodb' ) {
+			$version = "$wgVersion ($svnCo)";
+		} else {
+			$version = $wgVersion . wfMsg( 'version-svn-revision', $svn, $svnCo );
+		}
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
