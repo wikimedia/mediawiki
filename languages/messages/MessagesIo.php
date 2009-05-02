@@ -519,6 +519,7 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'deletedrev'          => '[efacita]',
 'histfirst'           => 'Maxim anciena',
 'histlast'            => 'Maxim nova',
+'historysize'         => '({{PLURAL:$1|1 bicoko|$1 bicoki}})',
 'historyempty'        => '(vakua)',
 
 # Revision feed
@@ -540,6 +541,9 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'revdelete-hid'          => 'celis $1',
 'revdelete-unhid'        => 'revelis $1',
 'logdelete-log-message'  => '$1 por $2 {{PLURAL:$2|evento|eventi}}',
+
+# History merging
+'mergehistory-reason' => 'Motivo:',
 
 # Merge log
 'revertmerge' => 'Desmixar',
@@ -1017,6 +1021,7 @@ restauris ad lasta versiono da $2.',
 'protect-otherreason'    => 'Altra/suplementala motivo:',
 'protect-otherreason-op' => 'altra/suplementala motivo',
 'protect-expiry-options' => '1 horo:1 hour,1 dio:1 day,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite',
+'pagesize'               => '(bicoki)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redaktar',
@@ -1305,6 +1310,7 @@ Vu darfos adjuntar kauso en la rezumo.',
 
 'exif-subjectdistance-value' => '$1 metri',
 
+'exif-meteringmode-0'   => 'Nekonocata',
 'exif-meteringmode-1'   => 'Mez-valoro',
 'exif-meteringmode-255' => 'Altra',
 

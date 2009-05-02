@@ -2853,10 +2853,7 @@ There are no such extensions here, so look at [[wikipedia:Special:Version]] for 
 'version-hook-name'                => 'Shown in [[Special:Version]]',
 'version-hook-subscribedby'        => 'Shown in [[Special:Version]]',
 'version-version'                  => '{{Identical|Version}}',
-'version-svn-revision'             => 'This is being used in [[Special:Version]], preceeding the subversion revision numbers of both the core and the extensions loaded. By default, only the checkout revision number is displayed. However this messages could be customised to display the last modified directory revision number.
-
-* $1: last modified directory revision number
-* $2: checkout directory revision number
+'version-svn-revision'             => 'This is being used in [[Special:Version]], preceeding the subversion revision numbers of the extensions loaded inside brackets, like this: "({{int:version-revision}} r012345")
 
 {{Identical|Revision}}',
 'version-software-product'         => 'Shown in [[Special:Version]]',

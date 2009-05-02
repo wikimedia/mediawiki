@@ -730,6 +730,7 @@ $1 საათში.',
 'deletedhist'               => 'წაშლილი ისტორია',
 'revdelete-content'         => 'შინაარსი',
 'revdelete-uname'           => 'მომხმარებლის სახელი',
+'revdelete-hid'             => 'დამალა $1',
 
 # History merging
 'mergehistory'                => 'გვერდების ისტორიის შერწყმა',

@@ -1175,6 +1175,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-misc'                => 'Andre',
 'prefs-resetpass'           => 'Endra passord',
 'prefs-email'               => 'Val for e-post',
+'prefs-rendering'           => 'Utsjånad',
 'saveprefs'                 => 'Lagre',
 'resetprefs'                => 'Rull attende',
 'restoreprefs'              => 'Hent attende alle standardinnstillingane',
@@ -1240,6 +1241,8 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-help-email'          => 'Å oppgje e-postadresse er valfritt, men lar deg ta i mot nytt passord om du gløymer det gamle. 
 Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di utan å røpe identiteten din.',
 'prefs-help-email-required' => 'E-postadresse må oppgjevast.',
+'prefs-info'                => 'Grunnleggjande informasjon',
+'prefs-i18n'                => 'Internasjonalisering',
 'prefs-signature'           => 'Signatur',
 
 # User rights
@@ -3114,6 +3117,7 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'dberr-cachederror' => 'Fylgjande er ein mellomlagra kopi av den etterspurde sida, og er, kan henda, ikkje den siste versjonen av ho.',
 
 # HTML forms
+'htmlform-reset'               => 'Gjer om endringar',
 'htmlform-selectorother-other' => 'Andre',
 
 );

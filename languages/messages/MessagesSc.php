@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andria
  * @author Marzedu
  * @author לערי ריינהארט
  */
@@ -191,7 +192,7 @@ $messages = array(
 'specialpage'       => 'Pàgina Ispetziale',
 'personaltools'     => 'Istrumentos personales',
 'postcomment'       => 'Setzione noa',
-'articlepage'       => "Castia s'artìculu",
+'articlepage'       => "Càstia s'artìculu",
 'talk'              => 'Cuntierras',
 'views'             => 'Bisuras',
 'toolbox'           => 'Istrumentos',
@@ -305,7 +306,7 @@ Pro praxeri signala s\'acuntèssiu a unu [[Special:ListUsers/sysop|aministradore
 'cannotdelete'       => "Impossibile cancellare la pagina o l'immagine richiesta.",
 'badtitle'           => 'Titolo non corretto',
 'badtitletext'       => "Su tìtulu de sa pagina c'as pediu est bùidu, isbaliau, o iscritu ne is cullegamentus inter-wiki in modu non curregiu o cun carateres no amitius.",
-'viewsource'         => 'Castia mitza',
+'viewsource'         => 'Càstia mitza',
 'viewsourcefor'      => 'pro $1',
 
 # Login and logout pages
@@ -445,7 +446,7 @@ Cun s'imbiu de custu iscritu ses garantende, a responsabilidade tua, chi s'iscri
 S'arregistru de is fuliaduras e moviduras de sa pàgina est amostau pro informatzione.",
 
 # History pages
-'viewpagelogs'           => 'Castia sos registros de custa pàgina',
+'viewpagelogs'           => 'Càstia sos registros de custa pàgina',
 'nohistory'              => 'Cronologia delle versioni di questa pagina non reperibile.',
 'currentrev'             => 'Versione currenti',
 'currentrev-asof'        => 'Versioni currenti de is $1',
@@ -803,12 +804,12 @@ oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.',
 'watchnologin'      => 'No intrau (log in)',
 'watchnologintext'  => 'Devi prima fare il [[Special:UserLogin|login]]
 per modificare la tua lista di osservati speciali.',
-'addedwatch'        => 'Aciùngiu a sa watchlist tua',
+'addedwatch'        => 'Aciùntu a sa watchlist tua',
 'addedwatchtext'    => "Sa pàgina \"[[:\$1]]\" est istada aciunta a sa [[Special:Watchlist|watchlist]] tua. 
 Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere elencadas inoe, e su tìtulu at a aparire in '''grassetto''' in sa pàgina de is [[Special:RecentChanges|ùrtimas mudàntzias]] pro du bidere mengius.",
 'removedwatch'      => 'Tirau dae sa watchlist tua',
 'removedwatchtext'  => 'Sa pàgina  "[[:$1]]" est istada tirada dae sa [[Special:Watchlist|watchlist tua]].',
-'watch'             => 'Poni in sa watchlist',
+'watch'             => 'Pone in sa watchlist',
 'watchthispage'     => 'Pone ogru a custu artìculu',
 'unwatch'           => 'Tira dae sa watchlist',
 'unwatchthispage'   => 'Boga custa pàgina dae sa watchlist tua',
@@ -836,12 +837,12 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 Pro pregheri, cunfirma ca est intentzioni tua faghere custu, ca connosches is conseguentzias de s'atzione tua, a ca custa est cunforme a is [[{{MediaWiki:Policy-url}}|lìnias polìtigas]].",
 'actioncomplete'        => 'Atzione cumpletada',
 'deletedtext'           => 'Sa pàgina "<nowiki>$1</nowiki>" est istada fuliada.
-Castia su log $2 pro unu registru de is ùrtimas fuliaduras.',
+Càstia su log $2 pro unu registru de is ùrtimas fuliaduras.',
 'deletedarticle'        => 'at fuliau "[[$1]]"',
 'dellogpage'            => 'Burraduras',
 'dellogpagetext'        => 'Qui di seguito, un elenco delle pagine cancellate di recente.
 Tutti i tempi sono in ora del server.',
-'reverted'              => 'Torrada a sa versione innantis',
+'reverted'              => 'Torrada a sa versione in antis',
 'deletecomment'         => 'Motivu de sa burradura:',
 'deleteotherreason'     => 'Àteru motivu o motivu agiuntivu:',
 'deletereasonotherlist' => 'Àteru motivu',
@@ -862,7 +863,7 @@ s'ùrtimu contribudori est s'ùnicu autori de custa pàgina.",
 'protectexpiry'               => 'Iscadèntzia:',
 'protect_expiry_invalid'      => "S'iscadèntzia est imbàlida.",
 'protect_expiry_old'          => 'Iscadentzia giai passada.',
-'protect-unchain'             => 'Sblocca is permissos de movere',
+'protect-unchain'             => 'Sblocca is permissos de mòvere',
 'protect-text'                => "Custu modulu serbit pro castiari e cambiari su livellu de amparadura de sa pàgina '''<nowiki>$1</nowiki>'''.",
 'protect-locked-access'       => "Non tenes su permissu pro cambiare is livellus de amparadura de sa pàgina. 
 Is impostatziones atuales pro sa pàgina '''$1''':",
@@ -890,10 +891,10 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 'undeletebtn'               => 'Ripristina',
 'undeletelink'              => 'càstia/riprìstina',
 'undeletecomment'           => 'Cummentu:',
-'undeletedarticle'          => 'Restaurada "$1"',
+'undeletedarticle'          => 'at restauradu "$1"',
 'undelete-search-box'       => 'Chirca pàginas fuliadas',
 'undelete-search-submit'    => 'Chirca',
-'undelete-show-file-submit' => 'Eia',
+'undelete-show-file-submit' => 'Eja',
 
 # Namespace form on various pages
 'namespace'      => 'Nòmene-logu:',
@@ -907,8 +908,8 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 'contribsub2'         => 'Pro $1 ($2)',
 'nocontribs'          => 'Nessuna modifica trovata conformemente a questi criteri.',
 'uctop'               => '(ùrtimu de sa pàgina)',
-'month'               => 'Dae su mese (e innantis):',
-'year'                => "Dae s'annu (e innantis):",
+'month'               => 'Dae su mese (e in antis):',
+'year'                => "Dae s'annu (e in antis):",
 
 'sp-contributions-newbies'  => 'Amosta isceti is contributziones de is accounts nous',
 'sp-contributions-blocklog' => 'registru de is bloccos',
@@ -927,7 +928,7 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 'isredirect'               => 'redirect',
 'istemplate'               => 'inclusione',
 'isimage'                  => 'acàpiu pintura',
-'whatlinkshere-prev'       => '{{PLURAL:$1|cabidianu|cabidianos $1}}',
+'whatlinkshere-prev'       => '{{PLURAL:$1|cabudianu|cabudianos $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|imbeniente|imbenientes $1}}',
 'whatlinkshere-links'      => '← acàpius',
 'whatlinkshere-hideredirs' => '$1 redirects',
@@ -1075,7 +1076,7 @@ Podes castiare sa mitza sua',
 'tooltip-ca-nstab-special'        => 'Custa est una pàgina ispetziale, non da podes acontzare',
 'tooltip-ca-nstab-project'        => 'Càstia sa pàgina de servìtziu',
 'tooltip-ca-nstab-image'          => 'Càstia sa pàgina de su file',
-'tooltip-ca-nstab-template'       => 'Castia su template',
+'tooltip-ca-nstab-template'       => 'Càstia su template',
 'tooltip-ca-nstab-category'       => 'Càstia sa pàgina de sa categoria',
 'tooltip-minoredit'               => 'Signa comente acontzu minore',
 'tooltip-save'                    => 'Sarva is mudàntzias tuas',
@@ -1202,7 +1203,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Càstia mudàntzias de importu',
-'watchlisttools-edit' => 'Castia e acontza sa watchlist',
+'watchlisttools-edit' => 'Càstia e acontza sa watchlist',
 'watchlisttools-raw'  => 'Acontza sa watchlist dae su testu',
 
 # Signatures

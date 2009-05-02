@@ -501,7 +501,16 @@ $messages = array(
 'powersearch'               => 'શોધો (વધુ પર્યાય સાથે)',
 'powersearch-legend'        => 'વધુ પર્યાયો સાથે શોધો',
 'powersearch-ns'            => 'નામસ્થળોમાં શોધો:',
+'powersearch-redir'         => 'રીડાયરેક્ટ પાનાંની યાદી બતાવો.',
 'powersearch-field'         => 'નાં માટે શોધો',
+'search-external'           => 'બાહ્ય શોધ',
+'searchdisabled'            => "{{SITENAME}} ઉપર શોધ બંધ કરી દેવામાં આવી છે.
+ત્યાં સુધી તમે ગુગલ દ્વારા શોધ કરી શકો.
+'''નોંધઃ'''{{SITENAME}}નાં તેમના (ગુગલના) ઈન્ડેક્સ જુના હોઇ શકે.",
+
+# Quickbar
+'qbsettings'      => 'શીઘ્રપટ્ટ',
+'qbsettings-none' => 'કોઇપણ નહીં',
 
 # Preferences page
 'preferences'         => 'પસંદ',
@@ -968,7 +977,7 @@ $messages = array(
 
 'exif-lightsource-0' => 'અજાણ્યો',
 
-'exif-gaincontrol-0' => 'નથી',
+'exif-gaincontrol-0' => 'જરાપણ નહી',
 
 'exif-saturation-0' => 'સામાન્ય',
 

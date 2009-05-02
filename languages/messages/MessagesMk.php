@@ -14,6 +14,7 @@
  * @author Glupav
  * @author INkubusse
  * @author Misos
+ * @author Spacebirdy
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -1491,8 +1492,8 @@ $2',
 
 За да вклучите слика во страница, користете врска во некој од следниве формати:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' за верзија на сликата во целосна големина
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki><tt>''' за верзија на сликата со големина од 200 пиксели рендерирана во соодветна кутија, со опис како што е наведено во '''alt text'''
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki><tt>''' за директно поврзување со податотеката без нејзино прикажување",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' за верзија на сликата со големина од 200 пиксели рендерирана во соодветна кутија, со опис како што е наведено во '''alt text'''
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' за директно поврзување со податотеката без нејзино прикажување",
 'upload-permitted'            => 'Дозволени типови на податотеки: $1.',
 'upload-preferred'            => 'Преферирани типови на податотеки: $1.',
 'upload-prohibited'           => 'Забранети типови на податотеки: $1.',

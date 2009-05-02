@@ -3023,7 +3023,7 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 
 # Auto-summaries
 'autosumm-blank'   => 'Pagina vacuate',
-'autosumm-replace' => "Reimplacia contento del pagina con '$1'",
+'autosumm-replace' => "Contento reimplaciate per '$1'",
 'autoredircomment' => 'Redirection verso [[$1]]',
 'autosumm-new'     => "Pagina create con '$1'",
 
