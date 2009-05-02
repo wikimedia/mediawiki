@@ -546,7 +546,7 @@ class LogPager extends ReverseChronologicalPager {
 	private function limitType( $types ) {
 		global $wgLogRestrictions, $wgUser;
 		// If $types is not an array, make it an array
-		$types = (array)$types;
+		$types = ($types === '') ? array() : (array)$types;
 		// Don't even show header for private logs; don't recognize it...
 		foreach ( $types as $type ) {
 			if( isset( $wgLogRestrictions[$type] ) && !$wgUser->isAllowed($wgLogRestrictions[$type]) ) {
@@ -560,7 +560,7 @@ class LogPager extends ReverseChronologicalPager {
 		if( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
 		}
-		if( $types ) {
+		if( count($types) > 0 ) {
 			$this->type = $types;
 			$this->mConds['log_type'] = $types;
 		}
