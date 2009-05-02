@@ -58,6 +58,9 @@ class ApiEditPage extends ApiBase {
 		$titleObj = Title::newFromText($params['title']);
 		if(!$titleObj)
 			$this->dieUsageMsg(array('invalidtitle', $params['title']));
+		// Some functions depend on $wgTitle == $ep->mTitle
+		global $wgTitle;
+		$titleObj = $wgTitle;
 
 		if($params['createonly'] && $titleObj->exists())
 			$this->dieUsageMsg(array('createonly-exists'));
@@ -197,10 +200,6 @@ class ApiEditPage extends ApiBase {
 		# Do the actual save
 		$oldRevId = $articleObj->getRevIdFetched();
 		$result = null;
-		# *Something* is setting $wgTitle to a title corresponding to "Msg",
-		# but that breaks API mode detection through is_null($wgTitle)
-		global $wgTitle;
-		$wgTitle = null;
 		# Fake $wgRequest for some hooks inside EditPage
 		# FIXME: This interface SUCKS
 		$oldRequest = $wgRequest;
