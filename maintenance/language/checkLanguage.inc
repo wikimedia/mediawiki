@@ -418,7 +418,7 @@ ENDS;
 
 		$tableRows = implode( "\n|-\n", $rows );
 
-		$version = SpecialVersion::getVersion( $IP );
+		$version = SpecialVersion::getVersion( 'nodb' );
 		echo <<<EOL
 '''Check results are for:''' <code>$version</code>
 
