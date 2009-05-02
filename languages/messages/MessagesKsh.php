@@ -551,8 +551,13 @@ Ussinn un de Wööt ändere met dänne et Wiki op de Metmaacher un de
 Besöker drop aankütt!
 
 Wann De die en Ding Shprooch övveräze wellß, do jangk op
-[http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net],
-woh et MediaWiki Ingerfäiß en alle Shprooche översaz weedt.',
+[http://translatewiki.net/wiki/Main_Page?setlang=ksh translatewiki.net],
+woh et MediaWiki Ingerfäiß en alle Shprooche översaz weedt.
+
+Wann De weße wells, wat dä Täx he bedügg, do häß De en Schangß, dat De op
+http://www.mediawiki.org/wiki/Manual:Interface/{{BASEPAGENAMEE}}?setlang=ksh
+jet doh drövver fenge kanns, udder op
+http://translatewiki.net/wiki/MediaWiki:{{BASEPAGENAMEE}}/qqq?setlang=ksh',
 'sqlhidden'            => "(Dä SQL_Befähl du'mer nit zeije)",
 'cascadeprotected'     => 'Die Sigg es jeschöz, un mer kann se nit ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:
 $2',
@@ -1307,7 +1312,7 @@ de Versione uß de Fojangeheit, un de Logbööcher — als Standad:',
 'default'                   => 'Standaad',
 'prefs-files'               => 'Dateie',
 'prefs-custom-css'          => 'Selfsjemaat <i lang="en">Cascading Style Sheet</i>',
-'prefs-custom-js'           => 'Selfsjemaat JavaSkipp',
+'prefs-custom-js'           => 'Selfsjemaat JavaSkripp',
 'prefs-reset-intro'         => 'Op dä Sigg kanns De Ding Enstellunge op dämm Wiki singe Shandatt setze lohße. Ävver Opjepaß: Do jidd et keine „Retuur“-Knopp för!',
 'prefs-emailconfirm-label'  => 'Beshtätejung övver <i lang="en">e-mail</i>:',
 'prefs-textboxsize'         => 'Et Feld för et Afschnedde un Sigge ändere',

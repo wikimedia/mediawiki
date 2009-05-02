@@ -1113,7 +1113,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-misc'                => 'Altres preferències',
 'prefs-resetpass'           => 'Canvia la contrasenya',
 'prefs-email'               => 'Opcions de correu electrònic',
-'prefs-rendering'           => 'Renderització de les pàgines',
+'prefs-rendering'           => 'Aparença',
 'saveprefs'                 => 'Desa les preferències',
 'resetprefs'                => 'Esborra els canvis no guardats',
 'restoreprefs'              => 'Restaura les preferències per defecte',
@@ -1158,6 +1158,8 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-custom-js'           => 'JS personalitzat',
 'prefs-reset-intro'         => 'Podeu usar aquesta pàgina per a restablir les vostres preferències als valors per defecte.
 No es podrà desfer el canvi.',
+'prefs-emailconfirm-label'  => 'Confirmació de correu electrònic:',
+'prefs-textboxsize'         => "Mida de la caixa d'edició",
 'youremail'                 => 'Adreça electrònica *',
 'username'                  => "Nom d'usuari:",
 'uid'                       => "Identificador d'usuari:",
@@ -1180,6 +1182,9 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'prefs-help-email'          => "L'adreça electrònica és opcional, però permet l'enviament d'una nova contrasenya en cas d'oblit de l'actual.
 També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuari o de discussió, sense que així calgui revelar la vostra identitat.",
 'prefs-help-email-required' => 'Cal una adreça de correu electrònic.',
+'prefs-info'                => 'Informació bàsica',
+'prefs-i18n'                => 'Internacionalització',
+'prefs-signature'           => 'Signatura',
 
 # User rights
 'userrights'                  => "Gestió dels permisos d'usuari",

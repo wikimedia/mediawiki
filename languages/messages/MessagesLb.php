@@ -1919,6 +1919,8 @@ Klickt op '''''Reset''''' fir d'Kommentarfeld eidel ze maachen an d'Kreep aus al
 'undeleterevisions'            => '{{PLURAL:$1|1 Versioun|$1 Versiounen}} archivéiert',
 'undeletehistory'              => 'Wann Dir dës Säit restauréiert, ginn och all déi al Versioune restauréiert.
 Wann zënter dem Läschen eng nei Säit mat dem selweschten Numm ugeluecht gouf, ginn déi restauréiert Versioune chronologesch an den Historique agedro.',
+'undeleterevdel'               => "D'Restauratioun gëtt net gemaach wann dëst dozou féiert datt déi aktuell Versioun vun der Säit oder vum Fichier deelweis geläscht gëtt.
+An esou Fäll däerf déi neiste Versioun net markéiert ginn oder déi neiste geläschte Versioun muss nees ugewise ginn.",
 'undeletehistorynoadmin'       => "Dës Säit gouf geläscht. De Grond fir d'Läsche gesitt der ënnen, zesumme mat der Iwwersiicht vun den eenzele Versioune vun der Säit an hiren Auteuren. Déi verschidden Textversioune kënnen awer just vun Administrateure gekuckt a restauréiert ginn.",
 'undelete-revision'            => 'Geläschte Versioun vun $1 (Versioun  vum $4 um $5 Auer) vum $3:',
 'undeleterevision-missing'     => "Ongëlteg oder Versioun déi feelt. Entweder ass de Link falsch oder d'Versioun gouf aus dem Archiv restauréiert oder geläscht.",
@@ -2172,7 +2174,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'move-redirect-suppressed'     => 'Viruleedung ewechgehol',
 'movelogpage'                  => 'Réckellëscht',
 'movelogpagetext'              => 'Dëst ass eng Lëscht vun alle geréckelte Säiten.',
-'movesubpage'                  => 'Ënnersäiten',
+'movesubpage'                  => '{{PLURAL:$1|Ënnersäit|Ënnersäiten}}',
 'movesubpagetext'              => 'Dës Säit huet $1 {{PLURAL:$1|Ënnersäit|Ënnersäiten}} déi hei ënnendrënner stinn.',
 'movenosubpage'                => 'Dës Säit huet keng Ënnersäiten.',
 'movereason'                   => 'Grond:',

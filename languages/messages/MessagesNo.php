@@ -21,6 +21,7 @@
  * @author Kph-no
  * @author Laaknor
  * @author Najami
+ * @author Piivaat
  * @author Samuelsen
  * @author Stigmj
  * @author Teak
@@ -1054,7 +1055,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'prefsnologintext'          => 'Du må være <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logget inn]</span> for å endre brukerinnstillingene.',
 'changepassword'            => 'Endre passord',
 'prefs-skin'                => 'Utseende',
-'skin-preview'              => 'forhåndsvisning',
+'skin-preview'              => 'Forhåndsvisning',
 'prefs-math'                => 'Matteformler',
 'dateformat'                => 'Datoformat',
 'datedefault'               => 'Ingen foretrukket',

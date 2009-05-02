@@ -85,6 +85,7 @@ $messages = array(
 'search'            => 'Lorg',
 'searchbutton'      => 'Lorg',
 'go'                => 'Rach',
+'searcharticle'     => 'Rach',
 'history'           => 'Eachdraidh dhuilleag',
 'history_short'     => 'Eachdraidh',
 'info_short'        => 'Fiosrachadh',
@@ -130,12 +131,15 @@ $messages = array(
 'portal'               => 'Doras na Coimhearsnachd',
 'portal-url'           => 'Project:Doras na coimhearsnachd',
 'privacy'              => 'Polasaidh uaigneachd',
+'privacypage'          => 'Project:Polasaidh uaigneachd',
 
 'retrievedfrom'           => 'Air tarraing à "$1"',
+'youhavenewmessages'      => 'Tha $1 ($2) agad.',
 'newmessageslink'         => 'teachdaireachdan ùra',
 'newmessagesdifflink'     => 'mùthadh mu dheireadh',
 'youhavenewmessagesmulti' => 'Tha teachdaireachdan ùra agad ann an $1',
 'editsection'             => 'deasaich',
+'editlink'                => 'deasaich',
 'toc'                     => 'Clàr-innse',
 'showtoc'                 => 'nochd',
 'hidetoc'                 => 'falaich',
@@ -167,11 +171,13 @@ $messages = array(
 'yourname'                   => "D' ainm-cleachdaidh",
 'yourpassword'               => 'Am facal-faire agad',
 'yourpasswordagain'          => 'Ath-sgrìobh facal-faire',
+'remembermypassword'         => 'Cuimhnichear air a’ choimpiutair seo gu bheil mi logged a-stigh',
 'login'                      => 'Log a-steach',
 'nav-login-createaccount'    => 'Log a-steach / Cruthaich cunntas',
 'userlogin'                  => 'Log a-steach',
 'logout'                     => 'Log a-mach',
 'userlogout'                 => 'Log a-mach',
+'nologinlink'                => 'Cruthaich cunntas',
 'createaccount'              => 'Cruthaich cunntas ùr',
 'loginerror'                 => 'Mearachd log a-steach',
 'noname'                     => 'Chan eil thu air ainm-cleachdair iomchaidh a chomharrachadh.',
@@ -194,29 +200,37 @@ $messages = array(
 'media_sample'    => 'Eisimpleir.ogg',
 
 # Edit pages
-'summary'         => 'Geàrr-chùnntas:',
-'subject'         => 'Cuspair/ceann-loidhne:',
-'minoredit'       => 'Seo mùthadh beag',
-'watchthis'       => 'Cùm sùil air an aithris seo',
-'savearticle'     => 'Sàbhail duilleag',
-'preview'         => 'Roi-shealladh',
-'showpreview'     => 'Nochd roi-shealladh',
-'showdiff'        => 'Seall atharrachaidhean',
-'blockedtitle'    => 'Tha an cleachdair air a bhacadh',
-'loginreqlink'    => 'log a-steach',
-'accmailtitle'    => 'Facal-faire air a chur.',
-'accmailtext'     => "Tha am facal-faire aig '$1' air a chur ri $2.",
-'newarticle'      => '(Ùr)',
-'noarticletext'   => '(Chan eil teacsa sam bith anns an duilleag seo a-nis)',
-'updated'         => '(Nua-dheasaichte)',
-'previewnote'     => "'''Cuimhnich nach e ach roi-shealladh a tha seo, agus chan eil e air a shàbhaladh fhathast!'''",
-'editing'         => "A' deasaicheadh $1",
-'editconflict'    => 'Mì-chòrdadh deasachaidh: $1',
-'explainconflict' => "Tha cuideigin eile air an duilleig seo a mhùthadh o'n thòisich tu fhèin a dheasaicheadh. Tha am bocsa teacsa shuas a' nochdadh na duilleig mar a tha e an dràsda. Tha na mùthaidhean agadsa anns a' bhocsa shios. Feumaidh tu na mùthaidhean agad a choimeasgachadh leis an teacsa làithreach. Cha tèid <b>ach an teacsa shuas</b> a shàbhaladh an uair a bhriogas tu \"Sàbhail duilleag\".<p>",
-'yourtext'        => 'An teacsa agad',
-'storedversion'   => 'Lethbhreac taisgte',
-'editingold'      => "'''RABHADH: Tha thu a' deasaicheadh lethbhreac sean-aimsireil na duilleig seo. Ma shàbhalas tu e, bithidh uile na mùthaidhean dèanta as dèidh an lethbhreac seo air chall.'''",
-'yourdiff'        => 'Caochlaidhean',
+'summary'           => 'Geàrr-chùnntas:',
+'subject'           => 'Cuspair/ceann-loidhne:',
+'minoredit'         => 'Seo mùthadh beag',
+'watchthis'         => 'Cùm sùil air an aithris seo',
+'savearticle'       => 'Sàbhail duilleag',
+'preview'           => 'Roi-shealladh',
+'showpreview'       => 'Nochd roi-shealladh',
+'showdiff'          => 'Seall atharrachaidhean',
+'blockedtitle'      => 'Tha an cleachdair air a bhacadh',
+'loginreqlink'      => 'log a-steach',
+'accmailtitle'      => 'Facal-faire air a chur.',
+'accmailtext'       => "Tha am facal-faire aig '$1' air a chur ri $2.",
+'newarticle'        => '(Ùr)',
+'noarticletext'     => '(Chan eil teacsa sam bith anns an duilleag seo a-nis)',
+'updated'           => '(Nua-dheasaichte)',
+'previewnote'       => "'''Cuimhnich nach e ach roi-shealladh a tha seo, agus chan eil e air a shàbhaladh fhathast!'''",
+'editing'           => "A' deasaicheadh $1",
+'editconflict'      => 'Mì-chòrdadh deasachaidh: $1',
+'explainconflict'   => "Tha cuideigin eile air an duilleig seo a mhùthadh o'n thòisich tu fhèin a dheasaicheadh. Tha am bocsa teacsa shuas a' nochdadh na duilleig mar a tha e an dràsda. Tha na mùthaidhean agadsa anns a' bhocsa shios. Feumaidh tu na mùthaidhean agad a choimeasgachadh leis an teacsa làithreach. Cha tèid <b>ach an teacsa shuas</b> a shàbhaladh an uair a bhriogas tu \"Sàbhail duilleag\".<p>",
+'yourtext'          => 'An teacsa agad',
+'storedversion'     => 'Lethbhreac taisgte',
+'editingold'        => "'''RABHADH: Tha thu a' deasaicheadh lethbhreac sean-aimsireil na duilleig seo. Ma shàbhalas tu e, bithidh uile na mùthaidhean dèanta as dèidh an lethbhreac seo air chall.'''",
+'yourdiff'          => 'Caochlaidhean',
+'copyrightwarning'  => "Tha uile na cuideachaidhean ri {{SITENAME}} air an leigeil mu sgaoil fo chùmhnantan $2 a' Chead GNU Aithriseachd Saor (GFDL) (seall $1 airson barrachd fiosrachaidh). 
+Mur eil thu ag iarraidh an sgrìobhaidh agad a dheasaichear is a sgaoilear le càch,  na cuir e.<br />
+Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu fhèin e, no gur ann às an raon phòballach a thàinig e; thoir aire '''nach eil''' sin a' gabhail a-staigh duilleagan-lìn mar as àbhaist.<br />
+'''NA CLEACHDAIBH SAOTHAIR FO DHLIGHE-SGRÌOBHAIDH GUN CHEAD!'''",
+'copyrightwarning2' => "Ged a thatar gur moladh {{SITENAME}} a chruthachadh, a mheudachadh, is a leasachadh, thèid droch dheasaicheidhean a chur air imrich gu luath. 
+Mur eil thu ag iarraidh an sgrìobhaidh agad a dheasaichear is a sgaoilear le càch, na cuir e.<br />
+Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu fhèin e, no gur ann às an raon phòballach a thàinig e; thoir aire '''nach eil''' sin a' gabhail a-staigh duilleagan-lìn mar as àbhaist (seall $1 airson barrachd fiosrachaidh). <br />
+'''NA CLEACHDAIBH SAOTHAIR FO DHLIGHE-SGRÌOBHAIDH GUN CHEAD!'''",
 
 # History pages
 'nohistory'  => 'Chan eil eachdraidh deasachaidh aig an duilleig seo.',
@@ -285,7 +299,8 @@ $messages = array(
 'boteditletter'     => 'r',
 
 # Recent changes linked
-'recentchangeslinked' => 'Mùthaidhean buntainneach',
+'recentchangeslinked'      => 'Mùthaidhean buntainneach',
+'recentchangeslinked-page' => 'Ainm na duilleige:',
 
 # Upload
 'upload'        => 'Cuir ri fhaidhle',
@@ -299,6 +314,9 @@ $messages = array(
 
 # Special:ListFiles
 'listfiles' => 'Liosta nan ìomhaigh',
+
+# File description page
+'filehist-user' => 'Neach-cleachdaidh',
 
 # Random page
 'randompage' => 'Duilleag thuairmeach',
@@ -320,12 +338,16 @@ $messages = array(
 'move'                    => 'Gluais',
 'movethispage'            => 'Gluais an duilleag seo',
 
+# Book sources
+'booksources-go' => 'Rach',
+
 # Special:Log
 'all-logs-page' => 'Clàraidhean',
 
 # Special:AllPages
-'allpages' => 'Duilleagan uile',
-'nextpage' => 'An ath dhuilleag ($1)',
+'allpages'       => 'Duilleagan uile',
+'nextpage'       => 'An ath dhuilleag ($1)',
+'allpagessubmit' => 'Rach',
 
 # Special:Categories
 'categories'         => 'Gnethan',
@@ -343,9 +365,9 @@ $messages = array(
 'mywatchlist'        => 'Mo chlàr-faire',
 'nowatchlist'        => "Chan eil altan air d' fhaire.",
 'addedwatch'         => 'Cuirte ri coimheadlìosta',
-'addedwatchtext'     => "Tha an duilleag \"[[:\$1]]\" cuirte ri [[Special:Watchlist|ur faire]] agaibh.  Ri teachd, bith chuir an àireamh an-sin mùthadhan na duilleag sin agus a'dhuilleag \"Talk\", agus bith a'dhuilleag '''tromte''' anns an [[Special:RecentChanges|lìosta nan mùthadhan ùra]] a dh'fhurasdaich i a sheall.
+'addedwatchtext'     => "Tha an duilleag \"[[:\$1]]\" cuirte ri [[Special:Watchlist|do fhaire]] agad.  Ri teachd, bith chuir an àireamh an-sin mùthaidhean na duilleige sin agus a' dhuilleag \"Talk\", agus bith an duilleag '''tromte''' ann an [[Special:RecentChanges|lìosta nam mùthaidhean ùra]] a dh'fhurasdaich i a sheall.
 
-<p> Ma bu toil leibh a dhubh a\\'dhuilleag as ur faire agaibh nas fadalache, cnap air \"Caisg a\\' coimhead\" air an taobh-colbh.",
+<p> Ma bu toil leat a dhubh an\\ duilleag as do  fhaire agad nas fadalache, cnap air \"Caisg a\\' coimhead\" air an taobh-colbh.",
 'watch'              => 'Faire',
 'watchthispage'      => 'Cùm sùil air an duilleag seo',
 'watchnochange'      => "Cha deach na duilleagan air d' fhaire a dheasachadh anns a' chuairt ùine taisbeanta.",
@@ -376,7 +398,7 @@ $messages = array(
 'revertpage'  => 'Tillte deasachadh aig [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]]) ais ri lethbhreac mu dheireadh le [[User:$1|$1]]',
 
 # Protect
-'protectedarticle'   => 'dìonta [[$1]]',
+'protectedarticle'   => 'dìonta "[[$1]]"',
 'unprotectedarticle' => '"[[$1]]" neo-dhìonta',
 'protect-title'      => 'A\' dìonadh "$1"',
 'prot_1movedto2'     => '[[$1]] gluaiste ri [[$2]]',
@@ -393,11 +415,14 @@ $messages = array(
 'mycontris' => 'Mo chuideachaidhean',
 'uctop'     => ' (bàrr)',
 
-'sp-contributions-talk' => 'Deasbaireachd',
+'sp-contributions-talk'     => 'Deasbaireachd',
+'sp-contributions-username' => 'Seòladh IP no ainm-cleachdair:',
+'sp-contributions-submit'   => 'Lorg',
 
 # What links here
-'whatlinkshere' => "Dè tha a' ceangal ri seo?",
-'isredirect'    => 'duilleag ath-stiùireidh',
+'whatlinkshere'      => "Dè tha a' ceangal ri seo?",
+'whatlinkshere-page' => 'Duilleag:',
+'isredirect'         => 'duilleag ath-stiùireidh',
 
 # Block/unblock
 'blockip'            => 'Bac cleachdair',
@@ -448,13 +473,14 @@ $messages = array(
 'importnotext' => 'Falamh no gun teacsa',
 
 # Tooltip help for the actions
-'tooltip-pt-logout'   => 'Log a-mach',
-'tooltip-n-mainpage'  => "Tadhail air a' Phrìomh-Dhuilleig",
-'tooltip-n-portal'    => "Mun phròiseact, na 's urrainn dhuit dhèanamh, far an lorgar nithean",
-'tooltip-t-emailuser' => 'Cuir p-d dhan neach-cleachdaidh seo',
-'tooltip-minoredit'   => 'Comharraich seo mar meanbh-dheasachadh',
-'tooltip-save'        => 'Sàbhail na mùthaidhean agad',
-'tooltip-preview'     => 'Roi-sheallaibh na mùthaidhean agad; cleachd seo mas sàbhail thu iad!',
+'tooltip-pt-logout'       => 'Log a-mach',
+'tooltip-n-mainpage'      => "Tadhail air a' Phrìomh-Dhuilleig",
+'tooltip-n-portal'        => "Mun phròiseact, na 's urrainn dhuit dhèanamh, far an lorgar nithean",
+'tooltip-n-recentchanges' => 'Liosta nam mùthaidhean ùra aig an wiki.',
+'tooltip-t-emailuser'     => 'Cuir p-d dhan neach-cleachdaidh seo',
+'tooltip-minoredit'       => 'Comharraich seo mar meanbh-dheasachadh',
+'tooltip-save'            => 'Sàbhail na mùthaidhean agad',
+'tooltip-preview'         => 'Roi-sheallaibh na mùthaidhean agad; cleachd seo mas sàbhail thu iad!',
 
 # Attribution
 'othercontribs' => 'Stèidhichte air obair le $1.',

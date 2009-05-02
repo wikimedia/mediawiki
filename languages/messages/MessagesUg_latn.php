@@ -45,22 +45,22 @@ $messages = array(
 'searcharticle'    => 'Kuchush',
 'history_short'    => 'Tarih',
 'printableversion' => 'Basma Nushisi',
-'permalink'        => 'Manguluk Bet',
+'permalink'        => 'Menggülük bet',
 'edit'             => 'Uzgartish',
 'delete'           => 'Yukhutush',
 'protect'          => 'Koghdash',
 'talkpagelinktext' => 'Monazire',
 'talk'             => 'Monazire',
-'toolbox'          => 'Kural Sandukleri',
-'otherlanguages'   => 'Bashkha tillarda',
+'toolbox'          => 'Qural sanduqlari',
+'otherlanguages'   => 'Bashqa tillarda',
 'jumptosearch'     => 'izdash',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'        => 'Hazirkhi Wakhalar',
+'currentevents'        => 'Hazirqi weqeler',
 'edithelp'             => 'Uzgartish yardemi',
 'mainpage'             => 'Bash Bet',
 'mainpage-description' => 'Bash Bet',
-'portal'               => 'Tor Jamiyeti',
+'portal'               => 'Tor Jemiyiti',
 
 'ok'             => 'MAQUL',
 'editsection'    => 'uzgartish',
@@ -108,14 +108,14 @@ $messages = array(
 'email'                 => 'Élxet:',
 
 # Recent changes
-'recentchanges' => 'Yengi Uzgurush',
+'recentchanges' => 'Yéngi özgirish',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Yekhinkhi Uzgurushler',
+'recentchangeslinked'      => 'Yéqinqi özgirishler',
 'recentchangeslinked-page' => 'Betning ismi:',
 
 # Upload
-'upload'          => 'Yengi Hujjat Kirguzush',
+'upload'          => 'Yéngi höjjet kirgüzush',
 'uploadbtn'       => 'Yengi Hujjat Kirguzush',
 'filedesc'        => 'Hulasa',
 'watchthisupload' => 'Bu Batka Kharang',
@@ -161,7 +161,7 @@ $messages = array(
 'sp-contributions-submit' => 'Izdash',
 
 # What links here
-'whatlinkshere'      => 'Bashkha Tor Batleri',
+'whatlinkshere'      => 'Bashqa tor betler',
 'whatlinkshere-page' => 'Bet:',
 
 # Block/unblock
@@ -201,6 +201,6 @@ $messages = array(
 'table_pager_limit_submit' => 'Kuchush',
 
 # Special:SpecialPages
-'specialpages' => 'Alahida Tor Batleri',
+'specialpages' => 'Alahide tor betleri',
 
 );

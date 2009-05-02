@@ -1107,6 +1107,7 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'prefs-help-email'          => 'E-posta helbidea aukerakoa da, baina zure pasahitza ahaztekotan berriro zure e-postara bidaltzeko aukera ematen dizu.
 Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztabaid orrialdeak erabilita zure identitatea ezagutzera eman gabe.',
 'prefs-help-email-required' => 'E-mail helbidea derrigorrezkoa da.',
+'prefs-signature'           => 'Sinadura',
 
 # User rights
 'userrights'                  => 'Erabiltzaile baimenen kudeaketa',
@@ -2975,5 +2976,8 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'dberr-usegoogle'   => 'Bitartean Google bidez bilatzen saiatu zintezke.',
 'dberr-outofdate'   => 'Eduki hauek aurkibideak eguneratu gabe egon daitezke.',
 'dberr-cachederror' => 'Ondorengoa eskatutako orriaren katxedun kopia da, eta eguneratu gabe egon daiteke.',
+
+# HTML forms
+'htmlform-reset' => 'Aldaketak desegin',
 
 );

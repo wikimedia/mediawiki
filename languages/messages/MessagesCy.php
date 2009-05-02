@@ -363,7 +363,7 @@ $messages = array(
 'editlink'                => 'golygu',
 'viewsourcelink'          => 'dangos côd y dudalen',
 'editsectionhint'         => "Golygu'r adran: $1",
-'toc'                     => 'Taflen Gynnwys',
+'toc'                     => 'Cynnwys',
 'showtoc'                 => 'dangos',
 'hidetoc'                 => 'cuddio',
 'thisisdeleted'           => 'Ydych chi am ddangos, neu ddad-ddileu $1?',
@@ -468,6 +468,7 @@ $2",
 Rhoddwyd y rheswm hwn - ''$2''.",
 
 # Virus scanner
+'virus-badscanner'     => "Cyfluniad gwael: sganiwr firysau anhysbys: ''$1''",
 'virus-scanfailed'     => 'methodd y sgan (côd $1)',
 'virus-unknownscanner' => 'gwrthfirysydd anhysbys:',
 
@@ -736,7 +737,11 @@ Ymddengys iddi gael ei dileu.",
 Mae ar gael yn barod.',
 
 # Parser/template warnings
+'expensive-parserfunction-category'       => "Tudalennau a gormod o alwadau ar ffwythiannau dosrannu sy'n dreth ar adnoddau",
+'post-expand-template-inclusion-warning'  => "Rhybudd: Mae'r maint cynnwys nodyn yn rhy fawr.
+Ni chaiff rhai nodiadau eu cynnwys.",
 'post-expand-template-inclusion-category' => "Tudalennau a phatrymlun ynddynt sy'n fwy na chyfyngiad y meddalwedd",
+'post-expand-template-argument-category'  => 'Tudalennau lle ceir argiau nodiadau coll',
 'parser-template-loop-warning'            => 'Daethpwyd o hyd i ddolen yn y nodyn: [[$1]]',
 
 # "Undo" feature
@@ -795,6 +800,7 @@ Gan eich bod yn weinyddwr gallwch ei weld; gall fod manylion yn y [{{fullurl:Spe
 'rev-delundel'                => 'dangos/cuddio',
 'revisiondelete'              => 'Dileu/dad-ddileu diwygiadau',
 'revdelete-nooldid-title'     => 'Anelwyd at olygiad annilys',
+'revdelete-nologtype-title'   => 'Ni nodwyd y math o lòg',
 'revdelete-nologid-title'     => 'Cofnod lòg annilys',
 'revdelete-selected'          => "'''Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} a ddewiswyd o'r lòg:'''",
@@ -1162,6 +1168,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-ipblock-exempt'       => 'Mynd heibio i flociau IP, blociau awtomatig a blociau amrediad',
 'right-proxyunbannable'      => 'Mynd heibio i flociau awtomatig gan weinyddion dirprwyol',
 'right-protect'              => 'Newid lefelau diogelu a golygu tudalennau wedi eu diogelu',
+'right-editprotected'        => 'Golygu tudalennau sydd wedi eu diogelu (ond bod hebddynt ddiogelu sgydol)',
 'right-editinterface'        => "Golygu'r rhyngwyneb",
 'right-editusercssjs'        => 'Golygu ffeiliau CSS a JS yn perthyn i ddefnyddwyr eraill',
 'right-rollback'             => 'Gwrthdroi golygiadau defnyddiwr diwethaf rhyw dudalen yn sydyn',
@@ -1528,6 +1535,7 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 'popularpages'            => 'Erthyglau poblogaidd',
 'wantedcategories'        => 'Categorïau sydd eu hangen',
 'wantedpages'             => 'Erthyglau sydd eu hangen',
+'wantedpages-badtitle'    => 'Mae teitl annilys ymhlith y canlyniadau, sef: $1',
 'wantedfiles'             => 'Ffeiliau sydd eu hangen',
 'wantedtemplates'         => 'Nodiadau sydd eu hangen',
 'mostlinked'              => 'Tudalennau yn nhrefn nifer y cysylltiadau iddynt',
@@ -2141,6 +2149,8 @@ nid yw'n bosib cyflawnu'r symud.",
 'immobile-target-namespace' => 'Ni ellir symud tudalennau i\'r parth "$1".',
 'immobile-source-page'      => 'Ni ellir symud y dudalen hon.',
 'imagenocrossnamespace'     => 'Ni ellir symud ffeil i barth arall',
+'imagetypemismatch'         => "Nid yw'r estyniad ffeil newydd yn cyfateb i'r math o ffeil",
+'imageinvalidfilename'      => "Mae enw'r ffeil darged yn annilys",
 'fix-double-redirects'      => "Yn diwygio unrhyw ailgyfeiriadau sy'n cysylltu i'r teitl gwreiddiol",
 'move-leave-redirect'       => 'Gadael ailgyfeiriad ar ôl',
 

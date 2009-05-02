@@ -1220,8 +1220,8 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'defaultns'                 => 'Cari dalam ruang nama berikut ini secara baku:',
 'default'                   => 'baku',
 'prefs-files'               => 'Berkas',
-'prefs-custom-css'          => 'CSS Buatan',
-'prefs-custom-js'           => 'JS Buatan',
+'prefs-custom-css'          => 'CSS pribadi',
+'prefs-custom-js'           => 'JS pribadi',
 'prefs-reset-intro'         => 'Anda dapat menggunakan halaman ini untuk mengembalikan preferensi Anda ke setelan baku situs.
 Pengembalian preferensi tidak dapat dibatalkan.',
 'prefs-emailconfirm-label'  => 'Konfirmasi surat-e:',

@@ -29,7 +29,7 @@ $messages = array(
 'tog-hidepatrolled'           => "Scunne le cangiaminde condrollete jndr'à le cangiaminde recende",
 'tog-newpageshidepatrolled'   => "Scunne le pàggene tenute sotte condrolle da 'a liste de le pàggene nuève",
 'tog-extendwatchlist'         => "Spanne 'a liste de le pàggene condrollete pe fa vedè tutte le cangiaminde fatte, none sulamende l'urteme",
-'tog-usenewrc'                => 'Cangiaminde recende migliorete (JavaScript)',
+'tog-usenewrc'                => "Ause le cangiaminde recende migliorate (richiede 'u JavaScript)",
 'tog-numberheadings'          => 'Testete auto-numerete',
 'tog-showtoolbar'             => "Fà vedè 'a barra de le cangiaminde (JavaScript)",
 'tog-editondblclick'          => "Cange le pàggene cu 'nu doppie clic (JavaScript)",
@@ -37,7 +37,7 @@ $messages = array(
 'tog-editsectiononrightclick' => "Abilite le cngiaminde d'a sezione ausanne 'u pulsande destre d'u mouse cazzanne sus a 'u titele (Javascript)",
 'tog-showtoc'                 => "Fa vedè 'a taggelle de le condenute (pe le pàggene cu cchiù de 3 testete)",
 'tog-rememberpassword'        => "Arrecuèrdete 'u nome mije sus a stu computer",
-'tog-editwidth'               => "'A scatele de le cangiaminde tène 'n'estenziona massime",
+'tog-editwidth'               => "Scianghe 'a scatele de le cangiaminde pe fà anghjiè tutte 'u scherme",
 'tog-watchcreations'          => "Mitte le pàggene ca je agghje ccrejete jndr'à le pàggene condrollete",
 'tog-watchdefault'            => "Mitte le pàggene ca je agghje cangete jndr'à le pàggene condrolleteAdd pages I edit to my watchlist",
 'tog-watchmoves'              => "Mitte le pàggene ca je agghje spustete jndr'à le pàggene condrollete",
@@ -654,6 +654,10 @@ certe brauser ponne avè probleme quanne vuè cu cange pàggene ca sonde granne 
 Pe piacere considere de cangià 'a pàgene a stuezze stuezze ausanne le sezione.'''",
 'longpageerror'                    => "'''ERRORE: 'U teste ca tu vuè ccu reggistre è luenghe $1 kilobyte, invece 'u limite massime jè de $2 kilobyte.'''
 Non ge puè reggistrà sta pàggene.",
+'readonlywarning'                  => "'''FA ATTENZIO': 'U database ha state bloccate pe manutenziona, e allore tu non ge puè reggistrà le cangiaminde ca ste face mò.'''
+Tu puè fa 'na bella cose, tagghie e 'nzicche le cangiaminde jndr'à 'nu file de teste sus a 'u combiuter tue e pò cchiù tarde le reggistre sus 'a Uicchi.
+
+L'amministratore ca ha bloccate 'u database ha scritte stu mutive: $1",
 'protectedpagewarning'             => "'''ATTENZIO': Sta pàgene ha state blocchete e allore sulamende le utinde cu le privilegge de ''sysop'' ponne cangiarle.'''",
 'semiprotectedpagewarning'         => "'''Fà attenzione:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrete ponne fà cangiaminde.",
 'cascadeprotectedwarning'          => "'''FA ATTENZIO':''' Sta pàgene ha state blocchete accussì sulamende l'utinde ca tènene le deritte de amministratore a ponne cangià, purcè inglude {{PLURAL:$1|pàgene|pàggrnr}} prutette a cascate:",
@@ -673,9 +677,11 @@ Tu puè turnà rrete e cangià 'na pàgene ca già esiste, oppure puè [[Special
 'permissionserrorstext-withaction' => "Tu non ge tine 'u permesse pe $2, pe {{PLURAL:$1|stu mutive|ste mutive}}:",
 'recreate-moveddeleted-warn'       => "'''Fa Attenziò: Ste ccreje 'na pàgene ca avère state scangillete apprime.'''
 
-Vide bbuene ce l'ha ccrejà sta pàgene, ce non ge sinde sicure vide l'archivie de le scangellaziune:",
-'moveddeleted-notice'              => "Sta pàgene ha state scangellete.
-L'archivije de le scangellaminde pe sta pàgene 'u puè vedè aqquà sotte pe riferimende.",
+Vide bbuene ce l'ha ccrejà sta pàgene.
+Sinde a me, vide l'archivie de le scangellaminde e de le spustaminde accussì sì secure de quidde cà fà:",
+'moveddeleted-notice'              => "Sta pàgene ha state scangellate.
+L'archivije de le scangellaminde e de le spustaminde pe sta pàgene 'u puè vedè aqquà sotte pe riferimende.",
+'log-fulllog'                      => "Vide l'arichivije comblete",
 'edit-hook-aborted'                => "Cangiamende annullete da  'nu ''hook''.
 Non g'à date nisciune mutive.",
 'edit-gone-missing'                => "Non ge puè cangià sta pàgene.
@@ -685,6 +691,9 @@ Pare proprie ca l'onne scangellete.",
 'edit-already-exists'              => "Non ge puè ccrejà 'na pàgene nove purcè esiste già!",
 
 # Parser/template warnings
+'expensive-parserfunction-warning'        => "Fà attenziò: Sta vosce tène 'nu sbuenne de funziune de chiamate a l'analizzatore.
+
+Avessere a essere mene de $2 {{PLURAL:$2|chiamate|chiamate}}, 'nvece mò {{PLURAL:$1|ste $1 chiamate|ne stonne $1 chiamate}}.",
 'expensive-parserfunction-category'       => 'Pàggene cu troppe chiamate a le funziune de analisi',
 'post-expand-template-inclusion-category' => "Pàggene addò le dimenziune d'u template sonde assaije proprie",
 'post-expand-template-argument-category'  => 'Pàggene ca condenene template cu quacche argomende zumbete',
@@ -975,6 +984,8 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'prefs-watchlist-edits-max' => '(numere massime: 1000)',
 'prefs-misc'                => 'Misc',
 'prefs-resetpass'           => "Cange a 'password",
+'prefs-email'               => "Opziune de l'e-mail",
+'prefs-rendering'           => 'Aspette',
 'saveprefs'                 => 'Reggistre',
 'resetprefs'                => "Pulizze le cangiaminde ca non g'è reggistrete",
 'restoreprefs'              => "Repristene tutte le 'mbostaziune origginale",
@@ -1017,10 +1028,12 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'prefs-files'               => 'Fails',
 'prefs-custom-css'          => 'CSS Personalizzete',
 'prefs-custom-js'           => 'JS Personalizzete',
+'prefs-emailconfirm-label'  => "Conferme de l'e-mail:",
 'youremail'                 => 'Poste:',
 'username'                  => "Nome de l'utende:",
 'uid'                       => 'ID Utende:',
 'prefs-memberingroups'      => "Membre {{PLURAL:$1|d'u gruppe|de le gruppe}}:",
+'prefs-registration'        => 'Orarie de reggistrazzione:',
 'yourrealname'              => 'Nome vere:',
 'yourlanguage'              => 'Lènga:',
 'yournick'                  => 'Firma toje:',
@@ -1039,6 +1052,8 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'prefs-help-email'          => "L'indirizze e-mail jè facoltative ma te dè 'a possibbilità de mannarte 'na password nova nove ce tu te scuèrde quedde ca tenive.
 Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggene de le 'ngazzaminde senza ca abbesogne de fa canoscere l'idendità toje.",
 'prefs-help-email-required' => "L'indirizze e-mail jè obbligatorie.",
+'prefs-info'                => "'Mbormaziune nderra-nderre",
+'prefs-signature'           => 'Firme',
 
 # User rights
 'userrights'                     => 'Gestione de le deritte utende',
