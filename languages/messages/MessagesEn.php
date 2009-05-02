@@ -3826,7 +3826,7 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'version-hook-name'                => 'Hook name',
 'version-hook-subscribedby'        => 'Subscribed by',
 'version-version'                  => '(Version $1)',
-'version-svn-revision'             => '(r$1/r$2)', # only translate this message to other languages if you have to change it
+'version-svn-revision'             => '(r$2)', # only translate this message to other languages if you have to change it
 'version-license'                  => 'License',
 'version-software'                 => 'Installed software',
 'version-software-product'         => 'Product',

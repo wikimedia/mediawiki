@@ -176,7 +176,7 @@ class SpecialVersion extends SpecialPage {
 						$subVersionCo = self::getSvnRevision(dirname($extension['path']), true, true, false);
 						$subVersionDir = self::getSvnRevision(dirname($extension['path']), false, true, true);
 						if ($subVersionDir)
-							$viewvc = $subVersionDir . $subVersion;
+							$viewvc = $subVersionDir . $subVersionCo;
 					}
 					if ( isset( $extension['version'] ) ) {
 						$version = $extension['version'];
