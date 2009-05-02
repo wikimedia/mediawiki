@@ -60,7 +60,7 @@ class MediaWiki {
 			return;
 		}
 		if( !$this->initializeSpecialCases( $title, $output, $request ) ) {
-			$new_article = $this->initializeArticle( $title, $request );
+			$new_article = $this->initializeArticle( $title, $output, $request );
 			if( is_object( $new_article ) ) {
 				$article = $new_article;
 				$this->performAction( $output, $article, $title, $user, $request );
@@ -274,10 +274,11 @@ class MediaWiki {
 	 * Create an Article object for the page, following redirects if needed.
 	 *
 	 * @param $title Title ($wgTitle)
-	 * @param $request WebRequest
+	 * @param $output OutputPage ($wgOut)
+	 * @param $request WebRequest ($wgRequest)
 	 * @return mixed an Article, or a string to redirect to another URL
 	 */
-	function initializeArticle( &$title, $request ) {
+	function initializeArticle( &$title, &$output, $request ) {
 		wfProfileIn( __METHOD__ );
 
 		$action = $this->getVal( 'action', 'view' );
@@ -324,6 +325,7 @@ class MediaWiki {
 						$rarticle->setRedirectedFrom( $title );
 						$article = $rarticle;
 						$title = $target;
+						$output->setTitle( $title );
 					}
 				}
 			} else {
