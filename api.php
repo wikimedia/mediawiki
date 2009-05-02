@@ -74,7 +74,7 @@ define('API', true);
 
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
 // In a perfect world this wouldn't be necessary
-$wgTitle = Title::newFromTitle('API');
+$wgTitle = Title::newFromText('API');
 
 /* Construct an ApiMain with the arguments passed via the URL. What we get back
  * is some form of an ApiMain, possibly even one that produces an error message,

@@ -60,7 +60,7 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg(array('invalidtitle', $params['title']));
 		// Some functions depend on $wgTitle == $ep->mTitle
 		global $wgTitle;
-		$titleObj = $wgTitle;
+		$wgTitle = $titleObj;
 
 		if($params['createonly'] && $titleObj->exists())
 			$this->dieUsageMsg(array('createonly-exists'));
