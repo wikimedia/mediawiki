@@ -126,6 +126,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18597) Internal error with empty generator= parameter
 * (bug 16422) Don't display help for format=jsonfm unless specifically requested
 * (bug 18617) Add xml:space="preserve" attribute to relevant tags in XML output
+* Added PHP and database version to meta=siteinfo output
 
 === Languages updated in 1.16 ===
 
