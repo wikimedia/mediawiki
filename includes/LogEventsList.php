@@ -60,7 +60,7 @@ class LogEventsList {
 
 	/**
 	 * Show options for the log list
-	 * @param $type String
+	 * @param $types string or Array
 	 * @param $user String
 	 * @param $page String
 	 * @param $pattern String
@@ -69,32 +69,38 @@ class LogEventsList {
 	 * @param $filter: array
 	 * @param $tagFilter: array?
 	 */
-	public function showOptions( $type = '', $user = '', $page = '', $pattern = '', $year = '', 
-		$month = '', $filter = null, $tagFilter='' ) 
+	public function showOptions( $types=array(), $user='', $page='', $pattern='', $year='', 
+		$month = '', $filter = null, $tagFilter='' )
 	{
 		global $wgScript, $wgMiserMode;
 		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'Log' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
+		// For B/C, we take strings, but make sure they are converted...
+		$types = ($types === '') ? array() : (array)$types;
 
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
 
 		$this->out->addHTML( "<form action=\"$action\" method=\"get\"><fieldset>" .
 			Xml::element( 'legend', array(), wfMsg( 'log' ) ) .
 			Xml::hidden( 'title', $special ) . "\n" .
-			$this->getTypeMenu( $type ) . "\n" .
+			$this->getTypeMenu( $types ) . "\n" .
 			$this->getUserInput( $user ) . "\n" .
 			$this->getTitleInput( $page ) . "\n" .
 			( !$wgMiserMode ? ($this->getTitlePattern( $pattern )."\n") : "" ) .
 			"<p>" . Xml::dateMenu( $year, $month ) . "\n" .
 			( $tagSelector ? Xml::tags( 'p', null, implode( '&nbsp;', $tagSelector ) ) :'' ). "\n" .
-			( $filter ? "</p><p>".$this->getFilterLinks( $type, $filter )."\n" : "" ) . "\n" .
+			( $filter ? "</p><p>".$this->getFilterLinks( $filter )."\n" : "" ) . "\n" .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "</p>\n" .
 			"</fieldset></form>"
 		);
 	}
 	
-	private function getFilterLinks( $logType, $filter ) {
+	/**
+	 * @param $filter Array
+	 * @return String: Formatted HTML
+	 */
+	private function getFilterLinks( $filter ) {
 		global $wgTitle, $wgLang;
 		// show/hide links
 		$messages = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
@@ -128,10 +134,10 @@ class LogEventsList {
 	}
 
 	/**
-	 * @param $queryType String
+	 * @param $queryTypes Array
 	 * @return String: Formatted HTML
 	 */
-	private function getTypeMenu( $queryType ) {
+	private function getTypeMenu( $queryTypes ) {
 		global $wgLogRestrictions, $wgUser;
 
 		$html = "<select name='type'>\n";
@@ -148,6 +154,8 @@ class LogEventsList {
 		// Second pass to sort by name
 		ksort($typesByName);
 
+		// Note the query type
+		$queryType = count($queryTypes) == 1 ? $queryTypes[0] : '';
 		// Third pass generates sorted XHTML content
 		foreach( $typesByName as $text => $type ) {
 			$selected = ($type == $queryType);
@@ -427,17 +435,17 @@ class LogEventsList {
 	/**
 	 * Quick function to show a short log extract
 	 * @param $out OutputPage
-	 * @param $type String
+	 * @param $types String or Array
 	 * @param $page String
 	 * @param $user String
 	 * @param $lim Integer
 	 * @param $conds Array
 	 */
-	public static function showLogExtract( $out, $type='', $page='', $user='', $lim=0, $conds=array() ) {
+	public static function showLogExtract( $out, $types=array(), $page='', $user='', $lim=0, $conds=array() ) {
 		global $wgUser;
 		# Insert list of top 50 or so items
 		$loglist = new LogEventsList( $wgUser->getSkin(), $out, 0 );
-		$pager = new LogPager( $loglist, $type, $user, $page, '', $conds );
+		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
 		if( $lim > 0 ) $pager->mLimit = $lim;
 		$logBody = $pager->getBody();
 		if( $logBody ) {
@@ -482,13 +490,14 @@ class LogEventsList {
  * @ingroup Pager
  */
 class LogPager extends ReverseChronologicalPager {
-	private $type = '', $user = '', $title = '', $pattern = '';
+	private $types = array(), $user = '', $title = '', $pattern = '';
+	private $typeCGI = '';
 	public $mLogEventsList;
 
 	/**
 	 * constructor
 	 * @param $list LogEventsList
-	 * @param $type String
+	 * @param $types String or Array
 	 * @param $user String
 	 * @param $title String
 	 * @param $pattern String
@@ -496,7 +505,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param $year Integer
 	 * @param $month Integer
 	 */
-	public function __construct( $list, $type = '', $user = '', $title = '', $pattern = '', 
+	public function __construct( $list, $types = array(), $user = '', $title = '', $pattern = '',
 		$conds = array(), $year = false, $month = false, $tagFilter = '' ) 
 	{
 		parent::__construct();
@@ -504,7 +513,7 @@ class LogPager extends ReverseChronologicalPager {
 
 		$this->mLogEventsList = $list;
 
-		$this->limitType( $type ); // also excludes hidden types
+		$this->limitType( $types ); // also excludes hidden types
 		$this->limitUser( $user );
 		$this->limitTitle( $title, $pattern );
 		$this->getDateCond( $year, $month );
@@ -513,17 +522,18 @@ class LogPager extends ReverseChronologicalPager {
 
 	public function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
-		$query['type'] = $this->type;
+		$query['type'] = $this->typeCGI; // arrays won't work here
 		$query['user'] = $this->user;
 		$query['month'] = $this->mMonth;
 		$query['year'] = $this->mYear;
 		return $query;
 	}
 
+	// Call ONLY after calling $this->limitType() already!
 	public function getFilterParams() {
 		global $wgFilterLogTypes, $wgUser, $wgRequest;
 		$filters = array();
-		if( $this->type ) {
+		if( count($this->types) ) {
 			return $filters;
 		}
 		foreach( $wgFilterLogTypes as $type => $default ) {
@@ -560,9 +570,11 @@ class LogPager extends ReverseChronologicalPager {
 		if( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
 		}
-		if( count($types) > 0 ) {
-			$this->type = $types;
+		if( count($types) ) {
+			$this->types = $types;
 			$this->mConds['log_type'] = $types;
+			// Set typeCGI; used in url param for paging
+			if( count($types) == 1 ) $this->typeCGI = $types[0];
 		}
 	}
 
@@ -642,7 +654,7 @@ class LogPager extends ReverseChronologicalPager {
 		# Don't use the wrong logging index
 		if( $this->title || $this->pattern || $this->user ) {
 			$index = array( 'USE INDEX' => array( 'logging' => array('page_time','user_time') ) );
-		} else if( $this->type ) {
+		} else if( $this->types ) {
 			$index = array( 'USE INDEX' => array( 'logging' => 'type_time' ) );
 		} else {
 			$index = array( 'USE INDEX' => array( 'logging' => 'times' ) );
@@ -688,7 +700,7 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	public function getType() {
-		return $this->type;
+		return $this->types;
 	}
 
 	public function getUser() {
