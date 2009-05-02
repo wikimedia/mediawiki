@@ -128,8 +128,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['rtl'] = '';
 		$data['fallback8bitEncoding'] = $wgLang->fallback8bitEncoding();
 		
-		if( wfReadOnly() )
+		if( wfReadOnly() ) {
 			$data['readonly'] = '';
+			$data['readonlyreason'] = wfReadOnlyReason();
+		}
 		if( $GLOBALS['wgEnableWriteAPI'] )
 			$data['writeapi'] = '';
 
