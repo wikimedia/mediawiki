@@ -108,6 +108,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['base'] = $mainPage->getFullUrl();
 		$data['sitename'] = $GLOBALS['wgSitename'];
 		$data['generator'] = "MediaWiki {$GLOBALS['wgVersion']}";
+		$data['phpversion'] = phpversion();
+		$data['phpsapi'] = php_sapi_name();
+		$data['dbclass'] = get_class($this->getDB());
+		$data['dbversion'] = $this->getDB()->getServerVersion();
 
 		$svn = SpecialVersion::getSvnRevision( $GLOBALS['IP'] );
 		if( $svn )
