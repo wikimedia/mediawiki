@@ -1,4 +1,4 @@
-﻿# MediaWiki Parser test cases
+# MediaWiki Parser test cases
 # Some taken from http://meta.wikimedia.org/wiki/Parser_testing
 # All (C) their respective authors and released under the GPL
 #
@@ -6658,15 +6658,6 @@ ISBN 1 234 56789 0 - 2006
 <p><a href="/wiki/Special:BookSources/1234567890" class="internal">ISBN 1-234-56789-0</a> - 2006
 </p><p><a href="/wiki/Special:BookSources/1234567890" class="internal">ISBN 1 234 56789 0</a> - 2006
 </p>
-!! end
-
-
-!! test
-Pages in namespace (Magic word disabled currently)
-!! input
-{{PAGESINNAMESPACE:}}
-!! result
-
 !! end
 
 
