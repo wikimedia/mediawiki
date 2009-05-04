@@ -2853,12 +2853,6 @@ class Parser
 				if($wgContLang->hasVariants() && $title->getArticleID() == 0){
 					$wgContLang->findVariantLink( $part1, $title, true );
 				}
-				# Do infinite loop check
-				if ( !$frame->loopCheck( $title ) ) {
-					$found = true;
-					$text = '<span class="error">' . wfMsgForContent( 'parser-template-loop-warning', $titleText ) . '</span>';
-					wfDebug( __METHOD__.": template loop broken at '$titleText'\n" );
-				}
 				# Do recursion depth check
 				$limit = $this->mOptions->getMaxTemplateDepth();
 				if ( $frame->depth >= $limit ) {
@@ -2907,6 +2901,14 @@ class Parser
 					$isChildObj = true;
 				}
 				$found = true;
+			}
+
+			# Do infinite loop check
+			# This has to be done after redirect resolution to avoid infinite loops via redirects
+			if ( !$frame->loopCheck( $title ) ) {
+				$found = true;
+				$text = '<span class="error">' . wfMsgForContent( 'parser-template-loop-warning', $titleText ) . '</span>';
+				wfDebug( __METHOD__.": template loop broken at '$titleText'\n" );
 			}
 			wfProfileOut( __METHOD__ . '-loadtpl' );
 		}
