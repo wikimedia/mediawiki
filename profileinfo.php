@@ -1,13 +1,10 @@
 <?php
 ini_set( 'zlib.output_compression', 'off' );
 
-$wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = $wgDBprefix = false;
 $wgEnableProfileInfo = $wgProfileToDatabase = false;
 
-define( 'MW_NO_SETUP', 1 );
 require_once( './includes/WebStart.php' );
 @include_once( './AdminSettings.php' );
-require_once( './includes/GlobalFunctions.php' );
 
 ?>
 <!--
@@ -72,13 +69,6 @@ if (!$wgEnableProfileInfo) {
 	echo "disabled\n";
 	exit( 1 );
 }
-
-foreach (array("wgDBadminuser", "wgDBadminpassword", "wgDBserver", "wgDBname") as $var)
-	if ($$var === false) {
-		echo "AdminSettings.php not correct\n";
-		exit( 1 );
-	}
-
 
 $expand = array();
 if (isset($_REQUEST['expand']))
@@ -219,14 +209,9 @@ $sort = 'time';
 if (isset($_REQUEST['sort']) && in_array($_REQUEST['sort'], $sorts))
 	$sort = $_REQUEST['sort'];
 
-$dbh = mysql_connect($wgDBserver, $wgDBadminuser, $wgDBadminpassword)
-	or die("mysql server failed: " . mysql_error());
-mysql_select_db($wgDBname, $dbh) or die(mysql_error($dbh));
-$res = mysql_query("
-	SELECT pf_count, pf_time, pf_memory, pf_name
-	FROM {$wgDBprefix}profiling
-	ORDER BY pf_name ASC
-", $dbh) or die("query failed: " . mysql_error());
+
+$dbr = wfGetDB( DB_SLAVE );
+$res = $dbr->select( 'profiling', '*', array(), 'profileinfo.php', array( 'ORDER BY' => 'pf_name ASC' ) );
 
 if (isset($_REQUEST['filter']))
 	$filter = $_REQUEST['filter'];
@@ -276,7 +261,7 @@ $queries = array();
 $sqltotal = 0.0;
 
 $last = false;
-while (($o = mysql_fetch_object($res)) !== false) {
+foreach( $res as $o ) {
 	$next = new profile_point($o->pf_name, $o->pf_count, $o->pf_time, $o->pf_memory);
 	if( $next->name() == '-total' ) {
 		$totaltime = $next->time();
@@ -318,8 +303,7 @@ foreach ($points as $point) {
 <p>Total memory: <tt><?php printf("%5.02f", $totalmemory / 1024 ) ?></tt></p>
 <?php
 
-mysql_free_result($res);
-mysql_close($dbh);
+$res->free();
 
 ?>
 </body>
