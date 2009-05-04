@@ -111,6 +111,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed the circular template inclusion check, was broken when the loop 
   involved redirects. Without this, infinite recursion within the parser is
   possible.
+* (bug 18677) Give proper error message when viewing &action=protect without
+  sufficient rights
 
 
 == API changes in 1.16 ==
