@@ -473,7 +473,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * @todo This would probably look a lot nicer in a table.
 	 */
 	function formatRow( $row ) {
-		global $wgLang, $wgContLang;
+		global $wgUser, $wgLang, $wgContLang;
 		wfProfileIn( __METHOD__ );
 
 		$sk = $this->getSkin();
@@ -532,8 +532,23 @@ class ContribsPager extends ReverseChronologicalPager {
 		} else {
 			$mflag = '';
 		}
+		
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			// If revision was hidden from sysops
+			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
+				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
+					'(' . $this->message['rev-delundel'] . ')' ) . ' ';
+			// Otherwise, show the link...
+			} else {
+				$query = array( 'target' => $page->getPrefixedDbkey(), 'oldid' => $rev->getId() );
+				$del = $this->mSkin->revDeleteLink( $query,
+					$rev->isDeleted( Revision::DELETED_RESTRICTED ) ) . ' ';
+			}
+		} else {
+			$del = '';
+		}
 
-		$ret = "{$d} {$histlink} {$difftext} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
+		$ret = "{$del}{$d} {$histlink} {$difftext} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$ret .= ' ' . wfMsgHtml( 'deletedrev' );
 		}
