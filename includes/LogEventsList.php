@@ -551,7 +551,8 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * Set the log reader to return only entries of the given type.
 	 * Type restrictions enforced here
-	 * @param $types String or array: Log types ('upload', 'delete', etc)
+	 * @param $types String or array: Log types ('upload', 'delete', etc);
+	 *   empty string means no restriction
 	 */
 	private function limitType( $types ) {
 		global $wgLogRestrictions, $wgUser;
