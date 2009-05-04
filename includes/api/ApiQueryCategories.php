@@ -53,7 +53,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			return;	// nothing to do
 
 		$params = $this->extractRequestParams();
-		$prop = $params['prop'];
+		$prop = array_flip((array)$params['prop']);
 		$show = array_flip((array)$params['show']);
 
 		$this->addFields(array (
@@ -61,23 +61,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			'cl_to'
 		));
 
-		$fld_sortkey = $fld_timestamp = false;
-		if (!is_null($prop)) {
-			foreach($prop as $p) {
-				switch ($p) {
-					case 'sortkey':
-						$this->addFields('cl_sortkey');
-						$fld_sortkey = true;
-						break;
-					case 'timestamp':
-						$this->addFields('cl_timestamp');
-						$fld_timestamp = true;
-						break;
-					default :
-						ApiBase :: dieDebug(__METHOD__, "Unknown prop=$p");
-				}
-			}
-		}
+		$this->addFieldsIf('cl_sortkey', isset($prop['sortkey']));
+		$this->addFieldsIf('cl_timestamp', isset($prop['timestamp']));
 
 		$this->addTables('categorylinks');
 		$this->addWhereFld('cl_from', array_keys($this->getPageSet()->getGoodTitles()));
@@ -107,10 +92,11 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		}
 		if(isset($show['hidden']) && isset($show['!hidden']))
 			$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
-		if(isset($show['hidden']) || isset($show['!hidden']))
+		if(isset($show['hidden']) || isset($show['!hidden']) || isset($prop['hidden']))
 		{
 			$this->addOption('STRAIGHT_JOIN');
 			$this->addTables(array('page', 'page_props'));
+			$this->addFieldsIf('pp_propname', isset($prop['hidden']));
 			$this->addJoinConds(array(
 				'page' => array('LEFT JOIN', array(
 					'page_namespace' => NS_CATEGORY,
@@ -121,7 +107,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			));
 			if(isset($show['hidden']))
 				$this->addWhere(array('pp_propname IS NOT NULL'));
-			else
+			else if(isset($show['!hidden']))
 				$this->addWhere(array('pp_propname IS NULL'));
 		}
 
@@ -150,10 +136,12 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				$title = Title :: makeTitle(NS_CATEGORY, $row->cl_to);
 				$vals = array();
 				ApiQueryBase :: addTitleInfo($vals, $title);
-				if ($fld_sortkey)
+				if (isset($prop['sortkey']))
 					$vals['sortkey'] = $row->cl_sortkey;
-				if ($fld_timestamp)
+				if (isset($prop['timestamp']))
 					$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->cl_timestamp);
+				if (isset($prop['hidden']) && !is_null($row->pp_propname))
+					$vals['hidden'] = '';
 
 				$fit = $this->addPageSubItem($row->cl_from, $vals);
 				if(!$fit)
@@ -190,6 +178,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_TYPE => array (
 					'sortkey',
 					'timestamp',
+					'hidden',
 				)
 			),
 			'show' => array(
