@@ -106,9 +106,8 @@ class DeletedContribsPager extends IndexPager {
 	 * @todo This would probably look a lot nicer in a table.
 	 */
 	function formatRow( $row ) {
+		global $wgUser, $wgLang;
 		wfProfileIn( __METHOD__ );
-
-		global $wgLang;
 
 		$sk = $this->getSkin();
 
@@ -164,8 +163,23 @@ class DeletedContribsPager extends IndexPager {
 			$mflag = '';
 		}
 
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			// If revision was hidden from sysops
+			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
+				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
+					'(' . $this->message['rev-delundel'] . ')' ) . ' ';
+			// Otherwise, show the link...
+			} else {
+				$query = array( 'target' => $page->getPrefixedDbkey(),
+					'artimestamp' => $rev->getTimestamp() );
+				$del = $this->mSkin->revDeleteLink( $query,
+					$rev->isDeleted( Revision::DELETED_RESTRICTED ) ) . ' ';
+			}
+		} else {
+			$del = '';
+		}
 
-		$ret = "{$link} ($last) ({$dellog}) ({$reviewlink}) . . {$mflag} {$pagelink} {$comment}";
+		$ret = "{$del}{$link} ({$last}) ({$dellog}) ({$reviewlink}) . . {$mflag} {$pagelink} {$comment}";
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$ret .= ' ' . wfMsgHtml( 'deletedrev' );
 		}
