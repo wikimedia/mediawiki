@@ -102,17 +102,53 @@ p.mw-filedelete-editreasons, p.mw-delete-editreasons {
 }
 
 /* Search results */
+.searchresults {
+}
+
+.searchresults p {
+	margin-left: 0.4em;
+	margin-top: 1em;
+	margin-bottom: 1.2em;
+}
+
 div.searchresult {
 	font-size: 95%;
-	width:38em;
+	width:38em;	
 }
+
+.mw-search-results {
+	margin-left: 0.4em;
+}
+
 .mw-search-results li {
 	padding-bottom: 1em;
 	list-style:none;
 }
+.mw-search-results li a {
+	font-size: 108%;
+}
+
 .mw-search-result-data {
 	color: green;
 	font-size: 97%;
+}
+
+.mw-search-formheader {
+	background-color:#ECECEC; 
+	margin:1em 0pt; 
+	padding:0.02em ;
+	border-top:1px solid #BBBBBB;
+}
+
+.mw-search-formheader div {
+	float:left; 
+	padding:4px 0.5em 0px 4px;
+}
+
+.mw-search-formheader p {
+	margin:0.1em 0pt;
+	padding:0.2em 0.4em 0.2em 0.2em;
+	text-align:right;
 }
 
 td#mw-search-menu {
@@ -138,6 +174,24 @@ div#mw-search-interwiki li {
 	font-size: 90%;
 }
 
+div#mw-search-interwiki-caption {
+	text-align: center;
+	font-weight: bold;
+	font-size: 95%;
+}
+
+.mw-search-interwiki-project {
+	font-size: 97%;
+	text-align: left;
+	padding-left: 0.2em;
+	padding-right: 0.15em;
+	padding-bottom: 0.2em;
+	padding-top: 0.15em;
+	background-color:#ececec; 
+	border-top:1px solid #BBBBBB;
+}
+
+
 span.searchalttitle {
 	font-size: 95%;
 }
@@ -158,13 +212,6 @@ div.searchdidyoumean em {
 	font-weight: bold;
 }
 
-div.searchresults {
-	border:1px solid darkblue;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-}
 
 /*
  * UserRights stuff

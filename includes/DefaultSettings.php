@@ -1976,16 +1976,14 @@ $wgNamespacesToBeSearchedDefault = array(
 );
 
 /**
- * Additional namespaces to those in $wgNamespacesToBeSearchedDefault that
- * will be added to default search for "project" page inclusive searches
+ * Namespaces to be searched when user clicks the "Help" tab 
+ * on Special:Search
  * 
  * Same format as $wgNamespacesToBeSearchedDefault
  */  
-$wgNamespacesToBeSearchedProject = array(
-	NS_USER           => true,
+$wgNamespacesToBeSearchedHelp = array(
 	NS_PROJECT        => true,	
 	NS_HELP           => true,
-	NS_CATEGORY       => true,
 );
 
 $wgUseOldSearchUI = true; // temp testing variable

@@ -292,28 +292,14 @@ class SearchEngine {
 	}
 	
 	/**
-	 * An array of "project" namespaces indexes typically searched
-	 * by logged-in users
+	 * Return the help namespaces to be shown on Special:Search
 	 * 
 	 * @return Array 
 	 */
-	public static function projectNamespaces() {
-		global $wgNamespacesToBeSearchedDefault, $wgNamespacesToBeSearchedProject;
+	public static function helpNamespaces() {
+		global $wgNamespacesToBeSearchedHelp;
 		
-		return array_keys( $wgNamespacesToBeSearchedProject, true );
-	}
-	
-	/**
-	 * An array of "project" namespaces indexes typically searched
-	 * by logged-in users in addition to the default namespaces
-	 * 
-	 * @return Array
-	 */
-	public static function defaultAndProjectNamespaces() {
-		global $wgNamespacesToBeSearchedDefault, $wgNamespacesToBeSearchedProject;
-		
-		return array_keys( $wgNamespacesToBeSearchedDefault + 
-			$wgNamespacesToBeSearchedProject, true);
+		return array_keys( $wgNamespacesToBeSearchedHelp, true );
 	}
 	
 	/**

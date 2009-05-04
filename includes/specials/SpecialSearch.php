@@ -206,14 +206,6 @@ class SpecialSearch {
 			return;
 		}
 
-		// show direct page/create link
-		if( !is_null($t) ) {
-			if( !$t->exists() ) {
-				$wgOut->addWikiMsg( 'searchmenu-new', wfEscapeWikiText( $t->getPrefixedText() ) );
-			} else {
-				$wgOut->addWikiMsg( 'searchmenu-exists', wfEscapeWikiText( $t->getPrefixedText() ) );
-			}
-		}
 
 		// Get number of results
 		$titleMatchesSQL = $titleMatches ? $titleMatches->numRows() : 0;
@@ -228,16 +220,17 @@ class SpecialSearch {
 		$totalRes = $numTitleMatches + $numTextMatches;
 
 		// show number of results and current offset
-		if( $numSQL > 0 ) {
-			if( $numSQL > 0 ) {
-				$top = wfMsgExt('showingresultstotal', array( 'parseinline' ),
-					$this->offset+1, $this->offset+$numSQL, $totalRes, $numSQL );
-			} elseif( $numSQL >= $this->limit ) {
-				$top = wfShowingResults( $this->offset, $this->limit );
+		$wgOut->addHTML( $this->formHeader($term, $numSQL, $totalRes));
+		
+		$wgOut->addHtml( "<div class='searchresults'>" );
+		
+		// show direct page/create link
+		if( !is_null($t) ) {
+			if( !$t->exists() ) {
+				$wgOut->addWikiMsg( 'searchmenu-new', wfEscapeWikiText( $t->getPrefixedText() ) );
 			} else {
-				$top = wfShowingResultsNum( $this->offset, $this->limit, $numSQL );
+				$wgOut->addWikiMsg( 'searchmenu-exists', wfEscapeWikiText( $t->getPrefixedText() ) );
 			}
-			$wgOut->addHTML( "<p class='mw-search-numberresults'>{$top}</p>\n" );
 		}
 
 		// prev/next links
@@ -247,13 +240,13 @@ class SpecialSearch {
 				wfArrayToCGI( $this->powerSearchOptions(), array( 'search' => $term ) ),
 				max( $titleMatchesSQL, $textMatchesSQL ) < $this->limit
 			);
-			$wgOut->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
+			//$wgOut->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
 			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
 		} else {
 			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
-		}
+		} 
 
-		$wgOut->addHtml( "<div class='searchresults'>" );
+		
 		if( $titleMatches ) {
 			if( $numTitleMatches > 0 ) {
 				$wgOut->wrapWikiMsg( "==$1==\n", 'titlematches' );
@@ -268,7 +261,7 @@ class SpecialSearch {
 				$wgOut->wrapWikiMsg( "==$1==\n", 'textmatches' );
 			} elseif( $totalRes == 0 ) {
 				# Don't show the 'no text matches' if we received title matches
-				$wgOut->wrapWikiMsg( "==$1==\n", 'notextmatches' );
+				# $wgOut->wrapWikiMsg( "==$1==\n", 'notextmatches' );
 			}
 			// show interwiki results if any
 			if( $textMatches->hasInterwikiResults() ) {
@@ -304,14 +297,14 @@ class SpecialSearch {
 		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
 		if( $this->searchAdvanced )
 			$this->active = 'advanced';
-		else if( $this->namespaces === NS_FILE || $this->startsWithImage( $term ) )
+		else if( $this->namespaces === array(NS_FILE) || $this->startsWithImage( $term ) )
 			$this->active = 'images';
-		elseif( $this->namespaces === $nsAllSet )
+		elseif( $this->namespaces === $nsAllSet || $this->startsWithAll( $term ) )
 			$this->active = 'all';
 		elseif( $this->namespaces === SearchEngine::defaultNamespaces() )
 			$this->active = 'default';
-		elseif( $this->namespaces === SearchEngine::projectNamespaces() )
-			$this->active = 'project';
+		elseif( $this->namespaces === SearchEngine::helpNamespaces() )
+			$this->active = 'help';
 		else
 			$this->active = 'advanced';
 		# Should advanced UI be used?
@@ -648,7 +641,7 @@ class SpecialSearch {
 		} */
 		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('powersearch-legend') ) .
-			$this->formHeader($term) . $out . $this->didYouMeanHtml .
+			$out . $this->didYouMeanHtml .
 			Xml::closeElement( 'fieldset' );
 	}
 
@@ -670,11 +663,12 @@ class SpecialSearch {
 			"</script>";
 	}
 
-	protected function formHeader( $term ) {
+	protected function formHeader( $term, $resultsShown, $totalRes ) {
 		global $wgContLang, $wgCanonicalNamespaceNames, $wgLang;
-
+		
 		$sep = '&nbsp;&nbsp;&nbsp;';
-		$out = Xml::openElement('div', array( 'style' => 'padding-bottom:0.5em;' ) );
+		$out = Xml::openElement('div', array( 'class' =>  'mw-search-formheader' ) );
+		$out .= Xml::openElement('div');
 
 		$bareterm = $term;
 		if( $this->startsWithImage( $term ) )
@@ -699,19 +693,18 @@ class SpecialSearch {
 		if( $this->active == 'images' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );
 		} else {
-			$imageTextForm = $wgContLang->getFormattedNsText(NS_FILE).':'.$bareterm;
-			$out .= $this->makeSearchLink( $imageTextForm, array( NS_FILE ) , $m, $tt );
+			$out .= $this->makeSearchLink( $bareterm, array( NS_FILE ) , $m, $tt );
 		}
 		$out .= $sep;
 
 		$m = wfMsg( 'searchprofile-project' );
 		$tt = wfMsg( 'searchprofile-project-tooltip',
-			$wgLang->commaList( SearchEngine::namespacesAsText( SearchEngine::projectNamespaces() ) ) );
+			$wgLang->commaList( SearchEngine::namespacesAsText( SearchEngine::helpNamespaces() ) ) );
 		$tt = Sanitizer::decodeCharReferences( $tt ); // need to allow entities
-		if( $this->active == 'project' ) {
+		if( $this->active == 'help' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );
 		} else {
-			$out .= $this->makeSearchLink( $bareterm, SearchEngine::projectNamespaces(), $m, $tt );
+			$out .= $this->makeSearchLink( $bareterm, SearchEngine::helpNamespaces(), $m, $tt );
 		}
 		$out .= $sep;
 
@@ -731,6 +724,16 @@ class SpecialSearch {
 		} else {
 			$out .= $this->makeSearchLink( $bareterm, $this->namespaces, $m, $tt, array( 'advanced' => '1' ) );
 		}
+		$out .= Xml::closeElement('div') ;
+		
+		if( $totalRes > 0){
+			$countHtml = wfMsgExt('showingresultsheader', array( 'parseinline' ),
+					$this->offset+1, $this->offset+$resultsShown, $totalRes, $term, $resultsShown ); 
+			$out .= "<p>{$countHtml}</p>\n" ;			
+		} else{
+			$out .= "<p>&nbsp;</p>\n";
+		}
+		
 		$out .= Xml::closeElement('div') ;
 
 		return $out;
@@ -762,17 +765,14 @@ class SpecialSearch {
 		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . "\n";
 		$out .= Xml::hidden( 'fulltext', 'Search' );
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) );
-		$out .= ' (' . wfMsgExt('searchmenu-help',array('parseinline') ) . ')';
+		//$out .= ' (' . wfMsgExt('searchmenu-help',array('parseinline') ) . ')';
 		$out .= Xml::closeElement( 'form' );
 		// Add prefix link for single-namespace searches
 		$t = Title::newFromText( $term );
 		/*if( $t != null && count($this->namespaces) === 1 ) {
 			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
 		}*/
-		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
-			Xml::element( 'legend', null, wfMsg('searchmenu-legend') ) .
-			$this->formHeader($term) . $out . $this->didYouMeanHtml .
-			Xml::closeElement( 'fieldset' );
+		return $out . $this->didYouMeanHtml;		
 	}
 
 	/** Make a search link with some target namespaces */
@@ -798,6 +798,18 @@ class SpecialSearch {
 		$p = explode( ':', $term );
 		if( count( $p ) > 1 ) {
 			return $wgContLang->getNsIndex( $p[0] ) == NS_FILE;
+		}
+		return false;
+	}
+	
+	/** Check if query starts with all: prefix */
+	protected function startsWithAll( $term ) {
+
+		$allkeyword = wfMsgForContent('searchall');
+		
+		$p = explode( ':', $term );
+		if( count( $p ) > 1 ) {
+			return $p[0]  == $allkeyword;
 		}
 		return false;
 	}
