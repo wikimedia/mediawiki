@@ -1895,7 +1895,7 @@ Please check the file and upload again.',
 'sourcefilename'              => 'Source filename:',
 'destfilename'                => 'Destination filename:',
 'upload-maxfilesize'          => 'Maximum file size: $1',
-'watchthisupload'             => 'Watch this page',
+'watchthisupload'             => 'Watch this file',
 'filewasdeleted'              => 'A file of this name has been previously uploaded and subsequently deleted.
 You should check the $1 before proceeding to upload it again.',
 'upload-wasdeleted'           => "'''Warning: You are uploading a file that was previously deleted.'''
