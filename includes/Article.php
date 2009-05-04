@@ -1962,6 +1962,16 @@ class Article {
 	 * action=protect handler
 	 */
 	public function protect() {
+		global $wgUser, $wgOut;
+		
+		# Check permissions
+		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'protect', $wgUser );
+
+		if( count( $permission_errors ) > 0 ) {
+			$wgOut->showPermissionsErrorPage( $permission_errors );
+			return;
+		}
+	
 		$form = new ProtectionForm( $this );
 		$form->execute();
 	}
