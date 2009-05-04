@@ -726,6 +726,17 @@ class LogPager extends ReverseChronologicalPager {
 	public function getTagFilter() {
 		return $this->mTagFilter;
 	}
+
+	public function doQuery() {
+		// Work around MySQL optimizer bug
+		if ( in_array( get_class( $this->mDb ), array( 'Database', 'DatabaseMysql' ) ) ) {
+			$this->mDb->query( 'SET SQL_BIG_SELECTS=1' );
+			parent::doQuery();
+			$this->mDb->query( 'SET SQL_BIG_SELECTS=0' );
+		} else {
+			parent::doQuery();
+		}
+	}
 }
 
 /**
