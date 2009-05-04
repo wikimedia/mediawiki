@@ -1444,7 +1444,6 @@ class RevisionDeleter {
 		$title->invalidateCache();
 		$this->dbw->commit(); // Commit the transaction before the purge is sent
 		$title->purgeSquid();
-		$title->touchLinks();
 		// Extensions that require referencing previous revisions may need this
 		wfRunHooks( 'ArticleRevisionVisiblitySet', array( &$title ) );
 	}
