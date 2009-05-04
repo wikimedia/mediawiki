@@ -319,7 +319,6 @@ Change notes from older releases. For current info see RELEASE-NOTES.
   when someone tries to use them
 * BREAKING CHANGE: action=purge requires write rights and, for anonymous users,
   a POST request
-* (bug 15935) Added action=userrights to add/remove users to/from groups
 * (bug 18099) Using appendtext to edit a non-existent page causes an interface
   message to be included in the page text
 
