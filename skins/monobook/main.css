@@ -1542,23 +1542,6 @@ div.mw-lag-warn-high {
 	font-size: 90%;
 }
 
-/** Special:Search stuff */
-div#mw-search-interwiki-caption {
-	text-align: center;
-	font-weight: bold;
-	font-size: 95%;
-}
-
-.mw-search-interwiki-project {
-	font-size: 97%;
-	text-align: left;
-	padding-left: 0.2em;
-	padding-right: 0.15em;
-	padding-bottom: 0.2em;
-	padding-top: 0.15em;
-	background: #cae8ff;
-}
-
 /* God-damned hack for the crappy layout */
 .os-suggest {
 	font-size: 127%;
