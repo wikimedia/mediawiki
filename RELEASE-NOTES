@@ -108,6 +108,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed float from the user login form in RTL interface - caused display
   problems in FF2
 * (bug 15008) Redirect images are now subject to Bad image list rules
+* Fixed the circular template inclusion check, was broken when the loop 
+  involved redirects. Without this, infinite recursion within the parser is
+  possible.
+
 
 == API changes in 1.16 ==
 
