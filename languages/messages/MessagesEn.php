@@ -2274,18 +2274,18 @@ Supported protocols: <tt>$1</tt>',
 'newuserlog-autocreate-entry' => 'Account created automatically',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'User group rights',
-'listgrouprights-summary'         => 'The following is a list of user groups defined on this wiki, with their associated access rights.
+'listgrouprights'                      => 'User group rights',
+'listgrouprights-summary'              => 'The following is a list of user groups defined on this wiki, with their associated access rights.
 There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights.',
-'listgrouprights-group'           => 'Group',
-'listgrouprights-rights'          => 'Rights',
-'listgrouprights-helppage'        => 'Help:Group rights',
-'listgrouprights-members'         => '(list of members)',
-'listgrouprights-right-display'   => '$1 ($2)', # only translate this message to other languages if you have to change it
-'listgrouprights-addgroup'        => 'Can add {{PLURAL:$2|group|groups}}: $1',
-'listgrouprights-removegroup'     => 'Can remove {{PLURAL:$2|group|groups}}: $1',
-'listgrouprights-addgroup-all'    => 'Can add all groups',
-'listgrouprights-removegroup-all' => 'Can remove all groups',
+'listgrouprights-group'                => 'Group',
+'listgrouprights-rights'               => 'Rights',
+'listgrouprights-helppage'             => 'Help:Group rights',
+'listgrouprights-members'              => '(list of members)',
+'listgrouprights-right-display'        => '$1 ($2)', # only translate this message to other languages if you have to change it
+'listgrouprights-addgroup'             => 'Can add {{PLURAL:$2|group|groups}}: $1',
+'listgrouprights-removegroup'          => 'Can remove {{PLURAL:$2|group|groups}}: $1',
+'listgrouprights-addgroup-all'         => 'Can add all groups',
+'listgrouprights-removegroup-all'      => 'Can remove all groups',
 'listgrouprights-addgroup-self'        => 'Can add {{PLURAL:$2|group|groups}} to own account: $1',
 'listgrouprights-removegroup-self'     => 'Can remove {{PLURAL:$2|group|groups}} from own account: $1',
 'listgrouprights-addgroup-self-all'    => 'Can add all groups to own account',

@@ -1619,7 +1619,7 @@ $2',
 'sourcefilename'              => 'שם הקובץ:',
 'destfilename'                => 'שמור קובץ בשם:',
 'upload-maxfilesize'          => 'גודל הקובץ המקסימלי: $1',
-'watchthisupload'             => 'מעקב אחרי דף זה',
+'watchthisupload'             => 'מעקב אחרי קובץ זה',
 'filewasdeleted'              => 'קובץ בשם זה כבר הועלה בעבר, ולאחר מכן נמחק. אנא בדקו את הדף $1 לפני שתמשיכו להעלותו שנית.',
 'upload-wasdeleted'           => "'''אזהרה: הנכם מעלים קובץ שנמחק בעבר.'''
 
@@ -1941,17 +1941,21 @@ PICT # שונות
 'newuserlog-autocreate-entry' => 'חשבון שנוצר אוטומטית',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'רשימת הרשאות לקבוצה',
-'listgrouprights-summary'         => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם ההרשאות של כל אחת.
+'listgrouprights'                      => 'רשימת הרשאות לקבוצה',
+'listgrouprights-summary'              => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם ההרשאות של כל אחת.
 מידע נוסף על ההרשאות ניתן למצוא [[{{MediaWiki:Listgrouprights-helppage}}|כאן]].',
-'listgrouprights-group'           => 'קבוצה',
-'listgrouprights-rights'          => 'הרשאות',
-'listgrouprights-helppage'        => 'Help:הרשאות',
-'listgrouprights-members'         => '(רשימת חברים)',
-'listgrouprights-addgroup'        => 'הרשאה להוספת {{PLURAL:$2|הקבוצה|הקבוצות}}: $1',
-'listgrouprights-removegroup'     => 'הרשאה להסרת {{PLURAL:$2|הקבוצה|הקבוצות}}: $1',
-'listgrouprights-addgroup-all'    => 'הרשאה להוספת כל הקבוצות',
-'listgrouprights-removegroup-all' => 'הרשאה להסרת כל הקבוצות',
+'listgrouprights-group'                => 'קבוצה',
+'listgrouprights-rights'               => 'הרשאות',
+'listgrouprights-helppage'             => 'Help:הרשאות',
+'listgrouprights-members'              => '(רשימת חברים)',
+'listgrouprights-addgroup'             => 'הרשאה להוספת {{PLURAL:$2|הקבוצה|הקבוצות}}: $1',
+'listgrouprights-removegroup'          => 'הרשאה להסרת {{PLURAL:$2|הקבוצה|הקבוצות}}: $1',
+'listgrouprights-addgroup-all'         => 'הרשאה להוספת כל הקבוצות',
+'listgrouprights-removegroup-all'      => 'הרשאה להסרת כל הקבוצות',
+'listgrouprights-addgroup-self'        => 'הרשאה להוספת {{PLURAL:$2|הקבוצה|הקבוצות}} לחשבון האישי: $1',
+'listgrouprights-removegroup-self'     => 'הרשאה להסרת {{PLURAL:$2|הקבוצה|הקבוצות}} מהחשבון האישי: $1',
+'listgrouprights-addgroup-self-all'    => 'הרשאה להוספת כל הקבוצות לחשבון האישי',
+'listgrouprights-removegroup-self-all' => 'הרשאה להסרת כל הקבוצות מהחשבון האישי',
 
 # E-mail user
 'mailnologin'      => 'אין כתובת לשליחה',
