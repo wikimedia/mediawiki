@@ -628,7 +628,12 @@ function os_eventBlur(e){
 		return; // not our event
 	if(!os_mouse_pressed){
 		os_hideResults(r);
+		// force canvas to stay hidden
 		r.stayHidden = true
+		// cancel any pending fetches
+		if(os_timer != null && os_timer.id != null)
+			clearTimeout(os_timer.id);
+		os_timer = null
 	}
 }
 
