@@ -2286,6 +2286,10 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'listgrouprights-removegroup'     => 'Can remove {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-addgroup-all'    => 'Can add all groups',
 'listgrouprights-removegroup-all' => 'Can remove all groups',
+'listgrouprights-addgroup-self'        => 'Can add {{PLURAL:$2|group|groups}} to own account: $1',
+'listgrouprights-removegroup-self'     => 'Can remove {{PLURAL:$2|group|groups}} to own account: $1',
+'listgrouprights-addgroup-self-all'    => 'Can add all groups to own account',
+'listgrouprights-removegroup-self-all' => 'Can remove all groups to own account',
 
 # E-mail user
 'mailnologin'      => 'No send address',

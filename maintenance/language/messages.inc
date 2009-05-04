@@ -1535,6 +1535,11 @@ $wgMessageStructure = array(
 		'listgrouprights-removegroup',
 		'listgrouprights-addgroup-all',
 		'listgrouprights-removegroup-all',
+		'listgrouprights-addgroup-self',
+		'listgrouprights-removegroup-self',
+		'listgrouprights-addgroup-self-all',
+		'listgrouprights-removegroup-self-all',
+
 	),
 	'emailuser' => array(
 		'mailnologin',
