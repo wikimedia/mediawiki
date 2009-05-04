@@ -875,6 +875,22 @@ class UndeleteForm {
 			$targetPage = $rev->getTitle();
 			$targetQuery = 'oldid=' . $rev->getId();
 		}
+		// Add show/hide link if available
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			// If revision was hidden from sysops
+			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
+				$del = ' ' . Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
+					'(' . wfMsgHtml('rev-delundel') . ')' );
+			// Otherwise, show the link...
+			} else {
+				$query = array( 'target' => $this->mTargetObj->getPrefixedDbkey(),
+					'artimestamp' => $rev->getTimestamp() );
+				$del = ' ' . $sk->revDeleteLink( $query,
+					$rev->isDeleted( Revision::DELETED_RESTRICTED ) );
+			}
+		} else {
+			$del = '';
+		}
 		return
 			'<div id="mw-diff-'.$prefix.'title1"><strong>' .
 				$sk->makeLinkObj( $targetPage,
@@ -887,7 +903,7 @@ class UndeleteForm {
 				$sk->revUserTools( $rev ) . '<br/>' .
 			'</div>' .
 			'<div id="mw-diff-'.$prefix.'title3">' .
-				$sk->revComment( $rev ) . '<br/>' .
+				$sk->revComment( $rev ) . $del . '<br/>' .
 			'</div>';
 	}
 
