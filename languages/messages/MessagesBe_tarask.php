@@ -2015,7 +2015,7 @@ $NEWPAGE
 'prot_1movedto2'              => '[[$1]] перанесеная ў [[$2]]',
 'protect-legend'              => 'Пацьверджаньне абароны',
 'protectcomment'              => 'Камэнтар:',
-'protectexpiry'               => 'Сканчаецца:',
+'protectexpiry'               => 'Тэрмін:',
 'protect_expiry_invalid'      => 'Няслушны час сканчэньня абароны.',
 'protect_expiry_old'          => 'Тэрмін абароны прайшоў.',
 'protect-unchain'             => 'Дазволіць пераносы',

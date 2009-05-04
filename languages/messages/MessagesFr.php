@@ -1411,7 +1411,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-suppressionlog'        => 'Voir les journaux privés',
 'right-block'                 => 'Bloquer en écriture d’autres utilisateurs',
 'right-blockemail'            => 'Empêcher un utilisateur d’envoyer des courriels',
-'right-hideuser'              => 'Bloquer un utilisateur en masquant son nom au pulic',
+'right-hideuser'              => 'Bloquer un utilisateur en masquant son nom au public',
 'right-ipblock-exempt'        => 'Ne pas être affecté par les IP bloquées, les blocages automatiques et les blocages de plages d’IP',
 'right-proxyunbannable'       => 'Ne pas être affecté par les blocages automatiques de serveurs mandataires',
 'right-protect'               => 'Modifier le niveau de protection des pages et modifier les pages protégées',

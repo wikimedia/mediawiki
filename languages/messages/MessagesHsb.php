@@ -2345,8 +2345,8 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymny wužiwar|Anonymnaj wužiwarjej|Anonymni wužiwarjo|Anonymni wužiwarjo}} we {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'siteuser'         => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}} $1',
-'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot wužiwarja $3 změnjena.',
-'othercontribs'    => 'Na zakładźe dźěła wužiwarja $1.',
+'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot wužiwarja $4 změnjena.',
+'othercontribs'    => 'Bazěruje na dźěle {{PLURAL:$1|wužiwar|wužiwarjow|wužiwarjow|wužiwarjow}} $1.',
 'others'           => 'druhich',
 'siteusers'        => '{{SITENAME}}  {{PLURAL:$2|wužiwar|wužiwarjej|wužiwarjo|wužiwarjow}} $1',
 'creditspage'      => 'Dźak awtoram',

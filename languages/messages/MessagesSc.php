@@ -459,9 +459,9 @@ S'arregistru de is fuliaduras e moviduras de sa pàgina est amostau pro informat
 'last'                   => 'ant',
 'page_first'             => 'prima',
 'page_last'              => 'ùrtima',
-'histlegend'             => "Cunfruntu fra versiones: scebera sa casella de sa versione che boles e cracca Invio o su butoni in basciu.
+'histlegend'             => "Cunfruntu fra versiones: scebera sa casella de sa versione chi boles e craca Invio o su butone in bàsciu.
 
-Legenda: '''({{int:cur}})''' = diferèntzias cun sa versioni currenti, '''({{int:last}})''' = diferèntzias cun sa versioni in antis, '''{{int:minoreditletter}}''' = acontzu minore",
+Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente, '''({{int:last}})''' = diferèntzias cun sa versione in antis, '''{{int:minoreditletter}}''' = acontzu minore",
 'history-fieldset-title' => "Isfògia s'istòria",
 'deletedrev'             => '[fuliada]',
 'histfirst'              => 'Prima',
@@ -989,17 +989,17 @@ Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effett
 'move-page'          => 'Movimentu de $1',
 'move-page-backlink' => '← $1',
 'move-page-legend'   => 'Movimentu pàgina',
-'movepagetext'       => "Cun custu modulu podes rinomenai una pàgina, movendi totu s'istòria sua a sa pàgina noa. 
-Su tìtulu bèciu at a diventai una pàgina redirect a su tìtulu nou. 
-Podes agiornai automaticamenti is redirects ca ligant a su tìtulu originali. 
-Chi scioberas de no, assicuradia de cuntrollai pro [[Special:DoubleRedirects|dòpius]]  o [[Special:BrokenRedirects|redirects sballiaus]]. 
-Ses responsàbili de t'assigurai ca is cullegamentos sighint a puntari  a ue depint puntari.
+'movepagetext'       => "Cun custu mòdulu podes renomenare una pàgina, movende totu s'istòria sua a sa pàgina noa. 
+Su tìtulu bèciu at a diventare una pàgina redirect a su tìtulu nou. 
+Podes agiornare automaticamente is redirects ca ligant a su tìtulu originale. 
+Chi scioberas de no, assicuradia de cuntrollare pro [[Special:DoubleRedirects| redirect dòpius]] o [[Special:BrokenRedirects|isballiaus]]. 
+Ses responsàbile de t'assigurare ca is cullegamentos sighint a puntare  a ue depent puntare.
 
-Annota ca sa pàgina '''non''' s'at a mòvere si ndi esistit giai un'àtera a su tìtulu nou, si no est chi siat bùida o cun isceti unu redirect a sa bècia e siat chentza acontzos in antis. In casu de movidura sballiada, duncas, si podet torrai a su tìtulu bèciu, e non podis subraiscriere una pàgina chi giai esistit.
+Annota ca sa pàgina '''non''' s'at a mòvere chi nde esistet giai un'àtera a su tìtulu nou, chi no est chi siat bùida o cun isceti unu redirect a sa bècia e siat chentza acontzos in antis. In casu de movidura isballiada, duncas, si podet torrai a su tìtulu bèciu, ma non podes subraiscrìere una pàgina chi giai esistet.
 
-'''ATENTZIONI:'''
-Unu cambiamentu dràsticu podet creare problemas, mascamenti a is pàginas prus populares; 
-pro pregheri depis èssere siguru de àere cumpresu is cunseguèntzias prima de andari a in antis.",
+'''ATENTZIONE:'''
+Unu cambiamentu dràsticu podet creare problemas, mescamente a is pàginas prus populares; 
+pro preghere depis èssere siguru de àere cumpresu is cunseguèntzias prima de andare a in antis.",
 'movepagetalktext'   => "Sa pàgina cuntierras asotziada, chi esistit, at a èssere movida automaticamenti impare a sa pàgina printzipale, '''a parte in custos casos''':
 * su movimentu de sa pàgina est tra namespaces diversos;
 * in currispondentzia de su tìtulu nou esistit giai una pàgina de cuntierras (non bùida);
@@ -1036,17 +1036,17 @@ Pro pregheri scebera un àteru nòmene.',
 'tooltip-pt-userpage'             => 'Sa pàgina usuàriu tua',
 'tooltip-pt-mytalk'               => 'Sa pàgina de is cuntierras tuas',
 'tooltip-pt-preferences'          => 'Is preferèntzias chi podes scioberai',
-'tooltip-pt-watchlist'            => 'Sa lista de is pàginas che dui ses ponendi ogru',
+'tooltip-pt-watchlist'            => 'Sa lista de is pàginas chi tue ses ponende ogru',
 'tooltip-pt-mycontris'            => 'Sa lista de is contributziones meas',
-'tooltip-pt-login'                => 'Si cunsigiat sa registratzioni; mancari non siat obligatoria',
+'tooltip-pt-login'                => 'Si cunsìgiat sa registratzione; mancari non siat obligatoria',
 'tooltip-pt-logout'               => 'Bessida (log out)',
 'tooltip-ca-talk'                 => 'Cuntierras a propositu de su cuntestu de sa pàgina',
-'tooltip-ca-edit'                 => "Podes acontzare custa pàgina.
+'tooltip-ca-edit'                 => "Podes acontzare custa pàgina. 
 Pro pregheri, prima de sarvari càstia s'antiprima",
 'tooltip-ca-addsection'           => 'Incumintza una setzione noa',
 'tooltip-ca-viewsource'           => 'Sa pàgina est amparada.
 Podes castiare sa mitza sua',
-'tooltip-ca-history'              => 'Versiones in antis de custa pàgina',
+'tooltip-ca-history'              => 'Versiones passadas de custa pàgina',
 'tooltip-ca-protect'              => 'Ampara custa pàgina',
 'tooltip-ca-delete'               => 'Fùlia custa pàgina',
 'tooltip-ca-move'                 => 'Movi custa pàgina',
@@ -1061,7 +1061,7 @@ Podes castiare sa mitza sua',
 'tooltip-n-recentchanges'         => 'Sa lista de is ùrtimas mudàntzias de su giassu',
 'tooltip-n-randompage'            => 'Mosta una pàgina a sorte',
 'tooltip-n-help'                  => 'Pàginas de agiudu',
-'tooltip-t-whatlinkshere'         => 'Lista de totu is pàginas che ligant a custa',
+'tooltip-t-whatlinkshere'         => 'Lista de totu is pàginas chi ligant a custa',
 'tooltip-t-recentchangeslinked'   => 'Lista de is ùrtimas mudàntzias de is pàgina chi ligant a custa',
 'tooltip-feed-rss'                => 'RSS feed pro custa pàgina',
 'tooltip-feed-atom'               => 'Atom feed pro custa pàgina',
@@ -1211,7 +1211,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # Special:Version
 'version'                  => 'Versioni',
-'version-version'          => '(Versioni $1)',
+'version-version'          => '(Versione $1)',
 'version-software-version' => 'Versioni',
 
 # Special:FilePath

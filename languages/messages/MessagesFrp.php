@@ -644,7 +644,7 @@ Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des 
 'note'                             => "'''Nota :'''",
 'previewnote'                      => "'''Rapelâd-vos que ceti tèxte est ren qu’una prèvisualisacion.'''
 '''Il at p’oncor étâ sôvâ !'''",
-'previewconflict'                  => 'Ceta prèvisualisacion montre lo tèxte de la bouèta d’èdicion de d’amont tâl qu’aparètrat se vos chouèsésséd de lo sôvar.',
+'previewconflict'                  => 'Ceta prèvisualisacion montre lo tèxte de la bouèta d’èdicion de d’amont coment aparètrat se vos chouèsésséd de lo sôvar.',
 'session_fail_preview'             => "'''Dèsolâ ! Nos povens pas enregistrar voutron changement a côsa d’una pèrta d’enformacions en rapôrt avouéc voutra sèssion.'''
 Volyéd tornar èprovar.
 Se cen tôrne pas reussir, volyéd [[Special:UserLogout|vos dèbranchiér]], et pués vos tornar branchiér.",
@@ -661,8 +661,8 @@ Ceti problèmo arreve quand vos utilisâd un sèrvor mandatèro (''proxy'') anon
 'editingsection'                   => 'Changement de $1 (sèccion)',
 'editingcomment'                   => 'Changement de $1 (novèla sèccion)',
 'editconflict'                     => 'Conflit de changement : $1',
-'explainconflict'                  => "Ceta pâge at étâ sôvâ aprés que vos èyâd comenciê a la changiér.
-La zona d’èdicion de d’amont contint lo tèxte tâl qu’il est enregistrâ ora dens la bâsa de balyês.
+'explainconflict'                  => "Ceta pâge at étâ sôvâ aprés que vos vos éte betâ a la changiér.
+La zona d’èdicion de d’amont contint lo tèxte coment il est enregistrâ ora dens la bâsa de balyês.
 Voutros changements aparèssont dens la zona d’èdicion de desot.
 Vos voléd devêr fusionar voutros changements dens lo tèxte ègzistent.
 '''Solament''' lo tèxte de la zona de d’amont serat sôvâ quand vos cliqueréd dessus « Sôvar ceta pâge ».",
@@ -713,8 +713,8 @@ Vos pouede tornar arriér et pués changiér una pâge ègzistenta, ou ben [[Spe
 'permissionserrorstext-withaction' => 'Vos éte pas ôtorisâ a $2, por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
 'recreate-moveddeleted-warn'       => "'''Atencion : vos éte aprés refâre una pâge qu’at étâ suprimâ dês devant.'''
 
-Demandâd-vos s’o est verément convegnâblo de continuar a l’èditar.
-Los jornals de les suprèssions et des changements de nom sont montrâs ce-desot :",
+Demandâd-vos s’o est franc favorâblo de continuar son changement.
+Los jornals de les suprèssions et des changements de nom de cela pâge sont montrâs ce-desot :",
 'moveddeleted-notice'              => 'Ceta pâge at étâ suprimâ.
 Los jornals de les suprèssions et des changements de nom sont montrâs ce-desot coment refèrence.',
 'log-fulllog'                      => 'Vêre lo jornal complèt',
@@ -1353,13 +1353,13 @@ Marci de lo renomar et de lo tornar tèlèchargiér.',
 {{PLURAL:$3|Lo tipo de fichiérs accèptâ est|Los tipos de fichiérs accèptâs sont}} $2.",
 'filetype-missing'            => 'Lo fichiér at gins d’èxtension (coment « .jpg » per ègzemplo).',
 'large-file'                  => 'Los fichiérs tèlèchargiês devriant pas étre ples grant que $1 ;
-ceti fichiér fât $2.',
-'largefileserver'             => 'La talye de ceti fichiér est d’amont lo nivél lo ples hôt ôtorisâ.',
+cél fichiér fât $2.',
+'largefileserver'             => 'La talye de cél fichiér est d’amont lo nivél lo ples hôt ôtorisâ.',
 'emptyfile'                   => 'Lo fichiér que vos voléd tèlèchargiér semble vouedo.
 Cen pôt étre diu a una èrror dedens lo nom du fichiér.
 Volyéd controlar que vos dèsirâd franc tèlèchargiér cél fichiér.',
-'fileexists'                  => "Un fichiér avouéc ceti nom ègziste ja. Marci de controlar '''<tt>$1</tt>'''. Éte-vos de sûr de volêr lo changiér ?",
-'filepageexists'              => "La pâge de dèscripcion por ceti fichiér at ja étâ fêta ique '''<tt>$1</tt>''', mas nion fichiér de cél nom ègziste ora.
+'fileexists'                  => "Un fichiér avouéc cél nom ègziste ja. Marci de controlar '''<tt>$1</tt>'''. Éte-vos de sûr de volêr lo changiér ?",
+'filepageexists'              => "La pâge de dèscripcion por cél fichiér at ja étâ fêta ique '''<tt>$1</tt>''', mas nion fichiér de cél nom ègziste ora.
 Lo rèsumâ que vos voléd ècrire remplacierat pas ceti tèxte.
 Por cen fâre vos devréd changiér la pâge a la man.",
 'fileexists-extension'        => "Un fichiér avouéc un nom d’ense ègziste ja :<br />
@@ -1373,30 +1373,38 @@ Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y
 'file-thumbnail-no'           => "Lo nom du fichiér comence per '''<tt>$1</tt>'''.
 O est possiblo que seye una vèrsion rèduita ''(figura)''.
 Se vos avéd lo fichiér en rèsolucion hôta, tèlèchargiéd-lo, ôtrament volyéd changiér son nom.",
-'fileexists-forbidden'        => 'Un fichiér avouéc ceti nom ègziste ja et pôt pas étre ècrasâ.
+'fileexists-forbidden'        => 'Un fichiér avouéc cél nom ègziste ja et pôt pas étre ècrasâ.
 Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un ôtro nom. [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Un fichiér avouéc ceti nom ègziste ja dens lo dèpôt de fichiérs partagiê.
+'fileexists-shared-forbidden' => 'Un fichiér avouéc cél nom ègziste ja dens lo dèpôt de fichiérs partagiê.
 Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un ôtro nom. [[File:$1|thumb|center|$1]]',
-'file-exists-duplicate'       => 'Cél fichiér est un doblon {{PLURAL:$1|de ceti fichiér|de cetos fichiérs}} :',
-'successfulupload'            => 'Copia reussia',
+'file-exists-duplicate'       => 'Cél fichiér est un doblo {{PLURAL:$1|de ceti fichiér|de cetos fichiérs}} :',
+'file-deleted-duplicate'      => 'Un fichiér pariér a ceti ([[$1]]) at ja étâ suprimâ.
+Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que lo tornar tèlèchargiér.',
+'successfulupload'            => 'Tèlèchargement fêt avouéc reusséta',
 'uploadwarning'               => 'Atencion !',
 'savefile'                    => 'Sôvar lo fichiér',
-'uploadedimage'               => 'at importâ « [[$1]] »',
-'overwroteimage'              => 'at importâ una novèla vèrsion de « [[$1]] »',
-'uploaddisabled'              => 'Dèsolâ, l’èxpèdicion de fichiér est dèsactivâ.',
-'uploaddisabledtext'          => 'L’èxpèdicion de fichiérs est dèsactivâ dessus {{SITENAME}}.',
-'uploadscripted'              => 'Ceti fichiér contint de code HTML ou ben un script que porrêt étre entèrprètâ de façon fôssa per un navigator Malyâjo.',
-'uploadcorrupt'               => 'Ceti fichiér est corrompu, il at una talye nula ou ben una èxtension envalida.
-Volyéd controlar lo fichiér.',
-'uploadvirus'                 => 'Ceti fichiér contint un virus ! Por més de dètalys, consultâd : $1',
-'sourcefilename'              => 'Nom du fichiér a importar&nbsp;:',
-'destfilename'                => 'Nom desot loquint lo fichiér serat enregistrâ&nbsp;:',
-'watchthisupload'             => 'Siuvre ceti fichiér',
-'filewasdeleted'              => 'Un fichiér avouéc ceti nom at ja étâ copiyê, et pués suprimâ. Vos devriâd controlar lo $1 devant que fâre una novèla copia.',
-'upload-wasdeleted'           => "'''Atencion : vos éte aprés importar un fichiér qu’at ja étâ suprimâ dês devant.'''
+'uploadedimage'               => 'at tèlèchargiê « [[$1]] »',
+'overwroteimage'              => 'at tèlèchargiê una novèla vèrsion de « [[$1]] »',
+'uploaddisabled'              => 'Tèlèchargements dèsactivâs',
+'uploaddisabledtext'          => 'Lo tèlèchargement de fichiérs est dèsactivâ.',
+'php-uploaddisabledtext'      => 'Lo tèlèchargement de fichiérs at étâ dèsactivâ dens PHP.
+Controlâd lo chouèx de configuracion file_uploads.',
+'uploadscripted'              => 'Cél fichiér contint de code HTML ou ben un script que porrêt étre entèrprètâ de façon fôssa per un navigator Malyâjo.',
+'uploadcorrupt'               => 'Cél fichiér est corrompu, il at una talye nula ou ben una èxtension envalida.
+Volyéd controlar lo fichiér devant que lo tornar tèlèchargiér.',
+'uploadvirus'                 => 'Cél fichiér contint un virus ! Por més de dètalys, consultâd : $1',
+'sourcefilename'              => 'Nom du fichiér sôrsa :',
+'destfilename'                => 'Nom desot loquint lo fichiér serat enregistrâ :',
+'upload-maxfilesize'          => 'Talye la ples granta du fichiér : $1',
+'watchthisupload'             => 'Siuvre la pâge de ceti fichiér',
+'filewasdeleted'              => 'Un fichiér avouéc cél nom at ja étâ tèlèchargiê, et pués suprimâ.
+Vos devriâd controlar lo $1 devant que lo tornar tèlèchargiér.',
+'upload-wasdeleted'           => "'''Atencion : vos éte aprés tèlèchargiér un fichiér qu’at étâ suprimâ dês devant.'''
 
-Vos devriâd considèrar s’o est convegnâblo de continuar l’impôrt de cél fichiér. Lo jornal de les suprèssions vos barat los èlèments d’enformacion.",
-'filename-bad-prefix'         => "Lo nom du fichiér que vos importâd comence per '''« $1 »''' qu’est un nom g·ènèralament balyê per los aparèlys-fotô numericos et que dècrit pas lo fichiér. Volyéd chouèsir/cièrdre un nom de fichiér dècrisent voutron fichiér.",
+Demandâd-vos s’o est franc favorâblo de continuar son tèlèchargement.
+Lo jornal de les suprèssions de cél fichiér est montrâ ce-desot :",
+'filename-bad-prefix'         => "Lo nom du fichiér que vos tèlèchargiéd comence per '''« $1 »''' qu’est tipicament un nom balyê ôtomaticament per los aparèlys-fotô numericos.
+Volyéd chouèsir un nom de fichiér dèscriptif.",
 'filename-prefix-blacklist'   => ' #<!-- lèssiéd ceta legne justo d’ense --> <pre>
 # La sintaxa est la siuventa :
 #  * Tot caractèro siuvent « # » tant qu’a la fin de la legne serat entèrprètâ coment un comentèro.
@@ -1413,89 +1421,113 @@ PICT # de totes sôrtes
   #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
 
 'upload-proto-error'      => 'Protocolo fôx',
-'upload-proto-error-text' => 'L’impôrt requerét des URLs comencient per <code>http://</code> ou ben <code>ftp://</code>.',
+'upload-proto-error-text' => 'Lo tèlèchargement a distance at fôta des URLs que començont per <code>http://</code> ou ben <code>ftp://</code>.',
 'upload-file-error'       => 'Èrror de dedens',
-'upload-file-error-text'  => 'Una èrror de dedens est arrevâ en volent crèar un fichiér temporèro sur lo sèrvior. Volyéd vos veriér vers un administrator sistèmo.',
-'upload-misc-error'       => 'Èrror d’impôrt encognua',
-'upload-misc-error-text'  => 'Una èrror encognua est arrevâ pendent l’impôrt. Volyéd controlar que l’URL est valida et accèssibla, et pués tornâd èprovar. Se lo problèmo continue, veriéd-vos vers un administrator sistèmo.',
+'upload-file-error-text'  => 'Una èrror de dedens est arrevâ en volent fâre un fichiér temporèro sur lo sèrvor.
+Volyéd vos veriér vers un [[Special:ListUsers/sysop|administrator]].',
+'upload-misc-error'       => 'Èrror encognua pendent lo tèlèchargement',
+'upload-misc-error-text'  => 'Una èrror encognua est arrevâ pendent lo tèlèchargement.
+Volyéd controlar que l’URL est valida et accèssibla, et pués tornâd èprovar.
+Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administrator]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'       => 'Pôt pas avengiér l’URL',
-'upload-curl-error6-text'  => 'L’URL fornia pôt pas étre avengiê. Volyéd controlar que l’URL est corrècta et que lo seto est en legne.',
-'upload-curl-error28'      => 'Dèpassement du dèlê pendent l’impôrt',
-'upload-curl-error28-text' => 'Lo seto at betâ trop grant-temps a rèpondre. Controlâd que lo seto est en legne, atendéd un pou et pués tornâd èprovar. Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
+'upload-curl-error6'       => 'URL pas juegnâbla',
+'upload-curl-error6-text'  => 'L’URL fornia pôt pas étre juenta.
+Volyéd controlar que l’URL est justa et que lo seto est en legne.',
+'upload-curl-error28'      => 'Dèpassement du dèlê pendent lo tèlèchargement',
+'upload-curl-error28-text' => 'Lo seto at betâ trop grant-temps a rèpondre.
+Controlâd que lo seto est en legne, atendéd un pou et pués tornâd èprovar.
+Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
-'license'            => 'Licence&nbsp;:',
-'nolicense'          => 'Niona licence sèlèccionâ',
-'license-nopreview'  => '(Prèvisualisacion empossibla)',
-'upload_source_url'  => ' (una URL valida et accèssibla publicament)',
-'upload_source_file' => ' (un fichiér sur voutron ordenator)',
+'license'            => 'Licence :',
+'nolicense'          => 'Niona licence chouèsia',
+'license-nopreview'  => '(Prèvisualisacion pas disponibla)',
+'upload_source_url'  => '  (una URL valida et accèssibla publicament)',
+'upload_source_file' => '  (un fichiér sur voutron ordenator)',
 
 # Special:ListFiles
-'listfiles_search_for'  => 'Rechèrche por l’émâge apelâ :',
+'listfiles-summary'     => 'Ceta pâge spèciâla montre tôs los fichiérs tèlèchargiês.
+Per dèfôt, los dèrriérs fichiérs tèlèchargiês sont montrâs d’amont de lista.
+Clicar sur un en-téta de colona pèrmèt de changiér l’ôrdre de visualisacion.',
+'listfiles_search_for'  => 'Rechèrchiér un nom de mèdia :',
 'imgfile'               => 'fichiér',
-'listfiles'             => 'Lista de les émâges',
+'listfiles'             => 'Lista des fichiérs',
 'listfiles_date'        => 'Dâta',
 'listfiles_name'        => 'Nom',
 'listfiles_user'        => 'Utilisator',
-'listfiles_size'        => 'Octèts',
+'listfiles_size'        => 'Talye (en octèts)',
 'listfiles_description' => 'Dèscripcion',
+'listfiles_count'       => 'Vèrsions',
 
 # File description page
 'filehist'                  => 'Historico du fichiér',
-'filehist-help'             => 'Clicar sur una dâta et una hora por vêre lo fichiér tâl qu’il ére a cél moment.',
-'filehist-deleteall'        => 'tot suprimar',
-'filehist-deleteone'        => 'suprimar cen',
-'filehist-revert'           => 'rèvocar',
+'filehist-help'             => 'Clicar sur una dâta et hora por vêre lo fichiér coment il ére a cél moment.',
+'filehist-deleteall'        => 'suprimar tot',
+'filehist-deleteone'        => 'suprimar',
+'filehist-revert'           => 'rètablir',
 'filehist-current'          => 'ora',
 'filehist-datetime'         => 'Dâta et hora',
 'filehist-thumb'            => 'Figura',
 'filehist-thumbtext'        => 'Figura por la vèrsion du $1',
+'filehist-nothumb'          => 'Pas de figura',
 'filehist-user'             => 'Utilisator',
 'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => 'Talye du fichiér',
 'filehist-comment'          => 'Comentèro',
 'imagelinks'                => 'Usâjos du fichiér',
 'linkstoimage'              => '{{PLURAL:$1|Ceta pâge utilise|Cetes $1 pâges utilisont}} ceti fichiér :',
-'nolinkstoimage'            => 'Niona pâge contint ceta émâge.',
+'linkstoimage-more'         => 'Més {{PLURAL:$1|d’yona pâge utilise|de $1 pâges utilisont}} ceti fichiér.
+Ceta lista montre ren que {{PLURAL:$1|la premiére pâge qu’utilise|les $1 premiéres pâges qu’utilisont}} ceti fichiér.
+Una [[Special:WhatLinksHere/$2|lista complèta]] est disponibla.',
+'nolinkstoimage'            => 'Niona pâge utilise ceti fichiér.',
+'morelinkstoimage'          => 'Vêde [[Special:WhatLinksHere/$1|més de lims]] vers ceti fichiér.',
+'redirectstofile'           => '{{PLURAL:$1|Ceti fichiér redirige|Cetos fichiérs redirijont}} vers ceti :',
+'duplicatesoffile'          => '{{PLURAL:$1|Ceti fichiér est un doblo|Cetos fichiérs sont des doblos}} de ceti ([[Special:FileDuplicateSearch/$2|més de dètalys]]) :',
 'sharedupload'              => 'Ceti fichiér vint de $1 et pôt étre utilisâ per d’ôtros projèts.',
-'noimage'                   => 'Nion fichiér èyent cél nom ègziste, vos pouede $1.',
-'noimage-linktext'          => 'nen importar yon',
-'uploadnewversion-linktext' => 'Copiyér una novèla vèrsion de ceti fichiér',
+'sharedupload-desc-there'   => 'Ceti fichiér vint de $1 et pôt étre utilisâ per d’ôtros projèts.
+Vêde sa [$2 pâge de dèscripcion] por més d’enformacions.',
+'sharedupload-desc-here'    => 'Ceti fichiér vint de $1 et pôt étre utilisâ per d’ôtros projèts.
+La dèscripcion de sa [$2 pâge de dèscripcion] est montrâ ce-desot.',
+'noimage'                   => 'Nion fichiér ègziste desot cél nom, mas vos pouede $1.',
+'noimage-linktext'          => 'nen tèlèchargiér yon',
+'uploadnewversion-linktext' => 'Tèlèchargiér una novèla vèrsion de ceti fichiér',
+'shared-repo-from'          => 'de $1',
+'shared-repo'               => 'un dèpôt de fichiérs partagiê',
 
 # File reversion
-'filerevert'                => 'Rèvocar $1',
-'filerevert-legend'         => 'Rèvocar lo fichiér',
-'filerevert-intro'          => "Vos voléd rèvocar '''[[Media:$1|$1]]''' tant qu’a [$4 la vèrsion du $2 a $3].",
+'filerevert'                => 'Rètablir $1',
+'filerevert-legend'         => 'Rètablir lo fichiér',
+'filerevert-intro'          => "Vos éte prèst a rètablir lo fichiér '''[[Media:$1|$1]]''' a la [$4 vèrsion du $2 a $3].",
 'filerevert-comment'        => 'Comentèro :',
-'filerevert-defaultcomment' => 'Rèvocâ tant qu’a la vèrsion du $1 a $2',
-'filerevert-submit'         => 'Rèvocar',
-'filerevert-success'        => "'''[[Media:$1|$1]]''' at étâ rèvocâ tant qu’a [$4 la vèrsion du $2 a $3].",
+'filerevert-defaultcomment' => 'Vèrsion du $1 a $2 rètablia',
+'filerevert-submit'         => 'Rètablir',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' at étâ rètabli a la [$4 vèrsion du $2 a $3].",
 'filerevert-badversion'     => 'Y at pas de vèrsion ples vielye du fichiér avouéc la dâta balyê.',
 
 # File deletion
-'filedelete'                  => 'Suprime $1',
+'filedelete'                  => 'Suprimar $1',
 'filedelete-legend'           => 'Suprimar lo fichiér',
-'filedelete-intro'            => "Vos éte aprés suprimar '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Vos éte prèst a suprimar '''[[Media:$1|$1]]''' et pués tot son historico.",
 'filedelete-intro-old'        => "Vos éte aprés èfaciér la vèrsion de '''[[Media:$1|$1]]''' du [$4 $2 a $3].",
-'filedelete-comment'          => 'Comentèro :',
+'filedelete-comment'          => 'Rêson de suprèssion :',
 'filedelete-submit'           => 'Suprimar',
 'filedelete-success'          => "'''$1''' at étâ suprimâ.",
-'filedelete-success-old'      => '<span class="plainlinks">La vèrsion de \'\'\'[[Media:$1|$1]]\'\'\' du $2 a $3 at étâ suprimâ.</span>',
-'filedelete-nofile'           => "'''$1''' ègziste pas dessus {{SITENAME}}.",
+'filedelete-success-old'      => "La vèrsion de '''[[Media:$1|$1]]''' du $2 a $3 at étâ suprimâ.",
+'filedelete-nofile'           => "'''$1''' ègziste pas.",
 'filedelete-nofile-old'       => "Ègziste gins de vèrsion arch·ivâ de '''$1''' avouéc los atributs endicâs.",
-'filedelete-otherreason'      => 'Rêson difèrenta ou suplèmentèra :',
-'filedelete-reason-otherlist' => 'Rêson difèrenta',
-'filedelete-reason-dropdown'  => '*Rêsons de suprèssion les ples corentes
-** Violacion des drêts d’ôtor
+'filedelete-otherreason'      => 'Ôtra rêson / rêson de ples :',
+'filedelete-reason-otherlist' => 'Ôtra rêson',
+'filedelete-reason-dropdown'  => '* Rêsons de suprèssion comenes
+** Violacion du drêt d’ôtor
 ** Fichiér en doblo',
-'filedelete-edit-reasonlist'  => 'Modifie les rêsons de la suprèssion',
+'filedelete-edit-reasonlist'  => 'Changiér les rêsons de suprèssion',
 
 # MIME search
-'mimesearch'         => 'Rechèrche per tipo MIME',
-'mimesearch-summary' => 'Ceta pâge spèciâla pèrmèt de chèrchiér des fichiérs d’aprés lor tipo MIME. Entrâ : tipo/sot-tipo, per ègzemplo <tt>image/jpeg</tt>.',
-'mimetype'           => 'Tipo MIME :',
-'download'           => 'Tèlèchargement',
+'mimesearch'         => 'Rechèrche per tipo de contegnu MIME',
+'mimesearch-summary' => "Ceta pâge vos pèrmèt de listar los fichiérs accèssiblos per ceti vouiqui d’aprés lor tipo de contegnu MIME.
+Entrâ : ''tipo de contegnu''/''sot-tipo'', per ègzemplo <tt>image/jpeg</tt>.",
+'mimetype'           => 'Tipo de contegnu MIME :',
+'download'           => 'Tèlèchargiér',
 
 # Unwatched pages
 'unwatchedpages' => 'Pâges pas siuvues',
@@ -1505,15 +1537,16 @@ PICT # de totes sôrtes
 
 # Unused templates
 'unusedtemplates'     => 'Modèlos inutilisâs',
-'unusedtemplatestext' => 'Ceta pâge liste totes les pâges de l’èspâço de nom « Modèlo » que sont pas encllues dens niona ôtra pâge. Oubliâd pas de controlar s’y at pas d’ôtros lims vers los modèlos devant que los suprimar.',
+'unusedtemplatestext' => 'Ceta pâge liste totes les pâges de l’èspâço de nom « {{ns:template}} » que sont pas encllues dens niona ôtra pâge.
+Oubliâd pas de controlar s’y at pas d’ôtros lims vers los modèlos devant que los suprimar.',
 'unusedtemplateswlh'  => 'ôtros lims',
 
 # Random page
-'randompage'         => 'Una pâge a l’hasârd',
+'randompage'         => 'Pâge a l’hasârd',
 'randompage-nopages' => 'Y at gins de pâge dens l’èspâço de nom « $1 ».',
 
 # Random redirect
-'randomredirect'         => 'Una pâge de redirèccion a l’hasârd',
+'randomredirect'         => 'Pâge de redirèccion a l’hasârd',
 'randomredirect-nopages' => 'Y at gins de pâge de redirèccion dens l’èspâço de nom « $1 ».',
 
 # Statistics

@@ -183,7 +183,7 @@ $messages = array(
 'noname'                     => 'Chan eil thu air ainm-cleachdair iomchaidh a chomharrachadh.',
 'nosuchusershort'            => 'Chan eil cleachdair leis an ainm "$1" ann; sgrùd an litreachadh agad no cleachd am billeag gu h-ìseal gus cùnntas ùr a chrùthachadh.',
 'wrongpassword'              => "Chan eil am facal-faire a sgrìobh thu a-steach ceart. Feuch a-rithist, ma's e do thoil e.",
-'acct_creation_throttle_hit' => 'Tha sinn duilich; tha sibh air $1 cùnntasan a chruthachadh cheana agus chan fhaod sibh barrachd a dhèanamh.',
+'acct_creation_throttle_hit' => 'Tha sinn duilich; tha thu air $1 {{PLURAL:$1|cùnntas|chùnntas|cùnntasan|cùnntas}} a chruthachadh cheana agus chan fhaod tu barrachd a dhèanamh.',
 'accountcreated'             => 'Cunntas cruthaichte',
 
 # Password reset dialog
@@ -252,8 +252,8 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'nextn'                 => 'an ath $1',
 'viewprevnext'          => 'Seall ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Cuideachadh',
-'showingresults'        => "A'nochdadh <b>$1</b> toraidhean gu h-ìosal a'tòiseachadh le #<b>$2</b>.",
-'showingresultsnum'     => "A'nochdadh <b>$3</b> toraidhean gu h-ìosal a'tòiseachadh le #<b>$2</b>.",
+'showingresults'        => "A' nochdadh $1 {{PLURAL:$1|thoradh|toradh|toraidhean|toradh}} gu h-ìosal a' tòiseachadh le #'''$2'''.",
+'showingresultsnum'     => "A' nochdadh '''$3''' {{PLURAL:$3|thoradh|toradh|toraidhean|toradh}}  gu h-ìosal a' tòiseachadh le #'''$2'''.",
 'powersearch'           => 'Rannsaich',
 
 # Preferences page
@@ -283,7 +283,7 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'action-move' => 'gluais an duilleag seo',
 
 # Recent changes
-'nchanges'          => '$1 mùthaidhean',
+'nchanges'          => '$1 {{PLURAL:$1|mùthadh|mhùthadh|mùthaidhean|mùthadh}}',
 'recentchanges'     => 'Mùthaidhean ùra',
 'recentchangestext' => 'Lean mùthaidhean ùra aig an wiki air an duilleag seo.',
 'rcnote'            => "Tha na {{PLURAL:$1|'''1''' mùthadh|$1 mùthaidhean}} deireanach air na {{PLURAL:$2|là|'''$2''' laithean}} deireanach gu h-ìosal as  $5, $4.",
@@ -326,7 +326,7 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'brokenredirects' => 'Ath-stiùireidhean briste',
 
 # Miscellaneous special pages
-'nviews'                  => '$1 seallaidhean',
+'nviews'                  => '$1 {{PLURAL:$1|shealladh|sealladh|seallaidhean|sealladh}}',
 'uncategorizedpages'      => 'Duilleagan neo-ghnethichte',
 'uncategorizedcategories' => 'Gnethan neo-ghnethichte',
 'unusedimages'            => 'Ìomhaighean neo-chleachdte',
@@ -373,8 +373,8 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'watchnochange'      => "Cha deach na duilleagan air d' fhaire a dheasachadh anns a' chuairt ùine taisbeanta.",
 'watchmethod-recent' => "A' sgrùdadh deasachaidhean ùra airson duilleagan air d' fhaire",
 'watchmethod-list'   => "A' sgrùdadh duilleagan air d' fhaire airson deasachaidhean ùra",
-'watchlistcontains'  => 'Tha $1 duilleagan air do chlàr-faire.',
-'wlnote'             => 'Seo na $1 mùthaidhean mu dheireadh anns na <b>$2</b> uairean mu dheireadh.',
+'watchlistcontains'  => 'Tha $1 {{PLURAL:$1|duilleag|dhuilleag| duilleagan|duilleag}} air do chlàr-faire.',
+'wlnote'             => 'Seo $1 {{PLURAL:$1|mhùthadh mu dheireadh|mhùthadh mu dheireadh|na mùthaidhean mu dheireadh|mùthadh mu dheireadh}} anns na $2 {{PLURAL:$2|uair|uair|uairean|uair}} mu dheireadh.',
 'wlshowlast'         => 'Nochd $1 uairean $2 laithean mu dheireadh $3',
 'watchlist-options'  => 'Roghainnean clàr-faire',
 
@@ -406,7 +406,7 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'protectcomment'     => 'Aobhar airson dìonaidh',
 
 # Undelete
-'undeleterevisions' => '$1 lethbhreacan taisge',
+'undeleterevisions' => '$1 {{PLURAL:$1|leth-bhreac|leth-bhreac|leth-bhreacan|leth-bhreac}} taisge',
 
 # Namespace form on various pages
 'blanknamespace' => '(Prìomh)',
