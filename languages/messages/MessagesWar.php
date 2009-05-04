@@ -120,14 +120,32 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Kategorya|Mga Kategorya}}',
-'category_header'          => 'Mga pakli ha kategorya "$1"',
-'subcategories'            => 'Mga ilarom nga kategorya',
-'category-media-header'    => 'Media ha kategorya "$1"',
-'category-empty'           => "''Ini nga kategorya ha yana waray mga pakli o media.''",
-'hidden-categories'        => '{{PLURAL:$1|Tinago nga kategorya|Tinago nga mga kategorya}}',
-'hidden-category-category' => 'Tinago nga mga kategorya',
+'pagecategories'                 => '{{PLURAL:$1|Kaarangay|Mga kaarangay}}',
+'category_header'                => 'Mga pakli ha kaarangay nga "$1"',
+'subcategories'                  => 'Mga ubos-nga-kaarangay',
+'category-media-header'          => 'Media ha kaarangay nga "$1"',
+'category-empty'                 => "''Ini nga kaarangay ha yana waray mga pakli o media.''",
+'hidden-categories'              => '{{PLURAL:$1|Tinago nga kaarangay|Tinago nga mga kaarangay}}',
+'hidden-category-category'       => 'Tinago nga mga kaarangay',
+'category-subcat-count'          => '{{PLURAL:$2|Ini nga kaarangay mayda amo la nga nasunod nga ubos-nga-kaarangay.|Ini nga kaarangay mayda han mga nasunod nga {{PLURAL:$1|ubos-nga-kaarangay|$1 nga mga ubos-nga-kaarangay}}, tikang hin $2 nga kabug-osan.}}',
+'category-subcat-count-limited'  => 'Ini nga kaarangay mayda han nasunod nga {{PLURAL:$1|ubos-nga-kaarangay|$1 nga mga ubos-nga-kaarangay}}.',
+'category-article-count'         => '{{PLURAL:$2|Ini nga kaarangay mayda han amo la nga nasunod nga pakli.|An mga nasunod nga {{PLURAL:$1|ka pakli|$1 ka mga pakli}} aada hini nga kaarangay, tikang hin $2 nga kabug-osan.}}',
+'category-article-count-limited' => 'An mga nasunod nga {{PLURAL:$1|ka pakli|$1 ka mga pakli aada}} han yana nga kaarangay.',
+'category-file-count'            => '{{PLURAL:$2|Ini nga kaarangay mayda hin amo la nga fayl.|An mga nasunod nga {{PLURAL:$1|ka fayl|$1 ka mga fayl aada}} han hini nga kaarangay, tikang hin $2 nga kabug-osan.}}',
+'category-file-count-limited'    => 'An mga nasunod nga {{PLURAL:$1|ka fayl|$1 ka mga faly aada}} han yana nga kaarangay.',
+'listingcontinuesabbrev'         => 'pdyn.',
 
+'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+'mainpagetext'      => "<big>'''Malinamposon an pag-instalar han MediaWiki.'''</big>",
+'mainpagedocfooter' => "Kitaa an [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] para hin impormasyon ha paggamit han wiki nga softweyr.
+
+== Ha pagtikang==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+
+'about'         => 'Mahitungod han',
+'article'       => 'Pakli hin sulod',
 'newwindow'     => '(nabuklad hin bag-o nga tamboan o bintana)',
 'cancel'        => 'Igkanselar',
 'moredotdotdot' => 'Damo pa nga…',
@@ -263,7 +281,7 @@ $messages = array(
 'nstab-mediawiki' => 'Mensahe',
 'nstab-template'  => 'Plantilya',
 'nstab-help'      => 'Pakli hin bulig',
-'nstab-category'  => 'Kategorya',
+'nstab-category'  => 'Kaarangay',
 
 # Main script and global functions
 'nosuchaction'      => 'Waray sugad nga buhat',
@@ -276,7 +294,22 @@ Bangin liwat ini usa nga bug dida han software nga ginagamit han {{SITENAME}}.',
 In lista o talaan hin puyde nga mga ispisyal nga pakli mabibilngan ha [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'error' => 'Sayop',
+'error'           => 'Sayop',
+'databaseerror'   => 'Sayop hin database',
+'dberrortext'     => 'Mayda nahinabo nga database nga kwery nga syntax nga sayop.
+Bangin ini nagpapakita hin bug dida han softweyr.
+An kataposan nga ginsari nga database nga kweri amo in:
+<blockquote><tt>$1</tt></blockquote>
+tikang ha sakob han funsyon nga "<tt>$2</tt>".
+MySQL nagbalik hin sayop nga "<tt>$3: $4</tt>".',
+'dberrortextcl'   => 'Mayda nahinabo nga database nga kwery nga syntax nga sayop. 
+An kataposan nga ginsari nga database nga kweri amo in:
+"$1"
+tikang ha sakob han funsyon nga "$2". 
+MySQL nagbalik hin sayop nga "$3: $4".',
+'laggedslavemode' => 'Bantay: It pakli bangin waray mga kabag-ohan nga bag-o.',
+'readonly'        => 'Gintrankahan an database',
+'enterlockreason' => 'Pagbutang hin rason para han pagtrangka. upod hin banabana kon san-o kukuha-on an pagtrangka',
 
 # Login and logout pages
 'login'                   => 'Sakob',
@@ -284,6 +317,7 @@ In lista o talaan hin puyde nga mga ispisyal nga pakli mabibilngan ha [[Special:
 'userlogin'               => 'Sakob/Pagrehistro',
 'logout'                  => 'Gawas',
 'userlogout'              => 'Gawas',
+'loginerror'              => 'Sayop hin pagsakob',
 'loginlanguagelabel'      => 'Yinaknan: $1',
 
 # History pages
@@ -328,11 +362,13 @@ In lista o talaan hin puyde nga mga ispisyal nga pakli mabibilngan ha [[Special:
 'listfiles_name' => 'Ngaran',
 
 # File description page
-'filehist-datetime' => 'Pitsa/Oras',
-'imagelinks'        => 'Mga sumpay',
-'linkstoimage'      => 'Nasumpay hini nga fayl an mga nasunod nga mga pakli:',
-'nolinkstoimage'    => 'Waray mga pakli nga nasumpay hini nga fayl.',
-'sharedupload'      => 'Ini nga fayl ginsaro nga pagkarga ngan puyde gamiton hin iba nga mga proyekto.',
+'filehist-datetime'       => 'Pitsa/Oras',
+'imagelinks'              => 'Mga sumpay',
+'linkstoimage'            => 'Nasumpay hini nga fayl an mga nasunod nga mga pakli:',
+'nolinkstoimage'          => 'Waray mga pakli nga nasumpay hini nga fayl.',
+'sharedupload'            => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.',
+'sharedupload-desc-there' => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.
+Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para hin dugang nga kasayuran.',
 
 # Unused templates
 'unusedtemplateswlh' => 'iba nga mga sumpay',
@@ -344,8 +380,10 @@ In lista o talaan hin puyde nga mga ispisyal nga pakli mabibilngan ha [[Special:
 'statistics' => 'Mga estadistika',
 
 # Miscellaneous special pages
-'longpages' => 'Haglaba nga mga pakli',
-'move'      => 'Balhina',
+'unusedcategories' => 'Waray kagamit nga mga kaarangay',
+'unusedimages'     => 'Waray kagamit nga mga fayl',
+'longpages'        => 'Haglaba nga mga pakli',
+'move'             => 'Balhina',
 
 # Book sources
 'booksources-go' => 'Kadto-a',
@@ -358,7 +396,13 @@ In lista o talaan hin puyde nga mga ispisyal nga pakli mabibilngan ha [[Special:
 'allpagessubmit' => 'Kadto-a',
 
 # Special:Categories
-'categories' => 'Mga Kategorya',
+'categories'                    => 'Mga kaarangay',
+'categoriesfrom'                => 'Igpakita in mga kaarangay nga natikang ha:',
+'special-categories-sort-count' => 'igtalaan ha pag-ihap',
+'special-categories-sort-abc'   => 'igtalaan ha abakadahan',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Mga ginpara nga mga ámot hin nágámit',
 
 # Watchlist
 'watchlist'     => 'Akon barantayan',

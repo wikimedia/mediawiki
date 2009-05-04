@@ -1246,6 +1246,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-help-email'          => 'Vapaaehtoinen. Mahdollistaa uuden salasanan pyytämisen, jos unohdat salasanasi. Voit myös sallia muiden käyttäjien ottaa sinuun yhteyttä sähköpostilla ilman, että osoitteesi paljastuu.',
 'prefs-help-email-required' => 'Sähköpostiosoite on pakollinen.',
 'prefs-info'                => 'Perustiedot',
+'prefs-i18n'                => 'Kieli',
 'prefs-signature'           => 'Allekirjoitus',
 
 # User rights
