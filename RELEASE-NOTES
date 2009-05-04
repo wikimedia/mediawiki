@@ -113,6 +113,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   possible.
 * (bug 18677) Give proper error message when viewing &action=protect without
   sufficient rights
+* (bug 6802) profileinfo.php now also work on other database servers than MySQL
 
 
 == API changes in 1.16 ==
