@@ -45,6 +45,8 @@ function wfSpecialBlockip( $par ) {
 class IPBlockForm {
 	var $BlockAddress, $BlockExpiry, $BlockReason;
 #	var $BlockEmail;
+	// The maximum number of edits a user can have and still be hidden
+	const HIDEUSER_CONTRIBLIMIT = 1000;
 
 	function IPBlockForm( $par ) {
 		global $wgRequest, $wgUser, $wgBlockAllowsUTEdit;
@@ -401,7 +403,7 @@ class IPBlockForm {
 			} else if( $expiry !== 'infinity' ) {
 				// Bad expiry.
 				return array('ipb_expiry_temp');
-			} else if( User::edits($userId) > 3000 ) {
+			} else if( User::edits($userId) > self::HIDEUSER_CONTRIBLIMIT ) {
 				// Typically, the user should have a handful of edits.
 				// Disallow hiding users with many edits for performance.
 				return array('ipb_hide_invalid');
@@ -444,7 +446,7 @@ class IPBlockForm {
 					$log_action = 'reblock';
 					# Unset _deleted fields if requested
 					if( $currentBlock->mHideName && !$this->BlockHideName ) {
-						$this->unsuppressUserName( $this->BlockAddress, $userId );
+						self::unsuppressUserName( $this->BlockAddress, $userId );
 					}
 				}
 			} else {
@@ -454,7 +456,7 @@ class IPBlockForm {
 
 			# Set *_deleted fields if requested
 			if( $this->BlockHideName ) {
-				$this->suppressUserName( $this->BlockAddress, $userId );
+				self::suppressUserName( $this->BlockAddress, $userId );
 			}
 
 			if ( $this->BlockWatchUser &&
@@ -485,36 +487,46 @@ class IPBlockForm {
 		}
 	}
 	
-	private function suppressUserName( $name, $userId ) {
+	public static function suppressUserName( $name, $userId ) {
 		$op = '|'; // bitwise OR
-		return $this->setUsernameBitfields( $name, $userId, $op );
+		return self::setUsernameBitfields( $name, $userId, $op );
 	}
 	
-	private function unsuppressUserName( $name, $userId ) {
+	public static function unsuppressUserName( $name, $userId ) {
 		$op = '&'; // bitwise AND
-		return $this->setUsernameBitfields( $name, $userId, $op );
+		return self::setUsernameBitfields( $name, $userId, $op );
 	}
 	
-	private function setUsernameBitfields( $name, $userId, $op ) {
+	private static function setUsernameBitfields( $name, $userId, $op ) {
 		if( $op !== '|' && $op !== '&' )
 			return false; // sanity check
 		$dbw = wfGetDB( DB_MASTER );
 		$delUser = Revision::DELETED_USER | Revision::DELETED_RESTRICTED;
+		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
+		# Normalize user name
+		$userTitle = Title::makeTitleSafe( NS_USER, $name );
+		$userDbKey = $userTitle->getDBKey();
 		# To suppress, we OR the current bitfields with Revision::DELETED_USER
 		# to put a 1 in the username *_deleted bit. To unsuppress we AND the
 		# current bitfields with the inverse of Revision::DELETED_USER. The
 		# username bit is made to 0 (x & 0 = 0), while others are unchanged (x & 1 = x).
 		# The same goes for the sysop-restricted *_deleted bit.
-		if( $op == '&' ) $delUser = "~{$delUser}";
+		if( $op == '&' ) {
+			$delUser = "~{$delUser}";
+			$delAction = "~{$delAction}";
+		}
 		# Hide name from live edits
 		$dbw->update( 'revision', array("rev_deleted = rev_deleted $op $delUser"),
 			array('rev_user' => $userId), __METHOD__ );
 		# Hide name from deleted edits
 		$dbw->update( 'archive', array("ar_deleted = ar_deleted $op $delUser"),
-			array('ar_user_text' => $userId), __METHOD__ );
+			array('ar_user_text' => $name), __METHOD__ );
 		# Hide name from logs
 		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delUser"),
-			array('log_user' => $userId), __METHOD__ );
+			array('log_user' => $userId, "log_type != 'suppress'"), __METHOD__ );
+		$dbw->update( 'logging', array("log_deleted = log_deleted $op $delAction"),
+			array('log_namespace' => NS_USER, 'log_title' => $userDbKey,
+				"log_type != 'suppress'"), __METHOD__ );
 		# Hide name from RC
 		$dbw->update( 'recentchanges', array("rc_deleted = rc_deleted $op $delUser"),
 			array('rc_user_text' => $name), __METHOD__ );
