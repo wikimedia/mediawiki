@@ -139,16 +139,20 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$this->getDB()->addQuotes($params['excludeuser']));
 		}
 		
-		if(!is_null($params['continue']) && $mode == 'all')
+		if(!is_null($params['continue']) && ($mode == 'all' || $mode == 'revs'))
 		{
 			$cont = explode('|', $params['continue']);
-			if(count($cont) != 2)
+			if(count($cont) != 3)
 				$this->dieUsage("Invalid continue param. You should pass the original value returned by the previous query", "badcontinue");
-			$title = $this->getDB()->strencode($this->titleToKey($cont[0]));
-			$ts = $this->getDB()->strencode($cont[1]);
-			$this->addWhere("ar_title > '$title' OR " .
+			$ns = intval($cont[0]);
+			$title = $this->getDB()->strencode($this->titleToKey($cont[1]));
+			$ts = $this->getDB()->strencode($cont[2]);
+			$op = ($params['dir'] == 'newer' ? '>' : '<');
+			$this->addWhere("ar_namespace $op $ns OR " .
+					"(ar_namespace = $ns AND " .
+					"(ar_title $op '$title' OR " .
 					"(ar_title = '$title' AND " .
-					"ar_timestamp >= '$ts')");
+					"ar_timestamp = '$ts')))");
 		}
 
 		$this->addOption('LIMIT', $limit + 1);
@@ -182,9 +186,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if(++$count > $limit)
 			{
 				// We've had enough
-				if($mode == 'all')
-					$this->setContinueEnumParameter('continue', $this->keyToTitle($row->ar_title) . '|' .
-						$row->ar_timestamp);
+				if($mode == 'all' || $mode == 'revs')
+					$this->setContinueEnumParameter('continue', intval($row->ar_namespace) . '|' .
+						$this->keyToTitle($row->ar_title) . '|' . $row->ar_timestamp);
 				else
 					$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->ar_timestamp));
 				break;
@@ -227,9 +231,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 			if(!$fit)
 			{
-				if($mode == 'all')
-					$this->setContinueEnumParameter('continue', $this->keyToTitle($row->ar_title) . '|' .
-						$row->ar_timestamp);
+				if($mode == 'all' || $mode == 'revs')
+					$this->setContinueEnumParameter('continue', intval($row->ar_namespace) . '|' .
+						$this->keyToTitle($row->ar_title) . '|' . $row->ar_timestamp);
 				else
 					$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->ar_timestamp));
 				break;
