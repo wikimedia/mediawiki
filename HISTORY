@@ -321,6 +321,13 @@ Change notes from older releases. For current info see RELEASE-NOTES.
   a POST request
 * (bug 18099) Using appendtext to edit a non-existent page causes an interface
   message to be included in the page text
+* Fixed the circular template inclusion check, was broken when the loop 
+  involved redirects. Without this, infinite recursion within the parser is
+  possible.
+* (bug 18601) generator=backlinks returns invalid continue parameter
+* (bug 18597) Internal error with empty generator= parameter
+* (bug 18617) Add xml:space="preserve" attribute to relevant tags in XML output
+* Added PHP and database version to meta=siteinfo output
 
 === Languages updated in 1.15 ===
 
