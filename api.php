@@ -70,7 +70,7 @@ if (!$wgEnableAPI) {
 }
 
 // So extensions can check whether they're running in API mode
-define('API', true);
+define('MW_API', true);
 
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
 // In a perfect world this wouldn't be necessary
