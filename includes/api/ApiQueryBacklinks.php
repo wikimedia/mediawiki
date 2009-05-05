@@ -206,6 +206,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$this->extractRowInfo($row);
 			else
 			{
+				$this->pageMap[$row->page_namespace][$row->page_title] = $row->page_id;
 				if($row->page_is_redirect)
 					$this->redirTitles[] = Title::makeTitle($row->page_namespace, $row->page_title);
 				$resultPageSet->processDbRow($row);

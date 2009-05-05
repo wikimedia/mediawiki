@@ -610,7 +610,7 @@ abstract class ApiBase {
 	* @return mixed (allowMultiple ? an_array_of_values : a_single_value)
 	*/
 	protected function parseMultiValue($valueName, $value, $allowMultiple, $allowedValues) {
-		if( trim($value) === "" )
+		if( trim($value) === "" && $allowMultiple)
 			return array();
 		$sizeLimit = $this->mMainModule->canApiHighLimits() ? self::LIMIT_SML2 : self::LIMIT_SML1;
 		$valuesList = explode('|', $value, $sizeLimit + 1);

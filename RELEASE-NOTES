@@ -340,6 +340,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed the circular template inclusion check, was broken when the loop 
   involved redirects. Without this, infinite recursion within the parser is
   possible.
+* (bug 18601) generator=backlinks returns invalid continue parameter
+* (bug 18597) Internal error with empty generator= parameter
+* (bug 18617) Add xml:space="preserve" attribute to relevant tags in XML output
 
 === Languages updated in 1.15 ===
 
