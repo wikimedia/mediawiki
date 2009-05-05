@@ -126,6 +126,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   users
 * (bug 13049) "API must be accessed from the primary script entry point" error
 * (bug 16422) Don't display help for format=jsonfm unless specifically requested
+* Added PHP and database version to meta=siteinfo output
 * (bug 18533) Add readonly message to meta=siteinfo output
 * (bug 18518) Add clprop=hidden to prop=categories
 

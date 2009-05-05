@@ -327,7 +327,6 @@ Change notes from older releases. For current info see RELEASE-NOTES.
 * (bug 18601) generator=backlinks returns invalid continue parameter
 * (bug 18597) Internal error with empty generator= parameter
 * (bug 18617) Add xml:space="preserve" attribute to relevant tags in XML output
-* Added PHP and database version to meta=siteinfo output
 
 === Languages updated in 1.15 ===
 
