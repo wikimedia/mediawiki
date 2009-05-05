@@ -346,6 +346,7 @@ class SpecialExport extends SpecialPage {
 			$pageSet = $this->getLinks( $inputPages, $pageSet, 'pagelinks',
 									   array( 'pl_namespace AS namespace', 'pl_title AS title' ),
 									   array( 'page_id=pl_from' ) );
+			$inputPages = array_keys( $pageSet );
 		}
 		return $pageSet;
 	}
