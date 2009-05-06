@@ -449,11 +449,11 @@ S'arregistru de is fuliaduras e moviduras de sa pàgina est amostau pro informat
 'viewpagelogs'           => 'Càstia sos registros de custa pàgina',
 'nohistory'              => 'Cronologia delle versioni di questa pagina non reperibile.',
 'currentrev'             => 'Versione currenti',
-'currentrev-asof'        => 'Versioni currenti de is $1',
-'revisionasof'           => 'Arrevisioni de is $1',
+'currentrev-asof'        => 'Versione currente de is $1',
+'revisionasof'           => 'Arrevisione de is $1',
 'previousrevision'       => '← Acontzu in antis',
 'nextrevision'           => 'Acontzu in fatu →',
-'currentrevisionlink'    => 'Arrevisioni currenti',
+'currentrevisionlink'    => 'Arrevisione currente',
 'cur'                    => 'curr',
 'next'                   => 'in fatu',
 'last'                   => 'ant',
@@ -471,7 +471,7 @@ Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente, '''({{int
 'history-feed-item-nocomment' => '$1 su $2',
 
 # Revision deletion
-'rev-delundel'   => 'mosta/cua',
+'rev-delundel'   => 'amosta/cua',
 'revdel-restore' => 'Muda sa visibilidadi',
 'pagehist'       => 'Istòria de sa pàgina',
 'deletedhist'    => 'Istòria fuliada',
@@ -483,10 +483,10 @@ Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente, '''({{int
 'revertmerge' => "Fùrria s'unione",
 
 # Diffs
-'history-title'           => 'Istòria de is arrevisionis de "$1"',
-'difference'              => '(Diferèntzias fra revisiones)',
+'history-title'           => 'Istòria de is arrevisiones de "$1"',
+'difference'              => '(Diferèntzias tra arrevisiones)',
 'lineno'                  => 'Lìnia $1:',
-'compareselectedversions' => 'Cumpara versionis scioberadas',
+'compareselectedversions' => 'Cumpara versiones scioberadas',
 'editundo'                => 'annudda',
 'diff-movedto'            => 'mòvidu a $1',
 'diff-src'                => 'mitza',
@@ -506,7 +506,7 @@ Podes [[:\$1|creare custa pàgina]].",
 'titlematches'              => 'Nei titoli degli articoli',
 'notitlematches'            => 'Peruna currispondentzia de is tìtulos de pàgina',
 'textmatches'               => 'Nel testo degli articoli',
-'notextmatches'             => "Peruna currispondentzia in su testu de s'artìculu",
+'notextmatches'             => "Peruna currispondèntzia in su testu de s'artìculu",
 'prevn'                     => 'cabudianos $1',
 'nextn'                     => 'imbenientes $1',
 'viewprevnext'              => 'Càstia ($1) ($2) ($3).',
@@ -544,7 +544,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'mypreferences'         => 'Preferèntzias meas',
 'prefsnologin'          => 'Non ses intrau',
 'prefsnologintext'      => 'Depis èssere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} intrau]</span> pro scioberai is preferèntzias.',
-'changepassword'        => 'Cambia password',
+'changepassword'        => 'Càmbia password',
 'prefs-skin'            => 'Bisura',
 'prefs-watchlist'       => 'Watchlist',
 'saveprefs'             => 'Sarva preferèntzias',
@@ -581,7 +581,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'group-autoconfirmed' => 'Usuàrios autocunfirmadus',
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Aministradores',
-'group-bureaucrat'    => 'Burocrates',
+'group-bureaucrat'    => 'Buròcrates',
 'group-all'           => '(totus)',
 
 'group-user-member'          => 'Usuàriu',
@@ -614,14 +614,14 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'recentchanges-legend'           => 'Possibilidades subra ùrtimas mudàntzias',
 'recentchanges-feed-description' => 'Custu feed riportada is ùrtimas mudàntzias a is cuntènnidos de su giassu.',
 'rcnote'                         => "Innoe sighende {{PLURAL:$1|du est s'ùrtima mudàntzia|is ùrtimas '''$1''' mudàntzias}} {{PLURAL:$2|in s'ùrtima die|ne is ùrtimas '''$2''' dies}}; is datos funt agiornaus a  $5, $4.",
-'rcnotefrom'                     => "Sighende dui funt amostadas is mudàntzias dae '''$2''' (fintzas a '''$1''').",
+'rcnotefrom'                     => "Sas chi sighint sunt sas mudàntzias dae '''$2''' (fintzas a '''$1''').",
 'rclistfrom'                     => 'Amosta mudàntzias dae $1',
 'rcshowhideminor'                => '$1 acontzos minores',
 'rcshowhidebots'                 => '$1 bots',
 'rcshowhideliu'                  => '$1 usuàrios intraus',
-'rcshowhideanons'                => '$1 usuàrios anònimus',
-'rcshowhidemine'                 => '$1 is acontzos meos',
-'rclinks'                        => 'Amosta is $1 ùrtimas mudàntzias fatas ne is ùrtimas $2 dies<br />$3',
+'rcshowhideanons'                => '$1 usuàrios anònimos',
+'rcshowhidemine'                 => '$1 acontzos meos',
+'rclinks'                        => 'Amosta is ùrtimas $1 mudàntzias fatas ne is ùrtimas $2 dies<br />$3',
 'diff'                           => 'dif',
 'hist'                           => 'ist',
 'hide'                           => 'Cua',
@@ -653,8 +653,8 @@ Is pàginas de sa [[Special:Watchlist|watchlist tua]] sunt in '''grassetu'''.",
 Pro castiare o chircare is files giai carrigaus, bae a sa [[Special:FileList|lista de is files carrigaus]]. Carrigamentos de files e de noas versiones de files sunt arregistradas in su [[Special:Log/upload|registru de carrigamentu]], is burraduras in su [[Special:Log/delete|registru burraduras]].
 
 Pro insertare unu file aintru de una pàgina, tocat a faghere unu cullegamentu tipu custu:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' pro impreare sa versioni cumpleta de su file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></tt>''' pro impreare una versioni lada 200 pixel insertada in d'unu box, allinniada a manca e cun 'testu alternativu' comente didascalia
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' pro impreare sa versione cumpleta de su file
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></tt>''' pro impreare una versione lada 200 pixel insertada in d'unu box, allinniada a manca e cun 'testu alternativu' comente didascalia
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' pro ingenerare unu cullegamentu a su file chentza de du biri",
 'uploadlogpage'     => 'Carrigadas',
 'uploadlogpagetext' => 'A suta bi est sa lista de is files carrigaus de retzente.
@@ -705,7 +705,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 
 # Statistics
 'statistics'              => 'Istatìsticas',
-'statistics-header-users' => 'Istatisticas usuàriu',
+'statistics-header-users' => 'Istatìsticas usuàriu',
 
 'disambiguationspage' => 'Template:Disambigua',
 
@@ -713,7 +713,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 'doubleredirectstext' => '<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br />
 Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il "reale" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.',
 
-'brokenredirects'     => 'Redirects errati',
+'brokenredirects'     => 'Redirects isballiaus',
 'brokenredirectstext' => 'Custus redirects ligant cun pàginas chi no esistint.',
 
 'withoutinterwiki-submit' => 'Amosta',
@@ -727,9 +727,9 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'nviews'            => '$1 {{PLURAL:$1|bisura|bisuras}}',
 'lonelypages'       => 'Pàginas burdas',
 'unusedimages'      => 'Files no impreaus',
-'popularpages'      => 'Pàginas popularis',
-'wantedpages'       => 'Articoli più richiesti',
-'prefixindex'       => 'Indighe de is pàginas pro initzialis',
+'popularpages'      => 'Pàginas populares',
+'wantedpages'       => 'Artìculos prus chircados',
+'prefixindex'       => 'Ìndighe de is pàginas pro initziales',
 'shortpages'        => 'Pàginas crutzas',
 'longpages'         => 'Pàginas longas',
 'deadendpages'      => 'Pàginas chentza bessida',
@@ -740,7 +740,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'move'              => 'Movi',
 'movethispage'      => 'Movi custa pàgina',
 'unusedimagestext'  => '<p>Nota che altri siti web, come la {{SITENAME}} internazionale, potrebbero aver messo un link ad una immagine per mezzo di una URL diretta, perciò le immagini potrebbero essere listate qui anche essendo magari in uso.',
-'notargettitle'     => 'Dati mancanti',
+'notargettitle'     => 'No ddu est sa pàgina obietivu',
 'notargettext'      => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
 'pager-newer-n'     => '{{PLURAL:$1|1 prus nou|$1 prus nous}}',
 'pager-older-n'     => '{{PLURAL:$1|1 prus betzu|$1 prus betzos}}',
@@ -838,7 +838,7 @@ Pro pregheri, cunfirma ca est intentzioni tua faghere custu, ca connosches is co
 'actioncomplete'        => 'Atzione cumpletada',
 'deletedtext'           => 'Sa pàgina "<nowiki>$1</nowiki>" est istada fuliada.
 Càstia su log $2 pro unu registru de is ùrtimas fuliaduras.',
-'deletedarticle'        => 'at fuliau "[[$1]]"',
+'deletedarticle'        => 'at fuliadu "[[$1]]"',
 'dellogpage'            => 'Burraduras',
 'dellogpagetext'        => 'Qui di seguito, un elenco delle pagine cancellate di recente.
 Tutti i tempi sono in ora del server.',
@@ -1070,7 +1070,7 @@ Podes castiare sa mitza sua',
 'tooltip-t-upload'                => 'Carriga file multimediale',
 'tooltip-t-specialpages'          => 'Lista de is pàginas ispetziales',
 'tooltip-t-print'                 => "Versione de custa pàgina pro s'imprenta",
-'tooltip-t-permalink'             => 'Acàpiu permanenti a custa versioni de sa pàgina',
+'tooltip-t-permalink'             => 'Acàpiu permanente a custa versione de sa pàgina',
 'tooltip-ca-nstab-main'           => 'Càstia su cuntènnidu de sa pàgina',
 'tooltip-ca-nstab-user'           => 'Càstia sa pàgina usuàriu',
 'tooltip-ca-nstab-special'        => 'Custa est una pàgina ispetziale, non da podes acontzare',
@@ -1098,12 +1098,12 @@ Podes aciùngiri unu motivu in s\'ogetu de s\'acontzu.',
 'file-info-size'       => '($1 × $2 pixels, mannesa de su file: $3, tipu de MIME: $4)',
 'file-nohires'         => '<small>Non si tenent risolutziones prus artas.</small>',
 'svg-long-desc'        => '(file in formadu SVG, mannesa nominale $1 × $2 pixel, mannesa de su file: $3)',
-'show-big-image'       => 'Versioni a risolutzioni arta',
+'show-big-image'       => 'Versione a risolutzione arta',
 'show-big-image-thumb' => '<small>Mannesa de custa antiprima: $1 × $2 pixels</small>',
 
 # Special:NewFiles
 'imagelisttext' => "Innoe sighendi du est una lista de '''$1''' {{PLURAL:$1|file|files}} ordinada $2.",
-'ilsubmit'      => 'Cerca',
+'ilsubmit'      => 'Chirca',
 'bydate'        => 'data',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
@@ -1210,9 +1210,9 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'timezone-utc' => 'UTC',
 
 # Special:Version
-'version'                  => 'Versioni',
+'version'                  => 'Versione',
 'version-version'          => '(Versione $1)',
-'version-software-version' => 'Versioni',
+'version-software-version' => 'Versione',
 
 # Special:FilePath
 'filepath-page' => 'Nòmene de su file:',

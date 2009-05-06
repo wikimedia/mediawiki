@@ -407,7 +407,7 @@ $messages = array(
 == Meer hulpe ==
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Lieste mit instellingen]
 * [http://www.mediawiki.org/wiki/Help:FAQ MediaWiki-vragen dee vake esteld wonnen]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-poslieste veur nieje versies]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-poslieste veur nieje versies]",
 
 'about'         => 'Infermasie',
 'article'       => 'artikel',
@@ -1140,9 +1140,9 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'searchmenu-new'                   => "'''De pagina \"[[:\$1]]\" op disse wiki anmaken!'''",
 'searchhelp-url'                   => 'Help:Inhold',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Paginanamen mit dit veurvoegsel laoten zien]]',
-'searchprofile-articles'           => "Inhouwelijke pagina's",
-'searchprofile-project'            => "Prejekpagina's",
-'searchprofile-images'             => 'Bestanden',
+'searchprofile-articles'           => 'Artikels',
+'searchprofile-project'            => 'Hulpe',
+'searchprofile-images'             => 'Multimedia',
 'searchprofile-everything'         => 'Alles',
 'searchprofile-advanced'           => 'Uut-ebreid',
 'searchprofile-articles-tooltip'   => 'Zeuken in $1',
@@ -1167,6 +1167,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'showingresults'                   => "Hieronder {{PLURAL:$1|steet '''1''' risseltaot|staon '''$1''' risseltaoten}}  <b>$1</b> vanof nummer <b>$2</b>.",
 'showingresultsnum'                => "Hieronder {{PLURAL:$3|steet '''1''' risseltaot|staon '''$3''' risseltaoten}} vanof nummer '''$2'''.",
 'showingresultstotal'              => "Hieronder {{PLURAL:$4|wordt et risseltaot '''$1''' van '''$3''' weer-egeven|wonnen de risseltaoten '''$1 tot $2''' van '''$3''' weer-egeven}}",
+'showingresultsheader'             => "{{PLURAL:$5|Risseltaot '''$1''' van '''$3'''|Risseltaoten '''$1 - $2''' van '''$3'''}} veur '''$4'''",
 'nonefound'                        => "<strong>Let wel:</strong> standard wonnen neet alle naamruumtes deurzoch. A-j in zeukopdrach as veurvoegsel \"''all:'' gebruken wonnen alle pagina's deurzoch (oek overlegpagina's, mallen en gao zo mar deur). Je kunnen oek een naamruumte as veurvoegsel gebruken.",
 'search-nonefound'                 => 'Der bin gien risseltaoten veur de zeukopdrach.',
 'powersearch'                      => 'Zeuk',
@@ -1548,7 +1549,7 @@ Kiek 't bestand nao en voeg 't bestand opniej toe.",
 'sourcefilename'              => 'Oorspronkelijk bestansnaam',
 'destfilename'                => 'Opslaon as (optioneel)',
 'upload-maxfilesize'          => 'Maximale bestansgrootte: $1',
-'watchthisupload'             => 'Volg ofbeeldingspagina',
+'watchthisupload'             => 'Volg disse pagina',
 'filewasdeleted'              => "Een bestand mit disse naam is al eerder vort-edaon. Kiek 't $1 nao veurda-j 't opniej toevoegen.",
 'upload-wasdeleted'           => "'''Waorschuwing: je bin een bestand an 't toevoegen dee eerder al vort-edaon is.'''
 
@@ -1853,17 +1854,21 @@ Ondersteunde protecollen: <tt>$1</tt>',
 'newuserlog-autocreate-entry' => 'Gebruker autematisch an-emaak',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Rechen van gebrukersgroepen',
-'listgrouprights-summary'         => 'Op disse pagina staon de gebrukersgroepen van disse wiki beschreven, mit de biebeheurende rechen.
+'listgrouprights'                      => 'Rechen van gebrukersgroepen',
+'listgrouprights-summary'              => 'Op disse pagina staon de gebrukersgroepen van disse wiki beschreven, mit de biebeheurende rechen.
 Meer infermasie over de rechen ku-j [[{{MediaWiki:Listgrouprights-helppage}}|hier vienen]].',
-'listgrouprights-group'           => 'Groep',
-'listgrouprights-rights'          => 'Rechen',
-'listgrouprights-helppage'        => 'Help:Gebrukersrechen',
-'listgrouprights-members'         => '(lejenlieste)',
-'listgrouprights-addgroup'        => 'Kan gebrukers bie disse {{PLURAL:$2|groep|groepen}} zetten: $1',
-'listgrouprights-removegroup'     => 'Kan gebrukers uut disse {{PLURAL:$2|groep|groepen}} haolen: $1',
-'listgrouprights-addgroup-all'    => 'Kan gebrukers bie alle groepen zetten',
-'listgrouprights-removegroup-all' => 'Kan gebrukers uut alle groepen haolen',
+'listgrouprights-group'                => 'Groep',
+'listgrouprights-rights'               => 'Rechen',
+'listgrouprights-helppage'             => 'Help:Gebrukersrechen',
+'listgrouprights-members'              => '(lejenlieste)',
+'listgrouprights-addgroup'             => 'Kan gebrukers bie disse {{PLURAL:$2|groep|groepen}} zetten: $1',
+'listgrouprights-removegroup'          => 'Kan gebrukers uut disse {{PLURAL:$2|groep|groepen}} haolen: $1',
+'listgrouprights-addgroup-all'         => 'Kan gebrukers bie alle groepen zetten',
+'listgrouprights-removegroup-all'      => 'Kan gebrukers uut alle groepen haolen',
+'listgrouprights-addgroup-self'        => 'Kan {{PLURAL:$2|groep|groepen}} toevoegen an eigen gebruker: $1',
+'listgrouprights-removegroup-self'     => 'Kan {{PLURAL:$2|groep|groepen}} vortdoon van eigen gebruker: $1',
+'listgrouprights-addgroup-self-all'    => 'Kan alle groepen toevoegen an eigen gebruker',
+'listgrouprights-removegroup-self-all' => 'Kan alle groepen vortdoon van eigen gebruker',
 
 # E-mail user
 'mailnologin'      => 'Neet an-emeld.',

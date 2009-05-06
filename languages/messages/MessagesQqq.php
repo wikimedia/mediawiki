@@ -878,10 +878,10 @@ Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|
 'searchhelp-url'                 => '{{Identical|HelpContent}}
 Description: The URL of the search help page.
 {{doc-important|Do not change "Help:" part.}}',
-'searchprofile-articles'         => 'A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.
+'searchprofile-articles'         => 'A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.',
+'searchprofile-project'          => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.
 
-{{Identical|Content page}}',
-'searchprofile-project'          => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
+{{Identical|Help}}',
 'searchprofile-images'           => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
 'searchprofile-everything'       => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
 'searchprofile-advanced'         => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
@@ -906,6 +906,7 @@ $1 is the relevance of this result in per cent.
 * $1–$2 is the range of results shown on the page
 * $3 is the total number of results from the search
 * $4 is the number of results shown on the page (equal to the size of the $1–$2 interval)',
+'showingresultsheader'           => 'Used in search results of [[Special:Search]].',
 'nonefound'                      => 'This message appears on the search results page if no results are found.
 {{doc-important|Do not translate "all:".}}',
 'search-nonefound'               => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
@@ -1278,9 +1279,7 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'upload-maxfilesize'          => 'Shows at [[Special:Upload]] the maximum file size that can be uploaded.
 
 $1 is the value in KB/MB/GB',
-'watchthisupload'             => 'In [[Special:Upload]]
-
-{{Identical|Watch this page}}',
+'watchthisupload'             => 'In [[Special:Upload]]',
 'filewasdeleted'              => 'This warning is shown when trying to upload a file that does not exist, but has previously been deleted.
 Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}.',
 'filename-prefix-blacklist'   => "Do not translate the file name prefixes before the hash mark (#). Leave all the wiki markup, including the spaces, as is. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
@@ -2232,7 +2231,7 @@ This message appears at the very end of the list of names in the message [[Media
 This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user has not entered his 'real name' in his preferences. The variable $1 in this message is a user name.
 
 See also {{msg-mw|Siteusers}}.",
-'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
+'lastmodifiedatby' => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
 * $1: date
 * $2: time
 * $3: if the user has entered his 'real name' in his preferences then this variable is his 'real name'. If the user has not entered his 'real name' in his preferences then this variable is the message [[Mediawiki:siteuser/{{SUBPAGENAME}}]], which includes his username.

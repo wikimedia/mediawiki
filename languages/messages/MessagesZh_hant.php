@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1734,17 +1734,17 @@ Template:消除歧義',
 'newuserlog-autocreate-entry' => '已自動建立賬戶',
 
 # Special:ListGroupRights
-'listgrouprights'                 => '用戶群組權限',
-'listgrouprights-summary'         => '以下面是一個在這個wiki中定義出來的用戶權限清單，以及它們的存取權。
+'listgrouprights'                      => '用戶群組權限',
+'listgrouprights-summary'              => '以下面是一個在這個wiki中定義出來的用戶權限清單，以及它們的存取權。
 更多有關個別權限的細節可以在[[{{MediaWiki:Listgrouprights-helppage}}|這裏]]找到。',
-'listgrouprights-group'           => '群組',
-'listgrouprights-rights'          => '權限',
-'listgrouprights-helppage'        => 'Help:群組權限',
-'listgrouprights-members'         => '(成員清單)',
-'listgrouprights-addgroup'        => '可以加入的{{PLURAL:$2|一個|多個}}群組: $1',
-'listgrouprights-removegroup'     => '可以移除的{{PLURAL:$2|一個|多個}}群組: $1',
-'listgrouprights-addgroup-all'    => '可以加入所有群組',
-'listgrouprights-removegroup-all' => '可以移除所有群組',
+'listgrouprights-group'                => '群組',
+'listgrouprights-rights'               => '權限',
+'listgrouprights-helppage'             => 'Help:群組權限',
+'listgrouprights-members'              => '(成員清單)',
+'listgrouprights-addgroup'             => '可以加入的{{PLURAL:$2|一個|多個}}群組: $1',
+'listgrouprights-removegroup'          => '可以移除的{{PLURAL:$2|一個|多個}}群組: $1',
+'listgrouprights-addgroup-all'         => '可以加入所有群組',
+'listgrouprights-removegroup-all'      => '可以移除所有群組',
 'listgrouprights-addgroup-self'        => '在自己的賬戶中可以加入的{{PLURAL:$2|一個|多個}}群組: $1',
 'listgrouprights-removegroup-self'     => '在自己的賬戶中可以移除的{{PLURAL:$2|一個|多個}}群組: $1',
 'listgrouprights-addgroup-self-all'    => '在自己的賬戶中以加入所有群組',

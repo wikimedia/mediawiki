@@ -1167,8 +1167,8 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'searchhelp-url'                   => 'Help:Obsah',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zobrazit stránky, jejichž název začíná „$1“]]',
 'searchprofile-articles'           => 'Články',
-'searchprofile-project'            => 'Projektové stránky',
-'searchprofile-images'             => 'Soubory',
+'searchprofile-project'            => 'Nápověda',
+'searchprofile-images'             => 'Multimédia',
 'searchprofile-everything'         => 'Všechno',
 'searchprofile-advanced'           => 'Pokročilé',
 'searchprofile-articles-tooltip'   => 'Prohledávat: $1',
@@ -1193,6 +1193,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'showingresults'                   => 'Zobrazuji <strong>$1</strong> {{PLURAL:$1|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'showingresultsnum'                => 'Zobrazuji <strong>$3</strong> {{PLURAL:$3|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'showingresultstotal'              => "{{PLURAL:$4|Zobrazuje se výsledek '''$1''' z&nbsp;'''$3'''|Zobrazují se výsledky '''$1–$2''' z&nbsp;'''$3'''}}",
+'showingresultsheader'             => "{{PLURAL:$5|Výsledek '''$1''' z '''$3'''|Výsledky '''$1–$2''' z '''$3'''}} pro '''$4'''",
 'nonefound'                        => "'''Poznámka''': Standardně se hledá jen v některých jmenných prostorech.
 Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně diskusí, šablon atd.), případně místo toho napište název požadovaného jmenného prostoru.",
 'search-nonefound'                 => 'Na váš dotaz nebyly nalezeny žádné výsledky.',
@@ -1563,7 +1564,7 @@ Pokud chcete přesto soubor načíst, vraťte se a zvolte jiný název.
 'sourcefilename'              => 'Jméno zdrojového souboru:',
 'destfilename'                => 'Cílové jméno:',
 'upload-maxfilesize'          => 'Maximální dovolená velikost souboru: $1',
-'watchthisupload'             => 'Sledovat tuto stránku',
+'watchthisupload'             => 'Sledovat tento soubor',
 'filewasdeleted'              => 'Soubor stejného jména byl již dříve načten a posléze smazán. Podrobnosti obsahuje $1.',
 'upload-wasdeleted'           => "'''Upozornění: Načítáte soubor, který byl již dříve smazán.'''
 
@@ -1880,18 +1881,22 @@ Podporované protokoly: <tt>$1</tt>',
 'newuserlog-autocreate-entry' => 'Účet vytvořen automaticky',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Práva skupin uživatelů',
-'listgrouprights-summary'         => 'Toto je seznam uživatelských skupin definovaných na této wiki a&nbsp;jejich přístupových práv.
+'listgrouprights'                      => 'Práva skupin uživatelů',
+'listgrouprights-summary'              => 'Toto je seznam uživatelských skupin definovaných na této wiki a&nbsp;jejich přístupových práv.
 
 [[{{MediaWiki:Listgrouprights-helppage}}|Podrobné informace o&nbsp;jednotlivých právech]]',
-'listgrouprights-group'           => 'Skupina',
-'listgrouprights-rights'          => 'Práva',
-'listgrouprights-helppage'        => 'Help:Práva skupiny',
-'listgrouprights-members'         => '(seznam členů)',
-'listgrouprights-addgroup'        => 'Přidávání uživatelů do {{PLURAL:$2|skupiny|skupin}} $1',
-'listgrouprights-removegroup'     => 'Vyřazování uživatelů ze {{PLURAL:$2|skupiny|skupin}} $1',
-'listgrouprights-addgroup-all'    => 'Přidávání uživatelů do libovolné skupiny',
-'listgrouprights-removegroup-all' => 'Vyřazování uživatelů z libovolné skupiny',
+'listgrouprights-group'                => 'Skupina',
+'listgrouprights-rights'               => 'Práva',
+'listgrouprights-helppage'             => 'Help:Práva skupiny',
+'listgrouprights-members'              => '(seznam členů)',
+'listgrouprights-addgroup'             => 'Přidávání uživatelů do {{PLURAL:$2|skupiny|skupin}} $1',
+'listgrouprights-removegroup'          => 'Vyřazování uživatelů ze {{PLURAL:$2|skupiny|skupin}} $1',
+'listgrouprights-addgroup-all'         => 'Přidávání uživatelů do libovolné skupiny',
+'listgrouprights-removegroup-all'      => 'Vyřazování uživatelů z libovolné skupiny',
+'listgrouprights-addgroup-self'        => 'Přidání svého účtu do {{PLURAL:$2|skupiny|skupin}} $1',
+'listgrouprights-removegroup-self'     => 'Vyřazení svého účtu ze {{PLURAL:$2|skupiny|skupin}} $1',
+'listgrouprights-addgroup-self-all'    => 'Přidání svého účtu do libovolné skupiny',
+'listgrouprights-removegroup-self-all' => 'Vyřazení svého účtu z libovolné skupiny',
 
 # E-mail user
 'mailnologin'      => 'Bez odesílací adresy',

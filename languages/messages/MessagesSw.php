@@ -408,13 +408,13 @@ Tafadhali, ondoa kizuizi hicho, baadaye jaribu tena.',
 'mailmypassword'          => 'Nitume nywila mpya kwa barua pepe',
 'passwordremindertitle'   => 'Nywila mpya ya muda kwa {{SITENAME}}',
 'passwordremindertext'    => 'Mtu mmoja (yamkini wewe, kutoka anwani ya IP $1)
-ambaye ameulizia nywila mpya kwa {{SITENAME}} ($4).
-Nywila kwa mtumiaji "$2" sasa ni "$3".
-Inatakiwa uingie na ubadilishe nywila yako sasa.
+ameulizia nywila mpya kwa {{SITENAME}} ($4).
+Nywila ya muda kwa mtumiaji "$2" sasa ni "$3".
+Inatakiwa uingie na ubadilishe nywila yako sasa. Nywila yako ya muda itaishia baada ya siku {{PLURAL:$5|moja|$5}}.
 
 Kama mtu mwingine ametoa ombi hili au kama umekumbuka nywila yako na
 umeamua kutoibadilisha, unaweza kupuuza ujumbe huu na
-endelea kutumia nywila yako ya awali.',
+kuendelea kutumia nywila yako ya awali.',
 'noemail'                 => 'Hatuna anwani ya barua pepe kwa mtumiaji  "$1".',
 'passwordsent'            => 'Neno mpya la siri limeshatumia kwenye anwani ya baruapepe ya "$1".
 Tafadhali, ingia baada ya kulipokea.',

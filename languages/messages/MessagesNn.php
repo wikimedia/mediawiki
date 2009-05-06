@@ -1505,7 +1505,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'sourcefilename'              => 'Filsti:',
 'destfilename'                => 'Målfilnamn:',
 'upload-maxfilesize'          => 'Maksimal filstorleik: $1',
-'watchthisupload'             => 'Overvak denne sida',
+'watchthisupload'             => 'Overvak denne fila',
 'filewasdeleted'              => 'Ei fil med dette namnet har tidlegare vore lasta opp og sletta. Du bør sjekke $1 før du prøvar å laste henne opp att.',
 'upload-wasdeleted'           => "'''Åtvaring: Du nyopplastar ei fil som tidlegare har vorte sletta.'''
 
@@ -1934,6 +1934,7 @@ For hjelp og meir informasjon:
 'historywarning'         => 'Åtvaring: Sida du held på å slette har ein historikk:',
 'confirmdeletetext'      => 'Du held på å varig slette ei side eller eit bilete saman med heile den tilhøyrande historikken frå databasen. Stadfest at du verkeleg vil gjere dette, at du skjønar konsekvensane, og at du gjer dette i tråd med [[{{MediaWiki:Policy-url}}|retningslinene]].',
 'actioncomplete'         => 'Ferdig',
+'actionfailed'           => 'Handlinga kunne ikkje verta utførd',
 'deletedtext'            => '«<nowiki>$1</nowiki>» er sletta. Sjå $2 for eit oversyn over dei siste slettingane.',
 'deletedarticle'         => 'sletta «[[$1]]»',
 'suppressedarticle'      => 'gøymde «[[$1]]»',
