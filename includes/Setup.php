@@ -308,6 +308,8 @@ foreach ( $wgExtensionFunctions as $func ) {
 	# Allow closures in PHP 5.3+
 	if ( is_object( $func ) && $func instanceof Closure )
 		$profName = $fname.'-extensions-closure';
+	elseif( is_array( $func ) )
+		$profName = $fname.'-extensions-'.implode( '::', $func );
 	else
 		$profName = $fname.'-extensions-'.strval( $func );
 
