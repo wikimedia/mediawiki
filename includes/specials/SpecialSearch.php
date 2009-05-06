@@ -208,19 +208,26 @@ class SpecialSearch {
 
 
 		// Get number of results
-		$titleMatchesSQL = $titleMatches ? $titleMatches->numRows() : 0;
-		$textMatchesSQL = $textMatches ? $textMatches->numRows() : 0;
+		$titleMatchesNum = $titleMatches ? $titleMatches->numRows() : 0;
+		$textMatchesNum = $textMatches ? $textMatches->numRows() : 0;
 		// Total initial query matches (possible false positives)
-		$numSQL = $titleMatchesSQL + $textMatchesSQL;
+		$num = $titleMatchesNum + $textMatchesNum;
+		
 		// Get total actual results (after second filtering, if any)
 		$numTitleMatches = $titleMatches && !is_null( $titleMatches->getTotalHits() ) ?
-			$titleMatches->getTotalHits() : $titleMatchesSQL;
+			$titleMatches->getTotalHits() : $titleMatchesNum;
 		$numTextMatches = $textMatches && !is_null( $textMatches->getTotalHits() ) ?
-			$textMatches->getTotalHits() : $textMatchesSQL;
-		$totalRes = $numTitleMatches + $numTextMatches;
+			$textMatches->getTotalHits() : $textMatchesNum;
 
+		// get total number of results if backend can calculate it
+		$totalRes = 0;
+		if($titleMatches && !is_null( $titleMatches->getTotalHits() ) )
+			$totalRes += $titleMatches->getTotalHits();
+		if($textMatches && !is_null( $textMatches->getTotalHits() ))
+			$totalRes += $textMatches->getTotalHits();
+			
 		// show number of results and current offset
-		$wgOut->addHTML( $this->formHeader($term, $numSQL, $totalRes));
+		$wgOut->addHTML( $this->formHeader($term, $num, $totalRes));
 		
 		$wgOut->addHtml( "<div class='searchresults'>" );
 		
@@ -234,11 +241,11 @@ class SpecialSearch {
 		}
 
 		// prev/next links
-		if( $numSQL || $this->offset ) {
+		if( $num || $this->offset ) {
 			$prevnext = wfViewPrevNext( $this->offset, $this->limit,
 				SpecialPage::getTitleFor( 'Search' ),
 				wfArrayToCGI( $this->powerSearchOptions(), array( 'search' => $term ) ),
-				max( $titleMatchesSQL, $textMatchesSQL ) < $this->limit
+				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
 			);
 			//$wgOut->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
 			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
@@ -274,15 +281,15 @@ class SpecialSearch {
 
 			$textMatches->free();
 		}
-		if( $totalRes === 0 ) {
+		if( $num === 0 ) {
 			$wgOut->addWikiMsg( 'search-nonefound' );
 		}
 		$wgOut->addHtml( "</div>" );
-		if( $totalRes === 0 ) {
+		if( $num === 0 ) {
 			$wgOut->addHTML( $this->searchAdvanced ? $this->powerSearchFocus() : $this->searchFocus() );
 		}
 
-		if( $numSQL || $this->offset ) {
+		if( $num || $this->offset ) {
 			$wgOut->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
 		wfProfileOut( __METHOD__ );
@@ -663,7 +670,7 @@ class SpecialSearch {
 			"</script>";
 	}
 
-	protected function formHeader( $term, $resultsShown, $totalRes ) {
+	protected function formHeader( $term, $resultsShown, $totalNum ) {
 		global $wgContLang, $wgCanonicalNamespaceNames, $wgLang;
 		
 		$sep = '&nbsp;&nbsp;&nbsp;';
@@ -726,14 +733,19 @@ class SpecialSearch {
 		}
 		$out .= Xml::closeElement('div') ;
 		
-		if( $totalRes > 0){
-			$countHtml = wfMsgExt('showingresultsheader', array( 'parseinline' ),
-					$this->offset+1, $this->offset+$resultsShown, $totalRes, $term, $resultsShown ); 
-			$out .= "<p>{$countHtml}</p>\n" ;			
-		} else{
+		if ( $resultsShown > 0 ) {
+			if ( $totalNum > 0 ){
+				$top = wfMsgExt('showingresultsheader', array( 'parseinline' ),
+					$this->offset+1, $this->offset+$resultsShown, $totalNum, $term, $resultsShown );
+			} elseif ( $resultsShown >= $this->limit ) {
+				$top = wfShowingResults( $this->offset, $this->limit );
+			} else {
+				$top = wfShowingResultsNum( $this->offset, $this->limit, $resultsShown );
+			}
+			$out .= "<p>{$top}</p>\n";
+		} else
 			$out .= "<p>&nbsp;</p>\n";
-		}
-		
+				
 		$out .= Xml::closeElement('div') ;
 
 		return $out;
