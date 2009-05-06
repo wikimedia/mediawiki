@@ -3687,7 +3687,7 @@ class Parser
 						$hLevel = $hLevelMatches[1];
 						if ( $i != 0 ) { # we don't have an open div for section 0, so don't try to close it
 							# close any open divs for sections with headers that are <= to the next header level
-							$this->closeSectionContainers( $hLevel, &$currentHLevel, &$full, &$openDivs);
+							$this->closeSectionContainers( $hLevel, $currentHLevel, $full, $openDivs);
 						}
 						$currentHLevel = $hLevel;
 					}
@@ -3701,7 +3701,7 @@ class Parser
 
 				# if we've outputed the last section of the article, close any open divs that are remaining
 				if ( $i == ( count($blocks) - 1)  && isset($currentHLevel) ) {
-					$this->closeSectionContainers( $hLevel, &$currentHLevel, &$full, &$openDivs);
+					$this->closeSectionContainers( $hLevel, $currentHLevel, $full, $openDivs);
 				}
 			}
 
