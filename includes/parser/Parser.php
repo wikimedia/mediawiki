@@ -3682,7 +3682,7 @@ class Parser
 		        if( !empty( $head[$i] ) ) { # if there's no next header, then don't try to close out any existing sections here 
 		        	# get the level of the next header section
 					preg_match('/<H([0-6])/i', $head[$i], $hLevelMatches);
-		          	
+		          	 
 					if ( count($hLevelMatches) > 0 ) {
 						$hLevel = $hLevelMatches[1];
 						if ( $i != 0 ) { # we don't have an open div for section 0, so don't try to close it
@@ -3701,7 +3701,7 @@ class Parser
 
 				# if we've outputed the last section of the article, close any open divs that are remaining
 				if ( $i == ( count($blocks) - 1)  && isset($currentHLevel) ) {
-					$this->closeSectionContainers( $hLevel, $currentHLevel, $full, $openDivs);
+					$this->closeSectionContainers( $hLevel, $currentHLevel, $full, $openDivs, true);
 				}
 			}
 
@@ -3727,8 +3727,8 @@ class Parser
 	 * @param array $openDivs a reference to the array that stores a list of open section containers
 	 * @return true
 	 */
-	function closeSectionContainers( $hLevel, &$currentHLevel, &$full, &$openDivs) {
-		while ( $hLevel <= $currentHLevel ) {
+	function closeSectionContainers( $hLevel, &$currentHLevel, &$full, &$openDivs, $lastCall=false) {
+		while ( $hLevel <= $currentHLevel  || $lastCall) {
 			$full .= '</div>';
 			$popped = array_pop($openDivs);
 			if ( count($openDivs) ) {
