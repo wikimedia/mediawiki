@@ -93,7 +93,7 @@ $messages = array(
 
 'mainpagetext'      => "<big>'''MediaWiki is eafoigreich installiad woan.'''</big>",
 'mainpagedocfooter' => 'A Huif zua Benutzung und Konfiguration vo da Wiki-Software findst im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
 
 'about'         => 'Üba',
 'article'       => 'Artikl',

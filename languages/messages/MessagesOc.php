@@ -1126,9 +1126,9 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'searchmenu-new'                   => "'''Crear la pagina ''[[:$1|$1]]'' sus aqueste wiki !'''",
 'searchhelp-url'                   => 'Help:Acuèlh',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Recercar las paginas amb aqueste prefix]]',
-'searchprofile-articles'           => 'Paginas de contengut',
-'searchprofile-project'            => 'Paginas del projècte',
-'searchprofile-images'             => 'Fichièrs',
+'searchprofile-articles'           => 'Articles',
+'searchprofile-project'            => 'Ajuda',
+'searchprofile-images'             => 'Multimèdia',
 'searchprofile-everything'         => 'Tot',
 'searchprofile-advanced'           => 'Avançat',
 'searchprofile-articles-tooltip'   => 'Recercar dins $1',
@@ -1153,6 +1153,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'showingresults'                   => "Afichatge {{PLURAL:$1|d''''1''' resultat|de '''$1''' resultats}} a partir del #'''$2'''.",
 'showingresultsnum'                => "Afichatge {{PLURAL:$3|d''''1''' resultat|de '''$3''' resultats}} a partir del #'''$2'''.",
 'showingresultstotal'              => "Visionament çaijós {{PLURAL:$4|del resultat '''$1''' de '''$3'''|dels resultats de '''$1 - $2''' de '''$3'''}}",
+'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1'''|Resultats '''$1 - $2'''}} de '''$3''' per '''$4'''",
 'nonefound'                        => "<strong>Nòta</strong>: Sonque qualques espacis de noms son recercats per defaut
 Ensajatz en utilizant lo prefix ''all:'' per recercar tot lo contengut (tot incluent las paginas de discussion, los modèls, etc), o utilizatz l'espaci de nom coma prefix.",
 'search-nonefound'                 => 'I a pas cap de resultat correspondent a la requèsta.',
@@ -1529,7 +1530,7 @@ S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom
 'sourcefilename'              => 'Nom del fichièr font :',
 'destfilename'                => 'Nom jolqual lo fichièr serà enregistrat&nbsp;:',
 'upload-maxfilesize'          => 'Talha maximala del fichièr : $1',
-'watchthisupload'             => 'Seguir aquesta pagina',
+'watchthisupload'             => 'Seguir aqueste fichièr',
 'filewasdeleted'              => 'Un fichièr amb aqueste nom ja es estat copiat, puèi suprimit. Vos caldriá verificar lo $1 abans de procedir a una còpia novèla.',
 'upload-wasdeleted'           => "'''Atencion : Sètz a importar un fichièr que ja es estat suprimit deperabans.'''
 
@@ -1847,17 +1848,21 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'newuserlog-autocreate-entry' => 'Compte creat automaticament',
 
 # Special:ListGroupRights
-'listgrouprights'                 => "Dreches dels gropes d'utilizaires",
-'listgrouprights-summary'         => "Aquesta pagina conten una tièra de gropes definits sus aqueste wiki e mai los dreches d'accès qu'i son associats.
+'listgrouprights'                      => "Dreches dels gropes d'utilizaires",
+'listgrouprights-summary'              => "Aquesta pagina conten una tièra de gropes definits sus aqueste wiki e mai los dreches d'accès qu'i son associats.
 I pòt aver [[{{MediaWiki:Listgrouprights-helppage}}|d'entresenhas complementàrias]] a prepaus dels dreches.",
-'listgrouprights-group'           => 'Grop',
-'listgrouprights-rights'          => 'Dreches associats',
-'listgrouprights-helppage'        => 'Help:Dreches dels gropes',
-'listgrouprights-members'         => '(lista dels membres)',
-'listgrouprights-addgroup'        => 'Pòt apondre $2 {{PLURAL:$2|grop|gropes}} : $1',
-'listgrouprights-removegroup'     => 'Pòt levar $2 {{PLURAL:$2|gropa|gropes}} : $1',
-'listgrouprights-addgroup-all'    => 'Pòt apondre totes los gropes',
-'listgrouprights-removegroup-all' => 'Pòt levar totes los gropes',
+'listgrouprights-group'                => 'Grop',
+'listgrouprights-rights'               => 'Dreches associats',
+'listgrouprights-helppage'             => 'Help:Dreches dels gropes',
+'listgrouprights-members'              => '(lista dels membres)',
+'listgrouprights-addgroup'             => 'Pòt apondre $2 {{PLURAL:$2|grop|gropes}} : $1',
+'listgrouprights-removegroup'          => 'Pòt levar $2 {{PLURAL:$2|gropa|gropes}} : $1',
+'listgrouprights-addgroup-all'         => 'Pòt apondre totes los gropes',
+'listgrouprights-removegroup-all'      => 'Pòt levar totes los gropes',
+'listgrouprights-addgroup-self'        => 'Se pòt apondre {{PLURAL:$2|lo grop|los gropes}} a son compte pròpri : $1',
+'listgrouprights-removegroup-self'     => 'Se pòt levar {{PLURAL:$2|lo grop|los gropes}} de son compte pròpri : $1',
+'listgrouprights-addgroup-self-all'    => 'Se pòt apondre totes los gropes a son compte pròpri',
+'listgrouprights-removegroup-self-all' => 'Se pòt levar totes los gropes de son compte pròpri',
 
 # E-mail user
 'mailnologin'      => "Pas d'adreça",

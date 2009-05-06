@@ -370,7 +370,7 @@ $messages = array(
 == З чаго пачаць ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Сьпіс парамэтраў канфігурацыі]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Частыя пытаньні MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo//mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Рассылка паведамленьняў пра зьяўленьне новых вэрсіяў MediaWiki]',
 
 'about'         => 'Пра',
 'article'       => 'Старонка зьместу',
@@ -1127,7 +1127,7 @@ $2',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Праглядзець старонкі з гэтым прэфіксам]]',
 'searchprofile-articles'           => 'Старонкі са зьместам',
 'searchprofile-project'            => 'Старонкі праекту',
-'searchprofile-images'             => 'Файлы',
+'searchprofile-images'             => 'Мультымэдыя',
 'searchprofile-everything'         => 'Усё',
 'searchprofile-advanced'           => 'Пашыраны',
 'searchprofile-articles-tooltip'   => 'Пошук у $1',
@@ -1152,6 +1152,7 @@ $2',
 'showingresults'                   => "Ніжэй {{PLURAL:$1|паданы|паданыя|паданыя}} да '''$1''' {{PLURAL:$1|выніку|вынікаў|вынікаў}}, пачынаючы з #<b>$2</b>.",
 'showingresultsnum'                => "Ніжэй паказаны сьпіс з '''$3''' {{PLURAL:$3|выніка|вынікаў|вынікаў}}, пачынаючы ад № '''$2'''.",
 'showingresultstotal'              => "Ніжэй {{PLURAL:$4|паказаны '''$1''' вынік з '''$3'''|паказаныя вынікі '''$1 — $2''' з '''$3'''}}",
+'showingresultsheader'             => "{{PLURAL:$5|Вынік '''$1''' з '''$3'''|Вынікі '''$1 - $2''' з '''$3'''}} для '''$4'''",
 'nonefound'                        => "'''Увага''': Па змоўчваньні пошук вядзецца не ва ўсіх прасторах назваў. Трэба дапісаць да запыту ''усе:'' каб шукаць па ўсім зьмесьце (уключаючы абмеркаваньні, шаблёны і г.д.) альбо дадаць да запыту неабходную прастору назваў.",
 'search-nonefound'                 => 'Супадзеньняў па запыце ня знойдзена.',
 'powersearch'                      => 'Пошук',
@@ -1531,7 +1532,7 @@ $2',
 'sourcefilename'              => 'Пачатковая назва файла:',
 'destfilename'                => 'Канчатковая назва файла:',
 'upload-maxfilesize'          => 'Максымальны памер файла: $1',
-'watchthisupload'             => 'Назіраць за гэтай старонкай',
+'watchthisupload'             => 'Назіраць за гэтым файлам',
 'filewasdeleted'              => 'Файл з такой назвай загружаўся, але быў выдалены.
 Вам трэба праверыць $1 перад новай загрузкай.',
 'upload-wasdeleted'           => "'''Папярэджаньне: Вы спрабуеце загрузіць файл, які ўжо выдаляўся.'''
@@ -1844,17 +1845,21 @@ $2',
 'newuserlog-autocreate-entry' => 'Рахунак створаны аўтаматычна',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Правы групаў удзельнікаў',
-'listgrouprights-summary'         => 'Ніжэй пададзены сьпіс групаў удзельнікаў {{GRAMMAR:родны|{{SITENAME}}}}, разам зь іх правамі.
+'listgrouprights'                      => 'Правы групаў удзельнікаў',
+'listgrouprights-summary'              => 'Ніжэй пададзены сьпіс групаў удзельнікаў {{GRAMMAR:родны|{{SITENAME}}}}, разам зь іх правамі.
 Таксама можна паглядзець [[{{MediaWiki:Listgrouprights-helppage}}|дадатковую інфармацыю]] пра асабістыя правы.',
-'listgrouprights-group'           => 'Група',
-'listgrouprights-rights'          => 'Правы',
-'listgrouprights-helppage'        => 'Help:Правы групаў удзельнікаў',
-'listgrouprights-members'         => '(сьпіс удзельнікаў групы)',
-'listgrouprights-addgroup'        => 'можа дадаваць {{PLURAL:$2|групу|групы}}: $1',
-'listgrouprights-removegroup'     => 'можа выдаляць {{PLURAL:$2|групу|групы}}: $1',
-'listgrouprights-addgroup-all'    => 'можа дадаваць усе групы',
-'listgrouprights-removegroup-all' => 'можа выдаляць усе групы',
+'listgrouprights-group'                => 'Група',
+'listgrouprights-rights'               => 'Правы',
+'listgrouprights-helppage'             => 'Help:Правы групаў удзельнікаў',
+'listgrouprights-members'              => '(сьпіс удзельнікаў групы)',
+'listgrouprights-addgroup'             => 'можа дадаваць {{PLURAL:$2|групу|групы}}: $1',
+'listgrouprights-removegroup'          => 'можа выдаляць {{PLURAL:$2|групу|групы}}: $1',
+'listgrouprights-addgroup-all'         => 'можа дадаваць усе групы',
+'listgrouprights-removegroup-all'      => 'можа выдаляць усе групы',
+'listgrouprights-addgroup-self'        => 'Можа дадаць уласны рахунак да {{PLURAL:$2|групы|групаў}}: $1',
+'listgrouprights-removegroup-self'     => 'Можа выдаліць уласны рахунак з {{PLURAL:$2|групы|групаў}}: $1',
+'listgrouprights-addgroup-self-all'    => 'Можа дадаць уласны рахунак да ўсіх груп',
+'listgrouprights-removegroup-self-all' => 'Можа выдаліць уласны рахунак з ўсіх груп',
 
 # E-mail user
 'mailnologin'      => 'Няма адрасу атрымальніка',

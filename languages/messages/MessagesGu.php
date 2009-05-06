@@ -505,7 +505,7 @@ $messages = array(
 'powersearch'               => 'શોધો (વધુ પર્યાય સાથે)',
 'powersearch-legend'        => 'વધુ પર્યાયો સાથે શોધો',
 'powersearch-ns'            => 'નામસ્થળોમાં શોધો:',
-'powersearch-redir'         => 'રીડાયરેક્ટ પાનાંની યાદી બતાવો.',
+'powersearch-redir'         => 'અન્યત્ર વાળેલાં પાનાંની યાદી',
 'powersearch-field'         => 'નાં માટે શોધો',
 'search-external'           => 'બાહ્ય શોધ',
 'searchdisabled'            => "{{SITENAME}} ઉપર શોધ બંધ કરી દેવામાં આવી છે.
@@ -610,14 +610,33 @@ $messages = array(
 અહીં [[Special:WhatLinksHere/$2|પુરી યાદી]]  મળશે.',
 'nolinkstoimage'            => 'આ ફાઇલ સાથે કોઇ પાનાં જોડાયેલાં નથી.',
 'morelinkstoimage'          => 'આ ફાઇલ સાથે જોડાયેલ [[Special:WhatLinksHere/$1|વધુ કડીઓ]] જુઓ.',
-'redirectstofile'           => 'નીચે જણાવેલ {{PLURAL:$1|ફાઇલ|$1 ફાઇલો}} આ ફાઇલ પર રીડાયરેક્ટ કરે છે:',
+'redirectstofile'           => 'નીચે જણાવેલ {{PLURAL:$1|ફાઇલ|$1 ફાઇલો}} આ ફાઇલ પર વાળેલી છે:',
 'sharedupload'              => 'આ ફાઇલ $1માં આવેલી છે અને શક્ય છે કે તે અન્ય પરિયોજનાઓમાં પણ વપરાતી હોય.',
-'sharedupload-desc-there'   => 'આ ફાઇલ from $1નો ભાગ છે અને કદાચ અન્ય પ્રકલ્પોમાં પણ વપરાઇ હોય.
-વધુ માહિતી માટે મહેરબાની કરીને [$2 ફાઇલની માહિતીનુ પાનું] જુઓ.',
-'sharedupload-desc-here'    => 'આ ફાઇલ from $1નો ભાગ છે અને કદાચ અન્ય પ્રકલ્પોમાં પણ વપરાઇ હોય. [$2 ફાઇલની માહિતીનુ પાનું]ની વધુ વિગતો  નીચે જણાવી છે.',
+'sharedupload-desc-there'   => 'આ ફાઇલ $1નો ભાગ છે અને શક્ય છે કે અન્ય પ્રકલ્પોમાં પણ વપરાઇ હોય.
+વધુ માહિતી માટે મહેરબાની કરીને [$2 ફાઇલનાં વર્ણનનુ પાનું] જુઓ.',
+'sharedupload-desc-here'    => 'આ ફાઇલ $1નો ભાગ છે અને શક્ય છે કે અન્ય પ્રકલ્પોમાં પણ વપરાઇ હોય.
+ત્યાંનાં મૂળ [$2 ફાઇલનાં વર્ણનનાં પાનાં] પર આપેલું વર્ણન નીચે દર્શાવેલું છે.',
 'noimage'                   => 'આ નામ વાળી કોઇ ફાઇલ અસ્તિત્વમાં નથી, તમે તેને $1 શકો છો.',
 'noimage-linktext'          => 'ચઢાવી',
 'uploadnewversion-linktext' => 'આ ફાઇલની નવી આવૃત્તિ ચઢાવો',
+'shared-repo-from'          => '$1 થી',
+'shared-repo'               => 'સાંઝો ભંડાર',
+
+# File reversion
+'filerevert'                => '$1 હતું તેવું કરો',
+'filerevert-backlink'       => '← $1',
+'filerevert-legend'         => 'ફાઇલ હતી તેવી કરો',
+'filerevert-intro'          => "તમે '''[[Media:$1|$1]]''' ફાઇલ હતી તેવી મૂળ સ્થિતિ[$3, $2 વખતે હતું તેવું વર્ઝન $4]માં  લઇ જઇ રહ્યા છો.",
+'filerevert-comment'        => 'ટીપ્પણી:',
+'filerevert-defaultcomment' => '$2, $1 વખતે જે પરીસ્થિતિ હતી તે પરીસ્થિતિમાં ફેરવી દીધું.',
+'filerevert-submit'         => 'હતુ તેવું પાછું કરો',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ને  [$3, $2ના રોજ હતું તે વર્ઝન $4]માં પાછું લઇ જવામાં આવ્યું.",
+'filerevert-badversion'     => 'તમે દર્શાવેલ સમય વખતની મૂળ ફાઇલ સ્થાનિક સ્વરુપે પ્રાપ્ય નથી.',
+
+# File deletion
+'filedelete'          => '$1ને ભૂસી નાંખો.',
+'filedelete-backlink' => '← $1',
+'filedelete-legend'   => 'ફાઇલ ભુસી નાખો.',
 
 # List redirects
 'listredirects' => 'અન્યત્ર વાળેલાં પાનાંઓની યાદી',

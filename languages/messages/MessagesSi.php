@@ -289,7 +289,7 @@ $messages = array(
 == ඇරඹුම ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings වින්‍යාස පරිස්ථිතීන් ලැයිස්තුව]
 * [http://www.mediawiki.org/wiki/Manual:FAQ මාධ්‍යවිකි නිතර-අසන-පැන]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce මාධ්‍යවිකි නිකුතුව තැපැල් ලැයිස්තුව]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce මාධ්‍යවිකි නිකුතුව තැපැල් ලැයිස්තුව]',
 
 'about'         => 'පිළිබඳ',
 'article'       => 'පටුන',

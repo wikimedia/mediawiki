@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1713,17 +1713,17 @@ Template:搞清楚',
 'newuserlog-autocreate-entry' => '自動建立咗戶口',
 
 # Special:ListGroupRights
-'listgrouprights'                 => '用戶組權限',
-'listgrouprights-summary'         => '下面係一個響呢個wiki定義咗嘅用戶權限一覽，同埋佢哋嘅存取權。
+'listgrouprights'                      => '用戶組權限',
+'listgrouprights-summary'              => '下面係一個響呢個wiki定義咗嘅用戶權限一覽，同埋佢哋嘅存取權。
 更多有關個別權限嘅[[{{MediaWiki:Listgrouprights-helppage}}|更多細節]]可以響嗰度搵到。',
-'listgrouprights-group'           => '組',
-'listgrouprights-rights'          => '權',
-'listgrouprights-helppage'        => 'Help:組權限',
-'listgrouprights-members'         => '(成員名單)',
-'listgrouprights-addgroup'        => '可以加入嘅{{PLURAL:$2|一|多}}組: $1',
-'listgrouprights-removegroup'     => '可以拎走嘅{{PLURAL:$2|一|多}}組: $1',
-'listgrouprights-addgroup-all'    => '可以加入全部組',
-'listgrouprights-removegroup-all' => '可以拎走全部組',
+'listgrouprights-group'                => '組',
+'listgrouprights-rights'               => '權',
+'listgrouprights-helppage'             => 'Help:組權限',
+'listgrouprights-members'              => '(成員名單)',
+'listgrouprights-addgroup'             => '可以加入嘅{{PLURAL:$2|一|多}}組: $1',
+'listgrouprights-removegroup'          => '可以拎走嘅{{PLURAL:$2|一|多}}組: $1',
+'listgrouprights-addgroup-all'         => '可以加入全部組',
+'listgrouprights-removegroup-all'      => '可以拎走全部組',
 'listgrouprights-addgroup-self'        => '可以加入嘅{{PLURAL:$2|一|多}}組到自己嘅戶口: $1',
 'listgrouprights-removegroup-self'     => '可以響自己嘅戶口度拎走嘅{{PLURAL:$2|一|多}}組: $1',
 'listgrouprights-addgroup-self-all'    => '可以加入全部組到自己嘅戶口度',

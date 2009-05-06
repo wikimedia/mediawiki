@@ -293,7 +293,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo de konfiguraĵoj] (angla)
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Oftaj Demandoj] (angla)
-* [http://lists.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki dissendolisto pri anoncoj] (angla)",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki dissendolisto pri anoncoj] (angla)",
 
 'about'         => 'Enkonduko',
 'article'       => 'Artikolo',
@@ -1049,9 +1049,9 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'searchmenu-new'                   => "'''Krei la paĝon \"[[:\$1]]\" en ĉi tiu vikio!'''",
 'searchhelp-url'                   => 'Help:Enhavo',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Traserĉi paĝojn kun ĉi tiu prefikso]]',
-'searchprofile-articles'           => 'Enhavaj paĝoj',
-'searchprofile-project'            => 'Projektaj paĝoj',
-'searchprofile-images'             => 'Dosieroj',
+'searchprofile-articles'           => 'Artikoloj',
+'searchprofile-project'            => 'Helpo',
+'searchprofile-images'             => 'Plurmedio',
 'searchprofile-everything'         => 'Ĉio',
 'searchprofile-advanced'           => 'Progresa',
 'searchprofile-articles-tooltip'   => 'Serĉo en $1',
@@ -1076,6 +1076,7 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'showingresults'                   => "Montras {{PLURAL:$1|'''1''' trovitan|'''$1''' trovitajn}} ekde la #'''$2'''-a.",
 'showingresultsnum'                => "Montras {{PLURAL:$3|'''1''' trovitan|'''$3''' trovitajn}} ekde la #'''$2'''-a.",
 'showingresultstotal'              => "Montras jene {{PLURAL:$4|rezulton '''$1''' el '''$3'''|rezultojn '''$1 - $2''' el '''$3'''}}",
+'showingresultsheader'             => "{{PLURAL:$5|Rezulto '''$1''' el '''$3'''|Rezultoj '''$1 - $2''' el '''$3'''}} por '''$4'''",
 'nonefound'                        => "'''Notu''':  Nur kelkaj nomspacoj estas serĉitaj defaulte.
 Provu prefiksi vian mendon kun ''all:'' por serĉi ĉiun enhavon (inkluzivante diskuto-paĝojn, ŝablonojn, ktp), aŭ uzi la deziritan nomspacon kiel prefikson.",
 'search-nonefound'                 => 'La serĉomendo rezultis kun neniuj trafoj.',
@@ -1165,10 +1166,12 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-reset-intro'         => 'Vi povas uzi ĉi tiun paĝon por restarigi viajn agordojn al la originalaj defaŭltoj.
 Ĉi tiel ne estus malfarebla.',
 'prefs-emailconfirm-label'  => 'Retpoŝta konfirmado:',
+'prefs-textboxsize'         => 'Grandeco de redakta fenestro',
 'youremail'                 => 'Retadreso:',
 'username'                  => 'Salutnomo:',
 'uid'                       => 'Uzantnumero:',
 'prefs-memberingroups'      => 'Ano de {{PLURAL:$1|grupo|grupoj}}:',
+'prefs-registration'        => 'Tempo de registrado:',
 'yourrealname'              => 'Vera nomo:',
 'yourlanguage'              => 'Lingvo',
 'yourvariant'               => 'Varianto',
@@ -1187,6 +1190,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo aŭ diskuto-paĝo sen malkaŝante vian identeco.',
 'prefs-help-email-required' => 'Ret-adreso estas bezonata.',
 'prefs-info'                => 'Baza informo',
+'prefs-i18n'                => 'Internaciigo',
 'prefs-signature'           => 'Subskribo',
 
 # User rights
@@ -1451,7 +1455,7 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 'sourcefilename'              => 'Fonta dosiernomo:',
 'destfilename'                => 'Celdosiernomo:',
 'upload-maxfilesize'          => 'Maksimuma dosier-pezo: $1',
-'watchthisupload'             => 'Atenti ĉi tiun paĝon',
+'watchthisupload'             => 'Atenti ĉi tiun dosieron',
 'filewasdeleted'              => 'Dosiero de ĉi nomo estis antaŭe alŝutita kaj poste redaktita. Vi kontrolu la $1 antaux alŝutante ĝin denove.',
 'upload-wasdeleted'           => "'''Averto: Vi alŝutas dosieron kiu estis antaŭe forigita.'''
 
@@ -1763,17 +1767,21 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'newuserlog-autocreate-entry' => 'Konto kreita aŭtomate',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Gruprajtoj de uzantoj',
-'listgrouprights-summary'         => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj.
+'listgrouprights'                      => 'Gruprajtoj de uzantoj',
+'listgrouprights-summary'              => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj.
 Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj rajtoj.',
-'listgrouprights-group'           => 'Grupo',
-'listgrouprights-rights'          => 'Rajtoj',
-'listgrouprights-helppage'        => 'Help:Grupaj rajtoj',
-'listgrouprights-members'         => '(listo de anoj)',
-'listgrouprights-addgroup'        => 'Povi aldoni {{PLURAL:$2|grupon|grupojn}}: $1',
-'listgrouprights-removegroup'     => 'Povi forigi {{PLURAL:$2|grupon|grupojn}}: $1',
-'listgrouprights-addgroup-all'    => 'Povi aldoni ĉiujn grupojn',
-'listgrouprights-removegroup-all' => 'Povi forigi ĉiujn grupojn',
+'listgrouprights-group'                => 'Grupo',
+'listgrouprights-rights'               => 'Rajtoj',
+'listgrouprights-helppage'             => 'Help:Grupaj rajtoj',
+'listgrouprights-members'              => '(listo de anoj)',
+'listgrouprights-addgroup'             => 'Povi aldoni {{PLURAL:$2|grupon|grupojn}}: $1',
+'listgrouprights-removegroup'          => 'Povi forigi {{PLURAL:$2|grupon|grupojn}}: $1',
+'listgrouprights-addgroup-all'         => 'Povi aldoni ĉiujn grupojn',
+'listgrouprights-removegroup-all'      => 'Povi forigi ĉiujn grupojn',
+'listgrouprights-addgroup-self'        => 'Povas aldoni {{PLURAL:$2|grupon|grupojn}} al propra konto: $1',
+'listgrouprights-removegroup-self'     => 'Povas forigi {{PLURAL:$2|grupon|grupojn}} de propra konto: $1',
+'listgrouprights-addgroup-self-all'    => 'Povas aldoni ĉiujn grupojn al propra konto',
+'listgrouprights-removegroup-self-all' => 'Povas forigi ĉiujn grupojn de propra konto',
 
 # E-mail user
 'mailnologin'      => 'Neniu alsendota adreso',
@@ -2322,6 +2330,7 @@ se vi volus kontribui al la komuna MediaWiki-asimilado.',
 'thumbnail_invalid_params' => 'Nevalidaj bildetaj parametroj',
 'thumbnail_dest_directory' => 'Ne eblas krei destinan dosierujon',
 'thumbnail_image-type'     => 'Tia bildo ne subtenata',
+'thumbnail_gd-library'     => 'Nekompleta GD-biblioteka konfiguro: mankas funkcio $1',
 'thumbnail_image-missing'  => 'Dosiero verŝajne estas foriga: $1',
 
 # Special:Import
@@ -2839,6 +2848,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => 'Kilometroj',
 'exif-gpsdestdistance-m' => 'Mejloj',
+'exif-gpsdestdistance-n' => 'Maraj mejloj',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Vera direkto',
@@ -3072,6 +3082,11 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'dberr-cachederror' => 'Jen kaŝmemorigita kopio de la petita paĝo, kaj eble ne estas ĝisdatigita.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'Estas problemoj kun iom da via enigo',
+'htmlform-select-badoption'    => 'La valuto kiun vi specifigis ne estas valida.',
+'htmlform-int-invalid'         => 'La valuto kiun vi specifigis ne estas entjero.',
+'htmlform-int-toolow'          => 'La valuto kiun vi specifigis estas sub la minimumo de $1',
+'htmlform-int-toohigh'         => 'La valuto kiun vi specifigis estas super la maksimumo de $1',
 'htmlform-submit'              => 'Ek!',
 'htmlform-reset'               => 'Malfari ŝanĝojn',
 'htmlform-selectorother-other' => 'Alia',

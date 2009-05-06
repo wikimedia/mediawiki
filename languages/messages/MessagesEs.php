@@ -1086,9 +1086,9 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchmenu-new'                   => "'''¡Crear la página «[[:$1]]» en esta wiki!'''",
 'searchhelp-url'                   => 'Help:Ayuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Otras páginas con este prefijo]]',
-'searchprofile-articles'           => 'Páginas de contenido',
-'searchprofile-project'            => 'Páginas del proyecto',
-'searchprofile-images'             => 'Archivos',
+'searchprofile-articles'           => 'Artículos',
+'searchprofile-project'            => 'Ayuda',
+'searchprofile-images'             => 'Multimedia',
 'searchprofile-everything'         => 'Todo',
 'searchprofile-advanced'           => 'Avanzado',
 'searchprofile-articles-tooltip'   => 'Buscar en $1',
@@ -1113,6 +1113,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'showingresults'                   => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} empezando por el nº '''$2'''.",
 'showingresultsnum'                => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} empezando por el nº '''$2'''.",
 'showingresultstotal'              => "Debajo se {{PLURAL:$4|muestra el resultado '''$1''' de '''$3'''|muestran los resultados entre el '''$1''' y el '''$2''', de un total de '''$3'''}}.",
+'showingresultsheader'             => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1 - $2''' de '''$3'''}} para '''$4'''",
 'nonefound'                        => "'''Nota''': Por defecto sólo se busca en algunos espacios de nombre.
 Prueba a usar el prefijo ''all:'' para buscar en todo el contenido (incluyendo páginas de discusión, plantillas, etc.) o usa el espacio de nombre que quieras como prefijo. También puedes usar el formulario de búsqueda avanzada que aparece abajo.
 
@@ -1492,7 +1493,7 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 'sourcefilename'              => 'Nombre del archivo origen:',
 'destfilename'                => 'Nombre del archivo de destino:',
 'upload-maxfilesize'          => 'Tamaño máximo del archivo: $1',
-'watchthisupload'             => 'Vigilar esta página',
+'watchthisupload'             => 'Vigilar este archivo',
 'filewasdeleted'              => 'Un archivo con este nombre se subió con anterioridad y posteriormente ha sido borrado. Deberías revisar el $1 antes de subirlo de nuevo.',
 'upload-wasdeleted'           => "'''Atención: Está subiendo un archivo que ha sido borrado previamente.'''
 
@@ -1781,7 +1782,7 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 # Special:LinkSearch
 'linksearch'       => 'Enlaces externos',
 'linksearch-pat'   => 'Patrón de búsqueda:',
-'linksearch-ns'    => 'Nombre de espacio:',
+'linksearch-ns'    => 'Espacio de nombre:',
 'linksearch-ok'    => 'Buscar',
 'linksearch-text'  => 'Se pueden usar comodines como  «*.wikipedia.org».<br />
 Protocolos soportados: <tt>$1</tt>',

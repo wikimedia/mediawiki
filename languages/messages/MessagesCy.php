@@ -946,8 +946,8 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'searchmenu-new'                   => "'''Creu'r dudalen \"[[:\$1]]\" ar y wici hwn!'''",
 'searchhelp-url'                   => 'Help:Cymorth',
 'searchmenu-prefix'                => "[[Special:PrefixIndex/$1|Chwilio drwy tudalennau gyda'r rhagddodiad hwn]]",
-'searchprofile-articles'           => 'Tudalennau pwnc',
-'searchprofile-project'            => 'Tudalennau prosiect',
+'searchprofile-articles'           => 'Erthyglau',
+'searchprofile-project'            => 'Cymorth',
 'searchprofile-images'             => 'Ffeiliau',
 'searchprofile-everything'         => 'Popeth',
 'searchprofile-advanced'           => 'Uwch',
@@ -1338,7 +1338,7 @@ Ewch nôl ac uwchlwythwch y ffeil gydag enw gwahanol iddo.
 'sourcefilename'              => "Enw'r ffeil wreiddiol:",
 'destfilename'                => 'Enw ffeil y cyrchfan:',
 'upload-maxfilesize'          => 'Maint mwyaf ffeil: $1',
-'watchthisupload'             => 'Gwylier y dudalen hon',
+'watchthisupload'             => 'Gwylier y ffeil hon',
 'filewasdeleted'              => "Cafodd ffeil o'r enw hwn eisoes ei uwchlwytho ac yna ei dileu.
 Dylech ddarllen y $1 cyn bwrw ati i'w uwchlwytho unwaith eto.",
 'upload-wasdeleted'           => "'''Rhybudd: Rydych yn uwchlwytho ffeil sydd eisoes wedi ei dileu.'''
@@ -1766,6 +1766,7 @@ Am fwy o gymorth ac adborth:
 'confirmdeletetext'      => "Rydych chi ar fin dileu tudalen neu ddelwedd, ynghŷd â'i hanes, o'r data-bas, a hynny'n barhaol.
 Os gwelwch yn dda, cadarnhewch eich bod chi wir yn bwriadu gwneud hyn, eich bod yn deall y canlyniadau, ac yn ei wneud yn ôl [[{{MediaWiki:Policy-url}}|polisïau {{SITENAME}}]].",
 'actioncomplete'         => "Wedi cwblhau'r weithred",
+'actionfailed'           => 'Methodd y weithred',
 'deletedtext'            => 'Mae "<nowiki>$1</nowiki>" wedi\'i ddileu.
 Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
 'deletedarticle'         => 'wedi dileu "[[$1]]"',

@@ -1534,7 +1534,7 @@ Sprawdź plik i załaduj poprawną wersję.',
 'sourcefilename'              => 'Nazwa oryginalna',
 'destfilename'                => 'Nazwa docelowa',
 'upload-maxfilesize'          => 'Wielkość pliku ograniczona jest do $1',
-'watchthisupload'             => 'Obserwuj',
+'watchthisupload'             => 'Obserwuj ten plik',
 'filewasdeleted'              => 'Plik o tej nazwie istniał, ale został usunięty.
 Zanim załadujesz go ponownie, sprawdź $1.',
 'upload-wasdeleted'           => "'''Uwaga! Ładujesz plik, który został usunięty.'''
@@ -1861,17 +1861,21 @@ Obsługiwane protokoły: <tt>$1</tt>',
 'newuserlog-autocreate-entry' => '– konto utworzone automatycznie',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Uprawnienia grup użytkowników',
-'listgrouprights-summary'         => 'Poniżej znajduje się spis zdefiniowanych na tej wiki grup użytkowników, z wyszczególnieniem przydzielonych im uprawnień.
+'listgrouprights'                      => 'Uprawnienia grup użytkowników',
+'listgrouprights-summary'              => 'Poniżej znajduje się spis zdefiniowanych na tej wiki grup użytkowników, z wyszczególnieniem przydzielonych im uprawnień.
 Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informacjami]] o uprawnieniach.',
-'listgrouprights-group'           => 'Grupa',
-'listgrouprights-rights'          => 'Uprawnienia',
-'listgrouprights-helppage'        => 'Help:Uprawnienia grup użytkowników',
-'listgrouprights-members'         => '(lista członków grupy)',
-'listgrouprights-addgroup'        => 'Możliwość dodawania do {{PLURAL:$2|grupy|grup:}} $1',
-'listgrouprights-removegroup'     => 'Możliwość usuwania z {{PLURAL:$2|grupy|grup:}} $1',
-'listgrouprights-addgroup-all'    => 'Możliwość dodania użytkownika do każdej grupy',
-'listgrouprights-removegroup-all' => 'Możliwość usunięcia użytkownika z każdej grupy',
+'listgrouprights-group'                => 'Grupa',
+'listgrouprights-rights'               => 'Uprawnienia',
+'listgrouprights-helppage'             => 'Help:Uprawnienia grup użytkowników',
+'listgrouprights-members'              => '(lista członków grupy)',
+'listgrouprights-addgroup'             => 'Możliwość dodawania do {{PLURAL:$2|grupy|grup:}} $1',
+'listgrouprights-removegroup'          => 'Możliwość usuwania z {{PLURAL:$2|grupy|grup:}} $1',
+'listgrouprights-addgroup-all'         => 'Możliwość dodania użytkownika do każdej grupy',
+'listgrouprights-removegroup-all'      => 'Możliwość usunięcia użytkownika z każdej grupy',
+'listgrouprights-addgroup-self'        => 'Może dodać własne konto do {{PLURAL:$2|grupy|grup:}} $1',
+'listgrouprights-removegroup-self'     => 'Może usunąć własne konto z {{PLURAL:$2|grupy|grup:}} $1',
+'listgrouprights-addgroup-self-all'    => 'Może dodać własne konto do wszystkich grup',
+'listgrouprights-removegroup-self-all' => 'Może usunąć własne konto ze wszystkich grup',
 
 # E-mail user
 'mailnologin'      => 'Brak adresu',

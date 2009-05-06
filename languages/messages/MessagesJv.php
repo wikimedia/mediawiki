@@ -169,7 +169,7 @@ $messages = array(
 == Miwiti panggunan  ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pangaturan préférènsi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
 
 'about'         => 'Prakara',
 'article'       => 'Artikel',
