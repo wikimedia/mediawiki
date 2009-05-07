@@ -623,7 +623,7 @@ CONTROL;
 	 */
 	private function initDiffEngines() {
 		global $wgExternalDiffEngine;
-		if ( $wgExternalDiffEngine == 'wikidiff' && !function_exists( 'wikidiff_do_diff' ) {
+		if ( $wgExternalDiffEngine == 'wikidiff' && !function_exists( 'wikidiff_do_diff' ) ) {
 			wfProfileIn( __METHOD__ . '-php_wikidiff.so' );
 			@dl( 'php_wikidiff.so' );
 			wfProfileOut( __METHOD__ . '-php_wikidiff.so' );
