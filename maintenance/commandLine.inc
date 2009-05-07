@@ -44,7 +44,9 @@ $IP = strval( getenv('MW_INSTALL_PATH') ) !== ''
 	? getenv('MW_INSTALL_PATH')
 	: realpath( dirname( __FILE__ ) . '/..' );
 #chdir( $IP );
-require_once( "$IP/StartProfiler.php" );
+if ( file_exists( "$IP/StartProfiler.php" ) ) {
+	require_once( "$IP/StartProfiler.php"  );
+}
 
 $options = array();
 $args = array();
