@@ -618,6 +618,24 @@ CONTROL;
 	}
 
 	/**
+	 * Make sure the proper modules are loaded before we try to
+	 * make the diff
+	 */
+	private function initDiffEngines() {
+		global $wgExternalDiffEngine;
+		if ( $wgExternalDiffEngine == 'wikidiff' && !function_exists( 'wikidiff_do_diff' ) {
+			wfProfileIn( __METHOD__ . '-php_wikidiff.so' );
+			@dl( 'php_wikidiff.so' );
+			wfProfileOut( __METHOD__ . '-php_wikidiff.so' );
+		}
+		else if ( $wgExternalDiffEngine == 'wikidiff2' && !function_exists( 'wikidiff2_do_diff' ) ) {
+			wfProfileIn( __METHOD__ . '-php_wikidiff2.so' );
+			@dl( 'php_wikidiff2.so' );
+			wfProfileOut( __METHOD__ . '-php_wikidiff2.so' );
+		}
+	}
+
+	/**
 	 * Generate a diff, no caching
 	 * $otext and $ntext must be already segmented
 	 */
@@ -627,33 +645,25 @@ CONTROL;
 		$otext = str_replace( "\r\n", "\n", $otext );
 		$ntext = str_replace( "\r\n", "\n", $ntext );
 
-		if ( $wgExternalDiffEngine == 'wikidiff' ) {
+		$this->initDiffEngines();
+
+		if ( $wgExternalDiffEngine == 'wikidiff' && function_exists( 'wikidiff_do_diff' ) ) {
 			# For historical reasons, external diff engine expects
 			# input text to be HTML-escaped already
 			$otext = htmlspecialchars ( $wgContLang->segmentForDiff( $otext ) );
 			$ntext = htmlspecialchars ( $wgContLang->segmentForDiff( $ntext ) );
-			if( !function_exists( 'wikidiff_do_diff' ) ) {
-				dl('php_wikidiff.so');
-			}
 			return $wgContLang->unsegementForDiff( wikidiff_do_diff( $otext, $ntext, 2 ) ) .
 			$this->debug( 'wikidiff1' );
 		}
 
-		if ( $wgExternalDiffEngine == 'wikidiff2' ) {
+		if ( $wgExternalDiffEngine == 'wikidiff2' && function_exists( 'wikidiff2_do_diff' ) ) {
 			# Better external diff engine, the 2 may some day be dropped
 			# This one does the escaping and segmenting itself
-			if ( !function_exists( 'wikidiff2_do_diff' ) ) {
-				wfProfileIn( __METHOD__ . "-dl" );
-				@dl('php_wikidiff2.so');
-				wfProfileOut( __METHOD__ . "-dl" );
-			}
-			if ( function_exists( 'wikidiff2_do_diff' ) ) {
-				wfProfileIn( 'wikidiff2_do_diff' );
-				$text = wikidiff2_do_diff( $otext, $ntext, 2 );
-				$text .= $this->debug( 'wikidiff2' );
-				wfProfileOut( 'wikidiff2_do_diff' );
-				return $text;
-			}
+			wfProfileIn( 'wikidiff2_do_diff' );
+			$text = wikidiff2_do_diff( $otext, $ntext, 2 );
+			$text .= $this->debug( 'wikidiff2' );
+			wfProfileOut( 'wikidiff2_do_diff' );
+			return $text;
 		}
 		if ( $wgExternalDiffEngine != 'wikidiff3' && $wgExternalDiffEngine !== false ) {
 			# Diff via the shell
