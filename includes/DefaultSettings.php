@@ -208,6 +208,8 @@ $wgFileStore['deleted']['hash'] = 3;         ///< 3-level subdirectory split
  *                      May be 'paranoid' to remove all parameters from error messages, 'none' to
  *                      leave the paths in unchanged, or 'simple' to replace paths with
  *                      placeholders. Default for LocalRepo is 'simple'.
+ *    fileMode          This allows wikis to set the file mode when uploading/moving files. Default
+ *                      is 0644.
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
  * for local repositories:
