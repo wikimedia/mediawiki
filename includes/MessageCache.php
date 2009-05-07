@@ -787,7 +787,7 @@ class MessageCache {
 		# Some extensions will load their messages when you load their class file
 		wfLoadAllExtensions();
 		# Others will respond to this hook
-		wfRunHooks( 'LoadAllMessages' );
+		wfRunHooks( 'LoadAllMessages', array( $this ) );
 		# Some register their messages in $wgExtensionMessagesFiles
 		foreach ( $wgExtensionMessagesFiles as $name => $file ) {
 			wfLoadExtensionMessages( $name, $lang );

@@ -862,6 +862,7 @@ $linkType: The external link type
 &$tags: The list of tags.
 
 'LoadAllMessages': called by MessageCache::loadAllMessages() to load extensions messages
+&$this: The MessageCache object
 
 'LoadExtensionSchemaUpdates': called by maintenance/updaters.inc when upgrading database schema
 
