@@ -46,6 +46,7 @@ class ApiParamInfo extends ApiBase {
 		if(is_array($params['modules']))
 		{
 			$modArr = $this->getMain()->getModules();
+			$r['modules'] = array();
 			foreach($params['modules'] as $m)
 			{
 				if(!isset($modArr[$m]))
@@ -63,6 +64,7 @@ class ApiParamInfo extends ApiBase {
 		if(is_array($params['querymodules']))
 		{
 			$qmodArr = $queryObj->getModules();
+			$r['querymodules'] = array();
 			foreach($params['querymodules'] as $qm)
 			{
 				if(!isset($qmodArr[$qm]))
