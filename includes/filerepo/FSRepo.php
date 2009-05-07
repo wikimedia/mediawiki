@@ -6,7 +6,7 @@
  * @ingroup FileRepo
  */
 class FSRepo extends FileRepo {
-	var $directory, $deletedDir, $url, $deletedHashLevels;
+	var $directory, $deletedDir, $url, $deletedHashLevels, $fileMode;
 	var $fileFactory = array( 'UnregisteredLocalFile', 'newFromTitle' );
 	var $oldFileFactory = false;
 	var $pathDisclosureProtection = 'simple';
@@ -23,6 +23,7 @@ class FSRepo extends FileRepo {
 		$this->deletedHashLevels = isset( $info['deletedHashLevels'] ) ?
 			$info['deletedHashLevels'] : $this->hashLevels;
 		$this->deletedDir = isset( $info['deletedDir'] ) ? $info['deletedDir'] : false;
+		$this->fileMode = isset( $info['fileMode'] ) ? $info['fileMode'] : 0644;
 	}
 
 	/**
@@ -203,7 +204,7 @@ class FSRepo extends FileRepo {
 				}
 			}
 			if ( $good ) {
-				chmod( $dstPath, 0644 );
+				@chmod( $dstPath, $this->fileMode );
 				$status->successCount++;
 			} else {
 				$status->failCount++;
@@ -389,7 +390,7 @@ class FSRepo extends FileRepo {
 				$status->successCount++;
 				wfDebug(__METHOD__.": wrote tempfile $srcPath to $dstPath\n");
 				// Thread-safe override for umask
-				chmod( $dstPath, 0644 );
+				@chmod( $dstPath, $this->fileMode );
 			} else {
 				$status->failCount++;
 			}
@@ -466,7 +467,7 @@ class FSRepo extends FileRepo {
 					$status->error( 'filerenameerror', $srcPath, $archivePath );
 					$good = false;
 				} else {
-					@chmod( $archivePath, 0644 );
+					@chmod( $archivePath, $this->fileMode );
 				}
 			}
 			if ( $good ) {
