@@ -65,7 +65,11 @@ if ( $IP === false ) {
 
 
 # Start profiler
-require_once( "$IP/StartProfiler.php" );
+if( file_exists("$IP/StartProfiler.php") ) {
+	require_once( "$IP/StartProfiler.php" );
+} else {
+	require_once( "$IP/includes/ProfilerStub.php" );
+}
 wfProfileIn( 'WebStart.php-conf' );
 
 # Load up some global defines.
