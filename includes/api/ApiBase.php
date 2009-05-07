@@ -272,7 +272,7 @@ abstract class ApiBase {
 	 */
 	public function makeHelpMsgParameters() {
 		$params = $this->getFinalParams();
-		if ($params !== false) {
+		if ( $params ) {
 
 			$paramsDescription = $this->getFinalParamDescription();
 			$msg = '';
