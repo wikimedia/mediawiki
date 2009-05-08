@@ -116,6 +116,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16925) Diffs no longer fail when $wgExternalDiffEngine is set to 'wikidiff'
   or 'wikidiff2' but extension is not installed
 * (bug 18326) Chmod errors in file repos have been hidden
+* (bug 18718) Comma after a } create a error in IE
 
 == API changes in 1.16 ==
 
