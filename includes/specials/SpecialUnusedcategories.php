@@ -34,7 +34,7 @@ class UnusedCategoriesPage extends QueryPage {
 
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
-		return $skin->makeLinkObj( $title, $title->getText() );
+		return $skin->link( $title, $title->getText() );
 	}
 }
 

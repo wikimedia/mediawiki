@@ -72,7 +72,7 @@ class MIMEsearchPage extends QueryPage {
 			$wgLang->formatNum( $result->img_size ) );
 		$dimensions = wfMsgHtml( 'widthheight', $wgLang->formatNum( $result->img_width ),
 			$wgLang->formatNum( $result->img_height ) );
-		$user = $skin->makeLinkObj( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text );
+		$user = $skin->link( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text );
 		$time = $wgLang->timeanddate( $result->img_timestamp );
 
 		return "($download) $plink . . $dimensions . . $bytes . . $user . . $time";

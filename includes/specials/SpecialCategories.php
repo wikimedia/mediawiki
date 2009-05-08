@@ -90,7 +90,7 @@ class CategoryPager extends AlphabeticPager {
 	function formatRow($result) {
 		global $wgLang;
 		$title = Title::makeTitle( NS_CATEGORY, $result->cat_title );
-		$titleText = $this->getSkin()->makeLinkObj( $title, htmlspecialchars( $title->getText() ) );
+		$titleText = $this->getSkin()->link( $title, htmlspecialchars( $title->getText() ) );
 		$count = wfMsgExt( 'nmembers', array( 'parsemag', 'escape' ),
 				$wgLang->formatNum( $result->cat_pages ) );
 		return Xml::tags('li', null, "$titleText ($count)" ) . "\n";

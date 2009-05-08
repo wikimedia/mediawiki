@@ -61,7 +61,7 @@ class ProtectedTitlesForm {
 			$skin = $wgUser->getSkin();
 
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
-		$link = $skin->makeLinkObj( $title );
+		$link = $skin->link( $title );
 
 		$description_items = array ();
 

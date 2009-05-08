@@ -196,7 +196,7 @@ class ProtectionForm {
 		}
 
 		$sk = $wgUser->getSkin();
-		$titleLink = $sk->makeLinkObj( $this->mTitle );
+		$titleLink = $sk->link( $this->mTitle );
 		$wgOut->setPageTitle( wfMsg( 'protect-title', $this->mTitle->getPrefixedText() ) );
 		$wgOut->setSubtitle( wfMsg( 'protect-backlink', $titleLink ) );
 

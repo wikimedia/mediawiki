@@ -148,12 +148,12 @@ class SpecialContributions extends SpecialPage {
 		if( 0 == $id ) {
 			$user = $nt->getText();
 		} else {
-			$user = $sk->makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
+			$user = $sk->link( $nt, htmlspecialchars( $nt->getText() ) );
 		}
 		$talk = $nt->getTalkPage();
 		if( $talk ) {
 			# Talk page link
-			$tools[] = $sk->makeLinkObj( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
+			$tools[] = $sk->link( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
 			if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && IP::isIPAddress( $nt->getText() ) ) ) {
 				# Block link
 				if( $wgUser->isAllowed( 'block' ) )
@@ -482,7 +482,12 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$page = Title::newFromRow( $row );
 		$page->resetArticleId( $row->rev_page ); // use process cache
-		$link = $sk->makeLinkObj( $page, $page->getPrefixedText(), $page->isRedirect() ? 'redirect=no' : '' );
+		$link = $sk->link(
+			$page,
+			$page->getPrefixedText(),
+			array(),
+			$page->isRedirect() ? array( 'redirect' => 'no' ) : array()
+		);
 		# Mark current revisions
 		$difftext = $topmarktext = '';
 		if( $row->rev_id == $row->page_latest ) {

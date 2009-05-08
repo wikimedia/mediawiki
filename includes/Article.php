@@ -1127,7 +1127,7 @@ class Article {
 		if( $forceKnown ) {
 			$link = $sk->makeKnownLinkObj( $title, htmlspecialchars( $title->getFullText() ) );
 		} else {
-			$link = $sk->makeLinkObj( $title, htmlspecialchars( $title->getFullText() ) );
+			$link = $sk->link( $title, htmlspecialchars( $title->getFullText() ) );
 		}
 		// automatically append redirect=no to each link, since most of them are redirect pages themselves
 		foreach( $target as $rt ) {
@@ -1136,7 +1136,7 @@ class Article {
 					. $sk->makeKnownLinkObj( $rt, htmlspecialchars( $rt->getFullText() ) );
 			} else {
 				$link .= '<img src="'.$imageUrl2.'" alt="'.$alt2.' " />'
-					. $sk->makeLinkObj( $rt, htmlspecialchars( $rt->getFullText() ) );
+					. $sk->link( $rt, htmlspecialchars( $rt->getFullText() ) );
 			}
 		}
 		return '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .

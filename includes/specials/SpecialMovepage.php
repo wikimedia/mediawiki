@@ -91,7 +91,7 @@ class MovePageForm {
 
 		$skin = $wgUser->getSkin();
 
-		$oldTitleLink = $skin->makeLinkObj( $this->oldTitle );
+		$oldTitleLink = $skin->link( $this->oldTitle );
 
 		$wgOut->setPagetitle( wfMsg( 'move-page', $this->oldTitle->getPrefixedText() ) );
 		$wgOut->setSubtitle( wfMsg( 'move-page-backlink', $oldTitleLink ) );
@@ -468,7 +468,7 @@ class MovePageForm {
 					$extraOutput []= wfMsgHtml( 'movepage-page-moved', $oldLink, $newLink );
 				} else {
 					$oldLink = $skin->makeKnownLinkObj( $oldSubpage );
-					$newLink = $skin->makeLinkObj( $newSubpage );
+					$newLink = $skin->link( $newSubpage );
 					$extraOutput []= wfMsgHtml( 'movepage-page-unmoved', $oldLink, $newLink );
 				}
 			}

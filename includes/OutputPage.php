@@ -458,7 +458,7 @@ class OutputPage {
 					if ( array_key_exists( $category, $categories ) )
 						continue;
 				$text = $wgContLang->convertHtml( $title->getText() );
-				$this->mCategoryLinks[$type][] = $sk->makeLinkObj( $title, $text );
+				$this->mCategoryLinks[$type][] = $sk->link( $title, $text );
 			}
 		}
 	}
@@ -1444,7 +1444,7 @@ class OutputPage {
 	public function addReturnTo( $title ) {
 		global $wgUser;
 		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullUrl() ) );
-		$link = wfMsg( 'returnto', $wgUser->getSkin()->makeLinkObj( $title ) );
+		$link = wfMsg( 'returnto', $wgUser->getSkin()->link( $title ) );
 		$this->addHTML( "<p>{$link}</p>\n" );
 	}
 

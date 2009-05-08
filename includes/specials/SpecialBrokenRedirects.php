@@ -61,7 +61,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 
 		// $toObj may very easily be false if the $result list is cached
 		if ( !is_object( $toObj ) ) {
-			return '<s>' . $skin->makeLinkObj( $fromObj ) . '</s>';
+			return '<s>' . $skin->link( $fromObj ) . '</s>';
 		}
 
 		$from = $skin->makeKnownLinkObj( $fromObj ,'', 'redirect=no' );

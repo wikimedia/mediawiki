@@ -58,7 +58,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
 
-		$plink = $skin->makeLinkObj( $nt, htmlspecialchars( $text ) );
+		$plink = $skin->link( $nt, htmlspecialchars( $text ) );
 
 		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->value ) );

@@ -44,7 +44,7 @@ class WantedCategoriesPage extends WantedQueryPage {
 		$text = $wgContLang->convert( $nt->getText() );
 
 		$plink = $this->isCached() ?
-			$skin->makeLinkObj( $nt, htmlspecialchars( $text ) ) :
+			$skin->link( $nt, htmlspecialchars( $text ) ) :
 			$skin->makeBrokenLinkObj( $nt, htmlspecialchars( $text ) );
 
 		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),

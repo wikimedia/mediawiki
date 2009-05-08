@@ -452,13 +452,23 @@ class CategoryViewer {
 
 		$prevLink = wfMsgExt( 'prevn', array( 'escape', 'parsemag' ), $limitText );
 		if( $first != '' ) {
-			$prevLink = $sk->makeLinkObj( $title, $prevLink,
-				wfArrayToCGI( $query + array( 'until' => $first ) ) );
+			query[] = array( 'until' => $first );
+			$prevLink = $sk->link(
+				$title,
+				$prevLink,
+				array(),
+				$query
+			);
 		}
 		$nextLink = wfMsgExt( 'nextn', array( 'escape', 'parsemag' ), $limitText );
 		if( $last != '' ) {
-			$nextLink = $sk->makeLinkObj( $title, $nextLink,
-				wfArrayToCGI( $query + array( 'from' => $last ) ) );
+			query[] = array( 'from' => $last );
+			$nextLink = $sk->link(
+				$title,
+				$nextLink,
+				array(),
+				$query
+			);
 		}
 
 		return "($prevLink) ($nextLink)";

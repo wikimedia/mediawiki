@@ -117,7 +117,7 @@ class UsersPager extends AlphabeticPager {
 		global $wgLang;
 
 		$userPage = Title::makeTitle( NS_USER, $row->user_name );
-		$name = $this->getSkin()->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
+		$name = $this->getSkin()->link( $userPage, htmlspecialchars( $userPage->getText() ) );
 
 		if( $row->numgroups > 1 || ( $this->requestedGroup && $row->numgroups == 1 ) ) {
 			$list = array();
