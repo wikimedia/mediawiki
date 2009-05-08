@@ -24,6 +24,6 @@ var htmlforms = {
 		} else {
 			textbox.disabled = true;
 		}
-	},
+	}
 }
 
