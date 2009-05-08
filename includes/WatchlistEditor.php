@@ -143,8 +143,8 @@ class WatchlistEditor {
 			if( !$title instanceof Title )
 				$title = Title::newFromText( $title );
 			if( $title instanceof Title ) {
-				$output->addHTML( "<li>" . $skin->makeLinkObj( $title )
-				. ' (' . $skin->makeLinkObj( $title->getTalkPage(), $talk ) . ")</li>\n" );
+				$output->addHTML( "<li>" . $skin->link( $title )
+				. ' (' . $skin->link( $title->getTalkPage(), $talk ) . ")</li>\n" );
 			}
 		}
 		$output->addHTML( "</ul>\n" );
@@ -409,10 +409,10 @@ class WatchlistEditor {
 	private function buildRemoveLine( $title, $redirect, $skin ) {
 		global $wgLang;
 
-		$link = $skin->makeLinkObj( $title );
+		$link = $skin->link( $title );
 		if( $redirect )
 			$link = '<span class="watchlistredir">' . $link . '</span>';
-		$tools[] = $skin->makeLinkObj( $title->getTalkPage(), wfMsgHtml( 'talkpagelinktext' ) );
+		$tools[] = $skin->link( $title->getTalkPage(), wfMsgHtml( 'talkpagelinktext' ) );
 		if( $title->exists() ) {
 			$tools[] = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'history_short' ), 'action=history' );
 		}

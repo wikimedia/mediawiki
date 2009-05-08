@@ -899,12 +899,12 @@ class Preferences {
 			global $wgAllowUserCss, $wgAllowUserJs;
 			if( $wgAllowUserCss ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName().'/'.$skinkey.'.css' );
-				$customCSS = $sk->makeLinkObj( $cssPage, wfMsgExt('prefs-custom-css', array() ) );
+				$customCSS = $sk->link( $cssPage, wfMsgExt( 'prefs-custom-css', array() ) );
 				$extraLinks .= " ($customCSS)";
 			}
 			if( $wgAllowUserJs ) {
 				$jsPage = Title::makeTitleSafe( NS_USER, $user->getName().'/'.$skinkey.'.js' );
-				$customJS = $sk->makeLinkObj( $jsPage, wfMsgHtml('prefs-custom-js') );
+				$customJS = $sk->link( $jsPage, wfMsgHtml( 'prefs-custom-js' ) );
 				$extraLinks .= " ($customJS)";
 			}
 			if( $skinkey == $wgDefaultSkin )

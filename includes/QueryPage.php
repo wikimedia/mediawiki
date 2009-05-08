@@ -577,7 +577,7 @@ abstract class WantedQueryPage extends QueryPage {
 		if( $title instanceof Title ) {
 			if( $this->isCached() ) {
 				$pageLink = $title->exists()
-					? '<s>' . $skin->makeLinkObj( $title ) . '</s>'
+					? '<s>' . $skin->link( $title ) . '</s>'
 					: $skin->makeBrokenLinkObj( $title );
 			} else {
 				$pageLink = $skin->makeBrokenLinkObj( $title );

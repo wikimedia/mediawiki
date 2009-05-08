@@ -125,7 +125,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$ut = $s->img_user_text;
 
 		$nt = Title::newFromText( $name, NS_FILE );
-		$ul = $sk->makeLinkObj( Title::makeTitle( NS_USER, $ut ), $ut );
+		$ul = $sk->link( Title::makeTitle( NS_USER, $ut ), $ut );
 
 		$gallery->add( $nt, "$ul<br />\n<i>".$wgLang->timeanddate( $s->img_timestamp, true )."</i><br />\n" );
 

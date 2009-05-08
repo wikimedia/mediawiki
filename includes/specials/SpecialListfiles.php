@@ -140,8 +140,10 @@ class ImageListPager extends TablePager {
 				return "$link ($download)";
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
-					$link = $this->getSkin()->makeLinkObj( Title::makeTitle( NS_USER, $value ),
-						htmlspecialchars( $value ) );
+					$link = $this->getSkin()->link(
+						Title::makeTitle( NS_USER, $value ),
+						htmlspecialchars( $value )
+					);
 				} else {
 					$link = htmlspecialchars( $value );
 				}

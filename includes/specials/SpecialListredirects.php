@@ -32,7 +32,12 @@ class ListredirectsPage extends QueryPage {
 
 		# Make a link to the redirect itself
 		$rd_title = Title::makeTitle( $result->namespace, $result->title );
-		$rd_link = $skin->makeLinkObj( $rd_title, '', 'redirect=no' );
+		$rd_link = $skin->link(
+			$rd_title,
+			null,
+			array(),
+			array( 'redirect' => 'no' )
+		);
 
 		# Find out where the redirect leads
 		$revision = Revision::newFromTitle( $rd_title );
@@ -41,7 +46,7 @@ class ListredirectsPage extends QueryPage {
 			$target = Title::newFromRedirect( $revision->getText() );
 			if( $target ) {
 				$arr = $wgContLang->getArrow() . $wgContLang->getDirMark();
-				$targetLink = $skin->makeLinkObj( $target );
+				$targetLink = $skin->link( $target );
 				return "$rd_link $arr $targetLink";
 			} else {
 				return "<s>$rd_link</s>";

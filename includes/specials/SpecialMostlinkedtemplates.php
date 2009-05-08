@@ -95,7 +95,7 @@ class SpecialMostlinkedtemplates extends QueryPage {
 
 		$skin->link( $title );
 		return wfSpecialList(
-			$skin->makeLinkObj( $title ),
+			$skin->link( $title ),
 			$this->makeWlhLink( $title, $skin, $result )
 		);
 	}

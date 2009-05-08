@@ -281,14 +281,21 @@ class LogPage {
 		}
 		switch( $type ) {
 			case 'move':
-				$titleLink = $skin->makeLinkObj( $title, 
-					htmlspecialchars( $title->getPrefixedText() ), 'redirect=no' );
+				$titleLink = $skin->link(
+					$title, 
+					htmlspecialchars( $title->getPrefixedText() ),
+					array(),
+					array( 'redirect' => 'no' )
+				);
 				$targetTitle = Title::newFromText( $params[0] );
 				if ( !$targetTitle ) {
 					# Workaround for broken database
 					$params[0] = htmlspecialchars( $params[0] );
 				} else {
-					$params[0] = $skin->makeLinkObj( $targetTitle, htmlspecialchars( $params[0] ) );
+					$params[0] = $skin->link(
+						$targetTitle,
+						htmlspecialchars( $params[0] )
+					);
 				}
 				break;
 			case 'block':
@@ -304,11 +311,19 @@ class LogPage {
 				break;
 			case 'rights':
 				$text = $wgContLang->ucfirst( $title->getText() );
-				$titleLink = $skin->makeLinkObj( Title::makeTitle( NS_USER, $text ) );
+				$titleLink = $skin->link( Title::makeTitle( NS_USER, $text ) );
 				break;
 			case 'merge':
-				$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
-				$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), htmlspecialchars( $params[0] ) );
+				$titleLink = $skin->link(
+					$title,
+					$title->getPrefixedText(),
+					array(),
+					array( 'redirect' => 'no' )
+				);
+				$params[0] = $skin->link(
+					Title::newFromText( $params[0] ),
+					htmlspecialchars( $params[0] )
+				);
 				$params[1] = $wgLang->timeanddate( $params[1] );
 				break;
 			default:
@@ -316,12 +331,12 @@ class LogPage {
 					list( $name, $par ) = SpecialPage::resolveAliasWithSubpage( $title->getDBKey() );
 					# Use the language name for log titles, rather than Log/X
 					if( $name == 'Log' ) {
-						$titleLink = '('.$skin->makeLinkObj( $title, LogPage::logName( $par ) ).')';
+						$titleLink = '('.$skin->link( $title, LogPage::logName( $par ) ).')';
 					} else {
-						$titleLink = $skin->makeLinkObj( $title );
+						$titleLink = $skin->link( $title );
 					}
 				} else {
-					$titleLink = $skin->makeLinkObj( $title );
+					$titleLink = $skin->link( $title );
 				}
 		}
 		return $titleLink;

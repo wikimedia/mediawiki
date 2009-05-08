@@ -76,7 +76,7 @@ class ShortPagesPage extends QueryPage {
 		}
 		$hlink = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
 		$plink = $this->isCached()
-					? $skin->makeLinkObj( $title )
+					? $skin->link( $title )
 					: $skin->makeKnownLinkObj( $title );
 		$size = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ), $wgLang->formatNum( htmlspecialchars( $result->value ) ) );
 

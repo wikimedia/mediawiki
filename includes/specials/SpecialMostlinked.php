@@ -75,7 +75,7 @@ class MostlinkedPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgLang;
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
-		$link = $skin->makeLinkObj( $title );
+		$link = $skin->link( $title );
 		$wlh = $this->makeWlhLink( $title,
 			wfMsgExt( 'nlinks', array( 'parsemag', 'escape'),
 				$wgLang->formatNum( $result->value ) ), $skin );

@@ -42,7 +42,7 @@ class PatrolLog {
 		list( $cur, /* $prev */, $auto ) = $params;
 		if( is_object( $skin ) ) {
 			# Standard link to the page in question
-			$link = $skin->makeLinkObj( $title );
+			$link = $skin->link( $title );
 			if( $title->exists() ) {
 				# Generate a diff link
 				$bits[] = 'oldid=' . urlencode( $cur );

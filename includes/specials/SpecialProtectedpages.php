@@ -65,7 +65,7 @@ class ProtectedPagesForm {
 			$skin = $wgUser->getSkin();
 
 		$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-		$link = $skin->makeLinkObj( $title );
+		$link = $skin->link( $title );
 
 		$description_items = array ();
 

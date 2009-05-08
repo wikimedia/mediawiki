@@ -155,7 +155,7 @@ class DeletedContribsPager extends IndexPager {
 				'&timestamp=' . $rev->getTimestamp() );
 		}
 
-		$pagelink = $sk->makeLinkObj( $page );
+		$pagelink = $sk->link( $page );
 
 		if( $rev->isMinor() ) {
 			$mflag = '<span class="minor">' . $this->messages['minoreditletter'] . '</span> ';
@@ -304,12 +304,12 @@ class DeletedContributionsPage extends SpecialPage {
 		if ( 0 == $id ) {
 			$user = $nt->getText();
 		} else {
-			$user = $sk->makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
+			$user = $sk->link( $nt, htmlspecialchars( $nt->getText() ) );
 		}
 		$talk = $nt->getTalkPage();
 		if( $talk ) {
 			# Talk page link
-			$tools[] = $sk->makeLinkObj( $talk, wfMsgHtml( 'talkpagelinktext' ) );
+			$tools[] = $sk->link( $talk, wfMsgHtml( 'talkpagelinktext' ) );
 			if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
 				# Block link
 				if( $wgUser->isAllowed( 'block' ) )
