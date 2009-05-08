@@ -819,7 +819,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		$wgTitle = Title::newFromText( "Installation script" );
 		error_reporting( E_ALL );
 		print "<li>Loading class: " . htmlspecialchars( $dbclass ) . "</li>\n";
-		$dbc = new $dbclass;
+		if ( $conf->DBtype != 'sqlite' ) {
+			$dbc = new $dbclass;
+		}
 
 		if( $conf->DBtype == 'mysql' ) {
 			$mysqlOldClient = version_compare( mysql_get_client_info(), "4.1.0", "lt" );
@@ -903,7 +905,46 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				$myver = $wgDatabase->getServerVersion();
 			}
 			if (is_callable(array($wgDatabase, 'initial_setup'))) $wgDatabase->initial_setup('', $wgDBname);
-			
+
+		} elseif ( $conf->DBtype == 'sqlite' ) {
+			if ("$wgSQLiteDataDir" == '') {
+				$wgSQLiteDataDir = dirname($_SERVER['DOCUMENT_ROOT']).'/data';
+			}
+			echo "<li>Attempting to connect to SQLite database at \"" . 
+				htmlspecialchars( $wgSQLiteDataDir ) .  "\"";
+			if ( !is_dir( $wgSQLiteDataDir ) ) {
+				if ( is_writable( dirname( $wgSQLiteDataDir ) ) ) {
+					$ok = wfMkdirParents( $wgSQLiteDataDir, $wgSQLiteDataDirMode );
+				} else {
+					$ok = false;
+				}
+				if ( !$ok ) {
+					echo ": cannot create data directory</li>";
+					$errs['SQLiteDataDir'] = 'Enter a valid data directory';
+					continue;
+				}
+			}
+			if ( !is_writable( $wgSQLiteDataDir ) ) {
+				echo ": data directory not writable</li>";
+				$errs['SQLiteDataDir'] = 'Enter a writable data directory';
+				continue;
+			}
+			$dataFile = "$wgSQLiteDataDir/$wgDBname.sqlite";
+			if ( file_exists( $dataFile ) && !is_writable( $dataFile ) ) {
+				echo ": data file not writable</li>";
+				$errs['SQLiteDataDir'] = "$wgDBname.sqlite is not writable";
+				continue;
+			}
+			$wgDatabase = new DatabaseSqlite( false, false, false, $wgDBname, 1 );
+			if (!$wgDatabase->isOpen()) {
+				print ": error: " . htmlspecialchars( $wgDatabase->lastError() ) . "</li>\n";
+				$errs['SQLiteDataDir'] = 'Could not connect to database';
+				continue;
+			} else {
+				$myver = $wgDatabase->getServerVersion();
+			}
+			if (is_callable(array($wgDatabase, 'initial_setup'))) $wgDatabase->initial_setup('', $wgDBname);
+			echo "ok</li>\n";
 		} else { # not mysql
 			error_reporting( E_ALL );
 			$wgSuperUser = '';
