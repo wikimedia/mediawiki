@@ -133,7 +133,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added PHP and database version to meta=siteinfo output
 * (bug 18533) Add readonly message to meta=siteinfo output
 * (bug 18518) Add clprop=hidden to prop=categories
-* (bug 18710) Fixed internal error with empty parameter in ApiParamInfo
+* (bug 18710) Fixed internal error with empty parameter in action=paraminfo
+* (bug 18709) Missing descriptions for some parameters in action=paraminfo
+  output
 
 === Languages updated in 1.16 ===
 
