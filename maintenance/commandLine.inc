@@ -45,7 +45,9 @@ $IP = strval( getenv('MW_INSTALL_PATH') ) !== ''
 	: realpath( dirname( __FILE__ ) . '/..' );
 #chdir( $IP );
 if ( file_exists( "$IP/StartProfiler.php" ) ) {
-	require_once( "$IP/StartProfiler.php"  );
+	require_once( "$IP/StartProfiler.php" );
+} else {
+	require_once( "$IP/includes/ProfilerStub.php" );
 }
 
 $options = array();
@@ -196,8 +198,7 @@ if ( file_exists( dirname(__FILE__).'/wikimedia-mode' ) ) {
 	$wgCommandLineMode = true;
 	$DP = $IP;
 	require_once( "$IP/includes/AutoLoader.php" );
-	#require_once( $IP.'/includes/ProfilerStub.php' );
-	require_once( $IP.'/includes/Defines.php' );
+	require_once( "$IP/includes/Defines.php" );
 	require_once( $settingsFile );
 	/* ini_set( 'include_path', ".$sep$IP$sep$IP/includes$sep$IP/languages$sep$IP/maintenance" ); */
 
