@@ -5,7 +5,7 @@ define( 'MEDIAWIKI', true );
 require 't/Test.php';
 
 require 'includes/Defines.php';
-require 'StartProfiler.php';
+require 'includes/ProfilerStub.php';
 require 'includes/AutoLoader.php';
 require 'LocalSettings.php';
 require 'includes/Setup.php';
