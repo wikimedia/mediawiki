@@ -94,6 +94,7 @@ class ApiParamInfo extends ApiBase {
 		$result = $this->getResult();
 		$retval['classname'] = get_class($obj);
 		$retval['description'] = implode("\n", (array)$obj->getDescription());
+		$retval['version'] = $obj->getVersion();
 		$retval['prefix'] = $obj->getModulePrefix();
 		if($obj->isReadMode())
 			$retval['readrights'] = '';
