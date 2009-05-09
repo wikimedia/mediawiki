@@ -137,6 +137,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18710) Fixed internal error with empty parameter in action=paraminfo
 * (bug 18709) Missing descriptions for some parameters in action=paraminfo
   output
+* (bug 18731) Show correct SVN links for extension modules in api.php?version
 
 === Languages updated in 1.16 ===
 

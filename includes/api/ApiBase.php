@@ -248,15 +248,15 @@ abstract class ApiBase {
 			if ($this->getMain()->getShowVersions()) {
 				$versions = $this->getVersion();
 				$pattern = '/(\$.*) ([0-9a-z_]+\.php) (.*\$)/i';
-				$replacement = '\\0' . "\n    " . 'http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/api/\\2';
+				$callback = array($this, 'makeHelpMsg_callback');
 
 				if (is_array($versions)) {
 					foreach ($versions as &$v)
-						$v = preg_replace($pattern, $replacement, $v);
+						$v = preg_replace_callback($pattern, $callback, $v);
 					$versions = implode("\n  ", $versions);
 				}
 				else
-					$versions = preg_replace($pattern, $replacement, $versions);
+					$versions = preg_replace_callback($pattern, $callback, $versions);
 
 				$msg .= "Version:\n  $versions\n";
 			}
@@ -335,6 +335,36 @@ abstract class ApiBase {
 
 		} else
 			return false;
+	}
+	
+	/**
+	 * Callback for preg_replace_callback() call in makeHelpMsg().
+	 * Replaces a source file name with a link to ViewVC
+	 */
+	public function makeHelpMsg_callback($matches) {
+		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
+		if(isset($wgAutoloadLocalClasses[get_class($this)]))
+			$file = $wgAutoloadLocalClasses[get_class($this)];
+		else if(isset($wgAutoloadClasses[get_class($this)]))
+			$file = $wgAutoloadClasses[get_class($this)];
+		
+		// Do some guesswork here
+		$path = strstr($file, 'includes/api/');
+		if($path === false)
+			$path = strstr($file, 'extensions/');
+		else
+			$path = 'phase3/' . $path;
+		
+		// Get the filename from $matches[2] instead of $file
+		// If they're not the same file, they're assumed to be in the
+		// same directory
+		// This is necessary to make stuff like ApiMain::getVersion()
+		// returning the version string for ApiBase work
+		if($path)
+			return "{$matches[0]}\n   http://svn.wikimedia.org/" .
+				"viewvc/mediawiki/trunk/" . dirname($path) .
+				"/{$matches[2]}";
+		return $matches[0];
 	}
 
 	/**
