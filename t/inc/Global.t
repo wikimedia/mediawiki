@@ -46,7 +46,7 @@ is( wfQuotedPrintable( "\xc4\x88u legebla?", "UTF-8" ),
 	"=?UTF-8?Q?=C4=88u=20legebla=3F?=", 'Quoted printable' );
 
 $start = wfTime();
-is( gettype( $start ), 'float', 'Time (type)' );
+is( gettype( $start ), 'double', 'Time (type)' );
 $end = wfTime();
 cmp_ok( $end, '>', $start, 'Time (compare)' );
 
