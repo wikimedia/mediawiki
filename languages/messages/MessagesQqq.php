@@ -9,6 +9,7 @@
  *
  * @author Ahonc
  * @author Aleator
+ * @author AlexSm
  * @author AnakngAraw
  * @author Ans
  * @author Aotake
@@ -308,7 +309,7 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 'toolbox'          => 'The title of the toolbox below the search menu.',
 'otherlanguages'   => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <tt><nowiki>[[</nowiki>en:Interwiki article]]</tt>.',
 'redirectedfrom'   => 'The text displayed when a certain page is redirected to another page. Variable <tt>$1</tt> contains the name of the page user came from.',
-'redirectpagesub'  => 'Displayed under the page title of a page which is a redirect to another page, see [{{fullurl:Betawiki:Translators|redirect=no}} Betawiki:Translators] for example.
+'redirectpagesub'  => 'Displayed under the page title of a page which is a redirect to another page, see [{{fullurl:Project:Translators|redirect=no}} Project:Translators] for example.
 
 {{Identical|Redirect page}}',
 'lastmodifiedat'   => 'This message is shown below each page, in the footer with the logos and links.
@@ -356,7 +357,7 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 'policy-url'           => 'Description: The URL of the project page describing the policies of the wiki. This is shown below every page (the left link).
 {{doc-important|Do not change "Project:" part.}}',
 'portal'               => "Display name for the 'Community portal', shown in the sidebar menu of all pages. The target page is meant to be a portal for users where useful links are to be found about the wiki's operation.",
-'portal-url'           => 'Description: The URL of the community portal. This is shown in the sidebar by default (removed on Betawiki).
+'portal-url'           => 'Description: The URL of the community portal. This is shown in the sidebar by default (removed on translatewiki.net).
 {{doc-important|Do not change "Project:" part.}}',
 'privacy'              => 'Used as page name and link at the bottom of each wiki page. The page contains a legal notice providing information about the use of personal information by the website owner.of the site. Example: [[Privacy policy]].',
 'privacypage'          => 'Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].
@@ -454,8 +455,8 @@ The title of the warning is the message {{msg-mw|nosuchspecialpage}}. <code><now
 'enterlockreason'      => 'For developers when locking the database',
 'missing-article'      => "This message is shown when a revision does not exist, either as permalink or as diff. Examples:
 
-# [http://translatewiki.net/w/i.php?title=Betawiki:News&oldid=9999999 Permalink with invalid revision#]
-# [http://translatewiki.net/w/i.php?title=Betawiki:News&diff=426850&oldid=99999999 Diff with invalid revision#]
+# [http://translatewiki.net/w/i.php?title=Project:News&oldid=9999999 Permalink with invalid revision#]
+# [http://translatewiki.net/w/i.php?title=Project:News&diff=426850&oldid=99999999 Diff with invalid revision#]
 
 '''Parameters'''
 * $1: Pagename
@@ -795,13 +796,13 @@ Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content
 *Parameter $1 is either {{msg|revdelete-hid}} (when hiding data), {{msg|revdelete-unhid}} (when unhiding data), {{msg|revdelete-restricted}} (when applying restrictions for sysops),  {{msg|revdelete-unrestricted}} (when removing restrictions for sysops), or a combination of those messages.
 *Parameter $2 is the number of revisions for which the restrictions are changed.
 
-Please note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on Betawiki with English default language.',
+Please note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on translatewiki.net with English default language.',
 'logdelete-log-message'     => 'This log message appears in brackets after the message {{msg|logdelete-logentry}} in the deletion or suppression logs when changing the visibility of a log entry for events. For a brief description of the process of changing the visibility of events and their log entries see this [http://www.mediawiki.org/wiki/RevisionDelete mediawiki explanation]. 
 
 *Parameter $1 is either {{msg|revdelete-hid}} (when hiding data), {{msg|revdelete-unhid}} (when unhiding data), {{msg|revdelete-restricted}} (when applying restrictions for sysops),  {{msg|revdelete-unrestricted}} (when removing restrictions for sysops), or a combination of those messages.
 *Parameter $2 is the number of events for which the restrictions are changed.
 
-Please note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on Betawiki with English default language.',
+Please note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on translatewiki.net with English default language.',
 
 # Suppression log
 'suppressionlog'     => 'Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',
@@ -1918,7 +1919,7 @@ $3 = time.
 'nolinkshere'              => 'This appears on Whatlinkshere pages which are empty.
 
 Parameter $1 is a page title.',
-'isredirect'               => 'Displayed in Special:WhatLinksHere (see [{{fullurl:Special:WhatLinksHere/Betawiki:Translator|hidelinks=1}} Special:WhatLinksHere/Betawiki:Translator] for example).
+'isredirect'               => 'Displayed in Special:WhatLinksHere (see [{{fullurl:Special:WhatLinksHere/Project:Translator|hidelinks=1}} Special:WhatLinksHere/Project:Translator] for example).
 
 {{Identical|Redirect page}}',
 'istemplate'               => 'Means that a page (a template, specifically) is used as <code><nowiki>{{Page name}}</nowiki></code>.
@@ -2050,51 +2051,52 @@ See also {{msg-mw|Blocklistline}}.',
 'lockfilenotwritable' => "'No longer needed' on wikipedia.",
 
 # Move page
-'move-page'               => 'Header of the special page to move pages. $1 is the name of the page to be moved.',
-'move-page-backlink'      => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}
+'move-page'                 => 'Header of the special page to move pages. $1 is the name of the page to be moved.',
+'move-page-backlink'        => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}
 
 Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page to be moved.',
-'move-page-legend'        => 'Legend of the fieldset around the input form of [[Special:MovePage/testpage]].
+'move-page-legend'          => 'Legend of the fieldset around the input form of [[Special:MovePage/testpage]].
 
 {{Identical|Move page}}',
-'movepagetext'            => 'Introduction shown when moving a page ([[Special:MovePage]]).',
-'movepagetalktext'        => "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
-'movearticle'             => 'The text before the name of the page that you are moving.
+'movepagetext'              => 'Introduction shown when moving a page ([[Special:MovePage]]).',
+'movepagetalktext'          => "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
+'movearticle'               => 'The text before the name of the page that you are moving.
 
 {{Identical|Move page}}',
-'movenologin'             => '{{Identical|Not logged in}}',
-'movenologintext'         => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.",
-'newtitle'                => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.',
-'move-watch'              => 'The text of the checkbox to watch the page you are moving.
+'movenologin'               => '{{Identical|Not logged in}}',
+'movenologintext'           => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.",
+'newtitle'                  => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.',
+'move-watch'                => 'The text of the checkbox to watch the page you are moving.
 
 {{Identical|Watch this page}}',
-'movepagebtn'             => "Button label on the special 'Move page'.
+'movepagebtn'               => "Button label on the special 'Move page'.
 
 {{Identical|Move page}}",
-'pagemovedsub'            => 'Message displayed as aheader of the body, after succesfully moving a page from source to target name.',
-'movepage-moved'          => 'Message displayed after succesfully moving a page from source to target name.
+'pagemovedsub'              => 'Message displayed as aheader of the body, after succesfully moving a page from source to target name.',
+'movepage-moved'            => 'Message displayed after succesfully moving a page from source to target name.
 * $1 is the source page as a link with display name
 * $2 is the target page as a link with display name
 * $3 (optional) is the source page name without a link
 * $4 (optional) is the target page name without a link',
-'movetalk'                => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
-'move-subpages'           => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
-'move-talk-subpages'      => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the talk page to a new title.',
-'1movedto2'               => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
-'1movedto2_redir'         => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
-'movelogpage'             => 'Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
-'movelogpagetext'         => "Text on the special page 'Move log'.",
-'movesubpage'             => "This is a page header.
+'movepage-moved-noredirect' => 'The message is shown after pagemove if checkbox "{{int:move-leave-redirect}}" was unselected before moving.',
+'movetalk'                  => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
+'move-subpages'             => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
+'move-talk-subpages'        => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the talk page to a new title.',
+'1movedto2'                 => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
+'1movedto2_redir'           => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
+'movelogpage'               => 'Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
+'movelogpagetext'           => "Text on the special page 'Move log'.",
+'movesubpage'               => "This is a page header.
 Parameters:
 *'''$1''' = number of subpages
 <!--{{Note|Plural is supported if you need it, the number of subpages is available in <code>$1</code>.}}-->",
-'movereason'              => 'Used in [[Special:MovePage]]. The text for the inputbox to give a reason for the page move.
+'movereason'                => 'Used in [[Special:MovePage]]. The text for the inputbox to give a reason for the page move.
 
 {{Identical|Reason}}',
-'revertmove'              => '{{Identical|Revert}}',
-'delete_and_move_text'    => 'Used when moving a page, but the destination page already exists and needs deletion. This message is to confirm that you really want to delete the page. See also {{msg|delete and move confirm}}.',
-'delete_and_move_confirm' => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
-'fix-double-redirects'    => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
+'revertmove'                => '{{Identical|Revert}}',
+'delete_and_move_text'      => 'Used when moving a page, but the destination page already exists and needs deletion. This message is to confirm that you really want to delete the page. See also {{msg|delete and move confirm}}.',
+'delete_and_move_confirm'   => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
+'fix-double-redirects'      => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
 
 # Export
 'export'           => 'Page title of [[Special:Export]], a page where a user can export pages from a wiki to a file.',
@@ -2222,11 +2224,11 @@ If the length of the translated message is over 60 characters (including spaces)
 'monobook.js' => 'JS for users using Monobook skin.',
 
 # Attribution
-'anonymous'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
+'anonymous'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
 This message appears at the very end of the list of names in the message [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]]. If there are no anonymous users in the credits list then this message does not appear at all.
 
 * $1 is the number of anonymous users in the message',
-'siteuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki). 
+'siteuser'         => "This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net). 
 
 This message is the variable $3 in the message {{msg-mw|lastmodifiedatby}}. This message only appears if the user has not entered his 'real name' in his preferences. The variable $1 in this message is a user name.
 
@@ -2238,12 +2240,12 @@ See also {{msg-mw|Siteusers}}.",
 * $4: username in plain text. Can be used for GENDER
 
 See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].",
-'othercontribs'    => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
+'othercontribs'    => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar).
 * $1: the list of author(s) of the revisions preceding the current revision. It appears after the message [[Mediawiki:lastmodifiedatby/{{SUBPAGENAME}}]]. If there are no previous authors this message does not appear at all. If needed the messages [[Mediawiki:siteusers/{{SUBPAGENAME}}]], [[Mediawiki:anonymous/{{SUBPAGENAME}}]] and [[Mediawiki:and/{{SUBPAGENAME}}]] are part of the list of names.',
-'others'           => 'The following explanation is guesswork. This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar). 
+'others'           => 'The following explanation is guesswork. This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net - to use type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar). 
 
 The message appears at the end of the list of credits given in the message [[Mediawiki:Othercontribs/{{SUBPAGENAME}}]] if the number of contributors is above a certain level.',
-'siteusers'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on Betawiki).
+'siteusers'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
 It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|othercontribs]].
 
 * $1 is a list of user names (example: "\'\'Jim, Janet, Jane, Joe\'\'") where the user has not put his \'real name\' in his preferences.
@@ -2252,8 +2254,8 @@ It should be in a form that fits with [[MediaWiki:Othercontribs/{{SUBPAGENAME}}|
 If there is more than one user in the list then the message {{msg-mw|and}} appears before the last name. If $2 is NIL then this message does not appear at all.
 
 See also {{msg-mw|Siteuser}}.',
-'creditspage'      => "This message is the ''contentSub'' (the grey subtitle) shown when viewing credits of a page (example: {{fullurl:Betawiki:News|action=credits}}). Note that the credits action is disabled by default (currently enabled on Betawiki).",
-'nocredits'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on Betawiki).',
+'creditspage'      => "This message is the ''contentSub'' (the grey subtitle) shown when viewing credits of a page (example: {{fullurl:Project:News|action=credits}}). Note that the credits action is disabled by default (currently enabled on translatewiki.net).",
+'nocredits'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on translatewiki.net).',
 
 # Spam protection
 'spam_reverting' => '{{Identical|Revert}}',
@@ -2939,6 +2941,10 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 # HTML forms
 'htmlform-submit'              => '{{Identical|Submit}}',
 'htmlform-reset'               => '{{Identical|Undo}}',
-'htmlform-selectorother-other' => '{{Identical|Other}}',
+'htmlform-selectorother-other' => 'Used in drop-down boxes in [[Special:Preferences]] as follows:
+* selection of timezone (date and time tab)
+* stub threshold (appearance tab)
+
+{{Identical|Other}}',
 
 );

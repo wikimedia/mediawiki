@@ -1900,17 +1900,21 @@ PICT # διάφορα
 'newuserlog-autocreate-entry' => 'Ο λογαριασμός έχει δημιουργηθεί αυτόματα',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Δικαιώματα ομάδων χρηστών',
-'listgrouprights-summary'         => 'Ακόλουθεί μία λίστα με τις ομάδες χρηστών σε αυτό το wiki καθώς και με τα δικαιώματα πρόσβασης αυτών. 
+'listgrouprights'                      => 'Δικαιώματα ομάδων χρηστών',
+'listgrouprights-summary'              => 'Ακόλουθεί μία λίστα με τις ομάδες χρηστών σε αυτό το wiki καθώς και με τα δικαιώματα πρόσβασης αυτών. 
 Ενδέχεται να περιέχει [[{{MediaWiki:Listgrouprights-helppage}}|πρόσθετες πληροφορίες]] σχετικά με ατομικά δικαιώματα.',
-'listgrouprights-group'           => 'Ομάδα',
-'listgrouprights-rights'          => 'Δικαιώματα',
-'listgrouprights-helppage'        => 'Help:Δικαιώματα ομάδων',
-'listgrouprights-members'         => '(κατάλογος μελών)',
-'listgrouprights-addgroup'        => 'Μπορεί να προσθέσει {{PLURAL:$2|ομάδα|ομάδες}}: $1',
-'listgrouprights-removegroup'     => 'Μπορεί να αφαιρέσει {{PLURAL:$2|ομάδα|ομάδες}}: $1',
-'listgrouprights-addgroup-all'    => 'Μπορεί να προσθέσει όλες τις ομάδες',
-'listgrouprights-removegroup-all' => 'Μπορεί να αφαιρέσει όλες τις ομάδες',
+'listgrouprights-group'                => 'Ομάδα',
+'listgrouprights-rights'               => 'Δικαιώματα',
+'listgrouprights-helppage'             => 'Help:Δικαιώματα ομάδων',
+'listgrouprights-members'              => '(κατάλογος μελών)',
+'listgrouprights-addgroup'             => 'Μπορεί να προσθέσει {{PLURAL:$2|ομάδα|ομάδες}}: $1',
+'listgrouprights-removegroup'          => 'Μπορεί να αφαιρέσει {{PLURAL:$2|ομάδα|ομάδες}}: $1',
+'listgrouprights-addgroup-all'         => 'Μπορεί να προσθέσει όλες τις ομάδες',
+'listgrouprights-removegroup-all'      => 'Μπορεί να αφαιρέσει όλες τις ομάδες',
+'listgrouprights-addgroup-self'        => 'Μπορεί να προσθέσει {{PLURAL:$2|ομάδα|ομάδες}} στο δικό σας λογαριασμό: $1',
+'listgrouprights-removegroup-self'     => 'Μπορεί να αφαιρέσει {{PLURAL:$2|ομάδα|ομάδες}} από το δικό σας λογαριασμό: $1',
+'listgrouprights-addgroup-self-all'    => 'Μπορεί να προσθέσει όλες τις ομάδες στο δικό σας λογαριασμό',
+'listgrouprights-removegroup-self-all' => 'Μπορεί να αφαιρέσει όλες τις ομάδες από το δικό σας λογαριασμό',
 
 # E-mail user
 'mailnologin'      => 'Δεν υπάρχει διεύθυνση παραλήπτη.',

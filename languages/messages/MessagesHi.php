@@ -8,6 +8,7 @@
  * @file
  *
  * @author Aksi great
+ * @author Dineshjk
  * @author Kaustubh
  * @author Shyam
  * @author Sunil Mohan
@@ -1220,7 +1221,8 @@ PICT # misc.
 'filedelete-success'          => "'''$1''' को हटा दिया गया हैं।",
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' के [$3, $2 के अवतरण] हटा दिये गयें हैं।</span>',
 'filedelete-nofile'           => "'''$1''' {{SITENAME}} पर अस्तित्वमें नहीं हैं।",
-'filedelete-nofile-old'       => "दिये हुए विशेशता से मेल खाने वालें '''$1''' के अवतरण नहीं हैं।",
+'filedelete-nofile-old'       => "
+'''$1'''का आपने बताये हुए विशिष्ट खासियतवाले संग्रहित संस्करण का अस्तित्व नहीं है।",
 'filedelete-otherreason'      => 'अन्य/दूसरा कारण:',
 'filedelete-reason-otherlist' => 'अन्य कारण',
 'filedelete-reason-dropdown'  => '*हटाने के साधारण कारण

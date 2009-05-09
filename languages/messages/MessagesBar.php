@@ -55,6 +55,7 @@ $messages = array(
 'fri'         => 'Fr',
 'sat'         => 'Sa',
 'january'     => 'Jänna',
+'february'    => 'Februa',
 'april'       => 'Aprüi',
 'may_long'    => 'Mai',
 'june'        => 'Juni',
@@ -166,6 +167,7 @@ $messages = array(
 'editsection'             => 'werkln',
 'editold'                 => 'werkln',
 'viewsourcelink'          => 'in Quöitext ãschau',
+'editsectionhint'         => 'Åbschnitt beåaweitn: $1',
 'toc'                     => 'Inhoitsvazeichnis',
 'showtoc'                 => 'Ozoang',
 'thisisdeleted'           => '$1 ooschaun oda wieda herstelln?',
@@ -224,7 +226,11 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'retypenew'   => 'Neis Passwort (no amoi):',
 
 # Edit page toolbar
-'sig_tip' => 'Dei Signatur mit Zeitstempe',
+'italic_sample' => 'Kuasiva Text',
+'italic_tip'    => 'Kuasiva Text',
+'nowiki_tip'    => 'Unfoamatiada Text',
+'image_tip'     => 'Dateilink',
+'sig_tip'       => 'Dei Signatur mit Zeitstempe',
 
 # Edit pages
 'summary'                    => 'Zsammafassung',
@@ -234,6 +240,7 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'savearticle'                => 'Seitn speichern',
 'showpreview'                => 'Vorschau zoang',
 'showdiff'                   => 'Ändarungen zoang',
+'anoneditwarning'            => "Du beåaweitst de Seitn, ohne dass'd ãgmöidt bist. Wãnn'st iatst speichast, dãun wiad dei aktuelle IP-Adressn in da Veasionsgschicht aufzeichnt und kãu damid unwidaruflich '''öffntlich''' eigseng wean.",
 'missingsummary'             => "'''Hinweis:''' Sie ham koa Zsammafassung oogem. Wenn S' wieda auf „Speichern“ klicken, werd Eana Änderung ohne Zsammafassung übanumma.",
 'missingcommenttext'         => "Bitte gebn S' a Zsammafassung ei.",
 'subject-preview'            => 'Vorschau vom Betreff',
@@ -284,13 +291,14 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 'cantcreateaccounttitle' => 'Benutzerkonto konn net erstellt wern.',
 
 # History pages
-'viewpagelogs' => 'Logbiacha fia de Seitn oozoang',
-'histlegend'   => 'Zum Ozoagn vo Änderungen einfach de zwoa Versionen auswähln und auf de Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
+'viewpagelogs'    => 'Logbiacha fia de Seitn oozoang',
+'currentrev-asof' => 'Aktuelle Veasion vum $1',
+'histlegend'      => 'Zum Ozoagn vo Änderungen einfach de zwoa Versionen auswähln und auf de Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * (Aktuell) = Untaschied zur aktuellen Version, (Vorherige) = Untaschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dera Zeit, Benutzername/IP-Adresse vom Bearbeiter, K = Kloane Änderung',
-'deletedrev'   => '[glöscht]',
-'histlast'     => 'Neiste',
-'historyempty' => '(laa)',
+'deletedrev'      => '[glöscht]',
+'histlast'        => 'Neiste',
+'historyempty'    => '(laa)',
 
 # Revision feed
 'history-feed-title' => 'Versionshistorie',
@@ -322,21 +330,24 @@ Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-
 'editundo'                => 'rückgängig',
 
 # Search results
-'searchresults'         => 'Suachergebnisse',
-'searchresults-title'   => 'Eagebnisse vu da Suach nåch „$1“',
-'searchresulttext'      => "Fia weidare Infos üwa's Suacha schau auf'd [[{{MediaWiki:Helppage}}|Hüifeseitn]].",
-'searchsubtitle'        => 'Dei Suachãnfråg: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|ålle Seitn, de mid „$1“ ãnfãngan]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ålle Seitn, de wås nåch „$1“ valinkn]])',
-'searchsubtitleinvalid' => 'Dei Suachãnfråg: „$1“.',
-'noexactmatch'          => "'''Es gibt ka Seitn mi'm Titl „$1“.'''
+'searchresults'            => 'Suachergebnisse',
+'searchresults-title'      => 'Eagebnisse vu da Suach nåch „$1“',
+'searchresulttext'         => "Fia weidare Infos üwa's Suacha schau auf'd [[{{MediaWiki:Helppage}}|Hüifeseitn]].",
+'searchsubtitle'           => 'Dei Suachãnfråg: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|ålle Seitn, de mid „$1“ ãnfãngan]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ålle Seitn, de wås nåch „$1“ valinkn]])',
+'searchsubtitleinvalid'    => 'Dei Suachãnfråg: „$1“.',
+'noexactmatch'             => "'''Es gibt ka Seitn mi'm Titl „$1“.'''
 Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
-'prevn'                 => "d'voahearing $1",
-'nextn'                 => 'de nextn $1',
-'viewprevnext'          => 'Zoag ($1) ($2) ($3)',
-'search-result-size'    => '$1 ({{PLURAL:$2|1 Woat|$2 Wöata}})',
-'showingresultstotal'   => "Es {{PLURAL:$4|foigt s'Suacheagebnis '''$1''' vu '''$3:'''|foing de Suacheagebnisse '''$1–$2''' vu '''$3:'''}}",
-'powersearch'           => 'Suach',
-'powersearch-redir'     => 'Weidaleitungen ãnzoang',
-'powersearch-field'     => 'Suach nåch:',
+'prevn'                    => "d'voahearing $1",
+'nextn'                    => 'de nextn $1',
+'viewprevnext'             => 'Zoag ($1) ($2) ($3)',
+'search-result-size'       => '$1 ({{PLURAL:$2|1 Woat|$2 Wöata}})',
+'search-suggest'           => 'Hädst „$1“ gmoant?',
+'search-interwiki-caption' => 'Schwestaprojekte',
+'search-interwiki-default' => '$1 Eagebnisse:',
+'showingresultstotal'      => "Es {{PLURAL:$4|foigt s'Suacheagebnis '''$1''' vu '''$3:'''|foing de Suacheagebnisse '''$1–$2''' vu '''$3:'''}}",
+'powersearch'              => 'Suach',
+'powersearch-redir'        => 'Weidaleitungen ãnzoang',
+'powersearch-field'        => 'Suach nåch:',
 
 # Preferences page
 'mypreferences'     => 'Eistellunga',
@@ -360,10 +371,14 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'action-autopatrol' => 'eigne Arbat ois kontrolliert markiern',
 
 # Recent changes
-'recentchanges'   => 'Letzte Ändarungen',
-'diff'            => 'Untaschied',
-'hide'            => 'ausblendn',
-'minoreditletter' => 'K',
+'recentchanges'        => 'Letzte Ändarungen',
+'recentchanges-legend' => 'Ãnzeigeopzionen',
+'rclistfrom'           => 'Netta Änderungen seid $1 ãzoang.',
+'diff'                 => 'Untaschied',
+'hide'                 => 'ausblendn',
+'minoreditletter'      => 'K',
+'newpageletter'        => 'Nei',
+'boteditletter'        => 'B',
 
 # Recent changes linked
 'recentchangeslinked' => 'Valinkts prüfn',
@@ -398,9 +413,12 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 
 # File description page
 'filehist'                  => 'Dateiveasionen',
+'filehist-current'          => 'aktuell',
 'filehist-datetime'         => 'Version vum',
+'filehist-thumb'            => 'Voaschaubüidl',
 'filehist-thumbtext'        => "Vorschaubüidl fia'd Veasion vum $1",
 'filehist-user'             => 'Benutza',
+'filehist-dimensions'       => 'Måße',
 'linkstoimage'              => "{{PLURAL:$1|D'foignde Seitn vawendt|De foigndn $1 Seitn vawendn}} de Datei:",
 'linkstoimage-more'         => "Es {{PLURAL:$1|valinkt|valinkn}} mea wia {{PLURAL:$1|oa Seitn |$1 Seitn}} auf de Datei.
 De foignde Listn zaagt netta {{PLURAL:$1|in easten Link|de easten $1 Links}} auf de Datei.
@@ -443,6 +461,7 @@ Links aus Namensräume wern da net aufglistet.',
 'withoutinterwiki-submit' => 'Zoag',
 
 # Miscellaneous special pages
+'nmembers'               => '{{PLURAL:$1|1 Eitråg|$1 Eiträge}}',
 'uncategorizedtemplates' => 'Net kategorisierte Vorlagen',
 'longpages'              => 'Lange Seitn',
 'newpages'               => 'Neie Seitn',
@@ -563,6 +582,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 
 # Namespace form on various pages
 'namespace'      => 'Nãmensraum:',
+'invert'         => 'Auswåih umdrahn',
 'blanknamespace' => '(Seitn)',
 
 # Contributions
@@ -645,10 +665,14 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-search'                  => '{{SITENAME}} durchsuacha',
 'tooltip-p-logo'                  => 'Hauptseitn',
 'tooltip-n-mainpage'              => "d'Hauptseitn ãnzoang",
+'tooltip-n-currentevents'         => 'Hintagrundinfoamazionen üwa aktuelle Ereignisse',
 'tooltip-n-randompage'            => 'Zufällige Seitn',
+'tooltip-t-contributions'         => "d'Listn vu de Beiträg vu dem Benutza ãschau",
 'tooltip-t-upload'                => 'Datein aufelådn',
 'tooltip-ca-nstab-main'           => 'Seitninhalt ozoagn',
+'tooltip-ca-nstab-user'           => 'Benutzaseitn ãzoang',
 'tooltip-ca-nstab-help'           => 'Huifseitn oozoang',
+'tooltip-minoredit'               => 'De Änderung åis a klaane markian.',
 'tooltip-save'                    => 'Änderunga speichan',
 'tooltip-preview'                 => "a Voaschau vu de Ändarungen ãn dea Seitn. Bittschee voa'm Speichan benutzn!
 Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
@@ -675,11 +699,19 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 # Browsing diffs
 'previousdiff' => '← Zum vorigen Versionsunterschied',
 
+# Media information
+'file-nohires'         => '<small>Es gibt ka hechane Auflösung.</small>',
+'show-big-image'       => 'Version in hechana Auflösung',
+'show-big-image-thumb' => '<small>Greßn vu da Voaãnsicht: $1 × $2 Pixl</small>',
+
 # Special:NewFiles
 'newimages'         => 'Neie Dateien',
 'newimages-summary' => 'De Spezialseitn zoagt de zletzt hochgeladena Buidl und Dateien o.',
 'noimages'          => 'Koane Datein gfunden.',
 'ilsubmit'          => 'Suach',
+
+# Metadata
+'metadata' => 'Metadatn',
 
 # EXIF tags
 'exif-gpsspeed' => 'Geschwindigkeit vom GPS-Empfänger',

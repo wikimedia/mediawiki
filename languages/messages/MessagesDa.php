@@ -168,7 +168,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Skjul patruljerede redigeringer i seneste ændringer',
 'tog-newpageshidepatrolled'   => 'Skjul patruljerede sider på listen over nye sider',
 'tog-extendwatchlist'         => 'Udvid overvågningslisten til at vise alle ændringer og ikke kun den nyeste',
-'tog-usenewrc'                => 'Forbedret liste over seneste ændringer (JavaScript)',
+'tog-usenewrc'                => 'Brug forbedret liste over seneste ændringer (kræver JavaScript)',
 'tog-numberheadings'          => 'Automatisk nummerering af overskrifter',
 'tog-showtoolbar'             => 'Vis værktøjslinje til redigering (JavaScript)',
 'tog-editondblclick'          => 'Redigér sider med dobbeltklik (JavaScript)',
@@ -176,7 +176,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Redigér afsnit ved at højreklikke på deres titler (JavaScript)',
 'tog-showtoc'                 => 'Vis indholdsfortegnelse (på sider med mere end tre afsnit)',
 'tog-rememberpassword'        => 'Husk adgangskode til næste besøg fra denne computer',
-'tog-editwidth'               => 'Redigeringsboksen har fuld bredde',
+'tog-editwidth'               => 'Udvid redigeringsboksen til at fylde hele skærmen',
 'tog-watchcreations'          => 'Tilføj sider jeg opretter til min overvågningsliste',
 'tog-watchdefault'            => 'Tilføj sider jeg redigerer til min overvågningsliste',
 'tog-watchmoves'              => 'Tilføj sider jeg flytter til min overvågningsliste',
@@ -765,8 +765,7 @@ Systemadministratoren som låste databasen, gav denne forklaring: $1",
 'permissionserrorstext-withaction' => 'Du har ikke rettigheder til at $2 af følgende {{PLURAL:$1|grund|grunde}}:',
 'recreate-moveddeleted-warn'       => "'''Advarsel: Du er ved at genskabe en tidligere slettet side.'''
  
-Overvej om det er passende at genoprette siden. De slettede versioner for 
-denne side er vist nedenfor:",
+Overvej om det er passende at genoprette siden. Sletnings- og flyttelogerne for siden er vist nedenfor.",
 'moveddeleted-notice'              => 'Denne side er blevet slettet.
 Sletningsloggen for siden er vist nedenfor.',
 'edit-hook-aborted'                => 'Redigering afbrudt af en programfunktion. Ingen tilknyttet forklaring.',
@@ -1015,18 +1014,18 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'viewprevnext'                     => 'Vis ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Søgemuligheder',
 'searchmenu-exists'                => "'''Der er en side med navnet \"[[:\$1]]\" på denne wiki'''",
-'searchmenu-new'                   => "'''Opret siden \"[[:\$1]]\" på denne wiki'''",
+'searchmenu-new'                   => "'''Opret siden \"[[:\$1]]\" i denne wiki'''",
 'searchhelp-url'                   => 'Help:Hjælp',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Vis alle sider som begynder med dette præfiks]]',
 'searchprofile-articles'           => 'Indholdssider',
-'searchprofile-project'            => 'Projektsider',
-'searchprofile-images'             => 'Filer',
+'searchprofile-project'            => 'Hjælp',
+'searchprofile-images'             => 'Multimedia',
 'searchprofile-everything'         => 'Alt',
 'searchprofile-advanced'           => 'Avanceret',
 'searchprofile-articles-tooltip'   => 'Søg i $1',
 'searchprofile-project-tooltip'    => 'Søg i $1',
 'searchprofile-images-tooltip'     => 'Søg efter filer',
-'searchprofile-everything-tooltip' => 'Søg i alt indhold (inklusiv diskussionssider)',
+'searchprofile-everything-tooltip' => 'Søg i alt indhold (inklusive diskussionssider)',
 'searchprofile-advanced-tooltip'   => 'Søg i bestemte navnerum',
 'search-result-size'               => '$1 ({{PLURAL:$2|et ord|$2 ord}})',
 'search-result-score'              => 'Relevans: $1%',
@@ -1086,6 +1085,8 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-watchlist-edits-max' => '(maks. 1000)',
 'prefs-misc'                => 'Forskelligt',
 'prefs-resetpass'           => 'Skift adgangskode',
+'prefs-email'               => 'Indstillinger for e-mail',
+'prefs-rendering'           => 'Udseende',
 'saveprefs'                 => 'Gem indstillinger',
 'resetprefs'                => 'Gendan indstillinger',
 'restoreprefs'              => 'Gendan alle standardindstillinger',
@@ -1128,10 +1129,13 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-files'               => 'Filer',
 'prefs-custom-css'          => 'Personlig CSS',
 'prefs-custom-js'           => 'Personlig JavaScript',
+'prefs-emailconfirm-label'  => 'Bekræftelse af e-mail:',
+'prefs-textboxsize'         => 'Størrelse på redigeringsvindue',
 'youremail'                 => 'Din e-mail-adresse:',
 'username'                  => 'Brugernavn:',
 'uid'                       => 'Brugernummer:',
 'prefs-memberingroups'      => 'Medlem af {{PLURAL:$1|gruppen|grupperne}}:',
+'prefs-registration'        => 'Registreringstid:',
 'yourrealname'              => 'Dit rigtige navn:',
 'yourlanguage'              => 'Sprog:',
 'yourvariant'               => 'Sprogvariant:',
@@ -1149,6 +1153,9 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'prefs-help-email'          => 'Angivelse af e-mail-adresse er valgfrit. Det gør det muligt at sende dig en ny adgangskode hvis du glemmer den.
 Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller diskussionsside uden at du behøver at afsløre din identitet.',
 'prefs-help-email-required' => 'E-mail-adresse er krævet.',
+'prefs-info'                => 'Grundliggende information',
+'prefs-i18n'                => 'Internationalisering:',
+'prefs-signature'           => 'Signatur',
 
 # User rights
 'userrights'                  => 'Håndtering af brugerrettigheder',
@@ -1410,7 +1417,7 @@ Hvis du fortsat vil lægge filen op, bedes du gå tilbage og bruge et nyt navn.
 'sourcefilename'              => 'Vælg en fil:',
 'destfilename'                => 'Nyt filnavn:',
 'upload-maxfilesize'          => 'Maksimal filstørrelse: $1',
-'watchthisupload'             => 'Overvåg denne side',
+'watchthisupload'             => 'Overvåg filen',
 'filewasdeleted'              => 'En fil med dette navn er tidligere uploadet og i mellemtiden slettet igen. Kontroller først indførslen i $1, før du gemmer filen.',
 'upload-wasdeleted'           => "'''Advarsel: Du er ved at uploade en fil der tidligere er blevet slettet.'''
 
@@ -2168,8 +2175,8 @@ navn du har valgt er ikke gyldigt. Vælg et andet navn.',
 'talkexists'                   => 'Siden blev flyttet korrekt, men den tilhørende diskussionsside kunne ikke flyttes, fordi der allerede eksisterer en med den nye titel. Du er nødt til at flette dem sammen manuelt.',
 'movedto'                      => 'flyttet til',
 'movetalk'                     => 'Flyt også "diskussionssiden", hvis den eksisterer.',
-'move-subpages'                => 'Flyt også undersider (op til $1) hvis det er muligt',
-'move-talk-subpages'           => 'Flyt diskussionssidens undersider (op til $1) hvis det er muligt',
+'move-subpages'                => 'Flyt undersider (op til $1)',
+'move-talk-subpages'           => 'Flyt diskussionssidens undersider (op til $1)',
 'movepage-page-exists'         => 'Siden $1 findes allerede og kan ikke overskrives automatisk.',
 'movepage-page-moved'          => 'Siden $1 er flyttet til $2.',
 'movepage-page-unmoved'        => 'Siden $1 kan ikke flyttes til $2.',
@@ -2458,7 +2465,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Advarsel''', denne filtype kan muligvis indeholde skadelig kode, du kan beskadige dit system hvis du udfører den.<hr />",
-'imagemaxsize'         => 'Begræns størrelsen af billeder på billedsiderne til:',
+'imagemaxsize'         => "Maksimal billedstørrelse<br />''(på filbeskrivelsessider)''",
 'thumbsize'            => 'Thumbnailstørrelse :',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
 'file-info'            => '(Filstørrelse: $1, MIME-Type: $2)',
@@ -2749,6 +2756,10 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpslongitude-e' => 'østl. længde',
 'exif-gpslongitude-w' => 'vestl. længde',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Meter over havet',
+'exif-gpsaltitude-1' => 'Meter under havniveau',
+
 'exif-gpsstatus-a' => 'Måling kører',
 'exif-gpsstatus-v' => 'Målingens interoperabilitet',
 
@@ -2759,6 +2770,11 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Knob',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Miles',
+'exif-gpsdestdistance-n' => 'Sømil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Faktisk retning',
@@ -2990,5 +3006,8 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 'dberr-usegoogle'   => 'Du kan prøve at søge med Google imens.',
 'dberr-outofdate'   => 'Bemærk at deres indeks over vores sider kan være forældet.',
 'dberr-cachederror' => 'Det følgende er en mellemlagret kopi af den forespurgte side. Den kan være forældet.',
+
+# HTML forms
+'htmlform-selectorother-other' => 'Anden',
 
 );

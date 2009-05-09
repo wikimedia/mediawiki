@@ -1422,7 +1422,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-proxyunbannable'       => 'Ausnahme von automatischen Proxysperren',
 'right-protect'               => 'Seitenschutzstatus ändern',
 'right-editprotected'         => 'Geschützte Seiten bearbeiten (ohne Kaskadenschutz)',
-'right-editinterface'         => 'Benutzerinterface bearbeiten',
+'right-editinterface'         => 'Benutzeroberfläche bearbeiten',
 'right-editusercssjs'         => 'Bearbeiten fremder CSS- und JS-Dateien',
 'right-rollback'              => 'Schnelles zurücksetzen',
 'right-markbotedits'          => 'Schnell zurückgesetzte Bearbeitungen als Bot-Bearbeitung markieren',

@@ -887,7 +887,7 @@ Eseye pou wè si ak prefiks ''all:'' pou chache nan tout kontni a (anndann nou a
 'imagelinks'                => 'Lyen nan paj an',
 'linkstoimage'              => '{{PLURAL:$1|Paj ki ap swiv an|Paj yo ki ap swiv}} genyen imaj sa a :',
 'nolinkstoimage'            => 'Pyès paj pa genyen imaj sa a.',
-'sharedupload'              => 'Fichye sa a pataje, li sòti de $1 e li kapab itilize pa lòt pwojè yo.',
+'sharedupload'              => 'Fichye sa a kapab pataje, li sòti depi $1 e li kapab itilize pa lòt pwojè yo.',
 'noimage'                   => 'Pa genyen pyès fichye ki genyen non sa a, men ou mèt $1.',
 'noimage-linktext'          => 'chaje yonn',
 'uploadnewversion-linktext' => 'Kopye yon nouvo vèsyon pou fichye sa a',

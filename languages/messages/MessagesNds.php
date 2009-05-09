@@ -1068,8 +1068,8 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'searchmenu-new'                   => "'''Stell de Sied „[[:$1]]“ in dit Wiki nee op!'''",
 'searchhelp-url'                   => 'Help:Hülp',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Wies Sieden, de mit disse Bookstaven anfangt]]',
-'searchprofile-articles'           => 'Inholtsieden',
-'searchprofile-project'            => 'Projektsieden',
+'searchprofile-articles'           => 'Inholdsieden',
+'searchprofile-project'            => 'Hülp',
 'searchprofile-images'             => 'Datein',
 'searchprofile-everything'         => 'Allens',
 'searchprofile-advanced'           => 'Verwiedert',
@@ -1095,6 +1095,7 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'showingresults'                   => "Hier {{PLURAL:$1|is een Resultat|sünd '''$1''' Resultaten}}, anfungen mit #'''$2'''.",
 'showingresultsnum'                => "Hier {{PLURAL:$3|is een Resultat|sünd '''$3''' Resultaten}}, anfungen mit #'''$2'''.",
 'showingresultstotal'              => "Dit {{PLURAL:$4|is de Fundstell '''$1''' vun '''$3'''|sünd de Fundstellen '''$1–$2''' vun '''$3'''}}",
+'showingresultsheader'             => "{{PLURAL:$5|Resultaat '''$1''' vun '''$3'''|Resultaten '''$1 - $2''' vun '''$3'''}} för '''$4'''",
 'nonefound'                        => "'''Henwies''': Na de Standardinstellung warrt blot en poor Naamrüüm dörsöcht.
 Du kannst dat Woord ''all:'' vör dien Söökwoord setten, dat all Naamrüüm (ok Diskuschoonssieden, Vörlagen usw.) dörsöcht warrt. Dat sülve geit mit de Naams vun de enkelten Naamrüüm.",
 'search-nonefound'                 => 'För de Söökanfraag geev dat keen Resultaten.',
@@ -1183,6 +1184,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'prefs-custom-js'           => 'Anpasst JS',
 'prefs-reset-intro'         => 'Du kannst disse Sied bruken, dien Instellungen al op de Standardinstellung trüchtosetten.
 Dat kann nich wedder ungeschehn maakt warrn.',
+'prefs-emailconfirm-label'  => 'E-Mail-Bestätigung:',
 'youremail'                 => 'Dien E-Mail (kene Plicht) *',
 'username'                  => 'Brukernaam:',
 'uid'                       => 'Bruker-ID:',
@@ -1203,6 +1205,9 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'prefs-help-realname'       => 'De echte Naam mutt nich angeven warrn. Wenn du em angiffst, warrt de Naam bruukt, dat diene Arbeit di torekent warrn kann.',
 'prefs-help-email'          => 'De E-Mail-Adress mutt nich angeven warrn. Aver so köönt annere Brukers di över E-Mail schrieven, ahn dat du dien Identität priesgiffst, un du kannst di ok en nee Passwoord toschicken laten, wenn du dien oold vergeten hest.',
 'prefs-help-email-required' => 'E-Mail-Adress nödig.',
+'prefs-info'                => 'Basisinformatschoon',
+'prefs-i18n'                => 'Spraakinstellungen',
+'prefs-signature'           => 'Ünnerschrift',
 
 # User rights
 'userrights'                  => 'Brukerrechten inrichten',
@@ -1459,7 +1464,7 @@ Wenn du ehr liekers hoochladen wullt, gah trüch un laad de Datei ünner en anne
 'sourcefilename'              => 'Dateinaam op dien Reekner:',
 'destfilename'                => 'Dateinaam, so as dat hier spiekert warrn schall:',
 'upload-maxfilesize'          => 'Maximale Dateigrött: $1',
-'watchthisupload'             => 'Op disse Siet oppassen',
+'watchthisupload'             => 'Op disse Datei oppassen',
 'filewasdeleted'              => 'En Datei mit dissen Naam hett dat al mal geven un is denn wegsmeten worrn. Kiek doch toeerst in dat $1 na, ehrdat du de Datei afspiekerst.',
 'upload-wasdeleted'           => "'''Wohrschau: Du läädst en Datei hooch, de al ehrder mal wegsmeten worrn is.'''
 
@@ -1765,17 +1770,19 @@ Kiek ok bi de [[Special:WantedCategories|wünschten Kategorien]].',
 'newuserlog-autocreate-entry' => 'Brukerkonto automaatsch opstellt',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Brukergruppen-Rechten',
-'listgrouprights-summary'         => 'Dit is en List vun de Brukergruppen, de in dit Wiki defineert sünd, un de Rechten, de dor mit verbunnen sünd.
+'listgrouprights'                      => 'Brukergruppen-Rechten',
+'listgrouprights-summary'              => 'Dit is en List vun de Brukergruppen, de in dit Wiki defineert sünd, un de Rechten, de dor mit verbunnen sünd.
 Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgrouprights-helppage}}]].',
-'listgrouprights-group'           => 'Grupp',
-'listgrouprights-rights'          => 'Rechten',
-'listgrouprights-helppage'        => 'Help:Gruppenrechten',
-'listgrouprights-members'         => '(Matenlist)',
-'listgrouprights-addgroup'        => 'Kann Brukers to {{PLURAL:$2|disse Grupp|disse Gruppen}} tofögen: $1',
-'listgrouprights-removegroup'     => 'Kann Brukers ut {{PLURAL:$2|disse Grupp|disse Gruppen}} rutnehmen: $1',
-'listgrouprights-addgroup-all'    => 'Kann all Gruppen tofögen',
-'listgrouprights-removegroup-all' => 'Kann all Gruppen wegnehmen',
+'listgrouprights-group'                => 'Grupp',
+'listgrouprights-rights'               => 'Rechten',
+'listgrouprights-helppage'             => 'Help:Gruppenrechten',
+'listgrouprights-members'              => '(Matenlist)',
+'listgrouprights-addgroup'             => 'Kann Brukers to {{PLURAL:$2|disse Grupp|disse Gruppen}} tofögen: $1',
+'listgrouprights-removegroup'          => 'Kann Brukers ut {{PLURAL:$2|disse Grupp|disse Gruppen}} rutnehmen: $1',
+'listgrouprights-addgroup-all'         => 'Kann all Gruppen tofögen',
+'listgrouprights-removegroup-all'      => 'Kann all Gruppen wegnehmen',
+'listgrouprights-addgroup-self-all'    => 'Kann all Gruppen to’t egen Brukerkonto tofögen',
+'listgrouprights-removegroup-self-all' => 'Kann all Gruppen vun’t egen Brukerkonto wegdoon',
 
 # E-mail user
 'mailnologin'      => 'Du büst nich anmellt.',

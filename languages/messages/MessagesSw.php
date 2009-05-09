@@ -1144,4 +1144,7 @@ Kodi hizi za uthibitisho zitaishia mnamo $4.',
 # Special:Tags
 'tags-edit' => 'hariri',
 
+# HTML forms
+'htmlform-selectorother-other' => 'Nyingine',
+
 );
