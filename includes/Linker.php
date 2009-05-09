@@ -275,7 +275,7 @@ class Linker {
 			}
 
 			# Note that redirects never count as stubs here.
-			if ( $target->isRedirect() ) {
+			if ( !in_array( 'broken', $options ) && $target->isRedirect() ) {
 				$classes[] = 'mw-redirect';
 			} elseif( $target->isContentPage() ) {
 				# Check for stub.
