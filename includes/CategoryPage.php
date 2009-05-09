@@ -452,7 +452,7 @@ class CategoryViewer {
 
 		$prevLink = wfMsgExt( 'prevn', array( 'escape', 'parsemag' ), $limitText );
 		if( $first != '' ) {
-			$query[] = array( 'until' => $first );
+			$query['until'] = $first;
 			$prevLink = $sk->link(
 				$title,
 				$prevLink,
@@ -462,7 +462,7 @@ class CategoryViewer {
 		}
 		$nextLink = wfMsgExt( 'nextn', array( 'escape', 'parsemag' ), $limitText );
 		if( $last != '' ) {
-			$query[] = array( 'from' => $last );
+			$query['from'] = $last;
 			$nextLink = $sk->link(
 				$title,
 				$nextLink,
