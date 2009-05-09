@@ -770,7 +770,8 @@ $1 საათში.',
 'nextn'                        => 'შემდეგი $1',
 'viewprevnext'                 => 'იხილე  ($1) ($2) ($3).',
 'searchhelp-url'               => 'Help:დახმარება',
-'searchprofile-project'        => 'პროექტის გვერდები',
+'searchprofile-articles'       => 'სტატიები',
+'searchprofile-project'        => 'დახმარება',
 'searchprofile-images'         => 'ფაილები',
 'searchprofile-everything'     => 'ყველაფერი',
 'searchprofile-images-tooltip' => 'ფაილების ძიება',
@@ -1042,7 +1043,7 @@ $1 საათში.',
 'uploadvirus'                 => 'ფაილი ვირუსს შეიცავს! დეტალები: $1',
 'sourcefilename'              => 'წყარო:',
 'destfilename'                => 'საბოლოო სახელი:',
-'watchthisupload'             => 'უთვალთვალე ამ გვერდს',
+'watchthisupload'             => 'უთვალთვალე ამ ფაილს',
 'filewasdeleted'              => 'ამ სახელწოდების ფაილი უკვე არსებობდა, მაგრამ წაშლილ იქნა. ხელმეორედ ჩატვირთვამდე იხილეთ $1.',
 'upload-wasdeleted'           => "'''გაფრთხილეა: თქვენ ტვირთავთ ფაილს, რომელიც წინათ წაიშალა.'''
 
@@ -2085,5 +2086,8 @@ $1',
 # Special:Tags
 'tag-filter-submit' => 'გაფილტვრა',
 'tags-edit'         => 'რედაქტირება',
+
+# HTML forms
+'htmlform-selectorother-other' => 'სხვა',
 
 );

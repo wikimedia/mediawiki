@@ -2944,7 +2944,7 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 
 # Special:Tags
 'tags'                    => 'Änderigs-Tag priefe',
-'tag-filter'              => '[[Special:Tag|Tag]]-Filter:',
+'tag-filter'              => '[[Special:Tags|Markierigs]]filter:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Tag',
 'tags-intro'              => 'Die Syte zeigt alli Tag, wu Bearbeitige mit markiert wäre un derzue d Bedytig vun ene.',

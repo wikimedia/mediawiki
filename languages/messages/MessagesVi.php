@@ -1727,7 +1727,7 @@ Hãy nhớ kiểm tra các liên kết khác đến tiêu bản trước khi xó
 'listusers-editsonly'     => 'Chỉ hiện thành viên có tham gia sửa đổi',
 'listusers-creationsort'  => 'Xếp theo ngày khởi tạo',
 'usereditcount'           => '$1 {{PLURAL:$1|sửa đổi|sửa đổi}}',
-'usercreated'             => 'Tạo ra vào ngày $1 lúc $2',
+'usercreated'             => 'Tạo tài khoản $1 lúc $2',
 'newpages'                => 'Các trang mới nhất',
 'newpages-username'       => 'Tên người dùng:',
 'ancientpages'            => 'Các trang cũ nhất',

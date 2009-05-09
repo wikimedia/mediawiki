@@ -15,6 +15,7 @@
  * @author Meno25
  * @author Putera Luqman Tunku Andre
  * @author Urhixidur
+ * @author Zamwan
  * @author לערי ריינהארט
  */
 
@@ -764,6 +765,7 @@ Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:UserLogi
 Anda harus mempertimbangkan perlunya menyunting laman ini.
 Untuk rujukan, yang berikut ialah log penghapusan bagi laman ini:",
 'moveddeleted-notice'              => 'Laman ini telah dihapuskan. Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
+'log-fulllog'                      => 'Lihat log lengkap',
 'edit-hook-aborted'                => 'Suntingan anda telah dibatalkan oleh penyangkuk. Tiada sebab diberikan.',
 'edit-gone-missing'                => 'Laman tersebut telah dihapuskan dan tidak dapat dikemaskinikan.',
 'edit-conflict'                    => 'Percanggahan penyuntingan.',
@@ -1130,10 +1132,12 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'prefs-files'               => 'Fail',
 'prefs-custom-css'          => 'CSS tempahan',
 'prefs-custom-js'           => 'JS tempahan',
+'prefs-emailconfirm-label'  => 'Pengesahan e-mail:',
 'youremail'                 => 'E-mel:',
 'username'                  => 'Nama pengguna:',
 'uid'                       => 'ID pengguna:',
 'prefs-memberingroups'      => 'Ahli kumpulan:',
+'prefs-registration'        => 'Masa pendaftaran:',
 'yourrealname'              => 'Nama sebenar:',
 'yourlanguage'              => 'Bahasa:',
 'yourvariant'               => 'Varian',
@@ -1149,6 +1153,8 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'prefs-help-realname'       => 'Nama sebenar adalah tidak wajib. Jika dinyatakan, ia akan digunakan untuk mengiktiraf karya anda.',
 'prefs-help-email'          => 'Alamat e-mel adalah tidak wajib. Akan tetapi, jika anda terlupa kata laluan, anda boleh meminta kata laluan yang baru dikirim kepada e-mel anda. Anda juga boleh membenarkan orang lain menghubungi anda melalui laman pengguna atau laman perbualan anda tanpa mendedahkan identiti anda.',
 'prefs-help-email-required' => 'Alamat e-mel adalah wajib.',
+'prefs-info'                => 'Maklumat asas',
+'prefs-signature'           => 'Tandatangan',
 
 # User rights
 'userrights'                  => 'Pengurusan hak pengguna',
@@ -1404,7 +1410,7 @@ Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. S
 'sourcefilename'              => 'Nama fail sumber:',
 'destfilename'                => 'Nama fail destinasi:',
 'upload-maxfilesize'          => 'Had saiz fail: $1',
-'watchthisupload'             => 'Pantau laman ini',
+'watchthisupload'             => 'Pantau fail ini',
 'filewasdeleted'              => 'Sebuah fail dengan nama ini pernah dimuat naik, tetapi kemudiannya dihapuskan. Anda seharusnya menyemak $1 sebelum meneruskan percubaan untuk memuat naik fail ini.',
 'upload-wasdeleted'           => "'''Amaran: Anda sedang memuat naik sebuah fail yang pernah dihapuskan.'''
 
@@ -2768,6 +2774,10 @@ Ruangan lain akan disembunyikan.
 'exif-gpslongitude-e' => 'Longitud timur',
 'exif-gpslongitude-w' => 'Longitud barat',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Meter di atas aras laut',
+'exif-gpsaltitude-1' => 'Meter di bawah aras laut',
+
 'exif-gpsstatus-a' => 'Pengukuran sedang dijalankan',
 'exif-gpsstatus-v' => 'Interoperabiliti pengukuran',
 
@@ -2778,6 +2788,11 @@ Ruangan lain akan disembunyikan.
 'exif-gpsspeed-k' => 'Kilometer sejam',
 'exif-gpsspeed-m' => 'Batu sejam',
 'exif-gpsspeed-n' => 'Knot',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Batu',
+'exif-gpsdestdistance-n' => 'Batu nautika',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Arah benar',
@@ -3027,5 +3042,12 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'dberr-usegoogle'   => 'Buat masa ini, anda boleh cuba menggelintar melalui Google.',
 'dberr-outofdate'   => 'Sila ambil perhatian bahawa indeks mereka bagi kandungan kami mungkin sudah ketinggalan zaman.',
 'dberr-cachederror' => 'Yang berikut ialah salinan bagi laman yang diminta yang diambil daripada cache, dan mungkin bukan yang terkini.',
+
+# HTML forms
+'htmlform-invalid-input'    => 'Terdapat beberapa masalah dengan input anda',
+'htmlform-select-badoption' => 'Nilai yang anda tentukan bukan satu pilihan yang sah.',
+'htmlform-int-invalid'      => 'Nilai yang anda tetapkan bukan satu integer.',
+'htmlform-submit'           => 'Hantar',
+'htmlform-reset'            => 'Undur perubahan',
 
 );

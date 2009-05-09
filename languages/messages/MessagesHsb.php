@@ -473,7 +473,7 @@ Wotprašenje: $2',
 'protectedpagetext'    => 'Strona je přećiwo wobdźěłowanju škitana.',
 'viewsourcetext'       => 'Móžeš pak jeje žórło wobhladać a jo kopěrować:',
 'protectedinterface'   => 'Tuta strona skići tekst za rěčny zwjerch a je škitana zo by so znjewužiwanju zadźěwało.',
-'editinginterface'     => "'''Warnowanje:''' Wobdźěłuješ stronu, kotraž so wužiwa, zo by tekst za softwaru k dispoziciji stajiła. Změny wuskutkuja so na napohlad wužiwarskeho powjercha za druhich wužiwarjow. Hlej za přełožki [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], projekt lokalizacije MediaWiki.",
+'editinginterface'     => "'''Warnowanje:''' Wobdźěłuješ stronu, kotraž so wužiwa, zo by tekst za softwaru k dispoziciji stajiła. Změny wuskutkuja so na napohlad wužiwarskeho powjercha za druhich wužiwarjow. Hlej za přełožki [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], projekt lokalizacije MediaWiki.",
 'sqlhidden'            => '(SQL wotprašenje schowane)',
 'cascadeprotected'     => 'Strona je za wobdźěłowanje zawrjena, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacymaj stronomaj|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrejž stej|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitanej|škitane}}:
 $2',

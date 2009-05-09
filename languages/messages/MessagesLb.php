@@ -816,6 +816,9 @@ als Administrateur kënnt Dir [$1 dës Versioun kucken] wann Dir weiderfuere wë
 Als Administrateur kënnt Dir se weiderhi gesinn; Dir fannt eventuell méi Detailer am  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-no-diff'            => "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.
 Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
+'rev-deleted-unhide-diff'        => "Eng vun de Versiounen vun dësem Ënnerscheed gouf '''geläscht'''.
+Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Logbuch vun de Läschungen].
+Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerschied kucke] wann Dir weiderfuere wëllt.",
 'rev-delundel'                   => 'weisen/verstoppen',
 'revisiondelete'                 => 'Versioune läschen/restauréieren',
 'revdelete-nooldid-title'        => 'Ongülteg Zilversioun',
@@ -2135,6 +2138,8 @@ Confirméiert w.e.g datt et dat ass wat Dir maache wëllt.",
 'lockdbsuccesstext'   => "D'{{SITENAME}}-Datebank gouf gespaart. <br />
 Denkt drun [[Special:UnlockDB|d'Spär erëm ewechzehuele]] soubaal d'Maintenance-Aarbechte fäerdeg sinn.",
 'unlockdbsuccesstext' => "D'Spär vun der Datebank ass opgehuewen.",
+'lockfilenotwritable' => "De Fichier mat de Späre vun der Datebank kann net geännert ginn. 
+Fir d'Datebank ze spären oder fir d'Spär opzehiewen muss dëse Fichier vum Webserver geännert kënne ginn.",
 'databasenotlocked'   => "D'Datebank ass net gespaart.",
 
 # Move page
@@ -2584,6 +2589,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-exposureindex'               => 'Beliichtungsindex',
 'exif-sensingmethod'               => 'Miessmethod',
 'exif-filesource'                  => 'Quell vum Fichier',
+'exif-scenetype'                   => 'Typ vun der Szeen',
 'exif-customrendered'              => 'Benotzerdefinéiert Bildveraarbechtung',
 'exif-exposuremode'                => 'Beliichtungsmodus',
 'exif-whitebalance'                => 'Wäissofgläich',

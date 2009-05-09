@@ -220,7 +220,7 @@ Grund für die Sperre: $1",
 'recreate-moveddeleted-warn'       => "'''Achtung: Sie erstellen eine Seite, die bereits früher gelöscht wurde.'''
 
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
-Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
+Zu Ihrer Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'edit-no-change'                   => 'Ihre Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenomme wurde.',
 
 # Revision deletion

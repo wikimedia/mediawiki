@@ -1405,7 +1405,7 @@ Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et n
 'sourcefilename'              => 'Velg en fil:',
 'destfilename'                => 'Ønsket filnavn:',
 'upload-maxfilesize'          => 'Maksimal filstørrelse: $1',
-'watchthisupload'             => 'Overvåk denne siden',
+'watchthisupload'             => 'Overvåk denne filen',
 'filewasdeleted'              => 'Ei fil ved dette navnet har blitt lastet opp tidligere, og så slettet. Sjekk $1 før du forsøker å laste det opp igjen.',
 'upload-wasdeleted'           => "'''Advarsel: Du laster opp en fil som tidligere har blitt slettet.'''
 

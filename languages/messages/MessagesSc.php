@@ -217,6 +217,7 @@ $messages = array(
 'copyrightpagename'    => 'Copyright de {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
 'currentevents'        => 'Noas',
+'currentevents-url'    => 'Project:Noas',
 'disclaimers'          => 'Abbertimentos',
 'disclaimerpage'       => 'Project:Abbertimentos generales',
 'edithelp'             => "Agiudu pro s'acontzu o s'iscritura",
@@ -268,7 +269,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Atzione non connota',
-'nosuchactiontext'  => "L'operazione richiesta con la URL immessa non è stata riconosciuta dal software di {{SITENAME}}",
+'nosuchactiontext'  => "S'atzione ispetzificada in sa URL no est vàlida. 
+Est possibile chi sa URL siat istada cracada male, o si siat sighidu unu cullegamentu non vàlidu. 
+Custu iat a poder esser unu bug de {{SITENAME}}.",
 'nosuchspecialpage' => 'Custa pàgina ispetziale no esistit',
 'nospecialpagetext' => "<big>'''As pediu una pàgina ispetziale non balida.'''</big>
 
@@ -328,13 +331,15 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 'gotaccountlink'          => 'Intra',
 'createaccountmail'       => 'via e-mail',
 'badretype'               => 'Sas passwords chi as insertau non currenspundint.',
-'userexists'              => 'Siamo spiacenti. Lo user name che hai scelto è già usato da un altro Utente. Ti preghiamo perciò di voler scegliere uno user name diverso.',
+'userexists'              => 'Su nòmene usuàriu insertadu est giai arregistradu. 
+Scebera unu nòmene diferente.',
 'loginerror'              => 'Login error',
 'noname'                  => 'Su nòmene usuàriu insertau no est bonu.',
 'loginsuccesstitle'       => 'Ses intrau',
 'loginsuccess'            => "'''Imoe ses intrau in {{SITENAME}} cun su nòmene usuàriu \"\$1\".'''",
-'nosuchuser'              => 'Attenzione<br /><br />a seguito di verifica, non ci risulta alcun Utente con il nome di  "$1".<br /><br />
-Controlla per favore il nome digitato, oppure usa il modulo qui sotto per creare un nuovo user account.',
+'nosuchuser'              => 'Non ddu est usuàriu cun su nòmene "$1". 
+Is nòmenes usuàriu intendent is lìteras mannas. 
+Apura su nòmene insertadu o [[Special:UserLogin/signup|crea unu account nou]].',
 'wrongpassword'           => 'Sa password insertada no est bona. Prova torra.',
 'mailmypassword'          => "Ispedi una password noa a s'indiritzu e-mail miu",
 'passwordremindertitle'   => 'Servitziu Password Reminder di {{SITENAME}}',
@@ -556,7 +561,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'resultsperpage'        => 'Risultati da visualizzare per pagina',
 'contextlines'          => 'Righe di testo da mostrare per ciascun risultato',
 'contextchars'          => 'Caratteri per linea',
-'recentchangescount'    => 'Numero di titoli nelle "modifiche recenti"',
+'recentchangescount'    => 'Nùmeru de lìnias ne in ùrtimas mudàntzias (predefinidu):',
 'savedprefs'            => 'Le tue preferenze sono state salvate.',
 'localtime'             => 'Ora locale:',
 'timezoneoffset'        => 'Diferèntzia¹:',
@@ -572,7 +577,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'email'                 => 'E-mail',
 
 # User rights
-'editinguser'                    => "Modifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                    => "Cambiamentu de is deretos usuàriu de s'usuàriu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-irreversible-marker' => '$1*',
 
 # Groups
@@ -787,12 +792,11 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'mailnologintext' => 'Devi fare il [[Special:UserLogin|login]]
 ed aver registrato una valida casella e-mail nelle tue [[Special:Preferences|preferenze]] per mandare posta elettronica ad altri Utenti.',
 'emailuser'       => 'E-mail a custu usuàriu',
-'emailpagetext'   => 'Se questo Utente ha registrato una valida casella e-mail, il modulo qui sotto ti consentirà di scrivergli un solo messaggio.
-La e-mail che hai indicato nelle tue preferenze apparirà nel campo "From" della mail, così che il destinatario possa, solo se lo desidera però, risponderti.',
+'emailpagetext'   => "Imprea su mòdulu a suta pro ispedire una missada eletrònica a custu usuàriu. 
+S'indiritzu chi as insertadu ne is [[Special:Preferences|preferèntzias usuàriu tuas]] at a parriri comente su chi at ispediu sa e-mail, pro fàghere in modu chi su destinatariu t'arrespundat deretu.",
 'defemailsubject' => 'Missada dae {{SITENAME}}',
 'noemailtitle'    => 'Perunu indiritzu e-mail',
-'noemailtext'     => 'Questo Utente non ha registrato alcuna casella e-mail,
-oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.',
+'noemailtext'     => 'Custu usuàriu no at ispetzificadu un indiritzu e-mail vàlidu.',
 'emailsent'       => 'E-mail ispedia',
 'emailsenttext'   => 'La tua e-mail è stata inviata.',
 
@@ -886,8 +890,8 @@ Is impostatziones atuales pro sa pàgina '''$1''':",
 'viewdeletedpage'           => 'Càstia pàginas fuliadas',
 'undeletepagetext'          => "{{PLURAL:$1|Sa pàgina chi sighit est istada fuliada, ma est ancora in archiviu e podit èssere recuperada|Is pàginas chi sighint sunt istadas fuliadas, ma sunt ancora in archiviu e podint èssere recuperadas}}. S'archiviu podit èssere sbudiau a periodus.",
 'undeleterevisions'         => '$1 {{PLURAL:$1|arrevisioni|arrevisionis}} in archìviu',
-'undeletehistory'           => 'Se recuperi questo articolo, tutte le sue revisioni verranno recuperate nella relativa cronologia.
-Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.',
+'undeletehistory'           => 'Restaurende custa pàgina, totu is arrevisiones ant a torrare in sa istòria sua. 
+Chi est istada creada una pàgina cun su matessi tìtulu, is arrevisiones recuperadas ant a insertare in sa istoria in antis.',
 'undeletebtn'               => 'Ripristina',
 'undeletelink'              => 'càstia/riprìstina',
 'undeletecomment'           => 'Cummentu:',
@@ -948,8 +952,8 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 'ipboptions'               => '2 oras:2 hours,1 die:1 day,3 dies:3 days,1 chida:1 week,2 chidas:2 weeks,1 mese:1 month,3 meses:3 months,6 meses:6 months,1 annu:1 year,infinidu:infinite',
 'badipaddress'             => "L'indirizzo IP indicato non è corretto.",
 'blockipsuccesssub'        => 'Blocco eseguito',
-'blockipsuccesstext'       => ' L\'indirizzo IP "$1" è stato bloccato.
-<br />Vedi [[Special:IPBlockList|lista IP bloccati]].',
+'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] è istadu bloccau. <br />
+Abàida sa [[Special:IPBlockList|lista de IP bloccados]] pro bider sas bloccaduras.',
 'ipb-unblock-addr'         => 'Sblocca $1',
 'unblockip'                => "Sblocca s'usuàriu",
 'unblockiptext'            => 'Usa il modulo sottostante per restituire il diritto di scrittura ad un indirizzo IP precedentemente bloccato.',
