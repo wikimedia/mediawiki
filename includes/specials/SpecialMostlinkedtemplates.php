@@ -93,7 +93,6 @@ class SpecialMostlinkedtemplates extends QueryPage {
 	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 
-		$skin->link( $title );
 		return wfSpecialList(
 			$skin->link( $title ),
 			$this->makeWlhLink( $title, $skin, $result )
