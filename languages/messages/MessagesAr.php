@@ -7,24 +7,35 @@
  * @ingroup Language
  * @file
  *
- * @author Agurzil
+ * @author Abanima
+ * @author AhmadSherif
  * @author Alnokta
  * @author Antime
- * @author Basharh
+ * @author Bassem JARKAS
  * @author Chaos
  * @author Ciphers
+ * @author DrFO.Tn
+ * @author Elmondo21st
+ * @author Elmoro
  * @author Gharbeia
+ * @author Hakeem
+ * @author Histolo2
  * @author Jak
  * @author Khaledhosny
+ * @author Lord Anubis
+ * @author Menasim
  * @author Meno25
  * @author Mido
  * @author Mimouni
+ * @author MK
  * @author OsamaK
  * @author Ouda
  * @author Oxydo
- * @author Prof.Sherif
+ * @author Riadismet
+ * @author Sami Lab
  * @author Tarawneh
- * @author לערי ריינהארט
+ * @author TheEgyptian
+ * @author Uwe a
  * @author ترجمان05
  * @author عصام بايزيدي
  * @author نصوح
