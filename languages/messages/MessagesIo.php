@@ -1000,6 +1000,10 @@ Videz $2 por obtenar registro di recenta efaci.',
 'deletecomment'         => "Motivo por l'efaco:",
 'deleteotherreason'     => 'Altra/suplementala motivo:',
 'deletereasonotherlist' => 'Altra motivo',
+'deletereason-dropdown' => '*Ordinara motivi por efaco
+** Demandita da autoro
+** Kopiyuro Violaco
+** Korupto',
 
 # Rollback
 'rollback'         => 'Retrorulez redakti',

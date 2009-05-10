@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Abi Azkia
  * @author Andri.h
  * @author Meno25
  * @author Si Gam Acèh
@@ -15,6 +16,13 @@
 $fallback = 'id';
 
 $messages = array(
+# User preference toggles
+'tog-watchlisthideown'   => 'Peusöm nyang lôn andam nibak dapeuta keunalön',
+'tog-watchlisthidebots'  => 'Peusöm nyang teu andam nibak sagoö nyang bak dapeuta keunalön',
+'tog-watchlisthideminor' => 'Peusöm Andam Bacut bak dapeuta keunalön',
+'tog-watchlisthideliu'   => 'Peusöm andam nyang nguy nyang tamöng nibak dapeuta keunalön',
+'tog-watchlisthideanons' => 'Peusöm andam nyang nguy hana taturi nibak dapeuta keunalön',
+
 # Dates
 'sun'           => 'Aleu',
 'mon'           => 'Seun',
@@ -259,6 +267,8 @@ Alamat IP Droëneuh nakeuh $3, ngön ID neutheun nakeuh $5. Tulông peuseureuta 
 'newarticle'                       => '(Barô)',
 'newarticletext'                   => "Droëneuh   ka neuseutot u ôn nyang goh na. Keu peugöt ôn nyan, neukeutik asoë ôn di  kutak di yup nyoë (ngiëng [[{{MediaWiki:Helppage}}|ôn bantu]] keu beurita leubèh lanjut). Meunyo Droëneuh  hana neusaja ka trôk keunoë, teugon '''back''' nyang na bak layeuë.",
 'noarticletext'                    => 'Hana naseukah jinoë lam ôn nyoë. Ji Droëneuh jeuët [[Special:Search/{{PAGENAME}}|neumita keu nan ôn nyoë]] bak ôn-ôn la’én atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} andam ôn nyoë].',
+'updated'                          => '(Seubarô)',
+'note'                             => "'''Ceunatat:'''",
 'previewnote'                      => "'''Beuneuingat meunyo nyoë goh lom neukeubah!'''",
 'editing'                          => 'Andam $1',
 'editingsection'                   => 'Andam $1 (bideuëng)',

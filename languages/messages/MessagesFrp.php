@@ -799,7 +799,7 @@ Coment administrator, vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd
 'rev-deleted-text-view'          => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Coment administrator, vos pouede la visualisar ;
 pôt y avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-deleted-no-diff'            => "Vos pouede pas vêre ceti dif perce qu’yona de les vèrsions at étâ '''suprimâ'''.
+'rev-deleted-no-diff'            => "Vos pouede pas vêre ceti dif perce que yona de les vèrsions at étâ '''suprimâ'''.
 Pôt y avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-unhide-diff'        => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
 Pôt y avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
@@ -1063,7 +1063,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'resultsperpage'            => 'Nombro de rèponses per pâge :',
 'contextlines'              => 'Nombro de legnes per rèponsa :',
 'contextchars'              => 'Nombro de caractèros de contèxte per legne :',
-'stub-threshold'            => 'Limita supèriora por los <a href="#" class="stub">lims vers los començons</a> (octèts) :',
+'stub-threshold'            => 'Limita de d’amont por los <a href="#" class="stub">lims vers los començons</a> (octèts) :',
 'recentchangesdays'         => 'Nombro de jorns a fâre vêre dens los dèrriérs changements :',
 'recentchangesdays-max'     => '(tot u ples $1 {{PLURAL:$1|jorn|jorns}})',
 'recentchangescount'        => 'Nombro de changements a fâre vêre dens los dèrriérs changements, los historicos de les pâges et los jornals, per dèfôt :',
@@ -1478,7 +1478,7 @@ Clicar sur un en-téta de colona pèrmèt de changiér l’ôrdre de visualisaci
 'filehist-comment'          => 'Comentèro',
 'imagelinks'                => 'Usâjos du fichiér',
 'linkstoimage'              => '{{PLURAL:$1|Ceta pâge utilise|Cetes $1 pâges utilisont}} ceti fichiér :',
-'linkstoimage-more'         => 'Més {{PLURAL:$1|d’yona pâge utilise|de $1 pâges utilisont}} ceti fichiér.
+'linkstoimage-more'         => 'Més de {{PLURAL:$1|yona pâge utilise|$1 pâges utilisont}} ceti fichiér.
 Ceta lista montre ren que {{PLURAL:$1|la premiére pâge qu’utilise|les $1 premiéres pâges qu’utilisont}} ceti fichiér.
 Una [[Special:WhatLinksHere/$2|lista complèta]] est disponibla.',
 'nolinkstoimage'            => 'Niona pâge utilise ceti fichiér.',

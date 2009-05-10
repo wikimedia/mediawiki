@@ -17,6 +17,7 @@
  * @author Pasqual (ca)
  * @author Paucabot
  * @author Pérez
+ * @author Qllach
  * @author SMP
  * @author Smeira
  * @author Spacebirdy
@@ -1045,9 +1046,9 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'searchmenu-new'                   => "'''Creeu la pàgina «[[:$1]]» en aquest wiki!'''",
 'searchhelp-url'                   => 'Help:Ajuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Mostra pàgines amb aquest prefix]]',
-'searchprofile-articles'           => 'Pàgines de contingut',
-'searchprofile-project'            => 'Pàgines del projecte',
-'searchprofile-images'             => 'Fitxers',
+'searchprofile-articles'           => 'Articles',
+'searchprofile-project'            => 'Ajuda',
+'searchprofile-images'             => 'Multimèdia',
 'searchprofile-everything'         => 'Tot',
 'searchprofile-advanced'           => 'Avançat',
 'searchprofile-articles-tooltip'   => 'Cerca a $1',
@@ -1072,6 +1073,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'showingresults'                   => 'Tot seguit es {{PLURAL:$1|mostra el resultat|mostren els <b>$1</b> resultats començant pel número <b>$2</b>}}.',
 'showingresultsnum'                => 'Tot seguit es {{PLURAL:$3|llista el resultat|llisten els <b>$3</b> resultats començant pel número <b>$2</b>}}.',
 'showingresultstotal'              => "A continuació {{PLURAL:$4|es mostra el resultat '''$1''' de '''$3'''|es mostren els resultats '''$1 - $2''' de '''$3'''}}",
+'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1''' de '''$3'''|Resultats '''$1 - $2''' de '''$3'''}} per '''$4'''",
 'nonefound'                        => "'''Nota''': Només se cerca en alguns espais de noms per defecte. Proveu d'afegir el prefix ''all:'' a la vostra consulta per a cercar a tot el contingut (incloent-hi les pàgines de discussió, les plantilles, etc.), o feu servir l'espai de noms on vulgueu cercar com a prefix.",
 'search-nonefound'                 => 'No hi ha resultats que coincideixin amb la cerca.',
 'powersearch'                      => 'Cerca avançada',
@@ -1446,7 +1448,7 @@ Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carreg
 'sourcefilename'              => 'Nom del fitxer font:',
 'destfilename'                => 'Nom del fitxer de destinació:',
 'upload-maxfilesize'          => 'Mida màxima de fitxer: $1',
-'watchthisupload'             => 'Vigila aquesta pàgina',
+'watchthisupload'             => 'Vigila aquest fitxer',
 'filewasdeleted'              => "Prèviament es va carregar un fitxer d'aquest nom i després va ser esborrat. Hauríeu de verificar $1 abans de procedir a carregar-lo una altra vegada.",
 'upload-wasdeleted'           => "'''Atenció: Esteu carregant un fitxer que s'havia eliminat abans.'''
 
@@ -1750,17 +1752,21 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'newuserlog-autocreate-entry' => 'Compte creat automàticament',
 
 # Special:ListGroupRights
-'listgrouprights'                 => "Drets dels grups d'usuaris",
-'listgrouprights-summary'         => "A continuació hi ha una llista dels grups d'usuaris definits en aquest wiki, així com dels seus drets d'accés associats.
+'listgrouprights'                      => "Drets dels grups d'usuaris",
+'listgrouprights-summary'              => "A continuació hi ha una llista dels grups d'usuaris definits en aquest wiki, així com dels seus drets d'accés associats.
 Pot ser que hi hagi més informació sobre drets individuals [[{{MediaWiki:Listgrouprights-helppage}}|aquí]].",
-'listgrouprights-group'           => 'Grup',
-'listgrouprights-rights'          => 'Drets',
-'listgrouprights-helppage'        => 'Help:Drets del grup',
-'listgrouprights-members'         => '(llista de membres)',
-'listgrouprights-addgroup'        => 'Pot afegir {{PLURAL:$2|grup|grups}}: $1',
-'listgrouprights-removegroup'     => 'Pot treure {{PLURAL:$2|grup|grups}}: $1',
-'listgrouprights-addgroup-all'    => 'Pot afegir tots els grups',
-'listgrouprights-removegroup-all' => 'Pot treure tots els grups',
+'listgrouprights-group'                => 'Grup',
+'listgrouprights-rights'               => 'Drets',
+'listgrouprights-helppage'             => 'Help:Drets del grup',
+'listgrouprights-members'              => '(llista de membres)',
+'listgrouprights-addgroup'             => 'Pot afegir {{PLURAL:$2|grup|grups}}: $1',
+'listgrouprights-removegroup'          => 'Pot treure {{PLURAL:$2|grup|grups}}: $1',
+'listgrouprights-addgroup-all'         => 'Pot afegir tots els grups',
+'listgrouprights-removegroup-all'      => 'Pot treure tots els grups',
+'listgrouprights-addgroup-self'        => 'Entrar {{PLURAL:$2|al grup|als grups}} $1',
+'listgrouprights-removegroup-self'     => 'Sortir {{PLURAL:$2|del grup|dels grups:}} $1',
+'listgrouprights-addgroup-self-all'    => 'Afegir-se a qualsevol grup',
+'listgrouprights-removegroup-self-all' => 'Sortir de tots els grups',
 
 # E-mail user
 'mailnologin'      => "No enviïs l'adreça",

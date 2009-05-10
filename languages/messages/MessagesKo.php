@@ -1102,8 +1102,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchhelp-url'                   => 'Help:목차',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|이 접두어로 시작하는 문서 찾기]]',
 'searchprofile-articles'           => '일반 문서',
-'searchprofile-project'            => '프로젝트 문서',
-'searchprofile-images'             => '파일',
+'searchprofile-project'            => '도움말',
+'searchprofile-images'             => '멀티미디어',
 'searchprofile-everything'         => '모든 문서 검색',
 'searchprofile-advanced'           => '고급 검색',
 'searchprofile-articles-tooltip'   => '$1에서 찾기',
@@ -1503,7 +1503,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'sourcefilename'              => '원본 파일 이름:',
 'destfilename'                => '파일의 새 이름:',
 'upload-maxfilesize'          => '파일의 최대 크기: $1',
-'watchthisupload'             => '이 문서 주시하기',
+'watchthisupload'             => '이 파일 주시하기',
 'filewasdeleted'              => '같은 이름을 가진 파일이 올라온 적이 있었고, 그 후에 삭제되었습니다. 올리기 전에 $1을 확인해 주시기 바랍니다.',
 'upload-wasdeleted'           => "'''경고: 삭제된 적이 있는 파일을 다시 올리려 하고 있습니다.'''
 
@@ -1826,17 +1826,19 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'newuserlog-autocreate-entry' => '계정이 자동으로 만들어졌습니다.',
 
 # Special:ListGroupRights
-'listgrouprights'                 => '사용자 권한 목록',
-'listgrouprights-summary'         => '다음은 이 위키에서 설정된 사용자 권한 그룹의 목록입니다.
+'listgrouprights'                  => '사용자 권한 목록',
+'listgrouprights-summary'          => '다음은 이 위키에서 설정된 사용자 권한 그룹의 목록입니다.
 각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|이곳]]을 참조하십시오.',
-'listgrouprights-group'           => '그룹',
-'listgrouprights-rights'          => '권한',
-'listgrouprights-helppage'        => 'Help:사용자 권한 그룹',
-'listgrouprights-members'         => '(사용자 목록)',
-'listgrouprights-addgroup'        => '$1 권한을 부여',
-'listgrouprights-removegroup'     => '$1 권한을 해제',
-'listgrouprights-addgroup-all'    => '모든 권한을 부여',
-'listgrouprights-removegroup-all' => '모든 권한을 회수',
+'listgrouprights-group'            => '그룹',
+'listgrouprights-rights'           => '권한',
+'listgrouprights-helppage'         => 'Help:사용자 권한 그룹',
+'listgrouprights-members'          => '(사용자 목록)',
+'listgrouprights-addgroup'         => '$1 권한을 부여',
+'listgrouprights-removegroup'      => '$1 권한을 해제',
+'listgrouprights-addgroup-all'     => '모든 권한을 부여',
+'listgrouprights-removegroup-all'  => '모든 권한을 회수',
+'listgrouprights-addgroup-self'    => '자신에게 다음 권한을 부여: $1',
+'listgrouprights-removegroup-self' => '자신에게서 다음 권한을 해제: $1',
 
 # E-mail user
 'mailnologin'      => '보낼 이메일 주소가 없음',
