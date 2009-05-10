@@ -1,5 +1,5 @@
 CREATE TABLE /*_*/log_search (
-	-- The type of ID (rev ID, log ID, timestamp, other)
+	-- The type of ID (rev ID, log ID, rev timestamp, username)
 	ls_field varbinary(32) NOT NULL,
 	-- The value of the ID
 	ls_value varchar(255) NOT NULL,
