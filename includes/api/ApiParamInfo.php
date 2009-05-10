@@ -94,7 +94,7 @@ class ApiParamInfo extends ApiBase {
 		$result = $this->getResult();
 		$retval['classname'] = get_class($obj);
 		$retval['description'] = implode("\n", (array)$obj->getDescription());
-		$retval['version'] = $obj->getVersion();
+		$retval['version'] = implode("\n", (array)$obj->getVersion());
 		$retval['prefix'] = $obj->getModulePrefix();
 		if($obj->isReadMode())
 			$retval['readrights'] = '';
@@ -102,6 +102,8 @@ class ApiParamInfo extends ApiBase {
 			$retval['writerights'] = '';
 		if($obj->mustBePosted())
 			$retval['mustbeposted'] = '';
+		if($obj instanceof ApiQueryGeneratorBase)
+			$retval['generator'] = '';
 		$allowedParams = $obj->getFinalParams();
 		if(!is_array($allowedParams))
 			return $retval;
