@@ -320,6 +320,16 @@ class BitmapHandler extends ImageHandler {
 		if ( !$exif ) {
 			return false;
 		}
+		if ( !isset( $exif['MEDIAWIKI_EXIF_VERSION'] ) ||
+		     $exif['MEDIAWIKI_EXIF_VERSION'] != Exif::version() )
+		{
+			// XXX: This should be caught by isMetadataValid(), but
+			// some non-local repos might call this function without
+			// checking validity, causing FormatExif to barf, so we
+			// check it again just to be sure.
+			wfDebug( __METHOD__.": wrong version\n" );
+			return false;
+		}
 		unset( $exif['MEDIAWIKI_EXIF_VERSION'] );
 		$format = new FormatExif( $exif );
 
