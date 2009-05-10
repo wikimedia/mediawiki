@@ -110,8 +110,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed float from the user login form in RTL interface - caused display
   problems in FF2
 * (bug 15008) Redirect images are now subject to Bad image list rules
-* (bug 18677) Give proper error message when viewing &action=protect without
-  sufficient rights
 * (bug 6802) profileinfo.php now also work on other database servers than MySQL
 * (bug 16925) Diffs no longer fail when $wgExternalDiffEngine is set to 'wikidiff'
   or 'wikidiff2' but extension is not installed
