@@ -1825,10 +1825,10 @@ PICT # misc.
 'listgrouprights-removegroup'          => '$2グループ削除可能: $1',
 'listgrouprights-addgroup-all'         => '全グループ追加可能',
 'listgrouprights-removegroup-all'      => '全グループ削除可能',
-'listgrouprights-addgroup-self'        => '自身のアカウントにグループを追加できます: $1',
-'listgrouprights-removegroup-self'     => '自身のアカウントからグループを除去できます: $1',
-'listgrouprights-addgroup-self-all'    => '自身のアカウントにすべてのグループを追加できます',
-'listgrouprights-removegroup-self-all' => '自身のアカウントからすべてのグループを除去できます',
+'listgrouprights-addgroup-self'        => '自身のアカウントにグループの追加可能: $1',
+'listgrouprights-removegroup-self'     => '自身のアカウントからグループの除去可能: $1',
+'listgrouprights-addgroup-self-all'    => '自身のアカウントにすべてのグループが追加可能',
+'listgrouprights-removegroup-self-all' => '自身のアカウントからすべてのグループが除去可能',
 
 # E-mail user
 'mailnologin'      => 'メールアドレスの記載がありません。',

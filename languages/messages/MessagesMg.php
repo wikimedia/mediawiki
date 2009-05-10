@@ -84,6 +84,7 @@ $messages = array(
 'tog-externaldiff'            => 'Fitaovana hafa no hanaovana ny fampitahana',
 'tog-showjumplinks'           => 'Ampiasao ny rohy "handeha eto"',
 'tog-uselivepreview'          => 'Ampesao ny topi-maso maikamaika (mila Javascript) (mbola am-panandramana)',
+'tog-forceeditsummary'        => 'Teneno ahy ra tsy nametraka ny ambangovangony',
 'tog-watchlisthideown'        => "Tsy ampiseho anatin'ny pejy fanaraha-maso ny zavatra nosoratako",
 'tog-watchlisthideminor'      => "Tsy aseho ny fisoloina kely anatin'ny pejy fanaraha-maso",
 'tog-ccmeonemails'            => "Andefaso tahaka ny imailaka alefako amin'ny mpikambana afa",
@@ -132,6 +133,9 @@ $messages = array(
 'october-gen'   => 'Oktobra',
 'november-gen'  => 'Novambra',
 'december-gen'  => 'Desambra',
+'jan'           => 'Jan',
+'feb'           => 'Feb',
+'mar'           => 'Mar',
 'may'           => 'Mey',
 'jun'           => 'Jiona',
 'jul'           => 'Jol',
@@ -140,17 +144,28 @@ $messages = array(
 'dec'           => 'Des',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Sokajy|Sokajy}}',
-'category_header'          => 'Ireo lahatsoratra ao amin\'ny sokajy "$1"',
-'subcategories'            => 'Zana-tsokajy',
-'category-media-header'    => "Fisy multimedia anatin'ny sokajy « $1 »",
-'category-empty'           => "''Tsy misy pejy, sokajy ambany na sary ao anatin'io sokajy io''",
-'hidden-categories'        => 'Sokajy misitrika',
-'hidden-category-category' => 'Sokajy misitrika',
-'category-subcat-count'    => 'Ity sokajy manana $1 sokajy ambany. Ny taotaliny dia $2',
-'listingcontinuesabbrev'   => ' manaraka.',
+'pagecategories'                 => '{{PLURAL:$1|Sokajy|Sokajy}}',
+'category_header'                => 'Ireo lahatsoratra ao amin\'ny sokajy "$1"',
+'subcategories'                  => 'Zana-tsokajy',
+'category-media-header'          => "Fisy multimedia anatin'ny sokajy « $1 »",
+'category-empty'                 => "''Tsy misy pejy, sokajy ambany na sary ao anatin'io sokajy io''",
+'hidden-categories'              => 'Sokajy misitrika',
+'hidden-category-category'       => 'Sokajy misitrika',
+'category-subcat-count'          => 'Ity sokajy manana $1 sokajy ambany. Ny taotaliny dia $2',
+'category-article-count'         => "Misy an'ireo pejy ireo pejy ireo ity sokajy ity",
+'category-article-count-limited' => "Anatin'ity sokajy ity ireo pejy ireo pejy ireo",
+'category-file-count'            => "Misy an'ireo rakitra ireo ity sokajy ity",
+'category-file-count-limited'    => "Anatin'ity sokajy ity ireo sokajy ireo",
+'listingcontinuesabbrev'         => ' manaraka.',
 
-'mainpagetext' => "<big>'''Tafajoro soa aman-tsara ny rindrankajy Wiki.'''</big>",
+'mainpagetext'      => "<big>'''Tafajoro soa aman-tsara ny rindrankajy Wiki.'''</big>",
+'mainpagedocfooter' => "Vangio ny [http://meta.wikimedia.org/wiki/Aide:Contenu Fanoroana hoan'ny mpampiasa] ra te hitady fanoroana momba ny fampiasan'ity rindrankajy ity.
+
+== Hanomboka amin'ny MediaWiki ==
+
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lisitra ny paramètre de configuration]
+* [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ momba ny MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Resaka momba ny fizaràn'ny MediaWiki]",
 
 'about'         => 'Mombamomba',
 'article'       => "Votoatin'ny pejy",
@@ -168,8 +183,14 @@ $messages = array(
 'qbbrowse'       => 'Tadiavo',
 'qbedit'         => 'Ovay',
 'qbpageoptions'  => 'Ity pejy ity',
+'qbpageinfo'     => 'Pejy fanoroana',
 'qbmyoptions'    => 'Pejiko',
 'qbspecialpages' => 'Pejy manokana',
+'faq'            => 'FAQ (fanontaniana)',
+'faqpage'        => 'Project:Fanontaniana',
+
+# Metadata in edit box
+'metadata_help' => 'Metadata :',
 
 'errorpagetitle'    => 'Tsy fetezana',
 'returnto'          => "Hiverina any amin'ny $1.",
@@ -184,6 +205,7 @@ $messages = array(
 'updatedmarker'     => "niova hatramin'ny nidirako farany",
 'info_short'        => 'Fampahalalana',
 'permalink'         => 'Rohy maharitra',
+'print'             => 'Avoaka an-taratasy',
 'edit'              => 'Ovao',
 'create'            => 'Amboary',
 'editthispage'      => 'Ovay ity pejy ity',
@@ -192,6 +214,7 @@ $messages = array(
 'deletethispage'    => 'Fafao ity pejy ity',
 'undelete_short'    => 'Avereno ny fanovana {{PLURAL:$1|$1|$1}}',
 'protect'           => 'Arovy',
+'protect_change'    => 'ovay',
 'protectthispage'   => 'Arovy (hidio) ity pejy ity',
 'unprotect'         => 'Esory ny fiarovana',
 'unprotectthispage' => "Esory ny fiarovana an'ity pejy ity",
@@ -212,6 +235,9 @@ $messages = array(
 'categorypage'      => "Jereo ny pejin'ny sokajy",
 'viewtalkpage'      => 'Hijery pejin-dresaka',
 'otherlanguages'    => "Amin'ny tenim-pirenena hafa",
+'redirectedfrom'    => "(tonga teto avy amin'ny $1)",
+'redirectpagesub'   => 'Pejy fihodinana',
+'lastmodifiedat'    => "Voaova farany tamin'ny $1 amin'ny $2 ity pejy ity<br />",
 'protectedpage'     => 'Pejy voaaro',
 'jumpto'            => 'Hanketo:',
 'jumptosearch'      => 'karohy',
@@ -279,46 +305,47 @@ Ny asa voafaritra tao amin'ny URL dia tsy fantatr'ity wiki ity",
 'nospecialpagetext' => 'Nangataka pejy manokana tsy misy ianao, azonao jerena eto [[Special:SpecialPages|{{int:specialpages}}]] ny lisitry ny pejy manokana.',
 
 # General errors
-'error'            => 'Tsy mety',
-'databaseerror'    => "Tsy fetezana eo amin'ny toby",
-'dberrortext'      => 'Nisy tsi-fetezana teo amin\'ny requête base de données
+'error'              => 'Tsy mety',
+'databaseerror'      => "Tsy fetezana eo amin'ny toby",
+'dberrortext'        => 'Nisy tsi-fetezana teo amin\'ny requête base de données
 Inoana fa ny rindrankajy no misy olana (bug).
 Ny requête farany dia:
 <blockquote><tt>$1</tt></blockquote>
 tao amin\'ny fonction "<tt>$2</tt>".
 Toy izao no navalin\'ny MySQL "<tt>$3: $4</tt>".',
-'dberrortextcl'    => 'Nisy tsi-fetezana teo amin\'ny requête base de données
+'dberrortextcl'      => 'Nisy tsi-fetezana teo amin\'ny requête base de données
 Ny requête farany dia:
 "$1"
 tao amin\'ny fonction "$2".
 Toy izao no navalin\'ny MySQL "$3: $4"',
-'laggedslavemode'  => 'Fampitandremana: Mety ho tsy nisy fanovana vao haingana angamba io pejy io',
-'readonly'         => 'Mihidy ny banky angona',
-'enterlockreason'  => 'Manomeza antony hanidiana ny pejy, ahitana ny fotoana tokony hamahana izay fihidiana izay',
-'readonlytext'     => "
+'laggedslavemode'    => 'Fampitandremana: Mety ho tsy nisy fanovana vao haingana angamba io pejy io',
+'readonly'           => 'Mihidy ny banky angona',
+'enterlockreason'    => 'Manomeza antony hanidiana ny pejy, ahitana ny fotoana tokony hamahana izay fihidiana izay',
+'readonlytext'       => "
 Mihidy vonjimaika aloha ny banky angona ka tsy afaka anaovana fanovana na fanampiana vaovao. Azo inoana fa asa fikolokoloana mahazatra ihany io ka rehefa vita izay asa izay dia hverina amin'ny laoniny izy.
 
 Ny mpitantana nanidy azy dia nametraka ito fanazavana ito: $1",
-'readonly_lag'     => "
+'readonly_lag'       => "
 Mihidy ho azy aloha ny banky angona mandra-pahatratran'ny serveur andevo ny tompony",
-'internalerror'    => "Tsy fetezana anatin'ny rindrankajy",
-'filecopyerror'    => 'Tsy voadika ho "$2" ilay rakitra"$1".',
-'filerenameerror'  => 'Tsy voaova ho "$2" ny anaran\'ilay rakitra "$1".',
-'filedeleteerror'  => 'Tsy voafafa ilay rakitra "$1".',
-'filenotfound'     => 'Tsy hita ilay rakitra "$1".',
-'fileexistserror'  => "Tsy afaka manoratra ao anatin'ilay dossier « $1 » : efa misy ilay fisy",
-'unexpected'       => 'Tsy nandrasana: "$1"="$2".',
-'formerror'        => 'Tsy mety: tsy lasa ny fisy',
-'badarticleerror'  => "Tsy azo atao eto amin'ity pejy ity io asa io.",
-'cannotdelete'     => 'Tsy voafafa ny pejy na rakitra nomenao. (Angamba efa nisy olon-kafa namafa ilay izy.)',
-'badtitle'         => 'Tsy mety ny lohateny',
-'badtitletext'     => "Tsy mety io anaram-pejy nangatahinao io na tsy misy n'inon'inona na rohy dikan-teny vahiny misy diso tsipelina.",
-'perfcached'       => 'Ireto angona ireto dia nalaina tao anaty cache koa mety ho efa lany daty.:',
-'viewsource'       => 'Hijery fango',
-'viewsourcefor'    => "ho an'ny $1",
-'editinginterface' => "'''Tandremo :''' manova pejy ampiasan'ny lôjisialy wiki ianao. Mety hita ny mpikambana sàsany izy io. Rehefa tia mandika teny ianao, jereo ny volavola MediaWiki ho an'ny internationalisation ny hafatra [http://translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
-'sqlhidden'        => '(nafenina ny requête SQL)',
-'titleprotected'   => "Voaaro mba tsy ho amboarina ilay lohateny, i [[User:$1|$1]] no nanao an'io.
+'internalerror'      => "Tsy fetezana anatin'ny rindrankajy",
+'internalerror_info' => 'Tsy fetezana ety anatiny : $1',
+'filecopyerror'      => 'Tsy voadika ho "$2" ilay rakitra"$1".',
+'filerenameerror'    => 'Tsy voaova ho "$2" ny anaran\'ilay rakitra "$1".',
+'filedeleteerror'    => 'Tsy voafafa ilay rakitra "$1".',
+'filenotfound'       => 'Tsy hita ilay rakitra "$1".',
+'fileexistserror'    => "Tsy afaka manoratra ao anatin'ilay dossier « $1 » : efa misy ilay fisy",
+'unexpected'         => 'Tsy nandrasana: "$1"="$2".',
+'formerror'          => 'Tsy mety: tsy lasa ny fisy',
+'badarticleerror'    => "Tsy azo atao eto amin'ity pejy ity io asa io.",
+'cannotdelete'       => 'Tsy voafafa ny pejy na rakitra nomenao. (Angamba efa nisy olon-kafa namafa ilay izy.)',
+'badtitle'           => 'Tsy mety ny lohateny',
+'badtitletext'       => "Tsy mety io anaram-pejy nangatahinao io na tsy misy n'inon'inona na rohy dikan-teny vahiny misy diso tsipelina.",
+'perfcached'         => 'Ireto angona ireto dia nalaina tao anaty cache koa mety ho efa lany daty.:',
+'viewsource'         => 'Hijery fango',
+'viewsourcefor'      => "ho an'ny $1",
+'editinginterface'   => "'''Tandremo :''' manova pejy ampiasan'ny lôjisialy wiki ianao. Mety hita ny mpikambana sàsany izy io. Rehefa tia mandika teny ianao, jereo ny volavola MediaWiki ho an'ny internationalisation ny hafatra [http://translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
+'sqlhidden'          => '(nafenina ny requête SQL)',
+'titleprotected'     => "Voaaro mba tsy ho amboarina ilay lohateny, i [[User:$1|$1]] no nanao an'io.
 Io ny antony : « ''$2'' ».",
 
 # Virus scanner

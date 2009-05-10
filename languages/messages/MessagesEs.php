@@ -1267,7 +1267,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrador',
 'group-bureaucrat-member'    => 'Burócrata',
-'group-suppress-member'      => 'supervisor',
+'group-suppress-member'      => 'Supervisor',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
