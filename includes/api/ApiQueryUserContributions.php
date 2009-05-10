@@ -53,6 +53,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->fld_ids = isset($prop['ids']);
 		$this->fld_title = isset($prop['title']);
 		$this->fld_comment = isset($prop['comment']);
+		$this->fld_size = isset($prop['size']);
 		$this->fld_flags = isset($prop['flags']);
 		$this->fld_timestamp = isset($prop['timestamp']);
 		$this->fld_patrolled = isset($prop['patrolled']);
@@ -161,7 +162,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 
 		if(!$wgUser->isAllowed('hideuser'))
-			$this->addWhereFld('rev_deleted & ' . Revision::DELETED_USER . ' = 0');
+			$this->addWhere('rev_deleted & ' . Revision::DELETED_USER . ' = 0');
 		// We only want pages by the specified users.
 		if($this->prefixMode)
 			$this->addWhere("rev_user_text LIKE '" . $this->getDB()->escapeLike($this->userprefix) . "%'");
@@ -240,6 +241,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addFieldsIf('page_latest', $this->fld_flags);
 		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // Should this field be exposed?
 		$this->addFieldsIf('rev_comment', $this->fld_comment);
+		$this->addFieldsIf('rev_len', $this->fld_size);
 		$this->addFieldsIf('rev_minor_edit', $this->fld_flags);
 		$this->addFieldsIf('rev_parent_id', $this->fld_flags);
 		$this->addFieldsIf('rc_patrolled', $this->fld_patrolled);
@@ -286,6 +288,9 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		if ($this->fld_patrolled && $row->rc_patrolled)
 			$vals['patrolled'] = '';
+		
+		if ($this->fld_size )
+			$vals['size'] = intval($row->rev_len);
 
 		return $vals;
 	}
@@ -329,12 +334,13 @@ class ApiQueryContributions extends ApiQueryBase {
 			),
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_DFLT => 'ids|title|timestamp|flags|comment',
+				ApiBase :: PARAM_DFLT => 'ids|title|timestamp|comment|size|flags',
 				ApiBase :: PARAM_TYPE => array (
 					'ids',
 					'title',
 					'timestamp',
 					'comment',
+					'size',
 					'flags',
 					'patrolled',
 				)

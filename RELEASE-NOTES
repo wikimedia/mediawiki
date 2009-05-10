@@ -137,6 +137,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   output
 * (bug 18731) Show correct SVN links for extension modules in api.php?version
 * (bug 18730) Add version information to action=paraminfo output
+* (bug 18743) Add ucprop=size to list=usercontribs
 
 === Languages updated in 1.16 ===
 
