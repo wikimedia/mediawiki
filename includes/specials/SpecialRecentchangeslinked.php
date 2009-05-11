@@ -155,9 +155,7 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 			$sql = $subsql[0];
 		else {
 			// need to resort and relimit after union
-			// unwrapped UNION block will not work in Oracle. Wrapper aded.
-			$sql = "SELECT * FROM ((" . implode( ") UNION (", $subsql ) . ")) ORDER BY rc_timestamp DESC";
-			$sql = $dbr->limitResult($sql, $limit, false);
+			$sql = "(" . implode( ") UNION (", $subsql ) . ") ORDER BY rc_timestamp DESC LIMIT {$limit}";
 		}
 
 		$res = $dbr->query( $sql, __METHOD__ );
