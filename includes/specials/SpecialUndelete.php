@@ -1141,7 +1141,7 @@ class UndeleteForm {
 			// If revision was hidden from sysops
 				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml('rev-delundel').')' );
 			} else {
-				$query = array( 'target' => $this->mTargetObj->getPrefixedUrl(),
+				$query = array( 'target' => $this->mTargetObj->getPrefixedDBkey(),
 					'artimestamp[]' => $ts
 				);
 				$revdlink = $sk->revDeleteLink( $query, $rev->isDeleted( Revision::DELETED_RESTRICTED ) );
@@ -1183,7 +1183,7 @@ class UndeleteForm {
 			// If revision was hidden from sysops
 				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml('rev-delundel').')' );
 			} else {
-				$query = array( 'target' => $this->mTargetObj->getPrefixedUrl(),
+				$query = array( 'target' => $this->mTargetObj->getPrefixedDBkey(),
 					'fileid' => $row->fa_id
 				);
 				$revdlink = $sk->revDeleteLink( $query, $file->isDeleted( File::DELETED_RESTRICTED ) );
