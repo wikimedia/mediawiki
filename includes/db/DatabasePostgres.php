@@ -1076,12 +1076,15 @@ class DatabasePostgres extends Database {
 	 */
 	function getServerVersion() {
 		$versionInfo = pg_version( $this->mConn );
-		if ( isset( $versionInfo['server'] ) ) {
+		if ( version_compare( $versionInfo['client'], '7.4.0', 'lt' ) ) {
+			// Old client, abort install
+			$this->numeric_version = '7.3 or earlier';
+		} elseif ( isset( $versionInfo['server'] ) ) {
+			// Normal client
 			$this->numeric_version = $versionInfo['server'];
 		} else {
-			// There's no way to identify the precise version before 7.4, but 
-			// it doesn't matter anyway since we're just going to give an error.
-			$this->numeric_version = '7.3 or earlier';
+			// Bug 16937: broken pgsql extension from PHP<5.3
+			$this->numeric_version = pg_parameter_status( $this->mConn, 'server_version' );
 		}
 		return $this->numeric_version;
 	}
