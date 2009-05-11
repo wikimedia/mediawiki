@@ -40,7 +40,8 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	if ($hidebotsql) {
 		$sql .= "$hidebotsql WHERE ug_group IS NULL";
 	}
-	$sql .= ' ORDER BY img_timestamp DESC LIMIT 1';
+	$sql .= ' ORDER BY img_timestamp DESC';
+	$sql = $dbr->limitResult($sql, 1, false);
 	$res = $dbr->query( $sql, __FUNCTION__ );
 	$row = $dbr->fetchRow( $res );
 	if( $row !== false ) {
@@ -93,7 +94,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$sql .= ' WHERE ' . $dbr->makeList( $where, LIST_AND );
 	}
 	$sql.=' ORDER BY img_timestamp '. ( $invertSort ? '' : ' DESC' );
-	$sql.=' LIMIT ' . ( $limit + 1 );
+	$sql = $dbr->limitResult($sql, ( $limit + 1 ), false);
 	$res = $dbr->query( $sql, __FUNCTION__ );
 
 	/**

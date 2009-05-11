@@ -707,8 +707,8 @@ class Article {
 			GROUP BY rev_user, rev_user_text, user_real_name
 			ORDER BY timestamp DESC";
 
-		if($limit > 0) { $sql .= ' LIMIT '.$limit; }
-		if($offset > 0) { $sql .= ' OFFSET '.$offset; }
+		if($limit > 0)
+			$sql = $dbr->limitResult($sql, $limit, $offset);
 
 		$sql .= ' '. $this->getSelectOptions();
 
