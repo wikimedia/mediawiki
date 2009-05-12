@@ -210,7 +210,7 @@
 	'mt' => 'Malti',	# Maltese
 	'mus' => 'Mvskoke',	# Muskogee/Creek
 	'mwl' => 'Mirandés',	# Mirandese
-	'my' => 'Myanmasa',		# Burmese
+	'my' => 'မြန်မာဘာသာ',		# Burmese
 	'myv' => 'Эрзянь',         # Erzya
 	'mzn' => 'مَزِروني',		# Mazanderani
 	'na' => 'Dorerin Naoero',		# Nauruan
