@@ -162,7 +162,7 @@ $messages = array(
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Neneuhcāyōtl|Neneuhcāyōtl}}',
 'category_header'                => 'Tlahcuilōlli "$1" neneuhcāyōc',
-'subcategories'                  => 'Neneuhcāyōtzintli',
+'subcategories'                  => 'Tlanineneuhcāyōtl',
 'category-media-header'          => 'Media "$1" neneuhcāyōc',
 'category-empty'                 => "''Cah ahtlein inīn neneuhcāyōc.''",
 'hidden-categories'              => 'Neneuhcāyōtl {{PLURAL:$1|ōmotlāti|ōmotlātih}}',
@@ -177,7 +177,7 @@ $messages = array(
 
 'mainpagetext' => "<big>'''MediaHuiqui cualli ōmotlahtlāli.'''</big>",
 
-'about'         => 'Ītechcopa',
+'about'         => 'Ītechpa',
 'article'       => 'tlahcuilōlli',
 'newwindow'     => '(Motlapoāz cē yancuīc tlanexillōtl)',
 'cancel'        => 'Ticcuepāz',
@@ -281,7 +281,7 @@ $messages = array(
 'badaccess-group0' => 'Tehhuātl ahmo tiquichīhua inōn tiquiēlēhuia.',
 'badaccess-groups' => 'Inōn tiquiēlēhuia zan quichīhuah tlatequitiltilīlli {{PLURAL:$2|oncān|oncān}}: $1.',
 
-'ok'                      => 'Cualli',
+'ok'                      => 'Nopan iti',
 'retrievedfrom'           => 'Īhuīcpa "$1"',
 'youhavenewmessages'      => 'Tiquimpiya $1 ($2).',
 'newmessageslink'         => 'yancuīc tlahcuilōltzintli',
@@ -431,6 +431,8 @@ Occeppa xicalaqui niman ticmatīz.',
 'headline_tip'    => 'Iuhcāyōtl 2 tōcāyōtl',
 'math_sample'     => 'Xihcuiloa nicān',
 'math_tip'        => 'Tlapōhualmatiliztlahtōl (LaTeX)',
+'image_sample'    => 'Machiyōtl.jpg',
+'media_sample'    => 'Machiyōtl.ogg',
 'media_tip'       => 'Mēdiahuīc tzonhuiliztli',
 'sig_tip'         => 'Motōcā īca cāhuitl',
 'hr_tip'          => 'Pāntli',

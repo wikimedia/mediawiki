@@ -139,15 +139,16 @@ $messages = array(
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
-'about'      => 'A propòsitu de',
-'article'    => 'Artìculu',
-'newwindow'  => "(aberit in d'una fentana noa)",
-'cancel'     => 'Burra',
-'mypage'     => 'Sa pàgina mea',
-'mytalk'     => 'Cuntierras meas',
-'anontalk'   => 'Cuntierras pro custu IP',
-'navigation' => 'Navigadura',
-'and'        => '&#32;e',
+'about'         => 'A propòsitu de',
+'article'       => 'Artìculu',
+'newwindow'     => "(aberit in d'una fentana noa)",
+'cancel'        => 'Burra',
+'moredotdotdot' => 'Àteru…',
+'mypage'        => 'Sa pàgina mea',
+'mytalk'        => 'Cuntierras meas',
+'anontalk'      => 'Cuntierras pro custu IP',
+'navigation'    => 'Navigadura',
+'and'           => '&#32;e',
 
 # Cologne Blue skin
 'qbfind'         => 'Agata',
@@ -265,6 +266,7 @@ $messages = array(
 'nstab-project'  => 'Pàgina de servìtziu',
 'nstab-image'    => 'File',
 'nstab-template' => 'Template',
+'nstab-help'     => 'Agiudu',
 'nstab-category' => 'Categoria',
 
 # Main script and global functions
@@ -340,6 +342,7 @@ Scebera unu nòmene diferente.',
 'nosuchuser'              => 'Non ddu est usuàriu cun su nòmene "$1". 
 Is nòmenes usuàriu intendent is lìteras mannas. 
 Apura su nòmene insertadu o [[Special:UserLogin/signup|crea unu account nou]].',
+'nouserspecified'         => 'Depes ispetzificare unu nòmene usuàriu.',
 'wrongpassword'           => 'Sa password insertada no est bona. Prova torra.',
 'mailmypassword'          => "Ispedi una password noa a s'indiritzu e-mail miu",
 'passwordremindertitle'   => 'Servitziu Password Reminder di {{SITENAME}}',
@@ -354,6 +357,7 @@ Chi non ses istadu a pediri sa password, o chi as torrau a agatare sa password t
 Pro pregheri, candu d\'arretzis faghe su login.',
 'emailauthenticated'      => "S'indiritzu e-mail tuo est istadu autenticau su $2 a is $3.",
 'emailconfirmlink'        => "Cunfirma s'indiritzu e-mail tuo",
+'accountcreated'          => 'Account creadu',
 'loginlanguagelabel'      => 'Limba: $1',
 
 # Password reset dialog
@@ -471,15 +475,19 @@ Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente, '''({{int
 'deletedrev'             => '[fuliada]',
 'histfirst'              => 'Prima',
 'histlast'               => 'Ùrtima',
+'historyempty'           => '(bùida)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 su $2',
 
 # Revision deletion
-'rev-delundel'   => 'amosta/cua',
-'revdel-restore' => 'Muda sa visibilidadi',
-'pagehist'       => 'Istòria de sa pàgina',
-'deletedhist'    => 'Istòria fuliada',
+'rev-delundel'          => 'amosta/cua',
+'revdel-restore'        => 'Muda sa visibilidadi',
+'pagehist'              => 'Istòria de sa pàgina',
+'deletedhist'           => 'Istòria fuliada',
+'revdelete-hid'         => 'cua $1',
+'revdelete-unhid'       => 'amosta $1',
+'revdelete-log-message' => '$1 pro $2 {{PLURAL:$2|arrevisione|arrevisiones}}',
 
 # History merging
 'mergehistory-reason' => 'Motivu:',
@@ -500,41 +508,44 @@ Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente, '''({{int
 'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
-'searchresults'             => 'Arresurtaus de sa chirca',
-'searchresults-title'       => 'Arresurtaus pro sa chirca de "$1"',
-'searchresulttext'          => 'Pro àteras informatziones pro sa chirca interna a {{SITENAME}}, càstia [[{{MediaWiki:Helppage}}|Chirca in {{SITENAME}}]].',
-'searchsubtitle'            => 'Chirca de \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|totu is pàginas ca incumentzant pro "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totu is pàginas ca ligant a "$1"]])',
-'searchsubtitleinvalid'     => 'As chircadu "$1"',
-'noexactmatch'              => "'''Sa pàgina \"\$1\" no esistit.''' 
+'searchresults'                  => 'Arresurtaus de sa chirca',
+'searchresults-title'            => 'Arresurtaus pro sa chirca de "$1"',
+'searchresulttext'               => 'Pro àteras informatziones pro sa chirca interna a {{SITENAME}}, càstia [[{{MediaWiki:Helppage}}|Chirca in {{SITENAME}}]].',
+'searchsubtitle'                 => 'Chirca de \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|totu is pàginas ca incumentzant pro "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totu is pàginas ca ligant a "$1"]])',
+'searchsubtitleinvalid'          => 'As chircadu "$1"',
+'noexactmatch'                   => "'''Sa pàgina \"\$1\" no esistit.''' 
 Podes [[:\$1|creare custa pàgina]].",
-'noexactmatch-nocreate'     => "'''Sa pàgina tìtolada \"\$1\" no esistit.'''",
-'titlematches'              => 'Nei titoli degli articoli',
-'notitlematches'            => 'Peruna currispondentzia de is tìtulos de pàgina',
-'textmatches'               => 'Nel testo degli articoli',
-'notextmatches'             => "Peruna currispondèntzia in su testu de s'artìculu",
-'prevn'                     => 'cabudianos $1',
-'nextn'                     => 'imbenientes $1',
-'viewprevnext'              => 'Càstia ($1) ($2) ($3).',
-'searchhelp-url'            => 'Help:Agiudu',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 fueddu|$2 fueddus}})',
-'search-redirect'           => '(redirect $1)',
-'search-section'            => '(setzione $1)',
-'search-suggest'            => 'Forsis fias chirchende: $1',
-'search-interwiki-caption'  => 'Progetos frades',
-'search-interwiki-default'  => '$1 arresurtaus:',
-'search-interwiki-more'     => '(àteru)',
-'search-mwsuggest-enabled'  => 'cun impostos',
-'search-mwsuggest-disabled' => 'chentza impostos',
-'searchall'                 => 'totu',
-'showingresults'            => "Innoe sighende {{PLURAL:$1|benit amostau '''1''' arresurtau|benint amostaus '''$1''' arresurtaos}} incumentzende dae su numeru '''$2'''.",
-'showingresultstotal'       => "Sighende {{PLURAL:$4|benit amostau s'arresurtau '''$1''' de '''$3'''|benint amostaus is arresurtaos '''$1 - $2''' de '''$3'''}}",
-'nonefound'                 => "'''Annota''': sa chirca est fata pro difetu isceti in unos Nòmene-logos. 
+'noexactmatch-nocreate'          => "'''Sa pàgina tìtolada \"\$1\" no esistit.'''",
+'titlematches'                   => 'Nei titoli degli articoli',
+'notitlematches'                 => 'Peruna currispondentzia de is tìtulos de pàgina',
+'textmatches'                    => 'Nel testo degli articoli',
+'notextmatches'                  => "Peruna currispondèntzia in su testu de s'artìculu",
+'prevn'                          => 'cabudianos $1',
+'nextn'                          => 'imbenientes $1',
+'viewprevnext'                   => 'Càstia ($1) ($2) ($3).',
+'searchhelp-url'                 => 'Help:Agiudu',
+'searchprofile-articles-tooltip' => 'Chirca in $1',
+'searchprofile-project-tooltip'  => 'Chirca in $1',
+'searchprofile-images-tooltip'   => 'Chirca files',
+'search-result-size'             => '$1 ({{PLURAL:$2|1 fueddu|$2 fueddus}})',
+'search-redirect'                => '(redirect $1)',
+'search-section'                 => '(setzione $1)',
+'search-suggest'                 => 'Forsis fias chirchende: $1',
+'search-interwiki-caption'       => 'Progetos frades',
+'search-interwiki-default'       => '$1 arresurtaus:',
+'search-interwiki-more'          => '(àteru)',
+'search-mwsuggest-enabled'       => 'cun impostos',
+'search-mwsuggest-disabled'      => 'chentza impostos',
+'searchall'                      => 'totu',
+'showingresults'                 => "Innoe sighende {{PLURAL:$1|benit amostau '''1''' arresurtau|benint amostaus '''$1''' arresurtaos}} incumentzende dae su numeru '''$2'''.",
+'showingresultstotal'            => "Sighende {{PLURAL:$4|benit amostau s'arresurtau '''$1''' de '''$3'''|benint amostaus is arresurtaos '''$1 - $2''' de '''$3'''}}",
+'nonefound'                      => "'''Annota''': sa chirca est fata pro difetu isceti in unos Nòmene-logos. 
 Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàginas de cuntierra, template, etc), oppuru sciobera comente prefissu su pretzisu Nòmene-logu chi boles.",
-'powersearch'               => 'Chirca',
-'powersearch-legend'        => 'Chirca avantzada',
-'powersearch-ns'            => 'Chirca in su Nòmene-logu:',
-'powersearch-redir'         => 'Lista re-indiritzamentos',
-'powersearch-field'         => 'Chirca',
+'powersearch'                    => 'Chirca',
+'powersearch-legend'             => 'Chirca avantzada',
+'powersearch-ns'                 => 'Chirca in su Nòmene-logu:',
+'powersearch-redir'              => 'Lista re-indiritzamentos',
+'powersearch-field'              => 'Chirca',
 
 # Quickbar
 'qbsettings'               => 'Settaggio della barra menu',
@@ -547,11 +558,15 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 # Preferences page
 'preferences'           => 'Preferèntzias',
 'mypreferences'         => 'Preferèntzias meas',
+'prefs-edits'           => 'Nùmeru de acontzos:',
 'prefsnologin'          => 'Non ses intrau',
 'prefsnologintext'      => 'Depis èssere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} intrau]</span> pro scioberai is preferèntzias.',
 'changepassword'        => 'Càmbia password',
 'prefs-skin'            => 'Bisura',
+'skin-preview'          => 'Antiprima',
+'prefs-datetime'        => 'Data e ora',
 'prefs-watchlist'       => 'Watchlist',
+'prefs-resetpass'       => 'Càmbia password',
 'saveprefs'             => 'Sarva preferèntzias',
 'resetprefs'            => 'Resetta preferenze',
 'prefs-editing'         => 'Box de acontzadura',
@@ -568,6 +583,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'timezoneregion-africa' => 'Àfrica',
 'timezoneregion-asia'   => 'Àsia',
 'timezoneregion-europe' => 'Europa',
+'prefs-files'           => 'Files',
 'youremail'             => 'E-mail:',
 'username'              => 'Nòmene usuàriu:',
 'uid'                   => 'ID usuàriu:',
@@ -649,6 +665,7 @@ Is pàginas de sa [[Special:Watchlist|watchlist tua]] sunt in '''grassetu'''.",
 
 # Upload
 'upload'            => 'Carriga file',
+'uploadbtn'         => 'Carriga file',
 'reupload'          => 'Torra a carrigai',
 'reuploaddesc'      => 'Torra a su mòdulu pro su carrigamentu.',
 'uploadnologin'     => 'Non ses intrau',
@@ -668,18 +685,27 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 'filedesc'          => 'Ogetu',
 'uploadedfiles'     => 'Files carrigaus',
 'badfilename'       => 'Il nome del file immagine è stato convertito in "$1".',
+'fileexists-thumb'  => "<center>'''File pre-esistente'''</center>",
 'successfulupload'  => 'Carrigamentu acabau',
 'uploadwarning'     => 'Avvisu de carrigamentu',
 'savefile'          => 'Sarva file',
 'uploadedimage'     => 'carrigadu "[[$1]]"',
 
+'upload-file-error' => 'Faddina a intru',
+
 # Special:ListFiles
-'listfiles'      => 'Lista de is files',
-'listfiles_user' => 'Usuàriu',
+'imgfile'               => 'file',
+'listfiles'             => 'Lista de is files',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nòmene',
+'listfiles_user'        => 'Usuàriu',
+'listfiles_description' => 'Descritzione',
+'listfiles_count'       => 'Versiones',
 
 # File description page
 'filehist'                  => 'Istòria de su file',
 'filehist-help'             => 'Craca unu grupu data/ora pro castiari su file comente si presentada in su tempus indicau.',
+'filehist-deleteall'        => 'fùlia totu',
 'filehist-current'          => 'currente',
 'filehist-datetime'         => 'Data/Ora',
 'filehist-thumb'            => 'Miniatura',
@@ -700,7 +726,11 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 
 # File deletion
 'filedelete-backlink' => '← $1',
+'filedelete-submit'   => 'Fùlia',
 'filedelete-success'  => "Su file '''$1''' est istadu fuliau.",
+
+# MIME search
+'download' => 'scàrriga',
 
 # List redirects
 'listredirects' => 'Lista de totu is redirects',
@@ -718,8 +748,10 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 'doubleredirectstext' => '<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br />
 Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene il "reale" articolo di destinazione, quello al quale anche il primo redirect dovrebbe puntare.',
 
-'brokenredirects'     => 'Redirects isballiaus',
-'brokenredirectstext' => 'Custus redirects ligant cun pàginas chi no esistint.',
+'brokenredirects'        => 'Redirects isballiaus',
+'brokenredirectstext'    => 'Custus redirects ligant cun pàginas chi no esistint.',
+'brokenredirects-edit'   => '(acontza)',
+'brokenredirects-delete' => '(fùlia)',
 
 'withoutinterwiki-submit' => 'Amosta',
 
@@ -826,6 +858,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'watching'   => 'Aciungendi a sa watchlist...',
 'unwatching' => 'Tirendi dae sa watchlist...',
 
+'enotif_newpagetext'           => 'Custa est una pàgina noa.',
 'enotif_impersonal_salutation' => 'Usuàriu de {{SITENAME}}',
 
 # Delete
@@ -880,6 +913,7 @@ Is impostatziones atuales pro sa pàgina '''$1''':",
 'protect-expiring'            => 'Iscadèntzia: $1 (UTC)',
 'protect-cascade'             => 'Ampara totu is pàginas inclùdias in custa (amparadura ricorsiva)',
 'protect-cantedit'            => 'Non podes cambiare is livellus de amparadura pro sa pàgina, pro ite non tenes su permissu de acontzare sa pàgina etotu.',
+'protect-expiry-options'      => '1 ora:1 hour,1 die:1 day,1 chida:1 week,2 chidas:2 weeks,1 mese:1 month,3 meses:3 months,6 meses:6 months,1 annu:1 year,infinidu:infinite',
 'restriction-type'            => 'Permissu:',
 'restriction-level'           => 'Livellu de restritzioni:',
 'pagesize'                    => '(bytes)',
@@ -969,6 +1003,7 @@ Abàida sa [[Special:IPBlockList|lista de IP bloccados]] pro bider sas bloccadur
 'blocklogentry'            => 'bloccau [[$1]] pro unu tempu de $2 $3',
 'unblocklogentry'          => 'at sbloccau $1',
 'block-log-flags-nocreate' => 'creatzione account bloccada',
+'proxyblocksuccess'        => 'Fatu.',
 'sorbs'                    => 'DNSBL',
 
 # Developer tools
@@ -1033,8 +1068,14 @@ Pro pregheri scebera un àteru nòmene.',
 'export'          => 'Esporta pàginas',
 'export-download' => 'Sarva comente file',
 
+# Namespace 8 related
+'allmessagesname' => 'Nòmene',
+
 # Thumbnails
 'thumbnail-more' => 'Amannia',
+
+# Special:Import
+'import-comment' => 'Cummentu:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Sa pàgina usuàriu tua',
