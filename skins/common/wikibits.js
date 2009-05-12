@@ -49,8 +49,9 @@ function hookEvent(hookName, hookFunct) {
 }
 
 function importScript(page) {
+	// TODO: might want to introduce a utility function to match wfUrlencode() in PHP
 	var uri = wgScript + '?title=' +
-		encodeURIComponent(page.replace(/ /g,'_')).replace('%2F','/').replace('%3A',':') +
+		encodeURIComponent(page.replace(/ /g,'_')).replace(/%2F/ig,'/').replace(/%3A/ig,':') +
 		'&action=raw&ctype=text/javascript';
 	return importScriptURI(uri);
 }
