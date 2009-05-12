@@ -148,6 +148,7 @@ changes to languages because of MediaZilla reports.
 
 * (bug 18474) Sorani (ckb - Central Kurdish) (renamed from ku-arab)
 * Add PLURAL function for Scots Gaelic (gd)
+* Add Estonian letters äöõšüž to linktrail (et)
 
 == Compatibility ==
 
