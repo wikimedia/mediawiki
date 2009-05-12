@@ -53,7 +53,7 @@ $magicWords = array(
 );
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
-$linkTrail = "/^([a-z]+)(.*)\$/sD";
+$linkTrail = '/^([äöõšüža-z]+)(.*)$/sDu';
 
 $datePreferences = array(
 	'default',
