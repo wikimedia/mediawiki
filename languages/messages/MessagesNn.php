@@ -1104,8 +1104,8 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'searchmenu-new'                   => "'''Opprett sida «[[:$1|$1]]» på denne wikien!'''",
 'searchhelp-url'                   => 'Help:Innhald',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Sjå gjennom alle sider med denne forstavinga]]',
-'searchprofile-articles'           => 'Innhaldssider',
-'searchprofile-project'            => 'Prosjektsider',
+'searchprofile-articles'           => 'Artiklar',
+'searchprofile-project'            => 'Hjelp',
 'searchprofile-images'             => 'Multimedia',
 'searchprofile-everything'         => 'Alt',
 'searchprofile-advanced'           => 'Avansert',
@@ -1817,16 +1817,18 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'newuserlog-autocreate-entry' => 'Konto oppretta automatisk',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Rettar for brukargrupper',
-'listgrouprights-summary'         => 'Følgjande liste viser brukargruppene som er definert på denne wikien, og kvar rettar dei har. Meir informasjon om dei ulike rettane ein kan ha finn ein [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
-'listgrouprights-group'           => 'Gruppe',
-'listgrouprights-rights'          => 'Tilgangar',
-'listgrouprights-helppage'        => 'Help:Gruppetilgangar',
-'listgrouprights-members'         => '(liste over medlemmer)',
-'listgrouprights-addgroup'        => 'Kan leggje til {{PLURAL:$2|gruppa|gruppene}}: $1',
-'listgrouprights-removegroup'     => 'Kan fjerne {{PLURAL:$2|gruppa|gruppene}}: $1',
-'listgrouprights-addgroup-all'    => 'Kan leggje til alle grupper',
-'listgrouprights-removegroup-all' => 'Kan fjerne alle grupper',
+'listgrouprights'                      => 'Rettar for brukargrupper',
+'listgrouprights-summary'              => 'Følgjande liste viser brukargruppene som er definert på denne wikien, og kvar rettar dei har. Meir informasjon om dei ulike rettane ein kan ha finn ein [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
+'listgrouprights-group'                => 'Gruppe',
+'listgrouprights-rights'               => 'Tilgangar',
+'listgrouprights-helppage'             => 'Help:Gruppetilgangar',
+'listgrouprights-members'              => '(liste over medlemmer)',
+'listgrouprights-addgroup'             => 'Kan leggje til {{PLURAL:$2|gruppa|gruppene}}: $1',
+'listgrouprights-removegroup'          => 'Kan fjerne {{PLURAL:$2|gruppa|gruppene}}: $1',
+'listgrouprights-addgroup-all'         => 'Kan leggje til alle grupper',
+'listgrouprights-removegroup-all'      => 'Kan fjerne alle grupper',
+'listgrouprights-addgroup-self-all'    => 'Kan leggja til alle gruppene til sin eigen konto',
+'listgrouprights-removegroup-self-all' => 'Kan ta vekk alle gruppene frå sin eigen konto',
 
 # E-mail user
 'mailnologin'      => 'Inga avsendaradresse',
@@ -2882,6 +2884,7 @@ Dei andre felta er gøymde som standard.
 
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => 'Kilometer',
+'exif-gpsdestdistance-m' => 'Miles',
 'exif-gpsdestdistance-n' => 'Nautiske mil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
@@ -3118,6 +3121,10 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'dberr-cachederror' => 'Fylgjande er ein mellomlagra kopi av den etterspurde sida, og er, kan henda, ikkje den siste versjonen av ho.',
 
 # HTML forms
+'htmlform-int-invalid'         => 'Verdien du valde er ikkje eit heiltal.',
+'htmlform-int-toolow'          => 'Verdien du valde er under minstetalet på $1',
+'htmlform-int-toohigh'         => 'Verdien du valde er over høgste moglege tal $1',
+'htmlform-submit'              => 'Lagre',
 'htmlform-reset'               => 'Gjer om endringar',
 'htmlform-selectorother-other' => 'Andre',
 

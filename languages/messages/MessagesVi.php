@@ -1931,9 +1931,7 @@ Phản hồi và cần sự hỗ trợ:
 'excontentauthor'        => 'nội dung cũ: “$1” (người viết duy nhất “[[Special:Contributions/$2|$2]]”)',
 'exbeforeblank'          => 'nội dung trước khi tẩy trống: “$1”',
 'exblank'                => 'trang trắng',
-'delete-confirm'         => '
-
-Xóa “$1”',
+'delete-confirm'         => 'Xóa “$1”',
 'delete-legend'          => 'Xóa',
 'historywarning'         => 'Cảnh báo: Trang bạn sắp xóa đã có lịch sử:',
 'confirmdeletetext'      => 'Bạn sắp xóa hẳn một trang cùng với tất cả lịch sử của nó.

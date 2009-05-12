@@ -1858,7 +1858,7 @@ PICT # misc.
 # Watchlist
 'watchlist'            => 'ウォッチリスト',
 'mywatchlist'          => 'ウォッチリスト',
-'watchlistfor'         => "('''$1''')",
+'watchlistfor'         => "(利用者: '''$1''')",
 'nowatchlist'          => 'あなたのウォッチリストは空です。',
 'watchlistanontext'    => 'ウォッチリストに入っている項目を表示・編集するには $1 してください。',
 'watchnologin'         => 'ログインしていません',
@@ -2086,7 +2086,7 @@ $NEWPAGE
 'contributions'       => '利用者の投稿記録',
 'contributions-title' => '$1 の投稿記録',
 'mycontris'           => '自分の投稿記録',
-'contribsub2'         => '利用者名: $1 ($2)',
+'contribsub2'         => '利用者: $1 ($2)',
 'nocontribs'          => '利用者の投稿記録は見つかりませんでした。',
 'uctop'               => '(最新)',
 'month'               => '月:',

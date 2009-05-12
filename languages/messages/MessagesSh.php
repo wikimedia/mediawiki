@@ -119,6 +119,8 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Stranica',
 'nstab-special'  => 'Posebna stranica',
+'nstab-image'    => 'Datoteka',
+'nstab-template' => 'Šablon',
 'nstab-category' => 'Kategorija',
 
 # General errors
@@ -195,6 +197,8 @@ Vaše izmjene još uvijek nisu snimljene!",
 Ukoliko ne želite da vaše pisanje bude nemilosrdno uređivano i redistribuirano po tuđoj volji, onda ga nemojte ovdje objavljivati.<br />
 Također obećavate kako ste ga napisali sami ili kopirali iz izvora u javnoj domeni ili sličnog slobodnog izvora.
 '''NEMOJTE SLATI RAD ZAŠTIĆEN AUTORSKIM PRAVIMA BEZ DOZVOLE!'''",
+'templatesused'                    => 'Šabloni korišteni na ovoj stranici:',
+'templatesusedpreview'             => 'Šabloni korišteni u ovom pretpregledu:',
 'template-protected'               => '(zaštićeno)',
 'template-semiprotected'           => '(polu-zaštićeno)',
 'hiddencategories'                 => 'Ova stranica pripada {{PLURAL:$1|1 skrivenoj kategoriji|$1 skrivenim kategorijama}}:',
