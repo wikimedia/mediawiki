@@ -156,6 +156,7 @@ $wgUpdates = array(
 		array( 'add_table', 'tag_summary',			   'patch-change_tag.sql' ),
 		array( 'add_table', 'valid_tag',			   'patch-change_tag.sql' ),
 		array( 'add_table', 'user_properties',		   'patch-user_properties.sql' ),
+		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
 	),
 
 	'sqlite' => array(
