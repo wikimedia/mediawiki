@@ -1124,6 +1124,18 @@ CREATE INDEX /*i*/page_time ON /*_*/logging (log_namespace, log_title, log_times
 CREATE INDEX /*i*/times ON /*_*/logging (log_timestamp);
 
 
+CREATE TABLE /*_*/log_search (
+	-- The type of ID (rev ID, log ID, rev timestamp, username)
+	ls_field varbinary(32) NOT NULL,
+	-- The value of the ID
+	ls_value varchar(255) NOT NULL,
+	-- Key to log_id
+	ls_log_id int unsigned NOT NULL default 0,
+	PRIMARY KEY (ls_field,ls_value,ls_log_id)
+);
+CREATE INDEX /*i*/ls_log_id ON /*_*/log_search (ls_log_id);
+
+
 CREATE TABLE /*_*/trackbacks (
   tb_id int PRIMARY KEY AUTO_INCREMENT,
   tb_page int REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
