@@ -851,7 +851,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$dbw = wfGetDB( DB_MASTER );
 		// Don't allow simply locking the interface for no reason
 		if( $bitfield == Revision::DELETED_RESTRICTED ) {
-			$bitfield = 0;
+			return false;
 		}
 		$deleter = new RevisionDeleter( $dbw );
 		// By this point, only one of the below should be set
