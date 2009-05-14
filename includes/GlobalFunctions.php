@@ -2064,6 +2064,8 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	if( strval( $dir ) === '' || file_exists( $dir ) )
 		return true;
 
+	$dir = str_replace( array( '\\', '/' ), DIRECTORY_SEPARATOR, $dir );
+
 	if ( is_null( $mode ) )
 		$mode = $wgDirectoryMode;
 

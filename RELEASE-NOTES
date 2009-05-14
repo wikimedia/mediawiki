@@ -117,6 +117,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18718) Comma after a } create a error in IE
 * (bug 18716) Removed redundant class in Modern skin CSS for category links and
   tweaked spacing.
+* (bug 18656) Use proper directory separators in wfMkdirParents()
 
 == API changes in 1.16 ==
 
