@@ -44,6 +44,15 @@ function migrate_log_params( $db ) {
 				// Param format: <urlparam> <item CSV> [<ofield> <nfield>]
 				if( count($params) >= 2 ) {
 					$field = RevisionDeleter::getRelationType($params[0]);
+					// B/C, the params may start with a title key
+					if( $field == null ) {
+						array_shift($params);
+						$field = RevisionDeleter::getRelationType($params[0]);
+					}
+					if( $field == null ) {
+						echo "Invalid param type for $row->log_id";
+						continue; // skip this row
+					}
 					$items = explode(',',$params[1]);
 					$log = new LogPage( $row->log_type );
 					$log->addRelations( $field, $items, $row->log_id );
