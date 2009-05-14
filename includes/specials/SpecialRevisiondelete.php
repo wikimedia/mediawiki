@@ -120,6 +120,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	}
 	
 	private function getLogQueryCond() {
+		$conds = array();
 		$logAction = 'revision';
 		switch( $this->deleteKey ) {
 			case 'oldid':
@@ -142,10 +143,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				return array();
 		}
 		// Revision delete logs for these item
-		$conds = array( 'log_action' => $logAction );
+		$conds['log_type'] = array('delete','suppress');
+		$conds['log_action'] = $logAction;
 		$conds['ls_field'] = RevisionDeleter::getRelationType( $this->deleteKey );
 		$conds['ls_value'] = $ids;
-		$conds[] = 'log_id = ls_log_id';
 		return $conds;
 	}
 
@@ -1527,9 +1528,12 @@ class RevisionDeleter {
 	 * @param string $param, URL param
 	 * @param Array $items
 	 */
-	function updateLog( $title, $count, $nbitfield, $obitfield, $comment, $target,
+	protected function updateLog( $title, $count, $nbitfield, $obitfield, $comment, $target,
 		$param, $items = array() )
 	{
+		// Get the URL param's corresponding DB field
+		if( !($field = self::getRelationType($param)) )
+			throw new MWException( "Bad log URL param type!" );
 		// Put things hidden from sysops in the oversight log
 		$logType = ( ($nbitfield | $obitfield) & Revision::DELETED_RESTRICTED ) ?
 			'suppress' : 'delete';
@@ -1547,7 +1551,7 @@ class RevisionDeleter {
 		$log = new LogPage( $logType );
 		$logid = $log->addEntry( $logAction, $title, $comment, $params );
 		// Allow for easy searching of deletion log items for revision/log items
-		$log->addRelations( self::getRelationType($param), $items, $logid );
+		$log->addRelations( $field, $items, $logid );
 	}
 	
 	// Get DB field name for URL param...
@@ -1566,6 +1570,6 @@ class RevisionDeleter {
 			case 'logid':
 				return 'log_id';
 		}
-		throw new MWException( "Bad log URL param type!" );
+		return null; // bad URL type
 	}
 }

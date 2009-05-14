@@ -653,11 +653,13 @@ class LogPager extends ReverseChronologicalPager {
 	public function getQueryInfo() {
 		$tables = array( 'logging', 'user' );
 		$this->mConds[] = 'user_id = log_user';
+		$groupBy = false;
 		$index = array();
 		# Add log_search table if there are conditions on it
 		if( array_key_exists('ls_field',$this->mConds) ) {
 			$tables[] = 'log_search';
 			$index = array( 'log_search' => 'PRIMARY', 'logging' => 'PRIMARY' );
+			$groupBy = 'ls_log_id';
 		# Don't use the wrong logging index
 		} else if( $this->title || $this->pattern || $this->user ) {
 			$index = array( 'logging' => array('page_time','user_time') );
@@ -666,16 +668,22 @@ class LogPager extends ReverseChronologicalPager {
 		} else {
 			$index = array( 'logging' => 'times' );
 		}
+		$options = array( 'USE INDEX' => $index );
+		# Don't show duplicate rows when using log_search
+		if( $groupBy ) $options['GROUP BY'] = $groupBy;
 		$info = array(
-			'tables' => $tables,
-			'fields' => array( 'log_type', 'log_action', 'log_user', 'log_namespace', 'log_title', 'log_params',
-				'log_comment', 'log_id', 'log_deleted', 'log_timestamp', 'user_name', 'user_editcount' ),
-			'conds' => $this->mConds,
-			'options' => array( 'USE INDEX' => $index ),
-			'join_conds' => array( 'user' => array( 'INNER JOIN', 'user_id=log_user' ),
-				'log_search' => array( 'INNER JOIN', 'ls_log_id=log_id' ) ),
+			'tables'     => $tables,
+			'fields'     => array( 'log_type', 'log_action', 'log_user', 'log_namespace',
+				'log_title', 'log_params', 'log_comment', 'log_id', 'log_deleted',
+				'log_timestamp', 'user_name', 'user_editcount' ),
+			'conds'      => $this->mConds,
+			'options'    => $options,
+			'join_conds' => array( 
+				'user' => array( 'INNER JOIN', 'user_id=log_user' ),
+				'log_search' => array( 'INNER JOIN', 'ls_log_id=log_id' )
+			)
 		);
-
+		# Add ChangeTags filter query
 		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'],
 			$info['join_conds'], $info['options'], $this->mTagFilter );
 
