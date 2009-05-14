@@ -607,13 +607,8 @@ img.thumbborder {
 .catlinks {
 	border: solid 1px #bbbbbb;
 	background-color: #f0f0f0;
-	padding: 0.5em 0.5em 0.5em 0.5em;
+	padding: 0.1em 0.3em 0.1em 0.3em;
 	margin: 0 0 0 0;
-}
-
-.catlinks {
-	margin: 0 0 0 0;
-	padding: 0 0 0 0;
 }
 
 #mw_header h1,
