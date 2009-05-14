@@ -158,6 +158,7 @@ $wgUpdates = array(
 		array( 'add_table', 'valid_tag',			   'patch-change_tag.sql' ),
 		array( 'add_table', 'user_properties',		   'patch-user_properties.sql' ),
 		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
+		array( 'do_log_search_population' ),
 	),
 
 	'sqlite' => array(
@@ -1303,6 +1304,21 @@ function do_unique_pl_tl_il() {
 		dbsource( archive( 'patch-pl-tl-il-unique.sql' ), $wgDatabase );
 		wfOut( "ok\n" );
 	}
+}
+
+function do_log_search_population() {
+	if( update_row_exists( 'populate log_search' ) ) {
+		wfOut( "...log_search table already populated.\n" );
+		return;
+	}
+	require_once( 'populateLogSearch.inc' );
+	wfOut(
+"Populating log_search table, printing progress markers. For large\n" .
+"databases, you may want to hit Ctrl-C and do this manually with\n" .
+"maintenance/populateLogSearch.php.\n" );
+	$db =& wfGetDB( DB_MASTER );
+	migrate_log_params( $db );
+	wfOut( "Done populating log_search table.\n" );
 }
 
 /***********************************************************************
