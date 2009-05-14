@@ -38,6 +38,7 @@ $wgUpdates = array(
 		array( 'add_table', 'categorylinks',                     'patch-categorylinks.sql' ),
 		// do_linkscc_1_3_update obsolete
 		array( 'do_old_links_update' ),
+		array( 'fix_ancient_imagelinks' ),
 		array( 'add_field', 'recentchanges', 'rc_ip',            'patch-rc_ip.sql' ),
 		
 		// 1.4
@@ -781,6 +782,19 @@ function do_old_links_update() {
 		wfOut( "Already have pagelinks; skipping old links table updates.\n" );
 	} else {
 		convertLinks(); flush();
+	}
+}
+
+function fix_ancient_imagelinks() {
+	global $wgDatabase;
+	$info = $wgDatabase->fieldInfo( 'imagelinks', 'il_from' );
+	if ( $info && $info->type() === 'string' ) {
+		wfOut( "Fixing ancient broken imagelinks table.\n" );
+		wfOut( "NOTE: you will have to run maintenance/refreshLinks.php after this.\n" );
+		dbsource( archive( 'patch-fix-il_from.sql' ) );
+		wfOut( "ok\n" );
+	} else {
+		wfOut( "...il_from OK\n" );
 	}
 }
 
