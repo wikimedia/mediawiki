@@ -289,7 +289,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ($this->fld_patrolled && $row->rc_patrolled)
 			$vals['patrolled'] = '';
 		
-		if ($this->fld_size )
+		if ( $this->fld_size && !is_null( $this->fld_size ) )
 			$vals['size'] = intval($row->rev_len);
 
 		return $vals;
