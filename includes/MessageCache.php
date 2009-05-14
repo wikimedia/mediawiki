@@ -527,6 +527,8 @@ class MessageCache {
 			}
 			$message = $this->getMsgFromNamespace( $title, $langcode );
 		}
+		if($message === false)
+			wfRunHooks('MessageNotInMwNs', array(&$message,$lckey,$langcode,$isFullKey));
 
 		# Try the extension array
 		if ( $message === false && isset( $this->mExtensionMessages[$langcode][$lckey] ) ) {
