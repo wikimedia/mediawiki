@@ -1307,6 +1307,7 @@ function do_unique_pl_tl_il() {
 }
 
 function do_log_search_population() {
+	global $wgDatabase;
 	if( update_row_exists( 'populate log_search' ) ) {
 		wfOut( "...log_search table already populated.\n" );
 		return;
@@ -1316,8 +1317,7 @@ function do_log_search_population() {
 "Populating log_search table, printing progress markers. For large\n" .
 "databases, you may want to hit Ctrl-C and do this manually with\n" .
 "maintenance/populateLogSearch.php.\n" );
-	$db =& wfGetDB( DB_MASTER );
-	migrate_log_params( $db );
+	migrate_log_params( $wgDatabase );
 	wfOut( "Done populating log_search table.\n" );
 }
 
