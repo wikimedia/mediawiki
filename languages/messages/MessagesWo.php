@@ -555,17 +555,19 @@ Man ngaa jokkoo ak $1 walla kenn ci [[{{MediaWiki:Grouppage-sysop}}|yorkat]] yi 
 Te nga jàpp ne jumtukaay bii di "yónne bataaxal bii jëfandikukat" du dox su fekke dugaluloo ab m-bataaxal ci say [[Special:Preferences|tànneef]].
 Sa màkkaanu IP mooy $3, xammeekaayu téye gi moy #$5.
 Di la sakku nga dugal leen fépp fuñ la leen laajee',
-'autoblockedtext'                  => 'Bii màkkaanu IP dañ kaa téye ndaxte danga koo bokk ak beneen jëfandikukat, te moom it $1 moo ko téye $1.
+'autoblockedtext'                  => 'Sa màkkaanu IP dañ kaa téye ndaxte danga koo bokk ak beneen jëfandikukat, te moom it $1 moo ko téye $1.
 Te lii mooy ngirte yi mu joxe :
 
 :\'\'$2\'\'
 
 * Ndoorteelu téye gi: $8
 * Njeextalu téye gi : $6
+* Sàq mees téye: $7
+
 
 Man ngaa jookkook $1 walla ak kenn ci [[{{MediaWiki:Grouppage-sysop}}|yorkat]] yi ngir waxtaan ci téye gi.
 
-Su fekkee joxe nga ab màkkaanu m-bataaxal ci say [[Special:Preferences|tànneef]] te terewuñula nga jëfandikoo ko, man ngaa jëfandikoo jumtukaay bii di "yónne ab m-bataaxal bii jëfandikukat" ngir jookkook ab yorkat.
+Su fekkee joxe nga ab màkkaanu m-bataaxal ci say [[Special:Preferences|tànneef]] te terewuñu la nga jëfandikoo ko, man ngaa jëfandikoo jumtukaay bii di "yónne ab m-bataaxal bii jëfandikukat" ngir jookkook ab yorkat.
 
 Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen fuñu la leen laajee.',
 'blockednoreason'                  => 'Joxewul benn ngirte',
@@ -734,7 +736,7 @@ Li nga doon yorkat tax na nga man a [$1 xool bii diff] su la neexee.",
 'revdelete-nooldid-text'      => 'Waxoo ci ban sumb bu xët wii ngay amal solo sii.',
 'revdelete-nologtype-title'   => 'Joxewoo benn xeetu yéenekaay',
 'revdelete-nologtype-text'    => 'Waxoo ci ban xeetu yéenekaay ngay amal jëf jii.',
-'revdelete-nologid-title'     => 'Duggitu yéenekaay bi baaxul',
+'revdelete-nologid-title'     => 'Duggiitu yéenekaay bi baaxul',
 'revdelete-selected'          => "'''{{PLURAL:$2|Sumbum '''$1''' mi falu|Sumbi '''$1''' yi falu}} :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Xew-xewu yéenekaay bi falu|Xew-xewi yéenekaay yi falu}}:'''",
 'revdelete-text'              => "'''Sumb yi nga far dañuy wéy di feeñ ci jaar-jaaru xët wi, waaye mbind yi ñu ëmb ñépp duñ leen man a gis.'''
@@ -951,6 +953,7 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'prefs-email'               => 'Tànneefi m-bataaxal',
 'saveprefs'                 => 'Wattu',
 'resetprefs'                => 'Loppanti tànneef yi',
+'restoreprefs'              => 'Delloo say tànneef nañu meloon ca sag mbindu',
 'prefs-editing'             => 'Boyotu coppite',
 'prefs-edit-boxsize'        => 'Dayoo palanteeru coppite bi.',
 'rows'                      => 'Rëdd:',
@@ -959,10 +962,13 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'resultsperpage'            => 'Limu ngérte ci xët wu ne :',
 'contextlines'              => 'Limu rëdd ci tont wu ne :',
 'recentchangesdays'         => 'Limu bes yi nga koy wone ci coppite yu mujj yi :',
+'recentchangesdays-max'     => '(bi ëpp $1 {{PLURAL:$1|bés|bés}})',
 'recentchangescount'        => 'Limu coppite yi ngay wone ci coppite yu mujj yi, xëti jaar-jaar ak dencu yi, cig tëralnjëkk   :',
-'savedprefs'                => 'Say tànneef dencees nañu leen.',
+'savedprefs'                => 'Say tànneef wattu nañu leen.',
 'timezonelegend'            => 'Waxtug barab',
 'localtime'                 => 'Waxtug barab:',
+'timezoneuseserverdefault'  => 'Jëfandikoo waxtuw joxekaay bi',
+'timezoneuseoffset'         => 'Yeneen (waxaaleel wuute gi)',
 'timezoneoffset'            => 'Wuute¹ :',
 'servertime'                => 'Waxtu joxekaay bi :',
 'guesstimezone'             => 'Jëfandikoo waxtuw sa joowukaay',
@@ -1091,13 +1097,17 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'right-override-export-depth' => 'génne ay xët yu ëmbi xët yu lëkkaloo ba-ci xóotaay bu tolluwaayam àgg 5',
 
 # User rights log
-'rightslog' => 'Sañ-sañi jëfandikukat',
+'rightslog'      => 'Sañ-sañi jëfandikukat',
+'rightslogtext'  => 'Lii di toftal limu jaar-jaaru coppitey sañ-sañi jëfandikukat yi.',
+'rightslogentry' => 'moo jële jëfandikukat bii di « $1 » ci mbooloo  $2  yóbb ko ci $3',
+'rightsnone'     => '(menn)',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-read'                 => 'jàng wii xët',
 'action-edit'                 => 'soppi xët wii',
-'action-createpage'           => 'Sos ay xët',
-'action-createtalk'           => 'sos ay xëti waxtaanuwaay',
-'action-createaccount'        => 'sos mii saqum jëfandikukat',
+'action-createpage'           => 'Sosi xët',
+'action-createtalk'           => 'sos xëti waxtaanuwaay',
+'action-createaccount'        => 'sos mii sàqum jëfandikukat',
 'action-minoredit'            => 'fésal gii coppite niki gu néewal',
 'action-move'                 => 'tuddewaat wii xët',
 'action-move-subpages'        => 'tuddewaat wii xët aki ron-xëtam',
@@ -1344,6 +1354,8 @@ Bul fattee seet baxam amul yeneen lëkkalekaay yu lay jëmale ci royuwaay yi bal
 'statistics-users-active'      => 'Jëfandikukat yu yëngu',
 'statistics-users-active-desc' => 'Jëfandikukat yi amal ag yëngu-yëngu ci {{PLURAL:$1|bés bu mujj bi|$1 bés yu mujj yi}}',
 'statistics-mostpopular'       => 'Xët yi ñu gën a saytu',
+
+'doubleredirects' => 'Jubluwaat ñaari yoon',
 
 'brokenredirectstext'    => "Yoonalaat yii dañuy jëmee ci'y xët yu amul :",
 'brokenredirects-edit'   => '(Soppi)',

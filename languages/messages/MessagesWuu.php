@@ -363,6 +363,7 @@ $messages = array(
 'nextn'                     => '下个 $1',
 'viewprevnext'              => '查看 ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:目录',
+'search-result-size'        => '$1（$2字）',
 'search-mwsuggest-enabled'  => '与建议',
 'search-mwsuggest-disabled' => ' 没有建议',
 'powersearch'               => '高级搜索',
@@ -741,6 +742,7 @@ $messages = array(
 'tooltip-ca-delete'          => '删脱该只页面',
 'tooltip-ca-move'            => '移动该只页面',
 'tooltip-search'             => '搜寻{{SITENAME}}',
+'tooltip-search-go'          => '转到页本确切名称，如果存在',
 'tooltip-p-logo'             => '封面',
 'tooltip-n-mainpage'         => '进入封面',
 'tooltip-n-portal'           => '关于本计划，可以做什么，应该如何做',
@@ -779,6 +781,13 @@ $messages = array(
 'newimages'    => '新文件陈列室',
 'showhidebots' => '（$1机器人）',
 'ilsubmit'     => '搜寻',
+
+# Bad image list
+'bad_image_list' => '格式如下：
+
+只列出项目（线开始* ）的审议。
+第一个环节上线必须是一个链接到一个坏文件。
+其后的任何链接在同一行被认为是例外情况，即网页的文件，则可能会发生内部。',
 
 /*
 Short names for language variants used for language conversion links.

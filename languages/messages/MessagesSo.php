@@ -588,6 +588,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-delete'          => 'Bogaan tirtir',
 'tooltip-ca-undelete'        => "Sooceli qoraaladii lagu sameeyay boggaan intii aanan la'tirtirin ka hor",
 'tooltip-ca-move'            => 'Wareeji boggaan',
+'tooltip-search'             => 'Raadi{{SITENAME}}',
 'tooltip-p-logo'             => 'Bogga Hore',
 'tooltip-n-mainpage'         => 'Soo booqo bogga hore',
 'tooltip-n-portal'           => 'Faahfaahinta mashruuca, waxaad ku caawinkartid, xageed ka helikartaa waxaad u baahantahay',

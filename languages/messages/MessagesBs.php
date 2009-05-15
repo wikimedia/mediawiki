@@ -466,7 +466,7 @@ $messages = array(
 'currentevents'        => 'Trenutni događaji',
 'currentevents-url'    => 'Project:Novosti',
 'disclaimers'          => 'Odricanje odgovornosti',
-'disclaimerpage'       => 'Project:Uslovi korišćenja, pravne napomene i odricanje odgovornosti',
+'disclaimerpage'       => 'Project:Uslovi korištenja, pravne napomene i odricanje odgovornosti',
 'edithelp'             => 'Pomoć pri uređivanju stranice',
 'edithelppage'         => 'Help:Uređivanje',
 'helppage'             => 'Help:Sadržaj',
@@ -548,8 +548,7 @@ iz funkcije "$2".
 MySQL je vratio grešku "$3: $4".',
 'laggedslavemode'      => "'''Upozorenje''': Stranica, možda, nije ažurirana.",
 'readonly'             => 'Baza je zaključana',
-'enterlockreason'      => 'Unesite razlog za zaključavanje, uključujući procijenu
-vremena otključavanja',
+'enterlockreason'      => 'Unesite razlog za zaključavanje, uključujući procjenu vremena otključavanja',
 'readonlytext'         => 'Baza je trenutno zaključana za nove unose i ostale izmjene, vjerovatno zbog rutinskog održavanja, posle čega će biti vraćena u uobičajeno stanje.
 
 Administrator koji ju je zaključao je ponudio ovo objašnjenje: $1',
@@ -568,7 +567,7 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'filecopyerror'        => 'Ne može se kopirati "$1" na "$2".',
 'filerenameerror'      => 'Ne može se promjeniti ime datoteke "$1" u "$2".',
 'filedeleteerror'      => 'Ne može se izbrisati datoteka "$1".',
-'directorycreateerror' => 'Nije moguće napraviti direkciju "$1".',
+'directorycreateerror' => 'Nije moguće napraviti direktorijum "$1".',
 'filenotfound'         => 'Ne može se naći datoteka "$1".',
 'fileexistserror'      => 'Nemoguće je napisati datoteku "$1": datoteka već postoji',
 'unexpected'           => 'Neočekivana vrijednost: "$1"="$2".',
@@ -716,7 +715,7 @@ Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privrem
 'link_sample'     => 'Naslov poveznice',
 'link_tip'        => 'Unutrašnja poveznica',
 'extlink_sample'  => 'http://www.example.com opis adrese',
-'extlink_tip'     => 'Spoljašnja poveznica (zapamti prefiks http://)',
+'extlink_tip'     => 'Vanjski link (zapamti prefiks http://)',
 'headline_sample' => 'Naslov',
 'headline_tip'    => 'Podnaslov',
 'math_sample'     => 'Unesite formulu ovdje',
@@ -744,8 +743,8 @@ Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privrem
 'missingsummary'                   => "'''Napomena:''' Niste unijeli sažetak izmjene.
 Ako kliknete na Sačuvaj, Vaša izmjena će biti sačuvana bez sažetka.",
 'missingcommenttext'               => 'Molimo unesite komentar ispod.',
-'missingcommentheader'             => "'''Podsjetnik:''' Niste napisati temu/naslov za ovaj komentar.
-Ako ponovo kliknete na '''Sačuvaj članak''', vaše izmjene će biti spašene bez teme/naslova.",
+'missingcommentheader'             => "'''Podsjetnik:''' Niste napisali temu/naslov za ovaj komentar.
+Ako ponovo kliknete na '''Sačuvaj članak''', Vaše izmjene će biti spašene bez teme/naslova.",
 'summary-preview'                  => 'Pregled sažetka:',
 'subject-preview'                  => 'Pregled tema/naslova:',
 'blockedtitle'                     => 'Korisnik je blokiran',
@@ -1113,7 +1112,7 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'diff-form'                => "'''obrazac'''",
 'diff-img'                 => "'''slika'''",
 'diff-span'                => "'''span'''",
-'diff-a'                   => "'''poveznica'''",
+'diff-a'                   => "'''link'''",
 'diff-i'                   => "'''ukošeno'''",
 'diff-b'                   => "'''podebljano'''",
 'diff-strong'              => "'''jako'''",
@@ -1520,7 +1519,7 @@ Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih
 Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
 'badfilename'                 => 'Ime slike je promjenjeno u "$1".',
 'filetype-badmime'            => 'Datoteke MIME vrste "$1" nije dopušteno postavljati.',
-'filetype-bad-ie-mime'        => 'Ne može se postaviti ova datoteka jer je Internet prepoznaje kao "$1", što je nedozvoljena i potencijalno opasna vrsta datoteke.',
+'filetype-bad-ie-mime'        => 'Ne može se postaviti ova datoteka jer je Internet Explorer prepoznaje kao "$1", što je nedozvoljena i potencijalno opasna vrsta datoteke.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je nepoželjna vrsta datoteke.
 {{PLURAL:\$3|Preporučena vrsta|Preporučene vrste}} datoteke su \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' nije dopuštena vrsta datoteke.
@@ -1529,8 +1528,8 @@ Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
 'large-file'                  => 'Preporučeno je da datoteke nisu veće od $1;
 Ova datoteka je velika $2.',
 'largefileserver'             => 'Ova datoteka je veća nego što server dopušta.',
-'emptyfile'                   => 'Fajl koji ste poslali je prazan. Ovo je moguće zbog greške u imenu fajla. Molimo Vas da provjerite da li stvarno želite da pošaljete ovaj fajl.',
-'fileexists'                  => "Fajl sa ovim imenom već postoji.  Molimo Vas da provjerite '''<tt>$1</tt>''' ako niste sigurni da li želite da ga promjenite.",
+'emptyfile'                   => 'Datoteka koju ste poslali je prazna. Ovo je moguće zbog greške u imenu datoteke. Molimo Vas da provjerite da li stvarno želite da pošaljete ovu datoteku.',
+'fileexists'                  => "Datoteka sa ovim imenom već postoji. Molimo Vas da provjerite '''<tt>$1</tt>''' ako niste sigurni da li želite da je promjenite.",
 'filepageexists'              => "Opis stranice za ovu datoteku je već napravljen ovdje '''<tt>$1</tt>''', ali datoteka sa ovim nazivom trenutno ne postoji.
 Sažetak koji ste naveli neće se pojaviti na stranici opisa.
 Da bi se Vaš opis ovdje našao, potrebno je da ga ručno uredite",
@@ -1681,7 +1680,7 @@ Opis sa njene [$2 stranici opisa datoteke] je prikan ispod.',
 'filedelete-comment'          => 'Razlog brisanja:',
 'filedelete-submit'           => 'Obriši',
 'filedelete-success'          => "'''$1''' je obrisano.",
-'filedelete-success-old'      => "Verzija datoeke '''[[Media:$1|$1]]''' od $3, $2 je obrisana.",
+'filedelete-success-old'      => "Verzija datoteke '''[[Media:$1|$1]]''' od $3, $2 je obrisana.",
 'filedelete-nofile'           => "'''$1''' ne postoji.",
 'filedelete-nofile-old'       => "Ne postoji arhivirana verzija '''$1''' sa navedenim atributima.",
 'filedelete-otherreason'      => 'Ostali/dodatni razlozi:',
@@ -1738,8 +1737,8 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 'statistics-users-active-desc' => 'Korisnici koju su izvršili akciju u toku {{PLURAL:$1|zadnjeg dana|zadnja $1 dana|zadnjih $1 dana}}',
 'statistics-mostpopular'       => 'Najviše pregledane stranice',
 
-'disambiguations'      => 'Stranice za višeznačne odrednice',
-'disambiguationspage'  => '{{ns:template}}:Višeznačna odrednica',
+'disambiguations'      => 'Stranice za čvor članke',
+'disambiguationspage'  => '{{ns:template}}:Čvor',
 'disambiguations-text' => "Slijedeće stranice su povezane sa '''čvor stranicom'''.
 Po pravilu, one se trebaju povezati sa konkretnim člankom.<br />
 Stranica se smatra čvorom, ukoliko koristi šablon koji je povezan sa spiskom [[MediaWiki:Disambiguationspage|čvor stranica]]",
@@ -1920,7 +1919,7 @@ O svakoj od njih postoje i [[{{MediaWiki:Listgrouprights-helppage}}|dodatne info
 i imati ispravnu adresu e-pošte u vašim [[Special:Preferences|podešavanjima]]
 da biste slali e-poštu drugim korisnicima.',
 'emailuser'        => 'Pošalji e-poštu ovom korisniku',
-'emailpage'        => 'Pošalji e-pismo korisniku',
+'emailpage'        => 'Pošalji e-mail korisniku',
 'emailpagetext'    => 'Možete korisiti formu ispod za slanje e-mail poruka ovom korisniku.
 E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim postavkama]] će biti prikazana kao adresa pošiljaoca, tako da će primaoc poruke moći da Vam odgovori.',
 'usermailererror'  => 'Objekat pošte je vratio grešku:',
@@ -2042,7 +2041,7 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 ** Kršenje autorskih prava
 ** Vandalizam',
 'delete-edit-reasonlist' => 'Uredi razloge brisanja',
-'delete-toobig'          => 'Ova stranica ima veliku historju promjena, preko $1 {{PLURAL:$1|revizije|revizija}}.
+'delete-toobig'          => 'Ova stranica ima veliku historiju promjena, preko $1 {{PLURAL:$1|revizije|revizija}}.
 Brisanje takvih stranica nije dopušteno da bi se spriječilo slučajno preopterećenje servera na kojem je {{SITENAME}}.',
 'delete-warning-toobig'  => 'Ova stranica ima veliku historiju izmjena, preko $1 {{PLURAL:$1|izmjene|izmjena}}.
 Njeno brisanje može dovesti do opterećenja operacione baze na {{SITENAME}};
@@ -2434,12 +2433,13 @@ Da li je želite obrisati kako bi ste mogli izvršiti premještanje?',
 
 # Export
 'export'            => 'Izvezite stranice',
-'exporttext'        => 'Možete izvesti tekst i historiju jedne ili više stranica uklopljene u XML kod. U budućim verzijama MediaWiki programa bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutna verzija to još ne podržava.
+'exporttext'        => 'Možete izvesti tekst i historiju jedne ili više stranica uklopljene u XML kod.
+Ovo se može uvesti u drugi wiki koristeći MediaWiki preko [[Special:Import|stranice uvoza]].
 
-Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutačnu verziju zajedno sa svim prijašnjima, ili samo trenutnu verziju sa informacijom o zadnjoj promjeni.
+Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutnu verziju zajedno sa svim ranijim, ili samo trenutnu verziju sa informacijom o zadnjoj promjeni.
 
-U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za članak [[{{MediaWiki:Mainpage}}]].',
-'exportcuronly'     => 'Uključite samo trenutnu reviziju, ne cijelu istoriju',
+U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za stranicu [[{{MediaWiki:Mainpage}}]].',
+'exportcuronly'     => 'Uključite samo trenutnu reviziju, ne cijelu historiju',
 'exportnohistory'   => "----
 '''Pažnja:''' Izvoz cjelokupne historije stranica preko ovog obrasca je onemogućeno iz tehničkih razloga.",
 'export-submit'     => 'Izvezi',
@@ -2464,7 +2464,7 @@ Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MedijaViki lokaliza
 
 # Thumbnails
 'thumbnail-more'           => 'uvećajte',
-'filemissing'              => 'Nedostaje fajl',
+'filemissing'              => 'Nedostaje datoteka',
 'thumbnail_error'          => 'Greška pri pravljenju umanjene slike: $1',
 'djvu_page_error'          => 'DjVu stranica je van opsega',
 'djvu_no_xml'              => 'Za XML-datoteku se ne može pozvati DjVu datoteka',
@@ -2475,7 +2475,7 @@ Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MedijaViki lokaliza
 'thumbnail_image-missing'  => 'Datoteka ne dostaje: $1',
 
 # Special:Import
-'import'                     => 'Ivoz stranica',
+'import'                     => 'Uvoz stranica',
 'importinterwiki'            => 'Međuwiki uvoz',
 'import-interwiki-text'      => 'Izaberi wiki i naslov stranice za uvoz.
 Datumi revizija i imena autora će biti sačuvani.
@@ -2487,7 +2487,8 @@ Sve akcije pri međuwiki uvozu će biti zapisane u [[Special:Log/import|zapisu u
 'import-interwiki-namespace' => 'Odredišni imenski prostor:',
 'import-upload-filename'     => 'Naziv datoteke:',
 'import-comment'             => 'Komentar:',
-'importtext'                 => 'Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|izvoz]], sačuvajte ga kod sebe i pošaljite ovdje.',
+'importtext'                 => 'Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|izvoz]]. 
+Sačuvajte je na Vašem računaru i pošaljite ovdje.',
 'importstart'                => 'Uvoz stranica...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',
 'importnopages'              => 'Nema stranica za uvoz.',
@@ -2497,7 +2498,7 @@ Sve akcije pri međuwiki uvozu će biti zapisane u [[Special:Log/import|zapisu u
 'importbadinterwiki'         => 'Loš interwiki link',
 'importnotext'               => 'Stranica je prazna, ili bez teksta',
 'importsuccess'              => 'Uspješno ste uvezli stranicu!',
-'importhistoryconflict'      => 'Postoji konfliktna istorija revizija',
+'importhistoryconflict'      => 'Postoji konfliktna historija revizija (možda je ova stranica ranije uvezena)',
 'importnosources'            => 'Nije definisan međuwiki izvor za uvoz i direktna postavljanja historije su onemogućena.',
 'importnofile'               => 'Uvozna datoteka nije postavljena.',
 'importuploaderrorsize'      => 'Postavljanje uvozne datoteke nije uspjelo.
@@ -2517,7 +2518,7 @@ Nedostaje privremeni folder.',
 # Import log
 'importlogpage'                    => 'Zapisnik uvoza',
 'importlogpagetext'                => 'Administrativni uvozi stranica sa historijom izmjena sa drugih wikija.',
-'import-logentry-upload'           => 'uveženo [[$1]] putem postavljanja datoteke',
+'import-logentry-upload'           => 'uvezena stranica [[$1]] putem postavljanja datoteke',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',
 'import-logentry-interwiki'        => "uveženo (''transwikied'') $1",
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizija|revizije|revizija}} od $2',
@@ -2723,7 +2724,7 @@ $1',
 
 # Special:NewFiles
 'newimages'             => 'Galerija novih slika',
-'imagelisttext'         => "Ispod je spisak od '''$1''' {{PLURAL:$1|datoteke|datoteke|datoteka}} poređanih $2.",
+'imagelisttext'         => "Ispod je spisak od '''$1''' {{PLURAL:$1|datoteke|datoteke|datoteka}} poredanih $2.",
 'newimages-summary'     => 'Ova specijalna stranica prikazuje posljednje postavljene datoteke.',
 'newimages-legend'      => 'Filter',
 'newimages-label'       => 'Ime datoteke (ili dio imena):',
@@ -3032,7 +3033,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpsdirection-m' => 'Magnetski smijer',
 
 # External editor support
-'edit-externally'      => 'Izmjeni ovu sliku koristeći vanjski program',
+'edit-externally'      => 'Izmjeni ovu datoteku koristeći vanjski program',
 'edit-externally-help' => '(Pogledajte [http://www.mediawiki.org/wiki/Manual:External_editors instrukcije za podešavanje] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
@@ -3271,7 +3272,7 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'fileduplicatesearch-filename' => 'Ime datoteke:',
 'fileduplicatesearch-submit'   => 'Traži',
 'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Veličina datoteke: $3<br />MIME vrsta: $4',
-'fileduplicatesearch-result-1' => 'Datoteka "$1" ne identičnih dvojnika.',
+'fileduplicatesearch-result-1' => 'Datoteka "$1" nema identičnih dvojnika.',
 'fileduplicatesearch-result-n' => 'Datoteka "$1" ima {{PLURAL:$2|1 identičnog|$2 identična|$2 identičnih}} dvojnika.',
 
 # Special:SpecialPages

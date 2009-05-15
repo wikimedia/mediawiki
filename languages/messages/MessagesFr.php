@@ -489,7 +489,7 @@ $messages = array(
 'create-this-page'  => 'Créer cette page',
 'delete'            => 'Supprimer',
 'deletethispage'    => 'Supprimer cette page',
-'undelete_short'    => 'Restaurer {{PLURAL:$1|1 modification| $1 modifications}}',
+'undelete_short'    => 'Restaurer $1 modification{{PLURAL:$1||s}}',
 'protect'           => 'Protéger',
 'protect_change'    => 'modifier',
 'protectthispage'   => 'Protéger cette page',
@@ -517,7 +517,7 @@ $messages = array(
 'redirectedfrom'    => '(Redirigé depuis $1)',
 'redirectpagesub'   => 'Page de redirection',
 'lastmodifiedat'    => 'Dernière modification de cette page le $1 à $2.<br />',
-'viewcount'         => 'Cette page a été consultée {{PLURAL:$1|$1 fois|$1 fois}}.',
+'viewcount'         => 'Cette page a été consultée $1 fois{{PLURAL:$1||}}.',
 'protectedpage'     => 'Page protégée',
 'jumpto'            => 'Aller à :',
 'jumptonavigation'  => 'Navigation',
@@ -723,7 +723,7 @@ Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compt
 passe pour {{SITENAME}} ($4). Un mot de passe temporaire a été créé pour
 l’utilisateur « $2 » et est « $3 ». Si cela était votre intention, vous devrez
 vous connecter et choisir un nouveau mot de passe.
-Votre mot de passe temporaire expirera dans $5 {{PLURAL:$5|jour|jours}}.
+Votre mot de passe temporaire expirera dans $5 jour{{PLURAL:$5||s}}.
 
 Si vous n’êtes pas l’auteur de cette demande, ou si vous vous souvenez à présent
 de votre ancien mot de passe et que vous ne souhaitez plus en changer, vous
@@ -994,7 +994,7 @@ La raison donnée par $3 était ''$2''.",
 'deletedrev'             => '[supprimé]',
 'histfirst'              => 'toute première',
 'histlast'               => 'toute dernière',
-'historysize'            => '({{PLURAL:$1|$1 octet|$1 octets}})',
+'historysize'            => '($1 octet{{PLURAL:$1||s}})',
 'historyempty'           => '(vide)',
 
 # Revision feed
@@ -1066,8 +1066,8 @@ Confirmez que ceci est bien ce que vous avez l’intention de faire, que vous en
 'revdelete-unrestricted'         => 'restrictions retirées pour les administrateurs',
 'revdelete-hid'                  => 'a caché $1',
 'revdelete-unhid'                => 'a démasqué $1',
-'revdelete-log-message'          => '$1 pour $2 {{PLURAL:$2|version|versions}}',
-'logdelete-log-message'          => '$1 sur $2 {{PLURAL:$2|évènement|évènements}}',
+'revdelete-log-message'          => '$1 pour $2 version{{PLURAL:$2||s}}',
+'logdelete-log-message'          => '$1 sur $2 évènement{{PLURAL:$2||s}}',
 
 # Suppression log
 'suppressionlog'     => 'Journal des suppressions',
@@ -1086,7 +1086,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'mergehistory-go'                  => 'Voir les modifications qui peuvent être fusionnées',
 'mergehistory-submit'              => 'Fusionner les versions',
 'mergehistory-empty'               => 'Aucune version ne peut être fusionnée.',
-'mergehistory-success'             => '$3 {{PLURAL:$3|version|versions}} de [[:$1]] {{PLURAL:$3|fusionnée|fusionnées}} dans [[:$2]].',
+'mergehistory-success'             => '$3 version{{PLURAL:$3||s}} de [[:$1]] fusionnée{{PLURAL:$3||s}} dans [[:$2]].',
 'mergehistory-fail'                => 'Impossible de procéder à la fusion des historiques. Resélectionner la page ainsi que les paramètres de date.',
 'mergehistory-no-source'           => 'La page d’origine $1 n’existe pas.',
 'mergehistory-no-destination'      => 'La page de destination $1 n’existe pas.',
@@ -1184,7 +1184,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'nextn'                            => '$1 suivantes',
 'prevn-title'                      => '$1 {{PLURAL:$1|résultat précédent|résultats précédents}}',
 'nextn-title'                      => '$1 {{PLURAL:$1|résultat suivant|résultats suivants}}',
-'shown-title'                      => 'Afficher $1 {{PLURAL:$1|résultat|résultats}} par page',
+'shown-title'                      => 'Afficher $1 résultat{{PLURAL:$1||s}} par page',
 'viewprevnext'                     => 'Voir ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Options de recherche',
 'searchmenu-exists'                => "'''Il y a une page ayant comme titre « [[:$1]] » sur ce wiki'''",
@@ -1215,8 +1215,8 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'mwsuggest-disable'                => 'Désactiver les suggestions AJAX',
 'searchrelated'                    => 'relaté',
 'searchall'                        => 'Tous',
-'showingresults'                   => 'Affichage de <b>$1</b> {{PLURAL:$1|résultat|résultats}} à partir du #<b>$2</b>.',
-'showingresultsnum'                => 'Affichage de <b>$3</b> {{PLURAL:$3|résultat|résultats}} à partir du #<b>$2</b>.',
+'showingresults'                   => 'Affichage de <b>$1</b> résultat{{PLURAL:$1||s}} à partir du #<b>$2</b>.',
+'showingresultsnum'                => 'Affichage de <b>$3</b> résultat{{PLURAL:$3||s}} à partir du #<b>$2</b>.',
 'showingresultstotal'              => "Affichage {{PLURAL:$4|du résultat '''$1'''|des résultats '''$1 – $2'''}} sur '''$3'''",
 'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1'''|Resultats '''$1 - $2'''}} de '''$3''' pour '''$4'''",
 'nonefound'                        => "'''Note''' : seuls certains espaces de noms sont recherchés par défaut.
@@ -1275,7 +1275,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'contextchars'              => 'Nombre de caractères de contexte par ligne :',
 'stub-threshold'            => 'Limite supérieure pour les <a href="#" class="stub">liens vers les ébauches</a> (octets) :',
 'recentchangesdays'         => 'Nombre de jours à afficher dans les modifications récentes :',
-'recentchangesdays-max'     => '(maximum $1 {{PLURAL:$1|jour|jours}})',
+'recentchangesdays-max'     => '(maximum $1 jour{{PLURAL:$1||s}})',
 'recentchangescount'        => 'Nombre de modifications à afficher dans les modifications récentes, pages d’historiques et d’opérations, par défaut :',
 'savedprefs'                => 'Les préférences ont été sauvegardées.',
 'timezonelegend'            => 'Fuseau horaire',
@@ -1479,7 +1479,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'action-siteadmin'            => 'verrouiller ou déverrouiller la base de données',
 
 # Recent changes
-'nchanges'                          => '$1 {{PLURAL:$1|modification|modifications}}',
+'nchanges'                          => '$1 modification{{PLURAL:$1||s}}',
 'recentchanges'                     => 'Modifications récentes',
 'recentchanges-legend'              => 'Options des modifications récentes',
 'recentchangestext'                 => 'Piste les changements les plus récents du wiki sur cette page.',
@@ -1501,7 +1501,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|utilisateur|utilisateurs}} en train de suivre]',
+'number_of_watching_users_pageview' => '[$1 utilisateur{{PLURAL:$1||s}} en train de suivre]',
 'rc_categories'                     => 'Limite des catégories (séparation avec « | »)',
 'rc_categories_any'                 => 'Toutes',
 'newsectionsummary'                 => '/* $1 */ nouvelle section',
@@ -2181,7 +2181,7 @@ Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou sup
 'undeletecomment'              => 'Résumé :',
 'undeletedarticle'             => 'a restauré « [[$1]] »',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|version restaurée|versions restaurées}}',
-'undeletedrevisions-files'     => '$1 version{{PLURAL:$1||s}} et $2 fichier{{PLURAL:$2||s}} restaurés',
+'undeletedrevisions-files'     => '$1 version{{PLURAL:$1||s}} et $2 fichier{{PLURAL:$2||s}} restauré{{PLURAL:$2||s}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichier restauré|fichiers restaurés}}',
 'cannotundelete'               => 'La restauration a échoué ;
 un autre utilisateur a probablement déjà restauré la page.',
@@ -2431,7 +2431,7 @@ Veuillez en choisir un autre.',
 'move-redirect-suppressed'     => 'redirection supprimée',
 'movelogpage'                  => 'Journal des renommages et déplacements',
 'movelogpagetext'              => 'Voici la liste de toutes les pages renommées ou déplacées.',
-'movesubpage'                  => '{{PLURAL:$1|Sous-page|Sous-pages}}',
+'movesubpage'                  => 'Sous-page{{PLURAL:$1||s}}',
 'movesubpagetext'              => 'Cette page a $1 {{PLURAL:$1|sous-page affichée|sous-pages affichées}} ci-dessous.',
 'movenosubpage'                => 'Cette page n’a aucune sous-page.',
 'movereason'                   => 'Motif du renommage :',
@@ -2749,7 +2749,7 @@ $1',
 
 # Special:NewFiles
 'newimages'             => 'Galerie des nouveaux fichiers',
-'imagelisttext'         => "Voici une liste de '''$1''' {{PLURAL:$1|fichier|fichiers}} classée $2.",
+'imagelisttext'         => "Voici une liste de '''$1''' fichier{{PLURAL:$1||s}} classée $2.",
 'newimages-summary'     => 'Cette page spéciale affiche les derniers fichiers importés.',
 'newimages-legend'      => 'Nom du fichier',
 'newimages-label'       => 'Nom du fichier (ou une partie de celui-ci) :',
@@ -2930,7 +2930,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-exposureprogram-7' => 'Mode portrait (pour clichés de près avec arrière-plan flou)',
 'exif-exposureprogram-8' => 'Mode paysage (pour des clichés de paysages nets)',
 
-'exif-subjectdistance-value' => '{{PLURAL:$1|$1 mètre|$1 mètres}}',
+'exif-subjectdistance-value' => '$1 mètre{{PLURAL:$1||s}}',
 
 'exif-meteringmode-0'   => 'Inconnu',
 'exif-meteringmode-1'   => 'Moyenne',
@@ -3303,7 +3303,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'tags-description-header' => 'Description complète de la balise',
 'tags-hitcount-header'    => 'Modifications balisées',
 'tags-edit'               => 'modifier',
-'tags-hitcount'           => '$1 {{PLURAL:$1|modification|modifications}}',
+'tags-hitcount'           => '$1 modification{{PLURAL:$1||s}}',
 
 # Database error messages
 'dberr-header'      => 'Ce wiki a un problème',

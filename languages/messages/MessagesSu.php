@@ -1177,7 +1177,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'imagelinks'                => 'Tumbu koropak',
 'linkstoimage'              => 'Kaca ieu  {{PLURAL:$1|numbu|$1 numbu}} ka gambar ieu :',
 'nolinkstoimage'            => 'Teu aya kaca nu numbu ka gambar ieu.',
-'sharedupload'              => 'Ieu koropak téh muatan réréongan nu bisa jadi dipaké ku proyék-proyék lianna.',
+'sharedupload'              => 'Ieu koropak téh ti $1 nu bisa jadi dipaké ku proyék-proyék lianna.',
 'noimage'                   => 'Euweuh koropak nu ngaranna kitu, tapi anjeun bisa $1.',
 'noimage-linktext'          => 'muatkeun',
 'uploadnewversion-linktext' => 'ngamuatkeun vérsi anyar koropak ieu',
