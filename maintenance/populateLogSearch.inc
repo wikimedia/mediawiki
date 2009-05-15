@@ -1,9 +1,6 @@
 <?php
 /**
- * Makes the required database updates for Special:ProtectedPages
- * to show all protected pages, even ones before the page restrictions
- * schema change. All remaining page_restriction column values are moved
- * to the new table.
+ * Makes the required database updates for log display in Special:RevisionDelete
  *
  * Run via update.php or directly through populateLogSearch.php
  *
@@ -60,8 +57,8 @@ function migrate_log_params( $db ) {
 				}
 			}
 		}
-		$blockStart += LOG_SEARCH_BATCH_SIZE - 1;
-		$blockEnd += LOG_SEARCH_BATCH_SIZE - 1;
+		$blockStart += LOG_SEARCH_BATCH_SIZE;
+		$blockEnd += LOG_SEARCH_BATCH_SIZE;
 		wfWaitForSlaves( 5 );
 	}
 	if( $db->insert(
