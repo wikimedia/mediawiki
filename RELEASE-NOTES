@@ -298,6 +298,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16937) Fixed PostgreSQL installation on Windows, workaround for upstream 
   pg_version() bug.
 * (bug 11451) Fix upgrade from MediaWiki 1.2 or earlier (imagelinks schema).
+* Fixed SQLite indexes, installation and upgrade. Reintroduced it as an option 
+  to the installer.
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
