@@ -46,7 +46,7 @@ class IPBlockForm {
 	const HIDEUSER_CONTRIBLIMIT = 1000;
 
 	public function __construct( $par ) {
-		global $wgRequest, $wgUser, $wgBlockAllowsUTEdit;
+		global $wgRequest, $wgUser, $wgBlockAllowsUTEdit, $wgSysopEmailBans, $wgEnableUserEmail;
 
 		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip', $par ) );
 		$this->BlockAddress = strtr( $this->BlockAddress, '_', ' ' );
@@ -61,7 +61,10 @@ class IPBlockForm {
 		$this->BlockAnonOnly = $wgRequest->getBool( 'wpAnonOnly', $byDefault );
 		$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', $byDefault );
 		$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', $byDefault );
-		$this->BlockEmail = $wgRequest->getBool( 'wpEmailBan', false );
+		$this->BlockEmail = false;
+		if( $wgEnableUserEmail && $wgSysopEmailBans && $wgUser->isAllowed( 'blockemail' ) ) {
+			$this->BlockEmail = $wgRequest->getBool( 'wpEmailBan', false );
+		}
 		$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false );
 		# Re-check user's rights to hide names, very serious, defaults to 0
 		$this->BlockHideName = ( $wgRequest->getBool( 'wpHideName', 0 ) && $wgUser->isAllowed( 'hideuser' ) ) ? 1 : 0;
@@ -230,8 +233,8 @@ class IPBlockForm {
 			</tr>"
 		);
 
-		global $wgSysopEmailBans, $wgBlockAllowsUTEdit;
-		if( $wgSysopEmailBans && $wgUser->isAllowed( 'blockemail' ) ) {
+		global $wgSysopEmailBans, $wgBlockAllowsUTEdit, $wgEnableUserEmail;
+		if( $wgEnableUserEmail && $wgSysopEmailBans && $wgUser->isAllowed( 'blockemail' ) ) {
 			$wgOut->addHTML("
 				<tr id='wpEnableEmailBan'>
 					<td>&nbsp;</td>

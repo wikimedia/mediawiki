@@ -120,6 +120,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18716) Removed redundant class in Modern skin CSS for category links and
   tweaked spacing.
 * (bug 18656) Use proper directory separators in wfMkdirParents()
+* (bug 18549) Make Special:Blockip respect $wgEnableUserEmail and $wgSysopEmailBans
 
 == API changes in 1.16 ==
 
@@ -144,6 +145,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18730) Add version information to action=paraminfo output
 * (bug 18743) Add ucprop=size to list=usercontribs
 * (bug 18749) Add generator flag to action=paraminfo output
+* Make action=block respect $wgEnableUserEmail and $wgSysopEmailBans 
 
 === Languages updated in 1.16 ===
 
