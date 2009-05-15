@@ -42,7 +42,7 @@ function migrate_log_params( $db ) {
 						$field = RevisionDeleter::getRelationType($params[0]);
 					}
 					if( $field == null ) {
-						echo "Invalid param type for $row->log_id";
+						echo "Invalid param type for $row->log_id\n";
 						continue; // skip this row
 					}
 					$items = explode(',',$params[1]);
