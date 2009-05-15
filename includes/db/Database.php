@@ -2764,7 +2764,7 @@ class ResultWrapper implements Iterator {
 	 * Get the number of rows in a result object
 	 */
 	function numRows() {
-		return $this->db->numRows( $this->result );
+		return $this->db->numRows( $this );
 	}
 
 	/**
@@ -2777,7 +2777,7 @@ class ResultWrapper implements Iterator {
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchObject() {
-		return $this->db->fetchObject( $this->result );
+		return $this->db->fetchObject( $this );
 	}
 
 	/**
@@ -2789,14 +2789,14 @@ class ResultWrapper implements Iterator {
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	function fetchRow() {
-		return $this->db->fetchRow( $this->result );
+		return $this->db->fetchRow( $this );
 	}
 
 	/**
 	 * Free a result object
 	 */
 	function free() {
-		$this->db->freeResult( $this->result );
+		$this->db->freeResult( $this );
 		unset( $this->result );
 		unset( $this->db );
 	}
@@ -2806,7 +2806,7 @@ class ResultWrapper implements Iterator {
 	 * See mysql_data_seek()
 	 */
 	function seek( $row ) {
-		$this->db->dataSeek( $this->result, $row );
+		$this->db->dataSeek( $this, $row );
 	}
 
 	/*********************
@@ -2817,7 +2817,7 @@ class ResultWrapper implements Iterator {
 
 	function rewind() {
 		if ($this->numRows()) {
-			$this->db->dataSeek($this->result, 0);
+			$this->db->dataSeek($this, 0);
 		}
 		$this->pos = 0;
 		$this->currentRow = null;
