@@ -767,7 +767,7 @@ Systemadministratoren som låste databasen, gav denne forklaring: $1",
  
 Overvej om det er passende at genoprette siden. Sletnings- og flyttelogerne for siden er vist nedenfor.",
 'moveddeleted-notice'              => 'Denne side er blevet slettet.
-Sletningsloggen for siden er vist nedenfor.',
+Sletnings- og flytteloggerne for siden er vist nedenfor.',
 'edit-hook-aborted'                => 'Redigering afbrudt af en programfunktion. Ingen tilknyttet forklaring.',
 'edit-gone-missing'                => 'Kunne ikke opdatere siden. 
 Den ser du til at være slettet.',
@@ -1044,6 +1044,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'showingresults'                   => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
 'showingresultsnum'                => 'Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.',
 'showingresultstotal'              => "Viser resultat {{PLURAL:$4|'''$1''' af '''$3'''|'''$1 - $2''' af '''$3'''}} nedenfor",
+'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1''' af '''$3'''|Resultat '''$1 - $2''' af '''$3'''}} for '''$4'''",
 'nonefound'                        => "'''Bemærk''': Som standard søges der kun i bestemte navnerum.
 Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. diskussionssider, skabeloner osv.), eller brug det ønskede navnerum som præfiks.",
 'search-nonefound'                 => 'Søgningen gav ingen resultater.',
@@ -1129,6 +1130,8 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-files'               => 'Filer',
 'prefs-custom-css'          => 'Personlig CSS',
 'prefs-custom-js'           => 'Personlig JavaScript',
+'prefs-reset-intro'         => 'Du kan bruge denne side til at tilbagestille alle dine indstillinger til standardindstillingerne.
+Det kan ikke gøres om.',
 'prefs-emailconfirm-label'  => 'Bekræftelse af e-mail:',
 'prefs-textboxsize'         => 'Størrelse på redigeringsvindue',
 'youremail'                 => 'Din e-mail-adresse:',
@@ -1718,18 +1721,22 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'newuserlog-autocreate-entry' => 'Automatisk oprettet konto',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Brugergrupperettigheder',
-'listgrouprights-summary'         => 'Denne side vider de brugergrupper der er defineret på denne wiki og de enkelte gruppers rettigheder.
+'listgrouprights'                      => 'Brugergrupperettigheder',
+'listgrouprights-summary'              => 'Denne side vider de brugergrupper der er defineret på denne wiki og de enkelte gruppers rettigheder.
 
 Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere information]] om de enkelte rettigheder.',
-'listgrouprights-group'           => 'Gruppe',
-'listgrouprights-rights'          => 'Rettigheder',
-'listgrouprights-helppage'        => 'Help:Grupperettigheder',
-'listgrouprights-members'         => '(vis medlemmer)',
-'listgrouprights-addgroup'        => 'Kan tilføje {{PLURAL:$2|gruppen|grupperne}}: $1',
-'listgrouprights-removegroup'     => 'Kan fjerne {{PLURAL:$2|gruppen|grupperne}}: $1',
-'listgrouprights-addgroup-all'    => 'Kan tilføje alle grupper',
-'listgrouprights-removegroup-all' => 'Kan fjerne alle grupper',
+'listgrouprights-group'                => 'Gruppe',
+'listgrouprights-rights'               => 'Rettigheder',
+'listgrouprights-helppage'             => 'Help:Grupperettigheder',
+'listgrouprights-members'              => '(vis medlemmer)',
+'listgrouprights-addgroup'             => 'Kan tilføje {{PLURAL:$2|gruppen|grupperne}}: $1',
+'listgrouprights-removegroup'          => 'Kan fjerne {{PLURAL:$2|gruppen|grupperne}}: $1',
+'listgrouprights-addgroup-all'         => 'Kan tilføje alle grupper',
+'listgrouprights-removegroup-all'      => 'Kan fjerne alle grupper',
+'listgrouprights-addgroup-self'        => 'Kan tilføje {{PLURAL:$2|gruppe|grupper}} til egen konto: $1',
+'listgrouprights-removegroup-self'     => 'Kan fjerne {{PLURAL:$2|gruppe|grupper}} fra egen konto: $1',
+'listgrouprights-addgroup-self-all'    => 'Kan tilføje alle grupper til egen konto',
+'listgrouprights-removegroup-self-all' => 'Kan fjerne alle grupper fra egen konto',
 
 # E-mail user
 'mailnologin'      => 'Du er ikke logget på',
@@ -1834,6 +1841,7 @@ Tilbagemelding og yderligere hjælp:
 'confirmdeletetext'      => 'Du er ved at slette en side sammen med hele dens tilhørende historik.
 Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne, og at du gør det i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].',
 'actioncomplete'         => 'Gennemført',
+'actionfailed'           => 'Handlingen mislykkedes',
 'deletedtext'            => '"$1" er slettet. Se $2 for en fortegnelse over de nyeste sletninger.',
 'deletedarticle'         => 'slettede "$1"',
 'suppressedarticle'      => 'skjulte "[[$1]]"',
@@ -2247,6 +2255,9 @@ Besøg venligst [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokaliseri
 'djvu_no_xml'              => 'XML-data kan ikke hentes til DjVu-filen',
 'thumbnail_invalid_params' => 'Ugyldige thumbnail-parametre',
 'thumbnail_dest_directory' => 'Kataloget kan ikke oprettes.',
+'thumbnail_image-type'     => 'Billedtypen understøttes ikke',
+'thumbnail_gd-library'     => 'Ufuldstændig konfiguration af GD-biblioteket: funktionen $1 mangler',
+'thumbnail_image-missing'  => 'Filen $1 ser til at mangle',
 
 # Special:Import
 'import'                     => 'Importer sider',

@@ -801,8 +801,8 @@ Si la grabas, los cambios hechos desde esa revisión se perderán.'''",
 'longpagewarning'                  => "'''Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32 kB o más.
 Por favor considere la posibilidad de dividir esta página en secciones más pequeñas.'''",
 'longpageerror'                    => "'''ERROR: El texto que has enviado ocupa $1 kilobytes, que excede el máximo de $2 kilobytes. No se puede guardar.'''",
-'readonlywarning'                  => "'''Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
-Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.'''
+'readonlywarning'                  => "'''Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrás guardar tus modificaciones en este momento.
+Puedes copiar y pegar el texto a un archivo y grabarlo para más tarde.'''
 
 El administrador que la bloqueó dio esta explicación: $1",
 'protectedpagewarning'             => "'''ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.'''",
@@ -1520,7 +1520,7 @@ Por favor, elige un nombre más descriptivo.",
 'nolicense'          => 'Ninguna seleccionada',
 'license-nopreview'  => '(Previsualización no disponible)',
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',
-'upload_source_file' => ' (un archivo en su ordenador)',
+'upload_source_file' => ' (un archivo en tu disco)',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Esta página muestra todos los archivos subidos.
@@ -2372,7 +2372,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'import-interwiki-namespace' => 'Espacio de nombres de destino:',
 'import-upload-filename'     => 'Nombre de archivo:',
 'import-comment'             => 'Comentario:',
-'importtext'                 => 'Por favor, exporte el archivo desde el wiki de origen usando la [[Special:Export|herramienta de exportación]], guárdelo en su ordenador y súbalo aquí.',
+'importtext'                 => 'Por favor, exporta el archivo desde el wiki de origen usando la [[Special:Export|herramienta de exportación]], grábelo en tu disco y súbelo aquí.',
 'importstart'                => 'Importando páginas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revisión|revisiones}}',
 'importnopages'              => 'No hay páginas que importar.',

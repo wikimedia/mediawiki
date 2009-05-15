@@ -8,6 +8,7 @@
  * @file
  *
  * @author Jose77
+ * @author M.erdem
  * @author לערי ריינהארט
  */
 
@@ -15,11 +16,13 @@ $rtl = true;
 
 $messages = array(
 # Dates
-'sunday'    => 'Yakshanbe',
-'tuesday'   => 'Seyshanbe',
-'wednesday' => 'Qarshenbe',
-'thursday'  => 'Payshanbe',
-'saturday'  => 'Shanba',
+'sunday'    => 'Yekshenbe',
+'monday'    => 'Düshenbe',
+'tuesday'   => 'Seyshenbe',
+'wednesday' => 'Charshenbe',
+'thursday'  => 'Peyshenbe',
+'friday'    => 'Jüme',
+'saturday'  => 'Shenbe',
 'january'   => 'Yanwar',
 'february'  => 'Féwral',
 'march'     => 'Mart',
