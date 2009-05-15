@@ -121,6 +121,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   tweaked spacing.
 * (bug 18656) Use proper directory separators in wfMkdirParents()
 * (bug 18549) Make Special:Blockip respect $wgEnableUserEmail and $wgSysopEmailBans
+* (bug 16912) Tooltips on images with link= disappear
 
 == API changes in 1.16 ==
 

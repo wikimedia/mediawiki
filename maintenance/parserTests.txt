@@ -3188,6 +3188,24 @@ Image with empty link parameter
 </p>
 !! end
 
+!! test
+Image with link parameter (wiki target) and unnamed parameter
+!! input
+[[Image:foobar.jpg|link=Target page|Title]]
+!! result
+<p><a href="/wiki/Target_page" title="Title"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! end
+
+!! test
+Image with link parameter (URL target) and unnamed parameter
+!! input
+[[Image:foobar.jpg|link=http://example.com/|Title]]
+!! result
+<p><a href="http://example.com/" title="Title"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>
+</p>
+!! end
+
 
 
 !! test
