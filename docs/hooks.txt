@@ -949,6 +949,13 @@ $message: value (string), change it to the message you want to define
 $title: name of the page changed.
 $text: new contents of the page.
 
+'MessageNotInMwNs': When trying to get a message that isn't found in the
+MediaWiki namespace (but before checking the message files)
+* &$message: message's content; can be changed
+* $lckey: message's name
+* $langcode: language code
+* $isFullKey: specifies whether $lckey is a two part key "msg/lang"
+
 'MonoBookTemplateToolboxEnd': Called by Monobook skin after toolbox links have been rendered (useful for adding more)
 Note: this is only run for the Monobook skin.  To add items to the toolbox
 for all 'SkinTemplate'-type skins, use the SkinTemplateToolboxEnd hook
