@@ -1,6 +1,9 @@
 <?php
 /** Swedish (Svenska)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -13,6 +16,7 @@
  * @author Leo Johannes
  * @author Lokal Profil
  * @author M.M.S.
+ * @author MagnusA
  * @author Max sonnelid
  * @author Micke
  * @author Najami
@@ -270,8 +274,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatera trasiga länkar <a href="" class="new">så här</a> (alternativt: <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Marginaljustera stycken',
 'tog-hideminor'               => 'Visa inte mindre redigeringar i Senaste ändringar',
-'tog-extendwatchlist'         => 'Utöka bevakningslistan till att visa alla ändringar',
-'tog-usenewrc'                => 'Avancerad Senaste ändringar (Javascript)',
+'tog-extendwatchlist'         => 'Utöka bevakningslistan till att visa alla ändringar, inte bara den senaste',
+'tog-usenewrc'                => 'Använd avancerad senaste ändringar (kräver JavaScript)',
 'tog-numberheadings'          => 'Numrerade rubriker',
 'tog-showtoolbar'             => 'Visa verktygsrad (Javascript)',
 'tog-editondblclick'          => 'Redigera sidor med dubbelklick (Javascript)',
@@ -279,7 +283,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Aktivera redigering av avsnitt genom högerklick på underrubriker (Javascript)',
 'tog-showtoc'                 => 'Visa innehållsförteckning (för sidor som har minst fyra rubriker)',
 'tog-rememberpassword'        => 'Kom ihåg lösenordet till nästa besök',
-'tog-editwidth'               => 'Full bredd på redigeringsrutan',
+'tog-editwidth'               => 'Utvidga redigeringsrutan till att fylla hela skärmen',
 'tog-watchcreations'          => 'Lägg till sidor jag skapar i min bevakningslista',
 'tog-watchdefault'            => 'Lägg till sidor jag redigerar i min bevakningslista',
 'tog-watchmoves'              => 'Lägg till sidor jag flyttar i min bevakningslista',
@@ -293,7 +297,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-post från systemet',
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
-'tog-fancysig'                => 'Rå signatur, utan automatisk länk',
+'tog-fancysig'                => 'Rå signatur som wikitext (utan en automatisk länk)',
 'tog-externaleditor'          => 'Använd extern texteditor som standard (avancerat, kräver speciella inställningar i din dator)',
 'tog-externaldiff'            => 'Använd externt diff-verktyg (avancerat, kräver speciella inställningar i din dator)',
 'tog-showjumplinks'           => 'Aktivera "hoppa till"-tillgänglighetslänkar',
@@ -661,7 +665,7 @@ Välj ett annat namn.',
 'yournick'                   => 'Signatur:',
 'badsig'                     => 'Det är något fel med råsignaturen, kontrollera HTML-koden.',
 'badsiglength'               => 'Din signatur är för lång.
-Den måste vara under $1 {{PLURAL:$1|tecken|tecken}}.',
+Den får inte vara längre än $1 {{PLURAL:$1|tecken|tecken}}.',
 'email'                      => 'E-post',
 'prefs-help-realname'        => 'Riktigt namn behöver inte anges.
 Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
@@ -932,7 +936,7 @@ Anledningen till blockeringen var "$2".',
 'next'                => 'nästa',
 'last'                => 'föregående',
 'page_first'          => 'första',
-'page_last'           => 'sista',
+'page_last'           => 'senaste',
 'histlegend'          => "Val av diff: markera i klickrutorna för att jämföra versioner och tryck enter eller knappen längst ner.<br />
 Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
 'deletedrev'          => '[raderad]',
@@ -968,13 +972,14 @@ eller så försöker du gömma den senaste versionen av sidan.',
 'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
 'revdelete-text'              => "'''Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.'''
 
-Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.",
+Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.
+Vänligen bekräfta att detta är vad du avser göra, att du förstår konsekvenserna, och att du gör detta i enlighet med [[{{MediaWiki:Policy-url}}|riktlinjerna]].",
 'revdelete-legend'            => 'Ändra synlighet',
 'revdelete-hide-text'         => 'Dölj versionstext',
 'revdelete-hide-name'         => 'Dölj åtgärd och sidnamn',
 'revdelete-hide-comment'      => 'Dölj redigeringskommentar',
 'revdelete-hide-user'         => 'Dölj skribentens användarnamn/IP-adress',
-'revdelete-hide-restricted'   => 'Låt dessa begränsningar gälla även för administratörer och lås det här gränssnittet',
+'revdelete-hide-restricted'   => 'Undanhåll data från administratörer så väl som från övriga',
 'revdelete-suppress'          => 'Undanhåll data även från administratörer',
 'revdelete-hide-image'        => 'Dölj filinnehåll',
 'revdelete-unsuppress'        => 'Ta bort begränsningar på återställda versioner',
@@ -1058,7 +1063,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'search-section'            => '(avsnitt $1)',
 'search-suggest'            => 'Menade du: $1',
 'search-interwiki-caption'  => 'Systerprojekt',
-'search-interwiki-default'  => '$1 resultat:',
+'search-interwiki-default'  => 'Resultat i $1:',
 'search-interwiki-more'     => '(mer)',
 'search-mwsuggest-enabled'  => 'med förslag',
 'search-mwsuggest-disabled' => 'inga förslag',
@@ -1359,7 +1364,7 @@ Om du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn
 'sourcefilename'              => 'Ursprungsfilens namn:',
 'destfilename'                => 'Nytt filnamn:',
 'upload-maxfilesize'          => 'Maximal filstorlek: $1',
-'watchthisupload'             => 'Bevaka denna sida',
+'watchthisupload'             => 'Bevaka den här filen',
 'filewasdeleted'              => 'En fil med detta namn har tidigare laddats upp och därefter tagits bort. Du bör kontrollera $1 innan du fortsätter att ladda upp den.',
 'upload-wasdeleted'           => "'''Varning: Du håller på att ladda upp en fil som tidigare raderats.'''
 
@@ -1436,7 +1441,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'duplicatesoffile'               => 'Följande {{PLURAL:$1|fil är en dubblett|filer är dubbletter}} till den här filen:',
 'sharedupload'                   => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
 'shareduploadwiki'               => 'Vänligen se $1 för mer information.',
-'shareduploadwiki-desc'          => 'Innehållet på dess $1 visas nedan.',
+'shareduploadwiki-desc'          => 'Innehållet på $1 där visas nedan.',
 'shareduploadwiki-linktext'      => 'filens beskrivningssida',
 'shareduploadduplicate'          => 'Den här filen är en dubblett till $1 i den delade filförvaringen.',
 'shareduploadduplicate-linktext' => 'en fil',
@@ -1855,7 +1860,7 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 'undeleterevision-missing'     => 'Versionen finns inte eller är felaktig. Versionen kan ha återställts eller tagits bort från arkivet, du kan också ha följt en felaktig länk.',
 'undelete-nodiff'              => 'Ingen tidigare version hittades.',
 'undeletebtn'                  => 'Återställ',
-'undeletelink'                 => 'återställ',
+'undeletelink'                 => 'visa/återställ',
 'undeletereset'                => 'Rensa',
 'undeletecomment'              => 'Kommentar:',
 'undeletedarticle'             => 'återställde "[[$1]]"',
@@ -1951,7 +1956,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipboptions'                      => '2 timmar:2 hours,1 dag:1 day,3 dagar:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'annan tidsperiod',
 'ipbotherreason'                  => 'Annan/ytterligare anledning:',
-'ipbhidename'                     => 'Dölj användarnamnet från blockeringsloggen, blockeringslistan och användarlistan',
+'ipbhidename'                     => 'Dölj användarnamnet från redigeringar och listor',
 'ipbwatchuser'                    => 'Bevaka användarens användarsida och diskussionssida',
 'badipaddress'                    => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'               => 'Blockeringen är utförd',
@@ -2073,7 +2078,7 @@ Försök att sammanfoga dem manuellt.'''",
 'movepage-max-pages'      => 'Gränsen på $1 {{PLURAL:$1|flyttad sida|flyttade sidor}} har uppnåtts och inga fler sidor kommer att flyttas automatiskt.',
 '1movedto2'               => 'flyttade [[$1]] till [[$2]]',
 '1movedto2_redir'         => 'flyttade [[$1]] till [[$2]], som var en omdirigeringssida',
-'movelogpage'             => 'Sidflyttslogg',
+'movelogpage'             => 'Flyttlogg',
 'movelogpagetext'         => 'Listan nedan visar sidor som flyttats.',
 'movereason'              => 'Anledning:',
 'revertmove'              => 'flytta tillbaka',
@@ -2327,7 +2332,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Varning:''': Denna fil kan innehålla programkod som, om den körs, kan skada din dator.",
-'imagemaxsize'         => 'Begränsa bilders storlek på filbeskrivningssidor till:',
+'imagemaxsize'         => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
 'file-info'            => '(filstorlek: $1, MIME-typ: $2)',
@@ -2816,7 +2821,7 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 'specialpages'                   => 'Specialsidor',
 'specialpages-note'              => '----
 * Normala specialsidor.
-* <span class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</span>',
+* <strong class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</strong>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',
 'specialpages-group-other'       => 'Övriga specialsidor',
 'specialpages-group-login'       => 'Inloggning/registrering',
@@ -2824,7 +2829,7 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 'specialpages-group-media'       => 'Filer och uppladdning',
 'specialpages-group-users'       => 'Användare och behörigheter',
 'specialpages-group-highuse'     => 'Sidor som används mycket',
-'specialpages-group-pages'       => 'Sidlistor',
+'specialpages-group-pages'       => 'Listor över sidor',
 'specialpages-group-pagetools'   => 'Sidverktyg',
 'specialpages-group-wiki'        => 'Information och verktyg för wikin',
 'specialpages-group-redirects'   => 'Omdirigerande specialsidor',

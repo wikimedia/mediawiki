@@ -1,6 +1,9 @@
 <?php
 /** Tetum (Tetun)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -77,10 +80,10 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'          => 'Subliña ligasaun sira:',
-'tog-highlightbroken'    => 'Formatu ligasaun sira-ne\'ebé bá pájina maka wiki la iha: <a href="" class="new">ne\'e</a> ka <a href="" class="internal">ne\'e</a>).',
+'tog-highlightbroken'    => 'Formatu ligasaun sira-ne\'ebé bá pájina maka wiki la iha: <a href="" class="new">ne\'e</a> ka <a href="" class="internal">ne\'e</a>.',
 'tog-justify'            => 'Justifika parágrafu sira',
 'tog-hideminor'          => "Lá'os hatudu osan-rahun sira iha mudansa foufoun sira",
-'tog-usenewrc'           => 'Lista "Mudansa foufoun sira" di\'ak liu (JavaScript)',
+'tog-usenewrc'           => 'Uza lista "Mudansa foufoun sira" di\'ak liu (JavaScript)',
 'tog-showtoolbar'        => 'Hatudu kaixa edita (JavaScript)',
 'tog-watchcreations'     => "Hateke pájina sira-ne'ebé ha'u kria",
 'tog-watchdefault'       => "Hateke pájina sira-ne'ebé ha'u edita",
@@ -625,7 +628,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 # Undelete
 'undelete'               => 'Haree pájina halakon tiha',
 'undeletebtn'            => 'Restaurar',
-'undeletelink'           => 'restaurar',
+'undeletelink'           => 'lee/restaurar',
 'undeletecomment'        => 'Komentáriu:',
 'undeletedarticle'       => 'restaurar "[[$1]]"',
 'undeletedrevisions'     => 'restaurar {{PLURAL:$1|versaun|versaun}} $1',

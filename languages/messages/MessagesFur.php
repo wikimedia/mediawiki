@@ -1,6 +1,9 @@
 <?php
 /** Friulian (Furlan)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -225,7 +228,7 @@ $messages = array(
 'category-file-count-limited'    => 'Cheste categorie e conten {{PLURAL:$1|il file mostrât|i $1 files mostrâts}} ca sot.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext' => "'''MediaWiki e je stade instalade cun sucès.'''",
+'mainpagetext' => "<big>'''MediaWiki e je stade instalade cun sucès.'''</big>",
 
 'about'          => 'Informazions',
 'article'        => 'Vôs',
@@ -1428,7 +1431,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'specialpages'                   => 'Pagjinis speciâls',
 'specialpages-note'              => '----
 * Pagjinis speciâls no riservadis.
-* <span class="mw-specialpagerestricted">Pagjinis speciâls a ciertis categoriis di utents.</span>',
+* <strong class="mw-specialpagerestricted">Pagjinis speciâls a ciertis categoriis di utents.</strong>',
 'specialpages-group-maintenance' => 'Rapuarts di manutenzion',
 'specialpages-group-other'       => 'Altris pagjinis speciâls',
 'specialpages-group-login'       => 'Jentrade / regjistrazion',

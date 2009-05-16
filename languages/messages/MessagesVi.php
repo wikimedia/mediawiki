@@ -1,6 +1,9 @@
 <?php
 /** Vietnamese (Tiếng Việt)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -129,24 +132,24 @@ $separatorTransformTable = array(',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Gạch chân liên kết:',
-'tog-highlightbroken'         => 'Liên kết đến trang chưa có sẽ <a href="" class="new">giống thế này</a> (nếu không chọn: giống thế này<a href="" class="internal">?</a>)',
+'tog-highlightbroken'         => 'Liên kết đến trang chưa được viết sẽ <a href="" class="new">như thế này</a> (nếu không chọn: như thế này<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Căn đều hai bên đoạn văn',
 'tog-hideminor'               => 'Ẩn sửa đổi nhỏ trong thay đổi gần đây',
-'tog-extendwatchlist'         => 'Danh sách theo dõi nhiều chức năng (JavaScript)',
-'tog-usenewrc'                => 'Thay đổi gần đây nhiều chức năng (JavaScript)',
+'tog-extendwatchlist'         => 'Mở rộng danh sách theo dõi để hiển thị tất cả các thay đổi, chứ không chỉ các thay đổi gần đây',
+'tog-usenewrc'                => 'Sử dụng Thay đổi gần đây nâng cao (cần JavaScript)',
 'tog-numberheadings'          => 'Tự động đánh số các đề mục',
 'tog-showtoolbar'             => 'Hiển thị thanh định dạng (JavaScript)',
 'tog-editondblclick'          => 'Nhấn đúp để sửa đổi trang (JavaScript)',
 'tog-editsection'             => 'Cho phép sửa đổi đề mục qua liên kết [sửa]',
-'tog-editsectiononrightclick' => 'Cho phép sửa đổi mục bằng cách bấm chuột phải trên đề mục (JavaScript)',
+'tog-editsectiononrightclick' => 'Cho phép sửa đổi đề mục bằng cách bấm chuột phải trên tên đề mục (JavaScript)',
 'tog-showtoc'                 => 'Hiển thị mục lục (cho trang có trên 3 đề mục)',
 'tog-rememberpassword'        => 'Nhớ thông tin đăng nhập của tôi trên máy tính này',
-'tog-editwidth'               => 'Ô sửa đổi có bề rộng tối đa',
+'tog-editwidth'               => 'Mở rộng ô sửa đổi ra toàn màn hình',
 'tog-watchcreations'          => 'Tự động theo dõi trang tôi viết mới',
 'tog-watchdefault'            => 'Tự động theo dõi trang tôi sửa',
 'tog-watchmoves'              => 'Tự động theo dõi trang tôi di chuyển',
 'tog-watchdeletion'           => 'Tự động theo dõi trang tôi xóa',
-'tog-minordefault'            => 'Đánh dấu mặc định sửa đổi của tôi là thay đổi nhỏ',
+'tog-minordefault'            => 'Mặc định đánh dấu tất cả sửa đổi của tôi là sửa đổi nhỏ',
 'tog-previewontop'            => 'Hiển thị phần xem thử nằm trên hộp sửa đổi',
 'tog-previewonfirst'          => 'Hiện xem thử tại lần sửa đầu tiên',
 'tog-nocache'                 => 'Không lưu trang trong bộ nhớ đệm',
@@ -155,7 +158,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Gửi thư cho tôi cả những thay đổi nhỏ trong trang',
 'tog-enotifrevealaddr'        => 'Hiện địa chỉ thư điện tử của tôi trong thư thông báo',
 'tog-shownumberswatching'     => 'Hiển thị số người đang xem',
-'tog-fancysig'                => 'Chữ ký không dùng liên kết tự động',
+'tog-fancysig'                => 'Xem chữ ký là mã wiki (không có liên kết tự động)',
 'tog-externaleditor'          => 'Mặc định dùng trình soạn thảo bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn)',
 'tog-externaldiff'            => 'Mặc định dùng trình so sánh bên ngoài (chỉ dành cho người thành thạo, cần thiết lập đặc biệt trên máy tính của bạn)',
 'tog-showjumplinks'           => 'Bật liên kết “bước tới” trên đầu trang cho bộ trình duyệt thuần văn bản hay âm thanh',
@@ -263,7 +266,7 @@ $messages = array(
 'qbpageinfo'     => 'Ngữ cảnh',
 'qbmyoptions'    => 'Trang cá nhân',
 'qbspecialpages' => 'Trang đặc biệt',
-'moredotdotdot'  => 'Thêm nữa...',
+'moredotdotdot'  => 'Thêm nữa…',
 'mypage'         => 'Trang của tôi',
 'mytalk'         => 'Thảo luận với tôi',
 'anontalk'       => 'Thảo luận với IP này',
@@ -488,7 +491,7 @@ Tài khoản của bạn đã mở.
 Đừng quên thay đổi [[Special:Preferences|tùy chọn cá nhân của bạn tại {{SITENAME}}]].',
 'loginpagetitle'             => 'Đăng nhập',
 'yourname'                   => 'Tên người dùng:',
-'yourpassword'               => 'Mật khẩu',
+'yourpassword'               => 'Mật khẩu:',
 'yourpasswordagain'          => 'Gõ lại mật khẩu',
 'remembermypassword'         => 'Nhớ thông tin đăng nhập của tôi trên máy tính này',
 'yourdomainname'             => 'Tên miền của bạn:',
@@ -522,10 +525,11 @@ Hãy chọn một tên khác.',
 'badsiglength'               => 'Chữ ký của bạn quá dài.
 Nó không được dài quá $1 {{PLURAL:$1|ký tự|ký tự}}.',
 'email'                      => 'Thư điện tử',
-'prefs-help-realname'        => 'Tên thật là không bắt buộc, nhưng nếu bạn ghi lại, tên này sẽ dùng để ghi công cho bạn.',
+'prefs-help-realname'        => 'Tên thật là không bắt buộc.
+Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao của bạn.',
 'loginerror'                 => 'Lỗi đăng nhập',
-'prefs-help-email'           => 'Địa chỉ thư điện tử là tùy chọn, nhưng nó giúp bạn nhận lại mật khẩu qua thư điện tử nếu bạn quên.
-Bạn cũng có thể lựa chọn để cho phép người khác liên lạc với bạn thông qua trang thành_viên hoặc thảo_luận_thành_viên mà không cần để lộ danh tính.',
+'prefs-help-email'           => 'Địa chỉ thư điện tử là tùy chọn, nhưng nó giúp chúng tôi gửi cho bạn mật khẩu mới qua thư điện tử nếu bạn quên mật khẩu của mình.
+Bạn cũng có thể lựa chọn cho phép người khác liên lạc với bạn thông qua trang thành_viên hoặc thảo_luận_thành_viên mà không cần để lộ danh tính.',
 'prefs-help-email-required'  => 'Bắt buộc phải có địa chỉ e-mail.',
 'nocookiesnew'               => 'Tài khoản đã mở, nhưng bạn chưa đăng nhập. {{SITENAME}} sử dụng cookie để đăng nhập vào tài khoản. Bạn đã tắt cookie. Xin hãy kích hoạt nó, rồi đăng nhập lại với tên người dùng và mật khẩu mới.',
 'nocookieslogin'             => '{{SITENAME}} sử dụng cookie để đăng nhập thành viên. Bạn đã tắt cookie. Xin hãy kích hoạt rồi thử lại.',
@@ -670,7 +674,7 @@ Nếu bạn là một thành viên vô danh và cảm thấy rằng có những 
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] trong các trang khác, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} tìm trong các nhật trình liên quan],
 hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>.',
 'userpage-userdoesnotexist'        => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
-'clearyourcache'                   => "'''Ghi chú - Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'', hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (''Command-R'' trên Macintosh); '''Konqueror:''': nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Ghi chú&nbsp;– Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (<span title=\"Command\">⌘</span>''R'' trên Macintosh); '''Konqueror:''' nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "'''Mẹo:''' Sử dụng nút “Xem thử” để kiểm thử trang CSS/JS của bạn trước khi lưu trang.",
 'usercsspreview'                   => "'''Hãy nhớ rằng bạn chỉ đang xem thử trang CSS cá nhân của bạn.
 Nó chưa được lưu!'''",
@@ -814,15 +818,16 @@ hoặc phiên bản đích không tồn tại,
 hoặc bạn đang tìm cách ẩn phiên bản hiện tại.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:'''",
-'revdelete-text'              => "'''Các phiên bản và sự kiện bị xóa vẫn còn trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.'''
+'revdelete-text'              => "'''Các phiên bản và sự kiện bị xóa sẽ vẫn xuất hiện trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.'''
 
-Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.",
+Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.
+Xin hãy xác nhận rằng bạn thực sự muốn làm điều này, hiểu được hệ quả của nó, và làm theo đúng [[{{MediaWiki:Policy-url}}|quy định]].",
 'revdelete-legend'            => 'Thiết lập hạn chế khả kiến',
 'revdelete-hide-text'         => 'Ẩn nội dung phiên bản',
 'revdelete-hide-name'         => 'Ẩn tác vụ và đích của tác vụ',
 'revdelete-hide-comment'      => 'Ẩn tóm lược sửa đổi',
 'revdelete-hide-user'         => 'Ẩn tên người dùng hay địa chỉ IP của người viết trang',
-'revdelete-hide-restricted'   => 'Áp dụng những hạn chế này đối với Người quản lý và khóa giao diện này lại',
+'revdelete-hide-restricted'   => 'Ẩn giấu thông tin khỏi các Quản lý lẫn thành viên khác',
 'revdelete-suppress'          => 'Che dữ liệu đối với người quản lý cũng như các thành viên khác',
 'revdelete-hide-image'        => 'Ẩn nội dung tập tin',
 'revdelete-unsuppress'        => 'Bỏ các hạn chế trên các phiên bản được phục hồi',
@@ -942,8 +947,8 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'changepassword'           => 'Đổi mật khẩu',
 'skin'                     => 'Hình dạng',
 'math'                     => 'Công thức toán',
-'dateformat'               => 'Kiểu ngày tháng',
-'datedefault'              => 'Không lựa chọn',
+'dateformat'               => 'Định dạng ngày',
+'datedefault'              => 'Không quan tâm',
 'datetime'                 => 'Ngày tháng',
 'math_failure'             => 'Không thể phân tích cú pháp',
 'math_unknown_error'       => 'lỗi lạ',
@@ -974,7 +979,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'contextchars'             => 'Số chữ trong một hàng kết quả:',
 'stub-threshold'           => 'Định dạng <a href="#" class="stub">liên kết đến sơ khai</a> cho các trang ngắn hơn (byte):',
 'recentchangesdays'        => 'Số ngày hiển thị trong thay đổi gần đây:',
-'recentchangescount'       => 'Số sửa đổi hiển thị trong trang thay đổi gần đây, lịch sử của trang, và các nhật trình, theo mặc định:',
+'recentchangescount'       => 'Số sửa đổi hiển thị trong trang thay đổi gần đây, lịch sử của trang và nhật trình, theo mặc định là:',
 'savedprefs'               => 'Đã lưu các tùy chọn cá nhân.',
 'timezonelegend'           => 'Múi giờ',
 'timezonetext'             => '¹Số giờ chênh lệch giữa giờ địa phương của bạn với giờ máy chủ (UTC)',
@@ -1599,9 +1604,7 @@ Phản hồi và cần sự hỗ trợ:
 'excontentauthor'             => 'nội dung cũ: “$1” (người viết duy nhất “[[Special:Contributions/$2|$2]]”)',
 'exbeforeblank'               => 'nội dung trước khi tẩy trống: “$1”',
 'exblank'                     => 'trang trắng',
-'delete-confirm'              => '
-
-Xóa “$1”',
+'delete-confirm'              => 'Xóa “$1”',
 'delete-legend'               => 'Xóa',
 'historywarning'              => 'Cảnh báo: Trang bạn sắp xóa đã có lịch sử:',
 'confirmdeletetext'           => 'Bạn sắp xóa hẳn một trang cùng với tất cả lịch sử của nó.
@@ -1708,7 +1711,7 @@ Chỉ có người quản lý mới xem được văn bản đầy đủ của n
 'undeleterevision-missing'     => 'Phiên bản này không hợp lệ hay không tồn tại. Đây có thể là một địa chỉ sai, hoặc là phiên bản đã được phục hồi hoặc đã xóa khỏi kho lưu trữ.',
 'undelete-nodiff'              => 'Không tìm thấy phiên bản cũ hơn.',
 'undeletebtn'                  => 'Phục hồi',
-'undeletelink'                 => 'phục hồi',
+'undeletelink'                 => 'xem lại/phục hồi',
 'undeletereset'                => 'Tẩy trống',
 'undeletecomment'              => 'Lý do:',
 'undeletedarticle'             => 'đã phục hồi “$1”',
@@ -1809,7 +1812,7 @@ $1',
 'ipboptions'                      => '2 giờ:2 hours,1 ngày:1 day,3 ngày:3 days,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'khác',
 'ipbotherreason'                  => 'Lý do khác',
-'ipbhidename'                     => 'Ẩn tên người dùng khỏi nhật trình cấm, danh sách cấm và danh sách thành viên hiện tại',
+'ipbhidename'                     => 'Ẩn tên người dùng ra khỏi các sửa đổi và danh sách',
 'ipbwatchuser'                    => 'Theo dõi trang thành viên và thảo luận thành viên của thành viên này',
 'badipaddress'                    => 'Địa chỉ IP không hợp lệ',
 'blockipsuccesssub'               => 'Cấm thành công',
@@ -2143,8 +2146,8 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'mw_math_png'    => 'Luôn cho ra dạng hình PNG',
 'mw_math_simple' => 'HTML nếu rất đơn giản, nếu không thì PNG',
 'mw_math_html'   => 'HTML nếu có thể, nếu không thì PNG',
-'mw_math_source' => 'Để là TeX (dành cho trình duyệt văn bản)',
-'mw_math_modern' => 'Đề nghị, dành cho trình duyệt hiện đại',
+'mw_math_source' => 'Để nguyên mã TeX (dành cho trình duyệt văn bản)',
+'mw_math_modern' => 'Khuyên dùng với các trình duyệt hiện đại',
 'mw_math_mathml' => 'MathML nếu có thể (thử nghiệm)',
 
 # Patrolling
@@ -2182,8 +2185,8 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Cảnh báo''': Tập tin này có thể chứa mã hiểm độc, nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.<hr />",
-'imagemaxsize'         => 'Giới hạn độ phân giải trên trang miêu tả tập tin:',
-'thumbsize'            => 'Kích thước thu nhỏ:',
+'imagemaxsize'         => "Giới hạn cỡ hình:<br />''(trên trang miêu tả tập tin)''",
+'thumbsize'            => 'Cỡ hình thu nhỏ:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|trang|trang}}',
 'file-info'            => '(kích thước tập tin: $1, định dạng MIME: $2)',
 'file-info-size'       => '($1 × $2 điểm ảnh, kích thước: $3, định dạng MIME: $4)',
@@ -2633,6 +2636,50 @@ Bạn cũng có thể [[Special:Watchlist/edit|dùng trình soạn thảo chuẩ
 'watchlisttools-edit' => 'Xem và sửa danh sách theo dõi',
 'watchlisttools-raw'  => 'Sửa danh sách theo dõi dạng thô',
 
+# Iranian month names
+'iranian-calendar-m1'  => 'Farvardin',
+'iranian-calendar-m2'  => 'Ordibehesht',
+'iranian-calendar-m3'  => 'Khordad',
+'iranian-calendar-m4'  => 'Tir',
+'iranian-calendar-m5'  => 'Mordad',
+'iranian-calendar-m6'  => 'Shahrivar',
+'iranian-calendar-m7'  => 'Mehr',
+'iranian-calendar-m8'  => 'Aban',
+'iranian-calendar-m9'  => 'Azar',
+'iranian-calendar-m10' => 'Dey',
+'iranian-calendar-m11' => 'Bahman',
+'iranian-calendar-m12' => 'Esfand',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'Muharram',
+'hijri-calendar-m2'  => 'Safar',
+'hijri-calendar-m3'  => 'Rabi’ al-awwal',
+'hijri-calendar-m4'  => 'Rabi’ al-thani',
+'hijri-calendar-m5'  => 'Jumada al-awwal',
+'hijri-calendar-m6'  => 'Jumada al-thani',
+'hijri-calendar-m7'  => 'Rajab',
+'hijri-calendar-m8'  => 'Sha’aban',
+'hijri-calendar-m9'  => 'Ramadan',
+'hijri-calendar-m10' => 'Shawwal',
+'hijri-calendar-m11' => 'Dhu al-Qi’dah',
+'hijri-calendar-m12' => 'Dhu al-Hijjah',
+
+# Hebrew month names
+'hebrew-calendar-m1'  => 'Tishrei',
+'hebrew-calendar-m2'  => 'Cheshvan',
+'hebrew-calendar-m3'  => 'Kislev',
+'hebrew-calendar-m4'  => 'Tevet',
+'hebrew-calendar-m5'  => 'Shevat',
+'hebrew-calendar-m6'  => 'Adar',
+'hebrew-calendar-m6a' => 'Adar 1',
+'hebrew-calendar-m6b' => 'Adar 2',
+'hebrew-calendar-m7'  => 'Nisan',
+'hebrew-calendar-m8'  => 'Iyar',
+'hebrew-calendar-m9'  => 'Sivan',
+'hebrew-calendar-m10' => 'Tamuz',
+'hebrew-calendar-m11' => 'Av',
+'hebrew-calendar-m12' => 'Elul',
+
 # Core parser functions
 'unknown_extension_tag' => 'Không hiểu thẻ mở rộng “$1”',
 
@@ -2681,7 +2728,7 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
 'specialpages'                   => 'Các trang đặc biệt',
 'specialpages-note'              => '----
 * Trang đặc biệt thông thường.
-* <span class="mw-specialpagerestricted">Trang đặc biệt có hạn chế.</span>',
+* <strong class="mw-specialpagerestricted">Trang đặc biệt có hạn chế.</strong>',
 'specialpages-group-maintenance' => 'Báo cáo bảo quản',
 'specialpages-group-other'       => 'Những trang đặc biệt khác',
 'specialpages-group-login'       => 'Đăng nhập / Mở tài khoản',

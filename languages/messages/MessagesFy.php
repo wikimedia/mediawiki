@@ -1,6 +1,9 @@
 <?php
 /** Western Frisian (Frysk)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -183,7 +186,7 @@ $messages = array(
 'category-file-count-limited'    => 'Dizze kategory befettet {{PLURAL:$1|de folgjende triem|de folgjende $1 triemmen}}.',
 'listingcontinuesabbrev'         => '(ferfolch)',
 
-'mainpagetext'      => 'Wiki-program goed ynstallearre.',
+'mainpagetext'      => "<big>'''MediaWiki-program goed ynstallearre.'''</big>",
 'mainpagedocfooter' => "Rieplachtsje de [http://meta.wikimedia.org/wiki/Help:Ynhâldsopjefte hantlieding] foar ynformaasje oer it gebrûk fan 'e wikisoftware.
 
 == Mear help oer Mediawiki ==
@@ -1709,7 +1712,7 @@ Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
 'ipbenableautoblock'   => "Automatysk de lêste IP adressen útslute dy't troch dizze meidogger brûkt binne.",
 'ipbsubmit'            => 'Slút dizze meidogger út',
 'ipbother'             => 'In oare tiid:',
-'ipboptions'           => '15 minuten:15 min,1 oere:1 hour,2 oeren:2 hours,6 oeren:6 hours,12 oeren:12 hours,1 dei:1 day,3 dagen:3 days,1 wike:1 week,2 wiken:2 weeks,1 moanne:1 month,3 moanne:3 months,6 moanne:6 months,1 jier:1 year,ûnbeheind:infinite', # display1:time1,display2:time2,...
+'ipboptions'           => '2 oeren:2 hours,1 dei:1 day,3 dagen:3 days,1 wike:1 week,2 wiken:2 weeks,1 moanne:1 month,3 moanne:3 months,6 moanne:6 months,1 jier:1 year,ûnbeheind:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'       => 'oare tiid',
 'ipbotherreason'       => 'Oare/eventuele reden:',
 'badipaddress'         => 'Gjin jildige IP-adres',
@@ -2137,7 +2140,7 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'specialpages'                   => 'Bysûndere siden',
 'specialpages-note'              => '----
 * Normale bysûndere siden.
-* <span class="mw-specialpagerestricted">Beheinde bysûndere siden.</span>',
+* <strong class="mw-specialpagerestricted">Beheinde bysûndere siden.</strong>',
 'specialpages-group-maintenance' => 'Underhâld siden',
 'specialpages-group-other'       => 'Oare bysûndere siden',
 'specialpages-group-login'       => 'Oanmelde',

@@ -1,6 +1,9 @@
 <?php
 /** Interlingua (Interlingua)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -42,8 +45,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatar ligamines rupte <a href="" class="new">assi</a> (alternativemente: assi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar paragraphos',
 'tog-hideminor'               => 'Celar modificationes recente minor',
-'tog-extendwatchlist'         => 'Expander le observatorio a tote le modificationes applicabile',
-'tog-usenewrc'                => 'Modificationes recente meliorate (JavaScript)',
+'tog-extendwatchlist'         => 'Expander le observatorio pro monstrar tote le modificationes, non solmente les plus recente',
+'tog-usenewrc'                => 'Usar le modificationes recente meliorate (require JavaScript)',
 'tog-numberheadings'          => 'Numerar titulos automaticamente',
 'tog-showtoolbar'             => 'Monstrar barra de instrumentos pro modification (JavaScript)',
 'tog-editondblclick'          => 'Duple clic pro modificar un pagina (JavaScript)',
@@ -51,7 +54,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Activar modification de sectiones con clic-a-derecta super lor titulos (JavaScript)',
 'tog-showtoc'                 => 'Monstrar tabula de contento (in paginas con plus de 3 sectiones)',
 'tog-rememberpassword'        => 'Memorar mi contrasigno in iste computator',
-'tog-editwidth'               => 'Le quadro de modification occupa tote le latitude del fenestra',
+'tog-editwidth'               => 'Allargar le quadro de modification pro plenar le schermo integre',
 'tog-watchcreations'          => 'Adder le paginas que io crea a mi observatorio',
 'tog-watchdefault'            => 'Adder le paginas que io modifica a mi observatorio',
 'tog-watchmoves'              => 'Adder le paginas que io renomina a mi observatorio',
@@ -65,7 +68,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Notificar me etiam de modificationes minor',
 'tog-enotifrevealaddr'        => 'Revelar mi adresse de e-mail in messages de notification',
 'tog-shownumberswatching'     => 'Monstrar le numero de usatores que observa le pagina',
-'tog-fancysig'                => 'Signaturas crude (sin ligamine automatic)',
+'tog-fancysig'                => 'Tractar signatura como wikitexto (sin ligamine automatic)',
 'tog-externaleditor'          => 'Usar editor externe qua standard (pro expertos solmente, necessita configuration special in tu computator)',
 'tog-externaldiff'            => "Usar un programma ''diff'' externe qua standard (pro expertos solmente, necessita configuration special in tu computator)",
 'tog-showjumplinks'           => 'Activar ligamines de accessibilitate "saltar a"',
@@ -142,7 +145,7 @@ $messages = array(
 'category_header'                => 'Articulos in le categoria "$1"',
 'subcategories'                  => 'Subcategorias',
 'category-media-header'          => 'Media in categoria "$1"',
-'category-empty'                 => "''Iste categoria non contine alcun paginas o media al momento.''",
+'category-empty'                 => "''Iste categoria non contine alcun pagina o file multimedia al momento.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria celate|Categorias celate}}',
 'hidden-category-category'       => 'Categorias celate', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Iste categoria ha solmente le sequente subcategoria.|Iste categoria ha le sequente {{PLURAL:$1|subcategoria|$1 subcategorias}}, ex $2 in total.}}',
@@ -780,14 +783,15 @@ function, o le version specificate non existe, o tu essaya celar le version actu
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
 'revdelete-text'              => "'''Le versiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
 
-Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.",
+Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.
+Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in conformitate con [[{{MediaWiki:Policy-url}}|le politica]].",
 'revdelete-legend'            => 'Definir restrictiones de visibilitate',
 'revdelete-hide-text'         => 'Celar texto del version',
 'revdelete-hide-name'         => 'Celar action e objectivo',
 'revdelete-hide-comment'      => 'Celar commento de modification',
 'revdelete-hide-user'         => 'Celar nomine de usator o adresse IP del modificator',
-'revdelete-hide-restricted'   => 'Applicar iste restrictiones al administratores e blocar iste interfacie',
-'revdelete-suppress'          => 'Supprimer datos e de Administratores e de alteres',
+'revdelete-hide-restricted'   => 'Supprimer le datos a administratores assi como a alteres',
+'revdelete-suppress'          => 'Supprimer le datos a administratores assi como a alteres',
 'revdelete-hide-image'        => 'Celar contento del file',
 'revdelete-unsuppress'        => 'Eliminar restrictiones super versiones restaurate',
 'revdelete-log'               => 'Commento pro registro:',
@@ -849,7 +853,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'lineno'                  => 'Linea $1:',
 'compareselectedversions' => 'Comparar versiones seligite',
 'editundo'                => 'annullar',
-'diff-multi'              => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} non se revela.)',
+'diff-multi'              => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} non es monstrate)',
 
 # Search results
 'searchresults'             => 'Resultatos del recerca',
@@ -869,7 +873,7 @@ Tu pote [[:\$1|crear iste pagina]].",
 'viewprevnext'              => 'Vider ($1) ($2) ($3).',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 parola|$2 parolas}})',
 'search-result-score'       => 'Relevantia: $1%',
-'search-redirect'           => '(redirection verso $1)',
+'search-redirect'           => '(redirection ab $1)',
 'search-section'            => '(section $1)',
 'search-suggest'            => 'Esque tu vole dicer: $1',
 'search-interwiki-caption'  => 'Projectos fratres',
@@ -957,7 +961,7 @@ per favor vide math/README pro configurar lo.",
 'prefs-searchoptions'      => 'Optiones de recerca',
 'prefs-namespaces'         => 'Spatios de nomines',
 'defaultns'                => 'Cercar initialmente in iste spatios de nomines:',
-'default'                  => 'predefinition',
+'default'                  => 'predefinite',
 'files'                    => 'Files',
 
 # User rights
@@ -1183,7 +1187,7 @@ Per favor verifica le file e recarga lo.',
 'sourcefilename'              => 'Nomine del file de origine:',
 'destfilename'                => 'Nomine del file de destination:',
 'upload-maxfilesize'          => 'Grandor maximal del files: $1',
-'watchthisupload'             => 'Observar iste pagina',
+'watchthisupload'             => 'Observar iste file',
 'filewasdeleted'              => 'Un file con iste nomine ha anteriormente essite cargate e postea delite.
 Tu debe verificar le $1 ante de proceder e recargar lo.',
 'upload-wasdeleted'           => "'''Attention: Tu va cargar un file que esseva anteriormente delite.'''
@@ -1716,7 +1720,7 @@ Le texto complete de iste versiones delite es solmente disponibile al administra
 Es possibile que le adresse URL es invalide, o que le version ha essite restaurate o eliminate del archivo.',
 'undelete-nodiff'              => 'Nulle version precedente trovate.',
 'undeletebtn'                  => 'Restaurar',
-'undeletelink'                 => 'restaurar',
+'undeletelink'                 => 'vider/restaurar',
 'undeletereset'                => 'Reinitiar',
 'undeletecomment'              => 'Commento:',
 'undeletedarticle'             => 'restaurava "[[$1]]"',
@@ -1817,12 +1821,12 @@ specific que ha essite vandalisate).',
 'ipboptions'                      => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'altere',
 'ipbotherreason'                  => 'Motivo altere/additional:',
-'ipbhidename'                     => 'Celar le nomine del usator del registro de blodadas, del lista de blocadas active e del lista de usatores',
+'ipbhidename'                     => 'Celar le nomine del usator del modificationes e del listas',
 'ipbwatchuser'                    => 'Observar le paginas de usator e de discussion de iste usator',
 'badipaddress'                    => 'Adresse IP mal formate.',
 'blockipsuccesssub'               => 'Blocada succedite',
-'blockipsuccesstext'              => 'Le adresse IP "$1" ha essite blocate.
-<br />Vide [[Special:IPBlockList|Lista de IPs blocate]] pro revider le blocadas.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ha essite blocate.<br />
+Vide le [[Special:IPBlockList|lista de adresses IP blocate]] pro revider le blocadas.',
 'ipb-edit-dropdown'               => 'Modificar le motivos pro blocar',
 'ipb-unblock-addr'                => 'Disblocar $1',
 'ipb-unblock'                     => 'Disblocar un nomine de usator o un adresse IP',
@@ -1994,7 +1998,7 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 Per favor visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
 'allmessagesnotsupportedDB' => "Iste pagina non pote esser usate proque '''\$wgUseDatabaseMessages''' ha essite disactivate.",
 'allmessagesfilter'         => 'Filtro de nomine de message:',
-'allmessagesmodified'       => 'Monstrar solmente modificates',
+'allmessagesmodified'       => 'Monstrar solmente messages modificate',
 
 # Thumbnails
 'thumbnail-more'           => 'Aggrandir',
@@ -2205,7 +2209,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attention''': Iste file pote continer codice maligne. Si tu lo executa, tu systema pote esser compromittite.<hr />",
-'imagemaxsize'         => 'Limitar le imagines in paginas de description de files a:',
+'imagemaxsize'         => "Dimension maxime de imagines:<br />''(pro paginas de description de files)''",
 'thumbsize'            => 'Grandor del miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => '(grandor del file: $1, typo MIME: $2)',
@@ -2606,7 +2610,7 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => 'Pagina vacuate',
-'autosumm-replace' => "Reimplacia contento del pagina con '$1'",
+'autosumm-replace' => "Contento reimplaciate per '$1'",
 'autoredircomment' => 'Redirection verso [[$1]]',
 'autosumm-new'     => "Pagina create con '$1'",
 
@@ -2696,7 +2700,7 @@ Entra le nomine del file sin le prefixo \"{{ns:image}}:\".",
 'specialpages'                   => 'Paginas special',
 'specialpages-note'              => '----
 * Paginas special normal.
-* <span class="mw-specialpagerestricted">Paginas special restringite.</span>',
+* <strong class="mw-specialpagerestricted">Paginas special restringite.</strong>',
 'specialpages-group-maintenance' => 'Reportos de mantenentia',
 'specialpages-group-other'       => 'Altere paginas special',
 'specialpages-group-login'       => 'Aperir session / crear conto',
@@ -2704,7 +2708,7 @@ Entra le nomine del file sin le prefixo \"{{ns:image}}:\".",
 'specialpages-group-media'       => 'Reportos de media e cargas',
 'specialpages-group-users'       => 'Usatores e derectos',
 'specialpages-group-highuse'     => 'Paginas multo usate',
-'specialpages-group-pages'       => 'Lista de paginas',
+'specialpages-group-pages'       => 'Listas de paginas',
 'specialpages-group-pagetools'   => 'Instrumentos pro paginas',
 'specialpages-group-wiki'        => 'Datos e instrumentos pro Wiki',
 'specialpages-group-redirects'   => 'Redirection de paginas special',

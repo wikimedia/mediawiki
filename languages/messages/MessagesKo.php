@@ -1,6 +1,9 @@
 <?php
 /** Korean (한국어)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -13,6 +16,7 @@
  * @author PuzzletChung
  * @author TheAlpha for knowledge
  * @author ToePeu
+ * @author Yknok29
  * @author לערי ריינהארט
  */
 
@@ -62,7 +66,7 @@ $messages = array(
 'tog-highlightbroken'         => '없는 문서로 연결된 링크를 <a href="" class="new">이렇게</a> 보이기(선택하지 않으면 <a href="" class="internal">이렇게</a> 보임)',
 'tog-justify'                 => '문단 정렬하기',
 'tog-hideminor'               => '사소한 편집을 최근 바뀜에서 숨기기',
-'tog-extendwatchlist'         => '주시 문서를 모든 변경 목록에 적용하기',
+'tog-extendwatchlist'         => '최근의 바뀜 뿐만 아니라 모든 편집을 보이도록 주시문서 목록을 확장',
 'tog-usenewrc'                => '향상된 최근 바뀜 (자바스크립트)',
 'tog-numberheadings'          => '머릿글 번호 매기기',
 'tog-showtoolbar'             => '편집창에 툴바 보이기 (자바스크립트)',
@@ -85,7 +89,7 @@ $messages = array(
 'tog-enotifminoredits'        => '사소한 편집에도 이메일을 보내기',
 'tog-enotifrevealaddr'        => '알림 메일에 내 이메일 주소를 밝히기',
 'tog-shownumberswatching'     => '주시 사용자 수를 보여주기',
-'tog-fancysig'                => '서명에 링크를 걸지 않기',
+'tog-fancysig'                => '서명을 위키텍스트로 취급하기(자동 링크를 걸지 않기)',
 'tog-externaleditor'          => '외부 입력기를 기본값으로 사용하기 (숙련자용, 컴퓨터에 특별한 설정이 필요합니다)',
 'tog-externaldiff'            => '외부 비교 툴을 기본값으로 사용하기 (숙련자용, 컴퓨터에 특별한 설정이 필요합니다)',
 'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
@@ -724,13 +728,14 @@ $2보다 적어야 하지만 지금은 $1번 입니다.',
 'logdelete-selected'          => "'''선택한 로그:'''",
 'revdelete-text'              => "'''삭제된 판과 기록은 문서 역사와 기록에 계속 나타나지만, 내용은 공개되지 않을 것입니다.'''
 
-{{SITENAME}}의 다른 관리자는 다른 제한이 설정되어 있지 않는 한, 숨겨진 내용을 볼 수 있고, 같은 도구를 이용해 복구할 수 있습니다.",
+{{SITENAME}}의 다른 관리자는 다른 제한이 설정되어 있지 않는 한, 숨겨진 내용을 볼 수 있고, 같은 도구를 이용해 복구할 수 있습니다.
+이 도구를 사용하는 것의 결과를 인식하고 [[{{MediaWiki:Policy-url}}|정책]]에 맞게 사용하십시오.",
 'revdelete-legend'            => '보이기 제한을 설정',
 'revdelete-hide-text'         => '판의 내용을 숨기기',
 'revdelete-hide-name'         => '로그 내용과 대상을 숨기기',
 'revdelete-hide-comment'      => '편집 요약을 숨기기',
 'revdelete-hide-user'         => '편집자의 계정 이름/IP를 숨기기',
-'revdelete-hide-restricted'   => '관리자에게도 이 제한을 적용하고 이 인터페이스를 잠금',
+'revdelete-hide-restricted'   => '관리자도 보지 못하게 숨기기',
 'revdelete-suppress'          => '문서 내용을 관리자에게도 보이지 않게 숨기기',
 'revdelete-hide-image'        => '파일을 숨기기',
 'revdelete-unsuppress'        => '복구된 판에 대한 제한을 해제',
@@ -826,6 +831,7 @@ $2보다 적어야 하지만 지금은 $1번 입니다.',
 'searchall'                 => '모두',
 'showingresults'            => '<strong>$2</strong>번 부터 <strong>$1</strong>개의 결과입니다.',
 'showingresultsnum'         => "'''$2'''번 부터 '''$3'''개의 결과입니다.",
+'showingresultstotal'       => "아래를 보세요 {{복수:$3|결과 '''$3'''의 '''$1'''|결과둘 '''$3'''의 '''$1 - $2''' }}",
 'nonefound'                 => "'''참고''': 몇개의 이름공간만 기본 검색 범위입니다. 토론이나 틀 등의 모든 자료를 검색하기 위해서는 접두어로 '''all:''' 어떤 이름공간을 위해서는 접두어로 그 이름공간을 쓸 수 있습니다.",
 'powersearch'               => '찾기',
 'powersearch-legend'        => '고급 검색',
@@ -1113,7 +1119,7 @@ $2보다 적어야 하지만 지금은 $1번 입니다.',
 'sourcefilename'              => '원본 파일 이름:',
 'destfilename'                => '파일의 새 이름:',
 'upload-maxfilesize'          => '파일의 최대 크기: $1',
-'watchthisupload'             => '이 문서 주시하기',
+'watchthisupload'             => '이 파일 주시하기',
 'filewasdeleted'              => '같은 이름을 가진 파일이 올라온 적이 있었고, 그 후에 삭제되었습니다. 올리기 전에 $1을 확인해 주시기 바랍니다.',
 'upload-wasdeleted'           => "'''경고: 삭제된 적이 있는 파일을 다시 올리려 하고 있습니다.'''
 
@@ -1151,7 +1157,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'upload-curl-error28'      => '업로드 시간 초과',
 'upload-curl-error28-text' => '사이트에서 응답하는 시간이 너무 깁니다. 사이트 접속이 가능한지 확인한 다음 다시 시도해주세요. 해당 사이트에 접속이 많을 경우, 접속이 원활한 시간대에 시도해주세요.',
 
-'license'            => '라이센스:',
+'license'            => '라이선스:',
 'nolicense'          => '선택하지 않음',
 'license-nopreview'  => '(미리보기 불가능)',
 'upload_source_url'  => ' (유효하고, 모든 사람이 접근 가능한 URL)',
@@ -1161,6 +1167,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'imagelist-summary'     => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
 기본적으로 가장 최근에 올라온 파일이 가장 위에 올라와 있습니다.
 다른 방식으로 정렬하려면 기준 열의 머리칸을 눌러주세요.',
+'imagelist_search_for'  => '미디어 이름 찾기:',
 'imgfile'               => '파일',
 'imagelist'             => '파일 목록',
 'imagelist_date'        => '날짜',
@@ -1312,6 +1319,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'popularpages'            => '인기있는 문서 목록',
 'wantedcategories'        => '필요한 분류 목록',
 'wantedpages'             => '필요한 문서 목록',
+'missingfiles'            => '사라진 파일',
 'mostlinked'              => '가장 많이 연결된 문서 목록',
 'mostlinkedcategories'    => '가장 많이 연결된 분류 목록',
 'mostlinkedtemplates'     => '가장 많이 사용된 틀 목록',
@@ -1596,11 +1604,12 @@ $NEWPAGE
 문서가 삭제된 후에 같은 이름의 문서가 만들어졌다면, 복구되는 버전들은 역사의 과거 부분에 나타날 것입니다.',
 'undeleterevdel'               => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다. 이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
 'undeletehistorynoadmin'       => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
+'undelete-revision'            => '$3에 의해 ($2의 것 처럼) $1의 삭제된 판:',
 'undeleterevision-missing'     => '해당 판이 잘못되었거나 존재하지 않습니다.
 잘못된 링크를 따라왔거나, 특정 판이 이미 복구되거나 데이터베이스에서 제거되었을 수도 있습니다.',
 'undelete-nodiff'              => '이전의 판이 없습니다.',
 'undeletebtn'                  => '복구',
-'undeletelink'                 => '되살리기',
+'undeletelink'                 => '보기/되살리기',
 'undeletereset'                => '초기화',
 'undeletecomment'              => '설명:',
 'undeletedarticle'             => '"[[$1]]" 복구됨',
@@ -1697,8 +1706,8 @@ $1',
 'ipboptions'                      => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => '수동으로 지정',
 'ipbotherreason'                  => '다른 이유/추가적인 이유:',
-'ipbhidename'                     => '사용자 이름을 차단 기록, 차단된 사용자 목록, 사용자 목록에서 숨기기',
-'ipbwatchuser'                    => '이 사용자의 사용자 문서와 토론 문서를 주시하기',
+'ipbhidename'                     => '사용자 이름을 목록과 편집기록에서 숨깁니다.',
+'ipbwatchuser'                    => '이 사용자 문서와 사용자토론 문서를 주시하기',
 'badipaddress'                    => '잘못된 IP 주소',
 'blockipsuccesssub'               => '차단 완료',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:IPBlockList|여기]]에서 볼 수 있습니다.',
@@ -1796,7 +1805,7 @@ $1',
 'move-watch'              => '이 문서 주시하기',
 'movepagebtn'             => '이동',
 'pagemovedsub'            => '문서 이동함',
-'movepage-moved'          => "<big>'''‘$1’ 문서를 ‘$2’ 문서로 이동함'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''‘$1’ 문서를 ‘$2’ 문서로 이동했습니다.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
 'cantmove-titleprotected' => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
 'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
@@ -2050,7 +2059,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<hr />",
-'imagemaxsize'         => '파일 설명 문서의 그림 크기를 제한하기:',
+'imagemaxsize'         => "그림 크기를 제한하기:<br />''(파일 설명 페이지)''",
 'thumbsize'            => '섬네일 크기:',
 'widthheightpage'      => '$1×$2, $3페이지',
 'file-info'            => '(파일 크기: $1, MIME 종류: $2)',
@@ -2533,7 +2542,7 @@ $1',
 'specialpages'                   => '특수 문서 목록',
 'specialpages-note'              => '----
 * 일반 특수 문서.
-* <span class="mw-specialpagerestricted">제한된 특수 문서.</span>',
+* <strong class="mw-specialpagerestricted">제한된 특수 문서.</strong>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other'       => '다른 특수문서',
 'specialpages-group-login'       => '로그인 / 등록',

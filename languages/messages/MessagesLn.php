@@ -1,6 +1,9 @@
 <?php
 /** Lingala (Lingála)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -89,7 +92,7 @@ $messages = array(
 'searcharticle'    => 'Kɛndɛ́',
 'history'          => 'Makambo ya lokásá',
 'history_short'    => 'likambo',
-'printableversion' => 'Mpɔ́ na kofínela',
+'printableversion' => 'Mpɔ̂ na kofínela',
 'permalink'        => 'Ekangeli ya ntángo yɔ́nsɔ',
 'print'            => 'kobimisa nkomá',
 'edit'             => 'Kobimisela',

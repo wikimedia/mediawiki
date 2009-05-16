@@ -1,6 +1,9 @@
 <?php
 /** Sundanese (Basa Sunda)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -41,8 +44,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Format tumbu pegat <a href="" class="new">kawas kieu</a> (atawa: kawas kieu<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Lempengkeun alinéa',
 'tog-hideminor'               => 'Sumputkeun éditan minor dina nu anyar robah',
-'tog-extendwatchlist'         => 'Legaan awaskeuneun ngarah sakabéh parobahanana katempo',
-'tog-usenewrc'                => 'Nu anyar robah dina wanda séjén (JavaScript)',
+'tog-extendwatchlist'         => 'Legaan béréndélan ngarah sakabéh parobahanana kaawaskeun',
+'tog-usenewrc'                => 'Nu anyar robah dina wanda séjén (maké JavaScript)',
 'tog-numberheadings'          => 'Nomeran lulugu sacara otomatis',
 'tog-showtoolbar'             => "Témbongkeun ''toolbar'' édit (JavaScript)",
 'tog-editondblclick'          => 'Édit kaca ku klik ganda (JavaScript)',
@@ -50,7 +53,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Fungsikeun ngédit sub-bagean kalawan klik-katuhu dina judul bagean (JavaScript)',
 'tog-showtoc'                 => 'Témbongkeun daptar eusi<br />(pikeun kaca nu leuwih ti tilu subjudul)',
 'tog-rememberpassword'        => 'Inget sandi nembus rintakan',
-'tog-editwidth'               => 'Kotak édit sing lébar',
+'tog-editwidth'               => 'Legaan kotak édit luyu jeung lébar layar',
 'tog-watchcreations'          => 'Awaskeun kaca jieunan kuring',
 'tog-watchdefault'            => 'Tambahkeun kaca nu diédit ku anjeun kana awaskeuneun anjeun',
 'tog-watchmoves'              => 'Awaskeun kaca nu dipindahkeun ku kuring',
@@ -64,7 +67,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Béjaan ogé (ngaliwatan surélék) mun aya parobahan leutik dina kacana',
 'tog-enotifrevealaddr'        => 'Témbongkeun alamat surélék kuring dina surat émbaran',
 'tog-shownumberswatching'     => 'Témbongkeun jumlah nu ngawaskeun',
-'tog-fancysig'                => 'Paraf kasar (tanpa tumbu otomatis)',
+'tog-fancysig'                => 'Témbongkeun paraf salaku wikitext (tanpa tumbu otomatis)',
 'tog-externaleditor'          => 'Pigunakeun parabot éditor éksternal ti buhunna',
 'tog-externaldiff'            => 'Paké pangbeda éksternal ti buhunna',
 'tog-showjumplinks'           => 'Aktifkeun tumbu panyambung "luncat ka"',
@@ -152,7 +155,7 @@ $messages = array(
 'category-file-count-limited'    => 'Kategori didieu ngabogaan {{PLURAL:$1|gambar|$1 gambar}} ieu.',
 'listingcontinuesabbrev'         => '(samb.)',
 
-'mainpagetext'      => "''Software'' Wiki geus diinstal.",
+'mainpagetext'      => "<big>'''''Software'' MediaWiki geus diinstal.'''</big>",
 'mainpagedocfooter' => "Mangga tingal ''[http://meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi.",
 
 'about'          => 'Ngeunaan',
@@ -1230,7 +1233,7 @@ Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun c
 'mostcategories'          => 'Artikel nu paling loba ngandung kategori',
 'mostimages'              => 'Nu panglobana numbu ka gambar',
 'mostrevisions'           => 'Artikel nu pangmindengna dirévisi',
-'prefixindex'             => 'Daftar kaca maké awalan',
+'prefixindex'             => 'Kabeh kaca maké awalan',
 'shortpages'              => 'Kaca-kaca parondok',
 'longpages'               => 'Kaca-kaca paranjang',
 'deadendpages'            => 'Kaca buntu',
@@ -1466,9 +1469,9 @@ Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
 'protect-locked-blocked'      => "Anjeun teu bisa ngarobah hambalan koncian sabab keur dipeungpeuk. Setélan ayeuna pikeun kaca '''$1''' nyaéta:",
 'protect-locked-access'       => "Rekening anjeun teu wenang ngarobah hambalan pangonci kaca. Kaca '''$1''' disetél:",
 'protect-cascadeon'           => 'Ieu kaca dikonci sabab kaasup {{PLURAL:$1|kaca nu|kaca-kaca nu}} ngajalankeun pangonci ngaruntuy. Anjeun bisa ngarobah hambalan koncian ieu kaca, tapi ieu moal mangaruhan pangonci ngaruntuyna.',
-'protect-default'             => '(buhun)',
+'protect-default'             => 'Bisa ku sakabeh pamaké',
 'protect-fallback'            => 'Kudu aya kawenangan "$1"',
-'protect-level-autoconfirmed' => 'Peungpeuk pamaké nu teu daptar',
+'protect-level-autoconfirmed' => 'Peungpeuk pamaké anyar jeung nu teu daptar',
 'protect-level-sysop'         => 'Ngan bisa ku kuncén',
 'protect-summary-cascade'     => 'ngaruntuykeun',
 'protect-expiring'            => 'kadaluwarsa $1',
@@ -1506,7 +1509,7 @@ Téks aktual révisi nu geus dihapus ieu ngan bisa dibuka ku kuncén.',
 'undelete-revision'            => 'Révisi nu dihapus ti $1 (nepi ka $2) ku $3:',
 'undelete-nodiff'              => 'Euweuh revisi nu lewih lila',
 'undeletebtn'                  => 'Simpen deui!',
-'undeletelink'                 => 'pulangkeun',
+'undeletelink'                 => 'tempo/pulangkeun',
 'undeletecomment'              => 'Pamanggih:',
 'undeletedarticle'             => 'disimpen "$1"',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|révisi|révisi}} disimpen deui',
@@ -2291,7 +2294,7 @@ Coba ku sawangan normal.',
 'specialpages'                   => 'Kaca husus',
 'specialpages-note'              => '----
 * Kaca husus bisa di buka ku umum.
-* <span class="mw-specialpagerestricted">Cetak kandel kaca husus nu kawates.</span>',
+* <strong class="mw-specialpagerestricted">Cetak kandel kaca husus nu kawates.</strong>',
 'specialpages-group-maintenance' => 'Laporan pigawéeun',
 'specialpages-group-other'       => 'Kaca husus lainna',
 'specialpages-group-login'       => 'Asup log / Nyieun rekening',

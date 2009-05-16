@@ -1,6 +1,9 @@
 <?php
 /** Belarusian (Беларуская)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -300,7 +303,7 @@ $messages = array(
 'versionrequiredtext' => 'Каб карыстацца гэтай старонкай, патрабуецца MediaWiki версіі $1. Гл. [[Special:Version]]',
 
 'ok'                      => 'Добра',
-'pagetitle'               => '$1 — Вікіпедыя',
+'pagetitle'               => '$1 — {{SITENAME}}',
 'retrievedfrom'           => 'Узята з "$1"',
 'youhavenewmessages'      => 'Вы маеце $1 ($2).',
 'newmessageslink'         => 'новыя паведамленні',
@@ -1277,7 +1280,7 @@ $2',
 'statistics-mostpopular' => 'Самыя папулярныя старонкі',
 
 'disambiguations'      => 'Неадназначнасці',
-'disambiguationspage'  => '[[Шаблон:Неадназначнасць]]',
+'disambiguationspage'  => 'Template:Неадназначнасць',
 'disambiguations-text' => "Гэтыя старонкі спасылаюцца на '''старонкі развязкі неадназначнасцяў'''.
 Лепей, каб яны спасылаліся на канкрэтныя тэматычныя старонкі.<br />
 Старонка лічыцца старонкай развязкі, калі ў яе ўлучаецца такі шаблон, на які спасылаецца [[MediaWiki:Disambiguationspage]]",
@@ -2526,7 +2529,7 @@ $1',
 'specialpages'                   => 'Адмысловыя старонкі',
 'specialpages-note'              => '----
 * Агульныя адмысловыя старонкі.
-* <span class="mw-specialpagerestricted">Абмежаваныя адмысловыя старонкі.</span>',
+* <strong class="mw-specialpagerestricted">Абмежаваныя адмысловыя старонкі.</strong>',
 'specialpages-group-maintenance' => 'Звесткі аб працы',
 'specialpages-group-other'       => 'Іншыя адмысловыя старонкі',
 'specialpages-group-login'       => 'Прадстаўленне / рэгістрацыя',

@@ -1,6 +1,9 @@
 <?php
 /** Slovak (Slovenčina)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -156,8 +159,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Neexistujúce odkazy formátovať <a href="" class="new">takto</a> (alternatívne: takto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Zarovnávať okraje odstavcov',
 'tog-hideminor'               => 'V posledných úpravách nezobrazovať drobné úpravy',
-'tog-extendwatchlist'         => 'Rozšíriť zoznam sledovaných, aby ukazoval všetky súvisiace zmeny',
-'tog-usenewrc'                => 'Rozšírené zobrazenie posledných úprav (vyžaduje JavaScript)',
+'tog-extendwatchlist'         => 'Rozšíriť zoznam sledovaných, aby zobrazoval všetky zmeny, nie len posledné',
+'tog-usenewrc'                => 'Použiť rozšírené zobrazenie posledných úprav (vyžaduje JavaScript)',
 'tog-numberheadings'          => 'Automaticky číslovať nadpisy',
 'tog-showtoolbar'             => 'Zobraziť panel nástrojov úprav',
 'tog-editondblclick'          => 'Upravovať stránky po dvojitom kliknutí (JavaScript)',
@@ -165,7 +168,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Umožniť upravovať sekcie po kliknutí pravým tlačidlom na nadpisy sekcií (JavaScript)',
 'tog-showtoc'                 => 'Zobrazovať obsah (pre stránky s viac ako 3 nadpismi)',
 'tog-rememberpassword'        => 'Zapamätať si heslo na tomto počítači',
-'tog-editwidth'               => 'Maximálna šírka textového poľa úprav',
+'tog-editwidth'               => 'Rozšíriť textové pole na úpravy na celú obrazovku',
 'tog-watchcreations'          => 'Pridávať stránky, ktoré vytvorím, automaticky medzi sledované',
 'tog-watchdefault'            => 'Pridávať stránky, ktoré upravujem, automaticky medzi sledované',
 'tog-watchmoves'              => 'Pridávať stránky, ktoré presuniem, do môjho zoznamu sledovaných',
@@ -179,7 +182,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Upozorniť ma emailom aj na drobné úpravy stránok',
 'tog-enotifrevealaddr'        => 'Zobraziť moju emailovú adresu v emailoch s upozorneniami',
 'tog-shownumberswatching'     => 'Zobraziť počet používateľov sledujúcich stránku',
-'tog-fancysig'                => 'Nespracovávať podpisy (bez automatických odkazov)',
+'tog-fancysig'                => 'Považovať podpisy za wikitext (bez automatických odkazov)',
 'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
 'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
 'tog-showjumplinks'           => 'Používať odkazy „skočiť na“ pre lepšiu dostupnosť',
@@ -669,8 +672,8 @@ Zablokoval vás správca $1. Udáva tento dôvod:<br />''$2''
 * Blokovanie vyprší: $6
 * Kto mal byť zablokovaný: $7
 
-Môžete kontaktovať $1 alebo s jedného z ďalších [[{{MediaWiki:Grouppage-sysop}}|správcov]] a prediskutovať blokovanie.
-Uvedomte si, že nemôžete použiť funkciu „{{MediaWiki:Emailuser}}“, pokiaľ nemáte registrovanú platnú e-mailovú adresu vo svojich [[Special:Preferences|nastaveniach]].
+Môžete kontaktovať $1 alebo s jedného z ďalších [[{{int:Grouppage-sysop}}|správcov]] a prediskutovať blokovanie.
+Uvedomte si, že nemôžete použiť funkciu „{{int:Emailuser}}“, pokiaľ nemáte registrovanú platnú e-mailovú adresu vo svojich [[Special:Preferences|nastaveniach]].
 Vaša IP adresa je $3 a ID blokovania je #$5.
 Prosím, uveďte oba tieto údaje do každej správy, ktorú posielate.",
 'autoblockedtext'                  => "Vaša IP adresa bola automaticky zablokovaná, pretože ju používa iný používateľ, ktorého zablokoval $1.
@@ -683,9 +686,9 @@ Udaný dôvod zablokovania:
 * Blokovanie sa týka: $7
 
 Ak potrebujete informácie o blokovaní, môžete kontaktovať $1 alebo niektorého iného
-[[{{MediaWiki:Grouppage-sysop}}|správcu]].
+[[{{int:Grouppage-sysop}}|správcu]].
 
-Pozn.: Nemôžete použiť funkciu „{{MediaWiki:emailuser}}“, ak ste si vo svojich
+Pozn.: Nemôžete použiť funkciu „{{int:emailuser}}“, ak ste si vo svojich
 [[Special:Preferences|používateľských nastaveniach]] nezaregistrovali platnú emailovú adresu.
 
 Vaša aktuálna IP adresa je $3. ID vášho blokovania je $5.
@@ -707,7 +710,7 @@ Prosím, uveďte tieto podrobnosti v akýchkoľvek otázkach, ktoré sa opýtate
 'newarticle'                       => '(Nový)',
 'newarticletext'                   => "Sledovali ste odkaz na stránku, ktorá zatiaľ neexistuje.
 Stránku vytvoríte tak, že začnete písať do dolného poľa a potom stlačíte tlačidlo „Uložiť stránku“.
-(Viac informácií nájdete na stránkach [[{{MediaWiki:Helppage}}|Pomocníka]]).
+(Viac informácií nájdete na stránkach [[{{int:Helppage}}|Pomocníka]]).
 Ak ste sa sem dostali nechtiac, iba kliknite na tlačidlo '''späť''' vo svojom prehliadači.",
 'anontalkpagetext'                 => "----''Toto je diskusná stránka anonymného používateľa, ktorý nemá vytvorené svoje konto alebo ho nepoužíva. 
 Preto musíme na jeho identifikáciu použiť numerickú IP adresu. Je možné, že takúto IP adresu používajú viacerí používatelia.
@@ -745,7 +748,7 @@ Ak to nebude fungovať, skúste sa [[Special:UserLogout|odhlásiť]] a znovu pri
 Horné okno na úpravy obsahuje text stránky tak, ako je momentálne platný.
 Vaše úpravy sú uvedené v dolnom okne na úpravy.
 Budete musieť zlúčiť vaše zmeny s existujúcim textom.
-'''Iba''' obsah horného okna sa uloží, keď stlačíte „{{MediaWiki:savearticle}}“.",
+'''Iba''' obsah horného okna sa uloží, keď stlačíte „{{int:savearticle}}“.",
 'yourtext'                         => 'Váš text',
 'storedversion'                    => 'Uložená verzia',
 'nonunicodebrowser'                => "'''UPOZORNENIE: Váš prehliadač nepodporuje unicode. Dočasným riešením ako bezpečne upravovať stránky je, že ne-ASCII znaky sa v upravovacom textovom poli zobrazia ako zodpovedajúce hexadecimálne hodnoty.'''",
@@ -869,18 +872,17 @@ podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} zá
 'revdelete-nooldid-text'      => 'Neuviedli ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať, uvedená revízia neexistuje alebo sa pokúšate skryť aktuálnu revíziu.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:'''",
-'revdelete-text'              => "'''Zmazané revízie sú stále viditeľné v histórii úprav stránky,
-ale ich obsah nebude prístupný verejnosti.'''
+'revdelete-text'              => "'''Zmazané revízie a udalosti sú stále viditeľné v histórii úprav stránky, ale časti ich obsahu nebudú prístupné verejnosti.'''
 
 Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupovať k skrytému obsahu a môžu
-ho znova obnoviť použitím tohto rozhrania v prípade, že operátormi projektu
-nie sú stanovené ďalšie obmedzenia.",
+ho znova obnoviť použitím tohto rozhrania v prípade, že nie sú stanovené ďalšie obmedzenia.
+Potvrďte prosím, že toto je vaším zámerom, že rozumiete dôsledkom a že tak  robíte v súlade s [[{{int:Policy-url}}|politikou]].",
 'revdelete-legend'            => 'Nastaviť obmedzenia viditeľnosti',
 'revdelete-hide-text'         => 'Skryť text revízie',
 'revdelete-hide-name'         => 'Skryť činnosť a cieľ',
 'revdelete-hide-comment'      => 'Skryť zhrnutie úprav',
 'revdelete-hide-user'         => 'Skryť používateľské meno/IP',
-'revdelete-hide-restricted'   => 'Použiť tieto obmedzenia na správcov a zamknúť toto rozhranie',
+'revdelete-hide-restricted'   => 'Zatajiť údaje pred všetkými, aj pred správcami',
 'revdelete-suppress'          => 'Skryť údaje pred správcami rovnako ako pred ostatnými',
 'revdelete-hide-image'        => 'Skryť obsah súboru',
 'revdelete-unsuppress'        => 'Odstrániť obmedzenia obnovených revízií',
@@ -944,7 +946,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 
 # Search results
 'searchresults'             => 'Výsledky vyhľadávania',
-'searchresulttext'          => 'Viac informácií o vyhľadávaní vo {{GRAMMAR:lokál|{{SITENAME}}}} nájdete na stránke [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchresulttext'          => 'Viac informácií o vyhľadávaní vo {{GRAMMAR:lokál|{{SITENAME}}}} nájdete na stránke [[{{int:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Hľadali ste „'''[[:$1]]'''“ ([[Special:Prefixindex/$1|všetky stránky začínajúce na „$1”]] | [[Special:WhatLinksHere/$1|všetky stránky odkazujúce na „$1”]])",
 'searchsubtitleinvalid'     => 'Na vyhľadávaciu požiadavku „$1“',
 'noexactmatch'              => "'''Neexistuje stránka nazvaná „$1“'''. Chcete '''[[:$1|vytvoriť novú stránku]]''' s týmto názvom?",
@@ -1261,7 +1263,7 @@ Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný ná
 'sourcefilename'              => 'Názov zdrojového súboru:',
 'destfilename'                => 'Názov cieľového súboru:',
 'upload-maxfilesize'          => 'Maximálna veľkosť súboru: $1',
-'watchthisupload'             => 'Sleduj túto stránku',
+'watchthisupload'             => 'Sledovať tento súbor',
 'filewasdeleted'              => 'Súbor s týmto názvom bol už nahraný a následne zmazaný. Mali by ste skontrolovať $1 predtým, ako budete pokračovať na opätovné nahranie.',
 'upload-wasdeleted'           => "'''Upozornenie: Nahrávate súbor, ktorý bol predtým zmazaný.'''
 
@@ -1549,7 +1551,7 @@ Pozri aj [[Special:WantedCategories|žiadané kategórie]].',
 # Special:ListGroupRights
 'listgrouprights'          => 'Práva skupiny používateľov',
 'listgrouprights-summary'  => 'Toto je zoznam skupín používateľov definovaných na tejto wiki a ich prístupových práv.
-Môžete si prečítať [[{{MediaWiki:Listgrouprights-helppage}}|ďalšie informácie]] o jednotlivých právach.',
+Môžete si prečítať [[{{int:Listgrouprights-helppage}}|ďalšie informácie]] o jednotlivých právach.',
 'listgrouprights-group'    => 'Skupina',
 'listgrouprights-rights'   => 'Práva',
 'listgrouprights-helppage' => 'Help:Práva skupiny',
@@ -1576,7 +1578,7 @@ Emailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniac
 'emailccsubject'  => 'Kópia správy pre $1: $2',
 'emailsent'       => 'E-mail bol odoslaný',
 'emailsenttext'   => 'Vaša e-mailová správa bola odoslaná.',
-'emailuserfooter' => 'Tento email poslal $1 pre $2 pomocu funkcie „Email používateľovi” na {{GRAMMAR:lokál|{{SITENAME}}}}.',
+'emailuserfooter' => 'Tento email poslal $1 používateľovi $2 pomocou funkcie „Email používateľovi” na {{GRAMMAR:lokál|{{SITENAME}}}}.',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
@@ -1589,7 +1591,7 @@ Emailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniac
 'addedwatch'           => 'Pridaná do zoznamu sledovaných stránok',
 'addedwatchtext'       => "Stránka [[$1]] bola pridaná do [[Special:Watchlist|sledovaných stránok]]. Budú tam uvedené ďalšie úpravy tejto stránky a jej diskusie a stránka bude zobrazená '''tučne''' v [[Special:RecentChanges|zozname posledných úprav]], aby ste ju ľahšie našli.
 
-Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknite na „{{MediaWiki:unwatch}}“ v záložkách na vrchu.",
+Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknite na „{{int:unwatch}}“ v záložkách na vrchu.",
 'removedwatch'         => 'Odstránená zo zoznamu sledovaných stránok',
 'removedwatchtext'     => 'Stránka „[[:$1]]“ bola odstránená z vášho zoznamu sledovaných stránok.',
 'watch'                => 'Sledovať',
@@ -1649,7 +1651,7 @@ Zmeniť nastavenia vašich sledovaných stránok môžete na
 {{fullurl:Special:Watchlist/edit}}
 
 Návrhy a ďalšia pomoc:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{fullurl:{{int:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Zmazať stránku',
@@ -1761,7 +1763,7 @@ Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, obnovené rev
 'undeleterevision-missing'     => 'Neplatná alebo chýbajúca revízia. Zrejme ste použili zlý odkaz alebo revízia bola obnovená alebo odstránená z histórie.',
 'undelete-nodiff'              => 'Nebola nájdená žiadna predošlá revízia.',
 'undeletebtn'                  => 'Obnoviť!',
-'undeletelink'                 => 'obnoviť',
+'undeletelink'                 => 'zobraziť/obnoviť',
 'undeletereset'                => 'Reset',
 'undeletecomment'              => 'Komentár:',
 'undeletedarticle'             => 'obnovený „[[$1]]“',
@@ -1804,7 +1806,7 @@ $1',
 
 'sp-contributions-newbies'     => 'Zobraziť len príspevky nových účtov',
 'sp-contributions-newbies-sub' => 'Príspevky nováčikov',
-'sp-contributions-blocklog'    => 'Záznam blokovaní',
+'sp-contributions-blocklog'    => 'záznam blokovaní',
 'sp-contributions-search'      => 'Hľadať príspevky',
 'sp-contributions-username'    => 'IP adresa alebo meno používateľa:',
 'sp-contributions-submit'      => 'Hľadať',
@@ -1833,7 +1835,7 @@ $1',
 'blockip'                         => 'Zablokovať používateľa',
 'blockip-legend'                  => 'Zablokovať používateľa',
 'blockiptext'                     => 'Použite tento formulár na zablokovanie možnosti zápisov uskutočnených z konkrétnej IP adresy alebo od používateľa.
-Mali by ste to urobiť len v prípade bránenia vandalizmu a v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].
+Mali by ste to urobiť len v prípade bránenia vandalizmu a v súlade so [[{{int:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].
 Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktoré padli za obeť vandalizmu).',
 'ipaddress'                       => 'IP adresa:',
 'ipadressorusername'              => 'IP adresa/meno používateľa:',
@@ -1857,11 +1859,11 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipboptions'                      => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'iný čas',
 'ipbotherreason'                  => 'Iný/ďalší dôvod',
-'ipbhidename'                     => 'Skryť používateľa zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
+'ipbhidename'                     => 'Skryť meno používateľa z úprav a zoznamov',
 'ipbwatchuser'                    => 'Sledovať používateľskú a diskusnú stránku tohto používateľa',
 'badipaddress'                    => 'IP adresa má nesprávny formát.',
 'blockipsuccesssub'               => 'Zablokovanie bolo úspešné',
-'blockipsuccesstext'              => '„$1“ bol/a zablokovaný/á.<br />
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] bol zablokovaný.<br />
 [[Special:IPBlockList|IP block list]] obsahuje zoznam blokovaní.',
 'ipb-edit-dropdown'               => 'Upraviť dôvody pre blokovanie',
 'ipb-unblock-addr'                => 'Odblokovať $1',
@@ -2015,7 +2017,7 @@ wiki používajúceho MediaWiki softvér pomocou stránky Special:Import.
 
 Pre export stránok zadajte názvy do tohto poľa, jeden názov na riadok, a zvoľte, či chcete iba súčasnú verziu s informáciou o poslednej úprave alebo aj všetky staršie verzie s históriou úprav.
 
-V druhom prípade môžete tiež použiť odkaz, napr. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pre stránku [[{{MediaWiki:Mainpage}}]].',
+V druhom prípade môžete tiež použiť odkaz, napr. [[{{#Special:Export}}/{{int:Mainpage}}]] pre stránku [[{{int:Mainpage}}]].',
 'exportcuronly'     => 'Zahrň iba aktuálnu verziu, nie kompletnú históriu',
 'exportnohistory'   => "----
 '''Poznámka:''' Exportovanie plnej histórie stránok pomocou tohto formulára bolo vypnuté z dôvodov výkonnosti.",
@@ -2231,7 +2233,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód, po spustení ktorého by bol váš systém kompromitovaný.
 <hr />",
-'imagemaxsize'         => 'Obmedziť obrázky na popisnej stránke súboru na:',
+'imagemaxsize'         => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
 'thumbsize'            => 'Veľkosť náhľadu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',
 'file-info'            => '(veľkosť súboru: $1, MIME typ: $2)',
@@ -2722,7 +2724,7 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 'specialpages'                   => 'Špeciálne stránky',
 'specialpages-note'              => '----
 * Bežné špeciálne stránky.
-* <span class="mw-specialpagerestricted">Špeciálne stránky s obmedzeným prístupom.</span>',
+* <strong class="mw-specialpagerestricted">Špeciálne stránky s obmedzeným prístupom.</strong>',
 'specialpages-group-maintenance' => 'Údržbové správy',
 'specialpages-group-other'       => 'Iné špeciálne stránky',
 'specialpages-group-login'       => 'Prihlásenie / registrácia',
@@ -2730,7 +2732,7 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 'specialpages-group-media'       => 'Správy o multimédiách a nahrávaniach',
 'specialpages-group-users'       => 'Používatelia a skupiny',
 'specialpages-group-highuse'     => 'Často používané stránky',
-'specialpages-group-pages'       => 'Zoznam stránok',
+'specialpages-group-pages'       => 'Zoznamy stránok',
 'specialpages-group-pagetools'   => 'Nástroje stránky',
 'specialpages-group-wiki'        => 'Wiki údaje a nástroje',
 'specialpages-group-redirects'   => 'Špeciálne stránky, ktoré sú presmerovania',

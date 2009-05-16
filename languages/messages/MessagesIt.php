@@ -1,6 +1,9 @@
 <?php
 /** Italian (Italiano)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -15,6 +18,7 @@
  * @author Felis
  * @author Gianfranco
  * @author Martorell
+ * @author Marzedu
  * @author Melos
  * @author Nemo bis
  * @author Nick1915
@@ -145,7 +149,7 @@ $messages = array(
 'tog-justify'                 => 'Allineamento dei paragrafi giustificato',
 'tog-hideminor'               => 'Nascondi le modifiche minori nelle ultime modifiche',
 'tog-extendwatchlist'         => "Mostra tutte le modifiche agli osservati speciali, non solo l'ultima",
-'tog-usenewrc'                => 'Ultime modifiche avanzate (richiede JavaScript)',
+'tog-usenewrc'                => 'Utilizza le ultime modifiche avanzate (richiede JavaScript)',
 'tog-numberheadings'          => 'Numerazione automatica dei titoli di sezione',
 'tog-showtoolbar'             => 'Mostra barra degli strumenti di modifica (richiede JavaScript)',
 'tog-editondblclick'          => 'Modifica delle pagine tramite doppio clic (richiede JavaScript)',
@@ -167,7 +171,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Segnalami via e-mail anche le modifiche minori',
 'tog-enotifrevealaddr'        => 'Rivela il mio indirizzo e-mail nei messaggi di avviso',
 'tog-shownumberswatching'     => 'Mostra il numero di utenti che hanno la pagina in osservazione',
-'tog-fancysig'                => 'Non modificare il markup della firma (usare per firme non standard)',
+'tog-fancysig'                => 'Interpreta i comandi wiki nella firma (senza collegamento automatico)',
 'tog-externaleditor'          => "Usa per default un editor di testi esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer)",
 'tog-externaldiff'            => "Usa per default un programma di diff esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer)",
 'tog-showjumplinks'           => 'Attiva i collegamenti accessibili "vai a"',
@@ -315,7 +319,7 @@ I seguenti collegamenti sono in lingua inglese:
 'unprotectthispage' => 'Togli la protezione a questa pagina',
 'newpage'           => 'Nuova pagina',
 'talkpage'          => 'Pagina di discussione',
-'talkpagelinktext'  => 'discussione',
+'talkpagelinktext'  => 'Discussione',
 'specialpage'       => 'Pagina speciale',
 'personaltools'     => 'Strumenti personali',
 'postcomment'       => 'Nuova sezione',
@@ -677,7 +681,7 @@ Si prega di specificare tutti i dettagli qui inclusi nel compilare qualsiasi ric
 'confirmedittext'                  => "Per essere abilitati alla modifica delle pagine è necessario confermare il proprio indirizzo e-mail. Per impostare e confermare l'indirizzo servirsi delle [[Special:Preferences|preferenze]].",
 'nosuchsectiontitle'               => 'La sezione non esiste',
 'nosuchsectiontext'                => 'Si è tentato di modificare una sezione inesistente. Non è possibile salvare le modifiche in quanto la sezione $1 non esiste.',
-'loginreqtitle'                    => "Per modificare questa pagina è necessario eseguire l'accesso al sito.",
+'loginreqtitle'                    => 'Accesso richiesto',
 'loginreqlink'                     => "eseguire l'accesso",
 'loginreqpagetext'                 => 'Per vedere altre pagine è necessario $1.',
 'accmailtitle'                     => 'Password inviata.',
@@ -828,13 +832,14 @@ Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancella
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
 'revdelete-text'              => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
 
-Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.",
+Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.
+Conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].",
 'revdelete-legend'            => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
 'revdelete-hide-text'         => 'Nascondi il testo della versione',
 'revdelete-hide-name'         => 'Nascondi azione e oggetto della stessa',
 'revdelete-hide-comment'      => "Nascondi l'oggetto della modifica",
 'revdelete-hide-user'         => "Nascondi il nome o l'indirizzo IP dell'autore",
-'revdelete-hide-restricted'   => 'Applica le limitazioni indicate anche agli amministratori',
+'revdelete-hide-restricted'   => 'Nascondi le informazioni indicate anche agli amministratori',
 'revdelete-suppress'          => 'Nascondi le informazioni anche agli amministratori',
 'revdelete-hide-image'        => 'Nascondi i contenuti del file',
 'revdelete-unsuppress'        => 'Elimina le limitazioni sulle revisioni ripristinate',
@@ -1565,7 +1570,7 @@ il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special
 'changed'                      => 'modificata',
 'created'                      => 'creata',
 'enotif_subject'               => 'La pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED da $PAGEEDITOR',
-'enotif_lastvisited'           => 'Consultare $1 per vedere tutte le modifiche dalla tua ultima visita.',
+'enotif_lastvisited'           => "Consultare $1 per vedere tutte le modifiche dall'ultima visita.",
 'enotif_lastdiff'              => 'Vedere $1 per visualizzare la modifica.',
 'enotif_anon_editor'           => 'utente anonimo $1',
 'enotif_body'                  => 'Gentile $WATCHINGUSERNAME,
@@ -1696,7 +1701,7 @@ Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministr
 'undeleterevision-missing'     => "Revisione errata o mancante. Il collegamento è errato oppure la revisione è stata già ripristinata o eliminata dall'archivio.",
 'undelete-nodiff'              => 'Non è stata trovata nessuna revisione precedente.',
 'undeletebtn'                  => 'Ripristina',
-'undeletelink'                 => 'ripristina',
+'undeletelink'                 => 'visualizza/ripristina',
 'undeletereset'                => 'Reimposta',
 'undeletecomment'              => 'Commento:',
 'undeletedarticle'             => 'ha recuperato "[[$1]]"',
@@ -1792,7 +1797,7 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 'ipboptions'                      => '2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'altro',
 'ipbotherreason'                  => 'Altri motivi/dettagli:',
-'ipbhidename'                     => "Nascondi il nome utente dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
+'ipbhidename'                     => 'Nascondi il nome utente dalle modifiche e dagli elenchi.',
 'ipbwatchuser'                    => 'Segui le pagine e le discussioni utente di questo utente',
 'badipaddress'                    => 'Indirizzo IP non valido.',
 'blockipsuccesssub'               => 'Blocco eseguito',
@@ -2155,7 +2160,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attenzione''': Questo file potrebbe contenere codice maligno, la sua esecuzione potrebbe danneggiare il tuo sistema.<hr />",
-'imagemaxsize'         => 'Dimensione massima delle immagini sulle relative pagine di discussione:',
+'imagemaxsize'         => "Dimensione massima delle immagini:<br />''(per le pagine di descrizione del file)''",
 'thumbsize'            => 'Grandezza delle miniature:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'            => '(dimensione del file: $1, tipo MIME: $2)',
@@ -2647,7 +2652,7 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'specialpages'                   => 'Pagine speciali',
 'specialpages-note'              => '----
 * Pagine speciali non riservate.
-* <span class="mw-specialpagerestricted">Pagine speciali riservate ad alcune categorie di utenti.</span>',
+* <strong class="mw-specialpagerestricted">Pagine speciali riservate ad alcune categorie di utenti.</strong>',
 'specialpages-group-maintenance' => 'Resoconti di manutenzione',
 'specialpages-group-other'       => 'Altre pagine speciali',
 'specialpages-group-login'       => 'Login / registrazione',

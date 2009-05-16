@@ -1,10 +1,14 @@
 <?php
 /** Hindi (हिन्दी)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
  * @author Aksi great
+ * @author Dineshjk
  * @author Kaustubh
  * @author Shyam
  * @author Sunil Mohan
@@ -1255,7 +1259,8 @@ PICT # misc.
 'filedelete-success'          => "'''$1''' को हटा दिया गया हैं।",
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' के [$3, $2 के अवतरण] हटा दिये गयें हैं।</span>',
 'filedelete-nofile'           => "'''$1''' {{SITENAME}} पर अस्तित्वमें नहीं हैं।",
-'filedelete-nofile-old'       => "दिये हुए विशेशता से मेल खाने वालें '''$1''' के अवतरण नहीं हैं।",
+'filedelete-nofile-old'       => "
+'''$1'''का आपने बताये हुए विशिष्ट खासियतवाले संग्रहित संस्करण का अस्तित्व नहीं है।",
 'filedelete-iscurrent'        => 'आप इस फ़ाईलका सबसे नया अवतरण हटा रहें हैं।
 कृपया इसके पहले इसके पुराने अवतरणको पुनर्स्थापित करें।',
 'filedelete-otherreason'      => 'अन्य/दूसरा कारण:',
@@ -2650,7 +2655,7 @@ $1',
 'specialpages'                   => 'खास पन्नें',
 'specialpages-note'              => '----
 * साधारण विशेष पृष्ठ।
-* <span class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठ।</span>',
+* <strong class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठ।</strong>',
 'specialpages-group-maintenance' => 'अनुरक्षण रिपोर्ट',
 'specialpages-group-other'       => 'अन्य विशेष पृष्ठ',
 'specialpages-group-login'       => 'सत्र प्रारम्भ / हस्ताक्षर करें',

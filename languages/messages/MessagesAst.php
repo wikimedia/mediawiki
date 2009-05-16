@@ -1,6 +1,9 @@
 <?php
 /** Asturian (Asturianu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -2578,7 +2581,7 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
 'specialpages'                   => 'Páxines especiales',
 'specialpages-note'              => '----
 * Páxines especiales normales.
-* <span class="mw-specialpagerestricted">Páxines especiales restrinxíes.</span>',
+* <strong class="mw-specialpagerestricted">Páxines especiales restrinxíes.</strong>',
 'specialpages-group-maintenance' => 'Informes de mantenimientu',
 'specialpages-group-other'       => 'Otres páxines especiales',
 'specialpages-group-login'       => 'Entrar / Crear cuenta',

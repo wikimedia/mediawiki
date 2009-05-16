@@ -1,6 +1,9 @@
 <?php
 /** Chuvash (Чăвашла)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -153,7 +156,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(малалли)',
 
 'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff«"]+)$/sD',
-'mainpagetext'      => '<big>«MediaWiki» вики-движока лартасси ăнăçлă вĕçленчĕ.</big>',
+'mainpagetext'      => "<big>'''«MediaWiki» вики-движока лартасси ăнăçлă вĕçленчĕ.'''</big>",
 'mainpagedocfooter' => 'Ку википе ĕçлеме пулăшакан информацине [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 усăç руководствинче] тупма пултаратăр.
 
 == Пулăшма пултарĕç ==

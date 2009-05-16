@@ -1,6 +1,9 @@
 <?php
 /** Afrikaans (Afrikaans)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -303,13 +306,13 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-voer',
 'page-rss-feed'           => '"$1" RSS-voer',
 'page-atom-feed'          => '"$1" Atom-voer',
-'red-link-title'          => '$1 (nog nie geskryf nie)',
+'red-link-title'          => '$1 (bladsy bestaan nie)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bladsy',
 'nstab-user'      => 'Gebruikerblad',
 'nstab-media'     => 'Mediablad',
-'nstab-special'   => 'Spesiaal',
+'nstab-special'   => 'Spesiale bladsy',
 'nstab-project'   => 'Projekblad',
 'nstab-image'     => 'Beeld',
 'nstab-mediawiki' => 'Boodskap',
@@ -597,7 +600,8 @@ Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{MediaW
 vir meer inligting.
 Indien u per ongeluk hier is, gebruik u blaaier se '''terug'''- knoppie.",
 'anontalkpagetext'                 => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese IP-adres gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien u 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen u gerig is, [[Special:UserLogin|skep 'n rekening of teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
-'noarticletext'                    => 'Daar is tans geen inligting vir hierdie artikel nie. Jy kan [[Special:Search/{{PAGENAME}}|soek vir hierdie bladsytitel]] in ander bladsye of [{{fullurl:{{FULLPAGENAME}}|action=edit}} wysig hierdie bladsy].',
+'noarticletext'                    => 'Hierdie bladsy bevat geen teks.
+U kan [[Special:Search/{{PAGENAME}}|na hierdie bladsytitel in ander bladsye soek]], <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} die verwante logs deursoek], of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'userpage-userdoesnotexist'        => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "$1"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
 'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssjsyoucanpreview'           => "'''Wenk:''' Gebruik die \"Wys voorskou\"-knoppie om u nuwe CSS/JS te toets voor u stoor.",
@@ -766,6 +770,7 @@ Die rede verskaf deur $3 is ''$2''",
 # Merge log
 'mergelog'           => 'Versmeltingslogboek',
 'pagemerge-logentry' => 'versmelt [[$1]] met [[$2]] (weergawes tot en met $3)',
+'revertmerge'        => 'Samesmelting ongedaan maak',
 
 # Diffs
 'history-title'           => 'Weergawegeskiedenis van "$1"',
@@ -1110,7 +1115,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'filehist-dimensions'            => 'Dimensies',
 'filehist-filesize'              => 'Lêergrootte',
 'filehist-comment'               => 'Opmerking',
-'imagelinks'                     => 'Prentskakels',
+'imagelinks'                     => 'Lêerskakels',
 'linkstoimage'                   => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} gebruik hierdie prent:',
 'nolinkstoimage'                 => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
 'morelinkstoimage'               => 'Wys [[Special:WhatLinksHere/$1|meer skakels]] na die lêer.',
@@ -1349,10 +1354,9 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 'watchnologintext'     => 'U moet [[Special:UserLogin|ingeteken]]
 wees om u dophoulys te verander.',
 'addedwatch'           => 'Bygevoeg tot dophoulys',
-'addedwatchtext'       => 'Die bladsy "$1" is by u [[Special:Watchlist|dophoulys]] gevoeg.
-Die bladsy "$1" is by u [[Special:Watchlist|dophoulys]] gevoeg. Toekomstige veranderinge aan hierdie bladsy en sy verwante besprekingsblad sal daar verskyn en die bladsy sal in \'\'\'vetdruk\'\'\' verskyn in die [[Special:RecentChanges|lys van onlangse wysigings]], sodat u dit makliker kan raaksien.
+'addedwatchtext'       => "Die bladsy \"\$1\" is by u [[Special:Watchlist|dophoulys]] gevoeg. Toekomstige veranderinge aan hierdie bladsy en sy verwante besprekingsblad sal daar verskyn en die bladsy sal in '''vetdruk''' verskyn in die [[Special:RecentChanges|lys van onlangse wysigings]], sodat u dit makliker kan raaksien.
 
-As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophoulys" in die kieslys bo-aan die bladsy.',
+As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoulys\" in die kieslys bo-aan die bladsy.",
 'removedwatch'         => 'Afgehaal van dophoulys',
 'removedwatchtext'     => 'Die bladsy "[[:$1]]" is van u dophoulys afgehaal.',
 'watch'                => 'Hou dop',
@@ -1467,9 +1471,9 @@ Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te vo
 'protect-locked-access'       => "U rekening het nie regte om 'n bladsy se veiligheidsvlakke te verander nie.
 Hier is die huidige verstellings vir bladsy '''$1''':",
 'protect-cascadeon'           => 'Die bladsy word beskerm want dit is ingesluit by die volgende {{PLURAL:$1|blad|blaaie}} wat kaskade-beskerming geniet. U kan die veiligheidsvlak van die bladsy verander, maar dit sal nie die ander kaskade blaaie beïnvloed nie.',
-'protect-default'             => '(normaal)',
+'protect-default'             => 'Laat alle gebruikers toe',
 'protect-fallback'            => 'Hiervoor is "$1" regte nodig',
-'protect-level-autoconfirmed' => 'Beskerm teen anonieme wysigings',
+'protect-level-autoconfirmed' => 'Nuwe en ongeregistreerde gebruikers versper',
 'protect-level-sysop'         => 'Slegs administrateurs',
 'protect-summary-cascade'     => 'kaskade',
 'protect-expiring'            => 'verval $1 (UTC)',
@@ -1507,7 +1511,7 @@ Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
 'undelete-revision'        => 'Verwyder weergawe van $1 (vanaf $2) deur $3:',
 'undelete-nodiff'          => 'Geen vorige wysigings gevind.',
 'undeletebtn'              => 'Herstel',
-'undeletelink'             => 'herstel',
+'undeletelink'             => 'bekyk/herstel',
 'undeletereset'            => 'Herstel',
 'undeletecomment'          => 'Opmerking:',
 'undeletedarticle'         => 'het "$1" herstel',
@@ -1591,8 +1595,8 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipbwatchuser'             => 'Hou die gebruiker se bladsy en besprekingsbladsy dop.',
 'badipaddress'             => 'Die IP-adres is nie in die regte formaat nie.',
 'blockipsuccesssub'        => 'Blokkering het geslaag',
-'blockipsuccesstext'       => 'Die IP-adres "$1" is geblokkeer.
-<br />Sien die [[Special:IPBlockList|IP-bloklys]] vir \'n oorsig van blokkerings.',
+'blockipsuccesstext'       => "[[Special:Contributions/$1|$1]] is geblokkeer.<br />
+Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
 'ipb-edit-dropdown'        => 'Werk lys van redes by',
 'ipb-unblock-addr'         => 'Deblokkeer $1',
 'ipb-unblock'              => "Deblokkeer 'n gebruiker of IP-adres",
@@ -1724,7 +1728,7 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:E
 'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Verstekteks',
 'allmessagescurrent'        => 'Huidige teks',
-'allmessagestext'           => "Hierdie is 'n lys boodskappe wat beskikbaar is in die ''MediaWiki''-naamspasie.",
+'allmessagestext'           => "Hierdie is 'n lys boodskappe wat in die ''MediaWiki''-naamspasie beskikbaar is.",
 'allmessagesnotsupportedDB' => "Daar is geen ondersteuning vir '''{{ns:special}}:Allmessages''' omdat '''\$wgUseDatabaseMessages''' uitgeskakel is.",
 'allmessagesfilter'         => 'Boodskapnaamfilter:',
 'allmessagesmodified'       => 'Wys slegs gewysigdes',
@@ -1758,19 +1762,19 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:E
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|weergawe|weergawes}} vanaf $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'My gebruikerbladsy',
+'tooltip-pt-userpage'             => 'U gebruikerbladsy',
 'tooltip-pt-anonuserpage'         => 'Die gebruikerbladsy vir die IP-adres waaronder u redigeer',
-'tooltip-pt-mytalk'               => 'My besprekingsbladsy',
+'tooltip-pt-mytalk'               => 'U besprekingsbladsy',
 'tooltip-pt-anontalk'             => 'Bespreking oor bydraes van hierdie IP-adres',
 'tooltip-pt-preferences'          => 'My voorkeure',
 'tooltip-pt-watchlist'            => 'Die lys bladsye wat u vir veranderinge dophou',
-'tooltip-pt-mycontris'            => 'Lys van my bydraes',
+'tooltip-pt-mycontris'            => 'Lys van u bydraes',
 'tooltip-pt-login'                => 'U word aangemoedig om in te teken; dit is egter nie verpligtend nie.',
 'tooltip-pt-anonlogin'            => 'U word aangemoedig om in te teken; dit is egter nie verpligtend nie.',
 'tooltip-pt-logout'               => 'Teken uit',
 'tooltip-ca-talk'                 => 'Bespreking oor die inhoudsbladsy',
 'tooltip-ca-edit'                 => 'U kan hierdie bladsy redigeer. Gebruik asseblief die voorskouknop vóór u dit stoor.',
-'tooltip-ca-addsection'           => 'Lewer kommentaar by hierdie bespreking.',
+'tooltip-ca-addsection'           => 'Nuwe afdeling',
 'tooltip-ca-viewsource'           => 'Hierdie bladsy is beskerm. U kan die bronteks besigtig.',
 'tooltip-ca-history'              => 'Ouer weergawes van hierdie bladsy.',
 'tooltip-ca-protect'              => 'Beskerm hierdie bladsy',
@@ -1780,6 +1784,7 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:E
 'tooltip-ca-watch'                => 'Voeg hierdie bladsy tot u dophoulys',
 'tooltip-ca-unwatch'              => 'Verwyder hierdie bladsy van u dophoulys',
 'tooltip-search'                  => 'Deursoek {{SITENAME}}',
+'tooltip-search-go'               => "Gaan na 'n bladsy met hierdie naam indien dit bestaan",
 'tooltip-search-fulltext'         => 'Deursoek die bladsye vir die teks',
 'tooltip-p-logo'                  => 'Tuisblad',
 'tooltip-n-mainpage'              => 'Besoek die Tuisblad',
@@ -2251,7 +2256,7 @@ Sleutel die lêernaam in sonder die "{{ns:image}}:" voorvoegsel.',
 'specialpages'                   => 'Spesiale bladsye',
 'specialpages-note'              => '----
 * Normale spesiale bladsye.
-* <span class="mw-specialpagerestricted">Beperkte spesiale bladsye.</span>',
+* <strong class="mw-specialpagerestricted">Beperkte spesiale bladsye.</strong>',
 'specialpages-group-maintenance' => 'Onderhoud verslae',
 'specialpages-group-other'       => 'Ander spesiale bladsye',
 'specialpages-group-login'       => 'Inteken / aansluit',

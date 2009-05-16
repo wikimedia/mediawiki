@@ -1,6 +1,9 @@
 <?php
 /** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -8,6 +11,7 @@
  * @author Eirik
  * @author EivindJ
  * @author Finnrind
+ * @author Guaca
  * @author H92
  * @author Jon Harald Søby
  * @author Jóna Þórunn
@@ -170,8 +174,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Formater lenker til ikke-eksisterende sider <a href="" class="new">slik</a> (alternativt: slik<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Blokkjusterte avsnitt',
 'tog-hideminor'               => 'Skjul mindre endringer i siste endringer',
-'tog-extendwatchlist'         => 'Utvid overvåkningslisten til å vise alle endringer i valgt tidsrom',
-'tog-usenewrc'                => 'Forbedret siste endringer (ikke for alle nettlesere)',
+'tog-extendwatchlist'         => 'Utvid overvåkningslisten til å vise alle endringer, ikke bare de siste',
+'tog-usenewrc'                => 'Forbedret siste endringer (krever JavaScript)',
 'tog-numberheadings'          => 'Nummerer overskrifter',
 'tog-showtoolbar'             => 'Vis verktøylinje (JavaScript)',
 'tog-editondblclick'          => 'Rediger sider ved å dobbeltklikke (JavaScript)',
@@ -179,7 +183,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Rediger avsnitt ved å høyreklikke på avsnittsoverskrift (JavaScript)',
 'tog-showtoc'                 => 'Vis innholdsfortegnelse (for sider med mer enn tre seksjoner)',
 'tog-rememberpassword'        => 'Husk passordet',
-'tog-editwidth'               => 'Full bredde på redigeringsboksen',
+'tog-editwidth'               => 'Utvid redigeringsboksen til å bruke hele skjermen',
 'tog-watchcreations'          => 'Overvåk sider jeg oppretter',
 'tog-watchdefault'            => 'Overvåk alle sider jeg redigerer',
 'tog-watchmoves'              => 'Overvåk sider jeg flytter',
@@ -193,7 +197,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Send meg en e-post også ved mindre sideendringer',
 'tog-enotifrevealaddr'        => 'Vis min e-postadresse i utgående meldinger',
 'tog-shownumberswatching'     => 'Vis antall overvåkende brukere',
-'tog-fancysig'                => 'Råsignatur (uten automatisk lenke)',
+'tog-fancysig'                => 'Signatur som wikitekst uten automatisk lenke',
 'tog-externaleditor'          => 'Bruk ekstern behandler som standard (kun for viderekomne, krever spesielle innstillinger på din datamaskin)',
 'tog-externaldiff'            => 'Bruk ekstern differanse som standard (kun for viderekomne, krever spesielle innstillinger på din datamaskin)',
 'tog-showjumplinks'           => 'Slå på «gå til»-lenker',
@@ -375,8 +379,8 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Opphavsrett',
 'currentevents'        => 'Aktuelt',
 'currentevents-url'    => 'Project:Aktuelt',
-'disclaimers'          => 'Opphavsrett',
-'disclaimerpage'       => 'Project:Opphavsrett',
+'disclaimers'          => 'Forbehold',
+'disclaimerpage'       => 'Project:Generelle forbehold',
 'edithelp'             => 'Redigeringshjelp',
 'edithelppage'         => 'Help:Hvordan redigere',
 'faq'                  => 'Ofte stilte spørsmål',
@@ -1230,7 +1234,7 @@ Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et n
 'sourcefilename'              => 'Velg en fil:',
 'destfilename'                => 'Ønsket filnavn:',
 'upload-maxfilesize'          => 'Maksimal filstørrelse: $1',
-'watchthisupload'             => 'Overvåk denne siden',
+'watchthisupload'             => 'Overvåk denne filen',
 'filewasdeleted'              => 'Ei fil ved dette navnet har blitt lastet opp tidligere, og så slettet. Sjekk $1 før du forsøker å laste det opp igjen.',
 'upload-wasdeleted'           => "'''Advarsel: Du laster opp en fil som tidligere har blitt slettet.'''
 
@@ -1473,7 +1477,7 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'log-search-legend'    => 'Søk i loggene.',
 'log-search-submit'    => 'Gå',
 'alllogstext'          => 'Kombinert visning av alle loggene på {{SITENAME}}.
-Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket (husk å skille mellom store og små boktaver).',
+Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket (husk å skille mellom store og små bokstaver).',
 'logempty'             => 'Ingen elementer i loggen.',
 'log-title-wildcard'   => 'Søk i titler som starter med denne teksten',
 
@@ -1714,7 +1718,7 @@ Dersom en ny side ved samme navn har blitt oprettet etter slettingen, vil de gje
 'undeleterevision-missing'     => 'Ugyldig eller manglende revisjon. Du kan ha en ødelagt lenke, eller revisjonen har blitt fjernet fra arkivet.',
 'undelete-nodiff'              => 'Ingen tidligere revisjoner funnet.',
 'undeletebtn'                  => 'Gjenopprett',
-'undeletelink'                 => 'gjenopprett',
+'undeletelink'                 => 'vis/gjenopprett',
 'undeletereset'                => 'Nullstill',
 'undeletecomment'              => 'Kommentar:',
 'undeletedarticle'             => 'gjenopprettet «[[$1]]»',
@@ -1808,11 +1812,12 @@ $1',
 'ipboptions'                      => '2 timer:2 hours,1 dag:1 day,3 dager:3 days,1 uke:1 week,2 uker:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,uendelig:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'annet',
 'ipbotherreason'                  => 'Annen/utdypende grunn:',
-'ipbhidename'                     => 'Skjul brukernavn i blokkeringsloggen, blokkeringslisten og brukerlisten',
+'ipbhidename'                     => 'Skjul brukernavn fra endringer og lister',
 'ipbwatchuser'                    => 'Overvåk brukerens brukerside og diskusjonsside',
 'badipaddress'                    => 'Ugyldig IP-adresse.',
 'blockipsuccesssub'               => 'Blokkering utført',
-'blockipsuccesstext'              => 'IP-adressen «$1» er blokkert. Se [[Special:IPBlockList|blokkeringslisten]] for alle blokkeringer.',
+'blockipsuccesstext'              => '­«[[Special:Contributions/$1|$1]]» har blitt blokkert.<br />
+Se [[Special:IPBlockList|blokkeringslisten]] for alle blokkeringer.',
 'ipb-edit-dropdown'               => 'Rediger blokkeringsgrunner',
 'ipb-unblock-addr'                => 'Avblokker $1',
 'ipb-unblock'                     => 'Avblokker et brukernavn eller en IP-adresse',
@@ -2178,7 +2183,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Advarsel''': Denne fila kan inneholde farlig kode; ved å åpne den kan systemet ditt kompromitteres.<hr />",
-'imagemaxsize'         => 'Begrens bilder på filbeskrivelsessider til:',
+'imagemaxsize'         => "Bildestørrelsesgrense:<br />''(for filbeskrivelsessider)''",
 'thumbsize'            => 'Miniatyrbildestørrelse:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|én side|$3 sider}}',
 'file-info'            => '(filstørrelse: $1, MIME-type: $2)',
@@ -2683,7 +2688,7 @@ Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
 # Special:SpecialPages
 'specialpages'                   => 'Spesialsider',
 'specialpages-note'              => '----
-* <span class="mw-specialpagerestricted">Markerte spesialsider har begrenset tilgang.</span>',
+* <strong class="mw-specialpagerestricted">Markerte spesialsider har begrenset tilgang.</strong>',
 'specialpages-group-maintenance' => 'Vedlikeholdsrapporter',
 'specialpages-group-other'       => 'Andre spesialsider',
 'specialpages-group-login'       => 'Innlogging / registrering',

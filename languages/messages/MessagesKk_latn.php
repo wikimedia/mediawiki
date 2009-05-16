@@ -1,6 +1,9 @@
 <?php
 /** Kazakh (Latin) (Қазақша (Latin))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1661,7 +1664,7 @@ Bunıñ nätïjesinde ortaşa eseppen ärbir betke '''$5''' öñdeme keledi, jä
 'disambiguationspage'  => '{{ns:template}}:Aýrıq',
 'disambiguations-text' => "Kelesi better '''aýrıqtı betke''' silteýdi.
 Bunıñ ornına belgili taqırıpqa siltewi kerek.<br />
-Eger [[{{ns:mediawiki}}:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
+Eger [[MediaWiki:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrıqtı dep sanaladı.",
 
 'doubleredirects'     => 'Şınjırlı aýdağıştar',
 'doubleredirectstext' => 'Bul bette basqa aýdatw betterge silteýtin better tizimdelinedi. Ärbir jolaqta birinşi jäne ekinşi aýdağışqa siltemeler bar, sonımen birge ekinşi aýdağış nısanası bar, ädette bul birinşi aýdağış bağıttaýtın «naqtı» nısana bet atawı bolwı kerek.',
@@ -3022,7 +3025,7 @@ Faýl atawın «{{ns:image}}:» degen bastawışsız engiziñiz.',
 'specialpages'                   => 'Arnaýı better',
 'specialpages-note'              => '----
 * Kädimgi arnaýı better.
-* <span class="mw-specialpagerestricted">Şektelgen arnaýı better.</span>',
+* <strong class="mw-specialpagerestricted">Şektelgen arnaýı better.</strong>',
 'specialpages-group-maintenance' => 'Baptaw bayanattarı',
 'specialpages-group-other'       => 'Tağı basqa arnaýı better',
 'specialpages-group-login'       => 'Kirw / tirkelw',

@@ -1,6 +1,9 @@
 <?php
 /** Icelandic (Íslenska)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -601,7 +604,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}}-stillingunum]] þínum
 'loginproblem'               => '<b>Það kom upp villa í innskráningunni.</b><br />Reyndu aftur!',
 'login'                      => 'Innskrá',
 'nav-login-createaccount'    => 'Innskrá / Búa til aðgang',
-'loginprompt'                => 'Þú verður að leyfa vefkökur til þess að geta [[Special:UserLogin|skráð þig inn á {{SITENAME}}]].',
+'loginprompt'                => 'Þú verður að leyfa vefkökur til þess að geta skráð þig inn á {{SITENAME}}.',
 'userlogin'                  => 'Innskrá / Búa til aðgang',
 'logout'                     => 'Útskráning',
 'userlogout'                 => 'Útskrá',
@@ -1407,7 +1410,7 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'log-search-legend'    => 'Leita að aðgerð',
 'log-search-submit'    => 'Áfram',
 'alllogstext'          => 'Safn allra aðgerðaskráa {{SITENAME}}.
-Þú getur takmarkað listann með því að velja tegund aðgerðaskráar, notandarnafn, eða síðu.',
+Þú getur takmarkað listann með því að velja tegund aðgerðaskráar, notandanafn, eða síðu.',
 'logempty'             => 'Engin slík aðgerð fannst.',
 'log-title-wildcard'   => 'Leita að titlum sem byrja á þessum texta',
 
@@ -1974,6 +1977,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'patrol-log-header' => 'Þetta er skrá yfir yfirfarna breytingar.',
 'patrol-log-line'   => 'merkti $1 eftir $2 sem yfirfarið $3',
 'patrol-log-auto'   => '(sjálfkrafa)',
+'patrol-log-diff'   => 'útgáfa $1',
 
 # Image deletion
 'deletedrevision'       => 'Eydd gömul útgáfu $1',

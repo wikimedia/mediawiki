@@ -1,6 +1,9 @@
 <?php
 /** Malay (Bahasa Melayu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -10,6 +13,7 @@
  * @author Kurniasan
  * @author Putera Luqman Tunku Andre
  * @author Urhixidur
+ * @author Zamwan
  * @author לערי ריינהארט
  */
 
@@ -154,8 +158,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatkan pautan rosak <a href="" class="new">seperti ini</a> (ataupun seperti ini<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Laraskan perenggan',
 'tog-hideminor'               => 'Sembunyikan suntingan kecil dalam laman perubahan terkini',
-'tog-extendwatchlist'         => 'Kembangkan senarai pantau untuk memaparkan semua perubahan yang berlaku',
-'tog-usenewrc'                => 'Pertingkatkan laman perubahan terkini (JavaScript)',
+'tog-extendwatchlist'         => 'Kembangkan senarai pantau untuk memaparkan semua perubahan, bukan hanya yang terkini',
+'tog-usenewrc'                => 'Guna peningkatan perubahan terkini (perlukan JavaScript)',
 'tog-numberheadings'          => 'Nomborkan tajuk secara automatik',
 'tog-showtoolbar'             => 'Tunjukkan bar sunting (JavaScript)',
 'tog-editondblclick'          => 'Sunting laman ketika dwiklik (JavaScript)',
@@ -163,7 +167,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bolehkan penyuntingan bahagian dengan mengklik kanan pada tajuk bahagian (JavaScript)',
 'tog-showtoc'                 => 'Tunjukkan isi kandungan (bagi rencana yang melebihi 3 tajuk)',
 'tog-rememberpassword'        => 'Ingat status log masuk saya pada komputer ini',
-'tog-editwidth'               => 'Kotak sunting mencapai lebar penuh',
+'tog-editwidth'               => 'Besarkan kotak sunting ke seluruh skrin',
 'tog-watchcreations'          => 'Tambahkan laman yang saya cipta ke dalam senarai pantau',
 'tog-watchdefault'            => 'Tambahkan laman yang saya sunting ke dalam senarai pantau',
 'tog-watchmoves'              => 'Tambahkan laman yang saya pindahkan ke dalam senarai pantau',
@@ -177,7 +181,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Juga e-melkan saya apabila berlaku penyuntingan kecil',
 'tog-enotifrevealaddr'        => 'Serlahkan alamat e-mel saya dalam e-mel pemberitahuan',
 'tog-shownumberswatching'     => 'Tunjukkan bilangan pemantau',
-'tog-fancysig'                => 'Tandatangan mentah (tanpa pautan automatik)',
+'tog-fancysig'                => 'Anggap tandatangan sebagai teks wiki (tanpa pautan automatik)',
 'tog-externaleditor'          => 'Gunakan penyunting luar secara lalai',
 'tog-externaldiff'            => 'Gunakan pembeza luar secara lalai (untuk pakar sahaja, perlu penetapan khas pada komputer anda)',
 'tog-showjumplinks'           => 'Bolehkan pautan ketercapaian "lompat ke"',
@@ -358,8 +362,8 @@ $messages = array(
 'copyright'            => 'Kandungan disediakan dengan $1.',
 'copyrightpagename'    => 'Hak cipta {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Hak cipta',
-'currentevents'        => 'Peristiwa semasa',
-'currentevents-url'    => 'Project:Peristiwa semasa',
+'currentevents'        => 'Hal semasa',
+'currentevents-url'    => 'Project:Hal semasa',
 'disclaimers'          => 'Penolak tuntutan',
 'disclaimerpage'       => 'Project:Penolak tuntutan umum',
 'edithelp'             => 'Bantuan menyunting',
@@ -845,17 +849,18 @@ Butiran lanjut boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revdelete-nooldid-text'      => 'Anda tidak menyatakan semakan sasaran.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:'''",
-'revdelete-text'              => "'''Semakan dan peristiwa yang dihapuskan masih muncul dalam sejarah laman dan log,
-akan tetapi kandungannya tidak boleh dilihat oleh orang awam.'''
+'revdelete-text'              => "'''Semakan dan peristiwa yang dihapuskan akan tetap muncul dalam sejarah laman dan log,
+tetapi kandungannya tidak boleh diakses awam.'''
 
 Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya
-semula melalui laman ini melainkan mempunyai batasan.",
+semula melalui laman ini melainkan mempunyai batasan.
+Sila sahkan bahawa anda hendak lakukan ini dan memahami akibatnya, dan anda mematuhi [[{{MediaWiki:Policy-url}}|polisi]].",
 'revdelete-legend'            => 'Tetapkan batasan:',
 'revdelete-hide-text'         => 'Sembunyikan teks semakan',
 'revdelete-hide-name'         => 'Sembunyikan tindakan dan sasaran',
 'revdelete-hide-comment'      => 'Sembunyikan komen suntingan',
 'revdelete-hide-user'         => 'Sembunyikan nama pengguna/IP penyunting',
-'revdelete-hide-restricted'   => 'Kenakan batasan ini ke atas semua pengguna, termasuk penyelia',
+'revdelete-hide-restricted'   => 'Sekat data daripada penyelia dan pengguna lain',
 'revdelete-suppress'          => 'Sekat data daripada semua pengguna, termasuk penyelia',
 'revdelete-hide-image'        => 'Sembunyikan kandungan fail',
 'revdelete-unsuppress'        => 'Buang batasan pada semakan yang dipulihkan',
@@ -1233,7 +1238,7 @@ Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. S
 'sourcefilename'              => 'Nama fail sumber:',
 'destfilename'                => 'Nama fail destinasi:',
 'upload-maxfilesize'          => 'Had saiz fail: $1',
-'watchthisupload'             => 'Pantau laman ini',
+'watchthisupload'             => 'Pantau fail ini',
 'filewasdeleted'              => 'Sebuah fail dengan nama ini pernah dimuat naik, tetapi kemudiannya dihapuskan. Anda seharusnya menyemak $1 sebelum meneruskan percubaan untuk memuat naik fail ini.',
 'upload-wasdeleted'           => "'''Amaran: Anda sedang memuat naik sebuah fail yang pernah dihapuskan.'''
 
@@ -1725,7 +1730,7 @@ sebelum penghapusan. Teks sebenar bagi semua semakan yang dihapuskan hanya boleh
 atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undelete-nodiff'              => 'Tiada semakan sebelumnya.',
 'undeletebtn'                  => 'Pulihkan',
-'undeletelink'                 => 'pulih',
+'undeletelink'                 => 'lihat/pulih',
 'undeletereset'                => 'set semula',
 'undeletecomment'              => 'Komen:',
 'undeletedarticle'             => '"[[$1]]" telah dipulihkan',
@@ -1825,7 +1830,7 @@ dirosakkan).',
 'ipboptions'                      => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'lain',
 'ipbotherreason'                  => 'Sebab tambahan/lain:',
-'ipbhidename'                     => 'Sembunyikan nama pengguna/alamat IP daripada log sekatan, senarai sekatan aktif, dan senarai pengguna',
+'ipbhidename'                     => 'Sembunyikan nama pengguna daripada senarai suntingan dan pengguna',
 'ipbwatchuser'                    => 'Pantau laman pengguna dan laman perbincangan bagi pengguna ini',
 'badipaddress'                    => 'Alamat IP tidak sah',
 'blockipsuccesssub'               => 'Sekatan berjaya',
@@ -2176,7 +2181,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Amaran''': Fail ini boleh mengandungi kod yang berbahaya dan merosakkan komputer anda.<hr />",
-'imagemaxsize'         => 'Had saiz imej di laman keterangannya:',
+'imagemaxsize'         => "Had saiz imej:<br />''(untuk laman keterangan fail)''",
 'thumbsize'            => 'Saiz imej ringkas:',
 'widthheightpage'      => '$1×$2, $3 halaman',
 'file-info'            => '(saiz file: $1, jenis MIME: $2)',
@@ -2680,7 +2685,7 @@ Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
 'specialpages'                   => 'Laman khas',
 'specialpages-note'              => '----
 * Laman khas biasa.
-* <span class="mw-specialpagerestricted">Laman khas terhad.</span>',
+* <strong class="mw-specialpagerestricted">Laman khas terhad.</strong>',
 'specialpages-group-maintenance' => 'Laporan penyenggaraan',
 'specialpages-group-other'       => 'Laman khas lain',
 'specialpages-group-login'       => 'Log masuk / daftar',

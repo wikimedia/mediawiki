@@ -1,6 +1,9 @@
 <?php
 /** Southern Balochi (بلوچی مکرانی)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -112,7 +115,7 @@ $messages = array(
 'tog-highlightbroken'         => 'پرشتگین لینکانآ فرمت کن <a href="" class="new">په داب شی</a> (یا: پی ای داب<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'پاراگرافنآ همتراز کن',
 'tog-hideminor'               => 'هوردین تغییراتآ ته نوکین تغییرات پناه کن',
-'tog-extendwatchlist'         => 'لیست چارگ مزن کن دان کل تغییرات قابل قبول پیش دراگ بیت',
+'tog-extendwatchlist'         => 'لیست چارگ مزن کن دان کل تغییرات پیش داریت نه که فقط نوکینءَ',
 'tog-usenewrc'                => 'تغییرات نوکین بهتر بوتگین(جاوا اسکریپت)',
 'tog-numberheadings'          => 'اتوماتیک شماره کتن عناوین',
 'tog-showtoolbar'             => 'میله ابزار اصلاح پیش درا(جاوا)',
@@ -135,7 +138,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'من ایمیل جن همی داب په هوردین اصلاحات صفحات',
 'tog-enotifrevealaddr'        => 'منی ایمیل پیش دار ته ایمیل أن هوژاری',
 'tog-shownumberswatching'     => 'پیش دار تعداد کاربرانی که چارگتن',
-'tog-fancysig'                => 'حامین امضا يان(بی اتوماتیکی لینک)',
+'tog-fancysig'                => 'امضاءَ په داب ویکی متنی بزان(بی اتوماتیکی لینک)',
 'tog-externaleditor'          => 'به طور پیش فرض اصلاح کنوک حارجی استفاده کن',
 'tog-externaldiff'            => 'به طور پیش فرض چه حارجی تمایز استفاده کن',
 'tog-showjumplinks'           => 'فعال کن "jump to" لینکان دست رسی آ',
@@ -677,7 +680,8 @@ $2',
 'anontalkpagetext'                 => "----'' ای صفحه بحث انت په یک ناشناس کاربری که هنگت یک حسابی شر نه کتت یا آی ا ستفاده نه کتت. اچه ما بایدن آدرس آی پی عددی په پچاه آرگ آیی استفاده کنین.
 چوشن آدرس آی پی گون چندین کاربر استفاده بیت.
 اگه شما یک کاربر ناشناس ایت وی حس کنیت بی ربطین نظر مربوط شمی هست، لطفا [[Special:UserLogin|وارد بیت ]] یا [[Special:UserLogin/signup|حسابی شرکن]] دان چه هور بییگ گون ناسناسین کاربران پرهیز بیت.''",
-'noarticletext'                    => 'هنو هچ متنی ته ای صفحه نیست، شما تونیت  [[Special:Search/{{PAGENAME}}|گردگ په عنوان صفحه]]  ته دگه صفحات یا [{{fullurl:{{FULLPAGENAME}}|action=edit}} ای صفحه اصلاح کن].',
+'noarticletext'                    => 'هنو هچ متنی ته ای صفحه نیست.
+شما تونیت [[Special:Search/{{PAGENAME}}|گردیت په عنوان صفحه]]  ته دگه صفحات یا<span class="plainlinks"> [{{fullurl:{{FULLPAGENAME}}|action=edit}} ای صفحه اصلاح کن]</span>.',
 'userpage-userdoesnotexist'        => 'حساب کاربر "$1" ثبت نهنت. لطفا کنترل کنیت اگه شما لوٹیت ای صفحه یا شر/اصلاح کنیت.',
 'clearyourcache'                   => "'''توجه:''' بعد چه ذخیره کتن، شما شاید مجبور بیت چه وتی ذخیره ی بروزر رد بیت تا تغییرات بگندیت. '''Mozilla / Firefox / Safari:'' ''Shift'' جهل داریت همی وهدی که کلیک کنیت ''Reload'' یا بداریت ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac);'''IE:''' ''Ctrl''  بداری وهدی که کلیک ''Refresh' یا 'Ctrl-F5''; '''Konqueror:''':  راحت کلیک کن دکمه ''Reload'' یا بدار ''F5''; '''Opera''' کاربر بایدن ته ''Tools→Preferences'' ذخیره پاک کنت.",
 'usercssjsyoucanpreview'           => "'''نکته:''' چه دکمه 'Show preview' په آزمایش کتن  CSS/JS پیش چه ذخیره کتن استفاده کن",
@@ -740,7 +744,7 @@ $2',
 'template-protected'               => '(محافظتین)',
 'template-semiprotected'           => '(نیم محافظتی)',
 'hiddencategories'                 => 'ای صفحه عضوی چه {{PLURAL:$1|1 hidden category|$1 پناهین دسته جات}}:',
-'edittools'                        => '<strong>په کپی و پست کتن چه CTRL+V , CTRL+C استفاده کنیت.</strong>',
+'edittools'                        => '<!-- <strong>په کپی و پست کتن چه CTRL+V , CTRL+C استفاده کنیت.</strong> -->',
 'nocreatetitle'                    => 'شرکتن صفحه محدودنت',
 'nocreatetext'                     => '{{SITENAME}} شما را چه شرکتن نوکین صفحه منه کته.
 شما تونیت برگردیت و یک پیشگین صفحه ای اصلاح کنیت، یا [[Special:UserLogin|وارد بیت یان یک حسابی شرکنیت]].',
@@ -829,13 +833,14 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'logdelete-selected'          => "'''{{PLURAL:$1|رویداد آمار انتخابی|رویداد ان آمار انتخابی}}:'''",
 'revdelete-text'              => "'''حذفین بازبینی آن و رویداد ان هنگت ته تاریح و آمار صفحه جاه کاینت، بله لهتی چه محتوا آيان په عام قابل دسترسی نه بنت.'''
 
-دگه مدیران ته {{SITENAME}} هنگت نوننت په پناهین محتوا دسترسیش بیت و توننت آیء چه طریق همی دستبری آی> تریننت، مگر شی که گیشین محدودیت بلیت.",
+دگه مدیران ته {{SITENAME}} هنگت نوننت په پناهین محتوا دسترسیش بیت و توننت آیء چه طریق همی دستبری آی> تریننت، مگر شی که گیشین محدودیت بلیت.
+لطفا تایید کنیت که شما لوٹیت ای کارءَ انجام دهید و چه آیی نتیجه سهی گیت و ای کار هم داب په [[{{MediaWiki:Policy-url}}|سیاست]]انجام دهید",
 'revdelete-legend'            => 'تنظیم محدودیت آن دیستن',
 'revdelete-hide-text'         => 'پناه کن متن بازبینیء',
 'revdelete-hide-name'         => 'پناه کن کار  و هدفء',
 'revdelete-hide-comment'      => 'پناه کن اصلاح نظرء',
 'revdelete-hide-user'         => 'پناه کن اصلاح کنوکء نام کاربری/آی پی',
-'revdelete-hide-restricted'   => 'ای محدودیت آنء په مدیران سیستم بل و ای دستبری کبل کن',
+'revdelete-hide-restricted'   => 'ای محدودیت آنء په مدیران سیستم و دگران بل',
 'revdelete-suppress'          => 'توقیف کن دیتاء چه مدیران سیستم و دگران',
 'revdelete-hide-image'        => 'پناه کن فایل محتواء',
 'revdelete-unsuppress'        => 'بزور محدودیت آنء جه ترینتگین بازبینی آن',
@@ -1312,7 +1317,7 @@ PICT # misc.
 'duplicatesoffile'               => 'جهلیگین {{PLURAL:$1|فایل یک کپی انت|$1 فایلان کپی انت}} چه هی فایل:',
 'sharedupload'                   => 'ای فایل یک مشترکین آپلودی فایلیت و شاید گون دگه پروژه یان استفاده بیت.',
 'shareduploadwiki'               => 'لطفا بجار  $1 په گیشترین اطلاعات',
-'shareduploadwiki-desc'          => 'توضیح  $1 ایء ته منبع شریکی چهلء پیش دارگ بیت.',
+'shareduploadwiki-desc'          => 'توضیح  $1 ای جهل  پیش دارگ بیت.',
 'shareduploadwiki-linktext'      => 'صفحه توضیح فایل',
 'shareduploadduplicate'          => 'ای فایل کپی  جه  $1 چه منیع شریکی  انت.',
 'shareduploadduplicate-linktext' => 'دگه فایلی',
@@ -1672,7 +1677,7 @@ $NEWPAGE
 یکی دگه پیش تر صفحهء اصلاح کتت یا بری گردینت.
 
 آهری اصلاح توسط [[User:$3|$3]] ([[User talk:$3|گپ کن]]).',
-'editcomment'                 => "نظر اصلاح ات:\"''\$1''\".", # only shown if there is an edit comment
+'editcomment'                 => "خلاصه اصلاح ات:\"''\$1''\".", # only shown if there is an edit comment
 'revertpage'                  => 'ترینت اصلاحات توسط  [[Special:Contributions/$2|$2]] ([[User talk:$2|گپ کن]])په آهری بازبینی گون [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'اصلاحات ترینگ بوتت گون $1;
 په آهری نسخه ترینگ بوتنت گون $2.',
@@ -1701,9 +1706,9 @@ $NEWPAGE
 ادان هنوکین تنظیمات هست په صفحه '''$1''':",
 'protect-cascadeon'           => 'ای صفحه الان محافظت بیت چوش که آی شامل جهلی {{PLURAL:$1|صفحات| درانت  که }} حفاظت آبشار روشن.
 شما تونیت ای صفحه ی سطح حفاظت آ عوص کنیت، بله آی ء حفاظت آبشاریء تاثیر نهلیت.',
-'protect-default'             => '(پیش فرض)',
+'protect-default'             => 'کل کاربرانءَ اجازت بدی',
 'protect-fallback'            => 'اجازه "$1" لازم داریت',
-'protect-level-autoconfirmed' => 'کابران ثبت نام نه بوتگینآ محدود کن',
+'protect-level-autoconfirmed' => 'نوکین کابران ثبت نام نه بوتگینآ محدود کن',
 'protect-level-sysop'         => 'فقط کاربران سیستمی',
 'protect-summary-cascade'     => 'آبشاری',
 'protect-expiring'            => 'منقضی بوت $1 (UTC)',
@@ -1749,7 +1754,7 @@ $NEWPAGE
 شما شاید بدین لینکی داشته ایت یا بازبینی حذف یا ترینگ بوتت چه آرشیو.',
 'undelete-nodiff'              => 'هچ پیشگین بازبینی درگیزگ نه بوت.',
 'undeletebtn'                  => 'باز گردینگ',
-'undeletelink'                 => 'واتر',
+'undeletelink'                 => 'بچار/واتر',
 'undeletereset'                => 'برگردینگ',
 'undeletecomment'              => 'نظر:',
 'undeletedarticle'             => 'واترینت "[[$1]]"',
@@ -1848,7 +1853,7 @@ $1',
 'ipboptions'                      => '۲ ساعت:2 hours,۱ روچ:1 day,۳ روچ:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌‌حد:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'دگر',
 'ipbotherreason'                  => 'دگر/اضافی ان دلیل:',
-'ipbhidename'                     => 'پناه کن نام کاربری چه آمار محدودیت، فعال کن لیست محدودیت و لیست کاربر',
+'ipbhidename'                     => 'پناه کن نام کاربری چه اصلاحات و لیستان',
 'ipbwatchuser'                    => 'بچار ای کاربرء صفحات گپ و کاربری آ',
 'badipaddress'                    => 'نامعتبر آدرس آی پی',
 'blockipsuccesssub'               => 'محدودیت موفق بوت',
@@ -2827,7 +2832,7 @@ $1',
 'specialpages'                   => 'حاصین صفحات',
 'specialpages-note'              => '----
 * نرمال صفحات حاص.
-*  <span class="mw-specialpagerestricted">محدودین صفحات حاص.</span>',
+*  <strong class="mw-specialpagerestricted">محدودین صفحات حاص.</strong>',
 'specialpages-group-maintenance' => 'گزارشات دارگ',
 'specialpages-group-other'       => 'دگر حاصین صفحات',
 'specialpages-group-login'       => 'ورود/ثبت نام',
@@ -2835,7 +2840,7 @@ $1',
 'specialpages-group-media'       => 'گزارشات مدیا و آپلودان',
 'specialpages-group-users'       => 'کابران و حقوق',
 'specialpages-group-highuse'     => 'کاربرد بالای صفحات',
-'specialpages-group-pages'       => 'لیست صفحات',
+'specialpages-group-pages'       => 'لیستان صفحات',
 'specialpages-group-pagetools'   => 'وسایل صفحه',
 'specialpages-group-wiki'        => 'وسایل و دیتا وی کی',
 'specialpages-group-redirects'   => 'غیر مستقیم بیگنت صفحات حاصین',

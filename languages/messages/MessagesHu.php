@@ -1,6 +1,9 @@
 <?php
 /** Hungarian (Magyar)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -284,7 +287,7 @@ $messages = array(
 'tog-highlightbroken'         => 'A nem létező lapokat <a href="" class="new">így</a> jelölje. (Alternatíva: így<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Sorkizárt fejezetek',
 'tog-hideminor'               => 'Apró változtatások elrejtése a friss változtatások lapon',
-'tog-extendwatchlist'         => 'A figyelőlistán az összes változtatás látszódjon (ne csak az utolsó)',
+'tog-extendwatchlist'         => 'A figyelőlistán az összes változtatás látszódjon, ne csak az utolsó',
 'tog-usenewrc'                => 'Fejlettebb friss változások listája (JavaScript-alapú)',
 'tog-numberheadings'          => 'Fejezetcímek automatikus számozása',
 'tog-showtoolbar'             => 'Szerkesztőeszközsor megjelenítése (JavaScript-alapú)',
@@ -307,7 +310,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Értesítés e-mailben a lapok apró változtatásairól',
 'tog-enotifrevealaddr'        => 'Jelenítse meg az e-mail címemet a figyelmeztető e-mailekben',
 'tog-shownumberswatching'     => 'Az oldalt figyelő szerkesztők számának mutatása',
-'tog-fancysig'                => 'Aláírás automatikus hivatkozás nélkül',
+'tog-fancysig'                => 'Az aláírás wikiszöveg (nem lesz automatikusan hivatkozásba rakva)',
 'tog-externaleditor'          => 'Külső szerkesztőprogram használata (csak haladók számára, speciális beállításokra van szükség a számítógépen)',
 'tog-externaldiff'            => 'Külső diff program használata (csak haladók számára, speciális beállításokra van szükség a számítógépen)',
 'tog-showjumplinks'           => 'Helyezzen el hivatkozást („Ugrás”) a beépített eszköztárra',
@@ -899,7 +902,7 @@ egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
 'protectedpagewarning'             => "'''FIGYELEM: Ez a lap védett, csak adminisztrátorok szerkeszthetik.'''",
 'semiprotectedpagewarning'         => "'''Megjegyzés:''' ez a lap védett, nem vagy újonnan regisztrált szerkesztők nem módosíthatják.",
 'cascadeprotectedwarning'          => "'''Figyelem:''' ez a lap le van zárva, csak adminisztrátorok szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} szerepel beillesztve:",
-'titleprotectedwarning'            => "'''FIGYELEM:  Ez a lap úgy van levédve, hogy csak néhány felhasználó hozhatja létre.'''",
+'titleprotectedwarning'            => "'''FIGYELEM:  Ez a lap le van védve, így csak a [[Special:ListGroupRights|megfelelő jogokkal]] rendelkező szerkesztők hozhatják létre.'''",
 'templatesused'                    => 'A lapon használt sablonok:',
 'templatesusedpreview'             => 'Az előnézet megjelenítésekor használt sablonok:',
 'templatesusedsection'             => 'Az ebben a szakaszban használt sablonok:',
@@ -991,18 +994,19 @@ Mivel adminisztrátor vagy ezen a webhelyen, te megtekintheted; további részle
 vagy a legutolsó változatot próbáltad meg elrejteni.',
 'revdelete-selected'          => "'''A(z) [[:$1]] lap {{PLURAL:$2|kiválasztott változata|kiválasztott változatai}}:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:'''",
-'revdelete-text'              => "'''A törölt változatok és események még láthatóak lesznek a laptörténetben és a naplókban,
+'revdelete-text'              => "'''A törölt változatok és események továbbra is megjelennek a laptörténetben és a naplókban,
 azonban a tartalmuk egyes részei el lesznek rejtve a nyilvánosság elől.'''
 
-A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni és helyre tudják állítani
-a tartalmat ugyanezen a felületen keresztül, ha nem adsz meg további korlátozásokat.",
+A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni az elrejtett tartalmat, és helyre tudják állítani ugyanezen a felületen keresztül, amennyiben nincs további korlátozás beállítva.
+
+Kérlek, erősítsd meg, hogy valóban ez a szándékod, tisztában vagy a következményekkel, és hogy az [[{{MediaWiki:Policy-url}}|irányelveknek]] megfelelően cselekszel.",
 'revdelete-legend'            => 'Korlátozások megadása:',
 'revdelete-hide-text'         => 'Változat szövegének elrejtése',
 'revdelete-hide-name'         => 'Művelet és cél elrejtése',
 'revdelete-hide-comment'      => 'Megjegyzés módosításának elrejtése',
 'revdelete-hide-user'         => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
-'revdelete-hide-restricted'   => 'Alkalmazás adminisztrátorokra, valamint a felület lezárása',
-'revdelete-suppress'          => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elöl is',
+'revdelete-hide-restricted'   => 'Adatok elrejtése az adminisztrátorok és mindenki más elől',
+'revdelete-suppress'          => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
 'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
 'revdelete-unsuppress'        => 'Korlátozások eltávolítása a visszaállított változatokról',
 'revdelete-log'               => 'Megjegyzés:',
@@ -1382,7 +1386,7 @@ Ha rendelkezel a teljesméretű képpel, akkor töltsd fel azt, egyébként kér
 'sourcefilename'              => 'Forrásfájl neve:',
 'destfilename'                => 'Célfájlnév:',
 'upload-maxfilesize'          => 'Maximális fájlméret: $1',
-'watchthisupload'             => 'Lap figyelése',
+'watchthisupload'             => 'Fájl figyelése',
 'filewasdeleted'              => 'Korábban valaki már feltöltött ilyen néven egy fájlt, amelyet később töröltünk. Ellenőrizd a $1 bejegyzését, nehogy újra feltöltsd ugyanezt a fájlt.',
 'upload-wasdeleted'           => "'''Vigyázat: egy olyan fájlt akarsz feltölteni, ami korábban már törölve lett.'''
 
@@ -1891,7 +1895,7 @@ a törölt változatoknak a tényleges szövege csak az adminisztrátorok szám�
 változatot visszaállították vagy eltávolították az archívumból.',
 'undelete-nodiff'              => 'Nem található korábbi változat.',
 'undeletebtn'                  => 'Helyreállítás',
-'undeletelink'                 => 'helyreállít',
+'undeletelink'                 => 'megnéz/helyreállít',
 'undeletereset'                => 'Vissza',
 'undeletecomment'              => 'Helyreállítás oka:',
 'undeletedarticle'             => '„[[$1]]” helyreállítva',
@@ -1985,7 +1989,7 @@ $1',
 'ipboptions'                      => '2 óra:2 hours,1 nap:1 day,3 nap:3 days,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Más időtartam',
 'ipbotherreason'                  => 'Más/további ok:',
-'ipbhidename'                     => 'A felhasználónév/IP elrejtése a blokkolási naplóból, az aktív blokkolási listából és a felhasználólistából',
+'ipbhidename'                     => 'A felhasználónév ne jelenjen meg a szerkesztéseknél és a listákban',
 'ipbwatchuser'                    => 'A felhasználó lapjának és vitalapjának figyelése',
 'badipaddress'                    => 'Érvénytelen IP-cím',
 'blockipsuccesssub'               => 'Sikeres blokkolás',
@@ -2350,7 +2354,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Figyelmeztetés''': Ez a fájl kártékony kódot tartalmazhat, futtatása során kárt tehet a számítógépedben.<hr />",
-'imagemaxsize'         => 'A kép leírólapján mutatott legnagyobb képméret:',
+'imagemaxsize'         => "A képek mérete, legfeljebb:<br />''(a leírólapokon)''",
 'thumbsize'            => 'Bélyegkép mérete:',
 'widthheightpage'      => '$1×$2, $3 oldal',
 'file-info'            => '(fájlméret: $1, MIME-típus: $2)',
@@ -2525,7 +2529,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-orientation-7' => 'Elforgatott 90° ÓSZ és függőlegesen tükrözött', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Elforgatott 90° ÓE', # 0th row: left; 0th column: bottom
 
-'exif-planarconfiguration-1' => 'sűrű formátum',
+'exif-planarconfiguration-1' => 'Egyben',
 'exif-planarconfiguration-2' => 'sík formátum',
 
 'exif-componentsconfiguration-0' => 'nem létezik',
@@ -2834,7 +2838,7 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 'specialpages'                   => 'Speciális lapok',
 'specialpages-note'              => '----
 * Mindenki számára elérhető speciális lapok.
-* <span class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</span>',
+* <strong class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</strong>',
 'specialpages-group-maintenance' => 'Állapotjelentések',
 'specialpages-group-other'       => 'További speciális lapok',
 'specialpages-group-login'       => 'Bejelentkezés / fiók létrehozása',

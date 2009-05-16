@@ -1,6 +1,9 @@
 <?php
 /** Albanian (Shqip)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -174,13 +177,13 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Kjo skedë është|$1 skeda janë}} në këtë kategori.',
 'listingcontinuesabbrev'         => 'vazh.',
 
-'mainpagetext'      => 'Wiki software u instalua me sukses.',
+'mainpagetext'      => "<big>'''MediaWiki software u instalua me sukses.'''</big>",
 'mainpagedocfooter' => 'Për më shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
 
 == Sa për fillim==
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Parazgjedhjet e MediaWiki-t]
 * [http://www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWiki-t]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]',
 
 'about'          => 'Rreth',
 'article'        => 'Artikulli',
@@ -1672,7 +1675,7 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'ipbenableautoblock'          => 'Blloko edhe IP adresën që ka përdor ky përdorues deri tash, si dhe të gjitha subadresat nga të cilat mundohet ky përdorues të editoj.',
 'ipbsubmit'                   => 'Blloko këtë përdorues',
 'ipbother'                    => 'Kohë tjetër',
-'ipboptions'                  => '1 Orë:1 hour,2 Orë:2 hours,6 Orë:6 hours,1 Ditë:1 day,3 Ditë:3 days,1 Javë:1 week,2 Javë:2 weeks,1 Muaj:1 month,3 Muaj:3 months,1 Vjet:1 year,Pa kufi:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 Orë:2 hours,1 Ditë:1 day,3 Ditë:3 days,1 Javë:1 week,2 Javë:2 weeks,1 Muaj:1 month,3 Muaj:3 months,6 Muaj:6 months,1 Vjet:1 year,Pa kufi:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'tjetër',
 'ipbotherreason'              => 'Arsye tjetër/shtesë',
 'ipbwatchuser'                => 'Shiko faqen e prezantimit dhe diskutimit të këtij përdoruesi',

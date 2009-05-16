@@ -1,6 +1,9 @@
 <?php
 /** Kurdish (Latin) (Kurdî / كوردی (Latin))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1665,7 +1668,7 @@ $1',
 'specialpages'               => 'Rûpelên taybet',
 'specialpages-note'          => '----
 * Rûpelên taybetî ji her kesan ra
-* <span class="mw-specialpagerestricted">Rûpelên taybetî ji bikarhêneran bi mafên zêdetir ra</span>',
+* <strong class="mw-specialpagerestricted">Rûpelên taybetî ji bikarhêneran bi mafên zêdetir ra</strong>',
 'specialpages-group-other'   => 'Rûpelên taybetî yên din',
 'specialpages-group-login'   => 'Têkevê',
 'specialpages-group-changes' => 'Guherandinên dawî û reşahîyan',

@@ -1,6 +1,9 @@
 <?php
 /** Sinhala (සිංහල)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -218,7 +221,7 @@ $messages = array(
 == ඇරඹුම ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings වින්‍යාස පරිස්ථිතීන් ලැයිස්තුව]
 * [http://www.mediawiki.org/wiki/Manual:FAQ මාධ්‍යවිකි නිතර-අසන-පැන]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce මාධ්‍යවිකි නිකුතුව තැපැල් ලැයිස්තුව]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce මාධ්‍යවිකි නිකුතුව තැපැල් ලැයිස්තුව]',
 
 'about'          => 'පිළිබඳ',
 'article'        => 'පටුන',
@@ -1329,7 +1332,7 @@ PICT # විවිධ.
 'duplicatesoffile'               => 'පහත {{PLURAL:$1|ගොනුව මෙම ගොනුවේ අනුපිටපතකි|ගොනු $1 මෙම ගොනුවේ අනුපිටපත්ය}} :',
 'sharedupload'                   => 'මෙම ගොනුව හවුල් උඩුගත කිරීමක් වන අතර අනෙකුත් ව්‍යාපෘති සඳහාද භාවිතා කල හැකි වෙයි.',
 'shareduploadwiki'               => 'වැඩිමනත් විස්තර සඳහා  $1 බැලීමට කාරුණික වන්න.',
-'shareduploadwiki-desc'          => 'හවුල් සුරක්‍ෂිතාගාරයෙහි තැන්පත් තර ඇති එහි $1 හි විස්තර-සටහන මෙහි පහත දැක්වේ.',
+'shareduploadwiki-desc'          => 'එහි $1 හි විස්තර-සටහන මෙහි පහත දැක්වේ.',
 'shareduploadwiki-linktext'      => 'ගොනු විස්තර පිටුව',
 'shareduploadduplicate'          => 'මෙම ගොනුව, හවුල් සුරක්‍ෂිතාගාරයේ ඇති  $1 හි අනුපිටපතකි.',
 'shareduploadduplicate-linktext' => 'වෙනත් ගොනුවකි',
@@ -1760,7 +1763,7 @@ $2 ගේ අවසන් අනුවාදය වෙතට යළි වෙන
 එක්කෝ ඔබගේ සබැඳිය සදොස්ය, නැතහොත් සංශෝධනය ප්‍රතිෂ්ඨාපනයට හෝ සංරක්ෂිතයෙන් ඉවත් කිරීමට හෝ  ලක්ව තිබේ.',
 'undelete-nodiff'              => 'පූර්ව සංශෝධන කිසිවක් සොයා ගත නොහැකි විය.',
 'undeletebtn'                  => 'ප්‍රතිෂ්ඨාපනය',
-'undeletelink'                 => 'ප්‍රතිෂ්ඨාපනය කරන්න',
+'undeletelink'                 => 'නරඹන්න/ප්‍රතිෂ්ඨාපනය කරන්න',
 'undeletereset'                => 'ප්‍රත්‍යාරම්භ කරන්න',
 'undeletecomment'              => 'පරිකථනය:',
 'undeletedarticle'             => '"[[$1]]"  ප්‍රතිෂ්ඨාපනය කරන ලදි',
@@ -2872,7 +2875,7 @@ $1',
 'specialpages'                   => 'විශේෂ පිටු',
 'specialpages-note'              => '----
 * සාමාන්‍ය විශේෂ පිටු.
-* <span class="mw-specialpagerestricted">සීමිත විශේෂ පිටු.</span>',
+* <strong class="mw-specialpagerestricted">සීමිත විශේෂ පිටු.</strong>',
 'specialpages-group-maintenance' => 'නඩත්තු වාර්තා',
 'specialpages-group-other'       => 'අනෙකුත් විශේෂ පිටු',
 'specialpages-group-login'       => 'ප්‍රවිෂ්ට වන්න / ගිණුමක් තනන්න',

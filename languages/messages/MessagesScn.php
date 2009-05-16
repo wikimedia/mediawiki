@@ -1,6 +1,9 @@
 <?php
 /** Sicilian (Sicilianu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -240,7 +243,7 @@ $messages = array(
 'category-file-count-limited'    => 'Sta catigurìa cunteni {{PLURAL:$1|lu file ndicatu|li $1 file ndicati}} ccà sutta.',
 'listingcontinuesabbrev'         => ' cunt.',
 
-'mainpagetext'      => 'Nstallazzioni di MediaWiki cumplitata currettamenti.',
+'mainpagetext'      => "<big>'''Nstallazzioni di MediaWiki cumplitata currettamenti.'''</big>",
 'mainpagedocfooter' => "Pi favuri taliari [http://meta.wikimedia.org/wiki/Help:Contents Guida utenti] pi aiutu supra l'usu e la cunfigurazzioni di stu software wiki. 
 
 == P'accuminzari == 
@@ -454,7 +457,7 @@ Query: $2',
 'protectedpagetext'    => 'Sta pàggina fu bluccata pi privèniri li canciamenti.',
 'viewsourcetext'       => 'È pussìbbili visualizzari e cupiari lu còdici surgenti di sta pàggina:',
 'protectedinterface'   => "Sta pàggina cunteni un elementu ca fà parti dâ nterfaccia utenti dû software; è quinni prutetta p'evitari pussìbbili abbusi.",
-'editinginterface'     => "'''Accura:''' Lu testu di sta pàggina fà parti d l'interfaccia utenti dû situ. Tutti li canciamenti appurtati a sta pàggina si riflèttinu supra li missaggi visualizzati pi tutti l'utenti.",
+'editinginterface'     => "'''Accura:''' Lu testu di sta pàggina fà parti dî interfaccia utenti dû situ. Tutti li canciamenti appurtati a sta pàggina si riflèttinu supra li missaggi visualizzati pi tutti l'utenti. Pi li traduzioni, cunsidira â pussibilità di usari [http://translatewiki.net/wiki/Main_Page?setlang=scn translatewiki.net], u prugettu di localizzazioni MediaWiki.",
 'sqlhidden'            => '(la query SQL hà statu ammucciata)',
 'cascadeprotected'     => 'Supra sta pàggina nun è pussìbbili effittuari canciamenti pirchì veni nclusa nt{{PLURAL:$1|â pàggina siquenti, ca fu prutetta|ê pàggini siquenti, ca foru prutetti}} silizziunannu la prutizzioni "ricursiva":
 $2',
@@ -519,7 +522,9 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li [
 'noname'                     => 'Lu nomu utenti innicatu nun è vàlidu, nun è pussìbbili criari un account a stu nomu.',
 'loginsuccesstitle'          => 'Trasuta rinisciuta',
 'loginsuccess'               => "'''Ora trasisti nta {{SITENAME}} comu \"\$1\".'''",
-'nosuchuser'                 => 'Nun è riggistratu nuddu utenti di nomu "$1". Virificari lu nomu nziritu o criari un novu accessu.',
+'nosuchuser'                 => 'Nun è riggistratu nuddu utenti di nomu "$1". 
+Li nnomi utenti sunu sinsitivi ê maiusculi.
+Virificari lu nomu nziritu o [[Special:UserLogin/signup|criari un novu accessu]].',
 'nosuchusershort'            => 'Nun c\'è nuddu utenti di nomu "<nowiki>$1</nowiki>". Cuntrolla l\'ortugrafìa.',
 'nouserspecified'            => 'È nicissariu spicificari un nomu utenti.',
 'wrongpassword'              => "La ''password'' chi mittisti nun è giusta. Prova n'àutra vota.",
@@ -687,7 +692,7 @@ Vuatri prumittiti puru chi lu scrivìstivu chî vostri palori, o chi lu cupiàst
 'protectedpagewarning'             => "'''ACCURA: Sta pàggina havi na prutizzioni spiciali e sulu l'utenti chi hannu lu status di amministraturi ponnu canciàrila.'''",
 'semiprotectedpagewarning'         => "'''ACCURA:''' Sta pàggina hà statu bluccata n modu ca sulu li utenti riggistrati ponnu canciàrila.",
 'cascadeprotectedwarning'          => "'''Accura:''' Sta pàggina havi stata bluccata n modu ca sulu li utenti cu privileggi di amministraturi ponnu mudificàrila, pirchì veni nclusa {{PLURAL:\$1|nta siquente pàggina ca hà stata prutiggiuta|ntê siquenti pàggini ca hannu stati prutiggiuti}} silizziunannu la prutizzioni \"ricursiva\":",
-'titleprotectedwarning'            => "'''ATTENZIONI:  Sta pàggina fu bluccata n modu tali ca sulu alcuni catigurìi di utenti la ponu criari.'''",
+'titleprotectedwarning'            => "'''ATTENZIONI:  Sta pàggina fu bluccata n modu tali ca sianu nicissari [[Special:ListGroupRights|diritti spicifici]] pi criarla.'''",
 'templatesused'                    => "Template utilizzati 'n sta pàggina:",
 'templatesusedpreview'             => "Template utilizzati 'n st'antiprima:",
 'templatesusedsection'             => "Template utilizzati 'n sta sezzioni:",
@@ -928,7 +933,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'contextchars'             => 'Nùmmaru di caràttiri di cuntestu:',
 'stub-threshold'           => 'Valuri minimu pî <a href="#" class="stub">liami a li stub</a>:',
 'recentchangesdays'        => "Nùmmuru di jorna a ammustrari nte l'urtimi cancaiamenti:",
-'recentchangescount'       => "Nùmmiru di righi nta l'ùrtimi canciamenti",
+'recentchangescount'       => "Nùmmiru di righi nta l'ùrtimi canciamenti, storii e log (valuri pridifinitu):",
 'savedprefs'               => 'Li tò prifirenzi foru sarvati.',
 'timezonelegend'           => 'Zona oraria',
 'timezonetext'             => "Mmetti lu nùmmiru d'uri di diffirenza tra la tò ura lucali e l'ura dû server (UTC).",
@@ -2560,7 +2565,7 @@ Nziriri lu nomu dû file senza lu prifissu \"{{ns:image}}:\"",
 'specialpages'                   => 'Pàggini spiciali',
 'specialpages-note'              => '----
 * Pàggini spiciali non risirvati.
-* <span class="mw-specialpagerestricted">Pàggini spiciali risirvati sulu a quarchi catigurìa d\'utenti.</span>',
+* <strong class="mw-specialpagerestricted">Pàggini spiciali risirvati sulu a quarchi catigurìa d\'utenti.</strong>',
 'specialpages-group-maintenance' => 'Resocunti di manutinzioni',
 'specialpages-group-other'       => 'Autri pàggini spiciali',
 'specialpages-group-login'       => 'Trasi / riggìstrazzioni',

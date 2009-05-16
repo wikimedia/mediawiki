@@ -1,6 +1,9 @@
 <?php
 /** Azerbaijani (Azərbaycan)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -623,7 +626,7 @@ Hal-hazırda [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] sayı: '
 'userstatstext' => "Hal-hazırdakı '''$1''' istifadəçidən '''$2''' (və ya '''4%''') nəfər $5dir",
 
 'disambiguations'      => 'Dəqiqləşdirmə səhifələri',
-'disambiguationspage'  => 'Şablon:dəqiqləşdirmə',
+'disambiguationspage'  => 'Template:dəqiqləşdirmə',
 'disambiguations-text' => "Aşağıdakı səhifələr '''dəqiqləşdirmə səhifələrinə''' keçid verir. Bunun əvəzinə onlar çox guman ki, müvafiq konkret bir məqaləni göstərməlidirlər.
 <br />Səhifə o zaman dəqiqləşdirmə səhifəsi hesab edilir ki, onda  [[MediaWiki:Disambiguationspage]]-dən keçid verilmiş şablon istifadə edilir.",
 

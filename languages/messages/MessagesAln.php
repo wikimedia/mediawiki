@@ -1,6 +1,9 @@
 <?php
 /** Gheg Albanian (Gegë)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -120,7 +123,7 @@ $messages = array(
 'hidden-category-category' => 'Kategori të mshehta', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'vazh.',
 
-'mainpagetext'      => 'Wiki software u instalue me sukses.',
+'mainpagetext'      => "<big>'''MediaWiki software u instalue me sukses.'''</big>",
 'mainpagedocfooter' => 'Për ma shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [http://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].
 
 
@@ -128,7 +131,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Help:Configuration_settings Parazgjedhjet e MediaWiki-t]
 * [http://www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWiki-t]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]',
 
 'about'          => 'Rreth',
 'article'        => 'Artikulli',

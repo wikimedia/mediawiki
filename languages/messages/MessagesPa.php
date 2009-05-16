@@ -1,6 +1,9 @@
 <?php
 /** Punjabi (ਪੰਜਾਬੀ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -61,9 +64,15 @@ $messages = array(
 'tog-showtoolbar'        => 'ਐਡਿਟ ਟੂਲਬਾਰ ਵੇਖੋ (JavaScript)',
 'tog-showtoc'            => 'ਟੇਬਲ ਆਫ਼ ਕੰਨਟੈੱਟ ਵੇਖਾਓ (for pages with more than 3 headings)',
 'tog-rememberpassword'   => 'ਇਹ ਕੰਪਿਊਟਰ ਲਈ ਮੇਰਾ ਲਾਗਇਨ ਯਾਦ ਰੱਖੋ',
-'tog-editwidth'          => 'ਐਡਿਟ ਬਾਕਸ ਪੇਜ ਦੀ ਪੂਰੀ ਚੌੜਾਈ ਵਿੱਚ ਕਰੋ',
+'tog-editwidth'          => 'ਐਡਿਟ ਬਾਕਸ ਨਾਲ ਪੂਰੇ ਸਕਰੀਨ ਨੂੰ ਭਰਨ ਲਈ ਇਸ ਦੀ ਚੌੜਾਈ ਵਧਾਓ',
+'tog-watchcreations'     => 'ਮੇਰੇ ਦੁਆਰਾ ਬਣਾਏ ਗਏ ਨਵੇਂ ਪੇਜ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-watchdefault'       => 'ਜੋ ਪੇਜ ਮੈਂ ਸੋਧਦਾ ਹਾਂ ਓਹ ਪੇਜ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-watchmoves'         => 'ਮੇਰੇ ਦੁਆਰਾ ਮੁਵ ਕਿਤੇ ਪੇਜ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-watchdeletion'      => 'ਮੇਰੇ ਦੁਆਰਾ ਹਟਾਏ ਗਏ ਪੇਜ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
 'tog-previewontop'       => 'ਐਡਿਟ ਬਕਸੇ ਤੋਂ ਪਹਿਲਾਂ ਝਲਕ ਵੇਖਾਓ',
 'tog-previewonfirst'     => 'ਪਹਿਲੇ ਐਡਿਟ ਉੱਤੇ ਝਲਕ ਵੇਖਾਓ',
+'tog-watchlisthideown'   => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਮੇਰੀਆਂ ਸੋਧਾਂ ਹਟਾਓ',
+'tog-watchlisthidebots'  => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਰੋਬਾਟ ਦਿਆਂ ਸੋਧਾਂ ਹਟਾਓ',
 'tog-watchlisthideminor' => 'ਛੋਟੇ ਸੋਧ ਵਾਚ-ਲਿਸਟ ਤੋਂ ਓਹਲੇ ਰੱਖੋ',
 
 'underline-always'  => 'ਹਮੇਸ਼ਾਂ',
@@ -188,7 +197,7 @@ $messages = array(
 'toolbox'           => 'ਟੂਲਬਾਕਸ',
 'userpage'          => 'ਯੂਜ਼ਰ ਪੇਜ ਵੇਖੋ',
 'projectpage'       => 'ਪਰੋਜੈਕਟ ਪੇਜ ਵੇਖੋ',
-'imagepage'         => 'ਚਿੱਤਰ ਪੇਜ ਵੇਖੋ',
+'imagepage'         => 'ਫਾਇਲ ਪੇਜ ਵੇਖੋ',
 'mediawikipage'     => 'ਸੁਨੇਹਾ ਪੇਜ ਵੇਖੋ',
 'templatepage'      => 'ਟੈਪਲੇਟ ਪੇਜ ਵੇਖੋ',
 'viewhelppage'      => 'ਮੱਦਦ ਪੇਜ ਵੇਖੋ',
@@ -247,7 +256,7 @@ $messages = array(
 'thisisdeleted'           => 'ਵੇਖੋ ਜਾਂ $1 ਰੀਸਟੋਰ?',
 'viewdeleted'             => '$1 ਵੇਖਣਾ?',
 'feedlinks'               => 'ਫੀਡ:',
-'red-link-title'          => '$1 (ਹੁਣ ਤਕ ਨਹੀਂ ਲਿਖਿਆ ਗਿਆ)',
+'red-link-title'          => '$1 (ਇਸ ਨਾਂ ਦਾ ਪੇਜ ਨਹੀਂ ਹੈ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ਲੇਖ',
@@ -598,7 +607,7 @@ to upload files.',
 'uploaddisabled'       => 'ਅੱਪਲੋਡ ਆਯੋਗ ਹੈ',
 'uploadvirus'          => 'ਇਹ ਫਾਇਲ ਵਿੱਚ ਵਾਇਰਸ ਹੈ! ਵੇਰਵੇ ਲਈ ਵੇਖੋ: $1',
 'sourcefilename'       => 'ਸੋਰਸ ਫਾਇਲ ਨਾਂ:',
-'watchthisupload'      => 'ਇਹ ਪੇਜ ਵਾਚ ਕਰੋ',
+'watchthisupload'      => 'ਇਸ ਫਾਇਲ ਨੂੰ ਵਾਚ ਕਰੋ',
 
 'upload-file-error' => 'ਅੰਦਰੂਨੀ ਗਲਤੀ',
 'upload-misc-error' => 'ਅਣਜਾਣ ਅੱਪਲੋਡ ਗਲਤੀ',
@@ -817,6 +826,7 @@ to upload files.',
 'emailblock'           => 'ਈਮੇਲ ਬਲਾਕ ਹੈ',
 'blocklink'            => 'ਬਲਾਕ',
 'unblocklink'          => 'ਅਣ-ਬਲਾਕ',
+'contribslink'         => 'ਯੋਗਦਾਨ',
 'proxyblocksuccess'    => 'ਪੂਰਾ ਹੋਇਆ',
 
 # Developer tools
@@ -863,8 +873,8 @@ to upload files.',
 'import-logentry-upload-detail' => '$1 ਰੀਵਿਜ਼ਨ',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'        => 'ਮੇਰਾ ਯੂਜ਼ਰ ਪੇਜ',
-'tooltip-pt-mytalk'          => 'ਮੇਰਾ ਗੱਲਬਾਤ ਪੇਜ',
+'tooltip-pt-userpage'        => 'ਤੁਹਾਡਾ ਯੂਜ਼ਰ ਪੇਜ',
+'tooltip-pt-mytalk'          => 'ਤੁਹਾਡਾ ਚਰਚਾ ਪੇਜ',
 'tooltip-pt-preferences'     => 'ਮੇਰੀ ਪਸੰਧ',
 'tooltip-pt-mycontris'       => 'ਮੇਰੇ ਯੋਗਦਾਨ ਦੀ ਲਿਸਟ',
 'tooltip-pt-logout'          => 'ਲਾਗ ਆਉਟ',
@@ -1013,8 +1023,8 @@ to upload files.',
 'table_pager_empty'        => 'ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ',
 
 # Auto-summaries
-'autosumm-blank' => 'ਪੇਜ ਤੋਂ ਸਭ ਸਮੱਗਰੀ ਹਟਾਓ',
-'autosumm-new'   => 'ਨਵਾਂ ਪੇਜ: $1',
+'autosumm-blank' => 'ਪੇਜ ਨੂੰ ਖਾਲੀ ਕਰ ਦਿੱਤਾ',
+'autosumm-new'   => '$1 ਨਾਲ ਪੇਜ ਬਣਾਇਆ',
 
 # Live preview
 'livepreview-loading' => 'ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…',
