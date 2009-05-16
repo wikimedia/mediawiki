@@ -5,6 +5,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.15.0rc1 ==
 
+2009-05-16
+
 This is a release candidate for the the 2009 Q2 branch of MediaWiki. 
 
 MediaWiki is now using a "continuous integration" development model with
@@ -132,11 +134,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   of the displayed revision's author user name
 * LinkerMakeExternalLink now has an $attribs parameter for link attributes and 
   a $linkType parameter for the type of external link being made
-* (bug 17785) Dynamic dates surrounded with a <span> tag, fixing sortable tables with
-  dynamic dates.
-* (bug 4582) Provide preference-based autoformatting of unlinked dates with the dateformat
-  parser function.
-* (bug 17886) Special:Export now allows you to export a whole namespace (limited to 5000 pages)
+* (bug 17785) Dynamic dates surrounded with a <span> tag, fixing sortable tables 
+  with dynamic dates.
+* (bug 4582) Provide preference-based autoformatting of unlinked dates with the 
+  dateformat parser function.
+* (bug 17886) Special:Export now allows you to export a whole namespace (limited 
+  to 5000 pages)
 * (bug 17714) Limited TIFF upload support now built in if 'tif' extension is
   enabled. Image width and height are now recognized, and when using ImageMagick,
   optional flattening to PNG or JPEG for inline display can be enabled by setting
@@ -152,6 +155,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   line
 
 === Bug fixes in 1.15 ===
+
 * (bug 16968) Special:Upload no longer throws useless warnings.
 * (bug 17000) Special:RevisionDelete now checks if the database is locked
   before trying to delete the edit.
@@ -288,7 +292,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18116) 'edittools' is now output identically on edit and upload pages
 * (bug 17241) The diffonly URI parameter should cascade to "Next edit" and 
   "Previous edit" diff links
-* (bug 16823) 'Sidebar search form should not use Special:Search view URL as target'
+* (bug 16823) 'Sidebar search form should not use Special:Search view URL as 
+  target'
 * (bug 16343) Non-existing, but in use, category pages can be "go" match hits
 * Fixed the circular template inclusion check, was broken when the loop 
   involved redirects. Without this, infinite recursion within the parser is
@@ -302,8 +307,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to the installer.
 * (bug 18170) Fixed a PHP warning in Parser::preSaveTransform() in PHP 5.3
 
-
 == API changes in 1.15 ==
+
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
   and listing all deleted pages possible
 * (bug 16844) Added clcategories parameter to prop=categories
@@ -373,8 +378,8 @@ changes to languages because of MediaZilla reports.
 * (bug 17288) Messages improved for default language (English)
 * (bug 12937) Update native name for Afar
 * (bug 16909) 'histlegend' now reuses messages instead of copying them
-* (bug 17832) action=delete returns 'unknownerror' instead of 'permissiondenied' when
-  the user is blocked
+* (bug 17832) action=delete returns 'unknownerror' instead of 'permissiondenied' 
+  when the user is blocked
 * Traditional/Simplified Gan Chinese conversion support
 
 == Compatibility ==
