@@ -1,6 +1,9 @@
 <?php
 /** German (formal address) (Deutsch (Sie-Form))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -45,7 +48,7 @@ Grund der Sperrung: $1',
 Die Seite ist möglicherweise gelöscht oder verschoben worden.
 
 Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software gefunden. Bitte melden Sie dies einem [[Special:ListUsers/sysop|Administrator]] unter Nennung der URL.',
-'actionthrottledtext'  => 'Diese Aktion kann in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Sie haben diese Grenze soeben erreicht. Bitte versuchen Sie es in einigen Minuten erneut.',
+'actionthrottledtext'  => 'Sie haben diese Aktion zu oft innerhalb eines kurzen Zeitraums ausgeführt. Bitte warten Sie ein paar Minuten und probieren Sie es dann erneut.',
 'namespaceprotected'   => "Sie haben keine Berechtigung, die Seite im '''$1'''-Namensraum zu bearbeiten.",
 'customcssjsprotected' => 'Sie sind nicht berechtigt, diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
 
@@ -167,6 +170,9 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administra
 'nosuchsectiontext'                => 'Sie versuchen den nicht vorhandenen Abschnitt $1 zu bearbeiten. Es können jedoch nur bereits vorhandene Abschnitte bearbeitet werden.',
 'loginreqpagetext'                 => 'Sie müssen sich $1, um Seiten lesen zu können.',
 'anontalkpagetext'                 => "----''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzern gemeinsam verwendet werden. Wenn Sie mit den Kommentaren auf dieser Seite nichts anfangen können, richten sie sich vermutlich an einen früheren Inhaber Ihrer IP-Adresse und Sie können sie ignorieren. Sie können sich auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder sich [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzern zu vermeiden.''",
+'noarticletext'                    => 'Diese Seite enthält momentan noch keinen Text.
+Sie können diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]],
+<span class="plainlinks"> in den zugehörigen [{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} Logbüchern suchen] oder dieser Seite [{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>.',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfen Sie, ob Sie diese Seite wirklich erstellen/bearbeiten möchten.',
 'clearyourcache'                   => "'''Hinweis - Leeren Sie nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei auf ''Aktualisieren'' klicken.",
 'usercssjsyoucanpreview'           => "'''Tipp:''' Benutzen Sie den Vorschau-Button, um Ihr neues CSS/JS vor dem Speichern zu testen.",
@@ -241,6 +247,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die [[:$1|die Seite ve
 'toomanymatches'        => 'Es Anzahl der Suchergnisse ist zu groß, bitte versuchen Sie eine andere Abfrage.',
 'search-suggest'        => 'Meinten Sie „$1“?',
 'nonefound'             => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setzen Sie ''all:'' vor Ihren Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.",
+'search-nonefound'      => 'Für Ihre Suchanfrage wurden keine Ergebnisse gefunden.',
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
@@ -456,6 +463,7 @@ Sie sollten daher die Konsequenzen verstanden haben, bevor Sie fortfahren.",
 In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand verschieben oder zusammenführen.
 
 Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung bitte '''begründen.'''",
+'movenologin'            => 'Sie sind nicht angemeldet',
 'movenologintext'        => 'Sie müssen ein registrierter Benutzer und [[Special:UserLogin|angemeldet]] sein, um eine Seite zu verschieben.',
 'movenotallowed'         => 'Sie haben keine Berechtigung, Seiten zu verschieben.',
 'movenotallowedfile'     => 'Sie haben keine Berechtigung, Dateien zu verschieben.',

@@ -1,10 +1,14 @@
 <?php
 /** Hindi (हिन्दी)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
  * @author Aksi great
+ * @author Dineshjk
  * @author Kaustubh
  * @author Shyam
  * @author Sunil Mohan
@@ -269,7 +273,7 @@ $messages = array(
 
 'badaccess'        => 'अनुमति त्रुटि',
 'badaccess-group0' => 'जिस क्रिया का अनुरोध आपने किया है उसे संचालित करने की अनुमति आपको नही है।',
-'badaccess-groups' => '$1 ग्रुपोंमेंसे एक ग्रुपमें शामिल सदस्य ही इस प्रकार की क्रियाएं कर सकतें हैं ।',
+'badaccess-groups' => 'आपने जो क्रिया करने की कोशिश की है वह {{PLURAL:$2|समुह|में से एक समुह}}के सदस्य ही कर शकते है ।',
 
 'versionrequired'     => 'मीडीयाविकिका $1 अवतरण ज़रूरी हैं ।',
 'versionrequiredtext' => 'यह पन्ना इस्तेमाल करने के लिये मीडियाविकीका $1 अवतरण ज़रूरी हैं । देखें [[Special:Version|अवतरण सूची]] ।',
@@ -1246,7 +1250,8 @@ PICT # misc.
 'filedelete-success'          => "'''$1''' को हटा दिया गया हैं।",
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' के [$3, $2 के अवतरण] हटा दिये गयें हैं।</span>',
 'filedelete-nofile'           => "'''$1''' {{SITENAME}} पर अस्तित्वमें नहीं हैं।",
-'filedelete-nofile-old'       => "दिये हुए विशेशता से मेल खाने वालें '''$1''' के अवतरण नहीं हैं।",
+'filedelete-nofile-old'       => "
+'''$1'''का आपने बताये हुए विशिष्ट खासियतवाले संग्रहित संस्करण का अस्तित्व नहीं है।",
 'filedelete-otherreason'      => 'अन्य/दूसरा कारण:',
 'filedelete-reason-otherlist' => 'अन्य कारण',
 'filedelete-reason-dropdown'  => '*हटाने के साधारण कारण
@@ -2632,7 +2637,7 @@ $5
 'specialpages'                   => 'खास पन्नें',
 'specialpages-note'              => '----
 * साधारण विशेष पृष्ठ।
-* <span class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठ।</span>',
+* <strong class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठ।</strong>',
 'specialpages-group-maintenance' => 'अनुरक्षण रिपोर्ट',
 'specialpages-group-other'       => 'अन्य विशेष पृष्ठ',
 'specialpages-group-login'       => 'सत्र प्रारम्भ / हस्ताक्षर करें',

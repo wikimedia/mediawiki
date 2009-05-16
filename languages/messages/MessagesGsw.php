@@ -1,6 +1,9 @@
 <?php
 /** Swiss German (Alemannisch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -116,8 +119,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Links uf lääri Themene durestryche',
 'tog-justify'                 => 'Tekscht als Blocksatz',
 'tog-hideminor'               => 'Keini «chlyni Änderige» aazeige',
-'tog-extendwatchlist'         => 'Erwiterti Beobachtungslischte',
-'tog-usenewrc'                => 'Erwytereti «letschti Änderige» (geit nid uf allne Browser)',
+'tog-extendwatchlist'         => 'Beobachtungslischte erwytere go alli Änderige aazeige, nit numme di letschte',
+'tog-usenewrc'                => 'Erwytereti «letschti Änderige» (brucht JavaScript)',
 'tog-numberheadings'          => 'Überschrifte outomatisch numeriere',
 'tog-showtoolbar'             => 'Editier-Wärchzüüg aazeige',
 'tog-editondblclick'          => 'Syte ändere mit Doppelklick i d Syte (JavaScript)',
@@ -125,7 +128,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Einzelni Absätz ändere mit Rächtsclick (Javascript)',
 'tog-showtoc'                 => 'Inhaltsverzeichnis aazeige bi Artikle mit meh als drei Überschrifte',
 'tog-rememberpassword'        => 'Passwort spychere (Cookie)',
-'tog-editwidth'               => 'Fäld zum Täkscht yygee het di voll Breiti',
+'tog-editwidth'               => 'Fäld zum Täkscht yygee mit dr volle Breiti',
 'tog-watchcreations'          => 'Sälber gmachti Sytene beobachte',
 'tog-watchdefault'            => 'Vo dir nöi gmachti oder verändereti Syte beobachte',
 'tog-watchmoves'              => 'Sälber verschobeni Sytene beobachte',
@@ -139,7 +142,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Benachrichtigungsmail ou bi chlyne Sytenänderige',
 'tog-enotifrevealaddr'        => 'Dyni E-Mail-Adrässe wird i Benachrichtigungsmails zeigt',
 'tog-shownumberswatching'     => 'Aazahl Benutzer aazeige, wo ne Syten am Aaluege sy (i den Artikelsyte, i de «letschten Änderigen» und i der Beobachtigslischte)',
-'tog-fancysig'                => 'Kei outomatischi Verlinkig vor Signatur uf d Benutzersyte',
+'tog-fancysig'                => 'Signatur as Wikitext behandle (ohni automatischi Vergleichig)',
 'tog-externaleditor'          => 'Externe Editor als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer)',
 'tog-externaldiff'            => 'Externi diff als default',
 'tog-showjumplinks'           => '«Wächsle-zu»-Links ermügleche',
@@ -229,7 +232,7 @@ $messages = array(
 'category-file-count-limited'    => 'In däre Kategori het s die {{PLURAL:$1|Datei|$1 Dateie}}:',
 'listingcontinuesabbrev'         => '(Forts.)',
 
-'mainpagetext'      => 'MediaWiki isch erfolgrich inschtalliert worre.',
+'mainpagetext'      => "<big>'''MediaWiki isch erfolgrich inschtalliert worre.'''</big>",
 'mainpagedocfooter' => 'Lueg uf d [http://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation fir d Aapassig vu dr Benutzeroberflächi] un s [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuech] fir d Hilf iber d Benutzig un s Yystelle.',
 
 'about'          => 'Über',
@@ -259,7 +262,7 @@ $messages = array(
 'help'              => 'Hilf',
 'search'            => 'Suech',
 'searchbutton'      => 'Suech',
-'go'                => 'Sueche',
+'go'                => 'Site',
 'searcharticle'     => 'Sueche',
 'history'           => 'Versione',
 'history_short'     => 'Versione/Autore',
@@ -664,7 +667,7 @@ Du chasch $1 oder ein vu dr andre [[{{MediaWiki:Grouppage-sysop}}|Ammanne]] kont
 'accmailtext'                      => 'S Passwort für "$1" isch uf $2 gschickt worde.',
 'newarticle'                       => '(Nej)',
 'newarticletext'                   => "Du bisch eme Gleich nogange zuen ere Syte, wu s nid git. 
-Zum die Syte aalege, chasch do in däm Chaschte unte aafange schrybe (lueg [[{{MediaWiki:Helppage}}|Hilfe]] fir meh Informationeo).
+Zum die Syte aalege, chasch do in däm Chaschte unte aafange schrybe (lueg [[{{MediaWiki:Helppage}}|Hilfe]] fir meh Informatione).
 Wänn do nid hesch welle aane goh, no druck in Dyynem Browser uf '''Zruck'''.",
 'anontalkpagetext'                 => "''Des isch e Diskussionssyte vo me anonyme Benutzer, wo kei Zuegang aaglait het oder wo ne nit bruucht. Sälleweg muen mir di numerischi IP-Adräss bruuche zum ihn oder si z identifiziere. Sone IP-Adräss cha au vo mehrere Benutzer deilt werde. Wenn Si en anonyme Benutzer sin un s Gfiehl hen, dass do irrelevanti Kommentar an Si grichtet wärde, derno [[Special:UserLogin|lege Si sich bitte en Zuegang aa odr mälde sich aa]] zum in Zuekunft Verwirrige mit andere anonyme Benutzer z vermide.''",
 'noarticletext'                    => 'Uf däre Syte het s no kei Täxt. Du chasch uf andere Syte [[Special:Search/{{PAGENAME}}|dä Yytrag sueche]], <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} dr Logbuechyytrag sueche, wo dezue ghert],
@@ -825,13 +828,18 @@ Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delet
 'logdelete-selected'          => "'''{{PLURAL:$1|Usgwehlte Logbuechyytrag|Usgwehlti Logbuechyytreg}}:'''",
 'revdelete-text'              => "'''Dr Inhalt oder anderi Bstandteil vu gleschte Versione chenne nimi aagluegt wäre, si erschyyne aber alno as Yytreg in dr Versiongschicht.'''
 
-{{SITENAME}}-Ammanne chenne dr Inhalt, wu glescht isch, oder di andre gleschte Bstandteil alno aaluege un au widerherstelle, user s isch feschtgleit, ass d Zuegangsbschränkige au fir Ammanne gälte.",
+{{SITENAME}}-Ammanne chenne dr Inhalt, wu glescht isch, oder di andre gleschte Bstandteil alno aaluege un au widerherstelle, user s isch feschtgleit, ass d Zuegangsbschränkige au fir Ammanne gälte.
+
+'''Gleschti Versionen un Aktione blyben in dr Versionsgschicht un in dr Logbiecher. Teil dervu sin aber fir d Efffentligkeit nimmi zuegänglig.'''
+
+Anderi Ammanne uf {{SITENAME}} hän alno Zuegriff uf dr versteckt Inhalt un chenne ne mit dr glyche Syte widerhärstelle, wänn s keini zuesätzlige Yyschränkige git.
+Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass des mit dr [[{{MediaWiki:Policy-url}}|Richtlinie]] ibereinstimmt.",
 'revdelete-legend'            => 'Setze vu dr Sichtbarkeits-Yyschränkige',
 'revdelete-hide-text'         => 'Täxt vu dr Version versteckle',
 'revdelete-hide-name'         => 'Logbuech-Aktion versteckle',
 'revdelete-hide-comment'      => 'Bearbeitigskommentar versteckle',
 'revdelete-hide-user'         => 'Benutzername/d IP vum Bearbeiter versteckle',
-'revdelete-hide-restricted'   => 'Die Yyschränkige gälte au fir Ammanne un des Formular wird gsperrt',
+'revdelete-hide-restricted'   => 'Date vu Ammanne glyych unterdrucke wie vu andere',
 'revdelete-suppress'          => 'Grund vu dr Leschig au vor dr Ammanne versteckle',
 'revdelete-hide-image'        => 'Bildinhalt versteckle',
 'revdelete-unsuppress'        => 'Yyhscränkige fir di widerhergstellte Versione ufhebe',
@@ -928,7 +936,7 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'diff-th'                 => "e '''Spalteiberschrift'''",
 'diff-br'                 => "e '''Zyleteumbruch'''",
 'diff-hr'                 => "e '''horizontali Linie'''",
-'diff-code'               => "e '''Beryych Computercode'''",
+'diff-code'               => "e '''Computercode-Beryych'''",
 'diff-dl'                 => "e '''Definitionslischt'''",
 'diff-dt'                 => "e '''Definitionsterm'''",
 'diff-dd'                 => "e '''Definition'''",
@@ -1832,7 +1840,7 @@ Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d 
 ** Vylmol yybundeni Vorlag
 ** Syte mit ere hoche Bsuecherzahl',
 'protect-edit-reasonlist'     => 'Schutzgrind bearbeite',
-'protect-expiry-options'      => '1 Stund:1 hour,2 Stunde:2 hours,6 Stunde:6 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Stund:1 hour,1 Tag:1 day,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöchi:',
 'minimum-size'                => 'Mindeschtgressi',
@@ -1870,7 +1878,7 @@ In däm Fall darf di neijscht Version nit markiert wäre oder ihre Status muess 
 'undeleterevision-missing'     => 'Version isch nit giltig oder fählt. Entwäder isch s Gleich falsch oder d Version isch us em Archiv widerhärgstellt oder usegnuh wore.',
 'undelete-nodiff'              => 'Kei vorigi Version vorhande.',
 'undeletebtn'                  => 'Widerhärstelle',
-'undeletelink'                 => 'widerhärstelle',
+'undeletelink'                 => 'aaluege/widerhärstelle',
 'undeletereset'                => 'Abbräche',
 'undeleteinvert'               => 'Uswahl umchehre',
 'undeletecomment'              => 'Begrindig:',
@@ -1922,7 +1930,7 @@ $1',
 'sp-contributions-submit'        => 'Sueche',
 
 # What links here
-'whatlinkshere'            => 'Was linkt da ane?',
+'whatlinkshere'            => 'Was verwyst do druff?',
 'whatlinkshere-title'      => 'Sytene, wo uf „$1“ verlinke',
 'whatlinkshere-page'       => 'Syte:',
 'linkshere'                => "Die Sytene hän e Gleich, wu zu '''„[[:$1]]“''' fiere:",
@@ -1943,10 +1951,8 @@ $1',
 # Block/unblock
 'blockip'                         => 'Benutzer bzw. IP blockyre',
 'blockip-legend'                  => 'IP-Adräss/Benutzer sperre',
-'blockiptext'                     => 'Bnutz des Formular, zum e Bnutzer oder e IP-Adress z\'blockiere.<sup class="plainlinks">[http://jodies.de/ipcalc?host=&mask1=&mask2= <span title="IP-Berych ermittle; bloss kurz sperre!">(B)</span>]</sup>
-
-Des söt nummer erfolge um [[Wikipedia:Vandalismus|Vandalismus]] z\'verhindre in i Übereinstimmig mit üsre [[Wikipedia:Leitlinien|Leitlinie]] gschehe.
-Bitte gib au de Grund für d\'Blockad aa.',
+'blockiptext'                     => 'Nimm des Formular go ne Benutzer oder e IP-Adräss sperre.
+Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr [[{{MediaWiki:Policy-url}}|Leitlinie]]. Bitte gib au ne Grund fi d Sperri aa (z. B. indäm du einzel ni Syte zitiersch, wu vandaliert wore sin).',
 'ipaddress'                       => 'IP-Adräss oder Benutzername:',
 'ipadressorusername'              => 'IP-Adräss oder Benutzername:',
 'ipbexpiry'                       => 'Sperrduur:',
@@ -1968,10 +1974,10 @@ Bitte gib au de Grund für d\'Blockad aa.',
 'ipbenableautoblock'              => 'Sperr di aktuäll vu däm Benutzer brucht IP-Adräss un automatisch alli wytere, wun er nimmt go Syte bearbeite oder Benutzerchonte aalege',
 'ipbsubmit'                       => 'Adräss blockiere',
 'ipbother'                        => 'Anderi Duur (englisch):',
-'ipboptions'                      => '1 Stund:1 hour,2 Stunde:2 hours,6 Stunde:6 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 Stunde:2 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Anderi Duur',
 'ipbotherreason'                  => 'Anderi/zuesätzligi Begrindig:',
-'ipbhidename'                     => 'Benutzername im Sperr-Logbuech, in dr Lischt vu aktive Sperrine un im Benutzerverzeichnis verstecke.',
+'ipbhidename'                     => 'Benutzername in dr Lischt vu aktive Sperrine un im Benutzerverzeichnis verstecke.',
 'ipbwatchuser'                    => 'Benutzer(diskussions)syte beobachte',
 'ipballowusertalk'                => 'Benutzer derf di eige Diskussionssyte bearbeite derwylscht er gsperrt isch',
 'ipb-change-block'                => 'Nomol sperre mit däne Sperrparameter',
@@ -2071,7 +2077,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde.",
 'movearticle'                  => 'Artikel verschiebe',
 'movenologin'                  => 'Du bisch nid aagmäldet',
-'movenologintext'              => 'Du muesch dich zersch [[Special:UserLogin|aamälde]] damit du die Syte chasch verschiebe.',
+'movenologintext'              => 'Du muesch e regischtrierte Benutzer syy un Di [[Special:UserLogin|aamälde]] go die Syte verschiebe.',
 'movenotallowed'               => 'Du derfsch kei Syte verschiebe.',
 'movenotallowedfile'           => 'Du derfsch kei Dateie verschiebe.',
 'cant-move-user-page'          => 'Du derfsch kei Benutzersyte verschiebe (mit Usnaam vo Untersyte).',
@@ -2192,7 +2198,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'importlogpage'                    => 'Import-Logbuech',
 'importlogpagetext'                => 'Adminischtrativer Import vo Sytene mit Versionsgschichte us anderi Wikis.',
 'import-logentry-upload'           => '„[[$1]]“ isch vunere Datei importiert worde',
-'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Vérsion|Vérsiona}} [[Spezial:Importieren|importiert]]',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Vérsion|Vérsiona}}',
 'import-logentry-interwiki'        => '„[[$1]]“ isch importiert worde (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} vo $2',
 
@@ -2337,7 +2343,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Obacht:''' In däre Art Datei chend s e beswillige Programmcode din ha. Wänn du die Datei abeladsch oder effnesch, cha dr Computer bschädigt wäre.<hr />",
-'imagemaxsize'         => 'Maximali Gröössi vo de Bilder uf de Bildbeschrybigs-Sytene:',
+'imagemaxsize'         => "Maximali Gressi vu Bilder :<br />'' (uf Bildbschrybigs-Syte)''",
 'thumbsize'            => 'Bildvorschou-Gröössi:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Syte|$3 Syte}}',
 'file-info'            => '(Dateigressi: $1, MIME-Typ: $2)',
@@ -2824,7 +2830,7 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'specialpages'                   => 'Spezialsytene',
 'specialpages-note'              => '----
 * D Spezialsyte für alli
-* <span class="mw-specialpagerestricted">d Spezialsyte für d Benutzer mit bsundri Rächt</span>',
+* <strong class="mw-specialpagerestricted">d Spezialsyte für d Benutzer mit bsundri Rächt</strong>',
 'specialpages-group-maintenance' => 'Wartigslischte',
 'specialpages-group-other'       => 'Andri Spezialsyte',
 'specialpages-group-login'       => 'Aamälde',
@@ -2843,11 +2849,13 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'intentionallyblankpage' => 'Die Syte isch absichtlich leer. Si wird für Benchmarks bruucht.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Die Zyylete nit verändere<pre>
+'external_image_whitelist' => '  #Die Zyylete nit verändere<pre>
 #Unte chenne Fragmänt vu reguläre Usdrick (dr Teil zwische dr //) yygee wäre
 #Die wäre mit dr URL vu Bilder us externe Quälle vergliche
 #E positive Verglyych fiert zue dr Aazeig vum Bild, suscht wird s Bild nume as Gleich aazeigt
 #Zyylete, wu mit eme # aafange, wäre as Kommentar behandlet
+#Des isch nit abhängig vum Einzelfall
+
 #Fragmänt vu reguläre Usdrick noch däre Zyylete yytrage. Die Zyylete nit verändere</pre>',
 
 );

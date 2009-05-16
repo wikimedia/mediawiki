@@ -1,9 +1,13 @@
 <?php
 /** Chinese (中文)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
+ * @author Wong128hk
  */
 
 # Stub message file for converter code "zh"
@@ -53,6 +57,12 @@ $namespaceAliases = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-norollbackdiff' => '進行回退後略過差異比較',
+
+# Move page
+'move-redirect-suppressed' => '已禁止重新定向',
+
 /*
 Short names for language variants used for language conversion links.
 To disable showing a particular link, set it to 'disable', e.g.

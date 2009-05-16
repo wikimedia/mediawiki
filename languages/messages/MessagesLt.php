@@ -1,6 +1,9 @@
 <?php
 /** Lithuanian (Lietuvių)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -146,7 +149,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formuoti nesančių puslapių nuorodas <a href="#" class="new">šitaip</a> (priešingai - šitaip <a href="#" class="internal">?</a>).',
 'tog-justify'                 => 'Lygiuoti pastraipas pagal abi puses',
 'tog-hideminor'               => 'Slėpti smulkius pakeitimus naujausių keitimų sąraše',
-'tog-extendwatchlist'         => 'Išplėsti stebimų sąrašą, kad rodytų visus tinkamus keitimus',
+'tog-extendwatchlist'         => 'Išplėsti stebimųjų sąrašą, kad rodytų visus tinkamus keitimus, ne tik pačius naujausius.',
 'tog-usenewrc'                => 'Pažangiai rodomi naujausi keitimai (JavaScript)',
 'tog-numberheadings'          => 'Automatiškai numeruoti skyrelius',
 'tog-showtoolbar'             => 'Rodyti redagavimo įrankinę (JavaScript)',
@@ -169,7 +172,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Siųsti man laišką, kai puslapio keitimas yra smulkus',
 'tog-enotifrevealaddr'        => 'Rodyti mano el. pašto adresą priminimo laiškuose',
 'tog-shownumberswatching'     => 'Rodyti stebinčių naudotojų skaičių',
-'tog-fancysig'                => 'Parašas be automatinių nuorodų',
+'tog-fancysig'                => 'Laikyti parašą vikitekstu (be automatinių nuorodų)',
 'tog-externaleditor'          => 'Pagal nutylėjimą naudoti išorinį redaktorių',
 'tog-externaldiff'            => 'Pagal nutylėjimą naudoti išorinę skirtumų rodymo programą',
 'tog-showjumplinks'           => 'Įjungti „peršokti į“ pasiekiamumo nuorodas',
@@ -687,7 +690,7 @@ Jūsų IP adresas yra $3, blokavimo ID yra $5.
 Prašome nurodyti šiuos duomenis visais atvejais, kai kreipiatės dėl blokavimo.",
 'blockednoreason'                  => 'priežastis nenurodyta',
 'blockedoriginalsource'            => "Žemiau yra rodomas '''$1''' turinys:",
-'blockededitsource'                => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
+'blockededitsource'                => "''Jūsų keitimų'' tekstas puslapiui '''$1''' yra rodomas žemiau:",
 'whitelistedittitle'               => 'Norint redaguoti reikia prisijungti',
 'whitelistedittext'                => 'Jūs turite $1, kad redaguotumėte puslapius.',
 'confirmedittitle'                 => 'Kad galėtumėte redaguoti, reikalingas el. pašto patvirtinimas',
@@ -1186,7 +1189,7 @@ teisės",
 'right-move-subpages'        => 'Perkelti puslapius su jų subpuslapiais',
 'right-move-rootuserpages'   => 'Perkelti šakninius naudotojo puslapius',
 'right-movefile'             => 'Perkelti failus',
-'right-suppressredirect'     => 'Nekurti peradresavimo iš seno pavadinimo kuomet puslapis pervadinamas',
+'right-suppressredirect'     => 'Nekurti peradresavimo iš seno pavadinimo, kuomet puslapis pervadinamas',
 'right-upload'               => 'Įkelti failus',
 'right-reupload'             => 'Perrašyti egzistuojantį failą',
 'right-reupload-own'         => 'Perrašyti paties įkeltą egzistuojantį failą',
@@ -1200,15 +1203,15 @@ teisės",
 'right-writeapi'             => 'Naudoti rašymo API',
 'right-delete'               => 'Trinti puslapius',
 'right-bigdelete'            => 'Ištrinti puslapius su ilga istorija',
-'right-deleterevision'       => 'Ištrinti ir atstatyti specifines puslapių revizijas',
+'right-deleterevision'       => 'Ištrinti ir atstatyti specifines puslapių versijas',
 'right-deletedhistory'       => 'Žiūrėti ištrintų puslapių istoriją nerodant susieto teksto',
 'right-browsearchive'        => 'Ieškoti ištrintų puslapių',
 'right-undelete'             => 'Atstatyti puslapį',
-'right-suppressrevision'     => 'Peržiūrėti ir atstatyti revizijas, paslėptas nuo administratorių',
+'right-suppressrevision'     => 'Peržiūrėti ir atstatyti versijas, paslėptas nuo administratorių',
 'right-suppressionlog'       => 'Žiūrėti privačius įvykių sąrašus',
 'right-block'                => 'Blokuoti redagavimo galimybę kitiems naudotojams',
 'right-blockemail'           => 'Blokuoti elektroninio pašto siuntimo galimybę naudotojui',
-'right-hideuser'             => 'Blokuoti naudotojo vardą, paslėpiant jį nuo viešinimo',
+'right-hideuser'             => 'Blokuoti naudotojo vardą, paslepiant jį nuo viešinimo',
 'right-ipblock-exempt'       => 'Apeiti IP blokavimus, autoblokavimus ir pakopinius blokavimus',
 'right-proxyunbannable'      => 'Apeiti automatinius proxy serverių blokavimus',
 'right-protect'              => 'Pakeisti apsaugos lygius ir redaguoti apsaugotus puslapius',
@@ -1221,7 +1224,7 @@ teisės",
 'right-import'               => 'Importuoti puslapius iš kitų wiki',
 'right-importupload'         => 'Puslapių importas per failų įkėlimą',
 'right-patrol'               => 'Pažymėti kitų keitimus kaip patikrintus',
-'right-autopatrol'           => 'Keitimai automatiškai pažymymi kaip patikrinti',
+'right-autopatrol'           => 'Keitimai automatiškai pažymimi kaip patikrinti',
 'right-patrolmarks'          => 'Atžymų apie patikrą peržiūra naujausiuose keitimuose',
 'right-unwatchedpages'       => 'Žiūrėti nestebimų puslapių sąrašą',
 'right-trackback'            => 'Siųsti „Trackback“ nuorodą',
@@ -1886,7 +1889,7 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 ** Neproduktyvus redagavimo karas
 ** Didelės svarbos puslapis',
 'protect-edit-reasonlist'     => 'Keisti užrakinimo priežastis',
-'protect-expiry-options'      => '2 valandos:2 hours,1 diena:1 day,3 dienos:3 days,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnesis:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 valanda:1 hour,1 diena:1 day,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnuo:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Leidimas:',
 'restriction-level'           => 'Apribojimo lygis:',
 'minimum-size'                => 'Min. dydis',
@@ -1925,7 +1928,7 @@ Tokiais atvejais, jums reikia atžymėti arba atslėpti naujausią ištrintą ve
 'undeleterevision-missing'     => 'Neteisinga arba dingusi versija. Jūs turbūt turite blogą nuorodą, arba versija buvo atkurta arba pašalinta iš archyvo.',
 'undelete-nodiff'              => 'Nerasta jokių ankstesnių versijų.',
 'undeletebtn'                  => 'Atkurti',
-'undeletelink'                 => 'atstatyti',
+'undeletelink'                 => 'žiūrėti/atstatyti',
 'undeletereset'                => 'Iš naujo',
 'undeleteinvert'               => 'Žymėti priešingai',
 'undeletecomment'              => 'Komentaras:',
@@ -2937,7 +2940,7 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 'specialpages'                   => 'Specialieji puslapiai',
 'specialpages-note'              => '----
 * Normalūs specialieji puslapiai.
-* <span class="mw-specialpagerestricted">Apriboti specialieji puslapiai.</span>',
+* <strong class="mw-specialpagerestricted">Apriboti specialieji puslapiai.</strong>',
 'specialpages-group-maintenance' => 'Sistemos palaikymo pranešimai',
 'specialpages-group-other'       => 'Kiti specialieji puslapiai',
 'specialpages-group-login'       => 'Prisijungimas / Registracija',
@@ -2960,6 +2963,7 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 #Įrašykite standartinių išraiškų fragmentus (tik dalį tarp //)
 #Juos bus bandoma sutapdinti su išorinių paveikslėlių adresais
 #Tie, kurie sutaps, bus rodomi kaip paveikslėliai, o kiti bus rodomi tik kaip nuorodos
+#Raidžių dydis nėra svarbus
 #Eilutės, prasidedančios # yra komentarai
 
 #Įterpkite visus standartinių išraiškų fragmentus prieš šią eilutę. Palikite šią eilutę, tokią kokia yra </pre>',

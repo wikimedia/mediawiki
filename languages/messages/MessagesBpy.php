@@ -1,6 +1,9 @@
 <?php
 /** Bishnupria Manipuri (ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -153,7 +156,7 @@ $messages = array(
 'hidden-category-category' => 'আরুম করিসি থাকহানি', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'চলতই',
 
-'mainpagetext'      => "<big>'''মিডিয়াউইকি হবাবালা ইয়া ইন্সটল ইল'''</big>",
+'mainpagetext'      => "<big>'''মিডিয়াউইকি হবাবালা ইয়া ইন্সটল ইল.'''</big>",
 'mainpagedocfooter' => 'উইকি সফটৱ্যার এহান আতানির বারে দরকার ইলে [http://meta.wikimedia.org/wiki/Help:Contents আতাকুরার গাইড]হানর পাঙলাক নেগা।
 
 == অকরানিহান ==
@@ -316,7 +319,7 @@ $messages = array(
 'yourdomainname'             => 'তর ডোমেইনগ',
 'login'                      => 'হমানি',
 'nav-login-createaccount'    => 'লগইন / একাউন্ট খুল',
-'loginprompt'                => 'তি যেসাদেউ [[Special:UserLogin|হমাসি {{SITENAME}}]] পাতা এহানর কুকিসর য়্যাথাঙ দে।',
+'loginprompt'                => 'তি যেসাদেউ হমাসি {{SITENAME}} পাতা এহানর কুকিসর য়্যাথাঙ দে।',
 'userlogin'                  => 'হমানি / নৱা একাউন্ট খুলানি',
 'logout'                     => 'নিকুলানি',
 'userlogout'                 => 'নিকুলানি',

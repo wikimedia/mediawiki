@@ -1,6 +1,9 @@
 <?php
 /** Czech (Česky)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -312,8 +315,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Formátovat odkazy na neexistující stránky <a href="" class="new">takto</a> (alternativa: takto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Zarovnat odstavce do bloku',
 'tog-hideminor'               => 'Skrýt malé editace v posledních změnách',
-'tog-extendwatchlist'         => 'Rozšířený seznam sledovaných stránek',
-'tog-usenewrc'                => 'Zdokonalené poslední změny (JavaScript)',
+'tog-extendwatchlist'         => 'Na seznamu sledovaných stránek zobrazovat všechny změny, ne jen tu poslední',
+'tog-usenewrc'                => 'Používat zdokonalené poslední změny (vyžaduje JavaScript)',
 'tog-numberheadings'          => 'Automaticky číslovat nadpisy',
 'tog-showtoolbar'             => 'Ukázat lištu s nástroji při editaci',
 'tog-editondblclick'          => 'Editovat dvojklikem (JavaScript)',
@@ -321,7 +324,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Zapnout možnost editace části stránky pomocí kliknutí pravým tlačítkem na nadpisy stránky (JavaScript)',
 'tog-showtoc'                 => 'Zobrazovat obsah (na stránkách s více než třemi nadpisy)',
 'tog-rememberpassword'        => 'Pamatovat si mé heslo mezi návštěvami',
-'tog-editwidth'               => 'Roztáhnout editační okno na celou šířku',
+'tog-editwidth'               => 'Roztáhnout editační okno na celou šířku obrazovky',
 'tog-watchcreations'          => 'Přidávat mnou založené stránky ke sledovaným',
 'tog-watchdefault'            => 'Přidávat mnou editované stránky ke sledovaným',
 'tog-watchmoves'              => 'Přidávat přesouvané stránky mezi sledované',
@@ -335,7 +338,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Poslat e-mail i pro menší editace (které jinak nezpůsobují odeslání e-mailu)',
 'tog-enotifrevealaddr'        => 'Prozradit mou e-mailovou adresu v upozorňujících e-mailech',
 'tog-shownumberswatching'     => 'Zobrazovat počet sledujících uživatelů',
-'tog-fancysig'                => 'Neupravovat podpis (nevkládat automaticky odkaz)',
+'tog-fancysig'                => 'Používat v podpisu wikitext (bez automatického odkazu)',
 'tog-externaleditor'          => 'Implicitně používat externí editor',
 'tog-externaldiff'            => 'Implicitně používat externí porovnávací program',
 'tog-showjumplinks'           => 'Používat odkazy „skočit na“ pro vyšší přístupnost',
@@ -583,7 +586,7 @@ $messages = array(
 'nosuchaction'      => 'Neznámý úkon',
 'nosuchactiontext'  => 'Činnost („action“) uvedená v URL je neplatná.
 Zřejmě jste se překlepli při zadávání adresy nebo jste klikli na chybný odkaz.
-Může se ale jednat také o chybu {{grammar:2sg|{{SITENAME}}}}.',
+Může se ale jednat také o chybu {{GRAMMAR:2sg|{{SITENAME}}}}.',
 'nosuchspecialpage' => 'Neexistující speciální stránka',
 'nospecialpagetext' => "<big>'''Zadali jste neplatnou speciální stránku.'''</big>
 
@@ -648,7 +651,7 @@ Dotaz: $2',
 'protectedpagetext'    => 'Tato stránka byla zamčena, takže ji nelze editovat.',
 'viewsourcetext'       => 'Můžete si prohlédnout a zkopírovat zdrojový kód této stránky:',
 'protectedinterface'   => 'Tato stránka obsahuje text softwarového rozhraní a smějí ji editovat jen správci.',
-'editinginterface'     => "'''Upozornění:''' Editujete stránku, která definuje texty rozhraní. Změny této stránky ovlivní vzhled uživatelského rozhraní všem uživatelům. Při úpravách českého překladu zvažte použití [http://translatewiki.net/wiki/Main_Page?setlang=cs Betawiki], projektu pro lokalizaci MediaWiki.",
+'editinginterface'     => "'''Upozornění:''' Editujete stránku, která definuje texty rozhraní. Změny této stránky ovlivní vzhled uživatelského rozhraní všem uživatelům. Při úpravách českého překladu zvažte použití [http://translatewiki.net/wiki/Main_Page?setlang=cs translatewiki.net], projektu pro lokalizaci MediaWiki.",
 'sqlhidden'            => '(SQL dotaz skryt)',
 'cascadeprotected'     => 'Tato stránka je zamčena, neboť je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem:
 $2',
@@ -704,7 +707,8 @@ Nezapomeňte si upravit [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAM
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.',
 'loginerror'                 => 'Chyba při přihlašování',
-'prefs-help-email'           => 'E-mail (volitelný): Může vám být zasláno nové heslo v případě, že své heslo zapomenete. Také můžete dovolit ostatním uživatelům vás kontaktovat, aniž by tato adresa byla zobrazena.',
+'prefs-help-email'           => 'Uvedení e-mailu není povinné, ale umožní zaslání nového hesla v případě, že své heslo zapomenete.
+Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelské stránky kontaktovat, aniž by byla vaše adresa prozrazena.',
 'prefs-help-email-required'  => 'Je vyžadována e-mailová adresa.',
 'nocookiesnew'               => 'Uživatelský účet byl vytvořen, ale nejste přihlášeni. {{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a přihlaste se znovu s vaším novým uživatelským jménem a heslem.',
 'nocookieslogin'             => '{{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a zkuste znovu.',
@@ -895,8 +899,10 @@ Musíte sloučit své změny se stávajícím textem.
 'nonunicodebrowser'                => "'''UPOZORNĚNÍ: Váš prohlížeč není schopen pracovat se znaky Unicode. Abyste mohli tuto stránku bezpečně editovat, je použita pomůcka: všechny znaky mimo ASCII jsou zobrazeny v hexadecimálních kódech.'''",
 'editingold'                       => "'''VAROVÁNÍ: Nyní editujete zastaralou verzi této stránky. Když ji uložíte, všechny pozdější změny se ztratí.'''",
 'yourdiff'                         => 'Rozdíly',
-'copyrightwarning'                 => "Všechny příspěvky do {{grammar:2sg|{{SITENAME}}}} jsou zveřejňovány podle $2 (podrobnosti najdete na $1). Pokud si nepřejete, aby váš text byl nemilosrdně upravován a volně šířen, pak ho do {{grammar:2sg|{{SITENAME}}}} neukládejte.<br />
-Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>). '''Nekopírujte díla chráněná autorským právem bez dovolení!'''",
+'copyrightwarning'                 => "Všechny příspěvky do {{grammar:2sg|{{SITENAME}}}} jsou zveřejňovány podle $2 (podrobnosti najdete na $1).
+Pokud si nepřejete, aby váš text byl nemilosrdně upravován a volně šířen, pak ho do {{grammar:2sg|{{SITENAME}}}} neukládejte.<br />
+Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>).
+'''NEVKLÁDEJTE DÍLA CHRÁNĚNÁ AUTORSKÝM PRÁVEM BEZ DOVOLENÍ!'''",
 'copyrightwarning2'                => "Uvědomte si, že všechny příspěvky do {{grammar:2sg|{{SITENAME}}}} mohou být ostatními uživateli upraveny, pozměněny či odstraněny. Pokud si nepřejete, aby váš text byl nemilosrdně upravován, pak ho do {{grammar:2sg|{{SITENAME}}}} neukládejte.<br />
 Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>), podrobnosti najdete na $1. '''Nekopírujte díla chráněná autorským právem bez dovolení!'''",
 'longpagewarning'                  => 'VAROVÁNÍ: Tato stránka je $1 KiB dlouhá; některé prohlížeče mohou mít problémy s editováním stran, které se blíží nebo jsou delší než 32 KiB. Prosíme, zvažte rozdělení stránky na více částí.',
@@ -1012,17 +1018,18 @@ podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page=
 'revdelete-nooldid-text'      => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Vybraná|Vybrané}} revize stránky [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
-'revdelete-text'              => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale jejich text nebude veřejně dostupný.'''
+'revdelete-text'              => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale některé jejich části nebudou veřejně dostupné.'''
 
-Ostatní správci {{grammar:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
-pokud to provozovatel serveru nezakázal.",
+Ostatní správci {{GRAMMAR:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
+pokud nebyla nastavena další omezení.
+Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].",
 'revdelete-legend'            => 'Nastavit omezení k revizi:',
 'revdelete-hide-text'         => 'Skrýt text revize',
 'revdelete-hide-name'         => 'Skrýt událost a cíl',
 'revdelete-hide-comment'      => 'Skrýt editační komentář',
 'revdelete-hide-user'         => 'Skrýt uživatelské jméno/IP adresu',
-'revdelete-hide-restricted'   => 'Tato omezení aplikovat i na správce',
-'revdelete-suppress'          => 'Skrýt data i před správci',
+'revdelete-hide-restricted'   => 'Utajit data i před správci',
+'revdelete-suppress'          => 'Utajit data i před správci',
 'revdelete-hide-image'        => 'Skrýt obsah souboru',
 'revdelete-unsuppress'        => 'Odstranit omezení na vrácené verze',
 'revdelete-log'               => 'Komentář:',
@@ -1045,7 +1052,7 @@ pokud to provozovatel serveru nezakázal.",
 'logdelete-log-message'       => '$1 $2 událost{{PLURAL:$2||i|í}}',
 
 # Suppression log
-'suppressionlog'     => 'Záznam potlačení',
+'suppressionlog'     => 'Záznam utajení',
 'suppressionlogtext' => 'Toto je záznam činností dohlížitelů – mazání a blokování zahrnující skrytí obsahu i před správci. Vizte též [[Special:IPBlockList|seznam všech probíhajících bloků]].',
 
 # History merging
@@ -1157,7 +1164,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'viewprevnext'                     => 'Ukázat ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Možnosti hledání',
 'searchmenu-exists'                => "*Stránka '''[[$1]]'''",
-'searchmenu-new'                   => "'''Vytvořte na této wiki stránku „[[:$1]]”!'''",
+'searchmenu-new'                   => "'''Vytvořte na této wiki stránku „[[:$1]]“!'''",
 'searchhelp-url'                   => 'Help:Obsah',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zobrazit stránky, jejichž název začíná „$1“]]',
 'searchprofile-articles'           => 'Články',
@@ -1345,7 +1352,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'right-browsearchive'        => 'Vyhledávání ve smazaných stránkách',
 'right-undelete'             => 'Obnovování smazaných stránek',
 'right-suppressrevision'     => 'Prohlížení a obnovování revizí skrytých před správci',
-'right-suppressionlog'       => 'Zobrazování skrytých protokolovacích záznamů',
+'right-suppressionlog'       => 'Prohlížení skrytých protokolovacích záznamů',
 'right-block'                => 'Blokování možnosti editace ostatním uživatelům',
 'right-blockemail'           => 'Blokování možnosti poslat e-mail',
 'right-hideuser'             => 'Blokování uživatelského jména a jeho skrytí',
@@ -1398,7 +1405,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'action-browsearchive'        => 'hledat smazané stránky',
 'action-undelete'             => 'obnovit tuto stránku',
 'action-suppressrevision'     => 'zkontrolovat a obnovit tuto skrytou revizi',
-'action-suppressionlog'       => 'zobrazit tento soukromý záznam',
+'action-suppressionlog'       => 'prohlížet si tento skrytý protokolovací záznam',
 'action-block'                => 'znemožnit tomuto uživateli editování',
 'action-protect'              => 'změnit úrovně ochrany této stránky',
 'action-import'               => 'importovat tuto stránku z jiné wiki',
@@ -1523,7 +1530,7 @@ Pokud chcete přesto soubor načíst, vraťte se a zvolte jiný název.
 'sourcefilename'              => 'Jméno zdrojového souboru:',
 'destfilename'                => 'Cílové jméno:',
 'upload-maxfilesize'          => 'Maximální dovolená velikost souboru: $1',
-'watchthisupload'             => 'Sledovat tuto stránku',
+'watchthisupload'             => 'Sledovat tento soubor',
 'filewasdeleted'              => 'Soubor stejného jména byl již dříve načten a posléze smazán. Podrobnosti obsahuje $1.',
 'upload-wasdeleted'           => "'''Upozornění: Načítáte soubor, který byl již dříve smazán.'''
 
@@ -1957,7 +1964,7 @@ Rady a kontakt:
 'actioncomplete'         => 'Provedeno',
 'deletedtext'            => 'Stránka nebo soubor „<nowiki>$1</nowiki>“ byla smazána. $2 zaznamenává poslední smazání.',
 'deletedarticle'         => 'maže „$1“',
-'suppressedarticle'      => 'potlačil „[[$1]]“',
+'suppressedarticle'      => 'utajil „[[$1]]“',
 'dellogpage'             => 'Kniha smazaných stránek',
 'dellogpagetext'         => 'Zde je seznam posledních smazaných stránek.',
 'deletionlog'            => 'Kniha smazaných stránek',
@@ -2066,7 +2073,7 @@ Archiv může být pravidelně vyprazdňován.',
 'undeleterevision-missing'     => 'Nesprávná nebo chybějící revize. Možná máte špatný odkaz, nebo revize byla obnovena či odstraněna z archivu.',
 'undelete-nodiff'              => 'Nebyla nalezena žádná předchozí verze.',
 'undeletebtn'                  => 'Obnovit',
-'undeletelink'                 => 'obnovit',
+'undeletelink'                 => 'prohlédnout/obnovit',
 'undeletereset'                => 'Resetovat',
 'undeleteinvert'               => 'Invertovat výběr',
 'undeletecomment'              => 'Komentář:',
@@ -2112,7 +2119,7 @@ $1',
 'sp-contributions-newbies'       => 'Zobrazit příspěvky nově založených účtů',
 'sp-contributions-newbies-sub'   => 'Noví uživatelé',
 'sp-contributions-newbies-title' => 'Příspěvky nových uživatelů',
-'sp-contributions-blocklog'      => 'Kniha zablokování',
+'sp-contributions-blocklog'      => 'kniha zablokování',
 'sp-contributions-search'        => 'Zobrazení příspěvků',
 'sp-contributions-username'      => 'IP adresa nebo uživatelské jméno:',
 'sp-contributions-submit'        => 'Zobrazit',
@@ -2164,7 +2171,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipboptions'                      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'jiný',
 'ipbotherreason'                  => 'Jiný nebo další důvod:',
-'ipbhidename'                     => 'Skrýt uživatelské jméno v knize zablokování, seznamu probíhajících bloků a seznamu uživatelů',
+'ipbhidename'                     => 'Skrýt uživatelské jméno u editací a v seznamech',
 'ipbwatchuser'                    => 'Sledovat uživatelskou a diskusní stranu tohoto uživatele',
 'ipballowusertalk'                => 'Umožnit tomuto uživateli i při zablokování editovat svou diskusní stránku',
 'ipb-change-block'                => 'Znovu zablokovat uživatele s tímto nastavením',
@@ -2333,7 +2340,8 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'allmessagesname'           => 'Označení hlášení',
 'allmessagesdefault'        => 'Původní text',
 'allmessagescurrent'        => 'Aktuální text',
-'allmessagestext'           => 'Toto je seznam všech hlášení dostupných ve jmenném prostoru MediaWiki.',
+'allmessagestext'           => 'Toto je seznam všech hlášení dostupných ve jmenném prostoru MediaWiki.
+Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http://www.mediawiki.org/wiki/Localisation lokalizační stránku na mediawiki.org] a [http://translatewiki.net server translatewiki.net].',
 'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages není podporováno, neboť wgUseDatabaseMessages je vypnuto.',
 'allmessagesfilter'         => 'Filtr názvů hlášení:',
 'allmessagesmodified'       => 'Zobrazit pouze upravená hlášení',
@@ -2563,7 +2571,8 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozornění''': Tento soubor může obsahovat škodlivý kód, spuštěním můžete ohrozit svůj počítač.<hr />",
-'imagemaxsize'         => 'Omezit obrázky na stránkách s popiskem na:',
+'imagemaxsize'         => "Maximální velikost obrázku:<br />
+''(na stránce s popisem souboru)''",
 'thumbsize'            => 'Velikost náhledu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
 'file-info'            => '(velikost souboru: $1, MIME typ: $2)',
@@ -3088,7 +3097,7 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'specialpages'                   => 'Speciální stránky',
 'specialpages-note'              => '----
 * Normální speciální stránky
-* <span class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</span>',
+* <strong class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</strong>',
 'specialpages-group-maintenance' => 'Údržba',
 'specialpages-group-other'       => 'Ostatní',
 'specialpages-group-login'       => 'Přihlašování / registrace',
@@ -3112,6 +3121,7 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 #Tyto výrazy se aplikují na URL vkládaných externích obrázků.
 #Ty, které vyhoví, se zobrazí jako obrázek; ostatní pouze jako externí odkaz.
 #Řádky začínající znakem # se považují za komentáře.
+#Na velikosti písmen nezáleží.
 
 #Všechny regulární výrazy uveďte nad touto řádkou. Tuto řádku ponechte beze změny.</pre>',
 

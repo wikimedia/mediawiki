@@ -1,6 +1,9 @@
 <?php
 /** Tarifit (Tarifit)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -153,7 +156,7 @@ teqqad ad yilli days ca n usekkil war itwagg deg isem .',
 'remembermypassword'      => 'ejj (login) inu deg uselkim a',
 'login'                   => 'Adeff',
 'nav-login-createaccount' => 'Adeff / egg amiḍan',
-'loginprompt'             => "itxessa ad-teṭfed (''cookies'') bac [[Special:UserLogin|ad tadfed ɣar {{SITENAME}}]].",
+'loginprompt'             => "itxessa ad-teṭfed (''cookies'') bac ad tadfed ɣar {{SITENAME}}.",
 'userlogin'               => 'Adeff / egg amiḍan',
 'logout'                  => 'Ffeɣ',
 'userlogout'              => 'Ffeɣ',

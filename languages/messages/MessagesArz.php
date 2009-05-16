@@ -1,6 +1,9 @@
 <?php
 /** Egyptian Spoken Arabic (مصرى)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -283,8 +286,8 @@ $messages = array(
 'tog-highlightbroken'         => 'أ بين اللينكات البايظة <a href="" class="new">كدا</a> (البديل: زى دا<a href="" class="internal">؟</a>).',
 'tog-justify'                 => 'ساوى البراجرافات',
 'tog-hideminor'               => 'خبى التعديلات الصغيرة فى اجدد التغييرات',
-'tog-extendwatchlist'         => 'وسع لستة المراقبة علشان تبين كل التغييرات اللى ممكن تتطبق',
-'tog-usenewrc'                => 'شكل قوى من أجدد التغييرات (جافا سكريبت)',
+'tog-extendwatchlist'         => 'وسع لستة المراقبه علشان تبين كل التعديلات اللى ممكن تتطبق',
+'tog-usenewrc'                => 'استعمل احدث التغييرات المتقويه (بيحتاج جافاسكريبت).',
 'tog-numberheadings'          => 'رقم العناوين اوتوماتيك',
 'tog-showtoolbar'             => 'بين شريط التحرير (جافا سكريبت)',
 'tog-editondblclick'          => 'عدل الصفحات عند الدبل كليك (جافا سكريبت)',
@@ -292,7 +295,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'اسمح ب تعديل الأقسام لما ندوس رايت كليك على الماوس على عناوين الأقسام (جافاسكريبت)',
 'tog-showtoc'                 => 'بين جدول المحتويات (للصفحات اللى فيها أكتر من 3 عناوين)',
 'tog-rememberpassword'        => 'خليك فاكر دخولى على الكمبيوتر دا',
-'tog-editwidth'               => 'صندوق التعديل  واخد العرض كله',
+'tog-editwidth'               => 'وسع صندوق التحرير عشان يملا للشاشه كلها.',
 'tog-watchcreations'          => 'ضيف الصفحات اللى أنشأتها للستة الصفحات اللى باراقبها',
 'tog-watchdefault'            => 'ضيف الصفحات اللى بأعدلها للستة الصفحات اللى باراقبها',
 'tog-watchmoves'              => 'ضيف الصفحات اللى بأنقلها للستة الصفحات اللى باراقبها',
@@ -306,7 +309,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'ابعتلى ايميل للتعديلات الصغيره للصفحات',
 'tog-enotifrevealaddr'        => 'بين الايميل بتاعى فى ايميلات الاعلام',
 'tog-shownumberswatching'     => 'بين عدد اليوزرز المراقبين',
-'tog-fancysig'                => 'امضاء خام (من غير لينك أوتوماتيكي)',
+'tog-fancysig'                => 'امضا خام (من غير لينك أوتوماتيك)',
 'tog-externaleditor'          => 'استعمل محرر خارجى افتراضيا',
 'tog-externaldiff'            => 'استعمل فرق خارجى افتراضيا',
 'tog-showjumplinks'           => 'خلى وصلات "روح لـ" تكون شغالة.',
@@ -442,7 +445,7 @@ $messages = array(
 'permalink'         => 'وصله مستديمه',
 'print'             => 'اطبع',
 'edit'              => 'تعديل',
-'create'            => 'أنشيء',
+'create'            => 'إبتدى',
 'editthispage'      => 'عدل الصفحه دى',
 'create-this-page'  => 'أنشيء الصفحه دى',
 'delete'            => 'مسح',
@@ -622,7 +625,7 @@ $1',
 'protectedpagetext'    => 'الصفحة دى اتقفلت فى وش التعديل.',
 'viewsourcetext'       => 'ممكن تشوف وتنسخ مصدر  الصفحه دى:',
 'protectedinterface'   => 'الصفحة دى هى اللى بتوفر نص الواجهة بتاعة البرنامج،وهى مقفولة لمنع التخريب.',
-'editinginterface'     => "'''تحذير''': أنت بتعدل صفحة بتستخدم فى الواجهة النصية  بتاعة البرنامج. التغييرات فى الصفحة دى ها تأثر على مظهر واجهة اليوزر لليوزرز التانيين. للترجمات، لو سمحت استخدم [http://translatewiki.net/wiki/Main_Page?setlang=ar بيتاويكي]، مشروع ترجمة الميدياويكى.",
+'editinginterface'     => "'''تحذير''': أنت بتعدل صفحة بتستخدم فى الواجهة النصية  بتاعة البرنامج. التغييرات فى الصفحة دى ها تأثر على مظهر واجهة اليوزر لليوزرز التانيين. للترجمات، لو سمحت استخدم [http://translatewiki.net/wiki/Main_Page?setlang=ar بيتاويكى]، مشروع ترجمة الميدياويكى.",
 'sqlhidden'            => '(استعلام إس‌كيو‌إل متخبي)',
 'cascadeprotected'     => 'الصفحة دى محمية من التعديل، بسبب انها مدمجة فى {{PLURAL:$1|الصفحة|الصفحات}} دي، اللى مستعمل فيها خاصية "حماية الصفحات المدمجة" :
 $2',
@@ -785,7 +788,7 @@ $2',
 'subject'                          => 'راس الموضوع/موضوع:',
 'minoredit'                        => 'التعديل ده تعديل صغير',
 'watchthis'                        => 'راقب الصفحه دى',
-'savearticle'                      => 'سييف الصفحه',
+'savearticle'                      => 'سييڤ الصفحه',
 'preview'                          => 'بروفه',
 'showpreview'                      => 'عرض البروفه',
 'showlivepreview'                  => 'بروفه حيه',
@@ -936,7 +939,7 @@ $2',
 'edit-gone-missing'                => 'لم يمكن تحديث الصفحة.
 يبدو أنه تم حذفها.',
 'edit-conflict'                    => 'تضارب تحريرى.',
-'edit-no-change'                   => 'تعديلك تم تجاهله، لأنه لم يحدث أى تعديل للنص.',
+'edit-no-change'                   => 'تعديلك تم تجاهله، لأن ما حصلش أى تعديل للنص.',
 'edit-already-exists'              => 'لم يمكن إنشاء صفحة جديدة.
 هى موجودة بالفعل.',
 
@@ -1376,7 +1379,7 @@ $2',
 'right-importupload'         => 'استيراد الصفحات من فايل متحمل',
 'right-patrol'               => 'علم على تعديلات اليوزرز التانيين على انها متراجعة.',
 'right-autopatrol'           => 'خلى التعديلات  بتاعتى متعلم عليها كأنها متراجعة أوتوماتيكي',
-'right-patrolmarks'          => 'عرض علامات المراجعة فى أحدث التغييرات',
+'right-patrolmarks'          => 'عرض علامات المراجعة فى اخر التعديلات',
 'right-unwatchedpages'       => 'بين لستة الصفحات اللى مش متراقبة',
 'right-trackback'            => 'تنفيذ تراكباك',
 'right-mergehistory'         => 'ادمج تاريخ الصفحات',
@@ -1429,9 +1432,9 @@ $2',
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|تعديل|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
 'recentchanges'                     => 'اخر التعديلات',
-'recentchanges-legend'              => 'خيارات أحدث التغييرات',
+'recentchanges-legend'              => 'اختيارات اخر التعديلات',
 'recentchangestext'                 => 'تابع آخر التغييرات فى الويكى على الصفحة دى.',
-'recentchanges-feed-description'    => 'تابع احدث التعديلات للويكى ده عن طريق الفييد ده .',
+'recentchanges-feed-description'    => 'تابع اخر التعديلات للويكى ده عن طريق الفييد ده .',
 'rcnote'                            => "فيه تحت {{PLURAL:$1|'''1''' تغيير|آخر '''$1''' تغيير}} فى آخر {{PLURAL:$2|يوم|'''$2''' يوم}}، بدءا من $5، $4.",
 'rcnotefrom'                        => "دى التعديلات من '''$2''' (ل '''$1''' معروضه).",
 'rclistfrom'                        => 'اظهر التعديلات بدايه من $1',
@@ -2008,9 +2011,9 @@ $NEWPAGE
 'deletecomment'          => 'سبب المسح:',
 'deleteotherreason'      => 'سبب تانى/اضافي:',
 'deletereasonotherlist'  => 'سبب تانى',
-'deletereason-dropdown'  => '*أسباب المسح المشهورة
+'deletereason-dropdown'  => '*أسباب المسح المشهوره
 ** طلب المؤلف
-** التعدى على حقوق النشر
+** مخالفة قواعد حقوق النشر
 ** التخريب',
 'delete-edit-reasonlist' => 'عدل اسباب المسح',
 'delete-toobig'          => 'الصفحه دى  ليها تاريخ تعديل كبير، أكتر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
@@ -2022,7 +2025,7 @@ $NEWPAGE
 # Rollback
 'rollback'         => 'إرجع فى التعديلات',
 'rollback_short'   => 'إرجع لـ ورا',
-'rollbacklink'     => 'استعاده',
+'rollbacklink'     => 'ترجيع',
 'rollbackfailed'   => 'الترجيع ما نفعش',
 'cantrollback'     => 'ماقدرناش نرجع فى التعديل؛ آخر مساهم هوه الوحيد اللى ساهم فى الصفحة دي.',
 'alreadyrolled'    => 'ماقدرناش نرجع التعديل الاخير لـ [[:$1]] بتاع [[User:$2|$2]] ([[User talk:$2|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -2030,7 +2033,7 @@ $NEWPAGE
 
 اخر تعديل للصفحه دى عمله [[User:$3|$3]] ([[User talk:$3|نقاش]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "ملخص التعديل كان: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بواسطة [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'استرجع التعديلات بتاعة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بتاعة [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'استرجع تعديلات $1؛
 استرجع لآخر نسخة بواسطة $2.',
 'sessionfailure'   => 'الظاهر انه فى مشكلة فى جلسة دخولك دى ؛
@@ -2125,13 +2128,13 @@ $NEWPAGE
 'undeleterevision-missing'     => 'مراجعة مش صحيحة أو ضايعة.
 يمكن اللينك بتاعتك بايظة، أو يمكن المراجعة اترجعت او اتشالت من الارشيف.',
 'undelete-nodiff'              => 'ما لقيناش نسخة قديمة.',
-'undeletebtn'                  => 'استعاده',
-'undeletelink'                 => 'استرجاع',
+'undeletebtn'                  => 'ترجيع',
+'undeletelink'                 => 'عرض/استرجاع',
 'undeletereset'                => 'ابتدى من الأول',
 'undeleteinvert'               => 'اعكس الاختيار',
 'undeletecomment'              => 'تعليق:',
 'undeletedarticle'             => 'رجع  "[[$1]]" تاني',
-'undeletedrevisions'           => 'رجعنا تانى {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
+'undeletedrevisions'           => 'رجع تانى {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 نسخة|$1 نسخة}} و {{PLURAL:$2|1 ملف|$2 ملف}} رجعو تاني',
 'undeletedfiles'               => '{{PLURAL:$1|ملف|ملفات}} $1 رجعو تاني',
 'cannotundelete'               => 'الترجيع ما نفعش :ممكن يكون فى حد تانى رجع الصفحة قبل كدا.',
@@ -2371,12 +2374,12 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'movepage-page-unmoved'        => 'ماقدرناش ننقل الصفحة $1 لـ $2.',
 'movepage-max-pages'           => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} اتنقل. و مافيش حاجة تانى ح تتنقل اوتوماتيكي.',
 '1movedto2'                    => '[[$1]] اتنقلت ل [[$2]]',
-'1movedto2_redir'              => '[[$1]] انقلت لـ[[$2]] فوق التحويلة',
+'1movedto2_redir'              => '[[$1]] اتنقلت لـ[[$2]] فوق التحويله',
 'move-redirect-suppressed'     => ' التحويل ممنوع.',
 'movelogpage'                  => 'سجل النقل',
 'movelogpagetext'              => 'تحت فى لستة الصفحات اللى اتنقلت.',
 'movereason'                   => 'السبب:',
-'revertmove'                   => 'استعاده',
+'revertmove'                   => 'ترجيع',
 'delete_and_move'              => 'مسح ونقل',
 'delete_and_move_text'         => '==المسح مطلوب==
 الصفحة الهدف "[[:$1]]" موجودة فعلا.
@@ -2535,7 +2538,7 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'tooltip-ca-nstab-help'           => 'اعرض صفحة المساعده',
 'tooltip-ca-nstab-category'       => 'اعرض صفحة التصنيف',
 'tooltip-minoredit'               => 'علم على ده كتعديل صغير',
-'tooltip-save'                    => ' سييف تعديلاتك',
+'tooltip-save'                    => ' سييڤ تعديلاتك',
 'tooltip-preview'                 => 'اعرض بروفه لتعديلاتك، من فضلك شوف البروفه قبل ما تسييف!',
 'tooltip-diff'                    => 'اعرض التعديلات اللى انت عملتها على النص.',
 'tooltip-compareselectedversions' => 'شوف الفروق بين النسختين المختارتين للصفحه دى.',
@@ -3104,8 +3107,8 @@ $1
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'التغييرات الأحدث من $1 {{PLURAL:$1|ثانية|ثانية}} ثانية ممكن ما تظهرش فى اللستة دي.',
-'lag-warn-high'   => 'علشان فى تأخير كبير فى تحديث قاعدة البيانات بتاعة السيرفر، التغييرات أحدث من $1 {{PLURAL:$1|ثانية|ثانية}}
-ممكن ما تظهرش فى اللستة دي.',
+'lag-warn-high'   => 'علشان فى تأخير كبير فى تحديث قاعدة البيانات بتاعة السيرفر،  التعديلات  اللى أحدث من $1 {{PLURAL:$1|ثانية|ثانية}}
+ممكن ما تظهرش فى اللستة دى.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'لستة المراقبة بتاعتك  فيها{{PLURAL:$1|عنوان واحد|$1 عنوان}}، من غير صفحات المناقشة.',
@@ -3244,7 +3247,7 @@ $1
 'specialpages'                   => 'صفحات مخصوصه',
 'specialpages-note'              => '----
 * صفحات خاصة عادية.
-* <span class="mw-specialpagerestricted">صفحات خاصة للناس اللى مسموح لهم.</span>',
+* <strong class="mw-specialpagerestricted">صفحات خاصة للناس اللى مسموح لهم.</strong>',
 'specialpages-group-maintenance' => 'تقارير الصيانة',
 'specialpages-group-other'       => 'صفحات خاصه تا نيه',
 'specialpages-group-login'       => 'ادخل / سجل',
@@ -3252,7 +3255,7 @@ $1
 'specialpages-group-media'       => 'تقارير الميديا وعمليات التحميل',
 'specialpages-group-users'       => 'اليوزرز و الحقوق',
 'specialpages-group-highuse'     => 'صفحات بتستخدم كتير',
-'specialpages-group-pages'       => 'لستات الصفحة',
+'specialpages-group-pages'       => 'ليستات الصفحات',
 'specialpages-group-pagetools'   => 'أدوات الصفحات',
 'specialpages-group-wiki'        => 'بيانات وأدوات الويكى',
 'specialpages-group-redirects'   => 'صفحات  التحويل الخاصه',
@@ -3263,7 +3266,7 @@ $1
 'intentionallyblankpage' => 'الصفحة دى متسابة فاضية بالقصد',
 
 # External image whitelist
-'external_image_whitelist' => '   #<pre>سيب السطر ده تمام كما هو
+'external_image_whitelist' => '  #<pre>سيب السطر ده تمام كما هو
 #ضع منثورات التعبيرات المنتظمة (بس الجزء الذى يذهب بين //) بالأسفل
 #هذه ستتم مطابقتها مع مسارات الصور الخرجية (الموصولة بشكل مباشر)
 #هذه اللى تطابق سيتم عرضها كصور، غير كده فقط وصلة إلى الصورة سيتم عرضها

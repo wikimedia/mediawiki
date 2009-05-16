@@ -1,6 +1,9 @@
 <?php
 /** Brazilian Portuguese (Português do Brasil)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -10,6 +13,8 @@
  * @author Eduardo.mps
  * @author GKnedo
  * @author Heldergeovane
+ * @author Jorge Morais
+ * @author Leonardo.stabile
  * @author LeonardoG
  * @author Lijealso
  * @author Rodrigo Calanca Nishino
@@ -184,8 +189,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
-'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis',
-'tog-usenewrc'                => 'Mudanças recentes melhoradas (JavaScript)',
+'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis, não apenas as mais recentes',
+'tog-usenewrc'                => 'Utilizar mudanças recentes melhoradas (requer JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick'          => 'Editar páginas quando houver clique duplo (JavaScript)',
@@ -193,7 +198,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Habilitar edição de seção por clique com o botão direito no título da seção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Lembrar senha entre sessões',
-'tog-editwidth'               => 'Caixa de edição com largura completa',
+'tog-editwidth'               => 'Alargar a caixa de edição para preecher a tela inteira',
 'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de vigiados',
 'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de vigiados',
 'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de vigiados',
@@ -207,7 +212,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de usuários a vigiar',
-'tog-fancysig'                => 'Assinaturas sem atalhos automáticos',
+'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem ligação automática)',
 'tog-externaleditor'          => 'Utilizar editor externo por padrão (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
 'tog-externaldiff'            => 'Utilizar diferenças externas por padrão (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
 'tog-showjumplinks'           => 'Activar hiperligações de acessibilidade "ir para"',
@@ -246,15 +251,15 @@ $messages = array(
 'january'       => 'janeiro',
 'february'      => 'fevereiro',
 'march'         => 'março',
-'april'         => 'Abril',
-'may_long'      => 'Maio',
-'june'          => 'Junho',
-'july'          => 'Julho',
-'august'        => 'Agosto',
-'september'     => 'Setembro',
-'october'       => 'Outubro',
-'november'      => 'Novembro',
-'december'      => 'Dezembro',
+'april'         => 'abril',
+'may_long'      => 'maio',
+'june'          => 'junho',
+'july'          => 'julho',
+'august'        => 'agosto',
+'september'     => 'setembro',
+'october'       => 'outubro',
+'november'      => 'novembro',
+'december'      => 'dezembro',
 'january-gen'   => 'janeiro',
 'february-gen'  => 'fevereiro',
 'march-gen'     => 'março',
@@ -422,7 +427,7 @@ $messages = array(
 'viewsourceold'           => 'ver código',
 'editlink'                => 'editar',
 'viewsourcelink'          => 'ver fonte',
-'editsectionhint'         => 'Editar secção: $1',
+'editsectionhint'         => 'Editar seção: $1',
 'toc'                     => 'Tabela de conteúdo',
 'showtoc'                 => 'mostrar',
 'hidetoc'                 => 'esconder',
@@ -725,7 +730,7 @@ Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for re
 'confirmedittext'                  => 'Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas.
 Por favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de usuário]].',
 'nosuchsectiontitle'               => 'Seção inexistente',
-'nosuchsectiontext'                => 'Você tentou editar uma seção que não existe. Uma vez que não há a secção $1, não há um local para salvar a sua edição.',
+'nosuchsectiontext'                => 'Você tentou editar uma seção que não existe. Uma vez que não há a seção $1, não há um local para salvar a sua edição.',
 'loginreqtitle'                    => 'Autenticação Requerida',
 'loginreqlink'                     => 'autenticar-se',
 'loginreqpagetext'                 => 'Você precisa de $1 para poder visualizar outras páginas.',
@@ -902,15 +907,16 @@ mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de 
 'revdelete-nooldid-text'      => 'Você ou não especificou uma(s) edição(ões) de destino, a edição especificada não existe ou, ainda, você está tentando ocultar a edição atual.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
-'revdelete-text'              => "'''Revisões eliminadas continuarão aparecendo no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.'''
+'revdelete-text'              => "'''Revisões eliminadas e eventos continuarão aparecendo no histórico da página e nos registros, apesar de o seu conteúdo textual estar inacessível ao público.'''
 
-Outros administradores nesta wiki continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
+Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.
+Por favor confirme que deseja fazê-lo, que entende as consequências e que está fazendo isto de acordo com [[{{MediaWiki:Policy-url}}|a política]].",
 'revdelete-legend'            => 'Definir restrições de visualização',
 'revdelete-hide-text'         => 'Ocultar texto da edição',
 'revdelete-hide-name'         => 'Ocultar acção e alvo',
 'revdelete-hide-comment'      => 'Esconder comentário de edição',
 'revdelete-hide-user'         => 'Esconder nome de usuário/IP do editor',
-'revdelete-hide-restricted'   => 'Aplicar estas restrições a administradores e trancar esta interface',
+'revdelete-hide-restricted'   => 'Suprimir dados de administradores assim como de outros',
 'revdelete-suppress'          => 'Suprimir dados de administradores, bem como de outros',
 'revdelete-hide-image'        => 'Ocultar conteúdos do arquivo',
 'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
@@ -1040,8 +1046,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'toomanymatches'                   => 'Foram retornados muitos resultados. Por favor, tente um filtro de pesquisa diferente',
 'titlematches'                     => 'Resultados nos títulos das páginas',
 'notitlematches'                   => 'Nenhum título de página coincide',
-'textmatches'                      => 'Resultados dos textos das páginas',
-'notextmatches'                    => 'Nenhum texto nas páginas coincide',
+'textmatches'                      => 'Resultados nos textos das páginas',
+'notextmatches'                    => 'Não foi possível localizar, no conteúdo das páginas, o termo pesquisado',
 'prevn'                            => 'anteriores $1',
 'nextn'                            => 'próximos $1',
 'viewprevnext'                     => 'Ver ($1) ($2) ($3).',
@@ -1415,7 +1421,7 @@ Se você ainda quer carregar o seu arquivo, por favor volte e use um novo nome. 
 'sourcefilename'              => 'Nome do arquivo de origem:',
 'destfilename'                => 'Nome do arquivo de destino:',
 'upload-maxfilesize'          => 'Tamanho máximo do arquivo: $1',
-'watchthisupload'             => 'Vigiar esta página',
+'watchthisupload'             => 'Vigiar este arquivo',
 'filewasdeleted'              => 'Um arquivo com este nome foi carregado anteriormente e subsequentemente eliminado. Você precisa verificar o $1 antes de proceder ao carregamento novamente.',
 'upload-wasdeleted'           => "'''Atenção: Você está enviando um arquivo eliminado anteriormente.'''
 
@@ -1931,7 +1937,7 @@ Esta é a configuração atual para a página '''$1''':",
 ** Guerra de edições improdutiva
 ** Página bastante acessada",
 'protect-edit-reasonlist'     => 'Editar motivos de proteções',
-'protect-expiry-options'      => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 dia:1 day,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permissão:',
 'restriction-level'           => 'Nível de restrição:',
 'minimum-size'                => 'Tam. mínimo',
@@ -1970,7 +1976,7 @@ Em tais casos, deverá desselecionar ou reverter a ocultação da versão apagad
 'undeleterevision-missing'     => 'Edição inválida ou não encontrada. Talvez você esteja com um link incorreto ou talvez a edição foi restaurada ou removida dos arquivos.',
 'undelete-nodiff'              => 'Não foram encontradas edições anteriores.',
 'undeletebtn'                  => 'Restaurar',
-'undeletelink'                 => 'restaurar',
+'undeletelink'                 => 'ver/restaurar',
 'undeletereset'                => 'Limpar',
 'undeleteinvert'               => 'Inverter seleção',
 'undeletecomment'              => 'Comentário:',
@@ -2067,7 +2073,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipboptions'                      => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'outro',
 'ipbotherreason'                  => 'Outro motivo/motivo adicional:',
-'ipbhidename'                     => 'Ocultar usuário/IP do registro de bloqueios, lista de bloqueios e lista de usuários',
+'ipbhidename'                     => 'Ocultar nome de utilizador em edições e listas',
 'ipbwatchuser'                    => 'Vigiar as páginas de usuários e de discussão deste usuário',
 'ipballowusertalk'                => 'Permitir que este usuário edite sua própria página de discussão mesmo estando bloqueado',
 'ipb-change-block'                => 'Bloquear o usuário novamente com estes parâmetros',
@@ -2465,7 +2471,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Aviso''': Este arquivo pode conter código malicioso. Ao executar, o seu sistema poderá estar comprometido.<hr />",
-'imagemaxsize'         => 'Limitar imagens nas páginas de descrição a:',
+'imagemaxsize'         => "Limite de tamanho de imagem:<br />''(para páginas de descrição de arquivos)''",
 'thumbsize'            => 'Tamanho de miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'            => '(tamanho: $1, tipo MIME: $2)',
@@ -2497,7 +2503,7 @@ Qualquer link posterior na mesma linha são consideradas como exceções, ou sej
 'metadata'          => 'Metadados',
 'metadata-help'     => "Este arquivo contém informação adicional, provavelmente adicionada a partir da câmara digital ou ''scanner'' utilizada para criar ou digitalizá-lo.
 Caso o arquivo tenha sido modificado a partir do seu estado original, alguns detalhes poderão não refletir completamente as mudanças efetuadas.",
-'metadata-expand'   => 'Mostrar restantes detalhes',
+'metadata-expand'   => 'Mostrar detalhes adicionais',
 'metadata-collapse' => 'Esconder detalhes restantes',
 'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.
 * make
@@ -2955,13 +2961,13 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'specialpages'                   => 'Páginas especiais',
 'specialpages-note'              => '----
 * Páginas especiais normais.
-* <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
+* <strong class="mw-specialpagerestricted">Páginas especiais restritas.</strong>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registrar-se',
 'specialpages-group-changes'     => 'Mudanças e registros recentes',
 'specialpages-group-media'       => 'Relatórios de media e carregamentos',
-'specialpages-group-users'       => 'usuários e privilégios',
+'specialpages-group-users'       => 'Usuários e privilégios',
 'specialpages-group-highuse'     => 'Páginas muito usadas',
 'specialpages-group-pages'       => 'Listas de páginas',
 'specialpages-group-pagetools'   => 'Ferramentas de páginas',
@@ -2974,11 +2980,12 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'intentionallyblankpage' => 'Esta página foi intencionalmente deixada em branco e é usada para medições de performance, etc.',
 
 # External image whitelist
-'external_image_whitelist' => "  # Deixe esta linha exatamente como ela é <pre> 
+'external_image_whitelist' => " # Deixe esta linha exatamente como ela é <pre> 
 # Coloque uma expressão regular (apenas a parte que vai entre o //) a seguir
-# Estes serão casados com as URLs de imagens externas (''hotlinked'')
+# Estas serão casadas com as URLs de imagens externas (''hotlinked'')
 # Aqueles que corresponderem serão exibidos como imagens, caso contrário, apenas uma ligação para a imagem será mostrada
 # As linhas que começam com # são tratadas como comentários
+# Isto não é sensível à capitalização
 
 # Coloque todos os fragmentos de ''regex'' acima dessa linha. Deixe esta linha exatamente como ela é</pre>",
 

@@ -1,6 +1,9 @@
 <?php
 /** Indonesian (Bahasa Indonesia)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -289,8 +292,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Format pranala patah <a href="" class="new">seperti ini</a> (pilihan: seperti ini<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ratakan paragraf',
 'tog-hideminor'               => 'Sembunyikan suntingan kecil di perubahan terbaru',
-'tog-extendwatchlist'         => 'Tampilkan daftar pantauan yang menunjukkan semua perubahan',
-'tog-usenewrc'                => 'Tampilan perubahan terbaru alternatif (JavaScript)',
+'tog-extendwatchlist'         => 'Kembangkan daftar pantauan untuk menunjukkan semua perubahan, tidak hanya yang terbaru',
+'tog-usenewrc'                => 'Gunakan tampilan perubahan terbaru tingkat lanjut (memerlukan JavaScript)',
 'tog-numberheadings'          => 'Beri nomor judul secara otomatis',
 'tog-showtoolbar'             => 'Perlihatkan <em>toolbar</em> (batang alat) penyuntingan',
 'tog-editondblclick'          => 'Sunting halaman dengan klik ganda (JavaScript)',
@@ -298,7 +301,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Fungsikan penyuntingan sub-bagian dengan klik-kanan pada judul bagian (JavaScript)',
 'tog-showtoc'                 => 'Perlihatkan daftar isi (untuk halaman yang mempunyai lebih dari 3 sub-bagian)',
 'tog-rememberpassword'        => 'Ingat kata sandi pada setiap sesi',
-'tog-editwidth'               => 'Kotak sunting berukuran maksimum',
+'tog-editwidth'               => 'Perlebar kotak suntingan hingga seluruh layar',
 'tog-watchcreations'          => 'Tambahkan halaman yang saya buat ke daftar pantauan',
 'tog-watchdefault'            => 'Tambahkan halaman yang saya sunting ke daftar pantauan',
 'tog-watchmoves'              => 'Tambahkan halaman yang saya pindahkan ke daftar pantauan',
@@ -312,7 +315,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Surat-e saya juga pada perubahan kecil',
 'tog-enotifrevealaddr'        => 'Berikan surat-e saya pada surat notifikasi',
 'tog-shownumberswatching'     => 'Tunjukkan jumlah pemantau',
-'tog-fancysig'                => 'Tanda tangan mentah (tanpa pranala otomatis)',
+'tog-fancysig'                => 'Perlakukan tanda tangan sebagai teks wiki (tanpa suatu pranala otomatis)',
 'tog-externaleditor'          => 'Gunakan perangkat lunak pengolah kata luar',
 'tog-externaldiff'            => 'Gunakan perangkat lunak luar untuk melihat perbedaan suntingan',
 'tog-showjumplinks'           => 'Aktifkan pranala pembantu "langsung ke"',
@@ -966,15 +969,16 @@ Coba [[Special:Search|lakukan pencarian di wiki]] untuk halaman baru yang releva
 'revdelete-nooldid-text'      => 'Anda belum memberikan target revisi untuk menjalankan fungsi ini.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Revisi|Revisi-revisi}} pilihan dari '''$1''''''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Log|Log-log}} pilihan untuk:'''",
-'revdelete-text'              => "'''Revisi dan tindakan yang telah dihapus akan tetap muncul di halaman versi terdahulu, tapi teks isi tidak bisa diakses publik.'''
+'revdelete-text'              => "'''Revisi-revisi dan tindakan-tindakan yang telah dihapus akan tetap muncul di halaman versi terdahulu dan halaman log, tapi teks isi tidak bisa diakses publik.'''
 
-Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapusan melalui antarmuka yang sama, kecuali jika ada pembatasan lain yang dibuat oleh operator situs",
+Pengurus {{SITENAME}} lainnya akan tetap dapat mengakses isi yang tersembunyi ini dan dapat membatalkan penghapusannya menggunakan antarmuka yang sama, kecuali ada pembatasan lain yang dibuat oleh operator situs.
+Harap konfirmasikan bahwa Anda memang ingin melakukan tindakan ini, bahwa Anda mengerti akibat-akibatnya, dan bahwa tindakan ini telah sesuai dengan [[{{MediaWiki:Policy-url}}|kebijakan]].",
 'revdelete-legend'            => 'Atur batasan:',
 'revdelete-hide-text'         => 'Sembunyikan teks revisi',
 'revdelete-hide-name'         => 'Sembunyikan tindakan dan target',
 'revdelete-hide-comment'      => 'Tampilkan/sembunyikan ringkasan suntingan',
 'revdelete-hide-user'         => 'Sembunyikan nama pengguna/IP penyunting',
-'revdelete-hide-restricted'   => 'Terapkan pembatasan bagi pengurus dan pengguna lainnya',
+'revdelete-hide-restricted'   => 'Sembunyikan data dari opsis juga',
 'revdelete-suppress'          => 'Sembunyikan juga dari pengurus',
 'revdelete-hide-image'        => 'Sembunyikan isi berkas',
 'revdelete-unsuppress'        => 'Hapus batasan pada revisi yang dikembalikan',
@@ -1278,9 +1282,9 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'right-createaccount'        => 'Membuat akun baru',
 'right-minoredit'            => 'Menandai suntingan sebagai minor',
 'right-move'                 => 'Memindahkan halaman',
-'right-move-subpages'        => 'Pindahkan halaman dengan seluruh sub halamannya',
-'right-move-rootuserpages'   => 'Pindahkan halaman utama pengguna',
-'right-movefile'             => 'Pindahkan berkas',
+'right-move-subpages'        => 'Memindahkan halaman dengan seluruh subhalamannya',
+'right-move-rootuserpages'   => 'Memindahkan halaman utama pengguna',
+'right-movefile'             => 'Memindahkan berkas',
 'right-suppressredirect'     => 'Tidak membuat pengalihan dari nama lama ketika memindahkan halaman',
 'right-upload'               => 'Memuat berkas',
 'right-reupload'             => 'Menimpa berkas yang sudah ada',
@@ -1482,7 +1486,7 @@ Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain
 'sourcefilename'              => 'Nama berkas sumber:',
 'destfilename'                => 'Nama berkas tujuan:',
 'upload-maxfilesize'          => 'Ukuran file maksimum: $1',
-'watchthisupload'             => 'Pantau halaman ini',
+'watchthisupload'             => 'Pantau berkas ini',
 'filewasdeleted'              => 'Suatu berkas dengan nama ini pernah dimuat dan selanjutnya dihapus. Harap cek $1 sebelum memuat lagi berkas tersebut.',
 'upload-wasdeleted'           => "'''Peringatan: Anda memuat suatu berkas yang telah pernah dihapus.'''
 
@@ -2013,7 +2017,7 @@ Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, r
 'undeleterevision-missing'     => 'Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.',
 'undelete-nodiff'              => 'Tidak ada revisi yang lebih lama.',
 'undeletebtn'                  => 'Kembalikan!',
-'undeletelink'                 => 'kembalikan',
+'undeletelink'                 => 'lihat/kembalikan',
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Balikkan pilihan',
 'undeletecomment'              => 'Komentar:',
@@ -2112,7 +2116,7 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 'ipboptions'                      => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'lainnya',
 'ipbotherreason'                  => 'Alasan lain/tambahan:',
-'ipbhidename'                     => 'Sembunyikan nama pengguna atau IP dari log pemblokiran, daftar blokir aktif, serta daftar pengguna',
+'ipbhidename'                     => 'Sembunyikan nama pengguna dari suntingan dan daftar',
 'ipbwatchuser'                    => 'Pantau halaman pengguna dan pembicaraan pengguna ini',
 'ipballowusertalk'                => 'Izinkan pengguna ini untuk menyunting halaman pembicaraan sendiri ketika diblokir',
 'ipb-change-block'                => 'Blokir kembali pengguna dengan set konfigurasi berikut',
@@ -2244,7 +2248,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'movepage-max-pages'           => 'Sejumlah maksimum $1 {{PLURAL:$1|halaman|halaman}} telah dipindahkan dan tidak ada lagi yang akan dipindahkan secara otomatis.',
 '1movedto2'                    => 'memindahkan [[$1]] ke [[$2]]',
 '1movedto2_redir'              => 'memindahkan [[$1]] ke [[$2]] melalui peralihan',
-'move-redirect-suppressed'     => 'pengalihan ditahan',
+'move-redirect-suppressed'     => 'pengalihan tidak dibuat',
 'movelogpage'                  => 'Log pemindahan',
 'movelogpagetext'              => 'Di bawah ini adalah log pemindahan halaman.',
 'movereason'                   => 'Alasan:',
@@ -2501,7 +2505,7 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 
 # Media information
 'mediawarning'         => "'''Peringatan:''' Berkas ini mungkin mengandung kode berbahaya yang jika dijalankan dapat mempengaruhi sistem Anda.<hr />",
-'imagemaxsize'         => 'Batasi ukuran gambar dalam halaman deskripsi berkas sampai:',
+'imagemaxsize'         => "Batas ukuran gambar:<br />''(untuk halaman deskripsi berkas)''",
 'thumbsize'            => 'Ukuran miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|halaman|halaman}}',
 'file-info'            => '(ukuran berkas: $1, tipe MIME: $2)',
@@ -2985,7 +2989,7 @@ Masukkan nama berkas tanpa prefiks "{{ns:file}}:".',
 'specialpages-note'              => '----
 Keterangan tampilan:
 * Halaman istimewa normal
-* <span class="mw-specialpagerestricted">Halaman istimewa terbatas</span>',
+* <strong class="mw-specialpagerestricted">Halaman istimewa terbatas</strong>',
 'specialpages-group-maintenance' => 'Laporan pemeliharaan',
 'specialpages-group-other'       => 'Halaman istimewa lainnya',
 'specialpages-group-login'       => 'Masuk log / mendaftar',
@@ -3004,12 +3008,12 @@ Keterangan tampilan:
 'intentionallyblankpage' => 'Halaman ini sengaja dibiarkan kosong dan digunakan di antaranya untuk pengukuran kinerja, dan lain-lain.',
 
 # External image whitelist
-'external_image_whitelist' => '  #Biarkan baris ini sebagaimana adanya dan jangan diubah<pre>
+'external_image_whitelist' => '#Biarkan baris ini sebagaimana adanya<pre>
 #Gunakan fragmen-fragmen ekspresi regular (hanya bagian di antara //) di bawah ini
 #Fragmen-fragmen ini akan dicocokkan dengan URL dari gambar-gambar eksternal (yang dihubungkan langsung)
 #Fragmen yang cocok akan ditampilkan sebagai gambar, sisanya hanya sebagai pranala saja
 #Baris yang diawali dengan # akan diperlakukan sebagai baris komentar
-
+#Ini tidak membedakan huruf besar dan kecil
 #Letakkan semua fragmen ekspresi regular di bawah baris ini. Biarkan baris ini sebagaimana adanya</pre>',
 
 );

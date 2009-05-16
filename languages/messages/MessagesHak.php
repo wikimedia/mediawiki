@@ -1,6 +1,9 @@
 <?php
 /** Hakka (Hak-kâ-fa)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -113,7 +116,7 @@ $messages = array(
 'category-media-header'  => '"$1" fûn-lui chûng ke kî-thí tóng-on',
 'listingcontinuesabbrev' => 'Chhṳ̀-siu̍k',
 
-'mainpagetext'      => "<big>'''Yí-kîn sṳ̀n-kûng ôn-chông MediaWiki!'''</big>",
+'mainpagetext'      => "<big>'''Yí-kîn sṳ̀n-kûng ôn-chông MediaWiki.'''</big>",
 'mainpagedocfooter' => 'chhiáng fóng-mun [http://meta.wikimedia.org/wiki/Help:Contents Yung-fu sú-chhak] yî-khi̍p sṳ́-yung chhṳ́ wiki ngiôn-khien ke sin-sit！
 
 == Ngi̍p-mùn  ==

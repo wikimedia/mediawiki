@@ -1,6 +1,9 @@
 <?php
 /** Lingua Franca Nova (Lingua Franca Nova)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -344,7 +347,7 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'italic_tip'      => 'Testo en leteras italica',
 'link_sample'     => 'Titulo de lia',
 'link_tip'        => 'Lia interna',
-'extlink_sample'  => 'http://www.esemplo.com titulo de lia',
+'extlink_sample'  => 'http://www.example.com titulo de lia',
 'extlink_tip'     => 'Lia esterna (recorda la prefis http://)',
 'headline_sample' => 'Testo de titulo',
 'headline_tip'    => 'Titulo de nivel 2',

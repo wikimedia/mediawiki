@@ -1,6 +1,9 @@
 <?php
 /** Upper Sorbian (Hornjoserbsce)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -125,8 +128,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Wotkazy na prózdne strony wuzběhnyć',
 'tog-justify'                 => 'Tekst w blokowej sadźbje',
 'tog-hideminor'               => 'Snadne změny w aktualnych změnach schować',
-'tog-extendwatchlist'         => 'Rozšěrjena lisćina wobkedźbowankow',
-'tog-usenewrc'                => 'Rozšěrjena lisćina aktualnych změnow (trjeba JavaScript)',
+'tog-extendwatchlist'         => 'Lisćinu wobkedźbowankow wočinić, zo by wšě změny widźał, nic jenož najnowše',
+'tog-usenewrc'                => 'Rozšěrjenu lisćinu aktualnych změnow (trjeba JavaScript) wužiwać',
 'tog-numberheadings'          => 'Nadpisma awtomatisce čisłować',
 'tog-showtoolbar'             => 'Gratowu lajstu pokazać (JavaScript)',
 'tog-editondblclick'          => 'Strony z dwójnym kliknjenjom wobdźěłować (JavaScript)',
@@ -134,7 +137,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Wobdźěłowanje jednotliwych wotrězkow přez kliknjenje z prawej tastu<br />na nadpisma wotrězkow zmóžnić (JavaScript)',
 'tog-showtoc'                 => 'Zapis wobsaha pokazać (za strony z wjace hač 3 nadpismami)',
 'tog-rememberpassword'        => 'Hesło na tutym ličaku składować',
-'tog-editwidth'               => 'Wobdźěłanske polo ma połnu šěrokosć',
+'tog-editwidth'               => 'Wobdźěłowanske polo wušěrić, zo by so cyła wobrazowka pjelniła',
 'tog-watchcreations'          => 'Strony, kotrež wutworjam, swojim wobkedźbowankam přidać',
 'tog-watchdefault'            => 'Strony, kotrež wobdźěłuju, swojim wobkedźbowankam přidać',
 'tog-watchmoves'              => 'Sam přesunjene strony wobkedźbowankam přidać',
@@ -148,7 +151,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Tež dla snadnych změnow mejlki pósłać',
 'tog-enotifrevealaddr'        => 'Moju e-mejlowu adresu w e-mejlowych zdźělenkach wotkryć',
 'tog-shownumberswatching'     => 'Ličbu wobkedźbowacych wužiwarjow pokazać',
-'tog-fancysig'                => 'Hrube signatury (bjez awtomatiskeho wotkaza)',
+'tog-fancysig'                => 'Ze signaturu kaž z wikitekstom wobchadźeć  (bjez awtomatiskeho wotkaza)',
 'tog-externaleditor'          => 'Eksterny editor jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku)',
 'tog-externaldiff'            => 'Eksterny diff-program jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku)',
 'tog-showjumplinks'           => 'Wotkazy typa „dźi do” zmóžnić',
@@ -237,7 +240,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Slědowaca dataj je|Slědowacej $1 dataji stej|Slědowace $1 dataje su|Slědowacych $1 je}} w tutej kategoriji:',
 'listingcontinuesabbrev'         => ' (pokročowane)',
 
-'mainpagetext'      => '<big><b>MediaWiki bu wuspěšnje instalowany.</b></big>',
+'mainpagetext'      => "<big>'''MediaWiki bu wuspěšnje instalowany.'''</big>",
 'mainpagedocfooter' => 'Prošu hlej [http://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.
 
 == Za nowačkow ==
@@ -462,7 +465,7 @@ Wotprašenje: $2',
 'protectedpagetext'    => 'Strona je přećiwo wobdźěłowanju škitana.',
 'viewsourcetext'       => 'Móžeš pak jeje žórło wobhladać a jo kopěrować:',
 'protectedinterface'   => 'Tuta strona skići tekst za rěčny zwjerch a je škitana zo by so znjewužiwanju zadźěwało.',
-'editinginterface'     => "'''Warnowanje:''' Wobdźěłuješ stronu, kotraž so wužiwa, zo by tekst za softwaru k dispoziciji stajiła. Změny wuskutkuja so na napohlad wužiwarskeho powjercha za druhich wužiwarjow. Hlej za přełožki [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], projekt lokalizacije MediaWiki.",
+'editinginterface'     => "'''Warnowanje:''' Wobdźěłuješ stronu, kotraž so wužiwa, zo by tekst za softwaru k dispoziciji stajiła. Změny wuskutkuja so na napohlad wužiwarskeho powjercha za druhich wužiwarjow. Hlej za přełožki [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], projekt lokalizacije MediaWiki.",
 'sqlhidden'            => '(SQL wotprašenje schowane)',
 'cascadeprotected'     => 'Strona je za wobdźěłowanje zawrjena, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacymaj stronomaj|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrejž stej|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitanej|škitane}}:
 $2',
@@ -808,15 +811,17 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'revdelete-nooldid-text'      => 'Pak njejsy cilowu wersiju podał, zo by tutu funkciju wuwjedł, podata wersija njeeksistuje pak pospytuješ aktualnu wersiju schować.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
-'revdelete-text'              => "'''Wušmórnjene wersije so w stawiznach dale jewja, jich wobsah pak za wužiwarjow čitajomne njeje.'''
+'revdelete-text'              => "'''Wušmórnjene wersije a podawki so w stawiznach a protokolach dale jewja, ale dźěle jich wobsaha budu njepřistupne za zjawnosć.'''
 
-Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón wobnowić, chibazo su tež jich prawa wobmjezowane.",
+Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na schowany tekst přistup měć a jón z pomocu samsneho interfejsa wobnowić, chibazo tež přidatne prawa su wobmjezowane.
+
+Prošu wobkruć, zo chceš to činić, zo rozumiš sćěhi a zo činiš to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam]].",
 'revdelete-legend'            => 'Wobmjezowanja za widźomnosć nastajić',
 'revdelete-hide-text'         => 'Tekst tuteje wersije schować',
 'revdelete-hide-name'         => 'Akciju w protokolach schować',
 'revdelete-hide-comment'      => 'Zjeće schować',
 'revdelete-hide-user'         => 'Wužiwarske mjeno/IP-adresu schować',
-'revdelete-hide-restricted'   => 'Tute wobmjezowanja na administratorow nałožić a tutón interfejs zawrěć',
+'revdelete-hide-restricted'   => 'Daty wot administratorow kaž tež te druhich wužiwarjow potłóčić',
 'revdelete-suppress'          => 'Přičinu wušmórnjenja tež za administratorow schować',
 'revdelete-hide-image'        => 'Wobsah wobraza schować',
 'revdelete-unsuppress'        => 'Wobmjezowanja za wobnowjene wersije zběhnyć',
@@ -1324,7 +1329,7 @@ Jeli maš tutón wobraz z połnym rozeznaćom, nahraj tutón, hewak změń proš
 'sourcefilename'              => 'Mjeno žórłoweje dataje:',
 'destfilename'                => 'Mjeno ciloweje dataje:',
 'upload-maxfilesize'          => 'Maksimalna datajowa wulkosć: $1',
-'watchthisupload'             => 'Stronu wobkedźbować',
+'watchthisupload'             => 'Tutu dataju wobkedźbować',
 'filewasdeleted'              => 'Dataja z tutym mjenom bu prjedy nahrata a pozdźišo wušmórnjena. Prošu přepruwuj $1 prjedy hač ju znowa składuješ.',
 'upload-wasdeleted'           => "'''Kedźbu: Nahrawaš dataju, kotraž bu prjedy wušmórnjena.'''
 
@@ -1829,7 +1834,7 @@ Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych str
 ** Wobdźěłanska wójna
 ** Strona z jara wjele změnami',
 'protect-edit-reasonlist'     => 'Škitowe přičiny wobdźěłać',
-'protect-expiry-options'      => '1 hodźinu:1 hour,2 hodźinje:2 hours, 6 hodźiny:6 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:indefinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hodźinu:1 hour,1 dźeń:1 day,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Škitowy status',
 'restriction-level'           => 'Runina škita:',
 'minimum-size'                => 'Minimalna wulkosć:',
@@ -1866,7 +1871,7 @@ W tutym padźe dyrbiš najnowšu wušmórnjenu wersiju znjemóžnić abo pokaza�
 'undeleterevision-missing'     => 'Njepłaćiwa abo pobrachowaca wersija. Pak je wotkaz wopačny, pak bu wotpowědna wersija z archiwa wobnowjena abo wotstronjena.',
 'undelete-nodiff'              => 'Předchadna wersija njeeksistuje.',
 'undeletebtn'                  => 'Wobnowić',
-'undeletelink'                 => 'wobnowić',
+'undeletelink'                 => 'wobhladać sej/wobnowić',
 'undeletereset'                => 'Cofnyć',
 'undeleteinvert'               => 'Wuběr wobroćić',
 'undeletecomment'              => 'Přičina:',
@@ -1960,10 +1965,10 @@ $1',
 'ipbenableautoblock'              => 'IP-adresy blokować kiž buchu přez tutoho wužiwarja hižo wužiwane kaž tež naslědne adresy, z kotrychž so wobdźěłanje pospytuje',
 'ipbsubmit'                       => 'Wužiwarja zablokować',
 'ipbother'                        => 'Druha doba',
-'ipboptions'                      => '1 hodźinu:1 hour,2 hodźinje:2 hours, 6 hodźiny:6 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:indefinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 hodźinje:2 hours,1 dźeń:1 day,3 dny:3 days,1 tydźeń:1 week,2 njedźeli:2 weeks,1 měsać:1 month,3 měsacy:3 months,6 měsacow:6 months,1 lěto:1 year,na přeco:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'druha doba (jendźelsce)',
 'ipbotherreason'                  => 'Druha/přidatna přičina:',
-'ipbhidename'                     => 'Wužiwarske mjeno/IP-adresu w protokolu zablokowanjow, w lisćinje aktiwnych zablokowanjow a w zapisu wužiwarjow schować.',
+'ipbhidename'                     => 'Wužiwarske mjeno stawiznach a lisćinach schować',
 'ipbwatchuser'                    => 'Wužiwarsku a diskusijnu stronu tutoho wužiwarja wobkedźbować',
 'ipballowusertalk'                => 'Tutomu wužiwarjej dowolić swójsku diskusijnu stronu wobdźěłać, mjeztym zo je blokowany',
 'ipb-change-block'                => 'Wužiwarja z tutymi nastajenjemi znowa blokować',
@@ -2068,7 +2073,7 @@ Wobkedźbuj, zo strona so <b>nje</b> přesunje, jeli strona z nowym titlom hizo 
 W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to přeješ.',
 'movearticle'                  => 'Stronu přesunyć',
 'movenologin'                  => 'Njejsy přizjewjeny.',
-'movenologintext'              => 'Dyrbiš zregistrowany wužiwar a [[Special:UserLogin|přizjewjeny]] być, zo by stronu přesunyć móhł.',
+'movenologintext'              => 'Dyrbiš zregistrowany wužiwar a [[Special:UserLogin|přizjewjeny]] być, zo by stronu přesunył.',
 'movenotallowed'               => 'Nimaš prawo, zo by strony přesunył.',
 'movenotallowedfile'           => 'Nimaš prawo dataje přesunyć.',
 'cant-move-user-page'          => 'Nimaš prawo wužiwarske strony přesunyć (wothladajo wot podstronow)',
@@ -2272,8 +2277,8 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymny wužiwar|Anonymnaj wužiwarjej|Anonymni wužiwarjo|Anonymni wužiwarjo}} we {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'siteuser'         => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}} $1',
-'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot wužiwarja $3 změnjena.', # $1 date, $2 time, $3 user
-'othercontribs'    => 'Na zakładźe dźěła wužiwarja $1.',
+'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot wužiwarja $4 změnjena.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'Bazěruje na dźěle {{PLURAL:$1|wužiwar|wužiwarjow|wužiwarjow|wužiwarjow}} $1.',
 'others'           => 'druhich',
 'siteusers'        => '{{SITENAME}}  {{PLURAL:$2|wužiwar|wužiwarjej|wužiwarjo|wužiwarjow}} $1',
 'creditspage'      => 'Dźak awtoram',
@@ -2352,7 +2357,7 @@ $1',
 
 # Media information
 'mediawarning'         => '<b>KEDŹBU:</b> Dataja móhła złowólny kod wobsahować, kotrehož wuwjedźenje móhło twój system wobškodźić.<hr />',
-'imagemaxsize'         => 'Wobrazy na stronach wobrazoweho wopisanja wobmjezować na:',
+'imagemaxsize'         => "Maksimalna wobrazowa wulkosć:<br />''(za strony datajoweho wopisanja)''",
 'thumbsize'            => 'Wulkosć miniaturkow (thumbnails):',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strona|stronje|strony|stronow}}',
@@ -2737,7 +2742,7 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 'table_pager_first'        => 'prěnja strona',
 'table_pager_last'         => 'poslednja strona',
 'table_pager_limit'        => '$1 {{PLURAL:$1|wuslědk|wuslědkaj|wuslědki|wuslědkow}} na stronu pokazać',
-'table_pager_limit_submit' => 'OK',
+'table_pager_limit_submit' => 'Wotpósłać',
 'table_pager_empty'        => 'Žane wuslědki',
 
 # Auto-summaries
@@ -2838,7 +2843,7 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'specialpages'                   => 'Specialne strony',
 'specialpages-note'              => '----
 * Normalne specialne strony.
-* <span class="mw-specialpagerestricted">Specialne strony z wobmjezowanym přistupom</span>',
+* <strong class="mw-specialpagerestricted">Specialne strony z wobmjezowanym přistupom</strong>',
 'specialpages-group-maintenance' => 'Hladanske lisćiny',
 'specialpages-group-other'       => 'Druhe specialne strony',
 'specialpages-group-login'       => 'Přizjewjenje',
@@ -2846,7 +2851,7 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'specialpages-group-media'       => 'Medije',
 'specialpages-group-users'       => 'Wužiwarjo a prawa',
 'specialpages-group-highuse'     => 'Často wužiwane strony',
-'specialpages-group-pages'       => 'Lisćina stronow',
+'specialpages-group-pages'       => 'Lisćiny stronow',
 'specialpages-group-pagetools'   => 'Nastroje stronow',
 'specialpages-group-wiki'        => 'Wikijowe daty a nastroje',
 'specialpages-group-redirects'   => 'Daleposrědkowace specialne strony',
@@ -2862,6 +2867,7 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 #Tute přirunuja so z URL eksternych wobrazow
 #Přihódne zwobraznja so jako wobrazy, hewak so jenož wotkaz k wobrazej pokaza
 #Z linkami, kotrež so z # započinaja, wobchadźeja kaž komentary
+#To na wulkopisanje njedźiwa
 
 #Zapodaj wšě fragmenty regularnych wurazow nad tutej linku. Wostaj tutu linku eksaktnje kaž je</pre>',
 

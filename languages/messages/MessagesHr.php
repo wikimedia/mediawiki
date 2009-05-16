@@ -1,6 +1,9 @@
 <?php
 /** Croatian (Hrvatski)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -295,7 +298,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Istakni prazne poveznice <a href="" class="new">ovako</a> (inače, ovako<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Poravnaj odlomke i zdesna',
 'tog-hideminor'               => 'Sakrij manje izmjene na stranici Nedavnih promjena',
-'tog-extendwatchlist'         => 'Proširi popis praćenih stranica tako da prikaže sve odgovarajuće promjene',
+'tog-extendwatchlist'         => 'Proširi popis praćenih stranica tako da prikaže sve promjene, ne samo najnovije',
 'tog-usenewrc'                => 'Poboljšan izgled Nedavnih promjena (nije za sve preglednike)',
 'tog-numberheadings'          => 'Automatski označi naslove brojevima',
 'tog-showtoolbar'             => 'Prikaži traku s alatima za uređivanje',
@@ -407,7 +410,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|datoteka je|$1 datoteke su|$1 datoteka su}} u ovoj kategoriji.',
 'listingcontinuesabbrev'         => 'nast.',
 
-'mainpagetext'      => 'Softver Wiki je uspješno instaliran.',
+'mainpagetext'      => "<big>'''Softver MediaWiki je uspješno instaliran.'''</big>",
 'mainpagedocfooter' => 'Pogledajte [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]
 i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju.',
 
@@ -1002,12 +1005,10 @@ detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}
 'revdelete-nooldid-text'      => 'Niste naveli željenu izmjenu (izmjene), željena izmjena ne postoji, ili  pokušavate sakriti trenutačnu izmjenu.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Odabrana izmjena|Odabrane izmjene|Odabrane izmjene}} stranice [[$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Odabrani zapis u evidenciji|Odabrani zapisi u evidenciji}}:'''",
-'revdelete-text'              => "'''Obrisane će se izmjene i dalje nalaziti u javnom popisu izmjena,
-ali njihov sadržaj neće biti dostupan javnosti.'''
+'revdelete-text'              => "'''Obrisane će se izmjene i dalje nalaziti u javnom popisu izmjena, ali njihov sadržaj neće biti dostupan javnosti.'''
+Drugi administratori ovoga projekta ({{SITENAME}}) moći će i dalje pristupiti skrivenom sadržaju i vratiti ga u javni pristup putem ovog sučelja, osim ako operateri na projektu nisu postavili dodatna ograničenja.
 
-Drugi administratori ovoga projekta moći će i dalje pristupiti skrivenom sadržaju i
-vratiti ga u javni pristup putem ovog sučelja, osim ako operateri na projektu nisu
-postavili dodatna ograničenja.",
+Molimo potvrdite da to želite, da razumijete posljedice, i da to radite u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama projekta]].",
 'revdelete-legend'            => 'Postavi ograničenja na izmjenu:',
 'revdelete-hide-text'         => 'Sakrij tekst izmjene',
 'revdelete-hide-name'         => 'Sakrij uređivanje i njegov predmet',
@@ -2029,7 +2030,7 @@ Slijede trenutačne postavke stranice '''$1''':",
 ** Neproduktivni uređivački rat
 ** Zatrpavanje nedavnih promjena',
 'protect-edit-reasonlist'     => 'Uredi razloge zaštićivanja',
-'protect-expiry-options'      => '2 sata:2 hours,6 sati:6 hours,1 dan:1 day,3 dana:3 days,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,neograničeno:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 sat:1 hour,1 dan:1 day,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godina:1 year,neograničeno:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Dopuštenje:',
 'restriction-level'           => 'Stupanj ograničenja:',
 'minimum-size'                => 'Najmanja veličina',
@@ -2068,7 +2069,7 @@ Tekst izbrisanih inačica dostupan je samo administratorima.',
 ili je promjena vraćena ili uklonjena iz arhive.',
 'undelete-nodiff'              => 'Prethodne promjene nisu nađene.',
 'undeletebtn'                  => 'Vrati!',
-'undeletelink'                 => 'vrati',
+'undeletelink'                 => 'vidi/vrati',
 'undeletereset'                => 'Očisti',
 'undeleteinvert'               => 'Obrni odabir',
 'undeletecomment'              => 'Komentar:',
@@ -2165,7 +2166,7 @@ vandalizirane).',
 'ipbenableautoblock'              => 'Automatski blokiraj IP adrese koje koristi ovaj suradnik',
 'ipbsubmit'                       => 'Blokiraj ovog suradnika',
 'ipbother'                        => 'Neki drugi rok (na engleskom, npr. 6 days):',
-'ipboptions'                      => '2 sata:2 hours,6 sati:6 hours,1 dan:1 day,3 dana:3 days,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,neograničeno:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,neograničeno:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'drugo',
 'ipbotherreason'                  => 'Drugi/dodatni razlog:',
 'ipbhidename'                     => 'Sakrij suradničko ime iz evidencije blokiranja, popisa blokiranja i popisa suradnika',
@@ -3062,7 +3063,7 @@ Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 'specialpages'                   => 'Posebne stranice',
 'specialpages-note'              => '----
 * Normalne posebne stranice
-*<span class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom</span>',
+*<strong class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom</span>',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other'       => 'Ostale posebne stranice',
 'specialpages-group-login'       => 'Prijava / Otvaranje računa',
@@ -3081,11 +3082,12 @@ Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 'intentionallyblankpage' => 'Ova stranica je namjerno ostavljena praznom',
 
 # External image whitelist
-'external_image_whitelist' => ' #Ovaj redak ostavite točno ovakvim kakav je<pre>
+'external_image_whitelist' => '#Ovaj redak ostavite točno ovakvim kakav je<pre>
 #Stavite ulomke s regularnim izrazom (samo dio koji ide između //) ispod
 #Ovo će biti usklađeno s URL-ovima vanjskih slika (hotlink)
 #Oni koji se poklapaju će biti prikazani kao slike, u suprotnom će biti prikazana samo poveznica do slike
-#Redovi koji počinju sa # smatraju se komentarom.
+#Redovi koji počinju sa # smatraju se komentarom
+#Ovo je osjetljivo na velika slova
 
 #Stavite sve regularne izraze iznad ovog reda. Ostavite ovaj redak točno ovakvim kakav je</pre>',
 

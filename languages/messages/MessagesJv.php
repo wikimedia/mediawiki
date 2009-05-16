@@ -1,6 +1,9 @@
 <?php
 /** Javanese (Basa Jawa)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -161,12 +164,12 @@ $messages = array(
 'category-file-count-limited'    => 'Kategori iki ndarbèni {{PLURAL:$1|berkas|$1 berkas-berkas}} sing kapacak ing ngisor iki.',
 'listingcontinuesabbrev'         => 'samb.',
 
-'mainpagetext'      => 'Prangkat empuk wiki wis suksès dipasang.',
+'mainpagetext'      => "<big>'''Prangkat empuk wiki wis suksès dipasang.'''</big>",
 'mainpagedocfooter' => "Mangga maca [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] kanggo katrangan luwih langkung prakara panggunan prangkat empuk wiki
 == Miwiti panggunan  ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pangaturan préférènsi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
 
 'about'          => 'Prakara',
 'article'        => 'Artikel',
@@ -2719,7 +2722,7 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:file}}:".',
 'specialpages-note'              => '----
 Katrangan tampilan:
 * Kaca astamèwa normal
-* <span class="mw-specialpagerestricted">Kaca astamèwa winates</span>',
+* <strong class="mw-specialpagerestricted">Kaca astamèwa winates</strong>',
 'specialpages-group-maintenance' => 'Lapuran pangopènan',
 'specialpages-group-other'       => 'Kaca-kaca astaméwa liyané',
 'specialpages-group-login'       => 'Mlebu log / ndaftar',
@@ -2738,7 +2741,7 @@ Katrangan tampilan:
 'intentionallyblankpage' => 'Kaca iki disengajakaké kosong',
 
 # External image whitelist
-'external_image_whitelist' => '  #Umbarna baris iki apa anané<pre>
+'external_image_whitelist' => ' #Umbarna baris iki apa anané<pre>
 #Pigunakaké fragmèn-fragmèn èksprèsi regular (mung bagéyan ing antara //) ing ngisor
 #Fragmèn-fragmèn ini bakal dicocogaké karo URL saka gambar-gambar eksternal (sing kahubung langsung)
 #Fragmèn sing cocog bakal ditampilaké minangka gambar, yèn ora mung pranala menyang gambar waé sing dituduhaké

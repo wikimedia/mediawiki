@@ -1,6 +1,9 @@
 <?php
 /** ‫كوردي (عەرەبی)‬ (‫كوردي (عەرەبی)‬)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -126,11 +129,12 @@ $messages = array(
 'dec'           => 'كا١',
 
 # Categories related messages
-'pagecategories'        => '{{PLURAL:$1|ھاوپۆل|ھاوپۆلەکان}}',
-'category_header'       => 'پەڕە ھاوپۆلەکانی "$1"',
-'subcategories'         => 'به‌شه‌هاوپۆله‌كان',
-'category-media-header' => 'میدیا له‌ هاوپۆلی "$1" دا',
-'category-empty'        => "''ئه‌م هاوپۆله‌ هه‌نووكه‌ هیچ له‌خۆ ناگرێت - به‌تاڵه‌''",
+'pagecategories'           => '{{PLURAL:$1|ھاوپۆل|ھاوپۆلەکان}}',
+'category_header'          => 'پەڕە ھاوپۆلەکانی "$1"',
+'subcategories'            => 'به‌شه‌هاوپۆله‌كان',
+'category-media-header'    => 'میدیا له‌ هاوپۆلی "$1" دا',
+'category-empty'           => "''ئه‌م هاوپۆله‌ هه‌نووكه‌ هیچ له‌خۆ ناگرێت - به‌تاڵه‌''",
+'hidden-category-category' => 'هاوپۆلە شاردراوەکان', # Name of the category where hidden categories will be listed
 
 'mainpagetext'      => "<big>'''ویكیمیدیا به‌سه‌ركه‌وتووی دامه‌زرا.'''</big>",
 'mainpagedocfooter' => 'بكه‌ [http://meta.wikimedia.org/wiki/Help:ناوه‌ڕۆكی چۆنێتی به‌كارهێنان] بۆ وه‌ده‌ست هێنانی زانیاریی له‌سه‌ر چۆنێتی كارگێڕی نه‌رمه‌كاڵای ویكی، سه‌ردانی.

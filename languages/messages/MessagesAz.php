@@ -1,6 +1,9 @@
 <?php
 /** Azerbaijani (Azərbaycan)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -608,7 +611,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'statistics-header-users' => 'İstifadəçi statistika',
 
 'disambiguations'      => 'Dəqiqləşdirmə səhifələri',
-'disambiguationspage'  => 'Şablon:dəqiqləşdirmə',
+'disambiguationspage'  => 'Template:dəqiqləşdirmə',
 'disambiguations-text' => "Aşağıdakı səhifələr '''dəqiqləşdirmə səhifələrinə''' keçid verir. Bunun əvəzinə onlar çox guman ki, müvafiq konkret bir məqaləni göstərməlidirlər.
 <br />Səhifə o zaman dəqiqləşdirmə səhifəsi hesab edilir ki, onda  [[MediaWiki:Disambiguationspage]]-dən keçid verilmiş şablon istifadə edilir.",
 

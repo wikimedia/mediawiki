@@ -1,9 +1,13 @@
 <?php
 /** Lezghian (Лезги)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
+ * @author Amikeco
  */
 
 $messages = array(
@@ -130,7 +134,7 @@ $messages = array(
 
 # Recent changes
 'diff'            => 'тафават',
-'hist'            => 'тари',
+'hist'            => 'тарих',
 'hide'            => 'Чуьнуьхун',
 'show'            => 'Къаларун',
 'minoreditletter' => 'г',
