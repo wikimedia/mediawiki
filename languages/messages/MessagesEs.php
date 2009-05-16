@@ -1781,7 +1781,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'unblockip'                       => 'Desbloquear usuario',
 'unblockiptext'                   => 'Use el formulario a continuación para devolver los permisos de escritura a una dirección IP que ha sido bloqueada.',
 'ipusubmit'                       => 'Remover este bloqueo',
-'unblocked'                       => '[[User:$1|$1]] ha sido {{GENDER:$1|desbloqueado|desbloqueada}}',
+'unblocked'                       => '[[User:$1|$1]] ha sido desbloqueado',
 'unblocked-id'                    => 'Se ha eliminado el bloqueo $1',
 'ipblocklist'                     => 'Lista de direcciones IP y nombres de usuario bloqueadas',
 'ipblocklist-legend'              => 'Encontrar a un usuario bloqueado',
@@ -2057,7 +2057,7 @@ No hay un directorio temporal.',
 
 # Attribution
 'anonymous'        => 'Usuario(s) anónimo(s) de {{SITENAME}}',
-'siteuser'         => '{{GENDER:$1|Usuario|Usuaria}} $1 de {{SITENAME}}',
+'siteuser'         => 'Usuario $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página fue modificada por última vez en $2, $1 por $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basado en el trabajo de $1.',
 'others'           => 'otros',

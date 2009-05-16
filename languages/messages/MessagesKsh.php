@@ -2323,8 +2323,8 @@ Bes esu joot, un versök et noch ens.',
 
 # Attribution
 'anonymous'        => 'Namelose Metmaacher vun de {{SITENAME}}',
-'siteuser'         => '{{SITENAME}}-{{GENDER:$1|Metmaacher|Metmaacheren|Metmaacher|Metmaacher|Metmaacheren}} $1',
-'lastmodifiedatby' => 'Die Sigg hee wood et letz am $1 öm $2 Uhr {{GENDER:$4|vum|vun dä|vum|vum|vun dä}} $3 jeändert.', # $1 date, $2 time, $3 user
+'siteuser'         => '{{SITENAME}}-Metmaacher $1',
+'lastmodifiedatby' => 'Die Sigg hee wood et letz am $1 öm $2 Uhr vum $3 jeändert.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Bout op et Werk vun $1 op.',
 'others'           => 'ander',
 'siteusers'        => '{{SITENAME}}-Metmaacher $1',
